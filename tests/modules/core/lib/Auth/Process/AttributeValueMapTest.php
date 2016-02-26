@@ -27,6 +27,9 @@ class AttributeValueMapTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Test the most basic functionality.
+     *
+     * @covers SimpleSAML\Module\core\Auth\Process\AttributeValueMap::__construct
+     * @covers SimpleSAML\Module\core\Auth\Process\AttributeValueMap::process
      */
     public function testBasic()
     {
@@ -55,6 +58,9 @@ class AttributeValueMapTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Test basic functionality, remove duplicates
+     *
+     * @covers SimpleSAML\Module\core\Auth\Process\AttributeValueMap::__construct
+     * @covers SimpleSAML\Module\core\Auth\Process\AttributeValueMap::process
      */
     public function testNoDuplicates()
     {
@@ -84,6 +90,9 @@ class AttributeValueMapTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Test the %replace functionality.
+     *
+     * @covers SimpleSAML\Module\core\Auth\Process\AttributeValueMap::__construct
+     * @covers SimpleSAML\Module\core\Auth\Process\AttributeValueMap::process
      */
     public function testReplace()
     {
@@ -114,6 +123,9 @@ class AttributeValueMapTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Test the %keep functionality.
+     *
+     * @covers SimpleSAML\Module\core\Auth\Process\AttributeValueMap::__construct
+     * @covers SimpleSAML\Module\core\Auth\Process\AttributeValueMap::process
      */
     public function testKeep()
     {
@@ -145,7 +157,10 @@ class AttributeValueMapTest extends \PHPUnit_Framework_TestCase
     /**
      * Test unknown flag Exception
      *
-     * @expectedException Exception
+     * @covers SimpleSAML\Module\core\Auth\Process\AttributeValueMap::__construct
+     * @covers SimpleSAML\Module\core\Auth\Process\AttributeValueMap::process
+     *
+     * @expectedException \Exception
      */
     public function testUnknownFlag()
     {
@@ -169,7 +184,10 @@ class AttributeValueMapTest extends \PHPUnit_Framework_TestCase
     /**
      * Test missing Source attribute
      *
-     * @expectedException Exception
+     * @covers SimpleSAML\Module\core\Auth\Process\AttributeValueMap::__construct
+     * @covers SimpleSAML\Module\core\Auth\Process\AttributeValueMap::process
+     *
+     * @expectedException \Exception
      */
     public function testMissingSourceAttribute()
     {
@@ -193,7 +211,10 @@ class AttributeValueMapTest extends \PHPUnit_Framework_TestCase
     /**
      * Test missing Target attribute
      *
-     * @expectedException Exception
+     * @covers SimpleSAML\Module\core\Auth\Process\AttributeValueMap::__construct
+     * @covers SimpleSAML\Module\core\Auth\Process\AttributeValueMap::process
+     *
+     * @expectedException \Exception
      */
     public function testMissingTargetAttribute()
     {
