@@ -13,16 +13,19 @@ class Test_Core_Auth_Process_AttributeValueMap extends PHPUnit_Framework_TestCas
      * @param array $request  The request state.
      * @return array  The state array after processing.
      */
-    private static function processFilter(array $config, array $request) {
+    private static function processFilter(array $config, array $request)
+    {
         $filter = new sspmod_core_Auth_Process_AttributeValueMap($config, null);
         $filter->process($request);
         return $request;
     }
 
+
     /**
      * Test the most basic functionality.
      */
-    public function testBasic() {
+    public function testBasic()
+    {
         $config = array(
             'sourceattribute' => 'memberOf',
             'targetattribute' => 'eduPersonAffiliation',
@@ -45,10 +48,12 @@ class Test_Core_Auth_Process_AttributeValueMap extends PHPUnit_Framework_TestCas
         $this->assertEquals($attributes['eduPersonAffiliation'], array('member'));
     }
 
+
     /**
      * Test basic functionality, remove duplicates
      */
-    public function testNoDuplicates() {
+    public function testNoDuplicates()
+    {
         $config = array(
             'sourceattribute' => 'memberOf',
             'targetattribute' => 'eduPersonAffiliation',
@@ -72,10 +77,12 @@ class Test_Core_Auth_Process_AttributeValueMap extends PHPUnit_Framework_TestCas
         $this->assertEquals($attributes['eduPersonAffiliation'], array('member', 'someValue'));
     }
 
+
     /**
      * Test the %replace functionality.
      */
-    public function testReplace() {
+    public function testReplace()
+    {
         $config = array(
             'sourceattribute' => 'memberOf',
             'targetattribute' => 'eduPersonAffiliation',
@@ -90,7 +97,7 @@ class Test_Core_Auth_Process_AttributeValueMap extends PHPUnit_Framework_TestCas
         $request = array(
             'Attributes' => array(
                 'memberOf' => array('theGroup'),
-                'eduPersonAffiliation' => array('someValue'),                
+                'eduPersonAffiliation' => array('someValue'),
             ),
         );
         $result = self::processFilter($config, $request);
@@ -100,10 +107,12 @@ class Test_Core_Auth_Process_AttributeValueMap extends PHPUnit_Framework_TestCas
         $this->assertEquals($attributes['eduPersonAffiliation'], array('member'));
     }
 
+
     /**
      * Test the %keep functionality.
      */
-    public function testKeep() {
+    public function testKeep()
+    {
         $config = array(
             'sourceattribute' => 'memberOf',
             'targetattribute' => 'eduPersonAffiliation',
@@ -118,7 +127,7 @@ class Test_Core_Auth_Process_AttributeValueMap extends PHPUnit_Framework_TestCas
         $request = array(
             'Attributes' => array(
                 'memberOf' => array('theGroup'),
-                'eduPersonAffiliation' => array('someValue'),                
+                'eduPersonAffiliation' => array('someValue'),
             ),
         );
         $result = self::processFilter($config, $request);
@@ -128,12 +137,14 @@ class Test_Core_Auth_Process_AttributeValueMap extends PHPUnit_Framework_TestCas
         $this->assertEquals($attributes['eduPersonAffiliation'], array('someValue','member'));
     }
 
+
     /**
      * Test unknown flag Exception
      *
      * @expectedException Exception
      */
-    public function testUnknownFlag() {
+    public function testUnknownFlag()
+    {
         $config = array(
             '%test',
             'values' => array(
@@ -147,15 +158,17 @@ class Test_Core_Auth_Process_AttributeValueMap extends PHPUnit_Framework_TestCas
                 'memberOf' => array('theGroup'),
             ),
         );
-        $result = self::processFilter($config, $request);
+        self::processFilter($config, $request);
     }
+
 
     /**
      * Test missing Source attribute
      *
      * @expectedException Exception
      */
-    public function testMissingSourceAttribute() {
+    public function testMissingSourceAttribute()
+    {
         $config = array(
             'targetattribute' => 'affiliation',
             'values' => array(
@@ -169,15 +182,17 @@ class Test_Core_Auth_Process_AttributeValueMap extends PHPUnit_Framework_TestCas
                 'memberOf' => array('theGroup'),
             ),
         );
-        $result = self::processFilter($config, $request);
+        self::processFilter($config, $request);
     }
+
 
     /**
      * Test missing Target attribute
      *
      * @expectedException Exception
      */
-    public function testMissingTargetAttribute() {
+    public function testMissingTargetAttribute()
+    {
         $config = array(
             'sourceattribute' => 'memberOf',
             'values' => array(
@@ -191,6 +206,6 @@ class Test_Core_Auth_Process_AttributeValueMap extends PHPUnit_Framework_TestCas
                 'memberOf' => array('theGroup'),
             ),
         );
-        $result = self::processFilter($config, $request);
+        self::processFilter($config, $request);
     }
 }

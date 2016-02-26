@@ -4,9 +4,10 @@
  * Filter to create target attribute based on value(s) in source attribute
  *
  * @author Martin van Es, m7
- * @package simpleSAMLphp
+ * @package SimpleSAMLphp
  */
-class sspmod_core_Auth_Process_AttributeValueMap extends SimpleSAML_Auth_ProcessingFilter {
+class sspmod_core_Auth_Process_AttributeValueMap extends SimpleSAML_Auth_ProcessingFilter
+{
 
     /**
     * The attributename we should assign values to (ie target)
@@ -24,27 +25,29 @@ class sspmod_core_Auth_Process_AttributeValueMap extends SimpleSAML_Auth_Process
     private $values = array();
     
     /**
-    * Wether $sourceattribute should be kept
+    * Whether $sourceattribute should be kept
     */
     private $keep = false;
 
     /**
-    * Wether $target attribute values should be replaced by new values
+    * Whether $target attribute values should be replaced by new values
     */
     private $replace = false;
     
     /**
-    * Initialize this filter.
-    *
-    * @param array $config  Configuration information about this filter.
-    * @param mixed $reserved  For future use.
+     * Initialize this filter.
+     *
+     * @param array $config Configuration information about this filter.
+     * @param mixed $reserved For future use.
+     * @throws SimpleSAML_Error_Exception If the configuration is not valid.
     */
-    public function __construct($config, $reserved) {
+    public function __construct($config, $reserved)
+    {
         parent::__construct($config, $reserved);
 
         assert('is_array($config)');
 
-        /* Validate configuration. */
+        // validate configuration
         foreach ($config as $name => $value) {
             if (is_int($name)) {
                 // check if this is an option
@@ -58,17 +61,17 @@ class sspmod_core_Auth_Process_AttributeValueMap extends SimpleSAML_Auth_Process
                 continue;
             }
 
-            // Set targetattribute
+            // set targetattribute
             if ($name === 'targetattribute') {
                 $this->targetattribute = $value;
             }
 
-            // Set sourceattribute
+            // set sourceattribute
             if ($name === 'sourceattribute') {
                 $this->sourceattribute = $value;
             }
         
-            // Set values
+            // set values
             if ($name === 'values') {
                 $this->values = $value;
             }
@@ -77,11 +80,12 @@ class sspmod_core_Auth_Process_AttributeValueMap extends SimpleSAML_Auth_Process
 
 
     /**
-        * Apply filter to add groups attribute.
-        *
-        * @param array &$request  The current request
-        */
-    public function process(&$request) {
+     * Apply filter.
+     *
+     * @param array &$request The current request
+     */
+    public function process(&$request)
+    {
         SimpleSAML_Logger::debug('AttributeValueMap - process');
 
         assert('is_array($request)');
@@ -109,7 +113,10 @@ class sspmod_core_Auth_Process_AttributeValueMap extends SimpleSAML_Auth_Process
             if ($this->replace or !@is_array($attributes[$this->targetattribute])) {
                 $attributes[$this->targetattribute] = $targetvalues;
             } else {
-                $attributes[$this->targetattribute] = array_unique(array_merge($attributes[$this->targetattribute], $targetvalues));
+                $attributes[$this->targetattribute] = array_unique(array_merge(
+                    $attributes[$this->targetattribute],
+                    $targetvalues
+                ));
             }
         }
 
