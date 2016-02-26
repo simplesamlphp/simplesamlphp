@@ -159,13 +159,13 @@ class AttributeValueMapTest extends \PHPUnit_Framework_TestCase
      *
      * @covers SimpleSAML\Module\core\Auth\Process\AttributeValueMap::__construct
      * @covers SimpleSAML\Module\core\Auth\Process\AttributeValueMap::process
-     *
-     * @expectedException \Exception
      */
     public function testUnknownFlag()
     {
         $config = array(
             '%test',
+            'targetattribute' => 'affiliation',
+            'sourceattribute' => 'memberOf',
             'values' => array(
                 'member' => array(
                     'theGroup',
@@ -177,7 +177,10 @@ class AttributeValueMapTest extends \PHPUnit_Framework_TestCase
                 'memberOf' => array('theGroup'),
             ),
         );
-        self::processFilter($config, $request);
+        $result = self::processFilter($config, $request);
+        $this->assertArrayHasKey('affiliation', $result['Attributes']);
+        $this->assertArrayNotHasKey('memberOf', $result['Attributes']);
+        $this->assertContains('member', $result['Attributes']['affiliation']);
     }
 
 
