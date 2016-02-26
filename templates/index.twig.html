@@ -23,8 +23,9 @@
         <h2>Configuration</h2>
         <ul>
             {% for url, page in adminpages %}
-            <li></li>
-            <a href="{{ url }}">{{ page }}</li>
+            <li>
+                <a href="{{ url }}">{{ page }}</a>
+            </li>
             {% endfor %}
         </ul>
         </div>
