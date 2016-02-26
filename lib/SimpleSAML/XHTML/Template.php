@@ -59,7 +59,14 @@ class SimpleSAML_XHTML_Template
      */
     private function setupTwig()
     {
-        $twig_filename = basename($this->template, '.php').'.twig.html';
+        $namespace = '';
+        $filename = $this->template;
+        $colonpos = strpos($this->template, ':');
+        if ($colonpos === true) {
+            $filename = substr($this->template, $colonpos);
+            $namespace = substr($this->template, 0, $colonpos);
+        }
+        $twig_filename = basename($filename, '.php').'.twig.html';
         $filename = $this->findTemplatePath($twig_filename, $throw_exception=false);
         // twig not in use for this page
         if (is_null($filename)) {
@@ -70,7 +77,7 @@ class SimpleSAML_XHTML_Template
         $this->template = $twig_filename;
         $loader = new \Twig_Loader_Filesystem(array(dirname($filename), $this->configuration->resolvePath('templates')));
         $auto_reload = true; // TODO: set this in config
-        $this->twig = new \Twig_Environment($loader, array('cache' => $cache, 'dauto_reload' => $auto_reload));
+        $this->twig = new \Twig_Environment($loader, array('cache' => $cache, 'auto_reload' => $auto_reload));
         return true;
     }
 
