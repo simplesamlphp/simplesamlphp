@@ -54,13 +54,27 @@ class SimpleSAML_XHTML_Template
         $this->useTwig =  $this->setupTwig();
     }
 
+    /*
+     * Normalize template-name
+     * *param $templateName         Template
+     */
+    private function normalizeTemplateName($templateName)
+    {
+        if (strripos($templateName, '.twig.html')) { return $templateName; }
+        $phppos = strripos($templateName, '.php');
+        if ($phppos) {
+            $templateName = substr($templateName, 0, $phppos);
+        }
+        $tplpos = strripos($templateName, '.tpl');
+        if ($tplpos) {
+            $templateName = substr($templateName, 0, $tplpos);
+        }
+        return $templateName.'.twig.html';
+    }
+
     private function setupTwigTemplatepaths()
     {
-        $filename = $this->template;
-        // normalize template name
-        if (strripos($filename, '.php', 0)) {
-            $filename = basename(basename($filename, '.tpl.php'), '.php').'.twig.html';
-        }
+        $filename = $this->normalizeTemplateName($this->template);
         // get namespace if any
         $namespace = '';
         $split = explode(':', $filename, 2);
