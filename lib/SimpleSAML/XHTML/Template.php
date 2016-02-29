@@ -54,31 +54,58 @@ class SimpleSAML_XHTML_Template
         $this->useTwig =  $this->setupTwig();
     }
 
+    private function setupTwigTemplatepaths()
+    {
+        $filename = $this->template;
+        // normalize template name
+        if (strripos($filename, '.php', 0)) {
+            $filename = basename(basename($filename, '.tpl.php'), '.php').'.twig.html';
+        }
+        // get namespace if any
+        $namespace = '';
+        $split = explode(':', $filename, 2);
+        if (count($split)===2) {
+            $namespace = $split[0];
+            $filename = $split[1];
+        }
+        $this->twig_template = $namespace ? '@'.$namespace.'/'.$filename : $filename;
+        $loader = new \Twig_Loader_Filesystem($this->configuration->resolvePath('templates'));
+        foreach ($this->findModuleTemplateDirs() as $module => $templateDir) {
+            $loader->prependPath($templateDir, $module);
+        }
+        if (!$loader->exists($this->twig_template)) { return false; }
+        return $loader;
+    }
+
     /**
      * Setup twig
      */
     private function setupTwig()
     {
-        $namespace = '';
-        $filename = $this->template;
-        $colonpos = strpos($this->template, ':');
-        if ($colonpos === true) {
-            $filename = substr($this->template, $colonpos);
-            $namespace = substr($this->template, 0, $colonpos);
-        }
-        $twig_filename = basename($filename, '.php').'.twig.html';
-        $filename = $this->findTemplatePath($twig_filename, $throw_exception=false);
-        // twig not in use for this page
-        if (is_null($filename)) {
-            return false;
-        }
         // TODO: Get cache-location from config
         $cache = $this->configuration->resolvePath('cache');
-        $this->template = $twig_filename;
-        $loader = new \Twig_Loader_Filesystem(array(dirname($filename), $this->configuration->resolvePath('templates')));
+        // check if template exists
+        $loader = $this->setupTwigTemplatepaths();
+        if (!$loader) { return false; }
         $auto_reload = true; // TODO: set this in config
         $this->twig = new \Twig_Environment($loader, array('cache' => $cache, 'auto_reload' => $auto_reload));
         return true;
+    }
+
+    private function findModuleTemplateDirs()
+    {
+        $all_modules = \SimpleSAML\Module::getModules();
+        $modules = array();
+        foreach ($all_modules as $module) {
+            if (!\SimpleSAML\Module::isModuleEnabled($module)) { continue; }
+            $moduledir = \SimpleSAML\Module::getModuleDir($module);
+            // check if module has a /templates dir, if so, append
+            $templatedir = $moduledir.'/templates';
+            if (is_dir($templatedir)) {
+                $modules[$module] = $templatedir;
+            }
+        }
+        return $modules;
     }
 
     /**
@@ -142,7 +169,7 @@ class SimpleSAML_XHTML_Template
             );
             $parameterName = $this->getTranslator()->getLanguage()->getLanguageParameterName();
             $langmap = array();
-            foreach ($languages AS $lang => $current) {
+            foreach ($languages as $lang => $current) {
                 $lang = strtolower($lang);
                 $langname = $langnames[$lang];
                 $url = false;
@@ -200,7 +227,7 @@ class SimpleSAML_XHTML_Template
     {
         if ($this->useTwig) {
             $this->twigDefaultContext();
-            echo $this->twig->render($this->template, $this->data);
+            echo $this->twig->render($this->twig_template, $this->data);
         }
         else
         {
