@@ -295,7 +295,7 @@ class SimpleSAML_XHTML_Template
             $filename = \SimpleSAML\Module::getModuleDir($themeModule).
                 '/themes/'.$themeName.'/'.$templateModule.'/'.$templateName;
         } elseif ($templateModule !== 'default') {
-            // .../module/<templateModule>/templates/<themeName>/<templateName>
+            // .../module/<templateModule>/templates/<templateName>
             $filename = \SimpleSAML\Module::getModuleDir($templateModule).'/templates/'.$templateName;
         } else {
             // .../templates/<theme>/<templateName>
