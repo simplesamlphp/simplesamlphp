@@ -157,65 +157,32 @@ class SimpleSAML_XHTML_Template
 
 
     /**
-     * Generate languagebar
+     * Generate an array for its use in the language bar, indexed by the ISO 639-2 codes of the languages available,
+     * containing their localized names and the URL that should be used in order to change to that language.
+     *
+     * @return array The array containing information of all available languages.
      */
     private function generateLanguageBar()
     {
         $languages = $this->translator->getLanguage()->getLanguageList();
         $langmap = null;
         if (count($languages) > 1) {
-            // TODO: this array should not be defined here
-            $langnames = array(
-                'no'    => 'Bokmål', // Norwegian Bokmål
-                'nn'    => 'Nynorsk', // Norwegian Nynorsk
-                'se'    => 'Sámegiella', // Northern Sami
-                'sam'   => 'Åarjelh-saemien giele', // Southern Sami
-                'da'    => 'Dansk', // Danish
-                'en'    => 'English',
-                'de'    => 'Deutsch', // German
-                'sv'    => 'Svenska', // Swedish
-                'fi'    => 'Suomeksi', // Finnish
-                'es'    => 'Español', // Spanish
-                'fr'    => 'Français', // French
-                'it'    => 'Italiano', // Italian
-                'nl'    => 'Nederlands', // Dutch
-                'lb'    => 'Lëtzebuergesch', // Luxembourgish
-                'cs'    => 'Čeština', // Czech
-                'sl'    => 'Slovenščina', // Slovensk
-                'lt'    => 'Lietuvių kalba', // Lithuanian
-                'hr'    => 'Hrvatski', // Croatian
-                'hu'    => 'Magyar', // Hungarian
-                'pl'    => 'Język polski', // Polish
-                'pt'    => 'Português', // Portuguese
-                'pt-br' => 'Português brasileiro', // Portuguese
-                'ru'    => 'русский язык', // Russian
-                'et'    => 'eesti keel', // Estonian
-                'tr'    => 'Türkçe', // Turkish
-                'el'    => 'ελληνικά', // Greek
-                'ja'    => '日本語', // Japanese
-                'zh'    => '简体中文', // Chinese (simplified)
-                'zh-tw' => '繁體中文', // Chinese (traditional)
-                'ar'    => 'العربية', // Arabic
-                'fa'    => 'پارسی', // Persian
-                'ur'    => 'اردو', // Urdu
-                'he'    => 'עִבְרִית', // Hebrew
-                'id'    => 'Bahasa Indonesia', // Indonesian
-                'sr'    => 'Srpski', // Serbian
-                'lv'    => 'Latviešu', // Latvian
-                'ro'    => 'Românește', // Romanian
-                'eu'    => 'Euskara', // Basque
-            );
             $parameterName = $this->getTranslator()->getLanguage()->getLanguageParameterName();
             $langmap = array();
             foreach ($languages as $lang => $current) {
                 $lang = strtolower($lang);
-                $langname = $langnames[$lang];
+                $langname = $this->translator->getLanguage()->getLanguageLocalizedName($lang);
                 $url = false;
                 if (!$current) {
-                    $url = htmlspecialchars(\SimpleSAML\Utils\HTTP::addURLParameters('',
-                        array($parameterName => $lang)));
+                    $url = htmlspecialchars(\SimpleSAML\Utils\HTTP::addURLParameters(
+                        '',
+                        array($parameterName => $lang)
+                    ));
                 }
-                $langmap[$langname] = $url;
+                $langmap[$lang] = array(
+                    'name' => $langname,
+                    'url' => $url,
+                );
             }
         }
         return $langmap;
