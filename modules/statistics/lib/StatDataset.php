@@ -251,7 +251,7 @@ class sspmod_statistics_StatDataset
     public function getDelimiterPresentation()
     {
         $config = SimpleSAML_Configuration::getInstance();
-        $t = new SimpleSAML_XHTML_Template($config, 'statistics:statistics-tpl.php');
+        $t = new SimpleSAML_XHTML_Template($config, 'statistics:statistics.tpl.php');
 
         $availdelimiters = $this->availDelimiters();
 

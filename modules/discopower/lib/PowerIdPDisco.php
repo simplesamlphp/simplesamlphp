@@ -247,7 +247,7 @@ class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco
         $idpList = $this->idplistStructured($this->filterList($idpList));
         $preferredIdP = $this->getRecommendedIdP();
 
-        $t = new SimpleSAML_XHTML_Template($this->config, 'discopower:disco-tpl.php', 'disco');
+        $t = new SimpleSAML_XHTML_Template($this->config, 'discopower:disco.tpl.php', 'disco');
         $t->data['idplist'] = $idpList;
         $t->data['preferredidp'] = $preferredIdP;
         $t->data['return'] = $this->returnURL;

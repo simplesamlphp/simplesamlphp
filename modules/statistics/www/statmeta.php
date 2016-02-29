@@ -10,7 +10,7 @@ $aggr->loadMetadata();
 $metadata = $aggr->getMetadata();
 
 
-$t = new SimpleSAML_XHTML_Template($config, 'statistics:statmeta-tpl.php');
+$t = new SimpleSAML_XHTML_Template($config, 'statistics:statmeta.tpl.php');
 $t->data['metadata'] =  $metadata;
 $t->show();
 

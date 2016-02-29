@@ -38,7 +38,7 @@ class sspmod_portal_Portal {
 	
 	function getMenu($thispage) {
 		$config = SimpleSAML_Configuration::getInstance();
-		$t = new SimpleSAML_XHTML_Template($config, 'sanitycheck:check-tpl.php');
+		$t = new SimpleSAML_XHTML_Template($config, 'sanitycheck:check.tpl.php');
 		$tabset = $this->getTabset($thispage);
 		$logininfo = $this->getLoginInfo($t, $thispage);
 		$text = '';
