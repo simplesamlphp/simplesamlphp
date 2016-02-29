@@ -96,12 +96,12 @@ class SimpleSAML_XHTML_Template
      */
     private function setupTwig()
     {
-        // TODO: Get cache-location from config
-        $cache = $this->configuration->resolvePath('cache');
+        $cache = $this->configuration->getString('template.cache', $this->configuration->resolvePath('cache'));
         // check if template exists
         $loader = $this->setupTwigTemplatepaths();
         if (!$loader) { return false; }
-        $auto_reload = true; // TODO: set this in config
+
+        $auto_reload = $this->configuration->getBoolean('template.auto_reload', false);
         $this->twig = new \Twig_Environment($loader, array('cache' => $cache, 'auto_reload' => $auto_reload));
         return true;
     }
