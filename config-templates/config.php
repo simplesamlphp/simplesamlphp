@@ -110,18 +110,18 @@ $config = array(
      * Logging.
      *
      * define the minimum log level to log
-     *		SimpleSAML_Logger::ERR		No statistics, only errors
-     *		SimpleSAML_Logger::WARNING	No statistics, only warnings/errors
-     *		SimpleSAML_Logger::NOTICE	Statistics and errors
-     *		SimpleSAML_Logger::INFO		Verbose logs
-     *		SimpleSAML_Logger::DEBUG	Full debug logs - not recommended for production
+     *		SimpleSAML\Logger::ERR		No statistics, only errors
+     *		SimpleSAML\Logger::WARNING	No statistics, only warnings/errors
+     *		SimpleSAML\Logger::NOTICE	Statistics and errors
+     *		SimpleSAML\Logger::INFO		Verbose logs
+     *		SimpleSAML\Logger::DEBUG	Full debug logs - not recommended for production
      *
      * Choose logging handler.
      *
      * Options: [syslog,file,errorlog]
      *
      */
-    'logging.level' => SimpleSAML_Logger::NOTICE,
+    'logging.level' => SimpleSAML\Logger::NOTICE,
     'logging.handler' => 'syslog',
 
     /*
