@@ -137,6 +137,11 @@ class SimpleSAML_XHTML_Template
         return new \Twig_Environment($loader, array('cache' => $cache, 'auto_reload' => $auto_reload));
     }
 
+    /*
+     * Add overriding templates in configured theme
+     *
+     * @return array an array of module => templatedir lookups
+     */
     private function findThemeTemplateDirs()
     {
         // parse config to find theme and module theme is in, if any
@@ -176,7 +181,7 @@ class SimpleSAML_XHTML_Template
     /*
      * Which enabled modules have templates?
      *
-     * @return an array of module => templatedir lookups
+     * @return array an array of module => templatedir lookups
      */
     private function findModuleTemplateDirs()
     {
