@@ -4,9 +4,9 @@
 
 {% if not hideLanguageBar %}
 <div id="languagebar">
-    {% for language, param in languageBar %}
+    {% for lang in languageBar %}
 
-    {%- if not loop.first -%} | {%- endif -%}{% if param %}<a href="{{ param }}">{{ language }}</a>{% else %}{{ language }}{% endif %}
+    {%- if not loop.first -%} | {%- endif -%}{% if lang.url %}<a href="{{ lang.url }}">{{ lang.name }}</a>{% else %}{{ lang.name }}{% endif %}
 
     {% endfor %}
 
