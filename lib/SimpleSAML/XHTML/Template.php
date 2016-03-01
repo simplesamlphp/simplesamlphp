@@ -57,7 +57,7 @@ class SimpleSAML_XHTML_Template
         $this->template = $template;
         $this->data['baseurlpath'] = $this->configuration->getBaseURL();
         $this->translator = new \SimpleSAML\Locale\Translate($configuration, $defaultDictionary);
-        $this->useTwig = $this->setupTwig();
+        $this->twig = $this->setupTwig();
     }
 
 
@@ -127,15 +127,14 @@ class SimpleSAML_XHTML_Template
     private function setupTwig()
     {
         $cache = $this->configuration->getString('template.cache', $this->configuration->resolvePath('cache'));
-        // check if template exists
+        // set up template paths if template exists
         $loader = $this->setupTwigTemplatepaths();
         if (!$loader) {
-            return false;
+            return null;
         }
 
         $auto_reload = $this->configuration->getBoolean('template.auto_reload', false);
-        $this->twig = new \Twig_Environment($loader, array('cache' => $cache, 'auto_reload' => $auto_reload));
-        return true;
+        return new \Twig_Environment($loader, array('cache' => $cache, 'auto_reload' => $auto_reload));
     }
 
     private function findThemeTemplateDirs()
@@ -284,7 +283,7 @@ class SimpleSAML_XHTML_Template
      */
     public function show()
     {
-        if ($this->useTwig) {
+        if ($this->twig) {
             $this->twigDefaultContext();
             echo $this->twig->render($this->twig_template, $this->data);
         } else {
