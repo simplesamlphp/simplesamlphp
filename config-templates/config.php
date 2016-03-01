@@ -465,6 +465,10 @@ $config = array(
      */
     'theme.use' => 'default',
 
+    /*
+     * Templating options
+     */
+    'template.auto_reload' => false,
 
     /*
      * Default IdP for WS-Fed.
