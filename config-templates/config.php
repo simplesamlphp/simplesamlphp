@@ -649,6 +649,11 @@ $config = array(
     'language.cookie.lifetime' => (60 * 60 * 24 * 900),
 
     /*
+     * Which i18n backend to use
+     */
+    'language.i18n.backend' => 'twig.i18n',
+
+    /**
      * Custom getLanguage function called from SimpleSAML\Locale\Language::getLanguage().
      * Function should return language code of one of the available languages or NULL.
      * See SimpleSAML\Locale\Language::getLanguage() source code for more info.
