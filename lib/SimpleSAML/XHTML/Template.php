@@ -203,17 +203,6 @@ class SimpleSAML_XHTML_Template
 
 
     /**
-     * Return the internal translator object used by this template.
-     *
-     * @return \SimpleSAML\Locale\Translate The translator that will be used with this template.
-     */
-    public function getTranslator()
-    {
-        return $this->translator;
-    }
-
-
-    /**
      * Generate an array for its use in the language bar, indexed by the ISO 639-2 codes of the languages available,
      * containing their localized names and the URL that should be used in order to change to that language.
      *
@@ -383,6 +372,17 @@ class SimpleSAML_XHTML_Template
             // missing template expected, return NULL
             return null;
         }
+    }
+
+
+    /**
+     * Return the internal translator object used by this template.
+     *
+     * @return \SimpleSAML\Locale\Translate The translator that will be used with this template.
+     */
+    public function getTranslator()
+    {
+        return $this->translator;
     }
 
 
