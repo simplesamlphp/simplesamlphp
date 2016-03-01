@@ -467,10 +467,9 @@ class SimpleSAML_Auth_LDAP {
             case 49:	// LDAP_INVALID_CREDENTIALS
                 // no break
             case 50:	// LDAP_INSUFFICIENT_ACCESS
-                return FALSE;
+                return false;
+            default:
                 break;
-        default;
-            break;
         }
 
         // Bad
