@@ -38,6 +38,11 @@ class SimpleSAML_XHTML_Template
      */
     private $template = 'default.php';
 
+    /*
+     * Main Twig namespace, to avoid misspelling it *again*
+     */
+    private $twig_namespace = \Twig_Loader_Filesystem::MAIN_NAMESPACE;
+
 
     /**
      * Constructor
@@ -97,9 +102,17 @@ class SimpleSAML_XHTML_Template
             $filename = $split[1];
         }
         $this->twig_template = $namespace ? '@'.$namespace.'/'.$filename : $filename;
-        $loader = new \Twig_Loader_Filesystem($this->configuration->resolvePath('templates'));
-        foreach ($this->findModuleTemplateDirs() as $module => $templateDir) {
-            $loader->prependPath($templateDir, $module);
+        $loader = new \Twig_Loader_Filesystem();
+        $templateDirs = array_merge(
+            $this->findThemeTemplateDirs(),
+            $this->findModuleTemplateDirs()
+        );
+        // default, themeless templates are checked last
+        $templateDirs[] = array(
+            $this->twig_namespace => $this->configuration->resolvePath('templates')
+        );
+        foreach ($templateDirs as $entry) {
+            $loader->addPath($entry[key($entry)], key($entry));
         }
         if (!$loader->exists($this->twig_template)) {
             return false;
@@ -125,7 +138,47 @@ class SimpleSAML_XHTML_Template
         return true;
     }
 
+    private function findThemeTemplateDirs()
+    {
+        // parse config to find theme and module theme is in, if any
+        $tmp = explode(':', $this->configuration->getString('theme.use', 'default'), 2);
+        if (count($tmp) === 2) {
+            $themeModule = $tmp[0];
+            $themeName = $tmp[1];
+        } else {
+            $themeModule = null;
+            $themeName = $tmp[0];
+        }
+        // default theme in use, abort
+        if ($themeName == 'default') {
+            return array();
+        }
+        if ($themeModule !== null) {
+            $moduleDir = \SimpleSAML\Module::getModuleDir($themeModule);
+            $themeDir = $moduleDir.'/themes/'.$themeName;
+            $files = scandir($themeDir);
+            if ($files) {
+                $themeTemplateDirs = array();
+                foreach ($files as $file) {
+                    if ($file == '.' || $file == '..') {
+                        continue;
+                    }
+                    // set correct name for default namespace
+                    $ns = $file == 'default' ? $this->twig_namespace : $file;
+                    $themeTemplateDirs[] = array($ns => $themeDir.'/'.$file);
+                }
+                return $themeTemplateDirs;
+            }
+        }
+        // theme not found
+        return array();
+    }
 
+    /*
+     * Which enabled modules have templates?
+     *
+     * @return an array of module => templatedir lookups
+     */
     private function findModuleTemplateDirs()
     {
         $all_modules = \SimpleSAML\Module::getModules();
@@ -138,7 +191,7 @@ class SimpleSAML_XHTML_Template
             // check if module has a /templates dir, if so, append
             $templatedir = $moduledir.'/templates';
             if (is_dir($templatedir)) {
-                $modules[$module] = $templatedir;
+                $modules[] = array($module => $templatedir);
             }
         }
         return $modules;
