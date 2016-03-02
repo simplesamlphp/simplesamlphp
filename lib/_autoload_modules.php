@@ -26,8 +26,8 @@ function temporaryLoader($class)
     $path = explode('_', $class);
     $new = join('\\', $path);
     if (class_exists($new, false)) {
-        SimpleSAML\Logger::warning("The class '$class' is now using namespaces, please use '$new'.");
         class_alias($new, $class);
+        SimpleSAML\Logger::warning("The class '$class' is now using namespaces, please use '$new'.");
     }
 
     $file = dirname(__FILE__).DIRECTORY_SEPARATOR.join(DIRECTORY_SEPARATOR, $path).'.php';
