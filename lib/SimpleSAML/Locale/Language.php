@@ -115,6 +115,17 @@ class Language
         'eu'    => 'Euskara', // Basque
     );
 
+    /**
+     * A mapping of SSP languages to locales
+     *
+     * @var array
+     */
+    private $languagePosixMapping = array(
+        'no' => 'nb_NO',
+        'en' => 'en_US',
+        'nn' => 'nn_NO',
+    );
+
 
     /**
      * Constructor
@@ -135,6 +146,20 @@ class Language
                 $this->configuration->getBoolean('language.parameter.setcookie', true)
             );
         }
+    }
+
+
+    /*
+     * Rename to non-idiosyncratic language code
+     *
+     * @param string $language Language code for the language to rename, if neccesary.
+     */
+    public function getPosixLanguage($language)
+    {
+        if (isset($this->languagePosixMapping[$language])) {
+            return $this->languagePosixMapping[$language];
+        }
+        return $language;
     }
 
 
