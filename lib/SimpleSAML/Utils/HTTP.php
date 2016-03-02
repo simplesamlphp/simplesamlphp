@@ -336,7 +336,7 @@ class HTTP
 
 
     /**
-     * Helper function to retrieve a file or URL with proxy support, also 
+     * Helper function to retrieve a file or URL with proxy support, also
      * supporting proxy basic authorization..
      *
      * An exception will be thrown if we are unable to retrieve the data.
@@ -605,11 +605,25 @@ class HTTP
         $url = self::getBaseURL();
 
         $start = strpos($url, '://') + 3;
-        $length = strcspn($url, '/:', $start);
+        $length = strcspn($url, '/', $start);
 
         return substr($url, $start, $length);
     }
 
+    /**
+     * Retrieve our own host.
+     *
+     * @return string The current host without port specification.
+     */
+    public static function getSelfHostWithoutPort()
+    {
+        $url = self::getBaseURL();
+
+        $start = strpos($url, '://') + 3;
+        $length = strcspn($url, '/:', $start);
+
+        return substr($url, $start, $length);
+    }
 
     /**
      * Retrieve our own host together with the URL path. Please note this function will return the base URL for the

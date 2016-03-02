@@ -151,9 +151,9 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerPdo extends SimpleSAML_Metadata_
         } elseif ($set === 'shib13-sp-hosted') {
             return $baseurl.'shib13/sp/metadata.php';
         } elseif ($set === 'wsfed-sp-hosted') {
-            return 'urn:federation:'.\SimpleSAML\Utils\HTTP::getSelfHost();
+            return 'urn:federation:'.\SimpleSAML\Utils\HTTP::getSelfHostWithoutPort();
         } elseif ($set === 'adfs-idp-hosted') {
-            return 'urn:federation:'.\SimpleSAML\Utils\HTTP::getSelfHost().':idp';
+            return 'urn:federation:'.\SimpleSAML\Utils\HTTP::getSelfHostWithoutPort().':idp';
         } else {
             throw new Exception('Can not generate dynamic EntityID for metadata of this type: ['.$set.']');
         }
