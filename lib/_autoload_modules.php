@@ -23,17 +23,26 @@ function temporaryLoader($class)
         return; // not a valid class name for old classes
     }
 
+    // try to load it from the corresponding file
     $path = explode('_', $class);
-    $new = join('\\', $path);
-    if (class_exists($new, false)) {
-        class_alias($new, $class);
-        SimpleSAML\Logger::warning("The class '$class' is now using namespaces, please use '$new'.");
-    }
-
     $file = dirname(__FILE__).DIRECTORY_SEPARATOR.join(DIRECTORY_SEPARATOR, $path).'.php';
     if (file_exists($file)) {
         require_once $file;
     }
+
+    // it exists, so it's not yet migrated to namespaces
+    if (class_exists($class, false)) {
+        return;
+    }
+
+    // it didn't exist, try to see if it was migrated to namespaces
+    $new = join('\\', $path);
+    if (class_exists($new, false)) { // do not try to autoload it if it doesn't exist! It should!
+        class_alias($new, $class);
+        SimpleSAML\Logger::warning("The class '$class' is now using namespaces, please use '$new'.");
+    }
+
+
 }
 
 spl_autoload_register("temporaryLoader");
