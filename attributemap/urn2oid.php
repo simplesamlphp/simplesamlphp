@@ -54,6 +54,7 @@ $attributemap = array(
     'urn:mace:dir:attribute-def:eduPersonPrincipalName'           => 'urn:oid:1.3.6.1.4.1.5923.1.1.1.6',
     'urn:mace:dir:attribute-def:eduPersonScopedAffiliation'       => 'urn:oid:1.3.6.1.4.1.5923.1.1.1.9',
     'urn:mace:dir:attribute-def:eduPersonTargetedID'              => 'urn:oid:1.3.6.1.4.1.5923.1.1.1.10',
+    'urn:mace:dir:attribute-def:eduPersonUniqueId'                => 'urn:oid:1.3.6.1.4.1.5923.1.1.1.13',
     'urn:mace:dir:attribute-def:email'                            => 'urn:oid:1.2.840.113549.1.9.1',
     'urn:mace:dir:attribute-def:emailAddress'                     => 'urn:oid:1.2.840.113549.1.9.1',
     'urn:mace:dir:attribute-def:employeeNumber'                   => 'urn:oid:2.16.840.1.113730.3.1.3',

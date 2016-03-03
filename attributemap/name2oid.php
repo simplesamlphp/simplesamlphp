@@ -54,6 +54,7 @@ $attributemap = array(
     'eduPersonPrincipalName'        => 'urn:oid:1.3.6.1.4.1.5923.1.1.1.6',
     'eduPersonScopedAffiliation'    => 'urn:oid:1.3.6.1.4.1.5923.1.1.1.9',
     'eduPersonTargetedID'           => 'urn:oid:1.3.6.1.4.1.5923.1.1.1.10',
+    'eduPersonUniqueId'             => 'urn:oid:1.3.6.1.4.1.5923.1.1.1.13',
     'email'                         => 'urn:oid:1.2.840.113549.1.9.1',
     'emailAddress'                  => 'urn:oid:1.2.840.113549.1.9.1',
     'employeeNumber'                => 'urn:oid:2.16.840.1.113730.3.1.3',
