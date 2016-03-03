@@ -7,7 +7,7 @@
 
 namespace SimpleSAML\Utils;
 
-
+use SimpleSAML\Logger;
 use Symfony\Component\Config\Definition\Exception\Exception;
 
 class XML
@@ -59,7 +59,7 @@ class XML
                 $result = self::isValid($message, 'saml-schema-metadata-2.0.xsd');
         }
         if ($result !== true) {
-            \SimpleSAML_Logger::warning($result);
+            Logger::warning($result);
         }
     }
 
@@ -97,16 +97,16 @@ class XML
 
         switch ($type) {
             case 'in':
-                \SimpleSAML_Logger::debug('Received message:');
+                Logger::debug('Received message:');
                 break;
             case 'out':
-                \SimpleSAML_Logger::debug('Sending message:');
+                Logger::debug('Sending message:');
                 break;
             case 'decrypt':
-                \SimpleSAML_Logger::debug('Decrypted message:');
+                Logger::debug('Decrypted message:');
                 break;
             case 'encrypt':
-                \SimpleSAML_Logger::debug('Encrypted message:');
+                Logger::debug('Encrypted message:');
                 break;
             default:
                 assert(false);
@@ -114,7 +114,7 @@ class XML
 
         $str = self::formatXMLString($message);
         foreach (explode("\n", $str) as $line) {
-            \SimpleSAML_Logger::debug($line);
+            Logger::debug($line);
         }
     }
 
