@@ -6,7 +6,7 @@ use SimpleSAML\Utils\HTTP;
 class HTTPTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * Test HTTP::getSelfHost with and without custom port
+     * Test SimpleSAML\Utils\HTTP::getSelfHost() with and without custom port.
      */
     public function testGetSelfHost()
     {
@@ -16,20 +16,29 @@ class HTTPTest extends \PHPUnit_Framework_TestCase
         $_SERVER['SERVER_PORT'] = '80';
         $this->assertEquals('localhost', HTTP::getSelfHost());
         $_SERVER['SERVER_PORT'] = '3030';
-        $this->assertEquals('localhost:3030', HTTP::getSelfHost());
+        $this->assertEquals('localhost', HTTP::getSelfHost());
     }
 
     /**
-     * Test HTTP::getSelfHostWithoutPort
+     * Test SimpleSAML\Utils\HTTP::getSelfHostWithPort(), with and without custom port.
      */
-    public function testGetSelfHostWithoutPort()
+    public function testGetSelfHostWithPort()
     {
         \SimpleSAML_Configuration::loadFromArray(array(
             'baseurlpath' => '',
         ), '[ARRAY]', 'simplesaml');
+
+        // standard port for HTTP
         $_SERVER['SERVER_PORT'] = '80';
-        $this->assertEquals('localhost', HTTP::getSelfHostWithoutPort());
+        $this->assertEquals('localhost', HTTP::getSelfHostWithNonStandardPort());
+
+        // non-standard port
         $_SERVER['SERVER_PORT'] = '3030';
-        $this->assertEquals('localhost', HTTP::getSelfHostWithoutPort());
+        $this->assertEquals('localhost:3030', HTTP::getSelfHostWithNonStandardPort());
+
+        // standard port for HTTPS
+        $_SERVER['HTTPS'] = 'on';
+        $_SERVER['SERVER_PORT'] = '443';
+        $this->assertEquals('localhost', HTTP::getSelfHostWithNonStandardPort());
     }
 }
