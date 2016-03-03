@@ -208,10 +208,6 @@ class SimpleSAML_Metadata_MetaDataStorageHandler
 
         // then we look for the hostname
         $currenthost = \SimpleSAML\Utils\HTTP::getSelfHost(); // sp.example.org
-        if (strpos($currenthost, ":") !== false) {
-            $currenthostdecomposed = explode(":", $currenthost);
-            $currenthost = $currenthostdecomposed[0];
-        }
 
         foreach ($this->sources as $source) {
             $index = $source->getEntityIdFromHostPath($currenthost, $set, $type);

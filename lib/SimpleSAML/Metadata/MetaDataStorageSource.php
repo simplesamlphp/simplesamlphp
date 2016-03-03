@@ -199,10 +199,6 @@ abstract class SimpleSAML_Metadata_MetaDataStorageSource
 
         // check for hostname
         $currenthost = \SimpleSAML\Utils\HTTP::getSelfHost(); // sp.example.org
-        if (strpos($currenthost, ":") !== false) {
-            $currenthostdecomposed = explode(":", $currenthost);
-            $currenthost = $currenthostdecomposed[0];
-        }
 
         foreach ($metadataSet as $index => $entry) {
             if ($index === $entityId) {

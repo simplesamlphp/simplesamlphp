@@ -336,7 +336,7 @@ class HTTP
 
 
     /**
-     * Helper function to retrieve a file or URL with proxy support, also 
+     * Helper function to retrieve a file or URL with proxy support, also
      * supporting proxy basic authorization..
      *
      * An exception will be thrown if we are unable to retrieve the data.
@@ -595,21 +595,38 @@ class HTTP
     /**
      * Retrieve our own host.
      *
-     * @return string The current host (with non-default ports included).
+     * E.g. www.example.com
+     *
+     * @return string The current host.
+     *
+     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
+     */
+    public static function getSelfHost()
+    {
+        return array_shift(explode(':', self::getSelfHostWithNonStandardPort()));
+    }
+
+    /**
+     * Retrieve our own host, including the port in case the it is not standard for the protocol in use. That is port
+     * 80 for HTTP and port 443 for HTTPS.
+     *
+     * E.g. www.example.com:8080
+     *
+     * @return string The current host, followed by a colon and the port number, in case the port is not standard for
+     * the protocol.
      *
      * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
-    public static function getSelfHost()
+    public static function getSelfHostWithNonStandardPort()
     {
         $url = self::getBaseURL();
 
         $start = strpos($url, '://') + 3;
-        $length = strcspn($url, '/:', $start);
+        $length = strcspn($url, '/', $start);
 
         return substr($url, $start, $length);
     }
-
 
     /**
      * Retrieve our own host together with the URL path. Please note this function will return the base URL for the
