@@ -98,7 +98,7 @@ class sspmod_radius_Auth_Source_Radius extends sspmod_core_Auth_UserPassBase
         $this->realm = $config->getString('realm', null);
         $this->usernameAttribute = $config->getString('username_attribute', null);
         $this->nasIdentifier = $config->getString('nas_identifier',
-            isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost');
+            \SimpleSAML\Utils\HTTP::getSelfHost());
 
         $this->vendor = $config->getInteger('attribute_vendor', null);
         if ($this->vendor !== null) {
