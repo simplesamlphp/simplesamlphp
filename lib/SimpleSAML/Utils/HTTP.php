@@ -323,7 +323,7 @@ class HTTP
             $hostname = $matches[1];
 
             // add self host to the white list
-            $self_host = self::getSelfHost();
+            $self_host = self::getSelfHostWithNonStandardPort();
             $trustedSites[] = $self_host;
 
             // throw exception due to redirection to untrusted site
@@ -642,7 +642,7 @@ class HTTP
         $baseurl = explode("/", self::getBaseURL());
         $elements = array_slice($baseurl, 3 - count($baseurl), count($baseurl) - 4);
         $path = implode("/", $elements);
-        return self::getSelfHost()."/".$path;
+        return self::getSelfHostWithNonStandardPort()."/".$path;
     }
 
 
