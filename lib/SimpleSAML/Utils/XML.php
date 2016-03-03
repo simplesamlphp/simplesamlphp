@@ -230,7 +230,7 @@ class XML
 
         try {
             $doc = \SAML2_DOMDocumentFactory::fromString($xml);
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             throw new \DOMException('Error parsing XML string.');
         }
 
@@ -405,7 +405,7 @@ class XML
             try {
                 $dom = \SAML2_DOMDocumentFactory::fromString($xml);
                 $res = true;
-            } catch(Exception $e) {
+            } catch (Exception $e) {
                 $res = false;
             }
         }

@@ -68,7 +68,9 @@ class Auth
             $as = new \SimpleSAML_Auth_Simple('admin');
             $as->login();
         } else {
-            throw new \SimpleSAML_Error_Exception('Cannot find "admin" auth source, and admin privileges are required.');
+            throw new \SimpleSAML_Error_Exception(
+                'Cannot find "admin" auth source, and admin privileges are required.'
+            );
         }
     }
 }
