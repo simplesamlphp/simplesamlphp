@@ -603,7 +603,8 @@ class HTTP
      */
     public static function getSelfHost()
     {
-        return array_shift(explode(':', self::getSelfHostWithNonStandardPort()));
+        $decomposed = explode(':', self::getSelfHostWithNonStandardPort());
+        return array_shift($decomposed);
     }
 
     /**
