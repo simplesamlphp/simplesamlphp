@@ -7,6 +7,8 @@
 
 namespace SimpleSAML\Utils;
 
+use SimpleSAML\Logger;
+
 
 class Time
 {
@@ -56,17 +58,9 @@ class Time
         }
         // we don't have a timezone configured
 
-        /*
-         * The date_default_timezone_get() function is likely to cause a warning.
-         * Since we have a custom error handler which logs the errors with a backtrace,
-         * this error will be logged even if we prefix the function call with '@'.
-         * Instead we temporarily replace the error handler.
-         */
-        set_error_handler(function () {
-            return true;
-        });
+        Logger::maskErrors(E_ALL);
         $serverTimezone = date_default_timezone_get();
-        restore_error_handler();
+        Logger::popErrorMask();
 
         // set the timezone to the default
         date_default_timezone_set($serverTimezone);
