@@ -14,6 +14,14 @@ class Time
 {
 
     /**
+     * Whether the timezone has been initialized or not.
+     *
+     * @var bool
+     */
+    private static $tz_initialized = false;
+
+
+    /**
      * This function generates a timestamp on the form used by the SAML protocols.
      *
      * @param int $instant The time the timestamp should represent. Defaults to current time.
@@ -39,13 +47,9 @@ class Time
      */
     public static function initTimezone()
     {
-        static $initialized = false;
-
-        if ($initialized) {
+        if (self::$tz_initialized) {
             return;
         }
-
-        $initialized = true;
 
         $globalConfig = \SimpleSAML_Configuration::getInstance();
 
@@ -54,6 +58,7 @@ class Time
             if (!date_default_timezone_set($timezone)) {
                 throw new \SimpleSAML_Error_Exception('Invalid timezone set in the "timezone" option in config.php.');
             }
+            self::$tz_initialized = true;
             return;
         }
         // we don't have a timezone configured
@@ -64,6 +69,7 @@ class Time
 
         // set the timezone to the default
         date_default_timezone_set($serverTimezone);
+        self::$tz_initialized = true;
     }
 
 
