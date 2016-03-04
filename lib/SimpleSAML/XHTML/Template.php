@@ -131,9 +131,6 @@ class SimpleSAML_XHTML_Template
         foreach ($templateDirs as $entry) {
             $loader->addPath($entry[key($entry)], key($entry));
         }
-        if (!$loader->exists($this->twig_template)) {
-            return false;
-        }
         return $loader;
     }
 
@@ -151,7 +148,8 @@ class SimpleSAML_XHTML_Template
         }
         // set up template paths
         $loader = $this->setupTwigTemplatepaths();
-        if (!$loader) {
+        // abort if twig template does not exist
+        if (!$loader->exists($this->twig_template)) {
             return null;
         }
 
