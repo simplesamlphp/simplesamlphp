@@ -30,14 +30,15 @@ class TimeTest extends \PHPUnit_Framework_TestCase
     public function testInitTimezon()
     {
         $tz = 'UTC';
-        if (@date_default_timezone_get() === 'UTC') { // avoid collisions
+        $os = @date_default_timezone_get();
+        if ($os === 'UTC') { // avoid collisions
             $tz = 'Europe/Oslo';
         }
 
         // test guessing timezone from the OS
-        \SimpleSAML_Configuration::loadFromArray(array('timezone' => 'Europe/Madrid'), '[ARRAY]', 'simplesaml');
+        \SimpleSAML_Configuration::loadFromArray(array('timezone' => null), '[ARRAY]', 'simplesaml');
         @Time::initTimezone();
-        $this->assertEquals('Europe/Madrid', @date_default_timezone_get());
+        $this->assertEquals($os, @date_default_timezone_get());
 
         // clear initialization
         $c = new \ReflectionProperty('\SimpleSAML\Utils\Time', 'tz_initialized');
