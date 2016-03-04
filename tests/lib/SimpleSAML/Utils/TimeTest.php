@@ -23,6 +23,49 @@ class TimeTest extends \PHPUnit_Framework_TestCase
 
 
     /**
+     * Test the SimpleSAML\Utils\Time::initTimezone() method.
+     *
+     * @covers SimpleSAML\Utils\Time::initTimezone
+     */
+    public function testInitTimezon()
+    {
+        $tz = 'UTC';
+        if (@date_default_timezone_get() === 'UTC') { // avoid collisions
+            $tz = 'Europe/Oslo';
+        }
+
+        // test guessing timezone from the OS
+        \SimpleSAML_Configuration::loadFromArray(array('timezone' => 'Europe/Madrid'), '[ARRAY]', 'simplesaml');
+        @Time::initTimezone();
+        $this->assertEquals('Europe/Madrid', @date_default_timezone_get());
+
+        // clear initialization
+        $c = new \ReflectionProperty('\SimpleSAML\Utils\Time', 'tz_initialized');
+        $c->setAccessible(true);
+        $c->setValue(false);
+
+        // test unknown timezone
+        \SimpleSAML_Configuration::loadFromArray(array('timezone' => 'INVALID'), '[ARRAY]', 'simplesaml');
+        try {
+            @Time::initTimezone();
+            $this->fail('Failed to recognize an invalid timezone.');
+        } catch (\SimpleSAML_Error_Exception $e) {
+            $this->assertEquals('Invalid timezone set in the "timezone" option in config.php.', $e->getMessage());
+        }
+
+        // test a valid timezone
+        \SimpleSAML_Configuration::loadFromArray(array('timezone' => $tz), '[ARRAY]', 'simplesaml');
+        @Time::initTimezone();
+        $this->assertEquals($tz, @date_default_timezone_get());
+
+        // make sure initialization happens only once
+        \SimpleSAML_Configuration::loadFromArray(array('timezone' => 'Europe/Madrid'), '[ARRAY]', 'simplesaml');
+        @Time::initTimezone();
+        $this->assertEquals($tz, @date_default_timezone_get());
+    }
+
+
+    /**
      * Test the SimpleSAML\Utils\Time::parseDuration() method.
      *
      * @covers SimpleSAML\Utils\Time::parseDuration
