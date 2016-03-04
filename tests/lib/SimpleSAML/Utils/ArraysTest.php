@@ -42,6 +42,9 @@ class ArraysTest extends \PHPUnit_Framework_TestCase
      */
     public function testTranspose()
     {
+        // check not array
+        $this->assertFalse(Arrays::transpose('string'));
+
         // check bad arrays
         $this->assertFalse(
             Arrays::transpose(array('1', '2', '3')),
