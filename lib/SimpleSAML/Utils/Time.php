@@ -74,7 +74,8 @@ class Time
 
 
     /**
-     * Interpret a ISO8601 duration value relative to a given timestamp.
+     * Interpret a ISO8601 duration value relative to a given timestamp. Please note no fractions are allowed, neither
+     * durations specified in the formats PYYYYMMDDThhmmss nor P[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].
      *
      * @param string $duration The duration, as a string.
      * @param int    $timestamp The unix timestamp we should apply the duration to. Optional, default to the current

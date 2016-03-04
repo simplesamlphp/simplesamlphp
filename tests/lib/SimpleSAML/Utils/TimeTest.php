@@ -30,51 +30,77 @@ class TimeTest extends \PHPUnit_Framework_TestCase
     public function testParseDuration()
     {
         // set up base date and time, and fixed durations from there
-        $base   = gmmktime(0, 0, 0, 1, 1, 2000);
-        $second = gmmktime(0, 0, 1, 1, 1, 2000);
-        $minute = gmmktime(0, 1, 0, 1, 1, 2000);
-        $hour   = gmmktime(1, 0, 0, 1, 1, 2000);
-        $day    = gmmktime(0, 0, 0, 1, 2, 2000);
-        $month  = gmmktime(0, 0, 0, 2, 1, 2000);
-        $year   = gmmktime(0, 0, 0, 1, 1, 2001);
+        $base = gmmktime(0, 0, 0, 1, 1, 2000);
+        $second = gmmktime(0, 0, 1, 1, 1, 2000); // +1 sec
+        $minute = gmmktime(0, 1, 0, 1, 1, 2000); // +1 min
+        $hour = gmmktime(1, 0, 0, 1, 1, 2000); // +1 hour
+        $day = gmmktime(0, 0, 0, 1, 2, 2000); // +1 day
+        $week = gmmktime(0, 0, 0, 1, 8, 2000); // +1 week
+        $month = gmmktime(0, 0, 0, 2, 1, 2000); // +1 month
+        $year = gmmktime(0, 0, 0, 1, 1, 2001); // +1 year
+
+        // corner cases
+        $manymonths = gmmktime(0, 0, 0, 3, 1, 2001); // +14 months = +1 year +2 months
+        $negmonths = gmmktime(0, 0, 0, 10, 1, 1999); // -3 months = -1 year +9 months
 
         // test valid duration with timestamp and zeroes
         $this->assertEquals($base + (60 * 60) + 60 + 1, Time::parseDuration('P0Y0M0DT1H1M1S', $base));
 
         // test seconds
-        $this->assertEquals($second, Time::parseDuration('PT1S', $base));
+        $this->assertEquals($second, Time::parseDuration('PT1S', $base), "Failure checking for 1 second duration.");
 
         // test minutes
-        $this->assertEquals($minute, Time::parseDuration('PT1M', $base));
+        $this->assertEquals($minute, Time::parseDuration('PT1M', $base), "Failure checking for 1 minute duration.");
 
         // test hours
-        $this->assertEquals($hour, Time::parseDuration('PT1H', $base));
+        $this->assertEquals($hour, Time::parseDuration('PT1H', $base), "Failure checking for 1 hour duration.");
 
         // test days
-        $this->assertEquals($day, Time::parseDuration('P1D', $base));
+        $this->assertEquals($day, Time::parseDuration('P1D', $base), "Failure checking for 1 day duration.");
+
+        // test weeks
+        $this->assertEquals($week, Time::parseDuration('P1W', $base), "Failure checking for 1 week duration.");
 
         // test month
-        $this->assertEquals($month, Time::parseDuration('P1M', $base));
+        $this->assertEquals($month, Time::parseDuration('P1M', $base), "Failure checking for 1 month duration.");
 
         // test year
-        $this->assertEquals($year, Time::parseDuration('P1Y', $base));
+        $this->assertEquals($year, Time::parseDuration('P1Y', $base), "Failure checking for 1 year duration.");
+
+        // test months > 12
+        $this->assertEquals(
+            $manymonths,
+            Time::parseDuration('P14M', $base),
+            "Failure checking for 14 months duration (1 year and 2 months)."
+        );
+
+        // test negative months
+        $this->assertEquals(
+            $negmonths,
+            Time::parseDuration('-P3M', $base),
+            "Failure checking for -3 months duration (-1 year + 9 months)."
+        );
 
         // test from current time
         $now = time();
-        $this->assertGreaterThanOrEqual($now + 60, Time::parseDuration('PT1M'));
+        $this->assertGreaterThanOrEqual(
+            $now + 60,
+            Time::parseDuration('PT1M'),
+            "Failure testing for 1 minute over current time."
+        );
 
         // test invalid input parameters
         try {
             // invalid duration
             Time::parseDuration(0);
-            $this->never();
+            $this->fail("Did not fail with invalid duration parameter.");
         } catch (\InvalidArgumentException $e) {
             $this->assertEquals('Invalid input parameters', $e->getMessage());
         }
         try {
             // invalid timestamp
             Time::parseDuration('', array());
-            $this->never();
+            $this->fail("Did not fail with invalid timestamp parameter.");
         } catch (\InvalidArgumentException $e) {
             $this->assertEquals('Invalid input parameters', $e->getMessage());
         }
@@ -83,14 +109,14 @@ class TimeTest extends \PHPUnit_Framework_TestCase
         try {
             // invalid string
             Time::parseDuration('abcdefg');
-            $this->never();
+            $this->fail("Did not fail with invalid ISO 8601 duration.");
         } catch (\InvalidArgumentException $e) {
             $this->assertStringStartsWith('Invalid ISO 8601 duration: ', $e->getMessage());
         }
         try {
-            // missing T
+            // missing T delimiter
             Time::parseDuration('P1S');
-            $this->never();
+            $this->fail("Did not fail with duration missing T delimiter.");
         } catch (\InvalidArgumentException $e) {
             $this->assertStringStartsWith('Invalid ISO 8601 duration: ', $e->getMessage());
         }
