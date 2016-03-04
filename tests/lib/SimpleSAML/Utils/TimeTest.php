@@ -27,7 +27,7 @@ class TimeTest extends \PHPUnit_Framework_TestCase
      *
      * @covers SimpleSAML\Utils\Time::initTimezone
      */
-    public function testInitTimezon()
+    public function testInitTimezone()
     {
         $tz = 'UTC';
         $os = @date_default_timezone_get();
