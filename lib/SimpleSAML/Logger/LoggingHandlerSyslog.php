@@ -13,6 +13,7 @@ class SimpleSAML_Logger_LoggingHandlerSyslog implements SimpleSAML_Logger_Loggin
 {
     private $isWindows = FALSE;
     private $format;
+    private $arrayData;
 
 
     /**
@@ -33,6 +34,16 @@ class SimpleSAML_Logger_LoggingHandlerSyslog implements SimpleSAML_Logger_Loggin
         }
 
         openlog($processname, LOG_PID, $facility);
+    }
+
+
+    /**
+     * Set the Array data for use when logging JSON.
+     *
+     * @param array $array Array of data to log with JSON.
+     */
+    public function setArray($array) {
+        $this->arrayData = $array;
     }
 
 
@@ -64,12 +75,21 @@ class SimpleSAML_Logger_LoggingHandlerSyslog implements SimpleSAML_Logger_Loggin
             }
         }
 
-        $formats = array('%process', '%level');
-        $replacements = array('', $level);
-        $string = str_replace($formats, $replacements, $string);
-        $string = preg_replace('/%\w+(\{[^\}]+\})?/', '', $string);
-        $string = trim($string);
+        if ($this->format == 'json') {
+            $data = $this->arrayData;
+            // Send a single line as text, not an array.
+            if (count($this->arrayData) == 1) {
+                $data = reset($this->arrayData);
+            }
+            $message = json_encode(array('message' => $data));
+        } else {
+            $formats = array('%process', '%level');
+            $replacements = array('', $level);
+            $string = str_replace($formats, $replacements, $string);
+            $string = preg_replace('/%\w+(\{[^\}]+\})?/', '', $string);
+            $message = trim($string);
+        }
 
-        syslog($level, $string);
+        syslog($level, $message);
     }
 }
