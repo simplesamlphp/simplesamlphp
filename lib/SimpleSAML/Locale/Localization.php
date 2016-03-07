@@ -77,7 +77,8 @@ class Localization
      * @param string $domain Name of domain
      */
     private function loadGettextGettextFromPO($domain = self::DEFAULT_DOMAIN) {
-        $langcode = explode('_', $this->langcode)[0];
+        $langcode = explode('_', $this->langcode);
+        $langcode = $langcode[0];
         $localeDir = $this->localeDomainMap[$domain];
         $poPath = $localeDir.'/'.$langcode.'/LC_MESSAGES/'.$domain.'.po';
         $translations = Translations::fromPoFile($poPath);
