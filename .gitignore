@@ -161,3 +161,6 @@ crashlytics-build.properties
 
 ### Vagrant ###
 .vagrant/
+
+### vim
+*.swp
