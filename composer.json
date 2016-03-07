@@ -39,7 +39,8 @@
         "robrichards/xmlseclibs": "~2.0",
         "whitehat101/apr1-md5": "~1.0",
         "twig/twig": "~1.0",
-        "twig/extensions": "^1.3"
+        "twig/extensions": "^1.3",
+        "gettext/gettext": "^3.5"
     },
     "require-dev": {
         "ext-pdo_sqlite": "*",
