@@ -7,6 +7,8 @@
  * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
  */
+
+
 class SimpleSAML_XHTML_Template
 {
 
@@ -154,9 +156,15 @@ class SimpleSAML_XHTML_Template
         }
 
         $twig = new \Twig_Environment($loader, array('cache' => $cache, 'auto_reload' => $auto_reload));
-        if ($this->localization->i18nBackend == 'twig.i18n') {
-            $this->localization->activateDomain('ssp');
-            $twig->addExtension(new \Twig_Extensions_Extension_I18n());
+        // set up translation
+        if ($this->localization->i18nBackend == 'twig.gettextgettext') {
+            /* if something like pull request #166 is ever merged with
+             * twig.extensions.i18n, use the line below:
+             * $twig->addExtension(new \Twig_Extensions_Extension_I18n('__', 'n__'));
+             * instead of the two lines after this comment
+             */
+            $twig->addFilter(new Twig_SimpleFilter('trans', '__'));
+            $twig->addTokenParser(new \SimpleSAML_Twig_TokenParser_Trans());
         }
         return $twig;
     }
@@ -264,6 +272,7 @@ class SimpleSAML_XHTML_Template
      */
     private function twigDefaultContext()
     {
+        $this->data['localeBackend'] = $this->configuration->getString('language.i18n.backend', 'ssp');
         $this->data['currentLanguage'] = $this->translator->getLanguage()->getLanguage();
         // show language bar by default
         if (!isset($this->data['hideLanguageBar'])) {
