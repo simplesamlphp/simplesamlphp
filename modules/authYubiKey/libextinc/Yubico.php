@@ -88,7 +88,7 @@ class Auth_Yubico
 	 * @param    string  The client MAC key (optional)
 	 * @access public
 	 */
-	function Auth_Yubico($id, $key = '')
+	public function __construct($id, $key = '')
 	{
 		$this->_id =  $id;
 		$this->_key = base64_decode($key);
