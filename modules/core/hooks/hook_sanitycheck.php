@@ -33,8 +33,8 @@ function core_hook_sanitycheck(&$hookinfo) {
 	$mihookinfo = array(
 		'info' => &$info,
 	);
-	$availmodules = SimpleSAML_Module::getModules();
-	SimpleSAML_Module::callHooks('moduleinfo', $mihookinfo);
+	$availmodules = SimpleSAML\Module::getModules();
+	SimpleSAML\Module::callHooks('moduleinfo', $mihookinfo);
 	foreach($info AS $mi => $i) {
 		if (isset($i['dependencies']) && is_array($i['dependencies'])) {
 			foreach ($i['dependencies'] AS $dep) {

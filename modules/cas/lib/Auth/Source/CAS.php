@@ -174,7 +174,7 @@ class sspmod_cas_Auth_Source_CAS  extends SimpleSAML_Auth_Source  {
 
 		$ticket = $state['cas:ticket'];
 		$stateID = SimpleSAML_Auth_State::saveState($state, self::STAGE_INIT);
-		$service =  SimpleSAML_Module::getModuleURL('cas/linkback.php', array('stateID' => $stateID));
+		$service =  SimpleSAML\Module::getModuleURL('cas/linkback.php', array('stateID' => $stateID));
 		list($username, $casattributes) = $this->casValidation($ticket, $service);
 		$ldapattributes = array();
 		if ($this->_ldapConfig['servers']) {
@@ -203,7 +203,7 @@ class sspmod_cas_Auth_Source_CAS  extends SimpleSAML_Auth_Source  {
 
 
 
-		$serviceUrl = SimpleSAML_Module::getModuleURL('cas/linkback.php', array('stateID' => $stateID));
+		$serviceUrl = SimpleSAML\Module::getModuleURL('cas/linkback.php', array('stateID' => $stateID));
 
 		\SimpleSAML\Utils\HTTP::redirectTrustedURL($this->_loginMethod, array(
 			'service' => $serviceUrl));

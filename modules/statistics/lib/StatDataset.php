@@ -258,7 +258,7 @@ class sspmod_statistics_StatDataset
         // create a delimiter presentation filter for this rule...
         if ($this->ruleconfig->hasValue('fieldPresentation')) {
             $fieldpresConfig = $this->ruleconfig->getConfigItem('fieldPresentation');
-            $classname = SimpleSAML_Module::resolveClass(
+            $classname = SimpleSAML\Module::resolveClass(
                 $fieldpresConfig->getValue('class'),
                 'Statistics_FieldPresentation'
             );

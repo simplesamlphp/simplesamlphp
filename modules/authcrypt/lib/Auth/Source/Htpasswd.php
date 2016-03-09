@@ -75,19 +75,19 @@ class sspmod_authcrypt_Auth_Source_Htpasswd extends sspmod_core_Auth_UserPassBas
 
 				// Traditional crypt(3)
 				if(crypt($password, $crypted) == $crypted) {
-					SimpleSAML_Logger::debug('User '. $username . ' authenticated successfully');
+					SimpleSAML\Logger::debug('User '. $username . ' authenticated successfully');
 					return $attributes;
 				}
 
 				// Apache's custom MD5
 				if(APR1_MD5::check($crypted, $password)) {
-					SimpleSAML_Logger::debug('User '. $username . ' authenticated successfully');
+					SimpleSAML\Logger::debug('User '. $username . ' authenticated successfully');
 					return $attributes;
 				}
 
 				// SHA1 or plain-text
 				if(SimpleSAML\Utils\Crypto::pwValid($crypted, $password)) {
-					SimpleSAML_Logger::debug('User '. $username . ' authenticated successfully');
+					SimpleSAML\Logger::debug('User '. $username . ' authenticated successfully');
 					return $attributes;
 				}
 				throw new SimpleSAML_Error_Error('WRONGUSERPASS');

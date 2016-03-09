@@ -21,10 +21,10 @@ if (isset($idpmeta['auth'])) {
 
 	$session = SimpleSAML_Session::getSessionFromRequest();
 	$session->setData('negotiate:disable', 'session', FALSE, 24*60*60);
-	SimpleSAML_Logger::debug('Negotiate(retry) - session enabled, retrying.');
+	SimpleSAML\Logger::debug('Negotiate(retry) - session enabled, retrying.');
 	$source->authenticate($state);
 	assert('FALSE');
 } else {
-	SimpleSAML_Logger::error('Negotiate - retry - no "auth" parameter found in IdP metadata.');
+	SimpleSAML\Logger::error('Negotiate - retry - no "auth" parameter found in IdP metadata.');
 	assert('FALSE');
 }

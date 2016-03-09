@@ -22,7 +22,7 @@ class sspmod_adfs_IdP_ADFS {
 			$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 			$spMetadata = $metadata->getMetaDataConfig($spEntityId, 'adfs-sp-remote');
 			
-			SimpleSAML_Logger::info('ADFS - IdP.prp: Incoming Authentication request: '.$issuer.' id '.$requestid);
+			SimpleSAML\Logger::info('ADFS - IdP.prp: Incoming Authentication request: '.$issuer.' id '.$requestid);
 	
 		} catch(Exception $exception) {
 			throw new SimpleSAML_Error_Error('PROCESSAUTHNREQUEST', $exception);
@@ -193,7 +193,7 @@ class sspmod_adfs_IdP_ADFS {
 		$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 		$idpMetadata = $idp->getConfig();
 		$spMetadata = $metadata->getMetaDataConfig($association['adfs:entityID'], 'adfs-sp-remote');
-		$returnTo = SimpleSAML_Module::getModuleURL('adfs/idp/prp.php?assocId=' . urlencode($association["id"]) . '&relayState=' . urlencode($relayState));
+		$returnTo = SimpleSAML\Module::getModuleURL('adfs/idp/prp.php?assocId=' . urlencode($association["id"]) . '&relayState=' . urlencode($relayState));
 		return $spMetadata->getValue('prp') . '?' . 'wa=wsignoutcleanup1.0&wreply=' . urlencode($returnTo);
 	}
 }

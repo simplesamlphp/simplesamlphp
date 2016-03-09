@@ -93,7 +93,7 @@ abstract class sspmod_saml_BaseNameIDGenerator extends SimpleSAML_Auth_Processin
 			if (isset($state['IdPMetadata']['entityid'])) {
 				$nameId['NameQualifier'] = $state['IdPMetadata']['entityid'];
 			} else {
-				SimpleSAML_Logger::warning('No IdP entity ID, unable to set NameQualifier.');
+				SimpleSAML\Logger::warning('No IdP entity ID, unable to set NameQualifier.');
 			}
 		} elseif (is_string($this->nameQualifier)) {
 			$nameId['NameQualifier'] = $this->nameQualifier;
@@ -103,7 +103,7 @@ abstract class sspmod_saml_BaseNameIDGenerator extends SimpleSAML_Auth_Processin
 			if (isset($state['SPMetadata']['entityid'])) {
 				$nameId['SPNameQualifier'] = $state['SPMetadata']['entityid'];
 			} else {
-				SimpleSAML_Logger::warning('No SP entity ID, unable to set SPNameQualifier.');
+				SimpleSAML\Logger::warning('No SP entity ID, unable to set SPNameQualifier.');
 			}
 		} elseif (is_string($this->spNameQualifier)) {
 			$nameId['SPNameQualifier'] = $this->spNameQualifier;

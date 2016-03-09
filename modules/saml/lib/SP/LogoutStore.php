@@ -45,7 +45,7 @@ class sspmod_saml_SP_LogoutStore {
 	 */
 	private static function cleanLogoutStore(SimpleSAML_Store_SQL $store) {
 
-		SimpleSAML_Logger::debug('saml.LogoutStore: Cleaning logout store.');
+		SimpleSAML\Logger::debug('saml.LogoutStore: Cleaning logout store.');
 
 		$query = 'DELETE FROM ' . $store->prefix . '_saml_LogoutStore WHERE _expire < :now';
 		$params = array('now' => gmdate('Y-m-d H:i:s'));
@@ -248,7 +248,7 @@ class sspmod_saml_SP_LogoutStore {
 		$numLoggedOut = 0;
 		foreach ($sessionIndexes as $sessionIndex) {
 			if (!isset($sessions[$sessionIndex])) {
-				SimpleSAML_Logger::info('saml.LogoutStore: Logout requested for unknown SessionIndex.');
+				SimpleSAML\Logger::info('saml.LogoutStore: Logout requested for unknown SessionIndex.');
 				continue;
 			}
 
@@ -256,16 +256,16 @@ class sspmod_saml_SP_LogoutStore {
 
 			$session = SimpleSAML_Session::getSession($sessionId);
 			if ($session === NULL) {
-				SimpleSAML_Logger::info('saml.LogoutStore: Skipping logout of missing session.');
+				SimpleSAML\Logger::info('saml.LogoutStore: Skipping logout of missing session.');
 				continue;
 			}
 
 			if (!$session->isValid($authId)) {
-				SimpleSAML_Logger::info('saml.LogoutStore: Skipping logout of session because it isn\'t authenticated.');
+				SimpleSAML\Logger::info('saml.LogoutStore: Skipping logout of session because it isn\'t authenticated.');
 				continue;
 			}
 
-			SimpleSAML_Logger::info('saml.LogoutStore: Logging out of session with trackId [' . $session->getTrackID() . '].');
+			SimpleSAML\Logger::info('saml.LogoutStore: Logging out of session with trackId [' . $session->getTrackID() . '].');
 			$session->doLogout($authId);
 			$numLoggedOut += 1;
 		}

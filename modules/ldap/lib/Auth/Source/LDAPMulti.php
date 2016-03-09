@@ -95,7 +95,7 @@ class sspmod_ldap_Auth_Source_LDAPMulti extends sspmod_core_Auth_UserPassOrgBase
 
 		if (!array_key_exists($org, $this->ldapOrgs)) {
 			// The user has selected an organization which doesn't exist anymore.
-			SimpleSAML_Logger::warning('Authentication source ' . var_export($this->authId, TRUE) .
+			SimpleSAML\Logger::warning('Authentication source ' . var_export($this->authId, TRUE) .
 				': Organization seems to have disappeared while the user logged in.' .
 				' Organization was ' . var_export($org, TRUE));
 			throw new SimpleSAML_Error_Error('WRONGUSERPASS');

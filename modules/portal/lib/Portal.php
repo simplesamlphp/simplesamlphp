@@ -32,7 +32,7 @@ class sspmod_portal_Portal {
 	
 	function getLoginInfo($t, $thispage) {
 		$info = array('info' => '', 'template' => $t, 'thispage' => $thispage);
-		SimpleSAML_Module::callHooks('portalLoginInfo', $info);
+		SimpleSAML\Module::callHooks('portalLoginInfo', $info);
 		return $info['info'];
 	}
 	

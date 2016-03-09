@@ -68,7 +68,7 @@ class sspmod_core_Auth_Process_GenerateGroups extends SimpleSAML_Auth_Processing
 
 		foreach ($this->generateGroupsFrom as $name) {
 			if (!array_key_exists($name, $attributes)) {
-				SimpleSAML_Logger::debug('GenerateGroups - attribute \'' . $name . '\' not found.');
+				SimpleSAML\Logger::debug('GenerateGroups - attribute \'' . $name . '\' not found.');
 				/* Attribute not present. */
 				continue;
 			}

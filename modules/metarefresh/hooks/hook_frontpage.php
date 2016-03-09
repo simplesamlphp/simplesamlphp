@@ -9,7 +9,7 @@ function metarefresh_hook_frontpage(&$links) {
 	assert('array_key_exists("links", $links)');
 
 	$links['federation'][] = array(
-		'href' => SimpleSAML_Module::getModuleURL('metarefresh/fetch.php'),
+		'href' => SimpleSAML\Module::getModuleURL('metarefresh/fetch.php'),
 		'text' => array('en' => 'Metarefresh: fetch metadata'),
 	);
 

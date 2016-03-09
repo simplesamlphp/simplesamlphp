@@ -35,7 +35,7 @@ $allLinks = array(
 	'auth'       => &$links_auth,
 	'federation' => &$links_federation,
 );
-SimpleSAML_Module::callHooks('frontpage', $allLinks);
+SimpleSAML\Module::callHooks('frontpage', $allLinks);
 
 
 

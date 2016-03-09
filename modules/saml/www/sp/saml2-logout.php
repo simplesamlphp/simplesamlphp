@@ -61,7 +61,7 @@ if ($message instanceof SAML2_LogoutResponse) {
 	}
 
 	if (!$message->isSuccess()) {
-		SimpleSAML_Logger::warning('Unsuccessful logout. Status was: ' . sspmod_saml_Message::getResponseError($message));
+		SimpleSAML\Logger::warning('Unsuccessful logout. Status was: ' . sspmod_saml_Message::getResponseError($message));
 	}
 
 	$state = SimpleSAML_Auth_State::loadState($relayState, 'saml:slosent');
@@ -70,8 +70,8 @@ if ($message instanceof SAML2_LogoutResponse) {
 
 } elseif ($message instanceof SAML2_LogoutRequest) {
 
-	SimpleSAML_Logger::debug('module/saml2/sp/logout: Request from ' . $idpEntityId);
-	SimpleSAML_Logger::stats('saml20-idp-SLO idpinit ' . $spEntityId . ' ' . $idpEntityId);
+	SimpleSAML\Logger::debug('module/saml2/sp/logout: Request from ' . $idpEntityId);
+	SimpleSAML\Logger::stats('saml20-idp-SLO idpinit ' . $spEntityId . ' ' . $idpEntityId);
 
 	if ($message->isNameIdEncrypted()) {
 		try {
@@ -86,11 +86,11 @@ if ($message instanceof SAML2_LogoutResponse) {
 		foreach ($keys as $i => $key) {
 			try {
 				$message->decryptNameId($key, $blacklist);
-				SimpleSAML_Logger::debug('Decryption with key #' . $i . ' succeeded.');
+				SimpleSAML\Logger::debug('Decryption with key #' . $i . ' succeeded.');
 				$lastException = NULL;
 				break;
 			} catch (Exception $e) {
-				SimpleSAML_Logger::debug('Decryption with key #' . $i . ' failed with exception: ' . $e->getMessage());
+				SimpleSAML\Logger::debug('Decryption with key #' . $i . ' failed with exception: ' . $e->getMessage());
 				$lastException = $e;
 			}
 		}
@@ -115,7 +115,7 @@ if ($message instanceof SAML2_LogoutResponse) {
 	$lr->setInResponseTo($message->getId());
 
 	if ($numLoggedOut < count($sessionIndexes)) {
-		SimpleSAML_Logger::warning('Logged out of ' . $numLoggedOut  . ' of ' . count($sessionIndexes) . ' sessions.');
+		SimpleSAML\Logger::warning('Logged out of ' . $numLoggedOut  . ' of ' . count($sessionIndexes) . ' sessions.');
 	}
 
 	$dst = $idpMetadata->getEndpointPrioritizedByBinding('SingleLogoutService', array(

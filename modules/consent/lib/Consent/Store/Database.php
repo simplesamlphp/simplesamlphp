@@ -167,10 +167,10 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store
 
         $rowCount = $st->rowCount();
         if ($rowCount === 0) {
-            SimpleSAML_Logger::debug('consent:Database - No consent found.');
+            SimpleSAML\Logger::debug('consent:Database - No consent found.');
             return false;
         } else {
-            SimpleSAML_Logger::debug('consent:Database - Consent found.');
+            SimpleSAML\Logger::debug('consent:Database - Consent found.');
             return true;
         }
 
@@ -208,7 +208,7 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store
 
         if ($st->rowCount() > 0) {
             // Consent has already been stored in the database
-            SimpleSAML_Logger::debug('consent:Database - Updated old consent.');
+            SimpleSAML\Logger::debug('consent:Database - Updated old consent.');
             return;
         }
 
@@ -222,7 +222,7 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store
         );
 
         if ($st !== false) {
-            SimpleSAML_Logger::debug('consent:Database - Saved new consent.');
+            SimpleSAML\Logger::debug('consent:Database - Saved new consent.');
         }
         return true;
     }
@@ -253,10 +253,10 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store
         }
 
         if ($st->rowCount() > 0) {
-            SimpleSAML_Logger::debug('consent:Database - Deleted consent.');
+            SimpleSAML\Logger::debug('consent:Database - Deleted consent.');
             return $st->rowCount();
         } else {
-            SimpleSAML_Logger::warning(
+            SimpleSAML\Logger::warning(
                 'consent:Database - Attempted to delete nonexistent consent'
             );
         }
@@ -283,12 +283,12 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store
         }
 
         if ($st->rowCount() > 0) {
-            SimpleSAML_Logger::debug(
+            SimpleSAML\Logger::debug(
                 'consent:Database - Deleted (' . $st->rowCount() . ') consent(s).'
             );
             return $st->rowCount();
         } else {
-            SimpleSAML_Logger::warning(
+            SimpleSAML\Logger::warning(
                 'consent:Database - Attempted to delete nonexistent consent'
             );
         }
@@ -351,7 +351,7 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store
         $st = $db->prepare($statement);
         if ($st === false) {
             if ($st === false) {
-                SimpleSAML_Logger::error(
+                SimpleSAML\Logger::error(
                     'consent:Database - Error preparing statement \'' .
                     $statement . '\': ' . self::_formatError($db->errorInfo())
                 );
@@ -360,7 +360,7 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store
         }
 
         if ($st->execute($parameters) !== true) {
-            SimpleSAML_Logger::error(
+            SimpleSAML\Logger::error(
                 'consent:Database - Error executing statement \'' .
                 $statement . '\': ' . self::_formatError($st->errorInfo())
             );
@@ -456,7 +456,7 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store
             ')'
         );
         if ($res === false) {
-            SimpleSAML_Logger::error(
+            SimpleSAML\Logger::error(
                 'consent:Database - Failed to create table \'' .
                 $this->_table . '\'.'
             );

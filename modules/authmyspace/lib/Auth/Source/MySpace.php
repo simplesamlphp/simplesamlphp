@@ -64,16 +64,16 @@ class sspmod_authmyspace_Auth_Source_MySpace extends SimpleSAML_Auth_Source {
 
 		// Get the request token
 		$requestToken = $consumer->getRequestToken('http://api.myspace.com/request_token');
-		SimpleSAML_Logger::debug("Got a request token from the OAuth service provider [" .
+		SimpleSAML\Logger::debug("Got a request token from the OAuth service provider [" .
 			$requestToken->key . "] with the secret [" . $requestToken->secret . "]");
 
 		$state['authmyspace:requestToken'] = $requestToken;
 
 		$stateID = SimpleSAML_Auth_State::saveState($state, self::STAGE_INIT);
-		SimpleSAML_Logger::debug('authmyspace auth state id = ' . $stateID);
+		SimpleSAML\Logger::debug('authmyspace auth state id = ' . $stateID);
 
 		// Authorize the request token
-		$consumer->getAuthorizeRequest('http://api.myspace.com/authorize', $requestToken, TRUE, SimpleSAML_Module::getModuleUrl('authmyspace') . '/linkback.php?stateid=' . $stateID);
+		$consumer->getAuthorizeRequest('http://api.myspace.com/authorize', $requestToken, TRUE, SimpleSAML\Module::getModuleUrl('authmyspace') . '/linkback.php?stateid=' . $stateID);
 
 	}
 
@@ -85,12 +85,12 @@ class sspmod_authmyspace_Auth_Source_MySpace extends SimpleSAML_Auth_Source {
 
 		$consumer = new sspmod_oauth_Consumer($this->key, $this->secret);
 
-		SimpleSAML_Logger::debug("oauth: Using this request token [" .
+		SimpleSAML\Logger::debug("oauth: Using this request token [" .
 			$requestToken->key . "] with the secret [" . $requestToken->secret . "]");
 
 		// Replace the request token with an access token
 		$accessToken = $consumer->getAccessToken('http://api.myspace.com/access_token', $requestToken);
-		SimpleSAML_Logger::debug("Got an access token from the OAuth service provider [" .
+		SimpleSAML\Logger::debug("Got an access token from the OAuth service provider [" .
 			$accessToken->key . "] with the secret [" . $accessToken->secret . "]");
 
 		// People API -  http://developerwiki.myspace.com/index.php?title=People_API
@@ -130,7 +130,7 @@ class sspmod_authmyspace_Auth_Source_MySpace extends SimpleSAML_Auth_Source {
 			}
 		}
 
-		SimpleSAML_Logger::debug('MySpace Returned Attributes: '. implode(", ",array_keys($attributes)));
+		SimpleSAML\Logger::debug('MySpace Returned Attributes: '. implode(", ",array_keys($attributes)));
 
 		$state['Attributes'] = $attributes;
 	}

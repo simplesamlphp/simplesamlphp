@@ -59,8 +59,8 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 		$this->idp = $this->metadata->getString('idp', NULL);
 		$this->discoURL = $this->metadata->getString('discoURL', NULL);
 		
-		if (empty($this->discoURL) && SimpleSAML_Module::isModuleEnabled('discojuice')) {
-			$this->discoURL = SimpleSAML_Module::getModuleURL('discojuice/central.php');
+		if (empty($this->discoURL) && SimpleSAML\Module::isModuleEnabled('discojuice')) {
+			$this->discoURL = SimpleSAML\Module::getModuleURL('discojuice/central.php');
 		}
 	}
 
@@ -72,7 +72,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 	 */
 	public function getMetadataURL() {
 
-		return SimpleSAML_Module::getModuleURL('saml/sp/metadata.php/' . urlencode($this->authId));
+		return SimpleSAML\Module::getModuleURL('saml/sp/metadata.php/' . urlencode($this->authId));
 	}
 
 
@@ -159,14 +159,14 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 		}
 
 		if ($useArtifact) {
-			$shire = SimpleSAML_Module::getModuleURL('saml/sp/saml1-acs.php/' . $this->authId . '/artifact');
+			$shire = SimpleSAML\Module::getModuleURL('saml/sp/saml1-acs.php/' . $this->authId . '/artifact');
 		} else {
-			$shire = SimpleSAML_Module::getModuleURL('saml/sp/saml1-acs.php/' . $this->authId);
+			$shire = SimpleSAML\Module::getModuleURL('saml/sp/saml1-acs.php/' . $this->authId);
 		}
 
 		$url = $ar->createRedirect($idpEntityId, $shire);
 
-		SimpleSAML_Logger::debug('Starting SAML 1 SSO to ' . var_export($idpEntityId, TRUE) .
+		SimpleSAML\Logger::debug('Starting SAML 1 SSO to ' . var_export($idpEntityId, TRUE) .
 			' from ' . var_export($this->entityId, TRUE) . '.');
 		\SimpleSAML\Utils\HTTP::redirectTrustedURL($url);
 	}
@@ -186,7 +186,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 
 		$ar = sspmod_saml_Message::buildAuthnRequest($this->metadata, $idpMetadata);
 
-		$ar->setAssertionConsumerServiceURL(SimpleSAML_Module::getModuleURL('saml/sp/saml2-acs.php/' . $this->authId));
+		$ar->setAssertionConsumerServiceURL(SimpleSAML\Module::getModuleURL('saml/sp/saml2-acs.php/' . $this->authId));
 
 		if (isset($state['SimpleSAML_Auth_Source.ReturnURL'])) {
 			$ar->setRelayState($state['SimpleSAML_Auth_Source.ReturnURL']);
@@ -258,7 +258,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 		$id = SimpleSAML_Auth_State::saveState($state, 'saml:sp:sso', TRUE);
 		$ar->setId($id);
 
-		SimpleSAML_Logger::debug('Sending SAML 2 AuthnRequest to ' . var_export($idpMetadata->getString('entityid'), TRUE));
+		SimpleSAML\Logger::debug('Sending SAML 2 AuthnRequest to ' . var_export($idpMetadata->getString('entityid'), TRUE));
 
 		/* Select appropriate SSO endpoint */
 		if ($ar->getProtocolBinding() === SAML2_Const::BINDING_HOK_SSO) {
@@ -336,10 +336,10 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 		$discoURL = $this->discoURL;
 		if ($discoURL === NULL) {
 			/* Fallback to internal discovery service. */
-			$discoURL = SimpleSAML_Module::getModuleURL('saml/disco.php');
+			$discoURL = SimpleSAML\Module::getModuleURL('saml/disco.php');
 		}
 
-		$returnTo = SimpleSAML_Module::getModuleURL('saml/sp/discoresp.php', array('AuthID' => $id));
+		$returnTo = SimpleSAML\Module::getModuleURL('saml/sp/discoresp.php', array('AuthID' => $id));
 		
 		$params = array(
 			'entityID' => $this->entityId,
@@ -471,7 +471,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 			SAML2_Const::BINDING_HTTP_REDIRECT,
 			SAML2_Const::BINDING_HTTP_POST), FALSE);
 		if ($endpoint === FALSE) {
-			SimpleSAML_Logger::info('No logout endpoint for IdP ' . var_export($idp, TRUE) . '.');
+			SimpleSAML\Logger::info('No logout endpoint for IdP ' . var_export($idp, TRUE) . '.');
 			return;
 		}
 

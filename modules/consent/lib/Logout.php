@@ -8,7 +8,7 @@
 class sspmod_consent_Logout {
 
 	public static function postLogout(SimpleSAML_IdP $idp, array $state) {
-		$url = SimpleSAML_Module::getModuleURL('consent/logout_completed.php');
+		$url = SimpleSAML\Module::getModuleURL('consent/logout_completed.php');
 		\SimpleSAML\Utils\HTTP::redirectTrustedURL($url);
 	}
 

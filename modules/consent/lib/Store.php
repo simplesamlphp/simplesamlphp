@@ -125,7 +125,7 @@ abstract class sspmod_consent_Store
             throw new Exception('Consent store without name given.');
         }
 
-        $className = SimpleSAML_Module::resolveClass(
+        $className = SimpleSAML\Module::resolveClass(
             $config[0],
             'Consent_Store',
             'sspmod_consent_Store'

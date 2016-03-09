@@ -23,7 +23,7 @@ function oauth_hook_cron(&$croninfo) {
 		
 	} catch (Exception $e) {
 		$message = 'OAuth clean up cron script failed: ' . $e->getMessage();
-		SimpleSAML_Logger::warning($message);
+		SimpleSAML\Logger::warning($message);
 		$croninfo['summary'][] = $message;
 	}
 }

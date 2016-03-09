@@ -80,7 +80,7 @@ if (is_array($this->data['metaentries']['remote']) && count($this->data['metaent
             echo '<li>';
             echo('<a href="'.
                 htmlspecialchars(
-                    SimpleSAML_Module::getModuleURL(
+                    SimpleSAML\Module::getModuleURL(
                         'core/show_metadata.php',
                         array('entityid' => $entry['entityid'], 'set' => $setkey)
                     )
@@ -123,7 +123,7 @@ if (is_array($this->data['metaentries']['remote']) && count($this->data['metaent
         if ($this->data['isadmin']) { ?>
     <fieldset class="fancyfieldset">
         <legend>Lookup metadata</legend>
-        <form action="<?php echo SimpleSAML_Module::getModuleURL('core/show_metadata.php'); ?>" method="get">
+        <form action="<?php echo SimpleSAML\Module::getModuleURL('core/show_metadata.php'); ?>" method="get">
             <p style="margin: 1em 2em ">Look up metadata for entity:
                 <select name="set"><?php
             if (is_array($this->data['metaentries']['remote']) && count($this->data['metaentries']['remote']) > 0) {

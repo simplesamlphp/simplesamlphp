@@ -59,14 +59,14 @@ if ($prevAuth !== null && $prevAuth['id'] === $response->getId() && $prevAuth['i
      * In that case we may as well just redo the previous redirect
      * instead of displaying a confusing error message.
      */
-    SimpleSAML_Logger::info(
+    SimpleSAML\Logger::info(
         'Duplicate SAML 2 response detected - ignoring the response and redirecting the user to the correct page.'
     );
     if (isset($prevAuth['redirect'])) {
         \SimpleSAML\Utils\HTTP::redirectTrustedURL($prevAuth['redirect']);
     }
 
-    SimpleSAML_Logger::info('No RelayState or ReturnURL available, cannot redirect.');
+    SimpleSAML\Logger::info('No RelayState or ReturnURL available, cannot redirect.');
     throw new SimpleSAML_Error_Exception('Duplicate assertion received.');
 }
 
@@ -110,7 +110,7 @@ if (!empty($stateId)) {
     );
 }
 
-SimpleSAML_Logger::debug('Received SAML2 Response from '.var_export($idp, true).'.');
+SimpleSAML\Logger::debug('Received SAML2 Response from '.var_export($idp, true).'.');
 
 if (empty($idpMetadata)) {
     $idpMetadata = $source->getIdPmetadata($idp);

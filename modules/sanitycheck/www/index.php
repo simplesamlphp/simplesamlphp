@@ -9,7 +9,7 @@ $hookinfo = array(
 	'info' => &$info, 
 	'errors' => &$errors,
 );
-SimpleSAML_Module::callHooks('sanitycheck', $hookinfo);
+SimpleSAML\Module::callHooks('sanitycheck', $hookinfo);
 
 
 if (isset($_REQUEST['output']) && $_REQUEST['output'] == 'text') {

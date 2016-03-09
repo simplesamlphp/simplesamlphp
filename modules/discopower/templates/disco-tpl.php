@@ -18,10 +18,10 @@ if(!array_key_exists('header', $this->data)) {
 $this->data['header'] = $this->t($this->data['header']);
 $this->data['jquery'] = array('core' => TRUE, 'ui' => TRUE, 'css' => TRUE);
 
-$this->data['head'] = '<link rel="stylesheet" media="screen" type="text/css" href="' . SimpleSAML_Module::getModuleUrl('discopower/style.css')  . '" />';
+$this->data['head'] = '<link rel="stylesheet" media="screen" type="text/css" href="' . SimpleSAML\Module::getModuleUrl('discopower/style.css')  . '" />';
 
-$this->data['head'] .= '<script type="text/javascript" src="' . SimpleSAML_Module::getModuleUrl('discopower/js/jquery.livesearch.js')  . '"></script>';
-$this->data['head'] .= '<script type="text/javascript" src="' . SimpleSAML_Module::getModuleUrl('discopower/js/' . $this->data['score'] . '.js')  . '"></script>';
+$this->data['head'] .= '<script type="text/javascript" src="' . SimpleSAML\Module::getModuleUrl('discopower/js/jquery.livesearch.js')  . '"></script>';
+$this->data['head'] .= '<script type="text/javascript" src="' . SimpleSAML\Module::getModuleUrl('discopower/js/' . $this->data['score'] . '.js')  . '"></script>';
 
 $this->data['head'] .= '<script type="text/javascript">
 

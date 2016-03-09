@@ -59,7 +59,7 @@ class AttributeValueMap extends \SimpleSAML_Auth_ProcessingFilter
                     $this->keep = true;
                 } else {
                     // unknown configuration option, log it and ignore the error
-                    \SimpleSAML_Logger::warning(
+                    \SimpleSAML\Logger::warning(
                         "AttributeValueMap: unknown configuration flag '".var_export($value, true)."'"
                     );
                 }
@@ -102,7 +102,7 @@ class AttributeValueMap extends \SimpleSAML_Auth_ProcessingFilter
      */
     public function process(&$request)
     {
-        \SimpleSAML_Logger::debug('Processing the AttributeValueMap filter.');
+        \SimpleSAML\Logger::debug('Processing the AttributeValueMap filter.');
 
         assert('is_array($request)');
         assert('array_key_exists("Attributes", $request)');
@@ -122,7 +122,7 @@ class AttributeValueMap extends \SimpleSAML_Auth_ProcessingFilter
                     $values = array($values);
                 }
                 if (count(array_intersect($values, $sourceattribute)) > 0) {
-                    \SimpleSAML_Logger::debug("AttributeValueMap: intersect match for '$value'");
+                    \SimpleSAML\Logger::debug("AttributeValueMap: intersect match for '$value'");
                     $targetvalues[] = $value;
                 }
             }

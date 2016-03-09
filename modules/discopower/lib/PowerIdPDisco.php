@@ -72,7 +72,7 @@ class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco
      */
     protected function log($message)
     {
-        SimpleSAML_Logger::info('PowerIdPDisco.'.$this->instance.': '.$message);
+        SimpleSAML\Logger::info('PowerIdPDisco.'.$this->instance.': '.$message);
     }
 
 

@@ -75,7 +75,7 @@ class sspmod_authfacebook_Auth_Source_Facebook extends SimpleSAML_Auth_Source {
 		$facebook = new sspmod_authfacebook_Facebook(array('appId' => $this->api_key, 'secret' => $this->secret), $state);
 		$facebook->destroySession();
 
-		$linkback = SimpleSAML_Module::getModuleURL('authfacebook/linkback.php', array('AuthState' => $stateID));
+		$linkback = SimpleSAML\Module::getModuleURL('authfacebook/linkback.php', array('AuthState' => $stateID));
 		$url = $facebook->getLoginUrl(array('redirect_uri' => $linkback, 'scope' => $this->req_perms));
 		SimpleSAML_Auth_State::saveState($state, self::STAGE_INIT);
 
@@ -117,7 +117,7 @@ class sspmod_authfacebook_Auth_Source_Facebook extends SimpleSAML_Auth_Source {
 		$attributes['facebook_targetedID'] = array('http://facebook.com!' . $uid);
 		$attributes['facebook_cn'] = array($info['name']);
 
-		SimpleSAML_Logger::debug('Facebook Returned Attributes: '. implode(", ", array_keys($attributes)));
+		SimpleSAML\Logger::debug('Facebook Returned Attributes: '. implode(", ", array_keys($attributes)));
 
 		$state['Attributes'] = $attributes;
 	

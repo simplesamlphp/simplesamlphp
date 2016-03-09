@@ -102,7 +102,7 @@ class sspmod_authYubiKey_Auth_Source_YubiKey extends SimpleSAML_Auth_Source {
 
 		$id = SimpleSAML_Auth_State::saveState($state, self::STAGEID);
 
-		$url = SimpleSAML_Module::getModuleURL('authYubiKey/yubikeylogin.php');
+		$url = SimpleSAML\Module::getModuleURL('authYubiKey/yubikeylogin.php');
 		\SimpleSAML\Utils\HTTP::redirectTrustedURL($url, array('AuthState' => $id));
 	}
 	
@@ -190,12 +190,12 @@ class sspmod_authYubiKey_Auth_Source_YubiKey extends SimpleSAML_Auth_Source {
 			$uid = self::getYubiKeyPrefix($otp);
 			$attributes = array('uid' => array($uid));
 		} catch (Exception $e) {
-		  	SimpleSAML_Logger::info('YubiKey:' . $this->authId . ': Validation error (otp ' . $otp . '), debug output: ' . $yubi->getLastResponse());
+		  	SimpleSAML\Logger::info('YubiKey:' . $this->authId . ': Validation error (otp ' . $otp . '), debug output: ' . $yubi->getLastResponse());
 
 			throw new SimpleSAML_Error_Error('WRONGUSERPASS', $e);
 		}
 
-		SimpleSAML_Logger::info('YubiKey:' . $this->authId . ': YubiKey otp ' . $otp . ' validated successfully: ' . $yubi->getLastResponse());
+		SimpleSAML\Logger::info('YubiKey:' . $this->authId . ': YubiKey otp ' . $otp . ' validated successfully: ' . $yubi->getLastResponse());
 
 		return $attributes;
 	}

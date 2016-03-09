@@ -9,7 +9,7 @@ function consentAdmin_hook_frontpage(&$links) {
 	assert('array_key_exists("links", $links)');
 
 	$links['config'][] = array(
-		'href' => SimpleSAML_Module::getModuleURL('consentAdmin/consentAdmin.php'),
+		'href' => SimpleSAML\Module::getModuleURL('consentAdmin/consentAdmin.php'),
 		'text' => '{consentAdmin:consentadmin:consentadmin_header}',
 	);
 }

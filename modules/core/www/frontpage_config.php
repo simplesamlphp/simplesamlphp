@@ -64,7 +64,7 @@ $allLinks = array(
 	'auth'       => &$links_auth,
 	'federation' => &$links_federation,
 );
-SimpleSAML_Module::callHooks('frontpage', $allLinks);
+SimpleSAML\Module::callHooks('frontpage', $allLinks);
 
 
 
@@ -88,10 +88,10 @@ $functionchecks = array(
 	'mcrypt_module_open'=> array('optional',  'MCrypt'),
 	'mysql_connect'    => array('optional',  'MySQL support'),
 );
-if (SimpleSAML_Module::isModuleEnabled('ldap')) {
+if (SimpleSAML\Module::isModuleEnabled('ldap')) {
 	$functionchecks['ldap_bind'] = array('required_ldap',  'LDAP Extension');
 }
-if (SimpleSAML_Module::isModuleEnabled('radius')) {
+if (SimpleSAML\Module::isModuleEnabled('radius')) {
         $functionchecks['radius_auth_open'] = array('required_radius',  'Radius Extension');
 }
 

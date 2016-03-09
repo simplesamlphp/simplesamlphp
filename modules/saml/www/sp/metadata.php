@@ -30,7 +30,7 @@ $slosvcdefault = array(
 );
 
 $slob = $spconfig->getArray('SingleLogoutServiceBinding', $slosvcdefault);
-$slol = SimpleSAML_Module::getModuleURL('saml/sp/saml2-logout.php/'.$sourceId);
+$slol = SimpleSAML\Module::getModuleURL('saml/sp/saml2-logout.php/'.$sourceId);
 
 foreach ($slob as $binding) {
     if ($binding == SAML2_Const::BINDING_SOAP && !($store instanceof SimpleSAML_Store_SQL)) {
@@ -64,23 +64,23 @@ foreach ($assertionsconsumerservices as $services) {
     switch ($services) {
         case 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST':
             $acsArray['Binding'] = SAML2_Const::BINDING_HTTP_POST;
-            $acsArray['Location'] = SimpleSAML_Module::getModuleURL('saml/sp/saml2-acs.php/'.$sourceId);
+            $acsArray['Location'] = SimpleSAML\Module::getModuleURL('saml/sp/saml2-acs.php/'.$sourceId);
             break;
         case 'urn:oasis:names:tc:SAML:1.0:profiles:browser-post':
             $acsArray['Binding'] = 'urn:oasis:names:tc:SAML:1.0:profiles:browser-post';
-            $acsArray['Location'] = SimpleSAML_Module::getModuleURL('saml/sp/saml1-acs.php/'.$sourceId);
+            $acsArray['Location'] = SimpleSAML\Module::getModuleURL('saml/sp/saml1-acs.php/'.$sourceId);
             break;
         case 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact':
             $acsArray['Binding'] = 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact';
-            $acsArray['Location'] = SimpleSAML_Module::getModuleURL('saml/sp/saml2-acs.php/'.$sourceId);
+            $acsArray['Location'] = SimpleSAML\Module::getModuleURL('saml/sp/saml2-acs.php/'.$sourceId);
             break;
         case 'urn:oasis:names:tc:SAML:1.0:profiles:artifact-01':
             $acsArray['Binding'] = 'urn:oasis:names:tc:SAML:1.0:profiles:artifact-01';
-            $acsArray['Location'] = SimpleSAML_Module::getModuleURL('saml/sp/saml1-acs.php/'.$sourceId.'/artifact');
+            $acsArray['Location'] = SimpleSAML\Module::getModuleURL('saml/sp/saml1-acs.php/'.$sourceId.'/artifact');
             break;
         case 'urn:oasis:names:tc:SAML:2.0:profiles:holder-of-key:SSO:browser':
             $acsArray['Binding'] = 'urn:oasis:names:tc:SAML:2.0:profiles:holder-of-key:SSO:browser';
-            $acsArray['Location'] = SimpleSAML_Module::getModuleURL('saml/sp/saml2-acs.php/'.$sourceId);
+            $acsArray['Location'] = SimpleSAML\Module::getModuleURL('saml/sp/saml2-acs.php/'.$sourceId);
             $acsArray['hoksso:ProtocolBinding'] = SAML2_Const::BINDING_HTTP_REDIRECT;
             break;
     }

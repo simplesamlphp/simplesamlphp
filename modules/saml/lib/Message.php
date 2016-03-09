@@ -154,7 +154,7 @@ class sspmod_saml_Message {
 						"-----END CERTIFICATE-----\n";
 					break;
 				default:
-					SimpleSAML_Logger::debug('Skipping unknown key type: ' . $key['type']);
+					SimpleSAML\Logger::debug('Skipping unknown key type: ' . $key['type']);
 				}
 			}
 
@@ -172,10 +172,10 @@ class sspmod_saml_Message {
 			 */
 			if (count($certificates) === 0) {
 				/* We need the full certificate in order to match it against the fingerprint. */
-				SimpleSAML_Logger::debug('No certificate in message when validating against fingerprint.');
+				SimpleSAML\Logger::debug('No certificate in message when validating against fingerprint.');
 				return FALSE;
 			} else {
-				SimpleSAML_Logger::debug('Found ' . count($certificates) . ' certificates in ' . get_class($element));
+				SimpleSAML\Logger::debug('Found ' . count($certificates) . ' certificates in ' . get_class($element));
 			}
 
 			$pemCert = self::findCertificate($certFingerprint, $certificates);
@@ -186,7 +186,7 @@ class sspmod_saml_Message {
 				var_export($srcMetadata->getString('entityid'), TRUE));
 		}
 
-		SimpleSAML_Logger::debug('Has ' . count($pemKeys) . ' candidate keys for validation.');
+		SimpleSAML\Logger::debug('Has ' . count($pemKeys) . ' candidate keys for validation.');
 
 		$lastException = NULL;
 		foreach ($pemKeys as $i => $pem) {
@@ -200,12 +200,12 @@ class sspmod_saml_Message {
 				 */
 				$res = $element->validate($key);
 				if ($res) {
-					SimpleSAML_Logger::debug('Validation with key #' . $i . ' succeeded.');
+					SimpleSAML\Logger::debug('Validation with key #' . $i . ' succeeded.');
 					return TRUE;
 				}
-				SimpleSAML_Logger::debug('Validation with key #' . $i . ' failed without exception.');
+				SimpleSAML\Logger::debug('Validation with key #' . $i . ' failed without exception.');
 			} catch (Exception $e) {
-				SimpleSAML_Logger::debug('Validation with key #' . $i . ' failed with exception: ' . $e->getMessage());
+				SimpleSAML\Logger::debug('Validation with key #' . $i . ' failed with exception: ' . $e->getMessage());
 				$lastException = $e;
 			}
 		}
@@ -369,10 +369,10 @@ class sspmod_saml_Message {
 		foreach ($keys as $i => $key) {
 			try {
 				$ret = $assertion->getAssertion($key, $blacklist);
-				SimpleSAML_Logger::debug('Decryption with key #' . $i . ' succeeded.');
+				SimpleSAML\Logger::debug('Decryption with key #' . $i . ' succeeded.');
 				return $ret;
 			} catch (Exception $e) {
-				SimpleSAML_Logger::debug('Decryption with key #' . $i . ' failed with exception: ' . $e->getMessage());
+				SimpleSAML\Logger::debug('Decryption with key #' . $i . ' failed with exception: ' . $e->getMessage());
 				$lastException = $e;
 			}
 		}
@@ -725,11 +725,11 @@ class sspmod_saml_Message {
 			foreach ($keys as $i => $key) {
 				try {
 					$assertion->decryptNameId($key, $blacklist);
-					SimpleSAML_Logger::debug('Decryption with key #' . $i . ' succeeded.');
+					SimpleSAML\Logger::debug('Decryption with key #' . $i . ' succeeded.');
 					$lastException = NULL;
 					break;
 				} catch (Exception $e) {
-					SimpleSAML_Logger::debug('Decryption with key #' . $i . ' failed with exception: ' . $e->getMessage());
+					SimpleSAML\Logger::debug('Decryption with key #' . $i . ' failed with exception: ' . $e->getMessage());
 					$lastException = $e;
 				}
 			}

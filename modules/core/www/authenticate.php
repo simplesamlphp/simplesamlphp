@@ -37,7 +37,7 @@ if (array_key_exists(SimpleSAML_Auth_State::EXCEPTION_PARAM, $_REQUEST)) {
 
 
 if (!$as->isAuthenticated()) {
-	$url = SimpleSAML_Module::getModuleURL('core/authenticate.php', array('as' => $asId));
+	$url = SimpleSAML\Module::getModuleURL('core/authenticate.php', array('as' => $asId));
 	$params = array(
 		'ErrorURL' => $url,
 		'ReturnTo' => $url,

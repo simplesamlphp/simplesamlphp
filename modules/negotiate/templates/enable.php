@@ -12,7 +12,7 @@ $this->includeAtTemplateBase('includes/header.php');
 <h1><?php echo $this->t('{negotiate:negotiate:enable_title}'); ?></h1>
 
 <?php
-$url = SimpleSAML_Module::getModuleURL('negotiate/disable.php');
+$url = SimpleSAML\Module::getModuleURL('negotiate/disable.php');
 ?>
 <?php echo $this->t('{negotiate:negotiate:enable_info_pre}', array('URL' => htmlspecialchars($url))); ?>
 

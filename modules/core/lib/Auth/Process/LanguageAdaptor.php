@@ -48,9 +48,9 @@ class sspmod_core_Auth_Process_LanguageAdaptor extends SimpleSAML_Auth_Processin
 
 
 		if (isset($attrlang))
-			SimpleSAML_Logger::debug('LanguageAdaptor: Language in attribute was set [' . $attrlang . ']');
+			SimpleSAML\Logger::debug('LanguageAdaptor: Language in attribute was set [' . $attrlang . ']');
 		if (isset($lang))
-			SimpleSAML_Logger::debug('LanguageAdaptor: Language in session   was set [' . $lang . ']');
+			SimpleSAML\Logger::debug('LanguageAdaptor: Language in session   was set [' . $lang . ']');
 
 
 		if (isset($attrlang) && !isset($lang)) {

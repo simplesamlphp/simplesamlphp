@@ -136,7 +136,7 @@ class sspmod_exampleauth_Auth_Source_External extends SimpleSAML_Auth_Source {
 		 * We assume that whatever authentication page we send the user to has an
 		 * option to return the user to a specific page afterwards.
 		 */
-		$returnTo = SimpleSAML_Module::getModuleURL('exampleauth/resume.php', array(
+		$returnTo = SimpleSAML\Module::getModuleURL('exampleauth/resume.php', array(
 			'State' => $stateId,
 		));
 
@@ -147,7 +147,7 @@ class sspmod_exampleauth_Auth_Source_External extends SimpleSAML_Auth_Source {
 		 * is also part of this module, but in a real example, this would likely be
 		 * the absolute URL of the login page for the site.
 		 */
-		$authPage = SimpleSAML_Module::getModuleURL('exampleauth/authpage.php');
+		$authPage = SimpleSAML\Module::getModuleURL('exampleauth/authpage.php');
 
 		/*
 		 * The redirect to the authentication page.

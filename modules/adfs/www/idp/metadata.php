@@ -57,7 +57,7 @@ try {
         );
     }
 
-    $adfs_service_location = SimpleSAML_Module::getModuleURL('adfs').'/idp/prp.php';
+    $adfs_service_location = SimpleSAML\Module::getModuleURL('adfs').'/idp/prp.php';
     $metaArray = array(
         'metadata-set'        => 'adfs-idp-remote',
         'entityid'            => $idpentityid,

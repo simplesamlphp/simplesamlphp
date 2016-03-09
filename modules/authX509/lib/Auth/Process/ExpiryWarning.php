@@ -69,7 +69,7 @@ class sspmod_authX509_Auth_Process_ExpiryWarning extends SimpleSAML_Auth_Process
         $client_cert = $_SERVER['SSL_CLIENT_CERT'];
         $client_cert_data = openssl_x509_parse($client_cert);
         if ($client_cert_data == FALSE) {
-            SimpleSAML_Logger::error('authX509: invalid cert');
+            SimpleSAML\Logger::error('authX509: invalid cert');
             return;
         }
         $validTo = $client_cert_data['validTo_time_t'];
@@ -80,13 +80,13 @@ class sspmod_authX509_Auth_Process_ExpiryWarning extends SimpleSAML_Auth_Process
             return;
         }
 
-        SimpleSAML_Logger::warning('authX509: user certificate expires in ' . $daysleft . ' days');
+        SimpleSAML\Logger::warning('authX509: user certificate expires in ' . $daysleft . ' days');
         $state['daysleft'] = $daysleft;
         $state['renewurl'] = $this->renewurl;
 
         /* Save state and redirect. */
         $id = SimpleSAML_Auth_State::saveState($state, 'warning:expire');
-        $url = SimpleSAML_Module::getModuleURL('authX509/expirywarning.php');
+        $url = SimpleSAML\Module::getModuleURL('authX509/expirywarning.php');
         \SimpleSAML\Utils\HTTP::redirectTrustedURL($url, array('StateId' => $id));
     }
 

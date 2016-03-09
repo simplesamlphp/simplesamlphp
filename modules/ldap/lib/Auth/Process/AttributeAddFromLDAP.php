@@ -154,13 +154,13 @@ class sspmod_ldap_Auth_Process_AttributeAddFromLDAP extends sspmod_ldap_Auth_Pro
         $filter = str_replace($arrSearch, $arrReplace, $this->search_filter);
 
         if (strpos($filter, '%') !== FALSE) {
-            SimpleSAML_Logger::info('AttributeAddFromLDAP: There are non-existing attributes in the search filter. ('.
+            SimpleSAML\Logger::info('AttributeAddFromLDAP: There are non-existing attributes in the search filter. ('.
                                     $this->search_filter.')');
             return;
         }
 
         if (!in_array($this->attr_policy, array('merge', 'replace', 'add'))) {
-            SimpleSAML_Logger::warning("AttributeAddFromLDAP: 'attribute.policy' must be one of 'merge',".
+            SimpleSAML\Logger::warning("AttributeAddFromLDAP: 'attribute.policy' must be one of 'merge',".
                                        "'replace' or 'add'.");
             return;
         }

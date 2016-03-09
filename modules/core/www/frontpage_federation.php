@@ -51,11 +51,11 @@ $allLinks = array(
 	'auth'       => &$links_auth,
 	'federation' => &$links_federation,
 );
-SimpleSAML_Module::callHooks('frontpage', $allLinks);
+SimpleSAML\Module::callHooks('frontpage', $allLinks);
 
 
 $metadataHosted = array();
-SimpleSAML_Module::callHooks('metadata_hosted', $metadataHosted);
+SimpleSAML\Module::callHooks('metadata_hosted', $metadataHosted);
 
 
 
@@ -96,7 +96,7 @@ if ($config->getBoolean('enable.shib13-idp', FALSE) === true) {
 if ($config->getBoolean('enable.adfs-idp', FALSE) === true) {
     try {
         $metaentries['hosted']['adfs-idp'] = $metadata->getMetaDataCurrent('adfs-idp-hosted');
-        $metaentries['hosted']['adfs-idp']['metadata-url'] = SimpleSAML_Module::getModuleURL('adfs/idp/metadata.php',
+        $metaentries['hosted']['adfs-idp']['metadata-url'] = SimpleSAML\Module::getModuleURL('adfs/idp/metadata.php',
                                                                                              array('output' => 'xhtml'));
         if ($isadmin)
             $metaentries['remote']['adfs-sp-remote'] = $metadata->getList('adfs-sp-remote');

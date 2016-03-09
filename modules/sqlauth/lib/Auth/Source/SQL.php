@@ -147,12 +147,12 @@ class sspmod_sqlauth_Auth_Source_SQL extends sspmod_core_Auth_UserPassBase {
 				': - Failed to fetch result set: ' . $e->getMessage());
 		}
 
-		SimpleSAML_Logger::info('sqlauth:' . $this->authId . ': Got ' . count($data) .
+		SimpleSAML\Logger::info('sqlauth:' . $this->authId . ': Got ' . count($data) .
 			' rows from database');
 
 		if (count($data) === 0) {
 			/* No rows returned - invalid username/password. */
-			SimpleSAML_Logger::error('sqlauth:' . $this->authId .
+			SimpleSAML\Logger::error('sqlauth:' . $this->authId .
 				': No rows in result set. Probably wrong username/password.');
 			throw new SimpleSAML_Error_Error('WRONGUSERPASS');
 		}
@@ -184,7 +184,7 @@ class sspmod_sqlauth_Auth_Source_SQL extends sspmod_core_Auth_UserPassBase {
 			}
 		}
 
-		SimpleSAML_Logger::info('sqlauth:' . $this->authId . ': Attributes: ' .
+		SimpleSAML\Logger::info('sqlauth:' . $this->authId . ': Attributes: ' .
 			implode(',', array_keys($attributes)));
 
 		return $attributes;

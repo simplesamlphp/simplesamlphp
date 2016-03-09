@@ -76,10 +76,10 @@ class sspmod_core_Auth_Process_StatisticsWithAttribute extends SimpleSAML_Auth_P
 
 		if (!array_key_exists('PreviousSSOTimestamp', $state)) {
 			// The user hasn't authenticated with this SP earlier in this session
-			SimpleSAML_Logger::stats($this->typeTag . '-first ' . $dest . ' ' . $source . ' ' . $logAttribute);
+			SimpleSAML\Logger::stats($this->typeTag . '-first ' . $dest . ' ' . $source . ' ' . $logAttribute);
 		}
 
-		SimpleSAML_Logger::stats($this->typeTag . ' ' . $dest . ' ' . $source . ' ' . $logAttribute);
+		SimpleSAML\Logger::stats($this->typeTag . ' ' . $dest . ' ' . $source . ' ' . $logAttribute);
 	}
 
 }

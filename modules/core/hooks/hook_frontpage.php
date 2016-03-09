@@ -9,22 +9,22 @@ function core_hook_frontpage(&$links) {
 	assert('array_key_exists("links", $links)');
 
 	$links['links']['frontpage_welcome'] = array(
-		'href' => SimpleSAML_Module::getModuleURL('core/frontpage_welcome.php'),
+		'href' => SimpleSAML\Module::getModuleURL('core/frontpage_welcome.php'),
 		'text' => '{core:frontpage:welcome}',
 		'shorttext' => '{core:frontpage:welcome}',
 	);
 	$links['links']['frontpage_config'] = array(
-		'href' => SimpleSAML_Module::getModuleURL('core/frontpage_config.php'),
+		'href' => SimpleSAML\Module::getModuleURL('core/frontpage_config.php'),
 		'text' => '{core:frontpage:configuration}',
 		'shorttext' => '{core:frontpage:configuration}',
 	);
 	$links['links']['frontpage_auth'] = array(
-		'href' => SimpleSAML_Module::getModuleURL('core/frontpage_auth.php'),
+		'href' => SimpleSAML\Module::getModuleURL('core/frontpage_auth.php'),
 		'text' => '{core:frontpage:auth}',
 		'shorttext' => '{core:frontpage:auth}',
 	);
 	$links['links']['frontpage_federation'] = array(
-		'href' => SimpleSAML_Module::getModuleURL('core/frontpage_federation.php'),
+		'href' => SimpleSAML\Module::getModuleURL('core/frontpage_federation.php'),
 		'text' => '{core:frontpage:federation}',
 		'shorttext' => '{core:frontpage:federation}',
 	);

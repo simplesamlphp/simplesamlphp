@@ -24,7 +24,7 @@ class sspmod_saml_IdP_SAML2 {
 		$spMetadata = SimpleSAML_Configuration::loadFromArray($spMetadata,
 			'$metadata[' . var_export($spEntityId, TRUE) . ']');
 
-		SimpleSAML_Logger::info('Sending SAML 2.0 Response to ' . var_export($spEntityId, TRUE));
+		SimpleSAML\Logger::info('Sending SAML 2.0 Response to ' . var_export($spEntityId, TRUE));
 
 		$requestId = $state['saml:RequestId'];
 		$relayState = $state['saml:RelayState'];
@@ -107,7 +107,7 @@ class sspmod_saml_IdP_SAML2 {
 
 		$error = sspmod_saml_Error::fromException($exception);
 
-		SimpleSAML_Logger::warning('Returning error to sp: ' . var_export($spEntityId, TRUE));
+		SimpleSAML\Logger::warning('Returning error to sp: ' . var_export($spEntityId, TRUE));
 		$error->logWarning();
 
 		$ar = self::buildResponse($idpMetadata, $spMetadata, $consumerURL);
@@ -203,15 +203,15 @@ class sspmod_saml_IdP_SAML2 {
 			return $firstFalse;
 		}
 
-		SimpleSAML_Logger::warning('Authentication request specifies invalid AssertionConsumerService:');
+		SimpleSAML\Logger::warning('Authentication request specifies invalid AssertionConsumerService:');
 		if ($AssertionConsumerServiceURL !== NULL) {
-			SimpleSAML_Logger::warning('AssertionConsumerServiceURL: ' . var_export($AssertionConsumerServiceURL, TRUE));
+			SimpleSAML\Logger::warning('AssertionConsumerServiceURL: ' . var_export($AssertionConsumerServiceURL, TRUE));
 		}
 		if ($ProtocolBinding !== NULL) {
-			SimpleSAML_Logger::warning('ProtocolBinding: ' . var_export($ProtocolBinding, TRUE));
+			SimpleSAML\Logger::warning('ProtocolBinding: ' . var_export($ProtocolBinding, TRUE));
 		}
 		if ($AssertionConsumerServiceIndex !== NULL) {
-			SimpleSAML_Logger::warning('AssertionConsumerServiceIndex: ' . var_export($AssertionConsumerServiceIndex, TRUE));
+			SimpleSAML\Logger::warning('AssertionConsumerServiceIndex: ' . var_export($AssertionConsumerServiceIndex, TRUE));
 		}
 
 		/* We have no good endpoints. Our last resort is to just use the default endpoint. */
@@ -285,7 +285,7 @@ class sspmod_saml_IdP_SAML2 {
 
 			$idpInit = TRUE;
 
-			SimpleSAML_Logger::info('SAML2.0 - IdP.SSOService: IdP initiated authentication: '. var_export($spEntityId, TRUE));
+			SimpleSAML\Logger::info('SAML2.0 - IdP.SSOService: IdP initiated authentication: '. var_export($spEntityId, TRUE));
 
 		} else {
 
@@ -332,7 +332,7 @@ class sspmod_saml_IdP_SAML2 {
 
 			$idpInit = FALSE;
 
-			SimpleSAML_Logger::info('SAML2.0 - IdP.SSOService: incoming authentication request: '. var_export($spEntityId, TRUE));
+			SimpleSAML\Logger::info('SAML2.0 - IdP.SSOService: incoming authentication request: '. var_export($spEntityId, TRUE));
 		}
 
 		SimpleSAML_Stats::log('saml:idp:AuthnRequest', array(
@@ -400,7 +400,7 @@ class sspmod_saml_IdP_SAML2 {
 	public static function sendLogoutRequest(SimpleSAML_IdP $idp, array $association, $relayState) {
 		assert('is_string($relayState) || is_null($relayState)');
 
-		SimpleSAML_Logger::info('Sending SAML 2.0 LogoutRequest to: '. var_export($association['saml:entityID'], TRUE));
+		SimpleSAML\Logger::info('Sending SAML 2.0 LogoutRequest to: '. var_export($association['saml:entityID'], TRUE));
 
 		$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 		$idpMetadata = $idp->getConfig();
@@ -450,10 +450,10 @@ class sspmod_saml_IdP_SAML2 {
 				'Code' => SAML2_Const::STATUS_SUCCESS,
 				'SubCode' => SAML2_Const::STATUS_PARTIAL_LOGOUT,
 			));
-			SimpleSAML_Logger::info('Sending logout response for partial logout to SP ' . var_export($spEntityId, TRUE));
+			SimpleSAML\Logger::info('Sending logout response for partial logout to SP ' . var_export($spEntityId, TRUE));
 		} else {
 			$partial = FALSE;
-			SimpleSAML_Logger::debug('Sending logout response to SP ' . var_export($spEntityId, TRUE));
+			SimpleSAML\Logger::debug('Sending logout response to SP ' . var_export($spEntityId, TRUE));
 		}
 
 		SimpleSAML_Stats::log('saml:idp:LogoutResponse:sent', array(
@@ -501,7 +501,7 @@ class sspmod_saml_IdP_SAML2 {
 
 		if ($message instanceof SAML2_LogoutResponse) {
 
-			SimpleSAML_Logger::info('Received SAML 2.0 LogoutResponse from: '. var_export($spEntityId, TRUE));
+			SimpleSAML\Logger::info('Received SAML 2.0 LogoutResponse from: '. var_export($spEntityId, TRUE));
 			$statsData = array(
 				'spEntityID' => $spEntityId,
 				'idpEntityID' => $idpMetadata->getString('entityid'),
@@ -515,7 +515,7 @@ class sspmod_saml_IdP_SAML2 {
 
 			if (!$message->isSuccess()) {
 				$logoutError = sspmod_saml_Message::getResponseError($message);
-				SimpleSAML_Logger::warning('Unsuccessful logout. Status was: ' . $logoutError);
+				SimpleSAML\Logger::warning('Unsuccessful logout. Status was: ' . $logoutError);
 			} else {
 				$logoutError = NULL;
 			}
@@ -527,14 +527,14 @@ class sspmod_saml_IdP_SAML2 {
 
 		} elseif ($message instanceof SAML2_LogoutRequest) {
 
-			SimpleSAML_Logger::info('Received SAML 2.0 LogoutRequest from: '. var_export($spEntityId, TRUE));
+			SimpleSAML\Logger::info('Received SAML 2.0 LogoutRequest from: '. var_export($spEntityId, TRUE));
 			SimpleSAML_Stats::log('saml:idp:LogoutRequest:recv', array(
 				'spEntityID' => $spEntityId,
 				'idpEntityID' => $idpMetadata->getString('entityid'),
 			));
 
 			$spStatsId = $spMetadata->getString('core:statistics-id', $spEntityId);
-			SimpleSAML_Logger::stats('saml20-idp-SLO spinit ' . $spStatsId . ' ' . $idpMetadata->getString('entityid'));
+			SimpleSAML\Logger::stats('saml20-idp-SLO spinit ' . $spStatsId . ' ' . $idpMetadata->getString('entityid'));
 
 			$state = array(
 				'Responder' => array('sspmod_saml_IdP_SAML2', 'sendLogoutResponse'),
@@ -563,7 +563,7 @@ class sspmod_saml_IdP_SAML2 {
 	public static function getLogoutURL(SimpleSAML_IdP $idp, array $association, $relayState) {
 		assert('is_string($relayState) || is_null($relayState)');
 
-		SimpleSAML_Logger::info('Sending SAML 2.0 LogoutRequest to: '. var_export($association['saml:entityID'], TRUE));
+		SimpleSAML\Logger::info('Sending SAML 2.0 LogoutRequest to: '. var_export($association['saml:entityID'], TRUE));
 
 		$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 		$idpMetadata = $idp->getConfig();
@@ -578,7 +578,7 @@ class sspmod_saml_IdP_SAML2 {
 			if ($relayState !== NULL) {
 				$params['RelayState'] = $relayState;
 			}
-			return SimpleSAML_Module::getModuleURL('core/idp/logout-iframe-post.php', $params);
+			return SimpleSAML\Module::getModuleURL('core/idp/logout-iframe-post.php', $params);
 		}
 
 		$lr = self::buildLogoutRequest($idpMetadata, $spMetadata, $association, $relayState);
@@ -622,7 +622,7 @@ class sspmod_saml_IdP_SAML2 {
 			$attribute = $idpMetadata->getString('simplesaml.nameidattribute', NULL);
 			if ($attribute === NULL) {
 				if (!isset($state['UserID'])) {
-					SimpleSAML_Logger::error('Unable to generate NameID. Check the userid.attribute option.');
+					SimpleSAML\Logger::error('Unable to generate NameID. Check the userid.attribute option.');
 				}
 				$attributeValue = $state['UserID'];
 				$idpEntityId = $idpMetadata->getString('entityid');
@@ -642,7 +642,7 @@ class sspmod_saml_IdP_SAML2 {
 
 		$attributes = $state['Attributes'];
 		if (!array_key_exists($attribute, $attributes)) {
-			SimpleSAML_Logger::error('Unable to add NameID: Missing ' . var_export($attribute, TRUE) .
+			SimpleSAML\Logger::error('Unable to add NameID: Missing ' . var_export($attribute, TRUE) .
 				' in the attributes of the user.');
 			return NULL;
 		}
@@ -901,7 +901,7 @@ class sspmod_saml_IdP_SAML2 {
 				   or random id if not assigned/configured */
 				$nameIdValue = self::generateNameIdValue($idpMetadata, $spMetadata, $state);
 				if ($nameIdValue === NULL) {
-					SimpleSAML_Logger::warning('Falling back to transient NameID.');
+					SimpleSAML\Logger::warning('Falling back to transient NameID.');
 					$nameIdFormat = SAML2_Const::NAMEID_TRANSIENT;
 					$nameIdValue = SimpleSAML\Utils\Random::generateID();
 				}

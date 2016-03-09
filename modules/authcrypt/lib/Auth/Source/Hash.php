@@ -85,7 +85,7 @@ class sspmod_authcrypt_Auth_Source_Hash extends sspmod_core_Auth_UserPassBase {
 				if(SimpleSAML\Utils\Crypto::pwValid($matches[1], $password)) {
 					return $this->users[$userpass];
 				} else {
-					SimpleSAML_Logger::debug('Incorrect password "' . $password . '" for user '. $username);
+					SimpleSAML\Logger::debug('Incorrect password "' . $password . '" for user '. $username);
 				}
 			}
 		}
