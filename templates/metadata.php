@@ -44,7 +44,7 @@ if (array_key_exists('available_certs', $this->data)) { ?>
 <?php
     foreach (array_keys($this->data['available_certs']) as $certName) {
         echo '<li><a href="'.
-            htmlspecialchars(SimpleSAML_Module::getModuleURL('saml/idp/certs.php').'/'.$certName).'">'.$certName.
+            htmlspecialchars(SimpleSAML\Module::getModuleURL('saml/idp/certs.php').'/'.$certName).'">'.$certName.
             '</a>';
 
         if ($this->data['available_certs'][$certName]['certFingerprint'][0] ===

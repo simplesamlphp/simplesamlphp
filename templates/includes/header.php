@@ -24,7 +24,7 @@ if (array_key_exists('pageid', $this->data)) {
 		'page' => $this->data['pageid']
 	);
 		
-	SimpleSAML_Module::callHooks('htmlinject', $hookinfo);	
+	SimpleSAML\Module::callHooks('htmlinject', $hookinfo);
 }
 // - o - o - o - o - o - o - o - o - o - o - o - o -
 

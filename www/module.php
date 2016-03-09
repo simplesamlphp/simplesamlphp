@@ -64,7 +64,7 @@ try {
         $url = '';
     }
 
-    if (!SimpleSAML_Module::isModuleEnabled($module)) {
+    if (!SimpleSAML\Module::isModuleEnabled($module)) {
         throw new SimpleSAML_Error_NotFound('The module \''.$module.'\' was either not found, or wasn\'t enabled.');
     }
 
@@ -78,7 +78,7 @@ try {
         throw new SimpleSAML_Error_BadRequest('Requested URL contained \'./\'.');
     }
 
-    $moduleDir = SimpleSAML_Module::getModuleDir($module).'/www/';
+    $moduleDir = SimpleSAML\Module::getModuleDir($module).'/www/';
 
     // check for '.php/' in the path, the presence of which indicates that another php-script should handle the request
     for ($phpPos = strpos($url, '.php/'); $phpPos !== false; $phpPos = strpos($url, '.php/', $phpPos + 1)) {
@@ -117,7 +117,7 @@ try {
 
     if (!file_exists($path)) {
         // file not found
-        SimpleSAML_Logger::info('Could not find file \''.$path.'\'.');
+        SimpleSAML\Logger::info('Could not find file \''.$path.'\'.');
         throw new SimpleSAML_Error_NotFound('The URL wasn\'t found in the module.');
     }
 
@@ -147,7 +147,7 @@ try {
             $contentType = mime_content_type($path);
         } else {
             // mime_content_type doesn't exist. Return a default MIME type
-            SimpleSAML_Logger::warning('Unable to determine mime content type of file: '.$path);
+            SimpleSAML\Logger::warning('Unable to determine mime content type of file: '.$path);
             $contentType = 'application/octet-stream';
         }
     }
