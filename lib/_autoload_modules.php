@@ -31,18 +31,17 @@ function temporaryLoader($class)
     }
 
     // it exists, so it's not yet migrated to namespaces
-    if (class_exists($class, false)) {
+    if (class_exists($class, false) || interface_exists($class, false)) {
         return;
     }
 
     // it didn't exist, try to see if it was migrated to namespaces
     $new = join('\\', $path);
-    if (class_exists($new, false)) { // do not try to autoload it if it doesn't exist! It should!
+    if (class_exists($new, false) || interface_exists($class, false)) {
+        // do not try to autoload it if it doesn't exist! It should!
         class_alias($new, $class);
-        SimpleSAML\Logger::warning("The class '$class' is now using namespaces, please use '$new'.");
+        SimpleSAML\Logger::warning("The class or interface '$class' is now using namespaces, please use '$new'.");
     }
-
-
 }
 
 spl_autoload_register("temporaryLoader");

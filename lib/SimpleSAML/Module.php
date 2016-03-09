@@ -42,14 +42,15 @@ class Module
         }
         require_once($file);
 
-        if (!class_exists($className, false)) {
+        if (!class_exists($className, false) && !interface_exists($className, false)) {
             // the file exists, but the class is not defined. Is it using namespaces?
             $nspath = join('\\', $path);
-            if (class_exists('SimpleSAML\Module\\'.$module.'\\'.$nspath)) {
+            if (class_exists('SimpleSAML\Module\\'.$module.'\\'.$nspath) ||
+                interface_exists('SimpleSAML\Module\\'.$module.'\\'.$nspath)) {
                 // the class has been migrated, create an alias and warn about it
                 \SimpleSAML\Logger::warning(
-                    "The class '$className' is now using namespaces, please use 'SimpleSAML\\Module\\$module\\".
-                    "$nspath' instead."
+                    "The class or interface '$className' is now using namespaces, please use 'SimpleSAML\\Module\\".
+                    $module."\\".$nspath."' instead."
                 );
                 class_alias("SimpleSAML\\Module\\$module\\$nspath", $className);
             }
