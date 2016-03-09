@@ -110,7 +110,7 @@ www
     `https://.../simplesamlphp/module.php/example/login.php`.
 
 :   To retrieve this URL, the
-    `SimpleSAML_Module::getModuleURL($resource)`-function can be used.
+    `SimpleSAML\Module::getModuleURL($resource)`-function can be used.
     This function takes in a resource on the form `<module>/<file>`.
     This function will then return a URL to the given file in the
     `www`-directory of `module`.

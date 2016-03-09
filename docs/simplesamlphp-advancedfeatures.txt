@@ -124,13 +124,13 @@ Example code for the function with GeoIP country check:
         }
 
         if (!function_exists('geoip_country_code_by_name')) {
-            SimpleSAML_Logger::warning('geoip php module required.');
+            SimpleSAML\Logger::warning('geoip php module required.');
             return TRUE;
         }
 
         $stored_remote_addr = $session->getData($data_type, $data_key);
         if ($stored_remote_addr === NULL) {
-            SimpleSAML_Logger::warning('Stored data not found.');
+            SimpleSAML\Logger::warning('Stored data not found.');
             return FALSE;
         }
 

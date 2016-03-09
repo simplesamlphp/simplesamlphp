@@ -315,14 +315,14 @@ The class follows:
             $row = $st->fetch(PDO::FETCH_ASSOC);
             if (!$row) {
                 /* User not found. */
-                SimpleSAML_Logger::warning('MyAuth: Could not find user ' . var_export($username, TRUE) . '.');
+                SimpleSAML\Logger::warning('MyAuth: Could not find user ' . var_export($username, TRUE) . '.');
                 throw new SimpleSAML_Error_Error('WRONGUSERPASS');
             }
 
             /* Check the password. */
             if (!$this->checkPassword($row['password_hash'], $password)) {
                 /* Invalid password. */
-                SimpleSAML_Logger::warning('MyAuth: Wrong password for user ' . var_export($username, TRUE) . '.');
+                SimpleSAML\Logger::warning('MyAuth: Wrong password for user ' . var_export($username, TRUE) . '.');
                 throw new SimpleSAML_Error_Error('WRONGUSERPASS');
             }
 
