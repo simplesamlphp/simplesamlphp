@@ -3,6 +3,7 @@
 set -e
 
 VERSION=$1
+REPOPATH=$2
 
 if ! shift; then
     echo "$0: Missing required version parameter." >&2
@@ -12,6 +13,10 @@ fi
 if [ -z "$VERSION" ]; then
     echo "$0: Empty version parameter." >&2
     exit 1
+fi
+
+if [ -z "$REPO" ]; then
+    REPOPATH="https://github.com/simplesamlphp/simplesamlphp.git"
 fi
 
 TAG="v$VERSION"
@@ -25,8 +30,6 @@ if [ -a "$TARGET" ]; then
 fi
 
 umask 0022
-
-REPOPATH="https://github.com/simplesamlphp/simplesamlphp.git"
 
 git clone $REPOPATH $TARGET
 cd $TARGET
