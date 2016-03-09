@@ -148,7 +148,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerMDX extends SimpleSAML_Metadata_
         if (!is_readable($cachefilename)) {
             throw new Exception('Could not read cache file for entity ['.$cachefilename.']');
         }
-        SimpleSAML_Logger::debug('MetaData - Handler.MDX: Reading cache ['.$entityId.'] => ['.$cachefilename.']');
+        SimpleSAML\Logger::debug('MetaData - Handler.MDX: Reading cache ['.$entityId.'] => ['.$cachefilename.']');
 
         /* Ensure that this metadata isn't older that the cachelength option allows. This
          * must be verified based on the file, since this option may be changed after the
@@ -156,7 +156,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerMDX extends SimpleSAML_Metadata_
          */
         $stat = stat($cachefilename);
         if ($stat['mtime'] + $this->cacheLength <= time()) {
-            SimpleSAML_Logger::debug('MetaData - Handler.MDX: Cache file older that the cachelength option allows.');
+            SimpleSAML\Logger::debug('MetaData - Handler.MDX: Cache file older that the cachelength option allows.');
             return null;
         }
 
@@ -204,7 +204,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerMDX extends SimpleSAML_Metadata_
         if (!is_writable(dirname($cachefilename))) {
             throw new Exception('Could not write cache file for entity ['.$cachefilename.']');
         }
-        SimpleSAML_Logger::debug('MetaData - Handler.MDX: Writing cache ['.$entityId.'] => ['.$cachefilename.']');
+        SimpleSAML\Logger::debug('MetaData - Handler.MDX: Writing cache ['.$entityId.'] => ['.$cachefilename.']');
         file_put_contents($cachefilename, serialize($data));
     }
 
@@ -236,7 +236,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerMDX extends SimpleSAML_Metadata_
                 return $ret[0];
 
             default:
-                SimpleSAML_Logger::warning('MetaData - Handler.MDX: Unknown metadata set: '.$set);
+                SimpleSAML\Logger::warning('MetaData - Handler.MDX: Unknown metadata set: '.$set);
         }
 
         return null;
@@ -265,7 +265,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerMDX extends SimpleSAML_Metadata_
         assert('is_string($index)');
         assert('is_string($set)');
 
-        SimpleSAML_Logger::info('MetaData - Handler.MDX: Loading metadata entity ['.$index.'] from ['.$set.']');
+        SimpleSAML\Logger::info('MetaData - Handler.MDX: Loading metadata entity ['.$index.'] from ['.$set.']');
 
         // read from cache if possible
         $data = $this->getFromCache($set, $index);
@@ -277,18 +277,18 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerMDX extends SimpleSAML_Metadata_
 
         if (isset($data)) {
             // metadata found in cache and not expired
-            SimpleSAML_Logger::debug('MetaData - Handler.MDX: Using cached metadata for: '.$index.'.');
+            SimpleSAML\Logger::debug('MetaData - Handler.MDX: Using cached metadata for: '.$index.'.');
             return $data;
         }
 
         // look at Metadata Query Protocol: https://github.com/iay/md-query/blob/master/draft-young-md-query.txt
         $mdx_url = $this->server.'/entities/'.urlencode($index);
 
-        SimpleSAML_Logger::debug('MetaData - Handler.MDX: Downloading metadata for "'.$index.'" from ['.$mdx_url.']');
+        SimpleSAML\Logger::debug('MetaData - Handler.MDX: Downloading metadata for "'.$index.'" from ['.$mdx_url.']');
         try {
             $xmldata = \SimpleSAML\Utils\HTTP::fetch($mdx_url);
         } catch (Exception $e) {
-            SimpleSAML_Logger::warning('Fetching metadata for '.$index.': '.$e->getMessage());
+            SimpleSAML\Logger::warning('Fetching metadata for '.$index.': '.$e->getMessage());
         }
 
         if (empty($xmldata)) {
@@ -300,7 +300,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerMDX extends SimpleSAML_Metadata_
 
         /** @var string $xmldata */
         $entity = SimpleSAML_Metadata_SAMLParser::parseString($xmldata);
-        SimpleSAML_Logger::debug('MetaData - Handler.MDX: Completed parsing of ['.$mdx_url.']');
+        SimpleSAML\Logger::debug('MetaData - Handler.MDX: Completed parsing of ['.$mdx_url.']');
 
         if ($this->validateFingerprint !== null) {
             if (!$entity->validateFingerprint($this->validateFingerprint)) {

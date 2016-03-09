@@ -200,7 +200,7 @@ class SimpleSAML_Auth_State {
 		$session = SimpleSAML_Session::getSessionFromRequest();
 		$session->setData('SimpleSAML_Auth_State', $id, $serializedState, self::getStateTimeout());
 
-		SimpleSAML_Logger::debug('Saved state: ' . var_export($return, TRUE));
+		SimpleSAML\Logger::debug('Saved state: ' . var_export($return, TRUE));
 
 		return $return;
 	}
@@ -221,9 +221,9 @@ class SimpleSAML_Auth_State {
 			$clonedState[self::CLONE_ORIGINAL_ID] = $state[self::ID];
 			unset($clonedState[self::ID]);
 
-			SimpleSAML_Logger::debug('Cloned state: ' . var_export($state[self::ID], TRUE));
+			SimpleSAML\Logger::debug('Cloned state: ' . var_export($state[self::ID], TRUE));
 		} else {
-			SimpleSAML_Logger::debug('Cloned state with undefined id.');
+			SimpleSAML\Logger::debug('Cloned state with undefined id.');
 		}
 
 		return $clonedState;
@@ -246,7 +246,7 @@ class SimpleSAML_Auth_State {
 		assert('is_string($id)');
 		assert('is_string($stage)');
 		assert('is_bool($allowMissing)');
-		SimpleSAML_Logger::debug('Loading state: ' . var_export($id, TRUE));
+		SimpleSAML\Logger::debug('Loading state: ' . var_export($id, TRUE));
 
 		$sid = self::parseStateID($id);
 
@@ -281,7 +281,7 @@ class SimpleSAML_Auth_State {
 			$msg = 'Wrong stage in state. Was \'' . $state[self::STAGE] .
 				'\', should be \'' . $stage . '\'.';
 
-			SimpleSAML_Logger::warning($msg);
+			SimpleSAML\Logger::warning($msg);
 
 			if ($sid['url'] === NULL) {
 				throw new Exception($msg);
@@ -309,7 +309,7 @@ class SimpleSAML_Auth_State {
 			return;
 		}
 
-		SimpleSAML_Logger::debug('Deleting state: ' . var_export($state[self::ID], TRUE));
+		SimpleSAML\Logger::debug('Deleting state: ' . var_export($state[self::ID], TRUE));
 
 		$session = SimpleSAML_Session::getSessionFromRequest();
 		$session->deleteData('SimpleSAML_Auth_State', $state[self::ID]);

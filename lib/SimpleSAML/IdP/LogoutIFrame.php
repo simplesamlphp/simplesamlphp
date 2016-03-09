@@ -50,7 +50,7 @@ class SimpleSAML_IdP_LogoutIFrame extends SimpleSAML_IdP_LogoutHandler
             $params['type'] = $state['core:Logout-IFrame:InitType'];
         }
 
-        $url = SimpleSAML_Module::getModuleURL('core/idp/logout-iframe.php', $params);
+        $url = SimpleSAML\Module::getModuleURL('core/idp/logout-iframe.php', $params);
         \SimpleSAML\Utils\HTTP::redirectTrustedURL($url);
     }
 

@@ -175,7 +175,7 @@ class SimpleSAML_XHTML_IdPDisco
      */
     protected function log($message)
     {
-        SimpleSAML_Logger::info('idpDisco.'.$this->instance.': '.$message);
+        SimpleSAML\Logger::info('idpDisco.'.$this->instance.': '.$message);
     }
 
 

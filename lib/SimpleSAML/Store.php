@@ -50,7 +50,7 @@ abstract class SimpleSAML_Store
                 break;
             default:
                 // datastore from module
-                $className = SimpleSAML_Module::resolveClass($storeType, 'Store', 'SimpleSAML_Store');
+                $className = SimpleSAML\Module::resolveClass($storeType, 'Store', 'SimpleSAML_Store');
                 self::$instance = new $className();
         }
 

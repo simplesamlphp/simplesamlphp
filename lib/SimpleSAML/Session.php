@@ -142,7 +142,7 @@ class SimpleSAML_Session
         if ($transient) { // transient session
             $sh = SimpleSAML_SessionHandler::getSessionHandler();
             $this->trackid = 'TR'.bin2hex(openssl_random_pseudo_bytes(4));
-            SimpleSAML_Logger::setTrackId($this->trackid);
+            SimpleSAML\Logger::setTrackId($this->trackid);
             $this->transient = true;
 
             /*
@@ -159,7 +159,7 @@ class SimpleSAML_Session
             $this->sessionId = $sh->newSessionId();
 
             $this->trackid = bin2hex(openssl_random_pseudo_bytes(5));
-            SimpleSAML_Logger::setTrackId($this->trackid);
+            SimpleSAML\Logger::setTrackId($this->trackid);
 
             $this->markDirty();
 
@@ -195,7 +195,7 @@ class SimpleSAML_Session
             // for some reason, we were unable to initialize this session, use a transient session instead
             self::useTransientSession();
 
-            SimpleSAML_Logger::error('Error loading session: '.$e->getMessage());
+            SimpleSAML\Logger::error('Error loading session: '.$e->getMessage());
             if ($e instanceof SimpleSAML_Error_Exception) {
                 $cause = $e->getCause();
                 if ($cause instanceof Exception) {
@@ -268,11 +268,11 @@ class SimpleSAML_Session
                     'SimpleSAMLAuthToken'
                 );
                 if (!isset($_COOKIE[$authTokenCookieName])) {
-                    SimpleSAML_Logger::warning('Missing AuthToken cookie.');
+                    SimpleSAML\Logger::warning('Missing AuthToken cookie.');
                     return null;
                 }
                 if ($_COOKIE[$authTokenCookieName] !== $session->authToken) {
-                    SimpleSAML_Logger::warning('Invalid AuthToken cookie.');
+                    SimpleSAML\Logger::warning('Invalid AuthToken cookie.');
                     return null;
                 }
             }
@@ -283,7 +283,7 @@ class SimpleSAML_Session
                 assert('is_callable($checkFunction)');
                 $check = call_user_func($checkFunction, $session);
                 if ($check !== true) {
-                    SimpleSAML_Logger::warning('Session did not pass check function.');
+                    SimpleSAML\Logger::warning('Session did not pass check function.');
                     return null;
                 }
             }
@@ -307,7 +307,7 @@ class SimpleSAML_Session
      */
     private static function load(SimpleSAML_Session $session)
     {
-        SimpleSAML_Logger::setTrackId($session->getTrackID());
+        SimpleSAML\Logger::setTrackId($session->getTrackID());
         self::$instance = $session;
         return self::$instance;
     }
@@ -365,7 +365,7 @@ class SimpleSAML_Session
             if (!($e instanceof SimpleSAML_Error_Exception)) {
                 $e = new SimpleSAML_Error_UnserializableException($e);
             }
-            SimpleSAML_Logger::error('Unable to save session.');
+            SimpleSAML\Logger::error('Unable to save session.');
             $e->logError();
         }
     }
@@ -480,7 +480,7 @@ class SimpleSAML_Session
         assert('is_string($authority)');
         assert('is_array($data) || is_null($data)');
 
-        SimpleSAML_Logger::debug('Session: doLogin("'.$authority.'")');
+        SimpleSAML\Logger::debug('Session: doLogin("'.$authority.'")');
 
         $this->markDirty();
 
@@ -533,10 +533,10 @@ class SimpleSAML_Session
      */
     public function doLogout($authority)
     {
-        SimpleSAML_Logger::debug('Session: doLogout('.var_export($authority, true).')');
+        SimpleSAML\Logger::debug('Session: doLogout('.var_export($authority, true).')');
 
         if (!isset($this->authData[$authority])) {
-            SimpleSAML_Logger::debug('Session: Already logged out of '.$authority.'.');
+            SimpleSAML\Logger::debug('Session: Already logged out of '.$authority.'.');
             return;
         }
 
@@ -600,7 +600,7 @@ class SimpleSAML_Session
         assert('is_string($authority)');
 
         if (!isset($this->authData[$authority])) {
-            SimpleSAML_Logger::debug(
+            SimpleSAML\Logger::debug(
                 'Session: '.var_export($authority, true).
                 ' not valid because we are not authenticated.'
             );
@@ -608,11 +608,11 @@ class SimpleSAML_Session
         }
 
         if ($this->authData[$authority]['Expire'] <= time()) {
-            SimpleSAML_Logger::debug('Session: '.var_export($authority, true).' not valid because it is expired.');
+            SimpleSAML\Logger::debug('Session: '.var_export($authority, true).' not valid because it is expired.');
             return false;
         }
 
-        SimpleSAML_Logger::debug('Session: Valid session found with '.var_export($authority, true).'.');
+        SimpleSAML\Logger::debug('Session: Valid session found with '.var_export($authority, true).'.');
 
         return true;
     }

@@ -454,7 +454,7 @@ class SimpleSAML_Metadata_SAMLBuilder
                 $this->addAttributeAuthority($metadata);
                 break;
             default:
-                SimpleSAML_Logger::warning('Unable to generate metadata for unknown type \''.$set.'\'.');
+                SimpleSAML\Logger::warning('Unable to generate metadata for unknown type \''.$set.'\'.');
         }
     }
 

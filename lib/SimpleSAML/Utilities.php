@@ -13,7 +13,7 @@ class SimpleSAML_Utilities
 {
 
     /**
-     * @deprecated This property will be removed in SSP 2.0. Please use SimpleSAML_Logger::isErrorMasked() instead.
+     * @deprecated This property will be removed in SSP 2.0. Please use SimpleSAML\Logger::isErrorMasked() instead.
      */
     public static $logMask = 0;
 
@@ -213,7 +213,7 @@ class SimpleSAML_Utilities
         }
 
         if (strlen($url) > 2048) {
-            SimpleSAML_Logger::warning('Redirecting to a URL longer than 2048 bytes.');
+            SimpleSAML\Logger::warning('Redirecting to a URL longer than 2048 bytes.');
         }
 
         // Set the location header
@@ -571,7 +571,7 @@ class SimpleSAML_Utilities
 
         $redirInfo = base64_encode(SimpleSAML\Utils\Crypto::aesEncrypt($session->getSessionId().':'.$postId));
 
-        $url = SimpleSAML_Module::getModuleURL('core/postredirect.php', array('RedirInfo' => $redirInfo));
+        $url = SimpleSAML\Module::getModuleURL('core/postredirect.php', array('RedirInfo' => $redirInfo));
         $url = preg_replace("#^https:#", "http:", $url);
 
         return $url;
@@ -615,20 +615,20 @@ class SimpleSAML_Utilities
 
 
     /**
-     * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML_Logger::maskErrors() instead.
+     * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Logger::maskErrors() instead.
      */
     public static function maskErrors($mask)
     {
-        SimpleSAML_Logger::maskErrors($mask);
+        SimpleSAML\Logger::maskErrors($mask);
     }
 
 
     /**
-     * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML_Logger::popErrorMask() instead.
+     * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Logger::popErrorMask() instead.
      */
     public static function popErrorMask()
     {
-        SimpleSAML_Logger::popErrorMask();
+        SimpleSAML\Logger::popErrorMask();
     }
 
 

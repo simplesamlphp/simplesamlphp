@@ -295,7 +295,7 @@ abstract class SimpleSAML_Auth_Source
 
         self::validateSource($config, $authId);
 
-        $className = SimpleSAML_Module::resolveClass($config[0], 'Auth_Source', 'SimpleSAML_Auth_Source');
+        $className = SimpleSAML\Module::resolveClass($config[0], 'Auth_Source', 'SimpleSAML_Auth_Source');
 
         $info = array('AuthId' => $authId);
         unset($config[0]);
@@ -369,7 +369,7 @@ abstract class SimpleSAML_Auth_Source
 
         $session = SimpleSAML_Session::getSessionFromRequest();
         if (!$session->isValid($source)) {
-            SimpleSAML_Logger::warning(
+            SimpleSAML\Logger::warning(
                 'Received logout from an invalid authentication source '.
                 var_export($source, true)
             );

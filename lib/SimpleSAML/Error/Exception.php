@@ -184,7 +184,7 @@ class SimpleSAML_Error_Exception extends Exception
 
         $lines = $this->format();
         foreach ($lines as $line) {
-            SimpleSAML_Logger::error($line);
+            SimpleSAML\Logger::error($line);
         }
     }
 
@@ -199,7 +199,7 @@ class SimpleSAML_Error_Exception extends Exception
 
         $lines = $this->format();
         foreach ($lines as $line) {
-            SimpleSAML_Logger::warning($line);
+            SimpleSAML\Logger::warning($line);
         }
     }
 
@@ -214,7 +214,7 @@ class SimpleSAML_Error_Exception extends Exception
 
         $lines = $this->format();
         foreach ($lines as $line) {
-            SimpleSAML_Logger::debug($line);
+            SimpleSAML\Logger::debug($line);
         }
     }
 
@@ -229,7 +229,7 @@ class SimpleSAML_Error_Exception extends Exception
 
         $lines = $this->format();
         foreach ($lines as $line) {
-            SimpleSAML_Logger::debug($line);
+            SimpleSAML\Logger::debug($line);
         }
     }
 

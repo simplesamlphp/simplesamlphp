@@ -26,14 +26,14 @@ class SimpleSAML_IdP_LogoutTraditional extends SimpleSAML_IdP_LogoutHandler
         $relayState = SimpleSAML_Auth_State::saveState($state, 'core:LogoutTraditional', true);
 
         $id = $association['id'];
-        SimpleSAML_Logger::info('Logging out of '.var_export($id, true).'.');
+        SimpleSAML\Logger::info('Logging out of '.var_export($id, true).'.');
 
         try {
             $idp = SimpleSAML_IdP::getByState($association);
             $url = call_user_func(array($association['Handler'], 'getLogoutURL'), $idp, $association, $relayState);
             \SimpleSAML\Utils\HTTP::redirectTrustedURL($url);
         } catch (Exception $e) {
-            SimpleSAML_Logger::warning('Unable to initialize logout to '.var_export($id, true).'.');
+            SimpleSAML\Logger::warning('Unable to initialize logout to '.var_export($id, true).'.');
             $this->idp->terminateAssociation($id);
             $state['core:Failed'] = true;
 
@@ -83,10 +83,10 @@ class SimpleSAML_IdP_LogoutTraditional extends SimpleSAML_IdP_LogoutHandler
         $state = SimpleSAML_Auth_State::loadState($relayState, 'core:LogoutTraditional');
 
         if ($error === null) {
-            SimpleSAML_Logger::info('Logged out of '.var_export($assocId, true).'.');
+            SimpleSAML\Logger::info('Logged out of '.var_export($assocId, true).'.');
             $this->idp->terminateAssociation($assocId);
         } else {
-            SimpleSAML_Logger::warning('Error received from '.var_export($assocId, true).' during logout:');
+            SimpleSAML\Logger::warning('Error received from '.var_export($assocId, true).' during logout:');
             $error->logWarning();
             $state['core:Failed'] = true;
         }

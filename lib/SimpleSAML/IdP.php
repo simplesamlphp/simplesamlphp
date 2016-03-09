@@ -492,7 +492,7 @@ class SimpleSAML_IdP
 
         // terminate the local session
         $id = SimpleSAML_Auth_State::saveState($state, 'core:Logout:afterbridge');
-        $returnTo = SimpleSAML_Module::getModuleURL('core/idp/resumelogout.php', array('id' => $id));
+        $returnTo = SimpleSAML\Module::getModuleURL('core/idp/resumelogout.php', array('id' => $id));
 
         $this->authSource->logout($returnTo);
 

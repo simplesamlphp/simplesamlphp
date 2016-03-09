@@ -16,14 +16,14 @@ class SimpleSAML_Logger_LoggingHandlerErrorLog implements SimpleSAML_Logger_Logg
      * This array contains the mappings from syslog loglevel to names.
      */
     private static $levelNames = array(
-        SimpleSAML_Logger::EMERG   => 'EMERG',
-        SimpleSAML_Logger::ALERT   => 'ALERT',
-        SimpleSAML_Logger::CRIT    => 'CRIT',
-        SimpleSAML_Logger::ERR     => 'ERR',
-        SimpleSAML_Logger::WARNING => 'WARNING',
-        SimpleSAML_Logger::NOTICE  => 'NOTICE',
-        SimpleSAML_Logger::INFO    => 'INFO',
-        SimpleSAML_Logger::DEBUG   => 'DEBUG',
+        SimpleSAML\Logger::EMERG   => 'EMERG',
+        SimpleSAML\Logger::ALERT   => 'ALERT',
+        SimpleSAML\Logger::CRIT    => 'CRIT',
+        SimpleSAML\Logger::ERR     => 'ERR',
+        SimpleSAML\Logger::WARNING => 'WARNING',
+        SimpleSAML\Logger::NOTICE  => 'NOTICE',
+        SimpleSAML\Logger::INFO    => 'INFO',
+        SimpleSAML\Logger::DEBUG   => 'DEBUG',
     );
     private $format;
 

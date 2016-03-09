@@ -192,7 +192,7 @@ class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception
 
         if (!array_key_exists($this->httpCode, $httpCodesMap)) {
             $httpCode = 500;
-            SimpleSAML_Logger::warning('HTTP response code not defined: '.var_export($this->httpCode, true));
+            SimpleSAML\Logger::warning('HTTP response code not defined: '.var_export($this->httpCode, true));
         }
 
         header($httpCodesMap[$httpCode]);
@@ -211,7 +211,7 @@ class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception
         $etrace = implode("\n", $data);
 
         $reportId = bin2hex(openssl_random_pseudo_bytes(4));
-        SimpleSAML_Logger::error('Error report with id '.$reportId.' generated.');
+        SimpleSAML\Logger::error('Error report with id '.$reportId.' generated.');
 
         $config = SimpleSAML_Configuration::getInstance();
         $session = SimpleSAML_Session::getSessionFromRequest();

@@ -16,14 +16,14 @@ class SimpleSAML_Logger_LoggingHandlerFile implements SimpleSAML_Logger_LoggingH
      * more or less directly from SimpleSAML_Logger_LoggingHandlerErrorLog.
      */
     private static $levelNames = array(
-        SimpleSAML_Logger::EMERG   => 'EMERGENCY',
-        SimpleSAML_Logger::ALERT   => 'ALERT',
-        SimpleSAML_Logger::CRIT    => 'CRITICAL',
-        SimpleSAML_Logger::ERR     => 'ERROR',
-        SimpleSAML_Logger::WARNING => 'WARNING',
-        SimpleSAML_Logger::NOTICE  => 'NOTICE',
-        SimpleSAML_Logger::INFO    => 'INFO',
-        SimpleSAML_Logger::DEBUG   => 'DEBUG',
+        SimpleSAML\Logger::EMERG   => 'EMERGENCY',
+        SimpleSAML\Logger::ALERT   => 'ALERT',
+        SimpleSAML\Logger::CRIT    => 'CRITICAL',
+        SimpleSAML\Logger::ERR     => 'ERROR',
+        SimpleSAML\Logger::WARNING => 'WARNING',
+        SimpleSAML\Logger::NOTICE  => 'NOTICE',
+        SimpleSAML\Logger::INFO    => 'INFO',
+        SimpleSAML\Logger::DEBUG   => 'DEBUG',
     );
     private $logFile = NULL;
     private $processname = NULL;

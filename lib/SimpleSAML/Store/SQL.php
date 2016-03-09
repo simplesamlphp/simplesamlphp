@@ -180,7 +180,7 @@ class SimpleSAML_Store_SQL extends SimpleSAML_Store {
 			case '23505': // PostgreSQL
 				break;
 			default:
-				SimpleSAML_Logger::error('Error while saving data: ' . $e->getMessage());
+				SimpleSAML\Logger::error('Error while saving data: ' . $e->getMessage());
 				throw $e;
 			}
 		}
@@ -209,7 +209,7 @@ class SimpleSAML_Store_SQL extends SimpleSAML_Store {
 	 */
 	private function cleanKVStore() {
 
-		SimpleSAML_Logger::debug('store.sql: Cleaning key-value store.');
+		SimpleSAML\Logger::debug('store.sql: Cleaning key-value store.');
 
 		$query = 'DELETE FROM ' . $this->prefix . '_kvstore WHERE _expire < :now';
 		$params = array('now' => gmdate('Y-m-d H:i:s'));

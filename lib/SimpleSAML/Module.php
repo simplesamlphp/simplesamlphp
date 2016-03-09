@@ -47,7 +47,7 @@ class Module
             $nspath = join('\\', $path);
             if (class_exists('SimpleSAML\Module\\'.$module.'\\'.$nspath)) {
                 // the class has been migrated, create an alias and warn about it
-                \SimpleSAML_Logger::warning(
+                \SimpleSAML\Logger::warning(
                     "The class '$className' is now using namespaces, please use 'SimpleSAML\\Module\\$module\\".
                     "$nspath' instead."
                 );
@@ -145,7 +145,7 @@ class Module
             !file_exists($moduleDir.'/default-enable') &&
             !file_exists($moduleDir.'/default-disable')
         ) {
-            \SimpleSAML_Logger::error("Missing default-enable or default-disable file for the module $module");
+            \SimpleSAML\Logger::error("Missing default-enable or default-disable file for the module $module");
         }
 
         if (file_exists($moduleDir.'/enable')) {
