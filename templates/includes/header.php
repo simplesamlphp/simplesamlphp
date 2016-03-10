@@ -148,7 +148,6 @@ if($onLoad !== '') {
 						'no' => 'Bokmål', // Norwegian Bokmål
 						'nn' => 'Nynorsk', // Norwegian Nynorsk
 						'se' => 'Sámegiella', // Northern Sami
-						'sam' => 'Åarjelh-saemien giele', // Southern Sami
 						'da' => 'Dansk', // Danish
 						'en' => 'English',
 						'de' => 'Deutsch', // German
