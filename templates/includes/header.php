@@ -174,8 +174,6 @@ if($onLoad !== '') {
 						'zh' => '简体中文', // Chinese (simplified)
 						'zh-tw' => '繁體中文', // Chinese (traditional)
 						'ar' => 'العربية', // Arabic
-						'fa' => 'پارسی', // Persian
-						'ur' => 'اردو', // Urdu
 						'he' => 'עִבְרִית', // Hebrew
 						'id' => 'Bahasa Indonesia', // Indonesian
 						'sr' => 'Srpski', // Serbian
