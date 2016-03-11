@@ -6,6 +6,12 @@ SimpleSAMLphp changelog
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
+## Version 1.14.2
+
+Released 2016-03-11
+
+  * Use stable versions of the externalized modules to prevent possible issues when further developing them.
+
 ## Version 1.14.1
 
 Released 2016-03-08
