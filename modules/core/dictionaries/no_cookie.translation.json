@@ -28,7 +28,8 @@
 		"ro": "<i>Cookie<\/i> lips\u0103",
 		"ru": "\u041e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442 cookie-\u0444\u0430\u0439\u043b",
 		"eu": "Cookie-a falta da",
-		"af": "Verlore cookie"
+		"af": "Verlore cookie",
+		"el": "\u03a0\u03c1\u03cc\u03b2\u03bb\u03b7\u03bc\u03b1 \u03bb\u03b5\u03b9\u03c4\u03bf\u03c5\u03c1\u03b3\u03af\u03b1\u03c2 cookie"
 	},
 	"description": {
 		"no": "Du ser ut til \u00e5 ha deaktivert informasjonskapsler. Kontroller innstillingene i nettleseren din og pr\u00f8v igjen.",
@@ -59,7 +60,8 @@
 		"ro": "<i>Cookies<\/i> au fost dezactivate \u00een browser-ul dumneavoastr\u0103. V\u0103 rug\u0103m s\u0103 verifica\u021bi configurarea browser-ului dup\u0103 care \u00eencerca\u021bi din nou.",
 		"ru": "\u0412\u0438\u0434\u0438\u043c\u043e, \u0432\u044b \u043e\u0442\u043a\u043b\u044e\u0447\u0438\u043b\u0438 \u043f\u043e\u0434\u0434\u0435\u0440\u0436\u043a\u0443 cookies \u0432 \u0432\u0430\u0448\u0435\u043c \u0431\u0440\u0430\u0443\u0437\u0435\u0440\u0435. \u041f\u043e\u0436\u0430\u043b\u0443\u0439\u0441\u0442\u0430, \u043f\u0440\u043e\u0432\u0435\u0440\u044c\u0442\u0435 \u043d\u0430\u0441\u0442\u0440\u043e\u0439\u043a\u0438 \u0432\u0430\u0448\u0435\u0433\u043e \u0431\u0440\u0430\u0443\u0437\u0435\u0440\u0430 \u0438 \u043f\u043e\u0432\u0442\u043e\u0440\u0438\u0442\u0435 \u043f\u043e\u043f\u044b\u0442\u043a\u0443.",
 		"eu": "Badirudi zure nabigatzaileko cookie-ak desgaitu dituzula. Mesedez, berrikusi zure nabigatzaileko lehentasunak eta saiatu berriro.",
-		"af": "Dit blyk dat jy cookies in jou webblaaier af geskakel het. Gaan asseblief die stellings in jou webblaaier na en probeer weer."
+		"af": "Dit blyk dat jy cookies in jou webblaaier af geskakel het. Gaan asseblief die stellings in jou webblaaier na en probeer weer.",
+		"el": "\u0395\u03bd\u03b4\u03ad\u03c7\u03b5\u03c4\u03b1\u03b9 \u03c4\u03b1 cookie \u03c4\u03bf\u03c5 \u03c0\u03c1\u03bf\u03b3\u03c1\u03ac\u03bc\u03bc\u03b1\u03c4\u03bf\u03c2 \u03c0\u03b5\u03c1\u03b9\u03ae\u03b3\u03b7\u03c3\u03ae\u03c2 \u03c3\u03b1\u03c2 \u03bd\u03b1 \u03ad\u03c7\u03bf\u03c5\u03bd \u03b1\u03c0\u03b5\u03bd\u03b5\u03c1\u03b3\u03bf\u03c0\u03bf\u03b9\u03b7\u03b8\u03b5\u03af. \u03a0\u03b1\u03c1\u03b1\u03ba\u03b1\u03bb\u03bf\u03cd\u03bc\u03b5 \u03b5\u03bb\u03ad\u03b3\u03be\u03c4\u03b5 \u03c4\u03b9\u03c2 \u03c3\u03c7\u03b5\u03c4\u03b9\u03ba\u03ad\u03c2 \u03c1\u03c5\u03b8\u03bc\u03af\u03c3\u03b5\u03b9\u03c2 \u03ba\u03b1\u03b9 \u03ba\u03b1\u03b9 \u03b4\u03bf\u03ba\u03b9\u03bc\u03ac\u03c3\u03c4\u03b5 \u03be\u03b1\u03bd\u03ac."
 	},
 	"retry": {
 		"no": "Pr\u00f8v igjen",
@@ -90,6 +92,7 @@
 		"cs": "Opakujte",
 		"ro": "\u00cencearc\u0103 din nou",
 		"eu": "Saiatu berriro",
-		"af": "Probeer weer"
+		"af": "Probeer weer",
+		"el": "\u0394\u03bf\u03ba\u03b9\u03bc\u03ac\u03c3\u03c4\u03b5 \u03be\u03b1\u03bd\u03ac"
 	}
 }
