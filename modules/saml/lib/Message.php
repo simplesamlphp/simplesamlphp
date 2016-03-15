@@ -402,10 +402,16 @@ class sspmod_saml_Message {
 			$nameIdPolicy = $spMetadata->getString('NameIDFormat', SAML2_Const::NAMEID_TRANSIENT);
 		}
 
+		if ($spMetadata->hasValue('AllowCreatePolicy')) {
+			$allowCreatePolicy = $spMetadata->getBoolean('AllowCreatePolicy', TRUE);
+		} else {
+			$allowCreatePolicy = TRUE;
+		}
+
 		if ($nameIdPolicy !== NULL) {
 			$ar->setNameIdPolicy(array(
 				'Format' => $nameIdPolicy,
-				'AllowCreate' => TRUE,
+				'AllowCreate' => $allowCreatePolicy,
 			));
 		}
 
