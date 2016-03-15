@@ -6,11 +6,15 @@
 
 $config = array(
 
-    /**
+    /*******************************
+     | BASIC CONFIGURATION OPTIONS |
+     *******************************/
+
+    /*
      * Setup the following parameters to match the directory of your installation.
      * See the user manual for more details.
      *
-     * Valid format for baseurlpath is:
+     * Valid format for 'baseurlpath' is:
      * [(http|https)://(hostname|fqdn)[:port]]/[path/to/simplesaml/]
      * (note that it must end with a '/')
      *
@@ -33,62 +37,6 @@ $config = array(
      */
     'tempdir' => '/tmp/simplesaml',
 
-
-    /*
-     * If you enable this option, SimpleSAMLphp will log all sent and received messages
-     * to the log file.
-     *
-     * This option also enables logging of the messages that are encrypted and decrypted.
-     *
-     * Note: The messages are logged with the DEBUG log level, so you also need to set
-     * the 'logging.level' option to LOG_DEBUG.
-     */
-    'debug' => false,
-
-    /*
-     * When showerrors is enabled, all error messages and stack traces will be output
-     * to the browser.
-     *
-     * When errorreporting is enabled, a form will be presented for the user to report
-     * the error to technicalcontact_email.
-     */
-    'showerrors' => true,
-    'errorreporting' => true,
-
-    /**
-     * Custom error show function called from SimpleSAML_Error_Error::show.
-     * See docs/simplesamlphp-errorhandling.txt for function code example.
-     *
-     * Example:
-     *   'errors.show_function' => array('sspmod_example_Error_Show', 'show'),
-     */
-
-    /**
-     * This option allows you to enable validation of XML data against its
-     * schemas. A warning will be written to the log if validation fails.
-     */
-    'debug.validatexml' => false,
-
-    /**
-     * This password must be kept secret, and modified from the default value 123.
-     * This password will give access to the installation page of SimpleSAMLphp with
-     * metadata listing and diagnostics pages.
-     * You can also put a hash here; run "bin/pwgen.php" to generate one.
-     */
-    'auth.adminpassword' => '123',
-    'admin.protectindexpage' => false,
-    'admin.protectmetadata' => false,
-
-    /**
-     * This is a secret salt used by SimpleSAMLphp when it needs to generate a secure hash
-     * of a value. It must be changed from its default value to a secret value. The value of
-     * 'secretsalt' can be any valid string of any length.
-     *
-     * A possible way to generate a random salt is by running the following command from a unix shell:
-     * tr -c -d '0123456789abcdefghijklmnopqrstuvwxyz' </dev/urandom | dd bs=32 count=1 2>/dev/null;echo
-     */
-    'secretsalt' => 'defaultsecretsalt',
-
     /*
      * Some information about the technical persons running this installation.
      * The email address will be used as the recipient address for error reports, and
@@ -106,15 +54,123 @@ $config = array(
      */
     'timezone' => null,
 
+
+
+    /**********************************
+     | SECURITY CONFIGURATION OPTIONS |
+     **********************************/
+
     /*
-     * Logging.
+     * This is a secret salt used by SimpleSAMLphp when it needs to generate a secure hash
+     * of a value. It must be changed from its default value to a secret value. The value of
+     * 'secretsalt' can be any valid string of any length.
      *
-     * define the minimum log level to log
-     *		SimpleSAML\Logger::ERR		No statistics, only errors
-     *		SimpleSAML\Logger::WARNING	No statistics, only warnings/errors
-     *		SimpleSAML\Logger::NOTICE	Statistics and errors
-     *		SimpleSAML\Logger::INFO		Verbose logs
-     *		SimpleSAML\Logger::DEBUG	Full debug logs - not recommended for production
+     * A possible way to generate a random salt is by running the following command from a unix shell:
+     * tr -c -d '0123456789abcdefghijklmnopqrstuvwxyz' </dev/urandom | dd bs=32 count=1 2>/dev/null;echo
+     */
+    'secretsalt' => 'defaultsecretsalt',
+
+    /*
+     * This password must be kept secret, and modified from the default value 123.
+     * This password will give access to the installation page of SimpleSAMLphp with
+     * metadata listing and diagnostics pages.
+     * You can also put a hash here; run "bin/pwgen.php" to generate one.
+     */
+    'auth.adminpassword' => '123',
+    'admin.protectindexpage' => false,
+    'admin.protectmetadata' => false,
+
+    /*
+     * Array of domains that are allowed when generating links or redirects
+     * to URLs. SimpleSAMLphp will use this option to determine whether to
+     * to consider a given URL valid or not, but you should always validate
+     * URLs obtained from the input on your own (i.e. ReturnTo or RelayState
+     * parameters obtained from the $_REQUEST array).
+     *
+     * SimpleSAMLphp will automatically add your own domain (either by checking
+     * it dynamically, or by using the domain defined in the 'baseurlpath'
+     * directive, the latter having precedence) to the list of trusted domains,
+     * in case this option is NOT set to NULL. In that case, you are explicitly
+     * telling SimpleSAMLphp to verify URLs.
+     *
+     * Set to an empty array to disallow ALL redirects or links pointing to
+     * an external URL other than your own domain. This is the default behaviour.
+     *
+     * Set to NULL to disable checking of URLs. DO NOT DO THIS UNLESS YOU KNOW
+     * WHAT YOU ARE DOING!
+     *
+     * Example:
+     *   'trusted.url.domains' => array('sp.example.com', 'app.example.com'),
+     */
+    'trusted.url.domains' => array(),
+
+    /*
+     * Enable secure POST from HTTPS to HTTP.
+     *
+     * If you have some SP's on HTTP and IdP is normally on HTTPS, this option
+     * enables secure POSTing to HTTP endpoint without warning from browser.
+     *
+     * For this to work, module.php/core/postredirect.php must be accessible
+     * also via HTTP on IdP, e.g. if your IdP is on
+     * https://idp.example.org/ssp/, then
+     * http://idp.example.org/ssp/module.php/core/postredirect.php must be accessible.
+     */
+    'enable.http_post' => false,
+
+
+
+    /************************
+     | ERRORS AND DEBUGGING |
+     ************************/
+
+    /*
+     * If you enable this option, SimpleSAMLphp will log all sent and received messages
+     * to the log file.
+     *
+     * This option also enables logging of the messages that are encrypted and decrypted.
+     *
+     * Note: The messages are logged with the DEBUG log level, so you also need to set
+     * the 'logging.level' option to LOG_DEBUG.
+     */
+    'debug' => false,
+
+    /*
+     * When 'showerrors' is enabled, all error messages and stack traces will be output
+     * to the browser.
+     *
+     * When 'errorreporting' is enabled, a form will be presented for the user to report
+     * the error to 'technicalcontact_email'.
+     */
+    'showerrors' => true,
+    'errorreporting' => true,
+
+    /*
+     * Custom error show function called from SimpleSAML_Error_Error::show.
+     * See docs/simplesamlphp-errorhandling.txt for function code example.
+     *
+     * Example:
+     *   'errors.show_function' => array('sspmod_example_Error_Show', 'show'),
+     */
+
+    /*
+     * This option allows you to enable validation of XML data against its
+     * schemas. A warning will be written to the log if validation fails.
+     */
+    'debug.validatexml' => false,
+
+
+
+    /**************************
+     | LOGGING AND STATISTICS |
+     **************************/
+
+    /*
+     * Define the minimum log level to log. Available levels:
+     * - SimpleSAML\Logger::ERR     No statistics, only errors
+     * - SimpleSAML\Logger::WARNING No statistics, only warnings/errors
+     * - SimpleSAML\Logger::NOTICE  Statistics and errors
+     * - SimpleSAML\Logger::INFO    Verbose logs
+     * - SimpleSAML\Logger::DEBUG   Full debug logs - not recommended for production
      *
      * Choose logging handler.
      *
@@ -171,12 +227,12 @@ $config = array(
      */
     'logging.processname' => 'simplesamlphp',
 
-    /* Logging: file - Logfilename in the loggingdir from above.
+    /*
+     * Logging: file - Logfilename in the loggingdir from above.
      */
     'logging.logfile' => 'simplesamlphp.log',
 
-    /* (New) statistics output configuration.
-     *
+    /*
      * This is an array of outputs. Each output has at least a 'class' option, which
      * selects the output.
      */
@@ -198,9 +254,32 @@ $config = array(
 
 
 
+    /***********************
+     | PROXY CONFIGURATION |
+     ***********************/
+
     /*
-     * Database
+     * Proxy to use for retrieving URLs.
      *
+     * Example:
+     *   'proxy' => 'tcp://proxy.example.com:5100'
+     */
+    'proxy' => null,
+
+    /*
+     * Username/password authentication to proxy (Proxy-Authorization: Basic)
+     * Example:
+     *   'proxy.auth' = 'myuser:password'
+     */
+    'proxy.auth' => false,
+
+
+
+    /**************************
+     | DATABASE CONFIGURATION |
+     **************************/
+
+    /*
      * This database configuration is optional. If you are not using
      * core functionality or modules that require a database, you can
      * skip this configuration.
@@ -252,9 +331,11 @@ $config = array(
 
 
 
+    /*************
+     | PROTOCOLS |
+     *************/
+
     /*
-     * Enable
-     *
      * Which functionality in SimpleSAMLphp do you want to enable. Normally you would enable only
      * one of the functionalities below, but in some cases you could run multiple functionalities.
      * In example when you are setting up a federation bridge.
@@ -265,25 +346,45 @@ $config = array(
     'enable.wsfed-sp' => false,
     'enable.authmemcookie' => false,
 
+    /*
+     * Default IdP for WS-Fed.
+     */
+    'default-wsfed-idp' => 'urn:federation:pingfederate:localhost',
 
     /*
-     * Module enable configuration
+     * Whether SimpleSAMLphp should sign the response or the assertion in SAML 1.1 authentication
+     * responses.
      *
+     * The default is to sign the assertion element, but that can be overridden by setting this
+     * option to TRUE. It can also be overridden on a pr. SP basis by adding an option with the
+     * same name to the metadata of the SP.
+     */
+    'shib13.signresponse' => true,
+
+
+
+    /***********
+     | MODULES |
+     ***********/
+
+    /*
      * Configuration to override module enabling/disabling.
      *
      * Example:
      *
      * 'module.enable' => array(
-     * 	// Setting to TRUE enables.
-     * 	'exampleauth' => TRUE,
-     * 	// Setting to FALSE disables.
-     * 	'saml' => FALSE,
-     * 	// Unset or NULL uses default.
-     * 	'core' => NULL,
+     *      'exampleauth' => TRUE, // Setting to TRUE enables.
+     *      'saml' => FALSE, // Setting to FALSE disables.
+     *      'core' => NULL, // Unset or NULL uses default.
      * ),
      *
      */
 
+
+
+    /*************************
+     | SESSION CONFIGURATION |
+     *************************/
 
     /*
      * This value is the duration of the session in seconds. Make sure that the time duration of
@@ -292,8 +393,8 @@ $config = array(
     'session.duration' => 8 * (60 * 60), // 8 hours.
 
     /*
-     * Sets the duration, in seconds, data should be stored in the datastore. As the datastore is used for
-     * login and logout requests, thid option will control the maximum time these operations can take.
+     * Sets the duration, in seconds, data should be stored in the datastore. As the data store is used for
+     * login and logout requests, this option will control the maximum time these operations can take.
      * The default is 4 hours (4*60*60) seconds, which should be more than enough for these operations.
      */
     'session.datastore.timeout' => (4 * 60 * 60), // 4 hours
@@ -348,19 +449,6 @@ $config = array(
     'session.cookie.secure' => false,
 
     /*
-     * Enable secure POST from HTTPS to HTTP.
-     *
-     * If you have some SP's on HTTP and IdP is normally on HTTPS, this option
-     * enables secure POSTing to HTTP endpoint without warning from browser.
-     *
-     * For this to work, module.php/core/postredirect.php must be accessible
-     * also via HTTP on IdP, e.g. if your IdP is on
-     * https://idp.example.org/ssp/, then
-     * http://idp.example.org/ssp/module.php/core/postredirect.php must be accessible.
-     */
-    'enable.http_post' => false,
-
-    /*
      * Options to override the default settings for php sessions.
      */
     'session.phpsession.cookiename' => null,
@@ -389,7 +477,7 @@ $config = array(
     'session.rememberme.checked' => false,
     'session.rememberme.lifetime' => (14 * 86400),
 
-    /**
+    /*
      * Custom function for session checking called on session init and loading.
      * See docs/simplesamlphp-advancedfeatures.txt for function code example.
      *
@@ -397,314 +485,11 @@ $config = array(
      *   'session.check_function' => array('sspmod_example_Util', 'checkSession'),
      */
 
-    /*
-     * Languages available, RTL languages, and what language is default
-     */
-    'language.available' => array(
-        'en', 'no', 'nn', 'se', 'da', 'de', 'sv', 'fi', 'es', 'fr', 'it', 'nl', 'lb', 'cs',
-        'sl', 'lt', 'hr', 'hu', 'pl', 'pt', 'pt-br', 'tr', 'ja', 'zh', 'zh-tw', 'ru', 'et',
-        'he', 'id', 'sr', 'lv', 'ro', 'eu'
-    ),
-    'language.rtl' => array('ar', 'dv', 'fa', 'ur', 'he'),
-    'language.default' => 'en',
-
-    /*
-     * Options to override the default settings for the language parameter
-     */
-    'language.parameter.name' => 'language',
-    'language.parameter.setcookie' => true,
-
-    /*
-     * Options to override the default settings for the language cookie
-     */
-    'language.cookie.name' => 'language',
-    'language.cookie.domain' => null,
-    'language.cookie.path' => '/',
-    'language.cookie.lifetime' => (60 * 60 * 24 * 900),
-
-    /**
-     * Custom getLanguage function called from SimpleSAML\Locale\Language::getLanguage().
-     * Function should return language code of one of the available languages or NULL.
-     * See SimpleSAML\Locale\Language::getLanguage() source code for more info.
-     *
-     * This option can be used to implement a custom function for determining
-     * the default language for the user.
-     *
-     * Example:
-     *   'language.get_language_function' => array('sspmod_example_Template', 'getLanguage'),
-     */
-
-    /*
-     * Extra dictionary for attribute names.
-     * This can be used to define local attributes.
-     *
-     * The format of the parameter is a string with <module>:<dictionary>.
-     *
-     * Specifying this option will cause us to look for modules/<module>/dictionaries/<dictionary>.definition.json
-     * The dictionary should look something like:
-     *
-     * {
-     *     "firstattribute": {
-     *         "en": "English name",
-     *         "no": "Norwegian name"
-     *     },
-     *     "secondattribute": {
-     *         "en": "English name",
-     *         "no": "Norwegian name"
-     *     }
-     * }
-     *
-     * Note that all attribute names in the dictionary must in lowercase.
-     *
-     * Example: 'attributes.extradictionary' => 'ourmodule:ourattributes',
-     */
-    'attributes.extradictionary' => null,
-
-    /*
-     * Which theme directory should be used?
-     */
-    'theme.use' => 'default',
 
 
-    /*
-     * Default IdP for WS-Fed.
-     */
-    'default-wsfed-idp' => 'urn:federation:pingfederate:localhost',
-
-    /*
-     * Whether the discovery service should allow the user to save his choice of IdP.
-     */
-    'idpdisco.enableremember' => true,
-    'idpdisco.rememberchecked' => true,
-
-    // Disco service only accepts entities it knows.
-    'idpdisco.validate' => true,
-
-    'idpdisco.extDiscoveryStorage' => null,
-
-    /*
-     * IdP Discovery service look configuration.
-     * Wether to display a list of idp or to display a dropdown box. For many IdP' a dropdown box
-     * gives the best use experience.
-     *
-     * When using dropdown box a cookie is used to highlight the previously chosen IdP in the dropdown.
-     * This makes it easier for the user to choose the IdP
-     *
-     * Options: [links,dropdown]
-     *
-     */
-    'idpdisco.layout' => 'dropdown',
-
-    /*
-     * Whether SimpleSAMLphp should sign the response or the assertion in SAML 1.1 authentication
-     * responses.
-     *
-     * The default is to sign the assertion element, but that can be overridden by setting this
-     * option to TRUE. It can also be overridden on a pr. SP basis by adding an option with the
-     * same name to the metadata of the SP.
-     */
-    'shib13.signresponse' => true,
-
-
-    /*
-     * Authentication processing filters that will be executed for all IdPs
-     * Both Shibboleth and SAML 2.0
-     */
-    'authproc.idp' => array(
-        /* Enable the authproc filter below to add URN Prefixces to all attributes
-         10 => array(
-             'class' => 'core:AttributeMap', 'addurnprefix'
-         ), */
-        /* Enable the authproc filter below to automatically generated eduPersonTargetedID.
-        20 => 'core:TargetedID',
-        */
-
-        // Adopts language from attribute to use in UI
-        30 => 'core:LanguageAdaptor',
-
-        /* Add a realm attribute from edupersonprincipalname
-        40 => 'core:AttributeRealm',
-         */
-        45 => array(
-            'class'         => 'core:StatisticsWithAttribute',
-            'attributename' => 'realm',
-            'type'          => 'saml20-idp-SSO',
-        ),
-
-        /* When called without parameters, it will fallback to filter attributes ‹the old way›
-         * by checking the 'attributes' parameter in metadata on IdP hosted and SP remote.
-         */
-        50 => 'core:AttributeLimit',
-
-        /*
-         * Search attribute "distinguishedName" for pattern and replaces if found
-
-        60 => array(
-            'class' => 'core:AttributeAlter',
-            'pattern' => '/OU=studerende/',
-            'replacement' => 'Student',
-            'subject' => 'distinguishedName',
-            '%replace',
-        ),
-         */
-
-        /*
-         * Consent module is enabled (with no permanent storage, using cookies).
-
-        90 => array(
-            'class' => 'consent:Consent',
-            'store' => 'consent:Cookie',
-            'focus' => 'yes',
-            'checked' => TRUE
-        ),
-         */
-        // If language is set in Consent module it will be added as an attribute.
-        99 => 'core:LanguageAdaptor',
-    ),
-    /*
-     * Authentication processing filters that will be executed for all SPs
-     * Both Shibboleth and SAML 2.0
-     */
-    'authproc.sp' => array(
-        /*
-        10 => array(
-            'class' => 'core:AttributeMap', 'removeurnprefix'
-        ),
-        */
-
-        /*
-         * Generate the 'group' attribute populated from other variables, including eduPersonAffiliation.
-         60 => array(
-            'class' => 'core:GenerateGroups', 'eduPersonAffiliation'
-        ),
-        */
-        /*
-         * All users will be members of 'users' and 'members'
-        61 => array(
-            'class' => 'core:AttributeAdd', 'groups' => array('users', 'members')
-        ),
-        */
-
-        // Adopts language from attribute to use in UI
-        90 => 'core:LanguageAdaptor',
-
-    ),
-
-
-    /*
-     * This option configures the metadata sources. The metadata sources is given as an array with
-     * different metadata sources. When searching for metadata, simpleSAMPphp will search through
-     * the array from start to end.
-     *
-     * Each element in the array is an associative array which configures the metadata source.
-     * The type of the metadata source is given by the 'type' element. For each type we have
-     * different configuration options.
-     *
-     * Flat file metadata handler:
-     * - 'type': This is always 'flatfile'.
-     * - 'directory': The directory we will load the metadata files from. The default value for
-     *                this option is the value of the 'metadatadir' configuration option, or
-     *                'metadata/' if that option is unset.
-     *
-     * XML metadata handler:
-     * This metadata handler parses an XML file with either an EntityDescriptor element or an
-     * EntitiesDescriptor element. The XML file may be stored locally, or (for debugging) on a remote
-     * web server.
-     * The XML hetadata handler defines the following options:
-     * - 'type': This is always 'xml'.
-     * - 'file': Path to the XML file with the metadata.
-     * - 'url': The URL to fetch metadata from. THIS IS ONLY FOR DEBUGGING - THERE IS NO CACHING OF THE RESPONSE.
-     *
-     * MDX metadata handler:
-     * This metadata handler looks up for the metadata of an entity at the given MDX server.
-     * The MDX metadata handler defines the following options:
-     * - 'type': This is always 'mdx'.
-     * - 'server': URL of the MDX server (url:port). Mandatory.
-     * - 'validateFingerprint': The fingerprint of the certificate used to sign the metadata.
-     *                          You don't need this option if you don't want to validate the signature on the metadata. Optional.
-     * - 'cachedir': Directory where metadata can be cached. Optional.
-     * - 'cachelength': Maximum time metadata cah be cached, in seconds. Default to 24
-     *                  hours (86400 seconds). Optional.
-     *
-     * PDO metadata handler:
-     * This metadata handler looks up metadata of an entity stored in a database.
-     *
-     * Note: If you are using the PDO metadata handler, you must configure the database
-     * options in this configuration file.
-     *
-     * The PDO metadata handler defines the following options:
-     * - 'type': This is always 'pdo'.
-     *
-     *
-     * Examples:
-     *
-     * This example defines two flatfile sources. One is the default metadata directory, the other
-     * is a metadata directory with autogenerated metadata files.
-     *
-     * 'metadata.sources' => array(
-     *     array('type' => 'flatfile'),
-     *     array('type' => 'flatfile', 'directory' => 'metadata-generated'),
-     *     ),
-     *
-     * This example defines a flatfile source and an XML source.
-     * 'metadata.sources' => array(
-     *     array('type' => 'flatfile'),
-     *     array('type' => 'xml', 'file' => 'idp.example.org-idpMeta.xml'),
-     *     ),
-     *
-     * This example defines an mdx source.
-     * 'metadata.sources' => array(
-     *     array('type' => 'mdx', server => 'http://mdx.server.com:8080', 'cachedir' => '/var/simplesamlphp/mdx-cache', 'cachelength' => 86400)
-     *     ),
-     *
-     * This example defines an pdo source.
-     * 'metadata.sources' => array(
-     *     array('type' => 'pdo')
-     *     ),
-     *
-     * Default:
-     * 'metadata.sources' => array(
-     *     array('type' => 'flatfile')
-     *     ),
-     */
-    'metadata.sources' => array(
-        array('type' => 'flatfile'),
-    ),
-
-
-    /*
-     * Configure the datastore for SimpleSAMLphp.
-     *
-     * - 'phpsession': Limited datastore, which uses the PHP session.
-     * - 'memcache': Key-value datastore, based on memcache.
-     * - 'sql': SQL datastore, using PDO.
-     *
-     * The default datastore is 'phpsession'.
-     *
-     * (This option replaces the old 'session.handler'-option.)
-     */
-    'store.type'                    => 'phpsession',
-
-
-    /*
-     * The DSN the sql datastore should connect to.
-     *
-     * See http://www.php.net/manual/en/pdo.drivers.php for the various
-     * syntaxes.
-     */
-    'store.sql.dsn'                 => 'sqlite:/path/to/sqlitedatabase.sq3',
-
-    /*
-     * The username and password to use when connecting to the database.
-     */
-    'store.sql.username' => null,
-    'store.sql.password' => null,
-
-    /*
-     * The prefix we should use on our tables.
-     */
-    'store.sql.prefix' => 'SimpleSAMLphp',
-
+    /**************************
+     | MEMCACHE CONFIGURATION |
+     **************************/
 
     /*
      * Configuration for the 'memcache' session store. This allows you to store
@@ -763,7 +548,6 @@ $config = array(
         ),
     ),
 
-
     /*
      * This value allows you to set a prefix for memcache-keys. The default
      * for this value is 'SimpleSAMLphp', which is fine in most cases.
@@ -773,7 +557,6 @@ $config = array(
      * a unique value per instance to this setting to avoid data collision.
      */
     'memcache_store.prefix' => null,
-
 
     /*
      * This value is the duration data should be stored in memcache. Data
@@ -792,6 +575,297 @@ $config = array(
      */
     'memcache_store.expires' => 36 * (60 * 60), // 36 hours.
 
+
+
+    /*************************************
+     | LANGUAGE AND INTERNATIONALIZATION |
+     *************************************/
+
+    /*
+     * Languages available, RTL languages, and what language is the default.
+     */
+    'language.available' => array(
+        'en', 'no', 'nn', 'se', 'da', 'de', 'sv', 'fi', 'es', 'fr', 'it', 'nl', 'lb', 'cs',
+        'sl', 'lt', 'hr', 'hu', 'pl', 'pt', 'pt-br', 'tr', 'ja', 'zh', 'zh-tw', 'ru', 'et',
+        'he', 'id', 'sr', 'lv', 'ro', 'eu'
+    ),
+    'language.rtl' => array('ar', 'dv', 'fa', 'ur', 'he'),
+    'language.default' => 'en',
+
+    /*
+     * Options to override the default settings for the language parameter
+     */
+    'language.parameter.name' => 'language',
+    'language.parameter.setcookie' => true,
+
+    /*
+     * Options to override the default settings for the language cookie
+     */
+    'language.cookie.name' => 'language',
+    'language.cookie.domain' => null,
+    'language.cookie.path' => '/',
+    'language.cookie.lifetime' => (60 * 60 * 24 * 900),
+
+    /*
+     * Custom getLanguage function called from SimpleSAML\Locale\Language::getLanguage().
+     * Function should return language code of one of the available languages or NULL.
+     * See SimpleSAML\Locale\Language::getLanguage() source code for more info.
+     *
+     * This option can be used to implement a custom function for determining
+     * the default language for the user.
+     *
+     * Example:
+     *   'language.get_language_function' => array('sspmod_example_Template', 'getLanguage'),
+     */
+
+    /*
+     * Extra dictionary for attribute names.
+     * This can be used to define local attributes.
+     *
+     * The format of the parameter is a string with <module>:<dictionary>.
+     *
+     * Specifying this option will cause us to look for modules/<module>/dictionaries/<dictionary>.definition.json
+     * The dictionary should look something like:
+     *
+     * {
+     *     "firstattribute": {
+     *         "en": "English name",
+     *         "no": "Norwegian name"
+     *     },
+     *     "secondattribute": {
+     *         "en": "English name",
+     *         "no": "Norwegian name"
+     *     }
+     * }
+     *
+     * Note that all attribute names in the dictionary must in lowercase.
+     *
+     * Example: 'attributes.extradictionary' => 'ourmodule:ourattributes',
+     */
+    'attributes.extradictionary' => null,
+
+
+
+    /**************
+     | APPEARANCE |
+     **************/
+
+    /*
+     * Which theme directory should be used?
+     */
+    'theme.use' => 'default',
+
+
+
+    /*********************
+     | DISCOVERY SERVICE |
+     *********************/
+
+    /*
+     * Whether the discovery service should allow the user to save his choice of IdP.
+     */
+    'idpdisco.enableremember' => true,
+    'idpdisco.rememberchecked' => true,
+
+    /*
+     * The disco service only accepts entities it knows.
+     */
+    'idpdisco.validate' => true,
+
+    'idpdisco.extDiscoveryStorage' => null,
+
+    /*
+     * IdP Discovery service look configuration.
+     * Wether to display a list of idp or to display a dropdown box. For many IdP' a dropdown box
+     * gives the best use experience.
+     *
+     * When using dropdown box a cookie is used to highlight the previously chosen IdP in the dropdown.
+     * This makes it easier for the user to choose the IdP
+     *
+     * Options: [links,dropdown]
+     */
+    'idpdisco.layout' => 'dropdown',
+
+
+
+    /*************************************
+     | AUTHENTICATION PROCESSING FILTERS |
+     *************************************/
+
+    /*
+     * Authentication processing filters that will be executed for all IdPs
+     * Both Shibboleth and SAML 2.0
+     */
+    'authproc.idp' => array(
+        /* Enable the authproc filter below to add URN prefixes to all attributes
+         10 => array(
+             'class' => 'core:AttributeMap', 'addurnprefix'
+         ), */
+        /* Enable the authproc filter below to automatically generated eduPersonTargetedID.
+        20 => 'core:TargetedID',
+        */
+
+        // Adopts language from attribute to use in UI
+        30 => 'core:LanguageAdaptor',
+
+        /* Add a realm attribute from edupersonprincipalname
+        40 => 'core:AttributeRealm',
+         */
+        45 => array(
+            'class'         => 'core:StatisticsWithAttribute',
+            'attributename' => 'realm',
+            'type'          => 'saml20-idp-SSO',
+        ),
+
+        /* When called without parameters, it will fallback to filter attributes ‹the old way›
+         * by checking the 'attributes' parameter in metadata on IdP hosted and SP remote.
+         */
+        50 => 'core:AttributeLimit',
+
+        /*
+         * Search attribute "distinguishedName" for pattern and replaces if found
+
+        60 => array(
+            'class' => 'core:AttributeAlter',
+            'pattern' => '/OU=studerende/',
+            'replacement' => 'Student',
+            'subject' => 'distinguishedName',
+            '%replace',
+        ),
+         */
+
+        /*
+         * Consent module is enabled (with no permanent storage, using cookies).
+
+        90 => array(
+            'class' => 'consent:Consent',
+            'store' => 'consent:Cookie',
+            'focus' => 'yes',
+            'checked' => TRUE
+        ),
+         */
+        // If language is set in Consent module it will be added as an attribute.
+        99 => 'core:LanguageAdaptor',
+    ),
+
+    /*
+     * Authentication processing filters that will be executed for all SPs
+     * Both Shibboleth and SAML 2.0
+     */
+    'authproc.sp' => array(
+        /*
+        10 => array(
+            'class' => 'core:AttributeMap', 'removeurnprefix'
+        ),
+        */
+
+        /*
+         * Generate the 'group' attribute populated from other variables, including eduPersonAffiliation.
+         60 => array(
+            'class' => 'core:GenerateGroups', 'eduPersonAffiliation'
+        ),
+        */
+        /*
+         * All users will be members of 'users' and 'members'
+        61 => array(
+            'class' => 'core:AttributeAdd', 'groups' => array('users', 'members')
+        ),
+        */
+
+        // Adopts language from attribute to use in UI
+        90 => 'core:LanguageAdaptor',
+
+    ),
+
+
+
+    /**************************
+     | METADATA CONFIGURATION |
+     **************************/
+
+    /*
+     * This option configures the metadata sources. The metadata sources is given as an array with
+     * different metadata sources. When searching for metadata, SimpleSAMLphp will search through
+     * the array from start to end.
+     *
+     * Each element in the array is an associative array which configures the metadata source.
+     * The type of the metadata source is given by the 'type' element. For each type we have
+     * different configuration options.
+     *
+     * Flat file metadata handler:
+     * - 'type': This is always 'flatfile'.
+     * - 'directory': The directory we will load the metadata files from. The default value for
+     *                this option is the value of the 'metadatadir' configuration option, or
+     *                'metadata/' if that option is unset.
+     *
+     * XML metadata handler:
+     * This metadata handler parses an XML file with either an EntityDescriptor element or an
+     * EntitiesDescriptor element. The XML file may be stored locally, or (for debugging) on a remote
+     * web server.
+     * The XML metadata handler defines the following options:
+     * - 'type': This is always 'xml'.
+     * - 'file': Path to the XML file with the metadata.
+     * - 'url': The URL to fetch metadata from. THIS IS ONLY FOR DEBUGGING - THERE IS NO CACHING OF THE RESPONSE.
+     *
+     * MDX metadata handler:
+     * This metadata handler looks up for the metadata of an entity at the given MDX server.
+     * The MDX metadata handler defines the following options:
+     * - 'type': This is always 'mdx'.
+     * - 'server': Base URL of the MDX server. Mandatory.
+     * - 'validateFingerprint': The fingerprint of the certificate used to sign the metadata. You don't need this
+     *                          option if you don't want to validate the signature on the metadata. Optional.
+     * - 'cachedir': Directory where metadata can be cached. Optional.
+     * - 'cachelength': Maximum time metadata cah be cached, in seconds. Default to 24
+     *                  hours (86400 seconds). Optional.
+     *
+     * PDO metadata handler:
+     * This metadata handler looks up metadata of an entity stored in a database.
+     *
+     * Note: If you are using the PDO metadata handler, you must configure the database
+     * options in this configuration file.
+     *
+     * The PDO metadata handler defines the following options:
+     * - 'type': This is always 'pdo'.
+     *
+     * Examples:
+     *
+     * This example defines two flatfile sources. One is the default metadata directory, the other
+     * is a metadata directory with auto-generated metadata files.
+     *
+     * 'metadata.sources' => array(
+     *     array('type' => 'flatfile'),
+     *     array('type' => 'flatfile', 'directory' => 'metadata-generated'),
+     * ),
+     *
+     * This example defines a flatfile source and an XML source.
+     * 'metadata.sources' => array(
+     *     array('type' => 'flatfile'),
+     *     array('type' => 'xml', 'file' => 'idp.example.org-idpMeta.xml'),
+     * ),
+     *
+     * This example defines an mdx source.
+     * 'metadata.sources' => array(
+     *      array(
+     *          'type' => 'mdx',
+     *          'server' => 'http://mdx.server.com:8080',
+     *          'cachedir' => '/var/simplesamlphp/mdx-cache',
+     *          'cachelength' => 86400
+     *      )
+     * ),
+     *
+     * This example defines an pdo source.
+     * 'metadata.sources' => array(
+     *     array('type' => 'pdo')
+     * ),
+     *
+     * Default:
+     * 'metadata.sources' => array(
+     *     array('type' => 'flatfile')
+     * ),
+     */
+    'metadata.sources' => array(
+        array('type' => 'flatfile'),
+    ),
 
     /*
      * Should signing of generated metadata be enabled by default.
@@ -816,44 +890,40 @@ $config = array(
     'metadata.sign.certificate' => null,
 
 
-    /*
-     * Proxy to use for retrieving URLs.
-     *
-     * Example:
-     *   'proxy' => 'tcp://proxy.example.com:5100'
-     */
-    'proxy' => null,
 
-    
-    /*
-     * Username/password authentication to proxy (Proxy-Authorization: Basic)
-     * Example:
-     *   'proxy.auth' = 'myuser:password'
-     */
-    'proxy.auth' => false,
-    
-    /*
-     * Array of domains that are allowed when generating links or redirections
-     * to URLs. SimpleSAMLphp will use this option to determine whether to
-     * to consider a given URL valid or not, but you should always validate
-     * URLs obtained from the input on your own (i.e. ReturnTo or RelayState
-     * parameters obtained from the $_REQUEST array).
-     *
-     * SimpleSAMLphp will automatically add your own domain (either by checking
-     * it dynamically, or by using the domain defined in the 'baseurlpath'
-     * directive, the latter having precedence) to the list of trusted domains,
-     * in case this option is NOT set to NULL. In that case, you are explicitly
-     * telling SimpleSAMLphp to verify URLs.
-     *
-     * Set to an empty array to disallow ALL redirections or links pointing to
-     * an external URL other than your own domain. This is the default behaviour.
-     *
-     * Set to NULL to disable checking of URLs. DO NOT DO THIS UNLESS YOU KNOW
-     * WHAT YOU ARE DOING!
-     *
-     * Example:
-     *   'trusted.url.domains' => array('sp.example.com', 'app.example.com'),
-     */
-    'trusted.url.domains' => array(),
+    /****************************
+     | DATA STORE CONFIGURATION |
+     ****************************/
 
+    /*
+     * Configure the data store for SimpleSAMLphp.
+     *
+     * - 'phpsession': Limited datastore, which uses the PHP session.
+     * - 'memcache': Key-value datastore, based on memcache.
+     * - 'sql': SQL datastore, using PDO.
+     *
+     * The default datastore is 'phpsession'.
+     *
+     * (This option replaces the old 'session.handler'-option.)
+     */
+    'store.type'                    => 'phpsession',
+
+    /*
+     * The DSN the sql datastore should connect to.
+     *
+     * See http://www.php.net/manual/en/pdo.drivers.php for the various
+     * syntaxes.
+     */
+    'store.sql.dsn'                 => 'sqlite:/path/to/sqlitedatabase.sq3',
+
+    /*
+     * The username and password to use when connecting to the database.
+     */
+    'store.sql.username' => null,
+    'store.sql.password' => null,
+
+    /*
+     * The prefix we should use on our tables.
+     */
+    'store.sql.prefix' => 'SimpleSAMLphp',
 );
