@@ -87,17 +87,42 @@ class SimpleSAML_SessionHandlerPHP extends SimpleSAML_SessionHandler
         SimpleSAML_Session::createSession($sessionId);
 
         if (session_id() !== '') {
-            // session already started, close it
-            session_write_close();
+            // session already started, transfer it
+            self::update_session($sessionId);
         }
-
-        session_id($sessionId);
-        session_start();
+        else {
+            session_id($sessionId);
+            session_start();
+        }
 
         return session_id();
     }
 
+    public function update_session($newsessid = '') {
 
+        // Backup the current session
+        $session_backup = $_SESSION;
+
+        // Set current session to expire in 1 minute
+        $_SESSION['OBSOLETE'] = true;
+        $_SESSION['EXPIRES'] = time() + 60;
+
+        // Close the current session
+        session_write_close();
+
+        // Set a new session id and start the session
+        $newSession = session_id($newsessid);
+        session_start();
+
+        // Restore the previous session backup
+        $_SESSION = $session_backup;
+
+        // Clean up
+        unset($session_backup);
+        unset($_SESSION['OBSOLETE']);
+        unset($_SESSION['EXPIRES']);
+    }
+    
     /**
      * Retrieve the session ID saved in the session cookie, if there's one.
      *
