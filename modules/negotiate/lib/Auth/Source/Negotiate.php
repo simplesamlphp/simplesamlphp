@@ -151,7 +151,7 @@ class sspmod_negotiate_Auth_Source_Negotiate extends SimpleSAML_Auth_Source
                 $user = $auth->getAuthenticatedUser();
                 SimpleSAML\Logger::info('Negotiate - authenticate(): '.$user.' authenticated.');
                 $lookup = $this->lookupUserData($user);
-                if ($lookup) {
+                if ($lookup || $lookup === Array()) {
                     $state['Attributes'] = $lookup;
                     // Override the backend so logout will know what to look for
                     $state['LogoutState'] = array(
