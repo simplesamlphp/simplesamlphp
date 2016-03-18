@@ -116,9 +116,9 @@ class sspmod_negotiate_Auth_Source_Negotiate extends SimpleSAML_Auth_Source
             assert('FALSE');
         }
 
-        SimpleSAML\Logger::debug('Negotiate - authenticate(): looking for Negotate');
+        SimpleSAML\Logger::debug('Negotiate - authenticate(): looking for Negotiate');
         if (!empty($_SERVER['HTTP_AUTHORIZATION'])) {
-            SimpleSAML\Logger::debug('Negotiate - authenticate(): Negotate found');
+            SimpleSAML\Logger::debug('Negotiate - authenticate(): Negotiate found');
             $this->ldap = new SimpleSAML_Auth_LDAP(
                 $this->hostname,
                 $this->enableTLS,
