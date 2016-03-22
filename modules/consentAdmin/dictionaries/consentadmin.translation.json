@@ -26,7 +26,8 @@
 		"ro": "(nu a fost specificat numele)",
 		"ru": "(\u0438\u043c\u044f \u043d\u0435 \u0443\u043a\u0430\u0437\u0430\u043d\u043e)",
 		"cs": "(jm\u00e9no nespecifikov\u00e1no)",
-		"eu": "(izena ez da zehaztu)"
+		"eu": "(izena ez da zehaztu)",
+		"el": "(\u03c7\u03c9\u03c1\u03af\u03c2 \u03cc\u03bd\u03bf\u03bc\u03b1)"
 	},
 	"sp_empty_description": {
 		"da": "(ingen beskrivelse)",
@@ -55,7 +56,8 @@
 		"ro": "(f\u0103r\u0103 descriere)",
 		"ru": "(\u043e\u043f\u0438\u0441\u0430\u043d\u0438\u0435 \u043e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442)",
 		"cs": "(\u017e\u00e1dn\u00fd popis)",
-		"eu": "(deskribapenik gabe)"
+		"eu": "(deskribapenik gabe)",
+		"el": "(\u03c7\u03c9\u03c1\u03af\u03c2 \u03c0\u03b5\u03c1\u03b9\u03b3\u03c1\u03b1\u03c6\u03ae)"
 	},
 	"attribute_org": {
 		"da": "Organisation",
@@ -84,7 +86,8 @@
 		"ro": "Institu\u021bie",
 		"ru": "\u041e\u0440\u0433\u0430\u043d\u0438\u0437\u0430\u0446\u0438\u044f",
 		"cs": "Organizace",
-		"eu": "Erakundea"
+		"eu": "Erakundea",
+		"el": "\u039f\u03c1\u03b3\u03b1\u03bd\u03b9\u03c3\u03bc\u03cc\u03c2"
 	},
 	"added": {
 		"da": "Samtykke givet",
@@ -113,7 +116,8 @@
 		"ro": "Acordul a fost ad\u0103ugat",
 		"ru": "\u0421\u043e\u0433\u043b\u0430\u0441\u0438\u0435 \u0434\u043e\u0431\u0430\u0432\u043b\u0435\u043d\u043e",
 		"cs": "Ud\u011blen\u00e9 povolen\u00ed",
-		"eu": "Onespena gehitua"
+		"eu": "Onespena gehitua",
+		"el": "\u0397 \u03c3\u03c5\u03b3\u03ba\u03b1\u03c4\u03ac\u03b8\u03b5\u03c3\u03b7 \u03c0\u03c1\u03bf\u03c3\u03c4\u03ad\u03b8\u03b7\u03ba\u03b5"
 	},
 	"removed": {
 		"da": "Samtykke slettet",
@@ -142,7 +146,8 @@
 		"ro": "Acordul a fost \u00eenl\u0103turat",
 		"ru": "\u0421\u043e\u0433\u043b\u0430\u0441\u0438\u0435 \u043e\u0442\u043e\u0437\u0432\u0430\u043d\u043e",
 		"cs": "Odebran\u00e9 povolen\u00ed",
-		"eu": "Onespena ezabatua"
+		"eu": "Onespena ezabatua",
+		"el": "\u0397 \u03c3\u03c5\u03b3\u03ba\u03b1\u03c4\u03ac\u03b8\u03b5\u03c3\u03b7 \u03b1\u03bd\u03b1\u03b9\u03c1\u03ad\u03b8\u03b7\u03ba\u03b5"
 	},
 	"updated": {
 		"da": "Samtykke Opdateret",
@@ -171,7 +176,8 @@
 		"ro": "Acordul a fost actualizat",
 		"ru": "\u0421\u043e\u0433\u043b\u0430\u0441\u0438\u0435 \u043e\u0431\u043d\u043e\u0432\u043b\u0435\u043d\u043e",
 		"cs": "Aktualizovan\u00e9 povolen\u00ed",
-		"eu": "Onespena eguneratua"
+		"eu": "Onespena eguneratua",
+		"el": "\u0397 \u03c3\u03c5\u03b3\u03ba\u03b1\u03c4\u03ac\u03b8\u03b5\u03c3\u03b7 \u03b5\u03bd\u03b7\u03bc\u03b5\u03c1\u03ce\u03b8\u03b7\u03ba\u03b5"
 	},
 	"unknown": {
 		"da": "Ukendt ...",
@@ -200,7 +206,8 @@
 		"ro": "Necunoscut ...",
 		"ru": "\u041d\u0435\u0438\u0437\u0432\u0435\u0441\u0442\u043d\u043e..",
 		"cs": "Nezn\u00e1m\u00fd ...",
-		"eu": "Ezezaguna..."
+		"eu": "Ezezaguna...",
+		"el": "\u0386\u03b3\u03bd\u03c9\u03c3\u03c4\u03bf..."
 	},
 	"attribute_id": {
 		"da": "Identitet",
@@ -229,7 +236,8 @@
 		"ro": "Identitate",
 		"ru": "\u0418\u0434\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u043e\u043d\u043d\u0430\u044f \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u044f",
 		"cs": "Identita",
-		"eu": "Identitatea"
+		"eu": "Identitatea",
+		"el": "\u03a4\u03b1\u03c5\u03c4\u03cc\u03c4\u03b7\u03c4\u03b1"
 	},
 	"attribute_injected": {
 		"da": "Injiceret attribut",
@@ -258,7 +266,8 @@
 		"ro": "Atribut introdus",
 		"ru": "\u0412\u0432\u0435\u0434\u0435\u043d\u043d\u044b\u0439 \u0430\u0442\u0440\u0438\u0431\u0443\u0442",
 		"cs": "Vlo\u017een\u00fd atribut",
-		"eu": "Atributua sartuta"
+		"eu": "Atributua sartuta",
+		"el": "\u0395\u03b9\u03c3\u03b1\u03c7\u03b8\u03ad\u03bd \u03c3\u03c4\u03bf\u03b9\u03c7\u03b5\u03af\u03bf"
 	},
 	"show": {
 		"da": "Vis",
@@ -287,7 +296,8 @@
 		"ro": "Arat\u0103",
 		"ru": "\u041f\u043e\u043a\u0430\u0437\u0430\u0442\u044c",
 		"cs": "Zobrazit",
-		"eu": "Erakutsi"
+		"eu": "Erakutsi",
+		"el": "\u0395\u03bc\u03c6\u03ac\u03bd\u03b9\u03c3\u03b7"
 	},
 	"hide": {
 		"da": "Skjul",
@@ -316,7 +326,8 @@
 		"ro": "Ascunde",
 		"ru": "\u0421\u043a\u0440\u044b\u0442\u044c",
 		"cs": "Skr\u00fdt",
-		"eu": "Ezkutatu"
+		"eu": "Ezkutatu",
+		"el": "\u0391\u03c0\u03cc\u03ba\u03c1\u03c5\u03c8\u03b7"
 	},
 	"attributes_text": {
 		"da": "attributter",
@@ -345,7 +356,8 @@
 		"ro": "atribute",
 		"ru": "\u0430\u0442\u0440\u0438\u0431\u0443\u0442\u044b",
 		"cs": "atributy",
-		"eu": "Atributuak"
+		"eu": "Atributuak",
+		"el": "\u03c3\u03c4\u03bf\u03b9\u03c7\u03b5\u03af\u03c9\u03bd"
 	},
 	"consentadmin_header": {
 		"da": "Administrer dine samtykker",
@@ -374,7 +386,8 @@
 		"ro": "Administrarea acordurilor (consim\u021b\u0103mintelor)",
 		"ru": "\u0423\u043f\u0440\u0430\u0432\u043b\u0435\u043d\u0438\u0435 \u0441\u043e\u0433\u043b\u0430\u0441\u0438\u0435\u043c",
 		"cs": "Administrace povolen\u00ed",
-		"eu": "Onespenaren kudeaketa"
+		"eu": "Onespenaren kudeaketa",
+		"el": "\u0394\u03b9\u03b1\u03c7\u03b5\u03af\u03c1\u03b9\u03c3\u03b7 \u0394\u03b7\u03bb\u03ce\u03c3\u03b5\u03c9\u03bd \u03a3\u03c5\u03b3\u03ba\u03b1\u03c4\u03ac\u03b8\u03b5\u03c3\u03b7\u03c2"
 	},
 	"consentadmin_description1": {
 		"da": "WAYF videregiver kun oplysninger til eksterne tjenester, hvis du giver dit samtykke til det. Hvilke oplysninger det drejer sig om, varierer alt efter hvad tjenesteudbyderen har behov for. Det kan for eksempel v\u00e6re:<ul><li>Dit navn<li>Din e-mail-adresse<li>Din institution<li>Etc.<\/ul>Hvis du s\u00e6tter et flueben ud for <b>Husk dette samtykke<\/b>, vil du ikke blive spurgt, n\u00e6ste gang du bes\u00f8ger tjenesteudbyderen. S\u00e5 husker WAYF, at du allerede har givet samtykke til at videregive oplysninger til tjenesteudbyderen. <p>Nedenfor er opf\u00f8rt de tjenester, som du for \u00f8jeblikket har givet l\u00f8bende samtykke til:<\/a>",
@@ -403,7 +416,8 @@
 		"ro": "Aici pute\u021bi edita acordul\/consim\u021b\u0103m\u00e2ntul dumneavoastr\u0103 pentru Furnizorii de servicii.",
 		"ru": "\u0412 \u044d\u0442\u043e\u043c \u043f\u043e\u043b\u0435 \u043c\u043e\u0436\u043d\u043e \u043f\u0440\u043e\u0441\u043c\u043e\u0442\u0440\u0435\u0442\u044c \u0438 \u043e\u0442\u0440\u0435\u0434\u0430\u043a\u0442\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0442\u0435\u043a\u0441\u0442 \u0432\u0430\u0448\u0435\u0433\u043e \u0441\u043e\u0433\u043b\u0430\u0441\u0438\u044f \u0434\u043b\u044f \u0441\u0435\u0440\u0432\u0438\u0441 \u043f\u0440\u043e\u0432\u0430\u0439\u0434\u0435\u0440\u043e\u0432.",
 		"cs": "Zde m\u016f\u017eete zobrazit a upravit va\u0161e povolen\u00ed pro Poskytovatele slu\u017eeb.",
-		"eu": "Hemen, zerbitzu hornitzaileentzat onespena bistara eta edita dezakezu"
+		"eu": "Hemen, zerbitzu hornitzaileentzat onespena bistara eta edita dezakezu",
+		"el": "\u0395\u03b4\u03ce \u03bc\u03c0\u03bf\u03c1\u03b5\u03af\u03c4\u03b5 \u03bd\u03b1 \u03b4\u03b5\u03af\u03c4\u03b5 \u03ba\u03b1\u03b9 \u03bd\u03b1 \u03b5\u03c0\u03b5\u03be\u03b5\u03c1\u03b3\u03b1\u03c3\u03c4\u03b5\u03af\u03c4\u03b5 \u03c4\u03b9\u03c2 \u03b4\u03b7\u03bb\u03ce\u03c3\u03b5\u03b9\u03c2 \u03c3\u03c5\u03b3\u03ba\u03b1\u03c4\u03ac\u03b8\u03b5\u03c3\u03ae\u03c2 \u03c3\u03b1\u03c2 \u03b3\u03b9\u03b1 \u03c4\u03bf\u03c5\u03c2 \u03c0\u03b1\u03c1\u03cc\u03c7\u03bf\u03c5\u03c2 \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03b9\u03ce\u03bd"
 	},
 	"consentadmin_description2": {
 		"da": "<h3>S\u00e5dan sletter du et samtykke<\/h3>Fjern fluebenet ud for tjenesten, samtykket tilh\u00f8rer.<h3>Hvilke data gemmer WAYF om dig?<\/h3><ul><li>N\u00e5r du giver dit samtykke, henter WAYF dine oplysninger fra din institution og sender de relevante videre til tjenesteudbyderen<li>Ingen af oplysningerne gemmes af WAYF<li>Hvis du har bedt WAYF huske dit samtykke, gemmes personhenf\u00f8rbare data heller ikke hos WAYF. Oplysningen om, at du har givet dit samtykke, gemmes p\u00e5 en ikke-personhenf\u00f8rbar m\u00e5de<\/ul><h3>Hvilke rettigheder har du?<\/h3>Du har ret til at tr\u00e6kke et samtykke tilbage.<h3>Hvor l\u00e6nge gemmes dine samtykker?<\/h3>Et samtykke slettes tre \u00e5r efter, at du sidst har benyttet det.<h3>Hvordan beskyttes mine oplysninger?<\/h3>WAYF foretager behandlinger af personoplysninger i henhold til persondataloven (lov nr. 429 af 31. maj 2000 med senere \u00e6ndringer). Du kan l\u00e6se n\u00e6rmere om registreredes rettigheder i persondatalovens afsnit III.<a href=\"http:\/\/www.datatilsynet.dk\/lovgivning\/persondataloven\/\">Persondataloven<\/a><h3>Links<\/h3><ul><li><a href=\"https:\/\/www.wayf.dk\">Start<\/a> <\/li><li><a href=\"https:\/\/www.wayf.dk\/index.php\/da\/om-wayf\/faq-ofte-stillede-sporgsmal\">FAQ<\/a> <\/li><\/ul>",
@@ -432,7 +446,8 @@
 		"ro": "<h3>Cum poate fi anulat acordul dumneavoastr\u0103<\/h3>Debifa\u021bi c\u0103su\u021ba corespunz\u0103toare furnizorului de servicii <h3>Link-uri<\/h3><ul><li><a href=\"https:\/\/www.wayf.dk\">Start<\/a><\/li><li><a href=\"https:\/\/www.wayf.dk\/FAQ\">FAQ<\/a><\/li><\/ul>",
 		"ru": "<h3>\u041a\u0430\u043a \u0443\u0434\u0430\u043b\u0438\u0442\u044c \u0432\u0430\u0448\u0435 \u0441\u043e\u0433\u043b\u0430\u0441\u0438\u0435<\/h3> \u0421\u043d\u0438\u043c\u0438\u0442\u0435 \u0432\u044b\u0434\u0435\u043b\u0435\u043d\u0438\u0435 \u0441 \u0441\u0435\u0440\u0432\u0438\u0441 \u043f\u0440\u043e\u0432\u0430\u0439\u0434\u0435\u0440\u0430 <h3>\u0421\u0441\u044b\u043b\u043a\u0438<\/h3> <ul> <li><a href=\"https:\/\/www.wayf.dk\">Start<\/a> <\/li> <li><a href=\"https:\/\/www.wayf.dk\/FAQ\">FAQ<\/a> <\/li> <\/ul>",
 		"cs": "<h3>Jak smazat va\u0161e povolen\u00ed<\/h3> Odzna\u010dte pol\u00ed\u010dko odpov\u00eddaj\u00edc\u00ed poskytovateli slu\u017eeb <h3>Odkazy<\/h3> <ul><li><a href=\"https:\/\/www.wayf.dk\">Start<\/a><\/li><li><a href=\"https:\/\/www.wayf.dk\/FAQ\">FAQ<\/a><\/li><\/ul>",
-		"eu": "<h3>Zure onespena nola ezabatu<\/h3> Zerbitzu hornitzaileari dagokion aukerari marka kendu ezaiozu <h3>Loturak<\/h3> <ul> <li><a href=\"https:\/\/www.wayf.dk\">Haisera<\/a> <\/li> <li><a href=\"https:\/\/www.wayf.dk\/index.php\/en\/about-wayf\/faq-frequently-asked-questions\">FAQ<\/a> <\/li> <\/ul>"
+		"eu": "<h3>Zure onespena nola ezabatu<\/h3> Zerbitzu hornitzaileari dagokion aukerari marka kendu ezaiozu <h3>Loturak<\/h3> <ul> <li><a href=\"https:\/\/www.wayf.dk\">Haisera<\/a> <\/li> <li><a href=\"https:\/\/www.wayf.dk\/index.php\/en\/about-wayf\/faq-frequently-asked-questions\">FAQ<\/a> <\/li> <\/ul>",
+		"el": "<h3>\u03a0\u03ce\u03c2 \u03bd\u03b1 \u03b1\u03bd\u03b1\u03b9\u03c1\u03ad\u03c3\u03b5\u03c4\u03b5 \u03c4\u03b7 \u03c3\u03c5\u03b3\u03ba\u03b1\u03c4\u03ac\u03b8\u03b5\u03c3\u03ae \u03c3\u03b1\u03c2<\/h3>\u0391\u03c0\u03bf\u03b5\u03c0\u03b9\u03bb\u03ad\u03be\u03c4\u03b5 \u03c4\u03bf \u03ba\u03bf\u03c5\u03c4\u03af \u03b5\u03c0\u03b9\u03bb\u03bf\u03b3\u03ae\u03c2 \u03c0\u03bf\u03c5 \u03b1\u03bd\u03c4\u03b9\u03c3\u03c4\u03bf\u03b9\u03c7\u03b5\u03af \u03c3\u03c4\u03bf\u03bd \u03c0\u03ac\u03c1\u03bf\u03c7\u03bf \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03b9\u03ce\u03bd"
 	},
 	"login": {
 		"da": "login",
@@ -461,7 +476,8 @@
 		"ro": "autentificare",
 		"ru": "\u0412\u0445\u043e\u0434",
 		"cs": "p\u0159ihl\u00e1\u0161en\u00ed",
-		"eu": "sartu"
+		"eu": "sartu",
+		"el": "\u03b5\u03af\u03c3\u03bf\u03b4\u03bf\u03c2"
 	},
 	"service_providers_for": {
 		"da": "Service Providers for",
@@ -490,7 +506,8 @@
 		"ro": "Furnizori de servicii pentru",
 		"ru": "\u0421\u0435\u0440\u0432\u0438\u0441 \u043f\u0440\u043e\u0432\u0430\u0439\u0434\u0435\u0440\u044b \u0434\u043b\u044f",
 		"cs": "Poskytovatel\u00e9 slu\u017eeb pro",
-		"eu": "Zerbitzu hornitzaileak hontarako: "
+		"eu": "Zerbitzu hornitzaileak hontarako: ",
+		"el": "\u03a0\u03ac\u03c1\u03bf\u03c7\u03bf\u03b9 \u03a5\u03c0\u03b7\u03c1\u03b5\u03c3\u03b9\u03ce\u03bd \u03b3\u03b9\u03b1"
 	},
 	"service_provider_header": {
 		"da": "Service Provider",
@@ -519,7 +536,8 @@
 		"ro": "Furnizor de servicii",
 		"ru": "\u0421\u0435\u0440\u0432\u0438\u0441 \u043f\u0440\u043e\u0432\u0430\u0439\u0434\u0435\u0440",
 		"cs": "Poskytovatel slu\u017eeb",
-		"eu": "Zerbitzu hornitzailea"
+		"eu": "Zerbitzu hornitzailea",
+		"el": "\u03a0\u03ac\u03c1\u03bf\u03c7\u03bf\u03c2 \u03a5\u03c0\u03b7\u03c1\u03b5\u03c3\u03b9\u03ce\u03bd"
 	},
 	"status_header": {
 		"da": "Samtykke status",
@@ -548,7 +566,8 @@
 		"ro": "Stare acord (consim\u021b\u0103m\u00e2nt)",
 		"ru": "\u0421\u0442\u0430\u0442\u0443\u0441 \u0441\u043e\u0433\u043b\u0430\u0441\u0438\u044f",
 		"cs": "Stav povolen\u00ed",
-		"eu": "Onespenaren egoera"
+		"eu": "Onespenaren egoera",
+		"el": "\u039a\u03b1\u03c4\u03ac\u03c3\u03c4\u03b1\u03c3\u03b7 \u03c3\u03c5\u03b3\u03ba\u03b1\u03c4\u03ac\u03b8\u03b5\u03c3\u03b7\u03c2"
 	},
 	"show_hide_attributes": {
 		"da": "vis\/skjul attributter",
@@ -577,7 +596,8 @@
 		"ro": "arat\u0103\/ascunde atributele",
 		"ru": "\u041f\u043e\u043a\u0430\u0437\u0430\u0442\u044c\/\u0441\u043a\u0440\u044b\u0442\u044c \u0430\u0442\u0440\u0438\u0431\u0443\u0442\u044b",
 		"cs": "zobrazit\/skr\u00fdt atributy",
-		"eu": "erakutsi\/ezkutatu atributuak"
+		"eu": "erakutsi\/ezkutatu atributuak",
+		"el": "\u03b5\u03bc\u03c6\u03ac\u03bd\u03b9\u03c3\u03b7\/\u03b1\u03c0\u03cc\u03ba\u03c1\u03c5\u03c8\u03b7 \u03c3\u03c4\u03bf\u03b9\u03c7\u03b5\u03af\u03c9\u03bd"
 	},
 	"consentadmin_purpose": {
 		"da": "Form\u00e5let med tjenesten er",
@@ -606,6 +626,7 @@
 		"ro": "Scopul acestui serviciu este",
 		"ru": "\u0426\u0435\u043b\u044c\u044e \u0441\u0435\u0440\u0432\u0438\u0441\u0430 \u044f\u0432\u043b\u044f\u0435\u0442\u0441\u044f",
 		"cs": "\u00da\u010del slu\u017eby je",
-		"eu": "Zerbitzuaren xedea hau da"
+		"eu": "Zerbitzuaren xedea hau da",
+		"el": "\u039f \u03c3\u03ba\u03bf\u03c0\u03cc\u03c2 \u03c4\u03b7\u03c2 \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b1\u03c2 \u03b5\u03af\u03bd\u03b1\u03b9"
 	}
 }

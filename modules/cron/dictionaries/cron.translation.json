@@ -28,7 +28,8 @@
 		"cs": "Str\u00e1nka v\u00fdsledk\u016f cronu",
 		"eu": "Cronen emaitza orria",
 		"af": "Cron resultaat bladsy",
-		"pt-br": "P\u00e1gina de resultados do Cron"
+		"pt-br": "P\u00e1gina de resultados do Cron",
+		"el": "\u03a0\u03bb\u03b7\u03c1\u03bf\u03c6\u03bf\u03c1\u03af\u03b5\u03c2 \u03c0\u03b5\u03c1\u03b9\u03bf\u03b4\u03b9\u03ba\u03ce\u03bd \u03b5\u03c1\u03b3\u03b1\u03c3\u03b9\u03ce\u03bd cron"
 	},
 	"cron_result_title": {
 		"da": "Her er resultatet for opgaven udf\u00f8relse:",
@@ -59,7 +60,8 @@
 		"cs": "Zde je v\u00fdsledek \u00fakol\u016f spu\u0161t\u011bn\u00fdch z cronu:",
 		"eu": "Hona hemen cronen exekuzioan zereginen emaitzak: ",
 		"af": "Hier is die resultaat vir die cron uitvoeringsproses:",
-		"pt-br": "Aqui est\u00e3o os resultados para a execu\u00e7\u00e3o da rotina do cron:"
+		"pt-br": "Aqui est\u00e3o os resultados para a execu\u00e7\u00e3o da rotina do cron:",
+		"el": "\u0391\u03c0\u03bf\u03c4\u03ad\u03bb\u03b5\u03c3\u03bc\u03b1 \u03b5\u03ba\u03c4\u03ad\u03bb\u03b5\u03c3\u03b7\u03c2 \u03b5\u03c1\u03b3\u03b1\u03c3\u03af\u03b1\u03c2 cron:"
 	},
 	"cron_info": {
 		"da": "Cron er en m\u00e5de at k\u00f8re tingene regelm\u00e6ssigt p\u00e5 UNIX-systemer.",
@@ -90,7 +92,8 @@
 		"cs": "Cron je zp\u016fsob spou\u0161t\u011bn\u00ed pravideln\u00fdch \u00fakol\u016f na unixov\u00fdch syst\u00e9mech.",
 		"eu": "Cron UNIX sitemetan aldizkako zereginak exekutatzeko modu bat da.  ",
 		"af": "Cron is 'n manier om prosesse op 'n gere\u00eblde basis te hardloop op unix sisteme.",
-		"pt-br": "Cron \u00e9 uma maneira de executar as coisas regularmente em sistemas UNIX."
+		"pt-br": "Cron \u00e9 uma maneira de executar as coisas regularmente em sistemas UNIX.",
+		"el": "\u03a4\u03bf cron \u03b5\u03c0\u03b9\u03c4\u03c1\u03ad\u03c0\u03b5\u03b9 \u03c4\u03b7\u03bd \u03b5\u03ba\u03c4\u03ad\u03bb\u03b5\u03c3\u03b7 \u03b5\u03c1\u03b3\u03b1\u03c3\u03b9\u03ce\u03bd \u03b1\u03bd\u03ac \u03c4\u03b1\u03ba\u03c4\u03ac \u03b4\u03b9\u03b1\u03c3\u03c4\u03ae\u03bc\u03b1\u03c4\u03b1 \u03c3\u03b5 \u03c3\u03c5\u03c3\u03c4\u03ae\u03bc\u03b1\u03c4\u03b1 UNIX."
 	},
 	"cron_suggestion": {
 		"da": "Her er et forslag til en crontab fil:",
@@ -121,7 +124,8 @@
 		"cs": "Zde je n\u00e1vrh pro soubor crontab:",
 		"eu": "Hona hemen crontab fitxategi baten iradokizuna: ",
 		"af": "Hier is 'n voorbeeld vir 'n crontab l\u00eaer:",
-		"pt-br": "Aqui est\u00e1 uma sugest\u00e3o para um arquivo crontab:"
+		"pt-br": "Aqui est\u00e1 uma sugest\u00e3o para um arquivo crontab:",
+		"el": "\u03a0\u03c1\u03bf\u03c4\u03b5\u03b9\u03bd\u03cc\u03bc\u03b5\u03bd\u03bf \u03b1\u03c1\u03c7\u03b5\u03af\u03bf crontab:"
 	},
 	"cron_execution": {
 		"da": "Klik her for at k\u00f8re cron job:",
@@ -152,7 +156,8 @@
 		"cs": "Klikn\u011bte zde pro spu\u0161t\u011bn\u00ed \u00fakol\u016f z cronu:",
 		"eu": "Klikatu hemen cron zereginak exekutatzeko:",
 		"af": "Kliek hier om 'n cron proses the begin:",
-		"pt-br": "Clique aqui para executar as tarefas agendadas:"
+		"pt-br": "Clique aqui para executar as tarefas agendadas:",
+		"el": "\u039a\u03ac\u03bd\u03c4\u03b5 \u03ba\u03bb\u03b9\u03ba \u03b5\u03b4\u03ce \u03b3\u03b9\u03b1 \u03bd\u03b1 \u03b5\u03ba\u03c4\u03b5\u03bb\u03ad\u03c3\u03b5\u03c4\u03b5 \u03c4\u03b9\u03c2 \u03b5\u03c1\u03b3\u03b1\u03c3\u03af\u03b5\u03c2 cron:"
 	},
 	"run_text": {
 		"da": "Run cron:",
@@ -183,7 +188,8 @@
 		"cs": "Spusit cron:",
 		"eu": "Cron exekutatu:",
 		"af": "Begin cron:",
-		"pt-br": "Executar cron"
+		"pt-br": "Executar cron",
+		"el": "\u0395\u03ba\u03c4\u03ad\u03bb\u03b5\u03c3\u03b7 cron"
 	},
 	"ran_text": {
 		"da": "Cron l\u00f8b p\u00e5",
@@ -214,7 +220,8 @@
 		"cs": "Cron prob\u011bhl v",
 		"eu": "Cron noiz exekutatua",
 		"af": "Cron was aktief om",
-		"pt-br": "Cron rodou em"
+		"pt-br": "Cron rodou em",
+		"el": "\u0397\u03bc\u03b5\u03c1\u03bf\u03bc\u03b7\u03bd\u03af\u03b1 \u03ba\u03b1\u03b9 \u03ce\u03c1\u03b1 \u03b5\u03ba\u03c4\u03ad\u03bb\u03b5\u03c3\u03b7\u03c2 cron:"
 	},
 	"cron_report_title": {
 		"da": "Cron rapport",
@@ -245,6 +252,7 @@
 		"cs": "Hl\u00e1\u0161en\u00ed cronu",
 		"eu": "Cronen txostena",
 		"af": "Cron verslag",
-		"pt-br": "Relat\u00f3rio do cron"
+		"pt-br": "Relat\u00f3rio do cron",
+		"el": "\u0391\u03bd\u03b1\u03c6\u03bf\u03c1\u03ac cron"
 	}
 }
