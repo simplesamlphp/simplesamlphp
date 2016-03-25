@@ -124,7 +124,7 @@ if ($this->data['errorcode'] !== null) {
                 <td></td><td></td>
                 <td>
                     <button id="regularsubmit" class="btn"
-                            onclick="this.value='<?php echo $this->t('{login:processing'); ?>';
+                            onclick="this.value='<?php echo $this->t('{login:processing}'); ?>';
                                 this.disabled=true; this.form.submit(); return true;" tabindex="6">
                         <?php echo $this->t('{login:login_button}'); ?>
                     </button>
