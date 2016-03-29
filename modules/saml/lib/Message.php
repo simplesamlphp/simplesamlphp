@@ -403,18 +403,29 @@ class sspmod_saml_Message {
 
 		$ar = new SAML2_AuthnRequest();
 
-		if ($spMetadata->hasValue('NameIDPolicy')) {
-			$nameIdPolicy = $spMetadata->getString('NameIDPolicy', NULL);
-		} else {
-			$nameIdPolicy = $spMetadata->getString('NameIDFormat', SAML2_Const::NAMEID_TRANSIENT);
+		// get the NameIDPolicy to apply. IdP metadata has precedence.
+		$nameIdPolicy = array();
+		if ($idpMetadata->hasValue('NameIDPolicy')) {
+			$nameIdPolicy = $idpMetadata->getValue('NameIDPolicy');
+		} elseif ($spMetadata->hasValue('NameIDPolicy')) {
+			$nameIdPolicy = $spMetadata->getValue('NameIDPolicy');
 		}
 
-		if ($nameIdPolicy !== NULL) {
-			$ar->setNameIdPolicy(array(
-				'Format' => $nameIdPolicy,
-				'AllowCreate' => TRUE,
-			));
+		if (!is_array($nameIdPolicy)) {
+			// handle old configurations where 'NameIDPolicy' was used to specify just the format
+			$nameIdPolicy = array('Format' => $nameIdPolicy);
 		}
+
+		$nameIdPolicy_cf = SimpleSAML_Configuration::loadFromArray($nameIdPolicy);
+		$policy = array(
+			'Format' => $nameIdPolicy_cf->getString('Format', SAML2_Const::NAMEID_TRANSIENT),
+			'AllowCreate' => $nameIdPolicy_cf->getBoolean('AllowCreate', true),
+		);
+		$spNameQualifier = $nameIdPolicy_cf->getString('SPNameQualifier', false);
+		if ($spNameQualifier !== false) {
+			$policy['SPNameQualifier'] = $spNameQualifier;
+		}
+		$ar->setNameIdPolicy($policy);
 
 		$ar->setForceAuthn($spMetadata->getBoolean('ForceAuthn', FALSE));
 		$ar->setIsPassive($spMetadata->getBoolean('IsPassive', FALSE));
