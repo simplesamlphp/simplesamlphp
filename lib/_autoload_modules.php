@@ -37,7 +37,7 @@ function temporaryLoader($class)
 
     // it didn't exist, try to see if it was migrated to namespaces
     $new = join('\\', $path);
-    if (class_exists($new, false) || interface_exists($class, false)) {
+    if (class_exists($new, false) || interface_exists($new, false)) {
         // do not try to autoload it if it doesn't exist! It should!
         class_alias($new, $class);
         SimpleSAML\Logger::warning("The class or interface '$class' is now using namespaces, please use '$new'.");
