@@ -75,7 +75,8 @@ abstract class SimpleSAML_Metadata_MetaDataStorageSource
             case 'serialize':
                 return new SimpleSAML_Metadata_MetaDataStorageHandlerSerialize($sourceConfig);
             case 'mdx':
-                return new SimpleSAML_Metadata_MetaDataStorageHandlerMDX($sourceConfig);
+            case 'mdq':
+                return new \SimpleSAML\Metadata\Sources\MDQ($sourceConfig);
             case 'pdo':
                 return new SimpleSAML_Metadata_MetaDataStorageHandlerPdo($sourceConfig);
             default:

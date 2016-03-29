@@ -22,6 +22,16 @@ function temporaryLoader($class)
     if (!strstr($class, 'SimpleSAML_')) {
         return; // not a valid class name for old classes
     }
+    $original = $class;
+
+    // list of classes that have been renamed or moved
+    $renamed = array(
+        'SimpleSAML_Metadata_MetaDataStorageHandlerMDX' => 'SimpleSAML_Metadata_Sources_MDQ',
+    );
+    if (array_key_exists($class, $renamed)) {
+        // the class has been renamed, try to load it and create an alias
+        $class = $renamed[$class];
+    }
 
     // try to load it from the corresponding file
     $path = explode('_', $class);
@@ -39,8 +49,8 @@ function temporaryLoader($class)
     $new = join('\\', $path);
     if (class_exists($new, false) || interface_exists($new, false)) {
         // do not try to autoload it if it doesn't exist! It should!
-        class_alias($new, $class);
-        SimpleSAML\Logger::warning("The class or interface '$class' is now using namespaces, please use '$new'.");
+        class_alias($new, $original);
+        SimpleSAML\Logger::warning("The class or interface '$original' is now using namespaces, please use '$new'.");
     }
 }
 
