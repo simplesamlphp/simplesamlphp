@@ -365,6 +365,8 @@ class Logger
             $sh = new \SimpleSAML_Logger_LoggingHandlerFile();
         } elseif ($handler === 'errorlog') {
             $sh = new \SimpleSAML_Logger_LoggingHandlerErrorLog();
+        } elseif ($handler === 'stderr') {
+            $sh = new \SimpleSAML\Logger\StandardError();
         } else {
             throw new \Exception(
                 'Invalid value for the [logging.handler] configuration option. Unknown handler: '.$handler
@@ -381,12 +383,17 @@ class Logger
 
     private static function log($level, $string, $statsLog = false)
     {
-        if (php_sapi_name() === 'cli' || defined('STDIN')) {
-            // we are being executed from the CLI, nowhere to log
+        if (self::$loggingHandler === false) {
+            // some error occurred while initializing logging
+            self::defer($level, $string, $statsLog);
             return;
-        }
-
-        if (self::$loggingHandler === null) {
+        } elseif (php_sapi_name() === 'cli' || defined('STDIN')) {
+            // we are being executed from the CLI, nowhere to log
+            if (is_null(self::$loggingHandler)) {
+                self::createLoggingHandler('stderr');
+            }
+            $_SERVER['REMOTE_ADDR'] = "CLI";
+        } elseif (self::$loggingHandler === null) {
             // Initialize logging
             self::createLoggingHandler();
 
@@ -396,9 +403,6 @@ class Logger
                     self::log($msg['level'], $msg['string'], $msg['statsLog']);
                 }
             }
-        } elseif (self::$loggingHandler === false) {
-            self::defer($level, $string, $statsLog);
-            return;
         }
 
         if (self::$captureLog) {
