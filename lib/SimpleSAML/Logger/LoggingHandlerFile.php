@@ -1,14 +1,13 @@
 <?php
 
+
 /**
  * A class for logging
  *
  * @author Lasse Birnbaum Jensen, SDU.
  * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
- * @version $ID$
  */
-
 class SimpleSAML_Logger_LoggingHandlerFile implements SimpleSAML_Logger_LoggingHandler
 {
 
@@ -17,11 +16,11 @@ class SimpleSAML_Logger_LoggingHandlerFile implements SimpleSAML_Logger_LoggingH
      *
      * @var null|string
      */
-    protected $logFile = NULL;
+    protected $logFile = null;
 
     /**
-     * This array contains the mappings from syslog loglevel to names. Copied
-     * more or less directly from SimpleSAML_Logger_LoggingHandlerErrorLog.
+     * This array contains the mappings from syslog log levels to names. Copied more or less directly from
+     * SimpleSAML_Logger_LoggingHandlerErrorLog.
      */
     private static $levelNames = array(
         SimpleSAML\Logger::EMERG   => 'EMERGENCY',
@@ -33,7 +32,7 @@ class SimpleSAML_Logger_LoggingHandlerFile implements SimpleSAML_Logger_LoggingH
         SimpleSAML\Logger::INFO    => 'INFO',
         SimpleSAML\Logger::DEBUG   => 'DEBUG',
     );
-    private $processname = NULL;
+    private $processname = null;
     private $format;
 
 
@@ -46,19 +45,19 @@ class SimpleSAML_Logger_LoggingHandlerFile implements SimpleSAML_Logger_LoggingH
         assert($config instanceof SimpleSAML_Configuration);
 
         // get the metadata handler option from the configuration
-        $this->logFile = $config->getPathValue('loggingdir', 'log/') .
+        $this->logFile = $config->getPathValue('loggingdir', 'log/').
             $config->getString('logging.logfile', 'simplesamlphp.log');
         $this->processname = $config->getString('logging.processname', 'SimpleSAMLphp');
 
         if (@file_exists($this->logFile)) {
             if (!@is_writeable($this->logFile)) {
-                throw new Exception("Could not write to logfile: " . $this->logFile);
+                throw new Exception("Could not write to logfile: ".$this->logFile);
             }
         } else {
             if (!@touch($this->logFile)) {
                 throw new Exception(
-                    "Could not create logfile: " . $this->logFile .
-                    " Loggingdir is not writeable for the webserver user."
+                    "Could not create logfile: ".$this->logFile.
+                    " The logging directory is not writable for the web server user."
                 );
             }
         }
@@ -81,12 +80,12 @@ class SimpleSAML_Logger_LoggingHandlerFile implements SimpleSAML_Logger_LoggingH
     /**
      * Log a message to the log file.
      *
-     * @param int $level The log level.
+     * @param int    $level The log level.
      * @param string $string The formatted message to log.
      */
     public function log($level, $string)
     {
-        if ($this->logFile != NULL) {
+        if ($this->logFile != null) {
             // set human-readable log level. Copied from SimpleSAML_Logger_LoggingHandlerErrorLog.
             $levelName = sprintf('UNKNOWN%d', $level);
             if (array_key_exists($level, self::$levelNames)) {
