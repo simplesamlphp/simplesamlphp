@@ -11,6 +11,14 @@
 
 class SimpleSAML_Logger_LoggingHandlerFile implements SimpleSAML_Logger_LoggingHandler
 {
+
+    /**
+     * A string with the path to the file where we should log our messages.
+     *
+     * @var null|string
+     */
+    protected $logFile = NULL;
+
     /**
      * This array contains the mappings from syslog loglevel to names. Copied
      * more or less directly from SimpleSAML_Logger_LoggingHandlerErrorLog.
@@ -25,7 +33,6 @@ class SimpleSAML_Logger_LoggingHandlerFile implements SimpleSAML_Logger_LoggingH
         SimpleSAML\Logger::INFO    => 'INFO',
         SimpleSAML\Logger::DEBUG   => 'DEBUG',
     );
-    private $logFile = NULL;
     private $processname = NULL;
     private $format;
 
