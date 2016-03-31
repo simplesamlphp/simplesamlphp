@@ -18,7 +18,8 @@ class StandardError extends \SimpleSAML_Logger_LoggingHandlerFile
      */
     public function __construct()
     {
-        parent::__construct();
+        $config = \SimpleSAML_Configuration::getInstance();
+        $this->processname = $config->getString('logging.processname', 'SimpleSAMLphp');
         $this->logFile = 'php://stderr';
     }
 }

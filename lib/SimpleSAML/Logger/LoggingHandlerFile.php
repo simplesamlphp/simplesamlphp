@@ -32,8 +32,8 @@ class SimpleSAML_Logger_LoggingHandlerFile implements SimpleSAML_Logger_LoggingH
         SimpleSAML\Logger::INFO    => 'INFO',
         SimpleSAML\Logger::DEBUG   => 'DEBUG',
     );
-    private $processname = null;
-    private $format;
+    protected $processname = null;
+    protected $format;
 
 
     /**
