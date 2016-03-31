@@ -85,7 +85,7 @@ class SimpleSAML_Logger_LoggingHandlerFile implements SimpleSAML_Logger_LoggingH
      */
     public function log($level, $string)
     {
-        if ($this->logFile != null) {
+        if (!is_null($this->logFile)) {
             // set human-readable log level. Copied from SimpleSAML_Logger_LoggingHandlerErrorLog.
             $levelName = sprintf('UNKNOWN%d', $level);
             if (array_key_exists($level, self::$levelNames)) {
