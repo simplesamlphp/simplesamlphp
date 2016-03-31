@@ -139,6 +139,13 @@ class SimpleSAML_Session
     {
         $this->authData = array();
 
+        if (php_sapi_name() === 'cli' || defined('STDIN')) {
+            $this->trackid = 'CL'.bin2hex(openssl_random_pseudo_bytes(4));
+            SimpleSAML\Logger::setTrackId($this->trackid);
+            $this->transient = $transient;
+            return;
+        }
+
         if ($transient) { // transient session
             $sh = SimpleSAML_SessionHandler::getSessionHandler();
             $this->trackid = 'TR'.bin2hex(openssl_random_pseudo_bytes(4));
