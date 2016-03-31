@@ -391,20 +391,12 @@ class Logger
             self::createLoggingHandler();
 
             if (!empty(self::$earlyLog)) {
-                error_log('----------------------------------------------------------------------');
                 // output messages which were logged before we properly initialized logging
                 foreach (self::$earlyLog as $msg) {
                     self::log($msg['level'], $msg['string'], $msg['statsLog']);
                 }
             }
         } elseif (self::$loggingHandler === false) {
-            // some error occurred while initializing logging
-            if (empty(self::$earlyLog)) {
-                // this is the first message
-                error_log('--- Log message(s) while initializing logging ------------------------');
-            }
-            error_log($string);
-
             self::defer($level, $string, $statsLog);
             return;
         }
