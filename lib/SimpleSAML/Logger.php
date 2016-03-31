@@ -340,7 +340,7 @@ class Logger
         }
     }
 
-    private static function createLoggingHandler()
+    private static function createLoggingHandler($handler = null)
     {
         // set to FALSE to indicate that it is being initialized
         self::$loggingHandler = false;
@@ -350,7 +350,9 @@ class Logger
         assert($config instanceof \SimpleSAML_Configuration);
 
         // get the metadata handler option from the configuration
-        $handler = $config->getString('logging.handler', 'syslog');
+        if (is_null($handler)) {
+            $handler = $config->getString('logging.handler', 'syslog');
+        }
 
         // setting minimum log_level
         self::$logLevel = $config->getInteger('logging.level', self::INFO);
