@@ -1,34 +1,34 @@
 <?php
 
+namespace SimpleSAML\Logger;
+
+use SimpleSAML\Utils\System;
+
 /**
- * A class for logging
+ * A logger that sends messages to syslog.
  *
  * @author Lasse Birnbaum Jensen, SDU.
  * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
- * @version $ID$
  */
-
-class SimpleSAML_Logger_LoggingHandlerSyslog implements SimpleSAML_Logger_LoggingHandler
+class SyslogLoggingHandler implements LoggingHandlerInterface
 {
-    private $isWindows = FALSE;
+    private $isWindows = false;
     private $format;
 
 
     /**
      * Build a new logging handler based on syslog.
      */
-    public function __construct()
+    public function __construct(\SimpleSAML_Configuration $config)
     {
-        $config = SimpleSAML_Configuration::getInstance();
-        assert($config instanceof SimpleSAML_Configuration);
         $facility = $config->getInteger('logging.facility', defined('LOG_LOCAL5') ? constant('LOG_LOCAL5') : LOG_USER);
 
         $processname = $config->getString('logging.processname', 'SimpleSAMLphp');
 
         // Setting facility to LOG_USER (only valid in Windows), enable log level rewrite on windows systems
-        if (SimpleSAML\Utils\System::getOS() === SimpleSAML\Utils\System::WINDOWS) {
-            $this->isWindows = TRUE;
+        if (System::getOS() === System::WINDOWS) {
+            $this->isWindows = true;
             $facility = LOG_USER;
         }
 

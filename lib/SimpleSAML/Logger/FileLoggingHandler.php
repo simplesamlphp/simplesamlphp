@@ -1,14 +1,17 @@
 <?php
 
+namespace SimpleSAML\Logger;
+
+use SimpleSAML\Logger;
 
 /**
- * A class for logging
+ * A logging handler that dumps logs to files.
  *
  * @author Lasse Birnbaum Jensen, SDU.
  * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
  */
-class SimpleSAML_Logger_LoggingHandlerFile implements SimpleSAML_Logger_LoggingHandler
+class FileLoggingHandler implements LoggingHandlerInterface
 {
 
     /**
@@ -23,14 +26,14 @@ class SimpleSAML_Logger_LoggingHandlerFile implements SimpleSAML_Logger_LoggingH
      * SimpleSAML_Logger_LoggingHandlerErrorLog.
      */
     private static $levelNames = array(
-        SimpleSAML\Logger::EMERG   => 'EMERGENCY',
-        SimpleSAML\Logger::ALERT   => 'ALERT',
-        SimpleSAML\Logger::CRIT    => 'CRITICAL',
-        SimpleSAML\Logger::ERR     => 'ERROR',
-        SimpleSAML\Logger::WARNING => 'WARNING',
-        SimpleSAML\Logger::NOTICE  => 'NOTICE',
-        SimpleSAML\Logger::INFO    => 'INFO',
-        SimpleSAML\Logger::DEBUG   => 'DEBUG',
+        Logger::EMERG   => 'EMERGENCY',
+        Logger::ALERT   => 'ALERT',
+        Logger::CRIT    => 'CRITICAL',
+        Logger::ERR     => 'ERROR',
+        Logger::WARNING => 'WARNING',
+        Logger::NOTICE  => 'NOTICE',
+        Logger::INFO    => 'INFO',
+        Logger::DEBUG   => 'DEBUG',
     );
     protected $processname = null;
     protected $format;
@@ -39,11 +42,8 @@ class SimpleSAML_Logger_LoggingHandlerFile implements SimpleSAML_Logger_LoggingH
     /**
      * Build a new logging handler based on files.
      */
-    public function __construct()
+    public function __construct(\SimpleSAML_Configuration $config)
     {
-        $config = SimpleSAML_Configuration::getInstance();
-        assert($config instanceof SimpleSAML_Configuration);
-
         // get the metadata handler option from the configuration
         $this->logFile = $config->getPathValue('loggingdir', 'log/').
             $config->getString('logging.logfile', 'simplesamlphp.log');
@@ -51,18 +51,18 @@ class SimpleSAML_Logger_LoggingHandlerFile implements SimpleSAML_Logger_LoggingH
 
         if (@file_exists($this->logFile)) {
             if (!@is_writeable($this->logFile)) {
-                throw new Exception("Could not write to logfile: ".$this->logFile);
+                throw new \Exception("Could not write to logfile: ".$this->logFile);
             }
         } else {
             if (!@touch($this->logFile)) {
-                throw new Exception(
+                throw new \Exception(
                     "Could not create logfile: ".$this->logFile.
                     " The logging directory is not writable for the web server user."
                 );
             }
         }
 
-        SimpleSAML\Utils\Time::initTimezone();
+        \SimpleSAML\Utils\Time::initTimezone();
     }
 
 

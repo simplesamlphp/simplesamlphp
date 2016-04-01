@@ -84,9 +84,10 @@ class Logger
      *   about the format.
      *
      * - %process: the name of the SimpleSAMLphp process. Remember you can configure this in the 'logging.processname'
-     *   option.
+     *   option. The SyslogLoggingHandler will just remove this.
      *
-     * - %level: the log level (name or number depending on the handler used).
+     * - %level: the log level (name or number depending on the handler used). Please note different logging handlers
+     *   will print the log level differently.
      *
      * - %stat: if the log entry is intended for statistical purposes, it will print the string 'STAT ' (bear in mind
      *   the trailing space).
@@ -280,6 +281,7 @@ class Logger
      * Evaluate whether errors of a certain error level are masked or not.
      *
      * @param int $errno The level of the error to check.
+     *
      * @return bool True if the error is masked, false otherwise.
      */
     public static function isErrorMasked($errno)
@@ -324,8 +326,8 @@ class Logger
     /**
      * Defer a message for later logging.
      *
-     * @param int $level The log level corresponding to this message.
-     * @param string $message The message itself to log.
+     * @param int     $level The log level corresponding to this message.
+     * @param string  $message The message itself to log.
      * @param boolean $stats Whether this is a stats message or a regular one.
      */
     private static function defer($level, $message, $stats)
@@ -340,44 +342,48 @@ class Logger
         }
     }
 
+
     private static function createLoggingHandler($handler = null)
     {
-        // set to FALSE to indicate that it is being initialized
+        // set to false to indicate that it is being initialized
         self::$loggingHandler = false;
+
+        // a set of known logging handlers
+        $known_handlers = array(
+            'syslog'   => 'SimpleSAML\Logger\SyslogLoggingHandler',
+            'file'     => 'SimpleSAML\Logger\FileLoggingHandler',
+            'errorlog' => 'SimpleSAML\Logger\ErrorLogLoggingHandler',
+        );
 
         // get the configuration
         $config = \SimpleSAML_Configuration::getInstance();
         assert($config instanceof \SimpleSAML_Configuration);
+
+        // setting minimum log_level
+        self::$logLevel = $config->getInteger('logging.level', self::INFO);
 
         // get the metadata handler option from the configuration
         if (is_null($handler)) {
             $handler = $config->getString('logging.handler', 'syslog');
         }
 
-        // setting minimum log_level
-        self::$logLevel = $config->getInteger('logging.level', self::INFO);
-
-        $handler = strtolower($handler);
-
-        if ($handler === 'syslog') {
-            $sh = new \SimpleSAML_Logger_LoggingHandlerSyslog();
-        } elseif ($handler === 'file') {
-            $sh = new \SimpleSAML_Logger_LoggingHandlerFile();
-        } elseif ($handler === 'errorlog') {
-            $sh = new \SimpleSAML_Logger_LoggingHandlerErrorLog();
-        } elseif ($handler === 'stderr') {
-            $sh = new \SimpleSAML\Logger\StandardError();
+        if (class_exists($handler)) {
+            if (!in_array('SimpleSAML\Logger\LoggingHandlerInterface', class_implements($handler))) {
+                throw new \Exception("The logging handler '$handler' is invalid.");
+            }
         } else {
-            throw new \Exception(
-                'Invalid value for the [logging.handler] configuration option. Unknown handler: '.$handler
-            );
+            $handler = strtolower($handler);
+            if (!array_key_exists($handler, $known_handlers)) {
+                throw new \Exception(
+                    "Invalid value for the 'logging.handler' configuration option. Unknown handler '".$handler."''."
+                );
+            }
+            $handler = $known_handlers[$handler];
         }
+        self::$loggingHandler = new $handler($config);
 
         self::$format = $config->getString('logging.format', self::$format);
-        $sh->setLogFormat(self::$format);
-
-        // set the session handler
-        self::$loggingHandler = $sh;
+        self::$loggingHandler->setLogFormat(self::$format);
     }
 
 
@@ -390,7 +396,7 @@ class Logger
         } elseif (php_sapi_name() === 'cli' || defined('STDIN')) {
             // we are being executed from the CLI, nowhere to log
             if (is_null(self::$loggingHandler)) {
-                self::createLoggingHandler('stderr');
+                self::createLoggingHandler('SimpleSAML\Logger\StandardErrorLoggingHandler');
             }
             $_SERVER['REMOTE_ADDR'] = "CLI";
         } elseif (self::$loggingHandler === null) {

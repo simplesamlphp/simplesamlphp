@@ -27,6 +27,10 @@ function temporaryLoader($class)
     // list of classes that have been renamed or moved
     $renamed = array(
         'SimpleSAML_Metadata_MetaDataStorageHandlerMDX' => 'SimpleSAML_Metadata_Sources_MDQ',
+        'SimpleSAML_Logger_LoggingHandlerSyslog' => 'SimpleSAML_Logger_SyslogLoggingHandler',
+        'SimpleSAML_Logger_LoggingHandlerErrorLog' => 'SimpleSAML_Logger_ErrorLogLoggingHandler',
+        'SimpleSAML_Logger_LoggingHandlerFile' => 'SimpleSAML_Logger_FileLoggingHandler',
+        'SimpleSAML_Logger_LoggingHandler' => 'SimpleSAML_Logger_LoggingHandlerInterface',
     );
     if (array_key_exists($class, $renamed)) {
         // the class has been renamed, try to load it and create an alias

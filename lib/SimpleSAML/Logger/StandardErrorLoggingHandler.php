@@ -8,7 +8,7 @@ namespace SimpleSAML\Logger;
  * @author Jaime Perez Crespo, UNINETT AS <jaime.perez@uninett.no>
  * @package SimpleSAMLphp
  */
-class StandardError extends \SimpleSAML_Logger_LoggingHandlerFile
+class StandardErrorLoggingHandler extends FileLoggingHandler
 {
 
     /**
@@ -16,9 +16,8 @@ class StandardError extends \SimpleSAML_Logger_LoggingHandlerFile
      *
      * It runs the parent constructor and sets the log file to be the standard error descriptor.
      */
-    public function __construct()
+    public function __construct(\SimpleSAML_Configuration $config)
     {
-        $config = \SimpleSAML_Configuration::getInstance();
         $this->processname = $config->getString('logging.processname', 'SimpleSAMLphp');
         $this->logFile = 'php://stderr';
     }
