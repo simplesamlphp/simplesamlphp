@@ -23,7 +23,7 @@ class FileLoggingHandler implements LoggingHandlerInterface
 
     /**
      * This array contains the mappings from syslog log levels to names. Copied more or less directly from
-     * SimpleSAML_Logger_LoggingHandlerErrorLog.
+     * SimpleSAML\Logger\ErrorLogLoggingHandler.
      */
     private static $levelNames = array(
         Logger::EMERG   => 'EMERGENCY',
@@ -86,7 +86,7 @@ class FileLoggingHandler implements LoggingHandlerInterface
     public function log($level, $string)
     {
         if (!is_null($this->logFile)) {
-            // set human-readable log level. Copied from SimpleSAML_Logger_LoggingHandlerErrorLog.
+            // set human-readable log level. Copied from SimpleSAML\Logger\ErrorLogLoggingHandler.
             $levelName = sprintf('UNKNOWN%d', $level);
             if (array_key_exists($level, self::$levelNames)) {
                 $levelName = self::$levelNames[$level];

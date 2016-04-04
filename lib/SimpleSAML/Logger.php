@@ -16,7 +16,7 @@ class Logger
 {
 
     /**
-     * @var \SimpleSAML_Logger_LoggingHandler|false|null
+     * @var \SimpleSAML\Logger\LoggingHandlerInterface|false|null
      */
     private static $loggingHandler = null;
 
