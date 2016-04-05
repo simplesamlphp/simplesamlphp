@@ -23,6 +23,5 @@
         'o' => 'organizationName',
         'ou' => 'organizationalUnitName',
         'l' => 'localityName',
-        'sUS' => 'schacUserStatus',
     );
 
