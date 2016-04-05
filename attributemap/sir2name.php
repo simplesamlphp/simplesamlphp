@@ -25,4 +25,4 @@
         'l' => 'localityName',
         'sUS' => 'schacUserStatus',
     );
-?>
+
