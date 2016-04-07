@@ -377,6 +377,23 @@ class SimpleSAML_Session
         }
     }
 
+
+    /**
+     * Save the current session and clean any left overs that could interfere with the normal application behaviour.
+     *
+     * Use this method if you are using PHP sessions in your application *and* in SimpleSAMLphp, *after* you are done
+     * using SimpleSAMLphp and before trying to access your application's session again.
+     */
+    public function cleanup()
+    {
+        $this->save();
+        $sh = SimpleSAML_SessionHandler::getSessionHandler();
+        if ($sh instanceof SimpleSAML_SessionHandlerPHP) {
+            $sh->restorePrevious();
+        }
+    }
+
+
     /**
      * Mark this session as dirty.
      *

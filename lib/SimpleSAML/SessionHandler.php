@@ -23,7 +23,7 @@ abstract class SimpleSAML_SessionHandler
      *
      * @var SimpleSAML_SessionHandler
      */
-    private static $sessionHandler = null;
+    protected static $sessionHandler = null;
 
 
     /**

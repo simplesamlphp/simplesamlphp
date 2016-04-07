@@ -74,9 +74,47 @@ class SimpleSAML_SessionHandlerPHP extends SimpleSAML_SessionHandler
         $savepath = $config->getString('session.phpsession.savepath', null);
         if (!empty($savepath)) {
             session_save_path($savepath);
-
-
         }
+    }
+
+
+    /**
+     * Restore a previously-existing session.
+     *
+     * Use this method to restore a previous PHP session existing before SimpleSAMLphp initialized its own session.
+     *
+     * WARNING: do not use this method directly, unless you know what you are doing. Calling this method directly,
+     * outside of SimpleSAML_Session, could cause SimpleSAMLphp's session to be lost or mess the application's one. The
+     * session must always be saved properly before calling this method. If you don't understand what this is about,
+     * don't use this method.
+     */
+    public function restorePrevious()
+    {
+        if (empty($this->previous_session)) {
+            return; // nothing to do here
+        }
+
+        // close our own session
+        session_write_close();
+
+        session_name($this->previous_session['name']);
+        session_set_cookie_params(
+            $this->previous_session['cookie_params']['lifetime'],
+            $this->previous_session['cookie_params']['path'],
+            $this->previous_session['cookie_params']['domain'],
+            $this->previous_session['cookie_params']['secure'],
+            $this->previous_session['cookie_params']['httponly']
+        );
+        session_id($this->previous_session['id']);
+        $this->previous_session = array();
+        session_start();
+
+        /*
+         * At this point, we have restored a previously-existing session, so we can't continue to use our session here.
+         * Therefore, we need to load our session again in case we need it. We remove this handler from the parent
+         * class so that the handler is initialized again if we ever need to do something with the session.
+         */
+        parent::$sessionHandler = null;
     }
 
 
