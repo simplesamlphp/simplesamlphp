@@ -67,6 +67,7 @@ $attributemap = array(
     'urn:oid:1.3.6.1.4.1.5923.1.1.1.11'  => 'eduPersonAssurance',
     'urn:oid:1.3.6.1.4.1.5923.1.1.1.10'  => 'eduPersonTargetedID',
     'urn:oid:1.3.6.1.4.1.5923.1.1.1.13'  => 'eduPersonUniqueId',
+    'urn:oid:1.3.6.1.4.1.5923.1.1.1.16'  => 'eduPersonOrcid',
     'urn:oid:1.3.6.1.4.1.5923.1.1.1.2'   => 'eduPersonNickname',
     'urn:oid:1.3.6.1.4.1.5923.1.1.1.3'   => 'eduPersonOrgDN',
     'urn:oid:1.3.6.1.4.1.5923.1.1.1.4'   => 'eduPersonOrgUnitDN',
