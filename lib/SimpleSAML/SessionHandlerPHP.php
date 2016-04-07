@@ -19,6 +19,18 @@ class SimpleSAML_SessionHandlerPHP extends SimpleSAML_SessionHandler
      */
     protected $cookie_name;
 
+    /**
+     * An associative array containing the details of a session existing previously to creating or loading one with this
+     * session handler. The keys of the array will be:
+     *
+     *   - id: the ID of the session, as returned by session_id().
+     *   - name: the name of the session, as returned by session_name().
+     *   - cookie_params: the parameters of the session cookie, as returned by session_get_cookie_params().
+     *
+     * @var array
+     */
+    private $previous_session = array();
+
 
     /**
      * Initialize the PHP session handling. This constructor is protected because it should only be called from
@@ -29,35 +41,41 @@ class SimpleSAML_SessionHandlerPHP extends SimpleSAML_SessionHandler
         // call the parent constructor in case it should become necessary in the future
         parent::__construct();
 
-        /* Initialize the php session handling.
-         *
-         * If session_id() returns a blank string, then we need to call session start. Otherwise the session is already
-         * started, and we should avoid calling session_start().
-         */
-        if (session_id() === '') {
-            $config = SimpleSAML_Configuration::getInstance();
+        if (session_status() === PHP_SESSION_ACTIVE) {
+            /*
+             * We shouldn't have a session at this point, so it might be an application session. Save the details to
+             * retrieve it later and commit.
+             */
+            $this->previous_session['cookie_params'] = session_get_cookie_params();
+            $this->previous_session['id'] = session_id();
+            $this->previous_session['name'] = session_name();
+            session_write_close();
+        }
 
-            $params = $this->getCookieParams();
+        $config = SimpleSAML_Configuration::getInstance();
 
-            session_set_cookie_params(
-                $params['lifetime'],
-                $params['path'],
-                $params['domain'],
-                $params['secure'],
-                $params['httponly']
-            );
+        $this->cookie_name = $config->getString('session.phpsession.cookiename', null);
+        if (!empty($this->cookie_name)) {
+            session_name($this->cookie_name);
+        } else {
+            $this->cookie_name = session_name();
+        }
 
-            $this->cookie_name = $config->getString('session.phpsession.cookiename', null);
-            if (!empty($this->cookie_name)) {
-                session_name($this->cookie_name);
-            } else {
-                $this->cookie_name = session_name();
-            }
+        $params = $this->getCookieParams();
 
-            $savepath = $config->getString('session.phpsession.savepath', null);
-            if (!empty($savepath)) {
-                session_save_path($savepath);
-            }
+        session_set_cookie_params(
+            $params['lifetime'],
+            $params['path'],
+            $params['domain'],
+            $params['secure'],
+            $params['httponly']
+        );
+
+        $savepath = $config->getString('session.phpsession.savepath', null);
+        if (!empty($savepath)) {
+            session_save_path($savepath);
+
+
         }
     }
 
