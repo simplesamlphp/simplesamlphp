@@ -41,7 +41,16 @@ class SimpleSAML_SessionHandlerPHP extends SimpleSAML_SessionHandler
         // call the parent constructor in case it should become necessary in the future
         parent::__construct();
 
-        if (session_status() === PHP_SESSION_ACTIVE) {
+        $config = SimpleSAML_Configuration::getInstance();
+        $this->cookie_name = $config->getString('session.phpsession.cookiename', null);
+
+        if (function_exists('session_status') && defined('PHP_SESSION_ACTIVE')) { // PHP >= 5.4
+            $previous_session = session_status() === PHP_SESSION_ACTIVE;
+        } else {
+            $previous_session = (session_id() !== '') && (session_name() !== $this->cookie_name);
+        }
+
+        if ($previous_session) {
             /*
              * We shouldn't have a session at this point, so it might be an application session. Save the details to
              * retrieve it later and commit.
@@ -52,9 +61,6 @@ class SimpleSAML_SessionHandlerPHP extends SimpleSAML_SessionHandler
             session_write_close();
         }
 
-        $config = SimpleSAML_Configuration::getInstance();
-
-        $this->cookie_name = $config->getString('session.phpsession.cookiename', null);
         if (!empty($this->cookie_name)) {
             session_name($this->cookie_name);
         } else {
