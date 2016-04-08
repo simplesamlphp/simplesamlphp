@@ -10,6 +10,13 @@ class sspmod_imapauth_Auth_Source_MyAuth extends sspmod_core_Auth_UserPassBase {
     /* The database username & password. */
     private $username;
     private $password;
+    private $use_rc_database;
+    private $table_name;
+    private $mail_host;
+    private $imap_hostname;
+    private $imap_port;
+    private $imap_security;
+    private $imap_additional_options;
 
     public function __construct($info, $config) {
         parent::__construct($info, $config);
@@ -65,7 +72,6 @@ class sspmod_imapauth_Auth_Source_MyAuth extends sspmod_core_Auth_UserPassBase {
 
     protected function login($username, $password) {
 
-	$otuput=false;
 	//Defaults if there is no database entry
 	
 	$email=$username . "@" . $this->mail_host;
