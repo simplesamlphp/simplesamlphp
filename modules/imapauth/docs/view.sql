@@ -1,0 +1,1 @@
+CREATE VIEW `simplesasl_ident` AS select `users`.`user_id` AS `user_id`,lcase(`users`.`username`) AS `username`,`identities`.`name` AS `name`,`identities`.`email` AS `email` from (`users` join `identities`) where ((`users`.`user_id` = `identities`.`user_id`) and (`users`.`mail_host` = 'Mail host name from RC database'))
