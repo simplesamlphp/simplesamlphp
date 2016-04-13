@@ -206,7 +206,7 @@ class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception
      */
     protected function saveError()
     {
-        $data = $this->format();
+        $data = $this->format(true);
         $emsg = array_shift($data);
         $etrace = implode("\n", $data);
 
