@@ -11,11 +11,12 @@ if ($config->getBoolean('admin.protectmetadata', false)) {
 $sourceId = substr($_SERVER['PATH_INFO'], 1);
 $source = SimpleSAML_Auth_Source::getById($sourceId);
 if ($source === null) {
-    throw new SimpleSAML_Error_NotFound('Could not find authentication source with id '.$sourceId);
+    throw new SimpleSAML_Error_AuthSource($sourceId, 'Could not find authentication source.');
 }
 
 if (!($source instanceof sspmod_saml_Auth_Source_SP)) {
-    throw new SimpleSAML_Error_NotFound('Source isn\'t a SAML SP: '.var_export($sourceId, true));
+    throw new SimpleSAML_Error_AuthSource($sourceId,
+        'The authentication source is not a SAML Service Provider.');
 }
 
 $entityId = $source->getEntityId();
