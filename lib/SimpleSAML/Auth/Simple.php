@@ -35,7 +35,7 @@ class SimpleSAML_Auth_Simple {
 	public function getAuthSource() {
 		$as = SimpleSAML_Auth_Source::getById($this->authSource);
 		if ($as === null) {
-			throw new SimpleSAML_Error_Exception('Invalid authentication source: '.$this->authSource);
+			throw new SimpleSAML_Error_AuthSource($this->authSource, 'Unknown authentication source.');
 		}
 		return $as;
 	}
