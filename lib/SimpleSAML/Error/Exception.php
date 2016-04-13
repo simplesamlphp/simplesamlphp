@@ -32,22 +32,6 @@ class SimpleSAML_Error_Exception extends Exception
 
 
     /**
-     * Whether debugging is enabled or not.
-     *
-     * @var boolean
-     */
-    private $debug;
-
-
-    /**
-     * The base directory for this SimpleSAMLphp installation.
-     *
-     * @var string
-     */
-    private $basedir;
-
-
-    /**
      * Constructor for this error.
      *
      * Note that the cause will be converted to a SimpleSAML_Error_UnserializableException unless it is a subclass of
@@ -69,10 +53,6 @@ class SimpleSAML_Error_Exception extends Exception
         if ($cause !== null) {
             $this->cause = SimpleSAML_Error_Exception::fromException($cause);
         }
-
-        $config = SimpleSAML_Configuration::getInstance();
-        $this->debug = $config->getBoolean('debug', false);
-        $this->basedir = $config->getBaseDir();
     }
 
 
@@ -189,6 +169,7 @@ class SimpleSAML_Error_Exception extends Exception
     public function formatBacktrace($anonymize = false)
     {
         $ret = array();
+        $basedir = SimpleSAML_Configuration::getInstance()->getBaseDir();
 
         $e = $this;
         do {
@@ -200,7 +181,7 @@ class SimpleSAML_Error_Exception extends Exception
             $depth = count($e->backtrace);
             foreach ($e->backtrace as $i => $trace) {
                 if ($anonymize) {
-                    $trace = str_replace($this->basedir, '', $trace);
+                    $trace = str_replace($basedir, '', $trace);
                 }
 
                 $ret[] = ($depth - $i - 1).' '.$trace;
@@ -217,7 +198,7 @@ class SimpleSAML_Error_Exception extends Exception
      */
     protected function logBacktrace()
     {
-        if (!$this->debug) {
+        if (!SimpleSAML_Configuration::getInstance()->getBoolean('debug', false)) {
             return;
         }
 
