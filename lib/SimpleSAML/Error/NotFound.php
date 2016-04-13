@@ -31,8 +31,10 @@ class SimpleSAML_Error_NotFound extends SimpleSAML_Error_Error {
 
 		if($reason === NULL) {
 			parent::__construct(array('NOTFOUND', '%URL%' => $url));
+			$this->message = "The requested page '$url' could not be found.";
 		} else {
 			parent::__construct(array('NOTFOUNDREASON', '%URL%' => $url, '%REASON%' => $reason));
+			$this->message = "The requested page '$url' could not be found. ".$reason;
 		}
 
 		$this->reason = $reason;
