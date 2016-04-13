@@ -51,4 +51,18 @@ class SimpleSAML_Error_NotFound extends SimpleSAML_Error_Error {
 		return $this->reason;
 	}
 
+
+	/**
+	 * NotFound exceptions don't need to display a backtrace, as they are very simple and the trace is usually trivial,
+	 * so just log the message without any backtrace at all.
+	 *
+	 * @param bool $anonymize Whether to anonymize the trace or not.
+	 *
+	 * @return array
+	 */
+	public function format($anonymize = false) {
+		return array(
+			$this->getClass().': '.$this->getMessage(),
+		);
+	}
 }
