@@ -68,14 +68,24 @@ class sspmod_core_Auth_Process_AttributeMap extends SimpleSAML_Auth_ProcessingFi
     /**
      * Loads and merges in a file with a attribute map.
      *
-     * @param string $fileName Name of attribute map file. Expected to be in the attribute map dir.
+     * @param string $fileName Name of attribute map file. Expected to be in the attributemap directory in the root
+     * of the SimpleSAMLphp installation, or in the root of a module.
      *
      * @throws Exception If the filter could not load the requested attribute map file.
      */
     private function loadMapFile($fileName)
     {
         $config = SimpleSAML_Configuration::getInstance();
-        $filePath = $config->getPathValue('attributenamemapdir', 'attributemap/').$fileName.'.php';
+
+        $m = explode(':', $fileName);
+        if (count($m) === 2) { // we are asked for a file in a module
+            if (!SimpleSAML\Module::isModuleEnabled($m[0])) {
+                throw new Exception("Module '$m[0]' is not enabled.");
+            }
+            $filePath = SimpleSAML\Module::getModuleDir($m[0]).'/attributemap/'.$m[1].'.php';
+        } else {
+            $filePath = $config->getPathValue('attributenamemapdir', 'attributemap/').$fileName.'.php';
+        }
 
         if (!file_exists($filePath)) {
             throw new Exception('Could not find attribute map file: '.$filePath);
