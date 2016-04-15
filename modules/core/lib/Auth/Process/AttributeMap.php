@@ -11,7 +11,7 @@ class sspmod_core_Auth_Process_AttributeMap extends SimpleSAML_Auth_ProcessingFi
 {
 
     /**
-     * Assosiative array with the mappings of attribute names.
+     * Associative array with the mappings of attribute names.
      */
     private $map = array();
 
@@ -41,7 +41,7 @@ class sspmod_core_Auth_Process_AttributeMap extends SimpleSAML_Auth_ProcessingFi
                 if ($newName === '%duplicate') {
                     $this->duplicate = true;
                 } else {
-                    // No index given - this is a map file
+                    // no index given, this is a map file
                     $mapFiles[] = $newName;
                 }
                 continue;
@@ -58,7 +58,7 @@ class sspmod_core_Auth_Process_AttributeMap extends SimpleSAML_Auth_ProcessingFi
             $this->map[$origName] = $newName;
         }
 
-        // Load map files after we determine dupilicate or rename
+        // load map files after we determine duplicate or rename
         foreach ($mapFiles as &$file) {
             $this->loadMapFile($file);
         }
@@ -68,7 +68,7 @@ class sspmod_core_Auth_Process_AttributeMap extends SimpleSAML_Auth_ProcessingFi
     /**
      * Loads and merges in a file with a attribute map.
      *
-     * @param string $fileName Name of attribute map file. Expected to be in the attributenamemapdir.
+     * @param string $fileName Name of attribute map file. Expected to be in the attribute map dir.
      *
      * @throws Exception If the filter could not load the requested attribute map file.
      */
@@ -78,7 +78,7 @@ class sspmod_core_Auth_Process_AttributeMap extends SimpleSAML_Auth_ProcessingFi
         $filePath = $config->getPathValue('attributenamemapdir', 'attributemap/').$fileName.'.php';
 
         if (!file_exists($filePath)) {
-            throw new Exception('Could not find attributemap file: '.$filePath);
+            throw new Exception('Could not find attribute map file: '.$filePath);
         }
 
         $attributemap = null;
@@ -98,7 +98,7 @@ class sspmod_core_Auth_Process_AttributeMap extends SimpleSAML_Auth_ProcessingFi
     /**
      * Apply filter to rename attributes.
      *
-     * @param array &$request The current request
+     * @param array &$request The current request.
      */
     public function process(&$request)
     {
