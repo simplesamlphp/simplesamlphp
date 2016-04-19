@@ -510,14 +510,18 @@ class HTTP
      */
     public static function guessBasePath()
     {
+        if (!array_key_exists('REQUEST_URI', $_SERVER) || !array_key_exists('SCRIPT_FILENAME', $_SERVER)) {
+            return '/';
+        }
         // get the name of the current script
         $path = explode('/', $_SERVER['SCRIPT_FILENAME']);
         $script = array_pop($path);
 
         // get the portion of the URI up to the script, i.e.: /simplesaml/some/directory/script.php
-        preg_match('#^/(?:[^/]+/)*'.$script.'#', $_SERVER['REQUEST_URI'], $matches);
-
-        $uri_s  = explode('/', $matches[0]);
+        if (!preg_match('#^/(?:[^/]+/)*'.$script.'#', $_SERVER['REQUEST_URI'], $matches)) {
+            return '/';
+        }
+        $uri_s = explode('/', $matches[0]);
         $file_s = explode('/', $_SERVER['SCRIPT_FILENAME']);
 
         // compare both arrays from the end, popping elements matching out of them
@@ -525,7 +529,6 @@ class HTTP
             array_pop($uri_s);
             array_pop($file_s);
         }
-
         // we are now left with the minimum part of the URI that does not match anything in the file system, use it
         return join('/', $uri_s).'/';
     }
