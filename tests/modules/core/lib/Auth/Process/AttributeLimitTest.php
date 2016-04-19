@@ -20,7 +20,7 @@ class Test_sspmod_core_Auth_Process_AttributeLimit extends PHPUnit_Framework_Tes
     }
 
     /**
-     * Test releasing attribute
+     * Test releasing bilateral attributes by SPs
      */
     public function testBilateralSPs()
     {
@@ -55,6 +55,9 @@ class Test_sspmod_core_Auth_Process_AttributeLimit extends PHPUnit_Framework_Tes
         $this->assertEquals($result['Attributes'], $expectedData['Attributes'], "OK");
     }
 
+    /**
+     * Test releasing bilateral attributes by attributes
+     */
     public function testBilateralAttributes()
     {
 
