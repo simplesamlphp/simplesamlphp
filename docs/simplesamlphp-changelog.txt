@@ -8,7 +8,7 @@ See the upgrade notes for specific information about upgrading.
 
 ## Version 1.14.3
 
-Released TBD
+Released 2016-04-19
 
   * Fixed a bug in the login form that prevented the login button to be displayed in mobile devices.
   * Resolved an issue in the PHP session handler that made it impossible to use PHP sessions simultaneously with other applications.
