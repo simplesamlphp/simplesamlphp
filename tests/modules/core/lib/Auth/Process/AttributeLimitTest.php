@@ -2,22 +2,122 @@
 /**
  * Test for the core:AttributeLimit filter.
  */
-class Test_Core_Auth_Process_AttributeLimitTest extends PHPUnit_Framework_TestCase
+class Test_sspmod_core_Auth_Process_AttributeLimit extends PHPUnit_Framework_TestCase
 {
 
     /**
      * Helper function to run the filter with a given configuration.
      *
-     * @param array $config  The filter configuration.
-     * @param array $request  The request state.
+     * @param  array $config The filter configuration.
+     * @param  array $request The request state.
      * @return array  The state array after processing.
      */
     private static function processFilter(array $config, array $request)
     {
-        $filter = new sspmod_core_Auth_Process_AttributeLimit($config, NULL);
+        $filter = new sspmod_core_Auth_Process_AttributeLimit($config, null);
         $filter->process($request);
         return $request;
     }
+
+    /**
+     * Test releasing attribute
+     */
+    public function testBilateralSPs()
+    {
+
+        $expectedData = array(
+            'Attributes' => array(
+                'mail' => array('bob@institutionalmail.org'),
+                'notification-mail' => array('bob@gmail.com')
+            ),        );
+
+        $request = array(
+            'Attributes' => array(
+                'mail' => array('bob@institutionalmail.org'),
+                'notification-mail' => array('bob@gmail.com')
+            ),
+            'Destination' => array(
+                'entityid' => 'https://tesztsp.hu/shibboleth',
+                'attributes' => array('mail')
+            ),
+            'Source' => array()
+        );
+
+        $config = array(
+            'bilateralSPs' => array(
+                'https://tesztsp.hu/shibboleth' => array(
+                    'notification-mail'
+                )
+            )
+        );
+
+        $result = self::processFilter($config, $request);
+        $this->assertEquals($result['Attributes'], $expectedData['Attributes'], "OK");
+    }
+
+    public function testBilateralAttributes()
+    {
+
+        $expectedData = array(
+            'Attributes' => array(
+                'mail' => array('bob@institutionalmail.org'),
+                'notification-mail' => array('bob@gmail.com')
+            ),        );
+
+        $request = array(
+            'Attributes' => array(
+                'mail' => array('bob@institutionalmail.org'),
+                'notification-mail' => array('bob@gmail.com')
+            ),
+            'Destination' => array(
+                'entityid' => 'https://tesztsp.hu/shibboleth',
+                'attributes' => array('mail')
+            ),
+            'Source' => array()
+        );
+
+        $config = array(
+            'bilateralAttributes' => array(
+                'notification-mail' => array(
+                    'https://tesztsp.hu/shibboleth'
+                )
+            )
+        );
+
+        $result = self::processFilter($config, $request);
+        $this->assertEquals($result['Attributes'], $expectedData['Attributes'], "OK");
+    }
+
+    public function testInvaildConfigs()
+    {
+        $this->setExpectedException('SimpleSAML_Error_Exception');
+        $request = array(
+            'Attributes' => array(
+                'mail' => array('bob@institutionalmail.org'),
+                'notification-mail' => array('bob@gmail.com')
+            ),
+            'Destination' => array(
+                'entityid' => 'https://tesztsp.hu/shibboleth',
+                'attributes' => array('mail')
+            ),
+            'Source' => array()
+        );
+
+        $config = array(
+            'bilateralAttributes' => array(
+                'notification-mail' => 'https://tesztsp.hu/shibboleth'
+            ),
+            'bilateralSPs' => array(
+                'https://tesztsp.hu/shibboleth' => 'notification-mail'
+            ),
+            'invalidConfigKey' => array()
+        );
+        $result = self::processFilter($config, $request);
+    }
+
+    /**
+     * Inherited tests from core:AttributeLimit
+     */
 
     /**
      * Test reading IdP Attributes.
@@ -52,7 +152,7 @@ class Test_Core_Auth_Process_AttributeLimitTest extends PHPUnit_Framework_TestCa
 
         $config = array(
             'cn',
-            'default' => TRUE,
+            'default' => true,
         );
 
         $result = self::processFilter($config, $request);
@@ -98,7 +198,7 @@ class Test_Core_Auth_Process_AttributeLimitTest extends PHPUnit_Framework_TestCa
 
         $config = array(
             'cn',
-            'default' => TRUE,
+            'default' => true,
         );
 
         $result = self::processFilter($config, $request);
@@ -137,7 +237,7 @@ class Test_Core_Auth_Process_AttributeLimitTest extends PHPUnit_Framework_TestCa
                  'mail' => array('user@example.org'),
              ),
             'Destination' => array(
-		'attributes' => array('cn','mail'),
+                'attributes' => array('cn','mail'),
              ),
             'Source' => array(
              ),
@@ -166,7 +266,7 @@ class Test_Core_Auth_Process_AttributeLimitTest extends PHPUnit_Framework_TestCa
     public function testDefaultWithMetadata()
     {
         $config = array(
-            'default' => TRUE,
+            'default' => true,
         );
 
         $result = self::processFilter($config, self::$request);
@@ -182,7 +282,7 @@ class Test_Core_Auth_Process_AttributeLimitTest extends PHPUnit_Framework_TestCa
     public function testDefaultWithAttrs()
     {
         $config = array(
-            'default' => TRUE,
+            'default' => true,
             'eduPersonTargetedID', 'eduPersonAffiliation',
         );
 
@@ -197,13 +297,13 @@ class Test_Core_Auth_Process_AttributeLimitTest extends PHPUnit_Framework_TestCa
 
     /**
      * Test for exception with illegal config.
-     * 
-     * @expectedException Exception 
+     *
+     * @expectedException Exception
      */
     public function testInvalidConfig()
     {
         $config = array(
-            'invalidArg' => TRUE,
+            'invalidArg' => true,
         );
 
         $result = self::processFilter($config, self::$request);
@@ -211,13 +311,13 @@ class Test_Core_Auth_Process_AttributeLimitTest extends PHPUnit_Framework_TestCa
 
     /**
      * Test for invalid attribute name
-     * 
-     * @expectedException Exception 
+     *
+     * @expectedException Exception
      */
     public function testInvalidAttributeName()
     {
         $config = array(
-		null
+        null
         );
 
         $result = self::processFilter($config, self::$request);
@@ -230,7 +330,7 @@ class Test_Core_Auth_Process_AttributeLimitTest extends PHPUnit_Framework_TestCa
     public function testMatchAttributeValues()
     {
         $config = array(
-		'eduPersonAffiliation' => array('member')
+        'eduPersonAffiliation' => array('member')
         );
 
         $result = self::processFilter($config, self::$request);
@@ -240,7 +340,7 @@ class Test_Core_Auth_Process_AttributeLimitTest extends PHPUnit_Framework_TestCa
         $this->assertEquals($attributes['eduPersonAffiliation'], array('member'));
 
         $config = array(
-		'eduPersonAffiliation' => array('member','staff')
+        'eduPersonAffiliation' => array('member','staff')
         );
 
         $result = self::processFilter($config, self::$request);
@@ -250,14 +350,14 @@ class Test_Core_Auth_Process_AttributeLimitTest extends PHPUnit_Framework_TestCa
         $this->assertEquals($attributes['eduPersonAffiliation'], array('member'));
 
         $config = array(
-		'eduPersonAffiliation' => array('student')
+        'eduPersonAffiliation' => array('student')
         );
         $result = self::processFilter($config, self::$request);
         $attributes = $result['Attributes'];
         $this->assertCount(0, $attributes);
 
         $config = array(
-		'eduPersonAffiliation' => array('student','staff')
+        'eduPersonAffiliation' => array('student','staff')
         );
         $result = self::processFilter($config, self::$request);
         $attributes = $result['Attributes'];
@@ -265,12 +365,12 @@ class Test_Core_Auth_Process_AttributeLimitTest extends PHPUnit_Framework_TestCa
     }
 
     /**
-     * Test for allowed attributes not an array. 
+     * Test for allowed attributes not an array.
      *
-     * This test is very unlikely and would require malformed metadata processing. 
+     * This test is very unlikely and would require malformed metadata processing.
      * Cannot be generated via config options.
      *
-     * @expectedException Exception 
+     * @expectedException Exception
      */
     public function testMatchAttributeValuesNotArray()
     {
@@ -302,7 +402,7 @@ class Test_Core_Auth_Process_AttributeLimitTest extends PHPUnit_Framework_TestCa
     public function testNoIntersection()
     {
         $config = array(
-            'default' => TRUE,
+            'default' => true,
         );
 
         $request = array(
