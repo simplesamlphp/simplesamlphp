@@ -605,7 +605,9 @@ class SimpleSAML_Auth_LDAP {
          * These characters are escaped by prefixing them with '\'.
          */
         $username = addcslashes($username, ',+"\\<>;*');
-        $password = addcslashes($password, ',+"\\<>;*');
+        if ($password !== null) {
+            $password = addcslashes($password, ',+"\\<>;*');
+        }
 
         if (isset($config['priv_user_dn'])) {
             $this->bind($config['priv_user_dn'], $config['priv_user_pw']);
