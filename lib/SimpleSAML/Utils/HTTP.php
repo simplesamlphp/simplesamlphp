@@ -539,7 +539,7 @@ class HTTP
      *      https://idp.example.org/simplesaml/
      *
      * @return string The absolute base URL for the SimpleSAMLphp installation.
-     * @throws \SimpleSAML_Error_Exception If 'baseurlpath' has an invalid format.
+     * @throws \SimpleSAML\Error\CriticalConfigurationError If 'baseurlpath' has an invalid format.
      *
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
@@ -567,9 +567,17 @@ class HTTP
 
             return $protocol.$hostname.$port.$path;
         } else {
-            throw new \SimpleSAML_Error_Exception(
+            /*
+             * Invalid 'baseurlpath'. We cannot recover from this, so throw a critical exception and try to be graceful
+             * with the configuration. Use a guessed base path instead of the one provided.
+             */
+            $c = $globalConfig->toArray();
+            $c['baseurlpath'] = self::guessBasePath();
+            throw new \SimpleSAML\Error\CriticalConfigurationError(
                 'Invalid value for \'baseurlpath\' in config.php. Valid format is in the form: '.
-                '[(http|https)://(hostname|fqdn)[:port]]/[path/to/simplesaml/]. It must end with a \'/\'.'
+                '[(http|https)://(hostname|fqdn)[:port]]/[path/to/simplesaml/]. It must end with a \'/\'.',
+                null,
+                $c
             );
         }
     }

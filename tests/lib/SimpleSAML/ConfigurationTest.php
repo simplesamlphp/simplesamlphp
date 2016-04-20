@@ -15,6 +15,27 @@ class Test_SimpleSAML_Configuration extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test that the default instance fails to load even if we previously loaded another instance.
+     * @expectedException \SimpleSAML\Error\CriticalConfigurationError
+     */
+    public function testLoadDefaultInstance()
+    {
+        SimpleSAML_Configuration::loadFromArray(array('key' => 'value'), '', 'dummy');
+        SimpleSAML_Configuration::getInstance();
+    }
+
+
+    /**
+     * Test that after a \SimpleSAML\Error\CriticalConfigurationError exception, a basic, self-survival configuration
+     * is loaded.
+     */
+    public function testCriticalConfigurationError()
+    {
+        $c = SimpleSAML_Configuration::getInstance();
+        $this->assertNotEmpty($c->toArray());
+    }
+
+    /**
      * Test SimpleSAML_Configuration::getValue()
      */
     public function testGetValue() {
@@ -127,7 +148,7 @@ class Test_SimpleSAML_Configuration extends PHPUnit_Framework_TestCase
 
     /**
      * Test that SimpleSAML_Configuration::getBaseURL() fails if given a path without trailing slash
-     * @expectedException SimpleSAML_Error_Exception
+     * @expectedException \SimpleSAML\Error\CriticalConfigurationError
      */
     public function testGetBaseURLError() {
         $c = SimpleSAML_Configuration::loadFromArray(array(
@@ -860,19 +881,6 @@ class Test_SimpleSAML_Configuration extends PHPUnit_Framework_TestCase
         ));
         $c->getLocalizedString('opt');
     }
-
-
-    /**
-     * Test that the default instance fails to load even if we previously loaded another instance.
-     * @expectedException Exception
-     */
-    public function testLoadDefaultInstance()
-    {
-        SimpleSAML_Configuration::loadFromArray(array('key' => 'value'), '', 'dummy');
-        $c = SimpleSAML_Configuration::getInstance();
-        var_dump($c);
-    }
-
 
     /**
      * Test that Configuration objects can be initialized from an array.
