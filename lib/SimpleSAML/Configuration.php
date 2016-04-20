@@ -107,11 +107,15 @@ class SimpleSAML_Configuration
             return self::$loadedConfigs[$filename];
         }
 
+        $spurious_output = false;
         if (file_exists($filename)) {
             $config = 'UNINITIALIZED';
 
             // the file initializes a variable named '$config'
+            ob_start();
             require($filename);
+            $spurious_output = ob_get_length() > 0;
+            ob_end_clean();
 
             // check that $config exists
             if (!isset($config)) {
@@ -150,6 +154,12 @@ class SimpleSAML_Configuration
         $cfg->filename = $filename;
 
         self::$loadedConfigs[$filename] = $cfg;
+
+        if ($spurious_output) {
+            SimpleSAML\Logger::warning(
+                "The configuration file '$filename' generates output. Please review your configuration."
+            );
+        }
 
         return $cfg;
     }
