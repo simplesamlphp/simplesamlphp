@@ -605,7 +605,6 @@ class SimpleSAML_Auth_LDAP {
          * These characters are escaped by prefixing them with '\'.
          */
         $username = addcslashes($username, ',+"\\<>;*');
-        $password = addcslashes($password, ',+"\\<>;*');
 
         if (isset($config['priv_user_dn'])) {
             $this->bind($config['priv_user_dn'], $config['priv_user_pw']);
@@ -617,6 +616,8 @@ class SimpleSAML_Auth_LDAP {
         }
 
         if ($password !== null) { // checking users credentials ... assuming below that she may read her own attributes ...
+            // escape characters with a special meaning, also in the password
+            $password = addcslashes($password, ',+"\\<>;*');
             if (!$this->bind($dn, $password)) {
                 SimpleSAML\Logger::info('Library - LDAP validate(): Failed to authenticate \''. $username . '\' using DN \'' . $dn . '\'');
                 return FALSE;
