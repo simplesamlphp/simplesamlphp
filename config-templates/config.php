@@ -105,6 +105,17 @@ $config = array(
     'trusted.url.domains' => array(),
 
     /*
+     * Enable regular expression matching of trusted.url.domains.
+     *
+     * Set to true to treat the values in trusted.url.domains as regular
+     * expressions. Set to false to do exact string matching.
+     *
+     * If enabled, the start and end delimiters ('^' and '$') will be added to
+     * all regular expressions in trusted.url.domains.
+     */
+    'trusted.url.regex' => false,
+
+    /*
      * Enable secure POST from HTTPS to HTTP.
      *
      * If you have some SP's on HTTP and IdP is normally on HTTPS, this option

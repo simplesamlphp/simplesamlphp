@@ -88,4 +88,77 @@ class HTTPTest extends \PHPUnit_Framework_TestCase
         $_SERVER['SERVER_PORT'] = '443';
         $this->assertEquals('localhost', HTTP::getSelfHostWithNonStandardPort());
     }
+
+    /**
+     * Test SimpleSAML\Utils\HTTP::checkURLAllowed(), without regex.
+     */
+    public function testCheckURLAllowedWithoutRegex()
+    {
+        \SimpleSAML_Configuration::loadFromArray(array(
+            'trusted.url.domains' => array('sp.example.com', 'app.example.com'),
+            'trusted.url.regex' => false,
+        ), '[ARRAY]', 'simplesaml');
+
+        $_SERVER['REQUEST_URI'] = '/module.php';
+
+        $allowed = array(
+            'https://sp.example.com/',
+            'http://sp.example.com/',
+            'https://app.example.com/',
+            'http://app.example.com/',
+        );
+        foreach ($allowed as $url)
+        {
+            $this->assertEquals(HTTP::checkURLAllowed($url), $url);
+        }
+
+        $this->setExpectedException('SimpleSAML_Error_Exception');
+        HTTP::checkURLAllowed('https://evil.com');
+    }
+
+    /**
+     * Test SimpleSAML\Utils\HTTP::checkURLAllowed(), with regex.
+     */
+    public function testCheckURLAllowedWithRegex()
+    {
+        \SimpleSAML_Configuration::loadFromArray(array(
+            'trusted.url.domains' => array('.*\.example\.com'),
+            'trusted.url.regex' => true,
+        ), '[ARRAY]', 'simplesaml');
+
+        $_SERVER['REQUEST_URI'] = '/module.php';
+
+        $allowed = array(
+            'https://sp.example.com/',
+            'http://sp.example.com/',
+            'https://app1.example.com/',
+            'http://app1.example.com/',
+            'https://app2.example.com/',
+            'http://app2.example.com/',
+        );
+        foreach ($allowed as $url)
+        {
+            $this->assertEquals(HTTP::checkURLAllowed($url), $url);
+        }
+
+        $this->setExpectedException('SimpleSAML_Error_Exception');
+        HTTP::checkURLAllowed('https://evil.com');
+    }
+
+    /**
+     * Test SimpleSAML\Utils\HTTP::checkURLAllowed(), with the regex as a
+     * subdomain of an evil domain.
+     */
+    public function testCheckURLAllowedWithRegexWithoutDelimiters()
+    {
+        \SimpleSAML_Configuration::loadFromArray(array(
+            'trusted.url.domains' => array('app\.example\.com'),
+            'trusted.url.regex' => true,
+        ), '[ARRAY]', 'simplesaml');
+
+        $_SERVER['REQUEST_URI'] = '/module.php';
+
+        $this->setExpectedException('SimpleSAML_Error_Exception');
+        HTTP::checkURLAllowed('https://app.example.com.evil.com');
+    }
 }
