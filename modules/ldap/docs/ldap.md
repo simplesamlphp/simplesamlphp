@@ -462,13 +462,15 @@ a listing of all configuration options and their details.
 		 * that most products have a special query to recursively search
 		 * group membership.
 		 *
-		 * Note: Only ActiveDirectory is currently supported.
+		 * Note: Only ActiveDirectory is currently supported 
+		 * (OpenLDAP is implemented but not supported, see example below).
 		 *
 		 * Default: ''
 		 * Required: No
 		 */
 		'ldap.product' => '',
 		'ldap.product' => 'ActiveDirectory',
+		'ldap.product' => 'OpenLDAP',
 
 
 		/**
@@ -559,3 +561,14 @@ required, see the config info above for details.
 		'ldap.basedn' => 'DC=example,DC=org'
 	)
 
+Example for unsupported OpenLDAP usage. 
+Intention is to filter in 'ou=groups,dc=example,dc=com' for 
+'(memberUid = <UID>)' and take only the attributes 'cn' (=name of the group).
+
+    50 => array(
+        'class' => 'ldap:AttributeAddUsersGroups',
+        'ldap.product' => 'OpenLDAP',
+        'ldap.basedn' => 'ou=groups,dc=example,dc=org',
+        'attribute.member' => 'cn',
+        'attribute.memberof' => 'memberUid',
+    ),
