@@ -1,6 +1,6 @@
 <?php
 
-$this->data['head'] = '<style>
+$this->data['head'] = '<style type="text/css">
 	table.statustable td, table.statustable th { 
 		border: 1px solid #eee;
 		padding: 2px 6px;
