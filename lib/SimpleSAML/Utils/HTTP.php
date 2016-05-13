@@ -740,7 +740,12 @@ class HTTP
     {
         $url = self::getSelfURLHost();
         $url .= $_SERVER['SCRIPT_NAME'];
-        if (isset($_SERVER['PATH_INFO'])) {
+
+        /* In some environments, $_SERVER['SCRIPT_NAME'] already ends with $_SERVER['PATH_INFO'].
+         * Only append $_SERVER['PATH_INFO'] if it's set and missing.
+         */
+        $end = substr($_SERVER['SCRIPT_NAME'], 0 - strlen($_SERVER['PATH_INFO']));
+        if (isset($_SERVER['PATH_INFO']) && ( $end !== $_SERVER['PATH_INFO'])) {
             $url .= $_SERVER['PATH_INFO'];
         }
         return $url;
