@@ -108,6 +108,10 @@ class HTTP
         if (isset($_SERVER['HTTP_X_FORWARDED_PORT'])) {
             // port from reverse proxy
             $port = $_SERVER['HTTP_X_FORWARDED_PORT'];
+        } elseif (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') {
+            // x_forwarded_port is not set, but x_forwarded_proto is set.
+            // in this case, assume 443 otherwise you end up with an https://example.com:80/ url.
+            $port = '443';
         } elseif (isset($_SERVER['SERVER_PORT'])) {
             $port = $_SERVER['SERVER_PORT'];
         } else {
