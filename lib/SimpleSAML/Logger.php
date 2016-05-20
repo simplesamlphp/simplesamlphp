@@ -399,7 +399,7 @@ class Logger
                 self::createLoggingHandler('SimpleSAML\Logger\StandardErrorLoggingHandler');
             }
             $_SERVER['REMOTE_ADDR'] = "CLI";
-            if (self::$trackid == self::NO_TRACKID) {
+            if (self::$trackid === self::NO_TRACKID) {
                 self::$trackid = 'CL'.bin2hex(openssl_random_pseudo_bytes(4));
             }
         } elseif (self::$loggingHandler === null) {
