@@ -28,6 +28,14 @@ class SimpleSAML_Memcache
     private static $serverGroups = null;
 
 
+  /**
+   * The flavor of memcache PHP extension we are using.
+   *
+   * @var string
+   */
+    private static $extension = '';
+
+
     /**
      * Find data stored with a given key.
      *
@@ -154,7 +162,12 @@ class SimpleSAML_Memcache
 
         // store this object to all groups of memcache servers
         foreach (self::getMemcacheServers() as $server) {
-            $server->set($key, $savedInfoSerialized, 0, $expire);
+            if (self::$extension == 'memcached') {
+                $server->set($key, $savedInfoSerialized, $expire);
+            }
+            else {
+                $server->set($key, $savedInfoSerialized, 0, $expire);
+            }
         }
     }
 
@@ -277,7 +290,12 @@ class SimpleSAML_Memcache
         }
 
         // add this server to the Memcache object
-        $memcache->addServer($hostname, $port, true, $weight, $timeout, $timeout, true);
+        if (self::$extension == 'memcached') {
+            $memcache->addServer($hostname, $port);
+        }
+        else {
+            $memcache->addServer($hostname, $port, TRUE, $weight, $timeout, $timeout, TRUE);
+        }
     }
 
 
@@ -293,12 +311,14 @@ class SimpleSAML_Memcache
      */
     private static function loadMemcacheServerGroup(array $group)
     {
-        if (!class_exists('Memcache')) {
-            throw new Exception('Missing Memcache class. Is the memcache extension installed?');
+        $class = class_exists('Memcache') ? 'Memcache' : (class_exists('Memcached') ? 'Memcached' : FALSE);
+        if (!$class) {
+            throw new Exception('Missing Memcached implementation. You must install either the Memcache or Memcached extension.');
         }
+        self::$extension = strtolower($class);
 
         // create the Memcache object
-        $memcache = new Memcache();
+        $memcache = new $class();
 
         // iterate over all the servers in the group and add them to the Memcache object
         foreach ($group as $index => $server) {
