@@ -149,7 +149,7 @@ class sspmod_negotiate_Auth_Source_Negotiate extends SimpleSAML_Auth_Source
             if ($reply) {
                 // success! krb TGS received
                 $user = $auth->getAuthenticatedUser();
-                SimpleSAML\Logger::info('Negotiate - authenticate(): '.$user.' authenticated.');
+                SimpleSAML\Logger::stats('Negotiate - authenticate(): '.$user.' authenticated.');
                 $lookup = $this->lookupUserData($user);
                 if ($lookup !== null) {
                     $state['Attributes'] = $lookup;
@@ -157,14 +157,14 @@ class sspmod_negotiate_Auth_Source_Negotiate extends SimpleSAML_Auth_Source
                     $state['LogoutState'] = array(
                         'negotiate:backend' => null,
                     );
-                    SimpleSAML\Logger::info('Negotiate - authenticate(): '.$user.' authorized.');
+                    SimpleSAML\Logger::stats('Negotiate - authenticate(): '.$user.' authorized.');
                     SimpleSAML_Auth_Source::completeAuth($state);
                     // Never reached.
                     assert('FALSE');
                 }
             } else {
                 // Some error in the recieved ticket. Expired?
-                SimpleSAML\Logger::info('Negotiate - authenticate(): Kerberos authN failed. Skipping.');
+                SimpleSAML\Logger::stats('Negotiate - authenticate(): Kerberos authN failed. Skipping.');
             }
         } else {
             // No auth token. Send it.
@@ -178,7 +178,7 @@ class sspmod_negotiate_Auth_Source_Negotiate extends SimpleSAML_Auth_Source
             exit;
         }
 
-        SimpleSAML\Logger::info('Negotiate - authenticate(): Client failed Negotiate. Falling back');
+        SimpleSAML\Logger::stats('Negotiate - authenticate(): Client failed Negotiate. Falling back');
         $this->fallBack($state);
         /* The previous function never returns, so this code is never
            executed */
