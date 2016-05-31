@@ -1,5 +1,9 @@
 <?php
 
+namespace SimpleSAML\Logger;
+
+use SimpleSAML\Logger;
+
 /**
  * A class for logging to the default php error log.
  *
@@ -7,25 +11,41 @@
  * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
  * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
- * @version $ID$
  */
-class SimpleSAML_Logger_LoggingHandlerErrorLog implements SimpleSAML_Logger_LoggingHandler
+class ErrorLogLoggingHandler implements LoggingHandlerInterface
 {
 
     /**
-     * This array contains the mappings from syslog loglevel to names.
+     * This array contains the mappings from syslog log level to names.
      */
     private static $levelNames = array(
-        SimpleSAML\Logger::EMERG   => 'EMERG',
-        SimpleSAML\Logger::ALERT   => 'ALERT',
-        SimpleSAML\Logger::CRIT    => 'CRIT',
-        SimpleSAML\Logger::ERR     => 'ERR',
-        SimpleSAML\Logger::WARNING => 'WARNING',
-        SimpleSAML\Logger::NOTICE  => 'NOTICE',
-        SimpleSAML\Logger::INFO    => 'INFO',
-        SimpleSAML\Logger::DEBUG   => 'DEBUG',
+        Logger::EMERG   => 'EMERG',
+        Logger::ALERT   => 'ALERT',
+        Logger::CRIT    => 'CRIT',
+        Logger::ERR     => 'ERR',
+        Logger::WARNING => 'WARNING',
+        Logger::NOTICE  => 'NOTICE',
+        Logger::INFO    => 'INFO',
+        Logger::DEBUG   => 'DEBUG',
     );
-    private $format;
+
+    /**
+     * The name of this process.
+     *
+     * @var string
+     */
+    private $processname;
+
+
+    /**
+     * ErrorLogLoggingHandler constructor.
+     *
+     * @param \SimpleSAML_Configuration $config The configuration object for this handler.
+     */
+    public function __construct(\SimpleSAML_Configuration $config)
+    {
+        $this->processname = $config->getString('logging.processname', 'SimpleSAMLphp');
+    }
 
 
     /**
@@ -35,7 +55,7 @@ class SimpleSAML_Logger_LoggingHandlerErrorLog implements SimpleSAML_Logger_Logg
      */
     public function setLogFormat($format)
     {
-        $this->format = $format;
+        // we don't need the format here
     }
 
 
@@ -47,10 +67,6 @@ class SimpleSAML_Logger_LoggingHandlerErrorLog implements SimpleSAML_Logger_Logg
      */
     public function log($level, $string)
     {
-        $config = SimpleSAML_Configuration::getInstance();
-        assert($config instanceof SimpleSAML_Configuration);
-        $processname = $config->getString('logging.processname', 'SimpleSAMLphp');
-
         if (array_key_exists($level, self::$levelNames)) {
             $levelName = self::$levelNames[$level];
         } else {
@@ -58,7 +74,7 @@ class SimpleSAML_Logger_LoggingHandlerErrorLog implements SimpleSAML_Logger_Logg
         }
 
         $formats = array('%process', '%level');
-        $replacements = array($processname, $levelName);
+        $replacements = array($this->processname, $levelName);
         $string = str_replace($formats, $replacements, $string);
         $string = preg_replace('/%\w+(\{[^\}]+\})?/', '', $string);
         $string = trim($string);

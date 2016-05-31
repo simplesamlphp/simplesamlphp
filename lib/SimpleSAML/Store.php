@@ -50,7 +50,17 @@ abstract class SimpleSAML_Store
                 break;
             default:
                 // datastore from module
-                $className = SimpleSAML\Module::resolveClass($storeType, 'Store', 'SimpleSAML_Store');
+                try {
+                    $className = SimpleSAML\Module::resolveClass($storeType, 'Store', 'SimpleSAML_Store');
+                } catch (Exception $e) {
+                    $c = $config->toArray();
+                    $c['store.type'] = 'phpsession';
+                    throw new SimpleSAML\Error\CriticalConfigurationError(
+                        "Invalid 'store.type' configuration option. Cannot find store '$storeType'.",
+                        null,
+                        $c
+                    );
+                }
                 self::$instance = new $className();
         }
 

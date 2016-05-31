@@ -1,18 +1,41 @@
 <?php
 
+namespace SimpleSAML\IdP;
+
+use SimpleSAML\Module;
+use SimpleSAML\Utils\HTTP;
+
 
 /**
  * Class that handles iframe logout.
  *
  * @package SimpleSAMLphp
  */
-class SimpleSAML_IdP_LogoutIFrame extends SimpleSAML_IdP_LogoutHandler
+class IFrameLogoutHandler implements LogoutHandlerInterface
 {
+
+    /**
+     * The IdP we are logging out from.
+     *
+     * @var \SimpleSAML_IdP
+     */
+    private $idp;
+
+
+    /**
+     * LogoutIFrame constructor.
+     *
+     * @param \SimpleSAML_IdP $idp The IdP to log out from.
+     */
+    public function __construct(\SimpleSAML_IdP $idp)
+    {
+        $this->idp = $idp;
+    }
 
     /**
      * Start the logout operation.
      *
-     * @param array       &$state The logout state.
+     * @param array &$state The logout state.
      * @param string|null $assocId The SP we are logging out from.
      */
     public function startLogout(array &$state, $assocId)
@@ -26,7 +49,7 @@ class SimpleSAML_IdP_LogoutIFrame extends SimpleSAML_IdP_LogoutHandler
         }
 
         foreach ($associations as $id => &$association) {
-            $idp = SimpleSAML_IdP::getByState($association);
+            $idp = \SimpleSAML_IdP::getByState($association);
             $association['core:Logout-IFrame:Name'] = $idp->getSPName($id);
             $association['core:Logout-IFrame:State'] = 'onhold';
         }
@@ -44,14 +67,14 @@ class SimpleSAML_IdP_LogoutIFrame extends SimpleSAML_IdP_LogoutHandler
         }
 
         $params = array(
-            'id' => SimpleSAML_Auth_State::saveState($state, 'core:Logout-IFrame'),
+            'id' => \SimpleSAML_Auth_State::saveState($state, 'core:Logout-IFrame'),
         );
         if (isset($state['core:Logout-IFrame:InitType'])) {
             $params['type'] = $state['core:Logout-IFrame:InitType'];
         }
 
-        $url = SimpleSAML\Module::getModuleURL('core/idp/logout-iframe.php', $params);
-        \SimpleSAML\Utils\HTTP::redirectTrustedURL($url);
+        $url = Module::getModuleURL('core/idp/logout-iframe.php', $params);
+        HTTP::redirectTrustedURL($url);
     }
 
 
@@ -60,11 +83,11 @@ class SimpleSAML_IdP_LogoutIFrame extends SimpleSAML_IdP_LogoutHandler
      *
      * This function will never return.
      *
-     * @param string                          $assocId The association that is terminated.
-     * @param string|NULL                     $relayState The RelayState from the start of the logout.
-     * @param SimpleSAML_Error_Exception|null $error The error that occurred during session termination (if any).
+     * @param string $assocId The association that is terminated.
+     * @param string|null $relayState The RelayState from the start of the logout.
+     * @param \SimpleSAML_Error_Exception|null $error The error that occurred during session termination (if any).
      */
-    public function onResponse($assocId, $relayState, SimpleSAML_Error_Exception $error = null)
+    public function onResponse($assocId, $relayState, \SimpleSAML_Error_Exception $error = null)
     {
         assert('is_string($assocId)');
 

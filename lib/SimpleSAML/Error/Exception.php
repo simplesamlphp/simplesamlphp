@@ -144,33 +144,87 @@ class SimpleSAML_Error_Exception extends Exception
      *
      * Create an array of lines for logging.
      *
+     * @param boolean $anonymize Whether the resulting messages should be anonymized or not.
+     *
      * @return array Log lines that should be written out.
      */
-    public function format()
+    public function format($anonymize = false)
     {
+        $ret = array(
+            $this->getClass().': '.$this->getMessage(),
+        );
+        return array_merge($ret, $this->formatBacktrace($anonymize));
+    }
 
+
+    /**
+     * Format the backtrace for logging.
+     *
+     * Create an array of lines for logging from the backtrace.
+     *
+     * @param boolean $anonymize Whether the resulting messages should be anonymized or not.
+     *
+     * @return array All lines of the backtrace, properly formatted.
+     */
+    public function formatBacktrace($anonymize = false)
+    {
         $ret = array();
+        $basedir = SimpleSAML_Configuration::getInstance()->getBaseDir();
 
         $e = $this;
         do {
-            $err = $e->getClass().': '.$e->getMessage();
-            if ($e === $this) {
-                $ret[] = $err;
-            } else {
-                $ret[] = 'Caused by: '.$err;
+            if ($e !== $this) {
+                $ret[] = 'Caused by: '.$e->getClass().': '.$e->getMessage();
             }
-
             $ret[] = 'Backtrace:';
 
             $depth = count($e->backtrace);
             foreach ($e->backtrace as $i => $trace) {
+                if ($anonymize) {
+                    $trace = str_replace($basedir, '', $trace);
+                }
+
                 $ret[] = ($depth - $i - 1).' '.$trace;
             }
-
             $e = $e->cause;
         } while ($e !== null);
 
         return $ret;
+    }
+
+
+    /**
+     * Print the backtrace to the log if the 'debug' option is enabled in the configuration.
+     */
+    protected function logBacktrace()
+    {
+        if (!SimpleSAML_Configuration::getInstance()->getBoolean('debug', false)) {
+            return;
+        }
+
+        $backtrace = $this->formatBacktrace();
+        foreach ($backtrace as $line) {
+            SimpleSAML\Logger::debug($line);
+        }
+    }
+
+
+    /**
+     * Print the exception to the log, by default with log level error.
+     *
+     * Override to allow errors extending this class to specify the log level themselves.
+     *
+     * @param int $default_level The log level to use if this method was not overriden.
+     */
+    public function log($default_level)
+    {
+        $fn = array(
+            SimpleSAML\Logger::ERR     => 'logError',
+            SimpleSAML\Logger::WARNING => 'logWarning',
+            SimpleSAML\Logger::INFO    => 'logInfo',
+            SimpleSAML\Logger::DEBUG   => 'logDebug',
+        );
+        call_user_func(array($this, $fn[$default_level]));
     }
 
 
@@ -181,11 +235,8 @@ class SimpleSAML_Error_Exception extends Exception
      */
     public function logError()
     {
-
-        $lines = $this->format();
-        foreach ($lines as $line) {
-            SimpleSAML\Logger::error($line);
-        }
+        SimpleSAML\Logger::error($this->getClass().': '.$this->getMessage());
+        $this->logBacktrace();
     }
 
 
@@ -196,11 +247,8 @@ class SimpleSAML_Error_Exception extends Exception
      */
     public function logWarning()
     {
-
-        $lines = $this->format();
-        foreach ($lines as $line) {
-            SimpleSAML\Logger::warning($line);
-        }
+        SimpleSAML\Logger::warning($this->getClass().': '.$this->getMessage());
+        $this->logBacktrace();
     }
 
 
@@ -211,11 +259,8 @@ class SimpleSAML_Error_Exception extends Exception
      */
     public function logInfo()
     {
-
-        $lines = $this->format();
-        foreach ($lines as $line) {
-            SimpleSAML\Logger::debug($line);
-        }
+        SimpleSAML\Logger::info($this->getClass().': '.$this->getMessage());
+        $this->logBacktrace();
     }
 
 
@@ -226,11 +271,8 @@ class SimpleSAML_Error_Exception extends Exception
      */
     public function logDebug()
     {
-
-        $lines = $this->format();
-        foreach ($lines as $line) {
-            SimpleSAML\Logger::debug($line);
-        }
+        SimpleSAML\Logger::debug($this->getClass().': '.$this->getMessage());
+        $this->logBacktrace();
     }
 
 

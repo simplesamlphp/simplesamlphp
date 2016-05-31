@@ -83,10 +83,9 @@ set_error_handler('SimpleSAML_error_handler');
 
 $configdir = SimpleSAML\Utils\Config::getConfigDir();
 if (!file_exists($configdir.'/config.php')) {
-    header('Content-Type: text/plain');
-    echo("You have not yet created the SimpleSAMLphp configuration files.\n");
-    echo("See: https://simplesamlphp.org/docs/devel/simplesamlphp-install-repo\n");
-    exit(1);
+    throw new \SimpleSAML\Error\CriticalConfigurationError(
+        'You have not yet created the SimpleSAMLphp configuration files.'
+    );
 }
 
 // set the timezone

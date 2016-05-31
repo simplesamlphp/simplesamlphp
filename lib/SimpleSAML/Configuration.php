@@ -107,19 +107,42 @@ class SimpleSAML_Configuration
             return self::$loadedConfigs[$filename];
         }
 
+        $spurious_output = false;
         if (file_exists($filename)) {
             $config = 'UNINITIALIZED';
 
             // the file initializes a variable named '$config'
+            ob_start();
             require($filename);
+            $spurious_output = ob_get_length() > 0;
+            ob_end_clean();
+
+            // check that $config exists
+            if (!isset($config)) {
+                throw new \SimpleSAML\Error\ConfigurationError(
+                    '$config is not defined in the configuration file.',
+                    $filename
+                );
+            }
 
             // check that $config is initialized to an array
             if (!is_array($config)) {
-                throw new Exception('Invalid configuration file: '.$filename);
+                throw new \SimpleSAML\Error\ConfigurationError(
+                    '$config is not an array.',
+                    $filename
+                );
+            }
+
+            // check that $config is not empty
+            if (empty($config)) {
+                throw new \SimpleSAML\Error\ConfigurationError(
+                    '$config is empty.',
+                    $filename
+                );
             }
         } elseif ($required) {
             // file does not exist, but is required
-            throw new Exception('Missing configuration file: '.$filename);
+            throw new \SimpleSAML\Error\ConfigurationError('Missing configuration file', $filename);
         } else {
             // file does not exist, but is optional, so return an empty configuration object without saving it
             $cfg = new SimpleSAML_Configuration(array(), $filename);
@@ -131,6 +154,12 @@ class SimpleSAML_Configuration
         $cfg->filename = $filename;
 
         self::$loadedConfigs[$filename] = $cfg;
+
+        if ($spurious_output) {
+            SimpleSAML\Logger::warning(
+                "The configuration file '$filename' generates output. Please review your configuration."
+            );
+        }
 
         return $cfg;
     }
@@ -258,10 +287,17 @@ class SimpleSAML_Configuration
         }
 
         if ($instancename === 'simplesaml') {
-            return self::getConfig();
+            try {
+                return self::getConfig();
+            } catch (SimpleSAML\Error\ConfigurationError $e) {
+                throw \SimpleSAML\Error\CriticalConfigurationError::fromException($e);
+            }
+
         }
 
-        throw new Exception('Configuration with name '.$instancename.' is not initialized.');
+        throw new \SimpleSAML\Error\CriticalConfigurationError(
+            'Configuration with name '.$instancename.' is not initialized.'
+        );
     }
 
 
@@ -407,7 +443,7 @@ class SimpleSAML_Configuration
      *
      * @return string The absolute path relative to the root of the website.
      *
-     * @throws SimpleSAML_Error_Exception If the format of 'baseurlpath' is incorrect.
+     * @throws SimpleSAML\Error\CriticalConfigurationError If the format of 'baseurlpath' is incorrect.
      */
     public function getBaseURL()
     {
@@ -428,11 +464,18 @@ class SimpleSAML_Configuration
             // local path only
             return $matches[1];
         } else {
-            // invalid format
-            throw new SimpleSAML_Error_Exception(
+            /*
+             * Invalid 'baseurlpath'. We cannot recover from this, so throw a critical exception and try to be graceful
+             * with the configuration. Use a guessed base path instead of the one provided.
+             */
+            $c = $this->toArray();
+            $c['baseurlpath'] = SimpleSAML\Utils\HTTP::guessBasePath();
+            throw new SimpleSAML\Error\CriticalConfigurationError(
                 'Incorrect format for option \'baseurlpath\'. Value is: "'.
                 $this->getString('baseurlpath', 'simplesaml/').'". Valid format is in the form'.
-                ' [(http|https)://(hostname|fqdn)[:port]]/[path/to/simplesaml/].'
+                ' [(http|https)://(hostname|fqdn)[:port]]/[path/to/simplesaml/].',
+                $this->filename,
+                $c
             );
         }
     }

@@ -107,8 +107,8 @@ class sspmod_saml_IdP_SAML2 {
 
 		$error = sspmod_saml_Error::fromException($exception);
 
-		SimpleSAML\Logger::warning('Returning error to sp: ' . var_export($spEntityId, TRUE));
-		$error->logWarning();
+		SimpleSAML\Logger::warning("Returning error to SP with entity ID '".var_export($spEntityId, TRUE)."'.");
+		$exception->log(SimpleSAML\Logger::WARNING);
 
 		$ar = self::buildResponse($idpMetadata, $spMetadata, $consumerURL);
 		$ar->setInResponseTo($requestId);
