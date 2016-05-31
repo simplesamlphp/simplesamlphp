@@ -520,22 +520,25 @@ class SimpleSAML_Auth_LDAP {
      * The array of attributes and their values.
      * @see http://no.php.net/manual/en/function.ldap-read.php
      */
-    public function getAttributes($dn, $attributes = NULL, $maxsize = NULL) {
-
+    public function getAttributes($dn, $wanted_attributes = NULL, $maxsize = NULL) {
+		$empty_attributes = is_array($wanted_attributes) && empty($wanted_attributes);
+	
         // Preparations, including a pretty debug message...
-        $description = 'all attributes';
-        if (is_array($attributes)) {
-            $description = '\'' . join(',', $attributes) . '\'';
+        if ($empty_attributes) {
+			$description = 'zero attributes';
+		} elseif (is_array($wanted_attributes)) {
+            $description = '\'' . join(',', $wanted_attributes) . '\'';
         } else {
             // Get all attributes...
             // TODO: Verify that this originally was the intended behaviour. Could $attributes be a string?
-            $attributes = array();
+            $wanted_attributes = array();
+			$description = 'all attributes';
         }
-        SimpleSAML\Logger::debug('Library - LDAP getAttributes(): Getting ' . $description . ' from DN \'' . $dn . '\'');
+        SimpleSAML_Logger::debug('Library - LDAP getAttributes(): Getting ' . $description . ' from DN \'' . $dn . '\'');
 
         // Attempt to get attributes
         // TODO: Should aliases be dereferenced?
-        $result = @ldap_read($this->ldap, $dn, 'objectClass=*', $attributes, 0, 0, $this->timeout);
+        $result = @ldap_read($this->ldap, $dn, 'objectClass=*', $wanted_attributes, 0, 0, $this->timeout);
         if ($result === false) {
             throw $this->makeException('Library - LDAP getAttributes(): Failed to get attributes from DN \'' . $dn . '\'');
         }
@@ -543,48 +546,51 @@ class SimpleSAML_Auth_LDAP {
         if ($entry === false) {
             throw $this->makeException('Library - LDAP getAttributes(): Could not get first entry from DN \'' . $dn . '\'');
         }
-        $attributes = @ldap_get_attributes($this->ldap, $entry);  // Recycling $attributes... Possibly bad practice.
+        $attributes = @ldap_get_attributes($this->ldap, $entry);
         if ($attributes === false) {
             throw $this->makeException('Library - LDAP getAttributes(): Could not get attributes of first entry from DN \'' . $dn . '\'');
         }
 
         // Parsing each found attribute into our result set
-        $result = array();  // Recycling $result... Possibly bad practice.
-        for ($i = 0; $i < $attributes['count']; $i++) {
+        $return_attributes = array();
+		
+		if ($empty_attributes !== true) {
+			for ($i = 0; $i < $attributes['count']; $i++) {
 
-            // Ignore attributes that exceed the maximum allowed size
-            $name = $attributes[$i];
-            $attribute = $attributes[$name];
+				// Ignore attributes that exceed the maximum allowed size
+				$name = $attributes[$i];
+				$attribute = $attributes[$name];
 
-            // Deciding whether to base64 encode
-            $values = array();
-            for ($j = 0; $j < $attribute['count']; $j++) {
-                $value = $attribute[$j];
+				// Deciding whether to base64 encode
+				$values = array();
+				for ($j = 0; $j < $attribute['count']; $j++) {
+					$value = $attribute[$j];
 
-                if (!empty($maxsize) && strlen($value) >= $maxsize) {
-                    // Ignoring and warning
-                    SimpleSAML\Logger::warning('Library - LDAP getAttributes(): Attribute \'' .
-                        $name . '\' exceeded maximum allowed size by ' + ($maxsize - strlen($value)));
-                    continue;
-                }
+					if (!empty($maxsize) && strlen($value) >= $maxsize) {
+						// Ignoring and warning
+						SimpleSAML_Logger::warning('Library - LDAP getAttributes(): Attribute \'' .
+							$name . '\' exceeded maximum allowed size by ' + ($maxsize - strlen($value)));
+						continue;
+					}
 
-                // Base64 encode binary attributes
-                if (strtolower($name) === 'jpegphoto' || strtolower($name) === 'objectguid') {
-                    $values[] = base64_encode($value);
-                } else {
-                    $values[] = $value;
-                }
+					// Base64 encode binary attributes
+					if (strtolower($name) === 'jpegphoto' || strtolower($name) === 'objectguid') {
+						$values[] = base64_encode($value);
+					} else {
+						$values[] = $value;
+					}
 
-            }
+				}
 
-            // Adding
-            $result[$name] = $values;
+				// Adding
+				$return_attributes[$name] = $values;
+			}
 
         }
 
         // We're done
-        SimpleSAML\Logger::debug('Library - LDAP getAttributes(): Found attributes \'(' . join(',', array_keys($result)) . ')\'');
-        return $result;
+        SimpleSAML_Logger::debug('Library - LDAP getAttributes(): Found attributes \'(' . join(',', array_keys($return_attributes)) . ')\'');
+        return $return_attributes;
     }
 
 
