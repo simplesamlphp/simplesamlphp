@@ -63,12 +63,14 @@ class sspmod_authwindowslive_Auth_Source_LiveID extends SimpleSAML_Auth_Source {
 		SimpleSAML\Logger::debug('authwindowslive auth state id = ' . $stateID);
 
 		// Authenticate the user
-		// Documentation at: http://msdn.microsoft.com/en-us/library/ff749771.aspx
-		$authorizeURL = 'https://consent.live.com/Connect.aspx'
-				. '?wrap_client_id=' . $this->key
-				. '&wrap_callback=' . urlencode(SimpleSAML\Module::getModuleUrl('authwindowslive') . '/linkback.php')
-				. '&wrap_client_state=' . urlencode($stateID)
-				. '&wrap_scope=WL_Profiles.View,Messenger.SignIn'
+		// Documentation at: https://azure.microsoft.com/en-us/documentation/articles/active-directory-v2-protocols-oauth-code/
+		$authorizeURL = 'https://login.microsoftonline.com/common/oauth2/v2.0/authorize'
+				. '?client_id=' . $this->key
+				. '&response_type=code'
+				. '&response_mode=query'
+				. '&redirect_uri=' . urlencode(SimpleSAML_Module::getModuleUrl('authwindowslive') . '/linkback.php')
+				. '&state=' . urlencode($stateID)
+				. '&scope=' . urlencode('openid https://graph.microsoft.com/user.read')
 		;
 
 		\SimpleSAML\Utils\HTTP::redirectTrustedURL($authorizeURL);
@@ -78,15 +80,17 @@ class sspmod_authwindowslive_Auth_Source_LiveID extends SimpleSAML_Auth_Source {
 
 	public function finalStep(&$state) {
 
-		SimpleSAML\Logger::debug("oauth wrap:  Using this verification code [" .
-			$state['authwindowslive:wrap_verification_code'] . "]");
+		SimpleSAML\Logger::debug("authwindowslive oauth: Using this verification code [" .
+			$state['authwindowslive:verification_code'] . "]");
 
 		// Retrieve Access Token
-		// Documentation at: http://msdn.microsoft.com/en-us/library/ff749686.aspx
-		$postData = 'wrap_client_id=' . urlencode($this->key)
-				. '&wrap_client_secret=' . urlencode($this->secret)
-				. '&wrap_callback=' . urlencode(SimpleSAML\Module::getModuleUrl('authwindowslive') . '/linkback.php')
-				. '&wrap_verification_code=' . urlencode($state['authwindowslive:wrap_verification_code']);
+		// Documentation at: https://azure.microsoft.com/en-us/documentation/articles/active-directory-v2-protocols-oauth-code/#request-an-access-token
+		$postData = 'client_id=' . urlencode($this->key)
+				. '&client_secret=' . urlencode($this->secret)
+				. '&scope=' . urlencode('https://graph.microsoft.com/user.read') 
+				. '&grant_type=authorization_code' 
+				. '&redirect_uri=' . urlencode(SimpleSAML_Module::getModuleUrl('authwindowslive') . '/linkback.php') 
+				. '&code=' . urlencode($state['authwindowslive:verification_code']);
 
 		$context = array(
 			'http' => array(
@@ -96,38 +100,32 @@ class sspmod_authwindowslive_Auth_Source_LiveID extends SimpleSAML_Auth_Source {
 			),
 		);
 
-		$result = \SimpleSAML\Utils\HTTP::fetch('https://consent.live.com/AccessToken.aspx', $context);
+		$result = \SimpleSAML\Utils\HTTP::fetch('https://login.microsoftonline.com/common/oauth2/v2.0/token', $context);
 
-		parse_str($result, $response);
+		$response = json_decode($result,true);
 
 		// error checking of $response to make sure we can proceed
-		if (!array_key_exists('wrap_access_token',$response))
-			throw new Exception('[' . $response['error_code'] . '] ' . $response['wrap_error_reason'] .
-				"\r\nNo wrap_access_token returned - cannot proceed\r\n" . $response['internal_info']);
+		if (!array_key_exists('access_token',$response))
+			throw new Exception('[' . $response['error'] . '] ' . $response['error_description'] .
+				"\r\nNo access_token returned - cannot proceed\r\n" . implode(', ', $response['error_codes']));
 
-		SimpleSAML\Logger::debug("Got an access token from the OAuth WRAP service provider [" .
-			$response['wrap_access_token'] . "] for user [" . $response['uid'] . "]");
+		SimpleSAML\Logger::debug("authwindowslive: Got an access token from the OAuth service provider [" .
+			$response['access_token'] . "]");
 
-		// Documentation at: http://msdn.microsoft.com/en-us/library/ff751708.aspx
-		$opts = array('http' => array('header' => "Accept: application/json\r\nAuthorization: WRAP access_token=" .
-						$response['wrap_access_token'] . "\r\n"));
-		$data = \SimpleSAML\Utils\HTTP::fetch('https://apis.live.net/V4.1/cid-'. $response['uid'] . '/Profiles',$opts);
+		// Documentation at: http://graph.microsoft.io/en-us/docs/overview/call_api
+		$opts = array('http' => array('header' => "Accept: application/json\r\nAuthorization: Bearer " .
+						$response['access_token'] . "\r\n"));
+		$data = \SimpleSAML\Utils\HTTP::fetch('https://graph.microsoft.com/v1.0/me',$opts);
 		$userdata = json_decode($data, TRUE);
 
+		// This is the simplest case
+		if(!array_key_exists('@odata.context',$userdata) OR array_key_exists('error',$userdata))
+			throw new Exception('Unable to retrieve userdata from Microsoft Graph [' . $userdata['error']['code'] . '] ' . $userdata['error']['message']); 
 		$attributes = array();
-		$attributes['windowslive_uid'] = array($response['uid']);
-		$attributes['windowslive_targetedID'] = array('http://windowslive.com!' . $response['uid']);
-		$attributes['windowslive_user'] = array($response['uid'] . '@windowslive.com');
-
-		if (array_key_exists('Entries',$userdata)) {
-			foreach($userdata['Entries'][0] AS $key => $value) {
-				if (is_string($value))
-					$attributes['windowslive.' . $key] = array((string)$value);
-			}
-
-			if (array_key_exists('Emails', $userdata['Entries'][0]))
-				$attributes['windowslive_mail'] = array($userdata['Entries'][0]['Emails'][0]['Address']);
-
+		$attributes['windowslive_targetedID'] = array('https://graph.microsoft.com!' . (!empty($userdata['id']) ? $userdata['id'] : 'unknown'));
+		foreach($userdata AS $key => $value) {
+			if (is_string($value))
+				$attributes['windowslive.' . $key] = array((string)$value);
 		}
 
 
