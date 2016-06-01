@@ -1,10 +1,10 @@
 <?php
 
 if (isset($_REQUEST['retryURL'])) {
-	$retryURL = (string)$_REQUEST['retryURL'];
-	$retryURL = \SimpleSAML\Utils\HTTP::checkURLAllowed($retryURL);
+    $retryURL = (string) $_REQUEST['retryURL'];
+    $retryURL = \SimpleSAML\Utils\HTTP::checkURLAllowed($retryURL);
 } else {
-	$retryURL = NULL;
+    $retryURL = null;
 }
 
 $globalConfig = SimpleSAML_Configuration::getInstance();
