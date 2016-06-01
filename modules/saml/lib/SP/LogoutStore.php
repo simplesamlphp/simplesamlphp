@@ -15,17 +15,30 @@ class sspmod_saml_SP_LogoutStore {
 	private static function createLogoutTable(SimpleSAML_Store_SQL $store) {
 
 		if ($store->getTableVersion('saml_LogoutStore') === 1) {
-			return;
+			$query = 'DROP TABLE ' . $store->prefix . '_saml_LogoutStore';
+            $store->pdo->exec($query);
 		}
 
-		$query = 'CREATE TABLE ' . $store->prefix . '_saml_LogoutStore (
-			_authSource VARCHAR(30) NOT NULL,
-			_nameId VARCHAR(40) NOT NULL,
-			_sessionIndex VARCHAR(50) NOT NULL,
-			_expire TIMESTAMP NOT NULL,
-			_sessionId VARCHAR(50) NOT NULL,
-			UNIQUE (_authSource, _nameID, _sessionIndex)
-		)';
+        if ($store->driver === 'sqlsrv') {
+		    $query = 'CREATE TABLE ' . $store->prefix . '_saml_LogoutStore (
+			    _authSource VARCHAR(30) NOT NULL,
+			    _nameId VARCHAR(40) NOT NULL,
+			    _sessionIndex VARCHAR(50) NOT NULL,
+			    _expire DATETIME NOT NULL,
+			    _sessionId VARCHAR(50) NOT NULL,
+			    UNIQUE (_authSource, _nameID, _sessionIndex)
+		    )';
+        }
+        else {
+            $query = 'CREATE TABLE ' . $store->prefix . '_saml_LogoutStore (
+			    _authSource VARCHAR(30) NOT NULL,
+			    _nameId VARCHAR(40) NOT NULL,
+			    _sessionIndex VARCHAR(50) NOT NULL,
+			    _expire TIMESTAMP NOT NULL,
+			    _sessionId VARCHAR(50) NOT NULL,
+			    UNIQUE (_authSource, _nameID, _sessionIndex)
+		    )';
+        }
 		$store->pdo->exec($query);
 
 		$query = 'CREATE INDEX ' . $store->prefix . '_saml_LogoutStore_expire ON '  . $store->prefix . '_saml_LogoutStore (_expire)';
