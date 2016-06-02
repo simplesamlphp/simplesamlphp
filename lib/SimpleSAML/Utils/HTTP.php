@@ -757,10 +757,8 @@ class HTTP
     public static function getSelfURLNoQuery()
     {
         $url = self::getSelfURLHost();
-        $url .= $_SERVER['SCRIPT_NAME'];
-        if (isset($_SERVER['PATH_INFO'])) {
-            $url .= $_SERVER['PATH_INFO'];
-        }
+        $url .= strtok($_SERVER["REQUEST_URI"], '?');
+
         return $url;
     }
 
