@@ -123,7 +123,15 @@ try {
 
     if (preg_match('#\.php$#D', $path)) {
         // PHP file - attempt to run it
-        $_SERVER['SCRIPT_NAME'] .= '/'.$module.'/'.$url;
+
+        /* In some environments, $_SERVER['SCRIPT_NAME'] is already set with the full url.
+         * Check for that case, and append script name only if necessary.
+         */
+        $script = "/$module/$url";
+        if (stripos($_SERVER['SCRIPT_NAME'], $script) === false) {
+            $_SERVER['SCRIPT_NAME'] .= '/'.$module.'/'.$url;
+        }
+
         require($path);
         exit();
     }
