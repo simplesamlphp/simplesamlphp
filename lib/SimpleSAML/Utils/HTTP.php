@@ -324,12 +324,30 @@ class HTTP
             preg_match('@^https?://([^/]+)@i', $url, $matches);
             $hostname = $matches[1];
 
-            // add self host to the white list
             $self_host = self::getSelfHostWithNonStandardPort();
-            $trustedSites[] = $self_host;
+
+            $trustedRegex = \SimpleSAML_Configuration::getInstance()->getValue('trusted.url.regex', false);
+
+            $trusted = false;
+            if ($trustedRegex) {
+                // add self host to the white list
+                $trustedSites[] = preg_quote($self_host);
+                foreach ($trustedSites as $regex) {
+                    // Add start and end delimiters.
+                    $regex = "@^{$regex}$@";
+                    if (preg_match($regex, $hostname)) {
+                        $trusted = true;
+                        break;
+                    }
+                }
+            } else {
+                // add self host to the white list
+                $trustedSites[] = $self_host;
+                $trusted = in_array($hostname, $trustedSites);
+            }
 
             // throw exception due to redirection to untrusted site
-            if (!in_array($hostname, $trustedSites)) {
+            if (!$trusted) {
                 throw new \SimpleSAML_Error_Exception('URL not allowed: '.$url);
             }
         }

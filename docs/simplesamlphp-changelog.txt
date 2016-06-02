@@ -32,6 +32,7 @@ Released TBD
   * Added the SAML NameID to the attributes status page, when available.
   * Added attribute definitions for schacGender (schac), sisSchoolGrade and sisLegalGuardianFor (skolfederation.se).
   * Attributes required in metadata are now taken into account when parsing.
+  * Allow regular expression matching of trusted.url.domains. Off by default, set trusted.url.regex to true to enable.
 
 ### Bug fixes
 
