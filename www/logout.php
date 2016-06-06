@@ -5,8 +5,7 @@ require_once('_include.php');
 $config = SimpleSAML_Configuration::getInstance();
 
 if (array_key_exists('link_href', $_REQUEST)) {
-    $link = (string) $_REQUEST['link_href'];
-    $link = \SimpleSAML\Utils\HTTP::normalizeURL($link);
+    $link = \SimpleSAML\Utils\HTTP::checkURLAllowed($_REQUEST['link_href']);
 } else {
     $link = 'index.php';
 }
