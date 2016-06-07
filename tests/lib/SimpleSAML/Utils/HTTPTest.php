@@ -100,6 +100,8 @@ class HTTPTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetSelfHost()
     {
+        $original = $_SERVER;
+
         \SimpleSAML_Configuration::loadFromArray(array(
             'baseurlpath' => '',
         ), '[ARRAY]', 'simplesaml');
@@ -107,6 +109,8 @@ class HTTPTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('localhost', HTTP::getSelfHost());
         $_SERVER['SERVER_PORT'] = '3030';
         $this->assertEquals('localhost', HTTP::getSelfHost());
+
+        $_SERVER = $original;
     }
 
     /**
@@ -114,6 +118,8 @@ class HTTPTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetSelfHostWithPort()
     {
+        $original = $_SERVER;
+
         \SimpleSAML_Configuration::loadFromArray(array(
             'baseurlpath' => '',
         ), '[ARRAY]', 'simplesaml');
@@ -130,6 +136,8 @@ class HTTPTest extends \PHPUnit_Framework_TestCase
         $_SERVER['HTTPS'] = 'on';
         $_SERVER['SERVER_PORT'] = '443';
         $this->assertEquals('localhost', HTTP::getSelfHostWithNonStandardPort());
+
+        $_SERVER = $original;
     }
 
     /**
@@ -137,6 +145,8 @@ class HTTPTest extends \PHPUnit_Framework_TestCase
      */
     public function testCheckURLAllowedWithoutRegex()
     {
+        $original = $_SERVER;
+
         \SimpleSAML_Configuration::loadFromArray(array(
             'trusted.url.domains' => array('sp.example.com', 'app.example.com'),
             'trusted.url.regex' => false,
@@ -157,6 +167,8 @@ class HTTPTest extends \PHPUnit_Framework_TestCase
 
         $this->setExpectedException('SimpleSAML_Error_Exception');
         HTTP::checkURLAllowed('https://evil.com');
+
+        $_SERVER = $original;
     }
 
     /**
@@ -164,6 +176,8 @@ class HTTPTest extends \PHPUnit_Framework_TestCase
      */
     public function testCheckURLAllowedWithRegex()
     {
+        $original = $_SERVER;
+
         \SimpleSAML_Configuration::loadFromArray(array(
             'trusted.url.domains' => array('.*\.example\.com'),
             'trusted.url.regex' => true,
@@ -186,6 +200,8 @@ class HTTPTest extends \PHPUnit_Framework_TestCase
 
         $this->setExpectedException('SimpleSAML_Error_Exception');
         HTTP::checkURLAllowed('https://evil.com');
+
+        $_SERVER = $original;
     }
 
     /**
@@ -194,6 +210,8 @@ class HTTPTest extends \PHPUnit_Framework_TestCase
      */
     public function testCheckURLAllowedWithRegexWithoutDelimiters()
     {
+        $original = $_SERVER;
+
         \SimpleSAML_Configuration::loadFromArray(array(
             'trusted.url.domains' => array('app\.example\.com'),
             'trusted.url.regex' => true,
@@ -203,5 +221,7 @@ class HTTPTest extends \PHPUnit_Framework_TestCase
 
         $this->setExpectedException('SimpleSAML_Error_Exception');
         HTTP::checkURLAllowed('https://app.example.com.evil.com');
+
+        $_SERVER = $original;
     }
 }
