@@ -6,14 +6,57 @@ use SimpleSAML\Utils\HTTP;
 class HTTPTest extends \PHPUnit_Framework_TestCase
 {
 
+    /**
+     * Test SimpleSAML\Utils\HTTP::addURLParameters().
+     *
+     * @expectedException \InvalidArgumentException
+     */
+    public function testAddURLParametersInvalidURL()
+    {
+        HTTP::addURLParameters(array(), array());
+    }
+
+    /**
+     * Test SimpleSAML\Utils\HTTP::addURLParameters().
+     *
+     * @expectedException \InvalidArgumentException
+     */
+    public function testAddURLParametersInvalidParameters()
+    {
+        HTTP::addURLParameters('string', 'string');
+    }
+
+    /**
+     * Test SimpleSAML\Utils\HTTP::addURLParameters().
+     */
+    public function testAddURLParameters()
+    {
+        $url = 'http://example.com/';
+        $params = array(
+            'foo' => 'bar',
+            'bar' => 'foo',
+        );
+        $this->assertEquals($url.'?foo=bar&bar=foo', HTTP::addURLParameters($url, $params));
+
+        $url = 'http://example.com/?';
+        $params = array(
+            'foo' => 'bar',
+            'bar' => 'foo',
+        );
+        $this->assertEquals($url.'foo=bar&bar=foo', HTTP::addURLParameters($url, $params));
+
+        $url = 'http://example.com/?foo=bar';
+        $params = array(
+            'bar' => 'foo',
+        );
+        $this->assertEquals($url.'&bar=foo', HTTP::addURLParameters($url, $params));
+    }
 
     /**
      * Test SimpleSAML\Utils\HTTP::guessBasePath().
      */
     public function testGuessBasePath()
     {
-        global $_SERVER;
-
         $original = $_SERVER;
 
         $_SERVER['REQUEST_URI'] = '/simplesaml/module.php';
