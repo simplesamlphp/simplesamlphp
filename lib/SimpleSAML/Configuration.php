@@ -454,9 +454,13 @@ class SimpleSAML_Configuration
             return \SimpleSAML\Utils\HTTP::getFirstPathElement(false).$matches[1];
         }
 
-        if (preg_match('#^https?://[^/]*/(.*)$#', $baseURL, $matches)) {
+        if (preg_match('#^https?://[^/]*(?:/(.+/?)?)?$#', $baseURL, $matches)) {
             // we have a full url, we need to strip the path
-            return $matches[1];
+            if (!array_key_exists(1, $matches)) {
+                // root directory specified with an absolute URL
+                return '';
+            }
+            return rtrim($matches[1], '/')."/";
         } elseif ($baseURL === '' || $baseURL === '/') {
             // Root directory of site
             return '';
