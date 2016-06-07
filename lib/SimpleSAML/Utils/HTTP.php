@@ -966,14 +966,13 @@ class HTTP
             return $baseScheme.$url;
         }
 
-        $firstChar = substr($url, 0, 1);
-        if ($firstChar === '/') {
+        if ($url[0] === '/') {
             return $baseHost.$url;
         }
-        if ($firstChar === '?') {
+        if ($url[0] === '?') {
             return $basePath.$url;
         }
-        if ($firstChar === '#') {
+        if ($url[0] === '#') {
             return $baseQuery.$url;
         }
 
