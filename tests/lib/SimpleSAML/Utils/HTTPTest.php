@@ -140,6 +140,80 @@ class HTTPTest extends \PHPUnit_Framework_TestCase
         $_SERVER = $original;
     }
 
+
+    /**
+     * Test SimpleSAML\Utils\HTTP::getSelfURL().
+     */
+    public function testGetSelfURL()
+    {
+        $original = $_SERVER;
+
+        // test a valid, full URL, based on a full URL in the configuration
+        $cfg = \SimpleSAML_Configuration::loadFromArray(array(
+            'baseurlpath' => 'https://example.com/simplesaml/',
+        ), '[ARRAY]', 'simplesaml');
+        $baseDir = $cfg->getBaseDir();
+        $_SERVER['SCRIPT_FILENAME'] = $baseDir.'www/script.php';
+        $_SERVER['REQUEST_URI'] = '/simplesaml/script.php/module/file.php?foo=bar#something';
+        $this->assertEquals(
+            'https://example.com/simplesaml/script.php/module/file.php?foo=bar#something',
+            HTTP::getSelfURL()
+        );
+
+        // test a valid, full URL, based on a full URL *without* a trailing slash in the configuration
+        \SimpleSAML_Configuration::loadFromArray(array(
+            'baseurlpath' => 'https://example.com/simplesaml',
+        ), '[ARRAY]', 'simplesaml');
+        $this->assertEquals(
+            'https://example.com/simplesaml/script.php/module/file.php?foo=bar#something',
+            HTTP::getSelfURL()
+        );
+
+        // test a valid, full URL, based on a full URL *without* a path in the configuration
+        \SimpleSAML_Configuration::loadFromArray(array(
+            'baseurlpath' => 'https://example.com',
+        ), '[ARRAY]', 'simplesaml');
+        $this->assertEquals(
+            'https://example.com/script.php/module/file.php?foo=bar#something',
+            HTTP::getSelfURL()
+        );
+
+        // test a valid, full URL, based on a relative path in the configuration
+        \SimpleSAML_Configuration::loadFromArray(array(
+            'baseurlpath' => '/simplesaml/',
+        ), '[ARRAY]', 'simplesaml');
+        $_SERVER['HTTP_HOST'] = 'example.org';
+        unset($_SERVER['HTTPS']);
+        unset($_SERVER['SERVER_PORT']);
+        $this->assertEquals(
+            'http://example.org/simplesaml/script.php/module/file.php?foo=bar#something',
+            HTTP::getSelfURL()
+        );
+
+        // test a valid, full URL, based on a relative path in the configuration and a non standard port
+        \SimpleSAML_Configuration::loadFromArray(array(
+            'baseurlpath' => '/simplesaml/',
+        ), '[ARRAY]', 'simplesaml');
+        $_SERVER['SERVER_PORT'] = '8080';
+        $this->assertEquals(
+            'http://example.org:8080/simplesaml/script.php/module/file.php?foo=bar#something',
+            HTTP::getSelfURL()
+        );
+
+        // test a valid, full URL, based on a relative path in the configuration, a non standard port and HTTPS
+        \SimpleSAML_Configuration::loadFromArray(array(
+            'baseurlpath' => '/simplesaml/',
+        ), '[ARRAY]', 'simplesaml');
+        $_SERVER['HTTPS'] = 'on';
+        $this->assertEquals(
+            'https://example.org:8080/simplesaml/script.php/module/file.php?foo=bar#something',
+            HTTP::getSelfURL()
+        );
+
+        $_SERVER = $original;
+    }
+
+
     /**
      * Test SimpleSAML\Utils\HTTP::checkURLAllowed(), without regex.
      */
