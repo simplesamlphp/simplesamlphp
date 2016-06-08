@@ -50,7 +50,8 @@ class SimpleSAML_XHTML_Template
     {
         $this->configuration = $configuration;
         $this->template = $template;
-        $this->data['baseurlpath'] = $this->configuration->getBaseURL();
+        // TODO: do not remove the slash from the beginning, change the templates instead!
+        $this->data['baseurlpath'] = ltrim($this->configuration->getBasePath(), '/');
         $this->translator = new SimpleSAML\Locale\Translate($configuration, $defaultDictionary);
     }
 

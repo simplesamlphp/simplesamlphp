@@ -14,7 +14,7 @@ $asId = (string) $_REQUEST['as'];
 $as = new SimpleSAML_Auth_Simple($asId);
 
 if (array_key_exists('logout', $_REQUEST)) {
-    $as->logout('/'.$config->getBaseURL().'logout.php');
+    $as->logout($config->getBasePath().'logout.php');
 }
 
 if (array_key_exists(SimpleSAML_Auth_State::EXCEPTION_PARAM, $_REQUEST)) {

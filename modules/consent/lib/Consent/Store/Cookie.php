@@ -268,7 +268,7 @@ class sspmod_consent_Consent_Store_Cookie extends sspmod_consent_Store
         $globalConfig = SimpleSAML_Configuration::getInstance();
         $params = array(
             'lifetime' => (90*24*60*60),
-            'path' => ('/' . $globalConfig->getBaseURL()),
+            'path' => ($globalConfig->getBasePath()),
             'httponly' => FALSE,
         );
 

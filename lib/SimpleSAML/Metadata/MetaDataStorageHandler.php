@@ -98,8 +98,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandler
         $config = SimpleSAML_Configuration::getInstance();
         assert($config instanceof SimpleSAML_Configuration);
 
-        $baseurl = \SimpleSAML\Utils\HTTP::getSelfURLHost().'/'.
-            $config->getBaseURL();
+        $baseurl = \SimpleSAML\Utils\HTTP::getSelfURLHost().$config->getBasePath();
 
         if ($set == 'saml20-sp-hosted') {
             if ($property === 'SingleLogoutServiceBinding') {

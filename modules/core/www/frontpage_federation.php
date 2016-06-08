@@ -78,7 +78,7 @@ if ($isadmin) {
 if ($config->getBoolean('enable.saml20-idp', FALSE) === true) {
 	try {
 		$metaentries['hosted']['saml20-idp'] = $metadata->getMetaDataCurrent('saml20-idp-hosted');
-		$metaentries['hosted']['saml20-idp']['metadata-url'] = '/' . $config->getBaseURL() .
+		$metaentries['hosted']['saml20-idp']['metadata-url'] = $config->getBasePath() .
                                                                'saml2/idp/metadata.php?output=xhtml';
 		if ($isadmin)
 			$metaentries['remote']['saml20-sp-remote'] = $metadata->getList('saml20-sp-remote');
@@ -87,7 +87,7 @@ if ($config->getBoolean('enable.saml20-idp', FALSE) === true) {
 if ($config->getBoolean('enable.shib13-idp', FALSE) === true) {
 	try {
 		$metaentries['hosted']['shib13-idp'] = $metadata->getMetaDataCurrent('shib13-idp-hosted');
-		$metaentries['hosted']['shib13-idp']['metadata-url'] = '/' . $config->getBaseURL() .
+		$metaentries['hosted']['shib13-idp']['metadata-url'] = $config->getBasePath() .
                                                                'shib13/idp/metadata.php?output=xhtml';
 		if ($isadmin)
 			$metaentries['remote']['shib13-sp-remote'] = $metadata->getList('shib13-sp-remote');

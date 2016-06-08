@@ -581,7 +581,7 @@ class HTTP
 
             $hostname = self::getServerHost();
             $port = self::getServerPort();
-            $path = '/'.$globalConfig->getBaseURL();
+            $path = $globalConfig->getBasePath();
 
             return $protocol.$hostname.$port.$path;
         } else {
