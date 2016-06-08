@@ -160,8 +160,8 @@ file, `config.php`, right away:
     be used for receiving error reports sent automatically by
     SimpleSAMLphp. Here is an example:
 
-		'technicalcontact_name'     => 'Andreas Åkre Solberg',
-		'technicalcontact_email'    => 'andreas.solberg@uninett.no',
+		'technicalcontact_name'     => 'John Smith',
+		'technicalcontact_email'    => 'john.smith@example.com',
 
 -  
     If you use SimpleSAMLphp in a country where English is not
@@ -291,11 +291,11 @@ Next, you need to update the configuration of paths in `simplesamlphp/config/con
 
 And, then we need to set the `baseurlpath` parameter to match the base path of the URLs to the content of your `www` folder:
 
-    'baseurlpath' => '~andreas/simplesaml/',
+    'baseurlpath' => '/simplesaml/',
 
 Now, you can go to the URL of your installation and check if things work:
 
-    http://yourcompany.com/~andreas/simplesaml/
+    http://yourcompany.com/simplesaml/
 
 
 ### Tip
@@ -324,7 +324,7 @@ Change the two lines from:
 
 to something like:
 
-    require_once('/home/andreas/simplesamlphp/lib/_autoload.php');
+    require_once('/var/www/simplesamlphp/lib/_autoload.php');
 
 And then at the end of the file, you need to change another line
 from:
@@ -333,7 +333,7 @@ from:
 
 to:
 
-    $configdir = '/home/andreas/simplesamlphp/config';
+    $configdir = '/var/www/simplesamlphp/config';
 
 
 

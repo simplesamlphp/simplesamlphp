@@ -16,7 +16,6 @@ $config = array(
      *
      * Valid format for 'baseurlpath' is:
      * [(http|https)://(hostname|fqdn)[:port]]/[path/to/simplesaml/]
-     * (note that it must end with a '/')
      *
      * The full url format is useful if your SimpleSAMLphp setup is hosted behind
      * a reverse proxy. In that case you can specify the external url here.
