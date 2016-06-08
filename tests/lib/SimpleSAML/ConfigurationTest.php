@@ -40,17 +40,17 @@ class Test_SimpleSAML_Configuration extends PHPUnit_Framework_TestCase
      */
     public function testGetValue() {
         $c = SimpleSAML_Configuration::loadFromArray(array(
-            'exists_true' => TRUE,
-            'exists_null' => NULL,
+            'exists_true' => true,
+            'exists_null' => null,
         ));
-        $this->assertEquals($c->getValue('missing'), NULL);
-        $this->assertEquals($c->getValue('missing', TRUE), TRUE);
-        $this->assertEquals($c->getValue('missing', TRUE), TRUE);
+        $this->assertEquals($c->getValue('missing'), null);
+        $this->assertEquals($c->getValue('missing', true), true);
+        $this->assertEquals($c->getValue('missing', true), true);
 
-        $this->assertEquals($c->getValue('exists_true'), TRUE);
+        $this->assertEquals($c->getValue('exists_true'), true);
 
-        $this->assertEquals($c->getValue('exists_null'), NULL);
-        $this->assertEquals($c->getValue('exists_null', FALSE), NULL);
+        $this->assertEquals($c->getValue('exists_null'), null);
+        $this->assertEquals($c->getValue('exists_null', false), null);
     }
 
     /**
@@ -67,12 +67,12 @@ class Test_SimpleSAML_Configuration extends PHPUnit_Framework_TestCase
      */
     public function testHasValue() {
         $c = SimpleSAML_Configuration::loadFromArray(array(
-            'exists_true' => TRUE,
-            'exists_null' => NULL,
+            'exists_true' => true,
+            'exists_null' => null,
         ));
-        $this->assertEquals($c->hasValue('missing'), FALSE);
-        $this->assertEquals($c->hasValue('exists_true'), TRUE);
-        $this->assertEquals($c->hasValue('exists_null'), TRUE);
+        $this->assertEquals($c->hasValue('missing'), false);
+        $this->assertEquals($c->hasValue('exists_true'), true);
+        $this->assertEquals($c->hasValue('exists_null'), true);
     }
 
     /**
@@ -80,17 +80,17 @@ class Test_SimpleSAML_Configuration extends PHPUnit_Framework_TestCase
      */
     public function testHasValueOneOf() {
         $c = SimpleSAML_Configuration::loadFromArray(array(
-            'exists_true' => TRUE,
-            'exists_null' => NULL,
+            'exists_true' => true,
+            'exists_null' => null,
         ));
-        $this->assertEquals($c->hasValueOneOf(array()), FALSE);
-        $this->assertEquals($c->hasValueOneOf(array('missing')), FALSE);
-        $this->assertEquals($c->hasValueOneOf(array('exists_true')), TRUE);
-        $this->assertEquals($c->hasValueOneOf(array('exists_null')), TRUE);
+        $this->assertEquals($c->hasValueOneOf(array()), false);
+        $this->assertEquals($c->hasValueOneOf(array('missing')), false);
+        $this->assertEquals($c->hasValueOneOf(array('exists_true')), true);
+        $this->assertEquals($c->hasValueOneOf(array('exists_null')), true);
 
-        $this->assertEquals($c->hasValueOneOf(array('missing1', 'missing2')), FALSE);
-        $this->assertEquals($c->hasValueOneOf(array('exists_true', 'missing')), TRUE);
-        $this->assertEquals($c->hasValueOneOf(array('missing', 'exists_true')), TRUE);
+        $this->assertEquals($c->hasValueOneOf(array('missing1', 'missing2')), false);
+        $this->assertEquals($c->hasValueOneOf(array('exists_true', 'missing')), true);
+        $this->assertEquals($c->hasValueOneOf(array('missing', 'exists_true')), true);
     }
 
     /**
@@ -195,7 +195,7 @@ class Test_SimpleSAML_Configuration extends PHPUnit_Framework_TestCase
             'basedir' => '/basedir/',
         ));
 
-        $this->assertEquals($c->resolvePath(NULL), NULL);
+        $this->assertEquals($c->resolvePath(null), null);
         $this->assertEquals($c->resolvePath('/otherdir'), '/otherdir');
         $this->assertEquals($c->resolvePath('relativedir'), '/basedir/relativedir');
 
@@ -213,7 +213,7 @@ class Test_SimpleSAML_Configuration extends PHPUnit_Framework_TestCase
             'slashes_opt' => 'slashes//',
         ));
 
-        $this->assertEquals($c->getPathValue('missing'), NULL);
+        $this->assertEquals($c->getPathValue('missing'), null);
         $this->assertEquals($c->getPathValue('path_opt'), '/basedir/path/');
         $this->assertEquals($c->getPathValue('slashes_opt'), '/basedir/slashes/');
     }
@@ -241,12 +241,12 @@ class Test_SimpleSAML_Configuration extends PHPUnit_Framework_TestCase
      */
     public function testGetBoolean() {
         $c = SimpleSAML_Configuration::loadFromArray(array(
-            'true_opt' => TRUE,
-            'false_opt' => FALSE,
+            'true_opt' => true,
+            'false_opt' => false,
         ));
         $this->assertEquals($c->getBoolean('missing_opt', '--missing--'), '--missing--');
-        $this->assertEquals($c->getBoolean('true_opt', '--missing--'), TRUE);
-        $this->assertEquals($c->getBoolean('false_opt', '--missing--'), FALSE);
+        $this->assertEquals($c->getBoolean('true_opt', '--missing--'), true);
+        $this->assertEquals($c->getBoolean('false_opt', '--missing--'), false);
     }
 
     /**
@@ -295,7 +295,7 @@ class Test_SimpleSAML_Configuration extends PHPUnit_Framework_TestCase
      */
     public function testGetStringWrong() {
         $c = SimpleSAML_Configuration::loadFromArray(array(
-            'wrong' => FALSE,
+            'wrong' => false,
         ));
         $c->getString('wrong');
     }
@@ -524,8 +524,8 @@ class Test_SimpleSAML_Configuration extends PHPUnit_Framework_TestCase
      */
     public function testGetOptions() {
         $c = SimpleSAML_Configuration::loadFromArray(array(
-            'a' => TRUE,
-            'b' => NULL,
+            'a' => true,
+            'b' => null,
         ));
         $this->assertEquals($c->getOptions(), array('a', 'b'));
     }
@@ -535,10 +535,10 @@ class Test_SimpleSAML_Configuration extends PHPUnit_Framework_TestCase
      */
     public function testToArray() {
         $c = SimpleSAML_Configuration::loadFromArray(array(
-            'a' => TRUE,
-            'b' => NULL,
+            'a' => true,
+            'b' => null,
         ));
-        $this->assertEquals($c->toArray(), array('a' => TRUE, 'b' => NULL));
+        $this->assertEquals($c->toArray(), array('a' => true, 'b' => null));
     }
 
 
