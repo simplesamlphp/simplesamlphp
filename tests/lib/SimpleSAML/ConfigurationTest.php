@@ -100,61 +100,91 @@ class Test_SimpleSAML_Configuration extends PHPUnit_Framework_TestCase
         $c = SimpleSAML_Configuration::loadFromArray(array());
         $this->assertEquals($c->getBaseURL(), 'simplesaml/');
 
-        $c = SimpleSAML_Configuration::loadFromArray(array(
-            'baseurlpath' => 'simplesaml/',
-        ));
+        $c = SimpleSAML_Configuration::loadFromArray(array('baseurlpath' => 'simplesaml/'));
         $this->assertEquals($c->getBaseURL(), 'simplesaml/');
 
-        $c = SimpleSAML_Configuration::loadFromArray(array(
-            'baseurlpath' => '/simplesaml/',
-        ));
+        $c = SimpleSAML_Configuration::loadFromArray(array('baseurlpath' => '/simplesaml/'));
         $this->assertEquals($c->getBaseURL(), 'simplesaml/');
 
-        $c = SimpleSAML_Configuration::loadFromArray(array(
-            'baseurlpath' => 'path/to/simplesaml/',
-        ));
+        $c = SimpleSAML_Configuration::loadFromArray(array('baseurlpath' => 'path/to/simplesaml/'));
         $this->assertEquals($c->getBaseURL(), 'path/to/simplesaml/');
 
-        $c = SimpleSAML_Configuration::loadFromArray(array(
-            'baseurlpath' => '/path/to/simplesaml/',
-        ));
+        $c = SimpleSAML_Configuration::loadFromArray(array('baseurlpath' => '/path/to/simplesaml/'));
         $this->assertEquals($c->getBaseURL(), 'path/to/simplesaml/');
 
-        $c = SimpleSAML_Configuration::loadFromArray(array(
-            'baseurlpath' => 'https://example.org/ssp/',
-        ));
+        $c = SimpleSAML_Configuration::loadFromArray(array('baseurlpath' => 'https://example.org/ssp/'));
         $this->assertEquals($c->getBaseURL(), 'ssp/');
 
-        $c = SimpleSAML_Configuration::loadFromArray(array(
-            'baseurlpath' => 'https://example.org/',
-        ));
+        $c = SimpleSAML_Configuration::loadFromArray(array('baseurlpath' => 'https://example.org/'));
         $this->assertEquals($c->getBaseURL(), '');
 
-        $c = SimpleSAML_Configuration::loadFromArray(array(
-            'baseurlpath' => 'http://example.org/ssp/',
-        ));
+        $c = SimpleSAML_Configuration::loadFromArray(array('baseurlpath' => 'http://example.org/ssp/'));
         $this->assertEquals($c->getBaseURL(), 'ssp/');
 
-        $c = SimpleSAML_Configuration::loadFromArray(array(
-            'baseurlpath' => '',
-        ));
+        $c = SimpleSAML_Configuration::loadFromArray(array('baseurlpath' => ''));
         $this->assertEquals($c->getBaseURL(), '');
 
-        $c = SimpleSAML_Configuration::loadFromArray(array(
-            'baseurlpath' => '/',
-        ));
+        $c = SimpleSAML_Configuration::loadFromArray(array('baseurlpath' => '/'));
         $this->assertEquals($c->getBaseURL(), '');
+
+        $c = SimpleSAML_Configuration::loadFromArray(array('baseurlpath' => 'simplesaml'));
+        $this->assertEquals($c->getBaseURL(), 'simplesaml/');
     }
 
     /**
-     * Test that SimpleSAML_Configuration::getBaseURL() fails if given a path without trailing slash
-     * @expectedException \SimpleSAML\Error\CriticalConfigurationError
+     * Test SimpleSAML_Configuration::getBasePath()
      */
-    public function testGetBaseURLError() {
-        $c = SimpleSAML_Configuration::loadFromArray(array(
-            'baseurlpath' => 'simplesaml',
-        ));
-        $c->getBaseURL();
+    public function testGetBasePath() {
+        $c = SimpleSAML_Configuration::loadFromArray(array());
+        $this->assertEquals($c->getBasePath(), '/simplesaml/');
+
+        $c = SimpleSAML_Configuration::loadFromArray(array('baseurlpath' => 'simplesaml/'));
+        $this->assertEquals($c->getBasePath(), '/simplesaml/');
+
+        $c = SimpleSAML_Configuration::loadFromArray(array('baseurlpath' => '/simplesaml/'));
+        $this->assertEquals($c->getBasePath(), '/simplesaml/');
+
+        $c = SimpleSAML_Configuration::loadFromArray(array('baseurlpath' => 'simplesaml'));
+        $this->assertEquals($c->getBasePath(), '/simplesaml/');
+
+        $c = SimpleSAML_Configuration::loadFromArray(array('baseurlpath' => '/simplesaml'));
+        $this->assertEquals($c->getBasePath(), '/simplesaml/');
+
+        $c = SimpleSAML_Configuration::loadFromArray(array('baseurlpath' => 'path/to/simplesaml/'));
+        $this->assertEquals($c->getBasePath(), '/path/to/simplesaml/');
+
+        $c = SimpleSAML_Configuration::loadFromArray(array('baseurlpath' => '/path/to/simplesaml/'));
+        $this->assertEquals($c->getBasePath(), '/path/to/simplesaml/');
+
+        $c = SimpleSAML_Configuration::loadFromArray(array('baseurlpath' => '/path/to/simplesaml'));
+        $this->assertEquals($c->getBasePath(), '/path/to/simplesaml/');
+
+        $c = SimpleSAML_Configuration::loadFromArray(array('baseurlpath' => 'https://example.org/ssp/'));
+        $this->assertEquals($c->getBasePath(), '/ssp/');
+
+        $c = SimpleSAML_Configuration::loadFromArray(array('baseurlpath' => 'https://example.org/'));
+        $this->assertEquals($c->getBasePath(), '/');
+
+        $c = SimpleSAML_Configuration::loadFromArray(array('baseurlpath' => 'http://example.org/ssp/'));
+        $this->assertEquals($c->getBasePath(), '/ssp/');
+
+        $c = SimpleSAML_Configuration::loadFromArray(array('baseurlpath' => 'http://example.org/ssp/simplesaml'));
+        $this->assertEquals($c->getBasePath(), '/ssp/simplesaml/');
+
+        $c = SimpleSAML_Configuration::loadFromArray(array('baseurlpath' => 'http://example.org/ssp/simplesaml/'));
+        $this->assertEquals($c->getBasePath(), '/ssp/simplesaml/');
+
+        $c = SimpleSAML_Configuration::loadFromArray(array('baseurlpath' => ''));
+        $this->assertEquals($c->getBasePath(), '/');
+
+        $c = SimpleSAML_Configuration::loadFromArray(array('baseurlpath' => '/'));
+        $this->assertEquals($c->getBasePath(), '/');
+
+        $c = SimpleSAML_Configuration::loadFromArray(array('baseurlpath' => 'https://example.org:8443'));
+        $this->assertEquals($c->getBasePath(), '/');
+
+        $c = SimpleSAML_Configuration::loadFromArray(array('baseurlpath' => 'https://example.org:8443/'));
+        $this->assertEquals($c->getBasePath(), '/');
     }
 
     /**
