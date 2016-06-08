@@ -830,6 +830,10 @@ class HTTP
         }
 
         $res = array();
+        if (empty($query_string)) {
+            return $res;
+        }
+
         foreach (explode('&', $query_string) as $param) {
             $param = explode('=', $param);
             $name = urldecode($param[0]);
