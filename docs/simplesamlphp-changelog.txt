@@ -6,6 +6,17 @@ SimpleSAMLphp changelog
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
+## Version 1.14.4
+
+Released 2016-06-08
+
+  * Fixed two minor security issues that allowed malicious URLs to be presented to the user in a link. Reported by John Page.
+  * Fixed issue #366. The LDAP class was trying to authenticate even when no password was provided (using the CAS module).
+  * Fixed issue #401. The authenticate.php script was printing exceptions instead of throwing them for the exception handler to capture them.
+  * Fixed issue #399. The size limitation of the TEXT type in MySQL was creating problems in certain setups.
+  * Fixed issue #5. Incoherent population of the $_SERVER variable was creating broken links when running PHP with FastCGI.
+  * Other typos and minor bugs: #389, #392.
+
 ## Version 1.14.3
 
 Released 2016-04-19
