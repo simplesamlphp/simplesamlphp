@@ -6,9 +6,39 @@ SimpleSAMLphp changelog
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
+## Version 1.14.4
+
+Released 2016-06-08
+
+  * Fixed two minor security issues that allowed malicious URLs to be presented to the user in a link. Reported by John Page.
+  * Fixed issue #366. The LDAP class was trying to authenticate even when no password was provided (using the CAS module).
+  * Fixed issue #401. The authenticate.php script was printing exceptions instead of throwing them for the exception handler to capture them.
+  * Fixed issue #399. The size limitation of the TEXT type in MySQL was creating problems in certain setups.
+  * Fixed issue #5. Incoherent population of the $_SERVER variable was creating broken links when running PHP with FastCGI.
+  * Other typos and minor bugs: #389, #392.
+
+## Version 1.14.3
+
+Released 2016-04-19
+
+  * Fixed a bug in the login form that prevented the login button to be displayed in mobile devices.
+  * Resolved an issue in the PHP session handler that made it impossible to use PHP sessions simultaneously with other applications.
+
+## Version 1.14.2
+
+Released 2016-03-11
+
+  * Use stable versions of the externalized modules to prevent possible issues when further developing them.
+
+## Version 1.14.1
+
+Released 2016-03-08
+
+  * Resolved an information leakage security issue in the sanitycheck module. See [SSPSA 201603-01](/security/201603-01).
+
 ## Version 1.14.0
 
-Released TBD
+Released 2016-02-15
 
 ### Security
 
@@ -32,7 +62,6 @@ Released TBD
   * Added the SAML NameID to the attributes status page, when available.
   * Added attribute definitions for schacGender (schac), sisSchoolGrade and sisLegalGuardianFor (skolfederation.se).
   * Attributes required in metadata are now taken into account when parsing.
-  * Allow regular expression matching of trusted.url.domains. Off by default, set trusted.url.regex to true to enable.
 
 ### Bug fixes
 
