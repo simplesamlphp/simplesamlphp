@@ -55,6 +55,12 @@ attention to:
 * Do not include many changes in every commit. Commits should be focused and address one single problem or feature. By
 having **multiple, small commits** instead of few large ones, it is easier to track what you are doing, revert changes
 in case of an error and help you out if needed.
+* Try to write clean **commit messages**, largely based on the [seven rules](http://chris.beams.io/posts/git-commit/):
+   * Write a **short** subject line, followed by a blank line and a longer explanation.
+   * Prefix the subject line with the component(s) changed, e.g. "docs: Update foo", or "SAML: Don't log bar twice",
+     or "tests: Add tests for quux".
+   * Explain **what and why** in the commit message, not just _how_. Things obvious now might become quite confusing
+     when rediscovered years later.
 * **Be explicit**. Add comments. Use strict comparison operators like `===` and check for specific values when testing
 conditions.
 * **Keep things simple**. Avoid big functions, long nested loops or `if` statements.
