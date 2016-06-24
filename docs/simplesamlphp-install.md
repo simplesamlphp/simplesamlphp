@@ -121,6 +121,12 @@ Find the Apache configuration file for the virtual hosts where you want to run S
             Alias /simplesaml /var/simplesamlphp/www
     </VirtualHost>
 
+If you are using Apache 2.4.6 or higher version, you have to add an extra configuration directive to play nicely with the Apache 2.4 security settings
+
+    <Directory /var/simplesamlphp/www/>
+            Require all granted
+    </Directory>
+
 Note the `Alias` directive, which gives control to SimpleSAMLphp for all urls matching `http(s)://service.example.com/simplesaml/*`. SimpleSAMLphp makes several SAML interfaces available on the web; all of them are included in the `www` subdirectory of your SimpleSAMLphp installation. You can name the alias whatever you want, but the name must be specified in the `config.php` file of simpleSAML as described in [the section called “SimpleSAMLphp configuration: config.php”](#sect.config "SimpleSAMLphp configuration: config.php"). Here is an example of how this configuration may look like in `config.php`:
 
     $config = array (
