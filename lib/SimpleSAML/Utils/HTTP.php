@@ -722,7 +722,7 @@ class HTTP
         $url = self::getBaseURL();
         $cfg = \SimpleSAML_Configuration::getInstance();
         $baseDir = $cfg->getBaseDir();
-        $rel_path = str_replace($baseDir.'www/', '', $_SERVER['SCRIPT_FILENAME']);
+        $rel_path = str_replace($baseDir.'www/', '', realpath($_SERVER['SCRIPT_FILENAME']));
         $pos = strpos($_SERVER['REQUEST_URI'], $rel_path) + strlen($rel_path);
         return $url.$rel_path.substr($_SERVER['REQUEST_URI'], $pos);
     }
