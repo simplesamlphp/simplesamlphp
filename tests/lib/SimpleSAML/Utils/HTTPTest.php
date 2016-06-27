@@ -153,10 +153,10 @@ class HTTPTest extends \PHPUnit_Framework_TestCase
             'baseurlpath' => 'https://example.com/simplesaml/',
         ), '[ARRAY]', 'simplesaml');
         $baseDir = $cfg->getBaseDir();
-        $_SERVER['SCRIPT_FILENAME'] = $baseDir.'www/script.php';
-        $_SERVER['REQUEST_URI'] = '/simplesaml/script.php/module/file.php?foo=bar#something';
+        $_SERVER['SCRIPT_FILENAME'] = $baseDir.'www/module.php';
+        $_SERVER['REQUEST_URI'] = '/simplesaml/module.php/module/file.php?foo=bar#something';
         $this->assertEquals(
-            'https://example.com/simplesaml/script.php/module/file.php?foo=bar#something',
+            'https://example.com/simplesaml/module.php/module/file.php?foo=bar#something',
             HTTP::getSelfURL()
         );
 
@@ -165,7 +165,7 @@ class HTTPTest extends \PHPUnit_Framework_TestCase
             'baseurlpath' => 'https://example.com/simplesaml',
         ), '[ARRAY]', 'simplesaml');
         $this->assertEquals(
-            'https://example.com/simplesaml/script.php/module/file.php?foo=bar#something',
+            'https://example.com/simplesaml/module.php/module/file.php?foo=bar#something',
             HTTP::getSelfURL()
         );
 
@@ -174,7 +174,7 @@ class HTTPTest extends \PHPUnit_Framework_TestCase
             'baseurlpath' => 'https://example.com',
         ), '[ARRAY]', 'simplesaml');
         $this->assertEquals(
-            'https://example.com/script.php/module/file.php?foo=bar#something',
+            'https://example.com/module.php/module/file.php?foo=bar#something',
             HTTP::getSelfURL()
         );
 
@@ -186,7 +186,7 @@ class HTTPTest extends \PHPUnit_Framework_TestCase
         unset($_SERVER['HTTPS']);
         unset($_SERVER['SERVER_PORT']);
         $this->assertEquals(
-            'http://example.org/simplesaml/script.php/module/file.php?foo=bar#something',
+            'http://example.org/simplesaml/module.php/module/file.php?foo=bar#something',
             HTTP::getSelfURL()
         );
 
@@ -196,7 +196,7 @@ class HTTPTest extends \PHPUnit_Framework_TestCase
         ), '[ARRAY]', 'simplesaml');
         $_SERVER['SERVER_PORT'] = '8080';
         $this->assertEquals(
-            'http://example.org:8080/simplesaml/script.php/module/file.php?foo=bar#something',
+            'http://example.org:8080/simplesaml/module.php/module/file.php?foo=bar#something',
             HTTP::getSelfURL()
         );
 
@@ -206,7 +206,7 @@ class HTTPTest extends \PHPUnit_Framework_TestCase
         ), '[ARRAY]', 'simplesaml');
         $_SERVER['HTTPS'] = 'on';
         $this->assertEquals(
-            'https://example.org:8080/simplesaml/script.php/module/file.php?foo=bar#something',
+            'https://example.org:8080/simplesaml/module.php/module/file.php?foo=bar#something',
             HTTP::getSelfURL()
         );
 
