@@ -58,6 +58,16 @@ class Localization
         $this->setupL10N();
     }
 
+
+    /**
+     * Dump the default locale directory
+     */
+    public function getLocaleDir()
+    {
+        return $this->localeDir;
+    }
+
+
     /*
      * Add a new translation domain
      * (We're assuming that each domain only exists in one place)
@@ -114,6 +124,14 @@ class Localization
         // setup default domain
         $this->addDomain($this->localeDir, self::DEFAULT_DOMAIN);
         $this->activateDomain(self::DEFAULT_DOMAIN);
+    }
+
+    /**
+     * Show which domains are registered
+     */
+    public function getRegisteredDomains()
+    {
+        return $this->localeDomainMap;
     }
 
 
