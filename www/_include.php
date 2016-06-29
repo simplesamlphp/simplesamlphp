@@ -37,6 +37,8 @@ SimpleSAML_Error_Assertion::installHandler();
 // show error page on unhandled exceptions
 function SimpleSAML_exception_handler(Exception $exception)
 {
+    SimpleSAML\Module::callHooks('exception_handler', $exception);
+
     if ($exception instanceof SimpleSAML_Error_Error) {
         $exception->show();
     } else {
