@@ -51,7 +51,7 @@ try {
         $metaArray['keys'] = $keys;
     }
 
-    $metaArray['NameIDFormat'] = $idpmeta->getString('NameIDFormat', 'urn:mace:shibboleth:1.0:nameIdentifier');
+    $metaArray['NameIDFormat'] = $idpmeta->getArrayizeString('NameIDFormat', 'urn:mace:shibboleth:1.0:nameIdentifier');
 
     if ($idpmeta->hasValue('OrganizationName')) {
         $metaArray['OrganizationName'] = $idpmeta->getLocalizedString('OrganizationName');
