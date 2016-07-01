@@ -191,4 +191,27 @@ class Test_Core_Auth_Process_ScopeAttribute extends PHPUnit_Framework_TestCase
         $attributes = $result['Attributes'];
         $this->assertEquals($attributes['eduPersonScopedAffiliation'], array('student@example.org'));
     }
+
+	/*
+	 * When the target attribute exists and onlyIfEmpty is set
+	 */
+	public function testOnlyIfEmpty()
+	{
+       $config = array(
+            'scopeAttribute' => 'schacHomeOrganization',
+            'sourceAttribute' => 'eduPersonAffiliation',
+            'targetAttribute' => 'eduPersonScopedAffiliation',
+			'onlyIfEmpty' => true,
+        );
+        $request = array(
+            'Attributes' => array(
+                'schacHomeOrganization' => array('example.org'),
+                'eduPersonAffiliation' => array('student'),
+				'eduPersonScopedAffiliation' => array('staff@example.org', 'member@example.org'),
+            )
+        );
+        $result = self::processFilter($config, $request);
+        $attributes = $result['Attributes'];
+        $this->assertEquals($attributes['eduPersonScopedAffiliation'], array('staff@example.org', 'member@example.org'));
+	}
 }
