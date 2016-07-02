@@ -194,7 +194,7 @@ class SimpleSAML_Session
         }
 
         // check if we have stored a session stored with the session handler
-        $prev = (self::$instance !== null);
+        $session = null;
         try {
             $session = self::getSession();
 
@@ -223,7 +223,7 @@ class SimpleSAML_Session
          * error message). This means we don't need to create a new session again, we can use the one that's loaded now
          * instead.
          */
-        if (self::$instance !== null && !$prev) {
+        if (self::$instance !== null) {
             return self::$instance;
         }
 
