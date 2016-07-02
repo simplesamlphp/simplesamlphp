@@ -42,7 +42,7 @@ class SimpleSAML_SessionHandlerPHP extends SimpleSAML_SessionHandler
         parent::__construct();
 
         $config = SimpleSAML_Configuration::getInstance();
-        $this->cookie_name = $config->getString('session.phpsession.cookiename', ini_get('session.name'));
+        $this->cookie_name = $config->getString('session.phpsession.cookiename', null);
 
         if (function_exists('session_status') && defined('PHP_SESSION_ACTIVE')) { // PHP >= 5.4
             $previous_session = session_status() === PHP_SESSION_ACTIVE;
@@ -61,7 +61,11 @@ class SimpleSAML_SessionHandlerPHP extends SimpleSAML_SessionHandler
             session_write_close();
         }
 
-        session_name($this->cookie_name);
+        if (!empty($this->cookie_name)) {
+            session_name($this->cookie_name);
+        } else {
+            $this->cookie_name = session_name();
+        }
 
         $params = $this->getCookieParams();
 
