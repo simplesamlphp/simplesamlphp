@@ -324,8 +324,11 @@ class SimpleSAML_Session
      *
      * Create a session that should not be saved at the end of the request.
      * Subsequent calls to getInstance() will return this transient session.
+     *
+     * @param Exception|null $exception An exception that made us use a transient session. Specify if you want to log a
+     * message and that exception being thrown after loading the transient session.
      */
-    public static function useTransientSession()
+    public static function useTransientSession($exception = null)
     {
         if (isset(self::$instance)) {
             // we already have a session, don't bother with a transient session
@@ -333,6 +336,16 @@ class SimpleSAML_Session
         }
 
         self::load(new SimpleSAML_Session(true));
+
+        if ($exception instanceof Exception) {
+            if ($exception instanceof SimpleSAML_Error_Exception) {
+                $cause = $exception->getCause();
+                if ($cause instanceof Exception) {
+                    throw $cause;
+                }
+            }
+            throw $exception;
+        }
     }
 
     /**
