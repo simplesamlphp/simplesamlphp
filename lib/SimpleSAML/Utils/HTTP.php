@@ -1008,7 +1008,7 @@ class HTTP
      * @param bool        $throw Whether to throw exception if setcookie() fails.
      *
      * @throws \InvalidArgumentException If any parameter has an incorrect type.
-     * @throws \SimpleSAML_Error_Exception If the headers were already sent and the cookie cannot be set.
+     * @throws \SimpleSAML\Error\CannotSetCookie If the headers were already sent and the cookie cannot be set.
      *
      * @author Andjelko Horvat
      * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
@@ -1079,7 +1079,7 @@ class HTTP
 
         if (!$success) {
             if ($throw) {
-                throw new \SimpleSAML_Error_Exception('Error setting cookie: headers already sent.');
+                throw new \SimpleSAML\Error\CannotSetCookie('Headers already sent.');
             } else {
                 Logger::warning('Error setting cookie: headers already sent.');
             }
