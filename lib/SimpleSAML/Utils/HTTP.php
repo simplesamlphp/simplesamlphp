@@ -1056,7 +1056,7 @@ class HTTP
         }
 
         if ($params['raw']) {
-            $success = setrawcookie(
+            $success = @setrawcookie(
                 $name,
                 $value,
                 $expire,
@@ -1066,7 +1066,7 @@ class HTTP
                 $params['httponly']
             );
         } else {
-            $success = setcookie(
+            $success = @setcookie(
                 $name,
                 $value,
                 $expire,
