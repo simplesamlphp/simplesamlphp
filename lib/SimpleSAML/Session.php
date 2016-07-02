@@ -541,9 +541,10 @@ class SimpleSAML_Session
 
             $this->setRememberMeExpire();
         } else {
-            $sessionHandler->setCookie(
+            SimpleSAML\Utils\HTTP::setCookie(
                 $globalConfig->getString('session.authtoken.cookiename', 'SimpleSAMLAuthToken'),
-                $this->authToken
+                $this->authToken,
+                $sessionHandler->getCookieParams()
             );
         }
     }
