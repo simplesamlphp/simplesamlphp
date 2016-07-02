@@ -208,7 +208,7 @@ class SimpleSAML_SessionHandlerPHP extends SimpleSAML_SessionHandler
             throw new SimpleSAML_Error_Exception('Session start with secure cookie not allowed on http.');
         }
 
-       $this->sessionStart();
+        $this->sessionStart();
         return session_id();
     }
 
