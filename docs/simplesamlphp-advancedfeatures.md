@@ -93,6 +93,13 @@ SimpleSAMLphp supports signing of the metadata it generates. Metadata signing is
 - `metadata.sign.privatekey`: Name of the file with the private key which should be used to sign the metadata. This file must exist in in the `cert` directory.
 - `metadata.sign.privatekey_pass`: Passphrase which should be used to open the private key. This parameter is optional, and should be left out if the private key is unencrypted.
 - `metadata.sign.certificate`: Name of the file with the certificate which matches the private key. This file must exist in in the `cert` directory.
+- `metadata.sign.algorithm`: The algorithm to use when signing metadata for this entity. Defaults to RSA-SHA1. Possible values:
+
+    * `http://www.w3.org/2000/09/xmldsig#rsa-sha1`
+       *Note*: the use of SHA1 is **deprecated** and will be disallowed in the future.
+    * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha256`
+    * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha384`
+    * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha512`
 
 These options can be configured globally in the `config/config.php`-file, or per SP/IdP by adding them to the hosted metadata for the SP/IdP. The configuration in the metadata for the SP/IdP takes precedence over the global configuration.
 
