@@ -323,7 +323,7 @@ class SimpleSAML_SessionHandlerPHP extends SimpleSAML_SessionHandler
 
         if ($cookieParams['secure'] && !\SimpleSAML\Utils\HTTP::isHTTPS()) {
             throw new \SimpleSAML\Error\CannotSetCookie(
-                'Secure cookies not allowed on http.',
+                'Setting secure cookie on plain HTTP is not allowed.',
                 \SimpleSAML\Error\CannotSetCookie::SECURE_COOKIE
             );
         }
