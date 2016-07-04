@@ -44,9 +44,9 @@ class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception
 
 
     /**
-     * The name of module which throw error.
+     * The name of module that threw the error.
      *
-     * @var string|NULL
+     * @var string|null
      */
     private $module = null;
 
@@ -62,7 +62,7 @@ class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception
     /**
      * Name of custom include template for the error.
      *
-     * @var string|NULL
+     * @var string|null
      */
     protected $includeTemplate = null;
 
