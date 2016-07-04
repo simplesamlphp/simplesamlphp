@@ -205,8 +205,8 @@ class SimpleSAML_Session
              * session here. Therefore, use just a transient session and throw the exception for someone else to handle
              * it.
              */
-            SimpleSAML\Logger::error('Error loading session: '.$e->getMessage());
             self::useTransientSession($e);
+            SimpleSAML\Logger::error('Error loading session: '.$e->getMessage());
         }
 
         // if getSession() found it, use it
@@ -229,8 +229,17 @@ class SimpleSAML_Session
             self::load(new SimpleSAML_Session());
         } catch (\SimpleSAML\Error\CannotSetCookie $e) {
             // can't create a regular session because we can't set cookies. Use transient.
-            SimpleSAML\Logger::error('Error creating session: '.$e->getMessage());
+            $c = SimpleSAML_Configuration::getInstance();
             self::useTransientSession();
+
+            if ($e->getCode() === \SimpleSAML\Error\CannotSetCookie::SECURE_COOKIE) {
+                throw new \SimpleSAML\Error\CriticalConfigurationError(
+                    $e->getMessage(),
+                    null,
+                    $c->toArray()
+                );
+            }
+            SimpleSAML\Logger::error('Error creating session: '.$e->getMessage());
         }
 
         // we must have a session now, either regular or transient
