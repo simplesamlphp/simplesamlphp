@@ -322,11 +322,17 @@ class SimpleSAML_SessionHandlerPHP extends SimpleSAML_SessionHandler
         }
 
         if ($cookieParams['secure'] && !\SimpleSAML\Utils\HTTP::isHTTPS()) {
-            throw new SimpleSAML\Error\CannotSetCookie('Secure cookies not allowed on http.');
+            throw new \SimpleSAML\Error\CannotSetCookie(
+                'Secure cookies not allowed on http.',
+                \SimpleSAML\Error\CannotSetCookie::SECURE_COOKIE
+            );
         }
 
         if (headers_sent()) {
-            throw new SimpleSAML\Error\CannotSetCookie('Headers already sent.');
+            throw new \SimpleSAML\Error\CannotSetCookie(
+                'Headers already sent.',
+                \SimpleSAML\Error\CannotSetCookie::HEADERS_SENT
+            );
         }
 
         session_set_cookie_params(

@@ -1041,7 +1041,13 @@ class HTTP
 
         // Do not set secure cookie if not on HTTPS
         if ($params['secure'] && !self::isHTTPS()) {
-            Logger::warning('Setting secure cookie on plain HTTP is not allowed.');
+            if ($throw) {
+                throw new \SimpleSAML\Error\CannotSetCookie(
+                    'Setting secure cookie on plain HTTP is not allowed.',
+                    \SimpleSAML\Error\CannotSetCookie::SECURE_COOKIE
+                );
+            }
+            Logger::warning('Error setting cookie: setting secure cookie on plain HTTP is not allowed.');
             return;
         }
 
@@ -1079,10 +1085,12 @@ class HTTP
 
         if (!$success) {
             if ($throw) {
-                throw new \SimpleSAML\Error\CannotSetCookie('Headers already sent.');
-            } else {
-                Logger::warning('Error setting cookie: headers already sent.');
+                throw new \SimpleSAML\Error\CannotSetCookie(
+                    'Headers already sent.',
+                    \SimpleSAML\Error\CannotSetCookie::HEADERS_SENT
+                );
             }
+            Logger::warning('Error setting cookie: headers already sent.');
         }
     }
 
