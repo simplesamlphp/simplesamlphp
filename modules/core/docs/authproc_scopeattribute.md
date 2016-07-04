@@ -26,6 +26,12 @@ Parameters
 
 :   If the attribute already exists, the new values will be merged into the existing attribute.
 
+`onlyIfEmpty`
+:	Only replace the targetAttribute if it is empty to begin with.
+
+:	If `true`, then the targetAttribute will only be created if it didn't already contain values. Defaults to `false`.
+
+:	This is useful if, for instance, you want to create eduPersonScopedAffiliation from eduPersonAffiliation _only_ if eduPersonScopedAffiliation was not returned by the authenticaton source.
 
 Example
 -------
