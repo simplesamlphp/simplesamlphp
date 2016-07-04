@@ -676,7 +676,7 @@ class SimpleSAML_Session
 
         if ($this->authToken !== null) {
             $globalConfig = SimpleSAML_Configuration::getInstance();
-            $sessionHandler->setCookie(
+            \SimpleSAML\Utils\HTTP::setCookie(
                 $globalConfig->getString('session.authtoken.cookiename', 'SimpleSAMLAuthToken'),
                 $this->authToken,
                 $params
