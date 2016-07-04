@@ -560,11 +560,23 @@ class SimpleSAML_Session
 
             $this->setRememberMeExpire();
         } else {
-            SimpleSAML\Utils\HTTP::setCookie(
-                $globalConfig->getString('session.authtoken.cookiename', 'SimpleSAMLAuthToken'),
-                $this->authToken,
-                $sessionHandler->getCookieParams()
-            );
+            try {
+                SimpleSAML\Utils\HTTP::setCookie(
+                    $globalConfig->getString('session.authtoken.cookiename', 'SimpleSAMLAuthToken'),
+                    $this->authToken,
+                    $sessionHandler->getCookieParams()
+                );
+            } catch (SimpleSAML\Error\CannotSetCookie $e) {
+                /*
+                 * Something went wrong when setting the auth token. We cannot recover from this, so we better log a
+                 * message and throw an exception. The user is not properly logged in anyway, so clear all login
+                 * information from the session.
+                 */
+                unset($this->authToken);
+                unset($this->authData[$authority]);
+                \SimpleSAML\Logger::error('Cannot set authentication token cookie: '.$e->getMessage());
+                throw $e;
+            }
         }
     }
 
