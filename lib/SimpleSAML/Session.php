@@ -333,6 +333,8 @@ class SimpleSAML_Session
      *
      * @param Exception|null $exception An exception that made us use a transient session. Specify if you want to log a
      * message and that exception being thrown after loading the transient session.
+     *
+     * @throws * The exception contained in the $exception parameter, if any.
      */
     public static function useTransientSession($exception = null)
     {
@@ -517,6 +519,8 @@ class SimpleSAML_Session
      *
      * @param string     $authority The authority the user logged in with.
      * @param array|null $data The authentication data for this authority.
+     *
+     * @throws \SimpleSAML\Error\CannotSetCookie If the authentication token cannot be set for some reason.
      */
     public function doLogin($authority, array $data = null)
     {
