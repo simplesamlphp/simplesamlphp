@@ -718,13 +718,16 @@ class HTTP
      * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
+	 * @author Matt Beamish, GSG AS <matt.beamish@gsg.wa.edu.au>
      */
     public static function getSelfURL()
     {
         $url = self::getBaseURL();
         $cfg = \SimpleSAML_Configuration::getInstance();
-        $baseDir = $cfg->getBaseDir();
-        $rel_path = str_replace($baseDir.'www/', '', realpath($_SERVER['SCRIPT_FILENAME']));
+		/* Maintain 'ends with slash' structure from config but handle IIS/Windows cases where
+		   a straight replace won't work. */
+        $baseDir = str_replace("/",DIRECTORY_SEPARATOR,$cfg->getBaseDir());
+        $rel_path = str_replace($baseDir.'www'.DIRECTORY_SEPARATOR, '', realpath($_SERVER['SCRIPT_FILENAME']));
         $pos = strpos($_SERVER['REQUEST_URI'], $rel_path) + strlen($rel_path);
         return $url.$rel_path.substr($_SERVER['REQUEST_URI'], $pos);
     }
