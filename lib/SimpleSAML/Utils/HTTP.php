@@ -724,11 +724,13 @@ class HTTP
     {
         $url = self::getBaseURL();
         $cfg = \SimpleSAML_Configuration::getInstance();
-		/* Maintain 'ends with slash' structure from config but handle IIS/Windows cases where
-		   a straight replace won't work. */
-        $baseDir = str_replace("/",DIRECTORY_SEPARATOR,$cfg->getBaseDir());
-        $rel_path = str_replace($baseDir.'www'.DIRECTORY_SEPARATOR, '', realpath($_SERVER['SCRIPT_FILENAME']));
-        $pos = strpos($_SERVER['REQUEST_URI'], $rel_path) + strlen($rel_path);
+		
+		// Standardize forward slashes
+		$baseDir = str_replace('\\','/',$cfg->getBaseDir());
+		$filePath = str_replace('\\','/',realpath($_SERVER['SCRIPT_FILENAME']));
+		$rel_path = str_replace($baseDir.'www/', '', $filePath);
+
+		$pos = strpos($_SERVER['REQUEST_URI'], $rel_path) + strlen($rel_path);
         return $url.$rel_path.substr($_SERVER['REQUEST_URI'], $pos);
     }
 
