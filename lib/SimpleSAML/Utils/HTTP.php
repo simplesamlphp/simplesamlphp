@@ -718,14 +718,19 @@ class HTTP
      * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
+	 * @author Matt Beamish, GSG AS <matt.beamish@gsg.wa.edu.au>
      */
     public static function getSelfURL()
     {
         $url = self::getBaseURL();
         $cfg = \SimpleSAML_Configuration::getInstance();
-        $baseDir = $cfg->getBaseDir();
-        $rel_path = str_replace($baseDir.'www/', '', realpath($_SERVER['SCRIPT_FILENAME']));
-        $pos = strpos($_SERVER['REQUEST_URI'], $rel_path) + strlen($rel_path);
+		
+		// Standardize forward slashes
+		$baseDir = str_replace('\\','/',$cfg->getBaseDir());
+		$filePath = str_replace('\\','/',realpath($_SERVER['SCRIPT_FILENAME']));
+		$rel_path = str_replace($baseDir.'www/', '', $filePath);
+
+		$pos = strpos($_SERVER['REQUEST_URI'], $rel_path) + strlen($rel_path);
         return $url.$rel_path.substr($_SERVER['REQUEST_URI'], $pos);
     }
 
