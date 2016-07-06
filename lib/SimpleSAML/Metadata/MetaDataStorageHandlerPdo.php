@@ -76,6 +76,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerPdo extends SimpleSAML_Metadata_
      *     given file.
      *
      * @throws Exception If a database error occurs.
+     * @throws SimpleSAML_Error_Exception If the metadata can be retrieved from the database, but cannot be decoded.
      */
     private function load($set)
     {
@@ -92,7 +93,14 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerPdo extends SimpleSAML_Metadata_
             $metadata = array();
 
             while ($d = $stmt->fetch()) {
-                $metadata[$d['entity_id']] = json_decode($d['entity_data'], true);
+                $data = json_decode($d['entity_data'], true);
+                if ($data === null) {
+                    throw new SimpleSAML_Error_Exception("Cannot decode metadata for entity '${d['entity_id']}'");
+                }
+                if (!array_key_exists('entityid', $data)) {
+                    $data['entityid'] = $d['entity_id'];
+                }
+                $metadata[$d['entity_id']] = $data;
             }
 
             return $metadata;
