@@ -35,15 +35,23 @@ require_once(dirname(dirname(__FILE__)).'/lib/_autoload.php');
 SimpleSAML_Error_Assertion::installHandler();
 
 // show error page on unhandled exceptions
-function SimpleSAML_exception_handler(Exception $exception)
+function SimpleSAML_exception_handler($exception)
 {
     SimpleSAML\Module::callHooks('exception_handler', $exception);
 
     if ($exception instanceof SimpleSAML_Error_Error) {
         $exception->show();
-    } else {
+    } elseif ($exception instanceof Exception) {
         $e = new SimpleSAML_Error_Error('UNHANDLEDEXCEPTION', $exception);
         $e->show();
+    } else {
+        if (class_exists('Error') && $exception instanceof Error) {
+            $errno = $exception->getCode();
+            $errstr = $exception->getMessage();
+            $errfile = $exception->getFile();
+            $errline = $exception->getLine();
+            SimpleSAML_error_handler($errno, $errstr, $errfile, $errline);
+        }
     }
 }
 
