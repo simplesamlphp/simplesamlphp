@@ -509,8 +509,8 @@ class SimpleSAML_Configuration
         $dir = $this->getString('basedir', null);
         if ($dir !== null) {
             // add trailing slash if it is missing
-            if (substr($dir, -1) !== '/') {
-                $dir .= '/';
+            if (substr($dir, -1) !== DIRECTORY_SEPARATOR) {
+                $dir .= DIRECTORY_SEPARATOR;
             }
 
             return $dir;
@@ -528,8 +528,8 @@ class SimpleSAML_Configuration
 
         $dir = dirname($dir);
 
-        // Add trailing slash
-        $dir .= '/';
+        // Add trailing directory separator
+        $dir .= DIRECTORY_SEPARATOR;
 
         return $dir;
     }
