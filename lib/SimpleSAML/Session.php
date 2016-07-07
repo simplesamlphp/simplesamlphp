@@ -205,8 +205,15 @@ class SimpleSAML_Session
              * session here. Therefore, use just a transient session and throw the exception for someone else to handle
              * it.
              */
-            self::useTransientSession($e);
             SimpleSAML\Logger::error('Error loading session: '.$e->getMessage());
+            self::useTransientSession();
+            if ($e instanceof SimpleSAML_Error_Exception) {
+                $cause = $e->getCause();
+                if ($cause instanceof Exception) {
+                    throw $cause;
+                }
+            }
+            throw $e;
         }
 
         // if getSession() found it, use it
@@ -339,13 +346,8 @@ class SimpleSAML_Session
      *
      * Create a session that should not be saved at the end of the request.
      * Subsequent calls to getInstance() will return this transient session.
-     *
-     * @param Exception|null $exception An exception that made us use a transient session. Specify if you want to log a
-     * message and that exception being thrown after loading the transient session.
-     *
-     * @throws * The exception contained in the $exception parameter, if any.
      */
-    public static function useTransientSession($exception = null)
+    public static function useTransientSession()
     {
         if (isset(self::$instance)) {
             // we already have a session, don't bother with a transient session
@@ -353,16 +355,6 @@ class SimpleSAML_Session
         }
 
         self::load(new SimpleSAML_Session(true));
-
-        if ($exception instanceof Exception) {
-            if ($exception instanceof SimpleSAML_Error_Exception) {
-                $cause = $exception->getCause();
-                if ($cause instanceof Exception) {
-                    throw $cause;
-                }
-            }
-            throw $exception;
-        }
     }
 
     /**
