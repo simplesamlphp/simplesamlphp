@@ -929,7 +929,7 @@ class HTTP
      * @param bool        $throw Whether to throw exception if setcookie() fails.
      *
      * @throws \InvalidArgumentException If any parameter has an incorrect type.
-     * @throws \SimpleSAML_Error_Exception If the headers were already sent and the cookie cannot be set.
+     * @throws \SimpleSAML\Error\CannotSetCookie If the headers were already sent and the cookie cannot be set.
      *
      * @author Andjelko Horvat
      * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
@@ -962,7 +962,13 @@ class HTTP
 
         // Do not set secure cookie if not on HTTPS
         if ($params['secure'] && !self::isHTTPS()) {
-            \SimpleSAML_Logger::warning('Setting secure cookie on plain HTTP is not allowed.');
+            if ($throw) {
+                throw new \SimpleSAML\Error\CannotSetCookie(
+                    'Setting secure cookie on plain HTTP is not allowed.',
+                    \SimpleSAML\Error\CannotSetCookie::SECURE_COOKIE
+                );
+            }
+            Logger::warning('Error setting cookie: setting secure cookie on plain HTTP is not allowed.');
             return;
         }
 
@@ -977,19 +983,35 @@ class HTTP
         }
 
         if ($params['raw']) {
-            $success = setrawcookie($name, $value, $expire, $params['path'], $params['domain'], $params['secure'],
-                $params['httponly']);
+            $success = @setrawcookie(
+                $name,
+                $value,
+                $expire,
+                $params['path'],
+                $params['domain'],
+                $params['secure'],
+                $params['httponly']
+            );
         } else {
-            $success = setcookie($name, $value, $expire, $params['path'], $params['domain'], $params['secure'],
-                $params['httponly']);
+            $success = @setcookie(
+                $name,
+                $value,
+                $expire,
+                $params['path'],
+                $params['domain'],
+                $params['secure'],
+                $params['httponly']
+            );
         }
 
         if (!$success) {
             if ($throw) {
-                throw new \SimpleSAML_Error_Exception('Error setting cookie: headers already sent.');
-            } else {
-                \SimpleSAML_Logger::warning('Error setting cookie: headers already sent.');
+                throw new \SimpleSAML\Error\CannotSetCookie(
+                    'Headers already sent.',
+                    \SimpleSAML\Error\CannotSetCookie::HEADERS_SENT
+                );
             }
+            Logger::warning('Error setting cookie: headers already sent.');
         }
     }
 

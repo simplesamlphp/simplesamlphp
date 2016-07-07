@@ -45,7 +45,7 @@ abstract class SimpleSAML_SessionHandlerCookie extends SimpleSAML_SessionHandler
 
 
     /**
-     * Create and set new session id.
+     * Create a new session id.
      *
      * @return string The new session id.
      */
@@ -53,7 +53,6 @@ abstract class SimpleSAML_SessionHandlerCookie extends SimpleSAML_SessionHandler
     {
         $this->session_id = self::createSessionID();
         SimpleSAML_Session::createSession($this->session_id);
-        $this->setCookie($this->cookie_name, $this->session_id);
 
         return $this->session_id;
     }
@@ -141,5 +140,29 @@ abstract class SimpleSAML_SessionHandlerCookie extends SimpleSAML_SessionHandler
     public function hasSessionCookie()
     {
         return array_key_exists($this->cookie_name, $_COOKIE);
+    }
+
+
+    /**
+     * Set a session cookie.
+     *
+     * @param string $sessionName The name of the session.
+     * @param string|null $sessionID The session ID to use. Set to null to delete the cookie.
+     * @param array|null $cookieParams Additional parameters to use for the session cookie.
+     *
+     * @throws \SimpleSAML\Error\CannotSetCookie If we can't set the cookie.
+     */
+    public function setCookie($sessionName, $sessionID, array $cookieParams = null)
+    {
+        assert('is_string($sessionName)');
+        assert('is_string($sessionID) || is_null($sessionID)');
+
+        if ($cookieParams !== null) {
+            $params = array_merge($this->getCookieParams(), $cookieParams);
+        } else {
+            $params = $this->getCookieParams();
+        }
+
+        \SimpleSAML\Utils\HTTP::setCookie($sessionName, $sessionID, $params, true);
     }
 }
