@@ -126,14 +126,18 @@ class SimpleSAML_XHTML_Template
      */
     private function setupTwig()
     {
-        $cache = $this->configuration->getString('template.cache', $this->configuration->resolvePath('cache'));
-        // set up template paths if template exists
+        $auto_reload = $this->configuration->getBoolean('template.auto_reload', true);
+        $cache = false;
+        if (!$auto_reload) {
+            // Cache only used if auto_reload = false
+            $cache = $this->configuration->getString('template.cache', $this->configuration->resolvePath('cache'));
+        }
+        // set up template paths
         $loader = $this->setupTwigTemplatepaths();
         if (!$loader) {
             return null;
         }
 
-        $auto_reload = $this->configuration->getBoolean('template.auto_reload', false);
         return new \Twig_Environment($loader, array('cache' => $cache, 'auto_reload' => $auto_reload));
     }
 
