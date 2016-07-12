@@ -8,7 +8,7 @@ See the upgrade notes for specific information about upgrading.
 
 ## Version 1.14.5
 
-Released TBD
+Released 2016-07-12
 
   * Fixed several issues with session handling when cookies couldn't be set for some reason.
   * Fixed an issue that caused wrong URLs to be generated in the web interface under certain circumstances.
