@@ -118,11 +118,11 @@ class SimpleSAML_XHTML_Template
         if ($themeModule !== null) {
             // .../module/<themeModule>/themes/<themeName>/<templateModule>/<templateName>
 
-            $filename = SimpleSAML_Module::getModuleDir($themeModule).
+            $filename = SimpleSAML\Module::getModuleDir($themeModule).
                 '/themes/'.$themeName.'/'.$templateModule.'/'.$templateName;
         } elseif ($templateModule !== 'default') {
             // .../module/<templateModule>/templates/<themeName>/<templateName>
-            $filename = SimpleSAML_Module::getModuleDir($templateModule).'/templates/'.$templateName;
+            $filename = SimpleSAML\Module::getModuleDir($templateModule).'/templates/'.$templateName;
         } else {
             // .../templates/<theme>/<templateName>
             $filename = $this->configuration->getPathValue('templatedir', 'templates/').$templateName;
@@ -133,7 +133,7 @@ class SimpleSAML_XHTML_Template
         }
 
         // not found in current theme
-        SimpleSAML_Logger::debug(
+        SimpleSAML\Logger::debug(
             $_SERVER['PHP_SELF'].' - Template: Could not find template file ['. $template.'] at ['.
             $filename.'] - now trying the base template'
         );
@@ -141,7 +141,7 @@ class SimpleSAML_XHTML_Template
         // try default theme
         if ($templateModule !== 'default') {
             // .../module/<templateModule>/templates/<templateName>
-            $filename = SimpleSAML_Module::getModuleDir($templateModule).'/templates/'.$templateName;
+            $filename = SimpleSAML\Module::getModuleDir($templateModule).'/templates/'.$templateName;
         } else {
             // .../templates/<templateName>
             $filename = $this->configuration->getPathValue('templatedir', 'templates/').'/'.$templateName;
@@ -153,7 +153,7 @@ class SimpleSAML_XHTML_Template
 
         // not found in default template - log error and throw exception
         $error = 'Template: Could not find template file ['.$template.'] at ['.$filename.']';
-        SimpleSAML_Logger::critical($_SERVER['PHP_SELF'].' - '.$error);
+        SimpleSAML\Logger::critical($_SERVER['PHP_SELF'].' - '.$error);
 
         throw new Exception($error);
     }

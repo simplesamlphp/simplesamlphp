@@ -227,7 +227,7 @@ if($this->data['nego']['disable_perm']) {
      echo '<span id="login-extra-info-uio.no" class="login-extra-info">'
           . '<span class="login-extra-info-divider"></span>'
           . $this->t('{feide:login:login_uio_negotiate_disabled_session_info}')
-          . '<br><a href="'.SimpleSAML_Module::getModuleURL('negotiate/retry.php', array('AuthState' => $this->data['nego']['retry_id'])).'">'
+          . '<br><a href="'.SimpleSAML\Module::getModuleURL('negotiate/retry.php', array('AuthState' => $this->data['nego']['retry_id'])).'">'
           . $this->t('{feide:login:login_uio_negotiate_disabled_session_info_link}')
           . '</a>'
           . '</span>';
