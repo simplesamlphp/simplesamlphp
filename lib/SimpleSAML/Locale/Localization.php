@@ -80,6 +80,38 @@ class Localization
         $this->localeDomainMap[$domain] = $localeDir;
     }
 
+    /*
+     * Get and check path of localization file
+     *
+     * @param string $domain Name of localization domain
+     * @throws Exception If the path does not exist even for the default, fallback language
+     */
+    public function getLangPath($domain = self::DEFAULT_DOMAIN) {
+        $langcode = explode('_', $this->langcode);
+        $langcode = $langcode[0];
+        $localeDir = $this->localeDomainMap[$domain];
+        $langPath = $localeDir.'/'.$langcode.'/LC_MESSAGES/';
+        if (is_dir($langPath) && is_readable($langPath)) {
+            return $langPath;
+        }
+
+        // Language not found, fall back to default
+        $defLangcode = $this->language->getDefaultLanguage();
+        $langPath = $localeDir.'/'.$defLangcode.'/LC_MESSAGES/';
+        if (is_dir($langPath) && is_readable($langPath)) {
+            // Report that the localization for the preferred language is missing
+            $error = "Localization not found for langcode '$langcode' at '$langPath', falling back to langcode '$defLangcode'";
+            \SimpleSAML_Logger::error($_SERVER['PHP_SELF'].' - '.$error);
+
+            return $langPath;
+        }
+
+        // Locale for default language missing even, error out
+        $error = "Localization directory missing/broken for langcode '$langcode' and domain '$domain'";
+        \SimpleSAML_Logger::critical($_SERVER['PHP_SELF'].' - '.$error);
+        throw new Exception($error);
+    }
+
 
     /**
      * Load translation domain from Gettext/Gettext using .po
@@ -87,14 +119,23 @@ class Localization
      * @param string $domain Name of domain
      */
     private function loadGettextGettextFromPO($domain = self::DEFAULT_DOMAIN) {
-        $langcode = explode('_', $this->langcode);
-        $langcode = $langcode[0];
-        $localeDir = $this->localeDomainMap[$domain];
-        $poPath = $localeDir.'/'.$langcode.'/LC_MESSAGES/'.$domain.'.po';
-        $translations = Translations::fromPoFile($poPath);
         $t = new Translator();
-        $t->loadTranslations($translations);
         $t->register();
+        try {
+            $langPath = $this->getLangPath($domain);
+        } catch (\Exception $e) {
+            // bail out!
+            return;
+        }
+        $poFile = $domain.'.po';
+        $poPath = $langPath.$poFile;
+        if (file_exists($poPath) && is_readable($poPath)) {
+            $translations = Translations::fromPoFile($poPath);
+            $t->loadTranslations($translations);
+        } else {
+            $error = "Localization file '$poFile' not found in '$langPath', falling back to default";
+            \SimpleSAML_Logger::error($_SERVER['PHP_SELF'].' - '.$error);
+        }
     }
 
 
