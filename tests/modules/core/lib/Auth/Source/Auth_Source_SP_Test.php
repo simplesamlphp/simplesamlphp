@@ -113,12 +113,14 @@ class Auth_Source_SP_Test extends PHPUnit_Framework_TestCase
         /** @var $xml DOMElement */
         $xml=$ar->toSignedXML();
         // echo $xml->ownerDocument->saveXML($xml);  // Print XML
+        $q=SAML2_Utils::xpQuery($xml, '/samlp:AuthnRequest/@Destination');
         $this->assertEquals(
             $this->idpConfigArray['SingleSignOnService'][0]['Location'],
-            SAML2_Utils::xpQuery($xml, '/samlp:AuthnRequest/@Destination')[0]->value);
+            $q[0]->value);
+        $q=SAML2_Utils::xpQuery($xml, '/samlp:AuthnRequest/saml:Issuer');
         $this->assertEquals(
             'http://localhost/simplesaml/module.php/saml/sp/metadata.php/default-sp',
-            SAML2_Utils::xpQuery($xml, '/samlp:AuthnRequest/saml:Issuer')[0]->textContent);
+            $q[0]->textContent);
     }
 
     /** Test setting a Subject
@@ -138,12 +140,14 @@ class Auth_Source_SP_Test extends PHPUnit_Framework_TestCase
         /** @var $xml DOMElement */
         $xml=$ar->toSignedXML();
         //echo $xml->ownerDocument->saveXML($xml);  // Print XML
+        $q=SAML2_Utils::xpQuery($xml, '/samlp:AuthnRequest/saml:Subject/saml:NameID/@Format');
         $this->assertEquals(
             $state['saml:NameID']['Format'],
-            SAML2_Utils::xpQuery($xml, '/samlp:AuthnRequest/saml:Subject/saml:NameID/@Format')[0]->value);
+            $q[0]->value);
+        $q=SAML2_Utils::xpQuery($xml, '/samlp:AuthnRequest/saml:Subject/saml:NameID');
         $this->assertEquals(
             $state['saml:NameID']['Value'],
-            SAML2_Utils::xpQuery($xml, '/samlp:AuthnRequest/saml:Subject/saml:NameID')[0]->textContent);
+            $q[0]->textContent);
     }
 
     /** Test setting an AuthnConextClassRef
@@ -156,16 +160,18 @@ class Auth_Source_SP_Test extends PHPUnit_Framework_TestCase
         /** @var SAML2_AuthnRequest $ar */
         $ar = $this->CreateAuthnRequest($state);
 
+        $a=$ar->getRequestedAuthnContext();
         $this->assertEquals(
             $state['saml:AuthnContextClassRef'],
-            $ar->getRequestedAuthnContext()['AuthnContextClassRef'][0] );
+            $a['AuthnContextClassRef'][0] );
 
         /** @var $xml DOMElement */
         $xml=$ar->toSignedXML();
         //echo $xml->ownerDocument->saveXML($xml);  // Print XML
+        $q=SAML2_Utils::xpQuery($xml, '/samlp:AuthnRequest/samlp:RequestedAuthnContext/saml:AuthnContextClassRef');
         $this->assertEquals(
             $state['saml:AuthnContextClassRef'],
-            SAML2_Utils::xpQuery($xml, '/samlp:AuthnRequest/samlp:RequestedAuthnContext/saml:AuthnContextClassRef')[0]->textContent);
+            $q[0]->textContent);
     }
 
     /** Test setting ForcedAuthn
@@ -185,9 +191,10 @@ class Auth_Source_SP_Test extends PHPUnit_Framework_TestCase
         /** @var $xml DOMElement */
         $xml=$ar->toSignedXML();
         //echo $xml->ownerDocument->saveXML($xml);  // Print XML
+        $q=SAML2_Utils::xpQuery($xml, '/samlp:AuthnRequest/@ForceAuthn');
         $this->assertEquals(
             $state['ForceAuthn'] ? 'true' : 'false',
-            SAML2_Utils::xpQuery($xml, '/samlp:AuthnRequest/@ForceAuthn')[0]->value);
+            $q[0]->value);
     }
 
 }
