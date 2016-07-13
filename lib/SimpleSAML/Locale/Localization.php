@@ -42,6 +42,16 @@ class Localization
      */
     private $localeDomainMap = array();
 
+    /*
+     * Pointer to currently active translator
+     */
+    private $translator;
+
+    /*
+     * Currently active domain
+     */
+    private $currentDomain;
+
 
     /**
      * Constructor
@@ -75,7 +85,7 @@ class Localization
      * @param string $localeDir Location of translations
      * @param string $domain Domain at location
      */
-    private function addDomain($localeDir, $domain)
+    public function addDomain($localeDir, $domain)
     {
         $this->localeDomainMap[$domain] = $localeDir;
     }
