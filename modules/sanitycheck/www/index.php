@@ -22,7 +22,7 @@ if (isset($_REQUEST['output']) && $_REQUEST['output'] == 'text') {
 	exit;
 }
 
-$t = new SimpleSAML_XHTML_Template($config, 'sanitycheck:check-tpl.php');
+$t = new SimpleSAML_XHTML_Template($config, 'sanitycheck:check.tpl.php');
 $t->data['pageid'] = 'sanitycheck';
 $t->data['errors'] = $errors;
 $t->data['info'] = $info;
