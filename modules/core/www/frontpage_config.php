@@ -70,30 +70,28 @@ $allLinks = array(
 );
 SimpleSAML\Module::callHooks('frontpage', $allLinks);
 
-// get latest version
-$api_url = 'https://api.github.com/repos/simplesamlphp/simplesamlphp/releases';
-$ch = curl_init($api_url.'/latest');
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-curl_setopt($ch, CURLOPT_USERAGENT, 'SimpleSAMLphp');
-curl_setopt($ch, CURLOPT_TIMEOUT, 2);
-$response = curl_exec($ch);
+// check for updates
+if ($config->getBoolean('admin.checkforupdates', true)) {
+	$api_url = 'https://api.github.com/repos/simplesamlphp/simplesamlphp/releases';
+	$ch = curl_init($api_url.'/latest');
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	curl_setopt($ch, CURLOPT_USERAGENT, 'SimpleSAMLphp');
+	curl_setopt($ch, CURLOPT_TIMEOUT, 2);
+	$response = curl_exec($ch);
 
-if (curl_getinfo($ch, CURLINFO_HTTP_CODE) === 200) {
-	$latest = json_decode($response, true);
-	$current = $config->getVersion();
-	if ($current !== 'master' && version_compare($current, ltrim($latest['tag_name'], 'v'), 'lt')) {
-		$outdated = true;
-		$warnings[] = array(
-			'{core:frontpage:warnings_outdated}',
-			array('%LATEST_URL%' => $latest['html_url'])
-		);
+	if (curl_getinfo($ch, CURLINFO_HTTP_CODE) === 200) {
+		$latest = json_decode($response, true);
+		$current = $config->getVersion();
+		if ($current !== 'master' && version_compare($current, ltrim($latest['tag_name'], 'v'), 'lt')) {
+			$outdated = true;
+			$warnings[] = array(
+				'{core:frontpage:warnings_outdated}',
+				array('%LATEST_URL%' => $latest['html_url'])
+			);
+		}
 	}
+	curl_close($ch);
 }
-curl_close($ch);
-
-
-
-
 
 $enablematrix = array(
 	'saml20-idp' => $config->getBoolean('enable.saml20-idp', false),

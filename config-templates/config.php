@@ -76,8 +76,19 @@ $config = array(
      * You can also put a hash here; run "bin/pwgen.php" to generate one.
      */
     'auth.adminpassword' => '123',
+
+    /*
+     * Set this options to true if you want to require administrator password to access the web interface
+     * or the metadata pages, respectively.
+     */
     'admin.protectindexpage' => false,
     'admin.protectmetadata' => false,
+
+    /*
+     * Set this option to false if you don't want SimpleSAMLphp to check for new stable releases when
+     * visiting the configuration tab in the web interface.
+     */
+    'admin.checkforupdates' => true,
 
     /*
      * Array of domains that are allowed when generating links or redirects
