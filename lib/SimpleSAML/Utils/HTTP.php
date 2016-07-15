@@ -625,7 +625,13 @@ class HTTP
 
 
     /**
-     * Retrieve the current URL using the base URL in the configuration.
+     * Retrieve the current URL using the base URL in the configuration, if possible.
+     *
+     * This method will try to see if the current script is part of SimpleSAMLphp. In that case, it will use the
+     * 'baseurlpath' configuration option to rebuild the current URL based on that. If the current script is NOT
+     * part of SimpleSAMLphp, it will just return the current URL.
+     *
+     * Note that this method does NOT make use of the HTTP X-Forwarded-* set of headers.
      *
      * @return string The current URL, including query parameters.
      *
@@ -635,14 +641,24 @@ class HTTP
      */
     public static function getSelfURL()
     {
-        $url = self::getBaseURL();
         $cfg = \SimpleSAML_Configuration::getInstance();
         $baseDir = $cfg->getBaseDir();
-        $rel_path = str_replace(
-            DIRECTORY_SEPARATOR,
-            '/',
-            str_replace($baseDir.'www'.DIRECTORY_SEPARATOR, '', realpath($_SERVER['SCRIPT_FILENAME']))
-        );
+        $current_path = realpath($_SERVER['SCRIPT_FILENAME']);
+        $rel_path = str_replace($baseDir.'www'.DIRECTORY_SEPARATOR, '', $current_path);
+
+        if ($current_path == $rel_path) { // compare loosely ($current_path can be false)
+            // we were accessed from an external script, do not try to apply our base URL
+            $protocol = 'http';
+            $protocol .= (self::getServerHTTPS()) ? 's' : '';
+            $protocol .= '://';
+
+            $hostname = self::getServerHost();
+            $port = self::getServerPort();
+            return $protocol.$hostname.$port.$_SERVER['REQUEST_URI'];
+        }
+
+        $url = self::getBaseURL();
+        $rel_path = str_replace(DIRECTORY_SEPARATOR, '/', $rel_path);
         $pos = strpos($_SERVER['REQUEST_URI'], $rel_path) + strlen($rel_path);
         return $url.$rel_path.substr($_SERVER['REQUEST_URI'], $pos);
     }
@@ -659,7 +675,7 @@ class HTTP
      */
     public static function getSelfURLHost()
     {
-        $url = self::getBaseURL();
+        $url = self::getSelfURL();
         $start = strpos($url, '://') + 3;
         $length = strcspn($url, '/', $start) + $start;
         return substr($url, 0, $length);
@@ -695,7 +711,7 @@ class HTTP
      */
     public static function isHTTPS()
     {
-        return strpos(self::getBaseURL(), 'https://') === 0;
+        return strpos(self::getSelfURL(), 'https://') === 0;
     }
 
 
