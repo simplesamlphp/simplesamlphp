@@ -6,6 +6,12 @@ SimpleSAMLphp changelog
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
+## Version 1.14.6
+
+Released 2016-07-18
+
+  * Fixed issue #418. SimpleSAMLphp was unable to obtain the current URL correctly when invoked from third-party applications.
+
 ## Version 1.14.5
 
 Released 2016-07-12
