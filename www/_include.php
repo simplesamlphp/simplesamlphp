@@ -91,8 +91,9 @@ function SimpleSAML_error_handler($errno, $errstr, $errfile = null, $errline = 0
 
 set_error_handler('SimpleSAML_error_handler');
 
-$configdir = SimpleSAML\Utils\Config::getConfigDir();
-if (!file_exists($configdir.'/config.php')) {
+try {
+    SimpleSAML_Configuration::getInstance();
+} catch (Exception $e) {
     throw new \SimpleSAML\Error\CriticalConfigurationError(
         'You have not yet created the SimpleSAMLphp configuration files.'
     );
