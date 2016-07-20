@@ -8,7 +8,6 @@
 namespace SimpleSAML\Utils;
 
 use SimpleSAML\Logger;
-use Symfony\Component\Config\Definition\Exception\Exception;
 
 class XML
 {
@@ -405,7 +404,7 @@ class XML
             try {
                 $dom = \SAML2_DOMDocumentFactory::fromString($xml);
                 $res = true;
-            } catch (Exception $e) {
+            } catch (\Exception $e) {
                 $res = false;
             }
         }
