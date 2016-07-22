@@ -71,12 +71,12 @@ $allLinks = array(
 SimpleSAML\Module::callHooks('frontpage', $allLinks);
 
 // Check for updates. Store the remote result in the session so we
-// don't need to fetch it on every access of this page.
+// don't need to fetch it on every access to this page.
 $current = $config->getVersion();
 if ($config->getBoolean('admin.checkforupdates', true) && $current !== 'master') {
 	$latest = $session->getData("core:latest_simplesamlphp_version", "version");
 
-        if (!$latest) {
+	if (!$latest) {
 		$api_url = 'https://api.github.com/repos/simplesamlphp/simplesamlphp/releases';
 		$ch = curl_init($api_url.'/latest');
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
