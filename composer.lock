@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f92f6c305e5d12011c2a06253efd9eee",
-    "content-hash": "cdb4b970d76fd4ba81cd72c50d3734b7",
+    "hash": "705e7716f609c32a0b72136bb0dc8172",
+    "content-hash": "55b311b9889ea3f7d78f91850500d2fb",
     "packages": [
         {
             "name": "psr/log",
@@ -88,16 +88,16 @@
         },
         {
             "name": "simplesamlphp/saml2",
-            "version": "v2.2",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/saml2.git",
-                "reference": "0d6861bc2966249702e623d325609adb2a782612"
+                "reference": "00e38f85b417be1e10a2d738dd2f5ea82edb472c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/0d6861bc2966249702e623d325609adb2a782612",
-                "reference": "0d6861bc2966249702e623d325609adb2a782612",
+                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/00e38f85b417be1e10a2d738dd2f5ea82edb472c",
+                "reference": "00e38f85b417be1e10a2d738dd2f5ea82edb472c",
                 "shasum": ""
             },
             "require": {
@@ -136,7 +136,7 @@
                 }
             ],
             "description": "SAML2 PHP library from SimpleSAMLphp",
-            "time": "2016-03-16 13:39:22"
+            "time": "2016-07-26 13:28:46"
         },
         {
             "name": "twig/twig",
@@ -1144,9 +1144,18 @@
             "time": "2016-06-29 05:29:29"
         }
     ],
-    "aliases": [],
+    "aliases": [
+        {
+            "alias": "2.2",
+            "alias_normalized": "2.2.0.0",
+            "version": "9999999-dev",
+            "package": "simplesamlphp/saml2"
+        }
+    ],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "simplesamlphp/saml2": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
