@@ -204,7 +204,7 @@ class sspmod_multiauth_Auth_Source_MultiAuth extends SimpleSAML_Auth_Source {
 			'lifetime' => (60*60*24*90),
 			/* The base path for cookies.
 			This should be the installation directory for SimpleSAMLphp. */
-			'path' => ('/' . $config->getBaseUrl()),
+			'path' => $config->getBasePath(),
 			'httponly' => FALSE,
 		);
 

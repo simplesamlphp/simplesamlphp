@@ -217,7 +217,7 @@ class SimpleSAML_XHTML_IdPDisco
             // we save the cookies for 90 days
             'lifetime' => (60 * 60 * 24 * 90),
             // the base path for cookies. This should be the installation directory for SimpleSAMLphp
-            'path'     => ('/'.$this->config->getBaseUrl()),
+            'path'     => $this->config->getBasePath(),
             'httponly' => false,
         );
 
