@@ -20,7 +20,7 @@ class sspmod_saml_Auth_Process_TransientNameID extends sspmod_saml_BaseNameIDGen
         parent::__construct($config, $reserved);
         assert('is_array($config)');
 
-        $this->format = SAML2_Const::NAMEID_TRANSIENT;
+        $this->format = \SAML2\Constants::NAMEID_TRANSIENT;
     }
 
 

@@ -24,7 +24,7 @@ class sspmod_adfs_XMLSecurityDSig extends XMLSecurityDSig {
             $template = self::template;
         }
 
-        $sigdoc = SAML2_DOMDocumentFactory::fromString($template);
+        $sigdoc = \SAML2\DOMDocumentFactory::fromString($template);
         $this->sigNode = $sigdoc->documentElement;
     }
 }

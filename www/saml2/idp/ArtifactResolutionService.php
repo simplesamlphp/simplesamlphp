@@ -2,7 +2,7 @@
 
 /**
  * The ArtifactResolutionService receives the samlart from the sp.
- * And when the artifact is found, it sends a SAML2_ArtifactResponse.
+ * And when the artifact is found, it sends a \SAML2\ArtifactResponse.
  *
  * @author Danny Bollaert, UGent AS. <danny.bollaert@ugent.be>
  * @package SimpleSAMLphp
@@ -28,11 +28,11 @@ if ($store === false) {
     throw new Exception('Unable to send artifact without a datastore configured.');
 }
 
-$binding = new SAML2_SOAP();
+$binding = new \SAML2\SOAP();
 try {
     $request = $binding->receive();
 } catch (Exception $e) { // TODO: look for a specific exception
-    // This is dirty. Instead of checking the message of the exception, SAML2_Binding::getCurrentBinding() should throw
+    // This is dirty. Instead of checking the message of the exception, \SAML2\Binding::getCurrentBinding() should throw
     // an specific exception when the binding is unknown, and we should capture that here. Also note that the exception
     // message here is bogus!
     if ($e->getMessage() === 'Invalid message received to AssertionConsumerService endpoint.') {
@@ -41,7 +41,7 @@ try {
         throw $e; // do not ignore other exceptions!
     }
 }
-if (!($request instanceof SAML2_ArtifactResolve)) {
+if (!($request instanceof \SAML2\ArtifactResolve)) {
     throw new Exception('Message received on ArtifactResolutionService wasn\'t a ArtifactResolve request.');
 }
 
@@ -54,13 +54,13 @@ $responseData = $store->get('artifact', $artifact);
 $store->delete('artifact', $artifact);
 
 if ($responseData !== null) {
-    $document = SAML2_DOMDocumentFactory::fromString($responseData);
+    $document = \SAML2\DOMDocumentFactory::fromString($responseData);
     $responseXML = $document->firstChild;
 } else {
     $responseXML = null;
 }
 
-$artifactResponse = new SAML2_ArtifactResponse();
+$artifactResponse = new \SAML2\ArtifactResponse();
 $artifactResponse->setIssuer($idpEntityId);
 $artifactResponse->setInResponseTo($request->getId());
 $artifactResponse->setAny($responseXML);

@@ -58,7 +58,7 @@ class SimpleSAML_Bindings_Shib13_HTTPPost
         $privatekey = SimpleSAML\Utils\Crypto::loadPrivateKey($idpmd, true);
         $publickey = SimpleSAML\Utils\Crypto::loadPublicKey($idpmd, true);
 
-        $responsedom = SAML2_DOMDocumentFactory::fromString(str_replace("\r", "", $response));
+        $responsedom = \SAML2\DOMDocumentFactory::fromString(str_replace("\r", "", $response));
 
         $responseroot = $responsedom->getElementsByTagName('Response')->item(0);
         $firstassertionroot = $responsedom->getElementsByTagName('Assertion')->item(0);

@@ -118,7 +118,7 @@ class sspmod_saml_Auth_Process_NameIDAttribute extends SimpleSAML_Auth_Processin
 
         $rep['%'] = '%';
         if (!isset($rep['Format'])) {
-            $rep['Format'] = SAML2_Const::NAMEID_UNSPECIFIED;
+            $rep['Format'] = \SAML2\Constants::NAMEID_UNSPECIFIED;
         }
         if (!isset($rep['NameQualifier'])) {
             $rep['NameQualifier'] = $state['Source']['entityid'];

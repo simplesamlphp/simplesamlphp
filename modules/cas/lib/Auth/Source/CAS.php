@@ -118,7 +118,7 @@ class sspmod_cas_Auth_Source_CAS  extends SimpleSAML_Auth_Source  {
 		));
 		$result = \SimpleSAML\Utils\HTTP::fetch($url);
 
-		$dom = SAML2_DOMDocumentFactory::fromString($result);
+		$dom = \SAML2\DOMDocumentFactory::fromString($result);
 		$xPath = new DOMXpath($dom);
 		$xPath->registerNamespace("cas", 'http://www.yale.edu/tp/cas');
 		$success = $xPath->query("/cas:serviceResponse/cas:authenticationSuccess/cas:user");

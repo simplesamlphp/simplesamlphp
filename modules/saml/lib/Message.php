@@ -14,9 +14,9 @@ class sspmod_saml_Message {
 	 *
 	 * @param SimpleSAML_Configuration $srcMetadata  The metadata of the sender.
 	 * @param SimpleSAML_Configuration $dstMetadata  The metadata of the recipient.
-	 * @param SAML2_Message $element  The element we should add the data to.
+	 * @param \SAML2\Message $element  The element we should add the data to.
 	 */
-	public static function addSign(SimpleSAML_Configuration $srcMetadata, SimpleSAML_Configuration $dstMetadata, SAML2_SignedElement $element) {
+	public static function addSign(SimpleSAML_Configuration $srcMetadata, SimpleSAML_Configuration $dstMetadata, \SAML2\SignedElement $element) {
 
 		$dstPrivateKey = $dstMetadata->getString('signature.privatekey', NULL);
 
@@ -70,16 +70,16 @@ class sspmod_saml_Message {
 	 *
 	 * @param SimpleSAML_Configuration $srcMetadata  The metadata of the sender.
 	 * @param SimpleSAML_Configuration $dstMetadata  The metadata of the recipient.
-	 * @param SAML2_Message $message  The message we should add the data to.
+	 * @param \SAML2\Message $message  The message we should add the data to.
 	 */
-	private static function addRedirectSign(SimpleSAML_Configuration $srcMetadata, SimpleSAML_Configuration $dstMetadata, SAML2_message $message) {
+	private static function addRedirectSign(SimpleSAML_Configuration $srcMetadata, SimpleSAML_Configuration $dstMetadata, \SAML2\Message $message) {
 
-		if ($message instanceof SAML2_LogoutRequest || $message instanceof SAML2_LogoutResponse) {
+		if ($message instanceof \SAML2\LogoutRequest || $message instanceof \SAML2\LogoutResponse) {
 			$signingEnabled = $srcMetadata->getBoolean('sign.logout', NULL);
 			if ($signingEnabled === NULL) {
 				$signingEnabled = $dstMetadata->getBoolean('sign.logout', NULL);
 			}
-		} elseif ($message instanceof SAML2_AuthnRequest) {
+		} elseif ($message instanceof \SAML2\AuthnRequest) {
 			$signingEnabled = $srcMetadata->getBoolean('sign.authnrequest', NULL);
 			if ($signingEnabled === NULL) {
 				$signingEnabled = $dstMetadata->getBoolean('sign.authnrequest', NULL);
@@ -138,9 +138,9 @@ class sspmod_saml_Message {
 	 * Check the signature on a SAML2 message or assertion.
 	 *
 	 * @param SimpleSAML_Configuration $srcMetadata  The metadata of the sender.
-	 * @param SAML2_SignedElement $element  Either a SAML2_Response or a SAML2_Assertion.
+	 * @param \SAML2\SignedElement $element  Either a \SAML2\Response or a \SAML2\Assertion.
 	 */
-	public static function checkSign(SimpleSAML_Configuration $srcMetadata, SAML2_SignedElement $element) {
+	public static function checkSign(SimpleSAML_Configuration $srcMetadata, \SAML2\SignedElement $element) {
 
 		/* Find the public key that should verify signatures by this entity. */
 		$keys = $srcMetadata->getPublicKeys('signing');
@@ -224,20 +224,20 @@ class sspmod_saml_Message {
 	 *
 	 * @param SimpleSAML_Configuration $srcMetadata  The metadata of the sender.
 	 * @param SimpleSAML_Configuration $dstMetadata  The metadata of the recipient.
-	 * @param SAML2_Message $message  The message we should check the signature on.
+	 * @param \SAML2\Message $message  The message we should check the signature on.
 	 */
 	public static function validateMessage(
 		SimpleSAML_Configuration $srcMetadata,
 		SimpleSAML_Configuration $dstMetadata,
-		SAML2_Message $message
+		\SAML2\Message $message
 		) {
 
-		if ($message instanceof SAML2_LogoutRequest || $message instanceof SAML2_LogoutResponse) {
+		if ($message instanceof \SAML2\LogoutRequest || $message instanceof \SAML2\LogoutResponse) {
 			$enabled = $srcMetadata->getBoolean('validate.logout', NULL);
 			if ($enabled === NULL) {
 				$enabled = $dstMetadata->getBoolean('validate.logout', NULL);
 			}
-		} elseif ($message instanceof SAML2_AuthnRequest) {
+		} elseif ($message instanceof \SAML2\AuthnRequest) {
 			$enabled = $srcMetadata->getBoolean('validate.authnrequest', NULL);
 			if ($enabled === NULL) {
 				$enabled = $dstMetadata->getBoolean('validate.authnrequest', NULL);
@@ -331,20 +331,20 @@ class sspmod_saml_Message {
 	/**
 	 * Decrypt an assertion.
 	 *
-	 * This function takes in a SAML2_Assertion and decrypts it if it is encrypted.
+	 * This function takes in a \SAML2\Assertion and decrypts it if it is encrypted.
 	 * If it is unencrypted, and encryption is enabled in the metadata, an exception
 	 * will be throws.
 	 *
 	 * @param SimpleSAML_Configuration $srcMetadata  The metadata of the sender (IdP).
 	 * @param SimpleSAML_Configuration $dstMetadata  The metadata of the recipient (SP).
-	 * @param SAML2_Assertion|SAML2_EncryptedAssertion $assertion  The assertion we are decrypting.
-	 * @return SAML2_Assertion  The assertion.
+	 * @param \SAML2\Assertion|\SAML2\EncryptedAssertion $assertion  The assertion we are decrypting.
+	 * @return \SAML2\Assertion  The assertion.
 	 */
 	private static function decryptAssertion(SimpleSAML_Configuration $srcMetadata,
 		SimpleSAML_Configuration $dstMetadata, $assertion) {
-		assert('$assertion instanceof SAML2_Assertion || $assertion instanceof SAML2_EncryptedAssertion');
+		assert('$assertion instanceof \SAML2\Assertion || $assertion instanceof \SAML2\EncryptedAssertion');
 
-		if ($assertion instanceof SAML2_Assertion) {
+		if ($assertion instanceof \SAML2\Assertion) {
 			$encryptAssertion = $srcMetadata->getBoolean('assertion.encryption', NULL);
 			if ($encryptAssertion === NULL) {
 				$encryptAssertion = $dstMetadata->getBoolean('assertion.encryption', FALSE);
@@ -383,10 +383,10 @@ class sspmod_saml_Message {
 	/**
 	 * Retrieve the status code of a response as a sspmod_saml_Error.
 	 *
-	 * @param SAML2_StatusResponse $response  The response.
+	 * @param \SAML2\StatusResponse $response  The response.
 	 * @return sspmod_saml_Error  The error.
 	 */
-	public static function getResponseError(SAML2_StatusResponse $response) {
+	public static function getResponseError(\SAML2\StatusResponse $response) {
 
 		$status = $response->getStatus();
 		return new sspmod_saml_Error($status['Code'], $status['SubCode'], $status['Message']);
@@ -401,7 +401,7 @@ class sspmod_saml_Message {
 	 */
 	public static function buildAuthnRequest(SimpleSAML_Configuration $spMetadata, SimpleSAML_Configuration $idpMetadata) {
 
-		$ar = new SAML2_AuthnRequest();
+		$ar = new \SAML2\AuthnRequest();
 
 		// get the NameIDPolicy to apply. IdP metadata has precedence.
 		$nameIdPolicy = array();
@@ -418,7 +418,7 @@ class sspmod_saml_Message {
 
 		$nameIdPolicy_cf = SimpleSAML_Configuration::loadFromArray($nameIdPolicy);
 		$policy = array(
-			'Format' => $nameIdPolicy_cf->getString('Format', SAML2_Const::NAMEID_TRANSIENT),
+			'Format' => $nameIdPolicy_cf->getString('Format', \SAML2\Constants::NAMEID_TRANSIENT),
 			'AllowCreate' => $nameIdPolicy_cf->getBoolean('AllowCreate', true),
 		);
 		$spNameQualifier = $nameIdPolicy_cf->getString('SPNameQualifier', false);
@@ -431,11 +431,11 @@ class sspmod_saml_Message {
 		$ar->setIsPassive($spMetadata->getBoolean('IsPassive', FALSE));
 
 		$protbind = $spMetadata->getValueValidate('ProtocolBinding', array(
-				SAML2_Const::BINDING_HTTP_POST,
-				SAML2_Const::BINDING_HOK_SSO,
-				SAML2_Const::BINDING_HTTP_ARTIFACT,
-				SAML2_Const::BINDING_HTTP_REDIRECT,
-			), SAML2_Const::BINDING_HTTP_POST);
+				\SAML2\Constants::BINDING_HTTP_POST,
+				\SAML2\Constants::BINDING_HOK_SSO,
+				\SAML2\Constants::BINDING_HTTP_ARTIFACT,
+				\SAML2\Constants::BINDING_HTTP_REDIRECT,
+			), \SAML2\Constants::BINDING_HTTP_POST);
 
 		/* Shoaib - setting the appropriate binding based on parameter in sp-metadata defaults to HTTP_POST */
 		$ar->setProtocolBinding($protbind);
@@ -464,7 +464,7 @@ class sspmod_saml_Message {
 	 */
 	public static function buildLogoutRequest(SimpleSAML_Configuration $srcMetadata, SimpleSAML_Configuration $dstMetadata) {
 
-		$lr = new SAML2_LogoutRequest();
+		$lr = new \SAML2\LogoutRequest();
 		$lr->setIssuer($srcMetadata->getString('entityid'));
 
 		self::addRedirectSign($srcMetadata, $dstMetadata, $lr);
@@ -481,7 +481,7 @@ class sspmod_saml_Message {
 	 */
 	public static function buildLogoutResponse(SimpleSAML_Configuration $srcMetadata, SimpleSAML_Configuration $dstMetadata) {
 
-		$lr = new SAML2_LogoutResponse();
+		$lr = new \SAML2\LogoutResponse();
 		$lr->setIssuer($srcMetadata->getString('entityid'));
 
 		self::addRedirectSign($srcMetadata, $dstMetadata, $lr);
@@ -498,12 +498,12 @@ class sspmod_saml_Message {
 	 *
 	 * @param SimpleSAML_Configuration $spMetadata  The metadata of the service provider.
 	 * @param SimpleSAML_Configuration $idpMetadata  The metadata of the identity provider.
-	 * @param SAML2_Response $response  The response.
-	 * @return array  Array with SAML2_Assertion objects, containing valid assertions from the response.
+	 * @param \SAML2\Response $response  The response.
+	 * @return array  Array with \SAML2\Assertion objects, containing valid assertions from the response.
 	 */
 	public static function processResponse(
 		SimpleSAML_Configuration $spMetadata, SimpleSAML_Configuration $idpMetadata,
-		SAML2_Response $response
+		\SAML2\Response $response
 		) {
 
 		if (!$response->isSuccess()) {
@@ -546,16 +546,16 @@ class sspmod_saml_Message {
 	 *
 	 * @param SimpleSAML_Configuration $spMetadata  The metadata of the service provider.
 	 * @param SimpleSAML_Configuration $idpMetadata  The metadata of the identity provider.
-	 * @param SAML2_Response $response  The response containing the assertion.
-	 * @param SAML2_Assertion|SAML2_EncryptedAssertion $assertion  The assertion.
+	 * @param \SAML2\Response $response  The response containing the assertion.
+	 * @param \SAML2\Assertion|\SAML2\EncryptedAssertion $assertion  The assertion.
 	 * @param bool $responseSigned  Whether the response is signed.
-	 * @return SAML2_Assertion  The assertion, if it is valid.
+	 * @return \SAML2\Assertion  The assertion, if it is valid.
 	 */
 	private static function processAssertion(
 		SimpleSAML_Configuration $spMetadata, SimpleSAML_Configuration $idpMetadata,
-		SAML2_Response $response, $assertion, $responseSigned
+		\SAML2\Response $response, $assertion, $responseSigned
 		) {
-		assert('$assertion instanceof SAML2_Assertion || $assertion instanceof SAML2_EncryptedAssertion');
+		assert('$assertion instanceof \SAML2\Assertion || $assertion instanceof \SAML2\EncryptedAssertion');
 		assert('is_bool($responseSigned)');
 
 		$assertion = self::decryptAssertion($idpMetadata, $spMetadata, $assertion);
@@ -598,7 +598,7 @@ class sspmod_saml_Message {
 
 		$found = FALSE;
 		$lastError = 'No SubjectConfirmation element in Subject.';
-		$validSCMethods = array(SAML2_Const::CM_BEARER, SAML2_Const::CM_HOK, SAML2_Const::CM_VOUCHES);
+		$validSCMethods = array(\SAML2\Constants::CM_BEARER, \SAML2\Constants::CM_HOK, \SAML2\Constants::CM_VOUCHES);
 		foreach ($assertion->getSubjectConfirmation() as $sc) {
 		    if (!in_array($sc->Method, $validSCMethods)) {
 				$lastError = 'Invalid Method on SubjectConfirmation: ' . var_export($sc->Method, TRUE);
@@ -610,17 +610,17 @@ class sspmod_saml_Message {
 			if ($hok === NULL) {
 				$hok = $spMetadata->getBoolean('saml20.hok.assertion', FALSE);
 			}
-			if ($sc->Method === SAML2_Const::CM_BEARER && $hok) {
+			if ($sc->Method === \SAML2\Constants::CM_BEARER && $hok) {
 				$lastError = 'Bearer SubjectConfirmation received, but Holder-of-Key SubjectConfirmation needed';
 				continue;
 			}
-			if ($sc->Method === SAML2_Const::CM_HOK && !$hok) {
+			if ($sc->Method === \SAML2\Constants::CM_HOK && !$hok) {
 				$lastError = 'Holder-of-Key SubjectConfirmation received, but the Holder-of-Key profile is not enabled.';
 				continue;
 			}
 
 			$scd = $sc->SubjectConfirmationData;
-			if ($sc->Method === SAML2_Const::CM_HOK) {
+			if ($sc->Method === \SAML2\Constants::CM_HOK) {
 				/* Check HoK Assertion */
 				if (\SimpleSAML\Utils\HTTP::isHTTPS() === FALSE) {
 				    $lastError = 'No HTTPS connection, but required for Holder-of-Key SSO';
@@ -642,7 +642,7 @@ class sspmod_saml_Message {
 				$clientCert = str_replace(array("\r", "\n", " "), '', $matches[1]);
 
 				foreach ($scd->info as $thing) {
-				    if($thing instanceof SAML2_XML_ds_KeyInfo) {
+				    if($thing instanceof \SAML2\XML\ds\KeyInfo) {
 					$keyInfo[]=$thing;
 				    }
 				}
@@ -652,7 +652,7 @@ class sspmod_saml_Message {
 				}
 
 				foreach ($keyInfo[0]->info as $thing) {
-				    if($thing instanceof SAML2_XML_ds_X509Data) {
+				    if($thing instanceof \SAML2\XML\ds\X509Data) {
 					$x509data[]=$thing;
 				    }
 				}
@@ -662,7 +662,7 @@ class sspmod_saml_Message {
 				}
 
 				foreach ($x509data[0]->data as $thing) {
-				    if($thing instanceof SAML2_XML_ds_X509Certificate) {
+				    if($thing instanceof \SAML2\XML\ds\X509Certificate) {
 					$x509cert[]=$thing;
 				    }
 				}

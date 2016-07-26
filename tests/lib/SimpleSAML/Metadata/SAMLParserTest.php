@@ -16,7 +16,7 @@ class SAMLParserTest extends \PHPUnit_Framework_TestCase
             'registrationAuthority' => 'https://incommon.org',
         );
 
-        $document = \SAML2_DOMDocumentFactory::fromString(
+        $document = \SAML2\DOMDocumentFactory::fromString(
             <<<XML
 <EntitiesDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:mdrpi="urn:oasis:names:tc:SAML:metadata:rpi">
   <EntityDescriptor entityID="theEntityID">
@@ -48,7 +48,7 @@ XML
             'registrationAuthority' => 'https://incommon.org',
         );
 
-        $document = \SAML2_DOMDocumentFactory::fromString(
+        $document = \SAML2\DOMDocumentFactory::fromString(
             <<<XML
 <EntitiesDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:mdrpi="urn:oasis:names:tc:SAML:metadata:rpi">
   <Extensions>

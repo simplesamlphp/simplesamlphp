@@ -228,7 +228,7 @@ class XML
         }
 
         try {
-            $doc = \SAML2_DOMDocumentFactory::fromString($xml);
+            $doc = \SAML2\DOMDocumentFactory::fromString($xml);
         } catch (\Exception $e) {
             throw new \DOMException('Error parsing XML string.');
         }
@@ -402,7 +402,7 @@ class XML
             $res = true;
         } else {
             try {
-                $dom = \SAML2_DOMDocumentFactory::fromString($xml);
+                $dom = \SAML2\DOMDocumentFactory::fromString($xml);
                 $res = true;
             } catch (\Exception $e) {
                 $res = false;

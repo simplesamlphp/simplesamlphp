@@ -21,9 +21,9 @@ if (!($source instanceof sspmod_saml_Auth_Source_SP)) {
 }
 
 try {
-    $binding = SAML2_Binding::getCurrentBinding();
+    $binding = \SAML2\Binding::getCurrentBinding();
 } catch (Exception $e) { // TODO: look for a specific exception
-    // This is dirty. Instead of checking the message of the exception, SAML2_Binding::getCurrentBinding() should throw
+    // This is dirty. Instead of checking the message of the exception, \SAML2\Binding::getCurrentBinding() should throw
     // an specific exception when the binding is unknown, and we should capture that here
     if ($e->getMessage() === 'Unable to find the current binding.') {
         throw new SimpleSAML_Error_Error('SLOSERVICEPARAMS', $e, 400);
@@ -52,7 +52,7 @@ if ($destination !== NULL && $destination !== \SimpleSAML\Utils\HTTP::getSelfURL
 	throw new SimpleSAML_Error_Exception('Destination in logout message is wrong.');
 }
 
-if ($message instanceof SAML2_LogoutResponse) {
+if ($message instanceof \SAML2\LogoutResponse) {
 
 	$relayState = $message->getRelayState();
 	if ($relayState === NULL) {
@@ -68,7 +68,7 @@ if ($message instanceof SAML2_LogoutResponse) {
 	$state['saml:sp:LogoutStatus'] = $message->getStatus();
 	SimpleSAML_Auth_Source::completeLogout($state);
 
-} elseif ($message instanceof SAML2_LogoutRequest) {
+} elseif ($message instanceof \SAML2\LogoutRequest) {
 
 	SimpleSAML\Logger::debug('module/saml2/sp/logout: Request from ' . $idpEntityId);
 	SimpleSAML\Logger::stats('saml20-idp-SLO idpinit ' . $spEntityId . ' ' . $idpEntityId);
@@ -119,12 +119,12 @@ if ($message instanceof SAML2_LogoutResponse) {
 	}
 
 	$dst = $idpMetadata->getEndpointPrioritizedByBinding('SingleLogoutService', array(
-		SAML2_Const::BINDING_HTTP_REDIRECT,
-		SAML2_Const::BINDING_HTTP_POST)
+		\SAML2\Constants::BINDING_HTTP_REDIRECT,
+		\SAML2\Constants::BINDING_HTTP_POST)
 	);
 
-	if (!$binding instanceof SAML2_SOAP) {
-		$binding = SAML2_Binding::getBinding($dst['Binding']);
+	if (!$binding instanceof \SAML2\SOAP) {
+		$binding = \SAML2\Binding::getBinding($dst['Binding']);
 		if (isset($dst['ResponseLocation'])) {
 			$dst = $dst['ResponseLocation'];
 		} else {

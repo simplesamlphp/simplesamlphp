@@ -253,7 +253,7 @@ class sspmod_metarefresh_MetaLoader {
 	private function loadXML($data, $source) {
 		$entities = array();
 		try {
-			$doc = SAML2_DOMDocumentFactory::fromString($data);
+			$doc = \SAML2\DOMDocumentFactory::fromString($data);
 		} catch (Exception $e) {
 			throw new Exception('Failed to read XML from ' . $source['src']);
 		}

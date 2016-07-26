@@ -102,7 +102,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandler
 
         if ($set == 'saml20-sp-hosted') {
             if ($property === 'SingleLogoutServiceBinding') {
-                return SAML2_Const::BINDING_HTTP_REDIRECT;
+                return \SAML2\Constants::BINDING_HTTP_REDIRECT;
             }
         } elseif ($set == 'saml20-idp-hosted') {
             switch ($property) {
@@ -110,13 +110,13 @@ class SimpleSAML_Metadata_MetaDataStorageHandler
                     return $baseurl.'saml2/idp/SSOService.php';
 
                 case 'SingleSignOnServiceBinding':
-                    return SAML2_Const::BINDING_HTTP_REDIRECT;
+                    return \SAML2\Constants::BINDING_HTTP_REDIRECT;
 
                 case 'SingleLogoutService':
                     return $baseurl.'saml2/idp/SingleLogoutService.php';
 
                 case 'SingleLogoutServiceBinding':
-                    return SAML2_Const::BINDING_HTTP_REDIRECT;
+                    return \SAML2\Constants::BINDING_HTTP_REDIRECT;
             }
         } elseif ($set == 'shib13-idp-hosted') {
             if ($property === 'SingleSignOnService') {
