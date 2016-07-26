@@ -348,7 +348,7 @@ class SimpleSAML_XHTML_Template
         }
 
         // not found in current theme
-        \SimpleSAML_Logger::debug(
+        \SimpleSAML\Logger::debug(
             $_SERVER['PHP_SELF'].' - Template: Could not find template file ['.$template.'] at ['.
             $filename.'] - now trying the base template'
         );
@@ -370,7 +370,7 @@ class SimpleSAML_XHTML_Template
         if ($throw_exception) {
             // log error and throw exception
             $error = 'Template: Could not find template file ['.$template.'] at ['.$filename.']';
-            \SimpleSAML_Logger::critical($_SERVER['PHP_SELF'].' - '.$error);
+            \SimpleSAML\Logger::critical($_SERVER['PHP_SELF'].' - '.$error);
 
             throw new Exception($error);
         } else {
