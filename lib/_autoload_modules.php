@@ -19,6 +19,14 @@
  */
 function temporaryLoader($class)
 {
+    // handle the upgrade to the latest version of XMLSecLibs using namespaces
+    if (strstr($class, 'XMLSec')) {
+        if (class_exists('\\RobRichards\\XMLSecLibs\\'.$class, true)) {
+            class_alias('\\RobRichards\\XMLSecLibs\\'.$class, $class);
+            return;
+        }
+    }
+
     if (!strstr($class, 'SimpleSAML_')) {
         return; // not a valid class name for old classes
     }
