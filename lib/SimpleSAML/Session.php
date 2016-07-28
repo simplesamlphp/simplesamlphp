@@ -225,11 +225,9 @@ class SimpleSAML_Session implements Serializable
             }
 
             foreach ($parameters['RawAttributes'] as $attribute => $values) {
-                foreach ($values as $idx => $value) {
-                    // this should be originally a DOMNodeList
-                    $dom = new \DOMDocument();
-                    $dom->loadXML($value);
-                    $this->authData[$authority]['Attributes'][$attribute][$idx] = $dom->childNodes;
+                foreach ($values as $idx => $value) { // this should be originally a DOMNodeList
+                    /* @var \SAML2\XML\saml\AttributeValue $value */
+                    $this->authData[$authority]['Attributes'][$attribute][$idx] = $value->element->childNodes;
                 }
             }
         }
@@ -626,17 +624,9 @@ class SimpleSAML_Session implements Serializable
                     continue;
                 }
 
-                // ... and we have at least one DOMElement in there, so we dump back to XML to be able to serialize
-                $original = $value->item(0)->ownerDocument;
-                $new = new DOMDocument($original->version, $original->encoding);
-                $n = $value->length;
-                for ($i = 0; $i < $n; $i++) {
-                    $new->appendChild($new->importNode($value->item($i), true));
-                }
-                $new->saveXML();
-
-                // save the XML representation to 'RawAttributes', using the same attribute name and index
-                $data['RawAttributes'][$attribute][$idx] = $new->saveXML();
+                // create an AttributeValue object and save it to 'RawAttributes', using same attribute name and index
+                $attrval = new \SAML2\XML\saml\AttributeValue($value->item(0)->parentNode);
+                $data['RawAttributes'][$attribute][$idx] = $attrval;
             }
         }
 
