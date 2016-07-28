@@ -71,6 +71,37 @@ function present_attributes(SimpleSAML_XHTML_Template $t, $attributes, $namePare
 				$str .= '</td>';
 				if ($nameraw === 'jpegPhoto') {
 					$str .= '<td class="attrvalue"><img src="data:image/jpeg;base64,' . htmlspecialchars($value[0]) . '" /></td></tr>';
+				} elseif (is_a($value[0], 'DOMNodeList')) {
+					// try to see if we have a NameID here
+					$n = $value[0]->length;
+					for ($idx = 0; $idx < $n; $idx++) {
+						$elem = $value[0]->item($idx);
+						/* @var DOMElement $elem */
+						if (!($elem->localName === 'NameID' && $elem->namespaceURI === \SAML2\Constants::NS_SAML)) {
+							continue;
+						}
+						$nameID = new \SAML2\XML\saml\NameID($elem);
+						$eptid = array(
+							'NameID' => array($nameID->value),
+						);
+						//$str .= '<td class="attrvalue">'.htmlspecialchars($nameID->value).'<br/>';
+						if (!empty($nameID->Format)) {
+							$eptid['Format'] = array($nameID->Format);
+							//$str .= '<em>Format:</em> <code>'.htmlspecialchars($nameID->Format).'</code><br/>';
+						}
+						if (!empty($nameID->NameQualifier)) {
+							$eptid['NameQualifier'] = array($nameID->NameQualifier);
+							//$str .= '<em>NameQualifier:</em> <code>'.htmlspecialchars($nameID->NameQualifier).'</code><br/>';
+						}
+						if (!empty($nameID->SPNameQualifier)) {
+							$eptid['SPNameQualifier'] = array($nameID->SPNameQualifier);
+							//$str .= '<em>SPNameQualifier:</em> <code>'.htmlspecialchars($nameID->SPNameQualifier).'</code>';
+						}
+						$str .= '<td class="attrvalue">';
+						$str .= present_assoc($eptid);
+						break; // we only support one NameID here
+					}
+					$str .= '</td></tr>';
 				} else {
 					$str .= '<td class="attrvalue">' . htmlspecialchars($value[0]) . '</td></tr>';
 				}
