@@ -84,18 +84,14 @@ function present_attributes(SimpleSAML_XHTML_Template $t, $attributes, $namePare
 						$eptid = array(
 							'NameID' => array($nameID->value),
 						);
-						//$str .= '<td class="attrvalue">'.htmlspecialchars($nameID->value).'<br/>';
 						if (!empty($nameID->Format)) {
 							$eptid['Format'] = array($nameID->Format);
-							//$str .= '<em>Format:</em> <code>'.htmlspecialchars($nameID->Format).'</code><br/>';
 						}
 						if (!empty($nameID->NameQualifier)) {
 							$eptid['NameQualifier'] = array($nameID->NameQualifier);
-							//$str .= '<em>NameQualifier:</em> <code>'.htmlspecialchars($nameID->NameQualifier).'</code><br/>';
 						}
 						if (!empty($nameID->SPNameQualifier)) {
 							$eptid['SPNameQualifier'] = array($nameID->SPNameQualifier);
-							//$str .= '<em>SPNameQualifier:</em> <code>'.htmlspecialchars($nameID->SPNameQualifier).'</code>';
 						}
 						$str .= '<td class="attrvalue">';
 						$str .= present_assoc($eptid);
