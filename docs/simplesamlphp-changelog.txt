@@ -6,6 +6,12 @@ SimpleSAMLphp changelog
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
+## Version 1.14.7
+
+Released TBD
+
+  * Fixed issue #424. Attributes containing XML as their values (like eduPersonTargetedID) were empty.
+
 ## Version 1.14.6
 
 Released 2016-07-18
