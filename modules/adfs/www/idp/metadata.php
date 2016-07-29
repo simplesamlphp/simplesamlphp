@@ -63,13 +63,13 @@ try {
         'entityid'            => $idpentityid,
         'SingleSignOnService' => array(
             0 => array(
-                'Binding'  => SAML2_Const::BINDING_HTTP_REDIRECT,
+                'Binding'  => \SAML2\Constants::BINDING_HTTP_REDIRECT,
                 'Location' => $adfs_service_location
             )
         ),
         'SingleLogoutService' => array(
             0 => array(
-                'Binding'  => SAML2_Const::BINDING_HTTP_REDIRECT,
+                'Binding'  => \SAML2\Constants::BINDING_HTTP_REDIRECT,
                 'Location' => $adfs_service_location
             )
         ),

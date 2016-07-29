@@ -74,7 +74,7 @@ class sspmod_saml_IdP_SAML2 {
 		SimpleSAML_Stats::log('saml:idp:Response', $statsData);
 
 		/* Send the response. */
-		$binding = SAML2_Binding::getBinding($protocolBinding);
+		$binding = \SAML2\Binding::getBinding($protocolBinding);
 		$binding->send($ar);
 	}
 
@@ -132,7 +132,7 @@ class sspmod_saml_IdP_SAML2 {
 		}
 		SimpleSAML_Stats::log('saml:idp:Response:error', $statsData);
 
-		$binding = SAML2_Binding::getBinding($protocolBinding);
+		$binding = \SAML2\Binding::getBinding($protocolBinding);
 		$binding->send($ar);
 	}
 
@@ -229,12 +229,12 @@ class sspmod_saml_IdP_SAML2 {
 		$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 		$idpMetadata = $idp->getConfig();
 
-		$supportedBindings = array(SAML2_Const::BINDING_HTTP_POST);
+		$supportedBindings = array(\SAML2\Constants::BINDING_HTTP_POST);
 		if ($idpMetadata->getBoolean('saml20.sendartifact', FALSE)) {
-			$supportedBindings[] = SAML2_Const::BINDING_HTTP_ARTIFACT;
+			$supportedBindings[] = \SAML2\Constants::BINDING_HTTP_ARTIFACT;
 		}
 		if ($idpMetadata->getBoolean('saml20.hok.assertion', FALSE)) {
-			$supportedBindings[] = SAML2_Const::BINDING_HOK_SSO;
+			$supportedBindings[] = \SAML2\Constants::BINDING_HOK_SSO;
 		}
 
 		if (isset($_REQUEST['spentityid'])) {
@@ -289,10 +289,10 @@ class sspmod_saml_IdP_SAML2 {
 
 		} else {
 
-			$binding = SAML2_Binding::getCurrentBinding();
+			$binding = \SAML2\Binding::getCurrentBinding();
 			$request = $binding->receive();
 
-			if (!($request instanceof SAML2_AuthnRequest)) {
+			if (!($request instanceof \SAML2\AuthnRequest)) {
 				throw new SimpleSAML_Error_BadRequest('Message received on authentication request endpoint wasn\'t an authentication request.');
 			}
 
@@ -412,10 +412,10 @@ class sspmod_saml_IdP_SAML2 {
 		));
 
 		$dst = $spMetadata->getEndpointPrioritizedByBinding('SingleLogoutService', array(
-			SAML2_Const::BINDING_HTTP_REDIRECT,
-			SAML2_Const::BINDING_HTTP_POST)
+			\SAML2\Constants::BINDING_HTTP_REDIRECT,
+			\SAML2\Constants::BINDING_HTTP_POST)
 		);
-		$binding = SAML2_Binding::getBinding($dst['Binding']);
+		$binding = \SAML2\Binding::getBinding($dst['Binding']);
 		$lr = self::buildLogoutRequest($idpMetadata, $spMetadata, $association, $relayState);
 		$lr->setDestination($dst['Location']);
 
@@ -447,8 +447,8 @@ class sspmod_saml_IdP_SAML2 {
 		if (isset($state['core:Failed']) && $state['core:Failed']) {
 			$partial = TRUE;
 			$lr->setStatus(array(
-				'Code' => SAML2_Const::STATUS_SUCCESS,
-				'SubCode' => SAML2_Const::STATUS_PARTIAL_LOGOUT,
+				'Code' => \SAML2\Constants::STATUS_SUCCESS,
+				'SubCode' => \SAML2\Constants::STATUS_PARTIAL_LOGOUT,
 			));
 			SimpleSAML\Logger::info('Sending logout response for partial logout to SP ' . var_export($spEntityId, TRUE));
 		} else {
@@ -462,10 +462,10 @@ class sspmod_saml_IdP_SAML2 {
 			'partial' => $partial
 		));
 		$dst = $spMetadata->getEndpointPrioritizedByBinding('SingleLogoutService', array(
-			SAML2_Const::BINDING_HTTP_REDIRECT,
-			SAML2_Const::BINDING_HTTP_POST)
+			\SAML2\Constants::BINDING_HTTP_REDIRECT,
+			\SAML2\Constants::BINDING_HTTP_POST)
 		);
-		$binding = SAML2_Binding::getBinding($dst['Binding']);
+		$binding = \SAML2\Binding::getBinding($dst['Binding']);
 		if (isset($dst['ResponseLocation'])) {
 			$dst = $dst['ResponseLocation'];
 		} else {
@@ -484,7 +484,7 @@ class sspmod_saml_IdP_SAML2 {
 	 */
 	public static function receiveLogoutMessage(SimpleSAML_IdP $idp) {
 
-		$binding = SAML2_Binding::getCurrentBinding();
+		$binding = \SAML2\Binding::getCurrentBinding();
 		$message = $binding->receive();
 
 		$spEntityId = $message->getIssuer();
@@ -499,7 +499,7 @@ class sspmod_saml_IdP_SAML2 {
 
 		sspmod_saml_Message::validateMessage($spMetadata, $idpMetadata, $message);
 
-		if ($message instanceof SAML2_LogoutResponse) {
+		if ($message instanceof \SAML2\LogoutResponse) {
 
 			SimpleSAML\Logger::info('Received SAML 2.0 LogoutResponse from: '. var_export($spEntityId, TRUE));
 			$statsData = array(
@@ -525,7 +525,7 @@ class sspmod_saml_IdP_SAML2 {
 			$idp->handleLogoutResponse($assocId, $relayState, $logoutError);
 
 
-		} elseif ($message instanceof SAML2_LogoutRequest) {
+		} elseif ($message instanceof \SAML2\LogoutRequest) {
 
 			SimpleSAML\Logger::info('Received SAML 2.0 LogoutRequest from: '. var_export($spEntityId, TRUE));
 			SimpleSAML_Stats::log('saml:idp:LogoutRequest:recv', array(
@@ -569,11 +569,11 @@ class sspmod_saml_IdP_SAML2 {
 		$idpMetadata = $idp->getConfig();
 		$spMetadata = $metadata->getMetaDataConfig($association['saml:entityID'], 'saml20-sp-remote');
 
-		$bindings = array(SAML2_Const::BINDING_HTTP_REDIRECT,
-						  SAML2_Const::BINDING_HTTP_POST);
+		$bindings = array(\SAML2\Constants::BINDING_HTTP_REDIRECT,
+						  \SAML2\Constants::BINDING_HTTP_POST);
 		$dst = $spMetadata->getEndpointPrioritizedByBinding('SingleLogoutService', $bindings);
 
-		if ($dst['Binding'] === SAML2_Const::BINDING_HTTP_POST) {
+		if ($dst['Binding'] === \SAML2\Constants::BINDING_HTTP_POST) {
 			$params = array('association' => $association['id'], 'idp' => $idp->getId());
 			if ($relayState !== NULL) {
 				$params['RelayState'] = $relayState;
@@ -584,7 +584,7 @@ class sspmod_saml_IdP_SAML2 {
 		$lr = self::buildLogoutRequest($idpMetadata, $spMetadata, $association, $relayState);
 		$lr->setDestination($dst['Location']);
 
-		$binding = new SAML2_HTTPRedirect();
+		$binding = new \SAML2\HTTPRedirect();
 		return $binding->getRedirectURL($lr);
 	}
 
@@ -707,7 +707,7 @@ class sspmod_saml_IdP_SAML2 {
 					break;
 				case 'raw':
 					if (is_string($value)) {
-						$doc = SAML2_DOMDocumentFactory::fromString('<root>' . $value . '</root>');
+						$doc = \SAML2\DOMDocumentFactory::fromString('<root>' . $value . '</root>');
 						$value = $doc->firstChild->childNodes;
 					}
 					assert('$value instanceof DOMNodeList');
@@ -765,7 +765,7 @@ class sspmod_saml_IdP_SAML2 {
 	 * @param SimpleSAML_Configuration $idpMetadata  The metadata of the IdP.
 	 * @param SimpleSAML_Configuration $spMetadata  The metadata of the SP.
 	 * @param array &$state  The state array with information about the request.
-	 * @return SAML2_Assertion  The assertion.
+	 * @return \SAML2\Assertion  The assertion.
 	 */
 	private static function buildAssertion(SimpleSAML_Configuration $idpMetadata,
 		SimpleSAML_Configuration $spMetadata, array &$state) {
@@ -781,7 +781,7 @@ class sspmod_saml_IdP_SAML2 {
 
 		$config = SimpleSAML_Configuration::getInstance();
 
-		$a = new SAML2_Assertion();
+		$a = new \SAML2\Assertion();
 		if ($signAssertion) {
 			sspmod_saml_Message::addSign($idpMetadata, $spMetadata, $a);
 		}
@@ -800,7 +800,7 @@ class sspmod_saml_IdP_SAML2 {
 		if (isset($state['saml:AuthnContextClassRef'])) {
 			$a->setAuthnContext($state['saml:AuthnContextClassRef']);
 		} else {
-			$a->setAuthnContext(SAML2_Const::AC_PASSWORD);
+			$a->setAuthnContext(\SAML2\Constants::AC_PASSWORD);
 		}
 
 		$sessionStart = $now;
@@ -814,15 +814,15 @@ class sspmod_saml_IdP_SAML2 {
 
 		$a->setSessionIndex(SimpleSAML\Utils\Random::generateID());
 
-		$sc = new SAML2_XML_saml_SubjectConfirmation();
-		$sc->SubjectConfirmationData = new SAML2_XML_saml_SubjectConfirmationData();
+		$sc = new \SAML2\XML\saml\SubjectConfirmation();
+		$sc->SubjectConfirmationData = new \SAML2\XML\saml\SubjectConfirmationData();
 		$sc->SubjectConfirmationData->NotOnOrAfter = $now + $assertionLifetime;
 		$sc->SubjectConfirmationData->Recipient = $state['saml:ConsumerURL'];
 		$sc->SubjectConfirmationData->InResponseTo = $state['saml:RequestId'];
 
 		/* ProtcolBinding of SP's <AuthnRequest> overwrites IdP hosted metadata configuration. */
 		$hokAssertion = NULL;
-		if ($state['saml:Binding'] === SAML2_Const::BINDING_HOK_SSO) {
+		if ($state['saml:Binding'] === \SAML2\Constants::BINDING_HOK_SSO) {
 		    $hokAssertion = TRUE;
 		}
 		if ($hokAssertion === NULL) {
@@ -831,7 +831,7 @@ class sspmod_saml_IdP_SAML2 {
 
 		if ($hokAssertion) {
 			/* Holder-of-Key */
-			$sc->Method = SAML2_Const::CM_HOK;
+			$sc->Method = \SAML2\Constants::CM_HOK;
 			if (\SimpleSAML\Utils\HTTP::isHTTPS()) {
 				if (isset($_SERVER['SSL_CLIENT_CERT']) && !empty($_SERVER['SSL_CLIENT_CERT'])) {
 					/* Extract certificate data (if this is a certificate). */
@@ -839,13 +839,13 @@ class sspmod_saml_IdP_SAML2 {
 					$pattern = '/^-----BEGIN CERTIFICATE-----([^-]*)^-----END CERTIFICATE-----/m';
 					if (preg_match($pattern, $clientCert, $matches)) {
 						/* We have a client certificate from the browser which we add to the HoK assertion. */
-						$x509Certificate = new SAML2_XML_ds_X509Certificate();
+						$x509Certificate = new \SAML2\XML\ds\X509Certificate();
 						$x509Certificate->certificate = str_replace(array("\r", "\n", " "), '', $matches[1]);
 
-						$x509Data = new SAML2_XML_ds_X509Data();
+						$x509Data = new \SAML2\XML\ds\X509Data();
 						$x509Data->data[] = $x509Certificate;
 
-						$keyInfo = new SAML2_XML_ds_KeyInfo();
+						$keyInfo = new \SAML2\XML\ds\KeyInfo();
 						$keyInfo->info[] = $x509Data;
 
 						$sc->SubjectConfirmationData->info[] = $keyInfo;
@@ -854,7 +854,7 @@ class sspmod_saml_IdP_SAML2 {
 			} else throw new SimpleSAML_Error_Exception('Error creating HoK assertion: No HTTPS connection to IdP, but required for Holder-of-Key SSO');
 		} else {
 			/* Bearer */
-			$sc->Method = SAML2_Const::CM_BEARER;
+			$sc->Method = \SAML2\Constants::CM_BEARER;
 		}
 		$a->setSubjectConfirmation(array($sc));
 
@@ -880,7 +880,7 @@ class sspmod_saml_IdP_SAML2 {
 			/* Either not set in request, or not set to a format we supply. Fall back to old generation method. */
 			$nameIdFormat = $spMetadata->getString('NameIDFormat', NULL);
 			if ($nameIdFormat === NULL) {
-				$nameIdFormat = $idpMetadata->getString('NameIDFormat', SAML2_Const::NAMEID_TRANSIENT);
+				$nameIdFormat = $idpMetadata->getString('NameIDFormat', \SAML2\Constants::NAMEID_TRANSIENT);
 			}
 		}
 
@@ -893,7 +893,7 @@ class sspmod_saml_IdP_SAML2 {
 				$spNameQualifier = $spMetadata->getString('entityid');
 			}
 
-			if ($nameIdFormat === SAML2_Const::NAMEID_TRANSIENT) {
+			if ($nameIdFormat === \SAML2\Constants::NAMEID_TRANSIENT) {
 				/* generate a random id */
 				$nameIdValue = SimpleSAML\Utils\Random::generateID();
 			} else {
@@ -902,7 +902,7 @@ class sspmod_saml_IdP_SAML2 {
 				$nameIdValue = self::generateNameIdValue($idpMetadata, $spMetadata, $state);
 				if ($nameIdValue === NULL) {
 					SimpleSAML\Logger::warning('Falling back to transient NameID.');
-					$nameIdFormat = SAML2_Const::NAMEID_TRANSIENT;
+					$nameIdFormat = \SAML2\Constants::NAMEID_TRANSIENT;
 					$nameIdValue = SimpleSAML\Utils\Random::generateID();
 				}
 			}
@@ -933,16 +933,16 @@ class sspmod_saml_IdP_SAML2 {
 	/**
 	 * Encrypt an assertion.
 	 *
-	 * This function takes in a SAML2_Assertion and encrypts it if encryption of
+	 * This function takes in a \SAML2\Assertion and encrypts it if encryption of
 	 * assertions are enabled in the metadata.
 	 *
 	 * @param SimpleSAML_Configuration $idpMetadata  The metadata of the IdP.
 	 * @param SimpleSAML_Configuration $spMetadata  The metadata of the SP.
-	 * @param SAML2_Assertion $assertion  The assertion we are encrypting.
-	 * @return SAML2_Assertion|SAML2_EncryptedAssertion  The assertion.
+	 * @param \SAML2\Assertion $assertion  The assertion we are encrypting.
+	 * @return \SAML2\Assertion|\SAML2\EncryptedAssertion  The assertion.
 	 */
 	private static function encryptAssertion(SimpleSAML_Configuration $idpMetadata,
-		SimpleSAML_Configuration $spMetadata, SAML2_Assertion $assertion) {
+		SimpleSAML_Configuration $spMetadata, \SAML2\Assertion $assertion) {
 
 		$encryptAssertion = $spMetadata->getBoolean('assertion.encryption', NULL);
 		if ($encryptAssertion === NULL) {
@@ -976,7 +976,7 @@ class sspmod_saml_IdP_SAML2 {
 			$key->loadKey($pemKey);
 		}
 
-		$ea = new SAML2_EncryptedAssertion();
+		$ea = new \SAML2\EncryptedAssertion();
 		$ea->setAssertion($assertion, $key);
 		return $ea;
 	}
@@ -1031,7 +1031,7 @@ class sspmod_saml_IdP_SAML2 {
 			$signResponse = $idpMetadata->getBoolean('saml20.sign.response', TRUE);
 		}
 
-		$r = new SAML2_Response();
+		$r = new \SAML2\Response();
 
 		$r->setIssuer($idpMetadata->getString('entityid'));
 		$r->setDestination($consumerURL);

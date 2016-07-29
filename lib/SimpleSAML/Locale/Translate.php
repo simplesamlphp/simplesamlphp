@@ -56,7 +56,7 @@ class Translate
             // for backwards compatibility - print warning
             $backtrace = debug_backtrace();
             $where = $backtrace[0]['file'].':'.$backtrace[0]['line'];
-            \SimpleSAML_Logger::warning(
+            \SimpleSAML\Logger::warning(
                 'Deprecated use of new SimpleSAML\Locale\Translate(...) at '.$where.
                 '. The last parameter is now a dictionary name, which should not end in ".php".'
             );
@@ -96,7 +96,7 @@ class Translate
             if ($sepPos !== false) {
                 $module = substr($name, 0, $sepPos);
                 $fileName = substr($name, $sepPos + 1);
-                $dictDir = \SimpleSAML_Module::getModuleDir($module).'/dictionaries/';
+                $dictDir = \SimpleSAML\Module::getModuleDir($module).'/dictionaries/';
             } else {
                 $dictDir = $this->configuration->getPathValue('dictionarydir', 'dictionaries/');
                 $fileName = $name;
@@ -255,14 +255,14 @@ class Translate
             // old style call to t(...). Print warning to log
             $backtrace = debug_backtrace();
             $where = $backtrace[0]['file'].':'.$backtrace[0]['line'];
-            \SimpleSAML_Logger::warning(
+            \SimpleSAML\Logger::warning(
                 'Deprecated use of SimpleSAML_Template::t(...) at '.$where.
                 '. Please update the code to use the new style of parameters.'
             );
 
             // for backwards compatibility
             if (!$replacements && $this->getTag($tag) === null) {
-                \SimpleSAML_Logger::warning(
+                \SimpleSAML\Logger::warning(
                     'Code which uses $fallbackdefault === FALSE should be updated to use the getTag() method instead.'
                 );
                 return null;
@@ -277,7 +277,7 @@ class Translate
             $tagData = $this->getTag($tag);
             if ($tagData === null) {
                 // tag not found
-                \SimpleSAML_Logger::info('Template: Looking up ['.$tag.']: not translated at all.');
+                \SimpleSAML\Logger::info('Template: Looking up ['.$tag.']: not translated at all.');
                 return $this->getStringNotTranslated($tag, $fallbackdefault);
             }
         }
@@ -332,7 +332,7 @@ class Translate
             throw new \Exception("Inline translation should be string or array. Is ".gettype($translation)." now!");
         }
 
-        \SimpleSAML_Logger::debug('Template: Adding inline language translation for tag ['.$tag.']');
+        \SimpleSAML\Logger::debug('Template: Adding inline language translation for tag ['.$tag.']');
         $this->langtext[$tag] = $translation;
     }
 
@@ -355,7 +355,7 @@ class Translate
         }
 
         $lang = $this->readDictionaryFile($filebase.$file);
-        \SimpleSAML_Logger::debug('Template: Merging language array. Loading ['.$file.']');
+        \SimpleSAML\Logger::debug('Template: Merging language array. Loading ['.$file.']');
         $this->langtext = array_merge($this->langtext, $lang);
     }
 
@@ -376,7 +376,7 @@ class Translate
         $lang = json_decode($fileContent, true);
 
         if (empty($lang)) {
-            \SimpleSAML_Logger::error('Invalid dictionary definition file ['.$definitionFile.']');
+            \SimpleSAML\Logger::error('Invalid dictionary definition file ['.$definitionFile.']');
             return array();
         }
 
@@ -426,7 +426,7 @@ class Translate
     {
         assert('is_string($filename)');
 
-        \SimpleSAML_Logger::debug('Template: Reading ['.$filename.']');
+        \SimpleSAML\Logger::debug('Template: Reading ['.$filename.']');
 
         $jsonFile = $filename.'.definition.json';
         if (file_exists($jsonFile)) {
@@ -438,7 +438,7 @@ class Translate
             return $this->readDictionaryPHP($filename);
         }
 
-        \SimpleSAML_Logger::error(
+        \SimpleSAML\Logger::error(
             $_SERVER['PHP_SELF'].' - Template: Could not find dictionary file at ['.$filename.']'
         );
         return array();

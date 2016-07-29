@@ -69,6 +69,52 @@ class Language
      */
     private $customFunction;
 
+    /**
+     * A list of languages supported with their names localized, indexed by ISO 639-2 code.
+     *
+     * @var array
+     */
+    private $language_names = array(
+        'no'    => 'Bokmål', // Norwegian Bokmål
+        'nn'    => 'Nynorsk', // Norwegian Nynorsk
+        'se'    => 'Sámegiella', // Northern Sami
+        'sam'   => 'Åarjelh-saemien giele', // Southern Sami
+        'da'    => 'Dansk', // Danish
+        'en'    => 'English',
+        'de'    => 'Deutsch', // German
+        'sv'    => 'Svenska', // Swedish
+        'fi'    => 'Suomeksi', // Finnish
+        'es'    => 'Español', // Spanish
+        'fr'    => 'Français', // French
+        'it'    => 'Italiano', // Italian
+        'nl'    => 'Nederlands', // Dutch
+        'lb'    => 'Lëtzebuergesch', // Luxembourgish
+        'cs'    => 'Čeština', // Czech
+        'sl'    => 'Slovenščina', // Slovensk
+        'lt'    => 'Lietuvių kalba', // Lithuanian
+        'hr'    => 'Hrvatski', // Croatian
+        'hu'    => 'Magyar', // Hungarian
+        'pl'    => 'Język polski', // Polish
+        'pt'    => 'Português', // Portuguese
+        'pt-br' => 'Português brasileiro', // Portuguese
+        'ru'    => 'русский язык', // Russian
+        'et'    => 'eesti keel', // Estonian
+        'tr'    => 'Türkçe', // Turkish
+        'el'    => 'ελληνικά', // Greek
+        'ja'    => '日本語', // Japanese
+        'zh'    => '简体中文', // Chinese (simplified)
+        'zh-tw' => '繁體中文', // Chinese (traditional)
+        'ar'    => 'العربية', // Arabic
+        'fa'    => 'پارسی', // Persian
+        'ur'    => 'اردو', // Urdu
+        'he'    => 'עִבְרִית', // Hebrew
+        'id'    => 'Bahasa Indonesia', // Indonesian
+        'sr'    => 'Srpski', // Serbian
+        'lv'    => 'Latviešu', // Latvian
+        'ro'    => 'Românește', // Romanian
+        'eu'    => 'Euskara', // Basque
+    );
+
 
     /**
      * Constructor
@@ -148,6 +194,19 @@ class Language
 
         // language is not set, and we get the default language from the configuration
         return $this->getDefaultLanguage();
+    }
+
+
+    /**
+     * Get the localized name of a language, by ISO 639-2 code.
+     *
+     * @param string $code The ISO 639-2 code of the language.
+     *
+     * @return string The localized name of the language.
+     */
+    public function getLanguageLocalizedName($code)
+    {
+        return $this->language_names[$code];
     }
 
 

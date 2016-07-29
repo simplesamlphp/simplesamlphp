@@ -162,12 +162,14 @@ class HTTP
             Logger::warning('Redirecting to a URL longer than 2048 bytes.');
         }
 
-        // set the location header
-        header('Location: '.$url, true, $code);
+        if (!headers_sent()) {
+            // set the location header
+            header('Location: '.$url, true, $code);
 
-        // disable caching of this response
-        header('Pragma: no-cache');
-        header('Cache-Control: no-cache, must-revalidate');
+            // disable caching of this response
+            header('Pragma: no-cache');
+            header('Cache-Control: no-cache, must-revalidate');
+        }
 
         // show a minimal web page with a clickable link to the URL
         echo '<?xml version="1.0" encoding="UTF-8"?>'."\n";
@@ -178,7 +180,7 @@ class HTTP
         echo '    <meta http-equiv="content-type" content="text/html; charset=utf-8">'."\n";
         echo "    <title>Redirect</title>\n";
         echo "  </head>\n";
-        echo "  <body>\n";
+        echo "  <body onload=\"window.location.replace('".htmlspecialchars($url)."');\">\n";
         echo "    <h1>Redirect</h1>\n";
         echo '      <p>You were redirected to: <a id="redirlink" href="'.htmlspecialchars($url).'">';
         echo htmlspecialchars($url)."</a>\n";
@@ -324,12 +326,30 @@ class HTTP
             preg_match('@^https?://([^/]+)@i', $url, $matches);
             $hostname = $matches[1];
 
-            // add self host to the white list
             $self_host = self::getSelfHostWithNonStandardPort();
-            $trustedSites[] = $self_host;
+
+            $trustedRegex = \SimpleSAML_Configuration::getInstance()->getValue('trusted.url.regex', false);
+
+            $trusted = false;
+            if ($trustedRegex) {
+                // add self host to the white list
+                $trustedSites[] = preg_quote($self_host);
+                foreach ($trustedSites as $regex) {
+                    // Add start and end delimiters.
+                    $regex = "@^{$regex}$@";
+                    if (preg_match($regex, $hostname)) {
+                        $trusted = true;
+                        break;
+                    }
+                }
+            } else {
+                // add self host to the white list
+                $trustedSites[] = $self_host;
+                $trusted = in_array($hostname, $trustedSites);
+            }
 
             // throw exception due to redirection to untrusted site
-            if (!in_array($hostname, $trustedSites)) {
+            if (!$trusted) {
                 throw new \SimpleSAML_Error_Exception('URL not allowed: '.$url);
             }
         }
@@ -548,9 +568,9 @@ class HTTP
         $globalConfig = \SimpleSAML_Configuration::getInstance();
         $baseURL = $globalConfig->getString('baseurlpath', 'simplesaml/');
 
-        if (preg_match('#^https?://.*/$#D', $baseURL, $matches)) {
+        if (preg_match('#^https?://.*/?$#D', $baseURL, $matches)) {
             // full URL in baseurlpath, override local server values
-            return $baseURL;
+            return rtrim($baseURL, '/').'/';
         } elseif (
             (preg_match('#^/?([^/]?.*/)$#D', $baseURL, $matches)) ||
             (preg_match('#^\*(.*)/$#D', $baseURL, $matches)) ||
@@ -563,7 +583,7 @@ class HTTP
 
             $hostname = self::getServerHost();
             $port = self::getServerPort();
-            $path = '/'.$globalConfig->getBaseURL();
+            $path = $globalConfig->getBasePath();
 
             return $protocol.$hostname.$port.$path;
         } else {
@@ -691,38 +711,57 @@ class HTTP
 
 
     /**
-     * Retrieve the current, complete URL.
+     * Retrieve the current URL using the base URL in the configuration, if possible.
+     *
+     * This method will try to see if the current script is part of SimpleSAMLphp. In that case, it will use the
+     * 'baseurlpath' configuration option to rebuild the current URL based on that. If the current script is NOT
+     * part of SimpleSAMLphp, it will just return the current URL.
+     *
+     * Note that this method does NOT make use of the HTTP X-Forwarded-* set of headers.
      *
      * @return string The current URL, including query parameters.
      *
      * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
+     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
     public static function getSelfURL()
     {
-        $url = self::getSelfURLHost();
-        $requestURI = $_SERVER['REQUEST_URI'];
-        if ($requestURI[0] !== '/') {
-            // we probably have a URL of the form: http://server/
-            if (preg_match('#^https?://[^/]*(/.*)#i', $requestURI, $matches)) {
-                $requestURI = $matches[1];
-            }
+        $cfg = \SimpleSAML_Configuration::getInstance();
+        $baseDir = $cfg->getBaseDir();
+        $current_path = realpath($_SERVER['SCRIPT_FILENAME']);
+        $rel_path = str_replace($baseDir.'www'.DIRECTORY_SEPARATOR, '', $current_path);
+
+        if ($current_path == $rel_path) { // compare loosely ($current_path can be false)
+            // we were accessed from an external script, do not try to apply our base URL
+            $protocol = 'http';
+            $protocol .= (self::getServerHTTPS()) ? 's' : '';
+            $protocol .= '://';
+
+            $hostname = self::getServerHost();
+            $port = self::getServerPort();
+            return $protocol.$hostname.$port.$_SERVER['REQUEST_URI'];
         }
-        return $url.$requestURI;
+
+        $url = self::getBaseURL();
+        $rel_path = str_replace(DIRECTORY_SEPARATOR, '/', $rel_path);
+        $pos = strpos($_SERVER['REQUEST_URI'], $rel_path) + strlen($rel_path);
+        return $url.$rel_path.substr($_SERVER['REQUEST_URI'], $pos);
     }
 
 
     /**
-     * Retrieve a URL containing the protocol, the current host and optionally, the port number.
+     * Retrieve the current URL using the base URL in the configuration, containing the protocol, the host and
+     * optionally, the port number.
      *
-     * @return string The current URL without a URL path or query parameters.
+     * @return string The current URL without path or query parameters.
      *
      * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
     public static function getSelfURLHost()
     {
-        $url = self::getBaseURL();
+        $url = self::getSelfURL();
         $start = strpos($url, '://') + 3;
         $length = strcspn($url, '/', $start) + $start;
         return substr($url, 0, $length);
@@ -730,20 +769,21 @@ class HTTP
 
 
     /**
-     * Retrieve the current URL without the query parameters.
+     * Retrieve the current URL using the base URL in the configuration, without the query parameters.
      *
      * @return string The current URL, not including query parameters.
      *
      * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
+     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
     public static function getSelfURLNoQuery()
     {
-        $url = self::getSelfURLHost();
-        $url .= $_SERVER['SCRIPT_NAME'];
-        if (isset($_SERVER['PATH_INFO'])) {
-            $url .= $_SERVER['PATH_INFO'];
+        $url = self::getSelfURL();
+        $pos = strpos($url, '?');
+        if (!$pos) {
+            return $url;
         }
-        return $url;
+        return substr($url, 0, $pos);
     }
 
 
@@ -757,7 +797,7 @@ class HTTP
      */
     public static function isHTTPS()
     {
-        return strpos(self::getBaseURL(), 'https://') === 0;
+        return strpos(self::getSelfURL(), 'https://') === 0;
     }
 
 
@@ -812,6 +852,10 @@ class HTTP
         }
 
         $res = array();
+        if (empty($query_string)) {
+            return $res;
+        }
+
         foreach (explode('&', $query_string) as $param) {
             $param = explode('=', $param);
             $name = urldecode($param[0]);
@@ -940,14 +984,13 @@ class HTTP
             return $baseScheme.$url;
         }
 
-        $firstChar = substr($url, 0, 1);
-        if ($firstChar === '/') {
+        if ($url[0] === '/') {
             return $baseHost.$url;
         }
-        if ($firstChar === '?') {
+        if ($url[0] === '?') {
             return $basePath.$url;
         }
-        if ($firstChar === '#') {
+        if ($url[0] === '#') {
             return $baseQuery.$url;
         }
 
@@ -987,7 +1030,7 @@ class HTTP
      * @param bool        $throw Whether to throw exception if setcookie() fails.
      *
      * @throws \InvalidArgumentException If any parameter has an incorrect type.
-     * @throws \SimpleSAML_Error_Exception If the headers were already sent and the cookie cannot be set.
+     * @throws \SimpleSAML\Error\CannotSetCookie If the headers were already sent and the cookie cannot be set.
      *
      * @author Andjelko Horvat
      * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
@@ -1020,7 +1063,13 @@ class HTTP
 
         // Do not set secure cookie if not on HTTPS
         if ($params['secure'] && !self::isHTTPS()) {
-            Logger::warning('Setting secure cookie on plain HTTP is not allowed.');
+            if ($throw) {
+                throw new \SimpleSAML\Error\CannotSetCookie(
+                    'Setting secure cookie on plain HTTP is not allowed.',
+                    \SimpleSAML\Error\CannotSetCookie::SECURE_COOKIE
+                );
+            }
+            Logger::warning('Error setting cookie: setting secure cookie on plain HTTP is not allowed.');
             return;
         }
 
@@ -1035,7 +1084,7 @@ class HTTP
         }
 
         if ($params['raw']) {
-            $success = setrawcookie(
+            $success = @setrawcookie(
                 $name,
                 $value,
                 $expire,
@@ -1045,7 +1094,7 @@ class HTTP
                 $params['httponly']
             );
         } else {
-            $success = setcookie(
+            $success = @setcookie(
                 $name,
                 $value,
                 $expire,
@@ -1058,10 +1107,12 @@ class HTTP
 
         if (!$success) {
             if ($throw) {
-                throw new \SimpleSAML_Error_Exception('Error setting cookie: headers already sent.');
-            } else {
-                Logger::warning('Error setting cookie: headers already sent.');
+                throw new \SimpleSAML\Error\CannotSetCookie(
+                    'Headers already sent.',
+                    \SimpleSAML\Error\CannotSetCookie::HEADERS_SENT
+                );
             }
+            Logger::warning('Error setting cookie: headers already sent.');
         }
     }
 

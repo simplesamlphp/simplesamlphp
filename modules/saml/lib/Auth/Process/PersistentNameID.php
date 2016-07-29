@@ -30,7 +30,7 @@ class sspmod_saml_Auth_Process_PersistentNameID extends sspmod_saml_BaseNameIDGe
         parent::__construct($config, $reserved);
         assert('is_array($config)');
 
-        $this->format = SAML2_Const::NAMEID_PERSISTENT;
+        $this->format = \SAML2\Constants::NAMEID_PERSISTENT;
 
         if (!isset($config['attribute'])) {
             throw new SimpleSAML_Error_Exception("PersistentNameID: Missing required option 'attribute'.");

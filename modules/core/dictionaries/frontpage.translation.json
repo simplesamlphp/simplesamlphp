@@ -384,7 +384,7 @@
 		"eu": "Hautazkoa",
 		"el": "\u03a0\u03c1\u03bf\u03b1\u03b9\u03c1\u03b5\u03c4\u03b9\u03ba\u03cc"
 	},
-	"reccomended": {
+	"recommended": {
 		"no": "Anbefalt",
 		"nn": "Tilr\u00e5dd",
 		"sv": "Rekommenderad",
@@ -1625,5 +1625,9 @@
 		"nl": "<strong>De configuratie bevat de sandaard secret salt<\/strong> - verander altijd de 'secretsalt'-optie in de simpleSAML-configuratie voor productieomgevingen. [<a href=\"https:\/\/simplesamlphp.org\/docs\/stable\/simplesamlphp-install\">Lees meer over het configureren van SimpleSAMLphp<\/a> ]",
 		"da": "<strong>Ops\u00e6tningen benytter standard 'secret salt'<\/strong> - s\u00f8rg for at \u00e6ndre standard indstillingen for 'secretsalt' i simpleSAML ops\u00e6tningen i produktionssystemer. [<a href=\"https:\/\/simplesamlphp.org\/docs\/stable\/simplesamlphp-install\">L\u00e6s mere om SimpleSAMLphp ops\u00e6tning.<\/a> ]",
 		"el": "<strong>\u03a7\u03c1\u03b7\u03c3\u03b9\u03bc\u03bf\u03c0\u03bf\u03b9\u03b5\u03af\u03c4\u03b5 \u03c4\u03b7\u03bd \u03c0\u03c1\u03bf\u03b5\u03c0\u03b9\u03bb\u03b5\u03b3\u03bc\u03ad\u03bd\u03b7 \u03c4\u03b9\u03bc\u03ae \u03c4\u03bf\u03c5 \u03bc\u03c5\u03c3\u03c4\u03b9\u03ba\u03bf\u03cd \u03ba\u03bb\u03b5\u03b9\u03b4\u03b9\u03bf\u03cd (salt)<\/strong> - \u03c6\u03c1\u03bf\u03bd\u03c4\u03af\u03c3\u03c4\u03b5 \u03bd\u03b1 \u03c4\u03c1\u03bf\u03c0\u03bf\u03c0\u03bf\u03b9\u03ae\u03c3\u03b5\u03c4\u03b5 \u03c4\u03b7\u03bd \u03c0\u03b1\u03c1\u03ac\u03bc\u03b5\u03c4\u03c1\u03bf 'secretsalt' \u03c3\u03c4\u03b9\u03c2 \u03c1\u03c5\u03b8\u03bc\u03af\u03c3\u03b5\u03b9\u03c2 \u03c4\u03bf\u03c5 SimpleSAMLphp \u03c3\u03b5 \u03c0\u03b5\u03c1\u03b9\u03b2\u03ac\u03bb\u03bb\u03bf\u03bd \u03c0\u03b1\u03c1\u03b1\u03b3\u03c9\u03b3\u03ae\u03c2. [<a href=\"https:\/\/simplesamlphp.org\/docs\/stable\/simplesamlphp-install\">\u0394\u03b9\u03b1\u03b2\u03ac\u03c3\u03c4\u03b5 \u03c0\u03b5\u03c1\u03b9\u03c3\u03c3\u03cc\u03c4\u03b5\u03c1\u03b1...<\/a> ]"
+	},
+	"warnings_outdated": {
+		"es": "Su instalaci&oacute;n de SimpleSAMLphp est&aacute; desactualizada. Por favor, actualice a la <a href=\"%LATEST_URL%\">&uacute;ltima versi&oacute;n</a> lo antes posible.",
+		"nl": "Deze installatie van SimpleSAMLphp is verouderd. Het is aan te raden zo snel mogelijk te upgraden naar <a href=\"%LATEST_URL%\">de meest recente versie</a>."
 	}
 }

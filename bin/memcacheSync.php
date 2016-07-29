@@ -9,9 +9,9 @@ if (!class_exists('Memcache')) {
     echo("This is most likely because PHP doesn't load it for the command line\n");
     echo("version. You probably need to enable it somehow.\n");
     echo("\n");
-    if (is_dir('/etc/php5/cli/conf.d')) {
+    if(is_executable('/usr/sbin/phpenmod')) {
         echo("It is possible that running the following command as root will fix it:\n");
-        echo(" echo 'extension=memcache.so' >/etc/php5/cli/conf.d/memcache.ini\n");
+        echo(" phpenmod -s cli memcache\n");
     }
 
     exit(1);

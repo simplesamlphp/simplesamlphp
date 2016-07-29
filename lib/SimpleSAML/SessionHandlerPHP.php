@@ -151,38 +151,17 @@ class SimpleSAML_SessionHandlerPHP extends SimpleSAML_SessionHandler
 
 
     /**
-     * Create and set new session id.
+     * Create a new session id.
      *
      * @return string The new session id.
-     *
-     * @throws SimpleSAML_Error_Exception If the cookie is marked as secure but we are not using HTTPS, or the headers
-     * were already sent and therefore we cannot set the cookie.
      */
     public function newSessionId()
     {
-        $session_cookie_params = session_get_cookie_params();
-
-        if ($session_cookie_params['secure'] && !\SimpleSAML\Utils\HTTP::isHTTPS()) {
-            throw new SimpleSAML_Error_Exception('Session start with secure cookie not allowed on http.');
-        }
-
-        if (headers_sent()) {
-            throw new SimpleSAML_Error_Exception('Cannot create new session - headers already sent.');
-        }
-
         // generate new (secure) session id
         $sessionId = bin2hex(openssl_random_pseudo_bytes(16));
         SimpleSAML_Session::createSession($sessionId);
 
-        if (session_id() !== '') {
-            // session already started, close it
-            session_write_close();
-        }
-
-        session_id($sessionId);
-        $this->sessionStart();
-
-        return session_id();
+        return $sessionId;
     }
 
 
@@ -208,7 +187,7 @@ class SimpleSAML_SessionHandlerPHP extends SimpleSAML_SessionHandler
             throw new SimpleSAML_Error_Exception('Session start with secure cookie not allowed on http.');
         }
 
-       $this->sessionStart();
+        $this->sessionStart();
         return session_id();
     }
 
@@ -318,11 +297,58 @@ class SimpleSAML_SessionHandlerPHP extends SimpleSAML_SessionHandler
             $ret['path'] = $config->getBoolean(
                 'session.phpsession.limitedpath',
                 false
-            ) ? '/'.$config->getBaseURL() : '/';
+            ) ? $config->getBasePath() : '/';
         }
 
         $ret['httponly'] = $config->getBoolean('session.phpsession.httponly', true);
 
         return $ret;
+    }
+
+
+    /**
+     * Set a session cookie.
+     *
+     * @param string $sessionName The name of the session.
+     * @param string|null $sessionID The session ID to use. Set to null to delete the cookie.
+     * @param array|null $cookieParams Additional parameters to use for the session cookie.
+     *
+     * @throws \SimpleSAML\Error\CannotSetCookie If we can't set the cookie.
+     */
+    public function setCookie($sessionName, $sessionID, array $cookieParams = null)
+    {
+        if ($cookieParams === null) {
+            $cookieParams = session_get_cookie_params();
+        }
+
+        if ($cookieParams['secure'] && !\SimpleSAML\Utils\HTTP::isHTTPS()) {
+            throw new \SimpleSAML\Error\CannotSetCookie(
+                'Setting secure cookie on plain HTTP is not allowed.',
+                \SimpleSAML\Error\CannotSetCookie::SECURE_COOKIE
+            );
+        }
+
+        if (headers_sent()) {
+            throw new \SimpleSAML\Error\CannotSetCookie(
+                'Headers already sent.',
+                \SimpleSAML\Error\CannotSetCookie::HEADERS_SENT
+            );
+        }
+
+        session_set_cookie_params(
+            $cookieParams['lifetime'],
+            $cookieParams['path'],
+            $cookieParams['domain'],
+            $cookieParams['secure'],
+            $cookieParams['httponly']
+        );
+
+        if (session_id() !== '') {
+            // session already started, close it
+            session_write_close();
+        }
+
+        session_id($sessionID);
+        $this->sessionStart();
     }
 }

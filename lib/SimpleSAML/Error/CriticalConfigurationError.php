@@ -48,7 +48,6 @@ class CriticalConfigurationError extends ConfigurationError
     {
         if ($config === null) {
             $config = self::$minimum_config;
-        } else {
             $config['baseurlpath'] = \SimpleSAML\Utils\HTTP::guessBasePath();
         }
 

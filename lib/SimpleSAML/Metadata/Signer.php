@@ -143,6 +143,70 @@ class SimpleSAML_Metadata_Signer
 
 
     /**
+     * Determine the signature and digest algorithms to use when signing metadata.
+     *
+     * This method will look for the 'metadata.sign.algorithm' key in the $entityMetadata array, or look for such
+     * a configuration option in the $config object.
+     *
+     * @param SimpleSAML_Configuration $config The global configuration.
+     * @param array $entityMetadata An array containing the metadata related to this entity.
+     * @param string $type A string describing the type of entity. E.g. 'SAML 2 IdP' or 'Shib 1.3 SP'.
+     *
+     * @return array An array with two keys, 'algorithm' and 'digest', corresponding to the signature and digest
+     * algorithms to use, respectively.
+     *
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
+     *
+     * @todo change to SHA256 by default.
+     */
+    private static function getMetadataSigningAlgorithm($config, $entityMetadata, $type)
+    {
+        // configure the algorithm to use
+        if (array_key_exists('metadata.sign.algorithm', $entityMetadata)) {
+            if (!is_string($entityMetadata['metadata.sign.algorithm'])) {
+                throw new \SimpleSAML\Error\CriticalConfigurationError(
+                    "Invalid value for the 'metadata.sign.algorithm' configuration option for the ".$type.
+                    "'".$entityMetadata['entityid']."'. This option has restricted values"
+                );
+            }
+            $alg = $entityMetadata['metadata.sign.algorithm'];
+        } else {
+            $alg = $config->getString('metadata.sign.algorithm', XMLSecurityKey::RSA_SHA1);
+        }
+
+        $supported_algs = array(
+            XMLSecurityKey::RSA_SHA1,
+            XMLSecurityKey::RSA_SHA256,
+            XMLSecurityKey::RSA_SHA384,
+            XMLSecurityKey::RSA_SHA512,
+        );
+
+        if (!in_array($alg, $supported_algs)) {
+            throw new \SimpleSAML\Error\CriticalConfigurationError("Unknown signature algorithm '$alg'");
+        }
+
+        switch ($alg) {
+            case XMLSecurityKey::RSA_SHA256:
+                $digest = XMLSecurityDSig::SHA256;
+                break;
+            case XMLSecurityKey::RSA_SHA384:
+                $digest = XMLSecurityDSig::SHA384;
+                break;
+            case XMLSecurityKey::RSA_SHA512:
+                $digest = XMLSecurityDSig::SHA512;
+                break;
+            default:
+                $digest = XMLSecurityDSig::SHA1;
+        }
+
+        return array(
+            'algorithm' => $alg,
+            'digest' => $digest,
+        );
+    }
+
+
+    /**
      * Signs the given metadata if metadata signing is enabled.
      *
      * @param string $metadataString A string with the metadata.
@@ -181,13 +245,15 @@ class SimpleSAML_Metadata_Signer
 
         // convert the metadata to a DOM tree
         try {
-            $xml = SAML2_DOMDocumentFactory::fromString($metadataString);
+            $xml = \SAML2\DOMDocumentFactory::fromString($metadataString);
         } catch(Exception $e) {
             throw new Exception('Error parsing self-generated metadata.');
         }
 
+        $signature_cf = self::getMetadataSigningAlgorithm($config, $entityMetadata, $type);
+
         // load the private key
-        $objKey = new XMLSecurityKey(XMLSecurityKey::RSA_SHA1, array('type' => 'private'));
+        $objKey = new XMLSecurityKey($signature_cf['algorithm'], array('type' => 'private'));
         if (array_key_exists('privatekey_pass', $keyCertFiles)) {
             $objKey->passphrase = $keyCertFiles['privatekey_pass'];
         }
@@ -207,7 +273,7 @@ class SimpleSAML_Metadata_Signer
 
         $objXMLSecDSig->addReferenceList(
             array($rootNode),
-            XMLSecurityDSig::SHA1,
+            $signature_cf['digest'],
             array('http://www.w3.org/2000/09/xmldsig#enveloped-signature', XMLSecurityDSig::EXC_C14N),
             array('id_name' => 'ID')
         );

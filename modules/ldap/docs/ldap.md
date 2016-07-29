@@ -436,6 +436,17 @@ a listing of all configuration options and their details.
 
 
 		/**
+		 * This is the port where the LDAP server(s) listen for
+		 * connections.
+		 *
+		 * Default: 389
+		 * Required: No
+		 * AuthSource: port
+		 */
+		'ldap.port' => 389,
+
+
+		/**
 		 * This is the password used to bind to LDAP.
 		 *
 		 * Default: NULL

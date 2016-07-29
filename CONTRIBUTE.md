@@ -6,6 +6,8 @@ people, so please don't be shy and share your help with us. Even the tiniest con
 This guidelines briefly explain how to contribute to SimpleSAMLphp in an effective manner, making sure to keep high
 quality standards and making it easier for your contributions to make through.
 
+<!-- {{TOC}} -->
+
 ## Team members
 
 Currently, the core team members are:
@@ -53,6 +55,12 @@ attention to:
 * Do not include many changes in every commit. Commits should be focused and address one single problem or feature. By
 having **multiple, small commits** instead of few large ones, it is easier to track what you are doing, revert changes
 in case of an error and help you out if needed.
+* Try to write clean **commit messages**, largely based on the [seven rules](http://chris.beams.io/posts/git-commit/):
+   * Write a **short** subject line, followed by a blank line and a longer explanation.
+   * Prefix the subject line with the component(s) changed, e.g. "docs: Update foo", or "SAML: Don't log bar twice",
+     or "tests: Add tests for quux".
+   * Explain **what and why** in the commit message, not just _how_. Things obvious now might become quite confusing
+     when rediscovered years later.
 * **Be explicit**. Add comments. Use strict comparison operators like `===` and check for specific values when testing
 conditions.
 * **Keep things simple**. Avoid big functions, long nested loops or `if` statements.
@@ -63,7 +71,7 @@ exceptions thrown.
 deploy, and therefore we try to avoid it.
 * Add **unit tests** to verify that your code not only works but also keeps working over time. When adding tests, keep
 the same directory structure used for regular classes. Try to cover **all your code** with tests. The bigger the test
-coverage, the more reliable and better our library is.
+coverage, the more reliable and better our library is. Read our [guidelines](TESTING.md) to learn more about tests.
 * Add proper **documentation** explaining your how to use your new feature or how your code changes things.
 * Submit your code as a **pull request** in github, from a branch with a descriptive name in your own fork of the
 repository. Add a meaningful, short title, and explain in detail what you did and why in the description of the *PR*.
@@ -93,14 +101,48 @@ You can help us diagnose and fix bugs by asking and providing answers to the fol
 * Are the steps to reproduce the bug clear? If not, can you describe how you might reproduce it?
 * What tags should the bug have?
 * How critical is this bug? Does it impact a large amount of users?
-* Is this a security issue? If so, how severe is it? How can an attacker exploit it?
+* Is this a security issue? If so, how severe is it? How can an attacker exploit it? Read more about security issues in
+the next section.
+
+## Reporting vulnerabilities
+
+In case you find a vulnerability in SimpleSAMLphp, or you want to confirm a possible security issue in the software, please
+get in touch with us through [UNINETT's CERT team](https://www.uninett.no/cert). Please use our PGP public key to encrypt
+any possible sensitive data that you may need to submit. We will get back to you as soon as possible according to our
+working hours in Central European Time.
+
+When reporting a security issue, please add as much information as possible to help us identify, confirm, replicate and
+fix the problem. In particular, remember to include the following information in your report:
+
+* The version or versions of SimpleSAMLphp affected.
+* An exact version that can be used to replicate the issue.
+* Any module or modules involved in the issue.
+* Any particular configuration details relevant to the setup affected.
+* A detailed description and a clear and concise, step-by-step guide to allow us reproduce the issue.
+* Screenshots, videos, or any other media that would help identify the issue.
+* Pointers to the exact line or lines in the code where the vulnerability is supposed to be.
+* Context on how you discovered the issue.
+* Your own name and whether you want to be credited for the discovery or not.
+
+Please **DO NOT** report security incidents related to systems that use SimpleSAMLphp, where this software is not the
+cause of the incident. Issues related to the use (or misuse) of infrastructure, misconfiguration of the software,
+malfunction of a particular system or user-related errors should not be reported either. If you are using SimpleSAMLphp
+to authenticate or login to services, but you don't know what SimpleSAMLphp is or you are not sure about the nature of
+the issue, please contact the organization running the service for you.
+
+Finally, be reasonable. We'll do our best to resolve the issue according to our principles of security and transparency.
+Every confirmed vulnerability will be published and resolved in a timely manner. All we ask in return is that you
+contact us privately first in order to avoid any potential damage to those using the software.
+
+You can find the list of security advisories we have published [here](https://simplesamlphp.org/security).
 
 ## Translations
 
 SimpleSAMLphp is translated to many languages, though it needs constant updates from translators, as well as new
-translations to other languages. Translations can be contributed through [the translation portal](https://translation.rnd.feide.no/).
-You can also join the [translators mailing list](http://groups.google.com/group/simplesamlphp-translation) to keep up
-to date.
+translations to other languages. For the moment, translations can be contributed as **pull requests**. We are looking
+at better ways to translate the software that would make your life easier, so stay tuned! You can also join the
+[translators mailing list](http://groups.google.com/group/simplesamlphp-translation) to keep up to date on the
+latest news.
 
 Before starting a new translation, decide what style you want to use, whether you want to address the user in a polite
 manner or not, etc. Be coherent and keep that style through all your translations. If there is already a translation and

@@ -26,15 +26,15 @@ $store = SimpleSAML_Store::getInstance();
 $metaArray20 = array();
 
 $slosvcdefault = array(
-    SAML2_Const::BINDING_HTTP_REDIRECT,
-    SAML2_Const::BINDING_SOAP,
+    \SAML2\Constants::BINDING_HTTP_REDIRECT,
+    \SAML2\Constants::BINDING_SOAP,
 );
 
 $slob = $spconfig->getArray('SingleLogoutServiceBinding', $slosvcdefault);
 $slol = SimpleSAML\Module::getModuleURL('saml/sp/saml2-logout.php/'.$sourceId);
 
 foreach ($slob as $binding) {
-    if ($binding == SAML2_Const::BINDING_SOAP && !($store instanceof SimpleSAML_Store_SQL)) {
+    if ($binding == \SAML2\Constants::BINDING_SOAP && !($store instanceof SimpleSAML_Store_SQL)) {
         // we cannot properly support SOAP logout
         continue;
     }
@@ -64,7 +64,7 @@ foreach ($assertionsconsumerservices as $services) {
     $acsArray = array('index' => $index);
     switch ($services) {
         case 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST':
-            $acsArray['Binding'] = SAML2_Const::BINDING_HTTP_POST;
+            $acsArray['Binding'] = \SAML2\Constants::BINDING_HTTP_POST;
             $acsArray['Location'] = SimpleSAML\Module::getModuleURL('saml/sp/saml2-acs.php/'.$sourceId);
             break;
         case 'urn:oasis:names:tc:SAML:1.0:profiles:browser-post':
@@ -82,7 +82,7 @@ foreach ($assertionsconsumerservices as $services) {
         case 'urn:oasis:names:tc:SAML:2.0:profiles:holder-of-key:SSO:browser':
             $acsArray['Binding'] = 'urn:oasis:names:tc:SAML:2.0:profiles:holder-of-key:SSO:browser';
             $acsArray['Location'] = SimpleSAML\Module::getModuleURL('saml/sp/saml2-acs.php/'.$sourceId);
-            $acsArray['hoksso:ProtocolBinding'] = SAML2_Const::BINDING_HTTP_REDIRECT;
+            $acsArray['hoksso:ProtocolBinding'] = \SAML2\Constants::BINDING_HTTP_REDIRECT;
             break;
     }
     $eps[] = $acsArray;
@@ -214,7 +214,7 @@ if ($spconfig->hasValue('redirect.sign')) {
     $metaArray20['validate.authnrequest'] = $spconfig->getBoolean('sign.authnrequest');
 }
 
-$supported_protocols = array('urn:oasis:names:tc:SAML:1.1:protocol', SAML2_Const::NS_SAMLP);
+$supported_protocols = array('urn:oasis:names:tc:SAML:1.1:protocol', \SAML2\Constants::NS_SAMLP);
 
 $metaArray20['metadata-set'] = 'saml20-sp-remote';
 $metaArray20['entityid'] = $entityId;

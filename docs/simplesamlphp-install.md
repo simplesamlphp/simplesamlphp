@@ -119,6 +119,18 @@ Find the Apache configuration file for the virtual hosts where you want to run S
             SetEnv SIMPLESAMLPHP_CONFIG_DIR /var/simplesamlphp/config
 
             Alias /simplesaml /var/simplesamlphp/www
+
+            <Directory /var/simplesamlphp/www>
+                <IfModule !mod_authz_core.c>
+                # For Apache 2.2:
+                Order allow,deny
+                Allow from all
+                </IfModule>
+                <IfModule mod_authz_core.c>
+                # For Apache 2.4:
+                Require all granted
+                </IfModule>
+            </Directory>
     </VirtualHost>
 
 Note the `Alias` directive, which gives control to SimpleSAMLphp for all urls matching `http(s)://service.example.com/simplesaml/*`. SimpleSAMLphp makes several SAML interfaces available on the web; all of them are included in the `www` subdirectory of your SimpleSAMLphp installation. You can name the alias whatever you want, but the name must be specified in the `config.php` file of simpleSAML as described in [the section called “SimpleSAMLphp configuration: config.php”](#sect.config "SimpleSAMLphp configuration: config.php"). Here is an example of how this configuration may look like in `config.php`:
@@ -160,8 +172,8 @@ file, `config.php`, right away:
     be used for receiving error reports sent automatically by
     SimpleSAMLphp. Here is an example:
 
-		'technicalcontact_name'     => 'Andreas Åkre Solberg',
-		'technicalcontact_email'    => 'andreas.solberg@uninett.no',
+		'technicalcontact_name'     => 'John Smith',
+		'technicalcontact_email'    => 'john.smith@example.com',
 
 -  
     If you use SimpleSAMLphp in a country where English is not
@@ -291,11 +303,11 @@ Next, you need to update the configuration of paths in `simplesamlphp/config/con
 
 And, then we need to set the `baseurlpath` parameter to match the base path of the URLs to the content of your `www` folder:
 
-    'baseurlpath' => '~andreas/simplesaml/',
+    'baseurlpath' => '/simplesaml/',
 
 Now, you can go to the URL of your installation and check if things work:
 
-    http://yourcompany.com/~andreas/simplesaml/
+    http://yourcompany.com/simplesaml/
 
 
 ### Tip
@@ -324,7 +336,7 @@ Change the two lines from:
 
 to something like:
 
-    require_once('/home/andreas/simplesamlphp/lib/_autoload.php');
+    require_once('/var/www/simplesamlphp/lib/_autoload.php');
 
 And then at the end of the file, you need to change another line
 from:
@@ -333,7 +345,7 @@ from:
 
 to:
 
-    $configdir = '/home/andreas/simplesamlphp/config';
+    $configdir = '/var/www/simplesamlphp/config';
 
 
 

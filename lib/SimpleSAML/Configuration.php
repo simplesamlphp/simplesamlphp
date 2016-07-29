@@ -72,6 +72,14 @@ class SimpleSAML_Configuration
 
 
     /**
+     * Temporary property that tells if the deprecated getBaseURL() method has been called or not.
+     *
+     * @var bool
+     */
+    private $deprecated_base_url_used = false;
+
+
+    /**
      * Initializes a configuration from the given array.
      *
      * @param array $config The configuration array.
@@ -444,25 +452,51 @@ class SimpleSAML_Configuration
      * @return string The absolute path relative to the root of the website.
      *
      * @throws SimpleSAML\Error\CriticalConfigurationError If the format of 'baseurlpath' is incorrect.
+     *
+     * @deprecated This method will be removed in SimpleSAMLphp 2.0. Please use getBasePath() instead.
      */
     public function getBaseURL()
     {
-        $baseURL = $this->getString('baseurlpath', 'simplesaml/');
-
-        if (preg_match('/^\*(.*)$/D', $baseURL, $matches)) {
+        if (!$this->deprecated_base_url_used) {
+            $this->deprecated_base_url_used = true;
+            SimpleSAML\Logger::warning(
+                "SimpleSAML_Configuration::getBaseURL() is deprecated, please use getBasePath() instead."
+            );
+        }
+        if (preg_match('/^\*(.*)$/D', $this->getString('baseurlpath', 'simplesaml/'), $matches)) {
             // deprecated behaviour, will be removed in the future
             return \SimpleSAML\Utils\HTTP::getFirstPathElement(false).$matches[1];
         }
+        return ltrim($this->getBasePath(), '/');
+    }
 
-        if (preg_match('#^https?://[^/]*/(.*)$#', $baseURL, $matches)) {
+
+    /**
+     * Retrieve the absolute path pointing to the SimpleSAMLphp installation.
+     *
+     * The path is guaranteed to start and end with a slash ('/'). E.g.: /simplesaml/
+     *
+     * @return string The absolute path where SimpleSAMLphp can be reached in the web server.
+     *
+     * @throws SimpleSAML\Error\CriticalConfigurationError If the format of 'baseurlpath' is incorrect.
+     */
+    public function getBasePath()
+    {
+        $baseURL = $this->getString('baseurlpath', 'simplesaml/');
+
+        if (preg_match('#^https?://[^/]*(?:/(.+/?)?)?$#', $baseURL, $matches)) {
             // we have a full url, we need to strip the path
-            return $matches[1];
+            if (!array_key_exists(1, $matches)) {
+                // absolute URL without path
+                return '/';
+            }
+            return '/'.rtrim($matches[1], '/')."/";
         } elseif ($baseURL === '' || $baseURL === '/') {
-            // Root directory of site
-            return '';
-        } elseif (preg_match('#^/?([^/]?.*/)#D', $baseURL, $matches)) {
+            // root directory of site
+            return '/';
+        } elseif (preg_match('#^/?((?:[^/\s]+/?)+)#', $baseURL, $matches)) {
             // local path only
-            return $matches[1];
+            return '/'.rtrim($matches[1], '/').'/';
         } else {
             /*
              * Invalid 'baseurlpath'. We cannot recover from this, so throw a critical exception and try to be graceful
@@ -561,8 +595,8 @@ class SimpleSAML_Configuration
         $dir = $this->getString('basedir', null);
         if ($dir !== null) {
             // add trailing slash if it is missing
-            if (substr($dir, -1) !== '/') {
-                $dir .= '/';
+            if (substr($dir, -1) !== DIRECTORY_SEPARATOR) {
+                $dir .= DIRECTORY_SEPARATOR;
             }
 
             return $dir;
@@ -580,8 +614,8 @@ class SimpleSAML_Configuration
 
         $dir = dirname($dir);
 
-        // Add trailing slash
-        $dir .= '/';
+        // Add trailing directory separator
+        $dir .= DIRECTORY_SEPARATOR;
 
         return $dir;
     }
@@ -1037,11 +1071,11 @@ class SimpleSAML_Configuration
             case 'saml20-idp-remote:SingleSignOnService':
             case 'saml20-idp-remote:SingleLogoutService':
             case 'saml20-sp-remote:SingleLogoutService':
-                return SAML2_Const::BINDING_HTTP_REDIRECT;
+                return \SAML2\Constants::BINDING_HTTP_REDIRECT;
             case 'saml20-sp-remote:AssertionConsumerService':
-                return SAML2_Const::BINDING_HTTP_POST;
+                return \SAML2\Constants::BINDING_HTTP_POST;
             case 'saml20-idp-remote:ArtifactResolutionService':
-                return SAML2_Const::BINDING_SOAP;
+                return \SAML2\Constants::BINDING_SOAP;
             case 'shib13-idp-remote:SingleSignOnService':
                 return 'urn:mace:shibboleth:1.0:profiles:AuthnRequest';
             case 'shib13-sp-remote:AssertionConsumerService':

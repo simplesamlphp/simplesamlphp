@@ -53,6 +53,10 @@ $links_config[] = array(
 	'text' => '{core:frontpage:link_phpinfo}'
 );
 
+$links_config[] = array(
+	'href' => \SimpleSAML\Utils\HTTP::getBaseURL() . 'admin/sandbox.php',
+	'text' => '{core:frontpage:link_sandbox}'
+);
 
 
 
@@ -66,11 +70,35 @@ $allLinks = array(
 );
 SimpleSAML\Module::callHooks('frontpage', $allLinks);
 
+// Check for updates. Store the remote result in the session so we
+// don't need to fetch it on every access to this page.
+$current = $config->getVersion();
+if ($config->getBoolean('admin.checkforupdates', true) && $current !== 'master') {
+	$latest = $session->getData("core:latest_simplesamlphp_version", "version");
 
+	if (!$latest) {
+		$api_url = 'https://api.github.com/repos/simplesamlphp/simplesamlphp/releases';
+		$ch = curl_init($api_url.'/latest');
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_USERAGENT, 'SimpleSAMLphp');
+		curl_setopt($ch, CURLOPT_TIMEOUT, 2);
+		$response = curl_exec($ch);
 
+		if (curl_getinfo($ch, CURLINFO_HTTP_CODE) === 200) {
+			$latest = json_decode($response, true);
+			$session->setData("core:latest_simplesamlphp_version", "version", $latest);
+		}
+		curl_close($ch);
+	}
 
-
-
+	if ($latest && version_compare($current, ltrim($latest['tag_name'], 'v'), 'lt')) {
+		$outdated = true;
+		$warnings[] = array(
+			'{core:frontpage:warnings_outdated}',
+			array('%LATEST_URL%' => $latest['html_url'])
+		);
+	}
+}
 
 $enablematrix = array(
 	'saml20-idp' => $config->getBoolean('enable.saml20-idp', false),
@@ -113,7 +141,7 @@ if($config->getString('technicalcontact_email', 'na@example.org') === 'na@exampl
 	$mail_ok = TRUE;
 }
 $funcmatrix[] = array(
-	'required' => 'reccomended',
+	'required' => 'recommended',
 	'descr' => 'technicalcontact_email option set',
 	'enabled' => $mail_ok
 	);
@@ -129,7 +157,7 @@ $funcmatrix[] = array(
 );
 
 $funcmatrix[] = array(
-	'required' => 'reccomended',
+	'required' => 'recommended',
 	'descr' => 'Magic Quotes should be turned off',
 	'enabled' => (get_magic_quotes_runtime() == 0)
 );

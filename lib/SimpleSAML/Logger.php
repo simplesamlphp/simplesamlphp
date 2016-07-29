@@ -267,7 +267,13 @@ class Logger
      */
     public static function flush()
     {
-        $s = \SimpleSAML_Session::getSessionFromRequest();
+        try {
+            $s = \SimpleSAML_Session::getSessionFromRequest();
+        } catch (\Exception $e) {
+            // loading session failed. We don't care why, at this point we have a transient session, so we use that
+            self::error('Cannot load or create session: '.$e->getMessage());
+            $s = \SimpleSAML_Session::getSessionFromRequest();
+        }
         self::$trackid = $s->getTrackID();
 
         self::$shuttingDown = true;

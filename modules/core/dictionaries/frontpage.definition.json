@@ -35,7 +35,7 @@
 	"optional": {
 		"en": "Optional"
 	},
-	"reccomended": {
+	"recommended": {
 		"en": "Recommended"
 	},
 	"warnings": {
@@ -49,6 +49,9 @@
 	},
 	"warnings_suhosin_url_length": {
 		"en": "The length of query parameters is limited by the PHP Suhosin extension. Please increase the suhosin.get.max_value_length option to at least 2048 bytes."
+	},
+	"warnings_outdated": {
+		"en": "You are running an outdated version of SimpleSAMLphp. Please update to <a href=\"%LATEST_URL%\">the latest version</a> as soon as possible."
 	},
 	"link_saml2example": {
 		"en": "SAML 2.0 SP example - test logging in through your IdP"

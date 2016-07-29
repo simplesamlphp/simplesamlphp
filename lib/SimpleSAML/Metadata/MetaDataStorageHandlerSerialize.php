@@ -195,6 +195,10 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerSerialize extends SimpleSAML_Met
             return null;
         }
 
+        if (!array_key_exists('entityid', $data)) {
+            $data['entityid'] = $entityId;
+        }
+
         return $data;
     }
 

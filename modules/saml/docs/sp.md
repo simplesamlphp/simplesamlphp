@@ -459,9 +459,9 @@ Here we will list some examples for this authentication source.
 
 ### Using samlp:Extensions
 
-    $dom = SAML2_DOMDocumentFactory::create();
+    $dom = \SAML2\DOMDocumentFactory::create();
     $ce = $dom->createElementNS('http://www.example.com/XFoo', 'xfoo:test', 'Test data!');
-    $ext[] = new SAML2_XML_Chunk($ce);
+    $ext[] = new \SAML2\XML\Chunk($ce);
 
     $auth = new SimpleSAML_Auth_Simple('default-sp');
     $auth->login(array(

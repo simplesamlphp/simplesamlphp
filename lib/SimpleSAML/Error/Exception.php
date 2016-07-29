@@ -214,7 +214,7 @@ class SimpleSAML_Error_Exception extends Exception
      *
      * Override to allow errors extending this class to specify the log level themselves.
      *
-     * @param int $default_level The log level to use if this method was not overriden.
+     * @param int $default_level The log level to use if this method was not overridden.
      */
     public function log($default_level)
     {

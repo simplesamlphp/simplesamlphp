@@ -13,9 +13,9 @@ $source = SimpleSAML_Auth_Source::getById($sourceId, 'sspmod_saml_Auth_Source_SP
 $spMetadata = $source->getMetadata();
 
 try {
-    $b = SAML2_Binding::getCurrentBinding();
+    $b = \SAML2\Binding::getCurrentBinding();
 } catch (Exception $e) { // TODO: look for a specific exception
-    // This is dirty. Instead of checking the message of the exception, SAML2_Binding::getCurrentBinding() should throw
+    // This is dirty. Instead of checking the message of the exception, \SAML2\Binding::getCurrentBinding() should throw
     // an specific exception when the binding is unknown, and we should capture that here
     if ($e->getMessage() === 'Unable to find the current binding.') {
         throw new SimpleSAML_Error_Error('ACSPARAMS', $e, 400);
@@ -24,12 +24,12 @@ try {
     }
 }
 
-if ($b instanceof SAML2_HTTPArtifact) {
+if ($b instanceof \SAML2\HTTPArtifact) {
     $b->setSPMetadata($spMetadata);
 }
 
 $response = $b->receive();
-if (!($response instanceof SAML2_Response)) {
+if (!($response instanceof \SAML2\Response)) {
     throw new SimpleSAML_Error_BadRequest('Invalid message received to AssertionConsumerService endpoint.');
 }
 
@@ -37,7 +37,7 @@ $idp = $response->getIssuer();
 if ($idp === null) {
     // no Issuer in the response. Look for an unencrypted assertion with an issuer
     foreach ($response->getAssertions() as $a) {
-        if ($a instanceof SAML2_Assertion) {
+        if ($a instanceof \SAML2\Assertion) {
             // we found an unencrypted assertion, there should be an issuer here
             $idp = $a->getIssuer();
             break;

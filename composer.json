@@ -27,9 +27,10 @@
     },
     "require": {
         "php": ">=5.3",
-        "simplesamlphp/saml2": "~1.9",
-        "robrichards/xmlseclibs": "~1.4.1",
-        "whitehat101/apr1-md5": "~1.0"
+        "simplesamlphp/saml2": "dev-master#00e38f85b417be1e10a2d738dd2f5ea82edb472c as 2.2",
+        "robrichards/xmlseclibs": "~2.0",
+        "whitehat101/apr1-md5": "~1.0",
+        "twig/twig": "~1.0"
     },
     "require-dev": {
         "ext-pdo_sqlite": "*",

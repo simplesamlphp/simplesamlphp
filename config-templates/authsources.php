@@ -201,6 +201,10 @@ $config = array(
         // which additional data permissions to request from user
         // see http://developers.facebook.com/docs/authentication/permissions/ for the full list
         // 'req_perms' => 'email,user_birthday',
+        // Which additional user profile fields to request.
+        // When empty, only the app-specific user id and name will be returned
+        // See https://developers.facebook.com/docs/graph-api/reference/v2.6/user for the full list
+        // 'user_fields' => 'email,birthday,third_party_id,name,first_name,last_name',
     ),
     */
 
@@ -242,9 +246,9 @@ $config = array(
     */
 
     /*
-    // Windows Live ID Authentication API.
+    // Microsoft Account (Windows Live ID) Authentication API.
     // Register your application to get an API key here:
-    //  https://manage.dev.live.com
+    //  https://apps.dev.microsoft.com/
     'windowslive' => array(
         'authwindowslive:LiveID',
         'key' => 'xxxxxxxxxxxxxxxx',

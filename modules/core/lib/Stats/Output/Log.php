@@ -22,7 +22,7 @@ class sspmod_core_Stats_Output_Log extends SimpleSAML_Stats_Output {
 	public function __construct(SimpleSAML_Configuration $config) {
 
 		$logLevel = $config->getString('level', 'notice');
-		$this->logger = array('SimpleSAML_Logger', $logLevel);
+		$this->logger = array('SimpleSAML\Logger', $logLevel);
 		if (!is_callable($this->logger)) {
 			throw new Exception('Invalid log level: ' . var_export($logLevel, TRUE));
 		}

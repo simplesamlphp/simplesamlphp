@@ -261,19 +261,19 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 		SimpleSAML\Logger::debug('Sending SAML 2 AuthnRequest to ' . var_export($idpMetadata->getString('entityid'), TRUE));
 
 		/* Select appropriate SSO endpoint */
-		if ($ar->getProtocolBinding() === SAML2_Const::BINDING_HOK_SSO) {
+		if ($ar->getProtocolBinding() === \SAML2\Constants::BINDING_HOK_SSO) {
 			$dst = $idpMetadata->getDefaultEndpoint('SingleSignOnService', array(
-				SAML2_Const::BINDING_HOK_SSO)
+				\SAML2\Constants::BINDING_HOK_SSO)
 			);
 		} else {
 			$dst = $idpMetadata->getDefaultEndpoint('SingleSignOnService', array(
-				SAML2_Const::BINDING_HTTP_REDIRECT,
-				SAML2_Const::BINDING_HTTP_POST)
+				\SAML2\Constants::BINDING_HTTP_REDIRECT,
+				\SAML2\Constants::BINDING_HTTP_POST)
 			);
 		}
 		$ar->setDestination($dst['Location']);
 
-		$b = SAML2_Binding::getBinding($dst['Binding']);
+		$b = \SAML2\Binding::getBinding($dst['Binding']);
 
 		$this->sendSAML2AuthnRequest($state, $b, $ar);
 
@@ -287,10 +287,10 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 	 * This function does not return.
 	 *
 	 * @param array &$state  The state array.
-	 * @param SAML2_Binding $binding  The binding.
-	 * @param SAML2_AuthnRequest  $ar  The authentication request.
+	 * @param \SAML2\Binding $binding  The binding.
+	 * @param \SAML2\AuthnRequest  $ar  The authentication request.
 	 */
-	public function sendSAML2AuthnRequest(array &$state, SAML2_Binding $binding, SAML2_AuthnRequest $ar) {
+	public function sendSAML2AuthnRequest(array &$state, \SAML2\Binding $binding, \SAML2\AuthnRequest $ar) {
 		$binding->send($ar);
 		assert('FALSE');
 	}
@@ -468,8 +468,8 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 		$idpMetadata = $this->getIdPMetadata($idp);
 
 		$endpoint = $idpMetadata->getEndpointPrioritizedByBinding('SingleLogoutService', array(
-			SAML2_Const::BINDING_HTTP_REDIRECT,
-			SAML2_Const::BINDING_HTTP_POST), FALSE);
+			\SAML2\Constants::BINDING_HTTP_REDIRECT,
+			\SAML2\Constants::BINDING_HTTP_POST), FALSE);
 		if ($endpoint === FALSE) {
 			SimpleSAML\Logger::info('No logout endpoint for IdP ' . var_export($idp, TRUE) . '.');
 			return;
@@ -489,7 +489,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 			$lr->encryptNameId(sspmod_saml_Message::getEncryptionKey($idpMetadata));
 		}
 
-		$b = SAML2_Binding::getBinding($endpoint['Binding']);
+		$b = \SAML2\Binding::getBinding($endpoint['Binding']);
 		$b->send($lr);
 
 		assert('FALSE');
