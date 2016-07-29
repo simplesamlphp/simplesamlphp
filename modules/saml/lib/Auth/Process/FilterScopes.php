@@ -74,6 +74,7 @@ class FilterScopes extends \SimpleSAML_Auth_ProcessingFilter
                 }
                 $value_a = explode('@', $value, 2);
                 if (count($value_a) < 2) {
+                    $newValues[] = $value;
                     continue; // there's no scope
                 }
                 $scope = $value_a[1];
