@@ -6,6 +6,31 @@ SimpleSAMLphp changelog
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
+## Version 1.14.7
+
+Released TBD
+
+  * Fixed issue #424. Attributes containing XML as their values (like eduPersonTargetedID) were empty.
+
+## Version 1.14.6
+
+Released 2016-07-18
+
+  * Fixed issue #418. SimpleSAMLphp was unable to obtain the current URL correctly when invoked from third-party applications.
+
+## Version 1.14.5
+
+Released 2016-07-12
+
+  * Fixed several issues with session handling when cookies couldn't be set for some reason.
+  * Fixed an issue that caused wrong URLs to be generated in the web interface under certain circumstances.
+  * Fixed the exception handler to be compatible with PHP 7.
+  * Fixed an issue in the dropdown IdP selection page that prevented it to work with PHP 5.3.
+  * Fixed compatibility with Windows machines.
+  * Fixed an issue with the PDO and Serialize metadata storage handlers.
+  * Fixed the authwindowslive module. It stopped working after the former API was discontinued.
+  * Other minor issues and fixes.
+
 ## Version 1.14.4
 
 Released 2016-06-08
