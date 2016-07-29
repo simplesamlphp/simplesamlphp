@@ -7,11 +7,16 @@
  * information about all the currently logged in SPs. This is used when the user initiates a
  * Single-Log-Out.
  *
+ * Bear in mind that the session object implements the Serializable interface, and as such,
+ * all its contents MUST be serializable. If you need to store something in the session object
+ * that is not serializable, make sure to convert it first to a representation that can be
+ * serialized.
+ *
  * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
  * @author Jaime Pérez Crespo, UNINETT AS <jaime.perez@uninett.no>
  * @package SimpleSAMLphp
  */
-class SimpleSAML_Session
+class SimpleSAML_Session implements Serializable
 {
 
     /**
@@ -172,6 +177,54 @@ class SimpleSAML_Session
             }
         }
     }
+
+
+    /**
+     * Serialize this session object.
+     *
+     * This method will be invoked by any calls to serialize().
+     *
+     * @return string The serialized representation of this session object.
+     */
+    public function serialize()
+    {
+        $serialized = serialize(get_object_vars($this));
+        return $serialized;
+    }
+
+
+    /**
+     * Unserialize a session object and load it..
+     *
+     * This method will be invoked by any calls to unserialize(), allowing us to restore any data that might not
+     * be serializable in its original form (e.g.: DOM objects).
+     *
+     * @param string $serialized The serialized representation of a session that we want to restore.
+     */
+    public function unserialize($serialized)
+    {
+        $session = unserialize($serialized);
+        if (is_array($session)) {
+            foreach ($session as $k => $v) {
+                $this->$k = $v;
+            }
+        }
+
+        // look for any raw attributes and load them in the 'Attributes' array
+        foreach ($this->authData as $authority => $parameters) {
+            if (!array_key_exists('RawAttributes', $parameters)) {
+                continue;
+            }
+
+            foreach ($parameters['RawAttributes'] as $attribute => $values) {
+                foreach ($values as $idx => $value) { // this should be originally a DOMNodeList
+                    /* @var SAML2_XML_saml_AttributeValue $value */
+                    $this->authData[$authority]['Attributes'][$attribute][$idx] = $value->element->childNodes;
+                }
+            }
+        }
+    }
+
 
     /**
      * Retrieves the current session. Creates a new session if there's not one.
@@ -540,6 +593,29 @@ class SimpleSAML_Session
         if (!isset($data['Expire']) || $data['Expire'] > $maxSessionExpire) {
             // unset, or beyond our session lifetime. Clamp it to our maximum session lifetime
             $data['Expire'] = $maxSessionExpire;
+        }
+
+        // check if we have non-serializable attribute values
+        foreach ($data['Attributes'] as $attribute => $values) {
+            foreach ($values as $idx => $value) {
+                if (is_string($value) || is_int($value)) {
+                    continue;
+                }
+
+                // at this point, this should be a DOMNodeList object...
+                if (!is_a($value, 'DOMNodeList')) {
+                    continue;
+                }
+
+                /* @var \DOMNodeList $value */
+                if ($value->length === 0) {
+                    continue;
+                }
+
+                // create an AttributeValue object and save it to 'RawAttributes', using same attribute name and index
+                $attrval = new SAML2_XML_saml_AttributeValue($value->item(0)->parentNode);
+                $data['RawAttributes'][$attribute][$idx] = $attrval;
+            }
         }
 
         $this->authData[$authority] = $data;
