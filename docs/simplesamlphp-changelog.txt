@@ -8,7 +8,7 @@ See the upgrade notes for specific information about upgrading.
 
 ## Version 1.14.7
 
-Released TBD
+Released 2016-08-01
 
   * Fixed issue #424. Attributes containing XML as their values (like eduPersonTargetedID) were empty.
 
