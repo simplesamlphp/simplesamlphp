@@ -180,6 +180,7 @@ if($onLoad !== '') {
 						'lv' => 'Latviešu', // Latvian
 						'ro' => 'Românește', // Romanian
 						'eu' => 'Euskara', // Basque
+						'af' => 'Afrikaans', // Afrikaans
 			);
 			
 			$textarray = array();
