@@ -1,10 +1,11 @@
 <?php
 
+namespace SimpleSAML\Test\Module\saml\Auth\Source;
 
 /**
  * Custom Exception to throw to terminate a TestCase.
  */
-class ExitTestException extends Exception
+class ExitTestException extends \Exception
 {
     private $testResult;
 
@@ -28,7 +29,7 @@ class ExitTestException extends Exception
  * - Use introspection to make startSSO2Test available
  * - Override sendSAML2AuthnRequest() to catch the AuthnRequest being sent
  */
-class sspmod_saml_Auth_Source_SP_Tester extends \sspmod_saml_Auth_Source_SP
+class SP_Tester extends \sspmod_saml_Auth_Source_SP
 {
 
     public function __construct($info, $config)
@@ -37,9 +38,9 @@ class sspmod_saml_Auth_Source_SP_Tester extends \sspmod_saml_Auth_Source_SP
     }
 
 
-    public function startSSO2Test(SimpleSAML_Configuration $idpMetadata, array $state)
+    public function startSSO2Test(\SimpleSAML_Configuration $idpMetadata, array $state)
     {
-        $reflector = new ReflectionObject($this);
+        $reflector = new \ReflectionObject($this);
         $method = $reflector->getMethod('startSSO2');
         $method->setAccessible(true);
         $method->invoke($this, $idpMetadata, $state);
@@ -47,7 +48,7 @@ class sspmod_saml_Auth_Source_SP_Tester extends \sspmod_saml_Auth_Source_SP
 
 
     // override the method that sends the request to avoid sending anything
-    public function sendSAML2AuthnRequest(array &$state, SAML2_Binding $binding, SAML2_AuthnRequest $ar)
+    public function sendSAML2AuthnRequest(array &$state, \SAML2\Binding $binding, \SAML2\AuthnRequest $ar)
     {
         // Exit test. Continuing would mean running into a assert(FALSE)
         throw new ExitTestException(
@@ -64,7 +65,7 @@ class sspmod_saml_Auth_Source_SP_Tester extends \sspmod_saml_Auth_Source_SP
 /**
  * Set of test cases for sspmod_saml_Auth_Source_SP.
  */
-class Auth_Source_SP_Test extends PHPUnit_Framework_TestCase
+class SP_Test extends \PHPUnit_Framework_TestCase
 {
 
     private $idpMetadata = null;
@@ -75,7 +76,7 @@ class Auth_Source_SP_Test extends PHPUnit_Framework_TestCase
     private function getIdpMetadata()
     {
         if (!$this->idpMetadata) {
-            $this->idpMetadata = new SimpleSAML_Configuration(
+            $this->idpMetadata = new \SimpleSAML_Configuration(
                 $this->idpConfigArray,
                 'Auth_Source_SP_Test::getIdpMetadata()'
             );
@@ -134,9 +135,9 @@ class Auth_Source_SP_Test extends PHPUnit_Framework_TestCase
     {
         $info = array('AuthId' => 'default-sp');
         $config = array();
-        $as = new \sspmod_saml_Auth_Source_SP_Tester($info, $config);
+        $as = new SP_Tester($info, $config);
 
-        /** @var SAML2_AuthnRequest $ar */
+        /** @var \SAML2\AuthnRequest $ar */
         $ar = null;
         try {
             $as->startSSO2Test($this->getIdpMetadata(), $state);
@@ -155,18 +156,18 @@ class Auth_Source_SP_Test extends PHPUnit_Framework_TestCase
      */
     public function testAuthnRequest()
     {
-        /** @var SAML2_AuthnRequest $ar */
+        /** @var \SAML2\AuthnRequest $ar */
         $ar = $this->createAuthnRequest();
 
         // Assert values in the generated AuthnRequest
-        /** @var $xml DOMElement */
+        /** @var $xml \DOMElement */
         $xml = $ar->toSignedXML();
-        $q = SAML2_Utils::xpQuery($xml, '/samlp:AuthnRequest/@Destination');
+        $q = \SAML2\Utils::xpQuery($xml, '/samlp:AuthnRequest/@Destination');
         $this->assertEquals(
             $this->idpConfigArray['SingleSignOnService'][0]['Location'],
             $q[0]->value
         );
-        $q = SAML2_Utils::xpQuery($xml, '/samlp:AuthnRequest/saml:Issuer');
+        $q = \SAML2\Utils::xpQuery($xml, '/samlp:AuthnRequest/saml:Issuer');
         $this->assertEquals(
             'http://localhost/simplesaml/module.php/saml/sp/metadata.php/default-sp',
             $q[0]->textContent
@@ -180,24 +181,24 @@ class Auth_Source_SP_Test extends PHPUnit_Framework_TestCase
     public function testNameID()
     {
         $state = array(
-            'saml:NameID' => array('Value' => 'user@example.org', 'Format' => SAML2_Const::NAMEID_UNSPECIFIED)
+            'saml:NameID' => array('Value' => 'user@example.org', 'Format' => \SAML2\Constants::NAMEID_UNSPECIFIED)
         );
 
-        /** @var SAML2_AuthnRequest $ar */
+        /** @var \SAML2_AuthnRequest $ar */
         $ar = $this->createAuthnRequest($state);
 
         $nameID = $ar->getNameId();
         $this->assertEquals($state['saml:NameID']['Value'], $nameID['Value']);
         $this->assertEquals($state['saml:NameID']['Format'], $nameID['Format']);
 
-        /** @var $xml DOMElement */
+        /** @var $xml \DOMElement */
         $xml = $ar->toSignedXML();
-        $q = SAML2_Utils::xpQuery($xml, '/samlp:AuthnRequest/saml:Subject/saml:NameID/@Format');
+        $q = \SAML2\Utils::xpQuery($xml, '/samlp:AuthnRequest/saml:Subject/saml:NameID/@Format');
         $this->assertEquals(
             $state['saml:NameID']['Format'],
             $q[0]->value
         );
-        $q = SAML2_Utils::xpQuery($xml, '/samlp:AuthnRequest/saml:Subject/saml:NameID');
+        $q = \SAML2\Utils::xpQuery($xml, '/samlp:AuthnRequest/saml:Subject/saml:NameID');
         $this->assertEquals(
             $state['saml:NameID']['Value'],
             $q[0]->textContent
@@ -214,7 +215,7 @@ class Auth_Source_SP_Test extends PHPUnit_Framework_TestCase
             'saml:AuthnContextClassRef' => 'http://example.com/myAuthnContextClassRef'
         );
 
-        /** @var SAML2_AuthnRequest $ar */
+        /** @var \SAML2_AuthnRequest $ar */
         $ar = $this->createAuthnRequest($state);
 
         $a = $ar->getRequestedAuthnContext();
@@ -223,9 +224,9 @@ class Auth_Source_SP_Test extends PHPUnit_Framework_TestCase
             $a['AuthnContextClassRef'][0]
         );
 
-        /** @var $xml DOMElement */
+        /** @var $xml \DOMElement */
         $xml = $ar->toSignedXML();
-        $q = SAML2_Utils::xpQuery($xml, '/samlp:AuthnRequest/samlp:RequestedAuthnContext/saml:AuthnContextClassRef');
+        $q = \SAML2\Utils::xpQuery($xml, '/samlp:AuthnRequest/samlp:RequestedAuthnContext/saml:AuthnContextClassRef');
         $this->assertEquals(
             $state['saml:AuthnContextClassRef'],
             $q[0]->textContent
@@ -242,7 +243,7 @@ class Auth_Source_SP_Test extends PHPUnit_Framework_TestCase
             'ForceAuthn' => true
         );
 
-        /** @var SAML2_AuthnRequest $ar */
+        /** @var \SAML2\AuthnRequest $ar */
         $ar = $this->createAuthnRequest($state);
 
         $this->assertEquals(
@@ -250,9 +251,9 @@ class Auth_Source_SP_Test extends PHPUnit_Framework_TestCase
             $ar->getForceAuthn()
         );
 
-        /** @var $xml DOMElement */
+        /** @var $xml \DOMElement */
         $xml = $ar->toSignedXML();
-        $q = SAML2_Utils::xpQuery($xml, '/samlp:AuthnRequest/@ForceAuthn');
+        $q = \SAML2\Utils::xpQuery($xml, '/samlp:AuthnRequest/@ForceAuthn');
         $this->assertEquals(
             $state['ForceAuthn'] ? 'true' : 'false',
             $q[0]->value
