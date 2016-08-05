@@ -604,7 +604,7 @@ class SimpleSAML_Metadata_SAMLParser
      * - 'SingleSignOnService': String with the URL of the SSO service which supports the redirect binding.
      * - 'SingleLogoutService': String with the URL where we should send logout requests/responses.
      * - 'certData': X509Certificate for entity (if present).
-     * - 'certFingerprint': Fingerprint of the X509Certificate from the metadata.
+     * - 'certFingerprint': Fingerprint of the X509Certificate from the metadata. (deprecated)
      *
      * Metadata must be loaded with one of the parse functions before this function can be called.
      *
@@ -757,7 +757,7 @@ class SimpleSAML_Metadata_SAMLParser
      *   the 'SingleLogoutService' endpoint.
      * - 'NameIDFormats': The name ID formats this IdP supports.
      * - 'certData': X509Certificate for entity (if present).
-     * - 'certFingerprint': Fingerprint of the X509Certificate from the metadata.
+     * - 'certFingerprint': Fingerprint of the X509Certificate from the metadata. (deprecated)
      *
      * Metadata must be loaded with one of the parse functions before this function can be called.
      *
