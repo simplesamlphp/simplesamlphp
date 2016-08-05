@@ -178,12 +178,12 @@ class Crypto
      * - 'certData': The certificate as a base64-encoded string.
      * - 'certificate': A file with a certificate or public key in PEM-format.
      * - 'certFingerprint': The fingerprint of the certificate. Can be a single fingerprint, or an array of multiple
-     * valid fingerprints.
+     * valid fingerprints. (deprecated)
      *
      * This function will return an array with these elements:
      * - 'PEM': The public key/certificate in PEM-encoding.
      * - 'certData': The certificate data, base64 encoded, on a single line. (Only present if this is a certificate.)
-     * - 'certFingerprint': Array of valid certificate fingerprints. (Only present if this is a certificate.)
+     * - 'certFingerprint': Array of valid certificate fingerprints. (Deprecated. Only present if this is a certificate.)
      *
      * @param \SimpleSAML_Configuration $metadata The metadata.
      * @param bool                      $required Whether the private key is required. If this is TRUE, a missing key

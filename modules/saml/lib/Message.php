@@ -159,6 +159,11 @@ class sspmod_saml_Message {
 			}
 
 		} elseif ($srcMetadata->hasValue('certFingerprint')) {
+			SimpleSAML\Logger::notice(
+			    "Validating certificates by fingerprint is deprecated. Please use " .
+			    "certData or certificate options in your remote metadata configuration."
+			);
+
 			$certFingerprint = $srcMetadata->getArrayizeString('certFingerprint');
 			foreach ($certFingerprint as &$fp) {
 				$fp = strtolower(str_replace(':', '', $fp));

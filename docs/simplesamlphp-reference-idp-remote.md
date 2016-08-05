@@ -31,9 +31,7 @@ The following options are common between both the SAML 2.0 protocol and Shibbole
 :   The base64 encoded certificate for this IdP. This is an alternative to storing the certificate in a file on disk and specifying the filename in the `certificate`-option.
 
 `certFingerprint`
-:   If you only need to validate signatures received from this IdP, you can specify the certificate fingerprint instead of storing the full certificate. To obtain this, you can enter a bogus value, and attempt to log in. You will then receive an error message with the correct fingerprint.
-
-:   It is also possible to add an array of valid fingerprints, where any fingerprints in that array is accepted as valid. This can be used to update the certificate of the IdP without having to update every SP at that exact time. Instead, one can update the SPs with the new fingerprint, and only update the certificate after every SP is updated.
+:   If you only need to validate signatures received from this IdP, you can specify the certificate fingerprint instead of storing the full certificate. *Deprecated:* please use `certData` or `certificate` options. This option will be removed in a future version of simpleSAMLphp.
 
 `certificate`
 :   The file with the certificate for this IdP. The path is relative to the `cert`-directory.
@@ -211,13 +209,3 @@ Shibboleth 1.3 options
 
 :   *Note*: This option only works with the `saml:SP` authentication source.
 
-
-Calculating the fingerprint of a certificate
---------------------------------------------
-
-If you have obtained a certificate file, and want to calculate the fingerprint of the file, you can use the `openssl` command:
-
-    $ openssl x509 -noout -fingerprint -in "example.org.crt"
-    SHA1 Fingerprint=AF:E7:1C:28:EF:74:0B:C8:74:25:BE:13:A2:26:3D:37:97:1D:A1:F9
-
-In this case, the certFingerprint option should be set to `AF:E7:1C:28:EF:74:0B:C8:74:25:BE:13:A2:26:3D:37:97:1D:A1:F9`.
