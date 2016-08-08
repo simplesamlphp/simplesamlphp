@@ -124,12 +124,13 @@ class SP_Test extends \PHPUnit_Framework_TestCase
     }
 
 
-    /** Create a SAML AuthnRequest using sspmod_saml_Auth_Source_SP
+    /**
+     * Create a SAML AuthnRequest using sspmod_saml_Auth_Source_SP
      *
      * @param array $state The state array to use in the test. This is an array of the parameters described in section
      * 2 of https://simplesamlphp.org/docs/development/saml:sp
      *
-     * @return SAML2_AuthnRequest The AuthnRequest generated.
+     * @return \SAML2\AuthnRequest The AuthnRequest generated.
      */
     private function createAuthnRequest($state = array())
     {
@@ -175,7 +176,8 @@ class SP_Test extends \PHPUnit_Framework_TestCase
     }
 
 
-    /** Test setting a Subject
+    /**
+     * Test setting a Subject
      * @test *
      */
     public function testNameID()
@@ -184,7 +186,7 @@ class SP_Test extends \PHPUnit_Framework_TestCase
             'saml:NameID' => array('Value' => 'user@example.org', 'Format' => \SAML2\Constants::NAMEID_UNSPECIFIED)
         );
 
-        /** @var \SAML2_AuthnRequest $ar */
+        /** @var \SAML2\AuthnRequest $ar */
         $ar = $this->createAuthnRequest($state);
 
         $nameID = $ar->getNameId();
@@ -206,7 +208,8 @@ class SP_Test extends \PHPUnit_Framework_TestCase
     }
 
 
-    /** Test setting an AuthnConextClassRef
+    /**
+     * Test setting an AuthnConextClassRef
      * @test *
      */
     public function testAuthnContextClassRef()
@@ -215,7 +218,7 @@ class SP_Test extends \PHPUnit_Framework_TestCase
             'saml:AuthnContextClassRef' => 'http://example.com/myAuthnContextClassRef'
         );
 
-        /** @var \SAML2_AuthnRequest $ar */
+        /** @var \SAML2\AuthnRequest $ar */
         $ar = $this->createAuthnRequest($state);
 
         $a = $ar->getRequestedAuthnContext();
@@ -234,7 +237,8 @@ class SP_Test extends \PHPUnit_Framework_TestCase
     }
 
 
-    /** Test setting ForcedAuthn
+    /**
+     * Test setting ForcedAuthn
      * @test *
      */
     public function testForcedAuthn()
