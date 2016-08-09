@@ -13,5 +13,14 @@
 	},
 	"info_post": {
 		"en": "<h3>What is automatic login<\/h3><p>Automatic login allows you to log in without being asked for username and password:<ul><li>if the computer is in the Kerberos domain<\/li><li>using a supported browser (IE and some others depending on installation options)<\/li><li>on a supported operating system (Windows, Mac)<\/li><\/ul><\/p>"
+	},
+	"disabled_info": {
+		"en": "You have turned off automatic login."
+	},
+	"failed_info": {
+		"en": "Negotiate login was not accepted."
+	},
+	"retry_link": {
+		"en": "Retry login with ticket."
 	}
 }
