@@ -145,16 +145,42 @@ $config = array(
      ************************/
 
     /*
-     * If you enable this option SimpleSAMLphp will log the following to the log file:
+     * The 'debug' option allows you to control how SimpleSAMLphp behaves in certain
+     * situations where further action may be taken
      *
-     * - All SAML messages sent and received.
-     * - Encrypted and decrypted SAML messages.
-     * - Backtraces on errors.
+     * It can be left unset, in which case, debugging is switched off for all actions.
+     * If set, it MUST be an array containing the actions that you want to enable, or
+     * alternatively a hashed array where the keys are the actions and their
+     * corresponding values are booleans enabling or disabling each particular action.
      *
-     * Note: The messages are logged with the DEBUG log level, so you also need to set
-     * the 'logging.level' option to LOG_DEBUG.
+     * SimpleSAMLphp provides some pre-defined actiones, though modules could add new
+     * actions here. Refer to the documentation of every module to learn if they
+     * allow you to set any more debugging actions.
+     *
+     * The pre-defined actions are:
+     *
+     * - 'saml': this action controls the logging of SAML messages exchanged with other
+     * entities. When enabled ('saml' is present in this option, or set to true), all
+     * SAML messages will be logged, including plaintext versions of encrypted
+     * messages.
+     *
+     * - 'backtraces': this action controls the logging of error backtraces. If you
+     * want to log backtraces so that you can debug any possible errors happening in
+     * SimpleSAMLphp, enable this action (add it to the array or set it to true).
+     *
+     * - 'validatexml': this action allows you to validate SAML documents against all
+     * the relevant XML schemas. SAML 1.1 messages or SAML metadata parsed with
+     * the XML to SimpleSAMLphp metadata converter or the metaedit module will
+     * validate the SAML documents if this option is enabled.
+     *
+     * If you want to disable debugging completely, unset this option or set it to an
+     * empty array.
      */
-    'debug' => false,
+    'debug' => array(
+        'saml' => false,
+        'backtraces' => true,
+        'validatexml' => false,
+    ),
 
     /*
      * When 'showerrors' is enabled, all error messages and stack traces will be output
@@ -173,12 +199,6 @@ $config = array(
      * Example:
      *   'errors.show_function' => array('sspmod_example_Error_Show', 'show'),
      */
-
-    /*
-     * This option allows you to enable validation of XML data against its
-     * schemas. A warning will be written to the log if validation fails.
-     */
-    'debug.validatexml' => false,
 
 
 

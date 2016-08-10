@@ -14,7 +14,7 @@ class XML
 
     /**
      * This function performs some sanity checks on XML documents, and optionally validates them against their schema
-     * if the 'debug.validatexml' option is enabled. A warning will be printed to the log if validation fails.
+     * if the 'validatexml' debugging option is enabled. A warning will be printed to the log if validation fails.
      *
      * @param string $message The SAML document we want to check.
      * @param string $type The type of document. Can be one of:
@@ -41,8 +41,16 @@ class XML
             throw new \SimpleSAML_Error_Exception('XML contained a doctype declaration.');
         }
 
-        $enabled = \SimpleSAML_Configuration::getInstance()->getBoolean('debug.validatexml', null);
-        if (!$enabled) {
+        // see if debugging is enabled for XML validation
+        $debug = \SimpleSAML_Configuration::getInstance()->getArrayize('debug', array('validatexml' => false));
+        $enabled = \SimpleSAML_Configuration::getInstance()->getBoolean('debug.validatexml', false);
+
+        if (!(in_array('validatexml', $debug, true) // implicitly enabled
+              || (array_key_exists('validatexml', $debug) && $debug['validatexml'] === true) // explicitly enabled
+              // TODO: deprecate this option and remove it in 2.0
+              || $enabled // old 'debug.validatexml' configuration option
+        )) {
+            // XML validation is disabled
             return;
         }
 
@@ -84,9 +92,15 @@ class XML
             throw new \InvalidArgumentException('Invalid input parameters.');
         }
 
-        $globalConfig = \SimpleSAML_Configuration::getInstance();
-        if (!$globalConfig->getBoolean('debug', false)) {
-            // message debug disabled
+        // see if debugging is enabled for SAML messages
+        $debug = \SimpleSAML_Configuration::getInstance()->getArrayize('debug', array('saml' => false));
+
+        if (!(in_array('saml', $debug, true) // implicitly enabled
+              || (array_key_exists('saml', $debug) && $debug['saml'] === true) // explicitly enabled
+              // TODO: deprecate the old style and remove it in 2.0
+              || (array_key_exists(0, $debug) && $debug[0] === true) // old style 'debug'
+        )) {
+            // debugging messages is disabled
             return;
         }
 
