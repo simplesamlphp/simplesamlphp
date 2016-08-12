@@ -78,10 +78,11 @@ $config = array(
     'auth.adminpassword' => '123',
 
     /*
-     * Set this options to true if you want to require administrator password to access the web interface
-     * or the metadata pages, respectively.
+     * Set this options to true if you want to require administrator password to access the web interface,
+     * just the config page, or the metadata pages, respectively.
      */
     'admin.protectindexpage' => false,
+    'admin.protectconfigpage' => false,
     'admin.protectmetadata' => false,
 
     /*
