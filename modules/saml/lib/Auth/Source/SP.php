@@ -385,8 +385,23 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 			$idp = (string)$state['saml:idp'];
 		}
 
-		if ($idp === NULL && isset($state['saml:IDPList']) && sizeof($state['saml:IDPList']) == 1) {
-			$idp = $state['saml:IDPList'][0];
+		if (isset($state['saml:IDPList']) && sizeof($state['saml:IDPList']) > 0) {
+			// we have a SAML IDPList (we are a proxy): filter the list of IdPs available
+			$mdh = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+			$known_idps = $mdh->getList();
+			$intersection = array_intersect($state['saml:IDPList'], array_keys($known_idps));
+
+			if (empty($intersection)) { // all requested IdPs are unknown
+				throw new SimpleSAML\Error\NoSupportedIDP('None of the IdPs requested are supported by this proxy.');
+			}
+
+			if (!is_null($idp) && !in_array($idp, $intersection)) { // the IdP is enforced but not in the IDPList
+				throw new SimpleSAML\Error\NoAvailableIDP('None of the IdPs requested are available to this proxy.');
+			}
+
+			if (is_null($idp) && sizeof($intersection) === 1) { // only one IdP requested or valid
+				$idp = current($state['saml:IDPList']);
+			}
 		}
 
 		if ($idp === NULL) {
@@ -422,9 +437,30 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 		{
 			/*
 			 * The user has an existing, valid session. However, the SP provided a list of IdPs it accepts for
-			 * authentication, and the IdP the existing session is related to is not in that list. We need to
-			 * inform the user, and ask whether we should logout before starting the authentication process again
-			 * with a different IdP, or cancel the current SSO attempt.
+			 * authentication, and the IdP the existing session is related to is not in that list.
+			 *
+			 * First, check if we recognize any of the IdPs requested.
+			 */
+
+			$mdh = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+			$known_idps = $mdh->getList();
+			$intersection = array_intersect($state['saml:IDPList'], array_keys($known_idps));
+
+			if (empty($intersection)) { // all requested IdPs are unknown
+				throw new SimpleSAML\Error\NoSupportedIDP('None of the IdPs requested are supported by this proxy.');
+			}
+
+			/*
+			 * We have at least one IdP in the IDPList that we recognize, and it's not the one currently in use. Let's
+			 * see if this proxy enforces the use of one single IdP.
+			 */
+			if (!is_null($this->idp) && !in_array($this->idp, $intersection)) { // an IdP is enforced but not requested
+				throw new SimpleSAML\Error\NoAvailableIDP('None of the IdPs requested are available to this proxy.');
+			}
+
+			/*
+			 * We need to inform the user, and ask whether we should logout before starting the authentication process
+			 * again with a different IdP, or cancel the current SSO attempt.
 			 */
 			SimpleSAML\Logger::warning(
 				"Reauthentication after logout is needed. The IdP '${state['saml:sp:IdP']}' is not in the IDPList ".

@@ -117,8 +117,21 @@ class sspmod_saml_Error extends SimpleSAML_Error_Exception {
 				\SAML2\Constants::STATUS_PROXY_COUNT_EXCEEDED,
 				$exception->getMessage(),
 				$exception
-				);
-
+			);
+		} elseif ($exception instanceof SimpleSAML\Error\NoAvailableIDP) {
+			$e = new self(
+				\SAML2\Constants::STATUS_RESPONDER,
+				\SAML2\Constants::STATUS_NO_AVAILABLE_IDP,
+				$exception->getMessage(),
+				$exception
+			);
+		} elseif ($exception instanceof SimpleSAML\Error\NoSupportedIDP) {
+			$e = new self(
+				\SAML2\Constants::STATUS_RESPONDER,
+				\SAML2\Constants::STATUS_NO_SUPPORTED_IDP,
+				$exception->getMessage(),
+				$exception
+			);
 		} else {
 			$e = new self(
 				\SAML2\Constants::STATUS_RESPONDER,
