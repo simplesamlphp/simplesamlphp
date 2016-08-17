@@ -48,7 +48,7 @@ a, a:link, a:link, a:link, a:hover {
 
 a:link, a:visited {
 	text-decoration: none;
-	color: #777;
+	color: #fff;
 	border-bottom: 1px dotted #ccc;
 	font-weight: normal;
 }
