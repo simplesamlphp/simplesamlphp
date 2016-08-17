@@ -34,13 +34,13 @@ directories and files:
 
 default-disable
 :   The presence of this file indicates that the module is disabled
-    by default. This module can be enabled by creating a file named
-    `enable` in the same directory.
+    by default. It can be enabled using the `module.enable`
+    option in `config.php`.
 
 default-enable
 :   The presence of this file indicates that the module is enabled
-    by default. This module can be disabled by creating a file named
-    `disable` in the same directory.
+    by default. It can be disabled using the `module.enable`
+    option in `config.php`.
 
 dictionaries
 :   This directory contains dictionaries which belong to this
