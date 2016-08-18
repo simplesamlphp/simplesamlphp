@@ -235,7 +235,7 @@ Disable consent for some IdPs for a given SP:
 ### Regular expression support ###
 
 You can use regular expressions to evaluate the entityId of either the IdP
-or the SP.  It makes it easy to disable consent for an entire domain or
+or the SP.  It makes it possible to disable consent for an entire domain or
 for a range of specific entityIds.  Just use an array instead of a flat string
 with the following format (note that flat string and array entries are allowed
 at the same time) :
