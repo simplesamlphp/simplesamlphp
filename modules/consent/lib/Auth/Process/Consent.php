@@ -151,20 +151,26 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
     private static function checkDisable($option, $entityId) {
         if (is_array($option)) {
             // Check if consent.disable array has one element that is an array
-            if (count($option) == count($option, COUNT_RECURSIVE)) {
+            if (count($option) === count($option, COUNT_RECURSIVE)) {
                 // Array is not multidimensional.  Simple in_array search suffices
-                return in_array($entityId, $option, TRUE);
+                return in_array($entityId, $option, true);
             } else {
                 // Array contains at least one element that is an array, verify both possibilities
-                if (in_array($entityId, $option, TRUE)) {
+                if (in_array($entityId, $option, true)) {
                     return true;
                 } else {
                     // Search in multidimensional arrays
-                    foreach($optionToTest in $option) {
+                    foreach ($optionToTest in $option) {
                         if (is_array($optionToTest)) {
-                            if ($optionToTest['type'] == 'regex') {
-                                // Evaluate regular expression and return true if entityId matches
-                                if (preg_match($optionToTest['pattern'], $entityId) === 1) return true;
+                            if (array_key_exists('type', $optionToTest) { 
+                                if ($optionToTest['type'] === 'regex') {
+                                    if (array_key_exists('pattern', $optionToTest) {
+                                        // Evaluate regular expression and return true if entityId matches
+                                        if (preg_match($optionToTest['pattern'], $entityId) === 1) {
+                                            return true;
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
