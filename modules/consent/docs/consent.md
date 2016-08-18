@@ -244,7 +244,7 @@ at the same time) :
         [...]
         'consent.disable' => array(
             'https://idp1.example.org/',
-            array('type'=>'regex', 'pattern'=>'/.*\.mycompany\.com.*/i',
+            array('type'=>'regex', 'pattern'=>'/.*\.mycompany\.com.*/i'),
         ),
     ),
 
