@@ -162,9 +162,9 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
                     // Search in multidimensional arrays
                     foreach ($option as $optionToTest) {
                         if (is_array($optionToTest)) {
-                            if (array_key_exists('type', $optionToTest) { 
+                            if (array_key_exists('type', $optionToTest)) { 
                                 if ($optionToTest['type'] === 'regex') {
-                                    if (array_key_exists('pattern', $optionToTest) {
+                                    if (array_key_exists('pattern', $optionToTest)) {
                                         // Evaluate regular expression and return true if entityId matches
                                         if (preg_match($optionToTest['pattern'], $entityId) === 1) {
                                             return true;
