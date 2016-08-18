@@ -160,7 +160,7 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
                     return true;
                 } else {
                     // Search in multidimensional arrays
-                    foreach ($optionToTest in $option) {
+                    foreach ($option as $optionToTest) {
                         if (is_array($optionToTest)) {
                             if (array_key_exists('type', $optionToTest) { 
                                 if ($optionToTest['type'] === 'regex') {
