@@ -244,6 +244,16 @@ abstract class sspmod_core_Auth_UserPassBase extends SimpleSAML_Auth_Source {
 		}
 
 		/*
+		 * Prior to attempting login, set AuthFailCount to 0 if it doesn't already
+		 * exist in the state array, then save the state.
+		 */
+
+		if (!isset($state['AuthFailCount'])) {
+			$state['AuthFailCount'] = 0;
+			SimpleSAML_Auth_State::saveState($state, self::STAGEID);
+		}
+
+		/*
 		 * $source now contains the authentication source on which authenticate()
 		 * was called. We should call login() on the same authentication source.
 		 */
@@ -252,6 +262,9 @@ abstract class sspmod_core_Auth_UserPassBase extends SimpleSAML_Auth_Source {
 		try {
 			$attributes = $source->login($username, $password);
 		} catch (Exception $e) {
+			/* If there is an error with login, increment AuthFailCount and save state. */
+			$state['AuthFailCount']++;
+			SimpleSAML_Auth_State::saveState($state, self::STAGEID);
 			SimpleSAML\Logger::stats('Unsuccessful login attempt from '.$_SERVER['REMOTE_ADDR'].'.');
 			throw $e;
 		}
