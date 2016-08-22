@@ -106,7 +106,7 @@ $functionchecks = array(
 	'dom_import_simplexml' => array('required', 'XML DOM'),
 	'preg_match'       => array('required',  'RegEx support'),
 	'mcrypt_module_open'=> array('optional',  'MCrypt'),
-	'mysql_connect'    => array('optional',  'MySQL support'),
+	'pdo_drivers'    => array('optional',  'PDO Extension'),
 );
 if (SimpleSAML\Module::isModuleEnabled('ldap')) {
 	$functionchecks['ldap_bind'] = array('required_ldap',  'LDAP Extension');
