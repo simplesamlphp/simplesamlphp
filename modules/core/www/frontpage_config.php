@@ -105,14 +105,15 @@ $functionchecks = array(
 	'simplexml_import_dom' => array('required', 'SimpleXML'),
 	'dom_import_simplexml' => array('required', 'XML DOM'),
 	'preg_match'       => array('required',  'RegEx support'),
-	'mcrypt_module_open'=> array('optional',  'MCrypt'),
-	'pdo_drivers'    => array('optional',  'PDO Extension'),
+	'mcrypt_module_open'=> array('optional',  'MCrypt (required if digital signatures or encryption are used)'),
+	'pdo_drivers'    => array('optional',  'PDO Extension (required if a database backend is used)'),
+	'memcache_debug' => array('optional', 'Memcache Extension (required if a Memcached backend is used)'),
 );
 if (SimpleSAML\Module::isModuleEnabled('ldap')) {
-	$functionchecks['ldap_bind'] = array('required_ldap',  'LDAP Extension');
+	$functionchecks['ldap_bind'] = array('optional',  'LDAP Extension (required if an LDAP backend is used)');
 }
 if (SimpleSAML\Module::isModuleEnabled('radius')) {
-        $functionchecks['radius_auth_open'] = array('required_radius',  'Radius Extension');
+        $functionchecks['radius_auth_open'] = array('optional',  'Radius Extension (required if a Radius backend is used)');
 }
 
 $funcmatrix = array();
