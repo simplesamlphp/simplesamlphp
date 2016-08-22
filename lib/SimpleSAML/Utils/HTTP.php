@@ -643,11 +643,31 @@ class HTTP
     {
         $cfg = \SimpleSAML_Configuration::getInstance();
         $baseDir = $cfg->getBaseDir();
-        $current_path = realpath($_SERVER['SCRIPT_FILENAME']);
-        $rel_path = str_replace($baseDir.'www'.DIRECTORY_SEPARATOR, '', $current_path);
+        $cur_path = realpath($_SERVER['SCRIPT_FILENAME']);
+        // find the path to the current script relative to the www/ directory of SimpleSAMLphp
+        $rel_path = str_replace($baseDir.'www'.DIRECTORY_SEPARATOR, '', $cur_path);
+        // convert that relative path to an HTTP query
+        $url_path = str_replace(DIRECTORY_SEPARATOR, '/', $rel_path);
+        // find where the relative path starts in the current request URI
+        $uri_pos = (!empty($url_path)) ? strpos($_SERVER['REQUEST_URI'], $url_path) : false;
 
-        if ($current_path == $rel_path) { // compare loosely ($current_path can be false)
-            // we were accessed from an external script, do not try to apply our base URL
+        if ($cur_path == $rel_path || $uri_pos === false) {
+            /*
+             * We were accessed from an external script. This can happen in the following cases:
+             *
+             * - $_SERVER['SCRIPT_FILENAME'] points to a script that doesn't exist. E.g. functional testing. In this
+             *   case, realpath() returns false and str_replace an empty string, so we compare them loosely.
+             *
+             * - The URI requested does not belong to a script in the www/ directory of SimpleSAMLphp. In that case,
+             *   removing SimpleSAMLphp's base dir from the current path yields the same path, so $cur_path and
+             *   $rel_path are equal.
+             *
+             * - The request URI does not match the current script. Even if the current script is located in the www/
+             *   directory of SimpleSAMLphp, the URI does not contain its relative path, and $uri_pos is false.
+             *
+             * It doesn't matter which one of those cases we have. We just know we can't apply our base URL to the
+             * current URI, so we need to build it back from the PHP environment.
+             */
             $protocol = 'http';
             $protocol .= (self::getServerHTTPS()) ? 's' : '';
             $protocol .= '://';
@@ -657,10 +677,7 @@ class HTTP
             return $protocol.$hostname.$port.$_SERVER['REQUEST_URI'];
         }
 
-        $url = self::getBaseURL();
-        $rel_path = str_replace(DIRECTORY_SEPARATOR, '/', $rel_path);
-        $pos = strpos($_SERVER['REQUEST_URI'], $rel_path) + strlen($rel_path);
-        return $url.$rel_path.substr($_SERVER['REQUEST_URI'], $pos);
+        return self::getBaseURL().$rel_path.substr($_SERVER['REQUEST_URI'], $uri_pos + strlen($url_path));
     }
 
 
