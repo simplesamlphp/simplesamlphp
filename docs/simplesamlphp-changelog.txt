@@ -6,6 +6,15 @@ SimpleSAMLphp changelog
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
+## Version 1.14.8
+
+Released 2016-08-23
+
+  * Fixed an issue in AuthMemCookie causing it to crash when an attribute received contains XML as its value.
+  * Fixed an issue in AuthMemCookie that made it impossible to set its own cookie.
+  * Fixed an issue when acting as a proxy and receiving attributes that contain XML as their values.
+  * Fixed an issue that led to incorrect URL guessing when a script is invoked with a URI that doesn't include its name.
+
 ## Version 1.14.7
 
 Released 2016-08-01
