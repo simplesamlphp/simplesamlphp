@@ -48,11 +48,12 @@ class sspmod_authlinkedin_Auth_Source_LinkedIn extends SimpleSAML_Auth_Source {
 
 		$this->secret = $config['secret'];
 
-		if (array_key_exists('attributes', $config))
+		if (array_key_exists('attributes', $config)) {
 			$this->attributes = $config['attributes'];
-		else
+		} else {
 			// Default values if the attributes are not set in config (ref https://developer.linkedin.com/docs/fields)
 			$this->attributes = 'id,first-name,last-name,headline,summary,specialties,picture-url,email-address';
+		}
 	}
 
 
