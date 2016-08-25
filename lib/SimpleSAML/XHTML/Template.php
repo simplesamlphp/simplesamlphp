@@ -38,6 +38,13 @@ class SimpleSAML_XHTML_Template
      */
     private $template = 'default.php';
 
+    /**
+     * The template name.
+     *
+     * @var string
+     */
+    private $twig_template;
+
     /*
      * Main Twig namespace, to avoid misspelling it *again*
      */
@@ -70,7 +77,7 @@ class SimpleSAML_XHTML_Template
      */
     private function normalizeTemplateName($templateName)
     {
-        if (strripos($templateName, '.twig.html')) {
+        if (strripos($templateName, '.twig')) {
             return $templateName;
         }
         $phppos = strripos($templateName, '.php');
@@ -81,7 +88,7 @@ class SimpleSAML_XHTML_Template
         if ($tplpos) {
             $templateName = substr($templateName, 0, $tplpos);
         }
-        return $templateName.'.twig.html';
+        return $templateName.'.twig';
     }
 
 
