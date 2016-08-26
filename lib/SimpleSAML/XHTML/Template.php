@@ -9,6 +9,10 @@
  */
 
 
+use JaimePerez\TwigConfigurableI18n\Twig\Environment as Twig_Environment;
+use JaimePerez\TwigConfigurableI18n\Twig\Extensions\Extension\I18n as Twig_Extensions_Extension_I18n;
+
+
 class SimpleSAML_XHTML_Template
 {
 
@@ -155,7 +159,12 @@ class SimpleSAML_XHTML_Template
             return null;
         }
 
-        $twig = new \Twig_Environment($loader, array('cache' => $cache, 'auto_reload' => $auto_reload));
+        $twig = new \Twig_Environment($loader,
+            array('cache' => $cache, 'auto_reload' => $auto_reload,
+                'translation_function' => '__',
+                'translation_function_plural' => 'n__',
+            )
+        );
         // set up translation
         if ($this->localization->i18nBackend == 'twig.gettextgettext') {
             /* if something like pull request #166 is ever merged with
@@ -163,8 +172,7 @@ class SimpleSAML_XHTML_Template
              * $twig->addExtension(new \Twig_Extensions_Extension_I18n('__', 'n__'));
              * instead of the two lines after this comment
              */
-            $twig->addFilter(new Twig_SimpleFilter('trans', '__'));
-            $twig->addTokenParser(new \SimpleSAML_Twig_TokenParser_Trans());
+            $twig->addExtension(new \Twig_Extensions_Extension_I18n());
         }
         return $twig;
     }
