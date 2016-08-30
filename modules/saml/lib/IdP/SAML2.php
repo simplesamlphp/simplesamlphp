@@ -282,6 +282,7 @@ class sspmod_saml_IdP_SAML2 {
 			$consumerIndex = NULL;
 			$extensions = NULL;
 			$allowCreate = TRUE;
+			$authnContext = null;
 
 			$idpInit = TRUE;
 
@@ -317,6 +318,7 @@ class sspmod_saml_IdP_SAML2 {
 			$protocolBinding = $request->getProtocolBinding();
 			$consumerIndex = $request->getAssertionConsumerServiceIndex();
 			$extensions = $request->getExtensions();
+			$authnContext = $request->getRequestedAuthnContext();
 
 			$nameIdPolicy = $request->getNameIdPolicy();
 			if (isset($nameIdPolicy['Format'])) {
@@ -384,6 +386,7 @@ class sspmod_saml_IdP_SAML2 {
 			'saml:AllowCreate' => $allowCreate,
 			'saml:Extensions' => $extensions,
 			'saml:AuthnRequestReceivedAt' => microtime(TRUE),
+			'saml:RequestedAuthnContext' => $authnContext,
 		);
 
 		$idp->handleAuthenticationRequest($state);
