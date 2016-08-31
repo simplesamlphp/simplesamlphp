@@ -181,7 +181,10 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 	private function startSSO2(SimpleSAML_Configuration $idpMetadata, array $state) {
 	
 		if (isset($state['saml:ProxyCount']) && $state['saml:ProxyCount'] < 0) {
-			SimpleSAML_Auth_State::throwException($state, new SimpleSAML_Error_ProxyCountExceeded("ProxyCountExceeded"));
+			SimpleSAML_Auth_State::throwException(
+				$state,
+				new \SimpleSAML\Module\saml\Error\ProxyCountExceeded(\SAML2\Constants::STATUS_RESPONDER)
+			);
 		}
 
 		$ar = sspmod_saml_Message::buildAuthnRequest($this->metadata, $idpMetadata);
