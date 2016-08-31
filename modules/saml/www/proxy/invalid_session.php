@@ -28,8 +28,13 @@ try {
 
 if (isset($_POST['cancel'])) {
     // the user does not want to logout, cancel login
-    $e = new \SimpleSAML\Error\NoAvailableIDP('User refused to reauthenticate with any of the IdPs requested.');
-    SimpleSAML_Auth_State::throwException($state, $e);
+    SimpleSAML_Auth_State::throwException(
+        $state,
+        new \SimpleSAML\Module\saml\Error\NoAvailableIDP(
+            \SAML2\Constants::STATUS_RESPONDER,
+            'User refused to reauthenticate with any of the IdPs requested.'
+        )
+    );
 }
 
 if (isset($_POST['continue'])) {

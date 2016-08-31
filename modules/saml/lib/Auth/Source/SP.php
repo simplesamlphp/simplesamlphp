@@ -392,11 +392,17 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 			$intersection = array_intersect($state['saml:IDPList'], array_keys($known_idps));
 
 			if (empty($intersection)) { // all requested IdPs are unknown
-				throw new SimpleSAML\Error\NoSupportedIDP('None of the IdPs requested are supported by this proxy.');
+				throw new SimpleSAML\Module\saml\Error\NoSupportedIDP(
+					\SAML2\Constants::STATUS_REQUESTER,
+					'None of the IdPs requested are supported by this proxy.'
+				);
 			}
 
 			if (!is_null($idp) && !in_array($idp, $intersection)) { // the IdP is enforced but not in the IDPList
-				throw new SimpleSAML\Error\NoAvailableIDP('None of the IdPs requested are available to this proxy.');
+				throw new SimpleSAML\Module\saml\Error\NoAvailableIDP(
+					\SAML2\Constants::STATUS_REQUESTER,
+					'None of the IdPs requested are available to this proxy.'
+				);
 			}
 
 			if (is_null($idp) && sizeof($intersection) === 1) { // only one IdP requested or valid
@@ -447,7 +453,10 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 			$intersection = array_intersect($state['saml:IDPList'], array_keys($known_idps));
 
 			if (empty($intersection)) { // all requested IdPs are unknown
-				throw new SimpleSAML\Error\NoSupportedIDP('None of the IdPs requested are supported by this proxy.');
+				throw new SimpleSAML\Module\saml\Error\NoSupportedIDP(
+					\SAML2\Constants::STATUS_REQUESTER,
+					'None of the IdPs requested are supported by this proxy.'
+				);
 			}
 
 			/*
@@ -455,7 +464,10 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 			 * see if this proxy enforces the use of one single IdP.
 			 */
 			if (!is_null($this->idp) && !in_array($this->idp, $intersection)) { // an IdP is enforced but not requested
-				throw new SimpleSAML\Error\NoAvailableIDP('None of the IdPs requested are available to this proxy.');
+				throw new SimpleSAML\Module\saml\Error\NoAvailableIDP(
+					\SAML2\Constants::STATUS_REQUESTER,
+					'None of the IdPs requested are available to this proxy.'
+				);
 			}
 
 			/*
