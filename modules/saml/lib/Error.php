@@ -104,6 +104,7 @@ class sspmod_saml_Error extends SimpleSAML_Error_Exception {
 			// Return the original exception unchanged
 			return $exception;
 
+		// TODO: remove this branch in 2.0
 		} elseif ($exception instanceof SimpleSAML_Error_NoPassive) {
 			$e = new self(
 				\SAML2\Constants::STATUS_RESPONDER,
@@ -111,6 +112,7 @@ class sspmod_saml_Error extends SimpleSAML_Error_Exception {
 				$exception->getMessage(),
 				$exception
 				);
+		// TODO: remove this branch in 2.0
 		} elseif ($exception instanceof SimpleSAML_Error_ProxyCountExceeded) {
 			$e = new self(
 				\SAML2\Constants::STATUS_RESPONDER,
