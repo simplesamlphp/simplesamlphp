@@ -31,5 +31,7 @@ $globalConfig = SimpleSAML_Configuration::getInstance();
 $t = new SimpleSAML_XHTML_Template($globalConfig, 'authYubiKey:yubikeylogin.php');
 $t->data['stateparams'] = array('AuthState' => $authStateId);
 $t->data['errorcode'] = $errorCode;
+$t->data['logo_url'] = SimpleSAML\Module::getModuleURL('authYubiKey/resources/logo.jpg');
+$t->data['devicepic_url'] = SimpleSAML\Module::getModuleURL('authYubiKey/resources/yubikey.jpg')
 $t->show();
 exit();
