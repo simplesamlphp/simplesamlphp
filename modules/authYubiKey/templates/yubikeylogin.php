@@ -19,8 +19,8 @@ if ($this->data['errorcode'] !== NULL) {
 }
 ?>
 
-	<img style="float: right" src="<?php echo(SimpleSAML\Module::getModuleURL('authYubiKey/resources/logo.jpg')); ?>" alt="" />
-	<img style="clear: right; float: right" src="<?php echo(SimpleSAML\Module::getModuleURL('authYubiKey/resources/yubikey.jpg')); ?>" alt="YubiKey" />
+	<img style="float: right" src="<?php echo($this->data['logo_url']); ?>" alt="" />
+	<img style="clear: right; float: right" src="<?php echo($this->data['devicepic_url']); ?>" alt="YubiKey" />
 
 
 	<h2 style=""><?php echo $this->t('{authYubiKey:yubikey:header}'); ?></h2>
