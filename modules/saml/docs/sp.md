@@ -224,6 +224,7 @@ Options
 `NameIDPolicy`
 :   The format of the NameID we request from the IdP.
     Defaults to the `transient` format if unspecified.
+    A value of `NULL` suppresses the NameIDPolicy element in the request.
 
 :   If this option is set, its value will be added to the metadata generated for this SP, in the NameIDFormat element.
 
