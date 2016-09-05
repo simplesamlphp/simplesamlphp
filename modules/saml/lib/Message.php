@@ -447,7 +447,13 @@ class sspmod_saml_Message {
 
 		if ($spMetadata->hasValue('AuthnContextClassRef')) {
 			$accr = $spMetadata->getArrayizeString('AuthnContextClassRef');
-			$ar->setRequestedAuthnContext(array('AuthnContextClassRef' => $accr));
+			$comp = $spMetadata->getValueValidate('AuthnContextComparison', array(
+				\SAML2\Constants::COMPARISON_EXACT,
+				\SAML2\Constants::COMPARISON_MINIMUM,
+				\SAML2\Constants::COMPARISON_MAXIMUM,
+				\SAML2\Constants::COMPARISON_BETTER,
+			), \SAML2\Constants::COMPARISON_EXACT);
+			$ar->setRequestedAuthnContext(array('AuthnContextClassRef' => $accr, 'Comparison' => $comp));
 		}
 
 		self::addRedirectSign($spMetadata, $idpMetadata, $ar);
