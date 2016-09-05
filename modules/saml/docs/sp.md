@@ -27,6 +27,17 @@ All these parameters override the equivalent option from the configuration.
 
 :   *Note*: SAML 2 specific.
 
+`saml:AuthnContextComparison`
+:   The Comparison attribute of the AuthnContext that will be sent in the login request.
+    This parameter won't be used unless `saml:AuthnContextClassRef` is set and contains one or more values.
+    Possible values:
+    
+    * `SAML2\Constants::COMPARISON_EXACT` (default)
+    * `SAML2\Constants::COMPARISON_BETTER`
+    * `SAML2\Constants::COMPARISON_MINIMUM`
+    * `SAML2\Constants::COMPARISON_MAXIMUM`
+    
+:   *Note*: SAML 2 specific.
 
 `ForceAuthn`
 :   Force authentication allows you to force re-authentication of users even if the user has a SSO session at the IdP.
@@ -123,6 +134,18 @@ Options
 :   The SP can request authentication with a specific authentication context class.
     One example of usage could be if the IdP supports both username/password authentication as well as software-PKI.
 
+:   *Note*: SAML 2 specific.
+
+`AuthnContextComparison`
+:   The Comparison attribute of the AuthnContext that will be sent in the login request.
+    This parameter won't be used unless `saml:AuthnContextClassRef` is set and contains one or more values.
+    Possible values:
+    
+    * `SAML2\Constants::COMPARISON_EXACT` (default)
+    * `SAML2\Constants::COMPARISON_BETTER`
+    * `SAML2\Constants::COMPARISON_MINIMUM`
+    * `SAML2\Constants::COMPARISON_MAXIMUM`
+    
 :   *Note*: SAML 2 specific.
 
 `authproc`
