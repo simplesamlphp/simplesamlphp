@@ -33,12 +33,14 @@ Prerequisites
  * Some webserver capable of executing PHP scripts.
  * PHP version >= 5.3.0.
  * Support for the following PHP extensions:
-   * Always required: `date`, `dom`, `hash`, `libxml`, `openssl`, `pcre`, `SPL`, `zlib`
+   * Always required: `date`, `dom`, `hash`, `libxml`, `openssl`, `pcre`, `SPL`, `zlib`, `json`
+   * When automatically checking for latest versions, and used by some modules: `cURL`
    * When using encryption or digital signatures: `mcrypt`
    * When authenticating against LDAP server: `ldap`
    * When authenticating against RADIUS server: `radius`
-   * When saving session information to memcache-server: `memcache`
-   * When using database:
+   * When using native PHP session handler: `session`
+   * When saving session information to a memcache server: `memcache`
+   * When using databases:
      * Always: `PDO`
      * Database driver: (`mysql`, `pgsql`, ...)
 
