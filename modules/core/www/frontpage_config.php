@@ -83,7 +83,6 @@ $functionchecks = array(
 	'hash'             => array('required',  'Hashing function'),
 	'gzinflate'        => array('required',  'ZLib'),
 	'openssl_sign'     => array('required',  'OpenSSL'),
-	'simplexml_import_dom' => array('required', 'SimpleXML'),
 	'dom_import_simplexml' => array('required', 'XML DOM'),
 	'preg_match'       => array('required',  'RegEx support'),
 	'json_decode'      => array('required', 'JSON support'),
