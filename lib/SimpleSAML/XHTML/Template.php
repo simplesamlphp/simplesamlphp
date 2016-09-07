@@ -567,6 +567,18 @@ class SimpleSAML_XHTML_Template
 
 
     /**
+     * Wrap Language->noop to mark a tag for translation but actually do it later.
+     *
+     * @see \SimpleSAML\Locale\Translate::noop()
+     * @deprecated This method will be removed in SSP 2.0. Please use \SimpleSAML\Locale\Translate::t() instead.
+     */
+    public function noop($tag)
+    {
+        return $this->translator->noop($tag);
+    }
+
+
+    /**
      * Wrap Language->t to translate tag into the current language, with a fallback to english.
      *
      * @see \SimpleSAML\Locale\Translate::t()

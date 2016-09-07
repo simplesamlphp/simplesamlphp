@@ -222,6 +222,19 @@ class Translate
 
 
     /**
+     * Mark a string for translation without translating it.
+     *
+     * @param string  $tag A tag name to mark for translation.
+     *
+     * @return string The tag, unchanged.
+     */
+    public function noop($tag)
+    {
+        return $tag;
+    }
+
+
+    /**
      * Translate a tag into the current language, with a fallback to english.
      *
      * This function is used to look up a translation tag in dictionaries, and return the translation into the current
@@ -245,7 +258,7 @@ class Translate
     public function t(
         $tag,
         $replacements = array(),
-        $fallbackdefault = true,
+        $fallbackdefault = true, // TODO: remove this for 2.0. Assume true
         $oldreplacements = array(), // TODO: remove this for 2.0
         $striptags = false // TODO: remove this for 2.0
     ) {
