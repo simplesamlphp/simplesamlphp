@@ -72,8 +72,8 @@ class sspmod_adfs_IdP_ADFS {
 			if ((!is_array($values)) || (count($values) == 0)) continue;
 			$hasValue = FALSE;
 			if (strpos($name, '/')) {
-				$r = '<saml:Attribute AttributeNamespace="'.substr($name, 0, strrpos($name, '/', -1)).
-					'" AttributeName="'.substr($name, strrpos($name, '/', -1) + 1).'">';
+				$r = '<saml:Attribute AttributeNamespace="'.htmlspecialchars(substr($name, 0, strrpos($name, '/', -1))).
+					'" AttributeName="'.htmlspecialchars(substr($name, strrpos($name, '/', -1) + 1)).'">';
 			} else {
 				$r = '<saml:Attribute AttributeNamespace="http://schemas.xmlsoap.org/claims" AttributeName="' .
 					htmlspecialchars($name) .'">';
