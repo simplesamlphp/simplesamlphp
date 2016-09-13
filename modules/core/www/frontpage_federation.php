@@ -109,8 +109,21 @@ foreach ($metaentries['remote'] as $key => $value) {
 	}
 }
 
-
-
+# look up translated string
+$mtype = array(
+    'saml20-sp-remote' => $t->noop('{admin:metadata_saml20-sp}'),
+    'saml20-sp-hosted' => $t->noop('{admin:metadata_saml20-sp}'),
+    'saml20-idp-remote' => $t->noop('{admin:metadata_saml20-idp}'),
+    'saml20-idp-hosted' => $t->noop('{admin:metadata_saml20-idp}'),
+    'shib13-sp-remote' => $t->noop('{admin:metadata_shib13-sp}'),
+    'shib13-sp-hosted' => $t->noop('{admin:metadata_shib13-sp}'),
+    'shib13-idp-remote' => $t->noop('{admin:metadata_shib13-idp}'),
+    'shib13-idp-hosted' => $t->noop('{admin:metadata_shib13-idp}'),
+    'adfs-sp-remote' => $t->noop('{admin:metadata_adfs-sp}'),
+    'adfs-sp-hosted' => $t->noop('{admin:metadata_adfs-sp}'),
+    'adfs-idp-remote' => $t->noop('{admin:metadata_adfs-idp}'),
+    'adfs-idp-hosted' => $t->noop('{admin:metadata_adfs-idp}'),
+);
 
 $t = new SimpleSAML_XHTML_Template($config, 'core:frontpage_federation.tpl.php');
 $t->data['pageid'] = 'frontpage_federation';
@@ -127,6 +140,7 @@ $t->data['links_federation'] = $links_federation;
 
 
 $t->data['metaentries'] = $metaentries;
+$t->data['mtype'] = $mtype;
 
 
 $t->show();
