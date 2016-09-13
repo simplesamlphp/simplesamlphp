@@ -38,6 +38,7 @@ class sspmod_adfs_IdP_ADFS {
 			'ForceAuthn' => $forceAuthn,
 			'isPassive' => $isPassive,
 			'adfs:wctx' => $wctx,
+			'adfs:wreply' => (array_key_exists('wreply',$_GET)) ? $_GET['wreply'] : ''
 		);
 
 		$idp->handleAuthenticationRequest($state);		
@@ -163,7 +164,7 @@ class sspmod_adfs_IdP_ADFS {
 		$wresult = sspmod_adfs_IdP_ADFS::ADFS_SignResponse($response, $privateKeyFile, $certificateFile);
 
 		$wctx = $state['adfs:wctx'];
-		sspmod_adfs_IdP_ADFS::ADFS_PostResponse($spMetadata->getValue('prp'), $wresult, $wctx);
+		sspmod_adfs_IdP_ADFS::ADFS_PostResponse(($state['adfs:wreply']) ? $state['adfs:wreply'] : $spMetadata->getValue('prp'), $wresult, $wctx);
 	}
 /*
 	public static function handleAuthError(SimpleSAML_Error_Exception $exception, array $state) {
