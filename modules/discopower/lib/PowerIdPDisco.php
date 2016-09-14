@@ -248,6 +248,21 @@ class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco
         $preferredIdP = $this->getRecommendedIdP();
 
         $t = new SimpleSAML_XHTML_Template($this->config, 'discopower:disco.tpl.php', 'disco');
+        $discoPowerTabs = array(
+            'denmark' => $t->noop('{discopower:tabs:denmark}'),
+            'edugain' => $t->noop('{discopower:tabs:edugain}'),
+            'finland' => $t->noop('{discopower:tabs:finland}'),
+            'greece' => $t->noop('{discopower:tabs:greece}'),
+            'iceland' => $t->noop('{discopower:tabs:iceland}'),
+            'incommon' => $t->noop('{discopower:tabs:incommon}'),
+            'kalmar' => $t->noop('{discopower:tabs:kalmar}'),
+            'misc' => $t->noop('{discopower:tabs:misc}'),
+            'norway' => $t->noop('{discopower:tabs:norway}'),
+            'sweden' => $t->noop('{discopower:tabs:sweden}'),
+            'switzerland' => $t->noop('{discopower:tabs:switzerland}'),
+            'ukacessfederation' => $t->noop('{discopower:tabs:ukacessfederation}'),
+        );
+        $t->data['tabNames'] = $discoPowerTabs;
         $t->data['idplist'] = $idpList;
         $t->data['preferredidp'] = $preferredIdP;
         $t->data['return'] = $this->returnURL;
