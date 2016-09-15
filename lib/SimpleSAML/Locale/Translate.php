@@ -251,7 +251,7 @@ class Translate
      * (language => text) mappings.
      * @param array        $replacements An associative array of keys that should be replaced with values in the
      *     translated string.
-     * @param boolean      $fallbackdefault Default translation to use as a fallback if no valid translation was found.
+     * @param boolean      $fallbackdefault Default translation to use as a fallback if no valid translation was found. @deprecated Not used in twig, gettext
      *
      * @return string  The translated tag, or a placeholder value if the tag wasn't found.
      */
@@ -262,14 +262,21 @@ class Translate
         $oldreplacements = array(), // TODO: remove this for 2.0
         $striptags = false // TODO: remove this for 2.0
     ) {
+        $backtrace = debug_backtrace();
+        $where = $backtrace[0]['file'].':'.$backtrace[0]['line'];
+        if (!$fallbackdefault) {
+            \SimpleSAML\Logger::warning(
+                'Deprecated use of new SimpleSAML\Locale\Translate::t(...) at '.$where.
+                '. This parameter will go away, the fallback will become' .
+                ' identical to the $tag in 2.0.'
+            );
+        }
         if (!is_array($replacements)) {
             // TODO: remove this entire if for 2.0
 
             // old style call to t(...). Print warning to log
-            $backtrace = debug_backtrace();
-            $where = $backtrace[0]['file'].':'.$backtrace[0]['line'];
             \SimpleSAML\Logger::warning(
-                'Deprecated use of SimpleSAML_Template::t(...) at '.$where.
+                'Deprecated use of SimpleSAML\Locale\Translate::t(...) at '.$where.
                 '. Please update the code to use the new style of parameters.'
             );
 
