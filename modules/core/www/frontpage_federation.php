@@ -109,6 +109,8 @@ foreach ($metaentries['remote'] as $key => $value) {
 	}
 }
 
+$t = new SimpleSAML_XHTML_Template($config, 'core:frontpage_federation.tpl.php');
+
 # look up translated string
 $mtype = array(
     'saml20-sp-remote' => $t->noop('{admin:metadata_saml20-sp}'),
@@ -125,7 +127,6 @@ $mtype = array(
     'adfs-idp-hosted' => $t->noop('{admin:metadata_adfs-idp}'),
 );
 
-$t = new SimpleSAML_XHTML_Template($config, 'core:frontpage_federation.tpl.php');
 $t->data['pageid'] = 'frontpage_federation';
 $t->data['isadmin'] = $isadmin;
 $t->data['loginurl'] = $loginurl;
