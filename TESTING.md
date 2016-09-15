@@ -46,8 +46,9 @@ throws an exception in a specific situation:
   public function testAddURLParametersInvalidParameters() {
 ```
 
-Refer to [the `phpunit` documentation](https://phpunit.de/documentation.html)
-for more information on how to write tests.
+Refer to [the `phpunit 4.8` documentation](https://phpunit.de/manual/4.8/en/installation.html)
+for more information on how to write tests. We currently use the `phpunit 4.8` 
+since it is the last version to support php 5.3.
 
 Once you have implemented your tests, you can run them locally. First,
 make sure the `config` directory is **not** in the root of your
@@ -56,6 +57,13 @@ you have `phpunit` installed and run:
 
 ```sh
 phpunit -c tools/phpunit/phpunit.xml
+```
+
+If your default version of `phpunit` is more recent than 4.8, you can run
+the old version installed by composer
+
+```sh
+./vendor/bin/phpunit -c tools/phpunit/phpunit.xml
 ```
 
 All the tests are run by our *continuous integration* platform, 
