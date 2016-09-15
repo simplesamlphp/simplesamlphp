@@ -20,16 +20,10 @@ if ($this->data['errorcode'] !== null) {
         <h2><?php echo $this->t('{login:error_header}'); ?></h2>
 
         <p><strong><?php
-                echo htmlspecialchars($this->t(
-                    '{errors:title_'.$this->data['errorcode'].'}',
-                    $this->data['errorparams']
-                )); ?></strong></p>
+            echo htmlspecialchars($this->t($this->data['errorcodes']['title'][$this->data['errorcode']], $this->data['errorparams'])); ?></strong></p>
 
         <p><?php
-            echo htmlspecialchars($this->t(
-                '{errors:descr_'.$this->data['errorcode'].'}',
-                $this->data['errorparams']
-            )); ?></p>
+            echo htmlspecialchars($this->t($this->data['errorcodes']['descr'][$this->data['errorcode']], $this->data['errorparams'])); ?></p>
     </div>
 <?php
 }
