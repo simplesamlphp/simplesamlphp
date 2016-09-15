@@ -248,7 +248,7 @@ class Translate
      * provided in $replacements, and replace any found occurrences with the value of the key.
      *
      * @param string|array $tag A tag name for the translation which should be looked up, or an array with
-     * (language => text) mappings.
+     * (language => text) mappings. The array version will go away in 2.0
      * @param array        $replacements An associative array of keys that should be replaced with values in the
      *     translated string.
      * @param boolean      $fallbackdefault Default translation to use as a fallback if no valid translation was found. @deprecated Not used in twig, gettext
@@ -293,6 +293,10 @@ class Translate
 
         if (is_array($tag)) {
             $tagData = $tag;
+            \SimpleSAML\Logger::warning(
+                'Deprecated use of new SimpleSAML\Locale\Translate::t(...) at '.$where.
+                '. The $tag-parameter can only be a string in 2.0.'
+            );
         } else {
             $tagData = $this->getTag($tag);
             if ($tagData === null) {
