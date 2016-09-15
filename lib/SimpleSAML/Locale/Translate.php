@@ -228,7 +228,7 @@ class Translate
      *
      * @return string The tag, unchanged.
      */
-    public function noop($tag)
+    static public function noop($tag)
     {
         return $tag;
     }
