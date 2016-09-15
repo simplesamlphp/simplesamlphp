@@ -100,8 +100,8 @@ class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception
             $this->dictTitle = '{'.$this->module.':errors:title_'.$moduleCode[1].'}';
             $this->dictDescr = '{'.$this->module.':errors:descr_'.$moduleCode[1].'}';
         } else {
-            $this->dictTitle = '{errors:title_'.$this->errorCode.'}';
-            $this->dictDescr = '{errors:descr_'.$this->errorCode.'}';
+            $this->dictTitle = SimpleSAML\Error\ErrorCodes::getErrorCodeTitle($this->errorCode);
+            $this->dictDescr = SimpleSAML\Error\ErrorCodes::getErrorCodeDescription($this->errorCode);
         }
 
         if (!empty($this->parameters)) {
