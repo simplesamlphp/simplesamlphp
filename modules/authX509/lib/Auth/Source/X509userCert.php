@@ -13,13 +13,13 @@ class sspmod_authX509_Auth_Source_X509userCert extends SimpleSAML_Auth_Source {
 	 * x509 attributes to use from the certificate
 	 * for searching the user in the LDAP directory.
 	 */
-	private $x509attributes = array('UID' => 'uid');
+	protected $x509attributes = array('UID' => 'uid');
 
 
 	/**
 	 * LDAP attribute containing the user certificate
 	 */
-	private $ldapusercert = array('userCertificate;binary');
+	protected $ldapusercert = array('userCertificate;binary');
 
 
 	/**
@@ -63,7 +63,7 @@ class sspmod_authX509_Auth_Source_X509userCert extends SimpleSAML_Auth_Source {
 	 *
 	 * @param array $pem_data  PEM-encoded certificate
 	 */
-	private function pem2der($pem_data) {
+	public function pem2der($pem_data) {
 		$begin = "CERTIFICATE-----";
 		$end   = "-----END";
 		$pem_data = substr($pem_data,
@@ -79,7 +79,7 @@ class sspmod_authX509_Auth_Source_X509userCert extends SimpleSAML_Auth_Source {
 	 *
 	 * @param array $der_data  DER-encoded certificate
 	 */
-	private function der2pem($der_data) {
+	public function der2pem($der_data) {
 		$pem = chunk_split(base64_encode($der_data), 64, "\n");
 		$pem = "-----BEGIN CERTIFICATE-----\n".$pem.
 			"-----END CERTIFICATE-----\n";
