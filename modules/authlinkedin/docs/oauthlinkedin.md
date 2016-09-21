@@ -1,7 +1,7 @@
 Using the LinkedIn authentication source with SimpleSAMLphp
 ===========================================================
 
-Remember to configure `authsources.php`, with both Consumer key and secret.
+Remember to configure `authsources.php`, with both Consumer key and secret. Optionally you can set which attributes are requested from LinkedIn, the list of available attributes can be found here <https://developer.linkedin.com/docs/fields>.
 
 To get an API key and a secret, register the application at:
 
