@@ -27,9 +27,11 @@ class SimpleSAML_SessionHandlerPHP extends SimpleSAML_SessionHandler
      *   - name: the name of the session, as returned by session_name().
      *   - cookie_params: the parameters of the session cookie, as returned by session_get_cookie_params().
      *
+     * Note that SimpleSAML_Session->maintainPreviousSession() may update this value
+     *
      * @var array
      */
-    private $previous_session = array();
+    public $previous_session = array();
 
 
     /**

@@ -135,6 +135,15 @@ class SimpleSAML_Session implements Serializable
 
 
     /**
+     * The session ID used by the application including simplesamlphp
+     * See SessionHandlerPHP->previous_session for more details
+     *
+     * @var array
+     */
+    private $previousSession = array();
+
+
+    /**
      * Private constructor that restricts instantiation to either getSessionFromRequest() for the current session or
      * getSession() for a specific one.
      *
@@ -396,6 +405,7 @@ class SimpleSAML_Session implements Serializable
     {
         SimpleSAML\Logger::setTrackId($session->getTrackID());
         self::$instance = $session;
+        $session->maintainPreviousSession();
         return self::$instance;
     }
 
@@ -470,6 +480,28 @@ class SimpleSAML_Session implements Serializable
         $sh = SimpleSAML_SessionHandler::getSessionHandler();
         if ($sh instanceof SimpleSAML_SessionHandlerPHP) {
             $sh->restorePrevious();
+        }
+    }
+
+    /*
+     * First request: Saves previous session info in the current session
+     * Subsequent requests: Updates sessionHandler's previous_session to match
+     *
+     * This allows SessionHandlerPHP->restorePrevious() to function accross multiple requests
+     *
+     */
+    private function maintainPreviousSession() {
+        $sh = SimpleSAML_SessionHandler::getSessionHandler();
+        if (!$sh instanceof SimpleSAML_SessionHandlerPHP) {
+            return;
+        }
+
+        if (empty($this->previousSession)) {
+            $this->previousSession = $sh->previous_session;
+            $this->markDirty();
+        }
+        else {
+            $sh->previous_session = $this->previousSession;
         }
     }
 
