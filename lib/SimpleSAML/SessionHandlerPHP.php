@@ -215,7 +215,7 @@ class SimpleSAML_SessionHandlerPHP extends SimpleSAML_SessionHandler
 
 
     /**
-     * Load the session from the PHP session array.
+     * Load the SimpleSamlPHP session from the PHP session array.
      *
      * @param string|null $sessionId The ID of the session we should load, or null to use the default.
      *

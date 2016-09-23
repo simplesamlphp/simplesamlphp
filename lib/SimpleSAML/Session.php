@@ -138,6 +138,9 @@ class SimpleSAML_Session implements Serializable
      * Private constructor that restricts instantiation to either getSessionFromRequest() for the current session or
      * getSession() for a specific one.
      *
+     * Note that this constructor is not called with every request. The object
+     * is also loaded from storage via SessionHandler->loadSession()
+     *
      * @param boolean $transient Whether to create a transient session or not.
      */
     private function __construct($transient = false)
@@ -235,7 +238,9 @@ class SimpleSAML_Session implements Serializable
 
 
     /**
-     * Retrieves the current session. Creates a new session if there's not one.
+     * Returns the SimpleSAML_Session for this session
+     * - Retrieves from storage the first time this function is called during a request
+     * - Creates new object if this is the first request of a new session
      *
      * @return SimpleSAML_Session The current session.
      * @throws Exception When session couldn't be initialized and the session fallback is disabled by configuration.
