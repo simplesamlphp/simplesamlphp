@@ -10,9 +10,9 @@ if ($this->data['isadmin']) {
         $this->t('{core:frontpage:login_as_admin}').'</a></p>';
 }
 
-$now = time();
-echo '<dl>';
 if (is_array($this->data['metaentries']['hosted']) && count($this->data['metaentries']['hosted']) > 0) {
+    $now = time();
+    echo '<dl>';
     foreach ($this->data['metaentries']['hosted'] as $hm) {
         echo '<dt>'.$this->t($this->data['mtype'][$hm['metadata-set']]).'</dt>';
         echo '<dd>';
@@ -38,8 +38,8 @@ if (is_array($this->data['metaentries']['hosted']) && count($this->data['metaent
 
         echo '</p></dd>';
     }
+    echo '</dl>';
 }
-echo '</dl>';
 
 if (is_array($this->data['metaentries']['remote']) && count($this->data['metaentries']['remote']) > 0) {
     foreach ($this->data['metaentries']['remote'] as $setkey => $set) {
