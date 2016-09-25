@@ -54,7 +54,7 @@ if (isset($this->data['errorReportAddress'])) {
             <input type="email" size="25" name="email" value="<?php echo htmlspecialchars($this->data['email']); ?>" />
         </p>
         <p>
-            <textarea class="metadatabox" name="text" rows="6" style="width: 100%; padding: 0.5em;"><?php
+            <textarea class="metadatabox" name="text" rows="6" cols="50" style="width: 100%; padding: 0.5em;"><?php
                 echo $this->t('report_explain'); ?></textarea>
         </p>
         <p>
