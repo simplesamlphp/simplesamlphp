@@ -11,7 +11,6 @@ if ($this->data['isadmin']) {
 }
 
 if (is_array($this->data['metaentries']['hosted']) && count($this->data['metaentries']['hosted']) > 0) {
-    $now = time();
     echo '<dl>';
     foreach ($this->data['metaentries']['hosted'] as $hm) {
         echo '<dt>'.$this->t($this->data['mtype'][$hm['metadata-set']]).'</dt>';
@@ -42,6 +41,7 @@ if (is_array($this->data['metaentries']['hosted']) && count($this->data['metaent
 }
 
 if (is_array($this->data['metaentries']['remote']) && count($this->data['metaentries']['remote']) > 0) {
+    $now = time();
     foreach ($this->data['metaentries']['remote'] as $setkey => $set) {
 
         echo '<fieldset class="fancyfieldset"><legend>'.$this->t($this->data['mtype'][$setkey]).' (Trusted)</legend>';
