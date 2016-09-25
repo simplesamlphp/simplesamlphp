@@ -163,7 +163,7 @@ if ($this->data['errorcode'] !== null) {
                 </td>
             </tr>
             <tr id="mobilesubmit">
-                <td></td>
+                <td></td><td></td>
                 <td>
                     <button class="btn" tabindex="6">
                         <?php echo $this->t('{login:login_button}'); ?>
