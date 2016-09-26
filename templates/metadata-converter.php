@@ -11,7 +11,7 @@ $this->includeAtTemplateBase('includes/header.php');
         </p>
         <p>
             <?php echo $this->t('metaconv_selectfile'); ?>
-            <input type="file" name="xmlfile"/></p>
+            <input type="file" name="xmlfile" /></p>
         <p>
             <button type="submit" class="btn"><?php echo $this->t('metaconv_parse'); ?></button>
         </p>
@@ -34,7 +34,7 @@ if (!empty($output)) {
         <button data-clipboard-target="#metadata<?php echo $i; ?>" id="btn<?php echo $i; ?>"
                 class="btn topright" style="margin-right: 0.5em;">
             <img src="/<?php echo $this->data['baseurlpath'].'resources/icons/clipboard.svg'; ?>"
-                 alt="Copy to clipboard">
+                 alt="Copy to clipboard" />
         </button>
         <pre id="metadata<?php echo $i; ?>"><?php
             echo htmlspecialchars($text);

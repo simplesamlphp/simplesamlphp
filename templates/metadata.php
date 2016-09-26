@@ -9,7 +9,7 @@ $this->includeAtTemplateBase('includes/header.php'); ?>
         <pre id="metadataurl" class="input-left"><?php echo htmlspecialchars($this->data['metaurl']); ?></pre>
         <button data-clipboard-target="#metadataurl" id="btnurl" class="btnaddonright">
             <img src="/<?php echo $this->data['baseurlpath'].'resources/icons/clipboard.svg'; ?>"
-                 alt="Copy to clipboard">
+                 alt="Copy to clipboard" />
         </button>
     </div>
 <?php } ?>
@@ -18,7 +18,7 @@ $this->includeAtTemplateBase('includes/header.php'); ?>
     <div class="metadatabox">
          <button data-clipboard-target="#xmlmetadata" id="btnxml" class="btn topright" style="margin-right: 0.5em;">
             <img src="/<?php echo $this->data['baseurlpath'].'resources/icons/clipboard.svg'; ?>"
-                 alt="Copy to clipboard">
+                 alt="Copy to clipboard" />
         </button>
         <pre id="xmlmetadata"><?php echo $this->data['metadata']; ?></pre>
     </div>
@@ -27,7 +27,7 @@ $this->includeAtTemplateBase('includes/header.php'); ?>
     <div class="metadatabox">
         <button data-clipboard-target="#phpmetadata" id="btnphp" class="btn topright" style="margin-right: 0.5em;">
             <img src="/<?php echo $this->data['baseurlpath'].'resources/icons/clipboard.svg'; ?>"
-                 alt="Copy to clipboard">
+                 alt="Copy to clipboard" />
         </button>
         <pre id="phpmetadata"><?php echo $this->data['metadataflat']; ?></pre>
     </div>

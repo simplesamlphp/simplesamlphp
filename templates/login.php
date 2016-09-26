@@ -53,9 +53,9 @@
 			<td style="padding: .3em;"><?php echo $this->t('password'); ?></td>
 			<td><input id="password" type="password" tabindex="2" name="password" /></td>
 		</tr>
-	<tr><td></td><td>
-	<button type="submit" tabindex="5" id="mobilesubmit" class="btn"><?php echo $this->t('login_button'); ?></button>
-	</td></tr>
+        <tr><td></td><td></td><td>
+	        <button type="submit" tabindex="5" id="mobilesubmit" class="btn"><?php echo $this->t('login_button'); ?></button>
+	    </td></tr>
 	</table>
 	
 	
