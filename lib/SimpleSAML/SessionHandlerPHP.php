@@ -51,6 +51,14 @@ class SimpleSAML_SessionHandlerPHP extends SimpleSAML_SessionHandler
         }
 
         if ($previous_session) {
+            if (session_name() === $this->cookie_name || $this->cookie_name === null) {
+                SimpleSAML\Logger::warning(
+                    'There is already a PHP session with the same name as SimpleSAMLphp\'s session, or the '.
+                    "'session.phpsession.cookiename' configuration option is not set. Make sure to set ".
+                    "SimpleSAMLphp's cookie name with a value not used by any other applications."
+                );
+            }
+
             /*
              * We shouldn't have a session at this point, so it might be an application session. Save the details to
              * retrieve it later and commit.
