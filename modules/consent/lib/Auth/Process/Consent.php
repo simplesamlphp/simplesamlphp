@@ -144,13 +144,40 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
     /**
      * Helper function to check whether consent is disabled.
      *
-     * @param mixed $option  The consent.disable option. Either an array or a boolean.
+     * @param mixed $option  The consent.disable option. Either an array of array, an array or a boolean.
      * @param string $entityIdD  The entityID of the SP/IdP.
      * @return boolean  TRUE if disabled, FALSE if not.
      */
     private static function checkDisable($option, $entityId) {
         if (is_array($option)) {
-            return in_array($entityId, $option, TRUE);
+            // Check if consent.disable array has one element that is an array
+            if (count($option) === count($option, COUNT_RECURSIVE)) {
+                // Array is not multidimensional.  Simple in_array search suffices
+                return in_array($entityId, $option, true);
+            } else {
+                // Array contains at least one element that is an array, verify both possibilities
+                if (in_array($entityId, $option, true)) {
+                    return true;
+                } else {
+                    // Search in multidimensional arrays
+                    foreach ($option as $optionToTest) {
+                        if (is_array($optionToTest)) {
+                            if (array_key_exists('type', $optionToTest)) { 
+                                if ($optionToTest['type'] === 'regex') {
+                                    if (array_key_exists('pattern', $optionToTest)) {
+                                        // Evaluate regular expression and return true if entityId matches
+                                        if (preg_match($optionToTest['pattern'], $entityId) === 1) {
+                                            return true;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    // Base case : no match
+                    return false;
+                }
+            }
         } else {
             return (boolean)$option;
         }
