@@ -175,7 +175,7 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
                 if ($optionToTest['type'] === 'regex') {
                     // regex-based consent disabling
 
-                    if (!array_key_exists('pattern'), $optionToTest) {
+                    if (!array_key_exists('pattern', $optionToTest)) {
                         continue; // no pattern defined
                     }
 
@@ -189,7 +189,7 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
                 }
 
             } // end foreach
-            
+
             // Base case : no match
             return false;
 
