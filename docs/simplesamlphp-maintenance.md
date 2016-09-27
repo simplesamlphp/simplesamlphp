@@ -32,6 +32,27 @@ The `store.type` configuration option in `config.php` allows you to select which
 
 	'store.type' => 'phpsession',
 
+### Configuring PHP sessions
+
+To use the PHP session handler, set the `store.type` configuration option in `config.php`:
+
+    'store.type' => 'phpsession',
+
+Keep in mind that **PHP does not allow two sessions to be open at the same time**. This means if you are using PHP sessions both in your
+application and in SimpleSAMLphp at the same time, **they need to have different names**. When using the PHP session handler in
+SimpleSAMLphp, it is configured with different options than for other session handlers:
+ 
+    'session.phpsession.cookiename' => null,
+    'session.phpsession.savepath' => null,
+    'session.phpsession.httponly' => true,
+    
+Make sure to set `session.phpsession.cookiename` to a name different than the one in use by any other applications. If you are using
+SimpleSAMLphp as an Identity Provider, or any other applications using it are not using the default session name, you can use the default
+settings by leaving these options unset or setting them to `null`.
+
+If you need to restore your session's application after calling SimpleSAMLphp, you can do it by calling the `cleanup()` method of the
+`SimpleSAML_Session` class, like described [here](simplesamlphp-sp#section_6).
+
 ### Configuring memcache
 
 To use the memcache session handler, set the `store.type` parameter in `config.php`:
