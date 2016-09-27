@@ -154,30 +154,45 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
             if (count($option) === count($option, COUNT_RECURSIVE)) {
                 // Array is not multidimensional.  Simple in_array search suffices
                 return in_array($entityId, $option, true);
-            } else {
-                // Array contains at least one element that is an array, verify both possibilities
-                if (in_array($entityId, $option, true)) {
-                    return true;
-                } else {
-                    // Search in multidimensional arrays
-                    foreach ($option as $optionToTest) {
-                        if (is_array($optionToTest)) {
-                            if (array_key_exists('type', $optionToTest)) { 
-                                if ($optionToTest['type'] === 'regex') {
-                                    if (array_key_exists('pattern', $optionToTest)) {
-                                        // Evaluate regular expression and return true if entityId matches
-                                        if (preg_match($optionToTest['pattern'], $entityId) === 1) {
-                                            return true;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    // Base case : no match
-                    return false;
-                }
             }
+
+            // Array contains at least one element that is an array, verify both possibilities
+            if (in_array($entityId, $option, true)) {
+                return true;
+            }
+            
+            // Search in multidimensional arrays
+            foreach ($option as $optionToTest) {
+                if (!is_array($optionToTest)) {
+                    continue; // bad option
+                }
+
+                if (!array_key_exists('type', $optionToTest)) {
+                    continue; // option has no type
+                }
+
+                // Option has a type - switch processing depending on type value :
+                if ($optionToTest['type'] === 'regex') {
+                    // regex-based consent disabling
+
+                    if (!array_key_exists('pattern'), $optionToTest) {
+                        continue; // no pattern defined
+                    }
+
+                    if (preg_match($optionToTest['pattern'], $entityId) === 1) {
+                        return true;
+                    }
+                    
+                } else {
+                    // option type is not supported
+                    continue;
+                }
+
+            } // end foreach
+            
+            // Base case : no match
+            return false;
+
         } else {
             return (boolean)$option;
         }
