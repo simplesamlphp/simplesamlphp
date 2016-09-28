@@ -43,8 +43,11 @@ class ConsentTest extends \PHPUnit_Framework_TestCase
                 'metadata-set' => 'saml20-idp-local',
                 'consent.disable' => array(
                     'https://valid.flatstring.example.that.does.not.match',
+                    array(), // invalid consent option array should be ignored
+                    array('type'=>'invalid'), // invalid consent option type should be ignored
+                    array('type'=>'regex'), // regex consent option without pattern should be ignored
                     array('type'=>'regex', 'pattern'=>'/.*\.valid.regex\.that\.does\.not\.match.*/i'),
-                    'https://sp.example.org/my-sp',
+                    'https://sp.example.org/my-sp', // accept the SP that has this specific entityid
                 ),
                 'SingleSignOnService' => array(
                     array(
@@ -54,7 +57,7 @@ class ConsentTest extends \PHPUnit_Framework_TestCase
                 ),
             ),
             'Destination' => array(
-                'entityid' => 'https://sp.example.org/my-sp',
+                'entityid' => 'https://sp.example.org/my-sp', // valid entityid equal to the last one in the consent.disable array
                 'metadata-set' => 'saml20-sp-remote',
             ),
             'UserID' => 'jdoe',
@@ -71,9 +74,7 @@ class ConsentTest extends \PHPUnit_Framework_TestCase
                 'entityid' => 'https://idp.example.org',
                 'metadata-set' => 'saml20-idp-local',
                 'consent.disable' => array(
-                    'https://valid.flatstring.example.that.does.not.match',
-                    array('type'=>'regex', 'pattern'=>'/.*\.valid.regex\.that\.does\.not\.match.*/i'),
-                    array('type'=>'regex', 'pattern'=>'/.*\.example\.org.*/i'),
+                    array('type'=>'regex', 'pattern'=>'/.*\.example\.org.*/i'), // accept any SP that has an entityid that contains the string ".example.org"
                 ),
                 'SingleSignOnService' => array(
                     array(
@@ -83,7 +84,7 @@ class ConsentTest extends \PHPUnit_Framework_TestCase
                 ),
             ),
             'Destination' => array(
-                'entityid' => 'https://sp.example.org/my-sp',
+                'entityid' => 'https://sp.example.org/my-sp', // sp contains the string ".example.org"
                 'metadata-set' => 'saml20-sp-remote',
             ),
             'UserID' => 'jdoe',
