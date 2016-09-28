@@ -6,10 +6,11 @@
  * @package SimpleSAMLphp
  */
 
-namespace SimpleSAML\Test\Module\consent\Auth\Process;
+// Consent module has no namespace yet.  We should add it and then add it here also
+//namespace SimpleSAML\Test\Module\consent\Auth\Process;
 
 
-class ProcessTest extends \PHPUnit_Framework_TestCase
+class ConsentTest extends \PHPUnit_Framework_TestCase
 {
 
     /*
@@ -21,7 +22,6 @@ class ProcessTest extends \PHPUnit_Framework_TestCase
      */
     private function processFilter(array $config, array $request)
     {
-        //$filter = new \SimpleSAML\Module\saml\consent\Process\FilterScopes($config, null);
         $filter = new sspmod_consent_Auth_Process_Consent($config, null);
         $filter->process($request);
         return $request;
