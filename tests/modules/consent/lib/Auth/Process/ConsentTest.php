@@ -31,79 +31,69 @@ class ConsentTest extends \PHPUnit_Framework_TestCase
     /**
      * Test valid consent disable.
      */
-    public function testValidConsentDisableRegex()
+    public function testValidConsentDisable()
     {
         // test consent disable regex with match
-        $config = array(
-            'consent.disable' => array(
-                'type'=>'regex', 'pattern'=>'/.*\.example\.org.*/i',
-            ),
-        );
-        $request = array(
-            'Source'     => array(
-                'SingleSignOnService' => array(
-                    array(
-                        'Binding'  => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
-                        'Location' => 'https://www.example.org/saml2/idp/SSOService.php',
-                    ),
-                ),
-            ),
-            'Attributes' => array(
-                'eduPersonPrincipalName' => array('jdoe@example.com'),
-            ),
-        );
-        $result = $this->processFilter($config, $request);
-        $this->assertEquals($request['Attributes'], $result['Attributes']);
+        $config = array();
 
-        // test consent disable regex without match
-        $config = array(
-            'consent.disable' => array(
-                'type'=>'regex', 'pattern'=>'/.*\.otherexample\.org.*/i',
-            ),
-        );
+        // test consent disable with match on specific SP entityid
         $request = array(
             'Source'     => array(
+                'entityid' => 'https://idp.example.org',
+                'metadata-set' => 'saml20-idp-local',
+                'consent.disable' => array(
+                    'https://valid.flatstring.example.that.does.not.match',
+                    array('type'=>'regex', 'pattern'=>'/.*\.valid.regex\.that\.does\.not\.match.*/i'),
+                    'https://sp.example.org/my-sp',
+                ),
                 'SingleSignOnService' => array(
                     array(
                         'Binding'  => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
-                        'Location' => 'https://www.example.org/saml2/idp/SSOService.php',
+                        'Location' => 'https://idp.example.org/saml2/idp/SSOService.php',
                     ),
                 ),
             ),
+            'Destination' => array(
+                'entityid' => 'https://sp.example.org/my-sp',
+                'metadata-set' => 'saml20-sp-remote',
+            ),
+            'UserID' => 'jdoe',
             'Attributes' => array(
                 'eduPersonPrincipalName' => array('jdoe@example.com'),
             ),
         );
         $result = $this->processFilter($config, $request);
-        $this->assertEquals(array(), $result['Attributes']);
+        $this->assertEquals($request, $result); // The state should NOT have changed because NO consent should be necessary (match)
+
+        // test consent disable with match on SP through regular expression
+        $request = array(
+            'Source'     => array(
+                'entityid' => 'https://idp.example.org',
+                'metadata-set' => 'saml20-idp-local',
+                'consent.disable' => array(
+                    'https://valid.flatstring.example.that.does.not.match',
+                    array('type'=>'regex', 'pattern'=>'/.*\.valid.regex\.that\.does\.not\.match.*/i'),
+                    array('type'=>'regex', 'pattern'=>'/.*\.example\.org.*/i'),
+                ),
+                'SingleSignOnService' => array(
+                    array(
+                        'Binding'  => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
+                        'Location' => 'https://idp.example.org/saml2/idp/SSOService.php',
+                    ),
+                ),
+            ),
+            'Destination' => array(
+                'entityid' => 'https://sp.example.org/my-sp',
+                'metadata-set' => 'saml20-sp-remote',
+            ),
+            'UserID' => 'jdoe',
+            'Attributes' => array(
+                'eduPersonPrincipalName' => array('jdoe@example.com'),
+            ),
+        );
+        $result = $this->processFilter($config, $request);
+        $this->assertEquals($request, $result); // The state should NOT have changed because NO consent should be necessary (match)
+
     }
 
-
-    /**
-     * Test invalid consent disable.
-     */
-    public function testInvalidConsentDisable()
-    {
-        // test consent disable regex with wrong value format in config
-        $config = array(
-            'consent.disable' => array(
-                'type'=>'regex', '/.*\.example\.org.*/i',
-            ),
-        );
-        $request = array(
-            'Source'     => array(
-                'SingleSignOnService' => array(
-                    array(
-                        'Binding'  => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
-                        'Location' => 'https://www.example.org/saml2/idp/SSOService.php',
-                    ),
-                ),
-            ),
-            'Attributes' => array(
-                'eduPersonPrincipalName' => array('jdoe@example.com'),
-            ),
-        );
-        $result = $this->processFilter($config, $request);
-        $this->assertEquals(array(), $result['Attributes']);
-    }
 }
