@@ -10,7 +10,7 @@
 class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilter
 {
     /**
-     * Button to recive focus
+     * Button to receive focus
      *
      * @var string|null
      */
@@ -144,13 +144,55 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
     /**
      * Helper function to check whether consent is disabled.
      *
-     * @param mixed $option  The consent.disable option. Either an array or a boolean.
+     * @param mixed $option  The consent.disable option. Either an array of array, an array or a boolean.
      * @param string $entityIdD  The entityID of the SP/IdP.
      * @return boolean  TRUE if disabled, FALSE if not.
      */
     private static function checkDisable($option, $entityId) {
         if (is_array($option)) {
-            return in_array($entityId, $option, TRUE);
+            // Check if consent.disable array has one element that is an array
+            if (count($option) === count($option, COUNT_RECURSIVE)) {
+                // Array is not multidimensional.  Simple in_array search suffices
+                return in_array($entityId, $option, true);
+            }
+
+            // Array contains at least one element that is an array, verify both possibilities
+            if (in_array($entityId, $option, true)) {
+                return true;
+            }
+            
+            // Search in multidimensional arrays
+            foreach ($option as $optionToTest) {
+                if (!is_array($optionToTest)) {
+                    continue; // bad option
+                }
+
+                if (!array_key_exists('type', $optionToTest)) {
+                    continue; // option has no type
+                }
+
+                // Option has a type - switch processing depending on type value :
+                if ($optionToTest['type'] === 'regex') {
+                    // regex-based consent disabling
+
+                    if (!array_key_exists('pattern', $optionToTest)) {
+                        continue; // no pattern defined
+                    }
+
+                    if (preg_match($optionToTest['pattern'], $entityId) === 1) {
+                        return true;
+                    }
+                    
+                } else {
+                    // option type is not supported
+                    continue;
+                }
+
+            } // end foreach
+
+            // Base case : no match
+            return false;
+
         } else {
             return (boolean)$option;
         }
