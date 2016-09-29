@@ -1,19 +1,17 @@
 <?php
 /**
- * Test for the consent:Process filter.
+ * Test for the consent:Consent authproc filter.
  *
  * @author Vincent Rioux <vrioux@ctech.ca>
  * @package SimpleSAMLphp
  */
 
-// Consent module has no namespace yet.  We should add it and then add it here also
-//namespace SimpleSAML\Test\Module\consent\Auth\Process;
-
+namespace SimpleSAML\Test\Module\consent\Auth\Process;
 
 class ConsentTest extends \PHPUnit_Framework_TestCase
 {
 
-    /*
+    /**
      * Helper function to run the filter with a given configuration.
      *
      * @param array $config  The filter configuration.
@@ -22,16 +20,16 @@ class ConsentTest extends \PHPUnit_Framework_TestCase
      */
     private function processFilter(array $config, array $request)
     {
-        $filter = new sspmod_consent_Auth_Process_Consent($config, null);
+        $filter = new \sspmod_consent_Auth_Process_Consent($config, null);
         $filter->process($request);
         return $request;
     }
 
 
     /**
-     * Test valid consent disable.
+     * Test for the private checkDisable() method.
      */
-    public function testValidConsentDisable()
+    public function testCheckDisable()
     {
         // test consent disable regex with match
         $config = array();
@@ -43,11 +41,6 @@ class ConsentTest extends \PHPUnit_Framework_TestCase
                 'metadata-set' => 'saml20-idp-local',
                 'consent.disable' => array(
                     'https://valid.flatstring.example.that.does.not.match',
-                    array(), // invalid consent option array should be ignored
-                    array('type'=>'invalid'), // invalid consent option type should be ignored
-                    array('type'=>'regex'), // regex consent option without pattern should be ignored
-                    array('type'=>'regex', 'pattern'=>'/.*\.valid.regex\.that\.does\.not\.match.*/i'),
-                    'https://sp.example.org/my-sp', // accept the SP that has this specific entityid
                 ),
                 'SingleSignOnService' => array(
                     array(
@@ -57,8 +50,14 @@ class ConsentTest extends \PHPUnit_Framework_TestCase
                 ),
             ),
             'Destination' => array(
-                'entityid' => 'https://sp.example.org/my-sp', // valid entityid equal to the last one in the consent.disable array
+                // valid entityid equal to the last one in the consent.disable array
+                'entityid' => 'https://sp.example.org/my-sp',
                 'metadata-set' => 'saml20-sp-remote',
+                'consent.disable' => array(
+                    array('type' => 'regex', 'pattern' => '/invalid/i'),
+                    'https://sp.example.org/my-sp', // accept the SP that has this specific entityid
+                    'https://idp.example.org',
+                ),
             ),
             'UserID' => 'jdoe',
             'Attributes' => array(
@@ -66,7 +65,8 @@ class ConsentTest extends \PHPUnit_Framework_TestCase
             ),
         );
         $result = $this->processFilter($config, $request);
-        $this->assertEquals($request, $result); // The state should NOT have changed because NO consent should be necessary (match)
+        // the state should NOT have changed because NO consent should be necessary (match)
+        $this->assertEquals($request, $result);
 
         // test consent disable with match on SP through regular expression
         $request = array(
@@ -74,7 +74,14 @@ class ConsentTest extends \PHPUnit_Framework_TestCase
                 'entityid' => 'https://idp.example.org',
                 'metadata-set' => 'saml20-idp-local',
                 'consent.disable' => array(
-                    array('type'=>'regex', 'pattern'=>'/.*\.example\.org.*/i'), // accept any SP that has an entityid that contains the string ".example.org"
+                    array(), // invalid consent option array should be ignored
+                    1234, // bad option
+                    array(''), // no type
+                    array('type'=>'invalid'), // invalid consent option type should be ignored
+                    array('type'=>'regex'), // regex consent option without pattern should be ignored
+                    array('type'=>'regex', 'pattern'=>'/.*\.valid.regex\.that\.does\.not\.match.*/i'),
+                    // accept any SP that has an entityid that contains the string ".example.org"
+                    array('type'=>'regex', 'pattern'=>'/.*\.example\.org\/.*/i'),
                 ),
                 'SingleSignOnService' => array(
                     array(
@@ -93,8 +100,17 @@ class ConsentTest extends \PHPUnit_Framework_TestCase
             ),
         );
         $result = $this->processFilter($config, $request);
-        $this->assertEquals($request, $result); // The state should NOT have changed because NO consent should be necessary (match)
+        // the state should NOT have changed because NO consent should be necessary (match)
+        $this->assertEquals($request, $result);
 
+        // test corner cases
+        $request['Source']['consent.disable'] = array(
+            'https://valid.flatstring.example.that.does.not.match',
+            array('foo' => 'bar'),
+        );
+        $request['Destination']['consent.disable'] = 1;
+        $result = $this->processFilter($config, $request);
+        // the state should NOT have changed because NO consent should be necessary (match)
+        $this->assertEquals($request, $result);
     }
-
 }
