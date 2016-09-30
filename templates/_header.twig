@@ -6,7 +6,7 @@
 <div id="languagebar">
     {% for lang in languageBar %}
 
-    {%- if not loop.first -%} | {%- endif -%}{% if lang.url %}<a href="{{ lang.url }}">{{ lang.name }}</a>{% else %}{{ lang.name }}{% endif %}
+    {%- if not loop.first -%} | {% endif -%}{% if lang.url %}<a href="{{ lang.url }}">{{ lang.name }}</a>{% else %}{{ lang.name }}{% endif %}
 
     {% endfor %}
 

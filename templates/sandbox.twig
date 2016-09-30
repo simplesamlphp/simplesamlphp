@@ -2,5 +2,10 @@
 {% block content %}
     <p>This page exists as a sandbox to play with twig without affecting anything else. The template is in ./templates.</p>
     <p>{{ sometext }}</p>
+    <h2>And now for some localization</h2>
+    <p>Locale backend in use: {{ localeBackend }}</p>
+    <p>Original: Hello, Untranslated World!</p>
+    <p>Translated: {% trans 'Hello, Untranslated World!' %}</p>
+    <p>Filtertrans-test: {{ 'Hello, Untranslated World!'|trans }}</p>
     <p>Current locale set: {{ currentLanguage }}</p>
 {% endblock content %}

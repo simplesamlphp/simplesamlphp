@@ -70,7 +70,10 @@ class Language
     private $customFunction;
 
     /**
-     * A list of languages supported with their names localized, indexed by ISO 639-2 code.
+     * A list of languages supported with their names localized.
+     * Indexed by something that mostly resembles ISO 639-1 code,
+     * with some charming SimpleSAML-specific variants...
+     * that must remain before 2.0 due to backwards compatibility
      *
      * @var array
      */
@@ -78,7 +81,7 @@ class Language
         'no'    => 'Bokmål', // Norwegian Bokmål
         'nn'    => 'Nynorsk', // Norwegian Nynorsk
         'se'    => 'Sámegiella', // Northern Sami
-        'sam'   => 'Åarjelh-saemien giele', // Southern Sami
+        'sma'   => 'Åarjelh-saemien giele', // Southern Sami
         'da'    => 'Dansk', // Danish
         'en'    => 'English',
         'de'    => 'Deutsch', // German
@@ -115,6 +118,17 @@ class Language
         'eu'    => 'Euskara', // Basque
     );
 
+    /**
+     * A mapping of SSP languages to locales
+     *
+     * @var array
+     */
+    private $languagePosixMapping = array(
+        'no' => 'nb_NO',
+        'en' => 'en_US',
+        'nn' => 'nn_NO',
+    );
+
 
     /**
      * Constructor
@@ -135,6 +149,20 @@ class Language
                 $this->configuration->getBoolean('language.parameter.setcookie', true)
             );
         }
+    }
+
+
+    /*
+     * Rename to non-idiosyncratic language code
+     *
+     * @param string $language Language code for the language to rename, if neccesary.
+     */
+    public function getPosixLanguage($language)
+    {
+        if (isset($this->languagePosixMapping[$language])) {
+            return $this->languagePosixMapping[$language];
+        }
+        return $language;
     }
 
 

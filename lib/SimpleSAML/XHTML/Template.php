@@ -7,6 +7,12 @@
  * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
  */
+
+
+use JaimePerez\TwigConfigurableI18n\Twig\Environment as Twig_Environment;
+use JaimePerez\TwigConfigurableI18n\Twig\Extensions\Extension\I18n as Twig_Extensions_Extension_I18n;
+
+
 class SimpleSAML_XHTML_Template
 {
 
@@ -23,6 +29,13 @@ class SimpleSAML_XHTML_Template
      * @var \SimpleSAML\Locale\Translate
      */
     private $translator;
+
+    /**
+     * The localization backend
+     *
+     * @var \SimpleSAML\Locale\Localization
+     */
+    private $localization;
 
     /**
      * The configuration to use in this template.
@@ -65,6 +78,8 @@ class SimpleSAML_XHTML_Template
         // TODO: do not remove the slash from the beginning, change the templates instead!
         $this->data['baseurlpath'] = ltrim($this->configuration->getBasePath(), '/');
         $this->translator = new SimpleSAML\Locale\Translate($configuration, $defaultDictionary);
+        $this->localization = new \SimpleSAML\Locale\Localization($configuration);
+        $this->useTwig =  $this->setupTwig();
         $this->twig = $this->setupTwig();
     }
 
@@ -122,9 +137,6 @@ class SimpleSAML_XHTML_Template
         foreach ($templateDirs as $entry) {
             $loader->addPath($entry[key($entry)], key($entry));
         }
-        if (!$loader->exists($this->twig_template)) {
-            return false;
-        }
         return $loader;
     }
 
@@ -142,11 +154,27 @@ class SimpleSAML_XHTML_Template
         }
         // set up template paths
         $loader = $this->setupTwigTemplatepaths();
-        if (!$loader) {
+        // abort if twig template does not exist
+        if (!$loader->exists($this->twig_template)) {
             return null;
         }
 
-        return new \Twig_Environment($loader, array('cache' => $cache, 'auto_reload' => $auto_reload));
+        $twig = new \Twig_Environment($loader,
+            array('cache' => $cache, 'auto_reload' => $auto_reload,
+                'translation_function' => '__',
+                'translation_function_plural' => 'n__',
+            )
+        );
+        // set up translation
+        if ($this->localization->i18nBackend == 'twig.gettextgettext') {
+            /* if something like pull request #166 is ever merged with
+             * twig.extensions.i18n, use the line below:
+             * $twig->addExtension(new \Twig_Extensions_Extension_I18n('__', 'n__'));
+             * instead of the two lines after this comment
+             */
+            $twig->addExtension(new \Twig_Extensions_Extension_I18n());
+        }
+        return $twig;
     }
 
     /*
@@ -252,6 +280,7 @@ class SimpleSAML_XHTML_Template
      */
     private function twigDefaultContext()
     {
+        $this->data['localeBackend'] = $this->configuration->getString('language.i18n.backend', 'ssp');
         $this->data['currentLanguage'] = $this->translator->getLanguage()->getLanguage();
         // show language bar by default
         if (!isset($this->data['hideLanguageBar'])) {
