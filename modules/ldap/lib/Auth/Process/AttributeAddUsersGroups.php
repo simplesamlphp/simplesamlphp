@@ -235,6 +235,14 @@ class sspmod_ldap_Auth_Process_AttributeAddUsersGroups extends sspmod_ldap_Auth_
             ' Group Type: ' . $this->type_map['group']
         );
 
+        // Work out what attributes to get for a group
+        $use_group_name = FALSE;
+        $get_attributes = array($map['memberof'], $map['type']);
+        if (isset($map['name']) && $map['name']) {
+            $get_attributes[] = $map['name'];
+            $use_group_name = TRUE;
+        }
+
         // Check each DN of the passed memberOf
         foreach ($memberof as $dn) {
 
@@ -249,7 +257,7 @@ class sspmod_ldap_Auth_Process_AttributeAddUsersGroups extends sspmod_ldap_Auth_
 
             // Query LDAP for the attribute values for the DN
             try {
-                $attributes = $this->getLdap()->getAttributes($dn, array($map['memberof'], $map['type']));
+                $attributes = $this->getLdap()->getAttributes($dn, $get_attributes);
             } catch (SimpleSAML_Error_AuthSource $e) {
                 continue; // DN must not exist, just continue. Logged by the LDAP object
             }
@@ -260,7 +268,11 @@ class sspmod_ldap_Auth_Process_AttributeAddUsersGroups extends sspmod_ldap_Auth_
             }
 
             // Add to found groups array
-            $groups[] = $dn;
+            if ($use_group_name && isset($attributes[$map['name']]) && is_array($attributes[$map['name']])) {
+                $groups[] = $attributes[$map['name']][0];
+            } else {
+                $groups[] = $dn;
+            }
 
             // Recursively search "sub" groups
             if (!empty($attributes[$map['memberof']])) {
