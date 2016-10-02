@@ -116,9 +116,13 @@ class sspmod_metarefresh_MetaLoader {
 			}
 
 			if(array_key_exists('validateFingerprint', $source) && $source['validateFingerprint'] !== NULL) {
-				if(!$entity->validateFingerprint($source['validateFingerprint'])) {
-					SimpleSAML_Logger::info('Skipping "' . $entity->getEntityId() . '" - could not verify signature using fingerprint.' . "\n");
-					continue;
+				if(!array_key_exists('certificates', $source) || $source['certificates'] == NULL) {
+					if(!$entity->validateFingerprint($source['validateFingerprint'])) {
+						SimpleSAML_Logger::info('Skipping "' . $entity->getEntityId() . '" - could not verify signature using fingerprint.' . "\n");
+						continue;
+					}
+				} else {
+					SimpleSAML_Logger::info('Skipping validation with fingerprint since option certificate is set.' . "\n");
 				}
 			}
 
