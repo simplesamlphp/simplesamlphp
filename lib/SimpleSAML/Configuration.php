@@ -120,7 +120,17 @@ class SimpleSAML_Configuration
 
             // the file initializes a variable named '$config'
             ob_start();
-            require($filename);
+            if (interface_exists('Throwable')) {
+                try {
+                    require($filename);
+                } catch (ParseError $e) {
+                    self::$loadedConfigs[$filename] = self::loadFromArray(array(), '[ARRAY]', 'simplesaml');
+                    throw new SimpleSAML\Error\ConfigurationError($e->getMessage(), $filename, array());
+                }
+            } else {
+                require($filename);
+            }
+
             $spurious_output = ob_get_length() > 0;
             ob_end_clean();
 
