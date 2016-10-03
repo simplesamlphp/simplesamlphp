@@ -115,7 +115,6 @@ class SimpleSAML_Configuration
             return self::$loadedConfigs[$filename];
         }
 
-        $spurious_output = false;
         if (file_exists($filename)) {
             $config = 'UNINITIALIZED';
 
