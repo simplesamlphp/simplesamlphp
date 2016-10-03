@@ -96,7 +96,7 @@ try {
     SimpleSAML_Configuration::getInstance();
 } catch (Exception $e) {
     throw new \SimpleSAML\Error\CriticalConfigurationError(
-        'You have not yet created the SimpleSAMLphp configuration files.'
+        $e->getMessage()
     );
 }
 
