@@ -165,21 +165,21 @@ class SimpleSAML_XHTML_Template
             return false;
         }
 
-        $twig = new \Twig_Environment($loader,
-            array('cache' => $cache, 'auto_reload' => $auto_reload,
-                'translation_function' => '__',
-                'translation_function_plural' => 'n__',
-            )
+        $options = array(
+            'cache' => $cache,
+            'auto_reload' => $auto_reload,
+            'translation_function' => 'gettext',
+            'translation_function_plural' => 'ngettext',
         );
+
         // set up translation
-        if ($this->localization->i18nBackend == 'twig.gettextgettext') {
-            /* if something like pull request #166 is ever merged with
-             * twig.extensions.i18n, use the line below:
-             * $twig->addExtension(new \Twig_Extensions_Extension_I18n('__', 'n__'));
-             * instead of the two lines after this comment
-             */
-            $twig->addExtension(new \Twig_Extensions_Extension_I18n());
-        }
+        if ($this->localization->i18nBackend === 'gettext/gettext') {
+            $options['translation_function'] = array('\SimpleSAML\Locale\Translate', 'translateSingular');
+            $options['translation_function_plural'] = array('\SimpleSAML\Locale\Translate', 'translatePlural');
+        } // TODO: add a branch for the old SimpleSAMLphp backend
+
+        $twig = new Twig_Environment($loader, $options);
+        $twig->addExtension(new Twig_Extensions_Extension_I18n());
         return $twig;
     }
 
