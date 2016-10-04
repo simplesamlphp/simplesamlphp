@@ -2,9 +2,6 @@
 
 namespace SimpleSAML\Test\Locale;
 
-use Gettext\Translations;
-use Gettext\Translator;
-
 use SimpleSAML\Locale\Localization;
 
 class LocalizationTest extends \PHPUnit_Framework_TestCase
@@ -80,8 +77,5 @@ class LocalizationTest extends \PHPUnit_Framework_TestCase
 
         // Reset
         $l->restoreDefaultDomain();
-#         $curDomain = $l->getCurrentDomain();
-#         $this->assertEquals($curDomain, Localization::DEFAULT_DOMAIN);
     }
-
 }
