@@ -30,7 +30,7 @@ class Localization
     /**
      * Default 1i18n backend
      */
-    const DEFAULT_I18NBACKEND = 'twig.gettextgettext';
+    const DEFAULT_I18NBACKEND = 'SimpleSAMLphp';
 
     /*
      * The default locale directory
@@ -169,9 +169,10 @@ class Localization
     /**
      * Set up L18N if configured or fallback to old system
      */
-    private function setupL10N() {
+    private function setupL10N()
+    {
         // use old system
-        if (! $this->isI18NBackendDefault()) {
+        if ($this->isI18NBackendDefault()) {
             \SimpleSAML\Logger::debug("Localization: using old system");
             return;
         }
