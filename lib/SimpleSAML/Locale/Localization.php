@@ -130,9 +130,10 @@ class Localization
      *
      * @param string $domain Name of domain
      */
-    private function loadGettextGettextFromPO($domain = self::DEFAULT_DOMAIN) {
-        $t = new Translator();
-        $t->register();
+    private function loadGettextGettextFromPO($domain = self::DEFAULT_DOMAIN)
+    {
+        $this->translator = new Translator();
+        $this->translator->register();
         try {
             $langPath = $this->getLangPath($domain);
         } catch (\Exception $e) {
@@ -143,7 +144,7 @@ class Localization
         $poPath = $langPath.$poFile;
         if (file_exists($poPath) && is_readable($poPath)) {
             $translations = Translations::fromPoFile($poPath);
-            $t->loadTranslations($translations);
+            $this->translator->loadTranslations($translations);
         } else {
             $error = "Localization file '$poFile' not found in '$langPath', falling back to default";
             \SimpleSAML\Logger::error($_SERVER['PHP_SELF'].' - '.$error);
