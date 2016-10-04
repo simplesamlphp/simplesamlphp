@@ -75,7 +75,6 @@ class SimpleSAML_XHTML_Template
         $this->data['baseurlpath'] = ltrim($this->configuration->getBasePath(), '/');
         $this->translator = new SimpleSAML\Locale\Translate($configuration, $defaultDictionary);
         $this->localization = new \SimpleSAML\Locale\Localization($configuration);
-        $this->useTwig =  $this->setupTwig();
         $this->twig = $this->setupTwig();
     }
 
