@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "24d2dd3eba19ca3565300d1b9398db90",
-    "content-hash": "6d5a31100702a21a90920649a249e682",
+    "hash": "8c00f782ce6ebb578fc1174355b01d62",
+    "content-hash": "5db285469a25f3c3a1e21975ac94c2e9",
     "packages": [
         {
             "name": "gettext/gettext",
@@ -123,16 +123,16 @@
         },
         {
             "name": "jaimeperez/twig-configurable-i18n",
-            "version": "v1.0",
+            "version": "v1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jaimeperez/twig-configurable-i18n.git",
-                "reference": "9b70edae9d512b06af24196c0ba24645cfcd87bd"
+                "reference": "75d4926fd102c9e62219ad7f94a6136d2f2ccd93"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jaimeperez/twig-configurable-i18n/zipball/9b70edae9d512b06af24196c0ba24645cfcd87bd",
-                "reference": "9b70edae9d512b06af24196c0ba24645cfcd87bd",
+                "url": "https://api.github.com/repos/jaimeperez/twig-configurable-i18n/zipball/75d4926fd102c9e62219ad7f94a6136d2f2ccd93",
+                "reference": "75d4926fd102c9e62219ad7f94a6136d2f2ccd93",
                 "shasum": ""
             },
             "require": {
@@ -163,7 +163,7 @@
                 "translation",
                 "twig"
             ],
-            "time": "2016-08-25 13:39:05"
+            "time": "2016-10-03 12:34:15"
         },
         {
             "name": "psr/log",
