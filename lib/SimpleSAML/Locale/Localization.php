@@ -110,16 +110,17 @@ class Localization
         $langPath = $localeDir.'/'.$defLangcode.'/LC_MESSAGES/';
         if (is_dir($langPath) && is_readable($langPath)) {
             // Report that the localization for the preferred language is missing
-            $error = "Localization not found for langcode '$langcode' at '$langPath', falling back to langcode '$defLangcode'";
-            \SimpleSAML_Logger::error($_SERVER['PHP_SELF'].' - '.$error);
+            $error = "Localization not found for langcode '$langcode' at '$langPath', falling back to langcode '".
+                     $defLangcode."'";
+            \SimpleSAML\Logger::error($_SERVER['PHP_SELF'].' - '.$error);
 
             return $langPath;
         }
 
         // Locale for default language missing even, error out
         $error = "Localization directory missing/broken for langcode '$langcode' and domain '$domain'";
-        \SimpleSAML_Logger::critical($_SERVER['PHP_SELF'].' - '.$error);
-        throw new Exception($error);
+        \SimpleSAML\Logger::critical($_SERVER['PHP_SELF'].' - '.$error);
+        throw new \Exception($error);
     }
 
 
@@ -144,7 +145,7 @@ class Localization
             $t->loadTranslations($translations);
         } else {
             $error = "Localization file '$poFile' not found in '$langPath', falling back to default";
-            \SimpleSAML_Logger::error($_SERVER['PHP_SELF'].' - '.$error);
+            \SimpleSAML\Logger::error($_SERVER['PHP_SELF'].' - '.$error);
         }
     }
 
