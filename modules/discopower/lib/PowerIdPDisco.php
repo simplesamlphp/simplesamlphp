@@ -249,7 +249,7 @@ class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco
         $faventry = NULL;
         foreach ($idpList AS $tab => $slist) {
             if (!empty($preferredIdP) && array_key_exists($preferredIdP, $slist)) {
-                $faventry = $slist[$preferredIdP]];
+                $faventry = $slist[$preferredIdP];
             }
         }
 
