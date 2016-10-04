@@ -96,7 +96,8 @@ class Localization
      * @param string $domain Name of localization domain
      * @throws Exception If the path does not exist even for the default, fallback language
      */
-    public function getLangPath($domain = self::DEFAULT_DOMAIN) {
+    public function getLangPath($domain = self::DEFAULT_DOMAIN)
+    {
         $langcode = explode('_', $this->langcode);
         $langcode = $langcode[0];
         $localeDir = $this->localeDomainMap[$domain];
@@ -199,6 +200,7 @@ class Localization
         $this->currentDomain = $domain;
     }
 
+
     /**
      * Get current translation domain
      */
@@ -206,6 +208,7 @@ class Localization
     {
         return $this->currentDomain ? $this->currentDomain : self::DEFAULT_DOMAIN;
     }
+
 
     /**
      * Go back to default translation domain
