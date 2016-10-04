@@ -48,6 +48,13 @@ class SimpleSAML_XHTML_Template
     private $template = 'default.php';
 
     /**
+     * The twig environment.
+     *
+     * @var false|Twig_Environment
+     */
+    private $twig;
+
+    /**
      * The template name.
      *
      * @var string
@@ -151,7 +158,7 @@ class SimpleSAML_XHTML_Template
         $loader = $this->setupTwigTemplatepaths();
         // abort if twig template does not exist
         if (!$loader->exists($this->twig_template)) {
-            return null;
+            return false;
         }
 
         $twig = new \Twig_Environment($loader, array('cache' => $cache, 'auto_reload' => $auto_reload));
@@ -309,7 +316,7 @@ class SimpleSAML_XHTML_Template
      */
     public function show()
     {
-        if ($this->twig) {
+        if ($this->twig !== false) {
             $this->twigDefaultContext();
             echo $this->twig->render($this->twig_template, $this->data);
         } else {
