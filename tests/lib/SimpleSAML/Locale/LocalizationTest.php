@@ -15,7 +15,7 @@ class LocalizationTest extends \PHPUnit_Framework_TestCase
     {
         // The constructor should activate the default domain
         $c = \SimpleSAML_Configuration::loadFromArray(
-            array('language.i18n.backend' => 'twig.gettextgettext')
+            array('language.i18n.backend' => 'SimpleSAMLphp')
         );
         $l = new Localization($c);
         $this->assertTrue($l->isI18NBackendDefault());
@@ -29,7 +29,7 @@ class LocalizationTest extends \PHPUnit_Framework_TestCase
     public function testAddDomain()
     {
         $c = \SimpleSAML_Configuration::loadFromArray(
-            array('language.i18n.backend' => 'twig.gettextgettext')
+            array('language.i18n.backend' => 'gettext/gettext')
         );
         $l = new Localization($c);
         $newDomain = 'test';
@@ -47,7 +47,7 @@ class LocalizationTest extends \PHPUnit_Framework_TestCase
     {
         // Add the domain to activate
         $c = \SimpleSAML_Configuration::loadFromArray(
-            array('language.i18n.backend' => 'twig.gettextgettext')
+            array('language.i18n.backend' => 'gettext/gettext')
         );
         $l = new Localization($c);
         $newDomain = 'test';
@@ -67,7 +67,7 @@ class LocalizationTest extends \PHPUnit_Framework_TestCase
     {
         // Add the domain to reset from
         $c = \SimpleSAML_Configuration::loadFromArray(
-            array('language.i18n.backend' => 'twig.gettextgettext')
+            array('language.i18n.backend' => 'gettext/gettext')
         );
         $l = new Localization($c);
         $newDomain = 'ssp';
