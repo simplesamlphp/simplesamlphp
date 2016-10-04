@@ -246,6 +246,12 @@ class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco
         $idpList = $this->getIdPList();
         $idpList = $this->idplistStructured($this->filterList($idpList));
         $preferredIdP = $this->getRecommendedIdP();
+        $faventry = NULL;
+        foreach ($idpList AS $tab => $slist) {
+            if (!empty($preferredIdP) && array_key_exists($preferredIdP, $slist)) {
+                $faventry = $slist[$preferredIdP]];
+            }
+        }
 
         $t = new SimpleSAML_XHTML_Template($this->config, 'discopower:disco.tpl.php', 'disco');
         $discoPowerTabs = array(
@@ -262,6 +268,7 @@ class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco
             'switzerland' => $t->noop('{discopower:tabs:switzerland}'),
             'ukacessfederation' => $t->noop('{discopower:tabs:ukacessfederation}'),
         );
+        $t->data['faventry'] = $faventry;
         $t->data['tabNames'] = $discoPowerTabs;
         $t->data['idplist'] = $idpList;
         $t->data['preferredidp'] = $preferredIdP;
