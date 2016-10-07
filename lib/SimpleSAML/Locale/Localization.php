@@ -28,9 +28,19 @@ class Localization
     const DEFAULT_DOMAIN = 'ssp';
 
     /**
-     * Default 1i18n backend
+     * Old internationalization backend included in SimpleSAMLphp.
      */
-    const DEFAULT_I18NBACKEND = 'SimpleSAMLphp';
+    const OLD_I18N_BACKEND = 'SimpleSAMLphp';
+
+    /**
+     * PHP's native internationalization backend (gettext).
+     */
+    const NATIVE_I18_NBACKEND = 'ext-intl';
+
+    /**
+     * An internationalization backend implemented purely in PHP.
+     */
+    const PHP_I18N_BACKEND = 'gettext/gettext';
 
     /*
      * The default locale directory
@@ -159,7 +169,7 @@ class Localization
      */
     public function isI18NBackendDefault()
     {
-        if ($this->i18nBackend === $this::DEFAULT_I18NBACKEND) {
+        if ($this->i18nBackend === $this::OLD_I18N_BACKEND) {
             return true;
         }
         return false;
@@ -171,14 +181,20 @@ class Localization
      */
     private function setupL10N()
     {
-        // use old system
-        if ($this->isI18NBackendDefault()) {
-            \SimpleSAML\Logger::debug("Localization: using old system");
-            return;
+        switch ($this->i18nBackend) {
+            case self::OLD_I18N_BACKEND: // use old system
+                \SimpleSAML\Logger::debug("Localization: using old system");
+                return;
+            case self::NATIVE_I18_NBACKEND:
+                putenv('LC_ALL='.$this->langcode);
+                putenv('LANGUAGE='.$this->langcode);
+                setlocale(LC_ALL, $this->langcode);
+                // continue to add the domain
+            default:
+                // setup default domain
+                $this->addDomain($this->localeDir, self::DEFAULT_DOMAIN);
+                $this->activateDomain(self::DEFAULT_DOMAIN);
         }
-        // setup default domain
-        $this->addDomain($this->localeDir, self::DEFAULT_DOMAIN);
-        $this->activateDomain(self::DEFAULT_DOMAIN);
     }
 
     /**
@@ -197,9 +213,15 @@ class Localization
      */
     public function activateDomain($domain)
     {
-        \SimpleSAML\Logger::debug("Localization: activate domain");
-        $this->loadGettextGettextFromPO($domain);
-        $this->currentDomain = $domain;
+        if ($this->i18nBackend === 'ext-intl') {
+            bindtextdomain($domain, $this->localeDir);
+            bind_textdomain_codeset($domain, 'UTF-8');
+            textdomain($domain);
+        } else {
+            \SimpleSAML\Logger::debug("Localization: activate domain");
+            $this->loadGettextGettextFromPO($domain);
+            $this->currentDomain = $domain;
+        }
     }
 
 
