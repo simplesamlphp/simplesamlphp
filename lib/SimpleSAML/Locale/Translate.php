@@ -469,7 +469,7 @@ class Translate
     }
 
 
-    public static function translateSingular($original)
+    public static function translateSingularPHPGettext($original)
     {
         $text = \Gettext\BaseTranslator::$current->gettext($original);
 
@@ -483,7 +483,7 @@ class Translate
     }
 
 
-    public static function translatePlural($original, $plural, $value)
+    public static function translatePluralPHPGettext($original, $plural, $value)
     {
         $text = \Gettext\BaseTranslator::$current->ngettext($original, $plural, $value);
 

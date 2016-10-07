@@ -174,8 +174,11 @@ class SimpleSAML_XHTML_Template
 
         // set up translation
         if ($this->localization->i18nBackend === 'gettext/gettext') {
-            $options['translation_function'] = array('\SimpleSAML\Locale\Translate', 'translateSingular');
-            $options['translation_function_plural'] = array('\SimpleSAML\Locale\Translate', 'translatePlural');
+            $options['translation_function'] = array('\SimpleSAML\Locale\Translate', 'translateSingularPHPGettext');
+            $options['translation_function_plural'] = array(
+                '\SimpleSAML\Locale\Translate',
+                'translatePluralPHPGettext'
+            );
         } // TODO: add a branch for the old SimpleSAMLphp backend
 
         $twig = new Twig_Environment($loader, $options);
