@@ -16,3 +16,9 @@ msgstr ""
 
 msgid "Hello, Untranslated World!"
 msgstr "Hallo, oversatte verden!"
+
+msgid "Hello, %who%!"
+msgstr "Hallo, %who%!"
+
+msgid "World"
+msgstr "Verden"
