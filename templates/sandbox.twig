@@ -28,7 +28,10 @@
     </ul>
     <p>Note that <code>gettext/gettext</code> <strong>will become the default</strong> in SimpleSAMLphp 2.0.
         Currently, you are using the following backend: <code>{{ localeBackend }}</code>.</p>
-    <p>Now, Twig allows you to translate strings in your templates. There are several ways to do that. If you want
+    <p>This page is written in english only, but the examples used here are translated to several languages. The current
+        language is <strong>{{ currentLanguage }}</strong>. Change to other languages to see the examples change.</p>
+    <h4>Usage examples</h4>
+    <p>Twig allows you to translate strings in your templates. There are several ways to do that. If you want
         to translate the following text: <em>Hello, Untranslated World!</em>, you can do it with:</p>
     <ul>
         <li><em>Inline trans tags</em>: using <code>{{ '{%' }} trans 'Hello, Untranslated World! %}</code> you would get
@@ -41,11 +44,14 @@
         variables. Just use placeholders of the form <code>%variable%</code> in the place where the contents of the
         variables should be placed, and pass an associative array to the <code>trans </code> filter.</p>
     {% set variable = 'Hello, %who%!' %}
-    {% set who = {'%who%': 'World'} %}
+    {% set world = 'World'|trans %}
+    {% set who = {'%who%': world} %}
     <p>If you have a variable with the text "<code>Hello, %who%!</code>" The code <code>{{ '{{' }}
-        variable|trans({'%who%': 'World' }) }}</code> will print "{{ variable|trans({'%who%': 'World'}) }}". The array
-        can also be passed in a variable, so that  <code>{{ '{{' }} variable|trans(who) }}</code> will also output
-        "{{ variable|trans(who) }}". Note that placeholders have names, so order is irrelevant, and can be changed
-        between translations.</p>
+        variable|trans({'%who%': 'World' }) }}</code> will print "{{ variable|trans({'%who%': 'World' }) }}". The array
+        can also be passed in a variable, so that  <code>{{ '{{' }} variable|trans(who) }}</code> will output
+        "{{ variable|trans(who) }}" when the variable <code>who</code> is defined as <code>{'%who%': world}</code> and
+        <code>world</code> is also a variable with the translation of the contents, for example, <code>{{ '{%' }}
+        set world = 'World'|trans %}</code>. Note that placeholders have names, so order is irrelevant, and can be
+        changed between translations.</p>
 
 {% endblock content %}
