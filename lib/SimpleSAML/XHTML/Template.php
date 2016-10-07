@@ -168,8 +168,8 @@ class SimpleSAML_XHTML_Template
         $options = array(
             'cache' => $cache,
             'auto_reload' => $auto_reload,
-            'translation_function' => 'gettext',
-            'translation_function_plural' => 'ngettext',
+            'translation_function' => array('\SimpleSAML\Locale\Translate', 'translateSingularNativeGettext'),
+            'translation_function_plural' => array('\SimpleSAML\Locale\Translate', 'translatePluralNativeGettext'),
         );
 
         // set up translation
