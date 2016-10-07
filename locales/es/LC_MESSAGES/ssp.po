@@ -14,10 +14,10 @@ msgstr ""
 "Language: en\n"
 
 msgid "Hello, Untranslated World!"
-msgstr "Hello, Translated World!"
+msgstr "Hola, Mundo sin traducir!"
 
 msgid "Hello, %who%!"
-msgstr "Hello, %who%!"
+msgstr "Hola, %who%!"
 
 msgid "World"
-msgstr "World"
+msgstr "Mundo"
