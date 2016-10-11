@@ -469,7 +469,7 @@ class Translate
     }
 
 
-    public static function translateSingularPHPGettext($original)
+    public static function translateSingularGettext($original)
     {
         $text = \Gettext\BaseTranslator::$current->gettext($original);
 
@@ -483,37 +483,9 @@ class Translate
     }
 
 
-    public static function translatePluralPHPGettext($original, $plural, $value)
+    public static function translatePluralGettext($original, $plural, $value)
     {
         $text = \Gettext\BaseTranslator::$current->ngettext($original, $plural, $value);
-
-        if (func_num_args() === 3) {
-            return $text;
-        }
-
-        $args = array_slice(func_get_args(), 3);
-
-        return strtr($text, is_array($args[0]) ? $args[0] : $args);
-    }
-
-
-    public static function translateSingularNativeGettext($original)
-    {
-        $text = gettext($original);
-
-        if (func_num_args() === 1) {
-            return $text;
-        }
-
-        $args = array_slice(func_get_args(), 1);
-
-        return strtr($text, is_array($args[0]) ? $args[0] : $args);
-    }
-
-
-    public static function translatePluralNativeGettext($original, $plural, $value)
-    {
-        $text = ngettext($original, $plural, $value);
 
         if (func_num_args() === 3) {
             return $text;

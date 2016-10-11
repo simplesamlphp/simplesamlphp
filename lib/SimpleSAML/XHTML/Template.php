@@ -173,11 +173,11 @@ class SimpleSAML_XHTML_Template
         );
 
         // set up translation
-        if ($this->localization->i18nBackend === 'gettext/gettext') {
-            $options['translation_function'] = array('\SimpleSAML\Locale\Translate', 'translateSingularPHPGettext');
+        if ($this->localization->i18nBackend === \SimpleSAML\Locale\Localization::GETTEXT_I18N_BACKEND) {
+            $options['translation_function'] = array('\SimpleSAML\Locale\Translate', 'translateSingularGettext');
             $options['translation_function_plural'] = array(
                 '\SimpleSAML\Locale\Translate',
-                'translatePluralPHPGettext'
+                'translatePluralGettext'
             );
         } // TODO: add a branch for the old SimpleSAMLphp backend
 
@@ -289,7 +289,7 @@ class SimpleSAML_XHTML_Template
      */
     private function twigDefaultContext()
     {
-        $this->data['localeBackend'] = $this->configuration->getString('language.i18n.backend', 'ssp');
+        $this->data['localeBackend'] = $this->configuration->getString('language.i18n.backend', 'SimpleSAMLphp');
         $this->data['currentLanguage'] = $this->translator->getLanguage()->getLanguage();
         // show language bar by default
         if (!isset($this->data['hideLanguageBar'])) {

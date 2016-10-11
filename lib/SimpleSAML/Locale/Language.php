@@ -125,7 +125,6 @@ class Language
      */
     private $languagePosixMapping = array(
         'no' => 'nb_NO',
-        'en' => 'en_US',
         'nn' => 'nn_NO',
     );
 

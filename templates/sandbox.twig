@@ -16,13 +16,11 @@
     <h2>Localization</h2>
     {% set variable = 'Hello, Untranslated World!' %}
     <p>SimpleSAMLphp lets you choose which translation backend to choose, thanks to the
-        <code>language.i18n.backend</code> configuration option. Three possible values are supported there:
+        <code>language.i18n.backend</code> configuration option. Two possible values are supported there:
     </p>
     <ul>
         <li><code>SimpleSAMLphp</code>: to keep using the old SimpleSAMLphp translation system. This is the
             default, and will disappear as an option in SimpleSAMLphp 2.0.</li>
-        <li><code>ext-intl</code>: to use PHP's native <em>gettext</em> implementation. Bear in mind that using this
-            will require you to install the locales of the languages you are planning to use, system-wide.</li>
         <li><code>gettext/gettext</code>: to use a <em>gettext</em> implementation written entirely in PHP, allowing
             you to use any locale, no matter if they are installed on the system or not.</li>
     </ul>
