@@ -75,6 +75,10 @@ class HTTP
      */
     private static function getServerHTTPS()
     {
+        if (array_key_exists('HTTP_X_FORWARDED_PROTO', $_SERVER) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https') {
+            // Server is behind load balancer.
+            return true;
+        }
         if (!array_key_exists('HTTPS', $_SERVER)) {
             // not an https-request
             return false;
@@ -101,6 +105,7 @@ class HTTP
     private static function getServerPort()
     {
         $port = (isset($_SERVER['SERVER_PORT'])) ? $_SERVER['SERVER_PORT'] : '80';
+        $port = (isset($_SERVER['HTTP_X_FORWARDED_PORT'])) ? $_SERVER['HTTP_X_FORWARDED_PORT'] : $port;
         if (self::getServerHTTPS()) {
             if ($port !== '443') {
                 return ':'.$port;
