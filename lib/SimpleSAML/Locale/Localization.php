@@ -25,7 +25,7 @@ class Localization
     /**
      * The default gettext domain.
      */
-    const DEFAULT_DOMAIN = 'ssp';
+    const DEFAULT_DOMAIN = 'messages';
 
     /**
      * Old internationalization backend included in SimpleSAMLphp.
