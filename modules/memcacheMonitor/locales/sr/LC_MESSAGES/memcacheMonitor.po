@@ -1,0 +1,75 @@
+
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: SimpleSAMLphp 1.15\n"
+"Report-Msgid-Bugs-To: simplesamlphp-translation@googlegroups.com\n"
+"POT-Creation-Date: 2016-10-12 09:23+0200\n"
+"PO-Revision-Date: 2016-10-12 09:23+0200\n"
+"Last-Translator: \n"
+"Language: sr\n"
+"Language-Team: \n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.3.4\n"
+
+msgid "{memcacheMonitor:memcachestat:total_connections}"
+msgstr "Ukupno konekcija"
+
+msgid "{memcacheMonitor:memcachestat:version}"
+msgstr "Verzija"
+
+msgid "{memcacheMonitor:memcachestat:get_hits}"
+msgstr "Ukupno GET naredbi (uspešno izvršenih)"
+
+msgid "{memcacheMonitor:memcachestat:curr_items}"
+msgstr "Trenutni broj elemenata"
+
+msgid "{memcacheMonitor:memcachestat:uptime}"
+msgstr "Ukupno vreme rada"
+
+msgid "{memcacheMonitor:memcachestat:limit_maxbytes}"
+msgstr "Ukupno raspoloživo memorijskog prostora"
+
+msgid "{memcacheMonitor:memcachestat:curr_connections}"
+msgstr "Trenutno otvorene konekcije"
+
+msgid "{memcacheMonitor:memcachestat:rusage_system}"
+msgstr "CPU sekundi (sistem)"
+
+msgid "{memcacheMonitor:memcachestat:rusage_user}"
+msgstr "CPU sekundi (korisnik)"
+
+msgid "{memcacheMonitor:memcachestat:pid}"
+msgstr "Identifikator procesa"
+
+msgid "{memcacheMonitor:memcachestat:cmd_get}"
+msgstr "Ukupno GET naredbi"
+
+msgid "{memcacheMonitor:memcachestat:bytes_read}"
+msgstr "Bajtova poslanih serveru"
+
+msgid "{memcacheMonitor:memcachestat:time}"
+msgstr "Trenutno vreme"
+
+msgid "{memcacheMonitor:memcachestat:get_misses}"
+msgstr "Ukupno GET naredbi (neuspešnih)"
+
+msgid "{memcacheMonitor:memcachestat:bytes_written}"
+msgstr "Bajtova zapisanih od strane servera"
+
+msgid "{memcacheMonitor:memcachestat:connection_structures}"
+msgstr "Struktura konekcija"
+
+msgid "{memcacheMonitor:memcachestat:cmd_set}"
+msgstr "Ukupno SET naredbi"
+
+msgid "{memcacheMonitor:memcachestat:total_items}"
+msgstr "Ukupno elemenata od početka"
+
+msgid "{memcacheMonitor:memcachestat:bytes}"
+msgstr "Trenutno ukupno bajtova u upotrebi"
+
