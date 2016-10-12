@@ -1,0 +1,839 @@
+
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: SimpleSAMLphp 1.15\n"
+"Report-Msgid-Bugs-To: simplesamlphp-translation@googlegroups.com\n"
+"POT-Creation-Date: 2016-10-12 09:31+0200\n"
+"PO-Revision-Date: 2016-10-12 09:31+0200\n"
+"Last-Translator: \n"
+"Language: el\n"
+"Language-Team: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.3.4\n"
+
+msgid "{admin:metadata_saml20-idp}"
+msgstr "Μεταδεδομένα Παρόχου Ταυτότητας SAML 2.0"
+
+msgid "{errors:descr_WRONGUSERPASS}"
+msgstr ""
+"Ο συνδυασμός ονόματος χρήστη και κωδικού πρόσβασης δεν είναι σωστός. "
+"Παρακαλώ ελέγξτε την ορθότητα των στοιχείων σας και προσπαθήστε ξανά."
+
+msgid "{logout:failed}"
+msgstr "Η αποσύνδεση απέτυχε"
+
+msgid "{status:attributes_header}"
+msgstr "Πληροφορίες"
+
+msgid "{admin:metaover_group_metadata.saml20-sp-remote}"
+msgstr "Πάροχος Υπηρεσιών SAML 2.0 (Απομακρυσμένος)"
+
+msgid "{errors:descr_NOCERT}"
+msgstr ""
+"Η ταυτοποίηση απέτυχε: Το πρόγραμμα περιήγησης ιστού που χρησιμοποιείτε "
+"δεν έστειλε πιστοποιητικό."
+
+msgid "{errors:title_PROCESSASSERTION}"
+msgstr "Εσφαλμένη απόκριση από τον πάροχο ταυτότητας"
+
+msgid "{errors:title_NOSTATE}"
+msgstr "Δεν βρέθηκαν πληροφορίες σχετικά με την κατάσταση του αιτήματος"
+
+msgid "{login:username}"
+msgstr "Όνομα Χρήστη"
+
+msgid "{errors:title_METADATA}"
+msgstr "Σφάλμα κατά τη φόρτωση μεταδεδομένων"
+
+msgid "{admin:metaconv_title}"
+msgstr "Αναλυτής (parser) μεταδεδομένων"
+
+msgid "{attributes:attribute_edupersonentitlement}"
+msgstr "Δικαιώματα πρόσβασης στην υπηρεσία"
+
+msgid "{attributes:attribute_jpegphoto}"
+msgstr "Φωτογραφία σε μορφή JPEG"
+
+msgid "{admin:cfg_check_noerrors}"
+msgstr "Δεν εντοπίστηκαν λάθη."
+
+msgid "{errors:descr_LOGOUTINFOLOST}"
+msgstr ""
+"Οι πληροφορίες σχετικά με την αποσύνδεση έχουν χαθεί. Θα πρέπει να "
+"επιστρέψετε στην υπηρεσία από την οποία προσπαθείτε να αποσυνδεθείτε και "
+"να προσπαθήσετε εκ νέου. Αυτό το σφάλμα μπορεί να παρουσιαστεί αν η ισχύς"
+" των πληροφοριών σχετικά με την αποσύνδεση έχει λήξει. Οι πληροφορίες "
+"αυτές αποθηκεύεται για περιορισμένο χρονικό διάστημα - συνήθως μερικών "
+"ωρών. Αυτό συνήθως επαρκεί για μια κανονική λειτουργία αποσύνδεσης, "
+"συνεπώς στην προκειμένη περίπτωση το σφάλμα μπορεί να υποδεικνύει κάποιο "
+"άλλο θέμα με τις ρυθμίσεις. Εάν το πρόβλημα παραμένει, επικοινωνήστε με "
+"τον πάροχο υπηρεσιών."
+
+msgid "{disco:previous_auth}"
+msgstr "Αποθηκευμένη προεπιλογή οικείου φορέα:"
+
+msgid "{admin:cfg_check_back}"
+msgstr "Επιστροφή στον κατάλογο αρχείων"
+
+msgid "{errors:report_trackid}"
+msgstr ""
+"Αν αναφέρετε αυτό το σφάλμα, παρακαλούμε να συμπεριλάβετε στην αναφορά "
+"σας αυτόν τον αριθμό προκειμένου να διευκολύνετε τη διαδικασία εντοπισμού"
+" και επίλυσης του προβλήματος:"
+
+msgid "{login:change_home_org_title}"
+msgstr "Αλλαγή οικείου φορέα"
+
+msgid "{errors:descr_METADATANOTFOUND}"
+msgstr "Δεν ήταν δυνατό να βρεθούν μεταδεδομένα για την οντότητα %ENTITYID%"
+
+msgid "{admin:metadata_metadata}"
+msgstr "Μεταδεδομένα"
+
+msgid "{errors:report_text}"
+msgstr ""
+"Προαιρετικά, εισάγετε τη διεύθυνση ηλεκτρονικού ταχυδρομείου σας ώστε να "
+"είμαστε σε θέση να έρθουμε σε επαφή μαζί σας για περαιτέρω ερωτήσεις "
+"σχετικά με το θέμα σας:"
+
+msgid "{errors:report_header}"
+msgstr "Αναφορά σφάλματος"
+
+msgid "{login:change_home_org_text}"
+msgstr "Επιλεγμένος οικείος φορέας: <b>%HOMEORG%</b>."
+
+msgid "{errors:title_PROCESSAUTHNREQUEST}"
+msgstr "Εσφαλμένο αίτημα από τον πάροχο υπηρεσιών"
+
+msgid "{errors:descr_PROCESSASSERTION}"
+msgstr ""
+"Παρουσιάστηκε σφάλμα κατά την επεξεργασία της απάντησης από τον πάροχο "
+"ταυτότητας."
+
+msgid "{errors:debuginfo_header}"
+msgstr "Πληροφορίες εντοπισμού σφαλμάτων"
+
+msgid "{admin:debug_sending_message_msg_text}"
+msgstr ""
+"Επειδή είστε σε κατάσταση εντοπισμού σφαλμάτων (debug), μπορείτε να δείτε"
+" το περιεχόμενο του μηνύματος που στέλνετε:"
+
+msgid "{errors:descr_RESPONSESTATUSNOSUCCESS}"
+msgstr ""
+"Ο κωδικός κατάστασης που περιέχει η απάντηση του παρόχου ταυτότητας "
+"υποδεικνύει σφάλμα."
+
+msgid "{admin:metadata_shib13-idp}"
+msgstr "Μεταδεδομένα Παρόχου Ταυτότητας Shib 1.3"
+
+msgid "{login:help_text}"
+msgstr ""
+"Λυπούμαστε. Χωρίς το όνομα χρήστη και τον κωδικό σας, δεν μπορείτε να "
+"ταυτοποιηθείτε ώστε να αποκτήσετε πρόσβαση στην υπηρεσία. Συμβουλευτείτε "
+"την υπηρεσία αρωγής χρηστών (help desk) του οργανισμού σας."
+
+msgid "{logout:default_link_text}"
+msgstr "Επιστροφή στην αρχική σελίδα"
+
+msgid "{admin:metaover_group_metadata.wsfed-idp-remote}"
+msgstr "Πάροχος Ταυτότητας WS-Federation (Απομακρυσμένος)"
+
+msgid "{errors:error_header}"
+msgstr "Σφάλμα του SimpleSAMLphp"
+
+msgid "{login:help_header}"
+msgstr "Βοήθεια! Δε θυμάμαι τον κωδικό μου."
+
+msgid "{errors:descr_LDAPERROR}"
+msgstr ""
+"Παρουσιάστηκε σφάλμα κατά την επικοινωνία με την υπηρεσία καταλόγου "
+"χρηστών (LDAP)."
+
+msgid "{errors:descr_METADATA}"
+msgstr ""
+"Υπάρχει κάποιο πρόβλημα στις ρυθμίσεις του SimpleSAMLphp. Εάν είστε ο "
+"διαχειριστής της υπηρεσίας αυτής, βεβαιωθείτε ότι τα μεταδεδομένα έχουν "
+"ρυθμιστεί σωστά."
+
+msgid "{attributes:attribute_edupersonorgdn}"
+msgstr "Διακεκριμένο όνομα (DN) οικείου οργανισμού"
+
+msgid "{errors:title_BADREQUEST}"
+msgstr "Εσφαλμένο αίτημα"
+
+msgid "{status:sessionsize}"
+msgstr "Μέγεθος συνεδρίας: %SIZE%"
+
+msgid "{attributes:attribute_postaladdress}"
+msgstr "Ταχυδρομική διεύθυνση"
+
+msgid "{logout:title}"
+msgstr "Αποσυνδεδεμένος/η"
+
+msgid "{admin:metaover_group_metadata.adfs-sp-remote}"
+msgstr "Πάροχος Υπηρεσιών ADFS (Απομακρυσμένος)"
+
+msgid "{admin:metaconv_xmlmetadata}"
+msgstr "Αναλυτής μεταδεδομένων XML"
+
+msgid "{status:subject_format}"
+msgstr "Μορφή (format)"
+
+msgid "{admin:metaover_unknown_found}"
+msgstr "Τα παρακάτω πεδία δεν αναγνωρίστηκαν"
+
+msgid "{errors:title_AUTHSOURCEERROR}"
+msgstr "Σφάλμα με την πηγή ταυτοποίησης"
+
+msgid "{login:select_home_org}"
+msgstr "Επιλογή οικείου φορέα"
+
+msgid "{logout:hold}"
+msgstr "Σε αναμονή"
+
+msgid "{admin:cfg_check_header}"
+msgstr "Έλεγχος ρυθμίσεων"
+
+msgid "{attributes:attribute_edupersonscopedaffiliation}"
+msgstr "Ιδιότητα ανά διαχειριστική περιοχή (administrative domain)"
+
+msgid "{attributes:attribute_sn}"
+msgstr "Επώνυμο"
+
+msgid "{admin:debug_sending_message_send}"
+msgstr "Υποβολή μηνύματος"
+
+msgid "{status:logout}"
+msgstr "Αποσύνδεση"
+
+msgid "{attributes:attribute_organisationname}"
+msgstr "Όνομα οργανισμού"
+
+msgid "{attributes:attribute_telephonenumber}"
+msgstr "Τηλέφωνο"
+
+msgid "{errors:descr_DISCOPARAMS}"
+msgstr ""
+"Οι παράμετροι που στάλθηκαν στην υπηρεσία ανεύρεσης παρόχου ταυτότητας "
+"ήταν εσφαλμένες."
+
+msgid "{attributes:attribute_mail}"
+msgstr "Email"
+
+msgid "{errors:descr_CREATEREQUEST}"
+msgstr "Παρουσιάστηκε σφάλμα κατά τη δημιουργία του αιτήματος SAML."
+
+msgid "{admin:metaover_optional_found}"
+msgstr "Προαιρετικά πεδία"
+
+msgid "{logout:return}"
+msgstr "Επιστροφή στην υπηρεσία"
+
+msgid "{errors:title_MEMCACHEDOWN}"
+msgstr "Δεν είναι δυνατή η ανάκτηση δεδομένων συνεδρίας"
+
+msgid "{attributes:attribute_displayname}"
+msgstr "Εμφανιζόμενο όνομα"
+
+msgid "{admin:metadata_xmlurl}"
+msgstr "Διεύθυνση <a href=\"%METAURL%\">λήψης</a> μεταδεδομένων:"
+
+msgid "{logout:logout_all}"
+msgstr "Ναι, όλες τις υπηρεσίες"
+
+msgid "{admin:debug_disable_debug_mode}"
+msgstr ""
+"Μπορείτε να απενεργοποιήσετε τη λειτουργία εντοπισμού σφαλμάτων (debug) "
+"στο αρχείο ρυθμίσεων του SimpleSAMLphp <tt>config/config.php</tt>."
+
+msgid "{attributes:attribute_homepostaladdress}"
+msgstr "Ταχυδρομική διεύθυνση οικίας"
+
+msgid "{disco:select}"
+msgstr "Επιλογή"
+
+msgid "{logout:also_from}"
+msgstr "Είστε επίσης συνδεδεμένος σε αυτές τις υπηρεσίες:"
+
+msgid "{login:login_button}"
+msgstr "Είσοδος"
+
+msgid "{logout:progress}"
+msgstr "Γίνεται αποσύνδεση..."
+
+msgid "{login:error_wrongpassword}"
+msgstr "Το όνομα χρήστη ή ο κωδικός πρόσβασης είναι λάθος."
+
+msgid "{admin:metaover_group_metadata.shib13-sp-remote}"
+msgstr "Πάροχος Υπηρεσιών Shib 1.3 (Απομακρυσμένος)"
+
+msgid "{login:remember_username}"
+msgstr "Να θυμάσαι το όνομα χρήστη"
+
+msgid "{errors:descr_PROCESSAUTHNREQUEST}"
+msgstr ""
+"Παρουσιάστηκε σφάλμα κατά την επεξεργασία του αιτήματος ταυτοποίησης που "
+"έλαβε ο πάροχος ταυτότητας από τον πάροχο υπηρεσιών."
+
+msgid "{logout:logout_all_question}"
+msgstr "Επιθυμείτε να αποσυνδεθείτε από όλες τις παραπάνω υπηρεσίες;"
+
+msgid "{attributes:attribute_title}"
+msgstr "Τίτλος"
+
+msgid "{errors:title_NOACCESS}"
+msgstr "Σφάλμα κατά την πρόσβαση"
+
+msgid "{login:error_nopassword}"
+msgstr "Ο κωδικός πρόσβασης δεν εστάλη. Παρακαλώ, προσπαθήστε ξανά."
+
+msgid "{errors:title_NORELAYSTATE}"
+msgstr "Σφάλμα παραμέτρου 'RelayState'"
+
+msgid "{errors:descr_NOSTATE}"
+msgstr ""
+"Δεν ήταν δυνατό να εξυπηρετηθεί το αίτημά σας καθώς δεν βρέθηκαν "
+"πληροφορίες σχετικά με την κατάστασή του"
+
+msgid "{attributes:attribute_noredupersonnin}"
+msgstr "Αριθμός ταυτότητας από δημόσια αρχή"
+
+msgid "{login:password}"
+msgstr "Κωδικός"
+
+msgid "{errors:debuginfo_text}"
+msgstr ""
+"Οι παρακάτω πληροφορίες μπορεί να διευκολύνουν τη διαδικασία εντοπισμού "
+"και επίλυσης σφαλμάτων."
+
+msgid "{admin:cfg_check_missing}"
+msgstr "Επιλογές που λείπουν από το αρχείο ρυθμίσεων"
+
+msgid "{errors:descr_UNHANDLEDEXCEPTION}"
+msgstr "Παρουσιάστηκε ανεπίλυτη εξαίρεση"
+
+msgid "{general:yes}"
+msgstr "Ναί"
+
+msgid "{errors:title_CONFIG}"
+msgstr "Σφάλμα ρυθμίσεων"
+
+msgid "{errors:title_LOGOUTREQUEST}"
+msgstr "Σφάλμα κατά τη διαδικασία αποσύνδεσης"
+
+msgid "{admin:metaover_errorentry}"
+msgstr "Σφάλμα σε αυτή την καταχώρηση μεταδεδομένων"
+
+msgid "{attributes:attribute_edupersonuniqueid}"
+msgstr "Μόνιμο, αδιαφανές αναγνωριστικό χρήστη στον οικείο οργανισμό"
+
+msgid "{attributes:attribute_edupersonaffiliation}"
+msgstr "Ιδιότητα/ες"
+
+msgid "{errors:title_METADATANOTFOUND}"
+msgstr "Δεν βρέθηκαν μεταδεδομένα"
+
+msgid "{attributes:attribute_givenname}"
+msgstr "Όνομα"
+
+msgid "{login:contact_info}"
+msgstr "Στοιχεία επικοινωνίας:"
+
+msgid "{errors:title_UNHANDLEDEXCEPTION}"
+msgstr "Ανεπίλυτη εξαίρεση"
+
+msgid "{status:validfor}"
+msgstr "Απομένουν %SECONDS% δευτερόλεπτα μέχρι τη λήξη της συνεδρίας σας."
+
+msgid "{status:header_saml20_sp}"
+msgstr "Δοκιμαστικός Παροχέας Υπηρεσιών SAML 2.0"
+
+msgid "{login:error_header}"
+msgstr "Σφάλμα"
+
+msgid "{errors:title_USERABORTED}"
+msgstr "Η ταυτοποίηση ματαιώθηκε"
+
+msgid "{logout:incapablesps}"
+msgstr ""
+"Μία ή περισσότερες υπηρεσίες με τις οποίες είστε συνδεδεμένος/η δεν "
+"υποστηρίζουν αποσύνδεση. Για το κλείσιμο όλων των συνεδριών σας "
+"(sessions), σας συνιστούμε να <i>κλείσετε</i> το πρόγραμμα πλοήγησης (web"
+" browser)."
+
+msgid "{admin:metaconv_selectfile}"
+msgstr "ή επιλέξτε αρχείο"
+
+msgid "{admin:metadata_xmlformat}"
+msgstr "Μεταδεδομένα σε μορφή xml SAML 2.0:"
+
+msgid "{admin:metaover_group_metadata.saml20-idp-remote}"
+msgstr "Πάροχος Ταυτότητας SAML 2.0 (Απομακρυσμένος)"
+
+msgid "{admin:metaover_group_metadata.saml20-idp-hosted}"
+msgstr "Πάροχος Ταυτότητας SAML 2.0 (Φιλοξενούμενος)"
+
+msgid "{status:subject_notset}"
+msgstr "δεν έχει οριστεί"
+
+msgid "{admin:metaover_required_found}"
+msgstr "Υποχρεωτικά πεδία"
+
+msgid "{admin:cfg_check_select_file}"
+msgstr "Επιλογή αρχείου για έλεγχο: "
+
+msgid "{errors:descr_UNKNOWNCERT}"
+msgstr ""
+"Η ταυτοποίηση απέτυχε: Το πιστοποιητικό που έστειλε το πρόγραμμα "
+"περιήγησης ιστού που χρησιμοποιείτε δεν ήταν δυνατό να αναγνωριστεί."
+
+msgid "{attributes:attribute_eduorghomepageuri}"
+msgstr "Διεύθυνση αρχικής σελίδας οικείου οργανισμού"
+
+msgid "{logout:logging_out_from}"
+msgstr "Γίνεται αποσύνδεση από τις ακόλουθες υπηρεσίες:"
+
+msgid "{logout:loggedoutfrom}"
+msgstr "Έχετε αποσυνδεθεί με επιτυχία από την υπηρεσία %SP%."
+
+msgid "{admin:metaover_group_metadata.wsfed-sp-hosted}"
+msgstr "Πάροχος Υπηρεσιών WS-Federation (Φιλοξενούμενος)"
+
+msgid "{errors:errorreport_text}"
+msgstr "Η αποστολή της αναφοράς σφάλματος στους διαχειριστές ολοκληρώθηκε."
+
+msgid "{status:subject_header}"
+msgstr "Υποκείμενο (subject) SAML"
+
+msgid "{attributes:attribute_noredupersonbirthdate}"
+msgstr "Ημερομηνία γέννησης"
+
+msgid "{errors:descr_LOGOUTREQUEST}"
+msgstr "Παρουσιαστήκε σφάλμα κατά την επεξεργασία του αιτήματος αποσύνδεσης."
+
+msgid "{attributes:attribute_edupersontargetedid}"
+msgstr "Αδιαφανές αναγνωριστικό χρήστη μακράς διάρκειας"
+
+msgid "{logout:success}"
+msgstr ""
+"Έχετε αποσυνδεθεί με επιτυχία από όλες τις υπηρεσίες που αναφέρονται "
+"παραπάνω."
+
+msgid "{admin:cfg_check_notices}"
+msgstr "Ειδοποιήσεις"
+
+msgid "{errors:descr_USERABORTED}"
+msgstr "Η ταυτοποίηση ματαιώθηκε από τον χρήστη."
+
+msgid "{attributes:attribute_edupersonprimaryaffiliation}"
+msgstr "Κύρια ιδιότητα"
+
+msgid "{attributes:attribute_postalcode}"
+msgstr "Ταχυδρομικός κωδικός"
+
+msgid "{errors:descr_CASERROR}"
+msgstr "Παρουσιάστηκε σφάλμα κατά την επικοινωνία με τον εξυπηρετητή CAS."
+
+msgid "{general:no}"
+msgstr "Όχι"
+
+msgid "{admin:metadata_saml20-sp}"
+msgstr "Μεταδεδομένα Παρόχου Υπηρεσιών SAML 2.0"
+
+msgid "{admin:metaconv_converted}"
+msgstr "Μετατραπέντα μεταδεδομένα"
+
+msgid "{attributes:attribute_cn}"
+msgstr "Κοινό όνομα (CN)"
+
+msgid "{logout:completed}"
+msgstr "Ολοκληρώθηκε"
+
+msgid "{errors:descr_NOTSET}"
+msgstr ""
+"Χρησιμοποιείται η προκαθορισμένη τιμή του κωδικού πρόσβασης. Παρακαλούμε "
+"επεξεργαστείτε το αρχείο ρυθμίσεων."
+
+msgid "{attributes:attribute_ou}"
+msgstr "Οργανωτική μονάδα"
+
+msgid "{general:service_provider}"
+msgstr "Πάροχος υπηρεσίας"
+
+msgid "{attributes:attribute_homephone}"
+msgstr "Τηλέφωνο οικίας"
+
+msgid "{attributes:attribute_dc}"
+msgstr "Συστατικό Τομέα (DC)"
+
+msgid "{errors:descr_BADREQUEST}"
+msgstr "Παρουσιάστηκε σφάλμα κατά την επεξεργασία του αιτήματος: %REASON%"
+
+msgid "{logout:no}"
+msgstr "Όχι"
+
+msgid "{disco:icon_prefered_idp}"
+msgstr "[Αποθηκευμένη προεπιλογή]"
+
+msgid "{general:no_cancel}"
+msgstr "Απόρριψη"
+
+msgid "{login:user_pass_header}"
+msgstr "Εισάγετε όνομα χρήστη και κωδικό πρόσβασης"
+
+msgid "{errors:report_explain}"
+msgstr "Περιγράψτε τις ενέργειές σας όταν συνέβη το σφάλμα..."
+
+msgid "{attributes:attribute_manager}"
+msgstr "Διακεκριμένο όνομα (DN) διαχειριστή"
+
+msgid "{errors:title_ACSPARAMS}"
+msgstr "Σφάλμα κατά την πρόσβαση στη διεπαφή AssertionConsumerService"
+
+msgid "{attributes:attribute_edupersonnickname}"
+msgstr "Ψευδώνυμο χρήστη"
+
+msgid "{errors:descr_SLOSERVICEPARAMS}"
+msgstr ""
+"Κατά την πρόσβασή σας στη διεπαφή SingleLogoutService παραλείψατε να "
+"συμπεριλάβετε μήνυμα LogoutRequest ή LogoutResponse του πρωτοκόλλου SAML."
+" Σημειώστε ότι αυτό το τελικό σημείο (endpoint) δεν προορίζεται να είναι "
+"άμεσα προσβάσιμο."
+
+msgid "{attributes:attribute_street}"
+msgstr "Οδός"
+
+msgid "{login:organization}"
+msgstr "Οργανισμός"
+
+msgid "{errors:title_WRONGUSERPASS}"
+msgstr "Το όνομα χρήστη ή ο κωδικός πρόσβασης είναι λάθος"
+
+msgid "{admin:metaover_required_not_found}"
+msgstr "Τα παρακάτω υποχρεωτικά πεδία δε βρέθηκαν"
+
+msgid "{errors:descr_NOACCESS}"
+msgstr ""
+"Αυτό το τελικό σημείο σύνδεσης (endpoint) δεν είναι ενεργοποιημένο. Εάν "
+"είστε ο διαχειριστής της υπηρεσίας, ελέγξτε τις ρυθμίσεις του "
+"SimpleSAMLphp."
+
+msgid "{errors:title_SLOSERVICEPARAMS}"
+msgstr "Σφάλμα κατά την πρόσβαση στη διεπαφή SingleLogoutService"
+
+msgid "{errors:descr_ACSPARAMS}"
+msgstr ""
+"Κατά την πρόσβασή σας στη διεπαφή AssertionConsumerService  παραλείψατε "
+"να συμπεριλάβετε απάντηση σε αίτημα ταυτοποίησης του πρωτοκόλλου SAML. "
+"Σημειώστε ότι αυτό το τελικό σημείο (endpoint) δεν προορίζεται να είναι "
+"άμεσα προσβάσιμο."
+
+msgid "{admin:debug_sending_message_text_link}"
+msgstr ""
+"Πρόκειται να στείλετε ένα μήνυμα. Επιλέξτε «Υποβολή μηνύματος» για να "
+"συνεχίσετε."
+
+msgid "{errors:descr_AUTHSOURCEERROR}"
+msgstr ""
+"Παρουσιάστηκε σφάλμα κατά την επικοινωνία με την πηγή ταυτοποίησης "
+"%AUTHSOURCE%: %REASON%"
+
+msgid "{status:some_error_occurred}"
+msgstr "Συνέβη σφάλμα"
+
+msgid "{login:change_home_org_button}"
+msgstr "Επιλογή οικείου φορέα"
+
+msgid "{admin:cfg_check_superfluous}"
+msgstr "Περιττές επιλογές στο αρχείο ρυθμίσεων"
+
+msgid "{attributes:attribute_labeleduri}"
+msgstr "Επισημασμένα URI"
+
+msgid "{errors:report_email}"
+msgstr "Email:"
+
+msgid "{errors:howto_header}"
+msgstr "Πώς να λάβετε βοήθεια"
+
+msgid "{errors:title_NOTSET}"
+msgstr "Σφάλμα κωδικού πρόσβασης"
+
+msgid "{errors:descr_NORELAYSTATE}"
+msgstr ""
+"Η παράμετρος 'RelayState' του πρωτοκόλλου SAML δεν βρέθηκε ή δεν είναι "
+"έγκυρη με αποτέλεσμα να μην είναι δυνατή η μετάβαση σε κάποιον πόρο του "
+"παρόχου υπηρεσιών0."
+
+msgid "{attributes:attribute_noredupersonlegalname}"
+msgstr "Επίσημο όνομα"
+
+msgid "{status:header_diagnostics}"
+msgstr "Διαγνωστικά SimpleSAMLphp"
+
+msgid "{status:intro}"
+msgstr ""
+"Χαίρετε, αυτή είναι η σελίδα κατάστασης του SimpleSAMLphp. Εδώ μπορείτε "
+"να δείτε αν η συνεδρία σας (session) έχει λήξει, το χρονικό διάστημα που "
+"διαρκεί έως ότου λήξει, καθώς και όλες τις πληροφορίες που συνδέονται με "
+"τη συνεδρία σας."
+
+msgid "{attributes:attribute_schachomeorganization}"
+msgstr "Όνομα περιοχής (domain) οικείου οργανισμού"
+
+msgid "{errors:title_NOTFOUNDREASON}"
+msgstr "Η σελίδα δεν βρέθηκε"
+
+msgid "{admin:debug_sending_message_title}"
+msgstr "Αποστολή αρχείου"
+
+msgid "{errors:title_RESPONSESTATUSNOSUCCESS}"
+msgstr "Λήψη κωδικού σφάλματος από τον πάροχο ταυτότητας"
+
+msgid "{admin:metadata_shib13-sp}"
+msgstr "Μεταδεδομένα Παρόχου Υπηρεσιών Shib 1.3"
+
+msgid "{admin:metaover_intro}"
+msgstr ""
+"Για να δείτε τις λεπτομέρειες για μια οντότητα SAML, κάντε κλικ στην "
+"επικεφαλίδα της οντότητας."
+
+msgid "{errors:title_NOTVALIDCERT}"
+msgstr "Μη έγκυρο πιστοποιητικό"
+
+msgid "{attributes:attribute_edupersonorgunitdn}"
+msgstr "Διακεκριμένο όνομα (DN) οικείας οργανωτικής μονάδας"
+
+msgid "{general:remember}"
+msgstr "Να θυμάσαι την επιλογή μου"
+
+msgid "{disco:selectidp}"
+msgstr "Επιλογή οικείου φορέα"
+
+msgid "{attributes:attribute_postofficebox}"
+msgstr "Ταχυδρομική θυρίδα"
+
+msgid "{attributes:attribute_edupersonprincipalname}"
+msgstr "Αναγνωριστικό χρήστη στον οικείο οργανισμό"
+
+msgid "{login:help_desk_email}"
+msgstr "Αποστολή email στην υπηρεσία αρωγής χρηστών"
+
+msgid "{login:help_desk_link}"
+msgstr "Σελίδα υπηρεσίας αρωγής χρηστών"
+
+msgid "{attributes:attribute_ismemberof}"
+msgstr "Συμμετοχή σε ομάδες"
+
+msgid "{attributes:attribute_uid}"
+msgstr "Αναγνωριστικό χρήστη"
+
+msgid "{login:remember_me}"
+msgstr "Να με θυμάσαι"
+
+msgid "{errors:title_CASERROR}"
+msgstr "Σφάλμα CAS"
+
+msgid "{login:user_pass_text}"
+msgstr ""
+"Μια υπηρεσία έχει ζητήσει την ταυτοποίησή σας. Παρακαλώ εισάγετε το όνομα"
+" χρήστη και τον κωδικό πρόσβασής σας στην παρακάτω φόρμα."
+
+msgid "{errors:title_DISCOPARAMS}"
+msgstr "Εσφαλμένο αίτημα προς την υπηρεσία ανεύρεσης παρόχου ταυτότητας"
+
+msgid "{general:yes_continue}"
+msgstr "Αποδοχή"
+
+msgid "{disco:remember}"
+msgstr "Να θυμάσαι την επιλογή μού"
+
+msgid "{admin:metaover_group_metadata.saml20-sp-hosted}"
+msgstr "Πάροχος Υπηρεσιών SAML 2.0 (Φιλοξενούμενος)"
+
+msgid "{attributes:attribute_l}"
+msgstr "Τοποθεσία"
+
+msgid "{attributes:attribute_edupersonassurance}"
+msgstr "Επίπεδο αξιοπιστίας ταυτοποίησης"
+
+msgid "{admin:metadata_simplesamlformat}"
+msgstr ""
+"Σε μορφή απλού αρχείου SimpleSAMLphp - μπορείτε να στείλετε τα "
+"μεταδεδομένα σε αυτή τη μορφή αν υπάρχει οντότητα SimpleSAMLphp στην άλλη"
+" πλευρά:"
+
+msgid "{admin:metadata_adfs-sp}"
+msgstr "Μεταδεδομένα Παρόχου Υπηρεσιών ADFS"
+
+msgid "{disco:login_at}"
+msgstr "Είσοδος @"
+
+msgid "{errors:title_GENERATEAUTHNRESPONSE}"
+msgstr "Δεν ήταν δυνατή η δημιουργία απόκρισης στο αίτημα ταυτοποίησης"
+
+msgid "{errors:errorreport_header}"
+msgstr "Η αναφορά σφάλματος στάλθηκε"
+
+msgid "{errors:title_CREATEREQUEST}"
+msgstr "Σφάλμα κατά τη δημιουργία αιτήματος"
+
+msgid "{admin:metaover_header}"
+msgstr "Επισκόπηση μεταδεδομένων (metadata)"
+
+msgid "{errors:report_submit}"
+msgstr "Αποστολή αναφοράς"
+
+msgid "{errors:title_INVALIDCERT}"
+msgstr "Μη έγκυρο πιστοποιητικό"
+
+msgid "{errors:title_NOTFOUND}"
+msgstr "Η σελίδα δεν βρέθηκε"
+
+msgid "{logout:logged_out_text}"
+msgstr "Έχετε αποσυνδεθεί."
+
+msgid "{admin:metaover_group_metadata.shib13-sp-hosted}"
+msgstr "Πάροχος Υπηρεσιών Shib 1.3 (Φιλοξενούμενος)"
+
+msgid "{admin:metadata_cert_intro}"
+msgstr "Λήψη πιστοποιητικών X.509 σε κωδικοποίηση PEM."
+
+msgid "{admin:debug_sending_message_msg_title}"
+msgstr "Μήνυμα"
+
+msgid "{admin:metaover_group_metadata.adfs-idp-hosted}"
+msgstr "Πάροχος Ταυτότητας ADFS (Φιλοξενούμενος)"
+
+msgid "{errors:title_UNKNOWNCERT}"
+msgstr "Άγνωστο πιστοποιητικό"
+
+msgid "{attributes:attribute_facsimiletelephonenumber}"
+msgstr "Fax"
+
+msgid "{errors:title_LDAPERROR}"
+msgstr "Σφάλμα LDAP"
+
+msgid "{logout:failedsps}"
+msgstr ""
+"Δεν ήταν δυνατή η αποσύνδεση από μία ή περισσότερες υπηρεσίες. Για το "
+"κλείσιμο όλων των συνεδριών σας (sessions), σας συνιστούμε να "
+"<i>κλείσετε</i> το πρόγραμμα πλοήγησης (web browser)."
+
+msgid "{errors:descr_NOTFOUND}"
+msgstr "Η σελίδα που ζητήσατε στη διεύθυνση %URL% δεν βρέθηκε."
+
+msgid "{errors:howto_text}"
+msgstr ""
+"Αυτό το σφάλμα πιθανότατα οφείλεται σε κάποια απροσδόκητη συμπεριφορά ή "
+"εσφαλμένη ρύθμιση του SimpleSAMLphp. Επικοινωνήστε με τον διαχειριστή "
+"αυτής της υπηρεσίας συμπεριλαμβάνοντας το παραπάνω μήνυμα σφάλματος."
+
+msgid "{attributes:attribute_mobile}"
+msgstr "Κινητό τηλέφωνο"
+
+msgid "{admin:metadata_adfs-idp}"
+msgstr "Μεταδεδομένα Παρόχου Ταυτότητας ADFS"
+
+msgid "{attributes:attribute_edupersonorcid}"
+msgstr "Αναγνωριστικά ερευνητή ORCID"
+
+msgid "{admin:metaover_group_metadata.shib13-idp-hosted}"
+msgstr "Πάροχος Ταυτότητας Shib 1.3 (Φιλοξενούμενος)"
+
+msgid "{attributes:attribute_preferredlanguage}"
+msgstr "Προτιμώμενη γλώσσα"
+
+msgid "{errors:descr_NOTVALIDCERT}"
+msgstr "Παρουσιάστηκε σφάλμα λόγω μη έγκυρου πιστοποιητικού."
+
+msgid "{admin:debug_sending_message_text_button}"
+msgstr ""
+"Πρόκειται να στείλετε ένα μήνυμα. Επιλέξτε «Υποβολή μηνύματος» για να "
+"συνεχίσετε."
+
+msgid "{admin:metaover_optional_not_found}"
+msgstr "Τα παρακάτω προαιρετικά πεδία δεν βρέθηκαν"
+
+msgid "{logout:logout_only}"
+msgstr "Όχι, μόνο από την υπηρεσία %SP%"
+
+msgid "{attributes:attribute_o}"
+msgstr "Όνομα οργανισμού"
+
+msgid "{attributes:attribute_edupersonprimaryorgunitdn}"
+msgstr "Διακεκριμένο όνομα (DN) κύριας οργανωτικής μονάδας"
+
+msgid "{attributes:attribute_noredupersonlin}"
+msgstr "Αριθμός ταυτότητας"
+
+msgid "{login:next}"
+msgstr "Επόμενο"
+
+msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
+msgstr ""
+"Παρουσιάστηκε σφάλμα κατά τη δημιουργία απόκρισης από τον πάροχο "
+"ταυτότητας."
+
+msgid "{disco:selectidp_full}"
+msgstr "Επιλέξτε οικείο φορέα που μπορεί να πιστοποιήσει την ταυτότητά σας"
+
+msgid "{errors:descr_NOTFOUNDREASON}"
+msgstr "Η σελίδα που ζητήσατε στη διεύθυνση %URL% δεν βρέθηκε: %REASON%"
+
+msgid "{errors:title_NOCERT}"
+msgstr "Δεν υπάρχει πιστοποιητικό"
+
+msgid "{attributes:attribute_userpassword}"
+msgstr "Κρυπτογραφημένος κωδικός"
+
+msgid "{errors:title_LOGOUTINFOLOST}"
+msgstr "Σφάλμα αποσύνδεσης"
+
+msgid "{errors:descr_CONFIG}"
+msgstr ""
+"Παρουσιάστηκε σφάλμα ρυθμίσεων του SimpleSAMLphp. Επικοινωνήστε με τον "
+"διαχειριστή της υπηρεσίας."
+
+msgid "{errors:descr_MEMCACHEDOWN}"
+msgstr ""
+"Δεν είναι δυνατή η ανάκτηση δεδομένων συνεδρίας λόγω τεχνικών δυσκολιών. "
+"Παρακαλούμε δοκιμάστε ξανά αργότερα"
+
+msgid "{admin:metadata_intro}"
+msgstr ""
+"Αυτά είναι τα μεταδεδομένα που έχουν παραχθεί από το SimpleSAMLphp για "
+"εσάς. Μπορείτε να τα στείλετε σε οντότητες που εμπιστεύεστε προκειμένου "
+"να δημιουργήσετε ομοσπονδία."
+
+msgid "{attributes:attribute_schacuserprivateattribute}"
+msgstr "Απόρρητα προσωπικά στοιχεία"
+
+msgid "{status:header_wsfed}"
+msgstr "Δοκιμαστικός Παροχέας Υπηρεσιών WS-Fed"
+
+msgid "{admin:metadata_cert}"
+msgstr "Πιστοποιητικά"
+
+msgid "{errors:descr_INVALIDCERT}"
+msgstr ""
+"Η ταυτοποίηση απέτυχε: Το πιστοποιητικό που έστειλε το πρόγραμμα "
+"περιήγησης ιστού που χρησιμοποιείτε δεν είναι έγκυρο ή δεν ήταν δυνατή η "
+"ανάγνωσή του."
+
+msgid "{attributes:attribute_eduorglegalname}"
+msgstr "Επίσημη επωνυμία οικείου οργανισμού"
+
+msgid "{status:header_shib}"
+msgstr "Δοκιμαστικός Παροχέας Υπηρεσιών Shibboleth"
+
+msgid "{admin:metaconv_parse}"
+msgstr "Ανάλυση"
+
+msgid "{attributes:attribute_noreduorgnin}"
+msgstr "Αριθμός οικείου οργανισμού"
+

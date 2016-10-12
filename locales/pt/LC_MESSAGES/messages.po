@@ -1,0 +1,705 @@
+
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: SimpleSAMLphp 1.15\n"
+"Report-Msgid-Bugs-To: simplesamlphp-translation@googlegroups.com\n"
+"POT-Creation-Date: 2016-10-12 09:31+0200\n"
+"PO-Revision-Date: 2016-10-12 09:31+0200\n"
+"Last-Translator: \n"
+"Language: pt\n"
+"Language-Team: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.3.4\n"
+
+msgid "{admin:metadata_saml20-idp}"
+msgstr "Metadados SAML 2.0 IdP"
+
+msgid "{errors:descr_WRONGUSERPASS}"
+msgstr "O utilizador ou senha fornecidos são incorrectos. Por favor tente de novo."
+
+msgid "{logout:failed}"
+msgstr "Saída falhada"
+
+msgid "{status:attributes_header}"
+msgstr "Os seus atributos"
+
+msgid "{admin:metaover_group_metadata.saml20-sp-remote}"
+msgstr "Fornecedor de serviço (SP) SAML 2.0 (Remoto)"
+
+msgid "{errors:title_PROCESSASSERTION}"
+msgstr "Erro ao processar a resposta do fornecedor de identidade (IdP)"
+
+msgid "{login:username}"
+msgstr "Nome de utilizador"
+
+msgid "{errors:title_METADATA}"
+msgstr "Erro na leitura dos metadados"
+
+msgid "{admin:metaconv_title}"
+msgstr "Conversor de Metadados"
+
+msgid "{attributes:attribute_edupersonentitlement}"
+msgstr "Direitos oferecidos pela organização de origem"
+
+msgid "{attributes:attribute_jpegphoto}"
+msgstr "Foto JPEG"
+
+msgid "{admin:cfg_check_noerrors}"
+msgstr "Não foram encontrados erros."
+
+msgid "{errors:descr_LOGOUTINFOLOST}"
+msgstr ""
+"A informação acerca da operação de logout foi perdida. Por favor, volte "
+"ao serviço de onde efectuou o logout e tente de novo esta operação. A "
+"informação de logout possui um tempo de expiração que é normalmente muito"
+" superior ao tempo normal de processamento desta operação. Se o problema "
+"persistir pode ser um erro de configuração e deverá ser comunicado."
+
+msgid "{disco:previous_auth}"
+msgstr "Escolheu autenticar-se anteriormente em"
+
+msgid "{admin:cfg_check_back}"
+msgstr "Voltar à lista de ficheiros"
+
+msgid "{errors:report_trackid}"
+msgstr ""
+"Se comunicar este erro ao administrador de sistemas inclua o seguinte "
+"identificador que possibilita a localização da sua sessão nos registos do"
+" serviço:"
+
+msgid "{login:change_home_org_title}"
+msgstr "Alterar a sua organização de origem"
+
+msgid "{admin:metadata_metadata}"
+msgstr "Metadados"
+
+msgid "{errors:report_text}"
+msgstr ""
+"Opcionalmente, pode introduzir o seu email para o administrador de "
+"sistemas entrar em contacto consigo, caso tenha alguma questão "
+"relativamente ao seu problema."
+
+msgid "{errors:report_header}"
+msgstr "Reportar um erro"
+
+msgid "{login:change_home_org_text}"
+msgstr ""
+"Escolheu <b>%HOMEORG%</b> como a sua organização de origem. Se não "
+"estiver correcto, pode escolher outra."
+
+msgid "{errors:title_PROCESSAUTHNREQUEST}"
+msgstr "Erro ao processar o pedido  do fornecedor de serviço (SP)"
+
+msgid "{errors:descr_PROCESSASSERTION}"
+msgstr "A resposta emitida pelo fornecedor de identidade não foi aceite."
+
+msgid "{errors:debuginfo_header}"
+msgstr "Informação de debug"
+
+msgid "{admin:debug_sending_message_msg_text}"
+msgstr ""
+"Estando em modo debug, pode consultar o conteúdo da mensagem que está a "
+"enviar:"
+
+msgid "{errors:descr_RESPONSESTATUSNOSUCCESS}"
+msgstr ""
+"O Fornecedor de Identidade respondeu com um erro. (A resposta SAML contém"
+" um código de insucesso)"
+
+msgid "{admin:metadata_shib13-idp}"
+msgstr "Metadados Shib 1.3 IdP"
+
+msgid "{login:help_text}"
+msgstr ""
+"Sem o seu nome de utilizador e senha não se pode autenticar para acesso "
+"ao serviço. Para obter ajuda, consulte o seu serviço de apoio ao "
+"utilizador."
+
+msgid "{logout:default_link_text}"
+msgstr "Voltar à página de instalação do SimpleSAMLphp"
+
+msgid "{admin:metaover_group_metadata.wsfed-idp-remote}"
+msgstr "Fornecedor de identidade (IdP) WS-Federation (Remoto)"
+
+msgid "{errors:error_header}"
+msgstr "Erro no SimpleSAMLphp"
+
+msgid "{login:help_header}"
+msgstr "Não me lembro da minha senha"
+
+msgid "{errors:descr_LDAPERROR}"
+msgstr "Ocorreu um erro ao contactar a base de dados LDAP."
+
+msgid "{errors:descr_METADATA}"
+msgstr ""
+"Existe uma má configuração desta instalação do SimpleSAMLphp. Se é o "
+"administrador deste serviço, verifique que a configuração dos metadados "
+"está correcta."
+
+msgid "{attributes:attribute_edupersonorgdn}"
+msgstr "DN da organização de origem"
+
+msgid "{errors:title_BADREQUEST}"
+msgstr "Pedido inválido recebido"
+
+msgid "{status:sessionsize}"
+msgstr "Tamanho da sessão: %SIZE%"
+
+msgid "{attributes:attribute_postaladdress}"
+msgstr "Morada"
+
+msgid "{logout:title}"
+msgstr "Saída efectuada com sucesso"
+
+msgid "{admin:metaconv_xmlmetadata}"
+msgstr "Metadados em XML"
+
+msgid "{admin:metaover_unknown_found}"
+msgstr "Os seguintes campos não foram reconhecidos"
+
+msgid "{login:select_home_org}"
+msgstr "Escolha a sua organização de origem"
+
+msgid "{logout:hold}"
+msgstr "Em espera"
+
+msgid "{admin:cfg_check_header}"
+msgstr "Verificação da configuração"
+
+msgid "{attributes:attribute_edupersonscopedaffiliation}"
+msgstr "Afiliação com a organização de origem (com contexto)"
+
+msgid "{attributes:attribute_sn}"
+msgstr "Nome de família"
+
+msgid "{admin:debug_sending_message_send}"
+msgstr "Enviar mensagem"
+
+msgid "{status:logout}"
+msgstr "Sair"
+
+msgid "{attributes:attribute_organisationname}"
+msgstr "Nome da Organização"
+
+msgid "{attributes:attribute_telephonenumber}"
+msgstr "Telefone"
+
+msgid "{errors:descr_DISCOPARAMS}"
+msgstr ""
+"O pedido efectuado ao serviço de descoberta de IdP não está de acordo com"
+" as especificações."
+
+msgid "{attributes:attribute_mail}"
+msgstr "E-mail"
+
+msgid "{errors:descr_CREATEREQUEST}"
+msgstr "Ocorreu um erro ao tentar criar o pedido SAML"
+
+msgid "{admin:metaover_optional_found}"
+msgstr "Campos opcionais"
+
+msgid "{logout:return}"
+msgstr "Regressar ao serviço"
+
+msgid "{attributes:attribute_displayname}"
+msgstr "Nome de apresentação"
+
+msgid "{admin:metadata_xmlurl}"
+msgstr "Pode <a href=\"%METAURL%\">obter os metadados em XML num URL dedicado</a>:"
+
+msgid "{logout:logout_all}"
+msgstr "Sim, todos os serviços"
+
+msgid "{admin:debug_disable_debug_mode}"
+msgstr ""
+"Pode desligar o modo debug no ficheiro global de configuração "
+"<tt>config/config.php</tt> do SimpleSAMLphp."
+
+msgid "{attributes:attribute_homepostaladdress}"
+msgstr "Morada de redidência"
+
+msgid "{disco:select}"
+msgstr "Escolher"
+
+msgid "{logout:also_from}"
+msgstr "Está também autenticado nos seguintes serviços:"
+
+msgid "{login:login_button}"
+msgstr "Entrar"
+
+msgid "{logout:progress}"
+msgstr "A sair..."
+
+msgid "{login:error_wrongpassword}"
+msgstr "Nome de utilizador ou senha incorrecta."
+
+msgid "{admin:metaover_group_metadata.shib13-sp-remote}"
+msgstr "Fornecedor de serviço (SP) SAML 2.0 (Remoto)"
+
+msgid "{errors:descr_PROCESSAUTHNREQUEST}"
+msgstr ""
+"Ocorreu um erro ao processar o pedido de autenticação emitido pelo "
+"fornecedor de serviço."
+
+msgid "{logout:logout_all_question}"
+msgstr "Deseja sair de todos os serviços listados em cima?"
+
+msgid "{attributes:attribute_title}"
+msgstr "Título"
+
+msgid "{errors:title_NOACCESS}"
+msgstr "Acesso negado"
+
+msgid "{login:error_nopassword}"
+msgstr "A senha não foi enviada no seu pedido. Por favor tente de novo."
+
+msgid "{errors:title_NORELAYSTATE}"
+msgstr "RelayState não definido"
+
+msgid "{attributes:attribute_noredupersonnin}"
+msgstr "Número de Identificação atribuído por autoridades públicas"
+
+msgid "{login:password}"
+msgstr "Senha"
+
+msgid "{errors:debuginfo_text}"
+msgstr ""
+"A informação de debug abaixo pode ter interesse para o administrador / "
+"apoio ao utilizador:"
+
+msgid "{admin:cfg_check_missing}"
+msgstr "Opções ausentes do ficheiro de configuração"
+
+msgid "{errors:descr_UNHANDLEDEXCEPTION}"
+msgstr "Foi despoletada um excepção que não foi tratada."
+
+msgid "{general:yes}"
+msgstr "Sim"
+
+msgid "{errors:title_CONFIG}"
+msgstr "Erro de configuração"
+
+msgid "{errors:title_LOGOUTREQUEST}"
+msgstr "Erro ao processar o pedido de logout"
+
+msgid "{admin:metaover_errorentry}"
+msgstr "Erro nesta entrada de metadados"
+
+msgid "{attributes:attribute_edupersonaffiliation}"
+msgstr "Afiliação com a organização de origem"
+
+msgid "{attributes:attribute_givenname}"
+msgstr "Nome Próprio"
+
+msgid "{login:contact_info}"
+msgstr "Contactos:"
+
+msgid "{errors:title_UNHANDLEDEXCEPTION}"
+msgstr "Excepção não tratada"
+
+msgid "{status:validfor}"
+msgstr "A sua sessão é válida por %SECONDS% segundos."
+
+msgid "{status:header_saml20_sp}"
+msgstr "Exemplo de demonstração do SP SAML 2.0"
+
+msgid "{login:error_header}"
+msgstr "Erro"
+
+msgid "{logout:incapablesps}"
+msgstr ""
+"Um ou mais dos serviços onde se encontra autenticado <i>não suporta(m) a "
+"saída</i>. Para garantir que todas as sessões são encerradas, deverá "
+"<i>encerrar o seu navegador Web</i>."
+
+msgid "{admin:metadata_xmlformat}"
+msgstr "Metadados no formato XML SAML 2.0"
+
+msgid "{admin:metaover_group_metadata.saml20-idp-remote}"
+msgstr "Fornecedor de identidade (IdP) SAML 2.0 (Remoto)"
+
+msgid "{admin:metaover_group_metadata.saml20-idp-hosted}"
+msgstr "Fornecedor de identidade (IdP) SAML 2.0 (Local)"
+
+msgid "{admin:metaover_required_found}"
+msgstr "Campos obrigatórios"
+
+msgid "{admin:cfg_check_select_file}"
+msgstr "Escolha o ficheiro de configuração a verificar:"
+
+msgid "{attributes:attribute_eduorghomepageuri}"
+msgstr "Página web da organização de origem"
+
+msgid "{logout:logging_out_from}"
+msgstr "A sair dos serviços seguintes:"
+
+msgid "{logout:loggedoutfrom}"
+msgstr "Saiu com sucesso de %SP%."
+
+msgid "{admin:metaover_group_metadata.wsfed-sp-hosted}"
+msgstr "Fornecedor de serviço (SP) WS-Federation (Local)"
+
+msgid "{errors:errorreport_text}"
+msgstr "O relatório de erro foi enviado aos administradores"
+
+msgid "{attributes:attribute_noredupersonbirthdate}"
+msgstr "Data de nascimento"
+
+msgid "{errors:descr_LOGOUTREQUEST}"
+msgstr "Ocorreu um erro ao processar o pedido de logout."
+
+msgid "{attributes:attribute_edupersontargetedid}"
+msgstr "Identificação persistente tipo pseudónimo"
+
+msgid "{logout:success}"
+msgstr "Saiu com sucesso de todos os serviços listados em cima."
+
+msgid "{admin:cfg_check_notices}"
+msgstr "Observações"
+
+msgid "{attributes:attribute_edupersonprimaryaffiliation}"
+msgstr "Afiliação principal com a organização de origem"
+
+msgid "{attributes:attribute_postalcode}"
+msgstr "Código Postal"
+
+msgid "{errors:descr_CASERROR}"
+msgstr "Ocorreu um erro ao comunicar com o servidor CAS."
+
+msgid "{general:no}"
+msgstr "Não"
+
+msgid "{admin:metadata_saml20-sp}"
+msgstr "Metadados SAML 2.0 SP"
+
+msgid "{admin:metaconv_converted}"
+msgstr "Resultado da conversão de Metadados"
+
+msgid "{attributes:attribute_cn}"
+msgstr "Nome completo"
+
+msgid "{logout:completed}"
+msgstr "Completa"
+
+msgid "{errors:descr_NOTSET}"
+msgstr ""
+"A password presente na configuração (auth.adminpassword) tem o valor de "
+"omissão. Por favor altere esta password no ficheiro de configuração."
+
+msgid "{attributes:attribute_ou}"
+msgstr "Unidade organizacional"
+
+msgid "{general:service_provider}"
+msgstr "Fornecedor de Serviço (SP)"
+
+msgid "{attributes:attribute_homephone}"
+msgstr "Telefone de residência"
+
+msgid "{attributes:attribute_dc}"
+msgstr "Componente de domínio"
+
+msgid "{errors:descr_BADREQUEST}"
+msgstr "Ocorreu um erro com o pedido a esta página. A razão foi: %REASON%"
+
+msgid "{logout:no}"
+msgstr "Não"
+
+msgid "{disco:icon_prefered_idp}"
+msgstr "Escolha preferida"
+
+msgid "{general:no_cancel}"
+msgstr "Não aceito"
+
+msgid "{login:user_pass_header}"
+msgstr "Introduza o seu nome de utilizador e senha"
+
+msgid "{errors:report_explain}"
+msgstr "Introduza uma breve explicação do sucedido..."
+
+msgid "{attributes:attribute_manager}"
+msgstr "Responsável hierárquico"
+
+msgid "{errors:title_ACSPARAMS}"
+msgstr "Mensagem SAML não fornecida"
+
+msgid "{attributes:attribute_edupersonnickname}"
+msgstr "Alcunha"
+
+msgid "{errors:descr_SLOSERVICEPARAMS}"
+msgstr ""
+"Na interface SingleLogoutService deve fornecer uma mensagem SAML do tipo "
+"LogoutRequest ou LogoutResponse."
+
+msgid "{attributes:attribute_street}"
+msgstr "Rua"
+
+msgid "{login:organization}"
+msgstr "Organização"
+
+msgid "{errors:title_WRONGUSERPASS}"
+msgstr "Utilizador ou senha incorrecto"
+
+msgid "{admin:metaover_required_not_found}"
+msgstr "Os seguintes campos obrigatórios não foram encontrados"
+
+msgid "{errors:descr_NOACCESS}"
+msgstr ""
+"Este ponto de acesso (endpoint) não está disponível. Verifique as opções "
+"relevantes na configuração do SimpleSAMLphp."
+
+msgid "{errors:title_SLOSERVICEPARAMS}"
+msgstr "Mensagem SAML não fornecida"
+
+msgid "{errors:descr_ACSPARAMS}"
+msgstr ""
+"Na interface Assertion Consumer Service deve fornecer uma mensagem SAML "
+"do tipo Authentication Response."
+
+msgid "{admin:debug_sending_message_text_link}"
+msgstr "Está prestes a enviar uma mensagem. Carregue na ligação para continuar."
+
+msgid "{status:some_error_occurred}"
+msgstr "Ocorreu um erro"
+
+msgid "{login:change_home_org_button}"
+msgstr "Escolha a sua organização de origem"
+
+msgid "{admin:cfg_check_superfluous}"
+msgstr "Opções supérfluas do ficheiro de configuração"
+
+msgid "{attributes:attribute_labeleduri}"
+msgstr "Página web"
+
+msgid "{errors:report_email}"
+msgstr "Endereço de email:"
+
+msgid "{errors:howto_header}"
+msgstr "Como obter ajuda"
+
+msgid "{errors:title_NOTSET}"
+msgstr "Password inalterada"
+
+msgid "{errors:descr_NORELAYSTATE}"
+msgstr ""
+"Este pedido foi iniciado sem o parâmetro RelayState necessário para "
+"continuar com o processamento."
+
+msgid "{status:header_diagnostics}"
+msgstr "Diagnósticos do SimpleSAMLphp"
+
+msgid "{status:intro}"
+msgstr ""
+"Está na página de status do SimpleSAMLphp. Aqui poderá consultar "
+"informações sobre a sua sessão: o tempo de expiração e os seus atributos."
+
+msgid "{attributes:attribute_schachomeorganization}"
+msgstr "Nome de domínio da Organização de origem"
+
+msgid "{errors:title_NOTFOUNDREASON}"
+msgstr "Página não encontrada"
+
+msgid "{admin:debug_sending_message_title}"
+msgstr "A enviar a mensagem"
+
+msgid "{errors:title_RESPONSESTATUSNOSUCCESS}"
+msgstr "Erro recebido do Fornecedor de Identidade"
+
+msgid "{admin:metadata_shib13-sp}"
+msgstr "Metadados Shib 1.3 SP"
+
+msgid "{admin:metaover_intro}"
+msgstr "Para obter detalhes sobre uma entidade SAML, clique no título da entidade."
+
+msgid "{errors:title_NOTVALIDCERT}"
+msgstr "Certificado inválido"
+
+msgid "{attributes:attribute_edupersonorgunitdn}"
+msgstr "DN da unidade orgânica na organização de origem"
+
+msgid "{general:remember}"
+msgstr "Lembrar a minha escolha"
+
+msgid "{disco:selectidp}"
+msgstr "Escolha o seu fornecedor de identidade (IdP)"
+
+msgid "{attributes:attribute_postofficebox}"
+msgstr "Apartado"
+
+msgid "{attributes:attribute_edupersonprincipalname}"
+msgstr "Nome de utilizador na organização de origem"
+
+msgid "{login:help_desk_email}"
+msgstr "Enviar um e-mail para o serviço de apoio ao utilizador"
+
+msgid "{login:help_desk_link}"
+msgstr "Página do serviço de apoio ao utilizador"
+
+msgid "{attributes:attribute_uid}"
+msgstr "Identificação de utilizador"
+
+msgid "{errors:title_CASERROR}"
+msgstr "Erro de CAS"
+
+msgid "{login:user_pass_text}"
+msgstr ""
+"Foi pedida a sua autenticação por um serviço. Por favor, introduza o seu "
+"nome de utilizador e senha nos campos seguintes."
+
+msgid "{errors:title_DISCOPARAMS}"
+msgstr "Pedido incorrecto efectuado ao serviço de descoberta de IdP"
+
+msgid "{general:yes_continue}"
+msgstr "Sim, Aceito"
+
+msgid "{disco:remember}"
+msgstr "Lembrar esta escolha"
+
+msgid "{admin:metaover_group_metadata.saml20-sp-hosted}"
+msgstr "Fornecedor de serviço (SP) SAML 2.0 (Local)"
+
+msgid "{attributes:attribute_l}"
+msgstr "Localidade"
+
+msgid "{admin:metadata_simplesamlformat}"
+msgstr ""
+"Metadados no formato ficheiro de configuração do SimpleSAMLphp. Use esta "
+"alternativa se usar uma entidade SimpleSAMLphp no outro extremo:"
+
+msgid "{disco:login_at}"
+msgstr "Entrar em"
+
+msgid "{errors:title_GENERATEAUTHNRESPONSE}"
+msgstr "Não foi possível criar uma resposta de autenticação"
+
+msgid "{errors:errorreport_header}"
+msgstr "Relatório de erro enviado"
+
+msgid "{errors:title_CREATEREQUEST}"
+msgstr "Erro ao criar o pedido"
+
+msgid "{admin:metaover_header}"
+msgstr "Vista geral dos metadados"
+
+msgid "{errors:report_submit}"
+msgstr "Enviar o relatório de erro"
+
+msgid "{errors:title_NOTFOUND}"
+msgstr "Página não encontrada"
+
+msgid "{logout:logged_out_text}"
+msgstr "Saída efectuada com sucesso. Obrigado por ter usado este serviço."
+
+msgid "{admin:metaover_group_metadata.shib13-sp-hosted}"
+msgstr "Fornecedor de serviço (SP) Shib 1.3 (Local)"
+
+msgid "{admin:debug_sending_message_msg_title}"
+msgstr "Mensagem"
+
+msgid "{attributes:attribute_facsimiletelephonenumber}"
+msgstr "Número de Fax"
+
+msgid "{errors:title_LDAPERROR}"
+msgstr "Erro de LDAP"
+
+msgid "{logout:failedsps}"
+msgstr ""
+"Não foi possível sair de um ou mais serviços. Para garantir que todas as "
+"suas sessões são fechadas, é recomendado <i>fechar o seu browser</i>."
+
+msgid "{errors:descr_NOTFOUND}"
+msgstr "A página não foi encontrada. O URL fornecido foi: %URL%"
+
+msgid "{errors:howto_text}"
+msgstr ""
+"Este erro ocorreu provavelmente devido a um comportamento inesperado ou "
+"uma má configuração do SimpleSAMLphp. Contacte o administrador deste "
+"serviço de login, e comunique a mensagem de erro."
+
+msgid "{attributes:attribute_mobile}"
+msgstr "Telemóvel"
+
+msgid "{admin:metaover_group_metadata.shib13-idp-hosted}"
+msgstr "Fornecedor de identidade (IdP) Shib 1.3 (Local)"
+
+msgid "{attributes:attribute_preferredlanguage}"
+msgstr "Idioma"
+
+msgid "{errors:descr_NOTVALIDCERT}"
+msgstr "Não foi apresentado um certificado válido."
+
+msgid "{admin:debug_sending_message_text_button}"
+msgstr "Está prestes a enviar uma mensagem. Carregue no botão para continuar."
+
+msgid "{admin:metaover_optional_not_found}"
+msgstr "Os seguintes campos opcionais não foram encontrados"
+
+msgid "{logout:logout_only}"
+msgstr "Não, apenas %SP%"
+
+msgid "{attributes:attribute_o}"
+msgstr "Nome da organização"
+
+msgid "{attributes:attribute_edupersonprimaryorgunitdn}"
+msgstr "DN da unidade orgânica"
+
+msgid "{attributes:attribute_noredupersonlin}"
+msgstr "Número de Identificação local"
+
+msgid "{login:next}"
+msgstr "Seguinte"
+
+msgid "{errors:descr_GENERATEAUTHNRESPONSE}"
+msgstr ""
+"Ocorreu um erro ao criar uma resposta de autenticação neste fornecedor de"
+" identidade."
+
+msgid "{disco:selectidp_full}"
+msgstr ""
+"Por favor, escolha o  fornecedor de identidade (IdP) que irá usar para se"
+" autenticar:"
+
+msgid "{errors:descr_NOTFOUNDREASON}"
+msgstr ""
+"A página não foi encontrada. A razão foi: %REASON% O URL fornecido foi: "
+"%URL%"
+
+msgid "{attributes:attribute_userpassword}"
+msgstr "Senha do utilizador"
+
+msgid "{errors:title_LOGOUTINFOLOST}"
+msgstr "Informação de logout perdida"
+
+msgid "{admin:metaover_group_metadata.shib13-idp-remote}"
+msgstr "Fornecedor de identidade (IdP) Shib 1.3 (Remoto)"
+
+msgid "{errors:descr_CONFIG}"
+msgstr "O software SimpleSAMLphp tem um problema de configuração."
+
+msgid "{admin:metadata_intro}"
+msgstr ""
+"De seguida pode encontrar os metadados gerados pelo SimpleSAMLphp. Pode "
+"enviar este documento de metadados aos seus parceiros para configurar uma"
+" federação."
+
+msgid "{attributes:attribute_schacuserprivateattribute}"
+msgstr "Elementos privados de informação"
+
+msgid "{status:header_wsfed}"
+msgstr "Exemplo de demonstração do SP WS-Fed"
+
+msgid "{attributes:attribute_eduorglegalname}"
+msgstr "Nome legal da organização de origem"
+
+msgid "{status:header_shib}"
+msgstr "Exemplo de demonstração do SP Shibboleth 1.3"
+
+msgid "{admin:metaconv_parse}"
+msgstr "Converter"
+
+msgid "{attributes:attribute_noreduorgnin}"
+msgstr "Número de Organização"
+
