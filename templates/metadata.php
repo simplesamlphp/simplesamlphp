@@ -1,5 +1,5 @@
 <?php
-$this-data['header'] = $this->t($this->data['headerString']);
+$this->data['header'] = $this->t($this->data['headerString']);
 $this->includeAtTemplateBase('includes/header.php'); ?>
     <h2><?php echo $this->data['header']; ?></h2>
     <p><?php echo $this->t('metadata_intro'); ?></p>
