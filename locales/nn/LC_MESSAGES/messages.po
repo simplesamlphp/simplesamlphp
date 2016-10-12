@@ -770,3 +770,11 @@ msgstr "Parser"
 msgid "{attributes:attribute_noreduorgnin}"
 msgstr "Organisasjonsnummer"
 
+msgid "Hello, Untranslated World!"
+msgstr "Hallo, oversette verd!"
+
+msgid "Hello, %who%!"
+msgstr "Hallo, %who%!"
+
+msgid "World"
+msgstr "Verd"
