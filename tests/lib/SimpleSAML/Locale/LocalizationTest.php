@@ -19,7 +19,7 @@ class LocalizationTest extends \PHPUnit_Framework_TestCase
         );
         $l = new Localization($c);
         $this->assertTrue($l->isI18NBackendDefault());
-        $this->assertEquals(Localization::DEFAULT_DOMAIN, 'ssp');
+        $this->assertEquals(Localization::DEFAULT_DOMAIN, 'messages');
         $this->assertEquals($l->getCurrentDomain(), Localization::DEFAULT_DOMAIN);
     }
 
