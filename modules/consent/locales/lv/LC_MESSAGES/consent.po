@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: SimpleSAMLphp 1.15\n"
 "Report-Msgid-Bugs-To: simplesamlphp-translation@googlegroups.com\n"
 "POT-Creation-Date: 2016-10-12 09:23+0200\n"
-"PO-Revision-Date: 2016-10-12 09:23+0200\n"
+"PO-Revision-Date: 2016-10-14 12:14+0200\n"
 "Last-Translator: \n"
 "Language: lv\n"
 "Language-Team: \n"
@@ -77,5 +77,70 @@ msgid "{consent:consent:yes}"
 msgstr "Jā, turpināt"
 
 msgid "{consent:consent:consent_attributes_header}"
+msgstr "Informācija, kas tiks sūtīta SPNAME"
+
+msgid "Service Providers for"
+msgstr "Servisa piegādātāji priekš"
+
+msgid "Yes, continue"
+msgstr "Jā, turpināt"
+
+msgid "Return to consent page"
+msgstr "Atgriezties uz noteikumu lapu"
+
+msgid "Consent status"
+msgstr "Noteikumu statuss"
+
+msgid "Go to information page for the service"
+msgstr "Iet uz servisa informācijas lapu"
+
+msgid "Service Provider"
+msgstr "Servisa piegādātājs"
+
+msgid "show/hide attributes"
+msgstr "rādīt/slēpt atribūtus"
+
+msgid "The purpose of SPNAME is SPDESC"
+msgstr "SPNAME nolūks ir SPDESC"
+
+msgid ""
+"List the information about you that is about to be transmitted to the "
+"service you are going to login to"
+msgstr "Informācija par Jums, kas tiks sūtīta servisam, kuram Jūs pieslēdzaties"
+
+msgid "Consent about releasing personal information"
+msgstr "Noteikumi par personīgās informācijas nodošanu"
+
+msgid "No consent given"
+msgstr "Nav noteikumu"
+
+msgid "login"
+msgstr "pieslēgties"
+
+msgid "You did not give consent for transfering your attributes to SPNAME."
+msgstr "Jūs neesat devis atļauju pārraidīt informāciju servisa piegādātājam."
+
+msgid "Remember"
+msgstr "Atcerēties"
+
+msgid "Show content"
+msgstr "Rādīt saturu"
+
+msgid "SPNAME requires that the information below is transferred."
+msgstr "SPNAME prasa pārraidīt pa tīklu zemāk esošo informāciju."
+
+msgid "Privacypolicy for the service"
+msgstr "Servisa drošības noteikumi"
+
+msgid "No, cancel"
+msgstr "Nē, atcelt"
+
+msgid "Show attributes"
+msgstr "Rādīt atribūtus"
+
+msgid "User information"
+msgstr "Lietotāja informācija"
+
+msgid "Information that will be sent to SPNAME"
 msgstr "Informācija, kas tiks sūtīta SPNAME"
 

@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: SimpleSAMLphp 1.15\n"
 "Report-Msgid-Bugs-To: simplesamlphp-translation@googlegroups.com\n"
 "POT-Creation-Date: 2016-10-12 09:23+0200\n"
-"PO-Revision-Date: 2016-10-12 09:23+0200\n"
+"PO-Revision-Date: 2016-10-14 12:14+0200\n"
 "Last-Translator: \n"
 "Language: cs\n"
 "Language-Team: \n"
@@ -82,5 +82,75 @@ msgid "{consent:consent:yes}"
 msgstr "Ano, akceptuji"
 
 msgid "{consent:consent:consent_attributes_header}"
+msgstr "Atributy, které mohou být zaslány službě"
+
+msgid "Service Providers for"
+msgstr "Poskytovatel služby pro"
+
+msgid "Yes, continue"
+msgstr "Ano, akceptuji"
+
+msgid "Return to consent page"
+msgstr "Zpátky na stránku pro souhlas"
+
+msgid "Consent status"
+msgstr "Status souhlasu"
+
+msgid "Go to information page for the service"
+msgstr "Jdi na stránku s informacemi o službě"
+
+msgid "Service Provider"
+msgstr "Poskytovatel služby"
+
+msgid "Abort login to SPNAME"
+msgstr "Zrušit přihlášení k SPNAME"
+
+msgid "show/hide attributes"
+msgstr "zobraz/skryj atributy"
+
+msgid "The purpose of SPNAME is SPDESC"
+msgstr "Cíl SPNAME v SPDESC"
+
+msgid ""
+"List the information about you that is about to be transmitted to the "
+"service you are going to login to"
+msgstr ""
+"Seznam informací o vás, které budou předány službě, ke které se "
+"přihlašujete"
+
+msgid "Consent about releasing personal information"
+msgstr "Obsah odesílaných osobních informací"
+
+msgid "No consent given"
+msgstr "Souhlas nebyl vydán"
+
+msgid "login"
+msgstr "Login"
+
+msgid "You did not give consent for transfering your attributes to SPNAME."
+msgstr "Nedal jste souhlas pro zaslání svých atributů poskytovateli služeb."
+
+msgid "Remember"
+msgstr "Zapamatuj"
+
+msgid "Show content"
+msgstr "Zobrazit obsah"
+
+msgid "SPNAME requires that the information below is transferred."
+msgstr "Můžete se přihlásit do služby SPNAME"
+
+msgid "Privacypolicy for the service"
+msgstr "Bezpečnostní politika služby"
+
+msgid "No, cancel"
+msgstr "Ne, neakceptuji"
+
+msgid "Show attributes"
+msgstr "Zobraz atributy"
+
+msgid "User information"
+msgstr "Uživatelské informace"
+
+msgid "Information that will be sent to SPNAME"
 msgstr "Atributy, které mohou být zaslány službě"
 

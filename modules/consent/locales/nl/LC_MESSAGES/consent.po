@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: SimpleSAMLphp 1.15\n"
 "Report-Msgid-Bugs-To: simplesamlphp-translation@googlegroups.com\n"
 "POT-Creation-Date: 2016-10-12 09:23+0200\n"
-"PO-Revision-Date: 2016-10-12 09:23+0200\n"
+"PO-Revision-Date: 2016-10-14 12:14+0200\n"
 "Last-Translator: \n"
 "Language: nl\n"
 "Language-Team: \n"
@@ -86,5 +86,80 @@ msgid "{consent:consent:yes}"
 msgstr "Ja, ik ga akkoord"
 
 msgid "{consent:consent:consent_attributes_header}"
+msgstr "Informatie die naar SPNAME zal worden gestuurd"
+
+msgid "Service Providers for"
+msgstr "Service Providers voor"
+
+msgid "Yes, continue"
+msgstr "Ja, ik ga akkoord"
+
+msgid "Return to consent page"
+msgstr "Keer terug naar de toestemmingspagina"
+
+msgid "Consent status"
+msgstr "Toestemming status"
+
+msgid "Go to information page for the service"
+msgstr "Ga naar de informatiepagina voor de service"
+
+msgid "Service Provider"
+msgstr "Service Provider"
+
+msgid "Abort login to SPNAME"
+msgstr "Inloggen op SPNAME afbreken"
+
+msgid "show/hide attributes"
+msgstr "toon/verberg attributen"
+
+msgid "The purpose of SPNAME is SPDESC"
+msgstr "Het doel van SPNAME is SPDESC"
+
+msgid ""
+"List the information about you that is about to be transmitted to the "
+"service you are going to login to"
+msgstr ""
+"De informatie die over jou bekend is en naar de service waarop je wilt "
+"inloggen verstuurd zal worden"
+
+msgid "Consent about releasing personal information"
+msgstr "Toestemming voor het vrijgeven van persoonsgegevens"
+
+msgid "No consent given"
+msgstr "Geen toestemming gegeven"
+
+msgid "login"
+msgstr "Login"
+
+msgid "You did not give consent for transfering your attributes to SPNAME."
+msgstr ""
+"U heeft geen toestemming gegeven om uw attributen naar de Service "
+"Provider te versturen"
+
+msgid "Remember"
+msgstr "Bewaar toestemming"
+
+msgid "Show content"
+msgstr "Toon inhoud"
+
+msgid "SPNAME requires that the information below is transferred."
+msgstr ""
+"U gaat inloggen bij een dienst SPNAME. Tijdens het loginproces stuurt de "
+"identity provider zgn. attributen met daarin informatie over uw "
+"identiteit voor deze dienst. Bent u het daarmee eens?"
+
+msgid "Privacypolicy for the service"
+msgstr "Privacybeleid voor de dienst"
+
+msgid "No, cancel"
+msgstr "Nee, ik weiger"
+
+msgid "Show attributes"
+msgstr "Toon attributen"
+
+msgid "User information"
+msgstr "Gerbuikersinformatie"
+
+msgid "Information that will be sent to SPNAME"
 msgstr "Informatie die naar SPNAME zal worden gestuurd"
 

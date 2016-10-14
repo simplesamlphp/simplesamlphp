@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: SimpleSAMLphp 1.15\n"
 "Report-Msgid-Bugs-To: simplesamlphp-translation@googlegroups.com\n"
 "POT-Creation-Date: 2016-10-12 09:23+0200\n"
-"PO-Revision-Date: 2016-10-12 09:23+0200\n"
+"PO-Revision-Date: 2016-10-14 12:14+0200\n"
 "Last-Translator: \n"
 "Language: et\n"
 "Language-Team: \n"
@@ -79,5 +79,73 @@ msgid "{consent:consent:yes}"
 msgstr "Jah, jätka"
 
 msgid "{consent:consent:consent_attributes_header}"
+msgstr "Andmed saadetakse SPNAME-le"
+
+msgid "Service Providers for"
+msgstr "Teenusepakkujad"
+
+msgid "Yes, continue"
+msgstr "Jah, jätka"
+
+msgid "Return to consent page"
+msgstr "Tagasi nõusoleku lehele"
+
+msgid "Consent status"
+msgstr "Nõusoleku olek"
+
+msgid "Go to information page for the service"
+msgstr "Mine teenuse infolehele"
+
+msgid "Service Provider"
+msgstr "Teenusepakkuja"
+
+msgid "Abort login to SPNAME"
+msgstr "Katkesta sisselogimine: SPNAME"
+
+msgid "show/hide attributes"
+msgstr "näita/peida atribuudid"
+
+msgid "The purpose of SPNAME is SPDESC"
+msgstr "Teenuse SPNAME eesmärk on SPDESC"
+
+msgid ""
+"List the information about you that is about to be transmitted to the "
+"service you are going to login to"
+msgstr "Teave sinu kohta, mis edastatakse teenusele, millesse asud sisse logima"
+
+msgid "Consent about releasing personal information"
+msgstr "Nõusolek isikuandmete edastamiseks"
+
+msgid "No consent given"
+msgstr "Nõusolekut pole antud"
+
+msgid "login"
+msgstr "logi sisse"
+
+msgid "You did not give consent for transfering your attributes to SPNAME."
+msgstr "Sa ei andnud nõusolekut sinu atribuutide teenusepakkujale edastamiseks."
+
+msgid "Remember"
+msgstr "Jäta meelde"
+
+msgid "Show content"
+msgstr "Näita sisu"
+
+msgid "SPNAME requires that the information below is transferred."
+msgstr "SPNAME nõuab allpool oleva info edastamist."
+
+msgid "Privacypolicy for the service"
+msgstr "Teenuse privaatsuspoliitika"
+
+msgid "No, cancel"
+msgstr "Ei, loobu"
+
+msgid "Show attributes"
+msgstr "Näita andmeid"
+
+msgid "User information"
+msgstr "Kasutajainfo"
+
+msgid "Information that will be sent to SPNAME"
 msgstr "Andmed saadetakse SPNAME-le"
 

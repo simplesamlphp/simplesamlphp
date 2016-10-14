@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: SimpleSAMLphp 1.15\n"
 "Report-Msgid-Bugs-To: simplesamlphp-translation@googlegroups.com\n"
 "POT-Creation-Date: 2016-10-12 09:23+0200\n"
-"PO-Revision-Date: 2016-10-12 09:23+0200\n"
+"PO-Revision-Date: 2016-10-14 12:14+0200\n"
 "Last-Translator: \n"
 "Language: ru\n"
 "Language-Team: \n"
@@ -72,4 +72,61 @@ msgstr "Общее количество элементов за все врем�
 
 msgid "{memcacheMonitor:memcachestat:bytes}"
 msgstr "Сейчас используется всего байт"
+
+msgid "Current time"
+msgstr "Текущее время"
+
+msgid "Total items ever"
+msgstr "Общее количество элементов за все время"
+
+msgid "Bytes written by the server"
+msgstr "Байт записано сервером"
+
+msgid "Uptime"
+msgstr "Время безотказной работы"
+
+msgid "Current open connections"
+msgstr "Текущие открытые соединения"
+
+msgid "Total storage avail"
+msgstr "Общий доступный объем системы хранения данных"
+
+msgid "Version"
+msgstr "Версия"
+
+msgid "Total GET commands (failed)"
+msgstr "Всего команд GET (с ошибкой)"
+
+msgid "Total SET commands"
+msgstr "Всего команд SET"
+
+msgid "Connection structures"
+msgstr "Структуры соединений"
+
+msgid "Total GET commands (success)"
+msgstr "Всего команд GET (успешных)"
+
+msgid "Total bytes in use currently"
+msgstr "Сейчас используется всего байт"
+
+msgid "Total GET commands"
+msgstr "Всего команд GET"
+
+msgid "Bytes in to the server"
+msgstr "Байт на сервер"
+
+msgid "Process ID"
+msgstr "ID процесса"
+
+msgid "Currently number of items"
+msgstr "Текущее количество элементов"
+
+msgid "CPU Seconds (User)"
+msgstr "Процессорное время в секундах (пользователя)"
+
+msgid "CPU Seconds (System)"
+msgstr "Процессорное время в секундах (системы)"
+
+msgid "Total connections"
+msgstr "Всего соединений"
 

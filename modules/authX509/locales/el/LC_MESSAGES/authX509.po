@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: SimpleSAMLphp 1.15\n"
 "Report-Msgid-Bugs-To: simplesamlphp-translation@googlegroups.com\n"
 "POT-Creation-Date: 2016-10-12 09:23+0200\n"
-"PO-Revision-Date: 2016-10-12 09:23+0200\n"
+"PO-Revision-Date: 2016-10-14 12:14+0200\n"
 "Last-Translator: \n"
 "Language: el\n"
 "Language-Team: \n"
@@ -37,4 +37,29 @@ msgstr "Ταυτοποίηση μέσω πιστοποιητικού X.509"
 
 msgid "{authX509:X509warning:warning}"
 msgstr "Η ισχύς του πιστοποιητικού σας θα λήξει σε %days%."
+
+msgid "Please renew your certificate in time."
+msgstr "Παρακαλείστε να προχωρήσετε σε ανανέωση του πιστοποιητικού σας έγκαιρα."
+
+#, python-format
+msgid "Your certificate will expire in %days% days."
+msgstr "Η ισχύς του πιστοποιητικού σας θα λήξει σε %days%."
+
+msgid "X509 certificate authentication"
+msgstr "Ταυτοποίηση μέσω πιστοποιητικού X.509"
+
+#, python-format
+msgid "Please  <a href='%renewurl%'>renew</a> your certificate in time."
+msgstr ""
+"Παρακαλείστε να προχωρήσετε σε <a href=‘%renewurl%’>ανανέωση</a> του "
+"πιστοποιητικού σας έγκαιρα."
+
+msgid "Proceed"
+msgstr "Συνέχεια"
+
+msgid "X509 certificate authentication is required to access this service."
+msgstr "Η πρόσβαση στην υπηρεσία απαιτεί ταυτοποίηση μέσω πιστοποιητικού X.509"
+
+msgid "Your certificate is about to expire."
+msgstr "Η ισχύς του πιστοποιητικού σας πρόκειται να λήξει."
 

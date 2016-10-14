@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: SimpleSAMLphp 1.15\n"
 "Report-Msgid-Bugs-To: simplesamlphp-translation@googlegroups.com\n"
 "POT-Creation-Date: 2016-10-12 09:23+0200\n"
-"PO-Revision-Date: 2016-10-12 09:23+0200\n"
+"PO-Revision-Date: 2016-10-14 12:14+0200\n"
 "Last-Translator: \n"
 "Language: id\n"
 "Language-Team: \n"
@@ -80,5 +80,74 @@ msgid "{consent:consent:yes}"
 msgstr "Yam lanjutkan"
 
 msgid "{consent:consent:consent_attributes_header}"
+msgstr "Informasi yang akan dikirim ke SPNAME"
+
+msgid "Service Providers for"
+msgstr "Service Provider untuk"
+
+msgid "Yes, continue"
+msgstr "Yam lanjutkan"
+
+msgid "Return to consent page"
+msgstr "Kembali ke halaman persetujuan"
+
+msgid "Consent status"
+msgstr "Status persetujuan"
+
+msgid "Go to information page for the service"
+msgstr "Pergi ke halaman informasi untul layanan"
+
+msgid "Service Provider"
+msgstr "Service Provider"
+
+msgid "show/hide attributes"
+msgstr "perlihatkan/sembunyikan attribut"
+
+msgid "The purpose of SPNAME is SPDESC"
+msgstr "Tujuan dari SPNAME adalah SPDESC"
+
+msgid ""
+"List the information about you that is about to be transmitted to the "
+"service you are going to login to"
+msgstr ""
+"Daftar informasi tentang Anda yang akan dikirimkan ke service tujuan "
+"login Anda."
+
+msgid "Consent about releasing personal information"
+msgstr "Persetujuan tentang melepas informasi personal"
+
+msgid "No consent given"
+msgstr "Tidan ada persetujuan yang diberikan"
+
+msgid "login"
+msgstr "login"
+
+msgid "You did not give consent for transfering your attributes to SPNAME."
+msgstr ""
+"Anda tidak memberikan persetujuan untuk mentransfer atribut-atribute Anda"
+" ke service provider."
+
+msgid "Remember"
+msgstr "Ingat"
+
+msgid "Show content"
+msgstr "Perlihatkan konten"
+
+msgid "SPNAME requires that the information below is transferred."
+msgstr "SPNAME mensyaratkan informasi dibawah ini harus ditransder."
+
+msgid "Privacypolicy for the service"
+msgstr "Kebijakan privasi untuk layanan"
+
+msgid "No, cancel"
+msgstr "Tidak, batalkan"
+
+msgid "Show attributes"
+msgstr "Perlihatkan atribut-atribut"
+
+msgid "User information"
+msgstr "Informasi User"
+
+msgid "Information that will be sent to SPNAME"
 msgstr "Informasi yang akan dikirim ke SPNAME"
 

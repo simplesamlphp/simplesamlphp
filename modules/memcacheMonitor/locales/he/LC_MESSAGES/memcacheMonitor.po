@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: SimpleSAMLphp 1.15\n"
 "Report-Msgid-Bugs-To: simplesamlphp-translation@googlegroups.com\n"
 "POT-Creation-Date: 2016-10-12 09:23+0200\n"
-"PO-Revision-Date: 2016-10-12 09:23+0200\n"
+"PO-Revision-Date: 2016-10-14 12:14+0200\n"
 "Last-Translator: \n"
 "Language: he\n"
 "Language-Team: \n"
@@ -71,4 +71,61 @@ msgstr "מספר כל הפריטים"
 
 msgid "{memcacheMonitor:memcachestat:bytes}"
 msgstr "סך כל הבטים שכרגע בשימוש"
+
+msgid "Current time"
+msgstr "זמן נוכחי"
+
+msgid "Total items ever"
+msgstr "מספר כל הפריטים"
+
+msgid "Bytes written by the server"
+msgstr "בטים שנכתבו ע\"י השרת"
+
+msgid "Uptime"
+msgstr "זמן למעלה"
+
+msgid "Current open connections"
+msgstr "חיבורים שעכשיו פתוחים"
+
+msgid "Total storage avail"
+msgstr "סך הכל אחסון זמין"
+
+msgid "Version"
+msgstr "גירסה"
+
+msgid "Total GET commands (failed)"
+msgstr "סה\"כ פקודות GET שנכשלו"
+
+msgid "Total SET commands"
+msgstr "סה\"כ פקודות SET"
+
+msgid "Connection structures"
+msgstr "מבני חיבורים"
+
+msgid "Total GET commands (success)"
+msgstr "סה\"כ פקודות GET מוצלחות"
+
+msgid "Total bytes in use currently"
+msgstr "סך כל הבטים שכרגע בשימוש"
+
+msgid "Total GET commands"
+msgstr "סה\"כ פקודות GET"
+
+msgid "Bytes in to the server"
+msgstr "בטים שניכנסו לשרת"
+
+msgid "Process ID"
+msgstr "מזהה תהליך"
+
+msgid "Currently number of items"
+msgstr "מספר הפריטים הנוכחי"
+
+msgid "CPU Seconds (User)"
+msgstr "שניות מעבד (משתמש)"
+
+msgid "CPU Seconds (System)"
+msgstr "שניות מעבד (מערכת)"
+
+msgid "Total connections"
+msgstr "סך-כל החיבורים"
 

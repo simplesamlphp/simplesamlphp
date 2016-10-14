@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: SimpleSAMLphp 1.15\n"
 "Report-Msgid-Bugs-To: simplesamlphp-translation@googlegroups.com\n"
 "POT-Creation-Date: 2016-10-12 09:31+0200\n"
-"PO-Revision-Date: 2016-10-12 09:31+0200\n"
+"PO-Revision-Date: 2016-10-14 12:14+0200\n"
 "Last-Translator: \n"
 "Language: se\n"
 "Language-Team: \n"
@@ -71,4 +71,58 @@ msgstr "Mátketelefovdna"
 
 msgid "{attributes:attribute_preferredlanguage}"
 msgstr "Vuosttašválljejuvvon giella dehe giellahápmi"
+
+msgid "Person's principal name at home organization"
+msgstr "Feide-namma"
+
+msgid "Mobile"
+msgstr "Mátketelefovdna"
+
+msgid "Incorrect username or password."
+msgstr "Boastu geavahusnamma, beassansátni dehe organisašuvdna."
+
+msgid "E-mail address:"
+msgstr "Elektrovnnalaš poastačijuhus"
+
+msgid "Mail"
+msgstr "Elektrovnnalaš poastačijuhus"
+
+msgid "Given name"
+msgstr "Ovdanamma"
+
+msgid "Common name"
+msgstr "Olles namma"
+
+msgid "Identity number assigned by public authorities"
+msgstr "Riegadannummir"
+
+msgid "Organization"
+msgstr "Organisašuvdna"
+
+msgid "Password"
+msgstr "Beassansátni"
+
+msgid "Username"
+msgstr "Geavahusnamma"
+
+msgid "Affiliation"
+msgstr "Du doaibma organisašuvnnas"
+
+msgid "Preferred language"
+msgstr "Vuosttašválljejuvvon giella dehe giellahápmi"
+
+msgid "Surname"
+msgstr "Goargu"
+
+msgid "User ID"
+msgstr "Namahus"
+
+msgid "Login"
+msgstr "Mana sis"
+
+msgid "Entitlement regarding the service"
+msgstr "URI mii čilge dihto vuoigatvuođa dihto ressurssaide"
+
+msgid "Affiliation at home organization"
+msgstr "Rolla diehto organisašuvnnas, dehe dihto domenas."
 

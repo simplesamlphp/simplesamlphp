@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: SimpleSAMLphp 1.15\n"
 "Report-Msgid-Bugs-To: simplesamlphp-translation@googlegroups.com\n"
 "POT-Creation-Date: 2016-10-12 09:23+0200\n"
-"PO-Revision-Date: 2016-10-12 09:23+0200\n"
+"PO-Revision-Date: 2016-10-14 12:14+0200\n"
 "Last-Translator: \n"
 "Language: ja\n"
 "Language-Team: \n"
@@ -71,4 +71,61 @@ msgstr "累計アイテム数"
 
 msgid "{memcacheMonitor:memcachestat:bytes}"
 msgstr "使用メモリ"
+
+msgid "Current time"
+msgstr "現在時刻"
+
+msgid "Total items ever"
+msgstr "累計アイテム数"
+
+msgid "Bytes written by the server"
+msgstr "送信データ量"
+
+msgid "Uptime"
+msgstr "起動時間"
+
+msgid "Current open connections"
+msgstr "現在のコネクション数"
+
+msgid "Total storage avail"
+msgstr "最大容量"
+
+msgid "Version"
+msgstr "バージョン"
+
+msgid "Total GET commands (failed)"
+msgstr "GETコマンド失敗回数"
+
+msgid "Total SET commands"
+msgstr "SETコマンド実行回数"
+
+msgid "Connection structures"
+msgstr "コネクション構造体数"
+
+msgid "Total GET commands (success)"
+msgstr "GETコマンド成功回数"
+
+msgid "Total bytes in use currently"
+msgstr "使用メモリ"
+
+msgid "Total GET commands"
+msgstr "GETコマンド実行回数"
+
+msgid "Bytes in to the server"
+msgstr "受信データ量"
+
+msgid "Process ID"
+msgstr "pid"
+
+msgid "Currently number of items"
+msgstr "現在アイテム数"
+
+msgid "CPU Seconds (User)"
+msgstr "CPU時間(User)"
+
+msgid "CPU Seconds (System)"
+msgstr "CPU時間(System)"
+
+msgid "Total connections"
+msgstr "累計コネクション数"
 

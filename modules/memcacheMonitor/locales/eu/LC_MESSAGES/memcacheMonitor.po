@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: SimpleSAMLphp 1.15\n"
 "Report-Msgid-Bugs-To: simplesamlphp-translation@googlegroups.com\n"
 "POT-Creation-Date: 2016-10-12 09:23+0200\n"
-"PO-Revision-Date: 2016-10-12 09:23+0200\n"
+"PO-Revision-Date: 2016-10-14 12:14+0200\n"
 "Last-Translator: \n"
 "Language: eu\n"
 "Language-Team: \n"
@@ -71,4 +71,61 @@ msgstr "Elementuen guztizko kopurua"
 
 msgid "{memcacheMonitor:memcachestat:bytes}"
 msgstr "Une honetan erabiltzen ari diren byten guztizko kopurua"
+
+msgid "Current time"
+msgstr "Uneko ordua"
+
+msgid "Total items ever"
+msgstr "Elementuen guztizko kopurua"
+
+msgid "Bytes written by the server"
+msgstr "Byte-ak zerbitzariak idatzita"
+
+msgid "Uptime"
+msgstr "Jardun-denbora"
+
+msgid "Current open connections"
+msgstr "Egun irekita dauden konexioak"
+
+msgid "Total storage avail"
+msgstr "Ustiatutako biltegiraketa guztira"
+
+msgid "Version"
+msgstr "Bertsioa"
+
+msgid "Total GET commands (failed)"
+msgstr "GET komandoak guztira (huts egiteak)"
+
+msgid "Total SET commands"
+msgstr "SET komandoak guztira"
+
+msgid "Connection structures"
+msgstr "Konexio egiturak"
+
+msgid "Total GET commands (success)"
+msgstr "GET komandoak guztira (arrakastatsuak)"
+
+msgid "Total bytes in use currently"
+msgstr "Une honetan erabiltzen ari diren byten guztizko kopurua"
+
+msgid "Total GET commands"
+msgstr "GET komandoak guztira"
+
+msgid "Bytes in to the server"
+msgstr "Byte-ak zerbitzarian"
+
+msgid "Process ID"
+msgstr "Id prozesua"
+
+msgid "Currently number of items"
+msgstr "Uneko elementu kopurua"
+
+msgid "CPU Seconds (User)"
+msgstr "PUZ segunduak (Erabiltzailea)"
+
+msgid "CPU Seconds (System)"
+msgstr "PUZ segunduak (Sistema)"
+
+msgid "Total connections"
+msgstr "Konexioak guztira"
 

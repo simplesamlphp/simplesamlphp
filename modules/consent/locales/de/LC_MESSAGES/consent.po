@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: SimpleSAMLphp 1.15\n"
 "Report-Msgid-Bugs-To: simplesamlphp-translation@googlegroups.com\n"
 "POT-Creation-Date: 2016-10-12 09:23+0200\n"
-"PO-Revision-Date: 2016-10-12 09:23+0200\n"
+"PO-Revision-Date: 2016-10-14 12:14+0200\n"
 "Last-Translator: \n"
 "Language: de\n"
 "Language-Team: \n"
@@ -85,5 +85,79 @@ msgid "{consent:consent:yes}"
 msgstr "Ja, ich stimme zu"
 
 msgid "{consent:consent:consent_attributes_header}"
+msgstr "Informationen, die an SPNAME gesandt werden"
+
+msgid "Service Providers for"
+msgstr "Service-Provider für"
+
+msgid "Yes, continue"
+msgstr "Ja, ich stimme zu"
+
+msgid "Return to consent page"
+msgstr "Zurück"
+
+msgid "Consent status"
+msgstr "Zustimmungsstatus"
+
+msgid "Go to information page for the service"
+msgstr "Gehe zur Informationsseite dieses Dienstes"
+
+msgid "Service Provider"
+msgstr "Service-Provider"
+
+msgid "Abort login to SPNAME"
+msgstr "Anmeldung am Service Provider SPNAME abbrechen"
+
+msgid "show/hide attributes"
+msgstr "zeige/verstecke Eigenschaften"
+
+msgid "The purpose of SPNAME is SPDESC"
+msgstr "Der Zweck von SPNAME ist SPDESC"
+
+msgid ""
+"List the information about you that is about to be transmitted to the "
+"service you are going to login to"
+msgstr ""
+"Zeige die Information über Sie, die an den Service, auf dem Sie sich "
+"einloggen werden, übermittelt werden"
+
+msgid "Consent about releasing personal information"
+msgstr "Zustimmung zur Weitergabe persönlicher Daten"
+
+msgid "No consent given"
+msgstr "Zustimmung verweigert"
+
+msgid "login"
+msgstr "anmelden"
+
+msgid "You did not give consent for transfering your attributes to SPNAME."
+msgstr ""
+"Sie haben der Weitergabe ihrer Daten an den Service Provider nicht "
+"zugestimmt."
+
+msgid "Remember"
+msgstr "Zustimmung merken"
+
+msgid "Show content"
+msgstr "Zeige Inhalt"
+
+msgid "SPNAME requires that the information below is transferred."
+msgstr ""
+"SPNAME erfordert die Übertragung untenstehender Information von IDPNAME. "
+"Akzeptieren Sie das?"
+
+msgid "Privacypolicy for the service"
+msgstr "Datenschutzrichtlinie des Dienstes"
+
+msgid "No, cancel"
+msgstr "Nein, ich stimme nicht zu"
+
+msgid "Show attributes"
+msgstr "Attribute zeigen"
+
+msgid "User information"
+msgstr "Benutzerdaten"
+
+msgid "Information that will be sent to SPNAME"
 msgstr "Informationen, die an SPNAME gesandt werden"
 

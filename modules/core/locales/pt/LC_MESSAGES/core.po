@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: SimpleSAMLphp 1.15\n"
 "Report-Msgid-Bugs-To: simplesamlphp-translation@googlegroups.com\n"
 "POT-Creation-Date: 2016-10-12 09:23+0200\n"
-"PO-Revision-Date: 2016-10-12 09:23+0200\n"
+"PO-Revision-Date: 2016-10-14 12:14+0200\n"
 "Last-Translator: \n"
 "Language: pt\n"
 "Language-Team: \n"
@@ -195,4 +195,200 @@ msgstr ""
 
 msgid "{core:frontpage:deprecated}"
 msgstr "Descontinuado"
+
+msgid "You are logged in as administrator"
+msgstr "Está autenticado como administrador"
+
+msgid "Welcome"
+msgstr "Bem vindo"
+
+msgid "SimpleSAMLphp configuration check"
+msgstr "Teste da configuração do SimpleSAMLphp"
+
+msgid "Metadata overview for your installation. Diagnose your metadata files"
+msgstr ""
+"Diagnósticos: ficheiros de metadados, vista geral de metadados da sua "
+"instalação"
+
+msgid "XML to SimpleSAMLphp metadata converter"
+msgstr "Conversor de metadados de XML para SimpleSAMLphp"
+
+msgid "Required"
+msgstr "Necessário"
+
+msgid "Warnings"
+msgstr "Avisos"
+
+msgid "Documentation"
+msgstr "Documentação"
+
+msgid "Hosted Shibboleth 1.3 Service Provider Metadata (automatically generated)"
+msgstr ""
+"Metadados do fornecedor de serviço (SP) Shibboleth 1.3 local (gerado "
+"automaticamente)"
+
+msgid "PHP info"
+msgstr "PHP info"
+
+msgid "About SimpleSAMLphp"
+msgstr "Sobre o SimpleSAMLphp"
+
+msgid "Hosted SAML 2.0 Service Provider Metadata (automatically generated)"
+msgstr ""
+"Metadados do fornecedor de serviço (SP) SAML 2.0 local (gerado "
+"automaticamente)"
+
+msgid "Retry login"
+msgstr "Tentar de novo"
+
+msgid "Required for LDAP"
+msgstr "Necessário para LDAP"
+
+msgid "Federation"
+msgstr "Federação"
+
+msgid "Delete my choices of IdP in the IdP discovery services"
+msgstr "Remover as minhas escolhas de IdP nos serviços de descoberta de IdP"
+
+msgid "Configure Shibboleth 1.3 SP to work with SimpleSAMLphp IdP"
+msgstr "Configurar um SP Shibboleth 1.3 para funcionar com um IdP SimpleSAMLphp"
+
+msgid "Missing cookie"
+msgstr "Cookie não encontrado"
+
+msgid "Tools"
+msgstr "Ferramentas"
+
+msgid "Test configured authentication sources "
+msgstr "Testar fontes de autenticação configuradas"
+
+msgid ""
+"You appear to have disabled cookies in your browser. Please check the "
+"settings in your browser, and try again."
+msgstr ""
+"Provavelmente desligou o suporte de cookies no seu browser. Por favor "
+"verifique se tem o suporte de cookies ligado e tente de novo."
+
+msgid "Installing SimpleSAMLphp"
+msgstr "Instalar o SimpleSAMLphp"
+
+msgid "Deprecated"
+msgstr "Descontinuado"
+
+msgid ""
+"<strong>Congratulations</strong>, you have successfully installed "
+"SimpleSAMLphp. This is the start page of your installation, where you "
+"will find links to test examples, diagnostics, metadata and even links to"
+" relevant documentation."
+msgstr ""
+"<strong>Parabéns</strong>, o software SimpleSAMLphp foi instalado com "
+"sucesso. Esta é a página inicial da sua instalação, onde encontrará "
+"ligações para páginas de teste, de diagnóstico, de metadados e de "
+"documentação relevante."
+
+msgid ""
+"<strong>You are not using HTTPS</strong> - encrypted communication with "
+"the user. HTTP works fine for test purposes, but in a production "
+"environment, you should use HTTPS. [ <a "
+"href=\"https://simplesamlphp.org/docs/stable/simplesamlphp-"
+"maintenance\">Read more about SimpleSAMLphp maintenance</a> ]"
+msgstr ""
+"<strong>Não está a ser usado HTTPS</strong> - comunicação cifrada com o "
+"utilizador. Para ambientes de teste, ligações HTTP são suficientes, mas "
+"num ambiente de produção deve ser usado HTTPS. [ <a "
+"href=\"http://rnd.feide.no/content/simplesamlphp-maintenance-and-"
+"configuration\">Ler mais sobre manutenção do SimpleSAMLphp</a> ]"
+
+msgid "Metadata"
+msgstr "Metadados"
+
+msgid "Retry"
+msgstr "Tentar de novo"
+
+msgid "SimpleSAMLphp Maintenance and Configuration"
+msgstr "Configuração e manutenção do SimpleSAMLphp"
+
+msgid "Diagnostics on hostname, port and protocol"
+msgstr "Diagnósticos: hostname, porto e protocolo"
+
+msgid "Using SimpleSAMLphp as an Identity Provider"
+msgstr "Usar o SimpleSAMLphp como um fornecedor de identidade (IdP)"
+
+msgid "Optional"
+msgstr "Opcional"
+
+msgid ""
+"This SimpleSAMLphp thing is pretty cool, where can I read more about it? "
+"You can find more information about it at the <a "
+"href=\"https://simplesamlphp.org/\">SimpleSAMLphp web page </a> over at "
+"<a href=\"http://uninett.no\">UNINETT</a>."
+msgstr ""
+"Pode encontrar mais informação sobre o <a "
+"href=\"http://rnd.feide.no/simplesamlphp\">SimpleSAMLphp no blog da Feide"
+" RnD</a> em <a href=\"http://uninett.no\">UNINETT</a>."
+
+msgid "Shibboleth 1.3 SP example - test logging in through your Shib IdP"
+msgstr "Exemplo de um SP Shibboleth 1.3 - Para testes de login pelo seu IdP Shib"
+
+msgid "Authentication"
+msgstr "Autenticação"
+
+msgid "Show metadata"
+msgstr "Mostrar meta-dados"
+
+msgid "SimpleSAMLphp as an IdP for Google Apps for Education"
+msgstr ""
+"Configurar o SimpleSAMLphp  para funcionar como um IdP para o Google Apps"
+" for Education"
+
+msgid "Hosted SAML 2.0 Identity Provider Metadata (automatically generated)"
+msgstr ""
+"Metadados do fornecedor de identidade (IdP) SAML 2.0 local (gerado "
+"automaticamente)"
+
+msgid "OpenID Provider site - Alpha version (test code)"
+msgstr "Site do provider OpenID - versão Alpha (código de teste)"
+
+msgid "Required for Radius"
+msgstr "Necessário para Radius"
+
+msgid "SAML 2.0 SP example - test logging in through your IdP"
+msgstr "Exemplo de um SP SAML 2.0 - Para testes de login pelo seu IdP"
+
+msgid "Using SimpleSAMLphp as a Service Provider"
+msgstr "Usar o SimpleSAMLphp como um fornecedor de serviço (SP)"
+
+msgid ""
+"We have detected that there is only a few seconds since you last "
+"authenticated with this service provider, and therefore assume that there"
+" is a problem with this SP."
+msgstr ""
+"Foi detectada uma repetição de autenticação neste serviço em poucos "
+"segundos. Este SP pode ter um problema."
+
+msgid "Recommended"
+msgstr "Recomendado"
+
+msgid "SimpleSAMLphp Advanced Features"
+msgstr "Funcionalidades avançadas do SimpleSAMLphp"
+
+msgid "Too short interval between single sign on events."
+msgstr "Intervalo entre eventos de single sign on demasiado curto."
+
+msgid "Checking your PHP installation"
+msgstr "Verificação do seu ambiente PHP"
+
+msgid "Useful links for your installation"
+msgstr "Ligações úteis da sua instalação"
+
+msgid "Configuration"
+msgstr "Configuração"
+
+msgid "Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated)"
+msgstr ""
+"Metadados do fornecedor de identidade (IdP) Shibboleth 1.3 local (gerado "
+"automaticamente)"
+
+msgid "Login as administrator"
+msgstr "Entrar como administrador"
 

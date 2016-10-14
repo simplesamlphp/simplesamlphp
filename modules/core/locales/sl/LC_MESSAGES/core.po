@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: SimpleSAMLphp 1.15\n"
 "Report-Msgid-Bugs-To: simplesamlphp-translation@googlegroups.com\n"
 "POT-Creation-Date: 2016-10-12 09:23+0200\n"
-"PO-Revision-Date: 2016-10-12 09:23+0200\n"
+"PO-Revision-Date: 2016-10-14 12:14+0200\n"
 "Last-Translator: \n"
 "Language: sl\n"
 "Language-Team: \n"
@@ -250,4 +250,264 @@ msgstr ""
 
 msgid "{core:frontpage:deprecated}"
 msgstr "Neustrezen"
+
+msgid "You are logged in as administrator"
+msgstr "Prijavljeni ste v vlogi administratorja"
+
+msgid "Go back to the previous page and try again."
+msgstr "Pojdite nazaj na prejšnjo stran in poskusite znova."
+
+msgid "If this problem persists, you can report it to the system administrators."
+msgstr "Če se ta napaka ponavlja, jo lahko prijavite za skrbniku sistema."
+
+msgid "Welcome"
+msgstr "Dobrodošli"
+
+msgid "SimpleSAMLphp configuration check"
+msgstr "Preveri SimpleSAMLphp nastavitve"
+
+msgid "Metadata overview for your installation. Diagnose your metadata files"
+msgstr "Pregled metapodatkov in njihova diagnostika."
+
+msgid "XML to SimpleSAMLphp metadata converter"
+msgstr "XML v SimpleSAMLphp pretvornik metapodatkov"
+
+msgid "Required"
+msgstr "Zahtevano"
+
+msgid "Warnings"
+msgstr "Opozorila"
+
+msgid "Documentation"
+msgstr "Dokumentacija"
+
+msgid "Hosted Shibboleth 1.3 Service Provider Metadata (automatically generated)"
+msgstr "Metapodatki za Shibboleth 1.3 SP (samodejno generirani)"
+
+msgid "PHP info"
+msgstr "PHPinfo"
+
+msgid "About SimpleSAMLphp"
+msgstr "O SimpleSAMLphp"
+
+msgid "Hosted SAML 2.0 Service Provider Metadata (automatically generated)"
+msgstr "Metapodatki za SAML 2.0 SP (samodejno generirani)"
+
+msgid "Retry login"
+msgstr "Ponovna prijava"
+
+msgid "Required for LDAP"
+msgstr "Zahtevano za LDAP"
+
+msgid "Close the web browser, and try again."
+msgstr "Zaprite spletni brskalnik in poskusite znova."
+
+msgid "Federation"
+msgstr "Federacija"
+
+msgid "We were unable to locate the state information for the current request."
+msgstr "Informacije o stanju trenutne zahteve ni bilo moč najti."
+
+msgid "Delete my choices of IdP in the IdP discovery services"
+msgstr "Razveljavi privzeti IdP"
+
+msgid ""
+"This is most likely a configuration problem on either the service "
+"provider or identity provider."
+msgstr ""
+"Najverjetneje gre za težavo z nastavitvami bodisi ponudnika storitve (SP)"
+" bodisi ponudnika identitet (IdP)."
+
+msgid "Configure Shibboleth 1.3 SP to work with SimpleSAMLphp IdP"
+msgstr "Nastavi Shibboleth 1.3 SP za delo s SimpleSAMLphp IdP"
+
+msgid "Using the back and forward buttons in the web browser."
+msgstr "Uporaba gumbov \"nazaj\" ali \"naprej\" v spletnem brskalniku."
+
+msgid "Metadata not found"
+msgstr "Metapodatkov ni bilo moč najti."
+
+msgid "Missing cookie"
+msgstr "Piškotek (\"cookie\") ne obstaja!"
+
+msgid "Cookies may be disabled in the web browser."
+msgstr "Spletni brskalnik ima izklopjeno podporo za piškotke."
+
+msgid "Opened the web browser with tabs saved from the previous session."
+msgstr ""
+"Spletni brskalnik je odprl spletno stan s (poteklimi) podatki iz prejšnje"
+" seje."
+
+msgid "Tools"
+msgstr "Orodja"
+
+msgid "Test configured authentication sources "
+msgstr "Preveri izbrani avtentikacijski mehanizem "
+
+msgid ""
+"You appear to have disabled cookies in your browser. Please check the "
+"settings in your browser, and try again."
+msgstr ""
+"Vaš spletni brskalnik ima onemogočene piškotke (\"cookies\"). Omogočite "
+"to nastavitev in poskusite ponovno."
+
+msgid "Installing SimpleSAMLphp"
+msgstr "Namestitev SimpleSAMLphp"
+
+msgid "Deprecated"
+msgstr "Neustrezen"
+
+msgid ""
+"<strong>Congratulations</strong>, you have successfully installed "
+"SimpleSAMLphp. This is the start page of your installation, where you "
+"will find links to test examples, diagnostics, metadata and even links to"
+" relevant documentation."
+msgstr ""
+"<strong>Čestitamo!</strong> Uspešno ste namestili SimpleSAMLphp. Na tej "
+"strani se nahajajo povezave do vzorčnih nastavitev, diagnostike, "
+"metapodatkov in s tem povezane dokumentacije."
+
+msgid "This error may be caused by:"
+msgstr "Vzrok za to napako je lahko:"
+
+msgid ""
+"<strong>You are not using HTTPS</strong> - encrypted communication with "
+"the user. HTTP works fine for test purposes, but in a production "
+"environment, you should use HTTPS. [ <a "
+"href=\"https://simplesamlphp.org/docs/stable/simplesamlphp-"
+"maintenance\">Read more about SimpleSAMLphp maintenance</a> ]"
+msgstr ""
+"<strong>Ne uporabljate HTTPS</strong>-šifrirane komunikacije. "
+"SimpleSAMLphp deluje brez težav na HTTP, vendar le za testne namene, za "
+"uporabo SimpleSAMLphp v produkcijskem okolju uporabite HTTPS. [ <a "
+"href=\"http://rnd.feide.no/content/simplesamlphp-maintenance-and-"
+"configuration\">Preberite več o SimpleSAMLphp vzdrževanju</a> ]"
+
+msgid "Metadata"
+msgstr "Metapodatki"
+
+msgid "Retry"
+msgstr "Poskusi ponovno"
+
+msgid "SimpleSAMLphp Maintenance and Configuration"
+msgstr "SimpleSAMLphp vzdrževanje in nastavitve"
+
+msgid "Diagnostics on hostname, port and protocol"
+msgstr "Diagnostika strežnika, vrata in protokol"
+
+msgid ""
+"If you are an user who received this error after following a link on a "
+"site, you should report this error to the owner of that site."
+msgstr ""
+"Če ste na to težavo naleteli po kliku povezave te spletne strani, "
+"prijavite težavo skrbniku te spletne strani."
+
+msgid "Using SimpleSAMLphp as an Identity Provider"
+msgstr "Uporabi SimpleSAMLphp za IdP"
+
+msgid "Optional"
+msgstr "Dodatno"
+
+msgid "Suggestions for resolving this problem:"
+msgstr "Predloga za razrešitev nastale težave:"
+
+msgid ""
+"This SimpleSAMLphp thing is pretty cool, where can I read more about it? "
+"You can find more information about it at the <a "
+"href=\"https://simplesamlphp.org/\">SimpleSAMLphp web page </a> over at "
+"<a href=\"http://uninett.no\">UNINETT</a>."
+msgstr ""
+"Da! SimpleSAMLphp je zares kul! Kje si lahko preberem kaj več o tem? "
+"Dodatne informacije se nahajajo na <a "
+"href=\"http://rnd.feide.no/simplesamlphp\">SimpleSAMLphp Feide RnD "
+"blogu</a>."
+
+msgid "Shibboleth 1.3 SP example - test logging in through your Shib IdP"
+msgstr "Shibboleth 1.3 SP primer - preveri prijavo preko svojega Shib IdP"
+
+msgid "Authentication"
+msgstr "Avtentikacija"
+
+msgid "SimpleSAMLphp installation page"
+msgstr "Namestitvena stran SimpleSAMLphp"
+
+msgid "Show metadata"
+msgstr "Prikaži metapodatke"
+
+msgid "SimpleSAMLphp as an IdP for Google Apps for Education"
+msgstr "SimpleSAMLphp IdP za Google Apps for Education"
+
+msgid "State information lost"
+msgstr "Informacije o stanju zahtevka niso na voljo."
+
+msgid "Hosted SAML 2.0 Identity Provider Metadata (automatically generated)"
+msgstr "Metapodatki za SAML 2.0 IdP (samodejno generirani)"
+
+msgid "OpenID Provider site - Alpha version (test code)"
+msgstr "OpenID Provider lokacija - Alpha različica (v razvoju)"
+
+msgid "Required for Radius"
+msgstr "Zahtevano za RADIUS"
+
+msgid "We were unable to locate the metadata for the entity:"
+msgstr "Metapodatkov za to entiteto ni bilo moč najti."
+
+msgid "SAML 2.0 SP example - test logging in through your IdP"
+msgstr "SAML 2.0 SP primer - preveri prijavo preko svojega IdP"
+
+msgid "Using SimpleSAMLphp as a Service Provider"
+msgstr "Uporabi SimpleSAMLphp za SP"
+
+msgid ""
+"We have detected that there is only a few seconds since you last "
+"authenticated with this service provider, and therefore assume that there"
+" is a problem with this SP."
+msgstr ""
+"Sistem je zaznal naslednje, od predhodnje in te prijave je poteklo le "
+"nekaj sekund, zato sklepa na težave ponudnika storitve (SP)."
+
+msgid "Recommended"
+msgstr "Priporočljivo"
+
+msgid ""
+"If you are a developer who is deploying a single sign-on solution, you "
+"have a problem with the metadata configuration. Verify that metadata is "
+"configured correctly on both the identity provider and service provider."
+msgstr ""
+"Če ste razvijalec, ki razvija SSO rešitev preverite, ali so nastavitve "
+"metapodatkov ustrezne, tako na stani ponudnika identitete (IdP), kot na "
+"strani ponudnika storitve (SP)."
+
+msgid "SimpleSAMLphp Advanced Features"
+msgstr "SimpleSAMLphp napredne funkcije"
+
+msgid "Too short interval between single sign on events."
+msgstr "Prekratek interval med dogodki enotne prijave."
+
+msgid "Checking your PHP installation"
+msgstr "Preverjanje namestitve PHP"
+
+msgid ""
+"The length of query parameters is limited by the PHP Suhosin extension. "
+"Please increase the suhosin.get.max_value_length option to at least 2048 "
+"bytes."
+msgstr ""
+"Dolžina parametra poizvedbe je v PHP omejena s Suhosin razširitvijo. "
+"Poskusite povečati parameter suhosin.get.max_value_length na vsaj 2048 "
+"bajtov."
+
+msgid "Useful links for your installation"
+msgstr "Uporabne povezave"
+
+msgid "Configuration"
+msgstr "Nastavitve"
+
+msgid "Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated)"
+msgstr "Metapodatki za Shibboleth 1.3 IdP (samodejno generirani)"
+
+msgid "Login as administrator"
+msgstr "Prijavi se kot administrator"
+
+msgid "Report this error"
+msgstr "Prijavite to napako"
 

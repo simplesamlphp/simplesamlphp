@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: SimpleSAMLphp 1.15\n"
 "Report-Msgid-Bugs-To: simplesamlphp-translation@googlegroups.com\n"
 "POT-Creation-Date: 2016-10-12 09:23+0200\n"
-"PO-Revision-Date: 2016-10-12 09:23+0200\n"
+"PO-Revision-Date: 2016-10-14 12:14+0200\n"
 "Last-Translator: \n"
 "Language: ar\n"
 "Language-Team: \n"
@@ -80,5 +80,73 @@ msgid "{consent:consent:yes}"
 msgstr "نعم، واصل"
 
 msgid "{consent:consent:consent_attributes_header}"
+msgstr "المعلومات التي سيتم إرسالها ل SPNAME"
+
+msgid "Service Providers for"
+msgstr "مقدمي خدمات ل"
+
+msgid "Yes, continue"
+msgstr "نعم، واصل"
+
+msgid "Return to consent page"
+msgstr "عد لصفحة الموافقة"
+
+msgid "Consent status"
+msgstr "حالة موافقة"
+
+msgid "Go to information page for the service"
+msgstr "اذهب لصفحة المعلومات عن الخدمة"
+
+msgid "Service Provider"
+msgstr "مقدم خدمات"
+
+msgid "Abort login to SPNAME"
+msgstr "إلغاء عملية الدخول لSPNAME"
+
+msgid "show/hide attributes"
+msgstr "اظهر/الغي السمات"
+
+msgid "The purpose of SPNAME is SPDESC"
+msgstr "الغرض من SPNAME هو SPDESC"
+
+msgid ""
+"List the information about you that is about to be transmitted to the "
+"service you are going to login to"
+msgstr "قائمة معلوماتك التي ستحول لمقدم الخدمة الذي ترغب بتسجيل الدخول اليه"
+
+msgid "Consent about releasing personal information"
+msgstr "اوافق علي نشر سماتي الشخصية"
+
+msgid "No consent given"
+msgstr "لم تعطي الموافقة"
+
+msgid "login"
+msgstr "تسجيل الدخول"
+
+msgid "You did not give consent for transfering your attributes to SPNAME."
+msgstr "لم توافق علي تحويل سماتك لمقدم الخدمة"
+
+msgid "Remember"
+msgstr "تذكرألغت ذكر"
+
+msgid "Show content"
+msgstr "اظهراليها ظهر المحتوي"
+
+msgid "SPNAME requires that the information below is transferred."
+msgstr "يحتاج SPNAME تحويل البيانات أدناه "
+
+msgid "Privacypolicy for the service"
+msgstr "سياسة الخصوصية للخدمة"
+
+msgid "No, cancel"
+msgstr "لا، الغ"
+
+msgid "Show attributes"
+msgstr "اظهر السمات"
+
+msgid "User information"
+msgstr "معلومات المستخدم"
+
+msgid "Information that will be sent to SPNAME"
 msgstr "المعلومات التي سيتم إرسالها ل SPNAME"
 

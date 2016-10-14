@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: SimpleSAMLphp 1.15\n"
 "Report-Msgid-Bugs-To: simplesamlphp-translation@googlegroups.com\n"
 "POT-Creation-Date: 2016-10-12 09:23+0200\n"
-"PO-Revision-Date: 2016-10-12 09:23+0200\n"
+"PO-Revision-Date: 2016-10-14 12:14+0200\n"
 "Last-Translator: \n"
 "Language: fi\n"
 "Language-Team: \n"
@@ -75,5 +75,69 @@ msgid "{consent:consent:yes}"
 msgstr "Kyllä"
 
 msgid "{consent:consent:consent_attributes_header}"
+msgstr "Tiedot lähetetään palvelulle SPNAME"
+
+msgid "Service Providers for"
+msgstr "Palveluntarjoaja"
+
+msgid "Yes, continue"
+msgstr "Kyllä"
+
+msgid "Return to consent page"
+msgstr "Palaa hyväksyntäsivulle"
+
+msgid "Consent status"
+msgstr "Hyväksynnään tila"
+
+msgid "Go to information page for the service"
+msgstr "Siirry palvelun tiedot -sivulle"
+
+msgid "Service Provider"
+msgstr "Palveluntarjoaja"
+
+msgid "show/hide attributes"
+msgstr "Näytä/piilota attribuutteja"
+
+msgid "The purpose of SPNAME is SPDESC"
+msgstr "Palvelun SPNAME käyttötarkoitus on SPDESC"
+
+msgid ""
+"List the information about you that is about to be transmitted to the "
+"service you are going to login to"
+msgstr "Näytä tietosi, joita ollaan siirtämässä palveluun"
+
+msgid "Consent about releasing personal information"
+msgstr "Henkilötietojen luovutuksen hyväksyntä"
+
+msgid "No consent given"
+msgstr "Lupaa ei annettu"
+
+msgid "login"
+msgstr "Tunnus"
+
+msgid "You did not give consent for transfering your attributes to SPNAME."
+msgstr "Et antanut lupaa siirtää henkilötietojasi palveluntarjoajalle"
+
+msgid "Remember"
+msgstr "Muista"
+
+msgid "SPNAME requires that the information below is transferred."
+msgstr ""
+"Olet kirjautumassa palveluun SPNAME. Identiteetilähteesi henkilötietojasi"
+" palvelun tarjoajalle. Hyväksytkö tietojen siirron?"
+
+msgid "Privacypolicy for the service"
+msgstr "Tietosuojaseloste palvelulle"
+
+msgid "No, cancel"
+msgstr "ei"
+
+msgid "Show attributes"
+msgstr "Näytä henkilötiedot"
+
+msgid "User information"
+msgstr "Käyttäjätiedot"
+
+msgid "Information that will be sent to SPNAME"
 msgstr "Tiedot lähetetään palvelulle SPNAME"
 

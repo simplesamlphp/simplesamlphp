@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: SimpleSAMLphp 1.15\n"
 "Report-Msgid-Bugs-To: simplesamlphp-translation@googlegroups.com\n"
 "POT-Creation-Date: 2016-10-12 09:23+0200\n"
-"PO-Revision-Date: 2016-10-12 09:23+0200\n"
+"PO-Revision-Date: 2016-10-14 12:14+0200\n"
 "Last-Translator: \n"
 "Language: lt\n"
 "Language-Team: \n"
@@ -82,4 +82,81 @@ msgstr "Leidimas pridėtas"
 
 msgid "{consentAdmin:consentadmin:attribute_id}"
 msgstr "Tapatybė"
+
+msgid "Injected attribut"
+msgstr "Įterptas atributas"
+
+msgid "Show"
+msgstr "Parodyti"
+
+msgid "Consent Added"
+msgstr "Leidimas pridėtas"
+
+msgid "Consent Administration"
+msgstr "Leidimų administravimas"
+
+msgid "Here you can view and edit your consent for the Service Providers."
+msgstr "Čia jūs galite peržiūrėti ir keisti savo leidimus paslaugų teikėjams"
+
+msgid "Unknown ..."
+msgstr "Nežinoma..."
+
+msgid "Identity"
+msgstr "Tapatybė"
+
+msgid "The purpose of the service is"
+msgstr "Paslaugos paskirtis yra"
+
+msgid "Hide"
+msgstr "Paslėpti"
+
+msgid "Service Provider"
+msgstr "Paslaugos tiekėjas"
+
+msgid "Service Providers for"
+msgstr "Paslaugos tiekėjai"
+
+msgid "login"
+msgstr "Prisijungti"
+
+msgid "(name not specified)"
+msgstr "(pavadinimas nenurodytas)"
+
+msgid "Consent Updated"
+msgstr "Leidimas atnaujintas"
+
+msgid "Consent status"
+msgstr "Leidimo statusas"
+
+msgid "(no description)"
+msgstr "(apibūdinimas nenurodytas)"
+
+msgid "attributes"
+msgstr "atributai"
+
+msgid ""
+"\n"
+"<h3>How to delete your consent</h3>\n"
+"Uncheck the box corresponding to the service provider\n"
+"\n"
+"<h3>Links</h3>\n"
+"<ul>\n"
+"<li><a href=\"https://www.wayf.dk\">Start</a> </li>\n"
+"\n"
+"<li><a href=\"https://www.wayf.dk/FAQ\">FAQ</a> </li>\n"
+"</ul>\n"
+msgstr ""
+"<h3>Kaip pašalinti savo leidimą</h3> Panaikinkite pažymėjimą ties "
+"atitinkamu paslaugos teikėju <h3>Nuorodos</h3> <ul> <li><a "
+"href=\"https://www.wayf.dk\">Pradžia</a> </li> <li><a "
+"href=\"https://www.wayf.dk/FAQ\">FAQ</a> </li> </ul> "
+
+msgid "Consent Removed"
+msgstr "Leidimas pašalintas"
+
+msgid "show/hide attributes"
+msgstr "Rodyti/slėpti atributus"
+
+msgid "Organisation"
+msgstr "Organizacija"
 

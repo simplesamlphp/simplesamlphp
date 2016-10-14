@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: SimpleSAMLphp 1.15\n"
 "Report-Msgid-Bugs-To: simplesamlphp-translation@googlegroups.com\n"
 "POT-Creation-Date: 2016-10-12 09:23+0200\n"
-"PO-Revision-Date: 2016-10-12 09:23+0200\n"
+"PO-Revision-Date: 2016-10-14 12:14+0200\n"
 "Last-Translator: \n"
 "Language: ro\n"
 "Language-Team: \n"
@@ -269,4 +269,283 @@ msgstr ""
 
 msgid "{core:frontpage:deprecated}"
 msgstr "Depreciate"
+
+msgid "You are logged in as administrator"
+msgstr "V-ați autentificat ca administrator"
+
+msgid "Go back to the previous page and try again."
+msgstr "Accesați pagina anterioară și încercați din nou."
+
+msgid "If this problem persists, you can report it to the system administrators."
+msgstr "Dacă problema persistă, anunțați administratorii de sistem."
+
+msgid "Welcome"
+msgstr "Bine ați venit"
+
+msgid "SimpleSAMLphp configuration check"
+msgstr "Verificarea configurației SimpleSAMLphp"
+
+msgid "Metadata overview for your installation. Diagnose your metadata files"
+msgstr ""
+"Privire de ansamblu a metadatelor pentru instalarea dumneavoastră. "
+"Diagnosticați fișierele cu metadate"
+
+msgid "XML to SimpleSAMLphp metadata converter"
+msgstr "Convertor metadate din XML în SimpleSAMLphp"
+
+msgid "Required"
+msgstr "Necesar"
+
+msgid "Warnings"
+msgstr "Atenționări"
+
+msgid "Documentation"
+msgstr "Documentație"
+
+msgid "Hosted Shibboleth 1.3 Service Provider Metadata (automatically generated)"
+msgstr ""
+"Metadate pentru furnizorul de servicii Shibboleth 1.3 găzduit (generate "
+"automat)"
+
+msgid "PHP info"
+msgstr "Informații despre PHP"
+
+msgid "About SimpleSAMLphp"
+msgstr "Despre SimpleSAMLphp"
+
+msgid "Hosted SAML 2.0 Service Provider Metadata (automatically generated)"
+msgstr "Metadate pentru furnizorul de servicii SAML 2.0 găzduit (generate automat)"
+
+msgid "Retry login"
+msgstr "Încercați din nou"
+
+msgid "Required for LDAP"
+msgstr "Necesar pentru LDAP"
+
+msgid "Close the web browser, and try again."
+msgstr "Închideți browser-ul și încercați din nou."
+
+msgid "Federation"
+msgstr "Federație"
+
+msgid "We were unable to locate the state information for the current request."
+msgstr ""
+"Nu a fost posibilă localizarea informațiilor de stare pentru cererea "
+"curentă."
+
+msgid "Delete my choices of IdP in the IdP discovery services"
+msgstr ""
+"Șterge furnizorii de identitate aleși de mine din serviciile de căutare a"
+" furnizorilor de identitate"
+
+msgid ""
+"This is most likely a configuration problem on either the service "
+"provider or identity provider."
+msgstr ""
+"Probabil există o problemă de configurare, fie la furnizorul de servicii "
+"fie la furnizorul de identitate."
+
+msgid "Configure Shibboleth 1.3 SP to work with SimpleSAMLphp IdP"
+msgstr ""
+"Configurare furnizor de servicii Shibboleth 1.3 care să funcționeze cu "
+"furnizor de identitate SimpleSAMLphp"
+
+msgid "Using the back and forward buttons in the web browser."
+msgstr "Utilizarea butoanelor \"înainte\" sau \"înapoi\" din browser."
+
+msgid "Metadata not found"
+msgstr "Nu au fost găsite metadate"
+
+msgid "Missing cookie"
+msgstr "<i>Cookie</i> lipsă"
+
+msgid "Cookies may be disabled in the web browser."
+msgstr "Browser-ul are deactivate <i>cookies</i>."
+
+msgid "Opened the web browser with tabs saved from the previous session."
+msgstr "Pornirea browser-ului cu file salvate într-o sesiune anterioară."
+
+msgid "Tools"
+msgstr "Unelte"
+
+msgid "Test configured authentication sources "
+msgstr "Surse de autentificare configurate pentru teste"
+
+msgid ""
+"You appear to have disabled cookies in your browser. Please check the "
+"settings in your browser, and try again."
+msgstr ""
+"<i>Cookies</i> au fost dezactivate în browser-ul dumneavoastră. Vă rugăm "
+"să verificați configurarea browser-ului după care încercați din nou."
+
+msgid "Installing SimpleSAMLphp"
+msgstr "Se instalează SimpleSAMLphp"
+
+msgid "Deprecated"
+msgstr "Depreciate"
+
+msgid ""
+"<strong>Congratulations</strong>, you have successfully installed "
+"SimpleSAMLphp. This is the start page of your installation, where you "
+"will find links to test examples, diagnostics, metadata and even links to"
+" relevant documentation."
+msgstr ""
+"<strong>Felciitări</strong>, ați instalat cu succes SimpleSAMLphp. "
+"Aceasta este pagina de start unde găsiți link-uri către exemple, "
+"diagnosticări, metadate, documentație."
+
+msgid "This error may be caused by:"
+msgstr "Această eroare poate fi cauzată de:"
+
+msgid ""
+"<strong>You are not using HTTPS</strong> - encrypted communication with "
+"the user. HTTP works fine for test purposes, but in a production "
+"environment, you should use HTTPS. [ <a "
+"href=\"https://simplesamlphp.org/docs/stable/simplesamlphp-"
+"maintenance\">Read more about SimpleSAMLphp maintenance</a> ]"
+msgstr ""
+"<strong>Atenție, nu utilizați HTTPS</strong> - comunicare criptată cu "
+"utilizatorul. HTTP funcționeaza bine pentru teste, dar în producție "
+"trebuie folosit HTTPS. [<a href=\"http://rnd.feide.no/content"
+"/simplesamlphp-maintenance-and-configuration\">Citiți mai multe despre "
+"întreținerea SimpleSAMLphp</a> ]"
+
+msgid "Metadata"
+msgstr "Metadate"
+
+msgid "Retry"
+msgstr "Încearcă din nou"
+
+msgid "SimpleSAMLphp Maintenance and Configuration"
+msgstr "Întreținerea și configurarea SimpleSAMLphp"
+
+msgid "Diagnostics on hostname, port and protocol"
+msgstr "Diagnostic despre numele de host, port și protocol"
+
+msgid ""
+"If you are an user who received this error after following a link on a "
+"site, you should report this error to the owner of that site."
+msgstr ""
+"Dacă sunteți un utilizator care a primit acest mesaj de eroare în urma "
+"utilizării unui link din alt sit, vă rugăm să anunțați această eroare "
+"deținătorului sitului respectiv."
+
+msgid "Using SimpleSAMLphp as an Identity Provider"
+msgstr "Utilizarea SimpleSAMLphp ca furnizor de identitate"
+
+msgid "Optional"
+msgstr "Opțional"
+
+msgid "Suggestions for resolving this problem:"
+msgstr "Sugestii pentru rezolvarea acestei probleme:"
+
+msgid ""
+"This SimpleSAMLphp thing is pretty cool, where can I read more about it? "
+"You can find more information about it at the <a "
+"href=\"https://simplesamlphp.org/\">SimpleSAMLphp web page </a> over at "
+"<a href=\"http://uninett.no\">UNINETT</a>."
+msgstr ""
+"Acest SimpleSAMLphp este interesant, unde pot găsi mai multe informații ?"
+" Puteți găsi mai multe informații despre <a "
+"href=\"http://rnd.feide.no/simplesamlphp\"> la blog-ul Feide despre "
+"SimpleSAMLphp</a> de la <a href=\"http://uninett.no\">UNINETT</a>."
+
+msgid "Shibboleth 1.3 SP example - test logging in through your Shib IdP"
+msgstr ""
+"Exemplu furnizor de servicii Shibboleth 1.3 - testarea autentificării "
+"prin furnizorul dumneavoastră de identitate Shib"
+
+msgid "Authentication"
+msgstr "Autentificare"
+
+msgid "SimpleSAMLphp installation page"
+msgstr "Pagina de instalare a SimpleSAMLphp"
+
+msgid "Show metadata"
+msgstr "Vizualizare metadate"
+
+msgid "SimpleSAMLphp as an IdP for Google Apps for Education"
+msgstr "Furnizor de identitate cu SimpleSAMLphp pentru GoogleApps în educație"
+
+msgid "State information lost"
+msgstr "Informațiile de stare au fost pierdute"
+
+msgid "Hosted SAML 2.0 Identity Provider Metadata (automatically generated)"
+msgstr ""
+"Metadate pentru furnizorul de identitate SAML 2.0 găzduit (generate "
+"automat)"
+
+msgid "OpenID Provider site - Alpha version (test code)"
+msgstr "Furnizor OpenID - versiune alpha (cod de test)"
+
+msgid "Required for Radius"
+msgstr "Necesar pentru RADIUS"
+
+msgid "We were unable to locate the metadata for the entity:"
+msgstr "Nu am găsit metadate pentru următoarea entitate:"
+
+msgid "SAML 2.0 SP example - test logging in through your IdP"
+msgstr ""
+"Exemplu furnizor de servicii SAML 2.0 - testarea autentificării prin "
+"furnizorul dumneavoastră de identitate"
+
+msgid "Using SimpleSAMLphp as a Service Provider"
+msgstr "Utilizarea SimpleSAMLphp ca furnizor de servicii"
+
+msgid ""
+"We have detected that there is only a few seconds since you last "
+"authenticated with this service provider, and therefore assume that there"
+" is a problem with this SP."
+msgstr ""
+"A fost detectat faptul că v-ați autentificat în urmă cu doar câteva "
+"secunde cu acest furnizor de servicii, se va considera că există o "
+"problemă cu acest furnizor de servicii."
+
+msgid "Recommended"
+msgstr "Recomandat"
+
+msgid ""
+"If you are a developer who is deploying a single sign-on solution, you "
+"have a problem with the metadata configuration. Verify that metadata is "
+"configured correctly on both the identity provider and service provider."
+msgstr ""
+"Dacă sunteți dezvoltator care implementează o soluție <i>single sign-"
+"on</i>, aveți o problemă la configurarea metadatelor. Vă rugăm să "
+"verificați configurarea corectă a metadatelor, atât la furnizorul de "
+"identitate cât și la furnizorul de servicii."
+
+msgid "SimpleSAMLphp Advanced Features"
+msgstr "Caracteristici avansate ale SimpleSAMLphp"
+
+msgid "Too short interval between single sign on events."
+msgstr "Interval prea scurt între evenimentele <i>single sign-on</i>."
+
+msgid "Checking your PHP installation"
+msgstr "Verificarea instalării PHP"
+
+msgid ""
+"The length of query parameters is limited by the PHP Suhosin extension. "
+"Please increase the suhosin.get.max_value_length option to at least 2048 "
+"bytes."
+msgstr ""
+"Lungimea parametrilor din cerere este limitată de extensia Suhosin a PHP."
+" Vă rugăm să modificați <i>suhosin.get.max_value_length</i> la cel puțin "
+"2048 de octeți."
+
+msgid "Useful links for your installation"
+msgstr "Link-uri utile pentru instalare"
+
+msgid "Configuration"
+msgstr "Configurare"
+
+msgid "Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated)"
+msgstr ""
+"Metadate pentru furnizorul de identitate Shibboleth 1.3 găzduit (generate"
+" automat)"
+
+msgid "Login as administrator"
+msgstr "Autentificare ca adminstrator"
+
+msgid "Report this error"
+msgstr "Vă rugăm să anunțați această eroare"
 
