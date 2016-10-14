@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: SimpleSAMLphp 1.15\n"
 "Report-Msgid-Bugs-To: simplesamlphp-translation@googlegroups.com\n"
 "POT-Creation-Date: 2016-10-12 09:23+0200\n"
-"PO-Revision-Date: 2016-10-12 09:23+0200\n"
+"PO-Revision-Date: 2016-10-14 12:14+0200\n"
 "Last-Translator: \n"
 "Language: hr\n"
 "Language-Team: \n"
@@ -72,4 +72,61 @@ msgstr "Ukupno elemenata od početka"
 
 msgid "{memcacheMonitor:memcachestat:bytes}"
 msgstr "Trenutno ukupno korišteno bajtova"
+
+msgid "Current time"
+msgstr "Trenutno vrijeme"
+
+msgid "Total items ever"
+msgstr "Ukupno elemenata od početka"
+
+msgid "Bytes written by the server"
+msgstr "Bajtova zapisanih od strane poslužitelja"
+
+msgid "Uptime"
+msgstr "Ukupno vrijeme rada"
+
+msgid "Current open connections"
+msgstr "Trenutno otvorene konekcije"
+
+msgid "Total storage avail"
+msgstr "Ukupno raspoloživo memorijskog prostora"
+
+msgid "Version"
+msgstr "Verzija"
+
+msgid "Total GET commands (failed)"
+msgstr "Ukupno GET naredbi (neuspješnih)"
+
+msgid "Total SET commands"
+msgstr "Ukupno SET naredbi"
+
+msgid "Connection structures"
+msgstr "Struktura konekcija"
+
+msgid "Total GET commands (success)"
+msgstr "Ukupno GET naredbi (uspješno izvršenih)"
+
+msgid "Total bytes in use currently"
+msgstr "Trenutno ukupno korišteno bajtova"
+
+msgid "Total GET commands"
+msgstr "Ukupno GET naredbi"
+
+msgid "Bytes in to the server"
+msgstr "Bajtova poslanih poslužitelju"
+
+msgid "Process ID"
+msgstr "Identifikator procesa"
+
+msgid "Currently number of items"
+msgstr "Trenutni broj elemenata"
+
+msgid "CPU Seconds (User)"
+msgstr "CPU sekundi (korisnik)"
+
+msgid "CPU Seconds (System)"
+msgstr "CPU sekundi (sustav)"
+
+msgid "Total connections"
+msgstr "Ukupno konekcija"
 

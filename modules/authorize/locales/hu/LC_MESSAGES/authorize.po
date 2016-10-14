@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: SimpleSAMLphp 1.15\n"
 "Report-Msgid-Bugs-To: simplesamlphp-translation@googlegroups.com\n"
 "POT-Creation-Date: 2016-10-12 09:23+0200\n"
-"PO-Revision-Date: 2016-10-12 09:23+0200\n"
+"PO-Revision-Date: 2016-10-14 12:14+0200\n"
 "Last-Translator: \n"
 "Language: hu\n"
 "Language-Team: \n"
@@ -22,4 +22,14 @@ msgstr ""
 
 msgid "{authorize:Authorize:403_header}"
 msgstr "Hozzáférés megtagadva"
+
+msgid "Access forbidden"
+msgstr "Hozzáférés megtagadva"
+
+msgid ""
+"You don't have the needed privileges to access this application. Please "
+"contact the administrator if you find this to be incorrect."
+msgstr ""
+"Önnek nincsenek meg a szükséges jogosultságai a lap megtekintéséhez. "
+"Kérjük, forduljon az oldal adminisztrátorához."
 

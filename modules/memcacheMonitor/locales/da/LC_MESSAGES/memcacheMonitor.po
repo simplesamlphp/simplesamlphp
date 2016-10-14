@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: SimpleSAMLphp 1.15\n"
 "Report-Msgid-Bugs-To: simplesamlphp-translation@googlegroups.com\n"
 "POT-Creation-Date: 2016-10-12 09:23+0200\n"
-"PO-Revision-Date: 2016-10-12 09:23+0200\n"
+"PO-Revision-Date: 2016-10-14 12:14+0200\n"
 "Last-Translator: \n"
 "Language: da\n"
 "Language-Team: \n"
@@ -71,4 +71,61 @@ msgstr "Total antal enheder"
 
 msgid "{memcacheMonitor:memcachestat:bytes}"
 msgstr "Total antal bytes brugt aktuelt"
+
+msgid "Current time"
+msgstr "Aktuel tid"
+
+msgid "Total items ever"
+msgstr "Total antal enheder"
+
+msgid "Bytes written by the server"
+msgstr "Bytes skrevet af serveren"
+
+msgid "Uptime"
+msgstr "Oppetid"
+
+msgid "Current open connections"
+msgstr "Nuværende åbne forbindelser"
+
+msgid "Total storage avail"
+msgstr "Total plads udnyttet"
+
+msgid "Version"
+msgstr "Version"
+
+msgid "Total GET commands (failed)"
+msgstr "Total antal GET kommandoer (fejl)"
+
+msgid "Total SET commands"
+msgstr "Total antal SET kommandoer"
+
+msgid "Connection structures"
+msgstr "Forbindelses strukturer"
+
+msgid "Total GET commands (success)"
+msgstr "Total antal GET kommandoer (success)"
+
+msgid "Total bytes in use currently"
+msgstr "Total antal bytes brugt aktuelt"
+
+msgid "Total GET commands"
+msgstr "Total antal GET kommandoer"
+
+msgid "Bytes in to the server"
+msgstr "Bytes in i serveren"
+
+msgid "Process ID"
+msgstr "Proces ID"
+
+msgid "Currently number of items"
+msgstr "Aktuelt antal enheder"
+
+msgid "CPU Seconds (User)"
+msgstr "CPU sekunder (Bruger)"
+
+msgid "CPU Seconds (System)"
+msgstr "CPU sekunder (System)"
+
+msgid "Total connections"
+msgstr "Total antal forbindelser"
 

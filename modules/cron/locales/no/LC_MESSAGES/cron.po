@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: SimpleSAMLphp 1.15\n"
 "Report-Msgid-Bugs-To: simplesamlphp-translation@googlegroups.com\n"
 "POT-Creation-Date: 2016-10-12 09:23+0200\n"
-"PO-Revision-Date: 2016-10-12 09:23+0200\n"
+"PO-Revision-Date: 2016-10-14 12:14+0200\n"
 "Last-Translator: \n"
 "Language: nb_NO\n"
 "Language-Team: \n"
@@ -37,5 +37,29 @@ msgid "{cron:cron:cron_result_title}"
 msgstr "Her er resultatene fra kjøring av cron-jobben:"
 
 msgid "{cron:cron:cron_header}"
+msgstr "Cron resultatside"
+
+msgid "Cron is a way to run things regularly on unix systems."
+msgstr "Cron er en måte å kjøre regulære jobber på unix-systemer."
+
+msgid "Run cron:"
+msgstr "Kjør cron:"
+
+msgid "Cron ran at"
+msgstr "Cron kjørte"
+
+msgid "Cron report"
+msgstr "Cron rapport"
+
+msgid "Here is a suggestion for a crontab file:"
+msgstr "Her er et forslag til en crontab fil:"
+
+msgid "Click here to run the cron jobs:"
+msgstr "Klikk her for å kjøre cron-jobbene:"
+
+msgid "Here are the result for the cron job execution:"
+msgstr "Her er resultatene fra kjøring av cron-jobben:"
+
+msgid "Cron result page"
 msgstr "Cron resultatside"
 

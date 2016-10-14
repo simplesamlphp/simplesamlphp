@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: SimpleSAMLphp 1.15\n"
 "Report-Msgid-Bugs-To: simplesamlphp-translation@googlegroups.com\n"
 "POT-Creation-Date: 2016-10-12 09:23+0200\n"
-"PO-Revision-Date: 2016-10-12 09:23+0200\n"
+"PO-Revision-Date: 2016-10-14 12:14+0200\n"
 "Last-Translator: \n"
 "Language: nn\n"
 "Language-Team: \n"
@@ -81,5 +81,75 @@ msgid "{consent:consent:yes}"
 msgstr "Ja, fortsett"
 
 msgid "{consent:consent:consent_attributes_header}"
+msgstr "Opplysningar som blir sende til SPNAME"
+
+msgid "Service Providers for"
+msgstr "Tenesteleverandørar for"
+
+msgid "Yes, continue"
+msgstr "Ja, fortsett"
+
+msgid "Return to consent page"
+msgstr "Gå tilbake til samtykkesida"
+
+msgid "Consent status"
+msgstr "Samtykkestatus"
+
+msgid "Go to information page for the service"
+msgstr "Gå til informasjonssida for tenesta"
+
+msgid "Service Provider"
+msgstr "Tenesteleverandør"
+
+msgid "Abort login to SPNAME"
+msgstr "Avbryt innlogging til SPNAME"
+
+msgid "show/hide attributes"
+msgstr "Vis/skjul opplysningar"
+
+msgid "The purpose of SPNAME is SPDESC"
+msgstr "Hensikta med SPNAME er SPDESC"
+
+msgid ""
+"List the information about you that is about to be transmitted to the "
+"service you are going to login to"
+msgstr "List informasjon om deg som blir overført til tenesta du skal logga inn på"
+
+msgid "Consent about releasing personal information"
+msgstr "Samtykke til overføring av personinformasjon"
+
+msgid "No consent given"
+msgstr "Ikkje akseptert overføring av informasjon"
+
+msgid "login"
+msgstr "Logg inn"
+
+msgid "You did not give consent for transfering your attributes to SPNAME."
+msgstr "Du har ikkje akseptert til at dine opplysningar kan sendast til SPNAME."
+
+msgid "Remember"
+msgstr "Godta også for framtida"
+
+msgid "Show content"
+msgstr "Vis innhald"
+
+msgid "SPNAME requires that the information below is transferred."
+msgstr ""
+"For å fullføra innlogginga må du godta at opplysningane under blir sende "
+"til SPNAME"
+
+msgid "Privacypolicy for the service"
+msgstr "Personvern for tenesta"
+
+msgid "No, cancel"
+msgstr "Nei, avbryt"
+
+msgid "Show attributes"
+msgstr "Vis opplysingar"
+
+msgid "User information"
+msgstr "Brukarinformasjon"
+
+msgid "Information that will be sent to SPNAME"
 msgstr "Opplysningar som blir sende til SPNAME"
 

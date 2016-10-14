@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: SimpleSAMLphp 1.15\n"
 "Report-Msgid-Bugs-To: simplesamlphp-translation@googlegroups.com\n"
 "POT-Creation-Date: 2016-10-12 09:23+0200\n"
-"PO-Revision-Date: 2016-10-12 09:23+0200\n"
+"PO-Revision-Date: 2016-10-14 12:14+0200\n"
 "Last-Translator: \n"
 "Language: sl\n"
 "Language-Team: \n"
@@ -82,5 +82,75 @@ msgid "{consent:consent:yes}"
 msgstr "Da, nadaljuj"
 
 msgid "{consent:consent:consent_attributes_header}"
+msgstr "Atributi, ki bodo poslani SPju"
+
+msgid "Service Providers for"
+msgstr "SP za"
+
+msgid "Yes, continue"
+msgstr "Da, nadaljuj"
+
+msgid "Return to consent page"
+msgstr "Vrnitev na privolitveno stran"
+
+msgid "Consent status"
+msgstr "Stanje privolitve"
+
+msgid "Go to information page for the service"
+msgstr "Pojdi na spletno stran z informacijami o storitvi"
+
+msgid "Service Provider"
+msgstr "SP"
+
+msgid "show/hide attributes"
+msgstr "prikaži/skrij atribute"
+
+msgid "The purpose of SPNAME is SPDESC"
+msgstr "Namen %SPNAME%: %SPDESC%"
+
+msgid ""
+"List the information about you that is about to be transmitted to the "
+"service you are going to login to"
+msgstr ""
+"Seznam podatkov o vas, ki bodo posredovani storitvi, v katero se "
+"nameravate prijaviti"
+
+msgid "Consent about releasing personal information"
+msgstr "Odločitev o privolitvi posredovanja vaših osebnih podatkov"
+
+msgid "No consent given"
+msgstr "Privolitev ni bila dana."
+
+msgid "login"
+msgstr "Prijava"
+
+msgid "You did not give consent for transfering your attributes to SPNAME."
+msgstr "Niste podali privolitve za posredovanje atributov SP-ju."
+
+msgid "Remember"
+msgstr "Zapomni si privolitev."
+
+msgid "Show content"
+msgstr "Prikaži vsebino"
+
+msgid "SPNAME requires that the information below is transferred."
+msgstr ""
+"Pravkar se nameravate prijaviti v storitev SPNAME. Med postopkom prijave "
+"bo IdP tej storitvi posredoval atribute, ki vsebujejo informacije o vaši "
+"identiteti. Ali se s tem strinjate? "
+
+msgid "Privacypolicy for the service"
+msgstr "Politika zasebnosti za ta SP"
+
+msgid "No, cancel"
+msgstr "Ne, prekliči"
+
+msgid "Show attributes"
+msgstr "Prikaži atribute"
+
+msgid "User information"
+msgstr "Podatki o uporabniku"
+
+msgid "Information that will be sent to SPNAME"
 msgstr "Atributi, ki bodo poslani SPju"
 

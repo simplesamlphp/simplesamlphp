@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: SimpleSAMLphp 1.15\n"
 "Report-Msgid-Bugs-To: simplesamlphp-translation@googlegroups.com\n"
 "POT-Creation-Date: 2016-10-12 09:23+0200\n"
-"PO-Revision-Date: 2016-10-12 09:23+0200\n"
+"PO-Revision-Date: 2016-10-14 12:14+0200\n"
 "Last-Translator: \n"
 "Language: it\n"
 "Language-Team: \n"
@@ -83,5 +83,77 @@ msgid "{consent:consent:yes}"
 msgstr "Sì, continuare"
 
 msgid "{consent:consent:consent_attributes_header}"
+msgstr "Informazioni che saranno inviate a SPNAME"
+
+msgid "Service Providers for"
+msgstr "Service Provider per"
+
+msgid "Yes, continue"
+msgstr "Sì, continuare"
+
+msgid "Return to consent page"
+msgstr "Torna alla pagina del consenso"
+
+msgid "Consent status"
+msgstr "Stato del consenso"
+
+msgid "Go to information page for the service"
+msgstr "Vai alla pagina di informazioni per il servizio"
+
+msgid "Service Provider"
+msgstr "Service Provider"
+
+msgid "Abort login to SPNAME"
+msgstr "Login interrotto a SPNAME"
+
+msgid "show/hide attributes"
+msgstr "Mostra/nascondi attributi"
+
+msgid "The purpose of SPNAME is SPDESC"
+msgstr "Lo scopo di SPNAME è SPDESC"
+
+msgid ""
+"List the information about you that is about to be transmitted to the "
+"service you are going to login to"
+msgstr ""
+"Mostra le informazioni su di te che stanno per essere trasferire al "
+"servizio a cui ti vuoi collegare"
+
+msgid "Consent about releasing personal information"
+msgstr "Consenso al rilascio delle informazioni personali"
+
+msgid "No consent given"
+msgstr "Nessun consenso dato"
+
+msgid "login"
+msgstr "connessione"
+
+msgid "You did not give consent for transfering your attributes to SPNAME."
+msgstr ""
+"Non hai dato il consenso per trasferire i tuoi attributi al service "
+"provider."
+
+msgid "Remember"
+msgstr "Ricordare"
+
+msgid "Show content"
+msgstr "Mostra contenuto"
+
+msgid "SPNAME requires that the information below is transferred."
+msgstr "SPNAME richiede che l'informazione sotto riportata sia trasferita."
+
+msgid "Privacypolicy for the service"
+msgstr "Politica della privacy per il servizio"
+
+msgid "No, cancel"
+msgstr "No, cancellare"
+
+msgid "Show attributes"
+msgstr "Mostra attributi"
+
+msgid "User information"
+msgstr "Informazioni utente"
+
+msgid "Information that will be sent to SPNAME"
 msgstr "Informazioni che saranno inviate a SPNAME"
 

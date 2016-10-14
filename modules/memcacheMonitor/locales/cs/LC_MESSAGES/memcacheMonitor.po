@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: SimpleSAMLphp 1.15\n"
 "Report-Msgid-Bugs-To: simplesamlphp-translation@googlegroups.com\n"
 "POT-Creation-Date: 2016-10-12 09:23+0200\n"
-"PO-Revision-Date: 2016-10-12 09:23+0200\n"
+"PO-Revision-Date: 2016-10-14 12:14+0200\n"
 "Last-Translator: \n"
 "Language: cs\n"
 "Language-Team: \n"
@@ -72,4 +72,61 @@ msgstr "Celkový součet položek"
 
 msgid "{memcacheMonitor:memcachestat:bytes}"
 msgstr "Využíváno celkem bajtů"
+
+msgid "Current time"
+msgstr "Aktuální čas"
+
+msgid "Total items ever"
+msgstr "Celkový součet položek"
+
+msgid "Bytes written by the server"
+msgstr "Bajtů zapsaných serverem"
+
+msgid "Uptime"
+msgstr "Uptime"
+
+msgid "Current open connections"
+msgstr "Aktuálně otevřené konexe"
+
+msgid "Total storage avail"
+msgstr "Celkové dostupné úložiště"
+
+msgid "Version"
+msgstr "Verze"
+
+msgid "Total GET commands (failed)"
+msgstr "Celkový počet GET příkazů (neúspěšných)"
+
+msgid "Total SET commands"
+msgstr "Celkový počet SET příkazů"
+
+msgid "Connection structures"
+msgstr "Struktury konexí"
+
+msgid "Total GET commands (success)"
+msgstr "Celkový počet GET příkazů (úspěšných)"
+
+msgid "Total bytes in use currently"
+msgstr "Využíváno celkem bajtů"
+
+msgid "Total GET commands"
+msgstr "Celkový počet GET příkazů"
+
+msgid "Bytes in to the server"
+msgstr "Příchozích bajtů na server"
+
+msgid "Process ID"
+msgstr "ID procesu"
+
+msgid "Currently number of items"
+msgstr "Aktuální množství položek"
+
+msgid "CPU Seconds (User)"
+msgstr "CPU sekundy (uživatel)"
+
+msgid "CPU Seconds (System)"
+msgstr "CPU sekundy (system)"
+
+msgid "Total connections"
+msgstr "Celkem konexí"
 

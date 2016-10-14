@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: SimpleSAMLphp 1.15\n"
 "Report-Msgid-Bugs-To: simplesamlphp-translation@googlegroups.com\n"
 "POT-Creation-Date: 2016-10-12 09:23+0200\n"
-"PO-Revision-Date: 2016-10-12 09:23+0200\n"
+"PO-Revision-Date: 2016-10-14 12:14+0200\n"
 "Last-Translator: \n"
 "Language: pl\n"
 "Language-Team: \n"
@@ -71,5 +71,62 @@ msgid "{consent:consent:yes}"
 msgstr "Tak, akceptuję"
 
 msgid "{consent:consent:consent_attributes_header}"
+msgstr "Atrybuty, które zostaną przesłane do serwisu"
+
+msgid "Service Providers for"
+msgstr "Dostawca Serwisu dla"
+
+msgid "Yes, continue"
+msgstr "Tak, akceptuję"
+
+msgid "Return to consent page"
+msgstr "Powrót do strony wydania zezwolenia."
+
+msgid "Consent status"
+msgstr "Status zgody"
+
+msgid "Go to information page for the service"
+msgstr "Przejdź do strony informacyjnej dla tego serwisu"
+
+msgid "Service Provider"
+msgstr "Dostawca serwisu"
+
+msgid "show/hide attributes"
+msgstr "pokaż/ukryj atrybuty"
+
+msgid "The purpose of SPNAME is SPDESC"
+msgstr "Celem SPNAME jest SPDESC"
+
+msgid "Consent about releasing personal information"
+msgstr "Zgoda na wysłanie danych osobistych"
+
+msgid "No consent given"
+msgstr "Nie wyrażono zgody"
+
+msgid "login"
+msgstr "login"
+
+msgid "You did not give consent for transfering your attributes to SPNAME."
+msgstr "Nie wyraziłeś zgody na przesłanie Twoich atrybutów do Dostawcy Serwisu."
+
+msgid "Remember"
+msgstr "Pamiętaj moją zgodę"
+
+msgid "Show content"
+msgstr "Wyświetl zawartość"
+
+msgid "SPNAME requires that the information below is transferred."
+msgstr "SPNAME wymaga aby poniższa informacja została przesłana."
+
+msgid "Privacypolicy for the service"
+msgstr "Polityka prywatności dla serwisu"
+
+msgid "No, cancel"
+msgstr "Nie, nie akceptuję"
+
+msgid "Show attributes"
+msgstr "Wyświetl atrybuty"
+
+msgid "Information that will be sent to SPNAME"
 msgstr "Atrybuty, które zostaną przesłane do serwisu"
 

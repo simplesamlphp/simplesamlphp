@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: SimpleSAMLphp 1.15\n"
 "Report-Msgid-Bugs-To: simplesamlphp-translation@googlegroups.com\n"
 "POT-Creation-Date: 2016-10-12 09:23+0200\n"
-"PO-Revision-Date: 2016-10-12 09:23+0200\n"
+"PO-Revision-Date: 2016-10-14 12:14+0200\n"
 "Last-Translator: \n"
 "Language: el\n"
 "Language-Team: \n"
@@ -71,4 +71,61 @@ msgstr "Συνολικός αριθμός αντικειμένων"
 
 msgid "{memcacheMonitor:memcachestat:bytes}"
 msgstr "Bytes σε χρήση"
+
+msgid "Current time"
+msgstr "Τρέχουσα ώρα"
+
+msgid "Total items ever"
+msgstr "Συνολικός αριθμός αντικειμένων"
+
+msgid "Bytes written by the server"
+msgstr "Bytes που εγγράφηκαν"
+
+msgid "Uptime"
+msgstr "Χρόνος λειτουργίας (uptime)"
+
+msgid "Current open connections"
+msgstr "Ανοικτές συνδέσεις"
+
+msgid "Total storage avail"
+msgstr "Διαθέσιμος χώρος αποθήκευσης"
+
+msgid "Version"
+msgstr "Έκδοση"
+
+msgid "Total GET commands (failed)"
+msgstr "Σύνολο εντολών GET (αποτυχία)"
+
+msgid "Total SET commands"
+msgstr "Σύνολο εντολών SET"
+
+msgid "Connection structures"
+msgstr "Δομές σύνδεσης"
+
+msgid "Total GET commands (success)"
+msgstr "Σύνολο εντολών GET (επιτυχία)"
+
+msgid "Total bytes in use currently"
+msgstr "Bytes σε χρήση"
+
+msgid "Total GET commands"
+msgstr "Σύνολο εντολών GET"
+
+msgid "Bytes in to the server"
+msgstr "Bytes που αναγνώστηκαν"
+
+msgid "Process ID"
+msgstr "Αναγνωριστικό διεργασίας (PID)"
+
+msgid "Currently number of items"
+msgstr "Τρέχων αριθμός αντικειμένων"
+
+msgid "CPU Seconds (User)"
+msgstr "Χρόνος CPU (Χρήστη)"
+
+msgid "CPU Seconds (System)"
+msgstr "Χρόνος CPU (Συστήματος)"
+
+msgid "Total connections"
+msgstr "Σύνολο συνδέσεων"
 

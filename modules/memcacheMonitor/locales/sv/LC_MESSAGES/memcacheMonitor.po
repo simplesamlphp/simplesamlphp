@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: SimpleSAMLphp 1.15\n"
 "Report-Msgid-Bugs-To: simplesamlphp-translation@googlegroups.com\n"
 "POT-Creation-Date: 2016-10-12 09:23+0200\n"
-"PO-Revision-Date: 2016-10-12 09:23+0200\n"
+"PO-Revision-Date: 2016-10-14 12:14+0200\n"
 "Last-Translator: \n"
 "Language: sv\n"
 "Language-Team: \n"
@@ -71,4 +71,61 @@ msgstr "Totalt antal använda poster"
 
 msgid "{memcacheMonitor:memcachestat:bytes}"
 msgstr "Totalt antal använda byte förnärvarande"
+
+msgid "Current time"
+msgstr "Aktuell tid"
+
+msgid "Total items ever"
+msgstr "Totalt antal använda poster"
+
+msgid "Bytes written by the server"
+msgstr "Skirva bytes av servern"
+
+msgid "Uptime"
+msgstr "Upptid"
+
+msgid "Current open connections"
+msgstr "Aktiva och öppna förbindelser"
+
+msgid "Total storage avail"
+msgstr "Totalt lagringsutrymme"
+
+msgid "Version"
+msgstr "Version"
+
+msgid "Total GET commands (failed)"
+msgstr "Totalt antal misslyckade GET-kommandon"
+
+msgid "Total SET commands"
+msgstr "Totalt antal SET-kommandon"
+
+msgid "Connection structures"
+msgstr "Förbindelsestrukturer"
+
+msgid "Total GET commands (success)"
+msgstr "Totalt antal lyckade GET-kommandon"
+
+msgid "Total bytes in use currently"
+msgstr "Totalt antal använda byte förnärvarande"
+
+msgid "Total GET commands"
+msgstr "Totalt antal GET-kommandon"
+
+msgid "Bytes in to the server"
+msgstr "Mottagna bytes till servern"
+
+msgid "Process ID"
+msgstr "Processid"
+
+msgid "Currently number of items"
+msgstr "Aktuell antal"
+
+msgid "CPU Seconds (User)"
+msgstr "CPU-sekunder (User)"
+
+msgid "CPU Seconds (System)"
+msgstr "CPU-sekunder (System)"
+
+msgid "Total connections"
+msgstr "Totalt antal förbindelser"
 

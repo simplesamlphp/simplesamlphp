@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: SimpleSAMLphp 1.15\n"
 "Report-Msgid-Bugs-To: simplesamlphp-translation@googlegroups.com\n"
 "POT-Creation-Date: 2016-10-12 09:23+0200\n"
-"PO-Revision-Date: 2016-10-12 09:23+0200\n"
+"PO-Revision-Date: 2016-10-14 12:14+0200\n"
 "Last-Translator: \n"
 "Language: hu\n"
 "Language-Team: \n"
@@ -37,5 +37,29 @@ msgid "{cron:cron:cron_result_title}"
 msgstr "A cron lefutásának eredményei:"
 
 msgid "{cron:cron:cron_header}"
+msgstr "Cron futási eredmények"
+
+msgid "Cron is a way to run things regularly on unix systems."
+msgstr "A cron egy módszer unix rendszereken parancsok rendszeres futtatására."
+
+msgid "Run cron:"
+msgstr "Cron futás:"
+
+msgid "Cron ran at"
+msgstr "A cron ekkor futott le:"
+
+msgid "Cron report"
+msgstr "Cron jelentés."
+
+msgid "Here is a suggestion for a crontab file:"
+msgstr "Javaslat crontab file-ra."
+
+msgid "Click here to run the cron jobs:"
+msgstr "Kattintson a cron futtatásához."
+
+msgid "Here are the result for the cron job execution:"
+msgstr "A cron lefutásának eredményei:"
+
+msgid "Cron result page"
 msgstr "Cron futási eredmények"
 

@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: SimpleSAMLphp 1.15\n"
 "Report-Msgid-Bugs-To: simplesamlphp-translation@googlegroups.com\n"
 "POT-Creation-Date: 2016-10-12 09:23+0200\n"
-"PO-Revision-Date: 2016-10-12 09:23+0200\n"
+"PO-Revision-Date: 2016-10-14 12:14+0200\n"
 "Last-Translator: \n"
 "Language: tr\n"
 "Language-Team: \n"
@@ -73,5 +73,67 @@ msgid "{consent:consent:yes}"
 msgstr "Evet, devam et"
 
 msgid "{consent:consent:consent_attributes_header}"
+msgstr "SPNAME'e gönderilecek bilgiler"
+
+msgid "Service Providers for"
+msgstr "için Servis Sağlayıcılar"
+
+msgid "Yes, continue"
+msgstr "Evet, devam et"
+
+msgid "Return to consent page"
+msgstr "Onay sayfasına geri dön"
+
+msgid "Consent status"
+msgstr "Onay durumu"
+
+msgid "Go to information page for the service"
+msgstr "Servis için bilgi sayfasına git"
+
+msgid "Service Provider"
+msgstr "Servis Sağlayıcı"
+
+msgid "show/hide attributes"
+msgstr "bilgileri göster/gizle "
+
+msgid "The purpose of SPNAME is SPDESC"
+msgstr "SPNAME'in amacı SPDESC'tir"
+
+msgid ""
+"List the information about you that is about to be transmitted to the "
+"service you are going to login to"
+msgstr "Girmek istediğiniz servise gönderilecek bilginizi listeleyin"
+
+msgid "Consent about releasing personal information"
+msgstr "Kişisel bilgilerin verilmesi hakkında onay"
+
+msgid "No consent given"
+msgstr "Onay verilmemiş"
+
+msgid "login"
+msgstr "Giriş"
+
+msgid "You did not give consent for transfering your attributes to SPNAME."
+msgstr "Bilgilerinizin servis sağlayıcıya gönderilmesi için onay vermediniz."
+
+msgid "Remember"
+msgstr "Hatırla"
+
+msgid "SPNAME requires that the information below is transferred."
+msgstr "SPNAME aşağıdaki bilgilerin gönderilmesine ihtiyaç duyuyor."
+
+msgid "Privacypolicy for the service"
+msgstr "Servis için gizlilik politikası"
+
+msgid "No, cancel"
+msgstr "Hayır, iptal et"
+
+msgid "Show attributes"
+msgstr "Özellikleri göster"
+
+msgid "User information"
+msgstr "Kullanıcı bilgisi"
+
+msgid "Information that will be sent to SPNAME"
 msgstr "SPNAME'e gönderilecek bilgiler"
 

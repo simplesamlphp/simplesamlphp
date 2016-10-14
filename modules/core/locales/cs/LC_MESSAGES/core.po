@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: SimpleSAMLphp 1.15\n"
 "Report-Msgid-Bugs-To: simplesamlphp-translation@googlegroups.com\n"
 "POT-Creation-Date: 2016-10-12 09:23+0200\n"
-"PO-Revision-Date: 2016-10-12 09:23+0200\n"
+"PO-Revision-Date: 2016-10-14 12:14+0200\n"
 "Last-Translator: \n"
 "Language: cs\n"
 "Language-Team: \n"
@@ -255,4 +255,269 @@ msgstr ""
 
 msgid "{core:frontpage:deprecated}"
 msgstr "Zastaralé"
+
+msgid "You are logged in as administrator"
+msgstr "Jste přihlášen jako administrator"
+
+msgid "Go back to the previous page and try again."
+msgstr "Jít zpět na předchozí stránku a zkusit znovu."
+
+msgid "If this problem persists, you can report it to the system administrators."
+msgstr "Pokud problém přetrvává, můžete ho nahlásit správci."
+
+msgid "Welcome"
+msgstr "Vítejte"
+
+msgid "SimpleSAMLphp configuration check"
+msgstr "Test konfigurace SimpleSAMLphp"
+
+msgid "Metadata overview for your installation. Diagnose your metadata files"
+msgstr "Přehled metadat vaší instalace a jejich diagnóza."
+
+msgid "XML to SimpleSAMLphp metadata converter"
+msgstr "Konverze XML metadat do simpleSAMLPHP"
+
+msgid "Required"
+msgstr "Požadováno"
+
+msgid "Warnings"
+msgstr "Varování"
+
+msgid "Documentation"
+msgstr "Dokumentace"
+
+msgid "Hosted Shibboleth 1.3 Service Provider Metadata (automatically generated)"
+msgstr ""
+"Metada lookálního (hosted) Shibboleth 1.3 poskytovatele služby (SP) "
+"(automaticky generované)"
+
+msgid "PHP info"
+msgstr "PHP info"
+
+msgid "About SimpleSAMLphp"
+msgstr "O aplikaci SimpleSAMLphp"
+
+msgid "Hosted SAML 2.0 Service Provider Metadata (automatically generated)"
+msgstr ""
+"Metada lookálního (hosted) SAML 2.0 poskytovatele služby (SP) "
+"(automaticky generované)"
+
+msgid "Retry login"
+msgstr "Přihlašte se znovu."
+
+msgid "Required for LDAP"
+msgstr "Požadováno pro LDAP"
+
+msgid "Close the web browser, and try again."
+msgstr "Zavřít webový prohlížeč a zkusit znovu."
+
+msgid "Federation"
+msgstr "Federace"
+
+msgid "We were unable to locate the state information for the current request."
+msgstr "Nebylo možné najít stavovou informaci pro současný požadavek."
+
+msgid "Delete my choices of IdP in the IdP discovery services"
+msgstr "Zapomenout moje volby poskytovatelů identit a výběru poskytovatelů identit"
+
+msgid ""
+"This is most likely a configuration problem on either the service "
+"provider or identity provider."
+msgstr ""
+"Toto je pravděpodobně konfigurační problém na straně poskytovatele služby"
+" nebo poskytovatele identity."
+
+msgid "Configure Shibboleth 1.3 SP to work with SimpleSAMLphp IdP"
+msgstr "Konfigurace Shibboleth 1.3 SP pro práci s SimpleSAMLphp IdP"
+
+msgid "Using the back and forward buttons in the web browser."
+msgstr "Použitím tlačítek zpět a vpřed ve webvém prohlížeči."
+
+msgid "Metadata not found"
+msgstr "Metadata nebyla nalezena"
+
+msgid "Missing cookie"
+msgstr "Chybějící cookie"
+
+msgid "Cookies may be disabled in the web browser."
+msgstr "Ve webovém prohlížeči mohou být zakázány cookies."
+
+msgid "Opened the web browser with tabs saved from the previous session."
+msgstr "Otevřením webového prohlížeče se záložkami z předchozího sezení."
+
+msgid "Tools"
+msgstr "Nástroje"
+
+msgid "Test configured authentication sources "
+msgstr "Otestovat nakonfigurované autentizační zdroje"
+
+msgid ""
+"You appear to have disabled cookies in your browser. Please check the "
+"settings in your browser, and try again."
+msgstr ""
+"Váš internetový prohlížeč má zřejmě vypnutou podporu cookies. Prosíme, "
+"zkontrolujte nastavení cookies ve vašem prohlížeči a zkuste znovu."
+
+msgid "Installing SimpleSAMLphp"
+msgstr "Instalace SimpleSAMLphp"
+
+msgid "Deprecated"
+msgstr "Zastaralé"
+
+msgid ""
+"<strong>Congratulations</strong>, you have successfully installed "
+"SimpleSAMLphp. This is the start page of your installation, where you "
+"will find links to test examples, diagnostics, metadata and even links to"
+" relevant documentation."
+msgstr ""
+"<strong>Blahopřejeme</strong>, máte správně nainstalovan SimpleSAMLphp. "
+"Toto je startovací stránka vaší instalace, kde najde linky na testovací "
+"ukázky, diagnostiku, metadata a relevantní literaturu."
+
+msgid "This error may be caused by:"
+msgstr "Tato chyba může být způsobená:"
+
+msgid ""
+"<strong>You are not using HTTPS</strong> - encrypted communication with "
+"the user. HTTP works fine for test purposes, but in a production "
+"environment, you should use HTTPS. [ <a "
+"href=\"https://simplesamlphp.org/docs/stable/simplesamlphp-"
+"maintenance\">Read more about SimpleSAMLphp maintenance</a> ]"
+msgstr ""
+"<strong>Nepoužíváte HTTPS</strong> - šivrovanou komunikaci s uživatelem. "
+"HTTP je vhodné jen k testovacím účelům, pro produkční účely použijte "
+"HTTPS. [ <a href=\"http://rnd.feide.no/content/simplesamlphp-maintenance-"
+"and-configuration\">Čtete více o údržbě SimpleSAMLphp</a> ]"
+
+msgid "Metadata"
+msgstr "Metadata"
+
+msgid "Retry"
+msgstr "Opakujte"
+
+msgid "SimpleSAMLphp Maintenance and Configuration"
+msgstr "SimpleSAMLphp udržba a konfigurace"
+
+msgid "Diagnostics on hostname, port and protocol"
+msgstr "Diagnoza jména počítače, portu a protokolu"
+
+msgid ""
+"If you are an user who received this error after following a link on a "
+"site, you should report this error to the owner of that site."
+msgstr ""
+"Pokud jste uživatel, který obdržel chybu po následování odkazu na webové "
+"stránce, měli byste o této chybě informovat vlastníka této stránky. "
+
+msgid "Using SimpleSAMLphp as an Identity Provider"
+msgstr "Použití SimpleSAMLphp jako IdP"
+
+msgid "Optional"
+msgstr "Volitelné"
+
+msgid "Suggestions for resolving this problem:"
+msgstr "Návrhy pro vyřešení tohoto problému:"
+
+msgid ""
+"This SimpleSAMLphp thing is pretty cool, where can I read more about it? "
+"You can find more information about it at the <a "
+"href=\"https://simplesamlphp.org/\">SimpleSAMLphp web page </a> over at "
+"<a href=\"http://uninett.no\">UNINETT</a>."
+msgstr ""
+"Tato vlastnost SimpleSAMLphp je velmi pěkná, kde se o ní mohu dočíst "
+"více? Další informace o SimpleSAMLphp získáte <a "
+"href=\"http://rnd.feide.no/simplesamlphp\">na blogu Feide RnD</a> na <a "
+"href=\"http://uninett.no\">UNINETT</a>."
+
+msgid "Shibboleth 1.3 SP example - test logging in through your Shib IdP"
+msgstr "Shibboleth 1.3 SP ukázka - testovací přihlášení pomocí vaší Shib IdP"
+
+msgid "Authentication"
+msgstr "Autentizace"
+
+msgid "SimpleSAMLphp installation page"
+msgstr "Instalační stránka SimpleSAMLphp"
+
+msgid "Show metadata"
+msgstr "Zobraz metadata"
+
+msgid "SimpleSAMLphp as an IdP for Google Apps for Education"
+msgstr "SimpleSAMLphp jako IdP pro Google Apps for Education"
+
+msgid "State information lost"
+msgstr "Stavová informace ztracena"
+
+msgid "Hosted SAML 2.0 Identity Provider Metadata (automatically generated)"
+msgstr ""
+"Metada lookálního (hosted) SAML 2.0 poskytovatele identity (IdP) "
+"(automaticky generované)"
+
+msgid "OpenID Provider site - Alpha version (test code)"
+msgstr "Stránka OpenID poskytovatele - alfa version (testovací kód)"
+
+msgid "Required for Radius"
+msgstr "Požadováno pro Radius"
+
+msgid "We were unable to locate the metadata for the entity:"
+msgstr "Nebyla nalezena metadata pro entitu:"
+
+msgid "SAML 2.0 SP example - test logging in through your IdP"
+msgstr "SAML 2.0 SP úkázka - testovací přihlášení pomocí vaší IdP"
+
+msgid "Using SimpleSAMLphp as a Service Provider"
+msgstr "Použití SimpleSAMLphp jako SP"
+
+msgid ""
+"We have detected that there is only a few seconds since you last "
+"authenticated with this service provider, and therefore assume that there"
+" is a problem with this SP."
+msgstr ""
+"Zjistili jsme, že uběhlo pouze pár sekund od Vašeho minulého priřhlášení "
+"pomocí service providera a proto předpokládáme, že nastala chyba v tom "
+"SP."
+
+msgid "Recommended"
+msgstr "Doporučené"
+
+msgid ""
+"If you are a developer who is deploying a single sign-on solution, you "
+"have a problem with the metadata configuration. Verify that metadata is "
+"configured correctly on both the identity provider and service provider."
+msgstr ""
+"Pokud jste vývojář nasazující řešení jednotného přihlašování, máte "
+"problém s konfigurací metadat. Ověřte, zda jsou metadata nakonfigurována "
+"správně jak u poskytovatele identity tak u poskytovatele služby."
+
+msgid "SimpleSAMLphp Advanced Features"
+msgstr "SimpleSAMLphp nadstandartní vlastnosti"
+
+msgid "Too short interval between single sign on events."
+msgstr "Příliš krátký interval mezi událostmi jednoho prihlášení."
+
+msgid "Checking your PHP installation"
+msgstr "Test vaší PHP instalace"
+
+msgid ""
+"The length of query parameters is limited by the PHP Suhosin extension. "
+"Please increase the suhosin.get.max_value_length option to at least 2048 "
+"bytes."
+msgstr ""
+"Délka parametrů dotazu je limitována rozšířením PHP Suhosin. Prosím, "
+"zvyšte parametr suhosin.get.max_value_length alespoň na 2048 bajtů."
+
+msgid "Useful links for your installation"
+msgstr "Linky pro vaši instalaci"
+
+msgid "Configuration"
+msgstr "Konfigurace"
+
+msgid "Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated)"
+msgstr ""
+"Metada lookálního (hosted) Shibboleth 1.3 poskytovatele služby (IdP) "
+"(automaticky generované)"
+
+msgid "Login as administrator"
+msgstr "Příhlásit se jako administrátor"
+
+msgid "Report this error"
+msgstr "Nahlásit tuto chybu"
 

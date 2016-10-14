@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: SimpleSAMLphp 1.15\n"
 "Report-Msgid-Bugs-To: simplesamlphp-translation@googlegroups.com\n"
 "POT-Creation-Date: 2016-10-12 09:23+0200\n"
-"PO-Revision-Date: 2016-10-12 09:23+0200\n"
+"PO-Revision-Date: 2016-10-14 12:14+0200\n"
 "Last-Translator: \n"
 "Language: ru\n"
 "Language-Team: \n"
@@ -45,4 +45,34 @@ msgstr "Норвегия"
 
 msgid "{discopower:tabs:misc}"
 msgstr "Разное"
+
+msgid "Sweden"
+msgstr "Швеция"
+
+msgid "Denmark"
+msgstr "Дания"
+
+msgid "Iceland"
+msgstr "Исландия"
+
+msgid "Kalmar"
+msgstr "Кальмар"
+
+msgid "Switzerland"
+msgstr "Швейцария"
+
+msgid "Norway"
+msgstr "Норвегия"
+
+msgid "Greece"
+msgstr "Греция"
+
+msgid "Miscellaneous"
+msgstr "Разное"
+
+msgid "Finland"
+msgstr "Финляндия"
+
+msgid "Europe (eduGAIN)"
+msgstr "Европа (eduGAIN)"
 

@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: SimpleSAMLphp 1.15\n"
 "Report-Msgid-Bugs-To: simplesamlphp-translation@googlegroups.com\n"
 "POT-Creation-Date: 2016-10-12 09:23+0200\n"
-"PO-Revision-Date: 2016-10-12 09:23+0200\n"
+"PO-Revision-Date: 2016-10-14 12:14+0200\n"
 "Last-Translator: \n"
 "Language: sv\n"
 "Language-Team: \n"
@@ -82,4 +82,82 @@ msgstr "Samtycke tillagt"
 
 msgid "{consentAdmin:consentadmin:attribute_id}"
 msgstr "Identitet"
+
+msgid "Injected attribut"
+msgstr "Tillfört attribut"
+
+msgid "Show"
+msgstr "Visa"
+
+msgid "Consent Added"
+msgstr "Samtycke tillagt"
+
+msgid "Consent Administration"
+msgstr "Samtyckesadministration"
+
+msgid "Here you can view and edit your consent for the Service Providers."
+msgstr "Här kan du se och ändra dina samtycken för olika tjänsteleverantörer."
+
+msgid "Unknown ..."
+msgstr "Okänd..."
+
+msgid "Identity"
+msgstr "Identitet"
+
+msgid "The purpose of the service is"
+msgstr "Systet med tjänsten är"
+
+msgid "Hide"
+msgstr "Göm"
+
+msgid "Service Provider"
+msgstr "Tjänsteleverantör"
+
+msgid "Service Providers for"
+msgstr "Tjänsteleverantörer för"
+
+msgid "login"
+msgstr "Logga in"
+
+msgid "(name not specified)"
+msgstr "(namn ej angivet)"
+
+msgid "Consent Updated"
+msgstr "Samtycke uppdaterat"
+
+msgid "Consent status"
+msgstr "Samtyckesstatus"
+
+msgid "(no description)"
+msgstr "(ingen beskrivning)"
+
+msgid "attributes"
+msgstr "attribut"
+
+msgid ""
+"\n"
+"<h3>How to delete your consent</h3>\n"
+"Uncheck the box corresponding to the service provider\n"
+"\n"
+"<h3>Links</h3>\n"
+"<ul>\n"
+"<li><a href=\"https://www.wayf.dk\">Start</a> </li>\n"
+"\n"
+"<li><a href=\"https://www.wayf.dk/FAQ\">FAQ</a> </li>\n"
+"</ul>\n"
+msgstr ""
+"<h3>Hur du tar bort ditt samtycke</h3> Ta bort markeringen i rutan "
+"kopplad till tjänsteleverantören <h3>Länkar</h3> <ul> <li><a "
+"href=\"https://www.wayf.dk\">Start</a> </li> <li><a "
+"href=\"https://www.wayf.dk/index.php/en/about-wayf/faq-frequently-asked-"
+"questions\">FAQ</a> </li> </ul> "
+
+msgid "Consent Removed"
+msgstr "Samtycke borttaget"
+
+msgid "show/hide attributes"
+msgstr "visa/göm attribut"
+
+msgid "Organisation"
+msgstr "Organisation"
 

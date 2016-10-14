@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: SimpleSAMLphp 1.15\n"
 "Report-Msgid-Bugs-To: simplesamlphp-translation@googlegroups.com\n"
 "POT-Creation-Date: 2016-10-12 09:23+0200\n"
-"PO-Revision-Date: 2016-10-12 09:23+0200\n"
+"PO-Revision-Date: 2016-10-14 12:14+0200\n"
 "Last-Translator: \n"
 "Language: zh_Hant_TW\n"
 "Language-Team: \n"
@@ -239,4 +239,259 @@ msgstr "您可能關閉了瀏覽器 cookie 支援，請檢查瀏覽器設定，�
 
 msgid "{core:frontpage:deprecated}"
 msgstr "棄置"
+
+msgid "You are logged in as administrator"
+msgstr "你已經登入成為管理員"
+
+msgid "Go back to the previous page and try again."
+msgstr "回到上一頁並再試一次。"
+
+msgid "If this problem persists, you can report it to the system administrators."
+msgstr "如果這個錯誤持續存在，您可以將它回報系統管理者。"
+
+msgid "Welcome"
+msgstr "歡迎"
+
+msgid "SimpleSAMLphp configuration check"
+msgstr "SimpleSAMLphp 設定檢查"
+
+msgid "Metadata overview for your installation. Diagnose your metadata files"
+msgstr "您安裝的詮釋資料概觀。診斷您的詮釋資料檔案"
+
+msgid "XML to SimpleSAMLphp metadata converter"
+msgstr "XML 至 SimpleSAMLphp 詮釋資料翻譯器"
+
+msgid "Required"
+msgstr "請求"
+
+msgid "Warnings"
+msgstr "警告"
+
+msgid "Documentation"
+msgstr "說明文件"
+
+msgid "Hosted Shibboleth 1.3 Service Provider Metadata (automatically generated)"
+msgstr "託管 Shibboleth 1.3 服務提供者詮釋資料(自動產生)"
+
+msgid "PHP info"
+msgstr "PHP 資訊"
+
+msgid "About SimpleSAMLphp"
+msgstr "有關 SimpleSAMLphp"
+
+msgid "Hosted SAML 2.0 Service Provider Metadata (automatically generated)"
+msgstr "託管 SAML 2.0 服務提供者詮釋資料(自動產生)"
+
+msgid "Retry login"
+msgstr "重試登入"
+
+msgid "Required for LDAP"
+msgstr "需要 LDAP"
+
+msgid "Close the web browser, and try again."
+msgstr "關閉網頁瀏覽器，並再試一次。"
+
+msgid "Federation"
+msgstr "聯盟"
+
+msgid "We were unable to locate the state information for the current request."
+msgstr "我們無法找到關於這個請求的狀態資訊。"
+
+msgid "Delete my choices of IdP in the IdP discovery services"
+msgstr "刪除我選擇的 IdP 於 IdP 搜尋服務"
+
+msgid ""
+"This is most likely a configuration problem on either the service "
+"provider or identity provider."
+msgstr "服務提供者或驗證提供者之設定檔可能有問題。"
+
+msgid "Configure Shibboleth 1.3 SP to work with SimpleSAMLphp IdP"
+msgstr "設定 Shibboleth 1.3 SP 讓其可跟 SimpleSAMLphp IdP 一起運作"
+
+msgid "Using the back and forward buttons in the web browser."
+msgstr "於網頁瀏覽器使用上一頁及下一頁。"
+
+msgid "Metadata not found"
+msgstr "找不到詮釋資料"
+
+msgid "Missing cookie"
+msgstr "遺失 cookie"
+
+msgid "Cookies may be disabled in the web browser."
+msgstr "網頁瀏覽器的 Cookies 可能被關閉。"
+
+msgid "Opened the web browser with tabs saved from the previous session."
+msgstr "您使用網頁瀏覽器儲存標籤開啟了上一次的連線。"
+
+msgid "Tools"
+msgstr "工具"
+
+msgid "Test configured authentication sources "
+msgstr "測試設定好的認證來源"
+
+msgid ""
+"You appear to have disabled cookies in your browser. Please check the "
+"settings in your browser, and try again."
+msgstr "您可能關閉了瀏覽器 cookie 支援，請檢查瀏覽器設定，然後再試一次。"
+
+msgid "Installing SimpleSAMLphp"
+msgstr "SimpleSAMLphp 安裝中"
+
+msgid "Deprecated"
+msgstr "棄置"
+
+msgid ""
+"<strong>Congratulations</strong>, you have successfully installed "
+"SimpleSAMLphp. This is the start page of your installation, where you "
+"will find links to test examples, diagnostics, metadata and even links to"
+" relevant documentation."
+msgstr ""
+"<strong>恭喜你</strong>，您已經成功的安裝 "
+"SimpleSAMLphp。這是安裝的開始頁面，在這裡您可以找到測試範本、診斷工具、詮釋資料及各種相關文件的連結。"
+
+msgid "This error may be caused by:"
+msgstr "這個錯誤可能是因為："
+
+msgid ""
+"<strong>You are not using HTTPS</strong> - encrypted communication with "
+"the user. HTTP works fine for test purposes, but in a production "
+"environment, you should use HTTPS. [ <a "
+"href=\"https://simplesamlphp.org/docs/stable/simplesamlphp-"
+"maintenance\">Read more about SimpleSAMLphp maintenance</a> ]"
+msgstr ""
+"<strong>您不是使用 HTTPS </strong>-於使用的傳輸過程中加密。HTTP "
+"可以正常的利用於測試，但是在上線環境裡，您還是需要使用 HTTPS。[ <a href=\"http://rnd.feide.no/content"
+"/simplesamlphp-maintenance-and-configuration\">閱讀更多有關於 SimpleSAMLphp "
+"的維護方式</a> ]"
+
+msgid "Metadata"
+msgstr "詮釋資料"
+
+msgid "Retry"
+msgstr "重試"
+
+msgid "SimpleSAMLphp Maintenance and Configuration"
+msgstr "SimpleSAMLphp 維護及設定"
+
+msgid "Diagnostics on hostname, port and protocol"
+msgstr "診斷主機名稱，連接埠及協定"
+
+msgid ""
+"If you are an user who received this error after following a link on a "
+"site, you should report this error to the owner of that site."
+msgstr "若您是個使用者，而您於此網站收到下列連結，請反映此錯誤給此站管理員。"
+
+msgid "Using SimpleSAMLphp as an Identity Provider"
+msgstr "使用 SimpleSAMLphp 做為驗證提供者"
+
+msgid "Optional"
+msgstr "選項"
+
+msgid "Suggestions for resolving this problem:"
+msgstr "建議解決這個問題："
+
+msgid ""
+"This SimpleSAMLphp thing is pretty cool, where can I read more about it? "
+"You can find more information about it at the <a "
+"href=\"https://simplesamlphp.org/\">SimpleSAMLphp web page </a> over at "
+"<a href=\"http://uninett.no\">UNINETT</a>."
+msgstr ""
+"覺得 SimpleSAMLphp 還蠻酷的嘛，在哪裡可以找到更多相關資訊？你可以在下列網址找到更多相關資訊，於 <a "
+"href=\"http://uninett.no\">UNINETT</a> 的 <a "
+"href=\"http://rnd.feide.no/simplesamlphp\">SimpleSAMLphp at the Feide RnD"
+" 開發者部落格</a>"
+
+msgid "Shibboleth 1.3 SP example - test logging in through your Shib IdP"
+msgstr "Shibboleth 1.3 SP 範本 - 測試使用您的 Shib IdP 登入"
+
+msgid "Authentication"
+msgstr "認證"
+
+msgid "SimpleSAMLphp installation page"
+msgstr "SimpleSAMLphp 安裝頁面"
+
+msgid "Show metadata"
+msgstr "顯示詮釋資料"
+
+msgid "SimpleSAMLphp as an IdP for Google Apps for Education"
+msgstr "SimpleSAMLphp 做為 Google Apps 教育版的 IdP"
+
+msgid "State information lost"
+msgstr "遺失狀態資訊"
+
+msgid "Hosted SAML 2.0 Identity Provider Metadata (automatically generated)"
+msgstr "託管 SAML 2.0 驗證提供者詮釋資料(自動產生)"
+
+msgid "OpenID Provider site - Alpha version (test code)"
+msgstr "OpenID 提供網站 - 開發版本(測試碼)"
+
+msgid "Required for Radius"
+msgstr "需要 Radius"
+
+msgid "We were unable to locate the metadata for the entity:"
+msgstr "我們無法定位此實體之詮釋資料："
+
+msgid "SAML 2.0 SP example - test logging in through your IdP"
+msgstr "SAML 2.0 SP 範本 - 測試使用您的 IdP 登入"
+
+msgid "Using SimpleSAMLphp as a Service Provider"
+msgstr "使用 SimpleSAMLphp 做為服務提供者"
+
+msgid ""
+"We have detected that there is only a few seconds since you last "
+"authenticated with this service provider, and therefore assume that there"
+" is a problem with this SP."
+msgstr "我們偵測到距離您最後一次驗證於這個服務提供者只有短短幾秒，而這可能是 SP 有點問題。"
+
+msgid "Recommended"
+msgstr "建議"
+
+msgid ""
+"If you are a developer who is deploying a single sign-on solution, you "
+"have a problem with the metadata configuration. Verify that metadata is "
+"configured correctly on both the identity provider and service provider."
+msgstr "若您是單一簽入程式開發人員，您的詮釋資料設定可能有問題。請確認服務提供者或驗證提供者之詮釋資料設定檔是否正確。"
+
+msgid "SimpleSAMLphp Advanced Features"
+msgstr "SimpleSAMLphp 進階功能"
+
+msgid "Too short interval between single sign on events."
+msgstr "單一簽入事件間隔過短。"
+
+msgid "Checking your PHP installation"
+msgstr "檢查您安裝的 PHP"
+
+msgid ""
+"The length of query parameters is limited by the PHP Suhosin extension. "
+"Please increase the suhosin.get.max_value_length option to at least 2048 "
+"bytes."
+msgstr ""
+"變數要求長度於 PHP Suhosin 套件中被限制。請增加 suhosin.get.max_value_length 之參數至 2048 "
+"bytes 以上。"
+
+msgid "Useful links for your installation"
+msgstr "已安裝的常用連結"
+
+msgid "Configuration"
+msgstr "設定"
+
+msgid "Hosted Shibboleth 1.3 Identity Provider Metadata (automatically generated)"
+msgstr "託管Shibboleth 1.3 驗證提供者詮釋資料(自動產生)"
+
+msgid ""
+"<strong>The configuration uses the default secret salt</strong> - make "
+"sure you modify the default 'secretsalt' option in the simpleSAML "
+"configuration in production environments. [<a "
+"href=\"https://simplesamlphp.org/docs/stable/simplesamlphp-install\">Read"
+" more about SimpleSAMLphp configuration</a> ]"
+msgstr ""
+"<strong>目前設定檔使用預設的雜湊參數(salt)</strong> - 在您上線運作前請確認您已於 simpleSAML "
+"設定頁中修改預設的 'secretsalt'。[<a href=\"https://simplesamlphp.org/docs/stable"
+"/simplesamlphp-install\">閱讀更多關於 SimpleSAMLphp 設定值</a> ]"
+
+msgid "Login as administrator"
+msgstr "以管理員身分登入"
+
+msgid "Report this error"
+msgstr "回報這個錯誤"
 

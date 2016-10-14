@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: SimpleSAMLphp 1.15\n"
 "Report-Msgid-Bugs-To: simplesamlphp-translation@googlegroups.com\n"
 "POT-Creation-Date: 2016-10-12 09:31+0200\n"
-"PO-Revision-Date: 2016-10-12 09:31+0200\n"
+"PO-Revision-Date: 2016-10-14 12:14+0200\n"
 "Last-Translator: \n"
 "Language: ja\n"
 "Language-Team: \n"
@@ -700,4 +700,754 @@ msgstr "パース"
 
 msgid "{attributes:attribute_noreduorgnin}"
 msgstr "組織番号"
+
+msgid "Person's principal name at home organization"
+msgstr "永続的利用者名"
+
+msgid "Superfluous options in config file"
+msgstr "設定ファイルに不適切なオプションが在ります"
+
+msgid "Mobile"
+msgstr "携帯電話"
+
+msgid "Shib 1.3 Service Provider (Hosted)"
+msgstr "Shib 1.3サービスプロバイダ(ホスト)"
+
+msgid ""
+"LDAP is the user database, and when you try to login, we need to contact "
+"an LDAP database. An error occurred when we tried it this time."
+msgstr "あなたがログインを行う時、LDAPというユーザーデーターベースにアクセスします。この時エラーが発生しました。"
+
+msgid ""
+"Optionally enter your email address, for the administrators to be able "
+"contact you for further questions about your issue:"
+msgstr "任意ですがメールアドレスを入力してください、管理者があなたへ問題についての追加質問を行う為に使用します。"
+
+msgid "Display name"
+msgstr "表示名"
+
+msgid "Remember my choice"
+msgstr "選択を記憶する"
+
+msgid "SAML 2.0 SP Metadata"
+msgstr "SAML 2.0 SPメタデータ"
+
+msgid "Notices"
+msgstr "お知らせ"
+
+msgid "Home telephone"
+msgstr "電話番号"
+
+msgid ""
+"Hi, this is the status page of SimpleSAMLphp. Here you can see if your "
+"session is timed out, how long it lasts until it times out and all the "
+"attributes that are attached to your session."
+msgstr ""
+"こんにちは、ここは "
+"SimpleSAMLphpのステータスページです。ここではセッションのタイムアウト時間やセッションに結びつけられた属性情報を見ることが出来ます。"
+
+msgid "Explain what you did when this error occurred..."
+msgstr "何をした際にこのエラーが発生したかを説明してください..."
+
+msgid "An unhandled exception was thrown."
+msgstr "未処理例外が投げられました。"
+
+msgid "Invalid certificate"
+msgstr "無効な証明書です"
+
+msgid "Service Provider"
+msgstr "サービスプロバイダ"
+
+msgid "Incorrect username or password."
+msgstr "ユーザー名かパスワードが間違っています。"
+
+msgid "There is an error in the request to this page. The reason was: %REASON%"
+msgstr "ページのリクエスト中にエラーが発生しました。理由は: %REASON%"
+
+msgid "E-mail address:"
+msgstr "Eメールアドレス:"
+
+msgid "Submit message"
+msgstr "メッセージを送信"
+
+msgid "No RelayState"
+msgstr "RelayStateがありません"
+
+msgid "Error creating request"
+msgstr "リクエストの生成エラー"
+
+msgid "Locality"
+msgstr "地域"
+
+msgid "Unhandled exception"
+msgstr "未処理例外"
+
+msgid "The following required fields was not found"
+msgstr "以下の必須項目は見つかりませんでした"
+
+#, python-format
+msgid "Unable to locate metadata for %ENTITYID%"
+msgstr "%ENTITYID% のメタデータが見つかりません"
+
+msgid "Organizational number"
+msgstr "組織番号"
+
+msgid "Password not set"
+msgstr "パスワードが設定されていません"
+
+msgid "SAML 2.0 IdP Metadata"
+msgstr "SAML 2.0 IdPメタデータ"
+
+msgid "Post office box"
+msgstr "オフィスボックスポスト"
+
+msgid ""
+"A service has requested you to authenticate yourself. Please enter your "
+"username and password in the form below."
+msgstr "サービスはあなた自身の認証を要求しています。以下のフォームにユーザー名とパスワードを入力してください。"
+
+msgid "CAS Error"
+msgstr "CASエラー"
+
+msgid ""
+"The debug information below may be of interest to the administrator / "
+"help desk:"
+msgstr "システム管理者やヘルプデスクは以下のデバッグ情報に興味を持つかもしれません:"
+
+msgid ""
+"Either no user with the given username could be found, or the password "
+"you gave was wrong. Please check the username and try again."
+msgstr "ユーザー名が見つからなかったか、パスワードが間違っているかの何方かです。ユーザー名、パスワードを確認して試してください。"
+
+msgid "Error"
+msgstr "エラー"
+
+msgid "Next"
+msgstr "次へ"
+
+msgid "Distinguished name (DN) of the person's home organizational unit"
+msgstr "組織単位識別名"
+
+msgid "State information lost"
+msgstr "状態情報を失いました"
+
+msgid ""
+"The password in the configuration (auth.adminpassword) is not changed "
+"from the default value. Please edit the configuration file."
+msgstr "設定のパスワード(auth.adminpassword)は既定値から変更されていません設定ファイルを編集してください。"
+
+msgid "Converted metadata"
+msgstr "変換されたメタデータ"
+
+msgid "Mail"
+msgstr "メールアドレス"
+
+msgid "No, cancel"
+msgstr "いいえ"
+
+msgid ""
+"You have chosen <b>%HOMEORG%</b> as your home organization. If this is "
+"wrong you may choose another one."
+msgstr "あなたは <b>%HOMEORG%</b> を組織として選択しました。これに問題がある場合は他のものを選ぶ事も可能です。"
+
+msgid "Error processing request from Service Provider"
+msgstr "サービスプロバイダからのリクエストの処理中にエラーが発生しました"
+
+msgid "Distinguished name (DN) of person's primary Organizational Unit"
+msgstr "主要組織単位識別名"
+
+msgid ""
+"To look at the details for an SAML entity, click on the SAML entity "
+"header."
+msgstr "SAML実体の詳細を確認する為には、SAML実体ヘッダをクリックして下さい。"
+
+msgid "Enter your username and password"
+msgstr "ユーザー名とパスワードを入力してください"
+
+msgid "Login at"
+msgstr "ログイン: "
+
+msgid "No"
+msgstr "いいえ"
+
+msgid "Home postal address"
+msgstr "住所"
+
+msgid "WS-Fed SP Demo Example"
+msgstr "WS-Fed SP デモ例"
+
+msgid "SAML 2.0 Identity Provider (Remote)"
+msgstr "SAML 2.0アイデンティティプロバイダ(リモート)"
+
+msgid "Error processing the Logout Request"
+msgstr "ログアウト洋弓の処理中にエラーが発生しました"
+
+msgid "Do you want to logout from all the services above?"
+msgstr "上記の全てのサービスからログアウトしますか?"
+
+msgid "Select"
+msgstr "選択"
+
+msgid "The authentication was aborted by the user"
+msgstr "認証はユーザーによって中断されました"
+
+msgid "Your attributes"
+msgstr "属性"
+
+msgid "Given name"
+msgstr "名"
+
+msgid "Identity assurance profile"
+msgstr "識別子保証プロファイル"
+
+msgid "SAML 2.0 SP Demo Example"
+msgstr "SAML 2.0 SP デモ例"
+
+msgid "Logout information lost"
+msgstr "ログアウト情報を失いました"
+
+msgid "Organization name"
+msgstr "所属組織"
+
+msgid "Authentication failed: the certificate your browser sent is unknown"
+msgstr "認証に失敗しました: ブラウザから不明な証明書が送られました"
+
+msgid ""
+"You are about to send a message. Hit the submit message button to "
+"continue."
+msgstr "メッセージを送信します。続けるにはメッセージ送信ボタンを押してください。"
+
+msgid "Home organization domain name"
+msgstr "組織内ドメイン"
+
+msgid "Go back to the file list"
+msgstr "ファイルリストに戻る"
+
+msgid "Error report sent"
+msgstr "エラー報告を送信"
+
+msgid "Common name"
+msgstr "一般名"
+
+msgid "Please select the identity provider where you want to authenticate:"
+msgstr "認証を行いたいアイデンティティプロバイダを選択してください:"
+
+msgid "Logout failed"
+msgstr "ログアウトに失敗しました"
+
+msgid "Identity number assigned by public authorities"
+msgstr "公開認証局によって割り当てられた識別番号"
+
+msgid "WS-Federation Identity Provider (Remote)"
+msgstr "WS-Federationアイデンティティプロバイダ(リモート)"
+
+msgid "Error received from Identity Provider"
+msgstr "アイデンティティプロバイダからエラーを受信しました"
+
+msgid "LDAP Error"
+msgstr "LDAPエラー"
+
+msgid ""
+"The information about the current logout operation has been lost. You "
+"should return to the service you were trying to log out from and try to "
+"log out again. This error can be caused by the logout information "
+"expiring. The logout information is stored for a limited amout of time - "
+"usually a number of hours. This is longer than any normal logout "
+"operation should take, so this error may indicate some other error with "
+"the configuration. If the problem persists, contact your service "
+"provider."
+msgstr ""
+"The information about the current logout operation has been lost. You "
+"should return to the service you were trying to log out from and try to "
+"log out again. This error can be caused by the logout information "
+"expiring. The logout information is stored for a limited amout of time - "
+"usually a number of hours. This is longer than any normal logout "
+"operation should take, so this error may indicate some other error with "
+"the configuration. If the problem persists, contact your service "
+"provider."
+
+msgid "Some error occurred"
+msgstr "幾つかのエラーが発生しました"
+
+msgid "Organization"
+msgstr "組織"
+
+msgid "No certificate"
+msgstr "証明書がありません"
+
+msgid "Choose home organization"
+msgstr "組織の選択"
+
+msgid "Persistent pseudonymous ID"
+msgstr "永続的匿名ID"
+
+msgid "No SAML response provided"
+msgstr "SAMLレスポンスがありません"
+
+msgid "No errors found."
+msgstr "エラーは見つかりませんでした。"
+
+msgid "SAML 2.0 Service Provider (Hosted)"
+msgstr "SAML 2.0サービスプロバイダ(ホスト)"
+
+msgid "The given page was not found. The URL was: %URL%"
+msgstr "与えられたページは見つかりませんでした。URLは: %URL%"
+
+msgid "Configuration error"
+msgstr "設定エラー"
+
+msgid "Required fields"
+msgstr "必須項目"
+
+msgid "An error occurred when trying to create the SAML request."
+msgstr "SAMLリクエストの生成中にエラーが発生しました。"
+
+msgid ""
+"This error probably is due to some unexpected behaviour or to "
+"misconfiguration of SimpleSAMLphp. Contact the administrator of this "
+"login service, and send them the error message above."
+msgstr "このエラーは恐らく未知の問題かSimpleSAMLphpの設定ミスです。ログインサービスの管理者に上記のエラーメッセージを連絡して下さい。"
+
+#, python-format
+msgid "Your session is valid for %SECONDS% seconds from now."
+msgstr "セッションは今から %SECONDS% 秒間有効です"
+
+msgid "Domain component (DC)"
+msgstr "ドメイン名"
+
+msgid "Shib 1.3 Service Provider (Remote)"
+msgstr "Shib 1.3サービスプロバイダ(リモート)"
+
+msgid "Password"
+msgstr "パスワード"
+
+msgid "Nickname"
+msgstr "ニックネーム"
+
+msgid "Send error report"
+msgstr "エラーレポートを送信"
+
+msgid ""
+"Authentication failed: the certificate your browser sent is invalid or "
+"cannot be read"
+msgstr "認証失敗: あなたのブラウザは無効か読むことの出来ない証明書を送信しました。"
+
+msgid "The error report has been sent to the administrators."
+msgstr "このエラーは管理者に送信されました。"
+
+msgid "Date of birth"
+msgstr "生年月日"
+
+msgid "Private information elements"
+msgstr "個人情報要素"
+
+msgid "You are also logged in on these services:"
+msgstr "あなたはまだこれらのサービスにログインしています:"
+
+msgid "SimpleSAMLphp Diagnostics"
+msgstr "SimpleSAMLphp 診断"
+
+msgid "Debug information"
+msgstr "デバッグ情報"
+
+msgid "No, only %SP%"
+msgstr "いいえ、%SP% のみログアウトします"
+
+msgid "Username"
+msgstr "ユーザー名"
+
+msgid "Go back to SimpleSAMLphp installation page"
+msgstr "SimpleSAMLphpの設定ページに戻る"
+
+msgid "You have successfully logged out from all services listed above."
+msgstr "上記の全てのサービスからログアウトしました。"
+
+msgid "You are now successfully logged out from %SP%."
+msgstr "あなたは %SP% からのログアウトに成功しました。"
+
+msgid "Affiliation"
+msgstr "所属"
+
+msgid "You have been logged out."
+msgstr "ログアウトしました。"
+
+msgid "Return to service"
+msgstr "サービスへ戻る"
+
+msgid "Logout"
+msgstr "ログアウト"
+
+msgid "State information lost, and no way to restart the request"
+msgstr "状態情報を失い、リクエストを再開出来ません"
+
+msgid "Error processing response from Identity Provider"
+msgstr "アイデンティティプロバイダからのレスポンスの処理中にエラーが発生しました。"
+
+msgid "WS-Federation Service Provider (Hosted)"
+msgstr "WS-Federationサービスプロバイダ(ホスト)"
+
+msgid "Preferred language"
+msgstr "言語"
+
+msgid "SAML 2.0 Service Provider (Remote)"
+msgstr "SAML 2.0サービスプロバイダ(リモート)"
+
+msgid "Surname"
+msgstr "姓"
+
+msgid "No access"
+msgstr "アクセスがありません"
+
+msgid "The following fields was not recognized"
+msgstr "以下の項目は認識されませんでした"
+
+msgid "Authentication error in source %AUTHSOURCE%. The reason was: %REASON%"
+msgstr "認証元: %AUTHSOURCE% でエラーが発生しました。理由: %REASON%"
+
+msgid "Bad request received"
+msgstr "不正なリクエストを受信しました"
+
+msgid "User ID"
+msgstr "ユーザーID"
+
+msgid "JPEG Photo"
+msgstr "JPEG写真"
+
+msgid "Postal address"
+msgstr "住所"
+
+msgid "An error occurred when trying to process the Logout Request."
+msgstr "ログアウト処理中にエラーが発生しました。"
+
+msgid "Sending message"
+msgstr "メッセージを送信中"
+
+msgid "In SAML 2.0 Metadata XML format:"
+msgstr "SAML 2.0 用のメタデータXMLフォーマット:"
+
+msgid "Logging out of the following services:"
+msgstr "以下のサービスからログアウトしました:"
+
+msgid ""
+"When this identity provider tried to create an authentication response, "
+"an error occurred."
+msgstr "アイデンティティプロバイダの認証レスポンスの生成時にエラーが発生しました。"
+
+msgid "Could not create authentication response"
+msgstr "認証応答を生成出来ませんでした"
+
+msgid "Labeled URI"
+msgstr "URI"
+
+msgid "SimpleSAMLphp appears to be misconfigured."
+msgstr "SimpleSAMLphpの設定にミスがある様です。"
+
+msgid "Shib 1.3 Identity Provider (Hosted)"
+msgstr "Shib 1.3アイデンティティプロバイダ(ホスト)"
+
+msgid "Metadata"
+msgstr "メタデータ"
+
+msgid "Login"
+msgstr "ログイン"
+
+msgid ""
+"This Identity Provider received an Authentication Request from a Service "
+"Provider, but an error occurred when trying to process the request."
+msgstr "このアイデンティティプロバイダはサービスプロバイダからの認証リクエストを受け付けましたが、リクエストの処理中にエラーが発生しました。"
+
+msgid "Yes, all services"
+msgstr "はい、全てのサービスからログアウトします"
+
+msgid "Logged out"
+msgstr "ログアウト"
+
+msgid "Postal code"
+msgstr "郵便番号"
+
+msgid "Logging out..."
+msgstr "ログアウト中…"
+
+msgid "Metadata not found"
+msgstr "メタデータが見つかりません"
+
+msgid "SAML 2.0 Identity Provider (Hosted)"
+msgstr "SAML 2.0アイデンティティプロバイダ(ホスト)"
+
+msgid "Primary affiliation"
+msgstr "主所属"
+
+msgid ""
+"If you report this error, please also report this tracking number which "
+"makes it possible to locate your session in the logs available to the "
+"system administrator:"
+msgstr "このエラーを報告する場合、システム管理者がログからあなたのセッションを特定する為に、トラッキング番号を報告してください。"
+
+msgid "XML metadata"
+msgstr "XMLメタデータ"
+
+msgid ""
+"The parameters sent to the discovery service were not according to "
+"specifications."
+msgstr "サービスディスカバリに送信したパラメータが仕様に従っていません。"
+
+msgid "Telephone number"
+msgstr "電話番号"
+
+msgid ""
+"Unable to log out of one or more services. To ensure that all your "
+"sessions are closed, you are encouraged to <i>close your webbrowser</i>."
+msgstr "一つ以上のサービスかたログアウト出来ませんでした。確実にセッションを終了させるには、<i>WEBブラウザを閉じる</i>事を推奨します。"
+
+msgid "Bad request to discovery service"
+msgstr "サービスディスカバリ中の不正なリクエスト"
+
+msgid "Select your identity provider"
+msgstr "アイデンティティプロバイダを選択してください"
+
+msgid "Entitlement regarding the service"
+msgstr "サービスに関する資格"
+
+msgid "Shib 1.3 SP Metadata"
+msgstr "Shib 1.3 SPメタデータ"
+
+msgid ""
+"As you are in debug mode, you get to see the content of the message you "
+"are sending:"
+msgstr "お気づきの様にあなたはデバッグモードにいます。あなたは送信するメッセージの内容を見ることが出来ます。"
+
+msgid "Remember"
+msgstr "記憶する"
+
+msgid "Distinguished name (DN) of person's home organization"
+msgstr "組織識別名"
+
+msgid "You are about to send a message. Hit the submit message link to continue."
+msgstr "メッセージを送信します。続けるにはメッセージ送信リンクを押してください。"
+
+msgid "Organizational unit"
+msgstr "組織単位"
+
+msgid "Authentication aborted"
+msgstr "認証は中断されました"
+
+msgid "Local identity number"
+msgstr "支部ID"
+
+msgid "Report errors"
+msgstr "エラーをレポート"
+
+msgid "Page not found"
+msgstr "ページが見つかりません"
+
+msgid "Shib 1.3 IdP Metadata"
+msgstr "Shib 1.3 IdPメタデータ"
+
+msgid "Change your home organization"
+msgstr "あなたの組織を変更してください"
+
+msgid "User's password hash"
+msgstr "パスワードハッシュ"
+
+msgid ""
+"In SimpleSAMLphp flat file format - use this if you are using a "
+"SimpleSAMLphp entity on the other side:"
+msgstr "SimpleSAMLphp のファイルフォーマット - 片側でも SimpleSAMLphpエンティティを使用する場合にこれを使用します:"
+
+msgid "Yes, continue"
+msgstr "はい、続けます"
+
+msgid "Completed"
+msgstr "完了しました"
+
+msgid ""
+"The Identity Provider responded with an error. (The status code in the "
+"SAML Response was not success)"
+msgstr "アイデンティティプロバイダがエラーを受けとりました。(SAMLレスポンスに失敗したステータスコード)"
+
+msgid "Error loading metadata"
+msgstr "目らーデータの読み込み中にエラーが発生しました"
+
+msgid "Select configuration file to check:"
+msgstr "確認する設定ファイルを選択:"
+
+msgid "On hold"
+msgstr "保留"
+
+msgid "Error when communicating with the CAS server."
+msgstr "CASサーバーとの通信中にエラーが発生しました。"
+
+msgid "No SAML message provided"
+msgstr "SAMLメッセージがありません"
+
+msgid "Help! I don't remember my password."
+msgstr "たすけて! パスワードを思い出せません。"
+
+msgid ""
+"You can turn off debug mode in the global SimpleSAMLphp configuration "
+"file <tt>config/config.php</tt>."
+msgstr "あなたはSimpleSAMLphpのグローバル設定<tt>config/config.php</tt>でデバックモードをオフに出来ます。"
+
+msgid "How to get help"
+msgstr "ヘルプを得るには"
+
+msgid ""
+"You accessed the SingleLogoutService interface, but did not provide a "
+"SAML LogoutRequest or LogoutResponse. Please note that this endpoint is "
+"not intended to be accessed directly."
+msgstr ""
+"SingleLogoutServiceインターフェースへアクセスしましたが、SAML LogoutRequest や LogoutResponse"
+" が提供されませんでした。"
+
+msgid "SimpleSAMLphp error"
+msgstr "SimpleSAMLphpエラー"
+
+msgid ""
+"One or more of the services you are logged into <i>do not support "
+"logout</i>. To ensure that all your sessions are closed, you are "
+"encouraged to <i>close your webbrowser</i>."
+msgstr "<i>ログアウトをサポートしていない</i>一つ以上のサービスにログイン中です。確実にセッションを終了させるには、<i>WEBブラウザを閉じる</i>事を推奨します。"
+
+msgid "Organization's legal name"
+msgstr "組織の正式名称"
+
+msgid "Options missing from config file"
+msgstr "設定ファイルにオプションが在りません"
+
+msgid "The following optional fields was not found"
+msgstr "以下の任意項目は見つかりませんでした"
+
+msgid "Authentication failed: your browser did not send any certificate"
+msgstr "認証失敗: あなたのブラウザは証明書を送信しませんでした"
+
+msgid ""
+"This endpoint is not enabled. Check the enable options in your "
+"configuration of SimpleSAMLphp."
+msgstr "エンドポイントが有効ではありません。SimpleSAMLphpの設定でオプションを有効にしてください。"
+
+msgid "You can <a href=\"%METAURL%\">get the metadata xml on a dedicated URL</a>:"
+msgstr "<a href=\"%METAURL%\">このURLでメタデータのXMLを取得できます</a>:"
+
+msgid "Street"
+msgstr "番地"
+
+msgid ""
+"There is some misconfiguration of your SimpleSAMLphp installation. If you"
+" are the administrator of this service, you should make sure your "
+"metadata configuration is correctly setup."
+msgstr "SimpleSAMLphpの設定に誤りがありました。もしあなたがこのサービスの管理者であればメタデータ設定を正しくセットアップする必要があります。"
+
+msgid "Incorrect username or password"
+msgstr "ユーザー名かパスワードが間違っています"
+
+msgid "Message"
+msgstr "メッセージ"
+
+msgid "Contact information:"
+msgstr "連絡先:"
+
+msgid "Unknown certificate"
+msgstr "不明な証明書です"
+
+msgid "Legal name"
+msgstr "正式名称"
+
+msgid "Optional fields"
+msgstr "任意項目"
+
+msgid ""
+"The initiator of this request did not provide a RelayState parameter "
+"indicating where to go next."
+msgstr "リクエスト生成時にはRelayStateパラメーターを提供されませんでした。"
+
+msgid "You have previously chosen to authenticate at"
+msgstr "前回選択した認証: "
+
+msgid ""
+"You sent something to the login page, but for some reason the password "
+"was not sent. Try again please."
+msgstr "あなたはログインページで何かを送信しましたが、何らかの理由でパスワードが送信されませんでした。再度試してみてください。"
+
+msgid "Fax number"
+msgstr "Fax番号"
+
+msgid "Shibboleth demo"
+msgstr "Shibboleth デモ"
+
+msgid "Error in this metadata entry"
+msgstr "このメタデータエントリでのエラー"
+
+msgid "Session size: %SIZE%"
+msgstr "セッションサイズ: %SIZE%"
+
+msgid "Parse"
+msgstr "パース"
+
+msgid ""
+"Too bad! - Without your username and password you cannot authenticate "
+"yourself for access to the service. There may be someone that can help "
+"you. Consult the help desk at your organization!"
+msgstr ""
+"お気の毒です! - "
+"ユーザー名とパスワードが無くてはサービスにアクセスする為にあなた自身を認証する事が出来ません。あなたの大学のヘルプデスクに相談すると、あなたの助けになってくれるでしょう。"
+
+msgid "Metadata parser"
+msgstr "メタデータパーサ"
+
+msgid "Choose your home organization"
+msgstr "あなたの組織を選択してください"
+
+msgid "Send e-mail to help desk"
+msgstr "ヘルプデスクにメールする"
+
+msgid "Metadata overview"
+msgstr "メタデータの概要"
+
+msgid "Title"
+msgstr "タイトル"
+
+msgid "Manager"
+msgstr "管理者"
+
+msgid "You did not present a valid certificate."
+msgstr "正当な証明書が提示されませんでした。"
+
+msgid "Authentication source error"
+msgstr "認証元エラー"
+
+msgid "Affiliation at home organization"
+msgstr "組織内職種"
+
+msgid "Help desk homepage"
+msgstr "ヘルプデスクページ"
+
+msgid "Configuration check"
+msgstr "設定確認"
+
+msgid "We did not accept the response sent from the Identity Provider."
+msgstr "アイデンティティプロバイダから送信されたレスポンスを受け付けませんでした。"
+
+msgid "The given page was not found. The reason was: %REASON%  The URL was: %URL%"
+msgstr "与えられたページは見つかりませんでした。理由は: %REASON% URLは: %URL%"
+
+msgid "Shib 1.3 Identity Provider (Remote)"
+msgstr "Shib 1.3アイデンティティプロバイダ(リモート)"
+
+msgid ""
+"Here is the metadata that SimpleSAMLphp has generated for you. You may "
+"send this metadata document to trusted partners to setup a trusted "
+"federation."
+msgstr "ここは SimpleSAMLphp が生成したメタデータがあります。あなたは信頼するパートナーにこのメタデータを送信し信頼された連携を構築出来ます。"
+
+msgid "[Preferred choice]"
+msgstr "[推奨する選択]"
+
+msgid "Organizational homepage"
+msgstr "組織のホームページ"
+
+msgid ""
+"You accessed the Assertion Consumer Service interface, but did not "
+"provide a SAML Authentication Response. Please note that this endpoint is"
+" not intended to be accessed directly."
+msgstr "Assertion Consumer Serviceインターフェースへアクセスしましたが、SAML認証レスポンスが提供されませんでした。"
 

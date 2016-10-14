@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: SimpleSAMLphp 1.15\n"
 "Report-Msgid-Bugs-To: simplesamlphp-translation@googlegroups.com\n"
 "POT-Creation-Date: 2016-10-12 09:23+0200\n"
-"PO-Revision-Date: 2016-10-12 09:23+0200\n"
+"PO-Revision-Date: 2016-10-14 12:14+0200\n"
 "Last-Translator: \n"
 "Language: id\n"
 "Language-Team: \n"
@@ -84,4 +84,84 @@ msgstr "Consent telah ditambahkan"
 
 msgid "{consentAdmin:consentadmin:attribute_id}"
 msgstr "Identitas"
+
+msgid "Injected attribut"
+msgstr "Attribut yang diinjeksi"
+
+msgid "Show"
+msgstr "Perlihatkan"
+
+msgid "Consent Added"
+msgstr "Consent telah ditambahkan"
+
+msgid "Consent Administration"
+msgstr "Administrasi Consent"
+
+msgid "Here you can view and edit your consent for the Service Providers."
+msgstr ""
+"Disini anda dapat melihat dan mengedit consent anda untuk Service "
+"Provider."
+
+msgid "Unknown ..."
+msgstr "Tidak diketahui..."
+
+msgid "Identity"
+msgstr "Identitas"
+
+msgid "The purpose of the service is"
+msgstr "Tujuan dari layanan ini adalah"
+
+msgid "Hide"
+msgstr "Sembunyikan"
+
+msgid "Service Provider"
+msgstr "Service Provider"
+
+msgid "Service Providers for"
+msgstr "Service Provider untuk"
+
+msgid "login"
+msgstr "login"
+
+msgid "(name not specified)"
+msgstr "(Nama tidak diisi)"
+
+msgid "Consent Updated"
+msgstr "Consent telah diupdate"
+
+msgid "Consent status"
+msgstr "Status consent"
+
+msgid "(no description)"
+msgstr "(Tidak ada penjelasan)"
+
+msgid "attributes"
+msgstr "Attribute"
+
+msgid ""
+"\n"
+"<h3>How to delete your consent</h3>\n"
+"Uncheck the box corresponding to the service provider\n"
+"\n"
+"<h3>Links</h3>\n"
+"<ul>\n"
+"<li><a href=\"https://www.wayf.dk\">Start</a> </li>\n"
+"\n"
+"<li><a href=\"https://www.wayf.dk/FAQ\">FAQ</a> </li>\n"
+"</ul>\n"
+msgstr ""
+"<h3>Bagaimana cara menghapus consent anda</h3> Hapus centak pada kotak "
+"service provider yang anda maksud <h3>Link</h3> <ul> <li><a "
+"href=\"https://www.wayf.dk\">Mulai</a> </li> <li><a "
+"href=\"https://www.wayf.dk/index.php/en/about-wayf/faq-frequently-asked-"
+"questions\">FAQ</a> </li> </ul>"
+
+msgid "Consent Removed"
+msgstr "Consent telah dibuang"
+
+msgid "show/hide attributes"
+msgstr "Tunjukkan/sembunyikan attribute"
+
+msgid "Organisation"
+msgstr "Organisasi"
 

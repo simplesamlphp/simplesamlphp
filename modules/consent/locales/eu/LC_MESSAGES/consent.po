@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: SimpleSAMLphp 1.15\n"
 "Report-Msgid-Bugs-To: simplesamlphp-translation@googlegroups.com\n"
 "POT-Creation-Date: 2016-10-12 09:23+0200\n"
-"PO-Revision-Date: 2016-10-12 09:23+0200\n"
+"PO-Revision-Date: 2016-10-14 12:14+0200\n"
 "Last-Translator: \n"
 "Language: eu\n"
 "Language-Team: \n"
@@ -81,5 +81,75 @@ msgid "{consent:consent:yes}"
 msgstr "Bai, jarraitu"
 
 msgid "{consent:consent:consent_attributes_header}"
+msgstr "Zerbitzura bidaliko diren atributuak"
+
+msgid "Service Providers for"
+msgstr "Zerbitzu hornitzaileak hontarako: "
+
+msgid "Yes, continue"
+msgstr "Bai, jarraitu"
+
+msgid "Return to consent page"
+msgstr "Itzuli onespen orrira"
+
+msgid "Consent status"
+msgstr "Onespen egoera"
+
+msgid "Go to information page for the service"
+msgstr "Joan zerbitzuaren informazio orrira"
+
+msgid "Service Provider"
+msgstr "Zerbitzu hornitzailea"
+
+msgid "Abort login to SPNAME"
+msgstr "Bertan behera utzi zerbitzuan identifikazioa"
+
+msgid "show/hide attributes"
+msgstr "erakutsi/gorde atributuak"
+
+msgid "The purpose of SPNAME is SPDESC"
+msgstr "Zerbtizuaren xedea SPDESC da"
+
+msgid ""
+"List the information about you that is about to be transmitted to the "
+"service you are going to login to"
+msgstr ""
+"Zu identifikatuko zaren zerbitzura zure ze informazio bidaliko den "
+"erakusten du "
+
+msgid "Consent about releasing personal information"
+msgstr "Informazio pertsonala askatzeko onespena "
+
+msgid "No consent given"
+msgstr "Ez da onespena eman"
+
+msgid "login"
+msgstr "hasi saioa"
+
+msgid "You did not give consent for transfering your attributes to SPNAME."
+msgstr "Ez duzu onespena eman zure atributuak zerbitzuari transferitzeko."
+
+msgid "Remember"
+msgstr "Onespena gogoratu"
+
+msgid "Show content"
+msgstr "Erakutsi onespena"
+
+msgid "SPNAME requires that the information below is transferred."
+msgstr "Zerbitzuak, hemen agertzen den informazioa lekualdatzea eskatzen du."
+
+msgid "Privacypolicy for the service"
+msgstr "Zerbitzuarentzako pribatutasun-politika"
+
+msgid "No, cancel"
+msgstr "Ez, utzi"
+
+msgid "Show attributes"
+msgstr "Erakutsi atributuak"
+
+msgid "User information"
+msgstr "Erabiltzailearen informazioa"
+
+msgid "Information that will be sent to SPNAME"
 msgstr "Zerbitzura bidaliko diren atributuak"
 

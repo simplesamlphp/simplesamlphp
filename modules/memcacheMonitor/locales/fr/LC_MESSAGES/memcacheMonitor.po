@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: SimpleSAMLphp 1.15\n"
 "Report-Msgid-Bugs-To: simplesamlphp-translation@googlegroups.com\n"
 "POT-Creation-Date: 2016-10-12 09:23+0200\n"
-"PO-Revision-Date: 2016-10-12 09:23+0200\n"
+"PO-Revision-Date: 2016-10-14 12:14+0200\n"
 "Last-Translator: \n"
 "Language: fr\n"
 "Language-Team: \n"
@@ -71,4 +71,61 @@ msgstr "Total d'éléments depuis le démarrage"
 
 msgid "{memcacheMonitor:memcachestat:bytes}"
 msgstr "Octets utilisés actuellement"
+
+msgid "Current time"
+msgstr "Date courante"
+
+msgid "Total items ever"
+msgstr "Total d'éléments depuis le démarrage"
+
+msgid "Bytes written by the server"
+msgstr "Octets écrits par le serveur"
+
+msgid "Uptime"
+msgstr "Temps de fonctionnement"
+
+msgid "Current open connections"
+msgstr "Connexions ouvertes"
+
+msgid "Total storage avail"
+msgstr "Espace de stockage disponible"
+
+msgid "Version"
+msgstr "Version"
+
+msgid "Total GET commands (failed)"
+msgstr "Commandes GET invalides"
+
+msgid "Total SET commands"
+msgstr "Commandes SET"
+
+msgid "Connection structures"
+msgstr "Structures de connexion"
+
+msgid "Total GET commands (success)"
+msgstr "Commandes GET valides"
+
+msgid "Total bytes in use currently"
+msgstr "Octets utilisés actuellement"
+
+msgid "Total GET commands"
+msgstr "Commandes GET"
+
+msgid "Bytes in to the server"
+msgstr "Octets sur le serveur"
+
+msgid "Process ID"
+msgstr "Identifiant de processus (PID)"
+
+msgid "Currently number of items"
+msgstr "Éléments utilisés actuellement"
+
+msgid "CPU Seconds (User)"
+msgstr "Temps de calcul (mode utilisateur)"
+
+msgid "CPU Seconds (System)"
+msgstr "Temps de calcul (mode système)"
+
+msgid "Total connections"
+msgstr "Connexions totales"
 

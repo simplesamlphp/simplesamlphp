@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: SimpleSAMLphp 1.15\n"
 "Report-Msgid-Bugs-To: simplesamlphp-translation@googlegroups.com\n"
 "POT-Creation-Date: 2016-10-12 09:23+0200\n"
-"PO-Revision-Date: 2016-10-12 09:23+0200\n"
+"PO-Revision-Date: 2016-10-14 12:14+0200\n"
 "Last-Translator: \n"
 "Language: fr\n"
 "Language-Team: \n"
@@ -84,4 +84,84 @@ msgstr "Consentement ajouté"
 
 msgid "{consentAdmin:consentadmin:attribute_id}"
 msgstr "Identité"
+
+msgid "Injected attribut"
+msgstr "Attribut ajouté"
+
+msgid "Show"
+msgstr "Voir"
+
+msgid "Consent Added"
+msgstr "Consentement ajouté"
+
+msgid "Consent Administration"
+msgstr "Administration des consentements"
+
+msgid "Here you can view and edit your consent for the Service Providers."
+msgstr ""
+"Vous pouvez ici voir et modifier les consentements donnés pour les "
+"fournisseurs de service."
+
+msgid "Unknown ..."
+msgstr "Inconnu ..."
+
+msgid "Identity"
+msgstr "Identité"
+
+msgid "The purpose of the service is"
+msgstr "L'objet de ce service est"
+
+msgid "Hide"
+msgstr "Cacher"
+
+msgid "Service Provider"
+msgstr "Fournisseurs de service"
+
+msgid "Service Providers for"
+msgstr "Fournisseurs de service pour"
+
+msgid "login"
+msgstr "Connexion"
+
+msgid "(name not specified)"
+msgstr "(nom non indiqué)"
+
+msgid "Consent Updated"
+msgstr "Consentement mis ) jour"
+
+msgid "Consent status"
+msgstr "Statut du consentement"
+
+msgid "(no description)"
+msgstr "(pas de description)"
+
+msgid "attributes"
+msgstr "attributs"
+
+msgid ""
+"\n"
+"<h3>How to delete your consent</h3>\n"
+"Uncheck the box corresponding to the service provider\n"
+"\n"
+"<h3>Links</h3>\n"
+"<ul>\n"
+"<li><a href=\"https://www.wayf.dk\">Start</a> </li>\n"
+"\n"
+"<li><a href=\"https://www.wayf.dk/FAQ\">FAQ</a> </li>\n"
+"</ul>\n"
+msgstr ""
+"<h3>Comment révoquer un consentement</h3>Décochez la case correspondante "
+"au fournisseur de service <h3>Liens</h3><ul><li><a "
+"href=\"https://www.wayf.dk\">Commencer</a><li><li><a "
+"href=\"https://www.wayf.dk/index.php/en/about-wayf/faq-frequently-asked-"
+"questions\">FAQ</a></li></ul> "
+
+msgid "Consent Removed"
+msgstr "Consentement révoqué"
+
+msgid "show/hide attributes"
+msgstr "voir/cacher les attributs"
+
+msgid "Organisation"
+msgstr "Institution"
 

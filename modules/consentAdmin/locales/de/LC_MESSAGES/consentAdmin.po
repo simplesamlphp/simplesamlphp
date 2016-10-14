@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: SimpleSAMLphp 1.15\n"
 "Report-Msgid-Bugs-To: simplesamlphp-translation@googlegroups.com\n"
 "POT-Creation-Date: 2016-10-12 09:23+0200\n"
-"PO-Revision-Date: 2016-10-12 09:23+0200\n"
+"PO-Revision-Date: 2016-10-14 12:14+0200\n"
 "Last-Translator: \n"
 "Language: de\n"
 "Language-Team: \n"
@@ -85,4 +85,85 @@ msgstr "Einverständnis hinzugefügt"
 
 msgid "{consentAdmin:consentadmin:attribute_id}"
 msgstr "Identität"
+
+msgid "Injected attribut"
+msgstr "Eingekoppeltes Attribut"
+
+msgid "Show"
+msgstr "Zeige an"
+
+msgid "Consent Added"
+msgstr "Einverständnis hinzugefügt"
+
+msgid "Consent Administration"
+msgstr "Verwaltung von Einverständniserklärungen"
+
+msgid "Here you can view and edit your consent for the Service Providers."
+msgstr ""
+"Hier können Sie Ihre Einverständniserklärungen für die Diensteanbieter "
+"anzeigen und bearbeiten."
+
+msgid "Unknown ..."
+msgstr "Unbekannt..."
+
+msgid "Identity"
+msgstr "Identität"
+
+msgid "The purpose of the service is"
+msgstr "Der Zweck dieses Dienstes ist"
+
+msgid "Hide"
+msgstr "Verstecke"
+
+msgid "Service Provider"
+msgstr "Diensteanbieter"
+
+msgid "Service Providers for"
+msgstr "Diensteanbieter für"
+
+msgid "login"
+msgstr "Anmeldung"
+
+msgid "(name not specified)"
+msgstr "(Name nicht angegeben)"
+
+msgid "Consent Updated"
+msgstr "Einverständnis aktualisiert"
+
+msgid "Consent status"
+msgstr "Status der Einverständniserklärung"
+
+msgid "(no description)"
+msgstr "(keine Beschreibung)"
+
+msgid "attributes"
+msgstr "Attribute"
+
+msgid ""
+"\n"
+"<h3>How to delete your consent</h3>\n"
+"Uncheck the box corresponding to the service provider\n"
+"\n"
+"<h3>Links</h3>\n"
+"<ul>\n"
+"<li><a href=\"https://www.wayf.dk\">Start</a> </li>\n"
+"\n"
+"<li><a href=\"https://www.wayf.dk/FAQ\">FAQ</a> </li>\n"
+"</ul>\n"
+msgstr ""
+"<h3>Wie Sie Ihre Einverständniserklärung löschen</h3> Entfernen Sie das "
+"Häkchen von der Box des jeweiligen "
+"Diensteanbieters<h3>Links</h3><ul><li><a "
+"href=\"https://www.wayf.dk\">Start</a> </li> <li><a "
+"href=\"https://www.wayf.dk/index.php/en/about-wayf/faq-frequently-asked-"
+"questions\">FAQ</a> </li> </ul> "
+
+msgid "Consent Removed"
+msgstr "Einverständnis entfernt"
+
+msgid "show/hide attributes"
+msgstr "Attribute anzeigen/verstecken"
+
+msgid "Organisation"
+msgstr "Organisation"
 

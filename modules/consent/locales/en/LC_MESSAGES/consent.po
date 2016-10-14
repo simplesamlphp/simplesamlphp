@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: SimpleSAMLphp 1.15\n"
 "Report-Msgid-Bugs-To: simplesamlphp-translation@googlegroups.com\n"
 "POT-Creation-Date: 2016-10-12 09:23+0200\n"
-"PO-Revision-Date: 2016-10-12 09:23+0200\n"
+"PO-Revision-Date: 2016-10-14 12:14+0200\n"
 "Last-Translator: \n"
 "Language: en\n"
 "Language-Team: \n"
@@ -81,5 +81,75 @@ msgid "{consent:consent:yes}"
 msgstr "Yes, continue"
 
 msgid "{consent:consent:consent_attributes_header}"
+msgstr "Information that will be sent to SPNAME"
+
+msgid "Service Providers for"
+msgstr "Service Providers for"
+
+msgid "Yes, continue"
+msgstr "Yes, continue"
+
+msgid "Return to consent page"
+msgstr "Return to consent page"
+
+msgid "Consent status"
+msgstr "Consent status"
+
+msgid "Go to information page for the service"
+msgstr "Go to information page for the service"
+
+msgid "Service Provider"
+msgstr "Service Provider"
+
+msgid "Abort login to SPNAME"
+msgstr "Abort login to SPNAME"
+
+msgid "show/hide attributes"
+msgstr "show/hide attributes"
+
+msgid "The purpose of SPNAME is SPDESC"
+msgstr "The purpose of SPNAME is SPDESC"
+
+msgid ""
+"List the information about you that is about to be transmitted to the "
+"service you are going to login to"
+msgstr ""
+"List the information about you that is about to be transmitted to the "
+"service you are going to login to"
+
+msgid "Consent about releasing personal information"
+msgstr "Consent about releasing personal information"
+
+msgid "No consent given"
+msgstr "No consent given"
+
+msgid "login"
+msgstr "login"
+
+msgid "You did not give consent for transfering your attributes to SPNAME."
+msgstr "You did not give consent for transfering your attributes to SPNAME."
+
+msgid "Remember"
+msgstr "Remember"
+
+msgid "Show content"
+msgstr "Show content"
+
+msgid "SPNAME requires that the information below is transferred."
+msgstr "SPNAME requires that the information below is transferred."
+
+msgid "Privacypolicy for the service"
+msgstr "Privacypolicy for the service"
+
+msgid "No, cancel"
+msgstr "No, cancel"
+
+msgid "Show attributes"
+msgstr "Show attributes"
+
+msgid "User information"
+msgstr "User information"
+
+msgid "Information that will be sent to SPNAME"
 msgstr "Information that will be sent to SPNAME"
 

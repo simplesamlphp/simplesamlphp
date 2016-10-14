@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: SimpleSAMLphp 1.15\n"
 "Report-Msgid-Bugs-To: simplesamlphp-translation@googlegroups.com\n"
 "POT-Creation-Date: 2016-10-12 09:23+0200\n"
-"PO-Revision-Date: 2016-10-12 09:23+0200\n"
+"PO-Revision-Date: 2016-10-14 12:14+0200\n"
 "Last-Translator: \n"
 "Language: nn\n"
 "Language-Team: \n"
@@ -71,4 +71,61 @@ msgstr "Tal på element (totalt)"
 
 msgid "{memcacheMonitor:memcachestat:bytes}"
 msgstr "Bytes (totalt) i bruk no"
+
+msgid "Current time"
+msgstr "Tid no"
+
+msgid "Total items ever"
+msgstr "Tal på element (totalt)"
+
+msgid "Bytes written by the server"
+msgstr "Bytes skrivne på tenaren"
+
+msgid "Uptime"
+msgstr "Oppetid"
+
+msgid "Current open connections"
+msgstr "Opne tilkoplingar no"
+
+msgid "Total storage avail"
+msgstr "Totalt lager tilgjengeleg"
+
+msgid "Version"
+msgstr "Versjon"
+
+msgid "Total GET commands (failed)"
+msgstr "Talet på GET-kommandoar (feil)"
+
+msgid "Total SET commands"
+msgstr "Talet på SET-kommandoar (totalt)"
+
+msgid "Connection structures"
+msgstr "Tilkoplingsstrukturar"
+
+msgid "Total GET commands (success)"
+msgstr "Talet på GET-kommandoar (suksess)"
+
+msgid "Total bytes in use currently"
+msgstr "Bytes (totalt) i bruk no"
+
+msgid "Total GET commands"
+msgstr "Talet på GET-kommandoar (totalt)"
+
+msgid "Bytes in to the server"
+msgstr "Bytes inn til tenaren"
+
+msgid "Process ID"
+msgstr "Prosess-ID"
+
+msgid "Currently number of items"
+msgstr "Tal på element no"
+
+msgid "CPU Seconds (User)"
+msgstr "CPU-sekund (brukar)"
+
+msgid "CPU Seconds (System)"
+msgstr "CPU-sekund (system)"
+
+msgid "Total connections"
+msgstr "Opne tilkoplingar (totalt)"
 
