@@ -766,7 +766,7 @@ $config = array(
 
     /*
      * This value allows you to set a prefix for memcache-keys. The default
-     * for this value is 'SimpleSAMLphp', which is fine in most cases.
+     * for this value is 'simpleSAMLphp', which is fine in most cases.
      *
      * When running multiple instances of SSP on the same host, and more
      * than one instance is using memcache, you probably want to assign
