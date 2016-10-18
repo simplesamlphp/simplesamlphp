@@ -310,12 +310,11 @@ class SimpleSAML_Utilities {
 	 * allowed by configuration.
 	 */
 	public static function checkURLAllowed($url, array $trustedSites = NULL) {
-		$url = self::normalizeURL($url);
-
-		// verify that the URL points to an http or https site
-		if (!preg_match('@^https?://@i', $url)) {
-			throw new SimpleSAML_Error_Exception('Invalid URL: '.$url);
+		if (empty($url)) {
+			return '';
 		}
+
+		$url = self::normalizeURL($url);
 
 		// get the white list of domains
 		if ($trustedSites === NULL) {
