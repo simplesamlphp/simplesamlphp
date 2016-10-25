@@ -57,11 +57,6 @@ class Localization
      */
     private $translator;
 
-    /*
-     * Currently active domain
-     */
-    private $currentDomain;
-
 
     /**
      * Constructor
