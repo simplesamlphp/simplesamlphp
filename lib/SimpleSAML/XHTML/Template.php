@@ -71,6 +71,12 @@ class SimpleSAML_XHTML_Template
     private $twig_namespace = \Twig_Loader_Filesystem::MAIN_NAMESPACE;
 
 
+    /*
+     * Current module, if any
+     */
+    private $module;
+
+
     /**
      * Constructor
      *
@@ -84,6 +90,8 @@ class SimpleSAML_XHTML_Template
         $this->template = $template;
         // TODO: do not remove the slash from the beginning, change the templates instead!
         $this->data['baseurlpath'] = ltrim($this->configuration->getBasePath(), '/');
+        $result = $this->findModuleAndTemplateName($template);
+        $this->module = $result[0];
         $this->translator = new SimpleSAML\Locale\Translate($configuration, $defaultDictionary);
         $this->localization = new \SimpleSAML\Locale\Localization($configuration);
         $this->twig = $this->setupTwig();
@@ -163,6 +171,12 @@ class SimpleSAML_XHTML_Template
         // abort if twig template does not exist
         if (!$loader->exists($this->twig_template)) {
             return false;
+        }
+
+
+        // load extra i18n domains
+        if ($this->module) {
+            $this->localization->addModuleDomain($this->module);
         }
 
         $options = array(
@@ -338,6 +352,28 @@ class SimpleSAML_XHTML_Template
 
 
     /**
+     * Find module the template is in, if any
+     *
+     * @param string $template The relative path from the theme directory to the template file.
+     *
+     * @return array An array with the name of the module and template
+     */
+    private function findModuleAndTemplateName($template)
+    {
+        $tmp = explode(':', $template, 2);
+        if (count($tmp) === 2) {
+            $templateModule = $tmp[0];
+            $templateName = $tmp[1];
+        } else {
+            $templateModule = null;
+            $templateName = $tmp[0];
+        }
+
+        return array($templateModule, $templateName);
+    }
+
+
+    /**
      * Find template path.
      *
      * This function locates the given template based on the template name. It will first search for the template in
@@ -356,14 +392,9 @@ class SimpleSAML_XHTML_Template
     {
         assert('is_string($template)');
 
-        $tmp = explode(':', $template, 2);
-        if (count($tmp) === 2) {
-            $templateModule = $tmp[0];
-            $templateName = $tmp[1];
-        } else {
-            $templateModule = 'default';
-            $templateName = $tmp[0];
-        }
+        $result = $this->findModuleAndTemplateName($template);
+        $templateModule = $result[0] ? $result[0] : 'default';
+        $templateName = $result[1];
 
         $tmp = explode(':', $this->configuration->getString('theme.use', 'default'), 2);
         if (count($tmp) === 2) {

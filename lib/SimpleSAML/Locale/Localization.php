@@ -83,6 +83,34 @@ class Localization
     }
 
 
+    /**
+     * Get the default locale dir for a specific module aka. domain
+     *
+     * @param string $domain Name of module/domain
+     */
+    public function getDomainLocaleDir($domain)
+    {
+        $localeDir = $this->configuration->resolvePath('modules') . '/' . $domain . '/locales';
+        return $localeDir;
+    }
+
+
+    /*
+     * Add a new translation domain from a module
+     * (We're assuming that each domain only exists in one place)
+     *
+     * @param string $module Module name
+     * @param string $localeDir Absolute path if the module is housed elsewhere
+     */
+    public function addModuleDomain($module, $localeDir = null)
+    {
+        if (!$localeDir) {
+            $localeDir = $this->getDomainLocaleDir($module);
+        }
+        $this->addDomain($localeDir, $module);
+    }
+
+
     /*
      * Add a new translation domain
      * (We're assuming that each domain only exists in one place)
@@ -93,6 +121,8 @@ class Localization
     public function addDomain($localeDir, $domain)
     {
         $this->localeDomainMap[$domain] = $localeDir;
+        \SimpleSAML\Logger::debug("Localization: load domain '$domain' at '$localeDir'");
+        $this->loadGettextGettextFromPO($domain);
     }
 
     /*
@@ -107,6 +137,7 @@ class Localization
         $langcode = $langcode[0];
         $localeDir = $this->localeDomainMap[$domain];
         $langPath = $localeDir.'/'.$langcode.'/LC_MESSAGES/';
+        \SimpleSAML\Logger::debug("Trying langpath for '$langcode' as '$langPath'");
         if (is_dir($langPath) && is_readable($langPath)) {
             return $langPath;
         }
@@ -119,7 +150,6 @@ class Localization
             $error = "Localization not found for langcode '$langcode' at '$langPath', falling back to langcode '".
                      $defLangcode."'";
             \SimpleSAML\Logger::error($_SERVER['PHP_SELF'].' - '.$error);
-
             return $langPath;
         }
 
@@ -131,19 +161,39 @@ class Localization
 
 
     /**
-     * Load translation domain from Gettext/Gettext using .po
-     *
-     * @param string $domain Name of domain
+     * Setup the translator
      */
-    private function loadGettextGettextFromPO($domain = self::DEFAULT_DOMAIN)
+    private function setupTranslator()
     {
         $this->translator = new Translator();
         $this->translator->register();
+    }
+
+
+    /**
+     * Load translation domain from Gettext/Gettext using .po
+     *
+     * Note: Since Twig I18N does not support domains, all loaded files are
+     * merged. Use contexts if identical strings need to be disambiguated.
+     *
+     * @param string $domain Name of domain
+     * @param boolean $catchException Whether to catch an exception on error or return early
+     *
+     * @throws \Exception If something is wrong with the locale file for the domain and activated language
+     */
+    private function loadGettextGettextFromPO($domain = self::DEFAULT_DOMAIN, $catchException = true)
+    {
         try {
             $langPath = $this->getLangPath($domain);
         } catch (\Exception $e) {
-            // bail out!
-            return;
+            $error = "Something wrong with path '$langPath', cannot load domain '$domain'";
+            \SimpleSAML\Logger::error($_SERVER['PHP_SELF'].' - '.$error);
+            if ($catchException) {
+                // bail out!
+                return;
+            } else {
+                throw $e;
+            }
         }
         $poFile = $domain.'.po';
         $poPath = $langPath.$poFile;
@@ -181,9 +231,9 @@ class Localization
             return;
         }
 
+        $this->setupTranslator();
         // setup default domain
         $this->addDomain($this->localeDir, self::DEFAULT_DOMAIN);
-        $this->activateDomain(self::DEFAULT_DOMAIN);
     }
 
     /**
@@ -194,35 +244,4 @@ class Localization
         return $this->localeDomainMap;
     }
 
-
-    /**
-     * Set which translation domain to use
-     *
-     * @param string $domain Name of domain
-     */
-    public function activateDomain($domain)
-    {
-        \SimpleSAML\Logger::debug("Localization: activate domain");
-        $this->loadGettextGettextFromPO($domain);
-        $this->currentDomain = $domain;
-    }
-
-
-    /**
-     * Get current translation domain
-     */
-    public function getCurrentDomain()
-    {
-        return $this->currentDomain ? $this->currentDomain : self::DEFAULT_DOMAIN;
-    }
-
-
-    /**
-     * Go back to default translation domain
-     */
-    public function restoreDefaultDomain()
-    {
-        $this->loadGettextGettextFromPO(self::DEFAULT_DOMAIN);
-        $this->currentDomain = self::DEFAULT_DOMAIN;
-    }
 }
