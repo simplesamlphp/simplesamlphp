@@ -20,7 +20,6 @@ class LocalizationTest extends \PHPUnit_Framework_TestCase
         $l = new Localization($c);
         $this->assertTrue($l->isI18NBackendDefault());
         $this->assertEquals(Localization::DEFAULT_DOMAIN, 'messages');
-        $this->assertEquals($l->getCurrentDomain(), Localization::DEFAULT_DOMAIN);
     }
 
     /**
@@ -33,49 +32,11 @@ class LocalizationTest extends \PHPUnit_Framework_TestCase
         );
         $l = new Localization($c);
         $newDomain = 'test';
-        $newDomainLocaleDir = '/tmp/nonexistent.po';
+        $newDomainLocaleDir = $l->getLocaleDir();
         $l->addDomain($newDomainLocaleDir, $newDomain);
         $registeredDomains = $l->getRegisteredDomains();
         $this->assertArrayHasKey($newDomain, $registeredDomains);
         $this->assertEquals($registeredDomains[$newDomain], $newDomainLocaleDir);
     }
 
-    /**
-     * Test SimpleSAML\Locale\Localization::activateDomain().
-     */
-    public function testActivateDomain()
-    {
-        // Add the domain to activate
-        $c = \SimpleSAML_Configuration::loadFromArray(
-            array('language.i18n.backend' => 'gettext/gettext')
-        );
-        $l = new Localization($c);
-        $newDomain = 'test';
-        $newDomainLocaleDir = $l->getLocaleDir();
-        $l->addDomain($newDomainLocaleDir, $newDomain);
-
-        // Activate
-        $l->activateDomain($newDomain);
-        $curDomain = $l->getCurrentDomain();
-        $this->assertEquals($curDomain, $newDomain);
-    }
-
-    /**
-     * Test SimpleSAML\Locale\Localization::restoreDefaultDomain().
-     */
-    public function testRestoreDefaultDomain()
-    {
-        // Add the domain to reset from
-        $c = \SimpleSAML_Configuration::loadFromArray(
-            array('language.i18n.backend' => 'gettext/gettext')
-        );
-        $l = new Localization($c);
-        $newDomain = 'ssp';
-        $newDomainLocaleDir = $l->getLocaleDir();
-        $l->addDomain($newDomainLocaleDir, $newDomain);
-        $l->activateDomain($newDomain);
-
-        // Reset
-        $l->restoreDefaultDomain();
-    }
 }
