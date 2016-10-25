@@ -28,5 +28,8 @@
 
     <!-- postload javascript -->
     <script type="text/javascript" src="/{{ baseurlpath }}resources/script.js"></script>
+    {% if clipboard %}
+    <script type="text/javascript" src="/{{ baseurlpath }}resources/clipboard.min.js"></script>
+    {% endif %}
     {% block postload %}{% endblock %}
 </body></html>
