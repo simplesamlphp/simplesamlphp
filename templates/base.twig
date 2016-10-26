@@ -35,7 +35,7 @@
     {% if jquery.version %}
     {% set version = jquery.version %}
     {% endif %}
-    {% if version = '1.8' %}
+    {% if version == '1.8' %}
     {% if jquery.core %}
     <script type="text/javascript" src="/{{ baseurlpath }}resources/jquery-1.8.js"></script>
     {% endif %}
