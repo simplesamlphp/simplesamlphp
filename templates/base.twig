@@ -19,7 +19,9 @@
         {% block header %}{% include "_header.twig" %}{% endblock %}
 
         <div id="content">
-            {% block content %}{% endblock %}
+        {% block contentwrapper %}
+        {% block content %}{% endblock %}
+        {% endblock %}
         </div><!-- #content -->
 
         <div id="footer">
