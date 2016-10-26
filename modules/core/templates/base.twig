@@ -1,0 +1,24 @@
+{% extends "base.twig" %}
+{% block contentwrapper %}
+{% if tabname %}
+<div id="portalmenu" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
+<ul class="tabset_tabs ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+{% for name, link in links %}
+{% if name == pageid %}
+<li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active">
+<a href="#">{{ link.text|trans }}</a>
+</li>
+{% else %}
+<li class="ui-state-default ui-corner-top">
+<a href="{{ link.href }}">{{ link.text|trans }}</a>
+</li>
+{% endif %}
+{% endfor %}
+</ul>
+<div id="portalcontent" class="ui-tabs-panel ui-widget-content ui-corner-bottom">
+{% endif %}
+{{ block('content') }}
+{% if tabname %}
+</div></div>
+{% endif %}
+{% endblock %}
