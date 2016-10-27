@@ -267,7 +267,6 @@ class Language
         $bestScore = -1.0;
 
         foreach ($languageScore as $language => $score) {
-
             // apply the language map to the language code
             if (array_key_exists($language, $languageMap)) {
                 $language = $languageMap[$language];

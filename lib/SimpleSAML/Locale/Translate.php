@@ -228,7 +228,7 @@ class Translate
      *
      * @return string The tag, unchanged.
      */
-    static public function noop($tag)
+    public static function noop($tag)
     {
         return $tag;
     }
@@ -251,7 +251,8 @@ class Translate
      * (language => text) mappings. The array version will go away in 2.0
      * @param array        $replacements An associative array of keys that should be replaced with values in the
      *     translated string.
-     * @param boolean      $fallbackdefault Default translation to use as a fallback if no valid translation was found. @deprecated Not used in twig, gettext
+     * @param boolean      $fallbackdefault Default translation to use as a fallback if no valid translation was found.
+     * @deprecated Not used in twig, gettext
      *
      * @return string  The translated tag, or a placeholder value if the tag wasn't found.
      */
