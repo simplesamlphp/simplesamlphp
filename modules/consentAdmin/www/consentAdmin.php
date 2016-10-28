@@ -187,7 +187,6 @@ if ($action !== null && $sp_entityid !== null) {
     }
     // init template to enable translation of status messages
     $template = new SimpleSAML_XHTML_Template($config, 'consentAdmin:consentadminajax.php', 'consentAdmin:consentadmin');
-    $template->getTranslator()->includeLanguageFile('attributes.php'); // attribute listings translated by this dictionary
     $template->data['res'] = $res;
     $template->show();
     exit;
@@ -207,6 +206,7 @@ $template_sp_content = array();
 // Init template
 $template = new SimpleSAML_XHTML_Template($config, 'consentAdmin:consentadmin.php', 'consentAdmin:consentadmin');
 $translator = $template->getTranslator();
+$translator->includeLanguageFile('attributes.php'); // attribute listings translated by this dictionary
 $sp_empty_name = $translator->getTag('sp_empty_name');
 $sp_empty_description = $translator->getTag('sp_empty_description');
 
