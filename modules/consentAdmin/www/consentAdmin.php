@@ -187,6 +187,7 @@ if ($action !== null && $sp_entityid !== null) {
     }
     // init template to enable translation of status messages
     $template = new SimpleSAML_XHTML_Template($config, 'consentAdmin:consentadminajax.php', 'consentAdmin:consentadmin');
+    $template->getTranslator()->includeLanguageFile('attributes.php'); // attribute listings translated by this dictionary
     $template->data['res'] = $res;
     $template->show();
     exit;
