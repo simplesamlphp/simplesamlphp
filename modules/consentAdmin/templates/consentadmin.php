@@ -1,9 +1,5 @@
 <?php $this->includeAtTemplateBase('includes/header.php'); ?>
 <!--  default theme -->
-<?php 
-$this->getTranslator()->includeLanguageFile('attributes.php'); // attribute listings translated by this dictionary
- 
-?> 
 
 <script>
 	function setConsentText(consentStatus, show_spid) {
