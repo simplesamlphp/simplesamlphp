@@ -51,22 +51,22 @@ span.showhide {
 
 
         <!-- <h2><?php if (isset($this->data['header'])) { echo $this->t($this->data['header']); } else { echo "Some error occurred"; } ?></h2> -->
-        <h2><?php echo $this->t('consentadmin_header') ?></h2>
+        <h2><?php echo $this->t('{consentAdmin:consentadmin:consentadmin_header}') ?></h2>
         <p>
-        <?php echo $this->t('consentadmin_description1') ?> </p>
+        <?php echo $this->t('{consentAdmin:consentadmin:consentadmin_description1}') ?> </p>
 
 
             <table>
             <tr>
-                <th width="80%"><?php echo $this->t('service_provider_header') ?></th>
-                <th width="140"><?php echo $this->t('status_header') ?></th>
+                <th width="80%"><?php echo $this->t('{consentAdmin:consentadmin:service_provider_header}') ?></th>
+                <th width="140"><?php echo $this->t('{consentAdmin:consentadmin:status_header}') ?></th>
             </tr>
             <?php
             $spList = $this->data['spList'];
             $show_spid = 0;
-            $show_text = $this->t('show');
-            $hide_text = $this->t('hide');
-            $attributes_text = $this->t('attributes_text');
+            $show_text = $this->t('{consentAdmin:consentadmin:show}');
+            $hide_text = $this->t('{consentAdmin:consentadmin:hide}');
+            $attributes_text = $this->t('{consentAdmin:consentadmin:attributes_text}');
             foreach ($spList AS $spName => $spValues) {
                 $this->getTranslator()->includeInlineTranslation('spname', $spValues['name']);
                 $this->getTranslator()->includeInlineTranslation('spdescription', $spValues['description']);
@@ -89,7 +89,7 @@ span.showhide {
 TRSTART;
                 $attributes = $spValues['attributes_by_sp'];
                 if ($this->data['showDescription']) {
-                    echo '<p>' . $this->t('consentadmin_purpose') . ' ' . $spDescription . '</p>';
+                    echo '<p>' . $this->t('{consentAdmin:consentadmin:consentadmin_purpose}') . ' ' . $spDescription . '</p>';
                 }
                 echo "\n<ul>\n";
                 foreach ($attributes AS $name => $value) {
@@ -123,7 +123,7 @@ TRSTART;
             </table>
 
             <p>
-        <?php echo $this->t('consentadmin_description2') ?> </p>
+        <?php echo $this->t('{consentAdmin:consentadmin:consentadmin_description2}') ?> </p>
 
         <h2>Logout</h2>
 
