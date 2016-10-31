@@ -41,6 +41,9 @@
 	"cmd_set": {
 		"en": "Total SET commands"
 	},
+    "cmd_flush": {
+        "en": "Total FLUSH commands"
+    },
 	"get_hits": {
 		"en": "Total GET commands (success)"
 	},
