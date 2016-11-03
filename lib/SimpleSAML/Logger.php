@@ -351,7 +351,7 @@ class SimpleSAML_Logger
         if (self::$captureLog) {
             $ts = microtime(true);
             $msecs = (int) (($ts - (int) $ts) * 1000);
-            $ts = GMdate('H:i:s', $ts).sprintf('.%03d', $msecs).'Z';
+            $ts = gmdate('H:i:s', $ts).sprintf('.%03d', $msecs).'Z';
             self::$capturedLog[] = $ts.' '.$string;
         }
 
