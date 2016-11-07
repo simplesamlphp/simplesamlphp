@@ -718,7 +718,7 @@ class sspmod_saml_IdP_SAML2 {
 						$doc = \SAML2\DOMDocumentFactory::fromString('<root>' . $value . '</root>');
 						$value = $doc->firstChild->childNodes;
 					}
-					assert('$value instanceof DOMNodeList');
+					assert('$value instanceof DOMNodeList || $value instanceof \SAML2\XML\saml\NameID');
 					break;
 				default:
 					throw new SimpleSAML_Error_Exception('Invalid encoding for attribute ' .
