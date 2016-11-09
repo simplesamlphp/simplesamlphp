@@ -88,7 +88,7 @@ if ($this->data['isadmin']) {
 	
 	foreach ($this->data['funcmatrix'] AS $func) {
 		echo '<tr class="' . ($func['enabled'] ? 'enabled' : 'disabled') . '"><td>' . ($func['enabled'] ? $icon_enabled : $icon_disabled) . '</td>';
-		echo '<td>' . $this->t($t->data['requiredmap'][$func['required']]) . '</td><td>' . $func['descr'] . '</td></tr>';
+		echo '<td>' . $this->t($this->data['requiredmap'][$func['required']]) . '</td><td>' . $func['descr'] . '</td></tr>';
 	}
 	echo('</table></div>');
 }
