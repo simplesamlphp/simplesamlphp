@@ -688,6 +688,10 @@ class SimpleSAML_Metadata_SAMLBuilder
         $e = new \SAML2\XML\md\ContactPerson();
         $e->contactType = $type;
 
+        if (!empty($details['attributes'])) {
+            $e->ContactPersonAttributes = $details['attributes'];
+        }
+
         if (isset($details['company'])) {
             $e->Company = $details['company'];
         }
