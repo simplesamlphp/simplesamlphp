@@ -33,8 +33,7 @@
         "ext-dom": "*",
         "ext-date": "*",
         "ext-hash": "*",
-        "ext-json": "*",
-        "twig/twig": "~1.0"
+        "ext-json": "*"
     },
     "require-dev": {
         "ext-pdo_sqlite": "*",
