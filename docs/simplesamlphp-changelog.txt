@@ -6,6 +6,17 @@ SimpleSAMLphp changelog
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
+## Version 1.14.9
+
+Released 2016-11-10
+
+  * Fixed an issue that resulted in PHP 7 errors being masked.
+  * Fixed the smartattributes:SmartName authentication processing filter.
+  * Fixed issue #500. When parsing metadata, two 'attributes.required' options were generated.
+  * Fixed the list of requirements in composer, the documentation, and the configuration page.
+  * Fixed issue #479. There were several minor issues with XHTML compliance.
+  * Other minor fixes.
+
 ## Version 1.14.8
 
 Released 2016-08-23
