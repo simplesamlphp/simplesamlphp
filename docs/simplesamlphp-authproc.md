@@ -50,7 +50,6 @@ The configuration of *Auth Proc Filters* is a list of filters with priority as *
 			'addurnprefix'
 		),
 		20 => 'core:TargetedID',
-		40 => 'core:AttributeRealm',
 		50 => 'core:AttributeLimit',
 		90 => array(
 			'class' 	=> 'consent:Consent', 
@@ -112,7 +111,7 @@ Filters can be added both in `hosted` and `remote` metadata. Here is an example 
 		'certificate'		=>	'example.org.crt',
 		'auth'				=>	'feide',
 		'authproc' => array(
-			40 => 'core:AttributeRealm',
+			40 => 'preprodwarning:Warning',
 		),
 	)
 
@@ -132,7 +131,7 @@ The following filters are included in the SimpleSAMLphp distribution:
 - [`core:AttributeAlter`](./core:authproc_attributealter): Do search-and-replace on attributevalues.
 - [`core:AttributeLimit`](./core:authproc_attributelimit): Limit the attributes in the response.
 - [`core:AttributeMap`](./core:authproc_attributemap): Change the name of the attributes.
-- [`core:AttributeRealm`](./core:authproc_attributerealm): Create an attribute with the realm of the user.
+- [`core:AttributeRealm`](./core:authproc_attributerealm): (deprecated) Create an attribute with the realm of the user.
 - [`core:GenerateGroups`](./core:authproc_generategroups): Generate a `group` attribute for the user.
 - [`core:LanguageAdaptor`](./core:authproc_languageadaptor): Transfering language setting from IdP to SP.
 - [`core:PHP`](./core:authproc_php): Modify attributes with custom PHP code.
