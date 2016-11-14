@@ -767,9 +767,6 @@ $config = array(
         // Adopts language from attribute to use in UI
         30 => 'core:LanguageAdaptor',
 
-        /* Add a realm attribute from edupersonprincipalname
-        40 => 'core:AttributeRealm',
-         */
         45 => array(
             'class'         => 'core:StatisticsWithAttribute',
             'attributename' => 'realm',
