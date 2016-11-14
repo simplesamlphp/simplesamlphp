@@ -81,10 +81,9 @@ class ScopeFromAttribute extends Auth\ProcessingFilter
 
         $sourceAttrVal = $attributes[$this->sourceAttribute][0];
 
-        /* the last position of an @ is usually the beginning of the
-         * scope string
-         */
-        $scopeIndex = strrpos($sourceAttrVal, '@');
+        /* Treat the first @ as usually the beginning of the scope
+         * string, as per eduPerson recommendation. */
+        $scopeIndex = strpos($sourceAttrVal, '@');
 
         if ($scopeIndex !== false) {
             $attributes[$this->targetAttribute] = [];
