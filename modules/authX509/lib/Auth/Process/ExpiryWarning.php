@@ -56,7 +56,7 @@ class sspmod_authX509_Auth_Process_ExpiryWarning extends SimpleSAML_Auth_Process
     public function process(&$state) {
         assert('is_array($state)');
 
-        if (isset($state['isPassive']) && $state['isPassive'] === TRUE) {
+        if (isset($state['isPassive']) && $state['isPassive'] === true) {
             // We have a passive request. Skip the warning
             return;
         }
@@ -68,7 +68,7 @@ class sspmod_authX509_Auth_Process_ExpiryWarning extends SimpleSAML_Auth_Process
 
         $client_cert = $_SERVER['SSL_CLIENT_CERT'];
         $client_cert_data = openssl_x509_parse($client_cert);
-        if ($client_cert_data == FALSE) {
+        if ($client_cert_data == false) {
             SimpleSAML\Logger::error('authX509: invalid cert');
             return;
         }
