@@ -181,7 +181,7 @@ class Localization
         try {
             $langPath = $this->getLangPath($domain);
         } catch (\Exception $e) {
-            $error = "Something wrong with path '$langPath', cannot load domain '$domain'";
+            $error = "Something went wrong when trying to get path to language file, cannot load domain '$domain'.";
             \SimpleSAML\Logger::error($_SERVER['PHP_SELF'].' - '.$error);
             if ($catchException) {
                 // bail out!
