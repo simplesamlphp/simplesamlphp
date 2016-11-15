@@ -164,7 +164,16 @@ alternative, you may log to flat files.
 
 ## Apache configuration
 
+Basic Apache configruation is described in [SimpleSAMLphp Installation](simplesamlphp-install#section_6).
+However, your IdP or SP is most likely a valuable website that you want to configure securely. Here are some checks.
 
+* Make sure you use HTTPS with a proper certificate. The best way is to not
+  serve anything over plain HTTP, except for a possible redirect to https.
+* Configure your TLS/SSL to be secure. Mozilla has an easy way to generate
+  [Recommended Server Configurations](https://wiki.mozilla.org/Security/Server_Side_TLS#Recommended_Server_Configurations).
+  Verify your SSL settings, e.g. with the [SSLLabs SSLtest](https://www.ssllabs.com/ssltest/).
+* In your Apache configuration, add headers that further secure your site.
+  A good check with hints on what to add is [Mozilla Observatory](https://observatory.mozilla.org/analyze.html).
 
 ## PHP configuration
 
