@@ -649,9 +649,15 @@ $config = array(
     'language.cookie.lifetime' => (60 * 60 * 24 * 900),
 
     /*
-     * Which i18n backend to use
+     * Which i18n backend to use.
+     *
+     * "SimpleSAMLphp" is the home made system, valid for 1.x.
+     * For 2.x, only "gettext/gettext" will be possible.
+     *
+     * Home-made templates will always use "SimpleSAMLphp".
+     * To use twig (where avaliable), select "gettext/gettext".
      */
-    'language.i18n.backend' => 'twig.i18n',
+    'language.i18n.backend' => 'SimpleSAMLphp',
 
     /**
      * Custom getLanguage function called from SimpleSAML\Locale\Language::getLanguage().
