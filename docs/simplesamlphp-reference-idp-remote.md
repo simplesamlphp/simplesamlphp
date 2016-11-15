@@ -85,6 +85,14 @@ The following options are common between both the SAML 2.0 protocol and Shibbole
             'no' => 'En tjeneste',
         ),
 
+`scope`
+:   An array with scopes valid for this IdP.
+    The IdP will send scopes in scoped attributes, that is, attributes containing a value with an `@` sign and a domain name
+    after it.
+
+:   When the `saml:FilterScopes` authentication processing filter is used, this list of scopes will determine the valid
+    scopes for attributes.
+
 `SingleSignOnService`
 :   Endpoint URL for sign on. You should obtain this from the IdP. For SAML 2.0, SimpleSAMLphp will use the HTTP-Redirect binding when contacting this endpoint.
 
