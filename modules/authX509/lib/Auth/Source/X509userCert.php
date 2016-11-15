@@ -7,7 +7,8 @@
  * @author Emmanuel Dreyfus <manu@netbsd.org>
  * @package SimpleSAMLphp
  */
-class sspmod_authX509_Auth_Source_X509userCert extends SimpleSAML_Auth_Source {
+class sspmod_authX509_Auth_Source_X509userCert extends SimpleSAML_Auth_Source
+{
 
     /**
      * x509 attributes to use from the certificate
@@ -37,17 +38,20 @@ class sspmod_authX509_Auth_Source_X509userCert extends SimpleSAML_Auth_Source {
      * @param array $info  Information about this authentication source.
      * @param array &$config  Configuration for this authentication source.
      */
-    public function __construct($info, &$config) {
+    public function __construct($info, &$config)
+    {
         assert('is_array($info)');
         assert('is_array($config)');
 
-        if (isset($config['authX509:x509attributes']))
+        if (isset($config['authX509:x509attributes'])) {
             $this->x509attributes =
                 $config['authX509:x509attributes'];
+        }
 
-        if (array_key_exists('authX509:ldapusercert', $config))
+        if (array_key_exists('authX509:ldapusercert', $config)) {
             $this->ldapusercert =
                 $config['authX509:ldapusercert'];
+        }
 
         parent::__construct($info, $config);
 
@@ -63,7 +67,8 @@ class sspmod_authX509_Auth_Source_X509userCert extends SimpleSAML_Auth_Source {
      *
      * @param array $pem_data  PEM-encoded certificate
      */
-    private function pem2der($pem_data) {
+    private function pem2der($pem_data)
+    {
         $begin = "CERTIFICATE-----";
         $end   = "-----END";
         $pem_data = substr($pem_data,
@@ -79,7 +84,8 @@ class sspmod_authX509_Auth_Source_X509userCert extends SimpleSAML_Auth_Source {
      *
      * @param array $der_data  DER-encoded certificate
      */
-    private function der2pem($der_data) {
+    private function der2pem($der_data)
+    {
         $pem = chunk_split(base64_encode($der_data), 64, "\n");
         $pem = "-----BEGIN CERTIFICATE-----\n".$pem.
             "-----END CERTIFICATE-----\n";
@@ -95,7 +101,8 @@ class sspmod_authX509_Auth_Source_X509userCert extends SimpleSAML_Auth_Source {
      *
      * @param array &$state  Information about the current authentication.
      */
-    public function authFailed(&$state) {
+    public function authFailed(&$state)
+    {
         $config = SimpleSAML_Configuration::getInstance();
 
         $t = new SimpleSAML_XHTML_Template($config,
@@ -118,7 +125,8 @@ class sspmod_authX509_Auth_Source_X509userCert extends SimpleSAML_Auth_Source {
      *
      * @param array &$state  Information about the current authentication.
      */
-    public function authenticate(&$state) {
+    public function authenticate(&$state)
+    {
         assert('is_array($state)');
         $ldapcf = $this->ldapcf;
 
@@ -232,7 +240,8 @@ class sspmod_authX509_Auth_Source_X509userCert extends SimpleSAML_Auth_Source {
      *
      * @param array &$state  Information about the current authentication.
      */
-    public function authSuccesful(&$state) {
+    public function authSuccesful(&$state)
+    {
         SimpleSAML_Auth_Source::completeAuth($state);
 
         assert('false'); /* NOTREACHED */
