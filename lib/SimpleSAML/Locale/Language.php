@@ -138,7 +138,7 @@ class Language
     public function __construct(\SimpleSAML_Configuration $configuration)
     {
         $this->configuration = $configuration;
-        $this->availableLanguages = $this->configuration->getArray('language.available', array('en'));
+        $this->availableLanguages = $this->getInstalledLanguages();
         $this->defaultLanguage = $this->configuration->getString('language.default', 'en');
         $this->languageParameterName = $this->configuration->getString('language.parameter.name', 'language');
         $this->customFunction = $this->configuration->getArray('language.get_language_function', null);
@@ -149,6 +149,26 @@ class Language
                 $this->configuration->getBoolean('language.parameter.setcookie', true)
             );
         }
+    }
+
+
+    /**
+     * Wash configured (available) languages against installed languages
+     *
+     * @return array The set of langauges both in 'language.available' and $this->language_names
+     */
+    private function getInstalledLanguages()
+    {
+        $configuredAvailableLanguages = $this->configuration->getArray('language.available', array('en'));
+        $availableLanguages = array();
+        foreach ($configuredAvailableLanguages as $code) {
+            if (array_key_exists($code, $this->language_names) && isset($this->language_names[$code])) {
+                $availableLanguages[] = $code;
+            } else {
+                \SimpleSAML\Logger::error("Language \"$code\" not installed. Check config.");
+            }
+        }
+        return $availableLanguages;
     }
 
 
@@ -234,7 +254,11 @@ class Language
      */
     public function getLanguageLocalizedName($code)
     {
-        return $this->language_names[$code];
+        if (array_key_exists($code, $this->language_names) && isset($this->language_names[$code])) {
+            return $this->language_names[$code];
+        }
+        \SimpleSAML\Logger::error("Name for language \"$code\" not found. Check config.");
+        return null;
     }
 
 
