@@ -173,7 +173,7 @@ However, your IdP or SP is most likely a valuable website that you want to confi
   [Recommended Server Configurations](https://wiki.mozilla.org/Security/Server_Side_TLS#Recommended_Server_Configurations).
   Verify your SSL settings, e.g. with the [SSLLabs SSLtest](https://www.ssllabs.com/ssltest/).
 * In your Apache configuration, add headers that further secure your site.
-  A good check with hints on what to add is [Mozilla Observatory](https://observatory.mozilla.org/analyze.html).
+  A good check with hints on what to add is [Mozilla Observatory](https://observatory.mozilla.org/).
 
 ## PHP configuration
 
