@@ -116,12 +116,12 @@ class sspmod_ldap_Auth_Process_AttributeAddUsersGroups extends sspmod_ldap_Auth_
 				
             case 'OPENLDAP':
                 // Log the OpenLDAP specific search
-                SimpleSAML_Logger::debug(
+                SimpleSAML\Logger::debug(
                     $this->title . 'Searching LDAP using OpenLDAP specific method.'
                 );
                 // Print group search string and search for all group names
                 $openldap_base = $this->config->getString('ldap.basedn','ou=groups,dc=example,dc=com');
-                SimpleSAML_Logger::debug(
+                SimpleSAML\Logger::debug(
                     $this->title . "Searching for groups in ldap.basedn ".$openldap_base." with filter (".$map['memberof']."=".$attributes['uid'][0].") and attributes ".$map['member']
                 );
                 $groups = array();
