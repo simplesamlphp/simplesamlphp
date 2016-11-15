@@ -4,11 +4,11 @@
  *
  * @param array &$hookinfo  hookinfo
  */
-function sanitycheck_hook_sanitycheck(&$hookinfo) {
-	assert('is_array($hookinfo)');
-	assert('array_key_exists("errors", $hookinfo)');
-	assert('array_key_exists("info", $hookinfo)');
+function sanitycheck_hook_sanitycheck(&$hookinfo)
+{
+    assert('is_array($hookinfo)');
+    assert('array_key_exists("errors", $hookinfo)');
+    assert('array_key_exists("info", $hookinfo)');
 
-	$hookinfo['info'][] = '[sanitycheck] At least the sanity check itself is working :)';	
-	
+    $hookinfo['info'][] = '[sanitycheck] At least the sanity check itself is working :)';
 }
