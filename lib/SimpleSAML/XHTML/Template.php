@@ -161,6 +161,7 @@ class SimpleSAML_XHTML_Template
     private function setupTwig()
     {
         $auto_reload = $this->configuration->getBoolean('template.auto_reload', true);
+        $debug = $this->configuration->getBoolean('template.debug', false);
         $cache = false;
         if (!$auto_reload) {
             // Cache only used if auto_reload = false
@@ -180,6 +181,7 @@ class SimpleSAML_XHTML_Template
         }
 
         $options = array(
+            'debug' => $debug,
             'cache' => $cache,
             'auto_reload' => $auto_reload,
             'translation_function' => array('\SimpleSAML\Locale\Translate', 'translateSingularNativeGettext'),
@@ -197,6 +199,9 @@ class SimpleSAML_XHTML_Template
 
         $twig = new Twig_Environment($loader, $options);
         $twig->addExtension(new Twig_Extensions_Extension_I18n());
+        if($debug) {
+            $twig->addExtension(new Twig_Extension_Debug());
+        }
         return $twig;
     }
 

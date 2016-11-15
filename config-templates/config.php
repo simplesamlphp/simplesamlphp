@@ -715,6 +715,12 @@ $config = array(
     'template.auto_reload' => true,
     //'template.cache' => '',
 
+    /*
+     * Debugging - this enables the use of dump(): 
+     * http://twig.sensiolabs.org/doc/functions/dump.html
+     */
+    'template.debug' => false,
+ 
 
     /*********************
      | DISCOVERY SERVICE |
