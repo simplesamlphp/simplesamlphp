@@ -722,7 +722,7 @@ $config = array(
      * Templating options
      *
      * By default, twig templates are not cached. To turn on template caching:
-     * Set 'template.cache' to an aboslute path pointing to a directory that
+     * Set 'template.cache' to an absolute path pointing to a directory that
      * SimpleSAMLphp has read and write permissions to. Then, set
      * 'template.auto_reload' to false.
      *
