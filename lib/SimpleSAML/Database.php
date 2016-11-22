@@ -75,7 +75,7 @@ class Database
      */
     private function __construct($config)
     {
-        $driverOptions = array();
+        $driverOptions = $config->getArray('database.driver_options', array());
         if ($config->getBoolean('database.persistent', true)) {
             $driverOptions = array(\PDO::ATTR_PERSISTENT => true);
         }
