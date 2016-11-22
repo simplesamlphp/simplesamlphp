@@ -156,6 +156,13 @@ class sspmod_saml_IdP_SQLNameID  {
 		assert('is_string($idpEntityId)');
 		assert('is_string($spEntityId)');
 
+		$store = self::getStore();
+
+		$params = array(
+			'_idp' => $idpEntityId,
+			'_sp' => $spEntityId,
+		);
+
 		$query = 'SELECT _user, _value FROM ' . $store->prefix . '_saml_PersistentNameID WHERE _idp = :_idp AND _sp = :_sp';
 		$query = $store->pdo->prepare($query);
 		$query->execute($params);
