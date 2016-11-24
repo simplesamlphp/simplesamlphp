@@ -111,6 +111,16 @@ class Localization
             return $langPath;
         }
 
+        // Some langcodes have aliases..
+        $alias = $this->language->getLanguageCodeAlias($langcode);
+        if (isset($alias)) {
+            $langPath = $localeDir.'/'.$alias.'/LC_MESSAGES/';
+            \SimpleSAML\Logger::debug("Trying langpath for alternative '$alias' as '$langPath'");
+            if (is_dir($langPath) && is_readable($langPath)) {
+                return $langPath;
+            }
+        }
+
         // Language not found, fall back to default
         $defLangcode = $this->language->getDefaultLanguage();
         $langPath = $localeDir.'/'.$defLangcode.'/LC_MESSAGES/';
