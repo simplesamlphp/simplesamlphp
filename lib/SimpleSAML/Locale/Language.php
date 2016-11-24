@@ -334,7 +334,7 @@ class Language
      */
     public function getLanguageCodeAlias($langcode)
     {
-        if (isset($this->defaultLanguageMap[$langcode]) {
+        if (isset($this->defaultLanguageMap[$langcode])) {
             return $this->defaultLanguageMap[$langcode];
         }
         // No alias found, which is fine
