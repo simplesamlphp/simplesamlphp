@@ -109,7 +109,7 @@ can hack your metadata/saml20-idp-hosted.php file that way:
 Checking certificate expiry
 ===========================
 
-To issue warnings to users whos certificate is about to expire, configure an authproc filter.
+To issue warnings to users whose certificate is about to expire, configure an authproc filter.
 
 Example:
 

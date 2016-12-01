@@ -30,9 +30,9 @@ The `theme.use` parameter points to which theme that will be used. If some funct
 
 All required templates SHOULD be available as a base in the `templates` folder, and you SHOULD never change the base templates. To customize UI, add a new theme within a module that overrides the base templates, instead of modifying it.
 
-### Templates that includes other files
+### Templates that include other files
 
-A template file may *include* other files. In example all the default templates will include a header and footer. In example the `login.php` template will first include `includes/header.php` then present the login page, and then include `includes/footer.php`.
+A template file may *include* other files. For example all the default templates will include a header and footer: the `login.php` template will first include `includes/header.php` then present the login page, and then include `includes/footer.php`.
 
 SimpleSAMLphp allows themes to override the included templates files only, if needed. That means you can create a new theme `fancytheme` that includes only a header and footer. The header file refers to the CSS files, which means that a simple way of making a new look on SimpleSAMLphp is to create a new theme, and copy the existing header, but point to your own CSS instead of the default CSS.
 
@@ -80,7 +80,7 @@ To override the frontpage body, add the file:
 
 In the path above `default` means that the frontpage template is not part of any modules. If you are replacing a template that is part of a module, then use the module name instead of `default`.
 
-In example, to override the `preprodwarning` template, (the file is located in `modules/preprodwarning/templates/warning.php`), you need to add a new file:
+For example, to override the `preprodwarning` template, (the file is located in `modules/preprodwarning/templates/warning.php`), you need to add a new file:
 
 	modules/mymodule/themes/fancytheme/preprodwarning/warning.php
 
