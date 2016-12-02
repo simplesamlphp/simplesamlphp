@@ -6,6 +6,17 @@ SimpleSAMLphp changelog
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
+## Version 1.14.10
+
+Released 2016-12-02
+
+  * Resolved a security issue involving signature validation. See [SSPSA 201612-01](/security/201612-01).
+  * Fixed issue #517. A misconfigured session when acting as a service provider was leading to a PHP fatal error.
+  * Fixed issue #519. Prevent persistent NameIDs from being generated from empty strings.
+  * Fixed issue #520. It was impossible to verify Apache's custom MD5 passwords when using the Htpasswd authentication source.
+  * Fixed issue #523. Avoid problems caused by different line-ending strategies in the project files.
+  * Other minor fixes and enhancements.
+
 ## Version 1.14.9
 
 Released 2016-11-10
