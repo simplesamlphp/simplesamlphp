@@ -24,6 +24,9 @@ msgstr "Switserland"
 msgid "{discopower:tabs:greece}"
 msgstr "Griekeland"
 
+msgid "{discopower:tabs:southafrica}"
+msgstr "Suid-Afrika"
+
 msgid "{discopower:tabs:kalmar}"
 msgstr "Kalmar"
 
@@ -74,6 +77,9 @@ msgstr "Noorweë"
 
 msgid "Greece"
 msgstr "Griekeland"
+
+msgid "South Africa"
+msgstr "Suid-Afrika"
 
 msgid "Miscellaneous"
 msgstr "Verskeie"
