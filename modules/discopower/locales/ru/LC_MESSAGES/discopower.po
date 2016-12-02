@@ -31,6 +31,9 @@ msgstr "Дания"
 msgid "{discopower:tabs:sweden}"
 msgstr "Швеция"
 
+msgid "{discopower:tabs:southafrica}"
+msgstr "Южная Африка"
+
 msgid "{discopower:tabs:edugain}"
 msgstr "Европа (eduGAIN)"
 
@@ -48,6 +51,9 @@ msgstr "Разное"
 
 msgid "Sweden"
 msgstr "Швеция"
+
+msgid "South Africa"
+msgstr "Южная Африка"
 
 msgid "Denmark"
 msgstr "Дания"
