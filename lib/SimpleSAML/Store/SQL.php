@@ -1,18 +1,23 @@
 <?php
 
+namespace SimpleSAML\Store;
+
+use SimpleSAML\Logger;
+use SimpleSAML\Store;
+
 
 /**
  * A data store using a RDBMS to keep the data.
  *
  * @package SimpleSAMLphp
  */
-class SimpleSAML_Store_SQL extends SimpleSAML_Store
+class SQL extends Store
 {
 
     /**
      * The PDO object for our database.
      *
-     * @var PDO
+     * @var \PDO
      */
     public $pdo;
 
@@ -46,17 +51,17 @@ class SimpleSAML_Store_SQL extends SimpleSAML_Store
      */
     protected function __construct()
     {
-        $config = SimpleSAML_Configuration::getInstance();
+        $config = \SimpleSAML_Configuration::getInstance();
 
         $dsn = $config->getString('store.sql.dsn');
         $username = $config->getString('store.sql.username', null);
         $password = $config->getString('store.sql.password', null);
         $this->prefix = $config->getString('store.sql.prefix', 'simpleSAMLphp');
 
-        $this->pdo = new PDO($dsn, $username, $password);
-        $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $this->pdo = new \PDO($dsn, $username, $password);
+        $this->pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 
-        $this->driver = $this->pdo->getAttribute(PDO::ATTR_DRIVER_NAME);
+        $this->driver = $this->pdo->getAttribute(\PDO::ATTR_DRIVER_NAME);
 
         if ($this->driver === 'mysql') {
             $this->pdo->exec('SET time_zone = "+00:00"');
@@ -76,7 +81,7 @@ class SimpleSAML_Store_SQL extends SimpleSAML_Store
 
         try {
             $fetchTableVersion = $this->pdo->query('SELECT _name, _version FROM '.$this->prefix.'_tableVersion');
-        } catch (PDOException $e) {
+        } catch (\PDOException $e) {
             $this->pdo->exec(
                 'CREATE TABLE '.$this->prefix.
                 '_tableVersion (_name VARCHAR(30) NOT NULL UNIQUE, _version INTEGER NOT NULL)'
@@ -84,7 +89,7 @@ class SimpleSAML_Store_SQL extends SimpleSAML_Store
             return;
         }
 
-        while (($row = $fetchTableVersion->fetch(PDO::FETCH_ASSOC)) !== false) {
+        while (($row = $fetchTableVersion->fetch(\PDO::FETCH_ASSOC)) !== false) {
             $this->tableVersions[$row['_name']] = (int) $row['_version'];
         }
     }
@@ -193,13 +198,13 @@ class SimpleSAML_Store_SQL extends SimpleSAML_Store
         try {
             $insertQuery->execute($data);
             return;
-        } catch (PDOException $e) {
+        } catch (\PDOException $e) {
             $ecode = (string) $e->getCode();
             switch ($ecode) {
                 case '23505': // PostgreSQL
                     break;
                 default:
-                    SimpleSAML\Logger::error('Error while saving data: '.$e->getMessage());
+                    Logger::error('Error while saving data: '.$e->getMessage());
                     throw $e;
             }
         }
@@ -229,7 +234,7 @@ class SimpleSAML_Store_SQL extends SimpleSAML_Store
     private function cleanKVStore()
     {
 
-        SimpleSAML\Logger::debug('store.sql: Cleaning key-value store.');
+        Logger::debug('store.sql: Cleaning key-value store.');
 
         $query = 'DELETE FROM '.$this->prefix.'_kvstore WHERE _expire < :now';
         $params = array('now' => gmdate('Y-m-d H:i:s'));
@@ -263,7 +268,7 @@ class SimpleSAML_Store_SQL extends SimpleSAML_Store
         $query = $this->pdo->prepare($query);
         $query->execute($params);
 
-        $row = $query->fetch(PDO::FETCH_ASSOC);
+        $row = $query->fetch(\PDO::FETCH_ASSOC);
         if ($row === false) {
             return null;
         }
