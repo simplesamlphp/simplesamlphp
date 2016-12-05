@@ -1,11 +1,15 @@
 <?php
 
+namespace SimpleSAML\Store;
+
+use SimpleSAML\Store;
+
 /**
  * A memcache based datastore.
  *
  * @package SimpleSAMLphp
  */
-class SimpleSAML_Store_Memcache extends SimpleSAML_Store
+class Memcache extends Store
 {
     /**
      * Initialize the memcache datastore.
@@ -22,7 +26,7 @@ class SimpleSAML_Store_Memcache extends SimpleSAML_Store
      * This function implements the constructor for this class. It loads the Memcache configuration.
      */
     protected function __construct() {
-        $config = SimpleSAML_Configuration::getInstance();
+        $config = \SimpleSAML_Configuration::getInstance();
         $this->prefix = $config->getString('memcache_store.prefix', 'simpleSAMLphp');
     }
 
@@ -39,7 +43,7 @@ class SimpleSAML_Store_Memcache extends SimpleSAML_Store
         assert('is_string($type)');
         assert('is_string($key)');
 
-        return SimpleSAML_Memcache::get($this->prefix . '.' . $type . '.' . $key);
+        return \SimpleSAML_Memcache::get($this->prefix . '.' . $type . '.' . $key);
     }
 
 
@@ -61,7 +65,7 @@ class SimpleSAML_Store_Memcache extends SimpleSAML_Store
             $expire = 0;
         }
 
-        SimpleSAML_Memcache::set($this->prefix . '.' . $type . '.' . $key, $value, $expire);
+        \SimpleSAML_Memcache::set($this->prefix . '.' . $type . '.' . $key, $value, $expire);
     }
 
 
@@ -76,6 +80,6 @@ class SimpleSAML_Store_Memcache extends SimpleSAML_Store
         assert('is_string($type)');
         assert('is_string($key)');
 
-        SimpleSAML_Memcache::delete($this->prefix . '.' . $type . '.' . $key);
+        \SimpleSAML_Memcache::delete($this->prefix . '.' . $type . '.' . $key);
     }
 }

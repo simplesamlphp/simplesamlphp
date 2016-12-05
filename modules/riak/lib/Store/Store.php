@@ -22,7 +22,7 @@
  * and Information Technology.
  */
 
-class sspmod_riak_Store_Store extends SimpleSAML_Store {
+class sspmod_riak_Store_Store extends SimpleSAML\Store {
 	protected function __construct() {
 		$config = SimpleSAML_Configuration::getConfig('module_riak.php');
 
@@ -32,7 +32,7 @@ class sspmod_riak_Store_Store extends SimpleSAML_Store {
 		$bucket = $config->getString('bucket', 'simpleSAMLphp');
 
 		require_once($path);
-		$this->client = new RiakClient($host, $port);
+		$this->client = new \RiakClient($host, $port);
 		$this->bucket = $this->client->bucket($bucket);
 	}
 
