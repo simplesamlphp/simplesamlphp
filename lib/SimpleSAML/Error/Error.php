@@ -295,6 +295,8 @@ class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception
         } else {
             $t = new SimpleSAML_XHTML_Template($config, 'error.php', 'errors');
             $t->data = array_merge($t->data, $data);
+            $t->data['dictTitleTranslated'] = $t->getTranslator()->t($t->data['dictTitle']);
+            $t->data['dictDescrTranslated'] = $t->getTranslator()->t($t->data['dictDescr'], $t->data['parameters']);
             $t->show();
         }
 
