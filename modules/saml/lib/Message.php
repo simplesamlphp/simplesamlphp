@@ -669,6 +669,7 @@ class sspmod_saml_Message {
 
 			// If no SubjectConfirmationData then don't do anything.
 			if (!$scd) {
+				$lastError = 'No SubjectConfirmationData provided';
 				continue;
 			}
 
