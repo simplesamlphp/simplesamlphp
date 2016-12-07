@@ -667,6 +667,11 @@ class sspmod_saml_Message {
 				}
 			}
 
+			// If no SubjectConfirmationData then don't do anything.
+			if (!$scd) {
+				continue;
+			}
+
 			if ($scd->NotBefore && $scd->NotBefore > time() + 60) {
 				$lastError = 'NotBefore in SubjectConfirmationData is in the future: ' . $scd->NotBefore;
 				continue;
