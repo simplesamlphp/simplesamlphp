@@ -23,6 +23,10 @@ $eptid = $attributes['eduPersonTargetedID'][0]->item(0);
 $nameID = new SAML2_XML_saml_NameID($eptid);
 ```
 
+Trying to generate a `NameID` or a _UserID_ (the internal base for further identification of a user) based on attributes
+with multiple values will now unconditionally fail. This is intentional behaviour to avoid identifiers change over time
+in case the order of the values in the original attribute change.
+
 The following deprecated files, directories and endpoints have been removed:
 
 * `bin/pack.php`
