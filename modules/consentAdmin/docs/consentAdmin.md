@@ -6,8 +6,8 @@ you can not use consentAdmin without the consent module. If you have not
 installed and configured the consent module, please do.
 
   * [How to install and configure the consent module](./consent:consent)
- 
-The consentAdmin module only works when the consent module is using a 
+
+The consentAdmin module only works when the consent module is using a
 database to store the consents.
 
 Setting up the consentAdmin module
@@ -28,7 +28,7 @@ credentials in the config file. Example:
 	'consentadmin'  => array(
 		'consent:Database',
 		'dsn'		=>	'mysql:host=sql.uninett.no;dbname=andreas_consent',
-		'username'	=>	'simplesaml', 
+		'username'	=>	'simplesaml',
 		'password'	=>	'sdfsdf',
 	),
 
@@ -68,7 +68,7 @@ Processing filters
 ------------------
 
 The call to these filters are made with an isPassive request, with means that
-no filter is allowed to make userinteraction. 
+no filter is allowed to make userinteraction.
 
 It is up to the developers of the filters to respect the isPassive request.
 The prefered thing to do is to make your setup so that only filters that
