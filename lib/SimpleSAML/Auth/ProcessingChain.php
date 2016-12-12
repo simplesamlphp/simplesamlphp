@@ -347,7 +347,13 @@ class SimpleSAML_Auth_ProcessingChain {
 			return;
 		}
 
+		// TODO: the attribute value should be trimmed
 		$uid = $uid[0];
+
+		if (empty($uid)) {
+			SimpleSAML_Logger::warning('Empty value in attribute '.$attributeName.". on user. Cannot set UserID.");
+			return;
+		}
 		$state['UserID'] = $uid;
 	}
 
