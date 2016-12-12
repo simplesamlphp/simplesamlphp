@@ -22,7 +22,8 @@ function driveProcessingChain(
     $sp_entityid,
     $attributes,
     $userid,
-    $hashAttributes = false
+    $hashAttributes = false,
+    $noconsentAttributes = array()
 ) {
 
     /*
@@ -48,6 +49,13 @@ function driveProcessingChain(
     $pc->processStatePassive($authProcState);
 
     $attributes = $authProcState['Attributes'];
+
+    // Remove attributes that do not require consent
+    foreach ($attributes AS $attrkey => $attrval) {
+        if (in_array($attrkey, $noconsentAttributes)) {
+            unset($attributes[$attrkey]);
+        }
+    }
 
     /*
      * Generate identifiers and hashes
@@ -79,6 +87,8 @@ if (array_key_exists('logout', $_REQUEST)) {
 }
 
 $hashAttributes = $cA_config->getValue('attributes.hash');
+
+$noconsentAttributes = $cA_config->getValue('attributes.noconsent', array());
 
 // Check if valid local session exists
 $as->requireAuth();
@@ -161,7 +171,7 @@ if ($action !== null && $sp_entityid !== null) {
 
     // Run AuthProc filters
     list($targeted_id, $attribute_hash, $attributes_new) = driveProcessingChain($idp_metadata, $source, $sp_metadata,
-        $sp_entityid, $attributes, $userid, $hashAttributes);
+        $sp_entityid, $attributes, $userid, $hashAttributes, $noconsentAttributes);
 
     // Add a consent (or update if attributes have changed and old consent for SP and IdP exists)
     if ($action == 'true') {
@@ -217,7 +227,7 @@ foreach ($all_sp_metadata as $sp_entityid => $sp_values) {
 
     // Run attribute filters
     list($targeted_id, $attribute_hash, $attributes_new) = driveProcessingChain($idp_metadata, $source, $sp_metadata,
-        $sp_entityid, $attributes, $userid, $hashAttributes);
+        $sp_entityid, $attributes, $userid, $hashAttributes, $noconsentAttributes);
 
     // Check if consent exists
     if (array_key_exists($targeted_id, $user_consent)) {
