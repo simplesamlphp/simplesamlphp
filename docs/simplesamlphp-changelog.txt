@@ -6,11 +6,20 @@ SimpleSAMLphp changelog
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
+## Version 1.14.11
+
+Released 2016-12-12
+
+  * Resolved a security issue involving signature validation of SAML 1.1 messages. See [SSPSA 201612-02](https://simplesamlphp.org/security/201612-02).
+  * Fixed an issue when the user identifier used to generate a persistent NameID was missing due to a misconfiguration, causing SimpleSAMLphp to generate the nameID based on the null data type.
+  * Fixed an issue when persistent NameIDs were generated out of attributes with empty strings or multiple values.
+  * Fixed issue #530. An empty SubjectConfirmation element was causing SimpleSAMLphp to crash. On the other hand, invalid SubjectConfirmation elements were ignored in PHP 7.0.
+
 ## Version 1.14.10
 
 Released 2016-12-02
 
-  * Resolved a security issue involving signature validation. See [SSPSA 201612-01](/security/201612-01).
+  * Resolved a security issue involving signature validation. See [SSPSA 201612-01](https://simplesamlphp.org/security/201612-01).
   * Fixed issue #517. A misconfigured session when acting as a service provider was leading to a PHP fatal error.
   * Fixed issue #519. Prevent persistent NameIDs from being generated from empty strings.
   * Fixed issue #520. It was impossible to verify Apache's custom MD5 passwords when using the Htpasswd authentication source.
@@ -90,7 +99,7 @@ Released 2016-03-11
 
 Released 2016-03-08
 
-  * Resolved an information leakage security issue in the sanitycheck module. See [SSPSA 201603-01](/security/201603-01).
+  * Resolved an information leakage security issue in the sanitycheck module. See [SSPSA 201603-01](https://simplesamlphp.org/security/201603-01).
 
 ## Version 1.14.0
 
