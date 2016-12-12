@@ -19,6 +19,9 @@ $config = array(
     // Hash attributes including values or not
     'attributes.hash' => TRUE,
 
+    // If you set noconsentattributes in the consent module, this must match
+    // 'attributes.noconsent' => array(),
+
     // Where to direct the user after logout
     // REMEMBER to prefix with http:// otherwise the relaystate is only appended
     // to saml2 logout URL
