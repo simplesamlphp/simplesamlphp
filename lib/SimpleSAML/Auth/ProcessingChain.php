@@ -344,6 +344,7 @@ class SimpleSAML_Auth_ProcessingChain {
 
 		if (count($uid) > 1) {
 			SimpleSAML\Logger::warning('Multiple attribute values for user id attribute [' . $attributeName . '].');
+			return;
 		}
 
 		$uid = $uid[0];
