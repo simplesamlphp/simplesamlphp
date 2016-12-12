@@ -623,6 +623,7 @@ class sspmod_saml_IdP_SAML2 {
 			if ($attribute === NULL) {
 				if (!isset($state['UserID'])) {
 					SimpleSAML_Logger::error('Unable to generate NameID. Check the userid.attribute option.');
+					return NULL;
 				}
 				$attributeValue = $state['UserID'];
 				$idpEntityId = $idpMetadata->getString('entityid');
