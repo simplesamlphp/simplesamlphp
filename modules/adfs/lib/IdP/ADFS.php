@@ -47,7 +47,7 @@ class sspmod_adfs_IdP_ADFS {
 	public static function ADFS_GenerateResponse($issuer, $target, $nameid, $attributes) {
 		$issueInstant = SimpleSAML\Utils\Time::generateTimestamp();
 		$notBefore = SimpleSAML\Utils\Time::generateTimestamp(time() - 30);
-		$assertionExpire = SimpleSAML\Utils\Time::generateTimestamp(time() + 60 * 5);
+		$assertionExpire = SimpleSAML\Utils\Time::generateTimestamp(time() + 60 * 60);
 		$assertionID = SimpleSAML\Utils\Random::generateID();
 		$nameidFormat = 'http://schemas.xmlsoap.org/claims/UPN';
 		$result =
