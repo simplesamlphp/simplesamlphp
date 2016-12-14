@@ -1370,7 +1370,7 @@ msgid "Parse"
 msgstr "分析器"
 
 msgid ""
-"Too bad! - Without your username and password you cannot authenticate "
+"Without your username and password you cannot authenticate "
 "yourself for access to the service. There may be someone that can help "
 "you. Consult the help desk at your organization!"
 msgstr "太糟糕了！-没有你的用户名和密码你将不能访问该服务，也许有人能够帮助你，请咨询你所在大学的服务台"
