@@ -412,7 +412,8 @@ class Language
             'lifetime' => ($config->getInteger('language.cookie.lifetime', 60 * 60 * 24 * 900)),
             'domain'   => ($config->getString('language.cookie.domain', null)),
             'path'     => ($config->getString('language.cookie.path', '/')),
-            'httponly' => false,
+            'secure'   => ($config->getBoolean('language.cookie.secure', false)),
+            'httponly' => ($config->getBoolean('language.cookie.httponly', false)),
         );
 
         HTTP::setCookie($name, $language, $params, false);
