@@ -1,8 +1,8 @@
 SimpleSAMLphp Maintenance
 =========================
 
-<!-- 
-	This file is written in Markdown syntax. 
+<!--
+	This file is written in Markdown syntax.
 	For more information about how to use the Markdown syntax, read here:
 	http://daringfireball.net/projects/markdown/syntax
 -->
@@ -19,6 +19,35 @@ This document is part of the SimpleSAMLphp documentation suite.
  * [SimpleSAMLphp homepage](https://simplesamlphp.org)
 
 
+
+
+## Metadata storage
+
+Several metadata storage backend exists, including `flatfile`, `serialize`, `pdo`.
+
+```
+'metadata.sources' => array(
+    array('type' => 'flatfile'),
+    array('type' => 'flatfile', 'directory' => 'metadata/metarefresh-kalmar'),
+    array('type' => 'serialize', 'directory' => 'metadata/metarefresh-ukaccess'),
+),
+```
+
+You may even implement your own metadata storage handler (support added to master branch December 2016). Implementing your own metadata storage handler is very similar to how you implement your own session handler.
+
+Here is an example of configuring the custom handler implemented in a custom module `cassandrastore`. In this module, we include the file: `lib/MetadataStore/CassandraMetadataStore.php` which defines the class `sspmod_cassandrastore_MetadataStore_CassandraMetadataStore` which extends `SimpleSAML_Metadata_MetaDataStorageSource`. Look at the simpleSAMLphp core metadata handlers to get an idea of how to implement your custom one.
+
+
+```
+'metadata.sources' => array(
+    array('type' => 'flatfile'),
+    array('type' => 'cassandrastore:CassandraMetadataStore'),
+),
+```
+
+
+* [Read more about PDO Metadata storage handler](simplesamlphp-metadata-pdostoragehandler)
+* [Cassandra session and metadata storage handler](https://github.com/feideconnect/simplesamlphp-module-cassandrastore)
 
 ## Session management
 
@@ -41,11 +70,11 @@ To use the PHP session handler, set the `store.type` configuration option in `co
 Keep in mind that **PHP does not allow two sessions to be open at the same time**. This means if you are using PHP sessions both in your
 application and in SimpleSAMLphp at the same time, **they need to have different names**. When using the PHP session handler in
 SimpleSAMLphp, it is configured with different options than for other session handlers:
- 
+
     'session.phpsession.cookiename' => null,
     'session.phpsession.savepath' => null,
     'session.phpsession.httponly' => true,
-    
+
 Make sure to set `session.phpsession.cookiename` to a name different than the one in use by any other applications. If you are using
 SimpleSAMLphp as an Identity Provider, or any other applications using it are not using the default session name, you can use the default
 settings by leaving these options unset or setting them to `null`.
@@ -185,7 +214,7 @@ Turn off PHPSESSID in query string.
 
 Here are some checkpoints
 
- 1. Remove all entities in metadata files that you do not trust. It is easy to forget about some of the entities that were used for test. 
+ 1. Remove all entities in metadata files that you do not trust. It is easy to forget about some of the entities that were used for test.
  2. If you during testing have been using a certificate that has been exposed (notably: the one found in the SimpleSAMLphp distribution): Obtain and install a new one.
  3. Make sure you have installed the latest security upgrades for your OS.
  4. Make sure to use HTTPS rather than HTTP.
