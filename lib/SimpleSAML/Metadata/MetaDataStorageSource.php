@@ -82,10 +82,14 @@ abstract class SimpleSAML_Metadata_MetaDataStorageSource
             default:
                 // metadata store from module
                 try {
-                    $className = SimpleSAML\Module::resolveClass($type, 'MetadataStore', 'SimpleSAML_Metadata_MetaDataStorageSource');
+                    $className = SimpleSAML\Module::resolveClass(
+                        $type,
+                        'MetadataStore',
+                        'SimpleSAML_Metadata_MetaDataStorageSource'
+                    );
                 } catch (Exception $e) {
                     throw new SimpleSAML\Error\CriticalConfigurationError(
-                        "Invalid 'metadata store' configuration option. Cannot find store '$type'.",
+                        "Invalid 'type' for metadata source. Cannot find store '$type'.",
                         null
                     );
                 }
