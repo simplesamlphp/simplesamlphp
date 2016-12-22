@@ -13,41 +13,12 @@ SimpleSAMLphp Maintenance
 SimpleSAMLphp news and documentation
 ------------------------------------
 
-This document is part of the SimpleSAMLphp documentation suite.
+Please check the following sources of information to stay up to date with regard to SimpleSAMLphp:
 
- * [List of all SimpleSAMLphp documentation](http://simplesamlphp.org/docs)
+ * [SimpleSAMLphp documentation](http://simplesamlphp.org/docs)
  * [SimpleSAMLphp homepage](https://simplesamlphp.org)
-
-
-
-
-## Metadata storage
-
-Several metadata storage backend exists, including `flatfile`, `serialize`, `pdo`.
-
-```
-'metadata.sources' => array(
-    array('type' => 'flatfile'),
-    array('type' => 'flatfile', 'directory' => 'metadata/metarefresh-kalmar'),
-    array('type' => 'serialize', 'directory' => 'metadata/metarefresh-ukaccess'),
-),
-```
-
-You may even implement your own metadata storage handler (support added to master branch December 2016). Implementing your own metadata storage handler is very similar to how you implement your own session handler.
-
-Here is an example of configuring the custom handler implemented in a custom module `cassandrastore`. In this module, we include the file: `lib/MetadataStore/CassandraMetadataStore.php` which defines the class `sspmod_cassandrastore_MetadataStore_CassandraMetadataStore` which extends `SimpleSAML_Metadata_MetaDataStorageSource`. Look at the simpleSAMLphp core metadata handlers to get an idea of how to implement your custom one.
-
-
-```
-'metadata.sources' => array(
-    array('type' => 'flatfile'),
-    array('type' => 'cassandrastore:CassandraMetadataStore'),
-),
-```
-
-
-* [Read more about PDO Metadata storage handler](simplesamlphp-metadata-pdostoragehandler)
-* [Cassandra session and metadata storage handler](https://github.com/feideconnect/simplesamlphp-module-cassandrastore)
+ * [SimpleSAMLphp mailing lists](https://simplesamlphp.org/lists)
+ * [SimpleSAMLphp in twitter](https://twitter.com/simplesamlphp)
 
 ## Session management
 
@@ -59,7 +30,7 @@ The `store.type` configuration option in `config.php` allows you to select which
   * `memcache` uses the memcache software to cache sessions in memory. Sessions can be distributed and replicated among several memcache servers, enabling both load-balancing and fail-over.
   * `sql` stores the session in an SQL database.
 
-	'store.type' => 'phpsession',
+    'store.type' => 'phpsession',
 
 ### Configuring PHP sessions
 
@@ -185,6 +156,40 @@ Username and password for accessing the database can be configured in the `store
 
 The required tables are created automatically. If you are storing data from multiple separate SimpleSAMLphp installations in the same database, you can use the `store.sql.prefix` option to prevent conflicts.
 
+## Metadata storage
+
+Several metadata storage backends are available by default, including `flatfile`, `serialize`, `mdq` and
+[`pdo`](https://simplesamlphp.org/docs/stable/simplesamlphp-metadata-pdostoragehandler). Here you have an
+example configuration of different metadata sources in use at the same time:
+
+```
+'metadata.sources' => array(
+    array('type' => 'flatfile'),
+    array('type' => 'flatfile', 'directory' => 'metadata/metarefresh-kalmar'),
+    array('type' => 'serialize', 'directory' => 'metadata/metarefresh-ukaccess'),
+),
+```
+
+You may also implement your own metadata storage handler, in a very similar way to how you would implement
+your own session handler. Your class **must** extend the `SimpleSAML_Metadata_MetaDataStorageSource` class
+and override the methods needed to change the backend used. This class **must** also be located in the
+`lib/MetadataStore/` directory of your custom module.
+
+Bear in mind that **your class name must follow the PSR-0 autoloading standard**. This means it needs to be
+named in a particular way, with the use of namespaces being the preferred convention. For example, if your
+module is named _mymodule_ and your class is named _MyMetadataHandler_, you should define it like this: 
+
+```
+<?php
+namespace SimpleSAML\Module\mymodule\MetadataStore;
+
+class MyMetadataHandler extends SimpleSAML_Metadata_MetaDataStorageSource
+{
+    ...
+```
+
+If you would like to see an example of how a custom handler could be implemented in your own module, take
+a look at the [cassandrastore](https://github.com/feideconnect/simplesamlphp-module-cassandrastore) module.
 
 ## Logging and statistics
 
