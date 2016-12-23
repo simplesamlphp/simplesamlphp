@@ -80,7 +80,20 @@ abstract class SimpleSAML_Metadata_MetaDataStorageSource
             case 'pdo':
                 return new SimpleSAML_Metadata_MetaDataStorageHandlerPdo($sourceConfig);
             default:
-                throw new Exception('Invalid metadata source type: "'.$type.'".');
+                // metadata store from module
+                try {
+                    $className = SimpleSAML\Module::resolveClass(
+                        $type,
+                        'MetadataStore',
+                        'SimpleSAML_Metadata_MetaDataStorageSource'
+                    );
+                } catch (Exception $e) {
+                    throw new SimpleSAML\Error\CriticalConfigurationError(
+                        "Invalid 'type' for metadata source. Cannot find store '$type'.",
+                        null
+                    );
+                }
+                return new $className($sourceConfig);
         }
     }
 

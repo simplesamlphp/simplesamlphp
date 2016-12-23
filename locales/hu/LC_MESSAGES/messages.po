@@ -1493,7 +1493,7 @@ msgid "Parse"
 msgstr "Értelmez"
 
 msgid ""
-"Too bad! - Without your username and password you cannot authenticate "
+"Without your username and password you cannot authenticate "
 "yourself for access to the service. There may be someone that can help "
 "you. Consult the help desk at your organization!"
 msgstr ""

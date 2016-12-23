@@ -1435,7 +1435,7 @@ msgid "Parse"
 msgstr "解析"
 
 msgid ""
-"Too bad! - Without your username and password you cannot authenticate "
+"Without your username and password you cannot authenticate "
 "yourself for access to the service. There may be someone that can help "
 "you. Consult the help desk at your organization!"
 msgstr "喔喔！如果您的帳號和密碼錯誤，系統將無法提供相關服務！"
