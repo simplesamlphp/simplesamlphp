@@ -142,37 +142,37 @@ abstract class sspmod_ldap_Auth_Process_BaseFilter extends SimpleSAML_Auth_Proce
             // Build the authsource config
             $authconfig = array();
             if (isset($authsource['hostname'])) {
-              $authconfig['ldap.hostname']   = @$authsource['hostname'];
+              $authconfig['ldap.hostname']   = $authsource['hostname'];
             }
             if (isset($authsource['enable_tls'])) {
-              $authconfig['ldap.enable_tls'] = @$authsource['enable_tls'];
+              $authconfig['ldap.enable_tls'] = $authsource['enable_tls'];
             }
             if (isset($authsource['port'])) {
-              $authconfig['ldap.port']       = @$authsource['port'];
+              $authconfig['ldap.port']       = $authsource['port'];
             }
             if (isset($authsource['timeout'])) {
-              $authconfig['ldap.timeout']    = @$authsource['timeout'];
+              $authconfig['ldap.timeout']    = $authsource['timeout'];
             }
             if (isset($authsource['debug'])) {
-              $authconfig['ldap.debug']      = @$authsource['debug'];
+              $authconfig['ldap.debug']      = $authsource['debug'];
             }
-            if (isset($authsource['search.base']) && @$authsource['search.enable']) {
-              $authconfig['ldap.basedn']     = @$authsource['search.base'];
+            if (isset($authsource['search.base']) && $authsource['search.enable']) {
+              $authconfig['ldap.basedn']     = $authsource['search.base'];
             }
-            if (isset($authsource['search.username']) && @$authsource['search.enable']) {
-              $authconfig['ldap.username']   = @$authsource['search.username'];
+            if (isset($authsource['search.username']) && $authsource['search.enable']) {
+              $authconfig['ldap.username']   = $authsource['search.username'];
             }
-            if (isset($authsource['search.password']) && @$authsource['search.enable']) {
-              $authconfig['ldap.password']   = @$authsource['search.password'];
+            if (isset($authsource['search.password']) && $authsource['search.enable']) {
+              $authconfig['ldap.password']   = $authsource['search.password'];
             }
-            if (isset($authsource['priv.username']) && @$authsource['priv.read']) {
-              $authconfig['ldap.username']   = @$authsource['priv.username'];
+            if (isset($authsource['priv.username']) && $authsource['priv.read']) {
+              $authconfig['ldap.username']   = $authsource['priv.username'];
             }
-            if (isset($authsource['priv.password']) && @$authsource['priv.read']) {
-              $authconfig['ldap.password']   = @$authsource['priv.password'];
+            if (isset($authsource['priv.password']) && $authsource['priv.read']) {
+              $authconfig['ldap.password']   = $authsource['priv.password'];
             }
             // Only set the username attribute if the authsource specifies one attribute
-            if (@$authsource['search.enable'] && is_array(@$authsource['search.attributes'])
+            if ($authsource['search.enable'] && is_array($authsource['search.attributes'])
                  && count($authsource['search.attributes']) == 1) {
                 $authconfig['attribute.username'] = reset($authsource['search.attributes']);
             }
