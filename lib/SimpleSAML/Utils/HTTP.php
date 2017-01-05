@@ -625,38 +625,74 @@ class HTTP
 
 
     /**
-     * Retrieve the current, complete URL.
+     * Retrieve the current URL using the base URL in the configuration, if possible.
+     *
+     * This method will try to see if the current script is part of SimpleSAMLphp. In that case, it will use the
+     * 'baseurlpath' configuration option to rebuild the current URL based on that. If the current script is NOT
+     * part of SimpleSAMLphp, it will just return the current URL.
+     *
+     * Note that this method does NOT make use of the HTTP X-Forwarded-* set of headers.
      *
      * @return string The current URL, including query parameters.
      *
      * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
+     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
     public static function getSelfURL()
     {
-        $url = self::getSelfURLHost();
-        $requestURI = $_SERVER['REQUEST_URI'];
-        if ($requestURI[0] !== '/') {
-            // we probably have a URL of the form: http://server/
-            if (preg_match('#^https?://[^/]*(/.*)#i', $requestURI, $matches)) {
-                $requestURI = $matches[1];
-            }
+        $cfg = \SimpleSAML_Configuration::getInstance();
+        $baseDir = $cfg->getBaseDir();
+        $cur_path = realpath($_SERVER['SCRIPT_FILENAME']);
+        // find the path to the current script relative to the www/ directory of SimpleSAMLphp
+        $rel_path = str_replace($baseDir.'www'.DIRECTORY_SEPARATOR, '', $cur_path);
+        // convert that relative path to an HTTP query
+        $url_path = str_replace(DIRECTORY_SEPARATOR, '/', $rel_path);
+        // find where the relative path starts in the current request URI
+        $uri_pos = (!empty($url_path)) ? strpos($_SERVER['REQUEST_URI'], $url_path) : false;
+
+        if ($cur_path == $rel_path || $uri_pos === false) {
+            /*
+             * We were accessed from an external script. This can happen in the following cases:
+             *
+             * - $_SERVER['SCRIPT_FILENAME'] points to a script that doesn't exist. E.g. functional testing. In this
+             *   case, realpath() returns false and str_replace an empty string, so we compare them loosely.
+             *
+             * - The URI requested does not belong to a script in the www/ directory of SimpleSAMLphp. In that case,
+             *   removing SimpleSAMLphp's base dir from the current path yields the same path, so $cur_path and
+             *   $rel_path are equal.
+             *
+             * - The request URI does not match the current script. Even if the current script is located in the www/
+             *   directory of SimpleSAMLphp, the URI does not contain its relative path, and $uri_pos is false.
+             *
+             * It doesn't matter which one of those cases we have. We just know we can't apply our base URL to the
+             * current URI, so we need to build it back from the PHP environment.
+             */
+            $protocol = 'http';
+            $protocol .= (self::getServerHTTPS()) ? 's' : '';
+            $protocol .= '://';
+
+            $hostname = self::getServerHost();
+            $port = self::getServerPort();
+            return $protocol.$hostname.$port.$_SERVER['REQUEST_URI'];
         }
-        return $url.$requestURI;
+
+        return self::getBaseURL().$rel_path.substr($_SERVER['REQUEST_URI'], $uri_pos + strlen($url_path));
     }
 
 
     /**
-     * Retrieve a URL containing the protocol, the current host and optionally, the port number.
+     * Retrieve the current URL using the base URL in the configuration, containing the protocol, the host and
+     * optionally, the port number.
      *
-     * @return string The current URL without a URL path or query parameters.
+     * @return string The current URL without path or query parameters.
      *
      * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
     public static function getSelfURLHost()
     {
-        $url = self::getBaseURL();
+        $url = self::getSelfURL();
         $start = strpos($url, '://') + 3;
         $length = strcspn($url, '/', $start) + $start;
         return substr($url, 0, $length);
@@ -664,20 +700,21 @@ class HTTP
 
 
     /**
-     * Retrieve the current URL without the query parameters.
+     * Retrieve the current URL using the base URL in the configuration, without the query parameters.
      *
      * @return string The current URL, not including query parameters.
      *
      * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
+     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
     public static function getSelfURLNoQuery()
     {
-        $url = self::getSelfURLHost();
-        $url .= $_SERVER['SCRIPT_NAME'];
-        if (isset($_SERVER['PATH_INFO'])) {
-            $url .= $_SERVER['PATH_INFO'];
+        $url = self::getSelfURL();
+        $pos = strpos($url, '?');
+        if (!$pos) {
+            return $url;
         }
-        return $url;
+        return substr($url, 0, $pos);
     }
 
 
@@ -691,7 +728,7 @@ class HTTP
      */
     public static function isHTTPS()
     {
-        return strpos(self::getBaseURL(), 'https://') === 0;
+        return strpos(self::getSelfURL(), 'https://') === 0;
     }
 
 
@@ -746,6 +783,10 @@ class HTTP
         }
 
         $res = array();
+        if (empty($query_string)) {
+            return $res;
+        }
+
         foreach (explode('&', $query_string) as $param) {
             $param = explode('=', $param);
             $name = urldecode($param[0]);
@@ -921,7 +962,7 @@ class HTTP
      * @param bool        $throw Whether to throw exception if setcookie() fails.
      *
      * @throws \InvalidArgumentException If any parameter has an incorrect type.
-     * @throws \SimpleSAML_Error_Exception If the headers were already sent and the cookie cannot be set.
+     * @throws \SimpleSAML\Error\CannotSetCookie If the headers were already sent and the cookie cannot be set.
      *
      * @author Andjelko Horvat
      * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
@@ -954,7 +995,13 @@ class HTTP
 
         // Do not set secure cookie if not on HTTPS
         if ($params['secure'] && !self::isHTTPS()) {
-            \SimpleSAML_Logger::warning('Setting secure cookie on plain HTTP is not allowed.');
+            if ($throw) {
+                throw new \SimpleSAML\Error\CannotSetCookie(
+                    'Setting secure cookie on plain HTTP is not allowed.',
+                    \SimpleSAML\Error\CannotSetCookie::SECURE_COOKIE
+                );
+            }
+            Logger::warning('Error setting cookie: setting secure cookie on plain HTTP is not allowed.');
             return;
         }
 
@@ -969,19 +1016,35 @@ class HTTP
         }
 
         if ($params['raw']) {
-            $success = setrawcookie($name, $value, $expire, $params['path'], $params['domain'], $params['secure'],
-                $params['httponly']);
+            $success = @setrawcookie(
+                $name,
+                $value,
+                $expire,
+                $params['path'],
+                $params['domain'],
+                $params['secure'],
+                $params['httponly']
+            );
         } else {
-            $success = setcookie($name, $value, $expire, $params['path'], $params['domain'], $params['secure'],
-                $params['httponly']);
+            $success = @setcookie(
+                $name,
+                $value,
+                $expire,
+                $params['path'],
+                $params['domain'],
+                $params['secure'],
+                $params['httponly']
+            );
         }
 
         if (!$success) {
             if ($throw) {
-                throw new \SimpleSAML_Error_Exception('Error setting cookie: headers already sent.');
-            } else {
-                \SimpleSAML_Logger::warning('Error setting cookie: headers already sent.');
+                throw new \SimpleSAML\Error\CannotSetCookie(
+                    'Headers already sent.',
+                    \SimpleSAML\Error\CannotSetCookie::HEADERS_SENT
+                );
             }
+            Logger::warning('Error setting cookie: headers already sent.');
         }
     }
 

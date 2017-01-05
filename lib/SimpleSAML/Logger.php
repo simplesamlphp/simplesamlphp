@@ -246,7 +246,13 @@ class SimpleSAML_Logger
      */
     public static function flush()
     {
-        $s = SimpleSAML_Session::getSessionFromRequest();
+        try {
+            $s = \SimpleSAML_Session::getSessionFromRequest();
+        } catch (\Exception $e) {
+            // loading session failed. We don't care why, at this point we have a transient session, so we use that
+            self::error('Cannot load or create session: '.$e->getMessage());
+            $s = \SimpleSAML_Session::getSessionFromRequest();
+        }
         self::$trackid = $s->getTrackID();
 
         self::$shuttingDown = true;
@@ -345,7 +351,7 @@ class SimpleSAML_Logger
         if (self::$captureLog) {
             $ts = microtime(true);
             $msecs = (int) (($ts - (int) $ts) * 1000);
-            $ts = GMdate('H:i:s', $ts).sprintf('.%03d', $msecs).'Z';
+            $ts = gmdate('H:i:s', $ts).sprintf('.%03d', $msecs).'Z';
             self::$capturedLog[] = $ts.' '.$string;
         }
 

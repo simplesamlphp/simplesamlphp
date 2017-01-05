@@ -344,9 +344,16 @@ class SimpleSAML_Auth_ProcessingChain {
 
 		if (count($uid) > 1) {
 			SimpleSAML_Logger::warning('Multiple attribute values for user id attribute [' . $attributeName . '].');
+			return;
 		}
 
+		// TODO: the attribute value should be trimmed
 		$uid = $uid[0];
+
+		if (empty($uid)) {
+			SimpleSAML_Logger::warning('Empty value in attribute '.$attributeName.". on user. Cannot set UserID.");
+			return;
+		}
 		$state['UserID'] = $uid;
 	}
 

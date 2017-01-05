@@ -242,9 +242,9 @@ $config = array(
     */
 
     /*
-    // Windows Live ID Authentication API.
+    // Microsoft Account (Windows Live ID) Authentication API.
     // Register your application to get an API key here:
-    //  https://manage.dev.live.com
+    //  https://apps.dev.microsoft.com/
     'windowslive' => array(
         'authwindowslive:LiveID',
         'key' => 'xxxxxxxxxxxxxxxx',

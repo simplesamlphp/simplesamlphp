@@ -23,9 +23,17 @@
     },
     "require": {
         "php": ">=5.3",
-        "simplesamlphp/saml2": "~1.7",
+        "simplesamlphp/saml2": "~1.9.1",
         "robrichards/xmlseclibs": "~1.4.1",
-        "whitehat101/apr1-md5": "~1.0"
+        "whitehat101/apr1-md5": "~1.0",
+        "ext-SPL": "*",
+        "ext-zlib": "*",
+        "ext-pcre": "*",
+        "ext-openssl": "*",
+        "ext-dom": "*",
+        "ext-date": "*",
+        "ext-hash": "*",
+        "ext-json": "*"
     },
     "require-dev": {
         "ext-pdo_sqlite": "*",

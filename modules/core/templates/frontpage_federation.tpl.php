@@ -40,9 +40,8 @@ function mtype($set)
     }
 }
 
-$now = time();
-echo '<dl>';
 if (is_array($this->data['metaentries']['hosted']) && count($this->data['metaentries']['hosted']) > 0) {
+    echo '<dl>';
     foreach ($this->data['metaentries']['hosted'] as $hm) {
         echo '<dt>'.$this->t(mtype($hm['metadata-set'])).'</dt>';
         echo '<dd>';
@@ -66,10 +65,11 @@ if (is_array($this->data['metaentries']['hosted']) && count($this->data['metaent
 
         echo '</p></dd>';
     }
+    echo '</dl>';
 }
-echo '</dl>';
 
 if (is_array($this->data['metaentries']['remote']) && count($this->data['metaentries']['remote']) > 0) {
+    $now = time();
     foreach ($this->data['metaentries']['remote'] as $setkey => $set) {
 
         echo '<fieldset class="fancyfieldset"><legend>'.$this->t(mtype($setkey)).' (Trusted)</legend>';

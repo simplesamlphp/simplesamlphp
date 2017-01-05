@@ -623,6 +623,7 @@ class sspmod_saml_IdP_SAML2 {
 			if ($attribute === NULL) {
 				if (!isset($state['UserID'])) {
 					SimpleSAML_Logger::error('Unable to generate NameID. Check the userid.attribute option.');
+					return NULL;
 				}
 				$attributeValue = $state['UserID'];
 				$idpEntityId = $idpMetadata->getString('entityid');
@@ -698,12 +699,17 @@ class sspmod_saml_IdP_SAML2 {
                     continue;
                 }
 
+				$attrval = $value;
+				if ($value instanceof DOMNodeList) {
+					$attrval = new SAML2_XML_saml_AttributeValue($value->item(0)->parentNode);
+				}
+
 				switch ($encoding) {
 				case 'string':
-					$value = (string)$value;
+					$value = (string)$attrval;
 					break;
 				case 'base64':
-					$value = base64_encode((string)$value);
+					$value = base64_encode((string)$attrval);
 					break;
 				case 'raw':
 					if (is_string($value)) {

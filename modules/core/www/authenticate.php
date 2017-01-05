@@ -27,12 +27,7 @@ if (array_key_exists(SimpleSAML_Auth_State::EXCEPTION_PARAM, $_REQUEST)) {
 	assert('array_key_exists(SimpleSAML_Auth_State::EXCEPTION_DATA, $state)');
 	$e = $state[SimpleSAML_Auth_State::EXCEPTION_DATA];
 
-	header('Content-Type: text/plain');
-	echo "Exception during login:\n";
-	foreach ($e->format() as $line) {
-		echo $line . "\n";
-	}
-	exit(0);
+	throw $e;
 }
 
 

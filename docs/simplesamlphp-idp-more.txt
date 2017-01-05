@@ -33,7 +33,7 @@ SimpleSAMLphp has implemented a graceful fallback to tackle this situation. When
 
 What happens in the IdP-first flow is that a *SAML unsolicited response* is sent directly to the SP. An *unsolicited response* is a SAML Response with no reference to a SAML Request (no `InReplyTo` field). 
 
-When a SimpleSAMLphp IdP falls back to IdP-first flow, the `RelayState` parameter sent by the SP in the SAML request is also lost. The RelayState information contain a reference key for the SP to lookup where to send the user after successfull authentication. The SimpleSAMLphp Service Provider supports configuring a static URL to redirect the user after a unsolicited response is received. See more information about the `RelayState` parameter in the next section: *IdP-first flow*.
+When a SimpleSAMLphp IdP falls back to IdP-first flow, the `RelayState` parameter sent by the SP in the SAML request is also lost. The RelayState information contain a reference key for the SP to lookup where to send the user after successful authentication. The SimpleSAMLphp Service Provider supports configuring a static URL to redirect the user after a unsolicited response is received. See more information about the `RelayState` parameter in the next section: *IdP-first flow*.
 
 
 IdP-first flow

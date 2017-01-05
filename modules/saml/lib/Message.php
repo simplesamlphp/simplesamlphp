@@ -589,7 +589,7 @@ class sspmod_saml_Message {
 		$lastError = 'No SubjectConfirmation element in Subject.';
 		$validSCMethods = array(SAML2_Const::CM_BEARER, SAML2_Const::CM_HOK, SAML2_Const::CM_VOUCHES);
 		foreach ($assertion->getSubjectConfirmation() as $sc) {
-		    if (!in_array($sc->Method, $validSCMethods)) {
+			if (!in_array($sc->Method, $validSCMethods)) {
 				$lastError = 'Invalid Method on SubjectConfirmation: ' . var_export($sc->Method, TRUE);
 				continue;
 			}
@@ -612,52 +612,52 @@ class sspmod_saml_Message {
 			if ($sc->Method === SAML2_Const::CM_HOK) {
 				/* Check HoK Assertion */
 				if (\SimpleSAML\Utils\HTTP::isHTTPS() === FALSE) {
-				    $lastError = 'No HTTPS connection, but required for Holder-of-Key SSO';
-				    continue;
+					$lastError = 'No HTTPS connection, but required for Holder-of-Key SSO';
+					continue;
 				}
 				if (isset($_SERVER['SSL_CLIENT_CERT']) && empty($_SERVER['SSL_CLIENT_CERT'])) {
-				    $lastError = 'No client certificate provided during TLS Handshake with SP';
-				    continue;
+					$lastError = 'No client certificate provided during TLS Handshake with SP';
+					continue;
 				}
 				/* Extract certificate data (if this is a certificate). */
 				$clientCert = $_SERVER['SSL_CLIENT_CERT'];
 				$pattern = '/^-----BEGIN CERTIFICATE-----([^-]*)^-----END CERTIFICATE-----/m';
 				if (!preg_match($pattern, $clientCert, $matches)) {
-				    $lastError = 'Error while looking for client certificate during TLS handshake with SP, the client certificate does not '
-				                 . 'have the expected structure';
-				    continue;
+					$lastError = 'Error while looking for client certificate during TLS handshake with SP, the client certificate does not '
+								. 'have the expected structure';
+					continue;
 				}
 				/* We have a valid client certificate from the browser. */
 				$clientCert = str_replace(array("\r", "\n", " "), '', $matches[1]);
 
 				foreach ($scd->info as $thing) {
-				    if($thing instanceof SAML2_XML_ds_KeyInfo) {
-					$keyInfo[]=$thing;
-				    }
+					if($thing instanceof SAML2_XML_ds_KeyInfo) {
+						$keyInfo[]=$thing;
+					}
 				}
 				if (count($keyInfo)!=1) {
-				    $lastError = 'Error validating Holder-of-Key assertion: Only one <ds:KeyInfo> element in <SubjectConfirmationData> allowed';
-				    continue;
+					$lastError = 'Error validating Holder-of-Key assertion: Only one <ds:KeyInfo> element in <SubjectConfirmationData> allowed';
+					continue;
 				}
 
 				foreach ($keyInfo[0]->info as $thing) {
-				    if($thing instanceof SAML2_XML_ds_X509Data) {
-					$x509data[]=$thing;
-				    }
+					if($thing instanceof SAML2_XML_ds_X509Data) {
+						$x509data[]=$thing;
+					}
 				}
 				if (count($x509data)!=1) {
-				    $lastError = 'Error validating Holder-of-Key assertion: Only one <ds:X509Data> element in <ds:KeyInfo> within <SubjectConfirmationData> allowed';
-				    continue;
+					$lastError = 'Error validating Holder-of-Key assertion: Only one <ds:X509Data> element in <ds:KeyInfo> within <SubjectConfirmationData> allowed';
+					continue;
 				}
 
 				foreach ($x509data[0]->data as $thing) {
-				    if($thing instanceof SAML2_XML_ds_X509Certificate) {
-					$x509cert[]=$thing;
-				    }
+					if($thing instanceof SAML2_XML_ds_X509Certificate) {
+						$x509cert[]=$thing;
+					}
 				}
 				if (count($x509cert)!=1) {
-				    $lastError = 'Error validating Holder-of-Key assertion: Only one <ds:X509Certificate> element in <ds:X509Data> within <SubjectConfirmationData> allowed';
-				    continue;
+					$lastError = 'Error validating Holder-of-Key assertion: Only one <ds:X509Certificate> element in <ds:X509Data> within <SubjectConfirmationData> allowed';
+					continue;
 				}
 
 				$HoKCertificate = $x509cert[0]->certificate;
@@ -665,6 +665,12 @@ class sspmod_saml_Message {
 					$lastError = 'Provided client certificate does not match the certificate bound to the Holder-of-Key assertion';
 					continue;
 				}
+			}
+
+			// if no SubjectConfirmationData then don't do anything.
+			if ($scd === null) {
+				$lastError = 'No SubjectConfirmationData provided';
+				continue;
 			}
 
 			if ($scd->NotBefore && $scd->NotBefore > time() + 60) {

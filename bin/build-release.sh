@@ -41,7 +41,7 @@ if [ -f "$TARGET/composer.json" ]; then
 
     # Install dependencies (without vcs history or dev tools)
     php "$TARGET/composer.phar" install --no-dev --prefer-dist -o -d "$TARGET"
-    php "$TARGET/composer.phar" require simplesamlphp/simplesamlphp-module-infocard --update-no-dev --prefer-dist -o -d "$TARGET"
+    php "$TARGET/composer.phar" require simplesamlphp/simplesamlphp-module-infocard:1.0.1 --update-no-dev --prefer-dist -o -d "$TARGET"
     php "$TARGET/composer.phar" require simplesamlphp/simplesamlphp-module-aggregator --update-no-dev --prefer-dist -o -d "$TARGET"
     php "$TARGET/composer.phar" require simplesamlphp/simplesamlphp-module-aggregator2 --update-no-dev --prefer-dist -o -d "$TARGET"
     php "$TARGET/composer.phar" require simplesamlphp/simplesamlphp-module-autotest --update-no-dev --prefer-dist -o -d "$TARGET"

@@ -63,9 +63,19 @@ class sspmod_saml_Auth_Process_AttributeNameID extends sspmod_saml_BaseNameIDGen
                 'More than one value in attribute '.var_export($this->attribute, true).
                 ' on user - not generating attribute NameID.'
             );
+            return null;
         }
         $value = array_values($state['Attributes'][$this->attribute]); // just in case the first index is no longer 0
         $value = $value[0];
+
+        if (empty($value)) {
+            SimpleSAML\Logger::warning(
+                'Empty value in attribute '.var_export($this->attribute, true).
+                ' on user - not generating persistent NameID.'
+            );
+            return null;
+        }
+
         return $value;
     }
 

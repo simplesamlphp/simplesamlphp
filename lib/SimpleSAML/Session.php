@@ -7,11 +7,16 @@
  * information about all the currently logged in SPs. This is used when the user initiates a
  * Single-Log-Out.
  *
+ * Bear in mind that the session object implements the Serializable interface, and as such,
+ * all its contents MUST be serializable. If you need to store something in the session object
+ * that is not serializable, make sure to convert it first to a representation that can be
+ * serialized.
+ *
  * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
  * @author Jaime Pérez Crespo, UNINETT AS <jaime.perez@uninett.no>
  * @package SimpleSAMLphp
  */
-class SimpleSAML_Session
+class SimpleSAML_Session implements Serializable
 {
 
     /**
@@ -153,10 +158,10 @@ class SimpleSAML_Session
             if ($this->sessionId === null) {
                 $this->sessionId = $sh->newSessionId();
             }
-
         } else { // regular session
             $sh = SimpleSAML_SessionHandler::getSessionHandler();
             $this->sessionId = $sh->newSessionId();
+            $sh->setCookie($sh->getSessionCookieName(), $this->sessionId, $sh->getCookieParams());
 
             $this->trackid = bin2hex(openssl_random_pseudo_bytes(5));
             SimpleSAML_Logger::setTrackId($this->trackid);
@@ -173,6 +178,54 @@ class SimpleSAML_Session
         }
     }
 
+
+    /**
+     * Serialize this session object.
+     *
+     * This method will be invoked by any calls to serialize().
+     *
+     * @return string The serialized representation of this session object.
+     */
+    public function serialize()
+    {
+        $serialized = serialize(get_object_vars($this));
+        return $serialized;
+    }
+
+
+    /**
+     * Unserialize a session object and load it..
+     *
+     * This method will be invoked by any calls to unserialize(), allowing us to restore any data that might not
+     * be serializable in its original form (e.g.: DOM objects).
+     *
+     * @param string $serialized The serialized representation of a session that we want to restore.
+     */
+    public function unserialize($serialized)
+    {
+        $session = unserialize($serialized);
+        if (is_array($session)) {
+            foreach ($session as $k => $v) {
+                $this->$k = $v;
+            }
+        }
+
+        // look for any raw attributes and load them in the 'Attributes' array
+        foreach ($this->authData as $authority => $parameters) {
+            if (!array_key_exists('RawAttributes', $parameters)) {
+                continue;
+            }
+
+            foreach ($parameters['RawAttributes'] as $attribute => $values) {
+                foreach ($values as $idx => $value) { // this should be originally a DOMNodeList
+                    /* @var SAML2_XML_saml_AttributeValue $value */
+                    $this->authData[$authority]['Attributes'][$attribute][$idx] = $value->element->childNodes;
+                }
+            }
+        }
+    }
+
+
     /**
      * Retrieves the current session. Creates a new session if there's not one.
      *
@@ -187,15 +240,18 @@ class SimpleSAML_Session
         }
 
         // check if we have stored a session stored with the session handler
-        $prev = (self::$instance !== null);
+        $session = null;
         try {
             $session = self::getSession();
-
         } catch (Exception $e) {
-            // for some reason, we were unable to initialize this session, use a transient session instead
-            self::useTransientSession();
-
+            /*
+             * For some reason, we were unable to initialize this session. Note that this error might be temporary, and
+             * it's possible that we can recover from it in subsequent requests, so we should not try to create a new
+             * session here. Therefore, use just a transient session and throw the exception for someone else to handle
+             * it.
+             */
             SimpleSAML_Logger::error('Error loading session: '.$e->getMessage());
+            self::useTransientSession();
             if ($e instanceof SimpleSAML_Error_Exception) {
                 $cause = $e->getCause();
                 if ($cause instanceof Exception) {
@@ -216,12 +272,26 @@ class SimpleSAML_Session
          * error message). This means we don't need to create a new session again, we can use the one that's loaded now
          * instead.
          */
-        if (self::$instance !== null && !$prev) {
+        if (self::$instance !== null) {
             return self::$instance;
         }
 
-        // create a new session
-        return self::load(new SimpleSAML_Session());
+        // try to create a new session
+        try {
+            self::load(new SimpleSAML_Session());
+        } catch (\SimpleSAML\Error\CannotSetCookie $e) {
+            // can't create a regular session because we can't set cookies. Use transient.
+            self::useTransientSession();
+
+            if ($e->getCode() === \SimpleSAML\Error\CannotSetCookie::SECURE_COOKIE) {
+                throw new SimpleSAML_Error_Exception($e->getMessage());
+            }
+            SimpleSAML_Logger::error('Error creating session: '.$e->getMessage());
+        }
+
+        // we must have a session now, either regular or transient
+        return self::$instance;
+
     }
 
     /**
@@ -370,6 +440,23 @@ class SimpleSAML_Session
         }
     }
 
+
+    /**
+     * Save the current session and clean any left overs that could interfere with the normal application behaviour.
+     *
+     * Use this method if you are using PHP sessions in your application *and* in SimpleSAMLphp, *after* you are done
+     * using SimpleSAMLphp and before trying to access your application's session again.
+     */
+    public function cleanup()
+    {
+        $this->save();
+        $sh = SimpleSAML_SessionHandler::getSessionHandler();
+        if ($sh instanceof SimpleSAML_SessionHandlerPHP) {
+            $sh->restorePrevious();
+        }
+    }
+
+
     /**
      * Mark this session as dirty.
      *
@@ -474,6 +561,8 @@ class SimpleSAML_Session
      *
      * @param string     $authority The authority the user logged in with.
      * @param array|null $data The authentication data for this authority.
+     *
+     * @throws \SimpleSAML\Error\CannotSetCookie If the authentication token cannot be set for some reason.
      */
     public function doLogin($authority, array $data = null)
     {
@@ -506,6 +595,29 @@ class SimpleSAML_Session
             $data['Expire'] = $maxSessionExpire;
         }
 
+        // check if we have non-serializable attribute values
+        foreach ($data['Attributes'] as $attribute => $values) {
+            foreach ($values as $idx => $value) {
+                if (is_string($value) || is_int($value)) {
+                    continue;
+                }
+
+                // at this point, this should be a DOMNodeList object...
+                if (!is_a($value, 'DOMNodeList')) {
+                    continue;
+                }
+
+                /* @var \DOMNodeList $value */
+                if ($value->length === 0) {
+                    continue;
+                }
+
+                // create an AttributeValue object and save it to 'RawAttributes', using same attribute name and index
+                $attrval = new SAML2_XML_saml_AttributeValue($value->item(0)->parentNode);
+                $data['RawAttributes'][$attribute][$idx] = $attrval;
+            }
+        }
+
         $this->authData[$authority] = $data;
 
         $this->authToken = SimpleSAML\Utils\Random::generateID();
@@ -517,10 +629,23 @@ class SimpleSAML_Session
 
             $this->setRememberMeExpire();
         } else {
-            $sessionHandler->setCookie(
-                $globalConfig->getString('session.authtoken.cookiename', 'SimpleSAMLAuthToken'),
-                $this->authToken
-            );
+            try {
+                SimpleSAML\Utils\HTTP::setCookie(
+                    $globalConfig->getString('session.authtoken.cookiename', 'SimpleSAMLAuthToken'),
+                    $this->authToken,
+                    $sessionHandler->getCookieParams()
+                );
+            } catch (SimpleSAML\Error\CannotSetCookie $e) {
+                /*
+                 * Something went wrong when setting the auth token. We cannot recover from this, so we better log a
+                 * message and throw an exception. The user is not properly logged in anyway, so clear all login
+                 * information from the session.
+                 */
+                unset($this->authToken);
+                unset($this->authData[$authority]);
+                \SimpleSAML_Logger::error('Cannot set authentication token cookie: '.$e->getMessage());
+                throw $e;
+            }
         }
     }
 
@@ -632,7 +757,7 @@ class SimpleSAML_Session
 
         if ($this->authToken !== null) {
             $globalConfig = SimpleSAML_Configuration::getInstance();
-            $sessionHandler->setCookie(
+            \SimpleSAML\Utils\HTTP::setCookie(
                 $globalConfig->getString('session.authtoken.cookiename', 'SimpleSAMLAuthToken'),
                 $this->authToken,
                 $params

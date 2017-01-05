@@ -166,7 +166,7 @@ Requirements for authentication processing filters:
 
  - Must be derived from the `SimpleSAML_Auth_ProcessingFilter`-class.
  - If a constructor is implemented, it must first call the parent constructor, passing along all parameters, before accessing any of the parameters. In general, only the $config parameter should be accessed.
- - The `process(&$state)`-function must be implemented. If this function completes, it is assumed that processing is completed, and that the $request array has been updated.
+ - The `process(&$request)`-function must be implemented. If this function completes, it is assumed that processing is completed, and that the $request array has been updated.
  - If the `process`-function does not return, it must at a later time call `SimpleSAML_Auth_ProcessingChain::resumeProcessing` with the new request state. The request state must be an update of the array passed to the `process`-function.
  - No pages may be shown to the user from the `process`-function. Instead, the request state should be saved, and the user should be redirected to a new page. This must be done to prevent unpredictable events if the user for example reloads the page.
  - No state information should be stored in the filter object. It must instead be stored in the request state array. Any changes to variables in the filter object may be lost.

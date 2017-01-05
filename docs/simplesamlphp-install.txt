@@ -16,7 +16,7 @@ SimpleSAMLphp news and documentation
 
 This document is part of the SimpleSAMLphp documentation suite.
 
- * [List of all SimpleSAMLphp documentation](http://simplesamlphp.org/docs)
+ * [List of all SimpleSAMLphp documentation](https://simplesamlphp.org/docs)
  * [SimpleSAMLphp homepage](https://simplesamlphp.org)
 
 
@@ -33,12 +33,14 @@ Prerequisites
  * Some webserver capable of executing PHP scripts.
  * PHP version >= 5.3.0.
  * Support for the following PHP extensions:
-   * Always required: `date`, `dom`, `hash`, `libxml`, `openssl`, `pcre`, `SPL`, `zlib`
+   * Always required: `date`, `dom`, `hash`, `libxml`, `openssl`, `pcre`, `SPL`, `zlib`, `json`
+   * When automatically checking for latest versions, and used by some modules: `cURL`
    * When using encryption or digital signatures: `mcrypt`
    * When authenticating against LDAP server: `ldap`
    * When authenticating against RADIUS server: `radius`
-   * When saving session information to memcache-server: `memcache`
-   * When using database:
+   * When using native PHP session handler: `session`
+   * When saving session information to a memcache server: `memcache`
+   * When using databases:
      * Always: `PDO`
      * Database driver: (`mysql`, `pgsql`, ...)
 
@@ -108,7 +110,7 @@ Configuring Apache
 
 Examples below assume that SimpleSAMLphp is installed in the default location, `/var/simplesamlphp`. You may choose another location, but this requires a path update in a few files. See Appendix for details ‹Installing SimpleSAMLphp in alternative locations›.
 
-The only subdirectories of `SimpleSAMLphp` that needs to be accessible from the web is `www`. There are several ways of putting the SimpleSAMLphp depending on the way web sites are structured on your apache web server. Here is what I believe is the best configuration.
+The only subdirectory of `SimpleSAMLphp` that needs to be accessible from the web is `www`. There are several ways of exposing SimpleSAMLphp depending on the way web sites are structured on your Apache web server. The following is just one possible configuration.
 
 Find the Apache configuration file for the virtual hosts where you want to run SimpleSAMLphp. The configuration may look like this:
 
@@ -119,20 +121,37 @@ Find the Apache configuration file for the virtual hosts where you want to run S
             SetEnv SIMPLESAMLPHP_CONFIG_DIR /var/simplesamlphp/config
 
             Alias /simplesaml /var/simplesamlphp/www
+
+            <Directory /var/simplesamlphp/www>
+                <IfModule !mod_authz_core.c>
+                # For Apache 2.2:
+                Order allow,deny
+                Allow from all
+                </IfModule>
+                <IfModule mod_authz_core.c>
+                # For Apache 2.4:
+                Require all granted
+                </IfModule>
+            </Directory>
     </VirtualHost>
 
-Note the `Alias` directive, which gives control to SimpleSAMLphp for all urls matching `http(s)://service.example.com/simplesaml/*`. SimpleSAMLphp makes several SAML interfaces available on the web; all of them are included in the `www` subdirectory of your SimpleSAMLphp installation. You can name the alias whatever you want, but the name must be specified in the `config.php` file of simpleSAML as described in [the section called “SimpleSAMLphp configuration: config.php”](#sect.config "SimpleSAMLphp configuration: config.php"). Here is an example of how this configuration may look like in `config.php`:
+Note the `Alias` directive, which gives control to SimpleSAMLphp for all urls matching `http(s)://service.example.com/simplesaml/*`. SimpleSAMLphp makes several SAML interfaces available on the web; all of them are included in the `www` subdirectory of your SimpleSAMLphp installation. You can name the alias whatever you want, but the name must be specified in the `config.php` file of SimpleSAMLphp as described in [the section called “SimpleSAMLphp configuration: config.php”](#sect.config "SimpleSAMLphp configuration: config.php"). Here is an example of how this configuration may look like in `config.php`:
 
     $config = array (
     [...]
             'baseurlpath'                   => 'simplesaml/',
 
 Note also the `SetEnv` directive. It sets the `SIMPLESAMLPHP_CONFIG_DIR` environment variable, in this case, to the
-default location for the configuration directory. You can always omit this environment variable, and SimpleSAMLphp will
+default location for the configuration directory. You can omit this environment variable, and SimpleSAMLphp will
 then look for the `config` directory inside its own directory. If you need to move your configuration to a different
-location, you can use this environment variable to tell SimpleSAMLphp where to look for configuration files. Remember
-this works only for the `config` directory. If you need your metadata to be in a different directory too, use the
+location, you can use this environment variable to tell SimpleSAMLphp where to look for configuration files.
+This works only for the `config` directory. If you need your metadata to be in a different directory too, use the
 `metadatadir` configuration option to specify the location.
+
+This is just the basic configuration to get things working. For a checklist
+further completing your documentation, please see
+[Maintenance and configuration: Apache](simplesamlphp-maintenance#section_4).
+
 
 SimpleSAMLphp configuration: config.php
 ---------------------------------------
@@ -244,6 +263,7 @@ You have now successfully installed SimpleSAMLphp, and the next steps depends on
   * [Use case: Setting up an IdP for Google Apps](simplesamlphp-googleapps)
   * [Identity Provider Advanced Topics](simplesamlphp-idp-more)
  * [Automated Metadata Management](simplesamlphp-automated_metadata)
+ * [Maintenance and configuration](simplesamlphp-maintenance)
 
 
 Support
