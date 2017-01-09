@@ -656,6 +656,8 @@ $config = array(
     'language.cookie.name' => 'language',
     'language.cookie.domain' => null,
     'language.cookie.path' => '/',
+    'language.cookie.secure' => false,
+    'language.cookie.httponly' => false,
     'language.cookie.lifetime' => (60 * 60 * 24 * 900),
 
     /*
