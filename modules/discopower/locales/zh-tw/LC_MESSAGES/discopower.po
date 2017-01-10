@@ -30,6 +30,9 @@ msgstr "丹麥"
 msgid "{discopower:tabs:sweden}"
 msgstr "瑞典"
 
+msgid "{discopower:tabs:southafrica}"
+msgstr "南非"
+
 msgid "{discopower:tabs:edugain}"
 msgstr "歐洲 (eduGAIN)"
 
@@ -50,6 +53,9 @@ msgstr "雜項"
 
 msgid "Sweden"
 msgstr "瑞典"
+
+msgid "South Africa"
+msgstr "南非"
 
 msgid "Denmark"
 msgstr "丹麥"
