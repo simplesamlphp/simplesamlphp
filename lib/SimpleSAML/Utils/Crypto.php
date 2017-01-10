@@ -1,9 +1,9 @@
 <?php
+
 namespace SimpleSAML\Utils;
 
-
 /**
- * A class for cryptography-related functions
+ * A class for cryptography-related functions.
  *
  * @package SimpleSAMLphp
  */
@@ -17,7 +17,7 @@ class Crypto
      * @param string $secret The secret to use to decrypt the data.
      *
      * @return string The decrypted data.
-     * @htorws \InvalidArgumentException If $ciphertext is not a string.
+     * @throws \InvalidArgumentException If $ciphertext is not a string.
      * @throws \SimpleSAML_Error_Exception If the openssl module is not loaded.
      *
      * @see \SimpleSAML\Utils\Crypto::aesDecrypt()
@@ -48,7 +48,7 @@ class Crypto
      * @param string $ciphertext The IV used and the encrypted data, concatenated.
      *
      * @return string The decrypted data.
-     * @htorws \InvalidArgumentException If $ciphertext is not a string.
+     * @throws \InvalidArgumentException If $ciphertext is not a string.
      * @throws \SimpleSAML_Error_Exception If the openssl module is not loaded.
      *
      * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
@@ -183,7 +183,8 @@ class Crypto
      * This function will return an array with these elements:
      * - 'PEM': The public key/certificate in PEM-encoding.
      * - 'certData': The certificate data, base64 encoded, on a single line. (Only present if this is a certificate.)
-     * - 'certFingerprint': Array of valid certificate fingerprints. (Deprecated. Only present if this is a certificate.)
+     * - 'certFingerprint': Array of valid certificate fingerprints. (Deprecated. Only present if this is a
+     *   certificate.)
      *
      * @param \SimpleSAML_Configuration $metadata The metadata.
      * @param bool                      $required Whether the private key is required. If this is TRUE, a missing key
@@ -239,8 +240,10 @@ class Crypto
                 $fp = strtolower(str_replace(':', '', $fp));
             }
 
-            // We can't build a full certificate from a fingerprint, and may as well return an array with only the
-            //fingerprint(s) immediately.
+            /*
+             * We can't build a full certificate from a fingerprint, and may as well return an array with only the
+             * fingerprint(s) immediately.
+             */
             return array('certFingerprint' => $fps);
         }
 
@@ -321,7 +324,6 @@ class Crypto
 
         // match algorithm string (e.g. '{SSHA256}', '{MD5}')
         if (preg_match('/^{(.*?)}(.*)$/', $hash, $matches)) {
-
             // LDAP compatibility
             $alg = preg_replace('/^(S?SHA)$/', '${1}1', $matches[1]);
 
