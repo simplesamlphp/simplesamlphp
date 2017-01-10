@@ -63,37 +63,6 @@ class sspmod_authX509_Auth_Source_X509userCert extends SimpleSAML_Auth_Source
 
 
     /**
-     * Convert certificate from PEM to DER
-     *
-     * @param array $pem_data  PEM-encoded certificate
-     */
-    private function pem2der($pem_data)
-    {
-        $begin = "CERTIFICATE-----";
-        $end   = "-----END";
-        $pem_data = substr($pem_data,
-            strpos($pem_data, $begin)+strlen($begin));
-        $pem_data = substr($pem_data, 0, strpos($pem_data, $end));
-        $der = base64_decode($pem_data);
-        return $der;
-    }
-
-
-    /**
-     * Convert certificate from DER to PEM
-     *
-     * @param array $der_data  DER-encoded certificate
-     */
-    private function der2pem($der_data)
-    {
-        $pem = chunk_split(base64_encode($der_data), 64, "\n");
-        $pem = "-----BEGIN CERTIFICATE-----\n".$pem.
-            "-----END CERTIFICATE-----\n";
-        return $pem;
-    }
-
-
-    /**
      * Finish a failed authentication.
      *
      * This function can be overloaded by a child authentication
@@ -202,7 +171,7 @@ class sspmod_authX509_Auth_Source_X509userCert extends SimpleSAML_Auth_Source
         $ldap_certs = $merged_ldapcerts;
 
         foreach ($ldap_certs as $ldap_cert) {
-            $pem = $this->der2pem($ldap_cert);
+            $pem = \SimpleSAML\Utils\Crypto::der2pem($ldap_cert);
             $ldap_cert_data = openssl_x509_parse($pem);
             if($ldap_cert_data == false) {
                 SimpleSAML\Logger::error('authX509: cert in '.
