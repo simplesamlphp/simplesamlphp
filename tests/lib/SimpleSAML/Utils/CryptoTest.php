@@ -2,7 +2,6 @@
 
 namespace SimpleSAML\Test\Utils;
 
-
 /**
  * Tests for SimpleSAML\Utils\Crypto.
  */
@@ -14,7 +13,7 @@ class CryptoTest extends \PHPUnit_Framework_TestCase
      *
      * @expectedException \InvalidArgumentException
      *
-     * @covers SimpleSAML\Utils\Crypto::_aesDecrypt
+     * @covers \SimpleSAML\Utils\Crypto::_aesDecrypt
      */
     public function testAesDecryptBadInput()
     {
@@ -30,7 +29,7 @@ class CryptoTest extends \PHPUnit_Framework_TestCase
      *
      * @expectedException \InvalidArgumentException
      *
-     * @covers SimpleSAML\Utils\Crypto::_aesEncrypt
+     * @covers \SimpleSAML\Utils\Crypto::_aesEncrypt
      */
     public function testAesEncryptBadInput()
     {
@@ -45,7 +44,7 @@ class CryptoTest extends \PHPUnit_Framework_TestCase
      * Test that aesDecrypt() works properly, being able to decrypt some previously known (and correct)
      * ciphertext.
      *
-     * @covers SimpleSAML\Utils\Crypto::_aesDecrypt
+     * @covers \SimpleSAML\Utils\Crypto::_aesDecrypt
      */
     public function testAesDecrypt()
     {
@@ -66,8 +65,8 @@ class CryptoTest extends \PHPUnit_Framework_TestCase
     /**
      * Test that aesEncrypt() produces ciphertexts that aesDecrypt() can decrypt.
      *
-     * @covers SimpleSAML\Utils\Crypto::_aesDecrypt
-     * @covers SimpleSAML\Utils\Crypto::_aesEncrypt
+     * @covers \SimpleSAML\Utils\Crypto::_aesDecrypt
+     * @covers \SimpleSAML\Utils\Crypto::_aesEncrypt
      */
     public function testAesEncrypt()
     {
