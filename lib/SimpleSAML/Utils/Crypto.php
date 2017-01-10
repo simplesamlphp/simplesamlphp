@@ -111,6 +111,22 @@ class Crypto
 
 
     /**
+     * Convert data from DER to PEM encoding.
+     *
+     * @param string $der Data encoded in DER format.
+     * @param string $type The type of data we are encoding, as expressed by the PEM header. Defaults to "CERTIFICATE".
+     * @return string The same data encoded in PEM format.
+     * @see RFC7648 for known types and PEM format specifics.
+     */
+    public static function der2pem($der, $type = 'CERTIFICATE')
+    {
+        return "-----BEGIN ".$type."-----\n".
+               chunk_split(base64_encode($der), 64, "\n").
+               "-----END ".$type."-----\n";
+    }
+
+
+    /**
      * Load a private key from metadata.
      *
      * This function loads a private key from a metadata array. It looks for the following elements:
@@ -253,6 +269,35 @@ class Crypto
         } else {
             return null;
         }
+    }
+
+
+    /**
+     * Convert from PEM to DER encoding.
+     *
+     * @param string $pem Data encoded in PEM format.
+     * @return string The same data encoded in DER format.
+     * @throws \InvalidArgumentException If $pem is not encoded in PEM format.
+     * @see RFC7648 for PEM format specifics.
+     */
+    public static function pem2der($pem)
+    {
+        $pem   = trim($pem);
+        $begin = "-----BEGIN ";
+        $end   = "-----END ";
+        $lines = explode("\n", $pem);
+        $last  = count($lines) - 1;
+
+        if (strpos($lines[0], $begin) !== 0) {
+            throw new \InvalidArgumentException("pem2der: input is not encoded in PEM format.");
+        }
+        unset($lines[0]);
+        if (strpos($lines[$last], $end) !== 0) {
+            throw new \InvalidArgumentException("pem2der: input is not encoded in PEM format.");
+        }
+        unset($lines[$last]);
+
+        return base64_decode(implode($lines));
     }
 
 
