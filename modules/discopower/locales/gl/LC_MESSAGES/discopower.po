@@ -21,6 +21,9 @@ msgstr "Suiza"
 msgid "{discopower:tabs:greece}"
 msgstr "Grecia"
 
+msgid "{discopower:tabs:southafrica}"
+msgstr "Suráfrica"
+
 msgid "{discopower:tabs:denmark}"
 msgstr "Dinamarca"
 
@@ -59,6 +62,9 @@ msgstr "Noruega"
 
 msgid "Greece"
 msgstr "Grecia"
+
+msgid "South Africa"
+msgstr "Suráfrica"
 
 msgid "Miscellaneous"
 msgstr "Miscelanea"
