@@ -31,6 +31,26 @@ function present_assoc($attr)
     }
 }
 
+function present_eptid(\SimpleSAML\Locale\Translate $t, \SAML2\XML\saml\NameID $nameID)
+{
+    $eptid = array(
+        'NameID' => array($nameID->value),
+    );
+    if (!empty($nameID->Format)) {
+        $eptid[$t->t('{status:subject_format}')] = array($nameID->Format);
+    }
+    if (!empty($nameID->NameQualifier)) {
+        $eptid['NameQualifier'] = array($nameID->NameQualifier);
+    }
+    if (!empty($nameID->SPNameQualifier)) {
+        $eptid['SPNameQualifier'] = array($nameID->SPNameQualifier);
+    }
+    if (!empty($nameID->SPProvidedID)) {
+        $eptid['SPProvidedID'] = array($nameID->SPProvidedID);
+    }
+    return '<td class="attrvalue">'.present_assoc($eptid);
+}
+
 function present_attributes(SimpleSAML_XHTML_Template $t, $attributes, $nameParent)
 {
     $alternate = array('odd', 'even');
@@ -42,7 +62,8 @@ function present_attributes(SimpleSAML_XHTML_Template $t, $attributes, $namePare
 
     foreach ($attributes as $name => $value) {
         $nameraw = $name;
-        $name = $t->getTranslator()->getAttributeTranslation($parentStr.$nameraw);
+        $trans = $t->getTranslator();
+        $name = $trans->getAttributeTranslation($parentStr.$nameraw);
 
         if (preg_match('/^child_/', $nameraw)) {
             $parentName = preg_replace('/^child_/', '', $nameraw);
@@ -79,7 +100,7 @@ function present_attributes(SimpleSAML_XHTML_Template $t, $attributes, $namePare
                         '" /></td></tr>';
                 } elseif (is_a($value[0], 'DOMNodeList')) {
                     // try to see if we have a NameID here
-                    /** @var DOMNodeList $value[0] */
+                    /** @var DOMNodeList $value [0] */
                     $n = $value[0]->length;
                     for ($idx = 0; $idx < $n; $idx++) {
                         $elem = $value[0]->item($idx);
@@ -87,23 +108,12 @@ function present_attributes(SimpleSAML_XHTML_Template $t, $attributes, $namePare
                         if (!($elem->localName === 'NameID' && $elem->namespaceURI === \SAML2\Constants::NS_SAML)) {
                             continue;
                         }
-                        $nameID = new \SAML2\XML\saml\NameID($elem);
-                        $eptid = array(
-                            'NameID' => array($nameID->value),
-                        );
-                        if (!empty($nameID->Format)) {
-                            $eptid['Format'] = array($nameID->Format);
-                        }
-                        if (!empty($nameID->NameQualifier)) {
-                            $eptid['NameQualifier'] = array($nameID->NameQualifier);
-                        }
-                        if (!empty($nameID->SPNameQualifier)) {
-                            $eptid['SPNameQualifier'] = array($nameID->SPNameQualifier);
-                        }
-                        $str .= '<td class="attrvalue">';
-                        $str .= present_assoc($eptid);
+                        $str .= present_eptid($trans, new \SAML2\XML\saml\NameID($elem));
                         break; // we only support one NameID here
                     }
+                    $str .= '</td></tr>';
+                } elseif (is_a($value[0], '\SAML2\XML\saml\NameID')) {
+                    $str .= present_eptid($trans, $value[0]);
                     $str .= '</td></tr>';
                 } else {
                     $str .= '<td class="attrvalue">'.htmlspecialchars($value[0]).'</td></tr>';

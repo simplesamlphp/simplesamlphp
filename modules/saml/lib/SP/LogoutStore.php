@@ -152,11 +152,17 @@ class sspmod_saml_SP_LogoutStore {
 	/**
 	 * Register a new session in the datastore.
 	 *
+	 * Please observe the change of the signature in this method. Previously, the second parameter ($nameId) was forced
+	 * to be an array. However, it has no type restriction now, and the documentation states it must be a
+	 * \SAML2\XML\saml\NameID object. Currently, this function still accepts an array passed as $nameId, and will
+	 * silently convert it to a \SAML2\XML\saml\NameID object. This is done to keep backwards-compatibility, though will
+	 * no longer be possible in the future as the $nameId parameter will be required to be an object.
+	 *
 	 * @param string $authId  The authsource ID.
-	 * @param array $nameId  The NameID of the user.
+	 * @param \SAML2\XML\saml\NameID $nameId The NameID of the user.
 	 * @param string|NULL $sessionIndex  The SessionIndex of the user.
 	 */
-	public static function addSession($authId, array $nameId, $sessionIndex, $expire) {
+	public static function addSession($authId, $nameId, $sessionIndex, $expire) {
 		assert('is_string($authId)');
 		assert('is_string($sessionIndex) || is_null($sessionIndex)');
 		assert('is_int($expire)');
@@ -176,8 +182,11 @@ class sspmod_saml_SP_LogoutStore {
 			return;
 		}
 
-		/* Normalize NameID. */
-		ksort($nameId);
+		// serialize and anonymize the NameID
+        // TODO: remove this conditional statement
+		if (is_array($nameId)) {
+			$nameId = \SAML2\XML\saml\NameID::fromArray($nameId);
+		}
 		$strNameId = serialize($nameId);
 		$strNameId = sha1($strNameId);
 

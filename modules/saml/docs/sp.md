@@ -65,8 +65,7 @@ All these parameters override the equivalent option from the configuration.
 
 `saml:NameID`
 :   Add a Subject element with a NameID to the SAML AuthnRequest for the IdP.
-    This is an associative array with the fields for the NameID.
-    Example: `array('Value' => 'user@example.org', 'Format' => SAML2\Constants::NAMEID_UNSPECIFIED)`
+    This must be a \SAML2\XML\saml\NameID object.
 
 :   *Note*: SAML 2 specific.
 
