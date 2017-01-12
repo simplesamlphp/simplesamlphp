@@ -2,19 +2,16 @@
 
 namespace SimpleSAML\Store;
 
-use SimpleSAML\Store;
+use \SimpleSAML_Configuration as Configuration;
+use \SimpleSAML\Store;
 
 /**
- * A memcache based datastore.
+ * A memcache based data store.
  *
  * @package SimpleSAMLphp
  */
 class Memcache extends Store
 {
-    /**
-     * Initialize the memcache datastore.
-     */
-
     /**
      * This variable contains the session name prefix.
      *
@@ -22,21 +19,23 @@ class Memcache extends Store
      */
     private $prefix;
 
+
     /**
      * This function implements the constructor for this class. It loads the Memcache configuration.
      */
-    protected function __construct() {
-        $config = \SimpleSAML_Configuration::getInstance();
+    protected function __construct()
+    {
+        $config = Configuration::getInstance();
         $this->prefix = $config->getString('memcache_store.prefix', 'simpleSAMLphp');
     }
 
 
     /**
-     * Retrieve a value from the datastore.
+     * Retrieve a value from the data store.
      *
-     * @param string $type  The datatype.
-     * @param string $key  The key.
-     * @return mixed|NULL  The value.
+     * @param string $type The data type.
+     * @param string $key The key.
+     * @return mixed|null The value.
      */
     public function get($type, $key)
     {
@@ -48,11 +47,11 @@ class Memcache extends Store
 
 
     /**
-     * Save a value to the datastore.
+     * Save a value to the data store.
      *
-     * @param string $type  The datatype.
-     * @param string $key  The key.
-     * @param mixed $value  The value.
+     * @param string $type The data type.
+     * @param string $key The key.
+     * @param mixed $value The value.
      * @param int|NULL $expire  The expiration time (unix timestamp), or NULL if it never expires.
      */
     public function set($type, $key, $value, $expire = null)
@@ -70,10 +69,10 @@ class Memcache extends Store
 
 
     /**
-     * Delete a value from the datastore.
+     * Delete a value from the data store.
      *
-     * @param string $type  The datatype.
-     * @param string $key  The key.
+     * @param string $type The data type.
+     * @param string $key The key.
      */
     public function delete($type, $key)
     {

@@ -2,9 +2,9 @@
 
 namespace SimpleSAML\Store;
 
-use SimpleSAML\Logger;
-use SimpleSAML\Store;
-
+use \SimpleSAML_Configuration as Configuration;
+use \SimpleSAML\Logger;
+use \SimpleSAML\Store;
 
 /**
  * A data store using a RDBMS to keep the data.
@@ -13,7 +13,6 @@ use SimpleSAML\Store;
  */
 class SQL extends Store
 {
-
     /**
      * The PDO object for our database.
      *
@@ -51,7 +50,7 @@ class SQL extends Store
      */
     protected function __construct()
     {
-        $config = \SimpleSAML_Configuration::getInstance();
+        $config = Configuration::getInstance();
 
         $dsn = $config->getString('store.sql.dsn');
         $username = $config->getString('store.sql.username', null);
@@ -100,7 +99,6 @@ class SQL extends Store
      */
     private function initKVTable()
     {
-
         if ($this->getTableVersion('kvstore') === 1) {
             // Table initialized
             return;
@@ -191,8 +189,7 @@ class SQL extends Store
                 return;
         }
 
-        // Default implementation. Try INSERT, and UPDATE if that fails.
-
+        // default implementation, try INSERT, and UPDATE if that fails.
         $insertQuery = 'INSERT INTO '.$table.' '.$colNames.' '.$values;
         $insertQuery = $this->pdo->prepare($insertQuery);
         try {
@@ -212,7 +209,6 @@ class SQL extends Store
         $updateCols = array();
         $condCols = array();
         foreach ($data as $col => $value) {
-
             $tmp = $col.' = :'.$col;
 
             if (in_array($col, $keys, true)) {
@@ -233,7 +229,6 @@ class SQL extends Store
      */
     private function cleanKVStore()
     {
-
         Logger::debug('store.sql: Cleaning key-value store.');
 
         $query = 'DELETE FROM '.$this->prefix.'_kvstore WHERE _expire < :now';
@@ -322,7 +317,6 @@ class SQL extends Store
             '_value'  => $value,
             '_expire' => $expire,
         );
-
 
         $this->insertOrUpdate($this->prefix.'_kvstore', array('_type', '_key'), $data);
     }
