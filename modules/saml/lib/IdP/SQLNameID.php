@@ -10,9 +10,9 @@ class sspmod_saml_IdP_SQLNameID  {
 	/**
 	 * Create NameID table in SQL, if it is missing.
 	 *
-	 * @param SimpleSAML_Store_SQL $store  The datastore.
+	 * @param \SimpleSAML\Store\SQL $store  The datastore.
 	 */
-	private static function createTable(SimpleSAML_Store_SQL $store) {
+	private static function createTable(\SimpleSAML\Store\SQL $store) {
 
 		if ($store->getTableVersion('saml_PersistentNameID') === 1) {
 			return;
@@ -39,12 +39,12 @@ class sspmod_saml_IdP_SQLNameID  {
 	 *
 	 * Will also ensure that the NameID table is present.
 	 *
-	 * @return SimpleSAML_Store_SQL  SQL datastore.
+	 * @return \SimpleSAML\Store\SQL  SQL datastore.
 	 */
 	private static function getStore() {
 
-		$store = SimpleSAML_Store::getInstance();
-		if (!($store instanceof SimpleSAML_Store_SQL)) {
+		$store = \SimpleSAML\Store::getInstance();
+		if (!($store instanceof \SimpleSAML\Store\SQL)) {
 			throw new SimpleSAML_Error_Exception('SQL NameID store requires SimpleSAMLphp to be configured with a SQL datastore.');
 		}
 
@@ -57,7 +57,7 @@ class sspmod_saml_IdP_SQLNameID  {
 	/**
 	 * Add a NameID into the database.
 	 *
-	 * @param SimpleSAML_Store_SQL $store  The data store.
+	 * @param \SimpleSAML\Store\SQL $store  The data store.
 	 * @param string $idpEntityId  The IdP entityID.
 	 * @param string $spEntityId  The SP entityID.
 	 * @param string $user  The user's unique identificator (e.g. username).

@@ -12,7 +12,7 @@ class SimpleSAML_SessionHandlerStore extends SimpleSAML_SessionHandlerCookie
     /**
      * The data store we save the session to.
      *
-     * @var SimpleSAML_Store
+     * @var \SimpleSAML\Store
      */
     private $store;
 
@@ -20,9 +20,9 @@ class SimpleSAML_SessionHandlerStore extends SimpleSAML_SessionHandlerCookie
     /**
      * Initialize the session.
      *
-     * @param SimpleSAML_Store $store The store to use.
+     * @param \SimpleSAML\Store $store The store to use.
      */
-    protected function __construct(SimpleSAML_Store $store)
+    protected function __construct(\SimpleSAML\Store $store)
     {
         parent::__construct();
 
