@@ -2,7 +2,6 @@
 
 namespace SimpleSAML;
 
-
 use SimpleSAML\Error\CriticalConfigurationError;
 
 /**
@@ -12,13 +11,12 @@ use SimpleSAML\Error\CriticalConfigurationError;
  */
 abstract class Store
 {
-
     /**
      * Our singleton instance.
      *
      * This is false if the data store isn't enabled, and null if we haven't attempted to initialize it.
      *
-     * @var Store|false|null
+     * @var \SimpleSAML\Store|false|null
      */
     private static $instance;
 
@@ -26,13 +24,12 @@ abstract class Store
     /**
      * Retrieve our singleton instance.
      *
-     * @return false|Store The data store, or false if it isn't enabled.
+     * @return false|\SimpleSAML\Store The data store, or false if it isn't enabled.
      *
-     * @throws CriticalConfigurationError
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
     public static function getInstance()
     {
-
         if (self::$instance !== null) {
             return self::$instance;
         }
@@ -103,5 +100,4 @@ abstract class Store
      * @param string $key The key.
      */
     abstract public function delete($type, $key);
-
 }
