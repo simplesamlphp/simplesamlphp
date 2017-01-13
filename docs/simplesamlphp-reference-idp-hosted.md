@@ -143,14 +143,14 @@ Common options
 		'contacts' => array(
 		    array(
 		        'contactType'       => 'other',
-		        'emailAddress'      => 'abuse@example.org',
+		        'emailAddress'      => 'mailto:abuse@example.org',
 		        'givenName'         => 'John',
 		        'surName'           => 'Doe',
 		        'telephoneNumber'   => '+31(0)12345678',
 		        'company'           => 'Example Inc.',
 		        'attributes'        => array(
 		            'xmlns:remd'        => 'http://refeds.org/metadata',
-		            'remd:contactType   => 'http://refeds.org/metadata/contactType/security',
+		            'remd:contactType'  => 'http://refeds.org/metadata/contactType/security',
 		        ),
 		    ),
 		), 
