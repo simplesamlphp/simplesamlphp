@@ -272,21 +272,12 @@ directory. To be found and called, the function must be named
 
     <module_name>_hook_attributepresentation(&$para).
 
-<<<<<<< 59976e67b79ddef0d918d0e7c23ea2ab912ab1d8
 The parameter `$para` is a reference to the attribute array. By manipulating
 this array you can change the way the attributes are presented to the user on
 the consent and status page.
 
 If you want the attributes to be listed in more than one level, you can make
 the function add a `child_` prefix to the root node attribute name in a recursive
-=======
-The parameter $para is an reference to the attribute array. By manipulating
-this array you can change the way the attribute are presented to the user on
-the consent and status page.
-
-If you want the attributes to be listed in more than one level, you can make
-the function add a child_ prefix to the root node attribute name in a recursive
->>>>>>> Improve PSR-2 compliance, including bits of code within the same modules that are unrelated to the original patch
 attribute tree.
 
 
