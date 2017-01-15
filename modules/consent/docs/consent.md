@@ -160,7 +160,7 @@ The following options can be used when configuring the Consent module
     the attributes that should have it value hidden. Default behaviour is that
     all attribute values are shown
 
-`noconsentattributes`
+`attributes.exclude`
 :   Allows certain attributes to be excluded from the attribute hash when
     `includeValues` is `true` (and as a side effect, to be hidden from display
 	as `hiddenAttributes` does). Set to an array of the attributes that should
