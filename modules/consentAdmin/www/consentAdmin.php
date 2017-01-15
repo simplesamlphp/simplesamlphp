@@ -51,7 +51,7 @@ function driveProcessingChain(
     $attributes = $authProcState['Attributes'];
 
     // Remove attributes that do not require consent
-    foreach ($attributes AS $attrkey => $attrval) {
+    foreach ($attributes as $attrkey => $attrval) {
         if (in_array($attrkey, $noconsentAttributes)) {
             unset($attributes[$attrkey]);
         }
@@ -146,7 +146,7 @@ SimpleSAML\Logger::critical('consentAdmin: sp: '.$sp_entityid.' action: '.$actio
 
 // Remove services, whitch have consent disabled
 if (isset($idp_metadata['consent.disable'])) {
-    foreach ($idp_metadata['consent.disable'] AS $disable) {
+    foreach ($idp_metadata['consent.disable'] as $disable) {
         if (array_key_exists($disable, $all_sp_metadata)) {
             unset($all_sp_metadata[$disable]);
         }

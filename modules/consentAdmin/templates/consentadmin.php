@@ -67,7 +67,7 @@ span.showhide {
             $show_text = $this->t('{consentAdmin:consentadmin:show}');
             $hide_text = $this->t('{consentAdmin:consentadmin:hide}');
             $attributes_text = $this->t('{consentAdmin:consentadmin:attributes_text}');
-            foreach ($spList AS $spName => $spValues) {
+            foreach ($spList as $spName => $spValues) {
                 $this->getTranslator()->includeInlineTranslation('spname', $spValues['name']);
                 $this->getTranslator()->includeInlineTranslation('spdescription', $spValues['description']);
                 if (!is_null($spValues['serviceurl'])) {
@@ -92,7 +92,7 @@ TRSTART;
                     echo '<p>' . $this->t('{consentAdmin:consentadmin:consentadmin_purpose}') . ' ' . $spDescription . '</p>';
                 }
                 echo "\n<ul>\n";
-                foreach ($attributes AS $name => $value) {
+                foreach ($attributes as $name => $value) {
 
                 if (isset($this->data['attribute_' . htmlspecialchars(strtolower($name)) ])) {
                   $name = $this->data['attribute_' . htmlspecialchars(strtolower($name))];
@@ -100,7 +100,7 @@ TRSTART;
                 $name = $this->getTranslator()->getAttributeTranslation($name); // translate
                 if (sizeof($value) > 1) {
                         echo "<li>" . htmlspecialchars($name) . ":\n<ul>\n";
-                        foreach ($value AS $v) {
+                        foreach ($value as $v) {
                             echo '<li>' . htmlspecialchars($v) . "</li>\n";
                         }
                         echo "</ul>\n</li>\n";

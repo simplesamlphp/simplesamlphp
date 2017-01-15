@@ -17,7 +17,7 @@ $config = array(
     ),
 
     // Hash attributes including values or not
-    'attributes.hash' => TRUE,
+    'attributes.hash' => true,
 
     // If you set noconsentattributes in the consent module, this must match
     // 'attributes.noconsent' => array(),
