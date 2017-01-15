@@ -8,9 +8,9 @@
  * @package SimpleSAMLphp
  */
 /**
- * Explicit instruct consent page to send no-cache header to browsers to make 
+ * Explicit instruct consent page to send no-cache header to browsers to make
  * sure the users attribute information are not store on client disk.
- * 
+ *
  * In an vanilla apache-php installation is the php variables set to:
  *
  * session.cache_limiter = nocache
@@ -57,7 +57,7 @@ if (array_key_exists('yes', $_REQUEST)) {
     }
     SimpleSAML_Stats::log('consent:accept', $statsInfo);
 
-    if (   array_key_exists('consent:store', $state) 
+    if (   array_key_exists('consent:store', $state)
         && array_key_exists('saveconsent', $_REQUEST)
         && $_REQUEST['saveconsent'] === '1'
     ) {
@@ -70,7 +70,7 @@ if (array_key_exists('yes', $_REQUEST)) {
         SimpleSAML\Logger::debug(
             'Consent - saveConsent() : [' . $userId . '|' .
             $targetedId . '|' .  $attributeSet . ']'
-        );	
+        );
         try {
             $store->saveConsent($userId, $targetedId, $attributeSet);
         } catch (Exception $e) {
@@ -86,7 +86,7 @@ $attributes = $state['Attributes'];
 $noconsentattributes = $state['consent:noconsentattributes'];
 
 // Remove attributes that do not require consent
-foreach ($attributes AS $attrkey => $attrval) {
+foreach ($attributes as $attrkey => $attrval) {
     if (in_array($attrkey, $noconsentattributes, true)) {
         unset($attributes[$attrkey]);
     }
@@ -120,7 +120,7 @@ if (array_key_exists('privacypolicy', $state['Destination'])) {
 if ($privacypolicy !== false) {
     $privacypolicy = str_replace(
         '%SPENTITYID%',
-        urlencode($spentityid), 
+        urlencode($spentityid),
         $privacypolicy
     );
 }
