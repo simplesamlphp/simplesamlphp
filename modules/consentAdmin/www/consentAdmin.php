@@ -88,7 +88,7 @@ if (array_key_exists('logout', $_REQUEST)) {
 
 $hashAttributes = $cA_config->getValue('attributes.hash');
 
-$noconsentAttributes = $cA_config->getValue('attributes.noconsent', array());
+$noconsentAttributes = $cA_config->getValue('attributes.exclude', array());
 
 // Check if valid local session exists
 $as->requireAuth();
