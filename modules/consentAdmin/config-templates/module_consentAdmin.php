@@ -19,8 +19,8 @@ $config = array(
     // Hash attributes including values or not
     'attributes.hash' => true,
 
-    // If you set noconsentattributes in the consent module, this must match
-    // 'attributes.noconsent' => array(),
+    // If you set attributes.exclude in the consent module, this must match
+    // 'attributes.exclude' => array(),
 
     // Where to direct the user after logout
     // REMEMBER to prefix with http:// otherwise the relaystate is only appended
