@@ -319,8 +319,15 @@ class HTTP
         // validates the URL's host is among those allowed
         if (is_array($trustedSites)) {
             assert(is_array($trustedSites));
-            preg_match('@^https?://([^/]+)@i', $url, $matches);
-            $hostname = $matches[1];
+            preg_match('@^http(s?)://([^/:]+)((?::\d+)?)@i', $url, $matches);
+            $hostname = $matches[2];
+
+            // allow URLs with standard ports specified (non-standard ports must then be allowed explicitly)
+            if (!empty($matches[3]) &&
+                (($matches[1] === '' && $matches[3] !== ':80') || ($matches[1]) === 's' && $matches[3] !== ':443')
+            ) {
+                $hostname = $hostname.$matches[3];
+            }
 
             // add self host to the white list
             $self_host = self::getSelfHost();
