@@ -85,8 +85,8 @@ class HTTP
             return false;
         }
 
-        // otherwise, HTTPS will be a non-empty string
-        return $_SERVER['HTTPS'] !== '';
+        // otherwise, HTTPS will be non-empty
+        return !empty($_SERVER['HTTPS']);
     }
 
 
