@@ -117,7 +117,10 @@ class Metadata
 
         // check attributes is an associative array
         if (isset($contact['attributes'])) {
-            if (empty($contact['attributes']) || !is_array($contact['attributes']) || count(array_filter(array_keys($contact['attributes']), 'is_string')) == 0) {
+            if (empty($contact['attributes']) 
+                || !is_array($contact['attributes']) 
+                || count(array_filter(array_keys($contact['attributes']), 'is_string')) === 0
+            ) {
                 throw new \InvalidArgumentException('"attributes" must be an array and cannot be empty.');
             }
         }
