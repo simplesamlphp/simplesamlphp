@@ -404,6 +404,7 @@ class SimpleSAML_Metadata_SAMLBuilder
         $attributeconsumer = new \SAML2\XML\md\AttributeConsumingService();
 
         $attributeconsumer->index = 0;
+        $attributeconsumer->isDefault = true;
 
         $attributeconsumer->ServiceName = $name;
         $attributeconsumer->ServiceDescription = $metadata->getLocalizedString('description', array());
