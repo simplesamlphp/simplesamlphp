@@ -974,7 +974,7 @@ class sspmod_saml_IdP_SAML2
 
         if (isset($state['saml:NameID'][$nameIdFormat])) {
             $nameId = $state['saml:NameID'][$nameIdFormat];
-            $nameId['Format'] = $nameIdFormat;
+            $nameId->Format = $nameIdFormat;
         } else {
             $spNameQualifier = $spMetadata->getString('SPNameQualifier', null);
             if ($spNameQualifier === null) {
@@ -995,11 +995,10 @@ class sspmod_saml_IdP_SAML2
                 }
             }
 
-            $nameId = array(
-                'Format'          => $nameIdFormat,
-                'Value'           => $nameIdValue,
-                'SPNameQualifier' => $spNameQualifier,
-            );
+            $nameId = new \SAML2\XML\saml\NameID();
+            $nameId->Format = $nameIdFormat;
+            $nameId->value = $nameIdValue;
+            $nameId->SPNameQualifier = $spNameQualifier;
         }
 
         $state['saml:idp:NameID'] = $nameId;

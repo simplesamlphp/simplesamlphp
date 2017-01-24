@@ -21,7 +21,7 @@ if (!($source instanceof sspmod_saml_Auth_Source_SP)) {
 
 $entityId = $source->getEntityId();
 $spconfig = $source->getMetadata();
-$store = SimpleSAML_Store::getInstance();
+$store = \SimpleSAML\Store::getInstance();
 
 $metaArray20 = array();
 
@@ -34,7 +34,7 @@ $slob = $spconfig->getArray('SingleLogoutServiceBinding', $slosvcdefault);
 $slol = SimpleSAML\Module::getModuleURL('saml/sp/saml2-logout.php/'.$sourceId);
 
 foreach ($slob as $binding) {
-    if ($binding == \SAML2\Constants::BINDING_SOAP && !($store instanceof SimpleSAML_Store_SQL)) {
+    if ($binding == \SAML2\Constants::BINDING_SOAP && !($store instanceof \SimpleSAML\Store\SQL)) {
         // we cannot properly support SOAP logout
         continue;
     }

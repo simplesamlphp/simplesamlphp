@@ -190,8 +190,8 @@ class SP_Test extends \PHPUnit_Framework_TestCase
         $ar = $this->createAuthnRequest($state);
 
         $nameID = $ar->getNameId();
-        $this->assertEquals($state['saml:NameID']['Value'], $nameID['Value']);
-        $this->assertEquals($state['saml:NameID']['Format'], $nameID['Format']);
+        $this->assertEquals($state['saml:NameID']['Value'], $nameID->value);
+        $this->assertEquals($state['saml:NameID']['Format'], $nameID->Format);
 
         /** @var $xml \DOMElement */
         $xml = $ar->toSignedXML();

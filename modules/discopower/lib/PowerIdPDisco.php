@@ -186,7 +186,7 @@ class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco
      */
     protected function filterList($list)
     {
-        parent::filterList($list);
+        $list = parent::filterList($list);
 
         try {
             $spmd = $this->metadata->getMetaData($this->spEntityId, 'saml20-sp-remote');
@@ -259,6 +259,7 @@ class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco
             'edugain' => $t->noop('{discopower:tabs:edugain}'),
             'finland' => $t->noop('{discopower:tabs:finland}'),
             'greece' => $t->noop('{discopower:tabs:greece}'),
+            'southafrica' => $t->noop('{discopower:tabs:southafrica}'),
             'iceland' => $t->noop('{discopower:tabs:iceland}'),
             'incommon' => $t->noop('{discopower:tabs:incommon}'),
             'kalmar' => $t->noop('{discopower:tabs:kalmar}'),

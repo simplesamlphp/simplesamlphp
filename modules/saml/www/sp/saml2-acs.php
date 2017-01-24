@@ -134,7 +134,7 @@ $foundAuthnStatement = false;
 foreach ($assertions as $assertion) {
 
     // check for duplicate assertion (replay attack)
-    $store = SimpleSAML_Store::getInstance();
+    $store = \SimpleSAML\Store::getInstance();
     if ($store !== false) {
         $aID = $assertion->getId();
         if ($store->get('saml.AssertionReceived', $aID) !== null) {

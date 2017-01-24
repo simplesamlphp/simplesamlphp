@@ -78,6 +78,18 @@
 		"af": "Griekeland",
 		"el": "\u0395\u03bb\u03bb\u03ac\u03b4\u03b1"
 	},
+	"southafrica": {
+		"es": "Sud\u00e1frica",
+		"ru": "\u042e\u0436\u043d\u0430\u044f \u0410\u0444\u0440\u0438\u043a\u0430",
+		"zh-tw": "\u5357\u975e",
+		"nl": "Zuid-Afrika",
+		"gl": "Sur\u00e1frica",
+		"da": "Sydafrika",
+		"af": "Suid-Afrika",
+		"el": "\u039d\u03cc\u03c4\u03b9\u03b1 \u0391\u03c6\u03c1\u03b9\u03ba\u03ae",
+		"xh": "uMzantsi Afrika",
+		"zu": "iNingizimu Afrika"
+	},
 	"edugain": {
 		"es": "Europa (eduGAIN)",
 		"ru": "\u0415\u0432\u0440\u043e\u043f\u0430 (eduGAIN)",

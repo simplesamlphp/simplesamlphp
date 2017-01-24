@@ -218,7 +218,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 		}
 
 		if (isset($state['saml:NameID'])) {
-			if (!is_array($state['saml:NameID'])) {
+			if (!is_array($state['saml:NameID']) && !is_a($state['saml:NameID'], '\SAML2\XML\saml\NameID')) {
 				throw new SimpleSAML_Error_Exception('Invalid value of $state[\'saml:NameID\'].');
 			}
 			$ar->setNameId($state['saml:NameID']);

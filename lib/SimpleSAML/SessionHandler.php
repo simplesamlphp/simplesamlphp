@@ -118,11 +118,11 @@ abstract class SimpleSAML_SessionHandler
     private static function createSessionHandler()
     {
 
-        $store = SimpleSAML_Store::getInstance();
+        $store = \SimpleSAML\Store::getInstance();
         if ($store === false) {
             self::$sessionHandler = new SimpleSAML_SessionHandlerPHP();
         } else {
-            /** @var SimpleSAML_Store $store At this point, $store can only be an object */
+            /** @var \SimpleSAML\Store $store At this point, $store can only be an object */
             self::$sessionHandler = new SimpleSAML_SessionHandlerStore($store);
         }
     }

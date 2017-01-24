@@ -24,6 +24,9 @@ msgstr "Ελβετία"
 msgid "{discopower:tabs:greece}"
 msgstr "Ελλάδα"
 
+msgid "{discopower:tabs:southafrica}"
+msgstr "Νότια Αφρική"
+
 msgid "{discopower:tabs:kalmar}"
 msgstr "Kalmar"
 
@@ -74,6 +77,9 @@ msgstr "Νορβηγία"
 
 msgid "Greece"
 msgstr "Ελλάδα"
+
+msgid "South Africa"
+msgstr "Νότια Αφρική"
 
 msgid "Miscellaneous"
 msgstr "Άλλοι φορείς"
