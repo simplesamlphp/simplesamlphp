@@ -132,7 +132,7 @@ class Test_Core_Auth_Process_AttributeCopy extends PHPUnit_Framework_TestCase
         );
         $request = array(
             'Attributes' => array(
-                'test' => array('value1'),
+                'test' => 100,
             ),
         );
         $result = self::processFilter($config, $request);
