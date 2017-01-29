@@ -439,8 +439,10 @@ class SimpleSAML_Memcache
 
         foreach (self::getMemcacheServers() as $sg) {
             $stats = $sg->getExtendedStats();
-            if ($stats === false) {
-                throw new Exception('Failed to get memcache server status.');
+            foreach ($stats as $server => $data) {
+                if ($data === false) {
+                    throw new Exception('Failed to get memcache server status.');
+                }
             }
 
             $stats = SimpleSAML\Utils\Arrays::transpose($stats);
