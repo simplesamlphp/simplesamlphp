@@ -107,12 +107,7 @@ class sspmod_authlinkedin_Auth_Source_LinkedIn extends SimpleSAML_Auth_Source {
 
 		$userdata = $consumer->getUserInfo('https://api.linkedin.com/v1/people/~:(' . $this->attributes . ')', $accessToken, array('http' => array('header' => 'x-li-format: json')));
 
-		$attributes = array();
-		foreach($userdata AS $key => $value) {
-			if (is_string($value))
-				$attributes['linkedin.' . $key] = array((string)$value);
-
-		}
+        $attributes = $this->flatten($userdata, 'linkedin.');
 
 		// TODO: pass accessToken: key, secret + expiry as attributes?
 
@@ -125,4 +120,43 @@ class sspmod_authlinkedin_Auth_Source_LinkedIn extends SimpleSAML_Auth_Source {
 
 		$state['Attributes'] = $attributes;
 	}
+
+    /**
+     * takes an associative array, traverses it and returns the keys concatenated with a dot
+     *
+     * e.g.:
+     *
+     * [
+     *   'linkedin' => [
+     *     'location' =>  [
+     *       'id' => '123456'
+     *       'country' => [
+     *          'code' => 'de'
+     *       ]
+     *   ]
+     * ]
+     *
+     * become:
+     *
+     * [
+     *   'linkedin.location.id' => [0 => '123456'],
+     *   'linkedin.location.country.code' => [0 => 'de']
+     * ]
+     *
+     * @param array $array
+     * @param string $prefix
+     *
+     * @return array the array with the new concatenated keys
+     */
+    protected function flatten($array, $prefix = '') {
+        $result = array();
+        foreach ($array as $key => $value) {
+            if (is_array($value)) {
+                $result = $result + $this->flatten($value, $prefix . $key . '.');
+            } else {
+                $result[$prefix . $key] = array($value);
+            }
+        }
+        return $result;
+    }
 }
