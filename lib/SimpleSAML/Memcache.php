@@ -162,7 +162,7 @@ class SimpleSAML_Memcache
 
         // store this object to all groups of memcache servers
         foreach (self::getMemcacheServers() as $server) {
-            if (self::$extension == 'memcached') {
+            if (self::$extension === 'memcached') {
                 $server->set($key, $savedInfoSerialized, $expire);
             }
             else {
@@ -290,11 +290,10 @@ class SimpleSAML_Memcache
         }
 
         // add this server to the Memcache object
-        if (self::$extension == 'memcached') {
+        if (self::$extension === 'memcached') {
             $memcache->addServer($hostname, $port);
-        }
-        else {
-            $memcache->addServer($hostname, $port, TRUE, $weight, $timeout, $timeout, TRUE);
+        } else {
+            $memcache->addServer($hostname, $port, true, $weight, $timeout, $timeout, true);
         }
     }
 
