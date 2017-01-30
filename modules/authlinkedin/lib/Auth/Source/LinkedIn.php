@@ -107,12 +107,7 @@ class sspmod_authlinkedin_Auth_Source_LinkedIn extends SimpleSAML_Auth_Source {
 
 		$userdata = $consumer->getUserInfo('https://api.linkedin.com/v1/people/~:(' . $this->attributes . ')', $accessToken, array('http' => array('header' => 'x-li-format: json')));
 
-		$attributes = array();
-		foreach($userdata AS $key => $value) {
-			if (is_string($value))
-				$attributes['linkedin.' . $key] = array((string)$value);
-
-		}
+        $attributes = $this->flatten($userdata, 'linkedin.');
 
 		// TODO: pass accessToken: key, secret + expiry as attributes?
 
@@ -125,4 +120,23 @@ class sspmod_authlinkedin_Auth_Source_LinkedIn extends SimpleSAML_Auth_Source {
 
 		$state['Attributes'] = $attributes;
 	}
+
+    /**
+     * @param $array
+     * @param string $prefix
+     *
+     * @return array
+     */
+    protected function flatten($array, $prefix = '') {
+        $result = [];
+        foreach($array as $key => $value) {
+            if(is_array($value)) {
+                $result = $result + $this->flatten($value, $prefix . $key . '.');
+            }
+            else {
+                $result[$prefix . $key] = [$value];
+            }
+        }
+        return $result;
+    }
 }
