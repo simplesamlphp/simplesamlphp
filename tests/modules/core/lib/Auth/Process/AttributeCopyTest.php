@@ -128,11 +128,11 @@ class Test_Core_Auth_Process_AttributeCopy extends PHPUnit_Framework_TestCase
     public function testWrongAttributeValue()
     {
         $config = array(
-            'test' => array('test2'),
+            'test' => 100,
         );
         $request = array(
             'Attributes' => array(
-                'test' => 100,
+                'test' => array('value1'),
             ),
         );
         $result = self::processFilter($config, $request);
