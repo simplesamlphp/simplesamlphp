@@ -168,8 +168,8 @@ abstract class sspmod_ldap_Auth_Process_BaseFilter extends SimpleSAML_Auth_Proce
                     $authconfig['ldap.password']   = $authsource['search.password'];
                 }
                 // Only set the username attribute if the authsource specifies one attribute
-                if ($authsource['search.enable'] && isset($authsource['search.attributes'])
-                     && is_array($authsource['search.attributes']) && count($authsource['search.attributes']) == 1) {
+                if (isset($authsource['search.attributes']) && is_array($authsource['search.attributes'])
+                     && count($authsource['search.attributes']) == 1) {
                     $authconfig['attribute.username'] = reset($authsource['search.attributes']);
                 }
             }
