@@ -333,6 +333,9 @@ class SimpleSAML_XHTML_Template
         if ($this->translator->getLanguage()->isLanguageRTL()) {
             $this->data['isRTL'] = true;
         }
+
+        // add query parameters, in case we need them in the template
+        $this->data['queryParams'] = $_GET;
     }
 
 
