@@ -201,6 +201,9 @@ class Test_SimpleSAML_Configuration extends PHPUnit_Framework_TestCase
 
         $this->assertEquals($c->resolvePath('slash/'), '/basedir/slash');
         $this->assertEquals($c->resolvePath('slash//'), '/basedir/slash');
+
+        $this->assertEquals($c->resolvePath('C:\\otherdir'), 'C:/otherdir');
+        $this->assertEquals($c->resolvePath('C:/otherdir'), 'C:/otherdir');
     }
 
     /**

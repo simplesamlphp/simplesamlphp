@@ -121,13 +121,20 @@ class System
             $base = $config->getBaseDir();
         }
 
+        // normalise directory separator
+        $base = str_replace('\\', '/', $base);
+        $path = str_replace('\\', '/', $path);
+
         // remove trailing slashes
         $base = rtrim($base, '/');
+        $path = rtrim($path, '/');
 
         // check for absolute path
         if (substr($path, 0, 1) === '/') {
             // absolute path. */
             $ret = '/';
+        } elseif (static::pathContainsDriveLetter($path)) {
+            $ret = '';
         } else {
             // path relative to base
             $ret = $base;
@@ -140,7 +147,7 @@ class System
             } elseif ($d === '..') {
                 $ret = dirname($ret);
             } else {
-                if (substr($ret, -1) !== '/') {
+                if ($ret && substr($ret, -1) !== '/') {
                     $ret .= '/';
                 }
                 $ret .= $d;
@@ -203,5 +210,19 @@ class System
                 'Error moving "'.$tmpFile.'" to "'.$filename.'": '.$error['message']
             );
         }
+    }
+
+    /**
+     * Check if the supplied path contains a Windows-style drive letter.
+     *
+     * @param string $path
+     *
+     * @return bool
+     */
+    private static function pathContainsDriveLetter($path)
+    {
+        $letterAsciiValue = ord(strtoupper(substr($path, 0, 1)));
+        return substr($path, 1, 1) === ':'
+                && $letterAsciiValue >= 65 && $letterAsciiValue <= 90;
     }
 }
