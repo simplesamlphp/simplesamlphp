@@ -51,11 +51,16 @@ $config = array(
         /*
          * The attributes parameter must contain an array of desired attributes by the SP.
          * The attributes can be expressed as an array of names or as an associative array
-         * in the form of 'friendlyName' => 'name'.
+         * in the form of 'friendlyName' => 'name'. This feature requires 'name' to be set.
          * The metadata will then be created as follows:
          * <md:RequestedAttribute FriendlyName="friendlyName" Name="name" />
          */
-        /*'attributes' => array(
+        /*'name' => array(
+             'en' => 'A service',
+             'no' => 'En tjeneste',
+          ),
+
+          'attributes' => array(
             'attrname' => 'urn:oid:x.x.x.x',
         ),*/
         /*'attributes.required' => array (
