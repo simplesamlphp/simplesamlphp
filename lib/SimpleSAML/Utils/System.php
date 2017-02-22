@@ -31,11 +31,11 @@ class System
         if (stristr(PHP_OS, 'LINUX')) {
             return self::LINUX;
         }
-        if (stristr(PHP_OS, 'WIN')) {
-            return self::WINDOWS;
-        }
         if (stristr(PHP_OS, 'DARWIN')) {
             return self::OSX;
+        }
+        if (stristr(PHP_OS, 'WIN')) {
+            return self::WINDOWS;
         }
         if (stristr(PHP_OS, 'BSD')) {
             return self::BSD;
