@@ -113,4 +113,21 @@ class ConsentTest extends \PHPUnit_Framework_TestCase
         // the state should NOT have changed because NO consent should be necessary (match)
         $this->assertEquals($request, $result);
     }
+
+    public function testAttributeHastIsConsistentWhenOrderOfValuesChange()
+    {
+        $attributes1 = [
+            'attribute1' => ['val1', 'val2'],
+            'attribute2' => ['val1', 'val2']
+        ];
+        $attributeHash1 = \sspmod_consent_Auth_Process_Consent::getAttributeHash($attributes1, true);
+
+        $attributes2 = [
+            'attribute1' => ['val2', 'val1'],
+            'attribute2' => ['val1', 'val2']
+        ];
+        $attributeHash2 = \sspmod_consent_Auth_Process_Consent::getAttributeHash($attributes2, true);
+
+        $this->assertEquals($attributeHash1, $attributeHash2, "Hash is not the same when the order of values changes");
+    }
 }
