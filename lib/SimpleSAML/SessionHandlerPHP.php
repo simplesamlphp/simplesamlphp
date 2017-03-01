@@ -166,7 +166,7 @@ class SimpleSAML_SessionHandlerPHP extends SimpleSAML_SessionHandler
     public function newSessionId()
     {
         // generate new (secure) session id
-        $sessionId = function_exists(session_create_id) ? session_create_id() : bin2hex(openssl_random_pseudo_bytes(16));
+        $sessionId = function_exists('session_create_id') ? session_create_id() : bin2hex(openssl_random_pseudo_bytes(16));
         SimpleSAML_Session::createSession($sessionId);
 
         return $sessionId;
