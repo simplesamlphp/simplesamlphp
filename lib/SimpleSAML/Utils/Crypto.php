@@ -350,6 +350,38 @@ class Crypto
 
 
     /**
+     * Compare two strings securely.
+     *
+     * This method checks if two strings are equal in constant time, avoiding timing attacks. Use it every time we need
+     * to compare a string with a secret that shouldn't be leaked, i.e. when verifying passwords, one-time codes, etc.
+     *
+     * @param string $known A known string.
+     * @param string $user A user-provided string to compare with the known string.
+     *
+     * @return bool True if both strings are equal, false otherwise.
+     */
+    public static function secureCompare($known, $user)
+    {
+        if (function_exists('hash_equals')) {
+            // use hash_equals() if available (PHP >= 5.6)
+            return hash_equals($known, $user);
+        }
+
+        // compare manually in constant time
+        $len = mb_strlen($known, '8bit'); // see mbstring.func_overload
+        if ($len !== mb_strlen($user, '8bit')) {
+            return false; // length differs
+        }
+        $diff = 0;
+        for ($i = 0; $i < $len; ++$i) {
+            $diff |= $known[$i] ^ $user[$i];
+        }
+        // if all the bytes in $a and $b are identical, $diff should be equal to 0
+        return $diff === 0;
+    }
+
+
+    /**
      * This function checks if a password is valid
      *
      * @param string $hash The password as it appears in password file, optionally prepended with algorithm.
@@ -374,7 +406,7 @@ class Crypto
 
             // hash w/o salt
             if (in_array(strtolower($alg), hash_algos())) {
-                return $hash === self::pwHash($password, $alg);
+                return self::secureCompare($hash, self::pwHash($password, $alg));
             }
 
             // hash w/ salt
@@ -384,7 +416,7 @@ class Crypto
                 // get hash length of this algorithm to learn how long the salt is
                 $hash_length = strlen(hash($php_alg, '', true));
                 $salt = substr(base64_decode($matches[2]), $hash_length);
-                return ($hash === self::pwHash($password, $alg, $salt));
+                return self::secureCompare($hash, self::pwHash($password, $alg, $salt));
             }
         } else {
             return $hash === $password;
