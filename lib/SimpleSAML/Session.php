@@ -341,7 +341,8 @@ class SimpleSAML_Session implements Serializable
                     SimpleSAML_Logger::warning('Missing AuthToken cookie.');
                     return null;
                 }
-                if ($_COOKIE[$authTokenCookieName] !== $session->authToken) {
+
+                if (!SimpleSAML\Utils\Crypto::secureCompare($session->authToken, $_COOKIE[$authTokenCookieName])) {
                     SimpleSAML_Logger::warning('Invalid AuthToken cookie.');
                     return null;
                 }

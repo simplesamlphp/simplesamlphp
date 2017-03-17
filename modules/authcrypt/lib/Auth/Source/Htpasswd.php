@@ -74,8 +74,9 @@ class sspmod_authcrypt_Auth_Source_Htpasswd extends sspmod_core_Auth_UserPassBas
 				$attributes = array_merge(array('uid' => array($username)), $this->attributes);
 
 				// Traditional crypt(3)
-				if(crypt($password, $crypted) == $crypted) {
+				if (SimpleSAML\Utils\Crypto::secureCompare($crypted, crypt($password, $crypted))) {
 					SimpleSAML_Logger::debug('User '. $username . ' authenticated successfully');
+					SimpleSAML_Logger::warning('CRYPT authentication is insecure. Please consider using something else.');
 					return $attributes;
 				}
 
@@ -88,6 +89,7 @@ class sspmod_authcrypt_Auth_Source_Htpasswd extends sspmod_core_Auth_UserPassBas
 				// SHA1 or plain-text
 				if(SimpleSAML\Utils\Crypto::pwValid($crypted, $password)) {
 					SimpleSAML_Logger::debug('User '. $username . ' authenticated successfully');
+					SimpleSAML_Logger::warning('SHA1 and PLAIN TEXT authentication are insecure. Please consider using something else.');
 					return $attributes;
 				}
 				throw new SimpleSAML_Error_Error('WRONGUSERPASS');
