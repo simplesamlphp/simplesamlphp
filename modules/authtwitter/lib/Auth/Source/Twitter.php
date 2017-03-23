@@ -43,6 +43,7 @@ class sspmod_authtwitter_Auth_Source_Twitter extends SimpleSAML_Auth_Source {
 		$this->key = $configObject->getString('key');
 		$this->secret = $configObject->getString('secret');
 		$this->force_login = $configObject->getBoolean('force_login', FALSE);
+		$this->include_email = $configObject->getBoolean('include_email', FALSE);
 	}
 
 
@@ -103,8 +104,12 @@ class sspmod_authtwitter_Auth_Source_Twitter extends SimpleSAML_Auth_Source {
 		$accessToken = $consumer->getAccessToken('https://api.twitter.com/oauth/access_token', $requestToken, $parameters);
 		SimpleSAML\Logger::debug("Got an access token from the OAuth service provider [" .
 			$accessToken->key . "] with the secret [" . $accessToken->secret . "]");
-			
-		$userdata = $consumer->getUserInfo('https://api.twitter.com/1.1/account/verify_credentials.json', $accessToken);
+
+		$verify_credentials_url = 'https://api.twitter.com/1.1/account/verify_credentials.json';
+		if ($this->include_email) {
+			$verify_credentials_url = $verify_credentials_url . '?include_email=true';
+		}
+		$userdata = $consumer->getUserInfo($verify_credentials_url, $accessToken);
 		
 		if (!isset($userdata['id_str']) || !isset($userdata['screen_name'])) {
 			throw new SimpleSAML_Error_AuthSource($this->authId, 'Authentication error: id_str and screen_name not set.');
