@@ -66,6 +66,7 @@ foreach ($assertionsconsumerservices as $services) {
         case 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST':
             $acsArray['Binding'] = \SAML2\Constants::BINDING_HTTP_POST;
             $acsArray['Location'] = SimpleSAML\Module::getModuleURL('saml/sp/saml2-acs.php/'.$sourceId);
+            $acsArray['isDefault'] = true;
             break;
         case 'urn:oasis:names:tc:SAML:1.0:profiles:browser-post':
             $acsArray['Binding'] = 'urn:oasis:names:tc:SAML:1.0:profiles:browser-post';
@@ -214,7 +215,12 @@ if ($spconfig->hasValue('redirect.sign')) {
     $metaArray20['validate.authnrequest'] = $spconfig->getBoolean('sign.authnrequest');
 }
 
-$supported_protocols = array('urn:oasis:names:tc:SAML:1.1:protocol', \SAML2\Constants::NS_SAMLP);
+//$supported_protocols = array('urn:oasis:names:tc:SAML:1.1:protocol', \SAML2\Constants::NS_SAMLP);
+if ($spconfig->hasValue('metadata.supported.protocols')) {
+    $supported_protocols = $spconfig->getArray('metadata.supported.protocols');
+} else {
+    $supported_protocols = array('urn:oasis:names:tc:SAML:1.1:protocol', \SAML2\Constants::NS_SAMLP);
+}
 
 $metaArray20['metadata-set'] = 'saml20-sp-remote';
 $metaArray20['entityid'] = $entityId;
