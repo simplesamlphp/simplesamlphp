@@ -95,10 +95,10 @@ XML;
     {
         $result = $this
             ->xml
-            ->getValueAlternatives([
+            ->getValueAlternatives(array(
                 '/Root/Other',
                 '/Root/Value'
-            ], true)
+            ), true)
         ;
 
         $this->assertEquals(
@@ -116,10 +116,10 @@ XML;
     {
         $result = $this
             ->xml
-            ->getValueAlternatives([
+            ->getValueAlternatives(array(
                 '/Root/Foo',
                 '/Root/Bar'
-            ], false)
+            ), false)
         ;
 
         $this->assertEquals(
@@ -138,10 +138,10 @@ XML;
     {
         $this
             ->xml
-            ->getValueAlternatives([
+            ->getValueAlternatives(array(
                 '/Root/Foo',
                 '/Root/Bar'
-            ], true)
+            ), true)
         ;
     }
 }
