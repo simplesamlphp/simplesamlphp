@@ -6,12 +6,23 @@
  * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
  */
-class SimpleSAML_XML_Shib13_AuthnResponse {
+
+namespace SimpleSAML\XML\Shib13;
+
+
+use SAML2\DOMDocumentFactory;
+use SAML2\Utils;
+use SimpleSAML\Utils\Config;
+use SimpleSAML\Utils\Random;
+use SimpleSAML\Utils\Time;
+use SimpleSAML\XML\Validator;
+
+class AuthnResponse {
 
 	/**
-	 * This variable contains an XML validator for this message.
+	 * @var Validator This variable contains an XML validator for this message.
 	 */
-	private $validator = null;
+    private $validator = null;
 
 
 	/**
@@ -29,7 +40,7 @@ class SimpleSAML_XML_Shib13_AuthnResponse {
 	/**
 	 * The DOMDocument which represents this message.
 	 *
-	 * @var DOMDocument
+	 * @var \DOMDocument
 	 */
 	private $dom;
 
@@ -57,9 +68,9 @@ class SimpleSAML_XML_Shib13_AuthnResponse {
 		assert('is_string($xml)');
 
 		try {
-			$this->dom = \SAML2\DOMDocumentFactory::fromString(str_replace ("\r", "", $xml));
+			$this->dom = DOMDocumentFactory::fromString(str_replace ("\r", "", $xml));
 		} catch(\Exception $e) {
-			throw new Exception('Unable to parse AuthnResponse XML.');
+			throw new \Exception('Unable to parse AuthnResponse XML.');
 		}
 	}
 
@@ -80,13 +91,13 @@ class SimpleSAML_XML_Shib13_AuthnResponse {
 		}
 
 		// Validate the signature
-		$this->validator = new SimpleSAML_XML_Validator($this->dom, array('ResponseID', 'AssertionID'));
+		$this->validator = new Validator($this->dom, array('ResponseID', 'AssertionID'));
 
 		// Get the issuer of the response
 		$issuer = $this->getIssuer();
 
 		// Get the metadata of the issuer
-		$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+		$metadata = \SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 		$md = $metadata->getMetaDataConfig($issuer, 'shib13-idp-remote');
 
 		$publicKeys = $md->getPublicKeys('signing');
@@ -106,9 +117,9 @@ class SimpleSAML_XML_Shib13_AuthnResponse {
 			$this->validator->validateFingerprint($certFingerprints);
 		} elseif ($md->hasValue('caFile')) {
 			// Validate against CA
-			$this->validator->validateCA(\SimpleSAML\Utils\Config::getCertPath($md->getString('caFile')));
+			$this->validator->validateCA(Config::getCertPath($md->getString('caFile')));
 		} else {
-			throw new SimpleSAML_Error_Exception('Missing certificate in Shibboleth 1.3 IdP Remote metadata for identity provider [' . $issuer . '].');
+			throw new \SimpleSAML_Error_Exception('Missing certificate in Shibboleth 1.3 IdP Remote metadata for identity provider [' . $issuer . '].');
 		}
 
 		return true;
@@ -132,7 +143,7 @@ class SimpleSAML_XML_Shib13_AuthnResponse {
 		}
 
 		// Convert the node to a DOM node if it is an element from SimpleXML
-		if($node instanceof SimpleXMLElement) {
+		if($node instanceof \SimpleXMLElement) {
 			$node = dom_import_simplexml($node);
 		}
 
@@ -142,13 +153,14 @@ class SimpleSAML_XML_Shib13_AuthnResponse {
 	}
 
 
-	/**
-	 * This function runs an xPath query on this authentication response.
-	 *
-	 * @param $query  The query which should be run.
-	 * @param $node   The node which this query is relative to. If this node is NULL (the default)
-	 *                then the query will be relative to the root of the response.
-	 */
+    /**
+     * This function runs an xPath query on this authentication response.
+     *
+     * @param $query string   The query which should be run.
+     * @param $node \DOMNode  The node which this query is relative to. If this node is NULL (the default)
+     *                        then the query will be relative to the root of the response.
+     * @return \DOMNodeList
+     */
 	private function doXPathQuery($query, $node = NULL) {
 		assert('is_string($query)');
 		assert('$this->dom instanceof DOMDocument');
@@ -159,7 +171,7 @@ class SimpleSAML_XML_Shib13_AuthnResponse {
 
 		assert('$node instanceof DOMNode');
 
-		$xPath = new DOMXpath($this->dom);
+		$xPath = new \DOMXpath($this->dom);
 		$xPath->registerNamespace('shibp', self::SHIB_PROTOCOL_NS);
 		$xPath->registerNamespace('shib', self::SHIB_ASSERT_NS);
 
@@ -186,11 +198,11 @@ class SimpleSAML_XML_Shib13_AuthnResponse {
 	
 	public function getAttributes() {
 
-		$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+		$metadata = \SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 		$md = $metadata->getMetadata($this->getIssuer(), 'shib13-idp-remote');
 		$base64 = isset($md['base64attributes']) ? $md['base64attributes'] : false;
 
-		if (! ($this->dom instanceof DOMDocument) ) {
+		if (! ($this->dom instanceof \DOMDocument) ) {
 			return array();
 		}
 
@@ -201,7 +213,7 @@ class SimpleSAML_XML_Shib13_AuthnResponse {
 		foreach ($assertions AS $assertion) {
 
 			if(!$this->isNodeValidated($assertion)) {
-				throw new Exception('Shib13 AuthnResponse contained an unsigned assertion.');
+				throw new \Exception('Shib13 AuthnResponse contained an unsigned assertion.');
 			}
 
 			$conditions = $this->doXPathQuery('shib:Conditions', $assertion);
@@ -220,6 +232,7 @@ class SimpleSAML_XML_Shib13_AuthnResponse {
 			}
 
 			$attribute_nodes = $this->doXPathQuery('shib:AttributeStatement/shib:Attribute/shib:AttributeValue', $assertion);
+			/** @var \DOMElement $attribute */
 			foreach($attribute_nodes as $attribute) {
 
 				$value = $attribute->textContent;
@@ -232,7 +245,7 @@ class SimpleSAML_XML_Shib13_AuthnResponse {
 				}
 
 				if(!is_string($name)) {
-					throw new Exception('Shib13 Attribute node without an AttributeName.');
+					throw new \Exception('Shib13 Attribute node without an AttributeName.');
 				}
 
 				if(!array_key_exists($name, $attributes)) {
@@ -260,9 +273,9 @@ class SimpleSAML_XML_Shib13_AuthnResponse {
 		$nodelist = $this->doXPathQuery($query);
 
 		if ($attr = $nodelist->item(0)) {
-			return $attr->value;
+			return $attr->nodeValue;
 		} else {
-			throw new Exception('Could not find Issuer field in Authentication response');
+			throw new \Exception('Could not find Issuer field in Authentication response');
 		}
 
 	}
@@ -283,16 +296,16 @@ class SimpleSAML_XML_Shib13_AuthnResponse {
 	}
 
 
-	/**
-	 * Build a authentication response.
-	 *
-	 * @param array $idp  Metadata for the IdP the response is sent from.
-	 * @param array $sp  Metadata for the SP the response is sent to.
-	 * @param string $shire  The endpoint on the SP the response is sent to.
-	 * @param array|NULL $attributes  The attributes which should be included in the response.
-	 * @return string  The response.
-	 */
-	public function generate(SimpleSAML_Configuration $idp, SimpleSAML_Configuration $sp, $shire, $attributes) {
+    /**
+     * Build a authentication response.
+     *
+     * @param $idp \SimpleSAML_Configuration  Metadata for the IdP the response is sent from.
+     * @param $sp \SimpleSAML_Configuration  Metadata for the SP the response is sent to.
+     * @param string $shire The endpoint on the SP the response is sent to.
+     * @param array|NULL $attributes The attributes which should be included in the response.
+     * @return string The response.
+     */
+	public function generate(\SimpleSAML_Configuration $idp, \SimpleSAML_Configuration $sp, $shire, $attributes) {
 		assert('is_string($shire)');
 		assert('$attributes === NULL || is_array($attributes)');
 
@@ -304,16 +317,16 @@ class SimpleSAML_XML_Shib13_AuthnResponse {
 			$scopedAttributes = array();
 		}
 
-		$id = SimpleSAML\Utils\Random::generateID();
+		$id = Random::generateID();
 		
-		$issueInstant = SimpleSAML\Utils\Time::generateTimestamp();
+		$issueInstant = Time::generateTimestamp();
 		
 		// 30 seconds timeskew back in time to allow differing clocks
-		$notBefore = SimpleSAML\Utils\Time::generateTimestamp(time() - 30);
+		$notBefore = Time::generateTimestamp(time() - 30);
 		
 		
-		$assertionExpire = SimpleSAML\Utils\Time::generateTimestamp(time() + 60 * 5);# 5 minutes
-		$assertionid = SimpleSAML\Utils\Random::generateID();
+		$assertionExpire = Time::generateTimestamp(time() + 60 * 5);# 5 minutes
+		$assertionid = Random::generateID();
 
 		$spEntityId = $sp->getString('entityid');
 
@@ -321,7 +334,7 @@ class SimpleSAML_XML_Shib13_AuthnResponse {
 		$base64 = $sp->getBoolean('base64attributes', FALSE);
 
 		$namequalifier = $sp->getString('NameQualifier', $spEntityId);
-		$nameid = SimpleSAML\Utils\Random::generateID();
+		$nameid = Random::generateID();
 		$subjectNode =
 			'<Subject>' .
 			'<NameIdentifier' .
@@ -449,14 +462,14 @@ class SimpleSAML_XML_Shib13_AuthnResponse {
 		$currentTime = time();
 
 		if (!empty($start)) {
-			$startTime = \SAML2\Utils::xsDateTimeToTimestamp($start);
+			$startTime = Utils::xsDateTimeToTimestamp($start);
 			// allow for a 10 minute difference in time
 			if (($startTime < 0) || (($startTime - 600) > $currentTime)) {
 				return false;
 			}
 		}
 		if (!empty($end)) {
-			$endTime = \SAML2\Utils::xsDateTimeToTimestamp($end);
+			$endTime = Utils::xsDateTimeToTimestamp($end);
 			if (($endTime < 0) || ($endTime <= $currentTime)) {
 				return false;
 			}

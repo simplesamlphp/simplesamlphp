@@ -9,7 +9,10 @@
  * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
-class SimpleSAML_XML_Errors {
+
+namespace SimpleSAML\XML;
+
+class Errors {
 
 	/**
 	 * This is an stack of error logs. The topmost element is the one we are
@@ -68,7 +71,7 @@ class SimpleSAML_XML_Errors {
 	/**
 	 * End error logging.
 	 *
-	 * @return  An array with the LibXMLErrors which has occurred since begin() was called.
+	 * @return array  An array with the LibXMLErrors which has occurred since begin() was called.
 	 */
 	public static function end() {
 
@@ -98,8 +101,8 @@ class SimpleSAML_XML_Errors {
 	 *
 	 * This function formats the given LibXMLError object as a string.
 	 *
-	 * @param $error  The LibXMLError which should be formatted.
-	 * @return  A string representing the given LibXMLError.
+	 * @param $error \LibXMLError  The LibXMLError which should be formatted.
+	 * @return string  A string representing the given LibXMLError.
 	 */
 	public static function formatError($error) {
 		assert('$error instanceof LibXMLError');
@@ -114,8 +117,8 @@ class SimpleSAML_XML_Errors {
 	 * This fucntion takes an array of LibXMLError objects and creates a string with all the errors.
 	 * Each error will be separated by a newline, and the string will end with a newline-character.
 	 *
-	 * @param $errors  An array of errors.
-	 * @return  A string representing the errors. An empty string will be returned if there were no
+	 * @param $errors array  An array of errors.
+	 * @return string  A string representing the errors. An empty string will be returned if there were no
 	 *          errors in the array.
 	 */
 	public static function formatErrors($errors) {

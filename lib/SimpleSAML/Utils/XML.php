@@ -8,6 +8,7 @@
 namespace SimpleSAML\Utils;
 
 use SimpleSAML\Logger;
+use SimpleSAML\XML\Errors;
 
 class XML
 {
@@ -409,7 +410,7 @@ class XML
             throw new \InvalidArgumentException('Invalid input parameters.');
         }
 
-        \SimpleSAML_XML_Errors::begin();
+        Errors::begin();
 
         if ($xml instanceof \DOMDocument) {
             $dom = $xml;
@@ -431,7 +432,7 @@ class XML
 
             $res = $dom->schemaValidate($schemaFile);
             if ($res) {
-                \SimpleSAML_XML_Errors::end();
+                Errors::end();
                 return true;
             }
 
@@ -440,8 +441,8 @@ class XML
             $errorText = "Failed to parse XML string for schema validation:\n";
         }
 
-        $errors = \SimpleSAML_XML_Errors::end();
-        $errorText .= \SimpleSAML_XML_Errors::formatErrors($errors);
+        $errors = Errors::end();
+        $errorText .= Errors::formatErrors($errors);
 
         return $errorText;
     }

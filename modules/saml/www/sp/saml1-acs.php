@@ -63,7 +63,7 @@ if (array_key_exists('SAMLart', $_REQUEST)) {
 	assert('FALSE');
 }
 
-$response = new SimpleSAML_XML_Shib13_AuthnResponse();
+$response = new \SimpleSAML\XML\Shib13\AuthnResponse();
 $response->setXML($responseXML);
 
 $response->setMessageValidated($isValidated);
