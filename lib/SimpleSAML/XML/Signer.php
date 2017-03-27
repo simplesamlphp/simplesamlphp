@@ -8,27 +8,34 @@
  * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
-class SimpleSAML_XML_Signer {
+
+namespace SimpleSAML\XML;
+
+use RobRichards\XMLSecLibs\XMLSecurityDSig;
+use RobRichards\XMLSecLibs\XMLSecurityKey;
+use SimpleSAML\Utils\Config;
+
+class Signer {
 
 
 	/**
-	 * The name of the ID attribute.
+	 * @var string The name of the ID attribute.
 	 */
 	private $idAttrName;
 
-	/**
-	 * The private key (as an XMLSecurityKey).
-	 */
+    /**
+     * @var XMLSecurityKey|bool  The private key (as an XMLSecurityKey).
+     */
 	private $privateKey;
 
 	/**
-	 * The certificate (as text).
+	 * @var string The certificate (as text).
 	 */
 	private $certificate;
 
 
 	/**
-	 * Extra certificates which should be included in the response.
+	 * @var string Extra certificates which should be included in the response.
 	 */
 	private $extraCertificates;
 
@@ -47,7 +54,7 @@ class SimpleSAML_XML_Signer {
 	 *  - publickey_array  The public key, as an array returned from SimpleSAML_Utilities::loadPublicKey.
 	 *  - id               The name of the ID attribute.
 	 *
-	 * @param $options  Associative array with options for the constructor. Defaults to an empty array.
+	 * @param $options array  Associative array with options for the constructor. Defaults to an empty array.
 	 */
 	public function __construct($options = array()) {
 		assert('is_array($options)');
@@ -104,26 +111,28 @@ class SimpleSAML_XML_Signer {
 	}
 
 
-	/**
-	 * Set the private key.
-	 *
-	 * Will throw an exception if unable to load the private key.
-	 *
-	 * @param $file  The file which contains the private key. The path is assumed to be relative
-	 *               to the cert-directory.
-	 * @param $pass  The passphrase on the private key. Pass no value or NULL if the private key is unencrypted.
-	 */
+    /**
+     * Set the private key.
+     *
+     * Will throw an exception if unable to load the private key.
+     *
+     * @param $file string  The file which contains the private key. The path is assumed to be relative
+     *                      to the cert-directory.
+     * @param $pass string|null  The passphrase on the private key. Pass no value or NULL if the private
+     *                           key is unencrypted.
+     * @throws \Exception
+     */
 	public function loadPrivateKey($file, $pass = NULL) {
 		assert('is_string($file)');
 		assert('is_string($pass) || is_null($pass)');
 
-		$keyFile = \SimpleSAML\Utils\Config::getCertPath($file);
+		$keyFile = Config::getCertPath($file);
 		if (!file_exists($keyFile)) {
-			throw new Exception('Could not find private key file "' . $keyFile . '".');
+			throw new \Exception('Could not find private key file "' . $keyFile . '".');
 		}
 		$keyData = file_get_contents($keyFile);
 		if($keyData === FALSE) {
-			throw new Exception('Unable to read private key file "' . $keyFile . '".');
+			throw new \Exception('Unable to read private key file "' . $keyFile . '".');
 		}
 
 		$privatekey = array('PEM' => $keyData);
@@ -134,20 +143,21 @@ class SimpleSAML_XML_Signer {
 	}
 
 
-	/**
-	 * Set the public key / certificate we should include in the signature.
-	 *
-	 * This function loads the public key from an array matching what is returned
-	 * by SimpleSAML_Utilities::loadPublicKey(...).
-	 *
-	 * @param array $publickey  The public key.
-	 */
+    /**
+     * Set the public key / certificate we should include in the signature.
+     *
+     * This function loads the public key from an array matching what is returned
+     * by SimpleSAML_Utilities::loadPublicKey(...).
+     *
+     * @param array $publickey The public key.
+     * @throws \Exception
+     */
 	public function loadPublicKeyArray($publickey) {
 		assert('is_array($publickey)');
 
 		if (!array_key_exists('PEM', $publickey)) {
 			// We have a public key with only a fingerprint
-			throw new Exception('Tried to add a certificate fingerprint in a signature.');
+			throw new \Exception('Tried to add a certificate fingerprint in a signature.');
 		}
 
 		// For now, we only assume that the public key is an X509 certificate
@@ -155,26 +165,27 @@ class SimpleSAML_XML_Signer {
 	}
 
 
-	/**
-	 * Set the certificate we should include in the signature.
-	 *
-	 * If this function isn't called, no certificate will be included.
-	 * Will throw an exception if unable to load the certificate.
-	 *
-	 * @param $file  The file which contains the certificate. The path is assumed to be relative to
-	 *               the cert-directory.
-	 */
+    /**
+     * Set the certificate we should include in the signature.
+     *
+     * If this function isn't called, no certificate will be included.
+     * Will throw an exception if unable to load the certificate.
+     *
+     * @param $file string  The file which contains the certificate. The path is assumed to be relative to
+     *                      the cert-directory.
+     * @throws \Exception
+     */
 	public function loadCertificate($file) {
 		assert('is_string($file)');
 
-		$certFile = \SimpleSAML\Utils\Config::getCertPath($file);
+		$certFile = Config::getCertPath($file);
 		if (!file_exists($certFile)) {
-			throw new Exception('Could not find certificate file "' . $certFile . '".');
+			throw new \Exception('Could not find certificate file "' . $certFile . '".');
 		}
 
 		$this->certificate = file_get_contents($certFile);
 		if($this->certificate === FALSE) {
-			throw new Exception('Unable to read certificate file "' . $certFile . '".');
+			throw new \Exception('Unable to read certificate file "' . $certFile . '".');
 		}
 	}
 
@@ -182,7 +193,7 @@ class SimpleSAML_XML_Signer {
 	/**
 	 * Set the attribute name for the ID value.
 	 *
-	 * @param $idAttrName  The name of the attribute which contains the id.
+	 * @param $idAttrName string  The name of the attribute which contains the id.
 	 */
 	public function setIDAttribute($idAttrName) {
 		assert('is_string($idAttrName)');
@@ -191,42 +202,44 @@ class SimpleSAML_XML_Signer {
 	}
 
 
-	/**
-	 * Add an extra certificate to the certificate chain in the signature.
-	 *
-	 * Extra certificates will be added to the certificate chain in the order they
-	 * are added.
-	 *
-	 * @param $file  The file which contains the certificate, relative to the cert-directory.
-	 */
+    /**
+     * Add an extra certificate to the certificate chain in the signature.
+     *
+     * Extra certificates will be added to the certificate chain in the order they
+     * are added.
+     *
+     * @param $file string  The file which contains the certificate, relative to the cert-directory.
+     * @throws \Exception
+     */
 	public function addCertificate($file) {
 		assert('is_string($file)');
 
-		$certFile = \SimpleSAML\Utils\Config::getCertPath($file);
+		$certFile = Config::getCertPath($file);
 		if (!file_exists($certFile)) {
-			throw new Exception('Could not find extra certificate file "' . $certFile . '".');
+			throw new \Exception('Could not find extra certificate file "' . $certFile . '".');
 		}
 
 		$certificate = file_get_contents($certFile);
 		if($certificate === FALSE) {
-			throw new Exception('Unable to read extra certificate file "' . $certFile . '".');
+			throw new \Exception('Unable to read extra certificate file "' . $certFile . '".');
 		}
 
 		$this->extraCertificates[] = $certificate;
 	}
 
 
-	/**
-	 * Signs the given DOMElement and inserts the signature at the given position.
-	 *
-	 * The private key must be set before calling this function.
-	 *
-	 * @param $node  The DOMElement we should generate a signature for.
-	 * @param $insertInto  The DOMElement we should insert the signature element into.
-	 * @param $insertBefore  The element we should insert the signature element before. Defaults to NULL,
-	 *                       in which case the signature will be appended to the element spesified in
-	 *                       $insertInto.
-	 */
+    /**
+     * Signs the given DOMElement and inserts the signature at the given position.
+     *
+     * The private key must be set before calling this function.
+     *
+     * @param $node \DOMElement  The DOMElement we should generate a signature for.
+     * @param $insertInto \DOMElement  The DOMElement we should insert the signature element into.
+     * @param $insertBefore \DOMElement  The element we should insert the signature element before. Defaults to NULL,
+     *                                   in which case the signature will be appended to the element spesified in
+     *                                   $insertInto.
+     * @throws \Exception
+     */
 	public function sign($node, $insertInto, $insertBefore = NULL) {
 		assert('$node instanceof DOMElement');
 		assert('$insertInto instanceof DOMElement');
@@ -234,7 +247,7 @@ class SimpleSAML_XML_Signer {
 			'|| $insertBefore instanceof DOMComment || $insertBefore instanceof DOMText');
 
 		if($this->privateKey === FALSE) {
-			throw new Exception('Private key not set.');
+			throw new \Exception('Private key not set.');
 		}
 
 

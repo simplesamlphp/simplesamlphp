@@ -47,7 +47,7 @@ class sspmod_saml_IdP_SAML1 {
 		SimpleSAML_Stats::log('saml:idp:Response', $statsData);
 
 		// Generate and send response.
-		$ar = new SimpleSAML_XML_Shib13_AuthnResponse();
+		$ar = new \SimpleSAML\XML\Shib13\AuthnResponse();
 		$authnResponseXML = $ar->generate($idpMetadata, $spMetadata, $shire, $attributes);
 
 		$httppost = new SimpleSAML_Bindings_Shib13_HTTPPost($config, $metadata);

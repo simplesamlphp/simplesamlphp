@@ -6,7 +6,14 @@
  * @author Olav Morken, UNINETT AS. 
  * @package SimpleSAMLphp
  */
-class SimpleSAML_XML_Validator {
+
+namespace SimpleSAML\XML;
+
+use RobRichards\XMLSecLibs\XMLSecEnc;
+use RobRichards\XMLSecLibs\XMLSecurityDSig;
+use SimpleSAML\Logger;
+
+class Validator {
 
 	/**
 	 * This variable contains the X509 certificate the XML document
@@ -20,25 +27,26 @@ class SimpleSAML_XML_Validator {
 	private $validNodes = null;
 
 
-	/**
-	 * This function initializes the validator.
-	 *
-	 * This function accepts an optional parameter $publickey, which is the public key
-	 * or certificate which should be used to validate the signature. This parameter can
-	 * take the following values:
-	 * - NULL/FALSE: No validation will be performed. This is the default.
-	 * - A string: Assumed to be a PEM-encoded certificate / public key.
-	 * - An array: Assumed to be an array returned by SimpleSAML_Utilities::loadPublicKey.
-	 *
-	 * @param DOMNode $xmlNode  The XML node which contains the Signature element.
-	 * @param string|array $idAttribute  The ID attribute which is used in node references. If
-	 *          this attribute is NULL (the default), then we will use whatever is the default
-	 *          ID. Can be eigther a string with one value, or an array with multiple ID
-	 *          attrbute names.
-	 * @param array $publickey  The public key / certificate which should be used to validate the XML node.
-	 */
+    /**
+     * This function initializes the validator.
+     *
+     * This function accepts an optional parameter $publickey, which is the public key
+     * or certificate which should be used to validate the signature. This parameter can
+     * take the following values:
+     * - NULL/FALSE: No validation will be performed. This is the default.
+     * - A string: Assumed to be a PEM-encoded certificate / public key.
+     * - An array: Assumed to be an array returned by SimpleSAML_Utilities::loadPublicKey.
+     *
+     * @param \DOMNode $xmlNode The XML node which contains the Signature element.
+     * @param string|array $idAttribute The ID attribute which is used in node references. If
+     *          this attribute is NULL (the default), then we will use whatever is the default
+     *          ID. Can be eigther a string with one value, or an array with multiple ID
+     *          attrbute names.
+     * @param array|bool $publickey The public key / certificate which should be used to validate the XML node.
+     * @throws \Exception
+     */
 	public function __construct($xmlNode, $idAttribute = NULL, $publickey = FALSE) {
-		assert('$xmlNode instanceof DOMNode');
+		assert('$xmlNode instanceof \DOMNode');
 
 		if ($publickey === NULL) {
 			$publickey = FALSE;
@@ -66,7 +74,7 @@ class SimpleSAML_XML_Validator {
 		// Locate the XMLDSig Signature element to be used
 		$signatureElement = $objXMLSecDSig->locateSignature($xmlNode);
 		if (!$signatureElement) {
-			throw new Exception('Could not locate XML Signature element.');
+			throw new \Exception('Could not locate XML Signature element.');
 		}
 
 		// Canonicalize the XMLDSig SignedInfo element in the message
@@ -74,14 +82,14 @@ class SimpleSAML_XML_Validator {
 
 		// Validate referenced xml nodes
 		if (!$objXMLSecDSig->validateReference()) {
-			throw new Exception('XMLsec: digest validation failed');
+			throw new \Exception('XMLsec: digest validation failed');
 		}
 
 
 		// Find the key used to sign the document
 		$objKey = $objXMLSecDSig->locateKey();
 		if (empty($objKey)) {
-			throw new Exception('Error loading key to handle XML signature');
+			throw new \Exception('Error loading key to handle XML signature');
 		}
 
 		// Load the key data
@@ -92,7 +100,7 @@ class SimpleSAML_XML_Validator {
 			// No PEM data. Search for key in signature
 
 			if (!XMLSecEnc::staticLocateKeyInfo($objKey, $signatureElement)) {
-				throw new Exception('Error finding key data for XML signature validation.');
+				throw new \Exception('Error finding key data for XML signature validation.');
 			}
 
 			if ($publickey !== FALSE) {
@@ -105,7 +113,7 @@ class SimpleSAML_XML_Validator {
 				$certificate = $objKey->getX509Certificate();
 				if ($certificate === NULL) {
 					// Wasn't signed with an X509 certificate
-					throw new Exception('Message wasn\'t signed with an X509 certificate,' .
+					throw new \Exception('Message wasn\'t signed with an X509 certificate,' .
 						' and no public key was provided in the metadata.');
 				}
 
@@ -116,7 +124,7 @@ class SimpleSAML_XML_Validator {
 
 		// Check the signature
 		if ($objXMLSecDSig->verify($objKey) !== 1) {
-			throw new Exception("Unable to validate Signature");
+			throw new \Exception("Unable to validate Signature");
 		}
 
 		// Extract the certificate
@@ -133,7 +141,7 @@ class SimpleSAML_XML_Validator {
 	 * This function will return the certificate as a PEM-encoded string. If the XML
 	 * wasn't signed by an X509 certificate, NULL will be returned.
 	 *
-	 * @return The certificate as a PEM-encoded string, or NULL if not signed with an X509 certificate.
+	 * @return string  The certificate as a PEM-encoded string, or NULL if not signed with an X509 certificate.
 	 */
 	public function getX509Certificate() {
 		return $this->x509Certificate;
@@ -143,10 +151,10 @@ class SimpleSAML_XML_Validator {
 	/**
 	 * Calculates the fingerprint of an X509 certificate.
 	 *
-	 * @param $x509cert  The certificate as a base64-encoded string. The string may optionally
-	 *                   be framed with '-----BEGIN CERTIFICATE-----' and '-----END CERTIFICATE-----'.
-	 * @return  The fingerprint as a 40-character lowercase hexadecimal number. NULL is returned if the
-	 *          argument isn't an X509 certificate.
+	 * @param $x509cert string  The certificate as a base64-encoded string. The string may optionally
+	 *                          be framed with '-----BEGIN CERTIFICATE-----' and '-----END CERTIFICATE-----'.
+	 * @return string  The fingerprint as a 40-character lowercase hexadecimal number. NULL is returned if the
+	 *                 argument isn't an X509 certificate.
 	 */
 	private static function calculateX509Fingerprint($x509cert) {
 		assert('is_string($x509cert)');
@@ -180,15 +188,16 @@ class SimpleSAML_XML_Validator {
 	}
 
 
-	/**
-	 * Helper function for validating the fingerprint.
-	 *
-	 * Checks the fingerprint of a certificate against an array of valid fingerprints.
-	 * Will throw an exception if none of the fingerprints matches.
-	 *
-	 * @param string $certificate  The X509 certificate we should validate.
-	 * @param array $fingerprints  The valid fingerprints.
-	 */
+    /**
+     * Helper function for validating the fingerprint.
+     *
+     * Checks the fingerprint of a certificate against an array of valid fingerprints.
+     * Will throw an exception if none of the fingerprints matches.
+     *
+     * @param string $certificate The X509 certificate we should validate.
+     * @param array $fingerprints The valid fingerprints.
+     * @throws \Exception
+     */
 	private static function validateCertificateFingerprint($certificate, $fingerprints) {
 		assert('is_string($certificate)');
 		assert('is_array($fingerprints)');
@@ -196,7 +205,7 @@ class SimpleSAML_XML_Validator {
 		$certFingerprint = self::calculateX509Fingerprint($certificate);
 		if ($certFingerprint === NULL) {
 			// Couldn't calculate fingerprint from X509 certificate. Should not happen.
-			throw new Exception('Unable to calculate fingerprint from X509' .
+			throw new \Exception('Unable to calculate fingerprint from X509' .
 				' certificate. Maybe it isn\'t an X509 certificate?');
 		}
 
@@ -211,26 +220,27 @@ class SimpleSAML_XML_Validator {
 		}
 
 		// None of the fingerprints matched. Throw an exception describing the error.
-		throw new Exception('Invalid fingerprint of certificate. Expected one of [' .
+		throw new \Exception('Invalid fingerprint of certificate. Expected one of [' .
 			implode('], [', $fingerprints) . '], but got [' . $certFingerprint . ']');
 	}
 
 
-	/**
-	 * Validate the fingerprint of the certificate which was used to sign this document.
-	 *
-	 * This function accepts either a string, or an array of strings as a parameter. If this
-	 * is an array, then any string (certificate) in the array can match. If this is a string,
-	 * then that string must match,
-	 *
-	 * @param $fingerprints  The fingerprints which should match. This can be a single string,
-	 *                       or an array of fingerprints.
-	 */
+    /**
+     * Validate the fingerprint of the certificate which was used to sign this document.
+     *
+     * This function accepts either a string, or an array of strings as a parameter. If this
+     * is an array, then any string (certificate) in the array can match. If this is a string,
+     * then that string must match,
+     *
+     * @param $fingerprints  string|array The fingerprints which should match. This can be a single string,
+     *                                    or an array of fingerprints.
+     * @throws \Exception
+     */
 	public function validateFingerprint($fingerprints) {
 		assert('is_string($fingerprints) || is_array($fingerprints)');
 
 		if($this->x509Certificate === NULL) {
-			throw new Exception('Key used to sign the message was not an X509 certificate.');
+			throw new \Exception('Key used to sign the message was not an X509 certificate.');
 		}
 
 		if(!is_array($fingerprints)) {
@@ -252,12 +262,12 @@ class SimpleSAML_XML_Validator {
 	/**
 	 * This function checks if the given XML node was signed.
 	 *
-	 * @param $node   The XML node which we should verify that was signed.
+	 * @param $node \DOMNode  The XML node which we should verify that was signed.
 	 *
-	 * @return TRUE if this node (or a parent node) was signed. FALSE if not.
+	 * @return bool  TRUE if this node (or a parent node) was signed. FALSE if not.
 	 */
 	public function isNodeValidated($node) {
-		assert('$node instanceof DOMNode');
+		assert('$node instanceof \DOMNode');
 
 		while($node !== NULL) {
 			if(in_array($node, $this->validNodes)) {
@@ -274,19 +284,20 @@ class SimpleSAML_XML_Validator {
 	}
 
 
-	/**
-	 * Validate the certificate used to sign the XML against a CA file.
-	 *
-	 * This function throws an exception if unable to validate against the given CA file.
-	 *
-	 * @param $caFile  File with trusted certificates, in PEM-format.
-	 */
+    /**
+     * Validate the certificate used to sign the XML against a CA file.
+     *
+     * This function throws an exception if unable to validate against the given CA file.
+     *
+     * @param $caFile string  File with trusted certificates, in PEM-format.
+     * @throws \Exception
+     */
 	public function validateCA($caFile) {
 
 		assert('is_string($caFile)');
 
 		if($this->x509Certificate === NULL) {
-			throw new Exception('Key used to sign the message was not an X509 certificate.');
+			throw new \Exception('Key used to sign the message was not an X509 certificate.');
 		}
 
 		self::validateCertificate($this->x509Certificate, $caFile);
@@ -324,18 +335,19 @@ class SimpleSAML_XML_Validator {
 	}
 
 
-	/**
-	 * Validate the certificate used to sign the XML against a CA file, by using the "openssl verify" command.
-	 *
-	 * This function uses the openssl verify command to verify a certificate, to work around limitations
-	 * on the openssl_x509_checkpurpose function. That function will not work on certificates without a purpose
-	 * set.
-	 *
-	 * @param string $certificate  The certificate, in PEM format.
-	 * @param string $caFile  File with trusted certificates, in PEM-format.
-	 * @return boolean|string TRUE on success, a string with error messages on failure.
-	 * @deprecated
-	 */
+    /**
+     * Validate the certificate used to sign the XML against a CA file, by using the "openssl verify" command.
+     *
+     * This function uses the openssl verify command to verify a certificate, to work around limitations
+     * on the openssl_x509_checkpurpose function. That function will not work on certificates without a purpose
+     * set.
+     *
+     * @param string $certificate The certificate, in PEM format.
+     * @param string $caFile File with trusted certificates, in PEM-format.
+     * @return bool|string TRUE on success, a string with error messages on failure.
+     * @throws \Exception
+     * @deprecated
+     */
 	private static function validateCAExec($certificate, $caFile) {
 		assert('is_string($certificate)');
 		assert('is_string($caFile)');
@@ -358,11 +370,11 @@ class SimpleSAML_XML_Validator {
 		);
 		$process = proc_open($cmdline, $descSpec, $pipes);
 		if (!is_resource($process)) {
-			throw new Exception('Failed to execute verification command: ' . $cmdline);
+			throw new \Exception('Failed to execute verification command: ' . $cmdline);
 		}
 
 		if (fwrite($pipes[0], $certificate) === FALSE) {
-			throw new Exception('Failed to write certificate for verification.');
+			throw new \Exception('Failed to write certificate for verification.');
 		}
 		fclose($pipes[0]);
 
@@ -384,39 +396,40 @@ class SimpleSAML_XML_Validator {
     }
 
 
-	/**
-	 * Validate the certificate used to sign the XML against a CA file.
-	 *
-	 * This function throws an exception if unable to validate against the given CA file.
-	 *
-	 * @param string $certificate  The certificate, in PEM format.
-	 * @param string $caFile  File with trusted certificates, in PEM-format.
-	 * @deprecated
-	 */
+    /**
+     * Validate the certificate used to sign the XML against a CA file.
+     *
+     * This function throws an exception if unable to validate against the given CA file.
+     *
+     * @param string $certificate The certificate, in PEM format.
+     * @param string $caFile File with trusted certificates, in PEM-format.
+     * @throws \Exception
+     * @deprecated
+     */
 	public static function validateCertificate($certificate, $caFile) {
 		assert('is_string($certificate)');
 		assert('is_string($caFile)');
 
 		if (!file_exists($caFile)) {
-			throw new Exception('Could not load CA file: ' . $caFile);
+			throw new \Exception('Could not load CA file: ' . $caFile);
 		}
 
-		SimpleSAML\Logger::debug('Validating certificate against CA file: ' . var_export($caFile, TRUE));
+		Logger::debug('Validating certificate against CA file: ' . var_export($caFile, TRUE));
 
 		$resBuiltin = self::validateCABuiltIn($certificate, $caFile);
 		if ($resBuiltin !== TRUE) {
-			SimpleSAML\Logger::debug('Failed to validate with internal function: ' . var_export($resBuiltin, TRUE));
+			Logger::debug('Failed to validate with internal function: ' . var_export($resBuiltin, TRUE));
 
 			$resExternal = self::validateCAExec($certificate, $caFile);
 			if ($resExternal !== TRUE) {
-				SimpleSAML\Logger::debug('Failed to validate with external function: ' . var_export($resExternal, TRUE));
-				throw new Exception('Could not verify certificate against CA file "'
+				Logger::debug('Failed to validate with external function: ' . var_export($resExternal, TRUE));
+				throw new \Exception('Could not verify certificate against CA file "'
 					. $caFile . '". Internal result:' . $resBuiltin .
 					' External result:' . $resExternal);
 			}
 		}
 
-		SimpleSAML\Logger::debug('Successfully validated certificate.');
+		Logger::debug('Successfully validated certificate.');
 	}
 
 }

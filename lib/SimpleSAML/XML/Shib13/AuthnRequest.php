@@ -7,7 +7,10 @@
  * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
  */
-class SimpleSAML_XML_Shib13_AuthnRequest {
+
+namespace SimpleSAML\XML\Shib13;
+
+class AuthnRequest {
 
 	private $issuer = null;
 	private $relayState = null;
@@ -28,7 +31,7 @@ class SimpleSAML_XML_Shib13_AuthnRequest {
 	}
 
 	public function createRedirect($destination, $shire) {
-		$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+		$metadata = \SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 		$idpmetadata = $metadata->getMetaDataConfig($destination, 'shib13-idp-remote');
 
 		$desturl = $idpmetadata->getDefaultEndpoint('SingleSignOnService', array('urn:mace:shibboleth:1.0:profiles:AuthnRequest'));
