@@ -20,15 +20,13 @@ class AuthnResponse
 {
 
     /**
-     * @var Validator This variable contains an XML validator for this message.
+     * @var \SimpleSAML\XML\Validator This variable contains an XML validator for this message.
      */
     private $validator = null;
 
 
     /**
-     * Whether this response was validated by some external means (e.g. SSL).
-     *
-     * @var bool
+     * @var bool Whether this response was validated by some external means (e.g. SSL).
      */
     private $messageValidated = false;
 
@@ -38,16 +36,12 @@ class AuthnResponse
 
 
     /**
-     * The DOMDocument which represents this message.
-     *
-     * @var \DOMDocument
+     * @var \DOMDocument The DOMDocument which represents this message.
      */
     private $dom;
 
     /**
-     * The relaystate which is associated with this response.
-     *
-     * @var string|NULL
+     * @var string|null The relaystate which is associated with this response.
      */
     private $relayState = null;
 
@@ -131,10 +125,11 @@ class AuthnResponse
     }
 
 
-    /* Checks if the given node is validated by the signature on this response.
+    /**
+     * Checks if the given node is validated by the signature on this response.
      *
-     * Returns:
-     *  TRUE if the node is validated or FALSE if not.
+     * @param \DOMElement Node to be validated.
+     * @return bool TRUE if the node is validated or FALSE if not.
      */
     private function isNodeValidated($node)
     {
@@ -161,8 +156,8 @@ class AuthnResponse
     /**
      * This function runs an xPath query on this authentication response.
      *
-     * @param $query string   The query which should be run.
-     * @param $node \DOMNode  The node which this query is relative to. If this node is NULL (the default)
+     * @param string $query   The query which should be run.
+     * @param \DOMNode $node  The node which this query is relative to. If this node is NULL (the default)
      *                        then the query will be relative to the root of the response.
      * @return \DOMNodeList
      */
@@ -187,7 +182,7 @@ class AuthnResponse
     /**
      * Retrieve the session index of this response.
      *
-     * @return string|NULL  The session index of this response.
+     * @return string|null  The session index of this response.
      */
     public function getSessionIndex()
     {
@@ -303,10 +298,10 @@ class AuthnResponse
     /**
      * Build a authentication response.
      *
-     * @param $idp \SimpleSAML_Configuration  Metadata for the IdP the response is sent from.
-     * @param $sp \SimpleSAML_Configuration  Metadata for the SP the response is sent to.
+     * @param \SimpleSAML_Configuration $idp Metadata for the IdP the response is sent from.
+     * @param \SimpleSAML_Configuration $sp Metadata for the SP the response is sent to.
      * @param string $shire The endpoint on the SP the response is sent to.
-     * @param array|NULL $attributes The attributes which should be included in the response.
+     * @param array|null $attributes The attributes which should be included in the response.
      * @return string The response.
      */
     public function generate(\SimpleSAML_Configuration $idp, \SimpleSAML_Configuration $sp, $shire, $attributes)
