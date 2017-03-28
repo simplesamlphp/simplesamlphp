@@ -185,7 +185,7 @@ abstract class sspmod_core_Auth_UserPassBase extends SimpleSAML_Auth_Source {
 				$state['Attributes'] = $attributes;
 				return;
 			} catch (Exception $e) {
-				SimpleSAML_Logger::error("Login error: " . $e->getMessage());
+				SimpleSAML\Logger::error("Login error: " . $e->getMessage());
 				throw $e;
 			}
 		}
@@ -206,7 +206,7 @@ abstract class sspmod_core_Auth_UserPassBase extends SimpleSAML_Auth_Source {
 			$state['forcedUsername'] = $this->forcedUsername;
 		}
 
-		// Save the $state-array, so that we can restore it after a redirect.
+		/* Save the $state-array, so that we can restore it after a redirect. */
 		$id = SimpleSAML_Auth_State::saveState($state, self::STAGEID);
 
 		/*
@@ -217,7 +217,7 @@ abstract class sspmod_core_Auth_UserPassBase extends SimpleSAML_Auth_Source {
 		$params = array('AuthState' => $id);
 		\SimpleSAML\Utils\HTTP::redirectTrustedURL($url, $params);
 
-		// The previous function never returns, so this code is never executed.
+		/* The previous function never returns, so this code is never executed. */
 		assert('FALSE');
 	}
 
@@ -254,10 +254,10 @@ abstract class sspmod_core_Auth_UserPassBase extends SimpleSAML_Auth_Source {
 		assert('is_string($username)');
 		assert('is_string($password)');
 
-		// Here we retrieve the state array we saved in the authenticate-function.
+		/* Here we retrieve the state array we saved in the authenticate-function. */
 		$state = SimpleSAML_Auth_State::loadState($authStateId, self::STAGEID);
 
-		// Retrieve the authentication source we are executing.
+		/* Retrieve the authentication source we are executing. */
 		assert('array_key_exists(self::AUTHID, $state)');
 		$source = SimpleSAML_Auth_Source::getById($state[self::AUTHID]);
 		if ($source === NULL) {
@@ -269,7 +269,7 @@ abstract class sspmod_core_Auth_UserPassBase extends SimpleSAML_Auth_Source {
 		 * was called. We should call login() on the same authentication source.
 		 */
 
-		// Attempt to log in.
+		/* Attempt to log in. */
 		try {
 			$attributes = $source->login($username, $password);
 		} catch (Exception $e) {
@@ -279,11 +279,11 @@ abstract class sspmod_core_Auth_UserPassBase extends SimpleSAML_Auth_Source {
 
 		SimpleSAML\Logger::stats('User \''.$username.'\' has been successfully authenticated.');
 
-		// Save the attributes we received from the login-function in the $state-array.
+		/* Save the attributes we received from the login-function in the $state-array. */
 		assert('is_array($attributes)');
 		$state['Attributes'] = $attributes;
 
-		// Return control to SimpleSAMLphp after successful authentication.
+		/* Return control to SimpleSAMLphp after successful authentication. */
 		SimpleSAML_Auth_Source::completeAuth($state);
 	}
 
