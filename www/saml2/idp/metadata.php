@@ -131,8 +131,8 @@ try {
         /* ECP  enabled. */
         $metaArray['SingleSignOnService'][] = array(
             'index' => 0,
-            'Location' => SimpleSAML_Utilities::getBaseURL() . 'saml2/idp/SSOService.php',
-            'Binding' => SAML2_Const::BINDING_SOAP,
+            'Location' => \SimpleSAML\Utils\HTTP::getBaseURL() . 'saml2/idp/SSOService.php',
+            'Binding' => Constants::BINDING_SOAP,
         );
     }
 
