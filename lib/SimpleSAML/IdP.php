@@ -427,7 +427,7 @@ class SimpleSAML_IdP
     /**
      * Find the logout handler of this IdP.
      *
-     * @return SimpleSAML_IdP_LogoutHandler The logout handler class.
+     * @return \SimpleSAML\IdP\LogoutHandlerInterface The logout handler class.
      *
      * @throws SimpleSAML_Error_Exception If we cannot find a logout handler.
      */
@@ -437,10 +437,10 @@ class SimpleSAML_IdP
         $logouttype = $this->getConfig()->getString('logouttype', 'traditional');
         switch ($logouttype) {
             case 'traditional':
-                $handler = 'SimpleSAML_IdP_LogoutTraditional';
+                $handler = 'SimpleSAML\IdP\TraditionalLogoutHandler';
                 break;
             case 'iframe':
-                $handler = 'SimpleSAML_IdP_LogoutIFrame';
+                $handler = 'SimpleSAML\IdP\IFrameLogoutHandler';
                 break;
             default:
                 throw new SimpleSAML_Error_Exception('Unknown logout handler: '.var_export($logouttype, true));
@@ -492,7 +492,7 @@ class SimpleSAML_IdP
 
         // terminate the local session
         $id = SimpleSAML_Auth_State::saveState($state, 'core:Logout:afterbridge');
-        $returnTo = SimpleSAML_Module::getModuleURL('core/idp/resumelogout.php', array('id' => $id));
+        $returnTo = SimpleSAML\Module::getModuleURL('core/idp/resumelogout.php', array('id' => $id));
 
         $this->authSource->logout($returnTo);
 

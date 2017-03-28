@@ -1,8 +1,11 @@
 .gitignore
-log
-config
-metadata
-cert
+/log/
+/config/
+/metadata/
+/cert/
+
+!config/.gitkeep
+!metadata/.gitkeep
 
 # https://www.gitignore.io/api/osx,windows,linux,netbeans,sublimetext,composer,phpstorm,vagrant
 # Created by https://www.gitignore.io
@@ -158,3 +161,6 @@ crashlytics-build.properties
 
 ### Vagrant ###
 .vagrant/
+
+### vim
+*.swp

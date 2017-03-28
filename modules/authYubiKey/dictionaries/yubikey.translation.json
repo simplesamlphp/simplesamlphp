@@ -30,7 +30,8 @@
 		"sr": "Prijavite se pomo\u0107u YubiKey-a",
 		"ro": "Login cu YubiKey",
 		"cs": "P\u0159ihl\u00e1\u0161en\u00ed pomoc\u00ed YubiKey",
-		"af": "Meld aan met YubiKey"
+		"af": "Meld aan met YubiKey",
+		"el": "\u0395\u03af\u03c3\u03bf\u03b4\u03bf\u03c2 \u03bc\u03b5 YubiKey"
 	},
 	"intro": {
 		"no": "En tjeneste har bedt om at du autentiserer deg. For \u00e5 autentisere seg, trykk p\u00e5 knappen p\u00e5 din YubiKey. Feltet under vil da bli automatisk utfylt med et sikkert engangspassord.",
@@ -63,6 +64,7 @@
 		"ro": "Un serviciu a cerut s\u0103 v\u0103 autentifica\u021bi. Pentru autentificare, ap\u0103sa\u021bi butonul de pe YubiKey. C\u00e2mpul de mai jos va fi completat automat cu o parol\u0103 de unic\u0103 folosin\u021b\u0103.",
 		"cs": "N\u011bkter\u00e1 slu\u017eba si vy\u017e\u00e1dala autentizaci. K p\u0159ihl\u00e1\u0161en\u00ed klikn\u011bte na v\u00e1\u0161 YubiKey. Spodn\u00ed pol\u00ed\u010dko by se pot\u00e9 m\u011blo automaticky vyplnit bezpe\u010dn\u00fdm jednor\u00e1zov\u00fdm heslem.",
 		"eu": "Zerbitzu batek kautotzeko eskatu du. Kautotzeko, klikatu zure YubiKey botoia. Behean kokatutako eremua automatikoki bete beharko litzateke erabilera bakarreko (OTP) pasahitz seguru batekin",
-		"af": "Sommige dienste vereis verifikasie. Kliek op jou YubiKey knoppie vir verifikasie. Die onderstaande veld sal dan outomaties gevul word met 'n veilige een-slag-wagwoord."
+		"af": "Sommige dienste vereis verifikasie. Kliek op jou YubiKey knoppie vir verifikasie. Die onderstaande veld sal dan outomaties gevul word met 'n veilige een-slag-wagwoord.",
+		"el": "\u0397 \u03c4\u03b1\u03c5\u03c4\u03bf\u03c0\u03bf\u03af\u03b7\u03c3\u03ae \u03c3\u03b1\u03c2 \u03b1\u03c0\u03b1\u03b9\u03c4\u03b5\u03af \u03c4\u03b7 \u03c7\u03c1\u03ae\u03c3\u03b7 YubiKey \u03bc\u03ad\u03c3\u03c9 \u03c4\u03bf\u03c5 \u03bf\u03c0\u03bf\u03af\u03bf\u03c5 \u03c4\u03bf \u03c0\u03b1\u03c1\u03b1\u03ba\u03ac\u03c4\u03c9 \u03c0\u03b5\u03b4\u03af\u03bf \u03b8\u03b1 \u03c3\u03c5\u03bc\u03c0\u03bb\u03b7\u03c1\u03c9\u03b8\u03b5\u03af \u03b1\u03c5\u03c4\u03cc\u03bc\u03b1\u03c4\u03b1 \u03bc\u03b5 \u03ad\u03bd\u03b1\u03bd \u03b1\u03c3\u03c6\u03b1\u03bb\u03ae \u03ba\u03c9\u03b4\u03b9\u03ba\u03cc \u03bc\u03b9\u03b1\u03c2 \u03c7\u03c1\u03ae\u03c3\u03b7\u03c2."
 	}
 }

@@ -2,6 +2,12 @@
 
 require_once('../../_include.php');
 
+use SAML2\Constants;
+use SimpleSAML\Utils\Auth as Auth;
+use SimpleSAML\Utils\Crypto as Crypto;
+use SimpleSAML\Utils\HTTP as HTTP;
+use SimpleSAML\Utils\Config\Metadata as Metadata;
+
 // load SimpleSAMLphp, configuration and metadata
 $config = SimpleSAML_Configuration::getInstance();
 $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
@@ -12,7 +18,7 @@ if (!$config->getBoolean('enable.saml20-idp', false)) {
 
 // check if valid local session exists
 if ($config->getBoolean('admin.protectmetadata', false)) {
-    SimpleSAML\Utils\Auth::requireAdmin();
+    Auth::requireAdmin();
 }
 
 try {
@@ -24,7 +30,7 @@ try {
     $availableCerts = array();
 
     $keys = array();
-    $certInfo = SimpleSAML\Utils\Crypto::loadPublicKey($idpmeta, false, 'new_');
+    $certInfo = Crypto::loadPublicKey($idpmeta, false, 'new_');
     if ($certInfo !== null) {
         $availableCerts['new_idp.crt'] = $certInfo;
         $keys[] = array(
@@ -38,7 +44,7 @@ try {
         $hasNewCert = false;
     }
 
-    $certInfo = SimpleSAML\Utils\Crypto::loadPublicKey($idpmeta, true);
+    $certInfo = Crypto::loadPublicKey($idpmeta, true);
     $availableCerts['idp.crt'] = $certInfo;
     $keys[] = array(
         'type'            => 'X509Certificate',
@@ -48,7 +54,7 @@ try {
     );
 
     if ($idpmeta->hasValue('https.certificate')) {
-        $httpsCert = SimpleSAML\Utils\Crypto::loadPublicKey($idpmeta, true, 'https.');
+        $httpsCert = Crypto::loadPublicKey($idpmeta, true, 'https.');
         assert('isset($httpsCert["certData"])');
         $availableCerts['https.crt'] = $httpsCert;
         $keys[] = array(
@@ -107,17 +113,17 @@ try {
         // Artifact sending enabled
         $metaArray['ArtifactResolutionService'][] = array(
             'index'    => 0,
-            'Location' => \SimpleSAML\Utils\HTTP::getBaseURL().'saml2/idp/ArtifactResolutionService.php',
-            'Binding'  => SAML2_Const::BINDING_SOAP,
+            'Location' => HTTP::getBaseURL().'saml2/idp/ArtifactResolutionService.php',
+            'Binding'  => Constants::BINDING_SOAP,
         );
     }
 
     if ($idpmeta->getBoolean('saml20.hok.assertion', false)) {
         // Prepend HoK SSO Service endpoint.
         array_unshift($metaArray['SingleSignOnService'], array(
-            'hoksso:ProtocolBinding' => SAML2_Const::BINDING_HTTP_REDIRECT,
-            'Binding'                => SAML2_Const::BINDING_HOK_SSO,
-            'Location'               => \SimpleSAML\Utils\HTTP::getBaseURL().'saml2/idp/SSOService.php'
+            'hoksso:ProtocolBinding' => Constants::BINDING_HTTP_REDIRECT,
+            'Binding'                => Constants::BINDING_HOK_SSO,
+            'Location'               => HTTP::getBaseURL().'saml2/idp/SSOService.php'
         ));
     }
 
@@ -156,7 +162,7 @@ try {
         $metaArray['EntityAttributes'] = $idpmeta->getArray('EntityAttributes');
 
         // check for entity categories
-        if (SimpleSAML\Utils\Config\Metadata::isHiddenFromDiscovery($metaArray)) {
+        if (Metadata::isHiddenFromDiscovery($metaArray)) {
             $metaArray['hide.from.discovery'] = true;
         }
     }
@@ -184,7 +190,7 @@ try {
     if ($idpmeta->hasValue('contacts')) {
         $contacts = $idpmeta->getArray('contacts');
         foreach ($contacts as $contact) {
-            $metaArray['contacts'][] = \SimpleSAML\Utils\Config\Metadata::getContact($contact);
+            $metaArray['contacts'][] = Metadata::getContact($contact);
         }
     }
 
@@ -193,7 +199,7 @@ try {
         $techcontact['emailAddress'] = $technicalContactEmail;
         $techcontact['name'] = $config->getString('technicalcontact_name', null);
         $techcontact['contactType'] = 'technical';
-        $metaArray['contacts'][] = \SimpleSAML\Utils\Config\Metadata::getContact($techcontact);
+        $metaArray['contacts'][] = Metadata::getContact($techcontact);
     }
 
     $metaBuilder = new SimpleSAML_Metadata_SAMLBuilder($idpentityid);
@@ -214,8 +220,9 @@ try {
 
         $t->data['clipboard.js'] = true;
         $t->data['available_certs'] = $availableCerts;
-        $t->data['header'] = 'saml20-idp';
-        $t->data['metaurl'] = \SimpleSAML\Utils\HTTP::getSelfURLNoQuery();
+        $t->data['header'] = 'saml20-idp'; // TODO: Replace with headerString in 2.0
+        $t->data['headerString'] = $t->noop('metadata_saml20-idp');
+        $t->data['metaurl'] = HTTP::getSelfURLNoQuery();
         $t->data['metadata'] = htmlspecialchars($metaxml);
         $t->data['metadataflat'] = htmlspecialchars($metaflat);
         $t->data['defaultidp'] = $defaultidp;

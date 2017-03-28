@@ -1,6 +1,6 @@
 <?php
 
-$this->data['head'] = '<style>
+$this->data['head'] = '<style type="text/css">
 	table.statustable td, table.statustable th { 
 		border: 1px solid #eee;
 		padding: 2px 6px;
@@ -57,7 +57,7 @@ foreach($column_titles as $ct) {
 <?php
 foreach($table as $row_title => $row_data) {
 	echo '<tr>' . "\n";
-	echo '<th class="rowtitle" style="text-align: right">' . $this->t('{memcacheMonitor:memcachestat:' . $row_title . '}') . '</th>' . "\n";
+	echo '<th class="rowtitle" style="text-align: right">' . $this->t($this->data['rowtitles'][$row_title]) . '</th>' . "\n";
 
 	foreach($column_titles as $ct) {
 		echo '<td>';

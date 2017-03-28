@@ -251,14 +251,14 @@ class sspmod_statistics_StatDataset
     public function getDelimiterPresentation()
     {
         $config = SimpleSAML_Configuration::getInstance();
-        $t = new SimpleSAML_XHTML_Template($config, 'statistics:statistics-tpl.php');
+        $t = new SimpleSAML_XHTML_Template($config, 'statistics:statistics.tpl.php');
 
         $availdelimiters = $this->availDelimiters();
 
         // create a delimiter presentation filter for this rule...
         if ($this->ruleconfig->hasValue('fieldPresentation')) {
             $fieldpresConfig = $this->ruleconfig->getConfigItem('fieldPresentation');
-            $classname = SimpleSAML_Module::resolveClass(
+            $classname = SimpleSAML\Module::resolveClass(
                 $fieldpresConfig->getValue('class'),
                 'Statistics_FieldPresentation'
             );

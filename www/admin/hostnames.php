@@ -16,13 +16,14 @@ $attributes['HTTPS'] = isset($_SERVER['HTTPS'])? array($_SERVER['HTTPS']) : arra
 $attributes['SERVER_PROTOCOL'] = array($_SERVER['SERVER_PROTOCOL']);
 $attributes['SERVER_PORT'] = array($_SERVER['SERVER_PORT']);
 
-$attributes['Utilities_getBaseURL()'] = array(\SimpleSAML\Utils\HTTP::getBaseURL());
-$attributes['Utilities_getSelfHost()'] = array(\SimpleSAML\Utils\HTTP::getSelfHost());
-$attributes['Utilities_selfURLhost()'] = array(\SimpleSAML\Utils\HTTP::getSelfURLHost());
-$attributes['Utilities_selfURLNoQuery()'] = array(\SimpleSAML\Utils\HTTP::getSelfURLNoQuery());
-$attributes['Utilities_getSelfHostWithPath()'] = array(\SimpleSAML\Utils\HTTP::getSelfHostWithPath());
-$attributes['Utilities_getFirstPathElement()'] = array(\SimpleSAML\Utils\HTTP::getFirstPathElement());
-$attributes['Utilities_selfURL()'] = array(\SimpleSAML\Utils\HTTP::getSelfURL());
+$attributes['getBaseURL()'] = array(\SimpleSAML\Utils\HTTP::getBaseURL());
+$attributes['getSelfHost()'] = array(\SimpleSAML\Utils\HTTP::getSelfHost());
+$attributes['getSelfHostWithNonStandardPort()'] = array(\SimpleSAML\Utils\HTTP::getSelfHostWithNonStandardPort());
+$attributes['selfURLhost()'] = array(\SimpleSAML\Utils\HTTP::getSelfURLHost());
+$attributes['selfURLNoQuery()'] = array(\SimpleSAML\Utils\HTTP::getSelfURLNoQuery());
+$attributes['getSelfHostWithPath()'] = array(\SimpleSAML\Utils\HTTP::getSelfHostWithPath());
+$attributes['getFirstPathElement()'] = array(\SimpleSAML\Utils\HTTP::getFirstPathElement());
+$attributes['selfURL()'] = array(\SimpleSAML\Utils\HTTP::getSelfURL());
 
 $template = new SimpleSAML_XHTML_Template($config, 'hostnames.php');
 

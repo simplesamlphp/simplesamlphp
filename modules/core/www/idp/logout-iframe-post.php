@@ -49,10 +49,10 @@ SimpleSAML_Stats::log('saml:idp:LogoutRequest:sent', array(
 	'idpEntityID' => $idpMetadata->getString('entityid'),
 ));
 
-$bindings = array(SAML2_Const::BINDING_HTTP_POST);
+$bindings = array(\SAML2\Constants::BINDING_HTTP_POST);
 
 $dst = $spMetadata->getDefaultEndpoint('SingleLogoutService', $bindings);
-$binding = SAML2_Binding::getBinding($dst['Binding']);
+$binding = \SAML2\Binding::getBinding($dst['Binding']);
 $lr->setDestination($dst['Location']);
 $lr->setRelayState($relayState);
 

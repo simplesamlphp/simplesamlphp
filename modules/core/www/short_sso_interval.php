@@ -20,7 +20,7 @@ if (array_key_exists('continue', $_REQUEST)) {
 
 $globalConfig = SimpleSAML_Configuration::getInstance();
 $t = new SimpleSAML_XHTML_Template($globalConfig, 'core:short_sso_interval.php');
-$t->data['target'] = SimpleSAML_Module::getModuleURL('core/short_sso_interval.php');
+$t->data['target'] = SimpleSAML\Module::getModuleURL('core/short_sso_interval.php');
 $t->data['params'] = array('StateId' => $id);
 $t->data['trackId'] = $session->getTrackID();
 $t->show();

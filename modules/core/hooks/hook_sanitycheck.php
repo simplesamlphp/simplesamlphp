@@ -24,17 +24,17 @@ function core_hook_sanitycheck(&$hookinfo) {
 	}
 	
 	if (version_compare(phpversion(), '5.3', '>=')) {
-		$hookinfo['info'][] = '[core] You are running PHP version ' . phpversion() . '. Great.';
+		$hookinfo['info'][] = '[core] You are running a PHP version suitable for SimpleSAMLphp.';
 	} else {
-		$hookinfo['errors'][] = '[core] You are running PHP version ' . phpversion() . '. SimpleSAMLphp requires version >= 5.3. Please upgrade!';
+		$hookinfo['errors'][] = '[core] You are running an old PHP installation. Please check the requirements for your SimpleSAMLphp version and upgrade.';
 	}
 	
 	$info = array();
 	$mihookinfo = array(
 		'info' => &$info,
 	);
-	$availmodules = SimpleSAML_Module::getModules();
-	SimpleSAML_Module::callHooks('moduleinfo', $mihookinfo);
+	$availmodules = SimpleSAML\Module::getModules();
+	SimpleSAML\Module::callHooks('moduleinfo', $mihookinfo);
 	foreach($info AS $mi => $i) {
 		if (isset($i['dependencies']) && is_array($i['dependencies'])) {
 			foreach ($i['dependencies'] AS $dep) {

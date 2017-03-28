@@ -77,8 +77,11 @@ $t->data['username'] = $username;
 $t->data['forceUsername'] = FALSE;
 $t->data['rememberUsernameEnabled'] = $source->getRememberUsernameEnabled();
 $t->data['rememberUsernameChecked'] = $source->getRememberUsernameChecked();
+$t->data['rememberMeEnabled'] = false;
+$t->data['rememberMeChecked'] = false;
 if (isset($_COOKIE[$source->getAuthId() . '-username'])) $t->data['rememberUsernameChecked'] = TRUE;
 $t->data['errorcode'] = $errorCode;
+$t->data['errorcodes'] = SimpleSAML\Error\Errorcodes::getAllErrorCodeMessages();
 $t->data['errorparams'] = $errorParams;
 
 if ($organizations !== NULL) {

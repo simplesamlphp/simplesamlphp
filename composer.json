@@ -1,8 +1,8 @@
 {
     "name": "simplesamlphp/simplesamlphp",
-    "description": "A PHP implementation of SAML 2.0 service provider and identity provider functionality. And is also compatible with Shibboleth 1.3 and 2.0.",
+    "description": "A PHP implementation of a SAML 2.0 service provider and identity provider, also compatible with Shibboleth 1.3 and 2.0.",
     "type": "project",
-    "keywords": [ "saml2", "shibboleth","aselect","openid","oauth","ws-federation","sp","idp" ],
+    "keywords": [ "saml2", "shibboleth","oauth","ws-federation","sp","idp" ],
     "homepage": "http://simplesamlphp.org",
     "license": "LGPL-2.1",
     "authors": [
@@ -13,23 +13,39 @@
         {
             "name": "Olav Morken",
             "email": "olav.morken@uninett.no"
+        },
+        {
+            "name": "Jaime Perez",
+            "email": "jaime.perez@uninett.no"
         }
     ],
     "autoload": {
-        "psr-0": {
-            "SimpleSAML": "lib/"
+        "psr-4": {
+            "SimpleSAML\\": "lib/SimpleSAML"
         },
         "files": ["lib/_autoload_modules.php"]
     },
     "require": {
         "php": ">=5.3",
-        "simplesamlphp/saml2": "~1.7",
-        "robrichards/xmlseclibs": "~1.4.1",
-        "whitehat101/apr1-md5": "~1.0"
+		"ext-SPL": "*",
+		"ext-zlib": "*",
+		"ext-pcre": "*",
+		"ext-openssl": "*",
+		"ext-dom": "*",
+		"ext-date": "*",
+		"ext-hash": "*",
+		"ext-json": "*",
+        "simplesamlphp/saml2": "dev-master#f079abe36ab4101dfda654a087f8003a9673b952 as 2.4",
+        "robrichards/xmlseclibs": "~2.0",
+        "whitehat101/apr1-md5": "~1.0",
+        "twig/twig": "~1.0",
+        "gettext/gettext": "^3.5",
+        "jaimeperez/twig-configurable-i18n": "^1.2"
     },
     "require-dev": {
-        "phpunit/phpunit": "~3.7",
-        "satooshi/php-coveralls": "dev-master"
+        "ext-pdo_sqlite": "*",
+        "phpunit/phpunit": "~4.8",
+        "satooshi/php-coveralls": "^1.0"
     },
     "support": {
         "issues": "https://github.com/simplesamlphp/simplesamlphp/issues",

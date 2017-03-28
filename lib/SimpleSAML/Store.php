@@ -1,20 +1,22 @@
 <?php
 
+namespace SimpleSAML;
+
+use SimpleSAML\Error\CriticalConfigurationError;
 
 /**
  * Base class for data stores.
  *
  * @package SimpleSAMLphp
  */
-abstract class SimpleSAML_Store
+abstract class Store
 {
-
     /**
      * Our singleton instance.
      *
      * This is false if the data store isn't enabled, and null if we haven't attempted to initialize it.
      *
-     * @var SimpleSAML_Store|false|null
+     * @var \SimpleSAML\Store|false|null
      */
     private static $instance;
 
@@ -22,16 +24,17 @@ abstract class SimpleSAML_Store
     /**
      * Retrieve our singleton instance.
      *
-     * @return SimpleSAML_Store|false  The data store, or false if it isn't enabled.
+     * @return false|\SimpleSAML\Store The data store, or false if it isn't enabled.
+     *
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
     public static function getInstance()
     {
-
         if (self::$instance !== null) {
             return self::$instance;
         }
 
-        $config = SimpleSAML_Configuration::getInstance();
+        $config = \SimpleSAML_Configuration::getInstance();
         $storeType = $config->getString('store.type', null);
         if ($storeType === null) {
             $storeType = $config->getString('session.handler', 'phpsession');
@@ -43,14 +46,24 @@ abstract class SimpleSAML_Store
                 self::$instance = false;
                 break;
             case 'memcache':
-                self::$instance = new SimpleSAML_Store_Memcache();
+                self::$instance = new Store\Memcache();
                 break;
             case 'sql':
-                self::$instance = new SimpleSAML_Store_SQL();
+                self::$instance = new Store\SQL();
                 break;
             default:
                 // datastore from module
-                $className = SimpleSAML_Module::resolveClass($storeType, 'Store', 'SimpleSAML_Store');
+                try {
+                    $className = Module::resolveClass($storeType, 'Store', '\SimpleSAML\Store');
+                } catch (\Exception $e) {
+                    $c = $config->toArray();
+                    $c['store.type'] = 'phpsession';
+                    throw new CriticalConfigurationError(
+                        "Invalid 'store.type' configuration option. Cannot find store '$storeType'.",
+                        null,
+                        $c
+                    );
+                }
                 self::$instance = new $className();
         }
 
@@ -87,5 +100,4 @@ abstract class SimpleSAML_Store
      * @param string $key The key.
      */
     abstract public function delete($type, $key);
-
 }

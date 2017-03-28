@@ -50,6 +50,12 @@
 	"attribute_edupersonprincipalname": {
 		"en": "Person's principal name at home organization"
 	},
+	"attribute_edupersonuniqueid": {
+		"en": "Person's non-reassignable, persistent pseudonymous ID at home organization"
+	},
+	"attribute_edupersonorcid": {
+		"en": "ORCID researcher identifiers"
+	},
 	"attribute_o": {
 		"en": "Organization name"
 	},

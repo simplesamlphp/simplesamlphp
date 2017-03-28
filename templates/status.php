@@ -1,6 +1,6 @@
 <?php
 if (array_key_exists('header', $this->data)) {
-    if ($this->getTag($this->data['header']) !== null) {
+    if ($this->getTranslator()->getTag($this->data['header']) !== null) {
         $this->data['header'] = $this->t($this->data['header']);
     }
 }
@@ -35,15 +35,27 @@ echo(present_attributes($this, $attributes, ''));
 
 $nameid = $this->data['nameid'];
 if ($nameid !== false) {
+    /** @var \SAML2\XML\saml\NameID $nameid */
     echo "<h2>".$this->t('{status:subject_header}')."</h2>";
-    if (!isset($nameid['Value'])) {
+    if (is_null($nameid->value)) {
         $list = array("NameID" => array($this->t('{status:subject_notset}')));
         echo "<p>NameID: <span class=\"notset\">".$this->t('{status:subject_notset}')."</span></p>";
     } else {
         $list = array(
-            "NameId"                            => array($nameid['Value']),
-            $this->t('{status:subject_format}') => array($nameid['Format'])
+            "NameId"                            => array($nameid->value),
         );
+        if (!is_null($nameid->Format)) {
+            $list[$this->t('{status:subject_format}')] = array($nameid->Format);
+        }
+        if (!is_null($nameid->NameQualifier)) {
+            $list['NameQualifier'] = array($nameid->NameQualifier);
+        }
+        if (!is_null($nameid->SPNameQualifier)) {
+            $list['SPNameQualifier'] = array($nameid->SPNameQualifier);
+        }
+        if (!is_null($nameid->SPProvidedID)) {
+            $list['SPProvidedID'] = array($nameid->SPProvidedID);
+        }
     }
     echo(present_attributes($this, $list, ''));
 }

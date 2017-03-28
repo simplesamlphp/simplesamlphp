@@ -1,0 +1,8 @@
+{
+  "invalid_idp": {
+    "es": "Proveedor de Identidad inválido"
+  },
+  "invalid_idp_description": {
+    "es": "Ya existe una sesión válida con un proveedor de identidad (<em>%IDP%</em>) que <em>%SP%</em> no acepta. ¿Desea cerrar su sesión actual e iniciar una nueva con otro proveedor de identidad?"
+  }
+}

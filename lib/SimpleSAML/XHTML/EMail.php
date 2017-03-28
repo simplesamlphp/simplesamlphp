@@ -92,7 +92,7 @@ Content-Transfer-Encoding: 8bit
 		$headers = implode("\n", $this->headers);
 
 		$mail_sent = @mail($this->to, $this->subject, $message, $headers);
-		SimpleSAML_Logger::debug('Email: Sending e-mail to [' . $this->to . '] : ' . ($mail_sent ? 'OK' : 'Failed'));
+		SimpleSAML\Logger::debug('Email: Sending e-mail to [' . $this->to . '] : ' . ($mail_sent ? 'OK' : 'Failed'));
 		if (!$mail_sent) throw new Exception('Error when sending e-mail');
 	}
 

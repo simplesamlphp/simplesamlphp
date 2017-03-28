@@ -93,6 +93,7 @@ if (array_key_exists('forcedUsername', $state)) {
 }
 $t->data['links'] = $source->getLoginLinks();
 $t->data['errorcode'] = $errorCode;
+$t->data['errorcodes'] = SimpleSAML\Error\ErrorCodes::getAllErrorCodeMessages();
 $t->data['errorparams'] = $errorParams;
 
 if (isset($state['SPMetadata'])) {

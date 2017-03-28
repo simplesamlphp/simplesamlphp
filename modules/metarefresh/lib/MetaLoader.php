@@ -84,23 +84,23 @@ class sspmod_metarefresh_MetaLoader {
 			try {
 				list($data, $responseHeaders) = \SimpleSAML\Utils\HTTP::fetch($source['src'], $context, TRUE);
 			} catch(Exception $e) {
-				SimpleSAML_Logger::warning('metarefresh: ' . $e->getMessage());
+				SimpleSAML\Logger::warning('metarefresh: ' . $e->getMessage());
 			}
 
 			// We have response headers, so the request succeeded
 			if(!isset($responseHeaders)) {
 				// No response headers, this means the request failed in some way, so re-use old data
-				SimpleSAML_Logger::debug('No response from ' . $source['src'] . ' - attempting to re-use cached metadata');
+				SimpleSAML\Logger::debug('No response from ' . $source['src'] . ' - attempting to re-use cached metadata');
 				$this->addCachedMetadata($source);
 				return;
 			} elseif(preg_match('@^HTTP/1\.[01]\s304\s@', $responseHeaders[0])) {
 				// 304 response
-				SimpleSAML_Logger::debug('Received HTTP 304 (Not Modified) - attempting to re-use cached metadata');
+				SimpleSAML\Logger::debug('Received HTTP 304 (Not Modified) - attempting to re-use cached metadata');
 				$this->addCachedMetadata($source);
 				return;
 			} elseif(!preg_match('@^HTTP/1\.[01]\s200\s@', $responseHeaders[0])) {
 				// Other error
-				SimpleSAML_Logger::debug('Error from ' . $source['src'] . ' - attempting to re-use cached metadata');
+				SimpleSAML\Logger::debug('Error from ' . $source['src'] . ' - attempting to re-use cached metadata');
 				$this->addCachedMetadata($source);
 				return;
 			}
@@ -113,13 +113,13 @@ class sspmod_metarefresh_MetaLoader {
 		// Everything OK. Proceed.
 		if (isset($source['conditionalGET']) && $source['conditionalGET']) {
 			// Stale or no metadata, so a fresh copy
-			SimpleSAML_Logger::debug('Downloaded fresh copy');
+			SimpleSAML\Logger::debug('Downloaded fresh copy');
 		}
 
 		try {
 			$entities = $this->loadXML($data, $source);
 		} catch(Exception $e) {
-			SimpleSAML_Logger::debug('XML parser error when parsing ' . $source['src'] . ' - attempting to re-use cached metadata');
+			SimpleSAML\Logger::debug('XML parser error when parsing ' . $source['src'] . ' - attempting to re-use cached metadata');
 			$this->addCachedMetadata($source);
 			return;
 		}
@@ -128,21 +128,21 @@ class sspmod_metarefresh_MetaLoader {
 
 			if(isset($source['blacklist'])) {
 				if(!empty($source['blacklist']) && in_array($entity->getEntityID(), $source['blacklist'])) {
-					SimpleSAML_Logger::info('Skipping "' .  $entity->getEntityID() . '" - blacklisted.' . "\n");
+					SimpleSAML\Logger::info('Skipping "' .  $entity->getEntityID() . '" - blacklisted.' . "\n");
 					continue;
 				}
 			}
 
 			if(isset($source['whitelist'])) {
 				if(!empty($source['whitelist']) && !in_array($entity->getEntityID(), $source['whitelist'])) {
-					SimpleSAML_Logger::info('Skipping "' .  $entity->getEntityID() . '" - not in the whitelist.' . "\n");
+					SimpleSAML\Logger::info('Skipping "' .  $entity->getEntityID() . '" - not in the whitelist.' . "\n");
 					continue;
 				}
 			}
 
 			if(array_key_exists('certificates', $source) && $source['certificates'] !== NULL) {
 				if(!$entity->validateSignature($source['certificates'])) {
-					SimpleSAML_Logger::info('Skipping "' . $entity->getEntityId() . '" - could not verify signature using certificate.' . "\n");
+					SimpleSAML\Logger::info('Skipping "' . $entity->getEntityId() . '" - could not verify signature using certificate.' . "\n");
 					continue;
 				}
 			}
@@ -150,11 +150,11 @@ class sspmod_metarefresh_MetaLoader {
 			if(array_key_exists('validateFingerprint', $source) && $source['validateFingerprint'] !== NULL) {
 				if(!array_key_exists('certificates', $source) || $source['certificates'] == NULL) {
 					if(!$entity->validateFingerprint($source['validateFingerprint'])) {
-						SimpleSAML_Logger::info('Skipping "' . $entity->getEntityId() . '" - could not verify signature using fingerprint.' . "\n");
+						SimpleSAML\Logger::info('Skipping "' . $entity->getEntityId() . '" - could not verify signature using fingerprint.' . "\n");
 						continue;
 					}
 				} else {
-					SimpleSAML_Logger::info('Skipping validation with fingerprint since option certificate is set.' . "\n");
+					SimpleSAML\Logger::info('Skipping validation with fingerprint since option certificate is set.' . "\n");
 				}
 			}
 
@@ -253,7 +253,7 @@ class sspmod_metarefresh_MetaLoader {
 	private function loadXML($data, $source) {
 		$entities = array();
 		try {
-			$doc = SAML2_DOMDocumentFactory::fromString($data);
+			$doc = \SAML2\DOMDocumentFactory::fromString($data);
 		} catch (Exception $e) {
 			throw new Exception('Failed to read XML from ' . $source['src']);
 		}
@@ -270,7 +270,7 @@ class sspmod_metarefresh_MetaLoader {
 	 */
 	public function writeState() {
 		if($this->changed) {
-			SimpleSAML_Logger::debug('Writing: ' . $this->stateFile);
+			SimpleSAML\Logger::debug('Writing: ' . $this->stateFile);
             SimpleSAML\Utils\System::writeFile(
 				$this->stateFile,
 				"<?php\n/* This file was generated by the metarefresh module at ".$this->getTime() . ".\n".
@@ -380,7 +380,7 @@ class sspmod_metarefresh_MetaLoader {
 		
 		$arpxml = $arp->getXML();
 
-		SimpleSAML_Logger::info('Writing ARP file: ' . $arpfile . "\n");
+		SimpleSAML\Logger::info('Writing ARP file: ' . $arpfile . "\n");
 		file_put_contents($arpfile, $arpxml);
 
 	}
@@ -396,7 +396,7 @@ class sspmod_metarefresh_MetaLoader {
 		}
 	
 		if(!file_exists($outputDir)) {
-			SimpleSAML_Logger::info('Creating directory: ' . $outputDir . "\n");
+			SimpleSAML\Logger::info('Creating directory: ' . $outputDir . "\n");
 			$res = @mkdir($outputDir, 0777, TRUE);
 			if ($res === FALSE) {
 				throw new Exception('Error creating directory: ' . $outputDir);
@@ -409,7 +409,7 @@ class sspmod_metarefresh_MetaLoader {
 
 			if(array_key_exists($type, $this->metadata)) {
 				$elements = $this->metadata[$type];
-				SimpleSAML_Logger::debug('Writing: ' . $filename);
+				SimpleSAML\Logger::debug('Writing: ' . $filename);
 
 				$content  = '<?php' . "\n" . '/* This file was generated by the metarefresh module at '. $this->getTime() . "\n";
 				$content .= ' Do not update it manually as it will get overwritten' . "\n" . '*/' . "\n";
@@ -425,9 +425,9 @@ class sspmod_metarefresh_MetaLoader {
                 SimpleSAML\Utils\System::writeFile($filename, $content, 0644);
 			} elseif(is_file($filename)) {
 				if(unlink($filename)) {
-					SimpleSAML_Logger::debug('Deleting stale metadata file: ' . $filename);
+					SimpleSAML\Logger::debug('Deleting stale metadata file: ' . $filename);
 				} else {
-					SimpleSAML_Logger::warning('Could not delete stale metadata file: ' . $filename);
+					SimpleSAML\Logger::warning('Could not delete stale metadata file: ' . $filename);
 				}
 			}
 		}
@@ -449,7 +449,7 @@ class sspmod_metarefresh_MetaLoader {
 			foreach ($elements as $m) {
 				$entityId = $m['metadata']['entityid'];
 
-				SimpleSAML_Logger::debug('metarefresh: Add metadata entry ' .
+				SimpleSAML\Logger::debug('metarefresh: Add metadata entry ' .
 					var_export($entityId, TRUE) . ' in set ' . var_export($set, TRUE) . '.');
 				$metaHandler->saveMetadata($entityId, $set, $m['metadata']);
 			}
@@ -460,15 +460,15 @@ class sspmod_metarefresh_MetaLoader {
 		foreach ($metaHandler->getMetadataSets() as $set) {
 			foreach ($metaHandler->getMetadataSet($set) as $entityId => $metadata) {
 				if (!array_key_exists('expire', $metadata)) {
-					SimpleSAML_Logger::warning('metarefresh: Metadata entry without expire timestamp: ' . var_export($entityId, TRUE) . 
+					SimpleSAML\Logger::warning('metarefresh: Metadata entry without expire timestamp: ' . var_export($entityId, TRUE) .
 						' in set ' . var_export($set, TRUE) . '.');
 					continue;
 				}
 				if ($metadata['expire'] > $ct) {
 					continue;
 				}
-				SimpleSAML_Logger::debug('metarefresh: ' . $entityId . ' expired ' . date('l jS \of F Y h:i:s A', $metadata['expire']) );
-				SimpleSAML_Logger::debug('metarefresh: Delete expired metadata entry ' .
+				SimpleSAML\Logger::debug('metarefresh: ' . $entityId . ' expired ' . date('l jS \of F Y h:i:s A', $metadata['expire']) );
+				SimpleSAML\Logger::debug('metarefresh: Delete expired metadata entry ' .
 					var_export($entityId, TRUE) . ' in set ' . var_export($set, TRUE) . '. (' . ($ct - $metadata['expire']) . ' sec)');
 				$metaHandler->deleteMetadata($entityId, $set);
 			}

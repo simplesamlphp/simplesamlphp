@@ -31,11 +31,11 @@ class System
         if (stristr(PHP_OS, 'LINUX')) {
             return self::LINUX;
         }
-        if (stristr(PHP_OS, 'WIN')) {
-            return self::WINDOWS;
-        }
         if (stristr(PHP_OS, 'DARWIN')) {
             return self::OSX;
+        }
+        if (stristr(PHP_OS, 'WIN')) {
+            return self::WINDOWS;
         }
         if (stristr(PHP_OS, 'BSD')) {
             return self::BSD;
@@ -71,21 +71,28 @@ class System
     {
         $globalConfig = \SimpleSAML_Configuration::getInstance();
 
-        $tempDir = rtrim($globalConfig->getString('tempdir', sys_get_temp_dir().DIRECTORY_SEPARATOR.'simplesaml'),
-            DIRECTORY_SEPARATOR);
+        $tempDir = rtrim(
+            $globalConfig->getString(
+                'tempdir',
+                sys_get_temp_dir().DIRECTORY_SEPARATOR.'simplesaml'
+            ),
+            DIRECTORY_SEPARATOR
+        );
 
         if (!is_dir($tempDir)) {
             if (!mkdir($tempDir, 0700, true)) {
                 $error = error_get_last();
-                throw new \SimpleSAML_Error_Exception('Error creating temporary directory "'.$tempDir.
-                    '": '.$error['message']);
+                throw new \SimpleSAML_Error_Exception(
+                    'Error creating temporary directory "'.$tempDir.'": '.$error['message']
+                );
             }
         } elseif (function_exists('posix_getuid')) {
             // check that the owner of the temp directory is the current user
             $stat = lstat($tempDir);
             if ($stat['uid'] !== posix_getuid()) {
-                throw new \SimpleSAML_Error_Exception('Temporary directory "'.$tempDir.
-                    '" does not belong to the current user.');
+                throw new \SimpleSAML_Error_Exception(
+                    'Temporary directory "'.$tempDir.'" does not belong to the current user.'
+                );
             }
         }
 
@@ -174,24 +181,27 @@ class System
         $res = @file_put_contents($tmpFile, $data);
         if ($res === false) {
             $error = error_get_last();
-            throw new \SimpleSAML_Error_Exception('Error saving file "'.$tmpFile.
-                '": '.$error['message']);
+            throw new \SimpleSAML_Error_Exception(
+                'Error saving file "'.$tmpFile.'": '.$error['message']
+            );
         }
 
         if (self::getOS() !== self::WINDOWS) {
             if (!chmod($tmpFile, $mode)) {
                 unlink($tmpFile);
                 $error = error_get_last();
-                throw new \SimpleSAML_Error_Exception('Error changing file mode of "'.$tmpFile.
-                    '": '.$error['message']);
+                throw new \SimpleSAML_Error_Exception(
+                    'Error changing file mode of "'.$tmpFile.'": '.$error['message']
+                );
             }
         }
 
         if (!rename($tmpFile, $filename)) {
             unlink($tmpFile);
             $error = error_get_last();
-            throw new \SimpleSAML_Error_Exception('Error moving "'.$tmpFile.'" to "'.
-                $filename.'": '.$error['message']);
+            throw new \SimpleSAML_Error_Exception(
+                'Error moving "'.$tmpFile.'" to "'.$filename.'": '.$error['message']
+            );
         }
     }
 }

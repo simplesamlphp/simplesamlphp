@@ -70,7 +70,7 @@ class SimpleSAML_Auth_ProcessingChain {
 		}
 
 
-		SimpleSAML_Logger::debug('Filter config for ' . $idpMetadata['entityid'] . '->' .
+		SimpleSAML\Logger::debug('Filter config for ' . $idpMetadata['entityid'] . '->' .
 			$spMetadata['entityid'] . ': ' . str_replace("\n", '', var_export($this->filters, TRUE)));
 
 	}
@@ -148,7 +148,7 @@ class SimpleSAML_Auth_ProcessingChain {
 		if (!array_key_exists('class', $config)) 
 			throw new Exception('Authentication processing filter without name given.');
 
-		$className = SimpleSAML_Module::resolveClass($config['class'], 'Auth_Process', 'SimpleSAML_Auth_ProcessingFilter');
+		$className = SimpleSAML\Module::resolveClass($config['class'], 'Auth_Process', 'SimpleSAML_Auth_ProcessingFilter');
 		$config['%priority'] = $priority;
 		unset($config['class']);
 		return new $className($config, NULL);
@@ -323,10 +323,10 @@ class SimpleSAML_Auth_ProcessingChain {
 
 		if (isset($state['Destination']['userid.attribute'])) {
 			$attributeName = $state['Destination']['userid.attribute'];
-			SimpleSAML_Logger::warning("The 'userid.attribute' option has been deprecated.");
+			SimpleSAML\Logger::warning("The 'userid.attribute' option has been deprecated.");
 		} elseif (isset($state['Source']['userid.attribute'])) {
 			$attributeName = $state['Source']['userid.attribute'];
-			SimpleSAML_Logger::warning("The 'userid.attribute' option has been deprecated.");
+			SimpleSAML\Logger::warning("The 'userid.attribute' option has been deprecated.");
 		} else {
 			// Default attribute
 			$attributeName = 'eduPersonPrincipalName';
@@ -338,15 +338,22 @@ class SimpleSAML_Auth_ProcessingChain {
 
 		$uid = $state['Attributes'][$attributeName];
 		if (count($uid) === 0) {
-			SimpleSAML_Logger::warning('Empty user id attribute [' . $attributeName . '].');
+			SimpleSAML\Logger::warning('Empty user id attribute [' . $attributeName . '].');
 			return;
 		}
 
 		if (count($uid) > 1) {
-			SimpleSAML_Logger::warning('Multiple attribute values for user id attribute [' . $attributeName . '].');
+			SimpleSAML\Logger::warning('Multiple attribute values for user id attribute [' . $attributeName . '].');
+			return;
 		}
 
+		// TODO: the attribute value should be trimmed
 		$uid = $uid[0];
+
+		if (empty($uid)) {
+			SimpleSAML\Logger::warning('Empty value in attribute '.$attributeName.". on user. Cannot set UserID.");
+			return;
+		}
 		$state['UserID'] = $uid;
 	}
 

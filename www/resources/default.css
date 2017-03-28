@@ -65,7 +65,12 @@ a:hover, a:active {
 	text-decoration: none;
 	color: #333;
 	border-bottom: 1px solid #333;
-} 
+}
+
+#header a {
+	color: #fff;
+	text-decoration: none;
+}
 
 /* LISTS */
 ul {
@@ -368,12 +373,14 @@ caption {
 .float-l {
 	float: left;
 }
-#mobilesubmit {
+
+#mobilesubmit, #mobile_remember_username, #mobile_remember_me {
 	display: none;
 }
 
 @media handheld, only screen and (max-width: 480px), only screen and (max-device-width: 480px) {
-	#header, #languagebar, #footer, .erroricon, #loginicon, .logintext, #regularsubmit {
+	#header, #languagebar, #footer, .erroricon, #loginicon, .logintext, #regularsubmit,
+	#regular_remember_username, #regular_remember_me {
 		display: none;
 	}
 	body {
@@ -395,11 +402,11 @@ caption {
 		height: 1.5em;
 		font-size: 1em;
 	}
-	#mobilesubmit {
-		display: inline;
-	}
 	.youareadmin {
 		font-size: 50%;
+	}
+	#mobilesubmit, #mobile_remember_username, #mobile_remember_me {
+		display: table-row;
 	}
 }
 

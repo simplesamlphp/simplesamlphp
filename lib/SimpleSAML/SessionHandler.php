@@ -23,7 +23,7 @@ abstract class SimpleSAML_SessionHandler
      *
      * @var SimpleSAML_SessionHandler
      */
-    private static $sessionHandler = null;
+    protected static $sessionHandler = null;
 
 
     /**
@@ -54,7 +54,7 @@ abstract class SimpleSAML_SessionHandler
 
 
     /**
-     * Create and set new session id.
+     * Create a new session id.
      *
      * @return string The new session id.
      */
@@ -96,6 +96,18 @@ abstract class SimpleSAML_SessionHandler
 
 
     /**
+     * Set a session cookie.
+     *
+     * @param string $sessionName The name of the session.
+     * @param string|null $sessionID The session ID to use. Set to null to delete the cookie.
+     * @param array|null $cookieParams Additional parameters to use for the session cookie.
+     *
+     * @throws \SimpleSAML\Error\CannotSetCookie If we can't set the cookie.
+     */
+    abstract public function setCookie($sessionName, $sessionID, array $cookieParams = null);
+
+
+    /**
      * Initialize the session handler.
      *
      * This function creates an instance of the session handler which is
@@ -106,11 +118,11 @@ abstract class SimpleSAML_SessionHandler
     private static function createSessionHandler()
     {
 
-        $store = SimpleSAML_Store::getInstance();
+        $store = \SimpleSAML\Store::getInstance();
         if ($store === false) {
             self::$sessionHandler = new SimpleSAML_SessionHandlerPHP();
         } else {
-            /** @var SimpleSAML_Store $store At this point, $store can only be an object */
+            /** @var \SimpleSAML\Store $store At this point, $store can only be an object */
             self::$sessionHandler = new SimpleSAML_SessionHandlerStore($store);
         }
     }
@@ -125,7 +137,6 @@ abstract class SimpleSAML_SessionHandler
      */
     public function hasSessionCookie()
     {
-
         return true;
     }
 
@@ -138,7 +149,6 @@ abstract class SimpleSAML_SessionHandler
      */
     public function getCookieParams()
     {
-
         $config = SimpleSAML_Configuration::getInstance();
 
         return array(
@@ -148,27 +158,5 @@ abstract class SimpleSAML_SessionHandler
             'secure'   => $config->getBoolean('session.cookie.secure', false),
             'httponly' => true,
         );
-    }
-
-
-    /**
-     * Set a session cookie.
-     *
-     * @param string      $name The name of the session cookie.
-     * @param string|null $value The value of the cookie. Set to null to delete the cookie.
-     * @param array|null  $params Additional params to use for the session cookie.
-     */
-    public function setCookie($name, $value, array $params = null)
-    {
-        assert('is_string($name)');
-        assert('is_string($value) || is_null($value)');
-
-        if ($params !== null) {
-            $params = array_merge($this->getCookieParams(), $params);
-        } else {
-            $params = $this->getCookieParams();
-        }
-
-        \SimpleSAML\Utils\HTTP::setCookie($name, $value, $params);
     }
 }

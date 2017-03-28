@@ -32,13 +32,13 @@ class sspmod_portal_Portal {
 	
 	function getLoginInfo($t, $thispage) {
 		$info = array('info' => '', 'template' => $t, 'thispage' => $thispage);
-		SimpleSAML_Module::callHooks('portalLoginInfo', $info);
+		SimpleSAML\Module::callHooks('portalLoginInfo', $info);
 		return $info['info'];
 	}
 	
 	function getMenu($thispage) {
 		$config = SimpleSAML_Configuration::getInstance();
-		$t = new SimpleSAML_XHTML_Template($config, 'sanitycheck:check-tpl.php');
+		$t = new SimpleSAML_XHTML_Template($config, 'sanitycheck:check.tpl.php');
 		$tabset = $this->getTabset($thispage);
 		$logininfo = $this->getLoginInfo($t, $thispage);
 		$text = '';

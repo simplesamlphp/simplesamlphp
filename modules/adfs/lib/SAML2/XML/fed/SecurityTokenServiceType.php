@@ -45,7 +45,7 @@ class sspmod_adfs_SAML2_XML_fed_SecurityTokenServiceType extends SAML2_XML_md_Ro
 
 		$e = parent::toXML($parent);
 		$e->setAttributeNS('http://www.w3.org/2000/xmlns/', 'xmlns:fed', sspmod_adfs_SAML2_XML_fed_Const::NS_FED);
-		$e->setAttributeNS(SAML2_Const::NS_XSI, 'xsi:type', 'fed:SecurityTokenServiceType');
+		$e->setAttributeNS(\SAML2\Constants::NS_XSI, 'xsi:type', 'fed:SecurityTokenServiceType');
                 sspmod_adfs_SAML2_XML_fed_TokenTypesOffered::appendXML($e);
                 sspmod_adfs_SAML2_XML_fed_Endpoint::appendXML($e, 'SecurityTokenServiceEndpoint', $this->Location);
                 sspmod_adfs_SAML2_XML_fed_Endpoint::appendXML($e, 'fed:PassiveRequestorEndpoint', $this->Location);

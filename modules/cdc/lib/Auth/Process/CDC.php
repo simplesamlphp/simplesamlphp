@@ -52,14 +52,14 @@ class sspmod_cdc_Auth_Process_CDC extends SimpleSAML_Auth_ProcessingFilter {
 		assert('is_array($state)');
 
 		if (!isset($state['Source']['entityid'])) {
-			SimpleSAML_Logger::warning('saml:CDC: Could not find IdP entityID.');
+			SimpleSAML\Logger::warning('saml:CDC: Could not find IdP entityID.');
 			return;
 		}
 
 		// Save state and build request
 		$id = SimpleSAML_Auth_State::saveState($state, 'cdc:resume');
 
-		$returnTo = SimpleSAML_Module::getModuleURL('cdc/resume.php', array('domain' => $this->domain));
+		$returnTo = SimpleSAML\Module::getModuleURL('cdc/resume.php', array('domain' => $this->domain));
 
 		$params = array(
 			'id' => $id,

@@ -27,7 +27,7 @@ class sspmod_statistics_DateHandlerMonth extends sspmod_statistics_DateHandler {
 		$month = ($slot % 12);
 		$year = 2000 + floor($slot / 12);
 		
-		$epoch = mktime(0, 0, 0, $month + 1, 1, $year, FALSE);
+		$epoch = mktime(0, 0, 0, $month + 1, 1, $year);
 		return $epoch;
 	}
 

@@ -13,21 +13,7 @@ class SimpleSAML_Utilities
 {
 
     /**
-     * List of log levels.
-     *
-     * This list is used to restore the log levels after some log levels are disabled.
-     *
-     * @var array
-     */
-    private static $logLevelStack = array();
-
-
-    /**
-     * The current mask of disabled log levels.
-     *
-     * Note: This mask is not directly related to the PHP error reporting level.
-     *
-     * @var int
+     * @deprecated This property will be removed in SSP 2.0. Please use SimpleSAML\Logger::isErrorMasked() instead.
      */
     public static $logMask = 0;
 
@@ -142,14 +128,14 @@ class SimpleSAML_Utilities
         $currentTime = time();
 
         if (!empty($start)) {
-            $startTime = SAML2_Utils::xsDateTimeToTimestamp($start);
+            $startTime = \SAML2\Utils::xsDateTimeToTimestamp($start);
             // Allow for a 10 minute difference in Time
             if (($startTime < 0) || (($startTime - 600) > $currentTime)) {
                 return false;
             }
         }
         if (!empty($end)) {
-            $endTime = SAML2_Utils::xsDateTimeToTimestamp($end);
+            $endTime = \SAML2\Utils::xsDateTimeToTimestamp($end);
             if (($endTime < 0) || ($endTime <= $currentTime)) {
                 return false;
             }
@@ -227,7 +213,7 @@ class SimpleSAML_Utilities
         }
 
         if (strlen($url) > 2048) {
-            SimpleSAML_Logger::warning('Redirecting to a URL longer than 2048 bytes.');
+            SimpleSAML\Logger::warning('Redirecting to a URL longer than 2048 bytes.');
         }
 
         // Set the location header
@@ -585,7 +571,7 @@ class SimpleSAML_Utilities
 
         $redirInfo = base64_encode(SimpleSAML\Utils\Crypto::aesEncrypt($session->getSessionId().':'.$postId));
 
-        $url = SimpleSAML_Module::getModuleURL('core/postredirect.php', array('RedirInfo' => $redirInfo));
+        $url = SimpleSAML\Module::getModuleURL('core/postredirect.php', array('RedirInfo' => $redirInfo));
         $url = preg_replace("#^https:#", "http:", $url);
 
         return $url;
@@ -629,29 +615,20 @@ class SimpleSAML_Utilities
 
 
     /**
-     * @deprecated This method will be removed in SSP 2.0.
+     * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Logger::maskErrors() instead.
      */
     public static function maskErrors($mask)
     {
-        assert('is_int($mask)');
-
-        $currentEnabled = error_reporting();
-        self::$logLevelStack[] = array($currentEnabled, self::$logMask);
-
-        $currentEnabled &= ~$mask;
-        error_reporting($currentEnabled);
-        self::$logMask |= $mask;
+        SimpleSAML\Logger::maskErrors($mask);
     }
 
 
     /**
-     * @deprecated This method will be removed in SSP 2.0.
+     * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Logger::popErrorMask() instead.
      */
     public static function popErrorMask()
     {
-        $lastMask = array_pop(self::$logLevelStack);
-        error_reporting($lastMask[0]);
-        self::$logMask = $lastMask[1];
+        SimpleSAML\Logger::popErrorMask();
     }
 
 
@@ -727,5 +704,4 @@ class SimpleSAML_Utilities
     {
         \SimpleSAML\Utils\HTTP::setCookie($name, $value, $params, $throw);
     }
-
 }

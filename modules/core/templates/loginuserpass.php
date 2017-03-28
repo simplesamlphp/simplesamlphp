@@ -20,16 +20,10 @@ if ($this->data['errorcode'] !== null) {
         <h2><?php echo $this->t('{login:error_header}'); ?></h2>
 
         <p><strong><?php
-                echo htmlspecialchars($this->t(
-                    '{errors:title_'.$this->data['errorcode'].'}',
-                    $this->data['errorparams']
-                )); ?></strong></p>
+            echo htmlspecialchars($this->t($this->data['errorcodes']['title'][$this->data['errorcode']], $this->data['errorparams'])); ?></strong></p>
 
         <p><?php
-            echo htmlspecialchars($this->t(
-                '{errors:descr_'.$this->data['errorcode'].'}',
-                $this->data['errorparams']
-            )); ?></p>
+            echo htmlspecialchars($this->t($this->data['errorcodes']['descr'][$this->data['errorcode']], $this->data['errorparams'])); ?></p>
     </div>
 <?php
 }
@@ -42,8 +36,8 @@ if ($this->data['errorcode'] !== null) {
     <form action="?" method="post" name="f">
         <table>
             <tr>
-                <td rowspan="2">
-                    <img id="loginicon" alt=""
+                <td rowspan="2" id="loginicon">
+                    <img alt=""
                         src="/<?php echo $this->data['baseurlpath']; ?>resources/icons/experience/gtk-dialog-authentication.48x48.png" />
                 </td>
                 <td><label for="username"><?php echo $this->t('{login:username}'); ?></label></td>
@@ -55,17 +49,33 @@ if ($this->data['errorcode'] !== null) {
 } ?> value="<?php echo htmlspecialchars($this->data['username']); ?>"/>
                 </td>
             <?php
-            if ($this->data['rememberUsernameEnabled'] && !$this->data['forcedUsername']) {
+            if ($this->data['rememberUsernameEnabled'] && !$this->data['forceUsername']) {
                 // display the "remember my username" checkbox
             ?>
-                <td>
+                <td id="regular_remember_username">
                     <input type="checkbox" id="remember_username" tabindex="4"
                            <?php echo ($this->data['rememberUsernameChecked']) ? 'checked="checked"' : ''; ?>
                            name="remember_username" value="Yes"/>
                     <small><?php echo $this->t('{login:remember_username}'); ?></small>
                 </td>
+            <?php
+            }
+            ?>
             </tr>
             <?php
+            if ($this->data['rememberUsernameEnabled'] && !$this->data['forceUsername']) {
+                // display the "remember my username" checkbox
+                ?>
+            <tr id="mobile_remember_username">
+                <td>&nbsp;</td>
+                <td>
+                    <input type="checkbox" id="remember_username" tabindex="4"
+                        <?php echo ($this->data['rememberUsernameChecked']) ? 'checked="checked"' : ''; ?>
+                           name="remember_username" value="Yes"/>
+                    <small><?php echo $this->t('{login:remember_username}'); ?></small>
+                </td>
+            </tr>
+                <?php
             }
             ?>
             <tr>
@@ -77,7 +87,23 @@ if ($this->data['errorcode'] !== null) {
             if ($this->data['rememberMeEnabled']) {
                 // display the remember me checkbox (keep me logged in)
             ?>
-                <td>
+                <td id="regular_remember_me">
+                    <input type="checkbox" id="remember_me" tabindex="5"
+                        <?php echo ($this->data['rememberMeChecked']) ? 'checked="checked"' : ''; ?>
+                           name="remember_me" value="Yes"/>
+                    <small><?php echo $this->t('{login:remember_me}'); ?></small>
+                </td>
+            <?php
+            }
+            ?>
+            </tr>
+            <?php
+            if ($this->data['rememberMeEnabled']) {
+                // display the remember me checkbox (keep me logged in)
+            ?>
+            <tr>
+                <td></td>
+                <td id="mobile_remember_me">
                     <input type="checkbox" id="remember_me" tabindex="5"
                         <?php echo ($this->data['rememberMeChecked']) ? 'checked="checked"' : ''; ?>
                            name="remember_me" value="Yes"/>
@@ -86,6 +112,8 @@ if ($this->data['errorcode'] !== null) {
             </tr>
             <?php
             }
+            ?>
+            <?php
             if (array_key_exists('organizations', $this->data)) {
                 ?>
                 <tr>
@@ -118,12 +146,20 @@ if ($this->data['errorcode'] !== null) {
                 <?php
             }
             ?>
-            <tr>
+            <tr id="regularsubmit">
                 <td></td><td></td>
                 <td>
-                    <button id="regularsubmit" class="btn"
-                            onclick="this.value='<?php echo $this->t('{login:processing'); ?>';
+                    <button class="btn"
+                            onclick="this.value='<?php echo $this->t('{login:processing}'); ?>';
                                 this.disabled=true; this.form.submit(); return true;" tabindex="6">
+                        <?php echo $this->t('{login:login_button}'); ?>
+                    </button>
+                </td>
+            </tr>
+            <tr id="mobilesubmit">
+                <td></td><td></td>
+                <td>
+                    <button class="btn" tabindex="6">
                         <?php echo $this->t('{login:login_button}'); ?>
                     </button>
                 </td>

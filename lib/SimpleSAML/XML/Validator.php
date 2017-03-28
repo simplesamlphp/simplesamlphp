@@ -115,7 +115,7 @@ class SimpleSAML_XML_Validator {
 		}
 
 		// Check the signature
-		if (! $objXMLSecDSig->verify($objKey)) {
+		if ($objXMLSecDSig->verify($objKey) !== 1) {
 			throw new Exception("Unable to validate Signature");
 		}
 
@@ -401,22 +401,22 @@ class SimpleSAML_XML_Validator {
 			throw new Exception('Could not load CA file: ' . $caFile);
 		}
 
-		SimpleSAML_Logger::debug('Validating certificate against CA file: ' . var_export($caFile, TRUE));
+		SimpleSAML\Logger::debug('Validating certificate against CA file: ' . var_export($caFile, TRUE));
 
 		$resBuiltin = self::validateCABuiltIn($certificate, $caFile);
 		if ($resBuiltin !== TRUE) {
-			SimpleSAML_Logger::debug('Failed to validate with internal function: ' . var_export($resBuiltin, TRUE));
+			SimpleSAML\Logger::debug('Failed to validate with internal function: ' . var_export($resBuiltin, TRUE));
 
 			$resExternal = self::validateCAExec($certificate, $caFile);
 			if ($resExternal !== TRUE) {
-				SimpleSAML_Logger::debug('Failed to validate with external function: ' . var_export($resExternal, TRUE));
+				SimpleSAML\Logger::debug('Failed to validate with external function: ' . var_export($resExternal, TRUE));
 				throw new Exception('Could not verify certificate against CA file "'
 					. $caFile . '". Internal result:' . $resBuiltin .
 					' External result:' . $resExternal);
 			}
 		}
 
-		SimpleSAML_Logger::debug('Successfully validated certificate.');
+		SimpleSAML\Logger::debug('Successfully validated certificate.');
 	}
 
 }

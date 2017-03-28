@@ -111,7 +111,7 @@
         "en": "ADFS IdP Metadata"
     },
 	"metadata_intro": {
-		"en": "Here is the metadata that simpleSAMLphp has generated for you. You may send this metadata document to trusted partners to setup a trusted federation."
+		"en": "Here is the metadata that SimpleSAMLphp has generated for you. You may send this metadata document to trusted partners to setup a trusted federation."
 	},
 	"metadata_xmlurl": {
 		"en": "You can <a href=\"%METAURL%\">get the metadata xml on a dedicated URL<\/a>:"
@@ -129,7 +129,7 @@
 		"en": "In SAML 2.0 Metadata XML format:"
 	},
 	"metadata_simplesamlformat": {
-		"en": "In simpleSAMLphp flat file format - use this if you are using a simpleSAMLphp entity on the other side:"
+		"en": "In SimpleSAMLphp flat file format - use this if you are using a SimpleSAMLphp entity on the other side:"
 	},
 	"debug_sending_message_title": {
 		"en": "Sending message"
@@ -150,7 +150,7 @@
 		"en": "As you are in debug mode, you get to see the content of the message you are sending:"
 	},
 	"debug_disable_debug_mode": {
-		"en": "You can turn off debug mode in the global simpleSAMLphp configuration file <tt>config\/config.php<\/tt>."
+		"en": "You can turn off debug mode in the global SimpleSAMLphp configuration file <tt>config\/config.php<\/tt>."
 	},
 	"metaconv_xmlmetadata": {
 		"en": "XML metadata"

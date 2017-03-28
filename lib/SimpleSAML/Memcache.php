@@ -37,7 +37,7 @@ class SimpleSAML_Memcache
      */
     public static function get($key)
     {
-        SimpleSAML_Logger::debug("loading key $key from memcache");
+        SimpleSAML\Logger::debug("loading key $key from memcache");
 
         $latestInfo = null;
         $latestTime = 0.0;
@@ -68,19 +68,19 @@ class SimpleSAML_Memcache
              * - 'data': The data.
              */
             if (!is_array($info)) {
-                SimpleSAML_Logger::warning(
+                SimpleSAML\Logger::warning(
                     'Retrieved invalid data from a memcache server. Data was not an array.'
                 );
                 continue;
             }
             if (!array_key_exists('timestamp', $info)) {
-                SimpleSAML_Logger::warning(
+                SimpleSAML\Logger::warning(
                     'Retrieved invalid data from a memcache server. Missing timestamp.'
                 );
                 continue;
             }
             if (!array_key_exists('data', $info)) {
-                SimpleSAML_Logger::warning(
+                SimpleSAML\Logger::warning(
                     'Retrieved invalid data from a memcache server. Missing data.'
                 );
                 continue;
@@ -117,13 +117,13 @@ class SimpleSAML_Memcache
                 throw new SimpleSAML_Error_Exception('All memcache servers are down', 503, $e);
             }
             // we didn't find any data matching the key
-            SimpleSAML_Logger::debug("key $key not found in memcache");
+            SimpleSAML\Logger::debug("key $key not found in memcache");
             return null;
         }
 
         if ($mustUpdate) {
             // we found data matching the key, but some of the servers need updating
-            SimpleSAML_Logger::debug("Memcache servers out of sync for $key, forcing sync");
+            SimpleSAML\Logger::debug("Memcache servers out of sync for $key, forcing sync");
             self::set($key, $latestData);
         }
 
@@ -140,7 +140,7 @@ class SimpleSAML_Memcache
      */
     public static function set($key, $value, $expire = null)
     {
-        SimpleSAML_Logger::debug("saving key $key to memcache");
+        SimpleSAML\Logger::debug("saving key $key to memcache");
         $savedInfo = array(
             'timestamp' => microtime(true),
             'data'      => $value
@@ -167,7 +167,7 @@ class SimpleSAML_Memcache
     public static function delete($key)
     {
         assert('is_string($key)');
-        SimpleSAML_Logger::debug("deleting key $key from memcache");
+        SimpleSAML\Logger::debug("deleting key $key from memcache");
 
         // store this object to all groups of memcache servers
         foreach (self::getMemcacheServers() as $server) {
@@ -439,8 +439,10 @@ class SimpleSAML_Memcache
 
         foreach (self::getMemcacheServers() as $sg) {
             $stats = $sg->getExtendedStats();
-            if ($stats === false) {
-                throw new Exception('Failed to get memcache server status.');
+            foreach ($stats as $server => $data) {
+                if ($data === false) {
+                    throw new Exception('Failed to get memcache server status.');
+                }
             }
 
             $stats = SimpleSAML\Utils\Arrays::transpose($stats);

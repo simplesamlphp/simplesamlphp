@@ -104,24 +104,25 @@ class sspmod_saml_Error extends SimpleSAML_Error_Exception {
 			// Return the original exception unchanged
 			return $exception;
 
+		// TODO: remove this branch in 2.0
 		} elseif ($exception instanceof SimpleSAML_Error_NoPassive) {
 			$e = new self(
-				SAML2_Const::STATUS_RESPONDER,
-				SAML2_Const::STATUS_NO_PASSIVE,
+				\SAML2\Constants::STATUS_RESPONDER,
+				\SAML2\Constants::STATUS_NO_PASSIVE,
 				$exception->getMessage(),
 				$exception
 				);
+		// TODO: remove this branch in 2.0
 		} elseif ($exception instanceof SimpleSAML_Error_ProxyCountExceeded) {
 			$e = new self(
-				SAML2_Const::STATUS_RESPONDER,
-				SAML2_Const::STATUS_PROXY_COUNT_EXCEEDED,
+				\SAML2\Constants::STATUS_RESPONDER,
+				\SAML2\Constants::STATUS_PROXY_COUNT_EXCEEDED,
 				$exception->getMessage(),
 				$exception
-				);
-
+			);
 		} else {
 			$e = new self(
-				SAML2_Const::STATUS_RESPONDER,
+				\SAML2\Constants::STATUS_RESPONDER,
 				NULL,
 				get_class($exception) . ': ' . $exception->getMessage(),
 				$exception
@@ -154,9 +155,9 @@ class sspmod_saml_Error extends SimpleSAML_Error_Exception {
 		$e = NULL;
 
 		switch ($this->status) {
-		case SAML2_Const::STATUS_RESPONDER:
+		case \SAML2\Constants::STATUS_RESPONDER:
 			switch ($this->subStatus) {
-			case SAML2_Const::STATUS_NO_PASSIVE:
+			case \SAML2\Constants::STATUS_NO_PASSIVE:
 				$e = new SimpleSAML_Error_NoPassive($this->statusMessage, 0, $this);
 				break;
 			}

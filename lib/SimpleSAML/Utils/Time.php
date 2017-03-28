@@ -7,9 +7,19 @@
 
 namespace SimpleSAML\Utils;
 
+use SimpleSAML\Logger;
+
 
 class Time
 {
+
+    /**
+     * Whether the timezone has been initialized or not.
+     *
+     * @var bool
+     */
+    private static $tz_initialized = false;
+
 
     /**
      * This function generates a timestamp on the form used by the SAML protocols.
@@ -37,13 +47,9 @@ class Time
      */
     public static function initTimezone()
     {
-        static $initialized = false;
-
-        if ($initialized) {
+        if (self::$tz_initialized) {
             return;
         }
-
-        $initialized = true;
 
         $globalConfig = \SimpleSAML_Configuration::getInstance();
 
@@ -52,29 +58,24 @@ class Time
             if (!date_default_timezone_set($timezone)) {
                 throw new \SimpleSAML_Error_Exception('Invalid timezone set in the "timezone" option in config.php.');
             }
+            self::$tz_initialized = true;
             return;
         }
         // we don't have a timezone configured
 
-        /*
-         * The date_default_timezone_get() function is likely to cause a warning.
-         * Since we have a custom error handler which logs the errors with a backtrace,
-         * this error will be logged even if we prefix the function call with '@'.
-         * Instead we temporarily replace the error handler.
-         */
-        set_error_handler(function () {
-            return true;
-        });
+        Logger::maskErrors(E_ALL);
         $serverTimezone = date_default_timezone_get();
-        restore_error_handler();
+        Logger::popErrorMask();
 
         // set the timezone to the default
         date_default_timezone_set($serverTimezone);
+        self::$tz_initialized = true;
     }
 
 
     /**
-     * Interpret a ISO8601 duration value relative to a given timestamp.
+     * Interpret a ISO8601 duration value relative to a given timestamp. Please note no fractions are allowed, neither
+     * durations specified in the formats PYYYYMMDDThhmmss nor P[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].
      *
      * @param string $duration The duration, as a string.
      * @param int    $timestamp The unix timestamp we should apply the duration to. Optional, default to the current
@@ -91,7 +92,8 @@ class Time
         }
 
         // parse the duration. We use a very strict pattern
-        $durationRegEx = '#^(-?)P(?:(?:(?:(\\d+)Y)?(?:(\\d+)M)?(?:(\\d+)D)?(?:T(?:(\\d+)H)?(?:(\\d+)M)?(?:(\\d+)(?:[.,]\d+)?S)?)?)|(?:(\\d+)W))$#D';
+        $durationRegEx = '#^(-?)P(?:(?:(?:(\\d+)Y)?(?:(\\d+)M)?(?:(\\d+)D)?(?:T(?:(\\d+)H)?(?:(\\d+)M)?(?:(\\d+)'.
+            '(?:[.,]\d+)?S)?)?)|(?:(\\d+)W))$#D';
         if (!preg_match($durationRegEx, $duration, $matches)) {
             throw new \InvalidArgumentException('Invalid ISO 8601 duration: '.$duration);
         }

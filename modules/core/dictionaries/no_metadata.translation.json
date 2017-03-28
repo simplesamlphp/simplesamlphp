@@ -27,7 +27,8 @@
 		"ro": "Nu au fost g\u0103site metadate",
 		"cs": "Metadata nebyla nalezena",
 		"eu": "Ez da aurkitu metadaturik",
-		"af": "Metadata nie gevind nie"
+		"af": "Metadata nie gevind nie",
+		"el": "\u0394\u03b5\u03bd \u03b2\u03c1\u03ad\u03b8\u03b7\u03ba\u03b1\u03bd \u03bc\u03b5\u03c4\u03b1\u03b4\u03b5\u03b4\u03bf\u03bc\u03ad\u03bd\u03b1"
 	},
 	"not_found_for": {
 		"no": "Vi fant ikke metadataene for:",
@@ -57,7 +58,8 @@
 		"ro": "Nu am g\u0103sit metadate pentru urm\u0103toarea entitate:",
 		"cs": "Nebyla nalezena metadata pro entitu:",
 		"eu": "Ezinezkoa izan da erakunde honentzat metadaturik aurkitzea: ",
-		"af": "Ons was nie in staat om die metadata vir die entiteit op te spoor nie:"
+		"af": "Ons was nie in staat om die metadata vir die entiteit op te spoor nie:",
+		"el": "\u0394\u03b5\u03bd \u03ae\u03c4\u03b1\u03bd \u03b4\u03c5\u03bd\u03b1\u03c4\u03cc \u03bd\u03b1 \u03b2\u03c1\u03b5\u03b8\u03bf\u03cd\u03bd \u03bc\u03b5\u03c4\u03b1\u03b4\u03b5\u03b4\u03bf\u03bc\u03ad\u03bd\u03b1 \u03b3\u03b9\u03b1 \u03c4\u03b7\u03bd \u03bf\u03bd\u03c4\u03cc\u03c4\u03b7\u03c4\u03b1:"
 	},
 	"config_problem": {
 		"no": "Dette er sannsynligvis et konfigurasjonsproblem hos enten tjenesteleverand\u00f8ren eller identitetsleverand\u00f8ren.",
@@ -87,7 +89,8 @@
 		"ro": "Probabil exist\u0103 o problem\u0103 de configurare, fie la furnizorul de servicii fie la furnizorul de identitate.",
 		"cs": "Toto je pravd\u011bpodobn\u011b konfigura\u010dn\u00ed probl\u00e9m na stran\u011b poskytovatele slu\u017eby nebo poskytovatele identity.",
 		"eu": "Hau ziurrenik konfigurazio arazo bat izango da zerbitzu hornitzailean edota identitate hornitzailean. ",
-		"af": "Di\u00e9 is waarskynlik 'n probleem met die konfigurasie by die diensverskaffer \u00f3f die identiteit verskaffer."
+		"af": "Di\u00e9 is waarskynlik 'n probleem met die konfigurasie by die diensverskaffer \u00f3f die identiteit verskaffer.",
+		"el": "\u0391\u03c5\u03c4\u03cc \u03c5\u03c0\u03bf\u03b4\u03b5\u03b9\u03ba\u03bd\u03cd\u03b5\u03b9 \u03c0\u03c1\u03cc\u03b2\u03bb\u03b7\u03bc\u03b1 \u03bc\u03b5 \u03c4\u03b9\u03c2 \u03c1\u03c5\u03b8\u03bc\u03af\u03c3\u03b5\u03b9\u03c2 \u03b5\u03af\u03c4\u03b5 \u03c4\u03bf\u03c5 \u03c0\u03b1\u03c1\u03cc\u03c7\u03bf\u03c5 \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03b9\u03ce\u03bd \u03b5\u03af\u03c4\u03b5 \u03c4\u03bf\u03c5 \u03c0\u03b1\u03c1\u03cc\u03c7\u03bf\u03c5 \u03c4\u03b1\u03c5\u03c4\u03cc\u03c4\u03b7\u03c4\u03b1\u03c2."
 	},
 	"suggestion_user_link": {
 		"no": "Hvis du er en bruker som fikk denne feilen etter at du fulgte en link p\u00e5 en nettside, s\u00e5 b\u00f8r du rapportere denne feilen til eieren av den nettsiden.",
@@ -117,7 +120,8 @@
 		"ro": "Dac\u0103 sunte\u021bi un utilizator care a primit acest mesaj de eroare \u00een urma utiliz\u0103rii unui link din alt sit, v\u0103 rug\u0103m s\u0103 anun\u021ba\u021bi aceast\u0103 eroare de\u021bin\u0103torului sitului respectiv.",
 		"cs": "Pokud jste u\u017eivatel, kter\u00fd obdr\u017eel chybu po n\u00e1sledov\u00e1n\u00ed odkazu na webov\u00e9 str\u00e1nce, m\u011bli byste o t\u00e9to chyb\u011b informovat vlastn\u00edka t\u00e9to str\u00e1nky. ",
 		"eu": "Gune bateko lotura bat jarraituz errore hau jasotzen duen erabiltzaile bat bazara,  guneko jabeari eman behar diozu errorearen berri.",
-		"af": "As jy 'n gebruiker is wat na aanleiding van 'n skakel op 'n webwerf hierdie fout ontvang het, moet jy hierdie fout aan die eienaar van die webwerf aan stuur."
+		"af": "As jy 'n gebruiker is wat na aanleiding van 'n skakel op 'n webwerf hierdie fout ontvang het, moet jy hierdie fout aan die eienaar van die webwerf aan stuur.",
+		"el": "\u0391\u03bd \u03bb\u03ac\u03b2\u03b1\u03c4\u03b5 \u03b1\u03c5\u03c4\u03cc \u03c4\u03bf \u03c3\u03c6\u03ac\u03bb\u03bc\u03b1 \u03b1\u03ba\u03bf\u03bb\u03bf\u03c5\u03b8\u03ce\u03bd\u03c4\u03b1\u03c2 \u03ad\u03bd\u03b1\u03bd \u03c3\u03cd\u03bd\u03b4\u03b5\u03c3\u03bc\u03bf \u03c3\u03b5 \u03ba\u03ac\u03c0\u03bf\u03b9\u03bf\u03bd \u03b9\u03c3\u03c4\u03cc\u03c4\u03bf\u03c0\u03bf, \u03b8\u03b1 \u03c0\u03c1\u03ad\u03c0\u03b5\u03b9 \u03bd\u03b1 \u03c4\u03bf \u03b1\u03bd\u03b1\u03c6\u03ad\u03c1\u03b5\u03c4\u03b5 \u03c3\u03c4\u03bf\u03bd \u03b9\u03b4\u03b9\u03bf\u03ba\u03c4\u03ae\u03c4\u03b7 \u03c4\u03bf\u03c5 \u03b5\u03bd \u03bb\u03cc\u03b3\u03c9 \u03b9\u03c3\u03c4\u03cc\u03c4\u03bf\u03c0\u03bf\u03c5."
 	},
 	"suggestion_developer": {
 		"no": "Hvis du er en utvikler som setter opp en \"single sign-on\" l\u00f8sning, s\u00e5 har du et problem med metadataoppsettet. Kontroller at metadata er riktig konfigurert hos b\u00e5de identitetsleverand\u00f8ren og tjenesteleverand\u00f8ren.",
@@ -147,6 +151,7 @@
 		"ro": "Dac\u0103 sunte\u021bi dezvoltator care implementeaz\u0103 o solu\u021bie <i>single sign-on<\/i>, ave\u021bi o problem\u0103 la configurarea metadatelor. V\u0103 rug\u0103m s\u0103 verifica\u021bi configurarea corect\u0103 a metadatelor, at\u00e2t la furnizorul de identitate c\u00e2t \u0219i la furnizorul de servicii.",
 		"cs": "Pokud jste v\u00fdvoj\u00e1\u0159 nasazuj\u00edc\u00ed \u0159e\u0161en\u00ed jednotn\u00e9ho p\u0159ihla\u0161ov\u00e1n\u00ed, m\u00e1te probl\u00e9m s konfigurac\u00ed metadat. Ov\u011b\u0159te, zda jsou metadata nakonfigurov\u00e1na spr\u00e1vn\u011b jak u poskytovatele identity tak u poskytovatele slu\u017eby.",
 		"eu": "Hasiera-bakarreko sistema bat zabaltzen ari zaren garatzaile bat bazara, arazo bat duzu zure metadatuen kongigurazioarekin. Egiazta ezazu metadatuak zuzen konfiguratuak daudela identitate hornitzailean eta zerbitzu hornitzailean.",
-		"af": "As jy 'n programmeerder is wat die 'single sign-on' oplossing implementeer, het jy 'n probleem met die metadata opset. Bevestig dat die metadata korrek ingestel is op beide die identiteit verskaffer en diensverskaffer."
+		"af": "As jy 'n programmeerder is wat die 'single sign-on' oplossing implementeer, het jy 'n probleem met die metadata opset. Bevestig dat die metadata korrek ingestel is op beide die identiteit verskaffer en diensverskaffer.",
+		"el": "\u0395\u03ac\u03bd \u03b5\u03af\u03c3\u03c4\u03b5 \u03b4\u03b9\u03b1\u03c7\u03b5\u03b9\u03c1\u03b9\u03c3\u03c4\u03ae\u03c2 \u03c4\u03b7\u03c2 \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b1\u03c2 \u03c4\u03b1\u03c5\u03c4\u03bf\u03c0\u03bf\u03af\u03b7\u03c3\u03b7\u03c2 \u03ba\u03b1\u03b9 \u03b5\u03be\u03bf\u03c5\u03c3\u03b9\u03bf\u03b4\u03cc\u03c4\u03b7\u03c3\u03b7\u03c2, \u03c4\u03cc\u03c4\u03b5 \u03b1\u03bd\u03c4\u03b9\u03bc\u03b5\u03c4\u03c9\u03c0\u03af\u03b6\u03b5\u03c4\u03b5 \u03ba\u03ac\u03c0\u03bf\u03b9\u03bf \u03c0\u03c1\u03cc\u03b2\u03bb\u03b7\u03bc\u03b1 \u03bc\u03b5 \u03c4\u03b7 \u03b4\u03b9\u03b1\u03bc\u03cc\u03c1\u03c6\u03c9\u03c3\u03b7 \u03c4\u03c9\u03bd \u03bc\u03b5\u03c4\u03b1\u03b4\u03b5\u03b4\u03bf\u03bc\u03ad\u03bd\u03c9\u03bd. \u0392\u03b5\u03b2\u03b1\u03b9\u03c9\u03b8\u03b5\u03af\u03c4\u03b5 \u03cc\u03c4\u03b9 \u03c4\u03b1 \u03bc\u03b5\u03c4\u03b1\u03b4\u03b5\u03b4\u03bf\u03bc\u03ad\u03bd\u03b1 \u03ad\u03c7\u03bf\u03c5\u03bd \u03c1\u03c5\u03b8\u03bc\u03b9\u03c3\u03c4\u03b5\u03af \u03c3\u03c9\u03c3\u03c4\u03ac \u03c4\u03cc\u03c3\u03bf \u03c3\u03c4\u03bf\u03bd \u03c0\u03ac\u03c1\u03bf\u03c7\u03bf \u03c4\u03b1\u03c5\u03c4\u03cc\u03c4\u03b7\u03c4\u03b1\u03c2 \u03cc\u03c3\u03bf \u03ba\u03b1\u03b9 \u03c3\u03c4\u03bf\u03bd \u03c0\u03ac\u03c1\u03bf\u03c7\u03bf \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03b9\u03ce\u03bd."
 	}
 }

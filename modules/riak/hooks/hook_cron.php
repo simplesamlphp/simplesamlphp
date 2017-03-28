@@ -43,11 +43,11 @@ function riak_hook_cron(&$croninfo) {
 			$link->getBinary()->delete();
 		}
 
-		SimpleSAML_Logger::info(sprintf("deleted %s riak key%s",
+		SimpleSAML\Logger::info(sprintf("deleted %s riak key%s",
 		    sizeof($result), sizeof($result) == 1 ? '' : 's'));
 	} catch (Exception $e) {
 		$message = 'riak threw exception: ' . $e->getMessage();
-		SimpleSAML_Logger::warning($message);
+		SimpleSAML\Logger::warning($message);
 		$croninfo['summary'][] = $message;
 	}
 }

@@ -29,7 +29,8 @@
  * @author Ryan Panning
  * @package SimpleSAMLphp
  */
-class sspmod_ldap_Auth_Process_AttributeAddFromLDAP extends sspmod_ldap_Auth_Process_BaseFilter {
+class sspmod_ldap_Auth_Process_AttributeAddFromLDAP extends sspmod_ldap_Auth_Process_BaseFilter
+{
 
     /**
      * LDAP attribute to add to the request attributes
@@ -60,8 +61,8 @@ class sspmod_ldap_Auth_Process_AttributeAddFromLDAP extends sspmod_ldap_Auth_Pro
      * @param array $config Configuration information about this filter.
      * @param mixed $reserved For future use.
      */
-    public function __construct($config, $reserved) {
-
+    public function __construct($config, $reserved)
+    {
         /*
          * For backwards compatibility, check for old config names
          * @TODO Remove after 2.0
@@ -119,7 +120,7 @@ class sspmod_ldap_Auth_Process_AttributeAddFromLDAP extends sspmod_ldap_Auth_Pro
             $new_attribute = $this->config->getString('attribute.new', '');
             $this->search_attributes[$new_attribute] = $this->config->getString('search.attribute');
         }
-        $this->search_filter    = $this->config->getString('search.filter');
+        $this->search_filter = $this->config->getString('search.filter');
 
         // get the attribute policy
         $this->attr_policy = $this->config->getString('attribute.policy', 'merge');
@@ -131,7 +132,8 @@ class sspmod_ldap_Auth_Process_AttributeAddFromLDAP extends sspmod_ldap_Auth_Pro
      *
      * @param array &$request The current request
      */
-    public function process(&$request) {
+    public function process(&$request)
+    {
         assert('is_array($request)');
         assert('array_key_exists("Attributes", $request)');
 
@@ -153,14 +155,14 @@ class sspmod_ldap_Auth_Process_AttributeAddFromLDAP extends sspmod_ldap_Auth_Pro
         // merge the attributes into the ldap_search_filter
         $filter = str_replace($arrSearch, $arrReplace, $this->search_filter);
 
-        if (strpos($filter, '%') !== FALSE) {
-            SimpleSAML_Logger::info('AttributeAddFromLDAP: There are non-existing attributes in the search filter. ('.
+        if (strpos($filter, '%') !== false) {
+            SimpleSAML\Logger::info('AttributeAddFromLDAP: There are non-existing attributes in the search filter. ('.
                                     $this->search_filter.')');
             return;
         }
 
         if (!in_array($this->attr_policy, array('merge', 'replace', 'add'))) {
-            SimpleSAML_Logger::warning("AttributeAddFromLDAP: 'attribute.policy' must be one of 'merge',".
+            SimpleSAML\Logger::warning("AttributeAddFromLDAP: 'attribute.policy' must be one of 'merge',".
                                        "'replace' or 'add'.");
             return;
         }
@@ -168,7 +170,7 @@ class sspmod_ldap_Auth_Process_AttributeAddFromLDAP extends sspmod_ldap_Auth_Pro
         // search for matching entries
         try {
             $entries = $this->getLdap()->searchformultiple($this->base_dn, $filter,
-                                                           array_values($this->search_attributes), TRUE, FALSE);
+                                                           array_values($this->search_attributes), true, false);
         } catch (Exception $e) {
             return; // silent fail, error is still logged by LDAP search
         }

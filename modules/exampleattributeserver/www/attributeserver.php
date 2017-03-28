@@ -2,9 +2,9 @@
 
 $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 
-$binding = SAML2_Binding::getCurrentBinding();
+$binding = \SAML2\Binding::getCurrentBinding();
 $query = $binding->receive();
-if (!($query instanceof SAML2_AttributeQuery)) {
+if (!($query instanceof \SAML2\AttributeQuery)) {
 	throw new SimpleSAML_Error_BadRequest('Invalid message received to AttributeQuery endpoint.');
 }
 
@@ -29,17 +29,17 @@ $attributes = array(
 );
 
 /* The name format of the attributes. */
-$attributeNameFormat = SAML2_Const::NAMEFORMAT_UNSPECIFIED;
+$attributeNameFormat = \SAML2\Constants::NAMEFORMAT_UNSPECIFIED;
 
 
 /* Determine which attributes we will return. */
 $returnAttributes = array_keys($query->getAttributes());
 if (count($returnAttributes) === 0) {
-	SimpleSAML_Logger::debug('No attributes requested - return all attributes.');
+	SimpleSAML\Logger::debug('No attributes requested - return all attributes.');
 	$returnAttributes = $attributes;
 
 } elseif ($query->getAttributeNameFormat() !== $attributeNameFormat) {
-	SimpleSAML_Logger::debug('Requested attributes with wrong NameFormat - no attributes returned.');
+	SimpleSAML\Logger::debug('Requested attributes with wrong NameFormat - no attributes returned.');
 	$returnAttributes = array();
 } else {
 	foreach ($returnAttributes as $name => $values) {
@@ -62,7 +62,7 @@ if (count($returnAttributes) === 0) {
 
 
 /* $returnAttributes contains the attributes we should return. Send them. */
-$assertion = new SAML2_Assertion();
+$assertion = new \SAML2\Assertion();
 $assertion->setIssuer($idpEntityId);
 $assertion->setNameId($query->getNameId());
 $assertion->setNotBefore(time());
@@ -71,9 +71,9 @@ $assertion->setValidAudiences(array($spEntityId));
 $assertion->setAttributes($returnAttributes);
 $assertion->setAttributeNameFormat($attributeNameFormat);
 
-$sc = new SAML2_XML_saml_SubjectConfirmation();
-$sc->Method = SAML2_Const::CM_BEARER;
-$sc->SubjectConfirmationData = new SAML2_XML_saml_SubjectConfirmationData();
+$sc = new \SAML2\XML\saml\SubjectConfirmation();
+$sc->Method = \SAML2\Constants::CM_BEARER;
+$sc->SubjectConfirmationData = new \SAML2\XML\saml\SubjectConfirmationData();
 $sc->SubjectConfirmationData->NotOnOrAfter = time() + 5*60;
 $sc->SubjectConfirmationData->Recipient = $endpoint;
 $sc->SubjectConfirmationData->InResponseTo = $query->getId();
@@ -81,7 +81,7 @@ $assertion->setSubjectConfirmation(array($sc));
 
 sspmod_saml_Message::addSign($idpMetadata, $spMetadata, $assertion);
 
-$response = new SAML2_Response();
+$response = new \SAML2\Response();
 $response->setRelayState($query->getRelayState());
 $response->setDestination($endpoint);
 $response->setIssuer($idpEntityId);
@@ -89,5 +89,5 @@ $response->setInResponseTo($query->getId());
 $response->setAssertions(array($assertion));
 sspmod_saml_Message::addSign($idpMetadata, $spMetadata, $response);
 
-$binding = new SAML2_HTTPPost();
+$binding = new \SAML2\HTTPPost();
 $binding->send($response);

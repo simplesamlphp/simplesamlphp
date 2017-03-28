@@ -59,20 +59,21 @@ class sspmod_saml_Auth_Process_PersistentNameID2TargetedID extends SimpleSAML_Au
     {
         assert('is_array($state)');
 
-        if (!isset($state['saml:NameID'][SAML2_Const::NAMEID_PERSISTENT])) {
-            SimpleSAML_Logger::warning(
+        if (!isset($state['saml:NameID'][\SAML2\Constants::NAMEID_PERSISTENT])) {
+            SimpleSAML\Logger::warning(
                 'Unable to generate eduPersonTargetedID because no persistent NameID was available.'
             );
             return;
         }
 
-        $nameID = $state['saml:NameID'][SAML2_Const::NAMEID_PERSISTENT];
+        /** @var \SAML2\XML\saml\NameID $nameID */
+        $nameID = $state['saml:NameID'][\SAML2\Constants::NAMEID_PERSISTENT];
 
         if ($this->nameId) {
-            $doc = SAML2_DOMDocumentFactory::create();
+            $doc = \SAML2\DOMDocumentFactory::create();
             $root = $doc->createElement('root');
             $doc->appendChild($root);
-            SAML2_Utils::addNameId($root, $nameID);
+            $nameID->toXML($root);
             $value = $doc->saveXML($root->firstChild);
         } else {
             $value = $nameID['Value'];

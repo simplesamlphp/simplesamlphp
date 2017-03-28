@@ -57,7 +57,7 @@ class SimpleSAML_XML_Shib13_AuthnResponse {
 		assert('is_string($xml)');
 
 		try {
-			$this->dom = SAML2_DOMDocumentFactory::fromString(str_replace ("\r", "", $xml));
+			$this->dom = \SAML2\DOMDocumentFactory::fromString(str_replace ("\r", "", $xml));
 		} catch(\Exception $e) {
 			throw new Exception('Unable to parse AuthnResponse XML.');
 		}
@@ -439,7 +439,7 @@ class SimpleSAML_XML_Shib13_AuthnResponse {
 	 *
 	 * @return bool True if the current time belongs to the period specified by $start and $end. False otherwise.
 	 *
-	 * @see \SAML2_Utils::xsDateTimeToTimestamp.
+	 * @see \SAML2\Utils::xsDateTimeToTimestamp.
 	 *
 	 * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
 	 * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
@@ -449,14 +449,14 @@ class SimpleSAML_XML_Shib13_AuthnResponse {
 		$currentTime = time();
 
 		if (!empty($start)) {
-			$startTime = \SAML2_Utils::xsDateTimeToTimestamp($start);
+			$startTime = \SAML2\Utils::xsDateTimeToTimestamp($start);
 			// allow for a 10 minute difference in time
 			if (($startTime < 0) || (($startTime - 600) > $currentTime)) {
 				return false;
 			}
 		}
 		if (!empty($end)) {
-			$endTime = \SAML2_Utils::xsDateTimeToTimestamp($end);
+			$endTime = \SAML2\Utils::xsDateTimeToTimestamp($end);
 			if (($endTime < 0) || ($endTime <= $currentTime)) {
 				return false;
 			}

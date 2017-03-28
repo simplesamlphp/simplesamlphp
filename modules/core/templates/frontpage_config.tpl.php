@@ -67,7 +67,11 @@ if ($this->data['isadmin']) {
 		echo '<h2>' . $this->t('{core:frontpage:warnings}') . '</h2>';
 
 		foreach($this->data['warnings'] AS $warning) {
-			echo '<div class="caution">' . $this->t($warning) . '</div>';
+			if (is_array($warning)) {
+				echo '<div class="caution">' . $this->t($warning[0], $warning[1]) . '</div>';
+			} else {
+				echo '<div class="caution">'.$this->t($warning).'</div>';
+			}
 		}
 	}
 ?>
@@ -83,8 +87,8 @@ if ($this->data['isadmin']) {
 	
 	
 	foreach ($this->data['funcmatrix'] AS $func) {
-		echo '<tr class="' . ($func['enabled'] ? 'enabled' : 'disabled') . '"><td>' . ($func['enabled'] ? $icon_enabled : $icon_disabled) . '</td>
-		<td>' . $this->t('{core:frontpage:' . $func['required']. '}') . '</td><td>' . $func['descr'] . '</td></tr>';
+		echo '<tr class="' . ($func['enabled'] ? 'enabled' : 'disabled') . '"><td>' . ($func['enabled'] ? $icon_enabled : $icon_disabled) . '</td>';
+		echo '<td>' . $this->t($this->data['requiredmap'][$func['required']]) . '</td><td>' . $func['descr'] . '</td></tr>';
 	}
 	echo('</table></div>');
 }

@@ -27,7 +27,7 @@ $t = new SimpleSAML_XHTML_Template($config, 'core:show_metadata.tpl.php');
 $t->data['clipboard.js'] = true;
 $t->data['pageid'] = 'show_metadata';
 $t->data['header'] = 'SimpleSAMLphp Show Metadata';
-$t->data['backlink'] = SimpleSAML_Module::getModuleURL('core/frontpage_federation.php');
+$t->data['backlink'] = SimpleSAML\Module::getModuleURL('core/frontpage_federation.php');
 $t->data['m'] = $m;
 
 $t->show();

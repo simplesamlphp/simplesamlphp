@@ -90,7 +90,8 @@ try {
         $t = new SimpleSAML_XHTML_Template($config, 'metadata.php', 'admin');
 
         $t->data['clipboard.js'] = true;
-        $t->data['header'] = 'shib13-idp';
+        $t->data['header'] = 'shib13-idp'; // TODO: Replace with headerString in 2.0
+        $t->data['headerString'] = $t->noop('metadata_shib13-idp');
         $t->data['metaurl'] = \SimpleSAML\Utils\HTTP::addURLParameters(
             \SimpleSAML\Utils\HTTP::getSelfURLNoQuery(),
             array('output' => 'xml')

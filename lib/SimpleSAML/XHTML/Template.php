@@ -1,222 +1,584 @@
 <?php
 
+
 /**
  * A minimalistic XHTML PHP based template system implemented for SimpleSAMLphp.
  *
  * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
  */
-class SimpleSAML_XHTML_Template {
+
+
+use JaimePerez\TwigConfigurableI18n\Twig\Environment as Twig_Environment;
+use JaimePerez\TwigConfigurableI18n\Twig\Extensions\Extension\I18n as Twig_Extensions_Extension_I18n;
+
+
+class SimpleSAML_XHTML_Template
+{
 
     /**
-     * This is the default language map. It is used to map languages codes from the user agent to
-     * other language codes.
+     * The data associated with this template, accessible within the template itself.
+     *
+     * @var array
      */
-    private static $defaultLanguageMap = array('nb' => 'no');
+    public $data = array();
 
+    /**
+     * A translator instance configured to work with this template.
+     *
+     * @var \SimpleSAML\Locale\Translate
+     */
+    private $translator;
 
-    private $configuration = null;
+    /**
+     * The localization backend
+     *
+     * @var \SimpleSAML\Locale\Localization
+     */
+    private $localization;
+
+    /**
+     * The configuration to use in this template.
+     *
+     * @var SimpleSAML_Configuration
+     */
+    private $configuration;
+
+    /**
+     * The file to load in this template.
+     *
+     * @var string
+     */
     private $template = 'default.php';
-    private $availableLanguages = array('en');
-    private $language = null;
-
-    private $langtext = array();
-
-    public $data = null;
-
 
     /**
-     * Associative array of dictionaries.
+     * The twig environment.
+     *
+     * @var false|Twig_Environment
      */
-    private $dictionaries = array();
-
+    private $twig;
 
     /**
-     * The default dictionary.
+     * The template name.
+     *
+     * @var string
      */
-    private $defaultDictionary = NULL;
+    private $twig_template;
+
+    /*
+     * Main Twig namespace, to avoid misspelling it *again*
+     */
+    private $twig_namespace = \Twig_Loader_Filesystem::MAIN_NAMESPACE;
 
 
-    /**
-     * HTTP GET language parameter name.
+    /*
+     * Current module, if any
      */
-    private $languageParameterName = 'language';
+    private $module;
 
 
     /**
      * Constructor
      *
-     * @param $configuration   Configuration object
-     * @param $template        Which template file to load
-     * @param $defaultDictionary  The default dictionary where tags will come from.
+     * @param SimpleSAML_Configuration $configuration Configuration object
+     * @param string                   $template Which template file to load
+     * @param string|null              $defaultDictionary The default dictionary where tags will come from.
      */
-    function __construct(SimpleSAML_Configuration $configuration, $template, $defaultDictionary = NULL) {
+    public function __construct(\SimpleSAML_Configuration $configuration, $template, $defaultDictionary = null)
+    {
         $this->configuration = $configuration;
         $this->template = $template;
-
-        $this->data['baseurlpath'] = $this->configuration->getBaseURL();
-
-        $this->availableLanguages = $this->configuration->getArray('language.available', array('en'));
-
-        $this->languageParameterName = $this->configuration->getString('language.parameter.name', 'language');
-        if (isset($_GET[$this->languageParameterName])) {
-            $this->setLanguage($_GET[$this->languageParameterName], $this->configuration->getBoolean('language.parameter.setcookie', TRUE));
-        }
-
-        if($defaultDictionary !== NULL && substr($defaultDictionary, -4) === '.php') {
-            // For backwards compatibility - print warning
-            $backtrace = debug_backtrace();
-            $where = $backtrace[0]['file'] . ':' . $backtrace[0]['line'];
-            SimpleSAML_Logger::warning('Deprecated use of new SimpleSAML_Template(...) at ' . $where .
-                '. The last parameter is now a dictionary name, which should not end in ".php".');
-
-            $this->defaultDictionary = substr($defaultDictionary, 0, -4);
-        } else {
-            $this->defaultDictionary = $defaultDictionary;
-        }
+        // TODO: do not remove the slash from the beginning, change the templates instead!
+        $this->data['baseurlpath'] = ltrim($this->configuration->getBasePath(), '/');
+        $result = $this->findModuleAndTemplateName($template);
+        $this->module = $result[0];
+        $this->translator = new SimpleSAML\Locale\Translate($configuration, $defaultDictionary);
+        $this->localization = new \SimpleSAML\Locale\Localization($configuration);
+        $this->twig = $this->setupTwig();
     }
 
 
     /**
-     * setLanguage() will set a cookie for the user's browser to remember what language 
-     * was selected
-     * 
-     * @param $language    Language code for the language to set.
-     */
-    public function setLanguage($language, $setLanguageCookie = TRUE) {
-        $language = strtolower($language);
-        if (in_array($language, $this->availableLanguages, TRUE)) {
-            $this->language = $language;
-            if ($setLanguageCookie === TRUE) {
-                SimpleSAML_XHTML_Template::setLanguageCookie($language);
-            }
-        }
-    }
-
-    /**
-     * getLanguage() will return the language selected by the user, or the default language
-     * This function first looks for a cached language code,
-     * then checks for a language cookie,
-     * then it tries to calculate the preferred language from HTTP headers.
-     * Last it returns the default language.
-     */
-    public function getLanguage() {
-
-        // Language is set in object
-        if (isset($this->language)) {
-            return $this->language;
-        }
-
-        // Run custom getLanguage function if defined
-        $customFunction = $this->configuration->getArray('language.get_language_function', NULL);
-        if (isset($customFunction)) {
-            assert('is_callable($customFunction)');
-            $customLanguage = call_user_func($customFunction, $this);
-            if ($customLanguage !== NULL && $customLanguage !== FALSE) {
-                return $customLanguage;
-            }
-        }
-
-        // Language is provided in a stored COOKIE
-        $languageCookie = SimpleSAML_XHTML_Template::getLanguageCookie();
-        if ($languageCookie !== NULL) {
-            $this->language = $languageCookie;
-            return $languageCookie;
-        }
-
-        // Check if we can find a good language from the Accept-Language http header
-        $httpLanguage = $this->getHTTPLanguage();
-        if ($httpLanguage !== NULL) {
-            return $httpLanguage;
-        }
-
-        // Language is not set, and we get the default language from the configuration
-        return $this->getDefaultLanguage();
-    }
-
-
-    /**
-     * This function gets the prefered language for the user based on the Accept-Language http header.
+     * Normalize the name of the template to one of the possible alternatives.
      *
-     * @return The prefered language based on the Accept-Language http header, or NULL if none of the
-     *         languages in the header were available.
+     * @param string $templateName The template name to normalize.
+     * @return string The filename we need to look for.
      */
-    private function getHTTPLanguage() {
-        $languageScore = \SimpleSAML\Utils\HTTP::getAcceptLanguage();
+    private function normalizeTemplateName($templateName)
+    {
+        if (strripos($templateName, '.twig')) {
+            return $templateName;
+        }
+        $phppos = strripos($templateName, '.php');
+        if ($phppos) {
+            $templateName = substr($templateName, 0, $phppos);
+        }
+        $tplpos = strripos($templateName, '.tpl');
+        if ($tplpos) {
+            $templateName = substr($templateName, 0, $tplpos);
+        }
+        return $templateName.'.twig';
+    }
 
-        /* For now we only use the default language map. We may use a configurable language map
-         * in the future.
-         */
-        $languageMap = self::$defaultLanguageMap;
 
-        // Find the available language with the best score
-        $bestLanguage = NULL;
-        $bestScore = -1.0;
+    /**
+     * Set up the places where twig can look for templates.
+     *
+     * @return Twig_Loader_Filesystem|false The twig template loader or false if the template does not exist.
+     * @throws Twig_Error_Loader In case a failure occurs.
+     */
+    private function setupTwigTemplatepaths()
+    {
+        $filename = $this->normalizeTemplateName($this->template);
 
-        foreach($languageScore as $language => $score) {
+        // get namespace if any
+        $namespace = '';
+        $split = explode(':', $filename, 2);
+        if (count($split) === 2) {
+            $namespace = $split[0];
+            $filename = $split[1];
+        }
+        $this->twig_template = $namespace ? '@'.$namespace.'/'.$filename : $filename;
+        $loader = new \Twig_Loader_Filesystem();
+        $templateDirs = array_merge(
+            $this->findThemeTemplateDirs(),
+            $this->findModuleTemplateDirs()
+        );
+        // default, themeless templates are checked last
+        $templateDirs[] = array(
+            $this->twig_namespace => $this->configuration->resolvePath('templates')
+        );
+        foreach ($templateDirs as $entry) {
+            $loader->addPath($entry[key($entry)], key($entry));
+        }
+        return $loader;
+    }
 
-            // Apply the language map to the language code
-            if(array_key_exists($language, $languageMap)) {
-                $language = $languageMap[$language];
+
+    /**
+     * Setup twig.
+     */
+    private function setupTwig()
+    {
+        $auto_reload = $this->configuration->getBoolean('template.auto_reload', true);
+        $cache = false;
+        if (!$auto_reload) {
+            // Cache only used if auto_reload = false
+            $cache = $this->configuration->getString('template.cache', $this->configuration->resolvePath('cache'));
+        }
+        // set up template paths
+        $loader = $this->setupTwigTemplatepaths();
+        // abort if twig template does not exist
+        if (!$loader->exists($this->twig_template)) {
+            return false;
+        }
+
+
+        // load extra i18n domains
+        if ($this->module) {
+            $this->localization->addModuleDomain($this->module);
+        }
+
+        $options = array(
+            'cache' => $cache,
+            'auto_reload' => $auto_reload,
+            'translation_function' => array('\SimpleSAML\Locale\Translate', 'translateSingularNativeGettext'),
+            'translation_function_plural' => array('\SimpleSAML\Locale\Translate', 'translatePluralNativeGettext'),
+        );
+
+        // set up translation
+        if ($this->localization->i18nBackend === \SimpleSAML\Locale\Localization::GETTEXT_I18N_BACKEND) {
+            $options['translation_function'] = array('\SimpleSAML\Locale\Translate', 'translateSingularGettext');
+            $options['translation_function_plural'] = array(
+                '\SimpleSAML\Locale\Translate',
+                'translatePluralGettext'
+            );
+        } // TODO: add a branch for the old SimpleSAMLphp backend
+
+        $twig = new Twig_Environment($loader, $options);
+        $twig->addExtension(new Twig_Extensions_Extension_I18n());
+        return $twig;
+    }
+
+    /*
+     * Add overriding templates in configured theme
+     *
+     * @return array an array of module => templatedir lookups
+     */
+    private function findThemeTemplateDirs()
+    {
+        // parse config to find theme and module theme is in, if any
+        $tmp = explode(':', $this->configuration->getString('theme.use', 'default'), 2);
+        if (count($tmp) === 2) {
+            $themeModule = $tmp[0];
+            $themeName = $tmp[1];
+        } else {
+            $themeModule = null;
+            $themeName = $tmp[0];
+        }
+        // default theme in use, abort
+        if ($themeName == 'default') {
+            return array();
+        }
+        if ($themeModule !== null) {
+            $moduleDir = \SimpleSAML\Module::getModuleDir($themeModule);
+            $themeDir = $moduleDir.'/themes/'.$themeName;
+            $files = scandir($themeDir);
+            if ($files) {
+                $themeTemplateDirs = array();
+                foreach ($files as $file) {
+                    if ($file == '.' || $file == '..') {
+                        continue;
+                    }
+                    // set correct name for default namespace
+                    $ns = $file == 'default' ? $this->twig_namespace : $file;
+                    $themeTemplateDirs[] = array($ns => $themeDir.'/'.$file);
+                }
+                return $themeTemplateDirs;
             }
+        }
+        // theme not found
+        return array();
+    }
 
-            if(!in_array($language, $this->availableLanguages, TRUE)) {
-                // Skip this language - we don't have it
+    /*
+     * Which enabled modules have templates?
+     *
+     * @return array an array of module => templatedir lookups
+     */
+    private function findModuleTemplateDirs()
+    {
+        $all_modules = \SimpleSAML\Module::getModules();
+        $modules = array();
+        foreach ($all_modules as $module) {
+            if (!\SimpleSAML\Module::isModuleEnabled($module)) {
                 continue;
             }
+            $moduledir = \SimpleSAML\Module::getModuleDir($module);
+            // check if module has a /templates dir, if so, append
+            $templatedir = $moduledir.'/templates';
+            if (is_dir($templatedir)) {
+                $modules[] = array($module => $templatedir);
+            }
+        }
+        return $modules;
+    }
 
-            /* Some user agents use very limited precicion of the quality value, but order the
-             * elements in descending order. Therefore we rely on the order of the output from
-             * getAcceptLanguage() matching the order of the languages in the header when two
-             * languages have the same quality.
-             */
-            if($score > $bestScore) {
-                $bestLanguage = $language;
-                $bestScore = $score;
+
+    /**
+     * Generate an array for its use in the language bar, indexed by the ISO 639-2 codes of the languages available,
+     * containing their localized names and the URL that should be used in order to change to that language.
+     *
+     * @return array The array containing information of all available languages.
+     */
+    private function generateLanguageBar()
+    {
+        $languages = $this->translator->getLanguage()->getLanguageList();
+        $langmap = null;
+        if (count($languages) > 1) {
+            $parameterName = $this->getTranslator()->getLanguage()->getLanguageParameterName();
+            $langmap = array();
+            foreach ($languages as $lang => $current) {
+                $lang = strtolower($lang);
+                $langname = $this->translator->getLanguage()->getLanguageLocalizedName($lang);
+                $url = false;
+                if (!$current) {
+                    $url = htmlspecialchars(\SimpleSAML\Utils\HTTP::addURLParameters(
+                        '',
+                        array($parameterName => $lang)
+                    ));
+                }
+                $langmap[$lang] = array(
+                    'name' => $langname,
+                    'url' => $url,
+                );
+            }
+        }
+        return $langmap;
+    }
+
+
+    /**
+     * Set some default context
+     */
+    private function twigDefaultContext()
+    {
+        $this->data['languageParameterName'] = $this->configuration->getString('language.parameter.name', 'language');
+        $this->data['localeBackend'] = $this->configuration->getString('language.i18n.backend', 'SimpleSAMLphp');
+        $this->data['currentLanguage'] = $this->translator->getLanguage()->getLanguage();
+        // show language bar by default
+        if (!isset($this->data['hideLanguageBar'])) {
+            $this->data['hideLanguageBar'] = false;
+        }
+        // get languagebar
+        $this->data['languageBar'] = null;
+        if ($this->data['hideLanguageBar'] === false) {
+            $languageBar = $this->generateLanguageBar();
+            if (is_null($languageBar)) {
+                $this->data['hideLanguageBar'] = true;
+            } else {
+                $this->data['languageBar'] = $languageBar;
             }
         }
 
-        return $bestLanguage;
-    }
-
-
-    /**
-     * Returns the language default (from configuration)
-     */
-    private function getDefaultLanguage() {
-        return $this->configuration->getString('language.default', 'en');
-    }
-
-    /**
-     * Returns a list of all available languages.
-     */
-    private function getLanguageList() {
-        $thisLang = $this->getLanguage();
-        $lang = array();
-        foreach ($this->availableLanguages AS $nl) {
-            $lang[$nl] = ($nl == $thisLang);
+        // assure that there is a <title> and <h1>
+        if (isset($this->data['header']) && !isset($this->data['pagetitle'])) {
+            $this->data['pagetitle'] = $this->data['header'];
         }
-        return $lang;
-    }
-
-    /**
-     * Return TRUE if language is Right-to-Left.
-     */
-    private function isLanguageRTL() {
-        $rtlLanguages = $this->configuration->getArray('language.rtl', array());
-        $thisLang = $this->getLanguage();
-        if (in_array($thisLang, $rtlLanguages)) {
-            return TRUE;
+        if (!isset($this->data['pagetitle'])) {
+            $this->data['pagetitle'] = 'SimpleSAMLphp';
         }
-        return FALSE;
+
+        // set RTL
+        $this->data['isRTL'] = false;
+        if ($this->translator->getLanguage()->isLanguageRTL()) {
+            $this->data['isRTL'] = true;
+        }
+
+        // add query parameters, in case we need them in the template
+        $this->data['queryParams'] = $_GET;
+        if (isset($this->data['queryParams'][$this->data['languageParameterName']])) {
+            unset($this->data['queryParams'][$this->data['languageParameterName']]);
+        }
     }
 
+
     /**
-     * Includs a file relative to the template base directory.
+     * Show the template to the user.
+     */
+    public function show()
+    {
+        if ($this->twig !== false) {
+            $this->twigDefaultContext();
+            echo $this->twig->render($this->twig_template, $this->data);
+        } else {
+            $filename = $this->findTemplatePath($this->template);
+            require($filename);
+        }
+    }
+
+
+    /**
+     * Find module the template is in, if any
+     *
+     * @param string $template The relative path from the theme directory to the template file.
+     *
+     * @return array An array with the name of the module and template
+     */
+    private function findModuleAndTemplateName($template)
+    {
+        $tmp = explode(':', $template, 2);
+        if (count($tmp) === 2) {
+            $templateModule = $tmp[0];
+            $templateName = $tmp[1];
+        } else {
+            $templateModule = null;
+            $templateName = $tmp[0];
+        }
+
+        return array($templateModule, $templateName);
+    }
+
+
+    /**
+     * Find template path.
+     *
+     * This function locates the given template based on the template name. It will first search for the template in
+     * the current theme directory, and then the default theme.
+     *
+     * The template name may be on the form <module name>:<template path>, in which case it will search for the
+     * template file in the given module.
+     *
+     * @param string $template The relative path from the theme directory to the template file.
+     *
+     * @return string The absolute path to the template file.
+     *
+     * @throws Exception If the template file couldn't be found.
+     */
+    private function findTemplatePath($template, $throw_exception = true)
+    {
+        assert('is_string($template)');
+
+        $result = $this->findModuleAndTemplateName($template);
+        $templateModule = $result[0] ? $result[0] : 'default';
+        $templateName = $result[1];
+
+        $tmp = explode(':', $this->configuration->getString('theme.use', 'default'), 2);
+        if (count($tmp) === 2) {
+            $themeModule = $tmp[0];
+            $themeName = $tmp[1];
+        } else {
+            $themeModule = null;
+            $themeName = $tmp[0];
+        }
+
+        // first check the current theme
+        if ($themeModule !== null) {
+            // .../module/<themeModule>/themes/<themeName>/<templateModule>/<templateName>
+
+            $filename = \SimpleSAML\Module::getModuleDir($themeModule).
+                '/themes/'.$themeName.'/'.$templateModule.'/'.$templateName;
+        } elseif ($templateModule !== 'default') {
+            // .../module/<templateModule>/templates/<templateName>
+            $filename = \SimpleSAML\Module::getModuleDir($templateModule).'/templates/'.$templateName;
+        } else {
+            // .../templates/<theme>/<templateName>
+            $filename = $this->configuration->getPathValue('templatedir', 'templates/').$templateName;
+        }
+
+        if (file_exists($filename)) {
+            return $filename;
+        }
+
+        // not found in current theme
+        \SimpleSAML\Logger::debug(
+            $_SERVER['PHP_SELF'].' - Template: Could not find template file ['.$template.'] at ['.
+            $filename.'] - now trying the base template'
+        );
+
+        // try default theme
+        if ($templateModule !== 'default') {
+            // .../module/<templateModule>/templates/<templateName>
+            $filename = \SimpleSAML\Module::getModuleDir($templateModule).'/templates/'.$templateName;
+        } else {
+            // .../templates/<templateName>
+            $filename = $this->configuration->getPathValue('templatedir', 'templates/').'/'.$templateName;
+        }
+
+        if (file_exists($filename)) {
+            return $filename;
+        }
+
+        // not found in default template
+        if ($throw_exception) {
+            // log error and throw exception
+            $error = 'Template: Could not find template file ['.$template.'] at ['.$filename.']';
+            \SimpleSAML\Logger::critical($_SERVER['PHP_SELF'].' - '.$error);
+
+            throw new Exception($error);
+        } else {
+            // missing template expected, return NULL
+            return null;
+        }
+    }
+
+
+    /**
+     * Return the internal translator object used by this template.
+     *
+     * @return \SimpleSAML\Locale\Translate The translator that will be used with this template.
+     */
+    public function getTranslator()
+    {
+        return $this->translator;
+    }
+
+
+    /*
+     * Deprecated methods of this interface, all of them should go away.
+     */
+
+
+    /**
+     * @param $name
+     *
+     * @return string
+     * @deprecated This method will be removed in SSP 2.0. Please use \SimpleSAML\Locale\Language::getLanguage()
+     * instead.
+     */
+    public function getAttributeTranslation($name)
+    {
+        return $this->translator->getAttributeTranslation($name);
+    }
+
+
+    /**
+     * @return string
+     * @deprecated This method will be removed in SSP 2.0. Please use \SimpleSAML\Locale\Language::getLanguage()
+     * instead.
+     */
+    public function getLanguage()
+    {
+        return $this->translator->getLanguage()->getLanguage();
+    }
+
+
+    /**
+     * @param      $language
+     * @param bool $setLanguageCookie
+     *
+     * @deprecated This method will be removed in SSP 2.0. Please use \SimpleSAML\Locale\Language::setLanguage()
+     * instead.
+     */
+    public function setLanguage($language, $setLanguageCookie = true)
+    {
+        $this->translator->getLanguage()->setLanguage($language, $setLanguageCookie);
+    }
+
+
+    /**
+     * @return null|string
+     * @deprecated This method will be removed in SSP 2.0. Please use \SimpleSAML\Locale\Language::getLanguageCookie()
+     * instead.
+     */
+    public static function getLanguageCookie()
+    {
+        return \SimpleSAML\Locale\Language::getLanguageCookie();
+    }
+
+
+    /**
+     * @param $language
+     *
+     * @deprecated This method will be removed in SSP 2.0. Please use \SimpleSAML\Locale\Language::setLanguageCookie()
+     * instead.
+     */
+    public static function setLanguageCookie($language)
+    {
+        \SimpleSAML\Locale\Language::setLanguageCookie($language);
+    }
+
+
+    /**
+     * Wraps Language->getLanguageList
+     */
+    private function getLanguageList()
+    {
+        return $this->translator->getLanguage()->getLanguageList();
+    }
+
+
+    /**
+     * @param $tag
+     *
+     * @return array
+     * @deprecated This method will be removed in SSP 2.0. Please use \SimpleSAML\Locale\Translate::getTag() instead.
+     */
+    public function getTag($tag)
+    {
+        return $this->translator->getTag($tag);
+    }
+
+
+    /**
+     * Temporary wrapper for \SimpleSAML\Locale\Translate::getPreferredTranslation().
+     *
+     * @deprecated This method will be removed in SSP 2.0. Please use
+     * \SimpleSAML\Locale\Translate::getPreferredTranslation() instead.
+     */
+    public function getTranslation($translations)
+    {
+        return $this->translator->getPreferredTranslation($translations);
+    }
+
+
+    /**
+     * Includes a file relative to the template base directory.
      * This function can be used to include headers and footers etc.
      *
-     */    
-    private function includeAtTemplateBase($file) {
+     */
+    private function includeAtTemplateBase($file)
+    {
         $data = $this->data;
 
         $filename = $this->findTemplatePath($file);
@@ -226,486 +588,85 @@ class SimpleSAML_XHTML_Template {
 
 
     /**
-     * Retrieve a dictionary.
+     * Wraps Translate->includeInlineTranslation()
      *
-     * This function retrieves a dictionary with the given name.
-     *
-     * @param $name  The name of the dictionary, as the filename in the dictionary directory,
-     *               without the '.php'-ending.
-     * @return  An associative array with the dictionary.
+     * @see \SimpleSAML\Locale\Translate::includeInlineTranslation()
+     * @deprecated This method will be removed in SSP 2.0. Please use
+     * \SimpleSAML\Locale\Translate::includeInlineTranslation() instead.
      */
-    private function getDictionary($name) {
-        assert('is_string($name)');
-
-        if(!array_key_exists($name, $this->dictionaries)) {
-            $sepPos = strpos($name, ':');
-            if($sepPos !== FALSE) {
-                $module = substr($name, 0, $sepPos);
-                $fileName = substr($name, $sepPos + 1);
-                $dictDir = SimpleSAML_Module::getModuleDir($module) . '/dictionaries/';
-            } else {
-                $dictDir = $this->configuration->getPathValue('dictionarydir', 'dictionaries/');
-                $fileName = $name;
-            }
-            $this->dictionaries[$name] = $this->readDictionaryFile($dictDir . $fileName);
-        }
-
-        return $this->dictionaries[$name];
+    public function includeInlineTranslation($tag, $translation)
+    {
+        $this->translator->includeInlineTranslation($tag, $translation);
     }
 
 
     /**
-     * Retrieve a tag.
+     * @param      $file
+     * @param null $otherConfig
      *
-     * This function retrieves a tag as an array with language => string mappings.
-     *
-     * @param $tag  The tag name. The tag name can also be on the form '{<dictionary>:<tag>}', to retrieve
-     *              a tag from the specific dictionary.
-     * @return As associative array with language => string mappings, or NULL if the tag wasn't found.
+     * @deprecated This method will be removed in SSP 2.0. Please use
+     * \SimpleSAML\Locale\Translate::includeLanguageFile() instead.
      */
-    public function getTag($tag) {
-        assert('is_string($tag)');
-
-        // First check translations loaded by the includeInlineTranslation and includeLanguageFile methods
-        if(array_key_exists($tag, $this->langtext)) {
-            return $this->langtext[$tag];
-        }
-
-        // Check whether we should use the default dictionary or a dictionary specified in the tag
-        if(substr($tag, 0, 1) === '{' && preg_match('/^{((?:\w+:)?\w+?):(.*)}$/D', $tag, $matches)) {
-            $dictionary = $matches[1];
-            $tag = $matches[2];
-        } else {
-            $dictionary = $this->defaultDictionary;
-            if($dictionary === NULL) {
-                // We don't have any dictionary to load the tag from
-                return NULL;
-            }
-        }
-
-        $dictionary = $this->getDictionary($dictionary);
-        if(!array_key_exists($tag, $dictionary)) {
-            return NULL;
-        }
-
-        return $dictionary[$tag];
+    public function includeLanguageFile($file, $otherConfig = null)
+    {
+        $this->translator->includeLanguageFile($file, $otherConfig);
     }
 
 
     /**
-     * Retrieve the preferred translation of a given text.
-     *
-     * @param $translations  The translations, as an associative array with language => text mappings.
-     * @return The preferred translation.
+     * Wrap Language->isLanguageRTL
      */
-    public function getTranslation($translations) {
-        assert('is_array($translations)');
-
-        // Look up translation of tag in the selected language
-        $selected_language = $this->getLanguage();
-        if (array_key_exists($selected_language, $translations)) {
-            return $translations[$selected_language];
-        }
-
-        // Look up translation of tag in the default language
-        $default_language = $this->getDefaultLanguage();
-        if(array_key_exists($default_language, $translations)) {
-            return $translations[$default_language];
-        }
-
-        // Check for english translation
-        if(array_key_exists('en', $translations)) {
-            return $translations['en'];
-        }
-
-        // Pick the first translation available
-        if(count($translations) > 0) {
-            $languages = array_keys($translations);
-            return $translations[$languages[0]];
-        }
-
-        // We don't have anything to return
-        throw new Exception('Nothing to return from translation.');
+    private function isLanguageRTL()
+    {
+        return $this->translator->getLanguage()->isLanguageRTL();
     }
 
 
     /**
-     * Translate a attribute name.
+     * Merge two translation arrays.
      *
-     * @param string $name  The attribute name.
-     * @return string  The translated attribute name, or the original attribute name if no translation was found.
+     * @param array $def The array holding string definitions.
+     * @param array $lang The array holding translations for every string.
+     *
+     * @return array The recursive merge of both arrays.
+     * @deprecated This method will be removed in SimpleSAMLphp 2.0. Please use array_merge_recursive() instead.
      */
-    public function getAttributeTranslation($name) {
-
-        // Normalize attribute name
-        $normName = strtolower($name);
-        $normName = str_replace(":", "_", $normName);
-
-        // Check for an extra dictionary
-        $extraDict = $this->configuration->getString('attributes.extradictionary', NULL);
-        if ($extraDict !== NULL) {
-            $dict = $this->getDictionary($extraDict);
-            if (array_key_exists($normName, $dict)) {
-                return $this->getTranslation($dict[$normName]);
-            }
-        }
-
-        // Search the default attribute dictionary
-        $dict = $this->getDictionary('attributes');
-        if (array_key_exists('attribute_' . $normName, $dict)) {
-            return $this->getTranslation($dict['attribute_' . $normName]);
-        }
-
-        // No translations found
-        return $name;
-    }
-
-
-    /**
-     * Translate a tag into the current language, with a fallback to english.
-     *
-     * This function is used to look up a translation tag in dictionaries, and return the
-     * translation into the current language. If no translation into the current language can be
-     * found, english will be tried, and if that fails, placeholder text will be returned.
-     *
-     * An array can be passed as the tag. In that case, the array will be assumed to be on the
-     * form (language => text), and will be used as the source of translations.
-     *
-     * This function can also do replacements into the translated tag. It will search the
-     * translated tag for the keys provided in $replacements, and replace any found occurances
-     * with the value of the key.
-     *
-     * @param string|array $tag  A tag name for the translation which should be looked up, or an
-     *                           array with (language => text) mappings.
-     * @param array $replacements  An associative array of keys that should be replaced with
-     *                             values in the translated string.
-     * @return string  The translated tag, or a placeholder value if the tag wasn't found.
-     */
-    public function t($tag, $replacements = array(), $fallbackdefault = true, $oldreplacements = array(), $striptags = FALSE) {
-        if(!is_array($replacements)) {
-
-            // Old style call to t(...). Print warning to log.
-            $backtrace = debug_backtrace();
-            $where = $backtrace[0]['file'] . ':' . $backtrace[0]['line'];
-            SimpleSAML_Logger::warning('Deprecated use of SimpleSAML_Template::t(...) at ' . $where .
-                '. Please update the code to use the new style of parameters.');
-
-            // For backwards compatibility
-            if(!$replacements && $this->getTag($tag) === NULL) {
-                SimpleSAML_Logger::warning('Code which uses $fallbackdefault === FALSE shouls be' .
-                    ' updated to use the getTag-method instead.');
-                return NULL;
-            }
-
-            $replacements = $oldreplacements;
-        }
-
-        if(is_array($tag)) {
-            $tagData = $tag;
-        } else {
-            $tagData = $this->getTag($tag);
-            if($tagData === NULL) {
-                // Tag not found
-                SimpleSAML_Logger::info('Template: Looking up [' . $tag . ']: not translated at all.');
-                return $this->t_not_translated($tag, $fallbackdefault);
-            }
-        }
-
-        $translated = $this->getTranslation($tagData);
-
-        foreach ($replacements as $k => $v) {
-            // try to translate if no replacement is given
-            if ($v == NULL) $v = $this->t($k);
-            $translated = str_replace($k, $v, $translated);
-        }
-        return $translated;
-    }
-
-
-    /**
-     * Return the string that should be used when no translation was found.
-     *
-     * @param $tag                A name tag of the string that should be returned.
-     * @param $fallbacktag        If set to TRUE and string was not found in any languages, return 
-     *                     the tag it self. If FALSE return NULL.
-     */
-    private function t_not_translated($tag, $fallbacktag) {
-        if ($fallbacktag) {
-            return 'not translated (' . $tag . ')';
-        } else {
-            return $tag;
-        }
-    }
-
-
-    /**
-     * You can include translation inline instead of putting translation
-     * in dictionaries. This function is reccomended to only be used from dynamic
-     * data, or when the translation is already provided from an external source, as
-     * a database or in metadata.
-     *
-     * @param $tag         The tag that has a translation
-     * @param $translation The translation array
-     */
-    public function includeInlineTranslation($tag, $translation) {
-        if (is_string($translation)) {
-            $translation = array('en' => $translation);
-        } elseif (!is_array($translation)) {
-            throw new Exception("Inline translation should be string or array. Is " . gettype($translation) . " now!");
-        }
-        SimpleSAML_Logger::debug('Template: Adding inline language translation for tag [' . $tag . ']');
-        $this->langtext[$tag] = $translation;
-    }
-
-    /**
-     * Include language file from the dictionaries directory.
-     *
-     * @param $file         File name of dictionary to include
-     * @param $otherConfig  Optionally provide a different configuration object than
-     *  the one provided in the constructor to be used to find the dictionary directory.
-     *  This enables the possiblity of combining dictionaries inside SimpleSAMLphp
-     *  distribution with external dictionaries.
-     */
-    public function includeLanguageFile($file, $otherConfig = null) {
-        $filebase = null;
-        if (!empty($otherConfig)) {
-            $filebase = $otherConfig->getPathValue('dictionarydir', 'dictionaries/');
-        } else {
-            $filebase = $this->configuration->getPathValue('dictionarydir', 'dictionaries/');
-        }
-
-        $lang = $this->readDictionaryFile($filebase . $file);
-        SimpleSAML_Logger::debug('Template: Merging language array. Loading [' . $file . ']');
-        $this->langtext = array_merge($this->langtext, $lang);
-    }
-
-
-    /**
-     * Read a dictionary file in json format.
-     *
-     * @param string $filename  The absolute path to the dictionary file, minus the .definition.json ending.
-     * @return array  The translation array from the file.
-     */
-    private function readDictionaryJSON($filename) {
-        $definitionFile = $filename . '.definition.json';
-        assert('file_exists($definitionFile)');
-
-        $fileContent = file_get_contents($definitionFile);
-        $lang = json_decode($fileContent, TRUE);
-
-        if (empty($lang)) {
-            SimpleSAML_Logger::error('Invalid dictionary definition file [' . $definitionFile . ']');
-            return array();
-        }
-
-        $translationFile = $filename . '.translation.json';
-        if (file_exists($translationFile)) {
-            $fileContent = file_get_contents($translationFile);
-            $moreTrans = json_decode($fileContent, TRUE);
-            if (!empty($moreTrans)) {
-                $lang = self::lang_merge($lang, $moreTrans);
-            }
-        }
-
-        return $lang;
-    }
-
-
-    /**
-     * Read a dictionary file in PHP format.
-     *
-     * @param string $filename  The absolute path to the dictionary file.
-     * @return array  The translation array from the file.
-     */
-    private function readDictionaryPHP($filename) {
-        $phpFile = $filename . '.php';
-        assert('file_exists($phpFile)');
-
-        $lang = NULL;
-        include($phpFile);
-        if (isset($lang)) {
-            return $lang;
-        }
-
-        return array();
-    }
-
-
-    /**
-     * Read a dictionary file.
-     *
-     * @param $filename  The absolute path to the dictionary file.
-     * @return The translation array which was found in the dictionary file.
-     */
-    private function readDictionaryFile($filename) {
-        assert('is_string($filename)');
-
-        SimpleSAML_Logger::debug('Template: Reading [' . $filename . ']');
-
-        $jsonFile = $filename . '.definition.json';
-        if (file_exists($jsonFile)) {
-            return $this->readDictionaryJSON($filename);
-        }
-
-
-        $phpFile = $filename . '.php';
-        if (file_exists($phpFile)) {
-            return $this->readDictionaryPHP($filename);
-        }
-
-        SimpleSAML_Logger::error($_SERVER['PHP_SELF'].' - Template: Could not find template file [' . $this->template . '] at [' . $filename . ']');
-        return array();
-    }
-
-
-    // Merge two translation arrays
-    public static function lang_merge($def, $lang) {
-        foreach($def AS $key => $value) {
-            if (array_key_exists($key, $lang))
+    public static function lang_merge($def, $lang)
+    {
+        foreach ($def as $key => $value) {
+            if (array_key_exists($key, $lang)) {
                 $def[$key] = array_merge($value, $lang[$key]);
+            }
         }
         return $def;
     }
 
 
     /**
-     * Show the template to the user.
+     * Behave like Language->noop to mark a tag for translation but actually do it later.
+     *
+     * @see \SimpleSAML\Locale\Translate::noop()
+     * @deprecated This method will be removed in SSP 2.0. Please use \SimpleSAML\Locale\Translate::noop() instead.
      */
-    public function show() {
-
-        $filename = $this->findTemplatePath($this->template);
-        require($filename);
+    static public function noop($tag)
+    {
+        return $tag;
     }
 
 
     /**
-     * Find template path.
+     * Wrap Language->t to translate tag into the current language, with a fallback to english.
      *
-     * This function locates the given template based on the template name.
-     * It will first search for the template in the current theme directory, and
-     * then the default theme.
-     *
-     * The template name may be on the form <module name>:<template path>, in which case
-     * it will search for the template file in the given module.
-     *
-     * An error will be thrown if the template file couldn't be found.
-     *
-     * @param string $template  The relative path from the theme directory to the template file.
-     * @return string  The absolute path to the template file.
+     * @see \SimpleSAML\Locale\Translate::t()
+     * @deprecated This method will be removed in SSP 2.0. Please use \SimpleSAML\Locale\Translate::t() instead.
      */
-    private function findTemplatePath($template) {
-        assert('is_string($template)');
-
-        $tmp = explode(':', $template, 2);
-        if (count($tmp) === 2) {
-            $templateModule = $tmp[0];
-            $templateName = $tmp[1];
-        } else {
-            $templateModule = 'default';
-            $templateName = $tmp[0];
-        }
-
-        $tmp = explode(':', $this->configuration->getString('theme.use', 'default'), 2);
-        if (count($tmp) === 2) {
-            $themeModule = $tmp[0];
-            $themeName = $tmp[1];
-        } else {
-            $themeModule = NULL;
-            $themeName = $tmp[0];
-        }
-
-
-        // First check the current theme
-        if ($themeModule !== NULL) {
-            // .../module/<themeModule>/themes/<themeName>/<templateModule>/<templateName>
-
-            $filename = SimpleSAML_Module::getModuleDir($themeModule) . '/themes/' . $themeName . '/' . $templateModule . '/' . $templateName;
-        } elseif ($templateModule !== 'default') {
-            // .../module/<templateModule>/templates/<themeName>/<templateName>
-            $filename = SimpleSAML_Module::getModuleDir($templateModule) . '/templates/' . $templateName;
-        } else {
-            // .../templates/<theme>/<templateName>
-            $filename = $this->configuration->getPathValue('templatedir', 'templates/') . $templateName;
-        }
-
-        if (file_exists($filename)) {
-            return $filename;
-        }
-
-
-        // Not found in current theme
-        SimpleSAML_Logger::debug($_SERVER['PHP_SELF'].' - Template: Could not find template file [' .
-            $template . '] at [' . $filename . '] - now trying the base template');
-
-
-        // Try default theme
-        if ($templateModule !== 'default') {
-            // .../module/<templateModule>/templates/<templateName>
-            $filename = SimpleSAML_Module::getModuleDir($templateModule) . '/templates/' . $templateName;
-        } else {
-            // .../templates/<templateName>
-            $filename = $this->configuration->getPathValue('templatedir', 'templates/') . '/' . $templateName;
-        }
-
-        if (file_exists($filename)) {
-            return $filename;
-        }
-
-
-        // Not found in default template - log error and throw exception
-        $error = 'Template: Could not find template file [' . $template . '] at [' . $filename . ']';
-        SimpleSAML_Logger::critical($_SERVER['PHP_SELF'] . ' - ' . $error);
-
-        throw new Exception($error);
+    public function t(
+        $tag,
+        $replacements = array(),
+        $fallbackdefault = true,
+        $oldreplacements = array(),
+        $striptags = false
+    ) {
+        return $this->translator->t($tag, $replacements, $fallbackdefault, $oldreplacements, $striptags);
     }
-
-
-    /**
-     * Retrieve the user-selected language from a cookie.
-     *
-     * @return string|NULL  The language, or NULL if unset.
-     */
-    public static function getLanguageCookie() {
-        $config = SimpleSAML_Configuration::getInstance();
-        $availableLanguages = $config->getArray('language.available', array('en'));
-        $name = $config->getString('language.cookie.name', 'language');
-
-        if (isset($_COOKIE[$name])) {
-            $language = strtolower((string)$_COOKIE[$name]);
-            if (in_array($language, $availableLanguages, TRUE)) {
-                return $language;
-            }
-        }
-
-        return NULL;
-    }
-
-
-    /**
-     * Set the user-selected language in a cookie.
-     *
-     * @param string $language  The language.
-     */
-    public static function setLanguageCookie($language) {
-        assert('is_string($language)');
-
-        $language = strtolower($language);
-        $config = SimpleSAML_Configuration::getInstance();
-        $availableLanguages = $config->getArray('language.available', array('en'));
-
-        if (!in_array($language, $availableLanguages, TRUE) || headers_sent()) {
-            return;
-        }
-
-        $name = $config->getString('language.cookie.name', 'language');
-        $params = array(
-            'lifetime' => ($config->getInteger('language.cookie.lifetime', 60*60*24*900)),
-            'domain' => ($config->getString('language.cookie.domain', NULL)),
-            'path' => ($config->getString('language.cookie.path', '/')),
-            'httponly' => FALSE,
-        );
-
-        \SimpleSAML\Utils\HTTP::setCookie($name, $language, $params, FALSE);
-    }
-
 }

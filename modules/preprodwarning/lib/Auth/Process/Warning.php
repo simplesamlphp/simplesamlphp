@@ -27,7 +27,7 @@ class sspmod_preprodwarning_Auth_Process_Warning extends SimpleSAML_Auth_Process
 
 		// Save state and redirect.
 		$id = SimpleSAML_Auth_State::saveState($state, 'warning:request');
-		$url = SimpleSAML_Module::getModuleURL('preprodwarning/showwarning.php');
+		$url = SimpleSAML\Module::getModuleURL('preprodwarning/showwarning.php');
 		\SimpleSAML\Utils\HTTP::redirectTrustedURL($url, array('StateId' => $id));
 	}
 	

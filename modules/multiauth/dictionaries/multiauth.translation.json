@@ -28,7 +28,9 @@
 		"ro": "V\u0103 rug\u0103m s\u0103 alege\u021bi o surs\u0103 pentru autentificare",
 		"cs": "Zvolte autentiza\u010dn\u00ed zdroj",
 		"eu": "Hauta ezazu iturburu bat kautotzeko",
-		"af": "Kies 'n verifikasie bron"
+		"af": "Kies 'n verifikasie bron",
+		"el": "\u0395\u03c0\u03b9\u03bb\u03bf\u03b3\u03ae \u03c0\u03b7\u03b3\u03ae\u03c2 \u03c4\u03b1\u03c5\u03c4\u03bf\u03c0\u03bf\u03af\u03b7\u03c3\u03b7\u03c2",
+		"pl": "Wybierz \u017aród\u0142o autentykacji"
 	},
 	"select_source_text": {
 		"no": "Den valgte autentiseringskilden vil bli brukt til \u00e5 autentisere brukeren og deretter etablere en gyldig sesjon.",
@@ -59,6 +61,8 @@
 		"ro": "Sursa de autentificare selectat\u0103 va fi folosit\u0103 pentru a v\u0103 autentifica \u0219i pentru a crea o sesiune valid\u0103.",
 		"cs": "Zvolen\u00fd autentiza\u010dn\u00ed zdroj bude pou\u017eit pro va\u0161e ov\u011b\u0159en\u00ed a vytvo\u0159en\u00ed platn\u00e9ho sezen\u00ed.",
 		"eu": "Kautotzeko hautatu duzun iturburua, kautotu eta baliozko saio bat sortzeko erabiliko da.",
-		"af": "Die gekose verifikasie bron sal gebruik word om jou te identifiseer en 'n geldige sessie te skep."
+		"af": "Die gekose verifikasie bron sal gebruik word om jou te identifiseer en 'n geldige sessie te skep.",
+		"el": "\u0397 \u03b5\u03c0\u03b9\u03bb\u03b5\u03b3\u03bc\u03ad\u03bd\u03b7 \u03c0\u03b7\u03b3\u03ae \u03c4\u03b1\u03c5\u03c4\u03bf\u03c0\u03bf\u03af\u03b7\u03c3\u03b7\u03c2 \u03b8\u03b1 \u03c7\u03c1\u03b7\u03c3\u03b9\u03bc\u03bf\u03c0\u03bf\u03b9\u03b7\u03b8\u03b5\u03af \u03b3\u03b9\u03b1 \u03c4\u03b7\u03bd \u03c0\u03b9\u03c3\u03c4\u03bf\u03c0\u03bf\u03af\u03b7\u03c3\u03b7 \u03c4\u03b7\u03c2 \u03c4\u03b1\u03c5\u03c4\u03cc\u03c4\u03b7\u03c4\u03ac \u03c3\u03b1\u03c2 \u03ba\u03b1\u03b9 \u03c4\u03b7 \u03b4\u03b7\u03bc\u03b9\u03bf\u03c5\u03c1\u03b3\u03af\u03b1 \u03ad\u03b3\u03ba\u03c5\u03c1\u03b7\u03c2 \u03c3\u03c5\u03bd\u03b5\u03b4\u03c1\u03af\u03b1\u03c2 (session).",
+		"pl": "Wybrane \u017aród\u0142o zostanie u\u017Cyte do autentykacji i stworzenia sesji"
 	}
 }

@@ -56,7 +56,7 @@ class sspmod_authYubiKey_Auth_Process_OTP2YubiPrefix extends SimpleSAML_Auth_Pro
 		assert('array_key_exists("Attributes", $state)');
 		$attributes = $state['Attributes'];
 
-		SimpleSAML_Logger::debug('OTP2YubiPrefix: enter with attributes: ' . implode(',', array_keys($attributes)));
+		SimpleSAML\Logger::debug('OTP2YubiPrefix: enter with attributes: ' . implode(',', array_keys($attributes)));
 
 		$otps = $attributes['otp'];
 		$otp = $otps['0'];
@@ -66,11 +66,11 @@ class sspmod_authYubiKey_Auth_Process_OTP2YubiPrefix extends SimpleSAML_Auth_Pro
 
 		$attributes['yubiPrefix'] = array($identity);
 
-		SimpleSAML_Logger::info('OTP2YubiPrefix: otp: ' . $otp . ' identity: ' . $identity . ' (otp keys: ' . implode(',', array_keys($otps)) . ')');
+		SimpleSAML\Logger::info('OTP2YubiPrefix: otp: ' . $otp . ' identity: ' . $identity . ' (otp keys: ' . implode(',', array_keys($otps)) . ')');
 
 		unset($attributes['otp']);
 
-		SimpleSAML_Logger::debug('OTP2YubiPrefix: leaving with attributes: ' . implode(',', array_keys($attributes)));
+		SimpleSAML\Logger::debug('OTP2YubiPrefix: leaving with attributes: ' . implode(',', array_keys($attributes)));
 	}
 
 }

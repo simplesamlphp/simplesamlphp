@@ -109,7 +109,7 @@ class sspmod_oauth_Consumer {
 			throw new Exception('Error contacting request_token endpoint on the OAuth Provider');
 		}
 
-		SimpleSAML_Logger::debug('oauth: Reponse to get access token: '. $response_acc);
+		SimpleSAML\Logger::debug('oauth: Reponse to get access token: '. $response_acc);
 		
 		parse_str($response_acc, $accessResponseParsed);
 		

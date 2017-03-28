@@ -72,7 +72,7 @@ class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco
      */
     protected function log($message)
     {
-        SimpleSAML_Logger::info('PowerIdPDisco.'.$this->instance.': '.$message);
+        SimpleSAML\Logger::info('PowerIdPDisco.'.$this->instance.': '.$message);
     }
 
 
@@ -186,7 +186,7 @@ class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco
      */
     protected function filterList($list)
     {
-        parent::filterList($list);
+        $list = parent::filterList($list);
 
         try {
             $spmd = $this->metadata->getMetaData($this->spEntityId, 'saml20-sp-remote');
@@ -246,8 +246,31 @@ class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco
         $idpList = $this->getIdPList();
         $idpList = $this->idplistStructured($this->filterList($idpList));
         $preferredIdP = $this->getRecommendedIdP();
+        $faventry = NULL;
+        foreach ($idpList AS $tab => $slist) {
+            if (!empty($preferredIdP) && array_key_exists($preferredIdP, $slist)) {
+                $faventry = $slist[$preferredIdP];
+            }
+        }
 
-        $t = new SimpleSAML_XHTML_Template($this->config, 'discopower:disco-tpl.php', 'disco');
+        $t = new SimpleSAML_XHTML_Template($this->config, 'discopower:disco.tpl.php', 'disco');
+        $discoPowerTabs = array(
+            'denmark' => $t->noop('{discopower:tabs:denmark}'),
+            'edugain' => $t->noop('{discopower:tabs:edugain}'),
+            'finland' => $t->noop('{discopower:tabs:finland}'),
+            'greece' => $t->noop('{discopower:tabs:greece}'),
+            'southafrica' => $t->noop('{discopower:tabs:southafrica}'),
+            'iceland' => $t->noop('{discopower:tabs:iceland}'),
+            'incommon' => $t->noop('{discopower:tabs:incommon}'),
+            'kalmar' => $t->noop('{discopower:tabs:kalmar}'),
+            'misc' => $t->noop('{discopower:tabs:misc}'),
+            'norway' => $t->noop('{discopower:tabs:norway}'),
+            'sweden' => $t->noop('{discopower:tabs:sweden}'),
+            'switzerland' => $t->noop('{discopower:tabs:switzerland}'),
+            'ukacessfederation' => $t->noop('{discopower:tabs:ukacessfederation}'),
+        );
+        $t->data['faventry'] = $faventry;
+        $t->data['tabNames'] = $discoPowerTabs;
         $t->data['idplist'] = $idpList;
         $t->data['preferredidp'] = $preferredIdP;
         $t->data['return'] = $this->returnURL;

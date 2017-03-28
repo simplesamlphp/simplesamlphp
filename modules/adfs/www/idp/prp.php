@@ -6,7 +6,7 @@
  * @package SimpleSAMLphp
  */
 
-SimpleSAML_Logger::info('ADFS - IdP.prp: Accessing ADFS IdP endpoint prp');
+SimpleSAML\Logger::info('ADFS - IdP.prp: Accessing ADFS IdP endpoint prp');
 
 $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 $idpEntityId = $metadata->getMetaDataCurrentEntityID('adfs-idp-hosted');

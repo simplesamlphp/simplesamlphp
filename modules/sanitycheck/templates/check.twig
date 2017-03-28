@@ -1,0 +1,35 @@
+{% extends "base.twig" %}
+{% set pagetitle = 'Sanity check' %}
+{% block content %}
+
+<h2>{{ pagetitle }}</h2>
+
+{% if errors %}
+<div style="border: 1px solid #800; background: #caa; margin: 1em; padding: .5em">
+<p><img class="float-r" src="/{{ baseurlpath }}resources/icons/silk/delete.png" alt="Failed" />
+These checks failed:</p>
+
+<ul>
+{% for err in errors %}
+    <li>{{ err }}</li>
+{% endfor %}
+</ul>
+
+</div>
+{% endif %}
+
+{% if info %}
+<div style="border: 1px solid #ccc; background: #eee; margin: 1em; padding: .5em">
+<p><img class="float-r" src="/{{ baseurlpath }}resources/icons/silk/accept.png" alt="OK" />
+These checks succeeded:</p> 
+
+<ul>
+{% for i in info %}
+    <li>{{ i }}</li>
+{% endfor %}
+</ul>
+
+</div>
+{% endif %}
+
+{% endblock %}

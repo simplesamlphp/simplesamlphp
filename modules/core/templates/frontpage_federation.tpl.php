@@ -10,41 +10,10 @@ if ($this->data['isadmin']) {
         $this->t('{core:frontpage:login_as_admin}').'</a></p>';
 }
 
-function mtype($set)
-{
-    switch ($set) {
-        case 'saml20-sp-remote':
-            return '{admin:metadata_saml20-sp}';
-        case 'saml20-sp-hosted':
-            return '{admin:metadata_saml20-sp}';
-        case 'saml20-idp-remote':
-            return '{admin:metadata_saml20-idp}';
-        case 'saml20-idp-hosted':
-            return '{admin:metadata_saml20-idp}';
-        case 'shib13-sp-remote':
-            return '{admin:metadata_shib13-sp}';
-        case 'shib13-sp-hosted':
-            return '{admin:metadata_shib13-sp}';
-        case 'shib13-idp-remote':
-            return '{admin:metadata_shib13-idp}';
-        case 'shib13-idp-hosted':
-            return '{admin:metadata_shib13-idp}';
-        case 'adfs-sp-remote':
-            return '{admin:metadata_adfs-sp}';
-        case 'adfs-sp-hosted':
-            return '{admin:metadata_adfs-sp}';
-        case 'adfs-idp-remote':
-            return '{admin:metadata_adfs-idp}';
-        case 'adfs-idp-hosted':
-            return '{admin:metadata_adfs-idp}';
-    }
-}
-
-$now = time();
-echo '<dl>';
 if (is_array($this->data['metaentries']['hosted']) && count($this->data['metaentries']['hosted']) > 0) {
+    echo '<dl>';
     foreach ($this->data['metaentries']['hosted'] as $hm) {
-        echo '<dt>'.$this->t(mtype($hm['metadata-set'])).'</dt>';
+        echo '<dt>'.$this->t($this->data['mtype'][$hm['metadata-set']]).'</dt>';
         echo '<dd>';
         echo '<p>Entity ID: '.$hm['entityid'];
         if (isset($hm['deprecated']) && $hm['deprecated']) {
@@ -54,11 +23,13 @@ if (is_array($this->data['metaentries']['hosted']) && count($this->data['metaent
             echo '<br />Index: '.$hm['metadata-index'];
         }
         if (!empty($hm['name'])) {
-            echo '<br /><strong>'.$this->getTranslation(SimpleSAML\Utils\Arrays::arrayize($hm['name'], 'en')).
+            echo '<br /><strong>'.
+                $this->getTranslator()->getPreferredTranslation(SimpleSAML\Utils\Arrays::arrayize($hm['name'], 'en')).
                 '</strong>';
         }
         if (!empty($hm['descr'])) {
-            echo '<br /><strong>'.$this->getTranslation(SimpleSAML\Utils\Arrays::arrayize($hm['descr'], 'en')).
+            echo '<br /><strong>'.
+                $this->getTranslator()->getPreferredTranslation(SimpleSAML\Utils\Arrays::arrayize($hm['descr'], 'en')).
                 '</strong>';
         }
 
@@ -66,29 +37,32 @@ if (is_array($this->data['metaentries']['hosted']) && count($this->data['metaent
 
         echo '</p></dd>';
     }
+    echo '</dl>';
 }
-echo '</dl>';
 
 if (is_array($this->data['metaentries']['remote']) && count($this->data['metaentries']['remote']) > 0) {
+    $now = time();
     foreach ($this->data['metaentries']['remote'] as $setkey => $set) {
 
-        echo '<fieldset class="fancyfieldset"><legend>'.$this->t(mtype($setkey)).' (Trusted)</legend>';
+        echo '<fieldset class="fancyfieldset"><legend>'.$this->t($this->data['mtype'][$setkey]).' (Trusted)</legend>';
         echo '<ul>';
         foreach ($set as $entry) {
             echo '<li>';
             echo('<a href="'.
                 htmlspecialchars(
-                    SimpleSAML_Module::getModuleURL(
+                    SimpleSAML\Module::getModuleURL(
                         'core/show_metadata.php',
                         array('entityid' => $entry['entityid'], 'set' => $setkey)
                     )
                 ).'">');
             if (!empty($entry['name'])) {
-                echo htmlspecialchars($this->getTranslation(SimpleSAML\Utils\Arrays::arrayize($entry['name'], 'en')));
+                echo htmlspecialchars($this->getTranslator()->getPreferredTranslation(
+                    SimpleSAML\Utils\Arrays::arrayize($entry['name'], 'en')
+                ));
             } elseif (!empty($entry['OrganizationDisplayName'])) {
-                echo htmlspecialchars(
-                    $this->getTranslation(SimpleSAML\Utils\Arrays::arrayize($entry['OrganizationDisplayName'], 'en'))
-                );
+                echo htmlspecialchars($this->getTranslator()->getPreferredTranslation(
+                    SimpleSAML\Utils\Arrays::arrayize($entry['OrganizationDisplayName'], 'en')
+                ));
             } else {
                 echo htmlspecialchars($entry['entityid']);
             }
@@ -119,12 +93,12 @@ if (is_array($this->data['metaentries']['remote']) && count($this->data['metaent
         if ($this->data['isadmin']) { ?>
     <fieldset class="fancyfieldset">
         <legend>Lookup metadata</legend>
-        <form action="<?php echo SimpleSAML_Module::getModuleURL('core/show_metadata.php'); ?>" method="get">
+        <form action="<?php echo SimpleSAML\Module::getModuleURL('core/show_metadata.php'); ?>" method="get">
             <p style="margin: 1em 2em ">Look up metadata for entity:
                 <select name="set"><?php
             if (is_array($this->data['metaentries']['remote']) && count($this->data['metaentries']['remote']) > 0) {
                 foreach ($this->data['metaentries']['remote'] as $setkey => $set) {
-                    echo '<option value="'.htmlspecialchars($setkey).'">'.$this->t(mtype($setkey)).'</option>';
+                    echo '<option value="'.htmlspecialchars($setkey).'">'.$this->t($this->data['mtype'][$setkey]).'</option>';
                 }
             }
 ?>

@@ -75,11 +75,25 @@ abstract class SimpleSAML_Metadata_MetaDataStorageSource
             case 'serialize':
                 return new SimpleSAML_Metadata_MetaDataStorageHandlerSerialize($sourceConfig);
             case 'mdx':
-                return new SimpleSAML_Metadata_MetaDataStorageHandlerMDX($sourceConfig);
+            case 'mdq':
+                return new \SimpleSAML\Metadata\Sources\MDQ($sourceConfig);
             case 'pdo':
                 return new SimpleSAML_Metadata_MetaDataStorageHandlerPdo($sourceConfig);
             default:
-                throw new Exception('Invalid metadata source type: "'.$type.'".');
+                // metadata store from module
+                try {
+                    $className = SimpleSAML\Module::resolveClass(
+                        $type,
+                        'MetadataStore',
+                        'SimpleSAML_Metadata_MetaDataStorageSource'
+                    );
+                } catch (Exception $e) {
+                    throw new SimpleSAML\Error\CriticalConfigurationError(
+                        "Invalid 'type' for metadata source. Cannot find store '$type'.",
+                        null
+                    );
+                }
+                return new $className($sourceConfig);
         }
     }
 
@@ -199,10 +213,6 @@ abstract class SimpleSAML_Metadata_MetaDataStorageSource
 
         // check for hostname
         $currenthost = \SimpleSAML\Utils\HTTP::getSelfHost(); // sp.example.org
-        if (strpos($currenthost, ":") !== false) {
-            $currenthostdecomposed = explode(":", $currenthost);
-            $currenthost = $currenthostdecomposed[0];
-        }
 
         foreach ($metadataSet as $index => $entry) {
             if ($index === $entityId) {

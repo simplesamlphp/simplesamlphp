@@ -27,7 +27,7 @@
 		"en": "Help! I don't remember my password."
 	},
 	"help_text": {
-		"en": "Too bad! - Without your username and password you cannot authenticate yourself for access to the service. There may be someone that can help you. Consult the help desk at your organization!"
+		"en": "Without your username and password you cannot authenticate yourself for access to the service. There may be someone that can help you. Consult the help desk at your organization!"
 	},
 	"error_nopassword": {
 		"en": "You sent something to the login page, but for some reason the password was not sent. Try again please."

@@ -1,6 +1,8 @@
 <?php
 namespace SimpleSAML\Utils;
 
+use SimpleSAML\Module;
+
 /**
  * Auth-related utility methods.
  *
@@ -24,10 +26,10 @@ class Auth
         }
 
         if ($returnTo === null) {
-            $returnTo = \SimpleSAML\Utils\HTTP::getSelfURL();
+            $returnTo = HTTP::getSelfURL();
         }
 
-        return \SimpleSAML_Module::getModuleURL('core/login-admin.php', array('ReturnTo' => $returnTo));
+        return Module::getModuleURL('core/login-admin.php', array('ReturnTo' => $returnTo));
     }
 
     /**
@@ -66,7 +68,9 @@ class Auth
             $as = new \SimpleSAML_Auth_Simple('admin');
             $as->login();
         } else {
-            throw new \SimpleSAML_Error_Exception('Cannot find "admin" auth source, and admin privileges are required.');
+            throw new \SimpleSAML_Error_Exception(
+                'Cannot find "admin" auth source, and admin privileges are required.'
+            );
         }
     }
 }

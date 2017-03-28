@@ -43,6 +43,7 @@ class sspmod_authtwitter_Auth_Source_Twitter extends SimpleSAML_Auth_Source {
 		$this->key = $configObject->getString('key');
 		$this->secret = $configObject->getString('secret');
 		$this->force_login = $configObject->getBoolean('force_login', FALSE);
+		$this->include_email = $configObject->getBoolean('include_email', FALSE);
 	}
 
 
@@ -61,9 +62,9 @@ class sspmod_authtwitter_Auth_Source_Twitter extends SimpleSAML_Auth_Source {
 		
 		$consumer = new sspmod_oauth_Consumer($this->key, $this->secret);
 		// Get the request token
-		$linkback = SimpleSAML_Module::getModuleURL('authtwitter/linkback.php', array('AuthState' => $stateID));
+		$linkback = SimpleSAML\Module::getModuleURL('authtwitter/linkback.php', array('AuthState' => $stateID));
 		$requestToken = $consumer->getRequestToken('https://api.twitter.com/oauth/request_token', array('oauth_callback' => $linkback));
-		SimpleSAML_Logger::debug("Got a request token from the OAuth service provider [" . 
+		SimpleSAML\Logger::debug("Got a request token from the OAuth service provider [" .
 			$requestToken->key . "] with the secret [" . $requestToken->secret . "]");
 
 		$state['authtwitter:authdata:requestToken'] = $requestToken;
@@ -96,15 +97,19 @@ class sspmod_authtwitter_Auth_Source_Twitter extends SimpleSAML_Auth_Source {
 		
 		$consumer = new sspmod_oauth_Consumer($this->key, $this->secret);
 		
-		SimpleSAML_Logger::debug("oauth: Using this request token [" . 
+		SimpleSAML\Logger::debug("oauth: Using this request token [" .
 			$requestToken->key . "] with the secret [" . $requestToken->secret . "]");
 
 		// Replace the request token with an access token
 		$accessToken = $consumer->getAccessToken('https://api.twitter.com/oauth/access_token', $requestToken, $parameters);
-		SimpleSAML_Logger::debug("Got an access token from the OAuth service provider [" . 
+		SimpleSAML\Logger::debug("Got an access token from the OAuth service provider [" .
 			$accessToken->key . "] with the secret [" . $accessToken->secret . "]");
-			
-		$userdata = $consumer->getUserInfo('https://api.twitter.com/1.1/account/verify_credentials.json', $accessToken);
+
+		$verify_credentials_url = 'https://api.twitter.com/1.1/account/verify_credentials.json';
+		if ($this->include_email) {
+			$verify_credentials_url = $verify_credentials_url . '?include_email=true';
+		}
+		$userdata = $consumer->getUserInfo($verify_credentials_url, $accessToken);
 		
 		if (!isset($userdata['id_str']) || !isset($userdata['screen_name'])) {
 			throw new SimpleSAML_Error_AuthSource($this->authId, 'Authentication error: id_str and screen_name not set.');

@@ -37,7 +37,7 @@ $links_welcome[] = array(
 	'text' => '{core:frontpage:doc_header}',
 );
 
-SimpleSAML_Module::callHooks('frontpage', $allLinks);
+SimpleSAML\Module::callHooks('frontpage', $allLinks);
 
 
 

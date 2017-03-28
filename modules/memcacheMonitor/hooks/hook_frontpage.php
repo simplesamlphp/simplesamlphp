@@ -9,7 +9,7 @@ function memcacheMonitor_hook_frontpage(&$links) {
 	assert('array_key_exists("links", $links)');
 
 	$links['config'][] = array(
-		'href' => SimpleSAML_Module::getModuleURL('memcacheMonitor/memcachestat.php'),
+		'href' => SimpleSAML\Module::getModuleURL('memcacheMonitor/memcachestat.php'),
 		'text' => array('en' => 'MemCache Statistics'),
 	);
 	

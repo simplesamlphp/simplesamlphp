@@ -1,9 +1,9 @@
 <?php
+
 namespace SimpleSAML\Utils;
 
-
 /**
- * A class for cryptography-related functions
+ * A class for cryptography-related functions.
  *
  * @package SimpleSAMLphp
  */
@@ -17,7 +17,7 @@ class Crypto
      * @param string $secret The secret to use to decrypt the data.
      *
      * @return string The decrypted data.
-     * @htorws \InvalidArgumentException If $ciphertext is not a string.
+     * @throws \InvalidArgumentException If $ciphertext is not a string.
      * @throws \SimpleSAML_Error_Exception If the openssl module is not loaded.
      *
      * @see \SimpleSAML\Utils\Crypto::aesDecrypt()
@@ -48,7 +48,7 @@ class Crypto
      * @param string $ciphertext The IV used and the encrypted data, concatenated.
      *
      * @return string The decrypted data.
-     * @htorws \InvalidArgumentException If $ciphertext is not a string.
+     * @throws \InvalidArgumentException If $ciphertext is not a string.
      * @throws \SimpleSAML_Error_Exception If the openssl module is not loaded.
      *
      * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
@@ -107,6 +107,22 @@ class Crypto
     public static function aesEncrypt($data)
     {
         return self::_aesEncrypt($data, Config::getSecretSalt());
+    }
+
+
+    /**
+     * Convert data from DER to PEM encoding.
+     *
+     * @param string $der Data encoded in DER format.
+     * @param string $type The type of data we are encoding, as expressed by the PEM header. Defaults to "CERTIFICATE".
+     * @return string The same data encoded in PEM format.
+     * @see RFC7648 for known types and PEM format specifics.
+     */
+    public static function der2pem($der, $type = 'CERTIFICATE')
+    {
+        return "-----BEGIN ".$type."-----\n".
+               chunk_split(base64_encode($der), 64, "\n").
+               "-----END ".$type."-----\n";
     }
 
 
@@ -178,12 +194,13 @@ class Crypto
      * - 'certData': The certificate as a base64-encoded string.
      * - 'certificate': A file with a certificate or public key in PEM-format.
      * - 'certFingerprint': The fingerprint of the certificate. Can be a single fingerprint, or an array of multiple
-     * valid fingerprints.
+     * valid fingerprints. (deprecated)
      *
      * This function will return an array with these elements:
      * - 'PEM': The public key/certificate in PEM-encoding.
      * - 'certData': The certificate data, base64 encoded, on a single line. (Only present if this is a certificate.)
-     * - 'certFingerprint': Array of valid certificate fingerprints. (Only present if this is a certificate.)
+     * - 'certFingerprint': Array of valid certificate fingerprints. (Deprecated. Only present if this is a
+     *   certificate.)
      *
      * @param \SimpleSAML_Configuration $metadata The metadata.
      * @param bool                      $required Whether the private key is required. If this is TRUE, a missing key
@@ -239,8 +256,10 @@ class Crypto
                 $fp = strtolower(str_replace(':', '', $fp));
             }
 
-            // We can't build a full certificate from a fingerprint, and may as well return an array with only the
-            //fingerprint(s) immediately.
+            /*
+             * We can't build a full certificate from a fingerprint, and may as well return an array with only the
+             * fingerprint(s) immediately.
+             */
             return array('certFingerprint' => $fps);
         }
 
@@ -250,6 +269,35 @@ class Crypto
         } else {
             return null;
         }
+    }
+
+
+    /**
+     * Convert from PEM to DER encoding.
+     *
+     * @param string $pem Data encoded in PEM format.
+     * @return string The same data encoded in DER format.
+     * @throws \InvalidArgumentException If $pem is not encoded in PEM format.
+     * @see RFC7648 for PEM format specifics.
+     */
+    public static function pem2der($pem)
+    {
+        $pem   = trim($pem);
+        $begin = "-----BEGIN ";
+        $end   = "-----END ";
+        $lines = explode("\n", $pem);
+        $last  = count($lines) - 1;
+
+        if (strpos($lines[0], $begin) !== 0) {
+            throw new \InvalidArgumentException("pem2der: input is not encoded in PEM format.");
+        }
+        unset($lines[0]);
+        if (strpos($lines[$last], $end) !== 0) {
+            throw new \InvalidArgumentException("pem2der: input is not encoded in PEM format.");
+        }
+        unset($lines[$last]);
+
+        return base64_decode(implode($lines));
     }
 
 
@@ -302,6 +350,38 @@ class Crypto
 
 
     /**
+     * Compare two strings securely.
+     *
+     * This method checks if two strings are equal in constant time, avoiding timing attacks. Use it every time we need
+     * to compare a string with a secret that shouldn't be leaked, i.e. when verifying passwords, one-time codes, etc.
+     *
+     * @param string $known A known string.
+     * @param string $user A user-provided string to compare with the known string.
+     *
+     * @return bool True if both strings are equal, false otherwise.
+     */
+    public static function secureCompare($known, $user)
+    {
+        if (function_exists('hash_equals')) {
+            // use hash_equals() if available (PHP >= 5.6)
+            return hash_equals($known, $user);
+        }
+
+        // compare manually in constant time
+        $len = mb_strlen($known, '8bit'); // see mbstring.func_overload
+        if ($len !== mb_strlen($user, '8bit')) {
+            return false; // length differs
+        }
+        $diff = 0;
+        for ($i = 0; $i < $len; ++$i) {
+            $diff |= $known[$i] ^ $user[$i];
+        }
+        // if all the bytes in $a and $b are identical, $diff should be equal to 0
+        return $diff === 0;
+    }
+
+
+    /**
      * This function checks if a password is valid
      *
      * @param string $hash The password as it appears in password file, optionally prepended with algorithm.
@@ -321,13 +401,12 @@ class Crypto
 
         // match algorithm string (e.g. '{SSHA256}', '{MD5}')
         if (preg_match('/^{(.*?)}(.*)$/', $hash, $matches)) {
-
             // LDAP compatibility
             $alg = preg_replace('/^(S?SHA)$/', '${1}1', $matches[1]);
 
             // hash w/o salt
             if (in_array(strtolower($alg), hash_algos())) {
-                return $hash === self::pwHash($password, $alg);
+                return self::secureCompare($hash, self::pwHash($password, $alg));
             }
 
             // hash w/ salt
@@ -337,7 +416,7 @@ class Crypto
                 // get hash length of this algorithm to learn how long the salt is
                 $hash_length = strlen(hash($php_alg, '', true));
                 $salt = substr(base64_decode($matches[2]), $hash_length);
-                return ($hash === self::pwHash($password, $alg, $salt));
+                return self::secureCompare($hash, self::pwHash($password, $alg, $salt));
             }
         } else {
             return $hash === $password;

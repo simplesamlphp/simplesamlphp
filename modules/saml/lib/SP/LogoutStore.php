@@ -10,9 +10,9 @@ class sspmod_saml_SP_LogoutStore {
 	/**
 	 * Create logout table in SQL, if it is missing.
 	 *
-	 * @param SimpleSAML_Store_SQL $store  The datastore.
+	 * @param \SimpleSAML\Store\SQL $store  The datastore.
 	 */
-	private static function createLogoutTable(SimpleSAML_Store_SQL $store) {
+	private static function createLogoutTable(\SimpleSAML\Store\SQL $store) {
 
 		if ($store->getTableVersion('saml_LogoutStore') === 1) {
 			return;
@@ -41,11 +41,11 @@ class sspmod_saml_SP_LogoutStore {
 	/**
 	 * Clean the logout table of expired entries.
 	 *
-	 * @param SimpleSAML_Store_SQL $store  The datastore.
+	 * @param \SimpleSAML\Store\SQL $store  The datastore.
 	 */
-	private static function cleanLogoutStore(SimpleSAML_Store_SQL $store) {
+	private static function cleanLogoutStore(\SimpleSAML\Store\SQL $store) {
 
-		SimpleSAML_Logger::debug('saml.LogoutStore: Cleaning logout store.');
+		SimpleSAML\Logger::debug('saml.LogoutStore: Cleaning logout store.');
 
 		$query = 'DELETE FROM ' . $store->prefix . '_saml_LogoutStore WHERE _expire < :now';
 		$params = array('now' => gmdate('Y-m-d H:i:s'));
@@ -58,12 +58,12 @@ class sspmod_saml_SP_LogoutStore {
 	/**
 	 * Register a session in the SQL datastore.
 	 *
-	 * @param SimpleSAML_Store_SQL $store  The datastore.
+	 * @param \SimpleSAML\Store\SQL $store  The datastore.
 	 * @param string $authId  The authsource ID.
 	 * @param string $nameId  The hash of the users NameID.
 	 * @param string $sessionIndex  The SessionIndex of the user.
 	 */
-	private static function addSessionSQL(SimpleSAML_Store_SQL $store, $authId, $nameId, $sessionIndex, $expire, $sessionId) {
+	private static function addSessionSQL(\SimpleSAML\Store\SQL $store, $authId, $nameId, $sessionIndex, $expire, $sessionId) {
 		assert('is_string($authId)');
 		assert('is_string($nameId)');
 		assert('is_string($sessionIndex)');
@@ -90,12 +90,12 @@ class sspmod_saml_SP_LogoutStore {
 	/**
 	 * Retrieve sessions from the SQL datastore.
 	 *
-	 * @param SimpleSAML_Store_SQL $store  The datastore.
+	 * @param \SimpleSAML\Store\SQL $store  The datastore.
 	 * @param string $authId  The authsource ID.
 	 * @param string $nameId  The hash of the users NameID.
 	 * @return array  Associative array of SessionIndex =>  SessionId.
 	 */
-	private static function getSessionsSQL(SimpleSAML_Store_SQL $store, $authId, $nameId) {
+	private static function getSessionsSQL(\SimpleSAML\Store\SQL $store, $authId, $nameId) {
 		assert('is_string($authId)');
 		assert('is_string($nameId)');
 
@@ -125,13 +125,13 @@ class sspmod_saml_SP_LogoutStore {
 	/**
 	 * Retrieve all session IDs from a key-value store.
 	 *
-	 * @param SimpleSAML_Store $store  The datastore.
+	 * @param \SimpleSAML\Store $store  The datastore.
 	 * @param string $authId  The authsource ID.
 	 * @param string $nameId  The hash of the users NameID.
 	 * @param array $sessionIndexes  The session indexes.
 	 * @return array  Associative array of SessionIndex =>  SessionId.
 	 */
-	private static function getSessionsStore(SimpleSAML_Store $store, $authId, $nameId, array $sessionIndexes) {
+	private static function getSessionsStore(\SimpleSAML\Store $store, $authId, $nameId, array $sessionIndexes) {
 		assert('is_string($authId)');
 		assert('is_string($nameId)');
 
@@ -152,11 +152,17 @@ class sspmod_saml_SP_LogoutStore {
 	/**
 	 * Register a new session in the datastore.
 	 *
+	 * Please observe the change of the signature in this method. Previously, the second parameter ($nameId) was forced
+	 * to be an array. However, it has no type restriction now, and the documentation states it must be a
+	 * \SAML2\XML\saml\NameID object. Currently, this function still accepts an array passed as $nameId, and will
+	 * silently convert it to a \SAML2\XML\saml\NameID object. This is done to keep backwards-compatibility, though will
+	 * no longer be possible in the future as the $nameId parameter will be required to be an object.
+	 *
 	 * @param string $authId  The authsource ID.
-	 * @param array $nameId  The NameID of the user.
+	 * @param \SAML2\XML\saml\NameID $nameId The NameID of the user.
 	 * @param string|NULL $sessionIndex  The SessionIndex of the user.
 	 */
-	public static function addSession($authId, array $nameId, $sessionIndex, $expire) {
+	public static function addSession($authId, $nameId, $sessionIndex, $expire) {
 		assert('is_string($authId)');
 		assert('is_string($sessionIndex) || is_null($sessionIndex)');
 		assert('is_int($expire)');
@@ -170,14 +176,17 @@ class sspmod_saml_SP_LogoutStore {
 			$sessionIndex = SimpleSAML\Utils\Random::generateID();
 		}
 
-		$store = SimpleSAML_Store::getInstance();
+		$store = \SimpleSAML\Store::getInstance();
 		if ($store === FALSE) {
 			// We don't have a datastore.
 			return;
 		}
 
-		/* Normalize NameID. */
-		ksort($nameId);
+		// serialize and anonymize the NameID
+        // TODO: remove this conditional statement
+		if (is_array($nameId)) {
+			$nameId = \SAML2\XML\saml\NameID::fromArray($nameId);
+		}
 		$strNameId = serialize($nameId);
 		$strNameId = sha1($strNameId);
 
@@ -189,7 +198,7 @@ class sspmod_saml_SP_LogoutStore {
 		$session = SimpleSAML_Session::getSessionFromRequest();
 		$sessionId = $session->getSessionId();
 
-		if ($store instanceof SimpleSAML_Store_SQL) {
+		if ($store instanceof \SimpleSAML\Store\SQL) {
 			self::addSessionSQL($store, $authId, $strNameId, $sessionIndex, $expire, $sessionId);
 		} else {
 			$store->set('saml.LogoutStore', $strNameId . ':' . $sessionIndex, $sessionId, $expire);
@@ -201,21 +210,24 @@ class sspmod_saml_SP_LogoutStore {
 	 * Log out of the given sessions.
 	 *
 	 * @param string $authId  The authsource ID.
-	 * @param array $nameId  The NameID of the user.
+	 * @param \SAML2\XML\saml\NameID $nameId The NameID of the user.
 	 * @param array $sessionIndexes  The SessionIndexes we should log out of. Logs out of all if this is empty.
 	 * @returns int|FALSE  Number of sessions logged out, or FALSE if not supported.
 	 */
-	public static function logoutSessions($authId, array $nameId, array $sessionIndexes) {
+	public static function logoutSessions($authId, $nameId, array $sessionIndexes) {
 		assert('is_string($authId)');
 
-		$store = SimpleSAML_Store::getInstance();
+		$store = \SimpleSAML\Store::getInstance();
 		if ($store === FALSE) {
 			/* We don't have a datastore. */
 			return FALSE;
 		}
 
-		/* Normalize NameID. */
-		ksort($nameId);
+		// serialize and anonymize the NameID
+		// TODO: remove this conditional statement
+		if (is_array($nameId)) {
+			$nameId = \SAML2\XML\saml\NameID::fromArray($nameId);
+		}
 		$strNameId = serialize($nameId);
 		$strNameId = sha1($strNameId);
 
@@ -228,13 +240,13 @@ class sspmod_saml_SP_LogoutStore {
 		}
 		unset($sessionIndex); // Remove reference
 
-		if ($store instanceof SimpleSAML_Store_SQL) {
+		if ($store instanceof \SimpleSAML\Store\SQL) {
 			$sessions = self::getSessionsSQL($store, $authId, $strNameId);
 		} elseif (empty($sessionIndexes)) {
 			/* We cannot fetch all sessions without a SQL store. */
 			return FALSE;
 		} else {
-			/** @var SimpleSAML_Store $sessions At this point the store cannot be false */
+			/** @var \SimpleSAML\Store $sessions At this point the store cannot be false */
 			$sessions = self::getSessionsStore($store, $authId, $strNameId, $sessionIndexes);
 
 		}
@@ -248,7 +260,7 @@ class sspmod_saml_SP_LogoutStore {
 		$numLoggedOut = 0;
 		foreach ($sessionIndexes as $sessionIndex) {
 			if (!isset($sessions[$sessionIndex])) {
-				SimpleSAML_Logger::info('saml.LogoutStore: Logout requested for unknown SessionIndex.');
+				SimpleSAML\Logger::info('saml.LogoutStore: Logout requested for unknown SessionIndex.');
 				continue;
 			}
 
@@ -256,16 +268,16 @@ class sspmod_saml_SP_LogoutStore {
 
 			$session = SimpleSAML_Session::getSession($sessionId);
 			if ($session === NULL) {
-				SimpleSAML_Logger::info('saml.LogoutStore: Skipping logout of missing session.');
+				SimpleSAML\Logger::info('saml.LogoutStore: Skipping logout of missing session.');
 				continue;
 			}
 
 			if (!$session->isValid($authId)) {
-				SimpleSAML_Logger::info('saml.LogoutStore: Skipping logout of session because it isn\'t authenticated.');
+				SimpleSAML\Logger::info('saml.LogoutStore: Skipping logout of session because it isn\'t authenticated.');
 				continue;
 			}
 
-			SimpleSAML_Logger::info('saml.LogoutStore: Logging out of session with trackId [' . $session->getTrackID() . '].');
+			SimpleSAML\Logger::info('saml.LogoutStore: Logging out of session with trackId [' . $session->getTrackID() . '].');
 			$session->doLogout($authId);
 			$numLoggedOut += 1;
 		}

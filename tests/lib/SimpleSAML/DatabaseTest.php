@@ -251,7 +251,7 @@ class SimpleSAML_DatabaseTest extends PHPUnit_Framework_TestCase
             "INSERT INTO $table (ssp_key, ssp_value) VALUES (:ssp_key, :ssp_value)",
             array('ssp_key' => array($ssp_key, PDO::PARAM_INT), 'ssp_value' => $ssp_value)
         );
-        $this->assertEquals(1, $stmt->rowCount(), "Could not insert data into $table.");
+        $this->assertEquals(1, $stmt, "Could not insert data into $table.");
 
         $query2 = $this->db->read("SELECT * FROM $table WHERE ssp_key = :ssp_key", array('ssp_key' => $ssp_key));
         $data = $query2->fetch();

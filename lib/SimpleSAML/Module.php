@@ -1,14 +1,96 @@
 <?php
-
+namespace SimpleSAML;
 
 /**
  * Helper class for accessing information about modules.
  *
- * @author Olav Morken, UNINETT AS.
+ * @author Olav Morken <olav.morken@uninett.no>, UNINETT AS.
+ * @author Boy Baukema, SURFnet.
+ * @author Jaime Perez <jaime.perez@uninett.no>, UNINETT AS.
  * @package SimpleSAMLphp
  */
-class SimpleSAML_Module
+class Module
 {
+
+    /**
+     * Autoload function for SimpleSAMLphp modules following PSR-0.
+     *
+     * @param string $className Name of the class.
+     * @deprecated This method will be removed in SSP 2.0.
+     *
+     * TODO: this autoloader should be removed once everything has been migrated to namespaces.
+     */
+    public static function autoloadPSR0($className)
+    {
+        $modulePrefixLength = strlen('sspmod_');
+        $classPrefix = substr($className, 0, $modulePrefixLength);
+        if ($classPrefix !== 'sspmod_') {
+            return;
+        }
+
+        $modNameEnd = strpos($className, '_', $modulePrefixLength);
+        $module     = substr($className, $modulePrefixLength, $modNameEnd - $modulePrefixLength);
+        $path       = explode('_', substr($className, $modNameEnd + 1));
+
+        if (!self::isModuleEnabled($module)) {
+            return;
+        }
+
+        $file = self::getModuleDir($module).'/lib/'.join('/', $path).'.php';
+        if (!file_exists($file)) {
+            return;
+        }
+        require_once($file);
+
+        if (!class_exists($className, false) && !interface_exists($className, false)) {
+            // the file exists, but the class is not defined. Is it using namespaces?
+            $nspath = join('\\', $path);
+            if (class_exists('SimpleSAML\Module\\'.$module.'\\'.$nspath) ||
+                interface_exists('SimpleSAML\Module\\'.$module.'\\'.$nspath)) {
+                // the class has been migrated, create an alias and warn about it
+                \SimpleSAML\Logger::warning(
+                    "The class or interface '$className' is now using namespaces, please use 'SimpleSAML\\Module\\".
+                    $module."\\".$nspath."' instead."
+                );
+                class_alias("SimpleSAML\\Module\\$module\\$nspath", $className);
+            }
+        }
+    }
+
+
+    /**
+     * Autoload function for SimpleSAMLphp modules following PSR-4.
+     *
+     * @param string $className Name of the class.
+     */
+    public static function autoloadPSR4($className)
+    {
+        $elements = explode('\\', $className);
+        if ($elements[0] === '') { // class name starting with /, ignore
+            array_shift($elements);
+        }
+        if (count($elements) < 4) {
+            return; // it can't be a module
+        }
+        if (array_shift($elements) !== 'SimpleSAML') {
+            return; // the first element is not "SimpleSAML"
+        }
+        if (array_shift($elements) !== 'Module') {
+            return; // the second element is not "module"
+        }
+
+        // this is a SimpleSAMLphp module following PSR-4
+        $module = array_shift($elements);
+        if (!self::isModuleEnabled($module)) {
+            return; // module not enabled, avoid giving out any information at all
+        }
+
+        $file = self::getModuleDir($module).'/lib/'.implode('/', $elements).'.php';
+
+        if (file_exists($file)) {
+            require_once($file);
+        }
+    }
 
 
     /**
@@ -32,13 +114,13 @@ class SimpleSAML_Module
     /**
      * Determine whether a module is enabled.
      *
-     * Will return false if the given module doesn't exists.
+     * Will return false if the given module doesn't exist.
      *
      * @param string $module Name of the module
      *
      * @return bool True if the given module is enabled, false otherwise.
      *
-     * @throws Exception If module.enable is set and is not boolean.
+     * @throws \Exception If module.enable is set and is not boolean.
      */
     public static function isModuleEnabled($module)
     {
@@ -49,7 +131,7 @@ class SimpleSAML_Module
             return false;
         }
 
-        $globalConfig = SimpleSAML_Configuration::getOptionalConfig();
+        $globalConfig = \SimpleSAML_Configuration::getOptionalConfig();
         $moduleEnable = $globalConfig->getArray('module.enable', array());
 
         if (isset($moduleEnable[$module])) {
@@ -57,14 +139,14 @@ class SimpleSAML_Module
                 return $moduleEnable[$module];
             }
 
-            throw new Exception("Invalid module.enable value for for the module $module");
+            throw new \Exception("Invalid module.enable value for the '$module' module.");
         }
 
         if (assert_options(ASSERT_ACTIVE) &&
             !file_exists($moduleDir.'/default-enable') &&
             !file_exists($moduleDir.'/default-disable')
         ) {
-            SimpleSAML_Logger::error("Missing default-enable or default-disable file for the module $module");
+            \SimpleSAML\Logger::error("Missing default-enable or default-disable file for the module $module");
         }
 
         if (file_exists($moduleDir.'/enable')) {
@@ -84,7 +166,7 @@ class SimpleSAML_Module
      *
      * @return array One string for each module.
      *
-     * @throws Exception If we cannot open the module's directory.
+     * @throws \Exception If we cannot open the module's directory.
      */
     public static function getModules()
     {
@@ -93,7 +175,7 @@ class SimpleSAML_Module
 
         $dh = opendir($path);
         if ($dh === false) {
-            throw new Exception('Unable to open module directory "'.$path.'".');
+            throw new \Exception('Unable to open module directory "'.$path.'".');
         }
 
         $modules = array();
@@ -133,7 +215,7 @@ class SimpleSAML_Module
      *
      * @return string The classname.
      *
-     * @throws Exception If the class cannot be resolved.
+     * @throws \Exception If the class cannot be resolved.
      */
     public static function resolveClass($id, $type, $subclass = null)
     {
@@ -142,18 +224,32 @@ class SimpleSAML_Module
         assert('is_string($subclass) || is_null($subclass)');
 
         $tmp = explode(':', $id, 2);
-        if (count($tmp) === 1) {
+        if (count($tmp) === 1) { // no module involved
             $className = $tmp[0];
-        } else {
-            $className = 'sspmod_'.$tmp[0].'_'.$type.'_'.$tmp[1];
+            if (!class_exists($className)) {
+                throw new \Exception("Could not resolve '$id': no class named '$className'.");
+            }
+        } else { // should be a module
+            // make sure empty types are handled correctly
+            $type = (empty($type)) ? '_' : '_'.$type.'_';
+
+            // check for the old-style class names
+            $className = 'sspmod_'.$tmp[0].$type.$tmp[1];
+
+            if (!class_exists($className)) {
+                // check for the new-style class names, using namespaces
+                $type = str_replace('_', '\\', $type);
+                $newClassName = 'SimpleSAML\Module\\'.$tmp[0].$type.$tmp[1];
+
+                if (!class_exists($newClassName)) {
+                    throw new \Exception("Could not resolve '$id': no class named '$className' or '$newClassName'.");
+                }
+                $className = $newClassName;
+            }
         }
 
-        if (!class_exists($className)) {
-            throw new Exception(
-                'Could not resolve \''.$id.'\': No class named \''.$className.'\'.'
-            );
-        } elseif ($subclass !== null && !is_subclass_of($className, $subclass)) {
-            throw new Exception(
+        if ($subclass !== null && !is_subclass_of($className, $subclass)) {
+            throw new \Exception(
                 'Could not resolve \''.$id.'\': The class \''.$className.'\' isn\'t a subclass of \''.$subclass.'\'.'
             );
         }
@@ -177,9 +273,9 @@ class SimpleSAML_Module
         assert('is_string($resource)');
         assert('$resource[0] !== "/"');
 
-        $url = \SimpleSAML\Utils\HTTP::getBaseURL().'module.php/'.$resource;
+        $url = Utils\HTTP::getBaseURL().'module.php/'.$resource;
         if (!empty($parameters)) {
-            $url = \SimpleSAML\Utils\HTTP::addURLParameters($url, $parameters);
+            $url = Utils\HTTP::addURLParameters($url, $parameters);
         }
         return $url;
     }

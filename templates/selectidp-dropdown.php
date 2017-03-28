@@ -9,12 +9,18 @@ $this->includeAtTemplateBase('includes/header.php');
 
 foreach ($this->data['idplist'] as $idpentry) {
     if (!empty($idpentry['name'])) {
-        $this->includeInlineTranslation('idpname_'.$idpentry['entityid'], $idpentry['name']);
+        $this->getTranslator()->includeInlineTranslation(
+            'idpname_'.$idpentry['entityid'],
+            $idpentry['name']
+        );
     } elseif (!empty($idpentry['OrganizationDisplayName'])) {
-        $this->includeInlineTranslation('idpname_'.$idpentry['entityid'], $idpentry['OrganizationDisplayName']);
+        $this->getTranslator()->includeInlineTranslation(
+            'idpname_'.$idpentry['entityid'],
+            $idpentry['OrganizationDisplayName']
+        );
     }
     if (!empty($idpentry['description'])) {
-        $this->includeInlineTranslation('idpdesc_'.$idpentry['entityid'], $idpentry['description']);
+        $this->getTranslator()->includeInlineTranslation('idpdesc_'.$idpentry['entityid'], $idpentry['description']);
     }
 }
 ?>
@@ -27,9 +33,21 @@ foreach ($this->data['idplist'] as $idpentry) {
                value="<?php echo htmlspecialchars($this->data['returnIDParam']); ?>"/>
         <select id="dropdownlist" name="idpentityid">
             <?php
+            /*
+             * TODO: change this to use $this instead when PHP 5.4 is the minimum requirement.
+             *
+             * This is a dirty hack because PHP 5.3 does not allow the use of $this inside closures. Therefore, the
+             * translation function must be passed somehow inside the closure. PHP 5.4 allows using $this, so we can
+             * then go back to the previous behaviour.
+             */
+            $GLOBALS['__t'] = $this;
             usort($this->data['idplist'], function ($idpentry1, $idpentry2) {
-                return strcmp($this->t('idpname_'.$idpentry1['entityid']), $this->t('idpname_'.$idpentry2['entityid']));
+                return strcmp(
+                    $GLOBALS['__t']->t('idpname_'.$idpentry1['entityid']),
+                    $GLOBALS['__t']->t('idpname_'.$idpentry2['entityid'])
+                );
             });
+            unset($GLOBALS['__t']);
 
             foreach ($this->data['idplist'] as $idpentry) {
                 echo '<option value="'.htmlspecialchars($idpentry['entityid']).'"';

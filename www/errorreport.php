@@ -22,7 +22,7 @@ try {
     $session = SimpleSAML_Session::getSessionFromRequest();
     $data = $session->getData('core:errorreport', $reportId);
 } catch (Exception $e) {
-    SimpleSAML_Logger::error('Error loading error report data: '.var_export($e->getMessage(), true));
+    SimpleSAML\Logger::error('Error loading error report data: '.var_export($e->getMessage(), true));
 }
 
 if ($data === null) {
@@ -113,7 +113,7 @@ if ($config->getBoolean('errorreporting', true) && $toAddress !== 'na@example.or
     $email = new SimpleSAML_XHTML_EMail($toAddress, 'SimpleSAMLphp error report', $from);
     $email->setBody($message);
     $email->send();
-    SimpleSAML_Logger::error('Report with id '.$reportId.' sent to <'.$toAddress.'>.');
+    SimpleSAML\Logger::error('Report with id '.$reportId.' sent to <'.$toAddress.'>.');
 }
 
 // redirect the user back to this page to clear the POST request

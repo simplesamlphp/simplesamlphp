@@ -57,9 +57,9 @@ function driveProcessingChain(
     $targeted_id = sspmod_consent_Auth_Process_Consent::getTargetedID($userid, $source, $destination);
     $attribute_hash = sspmod_consent_Auth_Process_Consent::getAttributeHash($attributes, $hashAttributes);
 
-    SimpleSAML_Logger::info('consentAdmin: user: '.$userid);
-    SimpleSAML_Logger::info('consentAdmin: target: '.$targeted_id);
-    SimpleSAML_Logger::info('consentAdmin: attribute: '.$attribute_hash);
+    SimpleSAML\Logger::info('consentAdmin: user: '.$userid);
+    SimpleSAML\Logger::info('consentAdmin: target: '.$targeted_id);
+    SimpleSAML\Logger::info('consentAdmin: attribute: '.$attribute_hash);
 
     // Return values
     return array($targeted_id, $attribute_hash, $attributes);
@@ -132,7 +132,7 @@ if (!empty($_GET['action'])) {
     $action = $_GET["action"];
 }
 
-SimpleSAML_Logger::critical('consentAdmin: sp: '.$sp_entityid.' action: '.$action);
+SimpleSAML\Logger::critical('consentAdmin: sp: '.$sp_entityid.' action: '.$action);
 
 // Remove services, whitch have consent disabled
 if (isset($idp_metadata['consent.disable'])) {
@@ -143,7 +143,7 @@ if (isset($idp_metadata['consent.disable'])) {
     }
 }
 
-SimpleSAML_Logger::info('consentAdmin: '.$idp_entityid);
+SimpleSAML\Logger::info('consentAdmin: '.$idp_entityid);
 
 // Calc correct source
 $source = $idp_metadata['metadata-set'].'|'.$idp_entityid;
@@ -181,7 +181,7 @@ if ($action !== null && $sp_entityid !== null) {
             }
             // Unknown action (should not happen)
         } else {
-            SimpleSAML_Logger::info('consentAdmin: unknown action');
+            SimpleSAML\Logger::info('consentAdmin: unknown action');
             $res = "unknown";
         }
     }
@@ -205,8 +205,10 @@ $template_sp_content = array();
 
 // Init template
 $template = new SimpleSAML_XHTML_Template($config, 'consentAdmin:consentadmin.php', 'consentAdmin:consentadmin');
-$sp_empty_name = $template->getTag('sp_empty_name');
-$sp_empty_description = $template->getTag('sp_empty_description');
+$translator = $template->getTranslator();
+$translator->includeLanguageFile('attributes.php'); // attribute listings translated by this dictionary
+$sp_empty_name = $translator->getTag('sp_empty_name');
+$sp_empty_description = $translator->getTag('sp_empty_description');
 
 // Process consents for all SP
 foreach ($all_sp_metadata as $sp_entityid => $sp_values) {
@@ -220,15 +222,15 @@ foreach ($all_sp_metadata as $sp_entityid => $sp_values) {
     // Check if consent exists
     if (array_key_exists($targeted_id, $user_consent)) {
         $sp_status = "changed";
-        SimpleSAML_Logger::info('consentAdmin: changed');
+        SimpleSAML\Logger::info('consentAdmin: changed');
         // Check if consent is valid. (Possible that attributes has changed)
         if ($user_consent[$targeted_id] == $attribute_hash) {
-            SimpleSAML_Logger::info('consentAdmin: ok');
+            SimpleSAML\Logger::info('consentAdmin: ok');
             $sp_status = "ok";
         }
         // Consent does not exists
     } else {
-        SimpleSAML_Logger::info('consentAdmin: none');
+        SimpleSAML\Logger::info('consentAdmin: none');
         $sp_status = "none";
     }
 

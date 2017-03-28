@@ -44,9 +44,9 @@ class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception
 
 
     /**
-     * The name of module which throw error.
+     * The name of module that threw the error.
      *
-     * @var string|NULL
+     * @var string|null
      */
     private $module = null;
 
@@ -62,7 +62,7 @@ class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception
     /**
      * Name of custom include template for the error.
      *
-     * @var string|NULL
+     * @var string|null
      */
     protected $includeTemplate = null;
 
@@ -100,8 +100,8 @@ class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception
             $this->dictTitle = '{'.$this->module.':errors:title_'.$moduleCode[1].'}';
             $this->dictDescr = '{'.$this->module.':errors:descr_'.$moduleCode[1].'}';
         } else {
-            $this->dictTitle = '{errors:title_'.$this->errorCode.'}';
-            $this->dictDescr = '{errors:descr_'.$this->errorCode.'}';
+            $this->dictTitle = SimpleSAML\Error\ErrorCodes::getErrorCodeTitle($this->errorCode);
+            $this->dictDescr = SimpleSAML\Error\ErrorCodes::getErrorCodeDescription($this->errorCode);
         }
 
         if (!empty($this->parameters)) {
@@ -192,7 +192,7 @@ class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception
 
         if (!array_key_exists($this->httpCode, $httpCodesMap)) {
             $httpCode = 500;
-            SimpleSAML_Logger::warning('HTTP response code not defined: '.var_export($this->httpCode, true));
+            SimpleSAML\Logger::warning('HTTP response code not defined: '.var_export($this->httpCode, true));
         }
 
         header($httpCodesMap[$httpCode]);
@@ -206,12 +206,12 @@ class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception
      */
     protected function saveError()
     {
-        $data = $this->format();
+        $data = $this->format(true);
         $emsg = array_shift($data);
         $etrace = implode("\n", $data);
 
         $reportId = bin2hex(openssl_random_pseudo_bytes(4));
-        SimpleSAML_Logger::error('Error report with id '.$reportId.' generated.');
+        SimpleSAML\Logger::error('Error report with id '.$reportId.' generated.');
 
         $config = SimpleSAML_Configuration::getInstance();
         $session = SimpleSAML_Session::getSessionFromRequest();
@@ -295,6 +295,8 @@ class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception
         } else {
             $t = new SimpleSAML_XHTML_Template($config, 'error.php', 'errors');
             $t->data = array_merge($t->data, $data);
+            $t->data['dictTitleTranslated'] = $t->getTranslator()->t($t->data['dictTitle']);
+            $t->data['dictDescrTranslated'] = $t->getTranslator()->t($t->data['dictDescr'], $t->data['parameters']);
             $t->show();
         }
 

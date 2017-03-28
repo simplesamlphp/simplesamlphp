@@ -11,8 +11,7 @@ abstract class sspmod_consent_Store
     /**
      * Constructor for the base class.
      *
-     * This constructor should always be called first in any class which implements
-     * this class.
+     * This constructor should always be called first in any class which implements this class.
      *
      * @param array &$config The configuration for this storage handler.
      */
@@ -21,11 +20,12 @@ abstract class sspmod_consent_Store
         assert('is_array($config)');
     }
 
+
     /**
      * Check for consent.
      *
-     * This function checks whether a given user has authorized the release of
-     * the attributes identified by $attributeSet from $source to $destination.
+     * This function checks whether a given user has authorized the release of the attributes identified by
+     * $attributeSet from $source to $destination.
      *
      * @param string $userId        The hash identifying the user at an IdP.
      * @param string $destinationId A string which identifyes the destination.
@@ -36,19 +36,21 @@ abstract class sspmod_consent_Store
      */
     abstract public function hasConsent($userId, $destinationId, $attributeSet);
 
+
     /**
      * Save consent.
      *
-     * Called when the user asks for the consent to be saved. If consent information
-     * for the given user and destination already exists, it should be overwritten.
+     * Called when the user asks for the consent to be saved. If consent information for the given user and destination
+     * already exists, it should be overwritten.
      *
      * @param string $userId        The hash identifying the user at an IdP.
      * @param string $destinationId A string which identifyes the destination.
      * @param string $attributeSet  A hash which identifies the attributes.
      *
-     * @return bool True if consent is succesfully saved otherwise false 
+     * @return bool True if consent is succesfully saved otherwise false.
      */
     abstract public function saveConsent($userId, $destinationId, $attributeSet);
+
 
     /**
      * Delete consent.
@@ -58,9 +60,10 @@ abstract class sspmod_consent_Store
      * @param string $userId        The hash identifying the user at an IdP.
      * @param string $destinationId A string which identifyes the destination.
      *
-     * @return mixed Should be the number of consent deleted 
+     * @return mixed Should be the number of consent deleted.
      */
     abstract public function deleteConsent($userId, $destinationId);
+
 
     /**
      * Delete all consents.
@@ -70,21 +73,27 @@ abstract class sspmod_consent_Store
      * @param string $userId The hash identifying the user at an IdP.
      *
      * @return mixed Should be the number of consent removed
+     *
+     * @throws Exception
      */
     public function deleteAllConsents($userId)
     {
         throw new Exception('Not implemented: deleteAllConsents()');
     }
 
+
     /**
      * Get statistics for all consent given in the consent store
      *
      * @return mixed Statistics from the consent store
+     *
+     * @throws Exception
      */
     public function getStatistics()
     {
         throw new Exception('Not implemented: getStatistics()');
     }
+
 
     /**
      * Retrieve consents.
@@ -97,16 +106,18 @@ abstract class sspmod_consent_Store
      */
     abstract public function getConsents($userId);
 
+
     /**
      * Parse consent storage configuration.
      *
-     * This function parses the configuration for a consent storage method.
-     * An exception will be thrown if configuration parsing fails.
+     * This function parses the configuration for a consent storage method. An exception will be thrown if
+     * configuration parsing fails.
      *
      * @param mixed $config The configuration.
      *
-     * @return sspmod_consent_Store An object which implements the
-     *                              sspmod_consent_Store class.
+     * @return sspmod_consent_Store An object which implements the sspmod_consent_Store class.
+     *
+     * @throws Exception if the configuration is invalid.
      */
     public static function parseStoreConfig($config)
     {
@@ -115,17 +126,14 @@ abstract class sspmod_consent_Store
         }
 
         if (!is_array($config)) {
-            throw new Exception(
-                'Invalid configuration for consent store option: ' . 
-                var_export($config, true)
-            );
+            throw new Exception('Invalid configuration for consent store option: '.var_export($config, true));
         }
 
         if (!array_key_exists(0, $config)) {
             throw new Exception('Consent store without name given.');
         }
 
-        $className = SimpleSAML_Module::resolveClass(
+        $className = SimpleSAML\Module::resolveClass(
             $config[0],
             'Consent_Store',
             'sspmod_consent_Store'
