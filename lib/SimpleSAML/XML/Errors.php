@@ -16,13 +16,12 @@ class Errors
 {
 
     /**
-     * This is an stack of error logs. The topmost element is the one we are
-     * currently working on.
+     * @var array This is an stack of error logs. The topmost element is the one we are currently working on.
      */
     private static $errorStack = array();
 
     /**
-     * This is the xml error state we had before we began logging.
+     * @var bool This is the xml error state we had before we began logging.
      */
     private static $xmlErrorState;
 
@@ -104,7 +103,7 @@ class Errors
      *
      * This function formats the given LibXMLError object as a string.
      *
-     * @param $error \LibXMLError  The LibXMLError which should be formatted.
+     * @param \LibXMLError $error  The LibXMLError which should be formatted.
      * @return string  A string representing the given LibXMLError.
      */
     public static function formatError($error)
@@ -121,7 +120,7 @@ class Errors
      * This fucntion takes an array of LibXMLError objects and creates a string with all the errors.
      * Each error will be separated by a newline, and the string will end with a newline-character.
      *
-     * @param $errors array  An array of errors.
+     * @param array $errors  An array of errors.
      * @return string  A string representing the errors. An empty string will be returned if there were no
      *          errors in the array.
      */

@@ -17,13 +17,13 @@ class Validator
 {
 
     /**
-     * This variable contains the X509 certificate the XML document
-     * was signed with, or NULL if it wasn't signed with an X509 certificate.
+     * @var string This variable contains the X509 certificate the XML document
+     *             was signed with, or NULL if it wasn't signed with an X509 certificate.
      */
     private $x509Certificate;
 
     /**
-     * This variable contains the nodes which are signed.
+     * @var array This variable contains the nodes which are signed.
      */
     private $validNodes = null;
 
@@ -155,7 +155,7 @@ class Validator
     /**
      * Calculates the fingerprint of an X509 certificate.
      *
-     * @param $x509cert string  The certificate as a base64-encoded string. The string may optionally
+     * @param string $x509cert  The certificate as a base64-encoded string. The string may optionally
      *                          be framed with '-----BEGIN CERTIFICATE-----' and '-----END CERTIFICATE-----'.
      * @return string  The fingerprint as a 40-character lowercase hexadecimal number. NULL is returned if the
      *                 argument isn't an X509 certificate.
@@ -237,7 +237,7 @@ class Validator
      * is an array, then any string (certificate) in the array can match. If this is a string,
      * then that string must match,
      *
-     * @param $fingerprints  string|array The fingerprints which should match. This can be a single string,
+     * @param string|array $fingerprints  The fingerprints which should match. This can be a single string,
      *                                    or an array of fingerprints.
      * @throws \Exception
      */
@@ -268,7 +268,7 @@ class Validator
     /**
      * This function checks if the given XML node was signed.
      *
-     * @param $node \DOMNode  The XML node which we should verify that was signed.
+     * @param \DOMNode $node  The XML node which we should verify that was signed.
      *
      * @return bool  TRUE if this node (or a parent node) was signed. FALSE if not.
      */
@@ -296,7 +296,7 @@ class Validator
      *
      * This function throws an exception if unable to validate against the given CA file.
      *
-     * @param $caFile string  File with trusted certificates, in PEM-format.
+     * @param string $caFile  File with trusted certificates, in PEM-format.
      * @throws \Exception
      */
     public function validateCA($caFile)

@@ -55,7 +55,7 @@ class Signer
      *  - publickey_array  The public key, as an array returned from SimpleSAML_Utilities::loadPublicKey.
      *  - id               The name of the ID attribute.
      *
-     * @param $options array  Associative array with options for the constructor. Defaults to an empty array.
+     * @param array $options  Associative array with options for the constructor. Defaults to an empty array.
      */
     public function __construct($options = array())
     {
@@ -119,9 +119,9 @@ class Signer
      *
      * Will throw an exception if unable to load the private key.
      *
-     * @param $file string  The file which contains the private key. The path is assumed to be relative
+     * @param string $file  The file which contains the private key. The path is assumed to be relative
      *                      to the cert-directory.
-     * @param $pass string|null  The passphrase on the private key. Pass no value or NULL if the private
+     * @param string|null $pass  The passphrase on the private key. Pass no value or NULL if the private
      *                           key is unencrypted.
      * @throws \Exception
      */
@@ -176,7 +176,7 @@ class Signer
      * If this function isn't called, no certificate will be included.
      * Will throw an exception if unable to load the certificate.
      *
-     * @param $file string  The file which contains the certificate. The path is assumed to be relative to
+     * @param string $file  The file which contains the certificate. The path is assumed to be relative to
      *                      the cert-directory.
      * @throws \Exception
      */
@@ -199,7 +199,7 @@ class Signer
     /**
      * Set the attribute name for the ID value.
      *
-     * @param $idAttrName string  The name of the attribute which contains the id.
+     * @param string $idAttrName  The name of the attribute which contains the id.
      */
     public function setIDAttribute($idAttrName)
     {
@@ -215,7 +215,7 @@ class Signer
      * Extra certificates will be added to the certificate chain in the order they
      * are added.
      *
-     * @param $file string  The file which contains the certificate, relative to the cert-directory.
+     * @param string $file  The file which contains the certificate, relative to the cert-directory.
      * @throws \Exception
      */
     public function addCertificate($file)
@@ -241,9 +241,9 @@ class Signer
      *
      * The private key must be set before calling this function.
      *
-     * @param $node \DOMElement  The DOMElement we should generate a signature for.
-     * @param $insertInto \DOMElement  The DOMElement we should insert the signature element into.
-     * @param $insertBefore \DOMElement  The element we should insert the signature element before. Defaults to NULL,
+     * @param \DOMElement $node  The DOMElement we should generate a signature for.
+     * @param \DOMElement $insertInto  The DOMElement we should insert the signature element into.
+     * @param \DOMElement $insertBefore  The element we should insert the signature element before. Defaults to NULL,
      *                                   in which case the signature will be appended to the element spesified in
      *                                   $insertInto.
      * @throws \Exception
