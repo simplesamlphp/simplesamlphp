@@ -10,7 +10,6 @@
 
 namespace SimpleSAML\Bindings\Shib13;
 
-
 use SAML2\DOMDocumentFactory;
 use SimpleSAML\Utils\Crypto;
 use SimpleSAML\Utils\HTTP;
@@ -50,11 +49,11 @@ class HTTPPost
     /**
      * Send an authenticationResponse using HTTP-POST.
      *
-     * @param string                   $response The response which should be sent.
+     * @param string                    $response The response which should be sent.
      * @param \SimpleSAML_Configuration $idpmd The metadata of the IdP which is sending the response.
      * @param \SimpleSAML_Configuration $spmd The metadata of the SP which is receiving the response.
-     * @param string|null              $relayState The relaystate for the SP.
-     * @param string                   $shire The shire which should receive the response.
+     * @param string|null               $relayState The relaystate for the SP.
+     * @param string                    $shire The shire which should receive the response.
      */
     public function sendResponse(
         $response,
@@ -63,7 +62,6 @@ class HTTPPost
         $relayState,
         $shire
     ) {
-
         XML::checkSAMLMessage($response, 'saml11');
 
         $privatekey = Crypto::loadPrivateKey($idpmd, true);
@@ -127,9 +125,7 @@ class HTTPPost
      * Decode a received response.
      *
      * @param array $post POST data received.
-     *
      * @return \SimpleSAML\XML\Shib13\AuthnResponse The response decoded into an object.
-     *
      * @throws \Exception If there is no SAMLResponse parameter.
      */
     public function decodeResponse($post)
