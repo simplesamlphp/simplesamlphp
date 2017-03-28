@@ -273,7 +273,7 @@ class AuthnResponse
         $nodelist = $this->doXPathQuery($query);
 
         if ($attr = $nodelist->item(0)) {
-            return $attr->nodeValue;
+            return $attr->value;
         } else {
             throw new \Exception('Could not find Issuer field in Authentication response');
         }
