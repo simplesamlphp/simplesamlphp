@@ -80,7 +80,7 @@ class SimpleSAML_Bindings_Shib13_HTTPPost
             $signResponse = true;
         }
 
-        $signer = new SimpleSAML_XML_Signer(array(
+        $signer = new \SimpleSAML\XML\Signer(array(
             'privatekey_array' => $privatekey,
             'publickey_array'  => $publickey,
             'id'               => ($signResponse ? 'ResponseID' : 'AssertionID'),
@@ -117,7 +117,7 @@ class SimpleSAML_Bindings_Shib13_HTTPPost
      *
      * @param array $post POST data received.
      *
-     * @return SimpleSAML_XML_Shib13_AuthnResponse The response decoded into an object.
+     * @return \SimpleSAML\XML\Shib13\AuthnResponse The response decoded into an object.
      *
      * @throws Exception If there is no SAMLResponse parameter.
      */
@@ -135,7 +135,7 @@ class SimpleSAML_Bindings_Shib13_HTTPPost
 
         \SimpleSAML\Utils\XML::checkSAMLMessage($samlResponseXML, 'saml11');
 
-        $samlResponse = new SimpleSAML_XML_Shib13_AuthnResponse();
+        $samlResponse = new \SimpleSAML\XML\Shib13\AuthnResponse();
         $samlResponse->setXML($samlResponseXML);
 
         if (array_key_exists('TARGET', $post)) {

@@ -583,7 +583,7 @@ class SimpleSAML_Utilities
      */
     public static function validateCA($certificate, $caFile)
     {
-        SimpleSAML_XML_Validator::validateCertificate($certificate, $caFile);
+        \SimpleSAML\XML\Validator::validateCertificate($certificate, $caFile);
     }
 
 
