@@ -128,7 +128,7 @@ class AuthnResponse
     /**
      * Checks if the given node is validated by the signature on this response.
      *
-     * @param \DOMElement Node to be validated.
+     * @param \DOMElement $node Node to be validated.
      * @return bool TRUE if the node is validated or FALSE if not.
      */
     private function isNodeValidated($node)
