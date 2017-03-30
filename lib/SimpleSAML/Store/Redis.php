@@ -19,6 +19,10 @@ class Redis extends Store
     {
         assert('is_null($redis) || is_subclass_of($redis, "Predis\\Client")');
 
+        if (!class_exists('\Predis\Client')) {
+            throw new \SimpleSAML\Error\CriticalConfigurationError('predis/predis is not available.');
+        }
+
         if (is_null($redis)) {
             $config = Configuration::getInstance();
 
