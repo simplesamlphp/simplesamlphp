@@ -1,5 +1,7 @@
 <?php
 
+use SimpleSAML\Bindings\Shib13\Artifact;
+
 if (!array_key_exists('SAMLResponse', $_REQUEST) && !array_key_exists('SAMLart', $_REQUEST)) {
 	throw new SimpleSAML_Error_BadRequest('Missing SAMLResponse or SAMLart parameter.');
 }
@@ -53,7 +55,7 @@ if (array_key_exists('SAMLart', $_REQUEST)) {
 	}
 	$idpMetadata = $source->getIdPMetadata($state['saml:idp']);
 
-	$responseXML = SimpleSAML_Bindings_Shib13_Artifact::receive($spMetadata, $idpMetadata);
+	$responseXML = Artifact::receive($spMetadata, $idpMetadata);
 	$isValidated = TRUE; /* Artifact binding validated with ssl certificate. */
 } elseif (array_key_exists('SAMLResponse', $_REQUEST)) {
 	$responseXML = $_REQUEST['SAMLResponse'];
