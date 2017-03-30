@@ -6,6 +6,18 @@ SimpleSAMLphp changelog
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
+## Version 1.14.12
+
+Released 2017-03-30
+
+  * Resolved a security issue in the authcrypt module (Htpasswd authentication source) and in SimpleSAMLphp's session validation. See [SSPSA 201703-01](https://simplesamlphp.org/security/201703-01).
+  * Resolved a security issue with IV generation in the  `SimpleSAML\Utils\Crypto::_aesEncrypt()` method. See [SSPSA 201703-02](https://simplesamlphp.org/security/201703-02).
+  * Fixed an issue with the authfacebook module, broken after a change in Facebook's API.
+  * Fixed an issue in the discopower module that ignored the `hide.from.discovery` metadata option.
+  * Fixed an issue with trusted URLs validation that prevented a URL from being accepted if a standard port was explicitly included but not specified in the configuration.
+  * Fixed an issue that prevented detecting a Memcache server being down when fetching Memcache statistics.
+  * Fixed an issue with operating system detection that made SimpleSAMLphp identify OSX as Windows.
+
 ## Version 1.14.11
 
 Released 2016-12-12
