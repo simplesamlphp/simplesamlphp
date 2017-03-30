@@ -86,7 +86,7 @@ class Crypto
         $key    = openssl_digest($secret, 'sha256');
         $method = 'AES-256-CBC';
         $ivSize = 16;
-        $iv     = substr($key, 0, $ivSize);
+        $iv     = openssl_random_pseudo_bytes($ivSize);
 
         return $iv.openssl_encrypt($data, $method, $key, $raw, $iv);
     }
