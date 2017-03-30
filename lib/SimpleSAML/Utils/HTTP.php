@@ -374,7 +374,8 @@ class HTTP
      * @param array   $context Extra context options. This parameter is optional.
      * @param boolean $getHeaders Whether to also return response headers. Optional.
      *
-     * @return mixed array if $getHeaders is set, string otherwise
+     * @return string|array An array if $getHeaders is set, containing the data and the headers respectively; string
+     *  otherwise.
      * @throws \InvalidArgumentException If the input parameters are invalid.
      * @throws \SimpleSAML_Error_Exception If the file or URL cannot be retrieved.
      *
