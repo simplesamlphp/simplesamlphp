@@ -24,7 +24,7 @@ class Redis extends Store
 
             $host = $config->getString('store.redis.host', 'localhost');
             $port = $config->getInteger('store.redis.port', 6379);
-            $prefix = $config->getString('store.redis.prefix', 'simpleSAMLphp');
+            $prefix = $config->getString('store.redis.prefix', 'SimpleSAMLphp');
 
             $redis = new \Predis\Client(
                 array(
