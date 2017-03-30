@@ -179,10 +179,7 @@ class Artifact
 
         // Fetch the artifact
         $response = HTTP::fetch($url, $opts);
-        if ($response === false) {
-            throw new \SimpleSAML_Error_Exception('Failed to retrieve assertion from IdP.');
-        }
-
+        /** @var string $response */
         XML::debugSAMLMessage($response, 'in');
 
         // Find the response in the SOAP message
