@@ -83,6 +83,7 @@ class SimpleSAML_XHTML_Template
         $this->translator = new SimpleSAML\Locale\Translate($configuration, $defaultDictionary);
         $this->localization = new \SimpleSAML\Locale\Localization($configuration);
         $this->twig = $this->setupTwig();
+        SimpleSAML\Module::callHooks('templateInit', $this->data);
     }
 
 
