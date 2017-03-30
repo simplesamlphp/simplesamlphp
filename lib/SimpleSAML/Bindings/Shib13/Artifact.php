@@ -96,7 +96,7 @@ class Artifact
         }
 
         $soapEnvelope = $doc->firstChild;
-        if (!XML::isDOMElementOfType($soapEnvelope, 'Envelope', 'http://schemas.xmlsoap.org/soap/envelope/')) {
+        if (!XML::isDOMNodeOfType($soapEnvelope, 'Envelope', 'http://schemas.xmlsoap.org/soap/envelope/')) {
             throw new \SimpleSAML_Error_Exception('Expected artifact response to contain a <soap:Envelope> element.');
         }
 

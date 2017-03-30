@@ -297,12 +297,12 @@ class SimpleSAML_Utilities
 
 
     /**
-     * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Utils\XML::isDOMElementOfType()
+     * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Utils\XML::isDOMNodeOfType()
      *     instead.
      */
     public static function isDOMElementOfType(DOMNode $element, $name, $nsURI)
     {
-        return SimpleSAML\Utils\XML::isDOMElementOfType($element, $name, $nsURI);
+        return SimpleSAML\Utils\XML::isDOMNodeOfType($element, $name, $nsURI);
     }
 
 
