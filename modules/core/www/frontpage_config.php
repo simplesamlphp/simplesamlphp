@@ -129,6 +129,11 @@ foreach ($functionchecks AS $func => $descr) {
 	$funcmatrix[] = array('descr' => $descr[1], 'required' => $descr[0], 'enabled' => function_exists($func));
 }
 
+$funcmatrix[] = array(
+    'required' => 'optional',
+    'descr' => 'predis/predis (required if the redis data store is used)',
+    'enabled' => class_exists('\Predis\Client'),
+);
 
 /* Some basic configuration checks */
 
