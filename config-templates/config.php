@@ -1011,5 +1011,5 @@ $config = array(
     /*
      * The prefix we should use on our Redis datastore.
      */
-    'store.redis.prefix' => 'simpleSAMLphp',
+    'store.redis.prefix' => 'SimpleSAMLphp',
 );
