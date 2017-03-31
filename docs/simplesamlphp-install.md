@@ -43,6 +43,8 @@ Prerequisites
    * When using databases:
      * Always: `PDO`
      * Database driver: (`mysql`, `pgsql`, ...)
+ * Support for the following PHP packages:
+   * When saving session information to a Redis server: `predis`
 
 What actual packages are required for the various extensions varies between different platforms and distributions.
 
