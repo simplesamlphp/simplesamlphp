@@ -255,7 +255,7 @@ class sspmod_saml_SP_LogoutStore {
 			$sessionIndexes = array_keys($sessions);
 		}
 
-		$sessionHandler = SimpleSAML_SessionHandler::getSessionHandler();
+		$sessionHandler = \SimpleSAML\SessionHandler::getSessionHandler();
 
 		$numLoggedOut = 0;
 		foreach ($sessionIndexes as $sessionIndex) {
