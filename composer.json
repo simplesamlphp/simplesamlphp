@@ -44,7 +44,8 @@
     "require-dev": {
         "ext-pdo_sqlite": "*",
         "phpunit/phpunit": "~4.8",
-        "satooshi/php-coveralls": "^1.0"
+        "satooshi/php-coveralls": "^1.0",
+        "mikey179/vfsStream": "~1.6"
     },
     "suggests": {
         "predis/predis": "1.1.1"
