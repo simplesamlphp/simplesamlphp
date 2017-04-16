@@ -403,5 +403,29 @@ $config = array(
 
     ),
     */
+    /*
+    // example for an authentication against privacyIDEA (http://www.privacyidea.org).
+    // to enable One Time Password authentication.
+    // The credentials are sent to privacyIDEA via the web API and validated if
+    // these are valid OTP values for this user.
+    // attributemap can contain a mapping of the returned attributes.
+    'example-privacyidea' => array(
+        'privacyidea:privacyidea',
+        'privacyideaserver' => 'https://privacyidea',
+        'sslverifyhost' => False,
+        'sslverifypeer' => False,
+        'realm' => '',
+        'attributemap' => array('username' => 'samlLoginName',
+                                'surname' => 'surName',
+                                'givenname' => 'givenName',
+                                'email' => 'emailAddress',
+                                'phone' => 'telePhone',
+                                'mobile' => 'mobilePhone',
+                                'realm' => 'memberOf',
+                                'resolver' => 'resolver'
+                                ),
+    ),
+
+     */
 
 );
