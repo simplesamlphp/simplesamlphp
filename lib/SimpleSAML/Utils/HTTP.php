@@ -343,7 +343,8 @@ class HTTP
 
 
     /**
-     * Helper function to retrieve a file or URL with proxy support.
+     * Helper function to retrieve a file or URL with proxy support, also 
+     * supporting proxy basic authorization.
      *
      * An exception will be thrown if we are unable to retrieve the data.
      *
@@ -368,9 +369,13 @@ class HTTP
         $config = \SimpleSAML_Configuration::getInstance();
 
         $proxy = $config->getString('proxy', null);
+        $proxy_auth = $config->getString('proxy.auth', null);
         if ($proxy !== null) {
             if (!isset($context['http']['proxy'])) {
                 $context['http']['proxy'] = $proxy;
+            }
+            if (!empty($proxy_auth) ) {
+                $context['http']['header'] = "Proxy-Authorization: Basic".base64_encode($proxy_auth);
             }
             if (!isset($context['http']['request_fulluri'])) {
                 $context['http']['request_fulluri'] = true;

@@ -823,7 +823,14 @@ $config = array(
      *   'proxy' => 'tcp://proxy.example.com:5100'
      */
     'proxy' => null,
-
+    
+    /*
+     * Username/password authentication to proxy (Proxy-Authorization: Basic)
+     * Example:
+     *   'proxy.auth' = 'myuser:password'
+     */
+    'proxy.auth' => null
+    
     /*
      * Array of domains that are allowed when generating links or redirections
      * to URLs. SimpleSAMLphp will use this option to determine whether to
