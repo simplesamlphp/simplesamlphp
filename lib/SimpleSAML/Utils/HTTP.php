@@ -394,7 +394,14 @@ class HTTP
         $proxy = $config->getString('proxy', null);
         if ($proxy !== null) {
             if (!isset($context['http']['proxy'])) {
-                $context['http']['proxy'] = $proxy;
+                $proxyUrl = parse_url($proxy);
+                if($proxyUrl === false || !isset($proxyUrl['host']) || !isset($proxyUrl['user'])) {
+                    $context['http']['proxy'] = $proxy;
+                } else {
+                    // handle authorization for the proxy
+                    $context['http']['proxy'] = 'tcp://'.$proxyUrl['host'].':'.(isset($proxyUrl['port'])?$proxyUrl['port']:'80');
+                    $context['http']['header'] = 'Proxy-Authorization: Basic ' . base64_encode($proxyUrl['user'].(isset($proxyUrl['pass'])?':'.$proxyUrl['pass']:''));
+                }
             }
             $proxy_auth = $config->getString('proxy.auth', false);
             if ($proxy_auth !== false) {
