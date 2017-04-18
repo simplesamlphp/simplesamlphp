@@ -75,6 +75,11 @@ class HTTP
      */
     private static function getServerHTTPS()
     {
+        // if the request came through a SSL terminated proxy or load balancer
+        if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https') {
+            return true;
+        }
+
         if (!array_key_exists('HTTPS', $_SERVER)) {
             // not an https-request
             return false;
