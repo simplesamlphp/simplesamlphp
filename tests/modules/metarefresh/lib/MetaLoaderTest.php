@@ -5,6 +5,25 @@
 class Test_Metarefresh_MetaLoader extends PHPUnit_Framework_TestCase
 {
 
+    static $orig_config_dir;
+
+    public static function setUpBeforeClass()
+    {
+        SimpleSAML_Configuration::clearCachedConfig();
+        self::$orig_config_dir = getenv('SIMPLESAMLPHP_CONFIG_DIR');
+        putenv('SIMPLESAMLPHP_CONFIG_DIR=' . __DIR__ . '/config');
+    }
+
+    public static function tearDownAfterClass()
+    {
+        SimpleSAML_Configuration::clearCachedConfig();
+        // phpunit.xml has disabled auto restoring of global variables.
+        // Other tests are leaving a stale configdir that points to a temp dir:
+        // e.g. simplesamlphp/tests/lib/SimpleSAML/Utils/e9826ad19cbc4f5bf20c0913ffcd2ce6
+        //putenv('SIMPLESAMLPHP_CONFIG_DIR=' . self::$orig_config_dir);
+        putenv('SIMPLESAMLPHP_CONFIG_DIR');
+    }
+
     /**
      * Test load metadata file with no filtering
      */

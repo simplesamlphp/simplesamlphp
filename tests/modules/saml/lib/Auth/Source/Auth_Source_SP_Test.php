@@ -157,6 +157,9 @@ class SP_Test extends \PHPUnit_Framework_TestCase
      */
     public function testAuthnRequest()
     {
+        $globalConfig = array();
+        \SimpleSAML_Configuration::loadFromArray($globalConfig, '[ARRAY]', 'simplesaml');
+
         /** @var \SAML2\AuthnRequest $ar */
         $ar = $this->createAuthnRequest();
 

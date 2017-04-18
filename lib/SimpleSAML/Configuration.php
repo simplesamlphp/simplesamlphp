@@ -94,6 +94,18 @@ class SimpleSAML_Configuration
         $this->location = $location;
     }
 
+    /**
+     * Clear any configuration information cached.
+     * Allows for configuration files to be changed and reloaded during a given request. Most useful
+     * when running phpunit tests and needing to alter config.php between test cases
+     */
+    public static function clearCachedConfig()
+    {
+        self::$configDirs = array();
+        self::$instance = array();
+        self::$loadedConfigs = array();
+    }
+
 
     /**
      * Load the given configuration file.
