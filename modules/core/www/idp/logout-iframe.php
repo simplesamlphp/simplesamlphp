@@ -20,6 +20,7 @@ if ($type !== 'embed' && $type !== 'async') {
 
 $state = SimpleSAML_Auth_State::loadState($_REQUEST['id'], 'core:Logout-IFrame');
 $idp = SimpleSAML_IdP::getByState($state);
+$mdh = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 
 if ($type !== 'init') { // update association state
     $associations = $idp->getAssociations();
@@ -86,20 +87,58 @@ if ($type === 'js' || $type === 'nojs') {
     }
 }
 
+// get the metadata of the service that initiated logout, if any
+$terminated = null;
+if ($state['core:TerminatedAssocId'] !== null) {
+    $mdset = 'saml20-sp-remote';
+    if (substr($state['core:TerminatedAssocId'], 0, 4) === 'adfs') {
+        $mdset = 'adfs-sp-remote';
+    }
+    $terminated = $mdh->getMetaDataConfig($state['saml:SPEntityId'], $mdset)->toArray();
+}
+
+// build an array with information about all services currently logged in
+$remaining = array();
+foreach ($state['core:Logout-IFrame:Associations'] as $association) {
+    $key = sha1($association['id']);
+    $mdset = 'saml20-sp-remote';
+    if (substr($association['id'], 0, 4) === 'adfs') {
+        $mdset = 'adfs-sp-remote';
+    }
+    $remaining[$key] = array(
+        'id' => $association['id'],
+        'expires_on' => $association['Expires'],
+        'entityID' => $association['saml:entityID'],
+        'subject' => $association['saml:NameID'],
+        'metadata' => $mdh->getMetaDataConfig($association['saml:entityID'], $mdset)->toArray(),
+    );
+}
+
 $id = SimpleSAML_Auth_State::saveState($state, 'core:Logout-IFrame');
 $globalConfig = SimpleSAML_Configuration::getInstance();
 
+$data = array(
+    'id' => $id,
+    'type' => $type,
+    'terminated_service' => $terminated,
+    'remaining_services' => $remaining,
+
+    /** @deprecated The "from" array will be removed in 2.0, use the "terminated_service" array instead */
+    'from' => $state['core:Logout-IFrame:From'],
+
+    /** @deprecated The "SPs" array will be removed, use the "remaining_services" array instead */
+    'SPs' => $state['core:Logout-IFrame:Associations'],
+
+    /** @deprecated The "jquery" array will be removed in 2.0 */
+    'jquery' => array('core' => true, 'ui' => false, 'css' => false),
+);
+
+$template_id = 'core:logout-iframe.php';
 if ($type === 'nojs') {
-    $t = new SimpleSAML_XHTML_Template($globalConfig, 'core:logout-iframe-wrapper.php');
-    $t->data['id'] = $id;
-    $t->data['SPs'] = $state['core:Logout-IFrame:Associations'];
-    $t->show();
-} else {
-    $t = new SimpleSAML_XHTML_Template($globalConfig, 'core:logout-iframe.php');
-    $t->data['id'] = $id;
-    $t->data['type'] = $type;
-    $t->data['from'] = $state['core:Logout-IFrame:From'];
-    $t->data['SPs'] = $state['core:Logout-IFrame:Associations'];
-    $t->data['jquery'] = array('core' => true, 'ui' => false, 'css' => false);
-    $t->show();
+    $template_id = 'core:logout-iframe-wrapper.php';
+    unset($data['jquery']);
 }
+
+$t = new SimpleSAML_XHTML_Template($globalConfig, $template_id);
+$t->data = $data;
+$t->show();
