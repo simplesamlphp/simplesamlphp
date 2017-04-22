@@ -118,28 +118,26 @@ foreach ($state['core:Logout-IFrame:Associations'] as $association) {
 $id = SimpleSAML_Auth_State::saveState($state, 'core:Logout-IFrame');
 $globalConfig = SimpleSAML_Configuration::getInstance();
 
-$data = array(
-    'id' => $id,
-    'type' => $type,
-    'terminated_service' => $terminated,
-    'remaining_services' => $remaining,
-
-    /** @deprecated The "from" array will be removed in 2.0, use the "terminated_service" array instead */
-    'from' => $state['core:Logout-IFrame:From'],
-
-    /** @deprecated The "SPs" array will be removed, use the "remaining_services" array instead */
-    'SPs' => $state['core:Logout-IFrame:Associations'],
-
-    /** @deprecated The "jquery" array will be removed in 2.0 */
-    'jquery' => array('core' => true, 'ui' => false, 'css' => false),
-);
-
 $template_id = 'core:logout-iframe.php';
 if ($type === 'nojs') {
     $template_id = 'core:logout-iframe-wrapper.php';
-    unset($data['jquery']);
 }
 
 $t = new SimpleSAML_XHTML_Template($globalConfig, $template_id);
-$t->data = $data;
+$t->data['id'] = $id;
+$t->data['type'] = $type;
+$t->data['terminated_service'] = $terminated;
+$t->data['remaining_services'] = $remaining;
+
+/** @deprecated The "from" array will be removed in 2.0, use the "terminated_service" array instead */
+$t->data['from'] = $state['core:Logout-IFrame:From'];
+
+/** @deprecated The "SPs" array will be removed, use the "remaining_services" array instead */
+$t->data['SPs'] = $state['core:Logout-IFrame:Associations'];
+
+if ($type !== 'nojs') {
+    /** @deprecated The "jquery" array will be removed in 2.0 */
+    $t->data['jquery'] = array('core' => true, 'ui' => false, 'css' => false);
+}
+
 $t->show();
