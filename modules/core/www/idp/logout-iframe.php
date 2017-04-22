@@ -110,6 +110,7 @@ foreach ($state['core:Logout-IFrame:Associations'] as $association) {
         'expires_on' => $association['Expires'],
         'entityID' => $association['saml:entityID'],
         'subject' => $association['saml:NameID'],
+        'status' => $association['core:Logout-IFrame:State'],
         'metadata' => $mdh->getMetaDataConfig($association['saml:entityID'], $mdset)->toArray(),
     );
 }
