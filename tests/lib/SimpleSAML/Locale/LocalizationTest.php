@@ -6,6 +6,11 @@ use SimpleSAML\Locale\Localization;
 
 class LocalizationTest extends \PHPUnit_Framework_TestCase
 {
+    protected function setUp()
+    {
+        // Localization/Language code attempts to load a cookie, and looks to config.php for a name of the cookie
+        putenv('SIMPLESAMLPHP_CONFIG_DIR=tests/config/no-options');
+    }
 
 
     /**

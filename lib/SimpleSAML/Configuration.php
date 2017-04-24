@@ -7,7 +7,7 @@
  * @author Andreas Aakre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
  */
-class SimpleSAML_Configuration
+class SimpleSAML_Configuration implements \SimpleSAML\Utils\ClearableState
 {
 
     /**
@@ -309,7 +309,6 @@ class SimpleSAML_Configuration
             } catch (SimpleSAML\Error\ConfigurationError $e) {
                 throw \SimpleSAML\Error\CriticalConfigurationError::fromException($e);
             }
-
         }
 
         throw new \SimpleSAML\Error\CriticalConfigurationError(
@@ -1365,5 +1364,17 @@ class SimpleSAML_Configuration
         } else {
             return null;
         }
+    }
+
+    /**
+     * Clear any configuration information cached.
+     * Allows for configuration files to be changed and reloaded during a given request. Most useful
+     * when running phpunit tests and needing to alter config.php between test cases
+     */
+    public static function clearInternalState()
+    {
+        self::$configDirs = array();
+        self::$instance = array();
+        self::$loadedConfigs = array();
     }
 }

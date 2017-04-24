@@ -125,6 +125,7 @@ class SP_Test extends \PHPUnit_Framework_TestCase
         );
 
         $this->config = Configuration::loadFromArray(array(), '[ARRAY]', 'simplesaml');
+
     }
 
 

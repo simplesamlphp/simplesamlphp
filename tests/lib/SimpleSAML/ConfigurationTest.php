@@ -31,6 +31,13 @@ class Test_SimpleSAML_Configuration extends PHPUnit_Framework_TestCase
      */
     public function testCriticalConfigurationError()
     {
+        try {
+            SimpleSAML_Configuration::getInstance();
+            $this->fail('Exception expected');
+        } catch (\SimpleSAML\Error\CriticalConfigurationError $var) {
+            // This exception is expected.
+        }
+        //TODO: not sure this is correct. First call to getInstance() throw exception and the 2nd works?...
         $c = SimpleSAML_Configuration::getInstance();
         $this->assertNotEmpty($c->toArray());
     }
@@ -97,6 +104,9 @@ class Test_SimpleSAML_Configuration extends PHPUnit_Framework_TestCase
      * Test SimpleSAML_Configuration::getBaseURL()
      */
     public function testGetBaseURL() {
+
+        // Need to set a configuration file because the SSP Logger attempts to load it.
+        putenv('SIMPLESAMLPHP_CONFIG_DIR=tests/config/no-options');
         $c = SimpleSAML_Configuration::loadFromArray(array());
         $this->assertEquals($c->getBaseURL(), 'simplesaml/');
 
