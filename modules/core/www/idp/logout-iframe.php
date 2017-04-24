@@ -112,6 +112,7 @@ foreach ($state['core:Logout-IFrame:Associations'] as $association) {
         'subject' => $association['saml:NameID'],
         'status' => $association['core:Logout-IFrame:State'],
         'timeout' => $association['core:Logout-IFrame:Timeout'],
+        'logoutURL' => $association['core:Logout-IFrame:URL'],
         'metadata' => $mdh->getMetaDataConfig($association['saml:entityID'], $mdset)->toArray(),
     );
 }
