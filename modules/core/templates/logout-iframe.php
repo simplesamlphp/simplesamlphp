@@ -56,7 +56,6 @@ window.stateText = '.json_encode($stateText).';
 window.spStatus = '.json_encode($spStatus).';
 window.spTimeout = '.json_encode($spTimeout).';
 window.type = "'.$type.'";
-window.asyncURL = "logout-iframe.php?id='.$id.'&type=async";
 </script>';
 
 $this->data['head'] .= '<script type="text/javascript" src="logout-iframe.js"></script>';
