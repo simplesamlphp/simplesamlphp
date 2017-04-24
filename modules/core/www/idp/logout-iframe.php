@@ -23,8 +23,6 @@ $idp = SimpleSAML_IdP::getByState($state);
 $mdh = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 
 if ($type !== 'init') { // update association state
-    $associations = $idp->getAssociations();
-
     foreach ($state['core:Logout-IFrame:Associations'] as $assocId => &$sp) {
         $spId = sha1($assocId);
 
@@ -48,11 +46,6 @@ if ($type !== 'init') { // update association state
             }
         }
 
-        // in case we are refreshing a page
-        if (!isset($associations[$assocId])) {
-            $sp['core:Logout-IFrame:State'] = 'completed';
-        }
-
         // update the IdP
         if ($sp['core:Logout-IFrame:State'] === 'completed') {
             $idp->terminateAssociation($assocId);
@@ -70,20 +63,19 @@ if ($type !== 'init') { // update association state
     }
 }
 
-if ($type === 'js' || $type === 'nojs') {
-    foreach ($state['core:Logout-IFrame:Associations'] as $assocId => &$sp) {
-        if ($sp['core:Logout-IFrame:State'] !== 'inprogress') {
-            // this SP isn't logging out
-            continue;
-        }
+$associations = $idp->getAssociations();
+foreach ($state['core:Logout-IFrame:Associations'] as $assocId => &$sp) {
+    // in case we are refreshing a page
+    if (!isset($associations[$assocId])) {
+        $sp['core:Logout-IFrame:State'] = 'completed';
+    }
 
-        try {
-            $assocIdP = SimpleSAML_IdP::getByState($sp);
-            $url = call_user_func(array($sp['Handler'], 'getLogoutURL'), $assocIdP, $sp, null);
-            $sp['core:Logout-IFrame:URL'] = $url;
-        } catch (Exception $e) {
-            $sp['core:Logout-IFrame:State'] = 'failed';
-        }
+    try {
+        $assocIdP = SimpleSAML_IdP::getByState($sp);
+        $url = call_user_func(array($sp['Handler'], 'getLogoutURL'), $assocIdP, $sp, null);
+        $sp['core:Logout-IFrame:URL'] = $url;
+    } catch (Exception $e) {
+        $sp['core:Logout-IFrame:State'] = 'failed';
     }
 }
 
@@ -105,6 +97,7 @@ foreach ($state['core:Logout-IFrame:Associations'] as $association) {
     if (substr($association['id'], 0, 4) === 'adfs') {
         $mdset = 'adfs-sp-remote';
     }
+
     $remaining[$key] = array(
         'id' => $association['id'],
         'expires_on' => $association['Expires'],
