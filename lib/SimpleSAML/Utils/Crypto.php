@@ -36,7 +36,7 @@ class Crypto
 
         $hmac = mb_substr($ciphertext, 0, 32, '8bit');
         $iv   = mb_substr($ciphertext, 32, 16, '8bit');
-        $msg  = mb_substr($ciphertext, 48, mb_strlen($ciphertext) - 48, '8bit');
+        $msg  = mb_substr($ciphertext, 48, mb_strlen($ciphertext, '8bit') - 48, '8bit');
 
         // authenticate the ciphertext
         if (self::secureCompare(hash_hmac('sha256', $iv.$msg, substr($key, 64, 64), true), $hmac)) {
