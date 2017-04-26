@@ -53,8 +53,7 @@ class Crypto
             }
         }
 
-        throw new \SimpleSAML_Error_Exception("Failed to decrypt ciphertext \"".
-            base64_encode($ciphertext).'", hmac: "'.base64_encode($hmac).'", iv: "'.base64_encode($iv).'"');
+        throw new \SimpleSAML_Error_Exception("Failed to decrypt ciphertext.");
     }
 
 
