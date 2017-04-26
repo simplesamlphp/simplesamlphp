@@ -50,7 +50,7 @@ class CryptoTest extends PHPUnit_Framework_TestCase
         $m->setAccessible(true);
 
         $plaintext = 'SUPER_SECRET_TEXT';
-        $ciphertext = 'NmRkODJlZGE2OTA3YTYwMm9En+KAReUk2z7Xi/b3c39kF/c1n6Vdj/zNARQt+UHU';
+        $ciphertext = 'uR2Yu0r4itInKx91D/l9y/08L5CIQyev9nAr27fh3Sshous4vbXRRcMcjqHDOrquD+2vqLyw7ygnbA9jA9TpB4hLZocvAWcTN8tyO82hiSY=';
         $this->assertEquals($plaintext, $m->invokeArgs(null, array(base64_decode($ciphertext), $secret)));
     }
 
