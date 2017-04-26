@@ -24,8 +24,10 @@ class Crypto
      */
     private static function _aesDecrypt($ciphertext, $secret)
     {
-        if (!is_string($ciphertext)) {
-            throw new \InvalidArgumentException('Input parameter "$ciphertext" must be a string.');
+        if (!is_string($ciphertext) || mb_strlen($ciphertext, '8bit') < 48) {
+            throw new \InvalidArgumentException(
+                'Input parameter "$ciphertext" must be a string with more than 48 characters.'
+            );
         }
         if (!function_exists("openssl_decrypt")) {
             throw new \SimpleSAML_Error_Exception("The openssl PHP module is not loaded.");
