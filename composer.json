@@ -33,7 +33,8 @@
         "ext-dom": "*",
         "ext-date": "*",
         "ext-hash": "*",
-        "ext-json": "*"
+        "ext-json": "*",
+        "ext-mbstring": "*"
     },
     "require-dev": {
         "ext-pdo_sqlite": "*",
