@@ -265,6 +265,123 @@ class Test_Core_Auth_Process_AttributeLimitTest extends PHPUnit_Framework_TestCa
     }
 
     /**
+     * Test for attribute value matching ignore case
+     */
+    public function testMatchAttributeValuesIgnoreCase()
+    {
+        $config = array(
+            'eduPersonAffiliation' => array('ignoreCase' => true, 'meMber')
+        );
+
+        $result = self::processFilter($config, self::$request);
+        $attributes = $result['Attributes'];
+        $this->assertCount(1, $attributes);
+        $this->assertArrayHasKey('eduPersonAffiliation', $attributes);
+        $this->assertEquals($attributes['eduPersonAffiliation'], array('member'));
+
+        $config = array(
+            'eduPersonAffiliation' => array('ignoreCase' => true, 'membeR','sTaff')
+        );
+
+        $result = self::processFilter($config, self::$request);
+        $attributes = $result['Attributes'];
+        $this->assertCount(1, $attributes);
+        $this->assertArrayHasKey('eduPersonAffiliation', $attributes);
+        $this->assertEquals($attributes['eduPersonAffiliation'], array('member'));
+
+        $config = array(
+            'eduPersonAffiliation' => array('ignoreCase' => true, 'Student')
+        );
+        $result = self::processFilter($config, self::$request);
+        $attributes = $result['Attributes'];
+        $this->assertCount(0, $attributes);
+
+        $config = array(
+            'eduPersonAffiliation' => array('ignoreCase' => true, 'studeNt','sTaff')
+        );
+        $result = self::processFilter($config, self::$request);
+        $attributes = $result['Attributes'];
+        $this->assertCount(0, $attributes);
+    }
+
+    /**
+     * Test for attribute value matching
+     */
+    public function testMatchAttributeValuesRegex()
+    {
+        $state = self::$request;
+        $state['Attributes']['eduPersonEntitlement'] = array(
+            'urn:mace:example.terena.org:tcs:personal-user',
+            'urn:x-surfnet:surfdomeinen.nl:role:dnsadmin',
+            'urn:x-surfnet:surf.nl:surfdrive:quota:100'
+        );
+
+        $config = array(
+            'eduPersonEntitlement' => array(
+                'regex' => true,
+                '/^urn:x-surfnet:surf/'
+            )
+        );
+
+        $result = self::processFilter($config, $state);
+        $attributes = $result['Attributes'];
+        $this->assertCount(1, $attributes);
+        $this->assertArrayHasKey('eduPersonEntitlement', $attributes);
+        $this->assertEquals(
+            array('urn:x-surfnet:surfdomeinen.nl:role:dnsadmin', 'urn:x-surfnet:surf.nl:surfdrive:quota:100'),
+            $attributes['eduPersonEntitlement']
+        );
+
+        // Matching multiple lines shouldn't duplicate the attribute
+        $config = array(
+            'eduPersonEntitlement' => array(
+                'regex' => true,
+                '/urn:x-surfnet:surf/',
+                '/urn:x-surfnet/'
+
+            )
+        );
+
+        $result = self::processFilter($config, $state);
+        $attributes = $result['Attributes'];
+        $this->assertCount(1, $attributes);
+        $this->assertArrayHasKey('eduPersonEntitlement', $attributes);
+        $this->assertEquals(
+            array('urn:x-surfnet:surfdomeinen.nl:role:dnsadmin', 'urn:x-surfnet:surf.nl:surfdrive:quota:100'),
+            $attributes['eduPersonEntitlement']
+        );
+
+
+        $config = array(
+            'eduPersonEntitlement' => array(
+                'regex' => true,
+                '/urn:mace:example.terena.org:tcs:no-match/',
+                '$invalidRegex[',
+                '/^URN:x-surf.*SURF.*n$/i'
+            )
+        );
+
+        $result = self::processFilter($config, $state);
+        $attributes = $result['Attributes'];
+        $this->assertCount(1, $attributes);
+        $this->assertArrayHasKey('eduPersonEntitlement', $attributes);
+        $this->assertEquals(
+            array('urn:x-surfnet:surfdomeinen.nl:role:dnsadmin'),
+            $attributes['eduPersonEntitlement']
+        );
+
+        $config = array(
+            'eduPersonEntitlement' => array(
+                'regex' => true,
+                '/urn:x-no-match/'
+            )
+        );
+        $result = self::processFilter($config, $state);
+        $attributes = $result['Attributes'];
+        $this->assertCount(0, $attributes);
+    }
+
+    /**
      * Test for allowed attributes not an array. 
      *
      * This test is very unlikely and would require malformed metadata processing. 

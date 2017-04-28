@@ -2,6 +2,8 @@
 
 namespace SimpleSAML;
 
+use SimpleSAML\Error\CriticalConfigurationError;
+
 
 /**
  * The main logger class for SimpleSAMLphp.
@@ -362,7 +364,12 @@ class Logger
         );
 
         // get the configuration
-        $config = \SimpleSAML_Configuration::getInstance();
+        try {
+            $config = \SimpleSAML_Configuration::getInstance();
+        } catch (CriticalConfigurationError $ex) {
+            // config.php is frequently undefined in tests. So use a default
+            $config = \SimpleSAML_Configuration::loadFromArray(array());
+        }
         assert($config instanceof \SimpleSAML_Configuration);
 
         // setting minimum log_level
