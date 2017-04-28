@@ -39,7 +39,7 @@ class ClearStateTestListener extends \PHPUnit_Framework_BaseTestListener
             self::$backups['$_GET'] = $_GET;
             self::$backups['$_POST'] = $_POST;
             self::$backups['$_SERVER'] = $_SERVER;
-            self::$backups['$_SESSION'] = isset($_SESSION) ? $_SESSION : [];
+            self::$backups['$_SESSION'] = isset($_SESSION) ? $_SESSION : array();
             self::$backups['$_REQUEST'] = $_REQUEST;
         }
     }
