@@ -506,6 +506,7 @@ $config = array(
     'session.phpsession.cookiename' => 'SimpleSAML',
     'session.phpsession.savepath' => null,
     'session.phpsession.httponly' => true,
+    'session.phpsession.secure' => true,
 
     /*
      * Option to override the default settings for the auth token cookie

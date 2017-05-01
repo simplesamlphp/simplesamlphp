@@ -309,6 +309,7 @@ class SimpleSAML_SessionHandlerPHP extends SimpleSAML_SessionHandler
         }
 
         $ret['httponly'] = $config->getBoolean('session.phpsession.httponly', true);
+        $ret['secure'] = $config->getBoolean('session.phpsession.secure', true);
 
         return $ret;
     }
