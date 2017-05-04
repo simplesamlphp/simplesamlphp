@@ -15,10 +15,13 @@ RUN git clone https://github.com/simplesamlphp/simplesamlphp.git /var/simplesaml
 RUN cp -r /var/simplesamlphp/config-templates/* /var/simplesamlphp/config/
 RUN cp -r /var/simplesamlphp/metadata-templates/* /var/simplesamlphp/metadata/
 
-RUN a2enmod ssl
+RUN a2enmod ssl && a2ensite default-ssl
 RUN mkdir -p /etc/apache2/ssl
+WORKDIR /etc/apache2/ssl
+RUN openssl req -new -newkey rsa:2048 -sha256 -days 3650 -nodes -x509 -subj "/" -keyout ca.key  -out ca.crt
+
 ADD ./etc/apache2/sites-available/default-ssl.conf /etc/apache2/sites-available/default-ssl.conf
-ADD ./etc/apache2/ssl /etc/apache2/ssl
+
 
 WORKDIR /var/simplesamlphp
 RUN curl -sS https://getcomposer.org/installer | php
