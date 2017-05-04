@@ -20,3 +20,5 @@ ADD ./etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/
 WORKDIR /var/simplesamlphp
 RUN curl -sS https://getcomposer.org/installer | php
 RUN php composer.phar install
+EXPOSE 80
+EXPOSE 443
