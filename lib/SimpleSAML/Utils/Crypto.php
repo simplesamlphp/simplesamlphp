@@ -173,6 +173,8 @@ class Crypto
      * missing key will cause an exception. Defaults to false.
      * @param string                    $prefix The prefix which should be used when reading from the metadata
      * array. Defaults to ''.
+     * @param bool                      $full_path Whether the filename found in the configuration contains the
+     * full path to the private key or not. Default to false.
      *
      * @return array|NULL Extracted private key, or NULL if no private key is present.
      * @throws \InvalidArgumentException If $required is not boolean or $prefix is not a string.
@@ -182,9 +184,9 @@ class Crypto
      * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
-    public static function loadPrivateKey(\SimpleSAML_Configuration $metadata, $required = false, $prefix = '')
+    public static function loadPrivateKey(\SimpleSAML_Configuration $metadata, $required = false, $prefix = '', $full_path = false)
     {
-        if (!is_bool($required) || !is_string($prefix)) {
+        if (!is_bool($required) || !is_string($prefix) || !is_bool($full_path)) {
             throw new \InvalidArgumentException('Invalid input parameters.');
         }
 
@@ -198,7 +200,10 @@ class Crypto
             }
         }
 
-        $file = Config::getCertPath($file);
+        if (!$full_path) {
+            $file = Config::getCertPath($file);
+        }
+
         $data = @file_get_contents($file);
         if ($data === false) {
             throw new \SimpleSAML_Error_Exception('Unable to load private key from file "'.$file.'"');
