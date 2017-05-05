@@ -404,8 +404,8 @@ class Crypto
             return false; // length differs
         }
         $diff = 0;
-        for ($i = 0; $i < $len; ++$i) {
-            $diff |= $known[$i] ^ $user[$i];
+        for ($i = 0; $i < $len; $i++) {
+            $diff |= ord($known[$i]) ^ ord($user[$i]);
         }
         // if all the bytes in $a and $b are identical, $diff should be equal to 0
         return $diff === 0;
