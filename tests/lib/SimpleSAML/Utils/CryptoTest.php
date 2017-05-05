@@ -532,7 +532,8 @@ PHP;
             'test'
         );
 
-        $res = Crypto::loadPublicKey($config)['certData'];
+        $pubkey = Crypto::loadPublicKey($config);
+        $res = $pubkey['certData'];
         $expected = $x509certificate;
 
         $this->assertEquals($expected, $res);
