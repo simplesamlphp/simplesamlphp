@@ -11,7 +11,7 @@ See the upgrade notes for specific information about upgrading.
 Released 2017-05-05
 
   * Resolved a security issue with in the authcrypt module (Htpasswd authentication source) and in SimpleSAMLphp's session validation. See [SSPSA 201705-01](https://simplesamlphp.org/security/201705-01).
-  * Resolved a security issue with in the multiauth module. See [SSPSA 201704-02](https://simplesamlphp/security/201704-02).
+  * Resolved a security issue with in the multiauth module. See [SSPSA 201704-02](https://simplesamlphp.org/security/201704-02).
 
 ## Version 1.14.13
 
