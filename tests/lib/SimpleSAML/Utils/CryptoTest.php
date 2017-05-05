@@ -3,12 +3,30 @@
 namespace SimpleSAML\Test\Utils;
 
 use SimpleSAML\Utils\Crypto;
+use \SimpleSAML_Configuration as Configuration;
+
+use \org\bovigo\vfs\vfsStream;
 
 /**
  * Tests for SimpleSAML\Utils\Crypto.
  */
 class CryptoTest extends \PHPUnit_Framework_TestCase
 {
+    const ROOTDIRNAME = 'testdir';
+    const DEFAULTCERTDIR = 'certdir';
+
+    public function setUp()
+    {
+        $this->root = vfsStream::setup(
+            self::ROOTDIRNAME,
+            null,
+            array(
+                self::DEFAULTCERTDIR => array(),
+            )
+        );
+        $this->root_directory = vfsStream::url(self::ROOTDIRNAME);
+        $this->certdir = $this->root_directory.DIRECTORY_SEPARATOR.self::DEFAULTCERTDIR;
+    }
 
     /**
      * Test invalid input provided to the aesDecrypt() method.
@@ -134,5 +152,389 @@ pfajpJ9ZzdyLIo6dVjdQtl+S1rpFCx7ziVN8tCCX4fAVCqRqZJaG/UMLvguVqayb
 -----END CERTIFICATE-----
 PHP;
         $this->assertEquals(trim($pem), trim(Crypto::der2pem(Crypto::pem2der($pem))));
+    }
+
+    /**
+     * @covers \SimpleSAML\Utils\Crypto::pwHash
+     */
+    public function testGoodPwHash()
+    {
+        $pw = "password";
+        $algorithm = "SHA1";
+
+        $res = Crypto::pwHash($pw, $algorithm);
+
+        /*
+         * echo -n "password" | sha1sum | awk -F " " '{print $1}' | xxd -r -p | base64
+         * W6ph5Mm5Pz8GgiULbPgzG37mj9g=
+         */
+        $expected = "{SHA}W6ph5Mm5Pz8GgiULbPgzG37mj9g=";
+
+        $this->assertEquals($expected, $res);
+    }
+
+    /**
+     * @covers \SimpleSAML\Utils\Crypto::pwHash
+     */
+    public function testGoodSaltedPwHash()
+    {
+        $pw = "password";
+        $algorithm = "SSHA1";
+        $salt = "salt";
+
+        $res = Crypto::pwHash($pw, $algorithm, $salt);
+
+        /*
+         * echo -n "password""salt" | sha1sum | awk -v salt=$(echo -n "salt" | xxd -u -p) -F " " '{print $1 salt}' | xxd -r -p | base64
+         * yI6cZwQadOA1e+/f+T+H3eCQQhRzYWx0
+         */
+        $expected = "{SSHA}yI6cZwQadOA1e+/f+T+H3eCQQhRzYWx0";
+
+        $this->assertEquals($expected, $res);
+    }
+
+    /**
+     * @expectedException \SimpleSAML_Error_Exception
+     *
+     * @covers \SimpleSAML\Utils\Crypto::pwHash
+     */
+    public function testBadHashAlgorithm()
+    {
+        $pw = "password";
+        $algorithm = "wtf";
+
+        Crypto::pwHash($pw, $algorithm);
+    }
+
+    /**
+     * @covers \SimpleSAML\Utils\Crypto::pwValid
+     */
+    public function testGoodPwValid()
+    {
+        $pw = "password";
+        $algorithm = "SHA1";
+
+        $hash = Crypto::pwHash($pw, $algorithm);
+        $res = Crypto::pwValid($hash, $pw);
+
+        $this->assertTrue($res);
+    }
+
+    /**
+     * @covers \SimpleSAML\Utils\Crypto::pwValid
+     */
+    public function testGoodSaltedPwValid()
+    {
+        $pw = "password";
+        $algorithm = "SSHA1";
+        $salt = "salt";
+
+        $hash = Crypto::pwHash($pw, $algorithm, $salt);
+        $res = Crypto::pwValid($hash, $pw);
+
+        $this->assertTrue($res);
+    }
+
+    /**
+     * @expectedException \SimpleSAML_Error_Exception
+     *
+     * @covers \SimpleSAML\Utils\Crypto::pwValid
+     */
+    public function testBadHashAlgorithmValid()
+    {
+        $pw = "password";
+        $algorithm = "wtf";
+        $hash = "{".$algorithm."}B64STRING";
+
+        Crypto::pwValid($hash, $algorithm);
+    }
+
+    /**
+     * @covers \SimpleSAML\Utils\Crypto::secureCompare
+     */
+    public function testSecureCompareEqual()
+    {
+        $res = Crypto::secureCompare("string", "string");
+
+        $this->assertTrue($res);
+    }
+
+    /**
+     * @covers \SimpleSAML\Utils\Crypto::secureCompare
+     */
+    public function testSecureCompareNotEqual()
+    {
+        $res = Crypto::secureCompare("string1", "string2");
+
+        $this->assertFalse($res);
+    }
+
+    /**
+     * @expectedException \SimpleSAML_Error_Exception
+     *
+     * @covers \SimpleSAML\Utils\Crypto::loadPrivateKey
+     */
+    public function testLoadPrivateKeyRequiredMetadataMissing()
+    {
+        $config = new Configuration(array(), 'test');
+        $required = true;
+
+        Crypto::loadPrivateKey($config, $required);
+    }
+
+    /**
+     * @covers \SimpleSAML\Utils\Crypto::loadPrivateKey
+     */
+    public function testLoadPrivateKeyNotRequiredMetadataMissing()
+    {
+        $config = new Configuration(array(), 'test');
+        $required = false;
+
+        $res = Crypto::loadPrivateKey($config, $required);
+
+        $this->assertNull($res);
+    }
+
+    /**
+     * @expectedException \SimpleSAML_Error_Exception
+     *
+     * @covers \SimpleSAML\Utils\Crypto::loadPrivateKey
+     */
+    public function testLoadPrivateKeyMissingFile()
+    {
+        $config = new Configuration(array('privatekey' => 'nonexistant'), 'test');
+
+        Crypto::loadPrivateKey($config, false, '', true);
+    }
+
+    /**
+     * @covers \SimpleSAML\Utils\Crypto::loadPrivateKey
+     */
+    public function testLoadPrivateKeyBasic()
+    {
+        $filename = $this->certdir.DIRECTORY_SEPARATOR.'key';
+        $data = 'data';
+        $config = new Configuration(array('privatekey' => $filename), 'test');
+        $full_path = true;
+
+        file_put_contents($filename, $data);
+
+        $res = Crypto::loadPrivateKey($config, false, '', $full_path);
+        $expected = array('PEM' => $data);
+
+        $this->assertEquals($expected, $res);
+    }
+
+    /**
+     * @covers \SimpleSAML\Utils\Crypto::loadPrivateKey
+     */
+    public function testLoadPrivateKeyPassword()
+    {
+        $password = 'password';
+        $filename = $this->certdir.DIRECTORY_SEPARATOR.'key';
+        $data = 'data';
+        $config = new Configuration(
+            array(
+                'privatekey' => $filename,
+                'privatekey_pass' => $password,
+            ),
+            'test'
+        );
+        $full_path = true;
+
+        file_put_contents($filename, $data);
+
+        $res = Crypto::loadPrivateKey($config, false, '', $full_path);
+        $expected = array('PEM' => $data, 'password' => $password);
+
+        $this->assertEquals($expected, $res);
+    }
+
+    /**
+     * @covers \SimpleSAML\Utils\Crypto::loadPrivateKey
+     */
+    public function testLoadPrivateKeyPrefix()
+    {
+        $prefix = 'prefix';
+        $password = 'password';
+        $filename = $this->certdir.DIRECTORY_SEPARATOR.'key';
+        $data = 'data';
+        $config = new Configuration(
+            array(
+                $prefix.'privatekey' => $filename,
+                $prefix.'privatekey_pass' => $password,
+            ),
+            'test'
+        );
+        $full_path = true;
+
+        file_put_contents($filename, $data);
+
+        $res = Crypto::loadPrivateKey($config, false, $prefix, $full_path);
+        $expected = array('PEM' => $data, 'password' => $password);
+
+        $this->assertEquals($expected, $res);
+    }
+
+    /**
+     * @expectedException \SimpleSAML_Error_Exception
+     *
+     * @covers \SimpleSAML\Utils\Crypto::loadPublicKey
+     */
+    public function testLoadPublicKeyRequiredMetadataMissing()
+    {
+        $config = new Configuration(array(), 'test');
+        $required = true;
+
+        Crypto::loadPublicKey($config, $required);
+    }
+
+    /**
+     * @covers \SimpleSAML\Utils\Crypto::loadPublicKey
+     */
+    public function testLoadPublicKeyNotRequiredMetadataMissing()
+    {
+        $config = new Configuration(array(), 'test');
+        $required = false;
+
+        $res = Crypto::loadPublicKey($config, $required);
+
+        $this->assertNull($res);
+    }
+
+    /**
+     * @covers \SimpleSAML\Utils\Crypto::loadPublicKey
+     */
+    public function testLoadPublicKeyFingerprintBasicString()
+    {
+        $fingerprint = 'fingerprint';
+        $config = new Configuration(array('certFingerprint' => $fingerprint), 'test');
+
+        $res = Crypto::loadPublicKey($config);
+        $expected = array('certFingerprint' => array($fingerprint));
+
+        $this->assertEquals($expected, $res);
+    }
+
+    /**
+     * @covers \SimpleSAML\Utils\Crypto::loadPublicKey
+     */
+    public function testLoadPublicKeyFingerprintBasicArray()
+    {
+        $fingerprint1 = 'fingerprint1';
+        $fingerprint2 = 'fingerprint2';
+        $config = new Configuration(
+            array(
+                'certFingerprint' => array(
+                    $fingerprint1,
+                    $fingerprint2
+                ),
+            ),
+            'test'
+        );
+
+        $res = Crypto::loadPublicKey($config);
+        $expected = array('certFingerprint' => array($fingerprint1, $fingerprint2));
+
+        $this->assertEquals($expected, $res);
+    }
+
+    /**
+     * @covers \SimpleSAML\Utils\Crypto::loadPublicKey
+     */
+    public function testLoadPublicKeyFingerprintLowercase()
+    {
+        $fingerprint = 'FINGERPRINT';
+        $config = new Configuration(array('certFingerprint' => $fingerprint), 'test');
+
+        $res = Crypto::loadPublicKey($config);
+        $expected = array('certFingerprint' => array(strtolower($fingerprint)));
+
+        $this->assertEquals($expected, $res);
+    }
+
+    /**
+     * @covers \SimpleSAML\Utils\Crypto::loadPublicKey
+     */
+    public function testLoadPublicKeyFingerprintRemoveColons()
+    {
+        $fingerprint = 'f:i:n:g:e:r:p:r:i:n:t';
+        $config = new Configuration(array('certFingerprint' => $fingerprint), 'test');
+
+        $res = Crypto::loadPublicKey($config);
+        $expected = array('certFingerprint' => array(str_replace(':', '', $fingerprint)));
+
+        $this->assertEquals($expected, $res);
+    }
+
+    /**
+     * @covers \SimpleSAML\Utils\Crypto::loadPublicKey
+     */
+    public function testLoadPublicKeyNotX509Certificate()
+    {
+        $config = new Configuration(
+            array(
+                'keys' => array(
+                    array(
+                        'X509Certificate' => '',
+                        'type' => 'NotX509Certificate',
+                        'signing' => true
+                    ),
+                ),
+            ),
+            'test'
+        );
+
+        $res = Crypto::loadPublicKey($config);
+
+        $this->assertNull($res);
+    }
+
+    /**
+     * @covers \SimpleSAML\Utils\Crypto::loadPublicKey
+     */
+    public function testLoadPublicKeyNotSigning()
+    {
+        $config = new Configuration(
+            array(
+                'keys' => array(
+                    array(
+                        'X509Certificate' => '',
+                        'type' => 'X509Certificate',
+                        'signing' => false
+                    ),
+                ),
+            ),
+            'test'
+        );
+
+        $res = Crypto::loadPublicKey($config);
+
+        $this->assertNull($res);
+    }
+
+    /**
+     * @covers \SimpleSAML\Utils\Crypto::loadPublicKey
+     */
+    public function testLoadPublicKeyBasic()
+    {
+        $x509certificate = 'x509certificate';
+        $config = new Configuration(
+            array(
+                'keys' => array(
+                    array(
+                        'X509Certificate' => $x509certificate,
+                        'type' => 'X509Certificate',
+                        'signing' => true
+                    ),
+                ),
+            ),
+            'test'
+        );
+
+        $res = Crypto::loadPublicKey($config)['certData'];
+        $expected = $x509certificate;
+
+        $this->assertEquals($expected, $res);
     }
 }
