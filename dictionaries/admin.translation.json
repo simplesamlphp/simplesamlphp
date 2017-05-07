@@ -1395,7 +1395,7 @@
 		"hu": "A SimpleSAMLphp <tt>config\/config.php<\/tt> f\u00e1jlj\u00e1ban kikapcsolhatja a hibakeres\u0151 m\u00f3dot.",
 		"pt-br": "Voc\u00ea pode desligar o modo de debug no arquivo de configura\u00e7\u00e3o global do SimpleSAMLphp <tt>config\/config.php<\/tt>.",
 		"pt": "Pode desligar o modo debug no ficheiro global de configura\u00e7\u00e3o <tt>config\/config.php<\/tt> do SimpleSAMLphp.",
-		"pl": "Mo\u017cesz wy\u0142aczy\u0107 globalnie tryb debugowania w pliku	<tt>config\/config.php<\/tt>.",
+		"pl": "Mo\u017cesz wy\u0142aczy\u0107 globalnie tryb debugowania w pliku <tt>config\/config.php<\/tt>.",
 		"cs": "M\u016f\u017eete vypnout debug m\u00f3d v globaln\u00ed konfiguraci SimpleSAMLphp <tt>config\/config.php<\/tt>.",
 		"tr": "\"Debug\" modunu global SimpleSAMLphp konfig\u00fcrasyon dosyas\u0131nda <tt>config\/config.php<\/tt> kapatabilirsiniz.",
 		"de": "Sie k\u00f6nnen den Debug-Modus in der globalen SimpleSAMLphp Konfigurationsdatei <tt>config\/config.php<\/tt> ausschalten.",
