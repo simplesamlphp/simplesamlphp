@@ -75,6 +75,11 @@ class HTTP
      */
     private static function getServerHTTPS()
     {
+        // detect https requests terminated by reverse proxy
+        if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') {
+            return true;
+        }
+
         if (!array_key_exists('HTTPS', $_SERVER)) {
             // not an https-request
             return false;
@@ -100,7 +105,18 @@ class HTTP
      */
     private static function getServerPort()
     {
-        $port = (isset($_SERVER['SERVER_PORT'])) ? $_SERVER['SERVER_PORT'] : '80';
+        if (isset($_SERVER['HTTP_X_FORWARDED_PORT'])) {
+            // port from reverse proxy
+            $port = $_SERVER['HTTP_X_FORWARDED_PORT'];
+        } elseif (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') {
+            // x_forwarded_port is not set, but x_forwarded_proto is set.
+            // in this case, assume 443 otherwise you end up with an https://example.com:80/ url.
+            $port = '443';
+        } elseif (isset($_SERVER['SERVER_PORT'])) {
+            $port = $_SERVER['SERVER_PORT'];
+        } else {
+            $port = '80';
+        }
         if (self::getServerHTTPS()) {
             if ($port !== '443') {
                 return ':'.$port;
