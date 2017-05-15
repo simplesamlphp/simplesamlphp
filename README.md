@@ -31,8 +31,8 @@ mkdir cert
 
 * Copia dei file di template per il file di configurazione di simplesamlphp e il file contenente i servizi da esporre con SPID
 ```bash
-cp ../config-template/config.php.spid config/config.php
-cp ../config-template/authsources.php.spid config/authsources.php
+cp ../config-templates/config-spid.php config/config.php
+cp ../config-templates/authsources-spid.php config/authsources.php
 ```
 
 * Creazione di un proprio certificato applicativo per la generazione dei metadati da inviare ad AGID
