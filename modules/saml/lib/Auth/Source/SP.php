@@ -253,7 +253,7 @@ class SP extends Source
         $requesterID = array();
 
         /* Only check for real info for Scoping element if we are going to send Scoping element */
-        if ($this->disable_scoping != true) {
+        if ($this->disable_scoping != true && $idpMetadata->getBoolean('disable_scoping', false) != true) {
             if (isset($state['saml:IDPList'])) {
                 $IDPList = $state['saml:IDPList'];
             }
@@ -275,7 +275,7 @@ class SP extends Source
                 $requesterID[] = $state['core:SP'];
             }
         } else {
-            $IDPList = [];
+            \SimpleSAML\Logger::debug('Disabling samlp:Scoping for ' . var_export($idpMetadata->getString('entityid'), TRUE));
         }
 
         $ar->setIDPList(
