@@ -36,6 +36,13 @@ class SP extends Source
     private $discoURL;
 
     /**
+     * Flag to indicate whether to disable sending the Scoping element.
+     *
+     * @var boolean|FALSE
+     */
+    private $disable_scoping;
+
+    /**
      * Constructor for SAML SP authentication source.
      *
      * @param array $info  Information about this authentication source.
@@ -64,6 +71,7 @@ class SP extends Source
         $this->entityId = $this->metadata->getString('entityID');
         $this->idp = $this->metadata->getString('idp', null);
         $this->discoURL = $this->metadata->getString('discoURL', null);
+        $this->disable_scoping = $this->metadata->getBoolean('disable_scoping', false);
 
         if (empty($this->discoURL) && \SimpleSAML\Module::isModuleEnabled('discojuice')) {
             $this->discoURL = \SimpleSAML\Module::getModuleURL('discojuice/central.php');
@@ -241,8 +249,31 @@ class SP extends Source
             $ar->setNameIdPolicy($policy);
         }
 
-        if (isset($state['saml:IDPList'])) {
-            $IDPList = $state['saml:IDPList'];
+        $IDPList = array();
+        $requesterID = array();
+
+        /* Only check for real info for Scoping element if we are going to send Scoping element */
+        if ($this->disable_scoping != true) {
+            if (isset($state['saml:IDPList'])) {
+                $IDPList = $state['saml:IDPList'];
+            }
+
+            if (isset($state['saml:ProxyCount']) && $state['saml:ProxyCount'] !== null) {
+                $ar->setProxyCount($state['saml:ProxyCount']);
+            } elseif ($idpMetadata->getInteger('ProxyCount', null) !== null) {
+                $ar->setProxyCount($idpMetadata->getInteger('ProxyCount', null));
+            } elseif ($this->metadata->getInteger('ProxyCount', null) !== null) {
+                $ar->setProxyCount($this->metadata->getInteger('ProxyCount', null));
+            }
+
+            $requesterID = [];
+            if (isset($state['saml:RequesterID'])) {
+                $requesterID = $state['saml:RequesterID'];
+            }
+
+            if (isset($state['core:SP'])) {
+                $requesterID[] = $state['core:SP'];
+            }
         } else {
             $IDPList = [];
         }
@@ -256,23 +287,6 @@ class SP extends Source
                 )
             )
         );
-
-        if (isset($state['saml:ProxyCount']) && $state['saml:ProxyCount'] !== null) {
-            $ar->setProxyCount($state['saml:ProxyCount']);
-        } elseif ($idpMetadata->getInteger('ProxyCount', null) !== null) {
-            $ar->setProxyCount($idpMetadata->getInteger('ProxyCount', null));
-        } elseif ($this->metadata->getInteger('ProxyCount', null) !== null) {
-            $ar->setProxyCount($this->metadata->getInteger('ProxyCount', null));
-        }
-
-        $requesterID = [];
-        if (isset($state['saml:RequesterID'])) {
-            $requesterID = $state['saml:RequesterID'];
-        }
-
-        if (isset($state['core:SP'])) {
-            $requesterID[] = $state['core:SP'];
-        }
 
         $ar->setRequesterID($requesterID);
 
