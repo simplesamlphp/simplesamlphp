@@ -95,6 +95,7 @@ class SimpleSAML_XHTML_Template
         $this->translator = new SimpleSAML\Locale\Translate($configuration, $defaultDictionary);
         $this->localization = new \SimpleSAML\Locale\Localization($configuration);
         $this->twig = $this->setupTwig();
+        SimpleSAML\Module::callHooks('templateInit', $this->data);
     }
 
 
@@ -197,6 +198,7 @@ class SimpleSAML_XHTML_Template
 
         $twig = new Twig_Environment($loader, $options);
         $twig->addExtension(new Twig_Extensions_Extension_I18n());
+        SimpleSAML\Module::callHooks('twigInit', $twig);
         return $twig;
     }
 

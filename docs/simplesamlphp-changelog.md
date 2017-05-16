@@ -6,9 +6,76 @@ SimpleSAMLphp changelog
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
+## Version 1.14.14
+
+Released 2017-05-05
+
+  * Resolved a security issue with in the authcrypt module (Htpasswd authentication source) and in SimpleSAMLphp's session validation. See [SSPSA 201705-01](https://simplesamlphp.org/security/201705-01).
+  * Resolved a security issue with in the multiauth module. See [SSPSA 201704-02](https://simplesamlphp.org/security/201704-02).
+
+## Version 1.14.13
+
+Released 2017-04-27
+
+  * Resolved a security issue with unauthenticated encryption in the SimpleSAML\Utils\Crypto class. See [SSPSA 201704-01](https://simplesamlphp.org/security/201704-01).
+  * Added requirement for the Multibyte String PHP extension and the corresponding checks.
+  * Set a default name for SimpleSAMLphp sessions in the configuration template for the PHP session handler.
+  
+## Version 1.14.12
+
+Released 2017-03-30
+
+  * Resolved a security issue in the authcrypt module (Htpasswd authentication source) and in SimpleSAMLphp's session validation. See [SSPSA 201703-01](https://simplesamlphp.org/security/201703-01).
+  * Resolved a security issue with IV generation in the  `SimpleSAML\Utils\Crypto::_aesEncrypt()` method. See [SSPSA 201703-02](https://simplesamlphp.org/security/201703-02).
+  * Fixed an issue with the authfacebook module, broken after a change in Facebook's API.
+  * Fixed an issue in the discopower module that ignored the `hide.from.discovery` metadata option.
+  * Fixed an issue with trusted URLs validation that prevented a URL from being accepted if a standard port was explicitly included but not specified in the configuration.
+  * Fixed an issue that prevented detecting a Memcache server being down when fetching Memcache statistics.
+  * Fixed an issue with operating system detection that made SimpleSAMLphp identify OSX as Windows.
+
+## Version 1.14.11
+
+Released 2016-12-12
+
+  * Resolved a security issue involving signature validation of SAML 1.1 messages. See [SSPSA 201612-02](https://simplesamlphp.org/security/201612-02).
+  * Fixed an issue when the user identifier used to generate a persistent NameID was missing due to a misconfiguration, causing SimpleSAMLphp to generate the nameID based on the null data type.
+  * Fixed an issue when persistent NameIDs were generated out of attributes with empty strings or multiple values.
+  * Fixed issue #530. An empty SubjectConfirmation element was causing SimpleSAMLphp to crash. On the other hand, invalid SubjectConfirmation elements were ignored in PHP 7.0.
+
+## Version 1.14.10
+
+Released 2016-12-02
+
+  * Resolved a security issue involving signature validation. See [SSPSA 201612-01](https://simplesamlphp.org/security/201612-01).
+  * Fixed issue #517. A misconfigured session when acting as a service provider was leading to a PHP fatal error.
+  * Fixed issue #519. Prevent persistent NameIDs from being generated from empty strings.
+  * Fixed issue #520. It was impossible to verify Apache's custom MD5 passwords when using the Htpasswd authentication source.
+  * Fixed issue #523. Avoid problems caused by different line-ending strategies in the project files.
+  * Other minor fixes and enhancements.
+
+## Version 1.14.9
+
+Released 2016-11-10
+
+  * Fixed an issue that resulted in PHP 7 errors being masked.
+  * Fixed the smartattributes:SmartName authentication processing filter.
+  * Fixed issue #500. When parsing metadata, two 'attributes.required' options were generated.
+  * Fixed the list of requirements in composer, the documentation, and the configuration page.
+  * Fixed issue #479. There were several minor issues with XHTML compliance.
+  * Other minor fixes.
+
+## Version 1.14.8
+
+Released 2016-08-23
+
+  * Fixed an issue in AuthMemCookie causing it to crash when an attribute received contains XML as its value.
+  * Fixed an issue in AuthMemCookie that made it impossible to set its own cookie.
+  * Fixed an issue when acting as a proxy and receiving attributes that contain XML as their values.
+  * Fixed an issue that led to incorrect URL guessing when a script is invoked with a URI that doesn't include its name.
+
 ## Version 1.14.7
 
-Released TBD
+Released 2016-08-01
 
   * Fixed issue #424. Attributes containing XML as their values (like eduPersonTargetedID) were empty.
 

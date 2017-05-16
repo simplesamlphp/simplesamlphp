@@ -503,7 +503,7 @@ $config = array(
     /*
      * Options to override the default settings for php sessions.
      */
-    'session.phpsession.cookiename' => null,
+    'session.phpsession.cookiename' => 'SimpleSAML',
     'session.phpsession.savepath' => null,
     'session.phpsession.httponly' => true,
 
@@ -975,6 +975,7 @@ $config = array(
      * - 'phpsession': Limited datastore, which uses the PHP session.
      * - 'memcache': Key-value datastore, based on memcache.
      * - 'sql': SQL datastore, using PDO.
+     * - 'redis': Key-value datastore, based on redis.
      *
      * The default datastore is 'phpsession'.
      *
@@ -1000,4 +1001,15 @@ $config = array(
      * The prefix we should use on our tables.
      */
     'store.sql.prefix' => 'SimpleSAMLphp',
+
+    /*
+     * The hostname and port of the Redis datastore instance.
+     */
+    'store.redis.host' => 'localhost',
+    'store.redis.port' => 6379,
+
+    /*
+     * The prefix we should use on our Redis datastore.
+     */
+    'store.redis.prefix' => 'SimpleSAMLphp',
 );

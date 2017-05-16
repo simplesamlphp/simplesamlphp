@@ -147,7 +147,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 
 		$state['saml:idp'] = $idpEntityId;
 
-		$ar = new SimpleSAML_XML_Shib13_AuthnRequest();
+		$ar = new \SimpleSAML\XML\Shib13\AuthnRequest();
 		$ar->setIssuer($this->entityId);
 
 		$id = SimpleSAML_Auth_State::saveState($state, 'saml:sp:sso');

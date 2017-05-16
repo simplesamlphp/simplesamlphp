@@ -29,6 +29,7 @@ The `store.type` configuration option in `config.php` allows you to select which
   * `phpsession` uses the built in session management in PHP. This is the default, and is simplest to use. It will not work in a load-balanced environment in most configurations.
   * `memcache` uses the memcache software to cache sessions in memory. Sessions can be distributed and replicated among several memcache servers, enabling both load-balancing and fail-over.
   * `sql` stores the session in an SQL database.
+  * `redis` stores the session in Redis.
 
     'store.type' => 'phpsession',
 
@@ -155,6 +156,12 @@ The DSN is stored in the `store.sql.dsn` option. See the [PDO driver manual](htt
 Username and password for accessing the database can be configured in the `store.sql.username` and `store.sql.password` options.
 
 The required tables are created automatically. If you are storing data from multiple separate SimpleSAMLphp installations in the same database, you can use the `store.sql.prefix` option to prevent conflicts.
+
+### Configuring Redis storage
+
+To store sessions in Redis, set the `store.type` option to `redis`.
+
+By default SimpleSAMLphp will attempt to connect to Redis on the `localhost` at port `6379`. These can be configured via the `store.redis.host` and `store.redis.port` options, respectively. You may also set a key prefix with the `store.redis.prefix` option.
 
 ## Metadata storage
 

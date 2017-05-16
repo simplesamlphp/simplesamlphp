@@ -51,6 +51,9 @@ abstract class Store
             case 'sql':
                 self::$instance = new Store\SQL();
                 break;
+            case 'redis':
+                self::$instance = new Store\Redis();
+                break;
             default:
                 // datastore from module
                 try {
