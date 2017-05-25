@@ -75,7 +75,23 @@ class HTTP
      */
     private static function getServerHTTPS()
     {
-        if (!array_key_exists('HTTPS', $_SERVER)) {
+        // Convention for (non-standard) proxy signaling a HTTPS forward, see
+        // https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
+		if(isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && strtolower($_SERVER['HTTP_X_FORWARDED_PROTO']) == 'https') {
+			return true;
+		}
+
+        // Less conventional proxy header
+		if(isset($_SERVER['HTTP_X_FORWARDED_PROTOCOL']) && strtolower($_SERVER['HTTP_X_FORWARDED_PROTOCOL']) == 'https') {
+			return true;
+		}
+
+        // Microsoft proxy convention: https://support.microsoft.com/?kbID=307347
+		if(isset($_SERVER['HTTP_FRONT_END_HTTPS']) && strtolower($_SERVER['HTTP_FRONT_END_HTTPS']) == 'on') {
+			return true;
+		}
+
+		if (!array_key_exists('HTTPS', $_SERVER)) {
             // not an https-request
             return false;
         }
