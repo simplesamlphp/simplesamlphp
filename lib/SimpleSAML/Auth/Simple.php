@@ -293,6 +293,46 @@ class SimpleSAML_Auth_Simple
 
 
     /**
+     * Retrieves NameID data.
+     *
+     * @param string $name The name of the parameter, e.g. 'Value', 'Format'
+     *
+     * @return string|null The value of the parameter, or null if it isn't found or we are unauthenticated.
+     */
+    public function getNameIDData($name)
+    {
+        assert('is_string($name)');
+
+        if (!$this->isAuthenticated()) {
+            return null;
+        }
+
+        $nameIdData = $this->getAuthData('saml:sp:NameID');
+
+        if (isset($nameIdData[$name])) {
+            return $nameIdData[$name];
+        }
+
+        return null;
+    }
+
+
+    /**
+     * Retrieve all the NameID data.
+     *
+     * @return array|null All the NameID data, or null if we aren't authenticated
+     */
+    public function getNameIDDataArray()
+    {
+        if (!$this->isAuthenticated()) {
+            return null;
+        }
+
+        return $this->getAuthData('saml:sp:NameID');
+    }
+
+
+    /**
      * Retrieve a URL that can be used to log the user in.
      *
      * @param string|null $returnTo The page the user should be returned to afterwards. If this parameter is null, the
