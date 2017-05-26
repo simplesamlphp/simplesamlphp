@@ -53,7 +53,7 @@ if ($organizations === NULL || !empty($organization)) {
 	if (!empty($username) && !empty($password)) {
 
 		if ($source->getRememberUsernameEnabled()) {
-			$sessionHandler = SimpleSAML_SessionHandler::getSessionHandler();
+			$sessionHandler = \SimpleSAML\SessionHandler::getSessionHandler();
 			$params = $sessionHandler->getCookieParams();
 			$params['expire'] = time();
 			$params['expire'] += (isset($_REQUEST['remember_username']) && $_REQUEST['remember_username'] == 'Yes' ? 31536000 : -300);
