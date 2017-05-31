@@ -28,6 +28,7 @@ class sspmod_negotiate_Auth_Source_Negotiate extends SimpleSAML_Auth_Source
     protected $admin_user = null;
     protected $admin_pw = null;
     protected $attributes = null;
+    protected $rcache = null;
 
 
     /**
@@ -66,6 +67,7 @@ class sspmod_negotiate_Auth_Source_Negotiate extends SimpleSAML_Auth_Source
         $this->admin_user = $config->getString('adminUser', null);
         $this->admin_pw = $config->getString('adminPassword', null);
         $this->attributes = $config->getArray('attributes', null);
+        $this->rcache = $config->getBoolean('rcache', null);
     }
 
 
@@ -135,6 +137,12 @@ class sspmod_negotiate_Auth_Source_Negotiate extends SimpleSAML_Auth_Source
                 if (strtolower($mech) != 'negotiate') {
                     SimpleSAML\Logger::debug('Negotiate - authenticate(): No "Negotiate" found. Skipping.');
                 }
+            }
+            
+            if ($this->rcache === true) {
+                putenv("KRB5RCACHETYPE=dfl");
+            } elseif ($this->rcache === false) {
+                putenv("KRB5RCACHETYPE=none");
             }
 
             $auth = new KRB5NegotiateAuth($this->keytab);
