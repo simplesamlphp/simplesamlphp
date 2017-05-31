@@ -5,6 +5,15 @@ This document describes the necessary steps to enable support for the [SAML V2.0
 
 The SAML V2.0 Enhanced Client or Proxy (ECP) profile is a SSO profile for use with HTTP, and clients with the capability to directly contact a principal's identity provider(s) without requiring discovery and redirection by the service provider, as in the case of a browser. It is particularly useful for desktop or server-side HTTP clients.
 
+Limitations
+-----------
+* Authentication must be done via [HTTP Basic authentication](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication#Basic_authentication_scheme).
+* Authentication must not require user interaction (e.g. auth filters that require user input).
+* Channel Bindings are unsupported.
+* "Holder of Key" Subject Confirmation is unsupported.
+
+This feature has been tested to work with Microsoft Office 365, but other service providers may require features of the ECP profile that are currently unsupported!
+
 Enabling ECP Profile on the IdP
 -----------------------------------
 

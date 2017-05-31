@@ -127,6 +127,14 @@ try {
         ));
     }
 
+    if ($idpmeta->getBoolean('saml20.ecp', false)) {
+        $metaArray['SingleSignOnService'][] = array(
+            'index' => 0,
+            'Binding' => SAML2_Const::BINDING_SOAP,
+            'Location' => SimpleSAML_Utilities::getHostnameURL() . 'saml2/idp/SSOService.php',
+        );
+    }
+
     $metaArray['NameIDFormat'] = $idpmeta->getString(
         'NameIDFormat',
         'urn:oasis:names:tc:SAML:2.0:nameid-format:transient'
