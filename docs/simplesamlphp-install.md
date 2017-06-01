@@ -1,8 +1,8 @@
 SimpleSAMLphp Installation and Configuration
 ============================================
 
-<!-- 
-	This file is written in Markdown syntax. 
+<!--
+	This file is written in Markdown syntax.
 	For more information about how to use the Markdown syntax, read here:
 	http://daringfireball.net/projects/markdown/syntax
 -->
@@ -31,7 +31,7 @@ Prerequisites
 -------------
 
  * Some webserver capable of executing PHP scripts.
- * PHP version >= 5.5.0.
+ * PHP version >= 5.5.9.
  * Support for the following PHP extensions:
    * Always required: `date`, `dom`, `hash`, `libxml`, `openssl`, `pcre`, `SPL`, `zlib`, `json`, `mbstring`
    * When automatically checking for latest versions, and used by some modules: `cURL`
@@ -208,7 +208,7 @@ file, `config.php`, right away:
 
 		'secretsalt' => 'randombytesinsertedhere',
 
--  
+-
     Set technical contact information. This information will be
     available in the generated metadata. The e-mail address will also
     be used for receiving error reports sent automatically by
@@ -217,14 +217,14 @@ file, `config.php`, right away:
 		'technicalcontact_name'     => 'John Smith',
 		'technicalcontact_email'    => 'john.smith@example.com',
 
--  
+-
     If you use SimpleSAMLphp in a country where English is not
     widespread, you may want to change the default language from
     English to something else:
 
 		'language.default'      => 'no',
 
--  
+-
     Set the timezone which you use:
 
         'timezone' => 'Europe/Oslo',
@@ -370,7 +370,7 @@ Now you have the following directory structure.
 
 -   `~/simplesamlphp`
 
--  
+-
     `~/public_html/simplesaml` where `simplesaml` is the `www`
     directory from the `simplesamlphp` installation directory, either
     moved or a symlink.
