@@ -708,6 +708,12 @@ class SimpleSAML_Metadata_SAMLParser
         if (array_key_exists('attributes.NameFormat', $spd)) {
             $ret['attributes.NameFormat'] = $spd['attributes.NameFormat'];
         }
+        if (array_key_exists('attributes.index', $spd)) {
+            $ret['attributes.index'] = $spd['attributes.index'];
+        }
+        if (array_key_exists('attributes.isDefault', $spd)) {
+            $ret['attributes.isDefault'] = $spd['attributes.isDefault'];
+        }
 
         // add name & description
         if (array_key_exists('name', $spd)) {

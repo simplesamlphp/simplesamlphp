@@ -125,6 +125,12 @@ Options
 `attributes.NameFormat`
 :   The `NameFormat` for the requested attributes.
 
+`attributes.index`
+:   The `index` attribute that is set in the md:AttributeConsumingService element. Integer value that defaults to `0`.
+
+`attributes.isDefault`
+:   If present, sets the `isDefault` attribute in the md:AttributeConsumingService element. Boolean value that defaults to `false`.
+
 `attributes.required`
 : If you have attributes added you can here specify which should be marked as required.
 : The attributes should still be present in `attributes`.

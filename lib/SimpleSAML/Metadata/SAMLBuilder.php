@@ -403,7 +403,11 @@ class SimpleSAML_Metadata_SAMLBuilder
          */
         $attributeconsumer = new \SAML2\XML\md\AttributeConsumingService();
 
-        $attributeconsumer->index = 0;
+        $attributeconsumer->index = $metadata->getInteger('attributes.index', 0);
+
+        if ($metadata->hasValue('attributes.isDefault')) {
+            $attributeconsumer->isDefault = $metadata->getBoolean('attributes.isDefault', false);
+        }
 
         $attributeconsumer->ServiceName = $name;
         $attributeconsumer->ServiceDescription = $metadata->getLocalizedString('description', array());
