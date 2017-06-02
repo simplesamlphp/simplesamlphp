@@ -135,8 +135,20 @@ class SimpleSAML_Session implements Serializable
 
 
     /**
+     * The session ID used by the application including simplesamlphp
+     * See SessionHandlerPHP->previous_session for more details
+     *
+     * @var array
+     */
+    private $previousSession = array();
+
+
+    /**
      * Private constructor that restricts instantiation to either getSessionFromRequest() for the current session or
      * getSession() for a specific one.
+     *
+     * Note that this constructor is not called with every request. The object
+     * is also loaded from storage via SessionHandler->loadSession()
      *
      * @param boolean $transient Whether to create a transient session or not.
      */
@@ -235,7 +247,9 @@ class SimpleSAML_Session implements Serializable
 
 
     /**
-     * Retrieves the current session. Creates a new session if there's not one.
+     * Returns the SimpleSAML_Session for this session
+     * - Retrieves from storage the first time this function is called during a request
+     * - Creates new object if this is the first request of a new session
      *
      * @return SimpleSAML_Session The current session.
      * @throws Exception When session couldn't be initialized and the session fallback is disabled by configuration.
@@ -391,6 +405,7 @@ class SimpleSAML_Session implements Serializable
     {
         SimpleSAML\Logger::setTrackId($session->getTrackID());
         self::$instance = $session;
+        $session->maintainPreviousSession();
         return self::$instance;
     }
 
@@ -465,6 +480,28 @@ class SimpleSAML_Session implements Serializable
         $sh = \SimpleSAML\SessionHandler::getSessionHandler();
         if ($sh instanceof \SimpleSAML\SessionHandlerPHP) {
             $sh->restorePrevious();
+        }
+    }
+
+    /*
+     * First request: Saves previous session info in the current session
+     * Subsequent requests: Updates sessionHandler's previous_session to match
+     *
+     * This allows SessionHandlerPHP->restorePrevious() to function accross multiple requests
+     *
+     */
+    private function maintainPreviousSession() {
+        $sh = SimpleSAML_SessionHandler::getSessionHandler();
+        if (!$sh instanceof SimpleSAML_SessionHandlerPHP) {
+            return;
+        }
+
+        if (empty($this->previousSession)) {
+            $this->previousSession = $sh->previous_session;
+            $this->markDirty();
+        }
+        else {
+            $sh->previous_session = $this->previousSession;
         }
     }
 

@@ -32,9 +32,11 @@ class SessionHandlerPHP extends SessionHandler
      *   - name: the name of the session, as returned by session_name().
      *   - cookie_params: the parameters of the session cookie, as returned by session_get_cookie_params().
      *
+     * Note that SimpleSAML_Session->maintainPreviousSession() may update this value
+     *
      * @var array
      */
-    private $previous_session = array();
+    public $previous_session = array();
 
 
     /**
@@ -228,7 +230,7 @@ class SessionHandlerPHP extends SessionHandler
 
 
     /**
-     * Load the session from the PHP session array.
+     * Load the SimpleSamlPHP session from the PHP session array.
      *
      * @param string|null $sessionId The ID of the session we should load, or null to use the default.
      *
