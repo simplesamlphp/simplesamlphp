@@ -96,53 +96,6 @@ $config = array (
 			'dateformat-intra'	=> 'j. M', 		//  4. Mars
 		),
 	),
-	
-	'time_limit' => 300,
-	
-	'timeres' => array(
-		'day' => array(
-			'name' => 'Day',
-			'slot'		=> 60*15,			// Slots of 15 minutes
-			'fileslot'	=> 60*60*24,		// One day (24 hours) file slots
-			'axislabelint' => 6*4,			// Number of slots per label. 4 per hour *6 = 6 hours 
-			'dateformat-period'	=> 'j. M', 			//  4. Mars
-			'dateformat-intra'	=> 'j. M H:i', 		//  4. Mars 12:30	
-		),
-		'week' => array(
-			'name' => 'Week',
-			'slot'		=> 60*60,			// Slots of one hour
-			'fileslot'	=> 60*60*24*7,		// 7 days of data in each file
-			'axislabelint' => 24,			// Number of slots per label. 24 is one each day
-			'dateformat-period'	=> 'j. M', 			//  4. Mars
-			'dateformat-intra'	=> 'j. M H:i', 		//  4. Mars 12:30
-		),
-		'month' => array(
-			'name' => 'Month',
-			'slot'		=> 60*60*24,		// Slots of one day
-			'fileslot'	=> 60*60*24*30,		// 30 days of data in each file
-			'axislabelint' => 7,			// Number of slots per label. 7 days => 1 week
-			'dateformat-period'	=> 'j. M Y H:i', 	//  4. Mars 12:30
-			'dateformat-intra'	=> 'j. M', 			//  4. Mars
-		),
-		'monthaligned' => array(
-			'name' => 'AlignedMonth',
-			'slot'		=> 60*60*24,		// Slots of one day
-			'fileslot'	=> NULL,		// 30 days of data in each file
-			'customDateHandler' => 'month',
-			'axislabelint' => 7,			// Number of slots per label. 7 days => 1 week
-			'dateformat-period'	=> 'j. M Y H:i', 	//  4. Mars 12:30
-			'dateformat-intra'	=> 'j. M', 			//  4. Mars
-		),
-		
-		'days180' => array(
-			'name' => '180 days',
-			'slot'		=> 60*60*24,		// Slots of 1 day (24 hours)
-			'fileslot'	=> 60*60*24*180,	// 80 days of data in each file
-			'axislabelint' => 30,			// Number of slots per label. 7 days => 1 week
-			'dateformat-period'	=> 'j. M', 		//  4. Mars
-			'dateformat-intra'	=> 'j. M', 		//  4. Mars
-		),
-	),
 	'statrules' => array(
 		'sloratio' => array(
 			'name' 		=> 'SLO to SSO ratio',
