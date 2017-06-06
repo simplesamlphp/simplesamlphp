@@ -266,9 +266,8 @@ class SessionHandlerPHP extends SessionHandler
         assert('is_string($session)');
 
         $session = unserialize($session);
-        assert('$session instanceof SimpleSAML_Session');
 
-        return $session;
+        return ($session !== false) ? $session : null;
     }
 
 
