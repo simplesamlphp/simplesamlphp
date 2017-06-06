@@ -262,7 +262,7 @@ class SimpleSAML_Session implements Serializable
         }
 
         // if getSession() found it, use it
-        if ($session !== null) {
+        if ($session instanceof SimpleSAML_Session) {
             return self::load($session);
         }
 
@@ -299,7 +299,7 @@ class SimpleSAML_Session implements Serializable
      *
      * @param string|null $sessionId The session we should get, or null to get the current session.
      *
-     * @return SimpleSAML_Session The session that is stored in the session handler, or null if the session wasn't
+     * @return SimpleSAML_Session|null The session that is stored in the session handler, or null if the session wasn't
      * found.
      */
     public static function getSession($sessionId = null)
