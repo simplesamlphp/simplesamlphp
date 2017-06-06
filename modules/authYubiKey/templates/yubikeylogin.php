@@ -29,7 +29,7 @@ if ($this->data['errorcode'] !== NULL) {
 
 		<p><?php echo $this->t('{authYubiKey:yubikey:intro}'); ?></p>
 	
-		<p><input id="otp" style="border: 1px solid #ccc; background: #eee; padding: .5em; font-size: medium; width: 70%; color: #aaa" type="text" tabindex="2" name="otp" /></p>
+		<p><input id="otp" style="border: 1px solid #ccc; background: #eee; padding: .5em; font-size: medium; width: 70%; color: #aaa" type="password" tabindex="2" name="otp" /></p>
 
 
 
