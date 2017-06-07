@@ -78,6 +78,29 @@ class sspmod_cas_Auth_Source_CAS  extends SimpleSAML_Auth_Source  {
 		}else{
 			throw new Exception("cas login URL not specified");
 		}
+
+
+		// Check for the required ldap configuration 
+		if(!isset($this->_ldapConfig['servers'])) {
+			throw new Exception("ldap server not specified");
+		}
+
+		// Check for ldap options in cas configuration if not configured set to default
+		if(!isset($this->_ldapConfig['enable_tls'])) {
+			$this->_ldapConfig['enable_tls'] = TRUE;
+		}
+		if(!isset($this->_ldapConfig['debug'])) {
+			$this->_ldapConfig['debug'] = FALSE;
+		}
+		if(!isset($this->_ldapConfig['timeout'])) {
+			$this->_ldapConfig['timeout'] = 0;
+		}
+		if(!isset($this->_ldapConfig['port'])) {
+			$this->_ldapConfig['port'] = 389;
+		}
+		if(!isset($this->_ldapConfig['referrals'])) {
+			$this->_ldapConfig['referrals'] = TRUE;
+		}
 	}
 
 
@@ -178,7 +201,14 @@ class sspmod_cas_Auth_Source_CAS  extends SimpleSAML_Auth_Source  {
 		list($username, $casattributes) = $this->casValidation($ticket, $service);
 		$ldapattributes = array();
 		if ($this->_ldapConfig['servers']) {
-			$ldap = new SimpleSAML_Auth_LDAP($this->_ldapConfig['servers'], $this->_ldapConfig['enable_tls']);
+			$ldap = new SimpleSAML_Auth_LDAP(
+				$this->_ldapConfig['servers'], 
+				$this->_ldapConfig['enable_tls'], 
+				$this->_ldapConfig['debug'], 
+				$this->_ldapConfig['timeout'], 
+				$this->_ldapConfig['port'], 
+				$this->_ldapConfig['referrals']
+			);
 			$ldapattributes = $ldap->validate($this->_ldapConfig, $username);
 		}
 		$attributes = array_merge_recursive($casattributes, $ldapattributes);
