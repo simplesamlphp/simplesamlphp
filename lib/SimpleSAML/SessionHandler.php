@@ -46,7 +46,7 @@ abstract class SessionHandler
 
 
     /**
-     * This constructor is included in case it is needed in the the
+     * This constructor is included in case it is needed in the
      * future. Including it now allows us to write parent::__construct() in
      * the subclasses of this class.
      */
