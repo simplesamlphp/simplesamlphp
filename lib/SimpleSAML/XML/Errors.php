@@ -27,7 +27,7 @@ class Errors
 
 
     /**
-     * Append current XML errors to the the current stack level.
+     * Append current XML errors to the current stack level.
      */
     private static function addErrors()
     {

@@ -42,7 +42,7 @@ short introduction to what you can do with them:
 
 ## Module layout
 
-Each SimpleSAMLphp module is stored in a directory under the the
+Each SimpleSAMLphp module is stored in a directory under the
 `modules`-directory. The module directory contains the following
 directories and files:
 
