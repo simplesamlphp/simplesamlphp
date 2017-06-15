@@ -2,6 +2,8 @@
 
 namespace SimpleSAML\Test\Module\saml\Auth\Source;
 
+use \SimpleSAML_Configuration as Configuration;
+
 /**
  * Custom Exception to throw to terminate a TestCase.
  */
@@ -121,6 +123,8 @@ class SP_Test extends \PHPUnit_Framework_TestCase
                 ),
             ),
         );
+
+        $this->config = Configuration::loadFromArray(array(), '[ARRAY]', 'simplesaml');
     }
 
 

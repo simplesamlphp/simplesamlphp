@@ -8,8 +8,14 @@
 
 namespace SimpleSAML\Test\Module\consent\Auth\Process;
 
+use \SimpleSAML_Configuration as Configuration;
+
 class ConsentTest extends \PHPUnit_Framework_TestCase
 {
+    public function setUp()
+    {
+        $this->config = Configuration::loadFromArray(array(), '[ARRAY]', 'simplesaml');
+    }
 
     /**
      * Helper function to run the filter with a given configuration.
