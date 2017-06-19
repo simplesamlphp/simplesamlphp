@@ -29,6 +29,12 @@ class sspmod_sqlauth_Auth_Source_SQL extends sspmod_core_Auth_UserPassBase {
 	private $password;
 
 
+    /**
+     * The options that we should connect to the database with.
+     */
+    private $options;
+
+
 	/**
 	 * The query we should use to retrieve the attributes for the user.
 	 *
@@ -68,6 +74,7 @@ class sspmod_sqlauth_Auth_Source_SQL extends sspmod_core_Auth_UserPassBase {
 		$this->dsn = $config['dsn'];
 		$this->username = $config['username'];
 		$this->password = $config['password'];
+		$this->options = $config['options'];
 		$this->query = $config['query'];
 	}
 
@@ -79,7 +86,7 @@ class sspmod_sqlauth_Auth_Source_SQL extends sspmod_core_Auth_UserPassBase {
 	 */
 	private function connect() {
 		try {
-			$db = new PDO($this->dsn, $this->username, $this->password);
+			$db = new PDO($this->dsn, $this->username, $this->password, $this->options);
 		} catch (PDOException $e) {
 			throw new Exception('sqlauth:' . $this->authId . ': - Failed to connect to \'' .
 				$this->dsn . '\': '. $e->getMessage());

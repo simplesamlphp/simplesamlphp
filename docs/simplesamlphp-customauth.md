@@ -253,9 +253,10 @@ The class follows:
          */
         private $dsn;
 
-        /* The database username & password. */
+        /* The database username, password & options. */
         private $username;
         private $password;
+        private $options;
 
         public function __construct($info, $config) {
             parent::__construct($info, $config);
@@ -272,6 +273,10 @@ The class follows:
                 throw new Exception('Missing or invalid password option in config.');
             }
             $this->password = $config['password'];
+            $this->options = $config['options'];
+            if (!is_array($config['options])) {
+                throw new Exception('Missing or invalid options option in config.');
+            }
         }
 
         /**
@@ -294,7 +299,7 @@ The class follows:
         protected function login($username, $password) {
 
             /* Connect to the database. */
-            $db = new PDO($this->dsn, $this->username, $this->password);
+            $db = new PDO($this->dsn, $this->username, $this->password, $this->options);
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             /* Ensure that we are operating with UTF-8 encoding.
