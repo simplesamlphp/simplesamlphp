@@ -7,7 +7,7 @@
  * SQLite.
  *
  * It has the following options:
- * - dsn: The DSN which should be used to connect to the database server. See 
+ * - dsn: The DSN which should be used to connect to the database server. See
  *        PHP Manual for supported drivers and DSN formats.
  * - username: The username used for database connection.
  * - password: The password used for database connection.
@@ -187,7 +187,7 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store
      * @param string $destinationId A string which identifies the destination.
      * @param string $attributeSet  A hash which identifies the attributes.
      *
-     * @return void|true True if consent is deleted 
+     * @return void|true True if consent is deleted
      */
     public function saveConsent($userId, $destinationId, $attributeSet)
     {
@@ -265,7 +265,7 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store
 
     /**
      * Delete all consents.
-     * 
+     *
      * @param string $userId The hash identifying the user at an IdP.
      *
      * @return int Number of consents deleted
@@ -388,9 +388,9 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store
 
         // Get total number of consents
         $st = $this->_execute('SELECT COUNT(*) AS no FROM consent', array());
-        
+
         if ($st === false) {
-            return array(); 
+            return array();
         }
 
         if ($row = $st->fetch(PDO::FETCH_NUM)) {
@@ -403,9 +403,9 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store
             'FROM (SELECT DISTINCT hashed_user_id FROM consent ) AS foo',
             array()
         );
-        
+
         if ($st === false) {
-            return array(); 
+            return array();
         }
 
         if ($row = $st->fetch(PDO::FETCH_NUM)) {
@@ -418,7 +418,7 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store
             'FROM (SELECT DISTINCT service_id FROM consent) AS foo',
             array()
         );
-        
+
         if ($st === false) {
             return array();
         }
@@ -482,10 +482,15 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store
         if (isset($this->_timeout)) {
             $driver_options[PDO::ATTR_TIMEOUT] = $this->_timeout;
         }
+        if (isset($this->_options)) {
+            array_merge($driver_options, $this->_options);
+        } else {
+            $this->_options = $driver_options;
+        }
 
         // @TODO Cleanup this section
         //try {
-        $this->_db = new PDO($this->_dsn, $this->_username, $this->_password, $driver_options);
+        $this->_db = new PDO($this->_dsn, $this->_username, $this->_password, $this->_options);
         // 		} catch (PDOException $e) {
         // 			SimpleSAML_Logger::error('consent:Database - Failed to connect to \'' .
         // 				$this->_dsn . '\': '. $e->getMessage());
@@ -501,7 +506,7 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store
      * This function formats a PDO error, as returned from errorInfo.
      *
      * @param array $error The error information.
-     * 
+     *
      * @return string Error text.
      */
     private static function _formatError($error)
