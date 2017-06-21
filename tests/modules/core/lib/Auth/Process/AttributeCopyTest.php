@@ -39,6 +39,26 @@ class Test_Core_Auth_Process_AttributeCopy extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test the most basic functionality.
+     */
+    public function testArray()
+    {
+        $config = array(
+            'test' => array('new1','new2'),
+        );
+        $request = array(
+            'Attributes' => array('test' => array('AAP')),
+        );
+        $result = self::processFilter($config, $request);
+        $attributes = $result['Attributes'];
+        $this->assertArrayHasKey('test', $attributes);
+        $this->assertArrayHasKey('new1', $attributes);
+        $this->assertArrayHasKey('new2', $attributes);
+        $this->assertEquals($attributes['new1'], array('AAP'));
+        $this->assertEquals($attributes['new2'], array('AAP'));
+    }
+
+    /**
      * Test that existing attributes are left unmodified.
      */
     public function testExistingNotModified()
