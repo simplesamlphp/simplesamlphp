@@ -5,7 +5,11 @@
  * filter classes direct access to the authsource ldap config
  * and connects to the ldap server.
  *
+ * Updated: 20161223 Remy Blom
+ *          - Wrapped the building of authsource config with issets
+ *
  * @author Ryan Panning <panman@traileyes.com>
+ * @author Remy Blom <remy.blom@hku.nl>
  * @package SimpleSAMLphp
  */
 abstract class sspmod_ldap_Auth_Process_BaseFilter extends SimpleSAML_Auth_ProcessingFilter
@@ -137,21 +141,46 @@ abstract class sspmod_ldap_Auth_Process_BaseFilter extends SimpleSAML_Auth_Proce
 
             // Build the authsource config
             $authconfig = array();
-            $authconfig['ldap.hostname']   = @$authsource['hostname'];
-            $authconfig['ldap.enable_tls'] = @$authsource['enable_tls'];
-            $authconfig['ldap.port']       = @$authsource['port'];
-            $authconfig['ldap.timeout']    = @$authsource['timeout'];
-            $authconfig['ldap.debug']      = @$authsource['debug'];
-            $authconfig['ldap.basedn']     = (@$authsource['search.enable'] ? @$authsource['search.base'] : null);
-            $authconfig['ldap.username']   = (@$authsource['search.enable'] ? @$authsource['search.username'] : null);
-            $authconfig['ldap.password']   = (@$authsource['search.enable'] ? @$authsource['search.password'] : null);
-            $authconfig['ldap.username']   = (@$authsource['priv.read'] ? @$authsource['priv.username'] : $authconfig['ldap.username']);
-            $authconfig['ldap.password']   = (@$authsource['priv.read'] ? @$authsource['priv.password'] : $authconfig['ldap.password']);
-
-            // Only set the username attribute if the authsource specifies one attribute
-            if (@$authsource['search.enable'] && is_array(@$authsource['search.attributes'])
-                 && count($authsource['search.attributes']) == 1) {
-                $authconfig['attribute.username'] = reset($authsource['search.attributes']);
+            if (isset($authsource['hostname'])) {
+                $authconfig['ldap.hostname']   = $authsource['hostname'];
+            }
+            if (isset($authsource['enable_tls'])) {
+                $authconfig['ldap.enable_tls'] = $authsource['enable_tls'];
+            }
+            if (isset($authsource['port'])) {
+                $authconfig['ldap.port']       = $authsource['port'];
+            }
+            if (isset($authsource['timeout'])) {
+                $authconfig['ldap.timeout']    = $authsource['timeout'];
+            }
+            if (isset($authsource['debug'])) {
+                $authconfig['ldap.debug']      = $authsource['debug'];
+            }
+            // only set when search.enabled = true
+            if (isset($authsource['search.enable']) && $authsource['search.enable']) {
+                if (isset($authsource['search.base'])) {
+                    $authconfig['ldap.basedn']     = $authsource['search.base'];
+                }
+                if (isset($authsource['search.username'])) {
+                    $authconfig['ldap.username']   = $authsource['search.username'];
+                }
+                if (isset($authsource['search.password'])) {
+                    $authconfig['ldap.password']   = $authsource['search.password'];
+                }
+                // Only set the username attribute if the authsource specifies one attribute
+                if (isset($authsource['search.attributes']) && is_array($authsource['search.attributes'])
+                     && count($authsource['search.attributes']) == 1) {
+                    $authconfig['attribute.username'] = reset($authsource['search.attributes']);
+                }
+            }
+            // only set when priv.read = true
+            if (isset($authsource['priv.read']) && $authsource['priv.read']) {
+                if (isset($authsource['priv.username'])) {
+                    $authconfig['ldap.username']   = $authsource['priv.username'];
+                }
+                if (isset($authsource['priv.password'])) {
+                    $authconfig['ldap.password']   = $authsource['priv.password'];
+                }
             }
 
             // Merge the authsource config with the filter config,
