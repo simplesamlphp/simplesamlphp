@@ -19,14 +19,17 @@
  *          - Updated the constructor to use the new config method
  *          - Updated the process method to use the new config variable names
  * Updated: 20131119 Yørn de Jong / Jaime Perez
- *      - Added support for retrieving multiple values at once from LDAP
- *      - Don't crash but fail silently on LDAP errors; the plugin is to complement attributes
+ *          - Added support for retrieving multiple values at once from LDAP
+ *          - Don't crash but fail silently on LDAP errors; the plugin is to complement attributes
+ * Updated: 20161223 Remy Blom <remy.blom@hku.nl>
+ *          - Adjusted the silent fail so it does show a warning in log when $this->getLdap() fails
  *
  * @author Yørn de Jong
  * @author Jaime Perez
  * @author Steve Moitozo
  * @author JAARS, Inc.
  * @author Ryan Panning
+ * @author Remy Blom <remy.blom@hku.nl>
  * @package SimpleSAMLphp
  */
 class sspmod_ldap_Auth_Process_AttributeAddFromLDAP extends sspmod_ldap_Auth_Process_BaseFilter {
@@ -165,10 +168,18 @@ class sspmod_ldap_Auth_Process_AttributeAddFromLDAP extends sspmod_ldap_Auth_Pro
             return;
         }
 
+        // getLdap
+        try {
+          $ldap = $this->getLdap();
+        } catch (Exception $e) {
+          // Added this warning in case $this->getLdap() fails
+          SimpleSAML\Logger::warning("AttributeAddFromLDAP: exception = " . $e);
+          return;
+        }
         // search for matching entries
         try {
-            $entries = $this->getLdap()->searchformultiple($this->base_dn, $filter,
-                                                           array_values($this->search_attributes), TRUE, FALSE);
+            $entries = $ldap->searchformultiple($this->base_dn, $filter,
+                                                           array_values($this->search_attributes), true, false);
         } catch (Exception $e) {
             return; // silent fail, error is still logged by LDAP search
         }
