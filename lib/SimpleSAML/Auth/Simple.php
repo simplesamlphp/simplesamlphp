@@ -291,6 +291,53 @@ class SimpleSAML_Auth_Simple
         return $session->getAuthState($this->authSource);
     }
 
+    /**
+     * Retrieves the NameID Value.
+     *
+     * @return string|null The NameID Value, or null if it isn't found or we are unauthenticated.
+     */
+    public function getNameIDValue()
+    {
+        if (!$this->isAuthenticated()) {
+            return null;
+        }
+
+        $nameIdData = $this->getAuthData('saml:sp:NameID');
+
+        return (isset($nameIdData['Value'])) ? $nameIdData['Value'] : null;
+    }
+
+    /**
+     * Retrieves the NameID Format.
+     *
+     * @return string|null The NameID Format, or null if it isn't found or we are unauthenticated.
+     */
+    public function getNameIDFormat()
+    {
+        if (!$this->isAuthenticated()) {
+            return null;
+        }
+
+        $nameIdData = $this->getAuthData('saml:sp:NameID');
+
+        return (isset($nameIdData['Format'])) ? $nameIdData['Format'] : null;
+    }
+
+    /**
+     * Retrieves the NameID SPNameQualifier.
+     *
+     * @return string|null The NameID SPNameQualifier, or null if it isn't found or we are unauthenticated.
+     */
+    public function getNameIDNameQualifier()
+    {
+        if (!$this->isAuthenticated()) {
+            return null;
+        }
+
+        $nameIdData = $this->getAuthData('saml:sp:NameID');
+
+        return (isset($nameIdData['SPNameQualifier'])) ? $nameIdData['SPNameQualifier'] : null;
+    }
 
     /**
      * Retrieve a URL that can be used to log the user in.
