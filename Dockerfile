@@ -7,8 +7,6 @@ RUN apt-get update -y \
 
 	&& docker-php-ext-install mcrypt ldap
 
-RUN git clone https://github.com/simplesamlphp/simplesamlphp.git /var/simplesamlphp
-
 RUN rm -rf /var/simplesamlphp
 RUN git clone https://github.com/simplesamlphp/simplesamlphp.git /var/simplesamlphp
 
