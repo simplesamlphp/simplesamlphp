@@ -25,9 +25,9 @@ class TimeLimitedToken
 
 
     /**
-     * @param $lifetime int Token lifetime in seconds. Defaults to 900 (15 min).
-     * @param $secretSalt string A random and unique salt per installation. Defaults to the salt in the configuration.
-     * @param $skew int The allowed time skew (in seconds) between what the server generates and the one that calculates
+     * @param int $lifetime Token lifetime in seconds. Defaults to 900 (15 min).
+     * @param string $secretSalt A random and unique salt per installation. Defaults to the salt in the configuration.
+     * @param int $skew The allowed time skew (in seconds) between what the server generates and the one that calculates
      * the token.
      */
     public function __construct($lifetime = 900, $secretSalt = null, $skew = 1)
@@ -42,6 +42,15 @@ class TimeLimitedToken
     }
 
 
+    /**
+     * Add some given data to the current token. This data will be needed later too for token validation.
+     *
+     * This mechanism can be used to provide context for a token, such as a user identifier of the only subject
+     * authorised to use it. Note also that multiple data can be added to the token. This means that upon validation,
+     * not only the same data must be added, but also in the same order.
+     *
+     * @param string $data The data to incorporate into the current token.
+     */
     public function addVerificationData($data)
     {
         $this->secretSalt .= '|'.$data;
@@ -49,41 +58,33 @@ class TimeLimitedToken
 
 
     /**
-     * Calculate the current time offset to the current time slot.
-     * With some amount of time skew
-     */
-    private function getOffset()
-    {
-        return (time() - $this->skew) % ($this->lifetime + $this->skew);
-    }
-
-
-    /**
-     * Calculate the time slot for a given offset.
-     */
-    private function calculateTimeSlot($offset)
-    {
-        return floor((time() - $offset) / ($this->lifetime + $this->skew));
-    }
-
-
-    /**
      * Calculates a token value for a given offset.
+     *
+     * @param int $offset The offset to use.
+     * @param int|null $time The time stamp to which the offset is relative to. Defaults to the current time.
+     *
+     * @return string The token for the given time and offset.
      */
-    private function calculateTokenValue($offset)
+    private function calculateTokenValue($offset, $time = null)
     {
+        if ($time === null) {
+            $time = time();
+        }
         // a secret salt that should be randomly generated for each installation
-        return sha1($this->calculateTimeSlot($offset).':'.$this->secretSalt);
+        return sha1(floor(($time - $offset) / ($this->lifetime + $this->skew)).':'.$this->secretSalt);
     }
 
 
     /**
      * Generates a token that contains an offset and a token value, using the current offset.
+     *
+     * @return string A time-limited token with the offset respect to the beginning of its time slot prepended.
      */
     public function generateToken()
     {
-        $current_offset = $this->getOffset();
-        return dechex($current_offset).'-'.$this->calculateTokenValue($current_offset);
+        $time = time();
+        $current_offset = ($time - $this->skew) % ($this->lifetime + $this->skew);
+        return dechex($current_offset).'-'.$this->calculateTokenValue($current_offset, $time);
     }
 
 
@@ -99,10 +100,17 @@ class TimeLimitedToken
 
     /**
      * Validates a token by calculating the token value for the provided offset and comparing it.
+     *
+     * @param string $token The token to validate.
+     *
+     * @return boolean True if the given token is currently valid, false otherwise.
      */
     public function validateToken($token)
     {
         $splittoken = explode('-', $token);
+        if (count($splittoken) !== 2) {
+            return false;
+        }
         $offset = hexdec($splittoken[0]);
         $value = $splittoken[1];
         return ($this->calculateTokenValue($offset) === $value);
