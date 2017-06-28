@@ -71,7 +71,7 @@ class TimeLimitedToken
             $time = time();
         }
         // a secret salt that should be randomly generated for each installation
-        return sha1(floor(($time - $offset) / ($this->lifetime + $this->skew)).':'.$this->secretSalt);
+        return sha1($offset.':'.floor(($time - $offset) / ($this->lifetime + $this->skew)).':'.$this->secretSalt);
     }
 
 
