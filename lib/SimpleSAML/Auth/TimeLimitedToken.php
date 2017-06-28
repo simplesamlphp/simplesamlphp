@@ -23,22 +23,38 @@ class TimeLimitedToken
      */
     protected $skew;
 
+    /**
+     * @var string
+     */
+    protected $algo;
+
 
     /**
+     * Create a new time-limited token.
+     *
+     * Please note that the default algorithm will change in SSP 1.15.0 to SHA-256 instead of SHA-1.
+     *
      * @param int $lifetime Token lifetime in seconds. Defaults to 900 (15 min).
      * @param string $secretSalt A random and unique salt per installation. Defaults to the salt in the configuration.
-     * @param int $skew The allowed time skew (in seconds) between what the server generates and the one that calculates
-     * the token.
+     * @param int $skew The allowed time skew (in seconds) to correct clock deviations. Defaults to 1 second.
+     * @param string $algo The hash algorithm to use to generate the tokens. Defaults to SHA-1.
+     *
+     * @throws \InvalidArgumentException if the given parameters are invalid.
      */
-    public function __construct($lifetime = 900, $secretSalt = null, $skew = 1)
+    public function __construct($lifetime = 900, $secretSalt = null, $skew = 1, $algo = 'sha1')
     {
         if ($secretSalt === null) {
             $secretSalt = \SimpleSAML\Utils\Config::getSecretSalt();
         }
 
+        if (!in_array($algo, hash_algos())) {
+            throw new \InvalidArgumentException('Invalid hash algorithm "'.$algo.'"');
+        }
+
         $this->secretSalt = $secretSalt;
         $this->lifetime = $lifetime;
         $this->skew = $skew;
+        $this->algo = $algo;
     }
 
 
@@ -71,7 +87,10 @@ class TimeLimitedToken
             $time = time();
         }
         // a secret salt that should be randomly generated for each installation
-        return sha1($offset.':'.floor(($time - $offset) / ($this->lifetime + $this->skew)).':'.$this->secretSalt);
+        return hash(
+            $this->algo,
+            $offset.':'.floor(($time - $offset) / ($this->lifetime + $this->skew)).':'.$this->secretSalt
+        );
     }
 
 
