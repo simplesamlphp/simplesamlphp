@@ -1,9 +1,11 @@
 <?php
 
+namespace SimpleSAML\Auth;
+
 /**
  * A class that generates and verifies time-limited tokens.
  */
-class SimpleSAML_Auth_TimeLimitedToken
+class TimeLimitedToken
 {
 
     /**
@@ -31,7 +33,7 @@ class SimpleSAML_Auth_TimeLimitedToken
     public function __construct($lifetime = 900, $secretSalt = null, $skew = 1)
     {
         if ($secretSalt === null) {
-            $secretSalt = SimpleSAML\Utils\Config::getSecretSalt();
+            $secretSalt = \SimpleSAML\Utils\Config::getSecretSalt();
         }
 
         $this->secretSalt = $secretSalt;
