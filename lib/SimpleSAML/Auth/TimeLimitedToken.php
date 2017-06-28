@@ -80,7 +80,7 @@ class TimeLimitedToken
      *
      * @return string A time-limited token with the offset respect to the beginning of its time slot prepended.
      */
-    public function generateToken()
+    public function generate()
     {
         $time = time();
         $current_offset = ($time - $this->skew) % ($this->lifetime + $this->skew);
@@ -89,12 +89,12 @@ class TimeLimitedToken
 
 
     /**
-     * @see generateToken
-     * @deprecated This method will be removed in SSP 2.0. Use generateToken() instead.
+     * @see generate
+     * @deprecated This method will be removed in SSP 2.0. Use generate() instead.
      */
     public function generate_token()
     {
-        return $this->generateToken();
+        return $this->generate();
     }
 
 
@@ -105,7 +105,7 @@ class TimeLimitedToken
      *
      * @return boolean True if the given token is currently valid, false otherwise.
      */
-    public function validateToken($token)
+    public function validate($token)
     {
         $splittoken = explode('-', $token);
         if (count($splittoken) !== 2) {
@@ -118,11 +118,11 @@ class TimeLimitedToken
 
 
     /**
-     * @see validateToken
-     * @deprecated This method will be removed in SSP 2.0. Use validateToken() instead.
+     * @see validate
+     * @deprecated This method will be removed in SSP 2.0. Use validate() instead.
      */
     public function validate_token($token)
     {
-        return $this->validateToken($token);
+        return $this->validate($token);
     }
 }
