@@ -13,6 +13,14 @@ class Module
 {
 
     /**
+     * A cache containing the modules currently installed. Each key in the array is the module name, and the value is
+     * a boolean telling if the module is enabled or not.
+     *
+     * @var array
+     */
+    private static $modules = array();
+
+    /**
      * Autoload function for SimpleSAMLphp modules following PSR-0.
      *
      * @param string $className Name of the class.
@@ -124,6 +132,9 @@ class Module
      */
     public static function isModuleEnabled($module)
     {
+        if (isset(self::$modules[$module])) {
+            return self::$modules[$module];
+        }
 
         $moduleDir = self::getModuleDir($module);
 
@@ -135,7 +146,7 @@ class Module
         $moduleEnable = $globalConfig->getArray('module.enable', array());
 
         if (isset($moduleEnable[$module])) {
-            if (is_bool($moduleEnable[$module]) === true) {
+            if ($moduleEnable[$module] === true) {
                 return $moduleEnable[$module];
             }
 
@@ -170,6 +181,9 @@ class Module
      */
     public static function getModules()
     {
+        if (!empty(self::$modules)) {
+            return array_keys(self::$modules);
+        }
 
         $path = self::getModuleDir('.');
 
@@ -177,8 +191,6 @@ class Module
         if ($dh === false) {
             throw new \Exception('Unable to open module directory "'.$path.'".');
         }
-
-        $modules = array();
 
         while (($f = readdir($dh)) !== false) {
             if ($f[0] === '.') {
@@ -189,12 +201,12 @@ class Module
                 continue;
             }
 
-            $modules[] = $f;
+            self::$modules[$f] = self::isModuleEnabled($f);
         }
 
         closedir($dh);
 
-        return $modules;
+        return array_keys(self::$modules);
     }
 
 
