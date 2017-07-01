@@ -7,6 +7,29 @@ $config = array(
         // any authentication source.
         'core:AdminPassword',
     ),
+	
+	 // SPID Demo authsource with attributes value
+    'service-attributes' => array(
+        'exampleauth:Static',
+        'spidCode' => array('ABCD123456789A'),
+        'name' => array('Francesca'),
+        'familyName' => array('Rossi'),
+        'placeOfBirth' => array('F205'),
+        'countyOfBirth' => array('MI'),
+        'dateOfBirth' => array('1900-01-01'),
+        'gender' => array('F'),
+        'companyName' => array('Agenzia per l\'Italia Digitale'),
+        'registeredOffice' => array('via Listz 21 00144 Roma'),
+        'fiscalNumber' => array('TINIT-RSSFNC00A41F205Q'),
+        'ivaCode' => array('VATIT-00000000000'),
+        'idCard' => array('CartaIdentità AS09452389 ComuneMilano 2013-01-02 2013-01-31'),
+        'mobilePhone' => array('34912345678'),
+        'email' => array('francesca.rossi@francescarossi.it'),
+        'expirationDate' => array('2100-01-01'),
+        'digitalAddress' => array('francesca.rossi@pec.francescarossi.it')
+
+    ),
+	
     // An authentication source 
     'service-name' => array(
         'saml:SP',
