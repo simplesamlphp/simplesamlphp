@@ -100,12 +100,20 @@ XML
     </Extensions>
     <SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
       <AttributeConsumingService index="0">
-        <ServiceName xml:lang="en">Example service</ServiceName>
-        <ServiceDescription xml:lang="nl">Dit is een voorbeeld voor de unittest.</ServiceDescription>
+        <ServiceName xml:lang="en">Example service 0</ServiceName>
+        <ServiceDescription xml:lang="nl">Dit is een voorbeeld voor de unittest 0.</ServiceDescription>
 
         <RequestedAttribute FriendlyName="eduPersonPrincipalName" Name="urn:mace:dir:attribute-def:eduPersonPrincipalName" NameFormat="urn:mace:shibboleth:1.0:attributeNamespace:uri" isRequired="true"/>
         <RequestedAttribute FriendlyName="mail" Name="urn:mace:dir:attribute-def:mail" NameFormat="urn:mace:shibboleth:1.0:attributeNamespace:uri"/>
         <RequestedAttribute FriendlyName="displayName" Name="urn:mace:dir:attribute-def:displayName" NameFormat="urn:mace:shibboleth:1.0:attributeNamespace:uri"/>
+      </AttributeConsumingService>
+      <AttributeConsumingService index="1" isDefault="true">
+        <ServiceName xml:lang="en">Example service 1</ServiceName>
+        <ServiceDescription xml:lang="nl">Dit is een voorbeeld voor de unittest 1.</ServiceDescription>
+
+        <RequestedAttribute FriendlyName="testFN1" Name="testN1" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic" isRequired="true"/>
+        <RequestedAttribute FriendlyName="testFN2" Name="testN2" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic" isRequired="true"/>
+        <RequestedAttribute FriendlyName="testFN3" Name="testN3" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic"/>
       </AttributeConsumingService>
     </SPSSODescriptor>
 
@@ -119,14 +127,58 @@ XML
 
         $metadata = $entities['theEntityID']->getMetadata20SP();
 
-        $this->assertEquals("Example service", $metadata['name']['en']);
-        $this->assertEquals("Dit is een voorbeeld voor de unittest.", $metadata['description']['nl']);
+        $expected_AttributeConsumingService = array (
+            0 =>
+            array (
+              'name' =>
+              array (
+                'en' => 'Example service 0',
+              ),
+              'description' =>
+              array (
+                'nl' => 'Dit is een voorbeeld voor de unittest 0.',
+              ),
+              'attributes' =>
+              array (
+                0 => 'urn:mace:dir:attribute-def:eduPersonPrincipalName',
+                1 => 'urn:mace:dir:attribute-def:mail',
+                2 => 'urn:mace:dir:attribute-def:displayName',
+              ),
+              'attributes.required' =>
+              array (
+                0 => 'urn:mace:dir:attribute-def:eduPersonPrincipalName',
+              ),
+              'attributes.NameFormat' => 'urn:mace:shibboleth:1.0:attributeNamespace:uri',
+            ),
+            1 =>
+            array (
+              'name' =>
+              array (
+                'en' => 'Example service 1',
+              ),
+              'description' =>
+              array (
+                'nl' => 'Dit is een voorbeeld voor de unittest 1.',
+              ),
+              'attributes' =>
+              array (
+                0 => 'testN1',
+                1 => 'testN2',
+                2 => 'testN3',
+              ),
+              'attributes.required' =>
+              array (
+                0 => 'testN1',
+                1 => 'testN2',
+              ),
+              'attributes.NameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:basic',
+            ),
+        );
 
-        $expected_a = array("urn:mace:dir:attribute-def:eduPersonPrincipalName", "urn:mace:dir:attribute-def:mail", "urn:mace:dir:attribute-def:displayName");
-        $expected_r = array("urn:mace:dir:attribute-def:eduPersonPrincipalName");
+        $expected_AttributeConsumingService_default = 1;
 
-        $this->assertEquals($expected_a, $metadata['attributes']);
-        $this->assertEquals($expected_r, $metadata['attributes.required']);
+        $this->assertEquals($expected_AttributeConsumingService, $metadata['AttributeConsumingService']);
+        $this->assertEquals($expected_AttributeConsumingService_default, $metadata['AttributeConsumingService.default']);
     }
 
 }

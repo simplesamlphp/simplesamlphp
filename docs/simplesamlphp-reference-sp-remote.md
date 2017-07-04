@@ -123,6 +123,58 @@ The following SAML 2.0 options are available:
 
 :   The value of this option is specified in one of several [endpoint formats](./simplesamlphp-metadata-endpoints).
 
+`AttributeConsumingService`
+:   this parameter overrides `attributes` and enables the SAML 2.0 AttributeConsumingServiceIndex support. It holds the mapping between AttributeConsumingServiceIndex and corresponding service definition containing the attribute set.
+
+Each service definition contains the following parameters:
+
+-   `name`: (optional) Service name in different languages.
+-   `description`: (optional) Service description in different languages.
+-   `attributes`:  list of attributes SP requests for the given Service.
+-   `attributes.required`:  (optional) list of *required* attributes SP requests for the given Service.
+-   `attributes.NameFormat`: (optional) the Format field of attribute
+    statements for this Service (see below for more information).
+
+Here is an example:
+
+    'AttributeConsumingService' =>
+        array (
+            0 =>
+                array (
+                    'name' =>
+                        array (
+                            'en' => 'Example service 0',
+                        ),
+                    'description' =>
+                        array (
+                            'nl' => 'Dit is een voorbeeld voor de unittest 0.',
+                        ),
+                    'attributes' =>
+                        array (
+                            0 => 'urn:mace:dir:attribute-def:eduPersonPrincipalName',
+                            1 => 'urn:mace:dir:attribute-def:mail',
+                            2 => 'urn:mace:dir:attribute-def:displayName',
+                        ),
+                    'attributes.required' =>
+                        array (
+                            0 => 'urn:mace:dir:attribute-def:eduPersonPrincipalName',
+                        ),
+                    'attributes.NameFormat' => 'urn:mace:shibboleth:1.0:attributeNamespace:uri',
+                ),
+            1 =>
+                array (
+                    'attributes' =>
+                        array (
+                            0 => 'uid',
+                            1 => 'mail',
+                        ),
+                ),
+        )
+
+
+`AttributeConsumingService.default`
+:   When using `AttributeConsumingService`, this parameter specifies the default Service Index when SP does not include it in the Request.
+
 `attributes.NameFormat`
 :   What value will be set in the Format field of attribute
     statements. This parameter can be configured multiple places, and

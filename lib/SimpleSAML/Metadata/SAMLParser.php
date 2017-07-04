@@ -660,6 +660,8 @@ class SimpleSAML_Metadata_SAMLParser
      * - 'SingleLogoutService': String with the URL where we should send logout requests/responses.
      * - 'NameIDFormat': The name ID format this SP expects. This may be unset.
      * - 'certData': X509Certificate for entity (if present).
+     * - 'AttributeConsumingService': set of attributes associated to a service index
+     * - 'AttributeConsumingService.default' default acs index 
      *
      * Metadata must be loaded with one of the parse functions before this function can be called.
      *
@@ -696,6 +698,14 @@ class SimpleSAML_Metadata_SAMLParser
         if (count($spd['nameIDFormats']) > 0) {
             // SimpleSAMLphp currently only supports a single NameIDFormat pr. SP. We use the first one
             $ret['NameIDFormat'] = $spd['nameIDFormats'][0];
+        }
+
+        // find the AttributeConsumingService indexes and default index
+        if (array_key_exists('AttributeConsumingService', $spd)) {
+            $ret['AttributeConsumingService'] = $spd['AttributeConsumingService'];
+        }
+        if (array_key_exists('AttributeConsumingService.default', $spd)) {
+            $ret['AttributeConsumingService.default'] = $spd['AttributeConsumingService.default'];
         }
 
         // add the list of attributes the SP should receive
@@ -930,7 +940,7 @@ class SimpleSAML_Metadata_SAMLParser
         // find all the attributes and SP name...
         $attcs = $element->AttributeConsumingService;
         if (count($attcs) > 0) {
-            self::parseAttributeConsumerService($attcs[0], $sp);
+            self::parseAttributeConsumingService($attcs, $sp);
         }
 
         // check AuthnRequestsSigned
@@ -1196,52 +1206,71 @@ class SimpleSAML_Metadata_SAMLParser
 
 
     /**
-     * This function parses AttributeConsumerService elements.
+     * This function parses AttributeConsumingService elements.
      *
-     * @param \SAML2\XML\md\AttributeConsumingService $element The AttributeConsumingService to parse.
+     * @param array of \SAML2\XML\md\AttributeConsumingService elements
      * @param array $sp The array with the SP's metadata.
      */
-    private static function parseAttributeConsumerService(\SAML2\XML\md\AttributeConsumingService $element, &$sp)
+    private static function parseAttributeConsumingService(array $acs_elements, &$sp)
     {
         assert('is_array($sp)');
 
-        $sp['name'] = $element->ServiceName;
-        $sp['description'] = $element->ServiceDescription;
+        $sp['AttributeConsumingService'] = array();
+        $sp['AttributeConsumingService.default'] = null;
 
-        $format = null;
-        $sp['attributes'] = array();
-        $sp['attributes.required'] = array();
-        foreach ($element->RequestedAttribute as $child) {
-            $attrname = $child->Name;
-            $sp['attributes'][] = $attrname;
+        foreach ($acs_elements as $acs) {
+            $current_acs = array();
+            $format = null;
 
-            if ($child->isRequired !== null && $child->isRequired === true) {
-                $sp['attributes.required'][] = $attrname;
+            $current_acs['name'] = $acs->ServiceName;
+            $current_acs['description'] = $acs->ServiceDescription;
+
+            $current_acs['attributes'] = array();
+            $current_acs['attributes.required'] = array();
+
+            foreach ($acs->RequestedAttribute as $child) {
+                $attrname = $child->Name;
+                $current_acs['attributes'][] = $attrname;
+
+                if ($child->isRequired !== null && $child->isRequired === true) {
+                    $current_acs['attributes.required'][] = $attrname;
+                }
+
+                if ($child->NameFormat !== null) {
+                    $attrformat = $child->NameFormat;
+                } else {
+                    $attrformat = \SAML2\Constants::NAMEFORMAT_UNSPECIFIED;
+                }
+
+                if ($format === null) {
+                    $format = $attrformat;
+                } elseif ($format !== $attrformat) {
+                    $format = \SAML2\Constants::NAMEFORMAT_UNSPECIFIED;
+                }
             }
 
-            if ($child->NameFormat !== null) {
-                $attrformat = $child->NameFormat;
-            } else {
-                $attrformat = \SAML2\Constants::NAMEFORMAT_UNSPECIFIED;
+            if (empty($current_acs['attributes'])) {
+                // a really invalid configuration: all AttributeConsumingServices should have one or more attributes
+                unset($current_acs['attributes']);
+            }
+            if (empty($current_acs['attributes.required'])) {
+                unset($current_acs['attributes.required']);
             }
 
-            if ($format === null) {
-                $format = $attrformat;
-            } elseif ($format !== $attrformat) {
-                $format = \SAML2\Constants::NAMEFORMAT_UNSPECIFIED;
+            if ($format !== \SAML2\Constants::NAMEFORMAT_UNSPECIFIED && $format !== null) {
+                $current_acs['attributes.NameFormat'] = $format;
             }
+
+            $sp['AttributeConsumingService'][$acs->index] = $current_acs;
+            if($acs->isDefault !== null && $acs->isDefault === true) {
+                $sp['AttributeConsumingService.default'] = $acs->index;
+            }
+
         }
 
-        if (empty($sp['attributes'])) {
-            // a really invalid configuration: all AttributeConsumingServices should have one or more attributes
-            unset($sp['attributes']);
-        }
-        if (empty($sp['attributes.required'])) {
-            unset($sp['attributes.required']);
-        }
-
-        if ($format !== \SAML2\Constants::NAMEFORMAT_UNSPECIFIED && $format !== null) {
-            $sp['attributes.NameFormat'] = $format;
+        if($sp['AttributeConsumingService.default'] === null && count($sp['AttributeConsumingService']) > 0) {
+            //set default index as first availale index
+            $sp['AttributeConsumingService.default'] = array_keys($sp['AttributeConsumingService'])[0];
         }
     }
 
