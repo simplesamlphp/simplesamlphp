@@ -198,7 +198,6 @@ class SimpleSAML_XHTML_Template
 
         $twig = new Twig_Environment($loader, $options);
         $twig->addExtension(new Twig_Extensions_Extension_I18n());
-        SimpleSAML\Module::callHooks('twigInit', $twig);
         return $twig;
     }
 
@@ -473,6 +472,17 @@ class SimpleSAML_XHTML_Template
     public function getTranslator()
     {
         return $this->translator;
+    }
+
+
+    /**
+     * Get the current instance of Twig in use.
+     *
+     * @return false|Twig_Environment The Twig instance in use, or false if Twig is not used.
+     */
+    public function getTwig()
+    {
+        return $this->twig;
     }
 
 
