@@ -13,9 +13,25 @@ class Module
 {
 
     /**
+     * A list containing the modules currently installed.
+     *
+     * @var array
+     */
+    public static $modules = array();
+
+    /**
+     * A cache containing specific information for modules, like whether they are enabled or not, or their hooks.
+     *
+     * @var array
+     */
+    public static $module_info = array();
+
+
+    /**
      * Autoload function for SimpleSAMLphp modules following PSR-0.
      *
      * @param string $className Name of the class.
+     *
      * @deprecated This method will be removed in SSP 2.0.
      *
      * TODO: this autoloader should be removed once everything has been migrated to namespaces.
@@ -29,8 +45,8 @@ class Module
         }
 
         $modNameEnd = strpos($className, '_', $modulePrefixLength);
-        $module     = substr($className, $modulePrefixLength, $modNameEnd - $modulePrefixLength);
-        $path       = explode('_', substr($className, $modNameEnd + 1));
+        $module = substr($className, $modulePrefixLength, $modNameEnd - $modulePrefixLength);
+        $path = explode('_', substr($className, $modNameEnd + 1));
 
         if (!self::isModuleEnabled($module)) {
             return;
@@ -46,7 +62,8 @@ class Module
             // the file exists, but the class is not defined. Is it using namespaces?
             $nspath = join('\\', $path);
             if (class_exists('SimpleSAML\Module\\'.$module.'\\'.$nspath) ||
-                interface_exists('SimpleSAML\Module\\'.$module.'\\'.$nspath)) {
+                interface_exists('SimpleSAML\Module\\'.$module.'\\'.$nspath)
+            ) {
                 // the class has been migrated, create an alias and warn about it
                 \SimpleSAML\Logger::warning(
                     "The class or interface '$className' is now using namespaces, please use 'SimpleSAML\\Module\\".
@@ -124,19 +141,32 @@ class Module
      */
     public static function isModuleEnabled($module)
     {
+        $config = \SimpleSAML_Configuration::getOptionalConfig();
+        return self::isModuleEnabledWithConf($module, $config->getArray('module.enable', array()));
+    }
+
+
+    private static function isModuleEnabledWithConf($module, $mod_config)
+    {
+        if (isset(self::$module_info[$module]['enabled'])) {
+            return self::$module_info[$module]['enabled'];
+        }
+
+        if (!empty(self::$modules) && !in_array($module, self::$modules)) {
+            return false;
+        }
 
         $moduleDir = self::getModuleDir($module);
 
         if (!is_dir($moduleDir)) {
+            self::$module_info[$module]['enabled'] = false;
             return false;
         }
 
-        $globalConfig = \SimpleSAML_Configuration::getOptionalConfig();
-        $moduleEnable = $globalConfig->getArray('module.enable', array());
-
-        if (isset($moduleEnable[$module])) {
-            if (is_bool($moduleEnable[$module]) === true) {
-                return $moduleEnable[$module];
+        if (isset($mod_config[$module])) {
+            if (is_bool($mod_config[$module])) {
+                self::$module_info[$module]['enabled'] = $mod_config[$module];
+                return $mod_config[$module];
             }
 
             throw new \Exception("Invalid module.enable value for the '$module' module.");
@@ -150,13 +180,16 @@ class Module
         }
 
         if (file_exists($moduleDir.'/enable')) {
+            self::$module_info[$module]['enabled'] = true;
             return true;
         }
 
         if (!file_exists($moduleDir.'/disable') && file_exists($moduleDir.'/default-enable')) {
+            self::$module_info[$module]['enabled'] = true;
             return true;
         }
 
+        self::$module_info[$module]['enabled'] = false;
         return false;
     }
 
@@ -170,17 +203,18 @@ class Module
      */
     public static function getModules()
     {
+        if (!empty(self::$modules)) {
+            return self::$modules;
+        }
 
         $path = self::getModuleDir('.');
 
-        $dh = opendir($path);
+        $dh = scandir($path);
         if ($dh === false) {
             throw new \Exception('Unable to open module directory "'.$path.'".');
         }
 
-        $modules = array();
-
-        while (($f = readdir($dh)) !== false) {
+        foreach ($dh as $f) {
             if ($f[0] === '.') {
                 continue;
             }
@@ -189,12 +223,10 @@ class Module
                 continue;
             }
 
-            $modules[] = $f;
+            self::$modules[] = $f;
         }
 
-        closedir($dh);
-
-        return $modules;
+        return self::$modules;
     }
 
 
@@ -282,35 +314,81 @@ class Module
 
 
     /**
+     * Get the available hooks for a given module.
+     *
+     * @param string $module The module where we should look for hooks.
+     *
+     * @return array An array with the hooks available for this module. Each element is an array with two keys: 'file'
+     * points to the file that contains the hook, and 'func' contains the name of the function implementing that hook.
+     * When there are no hooks defined, an empty array is returned.
+     */
+    public static function getModuleHooks($module)
+    {
+        if (isset(self::$modules[$module]['hooks'])) {
+            return self::$modules[$module]['hooks'];
+        }
+
+        $hook_dir = self::getModuleDir($module).'/hooks';
+        if (!is_dir($hook_dir)) {
+            return array();
+        }
+
+        $hooks = array();
+        $files = scandir($hook_dir);
+        foreach ($files as $file) {
+            if ($file[0] === '.') {
+                continue;
+            }
+
+            if (!preg_match('/hook_(\w+)\.php/', $file, $matches)) {
+                continue;
+            }
+            $hook_name = $matches[1];
+            $hook_func = $module.'_hook_'.$hook_name;
+            $hooks[$hook_name] = array('file' => $hook_dir.'/'.$file, 'func' => $hook_func);
+        }
+        return $hooks;
+    }
+
+
+    /**
      * Call a hook in all enabled modules.
      *
      * This function iterates over all enabled modules and calls a hook in each module.
      *
      * @param string $hook The name of the hook.
      * @param mixed  &$data The data which should be passed to each hook. Will be passed as a reference.
+     *
+     * @throws \SimpleSAML_Error_Exception If an invalid hook is found in a module.
      */
     public static function callHooks($hook, &$data = null)
     {
         assert('is_string($hook)');
 
         $modules = self::getModules();
+        $config = \SimpleSAML_Configuration::getOptionalConfig()->getArray('module.enable', array());
         sort($modules);
         foreach ($modules as $module) {
-            if (!self::isModuleEnabled($module)) {
+            if (!self::isModuleEnabledWithConf($module, $config)) {
                 continue;
             }
 
-            $hookfile = self::getModuleDir($module).'/hooks/hook_'.$hook.'.php';
-            if (!file_exists($hookfile)) {
+            if (!isset(self::$module_info[$module]['hooks'])) {
+                self::$module_info[$module]['hooks'] = self::getModuleHooks($module);
+            }
+
+            if (!isset(self::$module_info[$module]['hooks'][$hook])) {
                 continue;
             }
 
-            require_once($hookfile);
+            require_once(self::$module_info[$module]['hooks'][$hook]['file']);
 
-            $hookfunc = $module.'_hook_'.$hook;
-            assert('is_callable($hookfunc)');
+            if (!is_callable(self::$module_info[$module]['hooks'][$hook]['func'])) {
+                throw new \SimpleSAML_Error_Exception('Invalid hook \''.$hook.'\' for module \''.$module.'\'.');
+            }
 
-            $hookfunc($data);
+            $fn = self::$module_info[$module]['hooks'][$hook]['func'];
+            $fn($data);
         }
     }
 }
