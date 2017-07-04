@@ -128,10 +128,11 @@ class SimpleSAML_XHTML_Template
         }
         $this->twig_template = $namespace ? '@'.$namespace.'/'.$filename : $filename;
         $loader = new \Twig_Loader_Filesystem();
-        $templateDirs = array_merge(
-            $this->findThemeTemplateDirs(),
-            $this->findModuleTemplateDirs()
-        );
+        $templateDirs = $this->findThemeTemplateDirs();
+        if ($this->module) {
+            $templateDirs[] = array($this->module => $this->getModuleTemplateDir($this->module));
+        }
+
         // default, themeless templates are checked last
         $templateDirs[] = array(
             $this->twig_namespace => $this->configuration->resolvePath('templates')
@@ -216,27 +217,44 @@ class SimpleSAML_XHTML_Template
         return array();
     }
 
-    /*
-     * Which enabled modules have templates?
+    /**
+     * Get the template directory of a module, if it exists.
      *
-     * @return array an array of module => templatedir lookups
+     * @return string The templates directory of a module.
+     *
+     * @throws InvalidArgumentException If the module is not enabled or it has no templates directory.
      */
-    private function findModuleTemplateDirs()
+    private function getModuleTemplateDir($module)
     {
-        $all_modules = \SimpleSAML\Module::getModules();
-        $modules = array();
-        foreach ($all_modules as $module) {
-            if (!\SimpleSAML\Module::isModuleEnabled($module)) {
-                continue;
-            }
-            $moduledir = \SimpleSAML\Module::getModuleDir($module);
-            // check if module has a /templates dir, if so, append
-            $templatedir = $moduledir.'/templates';
-            if (is_dir($templatedir)) {
-                $modules[] = array($module => $templatedir);
-            }
+        if (!\SimpleSAML\Module::isModuleEnabled($module)) {
+            throw new InvalidArgumentException('The module \''.$module.'\' is not enabled.');
         }
-        return $modules;
+        $moduledir = \SimpleSAML\Module::getModuleDir($module);
+        // check if module has a /templates dir, if so, append
+        $templatedir = $moduledir.'/templates';
+        if (!is_dir($templatedir)) {
+            throw new InvalidArgumentException('The module \''.$module.'\' has no templates directory.');
+
+        }
+        return $templatedir;
+    }
+
+
+    /**
+     * Add the templates from a given module.
+     *
+     * Note that the module must be installed, enabled, and contain a "templates" directory.
+     *
+     * @param string $module The module where we need to search for templates.
+     *
+     * @throws InvalidArgumentException If the module is not enabled or it has no templates directory.
+     */
+    public function addTemplatesFromModule($module)
+    {
+        $dir = $this->getModuleTemplateDir($module);
+        /** @var Twig_Loader_Filesystem $loader */
+        $loader = $this->twig->getLoader();
+        $loader->addPath($dir, $module);
     }
 
 
