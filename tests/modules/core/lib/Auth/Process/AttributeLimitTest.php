@@ -309,6 +309,8 @@ class Test_Core_Auth_Process_AttributeLimitTest extends PHPUnit_Framework_TestCa
      */
     public function testMatchAttributeValuesRegex()
     {
+        // SSP Logger requires a configuration to be set.
+        SimpleSAML_Configuration::loadFromArray(array(), '[ARRAY]', 'simplesaml');
         $state = self::$request;
         $state['Attributes']['eduPersonEntitlement'] = array(
             'urn:mace:example.terena.org:tcs:personal-user',
