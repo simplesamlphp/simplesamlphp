@@ -37,7 +37,10 @@ class Test_SimpleSAML_Configuration extends PHPUnit_Framework_TestCase
         } catch (\SimpleSAML\Error\CriticalConfigurationError $var) {
             // This exception is expected.
         }
-        //TODO: not sure this is correct. First call to getInstance() throw exception and the 2nd works?...
+        /*
+         * After the above failure an emergency configuration is create to allow core SSP components to function and
+         * possibly log/display the error.
+         */
         $c = SimpleSAML_Configuration::getInstance();
         $this->assertNotEmpty($c->toArray());
     }
@@ -105,8 +108,8 @@ class Test_SimpleSAML_Configuration extends PHPUnit_Framework_TestCase
      */
     public function testGetBaseURL() {
 
-        // Need to set a configuration file because the SSP Logger attempts to load it.
-        putenv('SIMPLESAMLPHP_CONFIG_DIR=tests/config/no-options');
+        // Need to set a default configuration because the SSP Logger attempts to use it.
+        SimpleSAML_Configuration::loadFromArray(array(), '[ARRAY]', 'simplesaml');
         $c = SimpleSAML_Configuration::loadFromArray(array());
         $this->assertEquals($c->getBaseURL(), 'simplesaml/');
 

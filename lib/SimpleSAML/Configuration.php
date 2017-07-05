@@ -198,7 +198,7 @@ class SimpleSAML_Configuration implements \SimpleSAML\Utils\ClearableState
 
 
     /**
-     * Load a configuration file from a configuration set.
+     * Load a configuration file from a configuration set.XM
      *
      * @param string $filename The name of the configuration file.
      * @param string $configSet The configuration set. Optional, defaults to 'simplesaml'.

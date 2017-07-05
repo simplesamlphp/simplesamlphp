@@ -37,9 +37,6 @@ class ConsentTest extends \PHPUnit_Framework_TestCase
      */
     public function testCheckDisable()
     {
-        // Consent code path attempts to load metadata, which tries to find a config.php
-        putenv('SIMPLESAMLPHP_CONFIG_DIR=tests/config/no-options');
-
         // test consent disable regex with match
         $config = array();
 

@@ -3,13 +3,15 @@
 namespace SimpleSAML\Test\Locale;
 
 use SimpleSAML\Locale\Localization;
+use \SimpleSAML_Configuration as Configuration;
+
 
 class LocalizationTest extends \PHPUnit_Framework_TestCase
 {
     protected function setUp()
     {
-        // Localization/Language code attempts to load a cookie, and looks to config.php for a name of the cookie
-        putenv('SIMPLESAMLPHP_CONFIG_DIR=tests/config/no-options');
+        // Localization/Language code attempts to load a cookie, and looks in the config for a name of the cookie
+        Configuration::loadFromArray(array(), '[ARRAY]', 'simplesaml');
     }
 
 
