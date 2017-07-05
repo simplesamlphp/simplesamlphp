@@ -150,11 +150,7 @@ class SimpleSAML_XHTML_Template
     private function setupTwig()
     {
         $auto_reload = $this->configuration->getBoolean('template.auto_reload', true);
-        $cache = false;
-        if (!$auto_reload) {
-            // Cache only used if auto_reload = false
-            $cache = $this->configuration->getString('template.cache', $this->configuration->resolvePath('cache'));
-        }
+        $cache = $this->configuration->getString('template.cache', false);
         // set up template paths
         $loader = $this->setupTwigTemplatepaths();
         // abort if twig template does not exist
