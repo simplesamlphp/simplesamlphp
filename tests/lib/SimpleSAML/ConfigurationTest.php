@@ -3,7 +3,7 @@
 /**
  * Tests for SimpleSAML_Configuration
  */
-class Test_SimpleSAML_Configuration extends PHPUnit_Framework_TestCase
+class Test_SimpleSAML_Configuration extends SimpleSAML\Test\Utils\ClearStateTestCase
 {
 
     /**
