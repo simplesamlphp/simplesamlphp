@@ -65,17 +65,22 @@ class SimpleSAML_XHTML_Template
      */
     private $twig_template;
 
-    /*
-     * Main Twig namespace, to avoid misspelling it *again*
-     */
-    private $twig_namespace = \Twig_Loader_Filesystem::MAIN_NAMESPACE;
-
-
-    /*
-     * Current module, if any
+    /**
+     * Current module, if any.
      */
     private $module;
 
+
+    /**
+     * Whether we are using a non-default theme or not.
+     *
+     * If we are using a theme, this variable holds an array with two keys: "module" and "name", those being the name
+     * of the module and the name of the theme, respectively. If we are using the default theme, the variable defaults
+     * to false.
+     *
+     * @var bool|array
+     */
+    private $theme;
 
     /**
      * Constructor
@@ -147,7 +152,7 @@ class SimpleSAML_XHTML_Template
 
         // default, themeless templates are checked last
         $templateDirs[] = array(
-            $this->twig_namespace => $this->configuration->resolvePath('templates')
+            \Twig_Loader_Filesystem::MAIN_NAMESPACE => $this->configuration->resolvePath('templates')
         );
         foreach ($templateDirs as $entry) {
             $loader->addPath($entry[key($entry)], key($entry));
@@ -197,45 +202,52 @@ class SimpleSAML_XHTML_Template
         return $twig;
     }
 
-    /*
-     * Add overriding templates in configured theme
+    /**
+     * Add overriding templates from the configured theme.
      *
-     * @return array an array of module => templatedir lookups
+     * @return array An array of module => templatedir lookups.
      */
     private function findThemeTemplateDirs()
     {
         // parse config to find theme and module theme is in, if any
-        $tmp = explode(':', $this->configuration->getString('theme.use', 'default'), 2);
-        if (count($tmp) === 2) {
-            $themeModule = $tmp[0];
-            $themeName = $tmp[1];
-        } else {
-            $themeModule = null;
-            $themeName = $tmp[0];
-        }
-        // default theme in use, abort
-        if ($themeName == 'default') {
+        $theme = explode(':', $this->configuration->getString('theme.use', 'default'), 2);
+        if (count($theme) === 1) { // no module involved
+            if ($theme === 'default') { // default theme
+                return array();
+            }
+            // non-default theme
+            $this->theme = array(
+                'module' => null,
+                'name' => $theme[0],
+            );
             return array();
         }
-        if ($themeModule !== null) {
-            $moduleDir = \SimpleSAML\Module::getModuleDir($themeModule);
-            $themeDir = $moduleDir.'/themes/'.$themeName;
-            $files = scandir($themeDir);
-            if ($files) {
-                $themeTemplateDirs = array();
-                foreach ($files as $file) {
-                    if ($file == '.' || $file == '..') {
-                        continue;
-                    }
-                    // set correct name for default namespace
-                    $ns = $file == 'default' ? $this->twig_namespace : $file;
-                    $themeTemplateDirs[] = array($ns => $themeDir.'/'.$file);
-                }
-                return $themeTemplateDirs;
-            }
+
+        // theme from a module
+        $this->theme['module'] = $theme[0];
+        $this->theme['name'] = $theme[1];
+
+        // setup directories & namespaces
+        $themeDir = \SimpleSAML\Module::getModuleDir($this->theme['module']).'/themes/'.$this->theme['name'];
+        $subdirs = scandir($themeDir);
+        if (!$subdirs) { // no subdirectories in the theme directory, nothing to do here
+            // this is probably wrong, log a message
+            \SimpleSAML\Logger::warning('Emtpy theme directory for theme "'.$this->theme['name'].'".');
+            return array();
         }
-        // theme not found
-        return array();
+
+        $themeTemplateDirs = array();
+        foreach ($subdirs as $entry) {
+            // discard anything that's not a directory. Expression is negated to profit from lazy evaluation
+            if (!($entry !== '.' && $entry !== '..' && is_dir($themeDir.'/'.$entry))) {
+                continue;
+            }
+
+            // set correct name for the default namespace
+            $ns = ($entry === 'default') ? \Twig_Loader_Filesystem::MAIN_NAMESPACE : $entry;
+            $themeTemplateDirs[] = array($ns => $themeDir.'/'.$entry);
+        }
+        return $themeTemplateDirs;
     }
 
     /**
