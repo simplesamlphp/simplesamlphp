@@ -67,7 +67,7 @@ class sspmod_core_Auth_Process_AttributeLimit extends SimpleSAML_Auth_Processing
 		if(array_key_exists('AttributeConsumingService', $request['Destination'])) {
 
 			// if present, get AttributeConsumingServiceIndex from request
-			if(array_key_exists('saml:AttributeConsumingServiceIndex',$request)) {
+			if(array_key_exists('saml:AttributeConsumingServiceIndex',$request) && !is_null($request['saml:AttributeConsumingServiceIndex'])) {
 				$acsi = $request['saml:AttributeConsumingServiceIndex'];
 
 				// if index from request exists in the configuration, return corresponding attributes

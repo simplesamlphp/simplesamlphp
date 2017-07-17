@@ -437,6 +437,44 @@ class Test_Core_Auth_Process_AttributeLimitTest extends PHPUnit_Framework_TestCa
     }
 
     /**
+     * Test default AttributeConsumingServiceIndex in SP metadata
+     * when saml:AttributeConsumingServiceIndex is null
+     */
+
+    public function testAttributeConsumingServiceNULLDefault()
+    {
+        // default config
+        $config = array(
+        );
+
+        //prepare request without AttributeConsumingServiceIndex
+        $request = array(
+            'Attributes' => array(
+                 'eduPersonPrincipalName' => array('eptid@example.org'),
+                 'eduPersonAffiliation' => array('member'),
+                 'cn' => array('user name'),
+                 'mail' => array('user@example.org'),
+                 'testN1' => array('testV1'),
+                 'testN2' => array('testV2'),
+                 'testN3' => array('testV3'),
+             ),
+            'Destination' => array(
+                'AttributeConsumingService' => self::$attributeConsumingService,
+                'AttributeConsumingService.default' => 0,
+             ),
+            'Source' => array(
+             ),
+             'saml:AttributeConsumingServiceIndex' => null,
+        );
+
+        $result = self::processFilter($config, $request);
+        $attributes = $result['Attributes'];
+        $this->assertArrayHasKey('eduPersonPrincipalName', $attributes);
+        $this->assertArrayHasKey('mail', $attributes);
+        $this->assertCount(2, $attributes);
+    }
+
+    /**
      * Test default AttributeConsumingServiceIndex not in SP metadata.
      *
      * @expectedException Exception 
