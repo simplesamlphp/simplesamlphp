@@ -204,6 +204,23 @@ class SimpleSAML_XHTML_Template
 
         $twig = new Twig_Environment($loader, $options);
         $twig->addExtension(new Twig_Extensions_Extension_I18n());
+
+        // initialize some basic context
+        $langParam = $this->configuration->getString('language.parameter.name', 'language');
+        $twig->addGlobal('languageParameterName', $langParam);
+        $twig->addGlobal('localeBackend', $this->configuration->getString('language.i18n.backend', 'SimpleSAMLphp'));
+        $twig->addGlobal('currentLanguage', $this->translator->getLanguage()->getLanguage());
+        $twig->addGlobal('isRTL', false); // language RTL configuration
+        if ($this->translator->getLanguage()->isLanguageRTL()) {
+            $twig->addGlobal('isRTL', true);
+        }
+        $queryParams = $_GET; // add query parameters, in case we need them in the template
+        if (isset($queryParams[$langParam])) {
+            unset($queryParams[$langParam]);
+        }
+        $twig->addGlobal('queryParams', $queryParams);
+        $twig->addGlobal('templateId', str_replace('.twig', '', $this->normalizeTemplateName($this->template)));
+
         return $twig;
     }
 
@@ -320,9 +337,6 @@ class SimpleSAML_XHTML_Template
      */
     private function twigDefaultContext()
     {
-        $this->data['languageParameterName'] = $this->configuration->getString('language.parameter.name', 'language');
-        $this->data['localeBackend'] = $this->configuration->getString('language.i18n.backend', 'SimpleSAMLphp');
-        $this->data['currentLanguage'] = $this->translator->getLanguage()->getLanguage();
         // show language bar by default
         if (!isset($this->data['hideLanguageBar'])) {
             $this->data['hideLanguageBar'] = false;
@@ -344,18 +358,6 @@ class SimpleSAML_XHTML_Template
         }
         if (!isset($this->data['pagetitle'])) {
             $this->data['pagetitle'] = 'SimpleSAMLphp';
-        }
-
-        // set RTL
-        $this->data['isRTL'] = false;
-        if ($this->translator->getLanguage()->isLanguageRTL()) {
-            $this->data['isRTL'] = true;
-        }
-
-        // add query parameters, in case we need them in the template
-        $this->data['queryParams'] = $_GET;
-        if (isset($this->data['queryParams'][$this->data['languageParameterName']])) {
-            unset($this->data['queryParams'][$this->data['languageParameterName']]);
         }
     }
 
