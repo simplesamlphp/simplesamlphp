@@ -95,8 +95,16 @@ class SimpleSAML_XHTML_Template
         $this->template = $template;
         // TODO: do not remove the slash from the beginning, change the templates instead!
         $this->data['baseurlpath'] = ltrim($this->configuration->getBasePath(), '/');
-        $result = $this->findModuleAndTemplateName($template);
-        $this->module = $result[0];
+
+        // parse module and template name
+        list($this->module) = $this->findModuleAndTemplateName($template);
+
+        // parse config to find theme and module theme is in, if any
+        list($this->theme['module'], $this->theme['name']) = self::findModuleAndTemplateName(
+            $this->configuration->getString('theme.use', 'default')
+        );
+
+        // initialize internationalization system
         $this->translator = new SimpleSAML\Locale\Translate($configuration, $defaultDictionary);
         $this->localization = new \SimpleSAML\Locale\Localization($configuration);
         $this->twig = $this->setupTwig();
@@ -137,13 +145,8 @@ class SimpleSAML_XHTML_Template
         $filename = $this->normalizeTemplateName($this->template);
 
         // get namespace if any
-        $namespace = '';
-        $split = explode(':', $filename, 2);
-        if (count($split) === 2) {
-            $namespace = $split[0];
-            $filename = $split[1];
-        }
-        $this->twig_template = $namespace ? '@'.$namespace.'/'.$filename : $filename;
+        list($namespace, $filename) = self::findModuleAndTemplateName($filename);
+        $this->twig_template = ($namespace !== null) ? '@'.$namespace.'/'.$filename : $filename;
         $loader = new \Twig_Loader_Filesystem();
         $templateDirs = $this->findThemeTemplateDirs();
         if ($this->module) {
@@ -209,23 +212,9 @@ class SimpleSAML_XHTML_Template
      */
     private function findThemeTemplateDirs()
     {
-        // parse config to find theme and module theme is in, if any
-        $theme = explode(':', $this->configuration->getString('theme.use', 'default'), 2);
-        if (count($theme) === 1) { // no module involved
-            if ($theme === 'default') { // default theme
-                return array();
-            }
-            // non-default theme
-            $this->theme = array(
-                'module' => null,
-                'name' => $theme[0],
-            );
+        if ($this->theme['module'] === null) { // no module involved
             return array();
         }
-
-        // theme from a module
-        $this->theme['module'] = $theme[0];
-        $this->theme['name'] = $theme[1];
 
         // setup directories & namespaces
         $themeDir = \SimpleSAML\Module::getModuleDir($this->theme['module']).'/themes/'.$this->theme['name'];
@@ -417,25 +406,15 @@ class SimpleSAML_XHTML_Template
     {
         assert('is_string($template)');
 
-        $result = $this->findModuleAndTemplateName($template);
-        $templateModule = $result[0] ? $result[0] : 'default';
-        $templateName = $result[1];
-
-        $tmp = explode(':', $this->configuration->getString('theme.use', 'default'), 2);
-        if (count($tmp) === 2) {
-            $themeModule = $tmp[0];
-            $themeName = $tmp[1];
-        } else {
-            $themeModule = null;
-            $themeName = $tmp[0];
-        }
+        list($templateModule, $templateName) = $this->findModuleAndTemplateName($template);
+        $templateModule = ($templateModule !== null) ? $templateModule : 'default';
 
         // first check the current theme
-        if ($themeModule !== null) {
+        if ($this->theme['module'] !== null) {
             // .../module/<themeModule>/themes/<themeName>/<templateModule>/<templateName>
 
-            $filename = \SimpleSAML\Module::getModuleDir($themeModule).
-                '/themes/'.$themeName.'/'.$templateModule.'/'.$templateName;
+            $filename = \SimpleSAML\Module::getModuleDir($this->theme['module']).
+                '/themes/'.$this->theme['name'].'/'.$templateModule.'/'.$templateName;
         } elseif ($templateModule !== 'default') {
             // .../module/<templateModule>/templates/<templateName>
             $filename = \SimpleSAML\Module::getModuleDir($templateModule).'/templates/'.$templateName;
