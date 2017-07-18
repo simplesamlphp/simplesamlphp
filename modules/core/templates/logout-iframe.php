@@ -1,6 +1,6 @@
 <?php
 
-$id = $this->data['id'];
+$id = $this->data['auth_state'];
 $type = $this->data['type'];
 $from = $this->data['from'];
 $SPs = $this->data['SPs'];
