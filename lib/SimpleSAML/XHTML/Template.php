@@ -70,6 +70,17 @@ class SimpleSAML_XHTML_Template
      */
     private $module;
 
+    /**
+     * A template controller, if any.
+     *
+     * Used to intercept certain parts of the template handling, while keeping away unwanted/unexpected hooks. Set
+     * the 'theme.controller' configuration option to a class that implements the
+     * SimpleSAML\XHTML\TemplateControllerInterface interface to use it.
+     *
+     * @var SimpleSAML\XHTML\TemplateControllerInterface
+     */
+    private $controller;
+
 
     /**
      * Whether we are using a non-default theme or not.
@@ -107,6 +118,15 @@ class SimpleSAML_XHTML_Template
         // initialize internationalization system
         $this->translator = new SimpleSAML\Locale\Translate($configuration, $defaultDictionary);
         $this->localization = new \SimpleSAML\Locale\Localization($configuration);
+
+        // check if we need to attach a theme controller
+        $controller = $this->configuration->getString('theme.controller', false);
+        if ($controller && class_exists($controller) &&
+            class_implements($controller, '\SimpleSAML\XHTML\TemplateControllerInterface')
+        ) {
+            $this->controller = new $controller();
+        }
+
         $this->twig = $this->setupTwig();
     }
 
@@ -220,6 +240,10 @@ class SimpleSAML_XHTML_Template
         }
         $twig->addGlobal('queryParams', $queryParams);
         $twig->addGlobal('templateId', str_replace('.twig', '', $this->normalizeTemplateName($this->template)));
+
+        if ($this->controller) {
+            $this->controller->setUpTwig($twig);
+        }
 
         return $twig;
     }
@@ -369,6 +393,9 @@ class SimpleSAML_XHTML_Template
     {
         if ($this->twig !== false) {
             $this->twigDefaultContext();
+            if ($this->controller) {
+                $this->controller->display($this->data);
+            }
             echo $this->twig->render($this->twig_template, $this->data);
         } else {
             $filename = $this->findTemplatePath($this->template);
