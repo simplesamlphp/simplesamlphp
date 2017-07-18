@@ -394,15 +394,7 @@ class SimpleSAML_XHTML_Template
     private function findModuleAndTemplateName($template)
     {
         $tmp = explode(':', $template, 2);
-        if (count($tmp) === 2) {
-            $templateModule = $tmp[0];
-            $templateName = $tmp[1];
-        } else {
-            $templateModule = null;
-            $templateName = $tmp[0];
-        }
-
-        return array($templateModule, $templateName);
+        return (count($tmp) === 2) ? array($tmp[0], $tmp[1]) : array(null, $tmp[0]);
     }
 
 
