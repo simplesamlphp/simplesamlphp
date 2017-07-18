@@ -1,6 +1,6 @@
 <?php
 
-$id = $this->data['id'];
+$id = $this->data['auth_state'];
 $SPs = $this->data['SPs'];
 
 $iframeURL = 'logout-iframe.php?type=embed&id='.urlencode($id);
