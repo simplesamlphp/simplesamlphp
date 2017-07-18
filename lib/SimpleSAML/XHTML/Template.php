@@ -178,10 +178,12 @@ class SimpleSAML_XHTML_Template
             return false;
         }
 
-
         // load extra i18n domains
         if ($this->module) {
             $this->localization->addModuleDomain($this->module);
+        }
+        if ($this->theme['module'] !== null && $this->theme['module'] !== $this->module) {
+            $this->localization->addModuleDomain($this->theme['module']);
         }
 
         $options = array(
