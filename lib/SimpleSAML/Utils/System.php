@@ -203,5 +203,9 @@ class System
                 'Error moving "'.$tmpFile.'" to "'.$filename.'": '.$error['message']
             );
         }
+
+        if (function_exists('opcache_invalidate')) {
+            opcache_invalidate($filename);
+        }
     }
 }
