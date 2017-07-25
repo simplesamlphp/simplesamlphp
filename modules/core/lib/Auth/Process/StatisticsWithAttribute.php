@@ -57,6 +57,11 @@ class sspmod_core_Auth_Process_StatisticsWithAttribute extends SimpleSAML_Auth_P
 		$source = 'NA';
 		$dest = 'NA';
 
+		if(array_key_exists('isPassive', $state) && $state['isPassive'] === true) {
+			// We have a passive request. Skip logging statistics
+			return;
+		}
+
 		if (array_key_exists($this->attribute, $state['Attributes'])) $logAttribute = $state['Attributes'][$this->attribute][0];		
 		if (array_key_exists('Source', $state)) {
 			if (isset($state['Source']['core:statistics-id'])) {
