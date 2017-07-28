@@ -17,6 +17,7 @@
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">./../../lib/</directory>
+            <directory suffix=".php">./../../modules/consent/lib/</directory>
             <directory suffix=".php">./../../modules/core/lib/</directory>
             <directory suffix=".php">./../../modules/saml/lib/</directory>
             <exclude>

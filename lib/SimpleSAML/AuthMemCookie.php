@@ -145,8 +145,7 @@ class SimpleSAML_AuthMemCookie
         $memcache->delete($sessionID);
 
         // delete the session cookie
-        $sessionHandler = SimpleSAML_SessionHandler::getSessionHandler();
-        $sessionHandler->setCookie($cookieName, null);
+        \SimpleSAML\Utils\HTTP::setCookie($cookieName, null);
     }
 
 

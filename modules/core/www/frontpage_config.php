@@ -53,14 +53,6 @@ $links_config[] = array(
 	'text' => '{core:frontpage:link_phpinfo}'
 );
 
-$links_config[] = array(
-	'href' => \SimpleSAML\Utils\HTTP::getBaseURL() . 'admin/sandbox.php',
-	'text' => '{core:frontpage:link_sandbox}'
-);
-
-
-
-
 $allLinks = array(
 	'links'      => &$links,
 	'welcome'    => &$links_welcome,
@@ -107,20 +99,26 @@ $enablematrix = array(
 
 
 $functionchecks = array(
+	'time'             => array('required', 'Date/Time Extension'),
 	'hash'             => array('required',  'Hashing function'),
 	'gzinflate'        => array('required',  'ZLib'),
 	'openssl_sign'     => array('required',  'OpenSSL'),
-	'simplexml_import_dom' => array('required', 'SimpleXML'),
 	'dom_import_simplexml' => array('required', 'XML DOM'),
 	'preg_match'       => array('required',  'RegEx support'),
-	'mcrypt_module_open'=> array('optional',  'MCrypt'),
-	'mysql_connect'    => array('optional',  'MySQL support'),
+	'json_decode'      => array('required', 'JSON support'),
+	'class_implements' => array('required', 'Standard PHP Library (SPL)'),
+	'mb_strlen'        => array('required', 'Multibyte String Extension'),
+	'curl_init'        => array('optional', 'cURL (required if automatic version checks are used, also by some modules.'),
+	'mcrypt_module_open'=> array('optional',  'MCrypt (required if digital signatures or encryption are used)'),
+	'session_start'  => array('optional', 'Session Extension (required if PHP sessions are used)'),
+	'pdo_drivers'    => array('optional',  'PDO Extension (required if a database backend is used)'),
+	'memcache_debug' => array('optional', 'Memcache Extension (required if a Memcached backend is used)'),
 );
 if (SimpleSAML\Module::isModuleEnabled('ldap')) {
-	$functionchecks['ldap_bind'] = array('required_ldap',  'LDAP Extension');
+	$functionchecks['ldap_bind'] = array('optional',  'LDAP Extension (required if an LDAP backend is used)');
 }
 if (SimpleSAML\Module::isModuleEnabled('radius')) {
-        $functionchecks['radius_auth_open'] = array('required_radius',  'Radius Extension');
+        $functionchecks['radius_auth_open'] = array('optional',  'Radius Extension (required if a Radius backend is used)');
 }
 
 $funcmatrix = array();
@@ -132,6 +130,11 @@ foreach ($functionchecks AS $func => $descr) {
 	$funcmatrix[] = array('descr' => $descr[1], 'required' => $descr[0], 'enabled' => function_exists($func));
 }
 
+$funcmatrix[] = array(
+    'required' => 'optional',
+    'descr' => 'predis/predis (required if the redis data store is used)',
+    'enabled' => class_exists('\Predis\Client'),
+);
 
 /* Some basic configuration checks */
 
@@ -180,6 +183,11 @@ $t->data['links_federation'] = $links_federation;
 
 $t->data['enablematrix'] = $enablematrix;
 $t->data['funcmatrix'] = $funcmatrix;
+$t->data['requiredmap'] = array(
+    'recommended' => $t->noop('{core:frontpage:recommended}'),
+    'required' => $t->noop('{core:frontpage:required}'),
+    'optional' => $t->noop('{core:frontpage:optional}'),
+);
 $t->data['version'] = $config->getVersion();
 $t->data['directory'] = dirname(dirname(dirname(dirname(__FILE__))));
 

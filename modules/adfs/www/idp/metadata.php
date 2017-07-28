@@ -148,7 +148,8 @@ try {
 
         $t->data['clipboard.js'] = true;
         $t->data['available_certs'] = $availableCerts;
-        $t->data['header'] = 'adfs-idp';
+        $t->data['header'] = 'adfs-idp'; // TODO: Replace with headerString in 2.0
+        $t->data['headerString'] = $t->noop('metadata_adfs-idp');
         $t->data['metaurl'] = \SimpleSAML\Utils\HTTP::getSelfURLNoQuery();
         $t->data['metadata'] = htmlspecialchars($metaxml);
         $t->data['metadataflat'] = htmlspecialchars($metaflat);

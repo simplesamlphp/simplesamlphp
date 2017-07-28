@@ -196,15 +196,32 @@ class SimpleSAML_Error_Exception extends Exception
     /**
      * Print the backtrace to the log if the 'debug' option is enabled in the configuration.
      */
-    protected function logBacktrace()
+    protected function logBacktrace($level = \SimpleSAML\Logger::DEBUG)
     {
-        if (!SimpleSAML_Configuration::getInstance()->getBoolean('debug', false)) {
+        // see if debugging is enabled for backtraces
+        $debug = SimpleSAML_Configuration::getInstance()->getArrayize('debug', array('backtraces' => false));
+
+        if (!(in_array('backtraces', $debug, true) // implicitly enabled
+              || (array_key_exists('backtraces', $debug) && $debug['backtraces'] === true) // explicitly set
+              // TODO: deprecate the old style and remove it in 2.0
+              || (array_key_exists(0, $debug) && $debug[0] === true) // old style 'debug' configuration option
+        )) {
             return;
         }
 
         $backtrace = $this->formatBacktrace();
+
+        $callback = array('\SimpleSAML\Logger');
+        $functions = array(
+            \SimpleSAML\Logger::ERR     => 'error',
+            \SimpleSAML\Logger::WARNING => 'warning',
+            \SimpleSAML\Logger::INFO    => 'info',
+            \SimpleSAML\Logger::DEBUG   => 'debug',
+        );
+        $callback[] = $functions[$level];
+
         foreach ($backtrace as $line) {
-            SimpleSAML\Logger::debug($line);
+            call_user_func($callback, $line);
         }
     }
 
@@ -224,7 +241,7 @@ class SimpleSAML_Error_Exception extends Exception
             SimpleSAML\Logger::INFO    => 'logInfo',
             SimpleSAML\Logger::DEBUG   => 'logDebug',
         );
-        call_user_func(array($this, $fn[$default_level]));
+        call_user_func(array($this, $fn[$default_level]), $default_level);
     }
 
 
@@ -236,7 +253,7 @@ class SimpleSAML_Error_Exception extends Exception
     public function logError()
     {
         SimpleSAML\Logger::error($this->getClass().': '.$this->getMessage());
-        $this->logBacktrace();
+        $this->logBacktrace(\SimpleSAML\Logger::ERR);
     }
 
 
@@ -248,7 +265,7 @@ class SimpleSAML_Error_Exception extends Exception
     public function logWarning()
     {
         SimpleSAML\Logger::warning($this->getClass().': '.$this->getMessage());
-        $this->logBacktrace();
+        $this->logBacktrace(\SimpleSAML\Logger::WARNING);
     }
 
 
@@ -260,7 +277,7 @@ class SimpleSAML_Error_Exception extends Exception
     public function logInfo()
     {
         SimpleSAML\Logger::info($this->getClass().': '.$this->getMessage());
-        $this->logBacktrace();
+        $this->logBacktrace(\SimpleSAML\Logger::INFO);
     }
 
 
@@ -272,7 +289,7 @@ class SimpleSAML_Error_Exception extends Exception
     public function logDebug()
     {
         SimpleSAML\Logger::debug($this->getClass().': '.$this->getMessage());
-        $this->logBacktrace();
+        $this->logBacktrace(\SimpleSAML\Logger::DEBUG);
     }
 
 

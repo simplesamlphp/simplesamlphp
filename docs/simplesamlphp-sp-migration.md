@@ -22,7 +22,7 @@ Create a new authentication source
 
 In this step we are going to create an authentication source which uses the `saml` module for authentication.
 To do this, we open `config/authsources.php`. Create the file if it does not exist.
-If you create the file, it should looke like this:
+If you create the file, it should look like this:
 
     <?php
     $config = array(

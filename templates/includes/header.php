@@ -43,7 +43,7 @@ header('X-Frame-Options: SAMEORIGIN');
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0" />
+<meta name="viewport" content="initial-scale=1.0" />
 <script type="text/javascript" src="/<?php echo $this->data['baseurlpath']; ?>resources/script.js"></script>
 <title><?php
 if(array_key_exists('header', $this->data)) {
@@ -125,7 +125,7 @@ if($onLoad !== '') {
 <div id="wrap">
 	
 	<div id="header">
-		<h1><a style="text-decoration: none; color: white" href="/<?php echo $this->data['baseurlpath']; ?>"><?php 
+		<h1><a href="/<?php echo $this->data['baseurlpath']; ?>"><?php
 			echo (isset($this->data['header']) ? $this->data['header'] : 'SimpleSAMLphp');
 		?></a></h1>
 	</div>
@@ -180,6 +180,7 @@ if($onLoad !== '') {
 						'lv' => 'Latviešu', // Latvian
 						'ro' => 'Românește', // Romanian
 						'eu' => 'Euskara', // Basque
+						'af' => 'Afrikaans', // Afrikaans
 			);
 			
 			$textarray = array();

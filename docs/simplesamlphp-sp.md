@@ -72,8 +72,10 @@ This is a minimal example of a `metadata/saml20-idp-remote.php` metadata file:
     $metadata['https://example.com'] = array(
         'SingleSignOnService'  => 'https://example.com/simplesaml/saml2/idp/SSOService.php',
         'SingleLogoutService'  => 'https://example.com/simplesaml/saml2/idp/SingleLogoutService.php',
-        'certFingerprint'      => 'c9ed4dfb07caf13fc21e0fec1572047eb8a7a4cb',
+        'certificate'          => 'example.pem',
     );
+
+`example.pem` under your `cert/` directory contains the certificate the identity provider uses for signing assertions.
 
 For more information about available options in the idp-remote metadata files, see the [IdP remote reference](simplesamlphp-reference-idp-remote).
 

@@ -1,0 +1,22 @@
+<div id="header">
+    <h1><a style="text-decoration: none; color: white" href="/{{ baseurlpath }}">{{ pagetitle }}</a></h1>
+</div>
+
+{% if not hideLanguageBar %}
+<div id="languagebar">
+    {% for lang in languageBar %}
+        {%- if not loop.first -%}|{% endif -%}
+        {% if lang.url %}
+            <a href="{{ lang.url -}}
+            {%- if queryParams %}&{% endif -%}
+            {%- for name, value in queryParams -%}
+                {%- if not loop.first %}&{% endif -%}
+                {%- if value %}{{ name }}={{ value }}{% else %}{{ name }}{% endif -%}
+            {%- endfor %}">{{ lang.name }}</a>
+        {% else %}
+            {{ lang.name }}
+        {% endif %}
+
+    {% endfor %}
+</div>
+{% endif %}

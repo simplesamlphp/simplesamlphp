@@ -5,6 +5,8 @@ The `mcrypt` extension is no longer required by SimpleSAMLphp, so if no signatur
 can be skipped. It is still a requirement for `xmlseclibs` though, so for those verifying or creating signed
 documents, or using encryption, it is still needed.
 
+The `mbstring` extension is now required starting on SimpleSAMLphp 1.14.12.
+
 PHP session cookies are now set to HTTP-only by default. This relates to the `session.phpsession.httponly`
 configuration option.
 

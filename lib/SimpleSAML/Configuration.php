@@ -115,13 +115,22 @@ class SimpleSAML_Configuration
             return self::$loadedConfigs[$filename];
         }
 
-        $spurious_output = false;
         if (file_exists($filename)) {
             $config = 'UNINITIALIZED';
 
             // the file initializes a variable named '$config'
             ob_start();
-            require($filename);
+            if (interface_exists('Throwable')) {
+                try {
+                    require($filename);
+                } catch (ParseError $e) {
+                    self::$loadedConfigs[$filename] = self::loadFromArray(array(), '[ARRAY]', 'simplesaml');
+                    throw new SimpleSAML\Error\ConfigurationError($e->getMessage(), $filename, array());
+                }
+            } else {
+                require($filename);
+            }
+
             $spurious_output = ob_get_length() > 0;
             ob_end_clean();
 
@@ -412,7 +421,7 @@ class SimpleSAML_Configuration
 
 
     /**
-     * Check whether an key in the configuration exists.
+     * Check whether a key in the configuration exists or not.
      *
      * @param string $name The key in the configuration to look for.
      *
@@ -797,7 +806,7 @@ class SimpleSAML_Configuration
      *                  isn't given, the option will be considered to be mandatory. The default value can be
      *                  any value, including null.
      *
-     * @return mixed The option with the given name, or $default if the option isn't found adn $default is given.
+     * @return mixed The option with the given name, or $default if the option isn't found and $default is given.
      *
      * @throws Exception If the option does not have any of the allowed values.
      */

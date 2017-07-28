@@ -50,7 +50,6 @@ The configuration of *Auth Proc Filters* is a list of filters with priority as *
 			'addurnprefix'
 		),
 		20 => 'core:TargetedID',
-		40 => 'core:AttributeRealm',
 		50 => 'core:AttributeLimit',
 		90 => array(
 			'class' 	=> 'consent:Consent', 
@@ -112,7 +111,7 @@ Filters can be added both in `hosted` and `remote` metadata. Here is an example 
 		'certificate'		=>	'example.org.crt',
 		'auth'				=>	'feide',
 		'authproc' => array(
-			40 => 'core:AttributeRealm',
+			40 => 'preprodwarning:Warning',
 		),
 	)
 
@@ -132,7 +131,7 @@ The following filters are included in the SimpleSAMLphp distribution:
 - [`core:AttributeAlter`](./core:authproc_attributealter): Do search-and-replace on attributevalues.
 - [`core:AttributeLimit`](./core:authproc_attributelimit): Limit the attributes in the response.
 - [`core:AttributeMap`](./core:authproc_attributemap): Change the name of the attributes.
-- [`core:AttributeRealm`](./core:authproc_attributerealm): Create an attribute with the realm of the user.
+- [`core:AttributeRealm`](./core:authproc_attributerealm): (deprecated) Create an attribute with the realm of the user.
 - [`core:GenerateGroups`](./core:authproc_generategroups): Generate a `group` attribute for the user.
 - [`core:LanguageAdaptor`](./core:authproc_languageadaptor): Transfering language setting from IdP to SP.
 - [`core:PHP`](./core:authproc_php): Modify attributes with custom PHP code.
@@ -167,7 +166,7 @@ Requirements for authentication processing filters:
 
  - Must be derived from the `SimpleSAML_Auth_ProcessingFilter`-class.
  - If a constructor is implemented, it must first call the parent constructor, passing along all parameters, before accessing any of the parameters. In general, only the $config parameter should be accessed.
- - The `process(&$state)`-function must be implemented. If this function completes, it is assumed that processing is completed, and that the $request array has been updated.
+ - The `process(&$request)`-function must be implemented. If this function completes, it is assumed that processing is completed, and that the $request array has been updated.
  - If the `process`-function does not return, it must at a later time call `SimpleSAML_Auth_ProcessingChain::resumeProcessing` with the new request state. The request state must be an update of the array passed to the `process`-function.
  - No pages may be shown to the user from the `process`-function. Instead, the request state should be saved, and the user should be redirected to a new page. This must be done to prevent unpredictable events if the user for example reloads the page.
  - No state information should be stored in the filter object. It must instead be stored in the request state array. Any changes to variables in the filter object may be lost.

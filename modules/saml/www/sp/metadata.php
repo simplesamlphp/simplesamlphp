@@ -21,7 +21,7 @@ if (!($source instanceof sspmod_saml_Auth_Source_SP)) {
 
 $entityId = $source->getEntityId();
 $spconfig = $source->getMetadata();
-$store = SimpleSAML_Store::getInstance();
+$store = \SimpleSAML\Store::getInstance();
 
 $metaArray20 = array();
 
@@ -34,7 +34,7 @@ $slob = $spconfig->getArray('SingleLogoutServiceBinding', $slosvcdefault);
 $slol = SimpleSAML\Module::getModuleURL('saml/sp/saml2-logout.php/'.$sourceId);
 
 foreach ($slob as $binding) {
-    if ($binding == \SAML2\Constants::BINDING_SOAP && !($store instanceof SimpleSAML_Store_SQL)) {
+    if ($binding == \SAML2\Constants::BINDING_SOAP && !($store instanceof \SimpleSAML\Store\SQL)) {
         // we cannot properly support SOAP logout
         continue;
     }
@@ -242,7 +242,8 @@ if (array_key_exists('output', $_REQUEST) && $_REQUEST['output'] == 'xhtml') {
     $t = new SimpleSAML_XHTML_Template($config, 'metadata.php', 'admin');
 
     $t->data['clipboard.js'] = true;
-    $t->data['header'] = 'saml20-sp';
+    $t->data['header'] = 'saml20-sp'; // TODO: Replace with headerString in 2.0
+    $t->data['headerString'] = $t->noop('metadata_saml20-sp');
     $t->data['metadata'] = htmlspecialchars($xml);
     $t->data['metadataflat'] = '$metadata['.var_export($entityId, true).'] = '.var_export($metaArray20, true).';';
     $t->data['metaurl'] = $source->getMetadataURL();

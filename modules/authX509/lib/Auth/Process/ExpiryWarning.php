@@ -14,7 +14,8 @@
  * @author Joost van Dijk, SURFnet. <Joost.vanDijk@surfnet.nl>
  * @package SimpleSAMLphp
  */
-class sspmod_authX509_Auth_Process_ExpiryWarning extends SimpleSAML_Auth_ProcessingFilter {
+class sspmod_authX509_Auth_Process_ExpiryWarning extends SimpleSAML_Auth_ProcessingFilter
+{
 
     private $warndaysbefore = 30;
     private $renewurl = null;
@@ -25,7 +26,8 @@ class sspmod_authX509_Auth_Process_ExpiryWarning extends SimpleSAML_Auth_Process
      * @param array $config  Configuration information about this filter.
      * @param mixed $reserved  For future use.
      */
-    public function __construct($config, $reserved) {
+    public function __construct($config, $reserved)
+    {
         parent::__construct($config, $reserved);
 
         assert('is_array($config)');
@@ -53,10 +55,11 @@ class sspmod_authX509_Auth_Process_ExpiryWarning extends SimpleSAML_Auth_Process
      *
      * @param array $state  The state of the response.
      */
-    public function process(&$state) {
+    public function process(&$state)
+    {
         assert('is_array($state)');
 
-        if (isset($state['isPassive']) && $state['isPassive'] === TRUE) {
+        if (isset($state['isPassive']) && $state['isPassive'] === true) {
             // We have a passive request. Skip the warning
             return;
         }
@@ -68,7 +71,7 @@ class sspmod_authX509_Auth_Process_ExpiryWarning extends SimpleSAML_Auth_Process
 
         $client_cert = $_SERVER['SSL_CLIENT_CERT'];
         $client_cert_data = openssl_x509_parse($client_cert);
-        if ($client_cert_data == FALSE) {
+        if ($client_cert_data == false) {
             SimpleSAML\Logger::error('authX509: invalid cert');
             return;
         }

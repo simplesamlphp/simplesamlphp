@@ -17,41 +17,55 @@ configured, and how to write new modules.
 Overview
 --------
 
-There are currently three parts of SimpleSAMLphp which can be stored in modules - authentication sources, authentication processing filters and themes. There is also support for defining hooks - functions run at specific times. More than one thing can be stored in a single module. There is also support for storing supporting files, such as templates and dictionaries, in modules.
+There are currently three parts of SimpleSAMLphp which can be stored in 
+modules - authentication sources, authentication processing filters and 
+themes. There is also support for defining hooks - functions run at 
+specific times. More than one thing can be stored in a single module. 
+There is also support for storing supporting files, such as templates 
+and dictionaries, in modules.
 
-The different functionalities which can be created as modules will be described in more detail in the following sections; what follows is a short introduction to what you can du with them:
+The different functionalities which can be created as modules will be 
+described in more detail in the following sections; what follows is a 
+short introduction to what you can do with them:
 
- - Authentication sources implement different methods for authenticating users, for example simple login forms which authenticate against a database backend, or login methods which use client-side certificates. 
- - Authentication processing filters perform various tasks after the user is authenticated and has a set of attributes. They can add, remove and modify attributes, do additional authentication checks, ask questions of the user, +++. 
- - Themes allow you to package custom templates for multiple modules into a single module.
+ - Authentication sources implement different methods for 
+   authenticating users, for example simple login forms which 
+   authenticate against a database backend, or login methods which use 
+   client-side certificates. 
+ - Authentication processing filters perform various tasks after the 
+   user is authenticated and has a set of attributes. They can add, 
+   remove and modify attributes, do additional authentication checks, 
+   ask questions of the user, +++. 
+ - Themes allow you to package custom templates for multiple modules 
+   into a single module.
 
 
 ## Module layout
 
-Each SimpleSAMLphp module is stored in a directory under the the
+Each SimpleSAMLphp module is stored in a directory under the
 `modules`-directory. The module directory contains the following
 directories and files:
 
 default-disable
 :   The presence of this file indicates that the module is disabled
-    by default. This module can be enabled by creating a file named
-    `enable` in the same directory.
+    by default. It can be enabled using the `module.enable`
+    option in `config.php`.
 
 default-enable
 :   The presence of this file indicates that the module is enabled
-    by default. This module can be disabled by creating a file named
-    `disable` in the same directory.
+    by default. It can be disabled using the `module.enable`
+    option in `config.php`.
 
 dictionaries
 :   This directory contains dictionaries which belong to this
     module. To use a dictionary stored in a module, the extended tag
     names can be used:
-    `{<module name>:<dictionary             name>:<tag name>}` For
+    `{<module name>:<dictionary name>:<tag name>}` For
     example, `{example:login:hello}` will look up `hello` in
     `modules/example/dictionaries/login.php`.
 
 :   It is also possible to specify
-    `<module             name>:<dictionary name>` as the default
+    `<module name>:<dictionary name>` as the default
     dictionary when instantiating the `SimpleSAML_XHTML_Template`
     class.
 
@@ -74,7 +88,7 @@ lib
 
 templates
 :   These are module-specific templates. To use one of these
-    templates, specify `<module name>:<template             file>.php`
+    templates, specify `<module name>:<template file>.php`
     as the template file in the constructor of
     `SimpleSAML_XHTML_Template`. For example, `example:login-form.php`
     is translated to the file
@@ -104,7 +118,7 @@ themes
 www
 :   All files stored in this directory will be available by
     accessing the URL
-    `https://.../simplesamlphp/module.php/<module             name>/<file name>`.
+    `https://.../simplesamlphp/module.php/<module name>/<file name>`.
     For example, if a script named `login.php` is stored in
     `modules/example/www/`, it can be accessed by the URL
     `https://.../simplesamlphp/module.php/example/login.php`.
@@ -118,17 +132,30 @@ www
 
 ## Authentication sources
 
-An authentication source is used to authenticate a user and receive a set of attributes belonging to this user. In a single-signon setup, the authentication source will only be called once, and the attributes belonging to the user will be cached until the user logs out.
+An authentication source is used to authenticate a user and receive a 
+set of attributes belonging to this user. In a single-signon setup, the 
+authentication source will only be called once, and the attributes 
+belonging to the user will be cached until the user logs out.
 
-Authentication sources are defined in `config/authsources.php`. This file contains an array of `name => configuration` pairs. The name is used to refer to the authentication source in metadata. When configuring an IdP to authenticate against an authentication source, the `auth` option should be set to this name. The configuration for an authentication source is an array. The first element in the array identifies the class which implements the authentication source. The remaining elements in the array are configuration entries for the authentication source.
+Authentication sources are defined in `config/authsources.php`. This 
+file contains an array of `name => configuration` pairs. The name is 
+used to refer to the authentication source in metadata. When 
+configuring an IdP to authenticate against an authentication source, 
+\the `auth` option should be set to this name. The configuration for an 
+authentication source is an array. The first element in the array 
+identifies the class which implements the authentication source. The 
+remaining elements in the array are configuration entries for the 
+authentication source.
 
-A typical configuration entry for an authentication source looks like this:
+A typical configuration entry for an authentication source looks like 
+this:
 
     'example-static' => array(
       /* This maps to modules/exampleauth/lib/Auth/Source/Static.php */
       'exampleauth:Static',
     
-      /* The following is configuration which is passed on to the exampleauth:Static authentication source. */
+      /* The following is configuration which is passed on to
+       * the exampleauth:Static authentication source. */
       'uid' => 'testuser',
       'eduPersonAffiliation' => array('member', 'employee'),
       'cn' => array('Test User'),
@@ -162,17 +189,37 @@ Authentication processing filters
 
 ## Themes
 
-This feature allows you to collect all your custom templates in one place. The directory structure is like this: `modules/<thememodule>/themes/<theme>/<module>/<template>` `thememodule` is the module where you store your theme, while `theme` is the name of the theme. A theme is activated by setting the `theme.use` configuration option to `<thememodule>:<theme>`. `module` is the module the template belongs to, and `template` is the template in that module.
+This feature allows you to collect all your custom templates in one 
+place. The directory structure is like this: 
+`modules/<thememodule>/themes/<theme>/<module>/<template>` 
+`thememodule` is the module where you store your theme, while `theme` 
+is the name of the theme. A theme is activated by setting the 
+`theme.use` configuration option to `<thememodule>:<theme>`. `module` 
+is the module the template belongs to, and `template` is the template 
+in that module.
 
-For example, `modules/example/themes/test/core/loginuserpass.php` replaces `modules/core/templates/default/loginuserpass.php`. `modules/example/themes/test/default/frontpage.php` replaces `templates/default/frontpage.php`. This theme can be activated by setting `theme.use` to `example:test`.
+For example, `modules/example/themes/test/core/loginuserpass.php` 
+replaces `modules/core/templates/default/loginuserpass.php`. 
+`modules/example/themes/test/default/frontpage.php` replaces 
+`templates/default/frontpage.php`. This theme can be activated by 
+setting `theme.use` to `example:test`.
 
 ## Hook interface
 
-The hook interface allows you to call a hook function in all enabled modules which define that hook. Hook functions are stored in a directory called 'hooks' in each module directory. Each hook is stored in a file named `hook_<hook name>.php`, and each file defines a function named `<module name>_hook_<hook name>`.
+The hook interface allows you to call a hook function in all enabled 
+modules which define that hook. Hook functions are stored in a 
+directory called 'hooks' in each module directory. Each hook is 
+stored in a file named `hook_<hook name>.php`, and each file defines a 
+function named `<module name>_hook_<hook name>`.
 
-Each hook function accepts a single argument. This argument will be passed by reference, which allows each hook to update that argument.
+Each hook function accepts a single argument. This argument will be 
+passed by reference, which allows each hook to update that argument.
 
-There is currently a single user of the hook interface - the front page. The front page defines a hook named `frontpage`, which allows modules to add things to the different sections on the front page. For an example of this, see the `modules/modinfo/hooks/hook_frontpage.php` file in the
+There is currently a single user of the hook interface - the front 
+page. The front page defines a hook named `frontpage`, which allows 
+modules to add things to the different sections on the front page. For 
+an example of this, see the `modules/modinfo/hooks/hook_frontpage.php` 
+file in the
 [modinfo module](https://github.com/simplesamlphp/simplesamlphp-module-modinfo).
 
 

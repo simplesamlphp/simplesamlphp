@@ -15,6 +15,7 @@ Currently, the core team members are:
 * Jaime Pérez Crespo, *main developer and release manager*, UNINETT <jaime.perez@uninett.no>
 * Olav Morken, *main developer*, UNINETT <olav.morken@uninett.no>
 * Andreas Åkre Solberg, *architect and original developer*, UNINETT <andreas.solberg@uninett.no>
+* Hanne Moa, *developer*, UNINETT <hanne.moa@uninett.no>
 
 We've been lucky to have the help of many people through the years. SimpleSAMLphp wouldn't have reached so far without
 them, and we want to thank them from here. Unfortunately, they are so many it is nearly impossible to mention all of

@@ -27,4 +27,5 @@ $t->data['target'] = SimpleSAML\Module::getModuleURL('authX509/expirywarning.php
 $t->data['data'] = array('StateId' => $id);
 $t->data['daysleft'] = $state['daysleft'];
 $t->data['renewurl'] = $state['renewurl'];
+$t->data['errorcodes'] = SimpleSAML\Error\Errorcodes::getAllErrorCodeMessages();
 $t->show();

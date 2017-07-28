@@ -222,6 +222,19 @@ class Translate
 
 
     /**
+     * Mark a string for translation without translating it.
+     *
+     * @param string  $tag A tag name to mark for translation.
+     *
+     * @return string The tag, unchanged.
+     */
+    public static function noop($tag)
+    {
+        return $tag;
+    }
+
+
+    /**
      * Translate a tag into the current language, with a fallback to english.
      *
      * This function is used to look up a translation tag in dictionaries, and return the translation into the current
@@ -235,28 +248,36 @@ class Translate
      * provided in $replacements, and replace any found occurrences with the value of the key.
      *
      * @param string|array $tag A tag name for the translation which should be looked up, or an array with
-     * (language => text) mappings.
+     * (language => text) mappings. The array version will go away in 2.0
      * @param array        $replacements An associative array of keys that should be replaced with values in the
      *     translated string.
      * @param boolean      $fallbackdefault Default translation to use as a fallback if no valid translation was found.
+     * @deprecated Not used in twig, gettext
      *
      * @return string  The translated tag, or a placeholder value if the tag wasn't found.
      */
     public function t(
         $tag,
         $replacements = array(),
-        $fallbackdefault = true,
+        $fallbackdefault = true, // TODO: remove this for 2.0. Assume true
         $oldreplacements = array(), // TODO: remove this for 2.0
         $striptags = false // TODO: remove this for 2.0
     ) {
+        $backtrace = debug_backtrace();
+        $where = $backtrace[0]['file'].':'.$backtrace[0]['line'];
+        if (!$fallbackdefault) {
+            \SimpleSAML\Logger::warning(
+                'Deprecated use of new SimpleSAML\Locale\Translate::t(...) at '.$where.
+                '. This parameter will go away, the fallback will become' .
+                ' identical to the $tag in 2.0.'
+            );
+        }
         if (!is_array($replacements)) {
             // TODO: remove this entire if for 2.0
 
             // old style call to t(...). Print warning to log
-            $backtrace = debug_backtrace();
-            $where = $backtrace[0]['file'].':'.$backtrace[0]['line'];
             \SimpleSAML\Logger::warning(
-                'Deprecated use of SimpleSAML_Template::t(...) at '.$where.
+                'Deprecated use of SimpleSAML\Locale\Translate::t(...) at '.$where.
                 '. Please update the code to use the new style of parameters.'
             );
 
@@ -273,6 +294,10 @@ class Translate
 
         if (is_array($tag)) {
             $tagData = $tag;
+            \SimpleSAML\Logger::warning(
+                'Deprecated use of new SimpleSAML\Locale\Translate::t(...) at '.$where.
+                '. The $tag-parameter can only be a string in 2.0.'
+            );
         } else {
             $tagData = $this->getTag($tag);
             if ($tagData === null) {
@@ -442,5 +467,33 @@ class Translate
             $_SERVER['PHP_SELF'].' - Template: Could not find dictionary file at ['.$filename.']'
         );
         return array();
+    }
+
+
+    public static function translateSingularGettext($original)
+    {
+        $text = \Gettext\BaseTranslator::$current->gettext($original);
+
+        if (func_num_args() === 1) {
+            return $text;
+        }
+
+        $args = array_slice(func_get_args(), 1);
+
+        return strtr($text, is_array($args[0]) ? $args[0] : $args);
+    }
+
+
+    public static function translatePluralGettext($original, $plural, $value)
+    {
+        $text = \Gettext\BaseTranslator::$current->ngettext($original, $plural, $value);
+
+        if (func_num_args() === 3) {
+            return $text;
+        }
+
+        $args = array_slice(func_get_args(), 3);
+
+        return strtr($text, is_array($args[0]) ? $args[0] : $args);
     }
 }

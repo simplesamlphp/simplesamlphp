@@ -34,11 +34,8 @@ try {
 
     // generate session id and save it in a cookie
     $sessionID = SimpleSAML\Utils\Random::generateID();
-
     $cookieName = $amc->getCookieName();
-
-    $sessionHandler = SimpleSAML_SessionHandler::getSessionHandler();
-    $sessionHandler->setCookie($cookieName, $sessionID);
+    \SimpleSAML\Utils\HTTP::setCookie($cookieName, $sessionID);
 
     // generate the authentication information
     $attributes = $s->getAttributes();
@@ -77,11 +74,21 @@ try {
 
     // store the authentication data in the memcache server
     $data = '';
-    foreach ($authData as $n => $v) {
-        if (is_array($v)) {
-            $v = implode(':', $v);
+    foreach ($authData as $name => $values) {
+        if (is_array($values)) {
+            foreach ($values as $i => $value) {
+                if (!is_a($value, 'DOMNodeList')) {
+                    continue;
+                }
+                /* @var \DOMNodeList $value */
+                if ($value->length === 0) {
+                    continue;
+                }
+                $values[$i] = new \SAML2\XML\saml\AttributeValue($value->item(0)->parentNode);
+            }
+            $values = implode(':', $values);
         }
-        $data .= $n.'='.$v."\r\n";
+        $data .= $name.'='.$values."\r\n";
     }
 
     $memcache = $amc->getMemcache();

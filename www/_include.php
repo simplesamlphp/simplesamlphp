@@ -46,7 +46,8 @@ function SimpleSAML_exception_handler($exception)
         $e->show();
     } else {
         if (class_exists('Error') && $exception instanceof Error) {
-            $errno = $exception->getCode();
+            $code = $exception->getCode();
+            $errno = ($code > 0) ? $code : E_ERROR;
             $errstr = $exception->getMessage();
             $errfile = $exception->getFile();
             $errline = $exception->getLine();
@@ -95,7 +96,7 @@ try {
     SimpleSAML_Configuration::getInstance();
 } catch (Exception $e) {
     throw new \SimpleSAML\Error\CriticalConfigurationError(
-        'You have not yet created the SimpleSAMLphp configuration files.'
+        $e->getMessage()
     );
 }
 

@@ -66,13 +66,14 @@ class sspmod_saml_Auth_Process_PersistentNameID2TargetedID extends SimpleSAML_Au
             return;
         }
 
+        /** @var \SAML2\XML\saml\NameID $nameID */
         $nameID = $state['saml:NameID'][\SAML2\Constants::NAMEID_PERSISTENT];
 
         if ($this->nameId) {
             $doc = \SAML2\DOMDocumentFactory::create();
             $root = $doc->createElement('root');
             $doc->appendChild($root);
-            \SAML2\Utils::addNameId($root, $nameID);
+            $nameID->toXML($root);
             $value = $doc->saveXML($root->firstChild);
         } else {
             $value = $nameID['Value'];

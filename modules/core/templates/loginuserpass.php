@@ -20,16 +20,10 @@ if ($this->data['errorcode'] !== null) {
         <h2><?php echo $this->t('{login:error_header}'); ?></h2>
 
         <p><strong><?php
-                echo htmlspecialchars($this->t(
-                    '{errors:title_'.$this->data['errorcode'].'}',
-                    $this->data['errorparams']
-                )); ?></strong></p>
+            echo htmlspecialchars($this->t($this->data['errorcodes']['title'][$this->data['errorcode']], $this->data['errorparams'])); ?></strong></p>
 
         <p><?php
-            echo htmlspecialchars($this->t(
-                '{errors:descr_'.$this->data['errorcode'].'}',
-                $this->data['errorparams']
-            )); ?></p>
+            echo htmlspecialchars($this->t($this->data['errorcodes']['descr'][$this->data['errorcode']], $this->data['errorparams'])); ?></p>
     </div>
 <?php
 }
@@ -42,7 +36,7 @@ if ($this->data['errorcode'] !== null) {
     <form action="?" method="post" name="f">
         <table>
             <tr>
-                <td rowspan="2" id="loginicon">
+                <td rowspan="2" class="loginicon">
                     <img alt=""
                         src="/<?php echo $this->data['baseurlpath']; ?>resources/icons/experience/gtk-dialog-authentication.48x48.png" />
                 </td>
@@ -152,20 +146,12 @@ if ($this->data['errorcode'] !== null) {
                 <?php
             }
             ?>
-            <tr id="regularsubmit">
-                <td></td><td></td>
+            <tr id="submit">
+                <td class="loginicon"></td><td></td>
                 <td>
                     <button class="btn"
                             onclick="this.value='<?php echo $this->t('{login:processing}'); ?>';
                                 this.disabled=true; this.form.submit(); return true;" tabindex="6">
-                        <?php echo $this->t('{login:login_button}'); ?>
-                    </button>
-                </td>
-            </tr>
-            <tr id="mobilesubmit">
-                <td></td>
-                <td>
-                    <button class="btn" tabindex="6">
                         <?php echo $this->t('{login:login_button}'); ?>
                     </button>
                 </td>

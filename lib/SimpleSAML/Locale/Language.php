@@ -70,7 +70,10 @@ class Language
     private $customFunction;
 
     /**
-     * A list of languages supported with their names localized, indexed by ISO 639-2 code.
+     * A list of languages supported with their names localized.
+     * Indexed by something that mostly resembles ISO 639-1 code,
+     * with some charming SimpleSAML-specific variants...
+     * that must remain before 2.0 due to backwards compatibility
      *
      * @var array
      */
@@ -78,7 +81,7 @@ class Language
         'no'    => 'Bokmål', // Norwegian Bokmål
         'nn'    => 'Nynorsk', // Norwegian Nynorsk
         'se'    => 'Sámegiella', // Northern Sami
-        'sam'   => 'Åarjelh-saemien giele', // Southern Sami
+        'sma'   => 'Åarjelh-saemien giele', // Southern Sami
         'da'    => 'Dansk', // Danish
         'en'    => 'English',
         'de'    => 'Deutsch', // German
@@ -113,6 +116,17 @@ class Language
         'lv'    => 'Latviešu', // Latvian
         'ro'    => 'Românește', // Romanian
         'eu'    => 'Euskara', // Basque
+        'af'    => 'Afrikaans', // Afrikaans
+    );
+
+    /**
+     * A mapping of SSP languages to locales
+     *
+     * @var array
+     */
+    private $languagePosixMapping = array(
+        'no' => 'nb_NO',
+        'nn' => 'nn_NO',
     );
 
 
@@ -124,7 +138,7 @@ class Language
     public function __construct(\SimpleSAML_Configuration $configuration)
     {
         $this->configuration = $configuration;
-        $this->availableLanguages = $this->configuration->getArray('language.available', array('en'));
+        $this->availableLanguages = $this->getInstalledLanguages();
         $this->defaultLanguage = $this->configuration->getString('language.default', 'en');
         $this->languageParameterName = $this->configuration->getString('language.parameter.name', 'language');
         $this->customFunction = $this->configuration->getArray('language.get_language_function', null);
@@ -135,6 +149,42 @@ class Language
                 $this->configuration->getBoolean('language.parameter.setcookie', true)
             );
         }
+    }
+
+
+    /**
+     * Filter configured (available) languages against installed languages.
+     *
+     * @return array The set of languages both in 'language.available' and $this->language_names.
+     */
+    private function getInstalledLanguages()
+    {
+        $configuredAvailableLanguages = $this->configuration->getArray('language.available', array('en'));
+        $availableLanguages = array();
+        foreach ($configuredAvailableLanguages as $code) {
+            if (array_key_exists($code, $this->language_names) && isset($this->language_names[$code])) {
+                $availableLanguages[] = $code;
+            } else {
+                \SimpleSAML\Logger::error("Language \"$code\" not installed. Check config.");
+            }
+        }
+        return $availableLanguages;
+    }
+
+
+    /**
+     * Rename to non-idiosyncratic language code.
+     *
+     * @param string $language Language code for the language to rename, if necessary.
+     *
+     * @return string The language code.
+     */
+    public function getPosixLanguage($language)
+    {
+        if (isset($this->languagePosixMapping[$language])) {
+            return $this->languagePosixMapping[$language];
+        }
+        return $language;
     }
 
 
@@ -206,7 +256,11 @@ class Language
      */
     public function getLanguageLocalizedName($code)
     {
-        return $this->language_names[$code];
+        if (array_key_exists($code, $this->language_names) && isset($this->language_names[$code])) {
+            return $this->language_names[$code];
+        }
+        \SimpleSAML\Logger::error("Name for language \"$code\" not found. Check config.");
+        return null;
     }
 
 
@@ -239,7 +293,6 @@ class Language
         $bestScore = -1.0;
 
         foreach ($languageScore as $language => $score) {
-
             // apply the language map to the language code
             if (array_key_exists($language, $languageMap)) {
                 $language = $languageMap[$language];
@@ -272,6 +325,21 @@ class Language
     public function getDefaultLanguage()
     {
         return $this->defaultLanguage;
+    }
+
+
+    /**
+     * Return an alias for a language code, if any.
+     *
+     * @return string The alias, or null if the alias was not found.
+     */
+    public function getLanguageCodeAlias($langcode)
+    {
+        if (isset(self::$defaultLanguageMap[$langcode])) {
+            return self::$defaultLanguageMap[$langcode];
+        }
+        // No alias found, which is fine
+        return null;
     }
 
 
@@ -346,7 +414,8 @@ class Language
             'lifetime' => ($config->getInteger('language.cookie.lifetime', 60 * 60 * 24 * 900)),
             'domain'   => ($config->getString('language.cookie.domain', null)),
             'path'     => ($config->getString('language.cookie.path', '/')),
-            'httponly' => false,
+            'secure'   => ($config->getBoolean('language.cookie.secure', false)),
+            'httponly' => ($config->getBoolean('language.cookie.httponly', false)),
         );
 
         HTTP::setCookie($name, $language, $params, false);

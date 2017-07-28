@@ -19,17 +19,21 @@
  *          - Updated the constructor to use the new config method
  *          - Updated the process method to use the new config variable names
  * Updated: 20131119 Yørn de Jong / Jaime Perez
- *      - Added support for retrieving multiple values at once from LDAP
- *      - Don't crash but fail silently on LDAP errors; the plugin is to complement attributes
+ *          - Added support for retrieving multiple values at once from LDAP
+ *          - Don't crash but fail silently on LDAP errors; the plugin is to complement attributes
+ * Updated: 20161223 Remy Blom <remy.blom@hku.nl>
+ *          - Adjusted the silent fail so it does show a warning in log when $this->getLdap() fails
  *
  * @author Yørn de Jong
  * @author Jaime Perez
  * @author Steve Moitozo
  * @author JAARS, Inc.
  * @author Ryan Panning
+ * @author Remy Blom <remy.blom@hku.nl>
  * @package SimpleSAMLphp
  */
-class sspmod_ldap_Auth_Process_AttributeAddFromLDAP extends sspmod_ldap_Auth_Process_BaseFilter {
+class sspmod_ldap_Auth_Process_AttributeAddFromLDAP extends sspmod_ldap_Auth_Process_BaseFilter
+{
 
     /**
      * LDAP attribute to add to the request attributes
@@ -60,8 +64,8 @@ class sspmod_ldap_Auth_Process_AttributeAddFromLDAP extends sspmod_ldap_Auth_Pro
      * @param array $config Configuration information about this filter.
      * @param mixed $reserved For future use.
      */
-    public function __construct($config, $reserved) {
-
+    public function __construct($config, $reserved)
+    {
         /*
          * For backwards compatibility, check for old config names
          * @TODO Remove after 2.0
@@ -119,7 +123,7 @@ class sspmod_ldap_Auth_Process_AttributeAddFromLDAP extends sspmod_ldap_Auth_Pro
             $new_attribute = $this->config->getString('attribute.new', '');
             $this->search_attributes[$new_attribute] = $this->config->getString('search.attribute');
         }
-        $this->search_filter    = $this->config->getString('search.filter');
+        $this->search_filter = $this->config->getString('search.filter');
 
         // get the attribute policy
         $this->attr_policy = $this->config->getString('attribute.policy', 'merge');
@@ -131,7 +135,8 @@ class sspmod_ldap_Auth_Process_AttributeAddFromLDAP extends sspmod_ldap_Auth_Pro
      *
      * @param array &$request The current request
      */
-    public function process(&$request) {
+    public function process(&$request)
+    {
         assert('is_array($request)');
         assert('array_key_exists("Attributes", $request)');
 
@@ -153,7 +158,7 @@ class sspmod_ldap_Auth_Process_AttributeAddFromLDAP extends sspmod_ldap_Auth_Pro
         // merge the attributes into the ldap_search_filter
         $filter = str_replace($arrSearch, $arrReplace, $this->search_filter);
 
-        if (strpos($filter, '%') !== FALSE) {
+        if (strpos($filter, '%') !== false) {
             SimpleSAML\Logger::info('AttributeAddFromLDAP: There are non-existing attributes in the search filter. ('.
                                     $this->search_filter.')');
             return;
@@ -165,10 +170,18 @@ class sspmod_ldap_Auth_Process_AttributeAddFromLDAP extends sspmod_ldap_Auth_Pro
             return;
         }
 
+        // getLdap
+        try {
+          $ldap = $this->getLdap();
+        } catch (Exception $e) {
+          // Added this warning in case $this->getLdap() fails
+          SimpleSAML\Logger::warning("AttributeAddFromLDAP: exception = " . $e);
+          return;
+        }
         // search for matching entries
         try {
-            $entries = $this->getLdap()->searchformultiple($this->base_dn, $filter,
-                                                           array_values($this->search_attributes), TRUE, FALSE);
+            $entries = $ldap->searchformultiple($this->base_dn, $filter,
+                                                           array_values($this->search_attributes), true, false);
         } catch (Exception $e) {
             return; // silent fail, error is still logged by LDAP search
         }

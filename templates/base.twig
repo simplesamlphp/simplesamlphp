@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="initial-scale=1.0">
+    <title>{{ pagetitle }}</title>
+    <link rel="stylesheet" type="text/css" href="/{{ baseurlpath }}resources/default.css">
+    <link rel="icon" type="image/icon" href="/{{ baseurlpath }}resources/icons/favicon.ico">
+    {% if jquery and jquery.css %}
+    <link rel="stylesheet" media="screen" type="text/css" href="/{{ baseurlpath }}resources/uitheme1.8/jquery-ui.css" />
+    {% endif %}
+    {% if isRTL %}<link rel="stylesheet" type="text/css" href="/{{ baseurlpath }}resources/default-rtl.css" />{% endif %}
+    <meta name="robots" content="noindex, nofollow">
+    {% block preload %}{% endblock %}
+</head>
+<body>
+    <div id="wrap">
+
+        {% block header %}{% include "_header.twig" %}{% endblock %}
+
+        <div id="content">
+        {% block contentwrapper %}
+        {% block content %}{% endblock %}
+        {% endblock %}
+        </div><!-- #content -->
+
+        <div id="footer">
+            {% block footer %}{% include "_footer.twig" %}{% endblock %}
+        </div>
+
+    </div><!-- #wrap -->
+
+    <!-- postload javascript -->
+    <script type="text/javascript" src="/{{ baseurlpath }}resources/script.js"></script>
+    {% if jquery %}
+    {% set version = '1.8' %}
+    {% if jquery.version %}
+    {% set version = jquery.version %}
+    {% endif %}
+    {% if version == '1.8' %}
+    {% if jquery.core %}
+    <script type="text/javascript" src="/{{ baseurlpath }}resources/jquery-1.8.js"></script>
+    {% endif %}
+    {% if jquery.ui %}
+    <script type="text/javascript" src="/{{ baseurlpath }}resources/jquery-ui-1.8.js"></script>
+    {% endif %}
+    {% endif %}
+    {% endif %}
+    {% if clipboard %}
+    <script type="text/javascript" src="/{{ baseurlpath }}resources/clipboard.min.js"></script>
+    {% endif %}
+    {% block postload %}{% endblock %}
+</body></html>

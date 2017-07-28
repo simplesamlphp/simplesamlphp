@@ -58,14 +58,19 @@ a:link, a:visited {
 }
 a:visited {
 	color: #999;
-} 
+}
 
 a:hover, a:active {
 	color: #069;
 	text-decoration: none;
 	color: #333;
 	border-bottom: 1px solid #333;
-} 
+}
+
+#header a {
+	color: #fff;
+	text-decoration: none;
+}
 
 /* LISTS */
 ul {
@@ -86,11 +91,11 @@ dt {
 
 #wrap {
 	background: #fff;
-	
+
 	border: 1px solid #fff;
 	position: relative;
 	text-align: left;
-	
+
 	margin: 20px 75px 2em 75px;
 	max-width: 950px;
 }
@@ -109,7 +114,7 @@ dt {
 	text-decoration: none;
 	color: #333;
 	border-bottom: 1px solid #333;
-	
+
 }
 
 #header {
@@ -279,15 +284,15 @@ th.rowtitle {
 }
 
 .metadatabox {
-	overflow: scroll; 
-	border: 1px solid #eee; 
+	overflow: scroll;
+	border: 1px solid #eee;
 	padding: 0.5em;
 	border-radius: 3px;
 }
 div.preferredidp {
 	border: 1px dashed #ccc;
 	background: #eee;
-	padding: 2px 2em 2px 2em;	
+	padding: 2px 2em 2px 2em;
 }
 
 table.modules {
@@ -317,14 +322,14 @@ table.attributes tr.even td {
 }
 
 table.attributes tr td {
-	border-bottom: 1px solid #bbb; 
+	border-bottom: 1px solid #bbb;
 	border-left: 0px;
-	border-right: 0px;	
+	border-right: 0px;
 	background: #fff;
 	padding-top: 5px;
 	padding-left: 1em;
 	padding-right: 1em;
-	
+
 	vertical-align: top;
 }
 
@@ -369,12 +374,12 @@ caption {
 	float: left;
 }
 
-#mobilesubmit, #mobile_remember_username, #mobile_remember_me {
+#mobile_remember_username, #mobile_remember_me {
 	display: none;
 }
 
 @media handheld, only screen and (max-width: 480px), only screen and (max-device-width: 480px) {
-	#header, #languagebar, #footer, .erroricon, #loginicon, .logintext, #regularsubmit,
+	#header, #languagebar, #footer, .erroricon, .loginicon, .logintext,
 	#regular_remember_username, #regular_remember_me {
 		display: none;
 	}
@@ -387,7 +392,7 @@ caption {
 	h1,h2,h3,h4 {
 		font-size: 110%;
 	}
-		
+
 	#content {
 		margin-bottom: 10px;
 		padding: 0;
