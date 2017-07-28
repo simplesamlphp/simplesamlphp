@@ -123,14 +123,22 @@ class Signer
      *                      to the cert-directory.
      * @param string|null $pass  The passphrase on the private key. Pass no value or NULL if the private
      *                           key is unencrypted.
+     * @param bool $full_path  Whether the filename found in the configuration contains the
+     *                         full path to the private key or not. Default to false.
      * @throws \Exception
      */
-    public function loadPrivateKey($file, $pass = null)
+    public function loadPrivateKey($file, $pass = null, $full_path = false)
     {
         assert('is_string($file)');
         assert('is_string($pass) || is_null($pass)');
+        assert('is_bool($full_path)');
 
-        $keyFile = Config::getCertPath($file);
+        if (!$full_path) {
+            $keyFile = Config::getCertPath($file);
+        } else {
+            $keyFile = $file;
+        }
+
         if (!file_exists($keyFile)) {
             throw new \Exception('Could not find private key file "' . $keyFile . '".');
         }
@@ -178,13 +186,21 @@ class Signer
      *
      * @param string $file  The file which contains the certificate. The path is assumed to be relative to
      *                      the cert-directory.
+     * @param bool $full_path  Whether the filename found in the configuration contains the
+     *                         full path to the private key or not. Default to false.
      * @throws \Exception
      */
-    public function loadCertificate($file)
+    public function loadCertificate($file, $full_path = false)
     {
         assert('is_string($file)');
+        assert('is_bool($full_path)');
 
-        $certFile = Config::getCertPath($file);
+        if (!$full_path) {
+            $certFile = Config::getCertPath($file);
+        } else {
+            $certFile = $file;
+        }
+
         if (!file_exists($certFile)) {
             throw new \Exception('Could not find certificate file "' . $certFile . '".');
         }
@@ -216,13 +232,21 @@ class Signer
      * are added.
      *
      * @param string $file  The file which contains the certificate, relative to the cert-directory.
+     * @param bool $full_path  Whether the filename found in the configuration contains the
+     *                         full path to the private key or not. Default to false.
      * @throws \Exception
      */
-    public function addCertificate($file)
+    public function addCertificate($file, $full_path = false)
     {
         assert('is_string($file)');
+        assert('is_bool($full_path)');
 
-        $certFile = Config::getCertPath($file);
+        if (!$full_path) {
+            $certFile = Config::getCertPath($file);
+        } else {
+            $certFile = $file;
+        }
+
         if (!file_exists($certFile)) {
             throw new \Exception('Could not find extra certificate file "' . $certFile . '".');
         }
@@ -268,9 +292,12 @@ class Signer
             $options['id_name'] = $this->idAttrName;
         }
 
-        $objXMLSecDSig->addReferenceList(array($node), XMLSecurityDSig::SHA1,
+        $objXMLSecDSig->addReferenceList(
+            array($node),
+            XMLSecurityDSig::SHA1,
             array('http://www.w3.org/2000/09/xmldsig#enveloped-signature', XMLSecurityDSig::EXC_C14N),
-            $options);
+            $options
+        );
 
         $objXMLSecDSig->sign($this->privateKey);
 

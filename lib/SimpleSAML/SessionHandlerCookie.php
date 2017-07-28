@@ -11,7 +11,12 @@
  * @package SimpleSAMLphp
  * @abstract
  */
-abstract class SimpleSAML_SessionHandlerCookie extends SimpleSAML_SessionHandler
+
+namespace SimpleSAML;
+
+use SimpleSAML\Utils\HTTP;
+
+abstract class SessionHandlerCookie extends SessionHandler
 {
 
     /**
@@ -39,7 +44,7 @@ abstract class SimpleSAML_SessionHandlerCookie extends SimpleSAML_SessionHandler
         // call the constructor in the base class in case it should become necessary in the future
         parent::__construct();
 
-        $config = SimpleSAML_Configuration::getInstance();
+        $config = \SimpleSAML_Configuration::getInstance();
         $this->cookie_name = $config->getString('session.cookie.name', 'SimpleSAMLSessionID');
     }
 
@@ -52,7 +57,7 @@ abstract class SimpleSAML_SessionHandlerCookie extends SimpleSAML_SessionHandler
     public function newSessionId()
     {
         $this->session_id = self::createSessionID();
-        SimpleSAML_Session::createSession($this->session_id);
+        \SimpleSAML_Session::createSession($this->session_id);
 
         return $this->session_id;
     }
@@ -163,6 +168,6 @@ abstract class SimpleSAML_SessionHandlerCookie extends SimpleSAML_SessionHandler
             $params = $this->getCookieParams();
         }
 
-        \SimpleSAML\Utils\HTTP::setCookie($sessionName, $sessionID, $params, true);
+        HTTP::setCookie($sessionName, $sessionID, $params, true);
     }
 }

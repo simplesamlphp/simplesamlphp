@@ -27,14 +27,15 @@
     },
     "require": {
         "php": ">=5.3",
-		"ext-SPL": "*",
-		"ext-zlib": "*",
-		"ext-pcre": "*",
-		"ext-openssl": "*",
-		"ext-dom": "*",
-		"ext-date": "*",
-		"ext-hash": "*",
-		"ext-json": "*",
+        "ext-SPL": "*",
+        "ext-zlib": "*",
+        "ext-pcre": "*",
+        "ext-openssl": "*",
+        "ext-dom": "*",
+        "ext-date": "*",
+        "ext-hash": "*",
+        "ext-json": "*",
+        "ext-mbstring": "*",
         "simplesamlphp/saml2": "dev-master#f079abe36ab4101dfda654a087f8003a9673b952 as 2.4",
         "robrichards/xmlseclibs": "~2.0",
         "whitehat101/apr1-md5": "~1.0",
@@ -45,7 +46,8 @@
     "require-dev": {
         "ext-pdo_sqlite": "*",
         "phpunit/phpunit": "~4.8",
-        "satooshi/php-coveralls": "^1.0"
+        "satooshi/php-coveralls": "^1.0",
+        "mikey179/vfsStream": "~1.6"
     },
     "suggests": {
         "predis/predis": "1.1.1"

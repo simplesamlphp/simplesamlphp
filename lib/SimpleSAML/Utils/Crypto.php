@@ -13,7 +13,7 @@ class Crypto
     /**
      * Decrypt data using AES-256-CBC and the key provided as a parameter.
      *
-     * @param string $ciphertext The IV and the encrypted data, concatenated.
+     * @param string $ciphertext The HMAC of the encrypted data, the IV used and the encrypted data, concatenated.
      * @param string $secret The secret to use to decrypt the data.
      *
      * @return string The decrypted data.
@@ -24,28 +24,45 @@ class Crypto
      */
     private static function _aesDecrypt($ciphertext, $secret)
     {
-        if (!is_string($ciphertext)) {
-            throw new \InvalidArgumentException('Input parameter "$ciphertext" must be a string.');
+        if (!is_string($ciphertext) || mb_strlen($ciphertext, '8bit') < 48) {
+            throw new \InvalidArgumentException(
+                'Input parameter "$ciphertext" must be a string with more than 48 characters.'
+            );
         }
         if (!function_exists("openssl_decrypt")) {
             throw new \SimpleSAML_Error_Exception("The openssl PHP module is not loaded.");
         }
 
-        $raw    = defined('OPENSSL_RAW_DATA') ? OPENSSL_RAW_DATA : true;
-        $key    = openssl_digest($secret, 'sha256');
-        $method = 'AES-256-CBC';
-        $ivSize = 16;
-        $iv     = substr($ciphertext, 0, $ivSize);
-        $data   = substr($ciphertext, $ivSize);
+        // derive encryption and authentication keys from the secret
+        $key  = openssl_digest($secret, 'sha512');
 
-        return openssl_decrypt($data, $method, $key, $raw, $iv);
+        $hmac = mb_substr($ciphertext, 0, 32, '8bit');
+        $iv   = mb_substr($ciphertext, 32, 16, '8bit');
+        $msg  = mb_substr($ciphertext, 48, mb_strlen($ciphertext, '8bit') - 48, '8bit');
+
+        // authenticate the ciphertext
+        if (self::secureCompare(hash_hmac('sha256', $iv.$msg, substr($key, 64, 64), true), $hmac)) {
+            $plaintext = openssl_decrypt(
+                $msg,
+                'AES-256-CBC',
+                substr($key, 0, 64),
+                defined('OPENSSL_RAW_DATA') ? OPENSSL_RAW_DATA : true,
+                $iv
+            );
+
+            if ($plaintext != false) {
+                return $plaintext;
+            }
+        }
+
+        throw new \SimpleSAML_Error_Exception("Failed to decrypt ciphertext.");
     }
 
 
     /**
      * Decrypt data using AES-256-CBC and the system-wide secret salt as key.
      *
-     * @param string $ciphertext The IV used and the encrypted data, concatenated.
+     * @param string $ciphertext The HMAC of the encrypted data, the IV used and the encrypted data, concatenated.
      *
      * @return string The decrypted data.
      * @throws \InvalidArgumentException If $ciphertext is not a string.
@@ -66,7 +83,7 @@ class Crypto
      * @param string $data The data to encrypt.
      * @param string $secret The secret to use to encrypt the data.
      *
-     * @return string The IV and encrypted data concatenated.
+     * @return string An HMAC of the encrypted data, the IV and the encrypted data, concatenated.
      * @throws \InvalidArgumentException If $data is not a string.
      * @throws \SimpleSAML_Error_Exception If the openssl module is not loaded.
      *
@@ -82,13 +99,27 @@ class Crypto
             throw new \SimpleSAML_Error_Exception('The openssl PHP module is not loaded.');
         }
 
-        $raw    = defined('OPENSSL_RAW_DATA') ? OPENSSL_RAW_DATA : true;
-        $key    = openssl_digest($secret, 'sha256');
-        $method = 'AES-256-CBC';
-        $ivSize = 16;
-        $iv     = openssl_random_pseudo_bytes($ivSize);
+        // derive encryption and authentication keys from the secret
+        $key = openssl_digest($secret, 'sha512');
 
-        return $iv.openssl_encrypt($data, $method, $key, $raw, $iv);
+        // generate a random IV
+        $iv = openssl_random_pseudo_bytes(16);
+
+        // encrypt the message
+        $ciphertext = $iv.openssl_encrypt(
+            $data,
+            'AES-256-CBC',
+            substr($key, 0, 64),
+            defined('OPENSSL_RAW_DATA') ? OPENSSL_RAW_DATA : true,
+            $iv
+        );
+
+        if ($ciphertext === false) {
+            throw new \SimpleSAML_Error_Exception("Failed to encrypt plaintext.");
+        }
+
+        // return the ciphertext with proper authentication
+        return hash_hmac('sha256', $ciphertext, substr($key, 64, 64), true).$ciphertext;
     }
 
 
@@ -97,7 +128,7 @@ class Crypto
      *
      * @param string $data The data to encrypt.
      *
-     * @return string The IV and encrypted data concatenated.
+     * @return string An HMAC of the encrypted data, the IV and the encrypted data, concatenated.
      * @throws \InvalidArgumentException If $data is not a string.
      * @throws \SimpleSAML_Error_Exception If the openssl module is not loaded.
      *
@@ -142,6 +173,8 @@ class Crypto
      * missing key will cause an exception. Defaults to false.
      * @param string                    $prefix The prefix which should be used when reading from the metadata
      * array. Defaults to ''.
+     * @param bool                      $full_path Whether the filename found in the configuration contains the
+     * full path to the private key or not. Default to false.
      *
      * @return array|NULL Extracted private key, or NULL if no private key is present.
      * @throws \InvalidArgumentException If $required is not boolean or $prefix is not a string.
@@ -151,9 +184,9 @@ class Crypto
      * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
-    public static function loadPrivateKey(\SimpleSAML_Configuration $metadata, $required = false, $prefix = '')
+    public static function loadPrivateKey(\SimpleSAML_Configuration $metadata, $required = false, $prefix = '', $full_path = false)
     {
-        if (!is_bool($required) || !is_string($prefix)) {
+        if (!is_bool($required) || !is_string($prefix) || !is_bool($full_path)) {
             throw new \InvalidArgumentException('Invalid input parameters.');
         }
 
@@ -167,7 +200,10 @@ class Crypto
             }
         }
 
-        $file = Config::getCertPath($file);
+        if (!$full_path) {
+            $file = Config::getCertPath($file);
+        }
+
         $data = @file_get_contents($file);
         if ($data === false) {
             throw new \SimpleSAML_Error_Exception('Unable to load private key from file "'.$file.'"');
@@ -373,8 +409,8 @@ class Crypto
             return false; // length differs
         }
         $diff = 0;
-        for ($i = 0; $i < $len; ++$i) {
-            $diff |= $known[$i] ^ $user[$i];
+        for ($i = 0; $i < $len; $i++) {
+            $diff |= ord($known[$i]) ^ ord($user[$i]);
         }
         // if all the bytes in $a and $b are identical, $diff should be equal to 0
         return $diff === 0;

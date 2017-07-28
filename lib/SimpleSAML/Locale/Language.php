@@ -153,9 +153,9 @@ class Language
 
 
     /**
-     * Wash configured (available) languages against installed languages
+     * Filter configured (available) languages against installed languages.
      *
-     * @return array The set of langauges both in 'language.available' and $this->language_names
+     * @return array The set of languages both in 'language.available' and $this->language_names.
      */
     private function getInstalledLanguages()
     {
@@ -172,10 +172,12 @@ class Language
     }
 
 
-    /*
-     * Rename to non-idiosyncratic language code
+    /**
+     * Rename to non-idiosyncratic language code.
      *
-     * @param string $language Language code for the language to rename, if neccesary.
+     * @param string $language Language code for the language to rename, if necessary.
+     *
+     * @return string The language code.
      */
     public function getPosixLanguage($language)
     {
@@ -327,14 +329,14 @@ class Language
 
 
     /**
-     * Return an alias for a langcode, if any
+     * Return an alias for a language code, if any.
      *
-     * @return string The alias, or null if alias not found
+     * @return string The alias, or null if the alias was not found.
      */
     public function getLanguageCodeAlias($langcode)
     {
-        if (isset($this->defaultLanguageMap[$langcode])) {
-            return $this->defaultLanguageMap[$langcode];
+        if (isset(self::$defaultLanguageMap[$langcode])) {
+            return self::$defaultLanguageMap[$langcode];
         }
         // No alias found, which is fine
         return null;

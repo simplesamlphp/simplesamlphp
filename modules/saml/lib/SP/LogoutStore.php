@@ -14,12 +14,24 @@ class sspmod_saml_SP_LogoutStore {
 	 */
 	private static function createLogoutTable(\SimpleSAML\Store\SQL $store) {
 
-		if ($store->getTableVersion('saml_LogoutStore') === 1) {
+		$tableVer = $store->getTableVersion('saml_LogoutStore');
+		if ($tableVer === 2) {
+			return;
+		} elseif ($tableVer === 1) {
+			/* TableVersion 2 increased the column size to 255 which is the maximum length of a FQDN. */
+			$query = 'ALTER TABLE ' . $store->prefix . '_saml_LogoutStore MODIFY _authSource VARCHAR(255) NOT NULL';
+			try {
+				$ret = $store->pdo->exec($query);
+			} catch (Exception $e) {
+				SimpleSAML\Logger::warning($store->pdo->errorInfo());
+				return;
+			}
+			$store->setTableVersion('saml_LogoutStore', 2);
 			return;
 		}
 
 		$query = 'CREATE TABLE ' . $store->prefix . '_saml_LogoutStore (
-			_authSource VARCHAR(30) NOT NULL,
+			_authSource VARCHAR(255) NOT NULL,
 			_nameId VARCHAR(40) NOT NULL,
 			_sessionIndex VARCHAR(50) NOT NULL,
 			_expire TIMESTAMP NOT NULL,
@@ -34,7 +46,7 @@ class sspmod_saml_SP_LogoutStore {
 		$query = 'CREATE INDEX ' . $store->prefix . '_saml_LogoutStore_nameId ON '  . $store->prefix . '_saml_LogoutStore (_authSource, _nameId)';
 		$store->pdo->exec($query);
 
-		$store->setTableVersion('saml_LogoutStore', 1);
+		$store->setTableVersion('saml_LogoutStore', 2);
 	}
 
 
@@ -255,7 +267,7 @@ class sspmod_saml_SP_LogoutStore {
 			$sessionIndexes = array_keys($sessions);
 		}
 
-		$sessionHandler = SimpleSAML_SessionHandler::getSessionHandler();
+		$sessionHandler = \SimpleSAML\SessionHandler::getSessionHandler();
 
 		$numLoggedOut = 0;
 		foreach ($sessionIndexes as $sessionIndex) {
