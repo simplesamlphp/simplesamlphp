@@ -3,61 +3,22 @@ $this->data['header'] = 'SimpleSAMLphp Statistics';
 
 $this->data['jquery'] = array('core' => true, 'ui' => true, 'css' => true);
 
-$this->data['head'] = '<link rel="stylesheet" type="text/css" href="/' .
-    $this->data['baseurlpath'] . 'module.php/statistics/style.css" />';
-$this->data['head'] .= '<script type="text/javascript">
-$(document).ready(function() {
-    $("#tabdiv").tabs();
-});
-</script>';
+$this->data['head'] = '<link rel="stylesheet" type="text/css" href="' . SimpleSAML\Module::getModuleURL("statistics/style.css") . '" />' . "\n";
+$this->data['head'] .= '<script type="text/javascript" src="' . SimpleSAML\Module::getModuleURL("statistics/javascript.js") . '"></script>' . "\n";
 
 $this->includeAtTemplateBase('includes/header.php');
-
-function getBaseURL($t, $type = 'get', $key = null, $value = null)
-{
-    $vars = array(
-        'rule' => $t->data['selected.rule'],
-        'time' => $t->data['selected.time'],
-        'res' => $t->data['selected.timeres'],
-    );
-    if (isset($t->data['selected.delimiter'])) {
-        $vars['d'] = $t->data['selected.delimiter'];
-    }
-    if (!empty($t->data['selected.rule2']) && $t->data['selected.rule2'] !== '_') {
-        $vars['rule2'] = $t->data['selected.rule2'];
-    }
-
-    if (isset($key)) {
-        if (isset($vars[$key])) {
-            unset($vars[$key]);
-        }
-        if (isset($value)) {
-            $vars[$key] = $value;
-        }
-    }
-
-    if ($type === 'get') {
-        return 'showstats.php?' . http_build_query($vars, '', '&amp;');
-    } else {
-        $text = '';
-        foreach($vars as $k => $v) {
-            $text .= '<input type="hidden" name="' . $k . '" value="'. htmlspecialchars($v) . '" />' . "\n";
-        }
-        return $text;
-    }
-}
 
 echo '<h1>'. $this->data['available.rules'][$this->data['selected.rule']]['name'] . '</h1>';
 echo '<p>' . $this->data['available.rules'][$this->data['selected.rule']]['descr'] . '</p>';
 
 // Report settings
 echo '<table class="selecttime">';
-echo '<tr><td class="selecttime_icon"><img src="../../resources/icons/crystal_project/kchart.32x32.png" alt="Report settings" /></td>';
+echo '<tr><td class="selecttime_icon"><img src="' . SimpleSAML\Utils\HTTP::getBaseUrl() . 'resources/icons/crystal_project/kchart.32x32.png" alt="Report settings" /></td>';
 
 // Select report
 echo '<td>';
 echo '<form action="#">';
-echo getBaseURL($this, 'post', 'rule');
+echo $this->data['post_rule'];
 echo '<select onchange="submit();" name="rule">';
 foreach ($this->data['available.rules'] as $key => $rule) {
     if ($key === $this->data['selected.rule']) {
@@ -72,7 +33,7 @@ echo '</td>';
 // Select delimiter
 echo '<td class="td_right">';
 echo '<form action="#">';
-echo getBaseURL($this, 'post', 'd');
+echo $this->data['post_d'];
 echo '<select onchange="submit();" name="d">';
 foreach ($this->data['availdelimiters'] as $key => $delim) {
     $delimName = $delim;
@@ -98,17 +59,17 @@ echo '</table>';
 
 // Select time and date
 echo '<table class="selecttime">';
-echo '<tr><td class="selecttime_icon"><img src="../../resources/icons/crystal_project/date.32x32.png" alt="Select date and time" /></td>';
+echo '<tr><td class="selecttime_icon"><img src="' . SimpleSAML\Utils\HTTP::getBaseUrl() . 'resources/icons/crystal_project/date.32x32.png" alt="Select date and time" /></td>';
 
 if (isset($this->data['available.times.prev'])) {
-    echo '<td><a href="' . getBaseURL($this, 'get', 'time', $this->data['available.times.prev']) . '">« Previous</a></td>';
+    echo '<td><a href="' . $this->data['get_times_prev'] . '">« Previous</a></td>';
 } else {
     echo '<td class="selecttime_link_grey">« Previous</td>';
 }
 
 echo '<td class="td_right">';
 echo '<form action="#">';
-echo getBaseURL($this, 'post', 'res');
+echo $this->data['post_res'];
 echo '<select onchange="submit();" name="res">';
 foreach ($this->data['available.timeres'] as $key => $timeresname) {
     if ($key == $this->data['selected.timeres']) {
@@ -122,7 +83,7 @@ echo '</td>';
 
 echo '<td class="td_left">';
 echo '<form action="#">';
-echo getBaseURL($this, 'post', 'time');
+echo $this->data['post_time'];
 echo '<select onchange="submit();" name="time">';
 foreach ($this->data['available.times'] as $key => $timedescr) {
     if ($key == $this->data['selected.time']) {
@@ -135,7 +96,7 @@ echo '</select></form>';
 echo '</td>';
 
 if (isset($this->data['available.times.next'])) {
-    echo '<td class="td_right td_next_right"><a href="' . getBaseURL($this, 'get', 'time', $this->data['available.times.next']) . '">Next »</a></td>';
+    echo '<td class="td_right td_next_right"><a href="' . $this->data['get_times_next'] . '">Next »</a></td>';
 } else {
     echo '<td class="td_right selecttime_link_grey td_next_right">Next »</td>';
 }
@@ -155,8 +116,8 @@ echo '
 echo '<img src="' . htmlspecialchars($this->data['imgurl']) . '" alt="Graph" />';
 
 echo '<form action="#">';
-echo '<p class="p_right">Compare with total from this dataset</p>';
-echo getBaseURL($this, 'post', 'rule2');
+echo '<p class="p_right">Compare with total from this dataset ';
+echo $this->data['post_rule2'];
 echo '<select onchange="submit();" name="rule2">';
 echo '	<option value="_">None</option>';
 foreach ($this->data['available.rules'] as $key => $rule) {
@@ -166,7 +127,7 @@ foreach ($this->data['available.rules'] as $key => $rule) {
         echo '<option value="' . $key . '">' . $rule['name'] . '</option>';
     }
 }
-echo '</select></form>';
+echo '</select></p></form>';
 
 echo '</div>'; // end graph content.
 
