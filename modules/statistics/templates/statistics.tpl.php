@@ -56,9 +56,9 @@ echo '<tr><td class="selecttime_icon"><img src="../../resources/icons/crystal_pr
 
 // Select report
 echo '<td>';
-echo '<form>';
+echo '<form action="#">';
 echo getBaseURL($this, 'post', 'rule');
-echo '<select onChange="submit();" name="rule">';
+echo '<select onchange="submit();" name="rule">';
 foreach ($this->data['available.rules'] as $key => $rule) {
     if ($key === $this->data['selected.rule']) {
         echo '<option selected="selected" value="' . $key . '">' . $rule['name'] . '</option>';
@@ -71,9 +71,9 @@ echo '</td>';
 
 // Select delimiter
 echo '<td class="td_right">';
-echo '<form>';
+echo '<form action="#">';
 echo getBaseURL($this, 'post', 'd');
-echo '<select onChange="submit();" name="d">';
+echo '<select onchange="submit();" name="d">';
 foreach ($this->data['availdelimiters'] as $key => $delim) {
     $delimName = $delim;
     if (array_key_exists($delim, $this->data['delimiterPresentation'])) {
@@ -89,7 +89,7 @@ foreach ($this->data['availdelimiters'] as $key => $delim) {
     }
 }
 echo '</select></form>';
-echo '</td>';
+echo '</td></tr>';
 
 echo '</table>';
 
@@ -107,9 +107,9 @@ if (isset($this->data['available.times.prev'])) {
 }
 
 echo '<td class="td_right">';
-echo '<form>';
+echo '<form action="#">';
 echo getBaseURL($this, 'post', 'res');
-echo '<select onChange="submit();" name="res">';
+echo '<select onchange="submit();" name="res">';
 foreach ($this->data['available.timeres'] as $key => $timeresname) {
     if ($key == $this->data['selected.timeres']) {
         echo '<option selected="selected" value="' . $key . '">' . $timeresname . '</option>';
@@ -121,9 +121,9 @@ echo '</select></form>';
 echo '</td>';
 
 echo '<td class="td_left">';
-echo '<form>';
+echo '<form action="#">';
 echo getBaseURL($this, 'post', 'time');
-echo '<select onChange="submit();" name="time">';
+echo '<select onchange="submit();" name="time">';
 foreach ($this->data['available.times'] as $key => $timedescr) {
     if ($key == $this->data['selected.time']) {
         echo '<option selected="selected" value="' . $key . '">' . $timedescr . '</option>';
@@ -152,12 +152,12 @@ echo '
 
 <div id="graph" class="tabset_content">';
 
-echo '<img src="' . htmlspecialchars($this->data['imgurl']) . '" />';
+echo '<img src="' . htmlspecialchars($this->data['imgurl']) . '" alt="Graph" />';
 
-echo '<form>';
-echo '<p class="p_right">Compare with total from this dataset ';
+echo '<form action="#">';
+echo '<p class="p_right">Compare with total from this dataset</p>';
 echo getBaseURL($this, 'post', 'rule2');
-echo '<select onChange="submit();" name="rule2">';
+echo '<select onchange="submit();" name="rule2">';
 echo '	<option value="_">None</option>';
 foreach ($this->data['available.rules'] as $key => $rule) {
     if ($key === $this->data['selected.rule2']) {
@@ -178,9 +178,9 @@ $classint = array('odd', 'even'); $i = 0;
 echo '<div id="table" class="tabset_content">';
 
 if (isset($this->data['pieimgurl'])) {
-    echo '<img src="' . $this->data['pieimgurl'] . '" />';
+    echo '<img src="' . $this->data['pieimgurl'] . '" alt="Pie chart" />';
 }
-echo '<table class="tableview"><tr><th class="value">Value</th><th class="category">Data range</th>';
+echo '<table class="tableview"><tr><th class="value">Value</th><th class="category">Data range</th></tr>';
 
 foreach ($this->data['summaryDataset'] as $key => $value) {
     $clint = $classint[$i++ % 2];
