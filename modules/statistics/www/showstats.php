@@ -119,4 +119,47 @@ $t->data['topdelimiters'] = $dataset->getTopDelimiters();
 $t->data['availdelimiters'] = $dataset->availDelimiters();
 
 $t->data['delimiterPresentation'] =  $dataset->getDelimiterPresentation();
+
+$t->data['post_rule'] = getBaseURL($t, 'post', 'rule');
+$t->data['post_rule2'] = getBaseURL($t, 'post', 'rule2');
+$t->data['post_d'] = getBaseURL($t, 'post', 'd');
+$t->data['post_res'] = getBaseURL($t, 'post', 'res');
+$t->data['post_time'] = getBaseURL($t, 'post', 'time');
+$t->data['get_times_prev'] = getBaseURL($t, 'get', 'time', $t->data['available.times.prev']);
+$t->data['get_times_next'] = getBaseURL($t, 'get', 'time', $t->data['available.times.next']);
+
 $t->show();
+
+function getBaseURL($t, $type = 'get', $key = null, $value = null)
+{
+    $vars = array(
+        'rule' => $t->data['selected.rule'],
+        'time' => $t->data['selected.time'],
+        'res' => $t->data['selected.timeres'],
+    );
+    if (isset($t->data['selected.delimiter'])) {
+        $vars['d'] = $t->data['selected.delimiter'];
+    }
+    if (!empty($t->data['selected.rule2']) && $t->data['selected.rule2'] !== '_') {
+        $vars['rule2'] = $t->data['selected.rule2'];
+    }
+
+    if (isset($key)) {
+        if (isset($vars[$key])) {
+            unset($vars[$key]);
+        }
+        if (isset($value)) {
+            $vars[$key] = $value;
+        }
+    }
+
+    if ($type === 'get') {
+        return SimpleSAML\Module::getModuleURL("statistics/showstats.php") . '?' . http_build_query($vars, '', '&amp;');
+    } else {
+        $text = '';
+        foreach($vars as $k => $v) {
+            $text .= '<input type="hidden" name="' . $k . '" value="'. htmlspecialchars($v) . '" />' . "\n";
+        }
+        return $text;
+    }
+}
