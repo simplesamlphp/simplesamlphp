@@ -12,8 +12,8 @@
         width: 80%;
     }
 
-    .tableview th, .tableview td{
-        border: 1px solid: #ccc;
+    .tableview th, .tableview td {
+        border: 1px solid #ccc;
         padding: 0px 5px;
     }
 
@@ -87,5 +87,9 @@
 
     form {
         display: inline;
+    }
+
+    table#statmeta {
+        width: 100%;
     }
 }

@@ -2,7 +2,7 @@
 $this->data['header'] = 'SimpleSAMLphp Statistics Metadata';
 $this->includeAtTemplateBase('includes/header.php');
 
-echo '<table style="width: 100%">' ;
+echo '<table id="statmeta">' ;
 
 if (isset($this->data['metadata'])) {
     if (isset($this->data['metadata']['lastrun'] )) {
