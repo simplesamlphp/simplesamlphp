@@ -3,7 +3,7 @@ $this->data['header'] = 'SimpleSAMLphp Statistics';
 
 $this->data['jquery'] = array('core' => true, 'ui' => true, 'css' => true);
 
-$this->data['head'] = '$this->data['head']  = '<link rel="stylesheet" type="text/css" href="/' .
+$this->data['head'] = '<link rel="stylesheet" type="text/css" href="/' .
     $this->data['baseurlpath'] . 'module.php/statistics/style.css" />';
 $this->data['head'] .= '<script type="text/javascript">
 $(document).ready(function() {
