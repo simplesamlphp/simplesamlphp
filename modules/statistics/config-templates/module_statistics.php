@@ -173,7 +173,7 @@ $config = array (
             'action'       => 'slo-iframe',
             'col'          => 6,                     // Page the user visits.
         ),
-        slofail' => array(
+        'slofail' => array(
             'name'         => 'Failed iframe IdP-init SLOs',
             'descr'        => 'The number of logout failures from various SPs',
             'action'       => 'slo-iframe-fail',
