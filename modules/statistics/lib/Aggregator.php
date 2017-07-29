@@ -219,7 +219,7 @@ class sspmod_statistics_Aggregator
     private function cummulateData($previous, $newdata)
     {
         $dataset = array();
-        foreach ($previous sd $slot => $dataarray) {
+        foreach ($previous as $slot => $dataarray) {
             if (!array_key_exists($slot, $dataset)) {
                 $dataset[$slot] = array();
             }
