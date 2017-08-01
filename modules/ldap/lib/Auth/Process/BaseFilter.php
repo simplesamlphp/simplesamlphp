@@ -280,7 +280,7 @@ abstract class sspmod_ldap_Auth_Process_BaseFilter extends SimpleSAML_Auth_Proce
             ' Referrals: ' . ($referrals ? 'Yes' : 'No') .
             ' Timeout: ' . $timeout .
             ' Username: ' . $username .
-            ' Password: ' . str_repeat('*', strlen($password))
+            ' Password: ' . (empty($password) ? '' : '********')
         );
 
         // Connect to the LDAP server to be queried during processing
@@ -300,8 +300,16 @@ abstract class sspmod_ldap_Auth_Process_BaseFilter extends SimpleSAML_Auth_Proce
      * @param mixed $value
      * @return string
      */
-    protected function var_export($value)
+    public function var_export($value)
     {
+        // Remove sensitive data
+        foreach ($value as $key => &$val) {
+            if ($key === 'ldap.password') {
+                $val = empty($val) ? '' : '********';
+            }
+        }
+        unset($val);
+
         $export = var_export($value, true);
         $lines = explode("\n", $export);
         foreach ($lines as &$line) {
