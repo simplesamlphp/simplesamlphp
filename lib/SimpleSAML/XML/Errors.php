@@ -9,124 +9,130 @@
  * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
-class SimpleSAML_XML_Errors {
 
-	/**
-	 * This is an stack of error logs. The topmost element is the one we are
-	 * currently working on.
-	 */
-	private static $errorStack = array();
+namespace SimpleSAML\XML;
 
-	/**
-	 * This is the xml error state we had before we began logging.
-	 */
-	private static $xmlErrorState;
+class Errors
+{
 
+    /**
+     * @var array This is an stack of error logs. The topmost element is the one we are currently working on.
+     */
+    private static $errorStack = array();
 
-	/**
-	 * Append current XML errors to the the current stack level.
-	 */
-	private static function addErrors() {
-
-		$currentErrors = libxml_get_errors();
-		libxml_clear_errors();
-
-		$level = count(self::$errorStack) - 1;
-		self::$errorStack[$level] = array_merge(self::$errorStack[$level], $currentErrors);
-	}
+    /**
+     * @var bool This is the xml error state we had before we began logging.
+     */
+    private static $xmlErrorState;
 
 
-	/**
-	 * Start error logging.
-	 *
-	 * A call to this function will begin a new error logging context. Every call must have
-	 * a corresponding call to end().
-	 */
-	public static function begin() {
+    /**
+     * Append current XML errors to the current stack level.
+     */
+    private static function addErrors()
+    {
+        $currentErrors = libxml_get_errors();
+        libxml_clear_errors();
 
-		// Check whether the error access functions are present
-		if(!function_exists('libxml_use_internal_errors')) {
-			return;
-		}
-
-		if(count(self::$errorStack) === 0) {
-			// No error logging is currently in progress. Initialize it.
-			self::$xmlErrorState = libxml_use_internal_errors(TRUE);
-			libxml_clear_errors();
-		} else {
-			/* We have already started error logging. Append the current errors to the
-			 * list of errors in this level.
-			 */
-			self::addErrors();
-		}
-
-		// Add a new level to the error stack
-		self::$errorStack[] = array();
-	}
+        $level = count(self::$errorStack) - 1;
+        self::$errorStack[$level] = array_merge(self::$errorStack[$level], $currentErrors);
+    }
 
 
-	/**
-	 * End error logging.
-	 *
-	 * @return  An array with the LibXMLErrors which has occurred since begin() was called.
-	 */
-	public static function end() {
+    /**
+     * Start error logging.
+     *
+     * A call to this function will begin a new error logging context. Every call must have
+     * a corresponding call to end().
+     */
+    public static function begin()
+    {
 
-		// Check whether the error access functions are present
-		if(!function_exists('libxml_use_internal_errors')) {
-			// Pretend that no errors occurred
-			return array();
-		}
+        // Check whether the error access functions are present
+        if (!function_exists('libxml_use_internal_errors')) {
+            return;
+        }
 
-		// Add any errors which may have occurred
-		self::addErrors();
+        if (count(self::$errorStack) === 0) {
+            // No error logging is currently in progress. Initialize it.
+            self::$xmlErrorState = libxml_use_internal_errors(true);
+            libxml_clear_errors();
+        } else {
+            /* We have already started error logging. Append the current errors to the
+             * list of errors in this level.
+             */
+            self::addErrors();
+        }
 
-
-		$ret = array_pop(self::$errorStack);
-
-		if(count(self::$errorStack) === 0) {
-			// Disable our error logging and restore the previous state
-			libxml_use_internal_errors(self::$xmlErrorState);
-		}
-
-		return $ret;
-	}
-
-
-	/**
-	 * Format an error as a string.
-	 *
-	 * This function formats the given LibXMLError object as a string.
-	 *
-	 * @param $error  The LibXMLError which should be formatted.
-	 * @return  A string representing the given LibXMLError.
-	 */
-	public static function formatError($error) {
-		assert('$error instanceof LibXMLError');
-		return 'level=' . $error->level . ',code='  . $error->code . ',line=' . $error->line . ',col=' . $error->column .
-			',msg=' . trim($error->message);
-	}
+        // Add a new level to the error stack
+        self::$errorStack[] = array();
+    }
 
 
-	/**
-	 * Format a list of errors as a string.
-	 *
-	 * This fucntion takes an array of LibXMLError objects and creates a string with all the errors.
-	 * Each error will be separated by a newline, and the string will end with a newline-character.
-	 *
-	 * @param $errors  An array of errors.
-	 * @return  A string representing the errors. An empty string will be returned if there were no
-	 *          errors in the array.
-	 */
-	public static function formatErrors($errors) {
-		assert('is_array($errors)');
+    /**
+     * End error logging.
+     *
+     * @return array  An array with the LibXMLErrors which has occurred since begin() was called.
+     */
+    public static function end()
+    {
 
-		$ret = '';
-		foreach($errors as $error) {
-			$ret .= self::formatError($error) . "\n";
-		}
+        // Check whether the error access functions are present
+        if (!function_exists('libxml_use_internal_errors')) {
+            // Pretend that no errors occurred
+            return array();
+        }
 
-		return $ret;
-	}
+        // Add any errors which may have occurred
+        self::addErrors();
 
+
+        $ret = array_pop(self::$errorStack);
+
+        if (count(self::$errorStack) === 0) {
+            // Disable our error logging and restore the previous state
+            libxml_use_internal_errors(self::$xmlErrorState);
+        }
+
+        return $ret;
+    }
+
+
+    /**
+     * Format an error as a string.
+     *
+     * This function formats the given LibXMLError object as a string.
+     *
+     * @param \LibXMLError $error  The LibXMLError which should be formatted.
+     * @return string  A string representing the given LibXMLError.
+     */
+    public static function formatError($error)
+    {
+        assert('$error instanceof LibXMLError');
+        return 'level=' . $error->level . ',code='  . $error->code . ',line=' . $error->line . ',col=' . $error->column .
+            ',msg=' . trim($error->message);
+    }
+
+
+    /**
+     * Format a list of errors as a string.
+     *
+     * This fucntion takes an array of LibXMLError objects and creates a string with all the errors.
+     * Each error will be separated by a newline, and the string will end with a newline-character.
+     *
+     * @param array $errors  An array of errors.
+     * @return string  A string representing the errors. An empty string will be returned if there were no
+     *          errors in the array.
+     */
+    public static function formatErrors($errors)
+    {
+        assert('is_array($errors)');
+
+        $ret = '';
+        foreach ($errors as $error) {
+            $ret .= self::formatError($error) . "\n";
+        }
+
+        return $ret;
+    }
 }

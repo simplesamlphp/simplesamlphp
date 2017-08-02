@@ -8,6 +8,7 @@
 namespace SimpleSAML\Utils;
 
 use SimpleSAML\Logger;
+use SimpleSAML\XML\Errors;
 
 class XML
 {
@@ -258,20 +259,20 @@ class XML
      * This function finds direct descendants of a DOM element with the specified
      * localName and namespace. They are returned in an array.
      *
-     * This function accepts the same shortcuts for namespaces as the isDOMElementOfType function.
+     * This function accepts the same shortcuts for namespaces as the isDOMNodeOfType function.
      *
-     * @param \DOMElement $element The element we should look in.
-     * @param string      $localName The name the element should have.
-     * @param string      $namespaceURI The namespace the element should have.
+     * @param \DOMNode $element The element we should look in.
+     * @param string   $localName The name the element should have.
+     * @param string   $namespaceURI The namespace the element should have.
      *
-     * @return array  Array with the matching elements in the order they are found. An empty array is
+     * @return array Array with the matching elements in the order they are found. An empty array is
      *         returned if no elements match.
      * @throws \InvalidArgumentException If $element is not an instance of DOMElement, $localName is not a string or
      *     $namespaceURI is not a string.
      */
-    public static function getDOMChildren(\DOMElement $element, $localName, $namespaceURI)
+    public static function getDOMChildren(\DOMNode $element, $localName, $namespaceURI)
     {
-        if (!($element instanceof \DOMElement) || !is_string($localName) || !is_string($namespaceURI)) {
+        if (!is_string($localName) || !is_string($namespaceURI)) {
             throw new \InvalidArgumentException('Invalid input parameters.');
         }
 
@@ -285,7 +286,7 @@ class XML
                 continue;
             }
 
-            if (self::isDOMElementOfType($child, $localName, $namespaceURI) === true) {
+            if (self::isDOMNodeOfType($child, $localName, $namespaceURI) === true) {
                 $ret[] = $child;
             }
         }
@@ -349,9 +350,9 @@ class XML
      * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
-    public static function isDOMElementOfType(\DOMNode $element, $name, $nsURI)
+    public static function isDOMNodeOfType(\DOMNode $element, $name, $nsURI)
     {
-        if (!($element instanceof \DOMElement) || !is_string($name) || !is_string($nsURI) || strlen($nsURI) === 0) {
+        if (!is_string($name) || !is_string($nsURI) || strlen($nsURI) === 0) {
             // most likely a comment-node
             return false;
         }
@@ -409,7 +410,7 @@ class XML
             throw new \InvalidArgumentException('Invalid input parameters.');
         }
 
-        \SimpleSAML_XML_Errors::begin();
+        Errors::begin();
 
         if ($xml instanceof \DOMDocument) {
             $dom = $xml;
@@ -431,7 +432,7 @@ class XML
 
             $res = $dom->schemaValidate($schemaFile);
             if ($res) {
-                \SimpleSAML_XML_Errors::end();
+                Errors::end();
                 return true;
             }
 
@@ -440,8 +441,8 @@ class XML
             $errorText = "Failed to parse XML string for schema validation:\n";
         }
 
-        $errors = \SimpleSAML_XML_Errors::end();
-        $errorText .= \SimpleSAML_XML_Errors::formatErrors($errors);
+        $errors = Errors::end();
+        $errorText .= Errors::formatErrors($errors);
 
         return $errorText;
     }

@@ -14,12 +14,24 @@ class sspmod_saml_SP_LogoutStore {
 	 */
 	private static function createLogoutTable(\SimpleSAML\Store\SQL $store) {
 
-		if ($store->getTableVersion('saml_LogoutStore') === 1) {
+		$tableVer = $store->getTableVersion('saml_LogoutStore');
+		if ($tableVer === 2) {
+			return;
+		} elseif ($tableVer === 1) {
+			/* TableVersion 2 increased the column size to 255 which is the maximum length of a FQDN. */
+			$query = 'ALTER TABLE ' . $store->prefix . '_saml_LogoutStore MODIFY _authSource VARCHAR(255) NOT NULL';
+			try {
+				$ret = $store->pdo->exec($query);
+			} catch (Exception $e) {
+				SimpleSAML\Logger::warning($store->pdo->errorInfo());
+				return;
+			}
+			$store->setTableVersion('saml_LogoutStore', 2);
 			return;
 		}
 
 		$query = 'CREATE TABLE ' . $store->prefix . '_saml_LogoutStore (
-			_authSource VARCHAR(30) NOT NULL,
+			_authSource VARCHAR(255) NOT NULL,
 			_nameId VARCHAR(40) NOT NULL,
 			_sessionIndex VARCHAR(50) NOT NULL,
 			_expire TIMESTAMP NOT NULL,
@@ -34,7 +46,7 @@ class sspmod_saml_SP_LogoutStore {
 		$query = 'CREATE INDEX ' . $store->prefix . '_saml_LogoutStore_nameId ON '  . $store->prefix . '_saml_LogoutStore (_authSource, _nameId)';
 		$store->pdo->exec($query);
 
-		$store->setTableVersion('saml_LogoutStore', 1);
+		$store->setTableVersion('saml_LogoutStore', 2);
 	}
 
 
@@ -210,11 +222,11 @@ class sspmod_saml_SP_LogoutStore {
 	 * Log out of the given sessions.
 	 *
 	 * @param string $authId  The authsource ID.
-	 * @param array $nameId  The NameID of the user.
+	 * @param \SAML2\XML\saml\NameID $nameId The NameID of the user.
 	 * @param array $sessionIndexes  The SessionIndexes we should log out of. Logs out of all if this is empty.
 	 * @returns int|FALSE  Number of sessions logged out, or FALSE if not supported.
 	 */
-	public static function logoutSessions($authId, array $nameId, array $sessionIndexes) {
+	public static function logoutSessions($authId, $nameId, array $sessionIndexes) {
 		assert('is_string($authId)');
 
 		$store = \SimpleSAML\Store::getInstance();
@@ -223,8 +235,11 @@ class sspmod_saml_SP_LogoutStore {
 			return FALSE;
 		}
 
-		/* Normalize NameID. */
-		ksort($nameId);
+		// serialize and anonymize the NameID
+		// TODO: remove this conditional statement
+		if (is_array($nameId)) {
+			$nameId = \SAML2\XML\saml\NameID::fromArray($nameId);
+		}
 		$strNameId = serialize($nameId);
 		$strNameId = sha1($strNameId);
 
@@ -252,7 +267,7 @@ class sspmod_saml_SP_LogoutStore {
 			$sessionIndexes = array_keys($sessions);
 		}
 
-		$sessionHandler = SimpleSAML_SessionHandler::getSessionHandler();
+		$sessionHandler = \SimpleSAML\SessionHandler::getSessionHandler();
 
 		$numLoggedOut = 0;
 		foreach ($sessionIndexes as $sessionIndex) {

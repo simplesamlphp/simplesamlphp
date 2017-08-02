@@ -107,6 +107,7 @@ $functionchecks = array(
 	'preg_match'       => array('required',  'RegEx support'),
 	'json_decode'      => array('required', 'JSON support'),
 	'class_implements' => array('required', 'Standard PHP Library (SPL)'),
+	'mb_strlen'        => array('required', 'Multibyte String Extension'),
 	'curl_init'        => array('optional', 'cURL (required if automatic version checks are used, also by some modules.'),
 	'mcrypt_module_open'=> array('optional',  'MCrypt (required if digital signatures or encryption are used)'),
 	'session_start'  => array('optional', 'Session Extension (required if PHP sessions are used)'),
@@ -130,6 +131,11 @@ foreach ($functionchecks AS $func => $descr) {
 
 $funcmatrix[] = array(
     'required' => 'optional',
+    'descr' => 'predis/predis (required if the redis data store is used)',
+    'enabled' => class_exists('\Predis\Client'),
+);
+
+$funcmatrix[] = array(
     'descr' => 'Memcache or Memcached Extension (required if a Memcached backend is used)',
     'enabled' => class_exists('Memcache') || class_exists('Memcached'),
 );

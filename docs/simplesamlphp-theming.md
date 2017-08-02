@@ -1,8 +1,8 @@
 Theming the user interface in SimpleSAMLphp
 ===========================================
 
-<!-- 
-	This file is written in Markdown syntax. 
+<!--
+	This file is written in Markdown syntax.
 	For more information about how to use the Markdown syntax, read here:
 	http://daringfireball.net/projects/markdown/syntax
 -->
@@ -86,7 +86,7 @@ For example, to override the `preprodwarning` template, (the file is located in 
 
 
 Say in a module `foomodule`, some code requests to present the `bar.php` template, SimpleSAMLphp will:
-	
+
  1. first look in your theme for a replacement: `modules/mymodule/themes/fancytheme/foomodule/bar.php`.
  2. If not found, it will use the base template of that module: `modules/foomodule/templates/bar.php`
 
@@ -96,3 +96,21 @@ Adding resource files
 
 You can put resource files within the www folder of your module, to make your module completely independent with included css, icons etc.
 
+```
+modules
+└───mymodule
+    └───themes
+    └───www
+        └───logo.png
+        └───style.css
+```
+
+Reference these resources in your custom PHP templates under `themes/fancytheme` by using a generator for the URL:
+```php
+<?php echo SimpleSAML_Module::getModuleURL('mymodule/logo.png'); ?>
+```
+
+Example for a custom CSS stylesheet file:
+```html
+<link rel="stylesheet" type="text/css" href="<?php echo SimpleSAML_Module::getModuleURL('mymodule/style.css'); ?>" />
+```
