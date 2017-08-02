@@ -112,7 +112,6 @@ $functionchecks = array(
 	'mcrypt_module_open'=> array('optional',  'MCrypt (required if digital signatures or encryption are used)'),
 	'session_start'  => array('optional', 'Session Extension (required if PHP sessions are used)'),
 	'pdo_drivers'    => array('optional',  'PDO Extension (required if a database backend is used)'),
-	'memcache_debug' => array('optional', 'Memcache Extension (required if a Memcached backend is used)'),
 );
 if (SimpleSAML\Module::isModuleEnabled('ldap')) {
 	$functionchecks['ldap_bind'] = array('optional',  'LDAP Extension (required if an LDAP backend is used)');
@@ -134,6 +133,11 @@ $funcmatrix[] = array(
     'required' => 'optional',
     'descr' => 'predis/predis (required if the redis data store is used)',
     'enabled' => class_exists('\Predis\Client'),
+);
+
+$funcmatrix[] = array(
+    'descr' => 'Memcache or Memcached Extension (required if a Memcached backend is used)',
+    'enabled' => class_exists('Memcache') || class_exists('Memcached'),
 );
 
 /* Some basic configuration checks */

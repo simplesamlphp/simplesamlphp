@@ -3,18 +3,19 @@
 
 
 // Check that the memcache library is enabled
-if (!class_exists('Memcache')) {
-    echo("Error: the memcache library appears to be unavailable.\n");
-    echo("\n");
-    echo("This is most likely because PHP doesn't load it for the command line\n");
-    echo("version. You probably need to enable it somehow.\n");
-    echo("\n");
-    if(is_executable('/usr/sbin/phpenmod')) {
-        echo("It is possible that running the following command as root will fix it:\n");
-        echo(" phpenmod -s cli memcache\n");
-    }
+if(!class_exists('Memcache') && !class_exists('Memcached')) {
+	echo("Error: the memcache and memcached libraries appear to be unavailable.\n");
+	echo("\n");
+	echo("This is most likely because PHP doesn't load it for the command line\n");
+	echo("version. You probably need to enable one of them somehow.\n");
+	echo("\n");
+	if(is_dir('/etc/php5/cli/conf.d')) {
+		echo("It is possible that running one of the following commands as root will fix it:\n");
+		echo(" echo 'extension=memcache.so' >/etc/php5/cli/conf.d/memcache.ini\n");
+		echo(" echo 'extension=memcached.so' >/etc/php5/cli/conf.d/memcached.ini\n");
+	}
 
-    exit(1);
+	exit(1);
 }
 
 // This is the base directory of the SimpleSAMLphp installation

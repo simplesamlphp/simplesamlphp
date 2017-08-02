@@ -14,9 +14,12 @@ Memcache
 To enable memcache, you must first install and configure memcache on the server hosting your IdP.
 You need both a memcache server and a the PHP memcache client.
 How this is done depends on the distribution.
-If you are running Debian Lenny, you can install both by running:
+If you are running Debian Lenny, you can install both by running one of the following:
 
     aptitude install memcached php5-memcache
+    aptitude install memcached php5-memcached
+
+The memcached extension should be used for PHP 7.
 
 *Note*: For security, you must make sure that the memcache server is inaccessible to other hosts.
 The default configuration on Debian Lenny is for the memcache server to be accessible to only the local host.
