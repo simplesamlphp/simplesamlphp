@@ -12,17 +12,17 @@ Memcache
 --------
 
 To enable memcache, you must first install and configure memcache on the server hosting your IdP.
-You need both a memcache server and a the PHP memcache client.
+You need both a memcache server and a the PHP memcached client (extension).
+
 How this is done depends on the distribution.
-If you are running Debian Lenny, you can install both by running one of the following:
+If you are running Debian or Ubuntu, you can install this by running:
 
-    aptitude install memcached php5-memcache
-    aptitude install memcached php5-memcached
+    apt install memcached php-memcached
 
-The memcached extension should be used for PHP 7.
+simpleSAMLphp also supports the legacy `php-memcache` (without `d`) variant.
 
 *Note*: For security, you must make sure that the memcache server is inaccessible to other hosts.
-The default configuration on Debian Lenny is for the memcache server to be accessible to only the local host.
+The default configuration on Debian is for the memcache server to be accessible to only the local host.
 
 
 Once the memcache server is configured, you can configure simplesamlphp to use it to store sessions.
