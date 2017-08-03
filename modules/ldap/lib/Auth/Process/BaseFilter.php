@@ -151,6 +151,9 @@ abstract class sspmod_ldap_Auth_Process_BaseFilter extends SimpleSAML_Auth_Proce
 			if (isset($authsource['debug'])) {
 				$authconfig['ldap.debug']      = $authsource['debug'];
 			}
+			if (isset($authsource['referrals'])) {
+				$authconfig['ldap.referrals']  = $authsource['referrals'];
+			}
 			// only set when search.enabled = true
 			if (isset($authsource['search.enable']) && $authsource['search.enable']) {
 				if (isset($authsource['search.base'])) {
@@ -258,6 +261,7 @@ abstract class sspmod_ldap_Auth_Process_BaseFilter extends SimpleSAML_Auth_Proce
 		$port       = $this->config->getInteger('ldap.port', 389);
 		$enable_tls = $this->config->getBoolean('ldap.enable_tls', FALSE);
 		$debug      = $this->config->getBoolean('ldap.debug', FALSE);
+		$referrals  = $this->config->getBoolean('ldap.referrals', true);
 		$timeout    = $this->config->getInteger('ldap.timeout', 0);
 		$username   = $this->config->getString('ldap.username', NULL);
 		$password   = $this->config->getString('ldap.password', NULL);
@@ -269,13 +273,14 @@ abstract class sspmod_ldap_Auth_Process_BaseFilter extends SimpleSAML_Auth_Proce
 			' Port: ' . $port .
 			' Enable TLS: ' . ($enable_tls ? 'Yes' : 'No') .
 			' Debug: ' . ($debug ? 'Yes' : 'No') .
+			' Referrals: ' . ($referrals ? 'Yes' : 'No') .
 			' Timeout: ' . $timeout .
 			' Username: ' . $username .
 			' Password: ' . str_repeat('*', strlen($password))
 		);
 
 		// Connect to the LDAP server to be queried during processing
-		$this->ldap = new SimpleSAML_Auth_LDAP($hostname, $enable_tls, $debug, $timeout, $port);
+		$this->ldap = new SimpleSAML_Auth_LDAP($hostname, $enable_tls, $debug, $timeout, $port, $referrals);
 		$this->ldap->bind($username, $password);
 
 		// All done
