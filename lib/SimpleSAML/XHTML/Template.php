@@ -172,6 +172,9 @@ class SimpleSAML_XHTML_Template
         if ($this->module) {
             $templateDirs[] = array($this->module => $this->getModuleTemplateDir($this->module));
         }
+        if ($this->theme['module']) {
+            $templateDirs[] = array($this->theme['module'] => $this->getModuleTemplateDir($this->theme['module']));
+        }
 
         // default, themeless templates are checked last
         $templateDirs[] = array(
