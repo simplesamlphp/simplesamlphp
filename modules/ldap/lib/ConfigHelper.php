@@ -275,7 +275,7 @@ class sspmod_ldap_ConfigHelper
         }
 
         return $ldap->searchfordn($this->searchBase, $attribute,
-            $value, $allowZeroHits);
+            $value, $allowZeroHits, $this->searchFilter);
     }
 
     public function getAttributes($dn, $attributes = null)
