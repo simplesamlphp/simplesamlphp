@@ -277,7 +277,7 @@ class sspmod_consent_Consent_Store_Cookie extends sspmod_consent_Store
         $params = array(
             'lifetime' => (90*24*60*60),
             'path' => ($globalConfig->getBasePath()),
-            'httponly' => false,
+            'httponly' => true,
         );
 
         if (\SimpleSAML\Utils\HTTP::isHTTPS()) {
