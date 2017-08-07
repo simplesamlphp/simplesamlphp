@@ -16,6 +16,8 @@ class sspmod_core_Auth_Process_StatisticsWithAttribute extends SimpleSAML_Auth_P
 	
 	private $typeTag = 'saml20-idp-SSO';
 
+	private $skipPassive = false;
+
 
 	/**
 	 * Initialize this filter.
@@ -41,6 +43,10 @@ class sspmod_core_Auth_Process_StatisticsWithAttribute extends SimpleSAML_Auth_P
 				throw new Exception('Invalid typeTag given to core:StatisticsWithAttribute filter.');
 			}
 		}
+
+		if (array_key_exists('skipPassive', $config)) {
+			$this->skipPassive = (bool)$config['skipPassive'];
+		}
 	}
 
 
@@ -56,10 +62,14 @@ class sspmod_core_Auth_Process_StatisticsWithAttribute extends SimpleSAML_Auth_P
 		$logAttribute = 'NA';
 		$source = 'NA';
 		$dest = 'NA';
+		$isPassive = '';
 
 		if(array_key_exists('isPassive', $state) && $state['isPassive'] === true) {
-			// We have a passive request. Skip logging statistics
-			return;
+			if ($this->skipPassive === true) {
+				// We have a passive request. Skip logging statistics
+				return;
+			}
+			$isPassive = 'passive-';
 		}
 
 		if (array_key_exists($this->attribute, $state['Attributes'])) $logAttribute = $state['Attributes'][$this->attribute][0];		
@@ -81,10 +91,10 @@ class sspmod_core_Auth_Process_StatisticsWithAttribute extends SimpleSAML_Auth_P
 
 		if (!array_key_exists('PreviousSSOTimestamp', $state)) {
 			// The user hasn't authenticated with this SP earlier in this session
-			SimpleSAML\Logger::stats($this->typeTag . '-first ' . $dest . ' ' . $source . ' ' . $logAttribute);
+			SimpleSAML\Logger::stats($isPassive . $this->typeTag . '-first ' . $dest . ' ' . $source . ' ' . $logAttribute);
 		}
 
-		SimpleSAML\Logger::stats($this->typeTag . ' ' . $dest . ' ' . $source . ' ' . $logAttribute);
+		SimpleSAML\Logger::stats($isPassive . $this->typeTag . ' ' . $dest . ' ' . $source . ' ' . $logAttribute);
 	}
 
 }
