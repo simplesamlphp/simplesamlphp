@@ -6,6 +6,19 @@ SimpleSAMLphp changelog
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
+## Version 1.14.15
+
+Released 2017-08-08
+
+  * Resolved a security issue with the creation and validation of time-limited tokens. See [SSPSA 201708-01](https://simplesamlphp.org/security/201708-01).
+  * Fixed an issue with session handling that could lead to crashes after upgrading from earlier 1.14.x versions.
+  * Fixed issue #557 with instances of SimpleSAMLphp installed from the repository as well as custom modules.
+  * Fixed issue #648 to properly handle SAML responses being sent to reply the same request, but using different response IDs.
+  * Fixed issues #612 and #618 with the mobile view of the web interface.
+  * Fixed issue #639 related to IdP names containing special characters not being properly displayed by discopower.
+  * Fixed issue #571 causing timeouts when using Active Directory as a backend.
+  * Other minor fixes.
+
 ## Version 1.14.14
 
 Released 2017-05-05
