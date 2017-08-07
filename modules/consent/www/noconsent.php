@@ -37,11 +37,24 @@ if (isset($state['Destination']['entityid'])) {
 }
 SimpleSAML_Stats::log('consent:reject', $statsInfo);
 
+if (array_key_exists('name', $state['Destination'])) {
+    $dstName = $state['Destination']['name'];
+} elseif (array_key_exists('OrganizationDisplayName', $state['Destination'])) {
+    $dstName = $state['Destination']['OrganizationDisplayName'];
+} else {
+    $dstName = $state['Destination']['entityid'];
+}
+
 $globalConfig = SimpleSAML_Configuration::getInstance();
 
 $t = new SimpleSAML_XHTML_Template($globalConfig, 'consent:noconsent.php');
-$t->data['dstMetadata'] = $state['Destination'];
 $t->data['resumeFrom'] = $resumeFrom;
 $t->data['aboutService'] = $aboutService;
 $t->data['logoutLink'] = $logoutLink;
+
+$dstName = htmlspecialchars(is_array($dstName) ? $t->t($dstName) : $dstName);
+
+$t->data['noconsent_text'] = $t->t('{consent:consent:noconsent_text}', array('SPNAME' => $dstName));
+$t->data['noconsent_abort'] = $t->t('{consent:consent:abort}', array('SPNAME' => $dstName));
+
 $t->show();
