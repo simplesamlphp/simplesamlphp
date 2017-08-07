@@ -302,13 +302,15 @@ abstract class sspmod_ldap_Auth_Process_BaseFilter extends SimpleSAML_Auth_Proce
      */
     public function var_export($value)
     {
-        // Remove sensitive data
-        foreach ($value as $key => &$val) {
-            if ($key === 'ldap.password') {
-                $val = empty($val) ? '' : '********';
+        if (is_array($value)) {
+            // remove sensitive data
+            foreach ($value as $key => &$val) {
+                if ($key === 'ldap.password') {
+                    $val = empty($val) ? '' : '********';
+                }
             }
+            unset($val);
         }
-        unset($val);
 
         $export = var_export($value, true);
         $lines = explode("\n", $export);
