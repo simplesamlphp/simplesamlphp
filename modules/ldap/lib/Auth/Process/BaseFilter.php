@@ -300,7 +300,7 @@ abstract class sspmod_ldap_Auth_Process_BaseFilter extends SimpleSAML_Auth_Proce
      * @param mixed $value
      * @return string
      */
-    public function var_export($value)
+    protected function var_export($value)
     {
         if (is_array($value)) {
             // remove sensitive data
