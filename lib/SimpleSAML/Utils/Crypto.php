@@ -204,18 +204,25 @@ class Crypto
         $file = $metadata->getString($prefix.'privatekey', null);
         if ($file === null) {
             // no private key found
-            if ($required) {
-                throw new Error\Exception('No private key found in metadata.');
-            } else {
-                return null;
+            // try getting the privatekeydata
+            $data = $metadata->getString($prefix . 'privatekeydata', NULL);
+            if ($data === null) {
+                if ($required) {
+                    throw new Error\Exception('No private key found in metadata.');
+                } else {
+                    return null;
+                }
             }
         }
 
-        if (!$full_path) {
-            $file = Config::getCertPath($file);
+        // file could be still null if privateKey was passed as string in configuration throutgh privatekeydata
+        if ($file !== null) {
+            if (!$full_path) {
+                $file = Config::getCertPath($file);
+            }
+            $data = @file_get_contents($file);
         }
-
-        $data = @file_get_contents($file);
+        
         if ($data === false) {
             throw new Error\Exception('Unable to load private key from file "'.$file.'"');
         }
