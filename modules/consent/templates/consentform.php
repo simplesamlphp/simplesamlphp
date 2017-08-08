@@ -15,7 +15,6 @@ assert('is_string($this->data["noTarget"])');
 assert('is_array($this->data["hiddenAttributes"])');
 assert('$this->data["sppp"] === false || is_string($this->data["sppp"])');
 
-//$srcName = $this->data['srcName'];
 $dstName = $this->data['dstName'];
 
 $this->data['header'] = $this->t('{consent:consent:consent_header}');
@@ -62,8 +61,6 @@ if ($this->data['sppp'] !== false) {
 }
 
 echo '<h3 id="attributeheader">' . $this->data['consent_attributes_header'] . '</h3>';
-
-//echo present_attributes($this, $attributes);
 echo $this->data['attributes_html'];
 
 $this->includeAtTemplateBase('includes/footer.php');
