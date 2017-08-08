@@ -346,13 +346,11 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store
 
         $st = $db->prepare($statement);
         if ($st === false) {
-            if ($st === false) {
-                SimpleSAML\Logger::error(
-                    'consent:Database - Error preparing statement \'' .
-                    $statement . '\': ' . self::_formatError($db->errorInfo())
-                );
-                return false;
-            }
+            SimpleSAML\Logger::error(
+                'consent:Database - Error preparing statement \'' .
+                $statement . '\': ' . self::_formatError($db->errorInfo())
+            );
+            return false;
         }
 
         if ($st->execute($parameters) !== true) {
