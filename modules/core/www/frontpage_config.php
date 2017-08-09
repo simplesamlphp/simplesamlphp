@@ -136,6 +136,7 @@ $funcmatrix[] = array(
 );
 
 $funcmatrix[] = array(
+    'required' => 'optional',
     'descr' => 'Memcache or Memcached Extension (required if a Memcached backend is used)',
     'enabled' => class_exists('Memcache') || class_exists('Memcached'),
 );
