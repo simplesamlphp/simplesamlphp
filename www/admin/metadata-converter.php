@@ -7,9 +7,9 @@ SimpleSAML\Utils\Auth::requireAdmin();
 $config = SimpleSAML_Configuration::getInstance();
 
 if (!empty($_FILES['xmlfile']['tmp_name'])) {
-    $xmldata = file_get_contents($_FILES['xmlfile']['tmp_name']);
+    $xmldata = trim(file_get_contents($_FILES['xmlfile']['tmp_name']));
 } elseif (array_key_exists('xmldata', $_POST)) {
-    $xmldata = $_POST['xmldata'];
+    $xmldata = trim($_POST['xmldata']);
 }
 
 if (!empty($xmldata)) {
