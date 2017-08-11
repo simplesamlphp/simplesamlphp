@@ -733,8 +733,8 @@ class SimpleSAML_Auth_LDAP
         $authz_id = '';
 
         if (function_exists('ldap_exop_whoami')) {
-            if (ldap_exop_whoami($this->ldap, $authz_id) !== true) {
-                throw $this->getLDAPException('LDAP whoami exop failure');
+            if (($authz_id = ldap_exop_whoami($this->ldap)) === false) {
+                throw $this->makeException('LDAP whoami exop failure');
             }
         } else {
             $authz_id = $this->authz_id;
@@ -743,7 +743,7 @@ class SimpleSAML_Auth_LDAP
         $dn = $this->authzid_to_dn($searchBase, $searchAttributes, $authz_id);
 
         if (!isset($dn) || ($dn == '')) {
-            throw $this->getLDAPException('Cannot figure userID');
+            throw $this->makeException('Cannot figure userID');
         }
 
         return $dn;
