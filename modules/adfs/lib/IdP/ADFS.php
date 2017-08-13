@@ -113,7 +113,7 @@ class sspmod_adfs_IdP_ADFS {
 
 	public static function ADFS_PostResponse($url, $wresult, $wctx) {
 		print '
-<body onload="document.forms[0].submit()"><form method="post" action="' . $url . '">
+<body onload="document.forms[0].submit()"><form method="post" action="' . $url . '" enctype="multipart/form-data">
 	<input type="hidden" name="wa" value="wsignin1.0">
 	<input type="hidden" name="wresult" value="' . htmlspecialchars($wresult) . '">
 	<input type="hidden" name="wctx" value="' . htmlspecialchars($wctx) . '">
