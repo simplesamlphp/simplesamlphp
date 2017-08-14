@@ -45,7 +45,7 @@ The recommended settings for /metadata/adfs-idp-hosted.php is:
 The minimal configuration for /metadata/adfs-sp-remote.php is:
 
 $metadata['urn:federation:localhost'] = array(
-        prp' => 'https://localhost/adfs/ls/',
+        'prp' => 'https://localhost/adfs/ls/',
 );
 
 7. Creating a SSL self signed certificate
