@@ -5,12 +5,12 @@
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<title>POST data</title>
 </head>
-<body onload="document.getElementsByTagName('input')[0].click();">
+<body onload="document.forms[0].submit();">
 
 	<noscript>
-		<p><strong>Note:</strong> Since your browser does not support JavaScript, you must press the button below once to proceed.</p> 
-	</noscript> 
-	
+		<p><strong>Note:</strong> Since your browser does not support JavaScript, you must press the button below once to proceed.</p>
+	</noscript>
+
 	<form method="post" action="<?php echo htmlspecialchars($this->data['destination']); ?>">
 	<!-- Need to add this element and call click method, because calling submit()
 	on the form causes failed submission if the form has another element with name or id of submit.
