@@ -1,19 +1,16 @@
 <?php
-$wwwlib = sprintf(
-    "//%s/%sresources/", 
-    htmlentities($_SERVER['SERVER_NAME']), 
-    htmlentities($this->data['baseurlpath'])
-);
+use SimpleSAML\Utils\HTTP;
 ?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <title>POST data</title>
-    <script type="text/javascript" src="<?php echo $wwwlib;?>post.js"></script>
+    <script type="text/javascript" src="<?php echo HTTP::getBaseURL();?>/resources/post.js"></script>
     <link 
-        type="text/css" rel="stylesheet" href="<?php echo $wwwlib;?>post.css" />
+        type="text/css" rel="stylesheet" href="<?php echo HTTP::getBaseURL();?>/resources/post.css" />
 </head>
 <body>
 
