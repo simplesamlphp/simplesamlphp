@@ -723,19 +723,28 @@ class SimpleSAML_Auth_LDAP
      * ldap_exop_whoami accessor, if available. Use requested authz_id
      * otherwise.
      *
-     * ldap_exop_whoami is not yet included in PHP. For reference, the
-     * feature request: http://bugs.php.net/bug.php?id=42060
-     * And the patch against lastest PHP release:
-     * http://cvsweb.netbsd.org/bsdweb.cgi/pkgsrc/databases/php-ldap/files/ldap-ctrl-exop.patch
+     * ldap_exop_whoami() has been provided as a third party patch that
+     * waited several years to get its way upstream:
+     * http://cvsweb.netbsd.org/bsdweb.cgi/pkgsrc/databases/php-ldap/files
+     * 
+     * When it was integrated into PHP repository, the function prototype
+     * was changed, The new prototype was used in third party patch for 
+     * PHP 7.0 and 7.1, hence the version test below.
      */
     public function whoami($searchBase, $searchAttributes)
     {
         $authz_id = '';
 
         if (function_exists('ldap_exop_whoami')) {
-            if (($authz_id = ldap_exop_whoami($this->ldap)) === false) {
-                throw $this->makeException('LDAP whoami exop failure');
-            }
+	    if (version_compare(phpversion(), '7', '<')) {
+                if (ldap_exop_whoami($this->ldap, $authz_id) !== true) {
+                    throw $this->makeException('LDAP whoami exop failure');
+                }
+	    } else {
+                if (($authz_id = ldap_exop_whoami($this->ldap)) === false) {
+                    throw $this->makeException('LDAP whoami exop failure');
+                }
+	    }
         } else {
             $authz_id = $this->authz_id;
         }
