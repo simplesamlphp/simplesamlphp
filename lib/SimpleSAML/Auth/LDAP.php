@@ -736,15 +736,15 @@ class SimpleSAML_Auth_LDAP
         $authz_id = '';
 
         if (function_exists('ldap_exop_whoami')) {
-	    if (version_compare(phpversion(), '7', '<')) {
+            if (version_compare(phpversion(), '7', '<')) {
                 if (ldap_exop_whoami($this->ldap, $authz_id) !== true) {
                     throw $this->makeException('LDAP whoami exop failure');
                 }
-	    } else {
+            } else {
                 if (($authz_id = ldap_exop_whoami($this->ldap)) === false) {
                     throw $this->makeException('LDAP whoami exop failure');
                 }
-	    }
+            }
         } else {
             $authz_id = $this->authz_id;
         }
