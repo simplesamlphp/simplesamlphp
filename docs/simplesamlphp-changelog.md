@@ -6,6 +6,125 @@ SimpleSAMLphp changelog
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
+## Version 1.15.0
+
+Released TBD
+
+### New features
+  * Added support for authenticated web proxies with the `proxy.auth` setting.
+  * Added new `AttributeValueMap` authproc filter.
+  * Added attributemaps for OIDs from SIS (Swedish Standards Institute) and
+    for eduPersonUniqueId, eduPersonOrcid and sshPublicKey.
+  * Added option to specify metadata signing and digest algorithm
+    `metadata.sign.algorithm`.
+  * Added option for regular expression matching of trusted.url.domains via new
+    `trusted.url.regex` setting.
+  * The `debug` option is more finegrained and allows one to specify whether
+    to log full SAML messages, backtraces or schema validations separately.
+  * Added a check for the latest simpleSAMLphp version on the front page.
+    It can be disabled via the new setting `admin.checkforupdates`.
+  * Added a warning when there's a probable misconfiguration of PHP sessions.
+  * Added ability to define additional attributes on ContactPerson elements
+    in metatada, e.g. for use in Sirtfi contacts.
+  * Added option to set a secure flag also on the language cookie.
+  * Added support for PHP Memcached extension next to Memcache extension.
+  * Added Redis as possible session storage mechanism.
+  * Added support to specify custom metadata storage handlers.
+  * Invalidate opcache after writing a file, so simpleSAMLphp works when
+    `opcache.validate_timestamps` is disabled.
+  * Metadata converter will deal properly with XML with leading whitespace.
+  * Update `ldapwhoami()` call for PHP 7.3.
+  * Made response POST page compatible with strict Content Security Policy on
+    calling webpage.
+  * Updated Greek, Polish, Traditional Chinese and Spanish translations and
+    added Afrikaans.
+
+### Bug fixes
+  * The deprecated OpenIdP has been removed from the metadata template.
+  * Trailing slash is no longer required in `baseurlpath`.
+  * Make redirections more resilient.
+  * Fixed empty protocolSupportEnumeration in AttributeAuthorityDescriptor.
+  * Other bug fixes and numerous documentation enhancements.
+
+### API and user interface
+  * Added a PSR-4 autoloader for modules. Now modules can declare their
+    classes under the SimpleSAML\Module namespace.
+  * Added new hook for module loader exception handling `exception_handler`.
+  * Expose RegistrationInfo in parsed SAML metadata.
+  * Introduced Twig templating for user interface.
+  * Lots of refactoring, code cleanup and added many unit tests.
+
+### `adfs`
+  * Fixed POST response form parameter encoding.
+
+### `authYubiKey`
+  * Fixed PHP 7 support.
+
+### `authfacebook`
+  * Updated to work with latest Facebook API.
+
+### `authlinkedin`
+  * Added setting `attributes` to specify which attributes to request
+    from LinkedIn.
+
+### `authtwitter`
+  * Added support for fetching the user's email address as attribute.
+
+### `consent`
+  * Added support for regular expressions in `consent.disable`.
+
+### `core`
+  * Added logging of `REMOTE_ADDR` on successful login.
+  * `AttributeMap`: allow fetching mapping files from modules.
+  * `ScopeAttribute`: added option `onlyIfEmpty` to add a scope only if
+     none was present.
+  * `AttributeCopy`: added option to copy to multiple destination attributes.
+
+### `discopower`
+  * Added South Africa tab.
+
+### `ldap`
+  * Added `search.filter` setting to limit LDAP queries to a custom search
+    filter.
+  * Added OpenLDAP support in AttributeAddUsersGroups.
+  * Fixed for using non standard LDAP port numbers.
+  * Fixed configuration option of whether to follow LDAP referrals.
+
+### `memcacheMonitor`
+  * Fixed several missing strings.
+
+### `metarefresh`
+  * Fixed several spurious PHP notices.
+
+### `multiauth`
+  * Fixed selected source timeout.
+
+### `negotiate`
+  * Fixed authentication failure on empty attributes-array.
+  * Fixed PHP notices concerning missing arguments.
+
+### `oauth`
+  * Updated library to improve support for OAuth 1.0 Revision A.
+
+### `radius`
+  * Improved error messages.
+  * Added parameter `realm` that will be suffixed to the username entered.
+
+### `saml`
+  * Handle instead of reject assertions that do not contain a NameID.
+  * Added options to configure `AllowCreate` and `SPNameQualifier`.
+  * Added option `saml:NameID` to set the Subject NameID in a SAML AuthnRequest.
+  * Added filter `FilterScopes` to remove alues which are not properly scoped.
+  * Make sure we log the user out before reauthenticating.
+  * More robust handling of IDPList support in proxy mode.
+  * Increased `_authSource` field length in Logout Store.
+
+### `smartattributes`
+  * Fix SmartName authproc that failed to load.
+
+### `sqlauth`
+  * Fixed SQL schema for usergroups table.
+
 ## Version 1.14.15
 
 Released 2017-08-08
