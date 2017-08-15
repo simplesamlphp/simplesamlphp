@@ -253,10 +253,6 @@ Please use the standardized two-character
 
 You also can set the default language. You should ensure that the default language is complete, as it is used as a fallback when a text is not available in the language selected by the user.
 
-Translation of SimpleSAMLphp is done through the SimpleSAMLphp translation portal. To translate SimpleSAMLphp to a new language, please contact the authors at the mailing list, and the new language may be added to the translation portal.
-
-  * [Visit the SimpleSAMLphp translation portal](https://translation.rnd.feide.no/?aid=simplesamlphp)
-
 All strings that can be localized are found in the files `dictionaries/`. Add a new entry for each string, with your language code, like this:
 
     'user_pass_header' => array(
