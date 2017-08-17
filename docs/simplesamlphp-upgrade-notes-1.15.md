@@ -1,6 +1,8 @@
 Upgrade notes for SimpleSAMLphp 1.15
 ====================================
 
+Minimum required PHP version is 5.4. Dependency on mcrypt has been dropped.
+
 A new templating system based on Twig has been introduced. The old templating
 system is still available but should be considered deprecated.
 

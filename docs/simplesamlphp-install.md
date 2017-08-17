@@ -31,11 +31,10 @@ Prerequisites
 -------------
 
  * Some webserver capable of executing PHP scripts.
- * PHP version >= 5.3.0.
+ * PHP version >= 5.4.0.
  * Support for the following PHP extensions:
    * Always required: `date`, `dom`, `hash`, `libxml`, `openssl`, `pcre`, `SPL`, `zlib`, `json`
    * When automatically checking for latest versions, and used by some modules: `cURL`
-   * When using encryption or digital signatures: `mcrypt`
    * When authenticating against LDAP server: `ldap`
    * When authenticating against RADIUS server: `radius`
    * When using native PHP session handler: `session`

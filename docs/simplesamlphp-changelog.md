@@ -47,6 +47,8 @@ Released TBD
   * Other bug fixes and numerous documentation enhancements.
 
 ### API and user interface
+  * Updated to Xmlseclibs 3.0.
+    Minimum PHP version is now 5.4, mcrypt requirement dropped.
   * Added a PSR-4 autoloader for modules. Now modules can declare their
     classes under the SimpleSAML\Module namespace.
   * Added new hook for module loader exception handling `exception_handler`.
