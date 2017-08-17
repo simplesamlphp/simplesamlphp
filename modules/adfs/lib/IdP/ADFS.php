@@ -38,6 +38,7 @@ class sspmod_adfs_IdP_ADFS {
 			'ForceAuthn' => $forceAuthn,
 			'isPassive' => $isPassive,
 			'adfs:wctx' => $wctx,
+			'adfs:wreply' => (array_key_exists('wreply',$_GET)) ? $_GET['wreply'] : ''
 		);
 
 		$idp->handleAuthenticationRequest($state);		
@@ -46,7 +47,7 @@ class sspmod_adfs_IdP_ADFS {
 	public static function ADFS_GenerateResponse($issuer, $target, $nameid, $attributes) {
 		$issueInstant = SimpleSAML\Utils\Time::generateTimestamp();
 		$notBefore = SimpleSAML\Utils\Time::generateTimestamp(time() - 30);
-		$assertionExpire = SimpleSAML\Utils\Time::generateTimestamp(time() + 60 * 5);
+		$assertionExpire = SimpleSAML\Utils\Time::generateTimestamp(time() + 60 * 60);
 		$assertionID = SimpleSAML\Utils\Random::generateID();
 		$nameidFormat = 'http://schemas.xmlsoap.org/claims/UPN';
 		$result =
@@ -70,7 +71,13 @@ class sspmod_adfs_IdP_ADFS {
 		foreach ($attributes as $name => $values) {
 			if ((!is_array($values)) || (count($values) == 0)) continue;
 			$hasValue = FALSE;
-			$r = '<saml:Attribute AttributeNamespace="http://schemas.xmlsoap.org/claims" AttributeName="' . htmlspecialchars($name) .'">';
+			if (strpos($name, '/')) {
+				$r = '<saml:Attribute AttributeNamespace="'.htmlspecialchars(substr($name, 0, strrpos($name, '/', -1))).
+					'" AttributeName="'.htmlspecialchars(substr($name, strrpos($name, '/', -1) + 1)).'">';
+			} else {
+				$r = '<saml:Attribute AttributeNamespace="http://schemas.xmlsoap.org/claims" AttributeName="' .
+					htmlspecialchars($name) .'">';
+			}
 			foreach ($values as $value) {
 				if ( (!isset($value)) || ($value === '')) continue;
 				$r .= '<saml:AttributeValue>' . htmlspecialchars($value) . '</saml:AttributeValue>';
@@ -157,7 +164,7 @@ class sspmod_adfs_IdP_ADFS {
 		$wresult = sspmod_adfs_IdP_ADFS::ADFS_SignResponse($response, $privateKeyFile, $certificateFile);
 
 		$wctx = $state['adfs:wctx'];
-		sspmod_adfs_IdP_ADFS::ADFS_PostResponse($spMetadata->getValue('prp'), $wresult, $wctx);
+		sspmod_adfs_IdP_ADFS::ADFS_PostResponse(($state['adfs:wreply']) ? $state['adfs:wreply'] : $spMetadata->getValue('prp'), $wresult, $wctx);
 	}
 /*
 	public static function handleAuthError(SimpleSAML_Error_Exception $exception, array $state) {
