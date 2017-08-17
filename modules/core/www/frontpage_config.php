@@ -109,7 +109,6 @@ $functionchecks = array(
 	'class_implements' => array('required', 'Standard PHP Library (SPL)'),
 	'mb_strlen'        => array('required', 'Multibyte String Extension'),
 	'curl_init'        => array('optional', 'cURL (required if automatic version checks are used, also by some modules.'),
-	'mcrypt_module_open'=> array('optional',  'MCrypt (required if digital signatures or encryption are used)'),
 	'session_start'  => array('optional', 'Session Extension (required if PHP sessions are used)'),
 	'pdo_drivers'    => array('optional',  'PDO Extension (required if a database backend is used)'),
 );
