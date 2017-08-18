@@ -70,7 +70,14 @@ class sspmod_adfs_IdP_ADFS {
 		foreach ($attributes as $name => $values) {
 			if ((!is_array($values)) || (count($values) == 0)) continue;
 			$hasValue = FALSE;
-			$r = '<saml:Attribute AttributeNamespace="http://schemas.xmlsoap.org/claims" AttributeName="' . htmlspecialchars($name) .'">';
+            $slash = strrpos($name, '/');
+            if ($slash !== false) {
+                $namespace = substr($name, 0, $slash);
+                $name = substr($name, $slash + 1);
+                $r = '<saml:Attribute AttributeNamespace="' . htmlspecialchars($namespace) . '" AttributeName="' . htmlspecialchars($name) .'">';
+            } else {
+			    $r = '<saml:Attribute AttributeNamespace="http://schemas.xmlsoap.org/claims" AttributeName="' . htmlspecialchars($name) .'">';
+            }
 			foreach ($values as $value) {
 				if ( (!isset($value)) || ($value === '')) continue;
 				$r .= '<saml:AttributeValue>' . htmlspecialchars($value) . '</saml:AttributeValue>';
