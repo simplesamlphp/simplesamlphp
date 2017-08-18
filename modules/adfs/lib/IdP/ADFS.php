@@ -139,7 +139,7 @@ MSG;
 
         $post = <<<MSG
     <body onload="document.forms[0].submit()">
-        <form method="post" action="$url" enctype="multipart/form-data">
+        <form method="post" action="$url">
             <input type="hidden" name="wa" value="wsignin1.0">
             <input type="hidden" name="wresult" value="$wresult">
             <input type="hidden" name="wctx" value="$wctx">
