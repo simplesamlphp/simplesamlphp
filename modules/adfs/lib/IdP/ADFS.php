@@ -5,48 +5,30 @@ class sspmod_adfs_IdP_ADFS
     public static function receiveAuthnRequest(SimpleSAML_IdP $idp)
     {
         try {
-            // accomodate for disfunctional $_GET "windows" slash decoding in PHP
-            $wctx = $_GET['wctx'];
-            foreach (explode('&', $_SERVER['REQUEST_URI']) as $e) {
-                $a = explode('=', $e);
-                if ($a[0] == 'wctx') {
-                    $wctx = urldecode($a[1]);
-                }
-            }
-            $requestid = $wctx;
-            $issuer = $_GET['wtrealm'];
-            $requestcache = array(
-                'RequestID' => $requestid,
-                'Issuer' => $issuer,
-                'RelayState' => $requestid
-            );
+            parse_str($_SERVER['QUERY_STRING'], $query);
 
-            $spEntityId = $requestcache['Issuer'];
+            $requestid = $query['wctx'];
+            $issuer = $query['wtrealm'];
             $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
-            $spMetadata = $metadata->getMetaDataConfig($spEntityId, 'adfs-sp-remote');
+            $spMetadata = $metadata->getMetaDataConfig($issuer, 'adfs-sp-remote');
 
             SimpleSAML\Logger::info('ADFS - IdP.prp: Incoming Authentication request: '.$issuer.' id '.$requestid);
-
         } catch(Exception $exception) {
             throw new SimpleSAML_Error_Error('PROCESSAUTHNREQUEST', $exception);
         }
 
-        $sessionLostURL = null; // TODO?
-        $forceAuthn = false;
-        $isPassive = false;
-
         $state = array(
             'Responder' => array('sspmod_adfs_IdP_ADFS', 'sendResponse'),
             'SPMetadata' => $spMetadata->toArray(),
-            'ForceAuthn' => $forceAuthn,
-            'isPassive' => $isPassive,
-            'adfs:wctx' => $wctx,
+            'ForceAuthn' => false,
+            'isPassive' => false,
+            'adfs:wctx' => $requestid,
         );
 
         $idp->handleAuthenticationRequest($state);		
     }
 
-    public static function ADFS_GenerateResponse($issuer, $target, $nameid, $attributes)
+    private static function generateResponse($issuer, $target, $nameid, $attributes)
     {
         $issueInstant = SimpleSAML\Utils\Time::generateTimestamp();
         $notBefore = SimpleSAML\Utils\Time::generateTimestamp(time() - 30);
@@ -79,7 +61,7 @@ MSG;
             if ((!is_array($values)) || (count($values) == 0)) {
                 continue;
             }
-            $name = $htmlspecialchars($name);
+            $name = htmlspecialchars($name);
             foreach ($values as $value) {
                 if ((!isset($value)) || ($value === '')) {
                     continue;
@@ -110,16 +92,18 @@ MSG;
         return $result;
     }
 
-    public static function ADFS_SignResponse($response, $key, $cert)
+    private static function signResponse($response, $key, $cert)
     {
         $objXMLSecDSig = new XMLSecurityDSig();
         $objXMLSecDSig->idKeys = array('AssertionID');	
         $objXMLSecDSig->setCanonicalMethod(XMLSecurityDSig::EXC_C14N);	
         $responsedom = \SAML2\DOMDocumentFactory::fromString(str_replace ("\r", "", $response));
         $firstassertionroot = $responsedom->getElementsByTagName('Assertion')->item(0);
-        $objXMLSecDSig->addReferenceList(array($firstassertionroot), XMLSecurityDSig::SHA1,
+        $objXMLSecDSig->addReferenceList(
+            array($firstassertionroot), XMLSecurityDSig::SHA1,
             array('http://www.w3.org/2000/09/xmldsig#enveloped-signature', XMLSecurityDSig::EXC_C14N),
-            array('id_name' => 'AssertionID'));
+            array('id_name' => 'AssertionID')
+        );
         $objKey = new XMLSecurityKey(XMLSecurityKey::RSA_SHA1, array('type'=>'private'));
         $objKey->loadKey($key, true);
         $objXMLSecDSig->sign($objKey);
@@ -132,7 +116,7 @@ MSG;
         return $responsedom->saveXML();
     }
 
-    public static function ADFS_PostResponse($url, $wresult, $wctx)
+    private static function postResponse($url, $wresult, $wctx)
     {
         $wresult = htmlspecialchars($wresult);
         $wctx = htmlspecialchars($wctx);
@@ -183,20 +167,16 @@ MSG;
             'adfs:entityID' => $spEntityId,
         ));
 
-        $response = sspmod_adfs_IdP_ADFS::ADFS_GenerateResponse($idpEntityId, $spEntityId, $nameid, $attributes);
+        $response = sspmod_adfs_IdP_ADFS::generateResponse($idpEntityId, $spEntityId, $nameid, $attributes);
 
         $privateKeyFile = \SimpleSAML\Utils\Config::getCertPath($idpMetadata->getString('privatekey'));
         $certificateFile = \SimpleSAML\Utils\Config::getCertPath($idpMetadata->getString('certificate'));
-        $wresult = sspmod_adfs_IdP_ADFS::ADFS_SignResponse($response, $privateKeyFile, $certificateFile);
+        $wresult = sspmod_adfs_IdP_ADFS::signResponse($response, $privateKeyFile, $certificateFile);
 
         $wctx = $state['adfs:wctx'];
-        sspmod_adfs_IdP_ADFS::ADFS_PostResponse($spMetadata->getValue('prp'), $wresult, $wctx);
+        sspmod_adfs_IdP_ADFS::postResponse($spMetadata->getValue('prp'), $wresult, $wctx);
     }
-/*
-    public static function handleAuthError(SimpleSAML_Error_Exception $exception, array $state)
-    {
-    }
-*/
+
     public static function sendLogoutResponse(SimpleSAML_IdP $idp, array $state)
     {
         // NB:: we don't know from which SP the logout request came from
