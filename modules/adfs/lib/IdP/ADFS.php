@@ -61,7 +61,14 @@ MSG;
             if ((!is_array($values)) || (count($values) == 0)) {
                 continue;
             }
+            $namespace = "http://schemas.xmlsoap.org/claims";
+            $slash = strrpos($name, '/');
+            if ($slash !== false) {
+                $namespace = substr($name, 0, $slash);
+                $name = substr($name, $slash + 1);
+            }
             $name = htmlspecialchars($name);
+            $namespace = htmlspecialchars($namespace);
             foreach ($values as $value) {
                 if ((!isset($value)) || ($value === '')) {
                     continue;
@@ -69,7 +76,7 @@ MSG;
                 $value = htmlspecialchars($value);
 
                 $result .= <<<MSG
-                <saml:Attribute AttributeNamespace="http://schemas.xmlsoap.org/claims" AttributeName="$name">
+                <saml:Attribute AttributeNamespace="$namespace" AttributeName="$name">
                     <saml:AttributeValue>$value</saml:AttributeValue>
                 </saml:Attribute>
 MSG;
