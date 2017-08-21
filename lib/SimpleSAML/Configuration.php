@@ -288,95 +288,17 @@ class SimpleSAML_Configuration
      * If no configuration file with the given instance name is found, an exception will
      * be thrown.
      *
-     * @param string $instancename The instance name of the configuration file. Deprecated.
-     *
      * @return SimpleSAML_Configuration The configuration object.
      *
      * @throws Exception If the configuration with $instancename name is not initialized.
      */
-    public static function getInstance($instancename = 'simplesaml')
+    public static function getInstance()
     {
-        assert('is_string($instancename)');
-
-        // check if the instance exists already
-        if (array_key_exists($instancename, self::$instance)) {
-            return self::$instance[$instancename];
+        try {
+            return self::getConfig();
+        } catch (SimpleSAML\Error\ConfigurationError $e) {
+            throw \SimpleSAML\Error\CriticalConfigurationError::fromException($e);
         }
-
-        if ($instancename === 'simplesaml') {
-            try {
-                return self::getConfig();
-            } catch (SimpleSAML\Error\ConfigurationError $e) {
-                throw \SimpleSAML\Error\CriticalConfigurationError::fromException($e);
-            }
-
-        }
-
-        throw new \SimpleSAML\Error\CriticalConfigurationError(
-            'Configuration with name '.$instancename.' is not initialized.'
-        );
-    }
-
-
-    /**
-     * Initialize a instance name with the given configuration file.
-     *
-     * TODO: remove.
-     *
-     * @param string $path
-     * @param string $instancename
-     * @param string $configfilename
-     *
-     * @see setConfigDir()
-     * @deprecated This function is superseeded by the setConfigDir function.
-     */
-    public static function init($path, $instancename = 'simplesaml', $configfilename = 'config.php')
-    {
-        assert('is_string($path)');
-        assert('is_string($instancename)');
-        assert('is_string($configfilename)');
-
-        if ($instancename === 'simplesaml') {
-            // for backwards compatibility
-            self::setConfigDir($path, 'simplesaml');
-        }
-
-        // check if we already have loaded the given config - return the existing instance if we have
-        if (array_key_exists($instancename, self::$instance)) {
-            return self::$instance[$instancename];
-        }
-
-        self::$instance[$instancename] = self::loadFromFile($path.'/'.$configfilename, true);
-        return self::$instance[$instancename];
-    }
-
-
-    /**
-     * Load a configuration file which is located in the same directory as this configuration file.
-     *
-     * TODO: remove.
-     *
-     * @param string $instancename
-     * @param string $filename
-     *
-     * @see getConfig()
-     * @deprecated This function is superseeded by the getConfig() function.
-     */
-    public function copyFromBase($instancename, $filename)
-    {
-        assert('is_string($instancename)');
-        assert('is_string($filename)');
-        assert('$this->filename !== NULL');
-
-        // check if we already have loaded the given config - return the existing instance if we have
-        if (array_key_exists($instancename, self::$instance)) {
-            return self::$instance[$instancename];
-        }
-
-        $dir = dirname($this->filename);
-
-        self::$instance[$instancename] = self::loadFromFile($dir.'/'.$filename, true);
-        return self::$instance[$instancename];
     }
 
 
