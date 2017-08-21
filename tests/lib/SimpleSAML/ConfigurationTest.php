@@ -922,9 +922,6 @@ class Test_SimpleSAML_Configuration extends PHPUnit_Framework_TestCase
         $c = array(
             'key' => 'value'
         );
-        // test loading a custom instance
-        SimpleSAML_Configuration::loadFromArray($c, '', 'dummy');
-        $this->assertEquals('value', SimpleSAML_Configuration::getInstance('dummy')->getValue('key', null));
 
         // test loading the default instance
         SimpleSAML_Configuration::loadFromArray($c, '', 'simplesaml');
