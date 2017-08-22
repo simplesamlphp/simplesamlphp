@@ -55,6 +55,11 @@ $config = array(
     'technicalcontact_email' => 'na@example.org',
 
     /*
+     * Sender email should use the same domain as your application domain to prevent SPF record filtering
+     */
+    //'sendmail_from' => 'no-reply@example.org',
+
+    /*
      * The timezone of the server. This option should be set to the timezone you want
      * SimpleSAMLphp to report the time in. The default is to guess the timezone based
      * on your system timezone.

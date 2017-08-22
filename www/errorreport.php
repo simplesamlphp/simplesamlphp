@@ -101,10 +101,21 @@ $email = trim($email);
 // check that it looks like a valid email address
 if (!preg_match('/\s/', $email) && strpos($email, '@') !== false) {
     $replyto = $email;
-    $from = $email;
 } else {
     $replyto = null;
-    $from = 'no-reply@simplesamlphp.org';
+}
+
+$from = $config->getString('sendmail_from', null);
+if ($from === null || $from === '') {
+    $from = ini_get('sendmail_from');
+    if ($from === '' || $from === false) {
+        $from = 'no-reply@example.org';
+    }
+}
+
+// If no sender email was configured at least set some relevant from address
+if ($from === 'no-reply@example.org' && $replyto !== null) {
+    $from = $replyto;
 }
 
 // send the email
