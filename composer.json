@@ -26,7 +26,7 @@
         "files": ["lib/_autoload_modules.php"]
     },
     "require": {
-        "php": ">=5.3",
+        "php": ">=5.4",
         "ext-SPL": "*",
         "ext-zlib": "*",
         "ext-pcre": "*",
