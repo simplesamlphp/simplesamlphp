@@ -147,4 +147,25 @@ class ConsentTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals($attributeHash1, $attributeHash2, "Hash is not the same when the order of values changes");
     }
+
+    public function testAttributeHashIsConsistentWithoutValuesWhenOrderOfAttributesChange()
+    {
+        $attributes1 = array(
+            'attribute2' => array('val1', 'val2'),
+            'attribute1' => array('val1', 'val2')
+        );
+        $attributeHash1 = \sspmod_consent_Auth_Process_Consent::getAttributeHash($attributes1);
+
+        $attributes2 = array(
+            'attribute1' => array('val1', 'val2'),
+            'attribute2' => array('val1', 'val2')
+        );
+        $attributeHash2 = \sspmod_consent_Auth_Process_Consent::getAttributeHash($attributes2);
+
+        $this->assertEquals(
+            $attributeHash1,
+            $attributeHash2,
+            "Hash is not the same when the order of the attributs changes and the values are not included"
+        );
+    }
 }
