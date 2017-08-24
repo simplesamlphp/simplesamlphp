@@ -74,8 +74,10 @@ class sspmod_sqlauth_Auth_Source_SQL extends sspmod_core_Auth_UserPassBase {
 		$this->dsn = $config['dsn'];
 		$this->username = $config['username'];
 		$this->password = $config['password'];
-		$this->options = $config['options'];
 		$this->query = $config['query'];
+                if (isset($config['options'])) {
+                    $this->options = $config['options'];
+                }
 	}
 
 

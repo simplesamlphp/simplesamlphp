@@ -485,7 +485,7 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store
             $driver_options[PDO::ATTR_TIMEOUT] = $this->_timeout;
         }
         if (isset($this->_options)) {
-            array_merge($driver_options, $this->_options);
+            $this->_options = array_merge($driver_options, $this->_options);
         } else {
             $this->_options = $driver_options;
         }

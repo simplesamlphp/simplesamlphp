@@ -273,9 +273,11 @@ The class follows:
                 throw new Exception('Missing or invalid password option in config.');
             }
             $this->password = $config['password'];
-            $this->options = $config['options'];
-            if (!is_array($config['options])) {
-                throw new Exception('Missing or invalid options option in config.');
+            if (isset($config['options']) {
+                if (!is_array($config['options])) {
+                    throw new Exception('Missing or invalid options option in config.');
+                }
+                $this->options = $config['options'];
             }
         }
 
