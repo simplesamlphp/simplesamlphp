@@ -114,7 +114,7 @@ class ConsentTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($request, $result);
     }
 
-    public function testAttributeHastIsConsistentWhenOrderOfValuesChange()
+    public function testAttributeHashIsConsistentWhenOrderOfValuesChange()
     {
         $attributes1 = array(
             'attribute1' => array('val1', 'val2'),
