@@ -9,27 +9,18 @@ if (!is_null($cronconfig->getValue('key'))) {
 		exit;
 	}
 }
-if (!is_null($cronconfig->getValue('allowed_tags'))) {
-	if (!in_array($_REQUEST['tag'], $cronconfig->getValue('allowed_tags'))) {
-		SimpleSAML\Logger::error('Cron - Illegal tag [' . $_REQUEST['tag'] . '].');
-		exit;
-	}
+
+$cron = new sspmod_cron_Cron($cronconfig);
+if (!$cron->isValidTag($_REQUEST['tag'])) {
+    SimpleSAML\Logger::error('Cron - Illegal tag [' . $_REQUEST['tag'] . '].');
+    exit;
 }
 
 
-$summary = array(); 
-$croninfo = array(
-	'summary' => &$summary,
-	'tag' => $_REQUEST['tag'],
-);
 $url = \SimpleSAML\Utils\HTTP::getSelfURL();
 $time = date(DATE_RFC822);
 
-SimpleSAML\Module::callHooks('cron', $croninfo);
-
-foreach ($summary AS $s) {
-	SimpleSAML\Logger::debug('Cron - Summary: ' . $s);
-}
+$croninfo = $cron->runTag($_REQUEST['tag']);
 
 if ($cronconfig->getValue('sendemail', TRUE) && count($summary) > 0) {
 
