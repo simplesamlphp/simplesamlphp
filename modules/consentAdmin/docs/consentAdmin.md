@@ -5,7 +5,7 @@ The consentAdmin module is an addon to the consent module. This means that
 you can not use consentAdmin without the consent module. If you have not
 installed and configured the consent module, please do.
 
-  * [How to install and configure the consent module](consent:consent)
+  * [How to install and configure the consent module](./consent:consent)
  
 The consentAdmin module only works when the consent module is using a 
 database to store the consents.
