@@ -26,7 +26,7 @@ Preparations
 
 You need to enable the following modules:
 
- 1. cron
+ 1. [cron](./cron:cron)
  2. metarefresh
 
 The cron module allows you to do tasks regularly, by setting up a cron job that calls a hook in SimpleSAMLphp.
@@ -193,47 +193,14 @@ Remember that the `type` parameter here must match the `outputFormat` in the con
 Configuring the cron module
 ---------------------------
 
+See the [cron module documentation](./cron:cron) to configure `cron`
 
-Once we have configured metarefresh, we can edit the configuration file for the cron module:
+Once you have invoked cron, and if this operation seems to run fine, navigate to the **SimpleSAMLphp Front page** › **Federation**. Here you will see a list of all the Identity Providers trusted. They will be listed with information about the maximum duration of their cached version, such as *(expires in 96.0 hours)*.
 
-	[root@simplesamlphp simplesamlphp]# vi config/module_cron.php
+You *may* need to adjust the below php.ini setings if the metadata files you consume are quite large.
 
-The configuration should look similar to this:
-
-	$config = array (
-	       'key' => 'RANDOM_KEY',
-	       'allowed_tags' => array('daily', 'hourly', 'frequent'),
-	       'debug_message' => TRUE,
-	       'sendemail' => TRUE,
-	
-	);
-
-Bear in mind that the key is used as a security feature, to restrict access to your cron. Therefore, you need to make sure that the string here is a random key available to no one but you. Additionally, make sure that you include here the appropriate tags that you previously told metarefresh
-to use in the `cron` directive.
-
-Next, use your web browser to go to `https://YOUR_SERVER/simplesaml/module.php/cron/croninfo.php`. Make sure to properly set your server's address, as well as use HTTP or HTTPS accordingly, and also to specify the correct path to the root of your SimpleSAMLphp installation.
-
-Now, copy the cron configuration suggested:
-
-	# Run cron [daily]
-	02 0 * * * curl --silent "https://YOUR_SERVER/simplesaml/module.php/cron/cron.php?key=RANDOM_KEY&tag=daily" > /dev/null 2>&1
-	# Run cron [hourly]
-	01 * * * * curl --silent "https://YOUR_SERVER/simplesaml/module.php/cron/cron.php?key=RANDOM_KEY&tag=hourly" > /dev/null 2>&1
-
-Finally, add it to your crontab by going back to the terminal, and editing with:
-
-	[root@simplesamlphp config]# crontab -e
-
-This will open up your favourite editor. If an editor different than the one you use normally appears, exit, and configure the `EDITOR` variable
-to tell the command line which editor it should use:
-
-	[root@simplesamlphp config]# export EDITOR=emacs
-
-If you want to force the metadata to be refreshed manually, you can do so by going back to the cron page in the web interface. Then, just follow
-the appropriate links to execute the cron jobs you want. The page will take a while loading, and eventually show a blank page. It is so because
-the commands are intended to be run from cron, and therefore they produce no output. If this operation seems to run fine, navigate to the **SimpleSAMLphp Front page** › **Federation**. Here you will see a list of all the Identity Providers trusted. They will be listed with information about the maximum duration of their cached version, such as *(expires in 96.0 hours)*.
-
-
+* `memory_limit`
+* `max_execution_time`
 
 Metadata duration
 -----------------
