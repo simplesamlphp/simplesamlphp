@@ -21,7 +21,7 @@ if (!SimpleSAML\Module::isModuleEnabled('cron')) {
 }
 
 $options = getopt("t:");
-if (posix_getuid() === 0) {
+if (function_exists('posix_getuid') && posix_getuid() === 0) {
     echo "Running as root is discouraged. Some cron jobs will generate files that would have the wrong ownership.\n";
     echo 'Suggested invocation: su -s "/bin/sh" -c "php /var/simplesamlphp/modules/cron/bin/cron.php -t hourly" apache';
     exit(3);
