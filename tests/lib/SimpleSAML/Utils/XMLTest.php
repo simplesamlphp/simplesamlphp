@@ -356,6 +356,8 @@ NOWDOC;
      */
     public function testIsValidMetadata()
     {
+        \SimpleSAML_Configuration::loadFromArray(array(), '[ARRAY]', 'simplesaml');
+
         $schema = 'saml-schema-metadata-2.0.xsd';
 
         $dom = $this->getMockBuilder('\DOMDocument')
