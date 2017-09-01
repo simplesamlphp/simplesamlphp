@@ -1,24 +1,26 @@
 <?php
 
+namespace  SimpleSAML\Module\cron;
+
 /**
  * Handles interactions with SSP's cron system/hooks.
  */
-class sspmod_cron_Cron
+class Cron
 {
     /**
      * The configuration for the Cron module
-     * @var SimpleSAML_Configuration
+     * @var \SimpleSAML_Configuration
      */
     private $cronconfig;
 
     /*
-     * @param SimpleSAML_Configuration $cronconfig The cron configuration to use. If not specified defaults
+     * @param \SimpleSAML_Configuration $cronconfig The cron configuration to use. If not specified defaults
      * to `config/module_cron.php`
      */
-    public function __construct(SimpleSAML_Configuration $cronconfig = null)
+    public function __construct(\SimpleSAML_Configuration $cronconfig = null)
     {
         if ($cronconfig == null) {
-            $cronconfig = SimpleSAML_Configuration::getConfig('module_cron.php');
+            $cronconfig = \SimpleSAML_Configuration::getConfig('module_cron.php');
         }
         $this->cronconfig = $cronconfig;
     }
@@ -42,10 +44,10 @@ class sspmod_cron_Cron
             'tag' => $tag,
         );
 
-        SimpleSAML\Module::callHooks('cron', $croninfo);
+        \SimpleSAML\Module::callHooks('cron', $croninfo);
 
         foreach ($summary as $s) {
-            SimpleSAML\Logger::debug('Cron - Summary: ' . $s);
+            \SimpleSAML\Logger::debug('Cron - Summary: ' . $s);
         }
 
         return $croninfo;

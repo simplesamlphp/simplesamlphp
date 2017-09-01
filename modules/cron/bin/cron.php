@@ -33,7 +33,7 @@ if (!array_key_exists('t', $options)) {
 }
 
 $tag = $options['t'];
-$cron = new sspmod_cron_Cron();
+$cron = new SimpleSAML\Module\cron\Cron();
 if (!$cron->isValidTag($tag)) {
     echo "Invalid tag option '$tag'.\n";
     exit(2);

@@ -10,7 +10,7 @@ if (!is_null($cronconfig->getValue('key'))) {
 	}
 }
 
-$cron = new sspmod_cron_Cron($cronconfig);
+$cron = new SimpleSAML\Module\cron\Cron();
 if (!$cron->isValidTag($_REQUEST['tag'])) {
     SimpleSAML\Logger::error('Cron - Illegal tag [' . $_REQUEST['tag'] . '].');
     exit;
@@ -21,6 +21,7 @@ $url = \SimpleSAML\Utils\HTTP::getSelfURL();
 $time = date(DATE_RFC822);
 
 $croninfo = $cron->runTag($_REQUEST['tag']);
+$summary = $croninfo['summary'];
 
 if ($cronconfig->getValue('sendemail', TRUE) && count($summary) > 0) {
 
