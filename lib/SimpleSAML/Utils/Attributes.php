@@ -106,4 +106,29 @@ class Attributes
 
         return $newAttrs;
     }
+
+
+    /**
+     * Extract an attribute's namespace, or revert to default.
+     *
+     * This function takes in a namespaced attribute name at splits it in a namespace/attribute name tuple.
+     * When no namespace is found in the attribute name, it will be namespaced with the default namespace.
+     * This default namespace can be overriden by supplying a second parameter to this function.
+     *
+     * @param string $name The namespaced attribute name.
+     * @param string $namespace The default namespace that should be used when no namespace is found (optional).
+     *
+     * @return array The attribute name, split to the namespace and the actual attribute name.
+     */
+    public static function getAttributeNamespace($name, $namespace = 'http://schemas.xmlsoap.org/claims')
+    {
+        $slash = strrpos($name, '/');
+        if ($slash !== false) {
+            $namespace = substr($name, 0, $slash);
+            $name = substr($name, $slash + 1);
+        }
+        $name = htmlspecialchars($name);
+        $namespace = htmlspecialchars($namespace);
+        return array($namespace, $name);
+    }
 }

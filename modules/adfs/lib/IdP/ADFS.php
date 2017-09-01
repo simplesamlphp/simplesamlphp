@@ -61,7 +61,8 @@ MSG;
             if ((!is_array($values)) || (count($values) == 0)) {
                 continue;
             }
-            $name = htmlspecialchars($name);
+
+            list($namespace, $name) = SimpleSAML\Utils\Attributes::getAttributeNamespace($name, 'http://schemas.xmlsoap.org/claims');
             foreach ($values as $value) {
                 if ((!isset($value)) || ($value === '')) {
                     continue;
@@ -69,7 +70,7 @@ MSG;
                 $value = htmlspecialchars($value);
 
                 $result .= <<<MSG
-                <saml:Attribute AttributeNamespace="http://schemas.xmlsoap.org/claims" AttributeName="$name">
+                <saml:Attribute AttributeNamespace="$namespace" AttributeName="$name">
                     <saml:AttributeValue>$value</saml:AttributeValue>
                 </saml:Attribute>
 MSG;
