@@ -44,6 +44,10 @@ class Time
      * This function should be called before any calls to date().
      *
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
+     *
+     * @throws \SimpleSAML_Error_Exception If the timezone set in the configuration is invalid.
+     *
+     * @return void
      */
     public static function initTimezone()
     {

@@ -277,9 +277,6 @@ class Metadata
         \SimpleSAML\Logger::maskErrors(E_ALL);
         $hidden = in_array(self::$HIDE_FROM_DISCOVERY, $metadata['EntityAttributes'][self::$ENTITY_CATEGORY]);
         \SimpleSAML\Logger::popErrorMask();
-        if (is_bool($hidden)) {
-            return $hidden;
-        }
-        return false;
+        return $hidden;
     }
 }

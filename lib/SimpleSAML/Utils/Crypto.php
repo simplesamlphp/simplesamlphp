@@ -24,7 +24,9 @@ class Crypto
      */
     private static function _aesDecrypt($ciphertext, $secret)
     {
-        if (!is_string($ciphertext) || mb_strlen($ciphertext, '8bit') < 48) {
+        /** @var int $len */
+        $len = mb_strlen($ciphertext, '8bit');
+        if (!is_string($ciphertext) || $len < 48) {
             throw new \InvalidArgumentException(
                 'Input parameter "$ciphertext" must be a string with more than 48 characters.'
             );
@@ -38,7 +40,7 @@ class Crypto
 
         $hmac = mb_substr($ciphertext, 0, 32, '8bit');
         $iv   = mb_substr($ciphertext, 32, 16, '8bit');
-        $msg  = mb_substr($ciphertext, 48, mb_strlen($ciphertext, '8bit') - 48, '8bit');
+        $msg  = mb_substr($ciphertext, 48, $len - 48, '8bit');
 
         // authenticate the ciphertext
         if (self::secureCompare(hash_hmac('sha256', $iv.$msg, substr($key, 64, 64), true), $hmac)) {
@@ -46,7 +48,7 @@ class Crypto
                 $msg,
                 'AES-256-CBC',
                 substr($key, 0, 64),
-                defined('OPENSSL_RAW_DATA') ? OPENSSL_RAW_DATA : true,
+                defined('OPENSSL_RAW_DATA') ? OPENSSL_RAW_DATA : 1,
                 $iv
             );
 
@@ -106,11 +108,12 @@ class Crypto
         $iv = openssl_random_pseudo_bytes(16);
 
         // encrypt the message
-        $ciphertext = $iv.openssl_encrypt(
+        /** @var string|false $ciphertext */
+        $ciphertext = openssl_encrypt(
             $data,
             'AES-256-CBC',
             substr($key, 0, 64),
-            defined('OPENSSL_RAW_DATA') ? OPENSSL_RAW_DATA : true,
+            defined('OPENSSL_RAW_DATA') ? OPENSSL_RAW_DATA : 1,
             $iv
         );
 
@@ -119,7 +122,7 @@ class Crypto
         }
 
         // return the ciphertext with proper authentication
-        return hash_hmac('sha256', $ciphertext, substr($key, 64, 64), true).$ciphertext;
+        return hash_hmac('sha256', $iv.$ciphertext, substr($key, 64, 64), true).$iv.$ciphertext;
     }
 
 

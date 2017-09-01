@@ -33,6 +33,7 @@ class Net
         }
 
         list ($net, $mask) = explode('/', $cidr);
+        $mask = intval($mask);
 
         $ip_ip = array();
         $ip_net = array();

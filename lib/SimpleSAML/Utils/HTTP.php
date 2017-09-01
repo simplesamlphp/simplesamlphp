@@ -18,6 +18,7 @@ class HTTP
      * @param string $destination The destination URL.
      * @param array  $data An associative array containing the data to be posted to $destination.
      *
+     * @throws \SimpleSAML_Error_Exception If the current session is transient.
      * @return string  A URL which allows to securely post a form to $destination.
      *
      * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
@@ -27,8 +28,15 @@ class HTTP
         $session = \SimpleSAML_Session::getSessionFromRequest();
         $id = self::savePOSTData($session, $destination, $data);
 
+        // get the session ID
+        $session_id = $session->getSessionId();
+        if (is_null($session_id)) {
+            // this is a transient session, it is pointless to continue
+            throw new \SimpleSAML_Error_Exception('Cannot save POST data to a transient session.');
+        }
+
         // encrypt the session ID and the random ID
-        $info = base64_encode(Crypto::aesEncrypt($session->getSessionId().':'.$id));
+        $info = base64_encode(Crypto::aesEncrypt($session_id.':'.$id));
 
         $url = Module::getModuleURL('core/postredirect.php', array('RedirInfo' => $info));
         return preg_replace('#^https:#', 'http:', $url);
@@ -246,6 +254,7 @@ class HTTP
             $oldQuery = array();
             $url .= '?';
         } else {
+            /** @var string|false $oldQuery */
             $oldQuery = substr($url, $queryStart + 1);
             if ($oldQuery === false) {
                 $oldQuery = array();
@@ -255,6 +264,7 @@ class HTTP
             $url = substr($url, 0, $queryStart + 1);
         }
 
+        /** @var array $oldQuery */
         $query = array_merge($oldQuery, $parameters);
         $url .= http_build_query($query, '', '&');
 
@@ -265,7 +275,7 @@ class HTTP
     /**
      * Check for session cookie, and show missing-cookie page if it is missing.
      *
-     * @param string|NULL $retryURL The URL the user should access to retry the operation. Defaults to null.
+     * @param string|null $retryURL The URL the user should access to retry the operation. Defaults to null.
      *
      * @return void If there is a session cookie, nothing will be returned. Otherwise, the user will be redirected to a
      *     page telling about the missing cookie.
@@ -275,7 +285,7 @@ class HTTP
      */
     public static function checkSessionCookie($retryURL = null)
     {
-        if (!is_string($retryURL) && !is_null($retryURL)) {
+        if (!is_null($retryURL) && !is_string($retryURL)) {
             throw new \InvalidArgumentException('Invalid input parameters.');
         }
 
@@ -432,7 +442,8 @@ class HTTP
         $data = file_get_contents($url, false, $context);
         if ($data === false) {
             $error = error_get_last();
-            throw new \SimpleSAML_Error_Exception('Error fetching '.var_export($url, true).':'.$error['message']);
+            throw new \SimpleSAML_Error_Exception('Error fetching '.var_export($url, true).':'.
+                (is_array($error) ? $error['message'] : 'no error available'));
         }
 
         // data and headers
@@ -694,7 +705,9 @@ class HTTP
     {
         $url = self::getBaseURL();
 
-        $start = strpos($url, '://') + 3;
+        /** @var int $colon getBaseURL() will allways return a valid URL */
+        $colon = strpos($url, '://');
+        $start = $colon + 3;
         $length = strcspn($url, '/', $start);
 
         return substr($url, $start, $length);
@@ -787,7 +800,10 @@ class HTTP
     public static function getSelfURLHost()
     {
         $url = self::getSelfURL();
-        $start = strpos($url, '://') + 3;
+
+        /** @var int $colon getBaseURL() will allways return a valid URL */
+        $colon = strpos($url, '://');
+        $start = $colon + 3;
         $length = strcspn($url, '/', $start) + $start;
         return substr($url, 0, $length);
     }
@@ -1057,6 +1073,8 @@ class HTTP
      * @throws \InvalidArgumentException If any parameter has an incorrect type.
      * @throws \SimpleSAML\Error\CannotSetCookie If the headers were already sent and the cookie cannot be set.
      *
+     * @return void
+     *
      * @author Andjelko Horvat
      * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
@@ -1151,6 +1169,8 @@ class HTTP
      * @param array  $data An associative array with the data to be posted to $destination.
      *
      * @throws \InvalidArgumentException If $destination is not a string or $data is not an array.
+     *
+     * @return void
      *
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      * @author Andjelko Horvat
