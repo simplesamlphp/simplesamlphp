@@ -55,7 +55,9 @@ $config = array(
     'technicalcontact_email' => 'na@example.org',
 
     /*
-     * Sender email should use the same domain as your application domain to prevent SPF record filtering
+     * The envelope from address for outgoing emails.
+     * This should be in a domain that has your application's IP addresses in its SPF record
+     * to prevent it from being rejected by mail filters.
      */
     //'sendmail_from' => 'no-reply@example.org',
 
