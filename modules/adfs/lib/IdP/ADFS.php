@@ -62,7 +62,7 @@ MSG;
                 continue;
             }
 
-            list($namespace, $name) = SimpleSAML\Utils\Attributes::getAttributeNamespace($name);
+            list($namespace, $name) = SimpleSAML\Utils\Attributes::getAttributeNamespace($name, 'http://schemas.xmlsoap.org/claims');
             foreach ($values as $value) {
                 if ((!isset($value)) || ($value === '')) {
                     continue;
