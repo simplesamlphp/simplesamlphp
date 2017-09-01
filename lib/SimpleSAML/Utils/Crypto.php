@@ -24,9 +24,14 @@ class Crypto
      */
     private static function _aesDecrypt($ciphertext, $secret)
     {
+        if (!is_string($ciphertext)) {
+            throw new \InvalidArgumentException(
+                'Input parameter "$ciphertext" must be a string with more than 48 characters.'
+            );
+        }
         /** @var int $len */
         $len = mb_strlen($ciphertext, '8bit');
-        if (!is_string($ciphertext) || $len < 48) {
+        if ($len < 48) {
             throw new \InvalidArgumentException(
                 'Input parameter "$ciphertext" must be a string with more than 48 characters.'
             );
