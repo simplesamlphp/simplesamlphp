@@ -61,14 +61,8 @@ MSG;
             if ((!is_array($values)) || (count($values) == 0)) {
                 continue;
             }
-            $namespace = "http://schemas.xmlsoap.org/claims";
-            $slash = strrpos($name, '/');
-            if ($slash !== false) {
-                $namespace = substr($name, 0, $slash);
-                $name = substr($name, $slash + 1);
-            }
-            $name = htmlspecialchars($name);
-            $namespace = htmlspecialchars($namespace);
+
+            list($namespace, $name) = SimpleSAML\Utils\Attributes::getAttributeNamespace($name);
             foreach ($values as $value) {
                 if ((!isset($value)) || ($value === '')) {
                     continue;
