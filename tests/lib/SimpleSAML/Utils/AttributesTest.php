@@ -193,4 +193,23 @@ class AttributesTest extends \PHPUnit_Framework_TestCase
             'Attribute array normalization failed'
         );
     }
+
+
+    /**
+     * Test the getAttributeNamespace() function.
+     */
+    public function testNamespacedAttributes()
+    {
+        // test for only the name
+        $this->assertEquals(
+            array('default', 'name'),
+            Attributes::getAttributeNamespace('name', 'default')
+        );
+
+        // test for a given namespace and multiple '/'
+        $this->assertEquals(
+            array('some/namespace', 'name'),
+            Attributes::getAttributeNamespace('some/namespace/name', 'default')
+        );
+    }
 }
