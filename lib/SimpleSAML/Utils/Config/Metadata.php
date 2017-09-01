@@ -224,7 +224,7 @@ class Metadata
         $firstAllowed = null;
 
         // look through the endpoint list for acceptable endpoints
-        foreach ($endpoints as $i => $ep) {
+        foreach ($endpoints as $ep) {
             if ($bindings !== null && !in_array($ep['Binding'], $bindings, true)) {
                 // unsupported binding, skip it
                 continue;
