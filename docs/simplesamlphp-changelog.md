@@ -127,6 +127,12 @@ Released TBD
 ### `sqlauth`
   * Fixed SQL schema for usergroups table.
 
+## Version 1.14.16
+
+Released 2017-09-04
+
+  * Resolved a security issue in the consentAdmin module. See [SSPSA 201709-01](https://simplesamlphp.org/security/201709-01).
+
 ## Version 1.14.15
 
 Released 2017-08-08
