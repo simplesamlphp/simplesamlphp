@@ -356,7 +356,7 @@ class SimpleSAML_Auth_LDAP
         $result = false;
         foreach ($bases as $base) {
             $result = @ldap_search($this->ldap, $base, $filter, $attributes, 0, 0, $this->timeout);
-            if ($result !== false) {
+            if ($result !== false && @ldap_count_entries($this->ldap, $result) > 0) {
                 break;
             }
         }
