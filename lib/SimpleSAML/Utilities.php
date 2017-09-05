@@ -229,9 +229,9 @@ class SimpleSAML_Utilities
             ' "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">'."\n";
         echo '<html xmlns="http://www.w3.org/1999/xhtml">';
         echo '<head>
-					<meta http-equiv="content-type" content="text/html; charset=utf-8">
-					<title>Redirect</title>
-				</head>';
+                    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+                    <title>Redirect</title>
+                </head>';
         echo '<body>';
         echo '<h1>Redirect</h1>';
         echo '<p>';

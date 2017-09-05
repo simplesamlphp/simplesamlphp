@@ -169,6 +169,27 @@ abstract class sspmod_core_Auth_UserPassBase extends SimpleSAML_Auth_Source {
 	public function authenticate(&$state) {
 		assert('is_array($state)');
 
+
+		if (isset($state['core:auth:username']) && isset($state['core:auth:password'])) {
+			// It looks like we are doing HTTP Basic authentication.
+			try {
+				$username = $state['core:auth:username'];
+				$password = $state['core:auth:password'];
+
+				if ($this->forcedUsername !== NULL && $this->forcedUsername !== $username) {
+					throw new SimpleSAML_Error_Error('ECP_AUTH_FAILURE');
+				}
+
+				$attributes = $this->login($username, $password);
+				assert('is_array($attributes)');
+				$state['Attributes'] = $attributes;
+				return;
+			} catch (Exception $e) {
+				SimpleSAML\Logger::error("Login error: " . $e->getMessage());
+				throw $e;
+			}
+		}
+
 		/*
 		 * Save the identifier of this authentication source, so that we can
 		 * retrieve it later. This allows us to call the login()-function on
