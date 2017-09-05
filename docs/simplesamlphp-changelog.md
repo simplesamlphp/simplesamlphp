@@ -116,7 +116,7 @@ Released TBD
   * Handle instead of reject assertions that do not contain a NameID.
   * Added options to configure `AllowCreate` and `SPNameQualifier`.
   * Added option `saml:NameID` to set the Subject NameID in a SAML AuthnRequest.
-  * Added filter `FilterScopes` to remove alues which are not properly scoped.
+  * Added filter `FilterScopes` to remove values which are not properly scoped.
   * Make sure we log the user out before reauthenticating.
   * More robust handling of IDPList support in proxy mode.
   * Increased `_authSource` field length in Logout Store.
