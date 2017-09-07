@@ -4,6 +4,8 @@ namespace SimpleSAML\Auth;
 
 use \SimpleSAML_Auth_Source as Source;
 use \SimpleSAML_Auth_State as State;
+use \SimpleSAML_Configuration as Configuration;
+use \SimpleSAML_Error_AuthSource as AuthSourceError;
 use \SimpleSAML\Module;
 use \SimpleSAML_Session as Session;
 use \SimpleSAML\Utils\HTTP;
@@ -21,8 +23,12 @@ class Simple
      *
      * @var string
      */
-    private $authSource;
+    protected $authSource;
 
+    /**
+     * @var \SimpleSAML_Configuration|null
+     */
+    protected $app_config;
 
     /**
      * Create an instance with the specified authsource.
@@ -34,6 +40,7 @@ class Simple
         assert('is_string($authSource)');
 
         $this->authSource = $authSource;
+        $this->app_config = Configuration::getInstance()->getConfigItem('application', null);
     }
 
 
@@ -48,7 +55,7 @@ class Simple
     {
         $as = Source::getById($this->authSource);
         if ($as === null) {
-            throw new \SimpleSAML_Error_AuthSource($this->authSource, 'Unknown authentication source.');
+            throw new AuthSourceError($this->authSource, 'Unknown authentication source.');
         }
         return $as;
     }
@@ -346,5 +353,49 @@ class Simple
         ));
 
         return $logout;
+    }
+
+
+    /**
+     * Process a URL and modify it according to the application/baseURL configuration option, if present.
+     *
+     * @param string|null $url The URL to process, or null if we want to use the current URL. Both partial and full
+     * URLs can be used as a parameter. The maximum precedence is given to the application/baseURL configuration option,
+     * then the URL specified (if it specifies scheme, host and port) and finally the environment observed in the
+     * server.
+     *
+     * @return string The URL modified according to the precedence rules.
+     */
+    protected function getProcessedURL($url = null)
+    {
+        if ($url === null) {
+            $url = HTTP::getSelfURL();
+        }
+
+        $scheme = parse_url($url, PHP_URL_SCHEME);
+        $host = parse_url($url, PHP_URL_HOST) ?: HTTP::getSelfHost();
+        $port = parse_url($url, PHP_URL_PORT) ?: (
+            $scheme ? '' : trim(HTTP::getServerPort(), ':')
+        );
+        $scheme = $scheme ?: (HTTP::getServerHTTPS() ? 'https' : 'http');
+        $path = parse_url($url, PHP_URL_PATH) ?: '/';
+        $query = parse_url($url, PHP_URL_QUERY) ?: '';
+        $fragment = parse_url($url, PHP_URL_FRAGMENT) ?: '';
+
+        $port = !empty($port) ? ':'.$port : '';
+        if (($scheme === 'http' && $port === ':80') || ($scheme === 'https' && $port === ':443')) {
+            $port = '';
+        }
+
+        if (is_null($this->app_config)) {
+            // nothing more we can do here
+            return $scheme.'://'.$host.$port.$path.($query ? '?'.$query : '').($fragment ? '#'.$fragment : '');
+        }
+
+        $base =  trim($this->app_config->getString(
+            'baseURL',
+            $scheme.'://'.$host.$port
+        ), '/');
+        return $base.$path.($query ? '?'.$query : '').($fragment ? '#'.$fragment : '');
     }
 }

@@ -81,7 +81,7 @@ class HTTP
      *
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
-    private static function getServerHTTPS()
+    public static function getServerHTTPS()
     {
         if (!array_key_exists('HTTPS', $_SERVER)) {
             // not an https-request
@@ -106,7 +106,7 @@ class HTTP
      *
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
-    private static function getServerPort()
+    public static function getServerPort()
     {
         $port = (isset($_SERVER['SERVER_PORT'])) ? $_SERVER['SERVER_PORT'] : '80';
         if (self::getServerHTTPS()) {
