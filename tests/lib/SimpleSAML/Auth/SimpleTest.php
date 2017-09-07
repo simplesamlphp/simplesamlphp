@@ -28,7 +28,7 @@ class SimpleTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
             )
         ), '[ARRAY]', 'simplesaml');
 
-        $s = new \SimpleSAML\Auth\Simple(null);
+        $s = new \SimpleSAML\Auth\Simple('');
 
         $this->assertEquals('https://example.org/', $method->invokeArgs($s, array(null)));
 
@@ -55,7 +55,7 @@ class SimpleTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
                 'baseURL' => 'http://example.org:8080/'
             )
         ), '[ARRAY]', 'simplesaml');
-        $s = new \SimpleSAML\Auth\Simple(null);
+        $s = new \SimpleSAML\Auth\Simple('');
         $this->assertEquals('http://example.org:8080/foo/bar?a=b#fragment', $method->invokeArgs($s, array(null)));
 
         // test again with a relative URL as a parameter
@@ -67,7 +67,7 @@ class SimpleTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
         // now test with no configuration
         $_SERVER['SERVER_NAME'] = 'example.org';
         \SimpleSAML_Configuration::loadFromArray(array(), '[ARRAY]', 'simplesaml');
-        $s = new \SimpleSAML\Auth\Simple(null);
+        $s = new \SimpleSAML\Auth\Simple('');
         $this->assertEquals('http://example.org:1234/foo/bar?a=b#fragment', $method->invokeArgs($s, array(null)));
 
         // no configuration, https and port
