@@ -132,7 +132,7 @@ This API is designed to handle the common operations.
 This is a quick overview of the API:
 
     /* Get a reference to our authentication source. */
-    $as = new SimpleSAML_Auth_Simple('default-sp');
+    $as = new \SimpleSAML\Auth\Simple('default-sp');
 
     /* Require the user to be authentcated. */
     $as->requireAuth();
@@ -159,7 +159,7 @@ Generally, if you have:
 
 you should replace it with this single line:
 
-    $as = new SimpleSAML_Auth_Simple('default-sp');
+    $as = new \SimpleSAML\Auth\Simple('default-sp');
 
 
 #### Requiring authentication

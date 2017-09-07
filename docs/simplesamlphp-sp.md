@@ -168,7 +168,7 @@ We start off with loading a file which registers the SimpleSAMLphp classes with 
 
 We select our authentication source:
 
-    $as = new SimpleSAML_Auth_Simple('default-sp');
+    $as = new \SimpleSAML\Auth\Simple('default-sp');
 
 We then require authentication:
 

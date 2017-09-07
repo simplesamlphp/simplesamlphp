@@ -481,7 +481,7 @@ Here we will list some examples for this authentication source.
 
 ### Requesting a specific authentication method.
 
-    $auth = new SimpleSAML_Auth_Simple('default-sp');
+    $auth = new \SimpleSAML\Auth\Simple('default-sp');
     $auth->login(array(
         'saml:AuthnContextClassRef' => 'urn:oasis:names:tc:SAML:2.0:ac:classes:Password',
     ));
@@ -492,7 +492,7 @@ Here we will list some examples for this authentication source.
     $ce = $dom->createElementNS('http://www.example.com/XFoo', 'xfoo:test', 'Test data!');
     $ext[] = new \SAML2\XML\Chunk($ce);
 
-    $auth = new SimpleSAML_Auth_Simple('default-sp');
+    $auth = new \SimpleSAML\Auth\Simple('default-sp');
     $auth->login(array(
         'saml:Extensions' => $ext,
     ));

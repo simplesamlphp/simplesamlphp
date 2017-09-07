@@ -88,7 +88,7 @@ The list of authenticating authorities (the AuthenticatingAuthority element)
 can be retrieved as an array from the authentication data.
 
     # Get the authentication source.
-    $as = new SimpleSAML_Auth_Simple();
+    $as = new \SimpleSAML\Auth\Simple();
 
     # Get the AuthenticatingAuthority
     $aa = $as->getAuthData('saml:AuthenticatingAuthority');
