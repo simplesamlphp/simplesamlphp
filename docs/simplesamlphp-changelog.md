@@ -15,13 +15,13 @@ Released TBD
   * Added new `AttributeValueMap` authproc filter.
   * Added attributemaps for OIDs from SIS (Swedish Standards Institute) and
     for eduPersonUniqueId, eduPersonOrcid and sshPublicKey.
-  * Added option to specify metadata signing and digest algorithm
+  * Added an option to specify metadata signing and digest algorithm
     `metadata.sign.algorithm`.
-  * Added option for regular expression matching of trusted.url.domains via new
+  * Added an option for regular expression matching of trusted.url.domains via new
     `trusted.url.regex` setting.
   * The `debug` option is more finegrained and allows one to specify whether
     to log full SAML messages, backtraces or schema validations separately.
-  * Added a check for the latest simpleSAMLphp version on the front page.
+  * Added a check for the latest SimpleSAMLphp version on the front page.
     It can be disabled via the new setting `admin.checkforupdates`.
   * Added a warning when there's a probable misconfiguration of PHP sessions.
   * Added ability to define additional attributes on ContactPerson elements
