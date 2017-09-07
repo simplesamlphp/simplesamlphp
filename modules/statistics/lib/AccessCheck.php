@@ -41,7 +41,7 @@ class sspmod_statistics_AccessCheck
 
         // We are using an authsource for login.
 
-        $as = new SimpleSAML_Auth_Simple($authsource);
+        $as = new \SimpleSAML\Auth\Simple($authsource);
         $as->requireAuth();
 
         // User logged in with auth source.

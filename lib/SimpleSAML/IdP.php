@@ -49,7 +49,7 @@ class SimpleSAML_IdP
     /**
      * Our authsource.
      *
-     * @var SimpleSAML_Auth_Simple
+     * @var \SimpleSAML\Auth\Simple
      */
     private $authSource;
 
@@ -103,7 +103,7 @@ class SimpleSAML_IdP
 
         $auth = $this->config->getString('auth');
         if (SimpleSAML_Auth_Source::getById($auth) !== null) {
-            $this->authSource = new SimpleSAML_Auth_Simple($auth);
+            $this->authSource = new \SimpleSAML\Auth\Simple($auth);
         } else {
             throw new SimpleSAML_Error_Exception('No such "'.$auth.'" auth source found.');
         }

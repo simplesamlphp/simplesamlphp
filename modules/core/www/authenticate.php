@@ -11,7 +11,7 @@ if (!array_key_exists('as', $_REQUEST)) {
 }
 
 $asId = (string) $_REQUEST['as'];
-$as = new SimpleSAML_Auth_Simple($asId);
+$as = new \SimpleSAML\Auth\Simple($asId);
 
 if (array_key_exists('logout', $_REQUEST)) {
     $as->logout($config->getBasePath().'logout.php');
