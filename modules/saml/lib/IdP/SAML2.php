@@ -164,7 +164,8 @@ class sspmod_saml_IdP_SAML2
         SimpleSAML_Configuration $spMetadata,
         $AssertionConsumerServiceURL,
         $ProtocolBinding,
-        $AssertionConsumerServiceIndex
+        $AssertionConsumerServiceIndex,
+		$messageSigned
     ) {
         assert('is_string($AssertionConsumerServiceURL) || is_null($AssertionConsumerServiceURL)');
         assert('is_string($ProtocolBinding) || is_null($ProtocolBinding)');
@@ -221,6 +222,11 @@ class sspmod_saml_IdP_SAML2
             return $firstFalse;
         }
 
+		if ($AssertionConsumerServiceURL !== NULL && $messageSigned && $spMetadata->getValue('skipEndpointValidationWhenSigned', false)){
+			SimpleSAML_Logger::warning('Using AssertionConsumerService specified in AuthnRequest because no metadata endpoint matches and skipEndpointValidationWhenSigned was true');
+			return array('Location'=>$AssertionConsumerServiceURL, 'Binding'=>$ProtocolBinding);
+		}
+		
         SimpleSAML\Logger::warning('Authentication request specifies invalid AssertionConsumerService:');
         if ($AssertionConsumerServiceURL !== null) {
             SimpleSAML\Logger::warning('AssertionConsumerServiceURL: '.var_export($AssertionConsumerServiceURL, true));
@@ -259,6 +265,8 @@ class sspmod_saml_IdP_SAML2
             $supportedBindings[] = \SAML2\Constants::BINDING_HOK_SSO;
         }
 
+		$signatureValidated = false;
+		
         if (isset($_REQUEST['spentityid'])) {
             /* IdP initiated authentication. */
 
@@ -329,8 +337,8 @@ class sspmod_saml_IdP_SAML2
             }
             $spMetadata = $metadata->getMetaDataConfig($spEntityId, 'saml20-sp-remote');
 
-            sspmod_saml_Message::validateMessage($spMetadata, $idpMetadata, $request);
-
+			$signatureValidated = sspmod_saml_Message::validateMessage($spMetadata, $idpMetadata, $request);
+			
             $relayState = $request->getRelayState();
 
             $requestId = $request->getId();
@@ -381,7 +389,8 @@ class sspmod_saml_IdP_SAML2
             $spMetadata,
             $consumerURL,
             $protocolBinding,
-            $consumerIndex
+            $consumerIndex,
+			$signatureValidated
         );
 
         $IDPList = array_unique(array_merge($IDPList, $spMetadata->getArrayizeString('IDPList', array())));

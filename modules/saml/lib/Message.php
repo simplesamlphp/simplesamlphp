@@ -269,7 +269,7 @@ class sspmod_saml_Message
         }
 
         if (!$enabled) {
-            return;
+            return false;
         }
 
         if (!self::checkSign($srcMetadata, $message)) {
@@ -277,6 +277,7 @@ class sspmod_saml_Message
                 'Validation of received messages enabled, but no signature found on message.'
             );
         }
+		return true;
     }
 
 
