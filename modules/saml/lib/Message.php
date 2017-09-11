@@ -84,14 +84,14 @@ class sspmod_saml_Message
 
         $signingEnabled = null;
         if ($message instanceof \SAML2\LogoutRequest || $message instanceof \SAML2\LogoutResponse) {
-            $signingEnabled = $srcMetadata->getBoolean('sign.logout', null);
+            $signingEnabled = $dstMetadata->getBoolean('sign.logout', null);
             if ($signingEnabled === null) {
-                $signingEnabled = $dstMetadata->getBoolean('sign.logout', null);
+                $signingEnabled = $srcMetadata->getBoolean('sign.logout', null);
             }
         } elseif ($message instanceof \SAML2\AuthnRequest) {
-            $signingEnabled = $srcMetadata->getBoolean('sign.authnrequest', null);
+            $signingEnabled = $dstMetadata->getBoolean('sign.authnrequest', null);
             if ($signingEnabled === null) {
-                $signingEnabled = $dstMetadata->getBoolean('sign.authnrequest', null);
+                $signingEnabled = $srcMetadata->getBoolean('sign.authnrequest', null);
             }
         }
 
