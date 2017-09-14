@@ -222,7 +222,7 @@ class sspmod_saml_IdP_SAML2
             return $firstFalse;
         }
 
-		if ($AssertionConsumerServiceURL !== NULL && $messageSigned && $spMetadata->getValue('skipEndpointValidationWhenSigned', false)){
+		if ($AssertionConsumerServiceURL !== NULL && $messageSigned && $spMetadata->getBoolean('skipEndpointValidationWhenSigned', false)){
 			SimpleSAML_Logger::warning('Using AssertionConsumerService specified in AuthnRequest because no metadata endpoint matches and skipEndpointValidationWhenSigned was true');
 			return array('Location'=>$AssertionConsumerServiceURL, 'Binding'=>$ProtocolBinding);
 		}
@@ -598,6 +598,7 @@ class sspmod_saml_IdP_SAML2
                 'saml:SPEntityId' => $spEntityId,
                 'saml:RelayState' => $message->getRelayState(),
                 'saml:RequestId'  => $message->getId(),
+				'saml:RequestBinding' => $binding->getUrn(),
             );
 
             $assocId = 'saml:'.$spEntityId;
