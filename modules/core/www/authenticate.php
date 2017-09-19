@@ -37,11 +37,13 @@ if (!$as->isAuthenticated()) {
 }
 
 $attributes = $as->getAttributes();
+$authData = $as->getAuthDataArray();
 
 $t = new SimpleSAML_XHTML_Template($config, 'status.php', 'attributes');
 
 $t->data['header'] = '{status:header_saml20_sp}';
 $t->data['attributes'] = $attributes;
+$t->data['authData'] = $authData;
 $t->data['nameid'] = !is_null($as->getAuthData('saml:sp:NameID')) ? $as->getAuthData('saml:sp:NameID') : false;
 $t->data['logouturl'] = \SimpleSAML\Utils\HTTP::getSelfURLNoQuery().'?as='.urlencode($asId).'&logout';
 $t->show();

@@ -60,6 +60,13 @@ if ($nameid !== false) {
     echo(present_attributes($this, $list, ''));
 }
 
+$authData = $this->data['authData'];
+if (isset($authData)) {
+    echo "<h2>".$this->t('{status:authData_header}')."</h2>";
+    echo '<details><summary>' . $this->t('{status:authData_summary}') . '</summary>'; 
+    echo('<pre>' . htmlspecialchars(json_encode($this->data['authData'], JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES)) . '</pre>');
+    echo '</details>';
+}
 if (isset($this->data['logout'])) {
     echo('<h2>'.$this->t('{status:logout}').'</h2>');
     echo('<p>'.$this->data['logout'].'</p>');
