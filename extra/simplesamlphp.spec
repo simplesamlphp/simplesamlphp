@@ -1,6 +1,6 @@
 %define name      simplesamlphp
 %define summary   SAML IDP/SP written in PHP
-%define version   dev
+%define version   1.15.0-rc1
 %define release   1
 %define license   LGPL 2.1
 %define group     Networking/WWW
