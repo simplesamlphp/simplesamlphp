@@ -69,7 +69,7 @@ class sspmod_saml_Auth_Process_AttributeNameID extends sspmod_saml_BaseNameIDGen
         $value = $value[0];
 
         if (empty($value)) {
-            SimpleSAML\Logger::warning(
+            SimpleSAML_Logger::warning(
                 'Empty value in attribute '.var_export($this->attribute, true).
                 ' on user - not generating persistent NameID.'
             );

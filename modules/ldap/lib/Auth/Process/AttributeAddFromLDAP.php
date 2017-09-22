@@ -173,7 +173,7 @@ class sspmod_ldap_Auth_Process_AttributeAddFromLDAP extends sspmod_ldap_Auth_Pro
           $ldap = $this->getLdap();
         } catch (Exception $e) {
           // Added this warning in case $this->getLdap() fails
-          SimpleSAML\Logger::warning("AttributeAddFromLDAP: exception = " . $e);
+          SimpleSAML_Logger::warning("AttributeAddFromLDAP: exception = " . $e);
           return;
         }
         // search for matching entries
