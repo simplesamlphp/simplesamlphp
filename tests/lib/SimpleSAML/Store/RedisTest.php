@@ -48,7 +48,7 @@ class RedisTest extends \PHPUnit_Framework_TestCase
 
     public function getMocked($key)
     {
-        return array_key_exists($key, $this->config) ? $this->config[$key] : false;
+        return array_key_exists($key, $this->config) ? $this->config[$key] : null;
     }
 
     public function setMocked($key, $value)
