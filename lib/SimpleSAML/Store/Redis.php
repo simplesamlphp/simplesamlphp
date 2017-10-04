@@ -34,7 +34,7 @@ class Redis extends Store
                 array(
                     'scheme' => 'tcp',
                     'host' => $host,
-                    'post' => $port,
+                    'port' => $port,
                 ),
                 array(
                     'prefix' => $prefix,
