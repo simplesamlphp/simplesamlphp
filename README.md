@@ -68,7 +68,31 @@ https://dominio.example.com/simplesaml
 ```
 Nel tab "Autenticazione" selezionare "Prova le fonti di autenticazione configurate", selezionare il nome del servizio, e scegliere nel menu a tendina il provider (Identity Provider) con il quale si vuol provare l'autenticazione
 
+
+Esempio di integrazione con applicazione
+----------------------------------------
+
+Tutte le pagine php da proteggere con autenticazione devono integrare il seguente codice di riferimento della libreria SimpleSAML:
+
+```
+require_once('../lib/_autoload.php');
+$auth = new SimpleSAML_Auth_Simple($service);
+$auth->requireAuth(array('saml:idp' => $idp,));
+```
+
+dove ```$service``` è il codice identificativo del servizio, come configurato nel file config/authsources.php mentre ```$idp``` è il codice identificativo dell'idp verso il quale inoltrare la richiesta di autenticazione tra gli idp configurati nel file /metadata/saml20-idp-remote.php il parametro ```$idp``` può essere passato come parametro della richiesta GET al clic del bottone.
+
+Per recuperare gli attributi dell'identità:
+
+```
+$attributes = $auth->getAttributes();
+
+$name = $attributes['name'][0];
+$familyName = $attributes['familyName'][0];
+```
+
 Credits
 -------
 
 Per la collaborazione si ringrazia il Comune di Firenze
+
