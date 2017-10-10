@@ -231,6 +231,8 @@ $state['LogoutState'] = $logoutState;
 $state['saml:AuthenticatingAuthority'] = $authenticatingAuthority;
 $state['saml:AuthenticatingAuthority'][] = $idp;
 $state['PersistentAuthData'][] = 'saml:AuthenticatingAuthority';
+$state['saml:AuthnInstant'] = $assertion->getAuthnInstant();
+$state['PersistentAuthData'][] = 'saml:AuthnInstant';
 $state['saml:sp:SessionIndex'] = $sessionIndex;
 $state['PersistentAuthData'][] = 'saml:sp:SessionIndex';
 $state['saml:sp:AuthnContext'] = $assertion->getAuthnContext();
@@ -251,8 +253,6 @@ if (isset($state['SimpleSAML_Auth_Source.ReturnURL'])) {
     $state['saml:sp:prevAuth']['redirect'] = $state['saml:sp:RelayState'];
 }
 $state['PersistentAuthData'][] = 'saml:sp:prevAuth';
-
-$state['AuthnInstant'] = $assertion->getAuthnInstant();
 
 $source->handleResponse($state, $idp, $attributes);
 assert('FALSE');
