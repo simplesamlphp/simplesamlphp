@@ -186,9 +186,10 @@ class HTTP
         echo '<html xmlns="http://www.w3.org/1999/xhtml">'."\n";
         echo "  <head>\n";
         echo '    <meta http-equiv="content-type" content="text/html; charset=utf-8">'."\n";
+        echo '    <meta http-equiv="refresh" content="0;URL=\''.htmlspecialchars($url).'\'">'."\n";
         echo "    <title>Redirect</title>\n";
         echo "  </head>\n";
-        echo "  <body onload=\"window.location.replace('".htmlspecialchars($url)."');\">\n";
+        echo "  <body>\n";
         echo "    <h1>Redirect</h1>\n";
         echo '      <p>You were redirected to: <a id="redirlink" href="'.htmlspecialchars($url).'">';
         echo htmlspecialchars($url)."</a>\n";
@@ -324,6 +325,10 @@ class HTTP
             return '';
         }
         $url = self::normalizeURL($url);
+
+        if (filter_var($url, FILTER_VALIDATE_URL) === false) {
+            throw new \SimpleSAML_Error_Exception('Invalid URL: '.$url);
+        }
 
         // get the white list of domains
         if ($trustedSites === null) {
