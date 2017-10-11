@@ -614,6 +614,10 @@ class SimpleSAML_Session implements Serializable
                     continue;
                 }
 
+                if (is_a($value, 'SAML2_XML_saml_AttributeValue')) {
+                    continue;
+                }
+                
                 // at this point, this should be a DOMNodeList object...
                 if (!is_a($value, 'DOMNodeList')) {
                     continue;

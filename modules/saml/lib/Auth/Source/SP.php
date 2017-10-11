@@ -286,6 +286,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 			);
 		} else {
 			$dst = $idpMetadata->getDefaultEndpoint('SingleSignOnService', array(
+                $state['saml:Binding'],
 				\SAML2\Constants::BINDING_HTTP_REDIRECT,
 				\SAML2\Constants::BINDING_HTTP_POST)
 			);
@@ -620,6 +621,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 		$idpMetadata = $this->getIdPMetadata($idp);
 
 		$endpoint = $idpMetadata->getEndpointPrioritizedByBinding('SingleLogoutService', array(
+			$state['saml:Binding'],
 			\SAML2\Constants::BINDING_HTTP_REDIRECT,
 			\SAML2\Constants::BINDING_HTTP_POST), FALSE);
 		if ($endpoint === FALSE) {

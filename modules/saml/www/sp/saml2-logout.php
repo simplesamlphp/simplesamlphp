@@ -119,6 +119,7 @@ if ($message instanceof \SAML2\LogoutResponse) {
 	}
 
 	$dst = $idpMetadata->getEndpointPrioritizedByBinding('SingleLogoutService', array(
+        $binding->getUrn(),
 		\SAML2\Constants::BINDING_HTTP_REDIRECT,
 		\SAML2\Constants::BINDING_HTTP_POST)
 	);

@@ -139,6 +139,7 @@ $nameId = null;
 $sessionIndex = null;
 $expire = null;
 $attributes = array();
+$attributeObjs = array();
 $foundAuthnStatement = false;
 foreach ($assertions as $assertion) {
 
@@ -176,7 +177,8 @@ foreach ($assertions as $assertion) {
     }
 
     $attributes = array_merge($attributes, $assertion->getAttributes());
-
+    $attributeObjs = array_merge($attributeObjs, $assertion->getAttributes(true));
+    
     if ($assertion->getAuthnInstant() !== null) {
         // assertion contains AuthnStatement, since AuthnInstant is a required attribute
         $foundAuthnStatement = true;
@@ -251,6 +253,19 @@ if (isset($state['SimpleSAML_Auth_Source.ReturnURL'])) {
     $state['saml:sp:prevAuth']['redirect'] = $state['saml:sp:RelayState'];
 }
 $state['PersistentAuthData'][] = 'saml:sp:prevAuth';
+
+$attributeNameFormats = array();
+$attributeFriendlyNames = array();
+foreach ($attributeObjs as $attrName => $attrObj){
+	if (isset($attrObj->NameFormat)){
+		$attributeNameFormats[$attrName] = $attrObj->NameFormat;
+	}
+	if (isset($attrObj->FriendlyName)){
+		$attributeFriendlyNames[$attrName] = $attrObj->FriendlyName;
+	}
+}
+$state['saml:sp:AttributeExtData'] = array("nameFormats"=>$attributeNameFormats, "friendlyNames"=>$attributeFriendlyNames);
+$state['PersistentAuthData'][] = 'saml:sp:AttributeExtData';
 
 $source->handleResponse($state, $idp, $attributes);
 assert('FALSE');
