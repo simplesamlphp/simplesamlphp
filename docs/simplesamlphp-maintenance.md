@@ -30,6 +30,7 @@ The `store.type` configuration option in `config.php` allows you to select which
   * `memcache` uses the memcache software to cache sessions in memory. Sessions can be distributed and replicated among several memcache servers, enabling both load-balancing and fail-over.
   * `sql` stores the session in an SQL database.
   * `redis` stores the session in Redis.
+  * `redissentinel` stores the session in Redis (using Sentinel).
 
     'store.type' => 'phpsession',
 
@@ -162,6 +163,16 @@ The required tables are created automatically. If you are storing data from mult
 To store sessions in Redis, set the `store.type` option to `redis`.
 
 By default SimpleSAMLphp will attempt to connect to Redis on the `localhost` at port `6379`. These can be configured via the `store.redis.host` and `store.redis.port` options, respectively. You may also set a key prefix with the `store.redis.prefix` option.
+
+### Configuring Redis Sentinel storage
+
+To store sessions in Redis, set the `store.type` option to `redissentinel`.
+
+Configure your sentinels by setting `store.redissentinel.sentinels` to `array('tcp://[yoursentinel1]:[port]', 'tcp://[yoursentinel2]:[port]', 'tcp://[yoursentinel3]:[port]')`.
+
+Configure your master group by setting `store.redissentinel.mastergroup` (`mymaster` by default)
+
+You may also set a key prefix with the `store.redissentinel.prefix` option.
 
 ## Metadata storage
 

@@ -981,6 +981,7 @@ $config = array(
      * - 'memcache': Key-value datastore, based on memcache.
      * - 'sql': SQL datastore, using PDO.
      * - 'redis': Key-value datastore, based on redis.
+     * - 'redissentinel': Key-value datastore, based on redis sentinel.
      *
      * The default datastore is 'phpsession'.
      *
@@ -1017,4 +1018,25 @@ $config = array(
      * The prefix we should use on our Redis datastore.
      */
     'store.redis.prefix' => 'SimpleSAMLphp',
+
+    /*
+     * The master group to use for Redis Sentinel.
+     */
+    'store.redissentinel.mastergroup' => 'mymaster',
+
+    /*
+     * The prefix we should use on our Redis Sentinel datastore.
+     */
+    'store.redissentinel.prefix' => 'SimpleSAMLphp',
+
+    /*
+     * The Redis Sentinel hosts.
+     * Example:
+     * array(
+     *     'tcp://[yoursentinel1]:[port]'
+     *     'tcp://[yoursentinel2]:[port]',
+     *     'tcp://[yoursentinel3]:[port]
+     * )
+     */
+    'store.redissentinel.sentinels' => array(),
 );
