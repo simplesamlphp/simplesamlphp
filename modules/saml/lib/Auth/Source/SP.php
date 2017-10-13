@@ -120,14 +120,15 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 			return $metadataHandler->getMetaDataConfig($entityId, 'saml20-idp-remote');
 		} catch (Exception $e) {
 			/* Metadata wasn't found. */
+            SimpleSAML\Logger::debug('getIdpMetadata: ' . $e->getMessage());
 		}
-
 
 		/* Not found in saml20-idp-remote, look in shib13-idp-remote. */
 		try {
 			return $metadataHandler->getMetaDataConfig($entityId, 'shib13-idp-remote');
 		} catch (Exception $e) {
 			/* Metadata wasn't found. */
+            SimpleSAML\Logger::debug('getIdpMetadata: ' . $e->getMessage());
 		}
 
 		/* Not found. */
