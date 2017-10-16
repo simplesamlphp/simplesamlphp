@@ -778,15 +778,26 @@ class HTTP
              *   directory of SimpleSAMLphp, the URI does not contain its relative path, and $uri_pos is false.
              *
              * It doesn't matter which one of those cases we have. We just know we can't apply our base URL to the
-             * current URI, so we need to build it back from the PHP environment.
+             * current URI, so we need to build it back from the PHP environment, unless we have a base URL specified
+             * for this case in the configuration. First, check if that's the case.
              */
-            $protocol = 'http';
-            $protocol .= (self::getServerHTTPS()) ? 's' : '';
-            $protocol .= '://';
 
-            $hostname = self::getServerHost();
-            $port = self::getServerPort();
-            return $protocol.$hostname.$port.$_SERVER['REQUEST_URI'];
+            /** @var \SimpleSAML_Configuration $appcfg */
+            $appcfg = $cfg->getConfigItem('application', array());
+            $appurl = $appcfg->getString('baseURL', '');
+            if (!empty($appurl)) {
+                $protocol = parse_url($appurl, PHP_URL_SCHEME);
+                $hostname = parse_url($appurl, PHP_URL_HOST);
+                $port = parse_url($appurl, PHP_URL_PORT);
+                $port = !empty($port) ? ':'.$port : '';
+
+            } else { // no base URL specified for app, just use the current URL
+                $protocol = 'http';
+                $protocol .= (self::getServerHTTPS()) ? 's' : '';
+                $hostname = self::getServerHost();
+                $port = self::getServerPort();
+            }
+            return $protocol.'://'.$hostname.$port.$_SERVER['REQUEST_URI'];
         }
 
         return self::getBaseURL().$rel_path.substr($_SERVER['REQUEST_URI'], $uri_pos + strlen($url_path));

@@ -31,6 +31,28 @@ $config = array(
     'baseurlpath' => 'simplesaml/',
 
     /*
+     * The 'application' configuration array groups a set configuration options
+     * relative to an application protected by SimpleSAMLphp.
+     */
+    //'application' => array(
+        /*
+         * The 'baseURL' configuration option allows you to specify a protocol,
+         * host and optionally a port that serves as the canonical base for all
+         * your application's URLs. This is useful when the environment
+         * observed in the server differs from the one observed by end users,
+         * for example, when using a load balancer to offload TLS.
+         *
+         * Note that this configuration option does not allow setting a path as
+         * part of the URL. If your setup involves URL rewriting or any other
+         * tricks that would result in SimpleSAMLphp observing a URL for your
+         * application's scripts different than the canonical one, you will
+         * need to compute the right URLs yourself and pass them dynamically
+         * to SimpleSAMLphp's API.
+         */
+        //'baseURL' => 'https://example.com'
+    //),
+
+    /*
      * The following settings are *filesystem paths* which define where
      * SimpleSAMLphp can find or write the following things:
      * - 'certdir': The base directory for certificate and key material.
