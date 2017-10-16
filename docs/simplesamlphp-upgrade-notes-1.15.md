@@ -24,3 +24,21 @@ full certificate in `certData` instead.
 
 The `core:AttributeRealm` authproc filter has been deprecated.
 Please use `core:ScopeFromAttribute`, which is a generalised version of this.
+
+The following modules are no longer shipped with the SimpleSAMLphp:
+
+* `aggregator`
+* `aggregator2`
+* `aselect`
+* `autotest`
+* `consentSimpleAdmin`
+* `discojuice`
+* `InfoCard`
+* `logpeek`
+* `metaedit`
+* `modinfo`
+* `papi`
+* `openid`
+* `openidProvider`
+* `saml2debug`
+* `themefeidernd`
