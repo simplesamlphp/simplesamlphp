@@ -41,6 +41,8 @@ if (array_key_exists('password', $_REQUEST)) {
 
 if (array_key_exists('organization', $_REQUEST)) {
 	$organization = $_REQUEST['organization'];
+} elseif ($source->getRememberOrganizationEnabled() && array_key_exists($source->getAuthId() . '-organization', $_COOKIE)) {
+	$organization = $_COOKIE[$source->getAuthId() . '-organization'];
 } elseif (isset($state['core:organization'])) {
 	$organization = (string)$state['core:organization'];
 } else {
@@ -59,6 +61,14 @@ if ($organizations === NULL || !empty($organization)) {
 			$params['expire'] += (isset($_REQUEST['remember_username']) && $_REQUEST['remember_username'] == 'Yes' ? 31536000 : -300);
             \SimpleSAML\Utils\HTTP::setCookie($source->getAuthId() . '-username', $username, $params, FALSE);
 		}
+
+        if ($source->getRememberOrganizationEnabled()) {
+            $sessionHandler = SimpleSAML_SessionHandler::getSessionHandler();
+            $params = $sessionHandler->getCookieParams();
+            $params['expire'] = time();
+            $params['expire'] += (isset($_REQUEST['remember_organization']) && $_REQUEST['remember_organization'] == 'Yes' ? 31536000 : -300);
+            setcookie($source->getAuthId() . '-organization', $organization, $params['expire'], $params['path'], $params['domain'], $params['secure'], $params['httponly']);
+        }
 
 		try {
 			sspmod_core_Auth_UserPassOrgBase::handleLogin($authStateId, $username, $password, $organization);
@@ -80,6 +90,9 @@ $t->data['rememberUsernameChecked'] = $source->getRememberUsernameChecked();
 $t->data['rememberMeEnabled'] = false;
 $t->data['rememberMeChecked'] = false;
 if (isset($_COOKIE[$source->getAuthId() . '-username'])) $t->data['rememberUsernameChecked'] = TRUE;
+$t->data['rememberOrganizationEnabled'] = $source->getRememberOrganizationEnabled();
+$t->data['rememberOrganizationChecked'] = $source->getRememberOrganizationChecked();
+if (isset($_COOKIE[$source->getAuthId() . '-organization'])) $t->data['rememberOrganizationChecked'] = true;
 $t->data['errorcode'] = $errorCode;
 $t->data['errorcodes'] = SimpleSAML\Error\ErrorCodes::getAllErrorCodeMessages();
 $t->data['errorparams'] = $errorParams;
