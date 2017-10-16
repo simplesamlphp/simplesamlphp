@@ -780,14 +780,12 @@ class HTTP
              * It doesn't matter which one of those cases we have. We just know we can't apply our base URL to the
              * current URI, so we need to build it back from the PHP environment.
              */
-            $https = self::getServerHTTPS();
             $protocol = 'http';
-            $protocol .= $https ? 's' : '';
+            $protocol .= (self::getServerHTTPS()) ? 's' : '';
             $protocol .= '://';
 
             $hostname = self::getServerHost();
             $port = self::getServerPort();
-            $port = ($https && $port !== ':443') || (!$https && $port !== ':80') ? $port : '';
             return $protocol.$hostname.$port.$_SERVER['REQUEST_URI'];
         }
 
