@@ -59,6 +59,22 @@ abstract class UserPassOrgBase extends \SimpleSAML\Auth\Source
 	 */
 	protected $rememberUsernameChecked = FALSE;
 
+    /**
+     * Storage for authsource config option remember.organization.enabled
+     * loginuserpassorg.php page/template use this option to present users
+     * with a checkbox to save their organization choice for the next login request.
+     * @var bool
+     */
+	protected $rememberOrganizationEnabled = false;
+
+	/**
+	 * Storage for authsource config option remember.organization.checked
+	 * loginuserpassorg.php page/template use this option to
+	 * default the remember organization checkbox to checked or not.
+	 * @var bool
+	 */
+	protected $rememberOrganizationChecked = false;
+
 
 	/**
 	 * Constructor for this authentication source.
@@ -84,6 +100,15 @@ abstract class UserPassOrgBase extends \SimpleSAML\Auth\Source
 		if (isset($config['remember.username.checked'])) {
 			$this->rememberUsernameChecked = (bool) $config['remember.username.checked'];
 			unset($config['remember.username.checked']);
+		}
+        // Get the remember organization config options
+        if (isset($config['remember.organization.enabled'])) {
+            $this->rememberOrganizationEnabled = (bool) $config['remember.organization.enabled'];
+            unset($config['remember.organization.enabled']);
+		}
+		if (isset($config['remember.organization.checked'])) {
+			$this->rememberOrganizationChecked = (bool) $config['remember.organization.checked'];
+			unset($config['remember.organization.checked']);
 		}
 
 		$this->usernameOrgMethod = 'none';
@@ -139,6 +164,21 @@ abstract class UserPassOrgBase extends \SimpleSAML\Auth\Source
 		return $this->rememberUsernameChecked;
 	}
 
+    /**
+     * Getter for the authsource config option remember.organization.enabled
+     * @return bool
+     */
+	public function getRememberOrganizationEnabled() {
+		return $this->rememberOrganizationEnabled;
+	}
+
+	/**
+	 * Getter for the authsource config option remember.organization.checked
+	 * @return bool
+	 */
+	public function getRememberOrganizationChecked() {
+		return $this->rememberOrganizationChecked;
+	}
 
 	/**
 	 * Initialize login.
