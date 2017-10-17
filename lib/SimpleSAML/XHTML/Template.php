@@ -248,6 +248,15 @@ class SimpleSAML_XHTML_Template
         $twig->addGlobal('queryParams', $queryParams);
         $twig->addGlobal('templateId', str_replace('.twig', '', $this->normalizeTemplateName($this->template)));
 
+        // add a filter for translations out of arrays
+        $twig->addFilter(
+            new \Twig_SimpleFilter(
+                'translateFromArray',
+                array('\SimpleSAML\Locale\Translate', 'translateFromArray'),
+                array('needs_context' => true)
+            )
+        );
+
         if ($this->controller) {
             $this->controller->setUpTwig($twig);
         }

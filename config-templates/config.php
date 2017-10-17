@@ -656,6 +656,38 @@ $config = array(
      *************************************/
 
     /*
+     * Language-related options.
+     */
+    'language' => array(
+        /*
+         * An array in the form 'language' => <list of alternative languages>.
+         *
+         * Each key in the array is the ISO 639 two-letter code for a language,
+         * and its value is an array with a list of alternative languages that
+         * can be used if the given language is not available at some point.
+         * Each alternative language is also specified by its ISO 639 code.
+         *
+         * For example, for the "no" language code (Norwegian), we would have:
+         *
+         * 'priorities' => array(
+         *      'no' => array('nb', 'nn', 'en', 'se'),
+         *      ...
+         * ),
+         *
+         * establishing that if a translation for the "no" language code is
+         * not available, we look for translations in "nb" (Norwegian Bokmål),
+         * and so on, in that order.
+         */
+        'priorities' => array(
+            'no' => array('nb', 'nn', 'en', 'se'),
+            'nb' => array('no', 'nn', 'en', 'se'),
+            'nn' => array('no', 'nb', 'en', 'se'),
+            'se' => array('nb', 'no', 'nn', 'en'),
+            'en' => array('nb', 'no', 'nn', 'se'),
+        ),
+    ),
+
+    /*
      * Languages available, RTL languages, and what language is the default.
      */
     'language.available' => array(

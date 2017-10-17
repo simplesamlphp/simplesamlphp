@@ -496,4 +496,48 @@ class Translate
 
         return strtr($text, is_array($args[0]) ? $args[0] : $args);
     }
+
+
+    /**
+     * Pick a translation from a given array of translations for the current language.
+     *
+     * @param array $context An array of options. The current language must be specified as an ISO 639 code accessible
+     * with the key "currentLanguage" in the array.
+     * @param array $translations An array of translations. Each translation has an ISO 639 code as its key, identifying
+     * the language it corresponds to.
+     *
+     * @return null|string The translation appropriate for the current language, or null if none found. If the
+     * $context or $translations arrays are null, or $context['currentLanguage'] is not defined, null is also returned.
+     */
+    public static function translateFromArray($context, $translations)
+    {
+        if (!is_array($translations) || $translations === null) {
+            return null;
+        }
+
+        if (!is_array($context) || !isset($context['currentLanguage'])) {
+            return null;
+        }
+
+        if (isset($translations[$context['currentLanguage']])) {
+            return $translations[$context['currentLanguage']];
+        }
+
+        // we don't have a translation for the current language, load alternative priorities
+        $sspcfg = \SimpleSAML_Configuration::getInstance();
+        $langcfg = $sspcfg->getConfigItem('language', null);
+        $priorities = array();
+        if ($langcfg instanceof \SimpleSAML_Configuration) {
+            $priorities = $langcfg->getArray('priorities', array());
+        }
+
+        foreach ($priorities[$context['currentLanguage']] as $lang) {
+            if (isset($translations[$lang])) {
+                return $translations[$lang];
+            }
+        }
+
+        // nothing we can use, return null so that we can set a default
+        return null;
+    }
 }
