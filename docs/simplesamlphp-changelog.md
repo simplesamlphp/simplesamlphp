@@ -27,6 +27,7 @@ Released TBD
   * Added ability to define additional attributes on ContactPerson elements
     in metatada, e.g. for use in Sirtfi contacts.
   * Added option to set a secure flag also on the language cookie.
+  * Added option to specify the base URL for the application protected.
   * Added support for PHP Memcached extension next to Memcache extension.
   * Added Redis as possible session storage mechanism.
   * Added support to specify custom metadata storage handlers.
@@ -53,6 +54,7 @@ Released TBD
     classes under the SimpleSAML\Module namespace.
   * Added new hook for module loader exception handling `exception_handler`.
   * Expose RegistrationInfo in parsed SAML metadata.
+  * The AuthnInstant is now available in the state array.
   * Introduced Twig templating for user interface.
   * Lots of refactoring, code cleanup and added many unit tests.
 
@@ -81,6 +83,9 @@ Released TBD
   * `ScopeAttribute`: added option `onlyIfEmpty` to add a scope only if
      none was present.
   * `AttributeCopy`: added option to copy to multiple destination attributes.
+
+### `cron`
+  * Allow invocation via PHP command line interface.
 
 ### `discopower`
   * Added South Africa tab.
