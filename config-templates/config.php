@@ -77,6 +77,13 @@ $config = array(
     'technicalcontact_email' => 'na@example.org',
 
     /*
+     * The envelope from address for outgoing emails.
+     * This should be in a domain that has your application's IP addresses in its SPF record
+     * to prevent it from being rejected by mail filters.
+     */
+    //'sendmail_from' => 'no-reply@example.org',
+
+    /*
      * The timezone of the server. This option should be set to the timezone you want
      * SimpleSAMLphp to report the time in. The default is to guess the timezone based
      * on your system timezone.
