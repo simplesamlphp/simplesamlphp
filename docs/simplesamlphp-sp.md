@@ -32,7 +32,7 @@ This is a minimal `authsources.php` for a SP:
 
 For more information about additional options available for the SP, see the [`saml:SP` reference](./saml:sp).
 
-If you want mulitple Service Providers in the same site and installation, you can add more entries in the `authsources.php` configuration. If so remember to set the EntityID explicitly. Here is an example:
+If you want multiple Service Providers in the same site and installation, you can add more entries in the `authsources.php` configuration. If so remember to set the EntityID explicitly. Here is an example:
 
 	'sp1' => array(
 	    'saml:SP',
