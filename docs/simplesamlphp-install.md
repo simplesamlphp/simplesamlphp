@@ -261,7 +261,7 @@ You have now successfully installed SimpleSAMLphp, and the next steps depends on
  * [Identity Provider QuickStart](simplesamlphp-idp)
   * [IdP hosted reference](simplesamlphp-reference-idp-hosted)
   * [SP remote reference](simplesamlphp-reference-sp-remote)
-  * [Use case: Setting up an IdP for Google Apps](simplesamlphp-googleapps)
+  * [Use case: Setting up an IdP for G Suite (Google Apps)](simplesamlphp-googleapps)
   * [Identity Provider Advanced Topics](simplesamlphp-idp-more)
  * [Automated Metadata Management](simplesamlphp-automated_metadata)
  * [Maintenance and configuration](simplesamlphp-maintenance)
