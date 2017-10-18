@@ -25,7 +25,7 @@ SimpleSAMLphp Documentation
  * [Identity Provider QuickStart](simplesamlphp-idp)
   * [IdP hosted reference](simplesamlphp-reference-idp-hosted)
   * [SP remote reference](simplesamlphp-reference-sp-remote)
-  * [Use case: Setting up an IdP for Google Apps](simplesamlphp-googleapps)
+  * [Use case: Setting up an IdP for G Suite (Google Apps)](simplesamlphp-googleapps)
   * [Configuring HTTP-Artifact](./simplesamlphp-artifact-idp)
   * [Identity Provider Advanced Topics](simplesamlphp-idp-more)
   * [Holder-of-Key profile](simplesamlphp-hok-idp)
