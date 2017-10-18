@@ -1,0 +1,19 @@
+<?php
+
+$finder = PhpCsFixer\Finder::create()
+    ->exclude(__DIR__ . '/www/resources')
+    ->in([
+        __DIR__ . '/lib',
+        __DIR__ . '/modules',
+        __DIR__ . '/templates',
+        __DIR__ . '/tests',
+        __DIR__ . '/www',
+    ])
+;
+
+return PhpCsFixer\Config::create()
+    ->setRules([
+        '@PSR2' => true,
+    ])
+    ->setFinder($finder)
+;
