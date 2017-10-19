@@ -690,7 +690,6 @@ $config = array(
             'nb' => array('no', 'nn', 'en', 'se'),
             'nn' => array('no', 'nb', 'en', 'se'),
             'se' => array('nb', 'no', 'nn', 'en'),
-            'en' => array('nb', 'no', 'nn', 'se'),
         ),
     ),
 
