@@ -357,7 +357,7 @@ class sspmod_metarefresh_MetaLoader {
 	/**
 	 * This function writes the metadata to an ARP file
 	 */
-	function writeARPfile($config) {
+	public function writeARPfile($config) {
 		
 		assert($config instanceof SimpleSAML_Configuration);
 		
@@ -389,7 +389,7 @@ class sspmod_metarefresh_MetaLoader {
 	/**
 	 * This function writes the metadata to to separate files in the output directory.
 	 */
-	function writeMetadataFiles($outputDir) {
+	public function writeMetadataFiles($outputDir) {
 	
 		while(strlen($outputDir) > 0 && $outputDir[strlen($outputDir) - 1] === '/') {
 			$outputDir = substr($outputDir, 0, strlen($outputDir) - 1);
