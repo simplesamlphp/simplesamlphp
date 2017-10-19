@@ -12,6 +12,8 @@
 
 namespace SimpleSAML\XML;
 
+use LibXMLError;
+
 class Errors
 {
 
