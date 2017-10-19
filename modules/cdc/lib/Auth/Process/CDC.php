@@ -32,7 +32,7 @@ class sspmod_cdc_Auth_Process_CDC extends SimpleSAML_Auth_ProcessingFilter {
 	 */
 	public function __construct($config, $reserved) {
 		parent::__construct($config, $reserved);
-		assert('is_array($config)');
+		assert(is_array($config));
 
 		if (!isset($config['domain'])) {
 			throw new SimpleSAML_Error_Exception('Missing domain option in cdc:CDC filter.');
@@ -49,7 +49,7 @@ class sspmod_cdc_Auth_Process_CDC extends SimpleSAML_Auth_ProcessingFilter {
 	 * @param array &$state  The request state.
 	 */
 	public function process(&$state) {
-		assert('is_array($state)');
+		assert(is_array($state));
 
 		if (!isset($state['Source']['entityid'])) {
 			SimpleSAML\Logger::warning('saml:CDC: Could not find IdP entityID.');

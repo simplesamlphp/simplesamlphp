@@ -33,4 +33,4 @@ if (isset($_REQUEST['ReturnTo'])) {
         }
     }
 }
-assert('FALSE');
+assert(FALSE);

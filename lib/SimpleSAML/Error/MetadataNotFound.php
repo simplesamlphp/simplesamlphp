@@ -14,7 +14,7 @@ class SimpleSAML_Error_MetadataNotFound extends SimpleSAML_Error_Error {
 	 * @param string $entityId  The entityID we were unable to locate.
 	 */
 	public function __construct($entityId) {
-		assert('is_string($entityId)');
+		assert(is_string($entityId));
 
 		$this->includeTemplate = 'core:no_metadata.tpl.php';
 		parent::__construct(array(

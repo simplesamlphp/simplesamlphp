@@ -19,7 +19,7 @@ foreach ($SPs as $assocId => $sp) {
     if ($sp['core:Logout-IFrame:State'] !== 'inprogress') {
         continue;
     }
-    assert('isset($sp["core:Logout-IFrame:URL"])');
+    assert(isset($sp['core:Logout-IFrame:URL']));
 
     $url = $sp["core:Logout-IFrame:URL"];
 

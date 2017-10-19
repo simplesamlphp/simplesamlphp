@@ -24,7 +24,7 @@ class sspmod_core_Auth_Process_GenerateGroups extends SimpleSAML_Auth_Processing
 	public function __construct($config, $reserved) {
 		parent::__construct($config, $reserved);
 
-		assert('is_array($config)');
+		assert(is_array($config));
 
 		if (count($config) === 0) {
 			// Use default groups
@@ -54,8 +54,8 @@ class sspmod_core_Auth_Process_GenerateGroups extends SimpleSAML_Auth_Processing
 	 * @param array &$request  The current request
 	 */
 	public function process(&$request) {
-		assert('is_array($request)');
-		assert('array_key_exists("Attributes", $request)');
+		assert(is_array($request));
+		assert(array_key_exists('Attributes', $request));
 
 		$groups = array();
 		$attributes =& $request['Attributes'];
@@ -99,7 +99,7 @@ class sspmod_core_Auth_Process_GenerateGroups extends SimpleSAML_Auth_Processing
 	 * @return string|NULL  The realm of the user, or NULL if we are unable to determine the realm.
 	 */
 	private static function getRealm($attributes) {
-		assert('is_array($attributes)');
+		assert(is_array($attributes));
 
 		if (!array_key_exists('eduPersonPrincipalName', $attributes)) {
 			return NULL;
@@ -132,7 +132,7 @@ class sspmod_core_Auth_Process_GenerateGroups extends SimpleSAML_Auth_Processing
 	 * @return string  The escaped string.
 	 */
 	private static function escapeIllegalChars($string) {
-		assert('is_string($string)');
+		assert(is_string($string));
 
 		return preg_replace_callback('/([^a-zA-Z0-9_@=.])/',
 			function ($m) { return sprintf("%%%02x", ord($m[1])); },

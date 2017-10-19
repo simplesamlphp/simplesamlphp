@@ -34,9 +34,9 @@ class sspmod_consent_Consent_Store_Cookie extends sspmod_consent_Store
      */
     public function hasConsent($userId, $destinationId, $attributeSet)
     {
-        assert('is_string($userId)');
-        assert('is_string($destinationId)');
-        assert('is_string($attributeSet)');
+        assert(is_string($userId));
+        assert(is_string($destinationId));
+        assert(is_string($attributeSet));
 
         $cookieName = self::_getCookieName($userId, $destinationId);
 
@@ -90,9 +90,9 @@ class sspmod_consent_Consent_Store_Cookie extends sspmod_consent_Store
      */
     public function saveConsent($userId, $destinationId, $attributeSet)
     {
-        assert('is_string($userId)');
-        assert('is_string($destinationId)');
-        assert('is_string($attributeSet)');
+        assert(is_string($userId));
+        assert(is_string($destinationId));
+        assert(is_string($attributeSet));
 
         $name = self::_getCookieName($userId, $destinationId);
         $value = $userId . ':' . $attributeSet . ':' . $destinationId;
@@ -116,8 +116,8 @@ class sspmod_consent_Consent_Store_Cookie extends sspmod_consent_Store
      */
     public function deleteConsent($userId, $destinationId)
     {
-        assert('is_string($userId)');
-        assert('is_string($destinationId)');
+        assert(is_string($userId));
+        assert(is_string($destinationId));
 
         $name = self::_getCookieName($userId, $destinationId);
         $this->_setConsentCookie($name, null);
@@ -136,7 +136,7 @@ class sspmod_consent_Consent_Store_Cookie extends sspmod_consent_Store
      */
     public function deleteAllConsents($userId)
     {
-        assert('is_string($userId)');
+        assert(is_string($userId));
 
         throw new Exception(
             'The cookie consent handler does not support delete of all consents...'
@@ -155,7 +155,7 @@ class sspmod_consent_Consent_Store_Cookie extends sspmod_consent_Store
      */
     public function getConsents($userId)
     {
-        assert('is_string($userId)');
+        assert(is_string($userId));
 
         $ret = array();
 
@@ -203,7 +203,7 @@ class sspmod_consent_Consent_Store_Cookie extends sspmod_consent_Store
      */
     private static function _sign($data)
     {
-        assert('is_string($data)');
+        assert(is_string($data));
 
         $secretSalt = SimpleSAML\Utils\Config::getSecretSalt();
 
@@ -222,7 +222,7 @@ class sspmod_consent_Consent_Store_Cookie extends sspmod_consent_Store
      */
     private static function _verify($signedData)
     {
-        assert('is_string($signedData)');
+        assert(is_string($signedData));
 
         $data = explode(':', $signedData, 2);
         if (count($data) !== 2) {
@@ -253,8 +253,8 @@ class sspmod_consent_Consent_Store_Cookie extends sspmod_consent_Store
      */
     private static function _getCookieName($userId, $destinationId)
     {
-        assert('is_string($userId)');
-        assert('is_string($destinationId)');
+        assert(is_string($userId));
+        assert(is_string($destinationId));
 
         return 'sspmod_consent:' . sha1($userId . ':' . $destinationId);
     }
@@ -270,8 +270,8 @@ class sspmod_consent_Consent_Store_Cookie extends sspmod_consent_Store
      */
     private function _setConsentCookie($name, $value)
     {
-        assert('is_string($name)');
-        assert('is_string($value) || is_null($value)');
+        assert(is_string($name));
+        assert(is_string($value) || $value === null);
 
         $globalConfig = SimpleSAML_Configuration::getInstance();
         $params = array(

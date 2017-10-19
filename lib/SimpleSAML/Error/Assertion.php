@@ -25,7 +25,7 @@ class SimpleSAML_Error_Assertion extends SimpleSAML_Error_Exception {
 	 *                                given an expression.
 	 */
 	public function __construct($assertion = NULL) {
-		assert('is_null($assertion) || is_string($assertion)');
+		assert($assertion === null || is_string($assertion));
 
 		$msg = 'Assertion failed: ' . var_export($assertion, TRUE);
 		parent::__construct($msg);

@@ -14,10 +14,10 @@ class sspmod_saml_IdP_SAML1 {
 	 * @param array $state  The authentication state.
 	 */
 	public static function sendResponse(array $state) {
-		assert('isset($state["Attributes"])');
-		assert('isset($state["SPMetadata"])');
-		assert('isset($state["saml:shire"])');
-		assert('array_key_exists("saml:target", $state)'); // Can be NULL
+		assert(isset($state['Attributes']));
+		assert(isset($state['SPMetadata']));
+		assert(isset($state['saml:shire']));
+		assert(array_key_exists('saml:target', $state)); // Can be NULL
 
 		$spMetadata = $state["SPMetadata"];
 		$spEntityId = $spMetadata['entityid'];

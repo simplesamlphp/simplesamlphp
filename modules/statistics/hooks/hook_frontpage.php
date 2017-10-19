@@ -6,8 +6,8 @@
  */
 function statistics_hook_frontpage(&$links)
 {
-    assert('is_array($links)');
-    assert('array_key_exists("links", $links)');
+    assert(is_array($links));
+    assert(array_key_exists('links', $links));
 
     $links['config']['statistics'] = array(
         'href' => SimpleSAML\Module::getModuleURL('statistics/showstats.php'),

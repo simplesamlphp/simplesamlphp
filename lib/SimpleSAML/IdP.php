@@ -63,7 +63,7 @@ class SimpleSAML_IdP
      */
     private function __construct($id)
     {
-        assert('is_string($id)');
+        assert(is_string($id));
 
         $this->id = $id;
 
@@ -130,7 +130,7 @@ class SimpleSAML_IdP
      */
     public static function getById($id)
     {
-        assert('is_string($id)');
+        assert(is_string($id));
 
         if (isset(self::$idpCache[$id])) {
             return self::$idpCache[$id];
@@ -151,7 +151,7 @@ class SimpleSAML_IdP
      */
     public static function getByState(array &$state)
     {
-        assert('isset($state["core:IdP"])');
+        assert(isset($state['core:IdP']));
 
         return self::getById($state['core:IdP']);
     }
@@ -177,7 +177,7 @@ class SimpleSAML_IdP
      */
     public function getSPName($assocId)
     {
-        assert('is_string($assocId)');
+        assert(is_string($assocId));
 
         $prefix = substr($assocId, 0, 4);
         $spEntityId = substr($assocId, strlen($prefix) + 1);
@@ -218,8 +218,8 @@ class SimpleSAML_IdP
      */
     public function addAssociation(array $association)
     {
-        assert('isset($association["id"])');
-        assert('isset($association["Handler"])');
+        assert(isset($association['id']));
+        assert(isset($association['Handler']));
 
         $association['core:IdP'] = $this->id;
 
@@ -247,7 +247,7 @@ class SimpleSAML_IdP
      */
     public function terminateAssociation($assocId)
     {
-        assert('is_string($assocId)');
+        assert(is_string($assocId));
 
         $session = SimpleSAML_Session::getSessionFromRequest();
         $session->terminateAssociation($this->associationGroup, $assocId);
@@ -272,7 +272,7 @@ class SimpleSAML_IdP
      */
     public static function postAuthProc(array $state)
     {
-        assert('is_callable($state["Responder"])');
+        assert(is_callable($state['Responder']));
 
         if (isset($state['core:SP'])) {
             $session = SimpleSAML_Session::getSessionFromRequest();
@@ -285,7 +285,7 @@ class SimpleSAML_IdP
         }
 
         call_user_func($state['Responder'], $state);
-        assert('FALSE');
+        assert(false);
     }
 
 
@@ -383,7 +383,7 @@ class SimpleSAML_IdP
      */
     public function handleAuthenticationRequest(array &$state)
     {
-        assert('isset($state["Responder"])');
+        assert(isset($state['Responder']));
 
         $state['core:IdP'] = $this->id;
 
@@ -410,7 +410,7 @@ class SimpleSAML_IdP
         try {
             if ($needAuth) {
                 $this->authenticate($state);
-                assert('FALSE');
+                assert(false);
             } else {
                 $this->reauthenticate($state);
             }
@@ -459,11 +459,11 @@ class SimpleSAML_IdP
      */
     public function finishLogout(array &$state)
     {
-        assert('isset($state["Responder"])');
+        assert(isset($state['Responder']));
 
         $idp = SimpleSAML_IdP::getByState($state);
         call_user_func($state['Responder'], $idp, $state);
-        assert('false');
+        assert(false);
     }
 
 
@@ -478,8 +478,8 @@ class SimpleSAML_IdP
      */
     public function handleLogoutRequest(array &$state, $assocId)
     {
-        assert('isset($state["Responder"])');
-        assert('is_string($assocId) || is_null($assocId)');
+        assert(isset($state['Responder']));
+        assert(is_string($assocId) || $assocId === null);
 
         $state['core:IdP'] = $this->id;
         $state['core:TerminatedAssocId'] = $assocId;
@@ -498,7 +498,7 @@ class SimpleSAML_IdP
 
         $handler = $this->getLogoutHandler();
         $handler->startLogout($state, $assocId);
-        assert('false');
+        assert(false);
     }
 
 
@@ -513,8 +513,8 @@ class SimpleSAML_IdP
      */
     public function handleLogoutResponse($assocId, $relayState, SimpleSAML_Error_Exception $error = null)
     {
-        assert('is_string($assocId)');
-        assert('is_string($relayState) || is_null($relayState)');
+        assert(is_string($assocId));
+        assert(is_string($relayState) || $relayState === null);
 
         $session = SimpleSAML_Session::getSessionFromRequest();
         $session->deleteData('core:idp-ssotime', $this->id.';'.substr($assocId, strpos($assocId, ':') + 1));
@@ -522,7 +522,7 @@ class SimpleSAML_IdP
         $handler = $this->getLogoutHandler();
         $handler->onResponse($assocId, $relayState, $error);
 
-        assert('false');
+        assert(false);
     }
 
 
@@ -535,7 +535,7 @@ class SimpleSAML_IdP
      */
     public function doLogoutRedirect($url)
     {
-        assert('is_string($url)');
+        assert(is_string($url));
 
         $state = array(
             'Responder'       => array('SimpleSAML_IdP', 'finishLogoutRedirect'),
@@ -543,7 +543,7 @@ class SimpleSAML_IdP
         );
 
         $this->handleLogoutRequest($state, null);
-        assert('false');
+        assert(false);
     }
 
 
@@ -557,9 +557,9 @@ class SimpleSAML_IdP
      */
     public static function finishLogoutRedirect(SimpleSAML_IdP $idp, array $state)
     {
-        assert('isset($state["core:Logout:URL"])');
+        assert(isset($state['core:Logout:URL']));
 
         \SimpleSAML\Utils\HTTP::redirectTrustedURL($state['core:Logout:URL']);
-        assert('false');
+        assert(false);
     }
 }

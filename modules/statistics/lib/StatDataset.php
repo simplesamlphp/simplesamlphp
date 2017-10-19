@@ -29,8 +29,8 @@ class sspmod_statistics_StatDataset
      */
     public function __construct($statconfig, $ruleconfig, $ruleid, $timeres, $fileslot)
     {
-        assert('$statconfig instanceof SimpleSAML_Configuration');
-        assert('$ruleconfig instanceof SimpleSAML_Configuration');
+        assert($statconfig instanceof SimpleSAML_Configuration);
+        assert($ruleconfig instanceof SimpleSAML_Configuration);
         $this->statconfig = $statconfig;
         $this->ruleconfig = $ruleconfig;
 

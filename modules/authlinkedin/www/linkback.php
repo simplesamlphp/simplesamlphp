@@ -17,7 +17,7 @@ if (array_key_exists('oauth_verifier', $_REQUEST)) {
 }
 
 // Find authentication source
-assert('array_key_exists(sspmod_authlinkedin_Auth_Source_LinkedIn::AUTHID, $state)');
+assert(array_key_exists(sspmod_authlinkedin_Auth_Source_LinkedIn::AUTHID, $state));
 $sourceId = $state[sspmod_authlinkedin_Auth_Source_LinkedIn::AUTHID];
 
 $source = SimpleSAML_Auth_Source::getById($sourceId);

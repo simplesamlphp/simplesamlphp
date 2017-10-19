@@ -167,7 +167,7 @@ class SimpleSAML_Metadata_SAMLParser
         array $validators = array(),
         array $parentExtensions = null
     ) {
-        assert('is_null($maxExpireTime) || is_int($maxExpireTime)');
+        assert($maxExpireTime === null || is_int($maxExpireTime));
 
         $this->spDescriptors = array();
         $this->idpDescriptors = array();
@@ -264,7 +264,7 @@ class SimpleSAML_Metadata_SAMLParser
      */
     public static function parseDocument($document)
     {
-        assert('$document instanceof DOMDocument');
+        assert($document instanceof DOMDocument);
 
         $entityElement = self::findEntityDescriptor($document);
 
@@ -282,7 +282,7 @@ class SimpleSAML_Metadata_SAMLParser
      */
     public static function parseElement($entityElement)
     {
-        assert('$entityElement instanceof \SAML2\XML\md\EntityDescriptor');
+        assert($entityElement instanceof \SAML2\XML\md\EntityDescriptor);
 
         return new SimpleSAML_Metadata_SAMLParser($entityElement, null);
     }
@@ -390,7 +390,7 @@ class SimpleSAML_Metadata_SAMLParser
         array $validators = array(),
         array $parentExtensions = array()
     ) {
-        assert('is_null($maxExpireTime) || is_int($maxExpireTime)');
+        assert($maxExpireTime === null || is_int($maxExpireTime));
 
         if ($element instanceof \SAML2\XML\md\EntityDescriptor) {
             $ret = new SimpleSAML_Metadata_SAMLParser($element, $maxExpireTime, $validators, $parentExtensions);
@@ -399,7 +399,7 @@ class SimpleSAML_Metadata_SAMLParser
             return $ret;
         }
 
-        assert('$element instanceof \SAML2\XML\md\EntitiesDescriptor');
+        assert($element instanceof \SAML2\XML\md\EntitiesDescriptor);
 
         $extensions = self::processExtensions($element, $parentExtensions);
         $expTime = self::getExpireTime($element, $maxExpireTime);
@@ -486,8 +486,8 @@ class SimpleSAML_Metadata_SAMLParser
      */
     private function addExtensions(array &$metadata, array $roleDescriptor)
     {
-        assert('array_key_exists("scope", $roleDescriptor)');
-        assert('array_key_exists("tags", $roleDescriptor)');
+        assert(array_key_exists('scope', $roleDescriptor));
+        assert(array_key_exists('tags', $roleDescriptor));
 
         $scopes = array_merge($this->scopes, array_diff($roleDescriptor['scope'], $this->scopes));
         if (!empty($scopes)) {
@@ -842,7 +842,7 @@ class SimpleSAML_Metadata_SAMLParser
      */
     private static function parseRoleDescriptorType(\SAML2\XML\md\RoleDescriptor $element, $expireTime)
     {
-        assert('is_null($expireTime) || is_int($expireTime)');
+        assert($expireTime === null || is_int($expireTime));
 
         $ret = array();
 
@@ -893,7 +893,7 @@ class SimpleSAML_Metadata_SAMLParser
      */
     private static function parseSSODescriptor(\SAML2\XML\md\SSODescriptorType $element, $expireTime)
     {
-        assert('is_null($expireTime) || is_int($expireTime)');
+        assert($expireTime === null || is_int($expireTime));
 
         $sd = self::parseRoleDescriptorType($element, $expireTime);
 
@@ -920,7 +920,7 @@ class SimpleSAML_Metadata_SAMLParser
      */
     private function processSPSSODescriptor(\SAML2\XML\md\SPSSODescriptor $element, $expireTime)
     {
-        assert('is_null($expireTime) || is_int($expireTime)');
+        assert($expireTime === null || is_int($expireTime));
 
         $sp = self::parseSSODescriptor($element, $expireTime);
 
@@ -956,7 +956,7 @@ class SimpleSAML_Metadata_SAMLParser
      */
     private function processIDPSSODescriptor(\SAML2\XML\md\IDPSSODescriptor $element, $expireTime)
     {
-        assert('is_null($expireTime) || is_int($expireTime)');
+        assert($expireTime === null || is_int($expireTime));
 
         $idp = self::parseSSODescriptor($element, $expireTime);
 
@@ -984,7 +984,7 @@ class SimpleSAML_Metadata_SAMLParser
         \SAML2\XML\md\AttributeAuthorityDescriptor $element,
         $expireTime
     ) {
-        assert('is_null($expireTime) || is_int($expireTime)');
+        assert($expireTime === null || is_int($expireTime));
 
         $aad = self::parseRoleDescriptorType($element, $expireTime);
         $aad['entityid'] = $this->entityId;
@@ -1203,7 +1203,7 @@ class SimpleSAML_Metadata_SAMLParser
      */
     private static function parseAttributeConsumerService(\SAML2\XML\md\AttributeConsumingService $element, &$sp)
     {
-        assert('is_array($sp)');
+        assert(is_array($sp));
 
         $sp['name'] = $element->ServiceName;
         $sp['description'] = $element->ServiceDescription;
@@ -1357,7 +1357,7 @@ class SimpleSAML_Metadata_SAMLParser
      */
     private function getSPDescriptors($protocols)
     {
-        assert('is_array($protocols)');
+        assert(is_array($protocols));
 
         $ret = array();
 
@@ -1381,7 +1381,7 @@ class SimpleSAML_Metadata_SAMLParser
      */
     private function getIdPDescriptors($protocols)
     {
-        assert('is_array($protocols)');
+        assert(is_array($protocols));
 
         $ret = array();
 
@@ -1409,7 +1409,7 @@ class SimpleSAML_Metadata_SAMLParser
      */
     private static function findEntityDescriptor($doc)
     {
-        assert('$doc instanceof DOMDocument');
+        assert($doc instanceof DOMDocument);
 
         // find the EntityDescriptor DOMElement. This should be the first (and only) child of the DOMDocument
         $ed = $doc->documentElement;
@@ -1438,7 +1438,7 @@ class SimpleSAML_Metadata_SAMLParser
     public function validateSignature($certificates)
     {
         foreach ($certificates as $cert) {
-            assert('is_string($cert)');
+            assert(is_string($cert));
             $certFile = \SimpleSAML\Utils\Config::getCertPath($cert);
             if (!file_exists($certFile)) {
                 throw new Exception(
@@ -1475,7 +1475,7 @@ class SimpleSAML_Metadata_SAMLParser
      */
     public function validateFingerprint($fingerprint)
     {
-        assert('is_string($fingerprint)');
+        assert(is_string($fingerprint));
 
         $fingerprint = strtolower(str_replace(":", "", $fingerprint));
 

@@ -64,10 +64,10 @@ class sspmod_saml_IdP_SQLNameID  {
 	 * @param string $value  The NameID value.
 	 */
 	public static function add($idpEntityId, $spEntityId, $user, $value) {
-		assert('is_string($idpEntityId)');
-		assert('is_string($spEntityId)');
-		assert('is_string($user)');
-		assert('is_string($value)');
+		assert(is_string($idpEntityId));
+		assert(is_string($spEntityId));
+		assert(is_string($user));
+		assert(is_string($value));
 
 		$store = self::getStore();
 
@@ -93,9 +93,9 @@ class sspmod_saml_IdP_SQLNameID  {
 	 * @return string|NULL $value  The NameID value, or NULL of no NameID value was found.
 	 */
 	public static function get($idpEntityId, $spEntityId, $user) {
-		assert('is_string($idpEntityId)');
-		assert('is_string($spEntityId)');
-		assert('is_string($user)');
+		assert(is_string($idpEntityId));
+		assert(is_string($spEntityId));
+		assert(is_string($user));
 
 		$store = self::getStore();
 
@@ -127,9 +127,9 @@ class sspmod_saml_IdP_SQLNameID  {
 	 * @param string $user  The user's unique identificator (e.g. username).
 	 */
 	public static function delete($idpEntityId, $spEntityId, $user) {
-		assert('is_string($idpEntityId)');
-		assert('is_string($spEntityId)');
-		assert('is_string($user)');
+		assert(is_string($idpEntityId));
+		assert(is_string($spEntityId));
+		assert(is_string($user));
 
 		$store = self::getStore();
 
@@ -153,8 +153,8 @@ class sspmod_saml_IdP_SQLNameID  {
 	 * @return array  Array of userid => NameID.
 	 */
 	public static function getIdentities($idpEntityId, $spEntityId) {
-		assert('is_string($idpEntityId)');
-		assert('is_string($spEntityId)');
+		assert(is_string($idpEntityId));
+		assert(is_string($spEntityId));
 
 		$store = self::getStore();
 

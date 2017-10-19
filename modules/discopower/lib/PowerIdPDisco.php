@@ -319,7 +319,7 @@ class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco
      */
     protected function setPreviousIdP($idp)
     {
-        assert('is_string($idp)');
+        assert(is_string($idp));
 
         if ($this->cdcDomain === null) {
             parent::setPreviousIdP($idp);

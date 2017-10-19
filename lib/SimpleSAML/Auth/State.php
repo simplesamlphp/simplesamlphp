@@ -144,8 +144,8 @@ class SimpleSAML_Auth_State
      */
     public static function getStateId(&$state, $rawId = false)
     {
-        assert('is_array($state)');
-        assert('is_bool($rawId)');
+        assert(is_array($state));
+        assert(is_bool($rawId));
 
         if (!array_key_exists(self::ID, $state)) {
             $state[self::ID] = SimpleSAML\Utils\Random::generateID();
@@ -193,9 +193,9 @@ class SimpleSAML_Auth_State
      */
     public static function saveState(&$state, $stage, $rawId = false)
     {
-        assert('is_array($state)');
-        assert('is_string($stage)');
-        assert('is_bool($rawId)');
+        assert(is_array($state));
+        assert(is_string($stage));
+        assert(is_bool($rawId));
 
         $return = self::getStateId($state, $rawId);
         $id = $state[self::ID];
@@ -258,9 +258,9 @@ class SimpleSAML_Auth_State
      */
     public static function loadState($id, $stage, $allowMissing = false)
     {
-        assert('is_string($id)');
-        assert('is_string($stage)');
-        assert('is_bool($allowMissing)');
+        assert(is_string($id));
+        assert(is_string($stage));
+        assert(is_bool($allowMissing));
         SimpleSAML\Logger::debug('Loading state: '.var_export($id, true));
 
         $sid = self::parseStateID($id);
@@ -282,9 +282,9 @@ class SimpleSAML_Auth_State
         }
 
         $state = unserialize($state);
-        assert('is_array($state)');
-        assert('array_key_exists(self::ID, $state)');
-        assert('array_key_exists(self::STAGE, $state)');
+        assert(is_array($state));
+        assert(array_key_exists(self::ID, $state));
+        assert(array_key_exists(self::STAGE, $state));
 
         // Verify stage
         if ($state[self::STAGE] !== $stage) {
@@ -318,7 +318,7 @@ class SimpleSAML_Auth_State
      */
     public static function deleteState(&$state)
     {
-        assert('is_array($state)');
+        assert(is_array($state));
 
         if (!array_key_exists(self::ID, $state)) {
             // This state hasn't been saved
@@ -342,7 +342,7 @@ class SimpleSAML_Auth_State
      */
     public static function throwException($state, SimpleSAML_Error_Exception $exception)
     {
-        assert('is_array($state)');
+        assert(is_array($state));
 
         if (array_key_exists(self::EXCEPTION_HANDLER_URL, $state)) {
 
@@ -358,7 +358,7 @@ class SimpleSAML_Auth_State
         } elseif (array_key_exists(self::EXCEPTION_HANDLER_FUNC, $state)) {
             // Call the exception handler
             $func = $state[self::EXCEPTION_HANDLER_FUNC];
-            assert('is_callable($func)');
+            assert(is_callable($func));
 
             call_user_func($func, $exception, $state);
             assert(false);
@@ -380,7 +380,7 @@ class SimpleSAML_Auth_State
      */
     public static function loadExceptionState($id = null)
     {
-        assert('is_string($id) || is_null($id)');
+        assert(is_string($id) || $id === null);
 
         if ($id === null) {
             if (!array_key_exists(self::EXCEPTION_PARAM, $_REQUEST)) {
@@ -391,7 +391,7 @@ class SimpleSAML_Auth_State
         }
 
         $state = self::loadState($id, self::EXCEPTION_STAGE);
-        assert('array_key_exists(self::EXCEPTION_DATA, $state)');
+        assert(array_key_exists(self::EXCEPTION_DATA, $state));
 
         return $state;
     }

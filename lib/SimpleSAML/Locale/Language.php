@@ -399,7 +399,7 @@ class Language
      */
     public static function setLanguageCookie($language)
     {
-        assert('is_string($language)');
+        assert(is_string($language));
 
         $language = strtolower($language);
         $config = \SimpleSAML_Configuration::getInstance();

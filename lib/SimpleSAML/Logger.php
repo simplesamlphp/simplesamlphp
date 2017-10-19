@@ -305,7 +305,7 @@ class Logger
      */
     public static function maskErrors($mask)
     {
-        assert('is_int($mask)');
+        assert(is_int($mask));
 
         $currentEnabled = error_reporting();
         self::$logLevelStack[] = array($currentEnabled, self::$logMask);

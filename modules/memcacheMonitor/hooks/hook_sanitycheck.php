@@ -8,9 +8,9 @@
  * @param array &$hookinfo  hookinfo
  */
 function memcacheMonitor_hook_sanitycheck(&$hookinfo) {
-	assert('is_array($hookinfo)');
-	assert('array_key_exists("errors", $hookinfo)');
-	assert('array_key_exists("info", $hookinfo)');
+	assert(is_array($hookinfo));
+	assert(array_key_exists('errors', $hookinfo));
+	assert(array_key_exists('info', $hookinfo));
 
 	try {
 		$servers = SimpleSAML_Memcache::getRawStats();

@@ -40,15 +40,15 @@ class sspmod_saml_Error extends SimpleSAML_Error_Exception {
 	 * @param Exception|NULL $cause  The cause of this exception. Can be NULL.
 	 */
 	public function __construct($status, $subStatus = NULL, $statusMessage = NULL, Exception $cause = NULL) {
-		assert('is_string($status)');
-		assert('is_null($subStatus) || is_string($subStatus)');
-		assert('is_null($statusMessage) || is_string($statusMessage)');
+		assert(is_string($status));
+		assert($subStatus === null || is_string($subStatus));
+		assert($statusMessage === null || is_string($statusMessage));
 
 		$st = self::shortStatus($status);
-		if ($subStatus !== NULL) {
+		if ($subStatus !== null) {
 			$st .= '/' . self::shortStatus($subStatus);
 		}
-		if ($statusMessage !== NULL) {
+		if ($statusMessage !== null) {
 			$st .= ': ' . $statusMessage;
 		}
 		parent::__construct($st, 0, $cause);
@@ -182,7 +182,7 @@ class sspmod_saml_Error extends SimpleSAML_Error_Exception {
 	 * @return string  A shorter version of the status code.
 	 */
 	private static function shortStatus($status) {
-		assert('is_string($status)');
+		assert(is_string($status));
 
 		$t = 'urn:oasis:names:tc:SAML:2.0:status:';
 		if (substr($status, 0, strlen($t)) === $t) {

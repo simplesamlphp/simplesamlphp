@@ -251,9 +251,9 @@ class Module
      */
     public static function resolveClass($id, $type, $subclass = null)
     {
-        assert('is_string($id)');
-        assert('is_string($type)');
-        assert('is_string($subclass) || is_null($subclass)');
+        assert(is_string($id));
+        assert(is_string($type));
+        assert(is_string($subclass) || $subclass === null);
 
         $tmp = explode(':', $id, 2);
         if (count($tmp) === 1) { // no module involved
@@ -302,8 +302,8 @@ class Module
      */
     public static function getModuleURL($resource, array $parameters = array())
     {
-        assert('is_string($resource)');
-        assert('$resource[0] !== "/"');
+        assert(is_string($resource));
+        assert($resource[0] !== '/');
 
         $url = Utils\HTTP::getBaseURL().'module.php/'.$resource;
         if (!empty($parameters)) {
@@ -363,7 +363,7 @@ class Module
      */
     public static function callHooks($hook, &$data = null)
     {
-        assert('is_string($hook)');
+        assert(is_string($hook));
 
         $modules = self::getModules();
         $config = \SimpleSAML_Configuration::getOptionalConfig()->getArray('module.enable', array());

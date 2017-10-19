@@ -62,8 +62,8 @@ class sspmod_smartattributes_Auth_Process_SmartName extends SimpleSAML_Auth_Proc
 	 * @param array &$request  The current request
 	 */
 	public function process(&$request) {
-		assert('is_array($request)');
-		assert('array_key_exists("Attributes", $request)');
+		assert(is_array($request));
+		assert(array_key_exists('Attributes', $request));
 
 		$attributes =& $request['Attributes'];
 		

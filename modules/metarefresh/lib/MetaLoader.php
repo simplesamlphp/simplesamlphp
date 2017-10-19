@@ -359,7 +359,7 @@ class sspmod_metarefresh_MetaLoader {
 	 */
 	function writeARPfile($config) {
 		
-		assert('is_a($config, \'SimpleSAML_Configuration\')');
+		assert($config instanceof SimpleSAML_Configuration);
 		
 		$arpfile = $config->getValue('arpfile');
 		$types = array('saml20-sp-remote');
@@ -440,7 +440,7 @@ class sspmod_metarefresh_MetaLoader {
 	 * @param string $outputDir  The directory we should save the metadata to.
 	 */
 	public function writeMetadataSerialize($outputDir) {
-		assert('is_string($outputDir)');
+		assert(is_string($outputDir));
 
 		$metaHandler = new SimpleSAML_Metadata_MetaDataStorageHandlerSerialize(array('directory' => $outputDir));
 

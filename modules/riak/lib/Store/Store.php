@@ -44,8 +44,8 @@ class sspmod_riak_Store_Store extends SimpleSAML\Store {
 	 * @return mixed|NULL  The value.
 	 */
 	public function get($type, $key) {
-		assert('is_string($type)');
-		assert('is_string($key)');
+		assert(is_string($type));
+		assert(is_string($key));
 
 		$v = $this->bucket->getBinary("$type.$key");
 		if (!$v->exists()) {
@@ -71,9 +71,9 @@ class sspmod_riak_Store_Store extends SimpleSAML\Store {
 	 * @param int|NULL $expire  The expiration time (unix timestamp), or NULL if it never expires.
 	 */
 	public function set($type, $key, $value, $expire = NULL) {
-		assert('is_string($type)');
-		assert('is_string($key)');
-		assert('is_null($expire) || (is_int($expire) && $expire > 2592000)');
+		assert(is_string($type));
+		assert(is_string($key));
+		assert($expire === null || (is_int($expire) && $expire > 2592000));
 
 		$v = $this->bucket->newBinary("$type.$key", serialize($value), 'application/php');
 		if (!is_null($expire)) {
@@ -90,8 +90,8 @@ class sspmod_riak_Store_Store extends SimpleSAML\Store {
 	 * @param string $key  The key.
 	 */
 	public function delete($type, $key) {
-		assert('is_string($type)');
-		assert('is_string($key)');
+		assert(is_string($type));
+		assert(is_string($key));
 
 		$v = $this->bucket->getBinary("$type.$key");
 		if (!$v->exists()) {

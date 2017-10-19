@@ -38,12 +38,12 @@ if (preg_match('@^https?://@i', $target)) {
 	$state = SimpleSAML_Auth_State::loadState($_REQUEST['TARGET'], 'saml:sp:sso');
 
 	// Check that the authentication source is correct.
-	assert('array_key_exists("saml:sp:AuthId", $state)');
+	assert(array_key_exists('saml:sp:AuthId', $state));
 	if ($state['saml:sp:AuthId'] !== $sourceId) {
 		throw new SimpleSAML_Error_Exception('The authentication source id in the URL does not match the authentication source which sent the request.');
 	}
 
-	assert('isset($state["saml:idp"])');
+	assert(isset($state['saml:idp']));
 }
 
 $spMetadata = $source->getMetadata();
@@ -62,7 +62,7 @@ if (array_key_exists('SAMLart', $_REQUEST)) {
 	$responseXML = base64_decode($responseXML);
 	$isValidated = FALSE; /* Must check signature on response. */
 } else {
-	assert('FALSE');
+	assert(false);
 }
 
 $response = new \SimpleSAML\XML\Shib13\AuthnResponse();
@@ -86,4 +86,4 @@ $state['LogoutState'] = $logoutState;
 $state['saml:sp:NameID'] = $response->getNameID();
 
 $source->handleResponse($state, $responseIssuer, $attributes);
-assert('FALSE');
+assert(false);

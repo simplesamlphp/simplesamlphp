@@ -47,7 +47,7 @@ try {
 
     if ($idpmeta->hasValue('https.certificate')) {
         $httpsCert = SimpleSAML\Utils\Crypto::loadPublicKey($idpmeta, true, 'https.');
-        assert('isset($httpsCert["certData"])');
+        assert(isset($httpsCert['certData']));
         $availableCerts['https.crt'] = $httpsCert;
         $keys[] = array(
             'type'            => 'X509Certificate',
