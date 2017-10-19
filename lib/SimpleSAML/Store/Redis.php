@@ -12,6 +12,8 @@ use \SimpleSAML\Store;
  */
 class Redis extends Store
 {
+    public $redis;
+
     /**
      * Initialize the Redis data store.
      */
