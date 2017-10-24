@@ -437,12 +437,16 @@ class SimpleSAML_Auth_LDAP
 
             // SASL Bind, with error handling
             $authz_id = $sasl_args['authz_id'];
-            $error = @ldap_sasl_bind($this->ldap, $dn, $password,
+            $error = @ldap_sasl_bind(
+                $this->ldap,
+                $dn,
+                $password,
                 $sasl_args['mech'],
                 $sasl_args['realm'],
                 $sasl_args['authc_id'],
                 $sasl_args['authz_id'],
-                $sasl_args['props']);
+                $sasl_args['props']
+            );
         } else {
             // Simple Bind, with error handling
             $authz_id = $dn;
@@ -553,7 +557,6 @@ class SimpleSAML_Auth_LDAP
         // Parsing each found attribute into our result set
         $result = array();  // Recycling $result... Possibly bad practice.
         for ($i = 0; $i < $attributes['count']; $i++) {
-
             // Ignore attributes that exceed the maximum allowed size
             $name = $attributes[$i];
             $attribute = $attributes[$name];
@@ -576,12 +579,10 @@ class SimpleSAML_Auth_LDAP
                 } else {
                     $values[] = $value;
                 }
-
             }
 
             // Adding
             $result[$name] = $values;
-
         }
 
         // We're done
@@ -631,7 +632,6 @@ class SimpleSAML_Auth_LDAP
          */
         $attributes = $this->getAttributes($dn, $config['attributes']);
         return $attributes;
-
     }
 
 
@@ -658,9 +658,9 @@ class SimpleSAML_Auth_LDAP
         foreach ($values as $key => $val) {
             // Escaping of filter meta characters
             $val = str_replace('\\', '\5c', $val);
-            $val = str_replace('*',  '\2a', $val);
-            $val = str_replace('(',  '\28', $val);
-            $val = str_replace(')',  '\29', $val);
+            $val = str_replace('*', '\2a', $val);
+            $val = str_replace('(', '\28', $val);
+            $val = str_replace(')', '\29', $val);
 
             // ASCII < 32 escaping
             $val = self::asc2hex32($val);
@@ -713,8 +713,11 @@ class SimpleSAML_Auth_LDAP
         }
 
         if (preg_match("/^u:/", $authz_id)) {
-            return $this->searchfordn($searchBase, $searchAttributes,
-                preg_replace("/^u:/", "", $authz_id));
+            return $this->searchfordn(
+                $searchBase,
+                $searchAttributes,
+                preg_replace("/^u:/", "", $authz_id)
+            );
         }
         return $authz_id;
     }
@@ -726,9 +729,9 @@ class SimpleSAML_Auth_LDAP
      * ldap_exop_whoami() has been provided as a third party patch that
      * waited several years to get its way upstream:
      * http://cvsweb.netbsd.org/bsdweb.cgi/pkgsrc/databases/php-ldap/files
-     * 
+     *
      * When it was integrated into PHP repository, the function prototype
-     * was changed, The new prototype was used in third party patch for 
+     * was changed, The new prototype was used in third party patch for
      * PHP 7.0 and 7.1, hence the version test below.
      */
     public function whoami($searchBase, $searchAttributes)
