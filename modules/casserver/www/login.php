@@ -25,7 +25,7 @@ if (!checkServiceURL($service, $legal_service_urls))
 	throw new Exception('Service parameter provided to CAS server is not listed as a legal service: [service] = ' . $service);
 
 $auth = $casconfig->getValue('auth', 'saml2');
-if (!in_array($auth, array('saml2', 'shib13')))
+if (!in_array($auth, array('saml2', 'shib13'), true))
  	throw new Exception('CAS Service configured to use [auth] = ' . $auth . ' only [saml2,shib13] is legal.');
  
 $as = new \SimpleSAML\Auth\Simple($auth);

@@ -204,7 +204,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 						SAML2\Constants::COMPARISON_MINIMUM,
 						SAML2\Constants::COMPARISON_MAXIMUM,
 						SAML2\Constants::COMPARISON_BETTER,
-			))) {
+			), true)) {
 				$comp = $state['saml:AuthnContextComparison'];
 			}
 			$ar->setRequestedAuthnContext(array('AuthnContextClassRef' => $accr, 'Comparison' => $comp));
@@ -411,7 +411,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 				);
 			}
 
-			if (!is_null($idp) && !in_array($idp, $intersection)) { // the IdP is enforced but not in the IDPList
+			if (!is_null($idp) && !in_array($idp, $intersection, true)) { // the IdP is enforced but not in the IDPList
 				throw new SimpleSAML\Module\saml\Error\NoAvailableIDP(
 					\SAML2\Constants::STATUS_REQUESTER,
 					'None of the IdPs requested are available to this proxy.'
@@ -476,7 +476,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 			 * We have at least one IdP in the IDPList that we recognize, and it's not the one currently in use. Let's
 			 * see if this proxy enforces the use of one single IdP.
 			 */
-			if (!is_null($this->idp) && !in_array($this->idp, $intersection)) { // an IdP is enforced but not requested
+			if (!is_null($this->idp) && !in_array($this->idp, $intersection, true)) { // an IdP is enforced but not requested
 				throw new SimpleSAML\Module\saml\Error\NoAvailableIDP(
 					\SAML2\Constants::STATUS_REQUESTER,
 					'None of the IdPs requested are available to this proxy.'

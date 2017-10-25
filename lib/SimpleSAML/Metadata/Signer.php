@@ -181,7 +181,7 @@ class SimpleSAML_Metadata_Signer
             XMLSecurityKey::RSA_SHA512,
         );
 
-        if (!in_array($alg, $supported_algs)) {
+        if (!in_array($alg, $supported_algs, true)) {
             throw new \SimpleSAML\Error\CriticalConfigurationError("Unknown signature algorithm '$alg'");
         }
 

@@ -57,7 +57,7 @@ class sspmod_statistics_AccessCheck
             }
 
             // Check if userid is allowed access..
-            if (in_array($attributes[$useridattr][0], $allowedusers)) {
+            if (in_array($attributes[$useridattr][0], $allowedusers, true)) {
                 SimpleSAML\Logger::debug('Statistics auth - User granted access by user ID [' . $attributes[$useridattr][0] . ']');
                 return;
             }

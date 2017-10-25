@@ -277,7 +277,7 @@ class Validator
         assert('$node instanceof \DOMNode');
 
         while ($node !== null) {
-            if (in_array($node, $this->validNodes)) {
+            if (in_array($node, $this->validNodes, true)) {
                 return true;
             }
 

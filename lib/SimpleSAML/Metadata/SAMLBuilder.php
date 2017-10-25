@@ -418,7 +418,7 @@ class SimpleSAML_Metadata_SAMLBuilder
             if ($nameFormat !== \SAML2\Constants::NAMEFORMAT_UNSPECIFIED) {
                 $t->NameFormat = $nameFormat;
             }
-            if (in_array($attribute, $attributesrequired)) {
+            if (in_array($attribute, $attributesrequired, true)) {
                 $t->isRequired = true;
             }
             $attributeconsumer->RequestedAttribute[] = $t;

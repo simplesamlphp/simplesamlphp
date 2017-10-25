@@ -365,7 +365,7 @@ class Language
      */
     public function isLanguageRTL()
     {
-        return in_array($this->getLanguage(), $this->rtlLanguages);
+        return in_array($this->getLanguage(), $this->rtlLanguages, true);
     }
 
 

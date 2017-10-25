@@ -369,7 +369,7 @@ class Crypto
         }
 
         // hash w/o salt
-        if (in_array(strtolower($algorithm), hash_algos())) {
+        if (in_array(strtolower($algorithm), hash_algos(), true)) {
             $alg_str = '{'.str_replace('SHA1', 'SHA', $algorithm).'}'; // LDAP compatibility
             $hash = hash(strtolower($algorithm), $password, true);
             return $alg_str.base64_encode($hash);
@@ -382,7 +382,7 @@ class Crypto
             $salt = openssl_random_pseudo_bytes($bytes);
         }
 
-        if ($algorithm[0] == 'S' && in_array(substr(strtolower($algorithm), 1), hash_algos())) {
+        if ($algorithm[0] == 'S' && in_array(substr(strtolower($algorithm), 1), hash_algos(), true)) {
             $alg = substr(strtolower($algorithm), 1); // 'sha256' etc
             $alg_str = '{'.str_replace('SSHA1', 'SSHA', $algorithm).'}'; // LDAP compatibility
             $hash = hash($alg, $password.$salt, true);
@@ -449,12 +449,12 @@ class Crypto
             $alg = preg_replace('/^(S?SHA)$/', '${1}1', $matches[1]);
 
             // hash w/o salt
-            if (in_array(strtolower($alg), hash_algos())) {
+            if (in_array(strtolower($alg), hash_algos(), true)) {
                 return self::secureCompare($hash, self::pwHash($password, $alg));
             }
 
             // hash w/ salt
-            if ($alg[0] === 'S' && in_array(substr(strtolower($alg), 1), hash_algos())) {
+            if ($alg[0] === 'S' && in_array(substr(strtolower($alg), 1), hash_algos(), true)) {
                 $php_alg = substr(strtolower($alg), 1);
 
                 // get hash length of this algorithm to learn how long the salt is
