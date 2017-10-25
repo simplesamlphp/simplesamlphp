@@ -345,7 +345,6 @@ class SimpleSAML_Auth_State
         assert('is_array($state)');
 
         if (array_key_exists(self::EXCEPTION_HANDLER_URL, $state)) {
-
             // Save the exception
             $state[self::EXCEPTION_DATA] = $exception;
             $id = self::saveState($state, self::EXCEPTION_STAGE);
