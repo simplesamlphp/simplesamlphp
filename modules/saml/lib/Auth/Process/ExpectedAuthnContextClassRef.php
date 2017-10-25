@@ -69,7 +69,7 @@ class sspmod_saml_Auth_Process_ExpectedAuthnContextClassRef extends SimpleSAML_A
 
         $this->AuthnContextClassRef = $request['saml:sp:State']['saml:sp:AuthnContext'];
 
-        if (!in_array($this->AuthnContextClassRef, $this->accepted)) {
+        if (!in_array($this->AuthnContextClassRef, $this->accepted, true)) {
             $this->unauthorized($request);
         }
     }

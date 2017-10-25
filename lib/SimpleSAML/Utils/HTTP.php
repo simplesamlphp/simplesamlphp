@@ -367,7 +367,7 @@ class HTTP
             } else {
                 // add self host to the white list
                 $trustedSites[] = $self_host;
-                $trusted = in_array($hostname, $trustedSites);
+                $trusted = in_array($hostname, $trustedSites, true);
             }
 
             // throw exception due to redirection to untrusted site

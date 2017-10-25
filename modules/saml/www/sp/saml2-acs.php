@@ -99,7 +99,7 @@ if ($state) {
     if ($state['ExpectedIssuer'] !== $idp) {
         $idpMetadata = $source->getIdPMetadata($idp);
         $idplist = $idpMetadata->getArrayize('IDPList', array());
-        if (!in_array($state['ExpectedIssuer'], $idplist)) {
+        if (!in_array($state['ExpectedIssuer'], $idplist, true)) {
             throw new SimpleSAML_Error_Exception(
                 'The issuer of the response does not match to the identity provider we sent the request to.'
             );

@@ -70,7 +70,7 @@ class sspmod_statistics_Statistics_Rulesets_BaseRule
         $timeres = $timeresavailable[0];
 
         // Then check if the user have provided one that is valid
-        if (in_array($preferTimeRes, $timeresavailable)) {
+        if (in_array($preferTimeRes, $timeresavailable, true)) {
             $timeres = $preferTimeRes;
         }
         return $timeres;
@@ -81,7 +81,7 @@ class sspmod_statistics_Statistics_Rulesets_BaseRule
         // Get which time (fileslot) to use.. First get a default, which is the most recent one.
         $fileslot = $this->available[$timeres][count($this->available[$timeres]) - 1];
         // Then check if the user have provided one.
-        if (in_array($preferTime, $this->available[$timeres])) {
+        if (in_array($preferTime, $this->available[$timeres], true)) {
             $fileslot = $preferTime;
         }
         return $fileslot;

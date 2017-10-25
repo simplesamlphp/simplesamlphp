@@ -127,14 +127,14 @@ class sspmod_metarefresh_MetaLoader {
 		foreach($entities as $entity) {
 
 			if(isset($source['blacklist'])) {
-				if(!empty($source['blacklist']) && in_array($entity->getEntityID(), $source['blacklist'])) {
+				if(!empty($source['blacklist']) && in_array($entity->getEntityID(), $source['blacklist'], true)) {
 					SimpleSAML\Logger::info('Skipping "' .  $entity->getEntityID() . '" - blacklisted.' . "\n");
 					continue;
 				}
 			}
 
 			if(isset($source['whitelist'])) {
-				if(!empty($source['whitelist']) && !in_array($entity->getEntityID(), $source['whitelist'])) {
+				if(!empty($source['whitelist']) && !in_array($entity->getEntityID(), $source['whitelist'], true)) {
 					SimpleSAML\Logger::info('Skipping "' .  $entity->getEntityID() . '" - not in the whitelist.' . "\n");
 					continue;
 				}
@@ -366,7 +366,7 @@ class sspmod_metarefresh_MetaLoader {
 		
 		$md = array();
 		foreach($this->metadata as $category => $elements) {
-			if (!in_array($category, $types)) continue;
+			if (!in_array($category, $types, true)) continue;
 			$md = array_merge($md, $elements);
 		}
 		

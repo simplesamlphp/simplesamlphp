@@ -275,7 +275,7 @@ class Metadata
     public static function isHiddenFromDiscovery(array $metadata)
     {
         \SimpleSAML\Logger::maskErrors(E_ALL);
-        $hidden = in_array(self::$HIDE_FROM_DISCOVERY, $metadata['EntityAttributes'][self::$ENTITY_CATEGORY]);
+        $hidden = in_array(self::$HIDE_FROM_DISCOVERY, $metadata['EntityAttributes'][self::$ENTITY_CATEGORY], true);
         \SimpleSAML\Logger::popErrorMask();
         return $hidden === true;
     }

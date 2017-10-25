@@ -35,7 +35,7 @@ class XML
     public static function checkSAMLMessage($message, $type)
     {
         $allowed_types = array('saml20', 'saml11', 'saml-meta');
-        if (!(is_string($message) && in_array($type, $allowed_types))) {
+        if (!(is_string($message) && in_array($type, $allowed_types, true))) {
             throw new \InvalidArgumentException('Invalid input parameters.');
         }
 

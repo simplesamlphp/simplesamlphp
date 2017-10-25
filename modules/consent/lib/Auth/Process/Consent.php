@@ -268,7 +268,7 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
 
             // Remove attributes that do not require consent
             foreach ($attributes as $attrkey => $attrval) {
-                if (in_array($attrkey, $this->_noconsentattributes)) {
+                if (in_array($attrkey, $this->_noconsentattributes, true)) {
                     unset($attributes[$attrkey]);
                 }
             }

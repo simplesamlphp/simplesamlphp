@@ -47,7 +47,7 @@ class TimeLimitedToken
             $secretSalt = \SimpleSAML\Utils\Config::getSecretSalt();
         }
 
-        if (!in_array($algo, hash_algos())) {
+        if (!in_array($algo, hash_algos(), true)) {
             throw new \InvalidArgumentException('Invalid hash algorithm "'.$algo.'"');
         }
 

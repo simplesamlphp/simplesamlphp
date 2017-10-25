@@ -84,7 +84,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerPdo extends SimpleSAML_Metadata_
 
         $tableName = $this->getTableName($set);
 
-        if (!in_array($set, $this->supportedSets)) {
+        if (!in_array($set, $this->supportedSets, true)) {
             return null;
         }
 
@@ -183,7 +183,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerPdo extends SimpleSAML_Metadata_
         assert('is_string($set)');
         assert('is_array($entityData)');
 
-        if (!in_array($set, $this->supportedSets)) {
+        if (!in_array($set, $this->supportedSets, true)) {
             return false;
         }
 

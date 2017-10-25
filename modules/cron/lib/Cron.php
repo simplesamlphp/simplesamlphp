@@ -56,7 +56,7 @@ class Cron
     public function isValidTag($tag)
     {
         if (!is_null($this->cronconfig->getValue('allowed_tags'))) {
-            return in_array($tag, $this->cronconfig->getArray('allowed_tags'));
+            return in_array($tag, $this->cronconfig->getArray('allowed_tags'), true);
         }
         return true;
     }

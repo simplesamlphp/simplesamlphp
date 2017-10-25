@@ -152,7 +152,7 @@ class Module
             return self::$module_info[$module]['enabled'];
         }
 
-        if (!empty(self::$modules) && !in_array($module, self::$modules)) {
+        if (!empty(self::$modules) && !in_array($module, self::$modules, true)) {
             return false;
         }
 

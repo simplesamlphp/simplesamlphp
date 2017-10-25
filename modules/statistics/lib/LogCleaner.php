@@ -155,7 +155,7 @@ class sspmod_statistics_LogCleaner
             }
 
             $trackid = $content[4];
-            if (in_array($trackid, $todelete)) {
+            if (in_array($trackid, $todelete, true)) {
                 continue;
             }
 

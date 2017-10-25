@@ -222,7 +222,7 @@ class sspmod_ldap_Auth_Process_AttributeAddUsersGroups extends sspmod_ldap_Auth_
             }
 
             // Only look for groups
-            if (!in_array($this->type_map['group'], $attributes[$map['type']])) {
+            if (!in_array($this->type_map['group'], $attributes[$map['type']], true)) {
                 continue;
             }
 

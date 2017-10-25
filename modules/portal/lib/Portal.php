@@ -13,7 +13,7 @@ class sspmod_portal_Portal {
 	function getTabset($thispage) {
 		if (!isset($this->config)) return NULL;
 		foreach($this->config AS $set) {
-			if (in_array($thispage, $set)) {
+			if (in_array($thispage, $set, true)) {
 				return $set;
 			}
 		}
@@ -23,7 +23,7 @@ class sspmod_portal_Portal {
 	function isPortalized($thispage) {
 		
 		foreach($this->config AS $set) {
-			if (in_array($thispage, $set)) {
+			if (in_array($thispage, $set, true)) {
 				return TRUE;
 			}
 		}
