@@ -302,6 +302,7 @@ class Signer
             $options
         );
 
+        /** @var \RobRichards\XMLSecLibs\XMLSecurityKey $this->privateKey */
         $objXMLSecDSig->sign($this->privateKey);
 
 

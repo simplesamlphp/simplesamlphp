@@ -54,7 +54,7 @@ class SessionHandlerStore extends SessionHandlerCookie
 
         $session = $this->store->get('session', $sessionId);
         if ($session !== null) {
-            assert($session instanceof SimpleSAML_Session);
+            assert($session instanceof \SimpleSAML_Session);
             return $session;
         }
 
