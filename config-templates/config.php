@@ -797,6 +797,17 @@ $config = array(
      */
     'template.auto_reload' => false,
 
+    /*
+     * Set this option to true to indicate that your installation of SimpleSAMLphp
+     * is running in a production environment. This will affect the way resources
+     * are used, offering an optimized version when running in production, and an
+     * easy-to-debug one when not. Set it to false when you are testing or
+     * developing the software.
+     *
+     * Defaults to true.
+     */
+    'production' => true,
+
 
 
     /*********************

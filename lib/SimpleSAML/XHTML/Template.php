@@ -247,6 +247,7 @@ class SimpleSAML_XHTML_Template
         }
         $twig->addGlobal('queryParams', $queryParams);
         $twig->addGlobal('templateId', str_replace('.twig', '', $this->normalizeTemplateName($this->template)));
+        $twig->addGlobal('isProduction', $this->configuration->getBoolean('production', true));
 
         // add a filter for translations out of arrays
         $twig->addFilter(
