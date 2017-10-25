@@ -164,3 +164,8 @@ crashlytics-build.properties
 
 ### vim
 *.swp
+
+
+### php-cs-fixer ###
+.php_cs.cache
+cs_fixer_tmp*
