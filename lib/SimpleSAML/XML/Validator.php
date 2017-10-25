@@ -260,7 +260,7 @@ class SimpleSAML_XML_Validator {
 		assert('$node instanceof DOMNode');
 
 		while($node !== NULL) {
-			if(in_array($node, $this->validNodes)) {
+			if(in_array($node, $this->validNodes, true)) {
 				return TRUE;
 			}
 
