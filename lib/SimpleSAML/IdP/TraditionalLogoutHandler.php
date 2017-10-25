@@ -63,7 +63,7 @@ class TraditionalLogoutHandler implements LogoutHandlerInterface
 
             // Try the next SP
             $this->logoutNextSP($state);
-            assert('FALSE');
+            assert(false);
         }
     }
 
@@ -97,8 +97,8 @@ class TraditionalLogoutHandler implements LogoutHandlerInterface
      */
     public function onResponse($assocId, $relayState, \SimpleSAML_Error_Exception $error = null)
     {
-        assert('is_string($assocId)');
-        assert('is_string($relayState) || is_null($relayState)');
+        assert(is_string($assocId));
+        assert(is_string($relayState) || $relayState === null);
 
         if ($relayState === null) {
             throw new \SimpleSAML_Error_Exception('RelayState lost during logout.');

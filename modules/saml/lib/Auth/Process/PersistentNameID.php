@@ -28,7 +28,7 @@ class sspmod_saml_Auth_Process_PersistentNameID extends sspmod_saml_BaseNameIDGe
     public function __construct($config, $reserved)
     {
         parent::__construct($config, $reserved);
-        assert('is_array($config)');
+        assert(is_array($config));
 
         $this->format = \SAML2\Constants::NAMEID_PERSISTENT;
 

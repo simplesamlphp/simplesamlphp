@@ -5,9 +5,9 @@
  * @param array &$croninfo  Output
  */
 function oauth_hook_cron(&$croninfo) {
-	assert('is_array($croninfo)');
-	assert('array_key_exists("summary", $croninfo)');
-	assert('array_key_exists("tag", $croninfo)');
+	assert(is_array($croninfo));
+	assert(array_key_exists('summary', $croninfo));
+	assert(array_key_exists('tag', $croninfo));
 
 	$oauthconfig = SimpleSAML_Configuration::getOptionalConfig('module_statistics.php');
 	

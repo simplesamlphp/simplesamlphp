@@ -115,7 +115,7 @@ class SimpleSAML_XHTML_IdPDisco
      */
     public function __construct(array $metadataSets, $instance)
     {
-        assert('is_string($instance)');
+        assert(is_string($instance));
 
         // initialize standard classes
         $this->config = SimpleSAML_Configuration::getInstance();
@@ -388,7 +388,7 @@ class SimpleSAML_XHTML_IdPDisco
      */
     protected function setPreviousIdP($idp)
     {
-        assert('is_string($idp)');
+        assert(is_string($idp));
 
         $this->log('Choice made ['.$idp.'] Setting cookie.');
         $this->setCookie('lastidp', $idp);

@@ -55,8 +55,8 @@ class SimpleSAML_Auth_Default
      */
     public static function initLogoutReturn($returnURL, $authority)
     {
-        assert('is_string($returnURL)');
-        assert('is_string($authority)');
+        assert(is_string($returnURL));
+        assert(is_string($authority));
 
         $session = SimpleSAML_Session::getSessionFromRequest();
 
@@ -81,8 +81,8 @@ class SimpleSAML_Auth_Default
      */
     public static function initLogout($returnURL, $authority)
     {
-        assert('is_string($returnURL)');
-        assert('is_string($authority)');
+        assert(is_string($returnURL));
+        assert(is_string($authority));
 
         self::initLogoutReturn($returnURL, $authority);
 
@@ -95,8 +95,8 @@ class SimpleSAML_Auth_Default
      */
     public static function logoutCompleted($state)
     {
-        assert('is_array($state)');
-        assert('array_key_exists("SimpleSAML_Auth_Default.ReturnURL", $state)');
+        assert(is_array($state));
+        assert(array_key_exists('SimpleSAML_Auth_Default.ReturnURL', $state));
 
         \SimpleSAML\Utils\HTTP::redirectTrustedURL($state['SimpleSAML_Auth_Default.ReturnURL']);
     }

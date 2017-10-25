@@ -43,8 +43,8 @@ class SimpleSAML_Error_Exception extends Exception
      */
     public function __construct($message, $code = 0, Exception $cause = null)
     {
-        assert('is_string($message)');
-        assert('is_int($code)');
+        assert(is_string($message));
+        assert(is_int($code));
 
         parent::__construct($message, $code);
 

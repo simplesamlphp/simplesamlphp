@@ -51,7 +51,7 @@ class sspmod_core_Stats_Output_File extends SimpleSAML_Stats_Output {
 	 * @param string $date  The date for the log file.
 	 */
 	private function openLog($date) {
-		assert('is_string($date)');
+		assert(is_string($date));
 
 		if ($this->file !== NULL && $this->file !== FALSE) {
 			fclose($this->file);
@@ -77,7 +77,7 @@ class sspmod_core_Stats_Output_File extends SimpleSAML_Stats_Output {
 	 * @param array $data  The event.
 	 */
 	public function emit(array $data) {
-		assert('isset($data["time"])');
+		assert(isset($data['time']));
 
 		$time = $data['time'];
 		$milliseconds = (int)(($time - (int)$time) * 1000);

@@ -30,7 +30,7 @@ class sspmod_authX509_Auth_Process_ExpiryWarning extends SimpleSAML_Auth_Process
     {
         parent::__construct($config, $reserved);
 
-        assert('is_array($config)');
+        assert(is_array($config));
 
         if (array_key_exists('warndaysbefore', $config)) {
             $this->warndaysbefore = $config['warndaysbefore'];
@@ -57,7 +57,7 @@ class sspmod_authX509_Auth_Process_ExpiryWarning extends SimpleSAML_Auth_Process
      */
     public function process(&$state)
     {
-        assert('is_array($state)');
+        assert(is_array($state));
 
         if (isset($state['isPassive']) && $state['isPassive'] === true) {
             // We have a passive request. Skip the warning

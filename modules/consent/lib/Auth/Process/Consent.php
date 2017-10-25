@@ -74,7 +74,7 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
      */
     public function __construct($config, $reserved)
     {
-        assert('is_array($config)');
+        assert(is_array($config));
         parent::__construct($config, $reserved);
 
         if (array_key_exists('includeValues', $config)) {
@@ -218,13 +218,13 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
      */
     public function process(&$state)
     {
-        assert('is_array($state)');
-        assert('array_key_exists("UserID", $state)');
-        assert('array_key_exists("Destination", $state)');
-        assert('array_key_exists("entityid", $state["Destination"])');
-        assert('array_key_exists("metadata-set", $state["Destination"])');
-        assert('array_key_exists("entityid", $state["Source"])');
-        assert('array_key_exists("metadata-set", $state["Source"])');
+        assert(is_array($state));
+        assert(array_key_exists('UserID', $state));
+        assert(array_key_exists('Destination', $state));
+        assert(array_key_exists('entityid', $state['Destination']));
+        assert(array_key_exists('metadata-set', $state['Destination']));
+        assert(array_key_exists('entityid', $state['Source']));
+        assert(array_key_exists('metadata-set', $state['Source']));
 
         $spEntityId = $state['Destination']['entityid'];
         $idpEntityId = $state['Source']['entityid'];

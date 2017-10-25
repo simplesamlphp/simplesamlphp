@@ -9,6 +9,8 @@
 
 namespace SimpleSAML\XML\Shib13;
 
+use DOMDocument;
+use DOMNode;
 use SAML2\DOMDocumentFactory;
 use SAML2\Utils;
 use SimpleSAML\Utils\Config;
@@ -53,7 +55,7 @@ class AuthnResponse
      */
     public function setMessageValidated($messageValidated)
     {
-        assert('is_bool($messageValidated)');
+        assert(is_bool($messageValidated));
 
         $this->messageValidated = $messageValidated;
     }
@@ -61,7 +63,7 @@ class AuthnResponse
 
     public function setXML($xml)
     {
-        assert('is_string($xml)');
+        assert(is_string($xml));
 
         try {
             $this->dom = DOMDocumentFactory::fromString(str_replace("\r", "", $xml));
@@ -82,7 +84,7 @@ class AuthnResponse
 
     public function validate()
     {
-        assert('$this->dom instanceof DOMDocument');
+        assert($this->dom instanceof DOMDocument);
 
         if ($this->messageValidated) {
             // This message was validated externally
@@ -147,7 +149,7 @@ class AuthnResponse
             $node = dom_import_simplexml($node);
         }
 
-        assert('$node instanceof DOMNode');
+        assert($node instanceof DOMNode);
 
         return $this->validator->isNodeValidated($node);
     }
@@ -163,14 +165,14 @@ class AuthnResponse
      */
     private function doXPathQuery($query, $node = null)
     {
-        assert('is_string($query)');
-        assert('$this->dom instanceof DOMDocument');
+        assert(is_string($query));
+        assert($this->dom instanceof DOMDocument);
 
         if ($node === null) {
             $node = $this->dom->documentElement;
         }
 
-        assert('$node instanceof DOMNode');
+        assert($node instanceof DOMNode);
 
         $xPath = new \DOMXpath($this->dom);
         $xPath->registerNamespace('shibp', self::SHIB_PROTOCOL_NS);
@@ -186,7 +188,7 @@ class AuthnResponse
      */
     public function getSessionIndex()
     {
-        assert('$this->dom instanceof DOMDocument');
+        assert($this->dom instanceof DOMDocument);
 
         $query = '/shibp:Response/shib:Assertion/shib:AuthnStatement';
         $nodelist = $this->doXPathQuery($query);
@@ -306,8 +308,8 @@ class AuthnResponse
      */
     public function generate(\SimpleSAML_Configuration $idp, \SimpleSAML_Configuration $sp, $shire, $attributes)
     {
-        assert('is_string($shire)');
-        assert('$attributes === NULL || is_array($attributes)');
+        assert(is_string($shire));
+        assert($attributes === null || is_array($attributes));
 
         if ($sp->hasValue('scopedattributes')) {
             $scopedAttributes = $sp->getArray('scopedattributes');
@@ -406,10 +408,10 @@ class AuthnResponse
      */
     private function enc_attribute($name, $values, $base64, $scopedAttributes)
     {
-        assert('is_string($name)');
-        assert('is_array($values)');
-        assert('is_bool($base64)');
-        assert('is_array($scopedAttributes)');
+        assert(is_string($name));
+        assert(is_array($values));
+        assert(is_bool($base64));
+        assert(is_array($scopedAttributes));
 
         if (in_array($name, $scopedAttributes, true)) {
             $scoped = true;

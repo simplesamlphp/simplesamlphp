@@ -14,8 +14,8 @@ class sspmod_adfs_SAML2_XML_fed_Endpoint
      */
     public static function appendXML(DOMElement $parent, $name, $address)
     {
-        assert('is_string($name)');
-        assert('is_string($address)');
+        assert(is_string($name));
+        assert(is_string($address));
 
         $e = $parent->ownerDocument->createElement($name);
         $parent->appendChild($e);

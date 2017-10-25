@@ -48,8 +48,8 @@ class sspmod_cas_Auth_Source_CAS  extends SimpleSAML_Auth_Source  {
 	 * @param array $config  Configuration.
 	 */
 	public function __construct($info, $config) {
-		assert('is_array($info)');
-		assert('is_array($config)');
+		assert(is_array($info));
+		assert(is_array($config));
 
 		// Call the parent constructor first, as required by the interface
 		parent::__construct($info, $config);
@@ -194,7 +194,7 @@ class sspmod_cas_Auth_Source_CAS  extends SimpleSAML_Auth_Source  {
 	 * @param array &$state  Information about the current authentication.
 	 */
 	public function authenticate(&$state) {
-		assert('is_array($state)');
+		assert(is_array($state));
 
 		// We are going to need the authId in order to retrieve this authentication source later
 		$state[self::AUTHID] = $this->authId;
@@ -224,7 +224,7 @@ class sspmod_cas_Auth_Source_CAS  extends SimpleSAML_Auth_Source  {
 	 * @param array &$state  Information about the current logout operation.
 	 */
 	public function logout(&$state) {
-		assert('is_array($state)');
+		assert(is_array($state));
 		$logoutUrl = $this->_casConfig['logout'];
 
 		SimpleSAML_Auth_State::deleteState($state);

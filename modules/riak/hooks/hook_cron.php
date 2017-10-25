@@ -29,9 +29,9 @@
  * @param array &$croninfo  Output
  */
 function riak_hook_cron(&$croninfo) {
-	assert('is_array($croninfo)');
-	assert('array_key_exists("summary", $croninfo)');
-	assert('array_key_exists("tag", $croninfo)');
+	assert(is_array($croninfo));
+	assert(array_key_exists('summary', $croninfo));
+	assert(array_key_exists('tag', $croninfo));
 
 	if ($croninfo['tag'] !== 'hourly') return;
 

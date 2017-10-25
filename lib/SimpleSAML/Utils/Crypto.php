@@ -296,7 +296,7 @@ class Crypto
 
             // normalize fingerprint(s) - lowercase and no colons
             foreach ($fps as &$fp) {
-                assert('is_string($fp)');
+                assert(is_string($fp));
                 $fp = strtolower(str_replace(':', '', $fp));
             }
 

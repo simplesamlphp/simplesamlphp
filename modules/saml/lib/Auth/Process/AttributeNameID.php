@@ -28,7 +28,7 @@ class sspmod_saml_Auth_Process_AttributeNameID extends sspmod_saml_BaseNameIDGen
     public function __construct($config, $reserved)
     {
         parent::__construct($config, $reserved);
-        assert('is_array($config)');
+        assert(is_array($config));
 
         if (!isset($config['Format'])) {
             throw new SimpleSAML_Error_Exception("AttributeNameID: Missing required option 'Format'.");

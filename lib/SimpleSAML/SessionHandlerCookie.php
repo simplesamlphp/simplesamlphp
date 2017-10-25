@@ -159,8 +159,8 @@ abstract class SessionHandlerCookie extends SessionHandler
      */
     public function setCookie($sessionName, $sessionID, array $cookieParams = null)
     {
-        assert('is_string($sessionName)');
-        assert('is_string($sessionID) || is_null($sessionID)');
+        assert(is_string($sessionName));
+        assert(is_string($sessionID) || $sessionID === null);
 
         if ($cookieParams !== null) {
             $params = array_merge($this->getCookieParams(), $cookieParams);

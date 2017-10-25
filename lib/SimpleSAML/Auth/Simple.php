@@ -37,7 +37,7 @@ class Simple
      */
     public function __construct($authSource)
     {
-        assert('is_string($authSource)');
+        assert(is_string($authSource));
 
         $this->authSource = $authSource;
         $this->app_config = Configuration::getInstance()->getConfigItem('application', null);
@@ -159,7 +159,7 @@ class Simple
 
         $as = $this->getAuthSource();
         $as->initLogin($returnTo, $errorURL, $params);
-        assert('false');
+        assert(false);
     }
 
 
@@ -180,7 +180,7 @@ class Simple
      */
     public function logout($params = null)
     {
-        assert('is_array($params) || is_string($params) || is_null($params)');
+        assert(is_array($params) || is_string($params) || $params === null);
 
         if ($params === null) {
             $params = HTTP::getSelfURL();
@@ -192,11 +192,11 @@ class Simple
             );
         }
 
-        assert('is_array($params)');
-        assert('isset($params["ReturnTo"]) || isset($params["ReturnCallback"])');
+        assert(is_array($params));
+        assert(isset($params['ReturnTo']) || isset($params['ReturnCallback']));
 
         if (isset($params['ReturnStateParam']) || isset($params['ReturnStateStage'])) {
-            assert('isset($params["ReturnStateParam"]) && isset($params["ReturnStateStage"])');
+            assert(isset($params['ReturnStateParam'], $params['ReturnStateStage']));
         }
 
         $session = Session::getSessionFromRequest();
@@ -229,16 +229,16 @@ class Simple
      */
     public static function logoutCompleted($state)
     {
-        assert('is_array($state)');
-        assert('isset($state["ReturnTo"]) || isset($state["ReturnCallback"])');
+        assert(is_array($state));
+        assert(isset($state['ReturnTo']) || isset($state['ReturnCallback']));
 
         if (isset($state['ReturnCallback'])) {
             call_user_func($state['ReturnCallback'], $state);
-            assert('false');
+            assert(false);
         } else {
             $params = array();
             if (isset($state['ReturnStateParam']) || isset($state['ReturnStateStage'])) {
-                assert('isset($state["ReturnStateParam"]) && isset($state["ReturnStateStage"])');
+                assert(isset($state['ReturnStateParam'], $state['ReturnStateStage']));
                 $stateID = State::saveState($state, $state['ReturnStateStage']);
                 $params[$state['ReturnStateParam']] = $stateID;
             }
@@ -278,7 +278,7 @@ class Simple
      */
     public function getAuthData($name)
     {
-        assert('is_string($name)');
+        assert(is_string($name));
 
         if (!$this->isAuthenticated()) {
             return null;
@@ -316,7 +316,7 @@ class Simple
      */
     public function getLoginURL($returnTo = null)
     {
-        assert('is_null($returnTo) || is_string($returnTo)');
+        assert($returnTo === null || is_string($returnTo));
 
         if ($returnTo === null) {
             $returnTo = HTTP::getSelfURL();
@@ -341,7 +341,7 @@ class Simple
      */
     public function getLogoutURL($returnTo = null)
     {
-        assert('is_null($returnTo) || is_string($returnTo)');
+        assert($returnTo === null || is_string($returnTo));
 
         if ($returnTo === null) {
             $returnTo = HTTP::getSelfURL();

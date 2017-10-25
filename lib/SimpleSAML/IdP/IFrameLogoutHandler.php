@@ -40,7 +40,7 @@ class IFrameLogoutHandler implements LogoutHandlerInterface
      */
     public function startLogout(array &$state, $assocId)
     {
-        assert('is_string($assocId) || is_null($assocId)');
+        assert(is_string($assocId) || $assocId === null);
 
         $associations = $this->idp->getAssociations();
 
@@ -89,7 +89,7 @@ class IFrameLogoutHandler implements LogoutHandlerInterface
      */
     public function onResponse($assocId, $relayState, \SimpleSAML_Error_Exception $error = null)
     {
-        assert('is_string($assocId)');
+        assert(is_string($assocId));
 
         $spId = sha1($assocId);
         $this->idp->terminateAssociation($assocId);

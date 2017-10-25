@@ -5,9 +5,9 @@
  * @param array &$croninfo  Output
  */
 function metarefresh_hook_cron(&$croninfo) {
-	assert('is_array($croninfo)');
-	assert('array_key_exists("summary", $croninfo)');
-	assert('array_key_exists("tag", $croninfo)');
+	assert(is_array($croninfo));
+	assert(array_key_exists('summary', $croninfo));
+	assert(array_key_exists('tag', $croninfo));
 
 	SimpleSAML\Logger::info('cron [metarefresh]: Running cron in cron tag [' . $croninfo['tag'] . '] ');
 

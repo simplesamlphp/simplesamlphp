@@ -34,7 +34,7 @@ class sspmod_saml_Auth_Process_NameIDAttribute extends SimpleSAML_Auth_Processin
     public function __construct($config, $reserved)
     {
         parent::__construct($config, $reserved);
-        assert('is_array($config)');
+        assert(is_array($config));
 
         if (isset($config['attribute'])) {
             $this->attribute = (string) $config['attribute'];
@@ -62,7 +62,7 @@ class sspmod_saml_Auth_Process_NameIDAttribute extends SimpleSAML_Auth_Processin
      */
     private static function parseFormat($format)
     {
-        assert('is_string($format)');
+        assert(is_string($format));
 
         $ret = array();
         $pos = 0;
@@ -105,16 +105,16 @@ class sspmod_saml_Auth_Process_NameIDAttribute extends SimpleSAML_Auth_Processin
      */
     public function process(&$state)
     {
-        assert('is_array($state)');
-        assert('isset($state["Source"]["entityid"])');
-        assert('isset($state["Destination"]["entityid"])');
+        assert(is_array($state));
+        assert(isset($state['Source']['entityid']));
+        assert(isset($state['Destination']['entityid']));
 
         if (!isset($state['saml:sp:NameID'])) {
             return;
         }
 
         $rep = $state['saml:sp:NameID'];
-        assert('isset($rep["Value"])');
+        assert(isset($rep['Value']));
 
         $rep['%'] = '%';
         if (!isset($rep['Format'])) {

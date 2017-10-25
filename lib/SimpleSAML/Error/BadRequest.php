@@ -24,7 +24,7 @@ class SimpleSAML_Error_BadRequest extends SimpleSAML_Error_Error {
 	 * @param string $reason  Description of why the request was unacceptable.
 	 */
 	public function __construct($reason) {
-		assert('is_string($reason)');
+		assert(is_string($reason));
 
 		$this->reason = $reason;
 		parent::__construct(array('BADREQUEST', '%REASON%' => $this->reason));

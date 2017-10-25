@@ -137,8 +137,8 @@ class sspmod_ldap_Auth_Process_AttributeAddFromLDAP extends sspmod_ldap_Auth_Pro
      */
     public function process(&$request)
     {
-        assert('is_array($request)');
-        assert('array_key_exists("Attributes", $request)');
+        assert(is_array($request));
+        assert(array_key_exists('Attributes', $request));
 
         $attributes =& $request['Attributes'];
 

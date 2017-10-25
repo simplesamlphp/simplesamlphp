@@ -130,7 +130,7 @@ class SQL extends Store
      */
     public function getTableVersion($name)
     {
-        assert('is_string($name)');
+        assert(is_string($name));
 
         if (!isset($this->tableVersions[$name])) {
             return 0;
@@ -148,8 +148,8 @@ class SQL extends Store
      */
     public function setTableVersion($name, $version)
     {
-        assert('is_string($name)');
-        assert('is_int($version)');
+        assert(is_string($name));
+        assert(is_int($version));
 
         $this->insertOrUpdate(
             $this->prefix.'_tableVersion',
@@ -171,7 +171,7 @@ class SQL extends Store
      */
     public function insertOrUpdate($table, array $keys, array $data)
     {
-        assert('is_string($table)');
+        assert(is_string($table));
 
         $colNames = '('.implode(', ', array_keys($data)).')';
         $values = 'VALUES(:'.implode(', :', array_keys($data)).')';
@@ -249,8 +249,8 @@ class SQL extends Store
      */
     public function get($type, $key)
     {
-        assert('is_string($type)');
-        assert('is_string($key)');
+        assert(is_string($type));
+        assert(is_string($key));
 
         if (strlen($key) > 50) {
             $key = sha1($key);
@@ -292,9 +292,9 @@ class SQL extends Store
      */
     public function set($type, $key, $value, $expire = null)
     {
-        assert('is_string($type)');
-        assert('is_string($key)');
-        assert('is_null($expire) || (is_int($expire) && $expire > 2592000)');
+        assert(is_string($type));
+        assert(is_string($key));
+        assert($expire === null || (is_int($expire) && $expire > 2592000));
 
         if (rand(0, 1000) < 10) {
             $this->cleanKVStore();
@@ -330,8 +330,8 @@ class SQL extends Store
      */
     public function delete($type, $key)
     {
-        assert('is_string($type)');
-        assert('is_string($key)');
+        assert(is_string($type));
+        assert(is_string($key));
 
         if (strlen($key) > 50) {
             $key = sha1($key);

@@ -29,8 +29,8 @@ class sspmod_exampleauth_Auth_Source_External extends SimpleSAML_Auth_Source {
 	 * @param array $config  Configuration.
 	 */
 	public function __construct($info, $config) {
-		assert('is_array($info)');
-		assert('is_array($config)');
+		assert(is_array($info));
+		assert(is_array($config));
 
 		// Call the parent constructor first, as required by the interface
 		parent::__construct($info, $config);
@@ -90,7 +90,7 @@ class sspmod_exampleauth_Auth_Source_External extends SimpleSAML_Auth_Source {
 	 * @param array &$state  Information about the current authentication.
 	 */
 	public function authenticate(&$state) {
-		assert('is_array($state)');
+		assert(is_array($state));
 
 		$attributes = $this->getUser();
 		if ($attributes !== NULL) {
@@ -162,7 +162,7 @@ class sspmod_exampleauth_Auth_Source_External extends SimpleSAML_Auth_Source {
 		/*
 		 * The redirect function never returns, so we never get this far.
 		 */
-		assert('FALSE');
+		assert(false);
 	}
 
 
@@ -240,7 +240,7 @@ class sspmod_exampleauth_Auth_Source_External extends SimpleSAML_Auth_Source {
 		/*
 		 * The completeAuth-function never returns, so we never get this far.
 		 */
-		assert('FALSE');
+		assert(false);
 	}
 
 
@@ -251,7 +251,7 @@ class sspmod_exampleauth_Auth_Source_External extends SimpleSAML_Auth_Source {
 	 * @param array &$state  The logout state array.
 	 */
 	public function logout(&$state) {
-		assert('is_array($state)');
+		assert(is_array($state));
 
 		if (!session_id()) {
 			/* session_start not called before. Do it here. */

@@ -49,7 +49,7 @@ class sspmod_core_Auth_Process_AttributeAlter extends SimpleSAML_Auth_Processing
     public function __construct($config, $reserved) {
         parent::__construct($config, $reserved);
 
-        assert('is_array($config)');
+        assert(is_array($config));
 
         // parse filter configuration
         foreach ($config as $name => $value) {
@@ -96,8 +96,8 @@ class sspmod_core_Auth_Process_AttributeAlter extends SimpleSAML_Auth_Processing
      * @throws SimpleSAML_Error_Exception In case of invalid configuration.
      */
     public function process(&$request) {
-        assert('is_array($request)');
-        assert('array_key_exists("Attributes", $request)');
+        assert(is_array($request));
+        assert(array_key_exists('Attributes', $request));
 
         // get attributes from request
         $attributes =& $request['Attributes'];

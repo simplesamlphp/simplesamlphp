@@ -18,11 +18,11 @@ class sspmod_saml_IdP_SAML2
      */
     public static function sendResponse(array $state)
     {
-        assert('isset($state["Attributes"])');
-        assert('isset($state["SPMetadata"])');
-        assert('isset($state["saml:ConsumerURL"])');
-        assert('array_key_exists("saml:RequestId", $state)'); // Can be NULL
-        assert('array_key_exists("saml:RelayState", $state)'); // Can be NULL.
+        assert(isset($state['Attributes']));
+        assert(isset($state['SPMetadata']));
+        assert(isset($state['saml:ConsumerURL']));
+        assert(array_key_exists('saml:RequestId', $state)); // Can be NULL
+        assert(array_key_exists('saml:RelayState', $state)); // Can be NULL.
 
         $spMetadata = $state["SPMetadata"];
         $spEntityId = $spMetadata['entityid'];
@@ -95,10 +95,10 @@ class sspmod_saml_IdP_SAML2
      */
     public static function handleAuthError(SimpleSAML_Error_Exception $exception, array $state)
     {
-        assert('isset($state["SPMetadata"])');
-        assert('isset($state["saml:ConsumerURL"])');
-        assert('array_key_exists("saml:RequestId", $state)'); // Can be NULL.
-        assert('array_key_exists("saml:RelayState", $state)'); // Can be NULL.
+        assert(isset($state['SPMetadata']));
+        assert(isset($state['saml:ConsumerURL']));
+        assert(array_key_exists('saml:RequestId', $state)); // Can be NULL.
+        assert(array_key_exists('saml:RelayState', $state)); // Can be NULL.
 
         $spMetadata = $state["SPMetadata"];
         $spEntityId = $spMetadata['entityid'];
@@ -166,9 +166,9 @@ class sspmod_saml_IdP_SAML2
         $ProtocolBinding,
         $AssertionConsumerServiceIndex
     ) {
-        assert('is_string($AssertionConsumerServiceURL) || is_null($AssertionConsumerServiceURL)');
-        assert('is_string($ProtocolBinding) || is_null($ProtocolBinding)');
-        assert('is_int($AssertionConsumerServiceIndex) || is_null($AssertionConsumerServiceIndex)');
+        assert(is_string($AssertionConsumerServiceURL) || $AssertionConsumerServiceURL === null);
+        assert(is_string($ProtocolBinding) || $ProtocolBinding === null);
+        assert(is_int($AssertionConsumerServiceIndex) || $AssertionConsumerServiceIndex === null);
 
         /* We want to pick the best matching endpoint in the case where for example
          * only the ProtocolBinding is given. We therefore pick endpoints with the
@@ -441,7 +441,7 @@ class sspmod_saml_IdP_SAML2
      */
     public static function sendLogoutRequest(SimpleSAML_IdP $idp, array $association, $relayState)
     {
-        assert('is_string($relayState) || is_null($relayState)');
+        assert(is_string($relayState) || $relayState === null);
 
         SimpleSAML\Logger::info('Sending SAML 2.0 LogoutRequest to: '.var_export($association['saml:entityID'], true));
 
@@ -477,9 +477,9 @@ class sspmod_saml_IdP_SAML2
      */
     public static function sendLogoutResponse(SimpleSAML_IdP $idp, array $state)
     {
-        assert('isset($state["saml:SPEntityId"])');
-        assert('isset($state["saml:RequestId"])');
-        assert('array_key_exists("saml:RelayState", $state)'); // Can be NULL.
+        assert(isset($state['saml:SPEntityId']));
+        assert(isset($state['saml:RequestId']));
+        assert(array_key_exists('saml:RelayState', $state)); // Can be NULL.
 
         $spEntityId = $state['saml:SPEntityId'];
 
@@ -610,7 +610,7 @@ class sspmod_saml_IdP_SAML2
      */
     public static function getLogoutURL(SimpleSAML_IdP $idp, array $association, $relayState)
     {
-        assert('is_string($relayState) || is_null($relayState)');
+        assert(is_string($relayState) || $relayState === null);
 
         SimpleSAML\Logger::info('Sending SAML 2.0 LogoutRequest to: '.var_export($association['saml:entityID'], true));
 
@@ -779,7 +779,7 @@ class sspmod_saml_IdP_SAML2
                             $doc = \SAML2\DOMDocumentFactory::fromString('<root>'.$value.'</root>');
                             $value = $doc->firstChild->childNodes;
                         }
-                        assert('$value instanceof DOMNodeList || $value instanceof \SAML2\XML\saml\NameID');
+                        assert($value instanceof DOMNodeList || $value instanceof \SAML2\XML\saml\NameID);
                         break;
                     default:
                         throw new SimpleSAML_Error_Exception('Invalid encoding for attribute '.
@@ -847,8 +847,8 @@ class sspmod_saml_IdP_SAML2
         SimpleSAML_Configuration $spMetadata,
         array &$state
     ) {
-        assert('isset($state["Attributes"])');
-        assert('isset($state["saml:ConsumerURL"])');
+        assert(isset($state['Attributes']));
+        assert(isset($state['saml:ConsumerURL']));
 
         $now = time();
 

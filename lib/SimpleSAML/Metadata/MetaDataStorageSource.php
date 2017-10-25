@@ -30,7 +30,7 @@ abstract class SimpleSAML_Metadata_MetaDataStorageSource
      */
     public static function parseSources($sourcesConfig)
     {
-        assert('is_array($sourcesConfig)');
+        assert(is_array($sourcesConfig));
 
         $sources = array();
 
@@ -206,8 +206,8 @@ abstract class SimpleSAML_Metadata_MetaDataStorageSource
      */
     private function lookupIndexFromEntityId($entityId, $set)
     {
-        assert('is_string($entityId)');
-        assert('isset($set)');
+        assert(is_string($entityId));
+        assert(isset($set));
 
         $metadataSet = $this->getMetadataSet($set);
 
@@ -246,8 +246,8 @@ abstract class SimpleSAML_Metadata_MetaDataStorageSource
     public function getMetaData($index, $set)
     {
 
-        assert('is_string($index)');
-        assert('isset($set)');
+        assert(is_string($index));
+        assert(isset($set));
 
         $metadataSet = $this->getMetadataSet($set);
 

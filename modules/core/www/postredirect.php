@@ -40,9 +40,9 @@ if ($postData === NULL) {
 
 $session->deleteData('core_postdatalink', $postId);
 
-assert('is_array($postData)');
-assert('array_key_exists("url", $postData)');
-assert('array_key_exists("post", $postData)');
+assert(is_array($postData));
+assert(array_key_exists('url', $postData));
+assert(array_key_exists('post', $postData));
 
 $config = SimpleSAML_Configuration::getInstance();
 $template = new SimpleSAML_XHTML_Template($config, 'post.php');

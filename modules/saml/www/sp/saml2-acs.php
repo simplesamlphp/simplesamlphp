@@ -87,7 +87,7 @@ if (!empty($stateId)) {
 
 if ($state) {
     // check that the authentication source is correct
-    assert('array_key_exists("saml:sp:AuthId", $state)');
+    assert(array_key_exists('saml:sp:AuthId', $state));
     if ($state['saml:sp:AuthId'] !== $sourceId) {
         throw new SimpleSAML_Error_Exception(
             'The authentication source id in the URL does not match the authentication source which sent the request.'
@@ -95,7 +95,7 @@ if ($state) {
     }
 
     // check that the issuer is the one we are expecting
-    assert('array_key_exists("ExpectedIssuer", $state)');
+    assert(array_key_exists('ExpectedIssuer', $state));
     if ($state['ExpectedIssuer'] !== $idp) {
         $idpMetadata = $source->getIdPMetadata($idp);
         $idplist = $idpMetadata->getArrayize('IDPList', array());
@@ -255,4 +255,4 @@ if (isset($state['SimpleSAML_Auth_Source.ReturnURL'])) {
 $state['PersistentAuthData'][] = 'saml:sp:prevAuth';
 
 $source->handleResponse($state, $idp, $attributes);
-assert('FALSE');
+assert(false);

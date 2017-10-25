@@ -150,9 +150,9 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store
      */
     public function hasConsent($userId, $destinationId, $attributeSet)
     {
-        assert('is_string($userId)');
-        assert('is_string($destinationId)');
-        assert('is_string($attributeSet)');
+        assert(is_string($userId));
+        assert(is_string($destinationId));
+        assert(is_string($attributeSet));
 
         $st = $this->_execute(
             'UPDATE ' . $this->_table . ' ' .
@@ -190,9 +190,9 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store
      */
     public function saveConsent($userId, $destinationId, $attributeSet)
     {
-        assert('is_string($userId)');
-        assert('is_string($destinationId)');
-        assert('is_string($attributeSet)');
+        assert(is_string($userId));
+        assert(is_string($destinationId));
+        assert(is_string($attributeSet));
 
         // Check for old consent (with different attribute set)
         $st = $this->_execute(
@@ -238,8 +238,8 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store
      */
     public function deleteConsent($userId, $destinationId)
     {
-        assert('is_string($userId)');
-        assert('is_string($destinationId)');
+        assert(is_string($userId));
+        assert(is_string($destinationId));
 
         $st = $this->_execute(
             'DELETE FROM ' . $this->_table . ' WHERE hashed_user_id = ? AND service_id = ?;',
@@ -270,7 +270,7 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store
      */
     public function deleteAllConsents($userId)
     {
-        assert('is_string($userId)');
+        assert(is_string($userId));
 
         $st = $this->_execute(
             'DELETE FROM ' . $this->_table . ' WHERE hashed_user_id = ?',
@@ -301,7 +301,7 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store
      */
     public function getConsents($userId)
     {
-        assert('is_string($userId)');
+        assert(is_string($userId));
 
         $ret = array();
 
@@ -336,8 +336,8 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store
      */
     private function _execute($statement, $parameters)
     {
-        assert('is_string($statement)');
-        assert('is_array($parameters)');
+        assert(is_string($statement));
+        assert(is_array($parameters));
 
         $db = $this->_getDB();
         if ($db === false) {
@@ -487,8 +487,8 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store
      */
     private static function _formatError($error)
     {
-        assert('is_array($error)');
-        assert('count($error) >= 3');
+        assert(is_array($error));
+        assert(count($error) >= 3);
 
         return $error[0] . ' - ' . $error[2] . ' (' . $error[1] . ')';
     }

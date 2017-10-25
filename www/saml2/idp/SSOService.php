@@ -24,4 +24,4 @@ try {
         throw $e; // do not ignore other exceptions!
     }
 }
-assert('FALSE');
+assert(false);

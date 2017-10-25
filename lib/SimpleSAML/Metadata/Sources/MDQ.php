@@ -65,7 +65,7 @@ class MDQ extends \SimpleSAML_Metadata_MetaDataStorageSource
      */
     protected function __construct($config)
     {
-        assert('is_array($config)');
+        assert(is_array($config));
 
         if (!array_key_exists('server', $config)) {
             throw new \Exception(__CLASS__.": the 'server' configuration option is not set.");
@@ -118,8 +118,8 @@ class MDQ extends \SimpleSAML_Metadata_MetaDataStorageSource
      */
     private function getCacheFilename($set, $entityId)
     {
-        assert('is_string($set)');
-        assert('is_string($entityId)');
+        assert(is_string($set));
+        assert(is_string($entityId));
 
         $cachekey = sha1($entityId);
         return $this->cacheDir.'/'.$set.'-'.$cachekey.'.cached.xml';
@@ -138,8 +138,8 @@ class MDQ extends \SimpleSAML_Metadata_MetaDataStorageSource
      */
     private function getFromCache($set, $entityId)
     {
-        assert('is_string($set)');
-        assert('is_string($entityId)');
+        assert(is_string($set));
+        assert(is_string($entityId));
 
         if (empty($this->cacheDir)) {
             return null;
@@ -196,9 +196,9 @@ class MDQ extends \SimpleSAML_Metadata_MetaDataStorageSource
      */
     private function writeToCache($set, $entityId, $data)
     {
-        assert('is_string($set)');
-        assert('is_string($entityId)');
-        assert('is_array($data)');
+        assert(is_string($set));
+        assert(is_string($entityId));
+        assert(is_array($data));
 
         if (empty($this->cacheDir)) {
             return;
@@ -224,7 +224,7 @@ class MDQ extends \SimpleSAML_Metadata_MetaDataStorageSource
      */
     private static function getParsedSet(\SimpleSAML_Metadata_SAMLParser $entity, $set)
     {
-        assert('is_string($set)');
+        assert(is_string($set));
 
         switch ($set) {
             case 'saml20-idp-remote':
@@ -266,8 +266,8 @@ class MDQ extends \SimpleSAML_Metadata_MetaDataStorageSource
      */
     public function getMetaData($index, $set)
     {
-        assert('is_string($index)');
-        assert('is_string($set)');
+        assert(is_string($index));
+        assert(is_string($set));
 
         Logger::info(__CLASS__.': loading metadata entity ['.$index.'] from ['.$set.']');
 

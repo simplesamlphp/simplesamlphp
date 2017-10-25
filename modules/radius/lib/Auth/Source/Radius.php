@@ -73,8 +73,8 @@ class sspmod_radius_Auth_Source_Radius extends sspmod_core_Auth_UserPassBase
      */
     public function __construct($info, $config)
     {
-        assert('is_array($info)');
-        assert('is_array($config)');
+        assert(is_array($info));
+        assert(is_array($config));
 
         // Call the parent constructor first, as required by the interface
         parent::__construct($info, $config);
@@ -116,8 +116,8 @@ class sspmod_radius_Auth_Source_Radius extends sspmod_core_Auth_UserPassBase
      */
     protected function login($username, $password)
     {
-        assert('is_string($username)');
-        assert('is_string($password)');
+        assert(is_string($username));
+        assert(is_string($password));
 
         $radius = radius_auth_open();
 

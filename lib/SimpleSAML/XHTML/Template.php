@@ -452,7 +452,7 @@ class SimpleSAML_XHTML_Template
      */
     private function findTemplatePath($template, $throw_exception = true)
     {
-        assert('is_string($template)');
+        assert(is_string($template));
 
         list($templateModule, $templateName) = $this->findModuleAndTemplateName($template);
         $templateModule = ($templateModule !== null) ? $templateModule : 'default';
