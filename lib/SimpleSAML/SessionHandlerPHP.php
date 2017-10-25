@@ -239,7 +239,7 @@ class SessionHandlerPHP extends SessionHandler
      */
     public function loadSession($sessionId = null)
     {
-        assert('is_string($sessionId) || is_null($sessionId)');
+        assert(is_string($sessionId) || $sessionId === null);
 
         if ($sessionId !== null) {
             if (session_id() === '') {
@@ -263,7 +263,7 @@ class SessionHandlerPHP extends SessionHandler
         }
 
         $session = $_SESSION['SimpleSAMLphp_SESSION'];
-        assert('is_string($session)');
+        assert(is_string($session));
 
         $session = unserialize($session);
 

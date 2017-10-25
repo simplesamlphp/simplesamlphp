@@ -79,7 +79,7 @@ class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception
      */
     public function __construct($errorCode, Exception $cause = null, $httpCode = null)
     {
-        assert('is_string($errorCode) || is_array($errorCode)');
+        assert(is_string($errorCode) || is_array($errorCode));
 
         if (is_array($errorCode)) {
             $this->parameters = $errorCode;
@@ -289,9 +289,9 @@ class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception
 
         $show_function = $config->getArray('errors.show_function', null);
         if (isset($show_function)) {
-            assert('is_callable($show_function)');
+            assert(is_callable($show_function));
             call_user_func($show_function, $config, $data);
-            assert('FALSE');
+            assert(false);
         } else {
             $t = new SimpleSAML_XHTML_Template($config, 'error.php', 'errors');
             $t->data = array_merge($t->data, $data);

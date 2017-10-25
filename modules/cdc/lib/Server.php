@@ -47,7 +47,7 @@ class sspmod_cdc_Server {
 	 * @param string $domain  The domain we are a server for.
 	 */
 	public function __construct($domain) {
-		assert('is_string($domain)');
+		assert(is_string($domain));
 
 		$cdcConfig = SimpleSAML_Configuration::getConfig('module_cdc.php');
 		$config = $cdcConfig->getConfigItem($domain, NULL);
@@ -73,8 +73,8 @@ class sspmod_cdc_Server {
 	 * @param array $request  The CDC request.
 	 */
 	public function sendRequest(array $request) {
-		assert('isset($request["return"])');
-		assert('isset($request["op"])');
+		assert(isset($request['return']));
+		assert(isset($request['op']));
 
 		$request['domain'] = $this->domain;
 		$this->send($this->server, 'CDCRequest', $request);
@@ -240,7 +240,7 @@ class sspmod_cdc_Server {
 	 * @return array|NULL  The response, or NULL if no response is received.
 	 */
 	private static function get($parameter) {
-		assert('is_string($parameter)');
+		assert(is_string($parameter));
 
 		if (!isset($_REQUEST[$parameter])) {
 			return NULL;
@@ -285,8 +285,8 @@ class sspmod_cdc_Server {
 	 * @param string $parameter  The name of the query parameter.
 	 */
 	private function validate($parameter) {
-		assert('is_string($parameter)');
-		assert('isset($_REQUEST[$parameter])');
+		assert(is_string($parameter));
+		assert(isset($_REQUEST[$parameter]));
 
 		$message = (string)$_REQUEST[$parameter];
 
@@ -310,8 +310,8 @@ class sspmod_cdc_Server {
 	 * @param array $message  The CDC message.
 	 */
 	private function send($to, $parameter, array $message) {
-		assert('is_string($to)');
-		assert('is_string($parameter)');
+		assert(is_string($to));
+		assert(is_string($parameter));
 
 		$message['timestamp'] = time();
 		$message = json_encode($message);
@@ -340,7 +340,7 @@ class sspmod_cdc_Server {
 	 * @return string  The signature.
 	 */
 	private function calcSignature($rawMessage) {
-		assert('is_string($rawMessage)');
+		assert(is_string($rawMessage));
 
 		return sha1($this->key . $rawMessage . $this->key);
 	}

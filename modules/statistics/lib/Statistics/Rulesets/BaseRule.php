@@ -15,8 +15,8 @@ class sspmod_statistics_Statistics_Rulesets_BaseRule
      */
     public function __construct($statconfig, $ruleconfig, $ruleid, $available)
     {
-        assert('$statconfig instanceof SimpleSAML_Configuration');
-        assert('$ruleconfig instanceof SimpleSAML_Configuration');
+        assert($statconfig instanceof SimpleSAML_Configuration);
+        assert($ruleconfig instanceof SimpleSAML_Configuration);
         $this->statconfig = $statconfig;
         $this->ruleconfig = $ruleconfig;
         $this->ruleid = $ruleid;

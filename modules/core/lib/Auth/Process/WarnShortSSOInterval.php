@@ -16,7 +16,7 @@ class sspmod_core_Auth_Process_WarnShortSSOInterval extends SimpleSAML_Auth_Proc
 	 * @param array $state  The state of the response.
 	 */
 	public function process(&$state) {
-		assert('is_array($state)');
+		assert(is_array($state));
 
 		if (!array_key_exists('PreviousSSOTimestamp', $state)) {
 			/*

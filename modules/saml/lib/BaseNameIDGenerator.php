@@ -49,7 +49,7 @@ abstract class sspmod_saml_BaseNameIDGenerator extends SimpleSAML_Auth_Processin
 	 */
 	public function __construct($config, $reserved) {
 		parent::__construct($config, $reserved);
-		assert('is_array($config)');
+		assert(is_array($config));
 
 		if (isset($config['NameQualifier'])) {
 			$this->nameQualifier = $config['NameQualifier'];
@@ -79,8 +79,8 @@ abstract class sspmod_saml_BaseNameIDGenerator extends SimpleSAML_Auth_Processin
 	 * @param array &$state  The request state.
 	 */
 	public function process(&$state) {
-		assert('is_array($state)');
-		assert('is_string($this->format)');
+		assert(is_array($state));
+		assert(is_string($this->format));
 
 		$value = $this->getValue($state);
 		if ($value === NULL) {

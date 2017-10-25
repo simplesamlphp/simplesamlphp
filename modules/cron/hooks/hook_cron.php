@@ -5,9 +5,9 @@
  * @param array &$croninfo  Output
  */
 function cron_hook_cron(&$croninfo) {
-	assert('is_array($croninfo)');
-	assert('array_key_exists("summary", $croninfo)');
-	assert('array_key_exists("tag", $croninfo)');
+	assert(is_array($croninfo));
+	assert(array_key_exists('summary', $croninfo));
+	assert(array_key_exists('tag', $croninfo));
 
 	$cronconfig = SimpleSAML_Configuration::getConfig('module_cron.php');
 	

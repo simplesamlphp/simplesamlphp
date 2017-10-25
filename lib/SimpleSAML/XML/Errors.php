@@ -12,6 +12,8 @@
 
 namespace SimpleSAML\XML;
 
+use LibXMLError;
+
 class Errors
 {
 
@@ -108,7 +110,7 @@ class Errors
      */
     public static function formatError($error)
     {
-        assert('$error instanceof LibXMLError');
+        assert($error instanceof LibXMLError);
         return 'level=' . $error->level . ',code='  . $error->code . ',line=' . $error->line . ',col=' . $error->column .
             ',msg=' . trim($error->message);
     }
@@ -126,7 +128,7 @@ class Errors
      */
     public static function formatErrors($errors)
     {
-        assert('is_array($errors)');
+        assert(is_array($errors));
 
         $ret = '';
         foreach ($errors as $error) {

@@ -44,7 +44,7 @@ abstract class SimpleSAML_Auth_ProcessingFilter
      */
     public function __construct(&$config, $reserved)
     {
-        assert('is_array($config)');
+        assert(is_array($config));
 
         if (array_key_exists('%priority', $config)) {
             $this->priority = $config['%priority'];

@@ -26,7 +26,7 @@ class sspmod_core_Auth_Process_StatisticsWithAttribute extends SimpleSAML_Auth_P
 	public function __construct($config, $reserved) {
 		parent::__construct($config, $reserved);
 
-		assert('is_array($config)');
+		assert(is_array($config));
 
 		if (array_key_exists('attributename', $config)) {
 			$this->attribute = $config['attributename'];
@@ -50,8 +50,8 @@ class sspmod_core_Auth_Process_StatisticsWithAttribute extends SimpleSAML_Auth_P
 	 * @param array &$state  The current state.
 	 */
 	public function process(&$state) {
-		assert('is_array($state)');
-		assert('array_key_exists("Attributes", $state)');
+		assert(is_array($state));
+		assert(array_key_exists('Attributes', $state));
 
 		$logAttribute = 'NA';
 		$source = 'NA';

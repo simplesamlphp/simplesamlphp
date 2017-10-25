@@ -38,8 +38,8 @@ class sspmod_authcrypt_Auth_Source_Htpasswd extends sspmod_core_Auth_UserPassBas
      */
     public function __construct($info, $config)
     {
-        assert('is_array($info)');
-        assert('is_array($config)');
+        assert(is_array($info));
+        assert(is_array($config));
 
         // Call the parent constructor first, as required by the interface
         parent::__construct($info, $config);
@@ -79,8 +79,8 @@ class sspmod_authcrypt_Auth_Source_Htpasswd extends sspmod_core_Auth_UserPassBas
      */
     protected function login($username, $password)
     {
-        assert('is_string($username)');
-        assert('is_string($password)');
+        assert(is_string($username));
+        assert(is_string($password));
 
         foreach ($this->users as $userpass) {
             $matches = explode(':', $userpass, 2);

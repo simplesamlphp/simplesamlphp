@@ -55,7 +55,7 @@ class sspmod_core_Auth_Process_TargetedID extends SimpleSAML_Auth_ProcessingFilt
 	public function __construct($config, $reserved) {
 		parent::__construct($config, $reserved);
 
-		assert('is_array($config)');
+		assert(is_array($config));
 
 		if (array_key_exists('attributename', $config)) {
 			$this->attribute = $config['attributename'];
@@ -79,8 +79,8 @@ class sspmod_core_Auth_Process_TargetedID extends SimpleSAML_Auth_ProcessingFilt
 	 * @param array &$state  The current state.
 	 */
 	public function process(&$state) {
-		assert('is_array($state)');
-		assert('array_key_exists("Attributes", $state)');
+		assert(is_array($state));
+		assert(array_key_exists('Attributes', $state));
 
 		if ($this->attribute === NULL) {
 			if (!array_key_exists('UserID', $state)) {
@@ -152,7 +152,7 @@ class sspmod_core_Auth_Process_TargetedID extends SimpleSAML_Auth_ProcessingFilt
 	 * @return string  The unique identifier for the entity.
 	 */
 	private static function getEntityId($metadata) {
-		assert('is_array($metadata)');
+		assert(is_array($metadata));
 
 		$id = '';
 

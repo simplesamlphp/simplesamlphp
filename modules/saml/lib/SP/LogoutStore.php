@@ -76,11 +76,11 @@ class sspmod_saml_SP_LogoutStore {
 	 * @param string $sessionIndex  The SessionIndex of the user.
 	 */
 	private static function addSessionSQL(\SimpleSAML\Store\SQL $store, $authId, $nameId, $sessionIndex, $expire, $sessionId) {
-		assert('is_string($authId)');
-		assert('is_string($nameId)');
-		assert('is_string($sessionIndex)');
-		assert('is_string($sessionId)');
-		assert('is_int($expire)');
+		assert(is_string($authId));
+		assert(is_string($nameId));
+		assert(is_string($sessionIndex));
+		assert(is_string($sessionId));
+		assert(is_int($expire));
 
 		self::createLogoutTable($store);
 
@@ -108,8 +108,8 @@ class sspmod_saml_SP_LogoutStore {
 	 * @return array  Associative array of SessionIndex =>  SessionId.
 	 */
 	private static function getSessionsSQL(\SimpleSAML\Store\SQL $store, $authId, $nameId) {
-		assert('is_string($authId)');
-		assert('is_string($nameId)');
+		assert(is_string($authId));
+		assert(is_string($nameId));
 
 		self::createLogoutTable($store);
 
@@ -144,8 +144,8 @@ class sspmod_saml_SP_LogoutStore {
 	 * @return array  Associative array of SessionIndex =>  SessionId.
 	 */
 	private static function getSessionsStore(\SimpleSAML\Store $store, $authId, $nameId, array $sessionIndexes) {
-		assert('is_string($authId)');
-		assert('is_string($nameId)');
+		assert(is_string($authId));
+		assert(is_string($nameId));
 
 		$res = array();
 		foreach ($sessionIndexes as $sessionIndex) {
@@ -153,7 +153,7 @@ class sspmod_saml_SP_LogoutStore {
 			if ($sessionId === NULL) {
 				continue;
 			}
-			assert('is_string($sessionId)');
+			assert(is_string($sessionId));
 			$res[$sessionIndex] = $sessionId;
 		}
 
@@ -175,9 +175,9 @@ class sspmod_saml_SP_LogoutStore {
 	 * @param string|NULL $sessionIndex  The SessionIndex of the user.
 	 */
 	public static function addSession($authId, $nameId, $sessionIndex, $expire) {
-		assert('is_string($authId)');
-		assert('is_string($sessionIndex) || is_null($sessionIndex)');
-		assert('is_int($expire)');
+		assert(is_string($authId));
+		assert(is_string($sessionIndex) || $sessionIndex === null);
+		assert(is_int($expire));
 
 		if ($sessionIndex === NULL) {
 			/* This IdP apparently did not include a SessionIndex, and thus probably does not
@@ -227,7 +227,7 @@ class sspmod_saml_SP_LogoutStore {
 	 * @returns int|FALSE  Number of sessions logged out, or FALSE if not supported.
 	 */
 	public static function logoutSessions($authId, $nameId, array $sessionIndexes) {
-		assert('is_string($authId)');
+		assert(is_string($authId));
 
 		$store = \SimpleSAML\Store::getInstance();
 		if ($store === FALSE) {
@@ -245,7 +245,7 @@ class sspmod_saml_SP_LogoutStore {
 
 		/* Normalize SessionIndexes. */
 		foreach ($sessionIndexes as &$sessionIndex) {
-			assert('is_string($sessionIndex)');
+			assert(is_string($sessionIndex));
 			if (strlen($sessionIndex) > 50) {
 				$sessionIndex = sha1($sessionIndex);
 			}

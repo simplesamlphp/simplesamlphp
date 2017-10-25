@@ -13,8 +13,8 @@ class sspmod_exampleauth_Auth_Process_RedirectTest extends SimpleSAML_Auth_Proce
 	 * @param array &$state  The state we should update.
 	 */
 	public function process(&$state) {
-		assert('is_array($state)');
-		assert('array_key_exists("Attributes", $state)');
+		assert(is_array($state));
+		assert(array_key_exists('Attributes', $state));
 
 		// To check whether the state is saved correctly
 		$state['Attributes']['RedirectTest1'] = array('OK');

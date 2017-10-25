@@ -47,7 +47,7 @@ class AttributeValueMap extends \SimpleSAML_Auth_ProcessingFilter
     {
         parent::__construct($config, $reserved);
 
-        assert('is_array($config)');
+        assert(is_array($config));
 
         // parse configuration
         foreach ($config as $name => $value) {
@@ -104,8 +104,8 @@ class AttributeValueMap extends \SimpleSAML_Auth_ProcessingFilter
     {
         \SimpleSAML\Logger::debug('Processing the AttributeValueMap filter.');
 
-        assert('is_array($request)');
-        assert('array_key_exists("Attributes", $request)');
+        assert(is_array($request));
+        assert(array_key_exists('Attributes', $request));
         $attributes =& $request['Attributes'];
 
         if (!array_key_exists($this->sourceattribute, $attributes)) {

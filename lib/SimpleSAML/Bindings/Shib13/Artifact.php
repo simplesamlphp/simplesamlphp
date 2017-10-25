@@ -29,7 +29,7 @@ class Artifact
      */
     private static function getArtifacts()
     {
-        assert('array_key_exists("QUERY_STRING", $_SERVER)');
+        assert(array_key_exists('QUERY_STRING', $_SERVER));
 
         // We need to process the query string manually, to capture all SAMLart parameters
 
@@ -87,7 +87,7 @@ class Artifact
      */
     private static function extractResponse($soapResponse)
     {
-        assert('is_string($soapResponse)');
+        assert(is_string($soapResponse));
 
         try {
             $doc = DOMDocumentFactory::fromString($soapResponse);

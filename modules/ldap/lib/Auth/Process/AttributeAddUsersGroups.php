@@ -21,8 +21,8 @@ class sspmod_ldap_Auth_Process_AttributeAddUsersGroups extends sspmod_ldap_Auth_
      */
     public function process(&$request)
     {
-        assert('is_array($request)');
-        assert('array_key_exists("Attributes", $request)');
+        assert(is_array($request));
+        assert(array_key_exists('Attributes', $request));
 
         // Log the process
         SimpleSAML\Logger::debug(
@@ -183,7 +183,7 @@ class sspmod_ldap_Auth_Process_AttributeAddUsersGroups extends sspmod_ldap_Auth_
      */
     protected function search($memberof)
     {
-        assert('is_array($memberof)');
+        assert(is_array($memberof));
 
         // Used to determine what DN's have already been searched
         static $searched = array();
@@ -248,7 +248,7 @@ class sspmod_ldap_Auth_Process_AttributeAddUsersGroups extends sspmod_ldap_Auth_
      */
     protected function searchActiveDirectory($dn)
     {
-        assert('is_string($dn) && $dn != ""');
+        assert(is_string($dn) && $dn != '');
 
         // Shorten the variable name
         $map =& $this->attribute_map;

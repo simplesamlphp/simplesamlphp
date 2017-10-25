@@ -89,7 +89,7 @@ class Translate
      */
     private function getDictionary($name)
     {
-        assert('is_string($name)');
+        assert(is_string($name));
 
         if (!array_key_exists($name, $this->dictionaries)) {
             $sepPos = strpos($name, ':');
@@ -119,7 +119,7 @@ class Translate
      */
     public function getTag($tag)
     {
-        assert('is_string($tag)');
+        assert(is_string($tag));
 
         // first check translations loaded by the includeInlineTranslation and includeLanguageFile methods
         if (array_key_exists($tag, $this->langtext)) {
@@ -158,7 +158,7 @@ class Translate
      */
     public function getPreferredTranslation($translations)
     {
-        assert('is_array($translations)');
+        assert(is_array($translations));
 
         // look up translation of tag in the selected language
         $selected_language = $this->language->getLanguage();
@@ -395,7 +395,7 @@ class Translate
     private function readDictionaryJSON($filename)
     {
         $definitionFile = $filename.'.definition.json';
-        assert('file_exists($definitionFile)');
+        assert(file_exists($definitionFile));
 
         $fileContent = file_get_contents($definitionFile);
         $lang = json_decode($fileContent, true);
@@ -428,7 +428,7 @@ class Translate
     private function readDictionaryPHP($filename)
     {
         $phpFile = $filename.'.php';
-        assert('file_exists($phpFile)');
+        assert(file_exists($phpFile));
 
         $lang = null;
         include($phpFile);
@@ -449,7 +449,7 @@ class Translate
      */
     private function readDictionaryFile($filename)
     {
-        assert('is_string($filename)');
+        assert(is_string($filename));
 
         \SimpleSAML\Logger::debug('Template: Reading ['.$filename.']');
 

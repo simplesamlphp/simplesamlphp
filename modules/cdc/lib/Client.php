@@ -29,7 +29,7 @@ class sspmod_cdc_Client {
 	 * @param string $domain  The domain we should query the server for.
 	 */
 	public function __construct($domain) {
-		assert('is_string($domain)');
+		assert(is_string($domain));
 
 		$this->domain = $domain;
 		$this->server = new sspmod_cdc_Server($domain);
@@ -55,8 +55,8 @@ class sspmod_cdc_Client {
 	 * @param array $params  Additional parameters.
 	 */
 	public function sendRequest($returnTo, $op, array $params = array()) {
-		assert('is_string($returnTo)');
-		assert('is_string($op)');
+		assert(is_string($returnTo));
+		assert(is_string($op));
 
 		$params['op'] = $op;
 		$params['return'] = $returnTo;

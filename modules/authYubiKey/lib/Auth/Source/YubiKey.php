@@ -70,8 +70,8 @@ class sspmod_authYubiKey_Auth_Source_YubiKey extends SimpleSAML_Auth_Source {
 	 * @param array $config  Configuration.
 	 */
 	public function __construct($info, $config) {
-		assert('is_array($info)');
-		assert('is_array($config)');
+		assert(is_array($info));
+		assert(is_array($config));
 
 		// Call the parent constructor first, as required by the interface
 		parent::__construct($info, $config);
@@ -95,7 +95,7 @@ class sspmod_authYubiKey_Auth_Source_YubiKey extends SimpleSAML_Auth_Source {
 	 * @param array &$state  Information about the current authentication.
 	 */
 	public function authenticate(&$state) {
-		assert('is_array($state)');
+		assert(is_array($state));
 
 		// We are going to need the authId in order to retrieve this authentication source later
 		$state[self::AUTHID] = $this->authId;
@@ -120,14 +120,14 @@ class sspmod_authYubiKey_Auth_Source_YubiKey extends SimpleSAML_Auth_Source {
 	 * @return string  Error code in the case of an error.
 	 */
 	public static function handleLogin($authStateId, $otp) {
-		assert('is_string($authStateId)');
-		assert('is_string($otp)');
+		assert(is_string($authStateId));
+		assert(is_string($otp));
 
 		/* Retrieve the authentication state. */
 		$state = SimpleSAML_Auth_State::loadState($authStateId, self::STAGEID);
 
 		/* Find authentication source. */
-		assert('array_key_exists(self::AUTHID, $state)');
+		assert(array_key_exists(self::AUTHID, $state));
 		$source = SimpleSAML_Auth_Source::getById($state[self::AUTHID]);
 		if ($source === NULL) {
 			throw new Exception('Could not find authentication source with id ' . $state[self::AUTHID]);
@@ -178,7 +178,7 @@ class sspmod_authYubiKey_Auth_Source_YubiKey extends SimpleSAML_Auth_Source {
 	 * @return array  Associative array with the users attributes.
 	 */
 	protected function login($otp) {
-		assert('is_string($otp)');
+		assert(is_string($otp));
 
 		require_once dirname(dirname(dirname(dirname(__FILE__)))) . '/libextinc/Yubico.php';
 

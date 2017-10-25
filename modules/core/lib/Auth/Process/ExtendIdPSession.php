@@ -6,7 +6,7 @@
 class sspmod_core_Auth_Process_ExtendIdPSession extends SimpleSAML_Auth_ProcessingFilter {
 
 	public function process(&$state) {
-		assert('is_array($state)');
+		assert(is_array($state));
 
 		if (empty($state['Expire']) || empty($state['Authority'])) {
 			return;

@@ -179,7 +179,7 @@ class SimpleSAML_Memcache
      */
     public static function delete($key)
     {
-        assert('is_string($key)');
+        assert(is_string($key));
         SimpleSAML\Logger::debug("deleting key $key from memcache");
 
         // store this object to all groups of memcache servers
