@@ -139,10 +139,7 @@ The test page should contain a list of your attributes:
 ![Screenshot of the status page after a user has succesfully authenticated](resources/simplesamlphp-sp/screenshot-example.png)
 
 For a better looking, more advanced Discovery Service with tabs and live search, you may want to use the `discopower` module
-in SimpleSAMLphp. Take a look at the following blog entry for more information:
-
-  * [Blog entry about the DiscoPower module](https://rnd.feide.no/content/improved-discovery-service-live-search)
-
+contained in the SimpleSAMLphp distribution.
 
 Integrating authentication with your own application
 ----------------------------------------------------

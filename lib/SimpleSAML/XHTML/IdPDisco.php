@@ -6,7 +6,7 @@
  * discovery service pages. This should reduce code duplication.
  *
  * Experimental support added for Extended IdP Metadata Discovery Protocol by Andreas 2008-08-28
- * More information: http://rnd.feide.no/content/extended-identity-provider-discovery-service-protocol
+ * More information: https://docs.oasis-open.org/security/saml/Post2.0/sstc-saml-idp-discovery.pdf
  *
  * @author Jaime Pérez <jaime.perez@uninett.no>, UNINETT AS.
  * @author Olav Morken, UNINETT AS.
