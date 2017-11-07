@@ -17,20 +17,14 @@
     <meta name="robots" content="noindex, nofollow">
     {% block preload %}{% endblock %}
 </head>
-<body>
-    <div id="wrap">
-
-        {% block header %}{% include "_header.twig" %}{% endblock %}
-
-        <div id="content">
-        {% block contentwrapper %}
-        {% block content %}{% endblock %}
-        {% endblock %}
-        </div><!-- #content -->
-
-        <div id="footer">
-            {% block footer %}{% include "_footer.twig" %}{% endblock %}
+<body id="{{ templateId }}">
+<div id="wrap"> <!-- header -->
+    <div class="pure-g">
+        <div class="pure-u-1">
+            {% block header %}{% include "_header.twig" %}{% endblock %}
         </div>
+    </div>
+</div>
 
     </div><!-- #wrap -->
 
