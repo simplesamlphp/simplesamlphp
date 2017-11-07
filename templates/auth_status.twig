@@ -1,0 +1,76 @@
+{% set pagetitle = 'Authentication status'|trans %}
+{% extends 'base.twig' %}
+
+{% block content %}
+<h2>{{ pagetitle }}</h2>
+
+    <p>{% trans %}Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the items that are attached to your session.{% endtrans %}</p>
+
+{% if remaining %}
+    <p>{{ 'Your session is valid for %SECONDS% seconds from now.'|trans({'%SECONDS%': remaining}) }}</p>
+{% endif %}
+
+
+<h2>{{ 'Your attributes'|trans }}</h2>
+    {% set items = attributes %}
+
+{% embed '_table.twig' %}
+
+    {% block namecol %}
+    {% set attr = ('{attributes:attribute_'~(name|lower)~'}') %}
+    {% set translated = attr|trans %}
+    <td class="attrname">{% if translated != attr %} {{ translated }} <br>{% endif %} <samp>{{ name }}</samp></td>
+    {% endblock %}
+
+
+    {% block value %}
+    {% if name =='jpegPhoto'%}
+        <img src="data:image/jpeg;base64,{{ value }}" />
+    {% else %}
+        {{ value }}
+    {% endif %}
+    {% endblock %}
+
+{% endembed %}
+
+
+{% if nameid %}
+    <h2>{{ 'SAML Subject'|trans }}</h2>
+
+    {%  set items = {'NameId' : nameid.value} %}
+
+    {% if not nameid.value %}
+        {%  set items = items|merge({'NameId' : 'not set'|trans}) %}
+    {% endif %}
+
+    {% if nameid.Format %}
+        {% set items = items|merge({('Format'|trans) : nameid.format}) %}
+    {% endif %}
+
+    {% if nameid.NameQualifier %}
+        {% set items = items|merge({'NameQualifier' : nameid.NameQualifier}) %}
+    {% endif %}
+
+    {% if nameid.SPNameQualifier %}
+        {% set items = items|merge({'SPNameQualifier' : nameid.SPNameQualifier}) %}
+    {% endif %}
+
+    {% if nameid.SPProvidedID %}
+        {% set items = items|merge({'SPProvidedID' : nameid.SPProvidedID}) %}
+    {% endif %}
+
+    {% embed '_table.twig' %}
+
+    {% endembed %}
+{% endif %}
+
+
+{% if logout %}
+    <h2>{% trans %}Logout{% endtrans %}</h2>
+    <p> {{ logout }}</p>
+{% endif %}
+
+{% if logouturl %}
+    <a href="{{ logouturl }}">{{ 'Logout'|trans }}</a>
+{% endif %}
+{% endblock %}
