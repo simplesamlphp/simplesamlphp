@@ -40,6 +40,13 @@ if (array_key_exists('password', $_REQUEST)) {
 
 $errorCode = NULL;
 $errorParams = NULL;
+$queryParams = array();
+
+if (isset($state['error'])) {
+    $errorCode = $state['error']['code'];
+    $errorParams = $state['error']['params'];
+    $queryParams = array('AuthState' => $authStateId);
+}
 
 if (!empty($_REQUEST['username']) || !empty($password)) {
 	// Either username or password set - attempt to log in
@@ -95,6 +102,9 @@ $t->data['links'] = $source->getLoginLinks();
 $t->data['errorcode'] = $errorCode;
 $t->data['errorcodes'] = SimpleSAML\Error\ErrorCodes::getAllErrorCodeMessages();
 $t->data['errorparams'] = $errorParams;
+if (!empty($queryParams)) {
+    $t->data['queryParams'] = $queryParams;
+}
 
 if (isset($state['SPMetadata'])) {
 	$t->data['SPMetadata'] = $state['SPMetadata'];
