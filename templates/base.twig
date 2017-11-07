@@ -26,7 +26,24 @@
     </div>
 </div>
 
-    </div><!-- #wrap -->
+<div id="wrap"> <!-- content -->
+    <div class="pure-g">
+        <div class="pure-u-1">
+            {% block contentwrapper %}
+                {% block content %}{% endblock %}
+            {% endblock %}
+        </div>
+    </div>
+</div>
+<div id="footer">
+    <div id="wrap" > <!-- footer -->
+        <div class="pure-g">
+            <div class="pure-u-1">
+                {% block footer %}{% include "_footer.twig" %}{% endblock %}
+            </div>
+        </div>
+    </div>
+</div>
 
     <!-- postload javascript -->
     <script type="text/javascript" src="/{{ baseurlpath }}assets/js/src/script.js"></script>
