@@ -1,0 +1,151 @@
+/* ***********************************************************
+GENERAL
+************************************************************ */
+html{
+    height: 100%;
+}
+body {
+    font-family: sans-serif;
+    padding-left: 2em;
+    padding-right: 2em;
+    line-height: 1.5em;
+}
+#wrap{
+    margin: 0 2rem;
+    padding: 1rem;
+}
+#footer {
+    position: relative;
+    bottom: 0;
+    width:100%;
+    padding: 1rem;
+    background-color: #efefef;
+    text-align: center;
+}
+
+img {
+    position: relative;
+    vertical-align: middle;
+}
+
+.left {
+    float: left !important;
+}
+
+.right {
+    float: right !important;
+}
+
+.center {
+    padding: auto;
+    text-align: center;
+}
+.errorbox {
+    padding: 1.3rem;
+    background-color: #f7e4e1;
+    border-left-style: solid;
+    border-left-width: 0.3125rem;
+    border-left-color: #cc4b37;
+    margin: 0 0 1rem 0;
+    position: relative;
+    box-shadow: 0 5px 8px -6px rgba(0, 0, 0, 0.2);
+}
+.pure-button {
+    border-radius: 0;
+}
+
+/* ***********************************************************
+LANGUAGE MENU
+************************************************************ */
+.language-menu-small{
+    font-family: FontAwesome, sans-serif;
+
+}
+
+
+/* ***********************************************************
+FORMS
+************************************************************ */
+.pure-form input[type="password"], .pure-form input[type="email"], .pure-form input[type="url"], .pure-form input[type="date"], .pure-form input[type="month"], .pure-form input[type="time"], .pure-form input[type="datetime"], .pure-form input[type="datetime-local"], .pure-form input[type="week"], .pure-form input[type="tel"], .pure-form input[type="color"], .pure-form input[type="number"], .pure-form input[type="search"], .pure-form input[type="text"], .pure-form select, .pure-form textarea {
+    border-radius: 0;
+}
+.form-align{
+    position: relative;
+}
+
+.center-form{
+    display: inline-block;
+    margin-right: auto;
+    margin-left: auto;
+}
+.v-center-right{
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translate(0, -50%);
+}
+.inline{
+    margin-top: 2em;
+}
+.selectize-input{
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+}
+/* ***********************************************************
+TABLES
+************************************************************ */
+.fa {
+    font-family: FontAwesome !important;
+}
+/* ***********************************************************
+TABLES
+************************************************************ */
+
+/* ***********************************************************
+MEDIA QUERIES
+************************************************************ */
+
+@media screen and (max-width: 39.9375em) {
+    .hide-for-small-only {
+        display: none !important; } }
+
+@media screen and (max-width: 0em), screen and (min-width: 40em) {
+    .show-for-small-only {
+        display: none !important; } }
+
+@media screen and (min-width: 40em) {
+    .hide-for-medium {
+        display: none !important; } }
+
+@media screen and (max-width: 39.9375em) {
+    .show-for-medium {
+        display: none !important; } }
+
+/*.fa @font-face{*/
+    /*font-family:'FontAwesome';*/
+    /*src:url('../../../../node_modules/font-awesome/fonts/fontawesome-webfont.eot?v=4.7.0');*/
+    /*src:url('../../../../node_modules/font-awesome/fonts/fontawesome-webfont.eot?#iefix&v=4.7.0')*/
+    /*format('embedded-opentype'),*/
+    /*url('../../../../node_modules/font-awesome/fonts/fontawesome-webfont.woff2?v=4.7.0')*/
+    /*format('woff2'),*/
+    /*url('../../../../node_modules/font-awesome/fonts/fontawesome-webfont.woff?v=4.7.0') f*/
+    /*ormat('woff'),*/
+    /*url('../../../../node_modules/font-awesome/fonts/fontawesome-webfont.ttf?v=4.7.0')*/
+    /*format('truetype'),*/
+    /*url('../../../../node_modules/font-awesome/fonts/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular')*/
+    /*format('svg');*/
+    /*font-weight:normal;*/
+    /*font-style:normal*/
+/*}*/
+
+/*@media screen and (min-width: 40em) { !*640*!*/
+
+/*}*/
+/*@media screen and (min-width: 64em) { !*1024px*!*/
+
+/*}*/
+/*@media screen and (max-width: 18.75em) { !*528*!*/
+
+/*}*/
+

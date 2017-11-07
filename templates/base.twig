@@ -4,7 +4,11 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="initial-scale=1.0">
     <title>{{ pagetitle }}</title>
-    <link rel="stylesheet" type="text/css" href="/{{ baseurlpath }}resources/default.css">
+    <link rel="stylesheet" type="text/css" href="/{{ baseurlpath }}assets/css/lib/pure-min.css">
+    <link rel="stylesheet" type="text/css" href="/{{ baseurlpath }}assets/css/lib/selectize.default.css" />
+    <link rel="stylesheet" type="text/css" href="/{{ baseurlpath }}assets/css/lib/font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" type="text/css" href="/{{ baseurlpath }}assets/css/src/default.css">
+
     <link rel="icon" type="image/icon" href="/{{ baseurlpath }}resources/icons/favicon.ico">
     {% if jquery and jquery.css %}
     <link rel="stylesheet" media="screen" type="text/css" href="/{{ baseurlpath }}resources/uitheme1.8/jquery-ui.css" />
@@ -31,7 +35,7 @@
     </div><!-- #wrap -->
 
     <!-- postload javascript -->
-    <script type="text/javascript" src="/{{ baseurlpath }}resources/script.js"></script>
+    <script type="text/javascript" src="/{{ baseurlpath }}assets/js/src/script.js"></script>
     {% if jquery %}
     {% set version = '1.8' %}
     {% if jquery.version %}
@@ -49,5 +53,8 @@
     {% if clipboard %}
     <script type="text/javascript" src="/{{ baseurlpath }}resources/clipboard.min.js"></script>
     {% endif %}
+    <script type="text/javascript" src="/{{ baseurlpath }}assets/js/lib/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="/{{ baseurlpath }}assets/js/lib/selectize.min.js"></script>
+    <script type="text/javascript" src="/{{ baseurlpath }}assets/js/src/language.js"></script>
     {% block postload %}{% endblock %}
 </body></html>

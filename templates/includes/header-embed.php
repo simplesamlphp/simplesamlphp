@@ -10,7 +10,7 @@ if(array_key_exists('header', $this->data)) {
 }
 ?></title>
 
-	<link rel="stylesheet" type="text/css" href="/<?php echo $this->data['baseurlpath']; ?>resources/default.css" />
+	<link rel="stylesheet" type="text/css" href="/<?php echo $this->data['baseurlpath']; ?>assets/css/src/old-default.css" />
 	<meta name="robots" content="noindex, nofollow" />
 
 <?php
