@@ -72,7 +72,7 @@ class Redis extends Store
 
         $result = $this->redis->get("{$type}.{$key}");
 
-        if ($result === false) {
+        if ($result === false || $result === null) {
             return null;
         }
 
