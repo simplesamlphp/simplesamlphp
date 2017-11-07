@@ -76,7 +76,16 @@ if (!empty($_REQUEST['username']) || !empty($password)) {
 		/* Login failed. Extract error code and parameters, to display the error. */
 		$errorCode = $e->getErrorCode();
 		$errorParams = $e->getParameters();
+		$state['error']= array(
+		    'code' => $errorCode,
+            'params' => $errorParams
+        );
+        $authStateId = SimpleSAML_Auth_State::saveState($state, sspmod_core_Auth_UserPassBase::STAGEID);
+        $queryParams = array('AuthState' => $authStateId);
 	}
+	if (isset($state['error'])){
+	    unset($state['error']);
+    }
 }
 
 $globalConfig = SimpleSAML_Configuration::getInstance();
