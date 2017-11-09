@@ -9,9 +9,13 @@ body {
     font-family: sans-serif;
     line-height: 1.5em;
 }
+#header{
+}
 #wrap{
+    width: 80%;
+    max-width: 1100px;
+    margin: auto;
     position:relative;
-    margin: 1.5rem;
     padding-bottom: 4rem;
 }
 #footer {
@@ -49,11 +53,11 @@ img {
 }
 .errorbox {
     padding: 1.3rem;
+    margin: 0 0 1rem 0;
     background-color: #f7e4e1;
     border-left-style: solid;
     border-left-width: 0.3125rem;
     border-left-color: #cc4b37;
-    margin: 0 0 1rem 0;
     position: relative;
     box-shadow: 0 5px 8px -6px rgba(0, 0, 0, 0.2);
 }
