@@ -134,6 +134,9 @@ MEDIA QUERIES
     body {
         font-size: 0.875em;
     }
+    .pure-form .pure-input-sm-1-1{
+        width: 100%;
+    }
 }
 @media screen and (max-width: 39.9375em) {
     .hide-for-small-only {
@@ -142,12 +145,6 @@ MEDIA QUERIES
         min-width: 145px;}
     .selectize-input{
         padding-right: 0.1rem;
-    }
-    .pure-form label {
-         display: none !important;
-     }
-    .pure-form .pure-input-sm-1-1{
-        width: 100%;
     }
 }
 
