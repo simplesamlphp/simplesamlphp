@@ -10,7 +10,7 @@
         {% endif %}
     {% endfor %}
 
-        <select  class="pure-input-1-4 right language-menu selectize" name="language" id="language_selector">
+        <select  class="pure-input-1-4 language-menu selectize" name="language" id="language_selector">
     {% for key, lang in languageBar -%}
         {%- if key == currentLanguage -%}
             <option value="{{ key }}" selected="selected">{{ lang.name }}</option>
