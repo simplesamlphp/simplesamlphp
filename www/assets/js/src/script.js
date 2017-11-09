@@ -39,3 +39,8 @@ function SimpleSAML_hide(id) {
 
   element.style.display = 'none';
 }
+
+$(document).ready(function() {
+    $('.language-menu').selectize();
+    $('#organization').selectize();
+});

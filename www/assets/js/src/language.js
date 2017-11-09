@@ -15,7 +15,4 @@ $(document).ready(function() {
         }
     });
 
-    $('.language-menu').selectize();
-    $('.language-menu-small').selectize();
-
 });
