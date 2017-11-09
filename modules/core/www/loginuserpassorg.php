@@ -50,7 +50,7 @@ if (array_key_exists('organization', $_REQUEST)) {
 $errorCode = NULL;
 $errorParams = NULL;
 if ($organizations === NULL || !empty($organization)) {
-	if (!empty($username) && !empty($password)) {
+	if (!empty($username) || !empty($password)) {
 
 		if ($source->getRememberUsernameEnabled()) {
 			$sessionHandler = \SimpleSAML\SessionHandler::getSessionHandler();
