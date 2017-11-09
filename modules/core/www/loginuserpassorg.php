@@ -49,6 +49,14 @@ if (array_key_exists('organization', $_REQUEST)) {
 
 $errorCode = NULL;
 $errorParams = NULL;
+$queryParams = array();
+
+if (isset($state['error'])) {
+    $errorCode = $state['error']['code'];
+    $errorParams = $state['error']['params'];
+    $queryParams = array('AuthState' => $authStateId);
+}
+
 if ($organizations === NULL || !empty($organization)) {
 	if (!empty($username) || !empty($password)) {
 
@@ -66,7 +74,16 @@ if ($organizations === NULL || !empty($organization)) {
 			// Login failed. Extract error code and parameters, to display the error
 			$errorCode = $e->getErrorCode();
 			$errorParams = $e->getParameters();
+            $state['error']= array(
+                'code' => $errorCode,
+                'params' => $errorParams
+            );
+            $authStateId = SimpleSAML_Auth_State::saveState($state, sspmod_core_Auth_UserPassOrgBase::STAGEID);
+            $queryParams = array('AuthState' => $authStateId);
 		}
+        if (isset($state['error'])){
+            unset($state['error']);
+        }
 	}
 }
 
@@ -83,6 +100,10 @@ if (isset($_COOKIE[$source->getAuthId() . '-username'])) $t->data['rememberUsern
 $t->data['errorcode'] = $errorCode;
 $t->data['errorcodes'] = SimpleSAML\Error\ErrorCodes::getAllErrorCodeMessages();
 $t->data['errorparams'] = $errorParams;
+
+if (!empty($queryParams)) {
+    $t->data['queryParams'] = $queryParams;
+}
 
 if ($organizations !== NULL) {
 	$t->data['selectedOrg'] = $organization;
