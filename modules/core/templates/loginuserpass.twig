@@ -82,8 +82,9 @@
 
                 <div class="pure-control-group">
                     <label for="organization">{{ 'Organization'|trans }}</label>
+                    <div class="pure-select pure-input-1-2 pure-input-sm-1-1">
 
-                        <select name="organization" class="pure-select pure-input-1-2 pure-input-sm-1-1 selectize" id="orgnz"tabindex="3">
+                        <select name="organization" class="selectize" id="organization" tabindex="3">
                             {{ selectedOrg ?: null }}
                             {% for id, orgDesc in organizations %}
                                 {% if id == selectedOrg %}
@@ -96,7 +97,7 @@
                                 {% endif %}
                             {% endfor %}
                         </select>
-
+                    </div>
                 </div> <!--pure-control-group-->
                 {% endif %}
             </div> <!-- form-align-->

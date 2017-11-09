@@ -106,14 +106,13 @@ FORMS
     transform: translate(8px, 0);
 }
 .pure-select{
-    position: inherit;
     float: right;
 }
 div .item{
     float: left;
 }
-.selectize-dropdown .single .selectize{
-    z-index: 5;
+.selectize-dropdown{
+    text-align: left;
 }
 
 /* ***********************************************************
