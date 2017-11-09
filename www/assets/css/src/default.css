@@ -3,24 +3,31 @@ GENERAL
 ************************************************************ */
 html{
     height: 100%;
+
 }
 body {
     font-family: sans-serif;
-    padding-left: 2em;
-    padding-right: 2em;
     line-height: 1.5em;
 }
 #wrap{
-    margin: 0 2rem;
-    padding: 1rem;
+    position:relative;
+    margin: 1.5rem;
+    padding-bottom: 4rem;
 }
 #footer {
-    position: relative;
+    position: fixed;
     bottom: 0;
+    height:4rem;
     width:100%;
-    padding: 1rem;
+    padding: 0.3rem;
     background-color: #efefef;
     text-align: center;
+    z-index: 5;
+}
+#footer p {
+    position: relative;
+    bottom: 0;
+    font-size: .75em;
 }
 
 img {
