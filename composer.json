@@ -46,7 +46,6 @@
     "require-dev": {
         "ext-pdo_sqlite": "*",
         "phpunit/phpunit": "~4.8",
-        "satooshi/php-coveralls": "^1.0",
         "mikey179/vfsStream": "~1.6",
         "friendsofphp/php-cs-fixer": "^2.2"
     },
