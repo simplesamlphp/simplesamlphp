@@ -35,12 +35,18 @@ authentication source:
                     'en' => 'Log in using a SAML SP',
                     'es' => 'Entrar usando un SP SAML',
                 ),
+                'help' => array(
+                    'en' => 'Login here if you are a student',
+                ),
                 'css-class' => 'SAML',
             ),
             'example-admin' => array(
                 'text' => array(
                     'en' => 'Log in using the admin password',
                     'es' => 'Entrar usando la contraseña de administrador',
+                ),
+                'help' => array(
+                    'en' => 'Login here if you are a teacher',
                 ),
             ),
         ),
@@ -77,8 +83,8 @@ compatible fashion so both cases should work.
 
 Each source in the sources array has a key and a value. As
 mentioned above the key is the authsource identifier and the value
-is another array with two optional keys: 'text' and 'css-class'.
-The text element is another array with localized strings for one
+is another array with two optional keys: 'text', 'help', and 'css-class'.
+The text and help elements are another array with localized strings for one
 or more languages. These texts will be shown in the selectsource.php
 view. Note that you should at least enter the text in the default
 language as specified in your config.php file. The css-class
