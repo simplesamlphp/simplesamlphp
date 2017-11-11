@@ -23,6 +23,9 @@ foreach($this->data['sources'] as $source) {
 	echo '<input type="submit" name="' . htmlspecialchars($name) . '"' . $autofocus . ' ' .
 		'id="button-' . htmlspecialchars($source['source']) . '" ' .
 		'value="' . htmlspecialchars($this->t($source['text'])) . '" />';
+	if ($source['help']) {
+		echo '<p>' . htmlspecialchars($this->t($source['help'])) . '</p>';
+	}
 	echo '</li>';
 }
 ?>
