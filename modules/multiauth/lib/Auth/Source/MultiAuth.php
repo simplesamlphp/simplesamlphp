@@ -74,7 +74,6 @@ class sspmod_multiauth_Auth_Source_MultiAuth extends SimpleSAML_Auth_Source {
                                 $help = $info['help'];
                         }
 
-
 			if (array_key_exists('css-class', $info)) {
 				$css_class = $info['css-class'];
 			} else {
