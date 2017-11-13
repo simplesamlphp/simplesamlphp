@@ -894,7 +894,7 @@ $config = array(
      * - 'validateFingerprint': The fingerprint of the certificate used to sign the metadata. You don't need this
      *                          option if you don't want to validate the signature on the metadata. Optional.
      * - 'cachedir': Directory where metadata can be cached. Optional.
-     * - 'cachelength': Maximum time metadata cah be cached, in seconds. Default to 24
+     * - 'cachelength': Maximum time metadata can be cached, in seconds. Defaults to 24
      *                  hours (86400 seconds). Optional.
      *
      * PDO metadata handler:
