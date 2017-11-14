@@ -92,7 +92,7 @@ if(!empty($this->data['htmlinject']['htmlContentHead'])) {
 
 if ($this->isLanguageRTL()) {
 ?>
-	<link rel="stylesheet" type="text/css" href="/<?php echo $this->data['baseurlpath']; ?>resources/default-rtl.css" />
+	<link rel="stylesheet" type="text/css" href="/<?php echo $this->data['baseurlpath']; ?>assets/css/src/default-rtl.css" />
 <?php	
 }
 ?>

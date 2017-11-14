@@ -40,11 +40,11 @@ img {
 }
 
 .left {
-    float: left !important;
+    float: left;
 }
 
 .right {
-    float: right !important;
+    float: right;
 }
 
 .center {
