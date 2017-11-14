@@ -4,7 +4,7 @@
 {% block content %}
 <h2>{{ pagetitle }}</h2>
 
-    <p>{% trans %}Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the items that are attached to your session.{% endtrans %}</p>
+    <p>{% trans %}Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long it lasts until it times out and all the attributes that are attached to your session.{% endtrans %}</p>
 
 {% if remaining %}
     <p>{{ 'Your session is valid for %SECONDS% seconds from now.'|trans({'%SECONDS%': remaining}) }}</p>
