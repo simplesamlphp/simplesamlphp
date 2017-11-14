@@ -74,6 +74,7 @@ LANGUAGE MENU
 .language-menu{
     float: right;
     font-family: FontAwesome, sans-serif;
+    min-width: 10rem;
 }
 
 /* ***********************************************************
@@ -100,7 +101,7 @@ FORMS
     transform: translate(0, -50%);
 }
 
-.selectize-input{
+.selectize-input, .selectize-dropdown, .selectize-input.dropdown-active{
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
     border-radius: 0;
@@ -144,8 +145,6 @@ MEDIA QUERIES
 @media screen and (max-width: 39.9375em) {
     .hide-for-small-only {
         display: none !important; }
-    .language-menu {
-        min-width: 145px;}
     .selectize-input{
         padding-right: 0.1rem;
     }
