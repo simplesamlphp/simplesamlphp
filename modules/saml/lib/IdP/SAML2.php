@@ -517,14 +517,13 @@ class sspmod_saml_IdP_SAML2
             'idpEntityID' => $idpMetadata->getString('entityid'),
             'partial'     => $partial
         ));
-        $dst = $spMetadata->getEndpointPrioritizedByBinding(
-            'SingleLogoutService',
-            array(
-                $state['saml:Binding'],
-                \SAML2\Constants::BINDING_HTTP_REDIRECT,
-                \SAML2\Constants::BINDING_HTTP_POST
-            )
-        );
+        
+        $bindings = array(\SAML2\Constants::BINDING_HTTP_REDIRECT, \SAML2\Constants::BINDING_HTTP_POST);
+        if (array_key_exists('saml:Binding', $state)){
+            array_unshift($bindings, $state['saml:Binding']);
+        }
+        $dst = $spMetadata->getEndpointPrioritizedByBinding('SingleLogoutService', $bindings);
+        
         $binding = \SAML2\Binding::getBinding($dst['Binding']);
         if (isset($dst['ResponseLocation'])) {
             $dst = $dst['ResponseLocation'];

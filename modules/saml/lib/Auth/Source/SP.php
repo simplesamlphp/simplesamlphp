@@ -285,11 +285,11 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 				\SAML2\Constants::BINDING_HOK_SSO)
 			);
 		} else {
-			$dst = $idpMetadata->getDefaultEndpoint('SingleSignOnService', array(
-                $state['saml:Binding'],
-				\SAML2\Constants::BINDING_HTTP_REDIRECT,
-				\SAML2\Constants::BINDING_HTTP_POST)
-			);
+            $bindings = array(\SAML2\Constants::BINDING_HTTP_REDIRECT, \SAML2\Constants::BINDING_HTTP_POST);
+            if (array_key_exists('saml:Binding', $state)){
+                array_unshift($bindings, $state['saml:Binding']);
+            }
+			$dst = $idpMetadata->getDefaultEndpoint('SingleSignOnService', $bindings);
 		}
 		$ar->setDestination($dst['Location']);
 
@@ -620,10 +620,11 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 
 		$idpMetadata = $this->getIdPMetadata($idp);
 
-		$endpoint = $idpMetadata->getEndpointPrioritizedByBinding('SingleLogoutService', array(
-			$state['saml:Binding'],
-			\SAML2\Constants::BINDING_HTTP_REDIRECT,
-			\SAML2\Constants::BINDING_HTTP_POST), FALSE);
+        $bindings = array(\SAML2\Constants::BINDING_HTTP_REDIRECT, \SAML2\Constants::BINDING_HTTP_POST);
+        if (array_key_exists('saml:Binding', $state)){
+            array_unshift($bindings, $state['saml:Binding']);
+        }
+		$endpoint = $idpMetadata->getEndpointPrioritizedByBinding('SingleLogoutService', $bindings, FALSE);
 		if ($endpoint === FALSE) {
 			SimpleSAML\Logger::info('No logout endpoint for IdP ' . var_export($idp, TRUE) . '.');
 			return;
