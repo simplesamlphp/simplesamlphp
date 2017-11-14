@@ -71,6 +71,8 @@
 {% endif %}
 
 {% if logouturl %}
-    <a href="{{ logouturl }}">{{ 'Logout'|trans }}</a>
+    <div class="center">
+        <a class="pure-button pure-button-primary" href="{{ logouturl }}">{{ 'Logout'|trans }}</a>
+    </div>
 {% endif %}
 {% endblock %}
