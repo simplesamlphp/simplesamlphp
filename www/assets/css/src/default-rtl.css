@@ -63,8 +63,50 @@ fieldset.fancyfieldset legend {
 
 /* Reverse Float Left <-> Right */
 .float-r {
-	float: left;
-}
+	 float: left;
+ }
 .float-l {
 	float: right;
+}
+.right {
+	float: left;
+}
+.left {
+	float: right;
+}
+.v-center-right{
+	right: 0;
+}
+
+/*selectize elements*/
+div .item{
+	float: right;
+}
+.selectize-input{
+	padding-right:8px;
+}
+.selectize-input:after{
+	transform: translate(-8px, 0);
+}
+
+/*purecss elements*/
+.pure-form-aligned .pure-control-group label {
+	text-align: left;
+	margin: 0 0 0 1em;
+}
+@media only screen and (max-width : 480px) {
+	.pure-form-aligned .pure-control-group label {
+		text-align: right;
+	}
+}
+.pure-form-aligned .pure-controls {
+	margin: 1.5em 11em 0 0;
+}
+.pure-form .pure-help-inline,
+.pure-form-message-inline {
+	padding-left: 0;
+	padding-right: 0.3em;
+}
+.pure-select{
+	float: left;
 }
