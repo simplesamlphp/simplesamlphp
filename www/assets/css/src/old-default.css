@@ -118,7 +118,7 @@ dt {
 }
 
 #header {
-    background: #666 url("header-bkg.png") repeat-x 0 100%;
+    background: #666 url('../../rsc/header-bkg.png') repeat-x 0 100%;
     margin: 0px;
     padding: 0 0 8px;
 }
