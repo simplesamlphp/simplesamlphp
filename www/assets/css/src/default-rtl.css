@@ -110,3 +110,9 @@ div .item{
 .pure-select{
 	float: left;
 }
+.pure-table-attributes ul{
+	margin:0;
+}
+.pure-table-attributes li{
+	margin:0;
+}
