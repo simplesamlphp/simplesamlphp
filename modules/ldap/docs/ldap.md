@@ -569,6 +569,7 @@ Intention is to filter in `ou=groups,dc=example,dc=com` for
         'class' => 'ldap:AttributeAddUsersGroups',
         'ldap.product' => 'OpenLDAP',
         'ldap.basedn' => 'ou=groups,dc=example,dc=org',
+        'attribute.username' => 'uid',
         'attribute.member' => 'cn',
         'attribute.memberof' => 'memberUid',
     ),

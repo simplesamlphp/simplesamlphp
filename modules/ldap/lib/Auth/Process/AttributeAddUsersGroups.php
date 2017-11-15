@@ -122,12 +122,12 @@ class sspmod_ldap_Auth_Process_AttributeAddUsersGroups extends sspmod_ldap_Auth_
                 // Print group search string and search for all group names
                 $openldap_base = $this->config->getString('ldap.basedn','ou=groups,dc=example,dc=com');
                 SimpleSAML\Logger::debug(
-                    $this->title . "Searching for groups in ldap.basedn ".$openldap_base." with filter (".$map['memberof']."=".$attributes['uid'][0].") and attributes ".$map['member']
+                    $this->title . "Searching for groups in ldap.basedn ".$openldap_base." with filter (".$map['memberof']."=".$attributes[$map['username']][0].") and attributes ".$map['member']
                 );
                 $groups = array();
                 try {
-                    // Intention is to filter in 'ou=groups,dc=example,dc=com' for '(memberUid = <UID>)' and take only the attributes 'cn' (=name of the group)
-                    $all_groups = $this->getLdap()->searchformultiple( $openldap_base, array($map['memberof'] => $attributes['uid'][0]) , array($map['member']));
+                    // Intention is to filter in 'ou=groups,dc=example,dc=com' for '(memberUid = <value of attribute.username>)' and take only the attributes 'cn' (=name of the group)
+                    $all_groups = $this->getLdap()->searchformultiple( $openldap_base, array($map['memberof'] => $attributes[$map['username']][0]) , array($map['member']));
                 } catch (SimpleSAML_Error_UserNotFound $e) {
                     break; // if no groups found return with empty (still just initialized) groups array
                 }
