@@ -562,8 +562,8 @@ required, see the config info above for details.
 	)
 
 Example for unsupported OpenLDAP usage. 
-Intention is to filter in 'ou=groups,dc=example,dc=com' for 
-'(memberUid = <UID>)' and take only the attributes 'cn' (=name of the group).
+Intention is to filter in `ou=groups,dc=example,dc=com` for
+`(memberUid = <UID>)` and take only the attribute `cn` (=name of the group).
 
     50 => array(
         'class' => 'ldap:AttributeAddUsersGroups',
