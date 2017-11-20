@@ -46,6 +46,8 @@ Released TBD
   * Make redirections more resilient.
   * Fixed empty protocolSupportEnumeration in AttributeAuthorityDescriptor.
   * Other bug fixes and numerous documentation enhancements.
+  * Fixed a bug in the Redis store that could lead to incorrect
+    _duplicate assertion_ errors.
 
 ### API and user interface
   * Updated to Xmlseclibs 3.0.
