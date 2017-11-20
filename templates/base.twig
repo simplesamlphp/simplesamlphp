@@ -43,28 +43,25 @@
         </div>
     </div>
 
-
     <!-- postload javascript -->
-    {% if jquery %}
-    {% set version = '1.8' %}
-    {% if jquery.version %}
-    {% set version = jquery.version %}
-    {% endif %}
-    {% if version == '1.8' %}
-    {% if jquery.core %}
+    {% spaceless %}{% if jquery %}
+        {% set version = '1.8' %}
+        {% if jquery.version %}
+            {% set version = jquery.version %}
+        {% endif %}
+        {% if version == '1.8' %}
+            {% if jquery.core %}
     <script type="text/javascript" src="/{{ baseurlpath }}resources/jquery-1.8.js"></script>
-    {% endif %}
-    {% if jquery.ui %}
+            {% endif %}
+            {% if jquery.ui %}
     <script type="text/javascript" src="/{{ baseurlpath }}resources/jquery-ui-1.8.js"></script>
-    {% endif %}
-    {% endif %}
-    {% endif %}
-    {% if clipboard %}
-    <script type="text/javascript" src="/{{ baseurlpath }}resources/clipboard.min.js"></script>
-    {% endif %}
+            {% endif %}
+        {% endif %}
+    {% endif %}{% endspaceless -%}
+    <script type="text/javascript" src="/{{ baseurlpath }}assets/js/lib/clipboard.min.js"></script>
     <script type="text/javascript" src="/{{ baseurlpath }}assets/js/lib/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="/{{ baseurlpath }}assets/js/lib/selectize.min.js"></script>
     <script type="text/javascript" src="/{{ baseurlpath }}assets/js/src/language.js"></script>
     <script type="text/javascript" src="/{{ baseurlpath }}assets/js/src/script.js"></script>
-    {% block postload %}{% endblock %}
+{% block postload %}{% endblock %}
 </body></html>

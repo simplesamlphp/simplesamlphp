@@ -40,6 +40,11 @@ function SimpleSAML_hide(id) {
   element.style.display = 'none';
 }
 
+function metadata(index) {
+    var clipboard = new Clipboard('#btn'+index);
+    console.log();
+}
+
 $(document).ready(function() {
     $('.language-menu').selectize();
     $('#organization').selectize();
