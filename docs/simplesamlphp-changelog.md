@@ -8,7 +8,7 @@ See the upgrade notes for specific information about upgrading.
 
 ## Version 1.15.0
 
-Released TBD
+Released 2017-11-20
 
 ### New features
   * Added support for authenticated web proxies with the `proxy.auth` setting.
@@ -46,8 +46,8 @@ Released TBD
   * Make redirections more resilient.
   * Fixed empty protocolSupportEnumeration in AttributeAuthorityDescriptor.
   * Other bug fixes and numerous documentation enhancements.
-  * Fixed a bug in the Redis store that could lead to incorrect _duplicate
-    assertion_errors.
+  * Fixed a bug in the Redis store that could lead to incorrect
+    _duplicate assertion_ errors.
 
 ### API and user interface
   * Updated to Xmlseclibs 3.0.
