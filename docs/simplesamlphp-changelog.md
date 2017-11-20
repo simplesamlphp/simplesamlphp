@@ -8,7 +8,7 @@ See the upgrade notes for specific information about upgrading.
 
 ## Version 1.15.0
 
-Released TBD
+Released 2017-11-20
 
 ### New features
   * Added support for authenticated web proxies with the `proxy.auth` setting.
