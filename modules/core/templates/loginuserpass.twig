@@ -29,11 +29,11 @@
     </div>
     {% endif %}
 
-    <h2>{{ 'Enter your username and password'|trans }}</h2>
+    <h1>{{ 'Enter your username and password'|trans }}</h1>
 
     <p class="logintext">{{ 'A service has requested you to authenticate yourself. Please enter your username and password in the form below.'|trans }}</p>
-
-    <div class="center inline">
+    <br>
+    <div class="center">
         <form class="pure-form pure-form-aligned center-form" action="?" method="post" name="f">
             <div class="form-align">
 
@@ -44,84 +44,77 @@
 
                 <div class="pure-control-group">
                     <label for="username">{{ 'Username'|trans }}</label>
-
-                    <input id="username" {{ forceUsername ? 'disabled="disabled"' }} type="text" name="username"
-
-                    {% spaceless %}{% if not forceUsername %}
-                       tabindex="1" value="{{ username }}">
-
-                        {% if rememberUsernameEnabled and not forceUsername %}
-                        <span class="pure-form-message-inline">
-                            <input id="remember_username" type="checkbox" tabindex="4"
-                            {{ rememberUsernameChecked ? 'checked="checked"' }} name="remember_username" value="Yes"/>
-                            <small>{{ 'Remember my username'|trans }}</small>
-                        </span>
-                        {% endif %}
-
-                    {% if rememberUsernameEnabled and not forceUsername %}{#for mobile#}{% endif %}
-                    {% endif %}
-                    {% endspaceless %}
+                    <input id="username" {{ forceUsername ? 'disabled="disabled"' }} type="text" name="username" class="edge"{% spaceless %}
+            {%- if not forceUsername %} tabindex="1" value="{{ username }}"{% endif %}{% endspaceless %}>
+                {% if rememberUsernameEnabled and not forceUsername -%}
+                </div>
+                <div class="pure-controls pure-form-message">
+                    <label for="remember_username" class="pure-checkbox">
+                        <input id="remember_username" type="checkbox" tabindex="4"
+                                {{ rememberUsernameChecked ? 'checked="checked"' }} name="remember_username" value="Yes"/>
+                        <small>{{ 'Remember my username'|trans }}</small>
+                    </label>
+                {% endif -%}
                 </div>
 
                 <div class="pure-control-group">
                     <label for="password">{{ 'Password'|trans}}</label>
+                    <input id="password" type="password" tabindex="2" name="password" class="edge"/>
 
-                    <input id="password" type="password" tabindex="2" name="password" />
-
-                    {% if rememberMeEnabled %}
-                    <span class="pure-form-message-inline">
-                        <input id="remember_me" type="checkbox" tabindex="5"
-                                {{ ememberMeChecked ? 'checked="checked"' }} name="remember_me" value="Yes"/>
-                        <small>{{ 'Remember me'|trans }}</small>
-                    </span>
-                    {% endif %}
+                {% if rememberMeEnabled -%}
                 </div>
-
-
-                {% if organizations is defined %}
-
+                <div class="pure-controls pure-form-message">
+                    <label for="remember_me" class="pure-checkbox">
+                    <input id="remember_me" type="checkbox" tabindex="5"
+                            {{ rememberMeChecked ? 'checked="checked"' }} name="remember_me" value="Yes"/>
+                        <small>{{ 'Remember me'|trans }}</small>
+                    </label>
+                {% endif -%}
+                </div>
+                {% if organizations is defined -%}
                 <div class="pure-control-group">
                     <label for="organization">{{ 'Organization'|trans }}</label>
                     <div class="pure-select right pure-input-1-2 pure-input-sm-1-1">
-
                         <select name="organization" class="selectize" id="organization" tabindex="3">
                             {{ selectedOrg ?: null }}
-                            {% for id, orgDesc in organizations %}
-                                {% if id == selectedOrg %}
-                                    {% set selected = 'selected="selected"' %}
-                                {% else %}
-                                    {% set selected = '' %}
-                                {% endif %}
-                                {% if orgDesc %}
+                            {%- for id, orgDesc in organizations -%}
+                                {% if id == selectedOrg -%}
+                                    {%- set selected = 'selected="selected"' %}
+                                {%- else -%}
+                                    {% set selected = '' -%}
+                                {% endif -%}
+                                {% if orgDesc -%}
                                     <option value="{{ id }}" {{ selected }}>{{ orgDesc|trans }}</option>
-                                {% endif %}
+                                {% endif -%}
                             {% endfor %}
                         </select>
                     </div>
                 </div> <!--pure-control-group-->
-                {% endif %}
-            </div> <!-- form-align-->
-            <div class="inline">
-                <button class="pure-button pure-button-primary pure-input-1-2 pure-input-sm-1-1 right" type ="submit" onclick="this.value='{{ 'Processing...'|trans }}'; this.disabled=true;" tabindex="6">
+            {%- endif %}
 
-                    {{ 'Login'|trans }}
-                </button>
-            </div>
-            {% for name, value in stateparams %}
+            </div> <!-- form-align-->
+            <br><br>
+            <button class="pure-button pure-button-primary pure-input-1-2 pure-input-sm-1-1 right" type="submit" onclick="this.value='{{ 'Processing...'|trans }}';" tabindex="6">
+                {{ 'Login'|trans }}
+            </button>
+
+            {% for name, value in stateparams -%}
                 <input type="hidden" name="{{ name }}" value="{{ value }}" />
-            {% endfor %}
+            {%- endfor %}
         </form>
+    </div><!--center inline-->
+    {% if links -%}
+    <ul>
+        {% for link in links %}
+        <li><a href="{{ link.href }}">{{ link['text']|trans }}</a></li>
+        {% endfor %}
+    </ul>
+    {%- endif %}
+
+    <br><br>
+    <div class="pure-form-message">
+        <strong>{{ 'Help! I don\'t remember my password.'|trans }}</strong>
+        <p>{{ 'Without your username and password you cannot authenticate yourself for access to the service. There may be someone that can help you. Consult the help desk at your organization!'|trans }}</p>
     </div>
-        {% if not links %}
-        <ul>
-            {% for link in links %}
-            <li><a href="{{ link.href }}">{{ link['text']|trans }}</a></li>
-            {% endfor %}
-        </ul>
-        {% endif %}
-        <div class="inline">
-            <h3>{{ 'Help! I don\'t remember my password.'|trans }}</h3>
-            <p>{{ 'Without your username and password you cannot authenticate yourself for access to the service. There may be someone that can help you. Consult the help desk at your organization!'|trans }}</p>
-        </div>
 
 {% endblock %}
