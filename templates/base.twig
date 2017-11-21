@@ -18,29 +18,21 @@
     {% block preload %}{% endblock %}
 </head>
 <body id="{{ templateId }}">
-<div id="wrap"> <!-- header -->
-    <div class="pure-g">
-        <div class="pure-u-1">
-            {% block header %}{% include "_header.twig" %}{% endblock %}
-        </div>
-    </div>
+    <div class="container">
+{% block header %}{% include "_header.twig" %}{% endblock %}
 
-    <div id="content"> <!-- content -->
-        <div class="pure-g">
-            <div class="pure-u-1">
-                {% block contentwrapper %}
-                    {% block content %}{% endblock %}
-                {% endblock %}
-            </div>
+    <div id="content">
+        <div class="wrap">
+            {% block contentwrapper -%}
+                {% block content %}{% endblock -%}
+            {% endblock %}
         </div>
-    </div>
-</div>
-    <div id="footer">
-        <div class="pure-g">
-            <div class="pure-u-1">
-                {% block footer %}{% include "_footer.twig" %}{% endblock %}
-            </div>
-        </div>
+    </div><!-- content -->
+    <div id="push"></div>
+    </div><!-- container -->
+
+    <div class="foot">
+{% block footer %}{% include "_footer.twig" %}{% endblock %}
     </div>
 
     <!-- postload javascript -->
@@ -58,8 +50,8 @@
             {% endif %}
         {% endif %}
     {% endif %}{% endspaceless -%}
-    <script type="text/javascript" src="/{{ baseurlpath }}assets/js/lib/clipboard.min.js"></script>
     <script type="text/javascript" src="/{{ baseurlpath }}assets/js/lib/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="/{{ baseurlpath }}assets/js/lib/clipboard.min.js"></script>
     <script type="text/javascript" src="/{{ baseurlpath }}assets/js/lib/selectize.min.js"></script>
     <script type="text/javascript" src="/{{ baseurlpath }}assets/js/src/language.js"></script>
     <script type="text/javascript" src="/{{ baseurlpath }}assets/js/src/script.js"></script>

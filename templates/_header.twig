@@ -1,26 +1,39 @@
-<div id="header">
-    <form id="SelectLang" class="pure-form" method="get">
-    {% if not hideLanguageBar %}
-        <div id="languagebar" class="right">
-    {% for name, value in queryParams %}
-        {%- if value -%}
-            <input type="hidden" name="{{ name }}" value="{{ value }}" />
-        {%- else %}
-            <input type="hidden" name="{{ name }}" />
-        {% endif %}
-    {% endfor %}
+        <div id="header">
+            <div class="wrap">
+                <div class="left">
+                    <div class="v-center logo-header">
+                        <div id="logo">
+                            <img class="pure-img" src="" alt="LOGO">
+                        </div>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="v-center language-bar">
+                        <form id="SelectLang" class="pure-form" method="get">
+                            {% if not hideLanguageBar -%}
+                            <div id="languagebar">
+                            {% for name, value in queryParams -%}
+                                {% if value -%}
+                                <input type="hidden" name="{{ name }}" value="{{ value }}" />
+                                {%- else -%}
+                                <input type="hidden" name="{{ name }}" />
+                                {%- endif -%}
+                            {%- endfor %}
 
-        <select  class="pure-input-1-4 language-menu selectize" name="language" id="language_selector">
-    {% for key, lang in languageBar -%}
-        {%- if key == currentLanguage -%}
-            <option value="{{ key }}" selected="selected">&#xf1ab;  {{ lang.name }}</option>
-        {%- else -%}
-            <option value="{{ key }}">{{ lang.name }}</option>
-        {%- endif -%}
-    {% endfor %}
-        </select>
-        </div>
-    {% endif %}
-    </form>
-</div>
+                                <select  class="pure-input-1-4 language-menu selectize" name="language" id="language_selector">
+                                    {% for key, lang in languageBar -%}
+                                    {% if key == currentLanguage -%}
+                                    <option value="{{ key }}" selected="selected">&#xf1ab;  {{ lang.name }}</option>
+                                    {% else -%}
+                                    <option value="{{ key }}">{{ lang.name }}</option>
+                                    {% endif -%}
+                                {% endfor -%}
+                                </select>
+                            </div>
+                        {% endif -%}
+                        </form>
+                    </div>
+                </div>
+            </div> <!-- wrap -->
+        </div> <!-- header -->
 

@@ -1,44 +1,24 @@
 /* ***********************************************************
 GENERAL
 ************************************************************ */
-html{
+* {
+    margin:0;
+    padding:0;
+}
+html, body{
     height: 100%;
-
 }
 body {
     font-family: sans-serif;
-    line-height: 1.5em;
+    line-height: 1.5;
+    min-height: 100%;
 }
-#header{
-}
-#wrap{
+.wrap{
     width: 80%;
     max-width: 1100px;
     margin: auto;
     position:relative;
-    padding-bottom: 4rem;
 }
-#footer {
-    position: fixed;
-    bottom: 0;
-    height:4rem;
-    width:100%;
-    padding: 0.3rem;
-    background-color: #efefef;
-    text-align: center;
-    z-index: 5;
-}
-#footer p {
-    position: relative;
-    bottom: 0;
-    font-size: .75em;
-}
-
-img {
-    position: relative;
-    vertical-align: middle;
-}
-
 .left {
     float: left;
 }
@@ -46,10 +26,40 @@ img {
 .right {
     float: right;
 }
-
 .center {
     padding: auto;
     text-align: center;
+}
+.v-center { /*specify a height to center vertically*/
+    display: table-cell;
+    vertical-align: middle;
+}
+
+/* ***********************************************************
+HEADER
+************************************************************ */
+#header{
+    height: 6rem;
+    background-color: darkcyan;
+}
+.logo-header{
+    min-width: 8em;
+    height: 6rem;
+}
+.language-menu{
+    font-family: FontAwesome, sans-serif;
+    min-width: 10rem;
+}
+.language-bar {
+    height: 6rem;
+}
+
+/* ***********************************************************
+CONTENT
+************************************************************ */
+#content {
+    padding-top: 2em;
+    padding-bottom: 4rem;
 }
 .errorbox {
     padding: 1.3rem;
@@ -61,34 +71,57 @@ img {
     position: relative;
     box-shadow: 0 5px 8px -6px rgba(0, 0, 0, 0.2);
 }
-.pure-button {
-    border-radius: 0;
-}
 
-.inline{
-    margin-top: 2em;
-}
 /* ***********************************************************
-LANGUAGE MENU
+FOOTER
 ************************************************************ */
-.language-menu{
-    float: right;
-    font-family: FontAwesome, sans-serif;
-    min-width: 10rem;
+.container{
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -6rem; /*negative margin = footer height + padding-top + padding-bottom*/
+}
+#bottom, #push {
+    height:4rem;
+}
+#footer {
+    background-color: darkcyan;
+    height: 4rem;
+    padding: 2rem 0 0;
+    text-align: center;
+}
+.copyrights {
+    height:4rem;
+    font-size: .75em;
+}
+.logo-footer-right{
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translate(0, -50%);
+}
+.logo-footer {
+    height: 4rem;
 }
 
 /* ***********************************************************
 FORMS
 ************************************************************ */
-.pure-form input[type="password"], .pure-form input[type="email"], .pure-form input[type="url"], .pure-form input[type="date"], .pure-form input[type="month"], .pure-form input[type="time"], .pure-form input[type="datetime"], .pure-form input[type="datetime-local"], .pure-form input[type="week"], .pure-form input[type="tel"], .pure-form input[type="color"], .pure-form input[type="number"], .pure-form input[type="search"], .pure-form input[type="text"], .pure-form select, .pure-form textarea {
-    -webkit-border-radius: 0;
-    -moz-border-radius: 0;
-    border-radius: 0;
+.textarea{
+    width:100%;
+    font-size: 0.9em;
+    line-height: 1.15;
+}
+.file-upload input[type="url"][disabled]{
+    cursor: pointer;
+    color: inherit;
+}
+input[type="file"]{
+    color:black;
 }
 .form-align{
-    position: relative;
-}
-
+     position: relative;
+ }
 .center-form{
     display: inline-block;
     margin-right: auto;
@@ -101,17 +134,29 @@ FORMS
     transform: translate(0, -50%);
 }
 
+/* PURE */
+.pure-button {
+     border-radius: 0;
+ }
+.pure-form input.edge{
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+}
+.pure-form-aligned .pure-controls{
+     margin: 0 0 0 11em;
+ }
+.pure-select{
+    float: right;
+}
+/* SELECTIZE */
 .selectize-input, .selectize-dropdown, .selectize-input.dropdown-active{
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
     border-radius: 0;
-
 }
 .selectize-input:after{
     transform: translate(8px, 0);
-}
-.pure-select{
-    float: right;
 }
 div .item{
     float: left;
@@ -121,10 +166,13 @@ div .item{
 }
 
 /* ***********************************************************
-
+IMAGES
 ************************************************************ */
 .fa {
     font-family: FontAwesome !important;
+}
+#clipboard-btn{
+    margin-right: 0.5em;
 }
 /* ***********************************************************
 TABLES
@@ -143,8 +191,18 @@ MEDIA QUERIES
     body {
         font-size: 0.875em;
     }
+    .wrap{
+     width: 90%;
+    }
     .pure-form .pure-input-sm-1-1{
         width: 100%;
+    }
+    .pure-form-aligned .pure-controls{
+        margin: 0.5em 0 0;
+        float: left;
+    }
+    #content {
+        padding-top: 0;
     }
 }
 @media screen and (max-width: 39.9375em) {

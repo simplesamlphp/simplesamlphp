@@ -77,6 +77,10 @@ fieldset.fancyfieldset legend {
 .v-center-right{
 	right: 0;
 }
+.logo-footer-right{
+	left:0;
+	right: auto;
+}
 
 /*selectize elements*/
 div .item{
