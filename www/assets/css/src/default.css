@@ -149,6 +149,23 @@ input[type="file"]{
 .pure-select{
     float: right;
 }
+.pure-button-group .pure-button:first-child {
+    border: solid 1px #E6E6E6;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+ }
+.pure-button-group .pure-button:last-child {
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+}
+.pure-button-group .pure-button.show-files{
+    background-color: transparent;
+    border: solid 1px #ADADAD;
+    border-right: solid 1px #ADADAD;
+}
+
 /* SELECTIZE */
 .selectize-input, .selectize-dropdown, .selectize-input.dropdown-active{
     -webkit-border-radius: 0;
