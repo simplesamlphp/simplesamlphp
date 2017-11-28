@@ -3,15 +3,15 @@
 
 {%  set i=1 %}
 {% block content %}
-    <h2>{{ pagetitle }}</h2>
+    <h1>{{ pagetitle }}</h1>
     <form method="post" class="pure-form" enctype="multipart/form-data">
-        <p> {% trans 'XML metadata' %}</p>
+        <h3> {% trans 'XML metadata' %}</h3>
         <div class="pure-control-group">
-            <textarea name="xmldata" rows="20" class="textarea">{{ xmldata }}</textarea>
+            <textarea name="xmldata" rows="20" class="xmlarea edge">{{ xmldata }}</textarea>
         </div>
         <br>
         <div class="center">
-            <div class="pure-button-group" role="group">
+            <div class="pure-button-group overflow" role="group">
                 <label class="pure-button"><i class="fa fa-folder-open"> </i> Select a file...
                     <input type="file" name="xmlfile" class="hidden" multiple>
                 </label>
@@ -26,15 +26,20 @@
     <br>
     <h2>{{ 'Converted metadata'|trans }}</h2>
         {% for type, text in output if text -%}
-    <div class="inline"></div>
-    <h3> {{ type }}</h3>
     <div class="metadatabox">
-        <button data-clipboard-target="#metadata{{ loop.index }}" id="btn{{loop.index }}" class="btn topright clipboard-btn" onclick="metadata({{ loop.index }})" >
-            <img src="/{{ baseurlpath }}resources/icons/clipboard.svg"
-                 alt="Copy to clipboard" />
-        </button>
-        <pre id="metadata{{ loop.index }}">{{ text }}</pre>
+        <div class="metadata-type">
+            <h3> {{ type }}</h3>
+            <button data-clipboard-target="#metadata{{ loop.index }}" id="btn{{loop.index }}" class="pure-button right clipboard-btn" onclick="metadata({{ loop.index }})" >
+                <i class="fa fa-copy"></i>
+            </button>
+        </div>
+        <div class="metadata-code">
+            <pre id="metadata{{ loop.index }}">
+                {%- spaceless %}{{ text }}{% endspaceless %}
+            </pre>
+        </div>
     </div>
+            <br><br>
             {%- set i=i+1 %}
         {%- endfor -%}
     {% endif -%}
