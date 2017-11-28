@@ -105,6 +105,11 @@ HEADER
 /* ***********************************************************
 CONTENT
 ************************************************************ */
+#layout {
+    position: relative;
+    right: 0;
+    padding-right: 0;
+  }
 #content {
     padding-top: 2em;
     padding-bottom: 4rem;
@@ -287,21 +292,29 @@ table.attributes ul{
 MEDIA QUERIES
 ************************************************************ */
 
-@media screen and (max-width:480px) {
-    body {
-        font-size: 0.875em;
-    }
-    .wrap{
-     width: 90%;
-    }
+@media screen and (max-width: 480px) {
     .pure-form .pure-input-sm-1-1{
         width: 100%;
+    }
+}
+@media screen and (max-width: 39.9375em) {
+    .hide-for-small-only {
+        display: none !important;
+    }
+    .selectize-input{
+        padding-right: 0.1rem;
+    }
+    body {
+        font-size:75%;
+    }
+    .wrap{
+        width: 90%;
     }
     .pure-form-aligned .pure-controls{
         margin: 0.5em 0 0;
         float: left;
     }
-    #content {
+    #layout {
         padding-top: 0;
     }
     .auth_methods {
@@ -310,12 +323,8 @@ MEDIA QUERIES
     #logo{
         font-size: 1.8em;
     }
-}
-@media screen and (max-width: 39.9375em) {
-    .hide-for-small-only {
-        display: none !important; }
-    .selectize-input{
-        padding-right: 0.1rem;
+    .fa-language{
+        font-size: 2em;
     }
 }
 
@@ -328,30 +337,34 @@ MEDIA QUERIES
     }
 }
 
-@media screen and (min-width: 40em) {
-    .hide-for-medium {
-        display: none !important; }
+@media screen and (min-width: 40em) and (max-width: 63.9375em) {
+    .hide-for-medium-only {
+        display: none !important;
+    }
+    body{
+        font-size: 85%;
+    }
 }
 @media screen and (max-width: 39.9375em) {
     .show-for-medium {
-        display: none !important; }
+        display: none !important;
+    }
+}
+
+@media screen and (max-width: 39.9375em), screen and (min-width: 64em) {
+    .show-for-medium-only {
+        display: none !important;
+    }
 }
 @media screen and (min-width: 64em) {
     .hide-for-large {
-        display: none !important; }
+        display: none !important;
+    }
 }
 @media screen and (max-width: 63.9375em) {
     .show-for-large {
-        display: none !important; }
+        display: none !important;
+    }
 }
 
-/*@media screen and (min-width: 40em) { !*640*! w/ font-size:16pt*/
-
-/*}*/
-/*@media screen and (min-width: 64em) { !*1024px*!*/
-
-/*}*/
-/*@media screen and (max-width: 18.75em) { !*528*!*/
-
-/*}*/
 

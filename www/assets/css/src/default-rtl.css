@@ -4,7 +4,12 @@
 html {
 	direction: rtl;
 }
-
+#header{
+	background: linear-gradient(-141deg, #b8002c 0%, #db0100 51%, #e8410c 75%);
+}
+#footer{
+	background: linear-gradient(-141deg, #b8002c 0%, #db0100 51%, #e8410c 75%);
+}
 /* LISTS */
 ul {
 	margin: .3em 2em 1.5em 0;
@@ -119,4 +124,37 @@ div .item{
 }
 .pure-table-attributes li{
 	margin:0;
+}
+
+/* language side menu on medium and small screens*/
+#layout.active #menu {
+	right: initial;
+	left: 11em;
+}
+#layout.active .menu-link {
+	right: initial;
+	left: 11em;
+}
+#menu {
+	right: initial;
+	margin-right: 0;
+	margin-left: -11em; /* "#menu" width */
+	left: 0;
+}
+#menu a {
+	padding: 0.6em 0.6em 0.6em 0em;
+}
+
+.menu-link {
+	right: initial;
+	left: 0; /* "#menu width" */
+}
+
+/* -- Responsive Styles (Media Queries) ------------------------------------- */
+
+@media screen and (max-width: 0em), screen and (min-width: 40em) {
+	#layout.active {
+		right: initial;
+		left: 11em;
+	}
 }
