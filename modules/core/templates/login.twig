@@ -9,10 +9,12 @@
     <p>Please check your SimpleSAML configuration.<br>
         Follow the link and log in with administrator credentials. <a href="{{ loginurl }}">Admin login.</a></p>
 {% else %}
-    <ul>
-        {% for id, config in sources -%}
-            <li><a href="?as={{ id|url_encode }}">{{ config.name|translateFromArray|default(id) }}</a></li>
-        {% endfor -%}
-    </ul>
+    <div class="pure-menu custom-restricted-width">
+        <ul class="pure-menu-list auth_methods">
+            {% for id, config in sources -%}
+                <li class="pure-menu-item"><a href="?as={{ id|url_encode }}" class="pure-menu-link">{{ config.name|translateFromArray|default(id) }}</a></li>
+            {% endfor -%}
+        </ul>
+    </div>
 {% endif %}
 {% endblock %}
