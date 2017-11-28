@@ -8,7 +8,33 @@
                         </div>
                     </div>
                 </div>
-                <div class="right">
+
+                {% if not hideLanguageBar -%}
+                    <div id="languagebar" class="hide-for-large">
+                        <div id="menu">
+                            <div class="pure-menu">
+                            {% for key, lang in languageBar -%}
+                                {% if key == currentLanguage -%}
+                                <a class="pure-menu-heading" href="#">{{ lang.name }}</a>
+                                {% else -%}
+                                <ul class="pure-menu-list">
+                                    {% if lang.url -%}
+                                    <li class="pure-menu-item"><a href="{{ lang.url }}{% spaceless %}
+                                        {% if queryParams %}&{% endif %}
+                                        {% for name, value in queryParams %}
+                                            {% if not loop.first %}&{% endif %}
+                                            {% if value %}{{ name }}={{ value }}{% else %}{{ name }}{% endif %}
+                                        {% endfor %}"{% endspaceless %} class="pure-menu-link">{{ lang.name }}</a></li>
+                                    {% endif %}
+                                {% endif -%}
+                            {% endfor -%}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                {%- endif %}
+
+                <div class="right show-for-large">
                     <div class="v-center language-bar">
                         <form id="SelectLang" class="pure-form" method="get">
                             {% if not hideLanguageBar -%}
@@ -33,7 +59,9 @@
                             </div>
                         {% endif -%}
                         </form>
-                    </div>
+                    </div><!--show-for-large-->
+
+
                 </div>
             </div> <!-- wrap -->
         </div> <!-- header -->

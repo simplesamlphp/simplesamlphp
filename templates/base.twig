@@ -5,6 +5,7 @@
     <meta name="viewport" content="initial-scale=1.0">
     <title>{{ pagetitle }}</title>
     <link rel="stylesheet" type="text/css" href="/{{ baseurlpath }}assets/css/lib/pure-min.css">
+    <link rel="stylesheet" type="text/css" href="/{{ baseurlpath }}assets/css/src/side-menu.css">
     <link rel="stylesheet" type="text/css" href="/{{ baseurlpath }}assets/css/lib/selectize.default.css" />
     <link rel="stylesheet" type="text/css" href="/{{ baseurlpath }}assets/css/lib/font-awesome/css/font-awesome.css" />
     <link rel="stylesheet" type="text/css" href="/{{ baseurlpath }}assets/css/src/default.css">
@@ -18,7 +19,11 @@
     {% block preload %}{% endblock %}
 </head>
 <body id="{{ templateId }}">
-    <div class="container">
+    <div id="layout">
+        <a href="#menu" id="menuLink" class="menu-link">
+            <!-- Hamburger icon -->
+            <span></span>
+        </a>
 {% block header %}{% include "_header.twig" %}{% endblock %}
 
     <div id="content">

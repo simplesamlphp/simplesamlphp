@@ -7,8 +7,8 @@ $(document).ready(function() {
 
     $('#SelectLang').on("change", function (e) {
         if (-1 !== $.inArray(
-                $('#language_selector-selectized').prev().text().toLowerCase(),
-                languages
+            $('#language_selector-selectized').prev().text().toLowerCase(),
+            languages
             )
         ) {
             e.currentTarget.submit();
