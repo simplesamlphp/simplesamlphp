@@ -12,9 +12,10 @@ namespace SimpleSAML\Test\Web;
 
 include(dirname(__FILE__).'/../BuiltInServer.php');
 
+use PHPUnit\Framework\TestCase;
 use \SimpleSAML\Test\BuiltInServer;
 
-class IndexTest extends \PHPUnit_Framework_TestCase
+class IndexTest extends TestCase
 {
 
     /**

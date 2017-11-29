@@ -2,12 +2,13 @@
 
 namespace SimpleSAML\Test\Utils\Config;
 
+use PHPUnit\Framework\TestCase;
 use SimpleSAML\Utils\Config\Metadata;
 
 /**
  * Tests related to SAML metadata.
  */
-class MetadataTest extends \PHPUnit_Framework_TestCase
+class MetadataTest extends TestCase
 {
 
     /**

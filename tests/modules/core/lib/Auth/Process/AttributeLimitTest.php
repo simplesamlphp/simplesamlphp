@@ -1,8 +1,11 @@
 <?php
+
+use PHPUnit\Framework\TestCase;
+
 /**
  * Test for the core:AttributeLimit filter.
  */
-class Test_Core_Auth_Process_AttributeLimitTest extends PHPUnit_Framework_TestCase
+class Test_Core_Auth_Process_AttributeLimitTest extends TestCase
 {
 
     /**
@@ -197,8 +200,8 @@ class Test_Core_Auth_Process_AttributeLimitTest extends PHPUnit_Framework_TestCa
 
     /**
      * Test for exception with illegal config.
-     * 
-     * @expectedException Exception 
+     *
+     * @expectedException Exception
      */
     public function testInvalidConfig()
     {
@@ -211,8 +214,8 @@ class Test_Core_Auth_Process_AttributeLimitTest extends PHPUnit_Framework_TestCa
 
     /**
      * Test for invalid attribute name
-     * 
-     * @expectedException Exception 
+     *
+     * @expectedException Exception
      */
     public function testInvalidAttributeName()
     {
@@ -265,12 +268,12 @@ class Test_Core_Auth_Process_AttributeLimitTest extends PHPUnit_Framework_TestCa
     }
 
     /**
-     * Test for allowed attributes not an array. 
+     * Test for allowed attributes not an array.
      *
-     * This test is very unlikely and would require malformed metadata processing. 
+     * This test is very unlikely and would require malformed metadata processing.
      * Cannot be generated via config options.
      *
-     * @expectedException Exception 
+     * @expectedException Exception
      */
     public function testMatchAttributeValuesNotArray()
     {

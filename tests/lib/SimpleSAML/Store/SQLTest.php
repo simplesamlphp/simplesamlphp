@@ -2,6 +2,7 @@
 
 namespace SimpleSAML\Test\Store;
 
+use PHPUnit\Framework\TestCase;
 use \SimpleSAML_Configuration as Configuration;
 use \SimpleSAML\Store;
 
@@ -14,7 +15,7 @@ use \SimpleSAML\Store;
  * @author Sergio Gómez <sergio@uco.es>
  * @package simplesamlphp/simplesamlphp
  */
-class SQLTest extends \PHPUnit_Framework_TestCase
+class SQLTest extends TestCase
 {
     protected function setUp()
     {
@@ -106,10 +107,10 @@ class SQLTest extends \PHPUnit_Framework_TestCase
     {
         /** @var \SimpleSAML\Store\SQL $store */
         $store = Store::getInstance();
-        
+
         $store->set('test', 'foo', 'bar');
         $value = $store->get('test', 'foo');
-        
+
         $this->assertEquals('bar', $value);
     }
 

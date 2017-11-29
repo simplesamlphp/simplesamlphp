@@ -2,6 +2,7 @@
 
 namespace SimpleSAML\Test;
 
+use PHPUnit\Framework\TestCase;
 use \SimpleSAML_Configuration as Configuration;
 use \SimpleSAML\Store;
 
@@ -14,7 +15,7 @@ use \SimpleSAML\Store;
  * @author Sergio Gómez <sergio@uco.es>
  * @package simplesamlphp/simplesamlphp
  */
-class StoreTest extends \PHPUnit_Framework_TestCase
+class StoreTest extends TestCase
 {
     /**
      * @covers \SimpleSAML\Store::getInstance
