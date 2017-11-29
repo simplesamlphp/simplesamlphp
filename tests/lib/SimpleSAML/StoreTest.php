@@ -27,7 +27,7 @@ class StoreTest extends \PHPUnit_Framework_TestCase
 
         $store = Store::getInstance();
 
-        $this->assertEquals(false, $store);
+        $this->assertFalse($store);
     }
 
 
@@ -42,7 +42,7 @@ class StoreTest extends \PHPUnit_Framework_TestCase
 
         $store = Store::getInstance();
 
-        $this->assertEquals(false, $store);
+        $this->assertFalse($store);
     }
 
 
