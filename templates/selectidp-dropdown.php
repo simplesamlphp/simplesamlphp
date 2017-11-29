@@ -33,21 +33,12 @@ foreach ($this->data['idplist'] as $idpentry) {
                value="<?php echo htmlspecialchars($this->data['returnIDParam']); ?>"/>
         <select id="dropdownlist" name="idpentityid">
             <?php
-            /*
-             * TODO: change this to use $this instead when PHP 5.4 is the minimum requirement.
-             *
-             * This is a dirty hack because PHP 5.3 does not allow the use of $this inside closures. Therefore, the
-             * translation function must be passed somehow inside the closure. PHP 5.4 allows using $this, so we can
-             * then go back to the previous behaviour.
-             */
-            $GLOBALS['__t'] = $this;
             usort($this->data['idplist'], function ($idpentry1, $idpentry2) {
                 return strcmp(
-                    $GLOBALS['__t']->t('idpname_'.$idpentry1['entityid']),
-                    $GLOBALS['__t']->t('idpname_'.$idpentry2['entityid'])
+                    $this->t('idpname_'.$idpentry1['entityid']),
+                    $this->t('idpname_'.$idpentry2['entityid'])
                 );
             });
-            unset($GLOBALS['__t']);
 
             foreach ($this->data['idplist'] as $idpentry) {
                 echo '<option value="'.htmlspecialchars($idpentry['entityid']).'"';

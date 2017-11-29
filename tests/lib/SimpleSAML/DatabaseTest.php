@@ -31,8 +31,6 @@ class SimpleSAML_DatabaseTest extends TestCase
      * Make protected functions available for testing
      *
      * @param string $getMethod The method to get.
-     * @requires PHP 5.3.2
-     *
      * @return mixed The method itself.
      */
     protected static function getMethod($getMethod)

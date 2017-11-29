@@ -110,7 +110,6 @@ class SystemTest extends TestCase
     }
 
     /**
-     * @requires PHP 5.4.0
      * @covers \SimpleSAML\Utils\System::writeFile
      * @test
      */
@@ -129,7 +128,6 @@ class SystemTest extends TestCase
     }
 
     /**
-     * @requires PHP 5.4.0
      * @covers \SimpleSAML\Utils\System::writeFile
      * @test
      */
@@ -152,7 +150,6 @@ class SystemTest extends TestCase
     }
 
     /**
-     * @requires PHP 5.4.0
      * @covers \SimpleSAML\Utils\System::writeFile
      * @test
      */
@@ -211,7 +208,6 @@ class SystemTest extends TestCase
     }
 
     /**
-     * @requires PHP 5.4.0
      * @requires OS Linux
      * @covers \SimpleSAML\Utils\System::getTempDir
      * @test
