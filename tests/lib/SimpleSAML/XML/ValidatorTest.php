@@ -2,6 +2,7 @@
 
 namespace SimpleSAML\Test\XML;
 
+use PHPUnit\Framework\TestCase;
 use \SimpleSAML_Configuration as Configuration;
 use \SimpleSAML\XML\Signer;
 use \SimpleSAML\XML\Validator;
@@ -11,7 +12,7 @@ use \org\bovigo\vfs\vfsStream;
 /**
  * Tests for SimpleSAML\XML\Validator.
  */
-class ValidatorTest extends \PHPUnit_Framework_TestCase
+class ValidatorTest extends TestCase
 {
     // openssl genrsa -out ca.key.pem 2048
     private $ca_private_key = <<<'NOWDOC'

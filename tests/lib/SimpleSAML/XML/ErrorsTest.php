@@ -12,9 +12,10 @@
 
 namespace SimpleSAML\Test\XML;
 
+use PHPUnit\Framework\TestCase;
 use SimpleSAML\XML\Errors;
 
-class ErrorsTest extends \PHPUnit_Framework_TestCase
+class ErrorsTest extends TestCase
 {
     /**
      * @covers \SimpleSAML\XML\Errors::begin

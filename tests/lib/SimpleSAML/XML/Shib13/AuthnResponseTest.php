@@ -11,12 +11,13 @@
 
 namespace SimpleSAML\Test\XML\Shib13;
 
+use PHPUnit\Framework\TestCase;
 use SimpleSAML\XML\Shib13\AuthnResponse;
 
-class AuthnResponseTest extends \PHPUnit_Framework_TestCase
+class AuthnResponseTest extends TestCase
 {
     const XMLDOC = <<< XML
-<Response xmlns="urn:oasis:names:tc:SAML:1.0:protocol" 
+<Response xmlns="urn:oasis:names:tc:SAML:1.0:protocol"
     MajorVersion="1" MinorVersion="1"
     ResponseID="" IssueInstant="">
     <Assertion xmlns="urn:oasis:names:tc:SAML:1.0:assertion"
@@ -34,7 +35,7 @@ class AuthnResponseTest extends \PHPUnit_Framework_TestCase
 XML;
 
     const BADXMLDOC = <<< XML
-<Response xmlns="urn:oasis:names:tc:SAML:1.0:protocol" 
+<Response xmlns="urn:oasis:names:tc:SAML:1.0:protocol"
     MajorVersion="1" MinorVersion="1"
     ResponseID="" IssueInstant="">
     <Assertion xmlns="urn:oasis:names:tc:SAML:1.0:assertion"

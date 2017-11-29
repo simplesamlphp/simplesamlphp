@@ -27,13 +27,13 @@ definition:
 namespace SimpleSAML\Test\Utils;
 ```
 
-The test classes need to extend `PHPUnit_Framework_TestCase`, and inside
+The test classes need to extend `PHPUnit\Framework\TestCase`, and inside
 you can implement as many methods as you want. `phpunit` will only run
 the ones prefixed with "test".
 
 You will usually make use of the `assert*()` methods provided by
-`PHPUnit_Framework_TestCase`, but you can also tell `phpunit` to expect
-an exception to be thrown using *phpdoc*. For example, if you want to 
+`PHPUnit\Framework\TestCase`, but you can also tell `phpunit` to expect
+an exception to be thrown using *phpdoc*. For example, if you want to
 ensure that the `SimpleSAML\Utils\HTTP::addURLParameters()` method
 throws an exception in a specific situation:
 
@@ -47,7 +47,7 @@ throws an exception in a specific situation:
 ```
 
 Refer to [the `phpunit 4.8` documentation](https://phpunit.de/manual/4.8/en/installation.html)
-for more information on how to write tests. We currently use the `phpunit 4.8` 
+for more information on how to write tests. We currently use the `phpunit 4.8`
 since it is the last version to support php 5.3.
 
 Once you have implemented your tests, you can run them locally. First,
@@ -66,7 +66,7 @@ the old version installed by composer
 ./vendor/bin/phpunit -c tools/phpunit/phpunit.xml
 ```
 
-All the tests are run by our *continuous integration* platform, 
+All the tests are run by our *continuous integration* platform,
 [travis](https://travis-ci.org/simplesamlphp/simplesamlphp). If you are
 submitting a pull request, Travis will run your tests and notify whether
 your code builds or not according to them.

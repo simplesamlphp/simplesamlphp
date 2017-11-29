@@ -2,12 +2,13 @@
 
 namespace SimpleSAML\Test\Utils;
 
+use PHPUnit\Framework\TestCase;
 use SimpleSAML\Utils\Net;
 
 /**
  * Tests for SimpleSAML\Utils\Test.
  */
-class NetTest extends \PHPUnit_Framework_TestCase
+class NetTest extends TestCase
 {
 
 
