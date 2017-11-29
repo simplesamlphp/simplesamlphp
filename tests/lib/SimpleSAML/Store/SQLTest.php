@@ -93,7 +93,7 @@ class SQLTest extends \PHPUnit_Framework_TestCase
 
         $value = $store->get('test', 'foo');
 
-        $this->assertEquals(null, $value);
+        $this->assertNull($value);
     }
 
     /**
@@ -106,10 +106,10 @@ class SQLTest extends \PHPUnit_Framework_TestCase
     {
         /** @var \SimpleSAML\Store\SQL $store */
         $store = Store::getInstance();
-        
+
         $store->set('test', 'foo', 'bar');
         $value = $store->get('test', 'foo');
-        
+
         $this->assertEquals('bar', $value);
     }
 
@@ -147,7 +147,7 @@ class SQLTest extends \PHPUnit_Framework_TestCase
         $store->delete('test', 'foo');
         $value = $store->get('test', 'foo');
 
-        $this->assertEquals(null, $value);
+        $this->assertNull($value);
     }
 
     /**
@@ -167,7 +167,7 @@ class SQLTest extends \PHPUnit_Framework_TestCase
         $store->delete('test', $key);
         $value = $store->get('test', $key);
 
-        $this->assertEquals(null, $value);
+        $this->assertNull($value);
     }
 
     protected function tearDown()
