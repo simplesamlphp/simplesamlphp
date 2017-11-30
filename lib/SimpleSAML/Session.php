@@ -482,11 +482,6 @@ class SimpleSAML_Session implements Serializable
 
         $this->dirty = true;
 
-        if (!function_exists('header_register_callback')) {
-            // PHP version < 5.4, can't register the callback
-            return;
-        }
-
         if ($this->callback_registered) {
             // we already have a shutdown callback registered for this object, no need to add another one
             return;

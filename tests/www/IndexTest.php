@@ -71,11 +71,6 @@ class IndexTest extends TestCase
             $this->markTestSkipped('The web-based tests cannot be run in HHVM for the moment.');
         }
 
-        if (version_compare(phpversion(), '5.4') === -1) {
-            // no built-in server prior to 5.4
-            $this->markTestSkipped('The web-based tests cannot be run in PHP versions older than 5.4.');
-        }
-
         // test most basic redirection
         $this->updateConfig(array(
                 'baseurlpath' => 'http://example.org/simplesaml/'
