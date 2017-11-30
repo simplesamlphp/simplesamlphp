@@ -96,7 +96,7 @@ class sspmod_statistics_Graph_GoogleCharts
             $labeld = '&chxt=x,y,r' . '&chxr=0,0,1|1,0,' . $maxes[0] . '|2,0,' . $maxes[1];
         }
 
-        $url = 'http://chart.apis.google.com/chart?' .
+        $url = 'https://chart.apis.google.com/chart?' .
             // Dimension of graph. Default is 800x350
             'chs=' . $this->x . 'x' . $this->y . 
 
@@ -119,7 +119,7 @@ class sspmod_statistics_Graph_GoogleCharts
 
     public function showPie($axis, $datasets)
     {
-        $url = 'http://chart.apis.google.com/chart?' .
+        $url = 'https://chart.apis.google.com/chart?' .
 
         // Dimension of graph. Default is 800x350
         'chs=' . $this->x . 'x' . $this->y . 
