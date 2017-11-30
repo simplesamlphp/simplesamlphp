@@ -81,7 +81,7 @@ class sspmod_saml_Auth_Process_NameIDAttribute extends SimpleSAML_Auth_Processin
                     $ret[] = 'SPNameQualifier';
                     break;
                 case 'V':
-                    $ret[] = 'Value';
+                    $ret[] = 'value';
                     break;
                 case '%':
                     $ret[] = '%';
@@ -114,17 +114,17 @@ class sspmod_saml_Auth_Process_NameIDAttribute extends SimpleSAML_Auth_Processin
         }
 
         $rep = $state['saml:sp:NameID'];
-        assert('isset($rep["Value"])');
+        assert(isset($rep->value));
 
-        $rep['%'] = '%';
-        if (!isset($rep['Format'])) {
-            $rep['Format'] = \SAML2\Constants::NAMEID_UNSPECIFIED;
+        $rep->{'%'} = '%';
+        if (!isset($rep->Format)) {
+            $rep->Format = \SAML2\Constants::NAMEID_UNSPECIFIED;
         }
-        if (!isset($rep['NameQualifier'])) {
-            $rep['NameQualifier'] = $state['Source']['entityid'];
+        if (!isset($rep->NameQualifier)) {
+            $rep->NameQualifier = $state['Source']['entityid'];
         }
-        if (!isset($rep['SPNameQualifier'])) {
-            $rep['SPNameQualifier'] = $state['Destination']['entityid'];
+        if (!isset($rep->SPNameQualifier)) {
+            $rep->SPNameQualifier = $state['Destination']['entityid'];
         }
 
         $value = '';
@@ -133,7 +133,7 @@ class sspmod_saml_Auth_Process_NameIDAttribute extends SimpleSAML_Auth_Processin
             if ($isString) {
                 $value .= $element;
             } else {
-                $value .= $rep[$element];
+                $value .= $rep->$element;
             }
             $isString = !$isString;
         }
