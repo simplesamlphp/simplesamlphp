@@ -230,7 +230,7 @@ class Metadata
                 continue;
             }
 
-            if (array_key_exists('isDefault', $ep)) {
+            if (isset($ep['isDefault'])) {
                 if ($ep['isDefault'] === true) {
                     // this is the first endpoint with isDefault set to true
                     return $ep;
