@@ -1038,7 +1038,7 @@ $config = array(
     'metadata.sign.privatekey' => null,
     'metadata.sign.privatekey_pass' => null,
     'metadata.sign.certificate' => null,
-
+    'metadata.sign.algorithm' => null,
 
 
     /****************************
