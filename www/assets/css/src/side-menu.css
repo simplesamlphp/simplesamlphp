@@ -3,6 +3,7 @@ Add transition to containers so they can push in and out.
 */
 #layout,
 #menu,
+#foot,
 .menu-link {
     -webkit-transition: all 0.2s ease-out;
     -moz-transition: all 0.2s ease-out;
@@ -109,7 +110,7 @@ how it works:
 small screens.
 */
 .menu-link {
-    position: absolute;
+    position: relative;
     display: block; /* show this only on small screens */
     top: 0;
     right: 0; /* "#menu width" */
@@ -136,26 +137,24 @@ small screens.
 .menu-link span:before,
 .menu-link span:after {
     background-color: transparent;
-    width: 100%;
+
 }
 
-.menu-link span:before,
-.menu-link span:after {
-    position: absolute;
-    margin-top: -0.6em;
-}
-
-.menu-link span:after {
-    margin-top: 0.6em;
-}
 
 /* -- Responsive Styles (Media Queries) ------------------------------------- */
 
 
-@media screen and (max-width: 0em), screen and (min-width: 40em) {
+@media screen and (max-width: 63.9375em) {
     #layout.active {
         position: relative;
         right: 11em;
-         /* moves to right as many ems as the one used by the fa-icon (4x) */
+         /* moves to right as many ems as the one used by the menu */
+    }
+    #menuLink.menu-link.active {
+        position: fixed;
+        right: 11em;
+    }
+    #foot.active {
+        margin-right: 11em;
     }
 }

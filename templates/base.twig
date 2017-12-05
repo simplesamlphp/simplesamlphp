@@ -21,18 +21,17 @@
 <body id="{{ templateId }}">
     <div id="layout">
 {% block header %}{% include "_header.twig" %}{% endblock %}
+        <div id="content">
+            <div class="wrap">
+                {% block contentwrapper -%}
+                    {% block content %}{% endblock -%}
+                {% endblock %}
+            </div>
+        </div><!-- content -->
+        <div id="push"></div>
+    </div><!-- layout -->
 
-    <div id="content">
-        <div class="wrap">
-            {% block contentwrapper -%}
-                {% block content %}{% endblock -%}
-            {% endblock %}
-        </div>
-    </div><!-- content -->
-    <div id="push"></div>
-    </div><!-- container -->
-
-    <div class="foot">
+    <div id="foot">
 {% block footer %}{% include "_footer.twig" %}{% endblock %}
     </div>
 

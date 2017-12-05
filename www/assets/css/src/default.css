@@ -323,9 +323,6 @@ MEDIA QUERIES
     #logo{
         font-size: 1.8em;
     }
-    .fa-language{
-        font-size: 2em;
-    }
 }
 
 @media screen and (max-width: 0em), screen and (min-width: 40em) {

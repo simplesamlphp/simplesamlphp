@@ -83,6 +83,7 @@ $(document).ready(function() {
         menu     = document.getElementById('menu'),
         menuLink = document.getElementById('menuLink'),
         content  = document.getElementById('content');
+        footer  = document.getElementById('foot');
 
     function toggleClass(element, className) {
         var classes = element.className.split(/\s+/),
@@ -110,6 +111,7 @@ $(document).ready(function() {
         toggleClass(layout, active);
         toggleClass(menu, active);
         toggleClass(menuLink, active);
+        toggleClass(footer, active);
     }
 
     menuLink.onclick = function (e) {
