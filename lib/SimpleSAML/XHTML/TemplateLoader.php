@@ -3,7 +3,12 @@
 
 namespace SimpleSAML\XHTML;
 
-
+/**
+ * This class extends the Twig\Loader\FilesystemLoader so that we can load templates from modules in twig, even
+ * when the main template is not part of a module (or the same one).
+ *
+ * @package simplesamlphp/simplesamlphp
+ */
 class TemplateLoader extends \Twig\Loader\FilesystemLoader
 {
     /**
