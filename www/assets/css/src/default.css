@@ -70,7 +70,9 @@ a.pure-button-primary {
     background-color: rgb(219, 1, 0);
     color: #fff;
 }
-
+ul{
+    padding-left: 1.5em;
+}
 /* ***********************************************************
 HEADER
 ************************************************************ */
@@ -129,6 +131,17 @@ CONTENT
     position: relative;
     box-shadow: 0 5px 8px -6px rgba(0, 0, 0, 0.2);
 }
+.successbox{
+    padding: 1.3rem;
+    margin: 0 0 1rem 0;
+    background-color: #daf7e6;
+    border-left-style: solid;
+    border-left-width: 0.3125rem;
+    border-left-color: #46cc48;
+    position: relative;
+    box-shadow: 0 5px 8px -6px rgba(0, 0, 0, 0.2);
+}
+
 .auth_methods{
     margin-top: 2em;
     width: 35%;
@@ -161,6 +174,7 @@ CONTENT
     background-color: #f0f0f0;
     border: 1px solid #ccc;
 }
+
 /* ***********************************************************
 FOOTER
 ************************************************************ */

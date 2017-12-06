@@ -86,6 +86,22 @@ fieldset.fancyfieldset legend {
 	left:0;
 	right: auto;
 }
+.errorbox {
+	border-left-style: initial;
+	border-left-width: 0;
+	border-left-color: none;
+	border-right-style: solid;
+	border-right-width: 0.3125rem;
+	border-right-color: #cc4b37;
+}
+.successbox{
+	border-left-style: initial;
+	border-left-width: 0;
+	border-left-color: none;
+	border-right-style: solid;
+	border-right-width: 0.3125rem;
+	border-right-color: #46cc48;
+}
 
 /*selectize elements*/
 div .item{
