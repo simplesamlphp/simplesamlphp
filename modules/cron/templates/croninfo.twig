@@ -1,0 +1,26 @@
+{% set pagetitle = 'Cron result page'|trans %}
+{% extends "base.twig" %}
+
+{% block content %}
+    <h2>{{ 'Cron result page'|trans }}</h2>
+    <p>{{ 'Cron is a way to run things regularly on unix systems.'|trans }}<br /><br /></p>
+    <p>{{ 'Here is a suggestion for a crontab file:'|trans }}<br /><br />
+
+    <div class="metadatabox metadata-code">
+        <code>
+        {% for url in urls %}
+                # {{ 'Run cron:'|trans }} [{{ url.tag }}]<br />
+                {{ url.int }} curl --silent "{{ url.href }}" > /dev/null 2>&1<br />
+        {% endfor %}
+    </code></div><br />
+    </p>
+
+    <p>{{ 'Click here to run the cron jobs:'|trans }}</p>
+      <ul>
+        {% for url in urls %}
+        <li><a href="{{ url.href }}&amp;output=xhtml">{{ 'Run cron:'|trans }} {{ url.tag }}</a></li>
+        {% endfor %}
+      </ul>
+    </p>
+
+{% endblock %}    
