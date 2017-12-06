@@ -25,6 +25,22 @@ class TemplateLoader extends \Twig\Loader\FilesystemLoader
         return parent::findTemplate($name);
     }
 
+
+    protected function parseName($name, $default = self::MAIN_NAMESPACE)
+    {
+        if (strpos($name, ':')) {
+            // we have our old SSP format
+            list($namespace, $shortname) = explode(':', $name, 2);
+            $shortname = strtr($shortname, array(
+                '.tpl.php' => '.twig',
+                '.php' => '.twig',
+            ));
+            return array($namespace, $shortname);
+        }
+        return parent::parseName($name, $default);
+    }
+
+
     /**
      * Get the template directory of a module, if it exists.
      *
