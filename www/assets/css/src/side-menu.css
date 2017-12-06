@@ -152,7 +152,7 @@ small screens.
     }
     #menuLink.menu-link.active {
         position: fixed;
-        right: 11em;
+        right: 13em;
     }
     #foot.active {
         margin-right: 11em;
