@@ -1,10 +1,11 @@
 <?php
 
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class SimpleSAML_Metadata_SAMLBuilderTest
  */
-class SimpleSAML_Metadata_SAMLBuilderTest extends PHPUnit_Framework_TestCase
+class SimpleSAML_Metadata_SAMLBuilderTest extends TestCase
 {
 
     /**

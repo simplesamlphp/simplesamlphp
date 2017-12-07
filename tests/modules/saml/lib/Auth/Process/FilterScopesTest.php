@@ -8,8 +8,9 @@
 
 namespace SimpleSAML\Test\Module\saml\Auth\Process;
 
+use PHPUnit\Framework\TestCase;
 
-class FilterScopesTest extends \PHPUnit_Framework_TestCase
+class FilterScopesTest extends TestCase
 {
 
     /*

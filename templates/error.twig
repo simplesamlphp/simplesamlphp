@@ -1,5 +1,5 @@
 
-{% set pagetitle = 'Logged out'|trans %}
+{% set pagetitle = dictTitle | trans %}
 {% extends "base.twig" %}
 
 {% block postload %}
@@ -13,7 +13,7 @@
     {{ dictDescr | trans(parameters) }}
 
     {# include optional information for error
-       Some excepltions set 'incluseTemplate' to the name of a template to include.
+       Some exceptions set 'includeTemplate' to the name of a template to include.
        e.g. "core:no_state.tpl.php". The format is "<module>:<template name>"
     #}
     {% if includeTemplate %}
@@ -26,7 +26,7 @@
         {# TODO: Update class #}
         <div class="">
             <pre id="trackid">{{ error.trackId }}</pre>
-            <button data-clipboard-target="#trackid" id="btntrackid" class="clipboard-bnt pure-button left clipboard-btn">
+            <button data-clipboard-target="#trackid" id="btntrackid" class="pure-button left clipboard-btn">
                 <i class="fa fa-copy"></i>
             </button>
         </div>

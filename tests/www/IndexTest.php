@@ -12,9 +12,10 @@ namespace SimpleSAML\Test\Web;
 
 include(dirname(__FILE__).'/../BuiltInServer.php');
 
+use PHPUnit\Framework\TestCase;
 use \SimpleSAML\Test\BuiltInServer;
 
-class IndexTest extends \PHPUnit_Framework_TestCase
+class IndexTest extends TestCase
 {
 
     /**
@@ -68,11 +69,6 @@ class IndexTest extends \PHPUnit_Framework_TestCase
         if (defined('HHVM_VERSION')) {
             // can't test this in HHVM for the moment
             $this->markTestSkipped('The web-based tests cannot be run in HHVM for the moment.');
-        }
-
-        if (version_compare(phpversion(), '5.4') === -1) {
-            // no built-in server prior to 5.4
-            $this->markTestSkipped('The web-based tests cannot be run in PHP versions older than 5.4.');
         }
 
         // test most basic redirection

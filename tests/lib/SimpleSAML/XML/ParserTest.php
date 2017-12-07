@@ -11,9 +11,10 @@
 
 namespace SimpleSAML\Test\XML;
 
+use PHPUnit\Framework\TestCase;
 use SimpleSAML\XML\Parser;
 
-class ParserTest extends \PHPUnit_Framework_TestCase
+class ParserTest extends TestCase
 {
     const XMLDOC = <<< XML
 <?xml version="1.0" encoding="UTF-8"?>

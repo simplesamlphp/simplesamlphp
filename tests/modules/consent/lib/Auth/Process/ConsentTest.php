@@ -8,9 +8,10 @@
 
 namespace SimpleSAML\Test\Module\consent\Auth\Process;
 
+use PHPUnit\Framework\TestCase;
 use \SimpleSAML_Configuration as Configuration;
 
-class ConsentTest extends \PHPUnit_Framework_TestCase
+class ConsentTest extends TestCase
 {
     public function setUp()
     {

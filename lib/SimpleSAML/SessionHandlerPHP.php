@@ -49,13 +49,7 @@ class SessionHandlerPHP extends SessionHandler
         $config = \SimpleSAML_Configuration::getInstance();
         $this->cookie_name = $config->getString('session.phpsession.cookiename', null);
 
-        if (function_exists('session_status') && defined('PHP_SESSION_ACTIVE')) { // PHP >= 5.4
-            $previous_session = session_status() === PHP_SESSION_ACTIVE;
-        } else {
-            $previous_session = (session_id() !== '') && (session_name() !== $this->cookie_name);
-        }
-
-        if ($previous_session) {
+        if (session_status() === PHP_SESSION_ACTIVE) {
             if (session_name() === $this->cookie_name || $this->cookie_name === null) {
                 Logger::warning(
                     'There is already a PHP session with the same name as SimpleSAMLphp\'s session, or the '.
