@@ -444,7 +444,7 @@ class HTTP
         }
 
         $context = stream_context_create($context);
-        $data = file_get_contents($url, false, $context);
+        $data = @file_get_contents($url, false, $context);
         if ($data === false) {
             $error = error_get_last();
             throw new \SimpleSAML_Error_Exception('Error fetching '.var_export($url, true).':'.
