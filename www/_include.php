@@ -1,33 +1,5 @@
 <?php
 
-/**
- * Disable magic quotes if they are enabled.
- */
-function removeMagicQuotes()
-{
-    if (get_magic_quotes_gpc()) {
-        foreach (array('_GET', '_POST', '_COOKIE', '_REQUEST') as $a) {
-            if (isset($$a) && is_array($$a)) {
-                foreach ($$a as &$v) {
-                    // we don't use array-parameters anywhere. Ignore any that may appear
-                    if (is_array($v)) {
-                        continue;
-                    }
-                    // unescape the string
-                    $v = stripslashes($v);
-                }
-            }
-        }
-    }
-    if (get_magic_quotes_runtime()) {
-        set_magic_quotes_runtime(false);
-    }
-}
-
-if (version_compare(PHP_VERSION, '5.4.0', '<')) {
-    removeMagicQuotes();
-}
-
 // initialize the autoloader
 require_once(dirname(dirname(__FILE__)).'/lib/_autoload.php');
 

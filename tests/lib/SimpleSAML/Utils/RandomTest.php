@@ -2,12 +2,13 @@
 
 namespace SimpleSAML\Test\Utils;
 
+use PHPUnit\Framework\TestCase;
 use SimpleSAML\Utils\Random;
 
 /**
  * Tests for SimpleSAML\Utils\Random.
  */
-class RandomTest extends \PHPUnit_Framework_TestCase
+class RandomTest extends TestCase
 {
 
     /**

@@ -1,9 +1,11 @@
 <?php
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * Test for the core:ScopeAttribute filter.
  */
-class Test_Core_Auth_Process_ScopeAttribute extends PHPUnit_Framework_TestCase
+class Test_Core_Auth_Process_ScopeAttribute extends TestCase
 {
 
     /*

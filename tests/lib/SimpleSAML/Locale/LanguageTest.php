@@ -2,9 +2,10 @@
 
 namespace SimpleSAML\Test\Locale;
 
+use PHPUnit\Framework\TestCase;
 use SimpleSAML\Locale\Language;
 
-class LanguageTest extends \PHPUnit_Framework_TestCase
+class LanguageTest extends TestCase
 {
 
 

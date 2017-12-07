@@ -1,9 +1,10 @@
 <?php
 namespace SimpleSAML\Test\Utils;
 
+use PHPUnit\Framework\TestCase;
 use SimpleSAML\Utils\HTTP;
 
-class HTTPTest extends \PHPUnit_Framework_TestCase
+class HTTPTest extends TestCase
 {
 
 
