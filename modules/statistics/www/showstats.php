@@ -29,6 +29,7 @@ if (array_key_exists('res', $_REQUEST)) {
 }
 if (array_key_exists('d', $_REQUEST)) {
     $delimiter = $_REQUEST['d'];
+    $t->data['request_d'] = $delimiter;
 }
 
 if ($preferRule2 === '_') {
@@ -100,17 +101,19 @@ $t->data['imgurl'] = $grapher->show($axis['axis'], $axis['axispos'], $datasets, 
 if (isset($piedata)) {
     $t->data['pieimgurl'] = $grapher->showPie( $dataset->getDelimiterPresentationPie(), $piedata);
 }
-$t->data['available.rules'] = $ruleset->availableRulesNames();
-$t->data['available.times'] = $statrule->availableFileSlots($timeres);
-$t->data['available.timeres'] = $statrule->availableTimeRes();
-$t->data['available.times.prev'] = $timeNavigation['prev'];
-$t->data['available.times.next'] = $timeNavigation['next'];
+$t->data['available_rules'] = $ruleset->availableRulesNames();
+$t->data['available_times'] = $statrule->availableFileSlots($timeres);
+$t->data['available_timeres'] = $statrule->availableTimeRes();
+$t->data['available_times_prev'] = $timeNavigation['prev'];
+$t->data['available_times_next'] = $timeNavigation['next'];
 
-$t->data['selected.rule']= $rule;
-$t->data['selected.rule2']= $preferRule2;
-$t->data['selected.time'] = $fileslot;
-$t->data['selected.timeres'] = $timeres;
-$t->data['selected.delimiter'] = $delimiter;
+$t->data['current_rule'] = $t->data['available_rules'][$rule];
+
+$t->data['selected_rule'] = $rule;
+$t->data['selected_rule2'] = $preferRule2;
+$t->data['selected_time'] = $fileslot;
+$t->data['selected_timeres'] = $timeres;
+$t->data['selected_delimiter'] = $delimiter;
 
 $t->data['debugdata'] = $dataset->getDebugData();
 $t->data['results'] = $dataset->getResults();
@@ -118,30 +121,31 @@ $t->data['summaryDataset'] = $dataset->getSummary();
 $t->data['topdelimiters'] = $dataset->getTopDelimiters();
 $t->data['availdelimiters'] = $dataset->availDelimiters();
 
-$t->data['delimiterPresentation'] =  $dataset->getDelimiterPresentation();
-
+$t->data['delimiterPresentation'] = $dataset->getDelimiterPresentation();
 $t->data['post_rule'] = getBaseURL($t, 'post', 'rule');
 $t->data['post_rule2'] = getBaseURL($t, 'post', 'rule2');
 $t->data['post_d'] = getBaseURL($t, 'post', 'd');
 $t->data['post_res'] = getBaseURL($t, 'post', 'res');
 $t->data['post_time'] = getBaseURL($t, 'post', 'time');
-$t->data['get_times_prev'] = getBaseURL($t, 'get', 'time', $t->data['available.times.prev']);
-$t->data['get_times_next'] = getBaseURL($t, 'get', 'time', $t->data['available.times.next']);
+$t->data['get_times_prev'] = getBaseURL($t, 'get', 'time', $t->data['available_times_prev']);
+$t->data['get_times_next'] = getBaseURL($t, 'get', 'time', $t->data['available_times_next']);
+
+//$t->data['jquery'] = array('ui' => true, 'core' => true);
 
 $t->show();
 
 function getBaseURL($t, $type = 'get', $key = null, $value = null)
 {
     $vars = array(
-        'rule' => $t->data['selected.rule'],
-        'time' => $t->data['selected.time'],
-        'res' => $t->data['selected.timeres'],
+        'rule' => $t->data['selected_rule'],
+        'time' => $t->data['selected_time'],
+        'res' => $t->data['selected_timeres'],
     );
-    if (isset($t->data['selected.delimiter'])) {
-        $vars['d'] = $t->data['selected.delimiter'];
+    if (isset($t->data['selected_delimiter'])) {
+        $vars['d'] = $t->data['selected_delimiter'];
     }
-    if (!empty($t->data['selected.rule2']) && $t->data['selected.rule2'] !== '_') {
-        $vars['rule2'] = $t->data['selected.rule2'];
+    if (!empty($t->data['selected_rule2']) && $t->data['selected_rule2'] !== '_') {
+        $vars['rule2'] = $t->data['selected_rule2'];
     }
 
     if (isset($key)) {
@@ -154,12 +158,7 @@ function getBaseURL($t, $type = 'get', $key = null, $value = null)
     }
 
     if ($type === 'get') {
-        return SimpleSAML\Module::getModuleURL("statistics/showstats.php") . '?' . http_build_query($vars, '', '&amp;');
-    } else {
-        $text = '';
-        foreach($vars as $k => $v) {
-            $text .= '<input type="hidden" name="' . $k . '" value="'. htmlspecialchars($v) . '" />' . "\n";
-        }
-        return $text;
+        return SimpleSAML\Module::getModuleURL("statistics/showstats.php") . '?' . http_build_query($vars, '', '&');
     }
+    return $vars;
 }

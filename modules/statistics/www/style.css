@@ -1,6 +1,4 @@
 @media all {
-    .ui-tabs-panel { padding: .5em }
-
     div#content {
         margin: .4em ! important;
     }
@@ -33,10 +31,6 @@
 
     .tableview th.value, .tableview td.value {
         text-align: right;
-    }
-
-    div.corner_t {
-        max-width: none ! important;
     }
 
     table.timeseries tr.odd td {
@@ -91,5 +85,34 @@
 
     table#statmeta {
         width: 100%;
+    }
+
+    ul.tabset_tabs {
+        margin: 0px;
+        padding: 0px;
+        list-style: none;
+    }
+
+    ul.tabset_tabs li {
+        background: none;
+        color: #222;
+        display: inline-block;
+        padding: 10px 15px;
+        cursor: pointer;
+    }
+
+    ul.tabset_tabs li.current {
+        background: #ededed;
+        color: #222;
+    }
+
+    .tabset_content {
+        display: none;
+        background: #ededed;
+        padding: 15px;
+    }
+
+    .tabset_content.current {
+        display: inherit;
     }
 }
