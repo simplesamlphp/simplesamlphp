@@ -121,25 +121,22 @@ CONTENT
     padding-top: 2em;
     padding-bottom: 4rem;
 }
-.errorbox {
-    padding: 1.3rem;
-    margin: 0 0 1rem 0;
-    background-color: #f7e4e1;
+
+.message-box {
     border-left-style: solid;
     border-left-width: 0.3125rem;
-    border-left-color: #cc4b37;
-    position: relative;
     box-shadow: 0 5px 8px -6px rgba(0, 0, 0, 0.2);
+    margin: 0 0 1rem 0;
+    padding: 1.3rem;
+    position: relative;
 }
-.successbox{
-    padding: 1.3rem;
-    margin: 0 0 1rem 0;
+.message-box.error {
+    background-color: #f7e4e1;
+    border-left-color: #cc4b37;
+}
+.message-box.success {
     background-color: #daf7e6;
-    border-left-style: solid;
-    border-left-width: 0.3125rem;
     border-left-color: #46cc48;
-    position: relative;
-    box-shadow: 0 5px 8px -6px rgba(0, 0, 0, 0.2);
 }
 
 .auth_methods{
