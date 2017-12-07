@@ -30,7 +30,7 @@
                                         {% for name, value in queryParams %}
                                             {%- if not loop.first %}&{% endif -%}
                                             {% if value %}{{ name }}={{ value }}{% else %}{{ name }}{% endif %}
-                                        {% endfor %}"{% endspaceless -%} class="pure-menu-link">{{ lang.name }}</a></li>
+                                        {% endfor %}"{% endspaceless %} class="pure-menu-link">{{ lang.name }}</a></li>
                                     {% endif %}
                                 {% endif -%}
                             {% endfor -%}

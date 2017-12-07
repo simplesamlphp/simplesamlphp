@@ -1,9 +1,11 @@
 <?php
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * Test for the core:AttributeAdd filter.
  */
-class Test_Core_Auth_Process_AttributeAdd extends PHPUnit_Framework_TestCase
+class Test_Core_Auth_Process_AttributeAdd extends TestCase
 {
 
     /**

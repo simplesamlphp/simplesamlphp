@@ -44,7 +44,7 @@
     {% endif %}
 
     {% if nameid.Format %}
-        {% set items = items|merge({('Format'|trans) : nameid.format}) %}
+        {% set items = items|merge({('Format'|trans) : nameid.Format}) %}
     {% endif %}
 
     {% if nameid.NameQualifier %}
@@ -59,9 +59,15 @@
         {% set items = items|merge({'SPProvidedID' : nameid.SPProvidedID}) %}
     {% endif %}
 
-    {% embed '_table.twig' %}
+    <table id="table_with_attributes"  class="attributes pure-table pure-table-striped pure-table-attributes" summary="attribute overview">
+        {% for name, value in items %}
+            <tr class="{{ cycle(['odd', 'even'], loop.index0) }}">
+                <td class="attrname">{{ name }}</td>
+                <td class="attrname">{{ value }}</td>
+            </tr>
+        {% endfor %}
+    </table><br>
 
-    {% endembed %}
 {% endif %}
 
 

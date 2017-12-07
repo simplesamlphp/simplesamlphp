@@ -1,6 +1,8 @@
 <?php
 
-class sspmod_ldap_Auth_Process_BaseFilter_Test extends PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class sspmod_ldap_Auth_Process_BaseFilter_Test extends TestCase
 {
     public function testVarExportHidesLdapPassword()
     {

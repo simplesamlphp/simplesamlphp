@@ -1,9 +1,10 @@
 <?php
 namespace SimpleSAML\Test;
 
+use PHPUnit\Framework\TestCase;
 use SimpleSAML\Module;
 
-class ModuleTest extends \PHPUnit_Framework_TestCase
+class ModuleTest extends TestCase
 {
 
 

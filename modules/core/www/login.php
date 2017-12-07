@@ -10,7 +10,7 @@ if (isset($sources['admin'])) {
 
 //if only 1 auth
 if (count($sources)==1) {
-    $_REQUEST['as'] = key(end($sources));
+    $_REQUEST['as'] = key($sources);
 }
 
 if (!array_key_exists('as', $_REQUEST)) {

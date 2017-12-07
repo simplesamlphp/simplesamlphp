@@ -1,9 +1,11 @@
 <?php
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * Test for the core:AttributeAlter filter.
  */
-class Test_Core_Auth_Process_AttributeAlter extends PHPUnit_Framework_TestCase
+class Test_Core_Auth_Process_AttributeAlter extends TestCase
 {
 
     /**
@@ -354,4 +356,3 @@ class Test_Core_Auth_Process_AttributeAlter extends PHPUnit_Framework_TestCase
         $result = self::processFilter($config, $request);
     }
 }
-
