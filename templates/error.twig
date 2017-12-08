@@ -35,8 +35,7 @@
         <h2>{{'{errors:debuginfo_header}' | trans}}</h2>
         <p>{{'{errors:debuginfo_text}' | trans}}</p>
         <div class="code-box code-box-content">
-            <pre>{{ error.exceptionMsg }}<br>
-                {{ error.exceptionTrace }}
+            <pre>{{ error.exceptionMsg }}<br />{{ error.exceptionTrace }}
             </pre>
         </div>
     {%- endif %}
