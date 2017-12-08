@@ -12,27 +12,22 @@
 if (!array_key_exists('AuthState', $_REQUEST)) {
 	throw new SimpleSAML_Error_BadRequest('Missing AuthState parameter.');
 }
-$authStateId = $_REQUEST['AuthState'];
-
-if (array_key_exists('otp', $_REQUEST)) {
-	$otp = $_REQUEST['otp'];
-} else {
-	$otp = '';
-}
-
-if (!empty($otp)) {
-	// attempt to log in
-	$errorCode = sspmod_authYubiKey_Auth_Source_YubiKey::handleLogin($authStateId, $otp);
-} else {
-	$errorCode = NULL;
-}
 
 $globalConfig = SimpleSAML_Configuration::getInstance();
 $t = new SimpleSAML_XHTML_Template($globalConfig, 'authYubiKey:yubikeylogin.php');
-$t->data['stateparams'] = array('AuthState' => $authStateId);
-$t->data['errorcode'] = $errorCode;
-$t->data['errorcodes'] = SimpleSAML\Error\ErrorCodes::getAllErrorCodeMessages();
-$t->data['logo_url'] = SimpleSAML\Module::getModuleURL('authYubiKey/resources/logo.jpg');
-$t->data['devicepic_url'] = SimpleSAML\Module::getModuleURL('authYubiKey/resources/yubikey.jpg');
+
+$errorCode = null;
+if (array_key_exists('otp', $_REQUEST)) {
+    // attempt to log in
+    $errorCode = sspmod_authYubiKey_Auth_Source_YubiKey::handleLogin($authStateId, $_REQUEST['otp']);
+
+    $errorCodes = SimpleSAML\Error\ErrorCodes::getAllErrorCodeMessages();
+    $t->data['errorTitle'] = $errorCodes['title'][$errorCode];
+    $t->data['errorDesc'] = $errorCodes['desc'][$errorCode];
+}
+
+$t->data['errorCode'] = $errorCode;
+$t->data['stateParams'] = array('AuthState' => $_REQUEST['authStateId']);
+$t->data['logoUrl'] = SimpleSAML\Module::getModuleURL('authYubiKey/resources/logo.jpg');
+$t->data['devicepicUrl'] = SimpleSAML\Module::getModuleURL('authYubiKey/resources/yubikey.jpg');
 $t->show();
-exit();

@@ -12,49 +12,59 @@
 
 // Retrieve the authentication state
 if (!array_key_exists('AuthState', $_REQUEST)) {
-	throw new SimpleSAML_Error_BadRequest('Missing AuthState parameter.');
+    throw new SimpleSAML_Error_BadRequest('Missing AuthState parameter.');
 }
 $authStateId = $_REQUEST['AuthState'];
 $state = SimpleSAML_Auth_State::loadState($authStateId, sspmod_multiauth_Auth_Source_MultiAuth::STAGEID);
 
 if (array_key_exists("SimpleSAML_Auth_Source.id", $state)) {
-	$authId = $state["SimpleSAML_Auth_Source.id"];
-	$as = SimpleSAML_Auth_Source::getById($authId);
+    $authId = $state["SimpleSAML_Auth_Source.id"];
+    $as = SimpleSAML_Auth_Source::getById($authId);
 } else {
-	$as = NULL;
+    $as = null;
 }
 
-$source = NULL;
+$source = null;
 if (array_key_exists('source', $_REQUEST)) {
-	$source = $_REQUEST['source'];
+    $source = $_REQUEST['source'];
 } else {
-	foreach ($_REQUEST as $k => $v) {
-		$k = explode('-', $k, 2);
-		if (count($k) === 2 && $k[0] === 'src') {
-			$source = base64_decode($k[1]);
-		}
-	}
+    foreach ($_REQUEST as $k => $v) {
+        $k = explode('-', $k, 2);
+        if (count($k) === 2 && $k[0] === 'src') {
+            $source = base64_decode($k[1]);
+        }
+    }
 }
-if ($source !== NULL) {
-	if ($as !== NULL) {
-		$as->setPreviousSource($source);
-	}
-	sspmod_multiauth_Auth_Source_MultiAuth::delegateAuthentication($source, $state);
+if ($source !== null) {
+    if ($as !== null) {
+        $as->setPreviousSource($source);
+    }
+    sspmod_multiauth_Auth_Source_MultiAuth::delegateAuthentication($source, $state);
 }
 
 if (array_key_exists('multiauth:preselect', $state)) {
-	$source = $state['multiauth:preselect'];
-	sspmod_multiauth_Auth_Source_MultiAuth::delegateAuthentication($source, $state);
+    $source = $state['multiauth:preselect'];
+    sspmod_multiauth_Auth_Source_MultiAuth::delegateAuthentication($source, $state);
 }
 
 $globalConfig = SimpleSAML_Configuration::getInstance();
 $t = new SimpleSAML_XHTML_Template($globalConfig, 'multiauth:selectsource.php');
+$language = $t->getLanguage();
+
+$sources = $state[sspmod_multiauth_Auth_Source_MultiAuth::SOURCESID];
+foreach ($sources as $key => $source){
+    $sources[$key]['source64'] = base64_encode($sources[$key]['source']);
+    $sources[$key]['text'] = $sources[$key]['text'][$language];
+}
+
 $t->data['authstate'] = $authStateId;
-$t->data['sources'] = $state[sspmod_multiauth_Auth_Source_MultiAuth::SOURCESID];
-if ($as !== NULL) {
-	$t->data['preferred'] = $as->getPreviousSource();
+$t->data['sources'] = $sources;
+$t->data['selfUrl'] = $_SERVER['PHP_SELF'];
+
+if ($as !== null) {
+    $t->data['preferred'] = $as->getPreviousSource();
 } else {
-	$t->data['preferred'] = NULL;
+    $t->data['preferred'] = null;
 }
 $t->show();
 exit();

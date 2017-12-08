@@ -1,0 +1,11 @@
+{% extends "base.twig" %}
+
+{% block content %}
+  <h1>{{ '{authorize:Authorize:403_header}'|trans }}</h1>
+  <p>{{ '{authorize:Authorize:403_text}'|trans }}</p>
+  {% if LogoutURL is defined %}
+  <p>
+      <a href="{{ LogoutURL|escape('html') }}">{{ '{status:logout}'|trans }}</a>
+  </p>
+  {% endif %}
+{% endblock%}
