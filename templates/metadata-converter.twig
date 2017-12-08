@@ -7,7 +7,7 @@
     <form method="post" class="pure-form" enctype="multipart/form-data">
         <h3> {% trans 'XML metadata' %}</h3>
         <div class="pure-control-group">
-            <textarea name="xmldata" rows="20" class="xmlarea edge">{{ xmldata }}</textarea>
+            <textarea name="xmldata" rows="20" class="text-area edge">{{ xmldata }}</textarea>
         </div>
         <br>
         <div class="center">
@@ -26,16 +26,16 @@
     <br>
     <h2>{{ 'Converted metadata'|trans }}</h2>
         {% for type, text in output if text -%}
-    <div class="metadatabox">
-        <div class="metadata-type">
+    <div class="code-box">
+        <div class="code-box-title">
             <h3> {{ type }}</h3>
-            <button data-clipboard-target="#metadata{{ loop.index }}" id="btn{{loop.index }}" class="pure-button right clipboard-btn" onclick="metadata({{ loop.index }})" >
+            <button data-clipboard-target="#metadata{{ loop.index }}" id="btn{{ loop.index }}" class="pure-button right clipboard-btn">
                 <i class="fa fa-copy"></i>
             </button>
         </div>
-        <div class="metadata-code">
+        <div class="code-box-content">
             <pre id="metadata{{ loop.index }}">
-                {%- spaceless %}{{ text }}{% endspaceless %}
+                {%- spaceless %}{{ text }}{% endspaceless -%}
             </pre>
         </div>
     </div>

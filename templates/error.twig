@@ -33,16 +33,15 @@
     </div>
 
     {# print out exception only if the exception is available #}
-    {% if showerrors %}
+    {% if showerrors -%}
         <h2>{{'{errors:debuginfo_header}' | trans}}</h2>
         <p>{{'{errors:debuginfo_text}' | trans}}</p>
-
-        {# TODO: Update class #}
-        <div class="metadatabox">
-            <pre>{{ error.exceptionMsg }}</pre>
-            <pre>{{ error.exceptionTrace }}</pre>
+        <div class="code-box code-box-content">
+            <pre>{{ error.exceptionMsg }}<br>
+                {{ error.exceptionTrace }}
+            </pre>
         </div>
-    {% endif %}
+    {%- endif %}
 
     {# Add error report submit section if we have a valid technical contact. 'errorreportaddress' will only be set if
        the technical contact email address has been set. #}
@@ -56,8 +55,9 @@
             <p>
                 <textarea class="metadatabox" name="text" rows="6" cols="50">{{ '{errors:report_explain}' | trans }}</textarea>
             </p>
+
+            <textarea class="text-area edge" name="text" rows="6" cols="50">{{ '{errors:report_explain}' | trans }}</textarea>
         </form>
-        <p>
             <input type="hidden" name="reportId" value="{{ error.reportId }}" />
             <button type="submit" name="send" class="btn">{{ '{errors:report_submit}' | trans }}</button>
         </p>

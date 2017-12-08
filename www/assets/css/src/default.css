@@ -123,10 +123,12 @@ CONTENT
 }
 
 .message-box {
+    background-color: #f4f4f4;
+    border-left-color: #444444;
     border-left-style: solid;
     border-left-width: 0.3125rem;
     box-shadow: 0 5px 8px -6px rgba(0, 0, 0, 0.2);
-    margin: 0 0 1rem 0;
+    margin: 1rem 0;
     padding: 1.3rem;
     position: relative;
 }
@@ -149,27 +151,18 @@ CONTENT
 .pure-menu-item:last-child {
     border-bottom: none;
 }
-.metadatabox{
+.code-box{
     border:1px solid #ccc;
+}
+.code-box-content{
+    font-size: 1em;
+    line-height: 1.15;
+    padding: 0.5em 1em;
 }
 .metadata-type{
     border-bottom: 1px solid #ccc;
     background-color: #e0e0e0;
     padding: 0.5em 0 0.5em 0.5em;
-}
-.metadata-code{
-    font-size: 1em;
-    line-height: 1.15;
-    padding-top: 0.5em;
-}
-.clipboard-btn{
-    position: absolute;
-    right:0;
-    height: inherit;
-    margin-top: -2em;
-    margin-right: 4px;
-    background-color: #f0f0f0;
-    border: 1px solid #ccc;
 }
 
 /* ***********************************************************
@@ -208,7 +201,7 @@ FOOTER
 /* ***********************************************************
 FORMS
 ************************************************************ */
-.xmlarea{
+.text-area{
     margin-top: .5em;
     width:100%;
     font-size: 0.9em;
@@ -237,37 +230,18 @@ input[type="file"]{
 }
 
 /* PURE */
-.pure-button {
-     border-radius: 0;
- }
+.pure-button,
 .pure-form input.edge,
-.pure-form textarea.edge{
+.pure-form textarea.edge {
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
     border-radius: 0;
-}
+ }
 .pure-form-aligned .pure-controls{
      margin: 0 0 0 11em;
  }
 .pure-select{
     float: right;
-}
-.pure-button-group .pure-button:first-child {
-    border: solid 1px #E6E6E6;
-    -webkit-border-radius: 0;
-    -moz-border-radius: 0;
-    border-radius: 0;
- }
-.pure-button-group .pure-button:last-child {
-    -webkit-border-radius: 0;
-    -moz-border-radius: 0;
-    border-radius: 0;
-}
-.pure-button-group .pure-button.show-files{
-    background-color: transparent;
-    border: solid 1px #ADADAD;
-    border-right: solid 1px #ADADAD;
-    overflow: hidden;
 }
 
 /* SELECTIZE */
@@ -300,19 +274,16 @@ div .item{
     vertical-align: middle;
 }
 
-
 /* ***********************************************************
 IMAGES
 ************************************************************ */
 .fa {
     font-family: FontAwesome !important;
 }
-.fa-folder-open{
+span.fa, i.fa {
     padding: 0 0.5em;
 }
-#clipboard-btn{
-    margin-right: 0.5em;
-}
+
 /* ***********************************************************
 TABLES
 ************************************************************ */
