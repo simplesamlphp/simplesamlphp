@@ -80,7 +80,7 @@ if (!empty($stateId)) {
         $state = SimpleSAML_Auth_State::loadState($stateId, 'saml:sp:sso');
     } catch (Exception $e) {
         // something went wrong,
-        SimpleSAML_Logger::warning('Could not load state specified by InResponseTo: '.$e->getMessage().
+        SimpleSAML\Logger::warning('Could not load state specified by InResponseTo: '.$e->getMessage().
             ' Processing response as unsolicited.');
     }
 }
