@@ -65,14 +65,68 @@ a:hover{
 .overflow {
     overflow: hidden;
 }
-.pure-button-primary,
-a.pure-button-primary {
-    background-color: rgb(219, 1, 0);
-    color: #fff;
-}
 ul{
     padding-left: 1.5em;
 }
+/* ***********************************************************
+BUTTONS
+************************************************************ */
+.code-box-title .clipboard-btn {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    position: absolute;
+    right:0;
+    height: inherit;
+    margin-top: -2em;
+    margin-right: 4px;
+}
+.pure-button-red,
+a.pure-button-red {
+    background-color: rgb(219, 1, 0);
+    color: #fff;
+}
+
+.pure-button.hollow {
+    background-color: #FFFFFF;
+    color: #6f6f6f;
+    border: solid 1px #E6E6E6;
+}
+.pure-button.hollow:hover {
+    background-image: none;
+}
+.pure-button.hollow[disabled]{
+    cursor: auto;
+    opacity: initial;
+    pointer-events: auto;
+    -webkit-user-drag: auto;
+    -webkit-user-select: auto;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+}
+.pure-button-group .pure-button:first-child,
+.pure-button-group .pure-button:last-child {
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+}
+
+.pure-button-group.two-elements .pure-button {
+    margin: 0;
+    line-height: unset;
+    border: 1px solid #E6E6E6;
+}
+.pure-button-group.two-elements .pure-button:first-child {
+    border-right: none;
+}
+.pure-button-group.two-elements .pure-button:last-child {
+    border-right: 1px solid #E6E6E6;
+}
+.pure-button-group .pure-button.show-files{
+    max-width: 450px;
+    overflow: hidden;
+}
+
 /* ***********************************************************
 HEADER
 ************************************************************ */
