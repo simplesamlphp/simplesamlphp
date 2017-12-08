@@ -53,10 +53,11 @@
 
             <textarea class="text-area edge" name="text" rows="6" cols="50">{{ '{errors:report_explain}' | trans }}</textarea>
         </form>
+        <p class="center">
             <input type="hidden" name="reportId" value="{{ error.reportId }}" />
-            <button type="submit" name="send" class="btn">{{ '{errors:report_submit}' | trans }}</button>
+            <button type="submit" name="send" class="pure-button pure-button-red">{{ '{errors:report_submit}' | trans }}</button>
         </p>
-    {% endif %}
+    {%- endif %}
 
     <h2>{{ '{errors:howto_header}' | trans }}</h2>
     <p>{{ '{errors:howto_text}' | trans }}</p>
