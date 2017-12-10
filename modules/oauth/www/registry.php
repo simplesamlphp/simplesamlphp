@@ -4,7 +4,6 @@
 $config = SimpleSAML_Configuration::getInstance();
 $session = SimpleSAML_Session::getSessionFromRequest();
 $oauthconfig = SimpleSAML_Configuration::getOptionalConfig('module_oauth.php');
-
 $store = new sspmod_core_Storage_SQLPermanentStorage('oauth');
 
 $authsource = "admin";	// force admin to authenticate as registry maintainer

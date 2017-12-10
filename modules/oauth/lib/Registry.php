@@ -49,7 +49,7 @@ class sspmod_oauth_Registry {
 	
 
 	protected function header($name) {
-		return '<tr ><td>&nbsp;</td><td class="header">' . $name . '</td></tr>';
+		return '<tr><td>&nbsp;</td><td class="header">' . $name . '</td></tr>';
 		
 	}
 	
@@ -109,10 +109,10 @@ class sspmod_oauth_Registry {
 	public function metaToForm($metadata) {
 		return '<form action="registry.edit.php" method="post">' .
 			'<div id="tabdiv">' .
-			'<ul>' .
-			'<li><a href="#basic">Name and descrition</a></li>' .
+			'<ul class="tabset_tabs">' .
+			'<li class="tab-link current" data-tab="basic"><a href="#basic">Name and descrition</a></li>' .
 			'</ul>' .
-			'<div id="basic"><table class="formtable">' .
+			'<div id="basic" class="tabset_content current"><table class="formtable">' .
 				$this->standardField($metadata, 'name', 'Name of client') .
 				$this->standardField($metadata, 'description', 'Description of client', TRUE) .
 				$this->readonlyField($metadata, 'owner', 'Owner') .
@@ -120,10 +120,9 @@ class sspmod_oauth_Registry {
 				$this->readonlyField($metadata, 'secret', 'Consumer Secret<br/>(Used for HMAC_SHA1 signatures)') .
 				$this->standardField($metadata, 'RSAcertificate', 'RSA certificate (PEM)<br/>(Used for RSA_SHA1 signatures)', TRUE) .
 				$this->standardField($metadata, 'callback_url', 'Static/enforcing callback-url') .
-				$this->hiddenField('field_secret', $metadata['secret']) .
-
 			'</table></div>' .
 			'</div>' .
+			$this->hiddenField('field_secret', $metadata['secret']) .
 			'<input type="submit" name="submit" value="Save" style="margin-top: 5px" />' .
 		'</form>';
 	}
