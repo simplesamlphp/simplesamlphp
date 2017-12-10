@@ -29,12 +29,11 @@ class sspmod_core_Storage_SQLPermanentStorage {
 			mkdir($sqllitedir);
 		}
 		
-		$dbfile = $sqllitedir . $name . '.sqllite';
-		
-		if ($this->db = new SQLiteDatabase($dbfile)) {
+		$dbfile = 'sqlite:' . $sqllitedir . $name . '.sqlite';
+                if ($this->db = new \PDO($dbfile)) {
 			$q = @$this->db->query('SELECT key1 FROM data LIMIT 1');
 			if ($q === false) {
-				$this->db->queryExec('
+				$this->db->exec('
 		CREATE TABLE data (
 			key1 text, 
 			key2 text,
@@ -64,50 +63,49 @@ class sspmod_core_Storage_SQLPermanentStorage {
 		
 		$setDuration = '';
 		if (is_null($duration)) {
-			$setDuration = 'NULL';
+			$expire = null;
 		} else {
-			$setDuration = "'" . sqlite_escape_string(time() + $duration) . "'";
+			$expire = time() + $duration;
 		}
-		
-		$query = "INSERT INTO data (key1,key2,type,created,updated,expire,value) VALUES (" . 
-			"'" . sqlite_escape_string($key1) . "'," . 
-			"'" . sqlite_escape_string($key2) . "'," . 
-			"'" . sqlite_escape_string($type) . "'," . 
-			"'" . sqlite_escape_string(time()) . "'," . 
-			"'" . sqlite_escape_string(time()) . "'," . 
-			$setDuration . "," .
-			"'" . sqlite_escape_string(serialize($value)) . "')";
-		$results = $this->db->queryExec($query);
-		return $results;
+
+                $query = "INSERT INTO data (key1, key2, type, created, updated, expire, value)" .
+                    " VALUES(:key1, :key2, :type, :created, :updated, :expire, :value)";
+                $prepared = $this->db->prepare($query);
+                $data = array(':key1' => $key1, ':key2' => $key2,
+                    ':type' => $type, ':created' => time(),
+                    ':updated' => time(), ':expire' => $expire,
+                    ':value' => serialize($value));
+                $prepared->execute($data);
+                $results = $prepared->fetchAll(PDO::FETCH_ASSOC);
+                return $results;
 	}
 	
 	private function update($type, $key1, $key2, $value, $duration = NULL) {
 		
 		$setDuration = '';
 		if (is_null($duration)) {
-			$setDuration = ", expire = NULL ";
+			$expire = null;
 		} else {
-			$setDuration = ", expire = '" . sqlite_escape_string(time() + $duration) . "' ";
+			$expire = time() + $duration;
 		}
 		
-		$query = "UPDATE data SET " . 
-			"updated = '" . sqlite_escape_string(time()) . "'," . 
-			"value = '" . sqlite_escape_string(serialize($value)) . "'" .
-			$setDuration .
-			"WHERE " . 
-			"key1 = '" . sqlite_escape_string($key1) . "' AND " . 
-			"key2 = '" . sqlite_escape_string($key2) . "' AND " . 
-			"type = '" . sqlite_escape_string($type) . "'";
-		$results = $this->db->queryExec($query);
-		return $results;
+                $query = "UPDATE data SET updated = :updated, value = :value, expire = :expire WHERE key1 = :key1 AND key2 = :key2 AND type = :type";
+                $prepared = $this->db->prepare($query);
+                $data = array(':key1' => $key1, ':key2' => $key2,
+                    ':type' => $type, ':updated' => time(),
+                    ':expire' => $expire, ':value' => serialize($value));
+                $prepared->execute($data);
+                $results = $prepared->fetchAll(PDO::FETCH_ASSOC);
+                return $results;
 	}
 
 	public function get($type = NULL, $key1 = NULL, $key2 = NULL) {
-		
-		$condition = self::getCondition($type, $key1, $key2);
-		$query = "SELECT * FROM data WHERE " . $condition;
-		$results = $this->db->arrayQuery($query, SQLITE_ASSOC);
+                $conditions = self::getCondition($type, $key1, $key2);
+		$query = 'SELECT * FROM data WHERE ' . $conditions;
 
+		$prepared = $this->db->prepare($query);
+                $prepared->execute();
+                $results = $prepared->fetchAll(PDO::FETCH_ASSOC);
 		if (count($results) !== 1) return NULL;
 		
 		$res = $results[0];
@@ -125,19 +123,20 @@ class sspmod_core_Storage_SQLPermanentStorage {
 	}
 	
 	public function exists($type, $key1, $key2) {
-		$query = "SELECT * FROM data WHERE " . 
-			"key1 = '" . sqlite_escape_string($key1) . "' AND " . 
-			"key2 = '" . sqlite_escape_string($key2) . "' AND " . 
-			"type = '" . sqlite_escape_string($type) . "' LIMIT 1";
-		$results = $this->db->arrayQuery($query, SQLITE_ASSOC);
+                $query = 'SELECT * FROM data WHERE type = :type AND key1 = :key1 AND key2 = :key2 LIMIT 1';
+                $prepared = $this->db->prepare($query);
+                $data = array(':type' => $type, ':key1' => $key1, ':key2' => $key2);
+                $prepared->execute($data);
+                $results = $prepared->fetchAll(PDO::FETCH_ASSOC);
 		return (count($results) == 1);
 	}
 		
 	public function getList($type = NULL, $key1 = NULL, $key2 = NULL) {
-		
-		$condition = self::getCondition($type, $key1, $key2);
-		$query = "SELECT * FROM data WHERE " . $condition;
-		$results = $this->db->arrayQuery($query, SQLITE_ASSOC);
+                $conditions = self::getCondition($type, $key1, $key2);
+                $query = 'SELECT * FROM data WHERE ' . $conditions;
+                $prepared = $this->db->prepare($query);
+                $prepared->execute();
+                $results = $prepared->fetchAll(PDO::FETCH_ASSOC);
 		if (count($results) == 0) return NULL;
 		
 		foreach($results AS $key => $value) {
@@ -147,14 +146,15 @@ class sspmod_core_Storage_SQLPermanentStorage {
 	}
 	
 	public function getKeys($type = NULL, $key1 = NULL, $key2 = NULL, $whichKey = 'type') {
-
 		if (!in_array($whichKey, array('key1', 'key2', 'type'), true))
 			throw new Exception('Invalid key type');
-			
-		$condition = self::getCondition($type, $key1, $key2);
-		
-		$query = "SELECT DISTINCT " . $whichKey . " FROM data WHERE " . $condition;
-		$results = $this->db->arrayQuery($query, SQLITE_ASSOC);
+
+                $conditions = self::getCondition($type, $key1, $key2);
+                $query = 'SELECT DISTINCT :whichKey FROM data WHERE ' . $conditions;
+                $prepared = $this->db->prepare($query);
+                $data = array('whichKey' => $whichKey);
+                $prepared->execute($data);
+                $results = $prepared->fetchAll(PDO::FETCH_ASSOC);
 
 		if (count($results) == 0) return NULL;
 		
@@ -168,31 +168,30 @@ class sspmod_core_Storage_SQLPermanentStorage {
 	
 	
 	public function remove($type, $key1, $key2) {
-		$query = "DELETE FROM data WHERE " . 
-			"key1 = '" . sqlite_escape_string($key1) . "' AND " . 
-			"key2 = '" . sqlite_escape_string($key2) . "' AND " . 
-			"type = '" . sqlite_escape_string($type) . "'";
-		$results = $this->db->arrayQuery($query, SQLITE_ASSOC);
+                $query = 'DELETE FROM data WHERE type = :type AND key1 = :key1 AND key2 = :key2';
+                $prepared = $this->db->prepare($query);
+                $data = array(':type' => $type, ':key1' => $key1, ':key2' => $key2);
+                $prepared->execute($data);
+                $results = $prepared->fetchAll(PDO::FETCH_ASSOC);
 		return (count($results) == 1);
 	}
 	
 	public function removeExpired() {
-		$query = "DELETE FROM data WHERE expire NOT NULL AND expire < " . time();
-		$this->db->arrayQuery($query, SQLITE_ASSOC);
-		$changes = $this->db->changes();
-		return $changes;
+                $query = "DELETE FROM data WHERE expire NOT NULL AND expire < :expire";
+                $prepared = $this->db->prepare($query);
+                $data = array(':expire' => time());
+                $prepared->execute($data);
+                return $prepared->rowCount();
 	}
-	
-	
+
 	/**
 	 * Create a SQL condition statement based on parameters
 	 */
-	private static function getCondition($type = NULL, $key1 = NULL, $key2 = NULL) {
+	private function getCondition($type = NULL, $key1 = NULL, $key2 = NULL) {
 		$conditions = array();
-		
-		if (!is_null($type)) $conditions[] = "type = '" . sqlite_escape_string($type) . "'";
-		if (!is_null($key1)) $conditions[] = "key1 = '" . sqlite_escape_string($key1) . "'";
-		if (!is_null($key2)) $conditions[] = "key2 = '" . sqlite_escape_string($key2) . "'";
+		if (!is_null($type)) $conditions[] = "type = " . $this->db->quote($type);
+		if (!is_null($key1)) $conditions[] = "key1 = " . $this->db->quote($key1);
+		if (!is_null($key2)) $conditions[] = "key2 = " . $this->db->quote($key2);
 		
 		if (count($conditions) === 0) return '1';
 		
@@ -200,7 +199,5 @@ class sspmod_core_Storage_SQLPermanentStorage {
 		
 		return $condition;
 	}
-	
-	
 }
 
