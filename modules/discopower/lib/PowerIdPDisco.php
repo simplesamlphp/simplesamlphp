@@ -12,8 +12,6 @@
  */
 class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco
 {
-
-
     /**
      * The configuration for this instance.
      *
@@ -127,7 +125,7 @@ class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco
                 $tags = $val['tags'];
             }
             foreach ($tags as $tag) {
-                if (!empty($enableTabs) && !in_array($tag, $enableTabs, true)) {
+                if (!empty($enableTabs) && !in_array($tag, $enableTabs)) {
                     continue;
                 }
                 $slist[$tag][$key] = $val;
@@ -153,21 +151,21 @@ class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco
      */
     private function processFilter($filter, $entry, $default = true)
     {
-        if (in_array($entry['entityid'], $filter['entities.include'], true)) {
+        if (in_array($entry['entityid'], $filter['entities.include'])) {
             return true;
         }
-        if (in_array($entry['entityid'], $filter['entities.exclude'], true)) {
+        if (in_array($entry['entityid'], $filter['entities.exclude'])) {
             return false;
         }
 
         if (array_key_exists('tags', $entry)) {
             foreach ($filter['tags.include'] as $fe) {
-                if (in_array($fe, $entry['tags'], true)) {
+                if (in_array($fe, $entry['tags'])) {
                     return true;
                 }
             }
             foreach ($filter['tags.exclude'] as $fe) {
-                if (in_array($fe, $entry['tags'], true)) {
+                if (in_array($fe, $entry['tags'])) {
                     return false;
                 }
             }
@@ -246,12 +244,6 @@ class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco
         $idpList = $this->getIdPList();
         $idpList = $this->idplistStructured($this->filterList($idpList));
         $preferredIdP = $this->getRecommendedIdP();
-        $faventry = NULL;
-        foreach ($idpList AS $tab => $slist) {
-            if (!empty($preferredIdP) && array_key_exists($preferredIdP, $slist)) {
-                $faventry = $slist[$preferredIdP];
-            }
-        }
 
         $t = new SimpleSAML_XHTML_Template($this->config, 'discopower:disco.tpl.php', 'disco');
         $discoPowerTabs = array(
@@ -269,21 +261,104 @@ class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco
             'switzerland' => $t->noop('{discopower:tabs:switzerland}'),
             'ukacessfederation' => $t->noop('{discopower:tabs:ukacessfederation}'),
         );
-        $t->data['faventry'] = $faventry;
-        $t->data['tabNames'] = $discoPowerTabs;
-        $t->data['idplist'] = $idpList;
-        $t->data['preferredidp'] = $preferredIdP;
+
         $t->data['return'] = $this->returnURL;
         $t->data['returnIDParam'] = $this->returnIdParam;
         $t->data['entityID'] = $this->spEntityId;
+        $t->data['defaulttab'] = $this->discoconfig->getValue('defaulttab', 0);
+
+        $idpList = $this->processMetadata($t, $idpList, $preferredIdP);
+
+        $t->data['idplist'] = $idpList;
+        $faventry = null;
+        foreach ($idpList as $tab => $slist) {
+            if (!empty($preferredIdP) && array_key_exists($preferredIdP, $slist)) {
+                $t->data['faventry'] = $slist[$preferredIdP];
+                break;
+            }
+        }
+
+        if (!empty($this->data['faventry'])) {
+            $this->data['autofocus'] = 'favouritesubmit';
+        }
+
+        $search = '<script type="text/javascript">
+            $(document).ready(function() {
+                $("#tabdiv").tabs({ selected: ' . $t->data['defaulttab'] . ' });';
+        $i = 0;
+        foreach ($idpList as $tab => $slist) {
+            $search .= "\n" . '$("#query_' . $tab . '").liveUpdate("#list_' . $tab . '")' .
+		(($i++ == 0) && (empty($this->data['faventry'])) ? '.focus()' : '') . ';';
+        }
+        $search .= "});\n</script>";
+
+        $t->data['search'] = $search;
+        $t->data['score'] = $this->discoconfig->getValue('score', 'quicksilver');
+        $t->data['tabNames'] = $discoPowerTabs;
+        $t->data['preferredidp'] = $preferredIdP;
         $t->data['urlpattern'] = htmlspecialchars(\SimpleSAML\Utils\HTTP::getSelfURLNoQuery());
         $t->data['rememberenabled'] = $this->config->getBoolean('idpdisco.enableremember', false);
         $t->data['rememberchecked'] = $this->config->getBoolean('idpdisco.rememberchecked', false);
-        $t->data['defaulttab'] = $this->discoconfig->getValue('defaulttab', 0);
-        $t->data['score'] = $this->discoconfig->getValue('score', 'quicksilver');
+        $t->data['jquery'] = array('core' => true, 'ui' => true);
         $t->show();
     }
 
+    private function processMetadata($t, $metadata, $favourite)
+    {
+        $basequerystring = '?' . 
+		'entityID=' . urlencode($t->data['entityID']) . '&amp;' . 
+		'return=' . urlencode($t->data['return']) . '&amp;' . 
+		'returnIDParam=' . urlencode($t->data['returnIDParam']) . '&amp;idpentityid=';
+
+        foreach ($metadata as $tab => $idps) {
+            foreach ($idps as $entityid => $entity) {
+                $translation = false;
+
+                // Translate name
+                if (isset($entity['UIInfo']['DisplayName'])) {
+                    $displayName = $entity['UIInfo']['DisplayName'];
+
+                    // Should always be an array of language code -> translation
+                    assert(is_array($displayName));
+
+                    if (!empty($displayName)) {
+                        $translation = $t->getTranslator()->getPreferredTranslation($displayName);
+                    }
+                }
+	
+                if ((translation === false) && array_key_exists('name', $entity)) {
+                    if (is_array($entity['name'])) {
+                        $translation = $t->getTranslator()->getPreferredTranslation($entity['name']);
+                    } else {
+                        $translation = $entity['name'];
+                    }
+                }
+
+                if ($translation === false) {
+                    $translation = $entity['entityid'];
+                }
+                $entity['translated'] = $translation;
+
+                // HTML output
+                if ($entity['entityid'] === $favourite) {
+                    $html = '<a class="metaentry favourite" href="' . $basequerystring . urlencode($entity['entityid']) . '">';
+                } else {
+                    $html = '<a class="metaentry" href="' . $basequerystring . urlencode($entity['entityid']) . '">';
+                }
+                $html .= $entity['translated'];
+                if (array_key_exists('icon', $entity) && $entity['icon'] !== null) {
+                    $iconUrl = \SimpleSAML\Utils\HTTP::resolveURL($entity['icon']);
+                    $html .= '<img alt="Icon for identity provider" class="entryicon" src="' . htmlspecialchars($iconUrl) . '" />';
+                }
+                $html .= '</a>';
+                $entity['html'] = $html;
+
+                // Save processed data
+                $metadata[$tab][$entityid] = $entity;
+            }
+        }
+        return $metadata;
+    }
 
     /**
      * Get the IdP entities saved in the common domain cookie.
@@ -319,7 +394,7 @@ class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco
      */
     protected function setPreviousIdP($idp)
     {
-        assert(is_string($idp));
+        assert('is_string($idp)');
 
         if ($this->cdcDomain === null) {
             parent::setPreviousIdP($idp);
