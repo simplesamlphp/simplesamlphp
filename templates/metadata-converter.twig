@@ -13,7 +13,7 @@
         <div class="center">
             <div class="pure-button-group two-elements" role="group">
                 <label class="pure-button">
-                    <span class="fa fa-folder-open"></span>Select a file...
+                    <span class="fa fa-folder-open"></span>{{ 'or select a file:'|trans }}
                     <input type="file" name="xmlfile" class="hidden" multiple>
                 </label>
                 {#needs translation#}
@@ -37,7 +37,7 @@
         </div>
         <div class="code-box-content">
             <pre id="metadata{{ loop.index }}">
-                {%- spaceless %}{{ text }}{% endspaceless -%}
+                {%- spaceless %}{{ text|escape }}{% endspaceless -%}
             </pre>
         </div>
     </div>
