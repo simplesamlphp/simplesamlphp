@@ -1,0 +1,19 @@
+{% set pagetile = ''|trans %}
+{% extends 'base.twig' %}
+{% block content %}
+    <div class="code-box">
+        <div class="code-box-title">
+            <h3>{{ 'Metadata'|trans }}</h3>
+            <button data-clipboard-target="#metadata" id="btn{{ loop.index }}" class="pure-button right clipboard-btn">
+                <span class="fa fa-copy"></span>
+            </button>
+        </div>
+        <div class="code-box-content">
+            <pre id="metadata">$metadata[{{ metadata_index }}] => {{ m|escape }}</pre>
+        </div>
+    </div>
+    <div class="center">
+        {# TODO: translation needed #}
+        <a href="{{ backlink }}" class="pure-button pure-button-red">{{ 'Back'|trans }}</a>
+    </div>
+{% endblock content %}
