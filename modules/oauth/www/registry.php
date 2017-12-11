@@ -6,7 +6,7 @@ $session = SimpleSAML_Session::getSessionFromRequest();
 $oauthconfig = SimpleSAML_Configuration::getOptionalConfig('module_oauth.php');
 $store = new sspmod_core_Storage_SQLPermanentStorage('oauth');
 
-$authsource = "admin";	// force admin to authenticate as registry maintainer
+$authsource = "admin"; // force admin to authenticate as registry maintainer
 $useridattr = $oauthconfig->getValue('useridattr', 'user');
 
 if ($session->isValid($authsource)) {
@@ -47,6 +47,7 @@ if (is_array($list)) {
                 $slist['mine'][] = $listitem; continue;
             }
         }
+    }
     $slist['others'][] = $listitem;
 }
 
@@ -54,3 +55,5 @@ $template = new SimpleSAML_XHTML_Template($config, 'oauth:registry.list.php');
 $template->data['entries'] = $slist;
 $template->data['userid'] = $userid;
 $template->show();
+
+
