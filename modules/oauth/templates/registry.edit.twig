@@ -6,7 +6,11 @@
 {% endblock %}
 
 {% block postload %}
-    <script src="{{ baseurlpath }}resources/javascript.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+	$("#tabdiv").tabs();
+    });
+</script>
 {% endblock %}
 
 {% block content %}
