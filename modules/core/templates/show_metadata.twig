@@ -1,0 +1,19 @@
+{% set pagetitle = 'SimpleSAMLphp Show Metadata'|trans %}
+{% extends "base.twig" %}
+
+{% block postload %}
+    <script type="text/javascript">
+        var clipboard = new Clipboard('#btncp');
+    </script>
+{% endblock %}
+
+{% block content %}
+    <div class="metadatabox">
+        <button data-clipboard-target="#metadata" id="btncp" class="btn" style="margin-right: 0.5em; float: right">
+            <img src="/{{baseurlpath}}resources/icons/clipboard.svg" alt="Copy to clipboard" />
+        </button>
+        <pre id="metadata">$metadata['{{ entityid }}'] => {{ metadata }}</pre>
+    </div>
+    <br />
+    <p><a href="{{ backlink }}"><span class="btn">Back</span></a></p>
+{% endblock %}

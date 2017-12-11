@@ -23,4 +23,6 @@ $t = new SimpleSAML_XHTML_Template($globalConfig, 'core:short_sso_interval.php')
 $t->data['target'] = SimpleSAML\Module::getModuleURL('core/short_sso_interval.php');
 $t->data['params'] = array('StateId' => $id);
 $t->data['trackId'] = $session->getTrackID();
+$this->data['header'] = $this->t('{core:short_sso_interval:warning_header}');
+$this->data['autofocus'] = 'contbutton';
 $t->show();
