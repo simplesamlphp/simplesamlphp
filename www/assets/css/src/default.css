@@ -211,6 +211,7 @@ CONTENT
 }
 .code-box{
     border:1px solid #ccc;
+    margin-bottom: 1em;
 }
 .code-box-content{
     font-size: 1em;
@@ -340,6 +341,10 @@ IMAGES
 }
 span.fa, i.fa {
     padding: 0 0.5em;
+}
+.message-box span.fa,
+.message-box i.fa{
+    padding: 0;
 }
 
 /* ***********************************************************
