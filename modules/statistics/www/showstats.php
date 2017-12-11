@@ -130,7 +130,7 @@ $t->data['post_time'] = getBaseURL($t, 'post', 'time');
 $t->data['get_times_prev'] = getBaseURL($t, 'get', 'time', $t->data['available_times_prev']);
 $t->data['get_times_next'] = getBaseURL($t, 'get', 'time', $t->data['available_times_next']);
 
-//$t->data['jquery'] = array('ui' => true, 'core' => true);
+$t->data['jquery'] = array('core' => false, 'ui' => true, 'css' => true);
 
 $t->show();
 
