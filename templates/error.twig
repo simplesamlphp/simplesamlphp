@@ -1,13 +1,6 @@
 
 {% set pagetitle = dictTitle | trans %}
 {% extends "base.twig" %}
-
-{% block postload %}
-    <script type="text/javascript">
-        new Clipboard('.clipboard-btn');
-    </script>
-{% endblock %}
-
 {% block content %}
     <h2>{{ dictTitle | trans }}</h2>
     {{ dictDescr | trans(parameters) }}

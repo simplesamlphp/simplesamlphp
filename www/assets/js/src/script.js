@@ -39,12 +39,6 @@ function SimpleSAML_hide(id) {
 
   element.style.display = 'none';
 }
-
-function metadata(index) {
-    var clipboard = new Clipboard('#btn'+index);
-    console.log();
-}
-
 // Attach the `fileselect` event to all file inputs on the page
 $(document).on('change', ':file', function() {
     var input = $(this),
@@ -56,6 +50,7 @@ $(document).on('change', ':file', function() {
 $(document).ready(function() {
     $('.language-menu').selectize();
     $('#organization').selectize();
+    new Clipboard('.clipboard-btn');
 
     // Watch for custom `fileselect` event
     $(':file').on('fileselect', function(event, numFiles, label) {
@@ -69,7 +64,7 @@ $(document).ready(function() {
             if( log ) {
                 document.getElementById('show-file').innerHTML = log;
             }
-        };
+        }
     });
 
 });
