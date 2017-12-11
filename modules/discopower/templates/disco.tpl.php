@@ -8,28 +8,8 @@ $this->data['jquery'] = array('core' => TRUE, 'ui' => TRUE, 'css' => TRUE);
 
 $this->data['head'] = '<link rel="stylesheet" media="screen" type="text/css" href="' . SimpleSAML\Module::getModuleUrl('discopower/style.css')  . '" />';
 
-$this->data['head'] .= '<script type="text/javascript" src="' . SimpleSAML\Module::getModuleUrl('discopower/js/jquery.livesearch.js')  . '"></script>';
-$this->data['head'] .= '<script type="text/javascript" src="' . SimpleSAML\Module::getModuleUrl('discopower/js/' . $this->data['score'] . '.js')  . '"></script>';
-
-$this->data['head'] .= '<script type="text/javascript">
-
-$(document).ready(function() {
-	$("#discotabs").tabs({ selected: ' . $this->data['defaulttab'] . ' }); ';
-	
-$i = 0;
-foreach ($this->data['idplist'] AS $tab => $slist) {
-	$this->data['head'] .= "\n" . '$("#query_' . $tab . '").liveUpdate("#list_' . $tab . '")' .
-		(($i++ == 0) && (empty($this->data['faventry'])) ? '.focus()' : '') .
-		';';
-
-
-}
-
-$this->data['head'] .= '
-});
-
-</script>';
-
+$this->data['post'] = '<script type="text/javascript" src="' . SimpleSAML\Module::getModuleUrl('discopower/js/jquery.livesearch.js')  . '"></script>';
+$this->data['post'] .= '<script type="text/javascript" src="' . SimpleSAML\Module::getModuleUrl('discopower/js/quicksilver.js')  . '"></script>';
 
 
 
@@ -70,7 +50,7 @@ function showEntry($t, $metadata, $favourite = FALSE) {
 function getTranslatedName($t, $metadata) {
 	if (isset($metadata['UIInfo']['DisplayName'])) {
 		$displayName = $metadata['UIInfo']['DisplayName'];
-		assert(is_array($displayName)); // Should always be an array of language code -> translation
+		assert('is_array($displayName)'); // Should always be an array of language code -> translation
 		if (!empty($displayName)) {
 			return $t->getTranslator()->getPreferredTranslation($displayName);
 		}
@@ -116,15 +96,21 @@ if (!empty($this->data['faventry'])) {
 
 
 
-<div id="discotabs"> 
+<div id="tabdiv"> 
 
     <ul class="tabset_tabs">     
     	<?php
     	
     		$tabs = array_keys( $this->data['idplist']);
+                $i = 1;
     		foreach ($tabs AS $tab) {
 			if(!empty($this->data['idplist'][$tab])) {
-				echo '<li><a href="#' . $tab . '"><span>' . $this->t($this->data['tabNames'][$tab]) . '</span></a></li> ';
+                                if ($i === 1) {
+					echo '<li class="tab-link current" data-tab="'.$tab.'"><a href="#' . $tab . '"><span>' . $this->t($this->data['tabNames'][$tab]) . '</span></a></li>';
+				} else {
+					echo '<li class="tab-link" data-tab="'.$tab.'"><a href="#' . $tab . '"><span>' . $this->t($this->data['tabNames'][$tab]) . '</span></a></li> ';
+				}
+				$i++;
 			}
     		}
     	
@@ -138,14 +124,17 @@ if (!empty($this->data['faventry'])) {
 
 
 foreach( $this->data['idplist'] AS $tab => $slist) {
-
-	echo '<div id="' . $tab . '">';
-
+        $first = array_keys($this->data['idplist']);
+        if ($first[0] === $tab) {
+	    echo '<div id="' . $tab . '" class="tabset_content current">';
+        } else {
+	    echo '<div id="' . $tab . '" class="tabset_content">';
+        }	
 	if (!empty($slist)) {
 
 		echo('	<div class="inlinesearch">');
 		echo('	<p>Incremental search...</p>');
-		echo('	<form id="idpselectform" action="?" method="get"><input class="inlinesearchf" type="text" value="" name="query_' . $tab . '" id="query_' . $tab . '" /></form>');
+		echo('	<form id="idpselectform" action="?" method="get"><input class="inlinesearch" type="text" value="" name="query_' . $tab . '" id="query_' . $tab . '" /></form>');
 		echo('	</div>');
 	
 		echo('	<div class="metalist" id="list_' . $tab  . '">');
@@ -171,5 +160,22 @@ foreach( $this->data['idplist'] AS $tab => $slist) {
 
 </div>
 
-		
-<?php $this->includeAtTemplateBase('includes/footer.php');
+<script type="text/javascript">
+$(document).ready(function() {
+<?php
+$i = 0;
+foreach ($this->data['idplist'] AS $tab => $slist) {
+	echo "\n" . '$("#query_' . $tab . '").liveUpdate("#list_' . $tab . '")' .
+		(($i++ == 0) && (empty($this->data['faventry'])) ? '.focus()' : '') .
+		';';
+
+
+}
+?>
+});
+
+</script>
+
+<?php
+$this->data['post'] .= '<script type="text/javascript" src="' . SimpleSAML\Module::getModuleUrl('discopower/js/javascript.js') . '"></script>';
+$this->includeAtTemplateBase('includes/footer.php');
