@@ -36,6 +36,7 @@
     </div>
 
     <!-- postload javascript -->
+    <script type="text/javascript" src="/{{ baseurlpath }}assets/js/lib/jquery-3.2.1.min.js"></script>
     {% spaceless %}{% if jquery %}
         {% set version = '1.8' %}
         {% if jquery.version %}
@@ -50,7 +51,6 @@
             {% endif %}
         {% endif %}
     {% endif %}{% endspaceless -%}
-    <script type="text/javascript" src="/{{ baseurlpath }}assets/js/lib/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="/{{ baseurlpath }}assets/js/lib/clipboard.min.js"></script>
     <script type="text/javascript" src="/{{ baseurlpath }}assets/js/lib/selectize.min.js"></script>
     <script type="text/javascript" src="/{{ baseurlpath }}assets/js/src/language.js"></script>
