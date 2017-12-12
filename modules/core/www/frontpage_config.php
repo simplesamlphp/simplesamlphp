@@ -74,6 +74,8 @@ if ($config->getBoolean('admin.checkforupdates', true) && $current !== 'master')
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_USERAGENT, 'SimpleSAMLphp');
 		curl_setopt($ch, CURLOPT_TIMEOUT, 2);
+        curl_setopt($ch, CURLOPT_PROXY, $config->getString('proxy', null));
+        curl_setopt($ch, CURLOPT_PROXYUSERPWD, $config->getstring('proxy.auth', null));
 		$response = curl_exec($ch);
 
 		if (curl_getinfo($ch, CURLINFO_HTTP_CODE) === 200) {
