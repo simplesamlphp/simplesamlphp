@@ -16,7 +16,6 @@ if (!array_key_exists('AuthState', $_REQUEST)) {
 }
 $authStateId = $_REQUEST['AuthState'];
 $state = SimpleSAML_Auth_State::loadState($authStateId, sspmod_multiauth_Auth_Source_MultiAuth::STAGEID);
-
 if (array_key_exists("SimpleSAML_Auth_Source.id", $state)) {
     $authId = $state["SimpleSAML_Auth_Source.id"];
     $as = SimpleSAML_Auth_Source::getById($authId);
@@ -49,12 +48,15 @@ if (array_key_exists('multiauth:preselect', $state)) {
 
 $globalConfig = SimpleSAML_Configuration::getInstance();
 $t = new SimpleSAML_XHTML_Template($globalConfig, 'multiauth:selectsource.php');
+
+$defaultLanguage = $globalConfig->getString('language.default', 'en');
 $language = $t->getLanguage();
 
 $sources = $state[sspmod_multiauth_Auth_Source_MultiAuth::SOURCESID];
 foreach ($sources as $key => $source){
     $sources[$key]['source64'] = base64_encode($sources[$key]['source']);
-    $sources[$key]['text'] = $sources[$key]['text'][$language];
+    $sources[$key]['text'] = (isSet($sources[$key]['text'][$language]) ? $sources[$key]['text'][$language] : $sources[$key]['text'][$defaultLanguage]);
+    $sources[$key]['help'] = (isSet($sources[$key]['help'][$language]) ? $sources[$key]['help'][$language] : $sources[$key]['help'][$defaultLanguage]);
 }
 
 $t->data['authstate'] = $authStateId;
