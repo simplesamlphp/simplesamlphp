@@ -1,0 +1,13 @@
+
+{% set pagetitle = '{core:no_cookie:header}'|trans %}
+{% extends "base.twig" %}
+
+{% block content %}
+    <h2>{{ header }}</h2>
+    <p>{{ description }}</p>
+    {% if retryURL is not null %}
+    <ul>
+        <li><a href="{{ retryURL|escape('html') }}" id="retry">{{ retry }}</a></li>
+    </ul>
+    {% endif %}
+{% endblock %}
