@@ -117,6 +117,36 @@ foreach ($metaentries['remote'] as $key => $value) {
 
 $t = new SimpleSAML_XHTML_Template($config, 'core:frontpage_federation.tpl.php');
 
+$language = $t->getLanguage();
+$defaultLanguage = $config->getString('language.default', 'en');
+
+$translators = array(
+    'name' => 'name_translated',
+    'descr' => 'descr_translated',
+    'OrganizationDisplayName' => 'organizationdisplayname_translated',
+);
+
+foreach ($metaentries['hosted'] as $index => $entity) {
+    foreach ($translators as $old => $new) {
+        if (isset($entity[$old][$language])) {
+            $metaentries['hosted'][$index][$new] = $entity[$old][$language];
+        } elseif ($entity[$old][$defaultLanguage]) {
+            $metaentries['hosted'][$index][$new] = $entity[$old][$defaultLanguage];
+        }
+    }
+}
+foreach ($metaentries['remote'] as $key => $set) {
+    foreach ($set as $entityid => $entity) {
+        foreach ($translators as $old => $new) {
+            if (isset($entity[$old][$language])) {
+                $metaentries['remote'][$key][$entityid][$new] = $entity[$old][$language];
+            } elseif ($entity[$old][$defaultLanguage]) {
+                $metaentries['remote'][$key][$entityid][$new] = $entity[$old][$defaultLanguage];
+            }
+        }
+    }
+}
+
 # look up translated string
 $mtype = array(
     'saml20-sp-remote' => $t->noop('{admin:metadata_saml20-sp}'),
@@ -143,12 +173,11 @@ $t->data['links_welcome'] = $links_welcome;
 $t->data['links_config'] = $links_config;
 $t->data['links_auth'] = $links_auth;
 $t->data['links_federation'] = $links_federation;
+$t->data['header'] = $t->t('{core:frontpage:page_title}');
 
-
-
+$t->data['metadata_url'] = SimpleSAML\Module::getModuleURL('core/show_metadata.php');
 $t->data['metaentries'] = $metaentries;
 $t->data['mtype'] = $mtype;
-
 
 $t->show();
 
