@@ -11,7 +11,6 @@ function oauth_hook_frontpage(&$links)
 
     $links['federation']['oauthregistry'] = array(
         'href' => SimpleSAML\Module::getModuleURL('oauth/registry.php'),
-        'text' => array('en' => 'OAuth Consumer Registry'),
-        'shorttext' => array('en' => 'OAuth Registry'),
+        'text' => '{core:frontpage:link_oauth}',
     );
 }

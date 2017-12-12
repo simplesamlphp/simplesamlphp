@@ -74,6 +74,8 @@ if ($config->getBoolean('admin.checkforupdates', true) && $current !== 'master')
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_USERAGENT, 'SimpleSAMLphp');
 		curl_setopt($ch, CURLOPT_TIMEOUT, 2);
+                curl_setopt($ch, CURLOPT_PROXY, $config->getString('proxy', null));
+                curl_setopt($ch, CURLOPT_PROXYUSERPWD, $config->getstring('proxy.auth', null));
 		$response = curl_exec($ch);
 
 		if (curl_getinfo($ch, CURLINFO_HTTP_CODE) === 200) {
@@ -93,8 +95,8 @@ if ($config->getBoolean('admin.checkforupdates', true) && $current !== 'master')
 }
 
 $enablematrix = array(
-	'saml20-idp' => $config->getBoolean('enable.saml20-idp', false),
-	'shib13-idp' => $config->getBoolean('enable.shib13-idp', false),
+	'saml20idp' => $config->getBoolean('enable.saml20-idp', false),
+	'shib13idp' => $config->getBoolean('enable.shib13-idp', false),
 );
 
 
@@ -172,6 +174,7 @@ $funcmatrix[] = array(
 
 $t = new SimpleSAML_XHTML_Template($config, 'core:frontpage_config.tpl.php');
 $t->data['pageid'] = 'frontpage_config';
+$t->data['header'] = $t->t('{core:frontpage:page_title}');
 $t->data['isadmin'] = $isadmin;
 $t->data['loginurl'] = $loginurl;
 $t->data['warnings'] = $warnings;

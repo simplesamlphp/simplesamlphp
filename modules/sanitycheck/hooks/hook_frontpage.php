@@ -11,7 +11,6 @@ function sanitycheck_hook_frontpage(&$links)
 
     $links['config']['santitycheck'] = array(
         'href' => SimpleSAML\Module::getModuleURL('sanitycheck/index.php'),
-        'text' => array('en' => 'Sanity check of your SimpleSAMLphp setup'),
-        'shorttext' => array('en' => 'SanityCheck'),
+        'text' => '{core:frontpage:link_santitycheck}',
     );
 }
