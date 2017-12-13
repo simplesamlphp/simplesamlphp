@@ -29,6 +29,10 @@ $t->data['clipboard.js'] = true;
 $t->data['pageid'] = 'show_metadata';
 $t->data['header'] = 'SimpleSAMLphp Show Metadata';
 $t->data['backlink'] = SimpleSAML\Module::getModuleURL('core/frontpage_federation.php');
+/**
+ * @todo Remove "m" from the data array once we remove the old PHP templates.
+ */
+$t->data['m'] = $m;
 $t->data['entityid'] = $m['metadata-index'];
 unset($m['metadata-index']);
 $t->data['metadata'] = var_export($m, true);
