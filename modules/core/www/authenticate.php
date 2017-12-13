@@ -5,6 +5,7 @@ $config = SimpleSAML_Configuration::getInstance();
 if (!array_key_exists('as', $_REQUEST)) {
     $t = new SimpleSAML_XHTML_Template($config, 'core:authsource_list.tpl.php');
 
+    $t->data['header'] = 'Test authentication sources';
     $t->data['sources'] = SimpleSAML_Auth_Source::getSources();
     $t->show();
     exit();

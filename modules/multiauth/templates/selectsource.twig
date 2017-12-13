@@ -17,6 +17,9 @@
             {% else %}
                 <input type="submit" name="{{ name|escape('html') }}" id="{{ button|escape('html') }}" value="{{ source.text|escape('html') }}" />
             {% endif %}
+            {% if source.help %}
+              <p>{{ source.help|escape('html') }}</p>
+            {% endif %}
             </li>
         {% endfor %}
         </ul>

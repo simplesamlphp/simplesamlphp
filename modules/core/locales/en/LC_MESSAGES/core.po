@@ -54,6 +54,30 @@ msgstr "OpenID Provider site - Alpha version (test code)"
 msgid "{core:frontpage:link_doc_install}"
 msgstr "Installing SimpleSAMLphp"
 
+msgid "{core:frontpage:link_consentAdmin}"
+msgstr "Consent Administration"
+
+msgid "{core:frontpage:link_memcacheMonitor}"
+msgstr "MemCache Statistics"
+
+msgid "{core:frontpage:link_oauth}"
+msgstr "OAuth Consumer Registry"
+
+msgid "{core:frontpage:link_cron}"
+msgstr "Cron module information page"
+
+msgid "{core:frontpage:link_statistics}"
+msgstr "Show statistics"
+
+msgid "{core:frontpage:link_statistics_metadata}"
+msgstr "Show statistics metadata"
+
+msgid "{core:frontpage:link_metarefresh}"
+msgstr "Metarefresh: fetch metadata"
+
+msgid "{core:frontpage:link_santitycheck}"
+msgstr "Sanity check of your SimpleSAMLphp setup"
+
 msgid "{core:frontpage:link_diagnostics}"
 msgstr "Diagnostics on hostname, port and protocol"
 

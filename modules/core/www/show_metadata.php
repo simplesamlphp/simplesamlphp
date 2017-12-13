@@ -29,8 +29,8 @@ $t->data['clipboard.js'] = true;
 $t->data['pageid'] = 'show_metadata';
 $t->data['header'] = 'SimpleSAMLphp Show Metadata';
 $t->data['backlink'] = SimpleSAML\Module::getModuleURL('core/frontpage_federation.php');
-$t->data['metadata_index'] = $m['metadata-index'];
+$t->data['entityid'] = $m['metadata-index'];
 unset($m['metadata-index']);
-$t->data['m'] = var_export($m, true);
+$t->data['metadata'] = var_export($m, true);
 
 $t->show();

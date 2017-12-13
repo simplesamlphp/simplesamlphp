@@ -1,0 +1,23 @@
+{% set pagetitle = '{core:frontpage:page_title}'|trans %}
+{% extends "base.twig" %}
+
+{% block content %}
+    {% if isadmin %}
+    <p class="float-r youareadmin">{{ '{core:frontpage:loggedin_as_admin}'|trans }}</p>
+    {% else %}
+    <p class="float-r youareadmin">
+        <a href="{{ loginurl|escape('url') }}">{{ '{core:frontpage:login_as_admin}'|trans }}</a>
+    </p>
+    {% endif %}
+
+    <ul>
+    {% for key, link in links_auth %}
+        <li>
+            <a href="{{ link.href|escape('url') }}">{{ link.text|trans|escape('html') }}</a>
+            {% if link.deprecated is defined and link.deprecated is not empty %}
+            <span style="font-weight: bold;">{{ '{core:frontpage:deprecated}'|trans }}</b>
+            {% endif %}
+        </li>
+    {% endfor %}
+    </ul>
+{% endblock %}

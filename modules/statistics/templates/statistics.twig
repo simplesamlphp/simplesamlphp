@@ -4,8 +4,18 @@
 {% block preload %}
     <link href="{{ baseurlpath }}style.css" rel="stylesheet" />
 {% endblock %}
+
 {% block postload %}
-    <script src="{{ baseurlpath }}javascript.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+	$("#tabdiv").tabs();
+        $('ul.tabset_tabs li').click(
+            function() {
+                $("html, body").animate({ scrollTop: 0 }, "slow");
+            }
+        )
+    });
+</script>
 {% endblock %}
 
 {% block content %}

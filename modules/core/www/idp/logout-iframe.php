@@ -122,6 +122,8 @@ if ($type === 'nojs') {
 
 $t = new SimpleSAML_XHTML_Template($globalConfig, $template_id);
 $t->data['auth_state'] = $id;
+$t->data['header'] = $t->t('{logout:progress}');
+
 /**
  * @deprecated The "id" variable will be removed. Please use "auth_state" instead.
  */

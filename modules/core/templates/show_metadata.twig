@@ -1,4 +1,4 @@
-{% set pagetile = ''|trans %}
+{% set pagetile = 'SimpleSAMLphp Show Metadata'|trans %}
 {% extends 'base.twig' %}
 {% block content %}
     <div class="code-box">
@@ -9,7 +9,7 @@
             </button>
         </div>
         <div class="code-box-content">
-            <pre id="metadata">$metadata[{{ metadata_index }}] => {{ m|escape }}</pre>
+            <pre id="metadata">$metadata[{{ entityid }}] => {{ metadata|escape }}</pre>
         </div>
     </div>
     <div class="center">
