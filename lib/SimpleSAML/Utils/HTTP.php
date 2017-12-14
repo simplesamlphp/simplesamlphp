@@ -176,7 +176,7 @@ class HTTP
 
             // disable caching of this response
             header('Pragma: no-cache');
-            header('Cache-Control: no-cache, must-revalidate');
+            header('Cache-Control: no-cache, no-store, must-revalidate');
         }
 
         // show a minimal web page with a clickable link to the URL
