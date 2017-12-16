@@ -265,7 +265,7 @@ abstract class sspmod_ldap_Auth_Process_BaseFilter extends SimpleSAML_Auth_Proce
         $port       = $this->config->getInteger('ldap.port', 389);
         $enable_tls = $this->config->getBoolean('ldap.enable_tls', false);
         $debug      = $this->config->getBoolean('ldap.debug', false);
-        $referrals   = $this->config->getBoolean('ldap.referrals', true);
+        $referrals  = $this->config->getBoolean('ldap.referrals', true);
         $timeout    = $this->config->getInteger('ldap.timeout', 0);
         $username   = $this->config->getString('ldap.username', null);
         $password   = $this->config->getString('ldap.password', null);
