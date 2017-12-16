@@ -117,6 +117,11 @@ The following SAML 2.0 options are available:
     discouraged to do so. For your own safety, please include the string 'http://www.w3.org/2001/04/xmlenc#rsa-1_5' if
     you make use of this option.
 
+`disable.scoping`
+:   Whether to avoid sending Scoping elements to this IdP. This may be
+    necessary in some broken implementations (such as AD FS versions prior
+    to 4.0).
+
 `hide.from.discovery`
 :   Whether to hide hide this IdP from the local discovery or not. Set to true to hide it. Defaults to false.
 

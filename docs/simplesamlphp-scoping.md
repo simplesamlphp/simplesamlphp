@@ -39,6 +39,10 @@ ProxyCount is unspecified the number of proxy indirections is not limited.
 : The list of trusted IdPs, i.e. the list of entityIDs for identity providers
 that are relevant for a service provider in an authnRequest. 
 
+Scoping can be disabled for IdPs which don't support it (including AD FS
+versions prior to 4.0) by setting the `disable.scoping` option in either a
+hosted SP or remote IdP configuration.
+
 ### Note ###
 SimpleSAMLphp does not support specifying the GetComplete option.
 
