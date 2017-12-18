@@ -152,7 +152,7 @@ In the `saml20-sp-remote.php` file we will configure an entry for G Suite (Googl
        * at G Suite. E.g. if your google account is foo.com, and you have a user with email john@foo.com, then you
        * must set the simplesaml.nameidattribute to be the name of an attribute that for this user has the value of 'john'.
        */
-      $metadata['google.com'] => array(
+      $metadata['https://www.google.com/a/g.feide.no'] => array(
         'AssertionConsumerService'   => 'https://www.google.com/a/g.feide.no/acs', 
         'NameIDFormat'               => 'urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress',
         'simplesaml.nameidattribute' => 'uid',
