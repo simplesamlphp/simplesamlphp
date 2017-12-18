@@ -41,7 +41,7 @@ class sspmod_oauth_Consumer {
 	}
 	
 	/*
-	 * This static helper function wraps file_get_contents
+	 * This static helper function wraps \SimpleSAML\Utils\HTTP::fetch
 	 * and throws an exception with diagnostics messages if it appear
 	 * to be failing on an OAuth endpoint.
 	 * 
@@ -50,9 +50,9 @@ class sspmod_oauth_Consumer {
 	 * the text of the Exception thrown.
 	 */
 	public static function getHTTP($url, $context = '') {
-		$response = @file_get_contents($url);
-		
-		if ($response === FALSE) {
+		try {
+			$response = \SimpleSAML\Utils\HTTP::fetch($url);
+		} catch (\SimpleSAML_Error_Exception $e) {
 			$statuscode = 'unknown';
 			if (preg_match('/^HTTP.*\s([0-9]{3})/', $http_response_header[0], $matches)) $statuscode = $matches[1];
 			
@@ -104,8 +104,9 @@ class sspmod_oauth_Consumer {
 		$acc_req = OAuthRequest::from_consumer_and_token($this->consumer, $requestToken, "GET", $url, $parameters);
 		$acc_req->sign_request($this->signer, $this->consumer, $requestToken);
 		
-		$response_acc = file_get_contents($acc_req->to_url());
-		if ($response_acc === FALSE) {
+		try {
+			$response_acc = \SimpleSAML\Utils\HTTP::fetch($acc_req->to_url());
+		} catch (\SimpleSAML_Error_Exception $e) {
 			throw new Exception('Error contacting request_token endpoint on the OAuth Provider');
 		}
 
@@ -140,8 +141,9 @@ class sspmod_oauth_Consumer {
 			),
 		);
 		$context = stream_context_create($opts);
-		$response = file_get_contents($url, FALSE, $context);
-		if ($response === FALSE) {
+		try {
+			$response = \SimpleSAML\Utils\HTTP::fetch($url, $context);
+		} catch (\SimpleSAML_Error_Exception $e) {
 			throw new SimpleSAML_Error_Exception('Failed to push definition file to ' . $url);
 		}
 		return $response;
@@ -155,10 +157,9 @@ class sspmod_oauth_Consumer {
 		if (is_array($opts)) {
 			$opts = stream_context_create($opts);
 		}
-		$data = file_get_contents($data_req->to_url(), FALSE, $opts);
+		$data = \SimpleSAML\Utils\HTTP::fetch($data_req->to_url(), $opts);
 
-		$dataDecoded = json_decode($data, TRUE);
-		return $dataDecoded;
+		return json_decode($data, TRUE);
 	}
 	
 }
