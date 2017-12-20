@@ -19,10 +19,6 @@ li {
 	margin-right: 2em;
 }
 
-#wrap {
-	text-align: right;
-}
-
 /* TYPOGRAPHY */
 dl dd {
 	margin-right: 3em;
@@ -38,7 +34,7 @@ div.caution {
 }
 
 th.rowtitle {
-        text-align: right;
+	text-align: right;
 }
 .enablebox table {
 	margin-right: 1em;
@@ -62,17 +58,8 @@ fieldset.fancyfieldset legend {
 	margin-right: 2em;
 }
 
-.ui-tabs .ui-tabs-nav li { 
-	float: right; 
-}
 
 /* Reverse Float Left <-> Right */
-.float-r {
-	 float: left;
- }
-.float-l {
-	float: right;
-}
 .right {
 	float: left;
 }
@@ -173,7 +160,15 @@ div .item{
 
 @media screen and (max-width: 0em), screen and (min-width: 40em) {
 	#layout.active {
-		right: initial;
+		right: auto;
 		left: 11em;
+	}
+	#menuLink.menu-link.active {
+		right: auto;
+		left: 13em;
+	}
+	#foot.active {
+		margin-right: auto;
+		margin-left: 11em;
 	}
 }
