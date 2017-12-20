@@ -38,8 +38,8 @@
 
                 <div class="pure-control-group">
                     <label for="username">{{ 'Username'|trans }}</label>
-                    <input id="username" {{ forceUsername ? 'disabled="disabled"' }} type="text" name="username" class="edge"
-            {%- if not forceUsername %} tabindex="1" value="{{ username }}"{% endif %}>
+                    <input id="username" {{ forceUsername ? 'disabled="disabled"' }} placeholder="{{ username }}" type="text" name="username" class="edge"
+            {%- if not forceUsername %} tabindex="1" value="{{ username }}" {% endif %}>
                 {% if rememberUsernameEnabled and not forceUsername -%}
                 </div>
                 <div class="pure-controls pure-form-message">
