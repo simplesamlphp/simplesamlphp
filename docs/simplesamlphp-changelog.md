@@ -6,6 +6,17 @@ SimpleSAMLphp changelog
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
+## Version 1.15.1
+
+Released TBD
+
+### Bug fixes
+  * AuthX509 error messages were broken.
+  * Properly calculate supported protocols based on config.
+  * NameIDAttribute filter: update to use SAML2\XML\saml\NameID.
+  * Replace remaining uses of SimpleSAML_Logger with namespace version.
+  * Statictics: prevent mixed content errors.
+
 ## Version 1.15.0
 
 Released 2017-11-20
