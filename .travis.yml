@@ -19,7 +19,7 @@ script:
 - if [[ "$TRAVIS_PHP_VERSION" == "5.6" ]]; then php vendor/phpunit/phpunit/phpunit --configuration tools/phpunit; else php vendor/phpunit/phpunit/phpunit --configuration tools/phpunit --no-coverage; fi
 - if [[ "$TRAVIS_PHP_VERSION" == "7.0" ]]; then vendor/bin/psalm --find-dead-code; fi
 after_success:
-- if [[ "$TRAVIS_PHP_VERSION" == "5.6" ]]; then php vendor/bin/coveralls -v; fi
+- if [[ "$TRAVIS_PHP_VERSION" == "5.6" ]]; then php vendor/bin/php-coveralls -v; fi
 notifications:
   slack:
     secure: h5YiO7tAk5bzAQBkUZ3crnOFAOBkNqHp0nc2cxvGauogVfCLE9K8bME512uTeu9QWMht2D30uyTOHFKQ7sPEW4omHNF4qYl4p9L037oQFfEwZPBzJFo9QUzviT3mvKHTN4HSQOkq/08ZoMhh1i3p/OhyFS56J28IDJWDqGZkEUE=
