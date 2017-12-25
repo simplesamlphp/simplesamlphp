@@ -92,7 +92,7 @@ class sspmod_sqlauth_Auth_Source_SQL extends sspmod_core_Auth_UserPassBase
 		switch ($driver) {
 		case 'mysql':
 			/* Use UTF-8. */
-			$db->exec("SET NAMES 'utf8'");
+			$db->exec("SET NAMES 'utf8mb4'");
 			break;
 		case 'pgsql':
 			/* Use UTF-8. */
