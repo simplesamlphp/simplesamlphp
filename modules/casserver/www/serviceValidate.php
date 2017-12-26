@@ -53,9 +53,13 @@ try {
 			$pgtiouxml = "\n<cas:proxyGrantingTicket>$pgtiou</cas:proxyGrantingTicket>\n";
 		}
 		
-		$proxiesxml = join("\n", array_map(create_function('$a', 'return "<cas:proxy>$a</cas:proxy>";'), $ticketcontent['proxies']));
-		if ($proxiesxml) $proxiesxml = "<cas:proxies>\n$proxiesxml\n</cas:proxies>\n";
-		returnResponse('YES', $function, $attributes[$usernamefield][0], $dosendattributes ? $attributes : array(), $pgtiouxml.$proxiesxml);
+                $proxiesxml = join("\n", array_map(
+                    function($a) { return "<cas:proxy>$a</cas:proxy>"; },
+                    $ticketcontent['proxies']));
+                if ($proxiesxml) {
+                    $proxiesxml = "<cas:proxies>\n$proxiesxml\n</cas:proxies>\n";
+                }
+                returnResponse('YES', $function, $attributes[$usernamefield][0], $dosendattributes ? $attributes : array(), $pgtiouxml.$proxiesxml);
 	} else {
 		returnResponse('NO', $function);
 	}
