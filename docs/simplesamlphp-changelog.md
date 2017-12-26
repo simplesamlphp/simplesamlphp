@@ -16,6 +16,8 @@ Released TBD
   * NameIDAttribute filter: update to use SAML2\XML\saml\NameID.
   * Replace remaining uses of SimpleSAML_Logger with namespace version.
   * Statictics: prevent mixed content errors.
+  * Add 'no-store' to the cache-control header to avoid Chrome
+    caching redirects.
 
 ## Version 1.15.0
 
