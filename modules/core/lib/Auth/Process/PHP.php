@@ -48,7 +48,7 @@ class sspmod_core_Auth_Process_PHP extends SimpleSAML_Auth_ProcessingFilter
         assert(is_array($request));
         assert(array_key_exists('Attributes', $request));
 
-        $function = create_function('&$attributes', $this->code);
+        $function = function(&$attributes) { eval($this->code); };
         $function($request['Attributes']);
     }
 }
