@@ -57,7 +57,7 @@ class Crypto
                 $iv
             );
 
-            if ($plaintext != false) {
+            if ($plaintext !== false) {
                 return $plaintext;
             }
         }
