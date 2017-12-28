@@ -145,13 +145,6 @@ class sspmod_saml_Error extends SimpleSAML_Error_Exception {
 	 * @return SimpleSAML_Error_Exception  An exception representing this error.
 	 */
 	public function toException() {
-
-		if ($this->statusMessage !== NULL) {
-			$msg = $this->statusMessage;
-		} else {
-			$msg = '';
-		}
-
 		$e = NULL;
 
 		switch ($this->status) {
