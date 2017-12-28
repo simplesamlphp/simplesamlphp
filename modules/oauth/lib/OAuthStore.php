@@ -40,16 +40,10 @@ class sspmod_oauth_OAuthStore extends OAuthDataStore {
      */
 	public function authorize($requestTokenKey, $data) {
 		$url = null;
-		$verifier = '';
-		$version = $this->defaultversion;
 		
 		// See whether to remember values from the original requestToken request:
 		$request_attributes = $this->store->get('requesttorequest', $requestTokenKey, '');	// must be there ..
 		if ($request_attributes['value']) {
-			// establish version to work with
-			$v = $request_attributes['value']['version'];
-			if ($v) $version = $v; 
-			
 			// establish callback to use
 			if ($request_attributes['value']['callback']) {
 				$url = $request_attributes['value']['callback'];
