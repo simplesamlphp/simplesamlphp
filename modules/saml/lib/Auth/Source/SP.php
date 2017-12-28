@@ -351,8 +351,6 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 
 		$id = SimpleSAML_Auth_State::saveState($state, 'saml:sp:sso');
 
-		$config = SimpleSAML_Configuration::getInstance();
-
 		$discoURL = $this->discoURL;
 		if ($discoURL === NULL) {
 			/* Fallback to internal discovery service. */
