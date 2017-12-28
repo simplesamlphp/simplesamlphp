@@ -154,9 +154,9 @@ class sspmod_oauth_Consumer
                 'header' => 'Content-Type: application/x-www-form-urlencoded',
             ),
         );
-        $context = stream_context_create($opts);
+
         try {
-            $response = \SimpleSAML\Utils\HTTP::fetch($url, $context);
+            $response = \SimpleSAML\Utils\HTTP::fetch($url, $opts);
         } catch (\SimpleSAML_Error_Exception $e) {
             throw new SimpleSAML_Error_Exception('Failed to push definition file to ' . $url);
         }
