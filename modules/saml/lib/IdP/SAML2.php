@@ -663,7 +663,7 @@ class sspmod_saml_IdP_SAML2
      * Calculate the NameID value that should be used.
      *
      * @param SimpleSAML_Configuration $idpMetadata The metadata of the IdP.
-     * @param SimpleSAML_Configuration $dstMetadata The metadata of the SP.
+     * @param SimpleSAML_Configuration $spMetadata The metadata of the SP.
      * @param array                    &$state The authentication state of the user.
      *
      * @return string  The NameID value.
