@@ -175,7 +175,7 @@ if ($action !== null && $sp_entityid !== null) {
     } else {
         if ($action == 'false') {
             // Got consent, so this is a request to remove it
-            $rowcount = $consent_storage->deleteConsent($hashed_user_id, $targeted_id, $attribute_hash);
+            $rowcount = $consent_storage->deleteConsent($hashed_user_id, $targeted_id);
             if ($rowcount > 0) {
                 $res = "removed";
             }
