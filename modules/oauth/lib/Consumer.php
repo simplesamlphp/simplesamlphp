@@ -62,7 +62,6 @@ class sspmod_oauth_Consumer
             }
 
             $error = $context . ' [statuscode: ' . $statuscode . ']: ';
-            $contenttype = self::getContentType($http_response_header);
             $oautherror = self::getOAuthError($http_response_header);
 
             if (!empty($oautherror)) {
