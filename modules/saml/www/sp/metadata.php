@@ -190,7 +190,7 @@ if ($spconfig->hasValue('contacts')) {
 }
 
 // add technical contact
-$email = $config->getString('technicalcontact_email', 'na@example.org', false);
+$email = $config->getString('technicalcontact_email', 'na@example.org');
 if ($email && $email !== 'na@example.org') {
     $techcontact['emailAddress'] = $email;
     $techcontact['name'] = $config->getString('technicalcontact_name', null);
