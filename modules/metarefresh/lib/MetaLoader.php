@@ -178,9 +178,6 @@ class sspmod_metarefresh_MetaLoader {
 	 * Create HTTP context, with any available caches taken into account
 	 */
 	private function createContext($source) {
-
-		$context = NULL;
-
 		$config = SimpleSAML_Configuration::getInstance();
 		$name = $config->getString('technicalcontact_name', NULL);
 		$mail = $config->getString('technicalcontact_email', NULL);
@@ -251,7 +248,6 @@ class sspmod_metarefresh_MetaLoader {
 	 * Parse XML metadata and return entities
 	 */
 	private function loadXML($data, $source) {
-		$entities = array();
 		try {
 			$doc = \SAML2\DOMDocumentFactory::fromString($data);
 		} catch (Exception $e) {
@@ -260,8 +256,7 @@ class sspmod_metarefresh_MetaLoader {
 		if ($doc->documentElement === NULL) {
 			throw new Exception('Opened file is not an XML document: ' . $source['src']);
 		}
-		$entities = SimpleSAML_Metadata_SAMLParser::parseDescriptorsElement($doc->documentElement);
-		return $entities;
+		return SimpleSAML_Metadata_SAMLParser::parseDescriptorsElement($doc->documentElement);
 	}
 
 
