@@ -66,19 +66,19 @@ class Auth_Yubico
 	 * Yubico client ID
 	 * @var string
 	 */
-	private var $_id;
+	private $_id;
 
 	/**
 	 * Yubico client key
 	 * @var string
 	 */
-	private var $_key;
+	private $_key;
 
 	/**
 	 * Response from server
 	 * @var string
 	 */
-	private var $_response;
+	private $_response;
 
 	/**
 	 * Constructor
@@ -136,7 +136,7 @@ class Auth_Yubico
 		/* Verify signature. */
 		if ($this->_key <> "") {
 			$rows = explode("\r\n", $responseMsg);
-            response = array();
+            $response = array();
 			while (list(, $val) = each($rows)) {
 				// = is also used in BASE64 encoding so we only replace the first = by # which is not used in BASE64
 				$val = preg_replace('/=/', '#', $val, 1);
