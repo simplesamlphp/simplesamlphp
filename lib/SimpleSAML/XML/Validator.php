@@ -23,7 +23,7 @@ class Validator
     private $x509Certificate;
 
     /**
-     * @var array This variable contains the nodes which are signed.
+     * @var array|null This variable contains the nodes which are signed.
      */
     private $validNodes = null;
 
