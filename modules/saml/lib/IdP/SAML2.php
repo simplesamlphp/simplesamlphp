@@ -1,6 +1,7 @@
 <?php
 
 use RobRichards\XMLSecLibs\XMLSecurityKey;
+use SAML2\SOAP;
 
 /**
  * IdP implementation for SAML 2.0 protocol.
@@ -307,6 +308,7 @@ class sspmod_saml_IdP_SAML2
             $extensions = null;
             $allowCreate = true;
             $authnContext = null;
+            $binding = null;
 
             $idpInit = true;
 
