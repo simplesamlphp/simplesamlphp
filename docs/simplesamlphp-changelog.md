@@ -6,6 +6,23 @@ SimpleSAMLphp changelog
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
+## Version 1.16.0
+
+Released TBD
+
+### New features
+  * Added support for SAML "Enhanced Client or Proxy" (ECP) protocol,
+    IdP side with HTTP Basic Authentcation as authentication method.
+    See the [ECP IdP documentation](./simplesamlphp-ecp-idp) for details.
+  * New option `sendmail_from`, the from address for email sent by SSP.
+
+### Oauth
+  * Make module HTTP proxy-aware.
+  * Remove unused demo app.
+
+### Sqlauth
+  * Changed from default-enabled to default-disabled.
+
 ## Version 1.15.0
 
 Released 2017-11-20
