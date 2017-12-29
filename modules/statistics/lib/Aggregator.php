@@ -13,6 +13,7 @@ class sspmod_statistics_Aggregator
     private $metadata;
     private $fromcmdline;
     private $starttime;
+    private $timeres;
 
     /**
      * Constructor
@@ -168,7 +169,7 @@ class sspmod_statistics_Aggregator
                     continue;
                 }
 
-                foreach ($this->timeres AS $tres => $tresconfig ) {
+                foreach ($this->timeres as $tres => $tresconfig ) {
                     $dh = 'default';
                     if (isset($tresconfig['customDateHandler'])) {
                         $dh = $tresconfig['customDateHandler'];
@@ -219,26 +220,17 @@ class sspmod_statistics_Aggregator
     private function cummulateData($previous, $newdata)
     {
         $dataset = array();
-        foreach ($previous as $slot => $dataarray) {
-            if (!array_key_exists($slot, $dataset)) {
-                $dataset[$slot] = array();
-            }
-            foreach ($dataarray as $key => $data) {
-                if (!array_key_exists($key, $dataset[$slot])) {
-                    $dataset[$slot][$key] = 0;
+        foreach (func_get_args() as $item) {
+            foreach ($item as $slot => $dataarray) {
+                if (!array_key_exists($slot, $dataset)) {
+                    $dataset[$slot] = array();
                 }
-                $dataset[$slot][$key] += $data;
-            }
-        }
-        foreach ($newdata as $slot => $dataarray) {
-            if (!array_key_exists($slot, $dataset)) {
-                $dataset[$slot] = array();
-            }
-            foreach ($dataarray as $key => $data) {
-                if (!array_key_exists($key, $dataset[$slot])) {
-                    $dataset[$slot][$key] = 0;
+                foreach ($dataarray as $key => $data) {
+                    if (!array_key_exists($key, $dataset[$slot])) {
+                        $dataset[$slot][$key] = 0;
+                    }
+                    $dataset[$slot][$key] += $data;
                 }
-                $dataset[$slot][$key] += $data;
             }
         }
         return $dataset;
