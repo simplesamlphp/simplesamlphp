@@ -39,7 +39,7 @@ class Signer
 
 
     /**
-     * @var string Extra certificates which should be included in the response.
+     * @var array Extra certificates which should be included in the response.
      */
     private $extraCertificates;
 
