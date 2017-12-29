@@ -86,7 +86,6 @@ class sspmod_ldap_Auth_Process_AttributeAddUsersGroups extends sspmod_ldap_Auth_
         // Based on the directory service, search LDAP for groups
         // If any attributes are needed, prepare them before calling search method
         switch ($this->product) {
-
             case 'ACTIVEDIRECTORY':
 
                 // Log the AD specific search
@@ -96,10 +95,7 @@ class sspmod_ldap_Auth_Process_AttributeAddUsersGroups extends sspmod_ldap_Auth_
 
                 // Make sure the defined dn attribute exists
                 if (!isset($attributes[$map['dn']])) {
-                    throw new SimpleSAML_Error_Exception(
-                        $this->title . 'The DN attribute [' . $map['dn'] .
-                        '] is not defined in the users Attributes: ' . implode(', ', array_keys($attributes))
-                    );
+                    $this->throwAttributeNotDefined('DN', $map['dn'], implode(', ', array_keys($attributes)));
                 }
 
                 // DN attribute must have a value
@@ -113,7 +109,7 @@ class sspmod_ldap_Auth_Process_AttributeAddUsersGroups extends sspmod_ldap_Auth_
                 // Pass to the AD specific search
                 $groups = $this->searchActiveDirectory($attributes[$map['dn']][0]);
                 break;
-                
+
             case 'OPENLDAP':
                 // Log the OpenLDAP specific search
                 SimpleSAML\Logger::debug(
@@ -138,7 +134,6 @@ class sspmod_ldap_Auth_Process_AttributeAddUsersGroups extends sspmod_ldap_Auth_
                 break;
                                 
             default:
-
                 // Log the general search
                 SimpleSAML\Logger::debug(
                     $this->title . 'Searching LDAP using the default search method.'
@@ -146,10 +141,7 @@ class sspmod_ldap_Auth_Process_AttributeAddUsersGroups extends sspmod_ldap_Auth_
 
                 // Make sure the defined memberOf attribute exists
                 if (!isset($attributes[$map['memberof']])) {
-                    throw new SimpleSAML_Error_Exception(
-                        $this->title . 'The memberof attribute [' . $map['memberof'] .
-                        '] is not defined in the users Attributes: ' . implode(', ', array_keys($attributes))
-                    );
+                    $this->throwAttributeNotDefined('memberof', $map['memberof'], implode(', ', array_keys($attributes)));
                 }
 
                 // MemberOf must be an array of group DN's
@@ -171,6 +163,11 @@ class sspmod_ldap_Auth_Process_AttributeAddUsersGroups extends sspmod_ldap_Auth_
         return $groups;
     }
 
+    protected function throwAttributeNotDefined($attr, $attr_value, $attributes)
+    {
+        throw new SimpleSAML_Error_Exception($this->title . 'The ' . $attr . ' attribute [' . $attr_value .
+                        '] is not defined in the user\'s Attributes: ' . $attributes);
+    }
 
     /**
      * Looks for groups from the list of DN's passed. Also
