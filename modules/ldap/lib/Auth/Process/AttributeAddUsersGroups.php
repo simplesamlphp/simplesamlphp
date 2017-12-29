@@ -73,11 +73,8 @@ class sspmod_ldap_Auth_Process_AttributeAddUsersGroups extends sspmod_ldap_Auth_
      * @param array $attributes
      * @return array
      */
-    protected function getGroups(array $attributes)
+    protected function getGroups($attributes)
     {
-        // Reference the map, just to make the name shorter
-        $map =& $this->attribute_map;
-
         // Log the request
         SimpleSAML\Logger::debug(
             $this->title . 'Checking for groups based on the best method for the LDAP product.'
@@ -87,53 +84,15 @@ class sspmod_ldap_Auth_Process_AttributeAddUsersGroups extends sspmod_ldap_Auth_
         // If any attributes are needed, prepare them before calling search method
         switch ($this->product) {
             case 'ACTIVEDIRECTORY':
-
-                // Log the AD specific search
-                SimpleSAML\Logger::debug(
-                    $this->title . 'Searching LDAP using ActiveDirectory specific method.'
-                );
-
-                // Make sure the defined dn attribute exists
-                if (!isset($attributes[$map['dn']])) {
-                    $this->throwAttributeNotDefined('DN', $map['dn'], implode(', ', array_keys($attributes)));
-                }
-
-                // DN attribute must have a value
-                if (!isset($attributes[$map['dn']][0]) || !$attributes[$map['dn']][0]) {
-                    throw new SimpleSAML_Error_Exception(
-                        $this->title . 'The DN attribute [' . $map['dn'] .
-                        '] does not have a [0] value defined. ' . $this->var_export($attributes[$map['dn']])
-                    );
-                }
-
-                // Pass to the AD specific search
-                $groups = $this->searchActiveDirectory($attributes[$map['dn']][0]);
+                $groups = $this->getGroupsActiveDirecory($attributes);
                 break;
-
             case 'OPENLDAP':
-                // Log the OpenLDAP specific search
-                SimpleSAML\Logger::debug(
-                    $this->title . 'Searching LDAP using OpenLDAP specific method.'
-                );
-                // Print group search string and search for all group names
-                $openldap_base = $this->config->getString('ldap.basedn','ou=groups,dc=example,dc=com');
-                SimpleSAML\Logger::debug(
-                    $this->title . "Searching for groups in ldap.basedn ".$openldap_base." with filter (".$map['memberof']."=".$attributes[$map['username']][0].") and attributes ".$map['member']
-                );
-                $groups = array();
-                try {
-                    // Intention is to filter in 'ou=groups,dc=example,dc=com' for '(memberUid = <value of attribute.username>)' and take only the attributes 'cn' (=name of the group)
-                    $all_groups = $this->getLdap()->searchformultiple( $openldap_base, array($map['memberof'] => $attributes[$map['username']][0]) , array($map['member']));
-                } catch (SimpleSAML_Error_UserNotFound $e) {
-                    break; // if no groups found return with empty (still just initialized) groups array
-                }
-                // run through all groups and add each to our groups array
-                foreach ($all_groups as $group_entry) {
-                    $groups[] .= $group_entry[$map['member']][0];
-                }
+                $groups = $this->getGroupsOpenLdap($attributes);
                 break;
-                                
             default:
+                // Reference the map, just to make the name shorter
+                $map =& $this->attribute_map;
+
                 // Log the general search
                 SimpleSAML\Logger::debug(
                     $this->title . 'Searching LDAP using the default search method.'
@@ -141,7 +100,9 @@ class sspmod_ldap_Auth_Process_AttributeAddUsersGroups extends sspmod_ldap_Auth_
 
                 // Make sure the defined memberOf attribute exists
                 if (!isset($attributes[$map['memberof']])) {
-                    $this->throwAttributeNotDefined('memberof', $map['memberof'], implode(', ', array_keys($attributes)));
+                    throw new SimpleSAML_Error_Exception(
+                        $this->title . 'The memberof attribute [' . $map['memberof'] .
+                        '] is not defined in the user\'s Attributes: ' . implode(', ', array_keys($attributes)));
                 }
 
                 // MemberOf must be an array of group DN's
@@ -163,10 +124,85 @@ class sspmod_ldap_Auth_Process_AttributeAddUsersGroups extends sspmod_ldap_Auth_
         return $groups;
     }
 
-    protected function throwAttributeNotDefined($attr, $attr_value, $attributes)
+
+    /**
+     * OpenLDAP optimized search
+     * using the required attribute values from the user to
+     * get their group membership, recursively.
+     *
+     * @throws SimpleSAML_Error_Exception
+     * @param array $attributes
+     * @return array
+     */
+    protected function getGroupsOpenLdap($attributes)
     {
-        throw new SimpleSAML_Error_Exception($this->title . 'The ' . $attr . ' attribute [' . $attr_value .
-                        '] is not defined in the user\'s Attributes: ' . $attributes);
+        // Log the OpenLDAP specific search
+        SimpleSAML\Logger::debug(
+            $this->title . 'Searching LDAP using OpenLDAP specific method.'
+        );
+
+        // Reference the map, just to make the name shorter
+        $map =& $this->attribute_map;
+
+        // Print group search string and search for all group names
+        $openldap_base = $this->config->getString('ldap.basedn','ou=groups,dc=example,dc=com');
+        SimpleSAML\Logger::debug(
+            $this->title . "Searching for groups in ldap.basedn ".$openldap_base." with filter (".$map['memberof']."=".$attributes[$map['username']][0].") and attributes ".$map['member']
+        );
+
+        $groups = array();
+        try {
+            // Intention is to filter in 'ou=groups,dc=example,dc=com' for '(memberUid = <value of attribute.username>)' and take only the attributes 'cn' (=name of the group)
+            $all_groups = $this->getLdap()->searchformultiple($openldap_base, array($map['memberof'] => $attributes[$map['username']][0]) , array($map['member']));
+        } catch (SimpleSAML_Error_UserNotFound $e) {
+            return $groups; // if no groups found return with empty (still just initialized) groups array
+        }
+
+        // run through all groups and add each to our groups array
+        foreach ($all_groups as $group_entry) {
+            $groups[] .= $group_entry[$map['member']][0];
+        }
+
+        return $groups;
+    }
+
+
+    /**
+     * Active Directory optimized search
+     * using the required attribute values from the user to
+     * get their group membership, recursively.
+     *
+     * @throws SimpleSAML_Error_Exception
+     * @param array $attributes
+     * @return array
+     */
+    protected function getGroupsActiveDirectory($attributes)
+    {
+        // Log the AD specific search
+        SimpleSAML\Logger::debug(
+            $this->title . 'Searching LDAP using ActiveDirectory specific method.'
+        );
+
+        // Reference the map, just to make the name shorter
+        $map =& $this->attribute_map;
+
+        // Make sure the defined dn attribute exists
+        if (!isset($attributes[$map['dn']])) {
+            throw new SimpleSAML_Error_Exception(
+                $this->title . 'The DN attribute [' . $map['dn'] .
+                '] is not defined in the user\'s Attributes: ' . implode(', ', array_keys($attributes)));
+        }
+
+        // DN attribute must have a value
+        if (!isset($attributes[$map['dn']][0]) || !$attributes[$map['dn']][0]) {
+            throw new SimpleSAML_Error_Exception(
+                $this->title . 'The DN attribute [' . $map['dn'] .
+                '] does not have a [0] value defined. ' . $this->var_export($attributes[$map['dn']])
+            );
+        }
+
+        // Pass to the AD specific search
+        return $this->searchActiveDirectory($attributes[$map['dn']][0]);
     }
 
     /**
@@ -283,7 +319,6 @@ class sspmod_ldap_Auth_Process_AttributeAddUsersGroups extends sspmod_ldap_Auth_
 
         // Check each entry..
         foreach ($entries as $entry) {
-
             // Check for the DN using the original attribute name
             if (isset($entry[$map['dn']][0])) {
                 $groups[] = $entry[$map['dn']][0];
