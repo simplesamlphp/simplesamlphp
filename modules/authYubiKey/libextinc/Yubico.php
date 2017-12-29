@@ -66,19 +66,19 @@ class Auth_Yubico
 	 * Yubico client ID
 	 * @var string
 	 */
-	var $_id;
+	private var $_id;
 
 	/**
 	 * Yubico client key
 	 * @var string
 	 */
-	var $_key;
+	private var $_key;
 
 	/**
 	 * Response from server
 	 * @var string
 	 */
-	var $_response;
+	private var $_response;
 
 	/**
 	 * Constructor
@@ -100,7 +100,7 @@ class Auth_Yubico
 	 * @return string		Output from server.
 	 * @access public
 	 */
-	function getLastResponse()
+	public function getLastResponse()
 	{
 		return $this->_response;
 	}
@@ -114,11 +114,11 @@ class Auth_Yubico
 	 * @return mixed            PEAR error on error, true otherwise
 	 * @access public
 	 */
-	function verify($token)
+	public function verify($token)
 	{
 		$parameters = "id=" . $this->_id . "&otp=" . $token;
 		// Generate signature
-		if($this->_key <> "") {
+		if ($this->_key <> "") {
 			$signature = base64_encode(hash_hmac('sha1', $parameters, $this->_key, true));
 			$parameters .= '&h=' . $signature;
 		}
@@ -127,16 +127,17 @@ class Auth_Yubico
 
 		$responseMsg = \SimpleSAML\Utils\HTTP::fetch($url);
 		
-		if(!preg_match("/status=([a-zA-Z0-9_]+)/", $responseMsg, $out)) {
+		if (!preg_match("/status=([a-zA-Z0-9_]+)/", $responseMsg, $out)) {
 			throw new Exception('Could not parse response');
 		}
 
 		$status = $out[1];
 		
 		/* Verify signature. */
-		if($this->_key <> "") {
+		if ($this->_key <> "") {
 			$rows = explode("\r\n", $responseMsg);
-			while (list($key, $val) = each($rows)) {
+            response = array();
+			while (list(, $val) = each($rows)) {
 				// = is also used in BASE64 encoding so we only replace the first = by # which is not used in BASE64
 				$val = preg_replace('/=/', '#', $val, 1);
 				$row = explode("#", $val);
@@ -146,7 +147,7 @@ class Auth_Yubico
 			$check = 'status=' . $response['status'] . '&t='. $response['t'];
 			$checksignature = base64_encode(hash_hmac('sha1', $check, $this->_key, true));
 			
-			if($response['h'] != $checksignature) {
+			if ($response['h'] != $checksignature) {
 				throw new Exception('Checked Signature failed');
 			}
 		}
