@@ -140,7 +140,6 @@ class sspmod_expirycheck_Auth_Process_ExpiryDate extends SimpleSAML_Auth_Process
 		if (!self::checkDate($expireOnDate)) {
 			SimpleSAML\Logger::error('expirycheck: NetID ' . $netId .
 				' has expired [' . date($this->date_format, $expireOnDate) . ']. Access denied!');
-			$globalConfig = SimpleSAML_Configuration::getInstance();
 
 			/* Save state and redirect. */
 			$state['expireOnDate'] = date($this->date_format, $expireOnDate);
