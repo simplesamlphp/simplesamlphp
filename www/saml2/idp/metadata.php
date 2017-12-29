@@ -131,7 +131,7 @@ try {
         $metaArray['SingleSignOnService'][] = array(
             'index' => 0,
             'Binding' => SAML2_Const::BINDING_SOAP,
-            'Location' => SimpleSAML_Utilities::getHostnameURL() . 'saml2/idp/SSOService.php',
+            'Location' => HTTP::getBaseURL().'saml2/idp/SSOService.php',
         );
     }
 
