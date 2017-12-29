@@ -28,6 +28,9 @@ class sspmod_statistics_LogCleaner
         }
     }
 
+    /*
+     * @return void
+     */
     public function dumpConfig()
     {
         echo 'Statistics directory   : ' . $this->statdir . "\n";
@@ -35,7 +38,13 @@ class sspmod_statistics_LogCleaner
         echo 'Offset                 : ' . $this->offset . "\n";
     }
 
-    public function clean($debug = false) {
+
+    /*
+     * @param bool $debug
+     * @return array
+     */
+    public function clean($debug = false)
+    {
         if (!is_dir($this->statdir)) {
             throw new Exception('Statistics module: output dir do not exists [' . $this->statdir . ']');
         }
@@ -49,7 +58,6 @@ class sspmod_statistics_LogCleaner
         $logparser = new sspmod_statistics_LogParser(
             $this->statconfig->getValue('datestart', 0), $this->statconfig->getValue('datelength', 15), $this->statconfig->getValue('offsetspan', 44)
         );
-        $datehandler = new sspmod_statistics_DateHandler($this->offset);
 
         $results = array();
         $sessioncounter = array();
@@ -111,6 +119,12 @@ class sspmod_statistics_LogCleaner
         return $todelete;
     }
 
+
+    /*
+     * @param array $todelete
+     * @param string $outputfile
+     * @return void
+     */
     public function store($todelete, $outputfile)
     {
         echo "Preparing to delete [" .count($todelete) . "] trackids\n";
