@@ -84,7 +84,7 @@ class sspmod_ldap_Auth_Process_AttributeAddUsersGroups extends sspmod_ldap_Auth_
         // If any attributes are needed, prepare them before calling search method
         switch ($this->product) {
             case 'ACTIVEDIRECTORY':
-                $groups = $this->getGroupsActiveDirecory($attributes);
+                $groups = $this->getGroupsActiveDirecyory($attributes);
                 break;
             case 'OPENLDAP':
                 $groups = $this->getGroupsOpenLdap($attributes);
