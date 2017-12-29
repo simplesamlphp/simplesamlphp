@@ -31,9 +31,9 @@ abstract class sspmod_core_Auth_UserPassBase extends SimpleSAML_Auth_Source {
 	 * If this is NULL, we won't force any username.
 	 */
 	private $forcedUsername;
-	
+
 	/**
-	 * Links to pages from login page. 
+	 * Links to pages from login page.
 	 * From configuration
 	 */
 	protected $loginLinks;
@@ -183,7 +183,24 @@ abstract class sspmod_core_Auth_UserPassBase extends SimpleSAML_Auth_Source {
 			 * is allowed to change the username.
 			 */
 			$state['forcedUsername'] = $this->forcedUsername;
-		}
+	    }
+
+	  // ECP requests supply authentication credentials with the AUthnRequest
+	  // so we validate them now rather than redirecting
+	  if (isset($state['core:auth:username']) && isset($state['core:auth:password'])) {
+	      $username = $state['core:auth:username'];
+	      $password = $state['core:auth:password'];
+
+	      if (isset($state['forcedUsername'])) {
+	          $username = $state['forcedUsername'];
+	      }
+
+	      $attributes = $this->login($username, $password);
+	      assert('is_array($attributes)');
+	      $state['Attributes'] = $attributes;
+
+	      return;
+	  }
 
 		/* Save the $state-array, so that we can restore it after a redirect. */
 		$id = SimpleSAML_Auth_State::saveState($state, self::STAGEID);
