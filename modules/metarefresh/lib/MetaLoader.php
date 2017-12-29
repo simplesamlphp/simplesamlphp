@@ -11,6 +11,7 @@ class sspmod_metarefresh_MetaLoader {
 	private $oldMetadataSrc;
 	private $stateFile;
 	private $changed;
+    private $state;
 	private $types = array(
 		'saml20-idp-remote',
 		'saml20-sp-remote',
@@ -23,7 +24,6 @@ class sspmod_metarefresh_MetaLoader {
 	/**
 	 * Constructor
 	 *
-	 * @param array $sources 	Sources...
 	 * @param 
 	 */
 	public function __construct($expire = NULL, $stateFile = NULL, $oldMetadataSrc = NULL) {
