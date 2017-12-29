@@ -522,7 +522,10 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 
 		if (isset($state['isPassive']) && (bool)$state['isPassive']) {
 			// passive request, we cannot authenticate the user
-			throw new SimpleSAML_Error_NoPassive('Reauthentication required');
+			throw new SimpleSAML\Module\saml\Error\NoPassive(
+					\SAML2\Constants::STATUS_REQUESTER,
+                    'Reauthentication required'
+            );
 		}
 
 		// save the state WITHOUT a restart URL, so that we don't try an IdP-initiated login if something goes wrong
