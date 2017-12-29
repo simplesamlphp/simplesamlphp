@@ -36,9 +36,9 @@ class sspmod_ldap_Auth_Process_AttributeAddFromLDAP extends sspmod_ldap_Auth_Pro
 {
 
     /**
-     * LDAP attribute to add to the request attributes
+     * LDAP attributes to add to the request attributes
      *
-     * @var string
+     * @var array
      */
     protected $search_attributes;
 
@@ -143,8 +143,9 @@ class sspmod_ldap_Auth_Process_AttributeAddFromLDAP extends sspmod_ldap_Auth_Pro
         $attributes =& $request['Attributes'];
 
         // perform a merge on the ldap_search_filter
-
         // loop over the attributes and build the search and replace arrays
+        $arrSearch = array();
+        $arrReplace = array();
         foreach ($attributes as $attr => $val) {
             $arrSearch[] = '%'.$attr.'%';
 
