@@ -36,7 +36,7 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
     /**
      * Consent backend storage configuration
      *
-     * @var array
+     * @var sspmod_consent_Store|null
      */
     private $_store = null;
 
@@ -320,7 +320,10 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
         // user interaction necessary. Throw exception on isPassive request
         if (isset($state['isPassive']) && $state['isPassive'] === true) {
             SimpleSAML_Stats::log('consent:nopassive', $statsData);
-            throw new SimpleSAML_Error_NoPassive('Unable to give consent on passive request.');
+            throw new SimpleSAML\Module\saml\Error\NoPassive(
+                    \SAML2\Constants::STATUS_REQUESTER,
+                    'Unable to give consent on passive request.'
+            );
         }
 
         // Save state and redirect
