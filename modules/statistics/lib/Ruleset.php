@@ -22,7 +22,6 @@ class sspmod_statistics_Ruleset
     private function init()
     {
         $statdir = $this->statconfig->getValue('statdir');
-        $inputfile = $this->statconfig->getValue('inputfile');
         $statrules = $this->statconfig->getValue('statrules');
         $timeres = $this->statconfig->getValue('timeres');
 
