@@ -128,7 +128,7 @@ class sspmod_negotiate_Auth_Source_Negotiate extends SimpleSAML_Auth_Source
                 $this->referrals
             );
 
-            list($mech, $data) = explode(' ', $_SERVER['HTTP_AUTHORIZATION'], 2);
+            list($mech,) = explode(' ', $_SERVER['HTTP_AUTHORIZATION'], 2);
             if (strtolower($mech) == 'basic') {
                 SimpleSAML\Logger::debug('Negotiate - authenticate(): Basic found. Skipping.');
             } else {
@@ -259,7 +259,7 @@ EOF;
     /**
      * Passes control of the login process to a different module.
      *
-     * @param string $state Information about the current authentication.
+     * @param array $state Information about the current authentication.
      *
      * @throws SimpleSAML_Error_Error If couldn't determine the auth source.
      * @throws SimpleSAML_Error_Exception
@@ -270,7 +270,7 @@ EOF;
         $authId = $state['LogoutState']['negotiate:backend'];
 
         if ($authId === null) {
-            throw new SimpleSAML_Error_Error(500, "Unable to determine auth source.");
+            throw new SimpleSAML_Error_Error(array(500, "Unable to determine auth source."));
         }
         $source = SimpleSAML_Auth_Source::getById($authId);
 
