@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "b4321ba6aa21f1dfd919f942037f2692",
+    "content-hash": "a7ac3f6a5e037f467876e690ee591e59",
     "packages": [
         {
             "name": "gettext/gettext",
@@ -260,36 +260,40 @@
         },
         {
             "name": "simplesamlphp/saml2",
-            "version": "v3.0.3",
+            "version": "v3.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/saml2.git",
-                "reference": "bdafe52d52adb32c926c12c5139401546b4dc57b"
+                "reference": "1b93d1fa49abaf99ffa78aef5358224e3a6b29b2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/bdafe52d52adb32c926c12c5139401546b4dc57b",
-                "reference": "bdafe52d52adb32c926c12c5139401546b4dc57b",
+                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/1b93d1fa49abaf99ffa78aef5358224e3a6b29b2",
+                "reference": "1b93d1fa49abaf99ffa78aef5358224e3a6b29b2",
                 "shasum": ""
             },
             "require": {
                 "ext-dom": "*",
                 "ext-openssl": "*",
                 "ext-zlib": "*",
-                "php": ">=5.3.3",
+                "php": ">=5.4",
                 "psr/log": "~1.0",
-                "robrichards/xmlseclibs": "^2.0|^3.0"
+                "robrichards/xmlseclibs": "^3.0"
             },
             "require-dev": {
                 "mockery/mockery": "~0.9",
                 "phpmd/phpmd": "~1.5",
                 "phpunit/phpunit": "~3.7",
-                "satooshi/php-coveralls": "~0.6.1",
                 "sebastian/phpcpd": "~1.4",
                 "sensiolabs/security-checker": "~1.1",
                 "squizlabs/php_codesniffer": "~1.4"
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "v3.0.x-dev"
+                }
+            },
             "autoload": {
                 "psr-0": {
                     "SAML2\\": "src/"
@@ -309,7 +313,7 @@
                 }
             ],
             "description": "SAML2 PHP library from SimpleSAMLphp",
-            "time": "2017-08-31T11:24:42+00:00"
+            "time": "2017-12-06T15:57:23+00:00"
         },
         {
             "name": "twig/extensions",
