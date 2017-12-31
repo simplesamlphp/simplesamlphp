@@ -130,8 +130,10 @@ foreach ($metaentries['hosted'] as $index => $entity) {
     foreach ($translators as $old => $new) {
         if (isset($entity[$old][$language])) {
             $metaentries['hosted'][$index][$new] = $entity[$old][$language];
-        } elseif ($entity[$old][$defaultLanguage]) {
+        } elseif (isset($entity[$old][$defaultLanguage])) {
             $metaentries['hosted'][$index][$new] = $entity[$old][$defaultLanguage];
+        } elseif (isset($metaentries['hosted'][$index][$old])) {
+            $metaentries['hosted'][$index][$new] = $metaentries['hosted'][$index][$old];
         }
     }
 }
@@ -140,8 +142,10 @@ foreach ($metaentries['remote'] as $key => $set) {
         foreach ($translators as $old => $new) {
             if (isset($entity[$old][$language])) {
                 $metaentries['remote'][$key][$entityid][$new] = $entity[$old][$language];
-            } elseif ($entity[$old][$defaultLanguage]) {
+            } elseif (isset($entity[$old][$defaultLanguage])) {
                 $metaentries['remote'][$key][$entityid][$new] = $entity[$old][$defaultLanguage];
+            } elseif (isset($metaentries['remote'][$key][$entityid][$old])) {
+                $metaentries['remote'][$key][$entityid][$new] = $metaentries['remote'][$key][$entityid][$old];
             }
         }
     }

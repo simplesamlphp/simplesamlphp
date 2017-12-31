@@ -16,7 +16,7 @@
         {% set metadataset = attribute(set, 'metadata-set') %}
         <dt>{{ mtype[metadataset]|trans }}</dt>
         <dd>
-        <p>Entity ID: {{ hm.entityid }}
+        <p>Entity ID: {{ set.entityid }}
             {% if set.deprecated is defined and set.deprecated %}
             <br /><span style="font-weight: bold;">Deprecated</span>
             {% endif %}
