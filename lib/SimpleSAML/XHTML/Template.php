@@ -330,6 +330,7 @@ class SimpleSAML_XHTML_Template
     private function generateLanguageBar()
     {
         $languages = $this->translator->getLanguage()->getLanguageList();
+        ksort($languages);
         $langmap = null;
         if (count($languages) > 1) {
             $parameterName = $this->getTranslator()->getLanguage()->getLanguageParameterName();
