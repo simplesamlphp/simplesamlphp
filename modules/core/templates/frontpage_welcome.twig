@@ -6,7 +6,7 @@
     <p class="float-r youareadmin">{{ '{core:frontpage:loggedin_as_admin}'|trans }}</p>
     {% else %}
     <p class="float-r youareadmin">
-        <a href="{{ loginurl|escape('url') }}">{{ '{core:frontpage:login_as_admin}'|trans }}</a>
+        <a href="{{ loginurl }}">{{ '{core:frontpage:login_as_admin}'|trans }}</a>
     </p>
     {% endif %}
 
