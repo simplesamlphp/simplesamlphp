@@ -133,6 +133,8 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerPdo extends SimpleSAML_Metadata_
         foreach ($metadataSet as $entityId => &$entry) {
             if (preg_match('/__DYNAMIC(:[0-9]+)?__/', $entityId)) {
                 $entry['entityid'] = $this->generateDynamicHostedEntityID($set);
+                $metadataSet[$entry['entityid']] = $entry;
+                unset($metadataSet[$entityId]);
             } else {
                 $entry['entityid'] = $entityId;
             }
