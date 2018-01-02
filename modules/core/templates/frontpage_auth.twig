@@ -3,9 +3,9 @@
 
 {% block content %}
     {% if isadmin %}
-    <p class="float-r youareadmin">{{ '{core:frontpage:loggedin_as_admin}'|trans }}</p>
+    <p class="right youareadmin">{{ '{core:frontpage:loggedin_as_admin}'|trans }}</p>
     {% else %}
-    <p class="float-r youareadmin">
+    <p class="right youareadmin">
         <a href="{{ loginurl }}">{{ '{core:frontpage:login_as_admin}'|trans }}</a>
     </p>
     {% endif %}
@@ -15,7 +15,7 @@
         <li>
             <a href="{{ link.href|escape('url') }}">{{ link.text|trans|escape('html') }}</a>
             {% if link.deprecated is defined and link.deprecated is not empty %}
-            <span style="font-weight: bold;">{{ '{core:frontpage:deprecated}'|trans }}</b>
+            <strong>{{ '{core:frontpage:deprecated}'|trans }}</strong>
             {% endif %}
         </li>
     {% endfor %}
