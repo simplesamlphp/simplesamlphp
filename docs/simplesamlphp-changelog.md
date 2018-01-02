@@ -16,6 +16,10 @@ Released TBD
     See the [ECP IdP documentation](./simplesamlphp-ecp-idp) for details.
   * New option `sendmail_from`, the from address for email sent by SSP.
 
+### core
+  * StatisticsWithAttribute: add `passive-` prefix when logging passive
+    requests, set new option `skipPassive` to skip logging these altogether.
+
 ### Oauth
   * Make module HTTP proxy-aware.
   * Remove unused demo app.
