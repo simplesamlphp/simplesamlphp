@@ -14,24 +14,22 @@
 <h2>{{ 'Your attributes'|trans }}</h2>
     {% set items = attributes %}
 
-{% embed '_table.twig' %}
+{% embed '_table.twig' -%}
 
-    {% block namecol %}
+    {% block namecol -%}
     {% set attr = ('{attributes:attribute_'~(name|lower)~'}') %}
     {% set translated = attr|trans %}
     <td class="attrname">{% if translated != attr %} {{ translated }} <br>{% endif %} <samp>{{ name }}</samp></td>
     {% endblock %}
 
 
-    {% block value %}
-    {% if name =='jpegPhoto'%}
+    {% block value -%}
+    {% if name =='jpegPhoto'-%}
         <img src="data:image/jpeg;base64,{{ value }}" />
-    {% else %}
-        {{ value }}
-    {% endif %}
+    {% else %}{{ value }}{% endif -%}
     {% endblock %}
 
-{% endembed %}
+{%- endembed %}
 
 
 {% if nameid %}

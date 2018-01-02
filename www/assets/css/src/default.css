@@ -510,7 +510,14 @@ span.fa, i.fa {
 TABLES
 ************************************************************ */
 .pure-table-attributes{
+    table-layout: fixed;
     width:100%;
+}
+.attrname{
+    text-align: right;
+}
+.attrvalue{
+    overflow-wrap: break-word;
 }
 table.attributes ul{
     padding: inherit;
