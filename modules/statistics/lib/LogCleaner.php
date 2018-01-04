@@ -59,7 +59,6 @@ class sspmod_statistics_LogCleaner
             $this->statconfig->getValue('datestart', 0), $this->statconfig->getValue('datelength', 15), $this->statconfig->getValue('offsetspan', 44)
         );
 
-        $results = array();
         $sessioncounter = array();
 
         $i = 0;
@@ -76,7 +75,6 @@ class sspmod_statistics_LogCleaner
             // Parse log, and extract epoch time and rest of content.
             $epoch = $logparser->parseEpoch($logline);
             $content = $logparser->parseContent($logline);
-            $action = trim($content[5]);
 
             if (($i % 10000) == 0) {
                 echo("Read line " . $i . "\n");
@@ -162,7 +160,6 @@ class sspmod_statistics_LogCleaner
             $i++;
 
             $content = $logparser->parseContent($logline);
-            $action = trim($content[5]);
 
             if (($i % 10000) == 0) {
                 echo("Read line " . $i . "\n");
