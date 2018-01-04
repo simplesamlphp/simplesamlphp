@@ -150,7 +150,7 @@ class SimpleSAML_Metadata_SAMLParser
         \SAML2\XML\md\EntityDescriptor $entityElement,
         $maxExpireTime,
         array $validators = array(),
-        array $parentExtensions
+        array $parentExtensions = array()
     ) {
         assert($maxExpireTime === null || is_int($maxExpireTime));
 
