@@ -129,9 +129,9 @@ class SimpleSAML_Session implements Serializable
      *
      * This is an array with authentication data for the various authsources.
      *
-     * @var array|null  Associative array of associative arrays.
+     * @var array  Associative array of associative arrays.
      */
-    private $authData;
+    private $authData = array();
 
 
     /**
@@ -142,8 +142,6 @@ class SimpleSAML_Session implements Serializable
      */
     private function __construct($transient = false)
     {
-        $this->authData = array();
-
         if (php_sapi_name() === 'cli' || defined('STDIN')) {
             $this->trackid = 'CL'.bin2hex(openssl_random_pseudo_bytes(4));
             SimpleSAML\Logger::setTrackId($this->trackid);
