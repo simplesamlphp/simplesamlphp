@@ -60,11 +60,9 @@ class sspmod_core_Auth_Process_StatisticsWithAttribute extends SimpleSAML_Auth_P
 		assert(array_key_exists('Attributes', $state));
 
 		$logAttribute = 'NA';
-		$source = 'NA';
-		$dest = 'NA';
 		$isPassive = '';
 
-		if(array_key_exists('isPassive', $state) && $state['isPassive'] === true) {
+		if (array_key_exists('isPassive', $state) && $state['isPassive'] === true) {
 			if ($this->skipPassive === true) {
 				// We have a passive request. Skip logging statistics
 				return;
@@ -72,22 +70,12 @@ class sspmod_core_Auth_Process_StatisticsWithAttribute extends SimpleSAML_Auth_P
 			$isPassive = 'passive-';
 		}
 
-		if (array_key_exists($this->attribute, $state['Attributes'])) $logAttribute = $state['Attributes'][$this->attribute][0];		
-		if (array_key_exists('Source', $state)) {
-			if (isset($state['Source']['core:statistics-id'])) {
-				$source = $state['Source']['core:statistics-id'];
-			} else {
-				$source = $state['Source']['entityid'];
-			}
-		}
+		if (array_key_exists($this->attribute, $state['Attributes'])) {
+            $logAttribute = $state['Attributes'][$this->attribute][0];
+        }
 
-		if (array_key_exists('Destination', $state)) {
-			if (isset($state['Destination']['core:statistics-id'])) {
-				$dest = $state['Destination']['core:statistics-id'];
-			} else {
-				$dest = $state['Destination']['entityid'];
-			}
-		}
+        $source = $this->setIdentifier('Source', $state);
+        $dest = $this->setIdentifier('Destination', $state);
 
 		if (!array_key_exists('PreviousSSOTimestamp', $state)) {
 			// The user hasn't authenticated with this SP earlier in this session
@@ -97,4 +85,21 @@ class sspmod_core_Auth_Process_StatisticsWithAttribute extends SimpleSAML_Auth_P
 		SimpleSAML\Logger::stats($isPassive . $this->typeTag . ' ' . $dest . ' ' . $source . ' ' . $logAttribute);
 	}
 
+    /**
+     * @param string &$direction  Either 'Source' or 'Destination'.
+     * @param array $state  The current state.
+     *
+     * @return string
+	 */
+    private function setIdentitier($direction, $state)
+    {
+        if (array_key_exists($direction, $state)) {
+			if (isset($state[$direction]['core:statistics-id'])) {
+				return $state[$direction]['core:statistics-id'];
+			} else {
+				return $state[$direction]['entityid'];
+			}
+		}
+        return 'NA';
+    }
 }
