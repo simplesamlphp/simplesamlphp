@@ -107,7 +107,7 @@ class SimpleSAML_Auth_LDAP
         }
 
         // Enable TLS, if needed
-        if (stripos($hostname, "ldaps:") === false and $enable_tls) {
+        if (stripos($hostname, "ldaps:") === false && $enable_tls) {
             if (!@ldap_start_tls($this->ldap)) {
                 throw $this->makeException('Library - LDAP __construct(): Unable to force TLS', ERR_INTERNAL);
             }
@@ -427,8 +427,6 @@ class SimpleSAML_Auth_LDAP
      */
     public function bind($dn, $password, array $sasl_args = null)
     {
-        $authz_id = null;
-
         if ($sasl_args != null) {
             if (!function_exists('ldap_sasl_bind')) {
                 $ex_msg = 'Library - missing SASL support';
@@ -736,6 +734,7 @@ class SimpleSAML_Auth_LDAP
      */
     public function whoami($searchBase, $searchAttributes)
     {
+        $authz_id = '';
         if (function_exists('ldap_exop_whoami')) {
             if (version_compare(phpversion(), '7', '<')) {
                 if (ldap_exop_whoami($this->ldap, $authz_id) !== true) {
