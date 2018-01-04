@@ -236,7 +236,7 @@ abstract class OAuthSignatureMethod_RSA_SHA1 extends OAuthSignatureMethod
         $privatekeyid = openssl_get_privatekey($cert);
 
         // Sign using the key
-        $ok = openssl_sign($base_string, $signature, $privatekeyid);
+        openssl_sign($base_string, $signature, $privatekeyid);
 
         // Release the key resource
         openssl_free_key($privatekeyid);
@@ -478,15 +478,15 @@ class OAuthRequest
     /**
      * builds the Authorization: header
      */
-    public function to_header($realm = null) {
+    public function to_header($realm = null)
+    {
         $first = true;
-        if($realm) {
+        if ($realm) {
             $out = 'Authorization: OAuth realm="' . OAuthUtil::urlencode_rfc3986($realm) . '"';
             $first = false;
         } else
             $out = 'Authorization: OAuth';
 
-        $total = array();
         foreach ($this->parameters as $k => $v) {
             if (substr($k, 0, 5) != "oauth") continue;
             if (is_array($v)) {
