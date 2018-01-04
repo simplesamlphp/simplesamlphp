@@ -20,28 +20,26 @@ use SimpleSAML\Utils\Config;
 
 class Signer
 {
-
-
     /**
      * @var string The name of the ID attribute.
      */
-    private $idAttrName;
+    private $idAttrName = '';
 
     /**
      * @var XMLSecurityKey|bool  The private key (as an XMLSecurityKey).
      */
-    private $privateKey;
+    private $privateKey = false;
 
     /**
-     * @var string The certificate (as text).
+     * @var string|bool The certificate (as text).
      */
-    private $certificate;
+    private $certificate = false;
 
 
     /**
      * @var array Extra certificates which should be included in the response.
      */
-    private $extraCertificates;
+    private $extraCertificates = array();
 
 
     /**
@@ -63,11 +61,6 @@ class Signer
     public function __construct($options = array())
     {
         assert(is_array($options));
-
-        $this->idAttrName = false;
-        $this->privateKey = false;
-        $this->certificate = false;
-        $this->extraCertificates = array();
 
         if (array_key_exists('privatekey', $options)) {
             $pass = null;
@@ -291,7 +284,7 @@ class Signer
         $objXMLSecDSig->setCanonicalMethod(XMLSecurityDSig::EXC_C14N);
 
         $options = array();
-        if ($this->idAttrName !== false) {
+        if (!empty($this->idAttrName)) {
             $options['id_name'] = $this->idAttrName;
         }
 
