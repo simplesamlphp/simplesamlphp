@@ -22,17 +22,17 @@ class sspmod_core_Storage_SQLPermanentStorage
         $datadir = $config->getPathValue('datadir', 'data/');
 
         if (!is_dir($datadir)) {
-            throw new Exception('Data directory [' . $datadir. '] does not exist');
+            throw new Exception('Data directory ['.$datadir.'] does not exist');
         } else if (!is_writable($datadir)) {
-            throw new Exception('Data directory [' . $datadir. '] is not writable');
+            throw new Exception('Data directory ['.$datadir.'] is not writable');
         }
 
-        $sqllitedir = $datadir . 'sqllite/';
+        $sqllitedir = $datadir.'sqllite/';
         if (!is_dir($sqllitedir)) {
             mkdir($sqllitedir);
         }
 
-        $dbfile = 'sqlite:' . $sqllitedir . $name . '.sqlite';
+        $dbfile = 'sqlite:'.$sqllitedir.$name.'.sqlite';
         if ($this->db = new \PDO($dbfile)) {
             $q = @$this->db->query('SELECT key1 FROM data LIMIT 1');
             if ($q === false) {
@@ -50,7 +50,7 @@ class sspmod_core_Storage_SQLPermanentStorage
                 ');
             } 
         } else {
-            throw new Exception('Error creating SQL lite database [' . $dbfile . '].');
+            throw new Exception('Error creating SQL lite database ['.$dbfile.'].');
         }
     }
 
@@ -67,7 +67,7 @@ class sspmod_core_Storage_SQLPermanentStorage
     {
         $expire = is_null($duration) ? null : (time() + $duration);
 
-        $query = "INSERT INTO data (key1, key2, type, created, updated, expire, value)" .
+        $query = "INSERT INTO data (key1, key2, type, created, updated, expire, value)".
             " VALUES(:key1, :key2, :type, :created, :updated, :expire, :value)";
         $prepared = $this->db->prepare($query);
         $data = array(':key1' => $key1, ':key2' => $key2,
@@ -96,7 +96,7 @@ class sspmod_core_Storage_SQLPermanentStorage
     public function get($type = null, $key1 = null, $key2 = null)
     {
         $conditions = self::getCondition($type, $key1, $key2);
-        $query = 'SELECT * FROM data WHERE ' . $conditions;
+        $query = 'SELECT * FROM data WHERE '.$conditions;
 
         $prepared = $this->db->prepare($query);
         $prepared->execute();
@@ -135,7 +135,7 @@ class sspmod_core_Storage_SQLPermanentStorage
     public function getList($type = null, $key1 = null, $key2 = null)
     {
         $conditions = self::getCondition($type, $key1, $key2);
-        $query = 'SELECT * FROM data WHERE ' . $conditions;
+        $query = 'SELECT * FROM data WHERE '.$conditions;
         $prepared = $this->db->prepare($query);
         $prepared->execute();
 
@@ -157,7 +157,7 @@ class sspmod_core_Storage_SQLPermanentStorage
         }
 
         $conditions = self::getCondition($type, $key1, $key2);
-        $query = 'SELECT DISTINCT :whichKey FROM data WHERE ' . $conditions;
+        $query = 'SELECT DISTINCT :whichKey FROM data WHERE '.$conditions;
         $prepared = $this->db->prepare($query);
         $data = array('whichKey' => $whichKey);
         $prepared->execute($data);
@@ -200,18 +200,17 @@ class sspmod_core_Storage_SQLPermanentStorage
     {
         $conditions = array();
         if (!is_null($type)) {
-            $conditions[] = "type = " . $this->db->quote($type);
+            $conditions[] = "type = ".$this->db->quote($type);
         }
         if (!is_null($key1)) {
-            $conditions[] = "key1 = " . $this->db->quote($key1);
+            $conditions[] = "key1 = ".$this->db->quote($key1);
         }
         if (!is_null($key2)) {
-            $conditions[] = "key2 = " . $this->db->quote($key2);
+            $conditions[] = "key2 = ".$this->db->quote($key2);
         }
         if (count($conditions) === 0) {
             return '1';
-	}	
-
+        }
         return join(' AND ', $conditions);
     }
 }
