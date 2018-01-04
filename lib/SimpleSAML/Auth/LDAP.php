@@ -207,6 +207,7 @@ class SimpleSAML_Auth_LDAP
     {
         // Create the search filter
         $attribute = self::escape_filter_value($attribute, false);
+        $value = \SimpleSAML\Utils\Arrays::Arrayize($value);
         $value = self::escape_filter_value($value);
         $filter = '';
         foreach ($attribute as $attr) {
