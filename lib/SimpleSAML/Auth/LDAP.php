@@ -588,7 +588,7 @@ class SimpleSAML_Auth_LDAP
     /**
      * Enter description here...
      *
-     * @param string $config
+     * @param array $config
      * @param string $username
      * @param string $password
      * @return array|bool
