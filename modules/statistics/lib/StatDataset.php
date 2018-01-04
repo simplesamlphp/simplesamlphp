@@ -183,7 +183,6 @@ class sspmod_statistics_StatDataset
     public function getAxis()
     {
         $slotsize = $this->timeresconfig->getValue('slot');
-        $dateformat_period = $this->timeresconfig->getValue('dateformat-period');
         $dateformat_intra = $this->timeresconfig->getValue('dateformat-intra');
         $axislabelint = $this->timeresconfig->getValue('axislabelint');
 
