@@ -8,14 +8,11 @@
  * @package SimpleSAMLphp
  */
 
-
 use JaimePerez\TwigConfigurableI18n\Twig\Environment as Twig_Environment;
 use JaimePerez\TwigConfigurableI18n\Twig\Extensions\Extension\I18n as Twig_Extensions_Extension_I18n;
 
-
 class SimpleSAML_XHTML_Template
 {
-
     /**
      * The data associated with this template, accessible within the template itself.
      *
@@ -279,7 +276,7 @@ class SimpleSAML_XHTML_Template
         // setup directories & namespaces
         $themeDir = \SimpleSAML\Module::getModuleDir($this->theme['module']).'/themes/'.$this->theme['name'];
         $subdirs = scandir($themeDir);
-        if (!$subdirs) { // no subdirectories in the theme directory, nothing to do here
+        if (empty($subdirs)) { // no subdirectories in the theme directory, nothing to do here
             // this is probably wrong, log a message
             \SimpleSAML\Logger::warning('Emtpy theme directory for theme "'.$this->theme['name'].'".');
             return array();
@@ -704,7 +701,7 @@ class SimpleSAML_XHTML_Template
      * @see \SimpleSAML\Locale\Translate::noop()
      * @deprecated This method will be removed in SSP 2.0. Please use \SimpleSAML\Locale\Translate::noop() instead.
      */
-    static public function noop($tag)
+    public static function noop($tag)
     {
         return $tag;
     }
