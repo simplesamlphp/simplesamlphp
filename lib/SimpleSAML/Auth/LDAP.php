@@ -736,8 +736,6 @@ class SimpleSAML_Auth_LDAP
      */
     public function whoami($searchBase, $searchAttributes)
     {
-        $authz_id = '';
-
         if (function_exists('ldap_exop_whoami')) {
             if (version_compare(phpversion(), '7', '<')) {
                 if (ldap_exop_whoami($this->ldap, $authz_id) !== true) {
