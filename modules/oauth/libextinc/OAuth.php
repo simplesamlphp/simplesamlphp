@@ -213,13 +213,13 @@ abstract class OAuthSignatureMethod_RSA_SHA1 extends OAuthSignatureMethod
     // (3) some sort of specific discovery code based on request
     //
     // Either way should return a string representation of the certificate
-    protected abstract function fetch_public_cert(&$request);
+    abstract protected function fetch_public_cert(&$request);
 
     // Up to the SP to implement this lookup of keys. Possible ideas are:
     // (1) do a lookup in a table of trusted certs keyed off of consumer
     //
     // Either way should return a string representation of the certificate
-    protected abstract function fetch_private_cert(&$request);
+    abstract protected function fetch_private_cert(&$request);
 
     public function build_signature($request, $consumer, $token)
     {
@@ -273,7 +273,7 @@ class OAuthRequest
     public static $version = '1.0';
     public static $POST_INPUT = 'php://input';
 
-    function __construct($http_method, $http_url, $parameters=null)
+    public function __construct($http_method, $http_url, $parameters=null)
     {
         $parameters = ($parameters) ? $parameters : array();
         $parameters = array_merge(OAuthUtil::parse_parameters(parse_url($http_url, PHP_URL_QUERY)), $parameters);
@@ -553,7 +553,7 @@ class OAuthServer
 
     protected $data_store;
 
-    function __construct($data_store)
+    public function __construct($data_store)
     {
         $this->data_store = $data_store;
     }
@@ -788,27 +788,27 @@ class OAuthServer
 
 class OAuthDataStore
 {
-    function lookup_consumer($consumer_key)
+    public function lookup_consumer($consumer_key)
     {
         // implement me
     }
 
-    function lookup_token($consumer, $token_type, $token)
+    public function lookup_token($consumer, $token_type, $token)
     {
         // implement me
     }
 
-    function lookup_nonce($consumer, $token, $nonce, $timestamp)
+    public function lookup_nonce($consumer, $token, $nonce, $timestamp)
     {
         // implement me
     }
 
-    function new_request_token($consumer, $callback = null)
+    public function new_request_token($consumer, $callback = null)
     {
         // return a new token attached to this consumer
     }
 
-    function new_access_token($token, $consumer, $verifier = null)
+    public function new_access_token($token, $consumer, $verifier = null)
     {
         // return a new access token attached to this consumer
         // for the user associated with this token if the request token
