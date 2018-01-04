@@ -133,7 +133,7 @@ class sspmod_authYubiKey_Auth_Source_YubiKey extends SimpleSAML_Auth_Source
         assert(array_key_exists(self::AUTHID, $state));
         $source = SimpleSAML_Auth_Source::getById($state[self::AUTHID]);
         if ($source === null) {
-            throw new Exception('Could not find authentication source with id ' . $state[self::AUTHID]);
+            throw new Exception('Could not find authentication source with id '.$state[self::AUTHID]);
         }
 
         try {
@@ -163,7 +163,7 @@ class sspmod_authYubiKey_Auth_Source_YubiKey extends SimpleSAML_Auth_Source
      */
     public static function getYubiKeyPrefix($otp)
     {
-        $uid = substr ($otp, 0, strlen ($otp) - self::TOKENSIZE);
+        $uid = substr($otp, 0, strlen ($otp) - self::TOKENSIZE);
         return $uid;
     }
 
@@ -176,15 +176,14 @@ class sspmod_authYubiKey_Auth_Source_YubiKey extends SimpleSAML_Auth_Source
      *
      * Note that both the username and the password are UTF-8 encoded.
      *
-     * @param string $username  The username the user wrote.
-     * @param string $password  The password the user wrote.
-     * @return array  Associative array with the users attributes.
+     * @param string $otp
+     * @return array Associative array with the users attributes.
      */
     protected function login($otp)
     {
         assert(is_string($otp));
 
-        require_once dirname(dirname(dirname(dirname(__FILE__)))) . '/libextinc/Yubico.php';
+        require_once dirname(dirname(dirname(dirname(__FILE__)))).'/libextinc/Yubico.php';
 
         try {
             $yubi = new Auth_Yubico($this->yubi_id, $this->yubi_key);
@@ -192,11 +191,11 @@ class sspmod_authYubiKey_Auth_Source_YubiKey extends SimpleSAML_Auth_Source
             $uid = self::getYubiKeyPrefix($otp);
             $attributes = array('uid' => array($uid));
         } catch (Exception $e) {
-            SimpleSAML\Logger::info('YubiKey:' . $this->authId . ': Validation error (otp ' . $otp . '), debug output: ' . $yubi->getLastResponse());
+            SimpleSAML\Logger::info('YubiKey:'.$this->authId.': Validation error (otp '.$otp.'), debug output: '.$yubi->getLastResponse());
             throw new SimpleSAML_Error_Error('WRONGUSERPASS', $e);
         }
 
-        SimpleSAML\Logger::info('YubiKey:' . $this->authId . ': YubiKey otp ' . $otp . ' validated successfully: ' . $yubi->getLastResponse());
+        SimpleSAML\Logger::info('YubiKey:'.$this->authId.': YubiKey otp '.$otp.' validated successfully: '.$yubi->getLastResponse());
         return $attributes;
     }
 }
