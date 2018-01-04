@@ -267,8 +267,7 @@ class SimpleSAML_Metadata_SAMLParser
     public static function parseElement($entityElement)
     {
         assert($entityElement instanceof \SAML2\XML\md\EntityDescriptor);
-
-        return new SimpleSAML_Metadata_SAMLParser($entityElement, null);
+        return new SimpleSAML_Metadata_SAMLParser($entityElement, null, array());
     }
 
 
@@ -285,7 +284,6 @@ class SimpleSAML_Metadata_SAMLParser
      */
     public static function parseDescriptorsFile($file)
     {
-
         if ($file === null) {
             throw new Exception('Cannot open file NULL. File name not specified.');
         }
