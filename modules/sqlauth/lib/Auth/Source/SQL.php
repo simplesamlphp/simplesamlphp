@@ -8,26 +8,23 @@
  *
  * @package SimpleSAMLphp
  */
-class sspmod_sqlauth_Auth_Source_SQL extends sspmod_core_Auth_UserPassBase {
 
-
+class sspmod_sqlauth_Auth_Source_SQL extends sspmod_core_Auth_UserPassBase
+{
 	/**
 	 * The DSN we should connect to.
 	 */
 	private $dsn;
-
 
 	/**
 	 * The username we should connect to the database with.
 	 */
 	private $username;
 
-
 	/**
 	 * The password we should connect to the database with.
 	 */
 	private $password;
-
 
 	/**
 	 * The query we should use to retrieve the attributes for the user.
@@ -36,14 +33,14 @@ class sspmod_sqlauth_Auth_Source_SQL extends sspmod_core_Auth_UserPassBase {
 	 */
 	private $query;
 
-
 	/**
 	 * Constructor for this authentication source.
 	 *
 	 * @param array $info  Information about this authentication source.
 	 * @param array $config  Configuration.
 	 */
-	public function __construct($info, $config) {
+	public function __construct($info, $config)
+    {
 		assert(is_array($info));
 		assert(is_array($config));
 
@@ -77,7 +74,8 @@ class sspmod_sqlauth_Auth_Source_SQL extends sspmod_core_Auth_UserPassBase {
 	 *
 	 * @return PDO  The database connection.
 	 */
-	private function connect() {
+	private function connect()
+    {
 		try {
 			$db = new PDO($this->dsn, $this->username, $this->password);
 		} catch (PDOException $e) {
@@ -86,7 +84,6 @@ class sspmod_sqlauth_Auth_Source_SQL extends sspmod_core_Auth_UserPassBase {
 		}
 
 		$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
 
 		$driver = explode(':', $this->dsn, 2);
 		$driver = strtolower($driver[0]);
@@ -120,7 +117,8 @@ class sspmod_sqlauth_Auth_Source_SQL extends sspmod_core_Auth_UserPassBase {
 	 * @param string $password  The password the user wrote.
 	 * @return array  Associative array with the users attributes.
 	 */
-	protected function login($username, $password) {
+	protected function login($username, $password)
+    {
 		assert(is_string($username));
 		assert(is_string($password));
 
@@ -134,7 +132,7 @@ class sspmod_sqlauth_Auth_Source_SQL extends sspmod_core_Auth_UserPassBase {
 		}
 
 		try {
-			$res = $sth->execute(array('username' => $username, 'password' => $password));
+			$sth->execute(array('username' => $username, 'password' => $password));
 		} catch (PDOException $e) {
 			throw new Exception('sqlauth:' . $this->authId .
 				': - Failed to execute query: ' . $e->getMessage());
@@ -165,7 +163,7 @@ class sspmod_sqlauth_Auth_Source_SQL extends sspmod_core_Auth_UserPassBase {
 		foreach ($data as $row) {
 			foreach ($row as $name => $value) {
 
-				if ($value === NULL) {
+				if ($value === null) {
 					continue;
 				}
 
@@ -189,5 +187,4 @@ class sspmod_sqlauth_Auth_Source_SQL extends sspmod_core_Auth_UserPassBase {
 
 		return $attributes;
 	}
-
 }
