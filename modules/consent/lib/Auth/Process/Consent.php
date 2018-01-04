@@ -11,7 +11,6 @@
  */
 class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilter
 {
-
     /**
      * Button to receive focus
      *
@@ -375,7 +374,6 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
      */
     public static function getAttributeHash($attributes, $includeValues = false)
     {
-        $hashBase = null;
         if ($includeValues) {
             ksort($attributes);
             $hashBase = serialize($attributes);
