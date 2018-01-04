@@ -8,15 +8,23 @@
  */
 class sspmod_statistics_Graph_GoogleCharts
 {
-    private $x, $y;
+    /**
+     * @var integer
+     */
+    private $x;
+
+    /**
+     * @var integer
+     */
+    private $y;
 
     /**
      * Constructor.
      *
      * Takes dimension of graph as parameters. X and Y.
      *
-     * @param $x    X dimension. Default 800.
-     * @param $y    Y dimension. Default 350.
+     * @param integer $x    X dimension. Default 800.
+     * @param integer $y    Y dimension. Default 350.
      */
     public function __construct($x = 800, $y = 350)
     {
@@ -56,24 +64,6 @@ class sspmod_statistics_Graph_GoogleCharts
             } 
         }
         return($chardata); 
-    }
-
-    /**
-     * Return colors between multiple graphs...
-     */
-    private function getFillArea($datasets)
-    {
-        if (count($datasets) < 2) {
-            return '';
-        }
-
-        $colors = array('eeeeee', 'cccccc', 'aaaaaa', '99eecc');
-        $num = count($datasets) ;
-        $colstr = array();
-        for ($i = 0; $i < $num; $i++) {
-            $colstr[] = 'b' . ',' . $colors[$i] . ',' . ($i) . ',' . ($i+1) . ',0';
-        }
-        return '&chm=' . join('|', $colstr);
     }
 
     /**
