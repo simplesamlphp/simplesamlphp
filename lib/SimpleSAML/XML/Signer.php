@@ -31,9 +31,9 @@ class Signer
     private $privateKey = false;
 
     /**
-     * @var string|bool The certificate (as text).
+     * @var string The certificate (as text).
      */
-    private $certificate = false;
+    private $certificate = '';
 
 
     /**
@@ -201,10 +201,11 @@ class Signer
             throw new \Exception('Could not find certificate file "' . $certFile . '".');
         }
 
-        $this->certificate = file_get_contents($certFile);
-        if ($this->certificate === false) {
+        $cert = file_get_contents($certFile);
+        if ($cert === false) {
             throw new \Exception('Unable to read certificate file "' . $certFile . '".');
         }
+        $this->certificate = $cert;
     }
 
 
@@ -299,10 +300,8 @@ class Signer
         $objXMLSecDSig->sign($this->privateKey);
 
 
-        if ($this->certificate !== false) {
-            // Add the certificate to the signature
-            $objXMLSecDSig->add509Cert($this->certificate, true);
-        }
+        // Add the certificate to the signature
+        $objXMLSecDSig->add509Cert($this->certificate, true);
 
         // Add extra certificates
         foreach ($this->extraCertificates as $certificate) {
