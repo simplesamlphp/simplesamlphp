@@ -65,7 +65,7 @@ class Localization
     /**
      * The language backend to use
      */
-    private $i18nBackend;
+    public $i18nBackend;
 
     /**
      * Constructor
