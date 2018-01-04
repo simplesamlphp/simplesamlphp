@@ -99,7 +99,7 @@ class sspmod_core_Auth_Process_StatisticsWithAttribute extends SimpleSAML_Auth_P
      *
      * @return string
      */
-    private function setIdentitier($direction, $state)
+    private function setIdentifier($direction, $state)
     {
         if (array_key_exists($direction, $state)) {
             if (isset($state[$direction]['core:statistics-id'])) {
