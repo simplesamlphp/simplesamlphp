@@ -33,7 +33,7 @@ Prerequisites
  * Some webserver capable of executing PHP scripts.
  * PHP version >= 5.3.0.
  * Support for the following PHP extensions:
-   * Always required: `date`, `dom`, `hash`, `libxml`, `openssl`, `pcre`, `SPL`, `zlib`, `json`
+   * Always required: `date`, `dom`, `hash`, `libxml`, `openssl`, `pcre`, `SPL`, `zlib`, `json`, `mbstring`
    * When automatically checking for latest versions, and used by some modules: `cURL`
    * When using encryption or digital signatures: `mcrypt`
    * When authenticating against LDAP server: `ldap`
