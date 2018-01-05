@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * IdP class.
  *
@@ -10,7 +9,6 @@
  */
 class SimpleSAML_IdP
 {
-
     /**
      * A cache for resolving IdP id's.
      *
@@ -18,14 +16,12 @@ class SimpleSAML_IdP
      */
     private static $idpCache = array();
 
-
     /**
      * The identifier for this IdP.
      *
      * @var string
      */
     private $id;
-
 
     /**
      * The "association group" for this IdP.
@@ -37,7 +33,6 @@ class SimpleSAML_IdP
      */
     private $associationGroup;
 
-
     /**
      * The configuration for this IdP.
      *
@@ -45,14 +40,12 @@ class SimpleSAML_IdP
      */
     private $config;
 
-
     /**
      * Our authsource.
      *
      * @var \SimpleSAML\Auth\Simple
      */
     private $authSource;
-
 
     /**
      * Initialize an IdP.
@@ -341,12 +334,12 @@ class SimpleSAML_IdP
      *
      * @param array &$state The authentication request state.
      *
-     * @throws SimpleSAML_Error_NoPassive If we were asked to do passive authentication.
+     * @throws \SimpleSAML\Module\saml\Error\NoPassive If we were asked to do passive authentication.
      */
     private function authenticate(array &$state)
     {
         if (isset($state['isPassive']) && (bool) $state['isPassive']) {
-            throw new SimpleSAML_Error_NoPassive('Passive authentication not supported.');
+            throw new \SimpleSAML\Module\saml\Error\NoPassive('Passive authentication not supported.');
         }
 
         $this->authSource->login($state);
