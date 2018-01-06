@@ -48,7 +48,7 @@ class sspmod_authfacebook_Facebook extends BaseFacebook
     $cookie_name = $this->getSharedSessionCookieName();
     if (isset($_COOKIE[$cookie_name])) {
       $data = $this->parseSignedRequest($_COOKIE[$cookie_name]);
-      if ($data && !empty($data['domain']) &&
+      if (!empty($data) && !empty($data['domain']) &&
           self::isAllowedDomain($this->getHttpHost(), $data['domain'])) {
         // good case
         $this->sharedSessionID = $data['id'];
