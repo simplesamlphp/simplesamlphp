@@ -1293,7 +1293,7 @@ class SimpleSAML_Configuration implements \SimpleSAML\Utils\ClearableState
      * @param string $prefix The prefix which should be used when reading from the metadata
      *                       array. Defaults to ''.
      *
-     * @return array Public key data, or null if no public key or was found.
+     * @return array Public key data, or empty array if no public key or was found.
      *
      * @throws Exception If the certificate or public key cannot be loaded from a file.
      * @throws SimpleSAML_Error_Exception If the file does not contain a valid PEM-encoded certificate, or there is no
@@ -1316,9 +1316,7 @@ class SimpleSAML_Configuration implements \SimpleSAML\Utils\ClearableState
                 }
                 $ret[] = $key;
             }
-            if (!empty($ret)) {
-                return $ret;
-            }
+            return $ret;
         } elseif ($this->hasValue($prefix.'certData')) {
             $certData = $this->getString($prefix.'certData');
             $certData = preg_replace('/\s+/', '', $certData);
