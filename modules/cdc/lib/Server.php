@@ -385,7 +385,7 @@ class sspmod_cdc_Server
      * @param array $list  The list of IdPs.
      * @return string  The CDC cookie value.
      */
-    function setCDC(array $list)
+    private function setCDC(array $list)
     {
         foreach ($list as &$value) {
             $value = base64_encode($value);
