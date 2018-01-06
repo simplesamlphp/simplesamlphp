@@ -93,6 +93,10 @@ class SimpleSAML_Configuration implements \SimpleSAML\Utils\ClearableState
         $this->location = $location;
     }
 
+    public function getLocation()
+    {
+        return $this->location;
+    }
 
     /**
      * Load the given configuration file.
