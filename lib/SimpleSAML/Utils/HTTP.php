@@ -756,6 +756,8 @@ class HTTP
         $cfg = \SimpleSAML_Configuration::getInstance();
         $baseDir = $cfg->getBaseDir();
         $cur_path = realpath($_SERVER['SCRIPT_FILENAME']);
+        // make sure we got a string from realpath()
+        $cur_path = is_string($cur_path) ? $cur_path : '';
         // find the path to the current script relative to the www/ directory of SimpleSAMLphp
         $rel_path = str_replace($baseDir.'www'.DIRECTORY_SEPARATOR, '', $cur_path);
         // convert that relative path to an HTTP query
