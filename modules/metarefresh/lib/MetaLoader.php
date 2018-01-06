@@ -477,6 +477,6 @@ class sspmod_metarefresh_MetaLoader
     {
 		/* The current date, as a string. */
 		date_default_timezone_set('UTC');
-		return = date('Y-m-d\\TH:i:s\\Z');
+		return date('Y-m-d\\TH:i:s\\Z');
 	}
 }
