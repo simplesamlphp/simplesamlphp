@@ -102,7 +102,7 @@ class AuthnResponse
         $md = $metadata->getMetaDataConfig($issuer, 'shib13-idp-remote');
 
         $publicKeys = $md->getPublicKeys('signing');
-        if ($publicKeys !== null) {
+        if (!empty($publicKeys)) {
             $certFingerprints = array();
             foreach ($publicKeys as $key) {
                 if ($key['type'] !== 'X509Certificate') {

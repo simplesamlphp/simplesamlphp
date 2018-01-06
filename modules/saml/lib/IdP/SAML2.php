@@ -1073,20 +1073,28 @@ class sspmod_saml_IdP_SAML2
             $key->loadKey($sharedKey);
         } else {
             $keys = $spMetadata->getPublicKeys('encryption', true);
-            $key = $keys[0];
-            switch ($key['type']) {
-                case 'X509Certificate':
-                    $pemKey = "-----BEGIN CERTIFICATE-----\n".
-                        chunk_split($key['X509Certificate'], 64).
-                        "-----END CERTIFICATE-----\n";
-                    break;
-                default:
-                    throw new SimpleSAML_Error_Exception('Unsupported encryption key type: '.$key['type']);
-            }
+            if (!empty($keys)) {
+                $key = $keys[0];
+                switch ($key['type']) {
+                    case 'X509Certificate':
+                        $pemKey = "-----BEGIN CERTIFICATE-----\n".
+                            chunk_split($key['X509Certificate'], 64).
+                            "-----END CERTIFICATE-----\n";
+                        break;
+                    default:
+                        throw new SimpleSAML_Error_Exception('Unsupported encryption key type: '.$key['type']);
+                }
 
-            // extract the public key from the certificate for encryption
-            $key = new XMLSecurityKey(XMLSecurityKey::RSA_OAEP_MGF1P, array('type' => 'public'));
-            $key->loadKey($pemKey);
+                // extract the public key from the certificate for encryption
+                $key = new XMLSecurityKey(XMLSecurityKey::RSA_OAEP_MGF1P, array('type' => 'public'));
+                $key->loadKey($pemKey);
+            } else {
+                throw new SimpleSAML_Error_ConfigurationError(
+                    'Missing encryption key for entity `' . $spMetadata->getString('entityid') . '`',
+                    null,
+                    $spMetadata->getString('metadata-set') . '.php'
+                );
+            }
         }
 
         $ea = new \SAML2\EncryptedAssertion();

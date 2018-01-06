@@ -1356,9 +1356,11 @@ class SimpleSAML_Configuration implements \SimpleSAML\Utils\ClearableState
                     'X509Certificate' => $certData,
                 ),
             );
+        } elseif ($required === true) {
+            throw new SimpleSAML_Error_Exception($this->location.': Missing certificate in metadata.');
+        } else {
+            return array();
         }
-
-        throw new SimpleSAML_Error_Exception($this->location.': Missing certificate in metadata.');
     }
 
     /**

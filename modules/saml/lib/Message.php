@@ -160,7 +160,7 @@ class sspmod_saml_Message
     {
         // find the public key that should verify signatures by this entity
         $keys = $srcMetadata->getPublicKeys('signing');
-        if ($keys !== null) {
+        if (!empty($keys)) {
             $pemKeys = array();
             foreach ($keys as $key) {
                 switch ($key['type']) {

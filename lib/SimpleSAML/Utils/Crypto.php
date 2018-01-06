@@ -269,7 +269,7 @@ class Crypto
         }
 
         $keys = $metadata->getPublicKeys(null, false, $prefix);
-        if ($keys !== null) {
+        if (!empty($keys)) {
             foreach ($keys as $key) {
                 if ($key['type'] !== 'X509Certificate') {
                     continue;
