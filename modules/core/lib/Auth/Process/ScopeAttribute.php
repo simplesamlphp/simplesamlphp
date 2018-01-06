@@ -80,7 +80,7 @@ class sspmod_core_Auth_Process_ScopeAttribute extends SimpleSAML_Auth_Processing
 			$attributes[$this->targetAttribute] = array();
 		}
 
-		if ($this->onlyIfEmpty and count($attributes[$this->targetAttribute]) > 0) {
+		if ($this->onlyIfEmpty && count($attributes[$this->targetAttribute]) > 0) {
 			return;
 		}
 
