@@ -42,7 +42,7 @@ the user logs in.
 Example:
 
     90 => array(
-        'class:Consent',
+        'class' => 'class:Consent',
     ),
 
 Using storage
