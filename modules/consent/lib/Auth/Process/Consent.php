@@ -11,7 +11,6 @@
  */
 class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilter
 {
-
     /**
      * Button to receive focus
      *

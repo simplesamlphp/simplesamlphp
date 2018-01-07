@@ -86,7 +86,7 @@ $attributes = $state['Attributes'];
 $noconsentattributes = $state['consent:noconsentattributes'];
 
 // Remove attributes that do not require consent
-foreach ($attributes AS $attrkey => $attrval) {
+foreach ($attributes as $attrkey => $attrval) {
     if (in_array($attrkey, $noconsentattributes, true)) {
         unset($attributes[$attrkey]);
     }
@@ -128,15 +128,15 @@ $t->data['sppp'] = $privacypolicy;
 
 // Set focus element
 switch ($state['consent:focus']) {
-case 'yes':
-    $t->data['autofocus'] = 'yesbutton';
-    break;
-case 'no':
-    $t->data['autofocus'] = 'nobutton';
-    break;
-case null:
-default:
-    break;
+    case 'yes':
+        $t->data['autofocus'] = 'yesbutton';
+        break;
+    case 'no':
+        $t->data['autofocus'] = 'nobutton';
+        break;
+    case null:
+    default:
+        break;
 }
 
 if (array_key_exists('consent:store', $state)) {

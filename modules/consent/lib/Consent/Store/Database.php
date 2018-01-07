@@ -47,7 +47,7 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store
      *
      * @var int|NULL
      */
-    private $_timeout = NULL;
+    private $_timeout = null;
 
     /**
      * Database handle.

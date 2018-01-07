@@ -12,7 +12,6 @@ if (is_array($dstName)) {
 }
 $dstName = htmlspecialchars($dstName);
 
-
 $this->data['header'] = $this->t('{consent:consent:noconsent_title}');;
 
 $this->includeAtTemplateBase('includes/header.php');
@@ -33,6 +32,5 @@ if ($this->data['aboutService']) {
 }
 
 echo('<p><a href="' . htmlspecialchars($this->data['logoutLink']) . '">' . $this->t('{consent:consent:abort}', array('SPNAME' => $dstName)) . '</a></p>');
-
 
 $this->includeAtTemplateBase('includes/footer.php');
