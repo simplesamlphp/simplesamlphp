@@ -33,3 +33,22 @@ table#table_with_attributes ul {
     margin: 0px;
     padding-left: 1em;
 }
+
+form#consent_yes {
+    display: inline;
+    margin: 0px;
+    padding: 0px;
+}
+
+form#consent_no {
+    display: inline;
+    margin-left: .5em;
+}
+
+.hidden {
+    display: none;
+}
+
+td.td_odd {
+    padding: 2em;
+}
