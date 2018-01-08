@@ -50,7 +50,7 @@ class SQLTest extends TestCase
 
         $version = $store->getTableVersion('kvstore');
 
-        $this->assertEquals(1, $version);
+        $this->assertEquals(2, $version);
     }
 
     /**

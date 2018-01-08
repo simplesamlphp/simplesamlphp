@@ -99,25 +99,61 @@ class SQL extends Store
      */
     private function initKVTable()
     {
-        if ($this->getTableVersion('kvstore') === 1) {
-            // Table initialized
-            return;
-        }
+        $current_version = $this->getTableVersion('kvstore');
 
         $text_t = 'TEXT';
         if ($this->driver === 'mysql') {
             // TEXT data type has size constraints that can be hit at some point, so we use LONGTEXT instead
             $text_t = 'LONGTEXT';
         }
-        $query = 'CREATE TABLE '.$this->prefix.
-                 '_kvstore (_type VARCHAR(30) NOT NULL, _key VARCHAR(50) NOT NULL, _value '.$text_t.
-                 ' NOT NULL, _expire TIMESTAMP, PRIMARY KEY (_key, _type))';
-        $this->pdo->exec($query);
 
-        $query = 'CREATE INDEX '.$this->prefix.'_kvstore_expire ON '.$this->prefix.'_kvstore (_expire)';
-        $this->pdo->exec($query);
+        /**
+         * Queries for updates, grouped by version.
+         * New updates can be added as a new array in this array
+         */
+        $table_updates = array(
+            array(
+                'CREATE TABLE '.$this->prefix.
+                '_kvstore (_type VARCHAR(30) NOT NULL, _key VARCHAR(50) NOT NULL, _value '.$text_t.
+                ' NOT NULL, _expire TIMESTAMP, PRIMARY KEY (_key, _type))',
+                'CREATE INDEX '.$this->prefix.'_kvstore_expire ON '.$this->prefix.'_kvstore (_expire)'
+            ),
+            /**
+             * This upgrade removes the default NOT NULL constraint on the _expire field in MySQL.
+             * Because SQLite does not support field alterations, the approach is to:
+             *     Create a new table without the NOT NULL constraint
+             *     Copy the current data to the new table
+             *     Drop the old table
+             *     Rename the new table correctly
+             *     Readd the index
+             */
+            array(
+                'CREATE TABLE '.$this->prefix.
+                '_kvstore_new (_type VARCHAR(30) NOT NULL, _key VARCHAR(50) NOT NULL, _value '.$text_t.
+                ' NOT NULL, _expire TIMESTAMP NULL, PRIMARY KEY (_key, _type))',
+                'INSERT INTO '.$this->prefix.'_kvstore_new SELECT * FROM ' . $this->prefix.'_kvstore',
+                'DROP TABLE '.$this->prefix.'_kvstore',
+                'ALTER TABLE '.$this->prefix.'_kvstore_new RENAME TO ' . $this->prefix . '_kvstore',
+                'CREATE INDEX '.$this->prefix.'_kvstore_expire ON '.$this->prefix.'_kvstore (_expire)'
+            )
+        );
 
-        $this->setTableVersion('kvstore', 1);
+        $latest_version = count($table_updates);
+
+        if ($current_version == $latest_version) {
+            return;
+        }
+
+        // Only run queries for after the current version
+        $updates_to_run = array_slice($table_updates, $current_version);
+
+        foreach ($updates_to_run as $version_updates) {
+            foreach ($version_updates as $query) {
+                $this->pdo->exec($query);
+            }
+        }
+
+        $this->setTableVersion('kvstore', $latest_version);
     }
 
 
