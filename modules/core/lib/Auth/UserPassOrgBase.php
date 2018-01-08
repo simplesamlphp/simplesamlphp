@@ -158,7 +158,8 @@ abstract class sspmod_core_Auth_UserPassOrgBase extends SimpleSAML_Auth_Source {
 	 * Getter for the authsource config option remember.username.checked
 	 * @return bool
 	 */
-	public function getRememberUsernameChecked() {
+	public function getRememberUsernameChecked()
+    {
 		return $this->rememberUsernameChecked;
 	}
 
@@ -166,7 +167,8 @@ abstract class sspmod_core_Auth_UserPassOrgBase extends SimpleSAML_Auth_Source {
      * Getter for the authsource config option remember.organization.enabled
      * @return bool
      */
-	public function getRememberOrganizationEnabled() {
+	public function getRememberOrganizationEnabled()
+    {
 		return $this->rememberOrganizationEnabled;
 	}
 

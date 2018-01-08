@@ -355,8 +355,8 @@ $config = array(
         //'remember.username.checked' => FALSE,
 
         // Give the user an option to save their organization choice for future login
-		// attempts. And when enabled, what should the default be, checked or not.
-		//'remember.organization.enabled' => false,
+        // attempts. And when enabled, what should the default be, checked or not.
+        //'remember.organization.enabled' => false,
         //'remember.organization.checked' => false,
 
         // The way the organization as part of the username should be handled.
