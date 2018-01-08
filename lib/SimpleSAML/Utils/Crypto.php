@@ -49,7 +49,6 @@ class Crypto
 
         // authenticate the ciphertext
         if (self::secureCompare(hash_hmac('sha256', $iv.$msg, substr($key, 64, 64), true), $hmac)) {
-            /** @var string|false $plaintext */
             $plaintext = openssl_decrypt(
                 $msg,
                 'AES-256-CBC',

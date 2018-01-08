@@ -756,7 +756,6 @@ class HTTP
     {
         $cfg = \SimpleSAML_Configuration::getInstance();
         $baseDir = $cfg->getBaseDir();
-        /** @var string|false $cur_path */
         $cur_path = realpath($_SERVER['SCRIPT_FILENAME']);
         // make sure we got a string from realpath()
         $cur_path = is_string($cur_path) ? $cur_path : '';
