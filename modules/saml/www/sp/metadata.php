@@ -67,7 +67,7 @@ foreach ($assertionsconsumerservices as $services) {
         case 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST':
             $acsArray['Binding'] = \SAML2\Constants::BINDING_HTTP_POST;
             $acsArray['Location'] = SimpleSAML\Module::getModuleURL('saml/sp/saml2-acs.php/'.$sourceId);
-            if (!in_array(\SAML2\Constants::NS_SAMLP, $supported_protocolsi, true)) {
+            if (!in_array(\SAML2\Constants::NS_SAMLP, $supported_protocols, true)) {
                 $supported_protocols[] = \SAML2\Constants::NS_SAMLP;
             }
             break;
