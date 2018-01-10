@@ -262,6 +262,8 @@ class SimpleSAML_Auth_LDAP
      * @param bool $allowZeroHits
      * Determines if the method will throw an exception if no hits are found.
      * Defaults to FALSE.
+     * @param string|null $searchFilter
+     * Additional searchFilter to be added to the (attribute=value) filter
      * @return string
      * The DN of the matching element, if found. If no element was found and
      * $allowZeroHits is set to FALSE, an exception will be thrown; otherwise
@@ -277,7 +279,6 @@ class SimpleSAML_Auth_LDAP
     {
         // Traverse all search bases, returning DN if found
         $bases = SimpleSAML\Utils\Arrays::arrayize($base);
-        $result = null;
         foreach ($bases as $current) {
             try {
                 // Single base search
@@ -300,7 +301,7 @@ class SimpleSAML_Auth_LDAP
         } else {
             // Zero hits not allowed
             throw $this->makeException('Library - LDAP searchfordn(): LDAP search returned zero entries for filter \'(' .
-                $attribute . ' = ' . $value . ')\' on base(s) \'(' . join(' & ', $bases) . ')\'', 2);
+                join(' | ', $attribute) . ' = ' . $value . ')\' on base(s) \'(' . join(' & ', $bases) . ')\'', 2);
         }
     }
 
