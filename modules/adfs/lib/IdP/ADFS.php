@@ -9,6 +9,7 @@ class sspmod_adfs_IdP_ADFS
 
             $requestid = $query['wctx'];
             $issuer = $query['wtrealm'];
+
             $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
             $spMetadata = $metadata->getMetaDataConfig($issuer, 'adfs-sp-remote');
 
@@ -23,10 +24,11 @@ class sspmod_adfs_IdP_ADFS
             'ForceAuthn' => false,
             'isPassive' => false,
             'adfs:wctx' => $requestid,
+            'adfs:wreply' => false
         );
 
-        if (isset($_GET['wreply']) && !empty($_GET['wreply'])) {
-            $state['adfs:wreply'] = SimpleSAML\Utils\HTTP::checkURLAllowed($_GET['wreply']);
+        if (isset($query['wreply']) && !empty($query['wreply'])) {
+            $state['adfs:wreply'] = SimpleSAML\Utils\HTTP::checkURLAllowed($query['wreply']);
         }
 
         $idp->handleAuthenticationRequest($state);		
@@ -184,7 +186,8 @@ MSG;
         $wresult = sspmod_adfs_IdP_ADFS::signResponse($response, $privateKeyFile, $certificateFile);
 
         $wctx = $state['adfs:wctx'];
-        sspmod_adfs_IdP_ADFS::postResponse($spMetadata->getValue('prp'), $wresult, $wctx);
+        $wreply = $state['adfs:wreply'] ?: $spMetadata->getValue('prp');
+        sspmod_adfs_IdP_ADFS::postResponse($wreply, $wresult, $wctx);
     }
 
     public static function sendLogoutResponse(SimpleSAML_IdP $idp, array $state)
