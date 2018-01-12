@@ -14,7 +14,7 @@ class sspmod_adfs_IdP_ADFS
             $spMetadata = $metadata->getMetaDataConfig($issuer, 'adfs-sp-remote');
 
             SimpleSAML\Logger::info('ADFS - IdP.prp: Incoming Authentication request: '.$issuer.' id '.$requestid);
-        } catch(Exception $exception) {
+        } catch (Exception $exception) {
             throw new SimpleSAML_Error_Error('PROCESSAUTHNREQUEST', $exception);
         }
 
@@ -104,14 +104,14 @@ MSG;
         $objXMLSecDSig = new XMLSecurityDSig();
         $objXMLSecDSig->idKeys = array('AssertionID');	
         $objXMLSecDSig->setCanonicalMethod(XMLSecurityDSig::EXC_C14N);	
-        $responsedom = \SAML2\DOMDocumentFactory::fromString(str_replace ("\r", "", $response));
+        $responsedom = \SAML2\DOMDocumentFactory::fromString(str_replace("\r", "", $response));
         $firstassertionroot = $responsedom->getElementsByTagName('Assertion')->item(0);
         $objXMLSecDSig->addReferenceList(
             array($firstassertionroot), XMLSecurityDSig::SHA1,
             array('http://www.w3.org/2000/09/xmldsig#enveloped-signature', XMLSecurityDSig::EXC_C14N),
             array('id_name' => 'AssertionID')
         );
-        $objKey = new XMLSecurityKey(XMLSecurityKey::RSA_SHA1, array('type'=>'private'));
+        $objKey = new XMLSecurityKey(XMLSecurityKey::RSA_SHA1, array('type' => 'private'));
         $objKey->loadKey($key, true);
         $objXMLSecDSig->sign($objKey);
         if ($cert) {
@@ -149,8 +149,7 @@ MSG;
     {
         $spMetadata = $state["SPMetadata"];
         $spEntityId = $spMetadata['entityid'];
-        $spMetadata = SimpleSAML_Configuration::loadFromArray($spMetadata,
-            '$metadata[' . var_export($spEntityId, true) . ']');
+        $spMetadata = SimpleSAML_Configuration::loadFromArray($spMetadata, '$metadata['.var_export($spEntityId, true).']');
 
         $attributes = $state['Attributes'];
 
@@ -169,7 +168,7 @@ MSG;
         $idpEntityId = $idpMetadata->getString('entityid');
 
         $idp->addAssociation(array(
-            'id' => 'adfs:' . $spEntityId,
+            'id' => 'adfs:'.$spEntityId,
             'Handler' => 'sspmod_adfs_IdP_ADFS',
             'adfs:entityID' => $spEntityId,
         ));
@@ -186,7 +185,7 @@ MSG;
         $wresult = sspmod_adfs_IdP_ADFS::signResponse($response, $privateKeyFile, $certificateFile);
 
         $wctx = $state['adfs:wctx'];
-        $wreply = $state['adfs:wreply'] ?: $spMetadata->getValue('prp');
+        $wreply = $state['adfs:wreply'] ? : $spMetadata->getValue('prp');
         sspmod_adfs_IdP_ADFS::postResponse($wreply, $wresult, $wctx);
     }
 
@@ -221,7 +220,7 @@ MSG;
     {
         $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
         $spMetadata = $metadata->getMetaDataConfig($association['adfs:entityID'], 'adfs-sp-remote');
-        $returnTo = SimpleSAML\Module::getModuleURL('adfs/idp/prp.php?assocId=' . urlencode($association["id"]) . '&relayState=' . urlencode($relayState));
-        return $spMetadata->getValue('prp') . '?' . 'wa=wsignoutcleanup1.0&wreply=' . urlencode($returnTo);
+        $returnTo = SimpleSAML\Module::getModuleURL('adfs/idp/prp.php?assocId='.urlencode($association["id"]).'&relayState='.urlencode($relayState));
+        return $spMetadata->getValue('prp').'?wa=wsignoutcleanup1.0&wreply='.urlencode($returnTo);
     }
 }
