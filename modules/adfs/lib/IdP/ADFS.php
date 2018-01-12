@@ -25,14 +25,18 @@ class sspmod_adfs_IdP_ADFS
             'adfs:wctx' => $requestid,
         );
 
+        if (isset($_GET['wreply']) && !empty($_GET['wreply'])) {
+            $state['adfs:wreply'] = SimpleSAML\Utils\HTTP::checkURLAllowed($_GET['wreply']);
+        }
+
         $idp->handleAuthenticationRequest($state);		
     }
 
-    private static function generateResponse($issuer, $target, $nameid, $attributes)
+    private static function generateResponse($issuer, $target, $nameid, $attributes, $assertionLifetime)
     {
         $issueInstant = SimpleSAML\Utils\Time::generateTimestamp();
         $notBefore = SimpleSAML\Utils\Time::generateTimestamp(time() - 30);
-        $assertionExpire = SimpleSAML\Utils\Time::generateTimestamp(time() + 60 * 5);
+        $assertionExpire = SimpleSAML\Utils\Time::generateTimestamp(time() + $assertionLifetime);
         $assertionID = SimpleSAML\Utils\Random::generateID();
         $nameidFormat = 'http://schemas.xmlsoap.org/claims/UPN';
         $nameid = htmlspecialchars($nameid);
@@ -168,7 +172,12 @@ MSG;
             'adfs:entityID' => $spEntityId,
         ));
 
-        $response = sspmod_adfs_IdP_ADFS::generateResponse($idpEntityId, $spEntityId, $nameid, $attributes);
+        $assertionLifetime = $spMetadata->getInteger('assertion.lifetime', null);
+        if ($assertionLifetime === null) {
+            $assertionLifetime = $idpMetadata->getInteger('assertion.lifetime', 300);
+        }
+
+        $response = sspmod_adfs_IdP_ADFS::generateResponse($idpEntityId, $spEntityId, $nameid, $attributes, $assertionLifetime);
 
         $privateKeyFile = \SimpleSAML\Utils\Config::getCertPath($idpMetadata->getString('privatekey'));
         $certificateFile = \SimpleSAML\Utils\Config::getCertPath($idpMetadata->getString('certificate'));
