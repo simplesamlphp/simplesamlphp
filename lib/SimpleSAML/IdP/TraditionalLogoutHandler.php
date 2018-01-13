@@ -80,7 +80,7 @@ class TraditionalLogoutHandler implements LogoutHandlerInterface
     {
         $state['core:LogoutTraditional:Remaining'] = $this->idp->getAssociations();
 
-        self::logoutNextSP($state);
+        $this->logoutNextSP($state);
     }
 
 
@@ -115,6 +115,6 @@ class TraditionalLogoutHandler implements LogoutHandlerInterface
             $state['core:Failed'] = true;
         }
 
-        self::logoutNextSP($state);
+        $this->logoutNextSP($state);
     }
 }
