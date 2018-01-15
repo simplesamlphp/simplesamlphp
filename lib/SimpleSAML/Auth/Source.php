@@ -1,5 +1,6 @@
 <?php
 
+use SimpleSAML\Auth\SourceFactory;
 
 /**
  * This class defines a base class for authentication source.
@@ -295,11 +296,26 @@ abstract class SimpleSAML_Auth_Source
 
         self::validateSource($config, $authId);
 
-        $className = SimpleSAML\Module::resolveClass($config[0], 'Auth_Source', 'SimpleSAML_Auth_Source');
-
+        $id = $config[0];
         $info = array('AuthId' => $authId);
+        $authSource = null;
+
         unset($config[0]);
-        return new $className($info, $config);
+
+        try {
+            // Check whether or not there's a factory responsible for instantiating our Auth Source instance
+            $factoryClass = SimpleSAML\Module::resolveClass($id, 'Auth_Source_Factory', SourceFactory::class);
+
+            /** @var SourceFactory $factory */
+            $factory = new $factoryClass;
+            $authSource = $factory->create($info, $config);
+        } catch (Exception $e) {
+            // If not, instantiate the Auth Source here
+            $className = SimpleSAML\Module::resolveClass($id, 'Auth_Source', 'SimpleSAML_Auth_Source');
+            $authSource = new $className($info, $config);
+        }
+
+        return $authSource;
     }
 
 
