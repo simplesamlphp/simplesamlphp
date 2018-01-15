@@ -304,7 +304,7 @@ abstract class SimpleSAML_Auth_Source
 
         try {
             // Check whether or not there's a factory responsible for instantiating our Auth Source instance
-            $factoryClass = SimpleSAML\Module::resolveClass($id, 'Auth_Source_Factory', SourceFactory::class);
+            $factoryClass = SimpleSAML\Module::resolveClass($id, 'Auth_Source_Factory', 'SimpleSAML\Auth\SourceFactory');
 
             /** @var SourceFactory $factory */
             $factory = new $factoryClass;
