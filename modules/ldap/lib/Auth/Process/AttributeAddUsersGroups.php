@@ -263,7 +263,7 @@ class sspmod_ldap_Auth_Process_AttributeAddUsersGroups extends sspmod_ldap_Auth_
             $groups[] = $dn;
 
             // Recursively search "sub" groups
-            if (is_array($attributes[$map['memberof']])) {
+            if (!empty($attributes[$map['memberof']])) {
                 $groups = array_merge($groups, $this->search($attributes[$map['memberof']]));
             }
         }
