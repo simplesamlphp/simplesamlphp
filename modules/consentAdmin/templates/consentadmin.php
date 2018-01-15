@@ -1,55 +1,10 @@
-<?php $this->includeAtTemplateBase('includes/header.php'); ?>
-<!--  default theme -->
-
-<script>
-    function setConsentText(consentStatus, show_spid) {
-        document.getElementById("consentText" + show_spid).innerHTML = consentStatus;
-    }
-</script>
-
-<script src="includes/consentSimpleAjax.js"></script>
-
-<style>
-.caSPName {
-    font-weight: bold;
-}
-
-td.caSPName {
-    vertical-align: top;
-}
-
-.caAllowed {
-
-}
-
-td.caAllowed {
-    vertical-align: top;
-}
-
-td.caAttributes {
-
-}
-
-tr.row0 td {
-    background-color: #888888;
-    color: black;
-}
-
-tr.row1 td {
-    background-color: #aaaaaa;
-    color: black;
-}
-
-a.orange {
-    color: #ffd633;
-}
-
-span.showhide {
-
-}
-</style>
-
-
+<?php 
+    $this->data['head'] = '<link rel="stylesheet" type="text/css" href="' . SimpleSAML\Module::getModuleURL("consentAdmin/assets/css/consentAdmin.css") . '" />' . "\n";
+    $this->data['head'] .= '<script src="' . SimpleSAML\Module::getModuleURL("consentAdmin/assets/js/consentAdmin.js") .'"></script>';
+    $this->data['head'] .= '<script src="' . SimpleSAML\Module::getModuleURL("consentAdmin/assets/js/consentSimpleAjax.js") .'"></script>';
+    // default theme
+    $this->includeAtTemplateBase('includes/header.php');
+?>
         <!-- <h2><?php if (isset($this->data['header'])) { echo $this->t($this->data['header']); } else { echo "Some error occurred"; } ?></h2> -->
         <h2><?php echo $this->t('{consentAdmin:consentadmin:consentadmin_header}') ?></h2>
         <p>
