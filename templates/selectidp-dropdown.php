@@ -7,20 +7,21 @@ $this->data['header'] = $this->t($this->data['header']);
 $this->data['autofocus'] = 'dropdownlist';
 $this->includeAtTemplateBase('includes/header.php');
 
+$translator = $this->getTranslator();
 foreach ($this->data['idplist'] as $idpentry) {
     if (!empty($idpentry['name'])) {
-        $this->getTranslator()->includeInlineTranslation(
+        $translator->includeInlineTranslation(
             'idpname_'.$idpentry['entityid'],
             $idpentry['name']
         );
     } elseif (!empty($idpentry['OrganizationDisplayName'])) {
-        $this->getTranslator()->includeInlineTranslation(
+        $translator->includeInlineTranslation(
             'idpname_'.$idpentry['entityid'],
             $idpentry['OrganizationDisplayName']
         );
     }
     if (!empty($idpentry['description'])) {
-        $this->getTranslator()->includeInlineTranslation('idpdesc_'.$idpentry['entityid'], $idpentry['description']);
+        $translator->includeInlineTranslation('idpdesc_'.$idpentry['entityid'], $idpentry['description']);
     }
 }
 ?>
