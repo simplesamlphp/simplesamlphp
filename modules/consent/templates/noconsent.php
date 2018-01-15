@@ -1,6 +1,6 @@
 <?php
 
-$this->data['header'] = $this->t('{consent:consent:noconsent_title}');;
+$this->data['header'] = $this->t('{consent:consent:noconsent_title}');
 
 $this->includeAtTemplateBase('includes/header.php');
 
