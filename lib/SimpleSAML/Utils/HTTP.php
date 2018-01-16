@@ -341,6 +341,13 @@ class HTTP
             $components = parse_url($url);
             $hostname = $components['host'];
 
+            // check for userinfo
+            if ((isset($components['user']) && strpos($components['user'], '\\') !== false) ||
+                (isset($components['pass']) && strpos($components['pass'], '\\') !== false)
+            ) {
+                throw new \SimpleSAML_Error_Exception('Invalid URL: '.$url);
+            }
+
             // allow URLs with standard ports specified (non-standard ports must then be allowed explicitly)
             if (isset($components['port']) &&
                 (($components['scheme'] === 'http' && $components['port'] !== 80) ||
