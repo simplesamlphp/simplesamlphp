@@ -12,7 +12,7 @@ function statistics_hook_cron(&$croninfo)
 
     $statconfig = SimpleSAML_Configuration::getConfig('module_statistics.php');
 	
-    if (is_null($statconfig->getValue('cron_tag', nul))) {
+    if (is_null($statconfig->getValue('cron_tag', null))) {
         return;
     }
     if ($statconfig->getValue('cron_tag', null) !== $croninfo['tag']) {
