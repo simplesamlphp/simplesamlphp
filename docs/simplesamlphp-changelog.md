@@ -155,6 +155,12 @@ Released 2017-11-20
 ### `sqlauth`
   * Fixed SQL schema for usergroups table.
 
+## Version 1.14.17
+
+Released 2017-10-25
+
+  * Resolved a security issue with the SAML 1.1 Service Provider. See [SSPSA 201710-01](https://simplesamlphp.org/security/201710-01).
+
 ## Version 1.14.16
 
 Released 2017-09-04
