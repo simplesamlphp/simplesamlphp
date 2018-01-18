@@ -146,4 +146,11 @@ class sspmod_authfacebook_Facebook extends BaseFacebook
     }
     return implode('_', $parts);
   }
+
+  protected function establishCSRFTokenState() {
+     if ($this->state === null) {
+          $this->state = SimpleSAML_Auth_State::getStateId($this->ssp_state);
+          $this->setPersistentData('state', $this->state);
+     }
+  }
 }
