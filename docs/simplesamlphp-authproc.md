@@ -151,6 +151,8 @@ The following filters are included in the SimpleSAMLphp distribution:
 - [`saml:TransientNameID`](./saml:nameid): Generate transient NameID.
 - [`smartattributes:SmartID`](./smartattributes:smartattributes): Generate user ID attribute based on several attributes.
 
+See the [Third-party modules](https://simplesamlphp.org/modules) page on the SimpleSAMLphp website
+for externally hosted modules that may provide a processing filter.
 
 
 Writing your own Auth Proc Filter
