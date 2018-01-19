@@ -457,7 +457,7 @@ class SimpleSAML_Memcache
         $ret = array();
 
         foreach (self::getMemcacheServers() as $sg) {
-            $stats = $sg->getExtendedStats();
+            $stats = method_exists($sg, 'getExtendedStats') ? $sg->getExtendedStats() : $sg->getStats();
             foreach ($stats as $server => $data) {
                 if ($data === false) {
                     throw new Exception('Failed to get memcache server status.');
@@ -484,7 +484,7 @@ class SimpleSAML_Memcache
         $ret = array();
 
         foreach (self::getMemcacheServers() as $sg) {
-            $stats = $sg->getExtendedStats();
+            $stats = method_exists($sg, 'getExtendedStats') ? $sg->getExtendedStats() : $sg->getStats();
             $ret[] = $stats;
         }
 
