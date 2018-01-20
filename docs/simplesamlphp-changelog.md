@@ -6,6 +6,14 @@ SimpleSAMLphp changelog
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
+## Version 1.15.2
+
+Released TD
+
+#### Bug fixes
+  * authfacebook compatability with Facebook strict URI match.
+  * Fix 'undefined method' when using memcacheD
+
 ## Version 1.15.1
 
 Released 2018-01-12
