@@ -130,7 +130,7 @@ class TimeLimitedToken
         if (count($splittoken) !== 2) {
             return false;
         }
-        $offset = hexdec($splittoken[0]);
+        $offset = intval(hexdec($splittoken[0]));
         $value = $splittoken[1];
         return ($this->calculateTokenValue($offset) === $value);
     }
