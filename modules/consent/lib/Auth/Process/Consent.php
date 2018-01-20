@@ -289,12 +289,12 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
             try {
                 if ($this->_store->hasConsent($userId, $targetedId, $attributeSet)) {
                     // Consent already given
-                    SimpleSAML\Logger::stats('Consent: Consent found');
+                    SimpleSAML\Logger::stats('consent found');
                     SimpleSAML_Stats::log('consent:found', $statsData);
                     return;
                 }
 
-                SimpleSAML\Logger::stats('Consent: Consent notfound');
+                SimpleSAML\Logger::stats('consent notfound');
                 SimpleSAML_Stats::log('consent:notfound', $statsData);
 
                 $state['consent:store'] = $this->_store;
@@ -303,11 +303,11 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
                 $state['consent:store.attributeSet'] = $attributeSet;
             } catch (Exception $e) {
                 SimpleSAML\Logger::error('Consent: Error reading from storage: '.$e->getMessage());
-                SimpleSAML\Logger::stats('Consent: Failed');
+                SimpleSAML\Logger::stats('Ccnsent failed');
                 SimpleSAML_Stats::log('consent:failed', $statsData);
             }
         } else {
-            SimpleSAML\Logger::stats('Consent: No storage');
+            SimpleSAML\Logger::stats('consent nostorage');
             SimpleSAML_Stats::log('consent:nostorage', $statsData);
         }
 
