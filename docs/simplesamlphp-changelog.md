@@ -15,10 +15,15 @@ Released TBD
     IdP side with HTTP Basic Authentcation as authentication method.
     See the [ECP IdP documentation](./simplesamlphp-ecp-idp) for details.
   * New option `sendmail_from`, the from address for email sent by SSP.
+  * New option `options` for PDO database connections, e.g. for TLS setup.
+
+### authfacebook
+  * Compatibility with Facebook strict URI match.
 
 ### core
   * StatisticsWithAttribute: add `passive-` prefix when logging passive
     requests, set new option `skipPassive` to skip logging these altogether.
+  * Replace deprecated create_function with an anonymous function.
 
 ### Oauth
   * Make module HTTP proxy-aware.
