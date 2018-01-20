@@ -1,7 +1,7 @@
 <?php
-/* 
+/*
  * The configuration of SimpleSAMLphp
- * 
+ *
  */
 
 $config = array(
@@ -60,7 +60,7 @@ $config = array(
      * - 'temdir': Saving temporary files. SimpleSAMLphp will attempt to create
      *   this directory if it doesn't exist.
      * When specified as a relative path, this is relative to the SimpleSAMLphp
-     * root directory. 
+     * root directory.
      */
     'certdir' => 'cert/',
     'loggingdir' => 'log/',
@@ -377,6 +377,7 @@ $config = array(
      */
     'database.username' => 'simplesamlphp',
     'database.password' => 'secret',
+    'database.options' => array(),
 
     /*
      * (Optional) Table prefix

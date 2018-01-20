@@ -55,9 +55,10 @@ class SQL extends Store
         $dsn = $config->getString('store.sql.dsn');
         $username = $config->getString('store.sql.username', null);
         $password = $config->getString('store.sql.password', null);
+        $options = $config->getArray('store.sql.options', null);
         $this->prefix = $config->getString('store.sql.prefix', 'simpleSAMLphp');
 
-        $this->pdo = new \PDO($dsn, $username, $password);
+        $this->pdo = new \PDO($dsn, $username, $password, $options);
         $this->pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 
         $this->driver = $this->pdo->getAttribute(\PDO::ATTR_DRIVER_NAME);
