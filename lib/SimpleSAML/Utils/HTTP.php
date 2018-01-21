@@ -68,7 +68,7 @@ class HTTP
             if (!is_numeric($port)) {
                 array_push($decomposed, $port);
             }
-            $current = implode($decomposed, ":");
+            $current = implode(":", $decomposed);
         }
         return $current;
     }
