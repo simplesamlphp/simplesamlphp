@@ -102,7 +102,7 @@ MSG;
         return $result;
     }
 
-    private static function signResponse($response, $key, $cert)
+    private static function signResponse($response, $key, $cert, $algo)
     {
         $objXMLSecDSig = new XMLSecurityDSig();
         $objXMLSecDSig->idKeys = array('AssertionID');	
@@ -114,7 +114,8 @@ MSG;
             array('http://www.w3.org/2000/09/xmldsig#enveloped-signature', XMLSecurityDSig::EXC_C14N),
             array('id_name' => 'AssertionID')
         );
-        $objKey = new XMLSecurityKey(XMLSecurityKey::RSA_SHA1, array('type' => 'private'));
+
+        $objKey = new XMLSecurityKey($algo, array('type' => 'private'));
         $objKey->loadKey($key, true);
         $objXMLSecDSig->sign($objKey);
         if ($cert) {
@@ -185,7 +186,22 @@ MSG;
 
         $privateKeyFile = \SimpleSAML\Utils\Config::getCertPath($idpMetadata->getString('privatekey'));
         $certificateFile = \SimpleSAML\Utils\Config::getCertPath($idpMetadata->getString('certificate'));
-        $wresult = sspmod_adfs_IdP_ADFS::signResponse($response, $privateKeyFile, $certificateFile);
+
+        $algo = $spMetadata->getString('signature.algorithm', null);
+        if ($algo === null) {
+            /*
+             * In the NIST Special Publication 800-131A, SHA-1 became deprecated for generating
+             * new digital signatures in 2011, and will be explicitly disallowed starting the 1st
+             * of January, 2014. We'll keep this as a default for the next release and mark it
+             * as deprecated, as part of the transition to SHA-256.
+             *
+             * See http://csrc.nist.gov/publications/nistpubs/800-131A/sp800-131A.pdf for more info.
+             *
+             * TODO: change default to XMLSecurityKey::RSA_SHA256.
+             */
+            $algo = $idpMetadata->getString('signature.algorithm', XMLSecurityKey::RSA_SHA1);
+        }
+        $wresult = sspmod_adfs_IdP_ADFS::signResponse($response, $privateKeyFile, $certificateFile, $algo);
 
         $wctx = $state['adfs:wctx'];
         $wreply = $state['adfs:wreply'] ? : $spMetadata->getValue('prp');
