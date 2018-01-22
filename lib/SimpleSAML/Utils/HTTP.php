@@ -108,15 +108,11 @@ class HTTP
      */
     public static function getServerPort()
     {
-        $port = (isset($_SERVER['SERVER_PORT'])) ? $_SERVER['SERVER_PORT'] : '80';
-        if (self::getServerHTTPS()) {
-            if ($port !== '443') {
-                return ':'.$port;
-            }
-        } else {
-            if ($port !== '80') {
-                return ':'.$port;
-            }
+        $default_port = self::getServerHTTPS() ? '443' : '80';
+        $port = isset($_SERVER['SERVER_PORT']) ? $_SERVER['SERVER_PORT'] : $default_port;
+        
+        if ($port !== $default_port) {
+            return ':'.$port;
         }
         return '';
     }

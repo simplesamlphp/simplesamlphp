@@ -6,8 +6,6 @@ use SimpleSAML\Utils\HTTP;
 
 class HTTPTest extends TestCase
 {
-
-
     /**
      * Set up the environment ($_SERVER) populating the typical variables from a given URL.
      *
@@ -120,7 +118,6 @@ class HTTPTest extends TestCase
         $_SERVER = $original;
     }
 
-
     /**
      * Test SimpleSAML\Utils\HTTP::getSelfHost() with and without custom port.
      */
@@ -165,7 +162,6 @@ class HTTPTest extends TestCase
 
         $_SERVER = $original;
     }
-
 
     /**
      * Test SimpleSAML\Utils\HTTP::getSelfURL().
@@ -292,7 +288,6 @@ class HTTPTest extends TestCase
         $_SERVER = $original;
     }
 
-
     /**
      * Test SimpleSAML\Utils\HTTP::checkURLAllowed(), without regex.
      */
@@ -351,6 +346,42 @@ class HTTPTest extends TestCase
 
         $this->setExpectedException('SimpleSAML_Error_Exception');
         HTTP::checkURLAllowed('https://evil.com');
+
+        $_SERVER = $original;
+    }
+
+    /**
+     * Test SimpleSAML\Utils\HTTP::getServerPort().
+     */
+    public function testGetServerPort()
+    {
+        $original = $_SERVER;
+
+        // Test HTTP + non-standard port
+        $_SERVER['HTTPS'] = 'off';
+        $_SERVER['SERVER_PORT'] = '3030';
+        $this->assertEquals(HTTP::getServerPort(), ':3030');
+
+        // Test HTTP + standard port
+        $_SERVER['SERVER_PORT'] = '80';
+        $this->assertEquals(HTTP::getServerPort(), '');
+
+        // Test HTTP + without port
+        unset($_SERVER['SERVER_PORT']);
+        $this->assertEquals(HTTP::getServerPort(), '');
+
+        // Test HTTPS + non-standard port
+        $_SERVER['HTTPS'] = 'on';
+        $_SERVER['SERVER_PORT'] = '3030';
+        $this->assertEquals(HTTP::getServerPort(), ':3030');
+
+        // Test HTTPS + standard port
+        $_SERVER['SERVER_PORT'] = '443';
+        $this->assertEquals(HTTP::getServerPort(), '');
+
+        // Test HTTPS + without port
+        unset($_SERVER['SERVER_PORT']);
+        $this->assertEquals(HTTP::getServerPort(), '');
 
         $_SERVER = $original;
     }
