@@ -93,7 +93,6 @@ class sspmod_saml_Auth_Process_SQLPersistentNameID extends sspmod_saml_BaseNameI
 
         $validNameIdFormats = @array_filter(array(
             $state['saml:NameIDFormat'],
-            $state['SPMetadata']['NameIDPolicy'],
             $state['SPMetadata']['NameIDFormat']
         ));
         if (count($validNameIdFormats) && !in_array($this->format, $validNameIdFormats, true) &&
