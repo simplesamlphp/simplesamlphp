@@ -221,6 +221,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
         }
 
         if (isset($state['saml:NameIDPolicy'])) {
+            $policy = null;
             if (is_string($state['saml:NameIDPolicy'])) {
                 $policy = array(
                     'Format' => (string)$state['saml:NameIDPolicy'],
@@ -228,10 +229,12 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
                 );
             } elseif (is_array($state['saml:NameIDPolicy'])) {
                 $policy = $state['saml:NameIDPolicy'];
-            } else {
-                throw new SimpleSAML_Error_Exception('Invalid value of $state[\'saml:NameIDPolicy\'].');
+            } elseif ($state['saml:NameIDPolicy'] === null) {
+                $policy = array('Format' => \SAML2\Constants::NAMEID_TRANSIENT);
             }
-            $ar->setNameIdPolicy($policy);
+            if ($policy !== null) {
+                $ar->setNameIdPolicy($policy);
+            }
         }
 
         if (isset($state['saml:IDPList'])) {
