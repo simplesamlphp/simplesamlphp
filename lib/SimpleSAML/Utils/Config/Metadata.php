@@ -297,7 +297,7 @@ class Metadata
             $policy = array('Format' => $nameIdPolicy);
         } elseif (is_array($nameIdPolicy)) {
             // handle current configurations specifying an array in the NameIDPolicy config option
-            $nameIdPolicy_cf = SimpleSAML_Configuration::loadFromArray($nameIdPolicy);
+            $nameIdPolicy_cf = \SimpleSAML_Configuration::loadFromArray($nameIdPolicy);
             $policy = array(
                 'Format'      => $nameIdPolicy_cf->getString('Format', \SAML2\Constants::NAMEID_TRANSIENT),
                 'AllowCreate' => $nameIdPolicy_cf->getBoolean('AllowCreate', true),
