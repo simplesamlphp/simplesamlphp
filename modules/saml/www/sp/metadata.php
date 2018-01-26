@@ -138,9 +138,16 @@ if ($certInfo !== null && array_key_exists('certData', $certInfo)) {
     $certData = null;
 }
 
-$format = $spconfig->getString('NameIDPolicy', null);
+$format = $spconfig->getValue('NameIDPolicy', null);
 if ($format !== null) {
-    $metaArray20['NameIDFormat'] = $format;
+    if (is_array($format)) {
+        $metaArray20['NameIDFormat'] = SimpleSAML_Configuration::loadFromArray($format)->getString(
+            'Format',
+            \SAML2\Constants::NAMEID_TRANSIENT
+        );
+    } elseif (is_string($format)) {
+        $metaArray20['NameIDFormat'] = $format;
+    }
 }
 
 $name = $spconfig->getLocalizedString('name', null);
