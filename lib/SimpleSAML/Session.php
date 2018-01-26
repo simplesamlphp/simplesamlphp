@@ -761,7 +761,7 @@ class SimpleSAML_Session implements Serializable
 
         if ($this->authToken !== null) {
             $globalConfig = SimpleSAML_Configuration::getInstance();
-            \SimpleSAML\Utils\HTTP::setCookie(
+            $sessionHandler->setCookie(
                 $globalConfig->getString('session.authtoken.cookiename', 'SimpleSAMLAuthToken'),
                 $this->authToken,
                 $params
