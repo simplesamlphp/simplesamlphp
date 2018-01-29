@@ -375,6 +375,9 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
     public static function getAttributeHash($attributes, $includeValues = false)
     {
         if ($includeValues) {
+            foreach ($attributes as &$values) {
+                sort($values);
+            }
             ksort($attributes);
             $hashBase = serialize($attributes);
         } else {
