@@ -20,6 +20,9 @@ Released TBD
 ### authfacebook
   * Compatibility with Facebook strict URI match.
 
+### consent
+  * Sort attribute values for consent.
+
 ### core
   * StatisticsWithAttribute: add `passive-` prefix when logging passive
     requests, set new option `skipPassive` to skip logging these altogether.
