@@ -13,6 +13,7 @@ Released TD
 #### Bug fixes
   * authfacebook compatability with Facebook strict URI match.
   * Fix 'undefined method' when using memcacheD
+  * Fix consent statistics not being gathered.
 
 ## Version 1.15.1
 
