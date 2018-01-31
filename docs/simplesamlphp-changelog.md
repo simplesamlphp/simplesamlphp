@@ -8,12 +8,20 @@ See the upgrade notes for specific information about upgrading.
 
 ## Version 1.15.2
 
-Released TD
+Released 2018-01-31
 
-#### Bug fixes
-  * authfacebook compatability with Facebook strict URI match.
-  * Fix 'undefined method' when using memcacheD
-  * Fix consent statistics not being gathered.
+  * Resolved a Denial of Service security issue when validating timestamps in the SAML2 library. See [SSPSA 201801-01](https://simplesamlphp.org/security/201801-01).
+  * Resolved a security issue with the open redirect protection mechanism. See [SSPSA 201801-02](https://simplesamlphp.org/security/201801-02).
+  * Fix _undefined method_ error when using memcacheD.
+
+### `authfacebook`
+  * Fix compatibility with Facebook strict URI match.
+
+### `consent`
+  * Fix statistics not being gathered.
+
+### `sqlauth`
+  * Prevented a security issue with the connection charset used for MySQL backends. See [SSPSA 201801-03](https://simplesamlphp.org/security/201801-03).
 
 ## Version 1.15.1
 
