@@ -73,16 +73,16 @@ deploy, and therefore we try to avoid it.
 * Add **unit tests** to verify that your code not only works but also keeps working over time. When adding tests, keep
 the same directory structure used for regular classes. Try to cover **all your code** with tests. The bigger the test
 coverage, the more reliable and better our library is. Read our [guidelines](TESTING.md) to learn more about tests.
-* Add proper **documentation** explaining your how to use your new feature or how your code changes things.
+* Add proper **documentation** explaining how to use your new feature or how your code changes things.
 * Submit your code as a **pull request** in github, from a branch with a descriptive name in your own fork of the
 repository. Add a meaningful, short title, and explain in detail what you did and why in the description of the *PR*.
 Add instructions on how to test your code. We appreciate branch names like `feature/whatever-new-feature` for new
 features and `bug/something-not-working` for bug fixes, but this is not carved in stone.
 
-Sometimes it can take a long time until we are able to process your pull requests. Don't get discouraged, we'll
-eventually reach up to you. And remember that following this guidelines you are making it easier for us to analyze your
+Sometimes it can take a long time before we are able to process your pull requests. Don't get discouraged, we'll
+eventually reach up to you. And remember that by following these guidelines, you are making it easier for us to analyze your
 request so the process will be smoother and faster. We really appreciate you helping us out, not only with your code,
-but also by following this guidelines.
+but also by following these guidelines.
 
 ## Reporting bugs
 
@@ -109,7 +109,7 @@ the next section.
 
 In case you find a vulnerability in SimpleSAMLphp, or you want to confirm a possible security issue in the software, please
 get in touch with us through [UNINETT's CERT team](https://www.uninett.no/cert). Please use our PGP public key to encrypt
-any possible sensitive data that you may need to submit. We will get back to you as soon as possible according to our
+any possibly sensitive data that you may need to submit. We will get back to you as soon as possible according to our
 working hours in Central European Time.
 
 When reporting a security issue, please add as much information as possible to help us identify, confirm, replicate and
