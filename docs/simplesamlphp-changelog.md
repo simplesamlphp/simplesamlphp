@@ -6,6 +6,12 @@ SimpleSAMLphp changelog
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
+## Version 1.15.3
+
+Released TBD
+
+  * Fixed edge-case scenario where an application uses one of the known LoggingHandlers' name as a defined class
+
 ## Version 1.15.2
 
 Released 2018-01-31
