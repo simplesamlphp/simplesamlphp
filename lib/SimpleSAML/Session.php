@@ -755,6 +755,12 @@ class SimpleSAML_Session implements Serializable
     {
         $sessionHandler = \SimpleSAML\SessionHandler::getSessionHandler();
 
+        if (is_array($params) && !empty($params)) {
+            $params = array_merge($sessionHandler->getCookieParams(), $params);
+        } else {
+            $params = $sessionHandler->getCookieParams();
+        }
+
         if ($this->sessionId !== null) {
             $sessionHandler->setCookie($sessionHandler->getSessionCookieName(), $this->sessionId, $params);
         }
