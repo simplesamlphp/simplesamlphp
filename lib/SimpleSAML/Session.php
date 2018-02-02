@@ -753,17 +753,15 @@ class SimpleSAML_Session implements Serializable
      */
     public function updateSessionCookies($params = null)
     {
-        $sessionHandler = \SimpleSAML\SessionHandler::getSessionHandler();
+        assert(is_null($params) || is_array($params));
 
-        if (is_array($params) && !empty($params)) {
-            $params = array_merge($sessionHandler->getCookieParams(), $params);
-        } else {
-            $params = $sessionHandler->getCookieParams();
-        }
+        $sessionHandler = \SimpleSAML\SessionHandler::getSessionHandler();
 
         if ($this->sessionId !== null) {
             $sessionHandler->setCookie($sessionHandler->getSessionCookieName(), $this->sessionId, $params);
         }
+
+        $params = array_merge($sessionHandler->getCookieParams(), is_array($params) ? $params : array());
 
         if ($this->authToken !== null) {
             $globalConfig = SimpleSAML_Configuration::getInstance();
