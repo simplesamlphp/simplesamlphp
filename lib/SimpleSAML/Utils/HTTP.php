@@ -968,7 +968,7 @@ class HTTP
 
     /**
      * This function redirects to the specified URL after performing the appropriate security checks on it.
-     * Particularly, it will make sure that the provided URL is allowed by the 'redirect.trustedsites' directive in the
+     * Particularly, it will make sure that the provided URL is allowed by the 'trusted.url.domains' directive in the
      * configuration.
      *
      * If the aforementioned option is not set or the URL does correspond to a trusted site, it performs a redirection
