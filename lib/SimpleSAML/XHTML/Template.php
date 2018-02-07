@@ -278,7 +278,7 @@ class SimpleSAML_XHTML_Template
         $subdirs = scandir($themeDir);
         if (empty($subdirs)) { // no subdirectories in the theme directory, nothing to do here
             // this is probably wrong, log a message
-            \SimpleSAML\Logger::warning('Emtpy theme directory for theme "'.$this->theme['name'].'".');
+            \SimpleSAML\Logger::warning('Empty theme directory for theme "'.$this->theme['name'].'".');
             return array();
         }
 
