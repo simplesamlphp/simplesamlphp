@@ -107,10 +107,10 @@ modules
 
 Reference these resources in your custom PHP templates under `themes/fancytheme` by using a generator for the URL:
 ```php
-<?php echo SimpleSAML_Module::getModuleURL('mymodule/logo.png'); ?>
+<?php echo SimpleSAML\Module::getModuleURL('mymodule/logo.png'); ?>
 ```
 
 Example for a custom CSS stylesheet file:
 ```html
-<link rel="stylesheet" type="text/css" href="<?php echo SimpleSAML_Module::getModuleURL('mymodule/style.css'); ?>" />
+<link rel="stylesheet" type="text/css" href="<?php echo SimpleSAML\Module::getModuleURL('mymodule/style.css'); ?>" />
 ```
