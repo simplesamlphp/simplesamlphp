@@ -103,7 +103,8 @@ You can find the list of security advisories we have published [here](https://si
 ## Translations
 SimpleSAMLphp is translated to many languages, though it needs constant updates from translators, as well as new translations to other languages. For the moment, translations can be contributed as **pull requests**. We are looking at better ways to translate the software that would make your life easier, so stay tuned! You can also join the [translators mailing list](http://groups.google.com/group/simplesamlphp-translation) to keep up to date on the latest news.
 
-Before starting a new translation, decide what style you want to use, whether you want to address the user in a polite manner or not, etc. Be coherent and keep that style through all your translations. If there is already a translation and you want to complete it, make sure to keep the same style used by your fellow translators.  
+Before starting a new translation, decide what style you want to use, whether you want to address the user in a polite manner or not, etc. Be coherent and keep that style through all your translations. If there is already a translation and you want to complete it, make sure to keep the same style used by your fellow translators.
+
 ## Documentation
 Did you find a typo in the documentation? Does something make no sense? Did we use very poor english? Tell us!
 
