@@ -11,9 +11,9 @@ Currently, the core team members are:
 * Andreas Åkre Solberg, *architect and original developer*, UNINETT <andreas.solberg@uninett.no>
 * Hanne Moa, *developer*, UNINETT <hanne.moa@uninett.no>
 
-We've been lucky to have the help of many people through the years. SimpleSAMLphp wouldn't have reached so far without them, and we want to thank them from here. Unfortunately, they are so many it is nearly impossible to mention all of them. [Github can offer a good summary on who has contributed to the project](https://github.com/simplesamlphp/simplesamlphp/graphs/contributors?from=2007-09-09&to=2015-09-06&type=c).
+We have been lucky enough to have so many people help us through the years. SimpleSAMLphp wouldn't have reached so far without them. We want to thank them from here, but unfortunately they are so many it is nearly impossible to mention all of them. [Here is a Github page that summarizes everyone's contributions](https://github.com/simplesamlphp/simplesamlphp/graphs/contributors?from=2007-09-09&to=2015-09-06&type=c).
 
-Big thanks to you all!
+***Big thanks to you all!***
 
 ## First things first
 Before embarking yourself in a contribution, please make sure you are familiar with the way SimpleSAMLphp is written, the way it works, and what is required or not.
