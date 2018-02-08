@@ -18,10 +18,10 @@ We have been lucky enough to have so many people help us through the years. Simp
 ## First things first
 Before embarking yourself in a contribution, please make sure you are familiar with the way SimpleSAMLphp is written, the way it works, and what is required or not.
 
-* Make sure to read [the documentation](https://simplesamlphp.org/docs/stable/). If you use the search engine in the website, please verify that you are reading the latest stable version. If you want to develop something, check [the development branch of the documentation](https://simplesamlphp.org/docs/development/).
+* Make sure to read [the documentation](https://simplesamlphp.org/docs/stable/). If you use the search engine in the website, please verify that you are reading the latest stable version. If you want to make a change, check [the development branch of the documentation](https://simplesamlphp.org/docs/development/).
 * If you have a question about **using SimpleSAMLphp**, please use [the mailing list](http://groups.google.com/group/simplesamlphp).
 * If you have a question about **developing SimpleSAMLphp**, please ask in the [development mailing list](http://groups.google.com/group/simplesamlphp-dev).
-* If you think you have discovered a bug, please check the [issue tracker](https://github.com/simplesamlphp/simplesamlphp/issues) and the [pull requests](https://github.com/simplesamlphp/simplesamlphp/pulls) to verify it hasn't been reported before.
+* If you think you have discovered a bug, please check the [issue tracker](https://github.com/simplesamlphp/simplesamlphp/issues) and the [pull requests](https://github.com/simplesamlphp/simplesamlphp/pulls) to verify it hasn't been reported already.
 
 ## Contributing code
 New features are always welcome provided they will be useful to someone apart from yourself. Please take a look at the [list of issues](https://github.com/simplesamlphp/simplesamlphp/issues) to see what people is demanding. Our [roadmap](https://simplesamlphp.org/releaseplan) might also be a good place to start if you don't know exactly what you can contribute with.
