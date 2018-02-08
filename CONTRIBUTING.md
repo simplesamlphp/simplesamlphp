@@ -113,4 +113,4 @@ Documentation is included in our own repository in *markdown* format. You can su
 Good documentation is key to make things easier for our users!
 
 ## Community
-You don't feel capable of contributing with your code, but are using SimpleSAMLphp and can share your knowledge and experience? Please, do so! Join our [users mailing list](http://groups.google.com/group/simplesamlphp) and help other users when you can. Your experience might be valuable for many!
+You do not feel capable of contributing with your code, but are using SimpleSAMLphp and can share your knowledge and experience? Please, do so! Join our [users mailing list](http://groups.google.com/group/simplesamlphp) and help other users when you can. Your experience might be valuable for many!
