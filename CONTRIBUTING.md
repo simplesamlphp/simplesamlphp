@@ -66,9 +66,9 @@ Please follow all instructions below:
 Sometimes it can take a long time before we are able to process your pull requests. Do not get discouraged, we will eventually reach your change. Remember that by following these guidelines, you are making it easier for us to analyze your request so the process will be smooth and fast. We really appreciate you helping us out, not only with your code, but also by following these guidelines.
 
 ## Reporting bugs
-Before reporting a bug, please make sure it is indeed a bug. Check [the documentation](https://simplesamlphp.org/docs/stable/) to verify what the intended behaviour is. Review the [list of issues](https://github.com/simplesamlphp/simplesamlphp/issues) and the [pull requests](https://github.com/simplesamlphp/simplesamlphp/pulls) to see if someone has already reported the same issue.
+Before reporting a bug, please make sure it is indeed a bug. Check [the documentation](https://simplesamlphp.org/docs/stable/) to verify what the intended behaviour is. Review the [issue tracker](https://github.com/simplesamlphp/simplesamlphp/issues) and the [pull requests](https://github.com/simplesamlphp/simplesamlphp/pulls) to see if someone has already reported the same issue.
 
-Pull requests are definitely more appreciated than plain issue reports, as they are easier and faster to address, but please, do not hesitate to open an issue if you don't have coding skills or just can't find the bug. It's better to have just an issue report than nothing!
+If you are able, a pull request is much more appreciated than just a new issue. If not, please do not hesitate to open one. It is better to have just an issue report than nothing!
 
 You can help us diagnose and fix bugs by asking and providing answers to the following questions:
 
