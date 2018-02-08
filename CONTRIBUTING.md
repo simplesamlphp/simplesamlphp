@@ -1,7 +1,7 @@
 # Contribution guidelines
 **SimpleSAMLphp welcomes all contributions**. It is impossible to make a product like this without the efforts of many people, so please don't be shy and share your help with us. Even the tiniest contribution can make a difference!
 
-This guidelines briefly explain how to contribute to SimpleSAMLphp in an effective manner, making sure to keep high quality standards and making it easier for your contributions to make through.
+These guidelines briefly explain how to contribute to SimpleSAMLphp effectively and consistently, making sure to keep high quality standards and making it easier for you to contribute.
 
 ## Team members
 Currently, the core team members are:
