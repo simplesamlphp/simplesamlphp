@@ -24,11 +24,12 @@ Before embarking yourself in a contribution, please make sure you are familiar w
 * If you think you have discovered a bug, please check the [issue tracker](https://github.com/simplesamlphp/simplesamlphp/issues) and the [pull requests](https://github.com/simplesamlphp/simplesamlphp/pulls) to verify it hasn't been reported already.
 
 ## Contributing code
-New features are always welcome provided they will be useful to someone apart from yourself. Please take a look at the [list of issues](https://github.com/simplesamlphp/simplesamlphp/issues) to see what people is demanding. Our [roadmap](https://simplesamlphp.org/releaseplan) might also be a good place to start if you don't know exactly what you can contribute with.
+New features are always welcome, provided they will be useful to someone apart from yourself. Please take a look at the [list of issues](https://github.com/simplesamlphp/simplesamlphp/issues) to see what people are asking for. Our [roadmap](https://simplesamlphp.org/releaseplan) might also be a good place to start if you do not know exactly how you can contribute.
 
-When contributing your code, please make sure to:
+When submitting a pull request, please make sure to account for:
 
-* Respect the coding standards. We try to comply with PHP's [PSR-2](http://www.php-fig.org/psr/psr-2/). Pay special attention to:
+### Coding standards
+* Respect the coding standards. We try to comply with PHP's [PSR-2](http://www.php-fig.org/psr/psr-2/). Pay special attention to the rules below:
     * Lines should not be longer than 80 characters.
     * Use **4 spaces** instead of tabs.
     * Keep the keywords in **lowercase**, including `true`, `false` and `null`.
@@ -36,20 +37,33 @@ When contributing your code, please make sure to:
     * Never include a trailing `?>` in your files.
     * The first line of every file must be `<?php`.
     * Use namespaces if you are adding new files.
-* Do not include many changes in every commit. Commits should be focused and address one single problem or feature. By having **multiple, small commits** instead of few large ones, it is easier to track what you are doing, revert changes in case of an error and help you out if needed.
+* Do not include too many changes in every commit. Commits should be focused and address one single problem or feature. By having **multiple, small commits** instead of fewer large ones, it is easier to track what you are doing, revert changes in case of an error and help you make changes if needed.
 * Try to write clean **commit messages**, largely based on the [seven rules](http://chris.beams.io/posts/git-commit/):
     * Write a **short** subject line, followed by a blank line and a longer explanation.
     * Prefix the subject line with the component(s) changed, e.g. "docs: Update foo", or "SAML: Don't log bar twice", or "tests: Add tests for quux".
-    * Explain **what and why** in the commit message, not just _how_. Things obvious now might become quite confusing when rediscovered years later.
-* **Be explicit**. Add comments. Use strict comparison operators like `===` and check for specific values when testing conditions.
-* **Keep things simple**. Avoid big functions, long nested loops or `if` statements.
-* Include complete **phpdoc** documentation for every property and method you add. If you change a method or property, make sure to update the existing *phpdoc* accordingly. Do not forget to document all parameters, returned values and exceptions thrown.
-* Try to keep **backwards-compatibility**. Code that breaks current configurations and installations is difficult to deploy, and therefore we try to avoid it.
-* Add **unit tests** to verify that your code not only works but also keeps working over time. When adding tests, keep the same directory structure used for regular classes. Try to cover **all your code** with tests. The bigger the test coverage, the more reliable and better our library is. Read our [guidelines](TESTING.md) to learn more about tests.
-* Add proper **documentation** explaining how to use your new feature or how your code changes things.
-* Submit your code as a **pull request** in github, from a branch with a descriptive name in your own fork of the repository. Add a meaningful, short title, and explain in detail what you did and why in the description of the *PR*.  Add instructions on how to test your code. We appreciate branch names like `feature/whatever-new-feature` for new features and `bug/something-not-working` for bug fixes, but this is not carved in stone.
+    * Explain **what and why** in the commit message, not just _how_. Things that seem obvious now might become quite confusing when rediscovered years later.
 
-Sometimes it can take a long time before we are able to process your pull requests. Don't get discouraged, we'll eventually reach up to you. And remember that by following these guidelines, you are making it easier for us to analyze your request so the process will be smoother and faster. We really appreciate you helping us out, not only with your code, but also by following these guidelines.
+### Comments, comparisons, and simplicity
+* Add comments that describe why/how your code works.
+* Include complete **phpdoc** documentation for every property and method you add. If you change a method or property, make sure to update the existing *phpdoc* accordingly. Do not forget to document all parameters, returned values and exceptions thrown.
+* Use strict comparison operators like `===` and check for specific values when writing tests.
+* Avoid big functions, long nested loops or `if` statements.
+* Try to keep **backwards-compatibility**. Code that breaks current configurations and installations is difficult to deploy, and therefore we try to avoid that as much as possible.
+
+### Unit tests
+Add **unit tests** to verify that your code not only works but also keeps working over time. When adding tests, keep the same directory structure used for regular classes. Try to cover **all your code** with tests. The bigger the test coverage, the more reliable and better our library is. Read our [guidelines](TESTING.md) to learn more about tests.
+
+### Documentation
+In order to keep this library user-friendly, we ask that you add proper **documentation** explaining how to use your new feature or how your code changes things.
+
+### Pull requests
+Please follow all instructions below:
+
+1. Submit your code as a **pull request** in github from a branch with a descriptive name in your own fork of the repository.
+2. Add a meaningful, short title, and explain in detail what you did and why in the description of the *PR*.
+3. Add instructions on how to test your code. We appreciate branch names like `feature/whatever-new-feature` for new features and `bug/something-not-working` for bug fixes, but this is not required.
+
+Sometimes it can take a long time before we are able to process your pull requests. Do not get discouraged, we will eventually reach your change. Remember that by following these guidelines, you are making it easier for us to analyze your request so the process will be smooth and fast. We really appreciate you helping us out, not only with your code, but also by following these guidelines.
 
 ## Reporting bugs
 Before reporting a bug, please make sure it is indeed a bug. Check [the documentation](https://simplesamlphp.org/docs/stable/) to verify what the intended behaviour is. Review the [list of issues](https://github.com/simplesamlphp/simplesamlphp/issues) and the [pull requests](https://github.com/simplesamlphp/simplesamlphp/pulls) to see if someone has already reported the same issue.
