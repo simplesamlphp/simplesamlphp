@@ -106,9 +106,9 @@ SimpleSAMLphp is translated to many languages, though it needs constant updates 
 Before starting a new translation, decide what style you want to use, whether you want to address the user in a polite manner or not, etc. Be coherent and keep that style through all your translations. If there is already a translation and you want to complete it, make sure to keep the same style used by your fellow translators.
 
 ## Documentation
-Did you find a typo in the documentation? Does something make no sense? Did we use very poor english? Tell us!
+Did you find a typo in the documentation? Does something make no sense? Did we use poor english? Tell us!
 
-Documentation is included in our own repository in *markdown* format. You can submit pull requests with fixes. If you encounter some feature that's not documented, or the documentation does not reflect the real behaviour of the library, please do not hesitate to open an issue.
+Documentation is included in our own repository in *markdown* format. You can submit pull requests with fixes. If you encounter some feature that is not documented, or the documentation does not reflect the real behaviour of the library, please do not hesitate to open an issue.
 
 Good documentation is key to make things easier for our users!
 
