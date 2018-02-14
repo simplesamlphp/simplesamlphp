@@ -75,7 +75,7 @@ msgstr "Show statistics metadata"
 msgid "{core:frontpage:link_metarefresh}"
 msgstr "Metarefresh: fetch metadata"
 
-msgid "{core:frontpage:link_santitycheck}"
+msgid "{core:frontpage:link_sanitycheck}"
 msgstr "Sanity check of your SimpleSAMLphp setup"
 
 msgid "{core:frontpage:link_diagnostics}"
