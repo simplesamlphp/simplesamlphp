@@ -608,26 +608,47 @@ code.simplesaml_version {
     color: #555;
 }
 .float-r {
-	float: right;
+    float: right;
 }
 .enablebox table {
-	border: 1px solid #eee;
+    border: 1px solid #eee;
 
-	margin-left: 1em;
+    margin-left: 1em;
 }
 .enablebox.mini table {
-	float: right;
+    float: right;
 }
 .enablebox tr td {
-	padding: .5px 1em 1px .5em;
-	margin: 0px;
+    padding: .5px 1em 1px .5em;
+    margin: 0px;
 }
 .enablebox {
-	font-size: 85%;
+    font-size: 85%;
 }
 .enablebox tr.enabled td {
-	background: #eee;
+    background: #eee;
 }
 .enablebox tr.disabled td {
-	background: #ccc;
+    background: #ccc;
+}
+fieldset.fancyfieldset {
+    margin: 2em 1em 1em 0px;
+    border: 1px solid #bbb;
+}
+fieldset.fancyfieldset legend {
+    margin-left: 2em;
+    padding: 3px 2em 3px 2em;
+    border: 1px solid #bbb;
+}
+dt {
+    font-weight: bold;
+}
+.frontpage-menu {
+    margin-bottom: 1em;
+}
+.entity-name, .entity-deprecated, .entity-expired {
+    font-weight: bold;
+}
+.entity-expired {
+    color: #500;
 }
