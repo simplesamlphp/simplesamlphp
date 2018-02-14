@@ -1,14 +1,9 @@
 {% set pagetitle = '{core:frontpage:page_title}'|trans %}
+{% set frontpage_section = 'auth' %}
 {% extends "base.twig" %}
 
 {% block content %}
-    {% if isadmin %}
-    <p class="right youareadmin">{{ '{core:frontpage:loggedin_as_admin}'|trans }}</p>
-    {% else %}
-    <p class="right youareadmin">
-        <a href="{{ loginurl }}">{{ '{core:frontpage:login_as_admin}'|trans }}</a>
-    </p>
-    {% endif %}
+    {% include "@core/_frontpage_menu.twig" %}
 
     <ul>
     {% for key, link in links_auth %}

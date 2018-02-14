@@ -1,14 +1,9 @@
 {% set pagetitle = '{core:frontpage:page_title}'|trans %}
+{% set frontpage_section = 'welcome' %}
 {% extends "base.twig" %}
 
 {% block content %}
-    {% if isadmin %}
-    <p class="float-r youareadmin">{{ '{core:frontpage:loggedin_as_admin}'|trans }}</p>
-    {% else %}
-    <p class="float-r youareadmin">
-        <a href="{{ loginurl }}">{{ '{core:frontpage:login_as_admin}'|trans }}</a>
-    </p>
-    {% endif %}
+    {% include "@core/_frontpage_menu.twig" %}
 
     <p>{{ '{core:frontpage:intro}'|trans|raw }}</p>
     <ul>
