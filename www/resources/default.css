@@ -261,28 +261,6 @@ div.caution {
 th.rowtitle {
         text-align: left;
 }
-.enablebox table {
-	border: 1px solid #eee;
-
-	margin-left: 1em;
-}
-.enablebox.mini table {
-	float: right;
-}
-.enablebox tr td {
-	padding: .5px 1em 1px .5em;
-	margin: 0px;
-}
-.enablebox {
-	font-size: 85%;
-}
-.enablebox tr.enabled td {
-	background: #eee;
-}
-.enablebox tr.disabled td {
-	background: #ccc;
-}
-
 .metadatabox {
 	overflow: scroll;
 	border: 1px solid #eee;

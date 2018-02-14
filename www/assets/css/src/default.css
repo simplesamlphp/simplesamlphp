@@ -598,4 +598,36 @@ MEDIA QUERIES
     }
 }
 
+/*************************************************
+ * Specifics for modules/core/frontpage*
+ ************************************************/
+code.simplesaml_version {
+    background: #f5f5f5;
+    border: 1px dotted #bbb;
+    padding: 1em;
+    color: #555;
+}
+.float-r {
+	float: right;
+}
+.enablebox table {
+	border: 1px solid #eee;
 
+	margin-left: 1em;
+}
+.enablebox.mini table {
+	float: right;
+}
+.enablebox tr td {
+	padding: .5px 1em 1px .5em;
+	margin: 0px;
+}
+.enablebox {
+	font-size: 85%;
+}
+.enablebox tr.enabled td {
+	background: #eee;
+}
+.enablebox tr.disabled td {
+	background: #ccc;
+}

@@ -6,13 +6,13 @@
     {% include "@core/_frontpage_menu.twig" %}
 
     <div style="margin-top: 1em;">
-        <code style="background: white; background: #f5f5f5; border: 1px dotted #bbb; padding: 1em;  color: #555" >{{ directory }} ({{ version }})</code>
+        <code class="simplesaml_version">{{ directory }} ({{ version }})</code>
     </div>
 
     {% set icon_enabled = '<img src="/' ~ baseurlpath ~ 'resources/icons/silk/accept.png" alt="enabled" />' %}
     {% set icon_disabled = '<img src="/' ~ baseurlpath ~ 'resources/icons/silk/delete.png" alt="disabled" />' %}
 
-    <div style="clear: both" class="enablebox mini">
+    <div class="enablebox mini">
         <table>
 	    <tr class="{%- if enablematrix.saml20idp %}enabled{% else %}disabled{% endif -%}">
                 <td>SAML 2.0 IdP</td>
