@@ -39,7 +39,8 @@
                 <div class="pure-control-group">
                     <label for="username">{{ 'Username'|trans }}</label>
                     <input id="username" {{ forceUsername ? 'disabled="disabled"' }} placeholder="{{ username }}" type="text" name="username" class="edge"
-            {%- if not forceUsername %} tabindex="1" value="{{ username }}" {% endif %}>
+            {%- if not forceUsername %} tabindex="1" value="{{ username }}" {% endif %}
+            {%- if not forceUsername and not username %} autofocus {% endif %} />
                 {% if rememberUsernameEnabled and not forceUsername -%}
                 </div>
                 <div class="pure-controls pure-form-message">
@@ -53,7 +54,8 @@
 
                 <div class="pure-control-group">
                     <label for="password">{{ 'Password'|trans}}</label>
-                    <input id="password" type="password" tabindex="2" name="password" class="edge"/>
+                    <input id="password" type="password" tabindex="2" name="password" class="edge"
+                    {%- if forceUsername or username %} autofocus {% endif %} />
 
                 {% if rememberMeEnabled -%}
                 </div>
