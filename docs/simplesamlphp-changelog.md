@@ -17,9 +17,6 @@ Released TBD
   * New option `sendmail_from`, the from address for email sent by SSP.
   * New option `options` for PDO database connections, e.g. for TLS setup.
 
-### authfacebook
-  * Compatibility with Facebook strict URI match.
-
 ### consent
   * Sort attribute values for consent.
 
