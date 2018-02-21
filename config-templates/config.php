@@ -27,7 +27,7 @@ $config = array(
      * external url, no matter where you come from (direct access or via the
      * reverse proxy).
      */
-    'baseurlpath' => 'simplesaml/',
+    'baseurlpath' => '/',
 
     /*
      * The 'application' configuration array groups a set configuration options
@@ -65,7 +65,7 @@ $config = array(
     'certdir' => 'cert/',
     'loggingdir' => 'log/',
     'datadir' => 'data/',
-    'tempdir' => '/tmp/simplesaml',
+    'tempdir' => '/tmp/saml',
 
     /*
      * Some information about the technical persons running this installation.
@@ -73,7 +73,7 @@ $config = array(
      * also as the technical contact in generated metadata.
      */
     'technicalcontact_name' => 'Administrator',
-    'technicalcontact_email' => 'na@example.org',
+    'technicalcontact_email' => 'peter.alcock@mark43.com',
 
     /*
      * The envelope from address for outgoing emails.
@@ -89,7 +89,7 @@ $config = array(
      *
      * See this page for a list of valid timezones: http://php.net/manual/en/timezones.php
      */
-    'timezone' => null,
+    'timezone' => 'America/New_York',
 
 
 
@@ -113,7 +113,7 @@ $config = array(
      * metadata listing and diagnostics pages.
      * You can also put a hash here; run "bin/pwgen.php" to generate one.
      */
-    'auth.adminpassword' => '123',
+    'auth.adminpassword' => 'admin',
 
     /*
      * Set this options to true if you want to require administrator password to access the web interface
@@ -126,7 +126,7 @@ $config = array(
      * Set this option to false if you don't want SimpleSAMLphp to check for new stable releases when
      * visiting the configuration tab in the web interface.
      */
-    'admin.checkforupdates' => true,
+    'admin.checkforupdates' => false,
 
     /*
      * Array of domains that are allowed when generating links or redirects
@@ -227,8 +227,8 @@ $config = array(
      * When 'errorreporting' is enabled, a form will be presented for the user to report
      * the error to 'technicalcontact_email'.
      */
-    'showerrors' => true,
-    'errorreporting' => true,
+    'showerrors' => false,
+    'errorreporting' => false,
 
     /*
      * Custom error show function called from SimpleSAML_Error_Error::show.
@@ -305,7 +305,7 @@ $config = array(
      * The process name that should be used when logging to syslog.
      * The value is also written out by the other logging handlers.
      */
-    'logging.processname' => 'simplesamlphp',
+    'logging.processname' => 'slammerlog',
 
     /*
      * Logging: file - Logfilename in the loggingdir from above.
@@ -421,11 +421,11 @@ $config = array(
      * one of the functionalities below, but in some cases you could run multiple functionalities.
      * In example when you are setting up a federation bridge.
      */
-    'enable.saml20-idp' => false,
+    'enable.saml20-idp' => true,
     'enable.shib13-idp' => false,
     'enable.adfs-idp' => false,
     'enable.wsfed-sp' => false,
-    'enable.authmemcookie' => false,
+    'enable.authmemcookie' => true,
 
     /*
      * Default IdP for WS-Fed.
@@ -488,7 +488,7 @@ $config = array(
     /*
      * Option to override the default settings for the session cookie name
      */
-    'session.cookie.name' => 'SimpleSAMLSessionID',
+    'session.cookie.name' => 'Mark43SessionCookie',
 
     /*
      * Expiration time for the session cookie, in seconds.
@@ -532,14 +532,14 @@ $config = array(
     /*
      * Options to override the default settings for php sessions.
      */
-    'session.phpsession.cookiename' => 'SimpleSAML',
+    'session.phpsession.cookiename' => 'Mark43SessionCookie',
     'session.phpsession.savepath' => null,
     'session.phpsession.httponly' => true,
 
     /*
      * Option to override the default settings for the auth token cookie
      */
-    'session.authtoken.cookiename' => 'SimpleSAMLAuthToken',
+    'session.authtoken.cookiename' => 'Mark43AuthToken',
 
     /*
      * Options for remember me feature for IdP sessions. Remember me feature
@@ -778,7 +778,7 @@ $config = array(
     /*
      * Which theme directory should be used?
      */
-    'theme.use' => 'default',
+    'theme.use' => 'slammer:peels',
 
     /*
      * Templating options
@@ -1087,5 +1087,5 @@ $config = array(
     /*
      * The prefix we should use on our Redis datastore.
      */
-    'store.redis.prefix' => 'SimpleSAMLphp',
+    'store.redis.prefix' => 'sso',
 );

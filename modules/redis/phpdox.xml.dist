@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<phpdox xmlns="http://xml.phpdox.net/config" silent="false">
+    <bootstrap />
+
+    <project name="Colourbox CAS server simpleSAMLphp module" source="${basedir}/lib" workdir="build/phpdox">
+        <collector publiconly="false" backend="parser">
+            <include mask="*.php" />
+            <inheritance resolve="true" />
+        </collector>
+
+        <generator output="${basedir}/build/docs">
+            <enrich base="${basedir}/build/logs">
+                <source type="build" />
+                <source type="git">
+                    <history enabled="true" limit="15" />
+                </source>
+                <source type="checkstyle" />
+                <source type="phpcs">
+                    <file name="checkstyle.xml" />
+                </source>
+                <source type="pmd" />
+                <source type="phploc" />
+                <source type="phpunit">
+                    <coverage path="coverage/xml" />
+                </source>
+            </enrich>
+
+            <build engine="html" enabled="true" output="html">
+                <template dir="${phpDox.home}/templates/html" />
+                <file extension="xhtml" />
+            </build>
+        </generator>
+    </project>
+</phpdox>
