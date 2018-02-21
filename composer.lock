@@ -4,8 +4,66 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "81733510118292dc6943d05bf47d4554",
+    "content-hash": "93f75b4e77e417def6facb0f9b9578de",
     "packages": [
+        {
+            "name": "colourbox/simplesamlphp-module-redis",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ColourboxDevelopment/simplesamlphp-module-redis.git",
+                "reference": "eaec3a19178138eeabc21d516a35468c43b69504"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ColourboxDevelopment/simplesamlphp-module-redis/zipball/eaec3a19178138eeabc21d516a35468c43b69504",
+                "reference": "eaec3a19178138eeabc21d516a35468c43b69504",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.4 || ^7.0",
+                "predis/predis": "~1.0",
+                "simplesamlphp/composer-module-installer": "^1.1"
+            },
+            "require-dev": {
+                "mayflower/php-codebrowser": "~1.1",
+                "pdepend/pdepend": "~2.0",
+                "phploc/phploc": "~2.0",
+                "phpmd/phpmd": "~2.1",
+                "phpunit/php-invoker": "~1.1",
+                "phpunit/phpunit": "~4.4",
+                "sebastian/phpcpd": "~2.0",
+                "sensiolabs/security-checker": "~2.0",
+                "simplesamlphp/simplesamlphp": "^1.14",
+                "squizlabs/php_codesniffer": "~2.2",
+                "theseer/phpdox": "~0.7"
+            },
+            "type": "simplesamlphp-module",
+            "autoload": {
+                "classmap": [
+                    "lib/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jacob Christiansen",
+                    "email": "jacob@colourbox.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A SimpleSAMLphp module for using Redis for session storage etc.",
+            "homepage": "https://github.com/ColourboxDevelopment/simplesamlphp-module-redis",
+            "keywords": [
+                "redis",
+                "simplesamlphp",
+                "store"
+            ],
+            "time": "2017-03-17T14:04:41+00:00"
+        },
         {
             "name": "gettext/gettext",
             "version": "v3.6.1",
@@ -172,6 +230,56 @@
             "time": "2016-10-03T12:34:15+00:00"
         },
         {
+            "name": "predis/predis",
+            "version": "v1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nrk/predis.git",
+                "reference": "f0210e38881631afeafb56ab43405a92cafd9fd1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nrk/predis/zipball/f0210e38881631afeafb56ab43405a92cafd9fd1",
+                "reference": "f0210e38881631afeafb56ab43405a92cafd9fd1",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.9"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.8"
+            },
+            "suggest": {
+                "ext-curl": "Allows access to Webdis when paired with phpiredis",
+                "ext-phpiredis": "Allows faster serialization and deserialization of the Redis protocol"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Predis\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Daniele Alessandri",
+                    "email": "suppakilla@gmail.com",
+                    "homepage": "http://clorophilla.net"
+                }
+            ],
+            "description": "Flexible and feature-complete Redis client for PHP and HHVM",
+            "homepage": "http://github.com/nrk/predis",
+            "keywords": [
+                "nosql",
+                "predis",
+                "redis"
+            ],
+            "time": "2016-06-16T16:22:20+00:00"
+        },
+        {
             "name": "psr/log",
             "version": "1.0.2",
             "source": {
@@ -257,6 +365,37 @@
                 "xmldsig"
             ],
             "time": "2017-08-31T09:27:07+00:00"
+        },
+        {
+            "name": "simplesamlphp/composer-module-installer",
+            "version": "v1.1.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/simplesamlphp/composer-module-installer.git",
+                "reference": "b70414a2112fe49e97a7eddd747657bd8bc38ef0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/simplesamlphp/composer-module-installer/zipball/b70414a2112fe49e97a7eddd747657bd8bc38ef0",
+                "reference": "b70414a2112fe49e97a7eddd747657bd8bc38ef0",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^1.0",
+                "simplesamlphp/simplesamlphp": "*"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": "SimpleSamlPhp\\Composer\\ModuleInstallerPlugin"
+            },
+            "autoload": {
+                "psr-0": {
+                    "SimpleSamlPhp\\Composer": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "description": "A Composer plugin that allows installing SimpleSAMLphp modules through Composer.",
+            "time": "2017-04-24T07:12:50+00:00"
         },
         {
             "name": "simplesamlphp/saml2",
@@ -975,6 +1114,9 @@
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause|MIT"
+            ],
             "authors": [
                 {
                     "name": "Kore Nordmann",

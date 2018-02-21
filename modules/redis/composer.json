@@ -1,0 +1,47 @@
+{
+    "name": "colourbox/simplesamlphp-module-redis",
+    "description": "A SimpleSAMLphp module for using Redis for session storage etc.",
+    "type": "simplesamlphp-module",
+    "keywords": ["redis", "store", "simpleSAMLphp"],
+    "homepage": "https://github.com/ColourboxDevelopment/simplesamlphp-module-redis",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jacob Christiansen",
+            "email": "jacob@colourbox.com",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/ColourboxDevelopment/simplesamlphp-module-redis/issues",
+        "wiki": "https://github.com/ColourboxDevelopment/simplesamlphp-module-redis/wiki"
+    },
+    "require": {
+        "php": "^5.4 || ^7.0",
+        "predis/predis": "~1.0",
+        "simplesamlphp/composer-module-installer": "^1.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.4",
+        "phpunit/php-invoker": "~1.1",
+        "pdepend/pdepend": "~2.0",
+        "phpmd/phpmd": "~2.1",
+        "phploc/phploc": "~2.0",
+        "sebastian/phpcpd": "~2.0",
+        "sensiolabs/security-checker": "~2.0",
+        "theseer/phpdox": "~0.7",
+        "squizlabs/php_codesniffer": "~2.2",
+        "mayflower/php-codebrowser": "~1.1",
+        "simplesamlphp/simplesamlphp": "^1.14"
+    },
+    "autoload": {
+        "classmap": [
+            "lib/"
+        ]
+    },
+    "autoload-dev": {
+        "classmap": [
+            "test/"
+        ]
+    }
+}

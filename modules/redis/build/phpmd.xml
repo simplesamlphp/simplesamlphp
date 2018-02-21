@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<ruleset name="Colourbox API PHPMD rule set"
+         xmlns="http://pmd.sf.net/ruleset/1.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://pmd.sf.net/ruleset/1.0.0
+                     http://pmd.sf.net/ruleset_xml_schema.xsd"
+         xsi:noNamespaceSchemaLocation="
+                     http://pmd.sf.net/ruleset_xml_schema.xsd">
+    <description>No custom rules at the moment.</description>
+    <rule ref="rulesets/cleancode.xml">
+        <!-- Ignore StaticAccess since it is broken in current versio of PHPMD, see https://github.com/phpmd/phpmd/pull/74 -->
+        <exclude name="StaticAccess" />
+    </rule>
+    <rule ref="rulesets/codesize.xml" />
+    <rule ref="rulesets/design.xml" />
+
+    <rule ref="rulesets/naming.xml/ShortVariable">
+        <properties>
+            <property name="exceptions" value="db" />
+        </properties>
+    </rule>
+    <rule ref="rulesets/naming.xml/LongVariable">
+        <properties>
+            <property name="maximum" value="30" />
+        </properties>
+    </rule>
+    <rule ref="rulesets/naming.xml/ConstructorWithNameAsEnclosingClass" />
+    <rule ref="rulesets/naming.xml/ConstantNamingConventions" />
+    <rule ref="rulesets/naming.xml/BooleanGetMethodName" />
+
+    <rule ref="rulesets/unusedcode.xml" />
+    <rule ref="rulesets/controversial.xml">
+        <exclude name="CamelCasePropertyName" />
+    </rule>
+</ruleset>

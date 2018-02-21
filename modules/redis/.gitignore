@@ -1,0 +1,4 @@
+cache.properties
+vendor
+build/coverage/
+build/logs/

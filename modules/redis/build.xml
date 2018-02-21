@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="Colourbox SSP cassrver module" default="build">
+ <target name="build"
+   depends="prepare,lint,phploc-ci,pdepend,phpmd-ci,phpcs-ci,phpcpd-ci,phpunit,phpcb,securitycheck,phpdox"/>
+
+ <target name="build-parallel"
+   depends="prepare,lint,tools-parallel,phpunit,phpcb,phpdox"/>
+
+ <target name="tools-parallel" description="Run tools in parallel">
+  <parallel threadCount="2">
+   <sequential>
+    <antcall target="pdepend"/>
+    <antcall target="phpmd-ci"/>
+   </sequential>
+   <antcall target="phpcpd-ci"/>
+   <antcall target="phpcs-ci"/>
+   <antcall target="phploc-ci"/>
+   <antcall target="securitycheck"/>
+  </parallel>
+ </target>
+
+ <target name="clean"
+         unless="clean.done"
+         description="Cleanup build artifacts">
+  <delete dir="${basedir}/build/api"/>
+  <delete dir="${basedir}/build/code-browser"/>
+  <delete dir="${basedir}/build/coverage"/>
+  <delete dir="${basedir}/build/logs"/>
+  <delete dir="${basedir}/build/pdepend"/>
+  <delete dir="${basedir}/build/phpdox"/>
+  <delete dir="${basedir}/build/docs"/>
+  <property name="clean.done" value="true"/>
+ </target>
+
+ <target name="prepare"
+         unless="prepare.done"
+         depends="clean"
+         description="Prepare for build">
+  <mkdir dir="${basedir}/build/api"/>
+  <mkdir dir="${basedir}/build/code-browser"/>
+  <mkdir dir="${basedir}/build/coverage"/>
+  <mkdir dir="${basedir}/build/logs"/>
+  <mkdir dir="${basedir}/build/pdepend"/>
+  <mkdir dir="${basedir}/vendor"/>
+  <antcall target="init"/>
+  <property name="prepare.done" value="true"/>
+ </target>
+
+ <target name="init" description="Do needed stuff before build">
+   <antcall target="composerselfupdate" />
+   <antcall target="composerinstall" />
+ </target>
+
+ <target name="composerinstall" description="Run composer install">
+  <exec executable="${basedir}/bin/composer.phar" failonerror="true">
+   <arg value="install" />
+  </exec>
+ </target>
+
+ <target name="composerselfupdate" description="Run composer self-update">
+  <exec executable="${basedir}/bin/composer.phar" failonerror="true">
+   <arg value="self-update" />
+  </exec>
+ </target>
+
+ <target name="lint" description="Perform syntax check of sourcecode files">
+  <apply executable="php" failonerror="true">
+   <arg value="-l" />
+
+   <fileset dir="${basedir}/lib">
+    <include name="**/*.php" />
+    <modified />
+   </fileset>
+
+   <fileset dir="${basedir}/test">
+    <include name="**/*.php" />
+    <modified />
+   </fileset>
+  </apply>
+ </target>
+
+ <target name="phploc"
+         description="Measure project size using PHPLOC and print human readable output. Intended for usage on the command line.">
+  <exec executable="${basedir}/vendor/bin/phploc">
+   <arg value="--count-tests" />
+   <arg path="${basedir}/lib" />
+   <arg path="${basedir}/test" />
+  </exec>
+ </target>
+
+ <target name="phploc-ci"
+         depends="prepare"
+         description="Measure project size using PHPLOC and log result in CSV and XML format. Intended for usage within a continuous integration environment.">
+  <exec executable="${basedir}/vendor/bin/phploc">
+   <arg value="--count-tests" />
+   <arg value="--log-csv" />
+   <arg path="${basedir}/build/logs/phploc.csv" />
+   <arg value="--log-xml" />
+   <arg path="${basedir}/build/logs/phploc.xml" />
+   <arg path="${basedir}/lib" />
+   <arg path="${basedir}/test" />
+  </exec>
+ </target>
+
+ <target name="pdepend"
+         depends="prepare"
+         description="Calculate software metrics using PHP_Depend and log result in XML format. Intended for usage within a continuous integration environment.">
+  <exec executable="${basedir}/vendor/bin/pdepend">
+   <arg value="--jdepend-xml=${basedir}/build/logs/jdepend.xml" />
+   <arg value="--jdepend-chart=${basedir}/build/pdepend/dependencies.svg" />
+   <arg value="--overview-pyramid=${basedir}/build/pdepend/overview-pyramid.svg" />
+   <arg path="${basedir}/lib" />
+  </exec>
+ </target>
+
+ <target name="phpmd"
+         description="Perform project mess detection using PHPMD and print human readable output. Intended for usage on the command line before committing.">
+  <exec executable="${basedir}/vendor/bin/phpmd">
+   <arg path="${basedir}/lib" />
+   <arg value="text" />
+   <arg path="${basedir}/build/phpmd.xml" />
+  </exec>
+ </target>
+
+ <target name="phpmd-ci"
+         depends="prepare"
+         description="Perform project mess detection using PHPMD and log result in XML format. Intended for usage within a continuous integration environment.">
+  <exec executable="${basedir}/vendor/bin/phpmd">
+   <arg path="${basedir}/lib" />
+   <arg value="xml" />
+   <arg path="${basedir}/build/phpmd.xml" />
+   <arg value="--reportfile" />
+   <arg path="${basedir}/build/logs/pmd.xml" />
+  </exec>
+ </target>
+
+ <target name="phpcs"
+         description="Find coding standard violations using PHP_CodeSniffer and print human readable output. Intended for usage on the command line before committing.">
+  <exec executable="${basedir}/vendor/bin/phpcs" failonerror="true">
+   <arg value="--standard=${basedir}/build/phpcs.xml" />
+   <arg value="--extensions=php" />
+   <arg value="-s" />
+   <arg value="--ignore=autoload.php" />
+   <arg path="${basedir}/lib" />
+  </exec>
+ </target>
+
+ <target name="phpcs-ci"
+         depends="prepare"
+         description="Find coding standard violations using PHP_CodeSniffer and log result in XML format. Intended for usage within a continuous integration environment.">
+  <exec executable="${basedir}/vendor/bin/phpcs" failonerror="true" output="/dev/null">
+   <arg value="--report=checkstyle" />
+   <arg value="--report-file=${basedir}/build/logs/checkstyle.xml" />
+   <arg value="--standard=${basedir}/build/phpcs.xml" />
+   <arg value="--extensions=php" />
+   <arg value="--ignore=autoload.php" />
+   <arg path="${basedir}/lib" />
+  </exec>
+ </target>
+
+ <target name="phpcpd"
+         description="Find duplicate code using PHPCPD and print human readable output. Intended for usage on the command line before committing.">
+  <exec executable="${basedir}/vendor/bin/phpcpd">
+   <arg path="${basedir}/lib" />
+  </exec>
+ </target>
+
+ <target name="phpcpd-ci"
+         depends="prepare"
+         description="Find duplicate code using PHPCPD and log result in XML format. Intended for usage within a continuous integration environment.">
+  <exec executable="${basedir}/vendor/bin/phpcpd">
+   <arg value="--log-pmd" />
+   <arg path="${basedir}/build/logs/pmd-cpd.xml" />
+   <arg path="${basedir}/lib" />
+  </exec>
+ </target>
+
+ <target name="phpunit"
+         depends="prepare"
+         description="Run unit tests with PHPUnit">
+  <exec executable="${basedir}/vendor/bin/phpunit" failonerror="true" />
+ </target>
+
+ <target name="phpcb"
+         depends="prepare"
+         description="Aggregate tool output with PHP_CodeBrowser">
+  <exec executable="${basedir}/vendor/bin/phpcb">
+   <arg value="--log" />
+   <arg path="${basedir}/build/logs" />
+   <arg value="--source" />
+   <arg path="${basedir}/lib" />
+   <arg value="--output" />
+   <arg path="${basedir}/build/code-browser" />
+  </exec>
+ </target>
+
+ <target name="securitycheck"
+         depends="prepare"
+         description="SensioLabs Security Checker">
+  <exec executable="${basedir}/vendor/bin/security-checker" failonerror="true">
+   <arg value="security:check" />
+   <arg path="${basedir}/composer.lock" />
+  </exec>
+ </target>
+
+ <target name="phpdox"
+         depends="phpunit,phploc-ci,phpcs-ci,phpmd-ci"
+         description="Generate project documentation using phpDox">
+  <exec executable="${basedir}/vendor/bin/phpdox"/>
+ </target>
+</project>

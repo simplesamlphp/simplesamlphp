@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<phpunit backupGlobals="true"
+         backupStaticAttributes="false"
+         bootstrap="test/phpunit.bootstrap.php"
+         cacheTokens="false"
+         colors="true"
+         forceCoversAnnotation="false"
+         beStrictAboutTestsThatDoNotTestAnything="true"
+         beStrictAboutOutputDuringTests="true"
+         checkForUnintentionallyCoveredCode="false"
+         beStrictAboutTestSize="true"
+         verbose="true">
+  <testsuites>
+    <testsuite name="Redis Store module for simpleSAMLphp">
+      <directory suffix="Test.php">test/</directory>
+    </testsuite>
+  </testsuites>
+
+  <logging>
+   <log type="coverage-html" target="build/coverage" title="Colourbox API"
+        charset="UTF-8" highlight="true"
+        lowUpperBound="50" highLowerBound="90"/>
+   <log type="coverage-clover" target="build/logs/clover.xml"/>
+   <log type="coverage-crap4j" target="build/logs/crap4j.xml"/>
+   <log type="coverage-xml" target="build/logs/coverage/xml"/>
+   <log type="junit" target="build/logs/junit.xml" logIncompleteSkipped="false"/>
+  </logging>
+
+  <filter>
+    <whitelist addUncoveredFilesFromWhitelist="true">
+      <directory suffix=".php">lib</directory>
+      <exclude>
+        <directory suffix=".php">vendor</directory>
+        <directory suffix=".php">test</directory>
+      </exclude>
+    </whitelist>
+  </filter>
+</phpunit>
