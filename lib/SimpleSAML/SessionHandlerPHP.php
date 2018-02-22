@@ -118,8 +118,8 @@ class SessionHandlerPHP extends SessionHandler
              */
             session_cache_limiter('');
         }
-        @session_start();
         session_cache_limiter($cacheLimiter);
+        @session_start();
     }
 
 
