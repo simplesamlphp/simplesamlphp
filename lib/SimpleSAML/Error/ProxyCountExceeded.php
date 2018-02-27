@@ -9,6 +9,7 @@
  *
  * @see \SimpleSAML\Module\saml\Error\ProxyCountExceeded
  */
-class SimpleSAML_Error_ProxyCountExceeded extends SimpleSAML_Error_Exception {
+class SimpleSAML_Error_ProxyCountExceeded extends SimpleSAML_Error_Exception
+{
 
 }

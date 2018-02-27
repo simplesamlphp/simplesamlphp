@@ -9,36 +9,38 @@
  * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
-class SimpleSAML_Error_BadRequest extends SimpleSAML_Error_Error {
+class SimpleSAML_Error_BadRequest extends SimpleSAML_Error_Error
+{
 
 
-	/**
-	 * Reason why this request was invalid.
-	 */
-	private $reason;
+    /**
+     * Reason why this request was invalid.
+     */
+    private $reason;
 
 
-	/**
-	 * Create a new BadRequest error.
-	 *
-	 * @param string $reason  Description of why the request was unacceptable.
-	 */
-	public function __construct($reason) {
-		assert(is_string($reason));
+    /**
+     * Create a new BadRequest error.
+     *
+     * @param string $reason  Description of why the request was unacceptable.
+     */
+    public function __construct($reason)
+    {
+        assert(is_string($reason));
 
-		$this->reason = $reason;
-		parent::__construct(array('BADREQUEST', '%REASON%' => $this->reason));
-		$this->httpCode = 400;
-	}
+        $this->reason = $reason;
+        parent::__construct(array('BADREQUEST', '%REASON%' => $this->reason));
+        $this->httpCode = 400;
+    }
 
 
-	/**
-	 * Retrieve the reason why the request was invalid.
-	 *
-	 * @return string  The reason why the request was invalid.
-	 */
-	public function getReason() {
-		return $this->reason;
-	}
-
+    /**
+     * Retrieve the reason why the request was invalid.
+     *
+     * @return string  The reason why the request was invalid.
+     */
+    public function getReason()
+    {
+        return $this->reason;
+    }
 }

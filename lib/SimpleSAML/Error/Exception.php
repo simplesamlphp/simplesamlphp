@@ -87,7 +87,6 @@ class SimpleSAML_Error_Exception extends Exception
         $pos = $exception->getFile().':'.$exception->getLine();
 
         foreach ($exception->getTrace() as $t) {
-
             $function = $t['function'];
             if (array_key_exists('class', $t)) {
                 $function = $t['class'].'::'.$function;
