@@ -32,6 +32,14 @@ Released TBD
 ### Sqlauth
   * Changed from default-enabled to default-disabled.
 
+## Version 1.15.3
+
+Released 2018-02-27
+
+  * Resolved a security issue related to signature validation in the SAML2 library. See [SSPSA 201802-01](https://simplesamlphp.org/security/201802-01).
+  * Fixed edge-case scenario where an application uses one of the known LoggingHandlers' name as a defined class
+  * Fixed issue #793 in the PHP logging handler.
+
 ## Version 1.15.2
 
 Released 2018-01-31
