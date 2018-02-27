@@ -8,9 +8,11 @@ See the upgrade notes for specific information about upgrading.
 
 ## Version 1.15.3
 
-Released TBD
+Released 2018-02-27
 
+  * Resolved a security issue related to signature validation in the SAML2 library. See [SSPSA 201802-01](https://simplesamlphp.org/security/201802-01).
   * Fixed edge-case scenario where an application uses one of the known LoggingHandlers' name as a defined class
+  * Fixed issue #793 in the PHP logging handler.
 
 ## Version 1.15.2
 
