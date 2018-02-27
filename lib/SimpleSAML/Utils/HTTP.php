@@ -83,18 +83,22 @@ class HTTP
      */
     public static function getServerHTTPS()
     {
-        if (!array_key_exists('HTTPS', $_SERVER)) {
+        if (!array_key_exists('HTTPS', $_SERVER) and !array_key_exists('HTTP_X_FORWARDED_PROTO', $_SERVER)) {
             // not an https-request
             return false;
         }
 
-        if ($_SERVER['HTTPS'] === 'off') {
+        if ($_SERVER['HTTPS'] === 'off' or $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'http') {
             // IIS with HTTPS off
             return false;
         }
 
-        // otherwise, HTTPS will be non-empty
-        return !empty($_SERVER['HTTPS']);
+        if (!empty($_SERVER['HTTPS']) or $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https')
+          $bReturn = true;
+        else
+          $bReturn = false;
+
+        return $bReturn;
     }
 
 
@@ -109,8 +113,13 @@ class HTTP
     public static function getServerPort()
     {
         $default_port = self::getServerHTTPS() ? '443' : '80';
-        $port = isset($_SERVER['SERVER_PORT']) ? $_SERVER['SERVER_PORT'] : $default_port;
-        
+
+        if (array_key_exists('HTTP_X_FORWARDED_PORT', $_SERVER)) {
+            $port = (isset($_SERVER['HTTP_X_FORWARDED_PORT'])) ? $_SERVER['HTTP_X_FORWARDED_PORT'] : $default_port;
+        } else {
+            $port = (isset($_SERVER['SERVER_PORT'])) ? $_SERVER['SERVER_PORT'] : $default_port;
+        }
+
         if ($port !== $default_port) {
             return ':'.$port;
         }
