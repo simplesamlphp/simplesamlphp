@@ -114,3 +114,20 @@ Example for a custom CSS stylesheet file:
 ```html
 <link rel="stylesheet" type="text/css" href="<?php echo SimpleSAML_Module::getModuleURL('mymodule/style.css'); ?>" />
 ```
+
+Migrating to Twig templates
+---------------------------
+
+In version 1.15, a new templating system based on [Twig](https://twig.symfony.com/) was introduced. As modules migrate, it will become necessary for themes to include both the old templating style described above and new Twig-based templates.
+
+Twig works by extending a base template, which can itself include other partial templates. Some of the content of the old `includes/header.php` template is now located in a separate `_header.twig` file. This can be customized by copying it from the base template:
+
+	cp templates/_header.twig modules/mymodule/themes/fancytheme/default/
+
+If you need to make more extensive customizations to the base template, you should copy it from the base theme:
+
+	cp templates/base.twig modules/mymodule/themes/fancytheme/default/
+
+Any references to `$this->data['baseurlpath']` in old-style templates can be replaced with `{{baseurlpath}}` in Twig templates. Likewise, references to `SimpleSAML_Module::getModuleURL()` can be replaced with `{{baseurlpath}}module.php/mymodule/...`
+
+See the [Twig documentation](https://twig.symfony.com/doc/1.x/templates.html) for more information on using variables and expressions in Twig templates.
