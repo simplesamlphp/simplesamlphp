@@ -10,7 +10,7 @@ function metarefresh_hook_frontpage(&$links) {
 
 	$links['federation'][] = array(
 		'href' => SimpleSAML\Module::getModuleURL('metarefresh/fetch.php'),
-		'text' => array('en' => 'Metarefresh: fetch metadata'),
+		'text' => '{metarefresh:metarefresh:frontpage_link}',
 	);
 
 }
