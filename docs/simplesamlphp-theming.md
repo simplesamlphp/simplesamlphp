@@ -130,4 +130,6 @@ If you need to make more extensive customizations to the base template, you shou
 
 Any references to `$this->data['baseurlpath']` in old-style templates can be replaced with `{{baseurlpath}}` in Twig templates. Likewise, references to `SimpleSAML_Module::getModuleURL()` can be replaced with `{{baseurlpath}}module.php/mymodule/...`
 
-See the [Twig documentation](https://twig.symfony.com/doc/1.x/templates.html) for more information on using variables and expressions in Twig templates.
+See the [Twig documentation](https://twig.symfony.com/doc/1.x/templates.html) for more information on using variables and expressions in Twig templates, and the SimpleSAMLphp wiki for [our conventions](https://github.com/simplesamlphp/simplesamlphp/wiki/Twig-conventions).
+
+The wiki also includes some information on [migrating translations](https://github.com/simplesamlphp/simplesamlphp/wiki/Migrating-translation-in-Twig) and [migrating templates](https://github.com/simplesamlphp/simplesamlphp/wiki/Twig:-Migrating-templates).
