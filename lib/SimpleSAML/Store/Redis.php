@@ -91,8 +91,7 @@ class Redis extends Store
     {
         assert(is_string($type));
         assert(is_string($key));
-        $now = time();
-        assert($expire === null || (is_int($expire) && $expire > $now));
+        assert($expire === null || (is_int($expire) && $expire > 2592000));
 
         $serialized = serialize($value);
 
@@ -100,7 +99,7 @@ class Redis extends Store
             $this->redis->set("{$type}.{$key}", $serialized);
         } else {
             // setex expire time is in seconds (not unix timestamp)
-            $this->redis->setex("{$type}.{$key}", $expire - $now, $serialized);
+            $this->redis->setex("{$type}.{$key}", $expire - $time(), $serialized);
         }
     }
 
