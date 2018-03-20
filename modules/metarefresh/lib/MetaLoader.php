@@ -230,9 +230,11 @@ class sspmod_metarefresh_MetaLoader
 			$candidates = array('last-modified', 'etag');
 
 			foreach ($candidates as $candidate) {
-				if (array_key_exists($candidate, $responseHeaders)) {
-					$this->state[$source['src']][$candidate] = $responseHeaders[$candidate];
-				}
+                if($responseHeaders !== null) {
+				    if (array_key_exists($candidate, $responseHeaders)) {
+					    $this->state[$source['src']][$candidate] = $responseHeaders[$candidate];
+				    }
+                }    
 			}
 
 			if (!empty($this->state[$source['src']])) {
