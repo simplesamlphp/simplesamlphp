@@ -83,6 +83,11 @@ class HTTP
      */
     public static function getServerHTTPS()
     {
+        if ($_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') {
+            // if behind an SSL-offloading reverse proxy
+            return true;
+        }
+
         if (!array_key_exists('HTTPS', $_SERVER)) {
             // not an https-request
             return false;
