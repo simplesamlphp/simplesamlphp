@@ -12,7 +12,19 @@ class SimpleSAML_Metadata_MetaDataStorageSourceTest extends PHPUnit_Framework_Te
      */
     public function testBadXMLSource() {
         SimpleSAML_Metadata_MetaDataStorageSource::getSource(["type"=>"xml", "foo"=>"baa"]);
-   }
+    }
+
+    /**
+     * Test SimpleSAML_Metadata_MetaDataStorageSourceTest::getConfig invalid static XML source
+     * @expectedException Exception
+     */
+    public function testInvalidStaticXMLSource() {
+        $strTestXML = "
+<EntityDescriptor ID=\"_12345678-90ab-cdef-1234-567890abcdef\" entityID=\"https://saml.idp/entityid\" xmlns=\"urn:oasis:names:tc:SAML:2.0:metadata\">
+</EntityDescriptor>
+";
+        SimpleSAML_Metadata_MetaDataStorageSource::getSource(["type"=>"xml", "xml"=>$strTestXML]);
+    }
 
     /**
      * Test SimpleSAML_Metadata_MetaDataStorageSourceTest::getConfig XML static XML source
