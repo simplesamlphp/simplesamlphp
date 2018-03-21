@@ -55,7 +55,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerXML extends SimpleSAML_Metadata_
         if(isset($src)) {
             $entities = SimpleSAML_Metadata_SAMLParser::parseDescriptorsFile($src);
         } elseif(isset($srcXml)) {
-            $entities = SimpleSAML_Metadata_SAMLParser::parseDescriptorsString($srcXML);
+            $entities = SimpleSAML_Metadata_SAMLParser::parseDescriptorsString($srcXml);
         } else {
             throw new Exception("Neither source file path/URI nor string data provided");
         }
