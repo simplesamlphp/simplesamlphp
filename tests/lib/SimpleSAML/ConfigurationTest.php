@@ -926,6 +926,27 @@ class Test_SimpleSAML_Configuration extends SimpleSAML\Test\Utils\ClearStateTest
     }
 
     /**
+     * Test SimpleSAML_Configuration::getConfig() nonexistent file
+     * @expectedException Exception
+     */
+    public function testGetConfigNonexistentFile() {
+        SimpleSAML_Configuration::getConfig('nonexistent-nopreload.php');
+    }
+
+    /**
+     * Test SimpleSAML_Configuration::getConfig() preloaded nonexistent file
+     */
+    public function testGetConfigNonexistentFilePreload() {
+        $c = SimpleSAML_Configuration::loadFromArray(array(
+            'key' => 'value'
+        ));
+        $virtualFile = 'nonexistent-preload.php';
+        SimpleSAML_Configuration::setPreLoadedConfig($c, $virtualFile);
+        $nc = SimpleSAML_Configuration::getConfig($virtualFile);
+        $this->assertEquals('value', $nc->getValue('key', null));
+    }
+
+    /**
      * Test that Configuration objects can be initialized from an array.
      *
      * ATTENTION: this test must be kept the last.
