@@ -32,11 +32,10 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerXML extends SimpleSAML_Metadata_
      */
     protected function __construct($config)
     {
-        // get the configuration
-        $globalConfig = SimpleSAML_Configuration::getInstance();
-
         $src = $srcXml = null;
         if (array_key_exists('file', $config)) {
+            // get the configuration
+            $globalConfig = SimpleSAML_Configuration::getInstance();
             $src = $globalConfig->resolvePath($config['file']);
         } elseif (array_key_exists('url', $config)) {
             $src = $config['url'];
