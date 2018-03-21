@@ -48,7 +48,7 @@ $config = array(
          * need to compute the right URLs yourself and pass them dynamically
          * to SimpleSAMLphp's API.
          */
-        //'baseURL' => 'https://example.com'
+        //'baseURL' => 'https://example.com',
     //),
 
     /*
