@@ -39,7 +39,7 @@ xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
 xmlns:fed=\"http://docs.oasis-open.org/wsfed/federation/200706\">
 <NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:persistent</NameIDFormat>
 <SingleSignOnService Binding=\"urn:oasis:names:tc:SAML:.0:bindings:HTTP-Redirect\" Location=\"https://saml.idp/sso/\"/>
-<SingleLogoutService Binding=\"urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect\" Location=\"https://saml.idp/logout/"/>
+<SingleLogoutService Binding=\"urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect\" Location=\"https://saml.idp/logout/\"/>
 </RoleDescriptor>
 </EntityDescriptor>
 ";
