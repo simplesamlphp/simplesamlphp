@@ -58,7 +58,7 @@ $config = array(
         //'baseURL' => 'https://example.com',
         //'protocol' => 'https',
         //'host' => 'example.com',
-        //'port' => '8443'
+        //'port' => '8443',
     //),
 
     /*
