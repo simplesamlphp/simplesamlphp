@@ -53,6 +53,12 @@ class HTTP
      */
     private static function getServerHost()
     {
+        $cfg = \SimpleSAML_Configuration::getInstance();
+        $appcfg = $cfg->getConfigItem('application', null);
+        $appHost = ($appcfg instanceof \SimpleSAML_Configuration) ? $appcfg->getString('host', null) : null;
+        if($appHost) {
+            return $appHost;
+        }
         if (array_key_exists('HTTP_HOST', $_SERVER)) {
             $current = $_SERVER['HTTP_HOST'];
         } elseif (array_key_exists('SERVER_NAME', $_SERVER)) {
@@ -82,7 +88,14 @@ class HTTP
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
     public static function getServerHTTPS()
-    {
+    { 
+        $cfg = \SimpleSAML_Configuration::getInstance();
+        $appcfg = $cfg->getConfigItem('application', null);
+        $appProtocol = ($appcfg instanceof \SimpleSAML_Configuration) ? $appcfg->getString('protocol', null) : null;
+        if($appProtocol) {
+            return 0 === strcasecmp($appProtocol, 'https');
+        }
+
         if (!array_key_exists('HTTPS', $_SERVER)) {
             // not an https-request
             return false;
@@ -108,6 +121,13 @@ class HTTP
      */
     public static function getServerPort()
     {
+        $cfg = \SimpleSAML_Configuration::getInstance();
+        $appcfg = $cfg->getConfigItem('application', null);
+        $appPort = ($appcfg instanceof \SimpleSAML_Configuration) ? $appcfg->getString('port', null) : null;
+        if($appPort) {
+            return $appPort;
+        }
+
         $default_port = self::getServerHTTPS() ? '443' : '80';
         $port = isset($_SERVER['SERVER_PORT']) ? $_SERVER['SERVER_PORT'] : $default_port;
         
