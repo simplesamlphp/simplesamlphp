@@ -118,7 +118,7 @@ class SimpleSAML_Configuration implements \SimpleSAML\Utils\ClearableState
 
             // the file initializes a variable named '$config'
             ob_start();
-            if (interface_exists('Throwable')) {
+            if (interface_exists('Throwable', false)) {
                 try {
                     require($filename);
                 } catch (ParseError $e) {

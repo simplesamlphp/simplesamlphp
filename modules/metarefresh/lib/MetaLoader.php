@@ -227,12 +227,14 @@ class sspmod_metarefresh_MetaLoader
     {
 		if (isset($source['conditionalGET']) && $source['conditionalGET']) {
 			// Headers section
-			$candidates = array('last-modified', 'etag');
+            if ($responseHeaders !== null) {
+			    $candidates = array('last-modified', 'etag');
 
-			foreach ($candidates as $candidate) {
-				if (array_key_exists($candidate, $responseHeaders)) {
-					$this->state[$source['src']][$candidate] = $responseHeaders[$candidate];
-				}
+			    foreach ($candidates as $candidate) {
+				    if (array_key_exists($candidate, $responseHeaders)) {
+					    $this->state[$source['src']][$candidate] = $responseHeaders[$candidate];
+				    }
+                }    
 			}
 
 			if (!empty($this->state[$source['src']])) {
