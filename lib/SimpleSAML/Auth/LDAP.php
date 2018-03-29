@@ -569,7 +569,7 @@ class SimpleSAML_Auth_LDAP
                 }
 
                 // Base64 encode binary attributes
-                if (strtolower($name) === 'jpegphoto' || strtolower($name) === 'objectguid') {
+                if (strtolower($name) === 'jpegphoto' || strtolower($name) === 'objectguid' || strtolower($name) === 'ms-ds-consistencyguid') {
                     $values[] = base64_encode($value);
                 } else {
                     $values[] = $value;
