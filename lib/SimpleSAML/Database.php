@@ -90,18 +90,16 @@ class Database
 
         // connect to any configured slaves
         $slaves = $config->getArray('database.slaves', array());
-        if (count($slaves >= 1)) {
-            foreach ($slaves as $slave) {
-                array_push(
-                    $this->dbSlaves,
-                    $this->connect(
-                        $slave['dsn'],
-                        $slave['username'],
-                        $slave['password'],
-                        $driverOptions
-                    )
-                );
-            }
+        foreach ($slaves as $slave) {
+            array_push(
+                $this->dbSlaves,
+                $this->connect(
+                    $slave['dsn'],
+                    $slave['username'],
+                    $slave['password'],
+                    $driverOptions
+                )
+            );
         }
 
         $this->tablePrefix = $config->getString('database.prefix', '');
