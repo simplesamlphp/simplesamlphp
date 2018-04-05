@@ -125,7 +125,7 @@ class HTTP
         $appcfg = $cfg->getConfigItem('application', null);
         $appPort = ($appcfg instanceof \SimpleSAML_Configuration) ? $appcfg->getString('port', null) : null;
         if($appPort) {
-            return $appPort;
+            return ':'.$appPort;
         }
 
         $default_port = self::getServerHTTPS() ? '443' : '80';
