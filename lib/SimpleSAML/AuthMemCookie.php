@@ -117,7 +117,7 @@ class SimpleSAML_AuthMemCookie
         $memcacheHost = $this->amcConfig->getString('memcache.host', '127.0.0.1');
         $memcachePort = $this->amcConfig->getInteger('memcache.port', 11211);
 
-        $class = class_exists('Memcache') ? 'Memcache' : (class_exists('Memcached') ? 'Memcached' : FALSE);
+        $class = class_exists('Memcache') ? 'Memcache' : (class_exists('Memcached') ? 'Memcached' : false);
         if (!$class) {
             throw new Exception('Missing Memcached implementation. You must install either the Memcache or Memcached extension.');
         }

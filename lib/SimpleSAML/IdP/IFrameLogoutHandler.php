@@ -5,7 +5,6 @@ namespace SimpleSAML\IdP;
 use SimpleSAML\Module;
 use SimpleSAML\Utils\HTTP;
 
-
 /**
  * Class that handles iframe logout.
  *
