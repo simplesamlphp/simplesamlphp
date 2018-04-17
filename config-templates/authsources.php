@@ -29,6 +29,14 @@ $config = [
         'discoURL' => null,
 
         /*
+         * If SP behind the SimpleSAMLphp in IdP/SP proxy mode requests
+         * AuthnContextClassRef, decide whether the AuthnContextClassRef will be
+         * processed by the IdP/SP proxy or if it will be passed to the original
+         * IdP in front of the IdP/SP proxy.
+         */
+        'proxymode.passAuthnContextClassRef' => false,
+
+        /*
          * The attributes parameter must contain an array of desired attributes by the SP.
          * The attributes can be expressed as an array of names or as an associative array
          * in the form of 'friendlyName' => 'name'. This feature requires 'name' to be set.

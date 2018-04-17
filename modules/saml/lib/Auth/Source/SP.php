@@ -43,6 +43,13 @@ class SP extends Source
     private $disable_scoping;
 
     /**
+     * If pass AuthnContextClassRef back to the IdPs in front of the SP/IdP Proxy.
+     *
+     * @var boolean|false
+     */
+    private $passAuthnContextClassRef;
+
+    /**
      * Constructor for SAML SP authentication source.
      *
      * @param array $info  Information about this authentication source.
@@ -72,6 +79,10 @@ class SP extends Source
         $this->idp = $this->metadata->getString('idp', null);
         $this->discoURL = $this->metadata->getString('discoURL', null);
         $this->disable_scoping = $this->metadata->getBoolean('disable_scoping', false);
+	$this->passAuthnContextClassRef = false;
+	if (isset($config['proxymode.passAuthnContextClassRef'])) {
+        	$this->passAuthnContextClassRef = $config['proxymode.passAuthnContextClassRef'];
+	}
 
         if (empty($this->discoURL) && \SimpleSAML\Module::isModuleEnabled('discojuice')) {
             $this->discoURL = \SimpleSAML\Module::getModuleURL('discojuice/central.php');
@@ -218,6 +229,19 @@ class SP extends Source
                 $comp = $state['saml:AuthnContextComparison'];
             }
             $ar->setRequestedAuthnContext(['AuthnContextClassRef' => $accr, 'Comparison' => $comp]);
+        } elseif ($this->passAuthnContextClassRef && isset($state['saml:RequestedAuthnContext']) && isset($state['saml:RequestedAuthnContext']['AuthnContextClassRef'])) {
+            if (isset($state['saml:RequestedAuthnContext']['Comparison']) && in_array($state['saml:RequestedAuthnContext']['Comparison'], array(
+                                                SAML2\Constants::COMPARISON_EXACT,
+                                                SAML2\Constants::COMPARISON_MINIMUM,
+                                                SAML2\Constants::COMPARISON_MAXIMUM,
+                                                SAML2\Constants::COMPARISON_BETTER,
+                        ))) {
+                // RequestedAuthnContext has been set by an SP behind the proxy so pass it to the upper IdP
+                $ar->setRequestedAuthnContext(array(
+                    'AuthnContextClassRef' => $state['saml:RequestedAuthnContext']['AuthnContextClassRef'],
+                    'Comparison' => $state['saml:RequestedAuthnContext']['Comparison'])
+                );
+            }
         }
 
         if (isset($state['ForceAuthn'])) {
