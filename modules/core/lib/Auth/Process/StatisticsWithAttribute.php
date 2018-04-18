@@ -88,7 +88,11 @@ class StatisticsWithAttribute extends \SimpleSAML\Auth\ProcessingFilter
         }
 
         $source = $this->setIdentifier('Source', $state);
-        $dest = $this->setIdentifier('Destination', $state);
+        if (array_key_exists('saml:RequesterID', $state) && !empty($state['saml:RequesterID'])) {
+            $dest = $state['saml:RequesterID'][0];
+        } else {
+            $dest = $this->setIdentifier('Destination', $state);
+        }
 
         if (!array_key_exists('PreviousSSOTimestamp', $state)) {
             // The user hasn't authenticated with this SP earlier in this session
