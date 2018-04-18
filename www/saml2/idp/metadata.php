@@ -130,7 +130,7 @@ try {
     if ($idpmeta->getBoolean('saml20.ecp', false)) {
         $metaArray['SingleSignOnService'][] = array(
             'index' => 0,
-            'Binding' => SAML2_Const::BINDING_SOAP,
+            'Binding'  => Constants::BINDING_SOAP,
             'Location' => HTTP::getBaseURL().'saml2/idp/SSOService.php',
         );
     }
