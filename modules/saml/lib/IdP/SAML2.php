@@ -443,7 +443,7 @@ class sspmod_saml_IdP_SAML2
     public static function processSOAPAuthnRequest(array &$state)
     {
         if (!isset($_SERVER['PHP_AUTH_USER']) || !isset($_SERVER['PHP_AUTH_PW'])) {
-            SimpleSAML_Logger::error("ECP AuthnRequest did not contain Basic Authentication header");
+            SimpleSAML\Logger::error("ECP AuthnRequest did not contain Basic Authentication header");
             // TODO Throw some sort of ECP-specific exception / convert this to SOAP fault
             throw new SimpleSAML_Error_Error("WRONGUSERPASS");
         }
