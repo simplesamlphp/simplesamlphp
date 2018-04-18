@@ -159,7 +159,7 @@ abstract class SimpleSAML_Metadata_MetaDataStorageSource
 
 
     /**
-     * This function will go through all the metadata, and check the hint.cidr
+     * This function will go through all the metadata, and check the DiscoHints->IPHint
      * parameter, which defines a network space (ip range) for each remote entry.
      * This function returns the entityID for any of the entities that have an
      * IP range which the IP falls within.
@@ -178,14 +178,17 @@ abstract class SimpleSAML_Metadata_MetaDataStorageSource
 
         foreach ($metadataSet as $index => $entry) {
 
-            if (!array_key_exists('hint.cidr', $entry)) {
+            if (!array_key_exists('DiscoHints', $entry)) {
                 continue;
             }
-            if (!is_array($entry['hint.cidr'])) {
+            if (!array_key_exists('IPHint', $entry['DiscoHints'])) {
+                continue;
+            }
+            if (!is_array($entry['DiscoHints']['IPHint'])) {
                 continue;
             }
 
-            foreach ($entry['hint.cidr'] as $hint_entry) {
+            foreach ($entry['DiscoHints']['IPHint'] as $hint_entry) {
                 if (SimpleSAML\Utils\Net::ipCIDRcheck($hint_entry, $ip)) {
                     if ($type === 'entityid') {
                         return $entry['entityid'];
