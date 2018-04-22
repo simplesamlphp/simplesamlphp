@@ -1,6 +1,16 @@
 <?php
 
+// Load SimpleSAMLphp, configuration
 $config = SimpleSAML_Configuration::getInstance();
+$session = SimpleSAML_Session::getSessionFromRequest();
+
+// Check if valid local session exists.
+if ($config->getBoolean('admin.protectindexpage', false)) {
+    SimpleSAML\Utils\Auth::requireAdmin();
+}
+$loginurl = SimpleSAML\Utils\Auth::getAdminLoginURL();
+$isadmin = SimpleSAML\Utils\Auth::isAdmin();
+
 
 if (!array_key_exists('as', $_REQUEST)) {
     $t = new SimpleSAML_XHTML_Template($config, 'core:authsource_list.tpl.php');
