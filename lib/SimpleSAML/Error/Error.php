@@ -9,15 +9,12 @@
  */
 class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception
 {
-
-
     /**
      * The error code.
      *
      * @var string
      */
     private $errorCode;
-
 
     /**
      * The http code.
@@ -26,14 +23,12 @@ class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception
      */
     protected $httpCode = 500;
 
-
     /**
      * The error title tag in dictionary.
      *
      * @var string
      */
     private $dictTitle;
-
 
     /**
      * The error description tag in dictionary.
@@ -42,14 +37,12 @@ class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception
      */
     private $dictDescr;
 
-
     /**
      * The name of module that threw the error.
      *
      * @var string|null
      */
     private $module = null;
-
 
     /**
      * The parameters for the error.
@@ -58,14 +51,12 @@ class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception
      */
     private $parameters;
 
-
     /**
      * Name of custom include template for the error.
      *
      * @var string|null
      */
     protected $includeTemplate = null;
-
 
     /**
      * Constructor for this error.
@@ -79,7 +70,7 @@ class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception
      */
     public function __construct($errorCode, Exception $cause = null, $httpCode = null)
     {
-        assert('is_string($errorCode) || is_array($errorCode)');
+        assert(is_string($errorCode) || is_array($errorCode));
 
         if (is_array($errorCode)) {
             $this->parameters = $errorCode;
@@ -254,9 +245,9 @@ class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception
         $this->logError();
 
         $errorData = $this->saveError();
-
         $config = SimpleSAML_Configuration::getInstance();
 
+        $data = array();
         $data['showerrors'] = $config->getBoolean('showerrors', true);
         $data['error'] = $errorData;
         $data['errorCode'] = $this->errorCode;
@@ -289,9 +280,9 @@ class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception
 
         $show_function = $config->getArray('errors.show_function', null);
         if (isset($show_function)) {
-            assert('is_callable($show_function)');
+            assert(is_callable($show_function));
             call_user_func($show_function, $config, $data);
-            assert('FALSE');
+            assert(false);
         } else {
             $t = new SimpleSAML_XHTML_Template($config, 'error.php', 'errors');
             $t->data = array_merge($t->data, $data);

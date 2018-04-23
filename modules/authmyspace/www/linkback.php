@@ -28,7 +28,7 @@ if (array_key_exists('oauth_verifier', $_REQUEST)) {
 }
 
 // Find authentication source
-assert('array_key_exists(sspmod_authmyspace_Auth_Source_MySpace::AUTHID, $state)');
+assert(array_key_exists(sspmod_authmyspace_Auth_Source_MySpace::AUTHID, $state));
 $sourceId = $state[sspmod_authmyspace_Auth_Source_MySpace::AUTHID];
 
 $source = SimpleSAML_Auth_Source::getById($sourceId);

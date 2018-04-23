@@ -129,8 +129,8 @@ class sspmod_ldap_ConfigHelper
      */
     public function __construct($config, $location)
     {
-        assert('is_array($config)');
-        assert('is_string($location)');
+        assert(is_array($config));
+        assert(is_string($location));
 
         $this->location = $location;
 
@@ -183,8 +183,8 @@ class sspmod_ldap_ConfigHelper
      */
     public function login($username, $password, array $sasl_args = null)
     {
-        assert('is_string($username)');
-        assert('is_string($password)');
+        assert(is_string($username));
+        assert(is_string($password));
 
         if (empty($password)) {
             SimpleSAML\Logger::info($this->location . ': Login with empty password disallowed.');
@@ -275,7 +275,7 @@ class sspmod_ldap_ConfigHelper
         }
 
         return $ldap->searchfordn($this->searchBase, $attribute,
-            $value, $allowZeroHits);
+            $value, $allowZeroHits, $this->searchFilter);
     }
 
     public function getAttributes($dn, $attributes = null)

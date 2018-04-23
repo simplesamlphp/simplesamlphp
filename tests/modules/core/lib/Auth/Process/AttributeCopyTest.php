@@ -1,9 +1,11 @@
 <?php
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * Test for the core:AttributeCopy filter.
  */
-class Test_Core_Auth_Process_AttributeCopy extends PHPUnit_Framework_TestCase
+class Test_Core_Auth_Process_AttributeCopy extends TestCase
 {
 
     /**
@@ -36,6 +38,26 @@ class Test_Core_Auth_Process_AttributeCopy extends PHPUnit_Framework_TestCase
         $this->assertArrayHasKey('test', $attributes);
         $this->assertArrayHasKey('testnew', $attributes);
         $this->assertEquals($attributes['testnew'], array('AAP'));
+    }
+
+    /**
+     * Test the most basic functionality.
+     */
+    public function testArray()
+    {
+        $config = array(
+            'test' => array('new1','new2'),
+        );
+        $request = array(
+            'Attributes' => array('test' => array('AAP')),
+        );
+        $result = self::processFilter($config, $request);
+        $attributes = $result['Attributes'];
+        $this->assertArrayHasKey('test', $attributes);
+        $this->assertArrayHasKey('new1', $attributes);
+        $this->assertArrayHasKey('new2', $attributes);
+        $this->assertEquals($attributes['new1'], array('AAP'));
+        $this->assertEquals($attributes['new2'], array('AAP'));
     }
 
     /**
@@ -128,7 +150,7 @@ class Test_Core_Auth_Process_AttributeCopy extends PHPUnit_Framework_TestCase
     public function testWrongAttributeValue()
     {
         $config = array(
-            'test' => array('test2'),
+            'test' => 100,
         );
         $request = array(
             'Attributes' => array(

@@ -1,10 +1,11 @@
 <?php
 
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class SimpleSAML_Metadata_SAMLBuilderTest
  */
-class SimpleSAML_Metadata_SAMLBuilderTest extends PHPUnit_Framework_TestCase
+class SimpleSAML_Metadata_SAMLBuilderTest extends TestCase
 {
 
     /**
@@ -133,5 +134,53 @@ class SimpleSAML_Metadata_SAMLBuilderTest extends PHPUnit_Framework_TestCase
             $this->assertEquals($metadata['attributes'][$keys[$c]], $curAttribute->getAttribute("Name"));
             $this->assertEquals($keys[$c], $curAttribute->getAttribute("FriendlyName"));
         }
+    }
+
+    /**
+     * Test the required protocolSupportEnumeration in AttributeAuthorityDescriptor
+     */
+    public function testProtocolSupportEnumeration()
+    {
+        $entityId = 'https://entity.example.com/id';
+        $set = 'attributeauthority-remote';
+
+        // without protocolSupportEnumeration fallback to default: urn:oasis:names:tc:SAML:2.0:protocol
+        $metadata = array(
+            'entityid'     => $entityId,
+            'name'         => array('en' => 'Test AA'),
+            'metadata-set' => $set,
+            'AttributeService' =>
+                array (
+                    0 =>
+                        array (
+                            'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:SOAP',
+                            'Location' => 'https://entity.example.com:8443/idp/profile/SAML2/SOAP/AttributeQuery',
+                        ),
+                ),
+            );
+
+        $samlBuilder = new SimpleSAML_Metadata_SAMLBuilder($entityId);
+        $samlBuilder->addMetadata($set, $metadata);
+        $entityDescriptorXml = $samlBuilder->getEntityDescriptorText();
+
+        $this->assertRegExp(
+            '/<md:AttributeAuthorityDescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">/',
+            $entityDescriptorXml
+        );
+
+        // explicit protocols
+        $metadata['protocols'] =
+            array(
+                0 => 'urn:oasis:names:tc:SAML:1.1:protocol',
+                1 => 'urn:oasis:names:tc:SAML:2.0:protocol',
+            );
+        $samlBuilder = new SimpleSAML_Metadata_SAMLBuilder($entityId);
+        $samlBuilder->addMetadata($set, $metadata);
+        $entityDescriptorXml = $samlBuilder->getEntityDescriptorText();
+
+        $this->assertRegExp(
+            '/<md:AttributeAuthorityDescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:1.1:protocol urn:oasis:names:tc:SAML:2.0:protocol">/',
+            $entityDescriptorXml
+        );
     }
 }

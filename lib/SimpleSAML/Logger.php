@@ -305,7 +305,7 @@ class Logger
      */
     public static function maskErrors($mask)
     {
-        assert('is_int($mask)');
+        assert(is_int($mask));
 
         $currentEnabled = error_reporting();
         self::$logLevelStack[] = array($currentEnabled, self::$logMask);
@@ -373,8 +373,8 @@ class Logger
             $handler = $config->getString('logging.handler', 'syslog');
         }
 
-        if (class_exists($handler)) {
-            if (!in_array('SimpleSAML\Logger\LoggingHandlerInterface', class_implements($handler))) {
+        if (!array_key_exists($handler, $known_handlers) && class_exists($handler)) {
+            if (!in_array('SimpleSAML\Logger\LoggingHandlerInterface', class_implements($handler), true)) {
                 throw new \Exception("The logging handler '$handler' is invalid.");
             }
         } else {

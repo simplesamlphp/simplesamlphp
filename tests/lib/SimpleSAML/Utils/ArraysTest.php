@@ -2,12 +2,13 @@
 
 namespace SimpleSAML\Test\Utils;
 
+use PHPUnit\Framework\TestCase;
 use SimpleSAML\Utils\Arrays;
 
 /**
  * Tests for SimpleSAML\Utils\Arrays.
  */
-class ArraysTest extends \PHPUnit_Framework_TestCase
+class ArraysTest extends TestCase
 {
 
     /**

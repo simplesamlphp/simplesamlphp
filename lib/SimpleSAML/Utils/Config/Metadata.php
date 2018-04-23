@@ -224,13 +224,13 @@ class Metadata
         $firstAllowed = null;
 
         // look through the endpoint list for acceptable endpoints
-        foreach ($endpoints as $i => $ep) {
+        foreach ($endpoints as $ep) {
             if ($bindings !== null && !in_array($ep['Binding'], $bindings, true)) {
                 // unsupported binding, skip it
                 continue;
             }
 
-            if (array_key_exists('isDefault', $ep)) {
+            if (isset($ep['isDefault'])) {
                 if ($ep['isDefault'] === true) {
                     // this is the first endpoint with isDefault set to true
                     return $ep;
@@ -275,11 +275,8 @@ class Metadata
     public static function isHiddenFromDiscovery(array $metadata)
     {
         \SimpleSAML\Logger::maskErrors(E_ALL);
-        $hidden = in_array(self::$HIDE_FROM_DISCOVERY, $metadata['EntityAttributes'][self::$ENTITY_CATEGORY]);
+        $hidden = in_array(self::$HIDE_FROM_DISCOVERY, $metadata['EntityAttributes'][self::$ENTITY_CATEGORY], true);
         \SimpleSAML\Logger::popErrorMask();
-        if (is_bool($hidden)) {
-            return $hidden;
-        }
-        return false;
+        return $hidden === true;
     }
 }

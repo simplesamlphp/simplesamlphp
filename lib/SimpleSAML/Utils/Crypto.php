@@ -13,7 +13,7 @@ class Crypto
     /**
      * Decrypt data using AES-256-CBC and the key provided as a parameter.
      *
-     * @param string $ciphertext The IV and the encrypted data, concatenated.
+     * @param string $ciphertext The HMAC of the encrypted data, the IV used and the encrypted data, concatenated.
      * @param string $secret The secret to use to decrypt the data.
      *
      * @return string The decrypted data.
@@ -25,27 +25,51 @@ class Crypto
     private static function _aesDecrypt($ciphertext, $secret)
     {
         if (!is_string($ciphertext)) {
-            throw new \InvalidArgumentException('Input parameter "$ciphertext" must be a string.');
+            throw new \InvalidArgumentException(
+                'Input parameter "$ciphertext" must be a string with more than 48 characters.'
+            );
+        }
+        /** @var int $len */
+        $len = mb_strlen($ciphertext, '8bit');
+        if ($len < 48) {
+            throw new \InvalidArgumentException(
+                'Input parameter "$ciphertext" must be a string with more than 48 characters.'
+            );
         }
         if (!function_exists("openssl_decrypt")) {
             throw new \SimpleSAML_Error_Exception("The openssl PHP module is not loaded.");
         }
 
-        $raw    = defined('OPENSSL_RAW_DATA') ? OPENSSL_RAW_DATA : true;
-        $key    = openssl_digest($secret, 'sha256');
-        $method = 'AES-256-CBC';
-        $ivSize = 16;
-        $iv     = substr($ciphertext, 0, $ivSize);
-        $data   = substr($ciphertext, $ivSize);
+        // derive encryption and authentication keys from the secret
+        $key  = openssl_digest($secret, 'sha512');
 
-        return openssl_decrypt($data, $method, $key, $raw, $iv);
+        $hmac = mb_substr($ciphertext, 0, 32, '8bit');
+        $iv   = mb_substr($ciphertext, 32, 16, '8bit');
+        $msg  = mb_substr($ciphertext, 48, $len - 48, '8bit');
+
+        // authenticate the ciphertext
+        if (self::secureCompare(hash_hmac('sha256', $iv.$msg, substr($key, 64, 64), true), $hmac)) {
+            $plaintext = openssl_decrypt(
+                $msg,
+                'AES-256-CBC',
+                substr($key, 0, 64),
+                defined('OPENSSL_RAW_DATA') ? OPENSSL_RAW_DATA : 1,
+                $iv
+            );
+
+            if ($plaintext !== false) {
+                return $plaintext;
+            }
+        }
+
+        throw new \SimpleSAML_Error_Exception("Failed to decrypt ciphertext.");
     }
 
 
     /**
      * Decrypt data using AES-256-CBC and the system-wide secret salt as key.
      *
-     * @param string $ciphertext The IV used and the encrypted data, concatenated.
+     * @param string $ciphertext The HMAC of the encrypted data, the IV used and the encrypted data, concatenated.
      *
      * @return string The decrypted data.
      * @throws \InvalidArgumentException If $ciphertext is not a string.
@@ -66,7 +90,7 @@ class Crypto
      * @param string $data The data to encrypt.
      * @param string $secret The secret to use to encrypt the data.
      *
-     * @return string The IV and encrypted data concatenated.
+     * @return string An HMAC of the encrypted data, the IV and the encrypted data, concatenated.
      * @throws \InvalidArgumentException If $data is not a string.
      * @throws \SimpleSAML_Error_Exception If the openssl module is not loaded.
      *
@@ -82,13 +106,28 @@ class Crypto
             throw new \SimpleSAML_Error_Exception('The openssl PHP module is not loaded.');
         }
 
-        $raw    = defined('OPENSSL_RAW_DATA') ? OPENSSL_RAW_DATA : true;
-        $key    = openssl_digest($secret, 'sha256');
-        $method = 'AES-256-CBC';
-        $ivSize = 16;
-        $iv     = substr($key, 0, $ivSize);
+        // derive encryption and authentication keys from the secret
+        $key = openssl_digest($secret, 'sha512');
 
-        return $iv.openssl_encrypt($data, $method, $key, $raw, $iv);
+        // generate a random IV
+        $iv = openssl_random_pseudo_bytes(16);
+
+        // encrypt the message
+        /** @var string|false $ciphertext */
+        $ciphertext = openssl_encrypt(
+            $data,
+            'AES-256-CBC',
+            substr($key, 0, 64),
+            defined('OPENSSL_RAW_DATA') ? OPENSSL_RAW_DATA : 1,
+            $iv
+        );
+
+        if ($ciphertext === false) {
+            throw new \SimpleSAML_Error_Exception("Failed to encrypt plaintext.");
+        }
+
+        // return the ciphertext with proper authentication
+        return hash_hmac('sha256', $iv.$ciphertext, substr($key, 64, 64), true).$iv.$ciphertext;
     }
 
 
@@ -97,7 +136,7 @@ class Crypto
      *
      * @param string $data The data to encrypt.
      *
-     * @return string The IV and encrypted data concatenated.
+     * @return string An HMAC of the encrypted data, the IV and the encrypted data, concatenated.
      * @throws \InvalidArgumentException If $data is not a string.
      * @throws \SimpleSAML_Error_Exception If the openssl module is not loaded.
      *
@@ -142,6 +181,8 @@ class Crypto
      * missing key will cause an exception. Defaults to false.
      * @param string                    $prefix The prefix which should be used when reading from the metadata
      * array. Defaults to ''.
+     * @param bool                      $full_path Whether the filename found in the configuration contains the
+     * full path to the private key or not. Default to false.
      *
      * @return array|NULL Extracted private key, or NULL if no private key is present.
      * @throws \InvalidArgumentException If $required is not boolean or $prefix is not a string.
@@ -151,9 +192,9 @@ class Crypto
      * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
-    public static function loadPrivateKey(\SimpleSAML_Configuration $metadata, $required = false, $prefix = '')
+    public static function loadPrivateKey(\SimpleSAML_Configuration $metadata, $required = false, $prefix = '', $full_path = false)
     {
-        if (!is_bool($required) || !is_string($prefix)) {
+        if (!is_bool($required) || !is_string($prefix) || !is_bool($full_path)) {
             throw new \InvalidArgumentException('Invalid input parameters.');
         }
 
@@ -167,7 +208,10 @@ class Crypto
             }
         }
 
-        $file = Config::getCertPath($file);
+        if (!$full_path) {
+            $file = Config::getCertPath($file);
+        }
+
         $data = @file_get_contents($file);
         if ($data === false) {
             throw new \SimpleSAML_Error_Exception('Unable to load private key from file "'.$file.'"');
@@ -225,7 +269,7 @@ class Crypto
         }
 
         $keys = $metadata->getPublicKeys(null, false, $prefix);
-        if ($keys !== null) {
+        if (!empty($keys)) {
             foreach ($keys as $key) {
                 if ($key['type'] !== 'X509Certificate') {
                     continue;
@@ -252,7 +296,7 @@ class Crypto
 
             // normalize fingerprint(s) - lowercase and no colons
             foreach ($fps as &$fp) {
-                assert('is_string($fp)');
+                assert(is_string($fp));
                 $fp = strtolower(str_replace(':', '', $fp));
             }
 
@@ -325,7 +369,7 @@ class Crypto
         }
 
         // hash w/o salt
-        if (in_array(strtolower($algorithm), hash_algos())) {
+        if (in_array(strtolower($algorithm), hash_algos(), true)) {
             $alg_str = '{'.str_replace('SHA1', 'SHA', $algorithm).'}'; // LDAP compatibility
             $hash = hash(strtolower($algorithm), $password, true);
             return $alg_str.base64_encode($hash);
@@ -338,7 +382,7 @@ class Crypto
             $salt = openssl_random_pseudo_bytes($bytes);
         }
 
-        if ($algorithm[0] == 'S' && in_array(substr(strtolower($algorithm), 1), hash_algos())) {
+        if ($algorithm[0] == 'S' && in_array(substr(strtolower($algorithm), 1), hash_algos(), true)) {
             $alg = substr(strtolower($algorithm), 1); // 'sha256' etc
             $alg_str = '{'.str_replace('SSHA1', 'SSHA', $algorithm).'}'; // LDAP compatibility
             $hash = hash($alg, $password.$salt, true);
@@ -373,8 +417,8 @@ class Crypto
             return false; // length differs
         }
         $diff = 0;
-        for ($i = 0; $i < $len; ++$i) {
-            $diff |= $known[$i] ^ $user[$i];
+        for ($i = 0; $i < $len; $i++) {
+            $diff |= ord($known[$i]) ^ ord($user[$i]);
         }
         // if all the bytes in $a and $b are identical, $diff should be equal to 0
         return $diff === 0;
@@ -405,12 +449,12 @@ class Crypto
             $alg = preg_replace('/^(S?SHA)$/', '${1}1', $matches[1]);
 
             // hash w/o salt
-            if (in_array(strtolower($alg), hash_algos())) {
+            if (in_array(strtolower($alg), hash_algos(), true)) {
                 return self::secureCompare($hash, self::pwHash($password, $alg));
             }
 
             // hash w/ salt
-            if ($alg[0] === 'S' && in_array(substr(strtolower($alg), 1), hash_algos())) {
+            if ($alg[0] === 'S' && in_array(substr(strtolower($alg), 1), hash_algos(), true)) {
                 $php_alg = substr(strtolower($alg), 1);
 
                 // get hash length of this algorithm to learn how long the salt is

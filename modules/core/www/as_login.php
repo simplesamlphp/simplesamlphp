@@ -29,7 +29,7 @@ if (!empty($_REQUEST['saml:idp'])) {
 	$options['saml:idp'] = $_REQUEST['saml:idp'];
 }
 
-$as = new SimpleSAML_Auth_Simple($_REQUEST['AuthId']);
+$as = new \SimpleSAML\Auth\Simple($_REQUEST['AuthId']);
 $as->requireAuth($options);
 
 \SimpleSAML\Utils\HTTP::redirectTrustedURL($options['ReturnTo']);

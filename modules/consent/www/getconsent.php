@@ -87,7 +87,7 @@ $noconsentattributes = $state['consent:noconsentattributes'];
 
 // Remove attributes that do not require consent
 foreach ($attributes AS $attrkey => $attrval) {
-    if (in_array($attrkey, $noconsentattributes)) {
+    if (in_array($attrkey, $noconsentattributes, true)) {
         unset($attributes[$attrkey]);
     }
 }

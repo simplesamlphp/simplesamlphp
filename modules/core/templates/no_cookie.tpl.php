@@ -1,6 +1,6 @@
 <?php
 
-assert('array_key_exists("retryURL", $this->data)');
+assert(array_key_exists('retryURL', $this->data));
 $retryURL = $this->data['retryURL'];
 
 $header = htmlspecialchars($this->t('{core:no_cookie:header}'));

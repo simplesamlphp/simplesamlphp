@@ -148,7 +148,7 @@ class sspmod_core_Storage_SQLPermanentStorage {
 	
 	public function getKeys($type = NULL, $key1 = NULL, $key2 = NULL, $whichKey = 'type') {
 
-		if (!in_array($whichKey, array('key1', 'key2', 'type')))
+		if (!in_array($whichKey, array('key1', 'key2', 'type'), true))
 			throw new Exception('Invalid key type');
 			
 		$condition = self::getCondition($type, $key1, $key2);

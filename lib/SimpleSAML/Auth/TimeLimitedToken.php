@@ -1,75 +1,147 @@
 <?php
 
+namespace SimpleSAML\Auth;
 
-class SimpleSAML_Auth_TimeLimitedToken {
+/**
+ * A class that generates and verifies time-limited tokens.
+ */
+class TimeLimitedToken
+{
 
-	var $secretSalt;
-	var $lifetime;
-	var $skew;
+    /**
+     * @var string
+     */
+    protected $secretSalt;
 
-	/**
-	 * @param $secretSalt Must be random and unique per installation
-	 * @param $lifeTime Token lifetime in seconds
-	 * @param $skew  Allowed time skew between server that generates and the one that calculates the token
-	 */
-	public function __construct( $lifetime = 900, $secretSalt = NULL, $skew = 1) {
-		if ($secretSalt === NULL) {
-			$secretSalt = SimpleSAML\Utils\Config::getSecretSalt();
-		}
-	
-		$this->secretSalt = $secretSalt;
-		$this->lifetime = $lifetime;
-		$this->skew = $skew;
-	}
-	
-	public function addVerificationData($data) {
-		$this->secretSalt .= '|' . $data;
-	}
-	
-	
-	/**
-	 * Calculate the current time offset to the current time slot.
-	 * With some amount of time skew
-	 */
-	private function get_offset() {
-		return ( (time() - $this->skew) % ($this->lifetime + $this->skew) );
-	}
-	
-	/**
-	 * Calculate the given time slot for a given offset.
-	 */
-	private function calculate_time_slot($offset) {
-		$timeslot = floor( (time() - $offset) / ($this->lifetime + $this->skew) );
-		return $timeslot;
-	}
-	
-	/**
-	 * Calculates a token value for a given offset
-	 */
-	private function calculate_tokenvalue($offset) {
-		// A secret salt that should be randomly generated for each installation
-		return sha1( $this->calculate_time_slot($offset) . ':' . $this->secretSalt);
-	}
-	
-	/**
-	 * Generates a token which contains of a offset and a token value. Using current offset
-	 */
-	public function generate_token() {
-		$current_offset = $this->get_offset();
-		return dechex($current_offset) . '-' . $this->calculate_tokenvalue($current_offset);
-	}
-	
-	/**
-	 * Validates a full token, by calculating the token value for the provided 
-	 * offset and compares.
-	 */
-	public function validate_token($token) {
-		$splittedtoken = explode('-', $token);
-		$offset = hexdec($splittedtoken[0]);
-		$value  = $splittedtoken[1];
-		return ($this->calculate_tokenvalue($offset) === $value);
-	}
-	
+    /**
+     * @var int
+     */
+    protected $lifetime;
+
+    /**
+     * @var int
+     */
+    protected $skew;
+
+    /**
+     * @var string
+     */
+    protected $algo;
+
+
+    /**
+     * Create a new time-limited token.
+     *
+     * Please note that the default algorithm will change in SSP 1.15.0 to SHA-256 instead of SHA-1.
+     *
+     * @param int $lifetime Token lifetime in seconds. Defaults to 900 (15 min).
+     * @param string $secretSalt A random and unique salt per installation. Defaults to the salt in the configuration.
+     * @param int $skew The allowed time skew (in seconds) to correct clock deviations. Defaults to 1 second.
+     * @param string $algo The hash algorithm to use to generate the tokens. Defaults to SHA-1.
+     *
+     * @throws \InvalidArgumentException if the given parameters are invalid.
+     */
+    public function __construct($lifetime = 900, $secretSalt = null, $skew = 1, $algo = 'sha1')
+    {
+        if ($secretSalt === null) {
+            $secretSalt = \SimpleSAML\Utils\Config::getSecretSalt();
+        }
+
+        if (!in_array($algo, hash_algos(), true)) {
+            throw new \InvalidArgumentException('Invalid hash algorithm "'.$algo.'"');
+        }
+
+        $this->secretSalt = $secretSalt;
+        $this->lifetime = $lifetime;
+        $this->skew = $skew;
+        $this->algo = $algo;
+    }
+
+
+    /**
+     * Add some given data to the current token. This data will be needed later too for token validation.
+     *
+     * This mechanism can be used to provide context for a token, such as a user identifier of the only subject
+     * authorised to use it. Note also that multiple data can be added to the token. This means that upon validation,
+     * not only the same data must be added, but also in the same order.
+     *
+     * @param string $data The data to incorporate into the current token.
+     */
+    public function addVerificationData($data)
+    {
+        $this->secretSalt .= '|'.$data;
+    }
+
+
+    /**
+     * Calculates a token value for a given offset.
+     *
+     * @param int $offset The offset to use.
+     * @param int|null $time The time stamp to which the offset is relative to. Defaults to the current time.
+     *
+     * @return string The token for the given time and offset.
+     */
+    private function calculateTokenValue($offset, $time = null)
+    {
+        if ($time === null) {
+            $time = time();
+        }
+        // a secret salt that should be randomly generated for each installation
+        return hash(
+            $this->algo,
+            $offset.':'.floor(($time - $offset) / ($this->lifetime + $this->skew)).':'.$this->secretSalt
+        );
+    }
+
+
+    /**
+     * Generates a token that contains an offset and a token value, using the current offset.
+     *
+     * @return string A time-limited token with the offset respect to the beginning of its time slot prepended.
+     */
+    public function generate()
+    {
+        $time = time();
+        $current_offset = ($time - $this->skew) % ($this->lifetime + $this->skew);
+        return dechex($current_offset).'-'.$this->calculateTokenValue($current_offset, $time);
+    }
+
+
+    /**
+     * @see generate
+     * @deprecated This method will be removed in SSP 2.0. Use generate() instead.
+     */
+    public function generate_token()
+    {
+        return $this->generate();
+    }
+
+
+    /**
+     * Validates a token by calculating the token value for the provided offset and comparing it.
+     *
+     * @param string $token The token to validate.
+     *
+     * @return boolean True if the given token is currently valid, false otherwise.
+     */
+    public function validate($token)
+    {
+        $splittoken = explode('-', $token);
+        if (count($splittoken) !== 2) {
+            return false;
+        }
+        $offset = intval(hexdec($splittoken[0]));
+        $value = $splittoken[1];
+        return ($this->calculateTokenValue($offset) === $value);
+    }
+
+
+    /**
+     * @see validate
+     * @deprecated This method will be removed in SSP 2.0. Use validate() instead.
+     */
+    public function validate_token($token)
+    {
+        return $this->validate($token);
+    }
 }
-
-

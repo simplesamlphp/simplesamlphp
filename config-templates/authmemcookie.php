@@ -33,7 +33,7 @@ $config = array(
 	 * Default:
 	 *  No default value.
 	 */
-	'username' => NULL,
+	'username' => null,
 
 	/*
 	 * This option specifies the name of the attribute which contains the groups of the user. Set this option to
@@ -43,9 +43,9 @@ $config = array(
 	 *  'groups' => 'edupersonaffiliation',
 	 *
 	 * Default:
-	 *  'groups' => NULL,
+	 *  'groups' => null,
 	 */
-	'groups' => NULL,
+	'groups' => null,
 
 	/*
 	 * This option contains the hostnames or IP addresses of the memcache servers where we should store the

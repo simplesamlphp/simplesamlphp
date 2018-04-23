@@ -48,7 +48,7 @@ class sspmod_authfacebook_Facebook extends BaseFacebook
     $cookie_name = $this->getSharedSessionCookieName();
     if (isset($_COOKIE[$cookie_name])) {
       $data = $this->parseSignedRequest($_COOKIE[$cookie_name]);
-      if ($data && !empty($data['domain']) &&
+      if (!empty($data) && !empty($data['domain']) &&
           self::isAllowedDomain($this->getHttpHost(), $data['domain'])) {
         // good case
         $this->sharedSessionID = $data['id'];
@@ -145,5 +145,12 @@ class sspmod_authfacebook_Facebook extends BaseFacebook
       array_unshift($parts, $this->sharedSessionID);
     }
     return implode('_', $parts);
+  }
+
+  protected function establishCSRFTokenState() {
+     if ($this->state === null) {
+          $this->state = SimpleSAML_Auth_State::getStateId($this->ssp_state);
+          $this->setPersistentData('state', $this->state);
+     }
   }
 }

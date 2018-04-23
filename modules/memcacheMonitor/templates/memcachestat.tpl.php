@@ -33,7 +33,7 @@ $table = $this->data['table'];
 $column_titles = array();
 foreach($table as $row_title => $row_data) {
 	foreach($row_data as $ct => $foo) {
-		if(!in_array($ct, $column_titles)) {
+		if(!in_array($ct, $column_titles, true)) {
 			$column_titles[] = $ct;
 		}
 	}

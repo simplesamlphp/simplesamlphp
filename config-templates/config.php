@@ -1,7 +1,7 @@
 <?php
-/* 
+/*
  * The configuration of SimpleSAMLphp
- * 
+ *
  */
 
 $config = array(
@@ -19,7 +19,6 @@ $config = array(
      * baseurlpath is a *URL path* (not a filesystem path).
      * A valid format for 'baseurlpath' is:
      * [(http|https)://(hostname|fqdn)[:port]]/[path/to/simplesaml/]
-     * (note that it must end with a '/')
      *
      * The full url format is useful if your SimpleSAMLphp setup is hosted behind
      * a reverse proxy. In that case you can specify the external url here.
@@ -31,6 +30,28 @@ $config = array(
     'baseurlpath' => 'simplesaml/',
 
     /*
+     * The 'application' configuration array groups a set configuration options
+     * relative to an application protected by SimpleSAMLphp.
+     */
+    //'application' => array(
+        /*
+         * The 'baseURL' configuration option allows you to specify a protocol,
+         * host and optionally a port that serves as the canonical base for all
+         * your application's URLs. This is useful when the environment
+         * observed in the server differs from the one observed by end users,
+         * for example, when using a load balancer to offload TLS.
+         *
+         * Note that this configuration option does not allow setting a path as
+         * part of the URL. If your setup involves URL rewriting or any other
+         * tricks that would result in SimpleSAMLphp observing a URL for your
+         * application's scripts different than the canonical one, you will
+         * need to compute the right URLs yourself and pass them dynamically
+         * to SimpleSAMLphp's API.
+         */
+        //'baseURL' => 'https://example.com',
+    //),
+
+    /*
      * The following settings are *filesystem paths* which define where
      * SimpleSAMLphp can find or write the following things:
      * - 'certdir': The base directory for certificate and key material.
@@ -39,7 +60,7 @@ $config = array(
      * - 'temdir': Saving temporary files. SimpleSAMLphp will attempt to create
      *   this directory if it doesn't exist.
      * When specified as a relative path, this is relative to the SimpleSAMLphp
-     * root directory. 
+     * root directory.
      */
     'certdir' => 'cert/',
     'loggingdir' => 'log/',
@@ -53,6 +74,13 @@ $config = array(
      */
     'technicalcontact_name' => 'Administrator',
     'technicalcontact_email' => 'na@example.org',
+
+    /*
+     * The envelope from address for outgoing emails.
+     * This should be in a domain that has your application's IP addresses in its SPF record
+     * to prevent it from being rejected by mail filters.
+     */
+    //'sendmail_from' => 'no-reply@example.org',
 
     /*
      * The timezone of the server. This option should be set to the timezone you want
@@ -75,7 +103,7 @@ $config = array(
      * 'secretsalt' can be any valid string of any length.
      *
      * A possible way to generate a random salt is by running the following command from a unix shell:
-     * tr -c -d '0123456789abcdefghijklmnopqrstuvwxyz' </dev/urandom | dd bs=32 count=1 2>/dev/null;echo
+     * LC_CTYPE=C tr -c -d '0123456789abcdefghijklmnopqrstuvwxyz' </dev/urandom | dd bs=32 count=1 2>/dev/null;echo
      */
     'secretsalt' => 'defaultsecretsalt',
 
@@ -349,6 +377,7 @@ $config = array(
      */
     'database.username' => 'simplesamlphp',
     'database.password' => 'secret',
+    'database.options' => array(),
 
     /*
      * (Optional) Table prefix
@@ -503,7 +532,7 @@ $config = array(
     /*
      * Options to override the default settings for php sessions.
      */
-    'session.phpsession.cookiename' => null,
+    'session.phpsession.cookiename' => 'SimpleSAML',
     'session.phpsession.savepath' => null,
     'session.phpsession.httponly' => true,
 
@@ -608,7 +637,7 @@ $config = array(
      * than one instance is using memcache, you probably want to assign
      * a unique value per instance to this setting to avoid data collision.
      */
-    'memcache_store.prefix' => null,
+    'memcache_store.prefix' => '',
 
     /*
      * This value is the duration data should be stored in memcache. Data
@@ -632,6 +661,37 @@ $config = array(
     /*************************************
      | LANGUAGE AND INTERNATIONALIZATION |
      *************************************/
+
+    /*
+     * Language-related options.
+     */
+    'language' => array(
+        /*
+         * An array in the form 'language' => <list of alternative languages>.
+         *
+         * Each key in the array is the ISO 639 two-letter code for a language,
+         * and its value is an array with a list of alternative languages that
+         * can be used if the given language is not available at some point.
+         * Each alternative language is also specified by its ISO 639 code.
+         *
+         * For example, for the "no" language code (Norwegian), we would have:
+         *
+         * 'priorities' => array(
+         *      'no' => array('nb', 'nn', 'en', 'se'),
+         *      ...
+         * ),
+         *
+         * establishing that if a translation for the "no" language code is
+         * not available, we look for translations in "nb" (Norwegian Bokmål),
+         * and so on, in that order.
+         */
+        'priorities' => array(
+            'no' => array('nb', 'nn', 'en', 'se'),
+            'nb' => array('no', 'nn', 'en', 'se'),
+            'nn' => array('no', 'nb', 'en', 'se'),
+            'se' => array('nb', 'no', 'nn', 'en'),
+        ),
+    ),
 
     /*
      * Languages available, RTL languages, and what language is the default.
@@ -725,13 +785,29 @@ $config = array(
      *
      * By default, twig templates are not cached. To turn on template caching:
      * Set 'template.cache' to an absolute path pointing to a directory that
-     * SimpleSAMLphp has read and write permissions to. Then, set
-     * 'template.auto_reload' to false.
-     *
-     * When upgrading or changing themes, delete the contents of the cache.
+     * SimpleSAMLphp has read and write permissions to.
      */
-    'template.auto_reload' => true,
     //'template.cache' => '',
+
+    /*
+     * Set the 'template.auto_reload' to true if you would like SimpleSAMLphp to
+     * recompile the templates (when using the template cache) if the templates
+     * change. If you don't want to check the source templates for every request,
+     * set it to false.
+     */
+    'template.auto_reload' => false,
+
+    /*
+     * Set this option to true to indicate that your installation of SimpleSAMLphp
+     * is running in a production environment. This will affect the way resources
+     * are used, offering an optimized version when running in production, and an
+     * easy-to-debug one when not. Set it to false when you are testing or
+     * developing the software.
+     *
+     * Defaults to true.
+     */
+    'production' => true,
+
 
 
     /*********************
@@ -889,7 +965,7 @@ $config = array(
      * - 'validateFingerprint': The fingerprint of the certificate used to sign the metadata. You don't need this
      *                          option if you don't want to validate the signature on the metadata. Optional.
      * - 'cachedir': Directory where metadata can be cached. Optional.
-     * - 'cachelength': Maximum time metadata cah be cached, in seconds. Default to 24
+     * - 'cachelength': Maximum time metadata can be cached, in seconds. Defaults to 24
      *                  hours (86400 seconds). Optional.
      *
      * PDO metadata handler:
@@ -962,7 +1038,7 @@ $config = array(
     'metadata.sign.privatekey' => null,
     'metadata.sign.privatekey_pass' => null,
     'metadata.sign.certificate' => null,
-
+    'metadata.sign.algorithm' => null,
 
 
     /****************************
@@ -975,6 +1051,7 @@ $config = array(
      * - 'phpsession': Limited datastore, which uses the PHP session.
      * - 'memcache': Key-value datastore, based on memcache.
      * - 'sql': SQL datastore, using PDO.
+     * - 'redis': Key-value datastore, based on redis.
      *
      * The default datastore is 'phpsession'.
      *
@@ -1000,4 +1077,15 @@ $config = array(
      * The prefix we should use on our tables.
      */
     'store.sql.prefix' => 'SimpleSAMLphp',
+
+    /*
+     * The hostname and port of the Redis datastore instance.
+     */
+    'store.redis.host' => 'localhost',
+    'store.redis.port' => 6379,
+
+    /*
+     * The prefix we should use on our Redis datastore.
+     */
+    'store.redis.prefix' => 'SimpleSAMLphp',
 );

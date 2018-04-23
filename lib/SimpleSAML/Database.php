@@ -90,18 +90,16 @@ class Database
 
         // connect to any configured slaves
         $slaves = $config->getArray('database.slaves', array());
-        if (count($slaves >= 1)) {
-            foreach ($slaves as $slave) {
-                array_push(
-                    $this->dbSlaves,
-                    $this->connect(
-                        $slave['dsn'],
-                        $slave['username'],
-                        $slave['password'],
-                        $driverOptions
-                    )
-                );
-            }
+        foreach ($slaves as $slave) {
+            array_push(
+                $this->dbSlaves,
+                $this->connect(
+                    $slave['dsn'],
+                    $slave['username'],
+                    $slave['password'],
+                    $driverOptions
+                )
+            );
         }
 
         $this->tablePrefix = $config->getString('database.prefix', '');
@@ -198,9 +196,9 @@ class Database
      */
     private function query($db, $stmt, $params)
     {
-        assert('is_object($db)');
-        assert('is_string($stmt)');
-        assert('is_array($params)');
+        assert(is_object($db));
+        assert(is_string($stmt));
+        assert(is_array($params));
 
         try {
             $query = $db->prepare($stmt);
@@ -234,8 +232,8 @@ class Database
      */
     private function exec($db, $stmt)
     {
-        assert('is_object($db)');
-        assert('is_string($stmt)');
+        assert(is_object($db));
+        assert(is_string($stmt));
 
         try {
             return $db->exec($stmt);

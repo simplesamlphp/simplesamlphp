@@ -70,7 +70,7 @@ $config = SimpleSAML_Configuration::getInstance();
 $cA_config = SimpleSAML_Configuration::getConfig('module_consentAdmin.php');
 $authority = $cA_config->getValue('authority');
 
-$as = new SimpleSAML_Auth_Simple($authority);
+$as = new \SimpleSAML\Auth\Simple($authority);
 
 // If request is a logout request
 if (array_key_exists('logout', $_REQUEST)) {
@@ -175,7 +175,7 @@ if ($action !== null && $sp_entityid !== null) {
     } else {
         if ($action == 'false') {
             // Got consent, so this is a request to remove it
-            $rowcount = $consent_storage->deleteConsent($hashed_user_id, $targeted_id, $attribute_hash);
+            $rowcount = $consent_storage->deleteConsent($hashed_user_id, $targeted_id);
             if ($rowcount > 0) {
                 $res = "removed";
             }

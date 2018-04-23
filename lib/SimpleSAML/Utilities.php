@@ -192,9 +192,9 @@ class SimpleSAML_Utilities
 
     private static function _doRedirect($url, $parameters = array())
     {
-        assert('is_string($url)');
-        assert('!empty($url)');
-        assert('is_array($parameters)');
+        assert(is_string($url));
+        assert(!empty($url));
+        assert(is_array($parameters));
 
         if (!empty($parameters)) {
             $url = self::addURLparameter($url, $parameters);
@@ -254,9 +254,9 @@ class SimpleSAML_Utilities
      */
     public static function redirect($url, $parameters = array(), $allowed_redirect_hosts = null)
     {
-        assert('is_string($url)');
-        assert('strlen($url) > 0');
-        assert('is_array($parameters)');
+        assert(is_string($url));
+        assert(strlen($url) > 0);
+        assert(is_array($parameters));
 
         if ($allowed_redirect_hosts !== null) {
             $url = self::checkURLAllowed($url, $allowed_redirect_hosts);
@@ -297,12 +297,12 @@ class SimpleSAML_Utilities
 
 
     /**
-     * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Utils\XML::isDOMElementOfType()
+     * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Utils\XML::isDOMNodeOfType()
      *     instead.
      */
     public static function isDOMElementOfType(DOMNode $element, $name, $nsURI)
     {
-        return SimpleSAML\Utils\XML::isDOMElementOfType($element, $name, $nsURI);
+        return SimpleSAML\Utils\XML::isDOMNodeOfType($element, $name, $nsURI);
     }
 
 
@@ -358,7 +358,7 @@ class SimpleSAML_Utilities
      */
     public static function generateRandomBytes($length)
     {
-        assert('is_int($length)');
+        assert(is_int($length));
 
         return openssl_random_pseudo_bytes($length);
     }
@@ -557,8 +557,8 @@ class SimpleSAML_Utilities
      */
     public static function createHttpPostRedirectLink($destination, $post)
     {
-        assert('is_string($destination)');
-        assert('is_array($post)');
+        assert(is_string($destination));
+        assert(is_array($post));
 
         $postId = SimpleSAML\Utils\Random::generateID();
         $postData = array(
@@ -583,7 +583,7 @@ class SimpleSAML_Utilities
      */
     public static function validateCA($certificate, $caFile)
     {
-        SimpleSAML_XML_Validator::validateCertificate($certificate, $caFile);
+        \SimpleSAML\XML\Validator::validateCertificate($certificate, $caFile);
     }
 
 

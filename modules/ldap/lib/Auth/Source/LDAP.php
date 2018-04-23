@@ -27,8 +27,8 @@ class sspmod_ldap_Auth_Source_LDAP extends sspmod_core_Auth_UserPassBase
      */
     public function __construct($info, $config)
     {
-        assert('is_array($info)');
-        assert('is_array($config)');
+        assert(is_array($info));
+        assert(is_array($config));
 
         // Call the parent constructor first, as required by the interface
         parent::__construct($info, $config);
@@ -48,8 +48,8 @@ class sspmod_ldap_Auth_Source_LDAP extends sspmod_core_Auth_UserPassBase
      */
     protected function login($username, $password, array $sasl_args = null)
     {
-        assert('is_string($username)');
-        assert('is_string($password)');
+        assert(is_string($username));
+        assert(is_string($password));
 
         return $this->ldapConfig->login($username, $password, $sasl_args);
     }

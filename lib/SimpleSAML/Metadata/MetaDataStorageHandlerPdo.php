@@ -60,7 +60,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerPdo extends SimpleSAML_Metadata_
      */
     public function __construct($config)
     {
-        assert('is_array($config)');
+        assert(is_array($config));
 
         $this->db = SimpleSAML\Database::getInstance();
     }
@@ -80,11 +80,11 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerPdo extends SimpleSAML_Metadata_
      */
     private function load($set)
     {
-        assert('is_string($set)');
+        assert(is_string($set));
 
         $tableName = $this->getTableName($set);
 
-        if (!in_array($set, $this->supportedSets)) {
+        if (!in_array($set, $this->supportedSets, true)) {
             return null;
         }
 
@@ -119,7 +119,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerPdo extends SimpleSAML_Metadata_
      */
     public function getMetadataSet($set)
     {
-        assert('is_string($set)');
+        assert(is_string($set));
 
         if (array_key_exists($set, $this->cachedMetadata)) {
             return $this->cachedMetadata[$set];
@@ -145,7 +145,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerPdo extends SimpleSAML_Metadata_
 
     private function generateDynamicHostedEntityID($set)
     {
-        assert('is_string($set)');
+        assert(is_string($set));
 
         // get the configuration
         $baseurl = \SimpleSAML\Utils\HTTP::getBaseURL();
@@ -179,11 +179,11 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerPdo extends SimpleSAML_Metadata_
      */
     public function addEntry($index, $set, $entityData)
     {
-        assert('is_string($index)');
-        assert('is_string($set)');
-        assert('is_array($entityData)');
+        assert(is_string($index));
+        assert(is_string($set));
+        assert(is_array($entityData));
 
-        if (!in_array($set, $this->supportedSets)) {
+        if (!in_array($set, $this->supportedSets, true)) {
             return false;
         }
 
@@ -229,7 +229,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerPdo extends SimpleSAML_Metadata_
      */
     private function getTableName($table)
     {
-        assert('is_string($table)');
+        assert(is_string($table));
 
         return $this->db->applyPrefix(str_replace("-", "_", $this->tablePrefix.$table));
     }

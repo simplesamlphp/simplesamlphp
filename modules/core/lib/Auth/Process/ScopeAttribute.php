@@ -5,8 +5,8 @@
  *
  * @package SimpleSAMLphp
  */
-class sspmod_core_Auth_Process_ScopeAttribute extends SimpleSAML_Auth_ProcessingFilter {
-
+class sspmod_core_Auth_Process_ScopeAttribute extends SimpleSAML_Auth_ProcessingFilter
+{
 	/**
 	 * The attribute we extract the scope from.
 	 *
@@ -44,9 +44,10 @@ class sspmod_core_Auth_Process_ScopeAttribute extends SimpleSAML_Auth_Processing
 	 * @param array $config  Configuration information about this filter.
 	 * @param mixed $reserved  For future use.
 	 */
-	public function __construct($config, $reserved) {
+	public function __construct($config, $reserved)
+    {
 		parent::__construct($config, $reserved);
-		assert('is_array($config)');
+		assert(is_array($config));
 
 		$config = SimpleSAML_Configuration::loadFromArray($config, 'ScopeAttribute');
 
@@ -62,9 +63,10 @@ class sspmod_core_Auth_Process_ScopeAttribute extends SimpleSAML_Auth_Processing
 	 *
 	 * @param array &$request  The current request
 	 */
-	public function process(&$request) {
-		assert('is_array($request)');
-		assert('array_key_exists("Attributes", $request)');
+	public function process(&$request)
+    {
+		assert(is_array($request));
+		assert(array_key_exists('Attributes', $request));
 
 		$attributes =& $request['Attributes'];
 
@@ -80,13 +82,12 @@ class sspmod_core_Auth_Process_ScopeAttribute extends SimpleSAML_Auth_Processing
 			$attributes[$this->targetAttribute] = array();
 		}
 
-		if ($this->onlyIfEmpty and count($attributes[$this->targetAttribute]) > 0) {
+		if ($this->onlyIfEmpty && count($attributes[$this->targetAttribute]) > 0) {
 			return;
 		}
 
 		foreach ($attributes[$this->scopeAttribute] as $scope) {
-
-			if (strpos($scope, '@') !== FALSE) {
+			if (strpos($scope, '@') !== false) {
 				$scope = explode('@', $scope, 2);
 				$scope = $scope[1];
 			}
@@ -94,7 +95,7 @@ class sspmod_core_Auth_Process_ScopeAttribute extends SimpleSAML_Auth_Processing
 			foreach ($attributes[$this->sourceAttribute] as $value) {
 				$value = $value . '@' . $scope;
 
-				if (in_array($value, $attributes[$this->targetAttribute], TRUE)) {
+				if (in_array($value, $attributes[$this->targetAttribute], true)) {
 					// Already present
 					continue;
 				}
@@ -102,7 +103,5 @@ class sspmod_core_Auth_Process_ScopeAttribute extends SimpleSAML_Auth_Processing
 				$attributes[$this->targetAttribute][] = $value;
 			}
 		}
-
 	}
-
 }

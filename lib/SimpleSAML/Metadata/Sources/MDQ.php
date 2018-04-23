@@ -65,7 +65,7 @@ class MDQ extends \SimpleSAML_Metadata_MetaDataStorageSource
      */
     protected function __construct($config)
     {
-        assert('is_array($config)');
+        assert(is_array($config));
 
         if (!array_key_exists('server', $config)) {
             throw new \Exception(__CLASS__.": the 'server' configuration option is not set.");
@@ -118,8 +118,8 @@ class MDQ extends \SimpleSAML_Metadata_MetaDataStorageSource
      */
     private function getCacheFilename($set, $entityId)
     {
-        assert('is_string($set)');
-        assert('is_string($entityId)');
+        assert(is_string($set));
+        assert(is_string($entityId));
 
         $cachekey = sha1($entityId);
         return $this->cacheDir.'/'.$set.'-'.$cachekey.'.cached.xml';
@@ -138,8 +138,8 @@ class MDQ extends \SimpleSAML_Metadata_MetaDataStorageSource
      */
     private function getFromCache($set, $entityId)
     {
-        assert('is_string($set)');
-        assert('is_string($entityId)');
+        assert(is_string($set));
+        assert(is_string($entityId));
 
         if (empty($this->cacheDir)) {
             return null;
@@ -196,9 +196,9 @@ class MDQ extends \SimpleSAML_Metadata_MetaDataStorageSource
      */
     private function writeToCache($set, $entityId, $data)
     {
-        assert('is_string($set)');
-        assert('is_string($entityId)');
-        assert('is_array($data)');
+        assert(is_string($set));
+        assert(is_string($entityId));
+        assert(is_array($data));
 
         if (empty($this->cacheDir)) {
             return;
@@ -224,7 +224,7 @@ class MDQ extends \SimpleSAML_Metadata_MetaDataStorageSource
      */
     private static function getParsedSet(\SimpleSAML_Metadata_SAMLParser $entity, $set)
     {
-        assert('is_string($set)');
+        assert(is_string($set));
 
         switch ($set) {
             case 'saml20-idp-remote':
@@ -262,17 +262,24 @@ class MDQ extends \SimpleSAML_Metadata_MetaDataStorageSource
      *
      * @return array An associative array with metadata for the given entity, or NULL if we are unable to
      *         locate the entity.
-     * @throws \Exception If an error occurs while downloading metadata, validating the signature or writing to cache.
+     * @throws \Exception If an error occurs while validating the signature or the metadata is in an
+     *         incorrect set.
      */
     public function getMetaData($index, $set)
     {
-        assert('is_string($index)');
-        assert('is_string($set)');
+        assert(is_string($index));
+        assert(is_string($set));
 
         Logger::info(__CLASS__.': loading metadata entity ['.$index.'] from ['.$set.']');
 
         // read from cache if possible
-        $data = $this->getFromCache($set, $index);
+        try {
+            $data = $this->getFromCache($set, $index);
+        } catch (\Exception $e) {
+            Logger::error($e->getMessage());
+            // proceed with fetching metadata even if the cache is broken
+            $data = null;
+        }
 
         if ($data !== null && array_key_exists('expires', $data) && $data['expires'] < time()) {
             // metadata has expired
@@ -292,14 +299,15 @@ class MDQ extends \SimpleSAML_Metadata_MetaDataStorageSource
         try {
             $xmldata = HTTP::fetch($mdq_url);
         } catch (\Exception $e) {
-            Logger::warning('Fetching metadata for '.$index.': '.$e->getMessage());
+            // Avoid propagating the exception, make sure we can handle the error later
+            $xmldata = false;
         }
 
         if (empty($xmldata)) {
             $error = error_get_last();
-            throw new \Exception(
-                'Error downloading metadata for "'.$index.'" from "'.$mdq_url.'": '.$error['message']
-            );
+            Logger::info('Unable to fetch metadata for "'.$index.'" from '.$mdq_url.': '.
+                (is_array($error) ? $error['message'] : 'no error available'));
+            return null;
         }
 
         /** @var string $xmldata */
@@ -317,7 +325,12 @@ class MDQ extends \SimpleSAML_Metadata_MetaDataStorageSource
             throw new \Exception(__CLASS__.': no metadata for set "'.$set.'" available from "'.$index.'".');
         }
 
-        $this->writeToCache($set, $index, $data);
+        try {
+            $this->writeToCache($set, $index, $data);
+        } catch (\Exception $e) {
+            // Proceed without writing to cache
+            Logger::error('Error writing MDQ result to cache: '.$e->getMessage());
+        }
 
         return $data;
     }

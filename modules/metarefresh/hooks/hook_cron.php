@@ -5,9 +5,9 @@
  * @param array &$croninfo  Output
  */
 function metarefresh_hook_cron(&$croninfo) {
-	assert('is_array($croninfo)');
-	assert('array_key_exists("summary", $croninfo)');
-	assert('array_key_exists("tag", $croninfo)');
+	assert(is_array($croninfo));
+	assert(array_key_exists('summary', $croninfo));
+	assert(array_key_exists('tag', $croninfo));
 
 	SimpleSAML\Logger::info('cron [metarefresh]: Running cron in cron tag [' . $croninfo['tag'] . '] ');
 
@@ -21,7 +21,7 @@ function metarefresh_hook_cron(&$croninfo) {
 		foreach ($sets AS $setkey => $set) {
 			// Only process sets where cron matches the current cron tag
 			$cronTags = $set->getArray('cron');
-			if (!in_array($croninfo['tag'], $cronTags)) continue;
+			if (!in_array($croninfo['tag'], $cronTags, true)) continue;
 
 			SimpleSAML\Logger::info('cron [metarefresh]: Executing set [' . $setkey . ']');
 

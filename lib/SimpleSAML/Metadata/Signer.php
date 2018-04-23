@@ -181,7 +181,7 @@ class SimpleSAML_Metadata_Signer
             XMLSecurityKey::RSA_SHA512,
         );
 
-        if (!in_array($alg, $supported_algs)) {
+        if (!in_array($alg, $supported_algs, true)) {
             throw new \SimpleSAML\Error\CriticalConfigurationError("Unknown signature algorithm '$alg'");
         }
 
@@ -263,11 +263,7 @@ class SimpleSAML_Metadata_Signer
         $rootNode = $xml->firstChild;
 
         // sign the metadata with our private key
-        if ($type == 'ADFS IdP') {
-            $objXMLSecDSig = new sspmod_adfs_XMLSecurityDSig($metadataString);
-        } else {
-            $objXMLSecDSig = new XMLSecurityDSig();
-        }
+        $objXMLSecDSig = new XMLSecurityDSig();
 
         $objXMLSecDSig->setCanonicalMethod(XMLSecurityDSig::EXC_C14N);
 

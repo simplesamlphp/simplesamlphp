@@ -52,7 +52,10 @@ cp -rv "$TARGET/metadata-templates/"* "$TARGET/metadata/"
 rm -rf "$TARGET/.git"
 rm "$TARGET/.coveralls.yml"
 rm "$TARGET/.travis.yml"
-rm "$TARGET/.gitignore"
+rm "$TARGET/psalm.xml"
+rm "$TARGET"/{,modules}/.gitignore
+rm "$TARGET/.gitattributes"
+rm "$TARGET"/{cache,config,metadata,locales}/.gitkeep
 rm "$TARGET/.editorconfig"
 rm "$TARGET/composer.phar"
 tar --owner 0 --group 0 -cvzf "$TARGET.tar.gz" "$TARGET"

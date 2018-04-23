@@ -1,8 +1,8 @@
 Theming the user interface in SimpleSAMLphp
 ===========================================
 
-<!-- 
-	This file is written in Markdown syntax. 
+<!--
+	This file is written in Markdown syntax.
 	For more information about how to use the Markdown syntax, read here:
 	http://daringfireball.net/projects/markdown/syntax
 -->
@@ -86,7 +86,7 @@ For example, to override the `preprodwarning` template, (the file is located in 
 
 
 Say in a module `foomodule`, some code requests to present the `bar.php` template, SimpleSAMLphp will:
-	
+
  1. first look in your theme for a replacement: `modules/mymodule/themes/fancytheme/foomodule/bar.php`.
  2. If not found, it will use the base template of that module: `modules/foomodule/templates/bar.php`
 
@@ -96,3 +96,40 @@ Adding resource files
 
 You can put resource files within the www folder of your module, to make your module completely independent with included css, icons etc.
 
+```
+modules
+└───mymodule
+    └───themes
+    └───www
+        └───logo.png
+        └───style.css
+```
+
+Reference these resources in your custom PHP templates under `themes/fancytheme` by using a generator for the URL:
+```php
+<?php echo SimpleSAML\Module::getModuleURL('mymodule/logo.png'); ?>
+```
+
+Example for a custom CSS stylesheet file:
+```html
+<link rel="stylesheet" type="text/css" href="<?php echo SimpleSAML\Module::getModuleURL('mymodule/style.css'); ?>" />
+```
+
+Migrating to Twig templates
+---------------------------
+
+In version 1.15, a new templating system based on [Twig](https://twig.symfony.com/) was introduced. As modules migrate, it will become necessary for themes to include both the old templating style described above and new Twig-based templates.
+
+Twig works by extending a base template, which can itself include other partial templates. Some of the content of the old `includes/header.php` template is now located in a separate `_header.twig` file. This can be customized by copying it from the base template:
+
+	cp templates/_header.twig modules/mymodule/themes/fancytheme/default/
+
+If you need to make more extensive customizations to the base template, you should copy it from the base theme:
+
+	cp templates/base.twig modules/mymodule/themes/fancytheme/default/
+
+Any references to `$this->data['baseurlpath']` in old-style templates can be replaced with `{{baseurlpath}}` in Twig templates. Likewise, references to `SimpleSAML_Module::getModuleURL()` can be replaced with `{{baseurlpath}}module.php/mymodule/...`
+
+See the [Twig documentation](https://twig.symfony.com/doc/1.x/templates.html) for more information on using variables and expressions in Twig templates, and the SimpleSAMLphp wiki for [our conventions](https://github.com/simplesamlphp/simplesamlphp/wiki/Twig-conventions).
+
+The wiki also includes some information on [migrating translations](https://github.com/simplesamlphp/simplesamlphp/wiki/Migrating-translation-in-Twig) and [migrating templates](https://github.com/simplesamlphp/simplesamlphp/wiki/Twig:-Migrating-templates).

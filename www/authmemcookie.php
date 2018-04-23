@@ -27,7 +27,7 @@ try {
     $amc = SimpleSAML_AuthMemCookie::getInstance();
 
     $sourceId = $amc->getAuthSource();
-    $s = new SimpleSAML_Auth_Simple($sourceId);
+    $s = new \SimpleSAML\Auth\Simple($sourceId);
 
     // check if the user is authorized. We attempt to authenticate the user if not
     $s->requireAuth();

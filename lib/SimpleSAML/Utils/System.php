@@ -83,7 +83,8 @@ class System
             if (!mkdir($tempDir, 0700, true)) {
                 $error = error_get_last();
                 throw new \SimpleSAML_Error_Exception(
-                    'Error creating temporary directory "'.$tempDir.'": '.$error['message']
+                    'Error creating temporary directory "'.$tempDir.'": '.
+                    (is_array($error) ? $error['message'] : 'no error available')
                 );
             }
         } elseif (function_exists('posix_getuid')) {
@@ -169,6 +170,8 @@ class System
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      * @author Andjelko Horvat
      * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
+     *
+     * @return void
      */
     public static function writeFile($filename, $data, $mode = 0600)
     {
@@ -182,7 +185,8 @@ class System
         if ($res === false) {
             $error = error_get_last();
             throw new \SimpleSAML_Error_Exception(
-                'Error saving file "'.$tmpFile.'": '.$error['message']
+                'Error saving file "'.$tmpFile.'": '.
+                (is_array($error) ? $error['message'] : 'no error available')
             );
         }
 
@@ -190,8 +194,10 @@ class System
             if (!chmod($tmpFile, $mode)) {
                 unlink($tmpFile);
                 $error = error_get_last();
+                //$error = (is_array($error) ? $error['message'] : 'no error available');
                 throw new \SimpleSAML_Error_Exception(
-                    'Error changing file mode of "'.$tmpFile.'": '.$error['message']
+                    'Error changing file mode of "'.$tmpFile.'": '.
+                    (is_array($error) ? $error['message'] : 'no error available')
                 );
             }
         }
@@ -200,8 +206,13 @@ class System
             unlink($tmpFile);
             $error = error_get_last();
             throw new \SimpleSAML_Error_Exception(
-                'Error moving "'.$tmpFile.'" to "'.$filename.'": '.$error['message']
+                'Error moving "'.$tmpFile.'" to "'.$filename.'": '.
+                (is_array($error) ? $error['message'] : 'no error available')
             );
+        }
+
+        if (function_exists('opcache_invalidate')) {
+            opcache_invalidate($filename);
         }
     }
 }

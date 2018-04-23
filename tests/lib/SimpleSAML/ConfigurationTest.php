@@ -3,7 +3,7 @@
 /**
  * Tests for SimpleSAML_Configuration
  */
-class Test_SimpleSAML_Configuration extends PHPUnit_Framework_TestCase
+class Test_SimpleSAML_Configuration extends SimpleSAML\Test\Utils\ClearStateTestCase
 {
 
     /**
@@ -31,6 +31,16 @@ class Test_SimpleSAML_Configuration extends PHPUnit_Framework_TestCase
      */
     public function testCriticalConfigurationError()
     {
+        try {
+            SimpleSAML_Configuration::getInstance();
+            $this->fail('Exception expected');
+        } catch (\SimpleSAML\Error\CriticalConfigurationError $var) {
+            // This exception is expected.
+        }
+        /*
+         * After the above failure an emergency configuration is create to allow core SSP components to function and
+         * possibly log/display the error.
+         */
         $c = SimpleSAML_Configuration::getInstance();
         $this->assertNotEmpty($c->toArray());
     }
@@ -97,6 +107,9 @@ class Test_SimpleSAML_Configuration extends PHPUnit_Framework_TestCase
      * Test SimpleSAML_Configuration::getBaseURL()
      */
     public function testGetBaseURL() {
+
+        // Need to set a default configuration because the SSP Logger attempts to use it.
+        SimpleSAML_Configuration::loadFromArray(array(), '[ARRAY]', 'simplesaml');
         $c = SimpleSAML_Configuration::loadFromArray(array());
         $this->assertEquals($c->getBaseURL(), 'simplesaml/');
 

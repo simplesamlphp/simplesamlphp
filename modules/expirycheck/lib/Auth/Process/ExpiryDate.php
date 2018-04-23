@@ -37,7 +37,7 @@ class sspmod_expirycheck_Auth_Process_ExpiryDate extends SimpleSAML_Auth_Process
 	public function __construct($config, $reserved) {
 		parent::__construct($config, $reserved);
 
-		assert('is_array($config)');
+		assert(is_array($config));
 
 		if (array_key_exists('warndaysbefore', $config)) {
 			$this->warndaysbefore = $config['warndaysbefore'];
@@ -120,7 +120,7 @@ class sspmod_expirycheck_Auth_Process_ExpiryDate extends SimpleSAML_Auth_Process
 		$expireOnDate = strtotime($state['Attributes'][$this->expirydate_attr][0]);
 
 		if (self::shWarning($state, $expireOnDate, $this->warndaysbefore)) {
-			assert('is_array($state)');
+			assert(is_array($state));
 			if (isset($state['isPassive']) && $state['isPassive'] === TRUE) {
 				// We have a passive request. Skip the warning.
 				return;
@@ -140,7 +140,6 @@ class sspmod_expirycheck_Auth_Process_ExpiryDate extends SimpleSAML_Auth_Process
 		if (!self::checkDate($expireOnDate)) {
 			SimpleSAML\Logger::error('expirycheck: NetID ' . $netId .
 				' has expired [' . date($this->date_format, $expireOnDate) . ']. Access denied!');
-			$globalConfig = SimpleSAML_Configuration::getInstance();
 
 			/* Save state and redirect. */
 			$state['expireOnDate'] = date($this->date_format, $expireOnDate);

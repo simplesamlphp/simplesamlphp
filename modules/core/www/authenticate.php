@@ -11,7 +11,7 @@ if (!array_key_exists('as', $_REQUEST)) {
 }
 
 $asId = (string) $_REQUEST['as'];
-$as = new SimpleSAML_Auth_Simple($asId);
+$as = new \SimpleSAML\Auth\Simple($asId);
 
 if (array_key_exists('logout', $_REQUEST)) {
     $as->logout($config->getBasePath().'logout.php');
@@ -21,7 +21,7 @@ if (array_key_exists(SimpleSAML_Auth_State::EXCEPTION_PARAM, $_REQUEST)) {
     // This is just a simple example of an error
 
     $state = SimpleSAML_Auth_State::loadExceptionState();
-    assert('array_key_exists(SimpleSAML_Auth_State::EXCEPTION_DATA, $state)');
+    assert(array_key_exists(SimpleSAML_Auth_State::EXCEPTION_DATA, $state));
     $e = $state[SimpleSAML_Auth_State::EXCEPTION_DATA];
 
     throw $e;

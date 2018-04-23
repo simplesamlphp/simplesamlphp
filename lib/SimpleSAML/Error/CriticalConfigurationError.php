@@ -20,7 +20,6 @@
 
 namespace SimpleSAML\Error;
 
-
 class CriticalConfigurationError extends ConfigurationError
 {
 

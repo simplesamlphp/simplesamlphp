@@ -29,6 +29,7 @@ The `store.type` configuration option in `config.php` allows you to select which
   * `phpsession` uses the built in session management in PHP. This is the default, and is simplest to use. It will not work in a load-balanced environment in most configurations.
   * `memcache` uses the memcache software to cache sessions in memory. Sessions can be distributed and replicated among several memcache servers, enabling both load-balancing and fail-over.
   * `sql` stores the session in an SQL database.
+  * `redis` stores the session in Redis.
 
     'store.type' => 'phpsession',
 
@@ -156,6 +157,12 @@ Username and password for accessing the database can be configured in the `store
 
 The required tables are created automatically. If you are storing data from multiple separate SimpleSAMLphp installations in the same database, you can use the `store.sql.prefix` option to prevent conflicts.
 
+### Configuring Redis storage
+
+To store sessions in Redis, set the `store.type` option to `redis`.
+
+By default SimpleSAMLphp will attempt to connect to Redis on the `localhost` at port `6379`. These can be configured via the `store.redis.host` and `store.redis.port` options, respectively. You may also set a key prefix with the `store.redis.prefix` option.
+
 ## Metadata storage
 
 Several metadata storage backends are available by default, including `flatfile`, `serialize`, `mdq` and
@@ -198,7 +205,7 @@ alternative, you may log to flat files.
 
 ## Apache configuration
 
-Basic Apache configruation is described in [SimpleSAMLphp Installation](simplesamlphp-install#section_6).
+Basic Apache configuration is described in [SimpleSAMLphp Installation](simplesamlphp-install#section_6).
 However, your IdP or SP is most likely a valuable website that you want to configure securely. Here are some checks.
 
 * Make sure you use HTTPS with a proper certificate. The best way is to not
@@ -245,10 +252,6 @@ Please use the standardized two-character
 [language codes as specified in ISO-639-1](http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes).
 
 You also can set the default language. You should ensure that the default language is complete, as it is used as a fallback when a text is not available in the language selected by the user.
-
-Translation of SimpleSAMLphp is done through the SimpleSAMLphp translation portal. To translate SimpleSAMLphp to a new language, please contact the authors at the mailing list, and the new language may be added to the translation portal.
-
-  * [Visit the SimpleSAMLphp translation portal](https://translation.rnd.feide.no/?aid=simplesamlphp)
 
 All strings that can be localized are found in the files `dictionaries/`. Add a new entry for each string, with your language code, like this:
 

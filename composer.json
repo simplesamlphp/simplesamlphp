@@ -34,17 +34,18 @@
         "files": ["lib/_autoload_modules.php"]
     },
     "require": {
-        "php": ">=5.3",
-		"ext-SPL": "*",
-		"ext-zlib": "*",
-		"ext-pcre": "*",
-		"ext-openssl": "*",
-		"ext-dom": "*",
-		"ext-date": "*",
-		"ext-hash": "*",
-		"ext-json": "*",
-        "simplesamlphp/saml2": "dev-master#f079abe36ab4101dfda654a087f8003a9673b952 as 2.4",
-        "robrichards/xmlseclibs": "~2.0",
+        "php": ">=5.4",
+        "ext-SPL": "*",
+        "ext-zlib": "*",
+        "ext-pcre": "*",
+        "ext-openssl": "*",
+        "ext-dom": "*",
+        "ext-date": "*",
+        "ext-hash": "*",
+        "ext-json": "*",
+        "ext-mbstring": "*",
+        "simplesamlphp/saml2": "~3.1.4",
+        "robrichards/xmlseclibs": "~3.0",
         "whitehat101/apr1-md5": "~1.0",
         "twig/twig": "~1.0",
         "gettext/gettext": "^3.5",
@@ -52,11 +53,15 @@
     },
     "require-dev": {
         "ext-pdo_sqlite": "*",
-        "phpunit/phpunit": "~4.8",
-        "satooshi/php-coveralls": "^1.0"
+        "phpunit/phpunit": "~4.8.35",
+        "mikey179/vfsStream": "~1.6",
+        "friendsofphp/php-cs-fixer": "^2.2"
+    },
+    "suggests": {
+        "predis/predis": "1.1.1"
     },
     "support": {
-        "issues": "https://github.com/italia/spid-simplesamlphp/issues",
-        "source": "https://github.com/italia/spid-simplesamlphp"
+        "issues": "https://github.com/simplesamlphp/simplesamlphp/issues",
+        "source": "https://github.com/simplesamlphp/simplesamlphp"
     }
 }

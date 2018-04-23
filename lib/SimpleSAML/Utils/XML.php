@@ -8,6 +8,7 @@
 namespace SimpleSAML\Utils;
 
 use SimpleSAML\Logger;
+use SimpleSAML\XML\Errors;
 
 class XML
 {
@@ -26,13 +27,15 @@ class XML
      *     values allowed.
      * @throws \SimpleSAML_Error_Exception If $message contains a doctype declaration.
      *
+     * @return void
+     *
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
     public static function checkSAMLMessage($message, $type)
     {
         $allowed_types = array('saml20', 'saml11', 'saml-meta');
-        if (!(is_string($message) && in_array($type, $allowed_types))) {
+        if (!(is_string($message) && in_array($type, $allowed_types, true))) {
             throw new \InvalidArgumentException('Invalid input parameters.');
         }
 
@@ -83,6 +86,8 @@ class XML
      *      - 'encrypt': for encrypted messages.
      *
      * @throws \InvalidArgumentException If $type is not a string or $message is neither a string nor a \DOMElement.
+     *
+     * @return void
      *
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
@@ -138,15 +143,17 @@ class XML
      * This function takes in a DOM element, and inserts whitespace to make it more readable. Note that whitespace
      * added previously will be removed.
      *
-     * @param \DOMElement $root The root element which should be formatted.
+     * @param \DOMNode $root The root element which should be formatted.
      * @param string      $indentBase The indentation this element should be assumed to have. Defaults to an empty
      *     string.
      *
      * @throws \InvalidArgumentException If $root is not a DOMElement or $indentBase is not a string.
      *
+     * @return void
+     *
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
-    public static function formatDOMElement(\DOMElement $root, $indentBase = '')
+    public static function formatDOMElement(\DOMNode $root, $indentBase = '')
     {
         if (!is_string($indentBase)) {
             throw new \InvalidArgumentException('Invalid input parameters');
@@ -157,6 +164,7 @@ class XML
         $textNodes = array(); // text nodes which should be deleted
         $childNodes = array(); // other child nodes
         for ($i = 0; $i < $root->childNodes->length; $i++) {
+            /** @var \DOMElement $child */
             $child = $root->childNodes->item($i);
 
             if ($child instanceof \DOMText) {
@@ -258,26 +266,27 @@ class XML
      * This function finds direct descendants of a DOM element with the specified
      * localName and namespace. They are returned in an array.
      *
-     * This function accepts the same shortcuts for namespaces as the isDOMElementOfType function.
+     * This function accepts the same shortcuts for namespaces as the isDOMNodeOfType function.
      *
-     * @param \DOMElement $element The element we should look in.
-     * @param string      $localName The name the element should have.
-     * @param string      $namespaceURI The namespace the element should have.
+     * @param \DOMNode $element The element we should look in.
+     * @param string   $localName The name the element should have.
+     * @param string   $namespaceURI The namespace the element should have.
      *
-     * @return array  Array with the matching elements in the order they are found. An empty array is
+     * @return array Array with the matching elements in the order they are found. An empty array is
      *         returned if no elements match.
      * @throws \InvalidArgumentException If $element is not an instance of DOMElement, $localName is not a string or
      *     $namespaceURI is not a string.
      */
-    public static function getDOMChildren(\DOMElement $element, $localName, $namespaceURI)
+    public static function getDOMChildren(\DOMNode $element, $localName, $namespaceURI)
     {
-        if (!($element instanceof \DOMElement) || !is_string($localName) || !is_string($namespaceURI)) {
+        if (!is_string($localName) || !is_string($namespaceURI)) {
             throw new \InvalidArgumentException('Invalid input parameters.');
         }
 
         $ret = array();
 
         for ($i = 0; $i < $element->childNodes->length; $i++) {
+            /** @var \DOMElement $child */
             $child = $element->childNodes->item($i);
 
             // skip text nodes and comment elements
@@ -285,7 +294,7 @@ class XML
                 continue;
             }
 
-            if (self::isDOMElementOfType($child, $localName, $namespaceURI) === true) {
+            if (self::isDOMNodeOfType($child, $localName, $namespaceURI) === true) {
                 $ret[] = $child;
             }
         }
@@ -300,20 +309,16 @@ class XML
      * @param \DOMElement $element The element we should extract text from.
      *
      * @return string The text content of the element.
-     * @throws \InvalidArgumentException If $element is not an instance of DOMElement.
      * @throws \SimpleSAML_Error_Exception If the element contains a non-text child node.
      *
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
     public static function getDOMText(\DOMElement $element)
     {
-        if (!($element instanceof \DOMElement)) {
-            throw new \InvalidArgumentException('Invalid input parameters');
-        }
-
         $txt = '';
 
         for ($i = 0; $i < $element->childNodes->length; $i++) {
+            /** @var \DOMElement $child */
             $child = $element->childNodes->item($i);
             if (!($child instanceof \DOMText)) {
                 throw new \SimpleSAML_Error_Exception($element->localName.' contained a non-text child node.');
@@ -349,9 +354,9 @@ class XML
      * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
-    public static function isDOMElementOfType(\DOMNode $element, $name, $nsURI)
+    public static function isDOMNodeOfType(\DOMNode $element, $name, $nsURI)
     {
-        if (!($element instanceof \DOMElement) || !is_string($name) || !is_string($nsURI) || strlen($nsURI) === 0) {
+        if (!is_string($name) || !is_string($nsURI) || strlen($nsURI) === 0) {
             // most likely a comment-node
             return false;
         }
@@ -409,7 +414,7 @@ class XML
             throw new \InvalidArgumentException('Invalid input parameters.');
         }
 
-        \SimpleSAML_XML_Errors::begin();
+        Errors::begin();
 
         if ($xml instanceof \DOMDocument) {
             $dom = $xml;
@@ -424,14 +429,15 @@ class XML
         }
 
         if ($res) {
-
             $config = \SimpleSAML_Configuration::getInstance();
-            $schemaPath = $config->resolvePath('schemas').'/';
+            /** @var string $schemaPath */
+            $schemaPath = $config->resolvePath('schemas');
+            $schemaPath .= './';
             $schemaFile = $schemaPath.$schema;
 
             $res = $dom->schemaValidate($schemaFile);
             if ($res) {
-                \SimpleSAML_XML_Errors::end();
+                Errors::end();
                 return true;
             }
 
@@ -440,8 +446,8 @@ class XML
             $errorText = "Failed to parse XML string for schema validation:\n";
         }
 
-        $errors = \SimpleSAML_XML_Errors::end();
-        $errorText .= \SimpleSAML_XML_Errors::formatErrors($errors);
+        $errors = Errors::end();
+        $errorText .= Errors::formatErrors($errors);
 
         return $errorText;
     }
