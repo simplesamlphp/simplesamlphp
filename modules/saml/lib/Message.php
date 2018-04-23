@@ -470,7 +470,13 @@ class sspmod_saml_Message
 
         // Shoaib: setting the appropriate binding based on parameter in sp-metadata defaults to HTTP_POST
         $ar->setProtocolBinding($protbind);
-        $ar->setIssuer($spMetadata->getString('entityid'));
+        //$ar->setIssuer($spMetadata->getString('entityid'));
+        $issuer = new \SAML2\XML\saml\Issuer();
+        $issuer->Format="urn:oasis:names:tc:SAML:2.0:nameid-format:entity ";
+        $issuer->NameQualifier=$spMetadata->getString('entityid');
+        $issuer->value=$spMetadata->getString('entityid');
+        $ar->setIssuer($issuer);
+
         $ar->setAssertionConsumerServiceIndex($spMetadata->getInteger('AssertionConsumerServiceIndex', null));
         $ar->setAttributeConsumingServiceIndex($spMetadata->getInteger('AttributeConsumingServiceIndex', null));
 
@@ -503,7 +509,12 @@ class sspmod_saml_Message
         SimpleSAML_Configuration $dstMetadata
     ) {
         $lr = new \SAML2\LogoutRequest();
-        $lr->setIssuer($srcMetadata->getString('entityid'));
+        //$lr->setIssuer($srcMetadata->getString('entityid'));
+        $issuer = new \SAML2\XML\saml\Issuer();
+        $issuer->Format="urn:oasis:names:tc:SAML:2.0:nameid-format:entity ";
+        $issuer->NameQualifier=$spMetadata->getString('entityid');
+        $issuer->value=$spMetadata->getString('entityid');
+        $lr->setIssuer($issuer);
 
         self::addRedirectSign($srcMetadata, $dstMetadata, $lr);
 
