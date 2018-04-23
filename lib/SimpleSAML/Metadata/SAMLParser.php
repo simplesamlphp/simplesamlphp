@@ -550,6 +550,9 @@ class SimpleSAML_Metadata_SAMLParser
         if (array_key_exists('attributes.NameFormat', $spd)) {
             $ret['attributes.NameFormat'] = $spd['attributes.NameFormat'];
         }
+		if (array_key_exists('attributes.nameFormats', $spd)) {
+            $ret['attributes.nameFormats'] = $spd['attributes.nameFormats'];
+        }
 
         // add name & description
         if (array_key_exists('name', $spd)) {
@@ -689,6 +692,9 @@ class SimpleSAML_Metadata_SAMLParser
         }
         if (array_key_exists('attributes.NameFormat', $spd)) {
             $ret['attributes.NameFormat'] = $spd['attributes.NameFormat'];
+        }
+		if (array_key_exists('attributes.nameFormats', $spd)) {
+            $ret['attributes.nameFormats'] = $spd['attributes.nameFormats'];
         }
 
         // add name & description

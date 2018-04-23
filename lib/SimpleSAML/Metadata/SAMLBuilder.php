@@ -409,6 +409,8 @@ class SimpleSAML_Metadata_SAMLBuilder
         $attributeconsumer->ServiceDescription = $metadata->getLocalizedString('description', array());
 
         $nameFormat = $metadata->getString('attributes.NameFormat', \SAML2\Constants::NAMEFORMAT_UNSPECIFIED);
+		    $attributeNameFormats = $metadata->getArray('attributes.nameFormats', array());
+		
         foreach ($attributes as $friendlyName => $attribute) {
             $t = new \SAML2\XML\md\RequestedAttribute();
             $t->Name = $attribute;
@@ -417,6 +419,9 @@ class SimpleSAML_Metadata_SAMLBuilder
             }
             if ($nameFormat !== \SAML2\Constants::NAMEFORMAT_UNSPECIFIED) {
                 $t->NameFormat = $nameFormat;
+            }
+            if (array_key_exists($attribute, $attributeNameFormats)) {
+              $t->NameFormat = $attributeNameFormats[$attribute];
             }
             if (in_array($attribute, $attributesrequired, true)) {
                 $t->isRequired = true;

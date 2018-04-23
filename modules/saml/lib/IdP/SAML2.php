@@ -164,7 +164,8 @@ class sspmod_saml_IdP_SAML2
         SimpleSAML_Configuration $spMetadata,
         $AssertionConsumerServiceURL,
         $ProtocolBinding,
-        $AssertionConsumerServiceIndex
+        $AssertionConsumerServiceIndex,
+		$messageSigned
     ) {
         assert(is_string($AssertionConsumerServiceURL) || $AssertionConsumerServiceURL === null);
         assert(is_string($ProtocolBinding) || $ProtocolBinding === null);
@@ -221,6 +222,11 @@ class sspmod_saml_IdP_SAML2
             return $firstFalse;
         }
 
+		if ($AssertionConsumerServiceURL !== NULL && $messageSigned && $spMetadata->getBoolean('skipEndpointValidationWhenSigned', false)){
+			SimpleSAML_Logger::warning('Using AssertionConsumerService specified in AuthnRequest because no metadata endpoint matches and skipEndpointValidationWhenSigned was true');
+			return array('Location'=>$AssertionConsumerServiceURL, 'Binding'=>$ProtocolBinding);
+		}
+		
         SimpleSAML\Logger::warning('Authentication request specifies invalid AssertionConsumerService:');
         if ($AssertionConsumerServiceURL !== null) {
             SimpleSAML\Logger::warning('AssertionConsumerServiceURL: '.var_export($AssertionConsumerServiceURL, true));
@@ -262,6 +268,8 @@ class sspmod_saml_IdP_SAML2
             $supportedBindings[] = \SAML2\Constants::BINDING_PAOS;
         }
 
+		$signatureValidated = false;
+		
         if (isset($_REQUEST['spentityid'])) {
             /* IdP initiated authentication. */
 
@@ -333,8 +341,8 @@ class sspmod_saml_IdP_SAML2
             }
             $spMetadata = $metadata->getMetaDataConfig($spEntityId, 'saml20-sp-remote');
 
-            sspmod_saml_Message::validateMessage($spMetadata, $idpMetadata, $request);
-
+			$signatureValidated = sspmod_saml_Message::validateMessage($spMetadata, $idpMetadata, $request);
+			
             $relayState = $request->getRelayState();
 
             $requestId = $request->getId();
@@ -385,7 +393,8 @@ class sspmod_saml_IdP_SAML2
             $spMetadata,
             $consumerURL,
             $protocolBinding,
-            $consumerIndex
+            $consumerIndex,
+			$signatureValidated
         );
 
         $IDPList = array_unique(array_merge($IDPList, $spMetadata->getArrayizeString('IDPList', array())));
@@ -528,13 +537,13 @@ class sspmod_saml_IdP_SAML2
             'idpEntityID' => $idpMetadata->getString('entityid'),
             'partial'     => $partial
         ));
-        $dst = $spMetadata->getEndpointPrioritizedByBinding(
-            'SingleLogoutService',
-            array(
-                \SAML2\Constants::BINDING_HTTP_REDIRECT,
-                \SAML2\Constants::BINDING_HTTP_POST
-            )
-        );
+        
+        $bindings = array(\SAML2\Constants::BINDING_HTTP_REDIRECT, \SAML2\Constants::BINDING_HTTP_POST);
+        if (array_key_exists('saml:Binding', $state)){
+            array_unshift($bindings, $state['saml:Binding']);
+        }
+        $dst = $spMetadata->getEndpointPrioritizedByBinding('SingleLogoutService', $bindings);
+        
         $binding = \SAML2\Binding::getBinding($dst['Binding']);
         if (isset($dst['ResponseLocation'])) {
             $dst = $dst['ResponseLocation'];
@@ -609,6 +618,7 @@ class sspmod_saml_IdP_SAML2
                 'saml:SPEntityId' => $spEntityId,
                 'saml:RelayState' => $message->getRelayState(),
                 'saml:RequestId'  => $message->getId(),
+				'saml:Binding' => $binding->getUrn(),
             );
 
             $assocId = 'saml:'.$spEntityId;
@@ -638,12 +648,14 @@ class sspmod_saml_IdP_SAML2
         $idpMetadata = $idp->getConfig();
         $spMetadata = $metadata->getMetaDataConfig($association['saml:entityID'], 'saml20-sp-remote');
 
-        $bindings = array(
-            \SAML2\Constants::BINDING_HTTP_REDIRECT,
-            \SAML2\Constants::BINDING_HTTP_POST
+        $dst = $spMetadata->getEndpointPrioritizedByBinding(
+            'SingleLogoutService',
+            array(
+                \SAML2\Constants::BINDING_HTTP_REDIRECT,
+                \SAML2\Constants::BINDING_HTTP_POST
+            )
         );
-        $dst = $spMetadata->getEndpointPrioritizedByBinding('SingleLogoutService', $bindings);
-
+        
         if ($dst['Binding'] === \SAML2\Constants::BINDING_HTTP_POST) {
             $params = array('association' => $association['id'], 'idp' => $idp->getId());
             if ($relayState !== null) {
@@ -974,7 +986,26 @@ class sspmod_saml_IdP_SAML2
             $attributeNameFormat = self::getAttributeNameFormat($idpMetadata, $spMetadata);
             $a->setAttributeNameFormat($attributeNameFormat);
             $attributes = self::encodeAttributes($idpMetadata, $spMetadata, $state['Attributes']);
-            $a->setAttributes($attributes);
+            
+            $srcNameFormats = $idpMetadata->getArray('attributes.nameFormats', array());
+			$dstNameFormats = $spMetadata->getArray('attributes.nameFormats', array());
+			$srcFriendlyNames = $idpMetadata->getArray('attributes.friendlyNames', array());
+			$dstFriendlyNames = $spMetadata->getArray('attributes.friendlyNames', array());
+			$nameFormats = array_merge($srcNameFormats, $dstNameFormats);
+			$friendlyNames = array_merge($srcFriendlyNames, $dstFriendlyNames);
+			
+			if (array_key_exists('saml:sp:AttributeExtData', $state)){	
+				$attributeExtData = $state['saml:sp:AttributeExtData'];
+				if (is_array($attributeExtData)){
+					if (array_key_exists('nameFormats', $attributeExtData)){
+						$nameFormats = array_merge($nameFormats, $attributeExtData['nameFormats']);
+					}
+					if (array_key_exists('friendlyNames', $attributeExtData)){
+						$friendlyNames = array_merge($friendlyNames, $attributeExtData['friendlyNames']);
+					}
+				}
+			}
+			$a->setAttributes($attributes, $nameFormats, $friendlyNames);
         }
 
         // generate the NameID for the assertion
@@ -1000,7 +1031,11 @@ class sspmod_saml_IdP_SAML2
             if ($spNameQualifier === null) {
                 $spNameQualifier = $spMetadata->getString('entityid');
             }
-
+            $nameQualifier = $idpMetadata->getString('NameQualifier', NULL);
+			if ($nameQualifier === NULL) {
+				$nameQualifier = $idpMetadata->getString('entityid');
+			}
+            
             if ($nameIdFormat === \SAML2\Constants::NAMEID_TRANSIENT) {
                 // generate a random id
                 $nameIdValue = SimpleSAML\Utils\Random::generateID();
@@ -1019,6 +1054,7 @@ class sspmod_saml_IdP_SAML2
             $nameId->Format = $nameIdFormat;
             $nameId->value = $nameIdValue;
             $nameId->SPNameQualifier = $spNameQualifier;
+            $nameId->NameQualifier = $nameQualifier;
         }
 
         $state['saml:idp:NameID'] = $nameId;

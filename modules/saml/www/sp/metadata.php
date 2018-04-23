@@ -164,6 +164,11 @@ if ($name !== null && !empty($attributes)) {
     if ($nameFormat !== null) {
         $metaArray20['attributes.NameFormat'] = $nameFormat;
     }
+	
+	$attributeNameFormats = $spconfig->getArray('attributes.nameFormats', array());
+    if (!empty($attributeNameFormats)) {
+        $metaArray20['attributes.nameFormats'] = $attributeNameFormats;
+    }
 }
 
 // add organization info
