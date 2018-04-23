@@ -2,13 +2,14 @@
 
 namespace SimpleSAML\Test\Utils;
 
+use PHPUnit\Framework\TestCase;
 use \SimpleSAML_Configuration as Configuration;
 use \SimpleSAML\Utils\XML;
 
 /**
  * Tests for SimpleSAML\Utils\XML.
  */
-class XMLTest extends \PHPUnit_Framework_TestCase
+class XMLTest extends TestCase
 {
     /**
      * @covers \SimpleSAML\Utils\XML::isDOMNodeOfType

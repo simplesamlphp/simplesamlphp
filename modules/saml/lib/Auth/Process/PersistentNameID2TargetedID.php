@@ -34,7 +34,7 @@ class sspmod_saml_Auth_Process_PersistentNameID2TargetedID extends SimpleSAML_Au
     public function __construct($config, $reserved)
     {
         parent::__construct($config, $reserved);
-        assert('is_array($config)');
+        assert(is_array($config));
 
         if (isset($config['attribute'])) {
             $this->attribute = (string) $config['attribute'];
@@ -57,7 +57,7 @@ class sspmod_saml_Auth_Process_PersistentNameID2TargetedID extends SimpleSAML_Au
      */
     public function process(&$state)
     {
-        assert('is_array($state)');
+        assert(is_array($state));
 
         if (!isset($state['saml:NameID'][\SAML2\Constants::NAMEID_PERSISTENT])) {
             SimpleSAML\Logger::warning(

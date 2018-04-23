@@ -52,8 +52,8 @@ class sspmod_authYubiKey_Auth_Process_OTP2YubiPrefix extends SimpleSAML_Auth_Pro
 	 * @param array &$state  The state we should update.
 	 */
 	public function process(&$state) {
-		assert('is_array($state)');
-		assert('array_key_exists("Attributes", $state)');
+		assert(is_array($state));
+		assert(array_key_exists('Attributes', $state));
 		$attributes = $state['Attributes'];
 
 		SimpleSAML\Logger::debug('OTP2YubiPrefix: enter with attributes: ' . implode(',', array_keys($attributes)));

@@ -6,9 +6,79 @@ SimpleSAMLphp changelog
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
-## Version 1.15.0
+## Version 1.16.0
 
 Released TBD
+
+### New features
+  * Added support for SAML "Enhanced Client or Proxy" (ECP) protocol,
+    IdP side with HTTP Basic Authentcation as authentication method.
+    See the [ECP IdP documentation](./simplesamlphp-ecp-idp) for details.
+  * New option `sendmail_from`, the from address for email sent by SSP.
+  * New option `options` for PDO database connections, e.g. for TLS setup.
+
+### consent
+  * Sort attribute values for consent.
+
+### core
+  * StatisticsWithAttribute: add `passive-` prefix when logging passive
+    requests, set new option `skipPassive` to skip logging these altogether.
+  * Replace deprecated create_function with an anonymous function.
+
+### Oauth
+  * Make module HTTP proxy-aware.
+  * Remove unused demo app.
+
+### Sqlauth
+  * Changed from default-enabled to default-disabled.
+
+## Version 1.15.4
+
+Released 2018-03-02
+
+  * Resolved a security issue related to signature validation in the SAML2 library. See [SSPSA 201803-01](https://simplesamlphp.org/security/201803-01).
+
+## Version 1.15.3
+
+Released 2018-02-27
+
+  * Resolved a security issue related to signature validation in the SAML2 library. See [SSPSA 201802-01](https://simplesamlphp.org/security/201802-01).
+  * Fixed edge-case scenario where an application uses one of the known LoggingHandlers' name as a defined class
+  * Fixed issue #793 in the PHP logging handler.
+
+## Version 1.15.2
+
+Released 2018-01-31
+
+  * Resolved a Denial of Service security issue when validating timestamps in the SAML2 library. See [SSPSA 201801-01](https://simplesamlphp.org/security/201801-01).
+  * Resolved a security issue with the open redirect protection mechanism. See [SSPSA 201801-02](https://simplesamlphp.org/security/201801-02).
+  * Fix _undefined method_ error when using memcacheD.
+
+### `authfacebook`
+  * Fix compatibility with Facebook strict URI match.
+
+### `consent`
+  * Fix statistics not being gathered.
+
+### `sqlauth`
+  * Prevented a security issue with the connection charset used for MySQL backends. See [SSPSA 201801-03](https://simplesamlphp.org/security/201801-03).
+
+## Version 1.15.1
+
+Released 2018-01-12
+
+### Bug fixes
+  * AuthX509 error messages were broken.
+  * Properly calculate supported protocols based on config.
+  * NameIDAttribute filter: update to use SAML2\XML\saml\NameID.
+  * Replace remaining uses of SimpleSAML_Logger with namespace version.
+  * Statistics: prevent mixed content errors.
+  * Add 'no-store' to the cache-control header to avoid Chrome
+    caching redirects.
+
+## Version 1.15.0
+
+Released 2017-11-20
 
 ### New features
   * Added support for authenticated web proxies with the `proxy.auth` setting.
@@ -27,6 +97,7 @@ Released TBD
   * Added ability to define additional attributes on ContactPerson elements
     in metatada, e.g. for use in Sirtfi contacts.
   * Added option to set a secure flag also on the language cookie.
+  * Added option to specify the base URL for the application protected.
   * Added support for PHP Memcached extension next to Memcache extension.
   * Added Redis as possible session storage mechanism.
   * Added support to specify custom metadata storage handlers.
@@ -45,6 +116,8 @@ Released TBD
   * Make redirections more resilient.
   * Fixed empty protocolSupportEnumeration in AttributeAuthorityDescriptor.
   * Other bug fixes and numerous documentation enhancements.
+  * Fixed a bug in the Redis store that could lead to incorrect
+    _duplicate assertion_ errors.
 
 ### API and user interface
   * Updated to Xmlseclibs 3.0.
@@ -53,6 +126,7 @@ Released TBD
     classes under the SimpleSAML\Module namespace.
   * Added new hook for module loader exception handling `exception_handler`.
   * Expose RegistrationInfo in parsed SAML metadata.
+  * The AuthnInstant is now available in the state array.
   * Introduced Twig templating for user interface.
   * Lots of refactoring, code cleanup and added many unit tests.
 
@@ -81,6 +155,9 @@ Released TBD
   * `ScopeAttribute`: added option `onlyIfEmpty` to add a scope only if
      none was present.
   * `AttributeCopy`: added option to copy to multiple destination attributes.
+
+### `cron`
+  * Allow invocation via PHP command line interface.
 
 ### `discopower`
   * Added South Africa tab.
@@ -126,6 +203,12 @@ Released TBD
 
 ### `sqlauth`
   * Fixed SQL schema for usergroups table.
+
+## Version 1.14.17
+
+Released 2017-10-25
+
+  * Resolved a security issue with the SAML 1.1 Service Provider. See [SSPSA 201710-01](https://simplesamlphp.org/security/201710-01).
 
 ## Version 1.14.16
 

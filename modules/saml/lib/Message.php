@@ -160,7 +160,7 @@ class sspmod_saml_Message
     {
         // find the public key that should verify signatures by this entity
         $keys = $srcMetadata->getPublicKeys('signing');
-        if ($keys !== null) {
+        if (!empty($keys)) {
             $pemKeys = array();
             foreach ($keys as $key) {
                 switch ($key['type']) {
@@ -305,7 +305,7 @@ class sspmod_saml_Message
         // load the new private key if it exists
         $keyArray = SimpleSAML\Utils\Crypto::loadPrivateKey($dstMetadata, false, 'new_');
         if ($keyArray !== null) {
-            assert('isset($keyArray["PEM"])');
+            assert(isset($keyArray['PEM']));
 
             $key = new XMLSecurityKey(XMLSecurityKey::RSA_1_5, array('type' => 'private'));
             if (array_key_exists('password', $keyArray)) {
@@ -317,7 +317,7 @@ class sspmod_saml_Message
 
         // find the existing private key
         $keyArray = SimpleSAML\Utils\Crypto::loadPrivateKey($dstMetadata, true);
-        assert('isset($keyArray["PEM"])');
+        assert(isset($keyArray['PEM']));
 
         $key = new XMLSecurityKey(XMLSecurityKey::RSA_1_5, array('type' => 'private'));
         if (array_key_exists('password', $keyArray)) {
@@ -370,7 +370,7 @@ class sspmod_saml_Message
         SimpleSAML_Configuration $dstMetadata,
         $assertion
     ) {
-        assert('$assertion instanceof \SAML2\Assertion || $assertion instanceof \SAML2\EncryptedAssertion');
+        assert($assertion instanceof \SAML2\Assertion || $assertion instanceof \SAML2\EncryptedAssertion);
 
         if ($assertion instanceof \SAML2\Assertion) {
             $encryptAssertion = $srcMetadata->getBoolean('assertion.encryption', null);
@@ -606,8 +606,8 @@ class sspmod_saml_Message
         $assertion,
         $responseSigned
     ) {
-        assert('$assertion instanceof \SAML2\Assertion || $assertion instanceof \SAML2\EncryptedAssertion');
-        assert('is_bool($responseSigned)');
+        assert($assertion instanceof \SAML2\Assertion || $assertion instanceof \SAML2\EncryptedAssertion);
+        assert(is_bool($responseSigned));
 
         $assertion = self::decryptAssertion($idpMetadata, $spMetadata, $assertion);
 
@@ -652,7 +652,7 @@ class sspmod_saml_Message
         $lastError = 'No SubjectConfirmation element in Subject.';
         $validSCMethods = array(\SAML2\Constants::CM_BEARER, \SAML2\Constants::CM_HOK, \SAML2\Constants::CM_VOUCHES);
         foreach ($assertion->getSubjectConfirmation() as $sc) {
-            if (!in_array($sc->Method, $validSCMethods)) {
+            if (!in_array($sc->Method, $validSCMethods, true)) {
                 $lastError = 'Invalid Method on SubjectConfirmation: '.var_export($sc->Method, true);
                 continue;
             }

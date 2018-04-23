@@ -34,8 +34,8 @@ class sspmod_authwindowslive_Auth_Source_LiveID extends SimpleSAML_Auth_Source
      */
     public function __construct($info, $config)
     {
-        assert('is_array($info)');
-        assert('is_array($config)');
+        assert(is_array($info));
+        assert(is_array($config));
 
         // Call the parent constructor first, as required by the interface
         parent::__construct($info, $config);
@@ -61,7 +61,7 @@ class sspmod_authwindowslive_Auth_Source_LiveID extends SimpleSAML_Auth_Source
      */
     public function authenticate(&$state)
     {
-        assert('is_array($state)');
+        assert(is_array($state));
 
         // we are going to need the authId in order to retrieve this authentication source later
         $state[self::AUTHID] = $this->authId;

@@ -22,7 +22,6 @@ class sspmod_statistics_Ruleset
     private function init()
     {
         $statdir = $this->statconfig->getValue('statdir');
-        $inputfile = $this->statconfig->getValue('inputfile');
         $statrules = $this->statconfig->getValue('statrules');
         $timeres = $this->statconfig->getValue('timeres');
 
@@ -74,7 +73,7 @@ class sspmod_statistics_Ruleset
     {
         $rule = $this->statconfig->getString('default', $this->availrules[0]);
         if (!empty($preferRule)) {
-            if (in_array($preferRule, $this->availrules)) {
+            if (in_array($preferRule, $this->availrules, true)) {
                 $rule = $preferRule;
             }
         }

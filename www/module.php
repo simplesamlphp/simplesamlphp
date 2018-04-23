@@ -43,7 +43,7 @@ if (empty($_SERVER['PATH_INFO'])) {
 }
 
 $url = $_SERVER['PATH_INFO'];
-assert('substr($url, 0, 1) === "/"');
+assert(substr($url, 0, 1) === '/');
 
 /* clear the PATH_INFO option, so that a script can detect whether it is called with anything following the
  *'.php'-ending.

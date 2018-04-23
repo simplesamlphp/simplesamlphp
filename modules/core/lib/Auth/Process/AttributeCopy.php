@@ -32,7 +32,7 @@ class sspmod_core_Auth_Process_AttributeCopy extends SimpleSAML_Auth_ProcessingF
 	public function __construct($config, $reserved) {
 		parent::__construct($config, $reserved);
 
-		assert('is_array($config)');
+		assert(is_array($config));
 
 		foreach($config as $source => $destination) {
 
@@ -55,8 +55,8 @@ class sspmod_core_Auth_Process_AttributeCopy extends SimpleSAML_Auth_ProcessingF
 	 * @param array &$request  The current request
 	 */
 	public function process(&$request) {
-		assert('is_array($request)');
-		assert('array_key_exists("Attributes", $request)');
+		assert(is_array($request));
+		assert(array_key_exists('Attributes', $request));
 
 		$attributes =& $request['Attributes'];
 

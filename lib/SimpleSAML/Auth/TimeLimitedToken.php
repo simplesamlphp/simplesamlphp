@@ -47,7 +47,7 @@ class TimeLimitedToken
             $secretSalt = \SimpleSAML\Utils\Config::getSecretSalt();
         }
 
-        if (!in_array($algo, hash_algos())) {
+        if (!in_array($algo, hash_algos(), true)) {
             throw new \InvalidArgumentException('Invalid hash algorithm "'.$algo.'"');
         }
 
@@ -130,7 +130,7 @@ class TimeLimitedToken
         if (count($splittoken) !== 2) {
             return false;
         }
-        $offset = hexdec($splittoken[0]);
+        $offset = intval(hexdec($splittoken[0]));
         $value = $splittoken[1];
         return ($this->calculateTokenValue($offset) === $value);
     }

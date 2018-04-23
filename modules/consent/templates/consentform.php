@@ -14,15 +14,15 @@
  *
  * @package SimpleSAMLphp
  */
-assert('is_array($this->data["srcMetadata"])');
-assert('is_array($this->data["dstMetadata"])');
-assert('is_string($this->data["yesTarget"])');
-assert('is_array($this->data["yesData"])');
-assert('is_string($this->data["noTarget"])');
-assert('is_array($this->data["noData"])');
-assert('is_array($this->data["attributes"])');
-assert('is_array($this->data["hiddenAttributes"])');
-assert('$this->data["sppp"] === false || is_string($this->data["sppp"])');
+assert(is_array($this->data['srcMetadata']));
+assert(is_array($this->data['dstMetadata']));
+assert(is_string($this->data['yesTarget']));
+assert(is_array($this->data['yesData']));
+assert(is_string($this->data['noTarget']));
+assert(is_array($this->data['noData']));
+assert(is_array($this->data['attributes']));
+assert(is_array($this->data['hiddenAttributes']));
+assert($this->data['sppp'] === false || is_string($this->data['sppp']));
 
 // Parse parameters
 if (array_key_exists('name', $this->data['srcMetadata'])) {
@@ -124,7 +124,7 @@ foreach ($this->data['noData'] as $name => $value) {
 <?php
 if ($this->data['sppp'] !== false) {
     echo "<p>" . htmlspecialchars($this->t('{consent:consent:consent_privacypolicy}')) . " ";
-    echo "<a target='_blank' href='" . htmlspecialchars($this->data['sppp']) . "'>" . $dstName . "</a>";
+    echo '<a target="_blank" href="' . htmlspecialchars($this->data['sppp']) . '">' . $dstName . "</a>";
     echo "</p>";
 }
 

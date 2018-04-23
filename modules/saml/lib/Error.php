@@ -5,8 +5,8 @@
  *
  * @package SimpleSAMLphp
  */
-class sspmod_saml_Error extends SimpleSAML_Error_Exception {
-
+class sspmod_saml_Error extends SimpleSAML_Error_Exception
+{
 	/**
 	 * The top-level status code.
 	 *
@@ -39,16 +39,17 @@ class sspmod_saml_Error extends SimpleSAML_Error_Exception {
 	 * @param string|NULL $statusMessage  The status message. Can be NULL, in which case there is no status message.
 	 * @param Exception|NULL $cause  The cause of this exception. Can be NULL.
 	 */
-	public function __construct($status, $subStatus = NULL, $statusMessage = NULL, Exception $cause = NULL) {
-		assert('is_string($status)');
-		assert('is_null($subStatus) || is_string($subStatus)');
-		assert('is_null($statusMessage) || is_string($statusMessage)');
+	public function __construct($status, $subStatus = null, $statusMessage = null, Exception $cause = null)
+    {
+		assert(is_string($status));
+		assert($subStatus === null || is_string($subStatus));
+		assert($statusMessage === null || is_string($statusMessage));
 
 		$st = self::shortStatus($status);
-		if ($subStatus !== NULL) {
+		if ($subStatus !== null) {
 			$st .= '/' . self::shortStatus($subStatus);
 		}
-		if ($statusMessage !== NULL) {
+		if ($statusMessage !== null) {
 			$st .= ': ' . $statusMessage;
 		}
 		parent::__construct($st, 0, $cause);
@@ -64,7 +65,8 @@ class sspmod_saml_Error extends SimpleSAML_Error_Exception {
 	 *
 	 * @return string  The top-level status code.
 	 */
-	public function getStatus() {
+	public function getStatus()
+    {
 		return $this->status;
 	}
 
@@ -74,7 +76,8 @@ class sspmod_saml_Error extends SimpleSAML_Error_Exception {
 	 *
 	 * @return string|NULL  The second-level status code or NULL if no second-level status code is present.
 	 */
-	public function getSubStatus() {
+	public function getSubStatus()
+    {
 		return $this->subStatus;
 	}
 
@@ -84,7 +87,8 @@ class sspmod_saml_Error extends SimpleSAML_Error_Exception {
 	 *
 	 * @return string|NULL  The status message or NULL if no status message is present.
 	 */
-	public function getStatusMessage() {
+	public function getStatusMessage()
+    {
 		return $this->statusMessage;
 	}
 
@@ -98,8 +102,8 @@ class sspmod_saml_Error extends SimpleSAML_Error_Exception {
 	 * @param Exception $exception  The original exception.
 	 * @return sspmod_saml_Error  The new exception.
 	 */
-	public static function fromException(Exception $exception) {
-
+	public static function fromException(Exception $exception)
+    {
 		if ($exception instanceof sspmod_saml_Error) {
 			// Return the original exception unchanged
 			return $exception;
@@ -123,7 +127,7 @@ class sspmod_saml_Error extends SimpleSAML_Error_Exception {
 		} else {
 			$e = new self(
 				\SAML2\Constants::STATUS_RESPONDER,
-				NULL,
+				null,
 				get_class($exception) . ': ' . $exception->getMessage(),
 				$exception
 				);
@@ -144,27 +148,24 @@ class sspmod_saml_Error extends SimpleSAML_Error_Exception {
 	 *
 	 * @return SimpleSAML_Error_Exception  An exception representing this error.
 	 */
-	public function toException() {
-
-		if ($this->statusMessage !== NULL) {
-			$msg = $this->statusMessage;
-		} else {
-			$msg = '';
-		}
-
-		$e = NULL;
+	public function toException()
+    {
+		$e = null;
 
 		switch ($this->status) {
 		case \SAML2\Constants::STATUS_RESPONDER:
 			switch ($this->subStatus) {
 			case \SAML2\Constants::STATUS_NO_PASSIVE:
-				$e = new SimpleSAML_Error_NoPassive($this->statusMessage, 0, $this);
+                $e = new SimpleSAML\Module\saml\Error\NoPassive(
+                    \SAML2\Constants::STATUS_RESPONDER,
+                    $this->statusMessage
+                );
 				break;
 			}
 			break;
 		}
 
-		if ($e === NULL) {
+		if ($e === null) {
 			return $this;
 		}
 
@@ -181,8 +182,9 @@ class sspmod_saml_Error extends SimpleSAML_Error_Exception {
 	 * @param string $status  The status code.
 	 * @return string  A shorter version of the status code.
 	 */
-	private static function shortStatus($status) {
-		assert('is_string($status)');
+	private static function shortStatus($status)
+    {
+		assert(is_string($status));
 
 		$t = 'urn:oasis:names:tc:SAML:2.0:status:';
 		if (substr($status, 0, strlen($t)) === $t) {

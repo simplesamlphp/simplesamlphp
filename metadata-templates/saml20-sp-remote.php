@@ -14,9 +14,9 @@ $metadata['https://saml2sp.example.org'] = array(
 );
 
 /*
- * This example shows an example config that works with Google Apps for education.
+ * This example shows an example config that works with G Suite (Google Apps) for education.
  * What is important is that you have an attribute in your IdP that maps to the local part of the email address
- * at Google Apps. In example, if your google account is foo.com, and you have a user that has an email john@foo.com, then you
+ * at G Suite. In example, if your Google account is foo.com, and you have a user that has an email john@foo.com, then you
  * must set the simplesaml.nameidattribute to be the name of an attribute that for this user has the value of 'john'.
  */
 $metadata['google.com'] = array(

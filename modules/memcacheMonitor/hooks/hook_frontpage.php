@@ -5,8 +5,8 @@
  * @param array &$links  The links on the frontpage, split into sections.
  */
 function memcacheMonitor_hook_frontpage(&$links) {
-	assert('is_array($links)');
-	assert('array_key_exists("links", $links)');
+	assert(is_array($links));
+	assert(array_key_exists('links', $links));
 
 	$links['config'][] = array(
 		'href' => SimpleSAML\Module::getModuleURL('memcacheMonitor/memcachestat.php'),

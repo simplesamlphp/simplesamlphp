@@ -28,89 +28,6 @@ class Module
 
 
     /**
-     * Autoload function for SimpleSAMLphp modules following PSR-0.
-     *
-     * @param string $className Name of the class.
-     *
-     * @deprecated This method will be removed in SSP 2.0.
-     *
-     * TODO: this autoloader should be removed once everything has been migrated to namespaces.
-     */
-    public static function autoloadPSR0($className)
-    {
-        $modulePrefixLength = strlen('sspmod_');
-        $classPrefix = substr($className, 0, $modulePrefixLength);
-        if ($classPrefix !== 'sspmod_') {
-            return;
-        }
-
-        $modNameEnd = strpos($className, '_', $modulePrefixLength);
-        $module = substr($className, $modulePrefixLength, $modNameEnd - $modulePrefixLength);
-        $path = explode('_', substr($className, $modNameEnd + 1));
-
-        if (!self::isModuleEnabled($module)) {
-            return;
-        }
-
-        $file = self::getModuleDir($module).'/lib/'.join('/', $path).'.php';
-        if (!file_exists($file)) {
-            return;
-        }
-        require_once($file);
-
-        if (!class_exists($className, false) && !interface_exists($className, false)) {
-            // the file exists, but the class is not defined. Is it using namespaces?
-            $nspath = join('\\', $path);
-            if (class_exists('SimpleSAML\Module\\'.$module.'\\'.$nspath) ||
-                interface_exists('SimpleSAML\Module\\'.$module.'\\'.$nspath)
-            ) {
-                // the class has been migrated, create an alias and warn about it
-                \SimpleSAML\Logger::warning(
-                    "The class or interface '$className' is now using namespaces, please use 'SimpleSAML\\Module\\".
-                    $module."\\".$nspath."' instead."
-                );
-                class_alias("SimpleSAML\\Module\\$module\\$nspath", $className);
-            }
-        }
-    }
-
-
-    /**
-     * Autoload function for SimpleSAMLphp modules following PSR-4.
-     *
-     * @param string $className Name of the class.
-     */
-    public static function autoloadPSR4($className)
-    {
-        $elements = explode('\\', $className);
-        if ($elements[0] === '') { // class name starting with /, ignore
-            array_shift($elements);
-        }
-        if (count($elements) < 4) {
-            return; // it can't be a module
-        }
-        if (array_shift($elements) !== 'SimpleSAML') {
-            return; // the first element is not "SimpleSAML"
-        }
-        if (array_shift($elements) !== 'Module') {
-            return; // the second element is not "module"
-        }
-
-        // this is a SimpleSAMLphp module following PSR-4
-        $module = array_shift($elements);
-        if (!self::isModuleEnabled($module)) {
-            return; // module not enabled, avoid giving out any information at all
-        }
-
-        $file = self::getModuleDir($module).'/lib/'.implode('/', $elements).'.php';
-
-        if (file_exists($file)) {
-            require_once($file);
-        }
-    }
-
-
-    /**
      * Retrieve the base directory for a module.
      *
      * The returned path name will be an absolute path.
@@ -152,7 +69,7 @@ class Module
             return self::$module_info[$module]['enabled'];
         }
 
-        if (!empty(self::$modules) && !in_array($module, self::$modules)) {
+        if (!empty(self::$modules) && !in_array($module, self::$modules, true)) {
             return false;
         }
 
@@ -251,9 +168,9 @@ class Module
      */
     public static function resolveClass($id, $type, $subclass = null)
     {
-        assert('is_string($id)');
-        assert('is_string($type)');
-        assert('is_string($subclass) || is_null($subclass)');
+        assert(is_string($id));
+        assert(is_string($type));
+        assert(is_string($subclass) || $subclass === null);
 
         $tmp = explode(':', $id, 2);
         if (count($tmp) === 1) { // no module involved
@@ -302,8 +219,8 @@ class Module
      */
     public static function getModuleURL($resource, array $parameters = array())
     {
-        assert('is_string($resource)');
-        assert('$resource[0] !== "/"');
+        assert(is_string($resource));
+        assert($resource[0] !== '/');
 
         $url = Utils\HTTP::getBaseURL().'module.php/'.$resource;
         if (!empty($parameters)) {
@@ -363,7 +280,7 @@ class Module
      */
     public static function callHooks($hook, &$data = null)
     {
-        assert('is_string($hook)');
+        assert(is_string($hook));
 
         $modules = self::getModules();
         $config = \SimpleSAML_Configuration::getOptionalConfig()->getArray('module.enable', array());

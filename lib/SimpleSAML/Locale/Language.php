@@ -365,7 +365,7 @@ class Language
      */
     public function isLanguageRTL()
     {
-        return in_array($this->getLanguage(), $this->rtlLanguages);
+        return in_array($this->getLanguage(), $this->rtlLanguages, true);
     }
 
 
@@ -399,7 +399,7 @@ class Language
      */
     public static function setLanguageCookie($language)
     {
-        assert('is_string($language)');
+        assert(is_string($language));
 
         $language = strtolower($language);
         $config = \SimpleSAML_Configuration::getInstance();

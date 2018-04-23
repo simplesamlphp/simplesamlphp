@@ -1,5 +1,6 @@
 <?php
 
+use PHPUnit\Framework\TestCase;
 
 /**
  * This test ensures that the SimpleSAML_Database class can properly
@@ -12,7 +13,7 @@
  * @author Tyler Antonio, University of Alberta. <tantonio@ualberta.ca>
  * @package SimpleSAMLphp
  */
-class SimpleSAML_DatabaseTest extends PHPUnit_Framework_TestCase
+class SimpleSAML_DatabaseTest extends TestCase
 {
 
     /**
@@ -30,8 +31,6 @@ class SimpleSAML_DatabaseTest extends PHPUnit_Framework_TestCase
      * Make protected functions available for testing
      *
      * @param string $getMethod The method to get.
-     * @requires PHP 5.3.2
-     *
      * @return mixed The method itself.
      */
     protected static function getMethod($getMethod)

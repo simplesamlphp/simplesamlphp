@@ -205,7 +205,7 @@ alternative, you may log to flat files.
 
 ## Apache configuration
 
-Basic Apache configruation is described in [SimpleSAMLphp Installation](simplesamlphp-install#section_6).
+Basic Apache configuration is described in [SimpleSAMLphp Installation](simplesamlphp-install#section_6).
 However, your IdP or SP is most likely a valuable website that you want to configure securely. Here are some checks.
 
 * Make sure you use HTTPS with a proper certificate. The best way is to not

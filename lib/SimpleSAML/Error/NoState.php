@@ -6,15 +6,16 @@
  *
  * @package SimpleSAMLphp
  */
-class SimpleSAML_Error_NoState extends SimpleSAML_Error_Error {
+class SimpleSAML_Error_NoState extends SimpleSAML_Error_Error
+{
 
 
-	/**
-	 * Create the error
-	 */
-	public function __construct() {
-		$this->includeTemplate = 'core:no_state.tpl.php';
-		parent::__construct('NOSTATE');
-	}
-
+    /**
+     * Create the error
+     */
+    public function __construct()
+    {
+        $this->includeTemplate = 'core:no_state.tpl.php';
+        parent::__construct('NOSTATE');
+    }
 }

@@ -33,7 +33,7 @@ Prerequisites
  * Some webserver capable of executing PHP scripts.
  * PHP version >= 5.4.0.
  * Support for the following PHP extensions:
-   * Always required: `date`, `dom`, `hash`, `libxml`, `openssl`, `pcre`, `SPL`, `zlib`, `json`
+   * Always required: `date`, `dom`, `hash`, `libxml`, `openssl`, `pcre`, `SPL`, `zlib`, `json`, `mbstring`
    * When automatically checking for latest versions, and used by some modules: `cURL`
    * When authenticating against LDAP server: `ldap`
    * When authenticating against RADIUS server: `radius`
@@ -261,7 +261,7 @@ You have now successfully installed SimpleSAMLphp, and the next steps depends on
  * [Identity Provider QuickStart](simplesamlphp-idp)
   * [IdP hosted reference](simplesamlphp-reference-idp-hosted)
   * [SP remote reference](simplesamlphp-reference-sp-remote)
-  * [Use case: Setting up an IdP for Google Apps](simplesamlphp-googleapps)
+  * [Use case: Setting up an IdP for G Suite (Google Apps)](simplesamlphp-googleapps)
   * [Identity Provider Advanced Topics](simplesamlphp-idp-more)
  * [Automated Metadata Management](simplesamlphp-automated_metadata)
  * [Maintenance and configuration](simplesamlphp-maintenance)

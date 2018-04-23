@@ -255,6 +255,10 @@ The following SAML 2.0 options are available:
 
 :   Note that this requires a configured memcache server.
 
+`saml20.ecp`
+:   Set to `true` to enable the IdP to recieve authnrequests and send responses according the Enhanced Client or Proxy (ECP) Profile. Note: authentication filters that require interaction with the user will not work with ECP.
+    Defaults to `false`.
+
 `saml20.hok.assertion`
 :   Set to `TRUE` to enable the IdP to send responses according the [Holder-of-Key Web Browser SSO Profile](./simplesamlphp-hok-idp).
     Defaults to `FALSE`.

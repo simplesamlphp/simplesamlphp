@@ -6,7 +6,7 @@ class sspmod_statistics_Statistics_FieldPresentation_Base
     protected $template;
     protected $config;
 
-    function __construct($fields, $config, $template)
+    public function __construct($fields, $config, $template)
     {
         $this->fields = $fields;
         $this->template = $template;

@@ -47,7 +47,7 @@ class sspmod_smartattributes_Auth_Process_SmartID extends SimpleSAML_Auth_Proces
 	public function __construct($config, $reserved) {
 		parent::__construct($config, $reserved);
 
-		assert('is_array($config)');
+		assert(is_array($config));
 
 		if (array_key_exists('candidates', $config)) {
 			$this->_candidates = $config['candidates'];
@@ -107,8 +107,8 @@ class sspmod_smartattributes_Auth_Process_SmartID extends SimpleSAML_Auth_Proces
 	 * @param array &$request  The current request
 	 */
 	public function process(&$request) {
-		assert('is_array($request)');
-		assert('array_key_exists("Attributes", $request)');
+		assert(is_array($request));
+		assert(array_key_exists('Attributes', $request));
 
 		$ID = $this->addID($request['Attributes'], $request);
 

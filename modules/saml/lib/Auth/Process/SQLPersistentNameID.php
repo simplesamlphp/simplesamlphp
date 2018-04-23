@@ -49,7 +49,7 @@ class sspmod_saml_Auth_Process_SQLPersistentNameID extends sspmod_saml_BaseNameI
     public function __construct($config, $reserved)
     {
         parent::__construct($config, $reserved);
-        assert('is_array($config)');
+        assert(is_array($config));
 
         $this->format = \SAML2\Constants::NAMEID_PERSISTENT;
 
@@ -96,7 +96,9 @@ class sspmod_saml_Auth_Process_SQLPersistentNameID extends sspmod_saml_BaseNameI
             $state['SPMetadata']['NameIDPolicy'],
             $state['SPMetadata']['NameIDFormat']
         ));
-        if (count($validNameIdFormats) && !in_array($this->format, $validNameIdFormats) && !$this->allowDifferent) {
+        if (count($validNameIdFormats) && !in_array($this->format, $validNameIdFormats, true) &&
+            !$this->allowDifferent
+        ) {
             SimpleSAML\Logger::debug(
                 'SQLPersistentNameID: SP expects different NameID format ('.
                 implode(', ', $validNameIdFormats).'),  not generating persistent NameID.'

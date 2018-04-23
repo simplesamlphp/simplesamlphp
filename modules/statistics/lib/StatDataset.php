@@ -29,8 +29,8 @@ class sspmod_statistics_StatDataset
      */
     public function __construct($statconfig, $ruleconfig, $ruleid, $timeres, $fileslot)
     {
-        assert('$statconfig instanceof SimpleSAML_Configuration');
-        assert('$ruleconfig instanceof SimpleSAML_Configuration');
+        assert($statconfig instanceof SimpleSAML_Configuration);
+        assert($ruleconfig instanceof SimpleSAML_Configuration);
         $this->statconfig = $statconfig;
         $this->ruleconfig = $ruleconfig;
 
@@ -183,7 +183,6 @@ class sspmod_statistics_StatDataset
     public function getAxis()
     {
         $slotsize = $this->timeresconfig->getValue('slot');
-        $dateformat_period = $this->timeresconfig->getValue('dateformat-period');
         $dateformat_intra = $this->timeresconfig->getValue('dateformat-intra');
         $axislabelint = $this->timeresconfig->getValue('axislabelint');
 

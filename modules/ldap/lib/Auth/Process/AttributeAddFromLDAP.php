@@ -36,9 +36,9 @@ class sspmod_ldap_Auth_Process_AttributeAddFromLDAP extends sspmod_ldap_Auth_Pro
 {
 
     /**
-     * LDAP attribute to add to the request attributes
+     * LDAP attributes to add to the request attributes
      *
-     * @var string
+     * @var array
      */
     protected $search_attributes;
 
@@ -103,15 +103,15 @@ class sspmod_ldap_Auth_Process_AttributeAddFromLDAP extends sspmod_ldap_Auth_Pro
          * @TODO Remove after 2.0
          */
         unset(
-        $config['ldap_host'],
-        $config['ldap_port'],
-        $config['ldap_bind_user'],
-        $config['ldap_bind_pwd'],
-        $config['userid_attribute'],
-        $config['ldap_search_base_dn'],
-        $config['ldap_search_filter'],
-        $config['ldap_search_attribute'],
-        $config['new_attribute_name']
+            $config['ldap_host'],
+            $config['ldap_port'],
+            $config['ldap_bind_user'],
+            $config['ldap_bind_pwd'],
+            $config['userid_attribute'],
+            $config['ldap_search_base_dn'],
+            $config['ldap_search_filter'],
+            $config['ldap_search_attribute'],
+            $config['new_attribute_name']
         );
 
         // Now that we checked for BC, run the parent constructor
@@ -137,14 +137,15 @@ class sspmod_ldap_Auth_Process_AttributeAddFromLDAP extends sspmod_ldap_Auth_Pro
      */
     public function process(&$request)
     {
-        assert('is_array($request)');
-        assert('array_key_exists("Attributes", $request)');
+        assert(is_array($request));
+        assert(array_key_exists('Attributes', $request));
 
         $attributes =& $request['Attributes'];
 
         // perform a merge on the ldap_search_filter
-
         // loop over the attributes and build the search and replace arrays
+        $arrSearch = array();
+        $arrReplace = array();
         foreach ($attributes as $attr => $val) {
             $arrSearch[] = '%'.$attr.'%';
 
@@ -164,7 +165,7 @@ class sspmod_ldap_Auth_Process_AttributeAddFromLDAP extends sspmod_ldap_Auth_Pro
             return;
         }
 
-        if (!in_array($this->attr_policy, array('merge', 'replace', 'add'))) {
+        if (!in_array($this->attr_policy, array('merge', 'replace', 'add'), true)) {
             SimpleSAML\Logger::warning("AttributeAddFromLDAP: 'attribute.policy' must be one of 'merge',".
                                        "'replace' or 'add'.");
             return;
@@ -172,16 +173,21 @@ class sspmod_ldap_Auth_Process_AttributeAddFromLDAP extends sspmod_ldap_Auth_Pro
 
         // getLdap
         try {
-          $ldap = $this->getLdap();
+            $ldap = $this->getLdap();
         } catch (Exception $e) {
-          // Added this warning in case $this->getLdap() fails
-          SimpleSAML\Logger::warning("AttributeAddFromLDAP: exception = " . $e);
-          return;
+            // Added this warning in case $this->getLdap() fails
+            SimpleSAML\Logger::warning("AttributeAddFromLDAP: exception = " . $e);
+            return;
         }
         // search for matching entries
         try {
-            $entries = $ldap->searchformultiple($this->base_dn, $filter,
-                                                           array_values($this->search_attributes), true, false);
+            $entries = $ldap->searchformultiple(
+                $this->base_dn,
+                $filter,
+                array_values($this->search_attributes),
+                true,
+                false
+            );
         } catch (Exception $e) {
             return; // silent fail, error is still logged by LDAP search
         }
@@ -200,9 +206,9 @@ class sspmod_ldap_Auth_Process_AttributeAddFromLDAP extends sspmod_ldap_Auth_Pro
                 if (isset($entry[$name])) {
                     unset($entry[$name]['count']);
                     if (isset($attributes[$target])) {
-                        foreach(array_values($entry[$name]) as $value) {
+                        foreach (array_values($entry[$name]) as $value) {
                             if ($this->attr_policy === 'merge') {
-                                if (!in_array($value, $attributes[$target])) {
+                                if (!in_array($value, $attributes[$target], true)) {
                                     $attributes[$target][] = $value;
                                 }
                             } else {

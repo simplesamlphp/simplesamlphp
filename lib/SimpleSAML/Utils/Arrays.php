@@ -12,7 +12,7 @@ class Arrays
     /**
      * Put a non-array variable into an array.
      *
-     * @param array $data The data to place into an array.
+     * @param mixed $data The data to place into an array.
      * @param mixed $index The index or key of the array where to place the data. Defaults to 0.
      *
      * @return array An array with one element containing $data, with key $index, or $data itself if it's already an

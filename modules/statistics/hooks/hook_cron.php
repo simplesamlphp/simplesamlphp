@@ -6,13 +6,13 @@
  */
 function statistics_hook_cron(&$croninfo)
 {
-    assert('is_array($croninfo)');
-    assert('array_key_exists("summary", $croninfo)');
-    assert('array_key_exists("tag", $croninfo)');
+    assert(is_array($croninfo));
+    assert(array_key_exists('summary', $croninfo));
+    assert(array_key_exists('tag', $croninfo));
 
     $statconfig = SimpleSAML_Configuration::getConfig('module_statistics.php');
 	
-    if (is_null($statconfig->getValue('cron_tag', nul))) {
+    if (is_null($statconfig->getValue('cron_tag', null))) {
         return;
     }
     if ($statconfig->getValue('cron_tag', null) !== $croninfo['tag']) {

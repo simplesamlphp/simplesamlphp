@@ -5,9 +5,9 @@
  * @param array &$hookinfo  hookinfo
  */
 function core_hook_sanitycheck(&$hookinfo) {
-	assert('is_array($hookinfo)');
-	assert('array_key_exists("errors", $hookinfo)');
-	assert('array_key_exists("info", $hookinfo)');
+	assert(is_array($hookinfo));
+	assert(array_key_exists('errors', $hookinfo));
+	assert(array_key_exists('info', $hookinfo));
 
 	$config = SimpleSAML_Configuration::getInstance();
 	
@@ -38,7 +38,7 @@ function core_hook_sanitycheck(&$hookinfo) {
 	foreach($info AS $mi => $i) {
 		if (isset($i['dependencies']) && is_array($i['dependencies'])) {
 			foreach ($i['dependencies'] AS $dep) {
-				if (!in_array($dep, $availmodules)) {
+				if (!in_array($dep, $availmodules, true)) {
 					$hookinfo['errors'][] = '[core] Module dependency not met: ' . $mi . ' requires ' . $dep;
 				}
 			}

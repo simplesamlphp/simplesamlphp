@@ -55,7 +55,7 @@ try {
 
     if ($idpmeta->hasValue('https.certificate')) {
         $httpsCert = Crypto::loadPublicKey($idpmeta, true, 'https.');
-        assert('isset($httpsCert["certData"])');
+        assert(isset($httpsCert['certData']));
         $availableCerts['https.crt'] = $httpsCert;
         $keys[] = array(
             'type'            => 'X509Certificate',
@@ -125,6 +125,14 @@ try {
             'Binding'                => Constants::BINDING_HOK_SSO,
             'Location'               => HTTP::getBaseURL().'saml2/idp/SSOService.php'
         ));
+    }
+
+    if ($idpmeta->getBoolean('saml20.ecp', false)) {
+        $metaArray['SingleSignOnService'][] = array(
+            'index' => 0,
+            'Binding'  => Constants::BINDING_SOAP,
+            'Location' => HTTP::getBaseURL().'saml2/idp/SSOService.php',
+        );
     }
 
     $metaArray['NameIDFormat'] = $idpmeta->getString(

@@ -6,10 +6,10 @@
  * @param array &$hookinfo  hookinfo
  */
 function portal_hook_htmlinject(&$hookinfo) {
-	assert('is_array($hookinfo)');
-	assert('array_key_exists("pre", $hookinfo)');
-	assert('array_key_exists("post", $hookinfo)');
-	assert('array_key_exists("page", $hookinfo)');
+	assert(is_array($hookinfo));
+	assert(array_key_exists('pre', $hookinfo));
+	assert(array_key_exists('post', $hookinfo));
+	assert(array_key_exists('page', $hookinfo));
 
 	$links = array('links' => array());
 	SimpleSAML\Module::callHooks('frontpage', $links);

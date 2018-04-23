@@ -25,5 +25,6 @@
         <MissingConstructor errorLevel="info" />
         <UnusedClass errorLevel="info" />
         <PossiblyUnusedMethod errorLevel="info" />
+        <UntypedParam errorLevel="info" />
     </issueHandlers>
 </psalm>

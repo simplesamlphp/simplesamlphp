@@ -33,7 +33,7 @@ if (array_key_exists('code', $_REQUEST)) {
 }
 
 // find authentication source
-assert('array_key_exists(sspmod_authwindowslive_Auth_Source_LiveID::AUTHID, $state)');
+assert(array_key_exists(sspmod_authwindowslive_Auth_Source_LiveID::AUTHID, $state));
 $sourceId = $state[sspmod_authwindowslive_Auth_Source_LiveID::AUTHID];
 
 $source = SimpleSAML_Auth_Source::getById($sourceId);

@@ -68,8 +68,8 @@ abstract class sspmod_core_Auth_UserPassOrgBase extends SimpleSAML_Auth_Source {
 	 * @param array &$config  Configuration for this authentication source.
 	 */
 	public function __construct($info, &$config) {
-		assert('is_array($info)');
-		assert('is_array($config)');
+		assert(is_array($info));
+		assert(is_array($config));
 
 		// Call the parent constructor first, as required by the interface
 		parent::__construct($info, $config);
@@ -101,7 +101,7 @@ abstract class sspmod_core_Auth_UserPassOrgBase extends SimpleSAML_Auth_Source {
 	 * @param string $usernameOrgMethod  The method which should be used.
 	 */
 	protected function setUsernameOrgMethod($usernameOrgMethod) {
-		assert('in_array($usernameOrgMethod, array("none", "allow", "force"), TRUE)');
+		assert(in_array($usernameOrgMethod, array('none', 'allow', 'force'), true));
 
 		$this->usernameOrgMethod = $usernameOrgMethod;
 	}
@@ -147,7 +147,7 @@ abstract class sspmod_core_Auth_UserPassOrgBase extends SimpleSAML_Auth_Source {
 	 * @param array &$state  Information about the current authentication.
 	 */
 	public function authenticate(&$state) {
-		assert('is_array($state)');
+		assert(is_array($state));
 
 		// We are going to need the authId in order to retrieve this authentication source later
 		$state[self::AUTHID] = $this->authId;
@@ -203,16 +203,16 @@ abstract class sspmod_core_Auth_UserPassOrgBase extends SimpleSAML_Auth_Source {
 	 * @param string $organization  The id of the organization the user chose.
 	 */
 	public static function handleLogin($authStateId, $username, $password, $organization) {
-		assert('is_string($authStateId)');
-		assert('is_string($username)');
-		assert('is_string($password)');
-		assert('is_string($organization)');
+		assert(is_string($authStateId));
+		assert(is_string($username));
+		assert(is_string($password));
+		assert(is_string($organization));
 
 		/* Retrieve the authentication state. */
 		$state = SimpleSAML_Auth_State::loadState($authStateId, self::STAGEID);
 
 		/* Find authentication source. */
-		assert('array_key_exists(self::AUTHID, $state)');
+		assert(array_key_exists(self::AUTHID, $state));
 		$source = SimpleSAML_Auth_Source::getById($state[self::AUTHID]);
 		if ($source === NULL) {
 			throw new Exception('Could not find authentication source with id ' . $state[self::AUTHID]);
@@ -254,13 +254,13 @@ abstract class sspmod_core_Auth_UserPassOrgBase extends SimpleSAML_Auth_Source {
 	 *         organization as part of the username.
 	 */
 	public static function listOrganizations($authStateId) {
-		assert('is_string($authStateId)');
+		assert(is_string($authStateId));
 
 		/* Retrieve the authentication state. */
 		$state = SimpleSAML_Auth_State::loadState($authStateId, self::STAGEID);
 
 		/* Find authentication source. */
-		assert('array_key_exists(self::AUTHID, $state)');
+		assert(array_key_exists(self::AUTHID, $state));
 		$source = SimpleSAML_Auth_Source::getById($state[self::AUTHID]);
 		if ($source === NULL) {
 			throw new Exception('Could not find authentication source with id ' . $state[self::AUTHID]);

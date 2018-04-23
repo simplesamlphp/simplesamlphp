@@ -2,6 +2,7 @@
 
 namespace SimpleSAML\Test\Utils;
 
+use PHPUnit\Framework\TestCase;
 use SimpleSAML\Utils\Attributes;
 
 /**
@@ -9,7 +10,7 @@ use SimpleSAML\Utils\Attributes;
  *
  * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
  */
-class AttributesTest extends \PHPUnit_Framework_TestCase
+class AttributesTest extends TestCase
 {
 
     /**

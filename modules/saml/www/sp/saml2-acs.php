@@ -80,14 +80,14 @@ if (!empty($stateId)) {
         $state = SimpleSAML_Auth_State::loadState($stateId, 'saml:sp:sso');
     } catch (Exception $e) {
         // something went wrong,
-        SimpleSAML_Logger::warning('Could not load state specified by InResponseTo: '.$e->getMessage().
+        SimpleSAML\Logger::warning('Could not load state specified by InResponseTo: '.$e->getMessage().
             ' Processing response as unsolicited.');
     }
 }
 
 if ($state) {
     // check that the authentication source is correct
-    assert('array_key_exists("saml:sp:AuthId", $state)');
+    assert(array_key_exists('saml:sp:AuthId', $state));
     if ($state['saml:sp:AuthId'] !== $sourceId) {
         throw new SimpleSAML_Error_Exception(
             'The authentication source id in the URL does not match the authentication source which sent the request.'
@@ -95,11 +95,11 @@ if ($state) {
     }
 
     // check that the issuer is the one we are expecting
-    assert('array_key_exists("ExpectedIssuer", $state)');
+    assert(array_key_exists('ExpectedIssuer', $state));
     if ($state['ExpectedIssuer'] !== $idp) {
         $idpMetadata = $source->getIdPMetadata($idp);
         $idplist = $idpMetadata->getArrayize('IDPList', array());
-        if (!in_array($state['ExpectedIssuer'], $idplist)) {
+        if (!in_array($state['ExpectedIssuer'], $idplist, true)) {
             throw new SimpleSAML_Error_Exception(
                 'The issuer of the response does not match to the identity provider we sent the request to.'
             );
@@ -233,6 +233,8 @@ $state['LogoutState'] = $logoutState;
 $state['saml:AuthenticatingAuthority'] = $authenticatingAuthority;
 $state['saml:AuthenticatingAuthority'][] = $idp;
 $state['PersistentAuthData'][] = 'saml:AuthenticatingAuthority';
+$state['saml:AuthnInstant'] = $assertion->getAuthnInstant();
+$state['PersistentAuthData'][] = 'saml:AuthnInstant';
 $state['saml:sp:SessionIndex'] = $sessionIndex;
 $state['PersistentAuthData'][] = 'saml:sp:SessionIndex';
 $state['saml:sp:AuthnContext'] = $assertion->getAuthnContext();
@@ -268,4 +270,4 @@ $state['saml:sp:AttributeExtData'] = array("nameFormats"=>$attributeNameFormats,
 $state['PersistentAuthData'][] = 'saml:sp:AttributeExtData';
 
 $source->handleResponse($state, $idp, $attributes);
-assert('FALSE');
+assert(false);

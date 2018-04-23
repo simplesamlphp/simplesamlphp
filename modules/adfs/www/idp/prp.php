@@ -18,7 +18,7 @@ if (isset($_GET['wa'])) {
     } else if ($_GET['wa'] === 'wsignin1.0') {
         sspmod_adfs_IdP_ADFS::receiveAuthnRequest($idp);
     }
-    assert('false');		
+    assert(false);
 } elseif (isset($_GET['assocId'])) {
     // logout response from ADFS SP
     $assocId = $_GET['assocId']; // Association ID of the SP that sent the logout response

@@ -40,8 +40,8 @@ class sspmod_negotiate_Auth_Source_Negotiate extends SimpleSAML_Auth_Source
      */
     public function __construct($info, $config)
     {
-        assert('is_array($info)');
-        assert('is_array($config)');
+        assert(is_array($info));
+        assert(is_array($config));
 
         if (!extension_loaded('krb5')) {
             throw new Exception('KRB5 Extension not installed');
@@ -82,7 +82,7 @@ class sspmod_negotiate_Auth_Source_Negotiate extends SimpleSAML_Auth_Source
      */
     public function authenticate(&$state)
     {
-        assert('is_array($state)');
+        assert(is_array($state));
 
         // set the default backend to config
         $state['LogoutState'] = array(
@@ -107,13 +107,13 @@ class sspmod_negotiate_Auth_Source_Negotiate extends SimpleSAML_Auth_Source
             SimpleSAML\Logger::debug('Negotiate - session disabled. falling back');
             $this->fallBack($state);
             // never executed
-            assert('FALSE');
+            assert(false);
         }
         $mask = $this->checkMask();
         if (!$mask) {
             $this->fallBack($state);
             // never executed
-            assert('FALSE');
+            assert(false);
         }
 
         SimpleSAML\Logger::debug('Negotiate - authenticate(): looking for Negotiate');
@@ -128,7 +128,7 @@ class sspmod_negotiate_Auth_Source_Negotiate extends SimpleSAML_Auth_Source
                 $this->referrals
             );
 
-            list($mech, $data) = explode(' ', $_SERVER['HTTP_AUTHORIZATION'], 2);
+            list($mech,) = explode(' ', $_SERVER['HTTP_AUTHORIZATION'], 2);
             if (strtolower($mech) == 'basic') {
                 SimpleSAML\Logger::debug('Negotiate - authenticate(): Basic found. Skipping.');
             } else {
@@ -160,10 +160,10 @@ class sspmod_negotiate_Auth_Source_Negotiate extends SimpleSAML_Auth_Source
                     SimpleSAML\Logger::info('Negotiate - authenticate(): '.$user.' authorized.');
                     SimpleSAML_Auth_Source::completeAuth($state);
                     // Never reached.
-                    assert('FALSE');
+                    assert(false);
                 }
             } else {
-                // Some error in the recieved ticket. Expired?
+                // Some error in the received ticket. Expired?
                 SimpleSAML\Logger::info('Negotiate - authenticate(): Kerberos authN failed. Skipping.');
             }
         } else {
@@ -182,7 +182,7 @@ class sspmod_negotiate_Auth_Source_Negotiate extends SimpleSAML_Auth_Source
         $this->fallBack($state);
         /* The previous function never returns, so this code is never
            executed */
-        assert('FALSE');
+        assert(false);
     }
 
 
@@ -259,7 +259,7 @@ EOF;
     /**
      * Passes control of the login process to a different module.
      *
-     * @param string $state Information about the current authentication.
+     * @param array $state Information about the current authentication.
      *
      * @throws SimpleSAML_Error_Error If couldn't determine the auth source.
      * @throws SimpleSAML_Error_Exception
@@ -270,7 +270,7 @@ EOF;
         $authId = $state['LogoutState']['negotiate:backend'];
 
         if ($authId === null) {
-            throw new SimpleSAML_Error_Error(500, "Unable to determine auth source.");
+            throw new SimpleSAML_Error_Error(array(500, "Unable to determine auth source."));
         }
         $source = SimpleSAML_Auth_Source::getById($authId);
 
@@ -348,7 +348,7 @@ EOF;
      */
     public function logout(&$state)
     {
-        assert('is_array($state)');
+        assert(is_array($state));
         // get the source that was used to authenticate
         $authId = $state['negotiate:backend'];
         SimpleSAML\Logger::debug('Negotiate - logout has the following authId: "'.$authId.'"');

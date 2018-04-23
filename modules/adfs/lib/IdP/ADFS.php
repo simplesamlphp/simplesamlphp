@@ -181,7 +181,6 @@ MSG;
     public static function sendLogoutResponse(SimpleSAML_IdP $idp, array $state)
     {
         // NB:: we don't know from which SP the logout request came from
-        $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
         $idpMetadata = $idp->getConfig();
         \SimpleSAML\Utils\HTTP::redirectTrustedURL($idpMetadata->getValue('redirect-after-logout', \SimpleSAML\Utils\HTTP::getBaseURL()));
     }
@@ -192,7 +191,7 @@ MSG;
         // this implies an override to normal sp notification
         if (isset($_GET['wreply']) && !empty($_GET['wreply'])) {
             $idp->doLogoutRedirect(\SimpleSAML\Utils\HTTP::checkURLAllowed($_GET['wreply']));
-            assert('false');
+            assert(false);
         }
 
         $state = array(
@@ -209,7 +208,6 @@ MSG;
     public static function getLogoutURL(SimpleSAML_IdP $idp, array $association, $relayState)
     {
         $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
-        $idpMetadata = $idp->getConfig();
         $spMetadata = $metadata->getMetaDataConfig($association['adfs:entityID'], 'adfs-sp-remote');
         $returnTo = SimpleSAML\Module::getModuleURL('adfs/idp/prp.php?assocId=' . urlencode($association["id"]) . '&relayState=' . urlencode($relayState));
         return $spMetadata->getValue('prp') . '?' . 'wa=wsignoutcleanup1.0&wreply=' . urlencode($returnTo);

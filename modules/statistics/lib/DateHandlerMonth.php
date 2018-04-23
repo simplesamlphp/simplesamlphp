@@ -8,7 +8,7 @@ class sspmod_statistics_DateHandlerMonth extends sspmod_statistics_DateHandler
     /**
      * Constructor
      *
-     * @param array $offset 	Date offset
+     * @param integer $offset 	Date offset
      */
     public function __construct($offset)
     {

@@ -1,55 +1,65 @@
 <?php
 
-class sspmod_portal_Portal {
-	
+class sspmod_portal_Portal
+{
 	private $pages;
 	private $config;
 	
-	function __construct($pages, $config = NULL) {
+	public function __construct($pages, $config = null)
+    {
 		$this->pages = $pages;
 		$this->config = $config;
 	}
 	
-	function getTabset($thispage) {
-		if (!isset($this->config)) return NULL;
-		foreach($this->config AS $set) {
-			if (in_array($thispage, $set)) {
+	public function getTabset($thispage)
+    {
+		if (!isset($this->config)) {
+            return null;
+        }
+		foreach($this->config as $set) {
+			if (in_array($thispage, $set, true)) {
 				return $set;
 			}
 		}
-		return NULL;
+		return null;
 	}
 	
-	function isPortalized($thispage) {
-		
-		foreach($this->config AS $set) {
-			if (in_array($thispage, $set)) {
-				return TRUE;
+	public function isPortalized($thispage)
+    {
+		foreach($this->config as $set) {
+			if (in_array($thispage, $set, true)) {
+				return true;
 			}
 		}
-		return FALSE;
+		return false;
 	}
 	
-	function getLoginInfo($translator, $thispage) {
+	public function getLoginInfo($translator, $thispage)
+    {
 		$info = array('info' => '', 'translator' => $translator, 'thispage' => $thispage);
 		SimpleSAML\Module::callHooks('portalLoginInfo', $info);
 		return $info['info'];
 	}
 	
-	function getMenu($thispage) {
+	public function getMenu($thispage)
+    {
 		$config = SimpleSAML_Configuration::getInstance();
 		$t = new SimpleSAML\Locale\Translate($config);
 		$tabset = $this->getTabset($thispage);
 		$logininfo = $this->getLoginInfo($t, $thispage);
 		$text = '';
 		$text .= '<ul class="tabset_tabs ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">';
-		foreach($this->pages AS $pageid => $page) {
-			
-			if (isset($tabset) && !in_array($pageid, $tabset, TRUE)) continue;
+		foreach ($this->pages as $pageid => $page) {
+			if (isset($tabset) && !in_array($pageid, $tabset, true)) {
+                continue;
+            }
 			$name = 'uknown';
-			if (isset($page['text'])) $name = $page['text'];
-			if (isset($page['shorttext'])) $name = $page['shorttext'];
-			
+			if (isset($page['text'])) {
+                $name = $page['text'];
+            }
+			if (isset($page['shorttext'])) {
+                $name = $page['shorttext'];
+            }
 			if (!isset($page['href'])) {
 				$text .= '<li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#">' . $t->t($name) . '</a></li>';
 			} else if($pageid === $thispage ) {
@@ -66,6 +76,4 @@ class sspmod_portal_Portal {
 
 		return $text;
 	}
-	
-	
 }

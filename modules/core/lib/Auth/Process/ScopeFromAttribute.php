@@ -38,7 +38,7 @@ class sspmod_core_Auth_Process_ScopeFromAttribute extends SimpleSAML_Auth_Proces
 	 */
 	public function __construct($config, $reserved) {
 		parent::__construct($config, $reserved);
-		assert('is_array($config)');
+		assert(is_array($config));
 
 		$config = SimpleSAML_Configuration::loadFromArray($config, 'ScopeFromAttribute');
 		$this->targetAttribute = $config->getString('targetAttribute');
@@ -52,8 +52,8 @@ class sspmod_core_Auth_Process_ScopeFromAttribute extends SimpleSAML_Auth_Proces
 	 * @param array &$request  The current request
 	 */
 	public function process(&$request) {
-		assert('is_array($request)');
-		assert('array_key_exists("Attributes", $request)');
+		assert(is_array($request));
+		assert(array_key_exists('Attributes', $request));
 
 		$attributes =& $request['Attributes'];
 

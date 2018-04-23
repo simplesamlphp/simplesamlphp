@@ -26,8 +26,8 @@ class sspmod_exampleauth_Auth_Source_UserPass extends sspmod_core_Auth_UserPassB
 	 * @param array $config  Configuration.
 	 */
 	public function __construct($info, $config) {
-		assert('is_array($info)');
-		assert('is_array($config)');
+		assert(is_array($info));
+		assert(is_array($config));
 
 		// Call the parent constructor first, as required by the interface
 		parent::__construct($info, $config);
@@ -76,8 +76,8 @@ class sspmod_exampleauth_Auth_Source_UserPass extends sspmod_core_Auth_UserPassB
 	 * @return array  Associative array with the users attributes.
 	 */
 	protected function login($username, $password) {
-		assert('is_string($username)');
-		assert('is_string($password)');
+		assert(is_string($username));
+		assert(is_string($password));
 
 		$userpass = $username . ':' . $password;
 		if (!array_key_exists($userpass, $this->users)) {

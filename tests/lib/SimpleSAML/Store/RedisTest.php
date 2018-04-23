@@ -2,6 +2,7 @@
 
 namespace SimpleSAML\Test\Store;
 
+use PHPUnit\Framework\TestCase;
 use \SimpleSAML_Configuration as Configuration;
 use \SimpleSAML\Store;
 
@@ -13,7 +14,7 @@ use \SimpleSAML\Store;
  *
  * @package simplesamlphp/simplesamlphp
  */
-class RedisTest extends \PHPUnit_Framework_TestCase
+class RedisTest extends TestCase
 {
     protected function setUp()
     {
@@ -48,7 +49,7 @@ class RedisTest extends \PHPUnit_Framework_TestCase
 
     public function getMocked($key)
     {
-        return array_key_exists($key, $this->config) ? $this->config[$key] : false;
+        return array_key_exists($key, $this->config) ? $this->config[$key] : null;
     }
 
     public function setMocked($key, $value)

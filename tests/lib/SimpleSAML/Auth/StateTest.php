@@ -1,10 +1,11 @@
 <?php
 
+use PHPUnit\Framework\TestCase;
 
 /**
  * Tests for SimpleSAML_Auth_State
  */
-class Auth_StateTest extends PHPUnit_Framework_TestCase
+class Auth_StateTest extends TestCase
 {
 
 

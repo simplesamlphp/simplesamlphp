@@ -41,7 +41,7 @@ class sspmod_authorize_Auth_Process_Authorize extends SimpleSAML_Auth_Processing
 	public function __construct($config, $reserved) {
 		parent::__construct($config, $reserved);
 
-		assert('is_array($config)');
+		assert(is_array($config));
 
 		// Check for the deny option, get it and remove it
 		// Must be bool specifically, if not, it might be for a attrib filter below
@@ -79,8 +79,8 @@ class sspmod_authorize_Auth_Process_Authorize extends SimpleSAML_Auth_Processing
 	 */
 	public function process(&$request) {
 		$authorize = $this->deny;
-		assert('is_array($request)');
-		assert('array_key_exists("Attributes", $request)');
+		assert(is_array($request));
+		assert(array_key_exists('Attributes', $request));
 
 		$attributes =& $request['Attributes'];
 

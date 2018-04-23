@@ -1,10 +1,12 @@
 <?php
 namespace SimpleSAML\Metadata;
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * Test SAML parsing
  */
-class SAMLParserTest extends \PHPUnit_Framework_TestCase
+class SAMLParserTest extends TestCase
 {
 
     /**

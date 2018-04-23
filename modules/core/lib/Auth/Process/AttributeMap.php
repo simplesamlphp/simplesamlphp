@@ -33,7 +33,7 @@ class sspmod_core_Auth_Process_AttributeMap extends SimpleSAML_Auth_ProcessingFi
     {
         parent::__construct($config, $reserved);
 
-        assert('is_array($config)');
+        assert(is_array($config));
         $mapFiles = array();
 
         foreach ($config as $origName => $newName) {
@@ -112,8 +112,8 @@ class sspmod_core_Auth_Process_AttributeMap extends SimpleSAML_Auth_ProcessingFi
      */
     public function process(&$request)
     {
-        assert('is_array($request)');
-        assert('array_key_exists("Attributes", $request)');
+        assert(is_array($request));
+        assert(array_key_exists('Attributes', $request));
 
         $attributes =& $request['Attributes'];
 

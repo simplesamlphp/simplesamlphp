@@ -120,14 +120,15 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 			return $metadataHandler->getMetaDataConfig($entityId, 'saml20-idp-remote');
 		} catch (Exception $e) {
 			/* Metadata wasn't found. */
+            SimpleSAML\Logger::debug('getIdpMetadata: ' . $e->getMessage());
 		}
-
 
 		/* Not found in saml20-idp-remote, look in shib13-idp-remote. */
 		try {
 			return $metadataHandler->getMetaDataConfig($entityId, 'shib13-idp-remote');
 		} catch (Exception $e) {
 			/* Metadata wasn't found. */
+            SimpleSAML\Logger::debug('getIdpMetadata: ' . $e->getMessage());
 		}
 
 		/* Not found. */
@@ -203,7 +204,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 						SAML2\Constants::COMPARISON_MINIMUM,
 						SAML2\Constants::COMPARISON_MAXIMUM,
 						SAML2\Constants::COMPARISON_BETTER,
-			))) {
+			), true)) {
 				$comp = $state['saml:AuthnContextComparison'];
 			}
 			$ar->setRequestedAuthnContext(array('AuthnContextClassRef' => $accr, 'Comparison' => $comp));
@@ -285,10 +286,10 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 				\SAML2\Constants::BINDING_HOK_SSO)
 			);
 		} else {
-            $bindings = array(\SAML2\Constants::BINDING_HTTP_REDIRECT, \SAML2\Constants::BINDING_HTTP_POST);
-            if (array_key_exists('saml:Binding', $state)){
-                array_unshift($bindings, $state['saml:Binding']);
-            }
+      $bindings = array(\SAML2\Constants::BINDING_HTTP_REDIRECT, \SAML2\Constants::BINDING_HTTP_POST);
+      if (array_key_exists('saml:Binding', $state)){
+        array_unshift($bindings, $state['saml:Binding']);
+      }
 			$dst = $idpMetadata->getDefaultEndpoint('SingleSignOnService', $bindings);
 		}
 		$ar->setDestination($dst['Location']);
@@ -411,7 +412,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 				);
 			}
 
-			if (!is_null($idp) && !in_array($idp, $intersection)) { // the IdP is enforced but not in the IDPList
+			if (!is_null($idp) && !in_array($idp, $intersection, true)) { // the IdP is enforced but not in the IDPList
 				throw new SimpleSAML\Module\saml\Error\NoAvailableIDP(
 					\SAML2\Constants::STATUS_REQUESTER,
 					'None of the IdPs requested are available to this proxy.'
@@ -476,7 +477,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 			 * We have at least one IdP in the IDPList that we recognize, and it's not the one currently in use. Let's
 			 * see if this proxy enforces the use of one single IdP.
 			 */
-			if (!is_null($this->idp) && !in_array($this->idp, $intersection)) { // an IdP is enforced but not requested
+			if (!is_null($this->idp) && !in_array($this->idp, $intersection, true)) { // an IdP is enforced but not requested
 				throw new SimpleSAML\Module\saml\Error\NoAvailableIDP(
 					\SAML2\Constants::STATUS_REQUESTER,
 					'None of the IdPs requested are available to this proxy.'
@@ -620,10 +621,10 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source {
 
 		$idpMetadata = $this->getIdPMetadata($idp);
 
-        $bindings = array(\SAML2\Constants::BINDING_HTTP_REDIRECT, \SAML2\Constants::BINDING_HTTP_POST);
-        if (array_key_exists('saml:Binding', $state)){
-            array_unshift($bindings, $state['saml:Binding']);
-        }
+    $bindings = array(\SAML2\Constants::BINDING_HTTP_REDIRECT, \SAML2\Constants::BINDING_HTTP_POST);
+    if (array_key_exists('saml:Binding', $state)){
+      array_unshift($bindings, $state['saml:Binding']);
+    }
 		$endpoint = $idpMetadata->getEndpointPrioritizedByBinding('SingleLogoutService', $bindings, FALSE);
 		if ($endpoint === FALSE) {
 			SimpleSAML\Logger::info('No logout endpoint for IdP ' . var_export($idp, TRUE) . '.');
