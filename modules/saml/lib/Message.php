@@ -603,7 +603,8 @@ class sspmod_saml_Message
         SimpleSAML_Configuration $idpMetadata,
         \SAML2\Response $response,
         $assertion,
-        $responseSigned
+        $responseSigned,
+        $denyEmptySubjectConfirmationData = true
     ) {
         assert($assertion instanceof \SAML2\Assertion || $assertion instanceof \SAML2\EncryptedAssertion);
         assert(is_bool($responseSigned));
@@ -739,8 +740,13 @@ class sspmod_saml_Message
 
             // if no SubjectConfirmationData then don't do anything.
             if ($scd === null) {
-                $lastError = 'No SubjectConfirmationData provided';
-                continue;
+                if ($denyEmptySubjectConfirmationData) {
+                    $lastError = 'No SubjectConfirmationData provided';
+                    continue;
+                } else {
+                    $found = true;
+                    break;
+                }
             }
 
             if ($scd->NotBefore && $scd->NotBefore > time() + 60) {
