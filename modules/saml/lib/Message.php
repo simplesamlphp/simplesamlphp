@@ -739,8 +739,8 @@ class sspmod_saml_Message
 
             // if no SubjectConfirmationData then don't do anything.
             if ($scd === null) {
-                $lastError = 'No SubjectConfirmationData provided';
-                continue;
+                $found = true;
+                break;
             }
 
             if ($scd->NotBefore && $scd->NotBefore > time() + 60) {
