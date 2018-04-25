@@ -539,16 +539,19 @@ class sspmod_saml_Message
      * @param SimpleSAML_Configuration $spMetadata The metadata of the service provider.
      * @param SimpleSAML_Configuration $idpMetadata The metadata of the identity provider.
      * @param \SAML2\Response $response The response.
+     * @param bool $denyEmptySubjectConfirmationData Whether the assertion should require SubjectConfirmationData.
      *
      * @return array Array with \SAML2\Assertion objects, containing valid assertions from the response.
      *
-     * @throws \SimpleSAML_Error_Exception if there are no assertions in the response.
-     * @throws \Exception if the destination of the response does not match the current URL.
+     * @throws Exception if the destination of the response does not match the current URL.
+     * @throws SimpleSAML_Error_Exception if there are no assertions in the response.
+     * @throws sspmod_saml_Error
      */
     public static function processResponse(
         SimpleSAML_Configuration $spMetadata,
         SimpleSAML_Configuration $idpMetadata,
-        \SAML2\Response $response
+        \SAML2\Response $response,
+        $denyEmptySubjectConfirmationData = true
     ) {
         if (!$response->isSuccess()) {
             throw self::getResponseError($response);
@@ -575,7 +578,7 @@ class sspmod_saml_Message
 
         $ret = array();
         foreach ($assertion as $a) {
-            $ret[] = self::processAssertion($spMetadata, $idpMetadata, $response, $a, $responseSigned);
+            $ret[] = self::processAssertion($spMetadata, $idpMetadata, $response, $a, $responseSigned, $denyEmptySubjectConfirmationData);
         }
 
         return $ret;
@@ -590,20 +593,22 @@ class sspmod_saml_Message
      * @param \SAML2\Response $response The response containing the assertion.
      * @param \SAML2\Assertion|\SAML2\EncryptedAssertion $assertion The assertion.
      * @param bool $responseSigned Whether the response is signed.
+     * @param bool $denyEmptySubjectConfirmationData Whether the assertion should require SubjectConfirmationData.
      *
      * @return \SAML2\Assertion The assertion, if it is valid.
      *
-     * @throws \SimpleSAML_Error_Exception if an error occurs while trying to validate the assertion, or if a assertion
+     * @throws Exception if we couldn't decrypt the NameID for unexpected reasons.
+     * @throws SimpleSAML_Error_Exception if an error occurs while trying to validate the assertion, or if a assertion
      * is not signed and it should be, or if we are unable to decrypt the NameID due to a local failure (missing or
      * invalid decryption key).
-     * @throws \Exception if we couldn't decrypt the NameID for unexpected reasons.
      */
     private static function processAssertion(
         SimpleSAML_Configuration $spMetadata,
         SimpleSAML_Configuration $idpMetadata,
         \SAML2\Response $response,
         $assertion,
-        $responseSigned
+        $responseSigned,
+        $denyEmptySubjectConfirmationData = true
     ) {
         assert($assertion instanceof \SAML2\Assertion || $assertion instanceof \SAML2\EncryptedAssertion);
         assert(is_bool($responseSigned));
@@ -739,8 +744,13 @@ class sspmod_saml_Message
 
             // if no SubjectConfirmationData then don't do anything.
             if ($scd === null) {
-                $lastError = 'No SubjectConfirmationData provided';
-                continue;
+                if ($denyEmptySubjectConfirmationData) {
+                    $lastError = 'No SubjectConfirmationData provided';
+                    continue;
+                } else {
+                    $found = true;
+                    break;
+                }
             }
 
             if ($scd->NotBefore && $scd->NotBefore > time() + 60) {
