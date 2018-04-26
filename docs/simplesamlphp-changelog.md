@@ -10,6 +10,9 @@ See the upgrade notes for specific information about upgrading.
 
 Released TBD
 
+### Changes
+  * Renamed class `SimpleSAML_Error_BadUserInnput` to `SimpleSAML_Error_BadUserInput`
+
 ### New features
   * Added support for SAML "Enhanced Client or Proxy" (ECP) protocol,
     IdP side with HTTP Basic Authentcation as authentication method.
