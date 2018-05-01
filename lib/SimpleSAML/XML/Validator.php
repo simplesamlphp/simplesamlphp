@@ -325,7 +325,8 @@ class Validator
         assert(is_string($caFile));
 
         // Clear openssl errors
-        while (openssl_error_string() !== false);
+        while (openssl_error_string() !== false) {
+        }
 
         $res = openssl_x509_checkpurpose($certificate, X509_PURPOSE_ANY, array($caFile));
 

@@ -2,7 +2,6 @@
 
 namespace SimpleSAML;
 
-
 /**
  * The main logger class for SimpleSAMLphp.
  *

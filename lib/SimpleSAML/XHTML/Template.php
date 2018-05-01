@@ -313,7 +313,6 @@ class SimpleSAML_XHTML_Template
         $templatedir = $moduledir.'/templates';
         if (!is_dir($templatedir)) {
             throw new InvalidArgumentException('The module \''.$module.'\' has no templates directory.');
-
         }
         return $templatedir;
     }

@@ -48,7 +48,6 @@ class Attributes
 
         if (count($attribute) === 0) {
             throw new \SimpleSAML_Error_Exception("Empty attribute '".$expected."'.'");
-
         } elseif (count($attribute) > 1) {
             if ($allow_multiple === false) {
                 throw new \SimpleSAML_Error_Exception(

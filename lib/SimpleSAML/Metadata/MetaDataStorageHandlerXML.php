@@ -52,7 +52,6 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerXML extends SimpleSAML_Metadata_
 
         $entities = SimpleSAML_Metadata_SAMLParser::parseDescriptorsFile($src);
         foreach ($entities as $entityId => $entity) {
-
             $md = $entity->getMetadata1xSP();
             if ($md !== null) {
                 $SP1x[$entityId] = $md;

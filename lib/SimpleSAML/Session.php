@@ -631,7 +631,6 @@ class SimpleSAML_Session implements Serializable
         if (!$this->transient && (!empty($data['RememberMe']) || $this->rememberMeExpire) &&
             $globalConfig->getBoolean('session.rememberme.enable', false)
         ) {
-
             $this->setRememberMeExpire();
         } else {
             try {

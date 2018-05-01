@@ -299,8 +299,7 @@ class SimpleSAML_Metadata_SAMLBuilder
      */
     public function addOrganizationInfo(array $metadata)
     {
-        if (
-            empty($metadata['OrganizationName']) ||
+        if (empty($metadata['OrganizationName']) ||
             empty($metadata['OrganizationDisplayName']) ||
             empty($metadata['OrganizationURL'])
         ) {

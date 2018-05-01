@@ -139,7 +139,6 @@ abstract class SimpleSAML_Metadata_MetaDataStorageSource
         }
 
         foreach ($metadataSet as $index => $entry) {
-
             if (!array_key_exists('host', $entry)) {
                 continue;
             }
@@ -177,7 +176,6 @@ abstract class SimpleSAML_Metadata_MetaDataStorageSource
         $metadataSet = $this->getMetadataSet($set);
 
         foreach ($metadataSet as $index => $entry) {
-
             if (!array_key_exists('hint.cidr', $entry)) {
                 continue;
             }
@@ -262,5 +260,4 @@ abstract class SimpleSAML_Metadata_MetaDataStorageSource
 
         return null;
     }
-
 }

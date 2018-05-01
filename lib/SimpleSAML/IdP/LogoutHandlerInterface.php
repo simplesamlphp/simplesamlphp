@@ -2,7 +2,6 @@
 
 namespace SimpleSAML\IdP;
 
-
 /**
  * Interface that all logout handlers must implement.
  *
