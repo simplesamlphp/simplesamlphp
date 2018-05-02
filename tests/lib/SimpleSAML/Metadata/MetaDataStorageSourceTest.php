@@ -43,6 +43,10 @@ xmlns:fed=\"http://docs.oasis-open.org/wsfed/federation/200706\">
 </RoleDescriptor>
 </EntityDescriptor>
 ";
-        SimpleSAML_Metadata_MetaDataStorageSource::getSource(["type"=>"xml", "xml"=>$strTestXML]);
+        // The primary test here is that - in contrast to the others above - this loads without error
+        // As a secondary thing, check that the entity ID matches the static source provided and isn't coming from elsewheree
+        $source = SimpleSAML_Metadata_MetaDataStorageSource::getSource(["type"=>"xml", "xml"=>$strTestXML]);
+        $idpEntityId = $source->getEntityId();
+        $this->assertEquals("https://saml.idp/entityid", $idpEntityId, "Did not extract expected entity ID from static XML source");
     }
 }
