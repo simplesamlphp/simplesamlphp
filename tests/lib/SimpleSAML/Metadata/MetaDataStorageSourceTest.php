@@ -39,18 +39,18 @@ ServiceDisplayName=\"SimpleSAMLphp Test\"
 xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
 xmlns:fed=\"http://docs.oasis-open.org/wsfed/federation/200706\">
 <NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:persistent</NameIDFormat>
-<SingleSignOnService Binding=\"urn:oasis:names:tc:SAML:.0:bindings:HTTP-Redirect\" Location=\"https://saml.idp/sso/\"/>
+<SingleSignOnService Binding=\"urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect\" Location=\"https://saml.idp/sso/\"/>
 <SingleLogoutService Binding=\"urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect\" Location=\"https://saml.idp/logout/\"/>
 </RoleDescriptor>
+<IDPSSODescriptor protocolSupportEnumeration=\"urn:oasis:names:tc:SAML:2.0:protocol\"/>
 </EntityDescriptor>
 ";
         // The primary test here is that - in contrast to the others above - this loads without error
         // As a secondary thing, check that the entity ID from the static source provided can be extracted
         $source = SimpleSAML_Metadata_MetaDataStorageSource::getSource(["type"=>"xml", "xml"=>$strTestXML]);
-        $expMetadata = $source->getMetadataSet($testEntityId);
-        $this->assertNotEmpty($expMetadata, "Did not extract expected entity ID from static XML source");
+        $idpSet = $source->getMetadataSet("saml20-idp-remote");
+        $this->assertArrayHasKey($testEntityId, $idpSet,  "Did not extract expected IdP entity ID from static XML source");
 	// Finally verify that a different entity ID does not get loaded
-        $unexpMetadata = $source->getMetadataSet("https://not.the.same.idp/entityid");
-        $this->assertEmpty($unexpMetadata, "Unexpectedly got metadata for an alternate entity than that defined");
+        $this->assertCount(1, $idpSet, "Unexpectedly got metadata for an alternate entity than that defined");
     }
 }
