@@ -30,8 +30,9 @@ class SimpleSAML_Metadata_MetaDataStorageSourceTest extends PHPUnit_Framework_Te
      * Test SimpleSAML_Metadata_MetaDataStorageSourceTest::getConfig XML static XML source
      */
     public function testStaticXMLSource() {
+        $testEntityId = "https://saml.idp/entityid";
         $strTestXML = "
-<EntityDescriptor ID=\"_12345678-90ab-cdef-1234-567890abcdef\" entityID=\"https://saml.idp/entityid\" xmlns=\"urn:oasis:names:tc:SAML:2.0:metadata\">
+<EntityDescriptor ID=\"_12345678-90ab-cdef-1234-567890abcdef\" entityID=\"$testEntityId\" xmlns=\"urn:oasis:names:tc:SAML:2.0:metadata\">
 <RoleDescriptor xsi:type=\"fed:ApplicationServiceType\"
 protocolSupportEnumeration=\"http://docs.oasis-open.org/ws-sx/ws-trust/200512 http://schemas.xmlsoap.org/ws/2005/02/trust http://docs.oasis-open.org/wsfed/federation/200706\"
 ServiceDisplayName=\"SimpleSAMLphp Test\"
@@ -44,9 +45,12 @@ xmlns:fed=\"http://docs.oasis-open.org/wsfed/federation/200706\">
 </EntityDescriptor>
 ";
         // The primary test here is that - in contrast to the others above - this loads without error
-        // As a secondary thing, check that the entity ID matches the static source provided and isn't coming from elsewheree
+        // As a secondary thing, check that the entity ID from the static source provided can be extracted
         $source = SimpleSAML_Metadata_MetaDataStorageSource::getSource(["type"=>"xml", "xml"=>$strTestXML]);
-        $idpEntityId = $source->getEntityId();
-        $this->assertEquals("https://saml.idp/entityid", $idpEntityId, "Did not extract expected entity ID from static XML source");
+        $expMetadata = $source->getMetadataSet($testEntityId);
+        $this->assertNotEmpty($expMetadata, "Did not extract expected entity ID from static XML source");
+	// Finally verify that a different entity ID does not get loaded
+        $unexpMetadata = $source->getMetadataSet("https://not.the.same.idp/entityid");
+        $this->assertEmpty($unexpMetadata, "Unexpectedly got metadata for an alternate entity than that defined");
     }
 }
