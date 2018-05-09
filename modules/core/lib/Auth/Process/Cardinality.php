@@ -24,7 +24,7 @@ class sspmod_core_Auth_Process_Cardinality extends SimpleSAML_Auth_ProcessingFil
     public function __construct($config, $reserved)
     {
         parent::__construct($config, $reserved);
-        assert('is_array($config)');
+        assert(is_array($config));
 
         foreach ($config as $attribute => $rules) {
             if ($attribute === '%ignoreEntities') {
@@ -90,8 +90,8 @@ class sspmod_core_Auth_Process_Cardinality extends SimpleSAML_Auth_ProcessingFil
      */
     public function process(&$request)
     {
-        assert('is_array($request)');
-        assert('array_key_exists("Attributes", $request)');
+        assert(is_array($request));
+        assert(array_key_exists("Attributes", $request));
 
         $entityid = false;
         if (array_key_exists('Source', $request) && array_key_exists('entityid', $request['Source'])) {

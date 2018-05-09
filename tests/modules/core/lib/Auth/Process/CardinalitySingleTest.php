@@ -18,6 +18,8 @@ class Test_Core_Auth_Process_CardinalitySingleTest extends \PHPUnit_Framework_Te
      */
     private static function processFilter(array $config, array $request)
     {
+        $_SERVER['SERVER_PROTOCOL'] = 'HTTP/1.1';
+        $_SERVER['REQUEST_METHOD'] = 'GET';
         $filter = new sspmod_core_Auth_Process_CardinalitySingle($config, null);
         $filter->process($request);
         return $request;
