@@ -164,6 +164,9 @@ abstract class sspmod_ldap_Auth_Process_BaseFilter extends SimpleSAML_Auth_Proce
                 if (isset($authsource['search.base'])) {
                     $authconfig['ldap.basedn']     = $authsource['search.base'];
                 }
+                if (isset($authsource['search.scope'])) {
+                    $authconfig['ldap.scope']     = $authsource['search.scope'];
+                }
                 if (isset($authsource['search.username'])) {
                     $authconfig['ldap.username']   = $authsource['search.username'];
                 }

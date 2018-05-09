@@ -187,6 +187,10 @@ class SimpleSAML_Auth_LDAP
      * The attribute name(s) to search for.
      * @param string $value
      * The attribute value to search for.
+     * Additional search filter
+     * @param string|null $searchFilter
+     * The scope of the search
+     * @param string $scope
      * @return string
      * The DN of the resulting found element.
      * @throws SimpleSAML_Error_Exception if:
@@ -201,7 +205,7 @@ class SimpleSAML_Auth_LDAP
      * @throws SimpleSAML_Error_UserNotFound if:
      * - Zero entries were found
      */
-    private function search($base, $attribute, $value, $searchFilter = null)
+    private function search($base, $attribute, $value, $searchFilter = null, $scope = "subtree")
     {
         // Create the search filter
         $attribute = self::escape_filter_value($attribute, false);
@@ -218,8 +222,15 @@ class SimpleSAML_Auth_LDAP
         }
 
         // Search using generated filter
-        SimpleSAML\Logger::debug('Library - LDAP search(): Searching base \'' . $base . '\' for \'' . $filter . '\'');
-        $result = @ldap_search($this->ldap, $base, $filter, array(), 0, 0, $this->timeout, LDAP_DEREF_NEVER);
+        SimpleSAML\Logger::debug('Library - LDAP search(): Searching base ('. $scope .') \'' . $base . '\' for \'' . $filter . '\'');
+        if ($scope === 'base') {
+            $result = @ldap_read($this->ldap, $base, $filter, array(), 0, 0, $this->timeout, LDAP_DEREF_NEVER);
+        } else if ($scope === 'onelevel') {
+            $result = @ldap_list($this->ldap, $base, $filter, array(), 0, 0, $this->timeout, LDAP_DEREF_NEVER);
+        } else {
+            $result = @ldap_search($this->ldap, $base, $filter, array(), 0, 0, $this->timeout, LDAP_DEREF_NEVER);
+        }
+
         if ($result === false) {
             throw $this->makeException('Library - LDAP search(): Failed search on base \'' . $base . '\' for \'' . $filter . '\'');
         }
@@ -264,6 +275,8 @@ class SimpleSAML_Auth_LDAP
      * Defaults to FALSE.
      * @param string|null $searchFilter
      * Additional searchFilter to be added to the (attribute=value) filter
+     * @param string $scope
+     * The scope of the search
      * @return string
      * The DN of the matching element, if found. If no element was found and
      * $allowZeroHits is set to FALSE, an exception will be thrown; otherwise
@@ -275,14 +288,14 @@ class SimpleSAML_Auth_LDAP
      * - $allowZeroHits is FALSE and no result is found
      *
      */
-    public function searchfordn($base, $attribute, $value, $allowZeroHits = false, $searchFilter = null)
+    public function searchfordn($base, $attribute, $value, $allowZeroHits = false, $searchFilter = null, $scope = 'subtree')
     {
         // Traverse all search bases, returning DN if found
         $bases = SimpleSAML\Utils\Arrays::arrayize($base);
         foreach ($bases as $current) {
             try {
                 // Single base search
-                $result = $this->search($current, $attribute, $value, $searchFilter);
+                $result = $this->search($current, $attribute, $value, $searchFilter, $scope);
 
                 // We don't hawe to look any futher if user is found
                 if (!empty($result)) {
@@ -316,9 +329,10 @@ class SimpleSAML_Auth_LDAP
      * @param string|array $attributes Array of attributes requested from LDAP
      * @param bool $and If multiple filters defined, then either bind them with & or |
      * @param bool $escape Weather to escape the filter values or not
+     * @param string $scope The scope of the search
      * @return array
      */
-    public function searchformultiple($bases, $filters, $attributes = array(), $and = true, $escape = true)
+    public function searchformultiple($bases, $filters, $attributes = array(), $and = true, $escape = true, $scope = 'subtree')
     {
         // Escape the filter values, if requested
         if ($escape) {
@@ -352,7 +366,14 @@ class SimpleSAML_Auth_LDAP
         // Search each base until result is found
         $result = false;
         foreach ($bases as $base) {
-            $result = @ldap_search($this->ldap, $base, $filter, $attributes, 0, 0, $this->timeout);
+            if ($scope === 'base') {
+                $result = @ldap_read($this->ldap, $base, $filter, $attributes, 0, 0, $this->timeout);
+            } else if ($scope === 'onelevel') {
+                $result = @ldap_list($this->ldap, $base, $filter, $attributes, 0, 0, $this->timeout);
+            } else {
+                $result = @ldap_search($this->ldap, $base, $filter, $attributes, 0, 0, $this->timeout);
+            }
+
             if ($result !== false && @ldap_count_entries($this->ldap, $result) > 0) {
                 break;
             }
