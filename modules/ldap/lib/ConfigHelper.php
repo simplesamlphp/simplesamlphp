@@ -184,7 +184,7 @@ class sspmod_ldap_ConfigHelper
         assert(is_string($password));
 
         if (empty($password)) {
-            SimpleSAML\Logger::info($this->location . ': Login with empty password disallowed.');
+            SimpleSAML\Logger::info($this->location.': Login with empty password disallowed.');
             throw new SimpleSAML_Error_Error('WRONGUSERPASS');
         }
 
@@ -203,13 +203,13 @@ class sspmod_ldap_ConfigHelper
             $dn = $ldap->searchfordn($this->searchBase, $this->searchAttributes, $username, true, $this->searchFilter, $this->searchScope);
             if ($dn === null) {
                 /* User not found with search. */
-                SimpleSAML\Logger::info($this->location . ': Unable to find users DN. username=\'' . $username . '\'');
+                SimpleSAML\Logger::info($this->location.': Unable to find users DN. username=\''.$username.'\'');
                 throw new SimpleSAML_Error_Error('WRONGUSERPASS');
             }
         }
 
         if (!$ldap->bind($dn, $password, $sasl_args)) {
-            SimpleSAML\Logger::info($this->location . ': '. $username . ' failed to authenticate. DN=' . $dn);
+            SimpleSAML\Logger::info($this->location.': '.$username.' failed to authenticate. DN='.$dn);
             throw new SimpleSAML_Error_Error('WRONGUSERPASS');
         }
 
