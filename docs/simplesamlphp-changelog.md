@@ -19,6 +19,7 @@ Released TBD
     See the [ECP IdP documentation](./simplesamlphp-ecp-idp) for details.
   * New option `sendmail_from`, the from address for email sent by SSP.
   * New option `options` for PDO database connections, e.g. for TLS setup.
+  * New option `search.scope` for LDAP authsources
 
 ### consent
   * Sort attribute values for consent.
