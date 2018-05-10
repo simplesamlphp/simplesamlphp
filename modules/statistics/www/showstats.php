@@ -46,8 +46,8 @@ $t = new SimpleSAML_XHTML_Template($config, 'statistics:statistics.tpl.php');
 $t->data['pageid'] = 'statistics';
 $t->data['header'] = 'stat';
 $t->data['available.rules'] = $ruleset->availableRulesNames();
-$t->data['selected.rule']= $rule;
-$t->data['selected.rule2']= $preferRule2;
+$t->data['selected.rule'] = $rule;
+$t->data['selected.rule2'] = $preferRule2;
 
 try {
     $dataset = $statrule->getDataset($preferTimeRes, $preferTime);
@@ -61,7 +61,7 @@ try {
         $data = $dataset->getDebugData();
         foreach ($data as $de) {
             if (isset($de[1])) {
-                echo '"' . $de[0] . '",' . $de[1] . "\n";
+                echo '"'.$de[0].'",'.$de[1]."\n";
             }
         }
         exit;
@@ -113,7 +113,7 @@ $grapher = new sspmod_statistics_Graph_GoogleCharts($dimx, $dimy);
 
 $t->data['imgurl'] = $grapher->show($axis['axis'], $axis['axispos'], $datasets, $maxes);
 if (isset($piedata)) {
-    $t->data['pieimgurl'] = $grapher->showPie( $dataset->getDelimiterPresentationPie(), $piedata);
+    $t->data['pieimgurl'] = $grapher->showPie($dataset->getDelimiterPresentationPie(), $piedata);
 }
 $t->data['available.times'] = $statrule->availableFileSlots($timeres);
 $t->data['available.timeres'] = $statrule->availableTimeRes();
@@ -130,7 +130,7 @@ $t->data['summaryDataset'] = $dataset->getSummary();
 $t->data['topdelimiters'] = $dataset->getTopDelimiters();
 $t->data['availdelimiters'] = $dataset->availDelimiters();
 
-$t->data['delimiterPresentation'] =  $dataset->getDelimiterPresentation();
+$t->data['delimiterPresentation'] = $dataset->getDelimiterPresentation();
 
 $t->data['post_rule'] = getBaseURL($t, 'post', 'rule');
 $t->data['post_rule2'] = getBaseURL($t, 'post', 'rule2');
@@ -166,11 +166,11 @@ function getBaseURL($t, $type = 'get', $key = null, $value = null)
     }
 
     if ($type === 'get') {
-        return SimpleSAML\Module::getModuleURL("statistics/showstats.php") . '?' . http_build_query($vars, '', '&amp;');
+        return SimpleSAML\Module::getModuleURL("statistics/showstats.php").'?'.http_build_query($vars, '', '&amp;');
     } else {
         $text = '';
-        foreach($vars as $k => $v) {
-            $text .= '<input type="hidden" name="' . $k . '" value="'. htmlspecialchars($v) . '" />' . "\n";
+        foreach ($vars as $k => $v) {
+            $text .= '<input type="hidden" name="'.$k.'" value="'.htmlspecialchars($v).'" />'."\n";
         }
         return $text;
     }
