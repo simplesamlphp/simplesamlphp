@@ -154,6 +154,40 @@ further completing your documentation, please see
 [Maintenance and configuration: Apache](simplesamlphp-maintenance.md#apache-configuration).
 
 
+Configuring Ngynx
+------------------
+
+Examples below assume that SimpleSAMLphp is installed in the default location, `/var/simplesamlphp`. You may choose another location, but this requires a path update in a few files. See Appendix for details ‹Installing SimpleSAMLphp in alternative locations›.
+
+The only subdirectory of `SimpleSAMLphp` that needs to be accessible from the web is `www`. There are several ways of exposing SimpleSAMLphp depending on the way web sites are structured on your Ngynx web server. The following is just one possible configuration.
+
+Find the Ngynx configuration file for the virtual hosts where you want to run SimpleSAMLphp. The configuration may look like this:
+
+    server {
+        listen 443 ssl;
+        server_name idp.example.com;
+
+        ssl_certificate        /etc/pki/tls/certs/idp.example.com.crt;
+        ssl_certificate_key    /etc/pki/tls/private/idp.example.com.key;
+        ssl_protocols          TLSv1.1 TLSv1.2;
+        ssl_ciphers            HIGH:!aNULL:!MD5;
+
+        location / {
+            root     /var/simplesamlphp/www;
+            index    index.php;
+        }
+
+        location ~ \.php$ {
+            root             /var/simplesamlphp/www;
+            fastcgi_pass     127.0.0.1:9000;
+            fastcgi_index    index.php;
+            fastcgi_param    SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+            fastcgi_split_path_info ^(.+?\.php)(/.*)$;
+            fastcgi_param    PATH_INFO $fastcgi_path_info;
+            include          fastcgi_params;
+        }
+    }
+
 SimpleSAMLphp configuration: config.php
 ---------------------------------------
 
