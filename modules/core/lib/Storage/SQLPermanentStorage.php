@@ -193,12 +193,9 @@ class sspmod_core_Storage_SQLPermanentStorage {
 		if (!is_null($type)) $conditions[] = "type = '" . sqlite_escape_string($type) . "'";
 		if (!is_null($key1)) $conditions[] = "key1 = '" . sqlite_escape_string($key1) . "'";
 		if (!is_null($key2)) $conditions[] = "key2 = '" . sqlite_escape_string($key2) . "'";
-		
-		if (count($conditions) === 0) return '1';
-		
-		$condition = join(' AND ', $conditions);
-		
-		return $condition;
+
+        $conditions[] = "(expire = NULL OR expire >= ".time().")";
+		return join(' AND ', $conditions);
 	}
 	
 	
