@@ -1,5 +1,8 @@
 <?php
 
+use RobRichards\XMLSecLibs\XMLSecurityDSig;
+use RobRichards\XMLSecLibs\XMLSecurityKey;
+
 class sspmod_adfs_IdP_ADFS
 {
     public static function receiveAuthnRequest(SimpleSAML_IdP $idp)
@@ -9,11 +12,12 @@ class sspmod_adfs_IdP_ADFS
 
             $requestid = $query['wctx'];
             $issuer = $query['wtrealm'];
+
             $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
             $spMetadata = $metadata->getMetaDataConfig($issuer, 'adfs-sp-remote');
 
             SimpleSAML\Logger::info('ADFS - IdP.prp: Incoming Authentication request: '.$issuer.' id '.$requestid);
-        } catch(Exception $exception) {
+        } catch (Exception $exception) {
             throw new SimpleSAML_Error_Error('PROCESSAUTHNREQUEST', $exception);
         }
 
@@ -23,16 +27,21 @@ class sspmod_adfs_IdP_ADFS
             'ForceAuthn' => false,
             'isPassive' => false,
             'adfs:wctx' => $requestid,
+            'adfs:wreply' => false
         );
+
+        if (isset($query['wreply']) && !empty($query['wreply'])) {
+            $state['adfs:wreply'] = SimpleSAML\Utils\HTTP::checkURLAllowed($query['wreply']);
+        }
 
         $idp->handleAuthenticationRequest($state);		
     }
 
-    private static function generateResponse($issuer, $target, $nameid, $attributes)
+    private static function generateResponse($issuer, $target, $nameid, $attributes, $assertionLifetime)
     {
         $issueInstant = SimpleSAML\Utils\Time::generateTimestamp();
         $notBefore = SimpleSAML\Utils\Time::generateTimestamp(time() - 30);
-        $assertionExpire = SimpleSAML\Utils\Time::generateTimestamp(time() + 60 * 5);
+        $assertionExpire = SimpleSAML\Utils\Time::generateTimestamp(time() + $assertionLifetime);
         $assertionID = SimpleSAML\Utils\Random::generateID();
         $nameidFormat = 'http://schemas.xmlsoap.org/claims/UPN';
         $nameid = htmlspecialchars($nameid);
@@ -93,19 +102,20 @@ MSG;
         return $result;
     }
 
-    private static function signResponse($response, $key, $cert)
+    private static function signResponse($response, $key, $cert, $algo)
     {
         $objXMLSecDSig = new XMLSecurityDSig();
         $objXMLSecDSig->idKeys = array('AssertionID');	
         $objXMLSecDSig->setCanonicalMethod(XMLSecurityDSig::EXC_C14N);	
-        $responsedom = \SAML2\DOMDocumentFactory::fromString(str_replace ("\r", "", $response));
+        $responsedom = \SAML2\DOMDocumentFactory::fromString(str_replace("\r", "", $response));
         $firstassertionroot = $responsedom->getElementsByTagName('Assertion')->item(0);
         $objXMLSecDSig->addReferenceList(
             array($firstassertionroot), XMLSecurityDSig::SHA1,
             array('http://www.w3.org/2000/09/xmldsig#enveloped-signature', XMLSecurityDSig::EXC_C14N),
             array('id_name' => 'AssertionID')
         );
-        $objKey = new XMLSecurityKey(XMLSecurityKey::RSA_SHA1, array('type'=>'private'));
+
+        $objKey = new XMLSecurityKey($algo, array('type' => 'private'));
         $objKey->loadKey($key, true);
         $objXMLSecDSig->sign($objKey);
         if ($cert) {
@@ -143,8 +153,7 @@ MSG;
     {
         $spMetadata = $state["SPMetadata"];
         $spEntityId = $spMetadata['entityid'];
-        $spMetadata = SimpleSAML_Configuration::loadFromArray($spMetadata,
-            '$metadata[' . var_export($spEntityId, true) . ']');
+        $spMetadata = SimpleSAML_Configuration::loadFromArray($spMetadata, '$metadata['.var_export($spEntityId, true).']');
 
         $attributes = $state['Attributes'];
 
@@ -163,19 +172,40 @@ MSG;
         $idpEntityId = $idpMetadata->getString('entityid');
 
         $idp->addAssociation(array(
-            'id' => 'adfs:' . $spEntityId,
+            'id' => 'adfs:'.$spEntityId,
             'Handler' => 'sspmod_adfs_IdP_ADFS',
             'adfs:entityID' => $spEntityId,
         ));
 
-        $response = sspmod_adfs_IdP_ADFS::generateResponse($idpEntityId, $spEntityId, $nameid, $attributes);
+        $assertionLifetime = $spMetadata->getInteger('assertion.lifetime', null);
+        if ($assertionLifetime === null) {
+            $assertionLifetime = $idpMetadata->getInteger('assertion.lifetime', 300);
+        }
+
+        $response = sspmod_adfs_IdP_ADFS::generateResponse($idpEntityId, $spEntityId, $nameid, $attributes, $assertionLifetime);
 
         $privateKeyFile = \SimpleSAML\Utils\Config::getCertPath($idpMetadata->getString('privatekey'));
         $certificateFile = \SimpleSAML\Utils\Config::getCertPath($idpMetadata->getString('certificate'));
-        $wresult = sspmod_adfs_IdP_ADFS::signResponse($response, $privateKeyFile, $certificateFile);
+
+        $algo = $spMetadata->getString('signature.algorithm', null);
+        if ($algo === null) {
+            /*
+             * In the NIST Special Publication 800-131A, SHA-1 became deprecated for generating
+             * new digital signatures in 2011, and will be explicitly disallowed starting the 1st
+             * of January, 2014. We'll keep this as a default for the next release and mark it
+             * as deprecated, as part of the transition to SHA-256.
+             *
+             * See http://csrc.nist.gov/publications/nistpubs/800-131A/sp800-131A.pdf for more info.
+             *
+             * TODO: change default to XMLSecurityKey::RSA_SHA256.
+             */
+            $algo = $idpMetadata->getString('signature.algorithm', XMLSecurityKey::RSA_SHA1);
+        }
+        $wresult = sspmod_adfs_IdP_ADFS::signResponse($response, $privateKeyFile, $certificateFile, $algo);
 
         $wctx = $state['adfs:wctx'];
-        sspmod_adfs_IdP_ADFS::postResponse($spMetadata->getValue('prp'), $wresult, $wctx);
+        $wreply = $state['adfs:wreply'] ? : $spMetadata->getValue('prp');
+        sspmod_adfs_IdP_ADFS::postResponse($wreply, $wresult, $wctx);
     }
 
     public static function sendLogoutResponse(SimpleSAML_IdP $idp, array $state)
@@ -209,7 +239,7 @@ MSG;
     {
         $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
         $spMetadata = $metadata->getMetaDataConfig($association['adfs:entityID'], 'adfs-sp-remote');
-        $returnTo = SimpleSAML\Module::getModuleURL('adfs/idp/prp.php?assocId=' . urlencode($association["id"]) . '&relayState=' . urlencode($relayState));
-        return $spMetadata->getValue('prp') . '?' . 'wa=wsignoutcleanup1.0&wreply=' . urlencode($returnTo);
+        $returnTo = SimpleSAML\Module::getModuleURL('adfs/idp/prp.php?assocId='.urlencode($association["id"]).'&relayState='.urlencode($relayState));
+        return $spMetadata->getValue('prp').'?wa=wsignoutcleanup1.0&wreply='.urlencode($returnTo);
     }
 }
