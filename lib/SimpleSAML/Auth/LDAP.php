@@ -582,10 +582,10 @@ class SimpleSAML_Auth_LDAP
             for ($j = 0; $j < $attribute['count']; $j++) {
                 $value = $attribute[$j];
 
-                if (!empty($maxsize) && strlen($value) >= $maxsize) {
+                if (!empty($maxsize) && strlen($value) > $maxsize) {
                     // Ignoring and warning
                     SimpleSAML\Logger::warning('Library - LDAP getAttributes(): Attribute \''.
-                        $name.'\' exceeded maximum allowed size by ' +($maxsize - strlen($value)));
+                        $name.'\' exceeded maximum allowed size by '.(strlen($value) - $maxsize));
                     continue;
                 }
 
