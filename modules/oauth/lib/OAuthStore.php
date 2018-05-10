@@ -22,7 +22,7 @@ class sspmod_oauth_OAuthStore extends OAuthDataStore {
 					'nonce' => 'nonce+consumer_key = -boolean-',
 					'requesttorequest' => 'requestToken.key = array(version,callback,consumerKey,)',
 					'authorized' => 'requestToken.key, verifier = array(authenticated-user-attributes)',
-					'access' => 'accessToken.key+consumerKey = accestoken',
+					'access' => 'accessToken.key+consumerKey = accesstoken',
 					'request' => 'requestToken.key+consumerKey = requesttoken',
 				);
 				
@@ -151,9 +151,9 @@ class sspmod_oauth_OAuthStore extends OAuthDataStore {
 
     function new_access_token($requestToken, $consumer, $verifier = null) {
 		SimpleSAML\Logger::info('OAuth new_access_token(' . $requestToken . ',' . $consumer . ')');
-		$accestoken = new OAuthToken(SimpleSAML\Utils\Random::generateID(), SimpleSAML\Utils\Random::generateID());
-		$this->store->set('access', $accestoken->key, $consumer->key, $accestoken, $this->config->getValue('accessTokenDuration', 60*60*24) );
-        return $accestoken;
+		$accesstoken = new OAuthToken(SimpleSAML\Utils\Random::generateID(), SimpleSAML\Utils\Random::generateID());
+		$this->store->set('access', $accesstoken->key, $consumer->key, $accesstoken, $this->config->getValue('accessTokenDuration', 60*60*24) );
+        return $accesstoken;
     }
     
     /**
