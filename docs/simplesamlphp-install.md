@@ -24,7 +24,7 @@ Development version
 --------------------
 
 This document is about the latest stable version of SimpleSAMLphp.
-If you want to install the development version, look at the instructions for [installing SimpleSAMLphp from the repository](simplesamlphp-install-repo).
+If you want to install the development version, look at the instructions for [installing SimpleSAMLphp from the repository](simplesamlphp-install-repo.md).
 
 
 Prerequisites
@@ -151,7 +151,7 @@ This works only for the `config` directory. If you need your metadata to be in a
 
 This is just the basic configuration to get things working. For a checklist
 further completing your documentation, please see
-[Maintenance and configuration: Apache](simplesamlphp-maintenance#section_4).
+[Maintenance and configuration: Apache](simplesamlphp-maintenance.md#apache-configuration).
 
 
 SimpleSAMLphp configuration: config.php
@@ -164,7 +164,7 @@ file, `config.php`, right away:
 
 		'auth.adminpassword'        => 'setnewpasswordhere',
 
-   Hashed passwords can also be used here. See the [`authcrypt`](./authcrypt:authcrypt) documentation for more information.
+   Hashed passwords can also be used here. See the [`authcrypt`](../modules/authcrypt/docs/authcrypt.md) documentation for more information.
 
 -  Set a secret salt. This should be a random string. Some parts of the SimpleSAMLphp needs this salt to generate cryptographically secure hashes. SimpleSAMLphp will give an error if the salt is not changed from the default value. The command below can help you to generated a random string on (some) unix systems:
 
@@ -254,7 +254,6 @@ At the bottom of the installation page are some green lights. simpleSAML runs so
 You have now successfully installed SimpleSAMLphp, and the next steps depends on whether you want to setup a service provider, to protect a website by authentication or if you want to setup an identity provider and connect it to a user catalog. Documentation on bridging between federation protocols is found in a separate document.
 
  * [Using SimpleSAMLphp as a SAML Service Provider](simplesamlphp-sp)
-  * [Hosted SP Configuration Reference](./saml:sp)
   * [IdP remote reference](simplesamlphp-reference-idp-remote)
   * [Connecting SimpleSAMLphp as a SP to UK Access Federation or InCommon](simplesamlphp-ukaccess)
   * [Upgrading - migration to use the SAML authentication source](simplesamlphp-sp-migration)
