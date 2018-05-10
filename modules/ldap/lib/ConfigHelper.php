@@ -56,29 +56,30 @@ class sspmod_ldap_ConfigHelper
      */
     private $referrals;
 
-
     /**
      * Whether we need to search for the users DN.
      */
     private $searchEnable;
-
 
     /**
      * The username we should bind with before we can search for the user.
      */
     private $searchUsername;
 
-
     /**
      * The password we should bind with before we can search for the user.
      */
     private $searchPassword;
 
-
     /**
      * Array with the base DN(s) for the search.
      */
     private $searchBase;
+
+    /**
+     * The scope of the search.
+     */
+    private $searchScope;
 
     /**
      * Additional LDAP filter fields for the search
@@ -90,30 +91,25 @@ class sspmod_ldap_ConfigHelper
      */
     private $searchAttributes;
 
-
     /**
      * The DN pattern we should use to create the DN from the username.
      */
     private $dnPattern;
-
 
     /**
      * The attributes we should fetch. Can be NULL in which case we will fetch all attributes.
      */
     private $attributes;
 
-
     /**
      * The user cannot get all attributes, privileged reader required
      */
     private $privRead;
 
-
     /**
      * The DN we should bind with before we can get the attributes.
      */
     private $privUsername;
-
 
     /**
      * The password we should bind with before we can get the attributes.
@@ -153,6 +149,7 @@ class sspmod_ldap_ConfigHelper
             }
 
             $this->searchBase = $config->getArrayizeString('search.base');
+            $this->searchScope = $config->getString('search.scope', 'subtree');
             $this->searchFilter = $config->getString('search.filter', null);
             $this->searchAttributes = $config->getArray('search.attributes');
 
@@ -187,7 +184,7 @@ class sspmod_ldap_ConfigHelper
         assert(is_string($password));
 
         if (empty($password)) {
-            SimpleSAML\Logger::info($this->location . ': Login with empty password disallowed.');
+            SimpleSAML\Logger::info($this->location.': Login with empty password disallowed.');
             throw new SimpleSAML_Error_Error('WRONGUSERPASS');
         }
 
@@ -203,16 +200,16 @@ class sspmod_ldap_ConfigHelper
                 }
             }
 
-            $dn = $ldap->searchfordn($this->searchBase, $this->searchAttributes, $username, true, $this->searchFilter);
+            $dn = $ldap->searchfordn($this->searchBase, $this->searchAttributes, $username, true, $this->searchFilter, $this->searchScope);
             if ($dn === null) {
                 /* User not found with search. */
-                SimpleSAML\Logger::info($this->location . ': Unable to find users DN. username=\'' . $username . '\'');
+                SimpleSAML\Logger::info($this->location.': Unable to find users DN. username=\''.$username.'\'');
                 throw new SimpleSAML_Error_Error('WRONGUSERPASS');
             }
         }
 
         if (!$ldap->bind($dn, $password, $sasl_args)) {
-            SimpleSAML\Logger::info($this->location . ': '. $username . ' failed to authenticate. DN=' . $dn);
+            SimpleSAML\Logger::info($this->location.': '.$username.' failed to authenticate. DN='.$dn);
             throw new SimpleSAML_Error_Error('WRONGUSERPASS');
         }
 
@@ -275,7 +272,7 @@ class sspmod_ldap_ConfigHelper
         }
 
         return $ldap->searchfordn($this->searchBase, $attribute,
-            $value, $allowZeroHits, $this->searchFilter);
+            $value, $allowZeroHits, $this->searchFilter, $this->searchScope);
     }
 
     public function getAttributes($dn, $attributes = null)
