@@ -26,6 +26,7 @@ class sspmod_oauth_OAuthStore extends OAuthDataStore
         'request' => 'requestToken.key+consumerKey = requesttoken',
     );
 
+
     public function __construct()
     {
         $this->store = new sspmod_core_Storage_SQLPermanentStorage('oauth');
@@ -53,7 +54,6 @@ class sspmod_oauth_OAuthStore extends OAuthDataStore
             }
         }
 
-
         // Is there a callback registered? This is leading, even over a supplied oauth_callback-parameter
         $oConsumer = $this->lookup_consumer($request_attributes['value']['consumerKey']);
 
@@ -64,7 +64,7 @@ class sspmod_oauth_OAuthStore extends OAuthDataStore
         $verifier = SimpleSAML\Utils\Random::generateID();
         $url = \SimpleSAML\Utils\HTTP::addURLParameters($url, array("oauth_verifier"=>$verifier));
 
-        $this->store->set('authorized', $requestTokenKey, $verifier, $data, $this->config->getValue('requestTokenDuration', 60*30) );
+        $this->store->set('authorized', $requestTokenKey, $verifier, $data, $this->config->getValue('requestTokenDuration', 60*30));
 
         return array($url, $verifier);
     }
@@ -141,7 +141,7 @@ class sspmod_oauth_OAuthStore extends OAuthDataStore
         if ($this->store->exists('nonce', $nonce, $consumer->key)) {
             return true;
         }
-        $this->store->set('nonce', $nonce, $consumer->key, TRUE, $this->config->getValue('nonceCache', 60*60*24*14));
+        $this->store->set('nonce', $nonce, $consumer->key, trye, $this->config->getValue('nonceCache', 60*60*24*14));
         return false;
     }
 
