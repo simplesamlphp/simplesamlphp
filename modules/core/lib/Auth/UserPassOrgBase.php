@@ -57,12 +57,12 @@ abstract class sspmod_core_Auth_UserPassOrgBase extends SimpleSAML_Auth_Source {
 	 */
 	protected $rememberUsernameChecked = FALSE;
 
-    /**
-     * Storage for authsource config option remember.organization.enabled
-     * loginuserpassorg.php page/template use this option to present users
-     * with a checkbox to save their organization choice for the next login request.
-     * @var bool
-     */
+	/**
+	 * Storage for authsource config option remember.organization.enabled
+	 * loginuserpassorg.php page/template use this option to present users	
+	 * with a checkbox to save their organization choice for the next login request.
+	 * @var bool
+ 	*/
 	protected $rememberOrganizationEnabled = false;
 
 	/**
@@ -99,10 +99,10 @@ abstract class sspmod_core_Auth_UserPassOrgBase extends SimpleSAML_Auth_Source {
 			$this->rememberUsernameChecked = (bool) $config['remember.username.checked'];
 			unset($config['remember.username.checked']);
 		}
-        // Get the remember organization config options
-        if (isset($config['remember.organization.enabled'])) {
-            $this->rememberOrganizationEnabled = (bool) $config['remember.organization.enabled'];
-            unset($config['remember.organization.enabled']);
+		// Get the remember organization config options
+		if (isset($config['remember.organization.enabled'])) {
+			$this->rememberOrganizationEnabled = (bool) $config['remember.organization.enabled'];
+			unset($config['remember.organization.enabled']);
 		}
 		if (isset($config['remember.organization.checked'])) {
 			$this->rememberOrganizationChecked = (bool) $config['remember.organization.checked'];
@@ -159,16 +159,16 @@ abstract class sspmod_core_Auth_UserPassOrgBase extends SimpleSAML_Auth_Source {
 	 * @return bool
 	 */
 	public function getRememberUsernameChecked()
-    {
+	{
 		return $this->rememberUsernameChecked;
 	}
 
-    /**
-     * Getter for the authsource config option remember.organization.enabled
-     * @return bool
-     */
+	/**
+	 * Getter for the authsource config option remember.organization.enabled
+	 * @return bool
+	 */
 	public function getRememberOrganizationEnabled()
-    {
+	{
 		return $this->rememberOrganizationEnabled;
 	}
 
