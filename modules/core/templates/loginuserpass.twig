@@ -85,6 +85,15 @@
                             {% endfor %}
                         </select>
                     </div>
+                    {% if rememberOrganizationEnabled is defined -%}
+                    <div class="pure-controls pure-form-message">
+                        <label for="remember_organization" class="pure-checkbox">
+ 	                    <input type="checkbox" id="remember_organization" tabindex="5" name="remember_organization" value="Yes"
+                                {{ rememberOrganizationChecked ? 'checked="checked"' }} />
+                            <small>{{ 'Remember my organization'|trans }}</small>
+                        </label>
+                    </div>
+                    {%- endif %}
                 </div> <!--pure-control-group-->
             {%- endif %}
 
