@@ -176,7 +176,7 @@ class SimpleSAML_XHTML_Template
         if ($this->theme['module']) {
             try {
                 $templateDirs[] = array(
-                    $this->theme['module'] =>TemplateLoader::getModuleTemplateDir($this->theme['module'])
+                    $this->theme['module'] => TemplateLoader::getModuleTemplateDir($this->theme['module'])
                 );
             } catch (\InvalidArgumentException $e) {
                 // either the module is not enabled or it has no "templates" directory, ignore
@@ -268,6 +268,7 @@ class SimpleSAML_XHTML_Template
         return $twig;
     }
 
+ 
     /**
      * Add overriding templates from the configured theme.
      *

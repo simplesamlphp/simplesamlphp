@@ -24,14 +24,14 @@ if (!class_exists('OAuthConsumer')) {
         public $key;
         public $secret;
 
-        function __construct($key, $secret, $callback_url = null)
+        public function __construct($key, $secret, $callback_url = null)
         {
             $this->key = $key;
             $this->secret = $secret;
             $this->callback_url = $callback_url;
         }
 
-        function __toString()
+        public function __toString()
         {
             return "OAuthConsumer[key=$this->key,secret=$this->secret]";
         }
@@ -48,7 +48,7 @@ class OAuthToken
      * key = the token
      * secret = the token secret
      */
-    function __construct($key, $secret)
+    public function __construct($key, $secret)
     {
         $this->key = $key;
         $this->secret = $secret;
@@ -58,7 +58,7 @@ class OAuthToken
      * generates the basic string serialization of a token that a server
      * would respond to request_token and access_token calls with
      */
-    function to_string()
+    public function to_string()
     {
         return "oauth_token=" .
         OAuthUtil::urlencode_rfc3986($this->key) .
@@ -67,7 +67,7 @@ class OAuthToken
         "&oauth_callback_confirmed=true";
     }
 
-    function __toString()
+    public function __toString()
     {
         return $this->to_string();
     }
@@ -137,7 +137,7 @@ abstract class OAuthSignatureMethod
  */
 class OAuthSignatureMethod_HMAC_SHA1 extends OAuthSignatureMethod
 {
-    function get_name()
+    public function get_name()
     {
         return "HMAC-SHA1";
     }
@@ -276,7 +276,7 @@ class OAuthRequest
     public static $version = '1.0';
     public static $POST_INPUT = 'php://input';
 
-    function __construct($http_method, $http_url, $parameters = null)
+    public function __construct($http_method, $http_url, $parameters = null)
     {
         $parameters = ($parameters) ? $parameters : array();
         $parameters = array_merge( OAuthUtil::parse_parameters(parse_url($http_url, PHP_URL_QUERY)), $parameters);
@@ -553,7 +553,7 @@ class OAuthServer
 
     protected $data_store;
 
-    function __construct($data_store)
+    public function __construct($data_store)
     {
         $this->data_store = $data_store;
     }
@@ -747,10 +747,11 @@ class OAuthServer
      */
     private function check_timestamp($timestamp)
     {
-        if(!$timestamp)
+        if (!$timestamp) {
             throw new OAuthException(
                 'Missing timestamp parameter. The parameter is required'
             );
+        }
 
         // verify that timestamp is recentish
         $now = time();
@@ -766,10 +767,11 @@ class OAuthServer
      */
     private function check_nonce($consumer, $token, $nonce, $timestamp)
     {
-        if (!$nonce)
+        if (!$nonce) {
             throw new OAuthException(
                 'Missing nonce parameter. The parameter is required'
             );
+        }
 
         // verify that the nonce is uniqueish
         $found = $this->data_store->lookup_nonce(
@@ -787,27 +789,27 @@ class OAuthServer
 
 class OAuthDataStore
 {
-    function lookup_consumer($consumer_key)
+    public function lookup_consumer($consumer_key)
     {
         // implement me
     }
 
-    function lookup_token($consumer, $token_type, $token)
+    public function lookup_token($consumer, $token_type, $token)
     {
         // implement me
     }
 
-    function lookup_nonce($consumer, $token, $nonce, $timestamp)
+    public function lookup_nonce($consumer, $token, $nonce, $timestamp)
     {
         // implement me
     }
 
-    function new_request_token($consumer, $callback = null)
+    public function new_request_token($consumer, $callback = null)
     {
         // return a new token attached to this consumer
     }
 
-    function new_access_token($token, $consumer, $verifier = null)
+    public function new_access_token($token, $consumer, $verifier = null)
     {
         // return a new access token attached to this consumer
         // for the user associated with this token if the request token
@@ -916,9 +918,11 @@ class OAuthUtil
     // This function takes a input like a=b&a=c&d=e and returns the parsed
     // parameters like this
     // array('a' => array('b','c'), 'd' => 'e')
-    public static function parse_parameters( $input )
+    public static function parse_parameters($input)
     {
-        if (!isset($input) || !$input) return array();
+        if (!isset($input) || !$input) {
+            return array();
+        }
 
         $pairs = explode('&', $input);
 
@@ -948,7 +952,9 @@ class OAuthUtil
 
     public static function build_http_query($params)
     {
-        if (!$params) return '';
+        if (!$params) {
+            return '';
+        }
 
         // Urlencode both keys and values
         $keys = OAuthUtil::urlencode_rfc3986(array_keys($params));

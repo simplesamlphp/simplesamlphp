@@ -43,7 +43,7 @@ class sspmod_oauth_Consumer
     }
 
     /*
-     * This static helper function wraps file_get_contents
+     * This static helper function wraps \SimpleSAML\Utils\HTTP::fetch
      * and throws an exception with diagnostics messages if it appear
      * to be failing on an OAuth endpoint.
      * 
@@ -53,17 +53,16 @@ class sspmod_oauth_Consumer
      */
     public static function getHTTP($url, $context = '')
     {
-        $response = @file_get_contents($url);
-
-        if ($response === false) {
+        try {
+            $response = \SimpleSAML\Utils\HTTP::fetch($url);
+        } catch (\SimpleSAML_Error_Exception $e) {
             $statuscode = 'unknown';
             if (preg_match('/^HTTP.*\s([0-9]{3})/', $http_response_header[0], $matches)) {
                 $statuscode = $matches[1];
             }
-
             $error = $context . ' [statuscode: ' . $statuscode . ']: ';
-            $contenttype = self::getContentType($http_response_header);
             $oautherror = self::getOAuthError($http_response_header);
+
 
             if (!empty($oautherror)) {
                 $error .= $oautherror;
@@ -73,26 +72,6 @@ class sspmod_oauth_Consumer
         } 
         // Fall back to return response, if could not reckognize HTTP header. Should not happen.
         return $response;
-    }
-
-    public function getRequestToken($url, $parameters = null)
-    {
-        $req_req = OAuthRequest::from_consumer_and_token($this->consumer, null, "GET", $url, $parameters);
-        $req_req->sign_request($this->signer, $this->consumer, null);
-
-        $response_req = self::getHTTP($req_req->to_url(), 
-            'Contacting request_token endpoint on the OAuth Provider');
-
-        parse_str($response_req, $responseParsed);
-
-        if (array_key_exists('error', $responseParsed)) {
-            throw new Exception('Error getting request token: ' . $responseParsed['error']);
-        }
-
-        $requestToken = $responseParsed['oauth_token'];
-        $requestTokenSecret = $responseParsed['oauth_token_secret'];
-
-        return new OAuthToken($requestToken, $requestTokenSecret);
     }
 
     public function getAuthorizeRequest($url, $requestToken, $redirect = true, $callback = null)
@@ -114,8 +93,9 @@ class sspmod_oauth_Consumer
         $acc_req = OAuthRequest::from_consumer_and_token($this->consumer, $requestToken, "GET", $url, $parameters);
         $acc_req->sign_request($this->signer, $this->consumer, $requestToken);
 
-        $response_acc = file_get_contents($acc_req->to_url());
-        if ($response_acc === false) {
+        try {
+            $response_acc = \SimpleSAML\Utils\HTTP::fetch($acc_req->to_url());
+        } catch (\SimpleSAML_Error_Exception $e) {
             throw new Exception('Error contacting request_token endpoint on the OAuth Provider');
         }
 
@@ -143,7 +123,7 @@ class sspmod_oauth_Consumer
             'ssl' => array(
                 'verify_peer' => false,
                 'capture_peer_cert' => true,
-                'capture_peer_chain' => true,
+                'capture_peer_chain' => true
             ),
             'http' => array(
                 'method' => 'POST',
@@ -151,9 +131,10 @@ class sspmod_oauth_Consumer
                 'header' => 'Content-Type: application/x-www-form-urlencoded',
             ),
         );
-        $context = stream_context_create($opts);
-        $response = file_get_contents($url, false, $context);
-        if ($response === false) {
+
+        try {
+            $response = \SimpleSAML\Utils\HTTP::fetch($url, $opts);
+        } catch (\SimpleSAML_Error_Exception $e) {
             throw new SimpleSAML_Error_Exception('Failed to push definition file to ' . $url);
         }
         return $response;
@@ -167,9 +148,8 @@ class sspmod_oauth_Consumer
         if (is_array($opts)) {
             $opts = stream_context_create($opts);
         }
-        $data = file_get_contents($data_req->to_url(), false, $opts);
+        $data = \SimpleSAML\Utils\HTTP::fetch($data_req->to_url(), $opts);
 
-        $dataDecoded = json_decode($data, true);
-        return $dataDecoded;
+        return  json_decode($data, true);
     }
 }

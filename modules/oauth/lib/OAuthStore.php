@@ -22,11 +22,11 @@ class sspmod_oauth_OAuthStore extends OAuthDataStore
         'nonce' => 'nonce+consumer_key = -boolean-',
         'requesttorequest' => 'requestToken.key = array(version,callback,consumerKey,)',
         'authorized' => 'requestToken.key, verifier = array(authenticated-user-attributes)',
-        'access' => 'accessToken.key+consumerKey = accestoken',
+        'access' => 'accessToken.key+consumerKey = accesstoken',
         'request' => 'requestToken.key+consumerKey = requesttoken',
     );
 
-    function __construct()
+    public function __construct()
     {
         $this->store = new sspmod_core_Storage_SQLPermanentStorage('oauth');
         $this->config = SimpleSAML_Configuration::getOptionalConfig('module_oauth.php');
@@ -41,18 +41,11 @@ class sspmod_oauth_OAuthStore extends OAuthDataStore
     public function authorize($requestTokenKey, $data)
     {
         $url = null;
-        $verifier = '';
-        $version = $this->defaultversion;
 
         // See whether to remember values from the original requestToken request:
-        $request_attributes = $this->store->get('requesttorequest', $requestTokenKey, ''); // must be there
+        $request_attributes = $this->store->get('requesttorequest', $requestTokenKey, '');
+        // must be there
         if ($request_attributes['value']) {
-            // establish version to work with
-            $v = $request_attributes['value']['version'];
-            if ($v) {
-                $version = $v; 
-            }
-
             // establish callback to use
             if ($request_attributes['value']['callback']) {
                 $url = $request_attributes['value']['callback'];
@@ -156,20 +149,20 @@ class sspmod_oauth_OAuthStore extends OAuthDataStore
 
         $lifetime = $this->config->getValue('requestTokenDuration', 60*30); 
 
-         $token = new OAuthToken(SimpleSAML\Utils\Random::generateID(), SimpleSAML\Utils\Random::generateID());
-         $token->callback = $callback; // OAuth1.0-RevA
-         $this->store->set('request', $token->key, $consumer->key, $token, $lifetime);
+        $token = new OAuthToken(SimpleSAML\Utils\Random::generateID(), SimpleSAML\Utils\Random::generateID());
+        $token->callback = $callback; // OAuth1.0-RevA
+        $this->store->set('request', $token->key, $consumer->key, $token, $lifetime);
 
-         // also store in requestToken->key => array('callback'=>CallbackURL, 'version'=>oauth_version
-         $request_attributes = array(
-             'callback' => $callback, 
-             'version' => ($version?$version:$this->defaultversion),
-             'consumerKey' => $consumer->key,
-         );
-         $this->store->set('requesttorequest', $token->key, '', $request_attributes, $lifetime);
+        // also store in requestToken->key => array('callback'=>CallbackURL, 'version'=>oauth_version
+        $request_attributes = array(
+            'callback' => $callback, 
+            'version' => ($version?$version:$this->defaultversion),
+            'consumerKey' => $consumer->key,
+        );
+        $this->store->set('requesttorequest', $token->key, '', $request_attributes, $lifetime);
 
-         // also store in requestToken->key => Consumer->key (enables consumer-lookup during reqToken-authorization stage)
-         $this->store->set('requesttoconsumer', $token->key, '', $consumer->key, $lifetime);
+        // also store in requestToken->key => Consumer->key (enables consumer-lookup during reqToken-authorization stage)
+        $this->store->set('requesttoconsumer', $token->key, '', $consumer->key, $lifetime);
 
         return $token;
     }
@@ -177,9 +170,9 @@ class sspmod_oauth_OAuthStore extends OAuthDataStore
     function new_access_token($requestToken, $consumer, $verifier = null)
     {
         SimpleSAML\Logger::info('OAuth new_access_token(' . $requestToken . ',' . $consumer . ')');
-        $accestoken = new OAuthToken(SimpleSAML\Utils\Random::generateID(), SimpleSAML\Utils\Random::generateID());
-        $this->store->set('access', $accestoken->key, $consumer->key, $accestoken, $this->config->getValue('accessTokenDuration', 60*60*24) );
-        return $accestoken;
+        $accesstoken = new OAuthToken(SimpleSAML\Utils\Random::generateID(), SimpleSAML\Utils\Random::generateID());
+        $this->store->set('access', $accesstoken->key, $consumer->key, $accesstoken, $this->config->getValue('accessTokenDuration', 60*60*24) );
+        return $accesstoken;
     }
     
     /**
@@ -187,7 +180,8 @@ class sspmod_oauth_OAuthStore extends OAuthDataStore
      * @param $requestTokenKey
      * @return unknown_type
      */
-    public function lookup_consumer_by_requestToken($requestTokenKey) {
+    public function lookup_consumer_by_requestToken($requestTokenKey)
+    {
         SimpleSAML\Logger::info('OAuth lookup_consumer_by_requestToken(' . $requestTokenKey . ')');
         if (!$this->store->exists('requesttorequest', $requestTokenKey, '')) {
             return null;
