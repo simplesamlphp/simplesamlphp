@@ -141,7 +141,7 @@ class sspmod_oauth_OAuthStore extends OAuthDataStore
         if ($this->store->exists('nonce', $nonce, $consumer->key)) {
             return true;
         }
-        $this->store->set('nonce', $nonce, $consumer->key, trye, $this->config->getValue('nonceCache', 60*60*24*14));
+        $this->store->set('nonce', $nonce, $consumer->key, true, $this->config->getValue('nonceCache', 60*60*24*14));
         return false;
     }
 
