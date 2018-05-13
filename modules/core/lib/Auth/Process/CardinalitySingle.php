@@ -20,7 +20,7 @@ class sspmod_core_Auth_Process_CardinalitySingle extends SimpleSAML_Auth_Process
     /** @var array Attributes that can be flattened to a single value */
     private $flatten = array();
 
-    /** @var array Separator for flattened value */
+    /** @var string Separator for flattened value */
     private $flattenWith = ';';
 
     /** @var array Entities that should be ignored */
