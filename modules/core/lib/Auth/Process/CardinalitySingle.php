@@ -72,12 +72,12 @@ class sspmod_core_Auth_Process_CardinalitySingle extends SimpleSAML_Auth_Process
             array_key_exists('entityid', $request['Source']) &&
             in_array($request['Source']['entityid'], $this->ignoreEntities)
         ) {
-            SimpleSAML\Logger::debug('CardinalitySingle: Ignoring assertions from ' . $request['Source']['entityid']);
+            SimpleSAML\Logger::debug('CardinalitySingle: Ignoring assertions from '.$request['Source']['entityid']);
             return;
         }
 
         foreach ($request['Attributes'] as $k => $v) {
-            if (! is_array($v)) {
+            if (!is_array($v)) {
                 continue;
             }
             if (count($v) <= 1) {

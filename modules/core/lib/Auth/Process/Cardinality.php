@@ -49,20 +49,20 @@ class sspmod_core_Auth_Process_Cardinality extends SimpleSAML_Auth_ProcessingFil
                 $this->cardinality[$attribute]['max'] = $rules['max'];
             }
             if (array_key_exists('warn', $rules)) {
-                $this->cardinality[$attribute]['warn'] = (bool)$rules['warn'];
+                $this->cardinality[$attribute]['warn'] = (bool) $rules['warn'];
             }
 
             /* sanity check the rules */
-            if (! array_key_exists('min', $this->cardinality[$attribute])) {
+            if (!array_key_exists('min', $this->cardinality[$attribute])) {
                 $this->cardinality[$attribute]['min'] = 0;
-            } elseif (! is_int($this->cardinality[$attribute]['min']) ||
+            } elseif (!is_int($this->cardinality[$attribute]['min']) ||
                 $this->cardinality[$attribute]['min'] < 0
             ) {
                 throw new SimpleSAML_Error_Exception('Minimum cardinality must be a positive integer: '.
                     var_export($attribute, true));
             }
             if (array_key_exists('max', $this->cardinality[$attribute]) &&
-                ! is_int($this->cardinality[$attribute]['max'])
+                !is_int($this->cardinality[$attribute]['max'])
             ) {
                 throw new SimpleSAML_Error_Exception('Maximum cardinality must be a positive integer: '.
                     var_export($attribute, true));
@@ -76,7 +76,7 @@ class sspmod_core_Auth_Process_Cardinality extends SimpleSAML_Auth_ProcessingFil
             }
 
             /* generate a display expression */
-            $this->cardinality[$attribute]['_expr'] = sprintf('%d ≤ n',  $this->cardinality[$attribute]['min']);
+            $this->cardinality[$attribute]['_expr'] = sprintf('%d ≤ n', $this->cardinality[$attribute]['min']);
             if (array_key_exists('max', $this->cardinality[$attribute])) {
                 $this->cardinality[$attribute]['_expr'] .= sprintf(' ≤ %d', $this->cardinality[$attribute]['max']);
             }
@@ -98,16 +98,16 @@ class sspmod_core_Auth_Process_Cardinality extends SimpleSAML_Auth_ProcessingFil
             $entityid = $request['Source']['entityid'];
         }
         if (in_array($entityid, $this->ignoreEntities)) {
-            SimpleSAML\Logger::debug('Cardinality: Ignoring assertions from ' . $entityid);
+            SimpleSAML\Logger::debug('Cardinality: Ignoring assertions from '.$entityid);
             return;
         }
 
         foreach ($request['Attributes'] as $k => $v) {
 
-            if (! array_key_exists($k, $this->cardinality)) {
+            if (!array_key_exists($k, $this->cardinality)) {
                 continue;
             }
-            if (! is_array($v)) {
+            if (!is_array($v)) {
                 $v = array($v);
             }
 
@@ -140,7 +140,7 @@ class sspmod_core_Auth_Process_Cardinality extends SimpleSAML_Auth_ProcessingFil
 
         /* check for missing attributes with a minimum cardinality */
         foreach ($this->cardinality as $k => $v) {
-            if (! $this->cardinality[$k]['min'] || array_key_exists($k, $request['Attributes'])) {
+            if (!$this->cardinality[$k]['min'] || array_key_exists($k, $request['Attributes'])) {
                 continue;
             }
             if ($this->cardinality[$k]['warn']) {
