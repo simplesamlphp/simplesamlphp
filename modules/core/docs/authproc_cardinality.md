@@ -5,7 +5,7 @@ Ensure the number of attribute values is within the specified multiplicity.
 
 This filter should contain a set of attribute name => rule pairs describing the multiplicity rules for an attribute.
 
-The special parameter `ignoreEntities` can be used to give an array of entity IDs that should be ignored for testing, etc purposes.
+The special parameter `%ignoreEntities` can be used to give an array of entity IDs that should be ignored for testing, etc purposes.
 
 Specifying Rules
 ----------------
