@@ -120,6 +120,7 @@ class sspmod_metarefresh_MetaLoader
 			$entities = $this->loadXML($data, $source);
 		} catch(Exception $e) {
 			SimpleSAML\Logger::debug('XML parser error when parsing ' . $source['src'] . ' - attempting to re-use cached metadata');
+			SimpleSAML\Logger::debug('XML parser returned: ' . $e->getMessage());
 			$this->addCachedMetadata($source);
 			return;
 		}
