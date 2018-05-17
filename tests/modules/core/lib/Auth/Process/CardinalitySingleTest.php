@@ -136,6 +136,6 @@ class Test_Core_Auth_Process_CardinalitySingleTest extends \PHPUnit_Framework_Te
                 'eduPersonPrincipalName' => array('joe@example.com', 'bob@example.net'),
             ),
         );
-        $result = self::processFilter($config, $request);
+        self::processFilter($config, $request);
     }
 }
