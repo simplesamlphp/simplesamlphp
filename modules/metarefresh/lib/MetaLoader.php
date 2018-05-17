@@ -1,7 +1,7 @@
 <?php
-/*
- * @author Andreas Åkre Solberg <andreas.solberg@uninett.no>
+/**
  * @package SimpleSAMLphp
+ * @author Andreas Åkre Solberg <andreas.solberg@uninett.no>
  */
 class sspmod_metarefresh_MetaLoader
 {
@@ -23,7 +23,9 @@ class sspmod_metarefresh_MetaLoader
     /**
      * Constructor
      *
-     * @param 
+     * @param integer $expire
+     * @param string  $stateFile
+     * @param object  $oldMetadataSrc
      */
     public function __construct($expire = null, $stateFile = null, $oldMetadataSrc = null)
     {
@@ -35,10 +37,11 @@ class sspmod_metarefresh_MetaLoader
 
         // Read file containing $state from disk
         if (is_readable($stateFile)) {
-            require($stateFile);
+            include $stateFile;
         }
 
         $this->state = array();
+
     }
 
 
@@ -82,7 +85,7 @@ class sspmod_metarefresh_MetaLoader
             // GET!
             try {
                 list($data, $responseHeaders) = \SimpleSAML\Utils\HTTP::fetch($source['src'], $context, true);
-            } catch (Exception $e) {
+            } catch(Exception $e) {
                 SimpleSAML\Logger::warning('metarefresh: ' . $e->getMessage());
             }
 
@@ -117,8 +120,9 @@ class sspmod_metarefresh_MetaLoader
 
         try {
             $entities = $this->loadXML($data, $source);
-        } catch (Exception $e) {
+        } catch(Exception $e) {
             SimpleSAML\Logger::debug('XML parser error when parsing ' . $source['src'] . ' - attempting to re-use cached metadata');
+            SimpleSAML\Logger::debug('XML parser returned: ' . $e->getMessage());
             $this->addCachedMetadata($source);
             return;
         }
@@ -162,23 +166,13 @@ class sspmod_metarefresh_MetaLoader
                 $template = $source['template'];
             }
 
-            if (in_array('shib13-sp-remote', $this->types)) {
-                $this->addMetadata($source['src'], $entity->getMetadata1xSP(), 'shib13-sp-remote', $template);
-            }
-            if (in_array('shib13-idp-remote', $this->types)) {
-                $this->addMetadata($source['src'], $entity->getMetadata1xIdP(), 'shib13-idp-remote', $template);
-            }
-            if (in_array('saml20-sp-remote', $this->types)) {
-                $this->addMetadata($source['src'], $entity->getMetadata20SP(), 'saml20-sp-remote', $template);
-            }
-            if (in_array('saml20-idp-remote', $this->types)) {
-                $this->addMetadata($source['src'], $entity->getMetadata20IdP(), 'saml20-idp-remote', $template);
-            }
-            if (in_array('attributeauthority-remote', $this->types)) {
-                $attributeAuthorities = $entity->getAttributeAuthorities();
-                if (!empty($attributeAuthorities)) {
-                    $this->addMetadata($source['src'], $attributeAuthorities[0], 'attributeauthority-remote', $template);
-                }
+            $this->addMetadata($source['src'], $entity->getMetadata1xSP(), 'shib13-sp-remote', $template);
+            $this->addMetadata($source['src'], $entity->getMetadata1xIdP(), 'shib13-idp-remote', $template);
+            $this->addMetadata($source['src'], $entity->getMetadata20SP(), 'saml20-sp-remote', $template);
+            $this->addMetadata($source['src'], $entity->getMetadata20IdP(), 'saml20-idp-remote', $template);
+            $attributeAuthorities = $entity->getAttributeAuthorities();
+            if (!empty($attributeAuthorities)) {
+                $this->addMetadata($source['src'], $attributeAuthorities[0], 'attributeauthority-remote', $template);
             }
         }
 
@@ -254,7 +248,6 @@ class sspmod_metarefresh_MetaLoader
             }
         }
     }
-
 
     /**
      * Parse XML metadata and return entities
@@ -453,8 +446,10 @@ class sspmod_metarefresh_MetaLoader
             foreach ($elements as $m) {
                 $entityId = $m['metadata']['entityid'];
 
-                SimpleSAML\Logger::debug('metarefresh: Add metadata entry ' .
-                    var_export($entityId, true) . ' in set ' . var_export($set, true) . '.');
+                SimpleSAML\Logger::debug(
+                    'metarefresh: Add metadata entry ' .
+                    var_export($entityId, true) . ' in set ' . var_export($set, true) . '.'
+                );
                 $metaHandler->saveMetadata($entityId, $set, $m['metadata']);
             }
         }
@@ -464,16 +459,20 @@ class sspmod_metarefresh_MetaLoader
         foreach ($metaHandler->getMetadataSets() as $set) {
             foreach ($metaHandler->getMetadataSet($set) as $entityId => $metadata) {
                 if (!array_key_exists('expire', $metadata)) {
-                    SimpleSAML\Logger::warning('metarefresh: Metadata entry without expire timestamp: ' . var_export($entityId, true) .
-                        ' in set ' . var_export($set, true) . '.');
+                    SimpleSAML\Logger::warning(
+                        'metarefresh: Metadata entry without expire timestamp: ' . var_export($entityId, true) .
+                        ' in set ' . var_export($set, true) . '.'
+                    );
                     continue;
                 }
                 if ($metadata['expire'] > $ct) {
                     continue;
                 }
-                SimpleSAML\Logger::debug('metarefresh: ' . $entityId . ' expired ' . date('l jS \of F Y h:i:s A', $metadata['expire']) );
-                SimpleSAML\Logger::debug('metarefresh: Delete expired metadata entry ' .
-                    var_export($entityId, true) . ' in set ' . var_export($set, true) . '. (' . ($ct - $metadata['expire']) . ' sec)');
+                SimpleSAML\Logger::debug('metarefresh: ' . $entityId . ' expired ' . date('l jS \of F Y h:i:s A', $metadata['expire']));
+                SimpleSAML\Logger::debug(
+                    'metarefresh: Delete expired metadata entry ' .
+                    var_export($entityId, true) . ' in set ' . var_export($set, true) . '. (' . ($ct - $metadata['expire']) . ' sec)'
+                );
                 $metaHandler->deleteMetadata($entityId, $set);
             }
         }

@@ -99,11 +99,11 @@ abstract class sspmod_ldap_Auth_Process_BaseFilter extends SimpleSAML_Auth_Proce
         // This way if the class is extended the proper name is used
         $classname = get_class($this);
         $classname = explode('_', $classname);
-        $this->title = 'ldap:' . end($classname) . ' : ';
+        $this->title = 'ldap:'.end($classname).' : ';
 
         // Log the construction
         SimpleSAML\Logger::debug(
-            $this->title . 'Creating and configuring the filter.'
+            $this->title.'Creating and configuring the filter.'
         );
 
         // If an authsource was defined (an not empty string)...
@@ -111,8 +111,8 @@ abstract class sspmod_ldap_Auth_Process_BaseFilter extends SimpleSAML_Auth_Proce
 
             // Log the authsource request
             SimpleSAML\Logger::debug(
-                $this->title . 'Attempting to get configuration values from authsource [' .
-                $config['authsource'] . ']'
+                $this->title.'Attempting to get configuration values from authsource ['.
+                $config['authsource'].']'
             );
 
             // Get the authsources file, which should contain the config
@@ -121,7 +121,7 @@ abstract class sspmod_ldap_Auth_Process_BaseFilter extends SimpleSAML_Auth_Proce
             // Verify that the authsource config exists
             if (!$authsource->hasValue($config['authsource'])) {
                 throw new SimpleSAML_Error_Exception(
-                    $this->title . 'Authsource [' . $config['authsource'] .
+                    $this->title.'Authsource ['.$config['authsource'].
                     '] defined in filter parameters not found in authsources.php'
                 );
             }
@@ -134,7 +134,7 @@ abstract class sspmod_ldap_Auth_Process_BaseFilter extends SimpleSAML_Auth_Proce
             // TODO: Support ldap:LDAPMulti, if possible
             if (@$authsource[0] != 'ldap:LDAP') {
                 throw new SimpleSAML_Error_Exception(
-                    $this->title . 'Authsource [' . $config['authsource'] .
+                    $this->title.'Authsource ['.$config['authsource'].
                     '] specified in filter parameters is not an ldap:LDAP type'
                 );
             }
@@ -162,7 +162,10 @@ abstract class sspmod_ldap_Auth_Process_BaseFilter extends SimpleSAML_Auth_Proce
             // only set when search.enabled = true
             if (isset($authsource['search.enable']) && $authsource['search.enable']) {
                 if (isset($authsource['search.base'])) {
-                    $authconfig['ldap.basedn']     = $authsource['search.base'];
+                    $authconfig['ldap.basedn'] = $authsource['search.base'];
+                }
+                if (isset($authsource['search.scope'])) {
+                    $authconfig['ldap.scope'] = $authsource['search.scope'];
                 }
                 if (isset($authsource['search.username'])) {
                     $authconfig['ldap.username']   = $authsource['search.username'];
@@ -192,8 +195,8 @@ abstract class sspmod_ldap_Auth_Process_BaseFilter extends SimpleSAML_Auth_Proce
 
             // Authsource complete
             SimpleSAML\Logger::debug(
-                $this->title . 'Retrieved authsource [' . $config['authsource'] .
-                '] configuration values: ' . $this->var_export($authconfig)
+                $this->title.'Retrieved authsource ['.$config['authsource'].
+                '] configuration values: '.$this->var_export($authconfig)
             );
         }
 
@@ -213,9 +216,9 @@ abstract class sspmod_ldap_Auth_Process_BaseFilter extends SimpleSAML_Auth_Proce
 
         // Log the member values retrieved above
         SimpleSAML\Logger::debug(
-            $this->title . 'Configuration values retrieved;' .
-            ' BaseDN: ' . $this->var_export($this->base_dn) .
-            ' Product: ' . $this->var_export($this->product)
+            $this->title.'Configuration values retrieved;'.
+            ' BaseDN: '.$this->var_export($this->base_dn).
+            ' Product: '.$this->var_export($this->product)
         );
 
         // Setup the attribute map which will be used to search LDAP
@@ -231,7 +234,7 @@ abstract class sspmod_ldap_Auth_Process_BaseFilter extends SimpleSAML_Auth_Proce
 
         // Log the attribute map
         SimpleSAML\Logger::debug(
-            $this->title . 'Attribute map created: ' . $this->var_export($this->attribute_map)
+            $this->title.'Attribute map created: '.$this->var_export($this->attribute_map)
         );
 
         // Setup the object type map which is used to determine a DNs' type
@@ -242,7 +245,7 @@ abstract class sspmod_ldap_Auth_Process_BaseFilter extends SimpleSAML_Auth_Proce
 
         // Log the type map
         SimpleSAML\Logger::debug(
-            $this->title . 'Type map created: ' . $this->var_export($this->type_map)
+            $this->title.'Type map created: '.$this->var_export($this->type_map)
         );
     }
 
@@ -272,15 +275,15 @@ abstract class sspmod_ldap_Auth_Process_BaseFilter extends SimpleSAML_Auth_Proce
 
         // Log the LDAP connection
         SimpleSAML\Logger::debug(
-            $this->title . 'Connecting to LDAP server;' .
-            ' Hostname: ' . $hostname .
-            ' Port: ' . $port .
-            ' Enable TLS: ' . ($enable_tls ? 'Yes' : 'No') .
-            ' Debug: ' . ($debug ? 'Yes' : 'No') .
-            ' Referrals: ' . ($referrals ? 'Yes' : 'No') .
-            ' Timeout: ' . $timeout .
-            ' Username: ' . $username .
-            ' Password: ' . (empty($password) ? '' : '********')
+            $this->title.'Connecting to LDAP server;'.
+            ' Hostname: '.$hostname.
+            ' Port: '.$port.
+            ' Enable TLS: '.($enable_tls ? 'Yes' : 'No').
+            ' Debug: '.($debug ? 'Yes' : 'No').
+            ' Referrals: '.($referrals ? 'Yes' : 'No').
+            ' Timeout: '.$timeout.
+            ' Username: '.$username.
+            ' Password: '.(empty($password) ? '' : '********')
         );
 
         // Connect to the LDAP server to be queried during processing

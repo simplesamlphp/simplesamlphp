@@ -5,7 +5,6 @@ namespace SimpleSAML\IdP;
 use SimpleSAML\Logger;
 use SimpleSAML\Utils\HTTP;
 
-
 /**
  * Class that handles traditional logout.
  *

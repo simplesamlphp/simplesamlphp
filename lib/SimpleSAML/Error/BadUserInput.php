@@ -6,7 +6,7 @@
  * @package SimpleSAMLphp_base
  *
  */
-class SimpleSAML_Error_BadUserInnput extends SimpleSAML_Error_User
+class SimpleSAML_Error_BadUserInput extends SimpleSAML_Error_User
 {
 
 }

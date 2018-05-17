@@ -9,7 +9,6 @@ namespace SimpleSAML\Utils;
 
 use SimpleSAML\Logger;
 
-
 class Time
 {
 

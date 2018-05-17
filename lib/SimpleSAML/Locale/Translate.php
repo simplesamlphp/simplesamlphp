@@ -259,9 +259,12 @@ class Translate
     public function t(
         $tag,
         $replacements = array(),
-        $fallbackdefault = true, // TODO: remove this for 2.0. Assume true
-        $oldreplacements = array(), // TODO: remove this for 2.0
-        $striptags = false // TODO: remove this for 2.0
+        // TODO: remove this for 2.0. Assume true
+        $fallbackdefault = true,
+        // TODO: remove this for 2.0
+        $oldreplacements = array(),
+        // TODO: remove this for 2.0
+        $striptags = false
     ) {
         $backtrace = debug_backtrace();
         $where = $backtrace[0]['file'].':'.$backtrace[0]['line'];

@@ -84,7 +84,6 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerSerialize extends SimpleSAML_Met
         }
 
         while (($entry = readdir($dh)) !== false) {
-
             if ($entry[0] === '.') {
                 // skip '..', '.' and hidden files
                 continue;

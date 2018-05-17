@@ -76,13 +76,15 @@ class SessionHandlerPHP extends SessionHandler
 
         $params = $this->getCookieParams();
 
-        session_set_cookie_params(
-            $params['lifetime'],
-            $params['path'],
-            $params['domain'],
-            $params['secure'],
-            $params['httponly']
-        );
+        if (!headers_sent()) {
+            session_set_cookie_params(
+                $params['lifetime'],
+                $params['path'],
+                $params['domain'],
+                $params['secure'],
+                $params['httponly']
+            );
+        }
 
         $savepath = $config->getString('session.phpsession.savepath', null);
         if (!empty($savepath)) {

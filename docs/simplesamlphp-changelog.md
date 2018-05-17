@@ -10,12 +10,16 @@ See the upgrade notes for specific information about upgrading.
 
 Released TBD
 
+### Changes
+  * Renamed class `SimpleSAML_Error_BadUserInnput` to `SimpleSAML_Error_BadUserInput`
+
 ### New features
   * Added support for SAML "Enhanced Client or Proxy" (ECP) protocol,
     IdP side with HTTP Basic Authentcation as authentication method.
     See the [ECP IdP documentation](./simplesamlphp-ecp-idp) for details.
   * New option `sendmail_from`, the from address for email sent by SSP.
   * New option `options` for PDO database connections, e.g. for TLS setup.
+  * New option `search.scope` for LDAP authsources
 
 ### consent
   * Sort attribute values for consent.

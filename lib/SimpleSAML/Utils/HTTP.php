@@ -599,8 +599,7 @@ class HTTP
         if (preg_match('#^https?://.*/?$#D', $baseURL, $matches)) {
             // full URL in baseurlpath, override local server values
             return rtrim($baseURL, '/').'/';
-        } elseif (
-            (preg_match('#^/?([^/]?.*/)$#D', $baseURL, $matches)) ||
+        } elseif ((preg_match('#^/?([^/]?.*/)$#D', $baseURL, $matches)) ||
             (preg_match('#^\*(.*)/$#D', $baseURL, $matches)) ||
             ($baseURL === '')
         ) {
@@ -796,7 +795,6 @@ class HTTP
                 $hostname = parse_url($appurl, PHP_URL_HOST);
                 $port = parse_url($appurl, PHP_URL_PORT);
                 $port = !empty($port) ? ':'.$port : '';
-
             } else { // no base URL specified for app, just use the current URL
                 $protocol = 'http';
                 $protocol .= (self::getServerHTTPS()) ? 's' : '';

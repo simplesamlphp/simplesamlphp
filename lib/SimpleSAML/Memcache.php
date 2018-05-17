@@ -164,8 +164,7 @@ class SimpleSAML_Memcache
         foreach (self::getMemcacheServers() as $server) {
             if (self::$extension === 'memcached') {
                 $server->set($key, $savedInfoSerialized, $expire);
-            }
-            else {
+            } else {
                 $server->set($key, $savedInfoSerialized, 0, $expire);
             }
         }
@@ -310,7 +309,7 @@ class SimpleSAML_Memcache
      */
     private static function loadMemcacheServerGroup(array $group)
     {
-        $class = class_exists('Memcache') ? 'Memcache' : (class_exists('Memcached') ? 'Memcached' : FALSE);
+        $class = class_exists('Memcache') ? 'Memcache' : (class_exists('Memcached') ? 'Memcached' : false);
         if (!$class) {
             throw new Exception('Missing Memcached implementation. You must install either the Memcache or Memcached extension.');
         }
@@ -490,5 +489,4 @@ class SimpleSAML_Memcache
 
         return $ret;
     }
-
 }
