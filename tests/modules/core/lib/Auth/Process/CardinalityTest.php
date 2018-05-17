@@ -102,7 +102,7 @@ class Test_Core_Auth_Process_CardinalityTest extends \PHPUnit_Framework_TestCase
                 'mail' => array('joe@example.com', 'bob@example.com', 'fred@example.com'),
             ),
         );
-        $result = self::processFilter($config, $request);
+        self::processFilter($config, $request);
     }
 
     /**
@@ -120,7 +120,7 @@ class Test_Core_Auth_Process_CardinalityTest extends \PHPUnit_Framework_TestCase
                 'mail' => array('joe@example.com', 'bob@example.com'),
             ),
         );
-        $result = self::processFilter($config, $request);
+        self::processFilter($config, $request);
     }
 
     /**
@@ -136,7 +136,7 @@ class Test_Core_Auth_Process_CardinalityTest extends \PHPUnit_Framework_TestCase
         $request = array(
             'Attributes' => array( ),
         );
-        $result = self::processFilter($config, $request);
+        self::processFilter($config, $request);
     }
 
     /*
@@ -158,7 +158,7 @@ class Test_Core_Auth_Process_CardinalityTest extends \PHPUnit_Framework_TestCase
                 'mail' => array('joe@example.com', 'bob@example.com'),
             ),
         );
-        $result = self::processFilter($config, $request);
+        self::processFilter($config, $request);
     }
 
     /**
@@ -176,7 +176,7 @@ class Test_Core_Auth_Process_CardinalityTest extends \PHPUnit_Framework_TestCase
                 'mail' => array('joe@example.com', 'bob@example.com'),
             ),
         );
-        $result = self::processFilter($config, $request);
+        self::processFilter($config, $request);
     }
 
     /**
@@ -194,7 +194,7 @@ class Test_Core_Auth_Process_CardinalityTest extends \PHPUnit_Framework_TestCase
                 'mail' => array('joe@example.com', 'bob@example.com'),
             ),
         );
-        $result = self::processFilter($config, $request);
+        self::processFilter($config, $request);
     }
 
     /**
@@ -212,7 +212,7 @@ class Test_Core_Auth_Process_CardinalityTest extends \PHPUnit_Framework_TestCase
                 'mail' => array('joe@example.com', 'bob@example.com'),
             ),
         );
-        $result = self::processFilter($config, $request);
+        self::processFilter($config, $request);
     }
 
     /**
@@ -230,6 +230,6 @@ class Test_Core_Auth_Process_CardinalityTest extends \PHPUnit_Framework_TestCase
                 'mail' => array('joe@example.com', 'bob@example.com'),
             ),
         );
-        $result = self::processFilter($config, $request);
+        self::processFilter($config, $request);
     }
 }
