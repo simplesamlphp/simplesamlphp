@@ -208,10 +208,9 @@ class sspmod_core_Storage_SQLPermanentStorage
         if (!is_null($key2)) {
             $conditions[] = "key2 = ".$this->db->quote($key2);
         }
-        if (count($conditions) === 0) {
-            return '1';
-        }
-        return join(' AND ', $conditions);
+
+        $conditions[] = "(expire = NULL OR expire >= ".time().")";
+		    return join(' AND ', $conditions);
     }
 }
 
