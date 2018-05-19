@@ -44,7 +44,6 @@
         "jaimeperez/twig-configurable-i18n": "^1.2"
     },
     "require-dev": {
-        "ext-pdo_sqlite": "*",
         "phpunit/phpunit": "~4.8.35",
         "mikey179/vfsStream": "~1.6",
         "friendsofphp/php-cs-fixer": "^2.2"
