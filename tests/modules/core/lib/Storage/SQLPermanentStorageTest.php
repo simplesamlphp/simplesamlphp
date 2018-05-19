@@ -63,13 +63,15 @@ class Test_Core_Storage_SQLPermanentStorage extends TestCase
         // Make sure the earlier created entry has expired now
         sleep(1);
 
+        // Make sure we can't get the expired entry anymore
+        $result = self::$sql->getValue('testtype', 'testkey1', 'testkey2');
+        $this->assertNull($result);
+
         // Now add a second entry that never expires
         self::$sql->set('testtype', 'testkey1_nonexpiring', 'testkey2_nonexpiring', 'testvalue_nonexpiring', null);
 
-        // Expire entries and verify that only the second one is left
+        // Expire entries and verify that only the second one is still there
         self::$sql->removeExpired();
-        $result = self::$sql->getValue('testtype', 'testkey1', 'testkey2');
-        $this->assertNull($result);
         $result = self::$sql->getValue('testtype', 'testkey1_nonexpiring', 'testkey2_nonexpiring');
         $this->assertEquals('testvalue_nonexpiring', $result);
     }
