@@ -366,6 +366,10 @@ class HTTPTest extends TestCase
         $_SERVER['SERVER_PORT'] = '80';
         $this->assertEquals(HTTP::getServerPort(), '');
 
+        // Test HTTP + standard integer port
+        $_SERVER['SERVER_PORT'] = 80;
+        $this->assertEquals(HTTP::getServerPort(), '');
+
         // Test HTTP + without port
         unset($_SERVER['SERVER_PORT']);
         $this->assertEquals(HTTP::getServerPort(), '');
@@ -373,6 +377,10 @@ class HTTPTest extends TestCase
         // Test HTTPS + non-standard port
         $_SERVER['HTTPS'] = 'on';
         $_SERVER['SERVER_PORT'] = '3030';
+        $this->assertEquals(HTTP::getServerPort(), ':3030');
+
+        // Test HTTPS + non-standard integer port
+        $_SERVER['SERVER_PORT'] = 3030;
         $this->assertEquals(HTTP::getServerPort(), ':3030');
 
         // Test HTTPS + standard port

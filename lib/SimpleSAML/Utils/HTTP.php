@@ -110,6 +110,9 @@ class HTTP
     {
         $default_port = self::getServerHTTPS() ? '443' : '80';
         $port = isset($_SERVER['SERVER_PORT']) ? $_SERVER['SERVER_PORT'] : $default_port;
+
+        // Take care of edge-case where SERVER_PORT is an integer
+        $port = strval($port);
         
         if ($port !== $default_port) {
             return ':'.$port;
