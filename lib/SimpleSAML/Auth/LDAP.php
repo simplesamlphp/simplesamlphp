@@ -73,11 +73,18 @@ class SimpleSAML_Auth_LDAP
                 SimpleSAML\Logger::warning('Library - LDAP __construct(): Unable to set debug level (LDAP_OPT_DEBUG_LEVEL) to 7');
         }
 
+        // Port must be specified in LDAP URI
+        $hostname = explode(' ', $hostname);
+        $hostname = array_map(function ($host) use ($port) {
+            return "{$host}:{$port}";
+        }, $hostname);
+        $hostname = implode(' ', $hostname);
+
         /*
          * Prepare a connection for to this LDAP server. Note that this function
          * doesn't actually connect to the server.
          */
-        $this->ldap = @ldap_connect($hostname, $port);
+        $this->ldap = @ldap_connect($hostname);
         if ($this->ldap === false) {
             throw $this->makeException('Library - LDAP __construct(): Unable to connect to \''.$hostname.'\'', ERR_INTERNAL);
         }
