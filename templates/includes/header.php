@@ -149,6 +149,7 @@ if ($onLoad !== '') {
 
     if ($includeLanguageBar) {
         $languages = $this->getLanguageList();
+        ksort($languages);
         if (count($languages) > 1) {
             echo '<div id="languagebar">';
             $langnames = [
