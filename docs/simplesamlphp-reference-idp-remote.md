@@ -120,6 +120,9 @@ The following SAML 2.0 options are available:
 `hide.from.discovery`
 :   Whether to hide hide this IdP from the local discovery or not. Set to true to hide it. Defaults to false.
 
+`IDPList`
+:   The IdP is allowed to respond to an `AuthNRequest` originally sent to entityIDs in this list.
+
 `nameid.encryption`
 :   Whether NameIDs sent to this IdP should be encrypted. The default
     value is `FALSE`.

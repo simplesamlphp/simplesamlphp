@@ -98,7 +98,8 @@ class Redis extends Store
         if ($expire === null) {
             $this->redis->set("{$type}.{$key}", $serialized);
         } else {
-            $this->redis->setex("{$type}.{$key}", $expire, $serialized);
+            // setex expire time is in seconds (not unix timestamp)
+            $this->redis->setex("{$type}.{$key}", $expire - time(), $serialized);
         }
     }
 

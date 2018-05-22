@@ -118,7 +118,7 @@ class SimpleSAML_Configuration implements \SimpleSAML\Utils\ClearableState
 
             // the file initializes a variable named '$config'
             ob_start();
-            if (interface_exists('Throwable')) {
+            if (interface_exists('Throwable', false)) {
                 try {
                     require($filename);
                 } catch (ParseError $e) {
@@ -192,6 +192,35 @@ class SimpleSAML_Configuration implements \SimpleSAML\Utils\ClearableState
         assert(is_string($configSet));
 
         self::$configDirs[$configSet] = $path;
+    }
+
+    /**
+     * Store a pre-initialized configuration.
+     *
+     * Allows consumers to create configuration objects without having them
+     * loaded from a file.
+     *
+     * @param SimpleSAML_Configuration $config  The configuration object to store
+     * @param string $filename  The name of the configuration file.
+     * @param string $configSet  The configuration set. Optional, defaults to 'simplesaml'.
+     */
+    public static function setPreLoadedConfig(SimpleSAML_Configuration $config, $filename = 'config.php', $configSet = 'simplesaml')
+    {
+        assert(is_string($filename));
+        assert(is_string($configSet));
+
+        if (!array_key_exists($configSet, self::$configDirs)) {
+            if ($configSet !== 'simplesaml') {
+                throw new Exception('Configuration set \'' . $configSet . '\' not initialized.');
+            } else {
+                self::$configDirs['simplesaml'] = dirname(dirname(dirname(__FILE__))) . '/config';
+            }
+        }
+
+        $dir = self::$configDirs[$configSet];
+        $filePath = $dir . '/' . $filename;
+
+        self::$loadedConfigs[$filePath] = $config;
     }
 
 

@@ -12,18 +12,20 @@ if (!class_exists('OAuthException')) {
     /*
      * Generic exception class
      */
-    class OAuthException extends Exception {
+    class OAuthException extends Exception
+    {
         // pass
     }
 }
 
 if (!class_exists('OAuthConsumer')) {
-    class OAuthConsumer {
+    class OAuthConsumer
+    {
         public $key;
         public $secret;
         public $callback_url;
 
-        public function __construct($key, $secret, $callback_url=null)
+        public function __construct($key, $secret, $callback_url = null)
         {
             $this->key = $key;
             $this->secret = $secret;
@@ -37,7 +39,8 @@ if (!class_exists('OAuthConsumer')) {
     }
 }
 
-class OAuthToken {
+class OAuthToken
+{
     // access tokens and request tokens
     public $key;
     public $secret;
@@ -65,7 +68,8 @@ class OAuthToken {
         "&oauth_callback_confirmed=true";
     }
 
-    function __toString() {
+    public function __toString()
+    {
         return $this->to_string();
     }
 }
@@ -134,7 +138,7 @@ abstract class OAuthSignatureMethod
  */
 class OAuthSignatureMethod_HMAC_SHA1 extends OAuthSignatureMethod
 {
-    function get_name()
+    public function get_name()
     {
         return "HMAC-SHA1";
     }
@@ -273,7 +277,7 @@ class OAuthRequest
     public static $version = '1.0';
     public static $POST_INPUT = 'php://input';
 
-    public function __construct($http_method, $http_url, $parameters=null)
+    public function __construct($http_method, $http_url, $parameters = null)
     {
         $parameters = ($parameters) ? $parameters : array();
         $parameters = array_merge(OAuthUtil::parse_parameters(parse_url($http_url, PHP_URL_QUERY)), $parameters);
@@ -286,7 +290,7 @@ class OAuthRequest
     /**
      * attempt to build up a request from what was passed to the server
      */
-    public static function from_request($http_method=NULL, $http_url=null, $parameters=null)
+    public static function from_request($http_method = null, $http_url = null, $parameters = null)
     {
         $scheme = (!isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] != "on")
             ? 'http'
@@ -339,7 +343,7 @@ class OAuthRequest
     /**
      * pretty much a helper function to set up the request
      */
-    public static function from_consumer_and_token($consumer, $token, $http_method, $http_url, $parameters=null)
+    public static function from_consumer_and_token($consumer, $token, $http_method, $http_url, $parameters = null)
     {
         $parameters = ($parameters) ?  $parameters : array();
         $defaults = array("oauth_version" => OAuthRequest::$version,
@@ -747,7 +751,7 @@ class OAuthServer
      */
     private function check_timestamp($timestamp)
     {
-        if (! $timestamp) {
+        if (!$timestamp) {
             throw new OAuthException(
                 'Missing timestamp parameter. The parameter is required'
             );
@@ -767,7 +771,7 @@ class OAuthServer
      */
     private function check_nonce($consumer, $token, $nonce, $timestamp)
     {
-        if (! $nonce) {
+        if (!$nonce) {
             throw new OAuthException(
                 'Missing nonce parameter. The parameter is required'
             );

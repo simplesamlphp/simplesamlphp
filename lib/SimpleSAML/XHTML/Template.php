@@ -278,7 +278,7 @@ class SimpleSAML_XHTML_Template
         $subdirs = scandir($themeDir);
         if (empty($subdirs)) { // no subdirectories in the theme directory, nothing to do here
             // this is probably wrong, log a message
-            \SimpleSAML\Logger::warning('Emtpy theme directory for theme "'.$this->theme['name'].'".');
+            \SimpleSAML\Logger::warning('Empty theme directory for theme "'.$this->theme['name'].'".');
             return array();
         }
 
@@ -313,7 +313,6 @@ class SimpleSAML_XHTML_Template
         $templatedir = $moduledir.'/templates';
         if (!is_dir($templatedir)) {
             throw new InvalidArgumentException('The module \''.$module.'\' has no templates directory.');
-
         }
         return $templatedir;
     }

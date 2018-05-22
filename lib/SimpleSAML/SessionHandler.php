@@ -98,6 +98,16 @@ abstract class SessionHandler
 
 
     /**
+     * Check whether the session cookie is set.
+     *
+     * This function will only return false if is is certain that the cookie isn't set.
+     *
+     * @return bool True if it was set, false if not.
+     */
+    abstract public function hasSessionCookie();
+
+
+    /**
      * Set a session cookie.
      *
      * @param string $sessionName The name of the session.
@@ -126,19 +136,6 @@ abstract class SessionHandler
             /** @var \SimpleSAML\Store $store At this point, $store can only be an object */
             self::$sessionHandler = new SessionHandlerStore($store);
         }
-    }
-
-
-    /**
-     * Check whether the session cookie is set.
-     *
-     * This function will only return false if is is certain that the cookie isn't set.
-     *
-     * @return bool True if it was set, false if not.
-     */
-    public function hasSessionCookie()
-    {
-        return true;
     }
 
 

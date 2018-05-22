@@ -149,53 +149,6 @@ $config = array(
     */
 
     /*
-    'openid' => array(
-        'openid:OpenIDConsumer',
-        'attributes.required' => array('nickname'),
-        'attributes.optional' => array('fullname', 'email',),
-        // 'sreg.validate' => FALSE,
-        'attributes.ax_required' => array('http://axschema.org/namePerson/friendly'),
-        'attributes.ax_optional' => array('http://axschema.org/namePerson','http://axschema.org/contact/email'),
-        // Prefer HTTP redirect over POST
-        // 'prefer_http_redirect' => FALSE,
-    ),
-    */
-
-    /*
-    // Example of an authsource that authenticates against Google.
-    // See: http://code.google.com/apis/accounts/docs/OpenID.html
-    'google' => array(
-        'openid:OpenIDConsumer',
-        // Googles OpenID endpoint.
-        'target' => 'https://www.google.com/accounts/o8/id',
-        // Custom realm
-        // 'realm' => 'http://*.example.org',
-        // Attributes that google can supply.
-        'attributes.ax_required' => array(
-            //'http://axschema.org/namePerson/first',
-            //'http://axschema.org/namePerson/last',
-            //'http://axschema.org/contact/email',
-            //'http://axschema.org/contact/country/home',
-            //'http://axschema.org/pref/language',
-        ),
-        // custom extension arguments
-        'extension.args' => array(
-            //'http://specs.openid.net/extensions/ui/1.0' => array(
-            //	'mode' => 'popup',
-            //	'icon' => 'true',
-            //),
-        ),
-    ),
-    */
-
-    /*
-    'papi' => array(
-        'authpapi:PAPI',
-    ),
-    */
-
-
-    /*
     'facebook' => array(
         'authfacebook:Facebook',
         // Register your Facebook application on http://www.facebook.com/developers

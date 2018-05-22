@@ -631,7 +631,6 @@ class SimpleSAML_Session implements Serializable
         if (!$this->transient && (!empty($data['RememberMe']) || $this->rememberMeExpire) &&
             $globalConfig->getBoolean('session.rememberme.enable', false)
         ) {
-
             $this->setRememberMeExpire();
         } else {
             try {
@@ -753,11 +752,15 @@ class SimpleSAML_Session implements Serializable
      */
     public function updateSessionCookies($params = null)
     {
+        assert(is_null($params) || is_array($params));
+
         $sessionHandler = \SimpleSAML\SessionHandler::getSessionHandler();
 
         if ($this->sessionId !== null) {
             $sessionHandler->setCookie($sessionHandler->getSessionCookieName(), $this->sessionId, $params);
         }
+
+        $params = array_merge($sessionHandler->getCookieParams(), is_array($params) ? $params : array());
 
         if ($this->authToken !== null) {
             $globalConfig = SimpleSAML_Configuration::getInstance();

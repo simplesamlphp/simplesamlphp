@@ -110,7 +110,7 @@ class sspmod_saml_IdP_SAML1
         if (!$found) {
             throw new Exception('Invalid AssertionConsumerService for SP ' .
                 var_export($spEntityId, true) . ': ' . var_export($shire, true));
-	}
+        }
 
         SimpleSAML_Stats::log('saml:idp:AuthnRequest', array(
             'spEntityID' => $spEntityId,

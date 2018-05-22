@@ -262,5 +262,4 @@ class Localization
     {
         return $this->localeDomainMap;
     }
-
 }

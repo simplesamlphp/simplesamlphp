@@ -137,7 +137,7 @@ class Auth_Yubico
 		if ($this->_key <> "") {
 			$rows = explode("\r\n", $responseMsg);
             $response = array();
-			while (list(, $val) = each($rows)) {
+            foreach ($rows as $val) {
 				// = is also used in BASE64 encoding so we only replace the first = by # which is not used in BASE64
 				$val = preg_replace('/=/', '#', $val, 1);
 				$row = explode("#", $val);

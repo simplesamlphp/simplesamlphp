@@ -97,5 +97,4 @@ class SimpleSAML_Stats
             $out->emit($data);
         }
     }
-
 }

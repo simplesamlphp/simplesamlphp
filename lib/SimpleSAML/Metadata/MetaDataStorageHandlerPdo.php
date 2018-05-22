@@ -261,5 +261,4 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerPdo extends SimpleSAML_Metadata_
         }
         return $stmt;
     }
-
 }

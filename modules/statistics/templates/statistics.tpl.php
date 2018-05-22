@@ -19,38 +19,42 @@ echo '<tr><td class="selecttime_icon"><img src="' . SimpleSAML\Utils\HTTP::getBa
 echo '<td>';
 echo '<form action="#">';
 echo $this->data['post_rule'];
-echo '<select onchange="submit();" name="rule">';
-foreach ($this->data['available.rules'] as $key => $rule) {
-    if ($key === $this->data['selected.rule']) {
-        echo '<option selected="selected" value="' . $key . '">' . $rule['name'] . '</option>';
-    } else {
-        echo '<option value="' . $key . '">' . $rule['name'] . '</option>';
+if (!empty($this->data['available.rules'])) {
+    echo '<select onchange="submit();" name="rule">';
+    foreach ($this->data['available.rules'] as $key => $rule) {
+        if ($key === $this->data['selected.rule']) {
+            echo '<option selected="selected" value="' . $key . '">' . $rule['name'] . '</option>';
+        } else {
+            echo '<option value="' . $key . '">' . $rule['name'] . '</option>';
+        }
     }
+    echo '</select>';
 }
-echo '</select></form>';
-echo '</td>';
+echo '</form></td>';
 
 // Select delimiter
 echo '<td class="td_right">';
 echo '<form action="#">';
 echo $this->data['post_d'];
-echo '<select onchange="submit();" name="d">';
-foreach ($this->data['availdelimiters'] as $key => $delim) {
-    $delimName = $delim;
-    if (array_key_exists($delim, $this->data['delimiterPresentation'])) {
-        $delimName = $this->data['delimiterPresentation'][$delim];
-    }
+if(!empty($this->data['availdelimiters'])) {
+    echo '<select onchange="submit();" name="d">';
+    foreach ($this->data['availdelimiters'] as $key => $delim) {
+        $delimName = $delim;
+        if (array_key_exists($delim, $this->data['delimiterPresentation'])) {
+            $delimName = $this->data['delimiterPresentation'][$delim];
+        }
 
-    if ($key == '_') {
-        echo '<option value="_">Total</option>';
-    } elseif (isset($_REQUEST['d']) && $delim == $_REQUEST['d']) {
-        echo '<option selected="selected" value="' . htmlspecialchars($delim) . '">' . htmlspecialchars($delimName) . '</option>';
-    } else {
-        echo '<option  value="' . htmlspecialchars($delim) . '">' . htmlspecialchars($delimName) . '</option>';
+        if ($key == '_') {
+            echo '<option value="_">Total</option>';
+        } elseif (isset($_REQUEST['d']) && $delim == $_REQUEST['d']) {
+            echo '<option selected="selected" value="' . htmlspecialchars($delim) . '">' . htmlspecialchars($delimName) . '</option>';
+        } else {
+            echo '<option  value="' . htmlspecialchars($delim) . '">' . htmlspecialchars($delimName) . '</option>';
+        }
     }
+    echo '</select>';
 }
-echo '</select></form>';
-echo '</td></tr>';
+echo '</form></td></tr>';
 
 echo '</table>';
 
@@ -70,30 +74,34 @@ if (isset($this->data['available.times.prev'])) {
 echo '<td class="td_right">';
 echo '<form action="#">';
 echo $this->data['post_res'];
-echo '<select onchange="submit();" name="res">';
-foreach ($this->data['available.timeres'] as $key => $timeresname) {
-    if ($key == $this->data['selected.timeres']) {
-        echo '<option selected="selected" value="' . $key . '">' . $timeresname . '</option>';
-    } else {
-        echo '<option  value="' . $key . '">' . $timeresname . '</option>';
+if (!empty($this->data['available.timeres'])) {
+    echo '<select onchange="submit();" name="res">';
+    foreach ($this->data['available.timeres'] as $key => $timeresname) {
+        if ($key == $this->data['selected.timeres']) {
+            echo '<option selected="selected" value="' . $key . '">' . $timeresname . '</option>';
+        } else {
+            echo '<option  value="' . $key . '">' . $timeresname . '</option>';
+        }
     }
+    echo '</select>';
 }
-echo '</select></form>';
-echo '</td>';
+echo '</form></td>';
 
 echo '<td class="td_left">';
 echo '<form action="#">';
 echo $this->data['post_time'];
-echo '<select onchange="submit();" name="time">';
-foreach ($this->data['available.times'] as $key => $timedescr) {
-    if ($key == $this->data['selected.time']) {
-        echo '<option selected="selected" value="' . $key . '">' . $timedescr . '</option>';
-    } else {
-        echo '<option  value="' . $key . '">' . $timedescr . '</option>';
+if (!empty($this->data['available.times'])) {
+    echo '<select onchange="submit();" name="time">';
+    foreach ($this->data['available.times'] as $key => $timedescr) {
+        if ($key == $this->data['selected.time']) {
+            echo '<option selected="selected" value="' . $key . '">' . $timedescr . '</option>';
+        } else {
+            echo '<option  value="' . $key . '">' . $timedescr . '</option>';
+        }
     }
+    echo '</select>';
 }
-echo '</select></form>';
-echo '</td>';
+echo '</form></td>';
 
 if (isset($this->data['available.times.next'])) {
     echo '<td class="td_right td_next_right"><a href="' . $this->data['get_times_next'] . '">Next »</a></td>';
@@ -102,94 +110,96 @@ if (isset($this->data['available.times.next'])) {
 }
 
 echo '</tr></table>';
+echo '<div id="tabdiv">';
+if (!empty($this->data['results'])){
+    echo '<ul class="tabset_tabs">
+       <li><a href="#graph">Graph</a></li>
+       <li><a href="#table">Summary table</a></li>
+       <li><a href="#debug">Time serie</a></li>
+    </ul>';
+    echo '
 
+    <div id="graph" class="tabset_content">';
 
-echo '<div id="tabdiv"><ul class="tabset_tabs">
-   <li><a href="#graph">Graph</a></li>
-   <li><a href="#table">Summary table</a></li>
-   <li><a href="#debug">Time serie</a></li>
-</ul>';
-echo '
+    echo '<img src="' . htmlspecialchars($this->data['imgurl']) . '" alt="Graph" />';
 
-<div id="graph" class="tabset_content">';
-
-echo '<img src="' . htmlspecialchars($this->data['imgurl']) . '" alt="Graph" />';
-
-echo '<form action="#">';
-echo '<p class="p_right">Compare with total from this dataset ';
-echo $this->data['post_rule2'];
-echo '<select onchange="submit();" name="rule2">';
-echo '	<option value="_">None</option>';
-foreach ($this->data['available.rules'] as $key => $rule) {
-    if ($key === $this->data['selected.rule2']) {
-        echo '<option selected="selected" value="' . $key . '">' . $rule['name'] . '</option>';
-    } else {
-        echo '<option value="' . $key . '">' . $rule['name'] . '</option>';
+    echo '<form action="#">';
+    echo '<p class="p_right">Compare with total from this dataset ';
+    echo $this->data['post_rule2'];
+    echo '<select onchange="submit();" name="rule2">';
+    echo '	<option value="_">None</option>';
+    foreach ($this->data['available.rules'] as $key => $rule) {
+        if ($key === $this->data['selected.rule2']) {
+            echo '<option selected="selected" value="' . $key . '">' . $rule['name'] . '</option>';
+        } else {
+            echo '<option value="' . $key . '">' . $rule['name'] . '</option>';
+        }
     }
-}
-echo '</select></p></form>';
+    echo '</select></p></form>';
 
-echo '</div>'; // end graph content.
+    echo '</div>'; // end graph content.
 
+    /**
+     * Handle table view - - - - - - 
+     */
+    $classint = array('odd', 'even'); $i = 0;
+    echo '<div id="table" class="tabset_content">';
 
-/**
- * Handle table view - - - - - - 
- */
-$classint = array('odd', 'even'); $i = 0;
-echo '<div id="table" class="tabset_content">';
+    if (isset($this->data['pieimgurl'])) {
+        echo '<img src="' . $this->data['pieimgurl'] . '" alt="Pie chart" />';
+    }
+    echo '<table class="tableview"><tr><th class="value">Value</th><th class="category">Data range</th></tr>';
 
-if (isset($this->data['pieimgurl'])) {
-    echo '<img src="' . $this->data['pieimgurl'] . '" alt="Pie chart" />';
-}
-echo '<table class="tableview"><tr><th class="value">Value</th><th class="category">Data range</th></tr>';
+    foreach ($this->data['summaryDataset'] as $key => $value) {
+        $clint = $classint[$i++ % 2];
 
-foreach ($this->data['summaryDataset'] as $key => $value) {
-    $clint = $classint[$i++ % 2];
+        $keyName = $key;
+        if (array_key_exists($key, $this->data['delimiterPresentation'])) {
+            $keyName = $this->data['delimiterPresentation'][$key];
+        }
 
-    $keyName = $key;
-    if (array_key_exists($key, $this->data['delimiterPresentation'])) {
-        $keyName = $this->data['delimiterPresentation'][$key];
+        if ($key === '_') {
+            echo '<tr class="total '  . $clint . '"><td  class="value">' . $value . '</td><td class="category">' . $keyName . '</td></tr>';
+        } else {
+            echo '<tr class="' . $clint . '"><td  class="value">' . $value . '</td><td class="category">' . $keyName . '</td></tr>';
+        }
     }
 
-    if ($key === '_') {
-        echo '<tr class="total '  . $clint . '"><td  class="value">' . $value . '</td><td class="category">' . $keyName . '</td></tr>';
-    } else {
-        echo '<tr class="' . $clint . '"><td  class="value">' . $value . '</td><td class="category">' . $keyName . '</td></tr>';
-    }
-}
+    echo '</table></div>';
+    //  - - - - - - - End table view - - - - - - - 
 
-echo '</table></div>';
-//  - - - - - - - End table view - - - - - - - 
-
-echo '<div id="debug" >';
-echo '<table class="timeseries">';
-echo '<tr><th>Time</th><th>Total</th>';
-foreach ($this->data['topdelimiters'] as $key) {
-    $keyName = $key;
-    if (array_key_exists($key, $this->data['delimiterPresentation'])) {
-        $keyName = $this->data['delimiterPresentation'][$key];
-    }
-    echo'<th>' . $keyName . '</th>';
-}
-echo '</tr>';
-
-
-$i = 0;
-foreach ($this->data['debugdata'] as $slot => $dd) {
-    echo '<tr class="' . ((++$i % 2) == 0 ? 'odd' : 'even') . '">';
-    echo '<td>' . $dd[0] . '</td>';
-    echo '<td class="datacontent">' . $dd[1] . '</td>';
-
+    echo '<div id="debug" >';
+    echo '<table class="timeseries">';
+    echo '<tr><th>Time</th><th>Total</th>';
     foreach ($this->data['topdelimiters'] as $key) {
-        echo '<td class="datacontent">' . (array_key_exists($key, $this->data['results'][$slot]) ?
-            $this->data['results'][$slot][$key] : '&nbsp;') . '</td>';
+        $keyName = $key;
+        if (array_key_exists($key, $this->data['delimiterPresentation'])) {
+            $keyName = $this->data['delimiterPresentation'][$key];
+        }
+        echo'<th>' . $keyName . '</th>';
     }
     echo '</tr>';
+
+    $i = 0;
+    foreach ($this->data['debugdata'] as $slot => $dd) {
+        echo '<tr class="' . ((++$i % 2) == 0 ? 'odd' : 'even') . '">';
+        echo '<td>' . $dd[0] . '</td>';
+        echo '<td class="datacontent">' . $dd[1] . '</td>';
+
+        foreach ($this->data['topdelimiters'] as $key) {
+            echo '<td class="datacontent">' . (array_key_exists($key, $this->data['results'][$slot]) ?
+                $this->data['results'][$slot][$key] : '&nbsp;') . '</td>';
+        }
+        echo '</tr>';
+    }
+    echo '</table>';
+
+
+    echo '</div>'; // End debug tab content
+} else {
+    echo '<h4 align="center">'.$this->data['error'].'</h4>';
+    echo '<p align="center"><a href="showstats.php">Clear selection</a></p>';
 }
-echo '</table>';
-
-
-echo '</div>'; // End debug tab content
 echo '</div>'; // End tab div
 
 $this->includeAtTemplateBase('includes/footer.php');

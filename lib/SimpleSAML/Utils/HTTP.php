@@ -68,7 +68,7 @@ class HTTP
             if (!is_numeric($port)) {
                 array_push($decomposed, $port);
             }
-            $current = implode($decomposed, ":");
+            $current = implode(":", $decomposed);
         }
         return $current;
     }
@@ -108,15 +108,14 @@ class HTTP
      */
     public static function getServerPort()
     {
-        $port = (isset($_SERVER['SERVER_PORT'])) ? $_SERVER['SERVER_PORT'] : '80';
-        if (self::getServerHTTPS()) {
-            if ($port !== '443') {
-                return ':'.$port;
-            }
-        } else {
-            if ($port !== '80') {
-                return ':'.$port;
-            }
+        $default_port = self::getServerHTTPS() ? '443' : '80';
+        $port = isset($_SERVER['SERVER_PORT']) ? $_SERVER['SERVER_PORT'] : $default_port;
+
+        // Take care of edge-case where SERVER_PORT is an integer
+        $port = strval($port);
+        
+        if ($port !== $default_port) {
+            return ':'.$port;
         }
         return '';
     }
@@ -341,6 +340,13 @@ class HTTP
             $components = parse_url($url);
             $hostname = $components['host'];
 
+            // check for userinfo
+            if ((isset($components['user']) && strpos($components['user'], '\\') !== false) ||
+                (isset($components['pass']) && strpos($components['pass'], '\\') !== false)
+            ) {
+                throw new \SimpleSAML_Error_Exception('Invalid URL: '.$url);
+            }
+
             // allow URLs with standard ports specified (non-standard ports must then be allowed explicitly)
             if (isset($components['port']) &&
                 (($components['scheme'] === 'http' && $components['port'] !== 80) ||
@@ -414,7 +420,7 @@ class HTTP
             }
             $proxy_auth = $config->getString('proxy.auth', false);
             if ($proxy_auth !== false) {
-                $context['http']['header'] = "Proxy-Authorization: Basic".base64_encode($proxy_auth);
+                $context['http']['header'] = "Proxy-Authorization: Basic ".base64_encode($proxy_auth);
             }
             if (!isset($context['http']['request_fulluri'])) {
                 $context['http']['request_fulluri'] = true;
@@ -596,8 +602,7 @@ class HTTP
         if (preg_match('#^https?://.*/?$#D', $baseURL, $matches)) {
             // full URL in baseurlpath, override local server values
             return rtrim($baseURL, '/').'/';
-        } elseif (
-            (preg_match('#^/?([^/]?.*/)$#D', $baseURL, $matches)) ||
+        } elseif ((preg_match('#^/?([^/]?.*/)$#D', $baseURL, $matches)) ||
             (preg_match('#^\*(.*)/$#D', $baseURL, $matches)) ||
             ($baseURL === '')
         ) {
@@ -793,7 +798,6 @@ class HTTP
                 $hostname = parse_url($appurl, PHP_URL_HOST);
                 $port = parse_url($appurl, PHP_URL_PORT);
                 $port = !empty($port) ? ':'.$port : '';
-
             } else { // no base URL specified for app, just use the current URL
                 $protocol = 'http';
                 $protocol .= (self::getServerHTTPS()) ? 's' : '';
@@ -965,7 +969,7 @@ class HTTP
 
     /**
      * This function redirects to the specified URL after performing the appropriate security checks on it.
-     * Particularly, it will make sure that the provided URL is allowed by the 'redirect.trustedsites' directive in the
+     * Particularly, it will make sure that the provided URL is allowed by the 'trusted.url.domains' directive in the
      * configuration.
      *
      * If the aforementioned option is not set or the URL does correspond to a trusted site, it performs a redirection

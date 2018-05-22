@@ -63,6 +63,12 @@ authentication source:
 		 */
 		'search.base' => 'ou=people,dc=example,dc=org',
 
+                /*
+                 * The scope of the search. Valid values are 'subtree' and 'onelevel' and 'base',
+                 * first one being the default if no value is set.
+                 */
+                'search.scope' => 'subtree',
+
 		/*
 		 * The attribute(s) the username should match against.
 		 *
@@ -94,7 +100,7 @@ You also need to update the `hostname` and `dnpattern` options. The
 `hostname` should be the hostname of your LDAP server, and the
 `dnpattern` should be a pattern which can be used to generate the `dn`
 of a user with a given username.
-
+-
 All other options have default values, and are not required.
 
 ### Searching for a user ###

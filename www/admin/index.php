@@ -7,7 +7,7 @@ $config = SimpleSAML_Configuration::getInstance();
 $session = SimpleSAML_Session::getSessionFromRequest();
 
 // Check if valid local session exists..
-//SimpleSAML\Utils\Auth::requireAdmin();
+SimpleSAML\Utils\Auth::requireAdmin();
 
 $adminpages = array(
     'hostnames.php' => 'Diagnostics on hostname, port and protocol',

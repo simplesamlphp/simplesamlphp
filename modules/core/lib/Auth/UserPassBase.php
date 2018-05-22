@@ -196,7 +196,7 @@ abstract class sspmod_core_Auth_UserPassBase extends SimpleSAML_Auth_Source {
 	      }
 
 	      $attributes = $this->login($username, $password);
-	      assert('is_array($attributes)');
+	      assert(is_array($attributes));
 	      $state['Attributes'] = $attributes;
 
 	      return;

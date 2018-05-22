@@ -120,4 +120,63 @@ class ConsentTest extends TestCase
         // the state should NOT have changed because NO consent should be necessary (match)
         $this->assertEquals($request, $result);
     }
+
+    public function testAttributeHashIsConsistentWhenOrderOfValuesChange()
+    {
+        $attributes1 = array(
+            'attribute1' => array('val1', 'val2'),
+            'attribute2' => array('val1', 'val2')
+        );
+        $attributeHash1 = \sspmod_consent_Auth_Process_Consent::getAttributeHash($attributes1, true);
+
+        $attributes2 = array(
+            'attribute1' => array('val1', 'val2'),
+            'attribute2' => array('val2', 'val1')
+        );
+        $attributeHash2 = \sspmod_consent_Auth_Process_Consent::getAttributeHash($attributes2, true);
+
+        $this->assertEquals($attributeHash1, $attributeHash2, "Hash is not the same when the order of values changes");
+    }
+
+    public function testAttributeHashIsConsistentWhenOrderOfAttributesChange()
+    {
+        $attributes1 = array(
+            'attribute2' => array('val1', 'val2'),
+            'attribute1' => array('val1', 'val2')
+        );
+        $attributeHash1 = \sspmod_consent_Auth_Process_Consent::getAttributeHash($attributes1, true);
+
+        $attributes2 = array(
+            'attribute1' => array('val1', 'val2'),
+            'attribute2' => array('val1', 'val2')
+        );
+        $attributeHash2 = \sspmod_consent_Auth_Process_Consent::getAttributeHash($attributes2, true);
+
+        $this->assertEquals(
+            $attributeHash1,
+            $attributeHash2,
+            "Hash is not the same when the order of the attributs changes"
+        );
+    }
+
+    public function testAttributeHashIsConsistentWithoutValuesWhenOrderOfAttributesChange()
+    {
+        $attributes1 = array(
+            'attribute2' => array('val1', 'val2'),
+            'attribute1' => array('val1', 'val2')
+        );
+        $attributeHash1 = \sspmod_consent_Auth_Process_Consent::getAttributeHash($attributes1);
+
+        $attributes2 = array(
+            'attribute1' => array('val1', 'val2'),
+            'attribute2' => array('val1', 'val2')
+        );
+        $attributeHash2 = \sspmod_consent_Auth_Process_Consent::getAttributeHash($attributes2);
+
+        $this->assertEquals(
+            $attributeHash1,
+            $attributeHash2,
+            "Hash is not the same when the order of the attributs changes and the values are not included"
+        );
+    }
 }

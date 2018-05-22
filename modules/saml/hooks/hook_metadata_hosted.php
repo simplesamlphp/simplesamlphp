@@ -6,7 +6,8 @@
  * @param array &$metadataHosted  The metadata links for hosted metadata on the frontpage.
  */
 
-function saml_hook_metadata_hosted(&$metadataHosted) {
+function saml_hook_metadata_hosted(&$metadataHosted)
+{
     assert(is_array($metadataHosted));
 
     $sources = SimpleSAML_Auth_Source::getSourcesOfType('saml:SP');

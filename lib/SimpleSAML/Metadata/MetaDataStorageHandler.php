@@ -280,7 +280,6 @@ class SimpleSAML_Metadata_MetaDataStorageHandler
             $metadata = $source->getMetaData($index, $set);
 
             if ($metadata !== null) {
-
                 if (array_key_exists('expire', $metadata)) {
                     if ($metadata['expire'] < time()) {
                         throw new Exception(
@@ -347,7 +346,6 @@ class SimpleSAML_Metadata_MetaDataStorageHandler
             $result = array_merge($srcList, $result);
         }
         foreach ($result as $remote_provider) {
-
             if (sha1($remote_provider['entityid']) == $sha1) {
                 $remote_provider['metadata-set'] = $set;
 

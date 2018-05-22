@@ -211,7 +211,7 @@ class SimpleSAML_Metadata_SAMLParser
 
         try {
             $doc = \SAML2\DOMDocumentFactory::fromString($data);
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             throw new Exception('Failed to read XML from file: '.$file);
         }
 
@@ -231,7 +231,7 @@ class SimpleSAML_Metadata_SAMLParser
     {
         try {
             $doc = \SAML2\DOMDocumentFactory::fromString($metadata);
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             throw new Exception('Failed to parse XML string.');
         }
 
@@ -292,7 +292,7 @@ class SimpleSAML_Metadata_SAMLParser
 
         try {
             $doc = \SAML2\DOMDocumentFactory::fromString($data);
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             throw new Exception('Failed to read XML from file: '.$file);
         }
 
@@ -319,7 +319,7 @@ class SimpleSAML_Metadata_SAMLParser
     {
         try {
             $doc = \SAML2\DOMDocumentFactory::fromString($string);
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             throw new Exception('Failed to parse XML string.');
         }
 
@@ -1007,7 +1007,6 @@ class SimpleSAML_Metadata_SAMLParser
         }
 
         foreach ($element->Extensions as $e) {
-
             if ($e instanceof \SAML2\XML\shibmd\Scope) {
                 $ret['scope'][] = $e->scope;
                 continue;
@@ -1016,8 +1015,6 @@ class SimpleSAML_Metadata_SAMLParser
             // Entity Attributes are only allowed at entity level extensions and not at RoleDescriptor level
             if ($element instanceof \SAML2\XML\md\EntityDescriptor ||
                 $element instanceof \SAML2\XML\md\EntitiesDescriptor) {
-
-
                 if ($e instanceof \SAML2\XML\mdrpi\RegistrationInfo) {
                     // Registration Authority cannot be overridden (warn only if override attempts to change the value)
                     if (isset($ret['RegistrationInfo']['registrationAuthority'])
@@ -1059,7 +1056,6 @@ class SimpleSAML_Metadata_SAMLParser
             // UIInfo elements are only allowed at RoleDescriptor level extensions
             if ($element instanceof \SAML2\XML\md\RoleDescriptor) {
                 if ($e instanceof \SAML2\XML\mdui\UIInfo) {
-
                     $ret['UIInfo']['DisplayName'] = $e->DisplayName;
                     $ret['UIInfo']['Description'] = $e->Description;
                     $ret['UIInfo']['InformationURL'] = $e->InformationURL;
@@ -1097,7 +1093,6 @@ class SimpleSAML_Metadata_SAMLParser
 
             // DiscoHints elements are only allowed at IDPSSODescriptor level extensions
             if ($element instanceof \SAML2\XML\md\IDPSSODescriptor) {
-
                 if ($e instanceof \SAML2\XML\mdui\DiscoHints) {
                     $ret['DiscoHints']['IPHint'] = $e->IPHint;
                     $ret['DiscoHints']['DomainHint'] = $e->DomainHint;
@@ -1464,7 +1459,6 @@ class SimpleSAML_Metadata_SAMLParser
         $candidates = array();
         foreach ($this->validators as $validator) {
             foreach ($validator->getValidatingCertificates() as $cert) {
-
                 $fp = strtolower(sha1(base64_decode($cert)));
                 $candidates[] = $fp;
                 if ($fp === $fingerprint) {

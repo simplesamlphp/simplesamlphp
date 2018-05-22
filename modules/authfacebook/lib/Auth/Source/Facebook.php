@@ -86,12 +86,12 @@ class sspmod_authfacebook_Auth_Source_Facebook extends SimpleSAML_Auth_Source {
 
 		// We are going to need the authId in order to retrieve this authentication source later
 		$state[self::AUTHID] = $this->authId;
-		$stateID = SimpleSAML_Auth_State::saveState($state, self::STAGE_INIT);
+		SimpleSAML_Auth_State::saveState($state, self::STAGE_INIT);
 		
 		$facebook = new sspmod_authfacebook_Facebook(array('appId' => $this->api_key, 'secret' => $this->secret), $state);
 		$facebook->destroySession();
 
-		$linkback = SimpleSAML\Module::getModuleURL('authfacebook/linkback.php', array('AuthState' => $stateID));
+		$linkback = SimpleSAML\Module::getModuleURL('authfacebook/linkback.php');
 		$url = $facebook->getLoginUrl(array('redirect_uri' => $linkback, 'scope' => $this->req_perms));
 		SimpleSAML_Auth_State::saveState($state, self::STAGE_INIT);
 
