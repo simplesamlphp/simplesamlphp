@@ -166,13 +166,23 @@ class sspmod_metarefresh_MetaLoader
                 $template = $source['template'];
             }
 
-            $this->addMetadata($source['src'], $entity->getMetadata1xSP(), 'shib13-sp-remote', $template);
-            $this->addMetadata($source['src'], $entity->getMetadata1xIdP(), 'shib13-idp-remote', $template);
-            $this->addMetadata($source['src'], $entity->getMetadata20SP(), 'saml20-sp-remote', $template);
-            $this->addMetadata($source['src'], $entity->getMetadata20IdP(), 'saml20-idp-remote', $template);
-            $attributeAuthorities = $entity->getAttributeAuthorities();
-            if (!empty($attributeAuthorities)) {
-                $this->addMetadata($source['src'], $attributeAuthorities[0], 'attributeauthority-remote', $template);
+            if (in_array('shib13-sp-remote', $this->types)) {
+                $this->addMetadata($source['src'], $entity->getMetadata1xSP(), 'shib13-sp-remote', $template);
+            }
+            if (in_array('shib13-idp-remote', $this->types)) {
+                $this->addMetadata($source['src'], $entity->getMetadata1xIdP(), 'shib13-idp-remote', $template);
+            }
+            if (in_array('saml20-sp-remote', $this->types)) {
+                $this->addMetadata($source['src'], $entity->getMetadata20SP(), 'saml20-sp-remote', $template);
+            }
+            if (in_array('saml20-idp-remote', $this->types)) {
+                $this->addMetadata($source['src'], $entity->getMetadata20IdP(), 'saml20-idp-remote', $template);
+            }
+            if (in_array('attributeauthority-remote', $this->types)) {
+                $attributeAuthorities = $entity->getAttributeAuthorities();
+                if (!empty($attributeAuthorities)) {
+                     $this->addMetadata($source['src'], $attributeAuthorities[0], 'attributeauthority-remote', $template);
+                }
             }
         }
 
@@ -192,7 +202,6 @@ class sspmod_metarefresh_MetaLoader
 
         if (isset($source['conditionalGET']) && $source['conditionalGET']) {
             if (array_key_exists($source['src'], $this->state)) {
-
                 $sourceState = $this->state[$source['src']];
 
                 if (isset($sourceState['last-modified'])) {
@@ -245,12 +254,10 @@ class sspmod_metarefresh_MetaLoader
             if (!empty($this->state[$source['src']])) {
                 // Timestamp when this src was requested.
                 $this->state[$source['src']]['requested_at'] = $this->getTime();
-
                 $this->changed = true;
             }
         }
     }
-
 
     /**
      * Parse XML metadata and return entities
@@ -296,7 +303,6 @@ class sspmod_metarefresh_MetaLoader
 
             echo '/* The following data should be added to metadata/' . $category . '.php. */' . "\n";
 
-
             foreach ($elements as $m) {
                 $filename = $m['filename'];
                 $entityID = $m['metadata']['entityid'];
@@ -305,7 +311,6 @@ class sspmod_metarefresh_MetaLoader
                 echo '/* The following metadata was generated from ' . $filename . ' on ' . $this->getTime() . '. */' . "\n";
                 echo '$metadata[\'' . addslashes($entityID) . '\'] = ' . var_export($m['metadata'], true) . ';' . "\n";
             }
-
 
             echo "\n";
             echo '/* End of data which should be added to metadata/' . $category . '.php. */' . "\n";
@@ -339,10 +344,8 @@ class sspmod_metarefresh_MetaLoader
 
         // If expire is defined in constructor...
         if (!empty($this->expire)) {
-
             // If expire is already in metadata
             if (array_key_exists('expire', $metadata)) {
-
                 // Override metadata expire with more restrictive global config-
                 if ($this->expire < $metadata['expire']) {
                     $metadata['expire'] = $this->expire;
@@ -353,9 +356,6 @@ class sspmod_metarefresh_MetaLoader
                 $metadata['expire'] = $this->expire;
             }
         }
-
-
-
         $this->metadata[$type][] = array('filename' => $filename, 'metadata' => $metadata);
     }
 
@@ -379,8 +379,7 @@ class sspmod_metarefresh_MetaLoader
         }
 
         // $metadata, $attributemap, $prefix, $suffix
-        $arp = new sspmod_metarefresh_ARP(
-            $md,
+        $arp = new sspmod_metarefresh_ARP($md,
             $config->getValue('attributemap', ''),
             $config->getValue('prefix', ''),
             $config->getValue('suffix', '')
@@ -444,7 +443,7 @@ class sspmod_metarefresh_MetaLoader
     /**
      * Save metadata for loading with the 'serialize' metadata loader.
      *
-     * @param string $outputDir The directory we should save the metadata to.
+     * @param string $outputDir  The directory we should save the metadata to.
      */
     public function writeMetadataSerialize($outputDir)
     {
