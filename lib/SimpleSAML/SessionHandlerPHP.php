@@ -343,6 +343,11 @@ class SessionHandlerPHP extends SessionHandler
             );
         }
 
+        if (session_id() !== '') {
+            // session already started, close it
+            session_write_close();
+        }
+
         session_set_cookie_params(
             $cookieParams['lifetime'],
             $cookieParams['path'],
@@ -350,11 +355,6 @@ class SessionHandlerPHP extends SessionHandler
             $cookieParams['secure'],
             $cookieParams['httponly']
         );
-
-        if (session_id() !== '') {
-            // session already started, close it
-            session_write_close();
-        }
 
         session_id($sessionID);
         $this->sessionStart();
