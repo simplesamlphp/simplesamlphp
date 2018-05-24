@@ -128,6 +128,8 @@ class Test_Core_Auth_Process_CardinalitySingleTest extends \PHPUnit_Framework_Te
      */
     public function testAbort()
     {
+        $this->markTestSkipped('Breaks testsuite see #860');
+
         $config = array(
             'singleValued' => array('eduPersonPrincipalName'),
         );
