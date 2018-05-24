@@ -187,8 +187,17 @@ class sspmod_cas_Auth_Source_CAS extends SimpleSAML_Auth_Source
         list($username, $casattributes) = $this->casValidation($ticket, $service);
         $ldapattributes = array();
 
+        $config = SimpleSAML_Configuration::loadFromArray($this->_ldapConfig,
+            'Authentication source ' . var_export($this->authId, true));
         if ($this->_ldapConfig['servers']) {
-            $ldap = new SimpleSAML_Auth_LDAP($this->_ldapConfig['servers'], $this->_ldapConfig['enable_tls']);
+            $ldap = new SimpleSAML_Auth_LDAP(
+                $config->getString('servers'),
+                $config->getBoolean('enable_tls', false),
+                $config->getBoolean('debug', false),
+                $config->getInteger('timeout', 0),
+                $config->getInteger('port', 389),
+                $config->getBoolean('referrals', true)
+            );
             $ldapattributes = $ldap->validate($this->_ldapConfig, $username);
         }
         $attributes = array_merge_recursive($casattributes, $ldapattributes);
