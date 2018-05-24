@@ -166,19 +166,19 @@ class sspmod_metarefresh_MetaLoader
                 $template = $source['template'];
             }
 
-            if (in_array('shib13-sp-remote', $this->types)) {
+            if (in_array('shib13-sp-remote', $this->types, true)) {
                 $this->addMetadata($source['src'], $entity->getMetadata1xSP(), 'shib13-sp-remote', $template);
             }
-            if (in_array('shib13-idp-remote', $this->types)) {
+            if (in_array('shib13-idp-remote', $this->types, true)) {
                 $this->addMetadata($source['src'], $entity->getMetadata1xIdP(), 'shib13-idp-remote', $template);
             }
-            if (in_array('saml20-sp-remote', $this->types)) {
+            if (in_array('saml20-sp-remote', $this->types, true)) {
                 $this->addMetadata($source['src'], $entity->getMetadata20SP(), 'saml20-sp-remote', $template);
             }
-            if (in_array('saml20-idp-remote', $this->types)) {
+            if (in_array('saml20-idp-remote', $this->types, true)) {
                 $this->addMetadata($source['src'], $entity->getMetadata20IdP(), 'saml20-idp-remote', $template);
             }
-            if (in_array('attributeauthority-remote', $this->types)) {
+            if (in_array('attributeauthority-remote', $this->types, true)) {
                 $attributeAuthorities = $entity->getAttributeAuthorities();
                 if (!empty($attributeAuthorities)) {
                      $this->addMetadata($source['src'], $attributeAuthorities[0], 'attributeauthority-remote', $template);
