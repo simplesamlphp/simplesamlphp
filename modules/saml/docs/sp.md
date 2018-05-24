@@ -129,7 +129,8 @@ Options
 :   The `index` attribute that is set in the md:AttributeConsumingService element. Integer value that defaults to `0`.
 
 `attributes.isDefault`
-:   If present, sets the `isDefault` attribute in the md:AttributeConsumingService element. Boolean value that defaults to `false`.
+:   If present, sets the `isDefault` attribute in the md:AttributeConsumingService element. Boolean value, when
+    unset, the attribute will be omitted.
 
 `attributes.required`
 : If you have attributes added you can here specify which should be marked as required.
@@ -466,7 +467,7 @@ Here we will list some examples for this authentication source.
             // Specify friendly names for these attributes:
             'sn' => 'urn:oid:2.5.4.4',
             'givenName' => 'urn:oid:2.5.4.42',
-        )
+        ),
         'attributes.required' => array (
             'eduPersonPrincipalName',
         ),
