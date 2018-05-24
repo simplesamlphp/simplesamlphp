@@ -177,18 +177,27 @@ abstract class SimpleSAML_Metadata_MetaDataStorageSource
         $metadataSet = $this->getMetadataSet($set);
 
         foreach ($metadataSet as $index => $entry) {
-
-            if (!array_key_exists('DiscoHints', $entry)) {
-                continue;
-            }
-            if (!array_key_exists('IPHint', $entry['DiscoHints'])) {
-                continue;
-            }
-            if (!is_array($entry['DiscoHints']['IPHint'])) {
-                continue;
+            
+            $cidrHints = array();
+            
+            // support hint.cidr for idp discovery
+            if (array_key_exists('hint.cidr', $entry) && is_array($entry['hint.cidr'])) {
+                $cidrHints = $entry['hint.cidr'];
             }
 
-            foreach ($entry['DiscoHints']['IPHint'] as $hint_entry) {
+            // support discohints in idp metadata for idp discovery
+            if (array_key_exists('DiscoHints', $entry) 
+                && array_key_exists('IPHint', $entry['DiscoHints']) 
+                && is_array($entry['DiscoHints']['IPHint'])) {
+                // merge with hints derived from discohints, but prioritize hint.cidr in case it is used
+                $cidrHints = array_merge($entry['DiscoHints']['IPHint'], $cidrHints);
+            }
+
+            if (empty($cidrHints)) {
+                continue;
+            }
+
+            foreach ($cidrHints as $hint_entry) {
                 if (SimpleSAML\Utils\Net::ipCIDRcheck($hint_entry, $ip)) {
                     if ($type === 'entityid') {
                         return $entry['entityid'];
