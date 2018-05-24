@@ -186,7 +186,7 @@ class sspmod_core_Storage_SQLPermanentStorage
 
     public function removeExpired()
     {
-        $query = "DELETE FROM data WHERE expire NOT NULL AND expire < :expire";
+        $query = "DELETE FROM data WHERE expire IS NOT NULL AND expire < :expire";
         $prepared = $this->db->prepare($query);
         $data = array(':expire' => time());
         $prepared->execute($data);
@@ -209,7 +209,7 @@ class sspmod_core_Storage_SQLPermanentStorage
             $conditions[] = "key2 = ".$this->db->quote($key2);
         }
 
-        $conditions[] = "(expire = NULL OR expire >= ".time().")";
+        $conditions[] = "(expire IS NULL OR expire >= ".time().")";
 		    return join(' AND ', $conditions);
     }
 }
