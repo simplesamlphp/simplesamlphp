@@ -156,9 +156,13 @@ class sspmod_core_Auth_Process_AttributeLimit extends SimpleSAML_Auth_Processing
             }
             return $matchedValues;
         } elseif (array_key_exists('ignoreCase', $allowedConfigValues) && $allowedConfigValues['ignoreCase'] === true) {
-            unset($allowedConfigValues['ignorecase']);
+            unset($allowedConfigValues['ignoreCase']);
             return array_uintersect($values, $allowedConfigValues, "strcasecmp");
         }
+        // The not true values for these options shouldn't leak through to array_intersect
+        unset($allowedConfigValues['ignoreCase']);
+        unset($allowedConfigValues['regex']);
+
         return array_intersect($values, $allowedConfigValues);
     }
 }

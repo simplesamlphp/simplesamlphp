@@ -264,6 +264,38 @@ class Test_Core_Auth_Process_AttributeLimitTest extends PHPUnit_Framework_TestCa
         $this->assertCount(0, $attributes);
     }
 
+    public function testBadOptionsNotTreatedAsValidValues() {
+
+        // Ensure really misconfigured ignoreCase and regex options are not interpretted as valid valus
+        $config = array(
+            'eduPersonAffiliation' => array('ignoreCase' => 'member', 'nomatch'),
+            'mail' => array('regex' => 'user@example.org', 'nomatch')
+        );
+        $result = self::processFilter($config, self::$request);
+        $attributes = $result['Attributes'];
+        $this->assertCount(0, $attributes);
+    }
+
+    /**
+     * Verify that the true value for ignoreCase doesn't get converted into a string ('1') by
+     * php and matched against an attribute value of '1'
+     */
+    public function testThatIgnoreCaseOptionNotMatchBooleanAsStringValue() {
+        $config = array(
+            'someAttribute' => array('ignoreCase' => true, 'someValue')
+        );
+
+        $request = array(
+            'Attributes' => array(
+                'someAttribute' => array('1'), //boolean true as a string
+
+            ),
+        );
+        $result = self::processFilter($config, $request);
+        $attributes = $result['Attributes'];
+        $this->assertCount(0, $attributes);
+    }
+
     /**
      * Test for attribute value matching ignore case
      */
@@ -315,7 +347,8 @@ class Test_Core_Auth_Process_AttributeLimitTest extends PHPUnit_Framework_TestCa
         $state['Attributes']['eduPersonEntitlement'] = array(
             'urn:mace:example.terena.org:tcs:personal-user',
             'urn:x-surfnet:surfdomeinen.nl:role:dnsadmin',
-            'urn:x-surfnet:surf.nl:surfdrive:quota:100'
+            'urn:x-surfnet:surf.nl:surfdrive:quota:100',
+            '1' //boolean true as a string
         );
 
         $config = array(
@@ -353,7 +386,7 @@ class Test_Core_Auth_Process_AttributeLimitTest extends PHPUnit_Framework_TestCa
             $attributes['eduPersonEntitlement']
         );
 
-
+        // Invalid and no-match regex expressions should not stop a valid regex from matching
         $config = array(
             'eduPersonEntitlement' => array(
                 'regex' => true,
@@ -372,6 +405,7 @@ class Test_Core_Auth_Process_AttributeLimitTest extends PHPUnit_Framework_TestCa
             $attributes['eduPersonEntitlement']
         );
 
+        // No matches should remove attribute
         $config = array(
             'eduPersonEntitlement' => array(
                 'regex' => true,
@@ -381,6 +415,22 @@ class Test_Core_Auth_Process_AttributeLimitTest extends PHPUnit_Framework_TestCa
         $result = self::processFilter($config, $state);
         $attributes = $result['Attributes'];
         $this->assertCount(0, $attributes);
+
+        // A regex that matches an input value multiple times should work.
+        $config = array(
+            'eduPersonEntitlement' => array(
+                'regex' => true,
+                '/surf/'
+            )
+        );
+        $result = self::processFilter($config, $state);
+        $attributes = $result['Attributes'];
+        $this->assertCount(1, $attributes);
+        $this->assertArrayHasKey('eduPersonEntitlement', $attributes);
+        $this->assertEquals(
+            array('urn:x-surfnet:surfdomeinen.nl:role:dnsadmin', 'urn:x-surfnet:surf.nl:surfdrive:quota:100'),
+            $attributes['eduPersonEntitlement']
+        );
     }
 
     /**

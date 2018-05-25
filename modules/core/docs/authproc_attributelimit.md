@@ -47,7 +47,7 @@ Only allow specific values for an attribute ignoring case.
         50 => array(
             'class' => 'core:AttributeLimit',
             'eduPersonEntitlement' => array(
-                'ignoreCase' => 'true',
+                'ignoreCase' => true,
                 'URN:x-surfnet:surf.nl:SURFDRIVE:quota:100'
              )
         ),
@@ -59,7 +59,7 @@ Only allow specific values for an attribute that match a regex pattern
         50 => array(
             'class' => 'core:AttributeLimit',
             'eduPersonEntitlement' => array(
-                'regex' => 'true',
+                'regex' => true,
                 '/^urn:x-surfnet:surf/',
                 '/^urn:x-IGNORE_Case/i',
             )
