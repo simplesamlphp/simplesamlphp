@@ -1,5 +1,7 @@
 <?php
 
+use SimpleSAML\Utils\HTTPAdapter;
+
 /**
  * Filter to ensure correct cardinality of attributes
  *
@@ -14,17 +16,23 @@ class sspmod_core_Auth_Process_Cardinality extends SimpleSAML_Auth_ProcessingFil
     /** @var array Entities that should be ignored */
     private $ignoreEntities = array();
 
+    /** @var HTTP */
+    private $http;
+
     /**
      * Initialize this filter, parse configuration.
      *
      * @param array $config  Configuration information about this filter.
      * @param mixed $reserved  For future use.
+     * @param HTTPAdapter $http  HTTP utility service (handles redirects).
      * @throws SimpleSAML_Error_Exception
      */
-    public function __construct($config, $reserved)
+    public function __construct($config, $reserved, HTTPAdapter $http = null)
     {
         parent::__construct($config, $reserved);
         assert(is_array($config));
+
+        $this->http = $http ?: new HTTPAdapter();
 
         foreach ($config as $attribute => $rules) {
             if ($attribute === '%ignoreEntities') {
@@ -157,7 +165,7 @@ class sspmod_core_Auth_Process_Cardinality extends SimpleSAML_Auth_ProcessingFil
         if (array_key_exists('core:cardinality:errorAttributes', $request)) {
             $id = SimpleSAML_Auth_State::saveState($request, 'core:cardinality');
             $url = SimpleSAML\Module::getModuleURL('core/cardinality_error.php');
-            \SimpleSAML\Utils\HTTP::redirectTrustedURL($url, array('StateId' => $id));
+            $this->http->redirectTrustedURL($url, array('StateId' => $id));
             return;
         }
     }

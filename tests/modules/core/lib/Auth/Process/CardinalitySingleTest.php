@@ -9,6 +9,8 @@ if (class_exists('\PHPUnit\Framework\TestCase', true) and !class_exists('\PHPUni
  */
 class Test_Core_Auth_Process_CardinalitySingleTest extends \PHPUnit_Framework_TestCase
 {
+    private $http;
+
     /**
      * Helper function to run the filter with a given configuration.
      *
@@ -16,11 +18,11 @@ class Test_Core_Auth_Process_CardinalitySingleTest extends \PHPUnit_Framework_Te
      * @param  array $request The request state.
      * @return array  The state array after processing.
      */
-    private static function processFilter(array $config, array $request)
+    private function processFilter(array $config, array $request)
     {
         $_SERVER['SERVER_PROTOCOL'] = 'HTTP/1.1';
         $_SERVER['REQUEST_METHOD'] = 'GET';
-        $filter = new sspmod_core_Auth_Process_CardinalitySingle($config, null);
+        $filter = new sspmod_core_Auth_Process_CardinalitySingle($config, null, $this->http);
         $filter->process($request);
         return $request;
     }
@@ -28,6 +30,9 @@ class Test_Core_Auth_Process_CardinalitySingleTest extends \PHPUnit_Framework_Te
     protected function setUp()
     {
         \SimpleSAML_Configuration::loadFromArray(array(), '[ARRAY]', 'simplesaml');
+        $this->http = $this->getMockBuilder('SimpleSAML\Utils\HTTPAdapter')
+                           ->setMethods(array('redirectTrustedURL'))
+                           ->getMock();
     }
 
     /**
@@ -43,7 +48,7 @@ class Test_Core_Auth_Process_CardinalitySingleTest extends \PHPUnit_Framework_Te
                 'eduPersonPrincipalName' => array('joe@example.com'),
             ),
         );
-        $result = self::processFilter($config, $request);
+        $result = $this->processFilter($config, $request);
         $attributes = $result['Attributes'];
         $expectedData = array('eduPersonPrincipalName' => array('joe@example.com'));
         $this->assertEquals($expectedData, $attributes, "Assertion values should not have changed");
@@ -62,7 +67,7 @@ class Test_Core_Auth_Process_CardinalitySingleTest extends \PHPUnit_Framework_Te
                 'eduPersonPrincipalName' => array('joe@example.com', 'bob@example.net'),
             ),
         );
-        $result = self::processFilter($config, $request);
+        $result = $this->processFilter($config, $request);
         $attributes = $result['Attributes'];
         $expectedData = array('eduPersonPrincipalName' => array('joe@example.com'));
         $this->assertEquals($expectedData, $attributes, "Only first value should be returned");
@@ -78,7 +83,7 @@ class Test_Core_Auth_Process_CardinalitySingleTest extends \PHPUnit_Framework_Te
                 'eduPersonPrincipalName' => array('joe@example.com'),
             ),
         );
-        $result = self::processFilter($config, $request);
+        $result = $this->processFilter($config, $request);
         $attributes = $result['Attributes'];
         $expectedData = array('eduPersonPrincipalName' => array('joe@example.com'));
         $this->assertEquals($expectedData, $attributes, "Assertion values should not have changed");
@@ -98,7 +103,7 @@ class Test_Core_Auth_Process_CardinalitySingleTest extends \PHPUnit_Framework_Te
                 'eduPersonPrincipalName' => array('joe@example.com', 'bob@example.net'),
             ),
         );
-        $result = self::processFilter($config, $request);
+        $result = $this->processFilter($config, $request);
         $attributes = $result['Attributes'];
         $expectedData = array('eduPersonPrincipalName' => array('joe@example.com|bob@example.net'));
         $this->assertEquals($expectedData, $attributes, "Flattened string should be returned");
@@ -115,7 +120,7 @@ class Test_Core_Auth_Process_CardinalitySingleTest extends \PHPUnit_Framework_Te
                 'eduPersonPrincipalName' => array('joe@example.com'),
             ),
         );
-        $result = self::processFilter($config, $request);
+        $result = $this->processFilter($config, $request);
         $attributes = $result['Attributes'];
         $expectedData = array('eduPersonPrincipalName' => array('joe@example.com'));
         $this->assertEquals($expectedData, $attributes, "Assertion values should not have changed");
@@ -123,13 +128,9 @@ class Test_Core_Auth_Process_CardinalitySingleTest extends \PHPUnit_Framework_Te
 
     /**
      * Test abort
-     * @expectedException PHPUnit_Framework_Error
-     * @expectedExceptionMessageRegExp /REQUEST_URI/
      */
     public function testAbort()
     {
-        $this->markTestSkipped('Breaks testsuite see #860');
-
         $config = array(
             'singleValued' => array('eduPersonPrincipalName'),
         );
@@ -138,6 +139,10 @@ class Test_Core_Auth_Process_CardinalitySingleTest extends \PHPUnit_Framework_Te
                 'eduPersonPrincipalName' => array('joe@example.com', 'bob@example.net'),
             ),
         );
-        self::processFilter($config, $request);
+
+        $this->http->expects($this->once())
+                   ->method('redirectTrustedURL');
+
+        $this->processFilter($config, $request);
     }
 }

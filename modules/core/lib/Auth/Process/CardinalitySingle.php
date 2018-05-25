@@ -1,5 +1,7 @@
 <?php
 
+use SimpleSAML\Utils\HttpAdapter;
+
 /**
  * Filter to ensure correct cardinality of single-valued attributes
  *
@@ -26,16 +28,22 @@ class sspmod_core_Auth_Process_CardinalitySingle extends SimpleSAML_Auth_Process
     /** @var array Entities that should be ignored */
     private $ignoreEntities = array();
 
+    /** @var HTTP */
+    private $http;
+
     /**
      * Initialize this filter, parse configuration.
      *
      * @param array $config  Configuration information about this filter.
      * @param mixed $reserved  For future use.
+     * @param HTTPAdapter $http  HTTP utility service (handles redirects).
      */
-    public function __construct($config, $reserved)
+    public function __construct($config, $reserved, HTTPAdapter $http = null)
     {
         parent::__construct($config, $reserved);
         assert(is_array($config));
+
+        $this->http = $http ?: new HTTPAdapter();
 
         if (array_key_exists('singleValued', $config)) {
             $this->singleValued = $config['singleValued'];
@@ -102,7 +110,7 @@ class sspmod_core_Auth_Process_CardinalitySingle extends SimpleSAML_Auth_Process
         if (array_key_exists('core:cardinality:errorAttributes', $request)) {
             $id = SimpleSAML_Auth_State::saveState($request, 'core:cardinality');
             $url = SimpleSAML\Module::getModuleURL('core/cardinality_error.php');
-            \SimpleSAML\Utils\HTTP::redirectTrustedURL($url, array('StateId' => $id));
+            $this->http->redirectTrustedURL($url, array('StateId' => $id));
             return;
         }
     }
