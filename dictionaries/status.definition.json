@@ -38,10 +38,10 @@
 	"logout": {
 		"en": "Logout"
 	},
-        "authData_header": {
-                "en": "AuthData"
-        },
-        "authData_summary": {
-                "en": "Click to view AuthData"
-        }
+	"authData_header": {
+		"en": "AuthData"
+	},
+	"authData_summary": {
+		"en": "Click to view AuthData"
+	}
 }

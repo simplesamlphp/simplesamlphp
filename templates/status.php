@@ -61,7 +61,7 @@ if ($nameid !== false) {
 }
 
 $authData = $this->data['authData'];
-if (isset($authData)) {
+if (!empty($authData)) {
     echo "<h2>".$this->t('{status:authData_header}')."</h2>";
     echo '<details><summary>' . $this->t('{status:authData_summary}') . '</summary>'; 
     echo('<pre>' . htmlspecialchars(json_encode($this->data['authData'], JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES)) . '</pre>');
