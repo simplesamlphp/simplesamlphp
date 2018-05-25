@@ -164,6 +164,14 @@ if ($name !== null && !empty($attributes)) {
     if ($nameFormat !== null) {
         $metaArray20['attributes.NameFormat'] = $nameFormat;
     }
+
+    if ($spconfig->hasValue('attributes.index')) {
+        $metaArray20['attributes.index'] = $spconfig->getInteger('attributes.index', 0);
+    }
+
+    if ($spconfig->hasValue('attributes.isDefault')) {
+        $metaArray20['attributes.isDefault'] = $spconfig->getBoolean('attributes.isDefault', false);
+    }
 }
 
 // add organization info

@@ -12,6 +12,10 @@ Released TBD
 
 ### Changes
   * Renamed class `SimpleSAML_Error_BadUserInnput` to `SimpleSAML_Error_BadUserInput`
+  * PHP 7.2 compatibility, including removing deprecated use of assert with string.
+  * Avoid logging database credentials in backtraces.
+  * Updated Spanish translation.
+  * Improvements to documentation, testsuite, code quality and coding style.
 
 ### New features
   * Added support for SAML "Enhanced Client or Proxy" (ECP) protocol,
@@ -19,22 +23,59 @@ Released TBD
     See the [ECP IdP documentation](./simplesamlphp-ecp-idp) for details.
   * New option `sendmail_from`, the from address for email sent by SSP.
   * New option `options` for PDO database connections, e.g. for TLS setup.
-  * New option `search.scope` for LDAP authsources
+  * New option `search.scope` for LDAP authsources.
+  * Add support for the DiscoHints IPHint metadata property.
+  * Add support to specify metadata XML in config with the `xml` parameter,
+    next to the exising `file` and `url` options.
+  * Also support CGI/RewriteRule setups that set the `REDIRECT_SIMPLESAMLPHP_CONFIG_DIR`
+    environment variable next to regular `SIMPLESAMLPHP_CONFIG_DIR`.
+  * Support creating an AuthSource via factory, for example useful in tests.
+  * Support preloading of a virtual config file via `SimpleSAML_Configuration::setPreLoadedConfig`
+    to allow for dynamic population of authsources.php.
+  * Fix edge case in getServerPort.
+  * Add basic documentation on Nginx configuration.
+
+### adfs
+  * Make signature algorithm configurable with `signature.algorithm`.
+  * Use configuration assertion lifetime when available.
+  * Use `adfs:wreply` parameter when available.
+
+### cas
+  * Respect all LDAP options in LDAP call.
 
 ### consent
   * Sort attribute values for consent.
+  * Fix table layout for MySQL > 5.6.
 
 ### core
   * StatisticsWithAttribute: add `passive-` prefix when logging passive
     requests, set new option `skipPassive` to skip logging these altogether.
   * Replace deprecated create_function with an anonymous function.
+  * New authproc filter Cardinality to enforce attribute cardinality.
+  * SQLPermanentStorage: proper expiration of stored values.
+
+### ldap
+  * AttributeAddUsersGroups: if attribute.groupname is set, use the
+    configured attribute as the group name rather than the DN.
+  * Also base64encode the `ms-ds-consistencyguid` attribute.
+
+### metarefresh
+  * Return XML parser error for better debugging of problems.
+  * Only actually parse metadata types that have been enabled.
+  * Fix missing translation.
 
 ### Oauth
   * Make module HTTP proxy-aware.
   * Remove unused demo app.
 
-### Sqlauth
+### saml
+  * AttributeConsumingService: allow to set isDefault and index options.
+
+### sqlauth
   * Changed from default-enabled to default-disabled.
+
+### statistics
+  * Show decent error message when no data is available.
 
 ## Version 1.15.4
 
