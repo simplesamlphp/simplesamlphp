@@ -34,6 +34,7 @@ Released TBD
     to allow for dynamic population of authsources.php.
   * Fix edge case in getServerPort.
   * Add basic documentation on Nginx configuration.
+  * Test authentication: optionally show AuthData array.
 
 ### adfs
   * Make signature algorithm configurable with `signature.algorithm`.
@@ -53,6 +54,7 @@ Released TBD
   * Replace deprecated create_function with an anonymous function.
   * New authproc filter Cardinality to enforce attribute cardinality.
   * SQLPermanentStorage: proper expiration of stored values.
+  * AttributeLimit: new options `regex` and `ignoreCase`.
 
 ### ldap
   * AttributeAddUsersGroups: if attribute.groupname is set, use the
