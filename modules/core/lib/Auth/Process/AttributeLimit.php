@@ -19,7 +19,7 @@ class sspmod_core_Auth_Process_AttributeLimit extends SimpleSAML_Auth_Processing
 	 *
 	 * @var bool
 	 */
-	private $isDefault = FALSE;
+	private $isDefault = false;
 
 
 	/**
@@ -113,7 +113,7 @@ class sspmod_core_Auth_Process_AttributeLimit extends SimpleSAML_Auth_Processing
                         throw new SimpleSAML_Error_Exception('AttributeLimit: Values for ' . var_export($name, TRUE) .
                             ' must be specified in an array.');
                     }
-                    $attributes[$name] = array_intersect($attributes[$name], $allowedAttributes[$name]);
+                    $attributes[$name] = $this->filterAttributeValues($attributes[$name], $allowedAttributes[$name]);
                     if (!empty($attributes[$name])) {
                         continue;
                     }
@@ -124,4 +124,45 @@ class sspmod_core_Auth_Process_AttributeLimit extends SimpleSAML_Auth_Processing
 
 	}
 
+    /**
+     * Perform the filtering of attributes
+     * @param array $values The current values for a given attribute
+     * @param array $allowedConfigValues The allowed values, and possibly configuration options.
+     * @return array The filtered values
+     */
+    private function filterAttributeValues(array $values, array $allowedConfigValues)
+    {
+        if (array_key_exists('regex', $allowedConfigValues) && $allowedConfigValues['regex'] === true) {
+            $matchedValues = array();
+            foreach ($allowedConfigValues as $option => $pattern) {
+                if (!is_int($option)) {
+                    // Ignore any configuration options in $allowedConfig. e.g. regex=>true
+                    continue;
+                }
+                foreach ($values as $index => $attributeValue) {
+                    /* Suppress errors in preg_match since phpunit is set to fail on warnings, which
+                       prevents us from testing with invalid regex.
+                    */
+                    $regexResult = @preg_match($pattern, $attributeValue);
+                    if ($regexResult === false) {
+                        \SimpleSAML\Logger::warning("Error processing regex '$pattern' on value '$attributeValue'");
+                        break;
+                    } elseif ($regexResult === 1) {
+                        $matchedValues[] = $attributeValue;
+                        // Remove matched value incase a subsequent regex also matches it.
+                        unset($values[$index]);
+                    }
+                }
+            }
+            return $matchedValues;
+        } elseif (array_key_exists('ignoreCase', $allowedConfigValues) && $allowedConfigValues['ignoreCase'] === true) {
+            unset($allowedConfigValues['ignoreCase']);
+            return array_uintersect($values, $allowedConfigValues, "strcasecmp");
+        }
+        // The not true values for these options shouldn't leak through to array_intersect
+        unset($allowedConfigValues['ignoreCase']);
+        unset($allowedConfigValues['regex']);
+
+        return array_intersect($values, $allowedConfigValues);
+    }
 }
