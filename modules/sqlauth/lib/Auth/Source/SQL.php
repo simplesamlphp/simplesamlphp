@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Simple SQL authentication source
  *
@@ -43,8 +44,11 @@ class sspmod_sqlauth_Auth_Source_SQL extends sspmod_core_Auth_UserPassBase
      * @param array $info  Information about this authentication source.
      * @param array $config  Configuration.
      */
-    public function __construct(array $info, array $config)
+    public function __construct($info, $config)
     {
+        assert(is_array($info));
+        assert(is_array($config));
+
         // Call the parent constructor first, as required by the interface
         parent::__construct($info, $config);
 
@@ -71,6 +75,7 @@ class sspmod_sqlauth_Auth_Source_SQL extends sspmod_core_Auth_UserPassBase
             $this->options = $config['options'];
         }
     }
+
 
     /**
      * Create a database connection.
@@ -105,6 +110,7 @@ class sspmod_sqlauth_Auth_Source_SQL extends sspmod_core_Auth_UserPassBase
 
         return $db;
     }
+
 
     /**
      * Attempt to log in using the given username and password.

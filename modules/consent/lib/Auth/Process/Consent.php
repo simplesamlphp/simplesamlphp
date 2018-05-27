@@ -1,4 +1,6 @@
 <?php
+
+
 /**
  * Consent Authentication Processing filter
  *
@@ -69,8 +71,9 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
      *
      * @throws SimpleSAML_Error_Exception if the configuration is not valid.
      */
-    public function __construct(array $config, $reserved)
+    public function __construct($config, $reserved)
     {
+        assert(is_array($config));
         parent::__construct($config, $reserved);
 
         if (array_key_exists('includeValues', $config)) {
@@ -212,8 +215,9 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
      *
      * @throws SimpleSAML_Error_NoPassive if the request was passive and consent is needed.
      */
-    public function process(array &$state)
+    public function process(&$state)
     {
+        assert(is_array($state));
         assert(array_key_exists('UserID', $state));
         assert(array_key_exists('Destination', $state));
         assert(array_key_exists('entityid', $state['Destination']));

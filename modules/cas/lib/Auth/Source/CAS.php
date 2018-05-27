@@ -5,6 +5,7 @@
  *
  * Based on www/auth/login-cas.php by Mads Freek, RUC.
  *
+ * @author Danny Bollaert, UGent.
  * @package SimpleSAMLphp
  */
 

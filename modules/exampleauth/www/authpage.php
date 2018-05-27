@@ -10,7 +10,7 @@
  */
 
 if (!isset($_REQUEST['ReturnTo'])) {
-    die('Missing ReturnTo parameter.');
+	die('Missing ReturnTo parameter.');
 }
 
 $returnTo = \SimpleSAML\Utils\HTTP::checkURLAllowed($_REQUEST['ReturnTo']);
@@ -27,7 +27,7 @@ $returnTo = \SimpleSAML\Utils\HTTP::checkURLAllowed($_REQUEST['ReturnTo']);
  */
 
 if (!preg_match('@State=(.*)@', $returnTo, $matches)) {
-    die('Invalid ReturnTo URL for this example.');
+	die('Invalid ReturnTo URL for this example.');
 }
 SimpleSAML_Auth_State::loadState(urldecode($matches[1]), 'exampleauth:External');
 
@@ -42,20 +42,20 @@ SimpleSAML_Auth_State::loadState(urldecode($matches[1]), 'exampleauth:External')
  * Our list of users.
  */
 $users = array(
-    'student' => array(
-        'password' => 'student',
-        'uid' => 'student',
-        'name' => 'Student Name',
-        'mail' => 'somestudent@example.org',
-        'type' => 'student',
-    ),
-    'admin' => array(
-        'password' => 'admin',
-        'uid' => 'admin',
-        'name' => 'Admin Name',
-        'mail' => 'someadmin@example.org',
-        'type' => 'employee',
-    ),
+	'student' => array(
+		'password' => 'student',
+		'uid' => 'student',
+		'name' => 'Student Name',
+		'mail' => 'somestudent@example.org',
+		'type' => 'student',
+	),
+	'admin' => array(
+		'password' => 'admin',
+		'uid' => 'admin',
+		'name' => 'Admin Name',
+		'mail' => 'someadmin@example.org',
+		'type' => 'employee',
+	),
 );
 
 
@@ -64,29 +64,29 @@ $users = array(
  * Since this is a dummy example, we accept any data.
  */
 
-$badUserPass = false;
+$badUserPass = FALSE;
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = (string)$_REQUEST['username'];
-    $password = (string)$_REQUEST['password'];
+	$username = (string)$_REQUEST['username'];
+	$password = (string)$_REQUEST['password'];
 
-    if (!isset($users[$username]) || $users[$username]['password'] !== $password) {
-        $badUserPass = true;
-    } else {
+	if (!isset($users[$username]) || $users[$username]['password'] !== $password) {
+		$badUserPass = TRUE;
+	} else {
 
-        $user = $users[$username];
+		$user = $users[$username];
 
-        if (!session_id()) {
-            // session_start not called before. Do it here.
-            session_start();
-        }
+		if (!session_id()) {
+			// session_start not called before. Do it here.
+			session_start();
+		}
 
-        $_SESSION['uid'] = $user['uid'];
-        $_SESSION['name'] = $user['name'];
-        $_SESSION['mail'] = $user['mail'];
-        $_SESSION['type'] = $user['type'];
+		$_SESSION['uid'] = $user['uid'];
+		$_SESSION['name'] = $user['name'];
+		$_SESSION['mail'] = $user['mail'];
+		$_SESSION['type'] = $user['type'];
 
-        \SimpleSAML\Utils\HTTP::redirectTrustedURL($returnTo);
-    }
+		\SimpleSAML\Utils\HTTP::redirectTrustedURL($returnTo);
+	}
 }
 
 

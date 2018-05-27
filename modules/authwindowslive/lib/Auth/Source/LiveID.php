@@ -1,11 +1,15 @@
 <?php
+
 /**
  * Authenticate using LiveID.
  *
+ * @author Brook Schofield, TERENA.
+ * @author Guy Halse, TENET.
  * @package SimpleSAMLphp
  */
 class sspmod_authwindowslive_Auth_Source_LiveID extends SimpleSAML_Auth_Source
 {
+
     /**
      * The string used to identify our states.
      */
@@ -28,8 +32,11 @@ class sspmod_authwindowslive_Auth_Source_LiveID extends SimpleSAML_Auth_Source
      *
      * @throws Exception In case of misconfiguration.
      */
-    public function __construct(array $info, array $config)
+    public function __construct($info, $config)
     {
+        assert(is_array($info));
+        assert(is_array($config));
+
         // Call the parent constructor first, as required by the interface
         parent::__construct($info, $config);
 
@@ -46,12 +53,13 @@ class sspmod_authwindowslive_Auth_Source_LiveID extends SimpleSAML_Auth_Source
         $this->secret = $config['secret'];
     }
 
+
     /**
      * Log-in using LiveID platform
      *
      * @param array &$state  Information about the current authentication.
      */
-    public function authenticate(array &$state)
+    public function authenticate(&$state)
     {
         assert(is_array($state));
 
@@ -77,12 +85,13 @@ class sspmod_authwindowslive_Auth_Source_LiveID extends SimpleSAML_Auth_Source
         \SimpleSAML\Utils\HTTP::redirectTrustedURL($authorizeURL);
     }
 
+
     /**
      * @param $state
      *
      * @throws Exception
      */
-    public function finalStep(array &$state)
+    public function finalStep(&$state)
     {
         SimpleSAML\Logger::debug(
             "authwindowslive oauth: Using this verification code [".$state['authwindowslive:verification_code']."]"
@@ -144,6 +153,7 @@ class sspmod_authwindowslive_Auth_Source_LiveID extends SimpleSAML_Auth_Source
                 $attributes['windowslive.' . $key] = array((string)$value);
             }
         }
+
 
         SimpleSAML\Logger::debug('LiveID Returned Attributes: '. implode(", ", array_keys($attributes)));
 

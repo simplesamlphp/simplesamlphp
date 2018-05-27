@@ -1,20 +1,25 @@
 <?php
+
+
 /**
  * Attribute filter for renaming attributes.
  *
+ * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
 class sspmod_core_Auth_Process_AttributeMap extends SimpleSAML_Auth_ProcessingFilter
 {
+
     /**
      * Associative array with the mappings of attribute names.
      */
-    private $map = [];
+    private $map = array();
 
     /**
      * Should attributes be duplicated or renamed.
      */
     private $duplicate = false;
+
 
     /**
      * Initialize this filter, parse configuration
@@ -24,10 +29,11 @@ class sspmod_core_Auth_Process_AttributeMap extends SimpleSAML_Auth_ProcessingFi
      *
      * @throws Exception If the configuration of the filter is wrong.
      */
-    public function __construct(array $config, $reserved)
+    public function __construct($config, $reserved)
     {
         parent::__construct($config, $reserved);
 
+        assert(is_array($config));
         $mapFiles = array();
 
         foreach ($config as $origName => $newName) {
@@ -57,6 +63,7 @@ class sspmod_core_Auth_Process_AttributeMap extends SimpleSAML_Auth_ProcessingFi
             $this->loadMapFile($file);
         }
     }
+
 
     /**
      * Loads and merges in a file with a attribute map.
@@ -97,13 +104,15 @@ class sspmod_core_Auth_Process_AttributeMap extends SimpleSAML_Auth_ProcessingFi
         }
     }
 
+
     /**
      * Apply filter to rename attributes.
      *
      * @param array &$request The current request.
      */
-    public function process(array &$request)
+    public function process(&$request)
     {
+        assert(is_array($request));
         assert(array_key_exists('Attributes', $request));
 
         $attributes =& $request['Attributes'];

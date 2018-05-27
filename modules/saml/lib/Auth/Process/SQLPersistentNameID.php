@@ -1,4 +1,6 @@
 <?php
+
+
 /**
  * Authentication processing filter to generate a persistent NameID.
  *
@@ -6,6 +8,7 @@
  */
 class sspmod_saml_Auth_Process_SQLPersistentNameID extends sspmod_saml_BaseNameIDGenerator
 {
+
     /**
      * Which attribute contains the unique identifier of the user.
      *
@@ -34,6 +37,7 @@ class sspmod_saml_Auth_Process_SQLPersistentNameID extends sspmod_saml_BaseNameI
      */
     private $alwaysCreate = false;
 
+
     /**
      * Initialize this filter, parse configuration.
      *
@@ -42,9 +46,10 @@ class sspmod_saml_Auth_Process_SQLPersistentNameID extends sspmod_saml_BaseNameI
      *
      * @throws SimpleSAML_Error_Exception If the 'attribute' option is not specified.
      */
-    public function __construct(array $config, $reserved)
+    public function __construct($config, $reserved)
     {
         parent::__construct($config, $reserved);
+        assert(is_array($config));
 
         $this->format = \SAML2\Constants::NAMEID_PERSISTENT;
 
@@ -66,6 +71,7 @@ class sspmod_saml_Auth_Process_SQLPersistentNameID extends sspmod_saml_BaseNameI
         }
     }
 
+
     /**
      * Get the NameID value.
      *
@@ -76,6 +82,7 @@ class sspmod_saml_Auth_Process_SQLPersistentNameID extends sspmod_saml_BaseNameI
      */
     protected function getValue(array &$state)
     {
+
         if (!isset($state['saml:NameIDFormat']) && !$this->allowUnspecified) {
             SimpleSAML\Logger::debug(
                 'SQLPersistentNameID: Request did not specify persistent NameID format, '.

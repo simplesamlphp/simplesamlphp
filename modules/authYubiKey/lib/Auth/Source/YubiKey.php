@@ -1,4 +1,28 @@
 <?php
+
+/*
+ * Copyright (C) 2009  Andreas Åkre Solberg <andreas.solberg@uninett.no>
+ * Copyright (C) 2009  Simon Josefsson <simon@yubico.com>.
+ *
+ * This file is part of SimpleSAMLphp
+ *
+ * SimpleSAMLphp is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public License
+ * as published by the Free Software Foundation; either version 3 of
+ * the License, or (at your option) any later version.
+ *
+ * SimpleSAMLphp is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License License along with GNU SASL Library; if not, write to the
+ * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+ * Boston, MA 02110-1301, USA.
+ *
+ */
+
 /**
  * YubiKey authentication module, see http://www.yubico.com/developers/intro/
  * *
@@ -46,8 +70,11 @@ class sspmod_authYubiKey_Auth_Source_YubiKey extends SimpleSAML_Auth_Source
      * @param array $info  Information about this authentication source.
      * @param array $config  Configuration.
      */
-    public function __construct(array $info, array $config)
+    public function __construct($info, $config)
     {
+        assert(is_array($info));
+        assert(is_array($config));
+
         // Call the parent constructor first, as required by the interface
         parent::__construct($info, $config);
 
@@ -69,8 +96,10 @@ class sspmod_authYubiKey_Auth_Source_YubiKey extends SimpleSAML_Auth_Source
      *
      * @param array &$state  Information about the current authentication.
      */
-    public function authenticate(array &$state)
+    public function authenticate(&$state)
     {
+        assert(is_array($state));
+
         // We are going to need the authId in order to retrieve this authentication source later
         $state[self::AUTHID] = $this->authId;
 

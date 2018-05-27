@@ -1,11 +1,40 @@
 <?php
+
 /**
  * Filter to add attributes to the identity by executing a query against an LDAP directory
  *
+ * Original Author: Steve Moitozo II <steve_moitozo@jaars.org>
+ * Created: 20100513
+ * Updated: 20100920 Steve Moitozo II
+ *          - incorporated feedback from Olav Morken to prep code for inclusion in SimpleSAMLphp distro
+ *          - moved call to ldap_set_options() inside test for $ds
+ *          - added the output of ldap_error() to the exceptions
+ *          - reduced some of the nested ifs
+ *          - added support for multiple values
+ *          - added support for anonymous binds
+ *          - added escaping of search filter and attribute
+ * Updated: 20111118 Ryan Panning
+ *          - Updated the class to use BaseFilter which reuses LDAP connection features
+ *          - Added conversion of original filter option names for backwards-compatibility
+ *          - Updated the constructor to use the new config method
+ *          - Updated the process method to use the new config variable names
+ * Updated: 20131119 Yørn de Jong / Jaime Perez
+ *          - Added support for retrieving multiple values at once from LDAP
+ *          - Don't crash but fail silently on LDAP errors; the plugin is to complement attributes
+ * Updated: 20161223 Remy Blom <remy.blom@hku.nl>
+ *          - Adjusted the silent fail so it does show a warning in log when $this->getLdap() fails
+ *
+ * @author Yørn de Jong
+ * @author Jaime Perez
+ * @author Steve Moitozo
+ * @author JAARS, Inc.
+ * @author Ryan Panning
+ * @author Remy Blom <remy.blom@hku.nl>
  * @package SimpleSAMLphp
  */
 class sspmod_ldap_Auth_Process_AttributeAddFromLDAP extends sspmod_ldap_Auth_Process_BaseFilter
 {
+
     /**
      * LDAP attributes to add to the request attributes
      *
@@ -13,12 +42,14 @@ class sspmod_ldap_Auth_Process_AttributeAddFromLDAP extends sspmod_ldap_Auth_Pro
      */
     protected $search_attributes;
 
+
     /**
      * LDAP search filter to use in the LDAP query
      *
      * @var string
      */
     protected $search_filter;
+
 
     /**
      * What to do with attributes when the target already exists. Either replace, merge or add.
@@ -33,7 +64,7 @@ class sspmod_ldap_Auth_Process_AttributeAddFromLDAP extends sspmod_ldap_Auth_Pro
      * @param array $config Configuration information about this filter.
      * @param mixed $reserved For future use.
      */
-    public function __construct(array $config, $reserved)
+    public function __construct($config, $reserved)
     {
         /*
          * For backwards compatibility, check for old config names
@@ -104,8 +135,9 @@ class sspmod_ldap_Auth_Process_AttributeAddFromLDAP extends sspmod_ldap_Auth_Pro
      *
      * @param array &$request The current request
      */
-    public function process(array &$request)
+    public function process(&$request)
     {
+        assert(is_array($request));
         assert(array_key_exists('Attributes', $request));
 
         $attributes =& $request['Attributes'];

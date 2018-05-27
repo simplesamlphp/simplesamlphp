@@ -1,7 +1,9 @@
 <?php
+
 /**
  * Log a line in the STAT log with one attribute.
  *
+ * @author Andreas Åkre Solberg, UNINETT AS.
  * @package SimpleSAMLphp
  */
 class sspmod_core_Auth_Process_StatisticsWithAttribute extends SimpleSAML_Auth_ProcessingFilter
@@ -10,7 +12,7 @@ class sspmod_core_Auth_Process_StatisticsWithAttribute extends SimpleSAML_Auth_P
      * The attribute to log
      * @var string|null
      */
-    private $attribute = null;
+	private $attribute = null;
 
     /**
      * @var string
@@ -29,9 +31,11 @@ class sspmod_core_Auth_Process_StatisticsWithAttribute extends SimpleSAML_Auth_P
      * @param array $config  Configuration information about this filter.
      * @param mixed $reserved  For future use.
      */
-    public function __construct(array $config, $reserved)
+    public function __construct($config, $reserved)
     {
         parent::__construct($config, $reserved);
+
+        assert(is_array($config));
 
         if (array_key_exists('attributename', $config)) {
             $this->attribute = $config['attributename'];
@@ -52,13 +56,15 @@ class sspmod_core_Auth_Process_StatisticsWithAttribute extends SimpleSAML_Auth_P
         }
     }
 
+
     /**
      * Log line.
      *
      * @param array &$state  The current state.
      */
-    public function process(array &$state)
+    public function process(&$state)
     {
+        assert(is_array($state));
         assert(array_key_exists('Attributes', $state));
 
         $logAttribute = 'NA';
@@ -85,7 +91,7 @@ class sspmod_core_Auth_Process_StatisticsWithAttribute extends SimpleSAML_Auth_P
         }
 
         SimpleSAML\Logger::stats($isPassive.$this->typeTag.' '.$dest.' '.$source.' '.$logAttribute);
-    }
+	}
 
     /**
      * @param string &$direction  Either 'Source' or 'Destination'.
@@ -93,7 +99,7 @@ class sspmod_core_Auth_Process_StatisticsWithAttribute extends SimpleSAML_Auth_P
      *
      * @return string
      */
-    private function setIdentifier($direction, array $state)
+    private function setIdentifier($direction, $state)
     {
         if (array_key_exists($direction, $state)) {
             if (isset($state[$direction]['core:statistics-id'])) {

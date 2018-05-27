@@ -5,24 +5,26 @@ namespace SimpleSAML\Module\core\Auth\Process;
 /**
  * Filter to create target attribute based on value(s) in source attribute
  *
+ * @author Martin van Es, m7
  * @package SimpleSAMLphp
  */
 class AttributeValueMap extends \SimpleSAML_Auth_ProcessingFilter
 {
+
     /**
-     * The name of the attribute we should assign values to (ie: the target attribute).
-     */
+    * The name of the attribute we should assign values to (ie: the target attribute).
+    */
     private $targetattribute;
 
     /**
-     * The name of the attribute we should create values from.
-     */
+    * The name of the attribute we should create values from.
+    */
     private $sourceattribute;
 
     /**
-     * The required $sourceattribute values and target affiliations.
-     */
-    private $values = [];
+    * The required $sourceattribute values and target affiliations.
+    */
+    private $values = array();
     
     /**
     * Whether $sourceattribute should be kept or not.
@@ -30,8 +32,8 @@ class AttributeValueMap extends \SimpleSAML_Auth_ProcessingFilter
     private $keep = false;
 
     /**
-     * Whether $target attribute values should be replaced by new values or not.
-     */
+    * Whether $target attribute values should be replaced by new values or not.
+    */
     private $replace = false;
     
     /**
@@ -41,9 +43,11 @@ class AttributeValueMap extends \SimpleSAML_Auth_ProcessingFilter
      * @param mixed $reserved For future use.
      * @throws \SimpleSAML_Error_Exception If the configuration is not valid.
     */
-    public function __construct(array $config, $reserved)
+    public function __construct($config, $reserved)
     {
         parent::__construct($config, $reserved);
+
+        assert(is_array($config));
 
         // parse configuration
         foreach ($config as $name => $value) {
@@ -90,15 +94,17 @@ class AttributeValueMap extends \SimpleSAML_Auth_ProcessingFilter
         }
     }
 
+
     /**
      * Apply filter.
      *
      * @param array &$request The current request
      */
-    public function process(array &$request)
+    public function process(&$request)
     {
         \SimpleSAML\Logger::debug('Processing the AttributeValueMap filter.');
 
+        assert(is_array($request));
         assert(array_key_exists('Attributes', $request));
         $attributes =& $request['Attributes'];
 

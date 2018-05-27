@@ -5,24 +5,25 @@ require_once(dirname(dirname(dirname(dirname(dirname(__FILE__))))) . '/oauth/lib
 /**
  * Authenticate using Twitter.
  *
+ * @author Andreas Åkre Solberg, UNINETT AS.
  * @package SimpleSAMLphp
  */
 class sspmod_authtwitter_Auth_Source_Twitter extends SimpleSAML_Auth_Source
 {
-    /**
-     * The string used to identify our states.
-     */
-    const STAGE_INIT = 'twitter:init';
+	/**
+	 * The string used to identify our states.
+	 */
+	const STAGE_INIT = 'twitter:init';
 
-    /**
-     * The key of the AuthId field in the state.
-     */
-    const AUTHID = 'twitter:AuthId';
+	/**
+	 * The key of the AuthId field in the state.
+	 */
+	const AUTHID = 'twitter:AuthId';
 
     /**
      * @var string
      */
-    private $key;
+	private $key;
 
     /**
      * @var string
@@ -32,110 +33,117 @@ class sspmod_authtwitter_Auth_Source_Twitter extends SimpleSAML_Auth_Source
     /**
      * @var bool
      */
-    private $force_login;
+	private $force_login;
 
     /**
      * @var bool
      */
     private $include_email;
 
-    /**
-     * Constructor for this authentication source.
-     *
-     * @param array $info  Information about this authentication source.
-     * @param array $config  Configuration.
-     */
-    public function __construct(array $info, array $config)
+	/**
+	 * Constructor for this authentication source.
+	 *
+	 * @param array $info  Information about this authentication source.
+	 * @param array $config  Configuration.
+	 */
+	public function __construct($info, $config)
     {
-        // Call the parent constructor first, as required by the interface
-        parent::__construct($info, $config);
+		assert(is_array($info));
+		assert(is_array($config));
 
-        $configObject = SimpleSAML_Configuration::loadFromArray($config, 'authsources[' . var_export($this->authId, true) . ']');
+		// Call the parent constructor first, as required by the interface
+		parent::__construct($info, $config);
 
-        $this->key = $configObject->getString('key');
-        $this->secret = $configObject->getString('secret');
-        $this->force_login = $configObject->getBoolean('force_login', false);
-        $this->include_email = $configObject->getBoolean('include_email', false);
-    }
+		$configObject = SimpleSAML_Configuration::loadFromArray($config, 'authsources[' . var_export($this->authId, true) . ']');
 
-    /**
-     * Log-in using Twitter platform
-     *
-     * @param array &$state  Information about the current authentication.
-     */
-    public function authenticate(array &$state)
+		$this->key = $configObject->getString('key');
+		$this->secret = $configObject->getString('secret');
+		$this->force_login = $configObject->getBoolean('force_login', false);
+		$this->include_email = $configObject->getBoolean('include_email', false);
+	}
+
+
+	/**
+	 * Log-in using Twitter platform
+	 *
+	 * @param array &$state  Information about the current authentication.
+	 */
+	public function authenticate(&$state)
     {
-        // We are going to need the authId in order to retrieve this authentication source later
-        $state[self::AUTHID] = $this->authId;
-        
-        $stateID = SimpleSAML_Auth_State::saveState($state, self::STAGE_INIT);
-        
-        $consumer = new sspmod_oauth_Consumer($this->key, $this->secret);
-        // Get the request token
-        $linkback = SimpleSAML\Module::getModuleURL('authtwitter/linkback.php', array('AuthState' => $stateID));
-        $requestToken = $consumer->getRequestToken('https://api.twitter.com/oauth/request_token', array('oauth_callback' => $linkback));
-        SimpleSAML\Logger::debug("Got a request token from the OAuth service provider [" .
-            $requestToken->key . "] with the secret [" . $requestToken->secret . "]");
+		assert(is_array($state));
 
-        $state['authtwitter:authdata:requestToken'] = $requestToken;
-        SimpleSAML_Auth_State::saveState($state, self::STAGE_INIT);
+		// We are going to need the authId in order to retrieve this authentication source later
+		$state[self::AUTHID] = $this->authId;
+		
+		$stateID = SimpleSAML_Auth_State::saveState($state, self::STAGE_INIT);
+		
+		$consumer = new sspmod_oauth_Consumer($this->key, $this->secret);
+		// Get the request token
+		$linkback = SimpleSAML\Module::getModuleURL('authtwitter/linkback.php', array('AuthState' => $stateID));
+		$requestToken = $consumer->getRequestToken('https://api.twitter.com/oauth/request_token', array('oauth_callback' => $linkback));
+		SimpleSAML\Logger::debug("Got a request token from the OAuth service provider [" .
+			$requestToken->key . "] with the secret [" . $requestToken->secret . "]");
 
-        // Authorize the request token
-        $url = 'https://api.twitter.com/oauth/authenticate';
-        if ($this->force_login) {
-            $url = \SimpleSAML\Utils\HTTP::addURLParameters($url, array('force_login' => 'true'));
-        }
-        $consumer->getAuthorizeRequest($url, $requestToken);
-    }
-    
-    public function finalStep(array &$state)
+		$state['authtwitter:authdata:requestToken'] = $requestToken;
+		SimpleSAML_Auth_State::saveState($state, self::STAGE_INIT);
+
+		// Authorize the request token
+		$url = 'https://api.twitter.com/oauth/authenticate';
+		if ($this->force_login) {
+			$url = \SimpleSAML\Utils\HTTP::addURLParameters($url, array('force_login' => 'true'));
+		}
+		$consumer->getAuthorizeRequest($url, $requestToken);
+	}
+	
+	
+	public function finalStep(&$state)
     {
-        $requestToken = $state['authtwitter:authdata:requestToken'];
-        $parameters = array();
+		$requestToken = $state['authtwitter:authdata:requestToken'];
+		$parameters = array();
 
-        if (!isset($_REQUEST['oauth_token'])) {
-            throw new SimpleSAML_Error_BadRequest("Missing oauth_token parameter.");
-        }
-        if ($requestToken->key !== (string)$_REQUEST['oauth_token']) {
-            throw new SimpleSAML_Error_BadRequest("Invalid oauth_token parameter.");
-        }
+		if (!isset($_REQUEST['oauth_token'])) {
+			throw new SimpleSAML_Error_BadRequest("Missing oauth_token parameter.");
+		}
+		if ($requestToken->key !== (string)$_REQUEST['oauth_token']) {
+			throw new SimpleSAML_Error_BadRequest("Invalid oauth_token parameter.");
+		}
 
-        if (!isset($_REQUEST['oauth_verifier'])) {
-            throw new SimpleSAML_Error_BadRequest("Missing oauth_verifier parameter.");
-        }
-        $parameters['oauth_verifier'] = (string)$_REQUEST['oauth_verifier'];
-        
-        $consumer = new sspmod_oauth_Consumer($this->key, $this->secret);
-        
-        SimpleSAML\Logger::debug("oauth: Using this request token [" .
-            $requestToken->key . "] with the secret [" . $requestToken->secret . "]");
+		if (!isset($_REQUEST['oauth_verifier'])) {
+			throw new SimpleSAML_Error_BadRequest("Missing oauth_verifier parameter.");
+		}
+		$parameters['oauth_verifier'] = (string)$_REQUEST['oauth_verifier'];
+		
+		$consumer = new sspmod_oauth_Consumer($this->key, $this->secret);
+		
+		SimpleSAML\Logger::debug("oauth: Using this request token [" .
+			$requestToken->key . "] with the secret [" . $requestToken->secret . "]");
 
-        // Replace the request token with an access token
-        $accessToken = $consumer->getAccessToken('https://api.twitter.com/oauth/access_token', $requestToken, $parameters);
-        SimpleSAML\Logger::debug("Got an access token from the OAuth service provider [" .
-            $accessToken->key . "] with the secret [" . $accessToken->secret . "]");
+		// Replace the request token with an access token
+		$accessToken = $consumer->getAccessToken('https://api.twitter.com/oauth/access_token', $requestToken, $parameters);
+		SimpleSAML\Logger::debug("Got an access token from the OAuth service provider [" .
+			$accessToken->key . "] with the secret [" . $accessToken->secret . "]");
 
-        $verify_credentials_url = 'https://api.twitter.com/1.1/account/verify_credentials.json';
-        if ($this->include_email) {
-            $verify_credentials_url = $verify_credentials_url . '?include_email=true';
-        }
-        $userdata = $consumer->getUserInfo($verify_credentials_url, $accessToken);
-        
-        if (!isset($userdata['id_str']) || !isset($userdata['screen_name'])) {
-            throw new SimpleSAML_Error_AuthSource($this->authId, 'Authentication error: id_str and screen_name not set.');
-        }
+		$verify_credentials_url = 'https://api.twitter.com/1.1/account/verify_credentials.json';
+		if ($this->include_email) {
+			$verify_credentials_url = $verify_credentials_url . '?include_email=true';
+		}
+		$userdata = $consumer->getUserInfo($verify_credentials_url, $accessToken);
+		
+		if (!isset($userdata['id_str']) || !isset($userdata['screen_name'])) {
+			throw new SimpleSAML_Error_AuthSource($this->authId, 'Authentication error: id_str and screen_name not set.');
+		}
 
-        $attributes = array();
-        foreach ($userdata as $key => $value) {
-            if (is_string($value)) {
-                $attributes['twitter.' . $key] = array((string)$value);
+		$attributes = array();
+		foreach ($userdata as $key => $value) {
+			if (is_string($value)) {
+				$attributes['twitter.' . $key] = array((string)$value);
             }
-        }
-        
-        $attributes['twitter_at_screen_name'] = array('@' . $userdata['screen_name']);
-        $attributes['twitter_screen_n_realm'] = array($userdata['screen_name'] . '@twitter.com');
-        $attributes['twitter_targetedID'] = array('http://twitter.com!' . $userdata['id_str']);
-            
-        $state['Attributes'] = $attributes;
-    }
+		}
+		
+		$attributes['twitter_at_screen_name'] = array('@' . $userdata['screen_name']);
+		$attributes['twitter_screen_n_realm'] = array($userdata['screen_name'] . '@twitter.com');
+		$attributes['twitter_targetedID'] = array('http://twitter.com!' . $userdata['id_str']);
+			
+		$state['Attributes'] = $attributes;
+	}
 }

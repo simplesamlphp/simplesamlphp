@@ -11,6 +11,7 @@
  * ),
  * </code>
  *
+ * @author Joost van Dijk, SURFnet. <Joost.vanDijk@surfnet.nl>
  * @package SimpleSAMLphp
  */
 class sspmod_authX509_Auth_Process_ExpiryWarning extends SimpleSAML_Auth_ProcessingFilter
@@ -25,9 +26,11 @@ class sspmod_authX509_Auth_Process_ExpiryWarning extends SimpleSAML_Auth_Process
      * @param array $config  Configuration information about this filter.
      * @param mixed $reserved  For future use.
      */
-    public function __construct(array $config, $reserved)
+    public function __construct($config, $reserved)
     {
         parent::__construct($config, $reserved);
+
+        assert(is_array($config));
 
         if (array_key_exists('warndaysbefore', $config)) {
             $this->warndaysbefore = $config['warndaysbefore'];
@@ -52,8 +55,10 @@ class sspmod_authX509_Auth_Process_ExpiryWarning extends SimpleSAML_Auth_Process
      *
      * @param array $state  The state of the response.
      */
-    public function process(array &$state)
+    public function process(&$state)
     {
+        assert(is_array($state));
+
         if (isset($state['isPassive']) && $state['isPassive'] === true) {
             // We have a passive request. Skip the warning
             return;

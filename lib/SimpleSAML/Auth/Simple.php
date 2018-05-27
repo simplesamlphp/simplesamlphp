@@ -17,6 +17,7 @@ use \SimpleSAML\Utils\HTTP;
  */
 class Simple
 {
+
     /**
      * The id of the authentication source we are accessing.
      *
@@ -218,6 +219,7 @@ class Simple
         self::logoutCompleted($params);
     }
 
+
     /**
      * Called when logout operation completes.
      *
@@ -225,8 +227,9 @@ class Simple
      *
      * @param array $state The state after the logout.
      */
-    public static function logoutCompleted(array $state)
+    public static function logoutCompleted($state)
     {
+        assert(is_array($state));
         assert(isset($state['ReturnTo']) || isset($state['ReturnCallback']));
 
         if (isset($state['ReturnCallback'])) {
@@ -243,6 +246,7 @@ class Simple
         }
     }
 
+
     /**
      * Retrieve attributes of the current user.
      *
@@ -253,6 +257,7 @@ class Simple
      */
     public function getAttributes()
     {
+
         if (!$this->isAuthenticated()) {
             // Not authenticated
             return array();
@@ -262,6 +267,7 @@ class Simple
         $session = Session::getSessionFromRequest();
         return $session->getAuthData($this->authSource, 'Attributes');
     }
+
 
     /**
      * Retrieve authentication data.
@@ -282,6 +288,7 @@ class Simple
         return $session->getAuthData($this->authSource, $name);
     }
 
+
     /**
      * Retrieve all authentication data.
      *
@@ -289,6 +296,7 @@ class Simple
      */
     public function getAuthDataArray()
     {
+
         if (!$this->isAuthenticated()) {
             return null;
         }
@@ -296,6 +304,7 @@ class Simple
         $session = Session::getSessionFromRequest();
         return $session->getAuthState($this->authSource);
     }
+
 
     /**
      * Retrieve a URL that can be used to log the user in.
@@ -321,6 +330,7 @@ class Simple
         return $login;
     }
 
+
     /**
      * Retrieve a URL that can be used to log the user out.
      *
@@ -344,6 +354,7 @@ class Simple
 
         return $logout;
     }
+
 
     /**
      * Process a URL and modify it according to the application/baseURL configuration option, if present.

@@ -1,7 +1,9 @@
 <?php
+
 /**
  * Filter to ensure correct cardinality of attributes
  *
+ * @author Guy Halse, http://orcid.org/0000-0002-9388-8592
  * @package SimpleSAMLphp
  */
 class sspmod_core_Auth_Process_Cardinality extends SimpleSAML_Auth_ProcessingFilter
@@ -19,9 +21,10 @@ class sspmod_core_Auth_Process_Cardinality extends SimpleSAML_Auth_ProcessingFil
      * @param mixed $reserved  For future use.
      * @throws SimpleSAML_Error_Exception
      */
-    public function __construct(array $config, $reserved)
+    public function __construct($config, $reserved)
     {
         parent::__construct($config, $reserved);
+        assert(is_array($config));
 
         foreach ($config as $attribute => $rules) {
             if ($attribute === '%ignoreEntities') {
@@ -85,8 +88,9 @@ class sspmod_core_Auth_Process_Cardinality extends SimpleSAML_Auth_ProcessingFil
      *
      * @param array &$request  The current request
      */
-    public function process(array &$request)
+    public function process(&$request)
     {
+        assert(is_array($request));
         assert(array_key_exists("Attributes", $request));
 
         $entityid = false;
