@@ -1,11 +1,9 @@
 <?php
-
 /**
  * Does a reverse membership lookup on the logged in user,
  * looking for groups it is a member of and adds them to
  * a defined attribute, in DN format.
  *
- * @author Ryan Panning <panman@traileyes.com>
  * @package SimpleSAMLphp
  */
 class sspmod_ldap_Auth_Process_AttributeAddUsersGroups extends sspmod_ldap_Auth_Process_BaseFilter
@@ -17,11 +15,10 @@ class sspmod_ldap_Auth_Process_AttributeAddUsersGroups extends sspmod_ldap_Auth_
      * are then added to the request attributes.
      *
      * @throws SimpleSAML_Error_Exception
-     * @param $request
+     * @param array $request
      */
-    public function process(&$request)
+    public function process(array &$request)
     {
-        assert(is_array($request));
         assert(array_key_exists('Attributes', $request));
 
         // Log the process
@@ -61,7 +58,6 @@ class sspmod_ldap_Auth_Process_AttributeAddUsersGroups extends sspmod_ldap_Auth_
         );
     }
 
-
     /**
      * This section of code was broken out because the child
      * filter AuthorizeByGroup can use this method as well.
@@ -73,7 +69,7 @@ class sspmod_ldap_Auth_Process_AttributeAddUsersGroups extends sspmod_ldap_Auth_
      * @param array $attributes
      * @return array
      */
-    protected function getGroups($attributes)
+    protected function getGroups(array $attributes)
     {
         // Log the request
         SimpleSAML\Logger::debug(
@@ -124,7 +120,6 @@ class sspmod_ldap_Auth_Process_AttributeAddUsersGroups extends sspmod_ldap_Auth_
         return $groups;
     }
 
-
     /**
      * OpenLDAP optimized search
      * using the required attribute values from the user to
@@ -134,7 +129,7 @@ class sspmod_ldap_Auth_Process_AttributeAddUsersGroups extends sspmod_ldap_Auth_
      * @param array $attributes
      * @return array
      */
-    protected function getGroupsOpenLdap($attributes)
+    protected function getGroupsOpenLdap(array $attributes)
     {
         // Log the OpenLDAP specific search
         SimpleSAML\Logger::debug(
@@ -166,7 +161,6 @@ class sspmod_ldap_Auth_Process_AttributeAddUsersGroups extends sspmod_ldap_Auth_
         return $groups;
     }
 
-
     /**
      * Active Directory optimized search
      * using the required attribute values from the user to
@@ -176,7 +170,7 @@ class sspmod_ldap_Auth_Process_AttributeAddUsersGroups extends sspmod_ldap_Auth_
      * @param array $attributes
      * @return array
      */
-    protected function getGroupsActiveDirectory($attributes)
+    protected function getGroupsActiveDirectory(array $attributes)
     {
         // Log the AD specific search
         SimpleSAML\Logger::debug(
@@ -214,10 +208,8 @@ class sspmod_ldap_Auth_Process_AttributeAddUsersGroups extends sspmod_ldap_Auth_
      * @param array $memberof
      * @return array
      */
-    protected function search($memberof)
+    protected function search(array $memberof)
     {
-        assert(is_array($memberof));
-
         // Used to determine what DN's have already been searched
         static $searched = array();
 
@@ -283,7 +275,6 @@ class sspmod_ldap_Auth_Process_AttributeAddUsersGroups extends sspmod_ldap_Auth_
         // Return only the unique group names
         return array_unique($groups);
     }
-
 
     /**
      * Searches LDAP using a ActiveDirectory specific filter,

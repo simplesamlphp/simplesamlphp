@@ -35,11 +35,8 @@ class sspmod_authX509_Auth_Source_X509userCert extends SimpleSAML_Auth_Source
      * @param array $info Information about this authentication source.
      * @param array &$config Configuration for this authentication source.
      */
-    public function __construct($info, &$config)
+    public function __construct(array $info, array &$config)
     {
-        assert(is_array($info));
-        assert(is_array($config));
-
         if (isset($config['authX509:x509attributes'])) {
             $this->x509attributes = $config['authX509:x509attributes'];
         }
@@ -66,7 +63,7 @@ class sspmod_authX509_Auth_Source_X509userCert extends SimpleSAML_Auth_Source
      *
      * @param array &$state Information about the current authentication.
      */
-    public function authFailed(&$state)
+    public function authFailed(array &$state)
     {
         $config = SimpleSAML_Configuration::getInstance();
 
@@ -87,9 +84,8 @@ class sspmod_authX509_Auth_Source_X509userCert extends SimpleSAML_Auth_Source
      *
      * @param array &$state Information about the current authentication.
      */
-    public function authenticate(&$state)
+    public function authenticate(array &$state)
     {
-        assert(is_array($state));
         $ldapcf = $this->ldapcf;
 
         if (!isset($_SERVER['SSL_CLIENT_CERT']) ||
@@ -196,7 +192,7 @@ class sspmod_authX509_Auth_Source_X509userCert extends SimpleSAML_Auth_Source
      *
      * @param array &$state Information about the current authentication.
      */
-    public function authSuccesful(&$state)
+    public function authSuccesful(array &$state)
     {
         SimpleSAML_Auth_Source::completeAuth($state);
 

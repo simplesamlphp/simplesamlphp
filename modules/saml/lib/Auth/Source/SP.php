@@ -36,11 +36,8 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
      * @param array $info  Information about this authentication source.
      * @param array $config  Configuration.
      */
-    public function __construct($info, $config)
+    public function __construct(array $info, array $config)
     {
-        assert(is_array($info));
-        assert(is_array($config));
-
         // Call the parent constructor first, as required by the interface
         parent::__construct($info, $config);
 
@@ -378,10 +375,8 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
      *
      * @param array &$state  Information about the current authentication.
      */
-    public function authenticate(&$state)
+    public function authenticate(array &$state)
     {
-        assert(is_array($state));
-
         /* We are going to need the authId in order to retrieve this authentication source later. */
         $state['saml:sp:AuthId'] = $this->authId;
 
@@ -438,8 +433,6 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
      */
     public function reauthenticate(array &$state)
     {
-        assert(is_array($state));
-
         $session = SimpleSAML_Session::getSessionFromRequest();
         $data = $session->getAuthState($this->authId);
         foreach ($data as $k => $v) {
@@ -611,9 +604,8 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
      *
      * @param array $state  The logout state.
      */
-    public function startSLO2(&$state)
+    public function startSLO2(array &$state)
     {
-        assert(is_array($state));
         assert(array_key_exists('saml:logout:IdP', $state));
         assert(array_key_exists('saml:logout:NameID', $state));
         assert(array_key_exists('saml:logout:SessionIndex', $state));
@@ -659,9 +651,8 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
      *
      * @param array $state  The logout state.
      */
-    public function logout(&$state)
+    public function logout(array &$state)
     {
-        assert(is_array($state));
         assert(array_key_exists('saml:logout:Type', $state));
 
         $logoutType = $state['saml:logout:Type'];

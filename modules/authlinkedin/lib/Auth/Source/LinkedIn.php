@@ -5,12 +5,10 @@ require_once(dirname(dirname(dirname(dirname(dirname(__FILE__))))) . '/oauth/lib
 /**
  * Authenticate using LinkedIn.
  *
- * @author Brook Schofield, TERENA.
  * @package SimpleSAMLphp
  */
 class sspmod_authlinkedin_Auth_Source_LinkedIn extends SimpleSAML_Auth_Source 
 {
-
     /**
      * The string used to identify our states.
      */
@@ -32,11 +30,8 @@ class sspmod_authlinkedin_Auth_Source_LinkedIn extends SimpleSAML_Auth_Source
      * @param array $info  Information about this authentication source.
      * @param array $config  Configuration.
      */
-    public function __construct($info, $config)
+    public function __construct(array $info, array $config)
     {
-        assert(is_array($info));
-        assert(is_array($config));
-
         // Call the parent constructor first, as required by the interface
         parent::__construct($info, $config);
 
@@ -58,17 +53,14 @@ class sspmod_authlinkedin_Auth_Source_LinkedIn extends SimpleSAML_Auth_Source
         }
     }
 
-
     /**
      * Log-in using LinkedIn platform
      * Documentation at: http://developer.linkedin.com/docs/DOC-1008
      *
      * @param array &$state  Information about the current authentication.
      */
-    public function authenticate(&$state)
+    public function authenticate(array &$state)
     {
-        assert(is_array($state));
-
         // We are going to need the authId in order to retrieve this authentication source later
         $state[self::AUTHID] = $this->authId;
 
@@ -97,8 +89,7 @@ class sspmod_authlinkedin_Auth_Source_LinkedIn extends SimpleSAML_Auth_Source
         $consumer->getAuthorizeRequest('https://www.linkedin.com/uas/oauth/authenticate', $requestToken);
     }
 
-
-    public function finalStep(&$state) 
+    public function finalStep(array &$state)
     {
         $requestToken = $state['authlinkedin:requestToken'];
 
@@ -167,7 +158,7 @@ class sspmod_authlinkedin_Auth_Source_LinkedIn extends SimpleSAML_Auth_Source
      *
      * @return array the array with the new concatenated keys
      */
-    protected function flatten($array, $prefix = '')
+    protected function flatten(array $array, $prefix = '')
     {
         $result = array();
         foreach ($array as $key => $value) {

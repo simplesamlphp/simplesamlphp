@@ -1,6 +1,4 @@
 <?php
-
-
 /**
  * Filter for setting the AuthnContextClassRef in the response.
  *
@@ -16,7 +14,6 @@ class sspmod_saml_Auth_Process_AuthnContextClassRef extends SimpleSAML_Auth_Proc
      */
     private $authnContextClassRef;
 
-
     /**
      * Initialize this filter.
      *
@@ -25,10 +22,9 @@ class sspmod_saml_Auth_Process_AuthnContextClassRef extends SimpleSAML_Auth_Proc
      *
      * @throws SimpleSAML_Error_Exception if the mandatory 'AuthnContextClassRef' option is missing.
      */
-    public function __construct($config, $reserved)
+    public function __construct(array $config, $reserved)
     {
         parent::__construct($config, $reserved);
-        assert(is_array($config));
 
         if (!isset($config['AuthnContextClassRef'])) {
             throw new SimpleSAML_Error_Exception('Missing AuthnContextClassRef option in processing filter.');
@@ -37,16 +33,13 @@ class sspmod_saml_Auth_Process_AuthnContextClassRef extends SimpleSAML_Auth_Proc
         $this->authnContextClassRef = (string) $config['AuthnContextClassRef'];
     }
 
-
     /**
      * Set the AuthnContextClassRef in the SAML 2 response.
      *
      * @param array &$state The state array for this request.
      */
-    public function process(&$state)
+    public function process(array &$state)
     {
-        assert(is_array($state));
-
         $state['saml:AuthnContextClassRef'] = $this->authnContextClassRef;
     }
 }

@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * This is a helper class for saving and loading state information.
  *
@@ -25,18 +24,14 @@
  * be passed to the handler defined by the EXCEPTION_HANDLER_URL or EXCEPTION_HANDLER_FUNC
  * elements of the state array.
  *
- * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
 class SimpleSAML_Auth_State
 {
-
-
     /**
      * The index in the state array which contains the identifier.
      */
     const ID = 'SimpleSAML_Auth_State.id';
-
 
     /**
      * The index in the cloned state array which contains the identifier of the
@@ -44,54 +39,45 @@ class SimpleSAML_Auth_State
      */
     const CLONE_ORIGINAL_ID = 'SimpleSAML_Auth_State.cloneOriginalId';
 
-
     /**
      * The index in the state array which contains the current stage.
      */
     const STAGE = 'SimpleSAML_Auth_State.stage';
-
 
     /**
      * The index in the state array which contains the restart URL.
      */
     const RESTART = 'SimpleSAML_Auth_State.restartURL';
 
-
     /**
      * The index in the state array which contains the exception handler URL.
      */
     const EXCEPTION_HANDLER_URL = 'SimpleSAML_Auth_State.exceptionURL';
-
 
     /**
      * The index in the state array which contains the exception handler function.
      */
     const EXCEPTION_HANDLER_FUNC = 'SimpleSAML_Auth_State.exceptionFunc';
 
-
     /**
      * The index in the state array which contains the exception data.
      */
     const EXCEPTION_DATA = 'SimpleSAML_Auth_State.exceptionData';
-
 
     /**
      * The stage of a state with an exception.
      */
     const EXCEPTION_STAGE = 'SimpleSAML_Auth_State.exceptionStage';
 
-
     /**
      * The URL parameter which contains the exception state id.
      */
     const EXCEPTION_PARAM = 'SimpleSAML_Auth_State_exceptionId';
 
-
     /**
      * State timeout.
      */
     private static $stateTimeout = null;
-
 
     /**
      * Get the persistent authentication state from the state array.
@@ -131,7 +117,6 @@ class SimpleSAML_Auth_State
         return $persistent;
     }
 
-
     /**
      * Retrieve the ID of a state array.
      *
@@ -142,9 +127,8 @@ class SimpleSAML_Auth_State
      *
      * @return string  Identifier which can be used to retrieve the state later.
      */
-    public static function getStateId(&$state, $rawId = false)
+    public static function getStateId(array &$state, $rawId = false)
     {
-        assert(is_array($state));
         assert(is_bool($rawId));
 
         if (!array_key_exists(self::ID, $state)) {
@@ -162,7 +146,6 @@ class SimpleSAML_Auth_State
         return $id.':'.$state[self::RESTART];
     }
 
-
     /**
      * Retrieve state timeout.
      *
@@ -178,7 +161,6 @@ class SimpleSAML_Auth_State
         return self::$stateTimeout;
     }
 
-
     /**
      * Save the state.
      *
@@ -191,9 +173,8 @@ class SimpleSAML_Auth_State
      *
      * @return string  Identifier which can be used to retrieve the state later.
      */
-    public static function saveState(&$state, $stage, $rawId = false)
+    public static function saveState(array &$state, $stage, $rawId = false)
     {
-        assert(is_array($state));
         assert(is_string($stage));
         assert(is_bool($rawId));
 
@@ -212,7 +193,6 @@ class SimpleSAML_Auth_State
 
         return $return;
     }
-
 
     /**
      * Clone the state.
@@ -238,7 +218,6 @@ class SimpleSAML_Auth_State
 
         return $clonedState;
     }
-
 
     /**
      * Retrieve saved state.
@@ -308,7 +287,6 @@ class SimpleSAML_Auth_State
         return $state;
     }
 
-
     /**
      * Delete state.
      *
@@ -316,10 +294,8 @@ class SimpleSAML_Auth_State
      *
      * @param array &$state The state which should be deleted.
      */
-    public static function deleteState(&$state)
+    public static function deleteState(array &$state)
     {
-        assert(is_array($state));
-
         if (!array_key_exists(self::ID, $state)) {
             // This state hasn't been saved
             return;
@@ -331,7 +307,6 @@ class SimpleSAML_Auth_State
         $session->deleteData('SimpleSAML_Auth_State', $state[self::ID]);
     }
 
-
     /**
      * Throw exception to the state exception handler.
      *
@@ -340,10 +315,8 @@ class SimpleSAML_Auth_State
      *
      * @throws SimpleSAML_Error_Exception If there is no exception handler defined, it will just throw the $exception.
      */
-    public static function throwException($state, SimpleSAML_Error_Exception $exception)
+    public static function throwException(array $state, SimpleSAML_Error_Exception $exception)
     {
-        assert(is_array($state));
-
         if (array_key_exists(self::EXCEPTION_HANDLER_URL, $state)) {
             // Save the exception
             $state[self::EXCEPTION_DATA] = $exception;
@@ -368,7 +341,6 @@ class SimpleSAML_Auth_State
             throw $exception;
         }
     }
-
 
     /**
      * Retrieve an exception state.
@@ -395,7 +367,6 @@ class SimpleSAML_Auth_State
         return $state;
     }
 
-
     /**
      * Get the ID and (optionally) a URL embedded in a StateID, in the form 'id:url'.
      *
@@ -403,9 +374,6 @@ class SimpleSAML_Auth_State
      *
      * @return array A hashed array with the ID and the URL (if any), in the 'id' and 'url' keys, respectively. If
      * there's no URL in the input parameter, NULL will be returned as the value for the 'url' key.
-     *
-     * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
-     * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
     public static function parseStateID($stateId)
     {

@@ -1,6 +1,4 @@
 <?php
-
-
 /**
  * Authentication processing filter to create an attribute from a NameID.
  *
@@ -8,14 +6,12 @@
  */
 class sspmod_saml_Auth_Process_NameIDAttribute extends SimpleSAML_Auth_ProcessingFilter
 {
-
     /**
      * The attribute we should save the NameID in.
      *
      * @var string
      */
     private $attribute;
-
 
     /**
      * The format of the NameID in the attribute.
@@ -24,17 +20,15 @@ class sspmod_saml_Auth_Process_NameIDAttribute extends SimpleSAML_Auth_Processin
      */
     private $format;
 
-
     /**
      * Initialize this filter, parse configuration.
      *
      * @param array $config Configuration information about this filter.
      * @param mixed $reserved For future use.
      */
-    public function __construct($config, $reserved)
+    public function __construct(array $config, $reserved)
     {
         parent::__construct($config, $reserved);
-        assert(is_array($config));
 
         if (isset($config['attribute'])) {
             $this->attribute = (string) $config['attribute'];
@@ -50,7 +44,6 @@ class sspmod_saml_Auth_Process_NameIDAttribute extends SimpleSAML_Auth_Processin
 
         $this->format = self::parseFormat($format);
     }
-
 
     /**
      * Parse a NameID format string into an array.
@@ -97,15 +90,13 @@ class sspmod_saml_Auth_Process_NameIDAttribute extends SimpleSAML_Auth_Processin
         return $ret;
     }
 
-
     /**
      * Convert NameID to attribute.
      *
      * @param array &$state The request state.
      */
-    public function process(&$state)
+    public function process(array &$state)
     {
-        assert(is_array($state));
         assert(isset($state['Source']['entityid']));
         assert(isset($state['Destination']['entityid']));
 

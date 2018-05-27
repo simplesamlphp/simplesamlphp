@@ -12,12 +12,10 @@
  */
 class sspmod_ldap_Auth_Source_LDAP extends sspmod_core_Auth_UserPassBase
 {
-
     /**
      * A LDAP configuration object.
      */
     private $ldapConfig;
-
 
     /**
      * Constructor for this authentication source.
@@ -25,18 +23,14 @@ class sspmod_ldap_Auth_Source_LDAP extends sspmod_core_Auth_UserPassBase
      * @param array $info  Information about this authentication source.
      * @param array $config  Configuration.
      */
-    public function __construct($info, $config)
+    public function __construct(array $info, array $config)
     {
-        assert(is_array($info));
-        assert(is_array($config));
-
         // Call the parent constructor first, as required by the interface
         parent::__construct($info, $config);
 
         $this->ldapConfig = new sspmod_ldap_ConfigHelper($config,
             'Authentication source ' . var_export($this->authId, true));
     }
-
 
     /**
      * Attempt to log in using the given username and password.
@@ -53,5 +47,4 @@ class sspmod_ldap_Auth_Source_LDAP extends sspmod_core_Auth_UserPassBase
 
         return $this->ldapConfig->login($username, $password, $sasl_args);
     }
-
 }

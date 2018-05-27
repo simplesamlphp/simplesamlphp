@@ -1,6 +1,4 @@
 <?php
-
-
 /**
  * Base class for authentication processing filters.
  *
@@ -15,12 +13,10 @@
  * information in it, it should have a name on the form 'module:filter:attributename', to avoid name
  * collisions.
  *
- * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
 abstract class SimpleSAML_Auth_ProcessingFilter
 {
-
     /**
      * Priority of this filter.
      *
@@ -32,7 +28,6 @@ abstract class SimpleSAML_Auth_ProcessingFilter
      */
     public $priority = 50;
 
-
     /**
      * Constructor for a processing filter.
      *
@@ -42,10 +37,8 @@ abstract class SimpleSAML_Auth_ProcessingFilter
      * @param array &$config  Configuration for this filter.
      * @param mixed $reserved  For future use.
      */
-    public function __construct(&$config, $reserved)
+    public function __construct(array &$config, $reserved)
     {
-        assert(is_array($config));
-
         if (array_key_exists('%priority', $config)) {
             $this->priority = $config['%priority'];
             if (!is_int($this->priority)) {
@@ -55,7 +48,6 @@ abstract class SimpleSAML_Auth_ProcessingFilter
         }
     }
 
-
     /**
      * Process a request.
      *
@@ -63,5 +55,5 @@ abstract class SimpleSAML_Auth_ProcessingFilter
      *
      * @param array &$request  The request we are currently processing.
      */
-    abstract public function process(&$request);
+    abstract public function process(array &$request);
 }

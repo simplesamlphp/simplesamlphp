@@ -1,25 +1,19 @@
 <?php
-
-
 /**
  * Authentication source for username & hashed password.
  *
  * This class is an authentication source which stores all username/hashes in an array,
  * and authenticates users against this array.
  *
- * @author Dyonisius Visser, TERENA.
  * @package SimpleSAMLphp
  */
 class sspmod_authcrypt_Auth_Source_Hash extends sspmod_core_Auth_UserPassBase
 {
-
-
     /**
      * Our users, stored in an associative array. The key of the array is "<username>:<passwordhash>",
      * while the value of each element is a new array with the attributes for each user.
      */
     private $users;
-
 
     /**
      * Constructor for this authentication source.
@@ -29,11 +23,8 @@ class sspmod_authcrypt_Auth_Source_Hash extends sspmod_core_Auth_UserPassBase
      *
      * @throws Exception in case of a configuration error.
      */
-    public function __construct($info, $config)
+    public function __construct(array $info, array $config)
     {
-        assert(is_array($info));
-        assert(is_array($config));
-
         // Call the parent constructor first, as required by the interface
         parent::__construct($info, $config);
 
@@ -65,7 +56,6 @@ class sspmod_authcrypt_Auth_Source_Hash extends sspmod_core_Auth_UserPassBase
             $this->users[$username.':'.$passwordhash] = $attributes;
         }
     }
-
 
     /**
      * Attempt to log in using the given username and password.

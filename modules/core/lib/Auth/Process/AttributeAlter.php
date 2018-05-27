@@ -4,7 +4,6 @@
  *
  * This filter can modify or replace attributes given a regular expression.
  *
- * @author Jacob Christiansen, WAYF
  * @package SimpleSAMLphp
  */
 class sspmod_core_Auth_Process_AttributeAlter extends SimpleSAML_Auth_ProcessingFilter
@@ -46,11 +45,9 @@ class sspmod_core_Auth_Process_AttributeAlter extends SimpleSAML_Auth_Processing
      * @param mixed $reserved  For future use.
      * @throws SimpleSAML_Error_Exception In case of invalid configuration.
      */
-    public function __construct($config, $reserved)
+    public function __construct(array $config, $reserved)
     {
         parent::__construct($config, $reserved);
-
-        assert(is_array($config));
 
         // parse filter configuration
         foreach ($config as $name => $value) {
@@ -88,8 +85,8 @@ class sspmod_core_Auth_Process_AttributeAlter extends SimpleSAML_Auth_Processing
      * @param array &$request The current request.
      * @throws SimpleSAML_Error_Exception In case of invalid configuration.
      */
-    public function process(&$request) {
-        assert(is_array($request));
+    public function process(array &$request)
+    {
         assert(array_key_exists('Attributes', $request));
 
         // get attributes from request

@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Class for implementing authentication processing chains for IdPs.
  *
@@ -7,24 +6,19 @@
  * submitting a response to a SP. Examples of additional steps can be additional authentication
  * checks, or attribute consent requirements.
  *
- * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
 class SimpleSAML_Auth_ProcessingChain
 {
-
-
     /**
      * The list of remaining filters which should be applied to the state.
      */
     const FILTERS_INDEX = 'SimpleSAML_Auth_ProcessingChain.filters';
 
-
     /**
      * The stage we use for completed requests.
      */
     const COMPLETED_STAGE = 'SimpleSAML_Auth_ProcessingChain.completed';
-
 
     /**
      * The request parameter we will use to pass the state identifier when we redirect after
@@ -32,12 +26,10 @@ class SimpleSAML_Auth_ProcessingChain
      */
     const AUTHPARAM = 'AuthProcId';
 
-
     /**
      * All authentication processing filters, in the order they should be applied.
      */
     private $filters;
-
 
     /**
      * Initialize an authentication processing chain for the given service provider
@@ -46,11 +38,8 @@ class SimpleSAML_Auth_ProcessingChain
      * @param array $idpMetadata  The metadata for the IdP.
      * @param array $spMetadata  The metadata for the SP.
      */
-    public function __construct($idpMetadata, $spMetadata, $mode = 'idp')
+    public function __construct(array $idpMetadata, array $spMetadata, $mode = 'idp')
     {
-        assert(is_array($idpMetadata));
-        assert(is_array($spMetadata));
-
         $this->filters = array();
 
         $config = SimpleSAML_Configuration::getInstance();
@@ -71,11 +60,9 @@ class SimpleSAML_Auth_ProcessingChain
             self::addFilters($this->filters, $spFilters);
         }
 
-
         SimpleSAML\Logger::debug('Filter config for ' . $idpMetadata['entityid'] . '->' .
             $spMetadata['entityid'] . ': ' . str_replace("\n", '', var_export($this->filters, true)));
     }
-
 
     /**
      * Sort & merge filter configuration
@@ -85,11 +72,8 @@ class SimpleSAML_Auth_ProcessingChain
      * @param array &$target  Target filter list. This list must be sorted.
      * @param array $src  Source filters. May be unsorted.
      */
-    private static function addFilters(&$target, $src)
+    private static function addFilters(array &$target, array $src)
     {
-        assert(is_array($target));
-        assert(is_array($src));
-
         foreach ($src as $filter) {
             $fp = $filter->priority;
 
@@ -105,17 +89,14 @@ class SimpleSAML_Auth_ProcessingChain
         }
     }
 
-
     /**
      * Parse an array of authentication processing filters.
      *
      * @param array $filterSrc  Array with filter configuration.
      * @return array  Array of SimpleSAML_Auth_ProcessingFilter objects.
      */
-    private static function parseFilterList($filterSrc)
+    private static function parseFilterList(array $filterSrc)
     {
-        assert(is_array($filterSrc));
-
         $parsedFilters = array();
 
         foreach ($filterSrc as $priority => $filter) {
@@ -134,7 +115,6 @@ class SimpleSAML_Auth_ProcessingChain
         return $parsedFilters;
     }
 
-
     /**
      * Parse an authentication processing filter.
      *
@@ -143,10 +123,8 @@ class SimpleSAML_Auth_ProcessingChain
      *                          definition.)
      * @return SimpleSAML_Auth_ProcessingFilter  The parsed filter.
      */
-    private static function parseFilter($config, $priority)
+    private static function parseFilter(array $config, $priority)
     {
-        assert(is_array($config));
-
         if (!array_key_exists('class', $config)) {
             throw new Exception('Authentication processing filter without name given.');
         }
@@ -156,7 +134,6 @@ class SimpleSAML_Auth_ProcessingChain
         unset($config['class']);
         return new $className($config, null);
     }
-
 
     /**
      * Process the given state.
@@ -178,7 +155,7 @@ class SimpleSAML_Auth_ProcessingChain
      *
      * @param array &$state  The state we are processing.
      */
-    public function processState(&$state)
+    public function processState(array &$state)
     {
         assert(is_array($state));
         assert(array_key_exists('ReturnURL', $state) || array_key_exists('ReturnCall', $state));
@@ -211,7 +188,6 @@ class SimpleSAML_Auth_ProcessingChain
         // Completed
     }
 
-
     /**
      * Continues processing of the state.
      *
@@ -223,10 +199,8 @@ class SimpleSAML_Auth_ProcessingChain
      *
      * @param array $state  The state we are processing.
      */
-    public static function resumeProcessing($state)
+    public static function resumeProcessing(array $state)
     {
-        assert(is_array($state));
-
         while (count($state[self::FILTERS_INDEX]) > 0) {
             $filter = array_shift($state[self::FILTERS_INDEX]);
             try {
@@ -243,7 +217,6 @@ class SimpleSAML_Auth_ProcessingChain
 
         assert(array_key_exists('ReturnURL', $state) || array_key_exists('ReturnCall', $state));
         assert(!array_key_exists('ReturnURL', $state) || !array_key_exists('ReturnCall', $state));
-
 
         if (array_key_exists('ReturnURL', $state)) {
             /*
@@ -266,7 +239,6 @@ class SimpleSAML_Auth_ProcessingChain
         }
     }
 
-
     /**
      * Process the given state passivly.
      *
@@ -277,9 +249,8 @@ class SimpleSAML_Auth_ProcessingChain
      *
      * @param array &$state  The state we are processing.
      */
-    public function processStatePassive(&$state)
+    public function processStatePassive(array &$state)
     {
-        assert(is_array($state));
         // Should not be set when calling this method
         assert(!array_key_exists('ReturnURL', $state));
 

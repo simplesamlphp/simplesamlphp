@@ -1,15 +1,13 @@
 <?php
-
 /**
  * Filter that will take the user ID on the format 'andreas@uninett.no'
  * and create a new attribute 'realm' that includes the value after the '@' sign.
  *
- * @author Andreas Åkre Solberg, UNINETT AS.
  * @package SimpleSAMLphp
  * @deprecated Use ScopeFromAttribute instead.
  */
-class sspmod_core_Auth_Process_AttributeRealm extends SimpleSAML_Auth_ProcessingFilter {
-
+class sspmod_core_Auth_Process_AttributeRealm extends SimpleSAML_Auth_ProcessingFilter
+{
     private $attributename = 'realm';
 
     /**
@@ -18,13 +16,12 @@ class sspmod_core_Auth_Process_AttributeRealm extends SimpleSAML_Auth_Processing
      * @param array $config  Configuration information about this filter.
      * @param mixed $reserved  For future use.
      */
-    public function __construct($config, $reserved) {
+    public function __construct(array $config, $reserved) {
         parent::__construct($config, $reserved);
-        assert(is_array($config));
 
-        if (array_key_exists('attributename', $config))
-            $this->attributename = $config['attributename'];
-
+        if (array_key_exists('attributename', $config)) {
+	    $this->attributename = $config['attributename'];
+	}
     }
 
     /**
@@ -34,8 +31,8 @@ class sspmod_core_Auth_Process_AttributeRealm extends SimpleSAML_Auth_Processing
      *
      * @param array &$request  The current request
      */
-    public function process(&$request) {
-        assert(is_array($request));
+    public function process(array &$request)
+    {
         assert(array_key_exists('Attributes', $request));
 
         $attributes =& $request['Attributes'];

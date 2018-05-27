@@ -1,6 +1,4 @@
 <?php
-
-
 /**
  * Attribute filter for running arbitrary PHP code.
  *
@@ -8,14 +6,12 @@
  */
 class sspmod_core_Auth_Process_PHP extends SimpleSAML_Auth_ProcessingFilter
 {
-
     /**
      * The PHP code that should be run.
      *
      * @var string
      */
     private $code;
-
 
     /**
      * Initialize this filter, parse configuration
@@ -25,11 +21,9 @@ class sspmod_core_Auth_Process_PHP extends SimpleSAML_Auth_ProcessingFilter
      *
      * @throws SimpleSAML_Error_Exception if the 'code' option is not defined.
      */
-    public function __construct($config, $reserved)
+    public function __construct(array $config, $reserved)
     {
         parent::__construct($config, $reserved);
-
-        assert(is_array($config));
 
         if (!isset($config['code'])) {
             throw new SimpleSAML_Error_Exception("core:PHP: missing mandatory configuration option 'code'.");
@@ -37,15 +31,13 @@ class sspmod_core_Auth_Process_PHP extends SimpleSAML_Auth_ProcessingFilter
         $this->code = (string) $config['code'];
     }
 
-
     /**
      * Apply the PHP code to the attributes.
      *
      * @param array &$request The current request
      */
-    public function process(&$request)
+    public function process(array &$request)
     {
-        assert(is_array($request));
         assert(array_key_exists('Attributes', $request));
 
         $function = function(&$attributes) { eval($this->code); };

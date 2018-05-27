@@ -1,6 +1,4 @@
 <?php
-
-
 /**
  * The Negotiate module. Allows for password-less, secure login by Kerberos and Negotiate.
  *
@@ -9,7 +7,6 @@
  */
 class sspmod_negotiate_Auth_Source_Negotiate extends SimpleSAML_Auth_Source
 {
-
     // Constants used in the module
     const STAGEID = 'sspmod_negotiate_Auth_Source_Negotiate.StageId';
 
@@ -29,7 +26,6 @@ class sspmod_negotiate_Auth_Source_Negotiate extends SimpleSAML_Auth_Source
     protected $admin_pw = null;
     protected $attributes = null;
 
-
     /**
      * Constructor for this authentication source.
      *
@@ -38,11 +34,8 @@ class sspmod_negotiate_Auth_Source_Negotiate extends SimpleSAML_Auth_Source
      *
      * @throws Exception If the KRB5 extension is not installed or active.
      */
-    public function __construct($info, $config)
+    public function __construct(array $info, array $config)
     {
-        assert(is_array($info));
-        assert(is_array($config));
-
         if (!extension_loaded('krb5')) {
             throw new Exception('KRB5 Extension not installed');
         }
@@ -68,7 +61,6 @@ class sspmod_negotiate_Auth_Source_Negotiate extends SimpleSAML_Auth_Source
         $this->attributes = $config->getArray('attributes', null);
     }
 
-
     /**
      * The inner workings of the module.
      *
@@ -80,10 +72,8 @@ class sspmod_negotiate_Auth_Source_Negotiate extends SimpleSAML_Auth_Source
      *
      * @param array &$state Information about the current authentication.
      */
-    public function authenticate(&$state)
+    public function authenticate(array &$state)
     {
-        assert(is_array($state));
-
         // set the default backend to config
         $state['LogoutState'] = array(
             'negotiate:backend' => $this->backend,
@@ -185,8 +175,7 @@ class sspmod_negotiate_Auth_Source_Negotiate extends SimpleSAML_Auth_Source
         assert(false);
     }
 
-
-    public function spDisabledInMetadata($spMetadata)
+    public function spDisabledInMetadata(array $spMetadata)
     {
         if (array_key_exists('negotiate:disable', $spMetadata)) {
             if ($spMetadata['negotiate:disable'] == true) {
@@ -235,7 +224,7 @@ class sspmod_negotiate_Auth_Source_Negotiate extends SimpleSAML_Auth_Source
      *
      * @param array $params additional parameters to the URL in the URL in the body.
      */
-    protected function sendNegotiate($params)
+    protected function sendNegotiate(array $params)
     {
         $url = htmlspecialchars(SimpleSAML\Module::getModuleURL('negotiate/backend.php', $params));
         $json_url = json_encode($url);
@@ -265,7 +254,7 @@ EOF;
      * @throws SimpleSAML_Error_Exception
      * @throws Exception
      */
-    public static function fallBack(&$state)
+    public static function fallBack(array &$state)
     {
         $authId = $state['LogoutState']['negotiate:backend'];
 
@@ -286,7 +275,6 @@ EOF;
         SimpleSAML\Logger::debug('Negotiate: backend returned');
         self::loginCompleted($state);
     }
-
 
     /**
      * Strips away the realm of the Kerberos identifier, looks up what attributes to fetch from SP metadata and
@@ -315,7 +303,6 @@ EOF;
         }
     }
 
-
     /**
      * Elevates the LDAP connection to allow restricted lookups if
      * so configured. Does nothing if not.
@@ -337,7 +324,6 @@ EOF;
         }
     }
 
-
     /**
      * Log out from this authentication source.
      *
@@ -346,9 +332,8 @@ EOF;
      *
      * @param array &$state Information about the current logout operation.
      */
-    public function logout(&$state)
+    public function logout(array &$state)
     {
-        assert(is_array($state));
         // get the source that was used to authenticate
         $authId = $state['negotiate:backend'];
         SimpleSAML\Logger::debug('Negotiate - logout has the following authId: "'.$authId.'"');

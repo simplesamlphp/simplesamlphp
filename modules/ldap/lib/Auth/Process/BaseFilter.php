@@ -1,20 +1,13 @@
 <?php
-
 /**
  * This base LDAP filter class can be extended to enable real
  * filter classes direct access to the authsource ldap config
  * and connects to the ldap server.
  *
- * Updated: 20161223 Remy Blom
- *          - Wrapped the building of authsource config with issets
- *
- * @author Ryan Panning <panman@traileyes.com>
- * @author Remy Blom <remy.blom@hku.nl>
  * @package SimpleSAMLphp
  */
 abstract class sspmod_ldap_Auth_Process_BaseFilter extends SimpleSAML_Auth_ProcessingFilter
 {
-
     /**
      * List of attribute "alias's" linked to the real attribute
      * name. Used for abstraction / configuration of the LDAP
@@ -24,7 +17,6 @@ abstract class sspmod_ldap_Auth_Process_BaseFilter extends SimpleSAML_Auth_Proce
      */
     protected $attribute_map;
 
-
     /**
      * The base DN of the LDAP connection. Used when searching
      * the LDAP server.
@@ -32,7 +24,6 @@ abstract class sspmod_ldap_Auth_Process_BaseFilter extends SimpleSAML_Auth_Proce
      * @var string|array
      */
     protected $base_dn;
-
 
     /**
      * The construct method will change the filter config into
@@ -43,7 +34,6 @@ abstract class sspmod_ldap_Auth_Process_BaseFilter extends SimpleSAML_Auth_Proce
      */
     protected $config;
 
-
     /**
      * Instance, object of the ldap connection. Stored here to
      * be access later during processing.
@@ -51,7 +41,6 @@ abstract class sspmod_ldap_Auth_Process_BaseFilter extends SimpleSAML_Auth_Proce
      * @var sspmod_ldap_LdapConnection
      */
     private $ldap;
-
 
     /**
      * Many times a LDAP product specific query can be used to
@@ -63,7 +52,6 @@ abstract class sspmod_ldap_Auth_Process_BaseFilter extends SimpleSAML_Auth_Proce
      */
     protected $product;
 
-
     /**
      * The class "title" used in logging and exception messages.
      * This should be prepended to the beginning of the message.
@@ -72,7 +60,6 @@ abstract class sspmod_ldap_Auth_Process_BaseFilter extends SimpleSAML_Auth_Proce
      */
     protected $title = 'ldap:BaseFilter : ';
 
-
     /**
      * List of LDAP object types, used to determine the type of
      * object that a DN references.
@@ -80,7 +67,6 @@ abstract class sspmod_ldap_Auth_Process_BaseFilter extends SimpleSAML_Auth_Proce
      * @var array
      */
     protected $type_map;
-
 
     /**
      * Checks the authsource, if defined, for configuration values
@@ -91,7 +77,7 @@ abstract class sspmod_ldap_Auth_Process_BaseFilter extends SimpleSAML_Auth_Proce
      * @param array $config
      * @param $reserved
      */
-    public function __construct(&$config, $reserved)
+    public function __construct(array &$config, $reserved)
     {
         parent::__construct($config, $reserved);
 

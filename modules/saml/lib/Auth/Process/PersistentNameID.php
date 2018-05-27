@@ -1,6 +1,4 @@
 <?php
-
-
 /**
  * Authentication processing filter to generate a persistent NameID.
  *
@@ -8,14 +6,12 @@
  */
 class sspmod_saml_Auth_Process_PersistentNameID extends sspmod_saml_BaseNameIDGenerator
 {
-
     /**
      * Which attribute contains the unique identifier of the user.
      *
      * @var string
      */
     private $attribute;
-
 
     /**
      * Initialize this filter, parse configuration.
@@ -25,10 +21,9 @@ class sspmod_saml_Auth_Process_PersistentNameID extends sspmod_saml_BaseNameIDGe
      *
      * @throws SimpleSAML_Error_Exception If the required option 'attribute' is missing.
      */
-    public function __construct($config, $reserved)
+    public function __construct(array $config, $reserved)
     {
         parent::__construct($config, $reserved);
-        assert(is_array($config));
 
         $this->format = \SAML2\Constants::NAMEID_PERSISTENT;
 
@@ -38,7 +33,6 @@ class sspmod_saml_Auth_Process_PersistentNameID extends sspmod_saml_BaseNameIDGe
         $this->attribute = $config['attribute'];
     }
 
-
     /**
      * Get the NameID value.
      *
@@ -47,7 +41,6 @@ class sspmod_saml_Auth_Process_PersistentNameID extends sspmod_saml_BaseNameIDGe
      */
     protected function getValue(array &$state)
     {
-
         if (!isset($state['Destination']['entityid'])) {
             SimpleSAML\Logger::warning('No SP entity ID - not generating persistent NameID.');
             return null;

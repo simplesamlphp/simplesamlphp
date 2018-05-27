@@ -7,13 +7,10 @@ use SimpleSAML\Logger;
 /**
  * Filter to remove attribute values which are not properly scoped.
  *
- * @author Adam Lantos, NIIF / Hungarnet
- * @author Jaime Pérez Crespo, UNINETT AS <jaime.perez@uninett.no>
  * @package SimpleSAMLphp
  */
 class FilterScopes extends \SimpleSAML_Auth_ProcessingFilter
 {
-
     /**
      * Stores any pre-configured scoped attributes which come from the filter configuration.
      */
@@ -22,30 +19,27 @@ class FilterScopes extends \SimpleSAML_Auth_ProcessingFilter
         'eduPersonPrincipalName'
     );
 
-
     /**
      * Constructor for the processing filter.
      *
      * @param array &$config Configuration for this filter.
      * @param mixed $reserved For future use.
      */
-    public function __construct(&$config, $reserved)
+    public function __construct(array &$config, $reserved)
     {
         parent::__construct($config, $reserved);
-        assert(is_array($config));
 
         if (array_key_exists('attributes', $config) && !empty($config['attributes'])) {
             $this->scopedAttributes = $config['attributes'];
         }
     }
 
-
     /**
      * This method applies the filter, removing any values
      *
      * @param array &$request the current request
      */
-    public function process(&$request)
+    public function process(array &$request)
     {
         $src = $request['Source'];
         if (!count($this->scopedAttributes)) {

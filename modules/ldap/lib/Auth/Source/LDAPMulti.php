@@ -12,7 +12,6 @@
  */
 class sspmod_ldap_Auth_Source_LDAPMulti extends sspmod_core_Auth_UserPassOrgBase
 {
-
     /**
      * An array with descriptions for organizations.
      */
@@ -28,24 +27,19 @@ class sspmod_ldap_Auth_Source_LDAPMulti extends sspmod_core_Auth_UserPassOrgBase
      */
     private $includeOrgInUsername;
 
-
     /**
      * Constructor for this authentication source.
      *
      * @param array $info  Information about this authentication source.
      * @param array $config  Configuration.
      */
-    public function __construct($info, $config)
+    public function __construct(array $info, array $config)
     {
-        assert(is_array($info));
-        assert(is_array($config));
-
         // Call the parent constructor first, as required by the interface
         parent::__construct($info, $config);
 
         $cfgHelper = SimpleSAML_Configuration::loadFromArray($config,
             'Authentication source ' . var_export($this->authId, true));
-
 
         $this->orgs = array();
         $this->ldapOrgs = array();
@@ -81,7 +75,6 @@ class sspmod_ldap_Auth_Source_LDAPMulti extends sspmod_core_Auth_UserPassOrgBase
         }
     }
 
-
     /**
      * Attempt to log in using the given username and password.
      *
@@ -110,7 +103,6 @@ class sspmod_ldap_Auth_Source_LDAPMulti extends sspmod_core_Auth_UserPassOrgBase
 
         return $this->ldapOrgs[$org]->login($username, $password, $sasl_args);
     }
-
 
     /**
      * Retrieve list of organizations.

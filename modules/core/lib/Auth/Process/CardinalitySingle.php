@@ -1,12 +1,10 @@
 <?php
-
 /**
  * Filter to ensure correct cardinality of single-valued attributes
  *
  * This filter implements a special case of the core:Cardinality filter, and
  * allows for optional corrections to be made when cardinality errors are encountered.
  *
- * @author Guy Halse, http://orcid.org/0000-0002-9388-8592
  * @package SimpleSAMLphp
  */
 class sspmod_core_Auth_Process_CardinalitySingle extends SimpleSAML_Auth_ProcessingFilter
@@ -29,13 +27,11 @@ class sspmod_core_Auth_Process_CardinalitySingle extends SimpleSAML_Auth_Process
     /**
      * Initialize this filter, parse configuration.
      *
-     * @param array $config  Configuration information about this filter.
      * @param mixed $reserved  For future use.
      */
-    public function __construct($config, $reserved)
+    public function __construct(array $config, $reserved)
     {
         parent::__construct($config, $reserved);
-        assert(is_array($config));
 
         if (array_key_exists('singleValued', $config)) {
             $this->singleValued = $config['singleValued'];
@@ -63,9 +59,8 @@ class sspmod_core_Auth_Process_CardinalitySingle extends SimpleSAML_Auth_Process
      *
      * @param array &$request  The current request
      */
-    public function process(&$request)
+    public function process(array &$request)
     {
-        assert(is_array($request));
         assert(array_key_exists("Attributes", $request));
 
         if (array_key_exists('Source', $request) &&

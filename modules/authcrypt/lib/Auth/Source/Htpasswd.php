@@ -1,9 +1,7 @@
 <?php
-
 /**
  * Authentication source for Apache 'htpasswd' files.
  *
- * @author Dyonisius (Dick) Visser, TERENA.
  * @package SimpleSAMLphp
  */
 
@@ -11,8 +9,6 @@ use WhiteHat101\Crypt\APR1_MD5;
 
 class sspmod_authcrypt_Auth_Source_Htpasswd extends sspmod_core_Auth_UserPassBase
 {
-
-
     /**
      * Our users, stored in an array, where each value is "<username>:<passwordhash>".
      *
@@ -27,7 +23,6 @@ class sspmod_authcrypt_Auth_Source_Htpasswd extends sspmod_core_Auth_UserPassBas
      */
     private $attributes = array();
 
-
     /**
      * Constructor for this authentication source.
      *
@@ -36,11 +31,8 @@ class sspmod_authcrypt_Auth_Source_Htpasswd extends sspmod_core_Auth_UserPassBas
      *
      * @throws Exception if the htpasswd file is not readable or the static_attributes array is invalid.
      */
-    public function __construct($info, $config)
+    public function __construct(array $info, array $config)
     {
-        assert(is_array($info));
-        assert(is_array($config));
-
         // Call the parent constructor first, as required by the interface
         parent::__construct($info, $config);
 
@@ -59,7 +51,6 @@ class sspmod_authcrypt_Auth_Source_Htpasswd extends sspmod_core_Auth_UserPassBas
                 $this->authId.': '.$e->getMessage());
         }
     }
-
 
     /**
      * Attempt to log in using the given username and password.

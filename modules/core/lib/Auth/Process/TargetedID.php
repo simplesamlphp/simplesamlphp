@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Filter to generate the eduPersonTargetedID attribute.
  *
@@ -25,148 +24,138 @@
  * ),
  * </code>
  *
- * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
-class sspmod_core_Auth_Process_TargetedID extends SimpleSAML_Auth_ProcessingFilter {
+class sspmod_core_Auth_Process_TargetedID extends SimpleSAML_Auth_ProcessingFilter
+{
+    /**
+     * The attribute we should generate the targeted id from, or null if we should use the
+     * UserID.
+     */
+    private $attribute = null;
 
+    /**
+     * Whether the attribute should be generated as a NameID value, or as a simple string.
+     *
+     * @var boolean
+     */
+    private $generateNameId = false;
 
-	/**
-	 * The attribute we should generate the targeted id from, or NULL if we should use the
-	 * UserID.
-	 */
-	private $attribute = NULL;
+    /**
+     * Initialize this filter.
+     *
+     * @param array $config  Configuration information about this filter.
+     * @param mixed $reserved  For future use.
+     */
+    public function __construct(array $config, $reserved)
+    {
+        parent::__construct($config, $reserved);
 
+        if (array_key_exists('attributename', $config)) {
+            $this->attribute = $config['attributename'];
+            if (!is_string($this->attribute)) {
+                throw new Exception('Invalid attribute name given to core:TargetedID filter.');
+            }
+        }
 
-	/**
-	 * Whether the attribute should be generated as a NameID value, or as a simple string.
-	 *
-	 * @var boolean
-	 */
-	private $generateNameId = FALSE;
+        if (array_key_exists('nameId', $config)) {
+            $this->generateNameId = $config['nameId'];
+            if (!is_bool($this->generateNameId)) {
+                throw new Exception('Invalid value of \'nameId\'-option to core:TargetedID filter.');
+            }
+        }
+    }
 
+    /**
+     * Apply filter to add the targeted ID.
+     *
+     * @param array &$state  The current state.
+     */
+    public function process(array &$state)
+    {
+        assert(array_key_exists('Attributes', $state));
 
-	/**
-	 * Initialize this filter.
-	 *
-	 * @param array $config  Configuration information about this filter.
-	 * @param mixed $reserved  For future use.
-	 */
-	public function __construct($config, $reserved) {
-		parent::__construct($config, $reserved);
+        if ($this->attribute === null) {
+            if (!array_key_exists('UserID', $state)) {
+                throw new Exception('core:TargetedID: Missing UserID for this user. Please' .
+                    ' check the \'userid.attribute\' option in the metadata against the' .
+                    ' attributes provided by the authentication source.');
+            }
 
-		assert(is_array($config));
+            $userID = $state['UserID'];
+        } else {
+            if (!array_key_exists($this->attribute, $state['Attributes'])) {
+                throw new Exception('core:TargetedID: Missing attribute \'' . $this->attribute .
+                    '\', which is needed to generate the targeted ID.');
+            }
 
-		if (array_key_exists('attributename', $config)) {
-			$this->attribute = $config['attributename'];
-			if (!is_string($this->attribute)) {
-				throw new Exception('Invalid attribute name given to core:TargetedID filter.');
-			}
-		}
+            $userID = $state['Attributes'][$this->attribute][0];
+        }
 
-		if (array_key_exists('nameId', $config)) {
-			$this->generateNameId = $config['nameId'];
-			if (!is_bool($this->generateNameId)) {
-				throw new Exception('Invalid value of \'nameId\'-option to core:TargetedID filter.');
-			}
-		}
-	}
+        $secretSalt = SimpleSAML\Utils\Config::getSecretSalt();
 
+        if (array_key_exists('Source', $state)) {
+            $srcID = self::getEntityId($state['Source']);
+        } else {
+            $srcID = '';
+        }
 
-	/**
-	 * Apply filter to add the targeted ID.
-	 *
-	 * @param array &$state  The current state.
-	 */
-	public function process(&$state) {
-		assert(is_array($state));
-		assert(array_key_exists('Attributes', $state));
+        if (array_key_exists('Destination', $state)) {
+            $dstID = self::getEntityId($state['Destination']);
+        } else {
+            $dstID = '';
+        }
 
-		if ($this->attribute === NULL) {
-			if (!array_key_exists('UserID', $state)) {
-				throw new Exception('core:TargetedID: Missing UserID for this user. Please' .
-					' check the \'userid.attribute\' option in the metadata against the' .
-					' attributes provided by the authentication source.');
-			}
+        $uidData = 'uidhashbase' . $secretSalt;
+        $uidData .= strlen($srcID) . ':' . $srcID;
+        $uidData .= strlen($dstID) . ':' . $dstID;
+        $uidData .= strlen($userID) . ':' . $userID;
+        $uidData .= $secretSalt;
 
-			$userID = $state['UserID'];
-		} else {
-			if (!array_key_exists($this->attribute, $state['Attributes'])) {
-				throw new Exception('core:TargetedID: Missing attribute \'' . $this->attribute .
-					'\', which is needed to generate the targeted ID.');
-			}
+        $uid = hash('sha1', $uidData);
 
-			$userID = $state['Attributes'][$this->attribute][0];
-		}
+        if ($this->generateNameId) {
+            // Convert the targeted ID to a SAML 2.0 name identifier element
+            $nameId = new \SAML2\XML\saml\NameID();
+            $nameId->value = $uid;
+            $nameId->Format = \SAML2\Constants::NAMEID_PERSISTENT;
 
+            if (isset($state['Source']['entityid'])) {
+                $nameId->NameQualifier = $state['Source']['entityid'];
+            }
+            if (isset($state['Destination']['entityid'])) {
+                $nameId->SPNameQualifier = $state['Destination']['entityid'];
+            }
+        } else {
+            $nameId = $uid;
+        }
 
-		$secretSalt = SimpleSAML\Utils\Config::getSecretSalt();
+        $state['Attributes']['eduPersonTargetedID'] = array($nameId);
+    }
 
-		if (array_key_exists('Source', $state)) {
-			$srcID = self::getEntityId($state['Source']);
-		} else {
-			$srcID = '';
-		}
+    /**
+     * Generate ID from entity metadata.
+     *
+     * This function takes in the metadata of an entity, and attempts to generate
+     * an unique identifier based on that.
+     *
+     * @param array $metadata  The metadata of the entity.
+     * @return string  The unique identifier for the entity.
+     */
+    private static function getEntityId(array $metadata)
+    {
+        $id = '';
 
-		if (array_key_exists('Destination', $state)) {
-			$dstID = self::getEntityId($state['Destination']);
-		} else {
-			$dstID = '';
-		}
+        if (array_key_exists('metadata-set', $metadata)) {
+            $set = $metadata['metadata-set'];
+            $id .= 'set' . strlen($set) . ':' . $set;
+        }
 
-		$uidData = 'uidhashbase' . $secretSalt;
-		$uidData .= strlen($srcID) . ':' . $srcID;
-		$uidData .= strlen($dstID) . ':' . $dstID;
-		$uidData .= strlen($userID) . ':' . $userID;
-		$uidData .= $secretSalt;
+        if (array_key_exists('entityid', $metadata)) {
+            $entityid = $metadata['entityid'];
+            $id .= 'set' . strlen($entityid) . ':' . $entityid;
+        }
 
-		$uid = hash('sha1', $uidData);
-
-		if ($this->generateNameId) {
-			// Convert the targeted ID to a SAML 2.0 name identifier element
-			$nameId = new \SAML2\XML\saml\NameID();
-			$nameId->value = $uid;
-			$nameId->Format = \SAML2\Constants::NAMEID_PERSISTENT;
-
-			if (isset($state['Source']['entityid'])) {
-				$nameId->NameQualifier = $state['Source']['entityid'];
-			}
-			if (isset($state['Destination']['entityid'])) {
-				$nameId->SPNameQualifier = $state['Destination']['entityid'];
-			}
-		} else {
-			$nameId = $uid;
-		}
-
-		$state['Attributes']['eduPersonTargetedID'] = array($nameId);
-	}
-
-
-	/**
-	 * Generate ID from entity metadata.
-	 *
-	 * This function takes in the metadata of an entity, and attempts to generate
-	 * an unique identifier based on that.
-	 *
-	 * @param array $metadata  The metadata of the entity.
-	 * @return string  The unique identifier for the entity.
-	 */
-	private static function getEntityId($metadata) {
-		assert(is_array($metadata));
-
-		$id = '';
-
-		if (array_key_exists('metadata-set', $metadata)) {
-			$set = $metadata['metadata-set'];
-			$id .= 'set' . strlen($set) . ':' . $set;
-		}
-
-		if (array_key_exists('entityid', $metadata)) {
-			$entityid = $metadata['entityid'];
-			$id .= 'set' . strlen($entityid) . ':' . $entityid;
-		}
-
-		return $id;
-	}
-
+        return $id;
+    }
 }
