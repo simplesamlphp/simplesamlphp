@@ -16,7 +16,6 @@ class sspmod_smartattributes_Auth_Process_SmartID extends SimpleSAML_Auth_Proces
         'facebook_targetedID',
         'twitter_targetedID',
         'windowslive_targetedID',
-        'myspace_targetedID',
         'linkedin_targetedID',
     );
 

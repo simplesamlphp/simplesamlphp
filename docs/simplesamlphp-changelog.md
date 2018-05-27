@@ -41,6 +41,9 @@ Released TBD
   * Use configuration assertion lifetime when available.
   * Use `adfs:wreply` parameter when available.
 
+### authmyspace
+  * Module removed because service is no longer available.
+
 ### cas
   * Respect all LDAP options in LDAP call.
 

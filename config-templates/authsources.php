@@ -196,17 +196,6 @@ $config = array(
     */
 
     /*
-    // MySpace OAuth Authentication API.
-    // Register your application to get an API key here:
-    //  http://developer.myspace.com/
-    'myspace' => array(
-        'authmyspace:MySpace',
-        'key' => 'xxxxxxxxxxxxxxxx',
-        'secret' => 'xxxxxxxxxxxxxxxx',
-    ),
-    */
-
-    /*
     // Microsoft Account (Windows Live ID) Authentication API.
     // Register your application to get an API key here:
     //  https://apps.dev.microsoft.com/

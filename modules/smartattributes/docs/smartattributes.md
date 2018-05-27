@@ -21,7 +21,6 @@ The filter has the following configuration options:
 	* facebook_targetedID
 	* twitter_targetedID
 	* windowslive_targetedID
-	* myspace_targetedID
 	* linkedin_targetedID
 * `id_attribute`. A string to use as the name of the newly added attribute. Defaults to `smart_id`.
 * `add_authority`. A boolean to indicate whether or not to append the SAML AuthenticatingAuthority to the resulting identifier. This can be useful to indicate what SAML IdP was used, in case the original identifier is not scoped. Defaults to `TRUE`.
