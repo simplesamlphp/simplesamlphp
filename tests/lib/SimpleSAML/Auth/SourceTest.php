@@ -28,7 +28,7 @@ class SourceTest extends ClearStateTestCase
 
 class TestAuthSource extends \SimpleSAML_Auth_Source
 {
-    public function authenticate(&$state)
+    public function authenticate(array &$state)
     {
     }
 }
