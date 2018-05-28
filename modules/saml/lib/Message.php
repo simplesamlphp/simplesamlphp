@@ -593,7 +593,7 @@ class sspmod_saml_Message
      * @param \SAML2\Response $response The response containing the assertion.
      * @param \SAML2\Assertion|\SAML2\EncryptedAssertion $assertion The assertion.
      * @param bool $responseSigned Whether the response is signed.
-     * @param bool $denyEmptySubjectConfirmationData Whether the assertion should require SubjectConfirmationData.
+     * @param bool $allowEmptySubjectConfirmationData Whether the assertion should require SubjectConfirmationData.
      *
      * @return \SAML2\Assertion The assertion, if it is valid.
      *
@@ -608,7 +608,7 @@ class sspmod_saml_Message
         \SAML2\Response $response,
         $assertion,
         $responseSigned,
-        $denyEmptySubjectConfirmationData = true
+        $allowEmptySubjectConfirmationData = false
     ) {
         assert($assertion instanceof \SAML2\Assertion || $assertion instanceof \SAML2\EncryptedAssertion);
         assert(is_bool($responseSigned));
@@ -744,12 +744,12 @@ class sspmod_saml_Message
 
             // if no SubjectConfirmationData then don't do anything.
             if ($scd === null) {
-                if ($denyEmptySubjectConfirmationData) {
-                    $lastError = 'No SubjectConfirmationData provided';
-                    continue;
-                } else {
+                if ($allowEmptySubjectConfirmationData) {
                     $found = true;
                     break;
+                } else {
+                    $lastError = 'No SubjectConfirmationData provided';
+                    continue;
                 }
             }
 
