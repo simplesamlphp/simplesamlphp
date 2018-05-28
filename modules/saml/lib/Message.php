@@ -539,7 +539,7 @@ class sspmod_saml_Message
      * @param SimpleSAML_Configuration $spMetadata The metadata of the service provider.
      * @param SimpleSAML_Configuration $idpMetadata The metadata of the identity provider.
      * @param \SAML2\Response $response The response.
-     * @param bool $denyEmptySubjectConfirmationData Whether the assertion should require SubjectConfirmationData.
+     * @param bool $allowEmptySubjectConfirmationData Whether the assertion should require SubjectConfirmationData.
      *
      * @return array Array with \SAML2\Assertion objects, containing valid assertions from the response.
      *
@@ -551,7 +551,7 @@ class sspmod_saml_Message
         SimpleSAML_Configuration $spMetadata,
         SimpleSAML_Configuration $idpMetadata,
         \SAML2\Response $response,
-        $denyEmptySubjectConfirmationData = true
+        $allowEmptySubjectConfirmationData = false
     ) {
         if (!$response->isSuccess()) {
             throw self::getResponseError($response);
@@ -578,7 +578,7 @@ class sspmod_saml_Message
 
         $ret = array();
         foreach ($assertion as $a) {
-            $ret[] = self::processAssertion($spMetadata, $idpMetadata, $response, $a, $responseSigned, $denyEmptySubjectConfirmationData);
+            $ret[] = self::processAssertion($spMetadata, $idpMetadata, $response, $a, $responseSigned, $allowEmptySubjectConfirmationData);
         }
 
         return $ret;
