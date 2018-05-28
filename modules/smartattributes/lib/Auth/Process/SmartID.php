@@ -79,10 +79,11 @@ class sspmod_smartattributes_Auth_Process_SmartID extends SimpleSAML_Auth_Proces
 	}
 
 	private function addID($attributes, $request) {
+        $state = $request['saml:sp:State'];
 		foreach ($this->_candidates as $idCandidate) {
 			if (isset($attributes[$idCandidate][0])) {
-				if(($this->_add_authority) && (isset($request['saml:AuthenticatingAuthority'][0]))) {
-					return ($this->_add_candidate ? $idCandidate.':' : '').$attributes[$idCandidate][0] . '!' . $request['saml:AuthenticatingAuthority'][0];
+				if(($this->_add_authority) && (isset($state['saml:AuthenticatingAuthority'][0]))) {
+					return ($this->_add_candidate ? $idCandidate.':' : '').$attributes[$idCandidate][0] . '!' . $state['saml:AuthenticatingAuthority'][0];
 				} else {
 					return ($this->_add_candidate ? $idCandidate.':' : '').$attributes[$idCandidate][0];
 				}
