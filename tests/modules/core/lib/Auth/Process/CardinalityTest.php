@@ -9,6 +9,8 @@ if (class_exists('\PHPUnit\Framework\TestCase', true) and !class_exists('\PHPUni
  */
 class Test_Core_Auth_Process_CardinalityTest extends \PHPUnit_Framework_TestCase
 {
+    private $http;
+
     /**
      * Helper function to run the filter with a given configuration.
      *
@@ -16,11 +18,11 @@ class Test_Core_Auth_Process_CardinalityTest extends \PHPUnit_Framework_TestCase
      * @param  array $request The request state.
      * @return array  The state array after processing.
      */
-    private static function processFilter(array $config, array $request)
+    private function processFilter(array $config, array $request)
     {
         $_SERVER['SERVER_PROTOCOL'] = 'HTTP/1.1';
         $_SERVER['REQUEST_METHOD'] = 'GET';
-        $filter = new sspmod_core_Auth_Process_Cardinality($config, null);
+        $filter = new sspmod_core_Auth_Process_Cardinality($config, null, $this->http);
         $filter->process($request);
         return $request;
     }
@@ -28,6 +30,9 @@ class Test_Core_Auth_Process_CardinalityTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         \SimpleSAML_Configuration::loadFromArray(array(), '[ARRAY]', 'simplesaml');
+        $this->http = $this->getMockBuilder('SimpleSAML\Utils\HTTPAdapter')
+                           ->setMethods(array('redirectTrustedURL'))
+                           ->getMock();
     }
 
     /*
@@ -43,7 +48,7 @@ class Test_Core_Auth_Process_CardinalityTest extends \PHPUnit_Framework_TestCase
                 'mail' => array('joe@example.com', 'bob@example.com'),
             ),
         );
-        $result = self::processFilter($config, $request);
+        $result = $this->processFilter($config, $request);
         $attributes = $result['Attributes'];
         $expectedData = array('mail' => array('joe@example.com', 'bob@example.com'));
         $this->assertEquals($expectedData, $attributes, "Assertion values should not have changed");
@@ -62,7 +67,7 @@ class Test_Core_Auth_Process_CardinalityTest extends \PHPUnit_Framework_TestCase
                 'mail' => array('joe@example.com', 'bob@example.com'),
             ),
         );
-        $result = self::processFilter($config, $request);
+        $result = $this->processFilter($config, $request);
         $attributes = $result['Attributes'];
         $expectedData = array('mail' => array('joe@example.com', 'bob@example.com'));
         $this->assertEquals($expectedData, $attributes, "Assertion values should not have changed");
@@ -81,7 +86,7 @@ class Test_Core_Auth_Process_CardinalityTest extends \PHPUnit_Framework_TestCase
                 'mail' => array('joe@example.com', 'bob@example.com'),
             ),
         );
-        $result = self::processFilter($config, $request);
+        $result = $this->processFilter($config, $request);
         $attributes = $result['Attributes'];
         $expectedData = array('mail' => array('joe@example.com', 'bob@example.com'));
         $this->assertEquals($expectedData, $attributes, "Assertion values should not have changed");
@@ -89,12 +94,9 @@ class Test_Core_Auth_Process_CardinalityTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Test maximum is out of bounds results in redirect
-     * @expectedException PHPUnit_Framework_Error
-     * @expectedExceptionMessageRegExp /REQUEST_URI/
      */
     public function testMaxOutOfBounds()
     {
-        $this->markTestSkipped('Breaks testsuite see #860');
         $config = array(
             'mail' => array('max' => 2),
         );
@@ -103,17 +105,18 @@ class Test_Core_Auth_Process_CardinalityTest extends \PHPUnit_Framework_TestCase
                 'mail' => array('joe@example.com', 'bob@example.com', 'fred@example.com'),
             ),
         );
-        self::processFilter($config, $request);
+
+        $this->http->expects($this->once())
+                   ->method('redirectTrustedURL');
+
+        $this->processFilter($config, $request);
     }
 
     /**
      * Test minimum is out of bounds results in redirect
-     * @expectedException PHPUnit_Framework_Error
-     * @expectedExceptionMessageRegExp /REQUEST_URI/
      */
     public function testMinOutOfBounds()
     {
-        $this->markTestSkipped('Breaks testsuite see #860');
         $config = array(
             'mail' => array('min' => 3),
         );
@@ -122,24 +125,29 @@ class Test_Core_Auth_Process_CardinalityTest extends \PHPUnit_Framework_TestCase
                 'mail' => array('joe@example.com', 'bob@example.com'),
             ),
         );
-        self::processFilter($config, $request);
+
+        $this->http->expects($this->once())
+                   ->method('redirectTrustedURL');
+
+        $this->processFilter($config, $request);
     }
 
     /**
      * Test missing attribute results in redirect
-     * @expectedException PHPUnit_Framework_Error
-     * @expectedExceptionMessageRegExp /REQUEST_URI/
      */
     public function testMissingAttribute()
     {
-        $this->markTestSkipped('Breaks testsuite see #860');
         $config = array(
             'mail' => array('min' => 1),
         );
         $request = array(
             'Attributes' => array( ),
         );
-        self::processFilter($config, $request);
+
+        $this->http->expects($this->once())
+                   ->method('redirectTrustedURL');
+
+        $this->processFilter($config, $request);
     }
 
     /*
@@ -153,7 +161,6 @@ class Test_Core_Auth_Process_CardinalityTest extends \PHPUnit_Framework_TestCase
      */
     public function testMinInvalid()
     {
-        $this->markTestSkipped('Breaks testsuite see #860');
         $config = array(
             'mail' => array('min' => false),
         );
@@ -162,7 +169,7 @@ class Test_Core_Auth_Process_CardinalityTest extends \PHPUnit_Framework_TestCase
                 'mail' => array('joe@example.com', 'bob@example.com'),
             ),
         );
-        self::processFilter($config, $request);
+        $this->processFilter($config, $request);
     }
 
     /**
@@ -172,7 +179,6 @@ class Test_Core_Auth_Process_CardinalityTest extends \PHPUnit_Framework_TestCase
      */
     public function testMinNegative()
     {
-        $this->markTestSkipped('Breaks testsuite see #860');
         $config = array(
             'mail' => array('min' => -1),
         );
@@ -181,7 +187,7 @@ class Test_Core_Auth_Process_CardinalityTest extends \PHPUnit_Framework_TestCase
                 'mail' => array('joe@example.com', 'bob@example.com'),
             ),
         );
-        self::processFilter($config, $request);
+        $this->processFilter($config, $request);
     }
 
     /**
@@ -191,7 +197,6 @@ class Test_Core_Auth_Process_CardinalityTest extends \PHPUnit_Framework_TestCase
      */
     public function testMaxInvalid()
     {
-        $this->markTestSkipped('Breaks testsuite see #860');
         $config = array(
             'mail' => array('max' => false),
         );
@@ -200,7 +205,7 @@ class Test_Core_Auth_Process_CardinalityTest extends \PHPUnit_Framework_TestCase
                 'mail' => array('joe@example.com', 'bob@example.com'),
             ),
         );
-        self::processFilter($config, $request);
+        $this->processFilter($config, $request);
     }
 
     /**
@@ -210,7 +215,6 @@ class Test_Core_Auth_Process_CardinalityTest extends \PHPUnit_Framework_TestCase
      */
     public function testMinGreaterThanMax()
     {
-        $this->markTestSkipped('Breaks testsuite see #860');
         $config = array(
             'mail' => array('min' => 2, 'max' => 1),
         );
@@ -219,7 +223,7 @@ class Test_Core_Auth_Process_CardinalityTest extends \PHPUnit_Framework_TestCase
                 'mail' => array('joe@example.com', 'bob@example.com'),
             ),
         );
-        self::processFilter($config, $request);
+        $this->processFilter($config, $request);
     }
 
     /**
@@ -229,7 +233,6 @@ class Test_Core_Auth_Process_CardinalityTest extends \PHPUnit_Framework_TestCase
      */
     public function testInvalidAttributeName()
     {
-        $this->markTestSkipped('Breaks testsuite see #860');
         $config = array(
             array('min' => 2, 'max' => 1),
         );
