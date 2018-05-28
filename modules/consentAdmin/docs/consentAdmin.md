@@ -44,7 +44,9 @@ Setting optional parameters
 In order to make the consentAdmin module work together with the consent
 module correctly, you need to set the configuration 'attributes.hash'
 according to the value of 'includeValues' configuration in the consent
-module.
+module. Likewise, if you've used the 'noconsentattributes' configuration
+option in the consent module, you should also set the 'attributes.exclude'
+configuration option here to match.
 
 You should also set the 'returnURL' configuration in order to pass on your
 users when the press the 'Logout' link.
