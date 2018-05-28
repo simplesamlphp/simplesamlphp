@@ -142,6 +142,48 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerPdo extends SimpleSAML_Metadata_
         return $metadataSet;
     }
 
+    /**      
+     * Retrieve a metadata entry.
+     *      
+     * @param string $entityId The entityId we are looking up.
+     * @param string $set The set we are looking for metadata in.
+     *
+     * @return array An associative array with metadata for the given entity, or NULL if we are unable to
+     *         locate the entity.
+     */
+    public function getMetaData($entityId, $set)      
+    {       
+        assert('is_string($entityId)');
+        assert('is_string($set)');
+
+        $tableName = $this->getTableName($set);
+
+        if (!in_array($set, $this->supportedSets, true)) {
+            return null;
+        }
+
+        $stmt = $this->db->read("SELECT entity_id, entity_data FROM $tableName WHERE entity_id=:entityId", array('entityId' => $entityId));
+        if ($stmt->execute()) {
+            $rowCount = 0;
+
+            while ($d = $stmt->fetch()) {
+                if (++$rowCount > 1) {
+		    SimpleSAML\Logger::warning("Dulicate match for $entityId in set $set");
+		    break;
+                }
+                $data = json_decode($d['entity_data'], true);
+                if ($data === null) {
+                    throw new SimpleSAML_Error_Exception("Cannot decode metadata for entity '${d['entity_id']}'");
+                }
+                if (!array_key_exists('entityid', $data)) {
+                    $data['entityid'] = $d['entity_id'];
+                }
+            }
+            return $data;
+        } else {
+            throw new Exception('PDO metadata handler: Database error: '.var_export($this->db->getLastError(), true));
+        }
+    }
 
     private function generateDynamicHostedEntityID($set)
     {
