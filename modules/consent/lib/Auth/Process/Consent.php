@@ -116,7 +116,15 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
             $this->_hiddenAttributes = $config['hiddenAttributes'];
         }
 
-        if (array_key_exists('noconsentattributes', $config)) {
+        if (array_key_exists('attributes.exclude', $config)) {
+            if (!is_array($config['attributes.exclude'])) {
+                throw new SimpleSAML_Error_Exception(
+                    'Consent: attributes.exclude must be an array. '.
+                    var_export($config['attributes.exclude'], true).' given.'
+                );
+            }
+        } elseif (array_key_exists('noconsentattributes', $config)) {
+            SimpleSAML\Logger::warning("The 'noconsentattributes' option has been deprecated in favour of 'attributes.exclude'.");
             if (!is_array($config['noconsentattributes'])) {
                 throw new SimpleSAML_Error_Exception(
                     'Consent: noconsentattributes must be an array. '.

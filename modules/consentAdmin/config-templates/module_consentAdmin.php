@@ -19,7 +19,7 @@ $config = array(
     // Hash attributes including values or not
     'attributes.hash' => true,
 
-    // If you set noconsentattributes in the consent module, this must match
+    // If you set attributes.exclude in the consent module, this must match
     // 'attributes.exclude' => array(),
 
     // Where to direct the user after logout
