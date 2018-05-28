@@ -168,7 +168,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerPdo extends SimpleSAML_Metadata_
 
             while ($d = $stmt->fetch()) {
                 if (++$rowCount > 1) {
-                    SimpleSAML\Logger::warning("Dulicate match for $entityId in set $set");
+                    SimpleSAML\Logger::warning("Duplicate match for $entityId in set $set");
                     break;
                 }
                 $data = json_decode($d['entity_data'], true);
