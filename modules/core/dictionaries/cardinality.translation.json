@@ -1,15 +1,18 @@
 {
-    "cardinality_header": {
-        "af": "Onjuiste Eienskappe",
-        "nl": "Niet de juiste attributen"
-    },
-    "cardinality_text": {
-        "nl": "Één of meer door de Identity Provider geleverde attributen bevat niet het vereiste aantal attributen."
-    },
-    "problematic_attributes": {
-        "nl": "De onjuiste attributen zijn:"
-    },
-    "got_want": {
-        "nl": "%GOT% ontvangen waarden, %WANT% vereist"
-    }
+	"cardinality_header": {
+		"af": "Verkeerde Eienskappe",
+		"nl": "Niet de juiste attributen"
+	},
+	"cardinality_text": {
+		"af": "Een of meer van die eienskappe wat deur u identiteits-verskaffer voorsien was, bevat nie die verwagte aantal waardes nie.",
+		"nl": "Één of meer door de Identity Provider geleverde attributen bevat niet het vereiste aantal attributen."
+	},
+	"problematic_attributes": {
+		"af": "Die problematiese eienskap(pe) is:",
+		"nl": "De onjuiste attributen zijn:"
+	},
+	"got_want": {
+		"af": "%GOT% waarde ontvang, %WANT% nodig",
+		"nl": "%GOT% ontvangen waarden, %WANT% vereist"
+	}
 }
