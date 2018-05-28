@@ -408,6 +408,51 @@ class sspmod_saml_Message
 
 
     /**
+     * Decrypt any encrypted attributes in an assertion.
+     *
+     * @param SimpleSAML_Configuration $srcMetadata The metadata of the sender (IdP).
+     * @param SimpleSAML_Configuration $dstMetadata The metadata of the recipient (SP).
+     * @param \SAML2\Assertion|\SAML2\Assertion $assertion The assertion containing any possibly encrypted attributes.
+     *
+     * @return void
+     *
+     * @throws \SimpleSAML_Error_Exception if we cannot get the decryption keys or decryption fails.
+     */
+    private static function decryptAttributes(
+        SimpleSAML_Configuration $srcMetadata,
+        SimpleSAML_Configuration $dstMetadata,
+        \SAML2\Assertion &$assertion
+    ) {
+        if (!$assertion->hasEncryptedAttributes()) {
+            return;
+        }
+
+        try {
+            $keys = self::getDecryptionKeys($srcMetadata, $dstMetadata);
+        } catch (Exception $e) {
+            throw new SimpleSAML_Error_Exception('Error decrypting attributes: '.$e->getMessage());
+        }
+
+        $blacklist = self::getBlacklistedAlgorithms($srcMetadata, $dstMetadata);
+
+        $error = true;
+        foreach ($keys as $i => $key) {
+            try {
+                $assertion->decryptAttributes($key, $blacklist);
+                SimpleSAML\Logger::debug('Attribute decryption with key #'.$i.' succeeded.');
+                $error = false;
+                break;
+            } catch (Exception $e) {
+                SimpleSAML\Logger::debug('Attribute decryption failed with exception: '.$e->getMessage());
+            }
+        }
+        if ($error) {
+            throw new SimpleSAML_Error_Exception('Could not decrypt the attributes');
+        }
+    }
+
+
+    /**
      * Retrieve the status code of a response as a sspmod_saml_Error.
      *
      * @param \SAML2\StatusResponse $response The response.
@@ -609,6 +654,7 @@ class sspmod_saml_Message
         assert(is_bool($responseSigned));
 
         $assertion = self::decryptAssertion($idpMetadata, $spMetadata, $assertion);
+        self::decryptAttributes($idpMetadata, $spMetadata, $assertion);
 
         if (!self::checkSign($idpMetadata, $assertion)) {
             if (!$responseSigned) {
