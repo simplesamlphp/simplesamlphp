@@ -179,4 +179,39 @@ class ConsentTest extends TestCase
             "Hash is not the same when the order of the attributs changes and the values are not included"
         );
     }
+
+    public function testConstructorSetsInstancePrivateVars()
+    {
+        $reflection = new \ReflectionClass('\sspmod_consent_Auth_Process_Consent');
+
+        foreach (array(
+            '_includeValues', '_checked', '_focus', '_hiddenAttributes', '_noconsentattributes', '_showNoConsentAboutService'
+        ) as $v) {
+            $instanceVars[$v] = $reflection->getProperty($v);
+            $instanceVars[$v]->setAccessible(true);
+        }
+
+        /* these just need to be different to the default values */
+        $config = array(
+            'includeValues' => true,
+            'checked' => true,
+            'focus' => 'yes',
+            'hiddenAttributes' => array('attribute1', 'attribute2'),
+            'attributes.exclude' => array('attribute1', 'attribute2'),
+            'showNoConsentAboutService' => false,
+        );
+
+        $testcase = $reflection->newInstance($config, null);
+
+        $this->assertEquals($instanceVars['_includeValues']->getValue($testcase), $config['includeValues']);
+        $this->assertEquals($instanceVars['_checked']->getValue($testcase), $config['checked']);
+        $this->assertEquals($instanceVars['_focus']->getValue($testcase), $config['focus']);
+        $this->assertEquals($instanceVars['_hiddenAttributes']->getValue($testcase), $config['hiddenAttributes']);
+        $this->assertEquals($instanceVars['_noconsentattributes']->getValue($testcase), $config['attributes.exclude']);
+        $this->assertEquals($instanceVars['_showNoConsentAboutService']->getValue($testcase), $config['showNoConsentAboutService']);
+
+        $deprecated = $reflection->newInstance(array('noconsentattributes' => $config['attributes.exclude'],), null);
+        $this->assertEquals($instanceVars['_noconsentattributes']->getValue($deprecated), $config['attributes.exclude']);
+
+    }
 }
