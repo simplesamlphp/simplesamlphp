@@ -53,7 +53,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandler
      */
     protected function __construct()
     {
-        $config = SimpleSAML_Configuration::getInstance();
+        $config = \SimpleSAML\Configuration::getInstance();
 
         $sourcesConfig = $config->getArray('metadata.sources', null);
 
@@ -95,8 +95,8 @@ class SimpleSAML_Metadata_MetaDataStorageHandler
         }
 
         // get the configuration
-        $config = SimpleSAML_Configuration::getInstance();
-        assert($config instanceof SimpleSAML_Configuration);
+        $config = \SimpleSAML\Configuration::getInstance();
+        assert($config instanceof \SimpleSAML\Configuration);
 
         $baseurl = \SimpleSAML\Utils\HTTP::getSelfURLHost().$config->getBasePath();
 
@@ -308,7 +308,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandler
      * @param string $entityId The entity ID we are looking up.
      * @param string $set The metadata set we are searching.
      *
-     * @return SimpleSAML_Configuration The configuration object representing the metadata.
+     * @return \SimpleSAML\Configuration The configuration object representing the metadata.
      * @throws SimpleSAML_Error_MetadataNotFound If no metadata for the entity specified can be found.
      */
     public function getMetaDataConfig($entityId, $set)
@@ -317,7 +317,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandler
         assert(is_string($set));
 
         $metadata = $this->getMetaData($entityId, $set);
-        return SimpleSAML_Configuration::loadFromArray($metadata, $set.'/'.var_export($entityId, true));
+        return \SimpleSAML\Configuration::loadFromArray($metadata, $set.'/'.var_export($entityId, true));
     }
 
 
@@ -327,7 +327,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandler
      * @param string $sha1 The SHA1 digest of the entity ID.
      * @param string $set The metadata set we are searching.
      *
-     * @return null|SimpleSAML_Configuration The metadata corresponding to the entity, or null if the entity cannot be
+     * @return null|\SimpleSAML\Configuration The metadata corresponding to the entity, or null if the entity cannot be
      * found.
      */
     public function getMetaDataConfigForSha1($sha1, $set)
@@ -349,7 +349,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandler
             if (sha1($remote_provider['entityid']) == $sha1) {
                 $remote_provider['metadata-set'] = $set;
 
-                return SimpleSAML_Configuration::loadFromArray(
+                return \SimpleSAML\Configuration::loadFromArray(
                     $remote_provider,
                     $set.'/'.var_export($remote_provider['entityid'], true)
                 );

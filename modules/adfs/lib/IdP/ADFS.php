@@ -153,7 +153,7 @@ MSG;
     {
         $spMetadata = $state["SPMetadata"];
         $spEntityId = $spMetadata['entityid'];
-        $spMetadata = SimpleSAML_Configuration::loadFromArray($spMetadata, '$metadata['.var_export($spEntityId, true).']');
+        $spMetadata = \SimpleSAML\Configuration::loadFromArray($spMetadata, '$metadata['.var_export($spEntityId, true).']');
 
         $attributes = $state['Attributes'];
 

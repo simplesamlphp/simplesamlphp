@@ -80,7 +80,7 @@ class MDQ extends \SimpleSAML_Metadata_MetaDataStorageSource
         }
 
         if (array_key_exists('cachedir', $config)) {
-            $globalConfig = \SimpleSAML_Configuration::getInstance();
+            $globalConfig = \SimpleSAML\Configuration::getInstance();
             $this->cacheDir = $globalConfig->resolvePath($config['cachedir']);
         } else {
             $this->cacheDir = null;

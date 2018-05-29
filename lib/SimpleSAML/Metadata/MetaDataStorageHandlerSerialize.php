@@ -36,9 +36,9 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerSerialize extends SimpleSAML_Met
     {
         assert(is_array($config));
 
-        $globalConfig = SimpleSAML_Configuration::getInstance();
+        $globalConfig = \SimpleSAML\Configuration::getInstance();
 
-        $cfgHelp = SimpleSAML_Configuration::loadFromArray($config, 'serialize metadata source');
+        $cfgHelp = \SimpleSAML\Configuration::loadFromArray($config, 'serialize metadata source');
 
         $this->directory = $cfgHelp->getString('directory');
 

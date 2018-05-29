@@ -19,9 +19,8 @@ use SimpleSAML\XML\Signer;
 
 class HTTPPost
 {
-
     /**
-     * @var \SimpleSAML_Configuration
+     * @var \SimpleSAML\Configuration
      */
     private $configuration = null;
 
@@ -34,11 +33,11 @@ class HTTPPost
     /**
      * Constructor for the \SimpleSAML\Bindings\Shib13\HTTPPost class.
      *
-     * @param \SimpleSAML_Configuration                   $configuration The configuration to use.
+     * @param \SimpleSAML\Configuration                   $configuration The configuration to use.
      * @param \SimpleSAML_Metadata_MetaDataStorageHandler $metadatastore A store where to find metadata.
      */
     public function __construct(
-        \SimpleSAML_Configuration $configuration,
+        \SimpleSAML\Configuration $configuration,
         \SimpleSAML_Metadata_MetaDataStorageHandler $metadatastore
     ) {
         $this->configuration = $configuration;
@@ -50,15 +49,15 @@ class HTTPPost
      * Send an authenticationResponse using HTTP-POST.
      *
      * @param string                    $response The response which should be sent.
-     * @param \SimpleSAML_Configuration $idpmd The metadata of the IdP which is sending the response.
-     * @param \SimpleSAML_Configuration $spmd The metadata of the SP which is receiving the response.
+     * @param \SimpleSAML\Configuration $idpmd The metadata of the IdP which is sending the response.
+     * @param \SimpleSAML\Configuration $spmd The metadata of the SP which is receiving the response.
      * @param string|null               $relayState The relaystate for the SP.
      * @param string                    $shire The shire which should receive the response.
      */
     public function sendResponse(
         $response,
-        \SimpleSAML_Configuration $idpmd,
-        \SimpleSAML_Configuration $spmd,
+        \SimpleSAML\Configuration $idpmd,
+        \SimpleSAML\Configuration $spmd,
         $relayState,
         $shire
     ) {

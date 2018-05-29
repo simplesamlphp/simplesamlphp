@@ -1,7 +1,7 @@
 <?php
 
-// Load SimpleSAMLphp, configuration
-$config = SimpleSAML_Configuration::getInstance();
+// Load SimpleSAMLphp configuration
+$config = \SimpleSAML\Configuration::getInstance();
 $session = SimpleSAML_Session::getSessionFromRequest();
 
 // Check if valid local session exists.

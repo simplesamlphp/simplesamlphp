@@ -3,7 +3,7 @@
 namespace SimpleSAML\Test\Module\saml\Auth\Source;
 
 use PHPUnit\Framework\TestCase;
-use \SimpleSAML_Configuration as Configuration;
+use \SimpleSAML\Configuration;
 
 /**
  * Custom Exception to throw to terminate a TestCase.
@@ -41,7 +41,7 @@ class SP_Tester extends \sspmod_saml_Auth_Source_SP
     }
 
 
-    public function startSSO2Test(\SimpleSAML_Configuration $idpMetadata, array $state)
+    public function startSSO2Test(Configuration $idpMetadata, array $state)
     {
         $reflector = new \ReflectionObject($this);
         $method = $reflector->getMethod('startSSO2');
@@ -79,7 +79,7 @@ class SP_Test extends TestCase
     private function getIdpMetadata()
     {
         if (!$this->idpMetadata) {
-            $this->idpMetadata = new \SimpleSAML_Configuration(
+            $this->idpMetadata = new Configuration(
                 $this->idpConfigArray,
                 'Auth_Source_SP_Test::getIdpMetadata()'
             );

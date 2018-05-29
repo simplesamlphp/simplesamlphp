@@ -52,9 +52,9 @@ class sspmod_multiauth_Auth_Source_MultiAuth extends SimpleSAML_Auth_Source {
 			throw new Exception('The required "sources" config option was not found');
 		}
 
-		$globalConfiguration = SimpleSAML_Configuration::getInstance();
+		$globalConfiguration = \SimpleSAML\Configuration::getInstance();
 		$defaultLanguage = $globalConfiguration->getString('language.default', 'en');
-		$authsources = SimpleSAML_Configuration::getConfig('authsources.php');
+		$authsources = \SimpleSAML\Configuration::getConfig('authsources.php');
 		$this->sources = array();
 		foreach($config['sources'] as $source => $info) {
 
@@ -204,7 +204,7 @@ class sspmod_multiauth_Auth_Source_MultiAuth extends SimpleSAML_Auth_Source {
 
 		$cookieName = 'multiauth_source_' . $this->authId;
 
-		$config = SimpleSAML_Configuration::getInstance();
+		$config = \SimpleSAML\Configuration::getInstance();
 		$params = array(
 			/* We save the cookies for 90 days. */
 			'lifetime' => (60*60*24*90),

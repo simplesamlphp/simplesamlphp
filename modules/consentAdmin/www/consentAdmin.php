@@ -79,8 +79,8 @@ function driveProcessingChain(
 }
 
 // Get config object
-$config = SimpleSAML_Configuration::getInstance();
-$cA_config = SimpleSAML_Configuration::getConfig('module_consentAdmin.php');
+$config = \SimpleSAML\Configuration::getInstance();
+$cA_config = \SimpleSAML\Configuration::getConfig('module_consentAdmin.php');
 $authority = $cA_config->getValue('authority');
 
 $as = new \SimpleSAML\Auth\Simple($authority);

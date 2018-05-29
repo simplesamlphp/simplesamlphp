@@ -103,7 +103,7 @@ abstract class sspmod_core_Auth_UserPassBase extends SimpleSAML_Auth_Source {
 		}
 
         // get the "remember me" config options
-        $sspcnf = SimpleSAML_Configuration::getInstance();
+        $sspcnf = \SimpleSAML\Configuration::getInstance();
         $this->rememberMeEnabled = $sspcnf->getBoolean('session.rememberme.enable', FALSE);
         $this->rememberMeChecked = $sspcnf->getBoolean('session.rememberme.checked', FALSE);
 	}

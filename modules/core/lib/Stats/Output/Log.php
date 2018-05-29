@@ -17,10 +17,9 @@ class sspmod_core_Stats_Output_Log extends SimpleSAML_Stats_Output {
 	/**
 	 * Initialize the output.
 	 *
-	 * @param SimpleSAML_Configuration $config  The configuration for this output.
+	 * @param \SimpleSAML\Configuration $config  The configuration for this output.
 	 */
-	public function __construct(SimpleSAML_Configuration $config) {
-
+	public function __construct(\SimpleSAML\Configuration $config) {
 		$logLevel = $config->getString('level', 'notice');
 		$this->logger = array('SimpleSAML\Logger', $logLevel);
 		if (!is_callable($this->logger)) {

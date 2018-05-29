@@ -43,7 +43,7 @@ class sspmod_portal_Portal
 	
 	public function getMenu($thispage)
     {
-		$config = SimpleSAML_Configuration::getInstance();
+		$config = \SimpleSAML\Configuration::getInstance();
 		$t = new SimpleSAML\Locale\Translate($config);
 		$tabset = $this->getTabset($thispage);
 		$logininfo = $this->getLoginInfo($t, $thispage);

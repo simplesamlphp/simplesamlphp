@@ -14,9 +14,9 @@ class SimpleSAML_Metadata_Signer
      * This functions finds what key & certificate files should be used to sign the metadata
      * for the given entity.
      *
-     * @param SimpleSAML_Configuration $config Our SimpleSAML_Configuration instance.
-     * @param array                    $entityMetadata The metadata of the entity.
-     * @param string                   $type A string which describes the type entity this is, e.g. 'SAML 2 IdP' or
+     * @param \SimpleSAML\Configuration $config Our \SimpleSAML\Configuration instance.
+     * @param array                     $entityMetadata The metadata of the entity.
+     * @param string                    $type A string which describes the type entity this is, e.g. 'SAML 2 IdP' or
      *     'Shib 1.3 SP'.
      *
      * @return array An associative array with the keys 'privatekey', 'certificate', and optionally 'privatekey_pass'.
@@ -110,9 +110,9 @@ class SimpleSAML_Metadata_Signer
     /**
      * Determine whether metadata signing is enabled for the given metadata.
      *
-     * @param SimpleSAML_Configuration $config Our SimpleSAML_Configuration instance.
-     * @param array                    $entityMetadata The metadata of the entity.
-     * @param string                   $type A string which describes the type entity this is, e.g. 'SAML 2 IdP' or
+     * @param \SimpleSAML\Configuration $config Our \SimpleSAML\Configuration instance.
+     * @param array                     $entityMetadata The metadata of the entity.
+     * @param string                    $type A string which describes the type entity this is, e.g. 'SAML 2 IdP' or
      *     'Shib 1.3 SP'.
      *
      * @return boolean True if metadata signing is enabled, false otherwise.
@@ -145,7 +145,7 @@ class SimpleSAML_Metadata_Signer
      * This method will look for the 'metadata.sign.algorithm' key in the $entityMetadata array, or look for such
      * a configuration option in the $config object.
      *
-     * @param SimpleSAML_Configuration $config The global configuration.
+     * @param \SimpleSAML\Configuration $config The global configuration.
      * @param array $entityMetadata An array containing the metadata related to this entity.
      * @param string $type A string describing the type of entity. E.g. 'SAML 2 IdP' or 'Shib 1.3 SP'.
      *
@@ -213,7 +213,7 @@ class SimpleSAML_Metadata_Signer
      */
     public static function sign($metadataString, $entityMetadata, $type)
     {
-        $config = SimpleSAML_Configuration::getInstance();
+        $config = \SimpleSAML\Configuration::getInstance();
 
         // check if metadata signing is enabled
         if (!self::isMetadataSigningEnabled($config, $entityMetadata, $type)) {

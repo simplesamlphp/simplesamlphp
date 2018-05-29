@@ -131,7 +131,7 @@ class sspmod_ldap_ConfigHelper
         $this->location = $location;
 
         // Parse configuration
-        $config = SimpleSAML_Configuration::loadFromArray($config, $location);
+        $config = \SimpleSAML\Configuration::loadFromArray($config, $location);
 
         $this->hostname = $config->getString('hostname');
         $this->enableTLS = $config->getBoolean('enable_tls', false);

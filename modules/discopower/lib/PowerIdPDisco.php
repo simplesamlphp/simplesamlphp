@@ -17,7 +17,7 @@ class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco
     /**
      * The configuration for this instance.
      *
-     * @var SimpleSAML_Configuration
+     * @var \SimpleSAML\Configuration
      */
     private $discoconfig;
 
@@ -51,7 +51,7 @@ class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco
     {
         parent::__construct($metadataSets, $instance);
 
-        $this->discoconfig = SimpleSAML_Configuration::getConfig('module_discopower.php');
+        $this->discoconfig = \SimpleSAML\Configuration::getConfig('module_discopower.php');
 
         $this->cdcDomain = $this->discoconfig->getString('cdc.domain', null);
         if ($this->cdcDomain !== null && $this->cdcDomain[0] !== '.') {

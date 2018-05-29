@@ -1,9 +1,7 @@
 <?php
 
-
-
 // Load SimpleSAMLphp, configuration
-$config = SimpleSAML_Configuration::getInstance();
+$config = \SimpleSAML\Configuration::getInstance();
 $session = SimpleSAML_Session::getSessionFromRequest();
 
 // Check if valid local session exists.
@@ -13,20 +11,11 @@ if ($config->getBoolean('admin.protectindexpage', false)) {
 $loginurl = SimpleSAML\Utils\Auth::getAdminLoginURL();
 $isadmin = SimpleSAML\Utils\Auth::isAdmin();
 
-
-
-
-	
-	
-	
 $links = array();
 $links_welcome = array();
 $links_config = array();
 $links_auth = array();
 $links_federation = array();
-
-
-
 
 if($config->getBoolean('idpdisco.enableremember', FALSE)) {
 	$links_federation[] = array(
@@ -41,9 +30,6 @@ $links_federation[] = array(
 	'text' => '{core:frontpage:link_xmlconvert}',
 );
 
-
-
-
 $allLinks = array(
 	'links'      => &$links,
 	'welcome'    => &$links_welcome,
@@ -56,13 +42,6 @@ SimpleSAML\Module::callHooks('frontpage', $allLinks);
 
 $metadataHosted = array();
 SimpleSAML\Module::callHooks('metadata_hosted', $metadataHosted);
-
-
-
-
-
-
-
 
 
 $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();

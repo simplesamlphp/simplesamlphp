@@ -128,12 +128,12 @@ class Artifact
     /**
      * This function receives a SAML 1.1 artifact.
      *
-     * @param \SimpleSAML_Configuration $spMetadata The metadata of the SP.
-     * @param \SimpleSAML_Configuration $idpMetadata The metadata of the IdP.
+     * @param \SimpleSAML\Configuration $spMetadata The metadata of the SP.
+     * @param \SimpleSAML\Configuration $idpMetadata The metadata of the IdP.
      * @return string The <saml1p:Response> element, as an XML string.
      * @throws \SimpleSAML_Error_Exception
      */
-    public static function receive(\SimpleSAML_Configuration $spMetadata, \SimpleSAML_Configuration $idpMetadata)
+    public static function receive(\SimpleSAML\Configuration $spMetadata, \SimpleSAML\Configuration $idpMetadata)
     {
         $artifacts = self::getArtifacts();
         $request = self::buildRequest($artifacts);

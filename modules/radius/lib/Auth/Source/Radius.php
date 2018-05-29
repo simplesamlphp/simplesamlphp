@@ -80,7 +80,7 @@ class sspmod_radius_Auth_Source_Radius extends sspmod_core_Auth_UserPassBase
         parent::__construct($info, $config);
 
         // Parse configuration.
-        $config = SimpleSAML_Configuration::loadFromArray($config,
+        $config = \SimpleSAML\Configuration::loadFromArray($config,
             'Authentication source ' . var_export($this->authId, true));
 
         $this->servers = $config->getArray('servers', array());

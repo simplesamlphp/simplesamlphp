@@ -10,7 +10,7 @@
 
 require_once('../../_include.php');
 
-$config = SimpleSAML_Configuration::getInstance();
+$config = \SimpleSAML\Configuration::getInstance();
 if (!$config->getBoolean('enable.saml20-idp', false)) {
     throw new SimpleSAML_Error_Error('NOACCESS');
 }

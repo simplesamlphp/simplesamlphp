@@ -15,7 +15,7 @@ $session = \SimpleSAML_Session::getSessionFromRequest();
 \SimpleSAML\Logger::stats('core:cardinality:error '.$state['Destination']['entityid'].' '.$state['saml:sp:IdP'].
     ' '.implode(',', array_keys($state['core:cardinality:errorAttributes'])));
 
-$globalConfig = SimpleSAML_Configuration::getInstance();
+$globalConfig = \SimpleSAML\Configuration::getInstance();
 $t = new \SimpleSAML_XHTML_Template($globalConfig, 'core:cardinality_error.tpl.php');
 $t->data['cardinalityErrorAttributes'] = $state['core:cardinality:errorAttributes'];
 if (isset($state['Source']['auth'])) {

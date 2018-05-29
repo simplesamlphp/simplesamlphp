@@ -300,13 +300,13 @@ class AuthnResponse
     /**
      * Build a authentication response.
      *
-     * @param \SimpleSAML_Configuration $idp Metadata for the IdP the response is sent from.
-     * @param \SimpleSAML_Configuration $sp Metadata for the SP the response is sent to.
+     * @param \SimpleSAML\Configuration $idp Metadata for the IdP the response is sent from.
+     * @param \SimpleSAML\Configuration $sp Metadata for the SP the response is sent to.
      * @param string $shire The endpoint on the SP the response is sent to.
      * @param array|null $attributes The attributes which should be included in the response.
      * @return string The response.
      */
-    public function generate(\SimpleSAML_Configuration $idp, \SimpleSAML_Configuration $sp, $shire, $attributes)
+    public function generate(\SimpleSAML\Configuration $idp, \SimpleSAML\Configuration $sp, $shire, $attributes)
     {
         assert(is_string($shire));
         assert($attributes === null || is_array($attributes));

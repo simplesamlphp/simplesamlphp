@@ -1,6 +1,7 @@
 <?php
 namespace SimpleSAML\Utils;
 
+use SimpleSAML\Configuration;
 use SimpleSAML\Module;
 use SimpleSAML\Logger;
 
@@ -331,7 +332,7 @@ class HTTP
 
         // get the white list of domains
         if ($trustedSites === null) {
-            $trustedSites = \SimpleSAML_Configuration::getInstance()->getValue('trusted.url.domains', array());
+            $trustedSites = Configuration::getInstance()->getValue('trusted.url.domains', array());
         }
 
         // validates the URL's host is among those allowed
@@ -357,7 +358,7 @@ class HTTP
 
             $self_host = self::getSelfHostWithNonStandardPort();
 
-            $trustedRegex = \SimpleSAML_Configuration::getInstance()->getValue('trusted.url.regex', false);
+            $trustedRegex = Configuration::getInstance()->getValue('trusted.url.regex', false);
 
             $trusted = false;
             if ($trustedRegex) {
@@ -411,7 +412,7 @@ class HTTP
             throw new \InvalidArgumentException('Invalid input parameters.');
         }
 
-        $config = \SimpleSAML_Configuration::getInstance();
+        $config = Configuration::getInstance();
 
         $proxy = $config->getString('proxy', null);
         if ($proxy !== null) {
@@ -596,7 +597,7 @@ class HTTP
      */
     public static function getBaseURL()
     {
-        $globalConfig = \SimpleSAML_Configuration::getInstance();
+        $globalConfig = Configuration::getInstance();
         $baseURL = $globalConfig->getString('baseurlpath', 'simplesaml/');
 
         if (preg_match('#^https?://.*/?$#D', $baseURL, $matches)) {
@@ -669,7 +670,7 @@ class HTTP
             throw new \InvalidArgumentException('Invalid input parameters.');
         }
 
-        $config = \SimpleSAML_Configuration::getInstance();
+        $config = Configuration::getInstance();
         $allowed = $config->getBoolean('enable.http_post', false);
 
         if ($allowed && preg_match("#^http:#", $destination) && self::isHTTPS()) {
@@ -759,7 +760,7 @@ class HTTP
      */
     public static function getSelfURL()
     {
-        $cfg = \SimpleSAML_Configuration::getInstance();
+        $cfg = Configuration::getInstance();
         $baseDir = $cfg->getBaseDir();
         $cur_path = realpath($_SERVER['SCRIPT_FILENAME']);
         // make sure we got a string from realpath()
@@ -790,9 +791,9 @@ class HTTP
              * for this case in the configuration. First, check if that's the case.
              */
 
-            /** @var \SimpleSAML_Configuration $appcfg */
+            /** @var \SimpleSAML\Configuration $appcfg */
             $appcfg = $cfg->getConfigItem('application', null);
-            $appurl = ($appcfg instanceof \SimpleSAML_Configuration) ? $appcfg->getString('baseURL', '') : '';
+            $appurl = ($appcfg instanceof Configuration) ? $appcfg->getString('baseURL', '') : '';
             if (!empty($appurl)) {
                 $protocol = parse_url($appurl, PHP_URL_SCHEME);
                 $hostname = parse_url($appurl, PHP_URL_HOST);
@@ -1205,7 +1206,7 @@ class HTTP
             throw new \InvalidArgumentException('Invalid input parameters.');
         }
 
-        $config = \SimpleSAML_Configuration::getInstance();
+        $config = Configuration::getInstance();
         $allowed = $config->getBoolean('enable.http_post', false);
 
         if ($allowed && preg_match("#^http:#", $destination) && self::isHTTPS()) {

@@ -11,7 +11,7 @@ function statistics_hook_sanitycheck(&$hookinfo)
     assert(array_key_exists('info', $hookinfo));
 
     try {
-        $statconfig = SimpleSAML_Configuration::getConfig('module_statistics.php');
+        $statconfig = \SimpleSAML\Configuration::getConfig('module_statistics.php');
     } catch(Exception $e) {
         $hookinfo['errors'][] = '[statistics] Could not get configuration: ' . $e->getMessage(); return;
     }

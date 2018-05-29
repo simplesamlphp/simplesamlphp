@@ -19,7 +19,7 @@
  */
 session_cache_limiter('nocache');
 
-$globalConfig = SimpleSAML_Configuration::getInstance();
+$globalConfig = \SimpleSAML\Configuration::getInstance();
 
 SimpleSAML\Logger::info('Consent - getconsent: Accessing consent interface');
 

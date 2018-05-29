@@ -1,8 +1,8 @@
 <?php
 
 
-// Load SimpleSAMLphp, configuration
-$config = SimpleSAML_Configuration::getInstance();
+// Load SimpleSAMLphp configuration
+$config = \SimpleSAML\Configuration::getInstance();
 $session = SimpleSAML_Session::getSessionFromRequest();
 
 // Check if valid local session exists.
@@ -12,17 +12,11 @@ if ($config->getBoolean('admin.protectindexpage', false)) {
 $loginurl = SimpleSAML\Utils\Auth::getAdminLoginURL();
 $isadmin = SimpleSAML\Utils\Auth::isAdmin();
 
-
-
-
-
 $links = array();
 $links_welcome = array();
 $links_config = array();
 $links_auth = array();
 $links_federation = array();
-
-
 
 $allLinks = array(
 	'links'      => &$links,
@@ -38,14 +32,6 @@ $links_welcome[] = array(
 );
 
 SimpleSAML\Module::callHooks('frontpage', $allLinks);
-
-
-
-
-
-
-
-
 
 $t = new SimpleSAML_XHTML_Template($config, 'core:frontpage_welcome.tpl.php');
 $t->data['pageid'] = 'frontpage_welcome';

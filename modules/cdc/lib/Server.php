@@ -50,7 +50,7 @@ class sspmod_cdc_Server
     {
         assert(is_string($domain));
 
-        $cdcConfig = SimpleSAML_Configuration::getConfig('module_cdc.php');
+        $cdcConfig = \SimpleSAML\Configuration::getConfig('module_cdc.php');
         $config = $cdcConfig->getConfigItem($domain, null);
 
         if ($config === null) {

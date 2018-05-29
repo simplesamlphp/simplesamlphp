@@ -15,7 +15,7 @@ class sspmod_core_Auth_Process_ExtendIdPSession extends SimpleSAML_Auth_Processi
 		$now = time();
 		$delta = $state['Expire'] - $now;
 
-		$globalConfig = SimpleSAML_Configuration::getInstance();
+		$globalConfig = \SimpleSAML\Configuration::getInstance();
 		$sessionDuration = $globalConfig->getInteger('session.duration', 8*60*60);
 
 		// Extend only if half of session duration already passed

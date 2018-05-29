@@ -13,7 +13,7 @@ if (!array_key_exists('StateId', $_REQUEST)) {
 }
 $state = SimpleSAML_Auth_State::loadState($_REQUEST['StateId'], 'expirywarning:expired');
 
-$globalConfig = SimpleSAML_Configuration::getInstance();
+$globalConfig = \SimpleSAML\Configuration::getInstance();
 
 $t = new SimpleSAML_XHTML_Template($globalConfig, 'expirycheck:expired.php');
 $t->data['expireOnDate'] = $state['expireOnDate'];

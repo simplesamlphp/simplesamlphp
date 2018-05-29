@@ -4,7 +4,7 @@ require_once('../_include.php');
 // make sure that the user has admin access rights
 SimpleSAML\Utils\Auth::requireAdmin();
 
-$config = SimpleSAML_Configuration::getInstance();
+$config = \SimpleSAML\Configuration::getInstance();
 
 if (!empty($_FILES['xmlfile']['tmp_name'])) {
     $xmldata = trim(file_get_contents($_FILES['xmlfile']['tmp_name']));

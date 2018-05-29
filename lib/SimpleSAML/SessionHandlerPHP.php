@@ -46,7 +46,7 @@ class SessionHandlerPHP extends SessionHandler
         // call the parent constructor in case it should become necessary in the future
         parent::__construct();
 
-        $config = \SimpleSAML_Configuration::getInstance();
+        $config = Configuration::getInstance();
         $this->cookie_name = $config->getString('session.phpsession.cookiename', null);
 
         if (session_status() === PHP_SESSION_ACTIVE) {
@@ -293,7 +293,7 @@ class SessionHandlerPHP extends SessionHandler
      */
     public function getCookieParams()
     {
-        $config = \SimpleSAML_Configuration::getInstance();
+        $config = Configuration::getInstance();
 
         $ret = parent::getCookieParams();
 

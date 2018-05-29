@@ -187,7 +187,7 @@ class sspmod_cas_Auth_Source_CAS extends SimpleSAML_Auth_Source
         list($username, $casattributes) = $this->casValidation($ticket, $service);
         $ldapattributes = array();
 
-        $config = SimpleSAML_Configuration::loadFromArray($this->_ldapConfig,
+        $config = \SimpleSAML\Configuration::loadFromArray($this->_ldapConfig,
             'Authentication source ' . var_export($this->authId, true));
         if ($this->_ldapConfig['servers']) {
             $ldap = new SimpleSAML_Auth_LDAP(

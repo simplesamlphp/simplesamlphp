@@ -154,8 +154,8 @@ This is a quick overview of the API:
 
 Generally, if you have:
 
-    $config = SimpleSAML_Configuration::getInstance();
-    $session = SimpleSAML_Session::getSessionFromRequest();
+    $config = \SimpleSAML\Configuration::getInstance();
+    $session = \SimpleSAML_Session::getSessionFromRequest();
 
 you should replace it with this single line:
 

@@ -17,8 +17,8 @@ $service = $_GET['service'];
 $forceAuthn =isset($_GET['renew']) && $_GET['renew'];
 $isPassive = isset($_GET['gateway']) && $_GET['gateway'];
 
-$config = SimpleSAML_Configuration::getInstance();
-$casconfig = SimpleSAML_Configuration::getConfig('module_casserver.php');
+$config = \SimpleSAML\Configuration::getInstance();
+$casconfig = \SimpleSAML\Configuration::getConfig('module_casserver.php');
 
 $legal_service_urls = $casconfig->getValue('legal_service_urls');
 if (!checkServiceURL($service, $legal_service_urls))

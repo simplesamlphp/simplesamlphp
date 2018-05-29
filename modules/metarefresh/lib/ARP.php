@@ -52,7 +52,7 @@ class sspmod_metarefresh_ARP
      */
     private function loadAttributeMap($attributemap)
     {
-        $config = SimpleSAML_Configuration::getInstance();
+        $config = \SimpleSAML\Configuration::getInstance();
         include($config->getPathValue('attributemap', 'attributemap/') . $attributemap . '.php');
         // Note that $attributemap was a string before the call to include() and is now an array!
         $this->attributes = $attributemap;

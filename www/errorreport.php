@@ -2,7 +2,7 @@
 
 require_once('_include.php');
 
-$config = SimpleSAML_Configuration::getInstance();
+$config = \SimpleSAML\Configuration::getInstance();
 
 // this page will redirect to itself after processing a POST request and sending the email
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {

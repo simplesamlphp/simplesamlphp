@@ -2,7 +2,7 @@
 
 require_once('_include.php');
 
-$config = SimpleSAML_Configuration::getInstance();
+$config = \SimpleSAML\Configuration::getInstance();
 
 if (array_key_exists('link_href', $_REQUEST)) {
     $link = \SimpleSAML\Utils\HTTP::checkURLAllowed($_REQUEST['link_href']);

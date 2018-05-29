@@ -8,7 +8,6 @@ namespace SimpleSAML\Test\Auth;
  */
 class SimpleTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
 {
-
     /**
      * @test
      */
@@ -22,7 +21,7 @@ class SimpleTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
         $_SERVER['REQUEST_URI'] = '/';
 
         // test merging configuration option with passed URL
-        \SimpleSAML_Configuration::loadFromArray(array(
+        \SimpleSAML\Configuration::loadFromArray(array(
             'application' => array(
                 'baseURL' => 'https://example.org'
             )
@@ -50,7 +49,7 @@ class SimpleTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
         $this->assertEquals('https://example.org/foo/bar?a=b#fragment', $method->invokeArgs($s, array(null)));
 
         // test config option with ending with / and port
-        \SimpleSAML_Configuration::loadFromArray(array(
+        \SimpleSAML\Configuration::loadFromArray(array(
             'application' => array(
                 'baseURL' => 'http://example.org:8080/'
             )
@@ -66,7 +65,7 @@ class SimpleTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
 
         // now test with no configuration
         $_SERVER['SERVER_NAME'] = 'example.org';
-        \SimpleSAML_Configuration::loadFromArray(array(), '[ARRAY]', 'simplesaml');
+        \SimpleSAML\Configuration::loadFromArray(array(), '[ARRAY]', 'simplesaml');
         $s = new \SimpleSAML\Auth\Simple('');
         $this->assertEquals('http://example.org:1234/foo/bar?a=b#fragment', $method->invokeArgs($s, array(null)));
 

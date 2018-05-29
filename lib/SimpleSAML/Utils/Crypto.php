@@ -2,6 +2,8 @@
 
 namespace SimpleSAML\Utils;
 
+use SimpleSAML\Configuration;
+
 /**
  * A class for cryptography-related functions.
  *
@@ -176,7 +178,7 @@ class Crypto
      * - 'PEM': Data for the private key, in PEM-format.
      * - 'password': Password for the private key.
      *
-     * @param \SimpleSAML_Configuration $metadata The metadata array the private key should be loaded from.
+     * @param \SimpleSAML\Configuration $metadata The metadata array the private key should be loaded from.
      * @param bool                      $required Whether the private key is required. If this is true, a
      * missing key will cause an exception. Defaults to false.
      * @param string                    $prefix The prefix which should be used when reading from the metadata
@@ -192,7 +194,7 @@ class Crypto
      * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
-    public static function loadPrivateKey(\SimpleSAML_Configuration $metadata, $required = false, $prefix = '', $full_path = false)
+    public static function loadPrivateKey(Configuration $metadata, $required = false, $prefix = '', $full_path = false)
     {
         if (!is_bool($required) || !is_string($prefix) || !is_bool($full_path)) {
             throw new \InvalidArgumentException('Invalid input parameters.');
@@ -246,14 +248,14 @@ class Crypto
      * - 'certFingerprint': Array of valid certificate fingerprints. (Deprecated. Only present if this is a
      *   certificate.)
      *
-     * @param \SimpleSAML_Configuration $metadata The metadata.
+     * @param \SimpleSAML\Configuration $metadata The metadata.
      * @param bool                      $required Whether the private key is required. If this is TRUE, a missing key
      *     will cause an exception. Default is FALSE.
      * @param string                    $prefix The prefix which should be used when reading from the metadata array.
      *     Defaults to ''.
      *
      * @return array|NULL Public key or certificate data, or NULL if no public key or certificate was found.
-     * @throws \InvalidArgumentException If $metadata is not an instance of \SimpleSAML_Configuration, $required is not
+     * @throws \InvalidArgumentException If $metadata is not an instance of \SimpleSAML\Configuration, $required is not
      *     boolean or $prefix is not a string.
      * @throws \SimpleSAML_Error_Exception If no private key is found in the metadata, or it was not possible to load
      *     it.
@@ -262,7 +264,7 @@ class Crypto
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      * @author Lasse Birnbaum Jensen
      */
-    public static function loadPublicKey(\SimpleSAML_Configuration $metadata, $required = false, $prefix = '')
+    public static function loadPublicKey(Configuration $metadata, $required = false, $prefix = '')
     {
         if (!is_bool($required) || !is_string($prefix)) {
             throw new \InvalidArgumentException('Invalid input parameters.');

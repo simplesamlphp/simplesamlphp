@@ -23,7 +23,7 @@ class Language
     /**
      * The configuration to use.
      *
-     * @var \SimpleSAML_Configuration
+     * @var \SimpleSAML\Configuration
      */
     private $configuration;
 
@@ -133,9 +133,9 @@ class Language
     /**
      * Constructor
      *
-     * @param \SimpleSAML_Configuration $configuration Configuration object
+     * @param \SimpleSAML\Configuration $configuration Configuration object
      */
-    public function __construct(\SimpleSAML_Configuration $configuration)
+    public function __construct(\SimpleSAML\Configuration $configuration)
     {
         $this->configuration = $configuration;
         $this->availableLanguages = $this->getInstalledLanguages();
@@ -376,7 +376,7 @@ class Language
      */
     public static function getLanguageCookie()
     {
-        $config = \SimpleSAML_Configuration::getInstance();
+        $config = \SimpleSAML\Configuration::getInstance();
         $availableLanguages = $config->getArray('language.available', array('en'));
         $name = $config->getString('language.cookie.name', 'language');
 
@@ -402,7 +402,7 @@ class Language
         assert(is_string($language));
 
         $language = strtolower($language);
-        $config = \SimpleSAML_Configuration::getInstance();
+        $config = \SimpleSAML\Configuration::getInstance();
         $availableLanguages = $config->getArray('language.available', array('en'));
 
         if (!in_array($language, $availableLanguages, true) || headers_sent()) {

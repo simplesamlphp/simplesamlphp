@@ -69,7 +69,7 @@ class System
      */
     public static function getTempDir()
     {
-        $globalConfig = \SimpleSAML_Configuration::getInstance();
+        $globalConfig = \SimpleSAML\Configuration::getInstance();
 
         $tempDir = rtrim(
             $globalConfig->getString(
@@ -118,7 +118,7 @@ class System
     public static function resolvePath($path, $base = null)
     {
         if ($base === null) {
-            $config = \SimpleSAML_Configuration::getInstance();
+            $config = \SimpleSAML\Configuration::getInstance();
             $base = $config->getBaseDir();
         }
 

@@ -175,7 +175,7 @@ class SimpleSAML_Session implements Serializable
             $this->markDirty();
 
             // initialize data for session check function if defined
-            $globalConfig = SimpleSAML_Configuration::getInstance();
+            $globalConfig = \SimpleSAML\Configuration::getInstance();
             $checkFunction = $globalConfig->getArray('session.check_function', null);
             if (isset($checkFunction)) {
                 assert(is_callable($checkFunction));
@@ -287,7 +287,7 @@ class SimpleSAML_Session implements Serializable
             self::load(new SimpleSAML_Session());
         } catch (\SimpleSAML\Error\CannotSetCookie $e) {
             // can't create a regular session because we can't set cookies. Use transient.
-            $c = SimpleSAML_Configuration::getInstance();
+            $c = \SimpleSAML\Configuration::getInstance();
             self::useTransientSession();
 
             if ($e->getCode() === \SimpleSAML\Error\CannotSetCookie::SECURE_COOKIE) {
@@ -340,7 +340,7 @@ class SimpleSAML_Session implements Serializable
         assert($session instanceof self);
 
         if ($checkToken) {
-            $globalConfig = SimpleSAML_Configuration::getInstance();
+            $globalConfig = \SimpleSAML\Configuration::getInstance();
 
             if ($session->authToken !== null) {
                 $authTokenCookieName = $globalConfig->getString(
@@ -550,7 +550,7 @@ class SimpleSAML_Session implements Serializable
         assert(is_int($expire) || $expire === null);
 
         if ($expire === null) {
-            $globalConfig = SimpleSAML_Configuration::getInstance();
+            $globalConfig = \SimpleSAML\Configuration::getInstance();
             $expire = time() + $globalConfig->getInteger('session.rememberme.lifetime', 14 * 86400);
         }
         $this->rememberMeExpire = $expire;
@@ -589,7 +589,7 @@ class SimpleSAML_Session implements Serializable
 
         $data['Authority'] = $authority;
 
-        $globalConfig = SimpleSAML_Configuration::getInstance();
+        $globalConfig = \SimpleSAML\Configuration::getInstance();
         if (!isset($data['AuthnInstant'])) {
             $data['AuthnInstant'] = time();
         }
@@ -763,7 +763,7 @@ class SimpleSAML_Session implements Serializable
         $params = array_merge($sessionHandler->getCookieParams(), is_array($params) ? $params : array());
 
         if ($this->authToken !== null) {
-            $globalConfig = SimpleSAML_Configuration::getInstance();
+            $globalConfig = \SimpleSAML\Configuration::getInstance();
             \SimpleSAML\Utils\HTTP::setCookie(
                 $globalConfig->getString('session.authtoken.cookiename', 'SimpleSAMLAuthToken'),
                 $this->authToken,
@@ -786,7 +786,7 @@ class SimpleSAML_Session implements Serializable
         $this->markDirty();
 
         if ($expire === null) {
-            $globalConfig = SimpleSAML_Configuration::getInstance();
+            $globalConfig = \SimpleSAML\Configuration::getInstance();
             $expire = time() + $globalConfig->getInteger('session.duration', 8 * 60 * 60);
         }
 
@@ -871,7 +871,7 @@ class SimpleSAML_Session implements Serializable
 
         if ($timeout === null) {
             // use the default timeout
-            $configuration = SimpleSAML_Configuration::getInstance();
+            $configuration = \SimpleSAML\Configuration::getInstance();
 
             $timeout = $configuration->getInteger('session.datastore.timeout', null);
             if ($timeout !== null) {

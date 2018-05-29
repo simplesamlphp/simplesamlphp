@@ -1,6 +1,7 @@
 <?php
 
 use RobRichards\XMLSecLibs\XMLSecurityKey;
+use SimpleSAML\Configuration;
 use SAML2\SOAP;
 
 /**
@@ -26,7 +27,7 @@ class sspmod_saml_IdP_SAML2
 
         $spMetadata = $state["SPMetadata"];
         $spEntityId = $spMetadata['entityid'];
-        $spMetadata = SimpleSAML_Configuration::loadFromArray(
+        $spMetadata = Configuration::loadFromArray(
             $spMetadata,
             '$metadata['.var_export($spEntityId, true).']'
         );
@@ -102,7 +103,7 @@ class sspmod_saml_IdP_SAML2
 
         $spMetadata = $state["SPMetadata"];
         $spEntityId = $spMetadata['entityid'];
-        $spMetadata = SimpleSAML_Configuration::loadFromArray(
+        $spMetadata = Configuration::loadFromArray(
             $spMetadata,
             '$metadata['.var_export($spEntityId, true).']'
         );
@@ -151,17 +152,17 @@ class sspmod_saml_IdP_SAML2
     /**
      * Find SP AssertionConsumerService based on parameter in AuthnRequest.
      *
-     * @param array                    $supportedBindings The bindings we allow for the response.
-     * @param SimpleSAML_Configuration $spMetadata The metadata for the SP.
-     * @param string|NULL              $AssertionConsumerServiceURL AssertionConsumerServiceURL from request.
-     * @param string|NULL              $ProtocolBinding ProtocolBinding from request.
-     * @param int|NULL                 $AssertionConsumerServiceIndex AssertionConsumerServiceIndex from request.
+     * @param array                     $supportedBindings The bindings we allow for the response.
+     * @param \SimpleSAML\Configuration $spMetadata The metadata for the SP.
+     * @param string|NULL               $AssertionConsumerServiceURL AssertionConsumerServiceURL from request.
+     * @param string|NULL               $ProtocolBinding ProtocolBinding from request.
+     * @param int|NULL                  $AssertionConsumerServiceIndex AssertionConsumerServiceIndex from request.
      *
      * @return array  Array with the Location and Binding we should use for the response.
      */
     private static function getAssertionConsumerService(
         array $supportedBindings,
-        SimpleSAML_Configuration $spMetadata,
+        Configuration $spMetadata,
         $AssertionConsumerServiceURL,
         $ProtocolBinding,
         $AssertionConsumerServiceIndex
@@ -666,7 +667,7 @@ class sspmod_saml_IdP_SAML2
      * @param SimpleSAML_IdP $idp The IdP the association belongs to.
      * @param array          $association The SP association.
      *
-     * @return SimpleSAML_Configuration  Configuration object for the SP metadata.
+     * @return \SimpleSAML\Configuration  Configuration object for the SP metadata.
      */
     public static function getAssociationConfig(SimpleSAML_IdP $idp, array $association)
     {
@@ -674,7 +675,7 @@ class sspmod_saml_IdP_SAML2
         try {
             return $metadata->getMetaDataConfig($association['saml:entityID'], 'saml20-sp-remote');
         } catch (Exception $e) {
-            return SimpleSAML_Configuration::loadFromArray(array(), 'Unknown SAML 2 entity.');
+            return Configuration::loadFromArray(array(), 'Unknown SAML 2 entity.');
         }
     }
 
@@ -682,15 +683,15 @@ class sspmod_saml_IdP_SAML2
     /**
      * Calculate the NameID value that should be used.
      *
-     * @param SimpleSAML_Configuration $idpMetadata The metadata of the IdP.
-     * @param SimpleSAML_Configuration $spMetadata The metadata of the SP.
-     * @param array                    &$state The authentication state of the user.
+     * @param \SimpleSAML\Configuration $idpMetadata The metadata of the IdP.
+     * @param \SimpleSAML\Configuration $spMetadata The metadata of the SP.
+     * @param array                     &$state The authentication state of the user.
      *
      * @return string  The NameID value.
      */
     private static function generateNameIdValue(
-        SimpleSAML_Configuration $idpMetadata,
-        SimpleSAML_Configuration $spMetadata,
+        Configuration $idpMetadata,
+        Configuration $spMetadata,
         array &$state
     ) {
 
@@ -732,8 +733,8 @@ class sspmod_saml_IdP_SAML2
     /**
      * Helper function for encoding attributes.
      *
-     * @param SimpleSAML_Configuration $idpMetadata The metadata of the IdP.
-     * @param SimpleSAML_Configuration $spMetadata The metadata of the SP.
+     * @param \SimpleSAML\Configuration $idpMetadata The metadata of the IdP.
+     * @param \SimpleSAML\Configuration $spMetadata The metadata of the SP.
      * @param array $attributes The attributes of the user.
      *
      * @return array  The encoded attributes.
@@ -741,8 +742,8 @@ class sspmod_saml_IdP_SAML2
      * @throws SimpleSAML_Error_Exception In case an unsupported encoding is specified by configuration.
      */
     private static function encodeAttributes(
-        SimpleSAML_Configuration $idpMetadata,
-        SimpleSAML_Configuration $spMetadata,
+        Configuration $idpMetadata,
+        Configuration $spMetadata,
         array $attributes
     ) {
 
@@ -816,14 +817,14 @@ class sspmod_saml_IdP_SAML2
     /**
      * Determine which NameFormat we should use for attributes.
      *
-     * @param SimpleSAML_Configuration $idpMetadata The metadata of the IdP.
-     * @param SimpleSAML_Configuration $spMetadata The metadata of the SP.
+     * @param \SimpleSAML\Configuration $idpMetadata The metadata of the IdP.
+     * @param \SimpleSAML\Configuration $spMetadata The metadata of the SP.
      *
      * @return string  The NameFormat.
      */
     private static function getAttributeNameFormat(
-        SimpleSAML_Configuration $idpMetadata,
-        SimpleSAML_Configuration $spMetadata
+        Configuration $idpMetadata,
+        Configuration $spMetadata
     ) {
 
         // try SP metadata first
@@ -854,8 +855,8 @@ class sspmod_saml_IdP_SAML2
     /**
      * Build an assertion based on information in the metadata.
      *
-     * @param SimpleSAML_Configuration $idpMetadata The metadata of the IdP.
-     * @param SimpleSAML_Configuration $spMetadata The metadata of the SP.
+     * @param \SimpleSAML\Configuration $idpMetadata The metadata of the IdP.
+     * @param \SimpleSAML\Configuration $spMetadata The metadata of the SP.
      * @param array &$state The state array with information about the request.
      *
      * @return \SAML2\Assertion  The assertion.
@@ -863,8 +864,8 @@ class sspmod_saml_IdP_SAML2
      * @throws SimpleSAML_Error_Exception In case an error occurs when creating a holder-of-key assertion.
      */
     private static function buildAssertion(
-        SimpleSAML_Configuration $idpMetadata,
-        SimpleSAML_Configuration $spMetadata,
+        Configuration $idpMetadata,
+        Configuration $spMetadata,
         array &$state
     ) {
         assert(isset($state['Attributes']));
@@ -877,7 +878,7 @@ class sspmod_saml_IdP_SAML2
             $signAssertion = $idpMetadata->getBoolean('saml20.sign.assertion', true);
         }
 
-        $config = SimpleSAML_Configuration::getInstance();
+        $config = Configuration::getInstance();
 
         $a = new \SAML2\Assertion();
         if ($signAssertion) {
@@ -1043,17 +1044,17 @@ class sspmod_saml_IdP_SAML2
      * This function takes in a \SAML2\Assertion and encrypts it if encryption of
      * assertions are enabled in the metadata.
      *
-     * @param SimpleSAML_Configuration $idpMetadata The metadata of the IdP.
-     * @param SimpleSAML_Configuration $spMetadata The metadata of the SP.
+     * @param \SimpleSAML\Configuration $idpMetadata The metadata of the IdP.
+     * @param \SimpleSAML\Configuration $spMetadata The metadata of the SP.
      * @param \SAML2\Assertion $assertion The assertion we are encrypting.
      *
      * @return \SAML2\Assertion|\SAML2\EncryptedAssertion  The assertion.
      *
-     * @throws SimpleSAML_Error_Exception In case the encryption key type is not supported.
+     * @throws \SimpleSAML_Error_Exception In case the encryption key type is not supported.
      */
     private static function encryptAssertion(
-        SimpleSAML_Configuration $idpMetadata,
-        SimpleSAML_Configuration $spMetadata,
+        Configuration $idpMetadata,
+        Configuration $spMetadata,
         \SAML2\Assertion $assertion
     ) {
 
@@ -1089,7 +1090,7 @@ class sspmod_saml_IdP_SAML2
                 $key = new XMLSecurityKey(XMLSecurityKey::RSA_OAEP_MGF1P, array('type' => 'public'));
                 $key->loadKey($pemKey);
             } else {
-                throw new SimpleSAML_Error_ConfigurationError(
+                throw new \SimpleSAML_Error_ConfigurationError(
                     'Missing encryption key for entity `' . $spMetadata->getString('entityid') . '`',
                     null,
                     $spMetadata->getString('metadata-set') . '.php'
@@ -1106,16 +1107,16 @@ class sspmod_saml_IdP_SAML2
     /**
      * Build a logout request based on information in the metadata.
      *
-     * @param SimpleSAML_Configuration $idpMetadata The metadata of the IdP.
-     * @param SimpleSAML_Configuration $spMetadata The metadata of the SP.
+     * @param \SimpleSAML\Configuration $idpMetadata The metadata of the IdP.
+     * @param \SimpleSAML\Configuration $spMetadata The metadata of the SP.
      * @param array $association The SP association.
      * @param string|null $relayState An id that should be carried across the logout.
      *
      * @return \SAML2\LogoutResponse The corresponding SAML2 logout response.
      */
     private static function buildLogoutRequest(
-        SimpleSAML_Configuration $idpMetadata,
-        SimpleSAML_Configuration $spMetadata,
+        Configuration $idpMetadata,
+        Configuration $spMetadata,
         array $association,
         $relayState
     ) {
@@ -1146,15 +1147,15 @@ class sspmod_saml_IdP_SAML2
     /**
      * Build a authentication response based on information in the metadata.
      *
-     * @param SimpleSAML_Configuration $idpMetadata The metadata of the IdP.
-     * @param SimpleSAML_Configuration $spMetadata The metadata of the SP.
+     * @param \SimpleSAML\Configuration $idpMetadata The metadata of the IdP.
+     * @param \SimpleSAML\Configuration $spMetadata The metadata of the SP.
      * @param string                   $consumerURL The Destination URL of the response.
      *
      * @return \SAML2\Response The SAML2 response corresponding to the given data.
      */
     private static function buildResponse(
-        SimpleSAML_Configuration $idpMetadata,
-        SimpleSAML_Configuration $spMetadata,
+        Configuration $idpMetadata,
+        Configuration $spMetadata,
         $consumerURL
     ) {
 

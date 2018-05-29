@@ -2,7 +2,7 @@
 
 require_once(dirname(dirname(__FILE__)) . '/libextinc/OAuth.php');
 
-$oauthconfig = SimpleSAML_Configuration::getConfig('module_oauth.php');
+$oauthconfig = \SimpleSAML\Configuration::getConfig('module_oauth.php');
 
 if (!$oauthconfig->getBoolean('getUserInfo.enable', FALSE)) {
 	throw new Exception('Get user info endpoint is disabled. This endpoint can be enabled in the module_oauth.php configuration file.');

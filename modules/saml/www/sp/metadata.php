@@ -4,9 +4,9 @@ if (!array_key_exists('PATH_INFO', $_SERVER)) {
     throw new SimpleSAML_Error_BadRequest('Missing authentication source id in metadata URL');
 }
 
-$config = SimpleSAML_Configuration::getInstance();
+$config = \SimpleSAML\Configuration::getInstance();
 if ($config->getBoolean('admin.protectmetadata', false)) {
-    SimpleSAML\Utils\Auth::requireAdmin();
+    \SimpleSAML\Utils\Auth::requireAdmin();
 }
 $sourceId = substr($_SERVER['PATH_INFO'], 1);
 $source = SimpleSAML_Auth_Source::getById($sourceId);

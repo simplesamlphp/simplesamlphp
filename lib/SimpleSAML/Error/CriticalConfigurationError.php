@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This exception represents a configuration error that we cannot recover from.
  *
@@ -50,7 +51,7 @@ class CriticalConfigurationError extends ConfigurationError
             $config['baseurlpath'] = \SimpleSAML\Utils\HTTP::guessBasePath();
         }
 
-        \SimpleSAML_Configuration::loadFromArray(
+        \SimpleSAML\Configuration::loadFromArray(
             $config,
             '',
             'simplesaml'

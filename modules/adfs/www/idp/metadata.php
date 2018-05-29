@@ -1,7 +1,7 @@
 <?php
 
 // load configuration and metadata
-$config = SimpleSAML_Configuration::getInstance();
+$config = \SimpleSAML\Configuration::getInstance();
 $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 
 if (!$config->getBoolean('enable.adfs-idp', false)) {

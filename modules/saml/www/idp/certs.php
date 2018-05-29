@@ -1,7 +1,7 @@
 <?php
 
 // Load SimpleSAMLphp, configuration and metadata
-$config = SimpleSAML_Configuration::getInstance();
+$config = \SimpleSAML\Configuration::getInstance();
 $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 
 if (!$config->getBoolean('enable.saml20-idp', false)) {
@@ -10,7 +10,7 @@ if (!$config->getBoolean('enable.saml20-idp', false)) {
 
 // Check if valid local session exists..
 if ($config->getBoolean('admin.protectmetadata', false)) {
-    SimpleSAML\Utils\Auth::requireAdmin();
+    \SimpleSAML\Utils\Auth::requireAdmin();
 }
 
 $idpentityid = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');

@@ -4,7 +4,7 @@ namespace SimpleSAML\Auth;
 
 use \SimpleSAML_Auth_Source as Source;
 use \SimpleSAML_Auth_State as State;
-use \SimpleSAML_Configuration as Configuration;
+use \SimpleSAML\Configuration;
 use \SimpleSAML_Error_AuthSource as AuthSourceError;
 use \SimpleSAML\Module;
 use \SimpleSAML_Session as Session;
@@ -26,7 +26,7 @@ class Simple
     protected $authSource;
 
     /**
-     * @var \SimpleSAML_Configuration|null
+     * @var \SimpleSAML\Configuration|null
      */
     protected $app_config;
 

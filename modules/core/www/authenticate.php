@@ -1,6 +1,6 @@
 <?php
 
-$config = SimpleSAML_Configuration::getInstance();
+$config = \SimpleSAML\Configuration::getInstance();
 
 if (!array_key_exists('as', $_REQUEST)) {
     $t = new SimpleSAML_XHTML_Template($config, 'core:authsource_list.tpl.php');

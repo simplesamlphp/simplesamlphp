@@ -36,7 +36,7 @@ class SimpleSAML_IdP
     /**
      * The configuration for this IdP.
      *
-     * @var SimpleSAML_Configuration
+     * @var SimpleSAML\Configuration
      */
     private $config;
 
@@ -61,7 +61,7 @@ class SimpleSAML_IdP
         $this->id = $id;
 
         $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
-        $globalConfig = SimpleSAML_Configuration::getInstance();
+        $globalConfig = SimpleSAML\Configuration::getInstance();
 
         if (substr($id, 0, 6) === 'saml2:') {
             if (!$globalConfig->getBoolean('enable.saml20-idp', false)) {
@@ -153,7 +153,7 @@ class SimpleSAML_IdP
     /**
      * Retrieve the configuration for this IdP.
      *
-     * @return SimpleSAML_Configuration The configuration object.
+     * @return SimpleSAML\Configuration The configuration object.
      */
     public function getConfig()
     {

@@ -9,7 +9,6 @@
  */
 class sspmod_negotiate_Auth_Source_Negotiate extends SimpleSAML_Auth_Source
 {
-
     // Constants used in the module
     const STAGEID = 'sspmod_negotiate_Auth_Source_Negotiate.StageId';
 
@@ -50,7 +49,7 @@ class sspmod_negotiate_Auth_Source_Negotiate extends SimpleSAML_Auth_Source
         // call the parent constructor first, as required by the interface
         parent::__construct($info, $config);
 
-        $config = SimpleSAML_Configuration::loadFromArray($config);
+        $config = \SimpleSAML\Configuration::loadFromArray($config);
 
         $this->backend = $config->getString('fallback');
         $this->hostname = $config->getString('hostname');

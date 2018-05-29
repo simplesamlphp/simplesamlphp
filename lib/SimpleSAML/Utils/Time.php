@@ -54,7 +54,7 @@ class Time
             return;
         }
 
-        $globalConfig = \SimpleSAML_Configuration::getInstance();
+        $globalConfig = \SimpleSAML\Configuration::getInstance();
 
         $timezone = $globalConfig->getString('timezone', null);
         if ($timezone !== null) {

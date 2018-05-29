@@ -1,4 +1,5 @@
 <?php
+
 namespace SimpleSAML;
 
 /**
@@ -58,7 +59,7 @@ class Module
      */
     public static function isModuleEnabled($module)
     {
-        $config = \SimpleSAML_Configuration::getOptionalConfig();
+        $config = Configuration::getOptionalConfig();
         return self::isModuleEnabledWithConf($module, $config->getArray('module.enable', array()));
     }
 
@@ -283,7 +284,7 @@ class Module
         assert(is_string($hook));
 
         $modules = self::getModules();
-        $config = \SimpleSAML_Configuration::getOptionalConfig()->getArray('module.enable', array());
+        $config = Configuration::getOptionalConfig()->getArray('module.enable', array());
         sort($modules);
         foreach ($modules as $module) {
             if (!self::isModuleEnabledWithConf($module, $config)) {

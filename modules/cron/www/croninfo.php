@@ -8,12 +8,12 @@ require_once('_include.php');
 
 
 // Load SimpleSAMLphp, configuration and metadata
-$config = SimpleSAML_Configuration::getInstance();
+$config = \SimpleSAML\Configuration::getInstance();
 $session = SimpleSAML_Session::getSessionFromRequest();
 
 SimpleSAML\Utils\Auth::requireAdmin();
 
-$cronconfig = SimpleSAML_Configuration::getConfig('module_cron.php');
+$cronconfig = \SimpleSAML\Configuration::getConfig('module_cron.php');
 
 $key = $cronconfig->getValue('key', '');
 $tags = $cronconfig->getValue('allowed_tags');

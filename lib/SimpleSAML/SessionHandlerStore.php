@@ -71,7 +71,7 @@ class SessionHandlerStore extends SessionHandlerCookie
     {
         $sessionId = $session->getSessionId();
 
-        $config = \SimpleSAML_Configuration::getInstance();
+        $config = Configuration::getInstance();
         $sessionDuration = $config->getInteger('session.duration', 8 * 60 * 60);
         $expire = time() + $sessionDuration;
 

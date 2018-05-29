@@ -30,7 +30,7 @@ class sspmod_oauth_OAuthStore extends OAuthDataStore
     public function __construct()
     {
         $this->store = new sspmod_core_Storage_SQLPermanentStorage('oauth');
-        $this->config = SimpleSAML_Configuration::getOptionalConfig('module_oauth.php');
+        $this->config = \SimpleSAML\Configuration::getOptionalConfig('module_oauth.php');
     }
 
 

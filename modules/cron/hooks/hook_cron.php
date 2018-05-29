@@ -9,7 +9,7 @@ function cron_hook_cron(&$croninfo) {
 	assert(array_key_exists('summary', $croninfo));
 	assert(array_key_exists('tag', $croninfo));
 
-	$cronconfig = SimpleSAML_Configuration::getConfig('module_cron.php');
+	$cronconfig = \SimpleSAML\Configuration::getConfig('module_cron.php');
 	
 	if ($cronconfig->getValue('debug_message', TRUE)) {
 

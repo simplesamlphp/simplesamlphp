@@ -1,7 +1,7 @@
 <?php
 
-$config = SimpleSAML_Configuration::getInstance();
-$mconfig = SimpleSAML_Configuration::getOptionalConfig('config-metarefresh.php');
+$config = \SimpleSAML\Configuration::getInstance();
+$mconfig = \SimpleSAML\Configuration::getOptionalConfig('config-metarefresh.php');
 
 SimpleSAML\Utils\Auth::requireAdmin();
 

@@ -23,7 +23,7 @@ if (array_key_exists('service', $_GET)) {
 
 try {
     // Load SimpleSAMLphp, configuration and metadata
-    $casconfig = SimpleSAML_Configuration::getConfig('module_casserver.php');
+    $casconfig = \SimpleSAML\Configuration::getConfig('module_casserver.php');
 
     $path = $casconfig->resolvePath($casconfig->getValue('ticketcache', 'ticketcache'));
     $ticketcontent = retrieveTicket($ticket, $path);

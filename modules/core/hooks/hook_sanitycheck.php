@@ -9,7 +9,7 @@ function core_hook_sanitycheck(&$hookinfo) {
 	assert(array_key_exists('errors', $hookinfo));
 	assert(array_key_exists('info', $hookinfo));
 
-	$config = SimpleSAML_Configuration::getInstance();
+	$config = \SimpleSAML\Configuration::getInstance();
 	
 	if($config->getString('auth.adminpassword', '123') === '123') {
 		$hookinfo['errors'][] = '[core] Password in config.php is not set properly';

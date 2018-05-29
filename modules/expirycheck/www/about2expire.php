@@ -19,7 +19,7 @@ if (array_key_exists('yes', $_REQUEST)) {
 	SimpleSAML_Auth_ProcessingChain::resumeProcessing($state);
 }
 
-$globalConfig = SimpleSAML_Configuration::getInstance();
+$globalConfig = \SimpleSAML\Configuration::getInstance();
 
 $t = new SimpleSAML_XHTML_Template($globalConfig, 'expirycheck:about2expire.php');
 $t->data['yesTarget'] = SimpleSAML\Module::getModuleURL('expirycheck/about2expire.php');

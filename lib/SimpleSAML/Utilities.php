@@ -463,7 +463,7 @@ class SimpleSAML_Utilities
     /**
      * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Utils\Crypto::loadPublicKey() instead.
      */
-    public static function loadPublicKey(SimpleSAML_Configuration $metadata, $required = false, $prefix = '')
+    public static function loadPublicKey(\SimpleSAML\Configuration $metadata, $required = false, $prefix = '')
     {
         return SimpleSAML\Utils\Crypto::loadPublicKey($metadata, $required, $prefix);
     }
@@ -472,7 +472,7 @@ class SimpleSAML_Utilities
     /**
      * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Utils\Crypto::loadPrivateKey() instead.
      */
-    public static function loadPrivateKey(SimpleSAML_Configuration $metadata, $required = false, $prefix = '')
+    public static function loadPrivateKey(\SimpleSAML\Configuration $metadata, $required = false, $prefix = '')
     {
         return SimpleSAML\Utils\Crypto::loadPrivateKey($metadata, $required, $prefix);
     }

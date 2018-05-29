@@ -26,7 +26,7 @@ require_once($baseDir.'/lib/_autoload.php');
 
 // Initialize the configuration
 $configdir = SimpleSAML\Utils\Config::getConfigDir();
-SimpleSAML_Configuration::setConfigDir($configdir);
+\SimpleSAML\Configuration::setConfigDir($configdir);
 
 // Things we should warn the user about
 $warnServerDown = 0;

@@ -233,7 +233,7 @@ Optional custom error show function, called from SimpleSAML_Error_Error::show, i
 
 Example code for this function, which implements the same functionality as SimpleSAML_Error_Error::show, looks something like:
 
-    public static function show(SimpleSAML_Configuration $config, array $data) {
+    public static function show(\SimpleSAML\Configuration $config, array $data) {
         $t = new SimpleSAML_XHTML_Template($config, 'error.php', 'errors');
         $t->data = array_merge($t->data, $data);
         $t->show();

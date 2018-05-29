@@ -19,7 +19,7 @@ class SimpleSAML_XHTML_IdPDisco
     /**
      * An instance of the configuration class.
      *
-     * @var SimpleSAML_Configuration
+     * @var \SimpleSAML\Configuration
      */
     protected $config;
 
@@ -118,7 +118,7 @@ class SimpleSAML_XHTML_IdPDisco
         assert(is_string($instance));
 
         // initialize standard classes
-        $this->config = SimpleSAML_Configuration::getInstance();
+        $this->config = \SimpleSAML\Configuration::getInstance();
         $this->metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
         $this->session = SimpleSAML_Session::getSessionFromRequest();
         $this->instance = $instance;

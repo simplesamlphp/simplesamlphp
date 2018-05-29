@@ -29,7 +29,7 @@ class sspmod_riak_Store_Store extends SimpleSAML\Store
 
 	protected function __construct()
     {
-		$config = SimpleSAML_Configuration::getConfig('module_riak.php');
+		$config = \SimpleSAML\Configuration::getConfig('module_riak.php');
 
 		$path = $config->getString('path', 'riak-php-client/riak.php');
 		$host = $config->getString('host', 'localhost');

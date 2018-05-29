@@ -37,7 +37,7 @@ class SimpleSAML_XHTML_Template
     /**
      * The configuration to use in this template.
      *
-     * @var SimpleSAML_Configuration
+     * @var \SimpleSAML\Configuration
      */
     private $configuration;
 
@@ -93,11 +93,11 @@ class SimpleSAML_XHTML_Template
     /**
      * Constructor
      *
-     * @param SimpleSAML_Configuration $configuration Configuration object
+     * @param \SimpleSAML\Configuration $configuration Configuration object
      * @param string                   $template Which template file to load
      * @param string|null              $defaultDictionary The default dictionary where tags will come from.
      */
-    public function __construct(\SimpleSAML_Configuration $configuration, $template, $defaultDictionary = null)
+    public function __construct(\SimpleSAML\Configuration $configuration, $template, $defaultDictionary = null)
     {
         $this->configuration = $configuration;
         $this->template = $template;

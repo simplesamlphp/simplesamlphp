@@ -75,7 +75,7 @@ class sspmod_core_Auth_Process_AttributeMap extends SimpleSAML_Auth_ProcessingFi
      */
     private function loadMapFile($fileName)
     {
-        $config = SimpleSAML_Configuration::getInstance();
+        $config = \SimpleSAML\Configuration::getInstance();
 
         $m = explode(':', $fileName);
         if (count($m) === 2) { // we are asked for a file in a module

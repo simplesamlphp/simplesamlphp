@@ -204,7 +204,7 @@ class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception
         $reportId = bin2hex(openssl_random_pseudo_bytes(4));
         SimpleSAML\Logger::error('Error report with id '.$reportId.' generated.');
 
-        $config = SimpleSAML_Configuration::getInstance();
+        $config = \SimpleSAML\Configuration::getInstance();
         $session = SimpleSAML_Session::getSessionFromRequest();
 
         if (isset($_SERVER['HTTP_REFERER'])) {
@@ -245,7 +245,7 @@ class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception
         $this->logError();
 
         $errorData = $this->saveError();
-        $config = SimpleSAML_Configuration::getInstance();
+        $config = \SimpleSAML\Configuration::getInstance();
 
         $data = array();
         $data['showerrors'] = $config->getBoolean('showerrors', true);

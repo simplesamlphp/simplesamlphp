@@ -12,8 +12,8 @@ function metarefresh_hook_cron(&$croninfo) {
 	SimpleSAML\Logger::info('cron [metarefresh]: Running cron in cron tag [' . $croninfo['tag'] . '] ');
 
 	try {
-		$config = SimpleSAML_Configuration::getInstance();
-		$mconfig = SimpleSAML_Configuration::getOptionalConfig('config-metarefresh.php');
+		$config = \SimpleSAML\Configuration::getInstance();
+		$mconfig = \SimpleSAML\Configuration::getOptionalConfig('config-metarefresh.php');
 
 		$sets = $mconfig->getConfigList('sets', array());
 		$stateFile = $config->getPathValue('datadir', 'data/') . 'metarefresh-state.php';
@@ -103,7 +103,7 @@ function metarefresh_hook_cron(&$croninfo) {
 			}
 
 			if ($set->hasValue('arp')) {
-				$arpconfig = SimpleSAML_Configuration::loadFromArray($set->getValue('arp'));
+				$arpconfig = \SimpleSAML\Configuration::loadFromArray($set->getValue('arp'));
 				$metaloader->writeARPfile($arpconfig);
 			}
 		}

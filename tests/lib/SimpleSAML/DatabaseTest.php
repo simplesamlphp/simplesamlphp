@@ -17,12 +17,12 @@ class SimpleSAML_DatabaseTest extends TestCase
 {
 
     /**
-     * @var SimpleSAML_Configuration
+     * @var \SimpleSAML\Configuration
      */
     protected $config;
 
     /**
-     * @var SimpleSAML\Database
+     * @var \SimpleSAML\Database
      */
     protected $db;
 
@@ -59,10 +59,10 @@ class SimpleSAML_DatabaseTest extends TestCase
             'database.slaves'     => array(),
         );
 
-        $this->config = new SimpleSAML_Configuration($config, "test/SimpleSAML/DatabaseTest.php");
+        $this->config = new \SimpleSAML\Configuration($config, "test/SimpleSAML/DatabaseTest.php");
 
         // Ensure that we have a functional configuration class
-        $this->assertInstanceOf('SimpleSAML_Configuration', $this->config);
+        $this->assertInstanceOf('SimpleSAML\Configuration', $this->config);
         $this->assertEquals($config['database.dsn'], $this->config->getString('database.dsn'));
 
         $this->db = SimpleSAML\Database::getInstance($this->config);
@@ -91,7 +91,7 @@ class SimpleSAML_DatabaseTest extends TestCase
             'database.slaves'     => array(),
         );
 
-        $this->config = new SimpleSAML_Configuration($config, "test/SimpleSAML/DatabaseTest.php");
+        $this->config = new \SimpleSAML\Configuration($config, "test/SimpleSAML/DatabaseTest.php");
         $db = SimpleSAML\Database::getInstance($this->config);
     }
 
@@ -122,13 +122,13 @@ class SimpleSAML_DatabaseTest extends TestCase
             'database.slaves'     => array(),
         );
 
-        $config1 = new SimpleSAML_Configuration($config, "test/SimpleSAML/DatabaseTest.php");
-        $config2 = new SimpleSAML_Configuration($config2, "test/SimpleSAML/DatabaseTest.php");
-        $config3 = new SimpleSAML_Configuration($config, "test/SimpleSAML/DatabaseTest.php");
+        $config1 = new \SimpleSAML\Configuration($config, "test/SimpleSAML/DatabaseTest.php");
+        $config2 = new \SimpleSAML\Configuration($config2, "test/SimpleSAML/DatabaseTest.php");
+        $config3 = new \SimpleSAML\Configuration($config, "test/SimpleSAML/DatabaseTest.php");
 
-        $db1 = SimpleSAML\Database::getInstance($config1);
-        $db2 = SimpleSAML\Database::getInstance($config2);
-        $db3 = SimpleSAML\Database::getInstance($config3);
+        $db1 = \SimpleSAML\Database::getInstance($config1);
+        $db2 = \SimpleSAML\Database::getInstance($config2);
+        $db3 = \SimpleSAML\Database::getInstance($config3);
 
         $generateInstanceId = self::getMethod('generateInstanceId');
 
@@ -196,8 +196,8 @@ class SimpleSAML_DatabaseTest extends TestCase
             ),
         );
 
-        $sspConfiguration = new SimpleSAML_Configuration($config, "test/SimpleSAML/DatabaseTest.php");
-        $msdb = SimpleSAML\Database::getInstance($sspConfiguration);
+        $sspConfiguration = new \SimpleSAML\Configuration($config, "test/SimpleSAML/DatabaseTest.php");
+        $msdb = \SimpleSAML\Database::getInstance($sspConfiguration);
 
         $slaves = PHPUnit_Framework_Assert::readAttribute($msdb, 'dbSlaves');
         $gotSlave = spl_object_hash($getSlave->invokeArgs($msdb, array()));

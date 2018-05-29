@@ -9,7 +9,7 @@ function oauth_hook_cron(&$croninfo) {
 	assert(array_key_exists('summary', $croninfo));
 	assert(array_key_exists('tag', $croninfo));
 
-	$oauthconfig = SimpleSAML_Configuration::getOptionalConfig('module_statistics.php');
+	$oauthconfig = \SimpleSAML\Configuration::getOptionalConfig('module_statistics.php');
 	
 	if (is_null($oauthconfig->getValue('cron_tag', 'hourly'))) return;
 	if ($oauthconfig->getValue('cron_tag', NULL) !== $croninfo['tag']) return;

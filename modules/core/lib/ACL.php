@@ -55,7 +55,7 @@ class sspmod_core_ACL {
 	private static function getById($id) {
 		assert(is_string($id));
 
-		$config = SimpleSAML_Configuration::getOptionalConfig('acl.php');
+		$config = \SimpleSAML\Configuration::getOptionalConfig('acl.php');
 		if (!$config->hasValue($id)) {
 			throw new SimpleSAML_Error_Exception('No ACL with id ' . var_export($id, TRUE) . ' in config/acl.php.');
 		}

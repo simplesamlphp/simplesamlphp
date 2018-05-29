@@ -65,7 +65,7 @@ function SimpleSAML_error_handler($errno, $errstr, $errfile = null, $errline = 0
 set_error_handler('SimpleSAML_error_handler');
 
 try {
-    SimpleSAML_Configuration::getInstance();
+    \SimpleSAML\Configuration::getInstance();
 } catch (Exception $e) {
     throw new \SimpleSAML\Error\CriticalConfigurationError(
         $e->getMessage()

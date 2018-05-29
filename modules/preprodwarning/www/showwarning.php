@@ -24,7 +24,7 @@ if (array_key_exists('yes', $_REQUEST)) {
 
 
 
-$globalConfig = SimpleSAML_Configuration::getInstance();
+$globalConfig = \SimpleSAML\Configuration::getInstance();
 
 $t = new SimpleSAML_XHTML_Template($globalConfig, 'preprodwarning:warning.php');
 $t->data['yesTarget'] = SimpleSAML\Module::getModuleURL('preprodwarning/showwarning.php');

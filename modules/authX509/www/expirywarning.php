@@ -20,7 +20,7 @@ if (array_key_exists('proceed', $_REQUEST)) {
     SimpleSAML_Auth_ProcessingChain::resumeProcessing($state);
 }
 
-$globalConfig = SimpleSAML_Configuration::getInstance();
+$globalConfig = \SimpleSAML\Configuration::getInstance();
 
 $t = new SimpleSAML_XHTML_Template($globalConfig, 'authX509:X509warning.php');
 $t->data['target'] = SimpleSAML\Module::getModuleURL('authX509/expirywarning.php');

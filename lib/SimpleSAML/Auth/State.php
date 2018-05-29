@@ -171,7 +171,7 @@ class SimpleSAML_Auth_State
     private static function getStateTimeout()
     {
         if (self::$stateTimeout === null) {
-            $globalConfig = SimpleSAML_Configuration::getInstance();
+            $globalConfig = \SimpleSAML\Configuration::getInstance();
             self::$stateTimeout = $globalConfig->getInteger('session.state.timeout', 60 * 60);
         }
 

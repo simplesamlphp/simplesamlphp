@@ -36,10 +36,10 @@ abstract class sspmod_ldap_Auth_Process_BaseFilter extends SimpleSAML_Auth_Proce
 
     /**
      * The construct method will change the filter config into
-     * a SimpleSAML_Configuration object and store it here for
+     * a \SimpleSAML\Configuration object and store it here for
      * later use, if needed.
      *
-     * @var SimpleSAML_Configuration
+     * @var \SimpleSAML\Configuration
      */
     protected $config;
 
@@ -116,7 +116,7 @@ abstract class sspmod_ldap_Auth_Process_BaseFilter extends SimpleSAML_Auth_Proce
             );
 
             // Get the authsources file, which should contain the config
-            $authsource = SimpleSAML_Configuration::getConfig('authsources.php');
+            $authsource = \SimpleSAML\Configuration::getConfig('authsources.php');
 
             // Verify that the authsource config exists
             if (!$authsource->hasValue($config['authsource'])) {
@@ -203,7 +203,7 @@ abstract class sspmod_ldap_Auth_Process_BaseFilter extends SimpleSAML_Auth_Proce
         // Convert the config array to a config class,
         // that way we can verify type and define defaults.
         // Store in the instance in-case needed later, by a child class.
-        $this->config = SimpleSAML_Configuration::loadFromArray($config, 'ldap:AuthProcess');
+        $this->config = \SimpleSAML\Configuration::loadFromArray($config, 'ldap:AuthProcess');
 
         // Set all the filter values, setting defaults if needed
         $this->base_dn = $this->config->getArrayizeString('ldap.basedn', '');

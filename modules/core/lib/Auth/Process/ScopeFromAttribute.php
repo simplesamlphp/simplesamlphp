@@ -40,7 +40,7 @@ class sspmod_core_Auth_Process_ScopeFromAttribute extends SimpleSAML_Auth_Proces
 		parent::__construct($config, $reserved);
 		assert(is_array($config));
 
-		$config = SimpleSAML_Configuration::loadFromArray($config, 'ScopeFromAttribute');
+		$config = \SimpleSAML\Configuration::loadFromArray($config, 'ScopeFromAttribute');
 		$this->targetAttribute = $config->getString('targetAttribute');
 		$this->sourceAttribute = $config->getString('sourceAttribute');
 	} // end constructor

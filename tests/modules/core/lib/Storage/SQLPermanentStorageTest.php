@@ -12,7 +12,7 @@ class Test_Core_Storage_SQLPermanentStorage extends TestCase
     public static function setUpBeforeClass()
     {
         // Create instance
-        $config = \SimpleSAML_Configuration::loadFromArray([
+        $config = \SimpleSAML\Configuration::loadFromArray([
             'datadir' => sys_get_temp_dir(),
         ]);
         self::$sql = new sspmod_core_Storage_SQLPermanentStorage('test', $config);

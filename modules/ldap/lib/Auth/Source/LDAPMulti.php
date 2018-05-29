@@ -43,7 +43,7 @@ class sspmod_ldap_Auth_Source_LDAPMulti extends sspmod_core_Auth_UserPassOrgBase
         // Call the parent constructor first, as required by the interface
         parent::__construct($info, $config);
 
-        $cfgHelper = SimpleSAML_Configuration::loadFromArray($config,
+        $cfgHelper = \SimpleSAML\Configuration::loadFromArray($config,
             'Authentication source ' . var_export($this->authId, true));
 
 

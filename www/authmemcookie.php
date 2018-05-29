@@ -16,7 +16,7 @@ require_once('_include.php');
 
 try {
     // load SimpleSAMLphp configuration
-    $globalConfig = SimpleSAML_Configuration::getInstance();
+    $globalConfig = \SimpleSAML\Configuration::getInstance();
 
     // check if this module is enabled
     if (!$globalConfig->getBoolean('enable.authmemcookie', false)) {

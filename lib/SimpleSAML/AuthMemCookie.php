@@ -20,7 +20,7 @@ class SimpleSAML_AuthMemCookie
 
 
     /**
-     * @var SimpleSAML_Configuration The configuration for Auth MemCookie.
+     * @var \SimpleSAML\Configuration The configuration for Auth MemCookie.
      */
     private $amcConfig;
 
@@ -46,7 +46,7 @@ class SimpleSAML_AuthMemCookie
     private function __construct()
     {
         // load AuthMemCookie configuration
-        $this->amcConfig = SimpleSAML_Configuration::getConfig('authmemcookie.php');
+        $this->amcConfig = \SimpleSAML\Configuration::getConfig('authmemcookie.php');
     }
 
 

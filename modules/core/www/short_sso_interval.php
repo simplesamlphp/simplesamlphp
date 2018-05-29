@@ -18,7 +18,7 @@ if (array_key_exists('continue', $_REQUEST)) {
 	SimpleSAML_Auth_ProcessingChain::resumeProcessing($state);
 }
 
-$globalConfig = SimpleSAML_Configuration::getInstance();
+$globalConfig = \SimpleSAML\Configuration::getInstance();
 $t = new SimpleSAML_XHTML_Template($globalConfig, 'core:short_sso_interval.php');
 $t->data['target'] = SimpleSAML\Module::getModuleURL('core/short_sso_interval.php');
 $t->data['params'] = array('StateId' => $id);

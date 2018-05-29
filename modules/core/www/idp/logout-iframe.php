@@ -113,7 +113,7 @@ foreach ($state['core:Logout-IFrame:Associations'] as $association) {
 }
 
 $id = SimpleSAML_Auth_State::saveState($state, 'core:Logout-IFrame');
-$globalConfig = SimpleSAML_Configuration::getInstance();
+$globalConfig = \SimpleSAML\Configuration::getInstance();
 
 $template_id = 'core:logout-iframe.php';
 if ($type === 'nojs') {

@@ -194,7 +194,7 @@ class sspmod_metarefresh_MetaLoader
      */
     private function createContext($source)
     {
-        $config = SimpleSAML_Configuration::getInstance();
+        $config = \SimpleSAML\Configuration::getInstance();
         $name = $config->getString('technicalcontact_name', null);
         $mail = $config->getString('technicalcontact_email', null);
 
@@ -365,7 +365,7 @@ class sspmod_metarefresh_MetaLoader
      */
     public function writeARPfile($config)
     {
-        assert($config instanceof SimpleSAML_Configuration);
+        assert($config instanceof \SimpleSAML\Configuration);
 
         $arpfile = $config->getValue('arpfile');
         $types = array('saml20-sp-remote');

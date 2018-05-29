@@ -1,7 +1,7 @@
 <?php
 
-$config = SimpleSAML_Configuration::getInstance();
-$statconfig = SimpleSAML_Configuration::getConfig('module_statistics.php');
+$config = \SimpleSAML\Configuration::getInstance();
+$statconfig = \SimpleSAML\Configuration::getConfig('module_statistics.php');
 
 sspmod_statistics_AccessCheck::checkAccess($statconfig);
 

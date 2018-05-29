@@ -1,7 +1,7 @@
 <?php
 
-$config = SimpleSAML_Configuration::getInstance();
-$cronconfig = SimpleSAML_Configuration::getConfig('module_cron.php');
+$config = \SimpleSAML\Configuration::getInstance();
+$cronconfig = \SimpleSAML\Configuration::getConfig('module_cron.php');
 
 if (!is_null($cronconfig->getValue('key'))) {
 	if ($_REQUEST['key'] !== $cronconfig->getValue('key')) {

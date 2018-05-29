@@ -44,14 +44,14 @@ if (isset($_POST['continue'])) {
     $as->reauthLogout($state);
 }
 
-$cfg = SimpleSAML_Configuration::getInstance();
+$cfg = \SimpleSAML\Configuration::getInstance();
 $template = new SimpleSAML_XHTML_Template($cfg, 'saml:proxy/invalid_session.php');
 $translator = $template->getTranslator();
 $template->data['AuthState'] = (string)$_REQUEST['AuthState'];
 
 // get the name of the IdP
 $idpmdcfg = $state['saml:sp:IdPMetadata'];
-/** @var SimpleSAML_Configuration $idpmdcfg */
+/** @var \SimpleSAML\Configuration $idpmdcfg */
 $idpmd = $idpmdcfg->toArray();
 if (array_key_exists('name', $idpmd)) {
     $template->data['idp_name'] = $translator->getPreferredTranslation($idpmd['name']);

@@ -168,7 +168,7 @@ class SimpleSAML_Error_Exception extends Exception
     public function formatBacktrace($anonymize = false)
     {
         $ret = array();
-        $basedir = SimpleSAML_Configuration::getInstance()->getBaseDir();
+        $basedir = \SimpleSAML\Configuration::getInstance()->getBaseDir();
 
         $e = $this;
         do {
@@ -198,7 +198,7 @@ class SimpleSAML_Error_Exception extends Exception
     protected function logBacktrace($level = \SimpleSAML\Logger::DEBUG)
     {
         // see if debugging is enabled for backtraces
-        $debug = SimpleSAML_Configuration::getInstance()->getArrayize('debug', array('backtraces' => false));
+        $debug = \SimpleSAML\Configuration::getInstance()->getArrayize('debug', array('backtraces' => false));
 
         if (!(in_array('backtraces', $debug, true) // implicitly enabled
               || (array_key_exists('backtraces', $debug) && $debug['backtraces'] === true) // explicitly set

@@ -12,7 +12,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
     /**
      * The metadata of this SP.
      *
-     * @var SimpleSAML_Configuration.
+     * @var \SimpleSAML\Configuration
      */
     private $metadata;
 
@@ -52,7 +52,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
          * gives the entity id. */
         $config['entityid'] = $config['entityID'];
 
-        $this->metadata = SimpleSAML_Configuration::loadFromArray($config,
+        $this->metadata = \SimpleSAML\Configuration::loadFromArray($config,
             'authsources[' . var_export($this->authId, true) . ']');
         $this->entityId = $this->metadata->getString('entityID');
         $this->idp = $this->metadata->getString('idp', null);
@@ -86,7 +86,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
     /**
      * Retrieve the metadata of this SP.
      *
-     * @return SimpleSAML_Configuration  The metadata of this SP.
+     * @return \SimpleSAML\Configuration  The metadata of this SP.
      */
     public function getMetadata()
     {
@@ -97,7 +97,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
      * Retrieve the metadata of an IdP.
      *
      * @param string $entityId  The entity id of the IdP.
-     * @return SimpleSAML_Configuration  The metadata of the IdP.
+     * @return \SimpleSAML\Configuration  The metadata of the IdP.
      */
     public function getIdPMetadata($entityId)
     {
@@ -135,10 +135,10 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
     /**
      * Send a SAML1 SSO request to an IdP.
      *
-     * @param SimpleSAML_Configuration $idpMetadata  The metadata of the IdP.
+     * @param \SimpleSAML\Configuration $idpMetadata  The metadata of the IdP.
      * @param array $state  The state array for the current authentication.
      */
-    private function startSSO1(SimpleSAML_Configuration $idpMetadata, array $state)
+    private function startSSO1(\SimpleSAML\Configuration $idpMetadata, array $state)
     {
         $idpEntityId = $idpMetadata->getString('entityid');
 
@@ -171,10 +171,10 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
     /**
      * Send a SAML2 SSO request to an IdP.
      *
-     * @param SimpleSAML_Configuration $idpMetadata  The metadata of the IdP.
+     * @param \SimpleSAML\Configuration $idpMetadata  The metadata of the IdP.
      * @param array $state  The state array for the current authentication.
      */
-    private function startSSO2(SimpleSAML_Configuration $idpMetadata, array $state)
+    private function startSSO2(\SimpleSAML\Configuration $idpMetadata, array $state)
     {
         if (isset($state['saml:ProxyCount']) && $state['saml:ProxyCount'] < 0) {
             SimpleSAML_Auth_State::throwException(
@@ -510,7 +510,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
      *
      * @param array $state The state array.
      * The following keys must be defined in the array:
-     * - 'saml:sp:IdPMetadata': a SimpleSAML_Configuration object containing
+     * - 'saml:sp:IdPMetadata': a \SimpleSAML\Configuration object containing
      *   the metadata of the IdP that authenticated the user in the current
      *   session.
      * - 'saml:sp:AuthId': the identifier of the current authentication source.

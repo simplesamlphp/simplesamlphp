@@ -10,7 +10,7 @@ if (!array_key_exists('StateId', $_REQUEST)) {
 }
 $state = SimpleSAML_Auth_State::loadState($_REQUEST['StateId'], 'authorize:Authorize');
 
-$globalConfig = SimpleSAML_Configuration::getInstance();
+$globalConfig = \SimpleSAML\Configuration::getInstance();
 $t = new SimpleSAML_XHTML_Template($globalConfig, 'authorize:authorize_403.php');
 if (isset($state['Source']['auth'])) {
     $t->data['LogoutURL'] = SimpleSAML\Module::getModuleURL('core/authenticate.php', array('as' => $state['Source']['auth']))."&logout";

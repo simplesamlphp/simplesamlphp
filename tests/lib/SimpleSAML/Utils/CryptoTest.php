@@ -4,7 +4,7 @@ namespace SimpleSAML\Test\Utils;
 
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Utils\Crypto;
-use \SimpleSAML_Configuration as Configuration;
+use \SimpleSAML\Configuration;
 
 use \org\bovigo\vfs\vfsStream;
 

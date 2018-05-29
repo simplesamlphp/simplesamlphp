@@ -29,7 +29,7 @@ class Test_Core_Auth_Process_CardinalityTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        \SimpleSAML_Configuration::loadFromArray(array(), '[ARRAY]', 'simplesaml');
+        \SimpleSAML\Configuration::loadFromArray(array(), '[ARRAY]', 'simplesaml');
         $this->http = $this->getMockBuilder('SimpleSAML\Utils\HTTPAdapter')
                            ->setMethods(array('redirectTrustedURL'))
                            ->getMock();

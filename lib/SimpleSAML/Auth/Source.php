@@ -12,8 +12,6 @@ use SimpleSAML\Auth\SourceFactory;
  */
 abstract class SimpleSAML_Auth_Source
 {
-
-
     /**
      * The authentication source identifier. This identifier can be used to look up this object, for example when
      * returning from a login form.
@@ -54,7 +52,7 @@ abstract class SimpleSAML_Auth_Source
     {
         assert(is_string($type));
 
-        $config = SimpleSAML_Configuration::getConfig('authsources.php');
+        $config = \SimpleSAML\Configuration::getConfig('authsources.php');
 
         $ret = array();
 
@@ -343,7 +341,7 @@ abstract class SimpleSAML_Auth_Source
         assert($type === null || is_string($type));
 
         // for now - load and parse config file
-        $config = SimpleSAML_Configuration::getConfig('authsources.php');
+        $config = \SimpleSAML\Configuration::getConfig('authsources.php');
 
         $authConfig = $config->getArray($authId, null);
         if ($authConfig === null) {
@@ -487,7 +485,7 @@ abstract class SimpleSAML_Auth_Source
      */
     public static function getSources()
     {
-        $config = SimpleSAML_Configuration::getOptionalConfig('authsources.php');
+        $config = \SimpleSAML\Configuration::getOptionalConfig('authsources.php');
 
         return $config->getOptions();
     }

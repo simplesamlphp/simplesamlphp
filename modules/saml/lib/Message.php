@@ -1,6 +1,7 @@
 <?php
 
 use RobRichards\XMLSecLibs\XMLSecurityKey;
+use SimpleSAML\Configuration;
 
 /**
  * Common code for building SAML 2 messages based on the available metadata.
@@ -13,13 +14,13 @@ class sspmod_saml_Message
     /**
      * Add signature key and sender certificate to an element (Message or Assertion).
      *
-     * @param SimpleSAML_Configuration $srcMetadata The metadata of the sender.
-     * @param SimpleSAML_Configuration $dstMetadata The metadata of the recipient.
+     * @param \SimpleSAML\Configuration $srcMetadata The metadata of the sender.
+     * @param \SimpleSAML\Configuration $dstMetadata The metadata of the recipient.
      * @param \SAML2\SignedElement $element The element we should add the data to.
      */
     public static function addSign(
-        SimpleSAML_Configuration $srcMetadata,
-        SimpleSAML_Configuration $dstMetadata,
+        Configuration $srcMetadata,
+        Configuration $dstMetadata,
         \SAML2\SignedElement $element
     ) {
         $dstPrivateKey = $dstMetadata->getString('signature.privatekey', null);
@@ -62,13 +63,13 @@ class sspmod_saml_Message
     /**
      * Add signature key and and senders certificate to message.
      *
-     * @param SimpleSAML_Configuration $srcMetadata The metadata of the sender.
-     * @param SimpleSAML_Configuration $dstMetadata The metadata of the recipient.
+     * @param \SimpleSAML\Configuration $srcMetadata The metadata of the sender.
+     * @param \SimpleSAML\Configuration $dstMetadata The metadata of the recipient.
      * @param \SAML2\Message $message The message we should add the data to.
      */
     private static function addRedirectSign(
-        SimpleSAML_Configuration $srcMetadata,
-        SimpleSAML_Configuration $dstMetadata,
+        Configuration $srcMetadata,
+        Configuration $dstMetadata,
         \SAML2\Message $message
     ) {
 
@@ -139,14 +140,14 @@ class sspmod_saml_Message
     /**
      * Check the signature on a SAML2 message or assertion.
      *
-     * @param SimpleSAML_Configuration $srcMetadata The metadata of the sender.
+     * @param \SimpleSAML\Configuration $srcMetadata The metadata of the sender.
      * @param \SAML2\SignedElement $element Either a \SAML2\Response or a \SAML2\Assertion.
      * @return boolean True if the signature is correct, false otherwise.
      *
      * @throws \SimpleSAML_Error_Exception if there is not certificate in the metadata for the entity.
      * @throws \Exception if the signature validation fails with an exception.
      */
-    public static function checkSign(SimpleSAML_Configuration $srcMetadata, \SAML2\SignedElement $element)
+    public static function checkSign(Configuration $srcMetadata, \SAML2\SignedElement $element)
     {
         // find the public key that should verify signatures by this entity
         $keys = $srcMetadata->getPublicKeys('signing');
@@ -227,15 +228,15 @@ class sspmod_saml_Message
     /**
      * Check signature on a SAML2 message if enabled.
      *
-     * @param SimpleSAML_Configuration $srcMetadata The metadata of the sender.
-     * @param SimpleSAML_Configuration $dstMetadata The metadata of the recipient.
+     * @param \SimpleSAML\Configuration $srcMetadata The metadata of the sender.
+     * @param \SimpleSAML\Configuration $dstMetadata The metadata of the recipient.
      * @param \SAML2\Message $message The message we should check the signature on.
      *
      * @throws \SimpleSAML_Error_Exception if message validation is enabled, but there is no signature in the message.
      */
     public static function validateMessage(
-        SimpleSAML_Configuration $srcMetadata,
-        SimpleSAML_Configuration $dstMetadata,
+        Configuration $srcMetadata,
+        Configuration $dstMetadata,
         \SAML2\Message $message
     ) {
         $enabled = null;
@@ -273,14 +274,14 @@ class sspmod_saml_Message
     /**
      * Retrieve the decryption keys from metadata.
      *
-     * @param SimpleSAML_Configuration $srcMetadata The metadata of the sender (IdP).
-     * @param SimpleSAML_Configuration $dstMetadata The metadata of the recipient (SP).
+     * @param \SimpleSAML\Configuration $srcMetadata The metadata of the sender (IdP).
+     * @param \SimpleSAML\Configuration $dstMetadata The metadata of the recipient (SP).
      *
      * @return array Array of decryption keys.
      */
     public static function getDecryptionKeys(
-        SimpleSAML_Configuration $srcMetadata,
-        SimpleSAML_Configuration $dstMetadata
+        Configuration $srcMetadata,
+        Configuration $dstMetadata
     ) {
         $sharedKey = $srcMetadata->getString('sharedkey', null);
         if ($sharedKey !== null) {
@@ -324,14 +325,14 @@ class sspmod_saml_Message
      *
      * Remote configuration overrides local configuration.
      *
-     * @param SimpleSAML_Configuration $srcMetadata The metadata of the sender.
-     * @param SimpleSAML_Configuration $dstMetadata The metadata of the recipient.
+     * @param \SimpleSAML\Configuration $srcMetadata The metadata of the sender.
+     * @param \SimpleSAML\Configuration $dstMetadata The metadata of the recipient.
      *
      * @return array  Array of blacklisted algorithms.
      */
     public static function getBlacklistedAlgorithms(
-        SimpleSAML_Configuration $srcMetadata,
-        SimpleSAML_Configuration $dstMetadata
+        Configuration $srcMetadata,
+        Configuration $dstMetadata
     ) {
         $blacklist = $srcMetadata->getArray('encryption.blacklisted-algorithms', null);
         if ($blacklist === null) {
@@ -344,8 +345,8 @@ class sspmod_saml_Message
     /**
      * Decrypt an assertion.
      *
-     * @param SimpleSAML_Configuration $srcMetadata The metadata of the sender (IdP).
-     * @param SimpleSAML_Configuration $dstMetadata The metadata of the recipient (SP).
+     * @param \SimpleSAML\Configuration $srcMetadata The metadata of the sender (IdP).
+     * @param \SimpleSAML\Configuration $dstMetadata The metadata of the recipient (SP).
      * @param \SAML2\Assertion|\SAML2\EncryptedAssertion $assertion The assertion we are decrypting.
      *
      * @return \SAML2\Assertion The assertion.
@@ -355,8 +356,8 @@ class sspmod_saml_Message
      * @throws \Exception if decryption fails for whatever reason.
      */
     private static function decryptAssertion(
-        SimpleSAML_Configuration $srcMetadata,
-        SimpleSAML_Configuration $dstMetadata,
+        Configuration $srcMetadata,
+        Configuration $dstMetadata,
         $assertion
     ) {
         assert($assertion instanceof \SAML2\Assertion || $assertion instanceof \SAML2\EncryptedAssertion);
@@ -400,8 +401,8 @@ class sspmod_saml_Message
     /**
      * Decrypt any encrypted attributes in an assertion.
      *
-     * @param SimpleSAML_Configuration $srcMetadata The metadata of the sender (IdP).
-     * @param SimpleSAML_Configuration $dstMetadata The metadata of the recipient (SP).
+     * @param \SimpleSAML\Configuration $srcMetadata The metadata of the sender (IdP).
+     * @param \SimpleSAML\Configuration $dstMetadata The metadata of the recipient (SP).
      * @param \SAML2\Assertion|\SAML2\Assertion $assertion The assertion containing any possibly encrypted attributes.
      *
      * @return void
@@ -409,8 +410,8 @@ class sspmod_saml_Message
      * @throws \SimpleSAML_Error_Exception if we cannot get the decryption keys or decryption fails.
      */
     private static function decryptAttributes(
-        SimpleSAML_Configuration $srcMetadata,
-        SimpleSAML_Configuration $dstMetadata,
+        Configuration $srcMetadata,
+        Configuration $dstMetadata,
         \SAML2\Assertion &$assertion
     ) {
         if (!$assertion->hasEncryptedAttributes()) {
@@ -459,13 +460,13 @@ class sspmod_saml_Message
     /**
      * Build an authentication request based on information in the metadata.
      *
-     * @param SimpleSAML_Configuration $spMetadata The metadata of the service provider.
-     * @param SimpleSAML_Configuration $idpMetadata The metadata of the identity provider.
+     * @param \SimpleSAML\Configuration $spMetadata The metadata of the service provider.
+     * @param \SimpleSAML\Configuration $idpMetadata The metadata of the identity provider.
      * @return \SAML2\AuthnRequest An authentication request object.
      */
     public static function buildAuthnRequest(
-        SimpleSAML_Configuration $spMetadata,
-        SimpleSAML_Configuration $idpMetadata
+        Configuration $spMetadata,
+        Configuration $idpMetadata
     ) {
         $ar = new \SAML2\AuthnRequest();
 
@@ -482,7 +483,7 @@ class sspmod_saml_Message
             $nameIdPolicy = array('Format' => $nameIdPolicy);
         }
 
-        $nameIdPolicy_cf = SimpleSAML_Configuration::loadFromArray($nameIdPolicy);
+        $nameIdPolicy_cf = Configuration::loadFromArray($nameIdPolicy);
         $policy = array(
             'Format'      => $nameIdPolicy_cf->getString('Format', \SAML2\Constants::NAMEID_TRANSIENT),
             'AllowCreate' => $nameIdPolicy_cf->getBoolean('AllowCreate', true),
@@ -529,13 +530,13 @@ class sspmod_saml_Message
     /**
      * Build a logout request based on information in the metadata.
      *
-     * @param SimpleSAML_Configuration $srcMetadata The metadata of the sender.
-     * @param SimpleSAML_Configuration $dstMetadata The metadata of the recipient.
+     * @param \SimpleSAML\Configuration $srcMetadata The metadata of the sender.
+     * @param \SimpleSAML\Configuration $dstMetadata The metadata of the recipient.
      * @return \SAML2\LogoutRequest A logout request object.
      */
     public static function buildLogoutRequest(
-        SimpleSAML_Configuration $srcMetadata,
-        SimpleSAML_Configuration $dstMetadata
+        Configuration $srcMetadata,
+        Configuration $dstMetadata
     ) {
         $lr = new \SAML2\LogoutRequest();
         $lr->setIssuer($srcMetadata->getString('entityid'));
@@ -549,13 +550,13 @@ class sspmod_saml_Message
     /**
      * Build a logout response based on information in the metadata.
      *
-     * @param SimpleSAML_Configuration $srcMetadata The metadata of the sender.
-     * @param SimpleSAML_Configuration $dstMetadata The metadata of the recipient.
+     * @param \SimpleSAML\Configuration $srcMetadata The metadata of the sender.
+     * @param \SimpleSAML\Configuration $dstMetadata The metadata of the recipient.
      * @return \SAML2\LogoutResponse A logout response object.
      */
     public static function buildLogoutResponse(
-        SimpleSAML_Configuration $srcMetadata,
-        SimpleSAML_Configuration $dstMetadata
+        Configuration $srcMetadata,
+        Configuration $dstMetadata
     ) {
         $lr = new \SAML2\LogoutResponse();
         $lr->setIssuer($srcMetadata->getString('entityid'));
@@ -571,8 +572,8 @@ class sspmod_saml_Message
      *
      * If the response is an error response, we will throw a sspmod_saml_Error exception with the error.
      *
-     * @param SimpleSAML_Configuration $spMetadata The metadata of the service provider.
-     * @param SimpleSAML_Configuration $idpMetadata The metadata of the identity provider.
+     * @param \SimpleSAML\Configuration $spMetadata The metadata of the service provider.
+     * @param \SimpleSAML\Configuration $idpMetadata The metadata of the identity provider.
      * @param \SAML2\Response $response The response.
      *
      * @return array Array with \SAML2\Assertion objects, containing valid assertions from the response.
@@ -581,8 +582,8 @@ class sspmod_saml_Message
      * @throws \Exception if the destination of the response does not match the current URL.
      */
     public static function processResponse(
-        SimpleSAML_Configuration $spMetadata,
-        SimpleSAML_Configuration $idpMetadata,
+        Configuration $spMetadata,
+        Configuration $idpMetadata,
         \SAML2\Response $response
     ) {
         if (!$response->isSuccess()) {
@@ -620,8 +621,8 @@ class sspmod_saml_Message
     /**
      * Process an assertion in a response.
      *
-     * @param SimpleSAML_Configuration $spMetadata The metadata of the service provider.
-     * @param SimpleSAML_Configuration $idpMetadata The metadata of the identity provider.
+     * @param \SimpleSAML\Configuration $spMetadata The metadata of the service provider.
+     * @param \SimpleSAML\Configuration $idpMetadata The metadata of the identity provider.
      * @param \SAML2\Response $response The response containing the assertion.
      * @param \SAML2\Assertion|\SAML2\EncryptedAssertion $assertion The assertion.
      * @param bool $responseSigned Whether the response is signed.
@@ -634,8 +635,8 @@ class sspmod_saml_Message
      * @throws \Exception if we couldn't decrypt the NameID for unexpected reasons.
      */
     private static function processAssertion(
-        SimpleSAML_Configuration $spMetadata,
-        SimpleSAML_Configuration $idpMetadata,
+        Configuration $spMetadata,
+        Configuration $idpMetadata,
         \SAML2\Response $response,
         $assertion,
         $responseSigned
@@ -856,13 +857,13 @@ class sspmod_saml_Message
     /**
      * Retrieve the encryption key for the given entity.
      *
-     * @param SimpleSAML_Configuration $metadata The metadata of the entity.
+     * @param \SimpleSAML\Configuration $metadata The metadata of the entity.
      *
      * @return \RobRichards\XMLSecLibs\XMLSecurityKey  The encryption key.
      *
      * @throws \SimpleSAML_Error_Exception if there is no supported encryption key in the metadata of this entity.
      */
-    public static function getEncryptionKey(SimpleSAML_Configuration $metadata)
+    public static function getEncryptionKey(Configuration $metadata)
     {
 
         $sharedKey = $metadata->getString('sharedkey', null);

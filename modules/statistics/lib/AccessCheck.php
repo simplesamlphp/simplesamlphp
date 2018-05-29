@@ -12,7 +12,7 @@ class sspmod_statistics_AccessCheck
      *
      * If the user doesn't have access, send the user to the login page.
      */
-    public static function checkAccess(SimpleSAML_Configuration $statconfig)
+    public static function checkAccess(\SimpleSAML\Configuration $statconfig)
     {
         $protected = $statconfig->getBoolean('protected', false);
         $authsource = $statconfig->getString('auth', null);

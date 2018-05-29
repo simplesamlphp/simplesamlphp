@@ -12,8 +12,6 @@
  */
 class SimpleSAML_Auth_ProcessingChain
 {
-
-
     /**
      * The list of remaining filters which should be applied to the state.
      */
@@ -53,7 +51,7 @@ class SimpleSAML_Auth_ProcessingChain
 
         $this->filters = array();
 
-        $config = SimpleSAML_Configuration::getInstance();
+        $config = \SimpleSAML\Configuration::getInstance();
         $configauthproc = $config->getArray('authproc.' . $mode, null);
 
         if (!empty($configauthproc)) {

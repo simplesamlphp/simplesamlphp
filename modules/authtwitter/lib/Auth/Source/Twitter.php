@@ -54,7 +54,7 @@ class sspmod_authtwitter_Auth_Source_Twitter extends SimpleSAML_Auth_Source
 		// Call the parent constructor first, as required by the interface
 		parent::__construct($info, $config);
 
-		$configObject = SimpleSAML_Configuration::loadFromArray($config, 'authsources[' . var_export($this->authId, true) . ']');
+		$configObject = \SimpleSAML\Configuration::loadFromArray($config, 'authsources[' . var_export($this->authId, true) . ']');
 
 		$this->key = $configObject->getString('key');
 		$this->secret = $configObject->getString('secret');

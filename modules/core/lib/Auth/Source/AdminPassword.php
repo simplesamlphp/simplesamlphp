@@ -43,7 +43,7 @@ class sspmod_core_Auth_Source_AdminPassword extends sspmod_core_Auth_UserPassBas
 		assert(is_string($username));
 		assert(is_string($password));
 
-		$config = SimpleSAML_Configuration::getInstance();
+		$config = \SimpleSAML\Configuration::getInstance();
 		$adminPassword = $config->getString('auth.adminpassword', '123');
 		if ($adminPassword === '123') {
 			// We require that the user changes the password

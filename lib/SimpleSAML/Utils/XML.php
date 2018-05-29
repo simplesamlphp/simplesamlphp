@@ -45,8 +45,8 @@ class XML
         }
 
         // see if debugging is enabled for XML validation
-        $debug = \SimpleSAML_Configuration::getInstance()->getArrayize('debug', array('validatexml' => false));
-        $enabled = \SimpleSAML_Configuration::getInstance()->getBoolean('debug.validatexml', false);
+        $debug = \SimpleSAML\Configuration::getInstance()->getArrayize('debug', array('validatexml' => false));
+        $enabled = \SimpleSAML\Configuration::getInstance()->getBoolean('debug.validatexml', false);
 
         if (!(in_array('validatexml', $debug, true) // implicitly enabled
               || (array_key_exists('validatexml', $debug) && $debug['validatexml'] === true) // explicitly enabled
@@ -98,7 +98,7 @@ class XML
         }
 
         // see if debugging is enabled for SAML messages
-        $debug = \SimpleSAML_Configuration::getInstance()->getArrayize('debug', array('saml' => false));
+        $debug = \SimpleSAML\Configuration::getInstance()->getArrayize('debug', array('saml' => false));
 
         if (!(in_array('saml', $debug, true) // implicitly enabled
               || (array_key_exists('saml', $debug) && $debug['saml'] === true) // explicitly enabled
@@ -429,7 +429,7 @@ class XML
         }
 
         if ($res) {
-            $config = \SimpleSAML_Configuration::getInstance();
+            $config = \SimpleSAML\Configuration::getInstance();
             /** @var string $schemaPath */
             $schemaPath = $config->resolvePath('schemas');
             $schemaPath .= './';

@@ -364,7 +364,7 @@ class SimpleSAML_Memcache
         self::$serverGroups = array();
 
         // load the configuration
-        $config = SimpleSAML_Configuration::getInstance();
+        $config = \SimpleSAML\Configuration::getInstance();
 
 
         $groups = $config->getArray('memcache_store.servers');
@@ -415,8 +415,8 @@ class SimpleSAML_Memcache
     private static function getExpireTime()
     {
         // get the configuration instance
-        $config = SimpleSAML_Configuration::getInstance();
-        assert($config instanceof SimpleSAML_Configuration);
+        $config = \SimpleSAML\Configuration::getInstance();
+        assert($config instanceof \SimpleSAML\Configuration);
 
         // get the expire-value from the configuration
         $expire = $config->getInteger('memcache_store.expires', 0);

@@ -37,7 +37,7 @@ if (isset($state['Destination']['entityid'])) {
 }
 SimpleSAML_Stats::log('consent:reject', $statsInfo);
 
-$globalConfig = SimpleSAML_Configuration::getInstance();
+$globalConfig = \SimpleSAML\Configuration::getInstance();
 
 $t = new SimpleSAML_XHTML_Template($globalConfig, 'consent:noconsent.php');
 $t->data['dstMetadata'] = $state['Destination'];

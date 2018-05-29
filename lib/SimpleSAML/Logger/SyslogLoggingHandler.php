@@ -20,7 +20,7 @@ class SyslogLoggingHandler implements LoggingHandlerInterface
     /**
      * Build a new logging handler based on syslog.
      */
-    public function __construct(\SimpleSAML_Configuration $config)
+    public function __construct(\SimpleSAML\Configuration $config)
     {
         $facility = $config->getInteger('logging.facility', defined('LOG_LOCAL5') ? constant('LOG_LOCAL5') : LOG_USER);
 

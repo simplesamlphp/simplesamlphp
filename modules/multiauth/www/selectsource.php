@@ -47,7 +47,7 @@ if (array_key_exists('multiauth:preselect', $state)) {
 	sspmod_multiauth_Auth_Source_MultiAuth::delegateAuthentication($source, $state);
 }
 
-$globalConfig = SimpleSAML_Configuration::getInstance();
+$globalConfig = \SimpleSAML\Configuration::getInstance();
 $t = new SimpleSAML_XHTML_Template($globalConfig, 'multiauth:selectsource.php');
 $t->data['authstate'] = $authStateId;
 $t->data['sources'] = $state[sspmod_multiauth_Auth_Source_MultiAuth::SOURCESID];

@@ -147,7 +147,7 @@ abstract class SessionHandler
      */
     public function getCookieParams()
     {
-        $config = \SimpleSAML_Configuration::getInstance();
+        $config = Configuration::getInstance();
 
         return array(
             'lifetime' => $config->getInteger('session.cookie.lifetime', 0),

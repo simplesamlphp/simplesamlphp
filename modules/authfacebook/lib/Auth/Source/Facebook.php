@@ -67,7 +67,7 @@ class sspmod_authfacebook_Auth_Source_Facebook extends SimpleSAML_Auth_Source {
 		// Call the parent constructor first, as required by the interface
 		parent::__construct($info, $config);
 
-		$cfgParse = SimpleSAML_Configuration::loadFromArray($config, 'authsources[' . var_export($this->authId, TRUE) . ']');
+		$cfgParse = \SimpleSAML\Configuration::loadFromArray($config, 'authsources[' . var_export($this->authId, TRUE) . ']');
 		
 		$this->api_key = $cfgParse->getString('api_key');
 		$this->secret = $cfgParse->getString('secret');

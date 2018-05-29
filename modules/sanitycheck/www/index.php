@@ -1,6 +1,6 @@
 <?php
 
-$config = SimpleSAML_Configuration::getInstance();
+$config = \SimpleSAML\Configuration::getInstance();
 
 $info = array();
 $errors = array();

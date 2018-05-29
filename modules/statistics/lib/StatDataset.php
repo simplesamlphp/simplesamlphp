@@ -29,8 +29,8 @@ class sspmod_statistics_StatDataset
      */
     public function __construct($statconfig, $ruleconfig, $ruleid, $timeres, $fileslot)
     {
-        assert($statconfig instanceof SimpleSAML_Configuration);
-        assert($ruleconfig instanceof SimpleSAML_Configuration);
+        assert($statconfig instanceof \SimpleSAML\Configuration);
+        assert($ruleconfig instanceof \SimpleSAML\Configuration);
         $this->statconfig = $statconfig;
         $this->ruleconfig = $ruleconfig;
 
@@ -232,7 +232,7 @@ class sspmod_statistics_StatDataset
 
     public function getDelimiterPresentation()
     {
-        $config = SimpleSAML_Configuration::getInstance();
+        $config = \SimpleSAML\Configuration::getInstance();
         $t = new SimpleSAML_XHTML_Template($config, 'statistics:statistics.tpl.php');
 
         $availdelimiters = $this->availDelimiters();
