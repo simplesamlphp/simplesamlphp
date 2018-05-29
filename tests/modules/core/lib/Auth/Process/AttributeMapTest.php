@@ -108,6 +108,51 @@ class Test_Core_Auth_Process_AttributeMap extends TestCase
         $this->assertEquals($expected, $result);
     }
 
+    public function testCircular()
+    {
+        $config = [
+            'attribute1' => 'attribute1',
+            'attribute2' => 'attribute2',
+        ];
+        $request = [
+            'Attributes' => [
+                'attribute1' => ['value'],
+                'attribute2' => ['value'],
+            ],
+        ];
+
+        $processed = self::processFilter($config, $request);
+        $result = $processed['Attributes'];
+        $expected = [
+            'attribute1' => ['value'],
+            'attribute2' => ['value'],
+        ];
+
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testMissingMap()
+    {
+        $config = [
+            'attribute1' => 'attribute3',
+        ];
+        $request = [
+            'Attributes' => [
+                'attribute1' => ['value'],
+                'attribute2' => ['value'],
+            ],
+        ];
+
+        $processed = self::processFilter($config, $request);
+        $result = $processed['Attributes'];
+        $expected = [
+            'attribute2' => ['value'],
+            'attribute3' => ['value'],
+        ];
+
+        $this->assertEquals($expected, $result);
+    }
+
     public function testInvalidOriginalAttributeType()
     {
         $config = [

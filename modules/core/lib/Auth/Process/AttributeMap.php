@@ -115,24 +115,28 @@ class sspmod_core_Auth_Process_AttributeMap extends SimpleSAML_Auth_ProcessingFi
         assert(is_array($request));
         assert(array_key_exists('Attributes', $request));
 
-        $attributes =& $request['Attributes'];
+        $mapped_attributes = array();
 
-        foreach ($attributes as $name => $values) {
+        foreach ($request['Attributes'] as $name => $values) {
             if (array_key_exists($name, $this->map)) {
                 if (!is_array($this->map[$name])) {
-                    if (!$this->duplicate) {
-                        unset($attributes[$name]);
+                    if ($this->duplicate) {
+                        $mapped_attributes[$name] = $values;
                     }
-                    $attributes[$this->map[$name]] = $values;
+                    $mapped_attributes[$this->map[$name]] = $values;
                 } else {
                     foreach ($this->map[$name] as $to_map) {
-                        $attributes[$to_map] = $values;
+                        $mapped_attributes[$to_map] = $values;
                     }
-                    if (!$this->duplicate && !in_array($name, $this->map[$name], true)) {
-                        unset($attributes[$name]);
+                    if ($this->duplicate && !in_array($name, $this->map[$name], true)) {
+                        $mapped_attributes[$name] = $values;
                     }
                 }
+            } else {
+                $mapped_attributes[$name] = $values;
             }
         }
+
+        $request['Attributes'] = $mapped_attributes;
     }
 }
