@@ -160,9 +160,15 @@ The following options can be used when configuring the Consent module:
     the attributes that should have their value hidden. Default behaviour is that 
     all attribute values are shown.
 
+`attributes.exclude`
+:   Allows certain attributes to be excluded from the attribute hash when
+    `includeValues` is `true` (and as a side effect, to be hidden from display
+    as `hiddenAttributes` does). Set to an array of the attributes that should
+    be excluded. Default behaviour is to include all values in the hash.
+
 `showNoConsentAboutService`
 :   Whether we will show a link to more information about the service from the
-    no consent page. Defaults to `TRUE`.
+    no consent page. Defaults to `true`.
 
 External options
 ----------------
