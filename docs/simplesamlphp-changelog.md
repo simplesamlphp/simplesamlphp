@@ -52,13 +52,17 @@ Released TBD
   * Sort attribute values for consent.
   * Fix table layout for MySQL > 5.6.
 
+### consentAdmin
+  * Work better with TargetedIDs when operating as a proxy.
+
 ### core
   * StatisticsWithAttribute: add `passive-` prefix when logging passive
     requests, set new option `skipPassive` to skip logging these altogether.
-  * Replace deprecated create_function with an anonymous function.
+  * Replace deprecated `create_function` with an anonymous function.
   * New authproc filter Cardinality to enforce attribute cardinality.
   * SQLPermanentStorage: proper expiration of stored values.
   * AttributeLimit: new options `regex` and `ignoreCase`.
+  * AttributeMap: prevent possible infinite loop with some PHP versions.
 
 ### ldap
   * AttributeAddUsersGroups: if attribute.groupname is set, use the
