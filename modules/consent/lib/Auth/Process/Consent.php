@@ -123,6 +123,7 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
                     var_export($config['attributes.exclude'], true).' given.'
                 );
             }
+            $this->_noconsentattributes = $config['attributes.exclude'];
         } elseif (array_key_exists('noconsentattributes', $config)) {
             SimpleSAML\Logger::warning("The 'noconsentattributes' option has been deprecated in favour of 'attributes.exclude'.");
             if (!is_array($config['noconsentattributes'])) {
