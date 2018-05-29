@@ -15,3 +15,4 @@ $state['Responder'] = array('sspmod_consent_Logout', 'postLogout');
 $idp = SimpleSAML_IdP::getByState($state);
 $idp->handleLogoutRequest($state, null);
 assert(false);
+
