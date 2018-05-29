@@ -220,6 +220,9 @@ class Test_SimpleSAML_Configuration extends SimpleSAML\Test\Utils\ClearStateTest
 
         $this->assertEquals($c->resolvePath('slash/'), '/basedir/slash');
         $this->assertEquals($c->resolvePath('slash//'), '/basedir/slash');
+
+        $this->assertEquals($c->resolvePath('C:\\otherdir'), 'C:/otherdir');
+        $this->assertEquals($c->resolvePath('C:/otherdir'), 'C:/otherdir');
     }
 
     /**

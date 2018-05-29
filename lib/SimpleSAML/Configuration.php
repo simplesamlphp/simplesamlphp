@@ -1,5 +1,6 @@
 <?php
 
+use SimpleSAML\Utils\System;
 
 /**
  * Configuration of SimpleSAMLphp
@@ -568,19 +569,7 @@ class SimpleSAML_Configuration implements \SimpleSAML\Utils\ClearableState
 
         assert(is_string($path));
 
-        /* Prepend path with basedir if it doesn't start with a slash or a Windows drive letter (e.g. "C:\"). We assume
-         * getBaseDir ends with a slash.
-         */
-        if ($path[0] !== '/' &&
-            !(preg_match('@^[a-z]:[\\\\/]@i', $path, $matches) && is_dir($matches[0]))
-        ) {
-            $path = $this->getBaseDir().$path;
-        }
-
-        // remove trailing slashes
-        $path = rtrim($path, '/');
-
-        return $path;
+        return System::resolvePath($path, $this->getBaseDir());
     }
 
 
