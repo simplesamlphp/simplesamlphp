@@ -34,17 +34,7 @@ class sspmod_saml_Message
 
         $algo = $dstMetadata->getString('signature.algorithm', null);
         if ($algo === null) {
-            /*
-             * In the NIST Special Publication 800-131A, SHA-1 became deprecated for generating
-             * new digital signatures in 2011, and will be explicitly disallowed starting the 1st
-             * of January, 2014. We'll keep this as a default for the next release and mark it
-             * as deprecated, as part of the transition to SHA-256.
-             *
-             * See http://csrc.nist.gov/publications/nistpubs/800-131A/sp800-131A.pdf for more info.
-             *
-             * TODO: change default to XMLSecurityKey::RSA_SHA256.
-             */
-            $algo = $srcMetadata->getString('signature.algorithm', XMLSecurityKey::RSA_SHA1);
+            $algo = $srcMetadata->getString('signature.algorithm', XMLSecurityKey::RSA_SHA256);
         }
 
         $privateKey = new XMLSecurityKey($algo, array('type' => 'private'));
@@ -208,7 +198,7 @@ class sspmod_saml_Message
 
         $lastException = null;
         foreach ($pemKeys as $i => $pem) {
-            $key = new XMLSecurityKey(XMLSecurityKey::RSA_SHA1, array('type' => 'public'));
+            $key = new XMLSecurityKey(XMLSecurityKey::RSA_SHA256, array('type' => 'public'));
             $key->loadKey($pem);
 
             try {

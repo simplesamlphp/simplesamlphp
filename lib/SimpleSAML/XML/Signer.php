@@ -102,7 +102,7 @@ class Signer
         assert(is_array($privatekey));
         assert(array_key_exists('PEM', $privatekey));
 
-        $this->privateKey = new XMLSecurityKey(XMLSecurityKey::RSA_SHA1, array('type' => 'private'));
+        $this->privateKey = new XMLSecurityKey(XMLSecurityKey::RSA_SHA256, array('type' => 'private'));
         if (array_key_exists('password', $privatekey)) {
             $this->privateKey->passphrase = $privatekey['password'];
         }
@@ -291,7 +291,7 @@ class Signer
 
         $objXMLSecDSig->addReferenceList(
             array($node),
-            XMLSecurityDSig::SHA1,
+            XMLSecurityDSig::SHA256,
             array('http://www.w3.org/2000/09/xmldsig#enveloped-signature', XMLSecurityDSig::EXC_C14N),
             $options
         );

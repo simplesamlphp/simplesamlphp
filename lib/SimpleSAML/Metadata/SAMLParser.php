@@ -1431,7 +1431,7 @@ class SimpleSAML_Metadata_SAMLParser
             $certData = file_get_contents($certFile);
 
             foreach ($this->validators as $validator) {
-                $key = new XMLSecurityKey(XMLSecurityKey::RSA_SHA1, array('type' => 'public'));
+                $key = new XMLSecurityKey(XMLSecurityKey::RSA_SHA256, array('type' => 'public'));
                 $key->loadKey($certData);
                 try {
                     if ($validator->validate($key)) {
