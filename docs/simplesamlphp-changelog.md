@@ -11,6 +11,7 @@ See the upgrade notes for specific information about upgrading.
 Released TBD
 
 ### Changes
+  * Default signature algorithm is now SHA-256.
   * Renamed class `SimpleSAML_Error_BadUserInnput` to `SimpleSAML_Error_BadUserInput`
   * PHP 7.2 compatibility, including removing deprecated use of assert with string.
   * Avoid logging database credentials in backtraces.

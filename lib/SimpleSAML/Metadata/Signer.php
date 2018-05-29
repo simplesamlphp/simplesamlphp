@@ -153,8 +153,6 @@ class SimpleSAML_Metadata_Signer
      * algorithms to use, respectively.
      *
      * @throws \SimpleSAML\Error\CriticalConfigurationError
-     *
-     * @todo change to SHA256 by default.
      */
     private static function getMetadataSigningAlgorithm($config, $entityMetadata, $type)
     {
@@ -168,7 +166,7 @@ class SimpleSAML_Metadata_Signer
             }
             $alg = $entityMetadata['metadata.sign.algorithm'];
         } else {
-            $alg = $config->getString('metadata.sign.algorithm', XMLSecurityKey::RSA_SHA1);
+            $alg = $config->getString('metadata.sign.algorithm', XMLSecurityKey::RSA_SHA256);
         }
 
         $supported_algs = array(

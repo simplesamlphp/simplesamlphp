@@ -23,26 +23,6 @@ $metadata['__DYNAMIC:1__'] = array(
 	 */
 	'auth' => 'example-userpass',
 
-	/*
-	 * WARNING: SHA-1 is disallowed starting January the 1st, 2014.
-	 *
-	 * Uncomment the following option to start using SHA-256 for your signatures.
-	 * Currently, SimpleSAMLphp defaults to SHA-1, which has been deprecated since
-	 * 2011, and will be disallowed by NIST as of 2014. Please refer to the following
-	 * document for more information:
-	 * 
-	 * http://csrc.nist.gov/publications/nistpubs/800-131A/sp800-131A.pdf
-	 *
-	 * If you are uncertain about service providers supporting SHA-256 or other
-	 * algorithms of the SHA-2 family, you can configure it individually in the
-	 * SP-remote metadata set for those that support it. Once you are certain that
-	 * all your configured SPs support SHA-2, you can safely remove the configuration
-	 * options in the SP-remote metadata set and uncomment the following option.
-	 *
-	 * Please refer to the IdP hosted reference for more information.
-	 */
-	//'signature.algorithm' => 'http://www.w3.org/2001/04/xmldsig-more#rsa-sha256',
-
 	/* Uncomment the following to use the uri NameFormat on attributes. */
 	/*
 	'attributes.NameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
