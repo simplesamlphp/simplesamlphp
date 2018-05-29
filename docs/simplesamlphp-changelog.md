@@ -51,9 +51,13 @@ Released TBD
 ### consent
   * Sort attribute values for consent.
   * Fix table layout for MySQL > 5.6.
+  * Rename `noconsentattributes` to `attributes.exclude`; the former
+    is now considered deprecated.
 
 ### consentAdmin
   * Work better with TargetedIDs when operating as a proxy.
+  * Add `attributes.exclude` option to correspond to the same option
+    in the Consent module.
 
 ### core
   * StatisticsWithAttribute: add `passive-` prefix when logging passive
