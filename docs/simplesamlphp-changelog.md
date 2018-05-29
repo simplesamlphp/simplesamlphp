@@ -75,6 +75,10 @@ Released TBD
 
 ### saml
   * AttributeConsumingService: allow to set isDefault and index options.
+  * Encrypted attributes in an assertion are now decrypted correctly.
+
+### smartattributes
+  * Fix to make the `add_authority` option work.
 
 ### sqlauth
   * Changed from default-enabled to default-disabled.
