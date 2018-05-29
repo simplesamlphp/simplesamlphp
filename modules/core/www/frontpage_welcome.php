@@ -3,7 +3,7 @@
 
 // Load SimpleSAMLphp configuration
 $config = \SimpleSAML\Configuration::getInstance();
-$session = SimpleSAML_Session::getSessionFromRequest();
+$session = \SimpleSAML\Session::getSessionFromRequest();
 
 // Check if valid local session exists.
 if ($config->getBoolean('admin.protectindexpage', false)) {

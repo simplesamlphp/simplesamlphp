@@ -1,4 +1,5 @@
 <?php
+
 require_once('../_include.php');
 
 // make sure that the user has admin access rights

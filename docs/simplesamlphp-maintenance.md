@@ -52,7 +52,7 @@ SimpleSAMLphp as an Identity Provider, or any other applications using it are no
 settings by leaving these options unset or setting them to `null`.
 
 If you need to restore your session's application after calling SimpleSAMLphp, you can do it by calling the `cleanup()` method of the
-`SimpleSAML_Session` class, like described [here](simplesamlphp-sp#section_6).
+`\SimpleSAML\Session` class, like described [here](simplesamlphp-sp#section_6).
 
 ### Configuring memcache
 

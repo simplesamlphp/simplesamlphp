@@ -205,7 +205,7 @@ class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception
         SimpleSAML\Logger::error('Error report with id '.$reportId.' generated.');
 
         $config = \SimpleSAML\Configuration::getInstance();
-        $session = SimpleSAML_Session::getSessionFromRequest();
+        $session = \SimpleSAML\Session::getSessionFromRequest();
 
         if (isset($_SERVER['HTTP_REFERER'])) {
             $referer = $_SERVER['HTTP_REFERER'];
@@ -268,7 +268,7 @@ class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception
         }
 
         $data['email'] = '';
-        $session = SimpleSAML_Session::getSessionFromRequest();
+        $session = \SimpleSAML\Session::getSessionFromRequest();
         $authorities = $session->getAuthorities();
         foreach ($authorities as $authority) {
             $attributes = $session->getAuthData($authority, 'Attributes');

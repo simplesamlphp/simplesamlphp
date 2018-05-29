@@ -11,7 +11,7 @@ if (!array_key_exists('StateId', $_REQUEST)) {
 }
 $id = $_REQUEST['StateId'];
 $state = SimpleSAML_Auth_State::loadState($id, 'core:short_sso_interval');
-$session = SimpleSAML_Session::getSessionFromRequest();
+$session = \SimpleSAML\Session::getSessionFromRequest();
 
 if (array_key_exists('continue', $_REQUEST)) {
 	// The user has pressed the continue/retry-button

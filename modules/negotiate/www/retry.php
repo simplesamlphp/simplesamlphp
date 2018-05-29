@@ -19,7 +19,7 @@ if (isset($idpmeta['auth'])) {
 	if ($source === NULL)
 		throw new SimpleSAML_Error_BadRequest('Invalid AuthId "' . $idpmeta['auth'] . '" - not found.');
 
-	$session = SimpleSAML_Session::getSessionFromRequest();
+	$session = \SimpleSAML\Session::getSessionFromRequest();
 	$session->setData('negotiate:disable', 'session', FALSE, 24*60*60);
 	SimpleSAML\Logger::debug('Negotiate(retry) - session enabled, retrying.');
 	$source->authenticate($state);

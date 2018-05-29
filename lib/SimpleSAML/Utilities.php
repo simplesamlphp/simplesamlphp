@@ -566,7 +566,7 @@ class SimpleSAML_Utilities
             'url'  => $destination,
         );
 
-        $session = SimpleSAML_Session::getSessionFromRequest();
+        $session = \SimpleSAML\Session::getSessionFromRequest();
         $session->setData('core_postdatalink', $postId, $postData);
 
         $redirInfo = base64_encode(SimpleSAML\Utils\Crypto::aesEncrypt($session->getSessionId().':'.$postId));

@@ -211,7 +211,7 @@ class sspmod_saml_SP_LogoutStore
             $sessionIndex = sha1($sessionIndex);
         }
 
-        $session = SimpleSAML_Session::getSessionFromRequest();
+        $session = \SimpleSAML\Session::getSessionFromRequest();
         $sessionId = $session->getSessionId();
 
         if ($store instanceof \SimpleSAML\Store\SQL) {
@@ -281,7 +281,7 @@ class sspmod_saml_SP_LogoutStore
 
             $sessionId = $sessions[$sessionIndex];
 
-            $session = SimpleSAML_Session::getSession($sessionId);
+            $session = \SimpleSAML\Session::getSession($sessionId);
             if ($session === null) {
                 SimpleSAML\Logger::info('saml.LogoutStore: Skipping logout of missing session.');
                 continue;

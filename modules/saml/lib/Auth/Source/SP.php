@@ -440,7 +440,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
     {
         assert(is_array($state));
 
-        $session = SimpleSAML_Session::getSessionFromRequest();
+        $session = \SimpleSAML\Session::getSessionFromRequest();
         $data = $session->getAuthState($this->authId);
         foreach ($data as $k => $v) {
             $state[$k] = $v;
@@ -572,7 +572,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
         assert(isset($state['ReturnCallback']));
 
         // Update session state
-        $session = SimpleSAML_Session::getSessionFromRequest();
+        $session = \SimpleSAML\Session::getSessionFromRequest();
         $authId = $state['saml:sp:AuthId'];
         $session->doLogin($authId, SimpleSAML_Auth_State::getPersistentAuthData($state));
 
@@ -755,7 +755,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
         assert(is_string($authId));
         assert(is_string($redirectTo));
 
-        $session = SimpleSAML_Session::getSessionFromRequest();
+        $session = \SimpleSAML\Session::getSessionFromRequest();
         $session->doLogin($authId, SimpleSAML_Auth_State::getPersistentAuthData($state));
 
         \SimpleSAML\Utils\HTTP::redirectUntrustedURL($redirectTo);

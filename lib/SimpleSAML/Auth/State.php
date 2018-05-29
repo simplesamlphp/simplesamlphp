@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * This is a helper class for saving and loading state information.
  *
@@ -30,8 +29,6 @@
  */
 class SimpleSAML_Auth_State
 {
-
-
     /**
      * The index in the state array which contains the identifier.
      */
@@ -205,7 +202,7 @@ class SimpleSAML_Auth_State
 
         // Save state
         $serializedState = serialize($state);
-        $session = SimpleSAML_Session::getSessionFromRequest();
+        $session = \SimpleSAML\Session::getSessionFromRequest();
         $session->setData('SimpleSAML_Auth_State', $id, $serializedState, self::getStateTimeout());
 
         SimpleSAML\Logger::debug('Saved state: '.var_export($return, true));
@@ -265,7 +262,7 @@ class SimpleSAML_Auth_State
 
         $sid = self::parseStateID($id);
 
-        $session = SimpleSAML_Session::getSessionFromRequest();
+        $session = \SimpleSAML\Session::getSessionFromRequest();
         $state = $session->getData('SimpleSAML_Auth_State', $sid['id']);
 
         if ($state === null) {
@@ -327,7 +324,7 @@ class SimpleSAML_Auth_State
 
         SimpleSAML\Logger::debug('Deleting state: '.var_export($state[self::ID], true));
 
-        $session = SimpleSAML_Session::getSessionFromRequest();
+        $session = \SimpleSAML\Session::getSessionFromRequest();
         $session->deleteData('SimpleSAML_Auth_State', $state[self::ID]);
     }
 

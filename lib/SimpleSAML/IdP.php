@@ -216,7 +216,7 @@ class SimpleSAML_IdP
 
         $association['core:IdP'] = $this->id;
 
-        $session = SimpleSAML_Session::getSessionFromRequest();
+        $session = \SimpleSAML\Session::getSessionFromRequest();
         $session->addAssociation($this->associationGroup, $association);
     }
 
@@ -228,7 +228,7 @@ class SimpleSAML_IdP
      */
     public function getAssociations()
     {
-        $session = SimpleSAML_Session::getSessionFromRequest();
+        $session = \SimpleSAML\Session::getSessionFromRequest();
         return $session->getAssociations($this->associationGroup);
     }
 
@@ -242,7 +242,7 @@ class SimpleSAML_IdP
     {
         assert(is_string($assocId));
 
-        $session = SimpleSAML_Session::getSessionFromRequest();
+        $session = \SimpleSAML\Session::getSessionFromRequest();
         $session->terminateAssociation($this->associationGroup, $assocId);
     }
 
@@ -268,12 +268,12 @@ class SimpleSAML_IdP
         assert(is_callable($state['Responder']));
 
         if (isset($state['core:SP'])) {
-            $session = SimpleSAML_Session::getSessionFromRequest();
+            $session = \SimpleSAML\Session::getSessionFromRequest();
             $session->setData(
                 'core:idp-ssotime',
                 $state['core:IdP'].';'.$state['core:SP'],
                 time(),
-                SimpleSAML_Session::DATA_TIMEOUT_SESSION_END
+                \SimpleSAML\Session::DATA_TIMEOUT_SESSION_END
             );
         }
 
@@ -306,7 +306,7 @@ class SimpleSAML_IdP
         }
 
         if (isset($state['core:SP'])) {
-            $session = SimpleSAML_Session::getSessionFromRequest();
+            $session = \SimpleSAML\Session::getSessionFromRequest();
             $previousSSOTime = $session->getData('core:idp-ssotime', $state['core:IdP'].';'.$state['core:SP']);
             if ($previousSSOTime !== null) {
                 $state['PreviousSSOTimestamp'] = $previousSSOTime;
@@ -479,7 +479,7 @@ class SimpleSAML_IdP
 
         if ($assocId !== null) {
             $this->terminateAssociation($assocId);
-            $session = SimpleSAML_Session::getSessionFromRequest();
+            $session = \SimpleSAML\Session::getSessionFromRequest();
             $session->deleteData('core:idp-ssotime', $this->id.':'.$state['saml:SPEntityId']);
         }
 
@@ -509,7 +509,7 @@ class SimpleSAML_IdP
         assert(is_string($assocId));
         assert(is_string($relayState) || $relayState === null);
 
-        $session = SimpleSAML_Session::getSessionFromRequest();
+        $session = \SimpleSAML\Session::getSessionFromRequest();
         $session->deleteData('core:idp-ssotime', $this->id.';'.substr($assocId, strpos($assocId, ':') + 1));
 
         $handler = $this->getLogoutHandler();

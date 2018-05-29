@@ -7,7 +7,7 @@ use \SimpleSAML_Auth_State as State;
 use \SimpleSAML\Configuration;
 use \SimpleSAML_Error_AuthSource as AuthSourceError;
 use \SimpleSAML\Module;
-use \SimpleSAML_Session as Session;
+use \SimpleSAML\Session;
 use \SimpleSAML\Utils\HTTP;
 
 /**
@@ -15,9 +15,9 @@ use \SimpleSAML\Utils\HTTP;
  *
  * @package SimpleSAMLphp
  */
+
 class Simple
 {
-
     /**
      * The id of the authentication source we are accessing.
      *
@@ -242,7 +242,7 @@ class Simple
                 $stateID = State::saveState($state, $state['ReturnStateStage']);
                 $params[$state['ReturnStateParam']] = $stateID;
             }
-            \SimpleSAML\Utils\HTTP::redirectTrustedURL($state['ReturnTo'], $params);
+            HTTP::redirectTrustedURL($state['ReturnTo'], $params);
         }
     }
 

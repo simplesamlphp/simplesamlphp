@@ -57,7 +57,7 @@ abstract class SessionHandlerCookie extends SessionHandler
     public function newSessionId()
     {
         $this->session_id = self::createSessionID();
-        \SimpleSAML_Session::createSession($this->session_id);
+        Session::createSession($this->session_id);
 
         return $this->session_id;
     }

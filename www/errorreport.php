@@ -19,7 +19,7 @@ $text = htmlspecialchars((string) $_REQUEST['text']);
 
 $data = null;
 try {
-    $session = SimpleSAML_Session::getSessionFromRequest();
+    $session = \SimpleSAML\Session::getSessionFromRequest();
     $data = $session->getData('core:errorreport', $reportId);
 } catch (Exception $e) {
     SimpleSAML\Logger::error('Error loading error report data: '.var_export($e->getMessage(), true));

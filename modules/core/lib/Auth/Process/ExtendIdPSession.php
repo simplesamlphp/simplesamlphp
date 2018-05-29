@@ -24,7 +24,7 @@ class sspmod_core_Auth_Process_ExtendIdPSession extends SimpleSAML_Auth_Processi
 		}
 
 		// Update authority expire time
-		$session = SimpleSAML_Session::getSessionFromRequest();
+		$session = \SimpleSAML\Session::getSessionFromRequest();
 		$session->setAuthorityExpire($state['Authority']);
 
 		/* Update session cookies duration */

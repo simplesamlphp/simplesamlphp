@@ -125,7 +125,7 @@ class SessionHandlerPHP extends SessionHandler
      * Use this method to restore a previous PHP session existing before SimpleSAMLphp initialized its own session.
      *
      * WARNING: do not use this method directly, unless you know what you are doing. Calling this method directly,
-     * outside of SimpleSAML_Session, could cause SimpleSAMLphp's session to be lost or mess the application's one. The
+     * outside of \SimpleSAML\Session, could cause SimpleSAMLphp's session to be lost or mess the application's one. The
      * session must always be saved properly before calling this method. If you don't understand what this is about,
      * don't use this method.
      */
@@ -168,7 +168,7 @@ class SessionHandlerPHP extends SessionHandler
     {
         // generate new (secure) session id
         $sessionId = bin2hex(openssl_random_pseudo_bytes(16));
-        \SimpleSAML_Session::createSession($sessionId);
+        Session::createSession($sessionId);
 
         return $sessionId;
     }
@@ -215,9 +215,9 @@ class SessionHandlerPHP extends SessionHandler
     /**
      * Save the current session to the PHP session array.
      *
-     * @param \SimpleSAML_Session $session The session object we should save.
+     * @param \SimpleSAML\Session $session The session object we should save.
      */
-    public function saveSession(\SimpleSAML_Session $session)
+    public function saveSession(\SimpleSAML\Session $session)
     {
         $_SESSION['SimpleSAMLphp_SESSION'] = serialize($session);
     }
@@ -228,7 +228,7 @@ class SessionHandlerPHP extends SessionHandler
      *
      * @param string|null $sessionId The ID of the session we should load, or null to use the default.
      *
-     * @return \SimpleSAML_Session|null The session object, or null if it doesn't exist.
+     * @return \SimpleSAML\Session|null The session object, or null if it doesn't exist.
      *
      * @throws \SimpleSAML_Error_Exception If it wasn't possible to disable session cookies or we are trying to load a
      * PHP session with a specific identifier and it doesn't match with the current session identifier.

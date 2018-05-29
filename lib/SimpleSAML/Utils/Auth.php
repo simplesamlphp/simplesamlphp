@@ -41,7 +41,7 @@ class Auth
      */
     public static function isAdmin()
     {
-        $session = \SimpleSAML_Session::getSessionFromRequest();
+        $session = \SimpleSAML\Session::getSessionFromRequest();
         return $session->isValid('admin') || $session->isValid('login-admin');
     }
 

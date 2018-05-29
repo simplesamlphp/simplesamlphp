@@ -11,10 +11,9 @@
  *
  * @deprecated This class will be removed in SSP 2.0.
  */
+
 class SimpleSAML_Auth_Default
 {
-
-
     /**
      * @deprecated This method will be removed in SSP 2.0. Use SimpleSAML_Auth_Source::initLogin() instead.
      */
@@ -58,7 +57,7 @@ class SimpleSAML_Auth_Default
         assert(is_string($returnURL));
         assert(is_string($authority));
 
-        $session = SimpleSAML_Session::getSessionFromRequest();
+        $session = \SimpleSAML\Session::getSessionFromRequest();
 
         $state = $session->getAuthData($authority, 'LogoutState');
         $session->doLogout($authority);

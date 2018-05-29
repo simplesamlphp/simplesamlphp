@@ -10,7 +10,7 @@ if (!array_key_exists('StateId', $_REQUEST)) {
 }
 $id = $_REQUEST['StateId'];
 $state = \SimpleSAML_Auth_State::loadState($id, 'core:cardinality');
-$session = \SimpleSAML_Session::getSessionFromRequest();
+$session = \SimpleSAML\Session::getSessionFromRequest();
 
 \SimpleSAML\Logger::stats('core:cardinality:error '.$state['Destination']['entityid'].' '.$state['saml:sp:IdP'].
     ' '.implode(',', array_keys($state['core:cardinality:errorAttributes'])));

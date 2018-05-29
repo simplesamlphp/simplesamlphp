@@ -191,7 +191,7 @@ If we are using PHP sessions in SimpleSAMLphp and in the application we are prot
 existing session when invoked for the first time, and its own session will prevail afterwards. If you want to restore
 your own session after calling SimpleSAMLphp, you can do so by cleaning up the session like this:
 
-    $session = SimpleSAML_Session::getSessionFromRequest();
+    $session = \SimpleSAML\Session::getSessionFromRequest();
     $session->cleanup();
 
 If you don't cleanup SimpleSAMLphp's session and try to use $_SESSION afterwards, you won't be using your own session

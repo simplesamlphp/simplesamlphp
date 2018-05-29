@@ -2,7 +2,7 @@
 
 // load configuration
 $config = \SimpleSAML\Configuration::getInstance();
-$session = SimpleSAML_Session::getSessionFromRequest();
+$session = \SimpleSAML\Session::getSessionFromRequest();
 
 SimpleSAML\Utils\Auth::requireAdmin();
 

@@ -10,6 +10,7 @@ use SimpleSAML\Auth\SourceFactory;
  * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
+
 abstract class SimpleSAML_Auth_Source
 {
     /**
@@ -114,7 +115,7 @@ abstract class SimpleSAML_Auth_Source
         assert(isset($state['ReturnCallback']));
 
         // the default implementation just copies over the previous authentication data
-        $session = SimpleSAML_Session::getSessionFromRequest();
+        $session = \SimpleSAML\Session::getSessionFromRequest();
         $data = $session->getAuthState($this->authId);
         foreach ($data as $k => $v) {
             $state[$k] = $v;
@@ -218,7 +219,7 @@ abstract class SimpleSAML_Auth_Source
         $return = $state['SimpleSAML_Auth_Source.Return'];
 
         // save session state
-        $session = SimpleSAML_Session::getSessionFromRequest();
+        $session = \SimpleSAML\Session::getSessionFromRequest();
         $authId = $state['SimpleSAML_Auth_Source.id'];
         $session->doLogin($authId, SimpleSAML_Auth_State::getPersistentAuthData($state));
 
@@ -381,7 +382,7 @@ abstract class SimpleSAML_Auth_Source
 
         $source = $state['SimpleSAML_Auth_Source.logoutSource'];
 
-        $session = SimpleSAML_Session::getSessionFromRequest();
+        $session = \SimpleSAML\Session::getSessionFromRequest();
         if (!$session->isValid($source)) {
             SimpleSAML\Logger::warning(
                 'Received logout from an invalid authentication source '.
@@ -430,12 +431,12 @@ abstract class SimpleSAML_Auth_Source
             'state'    => $callbackState,
         );
 
-        $session = SimpleSAML_Session::getSessionFromRequest();
+        $session = \SimpleSAML\Session::getSessionFromRequest();
         $session->setData(
             'SimpleSAML_Auth_Source.LogoutCallbacks',
             $id,
             $data,
-            SimpleSAML_Session::DATA_TIMEOUT_SESSION_END
+            \SimpleSAML\Session::DATA_TIMEOUT_SESSION_END
         );
     }
 
@@ -456,7 +457,7 @@ abstract class SimpleSAML_Auth_Source
 
         $id = strlen($this->authId).':'.$this->authId.$assoc;
 
-        $session = SimpleSAML_Session::getSessionFromRequest();
+        $session = \SimpleSAML\Session::getSessionFromRequest();
 
         $data = $session->getData('SimpleSAML_Auth_Source.LogoutCallbacks', $id);
         if ($data === null) {

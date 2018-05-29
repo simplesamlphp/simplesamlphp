@@ -42,7 +42,7 @@ class SimpleSAML_XHTML_IdPDisco
     /**
      * The users session.
      *
-     * @var SimpleSAML_Session
+     * @var \SimpleSAML\Session
      */
     protected $session;
 
@@ -120,7 +120,7 @@ class SimpleSAML_XHTML_IdPDisco
         // initialize standard classes
         $this->config = \SimpleSAML\Configuration::getInstance();
         $this->metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
-        $this->session = SimpleSAML_Session::getSessionFromRequest();
+        $this->session = \SimpleSAML\Session::getSessionFromRequest();
         $this->instance = $instance;
         $this->metadataSets = $metadataSets;
 

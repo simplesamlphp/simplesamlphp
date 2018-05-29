@@ -2,8 +2,9 @@
 namespace SimpleSAML\Utils;
 
 use SimpleSAML\Configuration;
-use SimpleSAML\Module;
 use SimpleSAML\Logger;
+use SimpleSAML\Module;
+use SimpleSAML\Session;
 
 /**
  * HTTP-related utility methods.
@@ -26,7 +27,7 @@ class HTTP
      */
     private static function getSecurePOSTRedirectURL($destination, $data)
     {
-        $session = \SimpleSAML_Session::getSessionFromRequest();
+        $session = Session::getSessionFromRequest();
         $id = self::savePOSTData($session, $destination, $data);
 
         // get the session ID
@@ -206,7 +207,7 @@ class HTTP
     /**
      * Save the given HTTP POST data and the destination where it should be posted to a given session.
      *
-     * @param \SimpleSAML_Session $session The session where to temporarily store the data.
+     * @param \SimpleSAML\Session $session The session where to temporarily store the data.
      * @param string              $destination The destination URL where the form should be posted.
      * @param array               $data An associative array with the data to be posted to $destination.
      *
@@ -215,7 +216,7 @@ class HTTP
      * @author Andjelko Horvat
      * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
-    private static function savePOSTData(\SimpleSAML_Session $session, $destination, $data)
+    private static function savePOSTData(Session $session, $destination, $data)
     {
         // generate a random ID to avoid replay attacks
         $id = Random::generateID();
@@ -290,7 +291,7 @@ class HTTP
             throw new \InvalidArgumentException('Invalid input parameters.');
         }
 
-        $session = \SimpleSAML_Session::getSessionFromRequest();
+        $session = Session::getSessionFromRequest();
         if ($session->hasSessionCookie()) {
             return;
         }
@@ -677,7 +678,7 @@ class HTTP
             // we need to post the data to HTTP
             $url = self::getSecurePOSTRedirectURL($destination, $data);
         } else { // post the data directly
-            $session = \SimpleSAML_Session::getSessionFromRequest();
+            $session = Session::getSessionFromRequest();
             $id = self::savePOSTData($session, $destination, $data);
             $url = Module::getModuleURL('core/postredirect.php', array('RedirId' => $id));
         }

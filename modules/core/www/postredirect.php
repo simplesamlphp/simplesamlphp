@@ -8,7 +8,7 @@
 
 if (array_key_exists('RedirId', $_REQUEST)) {
 	$postId = $_REQUEST['RedirId'];
-	$session = SimpleSAML_Session::getSessionFromRequest();
+	$session = \SimpleSAML\Session::getSessionFromRequest();
 } elseif (array_key_exists('RedirInfo', $_REQUEST)) {
 	$encData = base64_decode($_REQUEST['RedirInfo']);
 
@@ -22,7 +22,7 @@ if (array_key_exists('RedirId', $_REQUEST)) {
 		throw new SimpleSAML_Error_BadRequest('Invalid session info data.');
 	}
 
-	$session = SimpleSAML_Session::getSession($sessionId);
+	$session = \SimpleSAML\Session::getSession($sessionId);
 } else {
 	throw new SimpleSAML_Error_BadRequest('Missing redirection info parameter.');
 }
