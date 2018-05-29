@@ -1,0 +1,302 @@
+Using the Janrain authentication source with simpleSAMLphp
+===========================================================
+
+This module needs the CURL and JSON PHP extensions.
+
+This module is provided as a reference implementation.  No guarantees of functionality are provided.  Some modification of the provided source code will be required for a successful integration.
+
+OVERVIEW:
+======================
+
+This module was designed to allow the Janrain Registration Widget to be used with Salesforce.com's SAML based Single Sign On.  This module has only been tested with standard Salesforce.com and Salesforce Communities user accounts.
+
+This module should provide the necessary framework to allow the Janrain Registration platform to be used as a SAML idp:
+
+http://developers.janrain.com/overview/registration/registration-overview/
+
+This module utilizes the Janrain Registration Javascript based Solution for Websites:
+
+http://developers.janrain.com/overview/registration/registration-overview/javascript-based-solution-for-websites/
+
+In order to successfully integrate the Javascript Solution you will need to have a properly provisioned Janrain Registration system.  If you are intending to utilize this module with Saleforce.com and the Salesforce.com Just-In-Time (JIT) provisioning features of their Single Sign-On (SAML) interface then you MUST make sure that the required JIT fields are configured as required fields in the Janrain Registration system otherwise null/empty values will prevent the JIT provisioning from being successful.
+
+
+LICENSE:
+======================
+
+Copyright (c) 2014 Janrain, Inc.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+config/authsources.php:
+=========================
+
+The following is an example section for the "auth-janrain" module.
+
+	'auth-janrain' => array(
+	    'authjanrain:JanrainRegistration',
+	    'captureServer' => 'https://YOUR_APP_NAME.janraincapture.com', //optional - also pulled from janrain-init.js
+	    'captureEntityType' => 'user', //required
+	    'includeFullProfileJson' => true, //required
+	    /*
+	     * Setting "salesforceMode" to one of the following adds the appropriate attributes
+	     * to support Just-In-Time(JIT) Provisioning based on the available Salesforce documentation
+	     * as of September 2014.
+	     * 
+	     * https://help.salesforce.com/HTViewHelpDoc?id=sso_jit_requirements.htm&language=en_US
+	     * https://help.salesforce.com/apex/HTViewHelpDoc?id=sso_jit_portal_requirements.htm
+	     * https://help.salesforce.com/apex/HTViewHelpDoc?id=sso_saml_assertion_examples.htm&language=en
+	     * https://help.salesforce.com/HTViewSolution?id=000198728&language=en_US
+	     * 
+	     * "communities" - Salesforce Communities 
+		 *		Account.AccountNumber=98523554; //Unique Account Number 
+		 *		Account.Owner=00eU0000000MKc9​;
+		 *		Contact.Email=test123Comghfg@test.com;
+		 *		Contact.LastName=123Test1235gh4;
+		 *		Account.Name=communityTfghgfest3;
+		 *		User.Email=ada896532@ada.com;
+		 *		User.LastName=CommunityUsgfhfgher;
+		 *		User.ProfileId=00eU0000000MKc9​;
+		 *		User.Username=testComunity5fghgfh5@test.com;  
+	     * "standard" - Standard Salesforce User
+		 *    	User.Username=test2@test.com;
+		 *		User.Email=test2@salesforce.com;
+		 *		User.LastName=test2last;
+		 *		User.ProfileId=Standard User
+	     * "portal" - Salesforce Portal user (untested - but should work based on documentation)
+		 *		Contact.Account=001U0000004Pqwau200Bt;
+		 *		Contact.LastName=user8;
+		 *		Contact.Email=customeruser8@cmort.org;
+		 *		User.LastName=user8;
+		 *		User.Email=customeruser8@cmort.org;
+		 *		User.Username=customeruser8@cmort.org;
+		 *		User.ProfileId=00eU0000000MKc9​;
+		 *		User.PortalRole=Worker
+	     * 
+	     * IMPORTANT SALESFORCE INTEGRATION NOTE:
+	     * 	In order to be truly "successful" the Janrain Registration (Capture) Widget should be 
+	     *	configured so that the Salesforce Just-In-time attributes are required upon registration.
+	     *  This configuration may require some assistance from Janrain Deployment services.  
+	     *	Please contact your Janrain representative for more assistance in this area. 
+		 *
+	     */
+	    'salesforceMode' => 'communities', //communities, standard, portal, anything else is ignored.
+	    'salesforceOnly' => false, //true = only send Salesforce Attributes (uid will still be sent)
+	    'salesforceOrganizationId' => '00Do0000000ABfT',  //Required for communities
+	    'salesforceAccountOwnerId' => '005o0000000ABcpAAG', //Required for communities
+	    'salesforceProfileId' => '00eo0000000oIIABA2', //Required for communities
+	    'salesforcePortalAccount' => '', //Required for Portals
+	    'salesforcePortalRole' => '', //Required for Portals
+	),
+
+metadata/saml20-sp-remote.php:
+===============================
+
+Follow the instructions provided with the SimpleSAMLphp site for setting up your saml20-sp-remote.php file.  In the case of Salesforce.com and JIT provisioning the following attributes structure (or similar) may be required:
+
+	'attributes' => 
+	  array (
+	    0 => 'uid',
+	    1 => 'Account.AccountNumber',
+	    2 => 'Account.Name',
+	    3 => 'Contact.Email',
+	    4 => 'User.Email',
+	    5 => 'User.username',
+	    6 => 'User.FirstName',
+	    7 => 'Contact.LastName',
+	    8 => 'User.LastName',
+	    9 => 'organization_id',
+	    10 => 'Account.Owner',
+	    11 => 'User.ProfileId',
+	  ),
+
+modules/authjanrain/lib/Auth/Source/JanrainRegistration.php:
+=============================================================
+
+If you want to create custom attributes from a Janrain User profile then yo would update the code in the "checkToken" function.  By default (although this is configurable) the entire user profile is retrieved.  Any field of data within the user profile can be mapped to an attribute.
+
+modules/authjanrain/templates/JanrainWidget.php:
+=============================================================
+
+This page would contain most of the HTML/JTL markup for the Janrain Registration Javascript based solution.  In most cases you would simply replace the example HTML/JTL with what was provided to you by Janrain. 
+
+http://developers.janrain.com/how-to/registration/customize-the-appearance-of-the-ui/
+
+This page relies on the following janrain-init.js file to be in the following location:
+
+modules/authjanrain/www/resources/scripts/janrain-init.js:
+=============================================================
+
+This file (or something similar) is typically provided when the Janrain Registration Javascript based solution is provisioned.  It will contain the settings that are necessary for the Janrain Registration Javascript based solution to communicate through the Janrain Server-side API's.
+
+http://developers.janrain.com/reference/javascript-api/registration-js-api/settings/
+
+Relevant modifications to this file are in the following function:
+
+	function janrainCaptureWidgetOnLoad() {
+	    var implFuncs = janrainExampleImplementationFunctions(); // Located below.
+
+	    /*==== CUSTOM ONLOAD CODE START ==========================================*\
+	    ||  Any javascript that needs to be run before screens are rendered but   ||
+	    ||  after the Widget is loaded should go between this comment and "CUSTOM ||
+	    ||  ONLOAD CODE END" below.                                               ||
+	    \*                                                                        */
+
+	    /*--
+	        SCREEN TO RENDER:
+	        This setting defines which screen to render. We've set it to the result
+	        of implFuncs.getParameterByName() so that if you pass in a parameter
+	        in your URL called 'screenToRender' and provide a valid screen name,
+	        that screen will be shown when the Widget loads.
+	                                                                            --*/
+	    janrain.settings.capture.screenToRender = implFuncs.getParameterByName('screenToRender');
+
+	    /*--
+	        EVENT HANDLING:
+
+	        Event Documentation:
+	        http://developers.janrain.com/reference/javascript-api/registration-js-api/events/
+	    --*/
+	    janrain.events.onCaptureScreenShow.addHandler(implFuncs.enhanceReturnExperience);
+	    janrain.events.onCaptureSaveSuccess.addHandler(implFuncs.hideResendLink);
+
+	    /*--
+	        NAVIGATION EVENTS:
+	        These event handlers are used for navigating the example implementation
+	        that exists on our servers for testing/demo/sample purposes. It is not
+	        required for your implementation, but can be modified to suit your
+	        needs. These event handlers are provided as an example.
+	                                                                            --*/
+	    //janrain.events.onCaptureLoginSuccess.addHandler(implFuncs.setNavigationForLoggedInUser);
+	    //janrain.events.onCaptureSessionFound.addHandler(implFuncs.setNavigationForLoggedInUser);
+	    //janrain.events.onCaptureRegistrationSuccess.addHandler(implFuncs.setNavigationForLoggedInUser);
+	    //janrain.events.onCaptureSessionEnded.addHandler(implFuncs.setNavigationForLoggedOutUser);
+	    janrain.events.onCaptureLoginFailed.addHandler(implFuncs.handleDeactivatedAccountLogin);
+	    janrain.events.onCaptureAccountDeactivateSuccess.addHandler(implFuncs.handleAccountDeactivation);
+
+	    janrain.events.onCaptureSessionFound.addHandler(function(result) {
+	        document.getElementById("samlCaptureServerUrl").value = janrain.settings.capture.captureServer;
+	        document.getElementById("samlCaptureToken").value = result.accessToken;
+	        document.getElementById("samlForm").submit();
+	    });
+
+	    janrain.events.onCaptureLoginSuccess.addHandler(function(result) {
+	        document.getElementById("samlCaptureServerUrl").value = janrain.settings.capture.captureServer;
+	        document.getElementById("samlCaptureToken").value = result.accessToken;
+	        document.getElementById("samlForm").submit();
+	    });
+	    
+	    janrain.events.onCaptureRegistrationSuccess.addHandler(function(result) {
+	        document.getElementById("samlCaptureServerUrl").value = janrain.settings.capture.captureServer;
+	        document.getElementById("samlCaptureToken").value = result.accessToken;
+	        document.getElementById("samlForm").submit();
+	    });
+
+	    /*--
+	        SHOW EVENTS:
+	        Uncomment this line to show events in your browser's console. You must
+	        include janrain-utils.js to run this function.
+	                                                                            --*/
+	    janrainUtilityFunctions().showEvents();
+
+	    /*                                                                        *\
+	    || *** CUSTOM ONLOAD CODE END ***                                         ||
+	    \*========================================================================*/
+
+	    // This should be the last line in janrainCaptureWidgetOnLoad()
+	    janrain.capture.ui.start();
+	}
+
+The main modifications will revolve around the three event handlers (onCaptureSessionFound, onCaptureLoginSuccess, onCaptureRegistrationSuccess) that update form values and submit the necessary form (samlForm) with the access token upon the detection or completion of successful authentication.
+
+http://developers.janrain.com/reference/javascript-api/registration-js-api/events/
+
+modules/authjanrain/www/resources/scripts/janrain-utils.js:
+=============================================================
+
+This file (or something similar) is typically provided when the Janrain Registration Javascript based solution is provisioned.  It will contain utility functions that are used by the Janrain Registration Javascript based solution.
+
+
+modules/authjanrain/templates/JanrainLogout.php:
+=============================================================
+
+This page would contain most of the HTML/JTL markup for the Janrain Registration Javascript based solution.  In most cases you would simply replace the example HTML/JTL with what was provided to you by Janrain.
+
+The primary difference on this page (as compared to the (modules/authjanrain/templates/JanrainRegistration.php) page is that this page includes the settings from the janrain-init.js file inline and then modifies the event handlers to terminate the Janrain Registration session and then redirect the page back to the SimpleSAMLLogout process.
+
+http://developers.janrain.com/reference/javascript-api/registration-js-api/settings/
+http://developers.janrain.com/how-to/registration/customize-the-appearance-of-the-ui/
+
+Relevant modifications to this file are in the following function:
+
+    function janrainCaptureWidgetOnLoad() {
+       
+        /*==== CUSTOM ONLOAD CODE START ==========================================*\
+        ||  Any javascript that needs to be run before screens are rendered but   ||
+        ||  after the Widget is loaded should go between this comment and "CUSTOM ||
+        ||  ONLOAD CODE END" below.                                               ||
+        \*                                                                        */
+
+        /*--
+            SCREEN TO RENDER:
+            This setting defines which screen to render. We've set it to the result
+            of implFuncs.getParameterByName() so that if you pass in a parameter
+            in your URL called 'screenToRender' and provide a valid screen name,
+            that screen will be shown when the Widget loads.
+                                                                                --*/
+        janrain.settings.capture.screenToRender = '';
+
+
+        janrain.events.onCaptureSessionFound.addHandler(function(result) {
+            janrain.capture.ui.endCaptureSession();
+        });
+
+        janrain.events.onCaptureLoginSuccess.addHandler(function(result) {
+            janrain.capture.ui.endCaptureSession();
+        });
+        
+        janrain.events.onCaptureRegistrationSuccess.addHandler(function(result) {
+            janrain.capture.ui.endCaptureSession();
+        });
+
+        janrain.events.onCaptureSessionEnded.addHandler(function(result) {
+            document.getElementById("samlForm").submit();
+        });
+        /*--
+            SHOW EVENTS:
+            Uncomment this line to show events in your browser's console. You must
+            include janrain-utils.js to run this function.
+                                                                                --*/
+        janrainUtilityFunctions().showEvents();
+
+        /*                                                                        *\
+        || *** CUSTOM ONLOAD CODE END ***                                         ||
+        \*========================================================================*/
+
+        // This should be the last line in janrainCaptureWidgetOnLoad()
+        janrain.capture.ui.start();
+    }
+
+The main modifications will revolve around the three event handlers (onCaptureSessionFound, onCaptureLoginSuccess, onCaptureRegistrationSuccess) that call the "endCaptureSession" function.  Once the Janrain Registration Session is ended the system will call the "onCaptureSessionEnded" event handler where the "samlForm" is then posted back to the SimpleSAML processes.
+
+http://developers.janrain.com/reference/javascript-api/registration-js-api/events/
+
+
+modules/authjanrain/www/resources/styles/janrain.css:
+=============================================================
+
+This file (or something similar) is typically provided when the Janrain Registration Javascript based solution is provisioned.  It will contain CSS used for web browser styling.  These styles are intended to be modified by the customer to meet their specific styling needs.
+
+http://developers.janrain.com/how-to/registration/customize-the-appearance-of-the-ui/
+
+modules/authjanrain/www/resources/styles/janrain-mobile.css:
+=============================================================
+
+This file (or something similar) is typically provided when the Janrain Registration Javascript based solution is provisioned.  It will contain CSS used for web browser styling on mobile devices.  These styles are intended to be modified by the customer to meet their specific styling needs.
+
+

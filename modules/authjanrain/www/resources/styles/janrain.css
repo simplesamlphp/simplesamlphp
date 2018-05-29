@@ -1,0 +1,1374 @@
+/*------------------------------------*\
+JANRAIN CAPTURE WIDGET JANRAIN.CSS
+\*------------------------------------*/
+/*
+* Janrain.css acts as a base stylesheet for the capture widget which you can
+* extend/modify with your own theme stylesheet.
+*
+* Janrain.css aims to set a baseline of styling and standard coloring to elements
+* that could appear in your capture widget.
+*
+* This stylesheet containts a lot of comments, please take care to read and refer to them as you build.
+*
+* This file is purely a dev document and is not to be used for production. For production,
+* please only use a minified version that does not contain comments.
+*
+* The table of contents below maps to section titles of the same name, to jump
+* to any section simply find $[SECTION-TITLE].
+*
+*/
+
+/**
+*
+* MODAL SCREENS........................Styles for screens that are in a modal
+* MODAL CLOSE CONFIRMATION.............Styles for screen that shows if there is a confirmation of closing a modal
+* GENERAL..............................Basic styles for all screens
+* FORM ELEMENTS........................Input, select, radio, checkbox, textarea, etc.
+* BUTTONS..............................Button sytling/coloring.
+* DATA DISPLAYS........................Styling for public profile data
+*
+* PUBLIC/PRIVATE PROFILE TOGGLES.......Public/private profile toggle styling for edit profile screen
+* ADDRESS, NAME, DATE BLOCKS...........Formatting for built in address, name and date blocks
+* LINKED ACCOUNT LIST..................Linked account list styles
+* PHOTO MANAGER........................Styles for displaying, uploading, cropping and removing profile photos
+* SCREEN SPECIFIC......................Screen specific styling
+* MERGE ACCOUNTS.......................Merge account screen styling
+*
+*/
+
+/*------------------------------------*\
+$MODAL SCREENS
+\*------------------------------------*/
+
+/*
+* Defines background color of all screens that appear in a modal
+*/
+#janrainModal .janrain-capture-ui.capture-ui-content
+{
+    border-radius: 5px;
+    khtml-border-radius: 5px;
+    min-height: 350px;
+    moz-border-radius: 5px;
+    ms-border-radius: 5px;
+    o-border-radius: 5px;
+    padding: 20px 20px 70px 20px;
+    webkit-border-radius: 5px;
+    width: 400px;
+    background-color: #fff;
+}
+#janrainModal .janrain_modal_closebutton {
+    top: 10px;
+    right: 10px;
+    color: #888;
+    background-color: transparent;
+    width: auto;
+    height: auto;
+    font-size: 0px;
+    font-family: helvetica, sans-serif;
+    font-weight: 100;
+    text-decoration: none;
+}
+
+/* IE 8 */
+#janrainModal .janrain_modal_closebutton:after {
+    font-family: janrain-icons;
+    font-style: normal;
+    line-height: 16px;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 16px;
+    content: "\e043";
+    visibility: visible;
+}
+
+#janrainModal .janrain_modal_closebutton::after {
+    font-family: "janrain-icons";
+    font-style: normal;
+    font-size: 16px;
+    line-height: 16px;
+    speak: none;
+    display: inline-block;
+    vertical-align: middle;
+    content: "\e043";
+    visibility: visible;
+}
+/*
+* Heading styles for Capture Widget screens inside of modals. You can remove
+* these styles if you want to use the heading sytles already on your site.
+*/
+#janrainModal .janrain-capture-ui.capture-ui-content h1
+{
+    color: #333;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: inherit;
+}
+#janrainModal .janrain-capture-ui.capture-ui-content h2
+{
+    font-size: 15px;
+    font-weight: bold;
+}
+#janrainModal .janrain-capture-ui.capture-ui-content h3
+{
+    font-size: 15px;
+}
+#janrainModal .janrain-capture-ui.capture-ui-content h4
+{
+    font-size: 1.385em;
+}
+#janrainModal .janrain-capture-ui.capture-ui-content h5
+{
+    font-size: 1.077em;
+}
+
+/*
+* Header styles for Capture Widget screens inside of modals.
+* Provides vertically centered heading and underline.
+*/
+#janrainModal .capture_header
+{
+    border-bottom: 1px solid #eee;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+    moz-box-sizing: border-box;
+    ms-box-sizing: border-box;
+    padding-bottom: 10px;
+    webkit-box-sizing: border-box;
+}
+#janrainModal .capture_header h1
+{
+    margin: 0;
+    padding: 0;
+}
+
+/*
+* Footer styles for Capture Widget screens inside of modals.
+* Pins footer to bottom of modal, provides background color.
+*/
+#janrainModal .capture_footer
+{
+    background-color: #f6f6f6;
+    border-radius: 0 0 5px 5px;
+    bottom: 0;
+    box-shadow: 0 9px 9px -9px rgba(0,0,0,0.1) inset;
+    height: 35px;
+    khtml-border-radius: 0 0 5px 5px;
+    left: 0;
+    moz-border-radius: 0 0 5px 5px;
+    moz-box-shadow: 0 9px 9px -9px rgba(0,0,0,0.1) inset;
+    ms-border-radius: 0 0 5px 5px;
+    o-border-radius: 0 0 5px 5px;
+    o-box-shadow: 0 9px 9px -9px rgba(0,0,0,0.1) inset;
+    padding: 10px 0;
+    position: absolute;
+    text-align: right;
+    webkit-border-radius: 0 0 5px 5px;
+    webkit-box-shadow: 0 9px 9px -9px rgba(0,0,0,0.1) inset;
+    width: 100%;
+    z-index: 5;
+    zoom: 1;
+}
+#janrainModal .capture_footer:after
+{
+    clear: both;
+    content: "";
+    display: table;
+}
+.janrain-capture-ui .capture_footer .capture_btn
+{
+    margin: 0 20px;
+}
+
+/*
+* Miscellaneous user/error messages to display in a modal
+*/
+#janrainModal .janrain-capture-ui.capture-ui-content .capture_fatal_error
+{
+    margin-bottom: 15px;
+}
+/*
+* Adjustments to fatal error messages for screens that don't require padding.
+*/
+#janrainModal .janrain-capture-ui.capture-ui-content#signIn .capture_fatal_error,
+#janrainModal .janrain-capture-ui.capture-ui-content#returnSocial .capture_fatal_error,
+#janrainModal .janrain-capture-ui.capture-ui-content#returnTraditional .capture_fatal_error
+{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+#janrainModal .janrain-capture-ui.capture-ui-content .capture_access,
+#janrainModal .janrain-capture-ui.capture-ui-content .capture_retrieving
+{
+    box-shadow: none;
+    margin: 0 0 0 -150px;
+    moz-box-shadow: none;
+    o-box-shadow: none;
+    padding: 0 0 0 40px;
+    webkit-box-shadow: none;
+}
+
+
+/*------------------------------------*\
+$MODAL CLOSE CONFIRMATION
+\*------------------------------------*/
+.janrain_close_confirm_container
+{
+    border-radius: 10px;
+    font-family: helvetica,sans-serif;
+    font-size: 13px;
+    khtml-border-radius: 10px;
+    line-height: 17px;
+    moz-border-radius: 10px;
+    ms-border-radius: 10px;
+    o-border-radius: 10px;
+    webkit-border-radius: 10px;
+}
+.janrain_close_confirm_container .janrain_close_confirm
+{
+    color: white;
+}
+.janrain_close_confirm_container .janrain_close_confirm h3
+{
+    color: #fff;
+    font-size: 1.077em;
+    font-weight: normal;
+    margin: 0;
+    padding: 0 0 5px;
+    text-shadow: none;
+}
+.janrain_close_confirm_container .janrain_close_confirm .janrain_modal_confirm
+{
+    background: linear-gradient(top, #34c5ff,#0092cd);
+    background: -moz-linear-gradient(top, #34c5ff,#0092cd);
+    background: -ms-linear-gradient(top, #34c5ff,#0092cd);
+    background: -o-linear-gradient(top, #34c5ff,#0092cd);
+    background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #34c5ff), color-stop(100%, #0092cd));
+    background: -webkit-linear-gradient(top, #34c5ff,#0092cd);
+    background-color: #009ddc;
+    box-shadow: 0 1px 0px 0px rgba(255,255,255,0.35) inset,0 -26px 13px -13px rgba(0,0,0,0.2) inset;
+    color: #fff;
+    moz-box-shadow: 0 1px 0px 0px rgba(255,255,255,0.35) inset,0 -26px 13px -13px rgba(0,0,0,0.2) inset;
+    o-box-shadow: 0 1px 0px 0px rgba(255,255,255,0.35) inset,0 -26px 13px -13px rgba(0,0,0,0.2) inset;
+    text-shadow: 0 1px 1px rgba(0,0,0,0.45);
+    webkit-box-shadow: 0 1px 0px 0px rgba(255,255,255,0.35) inset,0 -26px 13px -13px rgba(0,0,0,0.2) inset;
+}
+.janrain_close_confirm_container .janrain_close_confirm .janrain_modal_cancel
+{
+    background-color: #f6f6f6;
+    box-shadow: 0 1px 0px 0px rgba(255,255,255,0.35) inset,0 -26px 13px -13px rgba(0,0,0,0.2) inset;
+    color: #333;
+    moz-box-shadow: 0 1px 0px 0px rgba(255,255,255,0.35) inset,0 -26px 13px -13px rgba(0,0,0,0.2) inset;
+    o-box-shadow: 0 1px 0px 0px rgba(255,255,255,0.35) inset,0 -26px 13px -13px rgba(0,0,0,0.2) inset;
+    webkit-box-shadow: 0 1px 0px 0px rgba(255,255,255,0.35) inset,0 -26px 13px -13px rgba(0,0,0,0.2) inset;
+}
+
+
+/*------------------------------------*\
+$GENERAL
+\*------------------------------------*/
+
+/*
+* Basic screen styling. Defines font size for all content in screens
+*/
+.janrain-capture-ui
+{
+    background-color: transparent;
+    color: #666;
+    font-family: helvetica,sans-serif;
+    font-size: 13px;
+    line-height: inherit;
+}
+
+/*
+* Default width of an embedded screen
+*/
+.janrain-capture-ui.capture-ui-content
+{
+    width: 600px;
+}
+
+/*
+* Link colors. Can be removed if you want to use the link colors from your site CSS.
+*/
+.janrain-capture-ui a,
+.janrain-capture-ui a:visited,
+.janrain-capture-ui a:link
+{
+    color: #009ddc;
+}
+.janrain-capture-ui a:hover
+{
+    color: #006690;
+}
+
+/*
+* Errors that appear at the top of the screen if a fatal error has occured
+*/
+.janrain-capture-ui .capture_fatal_error
+{
+    background-image: none;
+    color: #f58002;
+    font-size: 12px;
+}
+.janrain-capture-ui .capture_fatal_error:first-letter
+{
+    text-transform: capitalize;
+}
+
+/*
+* Errors that appear at the top of a form if a form error has occured server-side
+*/
+.janrain-capture-ui .capture_form_error,
+.capture_photo_chooser_errors
+{
+    background-image: none;
+    color: #f58002;
+}
+
+/*
+* Save message that appears when a profile is successfully saved.
+*/
+.janrain-capture-ui .capture_save_success
+{
+    color: #64AE29;
+    display: inline-block;
+    display: -moz-inline-box;
+    moz-box-orient: vertical;
+    vertical-align: auto;
+    vertical-align: middle;
+}
+.janrain-capture-ui .capture_save_success
+{
+    *display: inline;
+}
+
+/*
+* Hide sections that don't apply to social accounts.
+* These will get displayed through js if traditional acct.
+*/
+.janrain-capture-ui .janrain_traditional_account_only
+{
+    display: none;
+}
+
+/*
+* Misc. general styling
+*/
+.janrain-capture-ui .capture_dashed
+{
+    border: 1px #ccc dashed;
+    margin: 0 20px;
+}
+.janrain-capture-ui .capture_border
+{
+    border: 1px solid #ccc;
+}
+
+/*
+* Secondary brand background color and how certain elements should look when placed within.
+* Used on signin and traditional return experience to divide content area
+*/
+.janrain-capture-ui .capture_backgroundColor
+{
+    background-color: #f6f6f6;
+    color: #666;
+    border-radius: 0 0 5px 5px;
+    box-shadow: 0 9px 9px -9px rgba(0,0,0,0.1) inset;
+    khtml-border-radius: 0 0 5px 5px;
+    margin-top: 20px;
+    moz-border-radius: 0 0 5px 5px;
+    moz-box-shadow: 0 9px 9px -9px rgba(0,0,0,0.1) inset;
+    ms-border-radius: 0 0 5px 5px;
+    o-border-radius: 0 0 5px 5px;
+    o-box-shadow: 0 9px 9px -9px rgba(0,0,0,0.1) inset;
+    webkit-border-radius: 0 0 5px 5px;
+    webkit-box-shadow: 0 9px 9px -9px rgba(0,0,0,0.1) inset;
+}
+
+.janrain-capture-ui .capture_backgroundColor .capture_text_input,
+.janrain-capture-ui .capture_backgroundColor .capture_checkbox,
+.janrain-capture-ui .capture_backgroundColor .capture_radio,
+.janrain-capture-ui .capture_backgroundColor .capture_inputPlaceholder,
+.janrain-capture-ui .capture_backgroundColor .capture_select,
+.janrain-capture-ui .capture_backgroundColor .capture_textarea,
+.janrain-capture-ui .capture_backgroundColor .capture_checkbox,
+.janrain-capture-ui .capture_backgroundColor .capture_radio
+{
+    background-color: #fff;
+}
+.janrain-capture-ui .capture_backgroundColor .capture_text_input:focus,
+.janrain-capture-ui .capture_backgroundColor .capture_checkbox:focus,
+.janrain-capture-ui .capture_backgroundColor .capture_radio:focus,
+.janrain-capture-ui .capture_backgroundColor .capture_inputPlaceholder:focus,
+.janrain-capture-ui .capture_backgroundColor .capture_select:focus,
+.janrain-capture-ui .capture_backgroundColor .capture_textarea:focus,
+.janrain-capture-ui .capture_backgroundColor .capture_checkbox:focus,
+.janrain-capture-ui .capture_backgroundColor .capture_radio:focus
+{
+    background-color: #fff;
+}
+
+/*------------------------------------*\
+$FORM ELEMENTS
+\*------------------------------------*/
+
+/*
+* Wrapping, parent container for form items
+*/
+.janrain-capture-ui .capture_form_item
+{
+    min-height: 0;
+}
+
+/*
+* Labels for form items. Hidden by default but still accessible by screen readers.
+*/
+.janrain-capture-ui .capture_form_item>label
+{
+    color: #666;
+    height: 0px;
+    overflow: hidden;
+    text-indent: -99999px;
+}
+
+/*
+* Input, select, radio, checkbox, textarea styling
+*/
+.janrain-capture-ui .capture_text_input,
+.janrain-capture-ui .capture_checkbox,
+.janrain-capture-ui .capture_radio,
+.janrain-capture-ui .capture_inputPlaceholder,
+.janrain-capture-ui .capture_select,
+.janrain-capture-ui .capture_textarea
+{
+    background-color: #f6f6f6;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 3px rgba(0,0,0,0.2) inset;
+    color: #b3b3b3;
+    font-family: helvetica,sans-serif;
+    font-size: 14px;
+    khtml-border-radius: 5px;
+    margin-left: 0;
+    margin-right: 0;
+    moz-border-radius: 5px;
+    moz-box-shadow: 0 0 3px rgba(0,0,0,0.2) inset;
+    ms-border-radius: 5px;
+    o-border-radius: 5px;
+    o-box-shadow: 0 0 3px rgba(0,0,0,0.2) inset;
+    webkit-border-radius: 5px;
+    webkit-box-shadow: 0 0 3px rgba(0,0,0,0.2) inset;
+}
+
+/*
+* Input, select, radio, checkbox, textarea focused styling
+*/
+.janrain-capture-ui .capture_text_input:focus,
+.janrain-capture-ui .capture_checkbox:focus,
+.janrain-capture-ui .capture_radio:focus,
+.janrain-capture-ui .capture_inputPlaceholder:focus,
+.janrain-capture-ui .capture_select:focus,
+.janrain-capture-ui .capture_textarea:focus
+{
+    background-color: #e2e2e2;
+    border: 1px solid #009ddc;
+    box-shadow: 0 0 3px #009ddc,0 0 3px rgba(0,0,0,0.2) inset;
+    color: #333;
+    moz-box-shadow: 0 0 3px #009ddc,0 0 3px rgba(0,0,0,0.2) inset;
+    o-box-shadow: 0 0 3px #009ddc,0 0 3px rgba(0,0,0,0.2) inset;
+    webkit-box-shadow: 0 0 3px #009ddc,0 0 3px rgba(0,0,0,0.2) inset;
+}
+
+/*
+* Input, select, radio, checkbox, textarea box sizing
+*/
+.janrain-capture-ui .capture_text_input,
+.janrain-capture-ui .capture_checkbox,
+.janrain-capture-ui .capture_radio,
+.janrain-capture-ui .capture_inputPlaceholder,
+.janrain-capture-ui .capture_textarea,
+.janrain-capture-ui .capture_inputPlaceholder
+{
+    box-sizing: border-box;
+    color: #333;
+    display: inline-block;
+    display: -moz-inline-box;
+    moz-box-orient: vertical;
+    moz-box-sizing: border-box;
+    ms-box-sizing: border-box;
+    vertical-align: auto;
+    vertical-align: middle;
+    webkit-box-sizing: border-box;
+    width: 100%;
+}
+/*
+* Old IE inline-block fix
+*/
+.janrain-capture-ui .capture_text_input,
+.janrain-capture-ui .capture_checkbox,
+.janrain-capture-ui .capture_radio,
+.janrain-capture-ui .capture_inputPlaceholder,
+.janrain-capture-ui .capture_textarea,
+.janrain-capture-ui .capture_inputPlaceholder
+{
+    *display: inline;
+}
+
+/*
+* Input, select, radio, checkbox, textarea placeholder colors
+*/
+.janrain-capture-ui .capture_text_input::-webkit-input-placeholder,
+.janrain-capture-ui .capture_checkbox::-webkit-input-placeholder,
+.janrain-capture-ui .capture_textarea::-webkit-input-placeholder,
+.janrain-capture-ui .capture_inputPlaceholder::-webkit-input-placeholder,
+.janrain-capture-ui .capture_radio::-webkit-input-placeholder {
+    color: #b3b3b3;
+}
+.janrain-capture-ui .capture_inputPlaceholder::-webkit-input-placeholder,
+.janrain-capture-ui .capture_text_input:-ms-input-placeholder,
+.janrain-capture-ui .capture_checkbox:-ms-input-placeholder,
+.janrain-capture-ui .capture_radio:-ms-input-placeholder,
+.janrain-capture-ui .capture_inputPlaceholder:-ms-input-placeholder,
+.janrain-capture-ui .capture_textarea:-ms-input-placeholder {
+    color: #b3b3b3;
+}
+.janrain-capture-ui .capture_text_input:-moz-placeholder,
+.janrain-capture-ui .capture_checkbox:-moz-placeholder,
+.janrain-capture-ui .capture_textarea:-moz-placeholder,
+.janrain-capture-ui .capture_radio:-moz-placeholder,
+.janrain-capture-ui .capture_inputPlaceholder:-moz-placeholder {
+    color:#b3b3b3
+}
+
+/*
+* Select specific styling/placeholder colors
+*/
+.janrain-capture-ui .capture_select
+{
+    box-sizing: border-box;
+    color: #333;
+    moz-box-sizing: border-box;
+    ms-box-sizing: border-box;
+    webkit-box-sizing: border-box;
+    width: 100%;
+}
+.janrain-capture-ui .capture_select.capture_disabled
+{
+    color: #b3b3b3;
+}
+.janrain-capture-ui .capture_select.capture_disabled:focus
+{
+    color: #333;
+}
+
+/*
+* Checkbox/radio specific styling
+*/
+.janrain-capture-ui .capture_checkbox,
+.janrain-capture-ui .capture_radio
+{
+    border: 0;
+    box-shadow: none;
+    moz-box-shadow: none;
+    o-box-shadow: none;
+    webkit-box-shadow: none;
+}
+.janrain-capture-ui .capture_checkbox label,
+.janrain-capture-ui .capture_radio label
+{
+    font-size: 13px;
+}
+
+/*
+* Vertically center checkbox/radio input within label wrapper
+*/
+.janrain-capture-ui .capture_checkbox .capture_input_radio,
+.janrain-capture-ui .capture_form_collection .capture_input_radio,
+.janrain-capture-ui .capture_checkbox .capture_input_checkbox,
+.janrain-capture-ui .capture_form_collection .capture_input_checkbox,
+.janrain-capture-ui .capture_radio .capture_input_radio,
+.janrain-capture-ui .capture_radio .capture_input_checkbox
+{
+    margin-top: -8px;
+    top: 50%;
+}
+
+/*
+* Coloring of input tips based on state of wrapping container
+*/
+.janrain-capture-ui .capture_form_item .capture_tip
+{
+    color: #aaa;
+}
+.janrain-capture-ui .capture_form_item.capture_focused .capture_tip
+{
+    color: #333;
+}
+.janrain-capture-ui .capture_form_item .capture_tip_validating
+{
+    color: #aaa;
+}
+.janrain-capture-ui .capture_form_item .capture_tip_validated
+{
+    color: #aaa;
+}
+.janrain-capture-ui .capture_form_item .capture_tip_error
+{
+    color: #f58002;
+}
+.janrain-capture-ui .capture_form_item .capture_btn
+{
+    margin: 0;
+}
+
+/*
+* Styling of form elements when the wrapping container has error class
+*/
+.janrain-capture-ui .capture_error .capture_radio,
+.janrain-capture-ui .capture_error .capture_checkbox,
+.janrain-capture-ui .capture_error .capture_text_input,
+.janrain-capture-ui .capture_error .capture_checkbox,
+.janrain-capture-ui .capture_error .capture_radio,
+.janrain-capture-ui .capture_error .capture_inputPlaceholder
+{
+    border: 1px solid #f58002;
+    box-shadow: 0 0 3px rgba(245,148,2,0.3) inset;
+    moz-box-shadow: 0 0 3px rgba(245,148,2,0.3) inset;
+    o-box-shadow: 0 0 3px rgba(245,148,2,0.3) inset;
+    webkit-box-shadow: 0 0 3px rgba(245,148,2,0.3) inset;
+}
+
+/*
+* Dummy input styling if a blank input looking container is needed.
+*/
+.janrain-capture-ui .capture_inputPlaceholder
+{
+    border: 0;
+    box-shadow: none;
+    moz-box-shadow: none;
+    o-box-shadow: none;
+    webkit-box-shadow: none;
+}
+
+
+/*------------------------------------*\
+$DATA DISPLAYS
+\*------------------------------------*/
+.janrain-capture-ui .capture_data_item
+{
+    clear: both;
+    margin-bottom: 15px;
+    zoom: 1;
+}
+.janrain-capture-ui .capture_data_item:after
+{
+    clear: both;
+    content: "";
+    display: table;
+}
+.janrain-capture-ui .capture_data_item label
+{
+    float: left;
+    margin-right: 1%;
+    text-align: right;
+    width: 39%;
+}
+.janrain-capture-ui .capture_data_item .capture_data
+{
+    float: left;
+    width: 60%;
+}
+
+
+/*------------------------------------*\
+$BUTTONS
+\*------------------------------------*/
+.janrain-capture-ui .capture_btn,
+.janrain-capture-ui a.capture_btn,
+.janrain-capture-ui button.capture_btn,
+.janrain-capture-ui input.capture_btn,
+.janrain-capture-ui .capture_backButton
+{
+    box-shadow: 0 1px 0px 0px rgba(255,255,255,0.35) inset,0 -26px 13px -13px rgba(0,0,0,0.2) inset;
+    font-family: helvetica,sans-serif;
+    moz-box-shadow: 0 1px 0px 0px rgba(255,255,255,0.35) inset,0 -26px 13px -13px rgba(0,0,0,0.2) inset;
+    o-box-shadow: 0 1px 0px 0px rgba(255,255,255,0.35) inset,0 -26px 13px -13px rgba(0,0,0,0.2) inset;
+    webkit-box-shadow: 0 1px 0px 0px rgba(255,255,255,0.35) inset,0 -26px 13px -13px rgba(0,0,0,0.2) inset;
+    text-decoration: none;
+}
+.janrain-capture-ui .capture_btn:active,
+.janrain-capture-ui .capture_btn:focus,
+.janrain-capture-ui a.capture_btn:active,
+.janrain-capture-ui a.capture_btn:focus,
+.janrain-capture-ui button.capture_btn:active,
+.janrain-capture-ui button.capture_btn:focus,
+.janrain-capture-ui input.capture_btn:active,
+.janrain-capture-ui input.capture_btn:focus,
+.janrain-capture-ui .capture_backButton:active,
+.janrain-capture-ui .capture_backButton:focus
+{
+    box-shadow: 0 1px 0px 0px rgba(0,0,0,0.1) inset,0 -1px 0px 0px rgba(255,255,255,0.35) inset;
+    moz-box-shadow: 0 1px 0px 0px rgba(0,0,0,0.1) inset,0 -1px 0px 0px rgba(255,255,255,0.35) inset;
+    o-box-shadow: 0 1px 0px 0px rgba(0,0,0,0.1) inset,0 -1px 0px 0px rgba(255,255,255,0.35) inset;
+    webkit-box-shadow: 0 1px 0px 0px rgba(0,0,0,0.1) inset,0 -1px 0px 0px rgba(255,255,255,0.35) inset;
+    text-decoration: none;
+}
+
+/*
+* Colors for primary buttons
+*/
+.janrain-capture-ui .capture_primary,
+.janrain-capture-ui a.capture_primary,
+.janrain-capture-ui button.capture_primary,
+.janrain-capture-ui input.capture_primary
+{
+    background: linear-gradient(top, #34c5ff,#0092cd);
+    background: -moz-linear-gradient(top, #34c5ff,#0092cd);
+    background: -ms-linear-gradient(top, #34c5ff,#0092cd);
+    background: -o-linear-gradient(top, #34c5ff,#0092cd);
+    background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #34c5ff), color-stop(100%, #0092cd));
+    background: -webkit-linear-gradient(top, #34c5ff,#0092cd);
+    background-color: #009ddc;
+    color: #fff;
+    text-shadow: 0 1px 1px rgba(0,0,0,0.45);
+}
+.janrain-capture-ui a.capture_primary:visited,
+.janrain-capture-ui a.capture_primary:link,
+.janrain-capture-ui a.capture_primary:hover
+{
+    color: #fff;
+}
+
+/*
+* Colors for secondary buttons
+*/
+.janrain-capture-ui .capture_secondary,
+.janrain-capture-ui a.capture_secondary,
+.janrain-capture-ui button.capture_secondary,
+.janrain-capture-ui input.capture_secondary
+{
+    background: linear-gradient(top, #f6f6f6,#dddddd);
+    background: -moz-linear-gradient(top, #f6f6f6,#dddddd);
+    background: -ms-linear-gradient(top, #f6f6f6,#dddddd);
+    background: -o-linear-gradient(top, #f6f6f6,#dddddd);
+    background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #f6f6f6), color-stop(100%, #dddddd));
+    background: -webkit-linear-gradient(top, #f6f6f6,#dddddd);
+    background-color: #f6f6f6;
+    box-shadow: 0 1px 0 0 rgba(255,255,255,0.35) inset;
+    color: #009ddc;
+    moz-box-shadow: 0 1px 0 0 rgba(255,255,255,0.35) inset;
+    o-box-shadow: 0 1px 0 0 rgba(255,255,255,0.35) inset;
+    text-decoration: none;
+    text-shadow: none;
+    webkit-box-shadow: 0 1px 0 0 rgba(255,255,255,0.35) inset;
+}
+.janrain-capture-ui a.capture_secondary:visited,
+.janrain-capture-ui a.capture_secondary:link,
+.janrain-capture-ui a.capture_secondary:hover
+{
+    color: #333;
+}
+
+/*
+* Class for a button to take up half of it's parent container
+*/
+.janrain-capture-ui .capture_btn_half,
+.janrain-capture-ui a.capture_btn_half,
+.janrain-capture-ui button.capture_btn_half,
+.janrain-capture-ui input.capture_btn_half
+{
+    box-sizing: border-box;
+    margin: 0 1%;
+    moz-box-sizing: border-box;
+    ms-box-sizing: border-box;
+    padding-left: 5px;
+    padding-right: 5px;
+    webkit-box-sizing: border-box;
+    width: 48%;
+}
+/*
+* Class for a button to take up 100% of it's parent container
+*/
+.janrain-capture-ui .capture_btn_full,
+.janrain-capture-ui a.capture_btn_full,
+.janrain-capture-ui button.capture_btn_full,
+.janrain-capture-ui input.capture_btn_full
+{
+    box-sizing: border-box;
+    margin: 0;
+    moz-box-sizing: border-box;
+    ms-box-sizing: border-box;
+    webkit-box-sizing: border-box;
+    width: 100%;
+}
+
+/*
+* Buttons that have been clicked get replaced with a div with this class
+*/
+.janrain-capture-ui .capture_processing
+{
+    background-color: none;
+    border: none !important;
+    box-shadow: none;
+    moz-box-shadow: none;
+    o-box-shadow: none;
+    webkit-box-shadow: none;
+}
+
+.janrain-capture-ui .capture_backButton
+{
+    background-image: none;
+}
+.janrain-capture-ui .capture_backButton span
+{
+    background-image: none;
+    line-height: inherit;
+}
+
+.janrain-capture-ui .capture_backgroundColor .capture_secondary
+{
+    border: 1px solid #ddd;
+    border-width: 1px 1px 0 1px;
+}
+
+
+/*------------------------------------*\
+$PUBLIC/PRIVATE PROFILE TOGGLES
+\*------------------------------------*/
+
+.janrain-capture-ui .capture_display_toggle_wrap
+{
+    border-radius: 4px;
+    font-size: 12px;
+    khtml-border-radius: 4px;
+    left: 100%;
+    line-height: 16px;
+    moz-border-radius: 4px;
+    ms-border-radius: 4px;
+    o-border-radius: 4px;
+    top: 20px;
+    webkit-border-radius: 4px;
+}
+.janrain-capture-ui .capture_display_toggle:hover
+{
+    background-color: #f6f6f6;
+}
+.janrain-capture-ui .capture_display_toggle_disabled
+{
+    color: #ccc;
+}
+.janrain-capture-ui .capture_display_toggle_disabled:hover
+{
+    background-color: transparent;
+    cursor: none;
+}
+
+/*------------------------------------*\
+$ADDRESS, NAME, DATE BLOCKS
+\*------------------------------------*/
+.janrain-capture-ui .capture_form_item.capture_addressBlock .capture_form_item_addressDrop_city_,
+.janrain-capture-ui .capture_form_item.capture_addressBlock .capture_form_item_addressDrop_stateprovince_,
+.janrain-capture-ui .capture_form_item.capture_addressBlock .capture_form_item_addressDrop_zippostalcode_,
+.janrain-capture-ui .capture_form_item.capture_addressBlock .capture_form_item_editProfile_addressDrop_city_,
+.janrain-capture-ui .capture_form_item.capture_addressBlock .capture_form_item_editProfile_addressDrop_stateprovince_,
+.janrain-capture-ui .capture_form_item.capture_addressBlock .capture_form_item_editProfile_addressDrop_zippostalcode_
+{
+    display: inline-block;
+    display: -moz-inline-box;
+    margin-left: 1%;
+    moz-box-orient: vertical;
+    vertical-align: auto;
+    vertical-align: middle;
+}
+
+.janrain-capture-ui .capture_form_item.capture_addressBlock .capture_tip_validating,
+.janrain-capture-ui .capture_form_item.capture_addressBlock .capture_tip_error,
+.janrain-capture-ui .capture_form_item.capture_addressBlock .capture_tip_validated
+{
+    left: 290px;
+    position: absolute;
+    top: 10px;
+}
+.janrain-capture-ui .capture_form_item.capture_addressBlock .capture_form_item_addressDrop_city_
+{
+    margin-left: 0;
+    width: 43%;
+}
+.janrain-capture-ui .capture_form_item.capture_addressBlock .capture_form_item_addressDrop_stateprovince_
+{
+    width: 25%;
+}
+.janrain-capture-ui .capture_form_item.capture_addressBlock .capture_form_item_addressDrop_zippostalcode_
+{
+    width: 30%;
+}
+.janrain-capture-ui .capture_dateselect_day,
+.janrain-capture-ui .capture_dateselect_month,
+.janrain-capture-ui .capture_dateselect_year
+{
+    display: inline-block;
+    display: -moz-inline-box;
+    margin-left: 1%;
+    moz-box-orient: vertical;
+    vertical-align: auto;
+    vertical-align: middle;
+}
+.janrain-capture-ui .capture_dateselect_day,
+.janrain-capture-ui .capture_dateselect_month,
+.janrain-capture-ui .capture_dateselect_year
+{
+    *display: inline;
+}
+.janrain-capture-ui .capture_dateselect_month
+{
+    margin-left: 0;
+    width: 40%;
+}
+.janrain-capture-ui .capture_dateselect_day
+{
+    width: 18%;
+}
+.janrain-capture-ui .capture_dateselect_year
+{
+    width: 40%;
+}
+
+.janrain-capture-ui .capture_nameBlock .capture_form_item,
+.janrain-capture-ui .capture_addressBlock .capture_form_item
+{
+    margin-bottom: 0;
+    min-height: 0;
+}
+
+
+/*------------------------------------*\
+$LINKED ACCOUNT LIST
+\*------------------------------------*/
+.janrain-capture-ui .capture_provider
+{
+    margin: 0;
+}
+.janrain-capture-ui .capture_provider li
+{
+    background-color: #f6f6f6;
+    border-radius: 5px;
+    khtml-border-radius: 5px;
+    moz-border-radius: 5px;
+    ms-border-radius: 5px;
+    o-border-radius: 5px;
+    webkit-border-radius: 5px;
+}
+/*
+* Styles the add new link differently
+*/
+.janrain-capture-ui .capture_provider li.capture_linkAccount
+{
+    background-color: transparent;
+    margin: 0;
+    padding: 0;
+}
+/*
+* positions the 'x' button
+*/
+.janrain-capture-ui .capture_provider li .capture_remove
+{
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+}
+
+/*------------------------------------*\
+$PHOTO MANAGER
+\*------------------------------------*/
+/*
+* Displays profile photo at a specified size. All items widths and heights below should match.
+*/
+.janrain-capture-ui #profile_pic
+{
+    height: 150px;
+    overflow: hidden;
+}
+.janrain-capture-ui .capture_profile_pic
+{
+    height: 150px;
+    margin: 0 auto 20px auto;
+    width: 150px;
+}
+.janrain-capture-ui #profile_pic img
+{
+    width: 150px;
+}
+
+/*
+* Displays smaller profile photo for upload screen
+*/
+.janrain-capture-ui#capture_editProfile_photoManager_uploadphotoscreen .capture_profile_pic{
+  width: 100px;
+  height: 100px;
+}
+
+/*
+* <ul> element under the displayed user/default profile photo
+*/
+.janrain-capture-ui .capture_photoManager .options
+{
+    display: block;
+    margin-top: 10px;
+    text-align: center;
+}
+/*
+* list of links to upload, edit or remove photo
+*/
+.janrain-capture-ui .capture_photoManager .options li
+{
+    border: 1px #ccc solid;
+    border-width: 0 1px;
+    display: inline-block;
+    display: -moz-inline-box;
+    moz-box-orient: vertical;
+    padding: 0 5px;
+    vertical-align: auto;
+    vertical-align: middle;
+}
+.janrain-capture-ui .capture_photoManager .options li
+{
+    *display: inline;
+}
+.janrain-capture-ui .capture_photoManager .options li:first-child,
+.janrain-capture-ui .capture_photoManager .options li:last-child
+{
+    border: none;
+}
+
+/*
+* Makes upload photo modal wider to account for a large user image to crop
+*/
+#janrainModal .janrain-capture-ui.capture-ui-content#capture_editProfile_photoManager_editphotoscreen
+{
+    width: 740px;
+}
+
+.janrain-capture-ui .capture_uploadPhoto_container
+{
+    display: inline-block;
+    display: -moz-inline-box;
+    moz-box-orient: vertical;
+    vertical-align: auto;
+    vertical-align: middle;
+    width: 250px;
+}
+
+.janrain-capture-ui .capture_uploadPhoto_container
+{
+    *display: inline;
+}
+
+/*
+* Remove photo popup
+*/
+.janrain-capture-ui .capture_popup_container
+{
+    background-color: #f6f6f6;
+    border: 1px solid #ccc;
+}
+.janrain-capture-ui .capture_popup_container .capture_popup-arrow:after
+{
+    background: #f6f6f6;
+    border: 1px solid #ccc;
+}
+
+
+/*------------------------------------*\
+$SCREEN SPECIFIC
+\*------------------------------------*/
+/*
+* Adjustments for certain screens that don't require padding.
+*/
+#janrainModal .janrain-capture-ui.capture-ui-content#signIn,
+#janrainModal .janrain-capture-ui.capture-ui-content#returnTraditional
+{
+    min-height: 220px;
+    padding: 20px 0 0 0;
+}
+#janrainModal .janrain-capture-ui.capture-ui-content#returnSocial
+{
+    min-height: 220px;
+    padding: 20px 0;
+}
+.janrain-capture-ui#editProfile {
+    width: auto;
+    padding: 10px;
+    background-color: transparent;
+}
+
+/*
+* Adjustments to headings for screens that don't require padding.
+*/
+#janrainModal .janrain-capture-ui.capture-ui-content#signIn h1,
+#janrainModal .janrain-capture-ui.capture-ui-content#returnSocial h1,
+#janrainModal .janrain-capture-ui.capture-ui-content#returnTraditional h1
+{
+    margin: 0 0 0 20px;
+}
+
+/*
+* Allows for the centering of Engage Widget
+*/
+#janrainModal .janrain-capture-ui.capture-ui-content .capture_signin
+{
+    width: 310px;
+    margin: 0 auto;
+}
+.janrain-capture-ui#editProfile .capture_form_item label
+{
+    height: auto;
+    overflow: visible;
+    text-indent: 0;
+    text-indent: inherit;
+    text-transform: capitalize;
+}
+
+.capture_editCol
+{
+    margin: 10px 0 0 10px;
+}
+
+.janrain-capture-ui#returnTraditional .capture_backgroundColor
+{
+    padding: 25px 10px;
+}
+.janrain-capture-ui#returnTraditional .capture_form_item
+{
+    margin-bottom: 0;
+    min-height: 51px;
+}
+
+
+/*------------------------------------*\
+$MERGE ACCOUNTS
+\*------------------------------------*/
+/*
+* Makes merge account screen larger wider
+*/
+#janrainModal .janrain-capture-ui.capture-ui-content#mergeAccounts
+{
+    padding: 0 0 55px 0;
+    width: 510px;
+}
+
+/*
+* Makes merge header appear differently than standard as there's more content
+*/
+#janrainModal .janrain-capture-ui.capture-ui-content#mergeAccounts .capture_header
+{
+    background-color: #f6f6f6;
+    border: none;
+    color: inherit;
+    padding-bottom: 0;
+    text-align: left;
+}
+#janrainModal .janrain-capture-ui.capture-ui-content#mergeAccounts .capture_header .capture_icon_col
+{
+    height: 25px;
+    overflow: hidden;
+    width: 25px;
+}
+#janrainModal .janrain-capture-ui.capture-ui-content#mergeAccounts .capture_header img
+{
+    height: auto;
+    width: 25px;
+}
+/*
+* Unhides label for this screen
+*/
+.janrain-capture-ui#mergeAccounts .capture_form_item label
+{
+    height: auto;
+    text-indent: 0;
+    text-indent: inherit;
+    text-transform: capitalize;
+}
+.janrain-capture-ui .capture_displayName_col
+{
+    display: inline-block;
+    display: -moz-inline-box;
+    margin: 10px 0 10px 10px;
+    moz-box-orient: vertical;
+    vertical-align: auto;
+    vertical-align: middle;
+    vertical-align: top;
+}
+.janrain-capture-ui .capture_displayName_col
+{
+    *display: inline;
+}
+.janrain-capture-ui .capture_mergeCol
+{
+    display: inline-block;
+    display: -moz-inline-box;
+    margin: 10px;
+    moz-box-orient: vertical;
+    padding: 10px;
+    position: relative;
+    vertical-align: auto;
+    vertical-align: middle;
+    width: 43%;
+}
+.janrain-capture-ui .capture_form_collection_merge_radioButtonCollection
+{
+    border: 1px solid #ccc;
+}
+.janrain-capture-ui .capture_mergeCol
+{
+    *display: inline;
+}
+.janrain-capture-ui .capture_mergeCol .capture_popup_container .capture_popup-arrow
+{
+    left: 100px;
+}
+.janrain-capture-ui .capture_mergeCol .capture_mergeProvider,
+.janrain-capture-ui .capture_header .capture_mergeProvider
+{
+    position: absolute;
+    right: 30px;
+    top: 8px;
+}
+.janrain-capture-ui .capture_dashed .capture_backgroundColor
+{
+    border-radius: 5px;
+    khtml-border-radius: 5px;
+    margin-top: 0;
+    moz-border-radius: 5px;
+    ms-border-radius: 5px;
+    o-border-radius: 5px;
+    webkit-border-radius: 5px;
+}
+.janrain-capture-ui .capture_mergeExisting_col
+{
+    padding: 0;
+}
+.janrain-capture-ui .capture_mergeExisting_col .capture_mergeProvider
+{
+    right: 10px;
+}
+.janrain-capture-ui .capture_mergeExisting_col .capture_icon_col
+{
+    margin-left: 0;
+    margin-top: 4px;
+}
+.janrain-capture-ui .capture_mergeExisting_col .capture_displayName_col
+{
+    margin-top: 0;
+}
+.janrain-capture-ui .capture_mergeProvider
+{
+    margin-right: 5px;
+}
+.janrain-capture-ui .capture_form_collection_merge_radioButtonCollection
+{
+    background-color: #f6f6f6;
+    border-radius: 5px;
+    box-sizing: content-box;
+    khtml-border-radius: 5px;
+    margin: 20px;
+    moz-border-radius: 5px;
+    moz-box-sizing: content-box;
+    ms-border-radius: 5px;
+    ms-box-sizing: content-box;
+    o-border-radius: 5px;
+    padding: 0px;
+    webkit-border-radius: 5px;
+    webkit-box-sizing: content-box;
+    width: auto;
+}
+.janrain-capture-ui .capture_form_collection_merge_radioButtonCollection .capture_form_item_mergeAccounts_mergeRadio
+{
+    padding: 0;
+}
+.janrain-capture-ui .capture_form_collection_merge_radioButtonCollection .capture_form_item_mergeAccounts_mergeRadio label
+{
+    font-size: 14px;
+    margin: 0;
+    padding: 15px 15px 15px 25px;
+}
+.janrain-capture-ui .capture_form_collection_merge_radioButtonCollection .capture_form_item_mergeAccounts_mergeRadio label .capture_smallText
+{
+    display: block;
+}
+.janrain-capture-ui .capture_form_collection_merge_radioButtonCollection .capture_form_item_mergeAccounts_mergeRadio label .capture_recommended
+{
+    font-weight: 100;
+    position: absolute;
+    right: 3px;
+    text-transform: uppercase;
+    top: 2px;
+}
+.janrain-capture-ui .capture_form_collection_merge_radioButtonCollection .capture_form_item_mergeAccounts_mergeRadio.capture_toggled
+{
+    background-color: #009ddc;
+    border-radius: 5px 5px 0 0;
+    khtml-border-radius: 5px 5px 0 0;
+    moz-border-radius: 5px 5px 0 0;
+    ms-border-radius: 5px 5px 0 0;
+    o-border-radius: 5px 5px 0 0;
+    webkit-border-radius: 5px 5px 0 0;
+}
+.janrain-capture-ui .capture_form_collection_merge_radioButtonCollection .capture_form_item_mergeAccounts_mergeRadio.capture_toggled.capture_form_item_mergeAccounts_mergeRadio:first-child
+{
+    border-radius: 5px 5px 0 0;
+    khtml-border-radius: 5px 5px 0 0;
+    moz-border-radius: 5px 5px 0 0;
+    ms-border-radius: 5px 5px 0 0;
+    o-border-radius: 5px 5px 0 0;
+    webkit-border-radius: 5px 5px 0 0;
+}
+.janrain-capture-ui .capture_form_collection_merge_radioButtonCollection .capture_form_item_mergeAccounts_mergeRadio.capture_toggled.capture_form_item_mergeAccounts_mergeRadio:nth-of-type(2)
+{
+    border-radius: 0 0 5px 5px;
+    khtml-border-radius: 0 0 5px 5px;
+    moz-border-radius: 0 0 5px 5px;
+    ms-border-radius: 0 0 5px 5px;
+    o-border-radius: 0 0 5px 5px;
+    webkit-border-radius: 0 0 5px 5px;
+}
+.janrain-capture-ui .capture_form_collection_merge_radioButtonCollection .capture_form_item_mergeAccounts_mergeRadio.capture_toggled label
+{
+    color: #fff;
+}
+.janrain-capture-ui .capture_hover:hover .capture_popup_container
+{
+  width: 100%;
+  background: linear-gradient(top, #f6f6f6,#dddddd);
+  background: -moz-linear-gradient(top, #f6f6f6,#dddddd);
+  background: -ms-linear-gradient(top, #f6f6f6,#dddddd);
+  background: -o-linear-gradient(top, #f6f6f6,#dddddd);
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #f6f6f6), color-stop(100%, #dddddd));
+  background: -webkit-linear-gradient(top, #f6f6f6,#dddddd);
+  background-color: #f6f6f6;
+  box-shadow: 0 1px 0 0 rgba(255,255,255,0.35) inset;
+  moz-box-shadow: 0 1px 0 0 rgba(255,255,255,0.35) inset;
+  o-box-shadow: 0 1px 0 0 rgba(255,255,255,0.35) inset;
+  webkit-box-shadow: 0 1px 0 0 rgba(255,255,255,0.35) inset;
+}
+
+.capture_createAccountButton::before {
+  margin-right: .25em;
+  font-family: 'janrain-icons';
+  font-style: normal;
+  font-size: 16px;
+  line-height: 1;
+  speak: none;
+  display: inline-block;
+  vertical-align: middle;
+  content: "\e015";
+  color: #009ddc;
+}
+
+#capture_signIn_createAccountButton {
+  color: #009ddc;
+}
+
+a#capture_editProfile_resendLink {
+  position: relative;
+  top: -20px;
+}

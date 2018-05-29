@@ -1,0 +1,412 @@
+/*------------------------------------*\
+JANRAIN CAPTURE WIDGET JANRAIN-MOBILE.CSS
+\*------------------------------------*/
+/*
+* Janrain-mobile.css works as an extension to default.css as a mobile stylesheet
+* for the capture widget on mobile devices. You can extend/modify with your own mobile stylesheet.
+*
+* Janrain-mobile.css aims to normalize Capture Widget screens and elements on mobile devices.
+*
+* This stylesheet containts a lot of comments, please take care to read and refer to them as you build.
+*
+* This file is purely a dev document and is not to be used for production. For production,
+* please only use a minified version that does not contain comments.
+*
+* The table of contents below maps to section titles of the same name, to jump
+* to any section simply find $[SECTION-TITLE].
+*
+*/
+
+/**
+*
+* BODY.................................Body styles
+* MODAL SCREENS........................Styles for screens that are in a modal
+* GENERAL..............................Basic styles for all screens
+*
+* PUBLIC/PRIVATE PROFILE TOGGLES.......Public/private profile toggle styling for edit profile screen
+* PHOTO MANAGER........................Styles for displaying, uploading, cropping and removing profile photos
+* SCREEN SPECIFIC......................Screen specific styling
+* MERGE ACCOUNTS.......................Merge account screen styling
+* MEDIA QUERIES........................Media query to reset grid for edit profile
+*
+*/
+
+/*------------------------------------*\
+$BODY
+\*------------------------------------*/
+
+/*
+* This allows for the modals to have the correct height.
+*/
+html,body
+{
+  height: 100% !important;
+  margin-bottom: 0 !important;
+}
+
+/*------------------------------------*\
+$MODAL SCREENS
+\*------------------------------------*/
+
+/*
+* Normalize the overlay
+*/
+#janrainModalOverlay
+{
+  background-color: white !important;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100) !important;
+  left: 0 !important;
+  margin: 0 !important;
+  opacity: 1 !important;
+  top: 0 !important;
+  width: 100% !important;
+}
+/*
+* Normalize the modal sizing
+*/
+#janrainModal
+{
+  height: 100% !important;
+  left: 0 !important;
+  margin: 0 !important;
+  top: 0 !important;
+  width: 100% !important;
+}
+
+/*
+* Normalize width/padding of screens in a modal for all devices
+*/
+#janrainModal .janrain-capture-ui.capture-ui-content.janrain-capture-ui-mobile
+{
+  border-radius: 0;
+  box-sizing: content-box;
+  height: auto;
+  khtml-border-radius: 0;
+  min-height: 0;
+  moz-border-radius: 0;
+  moz-box-sizing: content-box;
+  ms-border-radius: 0;
+  ms-box-sizing: content-box;
+  o-border-radius: 0;
+  padding: 3% 3% 60px;
+  webkit-border-radius: 0;
+  webkit-box-sizing: content-box;
+  width: 94%;
+}
+
+/*
+* Normalize width/padding of embedded screens for all devices
+*/
+.janrain-capture-ui.janrain-capture-ui-mobile
+{
+  height: auto;
+  padding: 3%;
+  width: 94%;
+}
+
+.janrain-capture-ui.janrain-capture-ui-mobile h1
+{
+  color: #333;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: inherit;
+}
+.janrain-capture-ui.janrain-capture-ui-mobile h2
+{
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.janrain-capture-ui.janrain-capture-ui-mobile h1,
+.janrain-capture-ui.janrain-capture-ui-mobile h2,
+.janrain-capture-ui.janrain-capture-ui-mobile h3,
+.janrain-capture-ui.janrain-capture-ui-mobile h4,
+.janrain-capture-ui.janrain-capture-ui-mobile h5,
+.janrain-capture-ui.janrain-capture-ui-mobile h6
+{
+  color: #666;
+  margin: 0;
+  padding: 0;
+}
+/*
+* Header styles for Capture Widget screens inside of modals.
+* Provides vertically centered heading and underline.
+*/
+.janrain-capture-ui.janrain-capture-ui-mobile .capture_header
+{
+  border-bottom: 1px solid #eee;
+  box-sizing: border-box;
+  margin-bottom: 15px;
+  moz-box-sizing: border-box;
+  ms-box-sizing: border-box;
+  padding-bottom: 10px;
+  webkit-box-sizing: border-box;
+}
+.janrain-capture-ui.janrain-capture-ui-mobile .capture_header h1
+{
+  margin: 0;
+  padding: 0;
+}
+/*
+* Pins footer to bottom of modal
+*/
+#janrainModal .janrain-capture-ui.janrain-capture-ui-mobile .capture_footer,
+.janrain-capture-ui.janrain-capture-ui-mobile .capture_footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 35px;
+  width: 100%;
+  z-index: 5;
+  padding: 10px 0;
+  *zoom: 1;
+  -moz-box-shadow: 0 9px 9px -9px rgba(0, 0, 0, 0.1) inset;
+  -webkit-box-shadow: 0 9px 9px -9px rgba(0, 0, 0, 0.1) inset;
+  -o-box-shadow: 0 9px 9px -9px rgba(0, 0, 0, 0.1) inset;
+  box-shadow: 0 9px 9px -9px rgba(0, 0, 0, 0.1) inset;
+  background-color: #f6f6f6;
+  text-align: right;
+}
+.janrain-capture-ui.janrain-capture-ui-mobile .capture_footer .capture_btn
+{
+  margin: 0 10px;
+}
+
+/*------------------------------------*\
+$GENERAL
+\*------------------------------------*/
+.janrain-capture-ui.janrain-capture-ui-mobile .capture_backgroundColor
+{
+  border-radius: 0;
+  box-sizing: border-box;
+  height: auto;
+  khtml-border-radius: 0;
+  moz-border-radius: 0;
+  moz-box-sizing: border-box;
+  ms-border-radius: 0;
+  ms-box-sizing: border-box;
+  o-border-radius: 0;
+  webkit-border-radius: 0;
+  webkit-box-sizing: border-box;
+}
+.janrain-capture-ui.janrain-capture-ui-mobile .capture_access,
+.janrain-capture-ui.janrain-capture-ui-mobile .capture_retrieving
+{
+  background-color: transparent;
+  box-shadow: none;
+  margin: -7px 0 0 -160px;
+  moz-box-shadow: none;
+  o-box-shadow: none;
+  padding: 0 0 0 40px;
+  webkit-box-shadow: none;
+}
+
+
+/*------------------------------------*\
+$PUBLIC/PRIVATE PROFILE TOGGLES
+\*------------------------------------*/
+.janrain-capture-ui.janrain-capture-ui-mobile .capture_display_toggle_wrap
+{
+  left: auto;
+  right: 5px;
+  top: 5px;
+}
+.janrain-capture-ui.janrain-capture-ui-mobile .capture_display_toggle_wrap .capture_display_toggle_options
+{
+  left: -25px;
+  top: 20px;
+}
+.janrain-capture-ui.janrain-capture-ui-mobile .capture_display_toggle_wrap .capture_display_toggle_options .capture_display_option
+{
+  padding-bottom: 7px;
+  padding-top: 7px;
+}
+.janrain-capture-ui.janrain-capture-ui-mobile .capture_display_toggle_wrap .capture_display_toggle_options .capture_display_option .janrain-icon-16
+{
+  top: 6px;
+}
+.janrain-capture-ui.janrain-capture-ui-mobile .capture_display_toggle_wrap .capture_display_toggle_options .capture_display_option.capture_checked .janrain-icon-check
+{
+  top: 6px;
+}
+
+
+/*------------------------------------*\
+$PHOTO MANAGER
+\*------------------------------------*/
+.janrain-capture-ui.janrain-capture-ui-mobile .capture_photoDisplay #profile_pic,
+.janrain-capture-ui.janrain-capture-ui-mobile #capture_photoManager #profile_pic
+{
+  border: 0;
+  margin: 0 10px 0 0;
+}
+
+.janrain-capture-ui.janrain-capture-ui-mobile ul.options
+{
+  display: none;
+}
+.janrain-capture-ui.janrain-capture-ui-mobile .capture_photoManager
+{
+  border: none;
+  border-radius: 0;
+  display: inline-block;
+  display: -moz-inline-box;
+  height: 65px;
+  khtml-border-radius: 0;
+  margin: 10px;
+  moz-border-radius: 0;
+  moz-box-orient: vertical;
+  ms-border-radius: 0;
+  o-border-radius: 0;
+  vertical-align: auto;
+  vertical-align: middle;
+  webkit-border-radius: 0;
+  width: 65px;
+}
+.janrain-capture-ui.janrain-capture-ui-mobile .capture_photoManager
+{
+  display: inline;
+}
+.janrain-capture-ui.janrain-capture-ui-mobile .capture_photoManager .capture_profile_pic_display,
+.janrain-capture-ui.janrain-capture-ui-mobile .capture_photoManager .capture_profile_pic
+{
+  height: 65px;
+  width: 65px;
+}
+.janrain-capture-ui.janrain-capture-ui-mobile#publicProfile #profile_pic,
+.janrain-capture-ui.janrain-capture-ui-mobile .capture_photoManager .capture_profile_pic_display img,
+.janrain-capture-ui.janrain-capture-ui-mobile .capture_photoManager .capture_profile_pic img
+{
+  height: 65px;
+  width: 65px;
+}
+
+
+/*------------------------------------*\
+$SCREEN SPECIFIC
+\*------------------------------------*/
+#janrainModal .janrain-capture-ui.capture-ui-content.janrain-capture-ui-mobile#signIn,
+#janrainModal .janrain-capture-ui.capture-ui-content.janrain-capture-ui-mobile#returnSocial,
+#janrainModal .janrain-capture-ui.capture-ui-content.janrain-capture-ui-mobile#returnTraditional
+{
+  padding: 10px 0 0 0;
+  width: 100%;
+}
+#janrainModal .janrain-capture-ui.capture-ui-content.janrain-capture-ui-mobile#signIn h1
+{
+  margin: 0 0 0 10px;
+}
+#janrainModal .janrain-capture-ui.capture-ui-content.janrain-capture-ui-mobile .capture_signin
+{
+  width: 300px;
+}
+#janrainModal .janrain-capture-ui.capture-ui-content.janrain-capture-ui-mobile .capture_signin h2
+{
+  margin-left: 10px;
+}
+.janrain-capture-ui.janrain-capture-ui-mobile#editProfile
+{
+  overflow: visible;
+  width: auto;
+}
+.janrain-capture-ui.janrain-capture-ui-mobile#editProfile h3
+{
+  margin-top: 10px;
+}
+.janrain-capture-ui.janrain-capture-ui-mobile .capture_editCol
+{
+  width: auto;
+  margin: 0;
+}
+.janrain-capture-ui.janrain-capture-ui-mobile#editPersonalInfo .capture_form_item label,
+.janrain-capture-ui.janrain-capture-ui-mobile#editPassword .capture_form_item label,
+.janrain-capture-ui.janrain-capture-ui-mobile#editContactInfo .capture_form_item label,
+.janrain-capture-ui.janrain-capture-ui-mobile#editAccountInfo .capture_form_item label
+{
+  height: auto;
+  overflow: visible;
+  text-indent: 0;
+  text-indent: inherit;
+  text-transform: capitalize;
+}
+.janrain-capture-ui.janrain-capture-ui-mobile#publicProfile .capture_personal_info h2
+{
+  float: none;
+  font-size: 15px;
+}
+.janrain-capture-ui.janrain-capture-ui-mobile#publicProfile .capture_provider
+{
+  margin-top: 0;
+}
+
+
+/*------------------------------------*\
+$MERGE ACCOUNTS
+\*------------------------------------*/
+#janrainModal .janrain-capture-ui.capture-ui-content.janrain-capture-ui-mobile#mergeAccounts
+{
+  padding: 50px 3% 60px;
+  width: 94%;
+}
+#janrainModal .janrain-capture-ui.capture-ui-content.janrain-capture-ui-mobile#mergeAccounts .capture_header
+{
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+.janrain-capture-ui.janrain-capture-ui-mobile#mergeAccounts .capture_dashed
+{
+  margin: 15px 0;
+  padding: 10px;
+}
+.janrain-capture-ui.janrain-capture-ui-mobile .capture_form_collection_merge_radioButtonCollection .capture_form_item_mergeAccounts_mergeRadio label .capture_smallText
+{
+  display: inline;
+}
+.janrain-capture-ui.janrain-capture-ui-mobile .capture_mergeCol .capture_mergeProvider,.janrain-capture-ui.janrain-capture-ui-mobile .capture_header .capture_mergeProvider
+{
+  right: 45px;
+}
+.janrain-capture-ui.janrain-capture-ui-mobile .capture_mergeCol
+{
+  display: block;
+  margin: 10px 0 0 0;
+  padding: 0;
+  position: relative;
+  width: 100%;
+}
+.janrain-capture-ui.janrain-capture-ui-mobile .capture_mergeCol .capture_popup_container .capture_popup-arrow
+{
+  left: 100px;
+}
+.janrain-capture-ui.janrain-capture-ui-mobile .capture_icon_col,.janrain-capture-ui.janrain-capture-ui-mobile .capture_displayName_col
+{
+  margin-bottom: 0;
+}
+
+.janrain-capture-ui.janrain-capture-ui-mobile .capture_hover:hover .capture_popup_container
+{
+  width: 100%;
+}
+/*------------------------------------*\
+$MEDIA QUERIES
+\*------------------------------------*/
+/*
+* At 500px and under, reset the grid to display in blocks instead of inline
+*/
+
+
+@media screen and (max-width : 500px){
+  .janrain-capture-ui .capture_grid_block div[class^="capture_col"],
+  .janrain-capture-ui .capture_grid_block div[class*="capture_center_col"]
+  {
+    width:100%;
+    float:none;
+    margin:2% auto auto auto
+  }
+  .janrain-capture-ui .capture_grid_block div[class^="capture_col"]:first-child
+  {
+    margin-top:auto
+  }
+}
