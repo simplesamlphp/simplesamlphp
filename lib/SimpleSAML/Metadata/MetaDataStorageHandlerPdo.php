@@ -153,8 +153,8 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerPdo extends SimpleSAML_Metadata_
      */
     public function getMetaData($entityId, $set)      
     {       
-        assert('is_string($entityId)');
-        assert('is_string($set)');
+        assert(is_string($entityId));
+        assert(is_string($set));
 
         $tableName = $this->getTableName($set);
 
