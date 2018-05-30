@@ -1,15 +1,16 @@
 <?php
 
+namespace SimpleSAML\Error;
 
 /**
- * Class SimpleSAML_Error_NoPassive
+ * Class NoPassive
  *
  * @deprecated This class has been deprecated and will be removed in SimpleSAMLphp 2.0. Please use
- * SimpleSAML\Module\saml\Error\NoPassive instead.
+ * \SimpleSAML\Module\saml\Error\NoPassive instead.
  *
  * @see \SimpleSAML\Module\saml\Error\NoPassive
  */
-class SimpleSAML_Error_NoPassive extends SimpleSAML_Error_Exception
-{
 
+class NoPassive extends Exception
+{
 }

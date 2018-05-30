@@ -4,17 +4,17 @@
 require_once(dirname(dirname(__FILE__)).'/lib/_autoload.php');
 
 // enable assertion handler for all pages
-SimpleSAML_Error_Assertion::installHandler();
+\SimpleSAML\Error\Assertion::installHandler();
 
 // show error page on unhandled exceptions
 function SimpleSAML_exception_handler($exception)
 {
     SimpleSAML\Module::callHooks('exception_handler', $exception);
 
-    if ($exception instanceof SimpleSAML_Error_Error) {
+    if ($exception instanceof \SimpleSAML\Error\Error) {
         $exception->show();
     } elseif ($exception instanceof Exception) {
-        $e = new SimpleSAML_Error_Error('UNHANDLEDEXCEPTION', $exception);
+        $e = new \SimpleSAML\Error\Error('UNHANDLEDEXCEPTION', $exception);
         $e->show();
     } else {
         if (class_exists('Error') && $exception instanceof Error) {
@@ -55,7 +55,7 @@ function SimpleSAML_error_handler($errno, $errstr, $errfile = null, $errline = 0
     }
 
     // show an error with a full backtrace
-    $e = new SimpleSAML_Error_Exception('Error '.$errno.' - '.$errstr);
+    $e = new \SimpleSAML\Error\Exception('Error '.$errno.' - '.$errstr);
     $e->logError();
 
     // resume normal error processing

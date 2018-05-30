@@ -313,7 +313,7 @@ class HTTPTest extends TestCase
             $this->assertEquals(HTTP::checkURLAllowed($url), $url);
         }
 
-        $this->setExpectedException('SimpleSAML_Error_Exception');
+        $this->setExpectedException('\SimpleSAML\Error\Exception');
         HTTP::checkURLAllowed('https://evil.com');
 
         $_SERVER = $original;
@@ -345,7 +345,7 @@ class HTTPTest extends TestCase
             $this->assertEquals(HTTP::checkURLAllowed($url), $url);
         }
 
-        $this->setExpectedException('SimpleSAML_Error_Exception');
+        $this->setExpectedException('\SimpleSAML\Error\Exception');
         HTTP::checkURLAllowed('https://evil.com');
 
         $_SERVER = $original;
@@ -410,7 +410,7 @@ class HTTPTest extends TestCase
 
         $_SERVER['REQUEST_URI'] = '/module.php';
 
-        $this->setExpectedException('SimpleSAML_Error_Exception');
+        $this->setExpectedException('\SimpleSAML\Error\Exception');
         HTTP::checkURLAllowed('https://app.example.com.evil.com');
 
         $_SERVER = $original;

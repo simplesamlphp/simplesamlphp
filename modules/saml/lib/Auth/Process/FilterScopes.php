@@ -13,7 +13,6 @@ use SimpleSAML\Logger;
  */
 class FilterScopes extends \SimpleSAML_Auth_ProcessingFilter
 {
-
     /**
      * Stores any pre-configured scoped attributes which come from the filter configuration.
      */

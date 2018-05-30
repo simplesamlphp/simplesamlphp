@@ -5,7 +5,7 @@ $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 $binding = \SAML2\Binding::getCurrentBinding();
 $query = $binding->receive();
 if (!($query instanceof \SAML2\AttributeQuery)) {
-	throw new SimpleSAML_Error_BadRequest('Invalid message received to AttributeQuery endpoint.');
+	throw new \SimpleSAML\Error\BadRequest('Invalid message received to AttributeQuery endpoint.');
 }
 
 $idpEntityId = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
@@ -13,7 +13,7 @@ $idpEntityId = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
 
 $spEntityId = $query->getIssuer();
 if ($spEntityId === NULL) {
-	throw new SimpleSAML_Error_BadRequest('Missing <saml:Issuer> in <samlp:AttributeQuery>.');
+	throw new \SimpleSAML\Error\BadRequest('Missing <saml:Issuer> in <samlp:AttributeQuery>.');
 }
 
 $idpMetadata = $metadata->getMetadataConfig($idpEntityId, 'saml20-idp-hosted');

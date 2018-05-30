@@ -181,7 +181,7 @@ class sspmod_exampleauth_Auth_Source_External extends SimpleSAML_Auth_Source {
 		 * it in the 'State' request parameter.
 		 */
 		if (!isset($_REQUEST['State'])) {
-			throw new SimpleSAML_Error_BadRequest('Missing "State" parameter.');
+			throw new \SimpleSAML\Error\BadRequest('Missing "State" parameter.');
 		}
 
 		/*
@@ -200,7 +200,7 @@ class sspmod_exampleauth_Auth_Source_External extends SimpleSAML_Auth_Source {
 			 * The only way this should fail is if we remove or rename the authentication source
 			 * while the user is at the login page.
 			 */
-			throw new SimpleSAML_Error_Exception('Could not find authentication source with id ' . $state[self::AUTHID]);
+			throw new \SimpleSAML\Error\Exception('Could not find authentication source with id ' . $state[self::AUTHID]);
 		}
 
 		/*
@@ -209,7 +209,7 @@ class sspmod_exampleauth_Auth_Source_External extends SimpleSAML_Auth_Source {
 		 * change config/authsources.php while an user is logging in.
 		 */
 		if (! ($source instanceof self)) {
-			throw new SimpleSAML_Error_Exception('Authentication source type changed.');
+			throw new \SimpleSAML\Error\Exception('Authentication source type changed.');
 		}
 
 
@@ -226,7 +226,7 @@ class sspmod_exampleauth_Auth_Source_External extends SimpleSAML_Auth_Source {
 			 * Here we simply throw an exception, but we could also redirect the user back to the
 			 * login page.
 			 */
-			throw new SimpleSAML_Error_Exception('User not authenticated after login page.');
+			throw new \SimpleSAML\Error\Exception('User not authenticated after login page.');
 		}
 
 		/*

@@ -12,9 +12,9 @@
  * @author Remy Blom <remy.blom@hku.nl>
  * @package SimpleSAMLphp
  */
+
 abstract class sspmod_ldap_Auth_Process_BaseFilter extends SimpleSAML_Auth_ProcessingFilter
 {
-
     /**
      * List of attribute "alias's" linked to the real attribute
      * name. Used for abstraction / configuration of the LDAP
@@ -87,7 +87,7 @@ abstract class sspmod_ldap_Auth_Process_BaseFilter extends SimpleSAML_Auth_Proce
      * to the LDAP server. Then sets up the LDAP connection for the
      * instance/object and stores everything in class members.
      *
-     * @throws SimpleSAML_Error_Exception
+     * @throws \SimpleSAML\Error\Exception
      * @param array $config
      * @param $reserved
      */
@@ -120,7 +120,7 @@ abstract class sspmod_ldap_Auth_Process_BaseFilter extends SimpleSAML_Auth_Proce
 
             // Verify that the authsource config exists
             if (!$authsource->hasValue($config['authsource'])) {
-                throw new SimpleSAML_Error_Exception(
+                throw new \SimpleSAML\Error\Exception(
                     $this->title.'Authsource ['.$config['authsource'].
                     '] defined in filter parameters not found in authsources.php'
                 );
@@ -133,7 +133,7 @@ abstract class sspmod_ldap_Auth_Process_BaseFilter extends SimpleSAML_Auth_Proce
             // Make sure it is an ldap source
             // TODO: Support ldap:LDAPMulti, if possible
             if (@$authsource[0] != 'ldap:LDAP') {
-                throw new SimpleSAML_Error_Exception(
+                throw new \SimpleSAML\Error\Exception(
                     $this->title.'Authsource ['.$config['authsource'].
                     '] specified in filter parameters is not an ldap:LDAP type'
                 );

@@ -109,12 +109,12 @@ class sspmod_authfacebook_Auth_Source_Facebook extends SimpleSAML_Auth_Source {
 			try {
 				$info = $facebook->api("/" . $uid . ($this->user_fields ? "?fields=" . $this->user_fields : ""));
 			} catch (FacebookApiException $e) {
-				throw new SimpleSAML_Error_AuthSource($this->authId, 'Error getting user profile.', $e);
+				throw new \SimpleSAML\Error\AuthSource($this->authId, 'Error getting user profile.', $e);
 			}
 		}
 
 		if (!isset($info)) {
-			throw new SimpleSAML_Error_AuthSource($this->authId, 'Error getting user profile.');
+			throw new \SimpleSAML\Error\AuthSource($this->authId, 'Error getting user profile.');
 		}
 		
 		$attributes = array();

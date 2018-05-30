@@ -1,13 +1,13 @@
 <?php
 
 if (!isset($_REQUEST['id'])) {
-    throw new \SimpleSAML_Error_BadRequest('Missing required parameter: id');
+    throw new \SimpleSAML\Error\BadRequest('Missing required parameter: id');
 }
 
 if (isset($_REQUEST['type'])) {
     $type = (string) $_REQUEST['type'];
     if (!in_array($type, array('init', 'js', 'nojs', 'embed'), true)) {
-        throw new \SimpleSAML_Error_BadRequest('Invalid value for type.');
+        throw new \SimpleSAML\Error\BadRequest('Invalid value for type.');
     }
 } else {
     $type = 'init';

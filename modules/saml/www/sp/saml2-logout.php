@@ -7,7 +7,7 @@
  */
 
 if (!array_key_exists('PATH_INFO', $_SERVER)) {
-    throw new SimpleSAML_Error_BadRequest('Missing authentication source ID in logout URL');
+    throw new \SimpleSAML\Error\BadRequest('Missing authentication source ID in logout URL');
 }
 
 $sourceId = substr($_SERVER['PATH_INFO'], 1);
@@ -17,7 +17,7 @@ if ($source === null) {
     throw new Exception('Could not find authentication source with id ' . $sourceId);
 }
 if (!($source instanceof sspmod_saml_Auth_Source_SP)) {
-    throw new SimpleSAML_Error_Exception('Source type changed?');
+    throw new \SimpleSAML\Error\Exception('Source type changed?');
 }
 
 try {
@@ -26,7 +26,7 @@ try {
     // This is dirty. Instead of checking the message of the exception, \SAML2\Binding::getCurrentBinding() should throw
     // an specific exception when the binding is unknown, and we should capture that here
     if ($e->getMessage() === 'Unable to find the current binding.') {
-        throw new SimpleSAML_Error_Error('SLOSERVICEPARAMS', $e, 400);
+        throw new \SimpleSAML\Error\Error('SLOSERVICEPARAMS', $e, 400);
     } else {
         throw $e; // do not ignore other exceptions!
     }
@@ -36,7 +36,7 @@ $message = $binding->receive();
 $idpEntityId = $message->getIssuer();
 if ($idpEntityId === null) {
     // Without an issuer we have no way to respond to the message.
-    throw new SimpleSAML_Error_BadRequest('Received message on logout endpoint without issuer.');
+    throw new \SimpleSAML\Error\BadRequest('Received message on logout endpoint without issuer.');
 }
 
 $spEntityId = $source->getEntityId();
@@ -49,7 +49,7 @@ sspmod_saml_Message::validateMessage($idpMetadata, $spMetadata, $message);
 
 $destination = $message->getDestination();
 if ($destination !== null && $destination !== \SimpleSAML\Utils\HTTP::getSelfURLNoQuery()) {
-    throw new SimpleSAML_Error_Exception('Destination in logout message is wrong.');
+    throw new \SimpleSAML\Error\Exception('Destination in logout message is wrong.');
 }
 
 if ($message instanceof \SAML2\LogoutResponse) {
@@ -57,7 +57,7 @@ if ($message instanceof \SAML2\LogoutResponse) {
     $relayState = $message->getRelayState();
     if ($relayState === null) {
         // Somehow, our RelayState has been lost.
-        throw new SimpleSAML_Error_BadRequest('Missing RelayState in logout response.');
+        throw new \SimpleSAML\Error\BadRequest('Missing RelayState in logout response.');
     }
 
     if (!$message->isSuccess()) {
@@ -77,7 +77,7 @@ if ($message instanceof \SAML2\LogoutResponse) {
         try {
             $keys = sspmod_saml_Message::getDecryptionKeys($idpMetadata, $spMetadata);
         } catch (Exception $e) {
-            throw new SimpleSAML_Error_Exception('Error decrypting NameID: ' . $e->getMessage());
+            throw new \SimpleSAML\Error\Exception('Error decrypting NameID: ' . $e->getMessage());
         }
 
         $blacklist = sspmod_saml_Message::getBlacklistedAlgorithms($idpMetadata, $spMetadata);
@@ -136,5 +136,5 @@ if ($message instanceof \SAML2\LogoutResponse) {
 
     $binding->send($lr);
 } else {
-    throw new SimpleSAML_Error_BadRequest('Unknown message received on logout endpoint: ' . get_class($message));
+    throw new \SimpleSAML\Error\BadRequest('Unknown message received on logout endpoint: ' . get_class($message));
 }

@@ -3,6 +3,7 @@
 /**
  * Constants defining possible errors
  */
+
 define('ERR_INTERNAL', 1);
 define('ERR_NO_USER', 2);
 define('ERR_WRONG_PW', 3);
@@ -143,15 +144,15 @@ class SimpleSAML_Auth_LDAP
 
             switch ($type) {
                 case ERR_INTERNAL:// 1 - ExInternal
-                    return new SimpleSAML_Error_Exception($description, $errNo);
+                    return new \SimpleSAML\Error\Exception($description, $errNo);
                 case ERR_NO_USER:// 2 - ExUserNotFound
-                    return new SimpleSAML_Error_UserNotFound($description, $errNo);
+                    return new \SimpleSAML\Error\UserNotFound($description, $errNo);
                 case ERR_WRONG_PW:// 3 - ExInvalidCredential
-                    return new SimpleSAML_Error_InvalidCredential($description, $errNo);
+                    return new \SimpleSAML\Error\InvalidCredential($description, $errNo);
                 case ERR_AS_DATA_INCONSIST:// 4 - ExAsDataInconsist
-                    return new SimpleSAML_Error_AuthSource('ldap', $description);
+                    return new \SimpleSAML\Error\AuthSource('ldap', $description);
                 case ERR_AS_INTERNAL:// 5 - ExAsInternal
-                    return new SimpleSAML_Error_AuthSource('ldap', $description);
+                    return new \SimpleSAML\Error\AuthSource('ldap', $description);
             }
         } else {
             if ($errNo !== 0) {
@@ -163,16 +164,16 @@ class SimpleSAML_Auth_LDAP
             switch ($errNo) {
                 case 0x20://LDAP_NO_SUCH_OBJECT
                     SimpleSAML\Logger::warning($description);
-                    return new SimpleSAML_Error_UserNotFound($description, $errNo);
+                    return new \SimpleSAML\Error\UserNotFound($description, $errNo);
                 case 0x31://LDAP_INVALID_CREDENTIALS
                     SimpleSAML\Logger::info($description);
-                    return new SimpleSAML_Error_InvalidCredential($description, $errNo);
+                    return new \SimpleSAML\Error\InvalidCredential($description, $errNo);
                 case -1://NO_SERVER_CONNECTION
                     SimpleSAML\Logger::error($description);
-                    return new SimpleSAML_Error_AuthSource('ldap', $description);
+                    return new \SimpleSAML\Error\AuthSource('ldap', $description);
                 default:
                     SimpleSAML\Logger::error($description);
-                    return new SimpleSAML_Error_AuthSource('ldap', $description);
+                    return new \SimpleSAML\Error\AuthSource('ldap', $description);
             }
         }
     }
@@ -193,16 +194,16 @@ class SimpleSAML_Auth_LDAP
      * @param string $scope
      * @return string
      * The DN of the resulting found element.
-     * @throws SimpleSAML_Error_Exception if:
+     * @throws \SimpleSAML\Error\Exception if:
      * - Attribute parameter is wrong type
-     * @throws SimpleSAML_Error_AuthSource if:
+     * @throws \SimpleSAML\Error\AuthSource if:
      * - Not able to connect to LDAP server
      * - False search result
      * - Count return false
      * - Searche found more than one result
      * - Failed to get first entry from result
      * - Failed to get DN for entry
-     * @throws SimpleSAML_Error_UserNotFound if:
+     * @throws \SimpleSAML\Error\UserNotFound if:
      * - Zero entries were found
      */
     private function search($base, $attribute, $value, $searchFilter = null, $scope = "subtree")
@@ -281,10 +282,10 @@ class SimpleSAML_Auth_LDAP
      * The DN of the matching element, if found. If no element was found and
      * $allowZeroHits is set to FALSE, an exception will be thrown; otherwise
      * NULL will be returned.
-     * @throws SimpleSAML_Error_AuthSource if:
+     * @throws \SimpleSAML\Error\AuthSource if:
      * - LDAP search encounter some problems when searching cataloge
      * - Not able to connect to LDAP server
-     * @throws SimpleSAML_Error_UserNotFound if:
+     * @throws \SimpleSAML\Error\UserNotFound if:
      * - $allowZeroHits is FALSE and no result is found
      *
      */
@@ -302,7 +303,7 @@ class SimpleSAML_Auth_LDAP
                     return $result;
                 }
                 // If search failed, attempt the other base DNs
-            } catch (SimpleSAML_Error_UserNotFound $e) {
+            } catch (\SimpleSAML\Error\UserNotFound $e) {
                 // Just continue searching
             }
         }
@@ -441,7 +442,7 @@ class SimpleSAML_Auth_LDAP
      * Returns TRUE if successful, FALSE if
      * LDAP_INVALID_CREDENTIALS, LDAP_X_PROXY_AUTHZ_FAILURE,
      * LDAP_INAPPROPRIATE_AUTH, LDAP_INSUFFICIENT_ACCESS
-     * @throws SimpleSAML_Error_Exception on other errors
+     * @throws \SimpleSAML\Error\Exception on other errors
      */
     public function bind($dn, $password, array $sasl_args = null)
     {

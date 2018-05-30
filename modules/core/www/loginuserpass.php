@@ -11,7 +11,7 @@
 
 // Retrieve the authentication state
 if (!array_key_exists('AuthState', $_REQUEST)) {
-	throw new SimpleSAML_Error_BadRequest('Missing AuthState parameter.');
+	throw new \SimpleSAML\Error\BadRequest('Missing AuthState parameter.');
 }
 $authStateId = $_REQUEST['AuthState'];
 $state = SimpleSAML_Auth_State::loadState($authStateId, sspmod_core_Auth_UserPassBase::STAGEID);
@@ -65,7 +65,7 @@ if (!empty($_REQUEST['username']) || !empty($password)) {
 
 	try {
 		sspmod_core_Auth_UserPassBase::handleLogin($authStateId, $username, $password);
-	} catch (SimpleSAML_Error_Error $e) {
+	} catch (\SimpleSAML\Error\Error $e) {
 		/* Login failed. Extract error code and parameters, to display the error. */
 		$errorCode = $e->getErrorCode();
 		$errorParams = $e->getParameters();

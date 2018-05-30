@@ -141,7 +141,7 @@ class XMLTest extends TestCase
     }
 
     /**
-     * @expectedException \SimpleSAML_Error_Exception
+     * @expectedException \SimpleSAML\Error\Exception
      *
      * @covers \SimpleSAML\Utils\XML::getDOMText
      * @test

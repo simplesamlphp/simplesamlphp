@@ -27,7 +27,7 @@ class sspmod_core_Auth_Process_AttributeLimit extends SimpleSAML_Auth_Processing
 	 *
 	 * @param array $config  Configuration information about this filter.
 	 * @param mixed $reserved  For future use
-     * @throws SimpleSAML_Error_Exception If invalid configuration is found.
+	 * @throws \SimpleSAML\Error\Exception If invalid configuration is found.
 	 */
 	public function __construct($config, $reserved) {
 		parent::__construct($config, $reserved);
@@ -39,18 +39,18 @@ class sspmod_core_Auth_Process_AttributeLimit extends SimpleSAML_Auth_Processing
 				$this->isDefault = (bool)$value;
 			} elseif (is_int($index)) {
 				if (!is_string($value)) {
-					throw new SimpleSAML_Error_Exception('AttributeLimit: Invalid attribute name: ' .
+					throw new \SimpleSAML\Error\Exception('AttributeLimit: Invalid attribute name: ' .
                         var_export($value, TRUE));
 				}
 				$this->allowedAttributes[] = $value;
             } elseif (is_string($index)) {
                 if (!is_array($value)) {
-                    throw new SimpleSAML_Error_Exception('AttributeLimit: Values for ' . var_export($index, TRUE) .
+                    throw new \SimpleSAML\Error\Exception('AttributeLimit: Values for ' . var_export($index, TRUE) .
                         ' must be specified in an array.');
                 }
                 $this->allowedAttributes[$index] = $value;
 			} else {
-				throw new SimpleSAML_Error_Exception('AttributeLimit: Invalid option: ' . var_export($index, TRUE));
+				throw new \SimpleSAML\Error\Exception('AttributeLimit: Invalid option: ' . var_export($index, TRUE));
 			}
 		}
 	}
@@ -82,7 +82,7 @@ class sspmod_core_Auth_Process_AttributeLimit extends SimpleSAML_Auth_Processing
 	 * Removes all attributes which aren't one of the allowed attributes.
 	 *
 	 * @param array &$request  The current request
-     * @throws SimpleSAML_Error_Exception If invalid configuration is found.
+	 * @throws \SimpleSAML\Error\Exception If invalid configuration is found.
 	 */
 	public function process(&$request) {
 		assert(is_array($request));
@@ -110,7 +110,7 @@ class sspmod_core_Auth_Process_AttributeLimit extends SimpleSAML_Auth_Processing
                 if (array_key_exists($name, $allowedAttributes)) {
                     // but it is an index of the array
                     if (!is_array($allowedAttributes[$name])) {
-                        throw new SimpleSAML_Error_Exception('AttributeLimit: Values for ' . var_export($name, TRUE) .
+                        throw new \SimpleSAML\Error\Exception('AttributeLimit: Values for ' . var_export($name, TRUE) .
                             ' must be specified in an array.');
                     }
                     $attributes[$name] = $this->filterAttributeValues($attributes[$name], $allowedAttributes[$name]);

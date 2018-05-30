@@ -8,6 +8,7 @@
  *
  * @package SimpleSAMLphp
  */
+
 class sspmod_ldap_ConfigHelper
 {
     /**
@@ -170,7 +171,7 @@ class sspmod_ldap_ConfigHelper
     /**
      * Attempt to log in using the given username and password.
      *
-     * Will throw a SimpleSAML_Error_Error('WRONGUSERPASS') if the username or password is wrong.
+     * Will throw a \SimpleSAML\Error\Error('WRONGUSERPASS') if the username or password is wrong.
      * If there is a configuration problem, an Exception will be thrown.
      *
      * @param string $username  The username the user wrote.
@@ -185,7 +186,7 @@ class sspmod_ldap_ConfigHelper
 
         if (empty($password)) {
             SimpleSAML\Logger::info($this->location.': Login with empty password disallowed.');
-            throw new SimpleSAML_Error_Error('WRONGUSERPASS');
+            throw new \SimpleSAML\Error\Error('WRONGUSERPASS');
         }
 
         $ldap = new SimpleSAML_Auth_LDAP($this->hostname, $this->enableTLS, $this->debug, $this->timeout, $this->port, $this->referrals);
@@ -204,13 +205,13 @@ class sspmod_ldap_ConfigHelper
             if ($dn === null) {
                 /* User not found with search. */
                 SimpleSAML\Logger::info($this->location.': Unable to find users DN. username=\''.$username.'\'');
-                throw new SimpleSAML_Error_Error('WRONGUSERPASS');
+                throw new \SimpleSAML\Error\Error('WRONGUSERPASS');
             }
         }
 
         if (!$ldap->bind($dn, $password, $sasl_args)) {
-            SimpleSAML\Logger::info($this->location.': '.$username.' failed to authenticate. DN='.$dn);
-            throw new SimpleSAML_Error_Error('WRONGUSERPASS');
+            \SimpleSAML\Logger::info($this->location.': '.$username.' failed to authenticate. DN='.$dn);
+            throw new \SimpleSAML\Error\Error('WRONGUSERPASS');
         }
 
         /* In case of SASL bind, authenticated and authorized DN may differ */
@@ -245,10 +246,10 @@ class sspmod_ldap_ConfigHelper
      * The DN of the matching element, if found. If no element was
      * found and $allowZeroHits is set to FALSE, an exception will
      * be thrown; otherwise NULL will be returned.
-     * @throws SimpleSAML_Error_AuthSource if:
+     * @throws \SimpleSAML\Error\AuthSource if:
      * - LDAP search encounter some problems when searching cataloge
      * - Not able to connect to LDAP server
-     * @throws SimpleSAML_Error_UserNotFound if:
+     * @throws \SimpleSAML\Error\UserNotFound if:
      * - $allowZeroHits is FALSE and no result is found
      *
      */

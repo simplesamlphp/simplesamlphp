@@ -13,12 +13,12 @@ class sspmod_adfs_IdP_ADFS
             $requestid = $query['wctx'];
             $issuer = $query['wtrealm'];
 
-            $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+            $metadata = \SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
             $spMetadata = $metadata->getMetaDataConfig($issuer, 'adfs-sp-remote');
 
-            SimpleSAML\Logger::info('ADFS - IdP.prp: Incoming Authentication request: '.$issuer.' id '.$requestid);
+            \SimpleSAML\Logger::info('ADFS - IdP.prp: Incoming Authentication request: '.$issuer.' id '.$requestid);
         } catch (Exception $exception) {
-            throw new SimpleSAML_Error_Error('PROCESSAUTHNREQUEST', $exception);
+            throw new \SimpleSAML\Error\Error('PROCESSAUTHNREQUEST', $exception);
         }
 
         $state = array(
@@ -39,10 +39,10 @@ class sspmod_adfs_IdP_ADFS
 
     private static function generateResponse($issuer, $target, $nameid, $attributes, $assertionLifetime)
     {
-        $issueInstant = SimpleSAML\Utils\Time::generateTimestamp();
-        $notBefore = SimpleSAML\Utils\Time::generateTimestamp(time() - 30);
-        $assertionExpire = SimpleSAML\Utils\Time::generateTimestamp(time() + $assertionLifetime);
-        $assertionID = SimpleSAML\Utils\Random::generateID();
+        $issueInstant = \SimpleSAML\Utils\Time::generateTimestamp();
+        $notBefore = \SimpleSAML\Utils\Time::generateTimestamp(time() - 30);
+        $assertionExpire = \SimpleSAML\Utils\Time::generateTimestamp(time() + $assertionLifetime);
+        $assertionID = \SimpleSAML\Utils\Random::generateID();
         $nameidFormat = 'http://schemas.xmlsoap.org/claims/UPN';
         $nameid = htmlspecialchars($nameid);
 
@@ -71,7 +71,7 @@ MSG;
                 continue;
             }
 
-            list($namespace, $name) = SimpleSAML\Utils\Attributes::getAttributeNamespace($name, 'http://schemas.xmlsoap.org/claims');
+            list($namespace, $name) = \SimpleSAML\Utils\Attributes::getAttributeNamespace($name, 'http://schemas.xmlsoap.org/claims');
             foreach ($values as $value) {
                 if ((!isset($value)) || ($value === '')) {
                     continue;
@@ -160,14 +160,14 @@ MSG;
         $nameidattribute = $spMetadata->getValue('simplesaml.nameidattribute');
         if (!empty($nameidattribute)) {
             if (!array_key_exists($nameidattribute, $attributes)) {
-                throw new Exception('simplesaml.nameidattribute does not exist in resulting attribute set');
+                throw new \Exception('simplesaml.nameidattribute does not exist in resulting attribute set');
             }
             $nameid = $attributes[$nameidattribute][0];
         } else {
             $nameid = SimpleSAML\Utils\Random::generateID();
         }
 
-        $idp = SimpleSAML_IdP::getByState($state);		
+        $idp = \SimpleSAML_IdP::getByState($state);		
         $idpMetadata = $idp->getConfig();
         $idpEntityId = $idpMetadata->getString('entityid');
 
@@ -182,7 +182,7 @@ MSG;
             $assertionLifetime = $idpMetadata->getInteger('assertion.lifetime', 300);
         }
 
-        $response = sspmod_adfs_IdP_ADFS::generateResponse($idpEntityId, $spEntityId, $nameid, $attributes, $assertionLifetime);
+        $response = \sspmod_adfs_IdP_ADFS::generateResponse($idpEntityId, $spEntityId, $nameid, $attributes, $assertionLifetime);
 
         $privateKeyFile = \SimpleSAML\Utils\Config::getCertPath($idpMetadata->getString('privatekey'));
         $certificateFile = \SimpleSAML\Utils\Config::getCertPath($idpMetadata->getString('certificate'));
@@ -191,11 +191,11 @@ MSG;
         if ($algo === null) {
             $algo = $idpMetadata->getString('signature.algorithm', XMLSecurityKey::RSA_SHA256);
         }
-        $wresult = sspmod_adfs_IdP_ADFS::signResponse($response, $privateKeyFile, $certificateFile, $algo);
+        $wresult = \sspmod_adfs_IdP_ADFS::signResponse($response, $privateKeyFile, $certificateFile, $algo);
 
         $wctx = $state['adfs:wctx'];
         $wreply = $state['adfs:wreply'] ? : $spMetadata->getValue('prp');
-        sspmod_adfs_IdP_ADFS::postResponse($wreply, $wresult, $wctx);
+        \sspmod_adfs_IdP_ADFS::postResponse($wreply, $wresult, $wctx);
     }
 
     public static function sendLogoutResponse(SimpleSAML_IdP $idp, array $state)
@@ -227,9 +227,9 @@ MSG;
     // accepts an association array, and returns a URL that can be accessed to terminate the association
     public static function getLogoutURL(SimpleSAML_IdP $idp, array $association, $relayState)
     {
-        $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+        $metadata = \SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
         $spMetadata = $metadata->getMetaDataConfig($association['adfs:entityID'], 'adfs-sp-remote');
-        $returnTo = SimpleSAML\Module::getModuleURL('adfs/idp/prp.php?assocId='.urlencode($association["id"]).'&relayState='.urlencode($relayState));
+        $returnTo = \SimpleSAML\Module::getModuleURL('adfs/idp/prp.php?assocId='.urlencode($association["id"]).'&relayState='.urlencode($relayState));
         return $spMetadata->getValue('prp').'?wa=wsignoutcleanup1.0&wreply='.urlencode($returnTo);
     }
 }

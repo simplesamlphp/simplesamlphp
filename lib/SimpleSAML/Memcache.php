@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * This file implements functions to read and write to a group of memcache
  * servers.
@@ -19,7 +18,6 @@
  */
 class SimpleSAML_Memcache
 {
-
     /**
      * Cache of the memcache servers we are using.
      *
@@ -28,11 +26,11 @@ class SimpleSAML_Memcache
     private static $serverGroups = null;
 
 
-  /**
-   * The flavor of memcache PHP extension we are using.
-   *
-   * @var string
-   */
+   /**
+    * The flavor of memcache PHP extension we are using.
+    *
+    * @var string
+    */
     private static $extension = '';
 
 
@@ -76,19 +74,19 @@ class SimpleSAML_Memcache
              * - 'data': The data.
              */
             if (!is_array($info)) {
-                SimpleSAML\Logger::warning(
+                \SimpleSAML\Logger::warning(
                     'Retrieved invalid data from a memcache server. Data was not an array.'
                 );
                 continue;
             }
             if (!array_key_exists('timestamp', $info)) {
-                SimpleSAML\Logger::warning(
+                \SimpleSAML\Logger::warning(
                     'Retrieved invalid data from a memcache server. Missing timestamp.'
                 );
                 continue;
             }
             if (!array_key_exists('data', $info)) {
-                SimpleSAML\Logger::warning(
+                \SimpleSAML\Logger::warning(
                     'Retrieved invalid data from a memcache server. Missing data.'
                 );
                 continue;
@@ -121,17 +119,17 @@ class SimpleSAML_Memcache
         if ($latestData === null) {
             if ($allDown) {
                 // all servers are down, panic!
-                $e = new SimpleSAML_Error_Error('MEMCACHEDOWN', null, 503);
-                throw new SimpleSAML_Error_Exception('All memcache servers are down', 503, $e);
+                $e = new \SimpleSAML\Error\Error('MEMCACHEDOWN', null, 503);
+                throw new \SimpleSAML\Error\Exception('All memcache servers are down', 503, $e);
             }
             // we didn't find any data matching the key
-            SimpleSAML\Logger::debug("key $key not found in memcache");
+            \SimpleSAML\Logger::debug("key $key not found in memcache");
             return null;
         }
 
         if ($mustUpdate) {
             // we found data matching the key, but some of the servers need updating
-            SimpleSAML\Logger::debug("Memcache servers out of sync for $key, forcing sync");
+            \SimpleSAML\Logger::debug("Memcache servers out of sync for $key, forcing sync");
             self::set($key, $latestData);
         }
 

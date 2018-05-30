@@ -21,7 +21,7 @@ class sspmod_statistics_AccessCheck
 
         $acl = $statconfig->getValue('acl', null);
         if ($acl !== null && !is_string($acl) && !is_array($acl)) {
-            throw new SimpleSAML_Error_Exception('Invalid value for \'acl\'-option. Should be an array or a string.');
+            throw new \SimpleSAML\Error\Exception('Invalid value for \'acl\'-option. Should be an array or a string.');
         }
 
         if (!$protected) {
@@ -76,6 +76,6 @@ class sspmod_statistics_AccessCheck
         } else {
             SimpleSAML\Logger::debug('Statistics auth - no ACL configured.');
         }
-        throw new SimpleSAML_Error_Exception('Access denied to the current user.');
+        throw new \SimpleSAML\Error\Exception('Access denied to the current user.');
     }
 }

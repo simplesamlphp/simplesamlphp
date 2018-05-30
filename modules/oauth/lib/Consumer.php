@@ -55,7 +55,7 @@ class sspmod_oauth_Consumer
     {
         try {
             $response = \SimpleSAML\Utils\HTTP::fetch($url);
-        } catch (\SimpleSAML_Error_Exception $e) {
+        } catch (\SimpleSAML\Error\Exception $e) {
             $statuscode = 'unknown';
             if (preg_match('/^HTTP.*\s([0-9]{3})/', $http_response_header[0], $matches)) {
                 $statuscode = $matches[1];
@@ -117,7 +117,7 @@ class sspmod_oauth_Consumer
 
         try {
             $response_acc = \SimpleSAML\Utils\HTTP::fetch($acc_req->to_url());
-        } catch (\SimpleSAML_Error_Exception $e) {
+        } catch (\SimpleSAML\Error\Exception $e) {
             throw new Exception('Error contacting request_token endpoint on the OAuth Provider');
         }
 
@@ -156,8 +156,8 @@ class sspmod_oauth_Consumer
 
         try {
             $response = \SimpleSAML\Utils\HTTP::fetch($url, $opts);
-        } catch (\SimpleSAML_Error_Exception $e) {
-            throw new SimpleSAML_Error_Exception('Failed to push definition file to ' . $url);
+        } catch (\SimpleSAML\Error\Exception $e) {
+            throw new \SimpleSAML\Error\Exception('Failed to push definition file to ' . $url);
         }
         return $response;
     }

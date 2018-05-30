@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * Authentication processing filter to generate a persistent NameID.
  *
@@ -8,7 +7,6 @@
  */
 class sspmod_saml_Auth_Process_PersistentNameID extends sspmod_saml_BaseNameIDGenerator
 {
-
     /**
      * Which attribute contains the unique identifier of the user.
      *
@@ -23,7 +21,7 @@ class sspmod_saml_Auth_Process_PersistentNameID extends sspmod_saml_BaseNameIDGe
      * @param array $config Configuration information about this filter.
      * @param mixed $reserved For future use.
      *
-     * @throws SimpleSAML_Error_Exception If the required option 'attribute' is missing.
+     * @throws \SimpleSAML\Error\Exception If the required option 'attribute' is missing.
      */
     public function __construct($config, $reserved)
     {
@@ -33,7 +31,7 @@ class sspmod_saml_Auth_Process_PersistentNameID extends sspmod_saml_BaseNameIDGe
         $this->format = \SAML2\Constants::NAMEID_PERSISTENT;
 
         if (!isset($config['attribute'])) {
-            throw new SimpleSAML_Error_Exception("PersistentNameID: Missing required option 'attribute'.");
+            throw new \SimpleSAML\Error\Exception("PersistentNameID: Missing required option 'attribute'.");
         }
         $this->attribute = $config['attribute'];
     }

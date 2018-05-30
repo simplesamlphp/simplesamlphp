@@ -12,7 +12,6 @@ namespace SimpleSAML;
  */
 class Module
 {
-
     /**
      * A list containing the modules currently installed.
      *
@@ -277,7 +276,7 @@ class Module
      * @param string $hook The name of the hook.
      * @param mixed  &$data The data which should be passed to each hook. Will be passed as a reference.
      *
-     * @throws \SimpleSAML_Error_Exception If an invalid hook is found in a module.
+     * @throws \SimpleSAML\Error\Exception If an invalid hook is found in a module.
      */
     public static function callHooks($hook, &$data = null)
     {
@@ -302,7 +301,7 @@ class Module
             require_once(self::$module_info[$module]['hooks'][$hook]['file']);
 
             if (!is_callable(self::$module_info[$module]['hooks'][$hook]['func'])) {
-                throw new \SimpleSAML_Error_Exception('Invalid hook \''.$hook.'\' for module \''.$module.'\'.');
+                throw new \SimpleSAML\Error\Exception('Invalid hook \''.$hook.'\' for module \''.$module.'\'.');
             }
 
             $fn = self::$module_info[$module]['hooks'][$hook]['func'];

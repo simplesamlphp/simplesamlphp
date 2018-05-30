@@ -23,6 +23,6 @@ if (isset($_GET['wa'])) {
     // logout response from ADFS SP
     $assocId = $_GET['assocId']; // Association ID of the SP that sent the logout response
     $relayState = $_GET['relayState']; // Data that was sent in the logout request to the SP. Can be null
-    $logoutError = null; // null on success, or an instance of a SimpleSAML_Error_Exception on failure.
+    $logoutError = null; // null on success, or an instance of a \SimpleSAML\Error\Exception on failure.
     $idp->handleLogoutResponse($assocId, $relayState, $logoutError);
 }

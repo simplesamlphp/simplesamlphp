@@ -1,13 +1,13 @@
 <?php
 
 if (!isset($_REQUEST['idp'])) {
-    throw new SimpleSAML_Error_BadRequest('Missing "idp" parameter.');
+    throw new \SimpleSAML\Error\BadRequest('Missing "idp" parameter.');
 }
 $idp = (string) $_REQUEST['idp'];
 $idp = SimpleSAML_IdP::getById($idp);
 
 if (!isset($_REQUEST['association'])) {
-    throw new SimpleSAML_Error_BadRequest('Missing "association" parameter.');
+    throw new \SimpleSAML\Error\BadRequest('Missing "association" parameter.');
 }
 $assocId = urldecode($_REQUEST['association']);
 
@@ -18,7 +18,7 @@ if (isset($_REQUEST['RelayState'])) {
 
 $associations = $idp->getAssociations();
 if (!isset($associations[$assocId])) {
-    throw new SimpleSAML_Error_BadRequest('Invalid association id.');
+    throw new \SimpleSAML\Error\BadRequest('Invalid association id.');
 }
 $association = $associations[$assocId];
 

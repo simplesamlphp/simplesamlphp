@@ -20,7 +20,7 @@ try {
 
     // check if this module is enabled
     if (!$globalConfig->getBoolean('enable.authmemcookie', false)) {
-        throw new SimpleSAML_Error_Error('NOACCESS');
+        throw new \SimpleSAML\Error\Error('NOACCESS');
     }
 
     // load Auth MemCookie configuration
@@ -102,5 +102,5 @@ try {
     // redirect the user back to this page to signal that the login is completed
     \SimpleSAML\Utils\HTTP::redirectTrustedURL(\SimpleSAML\Utils\HTTP::getSelfURL());
 } catch (Exception $e) {
-    throw new SimpleSAML_Error_Error('CONFIG', $e);
+    throw new \SimpleSAML\Error\Error('CONFIG', $e);
 }

@@ -5,7 +5,7 @@
  *
  * @package SimpleSAMLphp
  */
-class sspmod_saml_Error extends SimpleSAML_Error_Exception
+class sspmod_saml_Error extends \SimpleSAML\Error\Exception
 {
     /**
      * The top-level status code.
@@ -97,17 +97,17 @@ class sspmod_saml_Error extends SimpleSAML_Error_Exception
      * This function attempts to create a SAML2 error with the appropriate
      * status codes from an arbitrary exception.
      *
-     * @param Exception $exception  The original exception.
+     * @param \SimpleSAML\Error\Exception $exception  The original exception.
      * @return sspmod_saml_Error  The new exception.
      */
-    public static function fromException(Exception $exception)
+    public static function fromException(\SimpleSAML\Error\Exception $exception)
     {
         if ($exception instanceof sspmod_saml_Error) {
             // Return the original exception unchanged
             return $exception;
 
         // TODO: remove this branch in 2.0
-        } elseif ($exception instanceof SimpleSAML_Error_NoPassive) {
+        } elseif ($exception instanceof \SimpleSAML\Error\NoPassive) {
             $e = new self(
                 \SAML2\Constants::STATUS_RESPONDER,
                 \SAML2\Constants::STATUS_NO_PASSIVE,
@@ -115,7 +115,7 @@ class sspmod_saml_Error extends SimpleSAML_Error_Exception
                 $exception
                 );
         // TODO: remove this branch in 2.0
-        } elseif ($exception instanceof SimpleSAML_Error_ProxyCountExceeded) {
+        } elseif ($exception instanceof \SimpleSAML\Error\ProxyCountExceeded) {
             $e = new self(
                 \SAML2\Constants::STATUS_RESPONDER,
                 \SAML2\Constants::STATUS_PROXY_COUNT_EXCEEDED,
@@ -144,7 +144,7 @@ class sspmod_saml_Error extends SimpleSAML_Error_Exception
      *
      * @see sspmod_saml_Error::fromException()
      *
-     * @return SimpleSAML_Error_Exception  An exception representing this error.
+     * @return \SimpleSAML\Error\Exception  An exception representing this error.
      */
     public function toException()
     {

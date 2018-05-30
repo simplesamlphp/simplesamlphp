@@ -61,7 +61,7 @@ class sspmod_core_Stats_Output_File extends SimpleSAML_Stats_Output {
 		$fileName = $this->logDir . '/' . $date . '.log';
 		$this->file = @fopen($fileName, 'a');
 		if ($this->file === FALSE) {
-			throw new SimpleSAML_Error_Exception('Error opening log file: ' . var_export($fileName, TRUE));
+			throw new \SimpleSAML\Error\Exception('Error opening log file: ' . var_export($fileName, TRUE));
 		}
 
 		// Disable output buffering

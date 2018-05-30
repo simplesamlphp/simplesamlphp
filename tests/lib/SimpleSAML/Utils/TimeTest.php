@@ -50,7 +50,7 @@ class TimeTest extends TestCase
         try {
             @Time::initTimezone();
             $this->fail('Failed to recognize an invalid timezone.');
-        } catch (\SimpleSAML_Error_Exception $e) {
+        } catch (\SimpleSAML\Error\Exception $e) {
             $this->assertEquals('Invalid timezone set in the "timezone" option in config.php.', $e->getMessage());
         }
 

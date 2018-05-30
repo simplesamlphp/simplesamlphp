@@ -104,7 +104,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
         assert(is_string($entityId));
 
         if ($this->idp !== null && $this->idp !== $entityId) {
-            throw new SimpleSAML_Error_Exception('Cannot retrieve metadata for IdP ' .
+            throw new \SimpleSAML\Error\Exception('Cannot retrieve metadata for IdP ' .
                 var_export($entityId, true) .
                 ' because it isn\'t a valid IdP for this SP.');
         }
@@ -128,7 +128,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
         }
 
         /* Not found. */
-        throw new SimpleSAML_Error_Exception('Could not find the metadata of an IdP with entity ID ' .
+        throw new \SimpleSAML\Error\Exception('Could not find the metadata of an IdP with entity ID ' .
             var_export($entityId, true));
     }
 
@@ -215,7 +215,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
 
         if (isset($state['saml:NameID'])) {
             if (!is_array($state['saml:NameID']) && !is_a($state['saml:NameID'], '\SAML2\XML\saml\NameID')) {
-                throw new SimpleSAML_Error_Exception('Invalid value of $state[\'saml:NameID\'].');
+                throw new \SimpleSAML\Error\Exception('Invalid value of $state[\'saml:NameID\'].');
             }
             $ar->setNameId($state['saml:NameID']);
         }
@@ -229,7 +229,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
             } elseif (is_array($state['saml:NameIDPolicy'])) {
                 $policy = $state['saml:NameIDPolicy'];
             } else {
-                throw new SimpleSAML_Error_Exception('Invalid value of $state[\'saml:NameIDPolicy\'].');
+                throw new \SimpleSAML\Error\Exception('Invalid value of $state[\'saml:NameIDPolicy\'].');
             }
             $ar->setNameIdPolicy($policy);
         }
@@ -517,7 +517,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
      * - 'core:IdP': the identifier of the local IdP.
      * - 'SPMetadata': an array with the metadata of this local SP.
      *
-     * @throws SimpleSAML_Error_NoPassive In case the authentication request was passive.
+     * @throws \SimpleSAML\Error\NoPassive In case the authentication request was passive.
      */
     public static function askForIdPChange(array &$state)
     {

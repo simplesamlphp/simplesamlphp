@@ -102,14 +102,14 @@ class sspmod_authtwitter_Auth_Source_Twitter extends SimpleSAML_Auth_Source
 		$parameters = array();
 
 		if (!isset($_REQUEST['oauth_token'])) {
-			throw new SimpleSAML_Error_BadRequest("Missing oauth_token parameter.");
+			throw new \SimpleSAML\Error\BadRequest("Missing oauth_token parameter.");
 		}
 		if ($requestToken->key !== (string)$_REQUEST['oauth_token']) {
-			throw new SimpleSAML_Error_BadRequest("Invalid oauth_token parameter.");
+			throw new \SimpleSAML\Error\BadRequest("Invalid oauth_token parameter.");
 		}
 
 		if (!isset($_REQUEST['oauth_verifier'])) {
-			throw new SimpleSAML_Error_BadRequest("Missing oauth_verifier parameter.");
+			throw new \SimpleSAML\Error\BadRequest("Missing oauth_verifier parameter.");
 		}
 		$parameters['oauth_verifier'] = (string)$_REQUEST['oauth_verifier'];
 		
@@ -130,7 +130,7 @@ class sspmod_authtwitter_Auth_Source_Twitter extends SimpleSAML_Auth_Source
 		$userdata = $consumer->getUserInfo($verify_credentials_url, $accessToken);
 		
 		if (!isset($userdata['id_str']) || !isset($userdata['screen_name'])) {
-			throw new SimpleSAML_Error_AuthSource($this->authId, 'Authentication error: id_str and screen_name not set.');
+			throw new \SimpleSAML\Error\AuthSource($this->authId, 'Authentication error: id_str and screen_name not set.');
 		}
 
 		$attributes = array();

@@ -1,20 +1,22 @@
 <?php
 
+namespace SimpleSAML\Error;
+
 /**
  * Class for saving normal exceptions for serialization.
  *
  * This class is used by the SimpleSAML_Auth_State class when it needs
  * to serialize an exception which doesn't subclass the
- * SimpleSAML_Error_Exception class.
+ * \SimpleSAML\Error\Exception class.
  *
  * It creates a new exception which contains the backtrace and message
  * of the original exception.
  *
  * @package SimpleSAMLphp
  */
-class SimpleSAML_Error_UnserializableException extends SimpleSAML_Error_Exception
-{
 
+class UnserializableException extends Exception
+{
     /**
      * The classname of the original exception.
      *

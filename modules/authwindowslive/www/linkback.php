@@ -24,7 +24,7 @@ if (array_key_exists('code', $_REQUEST)) {
     // to preserve support for this, so this is left in as a placeholder.
     // redirect them to their original page so they can choose another auth mechanism
     if ($_REQUEST['error'] === 'user_denied') {
-        $e = new SimpleSAML_Error_UserAborted();
+        $e = new \SimpleSAML\Error\UserAborted();
         SimpleSAML_Auth_State::throwException($state, $e);
     }
 

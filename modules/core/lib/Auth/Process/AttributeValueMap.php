@@ -41,7 +41,7 @@ class AttributeValueMap extends \SimpleSAML_Auth_ProcessingFilter
      *
      * @param array $config Configuration information about this filter.
      * @param mixed $reserved For future use.
-     * @throws \SimpleSAML_Error_Exception If the configuration is not valid.
+     * @throws \SimpleSAML\Error\Exception If the configuration is not valid.
     */
     public function __construct($config, $reserved)
     {
@@ -84,13 +84,13 @@ class AttributeValueMap extends \SimpleSAML_Auth_ProcessingFilter
 
         // now validate it
         if (!is_string($this->sourceattribute)) {
-            throw new \SimpleSAML_Error_Exception("AttributeValueMap: 'sourceattribute' configuration option not set.");
+            throw new \SimpleSAML\Error\Exception("AttributeValueMap: 'sourceattribute' configuration option not set.");
         }
         if (!is_string($this->targetattribute)) {
-            throw new \SimpleSAML_Error_Exception("AttributeValueMap: 'targetattribute' configuration option not set.");
+            throw new \SimpleSAML\Error\Exception("AttributeValueMap: 'targetattribute' configuration option not set.");
         }
         if (!is_array($this->values)) {
-            throw new \SimpleSAML_Error_Exception("AttributeValueMap: 'values' configuration option is not an array.");
+            throw new \SimpleSAML\Error\Exception("AttributeValueMap: 'values' configuration option is not an array.");
         }
     }
 

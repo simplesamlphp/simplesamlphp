@@ -15,20 +15,20 @@
  * Proxyed services (targetService) shall be present in the legal_service_urls config.
  * 
  */
- 
+
  
 $validFunctions = array(
-	'login' => 'login',
-	'proxy' => 'proxy',
-	'validate' => 'serviceValidate',
-	'serviceValidate' => 'serviceValidate',
-	'proxyValidate' => 'serviceValidate'
+    'login' => 'login',
+    'proxy' => 'proxy',
+    'validate' => 'serviceValidate',
+    'serviceValidate' => 'serviceValidate',
+    'proxyValidate' => 'serviceValidate'
 );
 
 $function = substr($_SERVER['PATH_INFO'], 1);
 
 if (!isset($validFunctions[$function])) {
-	throw new SimpleSAML_Error_NotFound('Not a valid function for cas.php.');
+    throw new \SimpleSAML\Error\NotFound('Not a valid function for cas.php.');
 }
 
 include($validFunctions[$function].".php");

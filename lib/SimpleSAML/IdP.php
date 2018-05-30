@@ -52,7 +52,7 @@ class SimpleSAML_IdP
      *
      * @param string $id The identifier of this IdP.
      *
-     * @throws SimpleSAML_Error_Exception If the IdP is disabled or no such auth source was found.
+     * @throws \SimpleSAML\Error\Exception If the IdP is disabled or no such auth source was found.
      */
     private function __construct($id)
     {
@@ -65,17 +65,17 @@ class SimpleSAML_IdP
 
         if (substr($id, 0, 6) === 'saml2:') {
             if (!$globalConfig->getBoolean('enable.saml20-idp', false)) {
-                throw new SimpleSAML_Error_Exception('enable.saml20-idp disabled in config.php.');
+                throw new \SimpleSAML\Error\Exception('enable.saml20-idp disabled in config.php.');
             }
             $this->config = $metadata->getMetaDataConfig(substr($id, 6), 'saml20-idp-hosted');
         } elseif (substr($id, 0, 6) === 'saml1:') {
             if (!$globalConfig->getBoolean('enable.shib13-idp', false)) {
-                throw new SimpleSAML_Error_Exception('enable.shib13-idp disabled in config.php.');
+                throw new \SimpleSAML\Error\Exception('enable.shib13-idp disabled in config.php.');
             }
             $this->config = $metadata->getMetaDataConfig(substr($id, 6), 'shib13-idp-hosted');
         } elseif (substr($id, 0, 5) === 'adfs:') {
             if (!$globalConfig->getBoolean('enable.adfs-idp', false)) {
-                throw new SimpleSAML_Error_Exception('enable.adfs-idp disabled in config.php.');
+                throw new \SimpleSAML\Error\Exception('enable.adfs-idp disabled in config.php.');
             }
             $this->config = $metadata->getMetaDataConfig(substr($id, 5), 'adfs-idp-hosted');
 
@@ -98,7 +98,7 @@ class SimpleSAML_IdP
         if (SimpleSAML_Auth_Source::getById($auth) !== null) {
             $this->authSource = new \SimpleSAML\Auth\Simple($auth);
         } else {
-            throw new SimpleSAML_Error_Exception('No such "'.$auth.'" auth source found.');
+            throw new \SimpleSAML\Error\Exception('No such "'.$auth.'" auth source found.');
         }
     }
 
@@ -287,14 +287,14 @@ class SimpleSAML_IdP
      *
      * @param array $state The authentication request state array.
      *
-     * @throws SimpleSAML_Error_Exception If we are not authenticated.
+     * @throws \SimpleSAML\Error\Exception If we are not authenticated.
      */
     public static function postAuth(array $state)
     {
         $idp = SimpleSAML_IdP::getByState($state);
 
         if (!$idp->isAuthenticated()) {
-            throw new SimpleSAML_Error_Exception('Not authenticated.');
+            throw new \SimpleSAML\Error\Exception('Not authenticated.');
         }
 
         $state['Attributes'] = $idp->authSource->getAttributes();
@@ -356,13 +356,13 @@ class SimpleSAML_IdP
      *
      * @param array &$state The authentication request state.
      *
-     * @throws SimpleSAML_Error_Exception If there is no auth source defined for this IdP.
+     * @throws \SimpleSAML\Error\Exception If there is no auth source defined for this IdP.
      */
     private function reauthenticate(array &$state)
     {
         $sourceImpl = $this->authSource->getAuthSource();
         if ($sourceImpl === null) {
-            throw new SimpleSAML_Error_Exception('No such auth source defined.');
+            throw new \SimpleSAML\Error\Exception('No such auth source defined.');
         }
 
         $sourceImpl->reauthenticate($state);
@@ -408,10 +408,10 @@ class SimpleSAML_IdP
                 $this->reauthenticate($state);
             }
             $this->postAuth($state);
-        } catch (SimpleSAML_Error_Exception $e) {
+        } catch (\SimpleSAML\Error\Exception $e) {
             SimpleSAML_Auth_State::throwException($state, $e);
         } catch (Exception $e) {
-            $e = new SimpleSAML_Error_UnserializableException($e);
+            $e = new \SimpleSAML\Error\UnserializableException($e);
             SimpleSAML_Auth_State::throwException($state, $e);
         }
     }
@@ -422,7 +422,7 @@ class SimpleSAML_IdP
      *
      * @return \SimpleSAML\IdP\LogoutHandlerInterface The logout handler class.
      *
-     * @throws SimpleSAML_Error_Exception If we cannot find a logout handler.
+     * @throws \SimpleSAML\Error\Exception If we cannot find a logout handler.
      */
     public function getLogoutHandler()
     {
@@ -436,7 +436,7 @@ class SimpleSAML_IdP
                 $handler = 'SimpleSAML\IdP\IFrameLogoutHandler';
                 break;
             default:
-                throw new SimpleSAML_Error_Exception('Unknown logout handler: '.var_export($logouttype, true));
+                throw new \SimpleSAML\Error\Exception('Unknown logout handler: '.var_export($logouttype, true));
         }
 
         return new $handler($this);
@@ -502,9 +502,9 @@ class SimpleSAML_IdP
      *
      * @param string                          $assocId The association that is terminated.
      * @param string|null                     $relayState The RelayState from the start of the logout.
-     * @param SimpleSAML_Error_Exception|null $error The error that occurred during session termination (if any).
+     * @param \SimpleSAML\Error\Exception|null $error The error that occurred during session termination (if any).
      */
-    public function handleLogoutResponse($assocId, $relayState, SimpleSAML_Error_Exception $error = null)
+    public function handleLogoutResponse($assocId, $relayState, \SimpleSAML\Error\Exception $error = null)
     {
         assert(is_string($assocId));
         assert(is_string($relayState) || $relayState === null);

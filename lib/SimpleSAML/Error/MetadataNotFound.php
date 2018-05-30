@@ -1,14 +1,15 @@
 <?php
 
+namespace SimpleSAML\Error;
+
 /**
  * Error for missing metadata.
  *
  * @package SimpleSAMLphp
  */
-class SimpleSAML_Error_MetadataNotFound extends SimpleSAML_Error_Error
+
+class MetadataNotFound extends Error
 {
-
-
     /**
      * Create the error
      *

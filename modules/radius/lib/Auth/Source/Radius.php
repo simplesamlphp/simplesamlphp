@@ -161,11 +161,11 @@ class sspmod_radius_Auth_Source_Radius extends sspmod_core_Auth_UserPassBase
             switch ($res) {
             case RADIUS_ACCESS_REJECT:
                 /* Invalid username or password. */
-                throw new SimpleSAML_Error_Error('WRONGUSERPASS');
+                throw new \SimpleSAML\Error\Error('WRONGUSERPASS');
             case RADIUS_ACCESS_CHALLENGE:
-                throw new Exception('Radius authentication error: Challenge requested, but not supported.');
+                throw new \Exception('Radius authentication error: Challenge requested, but not supported.');
             default:
-                throw new Exception('Error during radius authentication: ' .
+                throw new \Exception('Error during radius authentication: ' .
                     radius_strerror($radius));
             }
         }

@@ -5,7 +5,7 @@ namespace SimpleSAML\Auth;
 use \SimpleSAML_Auth_Source as Source;
 use \SimpleSAML_Auth_State as State;
 use \SimpleSAML\Configuration;
-use \SimpleSAML_Error_AuthSource as AuthSourceError;
+use \SimpleSAML\Error\AuthSource as AuthSourceError;
 use \SimpleSAML\Module;
 use \SimpleSAML\Session;
 use \SimpleSAML\Utils\HTTP;
@@ -49,7 +49,7 @@ class Simple
      *
      * @return \SimpleSAML_Auth_Source The authentication source.
      *
-     * @throws \SimpleSAML_Error_AuthSource If the requested auth source is unknown.
+     * @throws \SimpleSAML\Error\AuthSource If the requested auth source is unknown.
      */
     public function getAuthSource()
     {

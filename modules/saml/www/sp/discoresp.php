@@ -5,11 +5,11 @@
  */
 
 if (!array_key_exists('AuthID', $_REQUEST)) {
-    throw new SimpleSAML_Error_BadRequest('Missing AuthID to discovery service response handler');
+    throw new \SimpleSAML\Error\BadRequest('Missing AuthID to discovery service response handler');
 }
 
 if (!array_key_exists('idpentityid', $_REQUEST)) {
-    throw new SimpleSAML_Error_BadRequest('Missing idpentityid to discovery service response handler');
+    throw new \SimpleSAML\Error\BadRequest('Missing idpentityid to discovery service response handler');
 }
 $state = SimpleSAML_Auth_State::loadState($_REQUEST['AuthID'], 'saml:sp:sso');
 
@@ -22,7 +22,7 @@ if ($source === null) {
     throw new Exception('Could not find authentication source with id ' . $sourceId);
 }
 if (!($source instanceof sspmod_saml_Auth_Source_SP)) {
-    throw new SimpleSAML_Error_Exception('Source type changed?');
+    throw new \SimpleSAML\Error\Exception('Source type changed?');
 }
 
 $source->startSSO($_REQUEST['idpentityid'], $state);

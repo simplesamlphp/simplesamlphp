@@ -5,7 +5,7 @@ $config = \SimpleSAML\Configuration::getInstance();
 $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 
 if (!$config->getBoolean('enable.saml20-idp', false)) {
-    throw new SimpleSAML_Error_Error('NOACCESS');
+    throw new \SimpleSAML\Error\Error('NOACCESS');
 }
 
 // Check if valid local session exists..
@@ -27,7 +27,7 @@ switch($_SERVER['PATH_INFO']) {
         $certInfo = SimpleSAML\Utils\Crypto::loadPublicKey($idpmeta, true, 'https.');
         break;
     default:
-        throw new SimpleSAML_Error_NotFound('Unknown certificate.');
+        throw new \SimpleSAML\Error\NotFound('Unknown certificate.');
 }
 
 header('Content-Disposition: attachment; filename='.substr($_SERVER['PATH_INFO'], 1));

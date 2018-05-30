@@ -45,7 +45,7 @@ class sspmod_saml_IdP_SQLNameID
     {
         $store = \SimpleSAML\Store::getInstance();
         if (!($store instanceof \SimpleSAML\Store\SQL)) {
-            throw new SimpleSAML_Error_Exception('SQL NameID store requires SimpleSAMLphp to be configured with a SQL datastore.');
+            throw new \SimpleSAML\Error\Exception('SQL NameID store requires SimpleSAMLphp to be configured with a SQL datastore.');
         }
 
         self::createTable($store);

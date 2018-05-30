@@ -8,8 +8,8 @@
  * @package SimpleSAMLphp
  */
 
-class sspmod_multiauth_Auth_Source_MultiAuth extends SimpleSAML_Auth_Source {
-
+class sspmod_multiauth_Auth_Source_MultiAuth extends SimpleSAML_Auth_Source
+{
 	/**
 	 * The key of the AuthId field in the state.
 	 */
@@ -159,10 +159,10 @@ class sspmod_multiauth_Auth_Source_MultiAuth extends SimpleSAML_Auth_Source {
 
 		try {
 			$as->authenticate($state);
-		} catch (SimpleSAML_Error_Exception $e) {
+		} catch (\SimpleSAML\Error\Exception $e) {
 			SimpleSAML_Auth_State::throwException($state, $e);
 		} catch (Exception $e) {
-			$e = new SimpleSAML_Error_UnserializableException($e);
+			$e = new \SimpleSAML\Error\UnserializableException($e);
 			SimpleSAML_Auth_State::throwException($state, $e);
 		}
 		SimpleSAML_Auth_Source::completeAuth($state);

@@ -195,7 +195,7 @@ class SimpleSAML_Auth_ProcessingChain
                 $filter = array_shift($state[self::FILTERS_INDEX]);
                 $filter->process($state);
             }
-        } catch (SimpleSAML_Error_Exception $e) {
+        } catch (\SimpleSAML\Error\Exception $e) {
             // No need to convert the exception
             throw $e;
         } catch (Exception $e) {
@@ -203,7 +203,7 @@ class SimpleSAML_Auth_ProcessingChain
 			 * To be consistent with the exception we return after an redirect,
 			 * we convert this exception before returning it.
 			 */
-            throw new SimpleSAML_Error_UnserializableException($e);
+            throw new \SimpleSAML\Error\UnserializableException($e);
         }
 
         // Completed
@@ -229,10 +229,10 @@ class SimpleSAML_Auth_ProcessingChain
             $filter = array_shift($state[self::FILTERS_INDEX]);
             try {
                 $filter->process($state);
-            } catch (SimpleSAML_Error_Exception $e) {
+            } catch (\SimpleSAML\Error\Exception $e) {
                 SimpleSAML_Auth_State::throwException($state, $e);
             } catch (Exception $e) {
-                $e = new SimpleSAML_Error_UnserializableException($e);
+                $e = new \SimpleSAML\Error\UnserializableException($e);
                 SimpleSAML_Auth_State::throwException($state, $e);
             }
         }
@@ -268,7 +268,7 @@ class SimpleSAML_Auth_ProcessingChain
     /**
      * Process the given state passivly.
      *
-     * Modules with user interaction are expected to throw an SimpleSAML_Error_NoPassive exception
+     * Modules with user interaction are expected to throw an \SimpleSAML\Error\NoPassive exception
      * which are silently ignored. Exceptions of other types are passed further up the call stack.
      *
      * This function will only return if processing completes.
@@ -297,8 +297,8 @@ class SimpleSAML_Auth_ProcessingChain
             try {
                 $filter->process($state);
 
-            // Ignore SimpleSAML_Error_NoPassive exceptions
-            } catch (SimpleSAML_Error_NoPassive $e) {
+            // Ignore \SimpleSAML\Error\NoPassive exceptions
+            } catch (\SimpleSAML\Error\NoPassive $e) {
             }
         }
     }

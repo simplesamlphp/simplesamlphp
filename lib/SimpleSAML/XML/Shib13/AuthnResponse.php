@@ -20,7 +20,6 @@ use SimpleSAML\XML\Validator;
 
 class AuthnResponse
 {
-
     /**
      * @var \SimpleSAML\XML\Validator This variable contains an XML validator for this message.
      */
@@ -120,7 +119,7 @@ class AuthnResponse
             // Validate against CA
             $this->validator->validateCA(Config::getCertPath($md->getString('caFile')));
         } else {
-            throw new \SimpleSAML_Error_Exception('Missing certificate in Shibboleth 1.3 IdP Remote metadata for identity provider [' . $issuer . '].');
+            throw new \SimpleSAML\Error\Exception('Missing certificate in Shibboleth 1.3 IdP Remote metadata for identity provider [' . $issuer . '].');
         }
 
         return true;
@@ -149,7 +148,7 @@ class AuthnResponse
             $node = dom_import_simplexml($node);
         }
 
-        assert($node instanceof DOMNode);
+        assert($node instanceof \DOMNode);
 
         return $this->validator->isNodeValidated($node);
     }
@@ -166,13 +165,13 @@ class AuthnResponse
     private function doXPathQuery($query, $node = null)
     {
         assert(is_string($query));
-        assert($this->dom instanceof DOMDocument);
+        assert($this->dom instanceof \DOMDocument);
 
         if ($node === null) {
             $node = $this->dom->documentElement;
         }
 
-        assert($node instanceof DOMNode);
+        assert($node instanceof \DOMNode);
 
         $xPath = new \DOMXpath($this->dom);
         $xPath->registerNamespace('shibp', self::SHIB_PROTOCOL_NS);

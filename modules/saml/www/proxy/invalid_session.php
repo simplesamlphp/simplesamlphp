@@ -11,7 +11,7 @@
 
 // retrieve the authentication state
 if (!array_key_exists('AuthState', $_REQUEST)) {
-    throw new \SimpleSAML_Error_BadRequest('Missing mandatory parameter: AuthState');
+    throw new \SimpleSAML\Error\BadRequest('Missing mandatory parameter: AuthState');
 }
 
 try {

@@ -10,9 +10,9 @@ use SimpleSAML\Utils\HTTP;
  *
  * @package SimpleSAMLphp
  */
+
 class TraditionalLogoutHandler implements LogoutHandlerInterface
 {
-
     /**
      * The IdP we are logging out from.
      *
@@ -90,17 +90,17 @@ class TraditionalLogoutHandler implements LogoutHandlerInterface
      *
      * @param string $assocId The association that is terminated.
      * @param string|null $relayState The RelayState from the start of the logout.
-     * @param \SimpleSAML_Error_Exception|null $error The error that occurred during session termination (if any).
+     * @param \SimpleSAML\Error\Exception|null $error The error that occurred during session termination (if any).
      *
-     * @throws \SimpleSAML_Error_Exception If the RelayState was lost during logout.
+     * @throws \SimpleSAML\Error\Exception If the RelayState was lost during logout.
      */
-    public function onResponse($assocId, $relayState, \SimpleSAML_Error_Exception $error = null)
+    public function onResponse($assocId, $relayState, \SimpleSAML\Error\Exception $error = null)
     {
         assert(is_string($assocId));
         assert(is_string($relayState) || $relayState === null);
 
         if ($relayState === null) {
-            throw new \SimpleSAML_Error_Exception('RelayState lost during logout.');
+            throw new \SimpleSAML\Error\Exception('RelayState lost during logout.');
         }
 
         $state = \SimpleSAML_Auth_State::loadState($relayState, 'core:LogoutTraditional');

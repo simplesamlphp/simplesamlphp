@@ -5,6 +5,7 @@ use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
 use SimpleSAML\Module;
 use SimpleSAML\Session;
+use SimpleSAML\Error;
 
 /**
  * HTTP-related utility methods.
@@ -19,7 +20,7 @@ class HTTP
      * @param string $destination The destination URL.
      * @param array  $data An associative array containing the data to be posted to $destination.
      *
-     * @throws \SimpleSAML_Error_Exception If the current session is transient.
+     * @throws Error\Exception If the current session is transient.
      * @return string  A URL which allows to securely post a form to $destination.
      *
      * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
@@ -33,7 +34,7 @@ class HTTP
         $session_id = $session->getSessionId();
         if (is_null($session_id)) {
             // this is a transient session, it is pointless to continue
-            throw new \SimpleSAML_Error_Exception('Cannot save POST data to a transient session.');
+            throw new Error\Exception('Cannot save POST data to a transient session.');
         }
 
         // encrypt the session ID and the random ID
@@ -315,7 +316,7 @@ class HTTP
      * @return string The normalized URL itself if it is allowed. An empty string if the $url parameter is empty as
      * defined by the empty() function.
      * @throws \InvalidArgumentException If the URL is malformed.
-     * @throws \SimpleSAML_Error_Exception If the URL is not allowed by configuration.
+     * @throws Error\Exception If the URL is not allowed by configuration.
      *
      * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
@@ -327,7 +328,7 @@ class HTTP
         $url = self::normalizeURL($url);
 
         if (filter_var($url, FILTER_VALIDATE_URL) === false) {
-            throw new \SimpleSAML_Error_Exception('Invalid URL: '.$url);
+            throw new Error\Exception('Invalid URL: '.$url);
         }
 
         // get the white list of domains
@@ -345,7 +346,7 @@ class HTTP
             if ((isset($components['user']) && strpos($components['user'], '\\') !== false) ||
                 (isset($components['pass']) && strpos($components['pass'], '\\') !== false)
             ) {
-                throw new \SimpleSAML_Error_Exception('Invalid URL: '.$url);
+                throw new Error\Exception('Invalid URL: '.$url);
             }
 
             // allow URLs with standard ports specified (non-standard ports must then be allowed explicitly)
@@ -380,7 +381,7 @@ class HTTP
 
             // throw exception due to redirection to untrusted site
             if (!$trusted) {
-                throw new \SimpleSAML_Error_Exception('URL not allowed: '.$url);
+                throw new Error\Exception('URL not allowed: '.$url);
             }
         }
         return $url;
@@ -400,7 +401,7 @@ class HTTP
      * @return string|array An array if $getHeaders is set, containing the data and the headers respectively; string
      *  otherwise.
      * @throws \InvalidArgumentException If the input parameters are invalid.
-     * @throws \SimpleSAML_Error_Exception If the file or URL cannot be retrieved.
+     * @throws Error\Exception If the file or URL cannot be retrieved.
      *
      * @author Andjelko Horvat
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
@@ -455,7 +456,7 @@ class HTTP
         $data = @file_get_contents($url, false, $context);
         if ($data === false) {
             $error = error_get_last();
-            throw new \SimpleSAML_Error_Exception('Error fetching '.var_export($url, true).':'.
+            throw new Error\Exception('Error fetching '.var_export($url, true).':'.
                 (is_array($error) ? $error['message'] : 'no error available'));
         }
 

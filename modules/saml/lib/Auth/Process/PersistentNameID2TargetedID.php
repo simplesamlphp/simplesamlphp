@@ -1,14 +1,13 @@
 <?php
 
-
 /**
  * Authentication processing filter to create the eduPersonTargetedID attribute from the persistent NameID.
  *
  * @package SimpleSAMLphp
  */
+
 class sspmod_saml_Auth_Process_PersistentNameID2TargetedID extends SimpleSAML_Auth_ProcessingFilter
 {
-
     /**
      * The attribute we should save the NameID in.
      *

@@ -24,7 +24,7 @@ $globalConfig = \SimpleSAML\Configuration::getInstance();
 SimpleSAML\Logger::info('Consent - getconsent: Accessing consent interface');
 
 if (!array_key_exists('StateId', $_REQUEST)) {
-    throw new SimpleSAML_Error_BadRequest(
+    throw new \SimpleSAML\Error\BadRequest(
         'Missing required StateId query parameter.'
     );
 }

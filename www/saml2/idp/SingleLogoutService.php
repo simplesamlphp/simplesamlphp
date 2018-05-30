@@ -10,11 +10,11 @@
 
 require_once('../../_include.php');
 
-SimpleSAML\Logger::info('SAML2.0 - IdP.SingleLogoutService: Accessing SAML 2.0 IdP endpoint SingleLogoutService');
+\SimpleSAML\Logger::info('SAML2.0 - IdP.SingleLogoutService: Accessing SAML 2.0 IdP endpoint SingleLogoutService');
 
-$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+$metadata = \SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 $idpEntityId = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
-$idp = SimpleSAML_IdP::getById('saml2:'.$idpEntityId);
+$idp = \SimpleSAML_IdP::getById('saml2:'.$idpEntityId);
 
 if (isset($_REQUEST['ReturnTo'])) {
     $idp->doLogoutRedirect(\SimpleSAML\Utils\HTTP::checkURLAllowed((string) $_REQUEST['ReturnTo']));
@@ -27,7 +27,7 @@ if (isset($_REQUEST['ReturnTo'])) {
          * throw an specific exception when the binding is unknown, and we should capture that here
          */
         if ($e->getMessage() === 'Unable to find the current binding.') {
-            throw new SimpleSAML_Error_Error('SLOSERVICEPARAMS', $e, 400);
+            throw new \SimpleSAML\Error\Error('SLOSERVICEPARAMS', $e, 400);
         } else {
             throw $e; // do not ignore other exceptions!
         }

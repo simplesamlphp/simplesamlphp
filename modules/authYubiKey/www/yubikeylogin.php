@@ -10,21 +10,21 @@
  */
 
 if (!array_key_exists('AuthState', $_REQUEST)) {
-	throw new \SimpleSAML_Error_BadRequest('Missing AuthState parameter.');
+    throw new \SimpleSAML\Error\BadRequest('Missing AuthState parameter.');
 }
 $authStateId = $_REQUEST['AuthState'];
 
 if (array_key_exists('otp', $_REQUEST)) {
-	$otp = $_REQUEST['otp'];
+    $otp = $_REQUEST['otp'];
 } else {
-	$otp = '';
+    $otp = '';
 }
 
 if (!empty($otp)) {
-	// attempt to log in
-	$errorCode = \sspmod_authYubiKey_Auth_Source_YubiKey::handleLogin($authStateId, $otp);
+    // attempt to log in
+    $errorCode = \sspmod_authYubiKey_Auth_Source_YubiKey::handleLogin($authStateId, $otp);
 } else {
-	$errorCode = NULL;
+    $errorCode = NULL;
 }
 
 $globalConfig = \SimpleSAML\Configuration::getInstance();

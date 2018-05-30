@@ -9,9 +9,9 @@
  * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
-abstract class sspmod_core_Auth_UserPassBase extends SimpleSAML_Auth_Source {
 
-
+abstract class sspmod_core_Auth_UserPassBase extends SimpleSAML_Auth_Source
+{
 	/**
 	 * The string used to identify our states.
 	 */
@@ -223,7 +223,7 @@ abstract class sspmod_core_Auth_UserPassBase extends SimpleSAML_Auth_Source {
 	 *
 	 * On a successful login, this function should return the users attributes. On failure,
 	 * it should throw an exception/error. If the error was caused by the user entering the wrong
-	 * username or password, a SimpleSAML_Error_Error('WRONGUSERPASS') should be thrown.
+	 * username or password, a \SimpleSAML\Error\Error('WRONGUSERPASS') should be thrown.
 	 *
 	 * Note that both the username and the password are UTF-8 encoded.
 	 *

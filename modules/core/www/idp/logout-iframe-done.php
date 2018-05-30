@@ -1,7 +1,7 @@
 <?php
 
 if (!isset($_REQUEST['id'])) {
-    throw new SimpleSAML_Error_BadRequest('Missing required parameter: id');
+    throw new \SimpleSAML\Error\BadRequest('Missing required parameter: id');
 }
 $state = SimpleSAML_Auth_State::loadState($_REQUEST['id'], 'core:Logout-IFrame');
 $idp = SimpleSAML_IdP::getByState($state);

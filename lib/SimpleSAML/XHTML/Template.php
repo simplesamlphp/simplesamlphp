@@ -109,7 +109,7 @@ class Template
         list($this->module) = $this->findModuleAndTemplateName($template);
 
         // parse config to find theme and module theme is in, if any
-        list($this->theme['module'], $this->theme['name']) = self::findModuleAndTemplateName(
+        list($this->theme['module'], $this->theme['name']) = $this->findModuleAndTemplateName(
             $this->configuration->getString('theme.use', 'default')
         );
 
@@ -163,7 +163,7 @@ class Template
         $filename = $this->normalizeTemplateName($this->template);
 
         // get namespace if any
-        list($namespace, $filename) = self::findModuleAndTemplateName($filename);
+        list($namespace, $filename) = $this->findModuleAndTemplateName($filename);
         $this->twig_template = ($namespace !== null) ? '@'.$namespace.'/'.$filename : $filename;
         $loader = new \Twig_Loader_Filesystem();
         $templateDirs = $this->findThemeTemplateDirs();

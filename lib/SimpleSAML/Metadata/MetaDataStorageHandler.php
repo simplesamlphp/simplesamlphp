@@ -1,16 +1,14 @@
 <?php
 
-
 /**
  * This file defines a class for metadata handling.
  *
  * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
  */
+
 class SimpleSAML_Metadata_MetaDataStorageHandler
 {
-
-
     /**
      * This static variable contains a reference to the current
      * instance of the metadata handler. This variable will be null if
@@ -264,7 +262,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandler
      *
      * @return array The metadata array describing the specified entity.
      * @throws Exception If metadata for the specified entity is expired.
-     * @throws SimpleSAML_Error_MetadataNotFound If no metadata for the entity specified can be found.
+     * @throws \SimpleSAML\Error\MetadataNotFound If no metadata for the entity specified can be found.
      */
     public function getMetaData($index, $set)
     {
@@ -296,7 +294,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandler
             }
         }
 
-        throw new SimpleSAML_Error_MetadataNotFound($index);
+        throw new \SimpleSAML\Error\MetadataNotFound($index);
     }
 
 
@@ -309,7 +307,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandler
      * @param string $set The metadata set we are searching.
      *
      * @return \SimpleSAML\Configuration The configuration object representing the metadata.
-     * @throws SimpleSAML_Error_MetadataNotFound If no metadata for the entity specified can be found.
+     * @throws \SimpleSAML\Error\MetadataNotFound If no metadata for the entity specified can be found.
      */
     public function getMetaDataConfig($entityId, $set)
     {

@@ -2,6 +2,8 @@
 
 namespace SimpleSAML;
 
+use SimpleSAML\Error;
+
 /**
  * The Session class holds information about a user session, and everything attached to it.
  *
@@ -42,7 +44,7 @@ class Session implements \Serializable
     /**
      * This variable holds the instance of the session - Singleton approach.
      *
-     * Warning: do not set the instance manually, call \SimpleSAML\Session::load() instead.
+     * Warning: do not set the instance manually, call Session::load() instead.
      */
     private static $instance = null;
 
@@ -238,7 +240,7 @@ class Session implements \Serializable
     /**
      * Retrieves the current session. Creates a new session if there's not one.
      *
-     * @return \SimpleSAML\Session The current session.
+     * @return Session The current session.
      * @throws \Exception When session couldn't be initialized and the session fallback is disabled by configuration.
      */
     public static function getSessionFromRequest()
@@ -261,7 +263,7 @@ class Session implements \Serializable
              */
             Logger::error('Error loading session: '.$e->getMessage());
             self::useTransientSession();
-            if ($e instanceof \SimpleSAML_Error_Exception) {
+            if ($e instanceof Error\Exception) {
                 $cause = $e->getCause();
                 if ($cause instanceof \Exception) {
                     throw $cause;
@@ -312,7 +314,7 @@ class Session implements \Serializable
      *
      * @param string|null $sessionId The session we should get, or null to get the current session.
      *
-     * @return \SimpleSAML\Session|null The session that is stored in the session handler, or null if the session wasn't
+     * @return Session|null The session that is stored in the session handler, or null if the session wasn't
      * found.
      */
     public static function getSession($sessionId = null)
@@ -385,8 +387,8 @@ class Session implements \Serializable
      *
      * Warning: never set self::$instance yourself, call this method instead.
      *
-     * @param \SimpleSAML\Session $session The session to load.
-     * @return \SimpleSAML\Session The session we just loaded, just for convenience.
+     * @param Session $session The session to load.
+     * @return Session The session we just loaded, just for convenience.
      */
     private static function load(Session $session)
     {
@@ -445,8 +447,8 @@ class Session implements \Serializable
         try {
             $sh->saveSession($this);
         } catch (\Exception $e) {
-            if (!($e instanceof \SimpleSAML_Error_Exception)) {
-                $e = new \SimpleSAML_Error_UnserializableException($e);
+            if (!($e instanceof Error\Exception)) {
+                $e = new Error\UnserializableException($e);
             }
             Logger::error('Unable to save session.');
             $e->logError();
@@ -570,7 +572,7 @@ class Session implements \Serializable
      * @param string     $authority The authority the user logged in with.
      * @param array|null $data The authentication data for this authority.
      *
-     * @throws \SimpleSAML\Error\CannotSetCookie If the authentication token cannot be set for some reason.
+     * @throws Error\CannotSetCookie If the authentication token cannot be set for some reason.
      */
     public function doLogin($authority, array $data = null)
     {
@@ -850,7 +852,7 @@ class Session implements \Serializable
     /**
      * This function stores data in the data store.
      *
-     * The timeout value can be \SimpleSAML\Session::DATA_TIMEOUT_SESSION_END, which indicates
+     * The timeout value can be Session::DATA_TIMEOUT_SESSION_END, which indicates
      * that the data should never be deleted.
      *
      * @param string   $type The type of the data. This is checked when retrieving data from the store.

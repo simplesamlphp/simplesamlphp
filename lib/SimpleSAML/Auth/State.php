@@ -248,7 +248,7 @@ class SimpleSAML_Auth_State
      * @param string $stage The stage the state should have been saved in.
      * @param bool   $allowMissing Whether to allow the state to be missing.
      *
-     * @throws SimpleSAML_Error_NoState If we couldn't find the state and there's no URL defined to redirect to.
+     * @throws \SimpleSAML\Error\NoState If we couldn't find the state and there's no URL defined to redirect to.
      * @throws Exception If the stage of the state is invalid and there's no URL defined to redirect to.
      *
      * @return array|NULL  State information, or null if the state is missing and $allowMissing is true.
@@ -272,7 +272,7 @@ class SimpleSAML_Auth_State
             }
 
             if ($sid['url'] === null) {
-                throw new SimpleSAML_Error_NoState();
+                throw new \SimpleSAML\Error\NoState();
             }
 
             \SimpleSAML\Utils\HTTP::redirectUntrustedURL($sid['url']);
@@ -333,11 +333,11 @@ class SimpleSAML_Auth_State
      * Throw exception to the state exception handler.
      *
      * @param array                      $state The state array.
-     * @param SimpleSAML_Error_Exception $exception The exception.
+     * @param \SimpleSAML\Error\Exception $exception The exception.
      *
-     * @throws SimpleSAML_Error_Exception If there is no exception handler defined, it will just throw the $exception.
+     * @throws \SimpleSAML\Error\Exception If there is no exception handler defined, it will just throw the $exception.
      */
-    public static function throwException($state, SimpleSAML_Error_Exception $exception)
+    public static function throwException($state, \SimpleSAML\Error\Exception $exception)
     {
         assert(is_array($state));
 

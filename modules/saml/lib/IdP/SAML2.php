@@ -11,7 +11,6 @@ use SAML2\SOAP;
  */
 class sspmod_saml_IdP_SAML2
 {
-
     /**
      * Send a response to the SP.
      *
@@ -90,11 +89,11 @@ class sspmod_saml_IdP_SAML2
     /**
      * Handle authentication error.
      *
-     * SimpleSAML_Error_Exception $exception  The exception.
+     * \SimpleSAML\Error\Exception $exception  The exception.
      *
      * @param array $state The error state.
      */
-    public static function handleAuthError(SimpleSAML_Error_Exception $exception, array $state)
+    public static function handleAuthError(\SimpleSAML\Error\Exception $exception, array $state)
     {
         assert(isset($state['SPMetadata']));
         assert(isset($state['saml:ConsumerURL']));
@@ -117,7 +116,7 @@ class sspmod_saml_IdP_SAML2
 
         $idpMetadata = $idp->getConfig();
 
-        $error = sspmod_saml_Error::fromException($exception);
+        $error = \sspmod_saml_Error::fromException($exception);
 
         SimpleSAML\Logger::warning("Returning error to SP with entity ID '".var_export($spEntityId, true)."'.");
         $exception->log(SimpleSAML\Logger::WARNING);
@@ -244,11 +243,10 @@ class sspmod_saml_IdP_SAML2
      * Receive an authentication request.
      *
      * @param SimpleSAML_IdP $idp The IdP we are receiving it for.
-     * @throws SimpleSAML_Error_BadRequest In case an error occurs when trying to receive the request.
+     * @throws \SimpleSAML\Error\BadRequest In case an error occurs when trying to receive the request.
      */
     public static function receiveAuthnRequest(SimpleSAML_IdP $idp)
     {
-
         $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
         $idpMetadata = $idp->getConfig();
 
@@ -321,14 +319,14 @@ class sspmod_saml_IdP_SAML2
             $request = $binding->receive();
 
             if (!($request instanceof \SAML2\AuthnRequest)) {
-                throw new SimpleSAML_Error_BadRequest(
+                throw new \SimpleSAML\Error\BadRequest(
                     'Message received on authentication request endpoint wasn\'t an authentication request.'
                 );
             }
 
             $spEntityId = $request->getIssuer();
             if ($spEntityId === null) {
-                throw new SimpleSAML_Error_BadRequest(
+                throw new \SimpleSAML\Error\BadRequest(
                     'Received message on authentication request endpoint without issuer.'
                 );
             }
@@ -446,7 +444,7 @@ class sspmod_saml_IdP_SAML2
         if (!isset($_SERVER['PHP_AUTH_USER']) || !isset($_SERVER['PHP_AUTH_PW'])) {
             SimpleSAML\Logger::error("ECP AuthnRequest did not contain Basic Authentication header");
             // TODO Throw some sort of ECP-specific exception / convert this to SOAP fault
-            throw new SimpleSAML_Error_Error("WRONGUSERPASS");
+            throw new \SimpleSAML\Error\Error("WRONGUSERPASS");
         }
 
         $state['core:auth:username'] = $_SERVER['PHP_AUTH_USER'];
@@ -552,18 +550,17 @@ class sspmod_saml_IdP_SAML2
      * Receive a logout message.
      *
      * @param SimpleSAML_IdP $idp The IdP we are receiving it for.
-     * @throws SimpleSAML_Error_BadRequest In case an error occurs while trying to receive the logout message.
+     * @throws \SimpleSAML\Error\BadRequest In case an error occurs while trying to receive the logout message.
      */
     public static function receiveLogoutMessage(SimpleSAML_IdP $idp)
     {
-
         $binding = \SAML2\Binding::getCurrentBinding();
         $message = $binding->receive();
 
         $spEntityId = $message->getIssuer();
         if ($spEntityId === null) {
             /* Without an issuer we have no way to respond to the message. */
-            throw new SimpleSAML_Error_BadRequest('Received message on logout endpoint without issuer.');
+            throw new \SimpleSAML\Error\BadRequest('Received message on logout endpoint without issuer.');
         }
 
         $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
@@ -615,7 +612,7 @@ class sspmod_saml_IdP_SAML2
             $assocId = 'saml:'.$spEntityId;
             $idp->handleLogoutRequest($state, $assocId);
         } else {
-            throw new SimpleSAML_Error_BadRequest('Unknown message received on logout endpoint: '.get_class($message));
+            throw new \SimpleSAML\Error\BadRequest('Unknown message received on logout endpoint: '.get_class($message));
         }
     }
 
@@ -739,14 +736,13 @@ class sspmod_saml_IdP_SAML2
      *
      * @return array  The encoded attributes.
      *
-     * @throws SimpleSAML_Error_Exception In case an unsupported encoding is specified by configuration.
+     * @throws \SimpleSAML\Error\Exception In case an unsupported encoding is specified by configuration.
      */
     private static function encodeAttributes(
         Configuration $idpMetadata,
         Configuration $spMetadata,
         array $attributes
     ) {
-
         $base64Attributes = $spMetadata->getBoolean('base64attributes', null);
         if ($base64Attributes === null) {
             $base64Attributes = $idpMetadata->getBoolean('base64attributes', false);
@@ -803,7 +799,7 @@ class sspmod_saml_IdP_SAML2
                         assert($value instanceof DOMNodeList || $value instanceof \SAML2\XML\saml\NameID);
                         break;
                     default:
-                        throw new SimpleSAML_Error_Exception('Invalid encoding for attribute '.
+                        throw new \SimpleSAML\Error\Exception('Invalid encoding for attribute '.
                             var_export($name, true).': '.var_export($encoding, true));
                 }
                 $ret[$name][] = $value;
@@ -826,7 +822,6 @@ class sspmod_saml_IdP_SAML2
         Configuration $idpMetadata,
         Configuration $spMetadata
     ) {
-
         // try SP metadata first
         $attributeNameFormat = $spMetadata->getString('attributes.NameFormat', null);
         if ($attributeNameFormat !== null) {
@@ -861,7 +856,7 @@ class sspmod_saml_IdP_SAML2
      *
      * @return \SAML2\Assertion  The assertion.
      *
-     * @throws SimpleSAML_Error_Exception In case an error occurs when creating a holder-of-key assertion.
+     * @throws \SimpleSAML\Error\Exception In case an error occurs when creating a holder-of-key assertion.
      */
     private static function buildAssertion(
         Configuration $idpMetadata,
@@ -949,18 +944,18 @@ class sspmod_saml_IdP_SAML2
 
                         $sc->SubjectConfirmationData->info[] = $keyInfo;
                     } else {
-                        throw new SimpleSAML_Error_Exception(
+                        throw new \SimpleSAML\Error\Exception(
                             'Error creating HoK assertion: No valid client certificate provided during TLS handshake '.
                             'with IdP'
                         );
                     }
                 } else {
-                    throw new SimpleSAML_Error_Exception(
+                    throw new \SimpleSAML\Error\Exception(
                         'Error creating HoK assertion: No client certificate provided during TLS handshake with IdP'
                     );
                 }
             } else {
-                throw new SimpleSAML_Error_Exception(
+                throw new \SimpleSAML\Error\Exception(
                     'Error creating HoK assertion: No HTTPS connection to IdP, but required for Holder-of-Key SSO'
                 );
             }
@@ -1050,14 +1045,13 @@ class sspmod_saml_IdP_SAML2
      *
      * @return \SAML2\Assertion|\SAML2\EncryptedAssertion  The assertion.
      *
-     * @throws \SimpleSAML_Error_Exception In case the encryption key type is not supported.
+     * @throws \SimpleSAML\Error\Exception In case the encryption key type is not supported.
      */
     private static function encryptAssertion(
         Configuration $idpMetadata,
         Configuration $spMetadata,
         \SAML2\Assertion $assertion
     ) {
-
         $encryptAssertion = $spMetadata->getBoolean('assertion.encryption', null);
         if ($encryptAssertion === null) {
             $encryptAssertion = $idpMetadata->getBoolean('assertion.encryption', false);
@@ -1083,17 +1077,17 @@ class sspmod_saml_IdP_SAML2
                             "-----END CERTIFICATE-----\n";
                         break;
                     default:
-                        throw new SimpleSAML_Error_Exception('Unsupported encryption key type: '.$key['type']);
+                        throw new \SimpleSAML\Error\Exception('Unsupported encryption key type: '.$key['type']);
                 }
 
                 // extract the public key from the certificate for encryption
                 $key = new XMLSecurityKey(XMLSecurityKey::RSA_OAEP_MGF1P, array('type' => 'public'));
                 $key->loadKey($pemKey);
             } else {
-                throw new \SimpleSAML_Error_ConfigurationError(
+                throw new \SimpleSAML\Error\ConfigurationError(
                     'Missing encryption key for entity `' . $spMetadata->getString('entityid') . '`',
-                    null,
-                    $spMetadata->getString('metadata-set') . '.php'
+                    $spMetadata->getString('metadata-set') . '.php',
+                    null
                 );
             }
         }
@@ -1120,7 +1114,6 @@ class sspmod_saml_IdP_SAML2
         array $association,
         $relayState
     ) {
-
         $lr = sspmod_saml_Message::buildLogoutRequest($idpMetadata, $spMetadata);
         $lr->setRelayState($relayState);
         $lr->setSessionIndex($association['saml:SessionIndex']);
@@ -1158,7 +1151,6 @@ class sspmod_saml_IdP_SAML2
         Configuration $spMetadata,
         $consumerURL
     ) {
-
         $signResponse = $spMetadata->getBoolean('saml20.sign.response', null);
         if ($signResponse === null) {
             $signResponse = $idpMetadata->getBoolean('saml20.sign.response', true);

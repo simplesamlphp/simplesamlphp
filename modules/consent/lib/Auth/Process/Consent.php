@@ -69,7 +69,7 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
      * @param array $config Configuration information.
      * @param mixed $reserved For future use.
      *
-     * @throws SimpleSAML_Error_Exception if the configuration is not valid.
+     * @throws \SimpleSAML\Error\Exception if the configuration is not valid.
      */
     public function __construct($config, $reserved)
     {
@@ -78,7 +78,7 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
 
         if (array_key_exists('includeValues', $config)) {
             if (!is_bool($config['includeValues'])) {
-                throw new SimpleSAML_Error_Exception(
+                throw new \SimpleSAML\Error\Exception(
                     'Consent: includeValues must be boolean. '.
                     var_export($config['includeValues'], true).' given.'
                 );
@@ -88,7 +88,7 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
 
         if (array_key_exists('checked', $config)) {
             if (!is_bool($config['checked'])) {
-                throw new SimpleSAML_Error_Exception(
+                throw new \SimpleSAML\Error\Exception(
                     'Consent: checked must be boolean. '.
                     var_export($config['checked'], true).' given.'
                 );
@@ -98,7 +98,7 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
 
         if (array_key_exists('focus', $config)) {
             if (!in_array($config['focus'], array('yes', 'no'), true)) {
-                throw new SimpleSAML_Error_Exception(
+                throw new \SimpleSAML\Error\Exception(
                     'Consent: focus must be a string with values `yes` or `no`. '.
                     var_export($config['focus'], true).' given.'
                 );
@@ -108,7 +108,7 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
 
         if (array_key_exists('hiddenAttributes', $config)) {
             if (!is_array($config['hiddenAttributes'])) {
-                throw new SimpleSAML_Error_Exception(
+                throw new \SimpleSAML\Error\Exception(
                     'Consent: hiddenAttributes must be an array. '.
                     var_export($config['hiddenAttributes'], true).' given.'
                 );
@@ -118,7 +118,7 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
 
         if (array_key_exists('attributes.exclude', $config)) {
             if (!is_array($config['attributes.exclude'])) {
-                throw new SimpleSAML_Error_Exception(
+                throw new \SimpleSAML\Error\Exception(
                     'Consent: attributes.exclude must be an array. '.
                     var_export($config['attributes.exclude'], true).' given.'
                 );
@@ -127,7 +127,7 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
         } elseif (array_key_exists('noconsentattributes', $config)) {
             SimpleSAML\Logger::warning("The 'noconsentattributes' option has been deprecated in favour of 'attributes.exclude'.");
             if (!is_array($config['noconsentattributes'])) {
-                throw new SimpleSAML_Error_Exception(
+                throw new \SimpleSAML\Error\Exception(
                     'Consent: noconsentattributes must be an array. '.
                     var_export($config['noconsentattributes'], true).' given.'
                 );
@@ -148,7 +148,7 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
 
         if (array_key_exists('showNoConsentAboutService', $config)) {
             if (!is_bool($config['showNoConsentAboutService'])) {
-                throw new SimpleSAML_Error_Exception('Consent: showNoConsentAboutService must be a boolean.');
+                throw new \SimpleSAML\Error\Exception('Consent: showNoConsentAboutService must be a boolean.');
             }
             $this->_showNoConsentAboutService = $config['showNoConsentAboutService'];
         }
@@ -222,7 +222,7 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
      *
      * @return void
      *
-     * @throws SimpleSAML_Error_NoPassive if the request was passive and consent is needed.
+     * @throws \SimpleSAML\Error\NoPassive if the request was passive and consent is needed.
      */
     public function process(&$state)
     {

@@ -35,7 +35,7 @@ class sspmod_cdc_Auth_Process_CDC extends SimpleSAML_Auth_ProcessingFilter
         assert(is_array($config));
 
         if (!isset($config['domain'])) {
-            throw new SimpleSAML_Error_Exception('Missing domain option in cdc:CDC filter.');
+            throw new \SimpleSAML\Error\Exception('Missing domain option in cdc:CDC filter.');
         }
         $this->domain = (string)$config['domain'];
 

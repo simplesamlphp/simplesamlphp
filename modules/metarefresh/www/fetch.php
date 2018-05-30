@@ -78,7 +78,7 @@ foreach ($sets AS $setkey => $set) {
 				break;
 		}
 	} catch (\Exception $e) {
-		$e = SimpleSAML_Error_Exception::fromException($e);
+		$e = \SimpleSAML\Error\Exception::fromException($e);
 		$e->logWarning();
 	}
 }

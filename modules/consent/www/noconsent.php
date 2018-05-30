@@ -7,7 +7,7 @@
  */
 
 if (!array_key_exists('StateId', $_REQUEST)) {
-    throw new \SimpleSAML_Error_BadRequest(
+    throw new \SimpleSAML\Error\BadRequest(
         'Missing required StateId query parameter.'
     );
 }

@@ -1,5 +1,6 @@
 <?php
 
+namespace SimpleSAML\Error;
 
 /**
  * Class that wraps SimpleSAMLphp errors in exceptions.
@@ -7,7 +8,8 @@
  * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
-class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception
+
+class Error extends Exception
 {
     /**
      * The error code.
@@ -65,10 +67,10 @@ class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception
      * (with index 0), is the error code, while the other elements are replacements for the error text.
      *
      * @param mixed     $errorCode One of the error codes defined in the errors dictionary.
-     * @param Exception $cause The exception which caused this fatal error (if any). Optional.
+     * @param \Exception $cause The exception which caused this fatal error (if any). Optional.
      * @param int|null  $httpCode The HTTP response code to use. Optional.
      */
-    public function __construct($errorCode, Exception $cause = null, $httpCode = null)
+    public function __construct($errorCode, \Exception $cause = null, $httpCode = null)
     {
         assert(is_string($errorCode) || is_array($errorCode));
 
@@ -91,8 +93,8 @@ class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception
             $this->dictTitle = '{'.$this->module.':errors:title_'.$moduleCode[1].'}';
             $this->dictDescr = '{'.$this->module.':errors:descr_'.$moduleCode[1].'}';
         } else {
-            $this->dictTitle = SimpleSAML\Error\ErrorCodes::getErrorCodeTitle($this->errorCode);
-            $this->dictDescr = SimpleSAML\Error\ErrorCodes::getErrorCodeDescription($this->errorCode);
+            $this->dictTitle = ErrorCodes::getErrorCodeTitle($this->errorCode);
+            $this->dictDescr = ErrorCodes::getErrorCodeDescription($this->errorCode);
         }
 
         if (!empty($this->parameters)) {
@@ -183,7 +185,7 @@ class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception
 
         if (!array_key_exists($this->httpCode, $httpCodesMap)) {
             $httpCode = 500;
-            SimpleSAML\Logger::warning('HTTP response code not defined: '.var_export($this->httpCode, true));
+            \SimpleSAML\Logger::warning('HTTP response code not defined: '.var_export($this->httpCode, true));
         }
 
         header($httpCodesMap[$httpCode]);
@@ -202,7 +204,7 @@ class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception
         $etrace = implode("\n", $data);
 
         $reportId = bin2hex(openssl_random_pseudo_bytes(4));
-        SimpleSAML\Logger::error('Error report with id '.$reportId.' generated.');
+        \SimpleSAML\Logger::error('Error report with id '.$reportId.' generated.');
 
         $config = \SimpleSAML\Configuration::getInstance();
         $session = \SimpleSAML\Session::getSessionFromRequest();

@@ -1,6 +1,5 @@
 <?php
 
-
 // Load SimpleSAMLphp configuration
 $config = \SimpleSAML\Configuration::getInstance();
 $session = \SimpleSAML\Session::getSessionFromRequest();

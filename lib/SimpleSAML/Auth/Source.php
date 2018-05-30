@@ -191,10 +191,10 @@ abstract class SimpleSAML_Auth_Source
 
         try {
             $this->authenticate($state);
-        } catch (SimpleSAML_Error_Exception $e) {
+        } catch (\SimpleSAML\Error\Exception $e) {
             SimpleSAML_Auth_State::throwException($state, $e);
         } catch (Exception $e) {
-            $e = new SimpleSAML_Error_UnserializableException($e);
+            $e = new \SimpleSAML\Error\UnserializableException($e);
             SimpleSAML_Auth_State::throwException($state, $e);
         }
         self::loginCompleted($state);
@@ -334,7 +334,7 @@ abstract class SimpleSAML_Auth_Source
      *
      * @return SimpleSAML_Auth_Source|NULL The AuthSource object, or NULL if no authentication
      *     source with the given identifier is found.
-     * @throws SimpleSAML_Error_Exception If no such authentication source is found or it is invalid.
+     * @throws \SimpleSAML\Error\Exception If no such authentication source is found or it is invalid.
      */
     public static function getById($authId, $type = null)
     {
@@ -347,7 +347,7 @@ abstract class SimpleSAML_Auth_Source
         $authConfig = $config->getArray($authId, null);
         if ($authConfig === null) {
             if ($type !== null) {
-                throw new SimpleSAML_Error_Exception(
+                throw new \SimpleSAML\Error\Exception(
                     'No authentication source with id '.
                     var_export($authId, true).' found.'
                 );
@@ -362,7 +362,7 @@ abstract class SimpleSAML_Auth_Source
         }
 
         // the authentication source doesn't have the correct type
-        throw new SimpleSAML_Error_Exception(
+        throw new \SimpleSAML\Error\Exception(
             'Invalid type of authentication source '.
             var_export($authId, true).'. Was '.var_export(get_class($ret), true).
             ', should be '.var_export($type, true).'.'

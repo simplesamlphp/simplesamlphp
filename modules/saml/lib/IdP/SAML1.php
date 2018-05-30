@@ -76,12 +76,12 @@ class sspmod_saml_IdP_SAML1
         }
 
         if (!isset($_REQUEST['providerId'])) {
-            throw new SimpleSAML_Error_BadRequest('Missing providerId parameter.');
+            throw new \SimpleSAML\Error\BadRequest('Missing providerId parameter.');
         }
         $spEntityId = (string)$_REQUEST['providerId'];
 
         if (!isset($_REQUEST['shire'])) {
-            throw new SimpleSAML_Error_BadRequest('Missing shire parameter.');
+            throw new \SimpleSAML\Error\BadRequest('Missing shire parameter.');
         }
         $shire = (string)$_REQUEST['shire'];
 

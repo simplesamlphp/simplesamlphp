@@ -11,8 +11,6 @@ use WhiteHat101\Crypt\APR1_MD5;
 
 class sspmod_authcrypt_Auth_Source_Htpasswd extends sspmod_core_Auth_UserPassBase
 {
-
-
     /**
      * Our users, stored in an array, where each value is "<username>:<passwordhash>".
      *
@@ -66,7 +64,7 @@ class sspmod_authcrypt_Auth_Source_Htpasswd extends sspmod_core_Auth_UserPassBas
      *
      * On a successful login, this function should return the username as 'uid' attribute,
      * and merged attributes from the configuration file.
-     * On failure, it should throw an exception. A SimpleSAML_Error_Error('WRONGUSERPASS')
+     * On failure, it should throw an exception. A \SimpleSAML\Error\Error('WRONGUSERPASS')
      * should be thrown in case of a wrong username OR a wrong password, to prevent the
      * enumeration of usernames.
      *
@@ -75,7 +73,7 @@ class sspmod_authcrypt_Auth_Source_Htpasswd extends sspmod_core_Auth_UserPassBas
      *
      * @return array Associative array with the users attributes.
      *
-     * @throws SimpleSAML_Error_Error if authentication fails.
+     * @throws \SimpleSAML\Error\Error if authentication fails.
      */
     protected function login($username, $password)
     {
@@ -113,9 +111,9 @@ class sspmod_authcrypt_Auth_Source_Htpasswd extends sspmod_core_Auth_UserPassBas
                     );
                     return $attributes;
                 }
-                throw new SimpleSAML_Error_Error('WRONGUSERPASS');
+                throw new \SimpleSAML\Error\Error('WRONGUSERPASS');
             }
         }
-        throw new SimpleSAML_Error_Error('WRONGUSERPASS');
+        throw new \SimpleSAML\Error\Error('WRONGUSERPASS');
     }
 }

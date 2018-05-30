@@ -1,7 +1,7 @@
 <?php
 
 if (!array_key_exists('PATH_INFO', $_SERVER)) {
-    throw new \SimpleSAML_Error_BadRequest('Missing authentication source id in metadata URL');
+    throw new \SimpleSAML\Error\BadRequest('Missing authentication source id in metadata URL');
 }
 
 $config = \SimpleSAML\Configuration::getInstance();
@@ -11,11 +11,11 @@ if ($config->getBoolean('admin.protectmetadata', false)) {
 $sourceId = substr($_SERVER['PATH_INFO'], 1);
 $source = \SimpleSAML_Auth_Source::getById($sourceId);
 if ($source === null) {
-    throw new \SimpleSAML_Error_AuthSource($sourceId, 'Could not find authentication source.');
+    throw new \SimpleSAML\Error\AuthSource($sourceId, 'Could not find authentication source.');
 }
 
 if (!($source instanceof \sspmod_saml_Auth_Source_SP)) {
-    throw new \SimpleSAML_Error_AuthSource($sourceId,
+    throw new \SimpleSAML\Error\AuthSource($sourceId,
         'The authentication source is not a SAML Service Provider.');
 }
 
@@ -186,7 +186,7 @@ if ($orgName !== null) {
 
     $metaArray20['OrganizationURL'] = $spconfig->getLocalizedString('OrganizationURL', null);
     if ($metaArray20['OrganizationURL'] === null) {
-        throw new SimpleSAML_Error_Exception('If OrganizationName is set, OrganizationURL must also be set.');
+        throw new \SimpleSAML\Error\Exception('If OrganizationName is set, OrganizationURL must also be set.');
     }
 }
 

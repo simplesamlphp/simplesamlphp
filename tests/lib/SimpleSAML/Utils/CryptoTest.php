@@ -70,7 +70,7 @@ class CryptoTest extends TestCase
     public function testAesDecrypt()
     {
         if (!extension_loaded('openssl')) {
-            $this->setExpectedException('\SimpleSAML_Error_Exception');
+            $this->setExpectedException('\SimpleSAML\Error\Exception');
         }
 
         $secret = 'SUPER_SECRET_SALT';
@@ -92,7 +92,7 @@ class CryptoTest extends TestCase
     public function testAesEncrypt()
     {
         if (!extension_loaded('openssl')) {
-            $this->setExpectedException('\SimpleSAML_Error_Exception');
+            $this->setExpectedException('\SimpleSAML\Error\Exception');
         }
 
         $secret = 'SUPER_SECRET_SALT';
@@ -195,7 +195,7 @@ PHP;
     }
 
     /**
-     * @expectedException \SimpleSAML_Error_Exception
+     * @expectedException \SimpleSAML\Error\Exception
      *
      * @covers \SimpleSAML\Utils\Crypto::pwHash
      */
@@ -237,7 +237,7 @@ PHP;
     }
 
     /**
-     * @expectedException \SimpleSAML_Error_Exception
+     * @expectedException \SimpleSAML\Error\Exception
      *
      * @covers \SimpleSAML\Utils\Crypto::pwValid
      */
@@ -271,7 +271,7 @@ PHP;
     }
 
     /**
-     * @expectedException \SimpleSAML_Error_Exception
+     * @expectedException \SimpleSAML\Error\Exception
      *
      * @covers \SimpleSAML\Utils\Crypto::loadPrivateKey
      */
@@ -297,7 +297,7 @@ PHP;
     }
 
     /**
-     * @expectedException \SimpleSAML_Error_Exception
+     * @expectedException \SimpleSAML\Error\Exception
      *
      * @covers \SimpleSAML\Utils\Crypto::loadPrivateKey
      */
@@ -378,7 +378,7 @@ PHP;
     }
 
     /**
-     * @expectedException \SimpleSAML_Error_Exception
+     * @expectedException \SimpleSAML\Error\Exception
      *
      * @covers \SimpleSAML\Utils\Crypto::loadPublicKey
      */

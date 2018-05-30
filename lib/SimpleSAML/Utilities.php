@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * Misc static functions that is used several places.in example parsing and id generation.
  *
@@ -9,9 +8,9 @@
  *
  * @deprecated This entire class will be removed in SimpleSAMLphp 2.0.
  */
+
 class SimpleSAML_Utilities
 {
-
     /**
      * @deprecated This property will be removed in SSP 2.0. Please use SimpleSAML\Logger::isErrorMasked() instead.
      */
@@ -173,11 +172,11 @@ class SimpleSAML_Utilities
 
 
     /**
-     * @deprecated This method will be removed in SSP 2.0. Please raise a SimpleSAML_Error_Error exception instead.
+     * @deprecated This method will be removed in SSP 2.0. Please raise a SimpleSAML\Error\Error exception instead.
      */
     public static function fatalError($trackId = 'na', $errorCode = null, Exception $e = null)
     {
-        throw new SimpleSAML_Error_Error($errorCode, $e);
+        throw new \SimpleSAML\Error\Error($errorCode, $e);
     }
 
 

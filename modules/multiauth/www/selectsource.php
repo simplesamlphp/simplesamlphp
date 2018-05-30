@@ -12,7 +12,7 @@
 
 // Retrieve the authentication state
 if (!array_key_exists('AuthState', $_REQUEST)) {
-	throw new \SimpleSAML_Error_BadRequest('Missing AuthState parameter.');
+	throw new \SimpleSAML\Error\BadRequest('Missing AuthState parameter.');
 }
 $authStateId = $_REQUEST['AuthState'];
 $state = \SimpleSAML_Auth_State::loadState($authStateId, sspmod_multiauth_Auth_Source_MultiAuth::STAGEID);

@@ -1315,7 +1315,7 @@ class Configuration implements Utils\ClearableState
      * @return array Public key data, or empty array if no public key or was found.
      *
      * @throws \Exception If the certificate or public key cannot be loaded from a file.
-     * @throws \SimpleSAML_Error_Exception If the file does not contain a valid PEM-encoded certificate, or there is no
+     * @throws \SimpleSAML\Error\Exception If the file does not contain a valid PEM-encoded certificate, or there is no
      * certificate in the metadata.
      */
     public function getPublicKeys($use = null, $required = false, $prefix = '')
@@ -1359,7 +1359,7 @@ class Configuration implements Utils\ClearableState
             // extract certificate data (if this is a certificate)
             $pattern = '/^-----BEGIN CERTIFICATE-----([^-]*)^-----END CERTIFICATE-----/m';
             if (!preg_match($pattern, $data, $matches)) {
-                throw new \SimpleSAML_Error_Exception(
+                throw new \SimpleSAML\Error\Exception(
                     $this->location.': Could not find PEM encoded certificate in "'.$file.'".'
                 );
             }
@@ -1374,7 +1374,7 @@ class Configuration implements Utils\ClearableState
                 ),
             );
         } elseif ($required === true) {
-            throw new \SimpleSAML_Error_Exception($this->location.': Missing certificate in metadata.');
+            throw new \SimpleSAML\Error\Exception($this->location.': Missing certificate in metadata.');
         } else {
             return array();
         }

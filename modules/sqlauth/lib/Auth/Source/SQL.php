@@ -117,7 +117,7 @@ class sspmod_sqlauth_Auth_Source_SQL extends sspmod_core_Auth_UserPassBase
      *
      * On a successful login, this function should return the users attributes. On failure,
      * it should throw an exception. If the error was caused by the user entering the wrong
-     * username or password, a SimpleSAML_Error_Error('WRONGUSERPASS') should be thrown.
+     * username or password, a \SimpleSAML\Error\Error('WRONGUSERPASS') should be thrown.
      *
      * Note that both the username and the password are UTF-8 encoded.
      *
@@ -160,7 +160,7 @@ class sspmod_sqlauth_Auth_Source_SQL extends sspmod_core_Auth_UserPassBase
             /* No rows returned - invalid username/password. */
             SimpleSAML\Logger::error('sqlauth:' . $this->authId .
                 ': No rows in result set. Probably wrong username/password.');
-            throw new SimpleSAML_Error_Error('WRONGUSERPASS');
+            throw new \SimpleSAML\Error\Error('WRONGUSERPASS');
         }
 
         /* Extract attributes. We allow the resultset to consist of multiple rows. Attributes

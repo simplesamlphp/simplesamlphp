@@ -25,7 +25,7 @@ class XML
      *
      * @throws \InvalidArgumentException If $message is not a string or $type is not a string containing one of the
      *     values allowed.
-     * @throws \SimpleSAML_Error_Exception If $message contains a doctype declaration.
+     * @throws \SimpleSAML\Error\Exception If $message contains a doctype declaration.
      *
      * @return void
      *
@@ -41,7 +41,7 @@ class XML
 
         // a SAML message should not contain a doctype-declaration
         if (strpos($message, '<!DOCTYPE') !== false) {
-            throw new \SimpleSAML_Error_Exception('XML contained a doctype declaration.');
+            throw new \SimpleSAML\Error\Exception('XML contained a doctype declaration.');
         }
 
         // see if debugging is enabled for XML validation
@@ -309,7 +309,7 @@ class XML
      * @param \DOMElement $element The element we should extract text from.
      *
      * @return string The text content of the element.
-     * @throws \SimpleSAML_Error_Exception If the element contains a non-text child node.
+     * @throws \SimpleSAML\Error\Exception If the element contains a non-text child node.
      *
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
@@ -321,7 +321,7 @@ class XML
             /** @var \DOMElement $child */
             $child = $element->childNodes->item($i);
             if (!($child instanceof \DOMText)) {
-                throw new \SimpleSAML_Error_Exception($element->localName.' contained a non-text child node.');
+                throw new \SimpleSAML\Error\Exception($element->localName.' contained a non-text child node.');
             }
 
             $txt .= $child->wholeText;

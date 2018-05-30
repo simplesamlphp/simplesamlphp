@@ -1,12 +1,12 @@
 <?php
 
-
 /**
  * The Negotiate module. Allows for password-less, secure login by Kerberos and Negotiate.
  *
  * @author Mathias Meisfjordskar, University of Oslo <mathias.meisfjordskar@usit.uio.no>
  * @package SimpleSAMLphp
  */
+
 class sspmod_negotiate_Auth_Source_Negotiate extends SimpleSAML_Auth_Source
 {
     // Constants used in the module
@@ -260,8 +260,8 @@ EOF;
      *
      * @param array $state Information about the current authentication.
      *
-     * @throws SimpleSAML_Error_Error If couldn't determine the auth source.
-     * @throws SimpleSAML_Error_Exception
+     * @throws \SimpleSAML\Error\Error If couldn't determine the auth source.
+     * @throws \SimpleSAML\Error\Exception
      * @throws Exception
      */
     public static function fallBack(&$state)
@@ -269,16 +269,16 @@ EOF;
         $authId = $state['LogoutState']['negotiate:backend'];
 
         if ($authId === null) {
-            throw new SimpleSAML_Error_Error(array(500, "Unable to determine auth source."));
+            throw new \SimpleSAML\Error\Error(array(500, "Unable to determine auth source."));
         }
-        $source = SimpleSAML_Auth_Source::getById($authId);
+        $source = \SimpleSAML_Auth_Source::getById($authId);
 
         try {
             $source->authenticate($state);
-        } catch (SimpleSAML_Error_Exception $e) {
-            SimpleSAML_Auth_State::throwException($state, $e);
-        } catch (Exception $e) {
-            $e = new SimpleSAML_Error_UnserializableException($e);
+        } catch (\SimpleSAML\Error\Exception $e) {
+            \SimpleSAML_Auth_State::throwException($state, $e);
+        } catch (\Exception $e) {
+            $e = new \SimpleSAML\Error\UnserializableException($e);
             SimpleSAML_Auth_State::throwException($state, $e);
         }
         // fallBack never returns after loginCompleted()
@@ -308,7 +308,7 @@ EOF;
         try {
             $dn = $this->ldap->searchfordn($this->base, $this->attr, $uid);
             return $this->ldap->getAttributes($dn, $this->attributes);
-        } catch (SimpleSAML_Error_Exception $e) {
+        } catch (\SimpleSAML\Error\Exception $e) {
             SimpleSAML\Logger::debug('Negotiate - ldap lookup failed: '.$e);
             return null;
         }
@@ -332,7 +332,7 @@ EOF;
         if (!$this->ldap->bind($this->admin_user, $this->admin_pw)) {
             $msg = 'Unable to authenticate system user (LDAP_INVALID_CREDENTIALS) '.var_export($this->admin_user, true);
             SimpleSAML\Logger::error('Negotiate - authenticate(): '.$msg);
-            throw new SimpleSAML_Error_AuthSource('negotiate', $msg);
+            throw new \SimpleSAML\Error\AuthSource('negotiate', $msg);
         }
     }
 

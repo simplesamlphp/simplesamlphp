@@ -7,10 +7,9 @@ namespace SimpleSAML\IdP;
  *
  * @package SimpleSAMLphp
  */
+
 interface LogoutHandlerInterface
 {
-
-
     /**
      * Initialize this logout handler.
      *
@@ -37,7 +36,7 @@ interface LogoutHandlerInterface
      *
      * @param string $assocId The association that is terminated.
      * @param string|null $relayState The RelayState from the start of the logout.
-     * @param \SimpleSAML_Error_Exception|null $error The error that occurred during session termination (if any).
+     * @param \SimpleSAML\Error\Exception|null $error The error that occurred during session termination (if any).
      */
-    public function onResponse($assocId, $relayState, \SimpleSAML_Error_Exception $error = null);
+    public function onResponse($assocId, $relayState, \SimpleSAML\Error\Exception $error = null);
 }

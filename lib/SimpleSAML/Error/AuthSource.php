@@ -1,14 +1,16 @@
 <?php
+
+namespace SimpleSAML\Error;
+
 /**
  * Baseclass for auth source exceptions.
  *
  * @package SimpleSAMLphp_base
  *
  */
-class SimpleSAML_Error_AuthSource extends SimpleSAML_Error_Error
+
+class AuthSource extends Error
 {
-
-
     /**
      * Authsource module name.
      */

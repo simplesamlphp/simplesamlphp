@@ -7,7 +7,7 @@ $config = \SimpleSAML\Configuration::getInstance();
 $metadata = \SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 
 if (!$config->getBoolean('enable.shib13-idp', false)) {
-    throw new \SimpleSAML_Error_Error('NOACCESS');
+    throw new \SimpleSAML\Error\Error('NOACCESS');
 }
 
 // check if valid local session exists
@@ -62,7 +62,7 @@ try {
         );
 
         if (!$idpmeta->hasValue('OrganizationURL')) {
-            throw new \SimpleSAML_Error_Exception('If OrganizationName is set, OrganizationURL must also be set.');
+            throw new \SimpleSAML\Error\Exception('If OrganizationName is set, OrganizationURL must also be set.');
         }
         $metaArray['OrganizationURL'] = $idpmeta->getLocalizedString('OrganizationURL');
     }
@@ -106,5 +106,5 @@ try {
         exit(0);
     }
 } catch (\Exception $exception) {
-    throw new \SimpleSAML_Error_Error('METADATA', $exception);
+    throw new \SimpleSAML\Error\Error('METADATA', $exception);
 }

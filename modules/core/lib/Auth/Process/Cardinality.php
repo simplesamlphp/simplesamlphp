@@ -25,7 +25,7 @@ class sspmod_core_Auth_Process_Cardinality extends SimpleSAML_Auth_ProcessingFil
      * @param array $config  Configuration information about this filter.
      * @param mixed $reserved  For future use.
      * @param HTTPAdapter $http  HTTP utility service (handles redirects).
-     * @throws SimpleSAML_Error_Exception
+     * @throws \SimpleSAML\Error\Exception
      */
     public function __construct($config, $reserved, HTTPAdapter $http = null)
     {
@@ -41,7 +41,7 @@ class sspmod_core_Auth_Process_Cardinality extends SimpleSAML_Auth_ProcessingFil
             }
 
             if (!is_string($attribute)) {
-                throw new SimpleSAML_Error_Exception('Invalid attribute name: '.var_export($attribute, true));
+                throw new \SimpleSAML\Error\Exception('Invalid attribute name: '.var_export($attribute, true));
             }
             $this->cardinality[$attribute] = array('warn' => false);
 
@@ -66,20 +66,20 @@ class sspmod_core_Auth_Process_Cardinality extends SimpleSAML_Auth_ProcessingFil
             } elseif (!is_int($this->cardinality[$attribute]['min']) ||
                 $this->cardinality[$attribute]['min'] < 0
             ) {
-                throw new SimpleSAML_Error_Exception('Minimum cardinality must be a positive integer: '.
+                throw new \SimpleSAML\Error\Exception('Minimum cardinality must be a positive integer: '.
                     var_export($attribute, true));
             }
             if (array_key_exists('max', $this->cardinality[$attribute]) &&
                 !is_int($this->cardinality[$attribute]['max'])
             ) {
-                throw new SimpleSAML_Error_Exception('Maximum cardinality must be a positive integer: '.
+                throw new \SimpleSAML\Error\Exception('Maximum cardinality must be a positive integer: '.
                     var_export($attribute, true));
             }
             if (array_key_exists('min', $this->cardinality[$attribute]) &&
                 array_key_exists('max', $this->cardinality[$attribute]) &&
                 $this->cardinality[$attribute]['min'] > $this->cardinality[$attribute]['max']
             ) {
-                throw new SimpleSAML_Error_Exception('Minimum cardinality must be less than maximium: '.
+                throw new \SimpleSAML\Error\Exception('Minimum cardinality must be less than maximium: '.
                     var_export($attribute, true));
             }
 

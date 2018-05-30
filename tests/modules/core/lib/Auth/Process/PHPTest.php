@@ -7,7 +7,6 @@ use PHPUnit\Framework\TestCase;
  */
 class Test_Core_Auth_Process_PHP extends TestCase
 {
-
     /**
      * Helper function to run the filter with a given configuration.
      *
@@ -31,7 +30,7 @@ class Test_Core_Auth_Process_PHP extends TestCase
     {
         $config = array();
         $this->setExpectedException(
-            "SimpleSAML_Error_Exception",
+            "\SimpleSAML\Error\Exception",
             "core:PHP: missing mandatory configuration option 'code'."
         );
         new sspmod_core_Auth_Process_PHP($config, null);

@@ -93,7 +93,7 @@ class sspmod_smartattributes_Auth_Process_SmartID extends SimpleSAML_Auth_Proces
         /*
          * At this stage no usable id_candidate has been detected.
          */
-        throw new SimpleSAML_Error_Exception('This service needs at least one of the following
+        throw new \SimpleSAML\Error\Exception('This service needs at least one of the following
             attributes to identity users: '.implode(', ', $this->_candidates).'. Unfortunately not
             one of them was detected. Please ask your institution administrator to release one of
             them, or try using another identity provider.');

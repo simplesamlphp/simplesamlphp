@@ -1,14 +1,13 @@
 <?php
 
-
 /**
  * Authentication processing filter to generate a transient NameID.
  *
  * @package SimpleSAMLphp
  */
+
 class sspmod_saml_Auth_Process_TransientNameID extends sspmod_saml_BaseNameIDGenerator
 {
-
     /**
      * Initialize this filter, parse configuration
      *

@@ -10,19 +10,15 @@
 \SimpleSAML\Logger::info('PreProdWarning - Showing warning to user');
 
 if (!array_key_exists('StateId', $_REQUEST)) {
-	throw new \SimpleSAML_Error_BadRequest('Missing required StateId query parameter.');
+    throw new \SimpleSAML\Error\BadRequest('Missing required StateId query parameter.');
 }
 $id = $_REQUEST['StateId'];
 $state = \SimpleSAML_Auth_State::loadState($id, 'warning:request');
 
-
 if (array_key_exists('yes', $_REQUEST)) {
-	// The user has pressed the yes-button
-
-	\SimpleSAML_Auth_ProcessingChain::resumeProcessing($state);
+    // The user has pressed the yes-button
+    \SimpleSAML_Auth_ProcessingChain::resumeProcessing($state);
 }
-
-
 
 $globalConfig = \SimpleSAML\Configuration::getInstance();
 
