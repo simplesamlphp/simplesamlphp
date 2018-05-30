@@ -241,7 +241,7 @@ if ($spconfig->hasValue('redirect.sign')) {
 $metaArray20['metadata-set'] = 'saml20-sp-remote';
 $metaArray20['entityid'] = $entityId;
 
-$metaBuilder = new SimpleSAML_Metadata_SAMLBuilder($entityId);
+$metaBuilder = new \SimpleSAML\Metadata\SAMLBuilder($entityId);
 $metaBuilder->addMetadataSP20($metaArray20, $supported_protocols);
 $metaBuilder->addOrganizationInfo($metaArray20);
 

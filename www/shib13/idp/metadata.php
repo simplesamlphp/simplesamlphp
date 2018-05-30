@@ -70,7 +70,7 @@ try {
 
     $metaflat = '$metadata['.var_export($idpentityid, true).'] = '.var_export($metaArray, true).';';
 
-    $metaBuilder = new SimpleSAML_Metadata_SAMLBuilder($idpentityid);
+    $metaBuilder = new \SimpleSAML\Metadata\SAMLBuilder($idpentityid);
     $metaBuilder->addMetadataIdP11($metaArray);
     $metaBuilder->addOrganizationInfo($metaArray);
     $metaBuilder->addContact('technical', \SimpleSAML\Utils\Config\Metadata::getContact(array(

@@ -201,7 +201,7 @@ try {
         $metaArray['contacts'][] = Metadata::getContact($techcontact);
     }
 
-    $metaBuilder = new SimpleSAML_Metadata_SAMLBuilder($idpentityid);
+    $metaBuilder = new \SimpleSAML\Metadata\SAMLBuilder($idpentityid);
     $metaBuilder->addMetadataIdP20($metaArray);
     $metaBuilder->addOrganizationInfo($metaArray);
 

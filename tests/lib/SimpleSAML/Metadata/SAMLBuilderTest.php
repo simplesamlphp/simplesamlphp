@@ -1,6 +1,7 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\Metadata\SAMLBuilder;
 
 /**
  * Class SimpleSAML_Metadata_SAMLBuilderTest
@@ -29,7 +30,7 @@ class SimpleSAML_Metadata_SAMLBuilderTest extends TestCase
             ),
         );
 
-        $samlBuilder = new SimpleSAML_Metadata_SAMLBuilder($entityId);
+        $samlBuilder = new SAMLBuilder($entityId);
         $samlBuilder->addMetadata($set, $metadata);
 
         $spDesc = $samlBuilder->getEntityDescriptor();
@@ -58,7 +59,7 @@ class SimpleSAML_Metadata_SAMLBuilderTest extends TestCase
             ),
         );
 
-        $samlBuilder = new SimpleSAML_Metadata_SAMLBuilder($entityId);
+        $samlBuilder = new SAMLBuilder($entityId);
         $samlBuilder->addMetadata($set, $metadata);
 
         $spDesc = $samlBuilder->getEntityDescriptor();
@@ -89,7 +90,7 @@ class SimpleSAML_Metadata_SAMLBuilderTest extends TestCase
             ),
         );
 
-        $samlBuilder = new SimpleSAML_Metadata_SAMLBuilder($entityId);
+        $samlBuilder = new SAMLBuilder($entityId);
         $samlBuilder->addMetadata($set, $metadata);
 
         $spDesc = $samlBuilder->getEntityDescriptor();
@@ -118,7 +119,7 @@ class SimpleSAML_Metadata_SAMLBuilderTest extends TestCase
             ),
         );
 
-        $samlBuilder = new SimpleSAML_Metadata_SAMLBuilder($entityId);
+        $samlBuilder = new SAMLBuilder($entityId);
         $samlBuilder->addMetadata($set, $metadata);
 
         $spDesc = $samlBuilder->getEntityDescriptor();
@@ -154,7 +155,7 @@ class SimpleSAML_Metadata_SAMLBuilderTest extends TestCase
             ),
         );
 
-        $samlBuilder = new SimpleSAML_Metadata_SAMLBuilder($entityId);
+        $samlBuilder = new SAMLBuilder($entityId);
         $samlBuilder->addMetadata($set, $metadata);
 
         $spDesc = $samlBuilder->getEntityDescriptor();
@@ -164,7 +165,7 @@ class SimpleSAML_Metadata_SAMLBuilderTest extends TestCase
 
 	$metadata['attributes.isDefault'] = true;
 
-        $samlBuilder = new SimpleSAML_Metadata_SAMLBuilder($entityId);
+        $samlBuilder = new SAMLBuilder($entityId);
         $samlBuilder->addMetadata($set, $metadata);
         $spDesc = $samlBuilder->getEntityDescriptor();
         $acs = $spDesc->getElementsByTagName("AttributeConsumingService");
@@ -174,7 +175,7 @@ class SimpleSAML_Metadata_SAMLBuilderTest extends TestCase
 
 	$metadata['attributes.isDefault'] = false;
 
-        $samlBuilder = new SimpleSAML_Metadata_SAMLBuilder($entityId);
+        $samlBuilder = new SAMLBuilder($entityId);
         $samlBuilder->addMetadata($set, $metadata);
         $spDesc = $samlBuilder->getEntityDescriptor();
         $acs = $spDesc->getElementsByTagName("AttributeConsumingService");
@@ -201,7 +202,7 @@ class SimpleSAML_Metadata_SAMLBuilderTest extends TestCase
             ),
         );
 
-        $samlBuilder = new SimpleSAML_Metadata_SAMLBuilder($entityId);
+        $samlBuilder = new SAMLBuilder($entityId);
         $samlBuilder->addMetadata($set, $metadata);
 
         $spDesc = $samlBuilder->getEntityDescriptor();
@@ -212,7 +213,7 @@ class SimpleSAML_Metadata_SAMLBuilderTest extends TestCase
 
 	$metadata['attributes.index'] = 15;
 
-        $samlBuilder = new SimpleSAML_Metadata_SAMLBuilder($entityId);
+        $samlBuilder = new SAMLBuilder($entityId);
         $samlBuilder->addMetadata($set, $metadata);
 
         $spDesc = $samlBuilder->getEntityDescriptor();
@@ -245,7 +246,7 @@ class SimpleSAML_Metadata_SAMLBuilderTest extends TestCase
                 ),
             );
 
-        $samlBuilder = new SimpleSAML_Metadata_SAMLBuilder($entityId);
+        $samlBuilder = new SAMLBuilder($entityId);
         $samlBuilder->addMetadata($set, $metadata);
         $entityDescriptorXml = $samlBuilder->getEntityDescriptorText();
 
@@ -260,7 +261,7 @@ class SimpleSAML_Metadata_SAMLBuilderTest extends TestCase
                 0 => 'urn:oasis:names:tc:SAML:1.1:protocol',
                 1 => 'urn:oasis:names:tc:SAML:2.0:protocol',
             );
-        $samlBuilder = new SimpleSAML_Metadata_SAMLBuilder($entityId);
+        $samlBuilder = new SAMLBuilder($entityId);
         $samlBuilder->addMetadata($set, $metadata);
         $entityDescriptorXml = $samlBuilder->getEntityDescriptorText();
 
