@@ -4,7 +4,7 @@ require_once('../../_include.php');
 
 // load configuration and metadata
 $config = \SimpleSAML\Configuration::getInstance();
-$metadata = \SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+$metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
 
 if (!$config->getBoolean('enable.shib13-idp', false)) {
     throw new \SimpleSAML\Error\Error('NOACCESS');
@@ -80,7 +80,7 @@ try {
     $metaxml = $metaBuilder->getEntityDescriptorText();
 
     // sign the metadata if enabled
-    $metaxml = \SimpleSAML_Metadata_Signer::sign($metaxml, $idpmeta->toArray(), 'Shib 1.3 IdP');
+    $metaxml = \SimpleSAML\Metadata\Signer::sign($metaxml, $idpmeta->toArray(), 'Shib 1.3 IdP');
 
     if (array_key_exists('output', $_GET) && $_GET['output'] == 'xhtml') {
         $defaultidp = $config->getString('default-shib13-idp', null);

@@ -36,7 +36,7 @@ function metarefresh_hook_cron(&$croninfo) {
 			$outputDir = $config->resolvePath($outputDir);
 			$outputFormat = $set->getValueValidate('outputFormat', array('flatfile', 'serialize'), 'flatfile');
 
-			$oldMetadataSrc = SimpleSAML_Metadata_MetaDataStorageSource::getSource(array(
+			$oldMetadataSrc = \SimpleSAML\Metadata\MetaDataStorageSource::getSource(array(
 				'type' => $outputFormat,
 				'directory' => $outputDir,
 			));

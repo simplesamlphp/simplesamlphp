@@ -60,7 +60,7 @@ class SimpleSAML_IdP
 
         $this->id = $id;
 
-        $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+        $metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
         $globalConfig = SimpleSAML\Configuration::getInstance();
 
         if (substr($id, 0, 6) === 'saml2:') {
@@ -174,7 +174,7 @@ class SimpleSAML_IdP
 
         $prefix = substr($assocId, 0, 4);
         $spEntityId = substr($assocId, strlen($prefix) + 1);
-        $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+        $metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
 
         if ($prefix === 'saml') {
             try {

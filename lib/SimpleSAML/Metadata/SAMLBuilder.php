@@ -638,7 +638,7 @@ class SAMLBuilder
      * Add metadata of a SAML attribute authority.
      *
      * @param array $metadata The AttributeAuthorityDescriptor, in the format returned by
-     * SimpleSAML_Metadata_SAMLParser.
+     * \SimpleSAML\Metadata\SAMLParser.
      */
     public function addAttributeAuthority(array $metadata)
     {

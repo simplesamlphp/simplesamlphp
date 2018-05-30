@@ -22,7 +22,7 @@ if (!isset($associations[$assocId])) {
 }
 $association = $associations[$assocId];
 
-$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+$metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
 $idpMetadata = $idp->getConfig();
 $spMetadata = $metadata->getMetaDataConfig($association['saml:entityID'], 'saml20-sp-remote');
 

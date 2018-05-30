@@ -20,7 +20,7 @@ if (!in_array(
     throw new Exception('Invalid set');
 }
 
-$metadata = \SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+$metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
 
 $m = $metadata->getMetadata($_REQUEST['entityid'], $_REQUEST['set']);
 

@@ -1,6 +1,6 @@
 <?php
 
-$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+$metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
 
 $binding = \SAML2\Binding::getCurrentBinding();
 $query = $binding->receive();

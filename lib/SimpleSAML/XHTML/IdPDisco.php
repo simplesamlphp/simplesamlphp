@@ -35,7 +35,7 @@ class IdPDisco
     /**
      * An instance of the metadata handler, which will allow us to fetch metadata about IdPs.
      *
-     * @var SimpleSAML_Metadata_MetaDataStorageHandler
+     * @var \SimpleSAML\Metadata\MetaDataStorageHandler
      */
     protected $metadata;
 
@@ -120,7 +120,7 @@ class IdPDisco
 
         // initialize standard classes
         $this->config = \SimpleSAML\Configuration::getInstance();
-        $this->metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+        $this->metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
         $this->session = \SimpleSAML\Session::getSessionFromRequest();
         $this->instance = $instance;
         $this->metadataSets = $metadataSets;

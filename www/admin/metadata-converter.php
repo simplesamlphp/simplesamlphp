@@ -15,7 +15,7 @@ if (!empty($_FILES['xmlfile']['tmp_name'])) {
 
 if (!empty($xmldata)) {
     \SimpleSAML\Utils\XML::checkSAMLMessage($xmldata, 'saml-meta');
-    $entities = \SimpleSAML_Metadata_SAMLParser::parseDescriptorsString($xmldata);
+    $entities = \SimpleSAML\Metadata\SAMLParser::parseDescriptorsString($xmldata);
 
     // get all metadata for the entities
     foreach ($entities as &$entity) {

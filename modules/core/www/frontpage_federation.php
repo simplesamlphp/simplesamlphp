@@ -44,7 +44,7 @@ $metadataHosted = array();
 \SimpleSAML\Module::callHooks('metadata_hosted', $metadataHosted);
 
 
-$metadata = \SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+$metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
 
 $metaentries = array('hosted' => $metadataHosted, 'remote' => array() );
 

@@ -272,7 +272,7 @@ class sspmod_metarefresh_MetaLoader
         if ($doc->documentElement === null) {
             throw new Exception('Opened file is not an XML document: ' . $source['src']);
         }
-        return SimpleSAML_Metadata_SAMLParser::parseDescriptorsElement($doc->documentElement);
+        return \SimpleSAML\Metadata\SAMLParser::parseDescriptorsElement($doc->documentElement);
     }
 
 
@@ -449,7 +449,7 @@ class sspmod_metarefresh_MetaLoader
     {
         assert(is_string($outputDir));
 
-        $metaHandler = new SimpleSAML_Metadata_MetaDataStorageHandlerSerialize(array('directory' => $outputDir));
+        $metaHandler = new \SimpleSAML\Metadata\MetaDataStorageHandlerSerialize(array('directory' => $outputDir));
 
         /* First we add all the metadata entries to the metadata handler. */
         foreach ($this->metadata as $set => $elements) {

@@ -10,7 +10,7 @@ use SimpleSAML\Utils\Config\Metadata as Metadata;
 
 // load SimpleSAMLphp configuration and metadata
 $config = \SimpleSAML\Configuration::getInstance();
-$metadata = \SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+$metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
 
 if (!$config->getBoolean('enable.saml20-idp', false)) {
     throw new \SimpleSAML\Error\Error('NOACCESS');
@@ -210,7 +210,7 @@ try {
     $metaflat = '$metadata['.var_export($idpentityid, true).'] = '.var_export($metaArray, true).';';
 
     // sign the metadata if enabled
-    $metaxml = \SimpleSAML_Metadata_Signer::sign($metaxml, $idpmeta->toArray(), 'SAML 2 IdP');
+    $metaxml = \SimpleSAML\Metadata\Signer::sign($metaxml, $idpmeta->toArray(), 'SAML 2 IdP');
 
     if (array_key_exists('output', $_GET) && $_GET['output'] == 'xhtml') {
         $defaultidp = $config->getString('default-saml20-idp', null);

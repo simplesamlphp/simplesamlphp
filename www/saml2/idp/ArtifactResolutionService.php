@@ -15,7 +15,7 @@ if (!$config->getBoolean('enable.saml20-idp', false)) {
     throw new \SimpleSAML\Error\Error('NOACCESS');
 }
 
-$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+$metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
 $idpEntityId = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
 $idpMetadata = $metadata->getMetaDataConfig($idpEntityId, 'saml20-idp-hosted');
 

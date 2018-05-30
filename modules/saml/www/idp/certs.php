@@ -2,7 +2,7 @@
 
 // Load SimpleSAMLphp, configuration and metadata
 $config = \SimpleSAML\Configuration::getInstance();
-$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+$metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
 
 if (!$config->getBoolean('enable.saml20-idp', false)) {
     throw new \SimpleSAML\Error\Error('NOACCESS');

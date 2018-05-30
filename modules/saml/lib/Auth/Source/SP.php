@@ -109,7 +109,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
                 ' because it isn\'t a valid IdP for this SP.');
         }
 
-        $metadataHandler = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+        $metadataHandler = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
 
         // First, look in saml20-idp-remote.
         try {
@@ -393,7 +393,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
 
         if (isset($state['saml:IDPList']) && sizeof($state['saml:IDPList']) > 0) {
             // we have a SAML IDPList (we are a proxy): filter the list of IdPs available
-            $mdh = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+            $mdh = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
             $known_idps = $mdh->getList();
             $intersection = array_intersect($state['saml:IDPList'], array_keys($known_idps));
 
@@ -458,7 +458,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
              * First, check if we recognize any of the IdPs requested.
              */
 
-            $mdh = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+            $mdh = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
             $known_idps = $mdh->getList();
             $intersection = array_intersect($state['saml:IDPList'], array_keys($known_idps));
 

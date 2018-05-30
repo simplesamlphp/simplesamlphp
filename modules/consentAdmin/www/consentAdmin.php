@@ -102,7 +102,7 @@ $as->requireAuth();
 $attributes = $as->getAttributes();
 
 // Get metadata storage handler
-$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+$metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
 
 /*
  * Get IdP id and metadata

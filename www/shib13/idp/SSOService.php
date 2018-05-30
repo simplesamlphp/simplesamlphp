@@ -12,7 +12,7 @@ require_once '../../_include.php';
 
 SimpleSAML\Logger::info('Shib1.3 - IdP.SSOService: Accessing Shibboleth 1.3 IdP endpoint SSOService');
 
-$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+$metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
 $idpEntityId = $metadata->getMetaDataCurrentEntityID('shib13-idp-hosted');
 $idp = SimpleSAML_IdP::getById('saml1:' . $idpEntityId);
 sspmod_saml_IdP_SAML1::receiveAuthnRequest($idp);

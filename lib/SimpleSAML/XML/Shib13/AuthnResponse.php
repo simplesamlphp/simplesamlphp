@@ -97,7 +97,7 @@ class AuthnResponse
         $issuer = $this->getIssuer();
 
         // Get the metadata of the issuer
-        $metadata = \SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+        $metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
         $md = $metadata->getMetaDataConfig($issuer, 'shib13-idp-remote');
 
         $publicKeys = $md->getPublicKeys('signing');
@@ -201,7 +201,7 @@ class AuthnResponse
     
     public function getAttributes()
     {
-        $metadata = \SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+        $metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
         $md = $metadata->getMetadata($this->getIssuer(), 'shib13-idp-remote');
         $base64 = isset($md['base64attributes']) ? $md['base64attributes'] : false;
 

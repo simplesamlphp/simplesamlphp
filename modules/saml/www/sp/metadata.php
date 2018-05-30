@@ -257,7 +257,7 @@ if (isset($metaArray20['attributes']) && is_array($metaArray20['attributes'])) {
 }
 
 // sign the metadata if enabled
-$xml = \SimpleSAML_Metadata_Signer::sign($xml, $spconfig->toArray(), 'SAML 2 SP');
+$xml = \SimpleSAML\Metadata\Signer::sign($xml, $spconfig->toArray(), 'SAML 2 SP');
 
 if (array_key_exists('output', $_REQUEST) && $_REQUEST['output'] == 'xhtml') {
 

@@ -20,7 +20,7 @@ if ($type !== 'embed') {
 
 $state = \SimpleSAML_Auth_State::loadState($_REQUEST['id'], 'core:Logout-IFrame');
 $idp = \SimpleSAML_IdP::getByState($state);
-$mdh = \SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+$mdh = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
 
 if ($type !== 'init') { // update association state
     foreach ($state['core:Logout-IFrame:Associations'] as $assocId => &$sp) {

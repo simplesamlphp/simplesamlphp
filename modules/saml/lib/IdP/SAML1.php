@@ -36,7 +36,7 @@ class sspmod_saml_IdP_SAML1
         $idpMetadata = $idp->getConfig();
 
         $config = \SimpleSAML\Configuration::getInstance();
-        $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+        $metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
 
         $statsData = array(
             'spEntityID' => $spEntityId,
@@ -91,9 +91,9 @@ class sspmod_saml_IdP_SAML1
             $target = null;
         }
 
-        SimpleSAML\Logger::info('Shib1.3 - IdP.SSOService: Got incoming Shib authnRequest from ' . var_export($spEntityId, true) . '.');
+        \SimpleSAML\Logger::info('Shib1.3 - IdP.SSOService: Got incoming Shib authnRequest from ' . var_export($spEntityId, true) . '.');
 
-        $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+        $metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
         $spMetadata = $metadata->getMetaDataConfig($spEntityId, 'shib13-sp-remote');
 
         $found = false;
@@ -108,7 +108,7 @@ class sspmod_saml_IdP_SAML1
             break;
         }
         if (!$found) {
-            throw new Exception('Invalid AssertionConsumerService for SP ' .
+            throw new \Exception('Invalid AssertionConsumerService for SP ' .
                 var_export($spEntityId, true) . ': ' . var_export($shire, true));
         }
 

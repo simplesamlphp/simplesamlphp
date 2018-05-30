@@ -14,7 +14,7 @@ $sourceId = substr($_SERVER['PATH_INFO'], 1);
 
 $source = SimpleSAML_Auth_Source::getById($sourceId);
 if ($source === null) {
-    throw new Exception('Could not find authentication source with id ' . $sourceId);
+    throw new \Exception('Could not find authentication source with id ' . $sourceId);
 }
 if (!($source instanceof sspmod_saml_Auth_Source_SP)) {
     throw new \SimpleSAML\Error\Exception('Source type changed?');
@@ -22,7 +22,7 @@ if (!($source instanceof sspmod_saml_Auth_Source_SP)) {
 
 try {
     $binding = \SAML2\Binding::getCurrentBinding();
-} catch (Exception $e) { // TODO: look for a specific exception
+} catch (\Exception $e) { // TODO: look for a specific exception
     // This is dirty. Instead of checking the message of the exception, \SAML2\Binding::getCurrentBinding() should throw
     // an specific exception when the binding is unknown, and we should capture that here
     if ($e->getMessage() === 'Unable to find the current binding.') {
@@ -41,7 +41,7 @@ if ($idpEntityId === null) {
 
 $spEntityId = $source->getEntityId();
 
-$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+$metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
 $idpMetadata = $source->getIdPMetadata($idpEntityId);
 $spMetadata = $source->getMetadata();
 
@@ -76,7 +76,7 @@ if ($message instanceof \SAML2\LogoutResponse) {
     if ($message->isNameIdEncrypted()) {
         try {
             $keys = sspmod_saml_Message::getDecryptionKeys($idpMetadata, $spMetadata);
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             throw new \SimpleSAML\Error\Exception('Error decrypting NameID: ' . $e->getMessage());
         }
 
@@ -89,7 +89,7 @@ if ($message instanceof \SAML2\LogoutResponse) {
                 SimpleSAML\Logger::debug('Decryption with key #' . $i . ' succeeded.');
                 $lastException = null;
                 break;
-            } catch (Exception $e) {
+            } catch (\Exception $e) {
                 SimpleSAML\Logger::debug('Decryption with key #' . $i . ' failed with exception: ' . $e->getMessage());
                 $lastException = $e;
             }

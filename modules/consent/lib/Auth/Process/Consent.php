@@ -237,7 +237,7 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
         $spEntityId = $state['Destination']['entityid'];
         $idpEntityId = $state['Source']['entityid'];
 
-        $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+        $metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
 
         /**
          * If the consent module is active on a bridge $state['saml:sp:IdP']

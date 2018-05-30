@@ -6,11 +6,11 @@
  * @package SimpleSAMLphp
  */
 
-SimpleSAML\Logger::info('ADFS - IdP.prp: Accessing ADFS IdP endpoint prp');
+\SimpleSAML\Logger::info('ADFS - IdP.prp: Accessing ADFS IdP endpoint prp');
 
-$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+$metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
 $idpEntityId = $metadata->getMetaDataCurrentEntityID('adfs-idp-hosted');
-$idp = SimpleSAML_IdP::getById('adfs:' . $idpEntityId);
+$idp = \SimpleSAML_IdP::getById('adfs:' . $idpEntityId);
 
 if (isset($_GET['wa'])) {
     if ($_GET['wa'] === 'wsignout1.0') {

@@ -25,7 +25,7 @@ class HTTPPost
     private $configuration = null;
 
     /**
-     * @var \SimpleSAML_Metadata_MetaDataStorageHandler
+     * @var \SimpleSAML\Metadata\MetaDataStorageHandler
      */
     private $metadata = null;
 
@@ -34,11 +34,11 @@ class HTTPPost
      * Constructor for the \SimpleSAML\Bindings\Shib13\HTTPPost class.
      *
      * @param \SimpleSAML\Configuration                   $configuration The configuration to use.
-     * @param \SimpleSAML_Metadata_MetaDataStorageHandler $metadatastore A store where to find metadata.
+     * @param \SimpleSAML\Metadata\MetaDataStorageHandler $metadatastore A store where to find metadata.
      */
     public function __construct(
         \SimpleSAML\Configuration $configuration,
-        \SimpleSAML_Metadata_MetaDataStorageHandler $metadatastore
+        \SimpleSAML\Metadata\MetaDataStorageHandler $metadatastore
     ) {
         $this->configuration = $configuration;
         $this->metadata = $metadatastore;

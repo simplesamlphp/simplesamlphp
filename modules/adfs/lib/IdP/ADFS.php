@@ -13,7 +13,7 @@ class sspmod_adfs_IdP_ADFS
             $requestid = $query['wctx'];
             $issuer = $query['wtrealm'];
 
-            $metadata = \SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+            $metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
             $spMetadata = $metadata->getMetaDataConfig($issuer, 'adfs-sp-remote');
 
             \SimpleSAML\Logger::info('ADFS - IdP.prp: Incoming Authentication request: '.$issuer.' id '.$requestid);
@@ -227,7 +227,7 @@ MSG;
     // accepts an association array, and returns a URL that can be accessed to terminate the association
     public static function getLogoutURL(SimpleSAML_IdP $idp, array $association, $relayState)
     {
-        $metadata = \SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+        $metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
         $spMetadata = $metadata->getMetaDataConfig($association['adfs:entityID'], 'adfs-sp-remote');
         $returnTo = \SimpleSAML\Module::getModuleURL('adfs/idp/prp.php?assocId='.urlencode($association["id"]).'&relayState='.urlencode($relayState));
         return $spMetadata->getValue('prp').'?wa=wsignoutcleanup1.0&wreply='.urlencode($returnTo);

@@ -1,5 +1,7 @@
 <?php
 
+namespace SimpleSAML\Metadata;
+
 /**
  * Class for handling metadata files stored in a database.
  *
@@ -10,7 +12,7 @@
  * @package SimpleSAMLphp
  */
 
-class SimpleSAML_Metadata_MetaDataStorageHandlerPdo extends SimpleSAML_Metadata_MetaDataStorageSource
+class MetaDataStorageHandlerPdo extends MetaDataStorageSource
 {
     /**
      * The PDO object
@@ -60,7 +62,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerPdo extends SimpleSAML_Metadata_
     {
         assert(is_array($config));
 
-        $this->db = SimpleSAML\Database::getInstance();
+        $this->db = \SimpleSAML\Database::getInstance();
     }
 
 
@@ -103,7 +105,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerPdo extends SimpleSAML_Metadata_
 
             return $metadata;
         } else {
-            throw new Exception('PDO metadata handler: Database error: '.var_export($this->db->getLastError(), true));
+            throw new \Exception('PDO metadata handler: Database error: '.var_export($this->db->getLastError(), true));
         }
     }
 
@@ -204,7 +206,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerPdo extends SimpleSAML_Metadata_
         } elseif ($set === 'adfs-idp-hosted') {
             return 'urn:federation:'.\SimpleSAML\Utils\HTTP::getSelfHost().':idp';
         } else {
-            throw new Exception('Can not generate dynamic EntityID for metadata of this type: ['.$set.']');
+            throw new \Exception('Can not generate dynamic EntityID for metadata of this type: ['.$set.']');
         }
     }
 

@@ -2,7 +2,7 @@
 
 // load configuration and metadata
 $config = \SimpleSAML\Configuration::getInstance();
-$metadata = \SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+$metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
 
 if (!$config->getBoolean('enable.adfs-idp', false)) {
     throw new \SimpleSAML\Error\Error('NOACCESS');
@@ -139,7 +139,7 @@ try {
     }
 
     // sign the metadata if enabled
-    $metaxml = SimpleSAML_Metadata_Signer::sign($metaxml, $idpmeta->toArray(), 'ADFS IdP');
+    $metaxml = \SimpleSAML\Metadata\Signer::sign($metaxml, $idpmeta->toArray(), 'ADFS IdP');
 
     if ($output_xhtml) {
         $defaultidp = $config->getString('default-adfs-idp', null);
