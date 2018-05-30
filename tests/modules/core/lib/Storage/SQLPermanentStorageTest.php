@@ -27,7 +27,7 @@ class Test_Core_Storage_SQLPermanentStorage extends TestCase
     public function testSet()
     {
         // Set a new value
-        self::$sql->set('testtype', 'testkey1', 'testkey2', 'testvalue', 0);
+        self::$sql->set('testtype', 'testkey1', 'testkey2', 'testvalue', 5);
 
         // Test getCondition
         $result = self::$sql->get();
@@ -37,7 +37,7 @@ class Test_Core_Storage_SQLPermanentStorage extends TestCase
     public function testSetOverwrite()
     {
         // Overwrite existing value
-        self::$sql->set('testtype', 'testkey1', 'testkey2', 'testvaluemodified', 0);
+        self::$sql->set('testtype', 'testkey1', 'testkey2', 'testvaluemodified', 5);
 
         // Test that the value was actually overwriten
         $result = self::$sql->getValue('testtype', 'testkey1', 'testkey2');
@@ -61,7 +61,7 @@ class Test_Core_Storage_SQLPermanentStorage extends TestCase
     public function testExpiration()
     {
         // Make sure the earlier created entry has expired now
-        sleep(1);
+        sleep(5);
 
         // Make sure we can't get the expired entry anymore
         $result = self::$sql->getValue('testtype', 'testkey1', 'testkey2');
