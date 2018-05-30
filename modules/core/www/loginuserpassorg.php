@@ -11,17 +11,17 @@
 
 // Retrieve the authentication state
 if (!array_key_exists('AuthState', $_REQUEST)) {
-	throw new SimpleSAML_Error_BadRequest('Missing AuthState parameter.');
+	throw new \SimpleSAML_Error_BadRequest('Missing AuthState parameter.');
 }
 $authStateId = $_REQUEST['AuthState'];
-$state = SimpleSAML_Auth_State::loadState($authStateId, sspmod_core_Auth_UserPassOrgBase::STAGEID);
+$state = \SimpleSAML_Auth_State::loadState($authStateId, sspmod_core_Auth_UserPassOrgBase::STAGEID);
 
-$source = SimpleSAML_Auth_Source::getById($state[sspmod_core_Auth_UserPassOrgBase::AUTHID]);
+$source = \SimpleSAML_Auth_Source::getById($state[sspmod_core_Auth_UserPassOrgBase::AUTHID]);
 if ($source === NULL) {
 	throw new Exception('Could not find authentication source with id ' . $state[sspmod_core_Auth_UserPassOrgBase::AUTHID]);
 }
 
-$organizations = sspmod_core_Auth_UserPassOrgBase::listOrganizations($authStateId);
+$organizations = \sspmod_core_Auth_UserPassOrgBase::listOrganizations($authStateId);
 
 if (array_key_exists('username', $_REQUEST)) {
 	$username = $_REQUEST['username'];
@@ -61,7 +61,7 @@ if ($organizations === NULL || !empty($organization)) {
 		}
 
 		try {
-			sspmod_core_Auth_UserPassOrgBase::handleLogin($authStateId, $username, $password, $organization);
+			\sspmod_core_Auth_UserPassOrgBase::handleLogin($authStateId, $username, $password, $organization);
 		} catch (SimpleSAML_Error_Error $e) {
 			// Login failed. Extract error code and parameters, to display the error
 			$errorCode = $e->getErrorCode();
@@ -71,7 +71,7 @@ if ($organizations === NULL || !empty($organization)) {
 }
 
 $globalConfig = \SimpleSAML\Configuration::getInstance();
-$t = new SimpleSAML_XHTML_Template($globalConfig, 'core:loginuserpass.php');
+$t = new \SimpleSAML\XHTML\Template($globalConfig, 'core:loginuserpass.php');
 $t->data['stateparams'] = array('AuthState' => $authStateId);
 $t->data['username'] = $username;
 $t->data['forceUsername'] = FALSE;
@@ -81,7 +81,7 @@ $t->data['rememberMeEnabled'] = false;
 $t->data['rememberMeChecked'] = false;
 if (isset($_COOKIE[$source->getAuthId() . '-username'])) $t->data['rememberUsernameChecked'] = TRUE;
 $t->data['errorcode'] = $errorCode;
-$t->data['errorcodes'] = SimpleSAML\Error\ErrorCodes::getAllErrorCodeMessages();
+$t->data['errorcodes'] = \SimpleSAML\Error\ErrorCodes::getAllErrorCodeMessages();
 $t->data['errorparams'] = $errorParams;
 
 if ($organizations !== NULL) {

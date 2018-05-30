@@ -55,7 +55,7 @@ if (array_key_exists('yes', $_REQUEST)) {
     if (isset($state['Destination']['entityid'])) {
         $statsInfo['spEntityID'] = $state['Destination']['entityid'];
     }
-    SimpleSAML_Stats::log('consent:accept', $statsInfo);
+    \SimpleSAML_Stats::log('consent:accept', $statsInfo);
 
     if (   array_key_exists('consent:store', $state) 
         && array_key_exists('saveconsent', $_REQUEST)
@@ -67,7 +67,7 @@ if (array_key_exists('yes', $_REQUEST)) {
         $targetedId = $state['consent:store.destination'];
         $attributeSet = $state['consent:store.attributeSet'];
 
-        SimpleSAML\Logger::debug(
+        \SimpleSAML\Logger::debug(
             'Consent - saveConsent() : [' . $userId . '|' .
             $targetedId . '|' .  $attributeSet . ']'
         );	
@@ -78,7 +78,7 @@ if (array_key_exists('yes', $_REQUEST)) {
         }
     }
 
-    SimpleSAML_Auth_ProcessingChain::resumeProcessing($state);
+    \SimpleSAML_Auth_ProcessingChain::resumeProcessing($state);
 }
 
 // Prepare attributes for presentation
@@ -99,12 +99,12 @@ $para = array(
 SimpleSAML\Module::callHooks('attributepresentation', $para);
 
 // Make, populate and layout consent form
-$t = new SimpleSAML_XHTML_Template($globalConfig, 'consent:consentform.php');
+$t = new \SimpleSAML\XHTML\Template($globalConfig, 'consent:consentform.php');
 $t->data['srcMetadata'] = $state['Source'];
 $t->data['dstMetadata'] = $state['Destination'];
-$t->data['yesTarget'] = SimpleSAML\Module::getModuleURL('consent/getconsent.php');
+$t->data['yesTarget'] = \SimpleSAML\Module::getModuleURL('consent/getconsent.php');
 $t->data['yesData'] = array('StateId' => $id);
-$t->data['noTarget'] = SimpleSAML\Module::getModuleURL('consent/noconsent.php');
+$t->data['noTarget'] = \SimpleSAML\Module::getModuleURL('consent/noconsent.php');
 $t->data['noData'] = array('StateId' => $id);
 $t->data['attributes'] = $attributes;
 $t->data['checked'] = $state['consent:checked'];

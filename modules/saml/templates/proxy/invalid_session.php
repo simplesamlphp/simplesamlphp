@@ -2,7 +2,7 @@
 /**
  * Template to ask a user whether to logout because of a reauthentication or not.
  *
- * @var SimpleSAML_XHTML_Template $this
+ * @var \SimpleSAML\XHTML\Template $this
  *
  * @author Jaime Pérez Crespo, UNINETT AS <jaime.perez@uninett.no>
  *

@@ -8,9 +8,9 @@ use SimpleSAML\Utils\Crypto as Crypto;
 use SimpleSAML\Utils\HTTP as HTTP;
 use SimpleSAML\Utils\Config\Metadata as Metadata;
 
-// load SimpleSAMLphp, configuration and metadata
+// load SimpleSAMLphp configuration and metadata
 $config = \SimpleSAML\Configuration::getInstance();
-$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+$metadata = \SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 
 if (!$config->getBoolean('enable.saml20-idp', false)) {
     throw new SimpleSAML_Error_Error('NOACCESS');
@@ -148,7 +148,7 @@ try {
         );
 
         if (!$idpmeta->hasValue('OrganizationURL')) {
-            throw new SimpleSAML_Error_Exception('If OrganizationName is set, OrganizationURL must also be set.');
+            throw new \SimpleSAML_Error_Exception('If OrganizationName is set, OrganizationURL must also be set.');
         }
         $metaArray['OrganizationURL'] = $idpmeta->getLocalizedString('OrganizationURL');
     }
@@ -210,12 +210,12 @@ try {
     $metaflat = '$metadata['.var_export($idpentityid, true).'] = '.var_export($metaArray, true).';';
 
     // sign the metadata if enabled
-    $metaxml = SimpleSAML_Metadata_Signer::sign($metaxml, $idpmeta->toArray(), 'SAML 2 IdP');
+    $metaxml = \SimpleSAML_Metadata_Signer::sign($metaxml, $idpmeta->toArray(), 'SAML 2 IdP');
 
     if (array_key_exists('output', $_GET) && $_GET['output'] == 'xhtml') {
         $defaultidp = $config->getString('default-saml20-idp', null);
 
-        $t = new SimpleSAML_XHTML_Template($config, 'metadata.php', 'admin');
+        $t = new \SimpleSAML\XHTML\Template($config, 'metadata.php', 'admin');
 
         $t->data['clipboard.js'] = true;
         $t->data['available_certs'] = $availableCerts;
@@ -234,5 +234,5 @@ try {
         exit(0);
     }
 } catch (Exception $exception) {
-    throw new SimpleSAML_Error_Error('METADATA', $exception);
+    throw new \SimpleSAML_Error_Error('METADATA', $exception);
 }

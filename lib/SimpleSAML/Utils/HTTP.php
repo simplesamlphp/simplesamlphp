@@ -13,7 +13,6 @@ use SimpleSAML\Session;
  */
 class HTTP
 {
-
     /**
      * Obtain a URL where we can redirect to securely post a form with the given data to a specific destination.
      *
@@ -1215,7 +1214,7 @@ class HTTP
             self::redirect(self::getSecurePOSTRedirectURL($destination, $data));
         }
 
-        $p = new \SimpleSAML_XHTML_Template($config, 'post.php');
+        $p = new \SimpleSAML\XHTML\Template($config, 'post.php');
         $p->data['destination'] = $destination;
         $p->data['post'] = $data;
         $p->show();

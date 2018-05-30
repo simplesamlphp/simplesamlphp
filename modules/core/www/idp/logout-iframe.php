@@ -1,26 +1,26 @@
 <?php
 
 if (!isset($_REQUEST['id'])) {
-    throw new SimpleSAML_Error_BadRequest('Missing required parameter: id');
+    throw new \SimpleSAML_Error_BadRequest('Missing required parameter: id');
 }
 
 if (isset($_REQUEST['type'])) {
     $type = (string) $_REQUEST['type'];
     if (!in_array($type, array('init', 'js', 'nojs', 'embed'), true)) {
-        throw new SimpleSAML_Error_BadRequest('Invalid value for type.');
+        throw new \SimpleSAML_Error_BadRequest('Invalid value for type.');
     }
 } else {
     $type = 'init';
 }
 
 if ($type !== 'embed') {
-    SimpleSAML\Logger::stats('slo-iframe '.$type);
-    SimpleSAML_Stats::log('core:idp:logout-iframe:page', array('type' => $type));
+    \SimpleSAML\Logger::stats('slo-iframe '.$type);
+    \SimpleSAML_Stats::log('core:idp:logout-iframe:page', array('type' => $type));
 }
 
-$state = SimpleSAML_Auth_State::loadState($_REQUEST['id'], 'core:Logout-IFrame');
-$idp = SimpleSAML_IdP::getByState($state);
-$mdh = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+$state = \SimpleSAML_Auth_State::loadState($_REQUEST['id'], 'core:Logout-IFrame');
+$idp = \SimpleSAML_IdP::getByState($state);
+$mdh = \SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 
 if ($type !== 'init') { // update association state
     foreach ($state['core:Logout-IFrame:Associations'] as $assocId => &$sp) {
@@ -74,7 +74,7 @@ foreach ($state['core:Logout-IFrame:Associations'] as $assocId => &$sp) {
         $assocIdP = SimpleSAML_IdP::getByState($sp);
         $url = call_user_func(array($sp['Handler'], 'getLogoutURL'), $assocIdP, $sp, null);
         $sp['core:Logout-IFrame:URL'] = $url;
-    } catch (Exception $e) {
+    } catch (\Exception $e) {
         $sp['core:Logout-IFrame:State'] = 'failed';
     }
 }
@@ -112,7 +112,7 @@ foreach ($state['core:Logout-IFrame:Associations'] as $association) {
     }
 }
 
-$id = SimpleSAML_Auth_State::saveState($state, 'core:Logout-IFrame');
+$id = \SimpleSAML_Auth_State::saveState($state, 'core:Logout-IFrame');
 $globalConfig = \SimpleSAML\Configuration::getInstance();
 
 $template_id = 'core:logout-iframe.php';
@@ -120,7 +120,7 @@ if ($type === 'nojs') {
     $template_id = 'core:logout-iframe-wrapper.php';
 }
 
-$t = new SimpleSAML_XHTML_Template($globalConfig, $template_id);
+$t = new \SimpleSAML\XHTML\Template($globalConfig, $template_id);
 $t->data['auth_state'] = $id;
 /**
  * @deprecated The "id" variable will be removed. Please use "auth_state" instead.

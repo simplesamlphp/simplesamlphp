@@ -8,6 +8,6 @@ if (isset($_REQUEST['retryURL'])) {
 }
 
 $globalConfig = \SimpleSAML\Configuration::getInstance();
-$t = new SimpleSAML_XHTML_Template($globalConfig, 'core:no_cookie.tpl.php');
+$t = new \SimpleSAML\XHTML\Template($globalConfig, 'core:no_cookie.tpl.php');
 $t->data['retryURL'] = $retryURL;
 $t->show();

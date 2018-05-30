@@ -3,13 +3,13 @@
 $config = \SimpleSAML\Configuration::getInstance();
 $statconfig = \SimpleSAML\Configuration::getConfig('module_statistics.php');
 
-sspmod_statistics_AccessCheck::checkAccess($statconfig);
+\sspmod_statistics_AccessCheck::checkAccess($statconfig);
 
 $aggr = new sspmod_statistics_Aggregator();
 $aggr->loadMetadata();
 $metadata = $aggr->getMetadata();
 
-$t = new SimpleSAML_XHTML_Template($config, 'statistics:statmeta.tpl.php');
+$t = new \SimpleSAML\XHTML\Template($config, 'statistics:statmeta.tpl.php');
 
 if ($metadata !== null) {
     if (in_array('lastrun', $metadata, true)) {

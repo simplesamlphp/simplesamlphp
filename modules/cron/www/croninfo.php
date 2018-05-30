@@ -4,14 +4,14 @@
  * The _include script registers a autoloader for the SimpleSAMLphp libraries. It also
  * initializes the SimpleSAMLphp config class with the correct path.
  */
+
 require_once('_include.php');
 
-
-// Load SimpleSAMLphp, configuration and metadata
+// Load SimpleSAMLphp configuration and metadata
 $config = \SimpleSAML\Configuration::getInstance();
 $session = \SimpleSAML\Session::getSessionFromRequest();
 
-SimpleSAML\Utils\Auth::requireAdmin();
+\SimpleSAML\Utils\Auth::requireAdmin();
 
 $cronconfig = \SimpleSAML\Configuration::getConfig('module_cron.php');
 
@@ -28,14 +28,12 @@ $def = array(
 $urls = array();
 foreach ($tags AS $tag) {
 	$urls[] = array(
-		'href' => SimpleSAML\Module::getModuleURL('cron/cron.php', array('key' => $key, 'tag' => $tag)),
+		'href' => \SimpleSAML\Module::getModuleURL('cron/cron.php', array('key' => $key, 'tag' => $tag)),
 		'tag' => $tag,
 		'int' => (array_key_exists($tag, $def) ? $def[$tag] : $def['default']),
 	);
 }
 
-
-
-$t = new SimpleSAML_XHTML_Template($config, 'cron:croninfo.tpl.php', 'cron:cron');
+$t = new \SimpleSAML\XHTML\Template($config, 'cron:croninfo.tpl.php', 'cron:cron');
 $t->data['urls'] = $urls;
 $t->show();

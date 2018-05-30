@@ -1,5 +1,6 @@
 <?php
 
+namespace SimpleSAML\XHTML;
 
 /**
  * This class implements a generic IdP discovery service, for use in various IdP
@@ -13,9 +14,9 @@
  * @author Andreas Åkre Solberg <andreas@uninett.no>, UNINETT AS.
  * @package SimpleSAMLphp
  */
-class SimpleSAML_XHTML_IdPDisco
-{
 
+class IdPDisco
+{
     /**
      * An instance of the configuration class.
      *
@@ -585,7 +586,7 @@ class SimpleSAML_XHTML_IdPDisco
                 throw new Exception('Invalid value for the \'idpdisco.layout\' option.');
         }
 
-        $t = new SimpleSAML_XHTML_Template($this->config, $templateFile, 'disco');
+        $t = new Template($this->config, $templateFile, 'disco');
         $t->data['idplist'] = $idpList;
         $t->data['preferredidp'] = $preferredIdP;
         $t->data['return'] = $this->returnURL;

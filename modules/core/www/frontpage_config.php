@@ -6,10 +6,10 @@ $session = \SimpleSAML\Session::getSessionFromRequest();
 
 // Check if valid local session exists.
 if ($config->getBoolean('admin.protectindexpage', false)) {
-    SimpleSAML\Utils\Auth::requireAdmin();
+    \SimpleSAML\Utils\Auth::requireAdmin();
 }
-$loginurl = SimpleSAML\Utils\Auth::getAdminLoginURL();
-$isadmin = SimpleSAML\Utils\Auth::isAdmin();
+$loginurl = \SimpleSAML\Utils\Auth::getAdminLoginURL();
+$isadmin = \SimpleSAML\Utils\Auth::isAdmin();
 
 
 $warnings = array();
@@ -52,7 +52,7 @@ $allLinks = array(
     'auth'       => &$links_auth,
    'federation' => &$links_federation,
 );
-SimpleSAML\Module::callHooks('frontpage', $allLinks);
+\SimpleSAML\Module::callHooks('frontpage', $allLinks);
 
 // Check for updates. Store the remote result in the session so we
 // don't need to fetch it on every access to this page.
@@ -106,10 +106,10 @@ $functionchecks = array(
     'session_start'  => array('optional', 'Session Extension (required if PHP sessions are used)'),
     'pdo_drivers'    => array('optional', 'PDO Extension (required if a database backend is used)'),
 );
-if (SimpleSAML\Module::isModuleEnabled('ldap')) {
+if (\SimpleSAML\Module::isModuleEnabled('ldap')) {
     $functionchecks['ldap_bind'] = array('optional', 'LDAP Extension (required if an LDAP backend is used)');
 }
-if (SimpleSAML\Module::isModuleEnabled('radius')) {
+if (\SimpleSAML\Module::isModuleEnabled('radius')) {
     $functionchecks['radius_auth_open'] = array('optional', 'Radius Extension (required if a Radius backend is used)');
 }
 
@@ -158,7 +158,7 @@ $funcmatrix[] = array(
     'enabled' => $password_ok
 );
 
-$t = new SimpleSAML_XHTML_Template($config, 'core:frontpage_config.tpl.php');
+$t = new \SimpleSAML\XHTML\Template($config, 'core:frontpage_config.tpl.php');
 $t->data['pageid'] = 'frontpage_config';
 $t->data['isadmin'] = $isadmin;
 $t->data['loginurl'] = $loginurl;

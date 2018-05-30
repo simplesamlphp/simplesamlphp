@@ -144,7 +144,7 @@ try {
     if ($output_xhtml) {
         $defaultidp = $config->getString('default-adfs-idp', null);
 
-        $t = new SimpleSAML_XHTML_Template($config, 'metadata.php', 'admin');
+        $t = new \SimpleSAML\XHTML\Template($config, 'metadata.php', 'admin');
 
         $t->data['clipboard.js'] = true;
         $t->data['available_certs'] = $availableCerts;

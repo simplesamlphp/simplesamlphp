@@ -16,7 +16,7 @@ if (array_key_exists('link_text', $_REQUEST)) {
     $text = '{logout:default_link_text}';
 }
 
-$t = new SimpleSAML_XHTML_Template($config, 'logout.php');
+$t = new \SimpleSAML\XHTML\Template($config, 'logout.php');
 $t->data['link'] = $link;
 $t->data['text'] = $text;
 $t->show();

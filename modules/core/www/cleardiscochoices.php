@@ -23,7 +23,6 @@ foreach($_COOKIE as $cookieName => $value) {
     \SimpleSAML\Utils\HTTP::setCookie($cookieName, NULL, array('path' => $cookiePath, 'httponly' => FALSE), FALSE);
 }
 
-
 /* Find where we should go now. */
 if(array_key_exists('ReturnTo', $_REQUEST)) {
 	$returnTo = \SimpleSAML\Utils\HTTP::checkURLAllowed($_REQUEST['ReturnTo']);

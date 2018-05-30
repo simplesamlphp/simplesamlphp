@@ -7,11 +7,11 @@
  */
 
 if (!isset($_REQUEST['ReturnTo'])) {
-	throw new SimpleSAML_Error_BadRequest('Missing ReturnTo parameter.');
+	throw new \SimpleSAML_Error_BadRequest('Missing ReturnTo parameter.');
 }
 
 if (!isset($_REQUEST['AuthId'])) {
-	throw new SimpleSAML_Error_BadRequest('Missing AuthId parameter.');
+	throw new \SimpleSAML_Error_BadRequest('Missing AuthId parameter.');
 }
 
 /*

@@ -9,8 +9,8 @@ $session = \SimpleSAML\Session::getSessionFromRequest();
 if ($config->getBoolean('admin.protectindexpage', false)) {
     SimpleSAML\Utils\Auth::requireAdmin();
 }
-$loginurl = SimpleSAML\Utils\Auth::getAdminLoginURL();
-$isadmin = SimpleSAML\Utils\Auth::isAdmin();
+$loginurl = \SimpleSAML\Utils\Auth::getAdminLoginURL();
+$isadmin = \SimpleSAML\Utils\Auth::isAdmin();
 
 $links = array();
 $links_welcome = array();
@@ -31,9 +31,9 @@ $links_welcome[] = array(
 	'text' => '{core:frontpage:doc_header}',
 );
 
-SimpleSAML\Module::callHooks('frontpage', $allLinks);
+\SimpleSAML\Module::callHooks('frontpage', $allLinks);
 
-$t = new SimpleSAML_XHTML_Template($config, 'core:frontpage_welcome.tpl.php');
+$t = new \SimpleSAML\XHTML\Template($config, 'core:frontpage_welcome.tpl.php');
 $t->data['pageid'] = 'frontpage_welcome';
 $t->data['isadmin'] = $isadmin;
 $t->data['loginurl'] = $loginurl;

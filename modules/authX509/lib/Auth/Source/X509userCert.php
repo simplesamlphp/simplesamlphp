@@ -6,9 +6,9 @@
  * @author Emmanuel Dreyfus <manu@netbsd.org>
  * @package SimpleSAMLphp
  */
+
 class sspmod_authX509_Auth_Source_X509userCert extends SimpleSAML_Auth_Source
 {
-
     /**
      * x509 attributes to use from the certificate for searching the user in the LDAP directory.
      */
@@ -70,9 +70,9 @@ class sspmod_authX509_Auth_Source_X509userCert extends SimpleSAML_Auth_Source
     {
         $config = \SimpleSAML\Configuration::getInstance();
 
-        $t = new SimpleSAML_XHTML_Template($config, 'authX509:X509error.php');
+        $t = new \SimpleSAML\XHTML\Template($config, 'authX509:X509error.php');
         $t->data['errorcode'] = $state['authX509.error'];
-        $t->data['errorcodes'] = SimpleSAML\Error\ErrorCodes::getAllErrorCodeMessages();
+        $t->data['errorcodes'] = \SimpleSAML\Error\ErrorCodes::getAllErrorCodeMessages();
 
         $t->show();
         exit();

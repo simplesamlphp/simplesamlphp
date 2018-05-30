@@ -1,12 +1,15 @@
 <?php
 
+namespace SimpleSAML\XHTML;
+
 /**
  * A minimalistic Emailer class. Creates and sends HTML emails.
  *
  * @author Andreas kre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
  */
-class SimpleSAML_XHTML_EMail
+
+class EMail
 {
     private $to = null;
     private $cc = null;
@@ -78,11 +81,11 @@ pre {
     public function send()
     {
         if ($this->to === null) {
-            throw new Exception('EMail field [to] is required and not set.');
+            throw new \Exception('EMail field [to] is required and not set.');
         } elseif ($this->subject === null) {
-            throw new Exception('EMail field [subject] is required and not set.');
+            throw new \Exception('EMail field [subject] is required and not set.');
         } elseif ($this->body === null) {
-            throw new Exception('EMail field [body] is required and not set.');
+            throw new \Exception('EMail field [body] is required and not set.');
         }
 
         $random_hash = bin2hex(openssl_random_pseudo_bytes(16));
@@ -114,9 +117,9 @@ Content-Transfer-Encoding: 8bit
         $headers = implode("\n", $this->headers);
 
         $mail_sent = @mail($this->to, $this->subject, $message, $headers);
-        SimpleSAML\Logger::debug('Email: Sending e-mail to [' . $this->to . '] : ' . ($mail_sent ? 'OK' : 'Failed'));
+        \SimpleSAML\Logger::debug('Email: Sending e-mail to [' . $this->to . '] : ' . ($mail_sent ? 'OK' : 'Failed'));
         if (!$mail_sent) {
-            throw new Exception('Error when sending e-mail');
+            throw new \Exception('Error when sending e-mail');
         }
     }
 }

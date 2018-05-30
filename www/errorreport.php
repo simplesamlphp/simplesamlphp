@@ -8,7 +8,7 @@ $config = \SimpleSAML\Configuration::getInstance();
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     // the message has been sent. Show error report page
 
-    $t = new SimpleSAML_XHTML_Template($config, 'errorreport.php', 'errors');
+    $t = new \SimpleSAML\XHTML\Template($config, 'errorreport.php', 'errors');
     $t->show();
     exit;
 }
@@ -21,8 +21,8 @@ $data = null;
 try {
     $session = \SimpleSAML\Session::getSessionFromRequest();
     $data = $session->getData('core:errorreport', $reportId);
-} catch (Exception $e) {
-    SimpleSAML\Logger::error('Error loading error report data: '.var_export($e->getMessage(), true));
+} catch (\Exception $e) {
+    \SimpleSAML\Logger::error('Error loading error report data: '.var_export($e->getMessage(), true));
 }
 
 if ($data === null) {
@@ -121,7 +121,7 @@ if ($from === 'no-reply@example.org' && $replyto !== null) {
 // send the email
 $toAddress = $config->getString('technicalcontact_email', 'na@example.org');
 if ($config->getBoolean('errorreporting', true) && $toAddress !== 'na@example.org') {
-    $email = new SimpleSAML_XHTML_EMail($toAddress, 'SimpleSAMLphp error report', $from);
+    $email = new \SimpleSAML\XHTML\EMail($toAddress, 'SimpleSAMLphp error report', $from);
     $email->setBody($message);
     $email->send();
     SimpleSAML\Logger::error('Report with id '.$reportId.' sent to <'.$toAddress.'>.');

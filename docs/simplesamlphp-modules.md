@@ -66,7 +66,7 @@ dictionaries
 
 :   It is also possible to specify
     `<module name>:<dictionary name>` as the default
-    dictionary when instantiating the `SimpleSAML_XHTML_Template`
+    dictionary when instantiating the `\SimpleSAML\XHTML\Template`
     class.
 
 hooks
@@ -90,7 +90,7 @@ templates
 :   These are module-specific templates. To use one of these
     templates, specify `<module name>:<template file>.php`
     as the template file in the constructor of
-    `SimpleSAML_XHTML_Template`. For example, `example:login-form.php`
+    `\SimpleSAML\XHTML\Template`. For example, `example:login-form.php`
     is translated to the file
     `modules/example/templates/default/login-form.php`. Note that
     `default` in the previous example is defined by the `theme.use`

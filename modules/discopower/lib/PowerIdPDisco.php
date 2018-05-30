@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * This class implements a generic IdP discovery service, for use in various IdP discovery service pages. This should
  * reduce code duplication.
@@ -10,10 +9,9 @@
  * @author Andreas Åkre Solberg <andreas@uninett.no>, UNINETT AS.
  * @package SimpleSAMLphp
  */
-class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco
+
+class sspmod_discopower_PowerIdPDisco extends \SimpleSAML\XHTML\IdPDisco
 {
-
-
     /**
      * The configuration for this instance.
      *
@@ -253,7 +251,7 @@ class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco
             }
         }
 
-        $t = new SimpleSAML_XHTML_Template($this->config, 'discopower:disco.tpl.php', 'disco');
+        $t = new \SimpleSAML\XHTML\Template($this->config, 'discopower:disco.tpl.php', 'disco');
         $discoPowerTabs = array(
             'denmark' => $t->noop('{discopower:tabs:denmark}'),
             'edugain' => $t->noop('{discopower:tabs:edugain}'),

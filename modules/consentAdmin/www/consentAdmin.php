@@ -192,12 +192,12 @@ if ($action !== null && $sp_entityid !== null) {
             }
             // Unknown action (should not happen)
         } else {
-            SimpleSAML\Logger::info('consentAdmin: unknown action');
+            \SimpleSAML\Logger::info('consentAdmin: unknown action');
             $res = "unknown";
         }
     }
     // init template to enable translation of status messages
-    $template = new SimpleSAML_XHTML_Template($config, 'consentAdmin:consentadminajax.php', 'consentAdmin:consentadmin');
+    $template = new \SimpleSAML\XHTML\Template($config, 'consentAdmin:consentadminajax.php', 'consentAdmin:consentadmin');
     $template->data['res'] = $res;
     $template->show();
     exit;
@@ -215,7 +215,7 @@ foreach ($user_consent_list as $c) {
 $template_sp_content = array();
 
 // Init template
-$template = new SimpleSAML_XHTML_Template($config, 'consentAdmin:consentadmin.php', 'consentAdmin:consentadmin');
+$template = new \SimpleSAML\XHTML\Template($config, 'consentAdmin:consentadmin.php', 'consentAdmin:consentadmin');
 $translator = $template->getTranslator();
 $translator->includeLanguageFile('attributes.php'); // attribute listings translated by this dictionary
 $sp_empty_name = $translator->getTag('sp_empty_name');
