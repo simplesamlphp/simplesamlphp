@@ -1,5 +1,7 @@
 <?php
 
+namespace SimpleSAML;
+
 /**
  * Misc static functions that is used several places.in example parsing and id generation.
  *
@@ -9,7 +11,7 @@
  * @deprecated This entire class will be removed in SimpleSAMLphp 2.0.
  */
 
-class SimpleSAML_Utilities
+class Utilities
 {
     /**
      * @deprecated This property will be removed in SSP 2.0. Please use SimpleSAML\Logger::isErrorMasked() instead.
@@ -148,7 +150,7 @@ class SimpleSAML_Utilities
      */
     public static function generateID()
     {
-        return SimpleSAML\Utils\Random::generateID();
+        return \SimpleSAML\Utils\Random::generateID();
     }
 
 
@@ -158,7 +160,7 @@ class SimpleSAML_Utilities
      */
     public static function generateTimestamp($instant = null)
     {
-        return SimpleSAML\Utils\Time::generateTimestamp($instant);
+        return \SimpleSAML\Utils\Time::generateTimestamp($instant);
     }
 
 
@@ -167,7 +169,7 @@ class SimpleSAML_Utilities
      */
     public static function parseDuration($duration, $timestamp = null)
     {
-        return SimpleSAML\Utils\Time::parseDuration($duration, $timestamp);
+        return \SimpleSAML\Utils\Time::parseDuration($duration, $timestamp);
     }
 
 
@@ -185,7 +187,7 @@ class SimpleSAML_Utilities
      */
     public static function ipCIDRcheck($cidr, $ip = null)
     {
-        return SimpleSAML\Utils\Net::ipCIDRcheck($cidr, $ip);
+        return \SimpleSAML\Utils\Net::ipCIDRcheck($cidr, $ip);
     }
 
 
@@ -212,7 +214,7 @@ class SimpleSAML_Utilities
         }
 
         if (strlen($url) > 2048) {
-            SimpleSAML\Logger::warning('Redirecting to a URL longer than 2048 bytes.');
+            \SimpleSAML\Logger::warning('Redirecting to a URL longer than 2048 bytes.');
         }
 
         // Set the location header
@@ -291,7 +293,7 @@ class SimpleSAML_Utilities
      */
     public static function transposeArray($in)
     {
-        return SimpleSAML\Utils\Arrays::transpose($in);
+        return \SimpleSAML\Utils\Arrays::transpose($in);
     }
 
 
@@ -301,7 +303,7 @@ class SimpleSAML_Utilities
      */
     public static function isDOMElementOfType(DOMNode $element, $name, $nsURI)
     {
-        return SimpleSAML\Utils\XML::isDOMNodeOfType($element, $name, $nsURI);
+        return \SimpleSAML\Utils\XML::isDOMNodeOfType($element, $name, $nsURI);
     }
 
 
@@ -310,7 +312,7 @@ class SimpleSAML_Utilities
      */
     public static function getDOMChildren(DOMElement $element, $localName, $namespaceURI)
     {
-        return SimpleSAML\Utils\XML::getDOMChildren($element, $localName, $namespaceURI);
+        return \SimpleSAML\Utils\XML::getDOMChildren($element, $localName, $namespaceURI);
     }
 
 
@@ -319,7 +321,7 @@ class SimpleSAML_Utilities
      */
     public static function getDOMText($element)
     {
-        return SimpleSAML\Utils\XML::getDOMText($element);
+        return \SimpleSAML\Utils\XML::getDOMText($element);
     }
 
 
@@ -418,7 +420,7 @@ class SimpleSAML_Utilities
      */
     public static function parseAttributes($attributes)
     {
-        return SimpleSAML\Utils\Attributes::normalizeAttributesArray($attributes);
+        return \SimpleSAML\Utils\Attributes::normalizeAttributesArray($attributes);
     }
 
 
@@ -427,7 +429,7 @@ class SimpleSAML_Utilities
      */
     public static function getSecretSalt()
     {
-        return SimpleSAML\Utils\Config::getSecretSalt();
+        return \SimpleSAML\Utils\Config::getSecretSalt();
     }
 
 
@@ -464,7 +466,7 @@ class SimpleSAML_Utilities
      */
     public static function loadPublicKey(\SimpleSAML\Configuration $metadata, $required = false, $prefix = '')
     {
-        return SimpleSAML\Utils\Crypto::loadPublicKey($metadata, $required, $prefix);
+        return \SimpleSAML\Utils\Crypto::loadPublicKey($metadata, $required, $prefix);
     }
 
 
@@ -473,7 +475,7 @@ class SimpleSAML_Utilities
      */
     public static function loadPrivateKey(\SimpleSAML\Configuration $metadata, $required = false, $prefix = '')
     {
-        return SimpleSAML\Utils\Crypto::loadPrivateKey($metadata, $required, $prefix);
+        return \SimpleSAML\Utils\Crypto::loadPrivateKey($metadata, $required, $prefix);
     }
 
 
@@ -482,7 +484,7 @@ class SimpleSAML_Utilities
      */
     public static function formatDOMElement(DOMElement $root, $indentBase = '')
     {
-        SimpleSAML\Utils\XML::formatDOMElement($root, $indentBase);
+        \SimpleSAML\Utils\XML::formatDOMElement($root, $indentBase);
     }
 
 
@@ -491,7 +493,7 @@ class SimpleSAML_Utilities
      */
     public static function formatXMLString($xml, $indentBase = '')
     {
-        return SimpleSAML\Utils\XML::formatXMLString($xml, $indentBase);
+        return \SimpleSAML\Utils\XML::formatXMLString($xml, $indentBase);
     }
 
 
@@ -500,7 +502,7 @@ class SimpleSAML_Utilities
      */
     public static function arrayize($data, $index = 0)
     {
-        return SimpleSAML\Utils\Arrays::arrayize($data, $index);
+        return \SimpleSAML\Utils\Arrays::arrayize($data, $index);
     }
 
 
@@ -509,7 +511,7 @@ class SimpleSAML_Utilities
      */
     public static function isAdmin()
     {
-        return SimpleSAML\Utils\Auth::isAdmin();
+        return \SimpleSAML\Utils\Auth::isAdmin();
     }
 
 
@@ -518,7 +520,7 @@ class SimpleSAML_Utilities
      */
     public static function getAdminLoginURL($returnTo = null)
     {
-        return SimpleSAML\Utils\Auth::getAdminLoginURL($returnTo);
+        return \SimpleSAML\Utils\Auth::getAdminLoginURL($returnTo);
     }
 
 
@@ -559,7 +561,7 @@ class SimpleSAML_Utilities
         assert(is_string($destination));
         assert(is_array($post));
 
-        $postId = SimpleSAML\Utils\Random::generateID();
+        $postId = \SimpleSAML\Utils\Random::generateID();
         $postData = array(
             'post' => $post,
             'url'  => $destination,
@@ -570,7 +572,7 @@ class SimpleSAML_Utilities
 
         $redirInfo = base64_encode(SimpleSAML\Utils\Crypto::aesEncrypt($session->getSessionId().':'.$postId));
 
-        $url = SimpleSAML\Module::getModuleURL('core/postredirect.php', array('RedirInfo' => $redirInfo));
+        $url = \SimpleSAML\Module::getModuleURL('core/postredirect.php', array('RedirInfo' => $redirInfo));
         $url = preg_replace("#^https:#", "http:", $url);
 
         return $url;
@@ -609,7 +611,7 @@ class SimpleSAML_Utilities
      */
     public static function getTempDir()
     {
-        return SimpleSAML\Utils\System::getTempDir();
+        return \SimpleSAML\Utils\System::getTempDir();
     }
 
 
@@ -618,7 +620,7 @@ class SimpleSAML_Utilities
      */
     public static function maskErrors($mask)
     {
-        SimpleSAML\Logger::maskErrors($mask);
+        \SimpleSAML\Logger::maskErrors($mask);
     }
 
 
@@ -627,7 +629,7 @@ class SimpleSAML_Utilities
      */
     public static function popErrorMask()
     {
-        SimpleSAML\Logger::popErrorMask();
+        \SimpleSAML\Logger::popErrorMask();
     }
 
 
@@ -674,7 +676,7 @@ class SimpleSAML_Utilities
      */
     public static function aesEncrypt($clear)
     {
-        return SimpleSAML\Utils\Crypto::aesEncrypt($clear);
+        return \SimpleSAML\Utils\Crypto::aesEncrypt($clear);
     }
 
 
@@ -683,7 +685,7 @@ class SimpleSAML_Utilities
      */
     public static function aesDecrypt($encData)
     {
-        return SimpleSAML\Utils\Crypto::aesDecrypt($encData);
+        return \SimpleSAML\Utils\Crypto::aesDecrypt($encData);
     }
 
 
@@ -692,7 +694,7 @@ class SimpleSAML_Utilities
      */
     public static function isWindowsOS()
     {
-        return SimpleSAML\Utils\System::getOS() === SimpleSAML\Utils\System::WINDOWS;
+        return \SimpleSAML\Utils\System::getOS() === SimpleSAML\Utils\System::WINDOWS;
     }
 
 

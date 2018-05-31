@@ -52,8 +52,8 @@ class Signer
      *  - privatekey       The file with the private key, relative to the cert-directory.
      *  - privatekey_pass  The passphrase for the private key.
      *  - certificate      The file with the certificate, relative to the cert-directory.
-     *  - privatekey_array The private key, as an array returned from SimpleSAML_Utilities::loadPrivateKey.
-     *  - publickey_array  The public key, as an array returned from SimpleSAML_Utilities::loadPublicKey.
+     *  - privatekey_array The private key, as an array returned from \SimpleSAML\Utils\Crypto::loadPrivateKey.
+     *  - publickey_array  The public key, as an array returned from \SimpleSAML\Utils\Crypto::loadPublicKey.
      *  - id               The name of the ID attribute.
      *
      * @param array $options  Associative array with options for the constructor. Defaults to an empty array.
@@ -93,7 +93,7 @@ class Signer
      * Set the private key from an array.
      *
      * This function loads the private key from an array matching what is returned
-     * by SimpleSAML_Utilities::loadPrivateKey(...).
+     * by \SimpleSAML\Utils\Crypto::loadPrivateKey(...).
      *
      * @param array $privatekey  The private key.
      */
@@ -155,7 +155,7 @@ class Signer
      * Set the public key / certificate we should include in the signature.
      *
      * This function loads the public key from an array matching what is returned
-     * by SimpleSAML_Utilities::loadPublicKey(...).
+     * by \SimpleSAML\Utils\Crypto::loadPublicKey(...).
      *
      * @param array $publickey The public key.
      * @throws \Exception

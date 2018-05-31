@@ -206,8 +206,8 @@ The code for handling this becomes something like:
     $procChain = [...];
 
     $state = array(
-        'ReturnURL' => \SimpleSAML\Utilities::selfURLNoQuery(),
-        \SimpleSAML\Auth\State::EXCEPTION_HANDLER_URL => \SimpleSAML\Utilities::selfURLNoQuery(),
+        'ReturnURL' => \SimpleSAML\Utils\HTTP::getSelfURLNoQuery(),
+        \SimpleSAML\Auth\State::EXCEPTION_HANDLER_URL => \SimpleSAML\Utils\HTTP::getSelfURLNoQuery(),
         [...],
     )
 

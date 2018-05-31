@@ -168,10 +168,10 @@ Blocks of code like the following:
 
     /* Check if valid local session exists.. */
     if (!isset($session) || !$session->isValid('saml2') ) {
-      SimpleSAML_Utilities::redirect(
+      \SimpleSAML\Utilities::redirect(
         '/' . $config->getBaseURL() .
         'saml2/sp/initSSO.php',
-        array('RelayState' => SimpleSAML_Utilities::selfURL())
+        array('RelayState' => \SimpleSAML\Utilities::selfURL())
         );
     }
 
@@ -195,10 +195,10 @@ you should now call:
 
 Redirecting to the initSLO-script:
 
-    SimpleSAML_Utilities::redirect(
+    \SimpleSAML\Utilities::redirect(
         '/' . $config->getBaseURL() .
         'saml2/sp/initSLO.php',
-        array('RelayState' => SimpleSAML_Utilities::selfURL())
+        array('RelayState' => \SimpleSAML\Utilities::selfURL())
         );
 
 should be replaced with a call to `logout()`:
@@ -210,7 +210,7 @@ If you want to return to a specific URL after logging out, you should include th
     $as->logout('https://example.org/');
 
 Please make sure the URL is trusted. If you obtain the URL from the user input, make sure it is trusted before
-calling $as->logout(), by using the SimpleSAML_Utilities::checkURLAllowed() method.
+calling $as->logout(), by using the \SimpleSAML\Utilities::checkURLAllowed() method.
 
 
 #### Login link
