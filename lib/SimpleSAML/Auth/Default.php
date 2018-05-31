@@ -113,11 +113,11 @@ class DefaultAuth
 
     /**
      * @deprecated This method will be removed in SSP 2.0. Please use
-     * sspmod_saml_Auth_Source_SP::handleUnsolicitedAuth() instead.
+     * \SimpleSAML\Module\saml\Auth\Source\SP::handleUnsolicitedAuth() instead.
      */
     public static function handleUnsolicitedAuth($authId, array $state, $redirectTo)
     {
-        \sspmod_saml_Auth_Source_SP::handleUnsolicitedAuth($authId, $state, $redirectTo);
+        \SimpleSAML\Module\saml\Auth\Source\SP::handleUnsolicitedAuth($authId, $state, $redirectTo);
     }
 
 

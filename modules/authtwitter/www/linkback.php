@@ -7,13 +7,13 @@
 if (!array_key_exists('AuthState', $_REQUEST) || empty($_REQUEST['AuthState'])) {
     throw new \SimpleSAML\Error\BadRequest('Missing state parameter on twitter linkback endpoint.');
 }
-$state = \SimpleSAML\Auth\State::loadState($_REQUEST['AuthState'], sspmod_authtwitter_Auth_Source_Twitter::STAGE_INIT);
+$state = \SimpleSAML\Auth\State::loadState($_REQUEST['AuthState'], \SimpleSAML\Module\authtwitter\Auth\Source\Twitter::STAGE_INIT);
 
 // Find authentication source
-if (!array_key_exists(sspmod_authtwitter_Auth_Source_Twitter::AUTHID, $state)) {
-    throw new \SimpleSAML\Error\BadRequest('No data in state for ' . sspmod_authtwitter_Auth_Source_Twitter::AUTHID);
+if (!array_key_exists(\SimpleSAML\Module\authtwitter\Auth\Source\Twitter::AUTHID, $state)) {
+    throw new \SimpleSAML\Error\BadRequest('No data in state for ' . \SimpleSAML\Module\authtwitter\Auth\Source\Twitter::AUTHID);
 }
-$sourceId = $state[sspmod_authtwitter_Auth_Source_Twitter::AUTHID];
+$sourceId = $state[\SimpleSAML\Module\authtwitter\Auth\Source\Twitter::AUTHID];
 
 $source = \SimpleSAML\Auth\Source::getById($sourceId);
 if ($source === null) {

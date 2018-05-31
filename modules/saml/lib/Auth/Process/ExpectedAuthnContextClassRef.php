@@ -1,5 +1,7 @@
 <?php
 
+namespace SimpleSAML\Module\saml\Auth\Process;
+
 /**
  * Attribute filter to validate AuthnContextClassRef values.
  *
@@ -16,9 +18,8 @@
  * @package SimpleSAMLphp
  */
 
-class sspmod_saml_Auth_Process_ExpectedAuthnContextClassRef extends \SimpleSAML\Auth\ProcessingFilter
+class ExpectedAuthnContextClassRef extends \SimpleSAML\Auth\ProcessingFilter
 {
-
     /**
      * Array of accepted AuthnContextClassRef
      * @var array
@@ -47,7 +48,7 @@ class sspmod_saml_Auth_Process_ExpectedAuthnContextClassRef extends \SimpleSAML\
 
         assert(is_array($config));
         if (empty($config['accepted'])) {
-            SimpleSAML\Logger::error(
+            \SimpleSAML\Logger::error(
                 'ExpectedAuthnContextClassRef: Configuration error. There is no accepted AuthnContextClassRef.'
             );
             throw new \SimpleSAML\Error\Exception(

@@ -1,5 +1,7 @@
 <?php
 
+namespace SimpleSAML\Module\authfacebook\Auth\Source;
+
 /**
  * Authenticate using Facebook Platform.
  *
@@ -7,7 +9,7 @@
  * @package SimpleSAMLphp
  */
 
-class sspmod_authfacebook_Auth_Source_Facebook extends \SimpleSAML\Auth\Source
+class Facebook extends \SimpleSAML\Auth\Source
 {
 	/**
 	 * The string used to identify our states.
@@ -88,7 +90,7 @@ class sspmod_authfacebook_Auth_Source_Facebook extends \SimpleSAML\Auth\Source
 		$state[self::AUTHID] = $this->authId;
 		\SimpleSAML\Auth\State::saveState($state, self::STAGE_INIT);
 		
-		$facebook = new sspmod_authfacebook_Facebook(array('appId' => $this->api_key, 'secret' => $this->secret), $state);
+		$facebook = new \SimpleSAML\Module\authfacebook\Facebook(array('appId' => $this->api_key, 'secret' => $this->secret), $state);
 		$facebook->destroySession();
 
 		$linkback = \SimpleSAML\Module::getModuleURL('authfacebook/linkback.php');
@@ -102,13 +104,13 @@ class sspmod_authfacebook_Auth_Source_Facebook extends \SimpleSAML\Auth\Source
 	public function finalStep(&$state) {
 		assert(is_array($state));
 
-		$facebook = new sspmod_authfacebook_Facebook(array('appId' => $this->api_key, 'secret' => $this->secret), $state);
+		$facebook = new \SimpleSAML\Module\authfacebook\Facebook(array('appId' => $this->api_key, 'secret' => $this->secret), $state);
 		$uid = $facebook->getUser();
 
 		if (isset($uid) && $uid) {
 			try {
 				$info = $facebook->api("/" . $uid . ($this->user_fields ? "?fields=" . $this->user_fields : ""));
-			} catch (FacebookApiException $e) {
+			} catch (\FacebookApiException $e) {
 				throw new \SimpleSAML\Error\AuthSource($this->authId, 'Error getting user profile.', $e);
 			}
 		}
@@ -133,7 +135,7 @@ class sspmod_authfacebook_Auth_Source_Facebook extends \SimpleSAML\Auth\Source
 		$attributes['facebook_targetedID'] = array('http://facebook.com!' . $uid);
 		$attributes['facebook_cn'] = array($info['name']);
 
-		SimpleSAML\Logger::debug('Facebook Returned Attributes: '. implode(", ", array_keys($attributes)));
+		\SimpleSAML\Logger::debug('Facebook Returned Attributes: '. implode(", ", array_keys($attributes)));
 
 		$state['Attributes'] = $attributes;
 	

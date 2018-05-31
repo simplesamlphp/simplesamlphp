@@ -6,7 +6,7 @@ if (!array_key_exists('domain', $_REQUEST)) {
 }
 
 $domain = (string)$_REQUEST['domain'];
-$client = new sspmod_cdc_Client($domain);
+$client = new \SimpleSAML\Module\cdc\Client($domain);
 
 $response = $client->getResponse();
 if ($response === null) {

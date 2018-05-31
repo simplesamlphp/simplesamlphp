@@ -8,7 +8,7 @@
  *
  */
 
-$state = \SimpleSAML\Auth\State::loadState($_REQUEST['AuthState'], sspmod_negotiate_Auth_Source_Negotiate::STAGEID);
+$state = \SimpleSAML\Auth\State::loadState($_REQUEST['AuthState'], \SimpleSAML\Module\negotiate\Auth\Source\Negotiate::STAGEID);
 
 $metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
 $idpid = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted', 'metaindex');

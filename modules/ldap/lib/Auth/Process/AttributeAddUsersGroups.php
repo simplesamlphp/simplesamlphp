@@ -1,5 +1,7 @@
 <?php
 
+namespace SimpleSAML\Module\ldap\Auth\Process;
+
 /**
  * Does a reverse membership lookup on the logged in user,
  * looking for groups it is a member of and adds them to
@@ -9,7 +11,7 @@
  * @package SimpleSAMLphp
  */
 
-class sspmod_ldap_Auth_Process_AttributeAddUsersGroups extends sspmod_ldap_Auth_Process_BaseFilter
+class AttributeAddUsersGroups extends BaseFilter
 {
     /**
      * This is run when the filter is processed by SimpleSAML.
@@ -26,7 +28,7 @@ class sspmod_ldap_Auth_Process_AttributeAddUsersGroups extends sspmod_ldap_Auth_
         assert(array_key_exists('Attributes', $request));
 
         // Log the process
-        SimpleSAML\Logger::debug(
+        \SimpleSAML\Logger::debug(
             $this->title . 'Attempting to get the users groups...'
         );
 
@@ -56,7 +58,7 @@ class sspmod_ldap_Auth_Process_AttributeAddUsersGroups extends sspmod_ldap_Auth_
         $group_attribute = array_unique($group_attribute);
 
         // All done
-        SimpleSAML\Logger::debug(
+        \SimpleSAML\Logger::debug(
             $this->title . 'Added users groups to the group attribute [' .
             $map['groups'] . ']: ' . implode('; ', $groups)
         );
@@ -77,7 +79,7 @@ class sspmod_ldap_Auth_Process_AttributeAddUsersGroups extends sspmod_ldap_Auth_
     protected function getGroups($attributes)
     {
         // Log the request
-        SimpleSAML\Logger::debug(
+        \SimpleSAML\Logger::debug(
             $this->title . 'Checking for groups based on the best method for the LDAP product.'
         );
 
@@ -95,7 +97,7 @@ class sspmod_ldap_Auth_Process_AttributeAddUsersGroups extends sspmod_ldap_Auth_
                 $map =& $this->attribute_map;
 
                 // Log the general search
-                SimpleSAML\Logger::debug(
+                \SimpleSAML\Logger::debug(
                     $this->title . 'Searching LDAP using the default search method.'
                 );
 
@@ -119,7 +121,7 @@ class sspmod_ldap_Auth_Process_AttributeAddUsersGroups extends sspmod_ldap_Auth_
         }
 
         // All done
-        SimpleSAML\Logger::debug(
+        \SimpleSAML\Logger::debug(
             $this->title . 'User found to be a member of the groups:' . implode('; ', $groups)
         );
         return $groups;
@@ -138,7 +140,7 @@ class sspmod_ldap_Auth_Process_AttributeAddUsersGroups extends sspmod_ldap_Auth_
     protected function getGroupsOpenLdap($attributes)
     {
         // Log the OpenLDAP specific search
-        SimpleSAML\Logger::debug(
+        \SimpleSAML\Logger::debug(
             $this->title . 'Searching LDAP using OpenLDAP specific method.'
         );
 
@@ -147,7 +149,7 @@ class sspmod_ldap_Auth_Process_AttributeAddUsersGroups extends sspmod_ldap_Auth_
 
         // Print group search string and search for all group names
         $openldap_base = $this->config->getString('ldap.basedn','ou=groups,dc=example,dc=com');
-        SimpleSAML\Logger::debug(
+        \SimpleSAML\Logger::debug(
             $this->title . "Searching for groups in ldap.basedn ".$openldap_base." with filter (".$map['memberof']."=".$attributes[$map['username']][0].") and attributes ".$map['member']
         );
 
@@ -180,7 +182,7 @@ class sspmod_ldap_Auth_Process_AttributeAddUsersGroups extends sspmod_ldap_Auth_
     protected function getGroupsActiveDirectory($attributes)
     {
         // Log the AD specific search
-        SimpleSAML\Logger::debug(
+        \SimpleSAML\Logger::debug(
             $this->title . 'Searching LDAP using ActiveDirectory specific method.'
         );
 
@@ -229,7 +231,7 @@ class sspmod_ldap_Auth_Process_AttributeAddUsersGroups extends sspmod_ldap_Auth_
         $map =& $this->attribute_map;
 
         // Log the search
-        SimpleSAML\Logger::debug(
+        \SimpleSAML\Logger::debug(
             $this->title . 'Checking DNs for groups.' .
             ' DNs: '. implode('; ', $memberof) .
             ' Attributes: ' . $map['memberof'] . ', ' . $map['type'] .
@@ -302,7 +304,7 @@ class sspmod_ldap_Auth_Process_AttributeAddUsersGroups extends sspmod_ldap_Auth_
         $map =& $this->attribute_map;
 
         // Log the search
-        SimpleSAML\Logger::debug(
+        \SimpleSAML\Logger::debug(
             $this->title . 'Searching ActiveDirectory group membership.' .
             ' DN: ' . $dn .
             ' DN Attribute: ' . $map['dn'] .
@@ -353,7 +355,7 @@ class sspmod_ldap_Auth_Process_AttributeAddUsersGroups extends sspmod_ldap_Auth_
             }
 
             // Could not find DN, log and continue
-            SimpleSAML\Logger::notice(
+            \SimpleSAML\Logger::notice(
                 $this->title . 'The DN attribute [' .
                 implode(', ', array($map['dn'], strtolower($map['dn']), 'dn')) .
                 '] could not be found in the entry. ' . $this->var_export($entry)

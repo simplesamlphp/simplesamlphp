@@ -44,7 +44,7 @@ class EMail
 
     /*
      * @param string $body
-     * @return void
+     * @return string
      */
     private function getHTML($body)
     {

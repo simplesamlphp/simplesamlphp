@@ -1,5 +1,7 @@
 <?php
 
+namespace SimpleSAML\Module\core\Auth\Process;
+
 /**
  * Attribute filter for renaming attributes.
  *
@@ -16,7 +18,7 @@
  *
  */
 
-class sspmod_core_Auth_Process_AttributeCopy extends \SimpleSAML\Auth\ProcessingFilter
+class AttributeCopy extends \SimpleSAML\Auth\ProcessingFilter
 {
 	/**
 	 * Assosiative array with the mappings of attribute names.
@@ -38,11 +40,11 @@ class sspmod_core_Auth_Process_AttributeCopy extends \SimpleSAML\Auth\Processing
 		foreach($config as $source => $destination) {
 
 			if(!is_string($source)) {
-				throw new Exception('Invalid source attribute name: ' . var_export($source, TRUE));
+				throw new \Exception('Invalid source attribute name: ' . var_export($source, TRUE));
 			}
 
 			if(!is_string($destination) && !is_array($destination)) {
-				throw new Exception('Invalid destination attribute name: ' . var_export($destination, TRUE));
+				throw new \Exception('Invalid destination attribute name: ' . var_export($destination, TRUE));
 			}
 
 			$this->map[$source] = $destination;

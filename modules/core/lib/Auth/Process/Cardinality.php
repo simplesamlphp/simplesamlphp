@@ -1,5 +1,7 @@
 <?php
 
+namespace SimpleSAML\Module\core\Auth\Process;
+
 use SimpleSAML\Utils\HTTPAdapter;
 
 /**
@@ -9,7 +11,7 @@ use SimpleSAML\Utils\HTTPAdapter;
  * @package SimpleSAMLphp
  */
 
-class sspmod_core_Auth_Process_Cardinality extends \SimpleSAML\Auth\ProcessingFilter
+class Cardinality extends \SimpleSAML\Auth\ProcessingFilter
 {
     /** @var array Associative array with the mappings of attribute names. */
     private $cardinality = array();
@@ -17,7 +19,7 @@ class sspmod_core_Auth_Process_Cardinality extends \SimpleSAML\Auth\ProcessingFi
     /** @var array Entities that should be ignored */
     private $ignoreEntities = array();
 
-    /** @var HTTP */
+    /** @var HTTPAdapter */
     private $http;
 
     /**
@@ -107,7 +109,7 @@ class sspmod_core_Auth_Process_Cardinality extends \SimpleSAML\Auth\ProcessingFi
             $entityid = $request['Source']['entityid'];
         }
         if (in_array($entityid, $this->ignoreEntities, true)) {
-            SimpleSAML\Logger::debug('Cardinality: Ignoring assertions from '.$entityid);
+            \SimpleSAML\Logger::debug('Cardinality: Ignoring assertions from '.$entityid);
             return;
         }
 
@@ -123,7 +125,7 @@ class sspmod_core_Auth_Process_Cardinality extends \SimpleSAML\Auth\ProcessingFi
             /* minimum cardinality */
             if (count($v) < $this->cardinality[$k]['min']) {
                 if ($this->cardinality[$k]['warn']) {
-                    SimpleSAML\Logger::warning(sprintf(
+                    \SimpleSAML\Logger::warning(sprintf(
                         'Cardinality: attribute %s from %s does not meet minimum cardinality of %d (%d)',
                         $k, $entityid, $this->cardinality[$k]['min'], count($v)
                     ));
@@ -136,7 +138,7 @@ class sspmod_core_Auth_Process_Cardinality extends \SimpleSAML\Auth\ProcessingFi
             /* maximum cardinality */
             if (array_key_exists('max', $this->cardinality[$k]) && count($v) > $this->cardinality[$k]['max']) {
                 if ($this->cardinality[$k]['warn']) {
-                    SimpleSAML\Logger::warning(sprintf(
+                    \SimpleSAML\Logger::warning(sprintf(
                         'Cardinality: attribute %s from %s does not meet maximum cardinality of %d (%d)',
                         $k, $entityid, $this->cardinality[$k]['max'], count($v)
                     ));
@@ -153,7 +155,7 @@ class sspmod_core_Auth_Process_Cardinality extends \SimpleSAML\Auth\ProcessingFi
                 continue;
             }
             if ($this->cardinality[$k]['warn']) {
-                SimpleSAML\Logger::warning(sprintf(
+                \SimpleSAML\Logger::warning(sprintf(
                     'Cardinality: attribute %s from %s is missing',
                     $k, $entityid
                 ));

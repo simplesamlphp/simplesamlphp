@@ -1,5 +1,7 @@
 <?php
 
+namespace SimpleSAML\Module\discopower;
+
 /**
  * This class implements a generic IdP discovery service, for use in various IdP discovery service pages. This should
  * reduce code duplication.
@@ -10,7 +12,7 @@
  * @package SimpleSAMLphp
  */
 
-class sspmod_discopower_PowerIdPDisco extends \SimpleSAML\XHTML\IdPDisco
+class PowerIdPDisco extends \SimpleSAML\XHTML\IdPDisco
 {
     /**
      * The configuration for this instance.
@@ -70,7 +72,7 @@ class sspmod_discopower_PowerIdPDisco extends \SimpleSAML\XHTML\IdPDisco
      */
     protected function log($message)
     {
-        SimpleSAML\Logger::info('PowerIdPDisco.'.$this->instance.': '.$message);
+        \SimpleSAML\Logger::info('PowerIdPDisco.'.$this->instance.': '.$message);
     }
 
 
@@ -133,7 +135,7 @@ class sspmod_discopower_PowerIdPDisco extends \SimpleSAML\XHTML\IdPDisco
         }
 
         foreach ($slist as $tab => $tbslist) {
-            uasort($slist[$tab], array('sspmod_discopower_PowerIdPDisco', 'mcmp'));
+            uasort($slist[$tab], array('\SimpleSAML\Module\discopower\PowerIdPDisco', 'mcmp'));
         }
 
         return $slist;
@@ -188,7 +190,7 @@ class sspmod_discopower_PowerIdPDisco extends \SimpleSAML\XHTML\IdPDisco
 
         try {
             $spmd = $this->metadata->getMetaData($this->spEntityId, 'saml20-sp-remote');
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             return $list;
         }
 
@@ -244,7 +246,7 @@ class sspmod_discopower_PowerIdPDisco extends \SimpleSAML\XHTML\IdPDisco
         $idpList = $this->getIdPList();
         $idpList = $this->idplistStructured($this->filterList($idpList));
         $preferredIdP = $this->getRecommendedIdP();
-        $faventry = NULL;
+        $faventry = null;
         foreach ($idpList AS $tab => $slist) {
             if (!empty($preferredIdP) && array_key_exists($preferredIdP, $slist)) {
                 $faventry = $slist[$preferredIdP];

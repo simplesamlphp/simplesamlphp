@@ -1,10 +1,13 @@
 <?php
+
+namespace SimpleSAML\Module\metarefresh;
+
 /*
  * @author Andreas Åkre Solberg <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
  */
 
-class sspmod_metarefresh_ARP
+class ARP
 {
     /**
      * @var array
@@ -26,10 +29,10 @@ class sspmod_metarefresh_ARP
      */
     private $suffix;
 
-	/**
-	 * Constructor
-	 *
-	 * @param array $metadata
+    /**
+     * Constructor
+     *
+     * @param array $metadata
      * @param string $attributemap
      * @param string $prefix
      * @param string $suffix
@@ -56,7 +59,7 @@ class sspmod_metarefresh_ARP
         include($config->getPathValue('attributemap', 'attributemap/') . $attributemap . '.php');
         // Note that $attributemap was a string before the call to include() and is now an array!
         $this->attributes = $attributemap;
-	}
+    }
 
     /**
      * @param string $name

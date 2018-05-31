@@ -79,7 +79,7 @@ $sc->SubjectConfirmationData->Recipient = $endpoint;
 $sc->SubjectConfirmationData->InResponseTo = $query->getId();
 $assertion->setSubjectConfirmation(array($sc));
 
-sspmod_saml_Message::addSign($idpMetadata, $spMetadata, $assertion);
+\SimpleSAML\Module\saml\Message::addSign($idpMetadata, $spMetadata, $assertion);
 
 $response = new \SAML2\Response();
 $response->setRelayState($query->getRelayState());
@@ -87,7 +87,7 @@ $response->setDestination($endpoint);
 $response->setIssuer($idpEntityId);
 $response->setInResponseTo($query->getId());
 $response->setAssertions(array($assertion));
-sspmod_saml_Message::addSign($idpMetadata, $spMetadata, $response);
+\SimpleSAML\Module\saml\Message::addSign($idpMetadata, $spMetadata, $response);
 
 $binding = new \SAML2\HTTPPost();
 $binding->send($response);

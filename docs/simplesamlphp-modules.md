@@ -77,13 +77,13 @@ hooks
 lib
 :   This directory contains classes which belong to this module.
     All classes must be named in the following pattern:
-    `sspmod_<module name>_<class name>` When looking up the filename of
+    `\SimpleSAML\Module\<module name>\<class name>` When looking up the filename of
     a class, SimpleSAMLphp will search for `<class name>` in the `lib`
     directory. Underscores in the class name will be translated into
     slashes.
 
 :   Thus, if SimpleSAMLphp needs to load a class named
-    `sspmod_example_Auth_Source_Example`, it will load the file named
+    `\SimpleSAML\Module\example\Auth\Source\Example`, it will load the file named
     `modules/example/lib/Auth/Source/Example.php`.
 
 templates

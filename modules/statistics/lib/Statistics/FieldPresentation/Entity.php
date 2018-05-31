@@ -1,6 +1,8 @@
 <?php
 
-class sspmod_statistics_Statistics_FieldPresentation_Entity extends sspmod_statistics_Statistics_FieldPresentation_Base
+namespace SimpleSAML\Module\statistics\Statistics\FieldPresentation;
+
+class Entity extends Base
 {
     public function getPresentation()
     {

@@ -1,6 +1,8 @@
 <?php
 
-class sspmod_portal_Portal
+namespace SimpleSAML\Module\portal;
+
+class Portal
 {
 	private $pages;
 	private $config;
@@ -37,14 +39,14 @@ class sspmod_portal_Portal
 	public function getLoginInfo($translator, $thispage)
     {
 		$info = array('info' => '', 'translator' => $translator, 'thispage' => $thispage);
-		SimpleSAML\Module::callHooks('portalLoginInfo', $info);
+		\SimpleSAML\Module::callHooks('portalLoginInfo', $info);
 		return $info['info'];
 	}
 	
 	public function getMenu($thispage)
     {
 		$config = \SimpleSAML\Configuration::getInstance();
-		$t = new SimpleSAML\Locale\Translate($config);
+		$t = new \SimpleSAML\Locale\Translate($config);
 		$tabset = $this->getTabset($thispage);
 		$logininfo = $this->getLoginInfo($t, $thispage);
 		$text = '';

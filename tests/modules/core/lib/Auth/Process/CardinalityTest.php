@@ -23,7 +23,7 @@ class Test_Core_Auth_Process_CardinalityTest extends \PHPUnit_Framework_TestCase
     {
         $_SERVER['SERVER_PROTOCOL'] = 'HTTP/1.1';
         $_SERVER['REQUEST_METHOD'] = 'GET';
-        $filter = new sspmod_core_Auth_Process_Cardinality($config, null, $this->http);
+        $filter = new \SimpleSAML\Module\core\Auth\Process\Cardinality($config, null, $this->http);
         $filter->process($request);
         return $request;
     }

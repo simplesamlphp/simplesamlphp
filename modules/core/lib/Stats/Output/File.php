@@ -1,12 +1,14 @@
 <?php
 
+namespace SimpleSAML\Module\core\Stats\Output;
+
 /**
  * Statistics logger that writes to a set of log files
  *
  * @package SimpleSAMLphp
  */
 
-class sspmod_core_Stats_Output_File extends \SimpleSAML\Stats\Output
+class File extends \SimpleSAML\Stats\Output
 {
 	/**
 	 * The log directory.
@@ -37,10 +39,10 @@ class sspmod_core_Stats_Output_File extends \SimpleSAML\Stats\Output
 
 		$this->logDir = $config->getPathValue('directory');
 		if ($this->logDir === NULL) {
-			throw new Exception('Missing "directory" option for core:File');
+			throw new \Exception('Missing "directory" option for core:File');
 		}
 		if (!is_dir($this->logDir)) {
-			throw new Exception('Could not find log directory: ' . var_export($this->logDir, TRUE));
+			throw new \Exception('Could not find log directory: ' . var_export($this->logDir, TRUE));
 		}
 
 	}

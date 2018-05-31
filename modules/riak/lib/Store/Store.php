@@ -1,5 +1,7 @@
 <?php
 
+namespace SimpleSAML\Module\riak\Store;
+
 /*
  * Copyright (c) 2012 The University of Queensland
  *
@@ -22,7 +24,7 @@
  * and Information Technology.
  */
 
-class sspmod_riak_Store_Store extends SimpleSAML\Store
+class Store extends \SimpleSAML\Store
 {
     public $client;
     public $bucket;

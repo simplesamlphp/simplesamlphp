@@ -1,9 +1,11 @@
 <?php
+
 /**
  * Hook to run a cron job.
  *
  * @param array &$croninfo  Output
  */
+
 function statistics_hook_cron(&$croninfo)
 {
     assert(is_array($croninfo));
@@ -25,16 +27,16 @@ function statistics_hook_cron(&$croninfo)
     }
 	
     try {
-        $aggregator = new sspmod_statistics_Aggregator();
+        $aggregator = new \SimpleSAML\Module\statistics\Aggregator();
         $results = $aggregator->aggregate();
         if (empty($results)) {
-            SimpleSAML\Logger::notice('Output from statistics aggregator was empty.');
+            \SimpleSAML\Logger::notice('Output from statistics aggregator was empty.');
         } else {
             $aggregator->store($results);
         }
-    } catch (Exception $e) {
+    } catch (\Exception $e) {
         $message = 'Loganalyzer threw exception: ' . $e->getMessage();
-        SimpleSAML\Logger::warning($message);
+        \SimpleSAML\Logger::warning($message);
         $croninfo['summary'][] = $message;
     }
 }

@@ -2,7 +2,7 @@
 
 /**
  * This page shows a username/password/organization login form, and passes information from
- * itto the sspmod_core_Auth_UserPassBase class, which is a generic class for
+ * into the \SimpleSAML\Module\core\Auth\UserPassBase class, which is a generic class for
  * username/password/organization authentication.
  *
  * @author Olav Morken, UNINETT AS.
@@ -14,14 +14,14 @@ if (!array_key_exists('AuthState', $_REQUEST)) {
 	throw new \SimpleSAML\Error\BadRequest('Missing AuthState parameter.');
 }
 $authStateId = $_REQUEST['AuthState'];
-$state = \SimpleSAML\Auth\State::loadState($authStateId, sspmod_core_Auth_UserPassOrgBase::STAGEID);
+$state = \SimpleSAML\Auth\State::loadState($authStateId, \SimpleSAML\Module\core\Auth\UserPassOrgBase::STAGEID);
 
-$source = \SimpleSAML\Auth\Source::getById($state[sspmod_core_Auth_UserPassOrgBase::AUTHID]);
+$source = \SimpleSAML\Auth\Source::getById($state[\SimpleSAML\Module\core\Auth\UserPassOrgBase::AUTHID]);
 if ($source === NULL) {
-	throw new Exception('Could not find authentication source with id ' . $state[sspmod_core_Auth_UserPassOrgBase::AUTHID]);
+	throw new \Exception('Could not find authentication source with id ' . $state[\SimpleSAML\Module\core\Auth\UserPassOrgBase::AUTHID]);
 }
 
-$organizations = \sspmod_core_Auth_UserPassOrgBase::listOrganizations($authStateId);
+$organizations = \SimpleSAML\Module\core\Auth\UserPassOrgBase::listOrganizations($authStateId);
 
 if (array_key_exists('username', $_REQUEST)) {
 	$username = $_REQUEST['username'];
@@ -61,7 +61,7 @@ if ($organizations === NULL || !empty($organization)) {
 		}
 
 		try {
-			\sspmod_core_Auth_UserPassOrgBase::handleLogin($authStateId, $username, $password, $organization);
+			\SimpleSAML\Module\core\Auth\UserPassOrgBase::handleLogin($authStateId, $username, $password, $organization);
 		} catch (\SimpleSAML\Error\Error $e) {
 			// Login failed. Extract error code and parameters, to display the error
 			$errorCode = $e->getErrorCode();

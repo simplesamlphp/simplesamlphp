@@ -11,6 +11,7 @@ use SimpleSAML\Logger;
  * @author Jaime Pérez Crespo, UNINETT AS <jaime.perez@uninett.no>
  * @package SimpleSAMLphp
  */
+
 class FilterScopes extends \SimpleSAML\Auth\ProcessingFilter
 {
     /**

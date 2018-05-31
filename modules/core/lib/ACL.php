@@ -1,11 +1,14 @@
 <?php
 
+namespace SimpleSAML\Module\core;
+
 /**
  * Generic library for access control lists.
  *
  * @package SimpleSAMLphp
  */
-class sspmod_core_ACL {
+
+class ACL {
 
 	/**
 	 * The access control list, as an array.

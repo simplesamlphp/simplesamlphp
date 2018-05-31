@@ -1,11 +1,14 @@
 <?php
 
+namespace SimpleSAML\Module\saml;
+
 /**
  * Class for representing a SAML 2 error.
  *
  * @package SimpleSAMLphp
  */
-class sspmod_saml_Error extends \SimpleSAML\Error\Exception
+
+class Error extends \SimpleSAML\Error\Exception
 {
     /**
      * The top-level status code.
@@ -35,9 +38,9 @@ class sspmod_saml_Error extends \SimpleSAML\Error\Exception
      * @param string $status  The top-level status code.
      * @param string|null $subStatus  The second-level status code. Can be NULL, in which case there is no second-level status code.
      * @param string|null $statusMessage  The status message. Can be NULL, in which case there is no status message.
-     * @param Exception|null $cause  The cause of this exception. Can be NULL.
+     * @param \Exception|null $cause  The cause of this exception. Can be NULL.
      */
-    public function __construct($status, $subStatus = null, $statusMessage = null, Exception $cause = null)
+    public function __construct($status, $subStatus = null, $statusMessage = null, \Exception $cause = null)
     {
         assert(is_string($status));
         assert($subStatus === null || is_string($subStatus));
@@ -98,11 +101,11 @@ class sspmod_saml_Error extends \SimpleSAML\Error\Exception
      * status codes from an arbitrary exception.
      *
      * @param \SimpleSAML\Error\Exception $exception  The original exception.
-     * @return sspmod_saml_Error  The new exception.
+     * @return \SimpleSAML\Module\saml\Error  The new exception.
      */
     public static function fromException(\SimpleSAML\Error\Exception $exception)
     {
-        if ($exception instanceof sspmod_saml_Error) {
+        if ($exception instanceof \SimpleSAML\Module\saml\Error) {
             // Return the original exception unchanged
             return $exception;
 
@@ -142,7 +145,7 @@ class sspmod_saml_Error extends \SimpleSAML\Error\Exception
      * If it is unable to create a more specific exception, it will return the current
      * object.
      *
-     * @see sspmod_saml_Error::fromException()
+     * @see \SimpleSAML\Module\saml\Error::fromException()
      *
      * @return \SimpleSAML\Error\Exception  An exception representing this error.
      */
@@ -154,7 +157,7 @@ class sspmod_saml_Error extends \SimpleSAML\Error\Exception
             case \SAML2\Constants::STATUS_RESPONDER:
                 switch ($this->subStatus) {
                     case \SAML2\Constants::STATUS_NO_PASSIVE:
-                        $e = new SimpleSAML\Module\saml\Error\NoPassive(
+                        $e = new \SimpleSAML\Module\saml\Error\NoPassive(
                             \SAML2\Constants::STATUS_RESPONDER,
                             $this->statusMessage
                         );

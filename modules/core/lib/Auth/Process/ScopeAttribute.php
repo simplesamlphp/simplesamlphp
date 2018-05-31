@@ -1,12 +1,14 @@
 <?php
 
+namespace SimpleSAML\Module\core\Auth\Process;
+
 /**
  * Add a scoped variant of an attribute.
  *
  * @package SimpleSAMLphp
  */
 
-class sspmod_core_Auth_Process_ScopeAttribute extends \SimpleSAML\Auth\ProcessingFilter
+class ScopeAttribute extends \SimpleSAML\Auth\ProcessingFilter
 {
 	/**
 	 * The attribute we extract the scope from.

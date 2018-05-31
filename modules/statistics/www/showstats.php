@@ -4,7 +4,7 @@ $config = \SimpleSAML\Configuration::getInstance();
 $statconfig = \SimpleSAML\Configuration::getConfig('module_statistics.php');
 $session = \SimpleSAML\Session::getSessionFromRequest();
 
-\sspmod_statistics_AccessCheck::checkAccess($statconfig);
+\SimpleSAML\Module\statistics\AccessCheck::checkAccess($statconfig);
 
 /*
  * Check input parameters
@@ -38,7 +38,7 @@ if ($preferRule2 === '_') {
 /*
  * Create statistics data.
  */
-$ruleset = new \sspmod_statistics_Ruleset($statconfig);
+$ruleset = new \SimpleSAML\Module\statistics\Ruleset($statconfig);
 $statrule = $ruleset->getRule($preferRule);
 $rule = $statrule->getRuleID();
 
@@ -109,7 +109,7 @@ if (isset($preferRule2)) {
 
 $dimx = $statconfig->getValue('dimension.x', 800);
 $dimy = $statconfig->getValue('dimension.y', 350);
-$grapher = new \sspmod_statistics_Graph_GoogleCharts($dimx, $dimy);
+$grapher = new \SimpleSAML\Module\statistics\Graph\GoogleCharts($dimx, $dimy);
 
 $t->data['imgurl'] = $grapher->show($axis['axis'], $axis['axispos'], $datasets, $maxes);
 if (isset($piedata)) {

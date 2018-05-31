@@ -1,12 +1,14 @@
 <?php
 
+namespace SimpleSAML\Module\cdc;
+
 /**
  * CDC server class.
  *
  * @package SimpleSAMLphp
  */
 
-class sspmod_cdc_Server
+class Server
 {
     /**
      * The domain.
@@ -117,7 +119,7 @@ class sspmod_cdc_Server
         }
 
         $domain = $request['domain'];
-        $server = new sspmod_cdc_Server($domain);
+        $server = new Server($domain);
 
         $server->validate('CDCRequest');
         $server->handleRequest($request);
@@ -136,7 +138,7 @@ class sspmod_cdc_Server
         }
         $op = (string)$request['op'];
 
-        SimpleSAML\Logger::info('Received CDC request with "op": ' . var_export($op, true));
+        \SimpleSAML\Logger::info('Received CDC request with "op": ' . var_export($op, true));
 
         if (!isset($request['return'])) {
             throw new \SimpleSAML\Error\BadRequest('Missing "return" in CDC request.');
@@ -371,7 +373,7 @@ class sspmod_cdc_Server
             $idp = base64_decode($idp);
             if ($idp === false) {
                 // Not properly base64 encoded
-                SimpleSAML\Logger::warning('CDC - Invalid base64-encoding of CDC entry.');
+                \SimpleSAML\Logger::warning('CDC - Invalid base64-encoding of CDC entry.');
                 return array();
             }
         }

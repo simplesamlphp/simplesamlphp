@@ -16,7 +16,7 @@ $source = \SimpleSAML\Auth\Source::getById($sourceId);
 if ($source === null) {
     throw new \Exception('Could not find authentication source with id ' . $sourceId);
 }
-if (!($source instanceof sspmod_saml_Auth_Source_SP)) {
+if (!($source instanceof \SimpleSAML\Module\saml\Auth\Source\SP)) {
     throw new \SimpleSAML\Error\Exception('Source type changed?');
 }
 
@@ -45,7 +45,7 @@ $metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
 $idpMetadata = $source->getIdPMetadata($idpEntityId);
 $spMetadata = $source->getMetadata();
 
-sspmod_saml_Message::validateMessage($idpMetadata, $spMetadata, $message);
+\SimpleSAML\Module\saml\Message::validateMessage($idpMetadata, $spMetadata, $message);
 
 $destination = $message->getDestination();
 if ($destination !== null && $destination !== \SimpleSAML\Utils\HTTP::getSelfURLNoQuery()) {
@@ -61,7 +61,7 @@ if ($message instanceof \SAML2\LogoutResponse) {
     }
 
     if (!$message->isSuccess()) {
-        \SimpleSAML\Logger::warning('Unsuccessful logout. Status was: ' . sspmod_saml_Message::getResponseError($message));
+        \SimpleSAML\Logger::warning('Unsuccessful logout. Status was: ' . \SimpleSAML\Module\saml\Message::getResponseError($message));
     }
 
     $state = \SimpleSAML\Auth\State::loadState($relayState, 'saml:slosent');
@@ -75,12 +75,12 @@ if ($message instanceof \SAML2\LogoutResponse) {
 
     if ($message->isNameIdEncrypted()) {
         try {
-            $keys = sspmod_saml_Message::getDecryptionKeys($idpMetadata, $spMetadata);
+            $keys = \SimpleSAML\Module\saml\Message::getDecryptionKeys($idpMetadata, $spMetadata);
         } catch (\Exception $e) {
             throw new \SimpleSAML\Error\Exception('Error decrypting NameID: ' . $e->getMessage());
         }
 
-        $blacklist = sspmod_saml_Message::getBlacklistedAlgorithms($idpMetadata, $spMetadata);
+        $blacklist = \SimpleSAML\Module\saml\Message::getBlacklistedAlgorithms($idpMetadata, $spMetadata);
 
         $lastException = null;
         foreach ($keys as $i => $key) {
@@ -102,7 +102,7 @@ if ($message instanceof \SAML2\LogoutResponse) {
     $nameId = $message->getNameId();
     $sessionIndexes = $message->getSessionIndexes();
 
-    $numLoggedOut = sspmod_saml_SP_LogoutStore::logoutSessions($sourceId, $nameId, $sessionIndexes);
+    $numLoggedOut = \SimpleSAML\Module\saml\SP\LogoutStore::logoutSessions($sourceId, $nameId, $sessionIndexes);
     if ($numLoggedOut === false) {
         /* This type of logout was unsupported. Use the old method. */
         $source->handleLogout($idpEntityId);
@@ -110,7 +110,7 @@ if ($message instanceof \SAML2\LogoutResponse) {
     }
 
     /* Create and send response. */
-    $lr = sspmod_saml_Message::buildLogoutResponse($spMetadata, $idpMetadata);
+    $lr = \SimpleSAML\Module\saml\Message::buildLogoutResponse($spMetadata, $idpMetadata);
     $lr->setRelayState($message->getRelayState());
     $lr->setInResponseTo($message->getId());
 

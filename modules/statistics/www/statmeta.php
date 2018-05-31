@@ -3,9 +3,9 @@
 $config = \SimpleSAML\Configuration::getInstance();
 $statconfig = \SimpleSAML\Configuration::getConfig('module_statistics.php');
 
-\sspmod_statistics_AccessCheck::checkAccess($statconfig);
+\SimpleSAML\Module\statistics\AccessCheck::checkAccess($statconfig);
 
-$aggr = new sspmod_statistics_Aggregator();
+$aggr = new \SimpleSAML\Module\statistics\Aggregator();
 $aggr->loadMetadata();
 $metadata = $aggr->getMetadata();
 

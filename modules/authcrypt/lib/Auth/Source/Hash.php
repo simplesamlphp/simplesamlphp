@@ -1,5 +1,7 @@
 <?php
 
+namespace SimpleSAML\Module\authcrypt\Auth\Source;
+
 /**
  * Authentication source for username & hashed password.
  *
@@ -9,7 +11,8 @@
  * @author Dyonisius Visser, TERENA.
  * @package SimpleSAMLphp
  */
-class sspmod_authcrypt_Auth_Source_Hash extends sspmod_core_Auth_UserPassBase
+
+class Hash extends \SimpleSAML\Module\core\Auth\UserPassBase
 {
     /**
      * Our users, stored in an associative array. The key of the array is "<username>:<passwordhash>",
@@ -53,7 +56,7 @@ class sspmod_authcrypt_Auth_Source_Hash extends sspmod_core_Auth_UserPassBase
 
             try {
                 $attributes = \SimpleSAML\Utils\Attributes::normalizeAttributesArray($attributes);
-            } catch (Exception $e) {
+            } catch (\Exception $e) {
                 throw new \Exception('Invalid attributes for user '.$username.
                     ' in authentication source '.$this->authId.': '.
                     $e->getMessage());

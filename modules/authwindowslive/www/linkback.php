@@ -7,7 +7,7 @@
 if (!array_key_exists('state', $_REQUEST)) {
     throw new \Exception('Lost OAuth Client State');
 }
-$state = \SimpleSAML\Auth\State::loadState($_REQUEST['state'], sspmod_authwindowslive_Auth_Source_LiveID::STAGE_INIT);
+$state = \SimpleSAML\Auth\State::loadState($_REQUEST['state'], \SimpleSAML\Module\authwindowslive\Auth\Source\LiveID::STAGE_INIT);
 
 // http://msdn.microsoft.com/en-us/library/ff749771.aspx
 if (array_key_exists('code', $_REQUEST)) {
@@ -33,8 +33,8 @@ if (array_key_exists('code', $_REQUEST)) {
 }
 
 // find authentication source
-assert(array_key_exists(sspmod_authwindowslive_Auth_Source_LiveID::AUTHID, $state));
-$sourceId = $state[sspmod_authwindowslive_Auth_Source_LiveID::AUTHID];
+assert(array_key_exists(\SimpleSAML\Module\authwindowslive\Auth\Source\LiveID::AUTHID, $state));
+$sourceId = $state[\SimpleSAML\Module\authwindowslive\Auth\Source\LiveID::AUTHID];
 
 $source = \SimpleSAML\Auth\Source::getById($sourceId);
 if ($source === null) {

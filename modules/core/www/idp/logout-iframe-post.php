@@ -26,7 +26,7 @@ $metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
 $idpMetadata = $idp->getConfig();
 $spMetadata = $metadata->getMetaDataConfig($association['saml:entityID'], 'saml20-sp-remote');
 
-$lr = sspmod_saml_Message::buildLogoutRequest($idpMetadata, $spMetadata);
+$lr = \SimpleSAML\Module\saml\Message::buildLogoutRequest($idpMetadata, $spMetadata);
 $lr->setSessionIndex($association['saml:SessionIndex']);
 $lr->setNameId($association['saml:NameID']);
 
@@ -41,7 +41,7 @@ if ($encryptNameId === null) {
     $encryptNameId = $idpMetadata->getBoolean('nameid.encryption', false);
 }
 if ($encryptNameId) {
-    $lr->encryptNameId(sspmod_saml_Message::getEncryptionKey($spMetadata));
+    $lr->encryptNameId(\SimpleSAML\Module\saml\Message::getEncryptionKey($spMetadata));
 }
 
 \SimpleSAML\Stats::log('saml:idp:LogoutRequest:sent', array(

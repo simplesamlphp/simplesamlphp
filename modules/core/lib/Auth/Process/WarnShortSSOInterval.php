@@ -1,12 +1,14 @@
 <?php
 
+namespace SimpleSAML\Module\core\Auth\Process;
+
 /**
  * Give a warning to the user if we receive multiple requests in a short time.
  *
  * @package SimpleSAMLphp
  */
 
-class sspmod_core_Auth_Process_WarnShortSSOInterval extends \SimpleSAML\Auth\ProcessingFilter
+class WarnShortSSOInterval extends \SimpleSAML\Auth\ProcessingFilter
 {
 	/**
 	 * Process a authentication response.
@@ -40,7 +42,7 @@ class sspmod_core_Auth_Process_WarnShortSSOInterval extends \SimpleSAML\Auth\Pro
 			$entityId = 'UNKNOWN';
 		}
 
-		SimpleSAML\Logger::warning('WarnShortSSOInterval: Only ' . $timeDelta .
+		\SimpleSAML\Logger::warning('WarnShortSSOInterval: Only ' . $timeDelta .
 			' seconds since last SSO for this user from the SP ' .
 			var_export($entityId, TRUE));
 

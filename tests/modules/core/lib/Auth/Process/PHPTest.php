@@ -17,7 +17,7 @@ class Test_Core_Auth_Process_PHP extends TestCase
      */
     private static function processFilter(array $config, array $request)
     {
-        $filter = new sspmod_core_Auth_Process_PHP($config, null);
+        $filter = new \SimpleSAML\Module\core\Auth\Process\PHP($config, null);
         @$filter->process($request);
         return $request;
     }
@@ -33,7 +33,7 @@ class Test_Core_Auth_Process_PHP extends TestCase
             "\SimpleSAML\Error\Exception",
             "core:PHP: missing mandatory configuration option 'code'."
         );
-        new sspmod_core_Auth_Process_PHP($config, null);
+        new \SimpleSAML\Module\core\Auth\Process\PHP($config, null);
     }
 
 

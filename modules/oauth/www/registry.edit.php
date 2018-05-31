@@ -5,7 +5,7 @@ $config = \SimpleSAML\Configuration::getInstance();
 $session = \SimpleSAML\Session::getSessionFromRequest();
 $oauthconfig = \SimpleSAML\Configuration::getOptionalConfig('module_oauth.php');
 
-$store = new \sspmod_core_Storage_SQLPermanentStorage('oauth');
+$store = new \SimpleSAML\Module\core\Storage\SQLPermanentStorage('oauth');
 
 $authsource = "admin";	// force admin to authenticate as registry maintainer
 $useridattr = $oauthconfig->getValue('useridattr', 'user');
@@ -14,7 +14,7 @@ if ($session->isValid($authsource)) {
 	$attributes = $session->getAuthData($authsource, 'Attributes');
 	// Check if userid exists
 	if (!isset($attributes[$useridattr])) 
-		throw new Exception('User ID is missing');
+		throw new \Exception('User ID is missing');
 	$userid = $attributes[$useridattr][0];
 } else {
 	$as = \SimpleSAML\Auth\Source::getById($authsource);
@@ -41,7 +41,7 @@ if (array_key_exists('editkey', $_REQUEST)) {
 	);
 }
 
-$editor = new sspmod_oauth_Registry();
+$editor = new \SimpleSAML\Module\oauth\Registry();
 
 if (isset($_POST['submit'])) {
 	$editor->checkForm($_POST);

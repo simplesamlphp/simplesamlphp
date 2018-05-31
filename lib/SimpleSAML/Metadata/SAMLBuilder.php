@@ -122,7 +122,7 @@ class SAMLBuilder
 
         $metadata = \SimpleSAML\Configuration::loadFromArray($metadata, $metadata['entityid']);
         $defaultEndpoint = $metadata->getDefaultEndpoint('SingleSignOnService');
-        $e = new \sspmod_adfs_SAML2_XML_fed_SecurityTokenServiceType();
+        $e = new \SimpleSAML\Module\adfs\SAML2\XML\fed\SecurityTokenServiceType();
         $e->Location = $defaultEndpoint['Location'];
 
         $this->addCertificate($e, $metadata);

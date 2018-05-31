@@ -64,5 +64,5 @@ $artifactResponse = new \SAML2\ArtifactResponse();
 $artifactResponse->setIssuer($idpEntityId);
 $artifactResponse->setInResponseTo($request->getId());
 $artifactResponse->setAny($responseXML);
-sspmod_saml_Message::addSign($idpMetadata, $spMetadata, $artifactResponse);
+\SimpleSAML\Module\saml\Message::addSign($idpMetadata, $spMetadata, $artifactResponse);
 $binding->send($artifactResponse);

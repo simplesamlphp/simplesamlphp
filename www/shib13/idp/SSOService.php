@@ -16,6 +16,6 @@ require_once '../../_include.php';
 $metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
 $idpEntityId = $metadata->getMetaDataCurrentEntityID('shib13-idp-hosted');
 $idp = \SimpleSAML\IdP::getById('saml1:' . $idpEntityId);
-\sspmod_saml_IdP_SAML1::receiveAuthnRequest($idp);
+\SimpleSAML\Module\saml\IdP\SAML1::receiveAuthnRequest($idp);
 
 assert(false);

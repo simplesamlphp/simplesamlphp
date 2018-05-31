@@ -6,18 +6,18 @@
 
 // For backwards compatability look for AuthState first
 if (array_key_exists('AuthState', $_REQUEST) && !empty($_REQUEST['AuthState'])) {
-    $state = \SimpleSAML\Auth\State::loadState($_REQUEST['AuthState'], sspmod_authfacebook_Auth_Source_Facebook::STAGE_INIT);
+    $state = \SimpleSAML\Auth\State::loadState($_REQUEST['AuthState'], \SimpleSAML\Module\authfacebook\Auth\Source\Facebook::STAGE_INIT);
 } elseif (array_key_exists('state', $_REQUEST) && !empty($_REQUEST['state'])) {
-    $state = \SimpleSAML\Auth\State::loadState($_REQUEST['state'], sspmod_authfacebook_Auth_Source_Facebook::STAGE_INIT);
+    $state = \SimpleSAML\Auth\State::loadState($_REQUEST['state'], \SimpleSAML\Module\authfacebook\Auth\Source\Facebook::STAGE_INIT);
 } else {
     throw new \SimpleSAML\Error\BadRequest('Missing state parameter on facebook linkback endpoint.');
 }
 
 // Find authentication source
-if (!array_key_exists(sspmod_authfacebook_Auth_Source_Facebook::AUTHID, $state)) {
-    throw new \SimpleSAML\Error\BadRequest('No data in state for ' . sspmod_authfacebook_Auth_Source_Facebook::AUTHID);
+if (!array_key_exists(\SimpleSAML\Module\authfacebook\Auth\Source\Facebook::AUTHID, $state)) {
+    throw new \SimpleSAML\Error\BadRequest('No data in state for ' . \SimpleSAML\Module\authfacebook\Auth\Source\Facebook::AUTHID);
 }
-$sourceId = $state[sspmod_authfacebook_Auth_Source_Facebook::AUTHID];
+$sourceId = $state[\SimpleSAML\Module\authfacebook\Auth\Source\Facebook::AUTHID];
 
 $source = \SimpleSAML\Auth\Source::getById($sourceId);
 if ($source === null) {

@@ -1,12 +1,14 @@
 <?php
 
+namespace SimpleSAML\Module\core\Stats\Output;
+
 /**
  * Statistics logger that writes to the default logging handler.
  *
  * @package SimpleSAMLphp
  */
 
-class sspmod_core_Stats_Output_Log extends \SimpleSAML\Stats\Output
+class Log extends \SimpleSAML\Stats\Output
 {
 	/**
 	 * The logging function we should call.

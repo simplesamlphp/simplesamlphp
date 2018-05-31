@@ -1,12 +1,14 @@
 <?php
 
+namespace SimpleSAML\Module\saml\Auth\Process;
 
 /**
  * Filter for setting the AuthnContextClassRef in the response.
  *
  * @package SimpleSAMLphp
  */
-class sspmod_saml_Auth_Process_AuthnContextClassRef extends \SimpleSAML\Auth\ProcessingFilter
+
+class AuthnContextClassRef extends \SimpleSAML\Auth\ProcessingFilter
 {
     /**
      * The URI we should set as the AuthnContextClassRef in the login response.

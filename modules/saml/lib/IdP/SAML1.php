@@ -1,5 +1,7 @@
 <?php
 
+namespace SimpleSAML\Module\saml\IdP;
+
 use SimpleSAML\Bindings\Shib13\HTTPPost;
 use SimpleSAML\Utils\HTTP;
 
@@ -9,7 +11,7 @@ use SimpleSAML\Utils\HTTP;
  * @package SimpleSAMLphp
  */
 
-class sspmod_saml_IdP_SAML1
+class SAML1
 {
     /**
      * Send a response to the SP.
@@ -28,7 +30,7 @@ class sspmod_saml_IdP_SAML1
         $spMetadata = \SimpleSAML\Configuration::loadFromArray($spMetadata,
             '$metadata[' . var_export($spEntityId, true) . ']');
 
-        SimpleSAML\Logger::info('Sending SAML 1.1 Response to ' . var_export($spEntityId, true));
+        \SimpleSAML\Logger::info('Sending SAML 1.1 Response to ' . var_export($spEntityId, true));
 
         $attributes = $state['Attributes'];
         $shire = $state['saml:shire'];
@@ -125,7 +127,7 @@ class sspmod_saml_IdP_SAML1
             array('cookieTime' => time()));
 
         $state = array(
-            'Responder' => array('sspmod_saml_IdP_SAML1', 'sendResponse'),
+            'Responder' => array('\SimpleSAML\Module\saml\IdP\SAML1', 'sendResponse'),
             'SPMetadata' => $spMetadata->toArray(),
             \SimpleSAML\Auth\State::RESTART => $sessionLostURL,
             'saml:shire' => $shire,

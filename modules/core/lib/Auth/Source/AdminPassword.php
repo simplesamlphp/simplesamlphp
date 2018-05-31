@@ -1,5 +1,7 @@
 <?php
 
+namespace SimpleSAML\Module\core\Auth\Source;
+
 /**
  * Authentication source which verifies the password against
  * the 'auth.adminpassword' configuration option.
@@ -7,7 +9,7 @@
  * @package SimpleSAMLphp
  */
 
-class sspmod_core_Auth_Source_AdminPassword extends sspmod_core_Auth_UserPassBase
+class AdminPassword extends \SimpleSAML\Module\core\Auth\UserPassBase
 {
 	/**
 	 * Constructor for this authentication source.

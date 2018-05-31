@@ -23,7 +23,7 @@ try {
 
     // success! Try to continue with reauthentication, since we no longer have a valid session here
     $idp = \SimpleSAML\IdP::getById($state['core:IdP']);
-    \sspmod_saml_Auth_Source_SP::reauthPostLogout($idp, $state);
+    \SimpleSAML\Module\saml\Auth\Source\SP::reauthPostLogout($idp, $state);
 }
 
 if (isset($_POST['cancel'])) {
@@ -39,8 +39,8 @@ if (isset($_POST['cancel'])) {
 
 if (isset($_POST['continue'])) {
     // log the user out before being able to login again
-    $as = \SimpleSAML\Auth\Source::getById($state['saml:sp:AuthId'], 'sspmod_saml_Auth_Source_SP');
-    /** @var \sspmod_saml_Auth_Source_SP $as */
+    $as = \SimpleSAML\Auth\Source::getById($state['saml:sp:AuthId'], '\SimpleSAML\Module\saml\Auth\Source\SP');
+    /** @var \SimpleSAML\Module\saml\Auth\Source\SP $as */
     $as->reauthLogout($state);
 }
 

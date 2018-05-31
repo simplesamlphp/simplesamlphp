@@ -482,7 +482,7 @@ class Utilities
     /**
      * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Utils\XML::formatDOMElement() instead.
      */
-    public static function formatDOMElement(DOMElement $root, $indentBase = '')
+    public static function formatDOMElement(\DOMElement $root, $indentBase = '')
     {
         \SimpleSAML\Utils\XML::formatDOMElement($root, $indentBase);
     }

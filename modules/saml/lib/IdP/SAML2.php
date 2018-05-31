@@ -1,5 +1,7 @@
 <?php
 
+namespace SimpleSAML\Module\saml\IdP;
+
 use RobRichards\XMLSecLibs\XMLSecurityKey;
 use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
@@ -10,7 +12,8 @@ use SAML2\SOAP;
  *
  * @package SimpleSAMLphp
  */
-class sspmod_saml_IdP_SAML2
+
+class SAML2
 {
     /**
      * Send a response to the SP.
@@ -52,7 +55,7 @@ class sspmod_saml_IdP_SAML2
         // create the session association (for logout)
         $association = array(
             'id'                => 'saml:'.$spEntityId,
-            'Handler'           => 'sspmod_saml_IdP_SAML2',
+            'Handler'           => '\SimpleSAML\Modulesaml\IdP\SAML2',
             'Expires'           => $assertion->getSessionNotOnOrAfter(),
             'saml:entityID'     => $spEntityId,
             'saml:NameID'       => $state['saml:idp:NameID'],
@@ -117,7 +120,7 @@ class sspmod_saml_IdP_SAML2
 
         $idpMetadata = $idp->getConfig();
 
-        $error = \sspmod_saml_Error::fromException($exception);
+        $error = \SimpleSAML\Module\saml\Error::fromException($exception);
 
         Logger::warning("Returning error to SP with entity ID '".var_export($spEntityId, true)."'.");
         $exception->log(Logger::WARNING);
@@ -333,7 +336,7 @@ class sspmod_saml_IdP_SAML2
             }
             $spMetadata = $metadata->getMetaDataConfig($spEntityId, 'saml20-sp-remote');
 
-            sspmod_saml_Message::validateMessage($spMetadata, $idpMetadata, $request);
+            \SimpleSAML\Module\saml\Message::validateMessage($spMetadata, $idpMetadata, $request);
 
             $relayState = $request->getRelayState();
 
@@ -411,8 +414,8 @@ class sspmod_saml_IdP_SAML2
         );
 
         $state = array(
-            'Responder'                                   => array('sspmod_saml_IdP_SAML2', 'sendResponse'),
-            \SimpleSAML\Auth\State::EXCEPTION_HANDLER_FUNC => array('sspmod_saml_IdP_SAML2', 'handleAuthError'),
+            'Responder'                                   => array('\SimpleSAML\Module\saml\IdP\SAML2', 'sendResponse'),
+            \SimpleSAML\Auth\State::EXCEPTION_HANDLER_FUNC => array('\SimpleSAML\Module\saml\IdP\SAML2', 'handleAuthError'),
             \SimpleSAML\Auth\State::RESTART                => $sessionLostURL,
 
             'SPMetadata'                  => $spMetadata->toArray(),
@@ -507,7 +510,7 @@ class sspmod_saml_IdP_SAML2
         $idpMetadata = $idp->getConfig();
         $spMetadata = $metadata->getMetaDataConfig($spEntityId, 'saml20-sp-remote');
 
-        $lr = sspmod_saml_Message::buildLogoutResponse($idpMetadata, $spMetadata);
+        $lr = \SimpleSAML\Module\saml\Message::buildLogoutResponse($idpMetadata, $spMetadata);
         $lr->setInResponseTo($state['saml:RequestId']);
         $lr->setRelayState($state['saml:RelayState']);
 
@@ -568,7 +571,7 @@ class sspmod_saml_IdP_SAML2
         $idpMetadata = $idp->getConfig();
         $spMetadata = $metadata->getMetaDataConfig($spEntityId, 'saml20-sp-remote');
 
-        sspmod_saml_Message::validateMessage($spMetadata, $idpMetadata, $message);
+        \SimpleSAML\Module\saml\Message::validateMessage($spMetadata, $idpMetadata, $message);
 
         if ($message instanceof \SAML2\LogoutResponse) {
             Logger::info('Received SAML 2.0 LogoutResponse from: '.var_export($spEntityId, true));
@@ -584,7 +587,7 @@ class sspmod_saml_IdP_SAML2
             $relayState = $message->getRelayState();
 
             if (!$message->isSuccess()) {
-                $logoutError = sspmod_saml_Message::getResponseError($message);
+                $logoutError = \SimpleSAML\Module\saml\Message::getResponseError($message);
                 Logger::warning('Unsuccessful logout. Status was: '.$logoutError);
             } else {
                 $logoutError = null;
@@ -604,7 +607,7 @@ class sspmod_saml_IdP_SAML2
             Logger::stats('saml20-idp-SLO spinit '.$spStatsId.' '.$idpMetadata->getString('entityid'));
 
             $state = array(
-                'Responder'       => array('sspmod_saml_IdP_SAML2', 'sendLogoutResponse'),
+                'Responder'       => array('\SimpleSAML\Module\saml\IdP\SAML2', 'sendLogoutResponse'),
                 'saml:SPEntityId' => $spEntityId,
                 'saml:RelayState' => $message->getRelayState(),
                 'saml:RequestId'  => $message->getId(),
@@ -648,7 +651,7 @@ class sspmod_saml_IdP_SAML2
             if ($relayState !== null) {
                 $params['RelayState'] = $relayState;
             }
-            return SimpleSAML\Module::getModuleURL('core/idp/logout-iframe-post.php', $params);
+            return \SimpleSAML\Module::getModuleURL('core/idp/logout-iframe-post.php', $params);
         }
 
         $lr = self::buildLogoutRequest($idpMetadata, $spMetadata, $association, $relayState);
@@ -672,7 +675,7 @@ class sspmod_saml_IdP_SAML2
         $metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
         try {
             return $metadata->getMetaDataConfig($association['saml:entityID'], 'saml20-sp-remote');
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             return Configuration::loadFromArray(array(), 'Unknown SAML 2 entity.');
         }
     }
@@ -705,7 +708,7 @@ class sspmod_saml_IdP_SAML2
                 $idpEntityId = $idpMetadata->getString('entityid');
                 $spEntityId = $spMetadata->getString('entityid');
 
-                $secretSalt = SimpleSAML\Utils\Config::getSecretSalt();
+                $secretSalt = \SimpleSAML\Utils\Config::getSecretSalt();
 
                 $uidData = 'uidhashbase'.$secretSalt;
                 $uidData .= strlen($idpEntityId).':'.$idpEntityId;
@@ -781,7 +784,7 @@ class sspmod_saml_IdP_SAML2
                 }
 
                 $attrval = $value;
-                if ($value instanceof DOMNodeList) {
+                if ($value instanceof \DOMNodeList) {
                     $attrval = new \SAML2\XML\saml\AttributeValue($value->item(0)->parentNode);
                 }
 
@@ -797,7 +800,7 @@ class sspmod_saml_IdP_SAML2
                             $doc = \SAML2\DOMDocumentFactory::fromString('<root>'.$value.'</root>');
                             $value = $doc->firstChild->childNodes;
                         }
-                        assert($value instanceof DOMNodeList || $value instanceof \SAML2\XML\saml\NameID);
+                        assert($value instanceof \DOMNodeList || $value instanceof \SAML2\XML\saml\NameID);
                         break;
                     default:
                         throw new \SimpleSAML\Error\Exception('Invalid encoding for attribute '.
@@ -878,7 +881,7 @@ class sspmod_saml_IdP_SAML2
 
         $a = new \SAML2\Assertion();
         if ($signAssertion) {
-            sspmod_saml_Message::addSign($idpMetadata, $spMetadata, $a);
+            \SimpleSAML\Module\saml\Message::addSign($idpMetadata, $spMetadata, $a);
         }
 
         $a->setIssuer($idpMetadata->getString('entityid'));
@@ -907,7 +910,7 @@ class sspmod_saml_IdP_SAML2
         $sessionLifetime = $config->getInteger('session.duration', 8 * 60 * 60);
         $a->setSessionNotOnOrAfter($sessionStart + $sessionLifetime);
 
-        $a->setSessionIndex(SimpleSAML\Utils\Random::generateID());
+        $a->setSessionIndex(\SimpleSAML\Utils\Random::generateID());
 
         $sc = new \SAML2\XML\saml\SubjectConfirmation();
         $sc->SubjectConfirmationData = new \SAML2\XML\saml\SubjectConfirmationData();
@@ -1000,7 +1003,7 @@ class sspmod_saml_IdP_SAML2
 
             if ($nameIdFormat === \SAML2\Constants::NAMEID_TRANSIENT) {
                 // generate a random id
-                $nameIdValue = SimpleSAML\Utils\Random::generateID();
+                $nameIdValue = \SimpleSAML\Utils\Random::generateID();
             } else {
                 /* this code will end up generating either a fixed assigned id (via nameid.attribute)
                    or random id if not assigned/configured */
@@ -1008,7 +1011,7 @@ class sspmod_saml_IdP_SAML2
                 if ($nameIdValue === null) {
                     Logger::warning('Falling back to transient NameID.');
                     $nameIdFormat = \SAML2\Constants::NAMEID_TRANSIENT;
-                    $nameIdValue = SimpleSAML\Utils\Random::generateID();
+                    $nameIdValue = \SimpleSAML\Utils\Random::generateID();
                 }
             }
 
@@ -1027,7 +1030,7 @@ class sspmod_saml_IdP_SAML2
             $encryptNameId = $idpMetadata->getBoolean('nameid.encryption', false);
         }
         if ($encryptNameId) {
-            $a->encryptNameId(sspmod_saml_Message::getEncryptionKey($spMetadata));
+            $a->encryptNameId(\SimpleSAML\Module\saml\Message::getEncryptionKey($spMetadata));
         }
 
         return $a;
@@ -1115,7 +1118,7 @@ class sspmod_saml_IdP_SAML2
         array $association,
         $relayState
     ) {
-        $lr = sspmod_saml_Message::buildLogoutRequest($idpMetadata, $spMetadata);
+        $lr = \SimpleSAML\Module\saml\Message::buildLogoutRequest($idpMetadata, $spMetadata);
         $lr->setRelayState($relayState);
         $lr->setSessionIndex($association['saml:SessionIndex']);
         $lr->setNameId($association['saml:NameID']);
@@ -1131,7 +1134,7 @@ class sspmod_saml_IdP_SAML2
             $encryptNameId = $idpMetadata->getBoolean('nameid.encryption', false);
         }
         if ($encryptNameId) {
-            $lr->encryptNameId(sspmod_saml_Message::getEncryptionKey($spMetadata));
+            $lr->encryptNameId(\SimpleSAML\Module\saml\Message::getEncryptionKey($spMetadata));
         }
 
         return $lr;
@@ -1163,7 +1166,7 @@ class sspmod_saml_IdP_SAML2
         $r->setDestination($consumerURL);
 
         if ($signResponse) {
-            sspmod_saml_Message::addSign($idpMetadata, $spMetadata, $r);
+            \SimpleSAML\Module\saml\Message::addSign($idpMetadata, $spMetadata, $r);
         }
 
         return $r;

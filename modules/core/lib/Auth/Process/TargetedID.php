@@ -1,5 +1,7 @@
 <?php
 
+namespace SimpleSAML\Module\core\Auth\Process;
+
 /**
  * Filter to generate the eduPersonTargetedID attribute.
  *
@@ -29,7 +31,7 @@
  * @package SimpleSAMLphp
  */
 
-class sspmod_core_Auth_Process_TargetedID extends \SimpleSAML\Auth\ProcessingFilter
+class TargetedID extends \SimpleSAML\Auth\ProcessingFilter
 {
 	/**
 	 * The attribute we should generate the targeted id from, or NULL if we should use the
@@ -60,14 +62,14 @@ class sspmod_core_Auth_Process_TargetedID extends \SimpleSAML\Auth\ProcessingFil
 		if (array_key_exists('attributename', $config)) {
 			$this->attribute = $config['attributename'];
 			if (!is_string($this->attribute)) {
-				throw new Exception('Invalid attribute name given to core:TargetedID filter.');
+				throw new \Exception('Invalid attribute name given to core:TargetedID filter.');
 			}
 		}
 
 		if (array_key_exists('nameId', $config)) {
 			$this->generateNameId = $config['nameId'];
 			if (!is_bool($this->generateNameId)) {
-				throw new Exception('Invalid value of \'nameId\'-option to core:TargetedID filter.');
+				throw new \Exception('Invalid value of \'nameId\'-option to core:TargetedID filter.');
 			}
 		}
 	}
@@ -84,7 +86,7 @@ class sspmod_core_Auth_Process_TargetedID extends \SimpleSAML\Auth\ProcessingFil
 
 		if ($this->attribute === NULL) {
 			if (!array_key_exists('UserID', $state)) {
-				throw new Exception('core:TargetedID: Missing UserID for this user. Please' .
+				throw new \Exception('core:TargetedID: Missing UserID for this user. Please' .
 					' check the \'userid.attribute\' option in the metadata against the' .
 					' attributes provided by the authentication source.');
 			}
@@ -92,7 +94,7 @@ class sspmod_core_Auth_Process_TargetedID extends \SimpleSAML\Auth\ProcessingFil
 			$userID = $state['UserID'];
 		} else {
 			if (!array_key_exists($this->attribute, $state['Attributes'])) {
-				throw new Exception('core:TargetedID: Missing attribute \'' . $this->attribute .
+				throw new \Exception('core:TargetedID: Missing attribute \'' . $this->attribute .
 					'\', which is needed to generate the targeted ID.');
 			}
 
@@ -100,7 +102,7 @@ class sspmod_core_Auth_Process_TargetedID extends \SimpleSAML\Auth\ProcessingFil
 		}
 
 
-		$secretSalt = SimpleSAML\Utils\Config::getSecretSalt();
+		$secretSalt = \SimpleSAML\Utils\Config::getSecretSalt();
 
 		if (array_key_exists('Source', $state)) {
 			$srcID = self::getEntityId($state['Source']);

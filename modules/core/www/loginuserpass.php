@@ -2,7 +2,7 @@
 
 /**
  * This page shows a username/password login form, and passes information from it
- * to the sspmod_core_Auth_UserPassBase class, which is a generic class for
+ * to the \SimpleSAML\Module\core\Auth\UserPassBase class, which is a generic class for
  * username/password authentication.
  *
  * @author Olav Morken, UNINETT AS.
@@ -14,11 +14,11 @@ if (!array_key_exists('AuthState', $_REQUEST)) {
 	throw new \SimpleSAML\Error\BadRequest('Missing AuthState parameter.');
 }
 $authStateId = $_REQUEST['AuthState'];
-$state = \SimpleSAML\Auth\State::loadState($authStateId, sspmod_core_Auth_UserPassBase::STAGEID);
+$state = \SimpleSAML\Auth\State::loadState($authStateId, \SimpleSAML\Module\core\Auth\UserPassBase::STAGEID);
 
-$source = \SimpleSAML\Auth\Source::getById($state[sspmod_core_Auth_UserPassBase::AUTHID]);
+$source = \SimpleSAML\Auth\Source::getById($state[\SimpleSAML\Module\core\Auth\UserPassBase::AUTHID]);
 if ($source === NULL) {
-	throw new Exception('Could not find authentication source with id ' . $state[sspmod_core_Auth_UserPassBase::AUTHID]);
+	throw new \Exception('Could not find authentication source with id ' . $state[\SimpleSAML\Module\core\Auth\UserPassBase::AUTHID]);
 }
 
 
@@ -59,12 +59,12 @@ if (!empty($_REQUEST['username']) || !empty($password)) {
     if ($source->isRememberMeEnabled()) {
         if (array_key_exists('remember_me', $_REQUEST) && $_REQUEST['remember_me'] === 'Yes') {
             $state['RememberMe'] = TRUE;
-            $authStateId = \SimpleSAML\Auth\State::saveState($state, sspmod_core_Auth_UserPassBase::STAGEID);
+            $authStateId = \SimpleSAML\Auth\State::saveState($state, \SimpleSAML\Module\core\Auth\UserPassBase::STAGEID);
         }
     }
 
 	try {
-		sspmod_core_Auth_UserPassBase::handleLogin($authStateId, $username, $password);
+		\SimpleSAML\Module\core\Auth\UserPassBase::handleLogin($authStateId, $username, $password);
 	} catch (\SimpleSAML\Error\Error $e) {
 		/* Login failed. Extract error code and parameters, to display the error. */
 		$errorCode = $e->getErrorCode();

@@ -67,11 +67,11 @@ For example, the `\SimpleSAML\Error\NoPassive` exception should be converted to 
 * The second-level status code should be `urn:oasis:names:tc:SAML:2.0:status:NoPassive`.
 * The status message should contain the cause of the exception.
 
-The `sspmod_saml_Error` class represents SAML 2 errors.
+The `\SimpleSAML\Module\saml\Error` class represents SAML 2 errors.
 It represents a SAML 2 status code with three elements: the top-level status code, the second-level status code and the status message.
 The second-level status code and the status message is optional, and can be `NULL`.
 
-The `sspmod_saml_Error` class contains a helper function named `fromException`.
+The `\SimpleSAML\Module\saml\Error` class contains a helper function named `fromException`.
 The `fromException()` function is used by `www/saml2/idp/SSOService.php` to return SAML 2 errors to the SP.
 The function contains a list which maps various exceptions to specific SAML 2 errors.
 If it is unable to convert the exception, it will return a generic SAML 2 error describing the original exception in its status message.
@@ -93,7 +93,7 @@ Converting SAML 2 errors to normal exceptions
 ---------------------------------------------
 
 On the SP side, we want to convert SAML 2 errors to SimpleSAMLphp exceptions again.
-This is handled by the `toException()` method in `sspmod_saml_Error`.
+This is handled by the `toException()` method in `\SimpleSAML\Module\saml\Error`.
 The assertion consumer script of the SAML 2 authentication source (`modules/saml2/sp/acs.php`) uses this method.
 The result is that generic exceptions are thrown from that authentication source.
 

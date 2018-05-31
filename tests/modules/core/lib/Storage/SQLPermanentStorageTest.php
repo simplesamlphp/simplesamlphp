@@ -15,7 +15,7 @@ class Test_Core_Storage_SQLPermanentStorage extends TestCase
         $config = \SimpleSAML\Configuration::loadFromArray([
             'datadir' => sys_get_temp_dir(),
         ]);
-        self::$sql = new sspmod_core_Storage_SQLPermanentStorage('test', $config);
+        self::$sql = new \SimpleSAML\Module\core\Storage\SQLPermanentStorage('test', $config);
     }
 
     public static function tearDownAfterClass()

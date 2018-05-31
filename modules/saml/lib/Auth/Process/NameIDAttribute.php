@@ -1,12 +1,14 @@
 <?php
 
+namespace SimpleSAML\Module\saml\Auth\Process;
 
 /**
  * Authentication processing filter to create an attribute from a NameID.
  *
  * @package SimpleSAMLphp
  */
-class sspmod_saml_Auth_Process_NameIDAttribute extends \SimpleSAML\Auth\ProcessingFilter
+
+class NameIDAttribute extends \SimpleSAML\Auth\ProcessingFilter
 {
     /**
      * The attribute we should save the NameID in.

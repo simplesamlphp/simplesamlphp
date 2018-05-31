@@ -1,4 +1,7 @@
 <?php
+
+namespace SimpleSAML\Module\consent\Consent\Store;
+
 /**
  * Store consent in database.
  *
@@ -15,7 +18,8 @@
  * @author Olav Morken <olav.morken@uninett.no>
  * @package SimpleSAMLphp
  */
-class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store
+
+class Database extends \SimpleSAML\Module\consent\Store
 {
     /**
      * DSN for the database.
@@ -69,17 +73,17 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store
      *
      * @param array $config Configuration for database consent store.
      *
-     * @throws Exception in case of a configuration error.
+     * @throws \Exception in case of a configuration error.
      */
     public function __construct($config)
     {
         parent::__construct($config);
 
         if (!array_key_exists('dsn', $config)) {
-            throw new Exception('consent:Database - Missing required option \'dsn\'.');
+            throw new \Exception('consent:Database - Missing required option \'dsn\'.');
         }
         if (!is_string($config['dsn'])) {
-            throw new Exception('consent:Database - \'dsn\' is supposed to be a string.');
+            throw new \Exception('consent:Database - \'dsn\' is supposed to be a string.');
         }
 
         $this->_dsn = $config['dsn'];
@@ -87,7 +91,7 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store
 
         if (array_key_exists('username', $config)) {
             if (!is_string($config['username'])) {
-                throw new Exception('consent:Database - \'username\' is supposed to be a string.');
+                throw new \Exception('consent:Database - \'username\' is supposed to be a string.');
             }
             $this->_username = $config['username'];
         } else {
@@ -96,7 +100,7 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store
 
         if (array_key_exists('password', $config)) {
             if (!is_string($config['password'])) {
-                throw new Exception('consent:Database - \'password\' is supposed to be a string.');
+                throw new \Exception('consent:Database - \'password\' is supposed to be a string.');
             }
             $this->_password = $config['password'];
         } else {
@@ -105,7 +109,7 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store
 
         if (array_key_exists('options', $config)) {
             if (!is_array($config['options'])) {
-                throw new Exception('consent:Database - \'options\' is supposed to be an array.');
+                throw new \Exception('consent:Database - \'options\' is supposed to be an array.');
             }
             $this->_options = $config['options'];
         } else {
@@ -113,7 +117,7 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store
         }
         if (array_key_exists('table', $config)) {
             if (!is_string($config['table'])) {
-                throw new Exception('consent:Database - \'table\' is supposed to be a string.');
+                throw new \Exception('consent:Database - \'table\' is supposed to be a string.');
             }
             $this->_table = $config['table'];
         } else {
@@ -122,7 +126,7 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store
 
         if (isset($config['timeout'])) {
             if (!is_int($config['timeout'])) {
-                throw new Exception('consent:Database - \'timeout\' is supposed to be an integer.');
+                throw new \Exception('consent:Database - \'timeout\' is supposed to be an integer.');
             }
             $this->_timeout = $config['timeout'];
         }
@@ -179,10 +183,10 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store
 
         $rowCount = $st->rowCount();
         if ($rowCount === 0) {
-            SimpleSAML\Logger::debug('consent:Database - No consent found.');
+            \SimpleSAML\Logger::debug('consent:Database - No consent found.');
             return false;
         } else {
-            SimpleSAML\Logger::debug('consent:Database - Consent found.');
+            \SimpleSAML\Logger::debug('consent:Database - Consent found.');
             return true;
         }
     }
@@ -220,7 +224,7 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store
 
         if ($st->rowCount() > 0) {
             // Consent has already been stored in the database
-            SimpleSAML\Logger::debug('consent:Database - Updated old consent.');
+            \SimpleSAML\Logger::debug('consent:Database - Updated old consent.');
             return;
         }
 
@@ -232,7 +236,7 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store
         );
 
         if ($st !== false) {
-            SimpleSAML\Logger::debug('consent:Database - Saved new consent.');
+            \SimpleSAML\Logger::debug('consent:Database - Saved new consent.');
         }
         return true;
     }
@@ -263,10 +267,10 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store
         }
 
         if ($st->rowCount() > 0) {
-            SimpleSAML\Logger::debug('consent:Database - Deleted consent.');
+            \SimpleSAML\Logger::debug('consent:Database - Deleted consent.');
             return $st->rowCount();
         } else {
-            SimpleSAML\Logger::warning(
+            \SimpleSAML\Logger::warning(
                 'consent:Database - Attempted to delete nonexistent consent'
             );
         }
@@ -294,10 +298,10 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store
         }
 
         if ($st->rowCount() > 0) {
-            SimpleSAML\Logger::debug('consent:Database - Deleted (' . $st->rowCount() . ') consent(s).');
+            \SimpleSAML\Logger::debug('consent:Database - Deleted (' . $st->rowCount() . ') consent(s).');
             return $st->rowCount();
         } else {
-            SimpleSAML\Logger::warning('consent:Database - Attempted to delete nonexistent consent');
+            \SimpleSAML\Logger::warning('consent:Database - Attempted to delete nonexistent consent');
         }
     }
 
@@ -327,7 +331,7 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store
             return array();
         }
 
-        while ($row = $st->fetch(PDO::FETCH_NUM)) {
+        while ($row = $st->fetch(\PDO::FETCH_NUM)) {
             $ret[] = $row;
         }
 
@@ -344,7 +348,7 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store
      * @param string $statement  The statement which should be executed.
      * @param array  $parameters Parameters for the statement.
      *
-     * @return PDOStatement|false  The statement, or false if execution failed.
+     * @return \PDOStatement|false  The statement, or false if execution failed.
      */
     private function _execute($statement, $parameters)
     {
@@ -358,7 +362,7 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store
 
         $st = $db->prepare($statement);
         if ($st === false) {
-            SimpleSAML\Logger::error(
+            \SimpleSAML\Logger::error(
                 'consent:Database - Error preparing statement \'' .
                 $statement . '\': ' . self::_formatError($db->errorInfo())
             );
@@ -366,7 +370,7 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store
         }
 
         if ($st->execute($parameters) !== true) {
-            SimpleSAML\Logger::error(
+            \SimpleSAML\Logger::error(
                 'consent:Database - Error executing statement \'' .
                 $statement . '\': ' . self::_formatError($st->errorInfo())
             );
@@ -398,7 +402,7 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store
             return array();
         }
 
-        if ($row = $st->fetch(PDO::FETCH_NUM)) {
+        if ($row = $st->fetch(\PDO::FETCH_NUM)) {
             $ret['total'] = $row[0];
         }
 
@@ -413,7 +417,7 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store
             return array();
         }
 
-        if ($row = $st->fetch(PDO::FETCH_NUM)) {
+        if ($row = $st->fetch(\PDO::FETCH_NUM)) {
             $ret['users'] = $row[0];
         }
 
@@ -427,7 +431,7 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store
             return array();
         }
 
-        if ($row = $st->fetch(PDO::FETCH_NUM)) {
+        if ($row = $st->fetch(\PDO::FETCH_NUM)) {
             $ret['services'] = $row[0];
         }
 
@@ -438,7 +442,7 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store
     /**
      * Get database handle.
      *
-     * @return PDO|false Database handle, or false if we fail to connect.
+     * @return \PDO|false Database handle, or false if we fail to connect.
      */
     private function _getDB()
     {
@@ -448,7 +452,7 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store
 
         $driver_options = array();
         if (isset($this->_timeout)) {
-            $driver_options[PDO::ATTR_TIMEOUT] = $this->_timeout;
+            $driver_options[\PDO::ATTR_TIMEOUT] = $this->_timeout;
         }
         if (isset($this->_options)) {
             $this->_options = array_merge($driver_options, $this->_options);
@@ -456,7 +460,7 @@ class sspmod_consent_Consent_Store_Database extends sspmod_consent_Store
             $this->_options = $driver_options;
         }
 
-        $this->_db = new PDO($this->_dsn, $this->_username, $this->_password, $this->_options);
+        $this->_db = new \PDO($this->_dsn, $this->_username, $this->_password, $this->_options);
 
         return $this->_db;
     }

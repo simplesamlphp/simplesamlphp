@@ -1,11 +1,14 @@
 <?php
 
+namespace SimpleSAML\Module\saml\SP;
+
 /**
  * A directory over logout information.
  *
  * @package SimpleSAMLphp
  */
-class sspmod_saml_SP_LogoutStore
+
+class LogoutStore
 {
     /**
      * Create logout table in SQL, if it is missing.
@@ -22,8 +25,8 @@ class sspmod_saml_SP_LogoutStore
             $query = 'ALTER TABLE ' . $store->prefix . '_saml_LogoutStore MODIFY _authSource VARCHAR(255) NOT NULL';
             try {
                 $store->pdo->exec($query);
-            } catch (Exception $e) {
-                SimpleSAML\Logger::warning($store->pdo->errorInfo());
+            } catch (\Exception $e) {
+                \SimpleSAML\Logger::warning($store->pdo->errorInfo());
                 return;
             }
             $store->setTableVersion('saml_LogoutStore', 2);
@@ -57,7 +60,7 @@ class sspmod_saml_SP_LogoutStore
      */
     private static function cleanLogoutStore(\SimpleSAML\Store\SQL $store)
     {
-        SimpleSAML\Logger::debug('saml.LogoutStore: Cleaning logout store.');
+        \SimpleSAML\Logger::debug('saml.LogoutStore: Cleaning logout store.');
 
         $query = 'DELETE FROM ' . $store->prefix . '_saml_LogoutStore WHERE _expire < :now';
         $params = array('now' => gmdate('Y-m-d H:i:s'));
@@ -128,7 +131,7 @@ class sspmod_saml_SP_LogoutStore
         $query->execute($params);
 
         $res = array();
-        while ( ($row = $query->fetch(PDO::FETCH_ASSOC)) !== false) {
+        while ( ($row = $query->fetch(\PDO::FETCH_ASSOC)) !== false) {
             $res[$row['_sessionindex']] = $row['_sessionid'];
         }
 
@@ -189,7 +192,7 @@ class sspmod_saml_SP_LogoutStore
              * it supports SLO, but we don't want an LogoutRequest with a specific
              * SessionIndex to match this session. We therefore generate our own session index.
              */
-            $sessionIndex = SimpleSAML\Utils\Random::generateID();
+            $sessionIndex = \SimpleSAML\Utils\Random::generateID();
         }
 
         $store = \SimpleSAML\Store::getInstance();
@@ -275,7 +278,7 @@ class sspmod_saml_SP_LogoutStore
         $numLoggedOut = 0;
         foreach ($sessionIndexes as $sessionIndex) {
             if (!isset($sessions[$sessionIndex])) {
-                SimpleSAML\Logger::info('saml.LogoutStore: Logout requested for unknown SessionIndex.');
+                \SimpleSAML\Logger::info('saml.LogoutStore: Logout requested for unknown SessionIndex.');
                 continue;
             }
 
@@ -283,21 +286,20 @@ class sspmod_saml_SP_LogoutStore
 
             $session = \SimpleSAML\Session::getSession($sessionId);
             if ($session === null) {
-                SimpleSAML\Logger::info('saml.LogoutStore: Skipping logout of missing session.');
+                \SimpleSAML\Logger::info('saml.LogoutStore: Skipping logout of missing session.');
                 continue;
             }
 
             if (!$session->isValid($authId)) {
-                SimpleSAML\Logger::info('saml.LogoutStore: Skipping logout of session because it isn\'t authenticated.');
+                \SimpleSAML\Logger::info('saml.LogoutStore: Skipping logout of session because it isn\'t authenticated.');
                 continue;
             }
 
-            SimpleSAML\Logger::info('saml.LogoutStore: Logging out of session with trackId [' . $session->getTrackID() . '].');
+            \SimpleSAML\Logger::info('saml.LogoutStore: Logging out of session with trackId [' . $session->getTrackID() . '].');
             $session->doLogout($authId);
             $numLoggedOut += 1;
         }
 
         return $numLoggedOut;
     }
-
 }

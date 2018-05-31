@@ -1,5 +1,7 @@
 <?php
 
+namespace SimpleSAML\Module\saml;
+
 use RobRichards\XMLSecLibs\XMLSecurityKey;
 
 /**
@@ -7,7 +9,7 @@ use RobRichards\XMLSecLibs\XMLSecurityKey;
  *
  * @package SimpleSAMLphp
  */
-class sspmod_saml_Message
+class Message
 {
     /**
      * Add signature key and sender certificate to an element (Message or Assertion).
@@ -24,11 +26,11 @@ class sspmod_saml_Message
         $dstPrivateKey = $dstMetadata->getString('signature.privatekey', null);
 
         if ($dstPrivateKey !== null) {
-            $keyArray = SimpleSAML\Utils\Crypto::loadPrivateKey($dstMetadata, true, 'signature.');
-            $certArray = SimpleSAML\Utils\Crypto::loadPublicKey($dstMetadata, false, 'signature.');
+            $keyArray = \SimpleSAML\Utils\Crypto::loadPrivateKey($dstMetadata, true, 'signature.');
+            $certArray = \SimpleSAML\Utils\Crypto::loadPublicKey($dstMetadata, false, 'signature.');
         } else {
-            $keyArray = SimpleSAML\Utils\Crypto::loadPrivateKey($srcMetadata, true);
-            $certArray = SimpleSAML\Utils\Crypto::loadPublicKey($srcMetadata, false);
+            $keyArray = \SimpleSAML\Utils\Crypto::loadPrivateKey($srcMetadata, true);
+            $certArray = \SimpleSAML\Utils\Crypto::loadPublicKey($srcMetadata, false);
         }
 
         $algo = $dstMetadata->getString('signature.algorithm', null);
@@ -159,11 +161,11 @@ class sspmod_saml_Message
                             "-----END CERTIFICATE-----\n";
                         break;
                     default:
-                        SimpleSAML\Logger::debug('Skipping unknown key type: '.$key['type']);
+                        \SimpleSAML\Logger::debug('Skipping unknown key type: '.$key['type']);
                 }
             }
         } elseif ($srcMetadata->hasValue('certFingerprint')) {
-            SimpleSAML\Logger::notice(
+            \SimpleSAML\Logger::notice(
                 "Validating certificates by fingerprint is deprecated. Please use ".
                 "certData or certificate options in your remote metadata configuration."
             );
@@ -178,10 +180,10 @@ class sspmod_saml_Message
             // we don't have the full certificate stored. Try to find it in the message or the assertion instead
             if (count($certificates) === 0) {
                 /* We need the full certificate in order to match it against the fingerprint. */
-                SimpleSAML\Logger::debug('No certificate in message when validating against fingerprint.');
+                \SimpleSAML\Logger::debug('No certificate in message when validating against fingerprint.');
                 return false;
             } else {
-                SimpleSAML\Logger::debug('Found '.count($certificates).' certificates in '.get_class($element));
+                \SimpleSAML\Logger::debug('Found '.count($certificates).' certificates in '.get_class($element));
             }
 
             $pemCert = self::findCertificate($certFingerprint, $certificates);
@@ -193,7 +195,7 @@ class sspmod_saml_Message
             );
         }
 
-        SimpleSAML\Logger::debug('Has '.count($pemKeys).' candidate keys for validation.');
+        \SimpleSAML\Logger::debug('Has '.count($pemKeys).' candidate keys for validation.');
 
         $lastException = null;
         foreach ($pemKeys as $i => $pem) {
@@ -204,12 +206,12 @@ class sspmod_saml_Message
                 // make sure that we have a valid signature on either the response or the assertion
                 $res = $element->validate($key);
                 if ($res) {
-                    SimpleSAML\Logger::debug('Validation with key #'.$i.' succeeded.');
+                    \SimpleSAML\Logger::debug('Validation with key #'.$i.' succeeded.');
                     return true;
                 }
-                SimpleSAML\Logger::debug('Validation with key #'.$i.' failed without exception.');
-            } catch (Exception $e) {
-                SimpleSAML\Logger::debug('Validation with key #'.$i.' failed with exception: '.$e->getMessage());
+                \SimpleSAML\Logger::debug('Validation with key #'.$i.' failed without exception.');
+            } catch (\Exception $e) {
+                \SimpleSAML\Logger::debug('Validation with key #'.$i.' failed with exception: '.$e->getMessage());
                 $lastException = $e;
             }
         }
@@ -291,7 +293,7 @@ class sspmod_saml_Message
         $keys = array();
 
         // load the new private key if it exists
-        $keyArray = SimpleSAML\Utils\Crypto::loadPrivateKey($dstMetadata, false, 'new_');
+        $keyArray = \SimpleSAML\Utils\Crypto::loadPrivateKey($dstMetadata, false, 'new_');
         if ($keyArray !== null) {
             assert(isset($keyArray['PEM']));
 
@@ -304,7 +306,7 @@ class sspmod_saml_Message
         }
 
         // find the existing private key
-        $keyArray = SimpleSAML\Utils\Crypto::loadPrivateKey($dstMetadata, true);
+        $keyArray = \SimpleSAML\Utils\Crypto::loadPrivateKey($dstMetadata, true);
         assert(isset($keyArray['PEM']));
 
         $key = new XMLSecurityKey(XMLSecurityKey::RSA_1_5, array('type' => 'private'));
@@ -367,7 +369,7 @@ class sspmod_saml_Message
             }
             if ($encryptAssertion) {
                 /* The assertion was unencrypted, but we have encryption enabled. */
-                throw new Exception('Received unencrypted assertion, but encryption was enabled.');
+                throw new \Exception('Received unencrypted assertion, but encryption was enabled.');
             }
 
             return $assertion;
@@ -375,7 +377,7 @@ class sspmod_saml_Message
 
         try {
             $keys = self::getDecryptionKeys($srcMetadata, $dstMetadata);
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             throw new \SimpleSAML\Error\Exception('Error decrypting assertion: '.$e->getMessage());
         }
 
@@ -385,10 +387,10 @@ class sspmod_saml_Message
         foreach ($keys as $i => $key) {
             try {
                 $ret = $assertion->getAssertion($key, $blacklist);
-                SimpleSAML\Logger::debug('Decryption with key #'.$i.' succeeded.');
+                \SimpleSAML\Logger::debug('Decryption with key #'.$i.' succeeded.');
                 return $ret;
-            } catch (Exception $e) {
-                SimpleSAML\Logger::debug('Decryption with key #'.$i.' failed with exception: '.$e->getMessage());
+            } catch (\Exception $e) {
+                \SimpleSAML\Logger::debug('Decryption with key #'.$i.' failed with exception: '.$e->getMessage());
                 $lastException = $e;
             }
         }
@@ -418,7 +420,7 @@ class sspmod_saml_Message
 
         try {
             $keys = self::getDecryptionKeys($srcMetadata, $dstMetadata);
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             throw new \SimpleSAML\Error\Exception('Error decrypting attributes: '.$e->getMessage());
         }
 
@@ -428,11 +430,11 @@ class sspmod_saml_Message
         foreach ($keys as $i => $key) {
             try {
                 $assertion->decryptAttributes($key, $blacklist);
-                SimpleSAML\Logger::debug('Attribute decryption with key #'.$i.' succeeded.');
+                \SimpleSAML\Logger::debug('Attribute decryption with key #'.$i.' succeeded.');
                 $error = false;
                 break;
-            } catch (Exception $e) {
-                SimpleSAML\Logger::debug('Attribute decryption failed with exception: '.$e->getMessage());
+            } catch (\Exception $e) {
+                \SimpleSAML\Logger::debug('Attribute decryption failed with exception: '.$e->getMessage());
             }
         }
         if ($error) {
@@ -442,16 +444,16 @@ class sspmod_saml_Message
 
 
     /**
-     * Retrieve the status code of a response as a sspmod_saml_Error.
+     * Retrieve the status code of a response as a \SimpleSAML\Module\saml\Error.
      *
      * @param \SAML2\StatusResponse $response The response.
      *
-     * @return sspmod_saml_Error The error.
+     * @return \SimpleSAML\Module\saml\Error The error.
      */
     public static function getResponseError(\SAML2\StatusResponse $response)
     {
         $status = $response->getStatus();
-        return new sspmod_saml_Error($status['Code'], $status['SubCode'], $status['Message']);
+        return new \SimpleSAML\Module\saml\Error($status['Code'], $status['SubCode'], $status['Message']);
     }
 
 
@@ -568,7 +570,7 @@ class sspmod_saml_Message
     /**
      * Process a response message.
      *
-     * If the response is an error response, we will throw a sspmod_saml_Error exception with the error.
+     * If the response is an error response, we will throw a \SimpleSAML\Module\saml\Error exception with the error.
      *
      * @param \SimpleSAML\Configuration $spMetadata The metadata of the service provider.
      * @param \SimpleSAML\Configuration $idpMetadata The metadata of the identity provider.
@@ -592,7 +594,7 @@ class sspmod_saml_Message
         $currentURL = \SimpleSAML\Utils\HTTP::getSelfURLNoQuery();
         $msgDestination = $response->getDestination();
         if ($msgDestination !== null && $msgDestination !== $currentURL) {
-            throw new Exception('Destination in response doesn\'t match the current URL. Destination is "'.
+            throw new \Exception('Destination in response doesn\'t match the current URL. Destination is "'.
                 $msgDestination.'", current URL is "'.$currentURL.'".');
         }
 
@@ -825,7 +827,7 @@ class sspmod_saml_Message
         if ($assertion->isNameIdEncrypted()) {
             try {
                 $keys = self::getDecryptionKeys($idpMetadata, $spMetadata);
-            } catch (Exception $e) {
+            } catch (\Exception $e) {
                 throw new \SimpleSAML\Error\Exception('Error decrypting NameID: '.$e->getMessage());
             }
 
@@ -835,11 +837,11 @@ class sspmod_saml_Message
             foreach ($keys as $i => $key) {
                 try {
                     $assertion->decryptNameId($key, $blacklist);
-                    SimpleSAML\Logger::debug('Decryption with key #'.$i.' succeeded.');
+                    \SimpleSAML\Logger::debug('Decryption with key #'.$i.' succeeded.');
                     $lastException = null;
                     break;
-                } catch (Exception $e) {
-                    SimpleSAML\Logger::debug('Decryption with key #'.$i.' failed with exception: '.$e->getMessage());
+                } catch (\Exception $e) {
+                    \SimpleSAML\Logger::debug('Decryption with key #'.$i.' failed with exception: '.$e->getMessage());
                     $lastException = $e;
                 }
             }

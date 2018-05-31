@@ -1,5 +1,7 @@
 <?php
 
+namespace SimpleSAML\Module\exampleauth\Auth\Source;
+
 /**
  * Example external authentication source.
  *
@@ -21,12 +23,12 @@
  * @package SimpleSAMLphp
  */
 
-class sspmod_exampleauth_Auth_Source_External extends \SimpleSAML\Auth\Source
+class External extends \SimpleSAML\Auth\Source
 {
         /**
          * The key of the AuthId field in the state.
          */
-        const AUTHID = 'sspmod_exampleauth_Auth_Source_External.AuthId';
+        const AUTHID = 'SimpleSAML\Module\exampleautth\Auth\Sourc\External.AuthId';
 
 	/**
 	 * Constructor for this authentication source.
@@ -153,7 +155,7 @@ class sspmod_exampleauth_Auth_Source_External extends \SimpleSAML\Auth\Source
 		 * is also part of this module, but in a real example, this would likely be
 		 * the absolute URL of the login page for the site.
 		 */
-		$authPage = SimpleSAML\Module::getModuleURL('exampleauth/authpage.php');
+		$authPage = \SimpleSAML\Module::getModuleURL('exampleauth/authpage.php');
 
 		/*
 		 * The redirect to the authentication page.

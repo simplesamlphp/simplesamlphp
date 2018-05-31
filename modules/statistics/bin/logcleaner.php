@@ -58,7 +58,7 @@ foreach ($argv as $a) {
     }
 }
 
-$cleaner = new sspmod_statistics_LogCleaner($infile);
+$cleaner = new \SimpleSAML\Module\statistics\LogCleaner($infile);
 $cleaner->dumpConfig();
 $todelete = $cleaner->clean($debug);
 

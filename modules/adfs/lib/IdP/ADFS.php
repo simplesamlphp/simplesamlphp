@@ -1,9 +1,11 @@
 <?php
 
+namespace SimpleSAML\Module\adfs\IdP;
+
 use RobRichards\XMLSecLibs\XMLSecurityDSig;
 use RobRichards\XMLSecLibs\XMLSecurityKey;
 
-class sspmod_adfs_IdP_ADFS
+class ADFS
 {
     public static function receiveAuthnRequest(\SimpleSAML\IdP $idp)
     {
@@ -17,12 +19,12 @@ class sspmod_adfs_IdP_ADFS
             $spMetadata = $metadata->getMetaDataConfig($issuer, 'adfs-sp-remote');
 
             \SimpleSAML\Logger::info('ADFS - IdP.prp: Incoming Authentication request: '.$issuer.' id '.$requestid);
-        } catch (Exception $exception) {
+        } catch (\Exception $exception) {
             throw new \SimpleSAML\Error\Error('PROCESSAUTHNREQUEST', $exception);
         }
 
         $state = array(
-            'Responder' => array('sspmod_adfs_IdP_ADFS', 'sendResponse'),
+            'Responder' => array('\SimpleSAML\Module\adfs\IdP\ADFS', 'sendResponse'),
             'SPMetadata' => $spMetadata->toArray(),
             'ForceAuthn' => false,
             'isPassive' => false,
@@ -31,7 +33,7 @@ class sspmod_adfs_IdP_ADFS
         );
 
         if (isset($query['wreply']) && !empty($query['wreply'])) {
-            $state['adfs:wreply'] = SimpleSAML\Utils\HTTP::checkURLAllowed($query['wreply']);
+            $state['adfs:wreply'] = \SimpleSAML\Utils\HTTP::checkURLAllowed($query['wreply']);
         }
 
         $idp->handleAuthenticationRequest($state);		
@@ -164,7 +166,7 @@ MSG;
             }
             $nameid = $attributes[$nameidattribute][0];
         } else {
-            $nameid = SimpleSAML\Utils\Random::generateID();
+            $nameid = \SimpleSAML\Utils\Random::generateID();
         }
 
         $idp = \SimpleSAML\IdP::getByState($state);		
@@ -173,7 +175,7 @@ MSG;
 
         $idp->addAssociation(array(
             'id' => 'adfs:'.$spEntityId,
-            'Handler' => 'sspmod_adfs_IdP_ADFS',
+            'Handler' => '\SimpleSAML\Module\adfs\IdP\ADFS',
             'adfs:entityID' => $spEntityId,
         ));
 
@@ -182,7 +184,7 @@ MSG;
             $assertionLifetime = $idpMetadata->getInteger('assertion.lifetime', 300);
         }
 
-        $response = \sspmod_adfs_IdP_ADFS::generateResponse($idpEntityId, $spEntityId, $nameid, $attributes, $assertionLifetime);
+        $response = ADFS::generateResponse($idpEntityId, $spEntityId, $nameid, $attributes, $assertionLifetime);
 
         $privateKeyFile = \SimpleSAML\Utils\Config::getCertPath($idpMetadata->getString('privatekey'));
         $certificateFile = \SimpleSAML\Utils\Config::getCertPath($idpMetadata->getString('certificate'));
@@ -191,11 +193,11 @@ MSG;
         if ($algo === null) {
             $algo = $idpMetadata->getString('signature.algorithm', XMLSecurityKey::RSA_SHA256);
         }
-        $wresult = \sspmod_adfs_IdP_ADFS::signResponse($response, $privateKeyFile, $certificateFile, $algo);
+        $wresult = ADFS::signResponse($response, $privateKeyFile, $certificateFile, $algo);
 
         $wctx = $state['adfs:wctx'];
         $wreply = $state['adfs:wreply'] ? : $spMetadata->getValue('prp');
-        \sspmod_adfs_IdP_ADFS::postResponse($wreply, $wresult, $wctx);
+        ADFS::postResponse($wreply, $wresult, $wctx);
     }
 
     public static function sendLogoutResponse(\SimpleSAML\IdP $idp, array $state)
@@ -215,7 +217,7 @@ MSG;
         }
 
         $state = array(
-            'Responder' => array('sspmod_adfs_IdP_ADFS', 'sendLogoutResponse'),
+            'Responder' => array('\SimpleSAML\Module\adfs\IdP\ADFS', 'sendLogoutResponse'),
         );
         $assocId = null;
         // TODO: verify that this is really no problem for: 

@@ -20,7 +20,7 @@ if (isset($_REQUEST['ReturnTo'])) {
     $idp->doLogoutRedirect(\SimpleSAML\Utils\HTTP::checkURLAllowed((string) $_REQUEST['ReturnTo']));
 } else {
     try {
-        sspmod_saml_IdP_SAML2::receiveLogoutMessage($idp);
+        \SimpleSAML\Module\saml\IdP\SAML2::receiveLogoutMessage($idp);
     } catch (\Exception $e) { // TODO: look for a specific exception
         /*
          * This is dirty. Instead of checking the message of the exception, \SAML2\Binding::getCurrentBinding() should

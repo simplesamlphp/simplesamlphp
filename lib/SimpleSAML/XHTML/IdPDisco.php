@@ -143,7 +143,7 @@ class IdPDisco
         $this->log('returnIdParam initially set to ['.$this->returnIdParam.']');
 
         if (!array_key_exists('return', $_GET)) {
-            throw new Exception('Missing parameter: return');
+            throw new \Exception('Missing parameter: return');
         } else {
             $this->returnURL = \SimpleSAML\Utils\HTTP::checkURLAllowed($_GET['return']);
         }
@@ -250,7 +250,7 @@ class IdPDisco
             try {
                 $this->metadata->getMetaData($idp, $metadataSet);
                 return $idp;
-            } catch (Exception $e) {
+            } catch (\Exception $e) {
                 // continue
             }
         }

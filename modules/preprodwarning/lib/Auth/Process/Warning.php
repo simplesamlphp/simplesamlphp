@@ -1,12 +1,14 @@
 <?php
 
+namespace SimpleSAML\Module\preprodwarning\Auth\Process;
+
 /**
  * Give a warning that the user is accessing a test system, not a production system.
  *
  * @package SimpleSAMLphp
  */
 
-class sspmod_preprodwarning_Auth_Process_Warning extends \SimpleSAML\Auth\ProcessingFilter
+class Warning extends \SimpleSAML\Auth\ProcessingFilter
 {
 	/**
 	 * Process a authentication response.

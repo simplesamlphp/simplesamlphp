@@ -1,5 +1,7 @@
 <?php
 
+namespace SimpleSAML\Module\authtwitter\Auth\Source;
+
 require_once(dirname(dirname(dirname(dirname(dirname(__FILE__))))) . '/oauth/libextinc/OAuth.php');
 
 /**
@@ -8,7 +10,8 @@ require_once(dirname(dirname(dirname(dirname(dirname(__FILE__))))) . '/oauth/lib
  * @author Andreas Åkre Solberg, UNINETT AS.
  * @package SimpleSAMLphp
  */
-class sspmod_authtwitter_Auth_Source_Twitter extends \SimpleSAML\Auth\Source
+
+class Twitter extends \SimpleSAML\Auth\Source
 {
 	/**
 	 * The string used to identify our states.
@@ -77,11 +80,11 @@ class sspmod_authtwitter_Auth_Source_Twitter extends \SimpleSAML\Auth\Source
 		
 		$stateID = \SimpleSAML\Auth\State::saveState($state, self::STAGE_INIT);
 		
-		$consumer = new sspmod_oauth_Consumer($this->key, $this->secret);
+		$consumer = new \SimpleSAML\Module\oauth\Consumer($this->key, $this->secret);
 		// Get the request token
-		$linkback = SimpleSAML\Module::getModuleURL('authtwitter/linkback.php', array('AuthState' => $stateID));
+		$linkback = \SimpleSAML\Module::getModuleURL('authtwitter/linkback.php', array('AuthState' => $stateID));
 		$requestToken = $consumer->getRequestToken('https://api.twitter.com/oauth/request_token', array('oauth_callback' => $linkback));
-		SimpleSAML\Logger::debug("Got a request token from the OAuth service provider [" .
+		\SimpleSAML\Logger::debug("Got a request token from the OAuth service provider [" .
 			$requestToken->key . "] with the secret [" . $requestToken->secret . "]");
 
 		$state['authtwitter:authdata:requestToken'] = $requestToken;
@@ -113,14 +116,14 @@ class sspmod_authtwitter_Auth_Source_Twitter extends \SimpleSAML\Auth\Source
 		}
 		$parameters['oauth_verifier'] = (string)$_REQUEST['oauth_verifier'];
 		
-		$consumer = new sspmod_oauth_Consumer($this->key, $this->secret);
+		$consumer = new \SimpleSAML\Module\oauth\Consumer($this->key, $this->secret);
 		
-		SimpleSAML\Logger::debug("oauth: Using this request token [" .
+		\SimpleSAML\Logger::debug("oauth: Using this request token [" .
 			$requestToken->key . "] with the secret [" . $requestToken->secret . "]");
 
 		// Replace the request token with an access token
 		$accessToken = $consumer->getAccessToken('https://api.twitter.com/oauth/access_token', $requestToken, $parameters);
-		SimpleSAML\Logger::debug("Got an access token from the OAuth service provider [" .
+		\SimpleSAML\Logger::debug("Got an access token from the OAuth service provider [" .
 			$accessToken->key . "] with the secret [" . $accessToken->secret . "]");
 
 		$verify_credentials_url = 'https://api.twitter.com/1.1/account/verify_credentials.json';

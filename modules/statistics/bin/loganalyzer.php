@@ -50,7 +50,7 @@ foreach($argv as $a) {
     }
 }
 
-$aggregator = new sspmod_statistics_Aggregator(true);
+$aggregator = new \SimpleSAML\Module\statistics\Aggregator(true);
 $aggregator->dumpConfig();
 $aggregator->debugInfo();
 $results = $aggregator->aggregate($debug);

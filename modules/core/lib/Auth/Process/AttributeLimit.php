@@ -1,5 +1,7 @@
 <?php
 
+namespace SimpleSAML\Module\core\Auth\Process;
+
 /**
  * A filter for limiting which attributes are passed on.
  *
@@ -7,7 +9,7 @@
  * @package SimpleSAMLphp
  */
 
-class sspmod_core_Auth_Process_AttributeLimit extends \SimpleSAML\Auth\ProcessingFilter
+class AttributeLimit extends \SimpleSAML\Auth\ProcessingFilter
 {
 	/**
 	 * List of attributes which this filter will allow through.

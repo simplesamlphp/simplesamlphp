@@ -9,7 +9,7 @@ if (!array_key_exists('PATH_INFO', $_SERVER)) {
 }
 
 $sourceId = substr($_SERVER['PATH_INFO'], 1);
-$source = \SimpleSAML\Auth\Source::getById($sourceId, 'sspmod_saml_Auth_Source_SP');
+$source = \SimpleSAML\Auth\Source::getById($sourceId, '\SimpleSAML\Module\saml\Auth\Source\SP');
 $spMetadata = $source->getMetadata();
 
 try {
@@ -126,8 +126,8 @@ if (empty($idpMetadata)) {
 }
 
 try {
-    $assertions = sspmod_saml_Message::processResponse($spMetadata, $idpMetadata, $response);
-} catch (sspmod_saml_Error $e) {
+    $assertions = \SimpleSAML\Module\saml\Message::processResponse($spMetadata, $idpMetadata, $response);
+} catch (\SimpleSAML\Module\saml\Error $e) {
     // the status of the response wasn't "success"
     $e = $e->toException();
     \SimpleSAML\Auth\State::throwException($state, $e);
@@ -197,7 +197,7 @@ if ($expire !== null) {
 
 if (!empty($nameId)) {
     // register this session in the logout store
-    sspmod_saml_SP_LogoutStore::addSession($sourceId, $nameId, $sessionIndex, $logoutExpire);
+    \SimpleSAML\Module\saml\SP\LogoutStore::addSession($sourceId, $nameId, $sessionIndex, $logoutExpire);
 
     // we need to save the NameID and SessionIndex for logout
     $logoutState = array(

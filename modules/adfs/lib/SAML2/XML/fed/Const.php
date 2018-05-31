@@ -1,10 +1,14 @@
 <?php
+
+namespace SimpleSAML\Module\adfs\SAML2\XML\fed;
+
 /**
  * Class representing fed Constants.
  *
  * @package SimpleSAMLphp
  */
-class sspmod_adfs_SAML2_XML_fed_Const
+
+class FedConst
 {
     /**
      * The namespace for WS-FED protocol.

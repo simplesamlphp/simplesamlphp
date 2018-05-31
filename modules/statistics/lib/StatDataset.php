@@ -1,12 +1,13 @@
 <?php
 
+namespace SimpleSAML\Module\statistics;
 
 /**
  * @author Andreas Åkre Solberg <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
  */
 
-class sspmod_statistics_StatDataset
+class StatDataset
 {
     protected $statconfig;
     protected $ruleconfig;
@@ -45,9 +46,9 @@ class sspmod_statistics_StatDataset
         $this->delimiter = '_';
         $this->max = 0;
 
-        $this->datehandlerTick = new \sspmod_statistics_DateHandler($this->statconfig->getValue('offset', 0));
+        $this->datehandlerTick = new DateHandler($this->statconfig->getValue('offset', 0));
         if ($this->timeresconfig->getValue('customDateHandler', 'default') === 'month') {
-            $this->datehandlerFile = new \sspmod_statistics_DateHandlerMonth(0);
+            $this->datehandlerFile = new DateHandlerMonth(0);
         } else {
             $this->datehandlerFile = $this->datehandlerTick;
         }
@@ -90,7 +91,7 @@ class sspmod_statistics_StatDataset
             }
             $maxvalue = max($res[$this->delimiter], $maxvalue);
         }
-        $this->max = sspmod_statistics_Graph_GoogleCharts::roof($maxvalue);
+        $this->max = Graph\GoogleCharts::roof($maxvalue);
     }
 
     public function getDebugData()
@@ -304,6 +305,5 @@ class sspmod_statistics_StatDataset
         }
         $this->results = $combined;
     }
-
 }
 

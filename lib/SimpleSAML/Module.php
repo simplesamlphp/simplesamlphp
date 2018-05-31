@@ -152,7 +152,7 @@ class Module
      *
      * This function takes a string on the form "<module>:<class>" and converts it to a class
      * name. It can also check that the given class is a subclass of a specific class. The
-     * resolved classname will be "sspmod_<module>_<$type>_<class>.
+     * resolved classname will be "\SimleSAML\Module\<module>\<$type>\<class>.
      *
      * It is also possible to specify a full classname instead of <module>:<class>.
      *

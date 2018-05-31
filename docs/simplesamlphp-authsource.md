@@ -1,7 +1,7 @@
 Creating authentication sources
 ===============================
 
-All authentication sources are located in the `lib/Auth/Source/` directory in a module, and the class name is `sspmod_<module>_Auth_Source_<name>`.
+All authentication sources are located in the `lib/Auth/Source/` directory in a module, and the class name is `\SimpleSAML\Module\<module>\Auth\Source\<name>`.
 The authentication source must extend the `\SimpleSAML\Auth\Source` class or one of its subclasses.
 
 The "entry point" of an authentication source is the `authenticate()`-function.
@@ -36,7 +36,7 @@ Username/password authentication
 --------------------------------
 
 Since username/password authentication is quite a common operation, a base class has been created for this.
-This is the `sspmod_core_Auth_UserPassBase` class, which is can be found as `modules/core/lib/Auth/UserPassBase.php`.
+This is the `\SimpleSAML\Module\core\Auth\UserPassBase` class, which is can be found as `modules/core/lib/Auth/UserPassBase.php`.
 
 The only function you need to implement is the `login($username, $password)`-function.
 This function receives the username and password the user entered, and is expected to return the attributes of that user.

@@ -16,7 +16,7 @@ class Test_Core_Auth_Process_TargetedID extends TestCase
      */
     private static function processFilter(array $config, array $request)
     {
-        $filter = new sspmod_core_Auth_Process_TargetedID($config, NULL);
+        $filter = new \SimpleSAML\Module\core\Auth\Process\TargetedID($config, NULL);
         $filter->process($request);
         return $request;
     }

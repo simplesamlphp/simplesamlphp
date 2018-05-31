@@ -107,7 +107,7 @@ class FileLoggingHandler implements LoggingHandlerInterface
             }
 
             $string = str_replace($formats, $replacements, $string);
-            file_put_contents($this->logFile, $string.PHP_EOL, FILE_APPEND);
+            file_put_contents($this->logFile, $string.\PHP_EOL, FILE_APPEND);
         }
     }
 }

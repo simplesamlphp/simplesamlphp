@@ -61,7 +61,7 @@ The configuration of *Auth Proc Filters* is a list of filters with priority as *
 
 This configuration will execute *Auth Proc Filters* one by one, with the priority value in increasing order. When *Auth Proc Filters* is configured in multiple places, in example both globally, in the hosted IdP and remote SP metadata, then the list is interleaved sorted by priority.
 
-The most important parameter of each item on the list is the *class* of the *Auth Proc Filter*. The syntax of the class is `modulename:classname`. As an example the class definition `core:AttributeLimit` will be expanded to look for the class `sspmod_core_Auth_Process_AttributeLimit`. The location of this class file *must* then be: `modules/core/lib/Auth/Process/AttributeLimit.php`.
+The most important parameter of each item on the list is the *class* of the *Auth Proc Filter*. The syntax of the class is `modulename:classname`. As an example the class definition `core:AttributeLimit` will be expanded to look for the class `\SimpleSAML\Module\core\Auth\Process\AttributeLimit`. The location of this class file *must* then be: `modules/core/lib/Auth/Process/AttributeLimit.php`.
 
 You will see that a bunch of useful filters is included in the `core` module. In addition the `consent` module that is included in the SimpleSAMLphp distribution implements a filter. Beyond that, you are encouraged to create your own filters and share with the community. If you have created a cool *Auth Proc Filter* that does something useful, let us know, and we may share it on the [SimpleSAMLphp web site][].
 

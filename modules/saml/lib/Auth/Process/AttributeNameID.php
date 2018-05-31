@@ -1,12 +1,14 @@
 <?php
 
+namespace SimpleSAML\Module\saml\Auth\Process;
 
 /**
  * Authentication processing filter to create a NameID from an attribute.
  *
  * @package SimpleSAMLphp
  */
-class sspmod_saml_Auth_Process_AttributeNameID extends sspmod_saml_BaseNameIDGenerator
+
+class AttributeNameID extends \SimpleSAML\Module\saml\BaseNameIDGenerator
 {
     /**
      * The attribute we should use as the NameID.
@@ -51,14 +53,14 @@ class sspmod_saml_Auth_Process_AttributeNameID extends sspmod_saml_BaseNameIDGen
     {
 
         if (!isset($state['Attributes'][$this->attribute]) || count($state['Attributes'][$this->attribute]) === 0) {
-            SimpleSAML\Logger::warning(
+            \SimpleSAML\Logger::warning(
                 'Missing attribute '.var_export($this->attribute, true).
                 ' on user - not generating attribute NameID.'
             );
             return null;
         }
         if (count($state['Attributes'][$this->attribute]) > 1) {
-            SimpleSAML\Logger::warning(
+            \SimpleSAML\Logger::warning(
                 'More than one value in attribute '.var_export($this->attribute, true).
                 ' on user - not generating attribute NameID.'
             );
@@ -68,7 +70,7 @@ class sspmod_saml_Auth_Process_AttributeNameID extends sspmod_saml_BaseNameIDGen
         $value = $value[0];
 
         if (empty($value)) {
-            SimpleSAML\Logger::warning(
+            \SimpleSAML\Logger::warning(
                 'Empty value in attribute '.var_export($this->attribute, true).
                 ' on user - not generating persistent NameID.'
             );
@@ -77,5 +79,4 @@ class sspmod_saml_Auth_Process_AttributeNameID extends sspmod_saml_BaseNameIDGen
 
         return $value;
     }
-
 }

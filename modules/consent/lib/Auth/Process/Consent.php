@@ -1,5 +1,7 @@
 <?php
 
+namespace SimpleSAML\Module\consent\Auth\Process;
+
 /**
  * Consent Authentication Processing filter
  *
@@ -14,7 +16,7 @@ use SimpleSAML\Module;
 use SimpleSAML\Stats;
 use SimpleSAML\Utils;
 
-class sspmod_consent_Auth_Process_Consent extends \SimpleSAML\Auth\ProcessingFilter
+class Consent extends \SimpleSAML\Auth\ProcessingFilter
 {
     /**
      * Button to receive focus
@@ -40,7 +42,7 @@ class sspmod_consent_Auth_Process_Consent extends \SimpleSAML\Auth\ProcessingFil
     /**
      * Consent backend storage configuration
      *
-     * @var sspmod_consent_Store|null
+     * @var \SimpleSAML\Module\consent\Store|null
      */
     private $_store = null;
 
@@ -142,7 +144,7 @@ class sspmod_consent_Auth_Process_Consent extends \SimpleSAML\Auth\ProcessingFil
 
         if (array_key_exists('store', $config)) {
             try {
-                $this->_store = sspmod_consent_Store::parseStoreConfig($config['store']);
+                $this->_store = \SimpleSAML\Module\consent\Store::parseStoreConfig($config['store']);
             } catch (\Exception $e) {
                 Logger::error(
                     'Consent: Could not create consent storage: '.
@@ -314,7 +316,7 @@ class sspmod_consent_Auth_Process_Consent extends \SimpleSAML\Auth\ProcessingFil
                 $state['consent:store.userId'] = $userId;
                 $state['consent:store.destination'] = $targetedId;
                 $state['consent:store.attributeSet'] = $attributeSet;
-            } catch (Exception $e) {
+            } catch (\Exception $e) {
                 Logger::error('Consent: Error reading from storage: '.$e->getMessage());
                 Logger::stats('Ccnsent failed');
                 Stats::log('consent:failed', $statsData);
@@ -340,7 +342,7 @@ class sspmod_consent_Auth_Process_Consent extends \SimpleSAML\Auth\ProcessingFil
         }
 
         // Save state and redirect
-        $id = Auth\State::saveState($state, 'consent:request');
+        $id = \SimpleSAML\Auth\State::saveState($state, 'consent:request');
         $url = Module::getModuleURL('consent/getconsent.php');
         Utils\HTTP::redirectTrustedURL($url, array('StateId' => $id));
     }

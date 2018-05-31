@@ -2,7 +2,7 @@
 
 /**
  * This page shows a username/password login form, and passes information from it
- * to the sspmod_core_Auth_UserPassBase class, which is a generic class for
+ * to the \SimpleSAML\Module\core\Auth\UserPassBase class, which is a generic class for
  * username/password authentication.
  *
  * @author Olav Morken, UNINETT AS.
@@ -22,9 +22,9 @@ if (array_key_exists('otp', $_REQUEST)) {
 
 if (!empty($otp)) {
     // attempt to log in
-    $errorCode = \sspmod_authYubiKey_Auth_Source_YubiKey::handleLogin($authStateId, $otp);
+    $errorCode = \SimpleSAML\Module\authYubiKey\Auth\Source\YubiKey::handleLogin($authStateId, $otp);
 } else {
-    $errorCode = NULL;
+    $errorCode = null;
 }
 
 $globalConfig = \SimpleSAML\Configuration::getInstance();

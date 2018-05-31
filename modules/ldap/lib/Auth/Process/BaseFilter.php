@@ -1,5 +1,7 @@
 <?php
 
+namespace SimpleSAML\Module\ldap\Auth\Process;
+
 /**
  * This base LDAP filter class can be extended to enable real
  * filter classes direct access to the authsource ldap config
@@ -13,7 +15,7 @@
  * @package SimpleSAMLphp
  */
 
-abstract class sspmod_ldap_Auth_Process_BaseFilter extends \SimpleSAML\Auth\ProcessingFilter
+abstract class BaseFilter extends \SimpleSAML\Auth\ProcessingFilter
 {
     /**
      * List of attribute "alias's" linked to the real attribute
@@ -102,7 +104,7 @@ abstract class sspmod_ldap_Auth_Process_BaseFilter extends \SimpleSAML\Auth\Proc
         $this->title = 'ldap:'.end($classname).' : ';
 
         // Log the construction
-        SimpleSAML\Logger::debug(
+        \SimpleSAML\Logger::debug(
             $this->title.'Creating and configuring the filter.'
         );
 
@@ -110,7 +112,7 @@ abstract class sspmod_ldap_Auth_Process_BaseFilter extends \SimpleSAML\Auth\Proc
         if (isset($config['authsource']) && $config['authsource']) {
 
             // Log the authsource request
-            SimpleSAML\Logger::debug(
+            \SimpleSAML\Logger::debug(
                 $this->title.'Attempting to get configuration values from authsource ['.
                 $config['authsource'].']'
             );
@@ -194,7 +196,7 @@ abstract class sspmod_ldap_Auth_Process_BaseFilter extends \SimpleSAML\Auth\Proc
             $config = array_merge($authconfig, $config);
 
             // Authsource complete
-            SimpleSAML\Logger::debug(
+            \SimpleSAML\Logger::debug(
                 $this->title.'Retrieved authsource ['.$config['authsource'].
                 '] configuration values: '.$this->var_export($authconfig)
             );
@@ -215,7 +217,7 @@ abstract class sspmod_ldap_Auth_Process_BaseFilter extends \SimpleSAML\Auth\Proc
         $this->product = strtoupper($this->product);
 
         // Log the member values retrieved above
-        SimpleSAML\Logger::debug(
+        \SimpleSAML\Logger::debug(
             $this->title.'Configuration values retrieved;'.
             ' BaseDN: '.$this->var_export($this->base_dn).
             ' Product: '.$this->var_export($this->product)
@@ -233,7 +235,7 @@ abstract class sspmod_ldap_Auth_Process_BaseFilter extends \SimpleSAML\Auth\Proc
         );
 
         // Log the attribute map
-        SimpleSAML\Logger::debug(
+        \SimpleSAML\Logger::debug(
             $this->title.'Attribute map created: '.$this->var_export($this->attribute_map)
         );
 
@@ -244,7 +246,7 @@ abstract class sspmod_ldap_Auth_Process_BaseFilter extends \SimpleSAML\Auth\Proc
         );
 
         // Log the type map
-        SimpleSAML\Logger::debug(
+        \SimpleSAML\Logger::debug(
             $this->title.'Type map created: '.$this->var_export($this->type_map)
         );
     }
@@ -274,7 +276,7 @@ abstract class sspmod_ldap_Auth_Process_BaseFilter extends \SimpleSAML\Auth\Proc
         $password   = $this->config->getString('ldap.password', null);
 
         // Log the LDAP connection
-        SimpleSAML\Logger::debug(
+        \SimpleSAML\Logger::debug(
             $this->title.'Connecting to LDAP server;'.
             ' Hostname: '.$hostname.
             ' Port: '.$port.

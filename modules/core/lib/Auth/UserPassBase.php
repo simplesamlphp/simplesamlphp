@@ -1,5 +1,7 @@
 <?php
 
+namespace SimpleSAML\Module\core\Auth;
+
 /**
  * Helper class for username/password authentication.
  *
@@ -10,18 +12,18 @@
  * @package SimpleSAMLphp
  */
 
-abstract class sspmod_core_Auth_UserPassBase extends \SimpleSAML\Auth\Source
+abstract class UserPassBase extends \SimpleSAML\Auth\Source
 {
 	/**
 	 * The string used to identify our states.
 	 */
-	const STAGEID = 'sspmod_core_Auth_UserPassBase.state';
+	const STAGEID = '\SimpleSAML\Module\core\Auth\UserPassBase.state';
 
 
 	/**
 	 * The key of the AuthId field in the state.
 	 */
-	const AUTHID = 'sspmod_core_Auth_UserPassBase.AuthId';
+	const AUTHID = '\SimpleSAML\Module\core\Auth\UserPassBase.AuthId';
 
 
 	/**
@@ -209,7 +211,7 @@ abstract class sspmod_core_Auth_UserPassBase extends \SimpleSAML\Auth\Source
 		 * Redirect to the login form. We include the identifier of the saved
 		 * state array as a parameter to the login form.
 		 */
-		$url = SimpleSAML\Module::getModuleURL('core/loginuserpass.php');
+		$url = \SimpleSAML\Module::getModuleURL('core/loginuserpass.php');
 		$params = array('AuthState' => $id);
 		\SimpleSAML\Utils\HTTP::redirectTrustedURL($url, $params);
 
@@ -257,7 +259,7 @@ abstract class sspmod_core_Auth_UserPassBase extends \SimpleSAML\Auth\Source
 		assert(array_key_exists(self::AUTHID, $state));
 		$source = \SimpleSAML\Auth\Source::getById($state[self::AUTHID]);
 		if ($source === NULL) {
-			throw new Exception('Could not find authentication source with id ' . $state[self::AUTHID]);
+			throw new \Exception('Could not find authentication source with id ' . $state[self::AUTHID]);
 		}
 
 		/*
@@ -268,12 +270,12 @@ abstract class sspmod_core_Auth_UserPassBase extends \SimpleSAML\Auth\Source
 		/* Attempt to log in. */
 		try {
 			$attributes = $source->login($username, $password);
-		} catch (Exception $e) {
-			SimpleSAML\Logger::stats('Unsuccessful login attempt from '.$_SERVER['REMOTE_ADDR'].'.');
+		} catch (\Exception $e) {
+			\SimpleSAML\Logger::stats('Unsuccessful login attempt from '.$_SERVER['REMOTE_ADDR'].'.');
 			throw $e;
 		}
 
-		SimpleSAML\Logger::stats('User \''.$username.'\' successfully authenticated from '.$_SERVER['REMOTE_ADDR']);
+		\SimpleSAML\Logger::stats('User \''.$username.'\' successfully authenticated from '.$_SERVER['REMOTE_ADDR']);
 
 		/* Save the attributes we received from the login-function in the $state-array. */
 		assert(is_array($attributes));

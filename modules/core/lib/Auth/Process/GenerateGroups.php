@@ -1,5 +1,7 @@
 <?php
 
+namespace SimpleSAML\Module\core\Auth\Process;
+
 /**
  * Filter to generate a groups attribute based on many of the attributes of the user.
  *
@@ -7,7 +9,7 @@
  * @package SimpleSAMLphp
  */
 
-class sspmod_core_Auth_Process_GenerateGroups extends \SimpleSAML\Auth\ProcessingFilter
+class GenerateGroups extends \SimpleSAML\Auth\ProcessingFilter
 {
 	/**
 	 * The attributes we should generate groups from.
@@ -38,7 +40,7 @@ class sspmod_core_Auth_Process_GenerateGroups extends \SimpleSAML\Auth\Processin
 			// Validate configuration
 			foreach ($config as $attributeName) {
 				if (!is_string($attributeName)) {
-					throw new Exception('Invalid attribute name for core:GenerateGroups filter: ' .
+					throw new \Exception('Invalid attribute name for core:GenerateGroups filter: ' .
 						var_export($attributeName, TRUE));
 				}
 			}
@@ -68,7 +70,7 @@ class sspmod_core_Auth_Process_GenerateGroups extends \SimpleSAML\Auth\Processin
 
 		foreach ($this->generateGroupsFrom as $name) {
 			if (!array_key_exists($name, $attributes)) {
-				SimpleSAML\Logger::debug('GenerateGroups - attribute \'' . $name . '\' not found.');
+				\SimpleSAML\Logger::debug('GenerateGroups - attribute \'' . $name . '\' not found.');
 				/* Attribute not present. */
 				continue;
 			}

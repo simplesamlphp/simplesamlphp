@@ -18,7 +18,7 @@ $idpEntityId = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
 $idp = \SimpleSAML\IdP::getById('saml2:' . $idpEntityId);
 
 try {
-    \sspmod_saml_IdP_SAML2::receiveAuthnRequest($idp);
+    \SimpleSAML\Module\saml\IdP\SAML2::receiveAuthnRequest($idp);
 } catch (\Exception $e) {
     if ($e->getMessage() === "Unable to find the current binding.") {
         throw new \SimpleSAML\Error\Error('SSOPARAMS', $e, 400);

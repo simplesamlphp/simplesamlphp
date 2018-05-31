@@ -1,5 +1,7 @@
 <?php
 
+namespace SimpleSAML\Module\core\Auth\Process;
+
 /**
  * Filter to modify attributes using regular expressions
  *
@@ -9,7 +11,7 @@
  * @package SimpleSAMLphp
  */
 
-class sspmod_core_Auth_Process_AttributeAlter extends \SimpleSAML\Auth\ProcessingFilter
+class AttributeAlter extends \SimpleSAML\Auth\ProcessingFilter
 {
     /**
      * Should the pattern found be replaced?

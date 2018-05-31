@@ -27,7 +27,7 @@ class ConsentTest extends TestCase
      */
     private function processFilter(array $config, array $request)
     {
-        $filter = new \sspmod_consent_Auth_Process_Consent($config, null);
+        $filter = new \SimpleSAML\Module\consent\Auth\Process\Consent($config, null);
         $filter->process($request);
         return $request;
     }
@@ -127,13 +127,13 @@ class ConsentTest extends TestCase
             'attribute1' => array('val1', 'val2'),
             'attribute2' => array('val1', 'val2')
         );
-        $attributeHash1 = \sspmod_consent_Auth_Process_Consent::getAttributeHash($attributes1, true);
+        $attributeHash1 = \SimpleSAML\Module\consent\Auth\Process\Consent::getAttributeHash($attributes1, true);
 
         $attributes2 = array(
             'attribute1' => array('val1', 'val2'),
             'attribute2' => array('val2', 'val1')
         );
-        $attributeHash2 = \sspmod_consent_Auth_Process_Consent::getAttributeHash($attributes2, true);
+        $attributeHash2 = \SimpleSAML\Module\consent\Auth\Process\Consent::getAttributeHash($attributes2, true);
 
         $this->assertEquals($attributeHash1, $attributeHash2, "Hash is not the same when the order of values changes");
     }
@@ -144,13 +144,13 @@ class ConsentTest extends TestCase
             'attribute2' => array('val1', 'val2'),
             'attribute1' => array('val1', 'val2')
         );
-        $attributeHash1 = \sspmod_consent_Auth_Process_Consent::getAttributeHash($attributes1, true);
+        $attributeHash1 = \SimpleSAML\Module\consent\Auth\Process\Consent::getAttributeHash($attributes1, true);
 
         $attributes2 = array(
             'attribute1' => array('val1', 'val2'),
             'attribute2' => array('val1', 'val2')
         );
-        $attributeHash2 = \sspmod_consent_Auth_Process_Consent::getAttributeHash($attributes2, true);
+        $attributeHash2 = \SimpleSAML\Module\consent\Auth\Process\Consent::getAttributeHash($attributes2, true);
 
         $this->assertEquals(
             $attributeHash1,
@@ -165,13 +165,13 @@ class ConsentTest extends TestCase
             'attribute2' => array('val1', 'val2'),
             'attribute1' => array('val1', 'val2')
         );
-        $attributeHash1 = \sspmod_consent_Auth_Process_Consent::getAttributeHash($attributes1);
+        $attributeHash1 = \SimpleSAML\Module\consent\Auth\Process\Consent::getAttributeHash($attributes1);
 
         $attributes2 = array(
             'attribute1' => array('val1', 'val2'),
             'attribute2' => array('val1', 'val2')
         );
-        $attributeHash2 = \sspmod_consent_Auth_Process_Consent::getAttributeHash($attributes2);
+        $attributeHash2 = \SimpleSAML\Module\consent\Auth\Process\Consent::getAttributeHash($attributes2);
 
         $this->assertEquals(
             $attributeHash1,
@@ -182,7 +182,7 @@ class ConsentTest extends TestCase
 
     public function testConstructorSetsInstancePrivateVars()
     {
-        $reflection = new \ReflectionClass('\sspmod_consent_Auth_Process_Consent');
+        $reflection = new \ReflectionClass('\SimpleSAML\Module\consent\Auth\Process\Consent');
 
         foreach (array(
             '_includeValues', '_checked', '_focus', '_hiddenAttributes', '_noconsentattributes', '_showNoConsentAboutService'

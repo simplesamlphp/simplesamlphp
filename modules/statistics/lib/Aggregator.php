@@ -1,9 +1,13 @@
 <?php
+
+namespace SimpleSAML\Module\statistics;
+
 /*
  * @author Andreas Åkre Solberg <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
  */
-class sspmod_statistics_Aggregator
+
+class Aggregator
 {
     private $statconfig;
     private $statdir;
@@ -74,25 +78,25 @@ class sspmod_statistics_Aggregator
         $this->loadMetadata();
 
         if (!is_dir($this->statdir)) {
-            throw new Exception('Statistics module: output dir do not exists [' . $this->statdir . ']');
+            throw new \Exception('Statistics module: output dir do not exists [' . $this->statdir . ']');
         }
 
         if (!file_exists($this->inputfile)) {
-            throw new Exception('Statistics module: input file do not exists [' . $this->inputfile . ']');
+            throw new \Exception('Statistics module: input file do not exists [' . $this->inputfile . ']');
         }
 
         $file = fopen($this->inputfile, 'r');
 
         if ($file === false) {
-            throw new Exception('Statistics module: unable to open file [' . $this->inputfile . ']');
+            throw new \Exception('Statistics module: unable to open file [' . $this->inputfile . ']');
         }
 
-        $logparser = new sspmod_statistics_LogParser(
+        $logparser = new LogParser(
             $this->statconfig->getValue('datestart', 0), $this->statconfig->getValue('datelength', 15), $this->statconfig->getValue('offsetspan', 44)
         );
         $datehandler = array(
-            'default' => new sspmod_statistics_DateHandler($this->offset),
-            'month' => new  sspmod_statistics_DateHandlerMonth($this->offset),
+            'default' => new DateHandler($this->offset),
+            'month' => new  DateHandlerMonth($this->offset),
         );
 
         $notBefore = 0;
@@ -239,8 +243,8 @@ class sspmod_statistics_Aggregator
     public function store($results)
     {
         $datehandler = array(
-            'default' => new sspmod_statistics_DateHandler($this->offset),
-            'month' => new  sspmod_statistics_DateHandlerMonth($this->offset),
+            'default' => new DateHandler($this->offset),
+            'month' => new DateHandlerMonth($this->offset),
         );
 
         // Iterate the first level of results, which is per rule, as defined in the config.

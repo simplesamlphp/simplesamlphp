@@ -1,9 +1,13 @@
 <?php
+
+namespace SimpleSAML\Module\statistics\Statistics\Rulesets;
+
 /*
  * @author Andreas Åkre Solberg <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
  */
-class sspmod_statistics_Statistics_Rulesets_BaseRule
+
+class BaseRule
 {
     protected $statconfig;
     protected $ruleconfig;
@@ -49,9 +53,9 @@ class sspmod_statistics_Statistics_Rulesets_BaseRule
         $timeresConfig = $timeresConfigs[$timeres];
 
         if (isset($timeresConfig['customDateHandler']) && $timeresConfig['customDateHandler'] == 'month') {
-            $datehandler = new sspmod_statistics_DateHandlerMonth(0);
+            $datehandler = new \SimpleSAML\Module\statistics\DateHandlerMonth(0);
         } else {
-            $datehandler = new sspmod_statistics_DateHandler($this->statconfig->getValue('offset', 0));
+            $datehandler = new \SimpleSAML\Module\statistics\DateHandler($this->statconfig->getValue('offset', 0));
         }
 
         /*
@@ -112,7 +116,7 @@ class sspmod_statistics_Statistics_Rulesets_BaseRule
     {
         $timeres = $this->resolveTimeRes($preferTimeRes);
         $fileslot = $this->resolveFileSlot($timeres, $preferTime);
-        $dataset = new sspmod_statistics_StatDataset($this->statconfig, $this->ruleconfig, $this->ruleid, $timeres, $fileslot);
+        $dataset = new \SimpleSAML\Module\statistics\StatDataset($this->statconfig, $this->ruleconfig, $this->ruleid, $timeres, $fileslot);
         return $dataset;
     }
 }

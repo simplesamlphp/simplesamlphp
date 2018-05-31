@@ -1,5 +1,7 @@
 <?php
 
+namespace SimpleSAML\Module\exampleauth\Auth\Source;
+
 /**
  * Example authentication source - username & password.
  *
@@ -10,7 +12,7 @@
  * @package SimpleSAMLphp
  */
 
-class sspmod_exampleauth_Auth_Source_UserPass extends sspmod_core_Auth_UserPassBase
+class UserPass extends \SimpleSAML\Module\core\Auth\UserPassBase
 {
 	/**
 	 * Our users, stored in an associative array. The key of the array is "<username>:<password>",
@@ -37,22 +39,22 @@ class sspmod_exampleauth_Auth_Source_UserPass extends sspmod_core_Auth_UserPassB
 		// Validate and parse our configuration
 		foreach ($config as $userpass => $attributes) {
 			if (!is_string($userpass)) {
-				throw new Exception('Invalid <username>:<password> for authentication source ' .
+				throw new \Exception('Invalid <username>:<password> for authentication source ' .
 					$this->authId . ': ' . $userpass);
 			}
 
 			$userpass = explode(':', $userpass, 2);
 			if (count($userpass) !== 2) {
-				throw new Exception('Invalid <username>:<password> for authentication source ' .
+				throw new \Exception('Invalid <username>:<password> for authentication source ' .
 					$this->authId . ': ' . $userpass[0]);
 			}
 			$username = $userpass[0];
 			$password = $userpass[1];
 
 			try {
-				$attributes = SimpleSAML\Utils\Attributes::normalizeAttributesArray($attributes);
-			} catch(Exception $e) {
-				throw new Exception('Invalid attributes for user ' . $username .
+				$attributes = \SimpleSAML\Utils\Attributes::normalizeAttributesArray($attributes);
+			} catch(\Exception $e) {
+				throw new \Exception('Invalid attributes for user ' . $username .
 					' in authentication source ' . $this->authId . ': ' .
 					$e->getMessage());
 			}
@@ -86,5 +88,4 @@ class sspmod_exampleauth_Auth_Source_UserPass extends sspmod_core_Auth_UserPassB
 
 		return $this->users[$userpass];
 	}
-
 }

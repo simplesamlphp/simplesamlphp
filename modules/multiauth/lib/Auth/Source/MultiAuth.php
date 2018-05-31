@@ -1,5 +1,7 @@
 <?php
 
+namespace SimpleSAML\Module\multiauth\Auth\Source;
+
 /**
  * Authentication source which let the user chooses among a list of
  * other authentication sources
@@ -8,22 +10,22 @@
  * @package SimpleSAMLphp
  */
 
-class sspmod_multiauth_Auth_Source_MultiAuth extends \SimpleSAML\Auth\Source
+class MultiAuth extends \SimpleSAML\Auth\Source
 {
 	/**
 	 * The key of the AuthId field in the state.
 	 */
-	const AUTHID = 'sspmod_multiauth_Auth_Source_MultiAuth.AuthId';
+	const AUTHID = '\SimpleSAML\Module\multiauth\Auth\Source\MultiAuth.AuthId';
 
 	/**
 	 * The string used to identify our states.
 	 */
-	const STAGEID = 'sspmod_multiauth_Auth_Source_MultiAuth.StageId';
+	const STAGEID = '\SimpleSAML\Module\multiauth\Auth\Source\MultiAuth.StageId';
 
 	/**
 	 * The key where the sources is saved in the state.
 	 */
-	const SOURCESID = 'sspmod_multiauth_Auth_Source_MultiAuth.SourceId';
+	const SOURCESID = '\SimpleSAML\Module\multiauth\Auth\Source\MultiAuth.SourceId';
 
 	/**
 	 * The key where the selected source is saved in the session.
@@ -49,7 +51,7 @@ class sspmod_multiauth_Auth_Source_MultiAuth extends \SimpleSAML\Auth\Source
 		parent::__construct($info, $config);
 
 		if (!array_key_exists('sources', $config)) {
-			throw new Exception('The required "sources" config option was not found');
+			throw new \Exception('The required "sources" config option was not found');
 		}
 
 		$globalConfiguration = \SimpleSAML\Configuration::getInstance();
@@ -112,7 +114,7 @@ class sspmod_multiauth_Auth_Source_MultiAuth extends \SimpleSAML\Auth\Source
 
 		/* Redirect to the select source page. We include the identifier of the
 		saved state array as a parameter to the login form */
-		$url = SimpleSAML\Module::getModuleURL('multiauth/selectsource.php');
+		$url = \SimpleSAML\Module::getModuleURL('multiauth/selectsource.php');
 		$params = array('AuthState' => $id);
 
 		// Allowes the user to specify the auth souce to be used
@@ -150,7 +152,7 @@ class sspmod_multiauth_Auth_Source_MultiAuth extends \SimpleSAML\Auth\Source
 			$state[self::SOURCESID]
         );
 		if ($as === NULL || !in_array($authId, $valid_sources, true)) {
-			throw new Exception('Invalid authentication source: ' . $authId);
+			throw new \Exception('Invalid authentication source: ' . $authId);
 		}
 
 		/* Save the selected authentication source for the logout process. */

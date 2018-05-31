@@ -21,7 +21,7 @@ if ($end === false) {
 }
 $sourceId = substr($sourceId, 1, $end - 1);
 
-$source = \SimpleSAML\Auth\Source::getById($sourceId, 'sspmod_saml_Auth_Source_SP');
+$source = \SimpleSAML\Auth\Source::getById($sourceId, '\SimpleSAML\Module\saml\Auth\Source\SP');
 
 SimpleSAML\Logger::debug('Received SAML1 response');
 

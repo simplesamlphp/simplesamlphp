@@ -1,5 +1,7 @@
 <?php
 
+namespace SimpleSAML\Module\ldap\Auth\Source;
+
 /**
  * LDAP authentication source.
  *
@@ -10,7 +12,8 @@
  *
  * @package SimpleSAMLphp
  */
-class sspmod_ldap_Auth_Source_LDAPMulti extends sspmod_core_Auth_UserPassOrgBase
+
+class LDAPMulti extends \SimpleSAML\Module\core\Auth\UserPassOrgBase
 {
     /**
      * An array with descriptions for organizations.
@@ -73,7 +76,7 @@ class sspmod_ldap_Auth_Source_LDAPMulti extends sspmod_core_Auth_UserPassOrgBase
                 $this->orgs[$orgId] = $orgId;
             }
 
-            $orgCfg = new sspmod_ldap_ConfigHelper($orgCfg,
+            $orgCfg = new \SimpleSAML\Module\ldap\ConfigHelper($orgCfg,
                 'Authentication source ' . var_export($this->authId, true) .
                 ', organization ' . var_export($orgId, true));
             $this->ldapOrgs[$orgId] = $orgCfg;

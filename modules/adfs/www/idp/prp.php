@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ADFS PRP IDP protocol support for SimpleSAMLphp.
  *
@@ -14,9 +15,9 @@ $idp = \SimpleSAML\IdP::getById('adfs:' . $idpEntityId);
 
 if (isset($_GET['wa'])) {
     if ($_GET['wa'] === 'wsignout1.0') {
-        sspmod_adfs_IdP_ADFS::receiveLogoutMessage($idp);
+        \SimpleSAML\Module\adfs\IdP\ADFS::receiveLogoutMessage($idp);
     } else if ($_GET['wa'] === 'wsignin1.0') {
-        sspmod_adfs_IdP_ADFS::receiveAuthnRequest($idp);
+        \SimpleSAML\Module\adfs\IdP\ADFS::receiveAuthnRequest($idp);
     }
     assert(false);
 } elseif (isset($_GET['assocId'])) {

@@ -1,5 +1,7 @@
 <?php
 
+namespace SimpleSAML\Module\authX509\Auth\Process;
+
 /**
  * Filter which shows a warning if the user's client certificate is about to expire.
  *
@@ -14,7 +16,8 @@
  * @author Joost van Dijk, SURFnet. <Joost.vanDijk@surfnet.nl>
  * @package SimpleSAMLphp
  */
-class sspmod_authX509_Auth_Process_ExpiryWarning extends \SimpleSAML\Auth\ProcessingFilter
+
+class ExpiryWarning extends \SimpleSAML\Auth\ProcessingFilter
 {
 
     private $warndaysbefore = 30;
@@ -35,14 +38,14 @@ class sspmod_authX509_Auth_Process_ExpiryWarning extends \SimpleSAML\Auth\Proces
         if (array_key_exists('warndaysbefore', $config)) {
             $this->warndaysbefore = $config['warndaysbefore'];
             if (!is_string($this->warndaysbefore)) {
-                throw new Exception('Invalid value for \'warndaysbefore\'-option to authX509::ExpiryWarning filter.');
+                throw new \Exception('Invalid value for \'warndaysbefore\'-option to authX509::ExpiryWarning filter.');
             }
         }
 
         if (array_key_exists('renewurl', $config)) {
             $this->renewurl = $config['renewurl'];
             if (!is_string($this->renewurl)) {
-                throw new Exception('Invalid value for \'renewurl\'-option to authX509::ExpiryWarning filter.');
+                throw new \Exception('Invalid value for \'renewurl\'-option to authX509::ExpiryWarning filter.');
             }
         }
     }
@@ -72,7 +75,7 @@ class sspmod_authX509_Auth_Process_ExpiryWarning extends \SimpleSAML\Auth\Proces
         $client_cert = $_SERVER['SSL_CLIENT_CERT'];
         $client_cert_data = openssl_x509_parse($client_cert);
         if ($client_cert_data == false) {
-            SimpleSAML\Logger::error('authX509: invalid cert');
+            \SimpleSAML\Logger::error('authX509: invalid cert');
             return;
         }
         $validTo = $client_cert_data['validTo_time_t'];

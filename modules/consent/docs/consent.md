@@ -149,7 +149,7 @@ The following options can be used when configuring the Consent module:
 `store`
 :   Configuration of the Consent storage backend. The store option is given in 
     the format <module>:<class> and refers to the class 
-    sspmod_<module>_Consent_Store_<class>. The consent module comes with two 
+    \SimpleSAML\Module\<module>\Consent\Store\<class>. The consent module comes with two 
     built in storage backends: 'consent:Cookie' and 'consent:Database'. See 
     the separate section on setting up consent using different storage methods. 
     This option is optional. If the option is not set, then the user is asked to 

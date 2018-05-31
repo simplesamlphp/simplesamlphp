@@ -22,7 +22,7 @@ foreach ($sets AS $setkey => $set) {
 			$expire = NULL;
 		}
 
-		$metaloader = new sspmod_metarefresh_MetaLoader($expire);
+		$metaloader = new \SimpleSAML\Module\metarefresh\MetaLoader($expire);
 
 		# Get global black/whitelists
 		$blacklist = $mconfig->getArray('blacklist', array());

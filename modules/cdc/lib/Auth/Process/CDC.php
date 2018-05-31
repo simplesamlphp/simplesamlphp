@@ -1,11 +1,14 @@
 <?php
 
+namespace SimpleSAML\module\cdc\Auth\Process;
+
 /**
  * Filter for setting the SAML 2 common domain cookie.
  *
  * @package SimpleSAMLphp
  */
-class sspmod_cdc_Auth_Process_CDC extends \SimpleSAML\Auth\ProcessingFilter
+
+class CDC extends \SimpleSAML\Auth\ProcessingFilter
 {
     /**
      * Our CDC domain.
@@ -18,7 +21,7 @@ class sspmod_cdc_Auth_Process_CDC extends \SimpleSAML\Auth\ProcessingFilter
     /**
      * Our CDC client.
      *
-     * @var sspmod_cdc_Client
+     * @var \SimpleSAML\Module\cdc\Client
      */
     private $client;
 
@@ -39,7 +42,7 @@ class sspmod_cdc_Auth_Process_CDC extends \SimpleSAML\Auth\ProcessingFilter
         }
         $this->domain = (string)$config['domain'];
 
-        $this->client = new sspmod_cdc_Client($this->domain);
+        $this->client = new \SimpleSAML\Module\cdc\Client($this->domain);
     }
 
 
@@ -53,7 +56,7 @@ class sspmod_cdc_Auth_Process_CDC extends \SimpleSAML\Auth\ProcessingFilter
         assert(is_array($state));
 
         if (!isset($state['Source']['entityid'])) {
-            SimpleSAML\Logger::warning('saml:CDC: Could not find IdP entityID.');
+            \SimpleSAML\Logger::warning('saml:CDC: Could not find IdP entityID.');
             return;
         }
 

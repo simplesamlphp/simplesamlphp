@@ -1,12 +1,14 @@
 <?php
 
+namespace SimpleSAML\Module\core\Auth\Process;
+
 /**
  * Attribute filter for running arbitrary PHP code.
  *
  * @package SimpleSAMLphp
  */
 
-class sspmod_core_Auth_Process_PHP extends \SimpleSAML\Auth\ProcessingFilter
+class PHP extends \SimpleSAML\Auth\ProcessingFilter
 {
     /**
      * The PHP code that should be run.

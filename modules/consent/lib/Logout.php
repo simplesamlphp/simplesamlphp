@@ -1,12 +1,14 @@
 <?php
 
+namespace SimpleSAML\Module\consent;
+
 /**
  * Class defining the logout completed handler for the consent page.
  *
  * @package SimpleSAMLphp
  */
 
-class sspmod_consent_Logout
+class Logout
 {
     public static function postLogout(\SimpleSAML\IdP $idp, array $state)
     {

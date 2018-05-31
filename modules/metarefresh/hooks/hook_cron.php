@@ -23,7 +23,7 @@ function metarefresh_hook_cron(&$croninfo) {
 			$cronTags = $set->getArray('cron');
 			if (!in_array($croninfo['tag'], $cronTags, true)) continue;
 
-			SimpleSAML\Logger::info('cron [metarefresh]: Executing set [' . $setkey . ']');
+			\SimpleSAML\Logger::info('cron [metarefresh]: Executing set [' . $setkey . ']');
 
 			$expireAfter = $set->getInteger('expireAfter', NULL);
 			if ($expireAfter !== NULL) {
@@ -41,7 +41,7 @@ function metarefresh_hook_cron(&$croninfo) {
 				'directory' => $outputDir,
 			));
 
-			$metaloader = new sspmod_metarefresh_MetaLoader($expire, $stateFile, $oldMetadataSrc);
+			$metaloader = new \SimpleSAML\Module\metarefresh\MetaLoader($expire, $stateFile, $oldMetadataSrc);
 
 			# Get global blacklist, whitelist and caching info
 			$blacklist = $mconfig->getArray('blacklist', array());
@@ -86,7 +86,7 @@ function metarefresh_hook_cron(&$croninfo) {
 					$source['conditionalGET'] = $conditionalGET;
 				}
 
-				SimpleSAML\Logger::debug('cron [metarefresh]: In set [' . $setkey . '] loading source ['  . $source['src'] . ']');
+				\SimpleSAML\Logger::debug('cron [metarefresh]: In set [' . $setkey . '] loading source ['  . $source['src'] . ']');
 				$metaloader->loadSource($source);
 			}
 
@@ -108,7 +108,7 @@ function metarefresh_hook_cron(&$croninfo) {
 			}
 		}
 
-	} catch (Exception $e) {
+	} catch (\Exception $e) {
 		$croninfo['summary'][] = 'Error during metarefresh: ' . $e->getMessage();
 	}
 }
