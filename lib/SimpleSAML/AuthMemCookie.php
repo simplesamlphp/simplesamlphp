@@ -1,5 +1,6 @@
 <?php
 
+namespace SimpleSAML;
 
 /**
  * This is a helper class for the Auth MemCookie module.
@@ -10,17 +11,17 @@
  *
  * @deprecated This class has been deprecated and will be removed in SSP 2.0. Use the memcookie module instead.
  */
-class SimpleSAML_AuthMemCookie
-{
 
+class AuthMemCookie
+{
     /**
-     * @var SimpleSAML_AuthMemCookie This is the singleton instance of this class.
+     * @var AuthMemCookie This is the singleton instance of this class.
      */
     private static $instance = null;
 
 
     /**
-     * @var \SimpleSAML\Configuration The configuration for Auth MemCookie.
+     * @var Configuration The configuration for Auth MemCookie.
      */
     private $amcConfig;
 
@@ -28,12 +29,12 @@ class SimpleSAML_AuthMemCookie
     /**
      * This function is used to retrieve the singleton instance of this class.
      *
-     * @return SimpleSAML_AuthMemCookie The singleton instance of this class.
+     * @return AuthMemCookie The singleton instance of this class.
      */
     public static function getInstance()
     {
         if (self::$instance === null) {
-            self::$instance = new SimpleSAML_AuthMemCookie();
+            self::$instance = new AuthMemCookie();
         }
 
         return self::$instance;
@@ -46,7 +47,7 @@ class SimpleSAML_AuthMemCookie
     private function __construct()
     {
         // load AuthMemCookie configuration
-        $this->amcConfig = \SimpleSAML\Configuration::getConfig('authmemcookie.php');
+        $this->amcConfig = Configuration::getConfig('authmemcookie.php');
     }
 
 
@@ -71,7 +72,7 @@ class SimpleSAML_AuthMemCookie
     {
         $cookieName = $this->amcConfig->getString('cookiename', 'AuthMemCookie');
         if (!is_string($cookieName) || strlen($cookieName) === 0) {
-            throw new Exception(
+            throw new \Exception(
                 "Configuration option 'cookiename' contains an invalid value. This option should be a string."
             );
         }
@@ -119,7 +120,7 @@ class SimpleSAML_AuthMemCookie
 
         $class = class_exists('Memcache') ? 'Memcache' : (class_exists('Memcached') ? 'Memcached' : false);
         if (!$class) {
-            throw new Exception('Missing Memcached implementation. You must install either the Memcache or Memcached extension.');
+            throw new \Exception('Missing Memcached implementation. You must install either the Memcache or Memcached extension.');
         }
 
         // Create the Memcache(d) object.
