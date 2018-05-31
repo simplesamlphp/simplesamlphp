@@ -44,7 +44,7 @@ if ($encryptNameId) {
     $lr->encryptNameId(sspmod_saml_Message::getEncryptionKey($spMetadata));
 }
 
-SimpleSAML_Stats::log('saml:idp:LogoutRequest:sent', array(
+\SimpleSAML\Stats::log('saml:idp:LogoutRequest:sent', array(
     'spEntityID'  => $association['saml:entityID'],
     'idpEntityID' => $idpMetadata->getString('entityid'),
 ));

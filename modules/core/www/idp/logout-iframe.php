@@ -15,7 +15,7 @@ if (isset($_REQUEST['type'])) {
 
 if ($type !== 'embed') {
     \SimpleSAML\Logger::stats('slo-iframe '.$type);
-    \SimpleSAML_Stats::log('core:idp:logout-iframe:page', array('type' => $type));
+    \SimpleSAML\Stats::log('core:idp:logout-iframe:page', array('type' => $type));
 }
 
 $state = \SimpleSAML\Auth\State::loadState($_REQUEST['id'], 'core:Logout-IFrame');

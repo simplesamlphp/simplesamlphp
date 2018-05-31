@@ -1,14 +1,15 @@
 <?php
 
+namespace SimpleSAML\Stats;
 
 /**
  * Interface for statistics outputs.
  *
  * @package SimpleSAMLphp
  */
-abstract class SimpleSAML_Stats_Output
-{
 
+abstract class Output
+{
     /**
      * Initialize the output.
      *

@@ -79,7 +79,7 @@ class sspmod_saml_IdP_SAML2
         if (isset($state['saml:AuthnRequestReceivedAt'])) {
             $statsData['logintime'] = microtime(true) - $state['saml:AuthnRequestReceivedAt'];
         }
-        \SimpleSAML_Stats::log('saml:idp:Response', $statsData);
+        \SimpleSAML\Stats::log('saml:idp:Response', $statsData);
 
         // send the response
         $binding = \SAML2\Binding::getBinding($protocolBinding);
@@ -142,7 +142,7 @@ class sspmod_saml_IdP_SAML2
         if (isset($state['saml:AuthnRequestReceivedAt'])) {
             $statsData['logintime'] = microtime(true) - $state['saml:AuthnRequestReceivedAt'];
         }
-        \SimpleSAML_Stats::log('saml:idp:Response:error', $statsData);
+        \SimpleSAML\Stats::log('saml:idp:Response:error', $statsData);
 
         $binding = \SAML2\Binding::getBinding($protocolBinding);
         $binding->send($ar);
@@ -371,7 +371,7 @@ class sspmod_saml_IdP_SAML2
             );
         }
 
-        SimpleSAML_Stats::log('saml:idp:AuthnRequest', array(
+        \SimpleSAML\Stats::log('saml:idp:AuthnRequest', array(
             'spEntityID'  => $spEntityId,
             'idpEntityID' => $idpMetadata->getString('entityid'),
             'forceAuthn'  => $forceAuthn,
@@ -469,7 +469,7 @@ class sspmod_saml_IdP_SAML2
         $idpMetadata = $idp->getConfig();
         $spMetadata = $metadata->getMetaDataConfig($association['saml:entityID'], 'saml20-sp-remote');
 
-        SimpleSAML_Stats::log('saml:idp:LogoutRequest:sent', array(
+        \SimpleSAML\Stats::log('saml:idp:LogoutRequest:sent', array(
             'spEntityID'  => $association['saml:entityID'],
             'idpEntityID' => $idpMetadata->getString('entityid'),
         ));
@@ -523,7 +523,7 @@ class sspmod_saml_IdP_SAML2
             Logger::debug('Sending logout response to SP '.var_export($spEntityId, true));
         }
 
-        SimpleSAML_Stats::log('saml:idp:LogoutResponse:sent', array(
+        \SimpleSAML\Stats::log('saml:idp:LogoutResponse:sent', array(
             'spEntityID'  => $spEntityId,
             'idpEntityID' => $idpMetadata->getString('entityid'),
             'partial'     => $partial
@@ -579,7 +579,7 @@ class sspmod_saml_IdP_SAML2
             if (!$message->isSuccess()) {
                 $statsData['error'] = $message->getStatus();
             }
-            SimpleSAML_Stats::log('saml:idp:LogoutResponse:recv', $statsData);
+            \SimpleSAML\Stats::log('saml:idp:LogoutResponse:recv', $statsData);
 
             $relayState = $message->getRelayState();
 
@@ -595,7 +595,7 @@ class sspmod_saml_IdP_SAML2
             $idp->handleLogoutResponse($assocId, $relayState, $logoutError);
         } elseif ($message instanceof \SAML2\LogoutRequest) {
             Logger::info('Received SAML 2.0 LogoutRequest from: '.var_export($spEntityId, true));
-            SimpleSAML_Stats::log('saml:idp:LogoutRequest:recv', array(
+            \SimpleSAML\Stats::log('saml:idp:LogoutRequest:recv', array(
                 'spEntityID'  => $spEntityId,
                 'idpEntityID' => $idpMetadata->getString('entityid'),
             ));

@@ -1,5 +1,6 @@
 <?php
 
+namespace SimpleSAML;
 
 /**
  * Statistics handler class.
@@ -8,9 +9,9 @@
  *
  * @package SimpleSAMLphp
  */
-class SimpleSAML_Stats
-{
 
+class Stats
+{
     /**
      * Whether this class is initialized.
      *
@@ -37,7 +38,7 @@ class SimpleSAML_Stats
     private static function createOutput(\SimpleSAML\Configuration $config)
     {
         $cls = $config->getString('class');
-        $cls = SimpleSAML\Module::resolveClass($cls, 'Stats_Output', 'SimpleSAML_Stats_Output');
+        $cls = SimpleSAML\Module::resolveClass($cls, 'Stats\Output', '\SimpleSAML\Stats\Output');
 
         $output = new $cls($config);
         return $output;

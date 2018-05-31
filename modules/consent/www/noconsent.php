@@ -37,7 +37,7 @@ $statsInfo = array();
 if (isset($state['Destination']['entityid'])) {
     $statsInfo['spEntityID'] = $state['Destination']['entityid'];
 }
-\SimpleSAML_Stats::log('consent:reject', $statsInfo);
+\SimpleSAML\Stats::log('consent:reject', $statsInfo);
 
 $globalConfig = \SimpleSAML\Configuration::getInstance();
 

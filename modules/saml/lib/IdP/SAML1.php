@@ -49,7 +49,7 @@ class sspmod_saml_IdP_SAML1
         if (isset($state['saml:AuthnRequestReceivedAt'])) {
             $statsData['logintime'] = microtime(true) - $state['saml:AuthnRequestReceivedAt'];
         }
-        SimpleSAML_Stats::log('saml:idp:Response', $statsData);
+        \SimpleSAML\Stats::log('saml:idp:Response', $statsData);
 
         // Generate and send response.
         $ar = new \SimpleSAML\XML\Shib13\AuthnResponse();
@@ -115,7 +115,7 @@ class sspmod_saml_IdP_SAML1
                 var_export($spEntityId, true) . ': ' . var_export($shire, true));
         }
 
-        SimpleSAML_Stats::log('saml:idp:AuthnRequest', array(
+        \SimpleSAML\Stats::log('saml:idp:AuthnRequest', array(
             'spEntityID' => $spEntityId,
             'protocol' => 'saml1',
         ));
