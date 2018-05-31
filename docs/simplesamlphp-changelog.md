@@ -36,6 +36,7 @@ Released TBD
   * Fix edge case in getServerPort.
   * Add basic documentation on Nginx configuration.
   * Test authentication: optionally show AuthData array.
+  * Improve performance of PDO Metadata Storage handler entity lookup.
 
 ### adfs
   * Make signature algorithm configurable with `signature.algorithm`.
