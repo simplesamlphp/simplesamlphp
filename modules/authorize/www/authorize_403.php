@@ -8,7 +8,7 @@
 if (!array_key_exists('StateId', $_REQUEST)) {
     throw new \SimpleSAML\Error\BadRequest('Missing required StateId query parameter.');
 }
-$state = \SimpleSAML_Auth_State::loadState($_REQUEST['StateId'], 'authorize:Authorize');
+$state = \SimpleSAML\Auth\State::loadState($_REQUEST['StateId'], 'authorize:Authorize');
 
 $globalConfig = \SimpleSAML\Configuration::getInstance();
 $t = new \SimpleSAML\XHTML\Template($globalConfig, 'authorize:authorize_403.php');

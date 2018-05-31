@@ -7,7 +7,7 @@
  * @package SimpleSAMLphp
  */
 
-class sspmod_negotiate_Auth_Source_Negotiate extends SimpleSAML_Auth_Source
+class sspmod_negotiate_Auth_Source_Negotiate extends \SimpleSAML\Auth\Source
 {
     // Constants used in the module
     const STAGEID = 'sspmod_negotiate_Auth_Source_Negotiate.StageId';
@@ -118,7 +118,7 @@ class sspmod_negotiate_Auth_Source_Negotiate extends SimpleSAML_Auth_Source
         SimpleSAML\Logger::debug('Negotiate - authenticate(): looking for Negotiate');
         if (!empty($_SERVER['HTTP_AUTHORIZATION'])) {
             SimpleSAML\Logger::debug('Negotiate - authenticate(): Negotiate found');
-            $this->ldap = new SimpleSAML_Auth_LDAP(
+            $this->ldap = new \SimpleSAML\Auth\LDAP(
                 $this->hostname,
                 $this->enableTLS,
                 $this->debugLDAP,
@@ -157,7 +157,7 @@ class sspmod_negotiate_Auth_Source_Negotiate extends SimpleSAML_Auth_Source
                         'negotiate:backend' => null,
                     );
                     SimpleSAML\Logger::info('Negotiate - authenticate(): '.$user.' authorized.');
-                    SimpleSAML_Auth_Source::completeAuth($state);
+                    \SimpleSAML\Auth\Source::completeAuth($state);
                     // Never reached.
                     assert(false);
                 }
@@ -170,7 +170,7 @@ class sspmod_negotiate_Auth_Source_Negotiate extends SimpleSAML_Auth_Source
             SimpleSAML\Logger::debug('Negotiate - authenticate(): Sending Negotiate.');
             // Save the $state array, so that we can restore if after a redirect
             SimpleSAML\Logger::debug('Negotiate - fallback: '.$state['LogoutState']['negotiate:backend']);
-            $id = SimpleSAML_Auth_State::saveState($state, self::STAGEID);
+            $id = \SimpleSAML\Auth\State::saveState($state, self::STAGEID);
             $params = array('AuthState' => $id);
 
             $this->sendNegotiate($params);
@@ -271,15 +271,15 @@ EOF;
         if ($authId === null) {
             throw new \SimpleSAML\Error\Error(array(500, "Unable to determine auth source."));
         }
-        $source = \SimpleSAML_Auth_Source::getById($authId);
+        $source = \SimpleSAML\Auth\Source::getById($authId);
 
         try {
             $source->authenticate($state);
         } catch (\SimpleSAML\Error\Exception $e) {
-            \SimpleSAML_Auth_State::throwException($state, $e);
+            \SimpleSAML\Auth\State::throwException($state, $e);
         } catch (\Exception $e) {
             $e = new \SimpleSAML\Error\UnserializableException($e);
-            SimpleSAML_Auth_State::throwException($state, $e);
+            \SimpleSAML\Auth\State::throwException($state, $e);
         }
         // fallBack never returns after loginCompleted()
         SimpleSAML\Logger::debug('Negotiate: backend returned');
@@ -357,7 +357,7 @@ EOF;
             $session->setData('negotiate:disable', 'session', true, 24 * 60 * 60);
             parent::logout($state);
         } else {
-            $source = SimpleSAML_Auth_Source::getById($authId);
+            $source = \SimpleSAML\Auth\Source::getById($authId);
             $source->logout($state);
         }
     }

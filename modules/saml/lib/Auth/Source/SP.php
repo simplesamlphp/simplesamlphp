@@ -1,6 +1,9 @@
 <?php
 
-class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
+use SimpleSAML\Auth\Source;
+use SimpleSAML\Auth\State;
+
+class sspmod_saml_Auth_Source_SP extends Source
 {
     /**
      * The entity ID of this SP.
@@ -147,7 +150,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
         $ar = new \SimpleSAML\XML\Shib13\AuthnRequest();
         $ar->setIssuer($this->entityId);
 
-        $id = SimpleSAML_Auth_State::saveState($state, 'saml:sp:sso');
+        $id = State::saveState($state, 'saml:sp:sso');
         $ar->setRelayState($id);
 
         $useArtifact = $idpMetadata->getBoolean('saml1.useartifact', null);
@@ -177,7 +180,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
     private function startSSO2(\SimpleSAML\Configuration $idpMetadata, array $state)
     {
         if (isset($state['saml:ProxyCount']) && $state['saml:ProxyCount'] < 0) {
-            SimpleSAML_Auth_State::throwException(
+            State::throwException(
                 $state,
                 new \SimpleSAML\Module\saml\Error\ProxyCountExceeded(\SAML2\Constants::STATUS_RESPONDER)
             );
@@ -187,8 +190,8 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
 
         $ar->setAssertionConsumerServiceURL(SimpleSAML\Module::getModuleURL('saml/sp/saml2-acs.php/' . $this->authId));
 
-        if (isset($state['SimpleSAML_Auth_Source.ReturnURL'])) {
-            $ar->setRelayState($state['SimpleSAML_Auth_Source.ReturnURL']);
+        if (isset($state['\SimpleSAML\Auth\Source.ReturnURL'])) {
+            $ar->setRelayState($state['\SimpleSAML\Auth\Source.ReturnURL']);
         }
 
         if (isset($state['saml:AuthnContextClassRef'])) {
@@ -270,7 +273,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
         // save IdP entity ID as part of the state
         $state['ExpectedIssuer'] = $idpMetadata->getString('entityid');
 
-        $id = SimpleSAML_Auth_State::saveState($state, 'saml:sp:sso', true);
+        $id = State::saveState($state, 'saml:sp:sso', true);
         $ar->setId($id);
 
         SimpleSAML\Logger::debug('Sending SAML 2 AuthnRequest to ' .
@@ -344,7 +347,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
      */
     private function startDisco(array $state)
     {
-        $id = SimpleSAML_Auth_State::saveState($state, 'saml:sp:sso');
+        $id = State::saveState($state, 'saml:sp:sso');
 
         $discoURL = $this->discoURL;
         if ($discoURL === null) {
@@ -535,7 +538,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
         }
 
         // save the state WITHOUT a restart URL, so that we don't try an IdP-initiated login if something goes wrong
-        $id = SimpleSAML_Auth_State::saveState($state, 'saml:proxy:invalid_idp', true);
+        $id = State::saveState($state, 'saml:proxy:invalid_idp', true);
         $url = SimpleSAML\Module::getModuleURL('saml/proxy/invalid_session.php');
         SimpleSAML\Utils\HTTP::redirectTrustedURL($url, array('AuthState' => $id));
         assert(false);
@@ -574,7 +577,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
         // Update session state
         $session = \SimpleSAML\Session::getSessionFromRequest();
         $authId = $state['saml:sp:AuthId'];
-        $session->doLogin($authId, SimpleSAML_Auth_State::getPersistentAuthData($state));
+        $session->doLogin($authId, State::getPersistentAuthData($state));
 
         // resume the login process
         call_user_func($state['ReturnCallback'], $state);
@@ -599,7 +602,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
             $state['Responder'] = $state['saml:proxy:reauthLogout:PrevResponder'];
         }
 
-        $sp = SimpleSAML_Auth_Source::getById($state['saml:sp:AuthId'], 'sspmod_saml_Auth_Source_SP');
+        $sp = Source::getById($state['saml:sp:AuthId'], 'sspmod_saml_Auth_Source_SP');
         /** @var sspmod_saml_Auth_Source_SP $authSource */
         SimpleSAML\Logger::debug('Proxy: logging in again.');
         $sp->authenticate($state);
@@ -618,7 +621,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
         assert(array_key_exists('saml:logout:NameID', $state));
         assert(array_key_exists('saml:logout:SessionIndex', $state));
 
-        $id = SimpleSAML_Auth_State::saveState($state, 'saml:slosent');
+        $id = State::saveState($state, 'saml:slosent');
 
         $idp = $state['saml:logout:IdP'];
         $nameId = $state['saml:logout:NameID'];
@@ -717,7 +720,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
             $authProcState['saml:sp:SessionIndex'] = $state['saml:sp:SessionIndex'];
         }
 
-        $pc = new SimpleSAML_Auth_ProcessingChain($idpMetadataArray, $spMetadataArray, 'sp');
+        $pc = new \SimpleSAML\Auth\ProcessingChain($idpMetadataArray, $spMetadataArray, 'sp');
         $pc->processState($authProcState);
 
         self::onProcessingCompleted($authProcState);
@@ -756,7 +759,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
         assert(is_string($redirectTo));
 
         $session = \SimpleSAML\Session::getSessionFromRequest();
-        $session->doLogin($authId, SimpleSAML_Auth_State::getPersistentAuthData($state));
+        $session->doLogin($authId, State::getPersistentAuthData($state));
 
         \SimpleSAML\Utils\HTTP::redirectUntrustedURL($redirectTo);
     }
@@ -776,7 +779,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
         $state = $authProcState['saml:sp:State'];
 
         $sourceId = $state['saml:sp:AuthId'];
-        $source = SimpleSAML_Auth_Source::getById($sourceId);
+        $source = Source::getById($sourceId);
         if ($source === null) {
             throw new Exception('Could not find authentication source with id ' . $sourceId);
         }
@@ -795,6 +798,6 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
             self::handleUnsolicitedAuth($sourceId, $state, $redirectTo);
         }
 
-        SimpleSAML_Auth_Source::completeAuth($state);
+        Source::completeAuth($state);
     }
 }

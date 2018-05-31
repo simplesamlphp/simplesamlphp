@@ -28,9 +28,9 @@
  * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
-class sspmod_core_Auth_Process_TargetedID extends SimpleSAML_Auth_ProcessingFilter {
 
-
+class sspmod_core_Auth_Process_TargetedID extends \SimpleSAML\Auth\ProcessingFilter
+{
 	/**
 	 * The attribute we should generate the targeted id from, or NULL if we should use the
 	 * UserID.

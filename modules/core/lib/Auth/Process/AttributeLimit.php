@@ -6,8 +6,9 @@
  * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
-class sspmod_core_Auth_Process_AttributeLimit extends SimpleSAML_Auth_ProcessingFilter {
 
+class sspmod_core_Auth_Process_AttributeLimit extends \SimpleSAML\Auth\ProcessingFilter
+{
 	/**
 	 * List of attributes which this filter will allow through.
 	 */

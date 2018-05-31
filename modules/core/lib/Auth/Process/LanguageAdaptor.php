@@ -6,8 +6,9 @@
  * @author Andreas Åkre Solberg, UNINETT AS.
  * @package SimpleSAMLphp
  */
-class sspmod_core_Auth_Process_LanguageAdaptor extends SimpleSAML_Auth_ProcessingFilter {
 
+class sspmod_core_Auth_Process_LanguageAdaptor extends \SimpleSAML\Auth\ProcessingFilter
+{
 	private $langattr = 'preferredLanguage';
 
 

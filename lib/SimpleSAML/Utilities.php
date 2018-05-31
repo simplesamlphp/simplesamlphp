@@ -111,11 +111,11 @@ class SimpleSAML_Utilities
 
 
     /**
-     * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML_Auth_State::parseStateID() instead.
+     * @deprecated This method will be removed in SSP 2.0. Please use \SimpleSAML\Auth\State::parseStateID() instead.
      */
     public static function parseStateID($stateId)
     {
-        return SimpleSAML_Auth_State::parseStateID($stateId);
+        return \SimpleSAML\Auth\State::parseStateID($stateId);
     }
 
 

@@ -20,7 +20,13 @@
  *
  * @package SimpleSAMLphp
  */
-class sspmod_exampleauth_Auth_Source_External extends SimpleSAML_Auth_Source {
+
+class sspmod_exampleauth_Auth_Source_External extends \SimpleSAML\Auth\Source
+{
+        /**
+         * The key of the AuthId field in the state.
+         */
+        const AUTHID = 'sspmod_exampleauth_Auth_Source_External.AuthId';
 
 	/**
 	 * Constructor for this authentication source.
@@ -113,7 +119,7 @@ class sspmod_exampleauth_Auth_Source_External extends SimpleSAML_Auth_Source {
 		 * First we add the identifier of this authentication source
 		 * to the state array, so that we know where to resume.
 		 */
-		$state['exampleauth:AuthID'] = $this->authId;
+		$state['exampleauth:AuthID'] = self::AUTHID;
 
 
 		/*
@@ -129,14 +135,14 @@ class sspmod_exampleauth_Auth_Source_External extends SimpleSAML_Auth_Source {
 		 * and restores it in another location, and thus bypasses steps in
 		 * the authentication process.
 		 */
-		$stateId = SimpleSAML_Auth_State::saveState($state, 'exampleauth:External');
+		$stateId = \SimpleSAML\Auth\State::saveState($state, 'exampleauth:External');
 
 		/*
 		 * Now we generate a URL the user should return to after authentication.
 		 * We assume that whatever authentication page we send the user to has an
 		 * option to return the user to a specific page afterwards.
 		 */
-		$returnTo = SimpleSAML\Module::getModuleURL('exampleauth/resume.php', array(
+		$returnTo = \SimpleSAML\Module::getModuleURL('exampleauth/resume.php', array(
 			'State' => $stateId,
 		));
 
@@ -188,13 +194,13 @@ class sspmod_exampleauth_Auth_Source_External extends SimpleSAML_Auth_Source {
 		 * Once again, note the second parameter to the loadState function. This must
 		 * match the string we used in the saveState-call above.
 		 */
-		$state = SimpleSAML_Auth_State::loadState($_REQUEST['State'], 'exampleauth:External');
+		$state = \SimpleSAML\Auth\State::loadState($_REQUEST['State'], 'exampleauth:External');
 
 		/*
 		 * Now we have the $state-array, and can use it to locate the authentication
 		 * source.
 		 */
-		$source = SimpleSAML_Auth_Source::getById($state['exampleauth:AuthID']);
+		$source = \SimpleSAML\Auth\Source::getById($state['exampleauth:AuthID']);
 		if ($source === NULL) {
 			/*
 			 * The only way this should fail is if we remove or rename the authentication source
@@ -235,7 +241,7 @@ class sspmod_exampleauth_Auth_Source_External extends SimpleSAML_Auth_Source {
 		 */
 
 		$state['Attributes'] = $attributes;
-		SimpleSAML_Auth_Source::completeAuth($state);
+		\SimpleSAML\Auth\Source::completeAuth($state);
 
 		/*
 		 * The completeAuth-function never returns, so we never get this far.

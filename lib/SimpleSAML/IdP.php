@@ -95,7 +95,7 @@ class SimpleSAML_IdP
         }
 
         $auth = $this->config->getString('auth');
-        if (SimpleSAML_Auth_Source::getById($auth) !== null) {
+        if (\SimpleSAML\Auth\Source::getById($auth) !== null) {
             $this->authSource = new \SimpleSAML\Auth\Simple($auth);
         } else {
             throw new \SimpleSAML\Error\Exception('No such "'.$auth.'" auth source found.');
@@ -315,7 +315,7 @@ class SimpleSAML_IdP
 
         $idpMetadata = $idp->getConfig()->toArray();
 
-        $pc = new SimpleSAML_Auth_ProcessingChain($idpMetadata, $spMetadata, 'idp');
+        $pc = new \SimpleSAML\Auth\ProcessingChain($idpMetadata, $spMetadata, 'idp');
 
         $state['ReturnCall'] = array('SimpleSAML_IdP', 'postAuthProc');
         $state['Destination'] = $spMetadata;
@@ -409,10 +409,10 @@ class SimpleSAML_IdP
             }
             $this->postAuth($state);
         } catch (\SimpleSAML\Error\Exception $e) {
-            SimpleSAML_Auth_State::throwException($state, $e);
+            \SimpleSAML\Auth\State::throwException($state, $e);
         } catch (Exception $e) {
             $e = new \SimpleSAML\Error\UnserializableException($e);
-            SimpleSAML_Auth_State::throwException($state, $e);
+            \SimpleSAML\Auth\State::throwException($state, $e);
         }
     }
 
@@ -484,8 +484,8 @@ class SimpleSAML_IdP
         }
 
         // terminate the local session
-        $id = SimpleSAML_Auth_State::saveState($state, 'core:Logout:afterbridge');
-        $returnTo = SimpleSAML\Module::getModuleURL('core/idp/resumelogout.php', array('id' => $id));
+        $id = \SimpleSAML\Auth\State::saveState($state, 'core:Logout:afterbridge');
+        $returnTo = \SimpleSAML\Module::getModuleURL('core/idp/resumelogout.php', array('id' => $id));
 
         $this->authSource->logout($returnTo);
 

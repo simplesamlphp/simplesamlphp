@@ -18,7 +18,7 @@ if ($type !== 'embed') {
     \SimpleSAML_Stats::log('core:idp:logout-iframe:page', array('type' => $type));
 }
 
-$state = \SimpleSAML_Auth_State::loadState($_REQUEST['id'], 'core:Logout-IFrame');
+$state = \SimpleSAML\Auth\State::loadState($_REQUEST['id'], 'core:Logout-IFrame');
 $idp = \SimpleSAML_IdP::getByState($state);
 $mdh = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
 
@@ -112,7 +112,7 @@ foreach ($state['core:Logout-IFrame:Associations'] as $association) {
     }
 }
 
-$id = \SimpleSAML_Auth_State::saveState($state, 'core:Logout-IFrame');
+$id = \SimpleSAML\Auth\State::saveState($state, 'core:Logout-IFrame');
 $globalConfig = \SimpleSAML\Configuration::getInstance();
 
 $template_id = 'core:logout-iframe.php';

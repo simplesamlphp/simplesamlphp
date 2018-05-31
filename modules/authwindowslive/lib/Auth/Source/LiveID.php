@@ -7,7 +7,7 @@
  * @author Guy Halse, TENET.
  * @package SimpleSAMLphp
  */
-class sspmod_authwindowslive_Auth_Source_LiveID extends SimpleSAML_Auth_Source
+class sspmod_authwindowslive_Auth_Source_LiveID extends \SimpleSAML\Auth\Source
 {
 
     /**
@@ -66,7 +66,7 @@ class sspmod_authwindowslive_Auth_Source_LiveID extends SimpleSAML_Auth_Source
         // we are going to need the authId in order to retrieve this authentication source later
         $state[self::AUTHID] = $this->authId;
 
-        $stateID = SimpleSAML_Auth_State::saveState($state, self::STAGE_INIT);
+        $stateID = \SimpleSAML\Auth\State::saveState($state, self::STAGE_INIT);
 
         SimpleSAML\Logger::debug('authwindowslive auth state id = ' . $stateID);
 

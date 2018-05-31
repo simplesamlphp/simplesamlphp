@@ -15,8 +15,9 @@
  *         ),
  *
  */
-class sspmod_core_Auth_Process_AttributeCopy extends SimpleSAML_Auth_ProcessingFilter {
 
+class sspmod_core_Auth_Process_AttributeCopy extends \SimpleSAML\Auth\ProcessingFilter
+{
 	/**
 	 * Assosiative array with the mappings of attribute names.
 	 */

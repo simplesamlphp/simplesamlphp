@@ -46,7 +46,7 @@ class TraditionalLogoutHandler implements LogoutHandlerInterface
             $this->idp->finishLogout($state);
         }
 
-        $relayState = \SimpleSAML_Auth_State::saveState($state, 'core:LogoutTraditional', true);
+        $relayState = \SimpleSAML\Auth\State::saveState($state, 'core:LogoutTraditional', true);
 
         $id = $association['id'];
         Logger::info('Logging out of '.var_export($id, true).'.');
@@ -103,7 +103,7 @@ class TraditionalLogoutHandler implements LogoutHandlerInterface
             throw new \SimpleSAML\Error\Exception('RelayState lost during logout.');
         }
 
-        $state = \SimpleSAML_Auth_State::loadState($relayState, 'core:LogoutTraditional');
+        $state = \SimpleSAML\Auth\State::loadState($relayState, 'core:LogoutTraditional');
 
         if ($error === null) {
             Logger::info('Logged out of '.var_export($assocId, true).'.');

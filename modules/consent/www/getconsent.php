@@ -30,7 +30,7 @@ if (!array_key_exists('StateId', $_REQUEST)) {
 }
 
 $id = $_REQUEST['StateId'];
-$state = SimpleSAML_Auth_State::loadState($id, 'consent:request');
+$state = \SimpleSAML\Auth\State::loadState($id, 'consent:request');
 
 if (array_key_exists('core:SP', $state)) {
     $spentityid = $state['core:SP'];
@@ -78,7 +78,7 @@ if (array_key_exists('yes', $_REQUEST)) {
         }
     }
 
-    \SimpleSAML_Auth_ProcessingChain::resumeProcessing($state);
+    \SimpleSAML\Auth\ProcessingChain::resumeProcessing($state);
 }
 
 // Prepare attributes for presentation

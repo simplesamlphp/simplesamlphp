@@ -9,7 +9,7 @@
  *
  * @package SimpleSAMLphp
  */
-class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilter
+class sspmod_consent_Auth_Process_Consent extends \SimpleSAML\Auth\ProcessingFilter
 {
     /**
      * Button to receive focus
@@ -335,7 +335,7 @@ class sspmod_consent_Auth_Process_Consent extends SimpleSAML_Auth_ProcessingFilt
         }
 
         // Save state and redirect
-        $id = SimpleSAML_Auth_State::saveState($state, 'consent:request');
+        $id = \SimpleSAML\Auth\State::saveState($state, 'consent:request');
         $url = SimpleSAML\Module::getModuleURL('consent/getconsent.php');
         \SimpleSAML\Utils\HTTP::redirectTrustedURL($url, array('StateId' => $id));
     }

@@ -7,7 +7,7 @@
  * @package SimpleSAMLphp
  */
 
-class sspmod_authX509_Auth_Source_X509userCert extends SimpleSAML_Auth_Source
+class sspmod_authX509_Auth_Source_X509userCert extends \SimpleSAML\Auth\Source
 {
     /**
      * x509 attributes to use from the certificate for searching the user in the LDAP directory.
@@ -198,7 +198,7 @@ class sspmod_authX509_Auth_Source_X509userCert extends SimpleSAML_Auth_Source
      */
     public function authSuccesful(&$state)
     {
-        SimpleSAML_Auth_Source::completeAuth($state);
+        \SimpleSAML\Auth\Source::completeAuth($state);
 
         assert(false); // should never be reached
         return;

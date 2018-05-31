@@ -63,7 +63,7 @@ class Auth
         }
 
         // not authenticated as admin user, start authentication
-        if (\SimpleSAML_Auth_Source::getById('admin') !== null) {
+        if (\SimpleSAML\Auth\Source::getById('admin') !== null) {
             $as = new \SimpleSAML\Auth\Simple('admin');
             $as->login();
         } else {

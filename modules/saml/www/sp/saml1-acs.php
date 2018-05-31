@@ -21,7 +21,7 @@ if ($end === false) {
 }
 $sourceId = substr($sourceId, 1, $end - 1);
 
-$source = SimpleSAML_Auth_Source::getById($sourceId, 'sspmod_saml_Auth_Source_SP');
+$source = \SimpleSAML\Auth\Source::getById($sourceId, 'sspmod_saml_Auth_Source_SP');
 
 SimpleSAML\Logger::debug('Received SAML1 response');
 
@@ -35,7 +35,7 @@ if (preg_match('@^https?://@i', $target)) {
         'saml:sp:RelayState' => \SimpleSAML\Utils\HTTP::checkURLAllowed($target),
     );
 } else {
-    $state = SimpleSAML_Auth_State::loadState($_REQUEST['TARGET'], 'saml:sp:sso');
+    $state = \SimpleSAML\Auth\State::loadState($_REQUEST['TARGET'], 'saml:sp:sso');
 
     // Check that the authentication source is correct.
     assert(array_key_exists('saml:sp:AuthId', $state));

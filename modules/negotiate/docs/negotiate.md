@@ -196,23 +196,23 @@ One can add this bit of code to the template in the fallback AuthN
 module:
 
 // This should be placed in your www script
-$nego_session = FALSE;
-$nego_perm = FALSE;
-$nego_retry = NULL;
+$nego_session = false;
+$nego_perm = false;
+$nego_retry = null;
 if (array_key_exists('negotiate:authId', $state)) {
-    $nego = SimpleSAML_Auth_Source::getById($state['negotiate:authId']);
+    $nego = \SimpleSAML\Auth\Source::getById($state['negotiate:authId']);
     $mask = $nego->checkMask();
     $disabled = $nego->spDisabledInMetadata($spMetadata);
     $session_disabled = $session->getData('negotiate:disable', 'session');
     if ($mask and !$disabled) {
         if(array_key_exists('NEGOTIATE_AUTOLOGIN_DISABLE_PERMANENT', $_COOKIE) &&
            $_COOKIE['NEGOTIATE_AUTOLOGIN_DISABLE_PERMANENT'] == 'True') {
-            $nego_perm = TRUE;
+            $nego_perm = true;
         } elseif ($session_disabled) {
-            $retryState = SimpleSAML_Auth_State::cloneState($state);
-            unset($retryState[SimpleSAML_Auth_State::ID]);
-            $nego_retry = SimpleSAML_Auth_State::saveState($retryState, 'sspmod_negotiate_Auth_Source_Negotiate.StageId');
-            $nego_session = TRUE;
+            $retryState = \SimpleSAML\Auth\State::cloneState($state);
+            unset($retryState[\SimpleSAML\Auth\State::ID]);
+            $nego_retry = \SimpleSAML\Auth\State::saveState($retryState, 'sspmod_negotiate_Auth_Source_Negotiate.StageId');
+            $nego_session = true;
         }
     }
 }

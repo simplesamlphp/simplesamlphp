@@ -13,11 +13,11 @@ if (!array_key_exists('StateId', $_REQUEST)) {
     throw new \SimpleSAML\Error\BadRequest('Missing required StateId query parameter.');
 }
 $id = $_REQUEST['StateId'];
-$state = \SimpleSAML_Auth_State::loadState($id, 'warning:request');
+$state = \SimpleSAML\Auth\State::loadState($id, 'warning:request');
 
 if (array_key_exists('yes', $_REQUEST)) {
     // The user has pressed the yes-button
-    \SimpleSAML_Auth_ProcessingChain::resumeProcessing($state);
+    \SimpleSAML\Auth\ProcessingChain::resumeProcessing($state);
 }
 
 $globalConfig = \SimpleSAML\Configuration::getInstance();

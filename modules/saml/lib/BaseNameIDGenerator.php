@@ -5,7 +5,7 @@
  *
  * @package SimpleSAMLphp
  */
-abstract class sspmod_saml_BaseNameIDGenerator extends SimpleSAML_Auth_ProcessingFilter
+abstract class sspmod_saml_BaseNameIDGenerator extends \SimpleSAML\Auth\ProcessingFilter
 {
     /**
      * What NameQualifier should be used.

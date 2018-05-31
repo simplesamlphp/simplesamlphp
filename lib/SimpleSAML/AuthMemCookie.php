@@ -110,15 +110,15 @@ class AuthMemCookie
     /**
      * This function creates and initializes a Memcache object from our configuration.
      *
-     * @return Memcache A Memcache object initialized from our configuration.
-     * @throws Exception If the servers configuration is invalid.
+     * @return \Memcache A Memcache object initialized from our configuration.
+     * @throws \Exception If the servers configuration is invalid.
      */
     public function getMemcache()
     {
         $memcacheHost = $this->amcConfig->getString('memcache.host', '127.0.0.1');
         $memcachePort = $this->amcConfig->getInteger('memcache.port', 11211);
 
-        $class = class_exists('Memcache') ? 'Memcache' : (class_exists('Memcached') ? 'Memcached' : false);
+        $class = class_exists('Memcache') ? '\Memcache' : (class_exists('Memcached') ? '\Memcached' : false);
         if (!$class) {
             throw new \Exception('Missing Memcached implementation. You must install either the Memcache or Memcached extension.');
         }

@@ -66,7 +66,7 @@ class IFrameLogoutHandler implements LogoutHandlerInterface
         }
 
         $params = array(
-            'id' => \SimpleSAML_Auth_State::saveState($state, 'core:Logout-IFrame'),
+            'id' => \SimpleSAML\Auth\State::saveState($state, 'core:Logout-IFrame'),
         );
         if (isset($state['core:Logout-IFrame:InitType'])) {
             $params['type'] = $state['core:Logout-IFrame:InitType'];

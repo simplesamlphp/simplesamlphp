@@ -16,7 +16,9 @@
  * to add a virtual 'scope' attribute from the eduPersonPrincipalName
  * attribute.
  */
-class sspmod_core_Auth_Process_ScopeFromAttribute extends SimpleSAML_Auth_ProcessingFilter {
+
+class sspmod_core_Auth_Process_ScopeFromAttribute extends \SimpleSAML\Auth\ProcessingFilter
+{
 	/**
 	 * The attribute where the scope is taken from
 	 *

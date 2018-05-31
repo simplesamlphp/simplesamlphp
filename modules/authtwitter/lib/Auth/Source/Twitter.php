@@ -8,7 +8,7 @@ require_once(dirname(dirname(dirname(dirname(dirname(__FILE__))))) . '/oauth/lib
  * @author Andreas Åkre Solberg, UNINETT AS.
  * @package SimpleSAMLphp
  */
-class sspmod_authtwitter_Auth_Source_Twitter extends SimpleSAML_Auth_Source
+class sspmod_authtwitter_Auth_Source_Twitter extends \SimpleSAML\Auth\Source
 {
 	/**
 	 * The string used to identify our states.
@@ -75,7 +75,7 @@ class sspmod_authtwitter_Auth_Source_Twitter extends SimpleSAML_Auth_Source
 		// We are going to need the authId in order to retrieve this authentication source later
 		$state[self::AUTHID] = $this->authId;
 		
-		$stateID = SimpleSAML_Auth_State::saveState($state, self::STAGE_INIT);
+		$stateID = \SimpleSAML\Auth\State::saveState($state, self::STAGE_INIT);
 		
 		$consumer = new sspmod_oauth_Consumer($this->key, $this->secret);
 		// Get the request token
@@ -85,7 +85,7 @@ class sspmod_authtwitter_Auth_Source_Twitter extends SimpleSAML_Auth_Source
 			$requestToken->key . "] with the secret [" . $requestToken->secret . "]");
 
 		$state['authtwitter:authdata:requestToken'] = $requestToken;
-		SimpleSAML_Auth_State::saveState($state, self::STAGE_INIT);
+		\SimpleSAML\Auth\State::saveState($state, self::STAGE_INIT);
 
 		// Authorize the request token
 		$url = 'https://api.twitter.com/oauth/authenticate';

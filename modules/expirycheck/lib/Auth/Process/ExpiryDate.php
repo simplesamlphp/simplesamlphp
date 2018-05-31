@@ -20,7 +20,7 @@
  * @package SimpleSAMLphp
  */
 
-class sspmod_expirycheck_Auth_Process_ExpiryDate extends SimpleSAML_Auth_ProcessingFilter {
+class sspmod_expirycheck_Auth_Process_ExpiryDate extends \SimpleSAML\Auth\ProcessingFilter {
 
 	private $warndaysbefore = 0;
 	private $netid_attr = NULL;
@@ -132,7 +132,7 @@ class sspmod_expirycheck_Auth_Process_ExpiryDate extends SimpleSAML_Auth_Process
 			// Save state and redirect
 			$state['expireOnDate'] = date($this->date_format, $expireOnDate);
 			$state['netId'] = $netId;
-			$id = SimpleSAML_Auth_State::saveState($state, 'expirywarning:about2expire');
+			$id = \SimpleSAML\Auth\State::saveState($state, 'expirywarning:about2expire');
 			$url = SimpleSAML\Module::getModuleURL('expirycheck/about2expire.php');
 			\SimpleSAML\Utils\HTTP::redirectTrustedURL($url, array('StateId' => $id));
 		}
@@ -144,7 +144,7 @@ class sspmod_expirycheck_Auth_Process_ExpiryDate extends SimpleSAML_Auth_Process
 			/* Save state and redirect. */
 			$state['expireOnDate'] = date($this->date_format, $expireOnDate);
 			$state['netId'] = $netId;
-			$id = SimpleSAML_Auth_State::saveState($state, 'expirywarning:expired');
+			$id = \SimpleSAML\Auth\State::saveState($state, 'expirywarning:expired');
 			$url = SimpleSAML\Module::getModuleURL('expirycheck/expired.php');
 			\SimpleSAML\Utils\HTTP::redirectTrustedURL($url, array('StateId' => $id));
 

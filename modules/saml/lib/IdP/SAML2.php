@@ -412,8 +412,8 @@ class sspmod_saml_IdP_SAML2
 
         $state = array(
             'Responder'                                   => array('sspmod_saml_IdP_SAML2', 'sendResponse'),
-            SimpleSAML_Auth_State::EXCEPTION_HANDLER_FUNC => array('sspmod_saml_IdP_SAML2', 'handleAuthError'),
-            SimpleSAML_Auth_State::RESTART                => $sessionLostURL,
+            \SimpleSAML\Auth\State::EXCEPTION_HANDLER_FUNC => array('sspmod_saml_IdP_SAML2', 'handleAuthError'),
+            \SimpleSAML\Auth\State::RESTART                => $sessionLostURL,
 
             'SPMetadata'                  => $spMetadata->toArray(),
             'saml:RelayState'             => $relayState,

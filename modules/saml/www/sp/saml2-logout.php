@@ -12,7 +12,7 @@ if (!array_key_exists('PATH_INFO', $_SERVER)) {
 
 $sourceId = substr($_SERVER['PATH_INFO'], 1);
 
-$source = SimpleSAML_Auth_Source::getById($sourceId);
+$source = \SimpleSAML\Auth\Source::getById($sourceId);
 if ($source === null) {
     throw new \Exception('Could not find authentication source with id ' . $sourceId);
 }
@@ -61,17 +61,17 @@ if ($message instanceof \SAML2\LogoutResponse) {
     }
 
     if (!$message->isSuccess()) {
-        SimpleSAML\Logger::warning('Unsuccessful logout. Status was: ' . sspmod_saml_Message::getResponseError($message));
+        \SimpleSAML\Logger::warning('Unsuccessful logout. Status was: ' . sspmod_saml_Message::getResponseError($message));
     }
 
-    $state = SimpleSAML_Auth_State::loadState($relayState, 'saml:slosent');
+    $state = \SimpleSAML\Auth\State::loadState($relayState, 'saml:slosent');
     $state['saml:sp:LogoutStatus'] = $message->getStatus();
-    SimpleSAML_Auth_Source::completeLogout($state);
+    \SimpleSAML\Auth\Source::completeLogout($state);
 
 } elseif ($message instanceof \SAML2\LogoutRequest) {
 
-    SimpleSAML\Logger::debug('module/saml2/sp/logout: Request from ' . $idpEntityId);
-    SimpleSAML\Logger::stats('saml20-idp-SLO idpinit ' . $spEntityId . ' ' . $idpEntityId);
+    \SimpleSAML\Logger::debug('module/saml2/sp/logout: Request from ' . $idpEntityId);
+    \SimpleSAML\Logger::stats('saml20-idp-SLO idpinit ' . $spEntityId . ' ' . $idpEntityId);
 
     if ($message->isNameIdEncrypted()) {
         try {
@@ -86,11 +86,11 @@ if ($message instanceof \SAML2\LogoutResponse) {
         foreach ($keys as $i => $key) {
             try {
                 $message->decryptNameId($key, $blacklist);
-                SimpleSAML\Logger::debug('Decryption with key #' . $i . ' succeeded.');
+                \SimpleSAML\Logger::debug('Decryption with key #' . $i . ' succeeded.');
                 $lastException = null;
                 break;
             } catch (\Exception $e) {
-                SimpleSAML\Logger::debug('Decryption with key #' . $i . ' failed with exception: ' . $e->getMessage());
+                \SimpleSAML\Logger::debug('Decryption with key #' . $i . ' failed with exception: ' . $e->getMessage());
                 $lastException = $e;
             }
         }
@@ -115,7 +115,7 @@ if ($message instanceof \SAML2\LogoutResponse) {
     $lr->setInResponseTo($message->getId());
 
     if ($numLoggedOut < count($sessionIndexes)) {
-        SimpleSAML\Logger::warning('Logged out of ' . $numLoggedOut  . ' of ' . count($sessionIndexes) . ' sessions.');
+        \SimpleSAML\Logger::warning('Logged out of ' . $numLoggedOut  . ' of ' . count($sessionIndexes) . ' sessions.');
     }
 
     $dst = $idpMetadata->getEndpointPrioritizedByBinding('SingleLogoutService', array(

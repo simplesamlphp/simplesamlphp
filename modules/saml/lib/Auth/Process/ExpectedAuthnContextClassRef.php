@@ -16,7 +16,7 @@
  * @package SimpleSAMLphp
  */
 
-class sspmod_saml_Auth_Process_ExpectedAuthnContextClassRef extends SimpleSAML_Auth_ProcessingFilter
+class sspmod_saml_Auth_Process_ExpectedAuthnContextClassRef extends \SimpleSAML\Auth\ProcessingFilter
 {
 
     /**
@@ -89,13 +89,13 @@ class sspmod_saml_Auth_Process_ExpectedAuthnContextClassRef extends SimpleSAML_A
      */
     protected function unauthorized(&$request)
     {
-        SimpleSAML\Logger::error(
+        \SimpleSAML\Logger::error(
             'ExpectedAuthnContextClassRef: Invalid authentication context: '.$this->AuthnContextClassRef.
             '. Accepted values are: '.var_export($this->accepted, true)
         );
 
-        $id = SimpleSAML_Auth_State::saveState($request, 'saml:ExpectedAuthnContextClassRef:unauthorized');
-        $url = SimpleSAML\Module::getModuleURL(
+        $id = \SimpleSAML\Auth\State::saveState($request, 'saml:ExpectedAuthnContextClassRef:unauthorized');
+        $url = \SimpleSAML\Module::getModuleURL(
             'saml/sp/wrong_authncontextclassref.php'
         );
         \SimpleSAML\Utils\HTTP::redirectTrustedURL($url, array('StateId' => $id));

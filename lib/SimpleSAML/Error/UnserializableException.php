@@ -5,7 +5,7 @@ namespace SimpleSAML\Error;
 /**
  * Class for saving normal exceptions for serialization.
  *
- * This class is used by the SimpleSAML_Auth_State class when it needs
+ * This class is used by the \SimpleSAML\Auth\State class when it needs
  * to serialize an exception which doesn't subclass the
  * \SimpleSAML\Error\Exception class.
  *

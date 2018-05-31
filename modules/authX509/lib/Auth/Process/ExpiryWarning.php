@@ -14,7 +14,7 @@
  * @author Joost van Dijk, SURFnet. <Joost.vanDijk@surfnet.nl>
  * @package SimpleSAMLphp
  */
-class sspmod_authX509_Auth_Process_ExpiryWarning extends SimpleSAML_Auth_ProcessingFilter
+class sspmod_authX509_Auth_Process_ExpiryWarning extends \SimpleSAML\Auth\ProcessingFilter
 {
 
     private $warndaysbefore = 30;
@@ -83,13 +83,13 @@ class sspmod_authX509_Auth_Process_ExpiryWarning extends SimpleSAML_Auth_Process
             return;
         }
 
-        SimpleSAML\Logger::warning('authX509: user certificate expires in ' . $daysleft . ' days');
+        \SimpleSAML\Logger::warning('authX509: user certificate expires in ' . $daysleft . ' days');
         $state['daysleft'] = $daysleft;
         $state['renewurl'] = $this->renewurl;
 
         /* Save state and redirect. */
-        $id = SimpleSAML_Auth_State::saveState($state, 'warning:expire');
-        $url = SimpleSAML\Module::getModuleURL('authX509/expirywarning.php');
+        $id = \SimpleSAML\Auth\State::saveState($state, 'warning:expire');
+        $url = \SimpleSAML\Module::getModuleURL('authX509/expirywarning.php');
         \SimpleSAML\Utils\HTTP::redirectTrustedURL($url, array('StateId' => $id));
     }
 

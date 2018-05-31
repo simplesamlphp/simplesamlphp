@@ -8,7 +8,7 @@ require_once(dirname(dirname(dirname(dirname(dirname(__FILE__))))) . '/oauth/lib
  * @author Brook Schofield, TERENA.
  * @package SimpleSAMLphp
  */
-class sspmod_authlinkedin_Auth_Source_LinkedIn extends SimpleSAML_Auth_Source 
+class sspmod_authlinkedin_Auth_Source_LinkedIn extends \SimpleSAML\Auth\Source 
 {
 
     /**
@@ -72,7 +72,7 @@ class sspmod_authlinkedin_Auth_Source_LinkedIn extends SimpleSAML_Auth_Source
         // We are going to need the authId in order to retrieve this authentication source later
         $state[self::AUTHID] = $this->authId;
 
-        $stateID = SimpleSAML_Auth_State::getStateId($state);
+        $stateID = \SimpleSAML\Auth\State::getStateId($state);
         SimpleSAML\Logger::debug('authlinkedin auth state id = ' . $stateID);
 
         $consumer = new sspmod_oauth_Consumer($this->key, $this->secret);
@@ -91,7 +91,7 @@ class sspmod_authlinkedin_Auth_Source_LinkedIn extends SimpleSAML_Auth_Source
         $state['authlinkedin:requestToken'] = $requestToken;
 
         // Update the state
-        SimpleSAML_Auth_State::saveState($state, self::STAGE_INIT);
+        \SimpleSAML\Auth\State::saveState($state, self::STAGE_INIT);
 
         // Authorize the request token
         $consumer->getAuthorizeRequest('https://www.linkedin.com/uas/oauth/authenticate', $requestToken);

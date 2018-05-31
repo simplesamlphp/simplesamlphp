@@ -8,4 +8,5 @@
  *
  * @package SimpleSAMLphp
  */
+
 sspmod_exampleauth_Auth_Source_External::resume();

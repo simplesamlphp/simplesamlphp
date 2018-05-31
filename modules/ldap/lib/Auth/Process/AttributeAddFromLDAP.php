@@ -150,7 +150,7 @@ class sspmod_ldap_Auth_Process_AttributeAddFromLDAP extends sspmod_ldap_Auth_Pro
             $arrSearch[] = '%'.$attr.'%';
 
             if (strlen($val[0]) > 0) {
-                $arrReplace[] = SimpleSAML_Auth_LDAP::escape_filter_value($val[0]);
+                $arrReplace[] = \SimpleSAML\Auth\LDAP::escape_filter_value($val[0]);
             } else {
                 $arrReplace[] = '';
             }

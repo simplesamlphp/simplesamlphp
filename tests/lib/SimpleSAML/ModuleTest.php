@@ -112,8 +112,8 @@ class ModuleTest extends TestCase
         // test for valid subclasses
         $this->assertEquals('sspmod_core_Auth_Process_PHP', Module::resolveClass(
             'core:PHP',
-            'Auth_Process',
-            'SimpleSAML_Auth_ProcessingFilter'
+            'Auth\Process',
+            '\SimpleSAML\Auth\ProcessingFilter'
         ));
     }
 }

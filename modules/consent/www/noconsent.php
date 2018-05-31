@@ -13,7 +13,7 @@ if (!array_key_exists('StateId', $_REQUEST)) {
 }
 
 $id = $_REQUEST['StateId'];
-$state = \SimpleSAML_Auth_State::loadState($id, 'consent:request');
+$state = \SimpleSAML\Auth\State::loadState($id, 'consent:request');
 
 $resumeFrom = \SimpleSAML\Module::getModuleURL(
     'consent/getconsent.php',

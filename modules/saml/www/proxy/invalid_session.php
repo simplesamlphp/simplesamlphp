@@ -16,10 +16,10 @@ if (!array_key_exists('AuthState', $_REQUEST)) {
 
 try {
     // try to get the state
-    $state = \SimpleSAML_Auth_State::loadState($_REQUEST['AuthState'], 'saml:proxy:invalid_idp');
+    $state = \SimpleSAML\Auth\State::loadState($_REQUEST['AuthState'], 'saml:proxy:invalid_idp');
 } catch (\Exception $e) {
     // the user probably hit the back button after starting the logout, try to recover the state with another stage
-    $state = \SimpleSAML_Auth_State::loadState($_REQUEST['AuthState'], 'core:Logout:afterbridge');
+    $state = \SimpleSAML\Auth\State::loadState($_REQUEST['AuthState'], 'core:Logout:afterbridge');
 
     // success! Try to continue with reauthentication, since we no longer have a valid session here
     $idp = \SimpleSAML_IdP::getById($state['core:IdP']);
@@ -28,7 +28,7 @@ try {
 
 if (isset($_POST['cancel'])) {
     // the user does not want to logout, cancel login
-    \SimpleSAML_Auth_State::throwException(
+    \SimpleSAML\Auth\State::throwException(
         $state,
         new \SimpleSAML\Module\saml\Error\NoAvailableIDP(
             \SAML2\Constants::STATUS_RESPONDER,
@@ -39,7 +39,7 @@ if (isset($_POST['cancel'])) {
 
 if (isset($_POST['continue'])) {
     // log the user out before being able to login again
-    $as = \SimpleSAML_Auth_Source::getById($state['saml:sp:AuthId'], 'sspmod_saml_Auth_Source_SP');
+    $as = \SimpleSAML\Auth\Source::getById($state['saml:sp:AuthId'], 'sspmod_saml_Auth_Source_SP');
     /** @var \sspmod_saml_Auth_Source_SP $as */
     $as->reauthLogout($state);
 }

@@ -8,7 +8,7 @@
  * @package SimpleSAMLphp
  */
 
-class sspmod_multiauth_Auth_Source_MultiAuth extends SimpleSAML_Auth_Source
+class sspmod_multiauth_Auth_Source_MultiAuth extends \SimpleSAML\Auth\Source
 {
 	/**
 	 * The key of the AuthId field in the state.
@@ -108,7 +108,7 @@ class sspmod_multiauth_Auth_Source_MultiAuth extends SimpleSAML_Auth_Source
 		$state[self::SOURCESID] = $this->sources;
 
 		/* Save the $state array, so that we can restore if after a redirect */
-		$id = SimpleSAML_Auth_State::saveState($state, self::STAGEID);
+		$id = \SimpleSAML\Auth\State::saveState($state, self::STAGEID);
 
 		/* Redirect to the select source page. We include the identifier of the
 		saved state array as a parameter to the login form */
@@ -142,7 +142,7 @@ class sspmod_multiauth_Auth_Source_MultiAuth extends SimpleSAML_Auth_Source
 		assert(is_string($authId));
 		assert(is_array($state));
 
-		$as = SimpleSAML_Auth_Source::getById($authId);
+		$as = \SimpleSAML\Auth\Source::getById($authId);
 		$valid_sources = array_map(
 			function($src) {
 				return $src['source'];
@@ -160,12 +160,12 @@ class sspmod_multiauth_Auth_Source_MultiAuth extends SimpleSAML_Auth_Source
 		try {
 			$as->authenticate($state);
 		} catch (\SimpleSAML\Error\Exception $e) {
-			SimpleSAML_Auth_State::throwException($state, $e);
-		} catch (Exception $e) {
+			\SimpleSAML\Auth\State::throwException($state, $e);
+		} catch (\Exception $e) {
 			$e = new \SimpleSAML\Error\UnserializableException($e);
-			SimpleSAML_Auth_State::throwException($state, $e);
+			\SimpleSAML\Auth\State::throwException($state, $e);
 		}
-		SimpleSAML_Auth_Source::completeAuth($state);
+		\SimpleSAML\Auth\Source::completeAuth($state);
 	}
 
 	/**
@@ -183,9 +183,9 @@ class sspmod_multiauth_Auth_Source_MultiAuth extends SimpleSAML_Auth_Source
 		$session = \SimpleSAML\Session::getSessionFromRequest();
 		$authId = $session->getData(self::SESSION_SOURCE, $this->authId);
 
-		$source = SimpleSAML_Auth_Source::getById($authId);
+		$source = \SimpleSAML\Auth\Source::getById($authId);
 		if ($source === NULL) {
-			throw new Exception('Invalid authentication source during logout: ' . $source);
+			throw new \Exception('Invalid authentication source during logout: ' . $source);
 		}
 		/* Then, do the logout on it */
 		$source->logout($state);

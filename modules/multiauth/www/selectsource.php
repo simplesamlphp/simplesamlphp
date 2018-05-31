@@ -15,11 +15,11 @@ if (!array_key_exists('AuthState', $_REQUEST)) {
 	throw new \SimpleSAML\Error\BadRequest('Missing AuthState parameter.');
 }
 $authStateId = $_REQUEST['AuthState'];
-$state = \SimpleSAML_Auth_State::loadState($authStateId, sspmod_multiauth_Auth_Source_MultiAuth::STAGEID);
+$state = \SimpleSAML\Auth\State::loadState($authStateId, sspmod_multiauth_Auth_Source_MultiAuth::STAGEID);
 
-if (array_key_exists("SimpleSAML_Auth_Source.id", $state)) {
-	$authId = $state["SimpleSAML_Auth_Source.id"];
-	$as = \SimpleSAML_Auth_Source::getById($authId);
+if (array_key_exists("\SimpleSAML\Auth\Source.id", $state)) {
+	$authId = $state["\SimpleSAML\Auth\Source.id"];
+	$as = \SimpleSAML\Auth\Source::getById($authId);
 } else {
 	$as = NULL;
 }

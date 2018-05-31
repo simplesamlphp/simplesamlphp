@@ -29,7 +29,7 @@ function driveProcessingChain(
     /*
      * Create a new processing chain
      */
-    $pc = new SimpleSAML_Auth_ProcessingChain($idp_metadata, $sp_metadata, 'idp');
+    $pc = new \SimpleSAML\Auth\ProcessingChain($idp_metadata, $sp_metadata, 'idp');
 
     /*
      * Construct the state.

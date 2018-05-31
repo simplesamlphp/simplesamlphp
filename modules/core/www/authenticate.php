@@ -5,7 +5,7 @@ $config = \SimpleSAML\Configuration::getInstance();
 if (!array_key_exists('as', $_REQUEST)) {
     $t = new \SimpleSAML\XHTML\Template($config, 'core:authsource_list.tpl.php');
 
-    $t->data['sources'] = \SimpleSAML_Auth_Source::getSources();
+    $t->data['sources'] = \SimpleSAML\Auth\Source::getSources();
     $t->show();
     exit();
 }
@@ -17,12 +17,12 @@ if (array_key_exists('logout', $_REQUEST)) {
     $as->logout($config->getBasePath().'logout.php');
 }
 
-if (array_key_exists(\SimpleSAML_Auth_State::EXCEPTION_PARAM, $_REQUEST)) {
+if (array_key_exists(\SimpleSAML\Auth\State::EXCEPTION_PARAM, $_REQUEST)) {
     // This is just a simple example of an error
 
-    $state = \SimpleSAML_Auth_State::loadExceptionState();
-    assert(array_key_exists(\SimpleSAML_Auth_State::EXCEPTION_DATA, $state));
-    $e = $state[\SimpleSAML_Auth_State::EXCEPTION_DATA];
+    $state = \SimpleSAML\Auth\State::loadExceptionState();
+    assert(array_key_exists(\SimpleSAML\Auth\State::EXCEPTION_DATA, $state));
+    $e = $state[\SimpleSAML\Auth\State::EXCEPTION_DATA];
 
     throw $e;
 }

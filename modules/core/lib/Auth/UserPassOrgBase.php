@@ -12,7 +12,7 @@
  * @package SimpleSAMLphp
  */
 
-abstract class sspmod_core_Auth_UserPassOrgBase extends SimpleSAML_Auth_Source
+abstract class sspmod_core_Auth_UserPassOrgBase extends \SimpleSAML\Auth\Source
 {
 	/**
 	 * The string used to identify our states.
@@ -152,7 +152,7 @@ abstract class sspmod_core_Auth_UserPassOrgBase extends SimpleSAML_Auth_Source
 		// We are going to need the authId in order to retrieve this authentication source later
 		$state[self::AUTHID] = $this->authId;
 
-		$id = SimpleSAML_Auth_State::saveState($state, self::STAGEID);
+		$id = \SimpleSAML\Auth\State::saveState($state, self::STAGEID);
 
 		$url = SimpleSAML\Module::getModuleURL('core/loginuserpassorg.php');
 		$params = array('AuthState' => $id);
@@ -209,11 +209,11 @@ abstract class sspmod_core_Auth_UserPassOrgBase extends SimpleSAML_Auth_Source
 		assert(is_string($organization));
 
 		/* Retrieve the authentication state. */
-		$state = SimpleSAML_Auth_State::loadState($authStateId, self::STAGEID);
+		$state = \SimpleSAML\Auth\State::loadState($authStateId, self::STAGEID);
 
 		/* Find authentication source. */
 		assert(array_key_exists(self::AUTHID, $state));
-		$source = SimpleSAML_Auth_Source::getById($state[self::AUTHID]);
+		$source = \SimpleSAML\Auth\Source::getById($state[self::AUTHID]);
 		if ($source === NULL) {
 			throw new Exception('Could not find authentication source with id ' . $state[self::AUTHID]);
 		}
@@ -240,7 +240,7 @@ abstract class sspmod_core_Auth_UserPassOrgBase extends SimpleSAML_Auth_Source
 		$state['PersistentAuthData'][] = self::ORGID;
 
 		$state['Attributes'] = $attributes;
-		SimpleSAML_Auth_Source::completeAuth($state);
+		\SimpleSAML\Auth\Source::completeAuth($state);
 	}
 
 
@@ -257,11 +257,11 @@ abstract class sspmod_core_Auth_UserPassOrgBase extends SimpleSAML_Auth_Source
 		assert(is_string($authStateId));
 
 		/* Retrieve the authentication state. */
-		$state = SimpleSAML_Auth_State::loadState($authStateId, self::STAGEID);
+		$state = \SimpleSAML\Auth\State::loadState($authStateId, self::STAGEID);
 
 		/* Find authentication source. */
 		assert(array_key_exists(self::AUTHID, $state));
-		$source = SimpleSAML_Auth_Source::getById($state[self::AUTHID]);
+		$source = \SimpleSAML\Auth\Source::getById($state[self::AUTHID]);
 		if ($source === NULL) {
 			throw new Exception('Could not find authentication source with id ' . $state[self::AUTHID]);
 		}

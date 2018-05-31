@@ -14,9 +14,9 @@ if (!array_key_exists('AuthState', $_REQUEST)) {
 	throw new \SimpleSAML\Error\BadRequest('Missing AuthState parameter.');
 }
 $authStateId = $_REQUEST['AuthState'];
-$state = SimpleSAML_Auth_State::loadState($authStateId, sspmod_core_Auth_UserPassBase::STAGEID);
+$state = \SimpleSAML\Auth\State::loadState($authStateId, sspmod_core_Auth_UserPassBase::STAGEID);
 
-$source = SimpleSAML_Auth_Source::getById($state[sspmod_core_Auth_UserPassBase::AUTHID]);
+$source = \SimpleSAML\Auth\Source::getById($state[sspmod_core_Auth_UserPassBase::AUTHID]);
 if ($source === NULL) {
 	throw new Exception('Could not find authentication source with id ' . $state[sspmod_core_Auth_UserPassBase::AUTHID]);
 }
@@ -59,7 +59,7 @@ if (!empty($_REQUEST['username']) || !empty($password)) {
     if ($source->isRememberMeEnabled()) {
         if (array_key_exists('remember_me', $_REQUEST) && $_REQUEST['remember_me'] === 'Yes') {
             $state['RememberMe'] = TRUE;
-            $authStateId = SimpleSAML_Auth_State::saveState($state, sspmod_core_Auth_UserPassBase::STAGEID);
+            $authStateId = \SimpleSAML\Auth\State::saveState($state, sspmod_core_Auth_UserPassBase::STAGEID);
         }
     }
 

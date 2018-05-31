@@ -6,7 +6,7 @@
  *
  * @package SimpleSAMLphp
  */
-class sspmod_saml_Auth_Process_NameIDAttribute extends SimpleSAML_Auth_ProcessingFilter
+class sspmod_saml_Auth_Process_NameIDAttribute extends \SimpleSAML\Auth\ProcessingFilter
 {
     /**
      * The attribute we should save the NameID in.

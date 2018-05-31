@@ -8,8 +8,9 @@
  * @package SimpleSAMLphp
  * @deprecated Use ScopeFromAttribute instead.
  */
-class sspmod_core_Auth_Process_AttributeRealm extends SimpleSAML_Auth_ProcessingFilter {
 
+class sspmod_core_Auth_Process_AttributeRealm extends \SimpleSAML\Auth\ProcessingFilter
+{
     private $attributename = 'realm';
 
     /**

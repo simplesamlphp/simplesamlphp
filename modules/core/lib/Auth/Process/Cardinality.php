@@ -8,7 +8,8 @@ use SimpleSAML\Utils\HTTPAdapter;
  * @author Guy Halse, http://orcid.org/0000-0002-9388-8592
  * @package SimpleSAMLphp
  */
-class sspmod_core_Auth_Process_Cardinality extends SimpleSAML_Auth_ProcessingFilter
+
+class sspmod_core_Auth_Process_Cardinality extends \SimpleSAML\Auth\ProcessingFilter
 {
     /** @var array Associative array with the mappings of attribute names. */
     private $cardinality = array();
@@ -163,8 +164,8 @@ class sspmod_core_Auth_Process_Cardinality extends SimpleSAML_Auth_ProcessingFil
 
         /* abort if we found a problematic attribute */
         if (array_key_exists('core:cardinality:errorAttributes', $request)) {
-            $id = SimpleSAML_Auth_State::saveState($request, 'core:cardinality');
-            $url = SimpleSAML\Module::getModuleURL('core/cardinality_error.php');
+            $id = \SimpleSAML\Auth\State::saveState($request, 'core:cardinality');
+            $url = \SimpleSAML\Module::getModuleURL('core/cardinality_error.php');
             $this->http->redirectTrustedURL($url, array('StateId' => $id));
             return;
         }

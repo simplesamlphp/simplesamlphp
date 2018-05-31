@@ -3,7 +3,7 @@
 if (!isset($_REQUEST['id'])) {
     throw new \SimpleSAML\Error\BadRequest('Missing id-parameter.');
 }
-$state = SimpleSAML_Auth_State::loadState($_REQUEST['id'], 'core:Logout:afterbridge');
+$state = \SimpleSAML\Auth\State::loadState($_REQUEST['id'], 'core:Logout:afterbridge');
 $idp = SimpleSAML_IdP::getByState($state);
 
 $assocId = $state['core:TerminatedAssocId'];

@@ -8,14 +8,14 @@
  *
  */
 
-$state = \SimpleSAML_Auth_State::loadState($_REQUEST['AuthState'], sspmod_negotiate_Auth_Source_Negotiate::STAGEID);
+$state = \SimpleSAML\Auth\State::loadState($_REQUEST['AuthState'], sspmod_negotiate_Auth_Source_Negotiate::STAGEID);
 
 $metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
 $idpid = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted', 'metaindex');
 $idpmeta = $metadata->getMetaData($idpid, 'saml20-idp-hosted');
 
 if (isset($idpmeta['auth'])) {
-    $source = \SimpleSAML_Auth_Source::getById($idpmeta['auth']);
+    $source = \SimpleSAML\Auth\Source::getById($idpmeta['auth']);
     if ($source === null) {
         throw new \SimpleSAML\Error\BadRequest('Invalid AuthId "' . $idpmeta['auth'] . '" - not found.');
     }

@@ -9,9 +9,9 @@
  * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
-class sspmod_exampleauth_Auth_Source_Static extends SimpleSAML_Auth_Source {
 
-
+class sspmod_exampleauth_Auth_Source_Static extends \SimpleSAML\Auth\Source
+{
 	/**
 	 * The attributes we return.
 	 */

@@ -9,7 +9,7 @@
  * @package SimpleSAMLphp
  */
 
-class sspmod_core_Auth_Process_AttributeAlter extends SimpleSAML_Auth_ProcessingFilter
+class sspmod_core_Auth_Process_AttributeAlter extends \SimpleSAML\Auth\ProcessingFilter
 {
     /**
      * Should the pattern found be replaced?

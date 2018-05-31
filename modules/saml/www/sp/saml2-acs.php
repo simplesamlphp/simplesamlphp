@@ -9,7 +9,7 @@ if (!array_key_exists('PATH_INFO', $_SERVER)) {
 }
 
 $sourceId = substr($_SERVER['PATH_INFO'], 1);
-$source = SimpleSAML_Auth_Source::getById($sourceId, 'sspmod_saml_Auth_Source_SP');
+$source = \SimpleSAML\Auth\Source::getById($sourceId, 'sspmod_saml_Auth_Source_SP');
 $spMetadata = $source->getMetadata();
 
 try {
@@ -77,7 +77,7 @@ $stateId = $response->getInResponseTo();
 if (!empty($stateId)) {
     // this should be a response to a request we sent earlier
     try {
-        $state = SimpleSAML_Auth_State::loadState($stateId, 'saml:sp:sso');
+        $state = \SimpleSAML\Auth\State::loadState($stateId, 'saml:sp:sso');
     } catch (Exception $e) {
         // something went wrong,
         SimpleSAML\Logger::warning('Could not load state specified by InResponseTo: '.$e->getMessage().
@@ -130,7 +130,7 @@ try {
 } catch (sspmod_saml_Error $e) {
     // the status of the response wasn't "success"
     $e = $e->toException();
-    SimpleSAML_Auth_State::throwException($state, $e);
+    \SimpleSAML\Auth\State::throwException($state, $e);
 }
 
 
@@ -148,7 +148,7 @@ foreach ($assertions as $assertion) {
         $aID = $assertion->getId();
         if ($store->get('saml.AssertionReceived', $aID) !== null) {
             $e = new \SimpleSAML\Error\Exception('Received duplicate assertion.');
-            SimpleSAML_Auth_State::throwException($state, $e);
+            \SimpleSAML\Auth\State::throwException($state, $e);
         }
 
         $notOnOrAfter = $assertion->getNotOnOrAfter();
@@ -185,7 +185,7 @@ foreach ($assertions as $assertion) {
 
 if (!$foundAuthnStatement) {
     $e = new \SimpleSAML\Error\Exception('No AuthnStatement found in assertion(s).');
-    SimpleSAML_Auth_State::throwException($state, $e);
+    \SimpleSAML\Auth\State::throwException($state, $e);
 }
 
 if ($expire !== null) {
@@ -247,8 +247,8 @@ $state['saml:sp:prevAuth'] = array(
     'id'     => $response->getId(),
     'issuer' => $idp,
 );
-if (isset($state['SimpleSAML_Auth_Source.ReturnURL'])) {
-    $state['saml:sp:prevAuth']['redirect'] = $state['SimpleSAML_Auth_Source.ReturnURL'];
+if (isset($state['\SimpleSAML\Auth\Source.ReturnURL'])) {
+    $state['saml:sp:prevAuth']['redirect'] = $state['\SimpleSAML\Auth\Source.ReturnURL'];
 } elseif (isset($state['saml:sp:RelayState'])) {
     $state['saml:sp:prevAuth']['redirect'] = $state['saml:sp:RelayState'];
 }

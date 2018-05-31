@@ -6,9 +6,9 @@
  * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
-class sspmod_core_Auth_Process_GenerateGroups extends SimpleSAML_Auth_ProcessingFilter {
 
-
+class sspmod_core_Auth_Process_GenerateGroups extends \SimpleSAML\Auth\ProcessingFilter
+{
 	/**
 	 * The attributes we should generate groups from.
 	 */

@@ -17,7 +17,7 @@ if ($session->isValid($authsource)) {
 		throw new Exception('User ID is missing');
 	$userid = $attributes[$useridattr][0];
 } else {
-	$as = \SimpleSAML_Auth_Source::getById($authsource);
+	$as = \SimpleSAML\Auth\Source::getById($authsource);
 	$as->initLogin(\SimpleSAML\Utils\HTTP::getSelfURL());
 }
 

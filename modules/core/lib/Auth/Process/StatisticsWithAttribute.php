@@ -6,7 +6,8 @@
  * @author Andreas Åkre Solberg, UNINETT AS.
  * @package SimpleSAMLphp
  */
-class sspmod_core_Auth_Process_StatisticsWithAttribute extends SimpleSAML_Auth_ProcessingFilter
+
+class sspmod_core_Auth_Process_StatisticsWithAttribute extends \SimpleSAML\Auth\ProcessingFilter
 {
     /**
      * The attribute to log

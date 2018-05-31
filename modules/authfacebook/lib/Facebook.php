@@ -149,7 +149,7 @@ class sspmod_authfacebook_Facebook extends BaseFacebook
 
   protected function establishCSRFTokenState() {
      if ($this->state === null) {
-          $this->state = SimpleSAML_Auth_State::getStateId($this->ssp_state);
+          $this->state = \SimpleSAML\Auth\State::getStateId($this->ssp_state);
           $this->setPersistentData('state', $this->state);
      }
   }

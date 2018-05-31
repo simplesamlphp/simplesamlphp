@@ -9,7 +9,7 @@ if ($config->getBoolean('admin.protectmetadata', false)) {
     \SimpleSAML\Utils\Auth::requireAdmin();
 }
 $sourceId = substr($_SERVER['PATH_INFO'], 1);
-$source = \SimpleSAML_Auth_Source::getById($sourceId);
+$source = \SimpleSAML\Auth\Source::getById($sourceId);
 if ($source === null) {
     throw new \SimpleSAML\Error\AuthSource($sourceId, 'Could not find authentication source.');
 }

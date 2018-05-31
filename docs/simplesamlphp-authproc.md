@@ -160,16 +160,16 @@ Writing your own Auth Proc Filter
 
 Look at the included *Auth Proc Filters* as examples. Copy the classes into your own module and start playing around.
 
-Authentication processing filters are created by creating a class under `Auth/Process/` in a module. This class is expected to subclass `SimpleSAML_Auth_ProcessingFilter`. A filter must implement at least one function - the `process(&$request)`-function. This function can access the `$request`-array to add, delete and modify attributes, and can also do more advanced processing based on the SP/IdP metadata (which is also included in the `$request`-array). When this function returns, it is assumed that the filter has finished processing.
+Authentication processing filters are created by creating a class under `Auth/Process/` in a module. This class is expected to subclass `\SimpleSAML\Auth\ProcessingFilter`. A filter must implement at least one function - the `process(&$request)`-function. This function can access the `$request`-array to add, delete and modify attributes, and can also do more advanced processing based on the SP/IdP metadata (which is also included in the `$request`-array). When this function returns, it is assumed that the filter has finished processing.
 
-If a filter for some reason needs to redirect the user, for example to show a web page, it should save the current request. Upon completion it should retrieve the request, update it with the changes it is going to make, and call `SimpleSAML_Auth_ProcessingChain::resumeProcessing`. This function will continue processing the next configured filter.
+If a filter for some reason needs to redirect the user, for example to show a web page, it should save the current request. Upon completion it should retrieve the request, update it with the changes it is going to make, and call `\SimpleSAML\Auth\ProcessingChain::resumeProcessing`. This function will continue processing the next configured filter.
 
 Requirements for authentication processing filters:
 
- - Must be derived from the `SimpleSAML_Auth_ProcessingFilter`-class.
+ - Must be derived from the `\SimpleSAML\Auth\ProcessingFilter`-class.
  - If a constructor is implemented, it must first call the parent constructor, passing along all parameters, before accessing any of the parameters. In general, only the $config parameter should be accessed.
  - The `process(&$request)`-function must be implemented. If this function completes, it is assumed that processing is completed, and that the $request array has been updated.
- - If the `process`-function does not return, it must at a later time call `SimpleSAML_Auth_ProcessingChain::resumeProcessing` with the new request state. The request state must be an update of the array passed to the `process`-function.
+ - If the `process`-function does not return, it must at a later time call `\SimpleSAML\Auth\ProcessingChain::resumeProcessing` with the new request state. The request state must be an update of the array passed to the `process`-function.
  - No pages may be shown to the user from the `process`-function. Instead, the request state should be saved, and the user should be redirected to a new page. This must be done to prevent unpredictable events if the user for example reloads the page.
  - No state information should be stored in the filter object. It must instead be stored in the request state array. Any changes to variables in the filter object may be lost.
  - The filter object must be serializable. It may be serialized between being constructed and the call to the `process`-function. This means that, for example, no database connections should be created in the constructor and later used in the `process`-function.

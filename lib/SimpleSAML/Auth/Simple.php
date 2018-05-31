@@ -2,8 +2,6 @@
 
 namespace SimpleSAML\Auth;
 
-use \SimpleSAML_Auth_Source as Source;
-use \SimpleSAML_Auth_State as State;
 use \SimpleSAML\Configuration;
 use \SimpleSAML\Error\AuthSource as AuthSourceError;
 use \SimpleSAML\Module;
@@ -26,7 +24,7 @@ class Simple
     protected $authSource;
 
     /**
-     * @var \SimpleSAML\Configuration|null
+     * @var Configuration|null
      */
     protected $app_config;
 
@@ -47,9 +45,9 @@ class Simple
     /**
      * Retrieve the implementing authentication source.
      *
-     * @return \SimpleSAML_Auth_Source The authentication source.
+     * @return Source The authentication source.
      *
-     * @throws \SimpleSAML\Error\AuthSource If the requested auth source is unknown.
+     * @throws AuthSourceError If the requested auth source is unknown.
      */
     public function getAuthSource()
     {
@@ -92,7 +90,6 @@ class Simple
      */
     public function requireAuth(array $params = array())
     {
-
         $session = Session::getSessionFromRequest();
 
         if ($session->isValid($this->authSource)) {
@@ -120,7 +117,6 @@ class Simple
      */
     public function login(array $params = array())
     {
-
         if (array_key_exists('KeepPost', $params)) {
             $keepPost = (bool) $params['KeepPost'];
         } else {
@@ -257,7 +253,6 @@ class Simple
      */
     public function getAttributes()
     {
-
         if (!$this->isAuthenticated()) {
             // Not authenticated
             return array();
@@ -296,7 +291,6 @@ class Simple
      */
     public function getAuthDataArray()
     {
-
         if (!$this->isAuthenticated()) {
             return null;
         }

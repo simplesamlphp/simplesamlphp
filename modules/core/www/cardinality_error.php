@@ -10,7 +10,7 @@ if (!array_key_exists('StateId', $_REQUEST)) {
     throw new \SimpleSAML\Error\BadRequest('Missing required StateId query parameter.');
 }
 $id = $_REQUEST['StateId'];
-$state = \SimpleSAML_Auth_State::loadState($id, 'core:cardinality');
+$state = \SimpleSAML\Auth\State::loadState($id, 'core:cardinality');
 $session = \SimpleSAML\Session::getSessionFromRequest();
 
 \SimpleSAML\Logger::stats('core:cardinality:error '.$state['Destination']['entityid'].' '.$state['saml:sp:IdP'].

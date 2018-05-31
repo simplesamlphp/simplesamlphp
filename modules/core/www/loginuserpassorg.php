@@ -14,9 +14,9 @@ if (!array_key_exists('AuthState', $_REQUEST)) {
 	throw new \SimpleSAML\Error\BadRequest('Missing AuthState parameter.');
 }
 $authStateId = $_REQUEST['AuthState'];
-$state = \SimpleSAML_Auth_State::loadState($authStateId, sspmod_core_Auth_UserPassOrgBase::STAGEID);
+$state = \SimpleSAML\Auth\State::loadState($authStateId, sspmod_core_Auth_UserPassOrgBase::STAGEID);
 
-$source = \SimpleSAML_Auth_Source::getById($state[sspmod_core_Auth_UserPassOrgBase::AUTHID]);
+$source = \SimpleSAML\Auth\Source::getById($state[sspmod_core_Auth_UserPassOrgBase::AUTHID]);
 if ($source === NULL) {
 	throw new Exception('Could not find authentication source with id ' . $state[sspmod_core_Auth_UserPassOrgBase::AUTHID]);
 }

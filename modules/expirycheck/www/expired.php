@@ -11,7 +11,7 @@
 if (!array_key_exists('StateId', $_REQUEST)) {
     throw new \SimpleSAML\Error\BadRequest('Missing required StateId query parameter.');
 }
-$state = \SimpleSAML_Auth_State::loadState($_REQUEST['StateId'], 'expirywarning:expired');
+$state = \SimpleSAML\Auth\State::loadState($_REQUEST['StateId'], 'expirywarning:expired');
 
 $globalConfig = \SimpleSAML\Configuration::getInstance();
 

@@ -9,9 +9,9 @@
  * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
-class sspmod_exampleauth_Auth_Source_UserPass extends sspmod_core_Auth_UserPassBase {
 
-
+class sspmod_exampleauth_Auth_Source_UserPass extends sspmod_core_Auth_UserPassBase
+{
 	/**
 	 * Our users, stored in an associative array. The key of the array is "<username>:<password>",
 	 * while the value of each element is a new array with the attributes for each user.

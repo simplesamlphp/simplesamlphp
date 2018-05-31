@@ -12,12 +12,12 @@ if (!array_key_exists('StateId', $_REQUEST)) {
     throw new \SimpleSAML\Error\BadRequest('Missing required StateId query parameter.');
 }
 $id = $_REQUEST['StateId'];
-$state = \SimpleSAML_Auth_State::loadState($id, 'warning:expire');
+$state = \SimpleSAML\Auth\State::loadState($id, 'warning:expire');
 
 
 if (array_key_exists('proceed', $_REQUEST)) {
     // The user has pressed the proceed-button
-    \SimpleSAML_Auth_ProcessingChain::resumeProcessing($state);
+    \SimpleSAML\Auth\ProcessingChain::resumeProcessing($state);
 }
 
 $globalConfig = \SimpleSAML\Configuration::getInstance();

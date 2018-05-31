@@ -7,7 +7,7 @@
  * @author Ernesto Revilla, Yaco Sistemas SL., Ryan Panning
  * @package SimpleSAMLphp
  */
-class sspmod_authorize_Auth_Process_Authorize extends SimpleSAML_Auth_ProcessingFilter {
+class sspmod_authorize_Auth_Process_Authorize extends \SimpleSAML\Auth\ProcessingFilter {
 
 	/**
 	 * Flag to deny/unauthorize the user a attribute filter IS found
@@ -124,9 +124,9 @@ class sspmod_authorize_Auth_Process_Authorize extends SimpleSAML_Auth_Processing
 	 */
 	protected function unauthorized(&$request) {
 		// Save state and redirect to 403 page
-		$id = SimpleSAML_Auth_State::saveState($request,
+		$id = \SimpleSAML\Auth\State::saveState($request,
 			'authorize:Authorize');
-		$url = SimpleSAML\Module::getModuleURL(
+		$url = \SimpleSAML\Module::getModuleURL(
 			'authorize/authorize_403.php');
 		\SimpleSAML\Utils\HTTP::redirectTrustedURL($url, array('StateId' => $id));
 	}

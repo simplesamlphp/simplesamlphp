@@ -8,9 +8,9 @@ namespace SimpleSAML\Module\core\Auth\Process;
  * @author Martin van Es, m7
  * @package SimpleSAMLphp
  */
-class AttributeValueMap extends \SimpleSAML_Auth_ProcessingFilter
-{
 
+class AttributeValueMap extends \SimpleSAML\Auth\ProcessingFilter
+{
     /**
     * The name of the attribute we should assign values to (ie: the target attribute).
     */

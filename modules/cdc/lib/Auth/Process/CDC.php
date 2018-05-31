@@ -5,7 +5,7 @@
  *
  * @package SimpleSAMLphp
  */
-class sspmod_cdc_Auth_Process_CDC extends SimpleSAML_Auth_ProcessingFilter
+class sspmod_cdc_Auth_Process_CDC extends \SimpleSAML\Auth\ProcessingFilter
 {
     /**
      * Our CDC domain.
@@ -58,9 +58,9 @@ class sspmod_cdc_Auth_Process_CDC extends SimpleSAML_Auth_ProcessingFilter
         }
 
         // Save state and build request
-        $id = SimpleSAML_Auth_State::saveState($state, 'cdc:resume');
+        $id = \SimpleSAML\Auth\State::saveState($state, 'cdc:resume');
 
-        $returnTo = SimpleSAML\Module::getModuleURL('cdc/resume.php', array('domain' => $this->domain));
+        $returnTo = \SimpleSAML\Module::getModuleURL('cdc/resume.php', array('domain' => $this->domain));
 
         $params = array(
             'id' => $id,

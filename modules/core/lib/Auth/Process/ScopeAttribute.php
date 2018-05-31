@@ -5,7 +5,8 @@
  *
  * @package SimpleSAMLphp
  */
-class sspmod_core_Auth_Process_ScopeAttribute extends SimpleSAML_Auth_ProcessingFilter
+
+class sspmod_core_Auth_Process_ScopeAttribute extends \SimpleSAML\Auth\ProcessingFilter
 {
 	/**
 	 * The attribute we extract the scope from.

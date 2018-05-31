@@ -13,7 +13,7 @@
  * @package SimpleSAMLphp
  */
 
-abstract class sspmod_ldap_Auth_Process_BaseFilter extends SimpleSAML_Auth_ProcessingFilter
+abstract class sspmod_ldap_Auth_Process_BaseFilter extends \SimpleSAML\Auth\ProcessingFilter
 {
     /**
      * List of attribute "alias's" linked to the real attribute
@@ -48,7 +48,7 @@ abstract class sspmod_ldap_Auth_Process_BaseFilter extends SimpleSAML_Auth_Proce
      * Instance, object of the ldap connection. Stored here to
      * be access later during processing.
      *
-     * @var sspmod_ldap_LdapConnection
+     * @var \SimpleSAML\Auth\Ldap
      */
     private $ldap;
 
@@ -254,7 +254,7 @@ abstract class sspmod_ldap_Auth_Process_BaseFilter extends SimpleSAML_Auth_Proce
      * rather than setting in the constructor to avoid unnecessarily
      * connecting to LDAP when it might not be needed.
      *
-     * @return sspmod_ldap_LdapConnection
+     * @return \SimpleSAML\Auth\Ldap
      */
     protected function getLdap()
     {
@@ -287,7 +287,7 @@ abstract class sspmod_ldap_Auth_Process_BaseFilter extends SimpleSAML_Auth_Proce
         );
 
         // Connect to the LDAP server to be queried during processing
-        $this->ldap = new SimpleSAML_Auth_LDAP($hostname, $enable_tls, $debug, $timeout, $port, $referrals);
+        $this->ldap = new \SimpleSAML\Auth\LDAP($hostname, $enable_tls, $debug, $timeout, $port, $referrals);
         $this->ldap->bind($username, $password);
 
         // All done

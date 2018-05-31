@@ -1,6 +1,6 @@
 <?php
 
-class sspmod_smartattributes_Auth_Process_SmartID extends SimpleSAML_Auth_ProcessingFilter
+class sspmod_smartattributes_Auth_Process_SmartID extends \SimpleSAML\Auth\ProcessingFilter
 {
     /**
      * Which attributes to use as identifiers?

@@ -40,7 +40,7 @@
  * @package SimpleSAMLphp
  */
 
-class sspmod_authYubiKey_Auth_Source_YubiKey extends SimpleSAML_Auth_Source
+class sspmod_authYubiKey_Auth_Source_YubiKey extends \SimpleSAML\Auth\Source
 {
     /**
      * The string used to identify our states.
@@ -103,7 +103,7 @@ class sspmod_authYubiKey_Auth_Source_YubiKey extends SimpleSAML_Auth_Source
         // We are going to need the authId in order to retrieve this authentication source later
         $state[self::AUTHID] = $this->authId;
 
-        $id = \SimpleSAML_Auth_State::saveState($state, self::STAGEID);
+        $id = \SimpleSAML\Auth\State::saveState($state, self::STAGEID);
         $url = \SimpleSAML\Module::getModuleURL('authYubiKey/yubikeylogin.php');
         \SimpleSAML\Utils\HTTP::redirectTrustedURL($url, array('AuthState' => $id));
     }
@@ -127,11 +127,11 @@ class sspmod_authYubiKey_Auth_Source_YubiKey extends SimpleSAML_Auth_Source
         assert(is_string($otp));
 
         /* Retrieve the authentication state. */
-        $state = \SimpleSAML_Auth_State::loadState($authStateId, self::STAGEID);
+        $state = \SimpleSAML\Auth\State::loadState($authStateId, self::STAGEID);
 
         /* Find authentication source. */
         assert(array_key_exists(self::AUTHID, $state));
-        $source = \SimpleSAML_Auth_Source::getById($state[self::AUTHID]);
+        $source = \SimpleSAML\Auth\Source::getById($state[self::AUTHID]);
         if ($source === null) {
             throw new Exception('Could not find authentication source with id '.$state[self::AUTHID]);
         }
@@ -155,7 +155,7 @@ class sspmod_authYubiKey_Auth_Source_YubiKey extends SimpleSAML_Auth_Source
         }
 
         $state['Attributes'] = $attributes;
-        \SimpleSAML_Auth_Source::completeAuth($state);
+        \SimpleSAML\Auth\Source::completeAuth($state);
     }
 
     /**

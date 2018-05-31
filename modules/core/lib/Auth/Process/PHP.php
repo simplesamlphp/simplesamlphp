@@ -6,7 +6,7 @@
  * @package SimpleSAMLphp
  */
 
-class sspmod_core_Auth_Process_PHP extends SimpleSAML_Auth_ProcessingFilter
+class sspmod_core_Auth_Process_PHP extends \SimpleSAML\Auth\ProcessingFilter
 {
     /**
      * The PHP code that should be run.

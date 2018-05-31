@@ -189,7 +189,7 @@ class sspmod_ldap_ConfigHelper
             throw new \SimpleSAML\Error\Error('WRONGUSERPASS');
         }
 
-        $ldap = new SimpleSAML_Auth_LDAP($this->hostname, $this->enableTLS, $this->debug, $this->timeout, $this->port, $this->referrals);
+        $ldap = new \SimpleSAML\Auth\LDAP($this->hostname, $this->enableTLS, $this->debug, $this->timeout, $this->port, $this->referrals);
 
         if (!$this->searchEnable) {
             $ldapusername = addcslashes($username, ',+"\\<>;*');
@@ -255,7 +255,7 @@ class sspmod_ldap_ConfigHelper
      */
     public function searchfordn($attribute, $value, $allowZeroHits)
     {
-        $ldap = new SimpleSAML_Auth_LDAP($this->hostname,
+        $ldap = new \SimpleSAML\Auth\LDAP($this->hostname,
             $this->enableTLS,
             $this->debug,
             $this->timeout,
@@ -282,7 +282,7 @@ class sspmod_ldap_ConfigHelper
             $attributes = $this->attributes;
         }
 
-        $ldap = new SimpleSAML_Auth_LDAP($this->hostname,
+        $ldap = new \SimpleSAML\Auth\LDAP($this->hostname,
             $this->enableTLS,
             $this->debug,
             $this->timeout,

@@ -11,13 +11,13 @@ if (!array_key_exists('AuthID', $_REQUEST)) {
 if (!array_key_exists('idpentityid', $_REQUEST)) {
     throw new \SimpleSAML\Error\BadRequest('Missing idpentityid to discovery service response handler');
 }
-$state = SimpleSAML_Auth_State::loadState($_REQUEST['AuthID'], 'saml:sp:sso');
+$state = \SimpleSAML\Auth\State::loadState($_REQUEST['AuthID'], 'saml:sp:sso');
 
 // Find authentication source
 assert(array_key_exists('saml:sp:AuthId', $state));
 $sourceId = $state['saml:sp:AuthId'];
 
-$source = SimpleSAML_Auth_Source::getById($sourceId);
+$source = \SimpleSAML\Auth\Source::getById($sourceId);
 if ($source === null) {
     throw new Exception('Could not find authentication source with id ' . $sourceId);
 }

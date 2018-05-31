@@ -3,8 +3,9 @@
 /**
  * Extend IdP session and cookies.
 */
-class sspmod_core_Auth_Process_ExtendIdPSession extends SimpleSAML_Auth_ProcessingFilter {
 
+class sspmod_core_Auth_Process_ExtendIdPSession extends \SimpleSAML\Auth\ProcessingFilter
+{
 	public function process(&$state) {
 		assert(is_array($state));
 

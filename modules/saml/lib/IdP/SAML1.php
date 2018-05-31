@@ -124,7 +124,7 @@ class sspmod_saml_IdP_SAML1
         $state = array(
             'Responder' => array('sspmod_saml_IdP_SAML1', 'sendResponse'),
             'SPMetadata' => $spMetadata->toArray(),
-            SimpleSAML_Auth_State::RESTART => $sessionLostURL,
+            \SimpleSAML\Auth\State::RESTART => $sessionLostURL,
             'saml:shire' => $shire,
             'saml:target' => $target,
             'saml:AuthnRequestReceivedAt' => microtime(true),
