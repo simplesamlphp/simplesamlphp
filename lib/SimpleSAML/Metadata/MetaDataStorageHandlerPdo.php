@@ -169,12 +169,12 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
 
             while ($d = $stmt->fetch()) {
                 if (++$rowCount > 1) {
-                    SimpleSAML\Logger::warning("Duplicate match for $entityId in set $set");
+                    \SimpleSAML\Logger::warning("Duplicate match for $entityId in set $set");
                     break;
                 }
                 $data = json_decode($d['entity_data'], true);
                 if ($data === null) {
-                    throw new SimpleSAML_Error_Exception("Cannot decode metadata for entity '${d['entity_id']}'");
+                    throw new \SimpleSAML\Error\Exception("Cannot decode metadata for entity '${d['entity_id']}'");
                 }
                 if (!array_key_exists('entityid', $data)) {
                     $data['entityid'] = $d['entity_id'];
@@ -182,7 +182,7 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
             }
             return $data;
         } else {
-            throw new Exception('PDO metadata handler: Database error: '.var_export($this->db->getLastError(), true));
+            throw new \Exception('PDO metadata handler: Database error: '.var_export($this->db->getLastError(), true));
         }
     }
 

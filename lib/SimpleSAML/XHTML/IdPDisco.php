@@ -129,7 +129,7 @@ class IdPDisco
 
         // standard discovery service parameters
         if (!array_key_exists('entityID', $_GET)) {
-            throw new Exception('Missing parameter: entityID');
+            throw new \Exception('Missing parameter: entityID');
         } else {
             $this->spEntityId = $_GET['entityID'];
         }
@@ -176,7 +176,7 @@ class IdPDisco
      */
     protected function log($message)
     {
-        SimpleSAML\Logger::info('idpDisco.'.$this->instance.': '.$message);
+        \SimpleSAML\Logger::info('idpDisco.'.$this->instance.': '.$message);
     }
 
 

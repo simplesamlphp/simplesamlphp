@@ -78,7 +78,7 @@ If it is unable to convert the exception, it will return a generic SAML 2 error 
 
 To return a specific SAML 2 error, you should:
 
-* Create a new exception class for your error. This exception class must subclass `SimpleSAML_Error_Exception`.
+* Create a new exception class for your error. This exception class must subclass `\SimpleSAML\Error\Exception`.
 * Add that exception to the list in `fromException()`.
 * Consider adding the exception to `toException()` in the same file. (See the next section.)
 

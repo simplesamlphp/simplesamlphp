@@ -28,9 +28,9 @@ class UnserializableException extends Exception
     /**
      * Create a serializable exception representing an unserializable exception.
      *
-     * @param Exception $original  The original exception.
+     * @param \Exception $original  The original exception.
      */
-    public function __construct(Exception $original)
+    public function __construct(\Exception $original)
     {
 
         $this->class = get_class($original);

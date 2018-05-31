@@ -178,7 +178,7 @@ example configuration of different metadata sources in use at the same time:
 ```
 
 You may also implement your own metadata storage handler, in a very similar way to how you would implement
-your own session handler. Your class **must** extend the `SimpleSAML_Metadata_MetaDataStorageSource` class
+your own session handler. Your class **must** extend the `\SimpleSAML\Metadata\MetaDataStorageSource` class
 and override the methods needed to change the backend used. This class **must** also be located in the
 `lib/MetadataStore/` directory of your custom module.
 
@@ -190,7 +190,7 @@ module is named _mymodule_ and your class is named _MyMetadataHandler_, you shou
 <?php
 namespace SimpleSAML\Module\mymodule\MetadataStore;
 
-class MyMetadataHandler extends SimpleSAML_Metadata_MetaDataStorageSource
+class MyMetadataHandler extends \SimpleSAML\Metadata\MetaDataStorageSource
 {
     ...
 ```

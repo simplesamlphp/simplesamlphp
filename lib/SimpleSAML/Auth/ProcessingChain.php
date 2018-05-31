@@ -151,7 +151,7 @@ class ProcessingChain
             throw new \Exception('Authentication processing filter without name given.');
         }
 
-        $className = \SimpleSAML\Module::resolveClass($config['class'], 'Auth\Process', '\SimpleSAML\Auth\ProcessingFilter');
+        $className = \SimpleSAML\Module::resolveClass($config['class'], 'Auth_Process', '\SimpleSAML\Auth\ProcessingFilter');
         $config['%priority'] = $priority;
         unset($config['class']);
         return new $className($config, null);

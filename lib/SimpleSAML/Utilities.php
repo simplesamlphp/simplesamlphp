@@ -176,7 +176,7 @@ class Utilities
     /**
      * @deprecated This method will be removed in SSP 2.0. Please raise a SimpleSAML\Error\Error exception instead.
      */
-    public static function fatalError($trackId = 'na', $errorCode = null, Exception $e = null)
+    public static function fatalError($trackId = 'na', $errorCode = null, \Exception $e = null)
     {
         throw new \SimpleSAML\Error\Error($errorCode, $e);
     }
@@ -301,7 +301,7 @@ class Utilities
      * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Utils\XML::isDOMNodeOfType()
      *     instead.
      */
-    public static function isDOMElementOfType(DOMNode $element, $name, $nsURI)
+    public static function isDOMElementOfType(\DOMNode $element, $name, $nsURI)
     {
         return \SimpleSAML\Utils\XML::isDOMNodeOfType($element, $name, $nsURI);
     }
@@ -310,7 +310,7 @@ class Utilities
     /**
      * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Utils\XML::getDOMChildren() instead.
      */
-    public static function getDOMChildren(DOMElement $element, $localName, $namespaceURI)
+    public static function getDOMChildren(\DOMElement $element, $localName, $namespaceURI)
     {
         return \SimpleSAML\Utils\XML::getDOMChildren($element, $localName, $namespaceURI);
     }
@@ -570,7 +570,7 @@ class Utilities
         $session = \SimpleSAML\Session::getSessionFromRequest();
         $session->setData('core_postdatalink', $postId, $postData);
 
-        $redirInfo = base64_encode(SimpleSAML\Utils\Crypto::aesEncrypt($session->getSessionId().':'.$postId));
+        $redirInfo = base64_encode(\SimpleSAML\Utils\Crypto::aesEncrypt($session->getSessionId().':'.$postId));
 
         $url = \SimpleSAML\Module::getModuleURL('core/postredirect.php', array('RedirInfo' => $redirInfo));
         $url = preg_replace("#^https:#", "http:", $url);
@@ -694,7 +694,7 @@ class Utilities
      */
     public static function isWindowsOS()
     {
-        return \SimpleSAML\Utils\System::getOS() === SimpleSAML\Utils\System::WINDOWS;
+        return \SimpleSAML\Utils\System::getOS() === \SimpleSAML\Utils\System::WINDOWS;
     }
 
 

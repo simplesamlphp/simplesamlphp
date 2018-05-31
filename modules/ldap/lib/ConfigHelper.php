@@ -176,7 +176,7 @@ class sspmod_ldap_ConfigHelper
      *
      * @param string $username  The username the user wrote.
      * @param string $password  The password the user wrote.
-     * @param arrray $sasl_args  Array of SASL options for LDAP bind.
+     * @param array $sasl_args  Array of SASL options for LDAP bind.
      * @return array  Associative array with the users attributes.
      */
     public function login($username, $password, array $sasl_args = null)

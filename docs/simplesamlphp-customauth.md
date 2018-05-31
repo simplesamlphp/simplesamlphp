@@ -43,7 +43,7 @@ Create the file `modules/mymodule/lib/Auth/Source/MyAuth.php` with the following
     class sspmod_mymodule_Auth_Source_MyAuth extends sspmod_core_Auth_UserPassBase {
         protected function login($username, $password) {
             if ($username !== 'theusername' || $password !== 'thepassword') {
-                throw new SimpleSAML_Error_Error('WRONGUSERPASS');
+                throw new \SimpleSAML\Error\Error('WRONGUSERPASS');
             }
             return array(
                 'uid' => array('theusername'),
@@ -64,7 +64,7 @@ Some things to note:
   - The `login` function receives the username and password the user enters.
     It is expected to authenticate the user.
     If the username or password is correct, it must return a set of attributes for the user.
-    Otherwise, it must throw the `SimpleSAML_Error_Error('WRONGUSERPASS');` exception.
+    Otherwise, it must throw the `\SimpleSAML\Error\Error('WRONGUSERPASS');` exception.
 
   - Attributes are returned as an associative array of `name => values` pairs.
     All attributes can have multiple values, so the values are always stored in an array.
@@ -187,7 +187,7 @@ The complete class file should look like this:
 
         protected function login($username, $password) {
             if ($username !== $this->username || $password !== $this->password) {
-                throw new SimpleSAML_Error_Error('WRONGUSERPASS');
+                throw new \SimpleSAML\Error\Error('WRONGUSERPASS');
             }
             return array(
                 'uid' => array($this->username),
@@ -323,14 +323,14 @@ The class follows:
             if (!$row) {
                 /* User not found. */
                 SimpleSAML\Logger::warning('MyAuth: Could not find user ' . var_export($username, TRUE) . '.');
-                throw new SimpleSAML_Error_Error('WRONGUSERPASS');
+                throw new \SimpleSAML\Error\Error('WRONGUSERPASS');
             }
 
             /* Check the password. */
             if (!$this->checkPassword($row['password_hash'], $password)) {
                 /* Invalid password. */
                 SimpleSAML\Logger::warning('MyAuth: Wrong password for user ' . var_export($username, TRUE) . '.');
-                throw new SimpleSAML_Error_Error('WRONGUSERPASS');
+                throw new \SimpleSAML\Error\Error('WRONGUSERPASS');
             }
 
             /* Create the attribute array of the user. */
