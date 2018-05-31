@@ -1,5 +1,7 @@
 <?php
 
+namespace SimpleSAML;
+
 /**
  * This file implements functions to read and write to a group of memcache
  * servers.
@@ -16,7 +18,8 @@
  * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
-class SimpleSAML_Memcache
+
+class Memcache
 {
     /**
      * Cache of the memcache servers we are using.
@@ -43,7 +46,7 @@ class SimpleSAML_Memcache
      */
     public static function get($key)
     {
-        SimpleSAML\Logger::debug("loading key $key from memcache");
+        \SimpleSAML\Logger::debug("loading key $key from memcache");
 
         $latestInfo = null;
         $latestTime = 0.0;
@@ -146,7 +149,7 @@ class SimpleSAML_Memcache
      */
     public static function set($key, $value, $expire = null)
     {
-        SimpleSAML\Logger::debug("saving key $key to memcache");
+        \SimpleSAML\Logger::debug("saving key $key to memcache");
         $savedInfo = array(
             'timestamp' => microtime(true),
             'data'      => $value
@@ -160,7 +163,7 @@ class SimpleSAML_Memcache
 
         // store this object to all groups of memcache servers
         foreach (self::getMemcacheServers() as $server) {
-            if (self::$extension === 'memcached') {
+            if (self::$extension === '\memcached') {
                 $server->set($key, $savedInfoSerialized, $expire);
             } else {
                 $server->set($key, $savedInfoSerialized, 0, $expire);
@@ -177,7 +180,7 @@ class SimpleSAML_Memcache
     public static function delete($key)
     {
         assert(is_string($key));
-        SimpleSAML\Logger::debug("deleting key $key from memcache");
+        \SimpleSAML\Logger::debug("deleting key $key from memcache");
 
         // store this object to all groups of memcache servers
         foreach (self::getMemcacheServers() as $server) {
@@ -207,13 +210,13 @@ class SimpleSAML_Memcache
      * @param Memcache $memcache The Memcache object we should add this server to.
      * @param array    $server An associative array with the configuration options for the server to add.
      *
-     * @throws Exception If any configuration option for the server is invalid.
+     * @throws \Exception If any configuration option for the server is invalid.
      */
     private static function addMemcacheServer($memcache, $server)
     {
         // the hostname option is required
         if (!array_key_exists('hostname', $server)) {
-            throw new Exception(
+            throw new \Exception(
                 "hostname setting missing from server in the 'memcache_store.servers' configuration option."
             );
         }
@@ -222,7 +225,7 @@ class SimpleSAML_Memcache
 
         // the hostname must be a valid string
         if (!is_string($hostname)) {
-            throw new Exception(
+            throw new \Exception(
                 "Invalid hostname for server in the 'memcache_store.servers' configuration option. The hostname is".
                 ' supposed to be a string.'
             );
@@ -242,7 +245,7 @@ class SimpleSAML_Memcache
             // get the port number from the array, and validate it
             $port = (int) $server['port'];
             if (($port <= 0) || ($port > 65535)) {
-                throw new Exception(
+                throw new \Exception(
                     "Invalid port for server in the 'memcache_store.servers' configuration option. The port number".
                     ' is supposed to be an integer between 0 and 65535.'
                 );
@@ -261,7 +264,7 @@ class SimpleSAML_Memcache
             // get the weight and validate it
             $weight = (int) $server['weight'];
             if ($weight <= 0) {
-                throw new Exception(
+                throw new \Exception(
                     "Invalid weight for server in the 'memcache_store.servers' configuration option. The weight is".
                     ' supposed to be a positive integer.'
                 );
@@ -276,7 +279,7 @@ class SimpleSAML_Memcache
             // get the timeout and validate it
             $timeout = (int) $server['timeout'];
             if ($timeout <= 0) {
-                throw new Exception(
+                throw new \Exception(
                     "Invalid timeout for server in the 'memcache_store.servers' configuration option. The timeout is".
                     ' supposed to be a positive integer.'
                 );
@@ -287,7 +290,7 @@ class SimpleSAML_Memcache
         }
 
         // add this server to the Memcache object
-        if (self::$extension === 'memcached') {
+        if (self::$extension === '\memcached') {
             $memcache->addServer($hostname, $port);
         } else {
             $memcache->addServer($hostname, $port, true, $weight, $timeout, $timeout, true);
@@ -303,13 +306,13 @@ class SimpleSAML_Memcache
      *
      * @return Memcache A Memcache object of the servers in the group
      *
-     * @throws Exception If the servers configuration is invalid.
+     * @throws \Exception If the servers configuration is invalid.
      */
     private static function loadMemcacheServerGroup(array $group)
     {
         $class = class_exists('Memcache') ? 'Memcache' : (class_exists('Memcached') ? 'Memcached' : false);
         if (!$class) {
-            throw new Exception('Missing Memcached implementation. You must install either the Memcache or Memcached extension.');
+            throw new \Exception('Missing Memcached implementation. You must install either the Memcache or Memcached extension.');
         }
         self::$extension = strtolower($class);
 
@@ -320,7 +323,7 @@ class SimpleSAML_Memcache
         foreach ($group as $index => $server) {
             // make sure that we don't have an index. An index would be a sign of invalid configuration
             if (!is_int($index)) {
-                throw new Exception(
+                throw new \Exception(
                     "Invalid index on element in the 'memcache_store.servers' configuration option. Perhaps you".
                     ' have forgotten to add an array(...) around one of the server groups? The invalid index was: '.
                     $index
@@ -329,7 +332,7 @@ class SimpleSAML_Memcache
 
             // make sure that the server object is an array. Each server is an array with name-value pairs
             if (!is_array($server)) {
-                throw new Exception(
+                throw new \Exception(
                     'Invalid value for the server with index '.$index.
                     '. Remeber that the \'memcache_store.servers\' configuration option'.
                     ' contains an array of arrays of arrays.'
@@ -349,7 +352,7 @@ class SimpleSAML_Memcache
      *
      * @return Memcache[] Array with Memcache objects.
      *
-     * @throws Exception If the servers configuration is invalid.
+     * @throws \Exception If the servers configuration is invalid.
      */
     private static function getMemcacheServers()
     {
@@ -371,7 +374,7 @@ class SimpleSAML_Memcache
         foreach ($groups as $index => $group) {
             // make sure that the group doesn't have an index. An index would be a sign of invalid configuration
             if (!is_int($index)) {
-                throw new Exception(
+                throw new \Exception(
                     "Invalid index on element in the 'memcache_store.servers'".
                     ' configuration option. Perhaps you have forgotten to add an array(...)'.
                     ' around one of the server groups? The invalid index was: '.$index
@@ -383,7 +386,7 @@ class SimpleSAML_Memcache
              * an array of name => value pairs for that server.
              */
             if (!is_array($group)) {
-                throw new Exception(
+                throw new \Exception(
                     "Invalid value for the server with index ".$index.
                     ". Remeber that the 'memcache_store.servers' configuration option".
                     ' contains an array of arrays of arrays.'
@@ -408,7 +411,7 @@ class SimpleSAML_Memcache
      *
      * @return integer The value which should be passed in the set(...) calls to the memcache objects.
      *
-     * @throws Exception If the option 'memcache_store.expires' has a negative value.
+     * @throws \Exception If the option 'memcache_store.expires' has a negative value.
      */
     private static function getExpireTime()
     {
@@ -421,7 +424,7 @@ class SimpleSAML_Memcache
 
         // it must be a positive integer
         if ($expire < 0) {
-            throw new Exception(
+            throw new \Exception(
                 "The value of 'memcache_store.expires' in the configuration can't be a negative integer."
             );
         }
@@ -447,7 +450,7 @@ class SimpleSAML_Memcache
      *
      * @return array Array with the names of each stat and an array with the value for each server group.
      *
-     * @throws Exception If memcache server status couldn't be retrieved.
+     * @throws \Exception If memcache server status couldn't be retrieved.
      */
     public static function getStats()
     {
@@ -457,11 +460,11 @@ class SimpleSAML_Memcache
             $stats = method_exists($sg, 'getExtendedStats') ? $sg->getExtendedStats() : $sg->getStats();
             foreach ($stats as $server => $data) {
                 if ($data === false) {
-                    throw new Exception('Failed to get memcache server status.');
+                    throw new \Exception('Failed to get memcache server status.');
                 }
             }
 
-            $stats = SimpleSAML\Utils\Arrays::transpose($stats);
+            $stats = \SimpleSAML\Utils\Arrays::transpose($stats);
 
             $ret = array_merge_recursive($ret, $stats);
         }

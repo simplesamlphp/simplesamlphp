@@ -81,7 +81,7 @@ $formats = array(
 	'uptime' => 'hours',
 );
 
-$statsraw = \SimpleSAML_Memcache::getStats();
+$statsraw = \SimpleSAML\Memcache::getStats();
 
 $stats = $statsraw;
 

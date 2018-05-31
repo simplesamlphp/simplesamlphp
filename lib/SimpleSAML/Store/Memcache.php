@@ -42,7 +42,7 @@ class Memcache extends Store
         assert(is_string($type));
         assert(is_string($key));
 
-        return \SimpleSAML_Memcache::get($this->prefix . '.' . $type . '.' . $key);
+        return \SimpleSAML\Memcache::get($this->prefix . '.' . $type . '.' . $key);
     }
 
 
@@ -64,7 +64,7 @@ class Memcache extends Store
             $expire = 0;
         }
 
-        \SimpleSAML_Memcache::set($this->prefix . '.' . $type . '.' . $key, $value, $expire);
+        \SimpleSAML\Memcache::set($this->prefix . '.' . $type . '.' . $key, $value, $expire);
     }
 
 
@@ -79,6 +79,6 @@ class Memcache extends Store
         assert(is_string($type));
         assert(is_string($key));
 
-        \SimpleSAML_Memcache::delete($this->prefix . '.' . $type . '.' . $key);
+        \SimpleSAML\Memcache::delete($this->prefix . '.' . $type . '.' . $key);
     }
 }
