@@ -5,7 +5,7 @@ use RobRichards\XMLSecLibs\XMLSecurityKey;
 
 class sspmod_adfs_IdP_ADFS
 {
-    public static function receiveAuthnRequest(SimpleSAML_IdP $idp)
+    public static function receiveAuthnRequest(\SimpleSAML\IdP $idp)
     {
         try {
             parse_str($_SERVER['QUERY_STRING'], $query);
@@ -167,7 +167,7 @@ MSG;
             $nameid = SimpleSAML\Utils\Random::generateID();
         }
 
-        $idp = \SimpleSAML_IdP::getByState($state);		
+        $idp = \SimpleSAML\IdP::getByState($state);		
         $idpMetadata = $idp->getConfig();
         $idpEntityId = $idpMetadata->getString('entityid');
 
@@ -198,14 +198,14 @@ MSG;
         \sspmod_adfs_IdP_ADFS::postResponse($wreply, $wresult, $wctx);
     }
 
-    public static function sendLogoutResponse(SimpleSAML_IdP $idp, array $state)
+    public static function sendLogoutResponse(\SimpleSAML\IdP $idp, array $state)
     {
         // NB:: we don't know from which SP the logout request came from
         $idpMetadata = $idp->getConfig();
         \SimpleSAML\Utils\HTTP::redirectTrustedURL($idpMetadata->getValue('redirect-after-logout', \SimpleSAML\Utils\HTTP::getBaseURL()));
     }
 
-    public static function receiveLogoutMessage(SimpleSAML_IdP $idp)
+    public static function receiveLogoutMessage(\SimpleSAML\IdP $idp)
     {
         // if a redirect is to occur based on wreply, we will redirect to url as
         // this implies an override to normal sp notification
@@ -225,7 +225,7 @@ MSG;
     }
 
     // accepts an association array, and returns a URL that can be accessed to terminate the association
-    public static function getLogoutURL(SimpleSAML_IdP $idp, array $association, $relayState)
+    public static function getLogoutURL(\SimpleSAML\IdP $idp, array $association, $relayState)
     {
         $metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
         $spMetadata = $metadata->getMetaDataConfig($association['adfs:entityID'], 'adfs-sp-remote');

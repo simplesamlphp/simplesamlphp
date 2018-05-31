@@ -16,7 +16,7 @@ class TraditionalLogoutHandler implements LogoutHandlerInterface
     /**
      * The IdP we are logging out from.
      *
-     * @var \SimpleSAML_IdP
+     * @var \SimpleSAML\IdP
      */
     private $idp;
 
@@ -24,9 +24,9 @@ class TraditionalLogoutHandler implements LogoutHandlerInterface
     /**
      * TraditionalLogout constructor.
      *
-     * @param \SimpleSAML_IdP $idp The IdP to log out from.
+     * @param \SimpleSAML\IdP $idp The IdP to log out from.
      */
-    public function __construct(\SimpleSAML_IdP $idp)
+    public function __construct(\SimpleSAML\IdP $idp)
     {
         $this->idp = $idp;
     }
@@ -52,7 +52,7 @@ class TraditionalLogoutHandler implements LogoutHandlerInterface
         Logger::info('Logging out of '.var_export($id, true).'.');
 
         try {
-            $idp = \SimpleSAML_IdP::getByState($association);
+            $idp = \SimpleSAML\IdP::getByState($association);
             $url = call_user_func(array($association['Handler'], 'getLogoutURL'), $idp, $association, $relayState);
             HTTP::redirectTrustedURL($url);
         } catch (\Exception $e) {

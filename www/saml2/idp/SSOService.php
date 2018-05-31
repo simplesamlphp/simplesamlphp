@@ -15,7 +15,7 @@ require_once('../../_include.php');
 
 $metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
 $idpEntityId = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
-$idp = \SimpleSAML_IdP::getById('saml2:' . $idpEntityId);
+$idp = \SimpleSAML\IdP::getById('saml2:' . $idpEntityId);
 
 try {
     \sspmod_saml_IdP_SAML2::receiveAuthnRequest($idp);

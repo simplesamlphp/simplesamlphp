@@ -19,7 +19,7 @@ if ($type !== 'embed') {
 }
 
 $state = \SimpleSAML\Auth\State::loadState($_REQUEST['id'], 'core:Logout-IFrame');
-$idp = \SimpleSAML_IdP::getByState($state);
+$idp = \SimpleSAML\IdP::getByState($state);
 $mdh = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
 
 if ($type !== 'init') { // update association state
@@ -53,7 +53,7 @@ if ($type !== 'init') { // update association state
 
         if (!isset($sp['core:Logout-IFrame:Timeout'])) {
             if (method_exists($sp['Handler'], 'getAssociationConfig')) {
-                $assocIdP = SimpleSAML_IdP::getByState($sp);
+                $assocIdP = \SimpleSAML\IdP::getByState($sp);
                 $assocConfig = call_user_func(array($sp['Handler'], 'getAssociationConfig'), $assocIdP, $sp);
                 $sp['core:Logout-IFrame:Timeout'] = $assocConfig->getInteger('core:logout-timeout', 5) + time();
             } else {
@@ -71,7 +71,7 @@ foreach ($state['core:Logout-IFrame:Associations'] as $assocId => &$sp) {
     }
 
     try {
-        $assocIdP = SimpleSAML_IdP::getByState($sp);
+        $assocIdP = \SimpleSAML\IdP::getByState($sp);
         $url = call_user_func(array($sp['Handler'], 'getLogoutURL'), $assocIdP, $sp, null);
         $sp['core:Logout-IFrame:URL'] = $url;
     } catch (\Exception $e) {

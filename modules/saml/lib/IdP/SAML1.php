@@ -1,11 +1,14 @@
 <?php
+
 use SimpleSAML\Bindings\Shib13\HTTPPost;
+use SimpleSAML\Utils\HTTP;
 
 /**
  * IdP implementation for SAML 1.1 protocol.
  *
  * @package SimpleSAMLphp
  */
+
 class sspmod_saml_IdP_SAML1
 {
     /**
@@ -31,7 +34,7 @@ class sspmod_saml_IdP_SAML1
         $shire = $state['saml:shire'];
         $target = $state['saml:target'];
 
-        $idp = SimpleSAML_IdP::getByState($state);
+        $idp = \SimpleSAML\IdP::getByState($state);
 
         $idpMetadata = $idp->getConfig();
 
@@ -60,9 +63,9 @@ class sspmod_saml_IdP_SAML1
     /**
      * Receive an authentication request.
      *
-     * @param SimpleSAML_IdP $idp  The IdP we are receiving it for.
+     * @param \SimpleSAML\IdP $idp  The IdP we are receiving it for.
      */
-    public static function receiveAuthnRequest(SimpleSAML_IdP $idp)
+    public static function receiveAuthnRequest(\SimpleSAML\IdP $idp)
     {
         if (isset($_REQUEST['cookieTime'])) {
             $cookieTime = (int)$_REQUEST['cookieTime'];
@@ -71,7 +74,7 @@ class sspmod_saml_IdP_SAML1
                  * Less than five seconds has passed since we were
                  * here the last time. Cookies are probably disabled.
                  */
-                \SimpleSAML\Utils\HTTP::checkSessionCookie(\SimpleSAML\Utils\HTTP::getSelfURL());
+                HTTP::checkSessionCookie(HTTP::getSelfURL());
             }
         }
 
@@ -117,8 +120,8 @@ class sspmod_saml_IdP_SAML1
             'protocol' => 'saml1',
         ));
 
-        $sessionLostURL = \SimpleSAML\Utils\HTTP::addURLParameters(
-            \SimpleSAML\Utils\HTTP::getSelfURL(),
+        $sessionLostURL = HTTP::addURLParameters(
+            HTTP::getSelfURL(),
             array('cookieTime' => time()));
 
         $state = array(

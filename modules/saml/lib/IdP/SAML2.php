@@ -39,7 +39,7 @@ class sspmod_saml_IdP_SAML2
         $consumerURL = $state['saml:ConsumerURL'];
         $protocolBinding = $state['saml:Binding'];
 
-        $idp = \SimpleSAML_IdP::getByState($state);
+        $idp = \SimpleSAML\IdP::getByState($state);
 
         $idpMetadata = $idp->getConfig();
 
@@ -113,7 +113,7 @@ class sspmod_saml_IdP_SAML2
         $consumerURL = $state['saml:ConsumerURL'];
         $protocolBinding = $state['saml:Binding'];
 
-        $idp = SimpleSAML_IdP::getByState($state);
+        $idp = \SimpleSAML\IdP::getByState($state);
 
         $idpMetadata = $idp->getConfig();
 
@@ -243,10 +243,10 @@ class sspmod_saml_IdP_SAML2
     /**
      * Receive an authentication request.
      *
-     * @param SimpleSAML_IdP $idp The IdP we are receiving it for.
+     * @param \SimpleSAML\IdP $idp The IdP we are receiving it for.
      * @throws \SimpleSAML\Error\BadRequest In case an error occurs when trying to receive the request.
      */
-    public static function receiveAuthnRequest(SimpleSAML_IdP $idp)
+    public static function receiveAuthnRequest(\SimpleSAML\IdP $idp)
     {
         $metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
         $idpMetadata = $idp->getConfig();
@@ -455,11 +455,11 @@ class sspmod_saml_IdP_SAML2
     /**
      * Send a logout request to a given association.
      *
-     * @param SimpleSAML_IdP $idp The IdP we are sending a logout request from.
-     * @param array          $association The association that should be terminated.
-     * @param string|NULL    $relayState An id that should be carried across the logout.
+     * @param \SimpleSAML\IdP $idp The IdP we are sending a logout request from.
+     * @param array           $association The association that should be terminated.
+     * @param string|NULL     $relayState An id that should be carried across the logout.
      */
-    public static function sendLogoutRequest(SimpleSAML_IdP $idp, array $association, $relayState)
+    public static function sendLogoutRequest(\SimpleSAML\IdP $idp, array $association, $relayState)
     {
         assert(is_string($relayState) || $relayState === null);
 
@@ -492,10 +492,10 @@ class sspmod_saml_IdP_SAML2
     /**
      * Send a logout response.
      *
-     * @param SimpleSAML_IdP $idp The IdP we are sending a logout request from.
-     * @param array          &$state The logout state array.
+     * @param \SimpleSAML\IdP $idp The IdP we are sending a logout request from.
+     * @param array           &$state The logout state array.
      */
-    public static function sendLogoutResponse(SimpleSAML_IdP $idp, array $state)
+    public static function sendLogoutResponse(\SimpleSAML\IdP $idp, array $state)
     {
         assert(isset($state['saml:SPEntityId']));
         assert(isset($state['saml:RequestId']));
@@ -550,10 +550,10 @@ class sspmod_saml_IdP_SAML2
     /**
      * Receive a logout message.
      *
-     * @param SimpleSAML_IdP $idp The IdP we are receiving it for.
+     * @param \SimpleSAML\IdP $idp The IdP we are receiving it for.
      * @throws \SimpleSAML\Error\BadRequest In case an error occurs while trying to receive the logout message.
      */
-    public static function receiveLogoutMessage(SimpleSAML_IdP $idp)
+    public static function receiveLogoutMessage(\SimpleSAML\IdP $idp)
     {
         $binding = \SAML2\Binding::getCurrentBinding();
         $message = $binding->receive();
@@ -621,13 +621,13 @@ class sspmod_saml_IdP_SAML2
     /**
      * Retrieve a logout URL for a given logout association.
      *
-     * @param SimpleSAML_IdP $idp The IdP we are sending a logout request from.
-     * @param array          $association The association that should be terminated.
-     * @param string|NULL    $relayState An id that should be carried across the logout.
+     * @param \SimpleSAML\IdP $idp The IdP we are sending a logout request from.
+     * @param array           $association The association that should be terminated.
+     * @param string|NULL     $relayState An id that should be carried across the logout.
      *
      * @return string The logout URL.
      */
-    public static function getLogoutURL(SimpleSAML_IdP $idp, array $association, $relayState)
+    public static function getLogoutURL(\SimpleSAML\IdP $idp, array $association, $relayState)
     {
         assert(is_string($relayState) || $relayState === null);
 
@@ -662,12 +662,12 @@ class sspmod_saml_IdP_SAML2
     /**
      * Retrieve the metadata for the given SP association.
      *
-     * @param SimpleSAML_IdP $idp The IdP the association belongs to.
-     * @param array          $association The SP association.
+     * @param \SimpleSAML\IdP $idp The IdP the association belongs to.
+     * @param array           $association The SP association.
      *
      * @return \SimpleSAML\Configuration  Configuration object for the SP metadata.
      */
-    public static function getAssociationConfig(SimpleSAML_IdP $idp, array $association)
+    public static function getAssociationConfig(\SimpleSAML\IdP $idp, array $association)
     {
         $metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
         try {

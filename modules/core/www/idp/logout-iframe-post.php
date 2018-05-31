@@ -4,7 +4,7 @@ if (!isset($_REQUEST['idp'])) {
     throw new \SimpleSAML\Error\BadRequest('Missing "idp" parameter.');
 }
 $idp = (string) $_REQUEST['idp'];
-$idp = SimpleSAML_IdP::getById($idp);
+$idp = \SimpleSAML\IdP::getById($idp);
 
 if (!isset($_REQUEST['association'])) {
     throw new \SimpleSAML\Error\BadRequest('Missing "association" parameter.');

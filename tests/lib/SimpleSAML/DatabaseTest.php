@@ -3,7 +3,7 @@
 use PHPUnit\Framework\TestCase;
 
 /**
- * This test ensures that the SimpleSAML_Database class can properly
+ * This test ensures that the \SimpleSAML\Database class can properly
  * query a database.
  *
  * It currently uses sqlite to test, but an alternate config.php file
@@ -13,9 +13,9 @@ use PHPUnit\Framework\TestCase;
  * @author Tyler Antonio, University of Alberta. <tantonio@ualberta.ca>
  * @package SimpleSAMLphp
  */
-class SimpleSAML_DatabaseTest extends TestCase
-{
 
+class DatabaseTest extends TestCase
+{
     /**
      * @var \SimpleSAML\Configuration
      */

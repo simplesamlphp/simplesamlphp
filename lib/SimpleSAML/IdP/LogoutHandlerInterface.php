@@ -13,9 +13,9 @@ interface LogoutHandlerInterface
     /**
      * Initialize this logout handler.
      *
-     * @param \SimpleSAML_IdP $idp The IdP we are logging out from.
+     * @param \SimpleSAML\IdP $idp The IdP we are logging out from.
      */
-    public function __construct(\SimpleSAML_IdP $idp);
+    public function __construct(\SimpleSAML\IdP $idp);
 
 
     /**

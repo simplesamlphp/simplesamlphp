@@ -22,7 +22,7 @@ try {
     $state = \SimpleSAML\Auth\State::loadState($_REQUEST['AuthState'], 'core:Logout:afterbridge');
 
     // success! Try to continue with reauthentication, since we no longer have a valid session here
-    $idp = \SimpleSAML_IdP::getById($state['core:IdP']);
+    $idp = \SimpleSAML\IdP::getById($state['core:IdP']);
     \sspmod_saml_Auth_Source_SP::reauthPostLogout($idp, $state);
 }
 

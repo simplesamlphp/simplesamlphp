@@ -1049,7 +1049,7 @@ class Session implements \Serializable
     /**
      * Add an SP association for an IdP.
      *
-     * This function is only for use by the SimpleSAML_IdP class.
+     * This function is only for use by the IdP class.
      *
      * @param string $idp The IdP id.
      * @param array  $association The association we should add.
@@ -1077,7 +1077,7 @@ class Session implements \Serializable
     /**
      * Retrieve the associations for an IdP.
      *
-     * This function is only for use by the SimpleSAML_IdP class.
+     * This function is only for use by the IdP class.
      *
      * @param string $idp The IdP id.
      *
@@ -1113,7 +1113,7 @@ class Session implements \Serializable
     /**
      * Remove an SP association for an IdP.
      *
-     * This function is only for use by the SimpleSAML_IdP class.
+     * This function is only for use by the IdP class.
      *
      * @param string $idp The IdP id.
      * @param string $associationId The id of the association.

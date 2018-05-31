@@ -4,11 +4,11 @@ use PHPUnit\Framework\TestCase;
 use SimpleSAML\Metadata\SAMLBuilder;
 
 /**
- * Class SimpleSAML_Metadata_SAMLBuilderTest
+ * Class SAMLBuilderTest
  */
-class SimpleSAML_Metadata_SAMLBuilderTest extends TestCase
-{
 
+class SAMLBuilderTest extends TestCase
+{
     /**
      * Test the requested attributes are valued correctly.
      */

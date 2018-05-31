@@ -560,7 +560,7 @@ class sspmod_saml_Auth_Source_SP extends Source
         }
         $state['Responder'] = array('sspmod_saml_Auth_Source_SP', 'reauthPostLogout');
 
-        $idp = SimpleSAML_IdP::getByState($state);
+        $idp = \SimpleSAML\IdP::getByState($state);
         $idp->handleLogoutRequest($state, null);
         assert(false);
     }
@@ -589,10 +589,10 @@ class sspmod_saml_Auth_Source_SP extends Source
      *
      * This method will never return.
      *
-     * @param SimpleSAML_IdP $idp The IdP we are logging out from.
+     * @param \SimpleSAML\IdP $idp The IdP we are logging out from.
      * @param array &$state The state array with the state during logout.
      */
-    public static function reauthPostLogout(SimpleSAML_IdP $idp, array $state)
+    public static function reauthPostLogout(\SimpleSAML\IdP $idp, array $state)
     {
         assert(isset($state['saml:sp:AuthId']));
 

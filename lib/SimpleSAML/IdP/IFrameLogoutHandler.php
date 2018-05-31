@@ -16,7 +16,7 @@ class IFrameLogoutHandler implements LogoutHandlerInterface
     /**
      * The IdP we are logging out from.
      *
-     * @var \SimpleSAML_IdP
+     * @var \SimpleSAML\IdP
      */
     private $idp;
 
@@ -24,9 +24,9 @@ class IFrameLogoutHandler implements LogoutHandlerInterface
     /**
      * LogoutIFrame constructor.
      *
-     * @param \SimpleSAML_IdP $idp The IdP to log out from.
+     * @param \SimpleSAML\IdP $idp The IdP to log out from.
      */
-    public function __construct(\SimpleSAML_IdP $idp)
+    public function __construct(\SimpleSAML\IdP $idp)
     {
         $this->idp = $idp;
     }
@@ -48,7 +48,7 @@ class IFrameLogoutHandler implements LogoutHandlerInterface
         }
 
         foreach ($associations as $id => &$association) {
-            $idp = \SimpleSAML_IdP::getByState($association);
+            $idp = \SimpleSAML\IdP::getByState($association);
             $association['core:Logout-IFrame:Name'] = $idp->getSPName($id);
             $association['core:Logout-IFrame:State'] = 'onhold';
         }
