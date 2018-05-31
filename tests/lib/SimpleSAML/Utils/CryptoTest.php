@@ -2,6 +2,7 @@
 
 namespace SimpleSAML\Test\Utils;
 
+use PHPUnit\Framework\TestCase;
 use SimpleSAML\Utils\Crypto;
 use \SimpleSAML_Configuration as Configuration;
 
@@ -10,7 +11,7 @@ use \org\bovigo\vfs\vfsStream;
 /**
  * Tests for SimpleSAML\Utils\Crypto.
  */
-class CryptoTest extends \PHPUnit_Framework_TestCase
+class CryptoTest extends TestCase
 {
     const ROOTDIRNAME = 'testdir';
     const DEFAULTCERTDIR = 'certdir';

@@ -6,130 +6,130 @@ use SimpleSAML\Bindings\Shib13\HTTPPost;
  *
  * @package SimpleSAMLphp
  */
-class sspmod_saml_IdP_SAML1 {
+class sspmod_saml_IdP_SAML1
+{
+    /**
+     * Send a response to the SP.
+     *
+     * @param array $state  The authentication state.
+     */
+    public static function sendResponse(array $state)
+    {
+        assert(isset($state['Attributes']));
+        assert(isset($state['SPMetadata']));
+        assert(isset($state['saml:shire']));
+        assert(array_key_exists('saml:target', $state)); // Can be NULL
 
-	/**
-	 * Send a response to the SP.
-	 *
-	 * @param array $state  The authentication state.
-	 */
-	public static function sendResponse(array $state) {
-		assert('isset($state["Attributes"])');
-		assert('isset($state["SPMetadata"])');
-		assert('isset($state["saml:shire"])');
-		assert('array_key_exists("saml:target", $state)'); // Can be NULL
+        $spMetadata = $state["SPMetadata"];
+        $spEntityId = $spMetadata['entityid'];
+        $spMetadata = SimpleSAML_Configuration::loadFromArray($spMetadata,
+            '$metadata[' . var_export($spEntityId, true) . ']');
 
-		$spMetadata = $state["SPMetadata"];
-		$spEntityId = $spMetadata['entityid'];
-		$spMetadata = SimpleSAML_Configuration::loadFromArray($spMetadata,
-			'$metadata[' . var_export($spEntityId, TRUE) . ']');
+        SimpleSAML\Logger::info('Sending SAML 1.1 Response to ' . var_export($spEntityId, true));
 
-		SimpleSAML\Logger::info('Sending SAML 1.1 Response to ' . var_export($spEntityId, TRUE));
+        $attributes = $state['Attributes'];
+        $shire = $state['saml:shire'];
+        $target = $state['saml:target'];
 
-		$attributes = $state['Attributes'];
-		$shire = $state['saml:shire'];
-		$target = $state['saml:target'];
+        $idp = SimpleSAML_IdP::getByState($state);
 
-		$idp = SimpleSAML_IdP::getByState($state);
+        $idpMetadata = $idp->getConfig();
 
-		$idpMetadata = $idp->getConfig();
+        $config = SimpleSAML_Configuration::getInstance();
+        $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
 
-		$config = SimpleSAML_Configuration::getInstance();
-		$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+        $statsData = array(
+            'spEntityID' => $spEntityId,
+            'idpEntityID' => $idpMetadata->getString('entityid'),
+            'protocol' => 'saml1',
+        );
+        if (isset($state['saml:AuthnRequestReceivedAt'])) {
+            $statsData['logintime'] = microtime(true) - $state['saml:AuthnRequestReceivedAt'];
+        }
+        SimpleSAML_Stats::log('saml:idp:Response', $statsData);
 
-		$statsData = array(
-			'spEntityID' => $spEntityId,
-			'idpEntityID' => $idpMetadata->getString('entityid'),
-			'protocol' => 'saml1',
-		);
-		if (isset($state['saml:AuthnRequestReceivedAt'])) {
-			$statsData['logintime'] = microtime(TRUE) - $state['saml:AuthnRequestReceivedAt'];
-		}
-		SimpleSAML_Stats::log('saml:idp:Response', $statsData);
+        // Generate and send response.
+        $ar = new \SimpleSAML\XML\Shib13\AuthnResponse();
+        $authnResponseXML = $ar->generate($idpMetadata, $spMetadata, $shire, $attributes);
 
-		// Generate and send response.
-		$ar = new \SimpleSAML\XML\Shib13\AuthnResponse();
-		$authnResponseXML = $ar->generate($idpMetadata, $spMetadata, $shire, $attributes);
-
-		$httppost = new HTTPPost($config, $metadata);
-		$httppost->sendResponse($authnResponseXML, $idpMetadata, $spMetadata, $target, $shire);
-	}
+        $httppost = new HTTPPost($config, $metadata);
+        $httppost->sendResponse($authnResponseXML, $idpMetadata, $spMetadata, $target, $shire);
+    }
 
 
-	/**
-	 * Receive an authentication request.
-	 *
-	 * @param SimpleSAML_IdP $idp  The IdP we are receiving it for.
-	 */
-	public static function receiveAuthnRequest(SimpleSAML_IdP $idp) {
+    /**
+     * Receive an authentication request.
+     *
+     * @param SimpleSAML_IdP $idp  The IdP we are receiving it for.
+     */
+    public static function receiveAuthnRequest(SimpleSAML_IdP $idp)
+    {
+        if (isset($_REQUEST['cookieTime'])) {
+            $cookieTime = (int)$_REQUEST['cookieTime'];
+            if ($cookieTime + 5 > time()) {
+                /*
+                 * Less than five seconds has passed since we were
+                 * here the last time. Cookies are probably disabled.
+                 */
+                \SimpleSAML\Utils\HTTP::checkSessionCookie(\SimpleSAML\Utils\HTTP::getSelfURL());
+            }
+        }
 
-		if (isset($_REQUEST['cookieTime'])) {
-			$cookieTime = (int)$_REQUEST['cookieTime'];
-			if ($cookieTime + 5 > time()) {
-				/*
-				 * Less than five seconds has passed since we were
-				 * here the last time. Cookies are probably disabled.
-				 */
-				\SimpleSAML\Utils\HTTP::checkSessionCookie(\SimpleSAML\Utils\HTTP::getSelfURL());
-			}
-		}
+        if (!isset($_REQUEST['providerId'])) {
+            throw new SimpleSAML_Error_BadRequest('Missing providerId parameter.');
+        }
+        $spEntityId = (string)$_REQUEST['providerId'];
 
-		if (!isset($_REQUEST['providerId'])) {
-			throw new SimpleSAML_Error_BadRequest('Missing providerId parameter.');
-		}
-		$spEntityId = (string)$_REQUEST['providerId'];
+        if (!isset($_REQUEST['shire'])) {
+            throw new SimpleSAML_Error_BadRequest('Missing shire parameter.');
+        }
+        $shire = (string)$_REQUEST['shire'];
 
-		if (!isset($_REQUEST['shire'])) {
-			throw new SimpleSAML_Error_BadRequest('Missing shire parameter.');
-		}
-		$shire = (string)$_REQUEST['shire'];
+        if (isset($_REQUEST['target'])) {
+            $target = $_REQUEST['target'];
+        } else {
+            $target = null;
+        }
 
-		if (isset($_REQUEST['target'])) {
-			$target = $_REQUEST['target'];
-		} else {
-			$target = NULL;
-		}
+        SimpleSAML\Logger::info('Shib1.3 - IdP.SSOService: Got incoming Shib authnRequest from ' . var_export($spEntityId, true) . '.');
 
-		SimpleSAML\Logger::info('Shib1.3 - IdP.SSOService: Got incoming Shib authnRequest from ' . var_export($spEntityId, TRUE) . '.');
+        $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+        $spMetadata = $metadata->getMetaDataConfig($spEntityId, 'shib13-sp-remote');
 
-		$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
-		$spMetadata = $metadata->getMetaDataConfig($spEntityId, 'shib13-sp-remote');
+        $found = false;
+        foreach ($spMetadata->getEndpoints('AssertionConsumerService') as $ep) {
+            if ($ep['Binding'] !== 'urn:oasis:names:tc:SAML:1.0:profiles:browser-post') {
+                continue;
+            }
+            if ($ep['Location'] !== $shire) {
+                continue;
+            }
+            $found = true;
+            break;
+        }
+        if (!$found) {
+            throw new Exception('Invalid AssertionConsumerService for SP ' .
+                var_export($spEntityId, true) . ': ' . var_export($shire, true));
+        }
 
-		$found = FALSE;
-		foreach ($spMetadata->getEndpoints('AssertionConsumerService') as $ep) {
-			if ($ep['Binding'] !== 'urn:oasis:names:tc:SAML:1.0:profiles:browser-post') {
-				continue;
-			}
-			if ($ep['Location'] !== $shire) {
-				continue;
-			}
-			$found = TRUE;
-			break;
-		}
-		if (!$found) {
-			throw new Exception('Invalid AssertionConsumerService for SP ' .
-				var_export($spEntityId, TRUE) . ': ' . var_export($shire, TRUE));
-		}
+        SimpleSAML_Stats::log('saml:idp:AuthnRequest', array(
+            'spEntityID' => $spEntityId,
+            'protocol' => 'saml1',
+        ));
 
-		SimpleSAML_Stats::log('saml:idp:AuthnRequest', array(
-			'spEntityID' => $spEntityId,
-			'protocol' => 'saml1',
-		));
-
-		$sessionLostURL = \SimpleSAML\Utils\HTTP::addURLParameters(
+        $sessionLostURL = \SimpleSAML\Utils\HTTP::addURLParameters(
             \SimpleSAML\Utils\HTTP::getSelfURL(),
-			array('cookieTime' => time()));
+            array('cookieTime' => time()));
 
-		$state = array(
-			'Responder' => array('sspmod_saml_IdP_SAML1', 'sendResponse'),
-			'SPMetadata' => $spMetadata->toArray(),
-			SimpleSAML_Auth_State::RESTART => $sessionLostURL,
-			'saml:shire' => $shire,
-			'saml:target' => $target,
-			'saml:AuthnRequestReceivedAt' => microtime(TRUE),
-		);
+        $state = array(
+            'Responder' => array('sspmod_saml_IdP_SAML1', 'sendResponse'),
+            'SPMetadata' => $spMetadata->toArray(),
+            SimpleSAML_Auth_State::RESTART => $sessionLostURL,
+            'saml:shire' => $shire,
+            'saml:target' => $target,
+            'saml:AuthnRequestReceivedAt' => microtime(true),
+        );
 
-		$idp->handleAuthenticationRequest($state);
-	}
-
+        $idp->handleAuthenticationRequest($state);
+    }
 }

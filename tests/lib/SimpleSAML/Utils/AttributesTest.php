@@ -2,6 +2,7 @@
 
 namespace SimpleSAML\Test\Utils;
 
+use PHPUnit\Framework\TestCase;
 use SimpleSAML\Utils\Attributes;
 
 /**
@@ -9,7 +10,7 @@ use SimpleSAML\Utils\Attributes;
  *
  * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
  */
-class AttributesTest extends \PHPUnit_Framework_TestCase
+class AttributesTest extends TestCase
 {
 
     /**
@@ -191,6 +192,25 @@ class AttributesTest extends \PHPUnit_Framework_TestCase
             $expected,
             Attributes::normalizeAttributesArray($attributes),
             'Attribute array normalization failed'
+        );
+    }
+
+
+    /**
+     * Test the getAttributeNamespace() function.
+     */
+    public function testNamespacedAttributes()
+    {
+        // test for only the name
+        $this->assertEquals(
+            array('default', 'name'),
+            Attributes::getAttributeNamespace('name', 'default')
+        );
+
+        // test for a given namespace and multiple '/'
+        $this->assertEquals(
+            array('some/namespace', 'name'),
+            Attributes::getAttributeNamespace('some/namespace/name', 'default')
         );
     }
 }

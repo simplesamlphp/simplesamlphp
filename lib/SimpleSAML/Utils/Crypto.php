@@ -24,7 +24,14 @@ class Crypto
      */
     private static function _aesDecrypt($ciphertext, $secret)
     {
-        if (!is_string($ciphertext) || mb_strlen($ciphertext, '8bit') < 48) {
+        if (!is_string($ciphertext)) {
+            throw new \InvalidArgumentException(
+                'Input parameter "$ciphertext" must be a string with more than 48 characters.'
+            );
+        }
+        /** @var int $len */
+        $len = mb_strlen($ciphertext, '8bit');
+        if ($len < 48) {
             throw new \InvalidArgumentException(
                 'Input parameter "$ciphertext" must be a string with more than 48 characters.'
             );
@@ -38,7 +45,7 @@ class Crypto
 
         $hmac = mb_substr($ciphertext, 0, 32, '8bit');
         $iv   = mb_substr($ciphertext, 32, 16, '8bit');
-        $msg  = mb_substr($ciphertext, 48, mb_strlen($ciphertext, '8bit') - 48, '8bit');
+        $msg  = mb_substr($ciphertext, 48, $len - 48, '8bit');
 
         // authenticate the ciphertext
         if (self::secureCompare(hash_hmac('sha256', $iv.$msg, substr($key, 64, 64), true), $hmac)) {
@@ -46,11 +53,11 @@ class Crypto
                 $msg,
                 'AES-256-CBC',
                 substr($key, 0, 64),
-                defined('OPENSSL_RAW_DATA') ? OPENSSL_RAW_DATA : true,
+                defined('OPENSSL_RAW_DATA') ? OPENSSL_RAW_DATA : 1,
                 $iv
             );
 
-            if ($plaintext != false) {
+            if ($plaintext !== false) {
                 return $plaintext;
             }
         }
@@ -106,11 +113,12 @@ class Crypto
         $iv = openssl_random_pseudo_bytes(16);
 
         // encrypt the message
-        $ciphertext = $iv.openssl_encrypt(
+        /** @var string|false $ciphertext */
+        $ciphertext = openssl_encrypt(
             $data,
             'AES-256-CBC',
             substr($key, 0, 64),
-            defined('OPENSSL_RAW_DATA') ? OPENSSL_RAW_DATA : true,
+            defined('OPENSSL_RAW_DATA') ? OPENSSL_RAW_DATA : 1,
             $iv
         );
 
@@ -119,7 +127,7 @@ class Crypto
         }
 
         // return the ciphertext with proper authentication
-        return hash_hmac('sha256', $ciphertext, substr($key, 64, 64), true).$ciphertext;
+        return hash_hmac('sha256', $iv.$ciphertext, substr($key, 64, 64), true).$iv.$ciphertext;
     }
 
 
@@ -261,7 +269,7 @@ class Crypto
         }
 
         $keys = $metadata->getPublicKeys(null, false, $prefix);
-        if ($keys !== null) {
+        if (!empty($keys)) {
             foreach ($keys as $key) {
                 if ($key['type'] !== 'X509Certificate') {
                     continue;
@@ -288,7 +296,7 @@ class Crypto
 
             // normalize fingerprint(s) - lowercase and no colons
             foreach ($fps as &$fp) {
-                assert('is_string($fp)');
+                assert(is_string($fp));
                 $fp = strtolower(str_replace(':', '', $fp));
             }
 
@@ -361,7 +369,7 @@ class Crypto
         }
 
         // hash w/o salt
-        if (in_array(strtolower($algorithm), hash_algos())) {
+        if (in_array(strtolower($algorithm), hash_algos(), true)) {
             $alg_str = '{'.str_replace('SHA1', 'SHA', $algorithm).'}'; // LDAP compatibility
             $hash = hash(strtolower($algorithm), $password, true);
             return $alg_str.base64_encode($hash);
@@ -374,7 +382,7 @@ class Crypto
             $salt = openssl_random_pseudo_bytes($bytes);
         }
 
-        if ($algorithm[0] == 'S' && in_array(substr(strtolower($algorithm), 1), hash_algos())) {
+        if ($algorithm[0] == 'S' && in_array(substr(strtolower($algorithm), 1), hash_algos(), true)) {
             $alg = substr(strtolower($algorithm), 1); // 'sha256' etc
             $alg_str = '{'.str_replace('SSHA1', 'SSHA', $algorithm).'}'; // LDAP compatibility
             $hash = hash($alg, $password.$salt, true);
@@ -441,12 +449,12 @@ class Crypto
             $alg = preg_replace('/^(S?SHA)$/', '${1}1', $matches[1]);
 
             // hash w/o salt
-            if (in_array(strtolower($alg), hash_algos())) {
+            if (in_array(strtolower($alg), hash_algos(), true)) {
                 return self::secureCompare($hash, self::pwHash($password, $alg));
             }
 
             // hash w/ salt
-            if ($alg[0] === 'S' && in_array(substr(strtolower($alg), 1), hash_algos())) {
+            if ($alg[0] === 'S' && in_array(substr(strtolower($alg), 1), hash_algos(), true)) {
                 $php_alg = substr(strtolower($alg), 1);
 
                 // get hash length of this algorithm to learn how long the salt is

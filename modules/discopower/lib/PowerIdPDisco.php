@@ -127,7 +127,7 @@ class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco
                 $tags = $val['tags'];
             }
             foreach ($tags as $tag) {
-                if (!empty($enableTabs) && !in_array($tag, $enableTabs)) {
+                if (!empty($enableTabs) && !in_array($tag, $enableTabs, true)) {
                     continue;
                 }
                 $slist[$tag][$key] = $val;
@@ -153,21 +153,21 @@ class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco
      */
     private function processFilter($filter, $entry, $default = true)
     {
-        if (in_array($entry['entityid'], $filter['entities.include'])) {
+        if (in_array($entry['entityid'], $filter['entities.include'], true)) {
             return true;
         }
-        if (in_array($entry['entityid'], $filter['entities.exclude'])) {
+        if (in_array($entry['entityid'], $filter['entities.exclude'], true)) {
             return false;
         }
 
         if (array_key_exists('tags', $entry)) {
             foreach ($filter['tags.include'] as $fe) {
-                if (in_array($fe, $entry['tags'])) {
+                if (in_array($fe, $entry['tags'], true)) {
                     return true;
                 }
             }
             foreach ($filter['tags.exclude'] as $fe) {
-                if (in_array($fe, $entry['tags'])) {
+                if (in_array($fe, $entry['tags'], true)) {
                     return false;
                 }
             }
@@ -319,7 +319,7 @@ class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco
      */
     protected function setPreviousIdP($idp)
     {
-        assert('is_string($idp)');
+        assert(is_string($idp));
 
         if ($this->cdcDomain === null) {
             parent::setPreviousIdP($idp);

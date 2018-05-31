@@ -5,12 +5,12 @@
  * @param array &$links  The links on the frontpage, split into sections.
  */
 function metarefresh_hook_frontpage(&$links) {
-	assert('is_array($links)');
-	assert('array_key_exists("links", $links)');
+	assert(is_array($links));
+	assert(array_key_exists('links', $links));
 
 	$links['federation'][] = array(
 		'href' => SimpleSAML\Module::getModuleURL('metarefresh/fetch.php'),
-		'text' => array('en' => 'Metarefresh: fetch metadata'),
+		'text' => '{metarefresh:metarefresh:frontpage_link}',
 	);
 
 }

@@ -106,7 +106,7 @@ don't have redirections during the authentication process.
 
 You can also use the multiauth:preselect parameter to the login call:
 
-    $as = new SimpleSAML_Auth_Simple('my-multiauth-authsource');
+    $as = new \SimpleSAML\Auth\Simple('my-multiauth-authsource');
     $as->login(array(
         'multiauth:preselect' => 'default-sp',
     ));

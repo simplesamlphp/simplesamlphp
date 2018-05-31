@@ -1,10 +1,11 @@
 <?php
 
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class SimpleSAML_Metadata_SAMLBuilderTest
  */
-class SimpleSAML_Metadata_SAMLBuilderTest extends PHPUnit_Framework_TestCase
+class SimpleSAML_Metadata_SAMLBuilderTest extends TestCase
 {
 
     /**
@@ -133,5 +134,139 @@ class SimpleSAML_Metadata_SAMLBuilderTest extends PHPUnit_Framework_TestCase
             $this->assertEquals($metadata['attributes'][$keys[$c]], $curAttribute->getAttribute("Name"));
             $this->assertEquals($keys[$c], $curAttribute->getAttribute("FriendlyName"));
         }
+    }
+
+    /**
+     * Test the working of the isDefault config option
+     */
+    public function testAttributeConsumingServiceDefault()
+    {
+        $entityId = 'https://entity.example.com/id';
+        $set = 'saml20-sp-remote';
+
+        $metadata = array(
+            'entityid'     => $entityId,
+            'name'         => array('en' => 'Test SP'),
+            'metadata-set' => $set,
+            'attributes'   => array(
+                'eduPersonTargetedID'    => 'urn:oid:1.3.6.1.4.1.5923.1.1.1.10',
+                'eduPersonPrincipalName' => 'urn:oid:1.3.6.1.4.1.5923.1.1.1.6',
+            ),
+        );
+
+        $samlBuilder = new SimpleSAML_Metadata_SAMLBuilder($entityId);
+        $samlBuilder->addMetadata($set, $metadata);
+
+        $spDesc = $samlBuilder->getEntityDescriptor();
+        $acs = $spDesc->getElementsByTagName("AttributeConsumingService");
+	$acs1 = $acs->item(0);
+        $this->assertFalse($acs1->hasAttribute("isDefault"));
+
+	$metadata['attributes.isDefault'] = true;
+
+        $samlBuilder = new SimpleSAML_Metadata_SAMLBuilder($entityId);
+        $samlBuilder->addMetadata($set, $metadata);
+        $spDesc = $samlBuilder->getEntityDescriptor();
+        $acs = $spDesc->getElementsByTagName("AttributeConsumingService");
+	$acs1 = $acs->item(0);
+        $this->assertTrue($acs1->hasAttribute("isDefault"));
+        $this->assertEquals("true", $acs1->getAttribute("isDefault"));
+
+	$metadata['attributes.isDefault'] = false;
+
+        $samlBuilder = new SimpleSAML_Metadata_SAMLBuilder($entityId);
+        $samlBuilder->addMetadata($set, $metadata);
+        $spDesc = $samlBuilder->getEntityDescriptor();
+        $acs = $spDesc->getElementsByTagName("AttributeConsumingService");
+	$acs1 = $acs->item(0);
+        $this->assertTrue($acs1->hasAttribute("isDefault"));
+        $this->assertEquals("false", $acs1->getAttribute("isDefault"));
+    }
+
+    /**
+     * Test the index option is used correctly.
+     */
+    public function testAttributeConsumingServiceIndex()
+    {
+        $entityId = 'https://entity.example.com/id';
+        $set = 'saml20-sp-remote';
+
+        $metadata = array(
+            'entityid'     => $entityId,
+            'name'         => array('en' => 'Test SP'),
+            'metadata-set' => $set,
+            'attributes'   => array(
+                'eduPersonTargetedID'    => 'urn:oid:1.3.6.1.4.1.5923.1.1.1.10',
+                'eduPersonPrincipalName' => 'urn:oid:1.3.6.1.4.1.5923.1.1.1.6',
+            ),
+        );
+
+        $samlBuilder = new SimpleSAML_Metadata_SAMLBuilder($entityId);
+        $samlBuilder->addMetadata($set, $metadata);
+
+        $spDesc = $samlBuilder->getEntityDescriptor();
+        $acs = $spDesc->getElementsByTagName("AttributeConsumingService");
+	$acs1 = $acs->item(0);
+        $this->assertTrue($acs1->hasAttribute("index"));
+        $this->assertEquals("0", $acs1->getAttribute("index"));
+
+	$metadata['attributes.index'] = 15;
+
+        $samlBuilder = new SimpleSAML_Metadata_SAMLBuilder($entityId);
+        $samlBuilder->addMetadata($set, $metadata);
+
+        $spDesc = $samlBuilder->getEntityDescriptor();
+        $acs = $spDesc->getElementsByTagName("AttributeConsumingService");
+	$acs1 = $acs->item(0);
+        $this->assertTrue($acs1->hasAttribute("index"));
+        $this->assertEquals("15", $acs1->getAttribute("index"));
+    }
+
+    /**
+     * Test the required protocolSupportEnumeration in AttributeAuthorityDescriptor
+     */
+    public function testProtocolSupportEnumeration()
+    {
+        $entityId = 'https://entity.example.com/id';
+        $set = 'attributeauthority-remote';
+
+        // without protocolSupportEnumeration fallback to default: urn:oasis:names:tc:SAML:2.0:protocol
+        $metadata = array(
+            'entityid'     => $entityId,
+            'name'         => array('en' => 'Test AA'),
+            'metadata-set' => $set,
+            'AttributeService' =>
+                array (
+                    0 =>
+                        array (
+                            'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:SOAP',
+                            'Location' => 'https://entity.example.com:8443/idp/profile/SAML2/SOAP/AttributeQuery',
+                        ),
+                ),
+            );
+
+        $samlBuilder = new SimpleSAML_Metadata_SAMLBuilder($entityId);
+        $samlBuilder->addMetadata($set, $metadata);
+        $entityDescriptorXml = $samlBuilder->getEntityDescriptorText();
+
+        $this->assertRegExp(
+            '/<md:AttributeAuthorityDescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">/',
+            $entityDescriptorXml
+        );
+
+        // explicit protocols
+        $metadata['protocols'] =
+            array(
+                0 => 'urn:oasis:names:tc:SAML:1.1:protocol',
+                1 => 'urn:oasis:names:tc:SAML:2.0:protocol',
+            );
+        $samlBuilder = new SimpleSAML_Metadata_SAMLBuilder($entityId);
+        $samlBuilder->addMetadata($set, $metadata);
+        $entityDescriptorXml = $samlBuilder->getEntityDescriptorText();
+
+        $this->assertRegExp(
+            '/<md:AttributeAuthorityDescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:1.1:protocol urn:oasis:names:tc:SAML:2.0:protocol">/',
+            $entityDescriptorXml
+        );
     }
 }

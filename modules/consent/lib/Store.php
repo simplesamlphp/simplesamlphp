@@ -17,7 +17,7 @@ abstract class sspmod_consent_Store
      */
     protected function __construct(&$config)
     {
-        assert('is_array($config)');
+        assert(is_array($config));
     }
 
 

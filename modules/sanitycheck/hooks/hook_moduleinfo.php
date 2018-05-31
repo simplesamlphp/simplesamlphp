@@ -6,8 +6,8 @@
  */
 function sanitycheck_hook_moduleinfo(&$moduleinfo)
 {
-    assert('is_array($moduleinfo)');
-    assert('array_key_exists("info", $moduleinfo)');
+    assert(is_array($moduleinfo));
+    assert(array_key_exists('info', $moduleinfo));
 
     $moduleinfo['info']['sanitycheck'] = array(
         'name' => array('en' => 'Sanity check'),

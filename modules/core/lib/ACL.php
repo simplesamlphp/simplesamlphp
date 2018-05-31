@@ -21,7 +21,7 @@ class sspmod_core_ACL {
 	 * @param array|string $acl  The access control list.
 	 */
 	public function __construct($acl) {
-		assert('is_string($acl) || is_array($acl)');
+		assert(is_string($acl) || is_array($acl));
 
 		if (is_string($acl)) {
 			$acl = self::getById($acl);
@@ -53,7 +53,7 @@ class sspmod_core_ACL {
 	 * @return array  The access control list array.
 	 */
 	private static function getById($id) {
-		assert('is_string($id)');
+		assert(is_string($id));
 
 		$config = SimpleSAML_Configuration::getOptionalConfig('acl.php');
 		if (!$config->hasValue($id)) {

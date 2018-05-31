@@ -2,12 +2,13 @@
 
 namespace SimpleSAML\Test\Utils;
 
+use PHPUnit\Framework\TestCase;
 use SimpleSAML\Utils\Config;
 
 /**
  * Tests for SimpleSAML\Utils\Config
  */
-class ConfigTest extends \PHPUnit_Framework_TestCase
+class ConfigTest extends TestCase
 {
 
     /**
@@ -32,6 +33,29 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
         $configDir = Config::getConfigDir();
 
         $this->assertEquals($configDir, __DIR__);
+    }
+
+    /**
+     * Test valid dir specified by env redirect var overrides default config dir
+     */
+    public function testEnvRedirectVariableConfigDir()
+    {
+        putenv('REDIRECT_SIMPLESAMLPHP_CONFIG_DIR=' . __DIR__);
+        $configDir = Config::getConfigDir();
+
+        $this->assertEquals($configDir, __DIR__);
+    }
+
+    /**
+     * Test which directory takes precedence
+     */
+    public function testEnvRedirectPriorityVariableConfigDir()
+    {
+        putenv('SIMPLESAMLPHP_CONFIG_DIR=' . dirname(__DIR__));
+        putenv('REDIRECT_SIMPLESAMLPHP_CONFIG_DIR=' . __DIR__);
+        $configDir = Config::getConfigDir();
+
+        $this->assertEquals($configDir, dirname(__DIR__));
     }
 
 

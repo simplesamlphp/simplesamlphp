@@ -34,17 +34,7 @@ class sspmod_saml_Message
 
         $algo = $dstMetadata->getString('signature.algorithm', null);
         if ($algo === null) {
-            /*
-             * In the NIST Special Publication 800-131A, SHA-1 became deprecated for generating
-             * new digital signatures in 2011, and will be explicitly disallowed starting the 1st
-             * of January, 2014. We'll keep this as a default for the next release and mark it
-             * as deprecated, as part of the transition to SHA-256.
-             *
-             * See http://csrc.nist.gov/publications/nistpubs/800-131A/sp800-131A.pdf for more info.
-             *
-             * TODO: change default to XMLSecurityKey::RSA_SHA256.
-             */
-            $algo = $srcMetadata->getString('signature.algorithm', XMLSecurityKey::RSA_SHA1);
+            $algo = $srcMetadata->getString('signature.algorithm', XMLSecurityKey::RSA_SHA256);
         }
 
         $privateKey = new XMLSecurityKey($algo, array('type' => 'private'));
@@ -160,7 +150,7 @@ class sspmod_saml_Message
     {
         // find the public key that should verify signatures by this entity
         $keys = $srcMetadata->getPublicKeys('signing');
-        if ($keys !== null) {
+        if (!empty($keys)) {
             $pemKeys = array();
             foreach ($keys as $key) {
                 switch ($key['type']) {
@@ -208,7 +198,7 @@ class sspmod_saml_Message
 
         $lastException = null;
         foreach ($pemKeys as $i => $pem) {
-            $key = new XMLSecurityKey(XMLSecurityKey::RSA_SHA1, array('type' => 'public'));
+            $key = new XMLSecurityKey(XMLSecurityKey::RSA_SHA256, array('type' => 'public'));
             $key->loadKey($pem);
 
             try {
@@ -304,7 +294,7 @@ class sspmod_saml_Message
         // load the new private key if it exists
         $keyArray = SimpleSAML\Utils\Crypto::loadPrivateKey($dstMetadata, false, 'new_');
         if ($keyArray !== null) {
-            assert('isset($keyArray["PEM"])');
+            assert(isset($keyArray['PEM']));
 
             $key = new XMLSecurityKey(XMLSecurityKey::RSA_1_5, array('type' => 'private'));
             if (array_key_exists('password', $keyArray)) {
@@ -316,7 +306,7 @@ class sspmod_saml_Message
 
         // find the existing private key
         $keyArray = SimpleSAML\Utils\Crypto::loadPrivateKey($dstMetadata, true);
-        assert('isset($keyArray["PEM"])');
+        assert(isset($keyArray['PEM']));
 
         $key = new XMLSecurityKey(XMLSecurityKey::RSA_1_5, array('type' => 'private'));
         if (array_key_exists('password', $keyArray)) {
@@ -369,7 +359,7 @@ class sspmod_saml_Message
         SimpleSAML_Configuration $dstMetadata,
         $assertion
     ) {
-        assert('$assertion instanceof \SAML2\Assertion || $assertion instanceof \SAML2\EncryptedAssertion');
+        assert($assertion instanceof \SAML2\Assertion || $assertion instanceof \SAML2\EncryptedAssertion);
 
         if ($assertion instanceof \SAML2\Assertion) {
             $encryptAssertion = $srcMetadata->getBoolean('assertion.encryption', null);
@@ -404,6 +394,51 @@ class sspmod_saml_Message
             }
         }
         throw $lastException;
+    }
+
+
+    /**
+     * Decrypt any encrypted attributes in an assertion.
+     *
+     * @param SimpleSAML_Configuration $srcMetadata The metadata of the sender (IdP).
+     * @param SimpleSAML_Configuration $dstMetadata The metadata of the recipient (SP).
+     * @param \SAML2\Assertion|\SAML2\Assertion $assertion The assertion containing any possibly encrypted attributes.
+     *
+     * @return void
+     *
+     * @throws \SimpleSAML_Error_Exception if we cannot get the decryption keys or decryption fails.
+     */
+    private static function decryptAttributes(
+        SimpleSAML_Configuration $srcMetadata,
+        SimpleSAML_Configuration $dstMetadata,
+        \SAML2\Assertion &$assertion
+    ) {
+        if (!$assertion->hasEncryptedAttributes()) {
+            return;
+        }
+
+        try {
+            $keys = self::getDecryptionKeys($srcMetadata, $dstMetadata);
+        } catch (Exception $e) {
+            throw new SimpleSAML_Error_Exception('Error decrypting attributes: '.$e->getMessage());
+        }
+
+        $blacklist = self::getBlacklistedAlgorithms($srcMetadata, $dstMetadata);
+
+        $error = true;
+        foreach ($keys as $i => $key) {
+            try {
+                $assertion->decryptAttributes($key, $blacklist);
+                SimpleSAML\Logger::debug('Attribute decryption with key #'.$i.' succeeded.');
+                $error = false;
+                break;
+            } catch (Exception $e) {
+                SimpleSAML\Logger::debug('Attribute decryption failed with exception: '.$e->getMessage());
+            }
+        }
+        if ($error) {
+            throw new SimpleSAML_Error_Exception('Could not decrypt the attributes');
+        }
     }
 
 
@@ -605,10 +640,11 @@ class sspmod_saml_Message
         $assertion,
         $responseSigned
     ) {
-        assert('$assertion instanceof \SAML2\Assertion || $assertion instanceof \SAML2\EncryptedAssertion');
-        assert('is_bool($responseSigned)');
+        assert($assertion instanceof \SAML2\Assertion || $assertion instanceof \SAML2\EncryptedAssertion);
+        assert(is_bool($responseSigned));
 
         $assertion = self::decryptAssertion($idpMetadata, $spMetadata, $assertion);
+        self::decryptAttributes($idpMetadata, $spMetadata, $assertion);
 
         if (!self::checkSign($idpMetadata, $assertion)) {
             if (!$responseSigned) {
@@ -651,7 +687,7 @@ class sspmod_saml_Message
         $lastError = 'No SubjectConfirmation element in Subject.';
         $validSCMethods = array(\SAML2\Constants::CM_BEARER, \SAML2\Constants::CM_HOK, \SAML2\Constants::CM_VOUCHES);
         foreach ($assertion->getSubjectConfirmation() as $sc) {
-            if (!in_array($sc->Method, $validSCMethods)) {
+            if (!in_array($sc->Method, $validSCMethods, true)) {
                 $lastError = 'Invalid Method on SubjectConfirmation: '.var_export($sc->Method, true);
                 continue;
             }

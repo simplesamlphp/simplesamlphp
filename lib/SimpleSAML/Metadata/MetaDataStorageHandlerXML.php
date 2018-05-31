@@ -32,15 +32,17 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerXML extends SimpleSAML_Metadata_
      */
     protected function __construct($config)
     {
-        // get the configuration
-        $globalConfig = SimpleSAML_Configuration::getInstance();
-
+        $src = $srcXml = null;
         if (array_key_exists('file', $config)) {
+            // get the configuration
+            $globalConfig = SimpleSAML_Configuration::getInstance();
             $src = $globalConfig->resolvePath($config['file']);
         } elseif (array_key_exists('url', $config)) {
             $src = $config['url'];
+        } elseif (array_key_exists('xml', $config)) {
+            $srcXml = $config['xml'];
         } else {
-            throw new Exception("Missing either 'file' or 'url' in XML metadata source configuration.");
+            throw new Exception("Missing one of 'file', 'url' and 'xml' in XML metadata source configuration.");
         }
 
 
@@ -50,9 +52,14 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerXML extends SimpleSAML_Metadata_
         $IdP20 = array();
         $AAD = array();
 
-        $entities = SimpleSAML_Metadata_SAMLParser::parseDescriptorsFile($src);
+        if(isset($src)) {
+            $entities = SimpleSAML_Metadata_SAMLParser::parseDescriptorsFile($src);
+        } elseif(isset($srcXml)) {
+            $entities = SimpleSAML_Metadata_SAMLParser::parseDescriptorsString($srcXml);
+        } else {
+            throw new Exception("Neither source file path/URI nor string data provided");
+        }
         foreach ($entities as $entityId => $entity) {
-
             $md = $entity->getMetadata1xSP();
             if ($md !== null) {
                 $SP1x[$entityId] = $md;

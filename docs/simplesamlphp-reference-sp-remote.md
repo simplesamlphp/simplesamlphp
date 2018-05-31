@@ -290,7 +290,7 @@ Here is an example:
     The value in the SP-remote metadata overrides the value in the IdP-hosted metadata.
 
 `signature.algorithm`
-:   The algorithm to use when signing any message sent to this specific service provider. Defaults to RSA-SHA1.
+:   The algorithm to use when signing any message sent to this specific service provider. Defaults to RSA-SHA256.
 :   Note that this option also exists in the IdP-hosted metadata.
     The value in the SP-remote metadata overrides the value in the IdP-hosted metadata.
 :   Possible values:
@@ -298,6 +298,7 @@ Here is an example:
     * `http://www.w3.org/2000/09/xmldsig#rsa-sha1`
        *Note*: the use of SHA1 is **deprecated** and will be disallowed in the future.
     * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha256`
+      The default.
     * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha384`
     * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha512`
 

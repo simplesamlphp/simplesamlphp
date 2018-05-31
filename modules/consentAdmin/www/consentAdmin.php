@@ -22,7 +22,8 @@ function driveProcessingChain(
     $sp_entityid,
     $attributes,
     $userid,
-    $hashAttributes = false
+    $hashAttributes = false,
+    $excludeAttributes = array()
 ) {
 
     /*
@@ -37,9 +38,15 @@ function driveProcessingChain(
     $authProcState = array(
         'Attributes'  => $attributes,
         'Destination' => $sp_metadata,
+        'SPMetadata'  => $sp_metadata,
         'Source'      => $idp_metadata,
+        'IdPMetadata' => $idp_metadata,
         'isPassive'   => true,
     );
+    /* we're being bridged, so add that info to the state */
+    if (strpos($source, '-idp-remote|') !== false) {
+        $authProcState['saml:sp:IdP'] = substr($source, strpos($source, '|') + 1);
+    }
 
     /*
      * Call processStatePAssive.
@@ -48,6 +55,12 @@ function driveProcessingChain(
     $pc->processStatePassive($authProcState);
 
     $attributes = $authProcState['Attributes'];
+    // Remove attributes that do not require consent/should be excluded
+    foreach ($attributes as $attrkey => $attrval) {
+        if (in_array($attrkey, $excludeAttributes)) {
+            unset($attributes[$attrkey]);
+        }
+    }
 
     /*
      * Generate identifiers and hashes
@@ -70,7 +83,7 @@ $config = SimpleSAML_Configuration::getInstance();
 $cA_config = SimpleSAML_Configuration::getConfig('module_consentAdmin.php');
 $authority = $cA_config->getValue('authority');
 
-$as = new SimpleSAML_Auth_Simple($authority);
+$as = new \SimpleSAML\Auth\Simple($authority);
 
 // If request is a logout request
 if (array_key_exists('logout', $_REQUEST)) {
@@ -79,6 +92,8 @@ if (array_key_exists('logout', $_REQUEST)) {
 }
 
 $hashAttributes = $cA_config->getValue('attributes.hash');
+
+$excludeAttributes = $cA_config->getValue('attributes.exclude', array());
 
 // Check if valid local session exists
 $as->requireAuth();
@@ -94,21 +109,20 @@ $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
  */
 
 
-$local_idp_entityid = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
-$local_idp_metadata = $metadata->getMetaData($local_idp_entityid, 'saml20-idp-hosted');
+$idp_entityid = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
+$idp_metadata = $metadata->getMetaData($idp_entityid, 'saml20-idp-hosted');
 
+// Calc correct source
 if ($as->getAuthData('saml:sp:IdP') !== null) {
     // from a remote idp (as bridge)
-    $idp_entityid = $as->getAuthData('saml:sp:IdP');
-    $idp_metadata = $metadata->getMetaData($idp_entityid, 'saml20-idp-remote');
+    $source = 'saml20-idp-remote|'.$as->getAuthData('saml:sp:IdP');
 } else {
     // from the local idp
-    $idp_entityid = $local_idp_entityid;
-    $idp_metadata = $local_idp_metadata;
+    $source = $idp_metadata['metadata-set'].'|'.$idp_entityid;
 }
 
 // Get user ID
-$userid_attributename = (isset($local_idp_metadata['userid.attribute']) && is_string($local_idp_metadata['userid.attribute'])) ? $local_idp_metadata['userid.attribute'] : 'eduPersonPrincipalName';
+$userid_attributename = (isset($idp_metadata['userid.attribute']) && is_string($idp_metadata['userid.attribute'])) ? $idp_metadata['userid.attribute'] : 'eduPersonPrincipalName';
 
 $userids = $attributes[$userid_attributename];
 
@@ -145,9 +159,6 @@ if (isset($idp_metadata['consent.disable'])) {
 
 SimpleSAML\Logger::info('consentAdmin: '.$idp_entityid);
 
-// Calc correct source
-$source = $idp_metadata['metadata-set'].'|'.$idp_entityid;
-
 // Parse consent config
 $consent_storage = sspmod_consent_Store::parseStoreConfig($cA_config->getValue('consentadmin'));
 
@@ -161,7 +172,7 @@ if ($action !== null && $sp_entityid !== null) {
 
     // Run AuthProc filters
     list($targeted_id, $attribute_hash, $attributes_new) = driveProcessingChain($idp_metadata, $source, $sp_metadata,
-        $sp_entityid, $attributes, $userid, $hashAttributes);
+        $sp_entityid, $attributes, $userid, $hashAttributes, $excludeAttributes);
 
     // Add a consent (or update if attributes have changed and old consent for SP and IdP exists)
     if ($action == 'true') {
@@ -175,7 +186,7 @@ if ($action !== null && $sp_entityid !== null) {
     } else {
         if ($action == 'false') {
             // Got consent, so this is a request to remove it
-            $rowcount = $consent_storage->deleteConsent($hashed_user_id, $targeted_id, $attribute_hash);
+            $rowcount = $consent_storage->deleteConsent($hashed_user_id, $targeted_id);
             if ($rowcount > 0) {
                 $res = "removed";
             }
@@ -217,7 +228,7 @@ foreach ($all_sp_metadata as $sp_entityid => $sp_values) {
 
     // Run attribute filters
     list($targeted_id, $attribute_hash, $attributes_new) = driveProcessingChain($idp_metadata, $source, $sp_metadata,
-        $sp_entityid, $attributes, $userid, $hashAttributes);
+        $sp_entityid, $attributes, $userid, $hashAttributes, $excludeAttributes);
 
     // Check if consent exists
     if (array_key_exists($targeted_id, $user_consent)) {

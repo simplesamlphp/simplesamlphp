@@ -34,7 +34,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerSerialize extends SimpleSAML_Met
      */
     public function __construct($config)
     {
-        assert('is_array($config)');
+        assert(is_array($config));
 
         $globalConfig = SimpleSAML_Configuration::getInstance();
 
@@ -59,8 +59,8 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerSerialize extends SimpleSAML_Met
      */
     private function getMetadataPath($entityId, $set)
     {
-        assert('is_string($entityId)');
-        assert('is_string($set)');
+        assert(is_string($entityId));
+        assert(is_string($set));
 
         return $this->directory.'/'.rawurlencode($set).'/'.rawurlencode($entityId).self::EXTENSION;
     }
@@ -84,7 +84,6 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerSerialize extends SimpleSAML_Met
         }
 
         while (($entry = readdir($dh)) !== false) {
-
             if ($entry[0] === '.') {
                 // skip '..', '.' and hidden files
                 continue;
@@ -118,7 +117,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerSerialize extends SimpleSAML_Met
      */
     public function getMetadataSet($set)
     {
-        assert('is_string($set)');
+        assert(is_string($set));
 
         $ret = array();
 
@@ -171,8 +170,8 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerSerialize extends SimpleSAML_Met
      */
     public function getMetaData($entityId, $set)
     {
-        assert('is_string($entityId)');
-        assert('is_string($set)');
+        assert(is_string($entityId));
+        assert(is_string($set));
 
         $filePath = $this->getMetadataPath($entityId, $set);
 
@@ -214,9 +213,9 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerSerialize extends SimpleSAML_Met
      */
     public function saveMetadata($entityId, $set, $metadata)
     {
-        assert('is_string($entityId)');
-        assert('is_string($set)');
-        assert('is_array($metadata)');
+        assert(is_string($entityId));
+        assert(is_string($set));
+        assert(is_array($metadata));
 
         $filePath = $this->getMetadataPath($entityId, $set);
         $newPath = $filePath.'.new';
@@ -262,8 +261,8 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerSerialize extends SimpleSAML_Met
      */
     public function deleteMetadata($entityId, $set)
     {
-        assert('is_string($entityId)');
-        assert('is_string($set)');
+        assert(is_string($entityId));
+        assert(is_string($set));
 
         $filePath = $this->getMetadataPath($entityId, $set);
 

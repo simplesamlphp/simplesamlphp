@@ -138,7 +138,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandler
      */
     public function getList($set = 'saml20-idp-remote')
     {
-        assert('is_string($set)');
+        assert(is_string($set));
 
         $result = array();
 
@@ -193,7 +193,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandler
      */
     public function getMetaDataCurrentEntityID($set, $type = 'entityid')
     {
-        assert('is_string($set)');
+        assert(is_string($set));
 
         // first we look for the hostname/path combination
         $currenthostwithpath = \SimpleSAML\Utils\HTTP::getSelfHostWithPath(); // sp.example.org/university
@@ -268,19 +268,18 @@ class SimpleSAML_Metadata_MetaDataStorageHandler
      */
     public function getMetaData($index, $set)
     {
-        assert('is_string($set)');
+        assert(is_string($set));
 
         if ($index === null) {
             $index = $this->getMetaDataCurrentEntityID($set, 'metaindex');
         }
 
-        assert('is_string($index)');
+        assert(is_string($index));
 
         foreach ($this->sources as $source) {
             $metadata = $source->getMetaData($index, $set);
 
             if ($metadata !== null) {
-
                 if (array_key_exists('expire', $metadata)) {
                     if ($metadata['expire'] < time()) {
                         throw new Exception(
@@ -292,7 +291,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandler
 
                 $metadata['metadata-index'] = $index;
                 $metadata['metadata-set'] = $set;
-                assert('array_key_exists("entityid", $metadata)');
+                assert(array_key_exists('entityid', $metadata));
                 return $metadata;
             }
         }
@@ -314,8 +313,8 @@ class SimpleSAML_Metadata_MetaDataStorageHandler
      */
     public function getMetaDataConfig($entityId, $set)
     {
-        assert('is_string($entityId)');
-        assert('is_string($set)');
+        assert(is_string($entityId));
+        assert(is_string($set));
 
         $metadata = $this->getMetaData($entityId, $set);
         return SimpleSAML_Configuration::loadFromArray($metadata, $set.'/'.var_export($entityId, true));
@@ -333,8 +332,8 @@ class SimpleSAML_Metadata_MetaDataStorageHandler
      */
     public function getMetaDataConfigForSha1($sha1, $set)
     {
-        assert('is_string($sha1)');
-        assert('is_string($set)');
+        assert(is_string($sha1));
+        assert(is_string($set));
 
         $result = array();
 
@@ -347,7 +346,6 @@ class SimpleSAML_Metadata_MetaDataStorageHandler
             $result = array_merge($srcList, $result);
         }
         foreach ($result as $remote_provider) {
-
             if (sha1($remote_provider['entityid']) == $sha1) {
                 $remote_provider['metadata-set'] = $set;
 

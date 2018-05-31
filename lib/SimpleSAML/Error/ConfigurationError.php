@@ -8,7 +8,6 @@
 
 namespace SimpleSAML\Error;
 
-
 class ConfigurationError extends \SimpleSAML_Error_Error
 {
 

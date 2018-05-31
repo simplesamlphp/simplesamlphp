@@ -19,7 +19,7 @@ class sspmod_core_Auth_Process_LanguageAdaptor extends SimpleSAML_Auth_Processin
 	 */
 	public function __construct($config, $reserved) {
 		parent::__construct($config, $reserved);
-		assert('is_array($config)');
+		assert(is_array($config));
 
 		if (array_key_exists('attributename', $config)) {
 			$this->langattr = $config['attributename'];
@@ -35,8 +35,8 @@ class sspmod_core_Auth_Process_LanguageAdaptor extends SimpleSAML_Auth_Processin
 	 * @param array &$request  The current request
 	 */
 	public function process(&$request) {
-		assert('is_array($request)');
-		assert('array_key_exists("Attributes", $request)');
+		assert(is_array($request));
+		assert(array_key_exists('Attributes', $request));
 
 		$attributes =& $request['Attributes'];
 

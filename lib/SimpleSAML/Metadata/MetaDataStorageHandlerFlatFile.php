@@ -40,7 +40,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerFlatFile extends SimpleSAML_Meta
      */
     protected function __construct($config)
     {
-        assert('is_array($config)');
+        assert(is_array($config));
 
         // get the configuration
         $globalConfig = SimpleSAML_Configuration::getInstance();

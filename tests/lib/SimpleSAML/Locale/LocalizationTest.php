@@ -2,10 +2,18 @@
 
 namespace SimpleSAML\Test\Locale;
 
+use PHPUnit\Framework\TestCase;
 use SimpleSAML\Locale\Localization;
+use \SimpleSAML_Configuration as Configuration;
 
-class LocalizationTest extends \PHPUnit_Framework_TestCase
+
+class LocalizationTest extends TestCase
 {
+    protected function setUp()
+    {
+        // Localization/Language code attempts to load a cookie, and looks in the config for a name of the cookie
+        Configuration::loadFromArray(array(), '[ARRAY]', 'simplesaml');
+    }
 
 
     /**

@@ -30,7 +30,7 @@ abstract class SimpleSAML_Metadata_MetaDataStorageSource
      */
     public static function parseSources($sourcesConfig)
     {
-        assert('is_array($sourcesConfig)');
+        assert(is_array($sourcesConfig));
 
         $sources = array();
 
@@ -139,7 +139,6 @@ abstract class SimpleSAML_Metadata_MetaDataStorageSource
         }
 
         foreach ($metadataSet as $index => $entry) {
-
             if (!array_key_exists('host', $entry)) {
                 continue;
             }
@@ -159,7 +158,7 @@ abstract class SimpleSAML_Metadata_MetaDataStorageSource
 
 
     /**
-     * This function will go through all the metadata, and check the hint.cidr
+     * This function will go through all the metadata, and check the DiscoHints->IPHint
      * parameter, which defines a network space (ip range) for each remote entry.
      * This function returns the entityID for any of the entities that have an
      * IP range which the IP falls within.
@@ -177,15 +176,26 @@ abstract class SimpleSAML_Metadata_MetaDataStorageSource
         $metadataSet = $this->getMetadataSet($set);
 
         foreach ($metadataSet as $index => $entry) {
+            $cidrHints = array();
+            
+            // support hint.cidr for idp discovery
+            if (array_key_exists('hint.cidr', $entry) && is_array($entry['hint.cidr'])) {
+                $cidrHints = $entry['hint.cidr'];
+            }
 
-            if (!array_key_exists('hint.cidr', $entry)) {
+            // support discohints in idp metadata for idp discovery
+            if (array_key_exists('DiscoHints', $entry) 
+                && array_key_exists('IPHint', $entry['DiscoHints']) 
+                && is_array($entry['DiscoHints']['IPHint'])) {
+                // merge with hints derived from discohints, but prioritize hint.cidr in case it is used
+                $cidrHints = array_merge($entry['DiscoHints']['IPHint'], $cidrHints);
+            }
+
+            if (empty($cidrHints)) {
                 continue;
             }
-            if (!is_array($entry['hint.cidr'])) {
-                continue;
-            }
 
-            foreach ($entry['hint.cidr'] as $hint_entry) {
+            foreach ($cidrHints as $hint_entry) {
                 if (SimpleSAML\Utils\Net::ipCIDRcheck($hint_entry, $ip)) {
                     if ($type === 'entityid') {
                         return $entry['entityid'];
@@ -206,8 +216,8 @@ abstract class SimpleSAML_Metadata_MetaDataStorageSource
      */
     private function lookupIndexFromEntityId($entityId, $set)
     {
-        assert('is_string($entityId)');
-        assert('isset($set)');
+        assert(is_string($entityId));
+        assert(isset($set));
 
         $metadataSet = $this->getMetadataSet($set);
 
@@ -246,8 +256,8 @@ abstract class SimpleSAML_Metadata_MetaDataStorageSource
     public function getMetaData($index, $set)
     {
 
-        assert('is_string($index)');
-        assert('isset($set)');
+        assert(is_string($index));
+        assert(isset($set));
 
         $metadataSet = $this->getMetadataSet($set);
 
@@ -262,5 +272,4 @@ abstract class SimpleSAML_Metadata_MetaDataStorageSource
 
         return null;
     }
-
 }

@@ -2,6 +2,7 @@
 
 namespace SimpleSAML\Test\Module\saml\Auth\Source;
 
+use PHPUnit\Framework\TestCase;
 use \SimpleSAML_Configuration as Configuration;
 
 /**
@@ -67,7 +68,7 @@ class SP_Tester extends \sspmod_saml_Auth_Source_SP
 /**
  * Set of test cases for sspmod_saml_Auth_Source_SP.
  */
-class SP_Test extends \PHPUnit_Framework_TestCase
+class SP_Test extends TestCase
 {
 
     private $idpMetadata = null;

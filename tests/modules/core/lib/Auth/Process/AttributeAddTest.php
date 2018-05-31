@@ -1,9 +1,11 @@
 <?php
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * Test for the core:AttributeAdd filter.
  */
-class Test_Core_Auth_Process_AttributeAdd extends PHPUnit_Framework_TestCase
+class Test_Core_Auth_Process_AttributeAdd extends TestCase
 {
 
     /**
@@ -15,7 +17,7 @@ class Test_Core_Auth_Process_AttributeAdd extends PHPUnit_Framework_TestCase
      */
     private static function processFilter(array $config, array $request)
     {
-        $filter = new sspmod_core_Auth_Process_AttributeAdd($config, NULL);
+        $filter = new sspmod_core_Auth_Process_AttributeAdd($config, null);
         $filter->process($request);
         return $request;
     }

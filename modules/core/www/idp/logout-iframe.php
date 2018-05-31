@@ -39,7 +39,7 @@ if ($type !== 'init') { // update association state
             }
         }
 
-        // heck for timeout
+        // check for timeout
         if (isset($sp['core:Logout-IFrame:Timeout']) && $sp['core:Logout-IFrame:Timeout'] < time()) {
             if ($sp['core:Logout-IFrame:State'] === 'inprogress') {
                 $sp['core:Logout-IFrame:State'] = 'failed';
@@ -104,10 +104,12 @@ foreach ($state['core:Logout-IFrame:Associations'] as $association) {
         'entityID' => $association['saml:entityID'],
         'subject' => $association['saml:NameID'],
         'status' => $association['core:Logout-IFrame:State'],
-        'timeout' => $association['core:Logout-IFrame:Timeout'],
         'logoutURL' => $association['core:Logout-IFrame:URL'],
         'metadata' => $mdh->getMetaDataConfig($association['saml:entityID'], $mdset)->toArray(),
     );
+    if (isset($association['core:Logout-IFrame:Timeout'])) {
+        $remaining[$key]['timeout'] = $association['core:Logout-IFrame:Timeout'];
+    }
 }
 
 $id = SimpleSAML_Auth_State::saveState($state, 'core:Logout-IFrame');
@@ -119,6 +121,10 @@ if ($type === 'nojs') {
 }
 
 $t = new SimpleSAML_XHTML_Template($globalConfig, $template_id);
+$t->data['auth_state'] = $id;
+/**
+ * @deprecated The "id" variable will be removed. Please use "auth_state" instead.
+ */
 $t->data['id'] = $id;
 $t->data['type'] = $type;
 $t->data['terminated_service'] = $terminated;

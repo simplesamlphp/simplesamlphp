@@ -27,13 +27,15 @@ class XML
      *     values allowed.
      * @throws \SimpleSAML_Error_Exception If $message contains a doctype declaration.
      *
+     * @return void
+     *
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
     public static function checkSAMLMessage($message, $type)
     {
         $allowed_types = array('saml20', 'saml11', 'saml-meta');
-        if (!(is_string($message) && in_array($type, $allowed_types))) {
+        if (!(is_string($message) && in_array($type, $allowed_types, true))) {
             throw new \InvalidArgumentException('Invalid input parameters.');
         }
 
@@ -84,6 +86,8 @@ class XML
      *      - 'encrypt': for encrypted messages.
      *
      * @throws \InvalidArgumentException If $type is not a string or $message is neither a string nor a \DOMElement.
+     *
+     * @return void
      *
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
@@ -139,15 +143,17 @@ class XML
      * This function takes in a DOM element, and inserts whitespace to make it more readable. Note that whitespace
      * added previously will be removed.
      *
-     * @param \DOMElement $root The root element which should be formatted.
+     * @param \DOMNode $root The root element which should be formatted.
      * @param string      $indentBase The indentation this element should be assumed to have. Defaults to an empty
      *     string.
      *
      * @throws \InvalidArgumentException If $root is not a DOMElement or $indentBase is not a string.
      *
+     * @return void
+     *
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
-    public static function formatDOMElement(\DOMElement $root, $indentBase = '')
+    public static function formatDOMElement(\DOMNode $root, $indentBase = '')
     {
         if (!is_string($indentBase)) {
             throw new \InvalidArgumentException('Invalid input parameters');
@@ -158,6 +164,7 @@ class XML
         $textNodes = array(); // text nodes which should be deleted
         $childNodes = array(); // other child nodes
         for ($i = 0; $i < $root->childNodes->length; $i++) {
+            /** @var \DOMElement $child */
             $child = $root->childNodes->item($i);
 
             if ($child instanceof \DOMText) {
@@ -279,6 +286,7 @@ class XML
         $ret = array();
 
         for ($i = 0; $i < $element->childNodes->length; $i++) {
+            /** @var \DOMElement $child */
             $child = $element->childNodes->item($i);
 
             // skip text nodes and comment elements
@@ -301,20 +309,16 @@ class XML
      * @param \DOMElement $element The element we should extract text from.
      *
      * @return string The text content of the element.
-     * @throws \InvalidArgumentException If $element is not an instance of DOMElement.
      * @throws \SimpleSAML_Error_Exception If the element contains a non-text child node.
      *
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
     public static function getDOMText(\DOMElement $element)
     {
-        if (!($element instanceof \DOMElement)) {
-            throw new \InvalidArgumentException('Invalid input parameters');
-        }
-
         $txt = '';
 
         for ($i = 0; $i < $element->childNodes->length; $i++) {
+            /** @var \DOMElement $child */
             $child = $element->childNodes->item($i);
             if (!($child instanceof \DOMText)) {
                 throw new \SimpleSAML_Error_Exception($element->localName.' contained a non-text child node.');
@@ -425,9 +429,10 @@ class XML
         }
 
         if ($res) {
-
             $config = \SimpleSAML_Configuration::getInstance();
-            $schemaPath = $config->resolvePath('schemas').'/';
+            /** @var string $schemaPath */
+            $schemaPath = $config->resolvePath('schemas');
+            $schemaPath .= './';
             $schemaFile = $schemaPath.$schema;
 
             $res = $dom->schemaValidate($schemaFile);

@@ -5,7 +5,7 @@ The consentAdmin module is an addon to the consent module. This means that
 you can not use consentAdmin without the consent module. If you have not
 installed and configured the consent module, please do.
 
-  * [How to install and configure the consent module](consent:consent)
+  * [How to install and configure the consent module](./consent:consent)
  
 The consentAdmin module only works when the consent module is using a 
 database to store the consents.
@@ -44,7 +44,9 @@ Setting optional parameters
 In order to make the consentAdmin module work together with the consent
 module correctly, you need to set the configuration 'attributes.hash'
 according to the value of 'includeValues' configuration in the consent
-module.
+module. Likewise, if you've used the 'attributes.exclude' configuration
+option in the consent module, you should also set the 'attributes.exclude'
+configuration option here to match.
 
 You should also set the 'returnURL' configuration in order to pass on your
 users when the press the 'Logout' link.

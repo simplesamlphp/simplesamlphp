@@ -14,7 +14,6 @@ use Gettext\Translator;
 
 class Localization
 {
-
     /**
      * The configuration to use.
      *
@@ -37,21 +36,36 @@ class Localization
      */
     const GETTEXT_I18N_BACKEND = 'gettext/gettext';
 
-    /*
+    /**
      * The default locale directory
      */
     private $localeDir;
 
-    /*
+    /**
      * Where specific domains are stored
      */
     private $localeDomainMap = array();
 
-    /*
+    /**
      * Pointer to currently active translator
      */
     private $translator;
 
+    /**
+     * Pointer to current Language
+     */
+    private $language;
+
+    /**
+     * Language code representing the current Language
+     */
+    private $langcode;
+
+
+    /**
+     * The language backend to use
+     */
+    public $i18nBackend;
 
     /**
      * Constructor
@@ -248,5 +262,4 @@ class Localization
     {
         return $this->localeDomainMap;
     }
-
 }

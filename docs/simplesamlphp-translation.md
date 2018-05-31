@@ -27,8 +27,6 @@ When the template library is about to lookup the translation of a term, it will 
   * the definition file, for the English translation, and 
   * the translation file, for translation to other languages.
 
-When developing new functionalities it is common to start by just introducing the definition file, then upload the definition file to the SimpleSAMLphp translation portal, perform translation, and then download the translation files back in to the module.
-
 SimpleSAMLphp will always fallback to the English translation using the definition file, both:
 
   * when the term is not translated into the *current selected language*, and
@@ -73,8 +71,6 @@ To summarize the pattern of the definition file is as follows:
 ## The translation file
 
 The translation file is similar to the definition file, but including translation to languages others than English.
-
-This file is recommended to never write manually, but instead use the SimpleSAMLphp translation portal, and then download generated translation files.
 
 The structure of the file is identical to the definition files, except from the language index, which now is not `en`, but the actual langauge that is translated:
 

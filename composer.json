@@ -4,7 +4,7 @@
     "type": "project",
     "keywords": [ "saml2", "shibboleth","oauth","ws-federation","sp","idp" ],
     "homepage": "http://simplesamlphp.org",
-    "license": "LGPL-2.1",
+    "license": "LGPL-2.1-or-later",
     "authors": [
         {
             "name": "Andreas Åkre Solberg",
@@ -26,7 +26,7 @@
         "files": ["lib/_autoload_modules.php"]
     },
     "require": {
-        "php": ">=5.3",
+        "php": ">=5.4",
         "ext-SPL": "*",
         "ext-zlib": "*",
         "ext-pcre": "*",
@@ -36,18 +36,17 @@
         "ext-hash": "*",
         "ext-json": "*",
         "ext-mbstring": "*",
-        "simplesamlphp/saml2": "dev-master#f079abe36ab4101dfda654a087f8003a9673b952 as 2.4",
-        "robrichards/xmlseclibs": "~2.0",
+        "simplesamlphp/saml2": "~3.1.4",
+        "robrichards/xmlseclibs": "~3.0",
         "whitehat101/apr1-md5": "~1.0",
         "twig/twig": "~1.0",
         "gettext/gettext": "^3.5",
         "jaimeperez/twig-configurable-i18n": "^1.2"
     },
     "require-dev": {
-        "ext-pdo_sqlite": "*",
-        "phpunit/phpunit": "~4.8",
-        "satooshi/php-coveralls": "^1.0",
-        "mikey179/vfsStream": "~1.6"
+        "phpunit/phpunit": "~4.8.35",
+        "mikey179/vfsStream": "~1.6",
+        "friendsofphp/php-cs-fixer": "^2.2"
     },
     "suggests": {
         "predis/predis": "1.1.1"

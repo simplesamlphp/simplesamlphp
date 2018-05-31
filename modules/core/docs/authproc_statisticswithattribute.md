@@ -12,6 +12,9 @@ Parameters
 `type`
 :   The type of the statistics entry.
 
+`skipPassive`
+:   A boolean indicating whether passive requests should be skipped. Defaults to `FALSE`, in which case the type tag is prefixed with 'passive-'.
+
 
 Example
 -------

@@ -2,6 +2,7 @@
 
 namespace SimpleSAML\Test\Utils;
 
+use PHPUnit\Framework\TestCase;
 use \SimpleSAML_Configuration as Configuration;
 use \SimpleSAML\Utils\System;
 
@@ -10,7 +11,7 @@ use \org\bovigo\vfs\vfsStream;
 /**
  * Tests for SimpleSAML\Utils\System.
  */
-class SystemTest extends \PHPUnit_Framework_TestCase
+class SystemTest extends TestCase
 {
     const ROOTDIRNAME = 'testdir';
     const DEFAULTTEMPDIR = 'tempdir';
@@ -109,7 +110,6 @@ class SystemTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @requires PHP 5.4.0
      * @covers \SimpleSAML\Utils\System::writeFile
      * @test
      */
@@ -128,7 +128,6 @@ class SystemTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @requires PHP 5.4.0
      * @covers \SimpleSAML\Utils\System::writeFile
      * @test
      */
@@ -151,7 +150,6 @@ class SystemTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @requires PHP 5.4.0
      * @covers \SimpleSAML\Utils\System::writeFile
      * @test
      */
@@ -210,7 +208,6 @@ class SystemTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @requires PHP 5.4.0
      * @requires OS Linux
      * @covers \SimpleSAML\Utils\System::getTempDir
      * @test

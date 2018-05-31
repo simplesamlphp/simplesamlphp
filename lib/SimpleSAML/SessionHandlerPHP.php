@@ -49,13 +49,7 @@ class SessionHandlerPHP extends SessionHandler
         $config = \SimpleSAML_Configuration::getInstance();
         $this->cookie_name = $config->getString('session.phpsession.cookiename', null);
 
-        if (function_exists('session_status') && defined('PHP_SESSION_ACTIVE')) { // PHP >= 5.4
-            $previous_session = session_status() === PHP_SESSION_ACTIVE;
-        } else {
-            $previous_session = (session_id() !== '') && (session_name() !== $this->cookie_name);
-        }
-
-        if ($previous_session) {
+        if (session_status() === PHP_SESSION_ACTIVE) {
             if (session_name() === $this->cookie_name || $this->cookie_name === null) {
                 Logger::warning(
                     'There is already a PHP session with the same name as SimpleSAMLphp\'s session, or the '.
@@ -82,13 +76,15 @@ class SessionHandlerPHP extends SessionHandler
 
         $params = $this->getCookieParams();
 
-        session_set_cookie_params(
-            $params['lifetime'],
-            $params['path'],
-            $params['domain'],
-            $params['secure'],
-            $params['httponly']
-        );
+        if (!headers_sent()) {
+            session_set_cookie_params(
+                $params['lifetime'],
+                $params['path'],
+                $params['domain'],
+                $params['secure'],
+                $params['httponly']
+            );
+        }
 
         $savepath = $config->getString('session.phpsession.savepath', null);
         if (!empty($savepath)) {
@@ -118,8 +114,8 @@ class SessionHandlerPHP extends SessionHandler
              */
             session_cache_limiter('');
         }
-        @session_start();
         session_cache_limiter($cacheLimiter);
+        @session_start();
     }
 
 
@@ -239,7 +235,7 @@ class SessionHandlerPHP extends SessionHandler
      */
     public function loadSession($sessionId = null)
     {
-        assert('is_string($sessionId) || is_null($sessionId)');
+        assert(is_string($sessionId) || $sessionId === null);
 
         if ($sessionId !== null) {
             if (session_id() === '') {
@@ -263,7 +259,7 @@ class SessionHandlerPHP extends SessionHandler
         }
 
         $session = $_SESSION['SimpleSAMLphp_SESSION'];
-        assert('is_string($session)');
+        assert(is_string($session));
 
         $session = unserialize($session);
 

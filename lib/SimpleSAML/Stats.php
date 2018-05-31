@@ -70,10 +70,10 @@ class SimpleSAML_Stats
      */
     public static function log($event, array $data = array())
     {
-        assert('is_string($event)');
-        assert('!isset($data["op"])');
-        assert('!isset($data["time"])');
-        assert('!isset($data["_id"])');
+        assert(is_string($event));
+        assert(!isset($data['op']));
+        assert(!isset($data['time']));
+        assert(!isset($data['_id']));
 
         if (!self::$initialized) {
             self::initOutputs();
@@ -97,5 +97,4 @@ class SimpleSAML_Stats
             $out->emit($data);
         }
     }
-
 }

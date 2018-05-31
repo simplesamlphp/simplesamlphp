@@ -3,15 +3,15 @@ SimpleSAMLphp SP API reference
 
 <!-- {{TOC}} -->
 
-This document describes the SimpleSAML_Auth_Simple API.
+This document describes the \SimpleSAML\Auth\Simple API.
 This is the preferred API for integrating SimpleSAMLphp with other applications.
 
 Constructor
 -----------
 
-    new SimpleSAML_Auth_Simple(string $authSource)
+    new \SimpleSAML\Auth\Simple(string $authSource)
 
-The constructor initializes a SimpleSAML_Auth_Simple object.
+The constructor initializes a \SimpleSAML\Auth\Simple object.
 
 ### Parameters
 
@@ -20,7 +20,7 @@ This authentication source must exist in `config/authsources.php`.
 
 ### Example
 
-    $auth = new SimpleSAML_Auth_Simple('default-sp');
+    $auth = new \SimpleSAML\Auth\Simple('default-sp');
 
 
 `isAuthenticated`

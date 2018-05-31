@@ -32,6 +32,41 @@ Allow `eduPersonTargetedID` and `eduPersonAffiliation` by default, but allow the
         ),
     ),
 
+Only allow specific values for an attribute.
+
+    'authproc' => array(
+        50 => array(
+            'class' => 'core:AttributeLimit',
+            'eduPersonEntitlement' => array('urn:x-surfnet:surf.nl:surfdrive:quota:100')
+        ),
+    ),
+
+Only allow specific values for an attribute ignoring case.
+
+    'authproc' => array(
+        50 => array(
+            'class' => 'core:AttributeLimit',
+            'eduPersonEntitlement' => array(
+                'ignoreCase' => true,
+                'URN:x-surfnet:surf.nl:SURFDRIVE:quota:100'
+             )
+        ),
+    ),
+    
+Only allow specific values for an attribute that match a regex pattern
+
+    'authproc' => array(
+        50 => array(
+            'class' => 'core:AttributeLimit',
+            'eduPersonEntitlement' => array(
+                'regex' => true,
+                '/^urn:x-surfnet:surf/',
+                '/^urn:x-IGNORE_Case/i',
+            )
+        ),
+    ),
+    
+    
 Don't allow any attributes by default, but allow the metadata to override it.
 
     'authproc' => array(

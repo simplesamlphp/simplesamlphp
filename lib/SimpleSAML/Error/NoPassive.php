@@ -9,6 +9,7 @@
  *
  * @see \SimpleSAML\Module\saml\Error\NoPassive
  */
-class SimpleSAML_Error_NoPassive extends SimpleSAML_Error_Exception {
+class SimpleSAML_Error_NoPassive extends SimpleSAML_Error_Exception
+{
 
 }

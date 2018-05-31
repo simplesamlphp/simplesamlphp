@@ -28,11 +28,9 @@ class SimpleSAML_Metadata_Signer
         if (array_key_exists('metadata.sign.privatekey', $entityMetadata)
             || array_key_exists('metadata.sign.certificate', $entityMetadata)
         ) {
-
             if (!array_key_exists('metadata.sign.privatekey', $entityMetadata)
                 || !array_key_exists('metadata.sign.certificate', $entityMetadata)
             ) {
-
                 throw new Exception(
                     'Missing either the "metadata.sign.privatekey" or the'.
                     ' "metadata.sign.certificate" configuration option in the metadata for'.
@@ -79,7 +77,6 @@ class SimpleSAML_Metadata_Signer
         if (array_key_exists('privatekey', $entityMetadata)
             || array_key_exists('certificate', $entityMetadata)
         ) {
-
             if (!array_key_exists('privatekey', $entityMetadata)
                 || !array_key_exists('certificate', $entityMetadata)
             ) {
@@ -156,8 +153,6 @@ class SimpleSAML_Metadata_Signer
      * algorithms to use, respectively.
      *
      * @throws \SimpleSAML\Error\CriticalConfigurationError
-     *
-     * @todo change to SHA256 by default.
      */
     private static function getMetadataSigningAlgorithm($config, $entityMetadata, $type)
     {
@@ -171,7 +166,7 @@ class SimpleSAML_Metadata_Signer
             }
             $alg = $entityMetadata['metadata.sign.algorithm'];
         } else {
-            $alg = $config->getString('metadata.sign.algorithm', XMLSecurityKey::RSA_SHA1);
+            $alg = $config->getString('metadata.sign.algorithm', XMLSecurityKey::RSA_SHA256);
         }
 
         $supported_algs = array(
@@ -181,7 +176,7 @@ class SimpleSAML_Metadata_Signer
             XMLSecurityKey::RSA_SHA512,
         );
 
-        if (!in_array($alg, $supported_algs)) {
+        if (!in_array($alg, $supported_algs, true)) {
             throw new \SimpleSAML\Error\CriticalConfigurationError("Unknown signature algorithm '$alg'");
         }
 
@@ -246,7 +241,7 @@ class SimpleSAML_Metadata_Signer
         // convert the metadata to a DOM tree
         try {
             $xml = \SAML2\DOMDocumentFactory::fromString($metadataString);
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             throw new Exception('Error parsing self-generated metadata.');
         }
 
@@ -263,11 +258,7 @@ class SimpleSAML_Metadata_Signer
         $rootNode = $xml->firstChild;
 
         // sign the metadata with our private key
-        if ($type == 'ADFS IdP') {
-            $objXMLSecDSig = new sspmod_adfs_XMLSecurityDSig($metadataString);
-        } else {
-            $objXMLSecDSig = new XMLSecurityDSig();
-        }
+        $objXMLSecDSig = new XMLSecurityDSig();
 
         $objXMLSecDSig->setCanonicalMethod(XMLSecurityDSig::EXC_C14N);
 
