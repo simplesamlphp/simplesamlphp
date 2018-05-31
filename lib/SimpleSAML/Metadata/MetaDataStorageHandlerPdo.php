@@ -8,7 +8,6 @@
  * mooknarf@gmail.com and patched to work with the latest version
  * of SimpleSAMLphp
  *
- * @author Tyler Antonio, University of Alberta <tantonio@ualberta.ca>
  * @package SimpleSAMLphp
  */
 class SimpleSAML_Metadata_MetaDataStorageHandlerPdo extends SimpleSAML_Metadata_MetaDataStorageSource
@@ -165,6 +164,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerPdo extends SimpleSAML_Metadata_
         $stmt = $this->db->read("SELECT entity_id, entity_data FROM $tableName WHERE entity_id=:entityId", array('entityId' => $entityId));
         if ($stmt->execute()) {
             $rowCount = 0;
+            $data = null;
 
             while ($d = $stmt->fetch()) {
                 if (++$rowCount > 1) {
