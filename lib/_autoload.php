@@ -9,12 +9,12 @@
  */
 
 // SSP is loaded as a separate project
-if (file_exists(dirname(dirname(__FILE__)).'/vendor/autoload.php')) {
-    require_once dirname(dirname(__FILE__)).'/vendor/autoload.php';
-} else {  // SSP is loaded as a library
-    if (file_exists(dirname(dirname(__FILE__)).'/../../autoload.php')) {
-        require_once dirname(dirname(__FILE__)).'/../../autoload.php';
-    } else {
-        throw new Exception('Unable to load Composer autoloader');
-    }
+if (file_exists(dirname(dirname(__FILE__)) . '/vendor/autoload.php')) {
+    require_once dirname(dirname(__FILE__)) . '/vendor/autoload.php';
+} else if (file_exists(dirname(dirname(__FILE__)) . '/../../autoload.php')) {  // SSP is loaded as a library
+    require_once dirname(dirname(__FILE__)) . '/../../autoload.php';
+} else if (file_exists('/../../autoload.php')) { // Windows version
+    require_once '/../../autoload.php';
+} else {
+    throw new Exception('Unable to load Composer autoloader');
 }
