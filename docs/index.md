@@ -2,6 +2,7 @@ SimpleSAMLphp Documentation
 ===========================
 
  * [Installing SimpleSAMLphp](simplesamlphp-install)
+    * [Upgrade notes for version 1.16](simplesamlphp-upgrade-notes-1.16)
     * [Upgrade notes for version 1.15](simplesamlphp-upgrade-notes-1.15)
     * [Upgrade notes for version 1.14](simplesamlphp-upgrade-notes-1.14)
     * [Upgrade notes for version 1.13](simplesamlphp-upgrade-notes-1.13)
