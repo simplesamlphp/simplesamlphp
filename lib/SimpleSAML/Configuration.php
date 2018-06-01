@@ -414,7 +414,7 @@ class SimpleSAML_Configuration implements \SimpleSAML\Utils\ClearableState
      */
     public function getVersion()
     {
-        return 'master';
+        return '1.16.0-rc1';
     }
 
 
