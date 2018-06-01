@@ -351,7 +351,7 @@ $config = array(
      * Example:
      *   'proxy.auth' = 'myuser:password'
      */
-    'proxy.auth' => false,
+    //'proxy.auth' => 'myuser:password',
 
 
 
