@@ -1,5 +1,7 @@
 <?php
 
+namespace SimpleSAML\Module\riak\Store;
+
 /*
  * Copyright (c) 2012 The University of Queensland
  *
@@ -22,14 +24,14 @@
  * and Information Technology.
  */
 
-class sspmod_riak_Store_Store extends SimpleSAML\Store
+class Store extends \SimpleSAML\Store
 {
     public $client;
     public $bucket;
 
 	protected function __construct()
     {
-		$config = SimpleSAML_Configuration::getConfig('module_riak.php');
+		$config = \SimpleSAML\Configuration::getConfig('module_riak.php');
 
 		$path = $config->getString('path', 'riak-php-client/riak.php');
 		$host = $config->getString('host', 'localhost');

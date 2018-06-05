@@ -1,4 +1,5 @@
 <?php
+
 namespace SimpleSAML;
 
 /**
@@ -18,7 +19,6 @@ namespace SimpleSAML;
 
 class Database
 {
-
     /**
      * This variable holds the instance of the session - Singleton approach.
      */
@@ -48,13 +48,13 @@ class Database
     /**
      * Retrieves the current database instance. Will create a new one if there isn't an existing connection.
      *
-     * @param \SimpleSAML_Configuration $altConfig Optional: Instance of a SimpleSAML_Configuration class
+     * @param \SimpleSAML\Configuration $altConfig Optional: Instance of a \SimpleSAML\Configuration class
      *
      * @return \SimpleSAML\Database The shared database connection.
      */
     public static function getInstance($altConfig = null)
     {
-        $config = ($altConfig) ? $altConfig : \SimpleSAML_Configuration::getInstance();
+        $config = ($altConfig) ? $altConfig : Configuration::getInstance();
         $instanceId = self::generateInstanceId($config);
 
         // check if we already have initialized the session
@@ -71,7 +71,7 @@ class Database
     /**
      * Private constructor that restricts instantiation to getInstance().
      *
-     * @param \SimpleSAML_Configuration $config Instance of the SimpleSAML_Configuration class
+     * @param \SimpleSAML\Configuration $config Instance of the \SimpleSAML\Configuration class
      */
     private function __construct($config)
     {
@@ -109,7 +109,7 @@ class Database
     /**
      * Generate an Instance ID based on the database configuration.
      *
-     * @param \SimpleSAML_Configuration $config Configuration class
+     * @param \SimpleSAML\Configuration $config Configuration class
      *
      * @return string $instanceId
      */

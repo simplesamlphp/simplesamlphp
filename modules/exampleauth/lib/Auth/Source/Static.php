@@ -1,5 +1,7 @@
 <?php
 
+namespace SimpleSAML\Module\exampleauth\Auth\Source;
+
 /**
  * Example authentication source.
  *
@@ -9,9 +11,9 @@
  * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
-class sspmod_exampleauth_Auth_Source_Static extends SimpleSAML_Auth_Source {
 
-
+class StaticSource extends \SimpleSAML\Auth\Source
+{
 	/**
 	 * The attributes we return.
 	 */
@@ -34,9 +36,9 @@ class sspmod_exampleauth_Auth_Source_Static extends SimpleSAML_Auth_Source {
 
 		// Parse attributes
 		try {
-			$this->attributes = SimpleSAML\Utils\Attributes::normalizeAttributesArray($config);
-		} catch(Exception $e) {
-			throw new Exception('Invalid attributes for authentication source ' .
+			$this->attributes = \SimpleSAML\Utils\Attributes::normalizeAttributesArray($config);
+		} catch (\Exception $e) {
+			throw new \Exception('Invalid attributes for authentication source ' .
 				$this->authId . ': ' . $e->getMessage());
 		}
 

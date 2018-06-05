@@ -1,8 +1,14 @@
 <?php
 
+namespace SimpleSAML\Auth;
+
+use SimpleSAmL\Error;
+use SimpleSAMl\Logger;
+
 /**
  * Constants defining possible errors
  */
+
 define('ERR_INTERNAL', 1);
 define('ERR_NO_USER', 2);
 define('ERR_WRONG_PW', 3);
@@ -22,7 +28,8 @@ if (!defined('LDAP_OPT_DIAGNOSTIC_MESSAGE')) {
  * @author Anders Lund, UNINETT AS. <anders.lund@uninett.no>
  * @package SimpleSAMLphp
  */
-class SimpleSAML_Auth_LDAP
+
+class LDAP
 {
     /**
      * LDAP link identifier.
@@ -56,7 +63,7 @@ class SimpleSAML_Auth_LDAP
     public function __construct($hostname, $enable_tls = true, $debug = false, $timeout = 0, $port = 389, $referrals = true)
     {
         // Debug
-        SimpleSAML\Logger::debug('Library - LDAP __construct(): Setup LDAP with '.
+        Logger::debug('Library - LDAP __construct(): Setup LDAP with '.
                         'host=\''.$hostname.
                         '\', tls='.var_export($enable_tls, true).
                         ', debug='.var_export($debug, true).
@@ -70,7 +77,7 @@ class SimpleSAML_Auth_LDAP
          * OpenLDAP 2.x.x or Netscape Directory SDK x.x needed for this option.
          */
         if ($debug && !ldap_set_option(null, LDAP_OPT_DEBUG_LEVEL, 7)) {
-                SimpleSAML\Logger::warning('Library - LDAP __construct(): Unable to set debug level (LDAP_OPT_DEBUG_LEVEL) to 7');
+                Logger::warning('Library - LDAP __construct(): Unable to set debug level (LDAP_OPT_DEBUG_LEVEL) to 7');
         }
 
         /*
@@ -97,10 +104,10 @@ class SimpleSAML_Auth_LDAP
         $this->timeout = $timeout;
         if ($timeout > 0) {
             if (!@ldap_set_option($this->ldap, LDAP_OPT_NETWORK_TIMEOUT, $timeout)) {
-                SimpleSAML\Logger::warning('Library - LDAP __construct(): Unable to set timeouts (LDAP_OPT_NETWORK_TIMEOUT) to '.$timeout);
+                Logger::warning('Library - LDAP __construct(): Unable to set timeouts (LDAP_OPT_NETWORK_TIMEOUT) to '.$timeout);
             }
             if (!@ldap_set_option($this->ldap, LDAP_OPT_TIMELIMIT, $timeout)) {
-                SimpleSAML\Logger::warning('Library - LDAP __construct(): Unable to set timeouts (LDAP_OPT_TIMELIMIT) to '.$timeout);
+                Logger::warning('Library - LDAP __construct(): Unable to set timeouts (LDAP_OPT_TIMELIMIT) to '.$timeout);
             }
         }
 
@@ -119,7 +126,7 @@ class SimpleSAML_Auth_LDAP
      *
      * @param string $description
      * The exception's description
-     * @return Exception
+     * @return \Exception
      */
     private function makeException($description, $type = null)
     {
@@ -127,7 +134,7 @@ class SimpleSAML_Auth_LDAP
 
         // Log LDAP code and description, if possible
         if (empty($this->ldap)) {
-            SimpleSAML\Logger::error($description);
+            Logger::error($description);
         } else {
             $errNo = @ldap_errno($this->ldap);
         }
@@ -136,22 +143,22 @@ class SimpleSAML_Auth_LDAP
         if ($type) {
             if ($errNo !== 0) {
                 // Only log real LDAP errors; not success
-                SimpleSAML\Logger::error($description.'; cause: \''.ldap_error($this->ldap).'\' (0x'.dechex($errNo).')');
+                Logger::error($description.'; cause: \''.ldap_error($this->ldap).'\' (0x'.dechex($errNo).')');
             } else {
-                SimpleSAML\Logger::error($description);
+                Logger::error($description);
             }
 
             switch ($type) {
                 case ERR_INTERNAL:// 1 - ExInternal
-                    return new SimpleSAML_Error_Exception($description, $errNo);
+                    return new Error\Exception($description, $errNo);
                 case ERR_NO_USER:// 2 - ExUserNotFound
-                    return new SimpleSAML_Error_UserNotFound($description, $errNo);
+                    return new Error\UserNotFound($description, $errNo);
                 case ERR_WRONG_PW:// 3 - ExInvalidCredential
-                    return new SimpleSAML_Error_InvalidCredential($description, $errNo);
+                    return new Error\InvalidCredential($description, $errNo);
                 case ERR_AS_DATA_INCONSIST:// 4 - ExAsDataInconsist
-                    return new SimpleSAML_Error_AuthSource('ldap', $description);
+                    return new Error\AuthSource('ldap', $description);
                 case ERR_AS_INTERNAL:// 5 - ExAsInternal
-                    return new SimpleSAML_Error_AuthSource('ldap', $description);
+                    return new Error\AuthSource('ldap', $description);
             }
         } else {
             if ($errNo !== 0) {
@@ -162,17 +169,17 @@ class SimpleSAML_Auth_LDAP
             }
             switch ($errNo) {
                 case 0x20://LDAP_NO_SUCH_OBJECT
-                    SimpleSAML\Logger::warning($description);
-                    return new SimpleSAML_Error_UserNotFound($description, $errNo);
+                    Logger::warning($description);
+                    return new Error\UserNotFound($description, $errNo);
                 case 0x31://LDAP_INVALID_CREDENTIALS
-                    SimpleSAML\Logger::info($description);
-                    return new SimpleSAML_Error_InvalidCredential($description, $errNo);
+                    Logger::info($description);
+                    return new Error\InvalidCredential($description, $errNo);
                 case -1://NO_SERVER_CONNECTION
-                    SimpleSAML\Logger::error($description);
-                    return new SimpleSAML_Error_AuthSource('ldap', $description);
+                    Logger::error($description);
+                    return new Error\AuthSource('ldap', $description);
                 default:
-                    SimpleSAML\Logger::error($description);
-                    return new SimpleSAML_Error_AuthSource('ldap', $description);
+                    Logger::error($description);
+                    return new Error\AuthSource('ldap', $description);
             }
         }
     }
@@ -193,16 +200,16 @@ class SimpleSAML_Auth_LDAP
      * @param string $scope
      * @return string
      * The DN of the resulting found element.
-     * @throws SimpleSAML_Error_Exception if:
+     * @throws Error\Exception if:
      * - Attribute parameter is wrong type
-     * @throws SimpleSAML_Error_AuthSource if:
+     * @throws Error\AuthSource if:
      * - Not able to connect to LDAP server
      * - False search result
      * - Count return false
      * - Searche found more than one result
      * - Failed to get first entry from result
      * - Failed to get DN for entry
-     * @throws SimpleSAML_Error_UserNotFound if:
+     * @throws Error\UserNotFound if:
      * - Zero entries were found
      */
     private function search($base, $attribute, $value, $searchFilter = null, $scope = "subtree")
@@ -222,7 +229,7 @@ class SimpleSAML_Auth_LDAP
         }
 
         // Search using generated filter
-        SimpleSAML\Logger::debug('Library - LDAP search(): Searching base ('.$scope.') \''.$base.'\' for \''.$filter.'\'');
+        Logger::debug('Library - LDAP search(): Searching base ('.$scope.') \''.$base.'\' for \''.$filter.'\'');
         if ($scope === 'base') {
             $result = @ldap_read($this->ldap, $base, $filter, array(), 0, 0, $this->timeout, LDAP_DEREF_NEVER);
         } else if ($scope === 'onelevel') {
@@ -281,17 +288,17 @@ class SimpleSAML_Auth_LDAP
      * The DN of the matching element, if found. If no element was found and
      * $allowZeroHits is set to FALSE, an exception will be thrown; otherwise
      * NULL will be returned.
-     * @throws SimpleSAML_Error_AuthSource if:
+     * @throws Error\AuthSource if:
      * - LDAP search encounter some problems when searching cataloge
      * - Not able to connect to LDAP server
-     * @throws SimpleSAML_Error_UserNotFound if:
+     * @throws Error\UserNotFound if:
      * - $allowZeroHits is FALSE and no result is found
      *
      */
     public function searchfordn($base, $attribute, $value, $allowZeroHits = false, $searchFilter = null, $scope = 'subtree')
     {
         // Traverse all search bases, returning DN if found
-        $bases = SimpleSAML\Utils\Arrays::arrayize($base);
+        $bases = \SimpleSAML\Utils\Arrays::arrayize($base);
         foreach ($bases as $current) {
             try {
                 // Single base search
@@ -302,12 +309,12 @@ class SimpleSAML_Auth_LDAP
                     return $result;
                 }
                 // If search failed, attempt the other base DNs
-            } catch (SimpleSAML_Error_UserNotFound $e) {
+            } catch (Error\UserNotFound $e) {
                 // Just continue searching
             }
         }
         // Decide what to do for zero entries
-        SimpleSAML\Logger::debug('Library - LDAP searchfordn(): No entries found');
+        Logger::debug('Library - LDAP searchfordn(): No entries found');
         if ($allowZeroHits) {
             // Zero hits allowed
             return null;
@@ -323,7 +330,7 @@ class SimpleSAML_Auth_LDAP
      * This method was created specifically for the ldap:AttributeAddUsersGroups->searchActiveDirectory()
      * method, but could be used for other LDAP search needs. It will search LDAP and return all the entries.
      *
-     * @throws Exception
+     * @throws \Exception
      * @param string|array $bases
      * @param string|array $filters Array of 'attribute' => 'values' to be combined into the filter, or a raw filter string
      * @param string|array $attributes Array of attributes requested from LDAP
@@ -441,7 +448,7 @@ class SimpleSAML_Auth_LDAP
      * Returns TRUE if successful, FALSE if
      * LDAP_INVALID_CREDENTIALS, LDAP_X_PROXY_AUTHZ_FAILURE,
      * LDAP_INAPPROPRIATE_AUTH, LDAP_INSUFFICIENT_ACCESS
-     * @throws SimpleSAML_Error_Exception on other errors
+     * @throws Error\Exception on other errors
      */
     public function bind($dn, $password, array $sasl_args = null)
     {
@@ -472,7 +479,7 @@ class SimpleSAML_Auth_LDAP
         if ($error === true) {
             // Good
             $this->authz_id = $authz_id;
-            SimpleSAML\Logger::debug('Library - LDAP bind(): Bind successful with DN \''.$dn.'\'');
+            Logger::debug('Library - LDAP bind(): Bind successful with DN \''.$dn.'\'');
             return true;
         }
 
@@ -519,7 +526,7 @@ class SimpleSAML_Auth_LDAP
         }
 
         // Log debug message
-        SimpleSAML\Logger::debug(
+        Logger::debug(
             'ldap:LdapConnection->setOption : Set the LDAP option ['.
             $option.'] with the value ['.$value.']'
         );
@@ -553,7 +560,7 @@ class SimpleSAML_Auth_LDAP
             // TODO: Verify that this originally was the intended behaviour. Could $attributes be a string?
             $attributes = array();
         }
-        SimpleSAML\Logger::debug('Library - LDAP getAttributes(): Getting '.$description.' from DN \''.$dn.'\'');
+        Logger::debug('Library - LDAP getAttributes(): Getting '.$description.' from DN \''.$dn.'\'');
 
         // Attempt to get attributes
         // TODO: Should aliases be dereferenced?
@@ -584,7 +591,7 @@ class SimpleSAML_Auth_LDAP
 
                 if (!empty($maxsize) && strlen($value) > $maxsize) {
                     // Ignoring and warning
-                    SimpleSAML\Logger::warning('Library - LDAP getAttributes(): Attribute \''.
+                    Logger::warning('Library - LDAP getAttributes(): Attribute \''.
                         $name.'\' exceeded maximum allowed size by '.(strlen($value) - $maxsize));
                     continue;
                 }
@@ -602,7 +609,7 @@ class SimpleSAML_Auth_LDAP
         }
 
         // We're done
-        SimpleSAML\Logger::debug('Library - LDAP getAttributes(): Found attributes \'('.join(',', array_keys($result)).')\'');
+        Logger::debug('Library - LDAP getAttributes(): Found attributes \'('.join(',', array_keys($result)).')\'');
         return $result;
     }
 
@@ -637,7 +644,7 @@ class SimpleSAML_Auth_LDAP
             // escape characters with a special meaning, also in the password
             $password = addcslashes($password, ',+"\\<>;*');
             if (!$this->bind($dn, $password)) {
-                SimpleSAML\Logger::info('Library - LDAP validate(): Failed to authenticate \''.$username.'\' using DN \''.$dn.'\'');
+                Logger::info('Library - LDAP validate(): Failed to authenticate \''.$username.'\' using DN \''.$dn.'\'');
                 return false;
             }
         }

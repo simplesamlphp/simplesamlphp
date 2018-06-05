@@ -3,7 +3,7 @@
 namespace SimpleSAML\Test\XML;
 
 use PHPUnit\Framework\TestCase;
-use \SimpleSAML_Configuration as Configuration;
+use \SimpleSAML\Configuration;
 use \SimpleSAML\XML\Signer;
 use \SimpleSAML\XML\Validator;
 
@@ -171,7 +171,7 @@ NOWDOC;
 
     public function tearDown()
     {
-        $this->clearInstance($this->config, '\SimpleSAML_Configuration', array());
+        $this->clearInstance($this->config, '\SimpleSAML\Configuration', array());
     }
 
     public function testValidatorMissingSignature()

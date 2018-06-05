@@ -1,5 +1,6 @@
 <?php
 
+namespace SimpleSAML\Module\core\Auth\Process;
 
 /**
  * Attribute filter for renaming attributes.
@@ -7,9 +8,9 @@
  * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
-class sspmod_core_Auth_Process_AttributeMap extends SimpleSAML_Auth_ProcessingFilter
-{
 
+class AttributeMap extends \SimpleSAML\Auth\ProcessingFilter
+{
     /**
      * Associative array with the mappings of attribute names.
      */
@@ -48,11 +49,11 @@ class sspmod_core_Auth_Process_AttributeMap extends SimpleSAML_Auth_ProcessingFi
             }
 
             if (!is_string($origName)) {
-                throw new Exception('Invalid attribute name: '.var_export($origName, true));
+                throw new \Exception('Invalid attribute name: '.var_export($origName, true));
             }
 
             if (!is_string($newName) && !is_array($newName)) {
-                throw new Exception('Invalid attribute name: '.var_export($newName, true));
+                throw new \Exception('Invalid attribute name: '.var_export($newName, true));
             }
 
             $this->map[$origName] = $newName;
@@ -75,26 +76,26 @@ class sspmod_core_Auth_Process_AttributeMap extends SimpleSAML_Auth_ProcessingFi
      */
     private function loadMapFile($fileName)
     {
-        $config = SimpleSAML_Configuration::getInstance();
+        $config = \SimpleSAML\Configuration::getInstance();
 
         $m = explode(':', $fileName);
         if (count($m) === 2) { // we are asked for a file in a module
-            if (!SimpleSAML\Module::isModuleEnabled($m[0])) {
-                throw new Exception("Module '$m[0]' is not enabled.");
+            if (!\SimpleSAML\Module::isModuleEnabled($m[0])) {
+                throw new \Exception("Module '$m[0]' is not enabled.");
             }
-            $filePath = SimpleSAML\Module::getModuleDir($m[0]).'/attributemap/'.$m[1].'.php';
+            $filePath = \SimpleSAML\Module::getModuleDir($m[0]).'/attributemap/'.$m[1].'.php';
         } else {
             $filePath = $config->getPathValue('attributenamemapdir', 'attributemap/').$fileName.'.php';
         }
 
         if (!file_exists($filePath)) {
-            throw new Exception('Could not find attribute map file: '.$filePath);
+            throw new \Exception('Could not find attribute map file: '.$filePath);
         }
 
         $attributemap = null;
         include($filePath);
         if (!is_array($attributemap)) {
-            throw new Exception('Attribute map file "'.$filePath.'" didn\'t define an attribute map.');
+            throw new \Exception('Attribute map file "'.$filePath.'" didn\'t define an attribute map.');
         }
 
         if ($this->duplicate) {

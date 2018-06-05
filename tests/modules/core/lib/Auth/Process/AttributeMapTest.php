@@ -16,7 +16,7 @@ class Test_Core_Auth_Process_AttributeMap extends TestCase
      */
     private static function processFilter(array $config, array $request)
     {
-        $filter = new sspmod_core_Auth_Process_AttributeMap($config, null);
+        $filter = new \SimpleSAML\Module\core\Auth\Process\AttributeMap($config, null);
         $filter->process($request);
         return $request;
     }

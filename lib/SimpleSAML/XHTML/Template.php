@@ -1,5 +1,6 @@
 <?php
 
+namespace SimpleSAML\XHTML;
 
 /**
  * A minimalistic XHTML PHP based template system implemented for SimpleSAMLphp.
@@ -11,7 +12,7 @@
 use JaimePerez\TwigConfigurableI18n\Twig\Environment as Twig_Environment;
 use JaimePerez\TwigConfigurableI18n\Twig\Extensions\Extension\I18n as Twig_Extensions_Extension_I18n;
 
-class SimpleSAML_XHTML_Template
+class Template
 {
     /**
      * The data associated with this template, accessible within the template itself.
@@ -37,7 +38,7 @@ class SimpleSAML_XHTML_Template
     /**
      * The configuration to use in this template.
      *
-     * @var SimpleSAML_Configuration
+     * @var \SimpleSAML\Configuration
      */
     private $configuration;
 
@@ -72,9 +73,9 @@ class SimpleSAML_XHTML_Template
      *
      * Used to intercept certain parts of the template handling, while keeping away unwanted/unexpected hooks. Set
      * the 'theme.controller' configuration option to a class that implements the
-     * SimpleSAML\XHTML\TemplateControllerInterface interface to use it.
+     * \SimpleSAML\XHTML\TemplateControllerInterface interface to use it.
      *
-     * @var SimpleSAML\XHTML\TemplateControllerInterface
+     * @var \SimpleSAML\XHTML\TemplateControllerInterface
      */
     private $controller;
 
@@ -93,11 +94,11 @@ class SimpleSAML_XHTML_Template
     /**
      * Constructor
      *
-     * @param SimpleSAML_Configuration $configuration Configuration object
+     * @param \SimpleSAML\Configuration $configuration Configuration object
      * @param string                   $template Which template file to load
      * @param string|null              $defaultDictionary The default dictionary where tags will come from.
      */
-    public function __construct(\SimpleSAML_Configuration $configuration, $template, $defaultDictionary = null)
+    public function __construct(\SimpleSAML\Configuration $configuration, $template, $defaultDictionary = null)
     {
         $this->configuration = $configuration;
         $this->template = $template;
@@ -108,12 +109,12 @@ class SimpleSAML_XHTML_Template
         list($this->module) = $this->findModuleAndTemplateName($template);
 
         // parse config to find theme and module theme is in, if any
-        list($this->theme['module'], $this->theme['name']) = self::findModuleAndTemplateName(
+        list($this->theme['module'], $this->theme['name']) = $this->findModuleAndTemplateName(
             $this->configuration->getString('theme.use', 'default')
         );
 
         // initialize internationalization system
-        $this->translator = new SimpleSAML\Locale\Translate($configuration, $defaultDictionary);
+        $this->translator = new \SimpleSAML\Locale\Translate($configuration, $defaultDictionary);
         $this->localization = new \SimpleSAML\Locale\Localization($configuration);
 
         // check if we need to attach a theme controller
@@ -154,15 +155,15 @@ class SimpleSAML_XHTML_Template
     /**
      * Set up the places where twig can look for templates.
      *
-     * @return Twig_Loader_Filesystem The twig template loader or false if the template does not exist.
-     * @throws Twig_Error_Loader In case a failure occurs.
+     * @return \Twig_Loader_Filesystem The twig template loader or false if the template does not exist.
+     * @throws \Twig_Error_Loader In case a failure occurs.
      */
     private function setupTwigTemplatepaths()
     {
         $filename = $this->normalizeTemplateName($this->template);
 
         // get namespace if any
-        list($namespace, $filename) = self::findModuleAndTemplateName($filename);
+        list($namespace, $filename) = $this->findModuleAndTemplateName($filename);
         $this->twig_template = ($namespace !== null) ? '@'.$namespace.'/'.$filename : $filename;
         $loader = new \Twig_Loader_Filesystem();
         $templateDirs = $this->findThemeTemplateDirs();
@@ -226,8 +227,8 @@ class SimpleSAML_XHTML_Template
             );
         } // TODO: add a branch for the old SimpleSAMLphp backend
 
-        $twig = new Twig_Environment($loader, $options);
-        $twig->addExtension(new Twig_Extensions_Extension_I18n());
+        $twig = new \Twig_Environment($loader, $options);
+        $twig->addExtension(new \Twig_Extensions_Extension_I18n());
 
         // initialize some basic context
         $langParam = $this->configuration->getString('language.parameter.name', 'language');
@@ -301,18 +302,18 @@ class SimpleSAML_XHTML_Template
      *
      * @return string The templates directory of a module.
      *
-     * @throws InvalidArgumentException If the module is not enabled or it has no templates directory.
+     * @throws \InvalidArgumentException If the module is not enabled or it has no templates directory.
      */
     private function getModuleTemplateDir($module)
     {
         if (!\SimpleSAML\Module::isModuleEnabled($module)) {
-            throw new InvalidArgumentException('The module \''.$module.'\' is not enabled.');
+            throw new \InvalidArgumentException('The module \''.$module.'\' is not enabled.');
         }
         $moduledir = \SimpleSAML\Module::getModuleDir($module);
         // check if module has a /templates dir, if so, append
         $templatedir = $moduledir.'/templates';
         if (!is_dir($templatedir)) {
-            throw new InvalidArgumentException('The module \''.$module.'\' has no templates directory.');
+            throw new \InvalidArgumentException('The module \''.$module.'\' has no templates directory.');
         }
         return $templatedir;
     }
@@ -325,12 +326,12 @@ class SimpleSAML_XHTML_Template
      *
      * @param string $module The module where we need to search for templates.
      *
-     * @throws InvalidArgumentException If the module is not enabled or it has no templates directory.
+     * @throws \InvalidArgumentException If the module is not enabled or it has no templates directory.
      */
     public function addTemplatesFromModule($module)
     {
         $dir = $this->getModuleTemplateDir($module);
-        /** @var Twig_Loader_Filesystem $loader */
+        /** @var \Twig_Loader_Filesystem $loader */
         $loader = $this->twig->getLoader();
         $loader->addPath($dir, $module);
     }
@@ -444,7 +445,7 @@ class SimpleSAML_XHTML_Template
      *
      * @return string The absolute path to the template file.
      *
-     * @throws Exception If the template file couldn't be found.
+     * @throws \Exception If the template file couldn't be found.
      */
     private function findTemplatePath($template, $throw_exception = true)
     {
@@ -496,7 +497,7 @@ class SimpleSAML_XHTML_Template
             $error = 'Template: Could not find template file ['.$template.'] at ['.$filename.']';
             \SimpleSAML\Logger::critical($_SERVER['PHP_SELF'].' - '.$error);
 
-            throw new Exception($error);
+            throw new \Exception($error);
         } else {
             // missing template expected, return NULL
             return null;
@@ -518,7 +519,7 @@ class SimpleSAML_XHTML_Template
     /**
      * Get the current instance of Twig in use.
      *
-     * @return false|Twig_Environment The Twig instance in use, or false if Twig is not used.
+     * @return false|\Twig_Environment The Twig instance in use, or false if Twig is not used.
      */
     public function getTwig()
     {

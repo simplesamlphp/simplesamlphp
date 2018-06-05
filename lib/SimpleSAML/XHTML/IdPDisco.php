@@ -1,5 +1,6 @@
 <?php
 
+namespace SimpleSAML\XHTML;
 
 /**
  * This class implements a generic IdP discovery service, for use in various IdP
@@ -13,13 +14,13 @@
  * @author Andreas Åkre Solberg <andreas@uninett.no>, UNINETT AS.
  * @package SimpleSAMLphp
  */
-class SimpleSAML_XHTML_IdPDisco
-{
 
+class IdPDisco
+{
     /**
      * An instance of the configuration class.
      *
-     * @var SimpleSAML_Configuration
+     * @var \SimpleSAML\Configuration
      */
     protected $config;
 
@@ -34,7 +35,7 @@ class SimpleSAML_XHTML_IdPDisco
     /**
      * An instance of the metadata handler, which will allow us to fetch metadata about IdPs.
      *
-     * @var SimpleSAML_Metadata_MetaDataStorageHandler
+     * @var \SimpleSAML\Metadata\MetaDataStorageHandler
      */
     protected $metadata;
 
@@ -42,7 +43,7 @@ class SimpleSAML_XHTML_IdPDisco
     /**
      * The users session.
      *
-     * @var SimpleSAML_Session
+     * @var \SimpleSAML\Session
      */
     protected $session;
 
@@ -118,9 +119,9 @@ class SimpleSAML_XHTML_IdPDisco
         assert(is_string($instance));
 
         // initialize standard classes
-        $this->config = SimpleSAML_Configuration::getInstance();
-        $this->metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
-        $this->session = SimpleSAML_Session::getSessionFromRequest();
+        $this->config = \SimpleSAML\Configuration::getInstance();
+        $this->metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
+        $this->session = \SimpleSAML\Session::getSessionFromRequest();
         $this->instance = $instance;
         $this->metadataSets = $metadataSets;
 
@@ -128,7 +129,7 @@ class SimpleSAML_XHTML_IdPDisco
 
         // standard discovery service parameters
         if (!array_key_exists('entityID', $_GET)) {
-            throw new Exception('Missing parameter: entityID');
+            throw new \Exception('Missing parameter: entityID');
         } else {
             $this->spEntityId = $_GET['entityID'];
         }
@@ -142,7 +143,7 @@ class SimpleSAML_XHTML_IdPDisco
         $this->log('returnIdParam initially set to ['.$this->returnIdParam.']');
 
         if (!array_key_exists('return', $_GET)) {
-            throw new Exception('Missing parameter: return');
+            throw new \Exception('Missing parameter: return');
         } else {
             $this->returnURL = \SimpleSAML\Utils\HTTP::checkURLAllowed($_GET['return']);
         }
@@ -175,7 +176,7 @@ class SimpleSAML_XHTML_IdPDisco
      */
     protected function log($message)
     {
-        SimpleSAML\Logger::info('idpDisco.'.$this->instance.': '.$message);
+        \SimpleSAML\Logger::info('idpDisco.'.$this->instance.': '.$message);
     }
 
 
@@ -249,7 +250,7 @@ class SimpleSAML_XHTML_IdPDisco
             try {
                 $this->metadata->getMetaData($idp, $metadataSet);
                 return $idp;
-            } catch (Exception $e) {
+            } catch (\Exception $e) {
                 // continue
             }
         }
@@ -585,7 +586,7 @@ class SimpleSAML_XHTML_IdPDisco
                 throw new Exception('Invalid value for the \'idpdisco.layout\' option.');
         }
 
-        $t = new SimpleSAML_XHTML_Template($this->config, $templateFile, 'disco');
+        $t = new Template($this->config, $templateFile, 'disco');
         $t->data['idplist'] = $idpList;
         $t->data['preferredidp'] = $preferredIdP;
         $t->data['return'] = $this->returnURL;

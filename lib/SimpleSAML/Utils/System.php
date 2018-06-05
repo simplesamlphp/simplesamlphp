@@ -1,14 +1,17 @@
 <?php
+
 namespace SimpleSAML\Utils;
+
+use SimpleSAML\Error;
 
 /**
  * System-related utility methods.
  *
  * @package SimpleSAMLphp
  */
+
 class System
 {
-
     const WINDOWS = 1;
     const LINUX = 2;
     const OSX = 3;
@@ -60,7 +63,7 @@ class System
      * This function retrieves the path to a directory where temporary files can be saved.
      *
      * @return string Path to a temporary directory, without a trailing directory separator.
-     * @throws \SimpleSAML_Error_Exception If the temporary directory cannot be created or it exists and does not belong
+     * @throws Error\Exception If the temporary directory cannot be created or it exists and does not belong
      * to the current user.
      *
      * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
@@ -69,7 +72,7 @@ class System
      */
     public static function getTempDir()
     {
-        $globalConfig = \SimpleSAML_Configuration::getInstance();
+        $globalConfig = \SimpleSAML\Configuration::getInstance();
 
         $tempDir = rtrim(
             $globalConfig->getString(
@@ -82,7 +85,7 @@ class System
         if (!is_dir($tempDir)) {
             if (!mkdir($tempDir, 0700, true)) {
                 $error = error_get_last();
-                throw new \SimpleSAML_Error_Exception(
+                throw new Error\Exception(
                     'Error creating temporary directory "'.$tempDir.'": '.
                     (is_array($error) ? $error['message'] : 'no error available')
                 );
@@ -91,7 +94,7 @@ class System
             // check that the owner of the temp directory is the current user
             $stat = lstat($tempDir);
             if ($stat['uid'] !== posix_getuid()) {
-                throw new \SimpleSAML_Error_Exception(
+                throw new Error\Exception(
                     'Temporary directory "'.$tempDir.'" does not belong to the current user.'
                 );
             }
@@ -118,7 +121,7 @@ class System
     public static function resolvePath($path, $base = null)
     {
         if ($base === null) {
-            $config = \SimpleSAML_Configuration::getInstance();
+            $config = \SimpleSAML\Configuration::getInstance();
             $base = $config->getBaseDir();
         }
 
@@ -170,7 +173,7 @@ class System
      * @param int    $mode The permissions to apply to the file. Defaults to 0600.
      *
      * @throws \InvalidArgumentException If any of the input parameters doesn't have the proper types.
-     * @throws \SimpleSAML_Error_Exception If the file cannot be saved, permissions cannot be changed or it is not
+     * @throws Error\Exception If the file cannot be saved, permissions cannot be changed or it is not
      *     possible to write to the target file.
      *
      * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
@@ -191,7 +194,7 @@ class System
         $res = @file_put_contents($tmpFile, $data);
         if ($res === false) {
             $error = error_get_last();
-            throw new \SimpleSAML_Error_Exception(
+            throw new Error\Exception(
                 'Error saving file "'.$tmpFile.'": '.
                 (is_array($error) ? $error['message'] : 'no error available')
             );
@@ -202,7 +205,7 @@ class System
                 unlink($tmpFile);
                 $error = error_get_last();
                 //$error = (is_array($error) ? $error['message'] : 'no error available');
-                throw new \SimpleSAML_Error_Exception(
+                throw new Error\Exception(
                     'Error changing file mode of "'.$tmpFile.'": '.
                     (is_array($error) ? $error['message'] : 'no error available')
                 );
@@ -212,7 +215,7 @@ class System
         if (!rename($tmpFile, $filename)) {
             unlink($tmpFile);
             $error = error_get_last();
-            throw new \SimpleSAML_Error_Exception(
+            throw new Error\Exception(
                 'Error moving "'.$tmpFile.'" to "'.$filename.'": '.
                 (is_array($error) ? $error['message'] : 'no error available')
             );

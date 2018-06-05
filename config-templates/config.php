@@ -231,11 +231,11 @@ $config = array(
     'errorreporting' => true,
 
     /*
-     * Custom error show function called from SimpleSAML_Error_Error::show.
+     * Custom error show function called from SimpleSAML\Error\Error::show.
      * See docs/simplesamlphp-errorhandling.txt for function code example.
      *
      * Example:
-     *   'errors.show_function' => array('sspmod_example_Error_Show', 'show'),
+     *   'errors.show_function' => array('SimpleSAML\Module\example\Error', 'show'),
      */
 
 
@@ -563,7 +563,7 @@ $config = array(
      * See docs/simplesamlphp-advancedfeatures.txt for function code example.
      *
      * Example:
-     *   'session.check_function' => array('sspmod_example_Util', 'checkSession'),
+     *   'session.check_function' => array('\SimpleSAML\Module\example\Util', 'checkSession'),
      */
 
 
@@ -740,7 +740,7 @@ $config = array(
      * the default language for the user.
      *
      * Example:
-     *   'language.get_language_function' => array('sspmod_example_Template', 'getLanguage'),
+     *   'language.get_language_function' => array('\SimpleSAML\Module\example\Template', 'getLanguage'),
      */
 
     /*

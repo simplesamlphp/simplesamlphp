@@ -1,11 +1,11 @@
 <?php
 
 // Load SimpleSAMLphp, configuration and metadata
-$config = SimpleSAML_Configuration::getInstance();
-$session = SimpleSAML_Session::getSessionFromRequest();
-$oauthconfig = SimpleSAML_Configuration::getOptionalConfig('module_oauth.php');
+$config = \SimpleSAML\Configuration::getInstance();
+$session = \SimpleSAML\Session::getSessionFromRequest();
+$oauthconfig = \SimpleSAML\Configuration::getOptionalConfig('module_oauth.php');
 
-$store = new sspmod_core_Storage_SQLPermanentStorage('oauth');
+$store = new \SimpleSAML\Module\core\Storage\SQLPermanentStorage('oauth');
 
 $authsource = "admin";	// force admin to authenticate as registry maintainer
 $useridattr = $oauthconfig->getValue('useridattr', 'user');
@@ -14,18 +14,18 @@ if ($session->isValid($authsource)) {
 	$attributes = $session->getAuthData($authsource, 'Attributes');
 	// Check if userid exists
 	if (!isset($attributes[$useridattr])) 
-		throw new Exception('User ID is missing');
+		throw new \Exception('User ID is missing');
 	$userid = $attributes[$useridattr][0];
 } else {
-	$as = SimpleSAML_Auth_Source::getById($authsource);
+	$as = \SimpleSAML\Auth\Source::getById($authsource);
 	$as->initLogin(\SimpleSAML\Utils\HTTP::getSelfURL());
 }
 
 function requireOwnership($entry, $userid) {
 	if (!isset($entry['owner']))
-		throw new Exception('OAuth Consumer has no owner. Which means no one is granted access, not even you.');
+		throw new \Exception('OAuth Consumer has no owner. Which means no one is granted access, not even you.');
 	if ($entry['owner'] !== $userid) 
-		throw new Exception('OAuth Consumer has an owner that is not equal to your userid, hence you are not granted access.');
+		throw new \Exception('OAuth Consumer has an owner that is not equal to your userid, hence you are not granted access.');
 }
 
 
@@ -51,7 +51,7 @@ foreach($list AS $listitem) {
 	$slist['others'][] = $listitem;
 }
 
-$template = new SimpleSAML_XHTML_Template($config, 'oauth:registry.list.php');
+$template = new \SimpleSAML\XHTML\Template($config, 'oauth:registry.list.php');
 $template->data['entries'] = $slist;
 $template->data['userid'] = $userid;
 $template->show();

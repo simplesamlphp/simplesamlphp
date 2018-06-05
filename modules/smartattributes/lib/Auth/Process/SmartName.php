@@ -1,12 +1,15 @@
 <?php
 
+namespace SimpleSAML\Module\smartattributes\Auth\Process;
+
 /**
  * Filter to set name in a smart way, based on available name attributes.
  *
  * @author Andreas Åkre Solberg, UNINETT AS.
  * @package SimpleSAMLphp
  */
-class sspmod_smartattributes_Auth_Process_SmartName extends SimpleSAML_Auth_ProcessingFilter
+
+class SmartName extends \SimpleSAML\Auth\ProcessingFilter
 {
     /**
      * Attributes which should be added/appended.

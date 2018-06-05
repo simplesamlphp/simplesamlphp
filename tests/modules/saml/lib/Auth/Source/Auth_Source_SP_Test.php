@@ -3,7 +3,7 @@
 namespace SimpleSAML\Test\Module\saml\Auth\Source;
 
 use PHPUnit\Framework\TestCase;
-use \SimpleSAML_Configuration as Configuration;
+use \SimpleSAML\Configuration;
 
 /**
  * Custom Exception to throw to terminate a TestCase.
@@ -28,11 +28,11 @@ class ExitTestException extends \Exception
 
 
 /**
- * Wrap the SSP sspmod_saml_Auth_Source_SP class
+ * Wrap the SSP \SimpleSAML\Module\saml\Auth\Source\SP class
  * - Use introspection to make startSSO2Test available
  * - Override sendSAML2AuthnRequest() to catch the AuthnRequest being sent
  */
-class SP_Tester extends \sspmod_saml_Auth_Source_SP
+class SP_Tester extends \SimpleSAML\Module\saml\Auth\Source\SP
 {
 
     public function __construct($info, $config)
@@ -41,7 +41,7 @@ class SP_Tester extends \sspmod_saml_Auth_Source_SP
     }
 
 
-    public function startSSO2Test(\SimpleSAML_Configuration $idpMetadata, array $state)
+    public function startSSO2Test(Configuration $idpMetadata, array $state)
     {
         $reflector = new \ReflectionObject($this);
         $method = $reflector->getMethod('startSSO2');
@@ -66,7 +66,7 @@ class SP_Tester extends \sspmod_saml_Auth_Source_SP
 
 
 /**
- * Set of test cases for sspmod_saml_Auth_Source_SP.
+ * Set of test cases for \SimpleSAML\Module\saml\Auth\Source\SP.
  */
 class SP_Test extends TestCase
 {
@@ -79,7 +79,7 @@ class SP_Test extends TestCase
     private function getIdpMetadata()
     {
         if (!$this->idpMetadata) {
-            $this->idpMetadata = new \SimpleSAML_Configuration(
+            $this->idpMetadata = new Configuration(
                 $this->idpConfigArray,
                 'Auth_Source_SP_Test::getIdpMetadata()'
             );
@@ -130,7 +130,7 @@ class SP_Test extends TestCase
 
 
     /**
-     * Create a SAML AuthnRequest using sspmod_saml_Auth_Source_SP
+     * Create a SAML AuthnRequest using \SimpleSAML\Module\saml\Auth\Source\SP
      *
      * @param array $state The state array to use in the test. This is an array of the parameters described in section
      * 2 of https://simplesamlphp.org/docs/development/saml:sp

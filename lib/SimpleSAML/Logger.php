@@ -12,7 +12,6 @@ namespace SimpleSAML;
  */
 class Logger
 {
-
     /**
      * @var \SimpleSAML\Logger\LoggingHandlerInterface|false|null
      */
@@ -266,11 +265,11 @@ class Logger
     public static function flush()
     {
         try {
-            $s = \SimpleSAML_Session::getSessionFromRequest();
+            $s = Session::getSessionFromRequest();
         } catch (\Exception $e) {
             // loading session failed. We don't care why, at this point we have a transient session, so we use that
             self::error('Cannot load or create session: '.$e->getMessage());
-            $s = \SimpleSAML_Session::getSessionFromRequest();
+            $s = Session::getSessionFromRequest();
         }
         self::$trackid = $s->getTrackID();
 
@@ -360,8 +359,8 @@ class Logger
         );
 
         // get the configuration
-        $config = \SimpleSAML_Configuration::getInstance();
-        assert($config instanceof \SimpleSAML_Configuration);
+        $config = Configuration::getInstance();
+        assert($config instanceof Configuration);
 
         // setting minimum log_level
         self::$logLevel = $config->getInteger('logging.level', self::INFO);

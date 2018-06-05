@@ -1,15 +1,16 @@
 <?php
 
+namespace SimpleSAML\Error;
+
 /**
  * Exception which will show a page telling the user
  * that we don't know what to do.
  *
  * @package SimpleSAMLphp
  */
-class SimpleSAML_Error_NoState extends SimpleSAML_Error_Error
+
+class NoState extends Error
 {
-
-
     /**
      * Create the error
      */

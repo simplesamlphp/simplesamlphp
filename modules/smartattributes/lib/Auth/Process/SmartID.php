@@ -1,6 +1,8 @@
 <?php
 
-class sspmod_smartattributes_Auth_Process_SmartID extends SimpleSAML_Auth_ProcessingFilter
+namespace SimpleSAML\Module\smartattributes\Auth\Process;
+
+class SmartID extends \SimpleSAML\Auth\ProcessingFilter
 {
     /**
      * Which attributes to use as identifiers?
@@ -52,28 +54,28 @@ class sspmod_smartattributes_Auth_Process_SmartID extends SimpleSAML_Auth_Proces
         if (array_key_exists('candidates', $config)) {
             $this->_candidates = $config['candidates'];
             if (!is_array($this->_candidates)) {
-                throw new Exception('SmartID authproc configuration error: \'candidates\' should be an array.');
+                throw new \Exception('SmartID authproc configuration error: \'candidates\' should be an array.');
             }
         }
 
         if (array_key_exists('id_attribute', $config)) {
             $this->_id_attribute = $config['id_attribute'];
             if (!is_string($this->_id_attribute)) {
-                throw new Exception('SmartID authproc configuration error: \'id_attribute\' should be a string.');
+                throw new \Exception('SmartID authproc configuration error: \'id_attribute\' should be a string.');
             }
         }
 
         if (array_key_exists('add_authority', $config)) {
             $this->_add_authority = $config['add_authority'];
             if (!is_bool($this->_add_authority)) {
-                throw new Exception('SmartID authproc configuration error: \'add_authority\' should be a boolean.');
+                throw new \Exception('SmartID authproc configuration error: \'add_authority\' should be a boolean.');
             }
         }
 
         if (array_key_exists('add_candidate', $config)) {
             $this->_add_candidate = $config['add_candidate'];
             if (!is_bool($this->_add_candidate)) {
-                throw new Exception('SmartID authproc configuration error: \'add_candidate\' should be a boolean.');
+                throw new \Exception('SmartID authproc configuration error: \'add_candidate\' should be a boolean.');
             }
         }
     }
@@ -93,7 +95,7 @@ class sspmod_smartattributes_Auth_Process_SmartID extends SimpleSAML_Auth_Proces
         /*
          * At this stage no usable id_candidate has been detected.
          */
-        throw new SimpleSAML_Error_Exception('This service needs at least one of the following
+        throw new \SimpleSAML\Error\Exception('This service needs at least one of the following
             attributes to identity users: '.implode(', ', $this->_candidates).'. Unfortunately not
             one of them was detected. Please ask your institution administrator to release one of
             them, or try using another identity provider.');

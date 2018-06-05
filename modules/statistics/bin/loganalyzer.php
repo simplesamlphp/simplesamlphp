@@ -8,9 +8,9 @@ $baseDir = dirname(dirname(dirname(dirname(__FILE__))));
 require_once($baseDir . '/lib/_autoload.php');
 
 // Initialize the configuration.
-$configdir = SimpleSAML\Utils\Config::getConfigDir();
-SimpleSAML_Configuration::setConfigDir($configdir);
-SimpleSAML\Utils\Time::initTimezone();
+$configdir = \SimpleSAML\Utils\Config::getConfigDir();
+\SimpleSAML\Configuration::setConfigDir($configdir);
+\SimpleSAML\Utils\Time::initTimezone();
 
 $progName = array_shift($argv);
 $debug = false;
@@ -50,7 +50,7 @@ foreach($argv as $a) {
     }
 }
 
-$aggregator = new sspmod_statistics_Aggregator(true);
+$aggregator = new \SimpleSAML\Module\statistics\Aggregator(true);
 $aggregator->dumpConfig();
 $aggregator->debugInfo();
 $results = $aggregator->aggregate($debug);

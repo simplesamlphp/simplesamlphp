@@ -3,6 +3,7 @@ namespace SimpleSAML\Test\Utils;
 
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Utils\HTTP;
+use SimpleSAML\Configuration;
 
 class HTTPTest extends TestCase
 {
@@ -125,7 +126,7 @@ class HTTPTest extends TestCase
     {
         $original = $_SERVER;
 
-        \SimpleSAML_Configuration::loadFromArray(array(
+        Configuration::loadFromArray(array(
             'baseurlpath' => '',
         ), '[ARRAY]', 'simplesaml');
         $_SERVER['SERVER_PORT'] = '80';
@@ -143,7 +144,7 @@ class HTTPTest extends TestCase
     {
         $original = $_SERVER;
 
-        \SimpleSAML_Configuration::loadFromArray(array(
+        Configuration::loadFromArray(array(
             'baseurlpath' => '',
         ), '[ARRAY]', 'simplesaml');
 
@@ -174,7 +175,7 @@ class HTTPTest extends TestCase
          * Test a URL pointing to a script that's not part of the public interface. This allows us to test calls to
          * getSelfURL() from scripts outside of SimpleSAMLphp
          */
-        \SimpleSAML_Configuration::loadFromArray(array(
+        Configuration::loadFromArray(array(
             'baseurlpath' => 'http://example.com/simplesaml/',
         ), '[ARRAY]', 'simplesaml');
         $url = 'https://example.com/app/script.php/some/path?foo=bar';
@@ -187,7 +188,7 @@ class HTTPTest extends TestCase
         $this->assertEquals('https://'.HTTP::getSelfHostWithNonStandardPort(), HTTP::getSelfURLHost());
 
         // test a request URI that doesn't match the current script
-        $cfg = \SimpleSAML_Configuration::loadFromArray(array(
+        $cfg = Configuration::loadFromArray(array(
             'baseurlpath' => 'https://example.org/simplesaml/',
         ), '[ARRAY]', 'simplesaml');
         $baseDir = $cfg->getBaseDir();
@@ -201,7 +202,7 @@ class HTTPTest extends TestCase
         $this->assertEquals('http://www.example.com', HTTP::getSelfURLHost());
 
         // test a valid, full URL, based on a full URL in the configuration
-        \SimpleSAML_Configuration::loadFromArray(array(
+        Configuration::loadFromArray(array(
             'baseurlpath' => 'https://example.com/simplesaml/',
         ), '[ARRAY]', 'simplesaml');
         $this->setupEnvFromURL('http://www.example.org/module.php/module/file.php?foo=bar');
@@ -215,7 +216,7 @@ class HTTPTest extends TestCase
         $this->assertEquals('https://'.HTTP::getSelfHostWithNonStandardPort(), HTTP::getSelfURLHost());
 
         // test a valid, full URL, based on a full URL *without* a trailing slash in the configuration
-        \SimpleSAML_Configuration::loadFromArray(array(
+        Configuration::loadFromArray(array(
             'baseurlpath' => 'https://example.com/simplesaml',
         ), '[ARRAY]', 'simplesaml');
         $this->assertEquals(
@@ -228,7 +229,7 @@ class HTTPTest extends TestCase
         $this->assertEquals('https://'.HTTP::getSelfHostWithNonStandardPort(), HTTP::getSelfURLHost());
 
         // test a valid, full URL, based on a full URL *without* a path in the configuration
-        \SimpleSAML_Configuration::loadFromArray(array(
+        Configuration::loadFromArray(array(
             'baseurlpath' => 'https://example.com',
         ), '[ARRAY]', 'simplesaml');
         $this->assertEquals(
@@ -241,7 +242,7 @@ class HTTPTest extends TestCase
         $this->assertEquals('https://'.HTTP::getSelfHostWithNonStandardPort(), HTTP::getSelfURLHost());
 
         // test a valid, full URL, based on a relative path in the configuration
-        \SimpleSAML_Configuration::loadFromArray(array(
+        Configuration::loadFromArray(array(
             'baseurlpath' => '/simplesaml/',
         ), '[ARRAY]', 'simplesaml');
         $this->setupEnvFromURL('http://www.example.org/simplesaml/module.php/module/file.php?foo=bar');
@@ -255,7 +256,7 @@ class HTTPTest extends TestCase
         $this->assertEquals('http://'.HTTP::getSelfHostWithNonStandardPort(), HTTP::getSelfURLHost());
 
         // test a valid, full URL, based on a relative path in the configuration and a non standard port
-        \SimpleSAML_Configuration::loadFromArray(array(
+        Configuration::loadFromArray(array(
             'baseurlpath' => '/simplesaml/',
         ), '[ARRAY]', 'simplesaml');
         $this->setupEnvFromURL('http://example.org:8080/simplesaml/module.php/module/file.php?foo=bar');
@@ -269,7 +270,7 @@ class HTTPTest extends TestCase
         $this->assertEquals('http://'.HTTP::getSelfHostWithNonStandardPort(), HTTP::getSelfURLHost());
 
         // test a valid, full URL, based on a relative path in the configuration, a non standard port and HTTPS
-        \SimpleSAML_Configuration::loadFromArray(array(
+        Configuration::loadFromArray(array(
             'baseurlpath' => '/simplesaml/',
         ), '[ARRAY]', 'simplesaml');
         $this->setupEnvFromURL('https://example.org:8080/simplesaml/module.php/module/file.php?foo=bar');
@@ -295,7 +296,7 @@ class HTTPTest extends TestCase
     {
         $original = $_SERVER;
 
-        \SimpleSAML_Configuration::loadFromArray(array(
+        Configuration::loadFromArray(array(
             'trusted.url.domains' => array('sp.example.com', 'app.example.com'),
             'trusted.url.regex' => false,
         ), '[ARRAY]', 'simplesaml');
@@ -312,7 +313,7 @@ class HTTPTest extends TestCase
             $this->assertEquals(HTTP::checkURLAllowed($url), $url);
         }
 
-        $this->setExpectedException('SimpleSAML_Error_Exception');
+        $this->setExpectedException('\SimpleSAML\Error\Exception');
         HTTP::checkURLAllowed('https://evil.com');
 
         $_SERVER = $original;
@@ -325,7 +326,7 @@ class HTTPTest extends TestCase
     {
         $original = $_SERVER;
 
-        \SimpleSAML_Configuration::loadFromArray(array(
+        Configuration::loadFromArray(array(
             'trusted.url.domains' => array('.*\.example\.com'),
             'trusted.url.regex' => true,
         ), '[ARRAY]', 'simplesaml');
@@ -344,7 +345,7 @@ class HTTPTest extends TestCase
             $this->assertEquals(HTTP::checkURLAllowed($url), $url);
         }
 
-        $this->setExpectedException('SimpleSAML_Error_Exception');
+        $this->setExpectedException('\SimpleSAML\Error\Exception');
         HTTP::checkURLAllowed('https://evil.com');
 
         $_SERVER = $original;
@@ -402,14 +403,14 @@ class HTTPTest extends TestCase
     {
         $original = $_SERVER;
 
-        \SimpleSAML_Configuration::loadFromArray(array(
+        Configuration::loadFromArray(array(
             'trusted.url.domains' => array('app\.example\.com'),
             'trusted.url.regex' => true,
         ), '[ARRAY]', 'simplesaml');
 
         $_SERVER['REQUEST_URI'] = '/module.php';
 
-        $this->setExpectedException('SimpleSAML_Error_Exception');
+        $this->setExpectedException('\SimpleSAML\Error\Exception');
         HTTP::checkURLAllowed('https://app.example.com.evil.com');
 
         $_SERVER = $original;

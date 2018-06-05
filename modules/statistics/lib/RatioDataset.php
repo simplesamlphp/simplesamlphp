@@ -1,9 +1,13 @@
 <?php
+
+namespace SimpleSAML\Module\statistics;
+
 /*
  * @author Andreas Åkre Solberg <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
  */
-class sspmod_statistics_RatioDataset extends sspmod_statistics_StatDataset
+
+class RatioDataset extends StatDataset
 {
     public function aggregateSummary()
     {

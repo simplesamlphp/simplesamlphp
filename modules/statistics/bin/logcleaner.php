@@ -8,8 +8,8 @@ $baseDir = dirname(dirname(dirname(dirname(__FILE__))));
 require_once($baseDir . '/lib/_autoload.php');
 
 // Initialize the configuration.
-$configdir = SimpleSAML\Utils\Config::getConfigDir();
-SimpleSAML_Configuration::setConfigDir($configdir);
+$configdir = \SimpleSAML\Utils\Config::getConfigDir();
+\SimpleSAML\Configuration::setConfigDir($configdir);
 
 $progName = array_shift($argv);
 $debug = false;
@@ -58,7 +58,7 @@ foreach ($argv as $a) {
     }
 }
 
-$cleaner = new sspmod_statistics_LogCleaner($infile);
+$cleaner = new \SimpleSAML\Module\statistics\LogCleaner($infile);
 $cleaner->dumpConfig();
 $todelete = $cleaner->clean($debug);
 

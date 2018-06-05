@@ -1,5 +1,7 @@
 <?php
 
+namespace SimpleSAML\Module\core\Auth\Process;
+
 use SimpleSAML\Utils\HttpAdapter;
 
 /**
@@ -11,7 +13,8 @@ use SimpleSAML\Utils\HttpAdapter;
  * @author Guy Halse, http://orcid.org/0000-0002-9388-8592
  * @package SimpleSAMLphp
  */
-class sspmod_core_Auth_Process_CardinalitySingle extends SimpleSAML_Auth_ProcessingFilter
+
+class CardinalitySingle extends \SimpleSAML\Auth\ProcessingFilter
 {
     /** @var array Attributes that should be single-valued or we generate an error */
     private $singleValued = array();
@@ -28,7 +31,7 @@ class sspmod_core_Auth_Process_CardinalitySingle extends SimpleSAML_Auth_Process
     /** @var array Entities that should be ignored */
     private $ignoreEntities = array();
 
-    /** @var HTTP */
+    /** @var HTTPAdapter */
     private $http;
 
     /**
@@ -80,7 +83,7 @@ class sspmod_core_Auth_Process_CardinalitySingle extends SimpleSAML_Auth_Process
             array_key_exists('entityid', $request['Source']) &&
             in_array($request['Source']['entityid'], $this->ignoreEntities, true)
         ) {
-            SimpleSAML\Logger::debug('CardinalitySingle: Ignoring assertions from '.$request['Source']['entityid']);
+            \SimpleSAML\Logger::debug('CardinalitySingle: Ignoring assertions from '.$request['Source']['entityid']);
             return;
         }
 
@@ -108,8 +111,8 @@ class sspmod_core_Auth_Process_CardinalitySingle extends SimpleSAML_Auth_Process
 
         /* abort if we found a problematic attribute */
         if (array_key_exists('core:cardinality:errorAttributes', $request)) {
-            $id = SimpleSAML_Auth_State::saveState($request, 'core:cardinality');
-            $url = SimpleSAML\Module::getModuleURL('core/cardinality_error.php');
+            $id = \SimpleSAML\Auth\State::saveState($request, 'core:cardinality');
+            $url = \SimpleSAML\Module::getModuleURL('core/cardinality_error.php');
             $this->http->redirectTrustedURL($url, array('StateId' => $id));
             return;
         }

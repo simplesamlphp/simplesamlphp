@@ -29,7 +29,7 @@ function driveProcessingChain(
     /*
      * Create a new processing chain
      */
-    $pc = new SimpleSAML_Auth_ProcessingChain($idp_metadata, $sp_metadata, 'idp');
+    $pc = new \SimpleSAML\Auth\ProcessingChain($idp_metadata, $sp_metadata, 'idp');
 
     /*
      * Construct the state.
@@ -67,20 +67,20 @@ function driveProcessingChain(
      */
     $destination = $sp_metadata['metadata-set'].'|'.$sp_entityid;
 
-    $targeted_id = sspmod_consent_Auth_Process_Consent::getTargetedID($userid, $source, $destination);
-    $attribute_hash = sspmod_consent_Auth_Process_Consent::getAttributeHash($attributes, $hashAttributes);
+    $targeted_id = \SimpleSAML\Module\consent\Auth\Process\Consent::getTargetedID($userid, $source, $destination);
+    $attribute_hash = \SimpleSAML\Module\consent\Auth\Process\Consent::getAttributeHash($attributes, $hashAttributes);
 
-    SimpleSAML\Logger::info('consentAdmin: user: '.$userid);
-    SimpleSAML\Logger::info('consentAdmin: target: '.$targeted_id);
-    SimpleSAML\Logger::info('consentAdmin: attribute: '.$attribute_hash);
+    \SimpleSAML\Logger::info('consentAdmin: user: '.$userid);
+    \SimpleSAML\Logger::info('consentAdmin: target: '.$targeted_id);
+    \SimpleSAML\Logger::info('consentAdmin: attribute: '.$attribute_hash);
 
     // Return values
     return array($targeted_id, $attribute_hash, $attributes);
 }
 
 // Get config object
-$config = SimpleSAML_Configuration::getInstance();
-$cA_config = SimpleSAML_Configuration::getConfig('module_consentAdmin.php');
+$config = \SimpleSAML\Configuration::getInstance();
+$cA_config = \SimpleSAML\Configuration::getConfig('module_consentAdmin.php');
 $authority = $cA_config->getValue('authority');
 
 $as = new \SimpleSAML\Auth\Simple($authority);
@@ -102,7 +102,7 @@ $as->requireAuth();
 $attributes = $as->getAttributes();
 
 // Get metadata storage handler
-$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+$metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
 
 /*
  * Get IdP id and metadata
@@ -127,7 +127,7 @@ $userid_attributename = (isset($idp_metadata['userid.attribute']) && is_string($
 $userids = $attributes[$userid_attributename];
 
 if (empty($userids)) {
-    throw new Exception('Could not generate useridentifier for storing consent. Attribute ['.
+    throw new \Exception('Could not generate useridentifier for storing consent. Attribute ['.
         $userid_attributename.'] was not available.');
 }
 
@@ -146,7 +146,7 @@ if (!empty($_GET['action'])) {
     $action = $_GET["action"];
 }
 
-SimpleSAML\Logger::critical('consentAdmin: sp: '.$sp_entityid.' action: '.$action);
+\SimpleSAML\Logger::critical('consentAdmin: sp: '.$sp_entityid.' action: '.$action);
 
 // Remove services, whitch have consent disabled
 if (isset($idp_metadata['consent.disable'])) {
@@ -157,13 +157,13 @@ if (isset($idp_metadata['consent.disable'])) {
     }
 }
 
-SimpleSAML\Logger::info('consentAdmin: '.$idp_entityid);
+\SimpleSAML\Logger::info('consentAdmin: '.$idp_entityid);
 
 // Parse consent config
-$consent_storage = sspmod_consent_Store::parseStoreConfig($cA_config->getValue('consentadmin'));
+$consent_storage = \SimpleSAML\Module\consent\Store::parseStoreConfig($cA_config->getValue('consentadmin'));
 
 // Calc correct user ID hash
-$hashed_user_id = sspmod_consent_Auth_Process_Consent::getHashedUserID($userid, $source);
+$hashed_user_id = \SimpleSAML\Module\consent\Auth\Process\Consent::getHashedUserID($userid, $source);
 
 // If a checkbox have been clicked
 if ($action !== null && $sp_entityid !== null) {
@@ -192,12 +192,12 @@ if ($action !== null && $sp_entityid !== null) {
             }
             // Unknown action (should not happen)
         } else {
-            SimpleSAML\Logger::info('consentAdmin: unknown action');
+            \SimpleSAML\Logger::info('consentAdmin: unknown action');
             $res = "unknown";
         }
     }
     // init template to enable translation of status messages
-    $template = new SimpleSAML_XHTML_Template($config, 'consentAdmin:consentadminajax.php', 'consentAdmin:consentadmin');
+    $template = new \SimpleSAML\XHTML\Template($config, 'consentAdmin:consentadminajax.php', 'consentAdmin:consentadmin');
     $template->data['res'] = $res;
     $template->show();
     exit;
@@ -215,7 +215,7 @@ foreach ($user_consent_list as $c) {
 $template_sp_content = array();
 
 // Init template
-$template = new SimpleSAML_XHTML_Template($config, 'consentAdmin:consentadmin.php', 'consentAdmin:consentadmin');
+$template = new \SimpleSAML\XHTML\Template($config, 'consentAdmin:consentadmin.php', 'consentAdmin:consentadmin');
 $translator = $template->getTranslator();
 $translator->includeLanguageFile('attributes.php'); // attribute listings translated by this dictionary
 $sp_empty_name = $translator->getTag('sp_empty_name');
@@ -233,10 +233,10 @@ foreach ($all_sp_metadata as $sp_entityid => $sp_values) {
     // Check if consent exists
     if (array_key_exists($targeted_id, $user_consent)) {
         $sp_status = "changed";
-        SimpleSAML\Logger::info('consentAdmin: changed');
+        \SimpleSAML\Logger::info('consentAdmin: changed');
         // Check if consent is valid. (Possible that attributes has changed)
         if ($user_consent[$targeted_id] == $attribute_hash) {
-            SimpleSAML\Logger::info('consentAdmin: ok');
+            \SimpleSAML\Logger::info('consentAdmin: ok');
             $sp_status = "ok";
         }
         // Consent does not exists

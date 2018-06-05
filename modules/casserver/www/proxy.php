@@ -15,7 +15,7 @@ if (array_key_exists('targetService', $_GET)) {
 	throw new Exception('Required URL query parameter [targetService] not provided. (CAS Server)');
 }
 
-$casconfig = SimpleSAML_Configuration::getConfig('module_casserver.php');
+$casconfig = \SimpleSAML\Configuration::getConfig('module_casserver.php');
 
 $legal_service_urls = $casconfig->getValue('legal_service_urls');
 

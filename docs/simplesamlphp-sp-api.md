@@ -157,7 +157,7 @@ Same as the previous, but check the result of the logout operation afterwards.
 
 And in logged_out.php:
 
-    $state = SimpleSAML_Auth_State::loadState((string)$_REQUEST['LogoutState'], 'MyLogoutState');
+    $state = \SimpleSAML\Auth\State::loadState((string)$_REQUEST['LogoutState'], 'MyLogoutState');
     $ls = $state['saml:sp:LogoutStatus']; /* Only works for SAML SP */
     if ($ls['Code'] === 'urn:oasis:names:tc:SAML:2.0:status:Success' && !isset($ls['SubCode'])) {
         /* Successful logout. */

@@ -1,6 +1,6 @@
 <?php
 
-class sspmod_core_Auth_UserPassBaseTest extends \PHPUnit_Framework_TestCase
+class UserPassBaseTest extends \PHPUnit_Framework_TestCase
 {
     public function testAuthenticateECPCallsLoginAndSetsAttributes()
     {
@@ -10,7 +10,7 @@ class sspmod_core_Auth_UserPassBaseTest extends \PHPUnit_Framework_TestCase
         $username = $state['core:auth:username'] = 'username';
         $password = $state['core:auth:password'] = 'password';
 
-        $stub = $this->getMockBuilder('sspmod_core_Auth_UserPassBase')
+        $stub = $this->getMockBuilder('\SimpleSAML\Module\core\Auth\UserPassBase')
             ->disableOriginalConstructor()
             ->setMethods(array('login'))
             ->getMockForAbstractClass();
@@ -35,7 +35,7 @@ class sspmod_core_Auth_UserPassBaseTest extends \PHPUnit_Framework_TestCase
         $state['core:auth:username'] = 'username';
         $password = $state['core:auth:password'] = 'password';
 
-        $stub = $this->getMockBuilder('sspmod_core_Auth_UserPassBase')
+        $stub = $this->getMockBuilder('\SimpleSAML\Module\core\Auth\UserPassBase')
             ->disableOriginalConstructor()
             ->setMethods(array('login'))
             ->getMockForAbstractClass();

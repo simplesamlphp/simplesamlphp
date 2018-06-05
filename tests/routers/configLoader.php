@@ -33,7 +33,7 @@ require_once(dirname(__FILE__).'/../../vendor/autoload.php');
 
 // initialize configuration
 if (isset($config)) {
-    SimpleSAML_Configuration::loadFromArray($config, '[ARRAY]', 'simplesaml');
+    \SimpleSAML\Configuration::loadFromArray($config, '[ARRAY]', 'simplesaml');
 }
 
 // let the script proceed

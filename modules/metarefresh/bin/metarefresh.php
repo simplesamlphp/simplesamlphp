@@ -13,7 +13,7 @@ $baseDir = dirname(dirname(dirname(dirname(__FILE__))));
 // Add library autoloader.
 require_once($baseDir . '/lib/_autoload.php');
 
-if(!SimpleSAML\Module::isModuleEnabled('metarefresh')) {
+if(!\SimpleSAML\Module::isModuleEnabled('metarefresh')) {
 	echo("You need to enable the metarefresh module before this script can be used.\n");
 	echo("You can enable it by running the following command:\n");
 	echo('  echo >"' . $baseDir . '/modules/metarefresh/enable' . "\"\n");
@@ -21,8 +21,8 @@ if(!SimpleSAML\Module::isModuleEnabled('metarefresh')) {
 }
 
 /* Initialize the configuration. */
-$configdir = SimpleSAML\Utils\Config::getConfigDir();
-SimpleSAML_Configuration::setConfigDir($configdir);
+$configdir = \SimpleSAML\Utils\Config::getConfigDir();
+\SimpleSAML\Configuration::setConfigDir($configdir);
 
 /* $outputDir contains the directory we will store the generated metadata in. */
 $outputDir = $baseDir . '/metadata-generated';
@@ -128,7 +128,7 @@ if(count($files) === 0) {
 
 
 /* The metadata global variable will be filled with the metadata we extract. */
-$metaloader = new sspmod_metarefresh_MetaLoader();
+$metaloader = new \SimpleSAML\Module\metarefresh\MetaLoader();
 
 foreach($files as $f) {
 	$source = array('src' => $f);

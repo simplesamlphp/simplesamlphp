@@ -12,9 +12,9 @@ function portal_hook_htmlinject(&$hookinfo) {
 	assert(array_key_exists('page', $hookinfo));
 
 	$links = array('links' => array());
-	SimpleSAML\Module::callHooks('frontpage', $links);
+	\SimpleSAML\Module::callHooks('frontpage', $links);
 
-	$portalConfig = SimpleSAML_Configuration::getOptionalConfig('module_portal.php');
+	$portalConfig = \SimpleSAML\Configuration::getOptionalConfig('module_portal.php');
 	
 	$allLinks = array();
 	foreach($links AS $ls) {
@@ -24,8 +24,8 @@ function portal_hook_htmlinject(&$hookinfo) {
 	$pagesets = $portalConfig->getValue('pagesets', array(
 		array('frontpage_welcome', 'frontpage_config', 'frontpage_auth', 'frontpage_federation'),
 	));
-	SimpleSAML\Module::callHooks('portalextras', $pagesets);
-	$portal = new sspmod_portal_Portal($allLinks, $pagesets);
+	\SimpleSAML\Module::callHooks('portalextras', $pagesets);
+	$portal = new \SimpleSAML\Module\portal\Portal($allLinks, $pagesets);
 	
 	if (!$portal->isPortalized($hookinfo['page'])) return;
 

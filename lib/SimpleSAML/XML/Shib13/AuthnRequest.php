@@ -36,7 +36,7 @@ class AuthnRequest
 
     public function createRedirect($destination, $shire)
     {
-        $metadata = \SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+        $metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
         $idpmetadata = $metadata->getMetaDataConfig($destination, 'shib13-idp-remote');
 
         $desturl = $idpmetadata->getDefaultEndpoint('SingleSignOnService', array('urn:mace:shibboleth:1.0:profiles:AuthnRequest'));

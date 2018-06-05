@@ -1,11 +1,11 @@
 <?php
 
-$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+$metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
 
 $binding = \SAML2\Binding::getCurrentBinding();
 $query = $binding->receive();
 if (!($query instanceof \SAML2\AttributeQuery)) {
-	throw new SimpleSAML_Error_BadRequest('Invalid message received to AttributeQuery endpoint.');
+	throw new \SimpleSAML\Error\BadRequest('Invalid message received to AttributeQuery endpoint.');
 }
 
 $idpEntityId = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
@@ -13,7 +13,7 @@ $idpEntityId = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
 
 $spEntityId = $query->getIssuer();
 if ($spEntityId === NULL) {
-	throw new SimpleSAML_Error_BadRequest('Missing <saml:Issuer> in <samlp:AttributeQuery>.');
+	throw new \SimpleSAML\Error\BadRequest('Missing <saml:Issuer> in <samlp:AttributeQuery>.');
 }
 
 $idpMetadata = $metadata->getMetadataConfig($idpEntityId, 'saml20-idp-hosted');
@@ -79,7 +79,7 @@ $sc->SubjectConfirmationData->Recipient = $endpoint;
 $sc->SubjectConfirmationData->InResponseTo = $query->getId();
 $assertion->setSubjectConfirmation(array($sc));
 
-sspmod_saml_Message::addSign($idpMetadata, $spMetadata, $assertion);
+\SimpleSAML\Module\saml\Message::addSign($idpMetadata, $spMetadata, $assertion);
 
 $response = new \SAML2\Response();
 $response->setRelayState($query->getRelayState());
@@ -87,7 +87,7 @@ $response->setDestination($endpoint);
 $response->setIssuer($idpEntityId);
 $response->setInResponseTo($query->getId());
 $response->setAssertions(array($assertion));
-sspmod_saml_Message::addSign($idpMetadata, $spMetadata, $response);
+\SimpleSAML\Module\saml\Message::addSign($idpMetadata, $spMetadata, $response);
 
 $binding = new \SAML2\HTTPPost();
 $binding->send($response);
