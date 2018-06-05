@@ -72,8 +72,8 @@ database.
 Here is the initialization SQL script:
 
 	CREATE TABLE consent (
-		consent_date TIMESTAMP NOT NULL,
-		usage_date TIMESTAMP NOT NULL,
+		consent_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+		usage_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 		hashed_user_id VARCHAR(80) NOT NULL,
 		service_id VARCHAR(255) NOT NULL,
 		attribute VARCHAR(80) NOT NULL,
@@ -149,7 +149,7 @@ The following options can be used when configuring the Consent module:
 `store`
 :   Configuration of the Consent storage backend. The store option is given in 
     the format <module>:<class> and refers to the class 
-    sspmod_<module>_Consent_Store_<class>. The consent module comes with two 
+    \SimpleSAML\Module\<module>\Consent\Store\<class>. The consent module comes with two 
     built in storage backends: 'consent:Cookie' and 'consent:Database'. See 
     the separate section on setting up consent using different storage methods. 
     This option is optional. If the option is not set, then the user is asked to 
@@ -160,9 +160,15 @@ The following options can be used when configuring the Consent module:
     the attributes that should have their value hidden. Default behaviour is that 
     all attribute values are shown.
 
+`attributes.exclude`
+:   Allows certain attributes to be excluded from the attribute hash when
+    `includeValues` is `true` (and as a side effect, to be hidden from display
+    as `hiddenAttributes` does). Set to an array of the attributes that should
+    be excluded. Default behaviour is to include all values in the hash.
+
 `showNoConsentAboutService`
 :   Whether we will show a link to more information about the service from the
-    no consent page. Defaults to `TRUE`.
+    no consent page. Defaults to `true`.
 
 External options
 ----------------

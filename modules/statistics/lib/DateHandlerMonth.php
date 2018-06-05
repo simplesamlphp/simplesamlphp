@@ -1,14 +1,18 @@
 <?php
+
+namespace SimpleSAML\Module\statistics;
+
 /*
  * @author Andreas Åkre Solberg <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
  */
-class sspmod_statistics_DateHandlerMonth extends sspmod_statistics_DateHandler
+
+class DateHandlerMonth extends DateHandler
 {
     /**
      * Constructor
      *
-     * @param array $offset 	Date offset
+     * @param integer $offset 	Date offset
      */
     public function __construct($offset)
     {

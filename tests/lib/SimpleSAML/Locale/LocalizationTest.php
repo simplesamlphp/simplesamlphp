@@ -4,8 +4,7 @@ namespace SimpleSAML\Test\Locale;
 
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Locale\Localization;
-use \SimpleSAML_Configuration as Configuration;
-
+use \SimpleSAML\Configuration;
 
 class LocalizationTest extends TestCase
 {
@@ -22,7 +21,7 @@ class LocalizationTest extends TestCase
     public function testLocalization()
     {
         // The constructor should activate the default domain
-        $c = \SimpleSAML_Configuration::loadFromArray(
+        $c = Configuration::loadFromArray(
             array('language.i18n.backend' => 'SimpleSAMLphp')
         );
         $l = new Localization($c);
@@ -35,7 +34,7 @@ class LocalizationTest extends TestCase
      */
     public function testAddDomain()
     {
-        $c = \SimpleSAML_Configuration::loadFromArray(
+        $c = Configuration::loadFromArray(
             array('language.i18n.backend' => 'gettext/gettext')
         );
         $l = new Localization($c);

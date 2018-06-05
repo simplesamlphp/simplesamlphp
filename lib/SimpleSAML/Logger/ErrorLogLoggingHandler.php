@@ -14,7 +14,6 @@ use SimpleSAML\Logger;
  */
 class ErrorLogLoggingHandler implements LoggingHandlerInterface
 {
-
     /**
      * This array contains the mappings from syslog log level to names.
      */
@@ -40,9 +39,9 @@ class ErrorLogLoggingHandler implements LoggingHandlerInterface
     /**
      * ErrorLogLoggingHandler constructor.
      *
-     * @param \SimpleSAML_Configuration $config The configuration object for this handler.
+     * @param \SimpleSAML\Configuration $config The configuration object for this handler.
      */
-    public function __construct(\SimpleSAML_Configuration $config)
+    public function __construct(\SimpleSAML\Configuration $config)
     {
         $this->processname = $config->getString('logging.processname', 'SimpleSAMLphp');
     }

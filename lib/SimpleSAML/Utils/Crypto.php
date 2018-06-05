@@ -2,14 +2,17 @@
 
 namespace SimpleSAML\Utils;
 
+use SimpleSAML\Configuration;
+use SimpleSAML\Error;
+
 /**
  * A class for cryptography-related functions.
  *
  * @package SimpleSAMLphp
  */
+
 class Crypto
 {
-
     /**
      * Decrypt data using AES-256-CBC and the key provided as a parameter.
      *
@@ -18,7 +21,7 @@ class Crypto
      *
      * @return string The decrypted data.
      * @throws \InvalidArgumentException If $ciphertext is not a string.
-     * @throws \SimpleSAML_Error_Exception If the openssl module is not loaded.
+     * @throws Error\Exception If the openssl module is not loaded.
      *
      * @see \SimpleSAML\Utils\Crypto::aesDecrypt()
      */
@@ -37,7 +40,7 @@ class Crypto
             );
         }
         if (!function_exists("openssl_decrypt")) {
-            throw new \SimpleSAML_Error_Exception("The openssl PHP module is not loaded.");
+            throw new Error\Exception("The openssl PHP module is not loaded.");
         }
 
         // derive encryption and authentication keys from the secret
@@ -57,12 +60,12 @@ class Crypto
                 $iv
             );
 
-            if ($plaintext != false) {
+            if ($plaintext !== false) {
                 return $plaintext;
             }
         }
 
-        throw new \SimpleSAML_Error_Exception("Failed to decrypt ciphertext.");
+        throw new Error\Exception("Failed to decrypt ciphertext.");
     }
 
 
@@ -73,7 +76,7 @@ class Crypto
      *
      * @return string The decrypted data.
      * @throws \InvalidArgumentException If $ciphertext is not a string.
-     * @throws \SimpleSAML_Error_Exception If the openssl module is not loaded.
+     * @throws Error\Exception If the openssl module is not loaded.
      *
      * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
      * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
@@ -92,7 +95,7 @@ class Crypto
      *
      * @return string An HMAC of the encrypted data, the IV and the encrypted data, concatenated.
      * @throws \InvalidArgumentException If $data is not a string.
-     * @throws \SimpleSAML_Error_Exception If the openssl module is not loaded.
+     * @throws Error\Exception If the openssl module is not loaded.
      *
      * @see \SimpleSAML\Utils\Crypto::aesEncrypt()
      */
@@ -103,7 +106,7 @@ class Crypto
         }
 
         if (!function_exists("openssl_encrypt")) {
-            throw new \SimpleSAML_Error_Exception('The openssl PHP module is not loaded.');
+            throw new Error\Exception('The openssl PHP module is not loaded.');
         }
 
         // derive encryption and authentication keys from the secret
@@ -123,7 +126,7 @@ class Crypto
         );
 
         if ($ciphertext === false) {
-            throw new \SimpleSAML_Error_Exception("Failed to encrypt plaintext.");
+            throw new Error\Exception("Failed to encrypt plaintext.");
         }
 
         // return the ciphertext with proper authentication
@@ -138,7 +141,7 @@ class Crypto
      *
      * @return string An HMAC of the encrypted data, the IV and the encrypted data, concatenated.
      * @throws \InvalidArgumentException If $data is not a string.
-     * @throws \SimpleSAML_Error_Exception If the openssl module is not loaded.
+     * @throws Error\Exception If the openssl module is not loaded.
      *
      * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
      * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
@@ -176,7 +179,7 @@ class Crypto
      * - 'PEM': Data for the private key, in PEM-format.
      * - 'password': Password for the private key.
      *
-     * @param \SimpleSAML_Configuration $metadata The metadata array the private key should be loaded from.
+     * @param \SimpleSAML\Configuration $metadata The metadata array the private key should be loaded from.
      * @param bool                      $required Whether the private key is required. If this is true, a
      * missing key will cause an exception. Defaults to false.
      * @param string                    $prefix The prefix which should be used when reading from the metadata
@@ -186,13 +189,13 @@ class Crypto
      *
      * @return array|NULL Extracted private key, or NULL if no private key is present.
      * @throws \InvalidArgumentException If $required is not boolean or $prefix is not a string.
-     * @throws \SimpleSAML_Error_Exception If no private key is found in the metadata, or it was not possible to load
+     * @throws Error\Exception If no private key is found in the metadata, or it was not possible to load
      *     it.
      *
      * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
-    public static function loadPrivateKey(\SimpleSAML_Configuration $metadata, $required = false, $prefix = '', $full_path = false)
+    public static function loadPrivateKey(Configuration $metadata, $required = false, $prefix = '', $full_path = false)
     {
         if (!is_bool($required) || !is_string($prefix) || !is_bool($full_path)) {
             throw new \InvalidArgumentException('Invalid input parameters.');
@@ -202,7 +205,7 @@ class Crypto
         if ($file === null) {
             // no private key found
             if ($required) {
-                throw new \SimpleSAML_Error_Exception('No private key found in metadata.');
+                throw new Error\Exception('No private key found in metadata.');
             } else {
                 return null;
             }
@@ -214,7 +217,7 @@ class Crypto
 
         $data = @file_get_contents($file);
         if ($data === false) {
-            throw new \SimpleSAML_Error_Exception('Unable to load private key from file "'.$file.'"');
+            throw new Error\Exception('Unable to load private key from file "'.$file.'"');
         }
 
         $ret = array(
@@ -246,30 +249,30 @@ class Crypto
      * - 'certFingerprint': Array of valid certificate fingerprints. (Deprecated. Only present if this is a
      *   certificate.)
      *
-     * @param \SimpleSAML_Configuration $metadata The metadata.
+     * @param \SimpleSAML\Configuration $metadata The metadata.
      * @param bool                      $required Whether the private key is required. If this is TRUE, a missing key
      *     will cause an exception. Default is FALSE.
      * @param string                    $prefix The prefix which should be used when reading from the metadata array.
      *     Defaults to ''.
      *
      * @return array|NULL Public key or certificate data, or NULL if no public key or certificate was found.
-     * @throws \InvalidArgumentException If $metadata is not an instance of \SimpleSAML_Configuration, $required is not
+     * @throws \InvalidArgumentException If $metadata is not an instance of \SimpleSAML\Configuration, $required is not
      *     boolean or $prefix is not a string.
-     * @throws \SimpleSAML_Error_Exception If no private key is found in the metadata, or it was not possible to load
+     * @throws Error\Exception If no private key is found in the metadata, or it was not possible to load
      *     it.
      *
      * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      * @author Lasse Birnbaum Jensen
      */
-    public static function loadPublicKey(\SimpleSAML_Configuration $metadata, $required = false, $prefix = '')
+    public static function loadPublicKey(Configuration $metadata, $required = false, $prefix = '')
     {
         if (!is_bool($required) || !is_string($prefix)) {
             throw new \InvalidArgumentException('Invalid input parameters.');
         }
 
         $keys = $metadata->getPublicKeys(null, false, $prefix);
-        if ($keys !== null) {
+        if (!empty($keys)) {
             foreach ($keys as $key) {
                 if ($key['type'] !== 'X509Certificate') {
                     continue;
@@ -309,7 +312,7 @@ class Crypto
 
         // no public key/certificate available
         if ($required) {
-            throw new \SimpleSAML_Error_Exception('No public key / certificate found in metadata.');
+            throw new Error\Exception('No public key / certificate found in metadata.');
         } else {
             return null;
         }
@@ -355,7 +358,7 @@ class Crypto
      *
      * @return string The hashed password.
      * @throws \InvalidArgumentException If the input parameters are not strings.
-     * @throws \SimpleSAML_Error_Exception If the algorithm specified is not supported.
+     * @throws Error\Exception If the algorithm specified is not supported.
      *
      * @see hash_algos()
      *
@@ -389,7 +392,7 @@ class Crypto
             return $alg_str.base64_encode($hash.$salt);
         }
 
-        throw new \SimpleSAML_Error_Exception('Hashing algorithm \''.strtolower($algorithm).'\' is not supported');
+        throw new Error\Exception('Hashing algorithm \''.strtolower($algorithm).'\' is not supported');
     }
 
 
@@ -433,7 +436,7 @@ class Crypto
      *
      * @return boolean True if the hash corresponds with the given password, false otherwise.
      * @throws \InvalidArgumentException If the input parameters are not strings.
-     * @throws \SimpleSAML_Error_Exception If the algorithm specified is not supported.
+     * @throws Error\Exception If the algorithm specified is not supported.
      *
      * @author Dyonisius Visser, TERENA <visser@terena.org>
      */
@@ -466,6 +469,6 @@ class Crypto
             return $hash === $password;
         }
 
-        throw new \SimpleSAML_Error_Exception('Hashing algorithm \''.strtolower($alg).'\' is not supported');
+        throw new Error\Exception('Hashing algorithm \''.strtolower($alg).'\' is not supported');
     }
 }

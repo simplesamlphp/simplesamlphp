@@ -12,11 +12,10 @@ namespace SimpleSAML\Locale;
 
 class Translate
 {
-
     /**
      * The configuration to be used for this translator.
      *
-     * @var \SimpleSAML_Configuration
+     * @var \SimpleSAML\Configuration
      */
     private $configuration;
 
@@ -43,10 +42,10 @@ class Translate
     /**
      * Constructor
      *
-     * @param \SimpleSAML_Configuration $configuration Configuration object
+     * @param \SimpleSAML\Configuration $configuration Configuration object
      * @param string|null               $defaultDictionary The default dictionary where tags will come from.
      */
-    public function __construct(\SimpleSAML_Configuration $configuration, $defaultDictionary = null)
+    public function __construct(\SimpleSAML\Configuration $configuration, $defaultDictionary = null)
     {
         $this->configuration = $configuration;
         $this->language = new Language($configuration);
@@ -259,9 +258,12 @@ class Translate
     public function t(
         $tag,
         $replacements = array(),
-        $fallbackdefault = true, // TODO: remove this for 2.0. Assume true
-        $oldreplacements = array(), // TODO: remove this for 2.0
-        $striptags = false // TODO: remove this for 2.0
+        // TODO: remove this for 2.0. Assume true
+        $fallbackdefault = true,
+        // TODO: remove this for 2.0
+        $oldreplacements = array(),
+        // TODO: remove this for 2.0
+        $striptags = false
     ) {
         $backtrace = debug_backtrace();
         $where = $backtrace[0]['file'].':'.$backtrace[0]['line'];
@@ -366,7 +368,7 @@ class Translate
      * Include a language file from the dictionaries directory.
      *
      * @param string                         $file File name of dictionary to include
-     * @param \SimpleSAML_Configuration|null $otherConfig Optionally provide a different configuration object than the
+     * @param \SimpleSAML\Configuration|null $otherConfig Optionally provide a different configuration object than the
      * one provided in the constructor to be used to find the directory of the dictionary. This allows to combine
      * dictionaries inside the SimpleSAMLphp main code distribution together with external dictionaries. Defaults to
      * null.
@@ -524,10 +526,10 @@ class Translate
         }
 
         // we don't have a translation for the current language, load alternative priorities
-        $sspcfg = \SimpleSAML_Configuration::getInstance();
+        $sspcfg = \SimpleSAML\Configuration::getInstance();
         $langcfg = $sspcfg->getConfigItem('language', null);
         $priorities = array();
-        if ($langcfg instanceof \SimpleSAML_Configuration) {
+        if ($langcfg instanceof \SimpleSAML\Configuration) {
             $priorities = $langcfg->getArray('priorities', array());
         }
 

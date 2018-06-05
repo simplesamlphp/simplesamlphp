@@ -1,14 +1,15 @@
 <?php
 
+namespace SimpleSAML\Module\preprodwarning\Auth\Process;
+
 /**
  * Give a warning that the user is accessing a test system, not a production system.
  *
  * @package SimpleSAMLphp
  */
-class sspmod_preprodwarning_Auth_Process_Warning extends SimpleSAML_Auth_ProcessingFilter {
 
-
-
+class Warning extends \SimpleSAML\Auth\ProcessingFilter
+{
 	/**
 	 * Process a authentication response.
 	 *
@@ -26,11 +27,8 @@ class sspmod_preprodwarning_Auth_Process_Warning extends SimpleSAML_Auth_Process
 		}
 
 		// Save state and redirect.
-		$id = SimpleSAML_Auth_State::saveState($state, 'warning:request');
-		$url = SimpleSAML\Module::getModuleURL('preprodwarning/showwarning.php');
+		$id = \SimpleSAML\Auth\State::saveState($state, 'warning:request');
+		$url = \SimpleSAML\Module::getModuleURL('preprodwarning/showwarning.php');
 		\SimpleSAML\Utils\HTTP::redirectTrustedURL($url, array('StateId' => $id));
 	}
-	
-
-
 }

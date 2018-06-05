@@ -25,3 +25,17 @@ $metadata['google.com'] = array(
 	'simplesaml.nameidattribute' => 'uid',
 	'simplesaml.attributes' => FALSE,
 );
+
+$metadata['https://legacy.example.edu'] = array(
+	'AssertionConsumerService' => 'https://legacy.example.edu/saml/acs',
+        /*
+         * Currently, SimpleSAMLphp defaults to the SHA-256 hashing algorithm.
+	 * Uncomment the following option to use SHA-1 for signatures directed
+	 * at this specific service provider if it does not support SHA-256 yet.
+         *
+         * WARNING: SHA-1 is disallowed starting January the 1st, 2014.
+         * Please refer to the following document for more information:
+         * http://csrc.nist.gov/publications/nistpubs/800-131A/sp800-131A.pdf
+         */
+        //'signature.algorithm' => 'http://www.w3.org/2001/04/xmldsig-more#rsa-sha1',
+);

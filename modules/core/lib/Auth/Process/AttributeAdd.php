@@ -1,5 +1,7 @@
 <?php
 
+namespace SimpleSAML\Module\core\Auth\Process;
+
 /**
  * Filter to add attributes.
  *
@@ -8,8 +10,9 @@
  * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
-class sspmod_core_Auth_Process_AttributeAdd extends SimpleSAML_Auth_ProcessingFilter {
 
+class AttributeAdd extends \SimpleSAML\Auth\ProcessingFilter
+{
 	/**
 	 * Flag which indicates wheter this filter should append new values or replace old values.
 	 */
@@ -40,7 +43,7 @@ class sspmod_core_Auth_Process_AttributeAdd extends SimpleSAML_Auth_ProcessingFi
 				if($values === '%replace') {
 					$this->replace = TRUE;
 				} else {
-					throw new Exception('Unknown flag: ' . var_export($values, TRUE));
+					throw new \Exception('Unknown flag: ' . var_export($values, TRUE));
 				}
 				continue;
 			}
@@ -50,7 +53,7 @@ class sspmod_core_Auth_Process_AttributeAdd extends SimpleSAML_Auth_ProcessingFi
 			}
 			foreach($values as $value) {
 				if(!is_string($value)) {
-					throw new Exception('Invalid value for attribute ' . $name . ': ' .
+					throw new \Exception('Invalid value for attribute ' . $name . ': ' .
 						var_export($values, TRUE));
 				}
 			}
@@ -81,5 +84,4 @@ class sspmod_core_Auth_Process_AttributeAdd extends SimpleSAML_Auth_ProcessingFi
 			}
 		}
 	}
-
 }

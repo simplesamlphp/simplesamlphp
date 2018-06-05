@@ -34,7 +34,7 @@ abstract class Store
             return self::$instance;
         }
 
-        $config = \SimpleSAML_Configuration::getInstance();
+        $config = Configuration::getInstance();
         $storeType = $config->getString('store.type', null);
         if ($storeType === null) {
             $storeType = $config->getString('session.handler', 'phpsession');

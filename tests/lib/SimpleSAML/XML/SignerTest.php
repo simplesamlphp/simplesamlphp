@@ -3,7 +3,7 @@
 namespace SimpleSAML\Test\Utils;
 
 use PHPUnit\Framework\TestCase;
-use \SimpleSAML_Configuration as Configuration;
+use \SimpleSAML\Configuration;
 use \SimpleSAML\XML\Signer;
 
 use \org\bovigo\vfs\vfsStream;
@@ -127,7 +127,7 @@ NOWDOC;
 
     public function tearDown()
     {
-        $this->clearInstance($this->config, '\SimpleSAML_Configuration', array());
+        $this->clearInstance($this->config, '\SimpleSAML\Configuration', array());
     }
 
     public function testSignerBasic()

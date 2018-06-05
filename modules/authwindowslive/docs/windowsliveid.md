@@ -5,8 +5,8 @@ Remember to configure `authsources.php`, with both your Client ID and Secret key
 
 To get an API key and a secret, register the application at:
 
- * <http://msdn.microsoft.com/en-us/library/ff751474.aspx>
- * <https://manage.dev.live.com>
+ * <https://msdn.microsoft.com/en-us/library/ff751474.aspx>
+ * <https://apps.dev.microsoft.com/>
 
 ## Testing authentication
 

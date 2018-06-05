@@ -2,12 +2,10 @@
 
 namespace SimpleSAML\Auth;
 
-use \SimpleSAML_Auth_Source as Source;
-use \SimpleSAML_Auth_State as State;
-use \SimpleSAML_Configuration as Configuration;
-use \SimpleSAML_Error_AuthSource as AuthSourceError;
+use \SimpleSAML\Configuration;
+use \SimpleSAML\Error\AuthSource as AuthSourceError;
 use \SimpleSAML\Module;
-use \SimpleSAML_Session as Session;
+use \SimpleSAML\Session;
 use \SimpleSAML\Utils\HTTP;
 
 /**
@@ -15,9 +13,9 @@ use \SimpleSAML\Utils\HTTP;
  *
  * @package SimpleSAMLphp
  */
+
 class Simple
 {
-
     /**
      * The id of the authentication source we are accessing.
      *
@@ -26,7 +24,7 @@ class Simple
     protected $authSource;
 
     /**
-     * @var \SimpleSAML_Configuration|null
+     * @var Configuration|null
      */
     protected $app_config;
 
@@ -47,9 +45,9 @@ class Simple
     /**
      * Retrieve the implementing authentication source.
      *
-     * @return \SimpleSAML_Auth_Source The authentication source.
+     * @return Source The authentication source.
      *
-     * @throws \SimpleSAML_Error_AuthSource If the requested auth source is unknown.
+     * @throws AuthSourceError If the requested auth source is unknown.
      */
     public function getAuthSource()
     {
@@ -92,7 +90,6 @@ class Simple
      */
     public function requireAuth(array $params = array())
     {
-
         $session = Session::getSessionFromRequest();
 
         if ($session->isValid($this->authSource)) {
@@ -120,7 +117,6 @@ class Simple
      */
     public function login(array $params = array())
     {
-
         if (array_key_exists('KeepPost', $params)) {
             $keepPost = (bool) $params['KeepPost'];
         } else {
@@ -242,7 +238,7 @@ class Simple
                 $stateID = State::saveState($state, $state['ReturnStateStage']);
                 $params[$state['ReturnStateParam']] = $stateID;
             }
-            \SimpleSAML\Utils\HTTP::redirectTrustedURL($state['ReturnTo'], $params);
+            HTTP::redirectTrustedURL($state['ReturnTo'], $params);
         }
     }
 
@@ -257,7 +253,6 @@ class Simple
      */
     public function getAttributes()
     {
-
         if (!$this->isAuthenticated()) {
             // Not authenticated
             return array();
@@ -296,7 +291,6 @@ class Simple
      */
     public function getAuthDataArray()
     {
-
         if (!$this->isAuthenticated()) {
             return null;
         }

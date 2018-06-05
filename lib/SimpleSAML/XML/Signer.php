@@ -20,28 +20,26 @@ use SimpleSAML\Utils\Config;
 
 class Signer
 {
-
-
     /**
      * @var string The name of the ID attribute.
      */
-    private $idAttrName;
+    private $idAttrName = '';
 
     /**
      * @var XMLSecurityKey|bool  The private key (as an XMLSecurityKey).
      */
-    private $privateKey;
+    private $privateKey = false;
 
     /**
      * @var string The certificate (as text).
      */
-    private $certificate;
+    private $certificate = '';
 
 
     /**
-     * @var string Extra certificates which should be included in the response.
+     * @var array Extra certificates which should be included in the response.
      */
-    private $extraCertificates;
+    private $extraCertificates = array();
 
 
     /**
@@ -54,8 +52,8 @@ class Signer
      *  - privatekey       The file with the private key, relative to the cert-directory.
      *  - privatekey_pass  The passphrase for the private key.
      *  - certificate      The file with the certificate, relative to the cert-directory.
-     *  - privatekey_array The private key, as an array returned from SimpleSAML_Utilities::loadPrivateKey.
-     *  - publickey_array  The public key, as an array returned from SimpleSAML_Utilities::loadPublicKey.
+     *  - privatekey_array The private key, as an array returned from \SimpleSAML\Utils\Crypto::loadPrivateKey.
+     *  - publickey_array  The public key, as an array returned from \SimpleSAML\Utils\Crypto::loadPublicKey.
      *  - id               The name of the ID attribute.
      *
      * @param array $options  Associative array with options for the constructor. Defaults to an empty array.
@@ -63,11 +61,6 @@ class Signer
     public function __construct($options = array())
     {
         assert(is_array($options));
-
-        $this->idAttrName = false;
-        $this->privateKey = false;
-        $this->certificate = false;
-        $this->extraCertificates = array();
 
         if (array_key_exists('privatekey', $options)) {
             $pass = null;
@@ -100,7 +93,7 @@ class Signer
      * Set the private key from an array.
      *
      * This function loads the private key from an array matching what is returned
-     * by SimpleSAML_Utilities::loadPrivateKey(...).
+     * by \SimpleSAML\Utils\Crypto::loadPrivateKey(...).
      *
      * @param array $privatekey  The private key.
      */
@@ -109,7 +102,7 @@ class Signer
         assert(is_array($privatekey));
         assert(array_key_exists('PEM', $privatekey));
 
-        $this->privateKey = new XMLSecurityKey(XMLSecurityKey::RSA_SHA1, array('type' => 'private'));
+        $this->privateKey = new XMLSecurityKey(XMLSecurityKey::RSA_SHA256, array('type' => 'private'));
         if (array_key_exists('password', $privatekey)) {
             $this->privateKey->passphrase = $privatekey['password'];
         }
@@ -162,7 +155,7 @@ class Signer
      * Set the public key / certificate we should include in the signature.
      *
      * This function loads the public key from an array matching what is returned
-     * by SimpleSAML_Utilities::loadPublicKey(...).
+     * by \SimpleSAML\Utils\Crypto::loadPublicKey(...).
      *
      * @param array $publickey The public key.
      * @throws \Exception
@@ -208,10 +201,11 @@ class Signer
             throw new \Exception('Could not find certificate file "' . $certFile . '".');
         }
 
-        $this->certificate = file_get_contents($certFile);
-        if ($this->certificate === false) {
+        $cert = file_get_contents($certFile);
+        if ($cert === false) {
             throw new \Exception('Unable to read certificate file "' . $certFile . '".');
         }
+        $this->certificate = $cert;
     }
 
 
@@ -291,13 +285,13 @@ class Signer
         $objXMLSecDSig->setCanonicalMethod(XMLSecurityDSig::EXC_C14N);
 
         $options = array();
-        if ($this->idAttrName !== false) {
+        if (!empty($this->idAttrName)) {
             $options['id_name'] = $this->idAttrName;
         }
 
         $objXMLSecDSig->addReferenceList(
             array($node),
-            XMLSecurityDSig::SHA1,
+            XMLSecurityDSig::SHA256,
             array('http://www.w3.org/2000/09/xmldsig#enveloped-signature', XMLSecurityDSig::EXC_C14N),
             $options
         );
@@ -306,10 +300,8 @@ class Signer
         $objXMLSecDSig->sign($this->privateKey);
 
 
-        if ($this->certificate !== false) {
-            // Add the certificate to the signature
-            $objXMLSecDSig->add509Cert($this->certificate, true);
-        }
+        // Add the certificate to the signature
+        $objXMLSecDSig->add509Cert($this->certificate, true);
 
         // Add extra certificates
         foreach ($this->extraCertificates as $certificate) {

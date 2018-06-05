@@ -6,26 +6,26 @@
  * @package SimpleSAMLphp
  */
 
-SimpleSAML\Logger::info('expirycheck - User has been warned that NetID is near to expirational date.');
+\SimpleSAML\Logger::info('expirycheck - User has been warned that NetID is near to expirational date.');
 
 if (!array_key_exists('StateId', $_REQUEST)) {
-    throw new SimpleSAML_Error_BadRequest('Missing required StateId query parameter.');
+    throw new \SimpleSAML\Error\BadRequest('Missing required StateId query parameter.');
 }
 $id = $_REQUEST['StateId'];
-$state = SimpleSAML_Auth_State::loadState($id, 'expirywarning:about2expire');
+$state = \SimpleSAML\Auth\State::loadState($id, 'expirywarning:about2expire');
 
 if (array_key_exists('yes', $_REQUEST)) {
     // The user has pressed the yes-button
-    SimpleSAML_Auth_ProcessingChain::resumeProcessing($state);
+    \SimpleSAML\Auth\ProcessingChain::resumeProcessing($state);
 }
 
-$globalConfig = SimpleSAML_Configuration::getInstance();
+$globalConfig = \SimpleSAML\Configuration::getInstance();
 
 $daysleft = $state['daysleft'];
 
-$t = new SimpleSAML_XHTML_Template($globalConfig, 'expirycheck:about2expire.php');
+$t = new \SimpleSAML\XHTML\Template($globalConfig, 'expirycheck:about2expire.php');
 $t->data['autofocus'] = 'yesbutton';
-$t->data['yesTarget'] = SimpleSAML\Module::getModuleURL('expirycheck/about2expire.php');
+$t->data['yesTarget'] = \SimpleSAML\Module::getModuleURL('expirycheck/about2expire.php');
 $t->data['yesData'] = array('StateId' => $id);
 $t->data['warning'] = $warning;
 $t->data['expireOnDate'] = $state['expireOnDate'];

@@ -23,7 +23,7 @@ class Validator
     private $x509Certificate;
 
     /**
-     * @var array This variable contains the nodes which are signed.
+     * @var array|null This variable contains the nodes which are signed.
      */
     private $validNodes = null;
 
@@ -36,7 +36,7 @@ class Validator
      * take the following values:
      * - NULL/FALSE: No validation will be performed. This is the default.
      * - A string: Assumed to be a PEM-encoded certificate / public key.
-     * - An array: Assumed to be an array returned by SimpleSAML_Utilities::loadPublicKey.
+     * - An array: Assumed to be an array returned by \SimpleSAML\Utils\Crypto::loadPublicKey.
      *
      * @param \DOMNode $xmlNode The XML node which contains the Signature element.
      * @param string|array $idAttribute The ID attribute which is used in node references. If
@@ -325,7 +325,8 @@ class Validator
         assert(is_string($caFile));
 
         // Clear openssl errors
-        while (openssl_error_string() !== false);
+        while (openssl_error_string() !== false) {
+        }
 
         $res = openssl_x509_checkpurpose($certificate, X509_PURPOSE_ANY, array($caFile));
 

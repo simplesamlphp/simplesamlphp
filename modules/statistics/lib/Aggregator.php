@@ -1,9 +1,13 @@
 <?php
+
+namespace SimpleSAML\Module\statistics;
+
 /*
  * @author Andreas Åkre Solberg <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
  */
-class sspmod_statistics_Aggregator
+
+class Aggregator
 {
     private $statconfig;
     private $statdir;
@@ -13,6 +17,7 @@ class sspmod_statistics_Aggregator
     private $metadata;
     private $fromcmdline;
     private $starttime;
+    private $timeres;
 
     /**
      * Constructor
@@ -20,7 +25,7 @@ class sspmod_statistics_Aggregator
     public function __construct($fromcmdline = false)
     {
         $this->fromcmdline = $fromcmdline;
-        $this->statconfig = SimpleSAML_Configuration::getConfig('module_statistics.php');
+        $this->statconfig = \SimpleSAML\Configuration::getConfig('module_statistics.php');
 
         $this->statdir = $this->statconfig->getValue('statdir');
         $this->inputfile = $this->statconfig->getValue('inputfile');
@@ -73,25 +78,25 @@ class sspmod_statistics_Aggregator
         $this->loadMetadata();
 
         if (!is_dir($this->statdir)) {
-            throw new Exception('Statistics module: output dir do not exists [' . $this->statdir . ']');
+            throw new \Exception('Statistics module: output dir do not exists [' . $this->statdir . ']');
         }
 
         if (!file_exists($this->inputfile)) {
-            throw new Exception('Statistics module: input file do not exists [' . $this->inputfile . ']');
+            throw new \Exception('Statistics module: input file do not exists [' . $this->inputfile . ']');
         }
 
         $file = fopen($this->inputfile, 'r');
 
         if ($file === false) {
-            throw new Exception('Statistics module: unable to open file [' . $this->inputfile . ']');
+            throw new \Exception('Statistics module: unable to open file [' . $this->inputfile . ']');
         }
 
-        $logparser = new sspmod_statistics_LogParser(
+        $logparser = new LogParser(
             $this->statconfig->getValue('datestart', 0), $this->statconfig->getValue('datelength', 15), $this->statconfig->getValue('offsetspan', 44)
         );
         $datehandler = array(
-            'default' => new sspmod_statistics_DateHandler($this->offset),
-            'month' => new  sspmod_statistics_DateHandlerMonth($this->offset),
+            'default' => new DateHandler($this->offset),
+            'month' => new  DateHandlerMonth($this->offset),
         );
 
         $notBefore = 0;
@@ -168,7 +173,7 @@ class sspmod_statistics_Aggregator
                     continue;
                 }
 
-                foreach ($this->timeres AS $tres => $tresconfig ) {
+                foreach ($this->timeres as $tres => $tresconfig ) {
                     $dh = 'default';
                     if (isset($tresconfig['customDateHandler'])) {
                         $dh = $tresconfig['customDateHandler'];
@@ -219,26 +224,17 @@ class sspmod_statistics_Aggregator
     private function cummulateData($previous, $newdata)
     {
         $dataset = array();
-        foreach ($previous as $slot => $dataarray) {
-            if (!array_key_exists($slot, $dataset)) {
-                $dataset[$slot] = array();
-            }
-            foreach ($dataarray as $key => $data) {
-                if (!array_key_exists($key, $dataset[$slot])) {
-                    $dataset[$slot][$key] = 0;
+        foreach (func_get_args() as $item) {
+            foreach ($item as $slot => $dataarray) {
+                if (!array_key_exists($slot, $dataset)) {
+                    $dataset[$slot] = array();
                 }
-                $dataset[$slot][$key] += $data;
-            }
-        }
-        foreach ($newdata as $slot => $dataarray) {
-            if (!array_key_exists($slot, $dataset)) {
-                $dataset[$slot] = array();
-            }
-            foreach ($dataarray as $key => $data) {
-                if (!array_key_exists($key, $dataset[$slot])) {
-                    $dataset[$slot][$key] = 0;
+                foreach ($dataarray as $key => $data) {
+                    if (!array_key_exists($key, $dataset[$slot])) {
+                        $dataset[$slot][$key] = 0;
+                    }
+                    $dataset[$slot][$key] += $data;
                 }
-                $dataset[$slot][$key] += $data;
             }
         }
         return $dataset;
@@ -247,8 +243,8 @@ class sspmod_statistics_Aggregator
     public function store($results)
     {
         $datehandler = array(
-            'default' => new sspmod_statistics_DateHandler($this->offset),
-            'month' => new  sspmod_statistics_DateHandlerMonth($this->offset),
+            'default' => new DateHandler($this->offset),
+            'month' => new DateHandlerMonth($this->offset),
         );
 
         // Iterate the first level of results, which is per rule, as defined in the config.

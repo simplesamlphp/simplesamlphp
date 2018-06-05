@@ -26,14 +26,14 @@ require_once($baseDir.'/lib/_autoload.php');
 
 // Initialize the configuration
 $configdir = SimpleSAML\Utils\Config::getConfigDir();
-SimpleSAML_Configuration::setConfigDir($configdir);
+\SimpleSAML\Configuration::setConfigDir($configdir);
 
 // Things we should warn the user about
 $warnServerDown = 0;
 $warnBigSlab = 0;
 
 // We use the stats interface to determine which servers exists
-$stats = SimpleSAML_Memcache::getRawStats();
+$stats = \SimpleSAML\Memcache::getRawStats();
 
 $keys = array();
 foreach ($stats as $group) {
@@ -61,7 +61,7 @@ echo("Starting synchronization.\n");
 $skipped = 0;
 $sync = 0;
 foreach ($keys as $key) {
-    $res = SimpleSAML_Memcache::get($key);
+    $res = \SimpleSAML\Memcache::get($key);
     if ($res === null) {
         $skipped += 1;
     } else {

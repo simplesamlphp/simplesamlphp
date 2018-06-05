@@ -1,10 +1,10 @@
 <?php
 
-$config = SimpleSAML_Configuration::getInstance();
-$statconfig = SimpleSAML_Configuration::getConfig('module_statistics.php');
-$session = SimpleSAML_Session::getSessionFromRequest();
+$config = \SimpleSAML\Configuration::getInstance();
+$statconfig = \SimpleSAML\Configuration::getConfig('module_statistics.php');
+$session = \SimpleSAML\Session::getSessionFromRequest();
 
-sspmod_statistics_AccessCheck::checkAccess($statconfig);
+\SimpleSAML\Module\statistics\AccessCheck::checkAccess($statconfig);
 
 /*
  * Check input parameters
@@ -39,12 +39,39 @@ if ($preferRule2 === '_') {
 /*
  * Create statistics data.
  */
-$ruleset = new sspmod_statistics_Ruleset($statconfig);
+$ruleset = new \SimpleSAML\Module\statistics\Ruleset($statconfig);
 $statrule = $ruleset->getRule($preferRule);
 $rule = $statrule->getRuleID();
 
-$dataset = $statrule->getDataset($preferTimeRes, $preferTime);
-$dataset->setDelimiter($delimiter);
+$t = new \SimpleSAML\XHTML\Template($config, 'statistics:statistics.tpl.php');
+$t->data['pageid'] = 'statistics';
+$t->data['header'] = 'stat';
+$t->data['available.rules'] = $ruleset->availableRulesNames();
+$t->data['selected.rule'] = $rule;
+$t->data['selected.rule2'] = $preferRule2;
+
+try {
+    $dataset = $statrule->getDataset($preferTimeRes, $preferTime);
+    $dataset->setDelimiter($delimiter);
+    $dataset->aggregateSummary();
+    $dataset->calculateMax();
+
+    if (array_key_exists('output', $_REQUEST) && $_REQUEST['output'] === 'csv') {
+        header('Content-type: text/csv');
+        header('Content-Disposition: attachment; filename="simplesamlphp-data.csv"');
+        $data = $dataset->getDebugData();
+        foreach ($data as $de) {
+            if (isset($de[1])) {
+                echo '"'.$de[0].'",'.$de[1]."\n";
+            }
+        }
+        exit;
+    }
+} catch (\Exception $e) {
+    $t->data['error'] = "No data available";
+    $t->show();
+    exit;
+}
 
 $delimiter = $dataset->getDelimiter();
 
@@ -53,9 +80,6 @@ $fileslot = $dataset->getFileslot();
 $availableFileSlots = $statrule->availableFileSlots($timeres);
 
 $timeNavigation = $statrule->getTimeNavigation($timeres, $preferTime);
-
-$dataset->aggregateSummary();
-$dataset->calculateMax();
 
 $piedata = $dataset->getPieData();
 
@@ -70,37 +94,29 @@ $maxes[] = $dataset->getMax();
 
 if (isset($preferRule2)) {
     $statrule = $ruleset->getRule($preferRule2);
-    $dataset2 = $statrule->getDataset($preferTimeRes, $preferTime);
-    $dataset2->aggregateSummary();
-    $dataset2->calculateMax();
+    try {
+        $dataset2 = $statrule->getDataset($preferTimeRes, $preferTime);
+        $dataset2->aggregateSummary();
+        $dataset2->calculateMax();
 
-    $datasets[] = $dataset2->getPercentValues();
-    $maxes[] = $dataset2->getMax();
+        $datasets[] = $dataset2->getPercentValues();
+        $maxes[] = $dataset2->getMax();
+    } catch (\Exception $e) {
+        $t->data['error'] = "No data available to compare";
+        $t->show();
+        exit;
+    }
 }
 
 $dimx = $statconfig->getValue('dimension.x', 800);
 $dimy = $statconfig->getValue('dimension.y', 350);
-$grapher = new sspmod_statistics_Graph_GoogleCharts($dimx, $dimy);
+$grapher = new \SimpleSAML\Module\statistics\Graph\GoogleCharts($dimx, $dimy);
 
-if (array_key_exists('output', $_REQUEST) && $_REQUEST['output'] === 'csv') {
-    header('Content-type: text/csv');
-    header('Content-Disposition: attachment; filename="simplesamlphp-data.csv"');
-    $data = $dataset->getDebugData();
-    foreach ($data as $de) {
-        if (isset($de[1])) {
-            echo '"' . $de[0] . '",' . $de[1] . "\n";
-        }
-    }
-    exit;
-}
-
-$t = new SimpleSAML_XHTML_Template($config, 'statistics:statistics.tpl.php');
-$t->data['pageid'] = 'statistics';
-$t->data['header'] = 'stat';
 $t->data['imgurl'] = $grapher->show($axis['axis'], $axis['axispos'], $datasets, $maxes);
 if (isset($piedata)) {
-    $t->data['pieimgurl'] = $grapher->showPie( $dataset->getDelimiterPresentationPie(), $piedata);
+    $t->data['pieimgurl'] = $grapher->showPie($dataset->getDelimiterPresentationPie(), $piedata);
 }
+
 $t->data['available_rules'] = $ruleset->availableRulesNames();
 $t->data['available_times'] = $statrule->availableFileSlots($timeres);
 $t->data['available_timeres'] = $statrule->availableTimeRes();
@@ -122,6 +138,7 @@ $t->data['topdelimiters'] = $dataset->getTopDelimiters();
 $t->data['availdelimiters'] = $dataset->availDelimiters();
 
 $t->data['delimiterPresentation'] = $dataset->getDelimiterPresentation();
+
 $t->data['post_rule'] = getBaseURL($t, 'post', 'rule');
 $t->data['post_rule2'] = getBaseURL($t, 'post', 'rule2');
 $t->data['post_d'] = getBaseURL($t, 'post', 'd');
@@ -158,7 +175,7 @@ function getBaseURL($t, $type = 'get', $key = null, $value = null)
     }
 
     if ($type === 'get') {
-        return SimpleSAML\Module::getModuleURL("statistics/showstats.php") . '?' . http_build_query($vars, '', '&');
+        return \SimpleSAML\Module::getModuleURL("statistics/showstats.php").'?'.http_build_query($vars, '', '&amp;');
     }
     return $vars;
 }

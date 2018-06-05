@@ -29,26 +29,6 @@ $config = array(
         'discoURL' => null,
 
         /*
-         * WARNING: SHA-1 is disallowed starting January the 1st, 2014.
-         *
-         * Uncomment the following option to start using SHA-256 for your signatures.
-         * Currently, SimpleSAMLphp defaults to SHA-1, which has been deprecated since
-         * 2011, and will be disallowed by NIST as of 2014. Please refer to the following
-         * document for more information:
-         *
-         * http://csrc.nist.gov/publications/nistpubs/800-131A/sp800-131A.pdf
-         *
-         * If you are uncertain about identity providers supporting SHA-256 or other
-         * algorithms of the SHA-2 family, you can configure it individually in the
-         * IdP-remote metadata set for those that support it. Once you are certain that
-         * all your configured IdPs support SHA-2, you can safely remove the configuration
-         * options in the IdP-remote metadata set and uncomment the following option.
-         *
-         * Please refer to the hosted SP configuration reference for more information.
-          */
-        //'signature.algorithm' => 'http://www.w3.org/2001/04/xmldsig-more#rsa-sha256',
-
-        /*
          * The attributes parameter must contain an array of desired attributes by the SP.
          * The attributes can be expressed as an array of names or as an associative array
          * in the form of 'friendlyName' => 'name'. This feature requires 'name' to be set.
@@ -149,53 +129,6 @@ $config = array(
     */
 
     /*
-    'openid' => array(
-        'openid:OpenIDConsumer',
-        'attributes.required' => array('nickname'),
-        'attributes.optional' => array('fullname', 'email',),
-        // 'sreg.validate' => FALSE,
-        'attributes.ax_required' => array('http://axschema.org/namePerson/friendly'),
-        'attributes.ax_optional' => array('http://axschema.org/namePerson','http://axschema.org/contact/email'),
-        // Prefer HTTP redirect over POST
-        // 'prefer_http_redirect' => FALSE,
-    ),
-    */
-
-    /*
-    // Example of an authsource that authenticates against Google.
-    // See: http://code.google.com/apis/accounts/docs/OpenID.html
-    'google' => array(
-        'openid:OpenIDConsumer',
-        // Googles OpenID endpoint.
-        'target' => 'https://www.google.com/accounts/o8/id',
-        // Custom realm
-        // 'realm' => 'http://*.example.org',
-        // Attributes that google can supply.
-        'attributes.ax_required' => array(
-            //'http://axschema.org/namePerson/first',
-            //'http://axschema.org/namePerson/last',
-            //'http://axschema.org/contact/email',
-            //'http://axschema.org/contact/country/home',
-            //'http://axschema.org/pref/language',
-        ),
-        // custom extension arguments
-        'extension.args' => array(
-            //'http://specs.openid.net/extensions/ui/1.0' => array(
-            //	'mode' => 'popup',
-            //	'icon' => 'true',
-            //),
-        ),
-    ),
-    */
-
-    /*
-    'papi' => array(
-        'authpapi:PAPI',
-    ),
-    */
-
-
-    /*
     'facebook' => array(
         'authfacebook:Facebook',
         // Register your Facebook application on http://www.facebook.com/developers
@@ -239,17 +172,6 @@ $config = array(
         // Forces the user to enter their credentials to ensure the correct users account is authorized.
         // Details: https://dev.twitter.com/docs/api/1/get/oauth/authenticate
         'force_login' => FALSE,
-    ),
-    */
-
-    /*
-    // MySpace OAuth Authentication API.
-    // Register your application to get an API key here:
-    //  http://developer.myspace.com/
-    'myspace' => array(
-        'authmyspace:MySpace',
-        'key' => 'xxxxxxxxxxxxxxxx',
-        'secret' => 'xxxxxxxxxxxxxxxx',
     ),
     */
 

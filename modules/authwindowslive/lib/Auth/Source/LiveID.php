@@ -1,5 +1,7 @@
 <?php
 
+namespace SimpleSAML\Module\authwindowslive\Auth\Source;
+
 /**
  * Authenticate using LiveID.
  *
@@ -7,9 +9,8 @@
  * @author Guy Halse, TENET.
  * @package SimpleSAMLphp
  */
-class sspmod_authwindowslive_Auth_Source_LiveID extends SimpleSAML_Auth_Source
+class LiveID extends \SimpleSAML\Auth\Source
 {
-
     /**
      * The string used to identify our states.
      */
@@ -30,7 +31,7 @@ class sspmod_authwindowslive_Auth_Source_LiveID extends SimpleSAML_Auth_Source
      * @param array $info  Information about this authentication source.
      * @param array $config  Configuration.
      *
-     * @throws Exception In case of misconfiguration.
+     * @throws \Exception In case of misconfiguration.
      */
     public function __construct($info, $config)
     {
@@ -41,13 +42,13 @@ class sspmod_authwindowslive_Auth_Source_LiveID extends SimpleSAML_Auth_Source
         parent::__construct($info, $config);
 
         if (!array_key_exists('key', $config)) {
-            throw new Exception('LiveID authentication source is not properly configured: missing [key]');
+            throw new \Exception('LiveID authentication source is not properly configured: missing [key]');
         }
 
         $this->key = $config['key'];
 
         if (!array_key_exists('secret', $config)) {
-            throw new Exception('LiveID authentication source is not properly configured: missing [secret]');
+            throw new \Exception('LiveID authentication source is not properly configured: missing [secret]');
         }
 
         $this->secret = $config['secret'];
@@ -66,9 +67,9 @@ class sspmod_authwindowslive_Auth_Source_LiveID extends SimpleSAML_Auth_Source
         // we are going to need the authId in order to retrieve this authentication source later
         $state[self::AUTHID] = $this->authId;
 
-        $stateID = SimpleSAML_Auth_State::saveState($state, self::STAGE_INIT);
+        $stateID = \SimpleSAML\Auth\State::saveState($state, self::STAGE_INIT);
 
-        SimpleSAML\Logger::debug('authwindowslive auth state id = ' . $stateID);
+        \SimpleSAML\Logger::debug('authwindowslive auth state id = ' . $stateID);
 
         // authenticate the user
         // documentation at:
@@ -77,7 +78,7 @@ class sspmod_authwindowslive_Auth_Source_LiveID extends SimpleSAML_Auth_Source
                 . '?client_id=' . $this->key
                 . '&response_type=code'
                 . '&response_mode=query'
-                . '&redirect_uri=' . urlencode(SimpleSAML\Module::getModuleUrl('authwindowslive') . '/linkback.php')
+                . '&redirect_uri=' . urlencode(\SimpleSAML\Module::getModuleUrl('authwindowslive') . '/linkback.php')
                 . '&state=' . urlencode($stateID)
                 . '&scope=' . urlencode('openid https://graph.microsoft.com/user.read')
         ;
@@ -89,11 +90,11 @@ class sspmod_authwindowslive_Auth_Source_LiveID extends SimpleSAML_Auth_Source
     /**
      * @param $state
      *
-     * @throws Exception
+     * @throws \Exception
      */
     public function finalStep(&$state)
     {
-        SimpleSAML\Logger::debug(
+        \SimpleSAML\Logger::debug(
             "authwindowslive oauth: Using this verification code [".$state['authwindowslive:verification_code']."]"
         );
 
@@ -104,7 +105,7 @@ class sspmod_authwindowslive_Auth_Source_LiveID extends SimpleSAML_Auth_Source
                 . '&client_secret=' . urlencode($this->secret)
                 . '&scope=' . urlencode('https://graph.microsoft.com/user.read')
                 . '&grant_type=authorization_code'
-                . '&redirect_uri=' . urlencode(SimpleSAML\Module::getModuleUrl('authwindowslive') . '/linkback.php')
+                . '&redirect_uri=' . urlencode(\SimpleSAML\Module::getModuleUrl('authwindowslive') . '/linkback.php')
                 . '&code=' . urlencode($state['authwindowslive:verification_code']);
 
         $context = array(
@@ -121,13 +122,13 @@ class sspmod_authwindowslive_Auth_Source_LiveID extends SimpleSAML_Auth_Source
 
         // error checking of $response to make sure we can proceed
         if (!array_key_exists('access_token', $response)) {
-            throw new Exception(
+            throw new \Exception(
                 '['.$response['error'].'] '.$response['error_description'].
                 "\r\nNo access_token returned - cannot proceed\r\n" . implode(', ', $response['error_codes'])
             );
         }
 
-        SimpleSAML\Logger::debug(
+        \SimpleSAML\Logger::debug(
             "authwindowslive: Got an access token from the OAuth service provider [".$response['access_token']."]"
         );
 
@@ -139,7 +140,7 @@ class sspmod_authwindowslive_Auth_Source_LiveID extends SimpleSAML_Auth_Source
 
         // this is the simplest case
         if (!array_key_exists('@odata.context', $userdata) || array_key_exists('error', $userdata)) {
-            throw new Exception(
+            throw new \Exception(
                 'Unable to retrieve userdata from Microsoft Graph ['.$userdata['error']['code'].'] '.
                 $userdata['error']['message']
             );
@@ -155,7 +156,7 @@ class sspmod_authwindowslive_Auth_Source_LiveID extends SimpleSAML_Auth_Source
         }
 
 
-        SimpleSAML\Logger::debug('LiveID Returned Attributes: '. implode(", ", array_keys($attributes)));
+        \SimpleSAML\Logger::debug('LiveID Returned Attributes: '. implode(", ", array_keys($attributes)));
 
         $state['Attributes'] = $attributes;
     }

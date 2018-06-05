@@ -25,7 +25,7 @@ class Config
             throw new \InvalidArgumentException('Invalid input parameters.');
         }
 
-        $globalConfig = \SimpleSAML_Configuration::getInstance();
+        $globalConfig = \SimpleSAML\Configuration::getInstance();
         $base = $globalConfig->getPathValue('certdir', 'cert/');
         return System::resolvePath($path, $base);
     }
@@ -48,7 +48,7 @@ class Config
      */
     public static function getSecretSalt()
     {
-        $secretSalt = \SimpleSAML_Configuration::getInstance()->getString('secretsalt');
+        $secretSalt = \SimpleSAML\Configuration::getInstance()->getString('secretsalt');
         if ($secretSalt === 'defaultsecretsalt') {
             throw new \InvalidArgumentException('The "secretsalt" configuration option must be set to a secret value.');
         }
@@ -69,6 +69,11 @@ class Config
         $configDir    = dirname(dirname(dirname(__DIR__))) . '/config';
         /** @var string|false $configDirEnv */
         $configDirEnv = getenv('SIMPLESAMLPHP_CONFIG_DIR');
+        
+        if($configDirEnv === false) {
+            $configDirEnv = getenv('REDIRECT_SIMPLESAMLPHP_CONFIG_DIR');
+        }
+        
         if ($configDirEnv !== false) {
             if (!is_dir($configDirEnv)) {
                 throw new \InvalidArgumentException(

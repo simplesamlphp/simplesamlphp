@@ -1,7 +1,7 @@
 <?php
-/* 
+/*
  * The configuration of SimpleSAMLphp
- * 
+ *
  */
 
 $config = array(
@@ -19,7 +19,6 @@ $config = array(
      * baseurlpath is a *URL path* (not a filesystem path).
      * A valid format for 'baseurlpath' is:
      * [(http|https)://(hostname|fqdn)[:port]]/[path/to/simplesaml/]
-     * (note that it must end with a '/')
      *
      * The full url format is useful if your SimpleSAMLphp setup is hosted behind
      * a reverse proxy. In that case you can specify the external url here.
@@ -49,7 +48,7 @@ $config = array(
          * need to compute the right URLs yourself and pass them dynamically
          * to SimpleSAMLphp's API.
          */
-        //'baseURL' => 'https://example.com'
+        //'baseURL' => 'https://example.com',
     //),
 
     /*
@@ -61,7 +60,7 @@ $config = array(
      * - 'temdir': Saving temporary files. SimpleSAMLphp will attempt to create
      *   this directory if it doesn't exist.
      * When specified as a relative path, this is relative to the SimpleSAMLphp
-     * root directory. 
+     * root directory.
      */
     'certdir' => 'cert/',
     'loggingdir' => 'log/',
@@ -104,7 +103,7 @@ $config = array(
      * 'secretsalt' can be any valid string of any length.
      *
      * A possible way to generate a random salt is by running the following command from a unix shell:
-     * tr -c -d '0123456789abcdefghijklmnopqrstuvwxyz' </dev/urandom | dd bs=32 count=1 2>/dev/null;echo
+     * LC_CTYPE=C tr -c -d '0123456789abcdefghijklmnopqrstuvwxyz' </dev/urandom | dd bs=32 count=1 2>/dev/null;echo
      */
     'secretsalt' => 'defaultsecretsalt',
 
@@ -232,11 +231,11 @@ $config = array(
     'errorreporting' => true,
 
     /*
-     * Custom error show function called from SimpleSAML_Error_Error::show.
+     * Custom error show function called from SimpleSAML\Error\Error::show.
      * See docs/simplesamlphp-errorhandling.txt for function code example.
      *
      * Example:
-     *   'errors.show_function' => array('sspmod_example_Error_Show', 'show'),
+     *   'errors.show_function' => array('SimpleSAML\Module\example\Error', 'show'),
      */
 
 
@@ -352,7 +351,7 @@ $config = array(
      * Example:
      *   'proxy.auth' = 'myuser:password'
      */
-    'proxy.auth' => false,
+    //'proxy.auth' => 'myuser:password',
 
 
 
@@ -378,6 +377,7 @@ $config = array(
      */
     'database.username' => 'simplesamlphp',
     'database.password' => 'secret',
+    'database.options' => array(),
 
     /*
      * (Optional) Table prefix
@@ -563,7 +563,7 @@ $config = array(
      * See docs/simplesamlphp-advancedfeatures.txt for function code example.
      *
      * Example:
-     *   'session.check_function' => array('sspmod_example_Util', 'checkSession'),
+     *   'session.check_function' => array('\SimpleSAML\Module\example\Util', 'checkSession'),
      */
 
 
@@ -740,7 +740,7 @@ $config = array(
      * the default language for the user.
      *
      * Example:
-     *   'language.get_language_function' => array('sspmod_example_Template', 'getLanguage'),
+     *   'language.get_language_function' => array('\SimpleSAML\Module\example\Template', 'getLanguage'),
      */
 
     /*

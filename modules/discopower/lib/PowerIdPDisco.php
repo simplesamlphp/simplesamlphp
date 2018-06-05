@@ -1,5 +1,6 @@
 <?php
 
+namespace SimpleSAML\Module\discopower;
 
 /**
  * This class implements a generic IdP discovery service, for use in various IdP discovery service pages. This should
@@ -10,12 +11,13 @@
  * @author Andreas Åkre Solberg <andreas@uninett.no>, UNINETT AS.
  * @package SimpleSAMLphp
  */
-class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco
+
+class PowerIdPDisco extends \SimpleSAML\XHTML\IdPDisco
 {
     /**
      * The configuration for this instance.
      *
-     * @var SimpleSAML_Configuration
+     * @var \SimpleSAML\Configuration
      */
     private $discoconfig;
 
@@ -49,7 +51,7 @@ class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco
     {
         parent::__construct($metadataSets, $instance);
 
-        $this->discoconfig = SimpleSAML_Configuration::getConfig('module_discopower.php');
+        $this->discoconfig = \SimpleSAML\Configuration::getConfig('module_discopower.php');
 
         $this->cdcDomain = $this->discoconfig->getString('cdc.domain', null);
         if ($this->cdcDomain !== null && $this->cdcDomain[0] !== '.') {
@@ -70,7 +72,7 @@ class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco
      */
     protected function log($message)
     {
-        SimpleSAML\Logger::info('PowerIdPDisco.'.$this->instance.': '.$message);
+        \SimpleSAML\Logger::info('PowerIdPDisco.'.$this->instance.': '.$message);
     }
 
 
@@ -133,7 +135,7 @@ class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco
         }
 
         foreach ($slist as $tab => $tbslist) {
-            uasort($slist[$tab], array('sspmod_discopower_PowerIdPDisco', 'mcmp'));
+            uasort($slist[$tab], array('\SimpleSAML\Module\discopower\PowerIdPDisco', 'mcmp'));
         }
 
         return $slist;
@@ -188,7 +190,7 @@ class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco
 
         try {
             $spmd = $this->metadata->getMetaData($this->spEntityId, 'saml20-sp-remote');
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             return $list;
         }
 
@@ -245,7 +247,14 @@ class sspmod_discopower_PowerIdPDisco extends SimpleSAML_XHTML_IdPDisco
         $idpList = $this->idplistStructured($this->filterList($idpList));
         $preferredIdP = $this->getRecommendedIdP();
 
-        $t = new SimpleSAML_XHTML_Template($this->config, 'discopower:disco.tpl.php', 'disco');
+        $faventry = null;
+        foreach ($idpList AS $tab => $slist) {
+            if (!empty($preferredIdP) && array_key_exists($preferredIdP, $slist)) {
+                $faventry = $slist[$preferredIdP];
+            }
+        }
+
+        $t = new \SimpleSAML\XHTML\Template($this->config, 'discopower:disco.tpl.php', 'disco');
         $discoPowerTabs = array(
             'denmark' => $t->noop('{discopower:tabs:denmark}'),
             'edugain' => $t->noop('{discopower:tabs:edugain}'),

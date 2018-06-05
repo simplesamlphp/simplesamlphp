@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Handler for module requests.
  *
@@ -39,7 +40,7 @@ $mimeTypes = array(
 );
 
 if (empty($_SERVER['PATH_INFO'])) {
-    throw new SimpleSAML_Error_NotFound('No PATH_INFO to module.php');
+    throw new \SimpleSAML\Error\NotFound('No PATH_INFO to module.php');
 }
 
 $url = $_SERVER['PATH_INFO'];
@@ -53,7 +54,7 @@ unset($_SERVER['PATH_INFO']);
 $modEnd = strpos($url, '/', 1);
 if ($modEnd === false) {
     // the path must always be on the form /module/
-    throw new SimpleSAML_Error_NotFound('The URL must at least contain a module name followed by a slash.');
+    throw new \SimpleSAML\Error\NotFound('The URL must at least contain a module name followed by a slash.');
 }
 
 $module = substr($url, 1, $modEnd - 1);
@@ -63,7 +64,7 @@ if ($url === false) {
 }
 
 if (!SimpleSAML\Module::isModuleEnabled($module)) {
-    throw new SimpleSAML_Error_NotFound('The module \''.$module.'\' was either not found, or wasn\'t enabled.');
+    throw new \SimpleSAML\Error\NotFound('The module \''.$module.'\' was either not found, or wasn\'t enabled.');
 }
 
 /* Make sure that the request isn't suspicious (contains references to current directory or parent directory or
@@ -71,9 +72,9 @@ if (!SimpleSAML\Module::isModuleEnabled($module)) {
  * attempts to use Windows-style paths.
  */
 if (strpos($url, '\\') !== false) {
-    throw new SimpleSAML_Error_BadRequest('Requested URL contained a backslash.');
+    throw new SimpleSAML\Error\BadRequest('Requested URL contained a backslash.');
 } elseif (strpos($url, './') !== false) {
-    throw new SimpleSAML_Error_BadRequest('Requested URL contained \'./\'.');
+    throw new \SimpleSAML\Error\BadRequest('Requested URL contained \'./\'.');
 }
 
 $moduleDir = SimpleSAML\Module::getModuleDir($module).'/www/';
@@ -110,13 +111,13 @@ if (is_dir($path)) {
     /* Path is a directory - maybe no index file was found in the previous step, or maybe the path didn't end with
      * a slash. Either way, we don't do directory listings.
      */
-    throw new SimpleSAML_Error_NotFound('Directory listing not available.');
+    throw new \SimpleSAML\Error\NotFound('Directory listing not available.');
 }
 
 if (!file_exists($path)) {
     // file not found
     SimpleSAML\Logger::info('Could not find file \''.$path.'\'.');
-    throw new SimpleSAML_Error_NotFound('The URL wasn\'t found in the module.');
+    throw new \SimpleSAML\Error\NotFound('The URL wasn\'t found in the module.');
 }
 
 if (preg_match('#\.php$#D', $path)) {

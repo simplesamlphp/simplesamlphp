@@ -1,12 +1,13 @@
 <?php
+
+namespace SimpleSAML\Error;
+
 /**
  * Class that maps SimpleSAMLphp error codes to translateable strings.
  *
  * @author Hanne Moa, UNINETT AS. <hanne.moa@uninett.no>
  * @package SimpleSAMLphp
  */
-
-namespace SimpleSAML\Error;
 
 class ErrorCodes
 {

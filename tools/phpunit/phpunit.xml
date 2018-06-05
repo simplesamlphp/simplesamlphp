@@ -23,6 +23,7 @@
             <exclude>
                 <directory>./../../vendor/</directory>
                 <directory>./../../tests/</directory>
+                <file>./../../lib/SimpleSAML/Utils/HttpAdapter.php</file>
             </exclude>
         </whitelist>
     </filter>

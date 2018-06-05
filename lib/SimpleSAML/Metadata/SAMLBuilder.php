@@ -1,5 +1,6 @@
 <?php
 
+namespace SimpleSAML\Metadata;
 
 /**
  * Class for generating SAML 2.0 metadata from SimpleSAMLphp metadata arrays.
@@ -8,10 +9,9 @@
  *
  * @package SimpleSAMLphp
  */
-class SimpleSAML_Metadata_SAMLBuilder
+
+class SAMLBuilder
 {
-
-
     /**
      * The EntityDescriptor we are building.
      *
@@ -76,7 +76,7 @@ class SimpleSAML_Metadata_SAMLBuilder
     /**
      * Retrieve the EntityDescriptor element which is generated for this entity.
      *
-     * @return DOMElement The EntityDescriptor element of this entity.
+     * @return \DOMElement The EntityDescriptor element of this entity.
      */
     public function getEntityDescriptor()
     {
@@ -102,7 +102,7 @@ class SimpleSAML_Metadata_SAMLBuilder
 
         $xml = $this->getEntityDescriptor();
         if ($formatted) {
-            SimpleSAML\Utils\XML::formatDOMElement($xml);
+            \SimpleSAML\Utils\XML::formatDOMElement($xml);
         }
 
         return $xml->ownerDocument->saveXML();
@@ -120,9 +120,9 @@ class SimpleSAML_Metadata_SAMLBuilder
         assert(isset($metadata['entityid']));
         assert(isset($metadata['metadata-set']));
 
-        $metadata = SimpleSAML_Configuration::loadFromArray($metadata, $metadata['entityid']);
+        $metadata = \SimpleSAML\Configuration::loadFromArray($metadata, $metadata['entityid']);
         $defaultEndpoint = $metadata->getDefaultEndpoint('SingleSignOnService');
-        $e = new sspmod_adfs_SAML2_XML_fed_SecurityTokenServiceType();
+        $e = new \SimpleSAML\Module\adfs\SAML2\XML\fed\SecurityTokenServiceType();
         $e->Location = $defaultEndpoint['Location'];
 
         $this->addCertificate($e, $metadata);
@@ -134,10 +134,10 @@ class SimpleSAML_Metadata_SAMLBuilder
     /**
      * Add extensions to the metadata.
      *
-     * @param SimpleSAML_Configuration    $metadata The metadata to get extensions from.
+     * @param \SimpleSAML\Configuration    $metadata The metadata to get extensions from.
      * @param \SAML2\XML\md\RoleDescriptor $e Reference to the element where the Extensions element should be included.
      */
-    private function addExtensions(SimpleSAML_Configuration $metadata, \SAML2\XML\md\RoleDescriptor $e)
+    private function addExtensions(\SimpleSAML\Configuration $metadata, \SAML2\XML\md\RoleDescriptor $e)
     {
         if ($metadata->hasValue('tags')) {
             $a = new \SAML2\XML\saml\Attribute();
@@ -299,8 +299,7 @@ class SimpleSAML_Metadata_SAMLBuilder
      */
     public function addOrganizationInfo(array $metadata)
     {
-        if (
-            empty($metadata['OrganizationName']) ||
+        if (empty($metadata['OrganizationName']) ||
             empty($metadata['OrganizationDisplayName']) ||
             empty($metadata['OrganizationURL'])
         ) {
@@ -308,9 +307,9 @@ class SimpleSAML_Metadata_SAMLBuilder
             return;
         }
 
-        $orgName = SimpleSAML\Utils\Arrays::arrayize($metadata['OrganizationName'], 'en');
-        $orgDisplayName = SimpleSAML\Utils\Arrays::arrayize($metadata['OrganizationDisplayName'], 'en');
-        $orgURL = SimpleSAML\Utils\Arrays::arrayize($metadata['OrganizationURL'], 'en');
+        $orgName = \SimpleSAML\Utils\Arrays::arrayize($metadata['OrganizationName'], 'en');
+        $orgDisplayName = \SimpleSAML\Utils\Arrays::arrayize($metadata['OrganizationDisplayName'], 'en');
+        $orgURL = \SimpleSAML\Utils\Arrays::arrayize($metadata['OrganizationURL'], 'en');
 
         $this->addOrganization($orgName, $orgDisplayName, $orgURL);
     }
@@ -381,11 +380,11 @@ class SimpleSAML_Metadata_SAMLBuilder
      * Add an AttributeConsumingService element to the metadata.
      *
      * @param \SAML2\XML\md\SPSSODescriptor $spDesc The SPSSODescriptor element.
-     * @param SimpleSAML_Configuration     $metadata The metadata.
+     * @param \SimpleSAML\Configuration     $metadata The metadata.
      */
     private function addAttributeConsumingService(
         \SAML2\XML\md\SPSSODescriptor $spDesc,
-        SimpleSAML_Configuration $metadata
+        \SimpleSAML\Configuration $metadata
     ) {
         $attributes = $metadata->getArray('attributes', array());
         $name = $metadata->getLocalizedString('name', null);
@@ -403,7 +402,11 @@ class SimpleSAML_Metadata_SAMLBuilder
          */
         $attributeconsumer = new \SAML2\XML\md\AttributeConsumingService();
 
-        $attributeconsumer->index = 0;
+        $attributeconsumer->index = $metadata->getInteger('attributes.index', 0);
+
+        if ($metadata->hasValue('attributes.isDefault')) {
+            $attributeconsumer->isDefault = $metadata->getBoolean('attributes.isDefault', false);
+        }
 
         $attributeconsumer->ServiceName = $name;
         $attributeconsumer->ServiceDescription = $metadata->getLocalizedString('description', array());
@@ -458,7 +461,7 @@ class SimpleSAML_Metadata_SAMLBuilder
                 $this->addAttributeAuthority($metadata);
                 break;
             default:
-                SimpleSAML\Logger::warning('Unable to generate metadata for unknown type \''.$set.'\'.');
+                \SimpleSAML\Logger::warning('Unable to generate metadata for unknown type \''.$set.'\'.');
         }
     }
 
@@ -476,7 +479,7 @@ class SimpleSAML_Metadata_SAMLBuilder
         assert(isset($metadata['entityid']));
         assert(isset($metadata['metadata-set']));
 
-        $metadata = SimpleSAML_Configuration::loadFromArray($metadata, $metadata['entityid']);
+        $metadata = \SimpleSAML\Configuration::loadFromArray($metadata, $metadata['entityid']);
 
         $e = new \SAML2\XML\md\SPSSODescriptor();
         $e->protocolSupportEnumeration = $protocols;
@@ -531,7 +534,7 @@ class SimpleSAML_Metadata_SAMLBuilder
         assert(isset($metadata['entityid']));
         assert(isset($metadata['metadata-set']));
 
-        $metadata = SimpleSAML_Configuration::loadFromArray($metadata, $metadata['entityid']);
+        $metadata = \SimpleSAML\Configuration::loadFromArray($metadata, $metadata['entityid']);
 
         $e = new \SAML2\XML\md\IDPSSODescriptor();
         $e->protocolSupportEnumeration[] = 'urn:oasis:names:tc:SAML:2.0:protocol';
@@ -580,7 +583,7 @@ class SimpleSAML_Metadata_SAMLBuilder
         assert(isset($metadata['entityid']));
         assert(isset($metadata['metadata-set']));
 
-        $metadata = SimpleSAML_Configuration::loadFromArray($metadata, $metadata['entityid']);
+        $metadata = \SimpleSAML\Configuration::loadFromArray($metadata, $metadata['entityid']);
 
         $e = new \SAML2\XML\md\SPSSODescriptor();
         $e->protocolSupportEnumeration[] = 'urn:oasis:names:tc:SAML:1.1:protocol';
@@ -615,7 +618,7 @@ class SimpleSAML_Metadata_SAMLBuilder
         assert(isset($metadata['entityid']));
         assert(isset($metadata['metadata-set']));
 
-        $metadata = SimpleSAML_Configuration::loadFromArray($metadata, $metadata['entityid']);
+        $metadata = \SimpleSAML\Configuration::loadFromArray($metadata, $metadata['entityid']);
 
         $e = new \SAML2\XML\md\IDPSSODescriptor();
         $e->protocolSupportEnumeration[] = 'urn:oasis:names:tc:SAML:1.1:protocol';
@@ -635,7 +638,7 @@ class SimpleSAML_Metadata_SAMLBuilder
      * Add metadata of a SAML attribute authority.
      *
      * @param array $metadata The AttributeAuthorityDescriptor, in the format returned by
-     * SimpleSAML_Metadata_SAMLParser.
+     * \SimpleSAML\Metadata\SAMLParser.
      */
     public function addAttributeAuthority(array $metadata)
     {
@@ -643,7 +646,7 @@ class SimpleSAML_Metadata_SAMLBuilder
         assert(isset($metadata['entityid']));
         assert(isset($metadata['metadata-set']));
 
-        $metadata = SimpleSAML_Configuration::loadFromArray($metadata, $metadata['entityid']);
+        $metadata = \SimpleSAML\Configuration::loadFromArray($metadata, $metadata['entityid']);
 
         $e = new \SAML2\XML\md\AttributeAuthorityDescriptor();
         $e->protocolSupportEnumeration = $metadata->getArray('protocols', array(\SAML2\Constants::NS_SAMLP));
@@ -750,22 +753,20 @@ class SimpleSAML_Metadata_SAMLBuilder
      * Helper function for adding a certificate to the metadata.
      *
      * @param \SAML2\XML\md\RoleDescriptor $rd The RoleDescriptor the certificate should be added to.
-     * @param SimpleSAML_Configuration    $metadata The metadata of the entity.
+     * @param \SimpleSAML\Configuration    $metadata The metadata of the entity.
      */
-    private function addCertificate(\SAML2\XML\md\RoleDescriptor $rd, SimpleSAML_Configuration $metadata)
+    private function addCertificate(\SAML2\XML\md\RoleDescriptor $rd, \SimpleSAML\Configuration $metadata)
     {
         $keys = $metadata->getPublicKeys();
-        if ($keys !== null) {
-            foreach ($keys as $key) {
-                if ($key['type'] !== 'X509Certificate') {
-                    continue;
-                }
-                if (!isset($key['signing']) || $key['signing'] === true) {
-                    $this->addX509KeyDescriptor($rd, 'signing', $key['X509Certificate']);
-                }
-                if (!isset($key['encryption']) || $key['encryption'] === true) {
-                    $this->addX509KeyDescriptor($rd, 'encryption', $key['X509Certificate']);
-                }
+        foreach ($keys as $key) {
+            if ($key['type'] !== 'X509Certificate') {
+                continue;
+            }
+            if (!isset($key['signing']) || $key['signing'] === true) {
+                $this->addX509KeyDescriptor($rd, 'signing', $key['X509Certificate']);
+            }
+            if (!isset($key['encryption']) || $key['encryption'] === true) {
+                $this->addX509KeyDescriptor($rd, 'encryption', $key['X509Certificate']);
             }
         }
 

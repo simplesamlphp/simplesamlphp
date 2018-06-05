@@ -1,24 +1,26 @@
 <?php
+
 /**
  * This is the page the user lands on when choosing "no" in the consent form.
  *
  * @package SimpleSAMLphp
  */
+
 if (!array_key_exists('StateId', $_REQUEST)) {
-    throw new SimpleSAML_Error_BadRequest(
+    throw new \SimpleSAML\Error\BadRequest(
         'Missing required StateId query parameter.'
     );
 }
 
 $id = $_REQUEST['StateId'];
-$state = SimpleSAML_Auth_State::loadState($id, 'consent:request');
+$state = \SimpleSAML\Auth\State::loadState($id, 'consent:request');
 
-$resumeFrom = SimpleSAML\Module::getModuleURL(
+$resumeFrom = \SimpleSAML\Module::getModuleURL(
     'consent/getconsent.php',
     array('StateId' => $id)
 );
 
-$logoutLink = SimpleSAML\Module::getModuleURL(
+$logoutLink = \SimpleSAML\Module::getModuleURL(
     'consent/logout.php',
     array('StateId' => $id)
 );
@@ -34,7 +36,7 @@ $statsInfo = array();
 if (isset($state['Destination']['entityid'])) {
     $statsInfo['spEntityID'] = $state['Destination']['entityid'];
 }
-SimpleSAML_Stats::log('consent:reject', $statsInfo);
+\SimpleSAML\Stats::log('consent:reject', $statsInfo);
 
 if (array_key_exists('name', $state['Destination'])) {
     $dstName = $state['Destination']['name'];
@@ -44,9 +46,10 @@ if (array_key_exists('name', $state['Destination'])) {
     $dstName = $state['Destination']['entityid'];
 }
 
-$globalConfig = SimpleSAML_Configuration::getInstance();
+$globalConfig = \SimpleSAML\Configuration::getInstance();
 
-$t = new SimpleSAML_XHTML_Template($globalConfig, 'consent:noconsent.php');
+$t = new \SimpleSAML\XHTML\Template($globalConfig, 'consent:noconsent.php');
+$t->data['dstMetadata'] = $state['Destination'];
 $t->data['resumeFrom'] = $resumeFrom;
 $t->data['aboutService'] = $aboutService;
 $t->data['logoutLink'] = $logoutLink;

@@ -1,10 +1,10 @@
 <?php
 
 // load configuration
-$config = SimpleSAML_Configuration::getInstance();
-$session = SimpleSAML_Session::getSessionFromRequest();
+$config = \SimpleSAML\Configuration::getInstance();
+$session = \SimpleSAML\Session::getSessionFromRequest();
 
-SimpleSAML\Utils\Auth::requireAdmin();
+\SimpleSAML\Utils\Auth::requireAdmin();
 
 if (!array_key_exists('entityid', $_REQUEST)) {
     throw new Exception('required parameter [entityid] missing');
@@ -20,18 +20,15 @@ if (!in_array(
     throw new Exception('Invalid set');
 }
 
-$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+$metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
 
 $m = $metadata->getMetadata($_REQUEST['entityid'], $_REQUEST['set']);
 
-$t = new SimpleSAML_XHTML_Template($config, 'core:show_metadata.tpl.php');
+$t = new \SimpleSAML\XHTML\Template($config, 'core:show_metadata.tpl.php');
 $t->data['clipboard.js'] = true;
 $t->data['pageid'] = 'show_metadata';
 $t->data['header'] = 'SimpleSAMLphp Show Metadata';
-$t->data['backlink'] = SimpleSAML\Module::getModuleURL('core/frontpage_federation.php');
-/**
- * @todo Remove "m" from the data array once we remove the old PHP templates.
- */
+$t->data['backlink'] = \SimpleSAML\Module::getModuleURL('core/frontpage_federation.php');
 $t->data['m'] = $m;
 $t->data['entityid'] = $m['metadata-index'];
 unset($m['metadata-index']);

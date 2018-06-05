@@ -3,16 +3,16 @@
 require_once('../../_include.php');
 
 // load configuration and metadata
-$config = SimpleSAML_Configuration::getInstance();
-$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+$config = \SimpleSAML\Configuration::getInstance();
+$metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
 
 if (!$config->getBoolean('enable.shib13-idp', false)) {
-    throw new SimpleSAML_Error_Error('NOACCESS');
+    throw new \SimpleSAML\Error\Error('NOACCESS');
 }
 
 // check if valid local session exists
 if ($config->getBoolean('admin.protectmetadata', false)) {
-    SimpleSAML\Utils\Auth::requireAdmin();
+    \SimpleSAML\Utils\Auth::requireAdmin();
 }
 
 try {
@@ -22,7 +22,7 @@ try {
     $idpmeta = $metadata->getMetaDataConfig($idpentityid, 'shib13-idp-hosted');
 
     $keys = array();
-    $certInfo = SimpleSAML\Utils\Crypto::loadPublicKey($idpmeta, false, 'new_');
+    $certInfo = \SimpleSAML\Utils\Crypto::loadPublicKey($idpmeta, false, 'new_');
     if ($certInfo !== null) {
         $keys[] = array(
             'type'            => 'X509Certificate',
@@ -32,7 +32,7 @@ try {
         );
     }
 
-    $certInfo = SimpleSAML\Utils\Crypto::loadPublicKey($idpmeta, true);
+    $certInfo = \SimpleSAML\Utils\Crypto::loadPublicKey($idpmeta, true);
     $keys[] = array(
         'type'            => 'X509Certificate',
         'signing'         => true,
@@ -62,15 +62,14 @@ try {
         );
 
         if (!$idpmeta->hasValue('OrganizationURL')) {
-            throw new SimpleSAML_Error_Exception('If OrganizationName is set, OrganizationURL must also be set.');
+            throw new \SimpleSAML\Error\Exception('If OrganizationName is set, OrganizationURL must also be set.');
         }
         $metaArray['OrganizationURL'] = $idpmeta->getLocalizedString('OrganizationURL');
     }
 
-
     $metaflat = '$metadata['.var_export($idpentityid, true).'] = '.var_export($metaArray, true).';';
 
-    $metaBuilder = new SimpleSAML_Metadata_SAMLBuilder($idpentityid);
+    $metaBuilder = new \SimpleSAML\Metadata\SAMLBuilder($idpentityid);
     $metaBuilder->addMetadataIdP11($metaArray);
     $metaBuilder->addOrganizationInfo($metaArray);
     $metaBuilder->addContact('technical', \SimpleSAML\Utils\Config\Metadata::getContact(array(
@@ -81,13 +80,12 @@ try {
     $metaxml = $metaBuilder->getEntityDescriptorText();
 
     // sign the metadata if enabled
-    $metaxml = SimpleSAML_Metadata_Signer::sign($metaxml, $idpmeta->toArray(), 'Shib 1.3 IdP');
-
+    $metaxml = \SimpleSAML\Metadata\Signer::sign($metaxml, $idpmeta->toArray(), 'Shib 1.3 IdP');
 
     if (array_key_exists('output', $_GET) && $_GET['output'] == 'xhtml') {
         $defaultidp = $config->getString('default-shib13-idp', null);
 
-        $t = new SimpleSAML_XHTML_Template($config, 'metadata.php', 'admin');
+        $t = new \SimpleSAML\XHTML\Template($config, 'metadata.php', 'admin');
 
         $t->data['clipboard.js'] = true;
         $t->data['header'] = 'shib13-idp'; // TODO: Replace with headerString in 2.0
@@ -107,6 +105,6 @@ try {
         echo $metaxml;
         exit(0);
     }
-} catch (Exception $exception) {
-    throw new SimpleSAML_Error_Error('METADATA', $exception);
+} catch (\Exception $exception) {
+    throw new \SimpleSAML\Error\Error('METADATA', $exception);
 }

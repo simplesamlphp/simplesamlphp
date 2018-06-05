@@ -1,4 +1,7 @@
 <?php
+
+namespace SimpleSAML\Error;
+
 /**
  * This exception represents a configuration error.
  *
@@ -6,12 +9,8 @@
  * @package SimpleSAMLphp
  */
 
-namespace SimpleSAML\Error;
-
-
-class ConfigurationError extends \SimpleSAML_Error_Error
+class ConfigurationError extends Error
 {
-
     /**
      * The reason for this exception.
      *

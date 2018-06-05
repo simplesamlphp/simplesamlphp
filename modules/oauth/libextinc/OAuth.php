@@ -23,6 +23,7 @@ if (!class_exists('OAuthConsumer')) {
     {
         public $key;
         public $secret;
+        public $callback_url;
 
         public function __construct($key, $secret, $callback_url = null)
         {
@@ -216,13 +217,13 @@ abstract class OAuthSignatureMethod_RSA_SHA1 extends OAuthSignatureMethod
     // (3) some sort of specific discovery code based on request
     //
     // Either way should return a string representation of the certificate
-    protected abstract function fetch_public_cert(&$request);
+    abstract protected function fetch_public_cert(&$request);
 
     // Up to the SP to implement this lookup of keys. Possible ideas are:
     // (1) do a lookup in a table of trusted certs keyed off of consumer
     //
     // Either way should return a string representation of the certificate
-    protected abstract function fetch_private_cert(&$request);
+    abstract protected function fetch_private_cert(&$request);
 
     public function build_signature($request, $consumer, $token)
     {
@@ -279,7 +280,7 @@ class OAuthRequest
     public function __construct($http_method, $http_url, $parameters = null)
     {
         $parameters = ($parameters) ? $parameters : array();
-        $parameters = array_merge( OAuthUtil::parse_parameters(parse_url($http_url, PHP_URL_QUERY)), $parameters);
+        $parameters = array_merge(OAuthUtil::parse_parameters(parse_url($http_url, PHP_URL_QUERY)), $parameters);
         $this->parameters = $parameters;
         $this->http_method = $http_method;
         $this->http_url = $http_url;
@@ -484,11 +485,14 @@ class OAuthRequest
         if ($realm) {
             $out = 'Authorization: OAuth realm="' . OAuthUtil::urlencode_rfc3986($realm) . '"';
             $first = false;
-        } else
+        } else {
             $out = 'Authorization: OAuth';
+        }
 
         foreach ($this->parameters as $k => $v) {
-            if (substr($k, 0, 5) != "oauth") continue;
+            if (substr($k, 0, 5) != "oauth") {
+                continue;
+            }
             if (is_array($v)) {
                 throw new OAuthException('Arrays not supported in headers');
             }
@@ -784,7 +788,6 @@ class OAuthServer
             throw new OAuthException("Nonce already used: $nonce");
         }
     }
-
 }
 
 class OAuthDataStore
@@ -877,7 +880,7 @@ class OAuthUtil
             // returns the headers in the same case as they are in the
             // request
             $out = array();
-            foreach ($headers AS $key => $value) {
+            foreach ($headers as $key => $value) {
                 $key = str_replace(
                     " ",
                     "-",
@@ -889,10 +892,12 @@ class OAuthUtil
             // otherwise we don't have apache and are just going to have to hope
             // that $_SERVER actually contains what we need
             $out = array();
-            if( isset($_SERVER['CONTENT_TYPE']) )
+            if (isset($_SERVER['CONTENT_TYPE'])) {
                 $out['Content-Type'] = $_SERVER['CONTENT_TYPE'];
-            if( isset($_ENV['CONTENT_TYPE']) )
+            }
+            if (isset($_ENV['CONTENT_TYPE'])) {
                 $out['Content-Type'] = $_ENV['CONTENT_TYPE'];
+            }
 
             foreach ($_SERVER as $key => $value) {
                 if (substr($key, 0, 5) == "HTTP_") {

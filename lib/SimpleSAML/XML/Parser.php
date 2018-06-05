@@ -50,7 +50,7 @@ class Parser
     public function getValue($xpath, $required = false)
     {
         $result = $this->simplexml->xpath($xpath);
-        if (! $result or !is_array($result)) {
+        if (!is_array($result) || empty($result)) {
             if ($required) {
                 throw new \Exception('Could not get value from XML document using the following XPath expression: ' . $xpath);
             } else {

@@ -20,12 +20,12 @@ Getting Started
 ---------------
 If you are just using the already configured database, which would normally be the case, all you need to do is get the global instance of the Database class.
 
-	$db = SimpleSAML\Database::getInstance();
+	$db = \SimpleSAML\Database::getInstance();
 
 If there is a requirement to connect to an alternate database server (ex. authenticating users that exist on a different SQL server or database) you can specify an alternate configuration.
 
-	$config = new SimpleSAML_Configuration($myconfigarray, "mymodule/lib/Auth/Source/myauth.php");
-	$db = SimpleSAML\Database::getInstance($config);
+	$config = new \SimpleSAML\Configuration($myconfigarray, "mymodule/lib/Auth/Source/myauth.php");
+	$db = \SimpleSAML\Database::getInstance($config);
 
 That will create a new instance of the database, separate from the global instance, specific to the configuration defined in $myconfigarray. If you are going to specify an alternate config, your configuration array must contain the same keys that exist in the master config (database.dsn, database.username, database.password, database.prefix, etc).
 

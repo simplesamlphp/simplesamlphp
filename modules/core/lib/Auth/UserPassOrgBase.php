@@ -1,5 +1,7 @@
 <?php
 
+namespace SimpleSAML\Module\core\Auth;
+
 /**
  * Helper class for username/password/organization authentication.
  *
@@ -11,25 +13,25 @@
  * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
-abstract class sspmod_core_Auth_UserPassOrgBase extends SimpleSAML_Auth_Source {
 
-
+abstract class UserPassOrgBase extends \SimpleSAML\Auth\Source
+{
 	/**
 	 * The string used to identify our states.
 	 */
-	const STAGEID = 'sspmod_core_Auth_UserPassOrgBase.state';
+	const STAGEID = '\SimpleSAML\Module\core\Auth\UserPassOrgBase.state';
 
 
 	/**
 	 * The key of the AuthId field in the state.
 	 */
-	const AUTHID = 'sspmod_core_Auth_UserPassOrgBase.AuthId';
+	const AUTHID = '\SimpleSAML\Module\core\Auth\UserPassOrgBase.AuthId';
 
 
 	/**
 	 * The key of the OrgId field in the state, identifies which org was selected.
 	 */
-	const ORGID = 'sspmod_core_Auth_UserPassOrgBase.SelectedOrg';
+	const ORGID = '\SimpleSAML\Module\core\Auth\UserPassOrgBase.SelectedOrg';
 
 
 	/**
@@ -194,9 +196,9 @@ abstract class sspmod_core_Auth_UserPassOrgBase extends SimpleSAML_Auth_Source {
 		// We are going to need the authId in order to retrieve this authentication source later
 		$state[self::AUTHID] = $this->authId;
 
-		$id = SimpleSAML_Auth_State::saveState($state, self::STAGEID);
+		$id = \SimpleSAML\Auth\State::saveState($state, self::STAGEID);
 
-		$url = SimpleSAML\Module::getModuleURL('core/loginuserpassorg.php');
+		$url = \SimpleSAML\Module::getModuleURL('core/loginuserpassorg.php');
 		$params = array('AuthState' => $id);
 		\SimpleSAML\Utils\HTTP::redirectTrustedURL($url, $params);
 	}
@@ -207,7 +209,7 @@ abstract class sspmod_core_Auth_UserPassOrgBase extends SimpleSAML_Auth_Source {
 	 *
 	 * On a successful login, this function should return the users attributes. On failure,
 	 * it should throw an exception/error. If the error was caused by the user entering the wrong
-	 * username or password, a SimpleSAML_Error_Error('WRONGUSERPASS') should be thrown.
+	 * username or password, a \SimpleSAML\Error\Error('WRONGUSERPASS') should be thrown.
 	 *
 	 * Note that both the username and the password are UTF-8 encoded.
 	 *
@@ -251,13 +253,13 @@ abstract class sspmod_core_Auth_UserPassOrgBase extends SimpleSAML_Auth_Source {
 		assert(is_string($organization));
 
 		/* Retrieve the authentication state. */
-		$state = SimpleSAML_Auth_State::loadState($authStateId, self::STAGEID);
+		$state = \SimpleSAML\Auth\State::loadState($authStateId, self::STAGEID);
 
 		/* Find authentication source. */
 		assert(array_key_exists(self::AUTHID, $state));
-		$source = SimpleSAML_Auth_Source::getById($state[self::AUTHID]);
+		$source = \SimpleSAML\Auth\Source::getById($state[self::AUTHID]);
 		if ($source === NULL) {
-			throw new Exception('Could not find authentication source with id ' . $state[self::AUTHID]);
+			throw new \Exception('Could not find authentication source with id ' . $state[self::AUTHID]);
 		}
 
 		$orgMethod = $source->getUsernameOrgMethod();
@@ -269,7 +271,7 @@ abstract class sspmod_core_Auth_UserPassOrgBase extends SimpleSAML_Auth_Source {
 			} else {
 				if ($orgMethod === 'force') {
 					/* The organization should be a part of the username, but isn't. */
-					throw new SimpleSAML_Error_Error('WRONGUSERPASS');
+					throw new \SimpleSAML\Error\Error('WRONGUSERPASS');
 				}
 			}
 		}
@@ -282,7 +284,7 @@ abstract class sspmod_core_Auth_UserPassOrgBase extends SimpleSAML_Auth_Source {
 		$state['PersistentAuthData'][] = self::ORGID;
 
 		$state['Attributes'] = $attributes;
-		SimpleSAML_Auth_Source::completeAuth($state);
+		\SimpleSAML\Auth\Source::completeAuth($state);
 	}
 
 
@@ -299,13 +301,13 @@ abstract class sspmod_core_Auth_UserPassOrgBase extends SimpleSAML_Auth_Source {
 		assert(is_string($authStateId));
 
 		/* Retrieve the authentication state. */
-		$state = SimpleSAML_Auth_State::loadState($authStateId, self::STAGEID);
+		$state = \SimpleSAML\Auth\State::loadState($authStateId, self::STAGEID);
 
 		/* Find authentication source. */
 		assert(array_key_exists(self::AUTHID, $state));
-		$source = SimpleSAML_Auth_Source::getById($state[self::AUTHID]);
+		$source = \SimpleSAML\Auth\Source::getById($state[self::AUTHID]);
 		if ($source === NULL) {
-			throw new Exception('Could not find authentication source with id ' . $state[self::AUTHID]);
+			throw new \Exception('Could not find authentication source with id ' . $state[self::AUTHID]);
 		}
 
 		$orgMethod = $source->getUsernameOrgMethod();

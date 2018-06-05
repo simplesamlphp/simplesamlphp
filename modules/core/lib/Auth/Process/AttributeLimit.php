@@ -1,13 +1,16 @@
 <?php
 
+namespace SimpleSAML\Module\core\Auth\Process;
+
 /**
  * A filter for limiting which attributes are passed on.
  *
  * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
-class sspmod_core_Auth_Process_AttributeLimit extends SimpleSAML_Auth_ProcessingFilter {
 
+class AttributeLimit extends \SimpleSAML\Auth\ProcessingFilter
+{
 	/**
 	 * List of attributes which this filter will allow through.
 	 */
@@ -19,7 +22,7 @@ class sspmod_core_Auth_Process_AttributeLimit extends SimpleSAML_Auth_Processing
 	 *
 	 * @var bool
 	 */
-	private $isDefault = FALSE;
+	private $isDefault = false;
 
 
 	/**
@@ -27,7 +30,7 @@ class sspmod_core_Auth_Process_AttributeLimit extends SimpleSAML_Auth_Processing
 	 *
 	 * @param array $config  Configuration information about this filter.
 	 * @param mixed $reserved  For future use
-     * @throws SimpleSAML_Error_Exception If invalid configuration is found.
+	 * @throws \SimpleSAML\Error\Exception If invalid configuration is found.
 	 */
 	public function __construct($config, $reserved) {
 		parent::__construct($config, $reserved);
@@ -39,18 +42,18 @@ class sspmod_core_Auth_Process_AttributeLimit extends SimpleSAML_Auth_Processing
 				$this->isDefault = (bool)$value;
 			} elseif (is_int($index)) {
 				if (!is_string($value)) {
-					throw new SimpleSAML_Error_Exception('AttributeLimit: Invalid attribute name: ' .
+					throw new \SimpleSAML\Error\Exception('AttributeLimit: Invalid attribute name: ' .
                         var_export($value, TRUE));
 				}
 				$this->allowedAttributes[] = $value;
             } elseif (is_string($index)) {
                 if (!is_array($value)) {
-                    throw new SimpleSAML_Error_Exception('AttributeLimit: Values for ' . var_export($index, TRUE) .
+                    throw new \SimpleSAML\Error\Exception('AttributeLimit: Values for ' . var_export($index, TRUE) .
                         ' must be specified in an array.');
                 }
                 $this->allowedAttributes[$index] = $value;
 			} else {
-				throw new SimpleSAML_Error_Exception('AttributeLimit: Invalid option: ' . var_export($index, TRUE));
+				throw new \SimpleSAML\Error\Exception('AttributeLimit: Invalid option: ' . var_export($index, TRUE));
 			}
 		}
 	}
@@ -82,7 +85,7 @@ class sspmod_core_Auth_Process_AttributeLimit extends SimpleSAML_Auth_Processing
 	 * Removes all attributes which aren't one of the allowed attributes.
 	 *
 	 * @param array &$request  The current request
-     * @throws SimpleSAML_Error_Exception If invalid configuration is found.
+	 * @throws \SimpleSAML\Error\Exception If invalid configuration is found.
 	 */
 	public function process(&$request) {
 		assert(is_array($request));
@@ -110,10 +113,10 @@ class sspmod_core_Auth_Process_AttributeLimit extends SimpleSAML_Auth_Processing
                 if (array_key_exists($name, $allowedAttributes)) {
                     // but it is an index of the array
                     if (!is_array($allowedAttributes[$name])) {
-                        throw new SimpleSAML_Error_Exception('AttributeLimit: Values for ' . var_export($name, TRUE) .
+                        throw new \SimpleSAML\Error\Exception('AttributeLimit: Values for ' . var_export($name, TRUE) .
                             ' must be specified in an array.');
                     }
-                    $attributes[$name] = array_intersect($attributes[$name], $allowedAttributes[$name]);
+                    $attributes[$name] = $this->filterAttributeValues($attributes[$name], $allowedAttributes[$name]);
                     if (!empty($attributes[$name])) {
                         continue;
                     }
@@ -124,4 +127,45 @@ class sspmod_core_Auth_Process_AttributeLimit extends SimpleSAML_Auth_Processing
 
 	}
 
+    /**
+     * Perform the filtering of attributes
+     * @param array $values The current values for a given attribute
+     * @param array $allowedConfigValues The allowed values, and possibly configuration options.
+     * @return array The filtered values
+     */
+    private function filterAttributeValues(array $values, array $allowedConfigValues)
+    {
+        if (array_key_exists('regex', $allowedConfigValues) && $allowedConfigValues['regex'] === true) {
+            $matchedValues = array();
+            foreach ($allowedConfigValues as $option => $pattern) {
+                if (!is_int($option)) {
+                    // Ignore any configuration options in $allowedConfig. e.g. regex=>true
+                    continue;
+                }
+                foreach ($values as $index => $attributeValue) {
+                    /* Suppress errors in preg_match since phpunit is set to fail on warnings, which
+                       prevents us from testing with invalid regex.
+                    */
+                    $regexResult = @preg_match($pattern, $attributeValue);
+                    if ($regexResult === false) {
+                        \SimpleSAML\Logger::warning("Error processing regex '$pattern' on value '$attributeValue'");
+                        break;
+                    } elseif ($regexResult === 1) {
+                        $matchedValues[] = $attributeValue;
+                        // Remove matched value incase a subsequent regex also matches it.
+                        unset($values[$index]);
+                    }
+                }
+            }
+            return $matchedValues;
+        } elseif (array_key_exists('ignoreCase', $allowedConfigValues) && $allowedConfigValues['ignoreCase'] === true) {
+            unset($allowedConfigValues['ignoreCase']);
+            return array_uintersect($values, $allowedConfigValues, "strcasecmp");
+        }
+        // The not true values for these options shouldn't leak through to array_intersect
+        unset($allowedConfigValues['ignoreCase']);
+        unset($allowedConfigValues['regex']);
+
+        return array_intersect($values, $allowedConfigValues);
+    }
 }

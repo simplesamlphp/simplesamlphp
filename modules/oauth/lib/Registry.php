@@ -1,21 +1,22 @@
 <?php
 
+namespace SimpleSAML\Module\oauth;
+
 /**
  * Editor for OAuth Client Registry
  *
  * @author Andreas Åkre Solberg <andreas@uninett.no>, UNINETT AS.
  * @package SimpleSAMLphp
  */
-class sspmod_oauth_Registry
+
+class Registry
 {
     protected function getStandardField($request, &$entry, $key)
     {
         if (array_key_exists('field_' . $key, $request)) {
             $entry[$key] = $request['field_' . $key];
-        } else {
-            if (isset($entry[$key])) {
-                unset($entry[$key]);
-            }
+        } else if (isset($entry[$key])) {
+            unset($entry[$key]);
         }
     }
 
