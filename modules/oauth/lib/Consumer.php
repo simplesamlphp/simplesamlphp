@@ -140,7 +140,7 @@ class Consumer
 
     public function postRequest($url, $accessToken, $parameters)
     {
-        $data_req = OAuthRequest::from_consumer_and_token($this->consumer, $accessToken, "POST", $url, $parameters);
+        $data_req = \OAuthRequest::from_consumer_and_token($this->consumer, $accessToken, "POST", $url, $parameters);
         $data_req->sign_request($this->signer, $this->consumer, $accessToken);
         $postdata = $data_req->to_postdata();
 
