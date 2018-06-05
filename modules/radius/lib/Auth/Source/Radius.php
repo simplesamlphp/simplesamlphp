@@ -143,29 +143,29 @@ class Radius extends \SimpleSAML\Module\core\Auth\UserPassBase
             throw new \Exception('Error adding radius servers, no servers available');
         }
 
-        if (!radius_create_request($radius, RADIUS_ACCESS_REQUEST)) {
+        if (!radius_create_request($radius, \RADIUS_ACCESS_REQUEST)) {
             throw new \Exception('Error creating radius request: ' .
                 radius_strerror($radius));
         }
 
         if ($this->realm === null) {
-            radius_put_attr($radius, RADIUS_USER_NAME, $username);
+            radius_put_attr($radius, \RADIUS_USER_NAME, $username);
         } else {
-            radius_put_attr($radius, RADIUS_USER_NAME, $username . '@' . $this->realm);
+            radius_put_attr($radius, \RADIUS_USER_NAME, $username . '@' . $this->realm);
         }
-        radius_put_attr($radius, RADIUS_USER_PASSWORD, $password);
+        radius_put_attr($radius, \RADIUS_USER_PASSWORD, $password);
 
         if ($this->nasIdentifier !== null) {
-            radius_put_attr($radius, RADIUS_NAS_IDENTIFIER, $this->nasIdentifier);
+            radius_put_attr($radius, \RADIUS_NAS_IDENTIFIER, $this->nasIdentifier);
         }
 
         $res = radius_send_request($radius);
-        if ($res != RADIUS_ACCESS_ACCEPT) {
+        if ($res != \RADIUS_ACCESS_ACCEPT) {
             switch ($res) {
-            case RADIUS_ACCESS_REJECT:
+            case \RADIUS_ACCESS_REJECT:
                 /* Invalid username or password. */
                 throw new \SimpleSAML\Error\Error('WRONGUSERPASS');
-            case RADIUS_ACCESS_CHALLENGE:
+            case \RADIUS_ACCESS_CHALLENGE:
                 throw new \Exception('Radius authentication error: Challenge requested, but not supported.');
             default:
                 throw new \Exception('Error during radius authentication: ' .
@@ -198,12 +198,12 @@ class Radius extends \SimpleSAML\Module\core\Auth\UserPassBase
             }
 
             /* Use the received user name */
-            if ($resa['attr'] == RADIUS_USER_NAME) {
+            if ($resa['attr'] == \RADIUS_USER_NAME) {
                 $attributes[$this->usernameAttribute] = array($resa['data']);
                 continue;
             }
 
-            if ($resa['attr'] !== RADIUS_VENDOR_SPECIFIC) {
+            if ($resa['attr'] !== \RADIUS_VENDOR_SPECIFIC) {
                 continue;
             }
 
