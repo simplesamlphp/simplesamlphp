@@ -96,7 +96,7 @@ foreach ($metaentries['remote'] as $key => $value) {
 
 $t = new \SimpleSAML\XHTML\Template($config, 'core:frontpage_federation.tpl.php');
 
-$language = $t->getLanguage();
+$language = \SimpleSAML\Locale\Language::getLanguage();
 $defaultLanguage = $config->getString('language.default', 'en');
 
 $translators = array(
@@ -156,9 +156,9 @@ $t->data['links_welcome'] = $links_welcome;
 $t->data['links_config'] = $links_config;
 $t->data['links_auth'] = $links_auth;
 $t->data['links_federation'] = $links_federation;
-$t->data['header'] = $t->t('{core:frontpage:page_title}');
+$t->data['header'] = \SimpleSAML\Locale\Translate::t('{core:frontpage:page_title}');
 
-$t->data['metadata_url'] = SimpleSAML\Module::getModuleURL('core/show_metadata.php');
+$t->data['metadata_url'] = \SimpleSAML\Module::getModuleURL('core/show_metadata.php');
 $t->data['metaentries'] = $metaentries;
 $t->data['mtype'] = $mtype;
 

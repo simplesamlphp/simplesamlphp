@@ -126,21 +126,21 @@ $t->data['noData'] = array('StateId' => $id);
 $t->data['attributes'] = $attributes;
 $t->data['checked'] = $state['consent:checked'];
 
-$srcName = htmlspecialchars(is_array($srcName) ? $t->t($srcName) : $srcName);
-$dstName = htmlspecialchars(is_array($dstName) ? $t->t($dstName) : $dstName);
+$srcName = htmlspecialchars(is_array($srcName) ? \SimpleSAML\Locale\Translate::t($srcName) : $srcName);
+$dstName = htmlspecialchars(is_array($dstName) ? \SimpleSAML\Locale\Translate::t($dstName) : $dstName);
 
-$t->data['consent_attributes_header'] = $t->t(
+$t->data['consent_attributes_header'] = \SimpleSAML\Locale\Translate::t(
     '{consent:consent:consent_attributes_header}',
     array('SPNAME' => $dstName, 'IDPNAME' => $srcName)
 );
 
-$t->data['consent_accept'] = $t->t(
+$t->data['consent_accept'] = \SimpleSAML\Locale\Translate::t(
     '{consent:consent:consent_accept}',
     array('SPNAME' => $dstName, 'IDPNAME' => $srcName)
 );
 
 if (array_key_exists('descr_purpose', $state['Destination'])) {
-    $t->data['consent_purpose'] = $t->t(
+    $t->data['consent_purpose'] = \SimpleSAML\Locale\Translate::t(
         '{consent:consent:consent_purpose}',
         array(
             'SPNAME' => $dstName,
@@ -203,7 +203,7 @@ $t->show();
 /**
  * Recursive attribute array listing function
  *
- * @param SimpleSAML_XHTML_Template $t          Template object
+ * @param \SimpleSAML\XHTML\Template $t          Template object
  * @param array                     $attributes Attributes to be presented
  * @param string                    $nameParent Name of parent element
  *
@@ -215,7 +215,7 @@ function present_attributes($t, $attributes, $nameParent)
 
     $alternate = array('odd', 'even');
     $i = 0;
-    $summary = 'summary="' . $t->t('{consent:consent:table_summary}') . '"';
+    $summary = 'summary="' . \SimpleSAML\Locale\Translate::t('{consent:consent:table_summary}') . '"';
 
     if (strlen($nameParent) > 0) {
         $parentStr = strtolower($nameParent) . '_';
@@ -223,7 +223,7 @@ function present_attributes($t, $attributes, $nameParent)
     } else {
         $parentStr = '';
         $str = '<table id="table_with_attributes"  class="attributes" '. $summary .'>';
-        $str .= "\n" . '<caption>' . $t->t('{consent:consent:table_caption}') .
+        $str .= "\n" . '<caption>' . \SimpleSAML\Locale\Translate::t('{consent:consent:table_caption}') .
             '</caption>';
     }
 
@@ -283,7 +283,7 @@ function present_attributes($t, $attributes, $nameParent)
                 $str .= '... ';
                 $str .= '<a class="consent_showattributelink" href="javascript:SimpleSAML_show(\'hidden_' . $hiddenId;
                 $str .= '\'); SimpleSAML_hide(\'visible_' . $hiddenId . '\');">';
-                $str .= $t->t('{consent:consent:show_attribute}');
+                $str .= \SimpleSAML\Locale\Translate::t('{consent:consent:show_attribute}');
                 $str .= '</a>';
                 $str .= '</div>';
             }

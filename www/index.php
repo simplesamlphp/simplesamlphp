@@ -2,7 +2,7 @@
 
 require_once('_include.php');
 
-$config = SimpleSAML_Configuration::getInstance();
+$config = \SimpleSAML\Configuration::getInstance();
 
 if ($config->getBoolean('usenewui', false)) {
     \SimpleSAML\Utils\HTTP::redirectTrustedURL(SimpleSAML\Module::getModuleURL('core/login.php'));

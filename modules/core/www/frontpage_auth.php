@@ -36,7 +36,7 @@ $t->data['pageid'] = 'frontpage_auth';
 $t->data['isadmin'] = $isadmin;
 $t->data['loginurl'] = $loginurl;
 
-$t->data['header'] = $t->t('{core:frontpage:page_title}');
+$t->data['header'] = \SimpleSAML\Locale\Translate::t('{core:frontpage:page_title}');
 $t->data['links'] = $links;
 $t->data['links_welcome'] = $links_welcome;
 $t->data['links_config'] = $links_config;

@@ -40,9 +40,9 @@ class Registry
     protected function requireStandardField($request, $key)
     {
         if (!array_key_exists('field_' . $key, $request))
-            throw new Exception('Required field [' . $key . '] was missing.');
+            throw new \Exception('Required field [' . $key . '] was missing.');
         if (empty($request['field_' . $key]))
-            throw new Exception('Required field [' . $key . '] was empty.');
+            throw new \Exception('Required field [' . $key . '] was empty.');
     }
 
     public function checkForm($request)

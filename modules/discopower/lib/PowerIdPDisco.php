@@ -256,19 +256,19 @@ class PowerIdPDisco extends \SimpleSAML\XHTML\IdPDisco
 
         $t = new \SimpleSAML\XHTML\Template($this->config, 'discopower:disco.tpl.php', 'disco');
         $discoPowerTabs = array(
-            'denmark' => $t->noop('{discopower:tabs:denmark}'),
-            'edugain' => $t->noop('{discopower:tabs:edugain}'),
-            'finland' => $t->noop('{discopower:tabs:finland}'),
-            'greece' => $t->noop('{discopower:tabs:greece}'),
-            'southafrica' => $t->noop('{discopower:tabs:southafrica}'),
-            'iceland' => $t->noop('{discopower:tabs:iceland}'),
-            'incommon' => $t->noop('{discopower:tabs:incommon}'),
-            'kalmar' => $t->noop('{discopower:tabs:kalmar}'),
-            'misc' => $t->noop('{discopower:tabs:misc}'),
-            'norway' => $t->noop('{discopower:tabs:norway}'),
-            'sweden' => $t->noop('{discopower:tabs:sweden}'),
-            'switzerland' => $t->noop('{discopower:tabs:switzerland}'),
-            'ukacessfederation' => $t->noop('{discopower:tabs:ukacessfederation}'),
+            'denmark' => \SimpleSAML\Locale\Translate::noop('{discopower:tabs:denmark}'),
+            'edugain' => \SimpleSAML\Locale\Translate::noop('{discopower:tabs:edugain}'),
+            'finland' => \SimpleSAML\Locale\Translate::noop('{discopower:tabs:finland}'),
+            'greece' => \SimpleSAML\Locale\Translate::noop('{discopower:tabs:greece}'),
+            'southafrica' => \SimpleSAML\Locale\Translate::noop('{discopower:tabs:southafrica}'),
+            'iceland' => \SimpleSAML\Locale\Translate::noop('{discopower:tabs:iceland}'),
+            'incommon' => \SimpleSAML\Locale\Translate::noop('{discopower:tabs:incommon}'),
+            'kalmar' => \SimpleSAML\Locale\Translate::noop('{discopower:tabs:kalmar}'),
+            'misc' => \SimpleSAML\Locale\Translate::noop('{discopower:tabs:misc}'),
+            'norway' => \SimpleSAML\Locale\Translate::noop('{discopower:tabs:norway}'),
+            'sweden' => \SimpleSAML\Locale\Translate::noop('{discopower:tabs:sweden}'),
+            'switzerland' => \SimpleSAML\Locale\Translate::noop('{discopower:tabs:switzerland}'),
+            'ukacessfederation' => \SimpleSAML\Locale\Translate::noop('{discopower:tabs:ukacessfederation}'),
         );
 
         $t->data['return'] = $this->returnURL;
@@ -335,7 +335,7 @@ class PowerIdPDisco extends \SimpleSAML\XHTML\IdPDisco
                     }
                 }
 	
-                if ((translation === false) && array_key_exists('name', $entity)) {
+                if (($translation === false) && array_key_exists('name', $entity)) {
                     if (is_array($entity['name'])) {
                         $translation = $t->getTranslator()->getPreferredTranslation($entity['name']);
                     } else {
