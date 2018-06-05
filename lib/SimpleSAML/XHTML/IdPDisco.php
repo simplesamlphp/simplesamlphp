@@ -583,7 +583,7 @@ class IdPDisco
                 $templateFile = 'selectidp-links.php';
                 break;
             default:
-                throw new Exception('Invalid value for the \'idpdisco.layout\' option.');
+                throw new \Exception('Invalid value for the \'idpdisco.layout\' option.');
         }
 
         $t = new Template($this->config, $templateFile, 'disco');
