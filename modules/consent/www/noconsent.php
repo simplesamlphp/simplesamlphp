@@ -49,14 +49,15 @@ if (array_key_exists('name', $state['Destination'])) {
 $globalConfig = \SimpleSAML\Configuration::getInstance();
 
 $t = new \SimpleSAML\XHTML\Template($globalConfig, 'consent:noconsent.php');
+$translator = $t->getTranslator();
 $t->data['dstMetadata'] = $state['Destination'];
 $t->data['resumeFrom'] = $resumeFrom;
 $t->data['aboutService'] = $aboutService;
 $t->data['logoutLink'] = $logoutLink;
 
-$dstName = htmlspecialchars(is_array($dstName) ? \SimpleSAML\Locale\Translate::t($dstName) : $dstName);
+$dstName = htmlspecialchars(is_array($dstName) ? $translator->t($dstName) : $dstName);
 
-$t->data['noconsent_text'] = \SimpleSAML\Locale\Translate::t('{consent:consent:noconsent_text}', array('SPNAME' => $dstName));
-$t->data['noconsent_abort'] = \SimpleSAML\Locale\Translate::t('{consent:consent:abort}', array('SPNAME' => $dstName));
+$t->data['noconsent_text'] = $translator->t('{consent:consent:noconsent_text}', array('SPNAME' => $dstName));
+$t->data['noconsent_abort'] = $translator->t('{consent:consent:abort}', array('SPNAME' => $dstName));
 
 $t->show();

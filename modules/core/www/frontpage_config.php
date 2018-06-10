@@ -160,7 +160,7 @@ $funcmatrix[] = array(
 
 $t = new \SimpleSAML\XHTML\Template($config, 'core:frontpage_config.tpl.php');
 $t->data['pageid'] = 'frontpage_config';
-$t->data['header'] = \SimpleSAML\Locale\Translate::t('{core:frontpage:page_title}');
+$t->data['header'] = $t->getTranslator()->t('{core:frontpage:page_title}');
 $t->data['isadmin'] = $isadmin;
 $t->data['loginurl'] = $loginurl;
 $t->data['warnings'] = $warnings;

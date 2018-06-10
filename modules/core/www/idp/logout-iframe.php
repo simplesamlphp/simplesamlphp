@@ -122,7 +122,7 @@ if ($type === 'nojs') {
 
 $t = new \SimpleSAML\XHTML\Template($globalConfig, $template_id);
 $t->data['auth_state'] = $id;
-$t->data['header'] = \SimpleSAML\Locale\Translate::t('{logout:progress}');
+$t->data['header'] = $t->getTranslator()->t('{logout:progress}');
 
 /**
  * @deprecated The "id" variable will be removed. Please use "auth_state" instead.

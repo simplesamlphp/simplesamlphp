@@ -21,7 +21,7 @@ session_cache_limiter('nocache');
 
 $globalConfig = \SimpleSAML\Configuration::getInstance();
 
-SimpleSAML\Logger::info('Consent - getconsent: Accessing consent interface');
+\SimpleSAML\Logger::info('Consent - getconsent: Accessing consent interface');
 
 if (!array_key_exists('StateId', $_REQUEST)) {
     throw new \SimpleSAML\Error\BadRequest(
@@ -44,9 +44,9 @@ if (array_key_exists('core:SP', $state)) {
 // The user has pressed the yes-button
 if (array_key_exists('yes', $_REQUEST)) {
     if (array_key_exists('saveconsent', $_REQUEST)) {
-        SimpleSAML\Logger::stats('consentResponse remember');
+        \SimpleSAML\Logger::stats('consentResponse remember');
     } else {
-        SimpleSAML\Logger::stats('consentResponse rememberNot');
+        \SimpleSAML\Logger::stats('consentResponse rememberNot');
     }
 
     $statsInfo = array(
@@ -73,8 +73,8 @@ if (array_key_exists('yes', $_REQUEST)) {
         );	
         try {
             $store->saveConsent($userId, $targetedId, $attributeSet);
-        } catch (Exception $e) {
-            SimpleSAML\Logger::error('Consent: Error writing to storage: ' . $e->getMessage());
+        } catch (\Exception $e) {
+            \SimpleSAML\Logger::error('Consent: Error writing to storage: ' . $e->getMessage());
         }
     }
 
@@ -96,7 +96,7 @@ $para = array(
 );
 
 // Reorder attributes according to attributepresentation hooks
-SimpleSAML\Module::callHooks('attributepresentation', $para);
+\SimpleSAML\Module::callHooks('attributepresentation', $para);
 
 // Parse parameters
 if (array_key_exists('name', $state['Source'])) {
@@ -117,6 +117,7 @@ if (array_key_exists('name', $state['Destination'])) {
 
 // Make, populate and layout consent form
 $t = new \SimpleSAML\XHTML\Template($globalConfig, 'consent:consentform.php');
+$translator = $t->getTranslator();
 $t->data['srcMetadata'] = $state['Source'];
 $t->data['dstMetadata'] = $state['Destination'];
 $t->data['yesTarget'] = \SimpleSAML\Module::getModuleURL('consent/getconsent.php');
@@ -126,26 +127,26 @@ $t->data['noData'] = array('StateId' => $id);
 $t->data['attributes'] = $attributes;
 $t->data['checked'] = $state['consent:checked'];
 
-$srcName = htmlspecialchars(is_array($srcName) ? \SimpleSAML\Locale\Translate::t($srcName) : $srcName);
-$dstName = htmlspecialchars(is_array($dstName) ? \SimpleSAML\Locale\Translate::t($dstName) : $dstName);
+$srcName = htmlspecialchars(is_array($srcName) ? $translator->t($srcName) : $srcName);
+$dstName = htmlspecialchars(is_array($dstName) ? $translator->t($dstName) : $dstName);
 
-$t->data['consent_attributes_header'] = \SimpleSAML\Locale\Translate::t(
+$t->data['consent_attributes_header'] = $translator->t(
     '{consent:consent:consent_attributes_header}',
     array('SPNAME' => $dstName, 'IDPNAME' => $srcName)
 );
 
-$t->data['consent_accept'] = \SimpleSAML\Locale\Translate::t(
+$t->data['consent_accept'] = $translator->t(
     '{consent:consent:consent_accept}',
     array('SPNAME' => $dstName, 'IDPNAME' => $srcName)
 );
 
 if (array_key_exists('descr_purpose', $state['Destination'])) {
-    $t->data['consent_purpose'] = \SimpleSAML\Locale\Translate::t(
+    $t->data['consent_purpose'] = $translator->t(
         '{consent:consent:consent_purpose}',
         array(
             'SPNAME' => $dstName,
-            'SPDESC' => $t->getTranslator()->getPreferredTranslation(
-                SimpleSAML\Utils\Arrays::arrayize(
+            'SPDESC' => $translator->getPreferredTranslation(
+                \SimpleSAML\Utils\Arrays::arrayize(
                     $state['Destination']['descr_purpose'],
                     'en'
                 )
@@ -215,7 +216,7 @@ function present_attributes($t, $attributes, $nameParent)
 
     $alternate = array('odd', 'even');
     $i = 0;
-    $summary = 'summary="' . \SimpleSAML\Locale\Translate::t('{consent:consent:table_summary}') . '"';
+    $summary = 'summary="' . $translator->t('{consent:consent:table_summary}') . '"';
 
     if (strlen($nameParent) > 0) {
         $parentStr = strtolower($nameParent) . '_';
@@ -223,7 +224,7 @@ function present_attributes($t, $attributes, $nameParent)
     } else {
         $parentStr = '';
         $str = '<table id="table_with_attributes"  class="attributes" '. $summary .'>';
-        $str .= "\n" . '<caption>' . \SimpleSAML\Locale\Translate::t('{consent:consent:table_caption}') .
+        $str .= "\n" . '<caption>' . $translator->t('{consent:consent:table_caption}') .
             '</caption>';
     }
 
@@ -246,7 +247,7 @@ function present_attributes($t, $attributes, $nameParent)
 
             $isHidden = in_array($nameraw, $t->data['hiddenAttributes'], true);
             if ($isHidden) {
-                $hiddenId = SimpleSAML\Utils\Random::generateID();
+                $hiddenId = \SimpleSAML\Utils\Random::generateID();
 
                 $str .= '<div class="attrvalue hidden" id="hidden_' . $hiddenId . '">';
             } else {
@@ -283,7 +284,7 @@ function present_attributes($t, $attributes, $nameParent)
                 $str .= '... ';
                 $str .= '<a class="consent_showattributelink" href="javascript:SimpleSAML_show(\'hidden_' . $hiddenId;
                 $str .= '\'); SimpleSAML_hide(\'visible_' . $hiddenId . '\');">';
-                $str .= \SimpleSAML\Locale\Translate::t('{consent:consent:show_attribute}');
+                $str .= $translator->t('{consent:consent:show_attribute}');
                 $str .= '</a>';
                 $str .= '</div>';
             }
