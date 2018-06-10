@@ -51,7 +51,7 @@ $globalConfig = \SimpleSAML\Configuration::getInstance();
 $t = new \SimpleSAML\XHTML\Template($globalConfig, 'multiauth:selectsource.php');
 
 $defaultLanguage = $globalConfig->getString('language.default', 'en');
-$language = \SimpleSAML\Locale\Language::getLanguage();
+$language = $t->getTranslator()->getLanguage()->getLanguage();
 
 $sources = $state[\SimpleSAML\Module\multiauth\Auth\Source\MultiAuth::SOURCESID];
 foreach ($sources as $key => $source){

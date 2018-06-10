@@ -96,7 +96,7 @@ foreach ($metaentries['remote'] as $key => $value) {
 
 $t = new \SimpleSAML\XHTML\Template($config, 'core:frontpage_federation.tpl.php');
 
-$language = \SimpleSAML\Locale\Language::getLanguage();
+$language = $t->getTranslator()->getLanguage()->getLanguage();
 $defaultLanguage = $config->getString('language.default', 'en');
 
 $translators = array(
