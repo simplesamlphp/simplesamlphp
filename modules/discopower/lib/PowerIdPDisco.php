@@ -287,8 +287,8 @@ class PowerIdPDisco extends \SimpleSAML\XHTML\IdPDisco
             }
         }
 
-        if (!empty($this->data['faventry'])) {
-            $this->data['autofocus'] = 'favouritesubmit';
+        if (!empty($t->data['faventry'])) {
+            $t->data['autofocus'] = 'favouritesubmit';
         }
 
         $search = '<script type="text/javascript">
