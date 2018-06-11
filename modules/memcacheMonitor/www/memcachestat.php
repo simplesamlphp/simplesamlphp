@@ -151,11 +151,11 @@ foreach ($stats as $rowTitle => $rowData) {
     }
 }
 
-if (array_key_exists('bytes', $statsRaw) && array_key_exists('limit_maxbytes', $statsRaw)) {
+if (array_key_exists('bytes', $statsraw) && array_key_exists('limit_maxbytes', $statsraw)) {
     $usage = array();
     $maxpix = 400;
-    foreach ($statsRaw['bytes'] as $key => $row_data) {
-        $pix = floor($statsRaw['bytes'][$key] * $maxpix / $statsRaw['limit_maxbytes'][$key]);
+    foreach ($statsraw['bytes'] as $key => $row_data) {
+        $pix = floor($statsraw['bytes'][$key] * $maxpix / $statsraw['limit_maxbytes'][$key]);
         $usage[$key] = $pix . 'px';
     }
     $t->data['maxpix'] = $maxpix . 'px';
