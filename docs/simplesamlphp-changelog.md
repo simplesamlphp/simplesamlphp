@@ -49,6 +49,9 @@ Released TBD
 ### cas
   * Respect all LDAP options in LDAP call.
 
+### casserver
+  * Module removed; superseded by externally hosted module.
+
 ### consent
   * Sort attribute values for consent.
   * Fix table layout for MySQL > 5.6.
