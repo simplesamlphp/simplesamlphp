@@ -1,5 +1,5 @@
 {
-    "name": "simplesamlphp/simplesamlphp",
+    "name": "lampdev/simplesamlphp",
     "description": "A PHP implementation of a SAML 2.0 service provider and identity provider, also compatible with Shibboleth 1.3 and 2.0.",
     "type": "project",
     "keywords": [ "saml2", "shibboleth","oauth","ws-federation","sp","idp" ],
@@ -53,6 +53,6 @@
     },
     "support": {
         "issues": "https://github.com/simplesamlphp/simplesamlphp/issues",
-        "source": "https://github.com/simplesamlphp/simplesamlphp"
+        "source": "https://github.com/lampdev/simplesamlphp"
     }
 }
