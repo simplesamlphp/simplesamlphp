@@ -199,7 +199,7 @@ class Message
 
         $lastException = null;
         foreach ($pemKeys as $i => $pem) {
-            $key = new XMLSecurityKey(XMLSecurityKey::RSA_SHA256, array('type' => 'public'));
+            $key = new XMLSecurityKey($element->getSignatureMethod() ? $element->getSignatureMethod() : XMLSecurityKey::RSA_SHA256, array('type' => 'public'));
             $key->loadKey($pem);
 
             try {
