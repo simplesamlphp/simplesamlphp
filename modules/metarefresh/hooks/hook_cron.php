@@ -5,15 +5,15 @@
  * @param array &$croninfo  Output
  */
 function metarefresh_hook_cron(&$croninfo) {
-	assert('is_array($croninfo)');
-	assert('array_key_exists("summary", $croninfo)');
-	assert('array_key_exists("tag", $croninfo)');
+	assert(is_array($croninfo));
+	assert(array_key_exists('summary', $croninfo));
+	assert(array_key_exists('tag', $croninfo));
 
 	SimpleSAML\Logger::info('cron [metarefresh]: Running cron in cron tag [' . $croninfo['tag'] . '] ');
 
 	try {
-		$config = SimpleSAML_Configuration::getInstance();
-		$mconfig = SimpleSAML_Configuration::getOptionalConfig('config-metarefresh.php');
+		$config = \SimpleSAML\Configuration::getInstance();
+		$mconfig = \SimpleSAML\Configuration::getOptionalConfig('config-metarefresh.php');
 
 		$sets = $mconfig->getConfigList('sets', array());
 		$stateFile = $config->getPathValue('datadir', 'data/') . 'metarefresh-state.php';
@@ -21,9 +21,9 @@ function metarefresh_hook_cron(&$croninfo) {
 		foreach ($sets AS $setkey => $set) {
 			// Only process sets where cron matches the current cron tag
 			$cronTags = $set->getArray('cron');
-			if (!in_array($croninfo['tag'], $cronTags)) continue;
+			if (!in_array($croninfo['tag'], $cronTags, true)) continue;
 
-			SimpleSAML\Logger::info('cron [metarefresh]: Executing set [' . $setkey . ']');
+			\SimpleSAML\Logger::info('cron [metarefresh]: Executing set [' . $setkey . ']');
 
 			$expireAfter = $set->getInteger('expireAfter', NULL);
 			if ($expireAfter !== NULL) {
@@ -36,12 +36,12 @@ function metarefresh_hook_cron(&$croninfo) {
 			$outputDir = $config->resolvePath($outputDir);
 			$outputFormat = $set->getValueValidate('outputFormat', array('flatfile', 'serialize'), 'flatfile');
 
-			$oldMetadataSrc = SimpleSAML_Metadata_MetaDataStorageSource::getSource(array(
+			$oldMetadataSrc = \SimpleSAML\Metadata\MetaDataStorageSource::getSource(array(
 				'type' => $outputFormat,
 				'directory' => $outputDir,
 			));
 
-			$metaloader = new sspmod_metarefresh_MetaLoader($expire, $stateFile, $oldMetadataSrc);
+			$metaloader = new \SimpleSAML\Module\metarefresh\MetaLoader($expire, $stateFile, $oldMetadataSrc);
 
 			# Get global blacklist, whitelist and caching info
 			$blacklist = $mconfig->getArray('blacklist', array());
@@ -86,7 +86,7 @@ function metarefresh_hook_cron(&$croninfo) {
 					$source['conditionalGET'] = $conditionalGET;
 				}
 
-				SimpleSAML\Logger::debug('cron [metarefresh]: In set [' . $setkey . '] loading source ['  . $source['src'] . ']');
+				\SimpleSAML\Logger::debug('cron [metarefresh]: In set [' . $setkey . '] loading source ['  . $source['src'] . ']');
 				$metaloader->loadSource($source);
 			}
 
@@ -103,12 +103,12 @@ function metarefresh_hook_cron(&$croninfo) {
 			}
 
 			if ($set->hasValue('arp')) {
-				$arpconfig = SimpleSAML_Configuration::loadFromArray($set->getValue('arp'));
+				$arpconfig = \SimpleSAML\Configuration::loadFromArray($set->getValue('arp'));
 				$metaloader->writeARPfile($arpconfig);
 			}
 		}
 
-	} catch (Exception $e) {
+	} catch (\Exception $e) {
 		$croninfo['summary'][] = 'Error during metarefresh: ' . $e->getMessage();
 	}
 }

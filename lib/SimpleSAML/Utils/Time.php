@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Time-related utility methods.
  *
@@ -9,10 +10,8 @@ namespace SimpleSAML\Utils;
 
 use SimpleSAML\Logger;
 
-
 class Time
 {
-
     /**
      * Whether the timezone has been initialized or not.
      *
@@ -44,6 +43,10 @@ class Time
      * This function should be called before any calls to date().
      *
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
+     *
+     * @throws \SimpleSAML\Error\Exception If the timezone set in the configuration is invalid.
+     *
+     * @return void
      */
     public static function initTimezone()
     {
@@ -51,12 +54,12 @@ class Time
             return;
         }
 
-        $globalConfig = \SimpleSAML_Configuration::getInstance();
+        $globalConfig = \SimpleSAML\Configuration::getInstance();
 
         $timezone = $globalConfig->getString('timezone', null);
         if ($timezone !== null) {
             if (!date_default_timezone_set($timezone)) {
-                throw new \SimpleSAML_Error_Exception('Invalid timezone set in the "timezone" option in config.php.');
+                throw new \SimpleSAML\Error\Exception('Invalid timezone set in the "timezone" option in config.php.');
             }
             self::$tz_initialized = true;
             return;

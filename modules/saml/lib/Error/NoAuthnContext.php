@@ -1,4 +1,7 @@
 <?php
+
+namespace SimpleSAML\Module\saml\Error;
+
 /**
  * A SAML error indicating that none of the requested Authentication Contexts can be used.
  *
@@ -6,11 +9,9 @@
  * @package SimpleSAMLphp
  */
 
-namespace SimpleSAML\Module\saml\Error;
-
 use SAML2\Constants;
 
-class NoAuthnContext extends \sspmod_saml_Error
+class NoAuthnContext extends \SimpleSAML\Module\saml\Error
 {
     /**
      * NoAuthnContext error constructor.

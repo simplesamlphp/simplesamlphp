@@ -8,23 +8,23 @@
 
 if (array_key_exists('RedirId', $_REQUEST)) {
 	$postId = $_REQUEST['RedirId'];
-	$session = SimpleSAML_Session::getSessionFromRequest();
+	$session = \SimpleSAML\Session::getSessionFromRequest();
 } elseif (array_key_exists('RedirInfo', $_REQUEST)) {
 	$encData = base64_decode($_REQUEST['RedirInfo']);
 
 	if (empty($encData)) {
-		throw new SimpleSAML_Error_BadRequest('Invalid RedirInfo data.');
+		throw new \SimpleSAML\Error\BadRequest('Invalid RedirInfo data.');
 	}
 
-	list($sessionId, $postId) = explode(':', SimpleSAML\Utils\Crypto::aesDecrypt($encData));
+	list($sessionId, $postId) = explode(':', \SimpleSAML\Utils\Crypto::aesDecrypt($encData));
 
 	if (empty($sessionId) || empty($postId)) {
-		throw new SimpleSAML_Error_BadRequest('Invalid session info data.');
+		throw new \SimpleSAML\Error\BadRequest('Invalid session info data.');
 	}
 
-	$session = SimpleSAML_Session::getSession($sessionId);
+	$session = \SimpleSAML\Session::getSession($sessionId);
 } else {
-	throw new SimpleSAML_Error_BadRequest('Missing redirection info parameter.');
+	throw new \SimpleSAML\Error\BadRequest('Missing redirection info parameter.');
 }
 
 if ($session === NULL) {
@@ -40,12 +40,12 @@ if ($postData === NULL) {
 
 $session->deleteData('core_postdatalink', $postId);
 
-assert('is_array($postData)');
-assert('array_key_exists("url", $postData)');
-assert('array_key_exists("post", $postData)');
+assert(is_array($postData));
+assert(array_key_exists('url', $postData));
+assert(array_key_exists('post', $postData));
 
-$config = SimpleSAML_Configuration::getInstance();
-$template = new SimpleSAML_XHTML_Template($config, 'post.php');
+$config = \SimpleSAML\Configuration::getInstance();
+$template = new \SimpleSAML\XHTML\Template($config, 'post.php');
 $template->data['destination'] = $postData['url'];
 $template->data['post'] = $postData['post'];
 $template->show();

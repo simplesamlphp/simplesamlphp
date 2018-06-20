@@ -127,6 +127,6 @@ TRSTART;
 
         <h2>Logout</h2>
 
-            <p><a href="<?php echo \SimpleSAML\Utils\HTTP::getSelfURL() . '?logout'; ?>">Logout</a></p>
+            <p><a href="<?php echo \SimpleSAML\Module::getModuleURL('consentAdmin/consentAdmin.php', array('logout' => 1)); ?>">Logout</a></p>
 
 <?php $this->includeAtTemplateBase('includes/footer.php');

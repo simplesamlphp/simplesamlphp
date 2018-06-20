@@ -1,5 +1,7 @@
 <?php
 
+namespace SimpleSAML\Module\authYubiKey\Auth\Process;
+
 /*
  * Copyright (C) 2009  Simon Josefsson <simon@yubico.com>.
  *
@@ -42,9 +44,9 @@
  *      );
  *
  */
-class sspmod_authYubiKey_Auth_Process_OTP2YubiPrefix extends SimpleSAML_Auth_ProcessingFilter {
 
-
+class OTP2YubiPrefix extends \SimpleSAML\Auth\ProcessingFilter
+{
 	/**
 	 * Filter out YubiKey 'otp' attribute and replace it with
          * a 'yubiPrefix' attribute that leaves out the dynamic part.
@@ -52,11 +54,11 @@ class sspmod_authYubiKey_Auth_Process_OTP2YubiPrefix extends SimpleSAML_Auth_Pro
 	 * @param array &$state  The state we should update.
 	 */
 	public function process(&$state) {
-		assert('is_array($state)');
-		assert('array_key_exists("Attributes", $state)');
+		assert(is_array($state));
+		assert(array_key_exists('Attributes', $state));
 		$attributes = $state['Attributes'];
 
-		SimpleSAML\Logger::debug('OTP2YubiPrefix: enter with attributes: ' . implode(',', array_keys($attributes)));
+		\SimpleSAML\Logger::debug('OTP2YubiPrefix: enter with attributes: ' . implode(',', array_keys($attributes)));
 
 		$otps = $attributes['otp'];
 		$otp = $otps['0'];
@@ -66,11 +68,11 @@ class sspmod_authYubiKey_Auth_Process_OTP2YubiPrefix extends SimpleSAML_Auth_Pro
 
 		$attributes['yubiPrefix'] = array($identity);
 
-		SimpleSAML\Logger::info('OTP2YubiPrefix: otp: ' . $otp . ' identity: ' . $identity . ' (otp keys: ' . implode(',', array_keys($otps)) . ')');
+		\SimpleSAML\Logger::info('OTP2YubiPrefix: otp: ' . $otp . ' identity: ' . $identity . ' (otp keys: ' . implode(',', array_keys($otps)) . ')');
 
 		unset($attributes['otp']);
 
-		SimpleSAML\Logger::debug('OTP2YubiPrefix: leaving with attributes: ' . implode(',', array_keys($attributes)));
+		\SimpleSAML\Logger::debug('OTP2YubiPrefix: leaving with attributes: ' . implode(',', array_keys($attributes)));
 	}
 
 }

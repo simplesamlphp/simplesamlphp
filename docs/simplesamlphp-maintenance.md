@@ -52,7 +52,7 @@ SimpleSAMLphp as an Identity Provider, or any other applications using it are no
 settings by leaving these options unset or setting them to `null`.
 
 If you need to restore your session's application after calling SimpleSAMLphp, you can do it by calling the `cleanup()` method of the
-`SimpleSAML_Session` class, like described [here](simplesamlphp-sp#section_6).
+`\SimpleSAML\Session` class, like described [here](simplesamlphp-sp#section_6).
 
 ### Configuring memcache
 
@@ -178,7 +178,7 @@ example configuration of different metadata sources in use at the same time:
 ```
 
 You may also implement your own metadata storage handler, in a very similar way to how you would implement
-your own session handler. Your class **must** extend the `SimpleSAML_Metadata_MetaDataStorageSource` class
+your own session handler. Your class **must** extend the `\SimpleSAML\Metadata\MetaDataStorageSource` class
 and override the methods needed to change the backend used. This class **must** also be located in the
 `lib/MetadataStore/` directory of your custom module.
 
@@ -190,7 +190,7 @@ module is named _mymodule_ and your class is named _MyMetadataHandler_, you shou
 <?php
 namespace SimpleSAML\Module\mymodule\MetadataStore;
 
-class MyMetadataHandler extends SimpleSAML_Metadata_MetaDataStorageSource
+class MyMetadataHandler extends \SimpleSAML\Metadata\MetaDataStorageSource
 {
     ...
 ```
@@ -205,7 +205,7 @@ alternative, you may log to flat files.
 
 ## Apache configuration
 
-Basic Apache configruation is described in [SimpleSAMLphp Installation](simplesamlphp-install#section_6).
+Basic Apache configuration is described in [SimpleSAMLphp Installation](simplesamlphp-install#section_6).
 However, your IdP or SP is most likely a valuable website that you want to configure securely. Here are some checks.
 
 * Make sure you use HTTPS with a proper certificate. The best way is to not
@@ -252,10 +252,6 @@ Please use the standardized two-character
 [language codes as specified in ISO-639-1](http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes).
 
 You also can set the default language. You should ensure that the default language is complete, as it is used as a fallback when a text is not available in the language selected by the user.
-
-Translation of SimpleSAMLphp is done through the SimpleSAMLphp translation portal. To translate SimpleSAMLphp to a new language, please contact the authors at the mailing list, and the new language may be added to the translation portal.
-
-  * [Visit the SimpleSAMLphp translation portal](https://translation.rnd.feide.no/?aid=simplesamlphp)
 
 All strings that can be localized are found in the files `dictionaries/`. Add a new entry for each string, with your language code, like this:
 

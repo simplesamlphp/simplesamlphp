@@ -1,12 +1,15 @@
 <?php
 
+namespace SimpleSAML\Module\core\Auth\Process;
+
 /**
  * Extend IdP session and cookies.
 */
-class sspmod_core_Auth_Process_ExtendIdPSession extends SimpleSAML_Auth_ProcessingFilter {
 
+class ExtendIdPSession extends \SimpleSAML\Auth\ProcessingFilter
+{
 	public function process(&$state) {
-		assert('is_array($state)');
+		assert(is_array($state));
 
 		if (empty($state['Expire']) || empty($state['Authority'])) {
 			return;
@@ -15,7 +18,7 @@ class sspmod_core_Auth_Process_ExtendIdPSession extends SimpleSAML_Auth_Processi
 		$now = time();
 		$delta = $state['Expire'] - $now;
 
-		$globalConfig = SimpleSAML_Configuration::getInstance();
+		$globalConfig = \SimpleSAML\Configuration::getInstance();
 		$sessionDuration = $globalConfig->getInteger('session.duration', 8*60*60);
 
 		// Extend only if half of session duration already passed
@@ -24,7 +27,7 @@ class sspmod_core_Auth_Process_ExtendIdPSession extends SimpleSAML_Auth_Processi
 		}
 
 		// Update authority expire time
-		$session = SimpleSAML_Session::getSessionFromRequest();
+		$session = \SimpleSAML\Session::getSessionFromRequest();
 		$session->setAuthorityExpire($state['Authority']);
 
 		/* Update session cookies duration */

@@ -2,7 +2,6 @@
 
 namespace SimpleSAML;
 
-
 /**
  * The main logger class for SimpleSAMLphp.
  *
@@ -10,11 +9,9 @@ namespace SimpleSAML;
  * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
  * @author Jaime Pérez Crespo, UNINETT AS <jaime.perez@uninett.no>
  * @package SimpleSAMLphp
- * @version $ID$
  */
 class Logger
 {
-
     /**
      * @var \SimpleSAML\Logger\LoggingHandlerInterface|false|null
      */
@@ -268,11 +265,11 @@ class Logger
     public static function flush()
     {
         try {
-            $s = \SimpleSAML_Session::getSessionFromRequest();
+            $s = Session::getSessionFromRequest();
         } catch (\Exception $e) {
             // loading session failed. We don't care why, at this point we have a transient session, so we use that
             self::error('Cannot load or create session: '.$e->getMessage());
-            $s = \SimpleSAML_Session::getSessionFromRequest();
+            $s = Session::getSessionFromRequest();
         }
         self::$trackid = $s->getTrackID();
 
@@ -305,7 +302,7 @@ class Logger
      */
     public static function maskErrors($mask)
     {
-        assert('is_int($mask)');
+        assert(is_int($mask));
 
         $currentEnabled = error_reporting();
         self::$logLevelStack[] = array($currentEnabled, self::$logMask);
@@ -362,8 +359,8 @@ class Logger
         );
 
         // get the configuration
-        $config = \SimpleSAML_Configuration::getInstance();
-        assert($config instanceof \SimpleSAML_Configuration);
+        $config = Configuration::getInstance();
+        assert($config instanceof Configuration);
 
         // setting minimum log_level
         self::$logLevel = $config->getInteger('logging.level', self::INFO);
@@ -373,8 +370,8 @@ class Logger
             $handler = $config->getString('logging.handler', 'syslog');
         }
 
-        if (class_exists($handler)) {
-            if (!in_array('SimpleSAML\Logger\LoggingHandlerInterface', class_implements($handler))) {
+        if (!array_key_exists($handler, $known_handlers) && class_exists($handler)) {
+            if (!in_array('SimpleSAML\Logger\LoggingHandlerInterface', class_implements($handler), true)) {
                 throw new \Exception("The logging handler '$handler' is invalid.");
             }
         } else {

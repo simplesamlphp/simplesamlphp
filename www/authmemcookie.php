@@ -16,24 +16,24 @@ require_once('_include.php');
 
 try {
     // load SimpleSAMLphp configuration
-    $globalConfig = SimpleSAML_Configuration::getInstance();
+    $globalConfig = \SimpleSAML\Configuration::getInstance();
 
     // check if this module is enabled
     if (!$globalConfig->getBoolean('enable.authmemcookie', false)) {
-        throw new SimpleSAML_Error_Error('NOACCESS');
+        throw new \SimpleSAML\Error\Error('NOACCESS');
     }
 
     // load Auth MemCookie configuration
-    $amc = SimpleSAML_AuthMemCookie::getInstance();
+    $amc = \SimpleSAML\AuthMemCookie::getInstance();
 
     $sourceId = $amc->getAuthSource();
-    $s = new SimpleSAML_Auth_Simple($sourceId);
+    $s = new \SimpleSAML\Auth\Simple($sourceId);
 
     // check if the user is authorized. We attempt to authenticate the user if not
     $s->requireAuth();
 
     // generate session id and save it in a cookie
-    $sessionID = SimpleSAML\Utils\Random::generateID();
+    $sessionID = \SimpleSAML\Utils\Random::generateID();
     $cookieName = $amc->getCookieName();
     \SimpleSAML\Utils\HTTP::setCookie($cookieName, $sessionID);
 
@@ -45,7 +45,7 @@ try {
     // username
     $usernameAttr = $amc->getUsernameAttr();
     if (!array_key_exists($usernameAttr, $attributes)) {
-        throw new Exception(
+        throw new \Exception(
             "The user doesn't have an attribute named '".$usernameAttr.
             "'. This attribute is expected to contain the username."
         );
@@ -56,7 +56,7 @@ try {
     $groupsAttr = $amc->getGroupsAttr();
     if ($groupsAttr !== null) {
         if (!array_key_exists($groupsAttr, $attributes)) {
-            throw new Exception(
+            throw new \Exception(
                 "The user doesn't have an attribute named '".$groupsAttr.
                 "'. This attribute is expected to contain the groups the user is a member of."
             );
@@ -96,11 +96,11 @@ try {
     $memcache->set($sessionID, $data, 0, $expirationTime);
 
     // register logout handler
-    $session = SimpleSAML_Session::getSessionFromRequest();
-    $session->registerLogoutHandler($sourceId, 'SimpleSAML_AuthMemCookie', 'logoutHandler');
+    $session = \SimpleSAML\Session::getSessionFromRequest();
+    $session->registerLogoutHandler($sourceId, '\SimpleSAML\AuthMemCookie', 'logoutHandler');
 
     // redirect the user back to this page to signal that the login is completed
     \SimpleSAML\Utils\HTTP::redirectTrustedURL(\SimpleSAML\Utils\HTTP::getSelfURL());
-} catch (Exception $e) {
-    throw new SimpleSAML_Error_Error('CONFIG', $e);
+} catch (\Exception $e) {
+    throw new \SimpleSAML\Error\Error('CONFIG', $e);
 }

@@ -1,14 +1,15 @@
 <?php
 
+namespace SimpleSAML\Module\saml\Auth\Process;
 
 /**
  * Authentication processing filter to create the eduPersonTargetedID attribute from the persistent NameID.
  *
  * @package SimpleSAMLphp
  */
-class sspmod_saml_Auth_Process_PersistentNameID2TargetedID extends SimpleSAML_Auth_ProcessingFilter
-{
 
+class PersistentNameID2TargetedID extends \SimpleSAML\Auth\ProcessingFilter
+{
     /**
      * The attribute we should save the NameID in.
      *
@@ -34,7 +35,7 @@ class sspmod_saml_Auth_Process_PersistentNameID2TargetedID extends SimpleSAML_Au
     public function __construct($config, $reserved)
     {
         parent::__construct($config, $reserved);
-        assert('is_array($config)');
+        assert(is_array($config));
 
         if (isset($config['attribute'])) {
             $this->attribute = (string) $config['attribute'];
@@ -57,10 +58,10 @@ class sspmod_saml_Auth_Process_PersistentNameID2TargetedID extends SimpleSAML_Au
      */
     public function process(&$state)
     {
-        assert('is_array($state)');
+        assert(is_array($state));
 
         if (!isset($state['saml:NameID'][\SAML2\Constants::NAMEID_PERSISTENT])) {
-            SimpleSAML\Logger::warning(
+            \SimpleSAML\Logger::warning(
                 'Unable to generate eduPersonTargetedID because no persistent NameID was available.'
             );
             return;
@@ -69,16 +70,6 @@ class sspmod_saml_Auth_Process_PersistentNameID2TargetedID extends SimpleSAML_Au
         /** @var \SAML2\XML\saml\NameID $nameID */
         $nameID = $state['saml:NameID'][\SAML2\Constants::NAMEID_PERSISTENT];
 
-        if ($this->nameId) {
-            $doc = \SAML2\DOMDocumentFactory::create();
-            $root = $doc->createElement('root');
-            $doc->appendChild($root);
-            $nameID->toXML($root);
-            $value = $doc->saveXML($root->firstChild);
-        } else {
-            $value = $nameID['Value'];
-        }
-
-        $state['Attributes'][$this->attribute] = array($value);
+        $state['Attributes'][$this->attribute] = array((!$this->nameId) ? $nameID->value : $nameID);
     }
 }

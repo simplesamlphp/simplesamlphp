@@ -2,7 +2,8 @@
 
 namespace SimpleSAML\Test\Utils;
 
-use \SimpleSAML_Configuration as Configuration;
+use PHPUnit\Framework\TestCase;
+use \SimpleSAML\Configuration;
 use \SimpleSAML\Utils\System;
 
 use \org\bovigo\vfs\vfsStream;
@@ -10,7 +11,7 @@ use \org\bovigo\vfs\vfsStream;
 /**
  * Tests for SimpleSAML\Utils\System.
  */
-class SystemTest extends \PHPUnit_Framework_TestCase
+class SystemTest extends TestCase
 {
     const ROOTDIRNAME = 'testdir';
     const DEFAULTTEMPDIR = 'tempdir';
@@ -109,7 +110,6 @@ class SystemTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @requires PHP 5.4.0
      * @covers \SimpleSAML\Utils\System::writeFile
      * @test
      */
@@ -124,11 +124,10 @@ class SystemTest extends \PHPUnit_Framework_TestCase
 
         $this->assertFileExists($filename);
 
-        $this->clearInstance($config, '\SimpleSAML_Configuration');
+        $this->clearInstance($config, '\SimpleSAML\Configuration');
     }
 
     /**
-     * @requires PHP 5.4.0
      * @covers \SimpleSAML\Utils\System::writeFile
      * @test
      */
@@ -147,11 +146,10 @@ class SystemTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals($expected, $res);
 
-        $this->clearInstance($config, '\SimpleSAML_Configuration');
+        $this->clearInstance($config, '\SimpleSAML\Configuration');
     }
 
     /**
-     * @requires PHP 5.4.0
      * @covers \SimpleSAML\Utils\System::writeFile
      * @test
      */
@@ -170,7 +168,7 @@ class SystemTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals($expected, $res);
 
-        $this->clearInstance($config, '\SimpleSAML_Configuration');
+        $this->clearInstance($config, '\SimpleSAML\Configuration');
     }
 
     /**
@@ -188,7 +186,7 @@ class SystemTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $res);
         $this->assertFileExists($res);
 
-        $this->clearInstance($config, '\SimpleSAML_Configuration');
+        $this->clearInstance($config, '\SimpleSAML\Configuration');
     }
 
     /**
@@ -206,11 +204,10 @@ class SystemTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $res);
         $this->assertFileExists($res);
 
-        $this->clearInstance($config, '\SimpleSAML_Configuration');
+        $this->clearInstance($config, '\SimpleSAML\Configuration');
     }
 
     /**
-     * @requires PHP 5.4.0
      * @requires OS Linux
      * @covers \SimpleSAML\Utils\System::getTempDir
      * @test
@@ -224,10 +221,10 @@ class SystemTest extends \PHPUnit_Framework_TestCase
 
         chown($tempdir, $bad_uid);
 
-        $this->setExpectedException('\SimpleSAML_Error_Exception');
+        $this->setExpectedException('\SimpleSAML\Error\Exception');
         $res = System::getTempDir();
 
-        $this->clearInstance($config, '\SimpleSAML_Configuration');
+        $this->clearInstance($config, '\SimpleSAML\Configuration');
     }
 
     private function setConfigurationTempDir($directory)

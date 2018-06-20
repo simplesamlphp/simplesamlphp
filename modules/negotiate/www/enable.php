@@ -14,9 +14,9 @@ $params = array(
 );
 \SimpleSAML\Utils\HTTP::setCookie('NEGOTIATE_AUTOLOGIN_DISABLE_PERMANENT', NULL, $params, FALSE);
 
-$globalConfig = SimpleSAML_Configuration::getInstance();
-$session = SimpleSAML_Session::getSessionFromRequest();
+$globalConfig = \SimpleSAML\Configuration::getInstance();
+$session = \SimpleSAML\Session::getSessionFromRequest();
 $session->setData('negotiate:disable', 'session', FALSE, 24*60*60);
-$t = new SimpleSAML_XHTML_Template($globalConfig, 'negotiate:enable.php');
-$t->data['url'] = SimpleSAML\Module::getModuleURL('negotiate/disable.php');
+$t = new \SimpleSAML\XHTML\Template($globalConfig, 'negotiate:enable.php');
+$t->data['url'] = \SimpleSAML\Module::getModuleURL('negotiate/disable.php');
 $t->show();

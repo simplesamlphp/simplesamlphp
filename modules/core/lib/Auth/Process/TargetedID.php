@@ -1,5 +1,7 @@
 <?php
 
+namespace SimpleSAML\Module\core\Auth\Process;
+
 /**
  * Filter to generate the eduPersonTargetedID attribute.
  *
@@ -28,9 +30,9 @@
  * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
-class sspmod_core_Auth_Process_TargetedID extends SimpleSAML_Auth_ProcessingFilter {
 
-
+class TargetedID extends \SimpleSAML\Auth\ProcessingFilter
+{
 	/**
 	 * The attribute we should generate the targeted id from, or NULL if we should use the
 	 * UserID.
@@ -55,19 +57,19 @@ class sspmod_core_Auth_Process_TargetedID extends SimpleSAML_Auth_ProcessingFilt
 	public function __construct($config, $reserved) {
 		parent::__construct($config, $reserved);
 
-		assert('is_array($config)');
+		assert(is_array($config));
 
 		if (array_key_exists('attributename', $config)) {
 			$this->attribute = $config['attributename'];
 			if (!is_string($this->attribute)) {
-				throw new Exception('Invalid attribute name given to core:TargetedID filter.');
+				throw new \Exception('Invalid attribute name given to core:TargetedID filter.');
 			}
 		}
 
 		if (array_key_exists('nameId', $config)) {
 			$this->generateNameId = $config['nameId'];
 			if (!is_bool($this->generateNameId)) {
-				throw new Exception('Invalid value of \'nameId\'-option to core:TargetedID filter.');
+				throw new \Exception('Invalid value of \'nameId\'-option to core:TargetedID filter.');
 			}
 		}
 	}
@@ -79,12 +81,12 @@ class sspmod_core_Auth_Process_TargetedID extends SimpleSAML_Auth_ProcessingFilt
 	 * @param array &$state  The current state.
 	 */
 	public function process(&$state) {
-		assert('is_array($state)');
-		assert('array_key_exists("Attributes", $state)');
+		assert(is_array($state));
+		assert(array_key_exists('Attributes', $state));
 
 		if ($this->attribute === NULL) {
 			if (!array_key_exists('UserID', $state)) {
-				throw new Exception('core:TargetedID: Missing UserID for this user. Please' .
+				throw new \Exception('core:TargetedID: Missing UserID for this user. Please' .
 					' check the \'userid.attribute\' option in the metadata against the' .
 					' attributes provided by the authentication source.');
 			}
@@ -92,7 +94,7 @@ class sspmod_core_Auth_Process_TargetedID extends SimpleSAML_Auth_ProcessingFilt
 			$userID = $state['UserID'];
 		} else {
 			if (!array_key_exists($this->attribute, $state['Attributes'])) {
-				throw new Exception('core:TargetedID: Missing attribute \'' . $this->attribute .
+				throw new \Exception('core:TargetedID: Missing attribute \'' . $this->attribute .
 					'\', which is needed to generate the targeted ID.');
 			}
 
@@ -100,7 +102,7 @@ class sspmod_core_Auth_Process_TargetedID extends SimpleSAML_Auth_ProcessingFilt
 		}
 
 
-		$secretSalt = SimpleSAML\Utils\Config::getSecretSalt();
+		$secretSalt = \SimpleSAML\Utils\Config::getSecretSalt();
 
 		if (array_key_exists('Source', $state)) {
 			$srcID = self::getEntityId($state['Source']);
@@ -134,16 +136,11 @@ class sspmod_core_Auth_Process_TargetedID extends SimpleSAML_Auth_ProcessingFilt
 			if (isset($state['Destination']['entityid'])) {
 				$nameId->SPNameQualifier = $state['Destination']['entityid'];
 			}
-
-			$doc = \SAML2\DOMDocumentFactory::create();
-			$root = $doc->createElement('root');
-			$doc->appendChild($root);
-
-			$nameId->toXML($root);
-			$uid = $doc->saveXML($root->firstChild);
+		} else {
+			$nameId = $uid;
 		}
 
-		$state['Attributes']['eduPersonTargetedID'] = array($uid);
+		$state['Attributes']['eduPersonTargetedID'] = array($nameId);
 	}
 
 
@@ -157,7 +154,7 @@ class sspmod_core_Auth_Process_TargetedID extends SimpleSAML_Auth_ProcessingFilt
 	 * @return string  The unique identifier for the entity.
 	 */
 	private static function getEntityId($metadata) {
-		assert('is_array($metadata)');
+		assert(is_array($metadata));
 
 		$id = '';
 

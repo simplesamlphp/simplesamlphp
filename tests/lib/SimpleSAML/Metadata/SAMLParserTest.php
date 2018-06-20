@@ -1,10 +1,13 @@
 <?php
+
 namespace SimpleSAML\Metadata;
+
+use PHPUnit\Framework\TestCase;
 
 /**
  * Test SAML parsing
  */
-class SAMLParserTest extends \PHPUnit_Framework_TestCase
+class SAMLParserTest extends TestCase
 {
 
     /**
@@ -30,7 +33,7 @@ XML
         );
 
 
-        $entities = \SimpleSAML_Metadata_SAMLParser::parseDescriptorsElement($document->documentElement);
+        $entities = \SimpleSAML\Metadata\SAMLParser::parseDescriptorsElement($document->documentElement);
         $this->assertArrayHasKey('theEntityID', $entities);
         // RegistrationInfo is accessible in the SP or IDP metadata accessors
         $metadata = $entities['theEntityID']->getMetadata20SP();
@@ -72,7 +75,7 @@ XML
 XML
         );
 
-        $entities = \SimpleSAML_Metadata_SAMLParser::parseDescriptorsElement($document->documentElement);
+        $entities = \SimpleSAML\Metadata\SAMLParser::parseDescriptorsElement($document->documentElement);
         $this->assertArrayHasKey('theEntityID', $entities);
         $this->assertArrayHasKey('subEntityId', $entities);
         // RegistrationInfo is accessible in the SP or IDP metadata accessors
@@ -114,7 +117,7 @@ XML
 XML
         );
 
-        $entities = \SimpleSAML_Metadata_SAMLParser::parseDescriptorsElement($document->documentElement);
+        $entities = \SimpleSAML\Metadata\SAMLParser::parseDescriptorsElement($document->documentElement);
         $this->assertArrayHasKey('theEntityID', $entities);
 
         $metadata = $entities['theEntityID']->getMetadata20SP();

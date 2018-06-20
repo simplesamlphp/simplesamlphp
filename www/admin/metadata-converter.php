@@ -1,20 +1,21 @@
 <?php
+
 require_once('../_include.php');
 
 // make sure that the user has admin access rights
-SimpleSAML\Utils\Auth::requireAdmin();
+\SimpleSAML\Utils\Auth::requireAdmin();
 
-$config = SimpleSAML_Configuration::getInstance();
+$config = \SimpleSAML\Configuration::getInstance();
 
 if (!empty($_FILES['xmlfile']['tmp_name'])) {
-    $xmldata = file_get_contents($_FILES['xmlfile']['tmp_name']);
+    $xmldata = trim(file_get_contents($_FILES['xmlfile']['tmp_name']));
 } elseif (array_key_exists('xmldata', $_POST)) {
-    $xmldata = $_POST['xmldata'];
+    $xmldata = trim($_POST['xmldata']);
 }
 
 if (!empty($xmldata)) {
     \SimpleSAML\Utils\XML::checkSAMLMessage($xmldata, 'saml-meta');
-    $entities = SimpleSAML_Metadata_SAMLParser::parseDescriptorsString($xmldata);
+    $entities = \SimpleSAML\Metadata\SAMLParser::parseDescriptorsString($xmldata);
 
     // get all metadata for the entities
     foreach ($entities as &$entity) {
@@ -27,7 +28,7 @@ if (!empty($xmldata)) {
     }
 
     // transpose from $entities[entityid][type] to $output[type][entityid]
-    $output = SimpleSAML\Utils\Arrays::transpose($entities);
+    $output = \SimpleSAML\Utils\Arrays::transpose($entities);
 
     // merge all metadata of each type to a single string which should be added to the corresponding file
     foreach ($output as $type => &$entities) {
@@ -51,7 +52,7 @@ if (!empty($xmldata)) {
     $output = array();
 }
 
-$template = new SimpleSAML_XHTML_Template($config, 'metadata-converter.php', 'admin');
+$template = new \SimpleSAML\XHTML\Template($config, 'metadata-converter.php', 'admin');
 $template->data['clipboard.js'] = true;
 $template->data['xmldata'] = $xmldata;
 $template->data['output'] = $output;

@@ -2,7 +2,8 @@
 
 namespace SimpleSAML\Test;
 
-use \SimpleSAML_Configuration as Configuration;
+use PHPUnit\Framework\TestCase;
+use \SimpleSAML\Configuration;
 use \SimpleSAML\Store;
 
 /**
@@ -14,7 +15,7 @@ use \SimpleSAML\Store;
  * @author Sergio Gómez <sergio@uco.es>
  * @package simplesamlphp/simplesamlphp
  */
-class StoreTest extends \PHPUnit_Framework_TestCase
+class StoreTest extends TestCase
 {
     /**
      * @covers \SimpleSAML\Store::getInstance
@@ -27,7 +28,7 @@ class StoreTest extends \PHPUnit_Framework_TestCase
 
         $store = Store::getInstance();
 
-        $this->assertEquals(false, $store);
+        $this->assertFalse($store);
     }
 
 
@@ -42,7 +43,7 @@ class StoreTest extends \PHPUnit_Framework_TestCase
 
         $store = Store::getInstance();
 
-        $this->assertEquals(false, $store);
+        $this->assertFalse($store);
     }
 
 
@@ -120,7 +121,7 @@ class StoreTest extends \PHPUnit_Framework_TestCase
         $config = Configuration::getInstance();
         $store = Store::getInstance();
 
-        $this->clearInstance($config, '\SimpleSAML_Configuration');
+        $this->clearInstance($config, '\SimpleSAML\Configuration');
         $this->clearInstance($store, '\SimpleSAML\Store');
     }
 

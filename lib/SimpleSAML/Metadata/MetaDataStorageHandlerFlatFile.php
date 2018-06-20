@@ -1,5 +1,6 @@
 <?php
 
+namespace SimpleSAML\Metadata;
 
 /**
  * This file defines a flat file metadata source.
@@ -9,9 +10,9 @@
  * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
  */
-class SimpleSAML_Metadata_MetaDataStorageHandlerFlatFile extends SimpleSAML_Metadata_MetaDataStorageSource
-{
 
+class MetaDataStorageHandlerFlatFile extends MetaDataStorageSource
+{
     /**
      * This is the directory we will load metadata files from. The path will always end
      * with a '/'.
@@ -40,10 +41,10 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerFlatFile extends SimpleSAML_Meta
      */
     protected function __construct($config)
     {
-        assert('is_array($config)');
+        assert(is_array($config));
 
         // get the configuration
-        $globalConfig = SimpleSAML_Configuration::getInstance();
+        $globalConfig = \SimpleSAML\Configuration::getInstance();
 
         // find the path to the directory we should search for metadata in
         if (array_key_exists('directory', $config)) {
@@ -82,7 +83,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerFlatFile extends SimpleSAML_Meta
         include($metadatasetfile);
 
         if (!is_array($metadata)) {
-            throw new Exception('Could not load metadata set ['.$set.'] from file: '.$metadatasetfile);
+            throw new \Exception('Could not load metadata set ['.$set.'] from file: '.$metadatasetfile);
         }
 
         return $metadata;
@@ -138,7 +139,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerFlatFile extends SimpleSAML_Meta
         } elseif ($set === 'adfs-idp-hosted') {
             return 'urn:federation:'.\SimpleSAML\Utils\HTTP::getSelfHost().':idp';
         } else {
-            throw new Exception('Can not generate dynamic EntityID for metadata of this type: ['.$set.']');
+            throw new \Exception('Can not generate dynamic EntityID for metadata of this type: ['.$set.']');
         }
     }
 }

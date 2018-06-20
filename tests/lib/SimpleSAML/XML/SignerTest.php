@@ -2,7 +2,8 @@
 
 namespace SimpleSAML\Test\Utils;
 
-use \SimpleSAML_Configuration as Configuration;
+use PHPUnit\Framework\TestCase;
+use \SimpleSAML\Configuration;
 use \SimpleSAML\XML\Signer;
 
 use \org\bovigo\vfs\vfsStream;
@@ -10,7 +11,7 @@ use \org\bovigo\vfs\vfsStream;
 /**
  * Tests for SimpleSAML\XML\Signer.
  */
-class SignerTest extends \PHPUnit_Framework_TestCase
+class SignerTest extends TestCase
 {
     // openssl genrsa -out private.pem 2048
     private $private_key = <<<'NOWDOC'
@@ -126,7 +127,7 @@ NOWDOC;
 
     public function tearDown()
     {
-        $this->clearInstance($this->config, '\SimpleSAML_Configuration', array());
+        $this->clearInstance($this->config, '\SimpleSAML\Configuration', array());
     }
 
     public function testSignerBasic()

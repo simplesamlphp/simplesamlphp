@@ -1,5 +1,7 @@
 <?php
 
+namespace SimpleSAML\Module\authorize\Auth\Process;
+
 /**
  * Filter to authorize only certain users.
  * See docs directory.
@@ -7,8 +9,9 @@
  * @author Ernesto Revilla, Yaco Sistemas SL., Ryan Panning
  * @package SimpleSAMLphp
  */
-class sspmod_authorize_Auth_Process_Authorize extends SimpleSAML_Auth_ProcessingFilter {
 
+class Authorize extends \SimpleSAML\Auth\ProcessingFilter
+{
 	/**
 	 * Flag to deny/unauthorize the user a attribute filter IS found
 	 *
@@ -41,7 +44,7 @@ class sspmod_authorize_Auth_Process_Authorize extends SimpleSAML_Auth_Processing
 	public function __construct($config, $reserved) {
 		parent::__construct($config, $reserved);
 
-		assert('is_array($config)');
+		assert(is_array($config));
 
 		// Check for the deny option, get it and remove it
 		// Must be bool specifically, if not, it might be for a attrib filter below
@@ -61,10 +64,10 @@ class sspmod_authorize_Auth_Process_Authorize extends SimpleSAML_Auth_Processing
 			if (is_string($values))
 				$values = array($values);
 			if (!is_array($values))
-				throw new Exception('Filter Authorize: Attribute values is neither string nor array: ' . var_export($attribute, TRUE));
+				throw new \Exception('Filter Authorize: Attribute values is neither string nor array: ' . var_export($attribute, TRUE));
 			foreach ($values as $value){
 				if(!is_string($value)) {
-					throw new Exception('Filter Authorize: Each value should be a string for attribute: ' . var_export($attribute, TRUE) . ' value: ' . var_export($value, TRUE) . ' Config is: ' . var_export($config, TRUE));
+					throw new \Exception('Filter Authorize: Each value should be a string for attribute: ' . var_export($attribute, TRUE) . ' value: ' . var_export($value, TRUE) . ' Config is: ' . var_export($config, TRUE));
 				}
 			}
 			$this->valid_attribute_values[$attribute] = $values;
@@ -79,8 +82,8 @@ class sspmod_authorize_Auth_Process_Authorize extends SimpleSAML_Auth_Processing
 	 */
 	public function process(&$request) {
 		$authorize = $this->deny;
-		assert('is_array($request)');
-		assert('array_key_exists("Attributes", $request)');
+		assert(is_array($request));
+		assert(array_key_exists('Attributes', $request));
 
 		$attributes =& $request['Attributes'];
 
@@ -124,9 +127,9 @@ class sspmod_authorize_Auth_Process_Authorize extends SimpleSAML_Auth_Processing
 	 */
 	protected function unauthorized(&$request) {
 		// Save state and redirect to 403 page
-		$id = SimpleSAML_Auth_State::saveState($request,
+		$id = \SimpleSAML\Auth\State::saveState($request,
 			'authorize:Authorize');
-		$url = SimpleSAML\Module::getModuleURL(
+		$url = \SimpleSAML\Module::getModuleURL(
 			'authorize/authorize_403.php');
 		\SimpleSAML\Utils\HTTP::redirectTrustedURL($url, array('StateId' => $id));
 	}

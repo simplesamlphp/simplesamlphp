@@ -2,12 +2,12 @@
 
 require_once('../_include.php');
 
-// Load SimpleSAMLphp, configuration
-$config = SimpleSAML_Configuration::getInstance();
-$session = SimpleSAML_Session::getSessionFromRequest();
+// Load SimpleSAMLphp configuration
+$config = \SimpleSAML\Configuration::getInstance();
+$session = \SimpleSAML\Session::getSessionFromRequest();
 
 // Check if valid local session exists..
-SimpleSAML\Utils\Auth::requireAdmin();
+\SimpleSAML\Utils\Auth::requireAdmin();
 
 $attributes = array();
 
@@ -25,7 +25,7 @@ $attributes['getSelfHostWithPath()'] = array(\SimpleSAML\Utils\HTTP::getSelfHost
 $attributes['getFirstPathElement()'] = array(\SimpleSAML\Utils\HTTP::getFirstPathElement());
 $attributes['selfURL()'] = array(\SimpleSAML\Utils\HTTP::getSelfURL());
 
-$template = new SimpleSAML_XHTML_Template($config, 'hostnames.php');
+$template = new \SimpleSAML\XHTML\Template($config, 'hostnames.php');
 
 $template->data['remaining']  = $session->getAuthData('admin', 'Expire') - time();
 $template->data['attributes'] = $attributes;

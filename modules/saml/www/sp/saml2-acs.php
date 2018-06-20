@@ -5,11 +5,11 @@
  */
 
 if (!array_key_exists('PATH_INFO', $_SERVER)) {
-    throw new SimpleSAML_Error_BadRequest('Missing authentication source ID in assertion consumer service URL');
+    throw new \SimpleSAML\Error\BadRequest('Missing authentication source ID in assertion consumer service URL');
 }
 
 $sourceId = substr($_SERVER['PATH_INFO'], 1);
-$source = SimpleSAML_Auth_Source::getById($sourceId, 'sspmod_saml_Auth_Source_SP');
+$source = \SimpleSAML\Auth\Source::getById($sourceId, '\SimpleSAML\Module\saml\Auth\Source\SP');
 $spMetadata = $source->getMetadata();
 
 try {
@@ -18,7 +18,7 @@ try {
     // This is dirty. Instead of checking the message of the exception, \SAML2\Binding::getCurrentBinding() should throw
     // an specific exception when the binding is unknown, and we should capture that here
     if ($e->getMessage() === 'Unable to find the current binding.') {
-        throw new SimpleSAML_Error_Error('ACSPARAMS', $e, 400);
+        throw new \SimpleSAML\Error\Error('ACSPARAMS', $e, 400);
     } else {
         throw $e; // do not ignore other exceptions!
     }
@@ -30,7 +30,7 @@ if ($b instanceof \SAML2\HTTPArtifact) {
 
 $response = $b->receive();
 if (!($response instanceof \SAML2\Response)) {
-    throw new SimpleSAML_Error_BadRequest('Invalid message received to AssertionConsumerService endpoint.');
+    throw new \SimpleSAML\Error\BadRequest('Invalid message received to AssertionConsumerService endpoint.');
 }
 
 $idp = $response->getIssuer();
@@ -49,7 +49,7 @@ if ($idp === null) {
     }
 }
 
-$session = SimpleSAML_Session::getSessionFromRequest();
+$session = \SimpleSAML\Session::getSessionFromRequest();
 $prevAuth = $session->getAuthData($sourceId, 'saml:sp:prevAuth');
 if ($prevAuth !== null && $prevAuth['id'] === $response->getId() && $prevAuth['issuer'] === $idp) {
     /* OK, it looks like this message has the same issuer
@@ -67,31 +67,40 @@ if ($prevAuth !== null && $prevAuth['id'] === $response->getId() && $prevAuth['i
     }
 
     SimpleSAML\Logger::info('No RelayState or ReturnURL available, cannot redirect.');
-    throw new SimpleSAML_Error_Exception('Duplicate assertion received.');
+    throw new \SimpleSAML\Error\Exception('Duplicate assertion received.');
 }
 
 $idpMetadata = array();
 
+$state = null;
 $stateId = $response->getInResponseTo();
 if (!empty($stateId)) {
-    // this is a response to a request we sent earlier
-    $state = SimpleSAML_Auth_State::loadState($stateId, 'saml:sp:sso');
+    // this should be a response to a request we sent earlier
+    try {
+        $state = \SimpleSAML\Auth\State::loadState($stateId, 'saml:sp:sso');
+    } catch (Exception $e) {
+        // something went wrong,
+        SimpleSAML\Logger::warning('Could not load state specified by InResponseTo: '.$e->getMessage().
+            ' Processing response as unsolicited.');
+    }
+}
 
+if ($state) {
     // check that the authentication source is correct
-    assert('array_key_exists("saml:sp:AuthId", $state)');
+    assert(array_key_exists('saml:sp:AuthId', $state));
     if ($state['saml:sp:AuthId'] !== $sourceId) {
-        throw new SimpleSAML_Error_Exception(
+        throw new \SimpleSAML\Error\Exception(
             'The authentication source id in the URL does not match the authentication source which sent the request.'
         );
     }
 
     // check that the issuer is the one we are expecting
-    assert('array_key_exists("ExpectedIssuer", $state)');
+    assert(array_key_exists('ExpectedIssuer', $state));
     if ($state['ExpectedIssuer'] !== $idp) {
         $idpMetadata = $source->getIdPMetadata($idp);
         $idplist = $idpMetadata->getArrayize('IDPList', array());
-        if (!in_array($state['ExpectedIssuer'], $idplist)) {
-            throw new SimpleSAML_Error_Exception(
+        if (!in_array($state['ExpectedIssuer'], $idplist, true)) {
+            throw new \SimpleSAML\Error\Exception(
                 'The issuer of the response does not match to the identity provider we sent the request to.'
             );
         }
@@ -117,11 +126,11 @@ if (empty($idpMetadata)) {
 }
 
 try {
-    $assertions = sspmod_saml_Message::processResponse($spMetadata, $idpMetadata, $response);
-} catch (sspmod_saml_Error $e) {
+    $assertions = \SimpleSAML\Module\saml\Message::processResponse($spMetadata, $idpMetadata, $response);
+} catch (\SimpleSAML\Module\saml\Error $e) {
     // the status of the response wasn't "success"
     $e = $e->toException();
-    SimpleSAML_Auth_State::throwException($state, $e);
+    \SimpleSAML\Auth\State::throwException($state, $e);
 }
 
 
@@ -138,8 +147,8 @@ foreach ($assertions as $assertion) {
     if ($store !== false) {
         $aID = $assertion->getId();
         if ($store->get('saml.AssertionReceived', $aID) !== null) {
-            $e = new SimpleSAML_Error_Exception('Received duplicate assertion.');
-            SimpleSAML_Auth_State::throwException($state, $e);
+            $e = new \SimpleSAML\Error\Exception('Received duplicate assertion.');
+            \SimpleSAML\Auth\State::throwException($state, $e);
         }
 
         $notOnOrAfter = $assertion->getNotOnOrAfter();
@@ -175,8 +184,8 @@ foreach ($assertions as $assertion) {
 }
 
 if (!$foundAuthnStatement) {
-    $e = new SimpleSAML_Error_Exception('No AuthnStatement found in assertion(s).');
-    SimpleSAML_Auth_State::throwException($state, $e);
+    $e = new \SimpleSAML\Error\Exception('No AuthnStatement found in assertion(s).');
+    \SimpleSAML\Auth\State::throwException($state, $e);
 }
 
 if ($expire !== null) {
@@ -188,7 +197,7 @@ if ($expire !== null) {
 
 if (!empty($nameId)) {
     // register this session in the logout store
-    sspmod_saml_SP_LogoutStore::addSession($sourceId, $nameId, $sessionIndex, $logoutExpire);
+    \SimpleSAML\Module\saml\SP\LogoutStore::addSession($sourceId, $nameId, $sessionIndex, $logoutExpire);
 
     // we need to save the NameID and SessionIndex for logout
     $logoutState = array(
@@ -222,6 +231,8 @@ $state['LogoutState'] = $logoutState;
 $state['saml:AuthenticatingAuthority'] = $authenticatingAuthority;
 $state['saml:AuthenticatingAuthority'][] = $idp;
 $state['PersistentAuthData'][] = 'saml:AuthenticatingAuthority';
+$state['saml:AuthnInstant'] = $assertion->getAuthnInstant();
+$state['PersistentAuthData'][] = 'saml:AuthnInstant';
 $state['saml:sp:SessionIndex'] = $sessionIndex;
 $state['PersistentAuthData'][] = 'saml:sp:SessionIndex';
 $state['saml:sp:AuthnContext'] = $assertion->getAuthnContext();
@@ -236,12 +247,12 @@ $state['saml:sp:prevAuth'] = array(
     'id'     => $response->getId(),
     'issuer' => $idp,
 );
-if (isset($state['SimpleSAML_Auth_Source.ReturnURL'])) {
-    $state['saml:sp:prevAuth']['redirect'] = $state['SimpleSAML_Auth_Source.ReturnURL'];
+if (isset($state['\SimpleSAML\Auth\Source.ReturnURL'])) {
+    $state['saml:sp:prevAuth']['redirect'] = $state['\SimpleSAML\Auth\Source.ReturnURL'];
 } elseif (isset($state['saml:sp:RelayState'])) {
     $state['saml:sp:prevAuth']['redirect'] = $state['saml:sp:RelayState'];
 }
 $state['PersistentAuthData'][] = 'saml:sp:prevAuth';
 
 $source->handleResponse($state, $idp, $attributes);
-assert('FALSE');
+assert(false);

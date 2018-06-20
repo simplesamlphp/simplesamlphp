@@ -1,11 +1,14 @@
 <?php
 
+namespace SimpleSAML\Module\core;
+
 /**
  * Generic library for access control lists.
  *
  * @package SimpleSAMLphp
  */
-class sspmod_core_ACL {
+
+class ACL {
 
 	/**
 	 * The access control list, as an array.
@@ -21,7 +24,7 @@ class sspmod_core_ACL {
 	 * @param array|string $acl  The access control list.
 	 */
 	public function __construct($acl) {
-		assert('is_string($acl) || is_array($acl)');
+		assert(is_string($acl) || is_array($acl));
 
 		if (is_string($acl)) {
 			$acl = self::getById($acl);
@@ -29,15 +32,15 @@ class sspmod_core_ACL {
 
 		foreach ($acl as $rule) {
 			if (!is_array($rule)) {
-				throw new SimpleSAML_Error_Exception('Invalid rule in access control list: ' . var_export($rule, TRUE));
+				throw new \SimpleSAML\Error\Exception('Invalid rule in access control list: ' . var_export($rule, TRUE));
 			}
 			if (count($rule) === 0) {
-				throw new SimpleSAML_Error_Exception('Empty rule in access control list.');
+				throw new \SimpleSAML\Error\Exception('Empty rule in access control list.');
 			}
 
 			$action = array_shift($rule);
 			if ($action !== 'allow' && $action !== 'deny') {
-				throw new SimpleSAML_Error_Exception('Invalid action in rule in access control list: ' . var_export($action, TRUE));
+				throw new \SimpleSAML\Error\Exception('Invalid action in rule in access control list: ' . var_export($action, TRUE));
 			}
 
 		}
@@ -53,11 +56,11 @@ class sspmod_core_ACL {
 	 * @return array  The access control list array.
 	 */
 	private static function getById($id) {
-		assert('is_string($id)');
+		assert(is_string($id));
 
-		$config = SimpleSAML_Configuration::getOptionalConfig('acl.php');
+		$config = \SimpleSAML\Configuration::getOptionalConfig('acl.php');
 		if (!$config->hasValue($id)) {
-			throw new SimpleSAML_Error_Exception('No ACL with id ' . var_export($id, TRUE) . ' in config/acl.php.');
+			throw new \SimpleSAML\Error\Exception('No ACL with id ' . var_export($id, TRUE) . ' in config/acl.php.');
 		}
 
 		return $config->getArray($id);
@@ -119,7 +122,7 @@ class sspmod_core_ACL {
 		case 'or':
 			return self::opOr($attributes, $rule);
 		default:
-			throw new SimpleSAML_Error_Exception('Invalid ACL operation: ' . var_export($op, TRUE));
+			throw new \SimpleSAML\Error\Exception('Invalid ACL operation: ' . var_export($op, TRUE));
 		}
 	}
 

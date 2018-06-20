@@ -1,14 +1,16 @@
 <?php
 
+namespace SimpleSAML\Module\core\Auth\Process;
+
 /**
  * Filter to generate a groups attribute based on many of the attributes of the user.
  *
  * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
-class sspmod_core_Auth_Process_GenerateGroups extends SimpleSAML_Auth_ProcessingFilter {
 
-
+class GenerateGroups extends \SimpleSAML\Auth\ProcessingFilter
+{
 	/**
 	 * The attributes we should generate groups from.
 	 */
@@ -24,7 +26,7 @@ class sspmod_core_Auth_Process_GenerateGroups extends SimpleSAML_Auth_Processing
 	public function __construct($config, $reserved) {
 		parent::__construct($config, $reserved);
 
-		assert('is_array($config)');
+		assert(is_array($config));
 
 		if (count($config) === 0) {
 			// Use default groups
@@ -38,7 +40,7 @@ class sspmod_core_Auth_Process_GenerateGroups extends SimpleSAML_Auth_Processing
 			// Validate configuration
 			foreach ($config as $attributeName) {
 				if (!is_string($attributeName)) {
-					throw new Exception('Invalid attribute name for core:GenerateGroups filter: ' .
+					throw new \Exception('Invalid attribute name for core:GenerateGroups filter: ' .
 						var_export($attributeName, TRUE));
 				}
 			}
@@ -54,8 +56,8 @@ class sspmod_core_Auth_Process_GenerateGroups extends SimpleSAML_Auth_Processing
 	 * @param array &$request  The current request
 	 */
 	public function process(&$request) {
-		assert('is_array($request)');
-		assert('array_key_exists("Attributes", $request)');
+		assert(is_array($request));
+		assert(array_key_exists('Attributes', $request));
 
 		$groups = array();
 		$attributes =& $request['Attributes'];
@@ -68,7 +70,7 @@ class sspmod_core_Auth_Process_GenerateGroups extends SimpleSAML_Auth_Processing
 
 		foreach ($this->generateGroupsFrom as $name) {
 			if (!array_key_exists($name, $attributes)) {
-				SimpleSAML\Logger::debug('GenerateGroups - attribute \'' . $name . '\' not found.');
+				\SimpleSAML\Logger::debug('GenerateGroups - attribute \'' . $name . '\' not found.');
 				/* Attribute not present. */
 				continue;
 			}
@@ -99,7 +101,7 @@ class sspmod_core_Auth_Process_GenerateGroups extends SimpleSAML_Auth_Processing
 	 * @return string|NULL  The realm of the user, or NULL if we are unable to determine the realm.
 	 */
 	private static function getRealm($attributes) {
-		assert('is_array($attributes)');
+		assert(is_array($attributes));
 
 		if (!array_key_exists('eduPersonPrincipalName', $attributes)) {
 			return NULL;
@@ -132,7 +134,7 @@ class sspmod_core_Auth_Process_GenerateGroups extends SimpleSAML_Auth_Processing
 	 * @return string  The escaped string.
 	 */
 	private static function escapeIllegalChars($string) {
-		assert('is_string($string)');
+		assert(is_string($string));
 
 		return preg_replace_callback('/([^a-zA-Z0-9_@=.])/',
 			function ($m) { return sprintf("%%%02x", ord($m[1])); },

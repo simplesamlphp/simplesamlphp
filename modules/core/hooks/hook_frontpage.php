@@ -5,8 +5,8 @@
  * @param array &$links  The links on the frontpage, split into sections.
  */
 function core_hook_frontpage(&$links) {
-	assert('is_array($links)');
-	assert('array_key_exists("links", $links)');
+	assert(is_array($links));
+	assert(array_key_exists('links', $links));
 
 	$links['links']['frontpage_welcome'] = array(
 		'href' => SimpleSAML\Module::getModuleURL('core/frontpage_welcome.php'),

@@ -2,9 +2,10 @@
 
 namespace SimpleSAML\Test\Locale;
 
+use PHPUnit\Framework\TestCase;
 use SimpleSAML\Locale\Translate;
 
-class TranslateTest extends \PHPUnit_Framework_TestCase
+class TranslateTest extends TestCase
 {
 
     /**
@@ -13,7 +14,7 @@ class TranslateTest extends \PHPUnit_Framework_TestCase
     public function testNoop()
     {
         // test default
-        $c = \SimpleSAML_Configuration::loadFromArray(array());
+        $c = \SimpleSAML\Configuration::loadFromArray(array());
         $t = new Translate($c);
         $testString = 'Blablabla';
         $this->assertEquals($testString, $t->noop($testString));
@@ -24,7 +25,7 @@ class TranslateTest extends \PHPUnit_Framework_TestCase
      */
     public function testTFallback()
     {
-        $c = \SimpleSAML_Configuration::loadFromArray(array());
+        $c = \SimpleSAML\Configuration::loadFromArray(array());
         $t = new Translate($c);
         $testString = 'Blablabla';
 

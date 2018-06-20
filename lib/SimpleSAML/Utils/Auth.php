@@ -10,7 +10,6 @@ use SimpleSAML\Module;
  */
 class Auth
 {
-
     /**
      * Retrieve a admin login URL.
      *
@@ -41,7 +40,7 @@ class Auth
      */
     public static function isAdmin()
     {
-        $session = \SimpleSAML_Session::getSessionFromRequest();
+        $session = \SimpleSAML\Session::getSessionFromRequest();
         return $session->isValid('admin') || $session->isValid('login-admin');
     }
 
@@ -52,7 +51,7 @@ class Auth
      * a login page if the current user doesn't have admin access.
      *
      * @return void This function will only return if the user is admin.
-     * @throws \SimpleSAML_Error_Exception If no "admin" authentication source was configured.
+     * @throws \SimpleSAML\Error\Exception If no "admin" authentication source was configured.
      *
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
@@ -64,11 +63,11 @@ class Auth
         }
 
         // not authenticated as admin user, start authentication
-        if (\SimpleSAML_Auth_Source::getById('admin') !== null) {
-            $as = new \SimpleSAML_Auth_Simple('admin');
+        if (\SimpleSAML\Auth\Source::getById('admin') !== null) {
+            $as = new \SimpleSAML\Auth\Simple('admin');
             $as->login();
         } else {
-            throw new \SimpleSAML_Error_Exception(
+            throw new \SimpleSAML\Error\Exception(
                 'Cannot find "admin" auth source, and admin privileges are required.'
             );
         }

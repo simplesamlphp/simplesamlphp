@@ -10,17 +10,17 @@
 
 require_once('../../_include.php');
 
-$config = SimpleSAML_Configuration::getInstance();
+$config = \SimpleSAML\Configuration::getInstance();
 if (!$config->getBoolean('enable.saml20-idp', false)) {
-    throw new SimpleSAML_Error_Error('NOACCESS');
+    throw new \SimpleSAML\Error\Error('NOACCESS');
 }
 
-$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+$metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
 $idpEntityId = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
 $idpMetadata = $metadata->getMetaDataConfig($idpEntityId, 'saml20-idp-hosted');
 
 if (!$idpMetadata->getBoolean('saml20.sendartifact', false)) {
-    throw new SimpleSAML_Error_Error('NOACCESS');
+    throw new \SimpleSAML\Error\Error('NOACCESS');
 }
 
 $store = \SimpleSAML\Store::getInstance();
@@ -36,7 +36,7 @@ try {
     // an specific exception when the binding is unknown, and we should capture that here. Also note that the exception
     // message here is bogus!
     if ($e->getMessage() === 'Invalid message received to AssertionConsumerService endpoint.') {
-        throw new SimpleSAML_Error_Error('ARSPARAMS', $e, 400);
+        throw new \SimpleSAML\Error\Error('ARSPARAMS', $e, 400);
     } else {
         throw $e; // do not ignore other exceptions!
     }
@@ -64,5 +64,5 @@ $artifactResponse = new \SAML2\ArtifactResponse();
 $artifactResponse->setIssuer($idpEntityId);
 $artifactResponse->setInResponseTo($request->getId());
 $artifactResponse->setAny($responseXML);
-sspmod_saml_Message::addSign($idpMetadata, $spMetadata, $artifactResponse);
+\SimpleSAML\Module\saml\Message::addSign($idpMetadata, $spMetadata, $artifactResponse);
 $binding->send($artifactResponse);

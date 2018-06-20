@@ -1,5 +1,7 @@
 <?php
 
+namespace SimpleSAML\Module\riak\Store;
+
 /*
  * Copyright (c) 2012 The University of Queensland
  *
@@ -22,9 +24,14 @@
  * and Information Technology.
  */
 
-class sspmod_riak_Store_Store extends SimpleSAML\Store {
-	protected function __construct() {
-		$config = SimpleSAML_Configuration::getConfig('module_riak.php');
+class Store extends \SimpleSAML\Store
+{
+    public $client;
+    public $bucket;
+
+	protected function __construct()
+    {
+		$config = \SimpleSAML\Configuration::getConfig('module_riak.php');
 
 		$path = $config->getString('path', 'riak-php-client/riak.php');
 		$host = $config->getString('host', 'localhost');
@@ -43,19 +50,20 @@ class sspmod_riak_Store_Store extends SimpleSAML\Store {
 	 * @param string $key  The key.
 	 * @return mixed|NULL  The value.
 	 */
-	public function get($type, $key) {
-		assert('is_string($type)');
-		assert('is_string($key)');
+	public function get($type, $key)
+    {
+		assert(is_string($type));
+		assert(is_string($key));
 
 		$v = $this->bucket->getBinary("$type.$key");
 		if (!$v->exists()) {
-			return (NULL);
+			return null;
 		}
 
 		$expires = $v->getIndex('Expires', 'int');
 		if (sizeof($expires) && (int)array_shift($expires) <= time()) {
 			$v->delete();
-			return (NULL);
+			return null;
 		}
 
 		return (unserialize($v->getData()));
@@ -70,10 +78,11 @@ class sspmod_riak_Store_Store extends SimpleSAML\Store {
 	 * @param mixed $value  The value.
 	 * @param int|NULL $expire  The expiration time (unix timestamp), or NULL if it never expires.
 	 */
-	public function set($type, $key, $value, $expire = NULL) {
-		assert('is_string($type)');
-		assert('is_string($key)');
-		assert('is_null($expire) || (is_int($expire) && $expire > 2592000)');
+	public function set($type, $key, $value, $expire = null)
+    {
+		assert(is_string($type));
+		assert(is_string($key));
+		assert($expire === null || (is_int($expire) && $expire > 2592000));
 
 		$v = $this->bucket->newBinary("$type.$key", serialize($value), 'application/php');
 		if (!is_null($expire)) {
@@ -89,9 +98,10 @@ class sspmod_riak_Store_Store extends SimpleSAML\Store {
 	 * @param string $type  The datatype.
 	 * @param string $key  The key.
 	 */
-	public function delete($type, $key) {
-		assert('is_string($type)');
-		assert('is_string($key)');
+	public function delete($type, $key)
+    {
+		assert(is_string($type));
+		assert(is_string($key));
 
 		$v = $this->bucket->getBinary("$type.$key");
 		if (!$v->exists()) {

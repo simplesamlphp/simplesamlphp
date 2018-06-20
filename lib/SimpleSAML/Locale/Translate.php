@@ -12,11 +12,10 @@ namespace SimpleSAML\Locale;
 
 class Translate
 {
-
     /**
      * The configuration to be used for this translator.
      *
-     * @var \SimpleSAML_Configuration
+     * @var \SimpleSAML\Configuration
      */
     private $configuration;
 
@@ -43,10 +42,10 @@ class Translate
     /**
      * Constructor
      *
-     * @param \SimpleSAML_Configuration $configuration Configuration object
+     * @param \SimpleSAML\Configuration $configuration Configuration object
      * @param string|null               $defaultDictionary The default dictionary where tags will come from.
      */
-    public function __construct(\SimpleSAML_Configuration $configuration, $defaultDictionary = null)
+    public function __construct(\SimpleSAML\Configuration $configuration, $defaultDictionary = null)
     {
         $this->configuration = $configuration;
         $this->language = new Language($configuration);
@@ -89,7 +88,7 @@ class Translate
      */
     private function getDictionary($name)
     {
-        assert('is_string($name)');
+        assert(is_string($name));
 
         if (!array_key_exists($name, $this->dictionaries)) {
             $sepPos = strpos($name, ':');
@@ -119,7 +118,7 @@ class Translate
      */
     public function getTag($tag)
     {
-        assert('is_string($tag)');
+        assert(is_string($tag));
 
         // first check translations loaded by the includeInlineTranslation and includeLanguageFile methods
         if (array_key_exists($tag, $this->langtext)) {
@@ -158,7 +157,7 @@ class Translate
      */
     public function getPreferredTranslation($translations)
     {
-        assert('is_array($translations)');
+        assert(is_array($translations));
 
         // look up translation of tag in the selected language
         $selected_language = $this->language->getLanguage();
@@ -259,9 +258,12 @@ class Translate
     public function t(
         $tag,
         $replacements = array(),
-        $fallbackdefault = true, // TODO: remove this for 2.0. Assume true
-        $oldreplacements = array(), // TODO: remove this for 2.0
-        $striptags = false // TODO: remove this for 2.0
+        // TODO: remove this for 2.0. Assume true
+        $fallbackdefault = true,
+        // TODO: remove this for 2.0
+        $oldreplacements = array(),
+        // TODO: remove this for 2.0
+        $striptags = false
     ) {
         $backtrace = debug_backtrace();
         $where = $backtrace[0]['file'].':'.$backtrace[0]['line'];
@@ -366,7 +368,7 @@ class Translate
      * Include a language file from the dictionaries directory.
      *
      * @param string                         $file File name of dictionary to include
-     * @param \SimpleSAML_Configuration|null $otherConfig Optionally provide a different configuration object than the
+     * @param \SimpleSAML\Configuration|null $otherConfig Optionally provide a different configuration object than the
      * one provided in the constructor to be used to find the directory of the dictionary. This allows to combine
      * dictionaries inside the SimpleSAMLphp main code distribution together with external dictionaries. Defaults to
      * null.
@@ -395,7 +397,7 @@ class Translate
     private function readDictionaryJSON($filename)
     {
         $definitionFile = $filename.'.definition.json';
-        assert('file_exists($definitionFile)');
+        assert(file_exists($definitionFile));
 
         $fileContent = file_get_contents($definitionFile);
         $lang = json_decode($fileContent, true);
@@ -428,7 +430,7 @@ class Translate
     private function readDictionaryPHP($filename)
     {
         $phpFile = $filename.'.php';
-        assert('file_exists($phpFile)');
+        assert(file_exists($phpFile));
 
         $lang = null;
         include($phpFile);
@@ -449,7 +451,7 @@ class Translate
      */
     private function readDictionaryFile($filename)
     {
-        assert('is_string($filename)');
+        assert(is_string($filename));
 
         \SimpleSAML\Logger::debug('Template: Reading ['.$filename.']');
 
@@ -495,5 +497,49 @@ class Translate
         $args = array_slice(func_get_args(), 3);
 
         return strtr($text, is_array($args[0]) ? $args[0] : $args);
+    }
+
+
+    /**
+     * Pick a translation from a given array of translations for the current language.
+     *
+     * @param array $context An array of options. The current language must be specified as an ISO 639 code accessible
+     * with the key "currentLanguage" in the array.
+     * @param array $translations An array of translations. Each translation has an ISO 639 code as its key, identifying
+     * the language it corresponds to.
+     *
+     * @return null|string The translation appropriate for the current language, or null if none found. If the
+     * $context or $translations arrays are null, or $context['currentLanguage'] is not defined, null is also returned.
+     */
+    public static function translateFromArray($context, $translations)
+    {
+        if (!is_array($translations) || $translations === null) {
+            return null;
+        }
+
+        if (!is_array($context) || !isset($context['currentLanguage'])) {
+            return null;
+        }
+
+        if (isset($translations[$context['currentLanguage']])) {
+            return $translations[$context['currentLanguage']];
+        }
+
+        // we don't have a translation for the current language, load alternative priorities
+        $sspcfg = \SimpleSAML\Configuration::getInstance();
+        $langcfg = $sspcfg->getConfigItem('language', null);
+        $priorities = array();
+        if ($langcfg instanceof \SimpleSAML\Configuration) {
+            $priorities = $langcfg->getArray('priorities', array());
+        }
+
+        foreach ($priorities[$context['currentLanguage']] as $lang) {
+            if (isset($translations[$lang])) {
+                return $translations[$lang];
+            }
+        }
+
+        // nothing we can use, return null so that we can set a default
+        return null;
     }
 }

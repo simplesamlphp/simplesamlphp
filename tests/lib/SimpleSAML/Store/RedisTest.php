@@ -2,7 +2,8 @@
 
 namespace SimpleSAML\Test\Store;
 
-use \SimpleSAML_Configuration as Configuration;
+use PHPUnit\Framework\TestCase;
+use \SimpleSAML\Configuration;
 use \SimpleSAML\Store;
 
 /**
@@ -13,7 +14,7 @@ use \SimpleSAML\Store;
  *
  * @package simplesamlphp/simplesamlphp
  */
-class RedisTest extends \PHPUnit_Framework_TestCase
+class RedisTest extends TestCase
 {
     protected function setUp()
     {
@@ -48,7 +49,7 @@ class RedisTest extends \PHPUnit_Framework_TestCase
 
     public function getMocked($key)
     {
-        return array_key_exists($key, $this->config) ? $this->config[$key] : false;
+        return array_key_exists($key, $this->config) ? $this->config[$key] : null;
     }
 
     public function setMocked($key, $value)
@@ -83,7 +84,7 @@ class RedisTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf('SimpleSAML\Store\Redis', $store);
 
-        $this->clearInstance($config, '\SimpleSAML_Configuration');
+        $this->clearInstance($config, '\SimpleSAML\Configuration');
         $this->clearInstance($store, '\SimpleSAML\Store');
     }
 

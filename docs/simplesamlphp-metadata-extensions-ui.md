@@ -83,7 +83,7 @@ And for an SP it could look like this:
                 ),
                 'Description' => array(
                     'en' => 'English description',
-                    'es' => 'Descripción en Español
+                    'es' => 'Descripción en Español'
                 ),
             ),
             /* ... */

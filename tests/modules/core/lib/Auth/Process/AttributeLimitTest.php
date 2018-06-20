@@ -1,10 +1,12 @@
 <?php
+
+use PHPUnit\Framework\TestCase;
+
 /**
  * Test for the core:AttributeLimit filter.
  */
-class Test_Core_Auth_Process_AttributeLimitTest extends PHPUnit_Framework_TestCase
+class Test_Core_Auth_Process_AttributeLimitTest extends TestCase
 {
-
     /**
      * Helper function to run the filter with a given configuration.
      *
@@ -14,7 +16,7 @@ class Test_Core_Auth_Process_AttributeLimitTest extends PHPUnit_Framework_TestCa
      */
     private static function processFilter(array $config, array $request)
     {
-        $filter = new sspmod_core_Auth_Process_AttributeLimit($config, NULL);
+        $filter = new \SimpleSAML\Module\core\Auth\Process\AttributeLimit($config, NULL);
         $filter->process($request);
         return $request;
     }
@@ -197,8 +199,8 @@ class Test_Core_Auth_Process_AttributeLimitTest extends PHPUnit_Framework_TestCa
 
     /**
      * Test for exception with illegal config.
-     * 
-     * @expectedException Exception 
+     *
+     * @expectedException Exception
      */
     public function testInvalidConfig()
     {
@@ -211,8 +213,8 @@ class Test_Core_Auth_Process_AttributeLimitTest extends PHPUnit_Framework_TestCa
 
     /**
      * Test for invalid attribute name
-     * 
-     * @expectedException Exception 
+     *
+     * @expectedException Exception
      */
     public function testInvalidAttributeName()
     {
@@ -264,13 +266,182 @@ class Test_Core_Auth_Process_AttributeLimitTest extends PHPUnit_Framework_TestCa
         $this->assertCount(0, $attributes);
     }
 
+    public function testBadOptionsNotTreatedAsValidValues() {
+
+        // Ensure really misconfigured ignoreCase and regex options are not interpretted as valid valus
+        $config = array(
+            'eduPersonAffiliation' => array('ignoreCase' => 'member', 'nomatch'),
+            'mail' => array('regex' => 'user@example.org', 'nomatch')
+        );
+        $result = self::processFilter($config, self::$request);
+        $attributes = $result['Attributes'];
+        $this->assertCount(0, $attributes);
+    }
+
     /**
-     * Test for allowed attributes not an array. 
+     * Verify that the true value for ignoreCase doesn't get converted into a string ('1') by
+     * php and matched against an attribute value of '1'
+     */
+    public function testThatIgnoreCaseOptionNotMatchBooleanAsStringValue() {
+        $config = array(
+            'someAttribute' => array('ignoreCase' => true, 'someValue')
+        );
+
+        $request = array(
+            'Attributes' => array(
+                'someAttribute' => array('1'), //boolean true as a string
+
+            ),
+        );
+        $result = self::processFilter($config, $request);
+        $attributes = $result['Attributes'];
+        $this->assertCount(0, $attributes);
+    }
+
+    /**
+     * Test for attribute value matching ignore case
+     */
+    public function testMatchAttributeValuesIgnoreCase()
+    {
+        $config = array(
+            'eduPersonAffiliation' => array('ignoreCase' => true, 'meMber')
+        );
+
+        $result = self::processFilter($config, self::$request);
+        $attributes = $result['Attributes'];
+        $this->assertCount(1, $attributes);
+        $this->assertArrayHasKey('eduPersonAffiliation', $attributes);
+        $this->assertEquals($attributes['eduPersonAffiliation'], array('member'));
+
+        $config = array(
+            'eduPersonAffiliation' => array('ignoreCase' => true, 'membeR','sTaff')
+        );
+
+        $result = self::processFilter($config, self::$request);
+        $attributes = $result['Attributes'];
+        $this->assertCount(1, $attributes);
+        $this->assertArrayHasKey('eduPersonAffiliation', $attributes);
+        $this->assertEquals($attributes['eduPersonAffiliation'], array('member'));
+
+        $config = array(
+            'eduPersonAffiliation' => array('ignoreCase' => true, 'Student')
+        );
+        $result = self::processFilter($config, self::$request);
+        $attributes = $result['Attributes'];
+        $this->assertCount(0, $attributes);
+
+        $config = array(
+            'eduPersonAffiliation' => array('ignoreCase' => true, 'studeNt','sTaff')
+        );
+        $result = self::processFilter($config, self::$request);
+        $attributes = $result['Attributes'];
+        $this->assertCount(0, $attributes);
+    }
+
+    /**
+     * Test for attribute value matching
+     */
+    public function testMatchAttributeValuesRegex()
+    {
+        // SSP Logger requires a configuration to be set.
+        \SimpleSAML\Configuration::loadFromArray(array(), '[ARRAY]', 'simplesaml');
+        $state = self::$request;
+        $state['Attributes']['eduPersonEntitlement'] = array(
+            'urn:mace:example.terena.org:tcs:personal-user',
+            'urn:x-surfnet:surfdomeinen.nl:role:dnsadmin',
+            'urn:x-surfnet:surf.nl:surfdrive:quota:100',
+            '1' //boolean true as a string
+        );
+
+        $config = array(
+            'eduPersonEntitlement' => array(
+                'regex' => true,
+                '/^urn:x-surfnet:surf/'
+            )
+        );
+
+        $result = self::processFilter($config, $state);
+        $attributes = $result['Attributes'];
+        $this->assertCount(1, $attributes);
+        $this->assertArrayHasKey('eduPersonEntitlement', $attributes);
+        $this->assertEquals(
+            array('urn:x-surfnet:surfdomeinen.nl:role:dnsadmin', 'urn:x-surfnet:surf.nl:surfdrive:quota:100'),
+            $attributes['eduPersonEntitlement']
+        );
+
+        // Matching multiple lines shouldn't duplicate the attribute
+        $config = array(
+            'eduPersonEntitlement' => array(
+                'regex' => true,
+                '/urn:x-surfnet:surf/',
+                '/urn:x-surfnet/'
+
+            )
+        );
+
+        $result = self::processFilter($config, $state);
+        $attributes = $result['Attributes'];
+        $this->assertCount(1, $attributes);
+        $this->assertArrayHasKey('eduPersonEntitlement', $attributes);
+        $this->assertEquals(
+            array('urn:x-surfnet:surfdomeinen.nl:role:dnsadmin', 'urn:x-surfnet:surf.nl:surfdrive:quota:100'),
+            $attributes['eduPersonEntitlement']
+        );
+
+        // Invalid and no-match regex expressions should not stop a valid regex from matching
+        $config = array(
+            'eduPersonEntitlement' => array(
+                'regex' => true,
+                '/urn:mace:example.terena.org:tcs:no-match/',
+                '$invalidRegex[',
+                '/^URN:x-surf.*SURF.*n$/i'
+            )
+        );
+
+        $result = self::processFilter($config, $state);
+        $attributes = $result['Attributes'];
+        $this->assertCount(1, $attributes);
+        $this->assertArrayHasKey('eduPersonEntitlement', $attributes);
+        $this->assertEquals(
+            array('urn:x-surfnet:surfdomeinen.nl:role:dnsadmin'),
+            $attributes['eduPersonEntitlement']
+        );
+
+        // No matches should remove attribute
+        $config = array(
+            'eduPersonEntitlement' => array(
+                'regex' => true,
+                '/urn:x-no-match/'
+            )
+        );
+        $result = self::processFilter($config, $state);
+        $attributes = $result['Attributes'];
+        $this->assertCount(0, $attributes);
+
+        // A regex that matches an input value multiple times should work.
+        $config = array(
+            'eduPersonEntitlement' => array(
+                'regex' => true,
+                '/surf/'
+            )
+        );
+        $result = self::processFilter($config, $state);
+        $attributes = $result['Attributes'];
+        $this->assertCount(1, $attributes);
+        $this->assertArrayHasKey('eduPersonEntitlement', $attributes);
+        $this->assertEquals(
+            array('urn:x-surfnet:surfdomeinen.nl:role:dnsadmin', 'urn:x-surfnet:surf.nl:surfdrive:quota:100'),
+            $attributes['eduPersonEntitlement']
+        );
+    }
+
+    /**
+     * Test for allowed attributes not an array.
      *
-     * This test is very unlikely and would require malformed metadata processing. 
+     * This test is very unlikely and would require malformed metadata processing.
      * Cannot be generated via config options.
      *
-     * @expectedException Exception 
+     * @expectedException Exception
      */
     public function testMatchAttributeValuesNotArray()
     {

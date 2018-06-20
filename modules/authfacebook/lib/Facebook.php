@@ -1,12 +1,15 @@
 <?php
 
+namespace SimpleSAML\Module\authfacebook;
+
 require_once(dirname(dirname(__FILE__)) . '/extlibinc/base_facebook.php');
 
 /**
  * Extends the BaseFacebook class with the intent of using
  * PHP sessions to store user ids and access tokens.
  */
-class sspmod_authfacebook_Facebook extends BaseFacebook
+
+class Facebook extends \BaseFacebook
 {
   const FBSS_COOKIE_NAME = 'fbss';
 
@@ -19,6 +22,9 @@ class sspmod_authfacebook_Facebook extends BaseFacebook
 
   // SimpleSAMLphp state array
   protected $ssp_state;
+
+  // \SimpleSAML\Auth\State
+  protected $state;
 
   /**
    * Identical to the parent constructor, except that
@@ -48,7 +54,7 @@ class sspmod_authfacebook_Facebook extends BaseFacebook
     $cookie_name = $this->getSharedSessionCookieName();
     if (isset($_COOKIE[$cookie_name])) {
       $data = $this->parseSignedRequest($_COOKIE[$cookie_name]);
-      if ($data && !empty($data['domain']) &&
+      if (!empty($data) && !empty($data['domain']) &&
           self::isAllowedDomain($this->getHttpHost(), $data['domain'])) {
         // good case
         $this->sharedSessionID = $data['id'];
@@ -71,7 +77,7 @@ class sspmod_authfacebook_Facebook extends BaseFacebook
       setcookie($cookie_name, $cookie_value, $expire, '/', '.'.$base_domain);
     } else {
       // @codeCoverageIgnoreStart
-      SimpleSAML\Logger::debug(
+      \SimpleSAML\Logger::debug(
         'Shared session ID cookie could not be set! You must ensure you '.
         'create the Facebook instance before headers have been sent. This '.
         'will cause authentication issues after the first request.'
@@ -88,7 +94,7 @@ class sspmod_authfacebook_Facebook extends BaseFacebook
    */
   protected function setPersistentData($key, $value) {
     if (!in_array($key, self::$kSupportedKeys)) {
-      SimpleSAML\Logger::debug("Unsupported key passed to setPersistentData: " . var_export($key, TRUE));
+      \SimpleSAML\Logger::debug("Unsupported key passed to setPersistentData: " . var_export($key, TRUE));
       return;
     }
 
@@ -98,7 +104,7 @@ class sspmod_authfacebook_Facebook extends BaseFacebook
 
   protected function getPersistentData($key, $default = false) {
     if (!in_array($key, self::$kSupportedKeys)) {
-      SimpleSAML\Logger::debug("Unsupported key passed to getPersistentData: " . var_export($key, TRUE));
+      \SimpleSAML\Logger::debug("Unsupported key passed to getPersistentData: " . var_export($key, TRUE));
       return $default;
     }
 
@@ -109,7 +115,7 @@ class sspmod_authfacebook_Facebook extends BaseFacebook
 
   protected function clearPersistentData($key) {
     if (!in_array($key, self::$kSupportedKeys)) {
-      SimpleSAML\Logger::debug("Unsupported key passed to clearPersistentData: " . var_export($key, TRUE));
+      \SimpleSAML\Logger::debug("Unsupported key passed to clearPersistentData: " . var_export($key, TRUE));
       return;
     }
 
@@ -145,5 +151,12 @@ class sspmod_authfacebook_Facebook extends BaseFacebook
       array_unshift($parts, $this->sharedSessionID);
     }
     return implode('_', $parts);
+  }
+
+  protected function establishCSRFTokenState() {
+     if ($this->state === null) {
+          $this->state = \SimpleSAML\Auth\State::getStateId($this->ssp_state);
+          $this->setPersistentData('state', $this->state);
+     }
   }
 }

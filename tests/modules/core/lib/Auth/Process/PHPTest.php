@@ -1,12 +1,12 @@
 <?php
 
+use PHPUnit\Framework\TestCase;
 
 /**
  * Test for the core:PHP filter.
  */
-class Test_Core_Auth_Process_PHP extends PHPUnit_Framework_TestCase
+class Test_Core_Auth_Process_PHP extends TestCase
 {
-
     /**
      * Helper function to run the filter with a given configuration.
      *
@@ -17,7 +17,7 @@ class Test_Core_Auth_Process_PHP extends PHPUnit_Framework_TestCase
      */
     private static function processFilter(array $config, array $request)
     {
-        $filter = new sspmod_core_Auth_Process_PHP($config, null);
+        $filter = new \SimpleSAML\Module\core\Auth\Process\PHP($config, null);
         @$filter->process($request);
         return $request;
     }
@@ -25,13 +25,15 @@ class Test_Core_Auth_Process_PHP extends PHPUnit_Framework_TestCase
 
     /**
      * Test the configuration of the filter.
-     *
-     * @expectedException SimpleSAML_Error_Exception
      */
     public function testInvalidConfiguration()
     {
         $config = array();
-        new sspmod_core_Auth_Process_PHP($config, null);
+        $this->setExpectedException(
+            "\SimpleSAML\Error\Exception",
+            "core:PHP: missing mandatory configuration option 'code'."
+        );
+        new \SimpleSAML\Module\core\Auth\Process\PHP($config, null);
     }
 
 
@@ -42,16 +44,71 @@ class Test_Core_Auth_Process_PHP extends PHPUnit_Framework_TestCase
     {
         $config = array(
             'code' => '
-                $attributes["key"] = "value";
+                $attributes["key"] = array("value");
             ',
         );
         $request = array('Attributes' => array());
         $expected = array(
             'Attributes' => array(
-                'key' => 'value',
+                'key' => array('value'),
             ),
         );
 
         $this->assertEquals($expected, $this->processFilter($config, $request));
+    }
+
+    /**
+     * Check that the incoming attributes are also available after processing
+     */
+    public function testPreserveIncomingAttributes()
+    {
+        $config = array(
+            'code' => '
+                $attributes["orig2"] = array("value0");
+            ',
+        );
+        $request = array(
+            'Attributes' => array(
+                'orig1' => array('value1', 'value2'),
+                'orig2' => array('value3'),
+                'orig3' => array('value4')
+            )
+        );
+        $expected = array(
+            'Attributes' => array(
+                'orig1' => array('value1', 'value2'),
+                'orig2' => array('value0'),
+                'orig3' => array('value4')
+            ),
+        );
+
+        $this->assertEquals($expected, $this->processFilter($config, $request));
+    }
+
+    /**
+     * Check that throwing an Exception inside the PHP code of the
+     * filter (a documented use case) works.
+     */
+    public function testThrowExceptionFromFilter()
+    {
+        $config = array(
+            'code' => '
+                 if (empty($attributes["uid"])) {
+                     throw new Exception("Missing uid attribute.");
+                 }
+                 $attributes["uid"][0] = strtoupper($attributes["uid"][0]);
+            ',
+        );
+        $request = array(
+            'Attributes' => array(
+                'orig1' => array('value1', 'value2'),
+            )
+        );
+
+        $this->setExpectedException(
+            "Exception",
+            "Missing uid attribute."
+        );
+        $this->processFilter($config, $request);
     }
 }

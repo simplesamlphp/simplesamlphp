@@ -1,9 +1,11 @@
 <?php
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * Test for the core:ScopeAttribute filter.
  */
-class Test_Core_Auth_Process_ScopeAttribute extends PHPUnit_Framework_TestCase
+class Test_Core_Auth_Process_ScopeAttribute extends TestCase
 {
 
     /*
@@ -15,7 +17,7 @@ class Test_Core_Auth_Process_ScopeAttribute extends PHPUnit_Framework_TestCase
      */
     private static function processFilter(array $config, array $request)
     {
-        $filter = new sspmod_core_Auth_Process_ScopeAttribute($config, NULL);
+        $filter = new \SimpleSAML\Module\core\Auth\Process\ScopeAttribute($config, NULL);
         $filter->process($request);
         return $request;
     }

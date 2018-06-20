@@ -1,5 +1,7 @@
 <?php
 
+namespace SimpleSAML\Module\core\Auth;
+
 /**
  * Helper class for username/password authentication.
  *
@@ -9,19 +11,19 @@
  * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
-abstract class sspmod_core_Auth_UserPassBase extends SimpleSAML_Auth_Source {
 
-
+abstract class UserPassBase extends \SimpleSAML\Auth\Source
+{
 	/**
 	 * The string used to identify our states.
 	 */
-	const STAGEID = 'sspmod_core_Auth_UserPassBase.state';
+	const STAGEID = '\SimpleSAML\Module\core\Auth\UserPassBase.state';
 
 
 	/**
 	 * The key of the AuthId field in the state.
 	 */
-	const AUTHID = 'sspmod_core_Auth_UserPassBase.AuthId';
+	const AUTHID = '\SimpleSAML\Module\core\Auth\UserPassBase.AuthId';
 
 
 	/**
@@ -31,9 +33,9 @@ abstract class sspmod_core_Auth_UserPassBase extends SimpleSAML_Auth_Source {
 	 * If this is NULL, we won't force any username.
 	 */
 	private $forcedUsername;
-	
+
 	/**
-	 * Links to pages from login page. 
+	 * Links to pages from login page.
 	 * From configuration
 	 */
 	protected $loginLinks;
@@ -82,8 +84,8 @@ abstract class sspmod_core_Auth_UserPassBase extends SimpleSAML_Auth_Source {
 	 * @param array &$config  Configuration for this authentication source.
 	 */
 	public function __construct($info, &$config) {
-		assert('is_array($info)');
-		assert('is_array($config)');
+		assert(is_array($info));
+		assert(is_array($config));
 		
 		if (isset($config['core:loginpage_links'])) {
 			$this->loginLinks = $config['core:loginpage_links'];
@@ -103,7 +105,7 @@ abstract class sspmod_core_Auth_UserPassBase extends SimpleSAML_Auth_Source {
 		}
 
         // get the "remember me" config options
-        $sspcnf = SimpleSAML_Configuration::getInstance();
+        $sspcnf = \SimpleSAML\Configuration::getInstance();
         $this->rememberMeEnabled = $sspcnf->getBoolean('session.rememberme.enable', FALSE);
         $this->rememberMeChecked = $sspcnf->getBoolean('session.rememberme.checked', FALSE);
 	}
@@ -115,7 +117,7 @@ abstract class sspmod_core_Auth_UserPassBase extends SimpleSAML_Auth_Source {
 	 * @param string|NULL $forcedUsername  The forced username.
 	 */
 	public function setForcedUsername($forcedUsername) {
-		assert('is_string($forcedUsername) || is_null($forcedUsername)');
+		assert(is_string($forcedUsername) || $forcedUsername === null);
 		$this->forcedUsername = $forcedUsername;
 	}
 
@@ -167,7 +169,7 @@ abstract class sspmod_core_Auth_UserPassBase extends SimpleSAML_Auth_Source {
 	 * @param array &$state  Information about the current authentication.
 	 */
 	public function authenticate(&$state) {
-		assert('is_array($state)');
+		assert(is_array($state));
 
 		/*
 		 * Save the identifier of this authentication source, so that we can
@@ -183,21 +185,38 @@ abstract class sspmod_core_Auth_UserPassBase extends SimpleSAML_Auth_Source {
 			 * is allowed to change the username.
 			 */
 			$state['forcedUsername'] = $this->forcedUsername;
-		}
+	    }
+
+	  // ECP requests supply authentication credentials with the AUthnRequest
+	  // so we validate them now rather than redirecting
+	  if (isset($state['core:auth:username']) && isset($state['core:auth:password'])) {
+	      $username = $state['core:auth:username'];
+	      $password = $state['core:auth:password'];
+
+	      if (isset($state['forcedUsername'])) {
+	          $username = $state['forcedUsername'];
+	      }
+
+	      $attributes = $this->login($username, $password);
+	      assert(is_array($attributes));
+	      $state['Attributes'] = $attributes;
+
+	      return;
+	  }
 
 		/* Save the $state-array, so that we can restore it after a redirect. */
-		$id = SimpleSAML_Auth_State::saveState($state, self::STAGEID);
+		$id = \SimpleSAML\Auth\State::saveState($state, self::STAGEID);
 
 		/*
 		 * Redirect to the login form. We include the identifier of the saved
 		 * state array as a parameter to the login form.
 		 */
-		$url = SimpleSAML\Module::getModuleURL('core/loginuserpass.php');
+		$url = \SimpleSAML\Module::getModuleURL('core/loginuserpass.php');
 		$params = array('AuthState' => $id);
 		\SimpleSAML\Utils\HTTP::redirectTrustedURL($url, $params);
 
 		/* The previous function never returns, so this code is never executed. */
-		assert('FALSE');
+		assert(false);
 	}
 
 
@@ -206,7 +225,7 @@ abstract class sspmod_core_Auth_UserPassBase extends SimpleSAML_Auth_Source {
 	 *
 	 * On a successful login, this function should return the users attributes. On failure,
 	 * it should throw an exception/error. If the error was caused by the user entering the wrong
-	 * username or password, a SimpleSAML_Error_Error('WRONGUSERPASS') should be thrown.
+	 * username or password, a \SimpleSAML\Error\Error('WRONGUSERPASS') should be thrown.
 	 *
 	 * Note that both the username and the password are UTF-8 encoded.
 	 *
@@ -229,18 +248,18 @@ abstract class sspmod_core_Auth_UserPassBase extends SimpleSAML_Auth_Source {
 	 * @param string $password  The password the user wrote.
 	 */
 	public static function handleLogin($authStateId, $username, $password) {
-		assert('is_string($authStateId)');
-		assert('is_string($username)');
-		assert('is_string($password)');
+		assert(is_string($authStateId));
+		assert(is_string($username));
+		assert(is_string($password));
 
 		/* Here we retrieve the state array we saved in the authenticate-function. */
-		$state = SimpleSAML_Auth_State::loadState($authStateId, self::STAGEID);
+		$state = \SimpleSAML\Auth\State::loadState($authStateId, self::STAGEID);
 
 		/* Retrieve the authentication source we are executing. */
-		assert('array_key_exists(self::AUTHID, $state)');
-		$source = SimpleSAML_Auth_Source::getById($state[self::AUTHID]);
+		assert(array_key_exists(self::AUTHID, $state));
+		$source = \SimpleSAML\Auth\Source::getById($state[self::AUTHID]);
 		if ($source === NULL) {
-			throw new Exception('Could not find authentication source with id ' . $state[self::AUTHID]);
+			throw new \Exception('Could not find authentication source with id ' . $state[self::AUTHID]);
 		}
 
 		/*
@@ -251,19 +270,19 @@ abstract class sspmod_core_Auth_UserPassBase extends SimpleSAML_Auth_Source {
 		/* Attempt to log in. */
 		try {
 			$attributes = $source->login($username, $password);
-		} catch (Exception $e) {
-			SimpleSAML\Logger::stats('Unsuccessful login attempt from '.$_SERVER['REMOTE_ADDR'].'.');
+		} catch (\Exception $e) {
+			\SimpleSAML\Logger::stats('Unsuccessful login attempt from '.$_SERVER['REMOTE_ADDR'].'.');
 			throw $e;
 		}
 
-		SimpleSAML\Logger::stats('User \''.$username.'\' successfully authenticated from '.$_SERVER['REMOTE_ADDR']);
+		\SimpleSAML\Logger::stats('User \''.$username.'\' successfully authenticated from '.$_SERVER['REMOTE_ADDR']);
 
 		/* Save the attributes we received from the login-function in the $state-array. */
-		assert('is_array($attributes)');
+		assert(is_array($attributes));
 		$state['Attributes'] = $attributes;
 
 		/* Return control to SimpleSAMLphp after successful authentication. */
-		SimpleSAML_Auth_Source::completeAuth($state);
+		\SimpleSAML\Auth\Source::completeAuth($state);
 	}
 
 }

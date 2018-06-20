@@ -1,22 +1,20 @@
 <?php
 
-$config = SimpleSAML_Configuration::getInstance();
-$mconfig = SimpleSAML_Configuration::getOptionalConfig('config-metarefresh.php');
+$config = \SimpleSAML\Configuration::getInstance();
+$mconfig = \SimpleSAML\Configuration::getOptionalConfig('config-metarefresh.php');
 
-SimpleSAML\Utils\Auth::requireAdmin();
+\SimpleSAML\Utils\Auth::requireAdmin();
 
-SimpleSAML\Logger::setCaptureLog(TRUE);
+\SimpleSAML\Logger::setCaptureLog(TRUE);
 
 
 $sets = $mconfig->getConfigList('sets', array());
 
 foreach ($sets AS $setkey => $set) {
 
-	SimpleSAML\Logger::info('[metarefresh]: Executing set [' . $setkey . ']');
+	\SimpleSAML\Logger::info('[metarefresh]: Executing set [' . $setkey . ']');
 
 	try {
-		
-
 		$expireAfter = $set->getInteger('expireAfter', NULL);
 		if ($expireAfter !== NULL) {
 			$expire = time() + $expireAfter;
@@ -24,7 +22,7 @@ foreach ($sets AS $setkey => $set) {
 			$expire = NULL;
 		}
 
-		$metaloader = new sspmod_metarefresh_MetaLoader($expire);
+		$metaloader = new \SimpleSAML\Module\metarefresh\MetaLoader($expire);
 
 		# Get global black/whitelists
 		$blacklist = $mconfig->getArray('blacklist', array());
@@ -63,7 +61,7 @@ foreach ($sets AS $setkey => $set) {
 				$source['whitelist'] = $whitelist;
 			}
 
-			SimpleSAML\Logger::debug('[metarefresh]: In set [' . $setkey . '] loading source ['  . $source['src'] . ']');
+			\SimpleSAML\Logger::debug('[metarefresh]: In set [' . $setkey . '] loading source ['  . $source['src'] . ']');
 			$metaloader->loadSource($source);
 		}
 
@@ -79,16 +77,14 @@ foreach ($sets AS $setkey => $set) {
 				$metaloader->writeMetadataSerialize($outputDir);
 				break;
 		}
-	} catch (Exception $e) {
-		$e = SimpleSAML_Error_Exception::fromException($e);
+	} catch (\Exception $e) {
+		$e = \SimpleSAML\Error\Exception::fromException($e);
 		$e->logWarning();
 	}
-	
-
 }
 
-$logentries = SimpleSAML\Logger::getCapturedLog();
+$logentries = \SimpleSAML\Logger::getCapturedLog();
 
-$t = new SimpleSAML_XHTML_Template($config, 'metarefresh:fetch.tpl.php');
+$t = new \SimpleSAML\XHTML\Template($config, 'metarefresh:fetch.tpl.php');
 $t->data['logentries'] = $logentries;
 $t->show();

@@ -11,9 +11,9 @@ use SimpleSAML\Logger;
  * @author Jaime Pérez Crespo, UNINETT AS <jaime.perez@uninett.no>
  * @package SimpleSAMLphp
  */
-class FilterScopes extends \SimpleSAML_Auth_ProcessingFilter
-{
 
+class FilterScopes extends \SimpleSAML\Auth\ProcessingFilter
+{
     /**
      * Stores any pre-configured scoped attributes which come from the filter configuration.
      */
@@ -32,7 +32,7 @@ class FilterScopes extends \SimpleSAML_Auth_ProcessingFilter
     public function __construct(&$config, $reserved)
     {
         parent::__construct($config, $reserved);
-        assert('is_array($config)');
+        assert(is_array($config));
 
         if (array_key_exists('attributes', $config) && !empty($config['attributes'])) {
             $this->scopedAttributes = $config['attributes'];

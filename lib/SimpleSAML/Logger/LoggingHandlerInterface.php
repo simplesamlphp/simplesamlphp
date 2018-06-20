@@ -13,11 +13,11 @@ interface LoggingHandlerInterface
 {
 
     /**
-     * Constructor for log handlers. It must accept receiving a \SimpleSAML_Configuration object.
+     * Constructor for log handlers. It must accept receiving a \SimpleSAML\Configuration object.
      *
-     * @param \SimpleSAML_Configuration $config The configuration to use in this log handler.
+     * @param \SimpleSAML\Configuration $config The configuration to use in this log handler.
      */
-    public function __construct(\SimpleSAML_Configuration $config);
+    public function __construct(\SimpleSAML\Configuration $config);
 
 
     /**

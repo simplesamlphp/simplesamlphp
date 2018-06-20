@@ -1,5 +1,7 @@
 <?php
 
+namespace SimpleSAML\Module\exampleauth\Auth\Source;
+
 /**
  * Example authentication source.
  *
@@ -9,9 +11,9 @@
  * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
-class sspmod_exampleauth_Auth_Source_Static extends SimpleSAML_Auth_Source {
 
-
+class StaticSource extends \SimpleSAML\Auth\Source
+{
 	/**
 	 * The attributes we return.
 	 */
@@ -25,8 +27,8 @@ class sspmod_exampleauth_Auth_Source_Static extends SimpleSAML_Auth_Source {
 	 * @param array $config  Configuration.
 	 */
 	public function __construct($info, $config) {
-		assert('is_array($info)');
-		assert('is_array($config)');
+		assert(is_array($info));
+		assert(is_array($config));
 
 		// Call the parent constructor first, as required by the interface
 		parent::__construct($info, $config);
@@ -34,9 +36,9 @@ class sspmod_exampleauth_Auth_Source_Static extends SimpleSAML_Auth_Source {
 
 		// Parse attributes
 		try {
-			$this->attributes = SimpleSAML\Utils\Attributes::normalizeAttributesArray($config);
-		} catch(Exception $e) {
-			throw new Exception('Invalid attributes for authentication source ' .
+			$this->attributes = \SimpleSAML\Utils\Attributes::normalizeAttributesArray($config);
+		} catch (\Exception $e) {
+			throw new \Exception('Invalid attributes for authentication source ' .
 				$this->authId . ': ' . $e->getMessage());
 		}
 
@@ -49,7 +51,7 @@ class sspmod_exampleauth_Auth_Source_Static extends SimpleSAML_Auth_Source {
 	 * @param array &$state  Information about the current authentication.
 	 */
 	public function authenticate(&$state) {
-		assert('is_array($state)');
+		assert(is_array($state));
 
 		$state['Attributes'] = $this->attributes;
 	}

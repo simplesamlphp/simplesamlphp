@@ -2,10 +2,17 @@
 
 namespace SimpleSAML\Test\Locale;
 
+use PHPUnit\Framework\TestCase;
 use SimpleSAML\Locale\Localization;
+use \SimpleSAML\Configuration;
 
-class LocalizationTest extends \PHPUnit_Framework_TestCase
+class LocalizationTest extends TestCase
 {
+    protected function setUp()
+    {
+        // Localization/Language code attempts to load a cookie, and looks in the config for a name of the cookie
+        Configuration::loadFromArray(array(), '[ARRAY]', 'simplesaml');
+    }
 
 
     /**
@@ -14,7 +21,7 @@ class LocalizationTest extends \PHPUnit_Framework_TestCase
     public function testLocalization()
     {
         // The constructor should activate the default domain
-        $c = \SimpleSAML_Configuration::loadFromArray(
+        $c = Configuration::loadFromArray(
             array('language.i18n.backend' => 'SimpleSAMLphp')
         );
         $l = new Localization($c);
@@ -27,7 +34,7 @@ class LocalizationTest extends \PHPUnit_Framework_TestCase
      */
     public function testAddDomain()
     {
-        $c = \SimpleSAML_Configuration::loadFromArray(
+        $c = Configuration::loadFromArray(
             array('language.i18n.backend' => 'gettext/gettext')
         );
         $l = new Localization($c);

@@ -2,13 +2,14 @@
 
 namespace SimpleSAML\Test\Utils;
 
-use \SimpleSAML_Configuration as Configuration;
+use PHPUnit\Framework\TestCase;
+use \SimpleSAML\Configuration;
 use \SimpleSAML\Utils\XML;
 
 /**
  * Tests for SimpleSAML\Utils\XML.
  */
-class XMLTest extends \PHPUnit_Framework_TestCase
+class XMLTest extends TestCase
 {
     /**
      * @covers \SimpleSAML\Utils\XML::isDOMNodeOfType
@@ -140,7 +141,7 @@ class XMLTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \SimpleSAML_Error_Exception
+     * @expectedException \SimpleSAML\Error\Exception
      *
      * @covers \SimpleSAML\Utils\XML::getDOMText
      * @test
@@ -356,6 +357,8 @@ NOWDOC;
      */
     public function testIsValidMetadata()
     {
+        Configuration::loadFromArray(array(), '[ARRAY]', 'simplesaml');
+
         $schema = 'saml-schema-metadata-2.0.xsd';
 
         $dom = $this->getMockBuilder('\DOMDocument')

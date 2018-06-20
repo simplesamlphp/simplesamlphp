@@ -2,6 +2,8 @@ SimpleSAMLphp Documentation
 ===========================
 
  * [Installing SimpleSAMLphp](simplesamlphp-install)
+    * [Upgrade notes for version 1.16](simplesamlphp-upgrade-notes-1.16)
+    * [Upgrade notes for version 1.15](simplesamlphp-upgrade-notes-1.15)
     * [Upgrade notes for version 1.14](simplesamlphp-upgrade-notes-1.14)
     * [Upgrade notes for version 1.13](simplesamlphp-upgrade-notes-1.13)
     * [Upgrade notes for version 1.12](simplesamlphp-upgrade-notes-1.12)
@@ -24,7 +26,7 @@ SimpleSAMLphp Documentation
  * [Identity Provider QuickStart](simplesamlphp-idp)
   * [IdP hosted reference](simplesamlphp-reference-idp-hosted)
   * [SP remote reference](simplesamlphp-reference-sp-remote)
-  * [Use case: Setting up an IdP for Google Apps](simplesamlphp-googleapps)
+  * [Use case: Setting up an IdP for G Suite (Google Apps)](simplesamlphp-googleapps)
   * [Configuring HTTP-Artifact](./simplesamlphp-artifact-idp)
   * [Identity Provider Advanced Topics](simplesamlphp-idp-more)
   * [Holder-of-Key profile](simplesamlphp-hok-idp)

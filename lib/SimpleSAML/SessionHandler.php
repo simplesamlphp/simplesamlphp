@@ -82,9 +82,9 @@ abstract class SessionHandler
     /**
      * Save the session.
      *
-     * @param \SimpleSAML_Session $session The session object we should save.
+     * @param \SimpleSAML\Session $session The session object we should save.
      */
-    abstract public function saveSession(\SimpleSAML_Session $session);
+    abstract public function saveSession(Session $session);
 
 
     /**
@@ -92,9 +92,19 @@ abstract class SessionHandler
      *
      * @param string|null $sessionId The ID of the session we should load, or null to use the default.
      *
-     * @return \SimpleSAML_Session|null The session object, or null if it doesn't exist.
+     * @return \SimpleSAML\Session|null The session object, or null if it doesn't exist.
      */
     abstract public function loadSession($sessionId = null);
+
+
+    /**
+     * Check whether the session cookie is set.
+     *
+     * This function will only return false if is is certain that the cookie isn't set.
+     *
+     * @return bool True if it was set, false if not.
+     */
+    abstract public function hasSessionCookie();
 
 
     /**
@@ -119,26 +129,13 @@ abstract class SessionHandler
      */
     private static function createSessionHandler()
     {
-        $store = \SimpleSAML\Store::getInstance();
+        $store = Store::getInstance();
         if ($store === false) {
             self::$sessionHandler = new SessionHandlerPHP();
         } else {
             /** @var \SimpleSAML\Store $store At this point, $store can only be an object */
             self::$sessionHandler = new SessionHandlerStore($store);
         }
-    }
-
-
-    /**
-     * Check whether the session cookie is set.
-     *
-     * This function will only return false if is is certain that the cookie isn't set.
-     *
-     * @return bool True if it was set, false if not.
-     */
-    public function hasSessionCookie()
-    {
-        return true;
     }
 
 
@@ -150,7 +147,7 @@ abstract class SessionHandler
      */
     public function getCookieParams()
     {
-        $config = \SimpleSAML_Configuration::getInstance();
+        $config = Configuration::getInstance();
 
         return array(
             'lifetime' => $config->getInteger('session.cookie.lifetime', 0),

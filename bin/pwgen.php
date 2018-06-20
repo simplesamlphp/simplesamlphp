@@ -36,7 +36,7 @@ if (empty($algo)) {
     $algo = 'sha256';
 }
 
-if (!in_array(strtolower($algo), hash_algos())) {
+if (!in_array(strtolower($algo), hash_algos(), true)) {
     echo "Hashing algorithm '$algo' is not supported\n";
     exit(1);
 }

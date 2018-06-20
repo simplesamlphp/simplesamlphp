@@ -1,9 +1,11 @@
 <?php
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * Test for the core:TargetedID filter.
  */
-class Test_Core_Auth_Process_TargetedID extends PHPUnit_Framework_TestCase
+class Test_Core_Auth_Process_TargetedID extends TestCase
 {
     /**
      * Helper function to run the filter with a given configuration.
@@ -14,7 +16,7 @@ class Test_Core_Auth_Process_TargetedID extends PHPUnit_Framework_TestCase
      */
     private static function processFilter(array $config, array $request)
     {
-        $filter = new sspmod_core_Auth_Process_TargetedID($config, NULL);
+        $filter = new \SimpleSAML\Module\core\Auth\Process\TargetedID($config, NULL);
         $filter->process($request);
         return $request;
     }
@@ -149,13 +151,13 @@ class Test_Core_Auth_Process_TargetedID extends PHPUnit_Framework_TestCase
 //        $request['UserID'] = 'user3@example.org';
 //	$result = self::processFilter($config, $request);
 //	$tid2 = $result['Attributes']['eduPersonTargetedID'][0];
-//        
+//
 //        $this->assertNotEquals($tid1, $tid2);
 //
 //        $request['Destination']['entityid'] = 'urn:example.org:another-sp';
 //	$result = self::processFilter($config, $request);
 //	$tid3 = $result['Attributes']['eduPersonTargetedID'][0];
-//        
+//
 //        $this->assertNotEquals($tid2, $tid3);
 //    }
 

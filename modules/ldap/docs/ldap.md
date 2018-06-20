@@ -63,6 +63,12 @@ authentication source:
 		 */
 		'search.base' => 'ou=people,dc=example,dc=org',
 
+                /*
+                 * The scope of the search. Valid values are 'subtree' and 'onelevel' and 'base',
+                 * first one being the default if no value is set.
+                 */
+                'search.scope' => 'subtree',
+
 		/*
 		 * The attribute(s) the username should match against.
 		 *
@@ -94,7 +100,7 @@ You also need to update the `hostname` and `dnpattern` options. The
 `hostname` should be the hostname of your LDAP server, and the
 `dnpattern` should be a pattern which can be used to generate the `dn`
 of a user with a given username.
-
+-
 All other options have default values, and are not required.
 
 ### Searching for a user ###
@@ -562,13 +568,14 @@ required, see the config info above for details.
 	)
 
 Example for unsupported OpenLDAP usage. 
-Intention is to filter in 'ou=groups,dc=example,dc=com' for 
-'(memberUid = <UID>)' and take only the attributes 'cn' (=name of the group).
+Intention is to filter in `ou=groups,dc=example,dc=com` for
+`(memberUid = <UID>)` and take only the attribute `cn` (=name of the group).
 
     50 => array(
         'class' => 'ldap:AttributeAddUsersGroups',
         'ldap.product' => 'OpenLDAP',
         'ldap.basedn' => 'ou=groups,dc=example,dc=org',
+        'attribute.username' => 'uid',
         'attribute.member' => 'cn',
         'attribute.memberof' => 'memberUid',
     ),

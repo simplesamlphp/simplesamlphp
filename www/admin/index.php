@@ -2,12 +2,12 @@
 
 require_once('../_include.php');
 
-// Load SimpleSAMLphp, configuration
-$config = SimpleSAML_Configuration::getInstance();
-$session = SimpleSAML_Session::getSessionFromRequest();
+// Load SimpleSAMLphp configuration
+$config = \SimpleSAML\Configuration::getInstance();
+$session = \SimpleSAML\Session::getSessionFromRequest();
 
 // Check if valid local session exists..
-//SimpleSAML\Utils\Auth::requireAdmin();
+\SimpleSAML\Utils\Auth::requireAdmin();
 
 $adminpages = array(
     'hostnames.php' => 'Diagnostics on hostname, port and protocol',
@@ -16,7 +16,7 @@ $adminpages = array(
     'sandbox.php' => 'Sandbox for testing changes to layout and css',
 );
 
-$template = new SimpleSAML_XHTML_Template($config, 'index.php');
+$template = new \SimpleSAML\XHTML\Template($config, 'index.php');
 
 $template->data['pagetitle'] = 'Admin';
 $template->data['adminpages'] = $adminpages;

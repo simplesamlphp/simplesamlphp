@@ -1,13 +1,12 @@
 <?php
 
+use PHPUnit\Framework\TestCase;
 
 /**
- * Tests for SimpleSAML_Auth_State
+ * Tests for \SimpleSAML\Auth\State
  */
-class Auth_StateTest extends PHPUnit_Framework_TestCase
+class Auth_StateTest extends TestCase
 {
-
-
     /**
      * Test the getPersistentAuthData() function.
      */
@@ -28,7 +27,7 @@ class Auth_StateTest extends PHPUnit_Framework_TestCase
         $expected = $mandatory;
         $this->assertEquals(
             $expected,
-            SimpleSAML_Auth_State::getPersistentAuthData($state),
+            \SimpleSAML\Auth\State::getPersistentAuthData($state),
             'Mandatory state attributes did not survive as expected'.print_r($expected, true)
         );
 
@@ -38,7 +37,7 @@ class Auth_StateTest extends PHPUnit_Framework_TestCase
         $expected = $state;
         $this->assertEquals(
             $expected,
-            SimpleSAML_Auth_State::getPersistentAuthData($state),
+            \SimpleSAML\Auth\State::getPersistentAuthData($state),
             'Some error occurred with missing mandatory parameters'
         );
 
@@ -51,7 +50,7 @@ class Auth_StateTest extends PHPUnit_Framework_TestCase
         $expected = $mandatory;
         $this->assertEquals(
             $expected,
-            SimpleSAML_Auth_State::getPersistentAuthData($state),
+            \SimpleSAML\Auth\State::getPersistentAuthData($state),
             'Additional parameters survived'
         );
 
@@ -63,7 +62,7 @@ class Auth_StateTest extends PHPUnit_Framework_TestCase
         unset($expected['PersistentAuthData']);
         $this->assertEquals(
             $expected,
-            SimpleSAML_Auth_State::getPersistentAuthData($state),
+            \SimpleSAML\Auth\State::getPersistentAuthData($state),
             'Some error occurred with additional, persistent parameters'
         );
 
@@ -74,7 +73,7 @@ class Auth_StateTest extends PHPUnit_Framework_TestCase
         unset($expected['PersistentAuthData']);
         $this->assertEquals(
             $expected,
-            SimpleSAML_Auth_State::getPersistentAuthData($state),
+            \SimpleSAML\Auth\State::getPersistentAuthData($state),
             'Some error occurred with additional, persistent parameters, and no mandatory ones'
         );
     }

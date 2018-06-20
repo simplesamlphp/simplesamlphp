@@ -1,5 +1,7 @@
 <?php
 
+namespace SimpleSAML\Module\ldap\Auth\Source;
+
 /**
  * LDAP authentication source.
  *
@@ -10,9 +12,9 @@
  *
  * @package SimpleSAMLphp
  */
-class sspmod_ldap_Auth_Source_LDAPMulti extends sspmod_core_Auth_UserPassOrgBase
-{
 
+class LDAPMulti extends \SimpleSAML\Module\core\Auth\UserPassOrgBase
+{
     /**
      * An array with descriptions for organizations.
      */
@@ -37,13 +39,13 @@ class sspmod_ldap_Auth_Source_LDAPMulti extends sspmod_core_Auth_UserPassOrgBase
      */
     public function __construct($info, $config)
     {
-        assert('is_array($info)');
-        assert('is_array($config)');
+        assert(is_array($info));
+        assert(is_array($config));
 
         // Call the parent constructor first, as required by the interface
         parent::__construct($info, $config);
 
-        $cfgHelper = SimpleSAML_Configuration::loadFromArray($config,
+        $cfgHelper = \SimpleSAML\Configuration::loadFromArray($config,
             'Authentication source ' . var_export($this->authId, true));
 
 
@@ -74,7 +76,7 @@ class sspmod_ldap_Auth_Source_LDAPMulti extends sspmod_core_Auth_UserPassOrgBase
                 $this->orgs[$orgId] = $orgId;
             }
 
-            $orgCfg = new sspmod_ldap_ConfigHelper($orgCfg,
+            $orgCfg = new \SimpleSAML\Module\ldap\ConfigHelper($orgCfg,
                 'Authentication source ' . var_export($this->authId, true) .
                 ', organization ' . var_export($orgId, true));
             $this->ldapOrgs[$orgId] = $orgCfg;
@@ -92,16 +94,16 @@ class sspmod_ldap_Auth_Source_LDAPMulti extends sspmod_core_Auth_UserPassOrgBase
      */
     protected function login($username, $password, $org, array $sasl_args = null)
     {
-        assert('is_string($username)');
-        assert('is_string($password)');
-        assert('is_string($org)');
+        assert(is_string($username));
+        assert(is_string($password));
+        assert(is_string($org));
 
         if (!array_key_exists($org, $this->ldapOrgs)) {
             // The user has selected an organization which doesn't exist anymore.
-            SimpleSAML\Logger::warning('Authentication source ' . var_export($this->authId, true) .
+            \SimpleSAML\Logger::warning('Authentication source ' . var_export($this->authId, true) .
                 ': Organization seems to have disappeared while the user logged in.' .
                 ' Organization was ' . var_export($org, true));
-            throw new SimpleSAML_Error_Error('WRONGUSERPASS');
+            throw new \SimpleSAML\Error\Error('WRONGUSERPASS');
         }
 
         if ($this->includeOrgInUsername) {

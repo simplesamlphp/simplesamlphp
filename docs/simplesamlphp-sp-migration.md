@@ -132,7 +132,7 @@ This API is designed to handle the common operations.
 This is a quick overview of the API:
 
     /* Get a reference to our authentication source. */
-    $as = new SimpleSAML_Auth_Simple('default-sp');
+    $as = new \SimpleSAML\Auth\Simple('default-sp');
 
     /* Require the user to be authentcated. */
     $as->requireAuth();
@@ -154,12 +154,12 @@ This is a quick overview of the API:
 
 Generally, if you have:
 
-    $config = SimpleSAML_Configuration::getInstance();
-    $session = SimpleSAML_Session::getSessionFromRequest();
+    $config = \SimpleSAML\Configuration::getInstance();
+    $session = \SimpleSAML\Session::getSessionFromRequest();
 
 you should replace it with this single line:
 
-    $as = new SimpleSAML_Auth_Simple('default-sp');
+    $as = new \SimpleSAML\Auth\Simple('default-sp');
 
 
 #### Requiring authentication
@@ -168,10 +168,10 @@ Blocks of code like the following:
 
     /* Check if valid local session exists.. */
     if (!isset($session) || !$session->isValid('saml2') ) {
-      SimpleSAML_Utilities::redirect(
+      \SimpleSAML\Utilities::redirect(
         '/' . $config->getBaseURL() .
         'saml2/sp/initSSO.php',
-        array('RelayState' => SimpleSAML_Utilities::selfURL())
+        array('RelayState' => \SimpleSAML\Utilities::selfURL())
         );
     }
 
@@ -195,10 +195,10 @@ you should now call:
 
 Redirecting to the initSLO-script:
 
-    SimpleSAML_Utilities::redirect(
+    \SimpleSAML\Utilities::redirect(
         '/' . $config->getBaseURL() .
         'saml2/sp/initSLO.php',
-        array('RelayState' => SimpleSAML_Utilities::selfURL())
+        array('RelayState' => \SimpleSAML\Utilities::selfURL())
         );
 
 should be replaced with a call to `logout()`:
@@ -210,7 +210,7 @@ If you want to return to a specific URL after logging out, you should include th
     $as->logout('https://example.org/');
 
 Please make sure the URL is trusted. If you obtain the URL from the user input, make sure it is trusted before
-calling $as->logout(), by using the SimpleSAML_Utilities::checkURLAllowed() method.
+calling $as->logout(), by using the \SimpleSAML\Utilities::checkURLAllowed() method.
 
 
 #### Login link

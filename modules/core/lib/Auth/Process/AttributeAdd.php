@@ -1,5 +1,7 @@
 <?php
 
+namespace SimpleSAML\Module\core\Auth\Process;
+
 /**
  * Filter to add attributes.
  *
@@ -8,8 +10,9 @@
  * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
-class sspmod_core_Auth_Process_AttributeAdd extends SimpleSAML_Auth_ProcessingFilter {
 
+class AttributeAdd extends \SimpleSAML\Auth\ProcessingFilter
+{
 	/**
 	 * Flag which indicates wheter this filter should append new values or replace old values.
 	 */
@@ -33,14 +36,14 @@ class sspmod_core_Auth_Process_AttributeAdd extends SimpleSAML_Auth_ProcessingFi
 	public function __construct($config, $reserved) {
 		parent::__construct($config, $reserved);
 
-		assert('is_array($config)');
+		assert(is_array($config));
 
 		foreach($config as $name => $values) {
 			if(is_int($name)) {
 				if($values === '%replace') {
 					$this->replace = TRUE;
 				} else {
-					throw new Exception('Unknown flag: ' . var_export($values, TRUE));
+					throw new \Exception('Unknown flag: ' . var_export($values, TRUE));
 				}
 				continue;
 			}
@@ -50,7 +53,7 @@ class sspmod_core_Auth_Process_AttributeAdd extends SimpleSAML_Auth_ProcessingFi
 			}
 			foreach($values as $value) {
 				if(!is_string($value)) {
-					throw new Exception('Invalid value for attribute ' . $name . ': ' .
+					throw new \Exception('Invalid value for attribute ' . $name . ': ' .
 						var_export($values, TRUE));
 				}
 			}
@@ -68,8 +71,8 @@ class sspmod_core_Auth_Process_AttributeAdd extends SimpleSAML_Auth_ProcessingFi
 	 * @param array &$request  The current request
 	 */
 	public function process(&$request) {
-		assert('is_array($request)');
-		assert('array_key_exists("Attributes", $request)');
+		assert(is_array($request));
+		assert(array_key_exists('Attributes', $request));
 
 		$attributes =& $request['Attributes'];
 
@@ -81,5 +84,4 @@ class sspmod_core_Auth_Process_AttributeAdd extends SimpleSAML_Auth_ProcessingFi
 			}
 		}
 	}
-
 }

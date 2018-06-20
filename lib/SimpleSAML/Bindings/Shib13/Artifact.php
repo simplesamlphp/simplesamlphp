@@ -9,6 +9,7 @@
 namespace SimpleSAML\Bindings\Shib13;
 
 use SAML2\DOMDocumentFactory;
+use SimpleSAML\Error;
 use SimpleSAML\Utils\Config;
 use SimpleSAML\Utils\HTTP;
 use SimpleSAML\Utils\Random;
@@ -18,7 +19,6 @@ use SimpleSAML\Utils\XML;
 
 class Artifact
 {
-
     /**
      * Parse the query string, and extract the SAMLart parameters.
      *
@@ -29,7 +29,7 @@ class Artifact
      */
     private static function getArtifacts()
     {
-        assert('array_key_exists("QUERY_STRING", $_SERVER)');
+        assert(array_key_exists('QUERY_STRING', $_SERVER));
 
         // We need to process the query string manually, to capture all SAMLart parameters
 
@@ -83,33 +83,33 @@ class Artifact
      *
      * @param string $soapResponse The SOAP response.
      * @return string The <saml1p:Response> element, as a string.
-     * @throws \SimpleSAML_Error_Exception
+     * @throws Error\Exception
      */
     private static function extractResponse($soapResponse)
     {
-        assert('is_string($soapResponse)');
+        assert(is_string($soapResponse));
 
         try {
             $doc = DOMDocumentFactory::fromString($soapResponse);
         } catch (\Exception $e) {
-            throw new \SimpleSAML_Error_Exception('Error parsing SAML 1 artifact response.');
+            throw new Error\Exception('Error parsing SAML 1 artifact response.');
         }
 
         $soapEnvelope = $doc->firstChild;
         if (!XML::isDOMNodeOfType($soapEnvelope, 'Envelope', 'http://schemas.xmlsoap.org/soap/envelope/')) {
-            throw new \SimpleSAML_Error_Exception('Expected artifact response to contain a <soap:Envelope> element.');
+            throw new Error\Exception('Expected artifact response to contain a <soap:Envelope> element.');
         }
 
         $soapBody = XML::getDOMChildren($soapEnvelope, 'Body', 'http://schemas.xmlsoap.org/soap/envelope/');
         if (count($soapBody) === 0) {
-            throw new \SimpleSAML_Error_Exception('Couldn\'t find <soap:Body> in <soap:Envelope>.');
+            throw new Error\Exception('Couldn\'t find <soap:Body> in <soap:Envelope>.');
         }
         $soapBody = $soapBody[0];
 
 
         $responseElement = XML::getDOMChildren($soapBody, 'Response', 'urn:oasis:names:tc:SAML:1.0:protocol');
         if (count($responseElement) === 0) {
-            throw new \SimpleSAML_Error_Exception('Couldn\'t find <saml1p:Response> in <soap:Body>.');
+            throw new Error\Exception('Couldn\'t find <saml1p:Response> in <soap:Body>.');
         }
         $responseElement = $responseElement[0];
 
@@ -128,12 +128,12 @@ class Artifact
     /**
      * This function receives a SAML 1.1 artifact.
      *
-     * @param \SimpleSAML_Configuration $spMetadata The metadata of the SP.
-     * @param \SimpleSAML_Configuration $idpMetadata The metadata of the IdP.
+     * @param \SimpleSAML\Configuration $spMetadata The metadata of the SP.
+     * @param \SimpleSAML\Configuration $idpMetadata The metadata of the IdP.
      * @return string The <saml1p:Response> element, as an XML string.
-     * @throws \SimpleSAML_Error_Exception
+     * @throws Error\Exception
      */
-    public static function receive(\SimpleSAML_Configuration $spMetadata, \SimpleSAML_Configuration $idpMetadata)
+    public static function receive(\SimpleSAML\Configuration $spMetadata, \SimpleSAML\Configuration $idpMetadata)
     {
         $artifacts = self::getArtifacts();
         $request = self::buildRequest($artifacts);

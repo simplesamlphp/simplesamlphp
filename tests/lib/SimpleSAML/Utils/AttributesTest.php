@@ -2,6 +2,7 @@
 
 namespace SimpleSAML\Test\Utils;
 
+use PHPUnit\Framework\TestCase;
 use SimpleSAML\Utils\Attributes;
 
 /**
@@ -9,7 +10,7 @@ use SimpleSAML\Utils\Attributes;
  *
  * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
  */
-class AttributesTest extends \PHPUnit_Framework_TestCase
+class AttributesTest extends TestCase
 {
 
     /**
@@ -73,7 +74,7 @@ class AttributesTest extends \PHPUnit_Framework_TestCase
         );
         $expected = 'missing';
         $this->setExpectedException(
-            'SimpleSAML_Error_Exception',
+            '\SimpleSAML\Error\Exception',
             "No such attribute '".$expected."' found."
         );
         Attributes::getExpectedAttribute($attributes, $expected);
@@ -91,7 +92,7 @@ class AttributesTest extends \PHPUnit_Framework_TestCase
         );
         $expected = 'attribute';
         $this->setExpectedException(
-            'SimpleSAML_Error_Exception',
+            '\SimpleSAML\Error\Exception',
             "Empty attribute '".$expected."'.'"
         );
         Attributes::getExpectedAttribute($attributes, $expected);
@@ -112,7 +113,7 @@ class AttributesTest extends \PHPUnit_Framework_TestCase
         );
         $expected = 'attribute';
         $this->setExpectedException(
-            'SimpleSAML_Error_Exception',
+            '\SimpleSAML\Error\Exception',
             'More than one value found for the attribute, multiple values not allowed.'
         );
         Attributes::getExpectedAttribute($attributes, $expected);
@@ -191,6 +192,25 @@ class AttributesTest extends \PHPUnit_Framework_TestCase
             $expected,
             Attributes::normalizeAttributesArray($attributes),
             'Attribute array normalization failed'
+        );
+    }
+
+
+    /**
+     * Test the getAttributeNamespace() function.
+     */
+    public function testNamespacedAttributes()
+    {
+        // test for only the name
+        $this->assertEquals(
+            array('default', 'name'),
+            Attributes::getAttributeNamespace('name', 'default')
+        );
+
+        // test for a given namespace and multiple '/'
+        $this->assertEquals(
+            array('some/namespace', 'name'),
+            Attributes::getAttributeNamespace('some/namespace/name', 'default')
         );
     }
 }

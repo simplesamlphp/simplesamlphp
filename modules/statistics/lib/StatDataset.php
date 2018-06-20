@@ -1,13 +1,14 @@
 <?php
 
+namespace SimpleSAML\Module\statistics;
 
 /**
  * @author Andreas Åkre Solberg <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
  */
-class sspmod_statistics_StatDataset
-{
 
+class StatDataset
+{
     protected $statconfig;
     protected $ruleconfig;
     protected $timeresconfig;
@@ -30,8 +31,8 @@ class sspmod_statistics_StatDataset
      */
     public function __construct($statconfig, $ruleconfig, $ruleid, $timeres, $fileslot)
     {
-        assert('$statconfig instanceof SimpleSAML_Configuration');
-        assert('$ruleconfig instanceof SimpleSAML_Configuration');
+        assert($statconfig instanceof \SimpleSAML\Configuration);
+        assert($ruleconfig instanceof \SimpleSAML\Configuration);
         $this->statconfig = $statconfig;
         $this->ruleconfig = $ruleconfig;
 
@@ -45,9 +46,9 @@ class sspmod_statistics_StatDataset
         $this->delimiter = '_';
         $this->max = 0;
 
-        $this->datehandlerTick = new sspmod_statistics_DateHandler($this->statconfig->getValue('offset', 0));
+        $this->datehandlerTick = new DateHandler($this->statconfig->getValue('offset', 0));
         if ($this->timeresconfig->getValue('customDateHandler', 'default') === 'month') {
-            $this->datehandlerFile = new sspmod_statistics_DateHandlerMonth(0);
+            $this->datehandlerFile = new DateHandlerMonth(0);
         } else {
             $this->datehandlerFile = $this->datehandlerTick;
         }
@@ -55,18 +56,15 @@ class sspmod_statistics_StatDataset
         $this->loadData();
     }
 
-
     public function getFileSlot()
     {
         return $this->fileslot;
     }
 
-
     public function getTimeRes()
     {
         return $this->timeres;
     }
-
 
     public function setDelimiter($delimiter = '_')
     {
@@ -76,7 +74,6 @@ class sspmod_statistics_StatDataset
         $this->delimiter = $delimiter;
     }
 
-
     public function getDelimiter()
     {
         if ($this->delimiter === '_') {
@@ -84,7 +81,6 @@ class sspmod_statistics_StatDataset
         }
         return $this->delimiter;
     }
-
 
     public function calculateMax()
     {
@@ -95,9 +91,8 @@ class sspmod_statistics_StatDataset
             }
             $maxvalue = max($res[$this->delimiter], $maxvalue);
         }
-        $this->max = sspmod_statistics_Graph_GoogleCharts::roof($maxvalue);
+        $this->max = Graph\GoogleCharts::roof($maxvalue);
     }
-
 
     public function getDebugData()
     {
@@ -114,7 +109,6 @@ class sspmod_statistics_StatDataset
         }
         return $debugdata;
     }
-
 
     public function aggregateSummary()
     {
@@ -133,7 +127,6 @@ class sspmod_statistics_StatDataset
         $this->summary = array_reverse($this->summary, true);
     }
 
-
     public function getTopDelimiters()
     {
         // create a list of delimiter keys that has the highest total summary in this period
@@ -151,7 +144,6 @@ class sspmod_statistics_StatDataset
         return $topdelimiters;
     }
 
-
     public function availDelimiters()
     {
         $availDelimiters = array();
@@ -160,7 +152,6 @@ class sspmod_statistics_StatDataset
         }
         return array_keys($availDelimiters);
     }
-
 
     public function getPieData()
     {
@@ -176,29 +167,24 @@ class sspmod_statistics_StatDataset
         return $piedata;
     }
 
-
     public function getMax()
     {
         return $this->max;
     }
-
 
     public function getSummary()
     {
         return $this->summary;
     }
 
-
     public function getResults()
     {
         return $this->results;
     }
 
-
     public function getAxis()
     {
         $slotsize = $this->timeresconfig->getValue('slot');
-        $dateformat_period = $this->timeresconfig->getValue('dateformat-period');
         $dateformat_intra = $this->timeresconfig->getValue('dateformat-intra');
         $axislabelint = $this->timeresconfig->getValue('axislabelint');
 
@@ -223,7 +209,6 @@ class sspmod_statistics_StatDataset
         return array('axis' => $axis, 'axispos' => $axispos);
     }
 
-
     /*
      * Walk through dataset to get percent values from max into dataset[].
      */
@@ -247,23 +232,22 @@ class sspmod_statistics_StatDataset
         return $dataset;
     }
 
-
     public function getDelimiterPresentation()
     {
-        $config = SimpleSAML_Configuration::getInstance();
-        $t = new SimpleSAML_XHTML_Template($config, 'statistics:statistics.tpl.php');
+        $config = \SimpleSAML\Configuration::getInstance();
+        $t = new \SimpleSAML\XHTML\Template($config, 'statistics:statistics.tpl.php');
 
         $availdelimiters = $this->availDelimiters();
 
         // create a delimiter presentation filter for this rule...
         if ($this->ruleconfig->hasValue('fieldPresentation')) {
             $fieldpresConfig = $this->ruleconfig->getConfigItem('fieldPresentation');
-            $classname = SimpleSAML\Module::resolveClass(
+            $classname = \SimpleSAML\Module::resolveClass(
                 $fieldpresConfig->getValue('class'),
                 'Statistics_FieldPresentation'
             );
             if (!class_exists($classname)) {
-                throw new Exception('Could not find field presentation plugin ['.$classname.']: No class found');
+                throw new \Exception('Could not find field presentation plugin ['.$classname.']: No class found');
             }
             $presentationHandler = new $classname($availdelimiters, $fieldpresConfig->getValue('config'), $t);
 
@@ -272,7 +256,6 @@ class sspmod_statistics_StatDataset
 
         return array();
     }
-
 
     public function getDelimiterPresentationPie()
     {
@@ -291,25 +274,24 @@ class sspmod_statistics_StatDataset
         return $pieaxis;
     }
 
-
     public function loadData()
     {
         $statdir = $this->statconfig->getValue('statdir');
         $resarray = array();
-        $rules = SimpleSAML\Utils\Arrays::arrayize($this->ruleid);
+        $rules = \SimpleSAML\Utils\Arrays::arrayize($this->ruleid);
         foreach ($rules as $rule) {
             // Get file and extract results.
             $resultFileName = $statdir.'/'.$rule.'-'.$this->timeres.'-'.$this->fileslot.'.stat';
             if (!file_exists($resultFileName)) {
-                throw new Exception('Aggregated statitics file ['.$resultFileName.'] not found.');
+                throw new \Exception('Aggregated statitics file ['.$resultFileName.'] not found.');
             }
             if (!is_readable($resultFileName)) {
-                throw new Exception('Could not read statitics file ['.$resultFileName.']. Bad file permissions?');
+                throw new \Exception('Could not read statitics file ['.$resultFileName.']. Bad file permissions?');
             }
             $resultfile = file_get_contents($resultFileName);
             $newres = unserialize($resultfile);
             if (empty($newres)) {
-                throw new Exception('Aggregated statistics in file ['.$resultFileName.'] was empty.');
+                throw new \Exception('Aggregated statistics in file ['.$resultFileName.'] was empty.');
             }
             $resarray[] = $newres;
         }
@@ -323,6 +305,5 @@ class sspmod_statistics_StatDataset
         }
         $this->results = $combined;
     }
-
 }
 

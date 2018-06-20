@@ -1,9 +1,11 @@
 <?php
 
+use PHPUnit\Framework\TestCase;
+
 /**
  * Test for the core:ScopeFromAttribute filter.
  */
-class Test_Core_Auth_Process_ScopeFromAttribute extends PHPUnit_Framework_TestCase
+class Test_Core_Auth_Process_ScopeFromAttribute extends TestCase
 {
 
     /*
@@ -15,7 +17,7 @@ class Test_Core_Auth_Process_ScopeFromAttribute extends PHPUnit_Framework_TestCa
      */
     private static function processFilter(array $config, array $request)
     {
-        $filter = new sspmod_core_Auth_Process_ScopeFromAttribute($config, NULL);
+        $filter = new \SimpleSAML\Module\core\Auth\Process\ScopeFromAttribute($config, NULL);
         $filter->process($request);
         return $request;
     }
@@ -100,8 +102,6 @@ class Test_Core_Auth_Process_ScopeFromAttribute extends PHPUnit_Framework_TestCa
 
     /*
      * When the source attribute doesn't have a scope, a warning is emitted
-     * NOTE: currently disabled: this triggers a warning and a warning
-     * wants to start a session which we cannot do in phpunit. How to fix?
      */
     public function testNoAt()
     {
