@@ -89,6 +89,7 @@ Released TBD
 ### saml
   * AttributeConsumingService: allow to set isDefault and index options.
   * Encrypted attributes in an assertion are now decrypted correctly.
+  * Prefer HTTP-Redirect binding for an AuthnRequest if available.
 
 ### smartattributes
   * Fix to make the `add_authority` option work.
