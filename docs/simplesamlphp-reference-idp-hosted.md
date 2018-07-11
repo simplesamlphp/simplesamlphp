@@ -50,6 +50,38 @@ Common options
 :   Certificate file which should be used by this IdP, in PEM format.
     The filename is relative to the `cert/`-directory.
 
+`contacts`
+:	Specify contacts in addition to the technical contact configured through config/config.php.
+	For example, specifying a support contact:
+
+		'contacts' => array(
+		    array(
+		        'contactType'       => 'support',
+		        'emailAddress'      => 'support@example.org',
+		        'givenName'         => 'John',
+		        'surName'           => 'Doe',
+		        'telephoneNumber'   => '+31(0)12345678',
+		        'company'           => 'Example Inc.',
+		    ),
+		),
+
+:	If you have support for a trust framework that requires extra attributes on the contact person element in your IdP metadata (for example, SIRTFI), you can specify an array of attributes on a contact.
+
+		'contacts' => array(
+		    array(
+		        'contactType'       => 'other',
+		        'emailAddress'      => 'mailto:abuse@example.org',
+		        'givenName'         => 'John',
+		        'surName'           => 'Doe',
+		        'telephoneNumber'   => '+31(0)12345678',
+		        'company'           => 'Example Inc.',
+		        'attributes'        => array(
+		            'xmlns:remd'        => 'http://refeds.org/metadata',
+		            'remd:contactType'  => 'http://refeds.org/metadata/contactType/security',
+		        ),
+		    ),
+		),
+
 `host`
 :   The hostname for this IdP. One IdP can also have the `host`-option
     set to `__DEFAULT__`, and that IdP will be used when no other
@@ -123,37 +155,6 @@ Common options
     any value in the SP-remote metadata overrides the one configured
     in the IdP metadata.
 
-`contacts`
-:	Specify contacts in addition to the technical contact configured through config/config.php.
-	For example, specifying a support contact:
-
-		'contacts' => array(
-		    array(
-		        'contactType'       => 'support',
-		        'emailAddress'      => 'support@example.org',
-		        'givenName'         => 'John',
-		        'surName'           => 'Doe',
-		        'telephoneNumber'   => '+31(0)12345678',
-		        'company'           => 'Example Inc.',
-		    ),
-		),
-
-:	If you have support for a trust framework that requires extra attributes on the contact person element in your IdP metadata (for example, SIRTFI), you can specify an array of attributes on a contact.
-
-		'contacts' => array(
-		    array(
-		        'contactType'       => 'other',
-		        'emailAddress'      => 'mailto:abuse@example.org',
-		        'givenName'         => 'John',
-		        'surName'           => 'Doe',
-		        'telephoneNumber'   => '+31(0)12345678',
-		        'company'           => 'Example Inc.',
-		        'attributes'        => array(
-		            'xmlns:remd'        => 'http://refeds.org/metadata',
-		            'remd:contactType'  => 'http://refeds.org/metadata/contactType/security',
-		        ),
-		    ),
-		), 
 
 SAML 2.0 options
 ----------------
