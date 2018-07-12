@@ -1,7 +1,7 @@
 Using the Windows Live ID authentication source with SimpleSAMLphp
 ==================================================================
 This module works around the limitation in Microsoft Online/Azure OIDC implementation of not supplying the OIDC userinfo endpoint.
-Microsoft explains the omission away by suggesting that the Graph API can produce anything userinfo would have brought, in place.
+Microsoft explains the omission by suggesting that the Graph API can produce anything userinfo would have brought, in place.
 
 Remember to configure `authsources.php`, with both your Client ID and Secret key.
 
