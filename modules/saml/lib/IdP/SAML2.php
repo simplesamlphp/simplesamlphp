@@ -896,9 +896,9 @@ class SAML2
         $a->setNotOnOrAfter($now + $assertionLifetime);
 
         if (isset($state['saml:AuthnContextClassRef'])) {
-            $a->setAuthnContext($state['saml:AuthnContextClassRef']);
+            $a->setAuthnContextClassRef($state['saml:AuthnContextClassRef']);
         } else {
-            $a->setAuthnContext(\SAML2\Constants::AC_PASSWORD);
+            $a->setAuthnContextClassRef(\SAML2\Constants::AC_PASSWORD);
         }
 
         $sessionStart = $now;
