@@ -1,14 +1,16 @@
 <?php
 
+namespace SimpleSAML\Module\oauth;
+
 /**
  * Editor for OAuth Client Registry
  *
  * @author Andreas Åkre Solberg <andreas@uninett.no>, UNINETT AS.
  * @package SimpleSAMLphp
  */
-class sspmod_oauth_Registry {
 
-
+class Registry
+{
 	protected function getStandardField($request, &$entry, $key) {
 		if (array_key_exists('field_' . $key, $request)) {
 			$entry[$key] = $request['field_' . $key];
@@ -36,9 +38,9 @@ class sspmod_oauth_Registry {
 
 	protected function requireStandardField($request, $key) {
 		if (!array_key_exists('field_' . $key, $request))
-			throw new Exception('Required field [' . $key . '] was missing.');
+			throw new \Exception('Required field [' . $key . '] was missing.');
 		if (empty($request['field_' . $key]))
-			throw new Exception('Required field [' . $key . '] was empty.');
+			throw new \Exception('Required field [' . $key . '] was empty.');
 	}
 
 	public function checkForm($request) {
@@ -127,7 +129,6 @@ class sspmod_oauth_Registry {
 			'<input type="submit" name="submit" value="Save" style="margin-top: 5px" />' .
 		'</form>';
 	}
-	
 }
 
 

@@ -1,5 +1,7 @@
 <?php
 
+namespace SimpleSAML\Module\ldap\Auth\Process;
+
 /**
  * Filter to add attributes to the identity by executing a query against an LDAP directory
  *
@@ -32,9 +34,9 @@
  * @author Remy Blom <remy.blom@hku.nl>
  * @package SimpleSAMLphp
  */
-class sspmod_ldap_Auth_Process_AttributeAddFromLDAP extends sspmod_ldap_Auth_Process_BaseFilter
-{
 
+class AttributeAddFromLDAP extends BaseFilter
+{
     /**
      * LDAP attributes to add to the request attributes
      *
@@ -150,7 +152,7 @@ class sspmod_ldap_Auth_Process_AttributeAddFromLDAP extends sspmod_ldap_Auth_Pro
             $arrSearch[] = '%'.$attr.'%';
 
             if (strlen($val[0]) > 0) {
-                $arrReplace[] = SimpleSAML_Auth_LDAP::escape_filter_value($val[0]);
+                $arrReplace[] = \SimpleSAML\Auth\LDAP::escape_filter_value($val[0]);
             } else {
                 $arrReplace[] = '';
             }
@@ -160,13 +162,13 @@ class sspmod_ldap_Auth_Process_AttributeAddFromLDAP extends sspmod_ldap_Auth_Pro
         $filter = str_replace($arrSearch, $arrReplace, $this->search_filter);
 
         if (strpos($filter, '%') !== false) {
-            SimpleSAML\Logger::info('AttributeAddFromLDAP: There are non-existing attributes in the search filter. ('.
+            \SimpleSAML\Logger::info('AttributeAddFromLDAP: There are non-existing attributes in the search filter. ('.
                                     $this->search_filter.')');
             return;
         }
 
         if (!in_array($this->attr_policy, array('merge', 'replace', 'add'), true)) {
-            SimpleSAML\Logger::warning("AttributeAddFromLDAP: 'attribute.policy' must be one of 'merge',".
+            \SimpleSAML\Logger::warning("AttributeAddFromLDAP: 'attribute.policy' must be one of 'merge',".
                                        "'replace' or 'add'.");
             return;
         }
@@ -174,9 +176,9 @@ class sspmod_ldap_Auth_Process_AttributeAddFromLDAP extends sspmod_ldap_Auth_Pro
         // getLdap
         try {
             $ldap = $this->getLdap();
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             // Added this warning in case $this->getLdap() fails
-            SimpleSAML\Logger::warning("AttributeAddFromLDAP: exception = " . $e);
+            \SimpleSAML\Logger::warning("AttributeAddFromLDAP: exception = " . $e);
             return;
         }
         // search for matching entries
@@ -188,7 +190,7 @@ class sspmod_ldap_Auth_Process_AttributeAddFromLDAP extends sspmod_ldap_Auth_Pro
                 true,
                 false
             );
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             return; // silent fail, error is still logged by LDAP search
         }
 

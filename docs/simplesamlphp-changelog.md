@@ -11,6 +11,7 @@ See the upgrade notes for specific information about upgrading.
 Released TBD
 
 ### Changes
+  * Default signature algorithm is now SHA-256.
   * Renamed class `SimpleSAML_Error_BadUserInnput` to `SimpleSAML_Error_BadUserInput`
   * PHP 7.2 compatibility, including removing deprecated use of assert with string.
   * Avoid logging database credentials in backtraces.
@@ -35,6 +36,7 @@ Released TBD
   * Fix edge case in getServerPort.
   * Add basic documentation on Nginx configuration.
   * Test authentication: optionally show AuthData array.
+  * Improve performance of PDO Metadata Storage handler entity lookup.
 
 ### adfs
   * Make signature algorithm configurable with `signature.algorithm`.
@@ -47,17 +49,28 @@ Released TBD
 ### cas
   * Respect all LDAP options in LDAP call.
 
+### casserver
+  * Module removed; superseded by externally hosted module.
+
 ### consent
   * Sort attribute values for consent.
   * Fix table layout for MySQL > 5.6.
+  * Rename `noconsentattributes` to `attributes.exclude`; the former
+    is now considered deprecated.
+
+### consentAdmin
+  * Work better with TargetedIDs when operating as a proxy.
+  * Add `attributes.exclude` option to correspond to the same option
+    in the Consent module.
 
 ### core
   * StatisticsWithAttribute: add `passive-` prefix when logging passive
     requests, set new option `skipPassive` to skip logging these altogether.
-  * Replace deprecated create_function with an anonymous function.
+  * Replace deprecated `create_function` with an anonymous function.
   * New authproc filter Cardinality to enforce attribute cardinality.
   * SQLPermanentStorage: proper expiration of stored values.
   * AttributeLimit: new options `regex` and `ignoreCase`.
+  * AttributeMap: prevent possible infinite loop with some PHP versions.
 
 ### ldap
   * AttributeAddUsersGroups: if attribute.groupname is set, use the
@@ -75,6 +88,11 @@ Released TBD
 
 ### saml
   * AttributeConsumingService: allow to set isDefault and index options.
+  * Encrypted attributes in an assertion are now decrypted correctly.
+  * Prefer HTTP-Redirect binding for an AuthnRequest if available.
+
+### smartattributes
+  * Fix to make the `add_authority` option work.
 
 ### sqlauth
   * Changed from default-enabled to default-disabled.

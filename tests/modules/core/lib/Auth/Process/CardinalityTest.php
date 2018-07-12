@@ -1,4 +1,5 @@
 <?php
+
 // Alias the PHPUnit 6.0 ancestor if available, else fall back to legacy ancestor
 if (class_exists('\PHPUnit\Framework\TestCase', true) and !class_exists('\PHPUnit_Framework_TestCase', true)) {
     class_alias('\PHPUnit\Framework\TestCase', '\PHPUnit_Framework_TestCase', true);
@@ -22,14 +23,14 @@ class Test_Core_Auth_Process_CardinalityTest extends \PHPUnit_Framework_TestCase
     {
         $_SERVER['SERVER_PROTOCOL'] = 'HTTP/1.1';
         $_SERVER['REQUEST_METHOD'] = 'GET';
-        $filter = new sspmod_core_Auth_Process_Cardinality($config, null, $this->http);
+        $filter = new \SimpleSAML\Module\core\Auth\Process\Cardinality($config, null, $this->http);
         $filter->process($request);
         return $request;
     }
 
     protected function setUp()
     {
-        \SimpleSAML_Configuration::loadFromArray(array(), '[ARRAY]', 'simplesaml');
+        \SimpleSAML\Configuration::loadFromArray(array(), '[ARRAY]', 'simplesaml');
         $this->http = $this->getMockBuilder('SimpleSAML\Utils\HTTPAdapter')
                            ->setMethods(array('redirectTrustedURL'))
                            ->getMock();
@@ -156,7 +157,7 @@ class Test_Core_Auth_Process_CardinalityTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Test invalid minimum values
-     * @expectedException SimpleSAML_Error_Exception
+     * @expectedException \SimpleSAML\Error\Exception
      * @expectedExceptionMessageRegExp /Minimum/
      */
     public function testMinInvalid()
@@ -174,7 +175,7 @@ class Test_Core_Auth_Process_CardinalityTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Test invalid minimum values
-     * @expectedException SimpleSAML_Error_Exception
+     * @expectedException \SimpleSAML\Error\Exception
      * @expectedExceptionMessageRegExp /Minimum/
      */
     public function testMinNegative()
@@ -192,7 +193,7 @@ class Test_Core_Auth_Process_CardinalityTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Test invalid maximum values
-     * @expectedException SimpleSAML_Error_Exception
+     * @expectedException \SimpleSAML\Error\Exception
      * @expectedExceptionMessageRegExp /Maximum/
      */
     public function testMaxInvalid()
@@ -210,7 +211,7 @@ class Test_Core_Auth_Process_CardinalityTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Test maximum < minimum
-     * @expectedException SimpleSAML_Error_Exception
+     * @expectedException \SimpleSAML\Error\Exception
      * @expectedExceptionMessageRegExp /less than/
      */
     public function testMinGreaterThanMax()
@@ -228,7 +229,7 @@ class Test_Core_Auth_Process_CardinalityTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Test invalid attribute name
-     * @expectedException SimpleSAML_Error_Exception
+     * @expectedException \SimpleSAML\Error\Exception
      * @expectedExceptionMessageRegExp /Invalid attribute/
      */
     public function testInvalidAttributeName()

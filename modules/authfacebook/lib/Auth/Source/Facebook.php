@@ -1,14 +1,16 @@
 <?php
 
+namespace SimpleSAML\Module\authfacebook\Auth\Source;
+
 /**
  * Authenticate using Facebook Platform.
  *
  * @author Andreas Åkre Solberg, UNINETT AS.
  * @package SimpleSAMLphp
  */
-class sspmod_authfacebook_Auth_Source_Facebook extends SimpleSAML_Auth_Source {
 
-
+class Facebook extends \SimpleSAML\Auth\Source
+{
 	/**
 	 * The string used to identify our states.
 	 */
@@ -67,7 +69,7 @@ class sspmod_authfacebook_Auth_Source_Facebook extends SimpleSAML_Auth_Source {
 		// Call the parent constructor first, as required by the interface
 		parent::__construct($info, $config);
 
-		$cfgParse = SimpleSAML_Configuration::loadFromArray($config, 'authsources[' . var_export($this->authId, TRUE) . ']');
+		$cfgParse = \SimpleSAML\Configuration::loadFromArray($config, 'authsources[' . var_export($this->authId, TRUE) . ']');
 		
 		$this->api_key = $cfgParse->getString('api_key');
 		$this->secret = $cfgParse->getString('secret');
@@ -86,14 +88,14 @@ class sspmod_authfacebook_Auth_Source_Facebook extends SimpleSAML_Auth_Source {
 
 		// We are going to need the authId in order to retrieve this authentication source later
 		$state[self::AUTHID] = $this->authId;
-		SimpleSAML_Auth_State::saveState($state, self::STAGE_INIT);
+		\SimpleSAML\Auth\State::saveState($state, self::STAGE_INIT);
 		
-		$facebook = new sspmod_authfacebook_Facebook(array('appId' => $this->api_key, 'secret' => $this->secret), $state);
+		$facebook = new \SimpleSAML\Module\authfacebook\Facebook(array('appId' => $this->api_key, 'secret' => $this->secret), $state);
 		$facebook->destroySession();
 
-		$linkback = SimpleSAML\Module::getModuleURL('authfacebook/linkback.php');
+		$linkback = \SimpleSAML\Module::getModuleURL('authfacebook/linkback.php');
 		$url = $facebook->getLoginUrl(array('redirect_uri' => $linkback, 'scope' => $this->req_perms));
-		SimpleSAML_Auth_State::saveState($state, self::STAGE_INIT);
+		\SimpleSAML\Auth\State::saveState($state, self::STAGE_INIT);
 
 		\SimpleSAML\Utils\HTTP::redirectTrustedURL($url);
 	}
@@ -102,19 +104,19 @@ class sspmod_authfacebook_Auth_Source_Facebook extends SimpleSAML_Auth_Source {
 	public function finalStep(&$state) {
 		assert(is_array($state));
 
-		$facebook = new sspmod_authfacebook_Facebook(array('appId' => $this->api_key, 'secret' => $this->secret), $state);
+		$facebook = new \SimpleSAML\Module\authfacebook\Facebook(array('appId' => $this->api_key, 'secret' => $this->secret), $state);
 		$uid = $facebook->getUser();
 
 		if (isset($uid) && $uid) {
 			try {
 				$info = $facebook->api("/" . $uid . ($this->user_fields ? "?fields=" . $this->user_fields : ""));
-			} catch (FacebookApiException $e) {
-				throw new SimpleSAML_Error_AuthSource($this->authId, 'Error getting user profile.', $e);
+			} catch (\FacebookApiException $e) {
+				throw new \SimpleSAML\Error\AuthSource($this->authId, 'Error getting user profile.', $e);
 			}
 		}
 
 		if (!isset($info)) {
-			throw new SimpleSAML_Error_AuthSource($this->authId, 'Error getting user profile.');
+			throw new \SimpleSAML\Error\AuthSource($this->authId, 'Error getting user profile.');
 		}
 		
 		$attributes = array();
@@ -133,7 +135,7 @@ class sspmod_authfacebook_Auth_Source_Facebook extends SimpleSAML_Auth_Source {
 		$attributes['facebook_targetedID'] = array('http://facebook.com!' . $uid);
 		$attributes['facebook_cn'] = array($info['name']);
 
-		SimpleSAML\Logger::debug('Facebook Returned Attributes: '. implode(", ", array_keys($attributes)));
+		\SimpleSAML\Logger::debug('Facebook Returned Attributes: '. implode(", ", array_keys($attributes)));
 
 		$state['Attributes'] = $attributes;
 	

@@ -5,9 +5,9 @@ namespace SimpleSAML\Auth;
 /**
  * A class that generates and verifies time-limited tokens.
  */
+
 class TimeLimitedToken
 {
-
     /**
      * @var string
      */

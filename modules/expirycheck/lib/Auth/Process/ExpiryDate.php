@@ -1,5 +1,7 @@
 <?php
 
+namespace SimpleSAML\Module\expirycheck\Auth\Process;
+
 /**
  * Filter which show "about to expire" warning or deny access if netid is expired.
  *
@@ -20,8 +22,8 @@
  * @package SimpleSAMLphp
  */
 
-class sspmod_expirycheck_Auth_Process_ExpiryDate extends SimpleSAML_Auth_ProcessingFilter {
-
+class ExpiryDate extends \SimpleSAML\Auth\ProcessingFilter
+{
 	private $warndaysbefore = 0;
 	private $netid_attr = NULL;
 	private $expirydate_attr = NULL;
@@ -42,28 +44,28 @@ class sspmod_expirycheck_Auth_Process_ExpiryDate extends SimpleSAML_Auth_Process
 		if (array_key_exists('warndaysbefore', $config)) {
 			$this->warndaysbefore = $config['warndaysbefore'];
 			if (!is_string($this->warndaysbefore)) {
-				throw new Exception('Invalid value for number of days given to expirycheck::ExpiryDate filter.');
+				throw new \Exception('Invalid value for number of days given to expirycheck::ExpiryDate filter.');
 			}
 		}
 
 		if (array_key_exists('netid_attr', $config)) {
 			$this->netid_attr = $config['netid_attr'];
 			if (!is_string($this->netid_attr)) {
-				throw new Exception('Invalid attribute name given as eduPersonPrincipalName to expirycheck::ExpiryDate filter.');
+				throw new \Exception('Invalid attribute name given as eduPersonPrincipalName to expirycheck::ExpiryDate filter.');
 			}
 		}
 
 		if (array_key_exists('expirydate_attr', $config)) {
 			$this->expirydate_attr = $config['expirydate_attr'];
 			if (!is_string($this->expirydate_attr)) {
-				throw new Exception('Invalid attribute name given as schacExpiryDate to expirycheck::ExpiryDate filter.');
+				throw new \Exception('Invalid attribute name given as schacExpiryDate to expirycheck::ExpiryDate filter.');
 			}
 		}
 
 		if (array_key_exists('date_format', $config)) {
 			$this->date_format = $config['date_format'];
 			if (!is_string($this->date_format)) {
-				throw new Exception('Invalid date format given to expirycheck::ExpiryDate filter.');
+				throw new \Exception('Invalid date format given to expirycheck::ExpiryDate filter.');
 			}
 		}
 	}
@@ -126,26 +128,26 @@ class sspmod_expirycheck_Auth_Process_ExpiryDate extends SimpleSAML_Auth_Process
 				return;
 			}
 
-			SimpleSAML\Logger::warning('expirycheck: NetID ' . $netId .
+			\SimpleSAML\Logger::warning('expirycheck: NetID ' . $netId .
 			                           ' is about to expire!');
 
 			// Save state and redirect
 			$state['expireOnDate'] = date($this->date_format, $expireOnDate);
 			$state['netId'] = $netId;
-			$id = SimpleSAML_Auth_State::saveState($state, 'expirywarning:about2expire');
-			$url = SimpleSAML\Module::getModuleURL('expirycheck/about2expire.php');
+			$id = \SimpleSAML\Auth\State::saveState($state, 'expirywarning:about2expire');
+			$url = \SimpleSAML\Module::getModuleURL('expirycheck/about2expire.php');
 			\SimpleSAML\Utils\HTTP::redirectTrustedURL($url, array('StateId' => $id));
 		}
 
 		if (!self::checkDate($expireOnDate)) {
-			SimpleSAML\Logger::error('expirycheck: NetID ' . $netId .
+			\SimpleSAML\Logger::error('expirycheck: NetID ' . $netId .
 				' has expired [' . date($this->date_format, $expireOnDate) . ']. Access denied!');
 
 			/* Save state and redirect. */
 			$state['expireOnDate'] = date($this->date_format, $expireOnDate);
 			$state['netId'] = $netId;
-			$id = SimpleSAML_Auth_State::saveState($state, 'expirywarning:expired');
-			$url = SimpleSAML\Module::getModuleURL('expirycheck/expired.php');
+			$id = \SimpleSAML\Auth\State::saveState($state, 'expirywarning:expired');
+			$url = \SimpleSAML\Module::getModuleURL('expirycheck/expired.php');
 			\SimpleSAML\Utils\HTTP::redirectTrustedURL($url, array('StateId' => $id));
 
 		}

@@ -17,7 +17,7 @@ class Test_Core_Auth_Process_ScopeFromAttribute extends TestCase
      */
     private static function processFilter(array $config, array $request)
     {
-        $filter = new sspmod_core_Auth_Process_ScopeFromAttribute($config, NULL);
+        $filter = new \SimpleSAML\Module\core\Auth\Process\ScopeFromAttribute($config, NULL);
         $filter->process($request);
         return $request;
     }

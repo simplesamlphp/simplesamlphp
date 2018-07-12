@@ -1,5 +1,7 @@
 <?php
 
+namespace SimpleSAML\Module\core\Storage;
+
 /**
  * SQLPermanentStorage
  * 
@@ -9,22 +11,23 @@
  * @author Andreas Åkre Solberg <andreas@uninett.no>, UNINETT AS.
  * @package SimpleSAMLphp
  */
-class sspmod_core_Storage_SQLPermanentStorage
+
+class SQLPermanentStorage
 {
     private $db;
 
     public function __construct($name, $config = null)
     {
         if (is_null($config)) {
-            $config = SimpleSAML_Configuration::getInstance();
+            $config = \SimpleSAML\Configuration::getInstance();
         }
 
         $datadir = $config->getPathValue('datadir', 'data/');
 
         if (!is_dir($datadir)) {
-            throw new Exception('Data directory ['.$datadir.'] does not exist');
+            throw new \Exception('Data directory ['.$datadir.'] does not exist');
         } else if (!is_writable($datadir)) {
-            throw new Exception('Data directory ['.$datadir.'] is not writable');
+            throw new \Exception('Data directory ['.$datadir.'] is not writable');
         }
 
         $sqllitedir = $datadir.'sqllite/';
@@ -50,7 +53,7 @@ class sspmod_core_Storage_SQLPermanentStorage
                 ');
             } 
         } else {
-            throw new Exception('Error creating SQL lite database ['.$dbfile.'].');
+            throw new \Exception('Error creating SQL lite database ['.$dbfile.'].');
         }
     }
 
@@ -75,7 +78,7 @@ class sspmod_core_Storage_SQLPermanentStorage
             ':updated' => time(), ':expire' => $expire,
             ':value' => serialize($value));
         $prepared->execute($data);
-        $results = $prepared->fetchAll(PDO::FETCH_ASSOC);
+        $results = $prepared->fetchAll(\PDO::FETCH_ASSOC);
         return $results;
     }
 
@@ -89,7 +92,7 @@ class sspmod_core_Storage_SQLPermanentStorage
             ':type' => $type, ':updated' => time(),
             ':expire' => $expire, ':value' => serialize($value));
         $prepared->execute($data);
-        $results = $prepared->fetchAll(PDO::FETCH_ASSOC);
+        $results = $prepared->fetchAll(\PDO::FETCH_ASSOC);
         return $results;
     }
 
@@ -100,7 +103,7 @@ class sspmod_core_Storage_SQLPermanentStorage
 
         $prepared = $this->db->prepare($query);
         $prepared->execute();
-        $results = $prepared->fetchAll(PDO::FETCH_ASSOC);
+        $results = $prepared->fetchAll(\PDO::FETCH_ASSOC);
         if (count($results) !== 1) {
             return null;
         }
@@ -128,7 +131,7 @@ class sspmod_core_Storage_SQLPermanentStorage
         $prepared = $this->db->prepare($query);
         $data = array(':type' => $type, ':key1' => $key1, ':key2' => $key2);
         $prepared->execute($data);
-        $results = $prepared->fetchAll(PDO::FETCH_ASSOC);
+        $results = $prepared->fetchAll(\PDO::FETCH_ASSOC);
         return (count($results) == 1);
     }
 
@@ -139,7 +142,7 @@ class sspmod_core_Storage_SQLPermanentStorage
         $prepared = $this->db->prepare($query);
         $prepared->execute();
 
-        $results = $prepared->fetchAll(PDO::FETCH_ASSOC);
+        $results = $prepared->fetchAll(\PDO::FETCH_ASSOC);
         if (count($results) == 0) {
             return null;
         }
@@ -153,7 +156,7 @@ class sspmod_core_Storage_SQLPermanentStorage
     public function getKeys($type = null, $key1 = null, $key2 = null, $whichKey = 'type')
     {
         if (!in_array($whichKey, array('key1', 'key2', 'type'), true)) {
-            throw new Exception('Invalid key type');
+            throw new \Exception('Invalid key type');
         }
 
         $conditions = self::getCondition($type, $key1, $key2);
@@ -161,7 +164,7 @@ class sspmod_core_Storage_SQLPermanentStorage
         $prepared = $this->db->prepare($query);
         $data = array('whichKey' => $whichKey);
         $prepared->execute($data);
-        $results = $prepared->fetchAll(PDO::FETCH_ASSOC);
+        $results = $prepared->fetchAll(\PDO::FETCH_ASSOC);
 
         if (count($results) == 0) {
             return null;
@@ -180,7 +183,7 @@ class sspmod_core_Storage_SQLPermanentStorage
         $prepared = $this->db->prepare($query);
         $data = array(':type' => $type, ':key1' => $key1, ':key2' => $key2);
         $prepared->execute($data);
-        $results = $prepared->fetchAll(PDO::FETCH_ASSOC);
+        $results = $prepared->fetchAll(\PDO::FETCH_ASSOC);
         return (count($results) == 1);
     }
 

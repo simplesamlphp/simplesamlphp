@@ -20,7 +20,7 @@ class NameIDAttributeTest extends TestCase
      */
     private function processFilter(array $config, array $request)
     {
-        $filter = new sspmod_saml_Auth_Process_NameIDAttribute($config, null);
+        $filter = new \SimpleSAML\Module\saml\Auth\Process\NameIDAttribute($config, null);
         $filter->process($request);
         return $request;
     }

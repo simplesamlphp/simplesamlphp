@@ -1,11 +1,14 @@
 <?php
 
+namespace SimpleSAML\Module\saml\IdP;
+
 /**
  * Helper class for working with persistent NameIDs stored in SQL datastore.
  *
  * @package SimpleSAMLphp
  */
-class sspmod_saml_IdP_SQLNameID
+
+class SQLNameID
 {
     /**
      * Create NameID table in SQL, if it is missing.
@@ -45,7 +48,7 @@ class sspmod_saml_IdP_SQLNameID
     {
         $store = \SimpleSAML\Store::getInstance();
         if (!($store instanceof \SimpleSAML\Store\SQL)) {
-            throw new SimpleSAML_Error_Exception('SQL NameID store requires SimpleSAMLphp to be configured with a SQL datastore.');
+            throw new \SimpleSAML\Error\Exception('SQL NameID store requires SimpleSAMLphp to be configured with a SQL datastore.');
         }
 
         self::createTable($store);
@@ -111,7 +114,7 @@ class sspmod_saml_IdP_SQLNameID
         $query = $store->pdo->prepare($query);
         $query->execute($params);
 
-        $row = $query->fetch(PDO::FETCH_ASSOC);
+        $row = $query->fetch(\PDO::FETCH_ASSOC);
         if ($row === false) {
             // No NameID found
             return null;
@@ -172,7 +175,7 @@ class sspmod_saml_IdP_SQLNameID
         $query->execute($params);
 
         $res = array();
-        while (($row = $query->fetch(PDO::FETCH_ASSOC)) !== false) {
+        while (($row = $query->fetch(\PDO::FETCH_ASSOC)) !== false) {
             $res[$row['_user']] = $row['_value'];
         }
 

@@ -17,7 +17,7 @@ class Localization
     /**
      * The configuration to use.
      *
-     * @var \SimpleSAML_Configuration
+     * @var \SimpleSAML\Configuration
      */
     private $configuration;
 
@@ -70,9 +70,9 @@ class Localization
     /**
      * Constructor
      *
-     * @param \SimpleSAML_Configuration $configuration Configuration object
+     * @param \SimpleSAML\Configuration $configuration Configuration object
      */
-    public function __construct(\SimpleSAML_Configuration $configuration)
+    public function __construct(\SimpleSAML\Configuration $configuration)
     {
         $this->configuration = $configuration;
         $this->localeDir = $this->configuration->resolvePath('locales');

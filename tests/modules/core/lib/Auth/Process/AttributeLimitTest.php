@@ -7,7 +7,6 @@ use PHPUnit\Framework\TestCase;
  */
 class Test_Core_Auth_Process_AttributeLimitTest extends TestCase
 {
-
     /**
      * Helper function to run the filter with a given configuration.
      *
@@ -17,7 +16,7 @@ class Test_Core_Auth_Process_AttributeLimitTest extends TestCase
      */
     private static function processFilter(array $config, array $request)
     {
-        $filter = new sspmod_core_Auth_Process_AttributeLimit($config, NULL);
+        $filter = new \SimpleSAML\Module\core\Auth\Process\AttributeLimit($config, NULL);
         $filter->process($request);
         return $request;
     }
@@ -345,7 +344,7 @@ class Test_Core_Auth_Process_AttributeLimitTest extends TestCase
     public function testMatchAttributeValuesRegex()
     {
         // SSP Logger requires a configuration to be set.
-        SimpleSAML_Configuration::loadFromArray(array(), '[ARRAY]', 'simplesaml');
+        \SimpleSAML\Configuration::loadFromArray(array(), '[ARRAY]', 'simplesaml');
         $state = self::$request;
         $state['Attributes']['eduPersonEntitlement'] = array(
             'urn:mace:example.terena.org:tcs:personal-user',

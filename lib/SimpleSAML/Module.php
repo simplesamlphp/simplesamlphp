@@ -1,4 +1,5 @@
 <?php
+
 namespace SimpleSAML;
 
 /**
@@ -11,7 +12,6 @@ namespace SimpleSAML;
  */
 class Module
 {
-
     /**
      * A list containing the modules currently installed.
      *
@@ -58,7 +58,7 @@ class Module
      */
     public static function isModuleEnabled($module)
     {
-        $config = \SimpleSAML_Configuration::getOptionalConfig();
+        $config = Configuration::getOptionalConfig();
         return self::isModuleEnabledWithConf($module, $config->getArray('module.enable', array()));
     }
 
@@ -152,7 +152,7 @@ class Module
      *
      * This function takes a string on the form "<module>:<class>" and converts it to a class
      * name. It can also check that the given class is a subclass of a specific class. The
-     * resolved classname will be "sspmod_<module>_<$type>_<class>.
+     * resolved classname will be "\SimleSAML\Module\<module>\<$type>\<class>.
      *
      * It is also possible to specify a full classname instead of <module>:<class>.
      *
@@ -276,14 +276,14 @@ class Module
      * @param string $hook The name of the hook.
      * @param mixed  &$data The data which should be passed to each hook. Will be passed as a reference.
      *
-     * @throws \SimpleSAML_Error_Exception If an invalid hook is found in a module.
+     * @throws \SimpleSAML\Error\Exception If an invalid hook is found in a module.
      */
     public static function callHooks($hook, &$data = null)
     {
         assert(is_string($hook));
 
         $modules = self::getModules();
-        $config = \SimpleSAML_Configuration::getOptionalConfig()->getArray('module.enable', array());
+        $config = Configuration::getOptionalConfig()->getArray('module.enable', array());
         sort($modules);
         foreach ($modules as $module) {
             if (!self::isModuleEnabledWithConf($module, $config)) {
@@ -301,7 +301,7 @@ class Module
             require_once(self::$module_info[$module]['hooks'][$hook]['file']);
 
             if (!is_callable(self::$module_info[$module]['hooks'][$hook]['func'])) {
-                throw new \SimpleSAML_Error_Exception('Invalid hook \''.$hook.'\' for module \''.$module.'\'.');
+                throw new \SimpleSAML\Error\Exception('Invalid hook \''.$hook.'\' for module \''.$module.'\'.');
             }
 
             $fn = self::$module_info[$module]['hooks'][$hook]['func'];

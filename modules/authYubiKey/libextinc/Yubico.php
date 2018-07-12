@@ -84,8 +84,8 @@ class Auth_Yubico
 	 * Constructor
 	 *
 	 * Sets up the object
-	 * @param    string  The client identity
-	 * @param    string  The client MAC key (optional)
+	 * @param string $id    The client identity
+	 * @param string $key   The client MAC key (optional)
 	 * @access public
 	 */
 	public function __construct($id, $key = '')

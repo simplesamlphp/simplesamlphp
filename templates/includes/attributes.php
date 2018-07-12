@@ -51,7 +51,7 @@ function present_eptid(\SimpleSAML\Locale\Translate $t, \SAML2\XML\saml\NameID $
     return '<td class="attrvalue">'.present_assoc($eptid);
 }
 
-function present_attributes(SimpleSAML_XHTML_Template $t, $attributes, $nameParent)
+function present_attributes(\SimpleSAML\XHTML\Template $t, $attributes, $nameParent)
 {
     $alternate = array('odd', 'even');
     $i = 0;
@@ -100,11 +100,11 @@ function present_attributes(SimpleSAML_XHTML_Template $t, $attributes, $namePare
                         '" /></td></tr>';
                 } elseif (is_a($value[0], 'DOMNodeList')) {
                     // try to see if we have a NameID here
-                    /** @var DOMNodeList $value [0] */
+                    /** @var \DOMNodeList $value [0] */
                     $n = $value[0]->length;
                     for ($idx = 0; $idx < $n; $idx++) {
                         $elem = $value[0]->item($idx);
-                        /* @var DOMElement $elem */
+                        /* @var \DOMElement $elem */
                         if (!($elem->localName === 'NameID' && $elem->namespaceURI === \SAML2\Constants::NS_SAML)) {
                             continue;
                         }

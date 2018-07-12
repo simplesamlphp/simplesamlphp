@@ -1,10 +1,14 @@
 <?php
 
+namespace SimpleSAML\Metadata;
+
+use RobRichards\XMLSecLibs\XMLSecurityKey;
+
 /**
  * This is class for parsing of SAML 1.x and SAML 2.0 metadata.
  *
  * Metadata is loaded by calling the static methods parseFile, parseString or parseElement.
- * These functions returns an instance of SimpleSAML_Metadata_SAMLParser. To get metadata
+ * These functions returns an instance of SAMLParser. To get metadata
  * from this object, use the methods getMetadata1xSP or getMetadata20SP.
  *
  * To parse a file which can contain a collection of EntityDescriptor or EntitiesDescriptor elements, use the
@@ -12,7 +16,7 @@
  * an array of SAMLParser elements where each element represents an EntityDescriptor-element.
  */
 
-class SimpleSAML_Metadata_SAMLParser
+class SAMLParser
 {
     /**
      * This is the list of SAML 1.x protocols.
@@ -202,7 +206,7 @@ class SimpleSAML_Metadata_SAMLParser
      *
      * @param string $file The path to the file which contains the metadata.
      *
-     * @return SimpleSAML_Metadata_SAMLParser An instance of this class with the metadata loaded.
+     * @return SAMLParser An instance of this class with the metadata loaded.
      * @throws Exception If the file does not parse as XML.
      */
     public static function parseFile($file)
@@ -212,7 +216,7 @@ class SimpleSAML_Metadata_SAMLParser
         try {
             $doc = \SAML2\DOMDocumentFactory::fromString($data);
         } catch (\Exception $e) {
-            throw new Exception('Failed to read XML from file: '.$file);
+            throw new \Exception('Failed to read XML from file: '.$file);
         }
 
         return self::parseDocument($doc);
@@ -224,7 +228,7 @@ class SimpleSAML_Metadata_SAMLParser
      *
      * @param string $metadata A string which contains XML encoded metadata.
      *
-     * @return SimpleSAML_Metadata_SAMLParser An instance of this class with the metadata loaded.
+     * @return SAMLParser An instance of this class with the metadata loaded.
      * @throws Exception If the string does not parse as XML.
      */
     public static function parseString($metadata)
@@ -232,7 +236,7 @@ class SimpleSAML_Metadata_SAMLParser
         try {
             $doc = \SAML2\DOMDocumentFactory::fromString($metadata);
         } catch (\Exception $e) {
-            throw new Exception('Failed to parse XML string.');
+            throw new \Exception('Failed to parse XML string.');
         }
 
         return self::parseDocument($doc);
@@ -240,15 +244,15 @@ class SimpleSAML_Metadata_SAMLParser
 
 
     /**
-     * This function parses a DOMDocument which is assumed to contain a single EntityDescriptor element.
+     * This function parses a \DOMDocument which is assumed to contain a single EntityDescriptor element.
      *
-     * @param DOMDocument $document The DOMDocument which contains the EntityDescriptor element.
+     * @param \DOMDocument $document The \DOMDocument which contains the EntityDescriptor element.
      *
-     * @return SimpleSAML_Metadata_SAMLParser An instance of this class with the metadata loaded.
+     * @return SAMLParser An instance of this class with the metadata loaded.
      */
     public static function parseDocument($document)
     {
-        assert($document instanceof DOMDocument);
+        assert($document instanceof \DOMDocument);
 
         $entityElement = self::findEntityDescriptor($document);
 
@@ -262,12 +266,12 @@ class SimpleSAML_Metadata_SAMLParser
      * @param \SAML2\XML\md\EntityDescriptor $entityElement A \SAML2\XML\md\EntityDescriptor object which represents a
      *     EntityDescriptor element.
      *
-     * @return SimpleSAML_Metadata_SAMLParser An instance of this class with the metadata loaded.
+     * @return SAMLParser An instance of this class with the metadata loaded.
      */
     public static function parseElement($entityElement)
     {
         assert($entityElement instanceof \SAML2\XML\md\EntityDescriptor);
-        return new SimpleSAML_Metadata_SAMLParser($entityElement, null, array());
+        return new SAMLParser($entityElement, null, array());
     }
 
 
@@ -279,13 +283,13 @@ class SimpleSAML_Metadata_SAMLParser
      *
      * @param string $file The path to the file which contains the EntityDescriptor or EntitiesDescriptor element.
      *
-     * @return SimpleSAML_Metadata_SAMLParser[] An array of SAMLParser instances.
-     * @throws Exception If the file does not parse as XML.
+     * @return SAMLParser[] An array of SAMLParser instances.
+     * @throws \Exception If the file does not parse as XML.
      */
     public static function parseDescriptorsFile($file)
     {
         if ($file === null) {
-            throw new Exception('Cannot open file NULL. File name not specified.');
+            throw new \Exception('Cannot open file NULL. File name not specified.');
         }
 
         $data = \SimpleSAML\Utils\HTTP::fetch($file);
@@ -293,11 +297,11 @@ class SimpleSAML_Metadata_SAMLParser
         try {
             $doc = \SAML2\DOMDocumentFactory::fromString($data);
         } catch (\Exception $e) {
-            throw new Exception('Failed to read XML from file: '.$file);
+            throw new \Exception('Failed to read XML from file: '.$file);
         }
 
         if ($doc->documentElement === null) {
-            throw new Exception('Opened file is not an XML document: '.$file);
+            throw new \Exception('Opened file is not an XML document: '.$file);
         }
 
         return self::parseDescriptorsElement($doc->documentElement);
@@ -311,16 +315,16 @@ class SimpleSAML_Metadata_SAMLParser
      *
      * @param string $string The string with XML data.
      *
-     * @return SimpleSAML_Metadata_SAMLParser[] An associative array of SAMLParser instances. The key of the array will
+     * @return SAMLParser[] An associative array of SAMLParser instances. The key of the array will
      *     be the entity id.
-     * @throws Exception If the string does not parse as XML.
+     * @throws \Exception If the string does not parse as XML.
      */
     public static function parseDescriptorsString($string)
     {
         try {
             $doc = \SAML2\DOMDocumentFactory::fromString($string);
         } catch (\Exception $e) {
-            throw new Exception('Failed to parse XML string.');
+            throw new \Exception('Failed to parse XML string.');
         }
 
         return self::parseDescriptorsElement($doc->documentElement);
@@ -331,25 +335,25 @@ class SimpleSAML_Metadata_SAMLParser
      * This function parses a DOMElement which represents either an EntityDescriptor element or an
      * EntitiesDescriptor element. It will return an associative array of SAMLParser instances in both cases.
      *
-     * @param DOMElement|NULL $element The DOMElement which contains the EntityDescriptor element or the
+     * @param \DOMElement|NULL $element The DOMElement which contains the EntityDescriptor element or the
      *     EntitiesDescriptor element.
      *
-     * @return SimpleSAML_Metadata_SAMLParser[] An associative array of SAMLParser instances. The key of the array will
+     * @return SAMLParser[] An associative array of SAMLParser instances. The key of the array will
      *     be the entity id.
-     * @throws Exception if the document is empty or the root is an unexpected node.
+     * @throws \Exception if the document is empty or the root is an unexpected node.
      */
-    public static function parseDescriptorsElement(DOMElement $element = null)
+    public static function parseDescriptorsElement(\DOMElement $element = null)
     {
         if ($element === null) {
-            throw new Exception('Document was empty.');
+            throw new \Exception('Document was empty.');
         }
 
-        if (SimpleSAML\Utils\XML::isDOMNodeOfType($element, 'EntityDescriptor', '@md') === true) {
+        if (\SimpleSAML\Utils\XML::isDOMNodeOfType($element, 'EntityDescriptor', '@md') === true) {
             return self::processDescriptorsElement(new \SAML2\XML\md\EntityDescriptor($element));
-        } elseif (SimpleSAML\Utils\XML::isDOMNodeOfType($element, 'EntitiesDescriptor', '@md') === true) {
+        } elseif (\SimpleSAML\Utils\XML::isDOMNodeOfType($element, 'EntitiesDescriptor', '@md') === true) {
             return self::processDescriptorsElement(new \SAML2\XML\md\EntitiesDescriptor($element));
         } else {
-            throw new Exception('Unexpected root node: ['.$element->namespaceURI.']:'.$element->localName);
+            throw new \Exception('Unexpected root node: ['.$element->namespaceURI.']:'.$element->localName);
         }
     }
 
@@ -364,7 +368,7 @@ class SimpleSAML_Metadata_SAMLParser
      * @param array                                                         $parentExtensions An optional array of
      *     extensions from the parent element.
      *
-     * @return SimpleSAML_Metadata_SAMLParser[] Array of SAMLParser instances.
+     * @return SAMLParser[] Array of SAMLParser instances.
      */
     private static function processDescriptorsElement(
         $element,
@@ -375,9 +379,9 @@ class SimpleSAML_Metadata_SAMLParser
         assert($maxExpireTime === null || is_int($maxExpireTime));
 
         if ($element instanceof \SAML2\XML\md\EntityDescriptor) {
-            $ret = new SimpleSAML_Metadata_SAMLParser($element, $maxExpireTime, $validators, $parentExtensions);
+            $ret = new SAMLParser($element, $maxExpireTime, $validators, $parentExtensions);
             $ret = array($ret->getEntityId() => $ret);
-            /** @var SimpleSAML_Metadata_SAMLParser[] $ret */
+            /** @var SAMLParser[] $ret */
             return $ret;
         }
 
@@ -490,7 +494,7 @@ class SimpleSAML_Metadata_SAMLParser
             $metadata['EntityAttributes'] = $this->entityAttributes;
 
             // check for entity categories
-            if (SimpleSAML\Utils\Config\Metadata::isHiddenFromDiscovery($metadata)) {
+            if (\SimpleSAML\Utils\Config\Metadata::isHiddenFromDiscovery($metadata)) {
                 $metadata['hide.from.discovery'] = true;
             }
         }
@@ -1025,7 +1029,7 @@ class SimpleSAML_Metadata_SAMLParser
                     // Registration Authority cannot be overridden (warn only if override attempts to change the value)
                     if (isset($ret['RegistrationInfo']['registrationAuthority'])
                         && $ret['RegistrationInfo']['registrationAuthority'] !== $e->registrationAuthority) {
-                        SimpleSAML\Logger::warning('Invalid attempt to override registrationAuthority \''
+                        \SimpleSAML\Logger::warning('Invalid attempt to override registrationAuthority \''
                           . $ret['RegistrationInfo']['registrationAuthority'] . "' with '{$e->registrationAuthority}'");
                     } else {
                         $ret['RegistrationInfo']['registrationAuthority'] = $e->registrationAuthority;
@@ -1115,8 +1119,8 @@ class SimpleSAML_Metadata_SAMLParser
 
                 $name = $attribute->getAttribute('Name');
                 $values = array_map(
-                    array('SimpleSAML\Utils\XML', 'getDOMText'),
-                    SimpleSAML\Utils\XML::getDOMChildren($attribute, 'AttributeValue', '@saml2')
+                    array('\SimpleSAML\Utils\XML', 'getDOMText'),
+                    \SimpleSAML\Utils\XML::getDOMChildren($attribute, 'AttributeValue', '@saml2')
                 );
 
                 if ($name === 'tags') {
@@ -1385,24 +1389,24 @@ class SimpleSAML_Metadata_SAMLParser
      *
      * This function will throw an exception if it is unable to locate the node.
      *
-     * @param DOMDocument $doc The DOMDocument where we should find the EntityDescriptor node.
+     * @param \DOMDocument $doc The \DOMDocument where we should find the EntityDescriptor node.
      *
-     * @return \SAML2\XML\md\EntityDescriptor The DOMEntity which represents the EntityDescriptor.
-     * @throws Exception If the document is empty or the first element is not an EntityDescriptor element.
+     * @return \SAML2\XML\md\EntityDescriptor The \DOMEntity which represents the EntityDescriptor.
+     * @throws \Exception If the document is empty or the first element is not an EntityDescriptor element.
      */
     private static function findEntityDescriptor($doc)
     {
-        assert($doc instanceof DOMDocument);
+        assert($doc instanceof \DOMDocument);
 
         // find the EntityDescriptor DOMElement. This should be the first (and only) child of the DOMDocument
         $ed = $doc->documentElement;
 
         if ($ed === null) {
-            throw new Exception('Failed to load SAML metadata from empty XML document.');
+            throw new \Exception('Failed to load SAML metadata from empty XML document.');
         }
 
-        if (SimpleSAML\Utils\XML::isDOMNodeOfType($ed, 'EntityDescriptor', '@md') === false) {
-            throw new Exception('Expected first element in the metadata document to be an EntityDescriptor element.');
+        if (\SimpleSAML\Utils\XML::isDOMNodeOfType($ed, 'EntityDescriptor', '@md') === false) {
+            throw new \Exception('Expected first element in the metadata document to be an EntityDescriptor element.');
         }
 
         return new \SAML2\XML\md\EntityDescriptor($ed);
@@ -1424,25 +1428,25 @@ class SimpleSAML_Metadata_SAMLParser
             assert(is_string($cert));
             $certFile = \SimpleSAML\Utils\Config::getCertPath($cert);
             if (!file_exists($certFile)) {
-                throw new Exception(
+                throw new \Exception(
                     'Could not find certificate file ['.$certFile.'], which is needed to validate signature'
                 );
             }
             $certData = file_get_contents($certFile);
 
             foreach ($this->validators as $validator) {
-                $key = new XMLSecurityKey(XMLSecurityKey::RSA_SHA1, array('type' => 'public'));
+                $key = new XMLSecurityKey(XMLSecurityKey::RSA_SHA256, array('type' => 'public'));
                 $key->loadKey($certData);
                 try {
                     if ($validator->validate($key)) {
                         return true;
                     }
-                } catch (Exception $e) {
+                } catch (\Exception $e) {
                     // this certificate did not sign this element, skip
                 }
             }
         }
-        SimpleSAML\Logger::debug('Could not validate signature');
+        \SimpleSAML\Logger::debug('Could not validate signature');
         return false;
     }
 
@@ -1472,7 +1476,7 @@ class SimpleSAML_Metadata_SAMLParser
                 }
             }
         }
-        SimpleSAML\Logger::debug('Fingerprint was ['.$fingerprint.'] not one of ['.join(', ', $candidates).']');
+        \SimpleSAML\Logger::debug('Fingerprint was ['.$fingerprint.'] not one of ['.join(', ', $candidates).']');
         return false;
     }
 }

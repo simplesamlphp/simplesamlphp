@@ -1,9 +1,13 @@
 <?php
+
+namespace SimpleSAML\Module\statistics;
+
 /*
  * @author Andreas Åkre Solberg <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
  */
-class sspmod_statistics_Ruleset
+
+class Ruleset
 {
     private $statconfig;
     private $availrulenames;
@@ -29,7 +33,7 @@ class sspmod_statistics_Ruleset
          * Walk through file lists, and get available [rule][fileslot]...
          */
         if (!is_dir($statdir)) {
-            throw new Exception('Statisics output directory [' . $statdir . '] does not exists.');
+            throw new \Exception('Statisics output directory [' . $statdir . '] does not exists.');
         }
         $filelist = scandir($statdir);
         $this->available = array();
@@ -42,7 +46,7 @@ class sspmod_statistics_Ruleset
             }
         }
         if (empty($this->available)) {
-            throw new Exception('No aggregated statistics files found in [' . $statdir . ']');
+            throw new \Exception('No aggregated statistics files found in [' . $statdir . ']');
         }
 
         /*
@@ -86,7 +90,7 @@ class sspmod_statistics_Ruleset
         $statrulesConfig = $this->statconfig->getConfigItem('statrules');
         $statruleConfig = $statrulesConfig->getConfigItem($rule);
 
-        $presenterClass = SimpleSAML\Module::resolveClass($statruleConfig->getValue('presenter', 'statistics:BaseRule'), 'Statistics_Rulesets');
+        $presenterClass = \SimpleSAML\Module::resolveClass($statruleConfig->getValue('presenter', 'statistics:BaseRule'), 'Statistics_Rulesets');
         $statrule = new $presenterClass($this->statconfig, $statruleConfig, $rule, $this->available);
         return $statrule;
     }

@@ -42,7 +42,7 @@ class FileLoggingHandler implements LoggingHandlerInterface
     /**
      * Build a new logging handler based on files.
      */
-    public function __construct(\SimpleSAML_Configuration $config)
+    public function __construct(\SimpleSAML\Configuration $config)
     {
         // get the metadata handler option from the configuration
         $this->logFile = $config->getPathValue('loggingdir', 'log/').
@@ -107,7 +107,7 @@ class FileLoggingHandler implements LoggingHandlerInterface
             }
 
             $string = str_replace($formats, $replacements, $string);
-            file_put_contents($this->logFile, $string.PHP_EOL, FILE_APPEND);
+            file_put_contents($this->logFile, $string.\PHP_EOL, FILE_APPEND);
         }
     }
 }

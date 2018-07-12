@@ -1,5 +1,7 @@
 <?php
 
+namespace SimpleSAML\Module\core\Auth\Process;
+
 /**
  * Filter that will take the user ID on the format 'andreas@uninett.no'
  * and create a new attribute 'realm' that includes the value after the '@' sign.
@@ -8,8 +10,9 @@
  * @package SimpleSAMLphp
  * @deprecated Use ScopeFromAttribute instead.
  */
-class sspmod_core_Auth_Process_AttributeRealm extends SimpleSAML_Auth_ProcessingFilter {
 
+class AttributeRealm extends \SimpleSAML\Auth\ProcessingFilter
+{
     private $attributename = 'realm';
 
     /**
@@ -41,7 +44,7 @@ class sspmod_core_Auth_Process_AttributeRealm extends SimpleSAML_Auth_Processing
         $attributes =& $request['Attributes'];
 
         if (!array_key_exists('UserID', $request)) {
-            throw new Exception('core:AttributeRealm: Missing UserID for this user. Please' .
+            throw new \Exception('core:AttributeRealm: Missing UserID for this user. Please' .
                 ' check the \'userid.attribute\' option in the metadata against the' .
                 ' attributes provided by the authentication source.');
         }

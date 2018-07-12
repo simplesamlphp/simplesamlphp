@@ -1,4 +1,5 @@
 <?php
+
 namespace SimpleSAML\Test;
 
 use PHPUnit\Framework\TestCase;
@@ -6,8 +7,6 @@ use SimpleSAML\Module;
 
 class ModuleTest extends TestCase
 {
-
-
     /**
      * Test for SimpleSAML\Module::isModuleEnabled().
      */
@@ -36,7 +35,7 @@ class ModuleTest extends TestCase
      */
     public function testGetModuleURL()
     {
-        \SimpleSAML_Configuration::loadFromArray(array(
+        \SimpleSAML\Configuration::loadFromArray(array(
             'baseurlpath' => 'https://example.com/simplesaml/'
         ), '', 'simplesaml');
         $this->assertEquals(
@@ -113,8 +112,8 @@ class ModuleTest extends TestCase
         // test for valid subclasses
         $this->assertEquals('sspmod_core_Auth_Process_PHP', Module::resolveClass(
             'core:PHP',
-            'Auth_Process',
-            'SimpleSAML_Auth_ProcessingFilter'
+            'Auth\Process',
+            '\SimpleSAML\Auth\ProcessingFilter'
         ));
     }
 }

@@ -131,9 +131,9 @@ if ($this->data['sppp'] !== false) {
 /**
  * Recursive attribute array listing function
  *
- * @param SimpleSAML_XHTML_Template $t          Template object
- * @param array                     $attributes Attributes to be presented
- * @param string                    $nameParent Name of parent element
+ * @param \SimpleSAML\XHTML\Template $t          Template object
+ * @param array                      $attributes Attributes to be presented
+ * @param string                     $nameParent Name of parent element
  *
  * @return string HTML representation of the attributes 
  */

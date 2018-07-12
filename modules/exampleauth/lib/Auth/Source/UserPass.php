@@ -1,5 +1,7 @@
 <?php
 
+namespace SimpleSAML\Module\exampleauth\Auth\Source;
+
 /**
  * Example authentication source - username & password.
  *
@@ -9,9 +11,9 @@
  * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
-class sspmod_exampleauth_Auth_Source_UserPass extends sspmod_core_Auth_UserPassBase {
 
-
+class UserPass extends \SimpleSAML\Module\core\Auth\UserPassBase
+{
 	/**
 	 * Our users, stored in an associative array. The key of the array is "<username>:<password>",
 	 * while the value of each element is a new array with the attributes for each user.
@@ -37,22 +39,22 @@ class sspmod_exampleauth_Auth_Source_UserPass extends sspmod_core_Auth_UserPassB
 		// Validate and parse our configuration
 		foreach ($config as $userpass => $attributes) {
 			if (!is_string($userpass)) {
-				throw new Exception('Invalid <username>:<password> for authentication source ' .
+				throw new \Exception('Invalid <username>:<password> for authentication source ' .
 					$this->authId . ': ' . $userpass);
 			}
 
 			$userpass = explode(':', $userpass, 2);
 			if (count($userpass) !== 2) {
-				throw new Exception('Invalid <username>:<password> for authentication source ' .
+				throw new \Exception('Invalid <username>:<password> for authentication source ' .
 					$this->authId . ': ' . $userpass[0]);
 			}
 			$username = $userpass[0];
 			$password = $userpass[1];
 
 			try {
-				$attributes = SimpleSAML\Utils\Attributes::normalizeAttributesArray($attributes);
-			} catch(Exception $e) {
-				throw new Exception('Invalid attributes for user ' . $username .
+				$attributes = \SimpleSAML\Utils\Attributes::normalizeAttributesArray($attributes);
+			} catch(\Exception $e) {
+				throw new \Exception('Invalid attributes for user ' . $username .
 					' in authentication source ' . $this->authId . ': ' .
 					$e->getMessage());
 			}
@@ -67,7 +69,7 @@ class sspmod_exampleauth_Auth_Source_UserPass extends sspmod_core_Auth_UserPassB
 	 *
 	 * On a successful login, this function should return the users attributes. On failure,
 	 * it should throw an exception. If the error was caused by the user entering the wrong
-	 * username or password, a SimpleSAML_Error_Error('WRONGUSERPASS') should be thrown.
+	 * username or password, a \SimpleSAML\Error\Error('WRONGUSERPASS') should be thrown.
 	 *
 	 * Note that both the username and the password are UTF-8 encoded.
 	 *
@@ -81,10 +83,9 @@ class sspmod_exampleauth_Auth_Source_UserPass extends sspmod_core_Auth_UserPassB
 
 		$userpass = $username . ':' . $password;
 		if (!array_key_exists($userpass, $this->users)) {
-			throw new SimpleSAML_Error_Error('WRONGUSERPASS');
+			throw new \SimpleSAML\Error\Error('WRONGUSERPASS');
 		}
 
 		return $this->users[$userpass];
 	}
-
 }

@@ -38,3 +38,6 @@
 !/smartattributes/
 !/sqlauth/
 !/statistics/
+
+*/enable
+*/disable

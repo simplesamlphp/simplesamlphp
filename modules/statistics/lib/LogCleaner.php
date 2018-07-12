@@ -1,9 +1,13 @@
 <?php
+
+namespace SimpleSAML\Module\statistics;
+
 /*
  * @author Andreas Åkre Solberg <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
  */
-class sspmod_statistics_LogCleaner
+
+class LogCleaner
 {
     private $statconfig;
     private $statdir;
@@ -16,7 +20,7 @@ class sspmod_statistics_LogCleaner
      */
     public function __construct($inputfile = null)
     {
-        $this->statconfig = SimpleSAML_Configuration::getConfig('module_statistics.php');
+        $this->statconfig = \SimpleSAML\Configuration::getConfig('module_statistics.php');
 
         $this->statdir = $this->statconfig->getValue('statdir');
         $this->inputfile = $this->statconfig->getValue('inputfile');
@@ -46,16 +50,16 @@ class sspmod_statistics_LogCleaner
     public function clean($debug = false)
     {
         if (!is_dir($this->statdir)) {
-            throw new Exception('Statistics module: output dir do not exists [' . $this->statdir . ']');
+            throw new \Exception('Statistics module: output dir do not exists [' . $this->statdir . ']');
         }
 
         if (!file_exists($this->inputfile)) {
-            throw new Exception('Statistics module: input file do not exists [' . $this->inputfile . ']');
+            throw new \Exception('Statistics module: input file do not exists [' . $this->inputfile . ']');
         }
 
         $file = fopen($this->inputfile, 'r');
 
-        $logparser = new sspmod_statistics_LogParser(
+        $logparser = new LogParser(
             $this->statconfig->getValue('datestart', 0), $this->statconfig->getValue('datelength', 15), $this->statconfig->getValue('offsetspan', 44)
         );
 
@@ -128,11 +132,11 @@ class sspmod_statistics_LogCleaner
         echo "Preparing to delete [" .count($todelete) . "] trackids\n";
 
         if (!is_dir($this->statdir)) {
-            throw new Exception('Statistics module: output dir do not exists [' . $this->statdir . ']');
+            throw new \Exception('Statistics module: output dir do not exists [' . $this->statdir . ']');
         }
 
         if (!file_exists($this->inputfile)) {
-            throw new Exception('Statistics module: input file do not exists [' . $this->inputfile . ']');
+            throw new \Exception('Statistics module: input file do not exists [' . $this->inputfile . ']');
         }
 
         $file = fopen($this->inputfile, 'r');
@@ -144,7 +148,7 @@ class sspmod_statistics_LogCleaner
         }
         $outfile = fopen($outputfile, 'x'); /* Create the output file. */
 
-        $logparser = new sspmod_statistics_LogParser(
+        $logparser = new LogParser(
             $this->statconfig->getValue('datestart', 0), $this->statconfig->getValue('datelength', 15), $this->statconfig->getValue('offsetspan', 44)
         );
 

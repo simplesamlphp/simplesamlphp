@@ -3,15 +3,15 @@
 use SimpleSAML\Bindings\Shib13\Artifact;
 
 if (!array_key_exists('SAMLResponse', $_REQUEST) && !array_key_exists('SAMLart', $_REQUEST)) {
-    throw new SimpleSAML_Error_BadRequest('Missing SAMLResponse or SAMLart parameter.');
+    throw new \SimpleSAML\Error\BadRequest('Missing SAMLResponse or SAMLart parameter.');
 }
 
 if (!array_key_exists('TARGET', $_REQUEST)) {
-    throw new SimpleSAML_Error_BadRequest('Missing TARGET parameter.');
+    throw new \SimpleSAML\Error\BadRequest('Missing TARGET parameter.');
 }
 
 if (!array_key_exists('PATH_INFO', $_SERVER)) {
-    throw new SimpleSAML_Error_BadRequest('Missing authentication source ID in assertion consumer service URL');
+    throw new \SimpleSAML\Error\BadRequest('Missing authentication source ID in assertion consumer service URL');
 }
 
 $sourceId = $_SERVER['PATH_INFO'];
@@ -21,7 +21,7 @@ if ($end === false) {
 }
 $sourceId = substr($sourceId, 1, $end - 1);
 
-$source = SimpleSAML_Auth_Source::getById($sourceId, 'sspmod_saml_Auth_Source_SP');
+$source = \SimpleSAML\Auth\Source::getById($sourceId, '\SimpleSAML\Module\saml\Auth\Source\SP');
 
 SimpleSAML\Logger::debug('Received SAML1 response');
 
@@ -35,12 +35,12 @@ if (preg_match('@^https?://@i', $target)) {
         'saml:sp:RelayState' => \SimpleSAML\Utils\HTTP::checkURLAllowed($target),
     );
 } else {
-    $state = SimpleSAML_Auth_State::loadState($_REQUEST['TARGET'], 'saml:sp:sso');
+    $state = \SimpleSAML\Auth\State::loadState($_REQUEST['TARGET'], 'saml:sp:sso');
 
     // Check that the authentication source is correct.
     assert(array_key_exists('saml:sp:AuthId', $state));
     if ($state['saml:sp:AuthId'] !== $sourceId) {
-        throw new SimpleSAML_Error_Exception('The authentication source id in the URL does not match the authentication source which sent the request.');
+        throw new \SimpleSAML\Error\Exception('The authentication source id in the URL does not match the authentication source which sent the request.');
     }
 
     assert(isset($state['saml:idp']));
@@ -51,7 +51,7 @@ $spMetadata = $source->getMetadata();
 if (array_key_exists('SAMLart', $_REQUEST)) {
     if (!isset($state['saml:idp'])) {
         /* Unsolicited response. */
-        throw new SimpleSAML_Error_Exception('IdP initiated authentication not supported with the SAML 1.1 SAMLart protocol.');
+        throw new \SimpleSAML\Error\Exception('IdP initiated authentication not supported with the SAML 1.1 SAMLart protocol.');
     }
     $idpMetadata = $source->getIdPMetadata($state['saml:idp']);
 
@@ -75,7 +75,7 @@ $responseIssuer = $response->getIssuer();
 $attributes = $response->getAttributes();
 
 if (isset($state['saml:idp']) && $responseIssuer !== $state['saml:idp']) {
-    throw new SimpleSAML_Error_Exception('The issuer of the response wasn\'t the destination of the request.');
+    throw new \SimpleSAML\Error\Exception('The issuer of the response wasn\'t the destination of the request.');
 }
 
 $logoutState = array(

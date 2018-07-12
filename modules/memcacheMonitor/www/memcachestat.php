@@ -12,9 +12,7 @@ function hours($input) {
 	
 }
 
-
 function humanreadable($input) {
-	 
 	$output = "";
 	$input = abs($input);
 	
@@ -69,14 +67,10 @@ function humanreadable($input) {
 	return $output;
 }
 
-
-
-
-$config = SimpleSAML_Configuration::getInstance();
+$config = \SimpleSAML\Configuration::getInstance();
 
 // Make sure that the user has admin access rights
-SimpleSAML\Utils\Auth::requireAdmin();
-
+\SimpleSAML\Utils\Auth::requireAdmin();
 
 $formats = array(
 	'bytes' => 'humanreadable',
@@ -87,7 +81,7 @@ $formats = array(
 	'uptime' => 'hours',
 );
 
-$statsraw = SimpleSAML_Memcache::getStats();
+$statsraw = \SimpleSAML\Memcache::getStats();
 
 $stats = $statsraw;
 
@@ -101,7 +95,7 @@ foreach($stats AS $key => &$entry) {
 
 }
 
-$t = new SimpleSAML_XHTML_Template($config, 'memcacheMonitor:memcachestat.tpl.php');
+$t = new \SimpleSAML\XHTML\Template($config, 'memcacheMonitor:memcachestat.tpl.php');
 $rowTitles = array(
     'accepting_conns' => \SimpleSAML\Locale\Translate::noop('{memcacheMonitor:memcachestat:accepting_conns}'),
     'auth_cmds' => \SimpleSAML\Locale\Translate::noop('{memcacheMonitor:memcachestat:auth_cmds}'),

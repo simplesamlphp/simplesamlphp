@@ -22,14 +22,14 @@ class Test_Core_Auth_Process_CardinalitySingleTest extends \PHPUnit_Framework_Te
     {
         $_SERVER['SERVER_PROTOCOL'] = 'HTTP/1.1';
         $_SERVER['REQUEST_METHOD'] = 'GET';
-        $filter = new sspmod_core_Auth_Process_CardinalitySingle($config, null, $this->http);
+        $filter = new \SimpleSAML\Module\core\Auth\Process\CardinalitySingle($config, null, $this->http);
         $filter->process($request);
         return $request;
     }
 
     protected function setUp()
     {
-        \SimpleSAML_Configuration::loadFromArray(array(), '[ARRAY]', 'simplesaml');
+        \SimpleSAML\Configuration::loadFromArray(array(), '[ARRAY]', 'simplesaml');
         $this->http = $this->getMockBuilder('SimpleSAML\Utils\HTTPAdapter')
                            ->setMethods(array('redirectTrustedURL'))
                            ->getMock();

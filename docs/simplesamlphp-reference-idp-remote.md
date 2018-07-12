@@ -152,7 +152,7 @@ The following SAML 2.0 options are available:
 :   Endpoint URL for logout responses. Overrides the `SingleLogoutService`-option for responses.
 
 `signature.algorithm`
-:   The algorithm to use when signing any message sent to this specific identity provider. Defaults to RSA-SHA1.
+:   The algorithm to use when signing any message sent to this specific identity provider. Defaults to RSA-SHA256.
 :   Note that this option also exists in the SP configuration.
     This value in the IdP remote metadata overrides the value in the SP configuration.
 :   Possible values:
@@ -160,6 +160,7 @@ The following SAML 2.0 options are available:
     * `http://www.w3.org/2000/09/xmldsig#rsa-sha1`
        *Note*: the use of SHA1 is **deprecated** and will be disallowed in the future.
     * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha256`
+      The default.
     * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha384`
     * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha512`
 

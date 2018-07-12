@@ -1,4 +1,5 @@
 <?php
+
 namespace SimpleSAML\Test\Utils;
 
 /**
@@ -17,7 +18,7 @@ class StateClearer
      * Class that implement \SimpleSAML\Utils\ClearableState and should have clearInternalState called between tests
      * @var array
      */
-    private $clearableState = array('SimpleSAML_Configuration');
+    private $clearableState = array('SimpleSAML\Configuration');
 
     /**
      * Environmental variables to unset

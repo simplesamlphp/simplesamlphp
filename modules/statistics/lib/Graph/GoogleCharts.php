@@ -1,12 +1,16 @@
 <?php
+
+namespace SimpleSAML\Module\statistics\Graph;
+
 /*
- * sspmod_statistics_Graph_GoogleCharts will help you to create a Google Chart
+ * \SimpleSAML\Module\statistics\Graph\GoogleCharts will help you to create a Google Chart
  * using the Google Charts API. 
  *
  * @author Andreas Åkre Solberg <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
  */
-class sspmod_statistics_Graph_GoogleCharts
+
+class GoogleCharts
 {
     /**
      * @var integer
@@ -71,17 +75,17 @@ class sspmod_statistics_Graph_GoogleCharts
      * More documentation on Google Charts here: 
      *   http://code.google.com/apis/chart/
      *
-     * @param $axis        Axis
-     * @param $axpis       Axis positions
-     * @param $datasets    Datasets values
-     * @param $max         Max value. Will be the topmost value on the Y-axis.
+     * @param string $axis        Axis
+     * @param string $axpis       Axis positions
+     * @param array $datasets    Datasets values
+     * @param integer $max         Max value. Will be the topmost value on the Y-axis.
      */
     public function show($axis, $axispos, $datasets, $maxes)
     {
         $labeld = '&chxt=x,y' . '&chxr=0,0,1|1,0,' . $maxes[0];
         if (count($datasets) > 1) {
             if (count($datasets) !== count($maxes)) {
-                throw new Exception('Incorrect number of max calculations for graph plotting.');
+                throw new \Exception('Incorrect number of max calculations for graph plotting.');
             }
             $labeld = '&chxt=x,y,r' . '&chxr=0,0,1|1,0,' . $maxes[0] . '|2,0,' . $maxes[1];
         }
@@ -135,11 +139,11 @@ class sspmod_statistics_Graph_GoogleCharts
      * <code>
      * 	    $foo = array(0, 2, 2.3, 2.6, 6, 10, 15, 98, 198, 256, 487, 563, 763, 801, 899, 999, 987, 198234.485, 283746);
      *	    foreach ($foo AS $f) {
-     *	        echo '<p>' . $f . ' => ' . sspmod_statistics_Graph_GoogleCharts::roof($f);
+     *	        echo '<p>' . $f . ' => ' . \SimpleSAML\Module\statistics\Graph\GoogleCharts::roof($f);
      *	    }
      * </code>
      * 
-     * @param $max    Input value.
+     * @param integer $max    Input value.
      */
     public static function roof($max)
     {

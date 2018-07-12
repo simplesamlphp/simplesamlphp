@@ -1,6 +1,6 @@
 <?php
 
-class sspmod_saml_IdP_SAML2Test extends \PHPUnit_Framework_TestCase
+class SAML2Test extends \PHPUnit_Framework_TestCase
 {
     public function testProcessSOAPAuthnRequest()
     {
@@ -8,7 +8,7 @@ class sspmod_saml_IdP_SAML2Test extends \PHPUnit_Framework_TestCase
         $password = $_SERVER['PHP_AUTH_PW'] = 'password';
         $state = array();
 
-        sspmod_saml_IdP_SAML2::processSOAPAuthnRequest($state);
+        \SimpleSAML\Module\saml\IdP\SAML2::processSOAPAuthnRequest($state);
 
         $this->assertEquals($username, $state['core:auth:username']);
         $this->assertEquals($password, $state['core:auth:password']);
@@ -16,23 +16,23 @@ class sspmod_saml_IdP_SAML2Test extends \PHPUnit_Framework_TestCase
 
     public function testProcessSOAPAuthnRequestMissingUsername()
     {
-        $this->setExpectedException('SimpleSAML_Error_Error', 'WRONGUSERPASS');
+        $this->setExpectedException('\SimpleSAML\Error\Error', 'WRONGUSERPASS');
 
         $_SERVER['PHP_AUTH_PW'] = 'password';
         unset($_SERVER['PHP_AUTH_USER']);
         $state = array();
 
-        sspmod_saml_IdP_SAML2::processSOAPAuthnRequest($state);
+        \SimpleSAML\Module\saml\IdP\SAML2::processSOAPAuthnRequest($state);
     }
 
     public function testProcessSOAPAuthnRequestMissingPassword()
     {
-        $this->setExpectedException('SimpleSAML_Error_Error', 'WRONGUSERPASS');
+        $this->setExpectedException('\SimpleSAML\Error\Error', 'WRONGUSERPASS');
 
         $_SERVER['PHP_AUTH_USER'] = 'username';
         unset($_SERVER['PHP_AUTH_PW']);
         $state = array();
 
-        sspmod_saml_IdP_SAML2::processSOAPAuthnRequest($state);
+        \SimpleSAML\Module\saml\IdP\SAML2::processSOAPAuthnRequest($state);
     }
 }

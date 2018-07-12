@@ -20,7 +20,6 @@ use SimpleSAML\XML\Validator;
 
 class AuthnResponse
 {
-
     /**
      * @var \SimpleSAML\XML\Validator This variable contains an XML validator for this message.
      */
@@ -98,7 +97,7 @@ class AuthnResponse
         $issuer = $this->getIssuer();
 
         // Get the metadata of the issuer
-        $metadata = \SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+        $metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
         $md = $metadata->getMetaDataConfig($issuer, 'shib13-idp-remote');
 
         $publicKeys = $md->getPublicKeys('signing');
@@ -120,7 +119,7 @@ class AuthnResponse
             // Validate against CA
             $this->validator->validateCA(Config::getCertPath($md->getString('caFile')));
         } else {
-            throw new \SimpleSAML_Error_Exception('Missing certificate in Shibboleth 1.3 IdP Remote metadata for identity provider [' . $issuer . '].');
+            throw new \SimpleSAML\Error\Exception('Missing certificate in Shibboleth 1.3 IdP Remote metadata for identity provider [' . $issuer . '].');
         }
 
         return true;
@@ -149,7 +148,7 @@ class AuthnResponse
             $node = dom_import_simplexml($node);
         }
 
-        assert($node instanceof DOMNode);
+        assert($node instanceof \DOMNode);
 
         return $this->validator->isNodeValidated($node);
     }
@@ -166,13 +165,13 @@ class AuthnResponse
     private function doXPathQuery($query, $node = null)
     {
         assert(is_string($query));
-        assert($this->dom instanceof DOMDocument);
+        assert($this->dom instanceof \DOMDocument);
 
         if ($node === null) {
             $node = $this->dom->documentElement;
         }
 
-        assert($node instanceof DOMNode);
+        assert($node instanceof \DOMNode);
 
         $xPath = new \DOMXpath($this->dom);
         $xPath->registerNamespace('shibp', self::SHIB_PROTOCOL_NS);
@@ -202,7 +201,7 @@ class AuthnResponse
     
     public function getAttributes()
     {
-        $metadata = \SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+        $metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
         $md = $metadata->getMetadata($this->getIssuer(), 'shib13-idp-remote');
         $base64 = isset($md['base64attributes']) ? $md['base64attributes'] : false;
 
@@ -300,13 +299,13 @@ class AuthnResponse
     /**
      * Build a authentication response.
      *
-     * @param \SimpleSAML_Configuration $idp Metadata for the IdP the response is sent from.
-     * @param \SimpleSAML_Configuration $sp Metadata for the SP the response is sent to.
+     * @param \SimpleSAML\Configuration $idp Metadata for the IdP the response is sent from.
+     * @param \SimpleSAML\Configuration $sp Metadata for the SP the response is sent to.
      * @param string $shire The endpoint on the SP the response is sent to.
      * @param array|null $attributes The attributes which should be included in the response.
      * @return string The response.
      */
-    public function generate(\SimpleSAML_Configuration $idp, \SimpleSAML_Configuration $sp, $shire, $attributes)
+    public function generate(\SimpleSAML\Configuration $idp, \SimpleSAML\Configuration $sp, $shire, $attributes)
     {
         assert(is_string($shire));
         assert($attributes === null || is_array($attributes));

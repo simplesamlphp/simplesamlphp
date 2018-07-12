@@ -1,14 +1,15 @@
 <?php
 
+namespace SimpleSAML\Module\saml\Auth\Process;
 
 /**
  * Authentication processing filter to create an attribute from a NameID.
  *
  * @package SimpleSAMLphp
  */
-class sspmod_saml_Auth_Process_NameIDAttribute extends SimpleSAML_Auth_ProcessingFilter
-{
 
+class NameIDAttribute extends \SimpleSAML\Auth\ProcessingFilter
+{
     /**
      * The attribute we should save the NameID in.
      *
@@ -58,7 +59,7 @@ class sspmod_saml_Auth_Process_NameIDAttribute extends SimpleSAML_Auth_Processin
      * @param string $format The format string.
      * @return array The format string broken into its individual components.
      *
-     * @throws SimpleSAML_Error_Exception if the replacement is invalid.
+     * @throws \SimpleSAML\Error\Exception if the replacement is invalid.
      */
     private static function parseFormat($format)
     {
@@ -87,7 +88,7 @@ class sspmod_saml_Auth_Process_NameIDAttribute extends SimpleSAML_Auth_Processin
                     $ret[] = '%';
                     break;
                 default:
-                    throw new SimpleSAML_Error_Exception('NameIDAttribute: Invalid replacement: "%'.$replacement.'"');
+                    throw new \SimpleSAML\Error\Exception('NameIDAttribute: Invalid replacement: "%'.$replacement.'"');
             }
 
             $pos = $next + 2;

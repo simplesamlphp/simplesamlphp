@@ -1,5 +1,6 @@
 <?php
 
+namespace SimpleSAML\Metadata;
 
 /**
  * This class implements a metadata source which loads metadata from XML files.
@@ -8,7 +9,8 @@
  * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
-class SimpleSAML_Metadata_MetaDataStorageHandlerXML extends SimpleSAML_Metadata_MetaDataStorageSource
+
+class MetaDataStorageHandlerXML extends MetaDataStorageSource
 {
 
     /**
@@ -35,14 +37,14 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerXML extends SimpleSAML_Metadata_
         $src = $srcXml = null;
         if (array_key_exists('file', $config)) {
             // get the configuration
-            $globalConfig = SimpleSAML_Configuration::getInstance();
+            $globalConfig = \SimpleSAML\Configuration::getInstance();
             $src = $globalConfig->resolvePath($config['file']);
         } elseif (array_key_exists('url', $config)) {
             $src = $config['url'];
         } elseif (array_key_exists('xml', $config)) {
             $srcXml = $config['xml'];
         } else {
-            throw new Exception("Missing one of 'file', 'url' and 'xml' in XML metadata source configuration.");
+            throw new \Exception("Missing one of 'file', 'url' and 'xml' in XML metadata source configuration.");
         }
 
 
@@ -53,11 +55,11 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerXML extends SimpleSAML_Metadata_
         $AAD = array();
 
         if(isset($src)) {
-            $entities = SimpleSAML_Metadata_SAMLParser::parseDescriptorsFile($src);
+            $entities = SAMLParser::parseDescriptorsFile($src);
         } elseif(isset($srcXml)) {
-            $entities = SimpleSAML_Metadata_SAMLParser::parseDescriptorsString($srcXml);
+            $entities = SAMLParser::parseDescriptorsString($srcXml);
         } else {
-            throw new Exception("Neither source file path/URI nor string data provided");
+            throw new \Exception("Neither source file path/URI nor string data provided");
         }
         foreach ($entities as $entityId => $entity) {
             $md = $entity->getMetadata1xSP();

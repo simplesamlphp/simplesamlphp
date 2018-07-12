@@ -52,8 +52,8 @@ class Signer
      *  - privatekey       The file with the private key, relative to the cert-directory.
      *  - privatekey_pass  The passphrase for the private key.
      *  - certificate      The file with the certificate, relative to the cert-directory.
-     *  - privatekey_array The private key, as an array returned from SimpleSAML_Utilities::loadPrivateKey.
-     *  - publickey_array  The public key, as an array returned from SimpleSAML_Utilities::loadPublicKey.
+     *  - privatekey_array The private key, as an array returned from \SimpleSAML\Utils\Crypto::loadPrivateKey.
+     *  - publickey_array  The public key, as an array returned from \SimpleSAML\Utils\Crypto::loadPublicKey.
      *  - id               The name of the ID attribute.
      *
      * @param array $options  Associative array with options for the constructor. Defaults to an empty array.
@@ -93,7 +93,7 @@ class Signer
      * Set the private key from an array.
      *
      * This function loads the private key from an array matching what is returned
-     * by SimpleSAML_Utilities::loadPrivateKey(...).
+     * by \SimpleSAML\Utils\Crypto::loadPrivateKey(...).
      *
      * @param array $privatekey  The private key.
      */
@@ -102,7 +102,7 @@ class Signer
         assert(is_array($privatekey));
         assert(array_key_exists('PEM', $privatekey));
 
-        $this->privateKey = new XMLSecurityKey(XMLSecurityKey::RSA_SHA1, array('type' => 'private'));
+        $this->privateKey = new XMLSecurityKey(XMLSecurityKey::RSA_SHA256, array('type' => 'private'));
         if (array_key_exists('password', $privatekey)) {
             $this->privateKey->passphrase = $privatekey['password'];
         }
@@ -155,7 +155,7 @@ class Signer
      * Set the public key / certificate we should include in the signature.
      *
      * This function loads the public key from an array matching what is returned
-     * by SimpleSAML_Utilities::loadPublicKey(...).
+     * by \SimpleSAML\Utils\Crypto::loadPublicKey(...).
      *
      * @param array $publickey The public key.
      * @throws \Exception
@@ -291,7 +291,7 @@ class Signer
 
         $objXMLSecDSig->addReferenceList(
             array($node),
-            XMLSecurityDSig::SHA1,
+            XMLSecurityDSig::SHA256,
             array('http://www.w3.org/2000/09/xmldsig#enveloped-signature', XMLSecurityDSig::EXC_C14N),
             $options
         );

@@ -2,7 +2,7 @@
 
 namespace SimpleSAML\Store;
 
-use \SimpleSAML_Configuration as Configuration;
+use \SimpleSAML\Configuration;
 use \SimpleSAML\Logger;
 use \SimpleSAML\Store;
 
@@ -48,7 +48,7 @@ class SQL extends Store
     /**
      * Initialize the SQL data store.
      */
-    protected function __construct()
+    public function __construct()
     {
         $config = Configuration::getInstance();
 

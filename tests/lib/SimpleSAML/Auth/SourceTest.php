@@ -6,13 +6,14 @@ use SimpleSAML\Auth\SourceFactory;
 use SimpleSAML\Test\Utils\ClearStateTestCase;
 
 /**
- * Tests for SimpleSAML_Auth_Source
+ * Tests for \SimpleSAML\Auth\Source
  */
+
 class SourceTest extends ClearStateTestCase
 {
     public function testParseAuthSource()
     {
-        $class = new \ReflectionClass('SimpleSAML_Auth_Source');
+        $class = new \ReflectionClass('\SimpleSAML\Auth\Source');
         $method = $class->getMethod('parseAuthSource');
         $method->setAccessible(true);
 
@@ -26,7 +27,7 @@ class SourceTest extends ClearStateTestCase
     }
 }
 
-class TestAuthSource extends \SimpleSAML_Auth_Source
+class TestAuthSource extends \SimpleSAML\Auth\Source
 {
     public function authenticate(&$state)
     {

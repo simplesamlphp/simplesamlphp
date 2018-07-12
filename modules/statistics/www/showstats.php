@@ -1,10 +1,10 @@
 <?php
 
-$config = SimpleSAML_Configuration::getInstance();
-$statconfig = SimpleSAML_Configuration::getConfig('module_statistics.php');
-$session = SimpleSAML_Session::getSessionFromRequest();
+$config = \SimpleSAML\Configuration::getInstance();
+$statconfig = \SimpleSAML\Configuration::getConfig('module_statistics.php');
+$session = \SimpleSAML\Session::getSessionFromRequest();
 
-sspmod_statistics_AccessCheck::checkAccess($statconfig);
+\SimpleSAML\Module\statistics\AccessCheck::checkAccess($statconfig);
 
 /*
  * Check input parameters
@@ -38,11 +38,11 @@ if ($preferRule2 === '_') {
 /*
  * Create statistics data.
  */
-$ruleset = new sspmod_statistics_Ruleset($statconfig);
+$ruleset = new \SimpleSAML\Module\statistics\Ruleset($statconfig);
 $statrule = $ruleset->getRule($preferRule);
 $rule = $statrule->getRuleID();
 
-$t = new SimpleSAML_XHTML_Template($config, 'statistics:statistics.tpl.php');
+$t = new \SimpleSAML\XHTML\Template($config, 'statistics:statistics.tpl.php');
 $t->data['pageid'] = 'statistics';
 $t->data['header'] = 'stat';
 $t->data['available.rules'] = $ruleset->availableRulesNames();
@@ -66,7 +66,7 @@ try {
         }
         exit;
     }
-} catch (Exception $e) {
+} catch (\Exception $e) {
     $t->data['error'] = "No data available";
     $t->show();
     exit;
@@ -100,7 +100,7 @@ if (isset($preferRule2)) {
 
         $datasets[] = $dataset2->getPercentValues();
         $maxes[] = $dataset2->getMax();
-    } catch (Exception $e) {
+    } catch (\Exception $e) {
         $t->data['error'] = "No data available to compare";
         $t->show();
         exit;
@@ -109,7 +109,7 @@ if (isset($preferRule2)) {
 
 $dimx = $statconfig->getValue('dimension.x', 800);
 $dimy = $statconfig->getValue('dimension.y', 350);
-$grapher = new sspmod_statistics_Graph_GoogleCharts($dimx, $dimy);
+$grapher = new \SimpleSAML\Module\statistics\Graph\GoogleCharts($dimx, $dimy);
 
 $t->data['imgurl'] = $grapher->show($axis['axis'], $axis['axispos'], $datasets, $maxes);
 if (isset($piedata)) {
@@ -166,7 +166,7 @@ function getBaseURL($t, $type = 'get', $key = null, $value = null)
     }
 
     if ($type === 'get') {
-        return SimpleSAML\Module::getModuleURL("statistics/showstats.php").'?'.http_build_query($vars, '', '&amp;');
+        return \SimpleSAML\Module::getModuleURL("statistics/showstats.php").'?'.http_build_query($vars, '', '&amp;');
     } else {
         $text = '';
         foreach ($vars as $k => $v) {

@@ -1,10 +1,12 @@
 <?php
 
-class sspmod_statistics_Statistics_FieldPresentation_Entity extends sspmod_statistics_Statistics_FieldPresentation_Base
+namespace SimpleSAML\Module\statistics\Statistics\FieldPresentation;
+
+class Entity extends Base
 {
     public function getPresentation()
     {
-        $mh = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+        $mh = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
         $metadata = $mh->getList($this->config);
 
         $translation = array('_' => 'All services');

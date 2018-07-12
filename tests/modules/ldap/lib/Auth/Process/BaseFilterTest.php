@@ -2,11 +2,11 @@
 
 use PHPUnit\Framework\TestCase;
 
-class sspmod_ldap_Auth_Process_BaseFilter_Test extends TestCase
+class BaseFilter_Test extends TestCase
 {
     public function testVarExportHidesLdapPassword()
     {
-        $stub = $this->getMockBuilder('sspmod_ldap_Auth_Process_BaseFilter')
+        $stub = $this->getMockBuilder('\SimpleSAML\Module\ldap\Auth\Process\BaseFilter')
             ->disableOriginalConstructor()
             ->getMockForAbstractClass();
         $class = new \ReflectionClass($stub);

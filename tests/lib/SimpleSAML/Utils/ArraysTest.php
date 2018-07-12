@@ -10,7 +10,6 @@ use SimpleSAML\Utils\Arrays;
  */
 class ArraysTest extends TestCase
 {
-
     /**
      * Test the arrayize() function.
      */

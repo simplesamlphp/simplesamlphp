@@ -7,7 +7,7 @@ require_once('_include.php');
  */
 
 // The base path for cookies. This should be the installation directory for SimpleSAMLphp.
-$config = SimpleSAML_Configuration::getInstance();
+$config = \SimpleSAML\Configuration::getInstance();
 $cookiePath = $config->getBasePath();
 
 // We delete all cookies which starts with 'idpdisco_'
@@ -22,7 +22,6 @@ foreach($_COOKIE as $cookieName => $value) {
 	 */
     \SimpleSAML\Utils\HTTP::setCookie($cookieName, NULL, array('path' => $cookiePath, 'httponly' => FALSE), FALSE);
 }
-
 
 /* Find where we should go now. */
 if(array_key_exists('ReturnTo', $_REQUEST)) {

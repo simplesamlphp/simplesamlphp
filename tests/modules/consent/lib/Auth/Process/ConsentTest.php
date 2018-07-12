@@ -9,7 +9,7 @@
 namespace SimpleSAML\Test\Module\consent\Auth\Process;
 
 use PHPUnit\Framework\TestCase;
-use \SimpleSAML_Configuration as Configuration;
+use \SimpleSAML\Configuration;
 
 class ConsentTest extends TestCase
 {
@@ -27,7 +27,7 @@ class ConsentTest extends TestCase
      */
     private function processFilter(array $config, array $request)
     {
-        $filter = new \sspmod_consent_Auth_Process_Consent($config, null);
+        $filter = new \SimpleSAML\Module\consent\Auth\Process\Consent($config, null);
         $filter->process($request);
         return $request;
     }
@@ -127,13 +127,13 @@ class ConsentTest extends TestCase
             'attribute1' => array('val1', 'val2'),
             'attribute2' => array('val1', 'val2')
         );
-        $attributeHash1 = \sspmod_consent_Auth_Process_Consent::getAttributeHash($attributes1, true);
+        $attributeHash1 = \SimpleSAML\Module\consent\Auth\Process\Consent::getAttributeHash($attributes1, true);
 
         $attributes2 = array(
             'attribute1' => array('val1', 'val2'),
             'attribute2' => array('val2', 'val1')
         );
-        $attributeHash2 = \sspmod_consent_Auth_Process_Consent::getAttributeHash($attributes2, true);
+        $attributeHash2 = \SimpleSAML\Module\consent\Auth\Process\Consent::getAttributeHash($attributes2, true);
 
         $this->assertEquals($attributeHash1, $attributeHash2, "Hash is not the same when the order of values changes");
     }
@@ -144,13 +144,13 @@ class ConsentTest extends TestCase
             'attribute2' => array('val1', 'val2'),
             'attribute1' => array('val1', 'val2')
         );
-        $attributeHash1 = \sspmod_consent_Auth_Process_Consent::getAttributeHash($attributes1, true);
+        $attributeHash1 = \SimpleSAML\Module\consent\Auth\Process\Consent::getAttributeHash($attributes1, true);
 
         $attributes2 = array(
             'attribute1' => array('val1', 'val2'),
             'attribute2' => array('val1', 'val2')
         );
-        $attributeHash2 = \sspmod_consent_Auth_Process_Consent::getAttributeHash($attributes2, true);
+        $attributeHash2 = \SimpleSAML\Module\consent\Auth\Process\Consent::getAttributeHash($attributes2, true);
 
         $this->assertEquals(
             $attributeHash1,
@@ -165,18 +165,53 @@ class ConsentTest extends TestCase
             'attribute2' => array('val1', 'val2'),
             'attribute1' => array('val1', 'val2')
         );
-        $attributeHash1 = \sspmod_consent_Auth_Process_Consent::getAttributeHash($attributes1);
+        $attributeHash1 = \SimpleSAML\Module\consent\Auth\Process\Consent::getAttributeHash($attributes1);
 
         $attributes2 = array(
             'attribute1' => array('val1', 'val2'),
             'attribute2' => array('val1', 'val2')
         );
-        $attributeHash2 = \sspmod_consent_Auth_Process_Consent::getAttributeHash($attributes2);
+        $attributeHash2 = \SimpleSAML\Module\consent\Auth\Process\Consent::getAttributeHash($attributes2);
 
         $this->assertEquals(
             $attributeHash1,
             $attributeHash2,
             "Hash is not the same when the order of the attributs changes and the values are not included"
         );
+    }
+
+    public function testConstructorSetsInstancePrivateVars()
+    {
+        $reflection = new \ReflectionClass('\SimpleSAML\Module\consent\Auth\Process\Consent');
+
+        foreach (array(
+            '_includeValues', '_checked', '_focus', '_hiddenAttributes', '_noconsentattributes', '_showNoConsentAboutService'
+        ) as $v) {
+            $instanceVars[$v] = $reflection->getProperty($v);
+            $instanceVars[$v]->setAccessible(true);
+        }
+
+        /* these just need to be different to the default values */
+        $config = array(
+            'includeValues' => true,
+            'checked' => true,
+            'focus' => 'yes',
+            'hiddenAttributes' => array('attribute1', 'attribute2'),
+            'attributes.exclude' => array('attribute1', 'attribute2'),
+            'showNoConsentAboutService' => false,
+        );
+
+        $testcase = $reflection->newInstance($config, null);
+
+        $this->assertEquals($instanceVars['_includeValues']->getValue($testcase), $config['includeValues']);
+        $this->assertEquals($instanceVars['_checked']->getValue($testcase), $config['checked']);
+        $this->assertEquals($instanceVars['_focus']->getValue($testcase), $config['focus']);
+        $this->assertEquals($instanceVars['_hiddenAttributes']->getValue($testcase), $config['hiddenAttributes']);
+        $this->assertEquals($instanceVars['_noconsentattributes']->getValue($testcase), $config['attributes.exclude']);
+        $this->assertEquals($instanceVars['_showNoConsentAboutService']->getValue($testcase), $config['showNoConsentAboutService']);
+
+        $deprecated = $reflection->newInstance(array('noconsentattributes' => $config['attributes.exclude'],), null);
+        $this->assertEquals($instanceVars['_noconsentattributes']->getValue($deprecated), $config['attributes.exclude']);
+
     }
 }
