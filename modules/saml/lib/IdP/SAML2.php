@@ -55,7 +55,7 @@ class SAML2
         // create the session association (for logout)
         $association = array(
             'id'                => 'saml:'.$spEntityId,
-            'Handler'           => '\SimpleSAML\Modulesaml\IdP\SAML2',
+            'Handler'           => '\SimpleSAML\Module\saml\IdP\SAML2',
             'Expires'           => $assertion->getSessionNotOnOrAfter(),
             'saml:entityID'     => $spEntityId,
             'saml:NameID'       => $state['saml:idp:NameID'],
