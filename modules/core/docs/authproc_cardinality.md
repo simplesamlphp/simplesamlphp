@@ -7,6 +7,8 @@ This filter should contain a set of attribute name => rule pairs describing the 
 
 The special parameter `%ignoreEntities` can be used to give an array of entity IDs that should be ignored for testing, etc purposes.
 
+A separate [`core:CardinalitySingle`](./core:authproc_cardinalitysingle) authproc filter provides additional functionality for the special case where attributes are single valued.
+
 Specifying Rules
 ----------------
 
