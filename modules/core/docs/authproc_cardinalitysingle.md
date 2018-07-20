@@ -2,7 +2,7 @@
 ========================
 
 Ensure the correct cardinality of single-valued attributes. This filter is a special case
-of the more generic [core:Cardinality] filter that allows for optional corrective measures
+of the more generic [`core:Cardinality`](./core:authproc_cardinality) filter that allows for optional corrective measures
 when multi-valued attributes are received where single-valued ones are expected.
 
 Parameters
