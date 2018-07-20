@@ -292,7 +292,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerPdo extends SimpleSAML_Metadata_
                 "CREATE TABLE IF NOT EXISTS $tableName (entity_id VARCHAR(255) PRIMARY KEY NOT NULL, entity_data ".
                 "TEXT NOT NULL)"
             );
-            if ($rows === 0) {
+            if ($rows === false) {
                 $fine = false;
             } else {
                 $stmt += $rows;
