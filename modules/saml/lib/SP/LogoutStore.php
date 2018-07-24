@@ -19,7 +19,17 @@ class sspmod_saml_SP_LogoutStore {
 			return;
 		} elseif ($tableVer === 1) {
 			/* TableVersion 2 increased the column size to 255 which is the maximum length of a FQDN. */
-			$query = 'ALTER TABLE ' . $store->prefix . '_saml_LogoutStore MODIFY _authSource VARCHAR(255) NOT NULL';
+            switch ($store->driver) {
+                case 'pgsql':
+                    // This does not affect the NOT NULL constraint
+                    $query = 'ALTER TABLE ' . $store->prefix . '_saml_LogoutStore ALTER COLUMN _authSource TYPE VARCHAR(255)';
+                    break;
+
+                default:
+                    $query = 'ALTER TABLE ' . $store->prefix . '_saml_LogoutStore MODIFY _authSource VARCHAR(255) NOT NULL';
+                    break;
+            }
+
 			try {
 				$ret = $store->pdo->exec($query);
 			} catch (Exception $e) {
