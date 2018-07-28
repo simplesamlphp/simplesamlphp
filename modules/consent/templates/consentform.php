@@ -3,119 +3,50 @@
  * Template form for giving consent.
  *
  * Parameters:
- * - 'srcMetadata': Metadata/configuration for the source.
- * - 'dstMetadata': Metadata/configuration for the destination.
  * - 'yesTarget': Target URL for the yes-button. This URL will receive a POST request.
- * - 'yesData': Parameters which should be included in the yes-request.
  * - 'noTarget': Target URL for the no-button. This URL will receive a GET request.
- * - 'noData': Parameters which should be included in the no-request.
- * - 'attributes': The attributes which are about to be released.
  * - 'sppp': URL to the privacy policy of the destination, or FALSE.
  *
  * @package SimpleSAMLphp
  */
-assert(is_array($this->data['srcMetadata']));
-assert(is_array($this->data['dstMetadata']));
 assert(is_string($this->data['yesTarget']));
-assert(is_array($this->data['yesData']));
 assert(is_string($this->data['noTarget']));
-assert(is_array($this->data['noData']));
-assert(is_array($this->data['attributes']));
-assert(is_array($this->data['hiddenAttributes']));
 assert($this->data['sppp'] === false || is_string($this->data['sppp']));
 
 // Parse parameters
-if (array_key_exists('name', $this->data['srcMetadata'])) {
-    $srcName = $this->data['srcMetadata']['name'];
-} elseif (array_key_exists('OrganizationDisplayName', $this->data['srcMetadata'])) {
-    $srcName = $this->data['srcMetadata']['OrganizationDisplayName'];
-} else {
-    $srcName = $this->data['srcMetadata']['entityid'];
-}
-
-if (is_array($srcName)) {
-    $srcName = $this->t($srcName);
-}
-
-if (array_key_exists('name', $this->data['dstMetadata'])) {
-    $dstName = $this->data['dstMetadata']['name'];
-} elseif (array_key_exists('OrganizationDisplayName', $this->data['dstMetadata'])) {
-    $dstName = $this->data['dstMetadata']['OrganizationDisplayName'];
-} else {
-    $dstName = $this->data['dstMetadata']['entityid'];
-}
-
-if (is_array($dstName)) {
-    $dstName = $this->t($dstName);
-}
-
-$srcName = htmlspecialchars($srcName);
-$dstName = htmlspecialchars($dstName);
-
-$attributes = $this->data['attributes'];
+$dstName = $this->data['dstName'];
+$srcName = $this->data['srcName'];
 
 $this->data['header'] = $this->t('{consent:consent:consent_header}');
-$this->data['head']  = '<link rel="stylesheet" type="text/css" href="/' .
-    $this->data['baseurlpath'] . 'module.php/consent/style.css" />' . "\n";
+$this->data['head'] = '<link rel="stylesheet" type="text/css" href="' .
+    SimpleSAML\Module::getModuleURL("consent/style.css") . '" />' . "\n";
 
 $this->includeAtTemplateBase('includes/header.php');
 ?>
-<p>
-<?php
-echo $this->t(
-    '{consent:consent:consent_accept}',
-    array( 'SPNAME' => $dstName, 'IDPNAME' => $srcName)
-);
+<p><?php echo $this->data['consent_accept']; ?></p>
 
-if (array_key_exists('descr_purpose', $this->data['dstMetadata'])) {
-    echo '</p><p>' . $this->t(
-        '{consent:consent:consent_purpose}',
-        array(
-            'SPNAME' => $dstName,
-            'SPDESC' => $this->getTranslator()->getPreferredTranslation(
-                SimpleSAML\Utils\Arrays::arrayize(
-                    $this->data['dstMetadata']['descr_purpose'],
-                    'en'
-                )
-            ),
-        )
-    );
+<?php
+if (isSet($this->data['consent_purpose'])) {
+    echo '<p>' . $this->data['consent_purpose'] . '</p>';
 }
 ?>
-</p>
 
-<form style="display: inline; margin: 0px; padding: 0px"
-      action="<?php echo htmlspecialchars($this->data['yesTarget']); ?>">
-<p style="margin: 1em">
-
+<form id="consent_yes" action="<?php echo htmlspecialchars($this->data['yesTarget']); ?>">
 <?php
 if ($this->data['usestorage']) {
     $checked = ($this->data['checked'] ? 'checked="checked"' : '');
     echo '<input type="checkbox" name="saveconsent" ' . $checked .
         ' value="1" /> ' . $this->t('{consent:consent:remember}');
-}
-
-// Embed hidden fields...
-foreach ($this->data['yesData'] as $name => $value) {
-    echo '<input type="hidden" name="' . htmlspecialchars($name) .
-        '" value="' . htmlspecialchars($value) . '" />';
-}
+} // Embed hidden fields...
 ?>
-    </p>
+    <input type="hidden" name="StateId" value="<?php echo htmlspecialchars($this->data['stateId']); ?>" />
     <button type="submit" name="yes" class="btn" id="yesbutton">
         <?php echo htmlspecialchars($this->t('{consent:consent:yes}')) ?>
     </button>
 </form>
 
-<form style="display: inline; margin-left: .5em;" action="<?php echo htmlspecialchars($this->data['noTarget']); ?>"
-      method="get">
-
-<?php
-foreach ($this->data['noData'] as $name => $value) {
-    echo('<input type="hidden" name="' . htmlspecialchars($name) .
-        '" value="' . htmlspecialchars($value) . '" />');
-}
-?>
+<form id="consent_no" action="<?php echo htmlspecialchars($this->data['noTarget']); ?>">
+    <input type="hidden" name="StateId" value="<?php echo htmlspecialchars($this->data['stateId']); ?>" />
     <button type="submit" class="btn" name="no" id="nobutton">
         <?php echo htmlspecialchars($this->t('{consent:consent:no}')) ?>
     </button>
@@ -230,6 +161,6 @@ echo '<h3 id="attributeheader">' .
     ) .
     '</h3>';
 
-echo present_attributes($this, $attributes, '');
+echo $this->data['attributes_html'];
 
 $this->includeAtTemplateBase('includes/footer.php');
