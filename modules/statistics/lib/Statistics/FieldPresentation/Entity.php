@@ -13,7 +13,7 @@ class Entity extends Base
         foreach ($this->fields as $field) {
             if (array_key_exists($field, $metadata)) {
                 if (array_key_exists('name', $metadata[$field])) {
-                    $translation[$field] = $this->template->t($metadata[$field]['name'], array(), false);
+                    $translation[$field] = $this->template->t($metadata[$field]['name']);
                 }
             }
         }

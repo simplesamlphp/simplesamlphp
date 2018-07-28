@@ -15,14 +15,8 @@ if (!array_key_exists('AuthState', $_REQUEST)) {
 $authStateId = $_REQUEST['AuthState'];
 
 if (array_key_exists('otp', $_REQUEST)) {
-    $otp = $_REQUEST['otp'];
-} else {
-    $otp = '';
-}
-
-if (!empty($otp)) {
     // attempt to log in
-    $errorCode = \SimpleSAML\Module\authYubiKey\Auth\Source\YubiKey::handleLogin($authStateId, $otp);
+    $errorCode = \SimpleSAML\Module\authYubiKey\Auth\Source\YubiKey::handleLogin($authStateId, $_REQUEST['otp']);
 } else {
     $errorCode = null;
 }
