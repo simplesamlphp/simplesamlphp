@@ -63,7 +63,7 @@ if ($organizations === null || !empty($organization)) {
         }
 
         if ($source->getRememberOrganizationEnabled()) {
-            $sessionHandler = SimpleSAML_SessionHandler::getSessionHandler();
+            $sessionHandler = \SimpleSAML\SessionHandler::getSessionHandler();
             $params = $sessionHandler->getCookieParams();
             $params['expire'] = time();
             $params['expire'] += (isset($_REQUEST['remember_organization']) && $_REQUEST['remember_organization'] == 'Yes' ? 31536000 : -300);
