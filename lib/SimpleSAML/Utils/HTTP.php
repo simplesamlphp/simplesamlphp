@@ -809,7 +809,7 @@ class HTTP
             return $protocol.'://'.$hostname.$port.$_SERVER['REQUEST_URI'];
         }
 
-        return self::getBaseURL().$rel_path.substr($_SERVER['REQUEST_URI'], $uri_pos + strlen($url_path));
+        return self::getBaseURL().$url_path.substr($_SERVER['REQUEST_URI'], $uri_pos + strlen($url_path));
     }
 
 

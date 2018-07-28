@@ -15,3 +15,11 @@ The class `SimpleSAML_Error_BadUserInnput` has been renamed to
 
 The `authmyspace` module has been removed since the service is no longer
 available. 
+
+The `casserver` module has been removed because it was an outdated version,
+the up to date module is maintained in the
+[simplesamlphp-module-casserver](https://github.com/simplesamlphp/simplesamlphp-module-casserver)
+repository. It can be installed with composer:
+```
+composer require simplesamlphp/simplesamlphp-module-casserver
+```

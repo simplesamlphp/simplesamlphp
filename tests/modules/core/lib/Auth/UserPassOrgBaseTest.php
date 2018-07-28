@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: agustin
- * Date: 16.10.2017
- * Time: 12:17
- */
 
 namespace SimpleSAML\Test\Module\core\Auth;
 
@@ -31,7 +25,9 @@ class UserPassOrgBaseTest extends \PHPUnit_Framework_TestCase
             )
         );
 
-        $mockUserPassOrgBase = $this->getMockBuilder('\sspmod_core_Auth_UserPassOrgBase')
+        // When PHP 5.4 support is dropped, replace with:
+        // $mockUserPassOrgBase = $this->getMockBuilder(\SimpleSAML\Module\core\Auth\UserPassOrgBase::class)
+        $mockUserPassOrgBase = $this->getMockBuilder(get_parent_class(new \SimpleSAML\Module\ldap\Auth\Source\LDAPMulti(array('AuthId' => 'my-org'), array())))
             ->setConstructorArgs(array(array('AuthId' => 'my-org'), &$config))
             ->setMethods(array())
             ->getMockForAbstractClass();

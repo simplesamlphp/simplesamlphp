@@ -55,7 +55,7 @@ class SAML2
         // create the session association (for logout)
         $association = array(
             'id'                => 'saml:'.$spEntityId,
-            'Handler'           => '\SimpleSAML\Modulesaml\IdP\SAML2',
+            'Handler'           => '\SimpleSAML\Module\saml\IdP\SAML2',
             'Expires'           => $assertion->getSessionNotOnOrAfter(),
             'saml:entityID'     => $spEntityId,
             'saml:NameID'       => $state['saml:idp:NameID'],
@@ -896,9 +896,9 @@ class SAML2
         $a->setNotOnOrAfter($now + $assertionLifetime);
 
         if (isset($state['saml:AuthnContextClassRef'])) {
-            $a->setAuthnContext($state['saml:AuthnContextClassRef']);
+            $a->setAuthnContextClassRef($state['saml:AuthnContextClassRef']);
         } else {
-            $a->setAuthnContext(\SAML2\Constants::AC_PASSWORD);
+            $a->setAuthnContextClassRef(\SAML2\Constants::AC_PASSWORD);
         }
 
         $sessionStart = $now;

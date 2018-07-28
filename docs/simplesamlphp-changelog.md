@@ -11,16 +11,17 @@ See the upgrade notes for specific information about upgrading.
 Released TBD
 
 ### Changes
-  * Default signature algorithm is now SHA-256.
+  * Default signature algorithm is now RSA-SHA256.
   * Renamed class `SimpleSAML_Error_BadUserInnput` to `SimpleSAML_Error_BadUserInput`
   * PHP 7.2 compatibility, including removing deprecated use of assert with string.
   * Avoid logging database credentials in backtraces.
+  * Fix edge case in getServerPort.
   * Updated Spanish translation.
   * Improvements to documentation, testsuite, code quality and coding style.
 
 ### New features
   * Added support for SAML "Enhanced Client or Proxy" (ECP) protocol,
-    IdP side with HTTP Basic Authentcation as authentication method.
+    IdP side with HTTP Basic Authentication as authentication method.
     See the [ECP IdP documentation](./simplesamlphp-ecp-idp) for details.
   * New option `sendmail_from`, the from address for email sent by SSP.
   * New option `options` for PDO database connections, e.g. for TLS setup.
@@ -33,7 +34,6 @@ Released TBD
   * Support creating an AuthSource via factory, for example useful in tests.
   * Support preloading of a virtual config file via `SimpleSAML_Configuration::setPreLoadedConfig`
     to allow for dynamic population of authsources.php.
-  * Fix edge case in getServerPort.
   * Add basic documentation on Nginx configuration.
   * Test authentication: optionally show AuthData array.
   * Improve performance of PDO Metadata Storage handler entity lookup.
@@ -48,6 +48,9 @@ Released TBD
 
 ### cas
   * Respect all LDAP options in LDAP call.
+
+### casserver
+  * Module removed; superseded by externally hosted module.
 
 ### consent
   * Sort attribute values for consent.
@@ -70,7 +73,7 @@ Released TBD
   * AttributeMap: prevent possible infinite loop with some PHP versions.
 
 ### ldap
-  * AttributeAddUsersGroups: if attribute.groupname is set, use the
+  * AttributeAddUsersGroups: if `attribute.groupname` is set, use the
     configured attribute as the group name rather than the DN.
   * Also base64encode the `ms-ds-consistencyguid` attribute.
 
@@ -86,15 +89,16 @@ Released TBD
 ### saml
   * AttributeConsumingService: allow to set isDefault and index options.
   * Encrypted attributes in an assertion are now decrypted correctly.
+  * Prefer the HTTP-Redirect binding for AuthnRequests if available.
 
 ### smartattributes
   * Fix to make the `add_authority` option work.
 
 ### sqlauth
-  * Changed from default-enabled to default-disabled.
+  * The module is now disabled by default.
 
 ### statistics
-  * Show decent error message when no data is available.
+  * Show a decent error message when no data is available.
 
 ## Version 1.15.4
 

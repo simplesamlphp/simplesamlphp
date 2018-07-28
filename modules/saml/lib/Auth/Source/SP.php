@@ -287,10 +287,10 @@ class SP extends Source
                 \SAML2\Constants::BINDING_HOK_SSO)
             );
         } else {
-            $dst = $idpMetadata->getDefaultEndpoint('SingleSignOnService', array(
+            $dst = $idpMetadata->getEndpointPrioritizedByBinding('SingleSignOnService', [
                 \SAML2\Constants::BINDING_HTTP_REDIRECT,
-                \SAML2\Constants::BINDING_HTTP_POST)
-            );
+                \SAML2\Constants::BINDING_HTTP_POST,
+            ]);
         }
         $ar->setDestination($dst['Location']);
 

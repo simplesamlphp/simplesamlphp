@@ -34,6 +34,12 @@ foreach ($this->data['idplist'] as $idpentry) {
             }
             ?></p>
 <?php
+        usort($this->data['idplist'], function ($idpentry1, $idpentry2) {
+            return strcasecmp(
+                $this->t('idpname_'.$idpentry1['entityid']),
+                $this->t('idpname_'.$idpentry2['entityid'])
+            );
+        });
         if (!empty($this->data['preferredidp']) &&
             array_key_exists($this->data['preferredidp'], $this->data['idplist'])
         ) {

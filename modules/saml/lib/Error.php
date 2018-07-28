@@ -100,10 +100,10 @@ class Error extends \SimpleSAML\Error\Exception
      * This function attempts to create a SAML2 error with the appropriate
      * status codes from an arbitrary exception.
      *
-     * @param \SimpleSAML\Error\Exception $exception  The original exception.
+     * @param \Exception $exception  The original exception.
      * @return \SimpleSAML\Module\saml\Error  The new exception.
      */
-    public static function fromException(\SimpleSAML\Error\Exception $exception)
+    public static function fromException(\Exception $exception)
     {
         if ($exception instanceof \SimpleSAML\Module\saml\Error) {
             // Return the original exception unchanged

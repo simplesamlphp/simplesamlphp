@@ -82,7 +82,7 @@ $message = <<<MESSAGE
 MESSAGE;
 $message = sprintf(
     $message,
-    htmlspecialchars($text),
+    $text,
     $data['exceptionMsg'],
     $data['exceptionTrace'],
     $data['url'],

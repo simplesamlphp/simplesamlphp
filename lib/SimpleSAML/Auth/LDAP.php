@@ -2,8 +2,8 @@
 
 namespace SimpleSAML\Auth;
 
-use SimpleSAmL\Error;
-use SimpleSAMl\Logger;
+use SimpleSAML\Error;
+use SimpleSAML\Logger;
 
 /**
  * Constants defining possible errors
