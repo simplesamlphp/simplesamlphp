@@ -58,5 +58,3 @@ $template = new \SimpleSAML\XHTML\Template($config, 'oauth:registry.list.php');
 $template->data['entries'] = $slist;
 $template->data['userid'] = $userid;
 $template->show();
-
-
