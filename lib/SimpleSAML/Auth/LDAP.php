@@ -34,7 +34,7 @@ class LDAP
     /**
      * LDAP link identifier.
      *
-     * @var resource
+     * @var resource|bool
      */
     protected $ldap = null;
 
