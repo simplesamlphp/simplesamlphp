@@ -2,7 +2,7 @@
 
 /**
  * This page shows a username/password login form, and passes information from it
- * to the sspmod_core_Auth_UserPassBase class, which is a generic class for
+ * to the \SimpleSAML\Module\core\Auth\UserPassBase class, which is a generic class for
  * username/password authentication.
  *
  * @author Olav Morken, UNINETT AS.
