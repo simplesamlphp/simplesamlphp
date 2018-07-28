@@ -11,7 +11,7 @@ function sanitycheck_hook_moduleinfo(&$moduleinfo)
 
     $moduleinfo['info']['sanitycheck'] = array(
         'name' => array('en' => 'Sanity check'),
-        'description' => array('en' => 'This module adds functionality for other modules to provide santity checks.'),
+        'description' => array('en' => 'This module adds functionality for other modules to provide sanity checks.'),
 
         'dependencies' => array('core'),
         'uses' => array('cron'),

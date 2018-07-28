@@ -1536,7 +1536,7 @@ Updates to `config.php`. Please check for updates in your local modified configu
   * Verification of the Receipient attribute in the response. Will improve security if for some reason an IdP is not includeding sufficient Audience restrictions.
   * Added hook to let modules tell about themself moduleinfo hook.
   * Improved cron mails
-  * Improved santity check exception handling
+  * Improved sanity check exception handling
   * Preserver line breaks in stack trace UI
   * Improvements to WS-Federation support: dynamic realms, logout etc.
   * Better handling of presentation of JPEG photos as attributes.
