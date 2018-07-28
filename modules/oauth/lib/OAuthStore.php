@@ -50,7 +50,7 @@ class OAuthStore extends \OAuthDataStore
 
         // See whether to remember values from the original requestToken request:
         $request_attributes = $this->store->get('requesttorequest', $requestTokenKey, '');
-        // must be there ..
+        // must be there
         if ($request_attributes['value']) {
             // establish callback to use
             if ($request_attributes['value']['callback']) {
