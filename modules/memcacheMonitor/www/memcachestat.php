@@ -1,62 +1,67 @@
 <?php
 
-function tdate($input) {
+function tdate($input)
+{
     return date(DATE_RFC822, $input); 
 }
 
-function hours($input) {
+function hours($input)
+{
     if ($input < 60) {
-        return number_format($input, 2) . ' sec';
-    } else if ($input < 60*60) {
-        return number_format(($input/60),2) . ' min';
-    } else if ($input < 24*60*60) {
-        return number_format(($input/(60*60)),2) . ' hours';
+        return number_format($input, 2).' sec';
     }
-    return number_format($input/(24*60*60),2) . ' days';
+    if ($input < 60 * 60) {
+        return number_format(($input / 60), 2).' min';
+    }
+    if ($input < 24 * 60 * 60) {
+        return number_format(($input / (60 * 60)), 2).' hours';
+    }
+    return number_format($input / (24 * 60 * 60), 2).' days';
 }
 
-function humanreadable($input) {
+function humanreadable($input)
+{
     $output = "";
     $input = abs($input);
-
-    if ($input >= (1024*1024*1024*1024*1024*1024*1024*100)) {
-        $output = sprintf("%5ldEi", $input / (1024*1024*1024*1024*1024*1024) );		
-    } else if ($input >= (1024*1024*1024*1024*1024*1024*10)) {
-        $output = sprintf("%5.1fEi", $input / (1024.0*1024.0*1024.0*1024.0*1024.0*1024.0) );		
-    } else if ($input >= (1024*1024*1024*1024*1024*1024)) {
-        $output = sprintf("%5.2fEi", $input / (1024.0*1024.0*1024.0*1024.0*1024.0*1024.0) );	
-    } else if ($input >= (1024*1024*1024*1024*1024*100)) {
-        $output = sprintf("%5ldPi", $input / (1024*1024*1024*1024*1024) );		
-    } else if ($input >= (1024*1024*1024*1024*1024*10)) {
-        $output = sprintf("%5.1fPi", $input / (1024.0*1024.0*1024.0*1024.0*1024.0) );		
-    } else if ($input >= (1024*1024*1024*1024*1024)) {
-        $output = sprintf("%5.2fPi", $input / (1024.0*1024.0*1024.0*1024.0*1024.0) );	
-    } else if ($input >= (1024*1024*1024*1024*100)) {
-        $output = sprintf("%5ldTi", $input / (1024*1024*1024*1024) );
-    } else if ($input >= (1024*1024*1024*1024*10)) {
-        $output = sprintf("%5.1fTi", $input / (1024.0*1024.0*1024.0*1024.0) );	
-    } else if ($input >= (1024*1024*1024*1024)) {
-        $output = sprintf("%5.2fTi", $input / (1024.0*1024.0*1024.0*1024.0) );
-    } else if ($input >= (1024*1024*1024*100)) {
-        $output = sprintf("%5ldGi", $input / (1024*1024*1024) );		
-    } else if ($input >= (1024*1024*1024*10)) {
-        $output = sprintf("%5.1fGi", $input / (1024.0*1024.0*1024.0) );		
-    } else if ($input >= (1024*1024*1024)) {
-        $output = sprintf("%5.2fGi", $input / (1024.0*1024.0*1024.0) );	
-    } else if ($input >= (1024*1024*100)) {
-        $output = sprintf("%5ldMi", $input / (1024*1024) );
-    } else if ($input >= (1024*1024*10)) {
-        $output = sprintf("%5.1fM", $input / (1024.0*1024.0) );	
-    } else if ($input >= (1024*1024)) {
-        $output = sprintf("%5.2fMi", $input / (1024.0*1024.0) );		
+	
+    if ($input >= (1024 * 1024 * 1024 * 1024 * 1024 * 1024 * 1024 * 100)) {
+        $output = sprintf("%5ldEi", $input / (1024 * 1024 * 1024 * 1024 * 1024 * 1024));		
+    } else if ($input >= (1024 * 1024 * 1024 * 1024 * 1024 * 1024 * 10)) {
+        $output = sprintf("%5.1fEi", $input / (1024.0 * 1024.0 * 1024.0 * 1024.0 * 1024.0 * 1024.0));		
+    } else if ($input >= (1024 * 1024 * 1024 * 1024 * 1024 * 1024)) {
+        $output = sprintf("%5.2fEi", $input / (1024.0 * 1024.0 * 1024.0 * 1024.0 * 1024.0 * 1024.0));	
+    } else if ($input >= (1024 * 1024 * 1024 * 1024 * 1024 * 100)) {
+        $output = sprintf("%5ldPi", $input / (1024 * 1024 * 1024 * 1024 * 1024));		
+    } else if ($input >= (1024 * 1024 * 1024 * 1024 * 1024 * 10)) {
+        $output = sprintf("%5.1fPi", $input / (1024.0 * 1024.0 * 1024.0 * 1024.0 * 1024.0));		
+    } else if ($input >= (1024 * 1024 * 1024 * 1024 * 1024)) {
+        $output = sprintf("%5.2fPi", $input / (1024.0 * 1024.0 * 1024.0 * 1024.0 * 1024.0));	
+    } else if ($input >= (1024 * 1024 * 1024 * 1024 * 100)) {
+        $output = sprintf("%5ldTi", $input / (1024 * 1024 * 1024 * 1024));
+    } else if ($input >= (1024 * 1024 * 1024 * 1024 * 10)) {
+        $output = sprintf("%5.1fTi", $input / (1024.0 * 1024.0 * 1024.0 * 1024.0));	
+    } else if ($input >= (1024 * 1024 * 1024 * 1024)) {
+        $output = sprintf("%5.2fTi", $input / (1024.0 * 1024.0 * 1024.0 * 1024.0));
+    } else if ($input >= (1024 * 1024 * 1024 * 100)) {
+        $output = sprintf("%5ldGi", $input / (1024 * 1024 * 1024));		
+    } else if ($input >= (1024 * 1024 * 1024 * 10)) {
+        $output = sprintf("%5.1fGi", $input / (1024.0 * 1024.0 * 1024.0));		
+    } else if ($input >= (1024 * 1024 * 1024)) {
+        $output = sprintf("%5.2fGi", $input / (1024.0 * 1024.0 * 1024.0));	
+    } else if ($input >= (1024 * 1024 * 100)) {
+        $output = sprintf("%5ldMi", $input / (1024 * 1024));
+    } else if ($input >= (1024 * 1024 * 10)) {
+        $output = sprintf("%5.1fM", $input / (1024.0 * 1024.0));	
+    } else if ($input >= (1024 * 1024)) {
+        $output = sprintf("%5.2fMi", $input / (1024.0 * 1024.0));		
     } else if ($input >= (1024 * 100)) {
-        $output = sprintf("%5ldKi", $input / (1024) );
+        $output = sprintf("%5ldKi", $input / 1024);
     } else if ($input >= (1024 * 10)) {
-        $output = sprintf("%5.1fKi", $input / 1024.0 );
+        $output = sprintf("%5.1fKi", $input / 1024.0);
     } else if ($input >= (1024)) {
-        $output = sprintf("%5.2fKi", $input / 1024.0 );
+        $output = sprintf("%5.2fKi", $input / 1024.0);
     } else {
-        $output = sprintf("%5ld", $input );
+        $output = sprintf("%5ld", $input);
     }
 
     return $output;

@@ -1,6 +1,6 @@
 <?php
 /**
- * Hook to do santity checks
+ * Hook to do sanity checks
  *
  * @param array &$hookinfo  hookinfo
  */
