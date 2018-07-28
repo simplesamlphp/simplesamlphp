@@ -1,6 +1,6 @@
 {
   "warning": {
-    "en": "Your certificate will expire in %days% days."
+    "en": "Your certificate will expire in %daysleft% days."
   },
   "warning_header": {
     "en": "Your certificate is about to expire."

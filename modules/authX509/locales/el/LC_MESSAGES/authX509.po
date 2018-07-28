@@ -36,7 +36,7 @@ msgid "{authX509:X509error:certificate_header}"
 msgstr "Ταυτοποίηση μέσω πιστοποιητικού X.509"
 
 msgid "{authX509:X509warning:warning}"
-msgstr "Η ισχύς του πιστοποιητικού σας θα λήξει σε %days%."
+msgstr "Η ισχύς του πιστοποιητικού σας θα λήξει σε %daysleft%."
 
 msgid "Please renew your certificate in time."
 msgstr "Παρακαλείστε να προχωρήσετε σε ανανέωση του πιστοποιητικού σας έγκαιρα."

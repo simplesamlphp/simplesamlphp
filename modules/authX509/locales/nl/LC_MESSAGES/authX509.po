@@ -36,7 +36,7 @@ msgid "{authX509:X509error:certificate_header}"
 msgstr "Authenticatie via X509-certificaat"
 
 msgid "{authX509:X509warning:warning}"
-msgstr "Je certificaat verloopt over %days% dagen."
+msgstr "Je certificaat verloopt over %daysleft% dagen."
 
 msgid "Please renew your certificate in time."
 msgstr "Vervang tijdig je certificaat."

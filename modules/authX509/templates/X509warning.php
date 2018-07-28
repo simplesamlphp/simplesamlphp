@@ -11,7 +11,7 @@
  */
 
 $warning = $this->t('{authX509:X509warning:warning}', array(
-    '%days%' => htmlspecialchars($this->data['daysleft']),
+    '%daysleft%' => htmlspecialchars($this->data['daysleft']),
 ));
 
 if( $this->data['renewurl']) {

@@ -36,7 +36,7 @@ msgid "{authX509:X509error:certificate_header}"
 msgstr "X509 sertifikatautentisering"
 
 msgid "{authX509:X509warning:warning}"
-msgstr "Sertifikatet ditt vil utløpe om %days% dager."
+msgstr "Sertifikatet ditt vil utløpe om %daysleft% dager."
 
 msgid "Please renew your certificate in time."
 msgstr "Vennligst forny sertifikatet ditt før det utløper."

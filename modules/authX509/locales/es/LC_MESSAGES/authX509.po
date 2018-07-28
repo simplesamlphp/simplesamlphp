@@ -36,7 +36,7 @@ msgid "{authX509:X509error:certificate_header}"
 msgstr "Autenticación mediante certificado X509"
 
 msgid "{authX509:X509warning:warning}"
-msgstr "Su certificado caduca en %days% días."
+msgstr "Su certificado caduca en %daysleft% días."
 
 msgid "Please renew your certificate in time."
 msgstr "Por favor, renueve su certificado a tiempo."
