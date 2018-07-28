@@ -142,6 +142,16 @@ if ($this->data['errorcode'] !== null) {
                             }
                             ?>
                         </select></td>
+                    <td style="padding: .4em;">
+                        <?php
+                            if ($this->data['rememberOrganizationEnabled']) {
+                                echo str_repeat("\t", 4);
+                                echo '<input type="checkbox" id="remember_organization" tabindex="5" name="remember_organization" value="Yes" ';
+                                echo ($this->data['rememberOrganizationChecked'] ? 'checked="Yes" /> ' : '/> ');
+                                echo $this->t('{login:remember_organization}');
+                            }
+                        ?>
+                    </td>
                 </tr>
                 <?php
             }
