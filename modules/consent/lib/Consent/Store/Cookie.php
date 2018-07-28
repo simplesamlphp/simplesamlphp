@@ -279,17 +279,11 @@ class Cookie extends \SimpleSAML\Module\consent\Store
 
         $globalConfig = \SimpleSAML\Configuration::getInstance();
         $params = array(
-            'lifetime' => (90*24*60*60),
+            'lifetime' => 7776000,    // (90*24*60*60)
             'path' => ($globalConfig->getBasePath()),
-            'httponly' => false,
+            'httponly' => true,
+            'secure' => \SimpleSAML\Utils\HTTP::isHTTPS(),
         );
-
-        if (\SimpleSAML\Utils\HTTP::isHTTPS()) {
-            // Enable secure cookie for https-requests
-            $params['secure'] = true;
-        } else {
-            $params['secure'] = false;
-        }
 
         \SimpleSAML\Utils\HTTP::setCookie($name, $value, $params, false);
     }
