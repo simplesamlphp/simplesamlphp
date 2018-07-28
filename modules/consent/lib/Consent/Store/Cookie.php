@@ -44,20 +44,19 @@ class Cookie extends \SimpleSAML\Module\consent\Store
 
         $cookieName = self::_getCookieName($userId, $destinationId);
 
-        $data = $userId . ':' . $attributeSet . ':' . $destinationId;
+        $data = $userId.':'.$attributeSet.':'.$destinationId;
 
-        \SimpleSAML\Logger::debug('Consent cookie - Get [' . $data . ']');
+        \SimpleSAML\Logger::debug('Consent cookie - Get ['.$data.']');
 
         if (!array_key_exists($cookieName, $_COOKIE)) {
             \SimpleSAML\Logger::debug(
-                'Consent cookie - no cookie with name \'' .
-                $cookieName . '\'.'
+                'Consent cookie - no cookie with name \''.$cookieName.'\'.'
             );
             return false;
         }
         if (!is_string($_COOKIE[$cookieName])) {
             \SimpleSAML\Logger::warning(
-                'Value of consent cookie wasn\'t a string. Was: ' .
+                'Value of consent cookie wasn\'t a string. Was: '.
                 var_export($_COOKIE[$cookieName], true)
             );
             return false;
@@ -99,9 +98,9 @@ class Cookie extends \SimpleSAML\Module\consent\Store
         assert(is_string($attributeSet));
 
         $name = self::_getCookieName($userId, $destinationId);
-        $value = $userId . ':' . $attributeSet . ':' . $destinationId;
+        $value = $userId.':'.$attributeSet.':'.$destinationId;
 
-        \SimpleSAML\Logger::debug('Consent cookie - Set [' . $value . ']');
+        \SimpleSAML\Logger::debug('Consent cookie - Set ['.$value.']');
 
         $value = self::_sign($value);
         $this->_setConsentCookie($name, $value);
@@ -178,7 +177,7 @@ class Cookie extends \SimpleSAML\Module\consent\Store
             $tmp = explode(':', $value, 3);
             if (count($tmp) !== 3) {
                 \SimpleSAML\Logger::warning(
-                    'Consent cookie with invalid value: ' . $value
+                    'Consent cookie with invalid value: '.$value
                 );
                 continue;
             }
@@ -211,7 +210,7 @@ class Cookie extends \SimpleSAML\Module\consent\Store
 
         $secretSalt = \SimpleSAML\Utils\Config::getSecretSalt();
 
-        return sha1($secretSalt . $data . $secretSalt) . ':' . $data;
+        return sha1($secretSalt.$data.$secretSalt).':'.$data;
     }
 
 
@@ -260,7 +259,7 @@ class Cookie extends \SimpleSAML\Module\consent\Store
         assert(is_string($userId));
         assert(is_string($destinationId));
 
-        return '\SimpleSAML\Module\consent:' . sha1($userId . ':' . $destinationId);
+        return '\SimpleSAML\Module\consent:'.sha1($userId.':'.$destinationId);
     }
 
 
@@ -279,7 +278,7 @@ class Cookie extends \SimpleSAML\Module\consent\Store
 
         $globalConfig = \SimpleSAML\Configuration::getInstance();
         $params = array(
-            'lifetime' => 7776000,    // (90*24*60*60)
+            'lifetime' => 7776000, // (90*24*60*60)
             'path' => ($globalConfig->getBasePath()),
             'httponly' => true,
             'secure' => \SimpleSAML\Utils\HTTP::isHTTPS(),

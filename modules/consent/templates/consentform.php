@@ -18,16 +18,16 @@ $dstName = $this->data['dstName'];
 $srcName = $this->data['srcName'];
 
 $this->data['header'] = $this->t('{consent:consent:consent_header}');
-$this->data['head'] = '<link rel="stylesheet" type="text/css" href="' .
-    SimpleSAML\Module::getModuleURL("consent/style.css") . '" />' . "\n";
+$this->data['head'] = '<link rel="stylesheet" type="text/css" href="'.
+    SimpleSAML\Module::getModuleURL("consent/style.css").'" />'."\n";
 
 $this->includeAtTemplateBase('includes/header.php');
 ?>
 <p><?php echo $this->data['consent_accept']; ?></p>
 
 <?php
-if (isSet($this->data['consent_purpose'])) {
-    echo '<p>' . $this->data['consent_purpose'] . '</p>';
+if (isset($this->data['consent_purpose'])) {
+    echo '<p>'.$this->data['consent_purpose'].'</p>';
 }
 ?>
 
@@ -35,8 +35,8 @@ if (isSet($this->data['consent_purpose'])) {
 <?php
 if ($this->data['usestorage']) {
     $checked = ($this->data['checked'] ? 'checked="checked"' : '');
-    echo '<input type="checkbox" name="saveconsent" ' . $checked .
-        ' value="1" /> ' . $this->t('{consent:consent:remember}');
+    echo '<input type="checkbox" name="saveconsent" '.$checked.
+        ' value="1" /> '.$this->t('{consent:consent:remember}');
 } // Embed hidden fields...
 ?>
     <input type="hidden" name="StateId" value="<?php echo htmlspecialchars($this->data['stateId']); ?>" />
@@ -54,8 +54,8 @@ if ($this->data['usestorage']) {
 
 <?php
 if ($this->data['sppp'] !== false) {
-    echo "<p>" . htmlspecialchars($this->t('{consent:consent:consent_privacypolicy}')) . " ";
-    echo '<a target="_blank" href="' . htmlspecialchars($this->data['sppp']) . '">' . $dstName . "</a>";
+    echo "<p>".htmlspecialchars($this->t('{consent:consent:consent_privacypolicy}'))." ";
+    echo '<a target="_blank" href="'.htmlspecialchars($this->data['sppp']).'">'.$dstName."</a>";
     echo "</p>";
 }
 
@@ -74,40 +74,39 @@ function present_attributes($t, $attributes, $nameParent)
 
     $alternate = array('odd', 'even');
     $i = 0;
-    $summary = 'summary="' . $t->t('{consent:consent:table_summary}') . '"';
+    $summary = 'summary="'.$t->t('{consent:consent:table_summary}').'"';
 
     if (strlen($nameParent) > 0) {
-        $parentStr = strtolower($nameParent) . '_';
-        $str = '<table class="attributes" ' . $summary . '>';
+        $parentStr = strtolower($nameParent).'_';
+        $str = '<table class="attributes" '.$summary.'>';
     } else {
         $parentStr = '';
-        $str = '<table id="table_with_attributes"  class="attributes" '. $summary .'>';
-        $str .= "\n" . '<caption>' . $t->t('{consent:consent:table_caption}') .
-            '</caption>';
+        $str = '<table id="table_with_attributes"  class="attributes" '.$summary.'>';
+        $str .= "\n".'<caption>'.$t->t('{consent:consent:table_caption}').'</caption>';
     }
 
     foreach ($attributes as $name => $value) {
         $nameraw = $name;
-        $name = $translator->getAttributeTranslation($parentStr . $nameraw);
+        $name = $translator->getAttributeTranslation($parentStr.$nameraw);
 
         if (preg_match('/^child_/', $nameraw)) {
             // insert child table
             $parentName = preg_replace('/^child_/', '', $nameraw);
             foreach ($value as $child) {
-                $str .= "\n" . '<tr class="odd"><td style="padding: 2em">' .
-                    present_attributes($t, $child, $parentName) . '</td></tr>';
+                $str .= "\n".'<tr class="odd"><td style="padding: 2em">'.
+                    present_attributes($t, $child, $parentName).'</td></tr>';
             }
         } else {
             // insert values directly
 
-            $str .= "\n" . '<tr class="' . $alternate[($i++ % 2)] .
-                '"><td><span class="attrname">' . htmlspecialchars($name) . '</span>';
+            $str .= "\n".'<tr class="'.$alternate[($i++ % 2)].
+                '"><td><span class="attrname">'.htmlspecialchars($name).'</span>';
 
             $isHidden = in_array($nameraw, $t->data['hiddenAttributes'], true);
             if ($isHidden) {
                 $hiddenId = SimpleSAML\Utils\Random::generateID();
 
-                $str .= '<div class="attrvalue" style="display: none;" id="hidden_' . $hiddenId . '">';
+                $str .= '<div class="attrvalue" style="display: none;" id="hidden_'.$hiddenId.'">';
             } else {
                 $str .= '<div class="attrvalue">';
             }
@@ -117,19 +116,19 @@ function present_attributes($t, $attributes, $nameParent)
                 $str .= '<ul>';
                 foreach ($value as $listitem) {
                     if ($nameraw === 'jpegPhoto') {
-                        $str .= '<li><img src="data:image/jpeg;base64,' .
-                            htmlspecialchars($listitem) .
+                        $str .= '<li><img src="data:image/jpeg;base64,'.
+                            htmlspecialchars($listitem).
                             '" alt="User photo" /></li>';
                     } else {
-                        $str .= '<li>' . htmlspecialchars($listitem) . '</li>';
+                        $str .= '<li>'.htmlspecialchars($listitem).'</li>';
                     }
                 }
                 $str .= '</ul>';
             } elseif (isset($value[0])) {
                 // we hawe only one value
                 if ($nameraw === 'jpegPhoto') {
-                    $str .= '<img src="data:image/jpeg;base64,' .
-                        htmlspecialchars($value[0]) .
+                    $str .= '<img src="data:image/jpeg;base64,'.
+                        htmlspecialchars($value[0]).
                         '" alt="User photo" />';
                 } else {
                     $str .= htmlspecialchars($value[0]);
@@ -138,10 +137,10 @@ function present_attributes($t, $attributes, $nameParent)
             $str .= '</div>';
 
             if ($isHidden) {
-                $str .= '<div class="attrvalue consent_showattribute" id="visible_' . $hiddenId . '">';
+                $str .= '<div class="attrvalue consent_showattribute" id="visible_'.$hiddenId.'">';
                 $str .= '... ';
-                $str .= '<a class="consent_showattributelink" href="javascript:SimpleSAML_show(\'hidden_' . $hiddenId;
-                $str .= '\'); SimpleSAML_hide(\'visible_' . $hiddenId . '\');">';
+                $str .= '<a class="consent_showattributelink" href="javascript:SimpleSAML_show(\'hidden_'.$hiddenId;
+                $str .= '\'); SimpleSAML_hide(\'visible_'.$hiddenId.'\');">';
                 $str .= $t->t('{consent:consent:show_attribute}');
                 $str .= '</a>';
                 $str .= '</div>';
@@ -150,16 +149,15 @@ function present_attributes($t, $attributes, $nameParent)
             $str .= '</td></tr>';
         }	// end else: not child table
     }	// end foreach
-    $str .= isset($attributes)? '</table>':'';
+    $str .= isset($attributes) ? '</table>' : '';
     return $str;
 }
 
-echo '<h3 id="attributeheader">' .
+echo '<h3 id="attributeheader">'.
     $this->t(
         '{consent:consent:consent_attributes_header}',
-        array( 'SPNAME' => $dstName, 'IDPNAME' => $srcName)
-    ) .
-    '</h3>';
+        array('SPNAME' => $dstName, 'IDPNAME' => $srcName)
+    ).'</h3>';
 
 echo $this->data['attributes_html'];
 
