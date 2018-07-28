@@ -403,7 +403,7 @@ class PowerIdPDisco extends \SimpleSAML\XHTML\IdPDisco
      */
     protected function setPreviousIdP($idp)
     {
-        assert('is_string($idp)');
+        assert(is_string($idp));
 
         if ($this->cdcDomain === null) {
             parent::setPreviousIdP($idp);
