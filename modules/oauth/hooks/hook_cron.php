@@ -24,9 +24,9 @@ function oauth_hook_cron(&$croninfo)
     try {
         $store = new \SimpleSAML\Module\core\Storage\SQLPermanentStorage('oauth');
         $cleaned = $store->removeExpired();
-        $croninfo['summary'][] = 'OAuth clean up. Removed ' . $cleaned . ' expired entries from OAuth storage.';
+        $croninfo['summary'][] = 'OAuth clean up. Removed '.$cleaned.' expired entries from OAuth storage.';
     } catch (\Exception $e) {
-        $message = 'OAuth clean up cron script failed: ' . $e->getMessage();
+        $message = 'OAuth clean up cron script failed: '.$e->getMessage();
         \SimpleSAML\Logger::warning($message);
         $croninfo['summary'][] = $message;
     }

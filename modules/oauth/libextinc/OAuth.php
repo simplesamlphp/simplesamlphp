@@ -61,10 +61,10 @@ class OAuthToken
      */
     public function to_string()
     {
-        return "oauth_token=" .
-        OAuthUtil::urlencode_rfc3986($this->key) .
-        "&oauth_token_secret=" .
-        OAuthUtil::urlencode_rfc3986($this->secret) .
+        return "oauth_token=".
+        OAuthUtil::urlencode_rfc3986($this->key).
+        "&oauth_token_secret=".
+        OAuthUtil::urlencode_rfc3986($this->secret).
         "&oauth_callback_confirmed=true";
     }
 
@@ -295,10 +295,10 @@ class OAuthRequest
         $scheme = (!isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] != "on")
             ? 'http'
             : 'https';
-        $http_url = ($http_url) ? $http_url : $scheme .
-            '://' . $_SERVER['SERVER_NAME'] .
-            ':' .
-            $_SERVER['SERVER_PORT'] .
+        $http_url = ($http_url) ? $http_url : $scheme.
+            '://'.$_SERVER['SERVER_NAME'].
+            ':'.
+            $_SERVER['SERVER_PORT'].
             $_SERVER['REQUEST_URI'];
         $http_method = ($http_method) ? $http_method : $_SERVER['REQUEST_METHOD'];
 
@@ -345,13 +345,14 @@ class OAuthRequest
      */
     public static function from_consumer_and_token($consumer, $token, $http_method, $http_url, $parameters = null)
     {
-        $parameters = ($parameters) ?  $parameters : array();
+        $parameters = ($parameters) ? $parameters : array();
         $defaults = array("oauth_version" => OAuthRequest::$version,
-                          "oauth_nonce" => OAuthRequest::generate_nonce(),
-                          "oauth_timestamp" => OAuthRequest::generate_timestamp(),
-                          "oauth_consumer_key" => $consumer->key);
-        if ($token)
+                            "oauth_nonce" => OAuthRequest::generate_nonce(),
+                            "oauth_timestamp" => OAuthRequest::generate_timestamp(),
+                            "oauth_consumer_key" => $consumer->key);
+        if ($token) {
             $defaults['oauth_token'] = $token->key;
+        }
 
         $parameters = array_merge($defaults, $parameters);
 
@@ -483,7 +484,7 @@ class OAuthRequest
     {
         $first = true;
         if ($realm) {
-            $out = 'Authorization: OAuth realm="' . OAuthUtil::urlencode_rfc3986($realm) . '"';
+            $out = 'Authorization: OAuth realm="'.OAuthUtil::urlencode_rfc3986($realm).'"';
             $first = false;
         } else {
             $out = 'Authorization: OAuth';
@@ -497,9 +498,9 @@ class OAuthRequest
                 throw new OAuthException('Arrays not supported in headers');
             }
             $out .= ($first) ? ' ' : ',';
-            $out .= OAuthUtil::urlencode_rfc3986($k) .
-                '="' .
-                OAuthUtil::urlencode_rfc3986($v) .
+            $out .= OAuthUtil::urlencode_rfc3986($k).
+                '="'.
+                OAuthUtil::urlencode_rfc3986($v).
                 '"';
             $first = false;
         }
@@ -545,14 +546,14 @@ class OAuthRequest
         $mt = microtime();
         $rand = mt_rand();
 
-        return md5($mt . $rand); // md5s look nicer than numbers
+        return md5($mt.$rand); // md5s look nicer than numbers
     }
 }
 
 class OAuthServer
 {
     protected $timestamp_threshold = 300; // in seconds, five minutes
-    protected $version = '1.0';           // hi blaine
+    protected $version = '1.0'; // hi blaine
     protected $signature_methods = array();
 
     protected $data_store;
@@ -662,8 +663,8 @@ class OAuthServer
         if (!in_array($signature_method,
             array_keys($this->signature_methods))) {
             throw new OAuthException(
-                "Signature method '$signature_method' not supported " .
-                "try one of the following: " .
+                "Signature method '$signature_method' not supported ".
+                "try one of the following: ".
                 implode(", ", array_keys($this->signature_methods))
             );
         }
@@ -694,7 +695,7 @@ class OAuthServer
     /**
      * try to find the token for the provided request's token key
      */
-    private function get_token($request, $consumer, $token_type="access")
+    private function get_token($request, $consumer, $token_type = "access")
     {
         $token_field = $request instanceof OAuthRequest
             ? $request->get_parameter('oauth_token')
@@ -705,10 +706,9 @@ class OAuthServer
                 $consumer, $token_type, $token_field
             );
             if (!$token) {
-                throw new OAuthException("Invalid $token_type token: $token_field");
+                throw new OAuthException('Invalid '.$token_type.' token: '.$token_field);
             }
-        }
-        else {
+        } else {
             $token = new OAuthToken('', '');
         }
         return $token;
@@ -978,10 +978,10 @@ class OAuthUtil
                 // June 12th, 2010 - changed to sort because of issue 164 by hidetaka
                 sort($value, SORT_STRING);
                 foreach ($value as $duplicate_value) {
-                    $pairs[] = $parameter . '=' . $duplicate_value;
+                    $pairs[] = $parameter.'='.$duplicate_value;
                 }
             } else {
-                $pairs[] = $parameter . '=' . $value;
+                $pairs[] = $parameter.'='.$value;
             }
         }
         // For each parameter, the name is separated from the corresponding value by an '=' character (ASCII code 61)

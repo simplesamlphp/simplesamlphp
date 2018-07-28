@@ -13,8 +13,8 @@ class Registry
 {
     protected function getStandardField($request, &$entry, $key)
     {
-        if (array_key_exists('field_' . $key, $request)) {
-            $entry[$key] = $request['field_' . $key];
+        if (array_key_exists('field_'.$key, $request)) {
+            $entry[$key] = $request['field_'.$key];
         } else if (isset($entry[$key])) {
             unset($entry[$key]);
         }
@@ -39,10 +39,12 @@ class Registry
 
     protected function requireStandardField($request, $key)
     {
-        if (!array_key_exists('field_' . $key, $request))
-            throw new \Exception('Required field [' . $key . '] was missing.');
-        if (empty($request['field_' . $key]))
-            throw new \Exception('Required field [' . $key . '] was empty.');
+        if (!array_key_exists('field_'.$key, $request)) {
+            throw new \Exception('Required field ['.$key.'] was missing.');
+        }
+        if (empty($request['field_'.$key])) {
+            throw new \Exception('Required field ['.$key.'] was empty.');
+        }
     }
 
     public function checkForm($request)
@@ -54,7 +56,7 @@ class Registry
 	
     protected function header($name)
     {
-        return '<tr><td>&nbsp;</td><td class="header">' . $name . '</td></tr>';
+        return '<tr><td>&nbsp;</td><td class="header">'.$name.'</td></tr>';
     }
 
     protected function readonlyDateField($metadata, $key, $name)
@@ -63,7 +65,7 @@ class Registry
         if (array_key_exists($key, $metadata)) {
             $value = date('j. F Y, G:i', $metadata[$key]);
         }
-	return '<tr><td class="name">' . $name . '</td><td class="data">' . $value . '</td></tr>';
+        return '<tr><td class="name">'.$name.'</td><td class="data">'.$value.'</td></tr>';
     }
 
     protected function readonlyField($metadata, $key, $name)
@@ -72,12 +74,12 @@ class Registry
         if (array_key_exists($key, $metadata)) {
             $value = $metadata[$key];
         }
-        return '<tr><td class="name">' . $name . '</td><td class="data">' . htmlspecialchars($value) . '</td></tr>';
+        return '<tr><td class="name">'.$name.'</td><td class="data">'.htmlspecialchars($value).'</td></tr>';
     }
 
     protected function hiddenField($key, $value)
     {
-        return '<input type="hidden" name="' . $key . '" value="' . htmlspecialchars($value) . '" />';
+        return '<input type="hidden" name="'.$key.'" value="'.htmlspecialchars($value).'" />';
     }
 
     protected function flattenLanguageField(&$metadata, $key)
@@ -101,33 +103,33 @@ class Registry
         }
 
         if ($textarea) {
-            return '<tr><td class="name">' . $name . '</td><td class="data">
-                <textarea name="field_' . $key . '" rows="5" cols="50">' . $value . '</textarea></td></tr>';
+            return '<tr><td class="name">'.$name.'</td><td class="data">
+                <textarea name="field_'.$key.'" rows="5" cols="50">'.$value.'</textarea></td></tr>';
         } else {
-            return '<tr><td class="name">' . $name . '</td><td class="data">
-                <input type="text" size="60" name="field_' . $key . '" value="' . $value . '" /></td></tr>';
+            return '<tr><td class="name">'.$name.'</td><td class="data">
+                <input type="text" size="60" name="field_'.$key.'" value="'.$value.'" /></td></tr>';
         }
     }
 
     public function metaToForm($metadata)
     {
-        return '<form action="registry.edit.php" method="post">' .
-            '<div id="tabdiv">' .
-            '<ul class="tabset_tabs">' .
-            '<li class="tab-link current" data-tab="basic"><a href="#basic">Name and description</a></li>' .
-            '</ul>' .
-            '<div id="basic" class="tabset_content current"><table class="formtable">' .
-                $this->standardField($metadata, 'name', 'Name of client') .
-                $this->standardField($metadata, 'description', 'Description of client', true) .
-                $this->readonlyField($metadata, 'owner', 'Owner') .
-                $this->standardField($metadata, 'key', 'Consumer Key') .
-                $this->readonlyField($metadata, 'secret', 'Consumer Secret<br />(Used for HMAC_SHA1 signatures)') .
-                $this->standardField($metadata, 'RSAcertificate', 'RSA certificate (PEM)<br />(Used for RSA_SHA1 signatures)', true) .
-                $this->standardField($metadata, 'callback_url', 'Static/enforcing callback-url') .
-            '</table></div>' .
-            '</div>' .
-            $this->hiddenField('field_secret', $metadata['secret']) .
-            '<input type="submit" name="submit" value="Save" style="margin-top: 5px" />' .
+        return '<form action="registry.edit.php" method="post">'.
+            '<div id="tabdiv">'.
+            '<ul class="tabset_tabs">'.
+            '<li class="tab-link current" data-tab="basic"><a href="#basic">Name and description</a></li>'.
+            '</ul>'.
+            '<div id="basic" class="tabset_content current"><table class="formtable">'.
+                $this->standardField($metadata, 'name', 'Name of client').
+                $this->standardField($metadata, 'description', 'Description of client', true).
+                $this->readonlyField($metadata, 'owner', 'Owner').
+                $this->standardField($metadata, 'key', 'Consumer Key').
+                $this->readonlyField($metadata, 'secret', 'Consumer Secret<br />(Used for HMAC_SHA1 signatures)').
+                $this->standardField($metadata, 'RSAcertificate', 'RSA certificate (PEM)<br />(Used for RSA_SHA1 signatures)', true).
+                $this->standardField($metadata, 'callback_url', 'Static/enforcing callback-url').
+            '</table></div>'.
+            '</div>'.
+            $this->hiddenField('field_secret', $metadata['secret']).
+            '<input type="submit" name="submit" value="Save" style="margin-top: 5px" />'.
             '</form>';
     }
 }

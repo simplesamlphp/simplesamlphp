@@ -24,10 +24,12 @@ if ($session->isValid($authsource)) {
 
 function requireOwnership($entry, $userid)
 {
-    if (!isset($entry['owner']))
+    if (!isset($entry['owner'])) {
         throw new \Exception('OAuth Consumer has no owner. Which means no one is granted access, not even you.');
-    if ($entry['owner'] !== $userid) 
+    }
+    if ($entry['owner'] !== $userid) {
         throw new \Exception('OAuth Consumer has an owner that is not equal to your userid, hence you are not granted access.');
+    }
 }
 
 if (isset($_REQUEST['delete'])) {
