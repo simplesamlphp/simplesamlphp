@@ -22,3 +22,4 @@ $config = array(
     'auth' => 'default-sp',
     'useridattr', 'user',
 );
+
