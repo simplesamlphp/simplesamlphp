@@ -84,10 +84,11 @@ class LDAP
          * Prepare a connection for to this LDAP server. Note that this function
          * doesn't actually connect to the server.
          */
-        $this->ldap = @ldap_connect($hostname, $port);
-        if ($this->ldap === false) {
+        $resource = @ldap_connect($hostname, $port);
+        if ($resource === false) {
             throw $this->makeException('Library - LDAP __construct(): Unable to connect to \''.$hostname.'\'', ERR_INTERNAL);
         }
+        $this->ldap = $resource;
 
         // Enable LDAP protocol version 3
         if (!@ldap_set_option($this->ldap, LDAP_OPT_PROTOCOL_VERSION, 3)) {

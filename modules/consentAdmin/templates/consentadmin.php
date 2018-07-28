@@ -1,7 +1,7 @@
 <?php 
-    $this->data['head'] = '<link rel="stylesheet" type="text/css" href="' . SimpleSAML\Module::getModuleURL("consentAdmin/assets/css/consentAdmin.css") . '" />' . "\n";
-    $this->data['head'] .= '<script src="' . SimpleSAML\Module::getModuleURL("consentAdmin/assets/js/consentAdmin.js") .'"></script>';
-    $this->data['head'] .= '<script src="' . SimpleSAML\Module::getModuleURL("consentAdmin/assets/js/consentSimpleAjax.js") .'"></script>';
+    $this->data['head'] = '<link rel="stylesheet" type="text/css" href="'.SimpleSAML\Module::getModuleURL("consentAdmin/assets/css/consentAdmin.css").'" />'."\n";
+    $this->data['head'] .= '<script src="'.SimpleSAML\Module::getModuleURL("consentAdmin/assets/js/consentAdmin.js").'"></script>';
+    $this->data['head'] .= '<script src="'.SimpleSAML\Module::getModuleURL("consentAdmin/assets/js/consentSimpleAjax.js").'"></script>';
     // default theme
     $this->includeAtTemplateBase('includes/header.php');
 ?>
@@ -22,15 +22,15 @@
             $show_text = $this->t('{consentAdmin:consentadmin:show}');
             $hide_text = $this->t('{consentAdmin:consentadmin:hide}');
             $attributes_text = $this->t('{consentAdmin:consentadmin:attributes_text}');
-            foreach ($spList AS $spName => $spValues) {
+            foreach ($spList as $spName => $spValues) {
                 $this->getTranslator()->includeInlineTranslation('spname', $spValues['name']);
                 $this->getTranslator()->includeInlineTranslation('spdescription', $spValues['description']);
                 if (!is_null($spValues['serviceurl'])) {
-                    $htmlSpName = '<a href="' . $spValues['serviceurl'] . '" style="color: black; font-weight: bold;">' . htmlspecialchars($this->t('spname', array(), false, true)) . '</a>';
+                    $htmlSpName = '<a href="'.$spValues['serviceurl'].'" style="color: black; font-weight: bold;">'.htmlspecialchars($this->t('spname', array(), false, true)).'</a>';
                 } else {
                     $htmlSpName = htmlspecialchars($this->t('spname', array(), false, true));
                 }
-                $spDescription = htmlspecialchars($this->t('spdescription',array(), false, true));
+                $spDescription = htmlspecialchars($this->t('spdescription', array(), false, true));
                 $checkedAttr = $spValues['consentStatus'] == 'ok' ? 'checked="checked"' : '';
                 $consentValue = $spValues['consentValue'];
                 $consentText = $spValues['consentStatus'] == 'changed' ? "attributes has changed" : "";
@@ -44,23 +44,23 @@
 TRSTART;
                 $attributes = $spValues['attributes_by_sp'];
                 if ($this->data['showDescription']) {
-                    echo '<p>' . $this->t('{consentAdmin:consentadmin:consentadmin_purpose}') . ' ' . $spDescription . '</p>';
+                    echo '<p>'.$this->t('{consentAdmin:consentadmin:consentadmin_purpose}').' '.$spDescription.'</p>';
                 }
                 echo "\n<ul>\n";
-                foreach ($attributes AS $name => $value) {
+                foreach ($attributes as $name => $value) {
 
-                if (isset($this->data['attribute_' . htmlspecialchars(strtolower($name)) ])) {
-                  $name = $this->data['attribute_' . htmlspecialchars(strtolower($name))];
+                if (isset($this->data['attribute_'.htmlspecialchars(strtolower($name))])) {
+                    $name = $this->data['attribute_'.htmlspecialchars(strtolower($name))];
                 }
                 $name = $this->getTranslator()->getAttributeTranslation($name); // translate
                 if (sizeof($value) > 1) {
-                        echo "<li>" . htmlspecialchars($name) . ":\n<ul>\n";
-                        foreach ($value AS $v) {
-                            echo '<li>' . htmlspecialchars($v) . "</li>\n";
+                        echo "<li>".htmlspecialchars($name).":\n<ul>\n";
+                        foreach ($value as $v) {
+                            echo '<li>'.htmlspecialchars($v)."</li>\n";
                         }
                         echo "</ul>\n</li>\n";
                     } else {
-                        echo "<li>" . htmlspecialchars($name) . ": " . htmlspecialchars($value[0]) . "</li>\n";
+                        echo "<li>".htmlspecialchars($name).": ".htmlspecialchars($value[0])."</li>\n";
                     }
                 }
                 echo "</ul>";
@@ -71,8 +71,8 @@ TRSTART;
 
 <td class='caAllowed'><input onClick="javascript:checkConsent(this.value, $show_spid, this.checked)" value='$consentValue' type='checkbox' $checkedAttr><span id="consentText$show_spid">$consentText</span></td>
 TRSTART;
-            echo "</td></tr>\n";
-            $show_spid++;
+                echo "</td></tr>\n";
+                $show_spid++;
             }
             ?>
             </table>
