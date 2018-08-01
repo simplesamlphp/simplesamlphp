@@ -158,6 +158,37 @@ if (array_key_exists('descr_purpose', $state['Destination'])) {
 $t->data['srcName'] = $srcName;
 $t->data['dstName'] = $dstName;
 
+$srcName = htmlspecialchars(is_array($srcName) ? $translator->t($srcName) : $srcName);
+$dstName = htmlspecialchars(is_array($dstName) ? $translator->t($dstName) : $dstName);
+
+$t->data['consent_attributes_header'] = $translator->t(
+    '{consent:consent:consent_attributes_header}',
+    array('SPNAME' => $dstName, 'IDPNAME' => $srcName)
+);
+
+$t->data['consent_accept'] = $translator->t(
+    '{consent:consent:consent_accept}',
+    array('SPNAME' => $dstName, 'IDPNAME' => $srcName)
+);
+
+if (array_key_exists('descr_purpose', $state['Destination'])) {
+    $t->data['consent_purpose'] = $translator->t(
+        '{consent:consent:consent_purpose}',
+        array(
+            'SPNAME' => $dstName,
+            'SPDESC' => $translator->getPreferredTranslation(
+                \SimpleSAML\Utils\Arrays::arrayize(
+                    $state['Destination']['descr_purpose'],
+                    'en'
+                )
+            ),
+        )
+    );
+}
+
+$t->data['srcName'] = $srcName;
+$t->data['dstName'] = $dstName;
+
 // Fetch privacypolicy
 if (array_key_exists('privacypolicy', $state['Destination'])) {
     $privacypolicy = $state['Destination']['privacypolicy'];
@@ -247,7 +278,6 @@ function present_attributes($t, $attributes, $nameParent)
             $isHidden = in_array($nameraw, $t->data['hiddenAttributes'], true);
             if ($isHidden) {
                 $hiddenId = \SimpleSAML\Utils\Random::generateID();
-
                 $str .= '<div class="attrvalue hidden" id="hidden_'.$hiddenId.'">';
             } else {
                 $str .= '<div class="attrvalue">';

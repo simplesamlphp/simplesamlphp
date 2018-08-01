@@ -71,6 +71,9 @@ class MultiAuth extends \SimpleSAML\Auth\Source
 				$text = array($defaultLanguage => $source);
 			}
 
+                        if (array_key_exists('help', $info)) {
+                                $help = $info['help'];
+                        }
 			if (array_key_exists('css-class', $info)) {
 				$css_class = $info['css-class'];
 			} else {
@@ -86,6 +89,7 @@ class MultiAuth extends \SimpleSAML\Auth\Source
 			$this->sources[] = array(
 				'source' => $source,
 				'text' => $text,
+                                'help' => $help,
 				'css_class' => $css_class,
 			);
 		}

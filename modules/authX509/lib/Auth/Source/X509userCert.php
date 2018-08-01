@@ -73,6 +73,7 @@ class X509userCert extends \SimpleSAML\Auth\Source
         $config = \SimpleSAML\Configuration::getInstance();
 
         $t = new \SimpleSAML\XHTML\Template($config, 'authX509:X509error.php');
+        $t->data['loginurl'] = \SimpleSAML\Utils\HTTP::getSelfURL();
         $t->data['errorcode'] = $state['authX509.error'];
         $t->data['errorcodes'] = \SimpleSAML\Error\ErrorCodes::getAllErrorCodeMessages();
 

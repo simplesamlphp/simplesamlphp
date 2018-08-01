@@ -1,0 +1,28 @@
+{% set pagetitle = 'SimpleSAMLphp'|trans %}
+{% extends "base.twig" %}
+
+{% block preload %}
+    <link href="{{ baseurlpath }}resources/style.css" rel="stylesheet" />
+{% endblock %}
+
+{% block postload %}
+<script type="text/javascript">
+    $(document).ready(function() {
+	$("#tabdiv").tabs();
+        $('ul.tabset_tabs li').click(
+            function() {
+                $("html, body").animate({ scrollTop: 0 }, "slow");
+            }
+        )
+
+    });
+</script>
+{% endblock %}
+
+{% block content %}
+    <h1>OAuth Client</h1>
+    {{ form|raw }}
+    <p style="float: right">
+        <a href="registry.php">Return to entity listing <strong>without saving...</strong></a>
+    </p>
+{% endblock %}

@@ -1,16 +1,10 @@
-.inlinesearch:hover {
-
-}
 .inlinesearch {
     float: right;
     margin: 0em 3px .5em 1em;
-	
-/*  padding: .3em;*/
 }
 .inlinesearch p {
     font-size: 94%;
     color: #aaa;
-
 }
 .inlinesearch input {
     background-image:url('../../resources/icons/silk/magnifier.png');
@@ -42,7 +36,6 @@ a.metaentry.favourite {
     background-image:url('../../resources/icons/silk/heart.png');
     background-repeat:no-repeat;
     background-position:center left;
-
 }
 a.metaentry:hover {
     border: 1px solid #ccc;
@@ -70,4 +63,45 @@ div.favourite {
     padding: 1em;
     border: 1px solid #ccc;
     background-color: #eee;
+}
+
+div#content {
+    margin: .4em ! important;
+}
+
+form {
+    display: inline;
+}
+
+table#statmeta {
+    width: 100%;
+}
+
+ul.tabset_tabs {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+}
+
+ul.tabset_tabs li {
+    background: none;
+    color: #222;
+    display: inline-block;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+ul.tabset_tabs li.current {
+    background: #ededed;
+    color: #222;
+}
+
+.tabset_content {
+    display: none;
+    background: #ededed;
+    padding: 15px;
+}
+
+.tabset_content.current {
+    display: inherit;
 }

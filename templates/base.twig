@@ -4,50 +4,55 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="initial-scale=1.0">
     <title>{{ pagetitle }}</title>
-    <link rel="stylesheet" type="text/css" href="/{{ baseurlpath }}resources/default.css">
+    <link rel="stylesheet" type="text/css" href="/{{ baseurlpath }}assets/css/lib/pure-min.css">
+    <link rel="stylesheet" type="text/css" href="/{{ baseurlpath }}assets/css/lib/selectize.default.css">
+    <link rel="stylesheet" type="text/css" href="/{{ baseurlpath }}assets/css/lib/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="/{{ baseurlpath }}assets/css/src/default.css">
     <link rel="icon" type="image/icon" href="/{{ baseurlpath }}resources/icons/favicon.ico">
     {% if jquery and jquery.css %}
     <link rel="stylesheet" media="screen" type="text/css" href="/{{ baseurlpath }}resources/uitheme1.8/jquery-ui.css" />
     {% endif %}
-    {% if isRTL %}<link rel="stylesheet" type="text/css" href="/{{ baseurlpath }}resources/default-rtl.css" />{% endif %}
+    {% if isRTL %}<link rel="stylesheet" type="text/css" href="/{{ baseurlpath }}assets/css/src/default-rtl.css" />{% endif %}
     <meta name="robots" content="noindex, nofollow">
     {% block preload %}{% endblock %}
 </head>
-<body>
-    <div id="wrap">
-
-        {% block header %}{% include "_header.twig" %}{% endblock %}
-
+<body id="{{ templateId }}">
+    <div id="layout">
+{% block header %}{% include "_header.twig" %}{% endblock %}
         <div id="content">
-        {% block contentwrapper %}
-        {% block content %}{% endblock %}
-        {% endblock %}
-        </div><!-- #content -->
+            <div class="wrap">
+                {% block contentwrapper -%}
+                    {% block content %}{% endblock -%}
+                {% endblock %}
+            </div>
+        </div><!-- content -->
+        <div id="push"></div>
+    </div><!-- layout -->
 
-        <div id="footer">
-            {% block footer %}{% include "_footer.twig" %}{% endblock %}
-        </div>
-
-    </div><!-- #wrap -->
+    <div id="foot">
+{% block footer %}{% include "_footer.twig" %}{% endblock %}
+    </div>
 
     <!-- postload javascript -->
-    <script type="text/javascript" src="/{{ baseurlpath }}resources/script.js"></script>
-    {% if jquery %}
-    {% set version = '1.8' %}
-    {% if jquery.version %}
-    {% set version = jquery.version %}
-    {% endif %}
-    {% if version == '1.8' %}
-    {% if jquery.core %}
+    <script type="text/javascript" src="/{{ baseurlpath }}assets/js/lib/jquery-3.2.1.min.js"></script>
+    {% spaceless %}{% if jquery %}
+        {% set version = '1.8' %}
+        {% if jquery.version %}
+            {% set version = jquery.version %}
+        {% endif %}
+        {% if version == '1.8' %}
+            {% if jquery.core %}
     <script type="text/javascript" src="/{{ baseurlpath }}resources/jquery-1.8.js"></script>
-    {% endif %}
-    {% if jquery.ui %}
+            {% endif %}
+            {% if jquery.ui %}
     <script type="text/javascript" src="/{{ baseurlpath }}resources/jquery-ui-1.8.js"></script>
-    {% endif %}
-    {% endif %}
-    {% endif %}
-    {% if clipboard %}
-    <script type="text/javascript" src="/{{ baseurlpath }}resources/clipboard.min.js"></script>
-    {% endif %}
-    {% block postload %}{% endblock %}
+            {% endif %}
+        {% endif %}
+    {% endif %}{% endspaceless -%}
+    <script type="text/javascript" src="/{{ baseurlpath }}assets/js/lib/clipboard.min.js"></script>
+    <script type="text/javascript" src="/{{ baseurlpath }}assets/js/lib/selectize.min.js"></script>
+    <script type="text/javascript" src="/{{ baseurlpath }}assets/js/src/language.js"></script>
+    <script type="text/javascript" src="/{{ baseurlpath }}assets/js/src/side_menu.js"></script>
+    <script type="text/javascript" src="/{{ baseurlpath }}assets/js/src/script.js"></script>
+{% block postload %}{% endblock %}
 </body></html>

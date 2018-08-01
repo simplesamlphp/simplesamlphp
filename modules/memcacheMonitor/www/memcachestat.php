@@ -145,8 +145,30 @@ $rowTitles = array(
     'uptime' => \SimpleSAML\Locale\Translate::noop('{memcacheMonitor:memcachestat:uptime}'),
     'version' => \SimpleSAML\Locale\Translate::noop('{memcacheMonitor:memcachestat:version}'),
 );
+
+// Identify column headings
+$colTitles = array();
+foreach ($stats as $rowTitle => $rowData) {
+    foreach ($rowData as $colTitle => $foo) {
+        if (!in_array($colTitle, $colTitles, true)) {
+            $colTitles[] = $colTitle;
+        }
+    }
+}
+
+if (array_key_exists('bytes', $statsraw) && array_key_exists('limit_maxbytes', $statsraw)) {
+    $usage = array();
+    $maxpix = 400;
+    foreach ($statsraw['bytes'] as $key => $row_data) {
+        $pix = floor($statsraw['bytes'][$key] * $maxpix / $statsraw['limit_maxbytes'][$key]);
+        $usage[$key] = $pix . 'px';
+    }
+    $t->data['maxpix'] = $maxpix . 'px';
+    $t->data['usage'] = $usage;
+}
+
 $t->data['title'] = 'Memcache stats';
-$t->data['rowtitles'] = $rowTitles;
+$t->data['rowTitles'] = $rowTitles;
+$t->data['colTitles'] = $colTitles;
 $t->data['table'] = $stats;
-$t->data['statsraw'] = $statsraw;
 $t->show();

@@ -18,7 +18,7 @@ $links_auth = array();
 $links_federation = array();
 
 $links_auth[] = array(
-	'href' => 'authenticate.php',
+	'href' => 'login.php',
 	'text' => '{core:frontpage:authtest}',
 );
 
@@ -36,6 +36,7 @@ $t->data['pageid'] = 'frontpage_auth';
 $t->data['isadmin'] = $isadmin;
 $t->data['loginurl'] = $loginurl;
 
+$t->data['header'] = $t->getTranslator()->t('{core:frontpage:page_title}');
 $t->data['links'] = $links;
 $t->data['links_welcome'] = $links_welcome;
 $t->data['links_config'] = $links_config;

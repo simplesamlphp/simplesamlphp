@@ -50,7 +50,7 @@ $allLinks = array(
     'welcome'    => &$links_welcome,
     'config'     => &$links_config,
     'auth'       => &$links_auth,
-   'federation' => &$links_federation,
+    'federation' => &$links_federation,
 );
 \SimpleSAML\Module::callHooks('frontpage', $allLinks);
 
@@ -160,6 +160,7 @@ $funcmatrix[] = array(
 
 $t = new \SimpleSAML\XHTML\Template($config, 'core:frontpage_config.tpl.php');
 $t->data['pageid'] = 'frontpage_config';
+$t->data['header'] = $t->getTranslator()->t('{core:frontpage:page_title}');
 $t->data['isadmin'] = $isadmin;
 $t->data['loginurl'] = $loginurl;
 $t->data['warnings'] = $warnings;

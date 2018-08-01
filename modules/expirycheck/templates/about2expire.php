@@ -16,50 +16,6 @@
  * @package SimpleSAMLphp
  */
 
-# netid will expire today
-if ($this->data['daysleft'] == 0) {
-	$this->data['header'] = $this->t('{expirycheck:expwarning:warning_header_today}', array(
-				'%NETID%' => htmlspecialchars($this->data['netId'])
-			));
-
-	$warning = $this->t('{expirycheck:expwarning:warning_today}', array(
-				'%NETID%' => htmlspecialchars($this->data['netId'])
-			));
-
-}
-# netid will expire in one day
-elseif ($this->data['daysleft'] == 1) {
-
-	$this->data['header'] = $this->t('{expirycheck:expwarning:warning_header}', array(
-				'%NETID%' => htmlspecialchars($this->data['netId']),
-				'%DAYS%' => $this->t('{expirycheck:expwarning:day}'),
-				'%DAYSLEFT%' => htmlspecialchars($this->data['daysleft']),
-			));
-
-	$warning = $this->t('{expirycheck:expwarning:warning}', array(
-				'%NETID%' => htmlspecialchars($this->data['netId']),
-				'%DAYS%' => $this->t('{expirycheck:expwarning:day}'),
-				'%DAYSLEFT%' => htmlspecialchars($this->data['daysleft']),
-			));
-
-}
-# netid will expire in next <daysleft> days
-else {
-	$this->data['header'] = $this->t('{expirycheck:expwarning:warning_header}', array(
-				'%NETID%' => htmlspecialchars($this->data['netId']),
-				'%DAYS%' => $this->t('{expirycheck:expwarning:days}'),
-				'%DAYSLEFT%' => htmlspecialchars($this->data['daysleft']),
-			));
-
-	$warning = $this->t('{expirycheck:expwarning:warning}', array(
-				'%NETID%' => htmlspecialchars($this->data['netId']),
-				'%DAYS%' => $this->t('{expirycheck:expwarning:days}'),
-				'%DAYSLEFT%' => htmlspecialchars($this->data['daysleft']),
-			));
-
-
-}
-
 $this->data['autofocus'] = 'yesbutton';
 
 $this->includeAtTemplateBase('includes/header.php');

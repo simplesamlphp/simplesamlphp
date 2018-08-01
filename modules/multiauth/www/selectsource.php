@@ -49,8 +49,21 @@ if (array_key_exists('multiauth:preselect', $state)) {
 
 $globalConfig = \SimpleSAML\Configuration::getInstance();
 $t = new \SimpleSAML\XHTML\Template($globalConfig, 'multiauth:selectsource.php');
+
+$defaultLanguage = $globalConfig->getString('language.default', 'en');
+$language = $t->getTranslator()->getLanguage()->getLanguage();
+
+$sources = $state[\SimpleSAML\Module\multiauth\Auth\Source\MultiAuth::SOURCESID];
+foreach ($sources as $key => $source){
+    $sources[$key]['source64'] = base64_encode($sources[$key]['source']);
+    $sources[$key]['text'] = (isSet($sources[$key]['text'][$language]) ? $sources[$key]['text'][$language] : $sources[$key]['text'][$defaultLanguage]);
+    $sources[$key]['help'] = (isSet($sources[$key]['help'][$language]) ? $sources[$key]['help'][$language] : $sources[$key]['help'][$defaultLanguage]);
+}
+
 $t->data['authstate'] = $authStateId;
-$t->data['sources'] = $state[\SimpleSAML\Module\multiauth\Auth\Source\MultiAuth::SOURCESID];
+$t->data['sources'] = $sources;
+$t->data['selfUrl'] = $_SERVER['PHP_SELF'];
+
 if ($as !== null) {
     $t->data['preferred'] = $as->getPreviousSource();
 } else {
