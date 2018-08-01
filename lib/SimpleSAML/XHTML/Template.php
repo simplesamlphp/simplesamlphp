@@ -165,14 +165,16 @@ class Template
         // get namespace if any
         list($namespace, $filename) = $this->findModuleAndTemplateName($filename);
         $this->twig_template = ($namespace !== null) ? '@'.$namespace.'/'.$filename : $filename;
-        $loader = new \Twig_Loader_Filesystem();
+        $loader = new TemplateLoader();
         $templateDirs = $this->findThemeTemplateDirs();
         if ($this->module) {
-            $templateDirs[] = array($this->module => $this->getModuleTemplateDir($this->module));
+            $templateDirs[] = array($this->module => TemplateLoader::getModuleTemplateDir($this->module));
         }
         if ($this->theme['module']) {
             try {
-                $templateDirs[] = array($this->theme['module'] => $this->getModuleTemplateDir($this->theme['module']));
+                $templateDirs[] = array(
+                    $this->theme['module'] => TemplateLoader::getModuleTemplateDir($this->theme['module'])
+                );
             } catch (\InvalidArgumentException $e) {
                 // either the module is not enabled or it has no "templates" directory, ignore
             }
@@ -297,10 +299,11 @@ class Template
         return $themeTemplateDirs;
     }
 
+
     /**
      * Get the template directory of a module, if it exists.
      *
-     * @return string The templates directory of a module.
+     * @return string The templates directory of a module
      *
      * @throws \InvalidArgumentException If the module is not enabled or it has no templates directory.
      */
@@ -330,7 +333,7 @@ class Template
      */
     public function addTemplatesFromModule($module)
     {
-        $dir = $this->getModuleTemplateDir($module);
+        $dir = TemplateLoader::getModuleTemplateDir($module);
         /** @var \Twig_Loader_Filesystem $loader */
         $loader = $this->twig->getLoader();
         $loader->addPath($dir, $module);
