@@ -230,8 +230,8 @@ class Template
             );
         } // TODO: add a branch for the old SimpleSAMLphp backend
 
-        $twig = new \Twig_Environment($loader, $options);
-        $twig->addExtension(new \Twig_Extensions_Extension_I18n());
+        $twig = new Twig_Environment($loader, $options);
+        $twig->addExtension(new Twig_Extensions_Extension_I18n());
 
         // initialize some basic context
         $langParam = $this->configuration->getString('language.parameter.name', 'language');
@@ -525,7 +525,7 @@ class Template
     /**
      * Get the current instance of Twig in use.
      *
-     * @return false|\Twig_Environment The Twig instance in use, or false if Twig is not used.
+     * @return false|Twig_Environment The Twig instance in use, or false if Twig is not used.
      */
     public function getTwig()
     {
