@@ -305,7 +305,7 @@ class Template
     /**
      * Get the template directory of a module, if it exists.
      *
-     * @return string The templates directory of a module.
+     * @return string The templates directory of a module
      *
      * @throws \InvalidArgumentException If the module is not enabled or it has no templates directory.
      */

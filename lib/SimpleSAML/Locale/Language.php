@@ -230,7 +230,7 @@ class Language
         }
 
         // language is provided in a stored cookie
-        $languageCookie = Language::getLanguageCookie();
+        $languageCookie = self::getLanguageCookie();
         if ($languageCookie !== null) {
             $this->language = $languageCookie;
             return $languageCookie;
