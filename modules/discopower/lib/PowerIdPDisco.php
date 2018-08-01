@@ -286,11 +286,11 @@ class PowerIdPDisco extends \SimpleSAML\XHTML\IdPDisco
 
         $search = '<script type="text/javascript">
             $(document).ready(function() {
-                $("#tabdiv").tabs({ selected: ' . $t->data['defaulttab'] . ' });';
+                $("#tabdiv").tabs({ selected: '.$t->data['defaulttab'].' });';
         $i = 0;
         foreach ($idpList as $tab => $slist) {
-            $search .= "\n" . '$("#query_' . $tab . '").liveUpdate("#list_' . $tab . '")' .
-		(($i++ == 0) && (empty($this->data['faventry'])) ? '.focus()' : '') . ';';
+            $search .= "\n".'$("#query_'.$tab.'").liveUpdate("#list_'.$tab.'")' .
+            (($i++ == 0) && (empty($this->data['faventry'])) ? '.focus()' : '').';';
         }
         $search .= "});\n</script>";
 
@@ -308,9 +308,9 @@ class PowerIdPDisco extends \SimpleSAML\XHTML\IdPDisco
     private function processMetadata($t, $metadata, $favourite)
     {
         $basequerystring = '?' . 
-		'entityID=' . urlencode($t->data['entityID']) . '&amp;' . 
-		'return=' . urlencode($t->data['return']) . '&amp;' . 
-		'returnIDParam=' . urlencode($t->data['returnIDParam']) . '&amp;idpentityid=';
+            'entityID='.urlencode($t->data['entityID']).'&amp;'.
+            'return='.urlencode($t->data['return']).'&amp;'.
+            'returnIDParam='.urlencode($t->data['returnIDParam']).'&amp;idpentityid=';
 
         foreach ($metadata as $tab => $idps) {
             foreach ($idps as $entityid => $entity) {
@@ -343,14 +343,14 @@ class PowerIdPDisco extends \SimpleSAML\XHTML\IdPDisco
 
                 // HTML output
                 if ($entity['entityid'] === $favourite) {
-                    $html = '<a class="metaentry favourite" href="' . $basequerystring . urlencode($entity['entityid']) . '">';
+                    $html = '<a class="metaentry favourite" href="'.$basequerystring.urlencode($entity['entityid']).'">';
                 } else {
-                    $html = '<a class="metaentry" href="' . $basequerystring . urlencode($entity['entityid']) . '">';
+                    $html = '<a class="metaentry" href="'.$basequerystring.urlencode($entity['entityid']).'">';
                 }
                 $html .= $entity['translated'];
                 if (array_key_exists('icon', $entity) && $entity['icon'] !== null) {
                     $iconUrl = \SimpleSAML\Utils\HTTP::resolveURL($entity['icon']);
-                    $html .= '<img alt="Icon for identity provider" class="entryicon" src="' . htmlspecialchars($iconUrl) . '" />';
+                    $html .= '<img alt="Icon for identity provider" class="entryicon" src="'.htmlspecialchars($iconUrl).'" />';
                 }
                 $html .= '</a>';
                 $entity['html'] = $html;

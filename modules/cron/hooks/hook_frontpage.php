@@ -5,12 +5,11 @@
  * @param array &$links  The links on the frontpage, split into sections.
  */
 function cron_hook_frontpage(&$links) {
-	assert(is_array($links));
-	assert(array_key_exists('links', $links));
+    assert(is_array($links));
+    assert(array_key_exists('links', $links));
 
-	$links['config'][] = array(
-		'href' => SimpleSAML\Module::getModuleURL('cron/croninfo.php'),
-		'text' => '{core:frontpage:link_cron}',
-	);
-
+    $links['config'][] = array(
+        'href' => SimpleSAML\Module::getModuleURL('cron/croninfo.php'),
+        'text' => '{core:frontpage:link_cron}',
+    );
 }

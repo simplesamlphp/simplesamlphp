@@ -5,11 +5,11 @@
  * @param array &$links  The links on the frontpage, split into sections.
  */
 function consentAdmin_hook_frontpage(&$links) {
-	assert(is_array($links));
-	assert(array_key_exists('links', $links));
+    assert(is_array($links));
+    assert(array_key_exists('links', $links));
 
-	$links['config'][] = array(
-		'href' => SimpleSAML\Module::getModuleURL('consentAdmin/consentAdmin.php'),
-		'text' => '{core:frontpage:link_consentAdmin}',
-	);
+    $links['config'][] = array(
+        'href' => SimpleSAML\Module::getModuleURL('consentAdmin/consentAdmin.php'),
+        'text' => '{core:frontpage:link_consentAdmin}',
+    );
 }

@@ -24,19 +24,18 @@ $this->includeAtTemplateBase('includes/header.php');
 
 <form style="display: inline; margin: 0px; padding: 0px" action="<?php echo htmlspecialchars($this->data['yesTarget']); ?>">
 
-	<?php
-		// Embed hidden fields...
-		foreach ($this->data['yesData'] as $name => $value) {
-			echo('<input type="hidden" name="' . htmlspecialchars($name) . '" value="' . htmlspecialchars($value) . '" />');
-		}
-	?>
-	<h3><?php echo $warning; ?></h3>
-	<p><?php echo $this->t('{expirycheck:expwarning:expiry_date_text}') . " " . $this->data['expireOnDate']; ?></p>
+    <?php
+        // Embed hidden fields...
+        foreach ($this->data['yesData'] as $name => $value) {
+            echo '<input type="hidden" name="'.htmlspecialchars($name).'" value="'.htmlspecialchars($value).'" />';
+        }
+    ?>
+    <h3><?php echo $warning; ?></h3>
+    <p><?php echo $this->t('{expirycheck:expwarning:expiry_date_text}')." ".$this->data['expireOnDate']; ?></p>
 
-	<input type="submit" name="yes" id="yesbutton" value="<?php echo htmlspecialchars($this->t('{expirycheck:expwarning:btn_continue}')) ?>" />
+    <input type="submit" name="yes" id="yesbutton" value="<?php echo htmlspecialchars($this->t('{expirycheck:expwarning:btn_continue}')) ?>" />
 
 </form>
-
 
 <?php
 

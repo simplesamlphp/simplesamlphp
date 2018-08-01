@@ -10,7 +10,7 @@
  */
 
 if (!array_key_exists('AuthState', $_REQUEST)) {
-	throw new \SimpleSAML\Error\BadRequest('Missing AuthState parameter.');
+    throw new \SimpleSAML\Error\BadRequest('Missing AuthState parameter.');
 }
 
 $globalConfig = \SimpleSAML\Configuration::getInstance();

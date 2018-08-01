@@ -9,7 +9,7 @@ if (isset($sources['admin'])) {
 }
 
 //if only 1 auth
-if (count($sources)==1) {
+if (count($sources) == 1) {
     $_REQUEST['as'] = key($sources);
 }
 
@@ -58,6 +58,6 @@ $t->data['header'] = '{status:header_saml20_sp}';
 $t->data['attributes'] = $attributes;
 $t->data['nameid'] = !is_null($as->getAuthData('saml:sp:NameID')) ? $as->getAuthData('saml:sp:NameID') : false;
 $t->data['logouturl'] = \SimpleSAML\Utils\HTTP::getSelfURLNoQuery().'?as='.urlencode($asId).'&logout';
-$t->data['remaining'] = $session->getAuthData($asId, 'Expire')-time();
+$t->data['remaining'] = $session->getAuthData($asId, 'Expire') - time();
 
 $t->show();

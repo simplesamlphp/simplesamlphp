@@ -23,8 +23,7 @@ if ($config->getBoolean('admin.protectmetadata', false)) {
 
 try {
     $idpentityid = isset($_GET['idpentityid']) ?
-        $_GET['idpentityid'] :
-        $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
+        $_GET['idpentityid'] : $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
     $idpmeta = $metadata->getMetaDataConfig($idpentityid, 'saml20-idp-hosted');
 
     $availableCerts = array();
@@ -220,10 +219,10 @@ try {
         $t->data['clipboard.js'] = true;
         $t->data['available_certs'] = $availableCerts;
         $certdata = array();
-        foreach(array_keys($availableCerts) as $availableCert) {
-               $certdata[$availableCert]['name'] = $availableCert;
-               $certdata[$availableCert]['url'] = SimpleSAML\Module::getModuleURL('saml/idp/certs.php') . '/' . $availableCert;
-               $certdata[$availableCert]['comment'] = ( $availableCerts[$availableCert]['certFingerprint'][0] === 'afe71c28ef740bc87425be13a2263d37971da1f9' ? 'This is the default certificate. Generate a new certificate if this is a production system.' : '');
+        foreach (array_keys($availableCerts) as $availableCert) {
+            $certdata[$availableCert]['name'] = $availableCert;
+            $certdata[$availableCert]['url'] = SimpleSAML\Module::getModuleURL('saml/idp/certs.php').'/'.$availableCert;
+            $certdata[$availableCert]['comment'] = ($availableCerts[$availableCert]['certFingerprint'][0] === 'afe71c28ef740bc87425be13a2263d37971da1f9' ? 'This is the default certificate. Generate a new certificate if this is a production system.' : '');
         }
         $t->data['certdata'] = $certdata;
         $t->data['header'] = 'saml20-idp'; // TODO: Replace with headerString in 2.0
@@ -234,12 +233,11 @@ try {
         $t->data['defaultidp'] = $defaultidp;
         $t->show();
     } else {
-
         header('Content-Type: application/xml');
 
         echo $metaxml;
         exit(0);
     }
-} catch (Exception $exception) {
+} catch (\Exception $exception) {
     throw new \SimpleSAML\Error\Error('METADATA', $exception);
 }
