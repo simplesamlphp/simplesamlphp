@@ -247,13 +247,6 @@ class PowerIdPDisco extends \SimpleSAML\XHTML\IdPDisco
         $idpList = $this->idplistStructured($this->filterList($idpList));
         $preferredIdP = $this->getRecommendedIdP();
 
-        $faventry = null;
-        foreach ($idpList AS $tab => $slist) {
-            if (!empty($preferredIdP) && array_key_exists($preferredIdP, $slist)) {
-                $faventry = $slist[$preferredIdP];
-            }
-        }
-
         $t = new \SimpleSAML\XHTML\Template($this->config, 'discopower:disco.tpl.php', 'disco');
         $discoPowerTabs = array(
             'denmark' => \SimpleSAML\Locale\Translate::noop('{discopower:tabs:denmark}'),
