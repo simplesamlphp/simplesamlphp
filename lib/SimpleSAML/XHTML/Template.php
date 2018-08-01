@@ -11,7 +11,6 @@ namespace SimpleSAML\XHTML;
 
 use JaimePerez\TwigConfigurableI18n\Twig\Environment as Twig_Environment;
 use JaimePerez\TwigConfigurableI18n\Twig\Extensions\Extension\I18n as Twig_Extensions_Extension_I18n;
-use \SimpleSAML\XHTML\TemplateLoader;
 
 class Template
 {
@@ -266,7 +265,6 @@ class Template
         return $twig;
     }
 
- 
     /**
      * Add overriding templates from the configured theme.
      *
