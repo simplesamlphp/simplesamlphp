@@ -1,0 +1,17 @@
+{
+  "name": "yarn",
+  "version": "1.0.0",
+  "description": "yarn pkgmanager",
+  "main": "index.js",
+  "repository": "https://github.com/simplesamlphp/simplesamlphp",
+  "author": "olimpiam",
+  "license": "MIT",
+  "dependencies": {
+    "clipboard": "^1.7.1",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.2.1",
+    "jquery-ui": "^1.10.4",
+    "purecss": "^1.0.0",
+    "selectize": "^0.12.4"
+  }
+}
