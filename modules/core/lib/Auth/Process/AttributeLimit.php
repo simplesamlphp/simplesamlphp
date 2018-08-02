@@ -66,7 +66,41 @@ class AttributeLimit extends \SimpleSAML\Auth\ProcessingFilter
 	 * @return array|NULL  Array with attribute names, or NULL if no limit is placed.
 	 */
 	private static function getSPIdPAllowed(array &$request) {
+		// check if AttributeConsumingService config is present
+		if(array_key_exists('AttributeConsumingService', $request['Destination'])) {
 
+			// if present, get AttributeConsumingServiceIndex from request
+			if(array_key_exists('saml:AttributeConsumingServiceIndex',$request) && !is_null($request['saml:AttributeConsumingServiceIndex'])) {
+				$acsi = $request['saml:AttributeConsumingServiceIndex'];
+
+				// if index from request exists in the configuration, return corresponding attributes
+				if(array_key_exists($acsi,$request['Destination']['AttributeConsumingService'])) {
+					return $request['Destination']['AttributeConsumingService'][$acsi]['attributes'];
+				}
+				else {
+					throw new SimpleSAML_Error_Exception('AttributeLimit: AttributeConsumingServiceIndex ' . var_export($acsi, TRUE) .
+						' received in request not found in SP configuration.');
+				}
+			}
+
+			// index not present in request, get default AttributeConsumingService Index from configuration
+			if(array_key_exists('AttributeConsumingService.default', $request['Destination'])) {
+				$acsi = $request['Destination']['AttributeConsumingService.default'];
+
+				// return default acsi attributes
+				if(array_key_exists($acsi,$request['Destination']['AttributeConsumingService'])) {
+					return $request['Destination']['AttributeConsumingService'][$acsi]['attributes'];
+				}
+				else {
+					throw new SimpleSAML_Error_Exception('AttributeLimit: AttributeConsumingService.default ' . var_export($acsi, TRUE) .
+						' is invalid.');
+				}
+			}
+			else {
+				throw new SimpleSAML_Error_Exception('AttributeLimit: AttributeConsumingService.default ' . var_export($acsi, TRUE) .
+					' must be specified in SP configuration.');
+			}
+		}
 		if (array_key_exists('attributes', $request['Destination'])) {
 			// SP Config
 			return $request['Destination']['attributes'];

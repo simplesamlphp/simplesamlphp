@@ -496,4 +496,221 @@ class Test_Core_Auth_Process_AttributeLimitTest extends TestCase
         $this->assertCount(0, $attributes);
         $this->assertEmpty($attributes);
     }
+
+    /**
+     * Test AttributeConsumingService in SP metadata.
+     */
+
+     protected static $attributeConsumingService = array (
+            0 =>
+            array (
+              'attributes' =>
+              array (
+                0 => 'eduPersonPrincipalName',
+                1 => 'mail',
+                2 => 'displayName',
+              ),
+              'attributes.required' =>
+              array (
+                0 => 'eduPersonPrincipalName',
+              ),
+            ),
+            1 =>
+            array (
+              'attributes' =>
+              array (
+                0 => 'cn',
+                1 => 'testN1',
+                2 => 'testN2',
+              ),
+              'attributes.required' =>
+              array (
+                0 => 'cn',
+                1 => 'testN1',
+              ),
+              'attributes.NameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:basic',
+            ),
+        );
+
+
+    /**
+     * Test when AttributeConsumingServiceIndex matches AttributeConsumingService in SP metadata.
+     */
+
+    public function testAttributeConsumingServiceIndex()
+    {
+        // default config
+        $config = array(
+        );
+
+        //prepare request with AttributeConsumingServiceIndex = 1
+        $request = array(
+            'Attributes' => array(
+                 'eduPersonPrincipalName' => array('eptid@example.org'),
+                 'eduPersonAffiliation' => array('member'),
+                 'cn' => array('user name'),
+                 'mail' => array('user@example.org'),
+                 'testN1' => array('testV1'),
+                 'testN2' => array('testV2'),
+                 'testN3' => array('testV3'),
+             ),
+            'Destination' => array(
+                'AttributeConsumingService' => self::$attributeConsumingService,
+                'AttributeConsumingService.default' => 0,
+             ),
+            'Source' => array(
+             ),
+             'saml:AttributeConsumingServiceIndex' => 1,
+        );
+
+        $result = self::processFilter($config, $request);
+        $attributes = $result['Attributes'];
+        $this->assertArrayHasKey('cn', $attributes);
+        $this->assertArrayHasKey('testN1', $attributes);
+        $this->assertArrayHasKey('testN2', $attributes);
+        $this->assertCount(3, $attributes);
+    }
+
+    /**
+     * Test default AttributeConsumingServiceIndex in SP metadata.
+     */
+
+    public function testAttributeConsumingServiceDefault()
+    {
+        // default config
+        $config = array(
+        );
+
+        //prepare request without AttributeConsumingServiceIndex
+        $request = array(
+            'Attributes' => array(
+                 'eduPersonPrincipalName' => array('eptid@example.org'),
+                 'eduPersonAffiliation' => array('member'),
+                 'cn' => array('user name'),
+                 'mail' => array('user@example.org'),
+                 'testN1' => array('testV1'),
+                 'testN2' => array('testV2'),
+                 'testN3' => array('testV3'),
+             ),
+            'Destination' => array(
+                'AttributeConsumingService' => self::$attributeConsumingService,
+                'AttributeConsumingService.default' => 0,
+             ),
+            'Source' => array(
+             ),
+        );
+
+        $result = self::processFilter($config, $request);
+        $attributes = $result['Attributes'];
+        $this->assertArrayHasKey('eduPersonPrincipalName', $attributes);
+        $this->assertArrayHasKey('mail', $attributes);
+        $this->assertCount(2, $attributes);
+    }
+
+    /**
+     * Test default AttributeConsumingServiceIndex in SP metadata
+     * when saml:AttributeConsumingServiceIndex is null
+     */
+
+    public function testAttributeConsumingServiceNULLDefault()
+    {
+        // default config
+        $config = array(
+        );
+
+        //prepare request without AttributeConsumingServiceIndex
+        $request = array(
+            'Attributes' => array(
+                 'eduPersonPrincipalName' => array('eptid@example.org'),
+                 'eduPersonAffiliation' => array('member'),
+                 'cn' => array('user name'),
+                 'mail' => array('user@example.org'),
+                 'testN1' => array('testV1'),
+                 'testN2' => array('testV2'),
+                 'testN3' => array('testV3'),
+             ),
+            'Destination' => array(
+                'AttributeConsumingService' => self::$attributeConsumingService,
+                'AttributeConsumingService.default' => 0,
+             ),
+            'Source' => array(
+             ),
+             'saml:AttributeConsumingServiceIndex' => null,
+        );
+
+        $result = self::processFilter($config, $request);
+        $attributes = $result['Attributes'];
+        $this->assertArrayHasKey('eduPersonPrincipalName', $attributes);
+        $this->assertArrayHasKey('mail', $attributes);
+        $this->assertCount(2, $attributes);
+    }
+
+    /**
+     * Test default AttributeConsumingServiceIndex not in SP metadata.
+     *
+     * @expectedException Exception 
+     */
+
+    public function testAttributeConsumingServiceWrongDefault()
+    {
+        // default config
+        $config = array(
+        );
+
+        //prepare request without AttributeConsumingServiceIndex
+        $request = array(
+            'Attributes' => array(
+                 'eduPersonPrincipalName' => array('eptid@example.org'),
+                 'eduPersonAffiliation' => array('member'),
+                 'cn' => array('user name'),
+                 'mail' => array('user@example.org'),
+                 'testN1' => array('testV1'),
+                 'testN2' => array('testV2'),
+                 'testN3' => array('testV3'),
+             ),
+            'Destination' => array(
+                'AttributeConsumingService' => self::$attributeConsumingService,
+                'AttributeConsumingService.default' => 2,
+             ),
+            'Source' => array(
+             ),
+        );
+
+        $result = self::processFilter($config, $request);
+    }
+
+    /**
+     * Test AttributeConsumingServiceIndex not in SP metadata.
+     *
+     * @expectedException Exception 
+     */
+
+    public function testAttributeConsumingServiceWrongIndex()
+    {
+        // default config
+        $config = array(
+        );
+
+        //prepare request without AttributeConsumingServiceIndex
+        $request = array(
+            'Attributes' => array(
+                 'eduPersonPrincipalName' => array('eptid@example.org'),
+                 'eduPersonAffiliation' => array('member'),
+                 'cn' => array('user name'),
+                 'mail' => array('user@example.org'),
+                 'testN1' => array('testV1'),
+                 'testN2' => array('testV2'),
+                 'testN3' => array('testV3'),
+             ),
+            'Destination' => array(
+                'AttributeConsumingService' => self::$attributeConsumingService,
+                'AttributeConsumingService.default' => 1,
+             ),
+            'Source' => array(
+             ),
+             'saml:AttributeConsumingServiceIndex' => 3,
+        );
+
+        $result = self::processFilter($config, $request);
+    }
 }
