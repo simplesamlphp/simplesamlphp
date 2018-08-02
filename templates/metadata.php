@@ -32,9 +32,9 @@ $this->includeAtTemplateBase('includes/header.php'); ?>
         <pre id="phpmetadata"><?php echo $this->data['metadataflat']; ?></pre>
     </div>
     <script type="text/javascript">
-        var clipboard1 = new Clipboard('#btnurl'),
-            clipboard2 = new Clipboard('#btnxml'),
-            clipboard3 = new Clipboard('#btnphp');
+        var clipboard1 = new ClipboardJS('#btnurl'),
+            clipboard2 = new ClipboardJS('#btnxml'),
+            clipboard3 = new ClipboardJS('#btnphp');
     </script>
 <?php
 if (array_key_exists('available_certs', $this->data)) { ?>

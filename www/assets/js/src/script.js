@@ -51,7 +51,7 @@ $(document).on('change', ':file', function() {
 $(document).ready(function() {
     $('.language-menu').selectize();
     $('#organization').selectize();
-    new Clipboard('.clipboard-btn');
+    new ClipboardJS('.clipboard-btn');
 
 // Watch for custom `fileselect` event
     $(':file').on('fileselect', function(event, numFiles, label) {
