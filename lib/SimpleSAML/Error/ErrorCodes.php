@@ -72,7 +72,7 @@ class ErrorCodes
     /**
      * Fetch all default translation strings for error code descriptions.
      *
-     * @return string A map from error code to error code description
+     * @return array A map from error code to error code description
      */
     final public static function defaultGetAllErrorCodeDescriptions()
     {
@@ -118,7 +118,7 @@ class ErrorCodes
      *
      * Extend this to add error codes.
      *
-     * @return string A map from error code to error code description
+     * @return array A map from error code to error code description
      */
     public static function getAllErrorCodeDescriptions()
     {
