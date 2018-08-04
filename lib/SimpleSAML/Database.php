@@ -192,7 +192,7 @@ class Database
      * @param array  $params Parameters
      *
      * @throws \Exception If an error happens while trying to execute the query.
-     * @return \PDOStatement object
+     * @return bool|\PDOStatement object
      */
     private function query($db, $stmt, $params)
     {
