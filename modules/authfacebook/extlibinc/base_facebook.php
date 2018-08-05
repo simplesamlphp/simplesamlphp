@@ -436,7 +436,7 @@ abstract class BaseFacebook
      * return a valid user access token, or false if one is determined
      * to not be available.
      *
-     * @return string A valid user access token, or false if one
+     * @return false|string A valid user access token, or false if one
      *                could not be determined.
      */
     protected function getUserAccessToken()
