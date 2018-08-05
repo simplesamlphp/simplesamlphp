@@ -251,7 +251,7 @@ class SessionHandlerPHP extends SessionHandler
                 throw new \SimpleSAML\Error\Exception('Cannot load PHP session with a specific ID.');
             }
         } elseif (session_id() === '') {
-            self::getCookieSessionId();
+            $this->getCookieSessionId();
         }
 
         if (!isset($_SESSION['SimpleSAMLphp_SESSION'])) {
