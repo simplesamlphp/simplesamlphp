@@ -105,7 +105,7 @@ class Session implements \Serializable
      *
      * @var array
      */
-    private $dataStore = null;
+    private $dataStore = array();
 
 
     /**
@@ -726,7 +726,7 @@ class Session implements \Serializable
      *
      * @param string $authority The authentication source that the user should be authenticated with.
      *
-     * @return true if the user has a valid session, false if not.
+     * @return bool True if the user has a valid session, false if not.
      */
     public function isValid($authority)
     {
@@ -837,10 +837,6 @@ class Session implements \Serializable
         assert(is_string($type));
         assert(is_string($id));
 
-        if (!is_array($this->dataStore)) {
-            return;
-        }
-
         if (!array_key_exists($type, $this->dataStore)) {
             return;
         }
@@ -901,10 +897,6 @@ class Session implements \Serializable
             'data'    => $data
         );
 
-        if (!is_array($this->dataStore)) {
-            $this->dataStore = array();
-        }
-
         if (!array_key_exists($type, $this->dataStore)) {
             $this->dataStore[$type] = array();
         }
@@ -923,10 +915,6 @@ class Session implements \Serializable
      */
     private function expireData()
     {
-        if (!is_array($this->dataStore)) {
-            return;
-        }
-
         $ct = time();
 
         foreach ($this->dataStore as &$typedData) {
@@ -965,10 +953,6 @@ class Session implements \Serializable
 
         $this->expireData();
 
-        if (!is_array($this->dataStore)) {
-            return null;
-        }
-
         if (!array_key_exists($type, $this->dataStore)) {
             return null;
         }
@@ -996,10 +980,6 @@ class Session implements \Serializable
     public function getDataOfType($type)
     {
         assert(is_string($type));
-
-        if (!is_array($this->dataStore)) {
-            return array();
-        }
 
         if (!array_key_exists($type, $this->dataStore)) {
             return array();
