@@ -57,7 +57,7 @@ class Server
         $config = $cdcConfig->getConfigItem($domain, null);
 
         if ($config === null) {
-            throw new \SimpleSAML\Error\Exception('Unknown CDC domain: ' . var_export($domain, true));
+            throw new \SimpleSAML\Error\Exception('Unknown CDC domain: '.var_export($domain, true));
         }
 
         $this->domain = $domain;
@@ -66,7 +66,7 @@ class Server
         $this->cookieLifetime = $config->getInteger('cookie.lifetime', 0);
 
         if ($this->key === 'ExampleSharedKey') {
-            throw new \SimpleSAML\Error\Exception('Key for CDC domain ' . var_export($domain, true) . ' not changed from default.');
+            throw new \SimpleSAML\Error\Exception('Key for CDC domain '.var_export($domain, true).' not changed from default.');
         }
     }
 
@@ -138,7 +138,7 @@ class Server
         }
         $op = (string)$request['op'];
 
-        \SimpleSAML\Logger::info('Received CDC request with "op": ' . var_export($op, true));
+        \SimpleSAML\Logger::info('Received CDC request with "op": '.var_export($op, true));
 
         if (!isset($request['return'])) {
             throw new \SimpleSAML\Error\BadRequest('Missing "return" in CDC request.');
@@ -179,7 +179,7 @@ class Server
      * Handle an append request.
      *
      * @param array $request  The request.
-     * @return array  The response.
+     * @return string The response.
      */
     private function handleAppend(array $request)
     {
@@ -206,13 +206,13 @@ class Server
      * Handle a delete request.
      *
      * @param array $request  The request.
-     * @return array  The response.
+     * @return string The response.
      */
     private function handleDelete(array $request)
     {
         $params = array(
             'path' => '/',
-            'domain' => '.' . $this->domain,
+            'domain' => '.'.$this->domain,
             'secure' => true,
             'httponly' => false,
         );
@@ -412,7 +412,7 @@ class Server
         $params = array(
             'lifetime' => $this->cookieLifetime,
             'path' => '/',
-            'domain' => '.' . $this->domain,
+            'domain' => '.'.$this->domain,
             'secure' => true,
             'httponly' => false,
         );
