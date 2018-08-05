@@ -55,7 +55,7 @@ class ProcessingChain
         $this->filters = array();
 
         $config = \SimpleSAML\Configuration::getInstance();
-        $configauthproc = $config->getArray('authproc.' . $mode, null);
+        $configauthproc = $config->getArray('authproc.'.$mode, null);
 
         if (!empty($configauthproc)) {
             $configfilters = self::parseFilterList($configauthproc);
@@ -72,8 +72,8 @@ class ProcessingChain
             self::addFilters($this->filters, $spFilters);
         }
 
-        \SimpleSAML\Logger::debug('Filter config for ' . $idpMetadata['entityid'] . '->' .
-            $spMetadata['entityid'] . ': ' . str_replace("\n", '', var_export($this->filters, true)));
+        \SimpleSAML\Logger::debug('Filter config for '.$idpMetadata['entityid'].'->'.
+            $spMetadata['entityid'].': '.str_replace("\n", '', var_export($this->filters, true)));
     }
 
 
@@ -94,14 +94,14 @@ class ProcessingChain
             $fp = $filter->priority;
 
             // Find insertion position for filter
-            for ($i = count($target)-1; $i >= 0; $i--) {
+            for ($i = count($target) - 1; $i >= 0; $i--) {
                 if ($target[$i]->priority <= $fp) {
                     // The new filter should be inserted after this one
                     break;
                 }
             }
             /* $i now points to the filter which should preceede the current filter. */
-            array_splice($target, $i+1, 0, array($filter));
+            array_splice($target, $i + 1, 0, array($filter));
         }
     }
 
@@ -124,7 +124,7 @@ class ProcessingChain
             }
 
             if (!is_array($filter)) {
-                throw new \Exception('Invalid authentication processing filter configuration: ' .
+                throw new \Exception('Invalid authentication processing filter configuration: '.
                     'One of the filters wasn\'t a string or an array.');
             }
 
@@ -298,9 +298,8 @@ class ProcessingChain
             $filter = array_shift($state[self::FILTERS_INDEX]);
             try {
                 $filter->process($state);
-
-            // Ignore \SimpleSAML\Error\NoPassive exceptions
             } catch (\SimpleSAML\Error\NoPassive $e) {
+                // Ignore \SimpleSAML\Error\NoPassive exceptions
             }
         }
     }
@@ -345,12 +344,12 @@ class ProcessingChain
 
         $uid = $state['Attributes'][$attributeName];
         if (count($uid) === 0) {
-            \SimpleSAML\Logger::warning('Empty user id attribute [' . $attributeName . '].');
+            \SimpleSAML\Logger::warning('Empty user id attribute ['.$attributeName.'].');
             return;
         }
 
         if (count($uid) > 1) {
-            \SimpleSAML\Logger::warning('Multiple attribute values for user id attribute [' . $attributeName . '].');
+            \SimpleSAML\Logger::warning('Multiple attribute values for user id attribute ['.$attributeName.'].');
             return;
         }
 
