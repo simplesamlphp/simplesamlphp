@@ -183,7 +183,7 @@ class SessionHandlerPHP extends SessionHandler
      */
     public function getCookieSessionId()
     {
-        if (!self::hasSessionCookie()) {
+        if (!$this->hasSessionCookie()) {
             return null; // there's no session cookie, can't return ID
         }
 
