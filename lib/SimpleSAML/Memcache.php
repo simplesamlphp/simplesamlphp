@@ -24,7 +24,7 @@ class Memcache
     /**
      * Cache of the memcache servers we are using.
      *
-     * @var Memcache[]|null
+     * @var \Memcache[]|null
      */
     private static $serverGroups = null;
 
@@ -46,7 +46,7 @@ class Memcache
      */
     public static function get($key)
     {
-        \SimpleSAML\Logger::debug("loading key $key from memcache");
+        Logger::debug("loading key $key from memcache");
 
         $latestInfo = null;
         $latestTime = 0.0;
@@ -77,19 +77,19 @@ class Memcache
              * - 'data': The data.
              */
             if (!is_array($info)) {
-                \SimpleSAML\Logger::warning(
+                Logger::warning(
                     'Retrieved invalid data from a memcache server. Data was not an array.'
                 );
                 continue;
             }
             if (!array_key_exists('timestamp', $info)) {
-                \SimpleSAML\Logger::warning(
+                Logger::warning(
                     'Retrieved invalid data from a memcache server. Missing timestamp.'
                 );
                 continue;
             }
             if (!array_key_exists('data', $info)) {
-                \SimpleSAML\Logger::warning(
+                Logger::warning(
                     'Retrieved invalid data from a memcache server. Missing data.'
                 );
                 continue;
@@ -122,17 +122,17 @@ class Memcache
         if ($latestData === null) {
             if ($allDown) {
                 // all servers are down, panic!
-                $e = new \SimpleSAML\Error\Error('MEMCACHEDOWN', null, 503);
-                throw new \SimpleSAML\Error\Exception('All memcache servers are down', 503, $e);
+                $e = new Error\Error('MEMCACHEDOWN', null, 503);
+                throw new Error\Exception('All memcache servers are down', 503, $e);
             }
             // we didn't find any data matching the key
-            \SimpleSAML\Logger::debug("key $key not found in memcache");
+            Logger::debug("key $key not found in memcache");
             return null;
         }
 
         if ($mustUpdate) {
             // we found data matching the key, but some of the servers need updating
-            \SimpleSAML\Logger::debug("Memcache servers out of sync for $key, forcing sync");
+            Logger::debug("Memcache servers out of sync for $key, forcing sync");
             self::set($key, $latestData);
         }
 
@@ -149,7 +149,7 @@ class Memcache
      */
     public static function set($key, $value, $expire = null)
     {
-        \SimpleSAML\Logger::debug("saving key $key to memcache");
+        Logger::debug("saving key $key to memcache");
         $savedInfo = array(
             'timestamp' => microtime(true),
             'data'      => $value
@@ -180,7 +180,7 @@ class Memcache
     public static function delete($key)
     {
         assert(is_string($key));
-        \SimpleSAML\Logger::debug("deleting key $key from memcache");
+        Logger::debug("deleting key $key from memcache");
 
         // store this object to all groups of memcache servers
         foreach (self::getMemcacheServers() as $server) {
@@ -231,14 +231,8 @@ class Memcache
             );
         }
 
-        // check if we are told to use a socket
-        $socket = false;
-        if (strpos($hostname, 'unix:///') === 0) {
-            $socket = true;
-        }
-
         // check if the user has specified a port number
-        if ($socket) {
+        if (strpos($hostname, 'unix:///') === 0) {
             // force port to be 0 for sockets
             $port = 0;
         } elseif (array_key_exists('port', $server)) {
@@ -365,7 +359,7 @@ class Memcache
         self::$serverGroups = array();
 
         // load the configuration
-        $config = \SimpleSAML\Configuration::getInstance();
+        $config = Configuration::getInstance();
 
 
         $groups = $config->getArray('memcache_store.servers');
@@ -416,7 +410,7 @@ class Memcache
     private static function getExpireTime()
     {
         // get the configuration instance
-        $config = \SimpleSAML\Configuration::getInstance();
+        $config = Configuration::getInstance();
         assert($config instanceof \SimpleSAML\Configuration);
 
         // get the expire-value from the configuration
@@ -439,9 +433,7 @@ class Memcache
         /* The expire option is given as the number of seconds into the future an item should expire. We convert this
          * to an actual timestamp.
          */
-        $expireTime = time() + $expire;
-
-        return $expireTime;
+        return (time() + $expire);
     }
 
 
@@ -464,7 +456,7 @@ class Memcache
                 }
             }
 
-            $stats = \SimpleSAML\Utils\Arrays::transpose($stats);
+            $stats = Utils\Arrays::transpose($stats);
 
             $ret = array_merge_recursive($ret, $stats);
         }
