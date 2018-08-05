@@ -98,7 +98,7 @@ class SQLPermanentStorage
 
     public function get($type = null, $key1 = null, $key2 = null)
     {
-        $conditions = self::getCondition($type, $key1, $key2);
+        $conditions = $this->getCondition($type, $key1, $key2);
         $query = 'SELECT * FROM data WHERE '.$conditions;
 
         $prepared = $this->db->prepare($query);
@@ -137,7 +137,7 @@ class SQLPermanentStorage
 
     public function getList($type = null, $key1 = null, $key2 = null)
     {
-        $conditions = self::getCondition($type, $key1, $key2);
+        $conditions = $this->getCondition($type, $key1, $key2);
         $query = 'SELECT * FROM data WHERE '.$conditions;
         $prepared = $this->db->prepare($query);
         $prepared->execute();
@@ -159,7 +159,7 @@ class SQLPermanentStorage
             throw new \Exception('Invalid key type');
         }
 
-        $conditions = self::getCondition($type, $key1, $key2);
+        $conditions = $this->getCondition($type, $key1, $key2);
         $query = 'SELECT DISTINCT :whichKey FROM data WHERE '.$conditions;
         $prepared = $this->db->prepare($query);
         $data = array('whichKey' => $whichKey);
