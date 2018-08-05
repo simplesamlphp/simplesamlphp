@@ -119,7 +119,7 @@ class SimpleSAML_XHTML_Template
         // check if we need to attach a theme controller
         $controller = $this->configuration->getString('theme.controller', false);
         if ($controller && class_exists($controller) &&
-            class_implements($controller, '\SimpleSAML\XHTML\TemplateControllerInterface')
+            in_array('\SimpleSAML\XHTML\TemplateControllerInterface', class_implements($controller))
         ) {
             $this->controller = new $controller();
         }
