@@ -1110,7 +1110,7 @@ class SAML2
      * @param array $association The SP association.
      * @param string|null $relayState An id that should be carried across the logout.
      *
-     * @return \SAML2\LogoutResponse The corresponding SAML2 logout response.
+     * @return \SAML2\LogoutRequest The corresponding SAML2 logout request.
      */
     private static function buildLogoutRequest(
         Configuration $idpMetadata,
@@ -1148,7 +1148,7 @@ class SAML2
      * @param \SimpleSAML\Configuration $spMetadata The metadata of the SP.
      * @param string                   $consumerURL The Destination URL of the response.
      *
-     * @return \SAML2\LogoutRequest The SAML2 LogoutRequest corresponding to the given data.
+     * @return \SAML2\LogoutResponse The SAML2 LogoutResponse corresponding to the given data.
      */
     private static function buildResponse(
         Configuration $idpMetadata,
