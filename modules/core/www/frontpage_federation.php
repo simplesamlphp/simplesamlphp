@@ -26,7 +26,7 @@ if ($config->getBoolean('idpdisco.enableremember', false)) {
 
 
 $links_federation[] = array(
-    'href' => \SimpleSAML\Utils\HTTP::getBaseURL() . 'admin/metadata-converter.php',
+    'href' => \SimpleSAML\Utils\HTTP::getBaseURL().'admin/metadata-converter.php',
     'text' => '{core:frontpage:link_xmlconvert}',
 );
 
@@ -46,7 +46,7 @@ $metadataHosted = array();
 
 $metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
 
-$metaentries = array('hosted' => $metadataHosted, 'remote' => array() );
+$metaentries = array('hosted' => $metadataHosted, 'remote' => array());
 
 
 if ($isadmin) {
@@ -59,9 +59,10 @@ if ($config->getBoolean('enable.saml20-idp', false) === true) {
         $metaentries['hosted']['saml20-idp'] = $metadata->getMetaDataCurrent('saml20-idp-hosted');
         $metaentries['hosted']['saml20-idp']['metadata-url'] =
             $config->getBasePath().'saml2/idp/metadata.php?output=xhtml';
-        if ($isadmin)
+        if ($isadmin) {
             $metaentries['remote']['saml20-sp-remote'] = $metadata->getList('saml20-sp-remote');
-    } catch(Exception $e) {
+        }
+    } catch (Exception $e) {
         \SimpleSAML\Logger::error('Federation: Error loading saml20-idp: '.$e->getMessage());
     }
 }
@@ -70,9 +71,10 @@ if ($config->getBoolean('enable.shib13-idp', false) === true) {
         $metaentries['hosted']['shib13-idp'] = $metadata->getMetaDataCurrent('shib13-idp-hosted');
         $metaentries['hosted']['shib13-idp']['metadata-url'] =
             $config->getBasePath().'shib13/idp/metadata.php?output=xhtml';
-        if ($isadmin)
+        if ($isadmin) {
             $metaentries['remote']['shib13-sp-remote'] = $metadata->getList('shib13-sp-remote');
-    } catch(Exception $e) {
+        }
+    } catch (Exception $e) {
         \SimpleSAML\Logger::error('Federation: Error loading shib13-idp: ' . $e->getMessage());
     }
 }
@@ -83,9 +85,10 @@ if ($config->getBoolean('enable.adfs-idp', false) === true) {
             'adfs/idp/metadata.php',
             array('output' => 'xhtml')
         );
-        if ($isadmin)
+        if ($isadmin) {
             $metaentries['remote']['adfs-sp-remote'] = $metadata->getList('adfs-sp-remote');
-    } catch(Exception $e) {
+        }
+    } catch (Exception $e) {
         \SimpleSAML\Logger::error('Federation: Error loading adfs-idp: ' . $e->getMessage());
     }
 }
