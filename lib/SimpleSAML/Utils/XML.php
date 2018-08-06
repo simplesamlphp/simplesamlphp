@@ -432,8 +432,7 @@ class XML
             $config = \SimpleSAML\Configuration::getInstance();
             /** @var string $schemaPath */
             $schemaPath = $config->resolvePath('schemas');
-            $schemaPath .= './';
-            $schemaFile = $schemaPath.$schema;
+            $schemaFile = $schemaPath.'/'.$schema;
 
             $res = $dom->schemaValidate($schemaFile);
             if ($res) {
