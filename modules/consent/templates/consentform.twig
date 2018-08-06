@@ -12,18 +12,18 @@
     <p>{{ consent_purpose }}</p>
 {% endif %}
 
-<form id="consent_yes" action="{{ yesTarget|escape('url') }}">
+<form id="consent_yes" action="{{ yesTarget }}">
     {% if usestorage is defined %}
     <input type="checkbox" name="saveconsent"{% if checked %} checked="checked"{% endif %} value="1" />
     {{ '{consent:consent:remember}'|trans }}
     {% endif %}
 
-    <input type="hidden" name="StateId" value="{{ stateId|escape('url') }}" />
+    <input type="hidden" name="StateId" value="{{ stateId }}" />
     <button type="submit" name="yes" class="btn" id="yesbutton">{{ '{consent:consent:yes}'|trans }}</button>
 </form>
 
-<form id="consent_no" action="{{ noTarget|escape('url') }}">
-    <input type="hidden" name="StateId" value="{{ stateId|escape('url') }}" />
+<form id="consent_no" action="{{ noTarget }}">
+    <input type="hidden" name="StateId" value="{{ stateId }}" />
     <button type="submit" class="btn" name="no" id="nobutton">{{ '{consent:consent:no}'|trans }}</button>
 </form>
 
