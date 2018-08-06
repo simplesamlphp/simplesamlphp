@@ -108,6 +108,38 @@ $t->data['noTarget'] = SimpleSAML\Module::getModuleURL('consent/noconsent.php');
 $t->data['noData'] = array('StateId' => $id);
 $t->data['attributes'] = $attributes;
 $t->data['checked'] = $state['consent:checked'];
+$t->data['stateId'] = $id;
+
+$srcName = htmlspecialchars(is_array($srcName) ? $translator->t($srcName) : $srcName);
+$dstName = htmlspecialchars(is_array($dstName) ? $translator->t($dstName) : $dstName);
+
+$t->data['consent_attributes_header'] = $translator->t(
+    '{consent:consent:consent_attributes_header}',
+    array('SPNAME' => $dstName, 'IDPNAME' => $srcName)
+);
+
+$t->data['consent_accept'] = $translator->t(
+    '{consent:consent:consent_accept}',
+    array('SPNAME' => $dstName, 'IDPNAME' => $srcName)
+);
+
+if (array_key_exists('descr_purpose', $state['Destination'])) {
+    $t->data['consent_purpose'] = $translator->t(
+        '{consent:consent:consent_purpose}',
+        array(
+            'SPNAME' => $dstName,
+            'SPDESC' => $translator->getPreferredTranslation(
+                \SimpleSAML\Utils\Arrays::arrayize(
+                    $state['Destination']['descr_purpose'],
+                    'en'
+                )
+            ),
+        )
+    );
+}
+
+$t->data['srcName'] = $srcName;
+$t->data['dstName'] = $dstName;
 
 // Fetch privacypolicy
 if (array_key_exists('privacypolicy', $state['Destination'])) {
