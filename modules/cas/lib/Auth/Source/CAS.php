@@ -166,10 +166,8 @@ class CAS extends \SimpleSAML\Auth\Source
         {
             case 'validate':
                 return  $this->casValidate($ticket, $service);
-                break;
             case 'serviceValidate':
                 return $this->casServiceValidate($ticket, $service);
-                break;
             default:
                 throw new \Exception("validate or serviceValidate not specified");
         }

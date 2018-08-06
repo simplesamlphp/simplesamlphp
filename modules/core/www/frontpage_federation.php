@@ -75,7 +75,7 @@ if ($config->getBoolean('enable.shib13-idp', false) === true) {
             $metaentries['remote']['shib13-sp-remote'] = $metadata->getList('shib13-sp-remote');
         }
     } catch (Exception $e) {
-        \SimpleSAML\Logger::error('Federation: Error loading shib13-idp: ' . $e->getMessage());
+        \SimpleSAML\Logger::error('Federation: Error loading shib13-idp: '.$e->getMessage());
     }
 }
 if ($config->getBoolean('enable.adfs-idp', false) === true) {
@@ -89,7 +89,7 @@ if ($config->getBoolean('enable.adfs-idp', false) === true) {
             $metaentries['remote']['adfs-sp-remote'] = $metadata->getList('adfs-sp-remote');
         }
     } catch (Exception $e) {
-        \SimpleSAML\Logger::error('Federation: Error loading adfs-idp: ' . $e->getMessage());
+        \SimpleSAML\Logger::error('Federation: Error loading adfs-idp: '.$e->getMessage());
     }
 }
 

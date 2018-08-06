@@ -272,7 +272,6 @@ class PowerIdPDisco extends \SimpleSAML\XHTML\IdPDisco
         $idpList = $this->processMetadata($t, $idpList, $preferredIdP);
 
         $t->data['idplist'] = $idpList;
-        $faventry = null;
         foreach ($idpList as $tab => $slist) {
             if (!empty($preferredIdP) && array_key_exists($preferredIdP, $slist)) {
                 $t->data['faventry'] = $slist[$preferredIdP];

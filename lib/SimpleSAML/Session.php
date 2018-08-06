@@ -251,7 +251,6 @@ class Session implements \Serializable
         }
 
         // check if we have stored a session stored with the session handler
-        $session = null;
         try {
             $session = self::getSession();
         } catch (\Exception $e) {
