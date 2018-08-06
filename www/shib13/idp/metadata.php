@@ -89,7 +89,7 @@ try {
 
         $t->data['clipboard.js'] = true;
         $t->data['header'] = 'shib13-idp'; // TODO: Replace with headerString in 2.0
-        $t->data['headerString'] = $t->noop('metadata_shib13-idp');
+        $t->data['headerString'] = \SimpleSAML\Locale\Translate::noop('metadata_shib13-idp');
         $t->data['metaurl'] = \SimpleSAML\Utils\HTTP::addURLParameters(
             \SimpleSAML\Utils\HTTP::getSelfURLNoQuery(),
             array('output' => 'xml')

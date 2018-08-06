@@ -17,25 +17,25 @@ $links_config = array();
 $links_auth = array();
 $links_federation = array();
 
-if($config->getBoolean('idpdisco.enableremember', FALSE)) {
-	$links_federation[] = array(
-		'href' => 'cleardiscochoices.php',
-		'text' => '{core:frontpage:link_cleardiscochoices}',
-	);
+if ($config->getBoolean('idpdisco.enableremember', false)) {
+    $links_federation[] = array(
+        'href' => 'cleardiscochoices.php',
+        'text' => '{core:frontpage:link_cleardiscochoices}',
+    );
 }
 
 
 $links_federation[] = array(
-	'href' => \SimpleSAML\Utils\HTTP::getBaseURL() . 'admin/metadata-converter.php',
-	'text' => '{core:frontpage:link_xmlconvert}',
+    'href' => \SimpleSAML\Utils\HTTP::getBaseURL() . 'admin/metadata-converter.php',
+    'text' => '{core:frontpage:link_xmlconvert}',
 );
 
 $allLinks = array(
-	'links'      => &$links,
-	'welcome'    => &$links_welcome,
-	'config'     => &$links_config,
-	'auth'       => &$links_auth,
-	'federation' => &$links_federation,
+    'links' => &$links,
+    'welcome' => &$links_welcome,
+    'config' => &$links_config,
+    'auth' => &$links_auth,
+    'federation' => &$links_federation,
 );
 \SimpleSAML\Module::callHooks('frontpage', $allLinks);
 
@@ -50,37 +50,39 @@ $metaentries = array('hosted' => $metadataHosted, 'remote' => array() );
 
 
 if ($isadmin) {
-	$metaentries['remote']['saml20-idp-remote'] = $metadata->getList('saml20-idp-remote');
-	$metaentries['remote']['shib13-idp-remote'] = $metadata->getList('shib13-idp-remote');
+    $metaentries['remote']['saml20-idp-remote'] = $metadata->getList('saml20-idp-remote');
+    $metaentries['remote']['shib13-idp-remote'] = $metadata->getList('shib13-idp-remote');
 }
 
-if ($config->getBoolean('enable.saml20-idp', FALSE) === true) {
-	try {
-		$metaentries['hosted']['saml20-idp'] = $metadata->getMetaDataCurrent('saml20-idp-hosted');
-		$metaentries['hosted']['saml20-idp']['metadata-url'] = $config->getBasePath() .
-                                                               'saml2/idp/metadata.php?output=xhtml';
-		if ($isadmin)
-			$metaentries['remote']['saml20-sp-remote'] = $metadata->getList('saml20-sp-remote');
-	} catch(Exception $e) {
-        \SimpleSAML\Logger::error('Federation: Error loading saml20-idp: ' . $e->getMessage());
+if ($config->getBoolean('enable.saml20-idp', false) === true) {
+    try {
+        $metaentries['hosted']['saml20-idp'] = $metadata->getMetaDataCurrent('saml20-idp-hosted');
+        $metaentries['hosted']['saml20-idp']['metadata-url'] =
+            $config->getBasePath().'saml2/idp/metadata.php?output=xhtml';
+        if ($isadmin)
+            $metaentries['remote']['saml20-sp-remote'] = $metadata->getList('saml20-sp-remote');
+    } catch(Exception $e) {
+        \SimpleSAML\Logger::error('Federation: Error loading saml20-idp: '.$e->getMessage());
     }
 }
-if ($config->getBoolean('enable.shib13-idp', FALSE) === true) {
-	try {
-		$metaentries['hosted']['shib13-idp'] = $metadata->getMetaDataCurrent('shib13-idp-hosted');
-		$metaentries['hosted']['shib13-idp']['metadata-url'] = $config->getBasePath() .
-                                                               'shib13/idp/metadata.php?output=xhtml';
-		if ($isadmin)
-			$metaentries['remote']['shib13-sp-remote'] = $metadata->getList('shib13-sp-remote');
-	} catch(Exception $e) {
+if ($config->getBoolean('enable.shib13-idp', false) === true) {
+    try {
+        $metaentries['hosted']['shib13-idp'] = $metadata->getMetaDataCurrent('shib13-idp-hosted');
+        $metaentries['hosted']['shib13-idp']['metadata-url'] =
+            $config->getBasePath().'shib13/idp/metadata.php?output=xhtml';
+        if ($isadmin)
+            $metaentries['remote']['shib13-sp-remote'] = $metadata->getList('shib13-sp-remote');
+    } catch(Exception $e) {
         \SimpleSAML\Logger::error('Federation: Error loading shib13-idp: ' . $e->getMessage());
     }
 }
-if ($config->getBoolean('enable.adfs-idp', FALSE) === true) {
+if ($config->getBoolean('enable.adfs-idp', false) === true) {
     try {
         $metaentries['hosted']['adfs-idp'] = $metadata->getMetaDataCurrent('adfs-idp-hosted');
-        $metaentries['hosted']['adfs-idp']['metadata-url'] = \SimpleSAML\Module::getModuleURL('adfs/idp/metadata.php',
-                                                                                             array('output' => 'xhtml'));
+        $metaentries['hosted']['adfs-idp']['metadata-url'] = \SimpleSAML\Module::getModuleURL(
+            'adfs/idp/metadata.php',
+            array('output' => 'xhtml')
+        );
         if ($isadmin)
             $metaentries['remote']['adfs-sp-remote'] = $metadata->getList('adfs-sp-remote');
     } catch(Exception $e) {
@@ -89,14 +91,15 @@ if ($config->getBoolean('enable.adfs-idp', FALSE) === true) {
 }
 
 foreach ($metaentries['remote'] as $key => $value) {
-	if (empty($value)) {
-		unset($metaentries['remote'][$key]);
-	}
+    if (empty($value)) {
+        unset($metaentries['remote'][$key]);
+    }
 }
 
 $t = new \SimpleSAML\XHTML\Template($config, 'core:frontpage_federation.tpl.php');
+$translator = $t->getTranslator();
 
-$language = $t->getTranslator()->getLanguage()->getLanguage();
+$language = $translator->getLanguage()->getLanguage();
 $defaultLanguage = $config->getString('language.default', 'en');
 
 $translators = array(
@@ -132,18 +135,18 @@ foreach ($metaentries['remote'] as $key => $set) {
 
 # look up translated string
 $mtype = array(
-    'saml20-sp-remote' => $t->noop('{admin:metadata_saml20-sp}'),
-    'saml20-sp-hosted' => $t->noop('{admin:metadata_saml20-sp}'),
-    'saml20-idp-remote' => $t->noop('{admin:metadata_saml20-idp}'),
-    'saml20-idp-hosted' => $t->noop('{admin:metadata_saml20-idp}'),
-    'shib13-sp-remote' => $t->noop('{admin:metadata_shib13-sp}'),
-    'shib13-sp-hosted' => $t->noop('{admin:metadata_shib13-sp}'),
-    'shib13-idp-remote' => $t->noop('{admin:metadata_shib13-idp}'),
-    'shib13-idp-hosted' => $t->noop('{admin:metadata_shib13-idp}'),
-    'adfs-sp-remote' => $t->noop('{admin:metadata_adfs-sp}'),
-    'adfs-sp-hosted' => $t->noop('{admin:metadata_adfs-sp}'),
-    'adfs-idp-remote' => $t->noop('{admin:metadata_adfs-idp}'),
-    'adfs-idp-hosted' => $t->noop('{admin:metadata_adfs-idp}'),
+    'saml20-sp-remote' => $translator->noop('{admin:metadata_saml20-sp}'),
+    'saml20-sp-hosted' => $translator->noop('{admin:metadata_saml20-sp}'),
+    'saml20-idp-remote' => $translator->noop('{admin:metadata_saml20-idp}'),
+    'saml20-idp-hosted' => $translator->noop('{admin:metadata_saml20-idp}'),
+    'shib13-sp-remote' => $translator->noop('{admin:metadata_shib13-sp}'),
+    'shib13-sp-hosted' => $translator->noop('{admin:metadata_shib13-sp}'),
+    'shib13-idp-remote' => $translator->noop('{admin:metadata_shib13-idp}'),
+    'shib13-idp-hosted' => $translator->noop('{admin:metadata_shib13-idp}'),
+    'adfs-sp-remote' => $translator->noop('{admin:metadata_adfs-sp}'),
+    'adfs-sp-hosted' => $translator->noop('{admin:metadata_adfs-sp}'),
+    'adfs-idp-remote' => $translator->noop('{admin:metadata_adfs-idp}'),
+    'adfs-idp-hosted' => $translator->noop('{admin:metadata_adfs-idp}'),
 );
 
 $t->data['pageid'] = 'frontpage_federation';
@@ -156,7 +159,7 @@ $t->data['links_welcome'] = $links_welcome;
 $t->data['links_config'] = $links_config;
 $t->data['links_auth'] = $links_auth;
 $t->data['links_federation'] = $links_federation;
-$t->data['header'] = $t->getTranslator()->t('{core:frontpage:page_title}');
+$t->data['header'] = $translator->t('{core:frontpage:page_title}');
 
 $t->data['metadata_url'] = \SimpleSAML\Module::getModuleURL('core/show_metadata.php');
 $t->data['metaentries'] = $metaentries;
