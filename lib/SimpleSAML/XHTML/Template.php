@@ -658,8 +658,8 @@ class Template
 
 
     /**
-     * @param      $file
-     * @param null $otherConfig
+     * @param string $file
+     * @param \SimpleSAML\Configuration null $otherConfig
      *
      * @deprecated This method will be removed in SSP 2.0. Please use
      * \SimpleSAML\Locale\Translate::includeLanguageFile() instead.
