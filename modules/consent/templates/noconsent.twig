@@ -5,12 +5,12 @@
     <p>{{ noconsent_text }}</p>
 
     {% if resumeFrom %}
-    <p><a href="{{ resumeFrom|escape('url') }}">{{ '{consent:consent:noconsent_return}'|trans }}</a></p>
+    <p><a href="{{ resumeFrom }}">{{ '{consent:consent:noconsent_return}'|trans }}</a></p>
     {% endif %}
 
     {% if aboutService %}
-    <p><a href="{{ aboutService|escape('url') }}">{{ '{consent:consent:noconsent_goto_about}'|trans }}</a></p>
+    <p><a href="{{ aboutService }}">{{ '{consent:consent:noconsent_goto_about}'|trans }}</a></p>
     {% endif %}
 
-    <p><a href="{{ logoutLink|escape('url') }}">{{ noconsent_abort }}</a></p>
+    <p><a href="{{ logoutLink }}">{{ noconsent_abort }}</a></p>
 {% endblock %}
