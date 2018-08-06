@@ -19,7 +19,7 @@ $srcName = $this->data['srcName'];
 
 $this->data['header'] = $this->t('{consent:consent:consent_header}');
 $this->data['head'] = '<link rel="stylesheet" type="text/css" href="'.
-    SimpleSAML\Module::getModuleURL("consent/style.css").'" />'."\n";
+    SimpleSAML\Module::getModuleURL("consent/assets/consent.css").'" />'."\n";
 
 $this->includeAtTemplateBase('includes/header.php');
 ?>
