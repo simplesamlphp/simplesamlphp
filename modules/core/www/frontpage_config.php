@@ -159,6 +159,7 @@ $funcmatrix[] = array(
 );
 
 $t = new SimpleSAML_XHTML_Template($config, 'core:frontpage_config.tpl.php');
+$translator = $t->getTranslator();
 $t->data['pageid'] = 'frontpage_config';
 $t->data['isadmin'] = $isadmin;
 $t->data['loginurl'] = $loginurl;
@@ -175,9 +176,9 @@ $t->data['links_federation'] = $links_federation;
 $t->data['enablematrix'] = $enablematrix;
 $t->data['funcmatrix'] = $funcmatrix;
 $t->data['requiredmap'] = array(
-    'recommended' => $t->noop('{core:frontpage:recommended}'),
-    'required' => $t->noop('{core:frontpage:required}'),
-    'optional' => $t->noop('{core:frontpage:optional}'),
+    'recommended' => $translator->noop('{core:frontpage:recommended}'),
+    'required' => $translator->noop('{core:frontpage:required}'),
+    'optional' => $translator->noop('{core:frontpage:optional}'),
 );
 $t->data['version'] = $config->getVersion();
 $t->data['directory'] = dirname(dirname(dirname(dirname(__FILE__))));

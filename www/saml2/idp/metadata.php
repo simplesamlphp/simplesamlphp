@@ -220,7 +220,7 @@ try {
         $t->data['clipboard.js'] = true;
         $t->data['available_certs'] = $availableCerts;
         $t->data['header'] = 'saml20-idp'; // TODO: Replace with headerString in 2.0
-        $t->data['headerString'] = $t->noop('metadata_saml20-idp');
+        $t->data['headerString'] = \SimpleSAML\Locale\Translate::noop('metadata_saml20-idp');
         $t->data['metaurl'] = HTTP::getSelfURLNoQuery();
         $t->data['metadata'] = htmlspecialchars($metaxml);
         $t->data['metadataflat'] = htmlspecialchars($metaflat);
