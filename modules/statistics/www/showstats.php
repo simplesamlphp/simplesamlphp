@@ -46,10 +46,12 @@ $rule = $statrule->getRuleID();
 $t = new \SimpleSAML\XHTML\Template($config, 'statistics:statistics.tpl.php');
 $t->data['pageid'] = 'statistics';
 $t->data['header'] = 'stat';
-$t->data['available.rules'] = $ruleset->availableRulesNames();
-$t->data['selected.rule'] = $rule;
-$t->data['selected.rule2'] = $preferRule2;
+$t->data['available_rules'] = $ruleset->availableRulesNames();
+$t->data['selected_rule'] = $rule;
+$t->data['selected_rule2'] = $preferRule2;
 
+$t->data['post_d'] = getBaseURL($t, 'post', 'd');
+	
 try {
     $dataset = $statrule->getDataset($preferTimeRes, $preferTime);
     $dataset->setDelimiter($delimiter);
@@ -67,6 +69,7 @@ try {
         }
         exit;
     }
+
 } catch (\Exception $e) {
     $t->data['error'] = "No data available";
     $t->show();
@@ -135,17 +138,16 @@ $t->data['debugdata'] = $dataset->getDebugData();
 $t->data['results'] = $dataset->getResults();
 $t->data['summaryDataset'] = $dataset->getSummary();
 $t->data['topdelimiters'] = $dataset->getTopDelimiters();
-$t->data['availdelimiters'] = $dataset->availDelimiters();
-
-$t->data['delimiterPresentation'] = $dataset->getDelimiterPresentation();
 
 $t->data['post_rule'] = getBaseURL($t, 'post', 'rule');
 $t->data['post_rule2'] = getBaseURL($t, 'post', 'rule2');
-$t->data['post_d'] = getBaseURL($t, 'post', 'd');
 $t->data['post_res'] = getBaseURL($t, 'post', 'res');
 $t->data['post_time'] = getBaseURL($t, 'post', 'time');
 $t->data['get_times_prev'] = getBaseURL($t, 'get', 'time', $t->data['available_times_prev']);
 $t->data['get_times_next'] = getBaseURL($t, 'get', 'time', $t->data['available_times_next']);
+
+$t->data['availdelimiters'] = $dataset->availDelimiters();
+$t->data['delimiterPresentation'] = $dataset->getDelimiterPresentation();
 
 $t->data['jquery'] = array('core' => false, 'ui' => true, 'css' => true);
 
@@ -177,5 +179,6 @@ function getBaseURL($t, $type = 'get', $key = null, $value = null)
     if ($type === 'get') {
         return \SimpleSAML\Module::getModuleURL("statistics/showstats.php").'?'.http_build_query($vars, '', '&amp;');
     }
+
     return $vars;
 }
