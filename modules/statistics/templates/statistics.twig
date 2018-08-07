@@ -2,20 +2,11 @@
 {% extends "base.twig" %}
 
 {% block preload %}
-    <link href="{{ baseurlpath }}style.css" rel="stylesheet" />
+    <link href="{{ baseurlpath }}assets/statistics.css" rel="stylesheet" />
 {% endblock %}
 
 {% block postload %}
-<script type="text/javascript">
-    $(document).ready(function() {
-	$("#tabdiv").tabs();
-        $('ul.tabset_tabs li').click(
-            function() {
-                $("html, body").animate({ scrollTop: 0 }, "slow");
-            }
-        )
-    });
-</script>
+<script type="text/javascript" src="{{ baseurlpath }}assets/statistics.js"></script>
 {% endblock %}
 
 {% block content %}
@@ -48,6 +39,7 @@
                     {% for key, value in post_d %}
                     <input type="hidden" name="{{ key|escape('html') }}" value="{{ value|escape('html') }}">
                     {% endfor %}
+                    {% if availdelimiters %}
                     <select onchange="submit();" name="d">
                     {% for key, delim in availdelimiters %}
                         {% set delimName = delim %}
@@ -65,6 +57,7 @@
                         {% endif %}
                     {% endfor %}
                     </select>
+                    {% endif %}
                 </form>
             </td>
         </tr>
@@ -85,6 +78,7 @@
                     {% for key, value in post_res %}
                     <input type="hidden" name="{{ key|escape('html') }}" value="{{ value|escape('html') }}">
                     {% endfor %}
+                    {% if available_timeres %}
                     <select onchange="submit();" name="res">
                     {% for key, timeresname in available_timeres %}
                         {% if key == selected_timeres %}
@@ -94,6 +88,7 @@
                         {% endif %}
                     {% endfor %}
                     </select>
+                    {% endif %}
                 </form>
             </td>
             <td class="td_left">
@@ -101,6 +96,7 @@
                     {% for key, value in post_time %}
                     <input type="hidden" name="{{ key|escape('html') }}" value="{{ value|escape('html') }}">
                     {% endfor %}
+                    {% if available_times %}
                     <select onchange="submit();" name=time>
                     {% for key, timedescr in available_times %}
                         {% if key == selected_time %}
@@ -110,6 +106,7 @@
                         {% endif%}
                     {% endfor %}
                     </select>
+                    {% endif %}
                 </form>
             </td>
             {% if available_times_next %}
@@ -121,6 +118,7 @@
     </table>
 
     <div id="tabdiv">
+    {% if results %}
         <ul class="tabset_tabs">
             <li class="tab-link current" data-tab="graph"><a href="#graph">Graph</a></li>
             <li class="tab-link" data-tab="table"><a href="#table">Summary table</a></li>
@@ -218,5 +216,9 @@
                 {% endfor %}
             </table>
         </div>
+    {% else %}
+        <h4 align="center">{{ error }}</h4>
+        <p align="center"><a href="showstats.php">Clear selection</a></p>
+    {% endif %}
     </div>
 {% endblock %}

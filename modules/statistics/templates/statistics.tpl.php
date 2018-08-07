@@ -3,8 +3,8 @@ $this->data['header'] = 'SimpleSAMLphp Statistics';
 
 $this->data['jquery'] = array('core' => true, 'ui' => true, 'css' => true);
 
-$this->data['head'] = '<link rel="stylesheet" type="text/css" href="' . SimpleSAML\Module::getModuleURL("statistics/style.css") . '" />' . "\n";
-$this->data['head'] .= '<script type="text/javascript" src="' . SimpleSAML\Module::getModuleURL("statistics/javascript.js") . '"></script>' . "\n";
+$this->data['head'] = '<link rel="stylesheet" type="text/css" href="' . SimpleSAML\Module::getModuleURL("statistics/assets/statistics.css") . '" />' . "\n";
+$this->data['head'] .= '<script type="text/javascript" src="' . SimpleSAML\Module::getModuleURL("statistics/assets/statistics.js") . '"></script>' . "\n";
 
 $this->includeAtTemplateBase('includes/header.php');
 
@@ -18,11 +18,15 @@ echo '<tr><td class="selecttime_icon"><img src="' . SimpleSAML\Utils\HTTP::getBa
 // Select report
 echo '<td>';
 echo '<form action="#">';
-echo $this->data['post_rule'];
-if (!empty($this->data['available.rules'])) {
+
+foreach ($this->data['post_rule'] as $k => $v) {
+    echo '<input type="hidden" name="' . $k . '" value="'. htmlspecialchars($v) . '" />' . "\n";
+}
+
+if (!empty($this->data['available_rules'])) {
     echo '<select onchange="submit();" name="rule">';
-    foreach ($this->data['available.rules'] as $key => $rule) {
-        if ($key === $this->data['selected.rule']) {
+    foreach ($this->data['available_rules'] as $key => $rule) {
+        if ($key === $this->data['selected_rule']) {
             echo '<option selected="selected" value="' . $key . '">' . $rule['name'] . '</option>';
         } else {
             echo '<option value="' . $key . '">' . $rule['name'] . '</option>';
@@ -35,8 +39,12 @@ echo '</form></td>';
 // Select delimiter
 echo '<td class="td_right">';
 echo '<form action="#">';
-echo $this->data['post_d'];
-if(!empty($this->data['availdelimiters'])) {
+
+foreach($this->data['post_d'] as $k => $v) {
+    echo '<input type="hidden" name="' . $k . '" value="'. htmlspecialchars($v) . '" />' . "\n";
+}
+
+if (!empty($this->data['availdelimiters'])) {
     echo '<select onchange="submit();" name="d">';
     foreach ($this->data['availdelimiters'] as $key => $delim) {
         $delimName = $delim;
@@ -73,7 +81,11 @@ if (isset($this->data['available.times.prev'])) {
 
 echo '<td class="td_right">';
 echo '<form action="#">';
-echo $this->data['post_res'];
+
+foreach ($this->data['post_res'] as $k => $v) {
+    echo '<input type="hidden" name="' . $k . '" value="'. htmlspecialchars($v) . '" />' . "\n";
+}
+
 if (!empty($this->data['available.timeres'])) {
     echo '<select onchange="submit();" name="res">';
     foreach ($this->data['available.timeres'] as $key => $timeresname) {
@@ -89,7 +101,11 @@ echo '</form></td>';
 
 echo '<td class="td_left">';
 echo '<form action="#">';
-echo $this->data['post_time'];
+
+foreach ($this->data['post_time'] as $k => $v) {
+    echo '<input type="hidden" name="' . $k . '" value="'. htmlspecialchars($v) . '" />' . "\n";
+}
+
 if (!empty($this->data['available.times'])) {
     echo '<select onchange="submit();" name="time">';
     foreach ($this->data['available.times'] as $key => $timedescr) {
@@ -125,10 +141,14 @@ if (!empty($this->data['results'])){
 
     echo '<form action="#">';
     echo '<p class="p_right">Compare with total from this dataset ';
-    echo $this->data['post_rule2'];
+
+    foreach ($this->data['post_rule2'] as $k => $v) {
+        echo '<input type="hidden" name="' . $k . '" value="'. htmlspecialchars($v) . '" />' . "\n";
+    }
+
     echo '<select onchange="submit();" name="rule2">';
     echo '	<option value="_">None</option>';
-    foreach ($this->data['available.rules'] as $key => $rule) {
+    foreach ($this->data['available_rules'] as $key => $rule) {
         if ($key === $this->data['selected.rule2']) {
             echo '<option selected="selected" value="' . $key . '">' . $rule['name'] . '</option>';
         } else {
