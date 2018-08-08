@@ -103,27 +103,27 @@ and defaults to `consent`.
 
 Example config using PostgreSQL database:
 
-	90 => array(
-		'class'	=> 'consent:Consent', 
-		'store'	=> array(
-			'consent:Database', 
-			'dsn' => 'pgsql:host=sql.example.org;dbname=consent',
-			'username' => 'simplesaml',
-			'password' => 'sdfsdf',
-		),
-	),
+    90 => array(
+        'class'	=> 'consent:Consent', 
+        'store'	=> array(
+            'consent:Database', 
+            'dsn' => 'pgsql:host=sql.example.org;dbname=consent',
+            'username' => 'simplesaml',
+            'password' => 'sdfsdf',
+        ),
+    ),
 
 Example config using MySQL database:
 
-	90 => array(
-		'class'	=> 'consent:Consent', 
-		'store'	=> array(
-			'consent:Database', 
+    90 => array(
+        'class'	=> 'consent:Consent', 
+        'store'	=> array(
+            'consent:Database', 
             'dsn' => 'mysql:host=db.example.org;dbname=simplesaml',
-			'username' => 'simplesaml',
-			'password' => 'sdfsdf',
-		),
-	),
+            'username' => 'simplesaml',
+            'password' => 'sdfsdf',
+        ),
+    ),
 
 
 Options
