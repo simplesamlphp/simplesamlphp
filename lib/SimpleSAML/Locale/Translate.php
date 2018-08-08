@@ -343,7 +343,7 @@ class Translate
 
     /**
      * Include a translation inline instead of putting translations in dictionaries. This function is recommended to be
-     * used ONLU from variable data, or when the translation is already provided by an external source, as a database
+     * used ONLY for variable data, or when the translation is already provided by an external source, as a database
      * or in metadata.
      *
      * @param string       $tag The tag that has a translation
