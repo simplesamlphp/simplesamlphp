@@ -54,9 +54,6 @@ msgstr "(sem descrição)"
 msgid "{consentAdmin:consentadmin:service_providers_for}"
 msgstr "Fornecedores de Serviços para"
 
-msgid "{consentAdmin:consentadmin:sp_empty_name}"
-msgstr "(nome não especificado)"
-
 msgid "{consentAdmin:consentadmin:consentadmin_description2}"
 msgstr ""
 "<h3>Como remover o seu consentimento</h3> Retire a marca correspondente "

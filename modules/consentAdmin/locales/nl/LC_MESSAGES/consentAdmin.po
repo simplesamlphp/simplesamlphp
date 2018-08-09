@@ -54,9 +54,6 @@ msgstr "(geen omschrijving)"
 msgid "{consentAdmin:consentadmin:service_providers_for}"
 msgstr "Service Providers voor"
 
-msgid "{consentAdmin:consentadmin:sp_empty_name}"
-msgstr "(naam niet opgegeven)"
-
 msgid "{consentAdmin:consentadmin:consentadmin_description2}"
 msgstr ""
 "<h3>Hoe verwijderdt u toestemmingen</h3> Vinkt u het vakje af dat "

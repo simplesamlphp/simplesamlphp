@@ -54,9 +54,6 @@ msgstr "(ingen beskrivelse)"
 msgid "{consentAdmin:consentadmin:service_providers_for}"
 msgstr "Service Providers for"
 
-msgid "{consentAdmin:consentadmin:sp_empty_name}"
-msgstr "(navn ikke angivet)"
-
 msgid "{consentAdmin:consentadmin:consentadmin_description2}"
 msgstr ""
 "<h3>Sådan sletter du et samtykke</h3>Fjern fluebenet ud for tjenesten, "

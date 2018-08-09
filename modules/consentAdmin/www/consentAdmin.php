@@ -218,7 +218,6 @@ $template_sp_content = array();
 $template = new \SimpleSAML\XHTML\Template($config, 'consentAdmin:consentadmin.php', 'consentAdmin:consentadmin');
 $translator = $template->getTranslator();
 $translator->includeLanguageFile('attributes.php'); // attribute listings translated by this dictionary
-$sp_empty_name = $translator->getTag('sp_empty_name');
 $sp_empty_description = $translator->getTag('sp_empty_description');
 
 // Process consents for all SP
@@ -254,7 +253,7 @@ foreach ($all_sp_metadata as $sp_entityid => $sp_values) {
         } elseif (isset($sp_values['OrganizationDisplayName']) && is_array($sp_values['OrganizationDisplayName'])) {
             $sp_name = $sp_metadata['OrganizationDisplayName'];
         } else {
-            $sp_name = $sp_empty_name;
+            $sp_name = $sp_entityid;
         }
     }
 
