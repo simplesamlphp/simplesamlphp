@@ -318,7 +318,7 @@ class Consent extends \SimpleSAML\Auth\ProcessingFilter
                 $state['consent:store.attributeSet'] = $attributeSet;
             } catch (\Exception $e) {
                 Logger::error('Consent: Error reading from storage: '.$e->getMessage());
-                Logger::stats('Ccnsent failed');
+                Logger::stats('Consent failed');
                 Stats::log('consent:failed', $statsData);
             }
         } else {
