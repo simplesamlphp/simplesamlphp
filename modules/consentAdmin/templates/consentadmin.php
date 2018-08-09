@@ -1,7 +1,7 @@
 <?php 
     $this->data['head'] = '<link rel="stylesheet" type="text/css" href="'.SimpleSAML\Module::getModuleURL("consentAdmin/assets/css/consentAdmin.css").'" />'."\n";
-    $this->data['head'] .= '<script src="'.SimpleSAML\Module::getModuleURL("consentAdmin/assets/js/consentAdmin.js").'"></script>';
-    $this->data['head'] .= '<script src="'.SimpleSAML\Module::getModuleURL("consentAdmin/assets/js/consentSimpleAjax.js").'"></script>';
+    $this->data['head'] .= '<script type="text/javascript" src="'.SimpleSAML\Module::getModuleURL("consentAdmin/assets/js/consentAdmin.js").'"></script>';
+    $this->data['head'] .= '<script type="text/javascript" src="'.SimpleSAML\Module::getModuleURL("consentAdmin/assets/js/consentSimpleAjax.js").'"></script>';
     // default theme
     $this->includeAtTemplateBase('includes/header.php');
 ?>
@@ -37,7 +37,7 @@
 <tr class="$row_class">
 <td>
     <table>
-      <tr class="$row_class"><td><span class='caSPName'><span title='$spDescription'>$htmlSpName</span>&emsp;<span style="font-size: 80%;"onclick="javascript:toggleShowAttributes('$show_spid');"><span id=showing_$show_spid >$show_text</span><span id=hiding_$show_spid style='display:none;'>$hide_text</span> $attributes_text</span></span></td>
+      <tr class="$row_class"><td><span class='caSPName'><span title='$spDescription'>$htmlSpName</span>&emsp;<span style="font-size: 80%;"onclick="javascript:toggleShowAttributes('$show_spid');"><span id='showing_$show_spid'>$show_text</span><span id='hiding_$show_spid' style='display:none;'>$hide_text</span>$attributes_text</span></span></td></tr>
       <tr><td colspan="2" class="caAttributes"><div id="attributes_$show_spid" style="display: none;">
 TRSTART;
                 $attributes = $spValues['attributes_by_sp'];
@@ -67,9 +67,9 @@ TRSTART;
   </table>
 </td>
 
-<td class='caAllowed'><input onClick="javascript:checkConsent(this.value, $show_spid, this.checked)" value='$consentValue' type='checkbox' $checkedAttr><span id="consentText$show_spid">$consentText</span></td>
+<td class='caAllowed'><input onclick="javascript:checkConsent(this.value, $show_spid, this.checked)" value='$consentValue' type='checkbox' $checkedAttr /><span id="consentText$show_spid">$consentText</span></td>
 TRSTART;
-                echo "</td></tr>\n";
+                echo "</tr>\n";
                 $show_spid++;
             }
             ?>
