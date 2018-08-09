@@ -84,7 +84,7 @@ span.showhide {
 <tr class="$row_class">
 <td>
     <table>
-      <tr class="$row_class"><td><span class='caSPName'><span title='$spDescription'>$htmlSpName</span>&emsp;<span style="font-size: 80%;"onclick="javascript:toggleShowAttributes('$show_spid');"><span id=showing_$show_spid >$show_text</span><span id=hiding_$show_spid style='display:none;'>$hide_text</span> $attributes_text</span></span></td>
+      <tr class="$row_class"><td><span class='caSPName'><span title='$spDescription'>$htmlSpName</span>&emsp;<span style="font-size: 80%;"onclick="javascript:toggleShowAttributes('$show_spid');"><span id='showing_$show_spid'>$show_text</span><span id='hiding_$show_spid' style='display:none;'>$hide_text</span> $attributes_text</span></span></td>
       <tr><td colspan="2" class="caAttributes"><div id="attributes_$show_spid" style="display: none;">
 TRSTART;
                 $attributes = $spValues['attributes_by_sp'];
@@ -114,9 +114,9 @@ TRSTART;
   </table>
 </td>
 
-<td class='caAllowed'><input onClick="javascript:checkConsent(this.value, $show_spid, this.checked)" value='$consentValue' type='checkbox' $checkedAttr><span id="consentText$show_spid">$consentText</span></td>
+<td class='caAllowed'><input onclick="javascript:checkConsent(this.value, $show_spid, this.checked)" value='$consentValue' type='checkbox' $checkedAttr /><span id="consentText$show_spid">$consentText</span></td>
 TRSTART;
-            echo "</td></tr>\n";
+            echo "</tr>\n";
             $show_spid++;
             }
             ?>
