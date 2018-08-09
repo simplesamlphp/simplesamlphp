@@ -268,6 +268,13 @@ foreach ($all_sp_metadata as $sp_entityid => $sp_values) {
     // Add a URL to the service if present in metadata
     $sp_service_url = isset($sp_metadata['ServiceURL']) ? $sp_metadata['ServiceURL'] : null;
 
+    // Translate SP name and description
+    $translator->includeInlineTranslation('spname', $sp_name);
+    $translator->includeInlineTranslation('spdescription', $sp_description);
+
+    $sp_name = $translator->getPreferredTranslation($translator->getTag('spname'));
+    $sp_description = $translator->getPreferredTranslation($translator->getTag('spdescription'));
+
     // Fill out array for the template
     $sp_list[$sp_entityid] = array(
         'spentityid'       => $sp_entityid,

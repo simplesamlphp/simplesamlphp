@@ -23,14 +23,12 @@
             $hide_text = $this->t('{consentAdmin:consentadmin:hide}');
             $attributes_text = $this->t('{consentAdmin:consentadmin:attributes_text}');
             foreach ($spList as $spName => $spValues) {
-                $this->getTranslator()->includeInlineTranslation('spname', $spValues['name']);
-                $this->getTranslator()->includeInlineTranslation('spdescription', $spValues['description']);
                 if (!is_null($spValues['serviceurl'])) {
-                    $htmlSpName = '<a href="'.$spValues['serviceurl'].'" style="color: black; font-weight: bold;">'.htmlspecialchars($this->t('spname', array(), false, true)).'</a>';
+                    $htmlSpName = '<a href="'.$spValues['serviceurl'].'" style="color: black; font-weight: bold;">'.htmlspecialchars($spValues['name']).'</a>';
                 } else {
-                    $htmlSpName = htmlspecialchars($this->t('spname', array(), false, true));
+                    $htmlSpName = htmlspecialchars($spValues['name']);
                 }
-                $spDescription = htmlspecialchars($this->t('spdescription', array(), false, true));
+                $spDescription = htmlspecialchars($spValues['description']);
                 $checkedAttr = $spValues['consentStatus'] == 'ok' ? 'checked="checked"' : '';
                 $consentValue = $spValues['consentValue'];
                 $consentText = $spValues['consentStatus'] == 'changed' ? "attributes has changed" : "";
