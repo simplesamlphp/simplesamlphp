@@ -229,6 +229,17 @@ foreach ($all_sp_metadata as $sp_entityid => $sp_values) {
     list($targeted_id, $attribute_hash, $attributes_new) = driveProcessingChain($idp_metadata, $source, $sp_metadata,
         $sp_entityid, $attributes, $userid, $hashAttributes, $excludeAttributes);
 
+    // Translate attribute-names
+    foreach ($attributes_new as $orig_name => $value) {
+        if (isset($template->data['attribute_'.htmlspecialchars(strtolower($orig_name))])) {
+            $old_name = $template->data['attribute_'.htmlspecialchars(strtolower($orig_name))];
+        }
+        $name = $translator->getAttributeTranslation(strtolower($orig_name)); // translate
+
+        $attributes_new[$name] = $value;
+        unset($attributes_new[$orig_name]);
+    }
+
     // Check if consent exists
     if (array_key_exists($targeted_id, $user_consent)) {
         $sp_status = "changed";

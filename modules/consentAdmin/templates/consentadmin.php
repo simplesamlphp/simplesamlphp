@@ -47,10 +47,6 @@ TRSTART;
                 echo "\n<ul>\n";
                 foreach ($attributes as $name => $value) {
 
-                if (isset($this->data['attribute_'.htmlspecialchars(strtolower($name))])) {
-                    $name = $this->data['attribute_'.htmlspecialchars(strtolower($name))];
-                }
-                $name = $this->getTranslator()->getAttributeTranslation($name); // translate
                 if (sizeof($value) > 1) {
                         echo "<li>".htmlspecialchars($name).":\n<ul>\n";
                         foreach ($value as $v) {
