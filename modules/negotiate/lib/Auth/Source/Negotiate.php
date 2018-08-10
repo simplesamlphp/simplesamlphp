@@ -238,22 +238,19 @@ class Negotiate extends \SimpleSAML\Auth\Source
      */
     protected function sendNegotiate($params)
     {
+        $config = \SimpleSAML\Configuration::getInstance();
+
         $url = htmlspecialchars(\SimpleSAML\Module::getModuleURL('negotiate/backend.php', $params));
         $json_url = json_encode($url);
 
         header('HTTP/1.1 401 Unauthorized');
         header('WWW-Authenticate: Negotiate', false);
-        echo <<<EOF
-<html>
- <head>
-  <script type="text/javascript">window.location = $json_url</script>
-  <title>Redirect to login</title>
- </head>
-<body>
- <p>Your browser seems to have Javascript disabled. Please click <a href="$url">here</a>.</p>
-</body>
-</html>
-EOF;
+
+        $t = new \SimpleSAML\XHTML\Template($config, 'negotiate:redirect.twig');
+        $t->data['baseurlpath'] = \SimpleSAML\Module::getModuleUrl('negotiate');
+        $t->data['url'] = $url;
+        $t->data['json_url'] = $json_url;
+        $t->show();
     }
 
 
