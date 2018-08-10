@@ -167,6 +167,9 @@ $hashed_user_id = \SimpleSAML\Module\consent\Auth\Process\Consent::getHashedUser
 
 // If a checkbox have been clicked
 if ($action !== null && $sp_entityid !== null) {
+    // init template to enable translation of status messages
+    $template = new \SimpleSAML\XHTML\Template($config, 'consentAdmin:consentadminajax.php', 'consentAdmin:consentadmin');
+
     // Get SP metadata
     $sp_metadata = $metadata->getMetaData($sp_entityid, 'saml20-sp-remote');
 
@@ -178,9 +181,9 @@ if ($action !== null && $sp_entityid !== null) {
     if ($action == 'true') {
         $isStored = $consent_storage->saveConsent($hashed_user_id, $targeted_id, $attribute_hash);
         if ($isStored) {
-            $res = "added";
+            $res = $translator->t("added");
         } else {
-            $res = "updated";
+            $res = $translator->t("updated");
         }
         // Remove consent
     } else {
@@ -188,16 +191,14 @@ if ($action !== null && $sp_entityid !== null) {
             // Got consent, so this is a request to remove it
             $rowcount = $consent_storage->deleteConsent($hashed_user_id, $targeted_id);
             if ($rowcount > 0) {
-                $res = "removed";
+                $res = $translator->t("removed");
             }
             // Unknown action (should not happen)
         } else {
             \SimpleSAML\Logger::info('consentAdmin: unknown action');
-            $res = "unknown";
+            $res = $translator->t("unknown");
         }
     }
-    // init template to enable translation of status messages
-    $template = new \SimpleSAML\XHTML\Template($config, 'consentAdmin:consentadminajax.php', 'consentAdmin:consentadmin');
     $template->data['res'] = $res;
     $template->show();
     exit;
