@@ -12,9 +12,11 @@
 if (!array_key_exists('AuthState', $_REQUEST)) {
     throw new \SimpleSAML\Error\BadRequest('Missing AuthState parameter.');
 }
+$authStateId = $_REQUEST['AuthState'];
 
 $globalConfig = \SimpleSAML\Configuration::getInstance();
 $t = new \SimpleSAML\XHTML\Template($globalConfig, 'authYubiKey:yubikeylogin.php');
+$translator = $t->getTranslator();
 
 $errorCode = null;
 if (array_key_exists('otp', $_REQUEST)) {
@@ -25,8 +27,10 @@ if (array_key_exists('otp', $_REQUEST)) {
     $t->data['errorDesc'] = $errorCodes['desc'][$errorCode];
 }
 
+$t->data['header'] = $translator->t('{authYubiKey:yubikey:header}');
+$t->data['autofocus'] = 'otp';
 $t->data['errorCode'] = $errorCode;
-$t->data['stateParams'] = array('AuthState' => $_REQUEST['authStateId']);
+$t->data['stateParams'] = array('AuthState' => $authStateId);
 $t->data['logoUrl'] = \SimpleSAML\Module::getModuleURL('authYubiKey/resources/logo.jpg');
 $t->data['devicepicUrl'] = \SimpleSAML\Module::getModuleURL('authYubiKey/resources/yubikey.jpg');
 $t->show();
