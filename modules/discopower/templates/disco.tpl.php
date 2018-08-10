@@ -1,9 +1,6 @@
 <?php
 
-if(!array_key_exists('header', $this->data)) {
-	$this->data['header'] = 'selectidp';
-}
-$this->data['header'] = $this->t($this->data['header']);
+$this->data['header'] = $this->t('selectidp');
 $this->data['jquery'] = array('core' => TRUE, 'ui' => TRUE, 'css' => TRUE);
 
 $this->data['head'] = '<link rel="stylesheet" media="screen" type="text/css" href="' . SimpleSAML\Module::getModuleUrl('discopower/style.css')  . '" />';
