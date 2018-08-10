@@ -1,13 +1,11 @@
 <?php
-$this->data['header'] = $this->t('{authYubiKey:yubikey:header}');
-$this->data['autofocus'] = 'otp';
 
 $this->includeAtTemplateBase('includes/header.php');
 
 ?>
 
 <?php
-if ($this->data['errorcode'] !== NULL) {
+if ($this->data['errorCode'] !== null) {
 ?>
 	<div style="border-left: 1px solid #e8e8e8; border-bottom: 1px solid #e8e8e8; background: #f5f5f5">
 		<img src="/<?php echo $this->data['baseurlpath']; ?>resources/icons/experience/gtk-dialog-error.48x48.png" class="float-l" style="margin: 15px" alt="" />
@@ -19,11 +17,11 @@ if ($this->data['errorcode'] !== NULL) {
 }
 ?>
 
-	<img style="float: right" src="<?php echo($this->data['logo_url']); ?>" alt="" />
-	<img style="clear: right; float: right" src="<?php echo($this->data['devicepic_url']); ?>" alt="YubiKey" />
+	<img style="float: right" src="<?php echo($this->data['logoUrl']); ?>" alt="" />
+	<img style="clear: right; float: right" src="<?php echo($this->data['devicepicUrl']); ?>" alt="YubiKey" />
 
 
-	<h2 style=""><?php echo $this->t('{authYubiKey:yubikey:header}'); ?></h2>
+	<h2 style=""><?php echo $this->data['header']; ?></h2>
 
 	<form action="?" method="post" name="f">
 
@@ -35,8 +33,8 @@ if ($this->data['errorcode'] !== NULL) {
 
 
 <?php
-foreach ($this->data['stateparams'] as $name => $value) {
-	echo('<input type="hidden" name="' . htmlspecialchars($name) . '" value="' . htmlspecialchars($value) . '" />');
+foreach ($this->data['stateParams'] as $name => $value) {
+    echo '<input type="hidden" name="'.htmlspecialchars($name).'" value="'.htmlspecialchars($value).'" />';
 }
 ?>
 
