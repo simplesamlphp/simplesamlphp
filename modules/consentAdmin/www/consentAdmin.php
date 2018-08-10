@@ -218,6 +218,7 @@ $template_sp_content = array();
 $template = new \SimpleSAML\XHTML\Template($config, 'consentAdmin:consentadmin.php', 'consentAdmin:consentadmin');
 $translator = $template->getTranslator();
 $translator->includeLanguageFile('attributes'); // attribute listings translated by this dictionary
+
 $sp_empty_description = $translator->getTag('sp_empty_description');
 
 // Process consents for all SP
