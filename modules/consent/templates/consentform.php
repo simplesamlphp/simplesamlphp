@@ -59,11 +59,7 @@ if ($this->data['sppp'] !== false) {
     echo "</p>";
 }
 
-echo '<h3 id="attributeheader">'.
-    $this->t(
-        '{consent:consent:consent_attributes_header}',
-        array('SPNAME' => $dstName, 'IDPNAME' => $srcName)
-    ).'</h3>';
+echo '<h3 id="attributeheader">'.$this->data['consent_attributes_header'].'</h3>';
 
 echo $this->data['attributes_html'];
 
