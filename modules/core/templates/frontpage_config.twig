@@ -35,11 +35,7 @@
     {% if warnings is defined and warnings is not empty %}
     <h2>{{ '{core:frontpage:warnings}'|trans|escape('html') }}</h2>
     {% for key, warning in warnings %}
-    {% if warning is iterable %}
-    <div class="caution">{{ warning[0]|trans(warning[1], "app")|raw }}</div>
-    {% else %}
-    <div class="caution">{{ warning|trans|raw }}</div>
-    {% endif %}
+    <div class="caution">{{ warning|raw }}</div>
     {% endfor %}
     {% endif %}
 

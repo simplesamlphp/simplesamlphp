@@ -67,11 +67,7 @@ if ($this->data['isadmin']) {
 		echo '<h2>' . $this->t('{core:frontpage:warnings}') . '</h2>';
 
 		foreach($this->data['warnings'] AS $warning) {
-			if (is_array($warning)) {
-				echo '<div class="caution">' . $this->t($warning[0], $warning[1]) . '</div>';
-			} else {
-				echo '<div class="caution">'.$this->t($warning).'</div>';
-			}
+			echo '<div class="caution">'.$warning.'</div>';
 		}
 	}
 ?>

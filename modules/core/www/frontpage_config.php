@@ -164,6 +164,14 @@ $t->data['pageid'] = 'frontpage_config';
 $t->data['header'] = $translator->t('{core:frontpage:page_title}');
 $t->data['isadmin'] = $isadmin;
 $t->data['loginurl'] = $loginurl;
+
+foreach ($warnings as &$warning) {
+    if (is_array($warning)) {
+        $warning = $translator->t($warning[0], $warning[1]);
+    } else {
+        $warning = $translator->t($warning);
+    }
+}
 $t->data['warnings'] = $warnings;
 
 
