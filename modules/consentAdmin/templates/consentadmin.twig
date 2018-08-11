@@ -7,7 +7,6 @@
 
 {% block postload %}
 <script src="{{ baseurlpath }}assets/js/consentAdmin.js"></script>
-<script src="{{ baseurlpath }}assets/js/consentSimpleAjax.js"></script>
 {% endblock %}
 
 {% block content %}
@@ -36,18 +35,18 @@
                 {% if spValues.serviceurl is defined %}
                     {{ spValues.name|escape('html') }}
                 {% else %}
-                    <a href="{{ spValues.serviceurl }}" style="color: black; font-weight: bold">{{ spValues.name|escape('html') }}</a>
+                    <a class="serviceUrl" href="{{ spValues.serviceurl }}">{{ spValues.name|escape('html') }}</a>
                 {% endif %}
                 </span>
-                <span style="font-size: 80%" onclick="javascript:toggleShowAttributes({{ loop.index0 }});">
+                <span class="show_hide" id="show_hide_{{ loop.index0 }}">
                     <span id="showing_{{ loop.index0 }}">{{ '{consentAdmin:consentadmin:show}'|trans }}</span>
-                    <span id="hiding_{{ loop.index0 }}" style="display: none">{{ '{consentAdmin:consentadmin:hide}'|trans }}</span>
+                    <span id="hiding_{{ loop.index0 }}">{{ '{consentAdmin:consentadmin:hide}'|trans }}</span>
                     {{ '{consentAdmin:consentadmin:attributes_text}'|trans }}
                 </span>
             </span>
         </td>
         <td class="caAttributes">
-            <div id="attributes_{{ loop.index0 }}" style="display: none">
+            <div id="attributes_{{ loop.index0 }}">
             {% if showDescription %}
                 <p>{{ '{consentAdmin:consentadmin:consentadmin_purpose}'|trans }}{{ spValues.description|escape('html') }}</p>
             {% endif %}
@@ -69,7 +68,7 @@
             </div>
         </td>
         <td class="caAllowed">
-            <input onclick="javascript:checkConsent(this.value, {{ loop.index0 }}, this.checked)" value='{{ spValues.consentValue }}' type='checkbox'{% if spValues.consentStatus == 'ok'%} checked="checked"{% endif %} /><span id="consentText{{ loop.index0 }}">{% if spValues.consentStatus == 'changed' %}attributes has changed{% endif %}</span>
+            <input class="checkbox" id="checkbox_{{ loop.index0 }}" value='{{ spValues.consentValue }}' type='checkbox'{% if spValues.consentStatus == 'ok'%} checked="checked"{% endif %} /><span id="consentText_{{ loop.index0 }}">{% if spValues.consentStatus == 'changed' %}attributes has changed{% endif %}</span>
         </td>
     </tr>
 {% endfor %}

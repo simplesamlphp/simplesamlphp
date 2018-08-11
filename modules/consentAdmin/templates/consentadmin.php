@@ -1,7 +1,6 @@
 <?php 
     $this->data['head'] = '<link rel="stylesheet" type="text/css" href="'.SimpleSAML\Module::getModuleURL("consentAdmin/assets/css/consentAdmin.css").'" />'."\n";
     $this->data['head'] .= '<script type="text/javascript" src="'.SimpleSAML\Module::getModuleURL("consentAdmin/assets/js/consentAdmin.js").'"></script>';
-    $this->data['head'] .= '<script type="text/javascript" src="'.SimpleSAML\Module::getModuleURL("consentAdmin/assets/js/consentSimpleAjax.js").'"></script>';
     // default theme
     $this->includeAtTemplateBase('includes/header.php');
 ?>
@@ -13,7 +12,7 @@
             <table>
             <tr>
                 <th width="80%"><?php echo $this->t('{consentAdmin:consentadmin:service_provider_header}') ?></th>
-                <th width="140"><?php echo $this->t('{consentAdmin:consentadmin:status_header}') ?></th>
+                <th><?php echo $this->t('{consentAdmin:consentadmin:status_header}') ?></th>
             </tr>
             <?php
             $spList = $this->data['spList'];
@@ -23,7 +22,7 @@
             $attributes_text = $this->t('{consentAdmin:consentadmin:attributes_text}');
             foreach ($spList as $spName => $spValues) {
                 if (!is_null($spValues['serviceurl'])) {
-                    $htmlSpName = '<a href="'.$spValues['serviceurl'].'" style="color: black; font-weight: bold;">'.htmlspecialchars($spValues['name']).'</a>';
+                    $htmlSpName = '<a class="serviceUrl" href="'.$spValues['serviceurl'].'">'.htmlspecialchars($spValues['name']).'</a>';
                 } else {
                     $htmlSpName = htmlspecialchars($spValues['name']);
                 }
@@ -36,8 +35,8 @@
 <tr class="$row_class">
 <td>
     <table>
-      <tr class="$row_class"><td><span class='caSPName'><span title='$spDescription'>$htmlSpName</span>&emsp;<span style="font-size: 80%;"onclick="javascript:toggleShowAttributes('$show_spid');"><span id='showing_$show_spid'>$show_text</span><span id='hiding_$show_spid' style='display:none;'>$hide_text</span>$attributes_text</span></span></td></tr>
-      <tr><td colspan="2" class="caAttributes"><div id="attributes_$show_spid" style="display: none;">
+      <tr class="$row_class"><td><span class='caSPName'><span title='$spDescription'>$htmlSpName</span>&emsp;<span class="show_hide" id="show_hide_$show_spid"><span id='showing_$show_spid'>$show_text</span><span id='hiding_$show_spid'>$hide_text</span> $attributes_text</span></span></td></tr>
+      <tr><td colspan="2" class="caAttributes"><div id="attributes_$show_spid">
 TRSTART;
                 $attributes = $spValues['attributes_by_sp'];
                 if ($this->data['showDescription']) {
@@ -62,7 +61,7 @@ TRSTART;
   </table>
 </td>
 
-<td class='caAllowed'><input onclick="javascript:checkConsent(this.value, $show_spid, this.checked)" value='$consentValue' type='checkbox' $checkedAttr /><span id="consentText$show_spid">$consentText</span></td>
+<td class='caAllowed'><input id="checkbox_$show_spid" class="checkbox" value='$consentValue' type='checkbox' $checkedAttr /><span id="consentText_$show_spid">$consentText</span></td>
 TRSTART;
                 echo "</tr>\n";
                 $show_spid++;
