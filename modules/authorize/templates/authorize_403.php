@@ -18,9 +18,9 @@ $this->includeAtTemplateBase('includes/header.php');
 <h1><?php echo $this->data['403_header']; ?></h1>
 <p><?php echo $this->data['403_text']; ?></p>
 <?php
-if (isset($this->data['LogoutURL'])) {
+if (isset($this->data['logoutURL'])) {
 ?>
-<p><a href="<?php echo htmlspecialchars($this->data['LogoutURL']); ?>"><?php echo $this->t('{status:logout}'); ?></a></p>
+<p><a href="<?php echo htmlspecialchars($this->data['logoutURL']); ?>"><?php echo $this->t('{status:logout}'); ?></a></p>
 <?php
 }
 ?>
