@@ -270,7 +270,7 @@ class ProcessingChain
     /**
      * Process the given state passivly.
      *
-     * Modules with user interaction are expected to throw an \SimpleSAML\Error\NoPassive exception
+     * Modules with user interaction are expected to throw an \SimpleSAML\Module\saml\Error\NoPassive exception
      * which are silently ignored. Exceptions of other types are passed further up the call stack.
      *
      * This function will only return if processing completes.
@@ -299,7 +299,10 @@ class ProcessingChain
             try {
                 $filter->process($state);
             } catch (\SimpleSAML\Error\NoPassive $e) {
+                // @deprecated will be removed in 2.0
                 // Ignore \SimpleSAML\Error\NoPassive exceptions
+            } catch (\SimpleSAML\Module\saml\Error\NoPassive $e) {
+                // Ignore \SimpleSAML\Module\saml\Error\NoPassive exceptions
             }
         }
     }
