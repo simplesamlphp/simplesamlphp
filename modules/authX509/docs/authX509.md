@@ -47,9 +47,9 @@ example authsources.php entry:
     'x509' => array(
         'authX509:X509userCert',
         'hostname' => 'ldaps://ldap.example.net',
-        'enable_tls' => FALSE,
-        'attributes' => array("cn", "uid", "mail", "ou", "sn"),
-        'search.enable' => TRUE,
+        'enable_tls' => false,
+        'attributes' => array('cn', 'uid', 'mail', 'ou', 'sn'),
+        'search.enable' => true,
         'search.attributes' => array('uid', 'mail'),
         'search.base' => 'dc=example,dc=net',
         'authX509:x509attributes' => array('UID' => 'uid'),
