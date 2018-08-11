@@ -47,6 +47,9 @@ msgstr "Username"
 msgid "{login:processing}"
 msgstr "Processing..."
 
+msgid "Back"
+msgstr "Back"
+
 msgid "{errors:title_METADATA}"
 msgstr "Error loading metadata"
 
