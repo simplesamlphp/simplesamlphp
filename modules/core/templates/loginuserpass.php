@@ -159,14 +159,13 @@ if ($this->data['errorcode'] !== null) {
             <tr id="submit">
                 <td class="loginicon"></td><td></td>
                 <td>
-                    <button class="btn"
-                            onclick="this.value='<?php echo $this->t('{login:processing}'); ?>';
-                                this.disabled=true; this.form.submit(); return true;" tabindex="6">
+                    <button id="submit_button" class="btn" tabindex="6">
                         <?php echo $this->t('{login:login_button}'); ?>
                     </button>
                 </td>
             </tr>
         </table>
+        <input type="hidden" id="processing_trans" value="<?php echo $this->t('{login:processing}'); ?>" />
         <?php
         foreach ($this->data['stateparams'] as $name => $value) {
             echo('<input type="hidden" name="'.htmlspecialchars($name).'" value="'.htmlspecialchars($value).'" />');
