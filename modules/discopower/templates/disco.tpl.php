@@ -3,10 +3,10 @@
 $this->data['header'] = $this->t('selectidp');
 $this->data['jquery'] = array('core' => TRUE, 'ui' => TRUE, 'css' => TRUE);
 
-$this->data['head'] = '<link rel="stylesheet" media="screen" type="text/css" href="' . SimpleSAML\Module::getModuleUrl('discopower/style.css')  . '" />';
+$this->data['head'] = '<link rel="stylesheet" media="screen" type="text/css" href="' . SimpleSAML\Module::getModuleUrl('discopower/assets/css/style.css')  . '" />';
 
-$this->data['post'] = '<script type="text/javascript" src="' . SimpleSAML\Module::getModuleUrl('discopower/js/jquery.livesearch.js')  . '"></script>';
-$this->data['post'] .= '<script type="text/javascript" src="' . SimpleSAML\Module::getModuleUrl('discopower/js/quicksilver.js')  . '"></script>';
+$this->data['post'] = '<script type="text/javascript" src="' . SimpleSAML\Module::getModuleUrl('discopower/assets/js/jquery.livesearch.js')  . '"></script>';
+$this->data['post'] .= '<script type="text/javascript" src="' . SimpleSAML\Module::getModuleUrl('discopower/assets/js/quicksilver.js')  . '"></script>';
 
 
 

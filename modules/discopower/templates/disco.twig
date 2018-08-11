@@ -2,11 +2,11 @@
 {% extends "base.twig" %}
 
 {% block preload %}
-    <link href="{{ baseurlpath }}style.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="{{ baseurlpath }}assets/css/style.css" rel="stylesheet" type="text/css" media="screen" />
 {% endblock %}
 {% block postload %}
-    <script type="text/javascript" src="{{ baseurlpath }}js/jquery.livesearch.js"></script>
-    <script type="text/javascript" src="{{ baseurlpath }}js/{{ score }}.js"></script>
+    <script type="text/javascript" src="{{ baseurlpath }}assets/js/jquery.livesearch.js"></script>
+    <script type="text/javascript" src="{{ baseurlpath }}assets/js/{{ score }}.js"></script>
     {{ search|raw }}
 {% endblock %}
 
