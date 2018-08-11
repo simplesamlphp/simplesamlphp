@@ -118,9 +118,6 @@ $onLoad = '';
 if (array_key_exists('autofocus', $this->data)) {
     $onLoad .= 'SimpleSAML_focus(\'' . $this->data['autofocus'] . '\');';
 }
-if (isset($this->data['onLoad'])) {
-    $onLoad .= $this->data['onLoad'];
-}
 
 if ($onLoad !== '') {
     $onLoad = ' onload="' . $onLoad . '"';
