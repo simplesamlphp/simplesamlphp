@@ -2,7 +2,7 @@
 {% extends "base.twig" %}
 
 {% block preload %}
-    <link href="{{ baseurlpath }}assets/css/style.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="{{ baseurlpath }}assets/css/style.css" rel="stylesheet" type="text/css" media="screen">
 {% endblock %}
 {% block postload %}
     <script type="text/javascript" src="{{ baseurlpath }}assets/js/jquery.livesearch.js"></script>
@@ -15,11 +15,11 @@
     <div class="favourite">{{ '{disco:previous_auth}'|trans }}
         <strong>{{ faventry.translated|escape('html') }}</strong>
         <form id="idpselectform" method="get" action="{{ urlpattern }}">
-            <input type="hidden" name="entityID" value="{{ entityID|escape('html') }}" />
-            <input type="hidden" name="return" value="{{ return|escape('html') }}" />
-            <input type="hidden" name="returnIDParam" value="{{ returnIDParam|escape('html') }}" />
-            <input type="hidden" name="idpentityid" value="{{ faventry.entityid|escape('html') }}" />
-            <input type="submit" name="formsubmit" id="favouritesubmit" value="{{ '{disco:login_at}'|trans }} {{ faventry.translated|escape('html') }}" /> 
+            <input type="hidden" name="entityID" value="{{ entityID|escape('html') }}">
+            <input type="hidden" name="return" value="{{ return|escape('html') }}">
+            <input type="hidden" name="returnIDParam" value="{{ returnIDParam|escape('html') }}">
+            <input type="hidden" name="idpentityid" value="{{ faventry.entityid|escape('html') }}">
+            <input type="submit" name="formsubmit" id="favouritesubmit" value="{{ '{disco:login_at}'|trans }} {{ faventry.translated|escape('html') }}" autofocus> 
 	</form>
     </div>
     {% endif %}
@@ -51,7 +51,7 @@
           <div class="inlinesearch">
               <p>Incremental search...</p>
               <form id="idpselectform" method="get">
-                  <input class="inlinesearch" type="text" value="" name="query_{{ tab }}" id="query_{{ tab }}" />
+                  <input class="inlinesearch" type="text" value="" name="query_{{ tab }}" id="query_{{ tab }}">
               </form>
           </div>
           <div class="metalist" id="list_{{ tab }}">
