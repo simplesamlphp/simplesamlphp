@@ -11,7 +11,7 @@
 
 $metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
 $idpEntityId = $metadata->getMetaDataCurrentEntityID('adfs-idp-hosted');
-$idp = \SimpleSAML\IdP::getById('adfs:' . $idpEntityId);
+$idp = \SimpleSAML\IdP::getById('adfs:'.$idpEntityId);
 
 if (isset($_GET['wa'])) {
     if ($_GET['wa'] === 'wsignout1.0') {

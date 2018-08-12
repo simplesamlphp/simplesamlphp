@@ -15,13 +15,13 @@ if (array_key_exists('AuthState', $_REQUEST) && !empty($_REQUEST['AuthState'])) 
 
 // Find authentication source
 if (!array_key_exists(\SimpleSAML\Module\authfacebook\Auth\Source\Facebook::AUTHID, $state)) {
-    throw new \SimpleSAML\Error\BadRequest('No data in state for ' . \SimpleSAML\Module\authfacebook\Auth\Source\Facebook::AUTHID);
+    throw new \SimpleSAML\Error\BadRequest('No data in state for '.\SimpleSAML\Module\authfacebook\Auth\Source\Facebook::AUTHID);
 }
 $sourceId = $state[\SimpleSAML\Module\authfacebook\Auth\Source\Facebook::AUTHID];
 
 $source = \SimpleSAML\Auth\Source::getById($sourceId);
 if ($source === null) {
-    throw new \SimpleSAML\Error\BadRequest('Could not find authentication source with id ' . var_export($sourceId, TRUE));
+    throw new \SimpleSAML\Error\BadRequest('Could not find authentication source with id '.var_export($sourceId, true));
 }
 
 try {

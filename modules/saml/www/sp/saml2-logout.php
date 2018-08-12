@@ -14,7 +14,7 @@ $sourceId = substr($_SERVER['PATH_INFO'], 1);
 
 $source = \SimpleSAML\Auth\Source::getById($sourceId);
 if ($source === null) {
-    throw new \Exception('Could not find authentication source with id ' . $sourceId);
+    throw new \Exception('Could not find authentication source with id '.$sourceId);
 }
 if (!($source instanceof \SimpleSAML\Module\saml\Auth\Source\SP)) {
     throw new \SimpleSAML\Error\Exception('Source type changed?');
@@ -22,7 +22,8 @@ if (!($source instanceof \SimpleSAML\Module\saml\Auth\Source\SP)) {
 
 try {
     $binding = \SAML2\Binding::getCurrentBinding();
-} catch (\Exception $e) { // TODO: look for a specific exception
+} catch (\Exception $e) {
+    // TODO: look for a specific exception
     // This is dirty. Instead of checking the message of the exception, \SAML2\Binding::getCurrentBinding() should throw
     // an specific exception when the binding is unknown, and we should capture that here
     if ($e->getMessage() === 'Unable to find the current binding.') {
@@ -61,7 +62,7 @@ if ($message instanceof \SAML2\LogoutResponse) {
     }
 
     if (!$message->isSuccess()) {
-        \SimpleSAML\Logger::warning('Unsuccessful logout. Status was: ' . \SimpleSAML\Module\saml\Message::getResponseError($message));
+        \SimpleSAML\Logger::warning('Unsuccessful logout. Status was: '.\SimpleSAML\Module\saml\Message::getResponseError($message));
     }
 
     $state = \SimpleSAML\Auth\State::loadState($relayState, 'saml:slosent');
@@ -70,14 +71,14 @@ if ($message instanceof \SAML2\LogoutResponse) {
 
 } elseif ($message instanceof \SAML2\LogoutRequest) {
 
-    \SimpleSAML\Logger::debug('module/saml2/sp/logout: Request from ' . $idpEntityId);
-    \SimpleSAML\Logger::stats('saml20-idp-SLO idpinit ' . $spEntityId . ' ' . $idpEntityId);
+    \SimpleSAML\Logger::debug('module/saml2/sp/logout: Request from '.$idpEntityId);
+    \SimpleSAML\Logger::stats('saml20-idp-SLO idpinit '.$spEntityId.' '.$idpEntityId);
 
     if ($message->isNameIdEncrypted()) {
         try {
             $keys = \SimpleSAML\Module\saml\Message::getDecryptionKeys($idpMetadata, $spMetadata);
         } catch (\Exception $e) {
-            throw new \SimpleSAML\Error\Exception('Error decrypting NameID: ' . $e->getMessage());
+            throw new \SimpleSAML\Error\Exception('Error decrypting NameID: '.$e->getMessage());
         }
 
         $blacklist = \SimpleSAML\Module\saml\Message::getBlacklistedAlgorithms($idpMetadata, $spMetadata);
@@ -86,11 +87,11 @@ if ($message instanceof \SAML2\LogoutResponse) {
         foreach ($keys as $i => $key) {
             try {
                 $message->decryptNameId($key, $blacklist);
-                \SimpleSAML\Logger::debug('Decryption with key #' . $i . ' succeeded.');
+                \SimpleSAML\Logger::debug('Decryption with key #'.$i.' succeeded.');
                 $lastException = null;
                 break;
             } catch (\Exception $e) {
-                \SimpleSAML\Logger::debug('Decryption with key #' . $i . ' failed with exception: ' . $e->getMessage());
+                \SimpleSAML\Logger::debug('Decryption with key #'.$i.' failed with exception: '.$e->getMessage());
                 $lastException = $e;
             }
         }
@@ -104,18 +105,18 @@ if ($message instanceof \SAML2\LogoutResponse) {
 
     $numLoggedOut = \SimpleSAML\Module\saml\SP\LogoutStore::logoutSessions($sourceId, $nameId, $sessionIndexes);
     if ($numLoggedOut === false) {
-        /* This type of logout was unsupported. Use the old method. */
+        // This type of logout was unsupported. Use the old method
         $source->handleLogout($idpEntityId);
         $numLoggedOut = count($sessionIndexes);
     }
 
-    /* Create and send response. */
+    // Create and send response
     $lr = \SimpleSAML\Module\saml\Message::buildLogoutResponse($spMetadata, $idpMetadata);
     $lr->setRelayState($message->getRelayState());
     $lr->setInResponseTo($message->getId());
 
     if ($numLoggedOut < count($sessionIndexes)) {
-        \SimpleSAML\Logger::warning('Logged out of ' . $numLoggedOut  . ' of ' . count($sessionIndexes) . ' sessions.');
+        \SimpleSAML\Logger::warning('Logged out of '.$numLoggedOut.' of '.count($sessionIndexes).' sessions.');
     }
 
     $dst = $idpMetadata->getEndpointPrioritizedByBinding('SingleLogoutService', array(
@@ -136,5 +137,5 @@ if ($message instanceof \SAML2\LogoutResponse) {
 
     $binding->send($lr);
 } else {
-    throw new \SimpleSAML\Error\BadRequest('Unknown message received on logout endpoint: ' . get_class($message));
+    throw new \SimpleSAML\Error\BadRequest('Unknown message received on logout endpoint: '.get_class($message));
 }

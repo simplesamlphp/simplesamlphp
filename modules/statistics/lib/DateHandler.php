@@ -32,14 +32,14 @@ class DateHandler
     public function toSlot($epoch, $slotsize)
     {
         $dst = $this->getDST($epoch);
-        return floor( ($epoch + $this->offset + $dst) / $slotsize);
+        return floor(($epoch + $this->offset + $dst) / $slotsize);
     }
 
     public function fromSlot($slot, $slotsize)
     {
-        $temp = $slot*$slotsize - $this->offset;
+        $temp = $slot * $slotsize - $this->offset;
         $dst = $this->getDST($temp);
-        return $slot*$slotsize - $this->offset - $dst;
+        return $slot * $slotsize - $this->offset - $dst;
     }
 
     public function prettyDateEpoch($epoch, $dateformat)

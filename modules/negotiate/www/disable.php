@@ -1,23 +1,20 @@
 <?php
-
 /**
- *
- *
  * @author Mathias Meisfjordskar, University of Oslo.
  *         <mathias.meisfjordskar@usit.uio.no>
  * @package SimpleSAMLphp
  */
 
 $params = array(
-    'expire' => (mktime(0,0,0,1,1,2038)),
-    'secure' => FALSE,
-    'httponly' => TRUE,
+    'expire' => (mktime(0, 0, 0, 1, 1, 2038)),
+    'secure' => false,
+    'httponly' => true,
 );
-\SimpleSAML\Utils\HTTP::setCookie('NEGOTIATE_AUTOLOGIN_DISABLE_PERMANENT', 'True', $params, FALSE);
+\SimpleSAML\Utils\HTTP::setCookie('NEGOTIATE_AUTOLOGIN_DISABLE_PERMANENT', 'True', $params, false);
 
 $globalConfig = \SimpleSAML\Configuration::getInstance();
 $session = \SimpleSAML\Session::getSessionFromRequest();
-$session->setData('negotiate:disable', 'session', FALSE, 24*60*60);
+$session->setData('negotiate:disable', 'session', false, 86400); //24*60*60=86400
 $t = new \SimpleSAML\XHTML\Template($globalConfig, 'negotiate:disable.php');
 $t->data['url'] = \SimpleSAML\Module::getModuleURL('negotiate/enable.php');
 $t->show();

@@ -11,134 +11,134 @@ namespace SimpleSAML\Module\core\Auth\Process;
 
 class GenerateGroups extends \SimpleSAML\Auth\ProcessingFilter
 {
-	/**
-	 * The attributes we should generate groups from.
-	 */
-	private $generateGroupsFrom;
+    /**
+     * The attributes we should generate groups from.
+     */
+    private $generateGroupsFrom;
 
+    /**
+     * Initialize this filter.
+     *
+     * @param array $config  Configuration information about this filter.
+     * @param mixed $reserved  For future use.
+     */
+    public function __construct($config, $reserved)
+    {
+        parent::__construct($config, $reserved);
 
-	/**
-	 * Initialize this filter.
-	 *
-	 * @param array $config  Configuration information about this filter.
-	 * @param mixed $reserved  For future use.
-	 */
-	public function __construct($config, $reserved) {
-		parent::__construct($config, $reserved);
+        assert(is_array($config));
 
-		assert(is_array($config));
+        if (count($config) === 0) {
+            // Use default groups
+            $this->generateGroupsFrom = array(
+                'eduPersonAffiliation',
+                'eduPersonOrgUnitDN',
+                'eduPersonEntitlement',
+            );
+        } else {
+            // Validate configuration
+            foreach ($config as $attributeName) {
+                if (!is_string($attributeName)) {
+                    throw new \Exception('Invalid attribute name for core:GenerateGroups filter: '.
+                        var_export($attributeName, true));
+                }
+            }
+            $this->generateGroupsFrom = $config;
+        }
+    }
 
-		if (count($config) === 0) {
-			// Use default groups
-			$this->generateGroupsFrom = array(
-				'eduPersonAffiliation',
-				'eduPersonOrgUnitDN',
-				'eduPersonEntitlement',
-			);
+    /**
+     * Apply filter to add groups attribute.
+     *
+     * @param array &$request  The current request
+     */
+    public function process(&$request)
+    {
+        assert(is_array($request));
+        assert(array_key_exists('Attributes', $request));
 
-		} else {
-			// Validate configuration
-			foreach ($config as $attributeName) {
-				if (!is_string($attributeName)) {
-					throw new \Exception('Invalid attribute name for core:GenerateGroups filter: ' .
-						var_export($attributeName, TRUE));
-				}
-			}
+        $groups = array();
+        $attributes = &$request['Attributes'];
 
-			$this->generateGroupsFrom = $config;
-		}
-	}
+        $realm = self::getRealm($attributes);
+        if ($realm !== null) {
+            $groups[] = 'realm-'.$realm;
+        }
 
+        foreach ($this->generateGroupsFrom as $name) {
+            if (!array_key_exists($name, $attributes)) {
+                \SimpleSAML\Logger::debug('GenerateGroups - attribute \''.$name.'\' not found.');
+                // Attribute not present
+                continue;
+            }
 
-	/**
-	 * Apply filter to add groups attribute.
-	 *
-	 * @param array &$request  The current request
-	 */
-	public function process(&$request) {
-		assert(is_array($request));
-		assert(array_key_exists('Attributes', $request));
+            foreach ($attributes[$name] as $value) {
+                $value = self::escapeIllegalChars($value);
+                $groups[] = $name.'-'.$value;
+                if ($realm !== null) {
+                    $groups[] = $name.'-'.$realm.'-'.$value;
+                }
+            }
+        }
 
-		$groups = array();
-		$attributes =& $request['Attributes'];
+        if (count($groups) > 0) {
+            $attributes['groups'] = $groups;
+        }
+    }
 
-		$realm = self::getRealm($attributes);
-		if ($realm !== NULL) {
-			$groups[] = 'realm-' . $realm;
-		}
+    /**
+     * Determine which realm the user belongs to.
+     *
+     * This function will attempt to determine the realm a user belongs to based on the
+     * eduPersonPrincipalName attribute if it is present. If it isn't, or if it doesn't contain
+     * a realm, NULL will be returned.
+     *
+     * @param array $attributes  The attributes of the user.
+     * @return string|NULL  The realm of the user, or NULL if we are unable to determine the realm.
+     */
+    private static function getRealm($attributes)
+    {
+        assert(is_array($attributes));
 
+        if (!array_key_exists('eduPersonPrincipalName', $attributes)) {
+            return null;
+        }
+        $eppn = $attributes['eduPersonPrincipalName'];
 
-		foreach ($this->generateGroupsFrom as $name) {
-			if (!array_key_exists($name, $attributes)) {
-				\SimpleSAML\Logger::debug('GenerateGroups - attribute \'' . $name . '\' not found.');
-				/* Attribute not present. */
-				continue;
-			}
+        if (count($eppn) < 1) {
+            return null;
+        }
+        $eppn = $eppn[0];
 
-			foreach ($attributes[$name] as $value) {
-				$value = self::escapeIllegalChars($value);
-				$groups[] = $name . '-' . $value;
-				if ($realm !== NULL) {
-					$groups[] = $name . '-' . $realm . '-' . $value;
-				}
-			}
-		}
+        $realm = explode('@', $eppn, 2);
+        if (count($realm) < 2) {
+            return null;
+        }
+        $realm = $realm[1];
 
-		if (count($groups) > 0) {
-			$attributes['groups'] = $groups;
-		}
-	}
+        return self::escapeIllegalChars($realm);
+    }
 
+    /**
+     * Escape special characters in a string.
+     *
+     * This function is similar to urlencode, but encodes many more characters.
+     * This function takes any characters not in [a-zA-Z0-9_@=.] and encodes them with as
+     * %<hex version>. For example, it will encode '+' as '%2b' and '%' as '%25'.
+     *
+     * @param string $string  The string which should be escaped.
+     * @return string  The escaped string.
+     */
+    private static function escapeIllegalChars($string)
+    {
+        assert(is_string($string));
 
-	/**
-	 * Determine which realm the user belongs to.
-	 *
-	 * This function will attempt to determine the realm a user belongs to based on the
-	 * eduPersonPrincipalName attribute if it is present. If it isn't, or if it doesn't contain
-	 * a realm, NULL will be returned.
-	 *
-	 * @param array $attributes  The attributes of the user.
-	 * @return string|NULL  The realm of the user, or NULL if we are unable to determine the realm.
-	 */
-	private static function getRealm($attributes) {
-		assert(is_array($attributes));
-
-		if (!array_key_exists('eduPersonPrincipalName', $attributes)) {
-			return NULL;
-		}
-		$eppn = $attributes['eduPersonPrincipalName'];
-
-		if (count($eppn) < 1) {
-			return NULL;
-		}
-		$eppn = $eppn[0];
-
-		$realm = explode('@', $eppn, 2);
-		if (count($realm) < 2) {
-			return NULL;
-		}
-		$realm = $realm[1];
-
-		return self::escapeIllegalChars($realm);
-	}
-
-
-	/**
-	 * Escape special characters in a string.
-	 *
-	 * This function is similar to urlencode, but encodes many more characters.
-	 * This function takes any characters not in [a-zA-Z0-9_@=.] and encodes them with as
-	 * %<hex version>. For example, it will encode '+' as '%2b' and '%' as '%25'.
-	 *
-	 * @param string $string  The string which should be escaped.
-	 * @return string  The escaped string.
-	 */
-	private static function escapeIllegalChars($string) {
-		assert(is_string($string));
-
-		return preg_replace_callback('/([^a-zA-Z0-9_@=.])/',
-			function ($m) { return sprintf("%%%02x", ord($m[1])); },
-			$string);
-	}
-
+        return preg_replace_callback(
+            '/([^a-zA-Z0-9_@=.])/',
+            function($m) {
+                return sprintf("%%%02x", ord($m[1]));
+            },
+            $string
+        );
+    }
 }

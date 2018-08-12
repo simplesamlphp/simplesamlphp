@@ -80,17 +80,17 @@ class ExpiryWarning extends \SimpleSAML\Auth\ProcessingFilter
         }
         $validTo = $client_cert_data['validTo_time_t'];
         $now = time();
-        $daysleft = (int)(($validTo - $now) / (24*60*60));
+        $daysleft = (int) (($validTo - $now) / 86400); //24*60*60
         if ($daysleft > $this->warndaysbefore) {
             // We have a certificate that will be valid for some time. Skip the warning
             return;
         }
 
-        \SimpleSAML\Logger::warning('authX509: user certificate expires in ' . $daysleft . ' days');
+        \SimpleSAML\Logger::warning('authX509: user certificate expires in '.$daysleft.' days');
         $state['daysleft'] = $daysleft;
         $state['renewurl'] = $this->renewurl;
 
-        /* Save state and redirect. */
+        // Save state and redirect
         $id = \SimpleSAML\Auth\State::saveState($state, 'warning:expire');
         $url = \SimpleSAML\Module::getModuleURL('authX509/expirywarning.php');
         \SimpleSAML\Utils\HTTP::redirectTrustedURL($url, array('StateId' => $id));

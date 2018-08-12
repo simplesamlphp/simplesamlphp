@@ -8,15 +8,15 @@
  */
 
 if (!array_key_exists('StateId', $_REQUEST)) {
-	throw new \SimpleSAML\Error\BadRequest('Missing required StateId query parameter.');
+    throw new \SimpleSAML\Error\BadRequest('Missing required StateId query parameter.');
 }
 $id = $_REQUEST['StateId'];
 $state = \SimpleSAML\Auth\State::loadState($id, 'core:short_sso_interval');
 $session = \SimpleSAML\Session::getSessionFromRequest();
 
 if (array_key_exists('continue', $_REQUEST)) {
-	// The user has pressed the continue/retry-button
-	\SimpleSAML\Auth\ProcessingChain::resumeProcessing($state);
+    // The user has pressed the continue/retry-button
+    \SimpleSAML\Auth\ProcessingChain::resumeProcessing($state);
 }
 
 $globalConfig = \SimpleSAML\Configuration::getInstance();

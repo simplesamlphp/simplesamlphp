@@ -35,7 +35,7 @@ class Cardinality extends \SimpleSAML\Auth\ProcessingFilter
         parent::__construct($config, $reserved);
         assert(is_array($config));
 
-        $this->http = $http ?: new HTTPAdapter();
+        $this->http = $http ? : new HTTPAdapter();
 
         foreach ($config as $attribute => $rules) {
             if ($attribute === '%ignoreEntities') {

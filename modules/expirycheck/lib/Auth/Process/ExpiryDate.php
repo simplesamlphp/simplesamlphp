@@ -84,7 +84,7 @@ class ExpiryDate extends \SimpleSAML\Auth\ProcessingFilter
         $end = $expireOnDate;
 
         if ($expireOnDate >= $now) {
-            $days = (int)(($end - $now) / (24*60*60));
+            $days = (int) (($end - $now) / 86400); //24*60*60=86400
             if ($days <= $warndaysbefore) {
                 $state['daysleft'] = $days;
                 return true;

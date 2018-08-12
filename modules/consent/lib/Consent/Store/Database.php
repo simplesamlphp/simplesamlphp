@@ -171,8 +171,8 @@ class Database extends \SimpleSAML\Module\consent\Store
         assert(is_string($attributeSet));
 
         $st = $this->_execute(
-            'UPDATE ' . $this->_table . ' ' .
-            'SET usage_date = ' . $this->_dateTime . ' ' .
+            'UPDATE '.$this->_table.' '.
+            'SET usage_date = '.$this->_dateTime.' '.
             'WHERE hashed_user_id = ? AND service_id = ? AND attribute = ?',
             array($userId, $destinationId, $attributeSet)
         );
@@ -212,8 +212,8 @@ class Database extends \SimpleSAML\Module\consent\Store
 
         // Check for old consent (with different attribute set)
         $st = $this->_execute(
-            'UPDATE ' . $this->_table . ' ' .
-            'SET consent_date = ' . $this->_dateTime . ', usage_date = ' . $this->_dateTime . ', attribute = ? ' .
+            'UPDATE '.$this->_table.' '.
+            'SET consent_date = '.$this->_dateTime.', usage_date = '.$this->_dateTime.', attribute = ? '.
             'WHERE hashed_user_id = ? AND service_id = ?',
             array($attributeSet, $userId, $destinationId)
         );
@@ -230,8 +230,8 @@ class Database extends \SimpleSAML\Module\consent\Store
 
         // Add new consent
         $st = $this->_execute(
-            'INSERT INTO ' . $this->_table . ' (' . 'consent_date, usage_date, hashed_user_id, service_id, attribute' .
-            ') ' . 'VALUES (' . $this->_dateTime . ', ' . $this->_dateTime . ', ?, ?, ?)',
+            'INSERT INTO '.$this->_table.' ('.'consent_date, usage_date, hashed_user_id, service_id, attribute'.
+            ') '.'VALUES ('.$this->_dateTime.', '.$this->_dateTime.', ?, ?, ?)',
             array($userId, $destinationId, $attributeSet)
         );
 
@@ -258,7 +258,7 @@ class Database extends \SimpleSAML\Module\consent\Store
         assert(is_string($destinationId));
 
         $st = $this->_execute(
-            'DELETE FROM ' . $this->_table . ' WHERE hashed_user_id = ? AND service_id = ?;',
+            'DELETE FROM '.$this->_table.' WHERE hashed_user_id = ? AND service_id = ?;',
             array($userId, $destinationId)
         );
 
@@ -289,7 +289,7 @@ class Database extends \SimpleSAML\Module\consent\Store
         assert(is_string($userId));
 
         $st = $this->_execute(
-            'DELETE FROM ' . $this->_table . ' WHERE hashed_user_id = ?',
+            'DELETE FROM '.$this->_table.' WHERE hashed_user_id = ?',
             array($userId)
         );
 
@@ -298,7 +298,7 @@ class Database extends \SimpleSAML\Module\consent\Store
         }
 
         if ($st->rowCount() > 0) {
-            \SimpleSAML\Logger::debug('consent:Database - Deleted (' . $st->rowCount() . ') consent(s).');
+            \SimpleSAML\Logger::debug('consent:Database - Deleted ('.$st->rowCount().') consent(s).');
             return $st->rowCount();
         } else {
             \SimpleSAML\Logger::warning('consent:Database - Attempted to delete nonexistent consent');
@@ -322,7 +322,7 @@ class Database extends \SimpleSAML\Module\consent\Store
         $ret = array();
 
         $st = $this->_execute(
-            'SELECT service_id, attribute, consent_date, usage_date FROM ' . $this->_table .
+            'SELECT service_id, attribute, consent_date, usage_date FROM '.$this->_table.
             ' WHERE hashed_user_id = ?',
             array($userId)
         );
@@ -363,16 +363,16 @@ class Database extends \SimpleSAML\Module\consent\Store
         $st = $db->prepare($statement);
         if ($st === false) {
             \SimpleSAML\Logger::error(
-                'consent:Database - Error preparing statement \'' .
-                $statement . '\': ' . self::_formatError($db->errorInfo())
+                'consent:Database - Error preparing statement \''.
+                $statement.'\': '.self::_formatError($db->errorInfo())
             );
             return false;
         }
 
         if ($st->execute($parameters) !== true) {
             \SimpleSAML\Logger::error(
-                'consent:Database - Error executing statement \'' .
-                $statement . '\': ' . self::_formatError($st->errorInfo())
+                'consent:Database - Error executing statement \''.
+                $statement.'\': '.self::_formatError($st->errorInfo())
             );
             return false;
         }
@@ -408,7 +408,7 @@ class Database extends \SimpleSAML\Module\consent\Store
 
         // Get total number of users that has given consent
         $st = $this->_execute(
-            'SELECT COUNT(*) AS no ' .
+            'SELECT COUNT(*) AS no '.
             'FROM (SELECT DISTINCT hashed_user_id FROM '.$this->_table.' ) AS foo',
             array()
         );
@@ -480,7 +480,7 @@ class Database extends \SimpleSAML\Module\consent\Store
         assert(is_array($error));
         assert(count($error) >= 3);
 
-        return $error[0] . ' - ' . $error[2] . ' (' . $error[1] . ')';
+        return $error[0].' - '.$error[2].' ('.$error[1].')';
     }
 
 
@@ -492,7 +492,7 @@ class Database extends \SimpleSAML\Module\consent\Store
     public function selftest()
     {
         $st = $this->_execute(
-            'SELECT * FROM ' . $this->_table . ' WHERE hashed_user_id = ? AND service_id = ? AND attribute = ?',
+            'SELECT * FROM '.$this->_table.' WHERE hashed_user_id = ? AND service_id = ? AND attribute = ?',
             array('test', 'test', 'test')
         );
 

@@ -25,7 +25,7 @@ $source = \SimpleSAML\Auth\Source::getById($sourceId, '\SimpleSAML\Module\saml\A
 
 SimpleSAML\Logger::debug('Received SAML1 response');
 
-$target = (string)$_REQUEST['TARGET'];
+$target = (string) $_REQUEST['TARGET'];
 
 if (preg_match('@^https?://@i', $target)) {
     // Unsolicited response

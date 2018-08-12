@@ -288,7 +288,7 @@ class PowerIdPDisco extends \SimpleSAML\XHTML\IdPDisco
                 $("#tabdiv").tabs({ selected: '.$t->data['defaulttab'].' });';
         $i = 0;
         foreach ($idpList as $tab => $slist) {
-            $search .= "\n".'$("#query_'.$tab.'").liveUpdate("#list_'.$tab.'")' .
+            $search .= "\n".'$("#query_'.$tab.'").liveUpdate("#list_'.$tab.'")'.
             (($i++ == 0) && (empty($this->data['faventry'])) ? '.focus()' : '').';';
         }
         $search .= "});\n</script>";
@@ -306,7 +306,7 @@ class PowerIdPDisco extends \SimpleSAML\XHTML\IdPDisco
 
     private function processMetadata($t, $metadata, $favourite)
     {
-        $basequerystring = '?' . 
+        $basequerystring = '?'.
             'entityID='.urlencode($t->data['entityID']).'&amp;'.
             'return='.urlencode($t->data['return']).'&amp;'.
             'returnIDParam='.urlencode($t->data['returnIDParam']).'&amp;idpentityid=';

@@ -12,28 +12,28 @@ namespace SimpleSAML\Module\core\Auth\Process;
 class AttributeValueMap extends \SimpleSAML\Auth\ProcessingFilter
 {
     /**
-    * The name of the attribute we should assign values to (ie: the target attribute).
-    */
+     * The name of the attribute we should assign values to (ie: the target attribute).
+     */
     private $targetattribute;
 
     /**
-    * The name of the attribute we should create values from.
-    */
+     * The name of the attribute we should create values from.
+     */
     private $sourceattribute;
 
     /**
-    * The required $sourceattribute values and target affiliations.
-    */
+     * The required $sourceattribute values and target affiliations.
+     */
     private $values = array();
     
     /**
-    * Whether $sourceattribute should be kept or not.
-    */
+     * Whether $sourceattribute should be kept or not.
+     */
     private $keep = false;
 
     /**
-    * Whether $target attribute values should be replaced by new values or not.
-    */
+     * Whether $target attribute values should be replaced by new values or not.
+     */
     private $replace = false;
     
     /**
@@ -42,7 +42,7 @@ class AttributeValueMap extends \SimpleSAML\Auth\ProcessingFilter
      * @param array $config Configuration information about this filter.
      * @param mixed $reserved For future use.
      * @throws \SimpleSAML\Error\Exception If the configuration is not valid.
-    */
+     */
     public function __construct($config, $reserved)
     {
         parent::__construct($config, $reserved);
@@ -106,7 +106,7 @@ class AttributeValueMap extends \SimpleSAML\Auth\ProcessingFilter
 
         assert(is_array($request));
         assert(array_key_exists('Attributes', $request));
-        $attributes =& $request['Attributes'];
+        $attributes = &$request['Attributes'];
 
         if (!array_key_exists($this->sourceattribute, $attributes)) {
             // the source attribute does not exist, nothing to do here

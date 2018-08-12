@@ -36,7 +36,8 @@ class BaseRule
         return $this->ruleid;
     }
 
-    public function availableTimeRes() {
+    public function availableTimeRes()
+    {
         $timeresConfigs = $this->statconfig->getValue('timeres');
         $available_times = array(); 
         foreach ($timeresConfigs as $tres => $tresconfig) {

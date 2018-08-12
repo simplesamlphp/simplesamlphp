@@ -38,6 +38,6 @@ class DateHandlerMonth extends DateHandler
     {
         $month = ($from % 12) + 1;
         $year = 2000 + floor($from / 12);
-        return $year . '-' . $month;
+        return $year.'-'.$month;
     }
 }

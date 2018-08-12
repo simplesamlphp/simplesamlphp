@@ -81,7 +81,7 @@ class SmartName extends \SimpleSAML\Auth\ProcessingFilter
         assert(is_array($request));
         assert(array_key_exists('Attributes', $request));
 
-        $attributes =& $request['Attributes'];
+        $attributes = &$request['Attributes'];
 
         $fullname = $this->getFullName($attributes);
 

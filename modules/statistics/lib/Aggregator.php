@@ -39,19 +39,19 @@ class Aggregator
 
     public function dumpConfig()
     {
-        echo 'Statistics directory   : ' . $this->statdir . "\n";
-        echo 'Input file             : ' . $this->inputfile . "\n";
-        echo 'Offset                 : ' . $this->offset . "\n";
+        echo 'Statistics directory   : '.$this->statdir."\n";
+        echo 'Input file             : '.$this->inputfile."\n";
+        echo 'Offset                 : '.$this->offset."\n";
     }
 
     public function debugInfo()
     {
-        echo 'Memory usage           : ' . number_format(memory_get_usage() / (1024*1024), 2) . " MB\n";
+        echo 'Memory usage           : '.number_format(memory_get_usage() / 1048576, 2)." MB\n"; // 1024*1024=1048576
     }
 
     public function loadMetadata()
     {
-        $filename = $this->statdir . '/.stat.metadata';
+        $filename = $this->statdir.'/.stat.metadata';
         $metadata = null;
         if (file_exists($filename)) {
             $metadata = unserialize(file_get_contents($filename));
@@ -70,25 +70,26 @@ class Aggregator
         $this->metadata['memory'] = memory_get_usage();
         $this->metadata['lastrun'] = time();
 
-        $filename = $this->statdir . '/.stat.metadata';
+        $filename = $this->statdir.'/.stat.metadata';
         file_put_contents($filename, serialize($this->metadata), LOCK_EX);
     }
 
-    public function aggregate($debug = false) {
+    public function aggregate($debug = false)
+    {
         $this->loadMetadata();
 
         if (!is_dir($this->statdir)) {
-            throw new \Exception('Statistics module: output dir do not exists [' . $this->statdir . ']');
+            throw new \Exception('Statistics module: output dir do not exists ['.$this->statdir.']');
         }
 
         if (!file_exists($this->inputfile)) {
-            throw new \Exception('Statistics module: input file do not exists [' . $this->inputfile . ']');
+            throw new \Exception('Statistics module: input file do not exists ['.$this->inputfile.']');
         }
 
         $file = fopen($this->inputfile, 'r');
 
         if ($file === false) {
-            throw new \Exception('Statistics module: unable to open file [' . $this->inputfile . ']');
+            throw new \Exception('Statistics module: unable to open file ['.$this->inputfile.']');
         }
 
         $logparser = new LogParser(
@@ -131,13 +132,13 @@ class Aggregator
             $action = trim($content[5]);
 
             if ($this->fromcmdline && ($i % 10000) == 0) {
-                echo("Read line " . $i . "\n");
+                echo "Read line ".$i."\n";
             }
 
             if ($debug) {
-                echo("----------------------------------------\n");
-                echo('Log line: ' . $logline . "\n");
-                echo('Date parse [' . substr($logline, 0, $this->statconfig->getValue('datelength', 15)) . '] to [' . date(DATE_RFC822, $epoch) . ']' . "\n");
+                echo "----------------------------------------\n";
+                echo 'Log line: '.$logline."\n";
+                echo 'Date parse ['.substr($logline, 0, $this->statconfig->getValue('datelength', 15)).'] to ['.date(DATE_RFC822, $epoch).']'."\n";
                 echo htmlentities(print_r($content, true));
                 if ($i >= 13) {
                     exit;
@@ -150,7 +151,7 @@ class Aggregator
 
             if ($epoch === $notBefore) {
                 if (!$lastlineflip) {
-                    if (sha1($logline) === $lastlinehash) { 
+                    if (sha1($logline) === $lastlinehash) {
                         $lastlineflip = true;
                     }
                     continue;
@@ -173,7 +174,7 @@ class Aggregator
                     continue;
                 }
 
-                foreach ($this->timeres as $tres => $tresconfig ) {
+                foreach ($this->timeres as $tres => $tresconfig) {
                     $dh = 'default';
                     if (isset($tresconfig['customDateHandler'])) {
                         $dh = $tresconfig['customDateHandler'];
@@ -268,19 +269,19 @@ class Aggregator
                     $maxslot = $slotlist[count($slotlist) - 1];
 
                     // Get start and end slot number within the file, based on the fileslot.
-                    $start = (int)$datehandler['default']->toSlot(
+                    $start = (int) $datehandler['default']->toSlot(
                         $datehandler[$dh]->fromSlot($fileno, $this->timeres[$tres]['fileslot']), 
                         $this->timeres[$tres]['slot']
                     );
-                    $end = (int)$datehandler['default']->toSlot(
-                        $datehandler[$dh]->fromSlot($fileno+1, $this->timeres[$tres]['fileslot']), 
+                    $end = (int) $datehandler['default']->toSlot(
+                        $datehandler[$dh]->fromSlot($fileno + 1, $this->timeres[$tres]['fileslot']), 
                         $this->timeres[$tres]['slot']
                     );
 
                     // Fill in missing entries and sort file results
                     $filledresult = array();
                     for ($slot = $start; $slot < $end; $slot++) {
-                        if (array_key_exists($slot,  $fileres)) {
+                        if (array_key_exists($slot, $fileres)) {
                             $filledresult[$slot] = $fileres[$slot];
                         } else {
                             if ($lastfile == $fileno && $slot > $maxslot) {
@@ -291,7 +292,7 @@ class Aggregator
                         }
                     }
 
-                    $filename = $this->statdir . '/' . $rulename . '-' . $tres . '-' . $fileno . '.stat';
+                    $filename = $this->statdir.'/'.$rulename.'-'.$tres.'-'.$fileno.'.stat';
                     if (file_exists($filename)) {
                         $previousData = unserialize(file_get_contents($filename));
                         $filledresult = $this->cummulateData($previousData, $filledresult);	

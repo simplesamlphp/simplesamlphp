@@ -37,9 +37,9 @@ class LogCleaner
      */
     public function dumpConfig()
     {
-        echo 'Statistics directory   : ' . $this->statdir . "\n";
-        echo 'Input file             : ' . $this->inputfile . "\n";
-        echo 'Offset                 : ' . $this->offset . "\n";
+        echo 'Statistics directory   : '.$this->statdir."\n";
+        echo 'Input file             : '.$this->inputfile."\n";
+        echo 'Offset                 : '.$this->offset."\n";
     }
 
 
@@ -50,11 +50,11 @@ class LogCleaner
     public function clean($debug = false)
     {
         if (!is_dir($this->statdir)) {
-            throw new \Exception('Statistics module: output dir do not exists [' . $this->statdir . ']');
+            throw new \Exception('Statistics module: output dir do not exists ['.$this->statdir.']');
         }
 
         if (!file_exists($this->inputfile)) {
-            throw new \Exception('Statistics module: input file do not exists [' . $this->inputfile . ']');
+            throw new \Exception('Statistics module: input file do not exists ['.$this->inputfile.']');
         }
 
         $file = fopen($this->inputfile, 'r');
@@ -81,7 +81,7 @@ class LogCleaner
             $content = $logparser->parseContent($logline);
 
             if (($i % 10000) == 0) {
-                echo("Read line " . $i . "\n");
+                echo "Read line ".$i."\n";
             }
 
             $trackid = $content[4];
@@ -92,9 +92,9 @@ class LogCleaner
             $sessioncounter[$trackid]++;
 
             if ($debug) {
-                echo("----------------------------------------\n");
-                echo('Log line: ' . $logline . "\n");
-                echo('Date parse [' . substr($logline, 0, $this->statconfig->getValue('datelength', 15)) . '] to [' . date(DATE_RFC822, $epoch) . ']' . "\n");
+                echo "----------------------------------------\n";
+                echo 'Log line: '.$logline."\n";
+                echo 'Date parse ['.substr($logline, 0, $this->statconfig->getValue('datelength', 15)).'] to ['.date(DATE_RFC822, $epoch).']'."\n";
                 echo htmlentities(print_r($content, true));
                 if ($i >= 13) {
                     exit;
@@ -129,14 +129,14 @@ class LogCleaner
      */
     public function store($todelete, $outputfile)
     {
-        echo "Preparing to delete [" .count($todelete) . "] trackids\n";
+        echo "Preparing to delete [".count($todelete)."] trackids\n";
 
         if (!is_dir($this->statdir)) {
-            throw new \Exception('Statistics module: output dir do not exists [' . $this->statdir . ']');
+            throw new \Exception('Statistics module: output dir do not exists ['.$this->statdir.']');
         }
 
         if (!file_exists($this->inputfile)) {
-            throw new \Exception('Statistics module: input file do not exists [' . $this->inputfile . ']');
+            throw new \Exception('Statistics module: input file do not exists ['.$this->inputfile.']');
         }
 
         $file = fopen($this->inputfile, 'r');
@@ -146,7 +146,7 @@ class LogCleaner
             // Delete existing output file.
             unlink($outputfile);
         }
-        $outfile = fopen($outputfile, 'x'); /* Create the output file. */
+        $outfile = fopen($outputfile, 'x'); // Create the output file
 
         $logparser = new LogParser(
             $this->statconfig->getValue('datestart', 0), $this->statconfig->getValue('datelength', 15), $this->statconfig->getValue('offsetspan', 44)
@@ -166,7 +166,7 @@ class LogCleaner
             $content = $logparser->parseContent($logline);
 
             if (($i % 10000) == 0) {
-                echo("Read line " . $i . "\n");
+                echo "Read line ".$i."\n";
             }
 
             $trackid = $content[4];

@@ -54,10 +54,10 @@ $defaultLanguage = $globalConfig->getString('language.default', 'en');
 $language = $t->getTranslator()->getLanguage()->getLanguage();
 
 $sources = $state[\SimpleSAML\Module\multiauth\Auth\Source\MultiAuth::SOURCESID];
-foreach ($sources as $key => $source){
+foreach ($sources as $key => $source) {
     $sources[$key]['source64'] = base64_encode($sources[$key]['source']);
-    $sources[$key]['text'] = (isSet($sources[$key]['text'][$language]) ? $sources[$key]['text'][$language] : $sources[$key]['text'][$defaultLanguage]);
-    $sources[$key]['help'] = (isSet($sources[$key]['help'][$language]) ? $sources[$key]['help'][$language] : $sources[$key]['help'][$defaultLanguage]);
+    $sources[$key]['text'] = (isset($sources[$key]['text'][$language]) ? $sources[$key]['text'][$language] : $sources[$key]['text'][$defaultLanguage]);
+    $sources[$key]['help'] = (isset($sources[$key]['help'][$language]) ? $sources[$key]['help'][$language] : $sources[$key]['help'][$defaultLanguage]);
 }
 
 $t->data['authstate'] = $authStateId;

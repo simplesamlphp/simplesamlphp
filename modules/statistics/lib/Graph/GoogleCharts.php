@@ -48,7 +48,7 @@ class GoogleCharts
         foreach ($datasets as $dataset) {
             $setstr[] = self::extEncode($dataset);
         }
-        return 'e:' . join(',', $setstr);
+        return 'e:'.join(',', $setstr);
     }
 
     public static function extEncode($values) // $max = 4095, $min = 0
@@ -63,11 +63,11 @@ class GoogleCharts
                 $first = substr($extended_table, intval(($delta * $v / 100) / $size), 1);
                 $second = substr($extended_table, intval(($delta * $v / 100) % $size), 1);
                 $chardata .= "$first$second";
-            } else { 
+            } else {
                 $chardata .= '__'; // Value out of max range; 
             } 
         }
-        return($chardata); 
+        return $chardata; 
     }
 
     /**
@@ -82,49 +82,49 @@ class GoogleCharts
      */
     public function show($axis, $axispos, $datasets, $maxes)
     {
-        $labeld = '&chxt=x,y' . '&chxr=0,0,1|1,0,' . $maxes[0];
+        $labeld = '&chxt=x,y'.'&chxr=0,0,1|1,0,'.$maxes[0];
         if (count($datasets) > 1) {
             if (count($datasets) !== count($maxes)) {
                 throw new \Exception('Incorrect number of max calculations for graph plotting.');
             }
-            $labeld = '&chxt=x,y,r' . '&chxr=0,0,1|1,0,' . $maxes[0] . '|2,0,' . $maxes[1];
+            $labeld = '&chxt=x,y,r'.'&chxr=0,0,1|1,0,'.$maxes[0].'|2,0,'.$maxes[1];
         }
 
-        $url = 'https://chart.apis.google.com/chart?' .
+        $url = 'https://chart.apis.google.com/chart?'.
             // Dimension of graph. Default is 800x350
-            'chs=' . $this->x . 'x' . $this->y . 
+            'chs='.$this->x.'x'.$this->y.
 
             // Dateset values
-            '&chd=' . $this->encodedata($datasets) .
+            '&chd='.$this->encodedata($datasets).
 
             // Fill area...
-            '&chco=ff5c00,cca600' . 
-            '&chls=1,1,0|1,6,3' .
+            '&chco=ff5c00,cca600'.
+            '&chls=1,1,0|1,6,3'.
 
             // chart type is linechart
-            '&cht=lc' .
-            $labeld .
-            '&chxl=0:|' . $this->encodeaxis($axis) . # . $'|1:||top' .
-            '&chxp=0,' . join(',', $axispos) .
-            '&chg=' . (2400/(count($datasets[0])-1)) . ',-1,3,3';   // lines
+            '&cht=lc'.
+            $labeld.
+            '&chxl=0:|'.$this->encodeaxis($axis).#.$'|1:||top'.
+            '&chxp=0,'.join(',', $axispos).
+            '&chg='.(2400 / (count($datasets[0]) - 1)).',-1,3,3'; // lines
 
         return $url;
     }
 
     public function showPie($axis, $datasets)
     {
-        $url = 'https://chart.apis.google.com/chart?' .
+        $url = 'https://chart.apis.google.com/chart?'.
 
         // Dimension of graph. Default is 800x350
-        'chs=' . $this->x . 'x' . $this->y . 
+        'chs='.$this->x.'x'.$this->y.
 
         // Dateset values.
-        '&chd=' . $this->encodedata(array($datasets)) .
+        '&chd='.$this->encodedata(array($datasets)).
 
         // chart type is linechart
-        '&cht=p' .
+        '&cht=p'.
 
-        '&chl=' . $this->encodeaxis($axis);
+        '&chl='.$this->encodeaxis($axis);
 
         return $url;
     }

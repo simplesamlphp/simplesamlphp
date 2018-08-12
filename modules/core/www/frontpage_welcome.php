@@ -18,16 +18,16 @@ $links_auth = array();
 $links_federation = array();
 
 $allLinks = array(
-	'links'      => &$links,
-	'welcome'    => &$links_welcome,
-	'config'     => &$links_config,
-	'auth'       => &$links_auth,
-	'federation' => &$links_federation,
+    'links'      => &$links,
+    'welcome'    => &$links_welcome,
+    'config'     => &$links_config,
+    'auth'       => &$links_auth,
+    'federation' => &$links_federation,
 );
 
 $links_welcome[] = array(
-	'href' => 'https://simplesamlphp.org/docs/stable/',
-	'text' => '{core:frontpage:doc_header}',
+    'href' => 'https://simplesamlphp.org/docs/stable/',
+    'text' => '{core:frontpage:doc_header}',
 );
 
 \SimpleSAML\Module::callHooks('frontpage', $allLinks);
@@ -44,8 +44,4 @@ $t->data['links_auth'] = $links_auth;
 $t->data['links_federation'] = $links_federation;
 $t->data['header'] = $t->getTranslator()->t('{core:frontpage:page_title}');
 
-
-
 $t->show();
-
-

@@ -46,7 +46,7 @@ class CardinalitySingle extends \SimpleSAML\Auth\ProcessingFilter
         parent::__construct($config, $reserved);
         assert(is_array($config));
 
-        $this->http = $http ?: new HTTPAdapter();
+        $this->http = $http ? : new HTTPAdapter();
 
         if (array_key_exists('singleValued', $config)) {
             $this->singleValued = $config['singleValued'];

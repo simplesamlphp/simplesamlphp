@@ -47,7 +47,8 @@ class LogParser
     public function parseEpoch($line)
     {
         $epoch = strtotime(substr($line, 0, $this->datelength));
-        if ($epoch > time() + 2678400) {  // 60 * 60 *24 * 31 = 2678400
+        if ($epoch > time() + 2678400) {
+            // 60 * 60 * 24 * 31 = 2678400
             /*
              * More than a month in the future - probably caused by
              * the log files missing the year.

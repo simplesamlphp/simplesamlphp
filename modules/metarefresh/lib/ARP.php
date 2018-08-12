@@ -36,7 +36,7 @@ class ARP
      * @param string $attributemap_filename
      * @param string $prefix
      * @param string $suffix
-	 */
+     */
     public function __construct($metadata, $attributemap_filename, $prefix, $suffix)
     {
         $this->metadata = $metadata;
@@ -56,7 +56,7 @@ class ARP
     private function loadAttributeMap($attributemap_filename)
     {
         $config = \SimpleSAML\Configuration::getInstance();
-        include($config->getPathValue('attributemap', 'attributemap/') . $attributemap_filename . '.php');
+        include($config->getPathValue('attributemap', 'attributemap/').$attributemap_filename.'.php');
         // Note that $attributemap is defined in the included attributemap-file!
         $this->attributes = $attributemap;
     }
@@ -126,9 +126,9 @@ MSG;
     private function getEntryXML($entry)
     {
         $entityid = $entry['entityid'];
-        return '    <AttributeFilterPolicy id="' . $entityid .
-            '"><PolicyRequirementRule xsi:type="basic:AttributeRequesterString" value="' . $entityid .
-            '" />' . $this->getEntryXMLcontent($entry) . '</AttributeFilterPolicy>';
+        return '    <AttributeFilterPolicy id="'.$entityid.
+            '"><PolicyRequirementRule xsi:type="basic:AttributeRequesterString" value="'.$entityid.
+            '" />'.$this->getEntryXMLcontent($entry).'</AttributeFilterPolicy>';
     }
 
     /**
@@ -144,7 +144,7 @@ MSG;
 
         $ret = '';
         foreach ($entry['attributes'] as $a) {
-            $ret .= '            <AttributeRule attributeID="' . $this->getAttributeID($a) .
+            $ret .= '            <AttributeRule attributeID="'.$this->getAttributeID($a).
                 '"><PermitValueRule xsi:type="basic:ANY" /></AttributeRule>';
         }
         return $ret;

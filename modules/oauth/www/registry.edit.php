@@ -7,7 +7,7 @@ $oauthconfig = \SimpleSAML\Configuration::getOptionalConfig('module_oauth.php');
 
 $store = new \SimpleSAML\Module\core\Storage\SQLPermanentStorage('oauth');
 
-$authsource = "admin";	// force admin to authenticate as registry maintainer
+$authsource = "admin"; // force admin to authenticate as registry maintainer
 $useridattr = $oauthconfig->getValue('useridattr', 'user');
 
 if ($session->isValid($authsource)) {

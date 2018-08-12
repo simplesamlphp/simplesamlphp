@@ -1,11 +1,10 @@
 <?php
 
-
 if (!array_key_exists('domain', $_REQUEST)) {
     throw new \SimpleSAML\Error\BadRequest('Missing domain to CDC resume handler.');
 }
 
-$domain = (string)$_REQUEST['domain'];
+$domain = (string) $_REQUEST['domain'];
 $client = new \SimpleSAML\Module\cdc\Client($domain);
 
 $response = $client->getResponse();

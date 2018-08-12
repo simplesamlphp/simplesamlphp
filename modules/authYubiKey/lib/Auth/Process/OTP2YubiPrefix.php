@@ -47,32 +47,32 @@ namespace SimpleSAML\Module\authYubiKey\Auth\Process;
 
 class OTP2YubiPrefix extends \SimpleSAML\Auth\ProcessingFilter
 {
-	/**
-	 * Filter out YubiKey 'otp' attribute and replace it with
-         * a 'yubiPrefix' attribute that leaves out the dynamic part.
-	 *
-	 * @param array &$state  The state we should update.
-	 */
-	public function process(&$state) {
-		assert(is_array($state));
-		assert(array_key_exists('Attributes', $state));
-		$attributes = $state['Attributes'];
+    /**
+     * Filter out YubiKey 'otp' attribute and replace it with
+     * a 'yubiPrefix' attribute that leaves out the dynamic part.
+     *
+     * @param array &$state  The state we should update.
+     */
+    public function process(&$state)
+    {
+        assert(is_array($state));
+        assert(array_key_exists('Attributes', $state));
+        $attributes = $state['Attributes'];
 
-		\SimpleSAML\Logger::debug('OTP2YubiPrefix: enter with attributes: ' . implode(',', array_keys($attributes)));
+        \SimpleSAML\Logger::debug('OTP2YubiPrefix: enter with attributes: '.implode(',', array_keys($attributes)));
 
-		$otps = $attributes['otp'];
-		$otp = $otps['0'];
+        $otps = $attributes['otp'];
+        $otp = $otps['0'];
 
-		$token_size = 32;
-		$identity = substr ($otp, 0, strlen ($otp) - $token_size);
+        $token_size = 32;
+        $identity = substr($otp, 0, strlen($otp) - $token_size);
 
-		$attributes['yubiPrefix'] = array($identity);
+        $attributes['yubiPrefix'] = array($identity);
 
-		\SimpleSAML\Logger::info('OTP2YubiPrefix: otp: ' . $otp . ' identity: ' . $identity . ' (otp keys: ' . implode(',', array_keys($otps)) . ')');
+        \SimpleSAML\Logger::info('OTP2YubiPrefix: otp: '.$otp.' identity: '.$identity.' (otp keys: '.implode(',', array_keys($otps)).')');
 
-		unset($attributes['otp']);
+        unset($attributes['otp']);
 
-		\SimpleSAML\Logger::debug('OTP2YubiPrefix: leaving with attributes: ' . implode(',', array_keys($attributes)));
-	}
-
+        \SimpleSAML\Logger::debug('OTP2YubiPrefix: leaving with attributes: '.implode(',', array_keys($attributes)));
+    }
 }

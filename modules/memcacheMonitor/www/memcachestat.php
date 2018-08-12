@@ -161,9 +161,9 @@ if (array_key_exists('bytes', $statsraw) && array_key_exists('limit_maxbytes', $
     $maxpix = 400;
     foreach ($statsraw['bytes'] as $key => $row_data) {
         $pix = floor($statsraw['bytes'][$key] * $maxpix / $statsraw['limit_maxbytes'][$key]);
-        $usage[$key] = $pix . 'px';
+        $usage[$key] = $pix.'px';
     }
-    $t->data['maxpix'] = $maxpix . 'px';
+    $t->data['maxpix'] = $maxpix.'px';
     $t->data['usage'] = $usage;
 }
 

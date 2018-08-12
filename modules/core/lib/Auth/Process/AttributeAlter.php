@@ -65,7 +65,7 @@ class AttributeAlter extends \SimpleSAML\Auth\ProcessingFilter
                 } elseif ($value === '%remove') {
                     $this->remove = true;
                 } else {
-                    throw new \SimpleSAML\Error\Exception('Unknown flag : ' . var_export($value, true));
+                    throw new \SimpleSAML\Error\Exception('Unknown flag : '.var_export($value, true));
                 }
                 continue;
             } elseif ($name === 'pattern') {
@@ -92,12 +92,13 @@ class AttributeAlter extends \SimpleSAML\Auth\ProcessingFilter
      * @param array &$request The current request.
      * @throws \SimpleSAML\Error\Exception In case of invalid configuration.
      */
-    public function process(&$request) {
+    public function process(&$request)
+    {
         assert(is_array($request));
         assert(array_key_exists('Attributes', $request));
 
         // get attributes from request
-        $attributes =& $request['Attributes'];
+        $attributes = &$request['Attributes'];
 
         // check that all required params are set in config
         if (empty($this->pattern) || empty($this->subject)) {
@@ -131,13 +132,14 @@ class AttributeAlter extends \SimpleSAML\Auth\ProcessingFilter
             return;
         }
 
-        if ($this->replace) { // replace the whole value
+        if ($this->replace) {
+            // replace the whole value
             foreach ($attributes[$this->subject] as &$value) {
                 $matches = array();
                 if (preg_match($this->pattern, $value, $matches) > 0) {
                     $new_value = $matches[0];
 
-                    if ($this->replacement !== FALSE) {
+                    if ($this->replacement !== false) {
                         $new_value = $this->replacement;
                     }
 
@@ -148,7 +150,8 @@ class AttributeAlter extends \SimpleSAML\Auth\ProcessingFilter
                     }
                 }
             }
-        } elseif ($this->remove) { // remove the whole value
+        } elseif ($this->remove) {
+            // remove the whole value
             $removedAttrs = array();
             foreach ($attributes[$this->subject] as $value) {
                 $matches = array();
@@ -161,7 +164,8 @@ class AttributeAlter extends \SimpleSAML\Auth\ProcessingFilter
             if (empty($attributes[$this->target])) {
                 unset($attributes[$this->target]);
             }
-        } else { // replace only the part that matches
+        } else {
+            // replace only the part that matches
             if ($this->subject === $this->target) {
                 $attributes[$this->target] = preg_replace(
                     $this->pattern, $this->replacement,

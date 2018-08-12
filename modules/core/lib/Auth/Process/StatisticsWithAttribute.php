@@ -90,11 +90,11 @@ class StatisticsWithAttribute extends \SimpleSAML\Auth\ProcessingFilter
 
         if (!array_key_exists('PreviousSSOTimestamp', $state)) {
             // The user hasn't authenticated with this SP earlier in this session
-            \SimpleSAML\Logger::stats($isPassive.$this->typeTag.'-first '.$dest.' '.$source.' '. $logAttribute);
+            \SimpleSAML\Logger::stats($isPassive.$this->typeTag.'-first '.$dest.' '.$source.' '.$logAttribute);
         }
 
         \SimpleSAML\Logger::stats($isPassive.$this->typeTag.' '.$dest.' '.$source.' '.$logAttribute);
-	}
+    }
 
     /**
      * @param string &$direction  Either 'Source' or 'Destination'.

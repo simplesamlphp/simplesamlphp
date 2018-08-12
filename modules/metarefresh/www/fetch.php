@@ -5,82 +5,79 @@ $mconfig = \SimpleSAML\Configuration::getOptionalConfig('config-metarefresh.php'
 
 \SimpleSAML\Utils\Auth::requireAdmin();
 
-\SimpleSAML\Logger::setCaptureLog(TRUE);
-
+\SimpleSAML\Logger::setCaptureLog(true);
 
 $sets = $mconfig->getConfigList('sets', array());
 
-foreach ($sets AS $setkey => $set) {
+foreach ($sets as $setkey => $set) {
+    \SimpleSAML\Logger::info('[metarefresh]: Executing set ['.$setkey.']');
 
-	\SimpleSAML\Logger::info('[metarefresh]: Executing set [' . $setkey . ']');
+    try {
+        $expireAfter = $set->getInteger('expireAfter', null);
+        if ($expireAfter !== null) {
+            $expire = time() + $expireAfter;
+        } else {
+            $expire = null;
+        }
+        $metaloader = new \SimpleSAML\Module\metarefresh\MetaLoader($expire);
 
-	try {
-		$expireAfter = $set->getInteger('expireAfter', NULL);
-		if ($expireAfter !== NULL) {
-			$expire = time() + $expireAfter;
-		} else {
-			$expire = NULL;
-		}
+        # Get global black/whitelists
+        $blacklist = $mconfig->getArray('blacklist', array());
+        $whitelist = $mconfig->getArray('whitelist', array());
 
-		$metaloader = new \SimpleSAML\Module\metarefresh\MetaLoader($expire);
+        // get global type filters
+        $available_types = array(
+            'saml20-idp-remote',
+            'saml20-sp-remote',
+            'shib13-idp-remote',
+            'shib13-sp-remote',
+            'attributeauthority-remote'
+        );
+        $set_types = $set->getArrayize('types', $available_types);
 
-		# Get global black/whitelists
-		$blacklist = $mconfig->getArray('blacklist', array());
-		$whitelist = $mconfig->getArray('whitelist', array());
+        foreach ($set->getArray('sources') as $source) {
 
-		// get global type filters
-		$available_types = array(
-			'saml20-idp-remote',
-			'saml20-sp-remote',
-			'shib13-idp-remote',
-			'shib13-sp-remote',
-			'attributeauthority-remote'
-		);
-		$set_types = $set->getArrayize('types', $available_types);
+            // filter metadata by type of entity
+            if (isset($source['types'])) {
+                $metaloader->setTypes($source['types']);
+            } else {
+                $metaloader->setTypes($set_types);
+            }
 
-		foreach($set->getArray('sources') AS $source) {
+            # Merge global and src specific blacklists
+            if (isset($source['blacklist'])) {
+                $source['blacklist'] = array_unique(array_merge($source['blacklist'], $blacklist));
+            } else {
+                $source['blacklist'] = $blacklist;
+            }
 
-			// filter metadata by type of entity
-			if (isset($source['types'])) {
-				$metaloader->setTypes($source['types']);
-			} else {
-				$metaloader->setTypes($set_types);
-			}
+            # Merge global and src specific whitelists
+            if (isset($source['whitelist'])) {
+                $source['whitelist'] = array_unique(array_merge($source['whitelist'], $whitelist));
+            } else {
+                $source['whitelist'] = $whitelist;
+            }
 
-			# Merge global and src specific blacklists
-			if(isset($source['blacklist'])) {
-				$source['blacklist'] = array_unique(array_merge($source['blacklist'], $blacklist));
-			} else {
-				$source['blacklist'] = $blacklist;
-			}
+            \SimpleSAML\Logger::debug('[metarefresh]: In set ['.$setkey.'] loading source ['.$source['src'].']');
+            $metaloader->loadSource($source);
+        }
 
-			# Merge global and src specific whitelists
-			if(isset($source['whitelist'])) {
-				$source['whitelist'] = array_unique(array_merge($source['whitelist'], $whitelist));
-			} else {
-				$source['whitelist'] = $whitelist;
-			}
+        $outputDir = $set->getString('outputDir');
+        $outputDir = $config->resolvePath($outputDir);
 
-			\SimpleSAML\Logger::debug('[metarefresh]: In set [' . $setkey . '] loading source ['  . $source['src'] . ']');
-			$metaloader->loadSource($source);
-		}
-
-		$outputDir = $set->getString('outputDir');
-		$outputDir = $config->resolvePath($outputDir);
-
-		$outputFormat = $set->getValueValidate('outputFormat', array('flatfile', 'serialize'), 'flatfile');
-		switch ($outputFormat) {
-			case 'flatfile':
-				$metaloader->writeMetadataFiles($outputDir);
-				break;
-			case 'serialize':
-				$metaloader->writeMetadataSerialize($outputDir);
-				break;
-		}
-	} catch (\Exception $e) {
-		$e = \SimpleSAML\Error\Exception::fromException($e);
-		$e->logWarning();
-	}
+        $outputFormat = $set->getValueValidate('outputFormat', array('flatfile', 'serialize'), 'flatfile');
+        switch ($outputFormat) {
+            case 'flatfile':
+                $metaloader->writeMetadataFiles($outputDir);
+                break;
+            case 'serialize':
+                $metaloader->writeMetadataSerialize($outputDir);
+                break;
+            }
+    } catch (\Exception $e) {
+        $e = \SimpleSAML\Error\Exception::fromException($e);
+        $e->logWarning();
+    }
 }
 
 $logentries = \SimpleSAML\Logger::getCapturedLog();

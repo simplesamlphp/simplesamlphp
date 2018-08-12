@@ -40,7 +40,7 @@ class CDC extends \SimpleSAML\Auth\ProcessingFilter
         if (!isset($config['domain'])) {
             throw new \SimpleSAML\Error\Exception('Missing domain option in cdc:CDC filter.');
         }
-        $this->domain = (string)$config['domain'];
+        $this->domain = (string) $config['domain'];
 
         $this->client = new \SimpleSAML\Module\cdc\Client($this->domain);
     }

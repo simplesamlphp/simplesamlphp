@@ -24,18 +24,14 @@ if ($this->data['errorcode'] !== null) {
 	<a href="<?php echo htmlspecialchars(\SimpleSAML\Utils\HTTP::getSelfURL()); ?>">
 		<?php echo $this->t('{login:login_button}'); ?>
 	</a>
-
 <?php
 
-if(!empty($this->data['links'])) {
-	echo '<ul class="links" style="margin-top: 2em">';
-	foreach($this->data['links'] AS $l) {
-		echo '<li><a href="' . htmlspecialchars($l['href']) . '">' . htmlspecialchars($this->t($l['text'])) . '</a></li>';
-	}
-	echo '</ul>';
+if (!empty($this->data['links'])) {
+    echo '<ul class="links" style="margin-top: 2em">';
+    foreach ($this->data['links'] as $l) {
+        echo '<li><a href="'.htmlspecialchars($l['href']).'">'.htmlspecialchars($this->t($l['text'])).'</a></li>';
+    }
+    echo '</ul>';
 }
-
-
-
 
 $this->includeAtTemplateBase('includes/footer.php');

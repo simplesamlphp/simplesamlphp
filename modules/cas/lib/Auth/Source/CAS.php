@@ -70,14 +70,14 @@ class CAS extends \SimpleSAML\Auth\Source
 
         if (isset($this->_casConfig['serviceValidate'])) {
             $this->_validationMethod = 'serviceValidate';
-        } elseif(isset($this->_casConfig['validate'])) {
+        } elseif (isset($this->_casConfig['validate'])) {
             $this->_validationMethod = 'validate';
         } else {
             throw new \Exception("validate or serviceValidate not specified");
         }
 
         if (isset($this->_casConfig['login'])) {
-            $this->_loginMethod =  $this->_casConfig['login'];
+            $this->_loginMethod = $this->_casConfig['login'];
         } else {
             throw new \Exception("cas login URL not specified");
         }
@@ -99,7 +99,7 @@ class CAS extends \SimpleSAML\Auth\Source
             'service' => $service,
         ));
         $result = \SimpleSAML\Utils\HTTP::fetch($url);
-        $res = preg_split("/\r?\n/",$result);
+        $res = preg_split("/\r?\n/", $result);
 
         if (strcmp($res[0], "yes") == 0) {
             return array($res[1], array());
@@ -134,10 +134,11 @@ class CAS extends \SimpleSAML\Auth\Source
         $success = $xPath->query("/cas:serviceResponse/cas:authenticationSuccess/cas:user");
         if ($success->length == 0) {
             $failure = $xPath->evaluate("/cas:serviceResponse/cas:authenticationFailure");
-            throw new \Exception("Error when validating CAS service ticket: " . $failure->item(0)->textContent);
+            throw new \Exception("Error when validating CAS service ticket: ".$failure->item(0)->textContent);
         } else {
             $attributes = array();
-            if ($casattributes = $this->_casConfig['attributes']) { # some has attributes in the xml - attributes is a list of XPath expressions to get them
+            if ($casattributes = $this->_casConfig['attributes']) {
+                // Some has attributes in the xml - attributes is a list of XPath expressions to get them
                 foreach ($casattributes as $name => $query) {
                     $attrs = $xPath->query($query);
                     foreach ($attrs as $attrvalue) {
@@ -162,8 +163,7 @@ class CAS extends \SimpleSAML\Auth\Source
      */
     protected function casValidation($ticket, $service)
     {
-        switch ($this->_validationMethod)
-        {
+        switch ($this->_validationMethod) {
             case 'validate':
                 return  $this->casValidate($ticket, $service);
             case 'serviceValidate':
@@ -183,12 +183,12 @@ class CAS extends \SimpleSAML\Auth\Source
     {
         $ticket = $state['cas:ticket'];
         $stateID = \SimpleSAML\Auth\State::saveState($state, self::STAGE_INIT);
-        $service =  \SimpleSAML\Module::getModuleURL('cas/linkback.php', array('stateID' => $stateID));
+        $service = \SimpleSAML\Module::getModuleURL('cas/linkback.php', array('stateID' => $stateID));
         list($username, $casattributes) = $this->casValidation($ticket, $service);
         $ldapattributes = array();
 
         $config = \SimpleSAML\Configuration::loadFromArray($this->_ldapConfig,
-            'Authentication source ' . var_export($this->authId, true));
+            'Authentication source '.var_export($this->authId, true));
         if ($this->_ldapConfig['servers']) {
             $ldap = new \SimpleSAML\Auth\LDAP(
                 $config->getString('servers'),

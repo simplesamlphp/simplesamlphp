@@ -24,8 +24,8 @@ function driveProcessingChain(
     $userid,
     $hashAttributes = false,
     $excludeAttributes = array()
-) {
-
+)
+{
     /*
      * Create a new processing chain
      */
