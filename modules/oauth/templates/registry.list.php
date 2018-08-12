@@ -1,7 +1,7 @@
 <?php
+$this->data['jquery'] = array('core' => true, 'ui' => true, 'css' => true);
+$this->data['head'] = '<link rel="stylesheet" type="text/css" href="/'.$this->data['baseurlpath'].'module.php/oauth/resources/style.css" />'."\n";
 
-$this->data['jquery'] = array('core' => TRUE, 'ui' => TRUE, 'css' => TRUE);
-$this->data['head']  = '<link rel="stylesheet" type="text/css" href="/' . $this->data['baseurlpath'] . 'module.php/oauth/resources/style.css" />' . "\n";
 $this->includeAtTemplateBase('includes/header.php');
 
 

@@ -47,7 +47,7 @@ if (isset($_POST['continue'])) {
 $cfg = \SimpleSAML\Configuration::getInstance();
 $template = new \SimpleSAML\XHTML\Template($cfg, 'saml:proxy/invalid_session.php');
 $translator = $template->getTranslator();
-$template->data['AuthState'] = (string)$_REQUEST['AuthState'];
+$template->data['AuthState'] = (string) $_REQUEST['AuthState'];
 
 // get the name of the IdP
 $idpmdcfg = $state['saml:sp:IdPMetadata'];

@@ -76,7 +76,7 @@ if ($type === 'embed') {
 <?php
 if ($from !== null) {
     echo '<div><img style="float: left; margin-right: 12px" src="/'.$this->data['baseurlpath'].
-         'resources/icons/checkmark.48x48.png" alt="Successful logout" />';
+        'resources/icons/checkmark.48x48.png" alt="Successful logout" />';
     echo '<p style="padding-top: 16px; ">'.
         $this->t('{logout:loggedoutfrom}', array('%SP%' => '<strong>'.htmlspecialchars($from).'</strong>')).'</p>';
     echo '<p style="height: 0px; clear: left;"></p></div>';
@@ -110,7 +110,7 @@ foreach ($SPs as $assocId => $sp) {
     echo '<td style="width: 3em;"></td>';
     echo '<td>';
     echo '<img class="logoutstatusimage" id="statusimage-'.$spId.'"  src="'.htmlspecialchars($stateImage[$spState]).
-         '" alt="'.htmlspecialchars($stateText[$spState]).'"/>';
+        '" alt="'.htmlspecialchars($stateText[$spState]).'"/>';
     echo '</td>';
     echo '<td>'.htmlspecialchars($spName).'</td>';
     echo '</tr>';
@@ -149,9 +149,9 @@ if ($type === 'init') {
         $displayStyle = 'display: none;';
     }
     echo '<div id="logout-failed-message" style="margin-top: 1em; border: 1px solid #ccc; padding: 1em; '.
-         'background: #eaeaea;'.$displayStyle.'">';
+        'background: #eaeaea;'.$displayStyle.'">';
     echo '<img src="/'.$this->data['baseurlpath'].'resources/icons/experience/gtk-dialog-warning.48x48.png" alt="" '.
-         'style="float: left; margin-right: 5px;" />';
+        'style="float: left; margin-right: 5px;" />';
     echo '<p>'.$this->t('{logout:failedsps}').'</p>';
     echo '<form method="post" action="logout-iframe-done.php" id="failed-form" target="_top">';
     echo '<input type="hidden" name="id" value="'.$id.'" />';
@@ -180,7 +180,7 @@ if ($type === 'init') {
             }
             assert(isset($sp['core:Logout-IFrame:URL']));
             echo '<iframe style="width:0; height:0; border:0;" src="'.
-                 htmlspecialchars($sp['core:Logout-IFrame:URL']).'"></iframe>';
+                htmlspecialchars($sp['core:Logout-IFrame:URL']).'"></iframe>';
         }
     }
 }

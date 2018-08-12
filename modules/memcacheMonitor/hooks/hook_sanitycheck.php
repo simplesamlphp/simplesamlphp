@@ -8,7 +8,8 @@
  * @param array &$hookinfo  hookinfo
  */
 
-function memcacheMonitor_hook_sanitycheck(&$hookinfo) {
+function memcacheMonitor_hook_sanitycheck(&$hookinfo)
+{
     assert(is_array($hookinfo));
     assert(array_key_exists('errors', $hookinfo));
     assert(array_key_exists('info', $hookinfo));
@@ -16,7 +17,7 @@ function memcacheMonitor_hook_sanitycheck(&$hookinfo) {
     try {
         $servers = \SimpleSAML\Memcache::getRawStats();
     } catch (\Exception $e) {
-        $hookinfo['errors'][] = '[memcacheMonitor] Error parsing memcache configuration: ' . $e->getMessage();
+        $hookinfo['errors'][] = '[memcacheMonitor] Error parsing memcache configuration: '.$e->getMessage();
         return;
     }
 
@@ -24,7 +25,7 @@ function memcacheMonitor_hook_sanitycheck(&$hookinfo) {
     foreach ($servers as $group) {
         foreach ($group as $server => $status) {
             if ($status === false) {
-                $hookinfo['errors'][] = '[memcacheMonitor] No response from server: ' . $server;
+                $hookinfo['errors'][] = '[memcacheMonitor] No response from server: '.$server;
                 $allOK = false;
             }
         }

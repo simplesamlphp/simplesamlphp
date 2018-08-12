@@ -136,14 +136,14 @@ class Server
         if (!isset($request['op'])) {
             throw new \SimpleSAML\Error\BadRequest('Missing "op" in CDC request.');
         }
-        $op = (string)$request['op'];
+        $op = (string) $request['op'];
 
         \SimpleSAML\Logger::info('Received CDC request with "op": '.var_export($op, true));
 
         if (!isset($request['return'])) {
             throw new \SimpleSAML\Error\BadRequest('Missing "return" in CDC request.');
         }
-        $return = (string)$request['return'];
+        $return = (string) $request['return'];
 
         switch ($op) {
             case 'append':
@@ -167,7 +167,7 @@ class Server
 
         $response['op'] = $op;
         if (isset($request['id'])) {
-            $response['id'] = (string)$request['id'];
+            $response['id'] = (string) $request['id'];
         }
         $response['domain'] = $this->domain;
 
@@ -186,7 +186,7 @@ class Server
         if (!isset($request['entityID'])) {
             throw new \SimpleSAML\Error\BadRequest('Missing entityID in append request.');
         }
-        $entityID = (string)$request['entityID'];
+        $entityID = (string) $request['entityID'];
 
         $list = $this->getCDC();
 
@@ -252,7 +252,7 @@ class Server
         if (!isset($_REQUEST[$parameter])) {
             return null;
         }
-        $message = (string)$_REQUEST[$parameter];
+        $message = (string) $_REQUEST[$parameter];
 
         $message = @base64_decode($message);
         if ($message === false) {
@@ -267,7 +267,7 @@ class Server
         if (!isset($message['timestamp'])) {
             throw new \SimpleSAML\Error\BadRequest('Missing timestamp in CDC message.');
         }
-        $timestamp = (int)$message['timestamp'];
+        $timestamp = (int) $message['timestamp'];
 
         if ($timestamp + 60 < time()) {
             throw new \SimpleSAML\Error\BadRequest('CDC signature has expired.');
@@ -296,12 +296,12 @@ class Server
         assert(is_string($parameter));
         assert(isset($_REQUEST[$parameter]));
 
-        $message = (string)$_REQUEST[$parameter];
+        $message = (string) $_REQUEST[$parameter];
 
         if (!isset($_REQUEST['Signature'])) {
             throw new \SimpleSAML\Error\BadRequest('Missing Signature on CDC message.');
         }
-        $signature = (string)$_REQUEST['Signature'];
+        $signature = (string) $_REQUEST['Signature'];
 
         $cSignature = $this->calcSignature($message);
         if ($signature !== $cSignature) {
@@ -352,7 +352,7 @@ class Server
     {
         assert(is_string($rawMessage));
 
-        return sha1($this->key . $rawMessage . $this->key);
+        return sha1($this->key.$rawMessage.$this->key);
     }
 
 
@@ -367,7 +367,7 @@ class Server
             return array();
         }
 
-        $ret = (string)$_COOKIE['_saml_idp'];
+        $ret = (string) $_COOKIE['_saml_idp'];
         $ret = explode(' ', $ret);
         foreach ($ret as &$idp) {
             $idp = base64_decode($idp);

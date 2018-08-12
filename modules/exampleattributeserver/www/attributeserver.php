@@ -5,15 +5,15 @@ $metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
 $binding = \SAML2\Binding::getCurrentBinding();
 $query = $binding->receive();
 if (!($query instanceof \SAML2\AttributeQuery)) {
-	throw new \SimpleSAML\Error\BadRequest('Invalid message received to AttributeQuery endpoint.');
+    throw new \SimpleSAML\Error\BadRequest('Invalid message received to AttributeQuery endpoint.');
 }
 
 $idpEntityId = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
 
 
 $spEntityId = $query->getIssuer();
-if ($spEntityId === NULL) {
-	throw new \SimpleSAML\Error\BadRequest('Missing <saml:Issuer> in <samlp:AttributeQuery>.');
+if ($spEntityId === null) {
+    throw new \SimpleSAML\Error\BadRequest('Missing <saml:Issuer> in <samlp:AttributeQuery>.');
 }
 
 $idpMetadata = $metadata->getMetadataConfig($idpEntityId, 'saml20-idp-hosted');
@@ -24,49 +24,45 @@ $endpoint = $spMetadata->getString('testAttributeEndpoint');
 
 // The attributes we will return
 $attributes = array(
-	'name' => array('value1', 'value2', 'value3'),
-	'test' => array('test'),
+    'name' => array('value1', 'value2', 'value3'),
+    'test' => array('test'),
 );
 
-/* The name format of the attributes. */
+// The name format of the attributes
 $attributeNameFormat = \SAML2\Constants::NAMEFORMAT_UNSPECIFIED;
 
-
-/* Determine which attributes we will return. */
+// Determine which attributes we will return
 $returnAttributes = array_keys($query->getAttributes());
 if (count($returnAttributes) === 0) {
-	SimpleSAML\Logger::debug('No attributes requested - return all attributes.');
-	$returnAttributes = $attributes;
-
+    SimpleSAML\Logger::debug('No attributes requested - return all attributes.');
+    $returnAttributes = $attributes;
 } elseif ($query->getAttributeNameFormat() !== $attributeNameFormat) {
-	SimpleSAML\Logger::debug('Requested attributes with wrong NameFormat - no attributes returned.');
-	$returnAttributes = array();
+    SimpleSAML\Logger::debug('Requested attributes with wrong NameFormat - no attributes returned.');
+    $returnAttributes = array();
 } else {
-	foreach ($returnAttributes as $name => $values) {
-		if (!array_key_exists($name, $attributes)) {
-			/* We don't have this attribute. */
-			unset($returnAttributes[$name]);
-			continue;
-		}
+    foreach ($returnAttributes as $name => $values) {
+        if (!array_key_exists($name, $attributes)) {
+            // We don't have this attribute
+            unset($returnAttributes[$name]);
+            continue;
+        }
+        if (count($values) === 0) {
+            // Return all attributes
+            $returnAttributes[$name] = $attributes[$name];
+            continue;
+        }
 
-		if (count($values) === 0) {
-			/* Return all attributes. */
-			$returnAttributes[$name] = $attributes[$name];
-			continue;
-		}
-
-		/* Filter which attribute values we should return. */
-		$returnAttributes[$name] = array_intersect($values, $attributes[$name]);
-	}
+        // Filter which attribute values we should return
+        $returnAttributes[$name] = array_intersect($values, $attributes[$name]);
+    }
 }
 
-
-/* $returnAttributes contains the attributes we should return. Send them. */
+// $returnAttributes contains the attributes we should return. Send them
 $assertion = new \SAML2\Assertion();
 $assertion->setIssuer($idpEntityId);
 $assertion->setNameId($query->getNameId());
 $assertion->setNotBefore(time());
-$assertion->setNotOnOrAfter(time() + 5*60);
+$assertion->setNotOnOrAfter(time() + 300); // 60*5 = 5min
 $assertion->setValidAudiences(array($spEntityId));
 $assertion->setAttributes($returnAttributes);
 $assertion->setAttributeNameFormat($attributeNameFormat);
@@ -74,7 +70,7 @@ $assertion->setAttributeNameFormat($attributeNameFormat);
 $sc = new \SAML2\XML\saml\SubjectConfirmation();
 $sc->Method = \SAML2\Constants::CM_BEARER;
 $sc->SubjectConfirmationData = new \SAML2\XML\saml\SubjectConfirmationData();
-$sc->SubjectConfirmationData->NotOnOrAfter = time() + 5*60;
+$sc->SubjectConfirmationData->NotOnOrAfter = time() + 300; // 60*5 = 5min
 $sc->SubjectConfirmationData->Recipient = $endpoint;
 $sc->SubjectConfirmationData->InResponseTo = $query->getId();
 $assertion->setSubjectConfirmation(array($sc));

@@ -47,7 +47,7 @@ class Cron
         \SimpleSAML\Module::callHooks('cron', $croninfo);
 
         foreach ($summary as $s) {
-            \SimpleSAML\Logger::debug('Cron - Summary: ' . $s);
+            \SimpleSAML\Logger::debug('Cron - Summary: '.$s);
         }
 
         return $croninfo;

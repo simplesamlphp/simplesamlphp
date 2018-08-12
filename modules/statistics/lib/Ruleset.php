@@ -33,20 +33,21 @@ class Ruleset
          * Walk through file lists, and get available [rule][fileslot]...
          */
         if (!is_dir($statdir)) {
-            throw new \Exception('Statisics output directory [' . $statdir . '] does not exists.');
+            throw new \Exception('Statisics output directory ['.$statdir.'] does not exists.');
         }
         $filelist = scandir($statdir);
         $this->available = array();
         foreach ($filelist as $file) {
-        if (preg_match('/([a-z0-9_]+)-([a-z0-9_]+)-([0-9]+)\.stat/', $file, $matches)) {
-            if (array_key_exists($matches[1], $statrules)) {
-                if (array_key_exists($matches[2], $timeres)) 
-                    $this->available[$matches[1]][$matches[2]][] = $matches[3];
+            if (preg_match('/([a-z0-9_]+)-([a-z0-9_]+)-([0-9]+)\.stat/', $file, $matches)) {
+                if (array_key_exists($matches[1], $statrules)) {
+                    if (array_key_exists($matches[2], $timeres)) {
+                        $this->available[$matches[1]][$matches[2]][] = $matches[3];
+                    }
                 }
             }
         }
         if (empty($this->available)) {
-            throw new \Exception('No aggregated statistics files found in [' . $statdir . ']');
+            throw new \Exception('No aggregated statistics files found in ['.$statdir.']');
         }
 
         /*

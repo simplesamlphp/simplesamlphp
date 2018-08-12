@@ -14,13 +14,15 @@ $spMetadata = $source->getMetadata();
 
 try {
     $b = \SAML2\Binding::getCurrentBinding();
-} catch (Exception $e) { // TODO: look for a specific exception
+} catch (Exception $e) {
+    // TODO: look for a specific exception
     // This is dirty. Instead of checking the message of the exception, \SAML2\Binding::getCurrentBinding() should throw
     // an specific exception when the binding is unknown, and we should capture that here
     if ($e->getMessage() === 'Unable to find the current binding.') {
         throw new \SimpleSAML\Error\Error('ACSPARAMS', $e, 400);
     } else {
-        throw $e; // do not ignore other exceptions!
+        // do not ignore other exceptions!
+        throw $e;
     }
 }
 

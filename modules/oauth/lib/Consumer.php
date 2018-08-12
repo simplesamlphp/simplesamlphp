@@ -2,7 +2,7 @@
 
 namespace SimpleSAML\Module\oauth;
 
-require_once(dirname(dirname(__FILE__)) . '/libextinc/OAuth.php');
+require_once(dirname(dirname(__FILE__)).'/libextinc/OAuth.php');
 
 /**
  * OAuth Consumer
@@ -23,7 +23,9 @@ class Consumer
     }
 
     // Used only to load the libextinc library early
-    public static function dummy() {}
+    public static function dummy()
+    {
+    }
 
     public static function getOAuthError($hrh)
     {
@@ -64,14 +66,14 @@ class Consumer
                 $statuscode = $matches[1];
             }
 
-            $error = $context . ' [statuscode: ' . $statuscode . ']: ';
+            $error = $context.' [statuscode: '.$statuscode.']: ';
             $oautherror = self::getOAuthError($http_response_header);
 
             if (!empty($oautherror)) {
                 $error .= $oautherror;
             }
 
-            throw new \Exception($error . ':' . $url);
+            throw new \Exception($error.':'.$url);
         } 
         // Fall back to return response, if could not reckognize HTTP header. Should not happen.
         return $response;
@@ -90,7 +92,7 @@ class Consumer
         parse_str($response_req, $responseParsed);
 
         if (array_key_exists('error', $responseParsed)) {
-            throw new \Exception('Error getting request token: ' . $responseParsed['error']);
+            throw new \Exception('Error getting request token: '.$responseParsed['error']);
         }
 
         $requestToken = $responseParsed['oauth_token'];
@@ -124,12 +126,12 @@ class Consumer
             throw new \Exception('Error contacting request_token endpoint on the OAuth Provider');
         }
 
-        \SimpleSAML\Logger::debug('oauth: Reponse to get access token: '. $response_acc);
+        \SimpleSAML\Logger::debug('oauth: Reponse to get access token: '.$response_acc);
 
         parse_str($response_acc, $accessResponseParsed);
 
         if (array_key_exists('error', $accessResponseParsed)) {
-            throw new \Exception('Error getting request token: ' . $accessResponseParsed['error']);
+            throw new \Exception('Error getting request token: '.$accessResponseParsed['error']);
         }
 
         $accessToken = $accessResponseParsed['oauth_token'];
@@ -160,7 +162,7 @@ class Consumer
         try {
             $response = \SimpleSAML\Utils\HTTP::fetch($url, $opts);
         } catch (\SimpleSAML\Error\Exception $e) {
-            throw new \SimpleSAML\Error\Exception('Failed to push definition file to ' . $url);
+            throw new \SimpleSAML\Error\Exception('Failed to push definition file to '.$url);
         }
         return $response;
     }

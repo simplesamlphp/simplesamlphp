@@ -11,110 +11,109 @@ namespace SimpleSAML\Module\core\Auth\Process;
 
 class AttributeLimit extends \SimpleSAML\Auth\ProcessingFilter
 {
-	/**
-	 * List of attributes which this filter will allow through.
-	 */
-	private $allowedAttributes = array();
+    /**
+     * List of attributes which this filter will allow through.
+     */
+    private $allowedAttributes = array();
 
+    /**
+     * Whether the 'attributes' option in the metadata takes precedence.
+     *
+     * @var bool
+     */
+    private $isDefault = false;
 
-	/**
-	 * Whether the 'attributes' option in the metadata takes precedence.
-	 *
-	 * @var bool
-	 */
-	private $isDefault = false;
+    /**
+     * Initialize this filter.
+     *
+     * @param array $config  Configuration information about this filter.
+     * @param mixed $reserved  For future use
+     * @throws \SimpleSAML\Error\Exception If invalid configuration is found.
+     */
+    public function __construct($config, $reserved)
+    {
+        parent::__construct($config, $reserved);
 
+        assert(is_array($config));
 
-	/**
-	 * Initialize this filter.
-	 *
-	 * @param array $config  Configuration information about this filter.
-	 * @param mixed $reserved  For future use
-	 * @throws \SimpleSAML\Error\Exception If invalid configuration is found.
-	 */
-	public function __construct($config, $reserved) {
-		parent::__construct($config, $reserved);
-
-		assert(is_array($config));
-
-		foreach ($config as $index => $value) {
-			if ($index === 'default') {
-				$this->isDefault = (bool)$value;
-			} elseif (is_int($index)) {
-				if (!is_string($value)) {
-					throw new \SimpleSAML\Error\Exception('AttributeLimit: Invalid attribute name: ' .
-                        var_export($value, TRUE));
-				}
-				$this->allowedAttributes[] = $value;
+        foreach ($config as $index => $value) {
+            if ($index === 'default') {
+                $this->isDefault = (bool) $value;
+            } elseif (is_int($index)) {
+                if (!is_string($value)) {
+                    throw new \SimpleSAML\Error\Exception('AttributeLimit: Invalid attribute name: '.
+                        var_export($value, true));
+                }
+                $this->allowedAttributes[] = $value;
             } elseif (is_string($index)) {
                 if (!is_array($value)) {
-                    throw new \SimpleSAML\Error\Exception('AttributeLimit: Values for ' . var_export($index, TRUE) .
-                        ' must be specified in an array.');
+                    throw new \SimpleSAML\Error\Exception('AttributeLimit: Values for '.
+                        var_export($index, true).' must be specified in an array.');
                 }
                 $this->allowedAttributes[$index] = $value;
-			} else {
-				throw new \SimpleSAML\Error\Exception('AttributeLimit: Invalid option: ' . var_export($index, TRUE));
-			}
-		}
-	}
+            } else {
+                throw new \SimpleSAML\Error\Exception('AttributeLimit: Invalid option: '.var_export($index, true));
+            }
+        }
+    }
 
+    /**
+     * Get list of allowed from the SP/IdP config.
+     *
+     * @param array &$request  The current request.
+     * @return array|NULL  Array with attribute names, or NULL if no limit is placed.
+     */
+    private static function getSPIdPAllowed(array &$request)
+    {
+        if (array_key_exists('attributes', $request['Destination'])) {
+            // SP Config
+            return $request['Destination']['attributes'];
+        }
+        if (array_key_exists('attributes', $request['Source'])) {
+            // IdP Config
+            return $request['Source']['attributes'];
+        }
+        return null;
+    }
 
-	/**
-	 * Get list of allowed from the SP/IdP config.
-	 *
-	 * @param array &$request  The current request.
-	 * @return array|NULL  Array with attribute names, or NULL if no limit is placed.
-	 */
-	private static function getSPIdPAllowed(array &$request) {
+    /**
+     * Apply filter to remove attributes.
+     *
+     * Removes all attributes which aren't one of the allowed attributes.
+     *
+     * @param array &$request  The current request
+     * @throws \SimpleSAML\Error\Exception If invalid configuration is found.
+     */
+    public function process(&$request)
+    {
+        assert(is_array($request));
+        assert(array_key_exists('Attributes', $request));
 
-		if (array_key_exists('attributes', $request['Destination'])) {
-			// SP Config
-			return $request['Destination']['attributes'];
-		}
-		if (array_key_exists('attributes', $request['Source'])) {
-			// IdP Config
-			return $request['Source']['attributes'];
-		}
-		return NULL;
-	}
+        if ($this->isDefault) {
+            $allowedAttributes = self::getSPIdPAllowed($request);
+            if ($allowedAttributes === null) {
+                $allowedAttributes = $this->allowedAttributes;
+            }
+        } elseif (!empty($this->allowedAttributes)) {
+            $allowedAttributes = $this->allowedAttributes;
+        } else {
+            $allowedAttributes = self::getSPIdPAllowed($request);
+            if ($allowedAttributes === null) {
+                // No limit on attributes
+                return;
+            }
+        }
 
+        $attributes = &$request['Attributes'];
 
-	/**
-	 * Apply filter to remove attributes.
-	 *
-	 * Removes all attributes which aren't one of the allowed attributes.
-	 *
-	 * @param array &$request  The current request
-	 * @throws \SimpleSAML\Error\Exception If invalid configuration is found.
-	 */
-	public function process(&$request) {
-		assert(is_array($request));
-		assert(array_key_exists('Attributes', $request));
-
-		if ($this->isDefault) {
-			$allowedAttributes = self::getSPIdPAllowed($request);
-			if ($allowedAttributes === NULL) {
-				$allowedAttributes = $this->allowedAttributes;
-			}
-		} elseif (!empty($this->allowedAttributes)) {
-			$allowedAttributes = $this->allowedAttributes;
-		} else {
-			$allowedAttributes = self::getSPIdPAllowed($request);
-			if ($allowedAttributes === NULL) {
-				return; /* No limit on attributes. */
-			}
-		}
-
-		$attributes =& $request['Attributes'];
-
-		foreach ($attributes as $name => $values) {
-			if (!in_array($name, $allowedAttributes, TRUE)) {
+        foreach ($attributes as $name => $values) {
+            if (!in_array($name, $allowedAttributes, true)) {
                 // the attribute name is not in the array of allowed attributes
                 if (array_key_exists($name, $allowedAttributes)) {
                     // but it is an index of the array
                     if (!is_array($allowedAttributes[$name])) {
-                        throw new \SimpleSAML\Error\Exception('AttributeLimit: Values for ' . var_export($name, TRUE) .
-                            ' must be specified in an array.');
+                        throw new \SimpleSAML\Error\Exception('AttributeLimit: Values for '.
+                            var_export($name, true).' must be specified in an array.');
                     }
                     $attributes[$name] = $this->filterAttributeValues($attributes[$name], $allowedAttributes[$name]);
                     if (!empty($attributes[$name])) {
@@ -122,10 +121,9 @@ class AttributeLimit extends \SimpleSAML\Auth\ProcessingFilter
                     }
                 }
                 unset($attributes[$name]);
-			}
-		}
-
-	}
+            }
+        }
+    }
 
     /**
      * Perform the filtering of attributes
@@ -144,8 +142,8 @@ class AttributeLimit extends \SimpleSAML\Auth\ProcessingFilter
                 }
                 foreach ($values as $index => $attributeValue) {
                     /* Suppress errors in preg_match since phpunit is set to fail on warnings, which
-                       prevents us from testing with invalid regex.
-                    */
+                     *  prevents us from testing with invalid regex.
+                     */
                     $regexResult = @preg_match($pattern, $attributeValue);
                     if ($regexResult === false) {
                         \SimpleSAML\Logger::warning("Error processing regex '$pattern' on value '$attributeValue'");

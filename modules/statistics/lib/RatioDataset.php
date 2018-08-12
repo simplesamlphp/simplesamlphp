@@ -17,7 +17,7 @@ class RatioDataset extends StatDataset
         $this->summary = array(); 
         $noofvalues = array();
         foreach ($this->results as $slot => $res) {
-            foreach ($res AS $key => $value) {
+            foreach ($res as $key => $value) {
                 if (array_key_exists($key, $this->summary)) {
                     $this->summary[$key] += $value;
                     if ($value > 0) {

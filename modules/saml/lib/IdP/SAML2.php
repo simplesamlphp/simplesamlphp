@@ -1089,8 +1089,8 @@ class SAML2
                 $key->loadKey($pemKey);
             } else {
                 throw new \SimpleSAML\Error\ConfigurationError(
-                    'Missing encryption key for entity `' . $spMetadata->getString('entityid') . '`',
-                    $spMetadata->getString('metadata-set') . '.php',
+                    'Missing encryption key for entity `'.$spMetadata->getString('entityid').'`',
+                    $spMetadata->getString('metadata-set').'.php',
                     null
                 );
             }

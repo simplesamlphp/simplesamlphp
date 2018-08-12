@@ -28,9 +28,9 @@ class SAML1
         $spMetadata = $state["SPMetadata"];
         $spEntityId = $spMetadata['entityid'];
         $spMetadata = \SimpleSAML\Configuration::loadFromArray($spMetadata,
-            '$metadata[' . var_export($spEntityId, true) . ']');
+            '$metadata['.var_export($spEntityId, true).']');
 
-        \SimpleSAML\Logger::info('Sending SAML 1.1 Response to ' . var_export($spEntityId, true));
+        \SimpleSAML\Logger::info('Sending SAML 1.1 Response to '.var_export($spEntityId, true));
 
         $attributes = $state['Attributes'];
         $shire = $state['saml:shire'];
@@ -70,7 +70,7 @@ class SAML1
     public static function receiveAuthnRequest(\SimpleSAML\IdP $idp)
     {
         if (isset($_REQUEST['cookieTime'])) {
-            $cookieTime = (int)$_REQUEST['cookieTime'];
+            $cookieTime = (int) $_REQUEST['cookieTime'];
             if ($cookieTime + 5 > time()) {
                 /*
                  * Less than five seconds has passed since we were
@@ -83,12 +83,12 @@ class SAML1
         if (!isset($_REQUEST['providerId'])) {
             throw new \SimpleSAML\Error\BadRequest('Missing providerId parameter.');
         }
-        $spEntityId = (string)$_REQUEST['providerId'];
+        $spEntityId = (string) $_REQUEST['providerId'];
 
         if (!isset($_REQUEST['shire'])) {
             throw new \SimpleSAML\Error\BadRequest('Missing shire parameter.');
         }
-        $shire = (string)$_REQUEST['shire'];
+        $shire = (string) $_REQUEST['shire'];
 
         if (isset($_REQUEST['target'])) {
             $target = $_REQUEST['target'];
@@ -96,7 +96,7 @@ class SAML1
             $target = null;
         }
 
-        \SimpleSAML\Logger::info('Shib1.3 - IdP.SSOService: Got incoming Shib authnRequest from ' . var_export($spEntityId, true) . '.');
+        \SimpleSAML\Logger::info('Shib1.3 - IdP.SSOService: Got incoming Shib authnRequest from '.var_export($spEntityId, true).'.');
 
         $metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
         $spMetadata = $metadata->getMetaDataConfig($spEntityId, 'shib13-sp-remote');
@@ -113,8 +113,8 @@ class SAML1
             break;
         }
         if (!$found) {
-            throw new \Exception('Invalid AssertionConsumerService for SP ' .
-                var_export($spEntityId, true) . ': ' . var_export($shire, true));
+            throw new \Exception('Invalid AssertionConsumerService for SP '.
+                var_export($spEntityId, true).': '.var_export($shire, true));
         }
 
         \SimpleSAML\Stats::log('saml:idp:AuthnRequest', array(

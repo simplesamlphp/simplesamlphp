@@ -36,7 +36,7 @@ class LDAP extends \SimpleSAML\Module\core\Auth\UserPassBase
         parent::__construct($info, $config);
 
         $this->ldapConfig = new \SimpleSAML\Module\ldap\ConfigHelper($config,
-            'Authentication source ' . var_export($this->authId, true));
+            'Authentication source '.var_export($this->authId, true));
     }
 
 

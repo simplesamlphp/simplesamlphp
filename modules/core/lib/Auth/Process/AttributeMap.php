@@ -79,7 +79,8 @@ class AttributeMap extends \SimpleSAML\Auth\ProcessingFilter
         $config = \SimpleSAML\Configuration::getInstance();
 
         $m = explode(':', $fileName);
-        if (count($m) === 2) { // we are asked for a file in a module
+        if (count($m) === 2) {
+            // we are asked for a file in a module
             if (!\SimpleSAML\Module::isModuleEnabled($m[0])) {
                 throw new \Exception("Module '$m[0]' is not enabled.");
             }

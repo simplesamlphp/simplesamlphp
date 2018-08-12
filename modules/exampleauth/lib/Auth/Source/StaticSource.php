@@ -14,46 +14,42 @@ namespace SimpleSAML\Module\exampleauth\Auth\Source;
 
 class StaticSource extends \SimpleSAML\Auth\Source
 {
-	/**
-	 * The attributes we return.
-	 */
-	private $attributes;
+    /**
+     * The attributes we return.
+     */
+    private $attributes;
 
+    /**
+     * Constructor for this authentication source.
+     *
+     * @param array $info  Information about this authentication source.
+     * @param array $config  Configuration.
+     */
+    public function __construct($info, $config)
+    {
+        assert(is_array($info));
+        assert(is_array($config));
 
-	/**
-	 * Constructor for this authentication source.
-	 *
-	 * @param array $info  Information about this authentication source.
-	 * @param array $config  Configuration.
-	 */
-	public function __construct($info, $config) {
-		assert(is_array($info));
-		assert(is_array($config));
+        // Call the parent constructor first, as required by the interface
+        parent::__construct($info, $config);
 
-		// Call the parent constructor first, as required by the interface
-		parent::__construct($info, $config);
+        // Parse attributes
+        try {
+            $this->attributes = \SimpleSAML\Utils\Attributes::normalizeAttributesArray($config);
+        } catch (\Exception $e) {
+            throw new \Exception('Invalid attributes for authentication source '.
+                $this->authId.': '.$e->getMessage());
+        }
+    }
 
-
-		// Parse attributes
-		try {
-			$this->attributes = \SimpleSAML\Utils\Attributes::normalizeAttributesArray($config);
-		} catch (\Exception $e) {
-			throw new \Exception('Invalid attributes for authentication source ' .
-				$this->authId . ': ' . $e->getMessage());
-		}
-
-	}
-
-
-	/**
-	 * Log in using static attributes.
-	 *
-	 * @param array &$state  Information about the current authentication.
-	 */
-	public function authenticate(&$state) {
-		assert(is_array($state));
-
-		$state['Attributes'] = $this->attributes;
-	}
-
+    /**
+     * Log in using static attributes.
+     *
+     * @param array &$state  Information about the current authentication.
+     */
+    public function authenticate(&$state)
+    {
+        assert(is_array($state));
+        $state['Attributes'] = $this->attributes;
+    }
 }

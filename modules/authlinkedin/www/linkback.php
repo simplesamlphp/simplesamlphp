@@ -13,7 +13,7 @@ $state = \SimpleSAML\Auth\State::loadState($_REQUEST['stateid'], \SimpleSAML\Mod
 if (array_key_exists('oauth_verifier', $_REQUEST)) {
     $state['authlinkedin:oauth_verifier'] = $_REQUEST['oauth_verifier'];
 } else {
-    throw new Exception('OAuth verifier not returned.');;
+    throw new Exception('OAuth verifier not returned.');
 }
 
 // Find authentication source
@@ -22,7 +22,7 @@ $sourceId = $state[\SimpleSAML\Module\authlinkedin\Auth\Source\LinkedIn::AUTHID]
 
 $source = \SimpleSAML\Auth\Source::getById($sourceId);
 if ($source === null) {
-    throw new \Exception('Could not find authentication source with id ' . $sourceId);
+    throw new \Exception('Could not find authentication source with id '.$sourceId);
 }
 
 $source->finalStep($state);

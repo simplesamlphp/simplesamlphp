@@ -165,7 +165,7 @@ class YubiKey extends \SimpleSAML\Auth\Source
      */
     public static function getYubiKeyPrefix($otp)
     {
-        $uid = substr($otp, 0, strlen ($otp) - self::TOKENSIZE);
+        $uid = substr($otp, 0, strlen($otp) - self::TOKENSIZE);
         return $uid;
     }
 

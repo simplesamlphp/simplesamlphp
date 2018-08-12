@@ -54,7 +54,7 @@ class X509userCert extends \SimpleSAML\Auth\Source
 
         $this->ldapcf = new \SimpleSAML\Module\ldap\ConfigHelper(
             $config,
-            'Authentication source ' . var_export($this->authId, true)
+            'Authentication source '.var_export($this->authId, true)
         );
 
         return;
@@ -120,7 +120,7 @@ class X509userCert extends \SimpleSAML\Auth\Source
             // value is scalar
             if (array_key_exists($x509_attr, $client_cert_data['subject'])) {
                 $value = $client_cert_data['subject'][$x509_attr];
-                \SimpleSAML\Logger::info('authX509: cert '. $x509_attr.' = '.$value);
+                \SimpleSAML\Logger::info('authX509: cert '.$x509_attr.' = '.$value);
                 $dn = $ldapcf->searchfordn($ldap_attr, $value, true);
                 if ($dn !== null) {
                     break;
@@ -137,7 +137,8 @@ class X509userCert extends \SimpleSAML\Auth\Source
             return;
         }
 
-        if ($this->ldapusercert === null) { // do not check for certificate match
+        if ($this->ldapusercert === null) {
+            // do not check for certificate match
             $attributes = $ldapcf->getAttributes($dn);
             assert(is_array($attributes));
             $state['Attributes'] = $attributes;

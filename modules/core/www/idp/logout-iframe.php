@@ -22,7 +22,8 @@ $state = \SimpleSAML\Auth\State::loadState($_REQUEST['id'], 'core:Logout-IFrame'
 $idp = \SimpleSAML\IdP::getByState($state);
 $mdh = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
 
-if ($type !== 'init') { // update association state
+if ($type !== 'init') {
+    // update association state
     foreach ($state['core:Logout-IFrame:Associations'] as $assocId => &$sp) {
         $spId = sha1($assocId);
 

@@ -16,7 +16,7 @@ if ($config->getBoolean('admin.protectmetadata', false)) {
 $idpentityid = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
 $idpmeta = $metadata->getMetaDataConfig($idpentityid, 'saml20-idp-hosted');
 
-switch($_SERVER['PATH_INFO']) {
+switch ($_SERVER['PATH_INFO']) {
     case '/new_idp.crt':
         $certInfo = SimpleSAML\Utils\Crypto::loadPublicKey($idpmeta, false, 'new_');
         break;

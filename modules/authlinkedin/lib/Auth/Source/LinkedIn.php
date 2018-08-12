@@ -2,7 +2,7 @@
 
 namespace SimpleSAML\Module\authlinkedin\Auth\Source;
 
-require_once(dirname(dirname(dirname(dirname(dirname(__FILE__))))) . '/oauth/libextinc/OAuth.php');
+require_once(dirname(dirname(dirname(dirname(dirname(__FILE__))))).'/oauth/libextinc/OAuth.php');
 
 /**
  * Authenticate using LinkedIn.
@@ -11,7 +11,7 @@ require_once(dirname(dirname(dirname(dirname(dirname(__FILE__))))) . '/oauth/lib
  * @package SimpleSAMLphp
  */
 
-class LinkedIn extends \SimpleSAML\Auth\Source 
+class LinkedIn extends \SimpleSAML\Auth\Source
 {
     /**
      * The string used to identify our states.
@@ -42,13 +42,15 @@ class LinkedIn extends \SimpleSAML\Auth\Source
         // Call the parent constructor first, as required by the interface
         parent::__construct($info, $config);
 
-        if (!array_key_exists('key', $config))
+        if (!array_key_exists('key', $config)) {
             throw new \Exception('LinkedIn authentication source is not properly configured: missing [key]');
+        }
 
         $this->key = $config['key'];
 
-        if (!array_key_exists('secret', $config))
+        if (!array_key_exists('secret', $config)) {
             throw new \Exception('LinkedIn authentication source is not properly configured: missing [secret]');
+        }
 
         $this->secret = $config['secret'];
 
@@ -75,19 +77,19 @@ class LinkedIn extends \SimpleSAML\Auth\Source
         $state[self::AUTHID] = $this->authId;
 
         $stateID = \SimpleSAML\Auth\State::getStateId($state);
-        \SimpleSAML\Logger::debug('authlinkedin auth state id = ' . $stateID);
+        \SimpleSAML\Logger::debug('authlinkedin auth state id = '.$stateID);
 
         $consumer = new \SimpleSAML\Module\oauth\Consumer($this->key, $this->secret);
 
         // Get the request token
         $requestToken = $consumer->getRequestToken(
             'https://api.linkedin.com/uas/oauth/requestToken',
-            array('oauth_callback' => \SimpleSAML\Module::getModuleUrl('authlinkedin') . '/linkback.php?stateid=' . $stateID)
+            array('oauth_callback' => \SimpleSAML\Module::getModuleUrl('authlinkedin').'/linkback.php?stateid='.$stateID)
         );
 
         \SimpleSAML\Logger::debug(
-            "Got a request token from the OAuth service provider [" .
-            $requestToken->key . "] with the secret [" . $requestToken->secret . "]"
+            "Got a request token from the OAuth service provider [".
+            $requestToken->key."] with the secret [".$requestToken->secret."]"
         );
 
         $state['authlinkedin:requestToken'] = $requestToken;
@@ -100,15 +102,15 @@ class LinkedIn extends \SimpleSAML\Auth\Source
     }
 
 
-    public function finalStep(&$state) 
+    public function finalStep(&$state)
     {
         $requestToken = $state['authlinkedin:requestToken'];
 
         $consumer = new \SimpleSAML\Module\oauth\Consumer($this->key, $this->secret);
 
         \SimpleSAML\Logger::debug(
-            "oauth: Using this request token [" .
-            $requestToken->key . "] with the secret [" . $requestToken->secret . "]"
+            "oauth: Using this request token [".
+            $requestToken->key."] with the secret [".$requestToken->secret."]"
         );
 
         // Replace the request token with an access token (via GET method)
@@ -118,12 +120,12 @@ class LinkedIn extends \SimpleSAML\Auth\Source
         );
 
         \SimpleSAML\Logger::debug(
-            "Got an access token from the OAuth service provider [" .
-            $accessToken->key . "] with the secret [" . $accessToken->secret . "]"
+            "Got an access token from the OAuth service provider [".
+            $accessToken->key."] with the secret [".$accessToken->secret."]"
         );
 
         $userdata = $consumer->getUserInfo(
-            'https://api.linkedin.com/v1/people/~:(' . $this->attributes . ')',
+            'https://api.linkedin.com/v1/people/~:('.$this->attributes.')',
             $accessToken, 
             array('http' => array('header' => 'x-li-format: json'))
         );
@@ -133,11 +135,11 @@ class LinkedIn extends \SimpleSAML\Auth\Source
         // TODO: pass accessToken: key, secret + expiry as attributes?
 
         if (array_key_exists('id', $userdata)) {
-            $attributes['linkedin_targetedID'] = array('http://linkedin.com!' . $userdata['id']);
-            $attributes['linkedin_user'] = array($userdata['id'] . '@linkedin.com');
+            $attributes['linkedin_targetedID'] = array('http://linkedin.com!'.$userdata['id']);
+            $attributes['linkedin_user'] = array($userdata['id'].'@linkedin.com');
         }
 
-        \SimpleSAML\Logger::debug('LinkedIn Returned Attributes: '. implode(", ",array_keys($attributes)));
+        \SimpleSAML\Logger::debug('LinkedIn Returned Attributes: '.implode(", ", array_keys($attributes)));
 
         $state['Attributes'] = $attributes;
     }
@@ -174,9 +176,9 @@ class LinkedIn extends \SimpleSAML\Auth\Source
         $result = array();
         foreach ($array as $key => $value) {
             if (is_array($value)) {
-                $result = $result + $this->flatten($value, $prefix . $key . '.');
+                $result = $result + $this->flatten($value, $prefix.$key.'.');
             } else {
-                $result[$prefix . $key] = array($value);
+                $result[$prefix.$key] = array($value);
             }
         }
         return $result;

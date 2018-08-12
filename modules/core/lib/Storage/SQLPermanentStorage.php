@@ -213,7 +213,7 @@ class SQLPermanentStorage
         }
 
         $conditions[] = "(expire IS NULL OR expire >= ".time().")";
-		    return join(' AND ', $conditions);
+        return join(' AND ', $conditions);
     }
 }
 

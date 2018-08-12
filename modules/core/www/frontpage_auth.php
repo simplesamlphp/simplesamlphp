@@ -18,16 +18,16 @@ $links_auth = array();
 $links_federation = array();
 
 $links_auth[] = array(
-	'href' => 'login.php',
-	'text' => '{core:frontpage:authtest}',
+    'href' => 'login.php',
+    'text' => '{core:frontpage:authtest}',
 );
 
 $allLinks = array(
-	'links'      => &$links,
-	'welcome'    => &$links_welcome,
-	'config'     => &$links_config,
-	'auth'       => &$links_auth,
-	'federation' => &$links_federation,
+    'links' => &$links,
+    'welcome' => &$links_welcome,
+    'config' => &$links_config,
+    'auth' => &$links_auth,
+    'federation' => &$links_federation,
 );
 \SimpleSAML\Module::callHooks('frontpage', $allLinks);
 

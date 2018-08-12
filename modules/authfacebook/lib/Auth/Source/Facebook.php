@@ -76,8 +76,8 @@ class Facebook extends \SimpleSAML\Auth\Source
 		
         $this->api_key = $cfgParse->getString('api_key');
         $this->secret = $cfgParse->getString('secret');
-        $this->req_perms = $cfgParse->getString('req_perms', NULL);
-        $this->user_fields = $cfgParse->getString('user_fields', NULL);
+        $this->req_perms = $cfgParse->getString('req_perms', null);
+        $this->user_fields = $cfgParse->getString('user_fields', null);
     }
 
 
@@ -127,7 +127,7 @@ class Facebook extends \SimpleSAML\Auth\Source
         $attributes = array();
         foreach ($info as $key => $value) {
             if (is_string($value) && !empty($value)) {
-                $attributes['facebook.'.$key] = array((string)$value);
+                $attributes['facebook.'.$key] = array((string) $value);
             }
         }
 
@@ -137,7 +137,7 @@ class Facebook extends \SimpleSAML\Auth\Source
             $attributes['facebook_user'] = array($uid.'@facebook.com');
         }
 
-        $attributes['facebook_targetedID'] = array('http://facebook.com!' . $uid);
+        $attributes['facebook_targetedID'] = array('http://facebook.com!'.$uid);
         $attributes['facebook_cn'] = array($info['name']);
 
         \SimpleSAML\Logger::debug('Facebook Returned Attributes: '.implode(", ", array_keys($attributes)));

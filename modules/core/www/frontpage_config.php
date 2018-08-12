@@ -24,7 +24,7 @@ if ($config->getValue('secretsalt') === 'defaultsecretsalt') {
 
 if (extension_loaded('suhosin')) {
     $suhosinLength = ini_get('suhosin.get.max_value_length');
-    if (empty($suhosinLength) || (int)$suhosinLength < 2048) {
+    if (empty($suhosinLength) || (int) $suhosinLength < 2048) {
         $warnings[] = '{core:frontpage:warnings_suhosin_url_length}';
     }
 }
@@ -36,12 +36,12 @@ $links_auth = array();
 $links_federation = array();
 
 $links_config[] = array(
-    'href' => \SimpleSAML\Utils\HTTP::getBaseURL() . 'admin/hostnames.php',
+    'href' => \SimpleSAML\Utils\HTTP::getBaseURL().'admin/hostnames.php',
     'text' => '{core:frontpage:link_diagnostics}'
 );
 
 $links_config[] = array(
-    'href' => \SimpleSAML\Utils\HTTP::getBaseURL() . 'admin/phpinfo.php',
+    'href' => \SimpleSAML\Utils\HTTP::getBaseURL().'admin/phpinfo.php',
     'text' => '{core:frontpage:link_phpinfo}'
 );
 
@@ -116,7 +116,7 @@ if (\SimpleSAML\Module::isModuleEnabled('radius')) {
 $funcmatrix = array();
 $funcmatrix[] = array(
     'required' => 'required', 
-    'descr' => 'PHP Version >= 5.4. You run: ' . phpversion(),
+    'descr' => 'PHP Version >= 5.4. You run: '.phpversion(),
     'enabled' => version_compare(phpversion(), '5.4', '>=')
 );
 foreach ($functionchecks as $func => $descr) {

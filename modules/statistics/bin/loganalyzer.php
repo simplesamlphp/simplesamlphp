@@ -5,7 +5,7 @@
 $baseDir = dirname(dirname(dirname(dirname(__FILE__))));
 
 // Add library autoloader.
-require_once($baseDir . '/lib/_autoload.php');
+require_once($baseDir.'/lib/_autoload.php');
 
 // Initialize the configuration.
 $configdir = \SimpleSAML\Utils\Config::getConfigDir();
@@ -16,7 +16,7 @@ $progName = array_shift($argv);
 $debug = false;
 $dryrun = false;
 
-foreach($argv as $a) {
+foreach ($argv as $a) {
     if (strlen($a) === 0) {
         continue;
     }
@@ -44,8 +44,8 @@ foreach($argv as $a) {
             $dryrun = true;
             break;
         default:
-            echo('Unknown option: ' . $a . "\n");
-            echo('Please run `' . $progName . ' --help` for usage information.' . "\n");
+            echo 'Unknown option: '.$a."\n";
+            echo 'Please run `'.$progName.' --help` for usage information.'."\n";
             exit(1);
     }
 }
@@ -60,9 +60,9 @@ if (!$dryrun) {
     $aggregator->store($results);
 }
 
-foreach ($results AS $slot => $val) {
-    foreach ($val AS $sp => $no) {
-        echo $sp . " " . count($no) . " - ";
+foreach ($results as $slot => $val) {
+    foreach ($val as $sp => $no) {
+        echo $sp." ".count($no)." - ";
     }
     echo "\n";
 }
@@ -72,7 +72,8 @@ foreach ($results AS $slot => $val) {
  * This function prints the help output.
  */
 
-function printHelp() {
+function printHelp()
+{
     global $progName;
 
     echo <<<END

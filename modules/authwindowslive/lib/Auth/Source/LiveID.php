@@ -24,7 +24,6 @@ class LiveID extends \SimpleSAML\Auth\Source
     private $key;
     private $secret;
 
-
     /**
      * Constructor for this authentication source.
      *
@@ -54,7 +53,6 @@ class LiveID extends \SimpleSAML\Auth\Source
         $this->secret = $config['secret'];
     }
 
-
     /**
      * Log-in using LiveID platform
      *
@@ -69,23 +67,22 @@ class LiveID extends \SimpleSAML\Auth\Source
 
         $stateID = \SimpleSAML\Auth\State::saveState($state, self::STAGE_INIT);
 
-        \SimpleSAML\Logger::debug('authwindowslive auth state id = ' . $stateID);
+        \SimpleSAML\Logger::debug('authwindowslive auth state id = '.$stateID);
 
         // authenticate the user
         // documentation at:
         // https://azure.microsoft.com/en-us/documentation/articles/active-directory-v2-protocols-oauth-code/
-        $authorizeURL = 'https://login.microsoftonline.com/common/oauth2/v2.0/authorize'
-                . '?client_id=' . $this->key
-                . '&response_type=code'
-                . '&response_mode=query'
-                . '&redirect_uri=' . urlencode(\SimpleSAML\Module::getModuleUrl('authwindowslive') . '/linkback.php')
-                . '&state=' . urlencode($stateID)
-                . '&scope=' . urlencode('openid https://graph.microsoft.com/user.read')
+        $authorizeURL = 'https://login.microsoftonline.com/common/oauth2/v2.0/authorize'.
+            '?client_id='.$this->key.
+            '&response_type=code'.
+            '&response_mode=query'.
+            '&redirect_uri='.urlencode(\SimpleSAML\Module::getModuleUrl('authwindowslive').'/linkback.php').
+            '&state='.urlencode($stateID).
+            '&scope='.urlencode('openid https://graph.microsoft.com/user.read')
         ;
 
         \SimpleSAML\Utils\HTTP::redirectTrustedURL($authorizeURL);
     }
-
 
     /**
      * @param $state
@@ -101,17 +98,17 @@ class LiveID extends \SimpleSAML\Auth\Source
         // retrieve Access Token
         // documentation at:
         // https://azure.microsoft.com/en-us/documentation/articles/active-directory-v2-protocols-oauth-code/#request-an-access-token
-        $postData = 'client_id=' . urlencode($this->key)
-                . '&client_secret=' . urlencode($this->secret)
-                . '&scope=' . urlencode('https://graph.microsoft.com/user.read')
-                . '&grant_type=authorization_code'
-                . '&redirect_uri=' . urlencode(\SimpleSAML\Module::getModuleUrl('authwindowslive') . '/linkback.php')
-                . '&code=' . urlencode($state['authwindowslive:verification_code']);
+        $postData = 'client_id='.urlencode($this->key).
+            '&client_secret='.urlencode($this->secret).
+            '&scope='.urlencode('https://graph.microsoft.com/user.read').
+            '&grant_type=authorization_code'.
+            '&redirect_uri='.urlencode(\SimpleSAML\Module::getModuleUrl('authwindowslive').'/linkback.php').
+            '&code='.urlencode($state['authwindowslive:verification_code']);
 
         $context = array(
             'http' => array(
-                'method'  => 'POST',
-                'header'  => 'Content-type: application/x-www-form-urlencoded',
+                'method' => 'POST',
+                'header' => 'Content-type: application/x-www-form-urlencoded',
                 'content' => $postData,
             ),
         );
@@ -124,7 +121,7 @@ class LiveID extends \SimpleSAML\Auth\Source
         if (!array_key_exists('access_token', $response)) {
             throw new \Exception(
                 '['.$response['error'].'] '.$response['error_description'].
-                "\r\nNo access_token returned - cannot proceed\r\n" . implode(', ', $response['error_codes'])
+                "\r\nNo access_token returned - cannot proceed\r\n".implode(', ', $response['error_codes'])
             );
         }
 
@@ -133,8 +130,10 @@ class LiveID extends \SimpleSAML\Auth\Source
         );
 
         // documentation at: http://graph.microsoft.io/en-us/docs/overview/call_api
-        $opts = array('http' => array('header' => "Accept: application/json\r\nAuthorization: Bearer ".
-                        $response['access_token']."\r\n"));
+        $opts = array(
+            'http' => array('header' => "Accept: application/json\r\nAuthorization: Bearer ".
+                $response['access_token']."\r\n")
+        );
         $data = \SimpleSAML\Utils\HTTP::fetch('https://graph.microsoft.com/v1.0/me', $opts);
         $userdata = json_decode($data, true);
 
@@ -151,12 +150,12 @@ class LiveID extends \SimpleSAML\Auth\Source
         );
         foreach ($userdata as $key => $value) {
             if (is_string($value)) {
-                $attributes['windowslive.' . $key] = array((string)$value);
+                $attributes['windowslive.'.$key] = array((string) $value);
             }
         }
 
 
-        \SimpleSAML\Logger::debug('LiveID Returned Attributes: '. implode(", ", array_keys($attributes)));
+        \SimpleSAML\Logger::debug('LiveID Returned Attributes: '.implode(", ", array_keys($attributes)));
 
         $state['Attributes'] = $attributes;
     }

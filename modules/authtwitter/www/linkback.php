@@ -11,20 +11,19 @@ $state = \SimpleSAML\Auth\State::loadState($_REQUEST['AuthState'], \SimpleSAML\M
 
 // Find authentication source
 if (!array_key_exists(\SimpleSAML\Module\authtwitter\Auth\Source\Twitter::AUTHID, $state)) {
-    throw new \SimpleSAML\Error\BadRequest('No data in state for ' . \SimpleSAML\Module\authtwitter\Auth\Source\Twitter::AUTHID);
+    throw new \SimpleSAML\Error\BadRequest('No data in state for '.\SimpleSAML\Module\authtwitter\Auth\Source\Twitter::AUTHID);
 }
 $sourceId = $state[\SimpleSAML\Module\authtwitter\Auth\Source\Twitter::AUTHID];
 
 $source = \SimpleSAML\Auth\Source::getById($sourceId);
 if ($source === null) {
-    throw new \SimpleSAML\Error\BadRequest('Could not find authentication source with id ' . var_export($sourceId, TRUE));
+    throw new \SimpleSAML\Error\BadRequest('Could not find authentication source with id '.var_export($sourceId, true));
 }
 
 try {
     if (array_key_exists('denied', $_REQUEST)) {
         throw new \SimpleSAML\Error\UserAborted();
     }
-
     $source->finalStep($state);
 } catch (\SimpleSAML\Error\Exception $e) {
     \SimpleSAML\Auth\State::throwException($state, $e);

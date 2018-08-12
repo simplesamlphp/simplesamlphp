@@ -142,7 +142,7 @@ class AttributeAddFromLDAP extends BaseFilter
         assert(is_array($request));
         assert(array_key_exists('Attributes', $request));
 
-        $attributes =& $request['Attributes'];
+        $attributes = &$request['Attributes'];
 
         // perform a merge on the ldap_search_filter
         // loop over the attributes and build the search and replace arrays
@@ -163,13 +163,13 @@ class AttributeAddFromLDAP extends BaseFilter
 
         if (strpos($filter, '%') !== false) {
             \SimpleSAML\Logger::info('AttributeAddFromLDAP: There are non-existing attributes in the search filter. ('.
-                                    $this->search_filter.')');
+                $this->search_filter.')');
             return;
         }
 
         if (!in_array($this->attr_policy, array('merge', 'replace', 'add'), true)) {
             \SimpleSAML\Logger::warning("AttributeAddFromLDAP: 'attribute.policy' must be one of 'merge',".
-                                       "'replace' or 'add'.");
+                "'replace' or 'add'.");
             return;
         }
 
@@ -178,7 +178,7 @@ class AttributeAddFromLDAP extends BaseFilter
             $ldap = $this->getLdap();
         } catch (\Exception $e) {
             // Added this warning in case $this->getLdap() fails
-            \SimpleSAML\Logger::warning("AttributeAddFromLDAP: exception = " . $e);
+            \SimpleSAML\Logger::warning("AttributeAddFromLDAP: exception = ".$e);
             return;
         }
         // search for matching entries

@@ -1,7 +1,7 @@
 <?php
 
 $lang = array(
-    'yes' => array (
+    'yes' => array(
         'no' => 'Ja, fortsett',
         'nn' => 'Ja, fortsett',
         'da' => 'Ja, jeg accepterer',
@@ -21,7 +21,7 @@ $lang = array(
         'pt-br' => 'Sim, Aceito',
         'tr' => 'Evet, devam et',
     ),
-    'no' => array (
+    'no' => array(
         'no' => 'Nei, avbryt',
         'nn' => 'Nei, avbryt',
         'da' => 'Nej, jeg accepterer ikke',
@@ -41,7 +41,7 @@ $lang = array(
         'pt-br' => 'Não, não aceito',
         'tr' => 'Hayır, iptal et',
     ),
-    'remember' => array (
+    'remember' => array(
         'no' => 'Godta også for fremtiden',
         'nn' => 'Godta også for framtida',
         'da' => 'Husk samtykke',
@@ -61,7 +61,7 @@ $lang = array(
         'pt-br' => 'Lembrar Consentimento',
         'tr' => 'Hatırla',
     ),
-    'consent_header' => array (
+    'consent_header' => array(
         'no' => 'Samtykke om overføring av personinformasjon',
         'nn' => 'Samtykke til overføring av personinformasjon',
         'da' => 'Samtykke til at frigive personlige oplysninger',
@@ -78,7 +78,7 @@ $lang = array(
         'pt' => 'Consentimento do envio de informação pessoal',
         'tr' => 'Kişisel bilgilerin verilmesi hakkında onay',
     ),
-    'consent_accept' => array (
+    'consent_accept' => array(
         'no' => 'For å fullføre innloggingen må du godta at opplysningene nedenfor sendes til SPNAME.',
         'nn' => 'For å fullføra innlogginga må du godta at opplysningane under blir sende til SPNAME',
         'da' => 'SPNAME kræver at nedenstående oplysninger overføres fra IDPNAME. Vil du acceptere dette?',
@@ -98,7 +98,7 @@ $lang = array(
         'pt-br' => 'Você está prestes a acessar o serviço SPNAME. O serviço exige que as informações a seguir sejam transferidas do IDPNAME. Você aceita isso?',
         'tr' => 'SPNAME aşağıdaki bilgilerin gönderilmesine ihtiyaç duyuyor.',
     ),
-    'consent_purpose' => array (
+    'consent_purpose' => array(
         'no' => 'Formålet med SPNAME er SPDESC',
         'nn' => 'Hensikta med SPNAME er SPDESC',
         'da' => 'SPNAME har til formål at SPDESC',
@@ -115,7 +115,7 @@ $lang = array(
         'pt' => 'O propósito de SPNAME é SPDESC',
         'tr' => 'SPNAME\'in amacı SPDESC\'tir',
     ),
-    'consent_privacypolicy' => array (
+    'consent_privacypolicy' => array(
         'no' => 'Personvern for tjenesten',
         'nn' => 'Personvern for tenesta',
         'da' => 'Tjenestens politik vedrørende personoplysninger',
@@ -133,7 +133,7 @@ $lang = array(
         'pt-br' => 'Política de Privacidade deste serviço',
         'tr' => 'Servis için gizlilik politikası',
     ),
-    'consent_attributes_header' => array (
+    'consent_attributes_header' => array(
         'no' => 'Opplysninger som vil bli sendt til SPNAME',
         'nn' => 'Opplysningar som blir sende til SPNAME',
         'da' => 'Attributter som bliver sendt til SPNAME',
@@ -150,7 +150,7 @@ $lang = array(
         'pt' => 'Informação que irá ser enviada para SPNAME',
         'tr' => 'SPNAME\'e gönderilecek bilgiler',
     ),
-    'show_attributes' => array (
+    'show_attributes' => array(
         'no' => 'Vis opplysninger',
         'nn' => 'Vis opplysingar',
         'da' => 'Vis attributter',
@@ -167,7 +167,7 @@ $lang = array(
         'pt' => 'Mostrar atributos',
         'tr' => 'Özellikleri göster',
     ),
-    'show_attribute' => array (
+    'show_attribute' => array(
         'no' => 'Vis innhold',
         'nn' => 'Vis innhald',
         'da' => 'Vis indhold',
@@ -177,7 +177,7 @@ $lang = array(
         'nl' => 'Toon inhoud',
         'sl' => 'Prikaži vsebino',
     ),
-    'login' => array (
+    'login' => array(
         'no' => 'innlogging',
         'nn' => 'Logg inn',
         'da' => 'login',
@@ -197,7 +197,7 @@ $lang = array(
         'pt-br' => 'login',
         'tr' => 'Giriş',
     ),
-    'service_providers_for' => array (
+    'service_providers_for' => array(
         'no' => 'Tjenesteleverandør for',
         'nn' => 'Tenesteleverandørar for',
         'da' => 'Tjenesteudbyder for',
@@ -217,7 +217,7 @@ $lang = array(
         'pt-br' => 'Provedor de serviços para',
         'tr' => 'için Servis Sağlayıcılar',
     ),
-    'service_provider_header' => array (
+    'service_provider_header' => array(
         'no' => 'Tjenesteleverandør',
         'nn' => 'Tenesteleverandør',
         'da' => 'Tjenesteudbyder',
@@ -237,7 +237,7 @@ $lang = array(
         'pt-br' => 'Provedor de Serviços',
         'tr' => 'Servis Sağlayıcı',
     ),
-    'status_header' => array (
+    'status_header' => array(
         'no' => 'Samtykke-status',
         'nn' => 'Samtykkestatus',
         'da' => 'Samtykke status',
@@ -257,7 +257,7 @@ $lang = array(
         'pt-br' => 'Status do Consentimento',
         'tr' => 'Onay durumu',
     ),
-    'show_hide_attributes' => array (
+    'show_hide_attributes' => array(
         'no' => 'Vis/skjul opplysninger',
         'nn' => 'Vis/skjul opplysningar',
         'da' => 'vis/skjul attributter',
@@ -277,7 +277,7 @@ $lang = array(
         'pt-br' => 'mostra/esconder Atributos',
         'tr' => 'bilgileri göster/gizle ',
     ),
-    'noconsent_title' => array (
+    'noconsent_title' => array(
         'no' => 'Ikke akseptert overføring av informasjon',
         'nn' => 'Ikkje akseptert overføring av informasjon',
         'da' => 'Manglende samtykke',
@@ -295,7 +295,7 @@ $lang = array(
         'pt-br' => 'Nenhum consentimento dado',
         'tr' => 'Onay verilmemiş',
     ),
-    'noconsent_text' => array (
+    'noconsent_text' => array(
         'no' => 'Du har ikke akseptert å overlevere opplysninger til tjenesteleverandøren.',
         'nn' => 'Du har ikkje akseptert til at dine opplysningar kan sendast til tenesteleverandøren',
         'da' => 'Du har ikke givet samtykke til overleveringen af oplysninger til tjenesten',
@@ -313,7 +313,7 @@ $lang = array(
         'pt-br' => 'Você não deu o consentimento para a transferência de seus atributos para o provedor de serviços.',
         'tr' => 'Bilgilerinizin servis sağlayıcıya gönderilmesi için onay vermediniz.',
     ),
-    'noconsent_return' => array (
+    'noconsent_return' => array(
         'no' => 'Gå tilbake til aksept-siden med opplysninger',
         'nn' => 'Gå tilbake til aksept-sida for overføring av opplysningar',
         'da' => 'Gå tilbage',
@@ -331,7 +331,7 @@ $lang = array(
         'pt-br' => 'Retornar a página de consentimento',
         'tr' => 'Onay sayfasına geri dön',
     ),
-    'noconsent_goto_about' => array (
+    'noconsent_goto_about' => array(
         'no' => 'Gå til informasjonsside om tjenesten',
         'nn' => 'Gå til informasjonssida for tenesta',
         'da' => 'Gå til side med information om tjenesten',
@@ -348,7 +348,7 @@ $lang = array(
         'pt' => 'Ir para página de informação do serviço',
         'tr' => 'Servis için bilgi sayfasına git',
     ),
-    'table_caption' => array (
+    'table_caption' => array(
         'no' => 'Bruker innformasjon',
         'da' => 'Bruger information',
         'en' => 'User information',
@@ -362,7 +362,7 @@ $lang = array(
         'pt' => 'Informação do utilizador',
         'tr' => 'Kullanıcı bilgisi',
     ),
-    'table_summary' => array (
+    'table_summary' => array(
         'no' => 'Her listes den innformasjonen om deg som blir send til den tjenesten du er i ferd med å logge på',
         'da' => 'Informationer som vil blive sendt til den service du er ved at logge in på',
         'en' => 'List the information about you that is about to be transmitted to the service you are going to login to',
@@ -375,5 +375,4 @@ $lang = array(
         'pt' => 'Listar a informação acerca de si que será enviada para o serviço no qual se está autenticar',
         'tr' => 'Girmek istediğiniz servise gönderilecek bilginizi listeleyin',
     ),
-
 );
