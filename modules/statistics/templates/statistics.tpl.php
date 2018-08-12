@@ -3,8 +3,8 @@ $this->data['header'] = 'SimpleSAMLphp Statistics';
 
 $this->data['jquery'] = array('core' => true, 'ui' => true, 'css' => true);
 
-$this->data['head'] = '<link rel="stylesheet" type="text/css" href="' . SimpleSAML\Module::getModuleURL("statistics/assets/statistics.css") . '" />' . "\n";
-$this->data['head'] .= '<script type="text/javascript" src="' . SimpleSAML\Module::getModuleURL("statistics/assets/statistics.js") . '"></script>' . "\n";
+$this->data['head'] = '<link rel="stylesheet" type="text/css" href="' . SimpleSAML\Module::getModuleURL("statistics/assets/css/statistics.css") . '" />' . "\n";
+$this->data['head'] .= '<script type="text/javascript" src="' . SimpleSAML\Module::getModuleURL("statistics/assets/js/statistics.js") . '"></script>' . "\n";
 
 $this->includeAtTemplateBase('includes/header.php');
 

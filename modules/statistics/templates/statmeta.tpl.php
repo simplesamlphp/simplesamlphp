@@ -1,6 +1,6 @@
 <?php
 $this->data['header'] = 'SimpleSAMLphp Statistics Metadata';
-$this->data['head'] = '<link rel="stylesheet" type="text/css" href="' . SimpleSAML\Module::getModuleURL("statistics/style.css") . '" />';
+$this->data['head'] = '<link rel="stylesheet" type="text/css" href="' . SimpleSAML\Module::getModuleURL("statistics/assets/css/statistics.css") . '" />';
 $this->includeAtTemplateBase('includes/header.php');
 
 echo '<table id="statmeta">' ;
