@@ -12,7 +12,7 @@
 {% block content %}
     {% if errorCode != null %}
     <div style="border-left: 1px solid #e8e8e8; border-bottom: 1px solid #e8e8e8; background: #f5f5f5">
-        <img src="{{ baseurlpath }}resources/icons/experience/gtk-dialog-error.48x48.png" class="float-l" style="margin: 15px;" alt="" />
+        <img src="/{{ baseurlpath }}resources/icons/experience/gtk-dialog-error.48x48.png" class="float-l" style="margin: 15px;" alt="">
         <h2>{{ '{login:error_header}'|trans }}</h2>
         <p><span style="text-decoration: bold;">{{ errorTitle }}</p>
         <p>{{ errorDesc }}</p>
