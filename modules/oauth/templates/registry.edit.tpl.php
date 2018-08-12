@@ -1,12 +1,8 @@
 <?php
 
 $this->data['jquery'] = array('core' => true, 'ui' => true, 'css' => true);
-$this->data['head']  = '<link rel="stylesheet" type="text/css" href="/' . $this->data['baseurlpath'] . 'module.php/oauth/resources/style.css" />' . "\n";
-$this->data['head'] .= '<script type="text/javascript">
-$(document).ready(function() {
-	$("#tabdiv").tabs();
-});
-</script>';
+$this->data['head'] = '<link rel="stylesheet" type="text/css" href="/'.$this->data['baseurlpath'].'module.php/oauth/assets/css/oauth.css" />'."\n";
+$this->data['head'] .= '<script type="text/javascript" src="/'.$this->data['baseurlpath'].'module.php/oauth/assets/js/oauth.js"></script>';
 
 $this->includeAtTemplateBase('includes/header.php');
 
