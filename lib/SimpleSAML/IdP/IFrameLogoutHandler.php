@@ -20,7 +20,6 @@ class IFrameLogoutHandler implements LogoutHandlerInterface
      */
     private $idp;
 
-
     /**
      * LogoutIFrame constructor.
      *
@@ -90,30 +89,14 @@ class IFrameLogoutHandler implements LogoutHandlerInterface
     {
         assert(is_string($assocId));
 
-        $spId = sha1($assocId);
+        $config = \SimpleSAML\Configuration::getInstance();
         $this->idp->terminateAssociation($assocId);
 
-        $header = <<<HEADER
-<!DOCTYPE html>
-<html>
- <head>
-  <title>Logout response from %s</title>
-  <script>
-HEADER;
-        printf($header, htmlspecialchars(var_export($assocId, true)));
-        if ($error) {
-            $errorMsg = $error->getMessage();
-            echo('window.parent.logoutFailed("'.$spId.'", "'.addslashes($errorMsg).'");');
-        } else {
-            echo('window.parent.logoutCompleted("'.$spId.'");');
-        }
-        echo <<<FOOTER
-  </script>
- </head>
- <body>
- </body>
-</html>
-FOOTER;
+        $t = new \SimpleSAML\XHTML\Template($config, 'IFrameLogoutHandler.twig');
+        $t->data['assocId'] = var_export($assocId, true);
+        $t->data['spId'] = sha($assocId);
+        $t->data['errorMsg'] = $error->getMessage();
+        $t->show();
         exit(0);
     }
 }
