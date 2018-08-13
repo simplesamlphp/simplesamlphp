@@ -126,7 +126,8 @@ function sspmodAutoloadPSR0($className)
 function sspmodAutoloadPSR4($className)
 {
     $elements = explode('\\', $className);
-    if ($elements[0] === '') { // class name starting with /, ignore
+    if ($elements[0] === '') {
+        // class name starting with /, ignore
         array_shift($elements);
     }
     if (count($elements) < 4) {

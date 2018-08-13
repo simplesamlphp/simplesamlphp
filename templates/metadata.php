@@ -50,8 +50,8 @@ if (array_key_exists('available_certs', $this->data)) { ?>
         if ($this->data['available_certs'][$certName]['certFingerprint'][0] ===
             'afe71c28ef740bc87425be13a2263d37971da1f9') {
             echo '&nbsp; <img style="display: inline;" src="/'.$this->data['baseurlpath'].
-                 'resources/icons/silk/exclamation.png" alt="default certificate" />'.
-                 'This is the default certificate. Generate a new certificate if this is a production system.';
+                'resources/icons/silk/exclamation.png" alt="default certificate" />'.
+                'This is the default certificate. Generate a new certificate if this is a production system.';
         }
         echo '</li>';
     } ?>

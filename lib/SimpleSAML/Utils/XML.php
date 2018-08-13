@@ -49,9 +49,10 @@ class XML
         $enabled = \SimpleSAML\Configuration::getInstance()->getBoolean('debug.validatexml', false);
 
         if (!(in_array('validatexml', $debug, true) // implicitly enabled
-              || (array_key_exists('validatexml', $debug) && $debug['validatexml'] === true) // explicitly enabled
-              // TODO: deprecate this option and remove it in 2.0
-              || $enabled // old 'debug.validatexml' configuration option
+            || (array_key_exists('validatexml', $debug) && $debug['validatexml'] === true)
+            // explicitly enabled
+            // TODO: deprecate this option and remove it in 2.0
+            || $enabled // old 'debug.validatexml' configuration option
         )) {
             // XML validation is disabled
             return;
@@ -101,9 +102,10 @@ class XML
         $debug = \SimpleSAML\Configuration::getInstance()->getArrayize('debug', array('saml' => false));
 
         if (!(in_array('saml', $debug, true) // implicitly enabled
-              || (array_key_exists('saml', $debug) && $debug['saml'] === true) // explicitly enabled
-              // TODO: deprecate the old style and remove it in 2.0
-              || (array_key_exists(0, $debug) && $debug[0] === true) // old style 'debug'
+            || (array_key_exists('saml', $debug) && $debug['saml'] === true)
+            // explicitly enabled
+            // TODO: deprecate the old style and remove it in 2.0
+            || (array_key_exists(0, $debug) && $debug[0] === true) // old style 'debug'
         )) {
             // debugging messages is disabled
             return;

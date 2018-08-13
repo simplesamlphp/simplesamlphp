@@ -51,7 +51,7 @@ if (!empty($output)) {
         var clipboard<?php echo $j; ?> = new ClipboardJS('#btn<?php echo $j; ?>');
 <?php
     }
- ?>
+?>
     </script>
 <?php
 }

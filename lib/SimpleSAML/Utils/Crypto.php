@@ -163,8 +163,8 @@ class Crypto
     public static function der2pem($der, $type = 'CERTIFICATE')
     {
         return "-----BEGIN ".$type."-----\n".
-               chunk_split(base64_encode($der), 64, "\n").
-               "-----END ".$type."-----\n";
+            chunk_split(base64_encode($der), 64, "\n").
+            "-----END ".$type."-----\n";
     }
 
 
@@ -379,7 +379,8 @@ class Crypto
         }
 
         // hash w/ salt
-        if ($salt === null) { // no salt provided, generate one
+        if ($salt === null) {
+            // no salt provided, generate one
             // default 8 byte salt, but 4 byte for LDAP SHA1 hashes
             $bytes = ($algorithm == 'SSHA1') ? 4 : 8;
             $salt = openssl_random_pseudo_bytes($bytes);

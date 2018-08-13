@@ -641,7 +641,8 @@ class LDAP
             $dn = $this->searchfordn($config['searchbase'], $config['searchattributes'], $username);
         }
 
-        if ($password !== null) { // checking users credentials ... assuming below that she may read her own attributes ...
+        if ($password !== null) {
+            // checking users credentials ... assuming below that she may read her own attributes ...
             // escape characters with a special meaning, also in the password
             $password = addcslashes($password, ',+"\\<>;*');
             if (!$this->bind($dn, $password)) {

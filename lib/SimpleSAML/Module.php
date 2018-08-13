@@ -173,12 +173,14 @@ class Module
         assert(is_string($subclass) || $subclass === null);
 
         $tmp = explode(':', $id, 2);
-        if (count($tmp) === 1) { // no module involved
+        if (count($tmp) === 1) {
+            // no module involved
             $className = $tmp[0];
             if (!class_exists($className)) {
                 throw new \Exception("Could not resolve '$id': no class named '$className'.");
             }
-        } else { // should be a module
+        } else {
+            // should be a module
             // make sure empty types are handled correctly
             $type = (empty($type)) ? '_' : '_'.$type.'_';
 

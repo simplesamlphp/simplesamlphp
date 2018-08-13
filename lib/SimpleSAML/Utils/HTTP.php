@@ -677,7 +677,8 @@ class HTTP
         if ($allowed && preg_match("#^http:#", $destination) && self::isHTTPS()) {
             // we need to post the data to HTTP
             $url = self::getSecurePOSTRedirectURL($destination, $data);
-        } else { // post the data directly
+        } else {
+            // post the data directly
             $session = Session::getSessionFromRequest();
             $id = self::savePOSTData($session, $destination, $data);
             $url = Module::getModuleURL('core/postredirect.php', array('RedirId' => $id));
@@ -800,7 +801,8 @@ class HTTP
                 $hostname = parse_url($appurl, PHP_URL_HOST);
                 $port = parse_url($appurl, PHP_URL_PORT);
                 $port = !empty($port) ? ':'.$port : '';
-            } else { // no base URL specified for app, just use the current URL
+            } else {
+                // no base URL specified for app, just use the current URL
                 $protocol = 'http';
                 $protocol .= (self::getServerHTTPS()) ? 's' : '';
                 $hostname = self::getServerHost();

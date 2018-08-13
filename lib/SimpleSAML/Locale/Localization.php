@@ -99,7 +99,7 @@ class Localization
      */
     public function getDomainLocaleDir($domain)
     {
-        $localeDir = $this->configuration->resolvePath('modules') . '/' . $domain . '/locales';
+        $localeDir = $this->configuration->resolvePath('modules').'/'.$domain.'/locales';
         return $localeDir;
     }
 
@@ -167,7 +167,7 @@ class Localization
         if (is_dir($langPath) && is_readable($langPath)) {
             // Report that the localization for the preferred language is missing
             $error = "Localization not found for langcode '$langcode' at '$langPath', falling back to langcode '".
-                     $defLangcode."'";
+                $defLangcode."'";
             \SimpleSAML\Logger::error($_SERVER['PHP_SELF'].' - '.$error);
             return $langPath;
         }

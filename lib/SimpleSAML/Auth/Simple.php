@@ -367,14 +367,14 @@ class Simple
         }
 
         $scheme = parse_url($url, PHP_URL_SCHEME);
-        $host = parse_url($url, PHP_URL_HOST) ?: HTTP::getSelfHost();
-        $port = parse_url($url, PHP_URL_PORT) ?: (
+        $host = parse_url($url, PHP_URL_HOST) ? : HTTP::getSelfHost();
+        $port = parse_url($url, PHP_URL_PORT) ? : (
             $scheme ? '' : trim(HTTP::getServerPort(), ':')
         );
-        $scheme = $scheme ?: (HTTP::getServerHTTPS() ? 'https' : 'http');
-        $path = parse_url($url, PHP_URL_PATH) ?: '/';
-        $query = parse_url($url, PHP_URL_QUERY) ?: '';
-        $fragment = parse_url($url, PHP_URL_FRAGMENT) ?: '';
+        $scheme = $scheme ? : (HTTP::getServerHTTPS() ? 'https' : 'http');
+        $path = parse_url($url, PHP_URL_PATH) ? : '/';
+        $query = parse_url($url, PHP_URL_QUERY) ? : '';
+        $fragment = parse_url($url, PHP_URL_FRAGMENT) ? : '';
 
         $port = !empty($port) ? ':'.$port : '';
         if (($scheme === 'http' && $port === ':80') || ($scheme === 'https' && $port === ':443')) {
@@ -386,7 +386,7 @@ class Simple
             return $scheme.'://'.$host.$port.$path.($query ? '?'.$query : '').($fragment ? '#'.$fragment : '');
         }
 
-        $base =  trim($this->app_config->getString(
+        $base = trim($this->app_config->getString(
             'baseURL',
             $scheme.'://'.$host.$port
         ), '/');

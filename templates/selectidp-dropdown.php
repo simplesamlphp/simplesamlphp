@@ -34,7 +34,7 @@ foreach ($this->data['idplist'] as $idpentry) {
                value="<?php echo htmlspecialchars($this->data['returnIDParam']); ?>"/>
         <select id="dropdownlist" name="idpentityid">
             <?php
-            usort($this->data['idplist'], function ($idpentry1, $idpentry2) {
+            usort($this->data['idplist'], function($idpentry1, $idpentry2) {
                 return strcasecmp(
                     $this->t('idpname_'.$idpentry1['entityid']),
                     $this->t('idpname_'.$idpentry2['entityid'])

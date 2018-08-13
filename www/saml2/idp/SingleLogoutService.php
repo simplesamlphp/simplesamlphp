@@ -21,7 +21,8 @@ if (isset($_REQUEST['ReturnTo'])) {
 } else {
     try {
         \SimpleSAML\Module\saml\IdP\SAML2::receiveLogoutMessage($idp);
-    } catch (\Exception $e) { // TODO: look for a specific exception
+    } catch (\Exception $e) {
+        // TODO: look for a specific exception
         /*
          * This is dirty. Instead of checking the message of the exception, \SAML2\Binding::getCurrentBinding() should
          * throw an specific exception when the binding is unknown, and we should capture that here

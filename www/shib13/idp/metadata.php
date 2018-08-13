@@ -17,8 +17,7 @@ if ($config->getBoolean('admin.protectmetadata', false)) {
 
 try {
     $idpentityid = isset($_GET['idpentityid']) ?
-        $_GET['idpentityid'] :
-        $metadata->getMetaDataCurrentEntityID('shib13-idp-hosted');
+        $_GET['idpentityid'] : $metadata->getMetaDataCurrentEntityID('shib13-idp-hosted');
     $idpmeta = $metadata->getMetaDataConfig($idpentityid, 'shib13-idp-hosted');
 
     $keys = array();

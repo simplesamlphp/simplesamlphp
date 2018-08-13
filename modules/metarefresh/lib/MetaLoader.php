@@ -180,7 +180,7 @@ class MetaLoader
             if (in_array('attributeauthority-remote', $this->types, true)) {
                 $attributeAuthorities = $entity->getAttributeAuthorities();
                 if (!empty($attributeAuthorities)) {
-                     $this->addMetadata($source['src'], $attributeAuthorities[0], 'attributeauthority-remote', $template);
+                    $this->addMetadata($source['src'], $attributeAuthorities[0], 'attributeauthority-remote', $template);
                 }
             }
         }

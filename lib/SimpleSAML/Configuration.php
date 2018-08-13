@@ -214,14 +214,14 @@ class Configuration implements Utils\ClearableState
 
         if (!array_key_exists($configSet, self::$configDirs)) {
             if ($configSet !== 'simplesaml') {
-                throw new \Exception('Configuration set \'' . $configSet . '\' not initialized.');
+                throw new \Exception('Configuration set \''.$configSet.'\' not initialized.');
             } else {
-                self::$configDirs['simplesaml'] = dirname(dirname(dirname(__FILE__))) . '/config';
+                self::$configDirs['simplesaml'] = dirname(dirname(dirname(__FILE__))).'/config';
             }
         }
 
         $dir = self::$configDirs[$configSet];
-        $filePath = $dir . '/' . $filename;
+        $filePath = $dir.'/'.$filename;
 
         self::$loadedConfigs[$filePath] = $config;
     }

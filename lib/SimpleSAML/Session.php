@@ -154,7 +154,8 @@ class Session implements \Serializable
             return;
         }
 
-        if ($transient) { // transient session
+        if ($transient) {
+            // transient session
             $sh = SessionHandler::getSessionHandler();
             $this->trackid = 'TR'.bin2hex(openssl_random_pseudo_bytes(4));
             Logger::setTrackId($this->trackid);
@@ -168,7 +169,8 @@ class Session implements \Serializable
             if ($this->sessionId === null) {
                 $this->sessionId = $sh->newSessionId();
             }
-        } else { // regular session
+        } else {
+            // regular session
             $sh = SessionHandler::getSessionHandler();
             $this->sessionId = $sh->newSessionId();
             $sh->setCookie($sh->getSessionCookieName(), $this->sessionId, $sh->getCookieParams());
@@ -228,7 +230,8 @@ class Session implements \Serializable
             }
 
             foreach ($parameters['RawAttributes'] as $attribute => $values) {
-                foreach ($values as $idx => $value) { // this should be originally a DOMNodeList
+                foreach ($values as $idx => $value) {
+                    // this should be originally a DOMNodeList
                     /* @var \SAML2\XML\saml\AttributeValue $value */
                     $this->authData[$authority]['Attributes'][$attribute][$idx] = $value->element->childNodes;
                 }

@@ -270,7 +270,7 @@ class Translate
         if (!$fallbackdefault) {
             \SimpleSAML\Logger::warning(
                 'Deprecated use of new SimpleSAML\Locale\Translate::t(...) at '.$where.
-                '. This parameter will go away, the fallback will become' .
+                '. This parameter will go away, the fallback will become'.
                 ' identical to the $tag in 2.0.'
             );
         }
