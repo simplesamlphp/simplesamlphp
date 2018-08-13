@@ -53,8 +53,8 @@ function SimpleSAML_error_handler($errno, $errstr, $errfile = null, $errline = 0
     }
 
     // show an error with a full backtrace
-    $context = (is_null($errfile)?'':" at $errfile:$errline");
-    $e = new \SimpleSAML\Error\Exception('Error '.$errno.' - '.$errstr . $context);
+    $context = (is_null($errfile) ? '' : " at $errfile:$errline");
+    $e = new \SimpleSAML\Error\Exception('Error '.$errno.' - '.$errstr.$context);
     $e->logError();
 
     // resume normal error processing

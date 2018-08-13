@@ -136,11 +136,11 @@ class Signer
         }
 
         if (!file_exists($keyFile)) {
-            throw new \Exception('Could not find private key file "' . $keyFile . '".');
+            throw new \Exception('Could not find private key file "'.$keyFile.'".');
         }
         $keyData = file_get_contents($keyFile);
         if ($keyData === false) {
-            throw new \Exception('Unable to read private key file "' . $keyFile . '".');
+            throw new \Exception('Unable to read private key file "'.$keyFile.'".');
         }
 
         $privatekey = array('PEM' => $keyData);
@@ -198,12 +198,12 @@ class Signer
         }
 
         if (!file_exists($certFile)) {
-            throw new \Exception('Could not find certificate file "' . $certFile . '".');
+            throw new \Exception('Could not find certificate file "'.$certFile.'".');
         }
 
         $cert = file_get_contents($certFile);
         if ($cert === false) {
-            throw new \Exception('Unable to read certificate file "' . $certFile . '".');
+            throw new \Exception('Unable to read certificate file "'.$certFile.'".');
         }
         $this->certificate = $cert;
     }
@@ -245,12 +245,12 @@ class Signer
         }
 
         if (!file_exists($certFile)) {
-            throw new \Exception('Could not find extra certificate file "' . $certFile . '".');
+            throw new \Exception('Could not find extra certificate file "'.$certFile.'".');
         }
 
         $certificate = file_get_contents($certFile);
         if ($certificate === false) {
-            throw new \Exception('Unable to read extra certificate file "' . $certFile . '".');
+            throw new \Exception('Unable to read extra certificate file "'.$certFile.'".');
         }
 
         $this->extraCertificates[] = $certificate;

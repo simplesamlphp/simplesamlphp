@@ -7,5 +7,5 @@
  */
 
 $metadata['__DYNAMIC:1__'] = array(
-	'host' => '__DEFAULT__',
+    'host' => '__DEFAULT__',
 );

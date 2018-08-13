@@ -60,7 +60,7 @@ class SQL extends Store
         try {
             $this->pdo = new \PDO($dsn, $username, $password, $options);
         } catch (\PDOException $e) {
-            throw new \Exception("Database error: " . $e->getMessage());
+            throw new \Exception("Database error: ".$e->getMessage());
         }
         $this->pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 
@@ -135,9 +135,9 @@ class SQL extends Store
                 'CREATE TABLE '.$this->prefix.
                 '_kvstore_new (_type VARCHAR(30) NOT NULL, _key VARCHAR(50) NOT NULL, _value '.$text_t.
                 ' NOT NULL, _expire TIMESTAMP NULL, PRIMARY KEY (_key, _type))',
-                'INSERT INTO '.$this->prefix.'_kvstore_new SELECT * FROM ' . $this->prefix.'_kvstore',
+                'INSERT INTO '.$this->prefix.'_kvstore_new SELECT * FROM '.$this->prefix.'_kvstore',
                 'DROP TABLE '.$this->prefix.'_kvstore',
-                'ALTER TABLE '.$this->prefix.'_kvstore_new RENAME TO ' . $this->prefix . '_kvstore',
+                'ALTER TABLE '.$this->prefix.'_kvstore_new RENAME TO '.$this->prefix.'_kvstore',
                 'CREATE INDEX '.$this->prefix.'_kvstore_expire ON '.$this->prefix.'_kvstore (_expire)'
             )
         );
@@ -297,7 +297,7 @@ class SQL extends Store
         }
 
         $query = 'SELECT _value FROM '.$this->prefix.
-                 '_kvstore WHERE _type = :type AND _key = :key AND (_expire IS NULL OR _expire > :now)';
+            '_kvstore WHERE _type = :type AND _key = :key AND (_expire IS NULL OR _expire > :now)';
         $params = array('type' => $type, 'key' => $key, 'now' => gmdate('Y-m-d H:i:s'));
 
         $query = $this->pdo->prepare($query);

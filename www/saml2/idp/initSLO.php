@@ -13,4 +13,4 @@ if (!isset($_GET['RelayState'])) {
 }
 
 $idp->doLogoutRedirect(\SimpleSAML\Utils\HTTP::checkURLAllowed((string) $_GET['RelayState']));
-assert(FALSE);
+assert(false);

@@ -29,11 +29,11 @@ class Memcache
     private static $serverGroups = null;
 
 
-   /**
-    * The flavor of memcache PHP extension we are using.
-    *
-    * @var string
-    */
+    /**
+     * The flavor of memcache PHP extension we are using.
+     *
+     * @var string
+     */
     private static $extension = '';
 
 

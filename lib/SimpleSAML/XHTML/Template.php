@@ -272,14 +272,16 @@ class Template
      */
     private function findThemeTemplateDirs()
     {
-        if ($this->theme['module'] === null) { // no module involved
+        if ($this->theme['module'] === null) {
+            // no module involved
             return array();
         }
 
         // setup directories & namespaces
         $themeDir = \SimpleSAML\Module::getModuleDir($this->theme['module']).'/themes/'.$this->theme['name'];
         $subdirs = scandir($themeDir);
-        if (empty($subdirs)) { // no subdirectories in the theme directory, nothing to do here
+        if (empty($subdirs)) {
+            // no subdirectories in the theme directory, nothing to do here
             // this is probably wrong, log a message
             \SimpleSAML\Logger::warning('Empty theme directory for theme "'.$this->theme['name'].'".');
             return array();

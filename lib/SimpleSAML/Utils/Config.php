@@ -8,7 +8,6 @@ namespace SimpleSAML\Utils;
  */
 class Config
 {
-
     /**
      * Resolves a path that may be relative to the cert-directory.
      *
@@ -66,11 +65,11 @@ class Config
      */
     public static function getConfigDir()
     {
-        $configDir    = dirname(dirname(dirname(__DIR__))) . '/config';
+        $configDir = dirname(dirname(dirname(__DIR__))).'/config';
         /** @var string|false $configDirEnv */
         $configDirEnv = getenv('SIMPLESAMLPHP_CONFIG_DIR');
         
-        if($configDirEnv === false) {
+        if ($configDirEnv === false) {
             $configDirEnv = getenv('REDIRECT_SIMPLESAMLPHP_CONFIG_DIR');
         }
         
@@ -78,7 +77,7 @@ class Config
             if (!is_dir($configDirEnv)) {
                 throw new \InvalidArgumentException(
                     sprintf(
-                        'Config directory specified by environment variable SIMPLESAMLPHP_CONFIG_DIR is not a ' .
+                        'Config directory specified by environment variable SIMPLESAMLPHP_CONFIG_DIR is not a '.
                         'directory.  Given: "%s"',
                         $configDirEnv
                     )

@@ -44,10 +44,10 @@ class AuthnRequest
 
         $target = $this->getRelayState();
         
-        $url = $desturl . '?' .
-            'providerId=' . urlencode($this->getIssuer()) .
-            '&shire=' . urlencode($shire) .
-            (isset($target) ? '&target=' . urlencode($target) : '');
+        $url = $desturl.'?'.
+            'providerId='.urlencode($this->getIssuer()).
+            '&shire='.urlencode($shire).
+            (isset($target) ? '&target='.urlencode($target) : '');
         return $url;
     }
 }

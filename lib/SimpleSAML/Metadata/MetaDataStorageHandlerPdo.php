@@ -151,8 +151,8 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
      * @return array An associative array with metadata for the given entity, or NULL if we are unable to
      *         locate the entity.
      */
-    public function getMetaData($entityId, $set)      
-    {       
+    public function getMetaData($entityId, $set)
+    {
         assert(is_string($entityId));
         assert(is_string($set));
 

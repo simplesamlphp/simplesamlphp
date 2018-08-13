@@ -58,20 +58,20 @@ class Artifact
      */
     private static function buildRequest(array $artifacts)
     {
-        $msg = '<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">' .
-            '<SOAP-ENV:Body>' .
-            '<samlp:Request xmlns:samlp="urn:oasis:names:tc:SAML:1.0:protocol"' .
-            ' RequestID="' . Random::generateID() . '"' .
-            ' MajorVersion="1" MinorVersion="1"' .
-            ' IssueInstant="' . Time::generateTimestamp() . '"' .
+        $msg = '<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">'.
+            '<SOAP-ENV:Body>'.
+            '<samlp:Request xmlns:samlp="urn:oasis:names:tc:SAML:1.0:protocol"'.
+            ' RequestID="'.Random::generateID().'"'.
+            ' MajorVersion="1" MinorVersion="1"'.
+            ' IssueInstant="'.Time::generateTimestamp().'"'.
             '>';
 
         foreach ($artifacts as $a) {
-            $msg .= '<samlp:AssertionArtifact>' . htmlspecialchars($a) . '</samlp:AssertionArtifact>';
+            $msg .= '<samlp:AssertionArtifact>'.htmlspecialchars($a).'</samlp:AssertionArtifact>';
         }
 
-        $msg .= '</samlp:Request>' .
-            '</SOAP-ENV:Body>' .
+        $msg .= '</samlp:Request>'.
+            '</SOAP-ENV:Body>'.
             '</SOAP-ENV:Envelope>';
 
         return $msg;
@@ -149,12 +149,12 @@ class Artifact
             if ($key['type'] !== 'X509Certificate') {
                 continue;
             }
-            $certData .= "-----BEGIN CERTIFICATE-----\n" .
-                chunk_split($key['X509Certificate'], 64) .
+            $certData .= "-----BEGIN CERTIFICATE-----\n".
+                chunk_split($key['X509Certificate'], 64).
                 "-----END CERTIFICATE-----\n";
         }
 
-        $file = System::getTempDir() . DIRECTORY_SEPARATOR . sha1($certData) . '.crt';
+        $file = System::getTempDir().DIRECTORY_SEPARATOR.sha1($certData).'.crt';
         if (!file_exists($file)) {
             System::writeFile($file, $certData);
         }
@@ -172,7 +172,7 @@ class Artifact
             'http' => array(
                 'method' => 'POST',
                 'content' => $request,
-                'header' => 'SOAPAction: http://www.oasis-open.org/committees/security' . "\r\n" .
+                'header' => 'SOAPAction: http://www.oasis-open.org/committees/security'."\r\n".
                     'Content-Type: text/xml',
             ),
         );

@@ -9,7 +9,7 @@
 
 /*
 $metadata['theproviderid-of-the-idp'] = array(
-	'SingleSignOnService'  => 'https://idp.example.org/shibboleth-idp/SSO',
-	'certificate'          => 'example.pem',
+    'SingleSignOnService' => 'https://idp.example.org/shibboleth-idp/SSO',
+    'certificate' => 'example.pem',
 );
 */

@@ -54,9 +54,9 @@ class MetaDataStorageHandlerXML extends MetaDataStorageSource
         $IdP20 = array();
         $AAD = array();
 
-        if(isset($src)) {
+        if (isset($src)) {
             $entities = SAMLParser::parseDescriptorsFile($src);
-        } elseif(isset($srcXml)) {
+        } elseif (isset($srcXml)) {
             $entities = SAMLParser::parseDescriptorsString($srcXml);
         } else {
             throw new \Exception("Neither source file path/URI nor string data provided");

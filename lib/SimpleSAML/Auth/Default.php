@@ -132,7 +132,7 @@ class DefaultAuth
     {
         $as = Source::getById($id);
         if ($as === null) {
-            throw new \Exception('Invalid authentication source: ' . $id);
+            throw new \Exception('Invalid authentication source: '.$id);
         }
         return $as;
     }
