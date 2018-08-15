@@ -8,6 +8,7 @@ document.addEventListener(
                 var translation = document.getElementById("processing_trans");
                 this.disabled = true;
                 this.innerHTML = translation.value;
+                return true;
             }
         );
     }
