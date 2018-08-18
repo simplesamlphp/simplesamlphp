@@ -1054,8 +1054,6 @@ $config = array(
      * - 'redis': Key-value datastore, based on redis.
      *
      * The default datastore is 'phpsession'.
-     *
-     * (This option replaces the old 'session.handler'-option.)
      */
     'store.type'                    => 'phpsession',
 
