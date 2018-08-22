@@ -184,8 +184,8 @@ abstract class MetaDataStorageSource
             }
 
             // support discohints in idp metadata for idp discovery
-            if (array_key_exists('DiscoHints', $entry) 
-                && array_key_exists('IPHint', $entry['DiscoHints']) 
+            if (array_key_exists('DiscoHints', $entry)
+                && array_key_exists('IPHint', $entry['DiscoHints'])
                 && is_array($entry['DiscoHints']['IPHint'])) {
                 // merge with hints derived from discohints, but prioritize hint.cidr in case it is used
                 $cidrHints = array_merge($entry['DiscoHints']['IPHint'], $cidrHints);

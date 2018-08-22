@@ -142,9 +142,9 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
         return $metadataSet;
     }
 
-    /**      
+    /**
      * Retrieve a metadata entry.
-     *      
+     *
      * @param string $entityId The entityId we are looking up.
      * @param string $set The set we are looking for metadata in.
      *
@@ -162,7 +162,10 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
             return null;
         }
 
-        $stmt = $this->db->read("SELECT entity_id, entity_data FROM $tableName WHERE entity_id=:entityId", array('entityId' => $entityId));
+        $stmt = $this->db->read(
+            "SELECT entity_id, entity_data FROM $tableName WHERE entity_id=:entityId",
+            array('entityId' => $entityId)
+        );
         if ($stmt->execute()) {
             $rowCount = 0;
             $data = null;

@@ -229,7 +229,8 @@ class Signer
 
         $keyFile = \SimpleSAML\Utils\Config::getCertPath($keyCertFiles['privatekey']);
         if (!file_exists($keyFile)) {
-            throw new \Exception('Could not find private key file ['.$keyFile.'], which is needed to sign the metadata');
+            throw new \Exception('Could not find private key file ['.
+                $keyFile.'], which is needed to sign the metadata');
         }
         $keyData = file_get_contents($keyFile);
 

@@ -140,7 +140,10 @@ class Artifact
 
         XML::debugSAMLMessage($request, 'out');
 
-        $url = $idpMetadata->getDefaultEndpoint('ArtifactResolutionService', array('urn:oasis:names:tc:SAML:1.0:bindings:SOAP-binding'));
+        $url = $idpMetadata->getDefaultEndpoint(
+            'ArtifactResolutionService',
+            array('urn:oasis:names:tc:SAML:1.0:bindings:SOAP-binding')
+        );
         $url = $url['Location'];
 
         $peerPublicKeys = $idpMetadata->getPublicKeys('signing', true);

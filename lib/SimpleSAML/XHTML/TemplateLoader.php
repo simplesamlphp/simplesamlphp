@@ -58,8 +58,8 @@ class TemplateLoader extends \Twig\Loader\FilesystemLoader
         $templatedir = $moduledir.'/templates';
         if (!is_dir($templatedir)) {
             throw new \InvalidArgumentException('The module \''.$module.'\' has no templates directory.');
-
         }
         return $templatedir;
     }
 }
+

@@ -106,7 +106,7 @@ class Metadata
         // check the type
         if (!isset($contact['contactType']) || !in_array($contact['contactType'], self::$VALID_CONTACT_TYPES, true)) {
             $types = join(', ', array_map(
-                function($t) {
+                function ($t) {
                     return '"'.$t.'"';
                 },
                 self::$VALID_CONTACT_TYPES

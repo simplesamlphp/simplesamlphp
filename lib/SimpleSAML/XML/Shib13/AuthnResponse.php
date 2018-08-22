@@ -119,7 +119,8 @@ class AuthnResponse
             // Validate against CA
             $this->validator->validateCA(Config::getCertPath($md->getString('caFile')));
         } else {
-            throw new \SimpleSAML\Error\Exception('Missing certificate in Shibboleth 1.3 IdP Remote metadata for identity provider ['.$issuer.'].');
+            throw new \SimpleSAML\Error\Exception('Missing certificate in Shibboleth 1.3'.
+                ' IdP Remote metadata for identity provider ['.$issuer.'].');
         }
 
         return true;
@@ -233,7 +234,10 @@ class AuthnResponse
                 }
             }
 
-            $attribute_nodes = $this->doXPathQuery('shib:AttributeStatement/shib:Attribute/shib:AttributeValue', $assertion);
+            $attribute_nodes = $this->doXPathQuery(
+                'shib:AttributeStatement/shib:Attribute/shib:AttributeValue',
+                $assertion
+            );
             /** @var \DOMElement $attribute */
             foreach ($attribute_nodes as $attribute) {
                 $value = $attribute->textContent;
@@ -418,7 +422,8 @@ class AuthnResponse
             $scoped = false;
         }
 
-        $attr = '<Attribute AttributeName="'.htmlspecialchars($name).'" AttributeNamespace="urn:mace:shibboleth:1.0:attributeNamespace:uri">';
+        $attr = '<Attribute AttributeName="'.htmlspecialchars($name).
+            '" AttributeNamespace="urn:mace:shibboleth:1.0:attributeNamespace:uri">';
         foreach ($values as $value) {
             $scopePart = '';
             if ($scoped) {
