@@ -26,7 +26,7 @@ The default configuration on Debian is for the memcache server to be accessible 
 
 
 Once the memcache server is configured, you can configure simplesamlphp to use it to store sessions.
-You can do this by setting the `session.handler` option in `config.php` to `memcache`.
+You can do this by setting the `store.type` option in `config.php` to `memcache`.
 If you are running memcache on a different server than the IdP, you must also change the `memcache_store.servers` option in `config.php`.
 
 

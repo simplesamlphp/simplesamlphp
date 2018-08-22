@@ -35,10 +35,7 @@ abstract class Store
         }
 
         $config = Configuration::getInstance();
-        $storeType = $config->getString('store.type', null);
-        if ($storeType === null) {
-            $storeType = $config->getString('session.handler', 'phpsession');
-        }
+        $storeType = $config->getString('store.type', 'phpsession');
 
         switch ($storeType) {
             case 'phpsession':

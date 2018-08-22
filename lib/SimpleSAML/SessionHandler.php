@@ -123,7 +123,7 @@ abstract class SessionHandler
      * Initialize the session handler.
      *
      * This function creates an instance of the session handler which is
-     * selected in the 'session.handler' configuration directive. If no
+     * selected in the 'store.type' configuration directive. If no
      * session handler is selected, then we will fall back to the default
      * PHP session handler.
      */

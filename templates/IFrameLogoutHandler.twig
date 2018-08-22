@@ -3,7 +3,7 @@
     <head>
         <title>Logout response from {{ assocId|escape('html') }}</title>
         <script>
-{% if error %}
+{% if errorMsg is defined %}
             window.parent.logoutFailed("{{ spId }}", "{{ errorMsg|escape }}");
 {% else %}
             window.parent.logoutCompleted("{{ spId }}");
