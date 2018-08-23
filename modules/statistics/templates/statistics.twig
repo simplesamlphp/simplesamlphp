@@ -193,10 +193,9 @@
                     <th>{{ keyName }}</th>
                     {% endfor %}
                 </tr>
-                {% set i = 0 %}
                 {% for slot, dd in debugdata %}
 
-                {% if i % 2 == 0 %}
+                {% if loop.index0 % 2 == 0 %}
                     {% set class = 'even' %}
                 {% else %}
                     {% set class = 'odd' %}
