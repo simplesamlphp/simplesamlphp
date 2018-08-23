@@ -186,9 +186,9 @@
                     <th>Time</th>
                     <th>Total</th>
                     {% for key, value in topdelimiters %}
-                    {% set keyName = key %}
-                    {% if delimiterPresentation[key] is defined %}
-                        {% set keyName = delimiterPresentation[key] %}
+                    {% set keyName = value %}
+                    {% if delimiterPresentation[value] is defined %}
+                        {% set keyName = delimiterPresentation[value] %}
                     {% endif %}
                     <th>{{ keyName }}</th>
                     {% endfor %}
