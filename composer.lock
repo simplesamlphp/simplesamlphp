@@ -4,31 +4,33 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "221caf8ce81175f80009f06e6c1f6cc5",
+    "content-hash": "a7d27841fb528e220ac63d4fa2bbc21f",
     "packages": [
         {
             "name": "gettext/gettext",
-            "version": "v3.6.1",
+            "version": "v4.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/oscarotero/Gettext.git",
-                "reference": "cd3be64443551e3a693117c4bccbe53e36282456"
+                "reference": "cae84aff39a87e07bd6e5cddb5adb720a0ffa357"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/oscarotero/Gettext/zipball/cd3be64443551e3a693117c4bccbe53e36282456",
-                "reference": "cd3be64443551e3a693117c4bccbe53e36282456",
+                "url": "https://api.github.com/repos/oscarotero/Gettext/zipball/cae84aff39a87e07bd6e5cddb5adb720a0ffa357",
+                "reference": "cae84aff39a87e07bd6e5cddb5adb720a0ffa357",
                 "shasum": ""
             },
             "require": {
-                "gettext/languages": "2.*",
-                "php": ">=5.3.0"
+                "gettext/languages": "^2.3",
+                "php": ">=5.4.0"
             },
             "require-dev": {
                 "illuminate/view": "*",
+                "phpunit/phpunit": "^4.8|^5.7|^6.5",
+                "squizlabs/php_codesniffer": "^3.0",
                 "symfony/yaml": "~2",
                 "twig/extensions": "*",
-                "twig/twig": "*"
+                "twig/twig": "^1.31|^2.0"
             },
             "suggest": {
                 "illuminate/view": "Is necessary if you want to use the Blade extractor",
@@ -64,7 +66,7 @@
                 "po",
                 "translation"
             ],
-            "time": "2016-08-01T18:09:57+00:00"
+            "time": "2018-06-26T16:51:09+00:00"
         },
         {
             "name": "gettext/languages",
