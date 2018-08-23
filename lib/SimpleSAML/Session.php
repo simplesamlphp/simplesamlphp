@@ -48,7 +48,6 @@ class Session implements \Serializable
      */
     private static $instance = null;
 
-
     /**
      * The session ID of this session.
      *
@@ -56,14 +55,12 @@ class Session implements \Serializable
      */
     private $sessionId;
 
-
     /**
      * Transient session flag.
      *
      * @var boolean|false
      */
     private $transient = false;
-
 
     /**
      * The track id is a new random unique identifier that is generated for each session.
@@ -74,9 +71,10 @@ class Session implements \Serializable
      */
     private $trackid = null;
 
-
+    /**
+     * @var integer|null
+     */
     private $rememberMeExpire = null;
-
 
     /**
      * Marks a session as modified, and therefore needs to be saved before destroying
@@ -86,14 +84,12 @@ class Session implements \Serializable
      */
     private $dirty = false;
 
-
     /**
      * Tells the session object that the save callback has been registered and there's no need to register it again.
      *
      * @var bool
      */
     private $callback_registered = false;
-
 
     /**
      * This is an array of objects which will expire automatically after a set time. It is used
@@ -107,7 +103,6 @@ class Session implements \Serializable
      */
     private $dataStore = array();
 
-
     /**
      * The list of IdP-SP associations.
      *
@@ -118,7 +113,6 @@ class Session implements \Serializable
      */
     private $associations = array();
 
-
     /**
      * The authentication token.
      *
@@ -128,7 +122,6 @@ class Session implements \Serializable
      */
     private $authToken;
 
-
     /**
      * Authentication data.
      *
@@ -137,7 +130,6 @@ class Session implements \Serializable
      * @var array  Associative array of associative arrays.
      */
     private $authData = array();
-
 
     /**
      * Private constructor that restricts instantiation to either getSessionFromRequest() for the current session or
@@ -191,7 +183,6 @@ class Session implements \Serializable
         }
     }
 
-
     /**
      * Serialize this session object.
      *
@@ -204,7 +195,6 @@ class Session implements \Serializable
         $serialized = serialize(get_object_vars($this));
         return $serialized;
     }
-
 
     /**
      * Unserialize a session object and load it..
@@ -238,7 +228,6 @@ class Session implements \Serializable
             }
         }
     }
-
 
     /**
      * Retrieves the current session. Creates a new session if there's not one.
@@ -381,7 +370,6 @@ class Session implements \Serializable
         return $session;
     }
 
-
     /**
      * Load a given session as the current one.
      *
@@ -457,7 +445,6 @@ class Session implements \Serializable
         }
     }
 
-
     /**
      * Save the current session and clean any left overs that could interfere with the normal application behaviour.
      *
@@ -472,7 +459,6 @@ class Session implements \Serializable
             $sh->restorePrevious();
         }
     }
-
 
     /**
      * Mark this session as dirty.
@@ -493,7 +479,6 @@ class Session implements \Serializable
         }
         $this->callback_registered = header_register_callback(array($this, 'save'));
     }
-
 
     /**
      * Destroy the session.
@@ -1013,7 +998,6 @@ class Session implements \Serializable
         return $this->authData[$authority];
     }
 
-
     /**
      * Check whether the session cookie is set.
      *
@@ -1026,7 +1010,6 @@ class Session implements \Serializable
         $sh = SessionHandler::getSessionHandler();
         return $sh->hasSessionCookie();
     }
-
 
     /**
      * Add an SP association for an IdP.
@@ -1054,7 +1037,6 @@ class Session implements \Serializable
 
         $this->markDirty();
     }
-
 
     /**
      * Retrieve the associations for an IdP.
@@ -1091,7 +1073,6 @@ class Session implements \Serializable
         return $this->associations[$idp];
     }
 
-
     /**
      * Remove an SP association for an IdP.
      *
@@ -1118,7 +1099,6 @@ class Session implements \Serializable
         $this->markDirty();
     }
 
-
     /**
      * Retrieve authentication data.
      *
@@ -1137,7 +1117,6 @@ class Session implements \Serializable
         }
         return $this->authData[$authority][$name];
     }
-
 
     /**
      * Retrieve a list of authorities (authentication sources) that are currently valid within
