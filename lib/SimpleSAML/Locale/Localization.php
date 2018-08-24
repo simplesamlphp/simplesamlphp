@@ -59,7 +59,7 @@ class Localization
     /**
      * Pointer to currently active translator
      *
-     * @var Gettext\Translator
+     * @var \Gettext\Translator
      */
     private $translator;
 
