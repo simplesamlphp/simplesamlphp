@@ -23,47 +23,65 @@ class Localization
 
     /**
      * The default gettext domain.
+     *
+     * @var string
      */
     const DEFAULT_DOMAIN = 'messages';
 
     /**
      * Old internationalization backend included in SimpleSAMLphp.
+     *
+     * @var string
      */
     const SSP_I18N_BACKEND = 'SimpleSAMLphp';
 
     /**
      * An internationalization backend implemented purely in PHP.
+     *
+     * @var string
      */
     const GETTEXT_I18N_BACKEND = 'gettext/gettext';
 
     /**
      * The default locale directory
+     *
+     * @var string
      */
     private $localeDir;
 
     /**
      * Where specific domains are stored
+     *
+     * @var array
      */
     private $localeDomainMap = array();
 
     /**
      * Pointer to currently active translator
+     *
+     * @var Gettext\Translator
      */
     private $translator;
 
     /**
      * Pointer to current Language
+     *
+     * @var Language
      */
     private $language;
 
     /**
      * Language code representing the current Language
+     *
+     * @var string
      */
     private $langcode;
 
 
     /**
      * The language backend to use
+     *
+     * @var string
      */
     public $i18nBackend;
 
@@ -85,6 +103,8 @@ class Localization
 
     /**
      * Dump the default locale directory
+     *
+     * @return string
      */
     public function getLocaleDir()
     {
@@ -96,6 +116,8 @@ class Localization
      * Get the default locale dir for a specific module aka. domain
      *
      * @param string $domain Name of module/domain
+     *
+     * @return string
      */
     public function getDomainLocaleDir($domain)
     {
@@ -139,6 +161,8 @@ class Localization
      *
      * @param string $domain Name of localization domain
      * @throws Exception If the path does not exist even for the default, fallback language
+     *
+     * @return string
      */
     public function getLangPath($domain = self::DEFAULT_DOMAIN)
     {
@@ -230,6 +254,8 @@ class Localization
      * Test to check if backend is set to default
      *
      * (if false: backend unset/there's an error)
+     *
+     * @return bool
      */
     public function isI18NBackendDefault()
     {
@@ -257,6 +283,8 @@ class Localization
 
     /**
      * Show which domains are registered
+     *
+     * @return array
      */
     public function getRegisteredDomains()
     {
