@@ -154,7 +154,7 @@
                     <th class="category">Data range</th>
                 </tr>
                 {% for key, value in summaryDataset %}
-                {% if loop.index0  % 2 == 0 %}
+                {% if loop.index0 is even %}
                     {% set class = 'even' %}
                 {% else %}
                     {% set class = 'odd' %}
@@ -195,7 +195,7 @@
                 </tr>
                 {% for slot, dd in debugdata %}
 
-                {% if loop.index0 % 2 == 0 %}
+                {% if loop.index0 is even %}
                     {% set class = 'even' %}
                 {% else %}
                     {% set class = 'odd' %}
