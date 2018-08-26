@@ -130,7 +130,9 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
 
         $dh = @opendir($dir);
         if ($dh === false) {
-            \SimpleSAML\Logger::warning('Serialize metadata handler: Unable to open directory: '.var_export($dir, true));
+            \SimpleSAML\Logger::warning(
+                'Serialize metadata handler: Unable to open directory: '.var_export($dir, true)
+            );
             return $ret;
         }
 

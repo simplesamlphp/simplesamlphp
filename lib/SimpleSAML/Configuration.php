@@ -207,8 +207,11 @@ class Configuration implements Utils\ClearableState
      * @param string $filename  The name of the configuration file.
      * @param string $configSet  The configuration set. Optional, defaults to 'simplesaml'.
      */
-    public static function setPreLoadedConfig(Configuration $config, $filename = 'config.php', $configSet = 'simplesaml')
-    {
+    public static function setPreLoadedConfig(
+        Configuration $config,
+        $filename = 'config.php',
+        $configSet = 'simplesaml'
+    ) {
         assert(is_string($filename));
         assert(is_string($configSet));
 

@@ -151,7 +151,11 @@ class ProcessingChain
             throw new \Exception('Authentication processing filter without name given.');
         }
 
-        $className = \SimpleSAML\Module::resolveClass($config['class'], 'Auth_Process', '\SimpleSAML\Auth\ProcessingFilter');
+        $className = \SimpleSAML\Module::resolveClass(
+            $config['class'],
+            'Auth_Process',
+            '\SimpleSAML\Auth\ProcessingFilter'
+        );
         $config['%priority'] = $priority;
         unset($config['class']);
         return new $className($config, null);
@@ -202,9 +206,9 @@ class ProcessingChain
             throw $e;
         } catch (\Exception $e) {
             /*
-			 * To be consistent with the exception we return after an redirect,
-			 * we convert this exception before returning it.
-			 */
+             * To be consistent with the exception we return after an redirect,
+             * we convert this exception before returning it.
+             */
             throw new \SimpleSAML\Error\UnserializableException($e);
         }
 
@@ -247,9 +251,9 @@ class ProcessingChain
 
         if (array_key_exists('ReturnURL', $state)) {
             /*
-			 * Save state information, and redirect to the URL specified
-			 * in $state['ReturnURL'].
-			 */
+             * Save state information, and redirect to the URL specified
+             * in $state['ReturnURL'].
+             */
             $id = State::saveState($state, self::COMPLETED_STAGE);
             \SimpleSAML\Utils\HTTP::redirectTrustedURL($state['ReturnURL'], array(self::AUTHPARAM => $id));
         } else {

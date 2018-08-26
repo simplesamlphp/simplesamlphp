@@ -191,7 +191,7 @@ class Utilities
     }
 
 
-    private static function _doRedirect($url, $parameters = array())
+    private static function doRedirect($url, $parameters = array())
     {
         assert(is_string($url));
         assert(!empty($url));
@@ -264,7 +264,7 @@ class Utilities
         } else {
             $url = self::normalizeURL($url);
         }
-        self::_doRedirect($url, $parameters);
+        self::doRedirect($url, $parameters);
     }
 
 
