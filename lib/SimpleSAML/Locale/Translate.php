@@ -36,7 +36,7 @@ class Translate
     /**
      * The default dictionary.
      *
-     * @var array|null
+     * @var string|null
      */
     private $defaultDictionary = null;
 
