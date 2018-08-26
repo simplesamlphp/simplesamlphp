@@ -10,4 +10,3 @@ if (!array_key_exists('ReturnTo', $_REQUEST)) {
 
 \SimpleSAML\Utils\Auth::requireAdmin();
 \SimpleSAML\Utils\HTTP::redirectUntrustedURL($_REQUEST['ReturnTo']);
-

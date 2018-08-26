@@ -1,10 +1,12 @@
 <?php
 $this->data['jquery'] = array('core' => true, 'ui' => true, 'css' => true);
-$this->data['head'] = '<link rel="stylesheet" type="text/css" href="/'.$this->data['baseurlpath'].'module.php/oauth/assets/oauth.css" />'."\n";
+$this->data['head'] = '<link rel="stylesheet" type="text/css" href="/'.
+    $this->data['baseurlpath'].'module.php/oauth/assets/oauth.css" />'."\n";
 $this->includeAtTemplateBase('includes/header.php');
 
 echo '<h1>OAuth Client Registry</h1>';
-echo '<p>Here you can register new OAuth Clients. You are successfully logged in as '.htmlspecialchars($this->data['userid']).'</p>';
+echo '<p>Here you can register new OAuth Clients. You are successfully logged in as '.
+    htmlspecialchars($this->data['userid']).'</p>';
 
 echo '<h2>Your clients</h2>';
 echo '<table class="metalist" style="width: 100%">';
@@ -12,7 +14,7 @@ $i = 0;
 $rows = array('odd', 'even');
 foreach ($this->data['entries']['mine'] as $entryc) {
     $entry = $entryc['value'];
-    $i++; 
+    $i++;
     echo '<tr class="'.$rows[$i % 2].'"><td>'.
         htmlspecialchars($entry['name']).'</td>	<td><tt>'.htmlspecialchars($entry['key']).
         '</tt></td><td><a href="registry.edit.php?editkey='.urlencode($entry['key']).
@@ -31,7 +33,7 @@ $i = 0;
 $rows = array('odd', 'even');
 foreach ($this->data['entries']['others'] as $entryc) {
     $entry = $entryc['value'];
-    $i++; 
+    $i++;
     echo '<tr class="'.$rows[$i % 2].'"><td>'.
         htmlspecialchars($entry['name']).'</td><td><tt>'.htmlspecialchars($entry['key']).
         '</tt></td><td>'.(isset($entry['owner']) ? htmlspecialchars($entry['owner']) : 'No owner').
@@ -43,4 +45,3 @@ if ($i == 0) {
 echo '</table>';
 
 $this->includeAtTemplateBase('includes/footer.php');
-

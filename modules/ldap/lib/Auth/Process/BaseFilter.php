@@ -110,7 +110,6 @@ abstract class BaseFilter extends \SimpleSAML\Auth\ProcessingFilter
 
         // If an authsource was defined (an not empty string)...
         if (isset($config['authsource']) && $config['authsource']) {
-
             // Log the authsource request
             \SimpleSAML\Logger::debug(
                 $this->title.'Attempting to get configuration values from authsource ['.

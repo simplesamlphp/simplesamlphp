@@ -1,6 +1,8 @@
-<?php 
-    $this->data['head'] = '<link rel="stylesheet" type="text/css" href="'.SimpleSAML\Module::getModuleURL("consentAdmin/assets/css/consentAdmin.css").'" />'."\n";
-    $this->data['head'] .= '<script type="text/javascript" src="'.SimpleSAML\Module::getModuleURL("consentAdmin/assets/js/consentAdmin.js").'"></script>';
+<?php
+    $this->data['head'] = '<link rel="stylesheet" type="text/css" href="'.
+        SimpleSAML\Module::getModuleURL("consentAdmin/assets/css/consentAdmin.css").'" />'."\n";
+    $this->data['head'] .= '<script type="text/javascript" src="'.
+        SimpleSAML\Module::getModuleURL("consentAdmin/assets/js/consentAdmin.js").'"></script>';
     // default theme
     $this->includeAtTemplateBase('includes/header.php');
 ?>
@@ -22,7 +24,8 @@
             $attributes_text = $this->t('{consentAdmin:consentadmin:attributes_text}');
             foreach ($spList as $spName => $spValues) {
                 if (!is_null($spValues['serviceurl'])) {
-                    $htmlSpName = '<a class="serviceUrl" href="'.$spValues['serviceurl'].'">'.htmlspecialchars($spValues['name']).'</a>';
+                    $htmlSpName = '<a class="serviceUrl" href="'.$spValues['serviceurl'].'">'.
+                        htmlspecialchars($spValues['name']).'</a>';
                 } else {
                     $htmlSpName = htmlspecialchars($spValues['name']);
                 }
@@ -35,7 +38,10 @@
 <tr class="$row_class">
 <td>
     <table>
-      <tr class="$row_class"><td><span class='caSPName'><span title='$spDescription'>$htmlSpName</span>&emsp;<span class="show_hide" id="show_hide_$show_spid"><span id='showing_$show_spid'>$show_text</span><span id='hiding_$show_spid'>$hide_text</span> $attributes_text</span></span></td></tr>
+      <tr class="$row_class">
+          <td><span class='caSPName'><span title='$spDescription'>$htmlSpName</span>&emsp;
+          <span class="show_hide" id="show_hide_$show_spid"><span id='showing_$show_spid'>$show_text</span>
+          <span id='hiding_$show_spid'>$hide_text</span> $attributes_text</span></span></td></tr>
       <tr><td colspan="2" class="caAttributes"><div id="attributes_$show_spid">
 TRSTART;
                 $attributes = $spValues['attributes_by_sp'];
@@ -44,8 +50,7 @@ TRSTART;
                 }
                 echo "\n<ul>\n";
                 foreach ($attributes as $name => $value) {
-
-                if (sizeof($value) > 1) {
+                    if (sizeof($value) > 1) {
                         echo "<li>".htmlspecialchars($name).":\n<ul>\n";
                         foreach ($value as $v) {
                             echo '<li>'.htmlspecialchars($v)."</li>\n";
@@ -61,7 +66,9 @@ TRSTART;
   </table>
 </td>
 
-<td class='caAllowed'><input id="checkbox_$show_spid" class="checkbox" value='$consentValue' type='checkbox' $checkedAttr /><span id="consentText_$show_spid">$consentText</span></td>
+<td class='caAllowed'>
+    <input id="checkbox_$show_spid" class="checkbox" value='$consentValue' type='checkbox' $checkedAttr />
+    <span id="consentText_$show_spid">$consentText</span></td>
 TRSTART;
                 echo "</tr>\n";
                 $show_spid++;
@@ -73,7 +80,11 @@ TRSTART;
         <?php echo $this->t('{consentAdmin:consentadmin:consentadmin_description2}') ?> </p>
 
         <h2>Logout</h2>
-
-            <p><a href="<?php echo \SimpleSAML\Module::getModuleURL('consentAdmin/consentAdmin.php', array('logout' => 1)); ?>">Logout</a></p>
+        <p>
+            <a href="
+            <?php
+                echo \SimpleSAML\Module::getModuleURL('consentAdmin/consentAdmin.php', array('logout' => 1));
+            ?>">Logout</a>
+        </p>
 
 <?php $this->includeAtTemplateBase('includes/footer.php');

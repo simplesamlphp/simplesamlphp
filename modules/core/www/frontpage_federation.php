@@ -169,4 +169,3 @@ $t->data['metaentries'] = $metaentries;
 $t->data['mtype'] = $mtype;
 
 $t->show();
-

@@ -168,7 +168,8 @@ class AttributeAlter extends \SimpleSAML\Auth\ProcessingFilter
             // replace only the part that matches
             if ($this->subject === $this->target) {
                 $attributes[$this->target] = preg_replace(
-                    $this->pattern, $this->replacement,
+                    $this->pattern,
+                    $this->replacement,
                     $attributes[$this->subject]
                 );
             } else {

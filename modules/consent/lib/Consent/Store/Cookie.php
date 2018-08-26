@@ -42,7 +42,7 @@ class Cookie extends \SimpleSAML\Module\consent\Store
         assert(is_string($destinationId));
         assert(is_string($attributeSet));
 
-        $cookieName = self::_getCookieName($userId, $destinationId);
+        $cookieName = self::getCookieName($userId, $destinationId);
 
         $data = $userId.':'.$attributeSet.':'.$destinationId;
 
@@ -62,7 +62,7 @@ class Cookie extends \SimpleSAML\Module\consent\Store
             return false;
         }
 
-        $data = self::_sign($data);
+        $data = self::sign($data);
 
         if ($_COOKIE[$cookieName] !== $data) {
             \SimpleSAML\Logger::info(
@@ -97,13 +97,13 @@ class Cookie extends \SimpleSAML\Module\consent\Store
         assert(is_string($destinationId));
         assert(is_string($attributeSet));
 
-        $name = self::_getCookieName($userId, $destinationId);
+        $name = self::getCookieName($userId, $destinationId);
         $value = $userId.':'.$attributeSet.':'.$destinationId;
 
         \SimpleSAML\Logger::debug('Consent cookie - Set ['.$value.']');
 
-        $value = self::_sign($value);
-        $this->_setConsentCookie($name, $value);
+        $value = self::sign($value);
+        $this->setConsentCookie($name, $value);
     }
 
 
@@ -122,8 +122,8 @@ class Cookie extends \SimpleSAML\Module\consent\Store
         assert(is_string($userId));
         assert(is_string($destinationId));
 
-        $name = self::_getCookieName($userId, $destinationId);
-        $this->_setConsentCookie($name, null);
+        $name = self::getCookieName($userId, $destinationId);
+        $this->setConsentCookie($name, null);
     }
 
 
@@ -169,7 +169,7 @@ class Cookie extends \SimpleSAML\Module\consent\Store
                 continue;
             }
 
-            $value = self::_verify($value);
+            $value = self::verify($value);
             if ($value === false) {
                 continue;
             }
@@ -204,7 +204,7 @@ class Cookie extends \SimpleSAML\Module\consent\Store
      *
      * @return string The signed data.
      */
-    private static function _sign($data)
+    private static function sign($data)
     {
         assert(is_string($data));
 
@@ -223,7 +223,7 @@ class Cookie extends \SimpleSAML\Module\consent\Store
      *
      * @return string|false The data, or false if the signature is invalid.
      */
-    private static function _verify($signedData)
+    private static function verify($signedData)
     {
         assert(is_string($signedData));
 
@@ -234,7 +234,7 @@ class Cookie extends \SimpleSAML\Module\consent\Store
         }
         $data = $data[1];
 
-        $newSignedData = self::_sign($data);
+        $newSignedData = self::sign($data);
         if ($newSignedData !== $signedData) {
             \SimpleSAML\Logger::warning('Consent cookie: Invalid signature.');
             return false;
@@ -254,7 +254,7 @@ class Cookie extends \SimpleSAML\Module\consent\Store
      *
      * @return string The cookie name
      */
-    private static function _getCookieName($userId, $destinationId)
+    private static function getCookieName($userId, $destinationId)
     {
         assert(is_string($userId));
         assert(is_string($destinationId));
@@ -271,7 +271,7 @@ class Cookie extends \SimpleSAML\Module\consent\Store
      *
      * @return void
      */
-    private function _setConsentCookie($name, $value)
+    private function setConsentCookie($name, $value)
     {
         assert(is_string($name));
         assert(is_string($value) || $value === null);

@@ -37,10 +37,12 @@ if (preg_match('@^https?://@i', $target)) {
 } else {
     $state = \SimpleSAML\Auth\State::loadState($_REQUEST['TARGET'], 'saml:sp:sso');
 
-    // Check that the authentication source is correct.
+    // Check that the authentication source is correct
     assert(array_key_exists('saml:sp:AuthId', $state));
     if ($state['saml:sp:AuthId'] !== $sourceId) {
-        throw new \SimpleSAML\Error\Exception('The authentication source id in the URL does not match the authentication source which sent the request.');
+        throw new \SimpleSAML\Error\Exception(
+            'The authentication source id in the URL does not match the authentication source which sent the request.'
+        );
     }
 
     assert(isset($state['saml:idp']));
@@ -50,8 +52,10 @@ $spMetadata = $source->getMetadata();
 
 if (array_key_exists('SAMLart', $_REQUEST)) {
     if (!isset($state['saml:idp'])) {
-        /* Unsolicited response. */
-        throw new \SimpleSAML\Error\Exception('IdP initiated authentication not supported with the SAML 1.1 SAMLart protocol.');
+        // Unsolicited response
+        throw new \SimpleSAML\Error\Exception(
+            'IdP initiated authentication not supported with the SAML 1.1 SAMLart protocol.'
+        );
     }
     $idpMetadata = $source->getIdPMetadata($state['saml:idp']);
 

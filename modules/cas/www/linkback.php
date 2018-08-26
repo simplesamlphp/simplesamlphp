@@ -24,5 +24,3 @@ if ($source === null) {
 }
 
 $source->finalStep($state);
-
-

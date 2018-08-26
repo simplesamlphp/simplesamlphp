@@ -51,9 +51,9 @@ class Consumer
      * This static helper function wraps \SimpleSAML\Utils\HTTP::fetch
      * and throws an exception with diagnostics messages if it appear
      * to be failing on an OAuth endpoint.
-     * 
+     *
      * If the status code is not 200, an exception is thrown. If the content-type
-     * of the response if text/plain, the content of the response is included in 
+     * of the response if text/plain, the content of the response is included in
      * the text of the Exception thrown.
      */
     public static function getHTTP($url, $context = '')
@@ -74,7 +74,7 @@ class Consumer
             }
 
             throw new \Exception($error.':'.$url);
-        } 
+        }
         // Fall back to return response, if could not reckognize HTTP header. Should not happen.
         return $response;
     }
@@ -111,7 +111,7 @@ class Consumer
         if ($redirect) {
             \SimpleSAML\Utils\HTTP::redirectTrustedURL($authorizeURL);
             exit;
-        }	
+        }
         return $authorizeURL;
     }
 

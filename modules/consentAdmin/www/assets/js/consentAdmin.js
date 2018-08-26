@@ -16,7 +16,7 @@ function checkConsent()
     url = url+"&action="+checkbox.checked
     url = url+"&sid="+Math.random()
 
-    xmlHttp.onreadystatechange=function() {
+    xmlHttp.onreadystatechange = function () {
         if (xmlHttp.readyState == 4 || xmlHttp.readyState == "complete") {
             document.getElementById("consentText_" + show_spid).innerHTML = xmlHttp.responseText;
         }

@@ -36,7 +36,7 @@ class ADFS
             $state['adfs:wreply'] = \SimpleSAML\Utils\HTTP::checkURLAllowed($query['wreply']);
         }
 
-        $idp->handleAuthenticationRequest($state);		
+        $idp->handleAuthenticationRequest($state);
     }
 
     private static function generateResponse($issuer, $target, $nameid, $attributes, $assertionLifetime)
@@ -73,7 +73,10 @@ MSG;
                 continue;
             }
 
-            list($namespace, $name) = \SimpleSAML\Utils\Attributes::getAttributeNamespace($name, 'http://schemas.xmlsoap.org/claims');
+            list($namespace, $name) = \SimpleSAML\Utils\Attributes::getAttributeNamespace(
+                $name,
+                'http://schemas.xmlsoap.org/claims'
+            );
             foreach ($values as $value) {
                 if ((!isset($value)) || ($value === '')) {
                     continue;
@@ -85,7 +88,6 @@ MSG;
                     <saml:AttributeValue>$value</saml:AttributeValue>
                 </saml:Attribute>
 MSG;
-
             }
         }
 
@@ -107,12 +109,13 @@ MSG;
     private static function signResponse($response, $key, $cert, $algo)
     {
         $objXMLSecDSig = new XMLSecurityDSig();
-        $objXMLSecDSig->idKeys = array('AssertionID');	
-        $objXMLSecDSig->setCanonicalMethod(XMLSecurityDSig::EXC_C14N);	
+        $objXMLSecDSig->idKeys = array('AssertionID');
+        $objXMLSecDSig->setCanonicalMethod(XMLSecurityDSig::EXC_C14N);
         $responsedom = \SAML2\DOMDocumentFactory::fromString(str_replace("\r", "", $response));
         $firstassertionroot = $responsedom->getElementsByTagName('Assertion')->item(0);
         $objXMLSecDSig->addReferenceList(
-            array($firstassertionroot), XMLSecurityDSig::SHA256,
+            array($firstassertionroot),
+            XMLSecurityDSig::SHA256,
             array('http://www.w3.org/2000/09/xmldsig#enveloped-signature', XMLSecurityDSig::EXC_C14N),
             array('id_name' => 'AssertionID')
         );
@@ -125,7 +128,7 @@ MSG;
             $objXMLSecDSig->add509Cert($public_cert, true);
         }
         $newSig = $responsedom->importNode($objXMLSecDSig->sigNode, true);
-        $firstassertionroot->appendChild($newSig);	
+        $firstassertionroot->appendChild($newSig);
         return $responsedom->saveXML();
     }
 
@@ -144,7 +147,10 @@ MSG;
     {
         $spMetadata = $state["SPMetadata"];
         $spEntityId = $spMetadata['entityid'];
-        $spMetadata = \SimpleSAML\Configuration::loadFromArray($spMetadata, '$metadata['.var_export($spEntityId, true).']');
+        $spMetadata = \SimpleSAML\Configuration::loadFromArray(
+            $spMetadata,
+            '$metadata['.var_export($spEntityId, true).']'
+        );
 
         $attributes = $state['Attributes'];
 
@@ -158,7 +164,7 @@ MSG;
             $nameid = \SimpleSAML\Utils\Random::generateID();
         }
 
-        $idp = \SimpleSAML\IdP::getByState($state);		
+        $idp = \SimpleSAML\IdP::getByState($state);
         $idpMetadata = $idp->getConfig();
         $idpEntityId = $idpMetadata->getString('entityid');
 
@@ -193,7 +199,9 @@ MSG;
     {
         // NB:: we don't know from which SP the logout request came from
         $idpMetadata = $idp->getConfig();
-        \SimpleSAML\Utils\HTTP::redirectTrustedURL($idpMetadata->getValue('redirect-after-logout', \SimpleSAML\Utils\HTTP::getBaseURL()));
+        \SimpleSAML\Utils\HTTP::redirectTrustedURL(
+            $idpMetadata->getValue('redirect-after-logout', \SimpleSAML\Utils\HTTP::getBaseURL())
+        );
     }
 
     public static function receiveLogoutMessage(\SimpleSAML\IdP $idp)
@@ -209,7 +217,7 @@ MSG;
             'Responder' => array('\SimpleSAML\Module\adfs\IdP\ADFS', 'sendLogoutResponse'),
         );
         $assocId = null;
-        // TODO: verify that this is really no problem for: 
+        // TODO: verify that this is really no problem for:
         //       a) SSP, because there's no caller SP.
         //       b) ADFS SP because caller will be called back..
         $idp->handleLogoutRequest($state, $assocId);
@@ -220,7 +228,9 @@ MSG;
     {
         $metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
         $spMetadata = $metadata->getMetaDataConfig($association['adfs:entityID'], 'adfs-sp-remote');
-        $returnTo = \SimpleSAML\Module::getModuleURL('adfs/idp/prp.php?assocId='.urlencode($association["id"]).'&relayState='.urlencode($relayState));
+        $returnTo = \SimpleSAML\Module::getModuleURL(
+            'adfs/idp/prp.php?assocId='.urlencode($association["id"]).'&relayState='.urlencode($relayState)
+        );
         return $spMetadata->getValue('prp').'?wa=wsignoutcleanup1.0&wreply='.urlencode($returnTo);
     }
 }

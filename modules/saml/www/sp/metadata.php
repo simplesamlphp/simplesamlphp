@@ -15,8 +15,10 @@ if ($source === null) {
 }
 
 if (!($source instanceof \SimpleSAML\Module\saml\Auth\Source\SP)) {
-    throw new \SimpleSAML\Error\AuthSource($sourceId,
-        'The authentication source is not a SAML Service Provider.');
+    throw new \SimpleSAML\Error\AuthSource(
+        $sourceId,
+        'The authentication source is not a SAML Service Provider.'
+    );
 }
 
 $entityId = $source->getEntityId();
@@ -61,7 +63,6 @@ $index = 0;
 $eps = array();
 $supported_protocols = array();
 foreach ($assertionsconsumerservices as $services) {
-
     $acsArray = array('index' => $index);
     switch ($services) {
         case 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST':
@@ -260,7 +261,6 @@ if (isset($metaArray20['attributes']) && is_array($metaArray20['attributes'])) {
 $xml = \SimpleSAML\Metadata\Signer::sign($xml, $spconfig->toArray(), 'SAML 2 SP');
 
 if (array_key_exists('output', $_REQUEST) && $_REQUEST['output'] == 'xhtml') {
-
     $t = new \SimpleSAML\XHTML\Template($config, 'metadata.php', 'admin');
 
     $t->data['clipboard.js'] = true;

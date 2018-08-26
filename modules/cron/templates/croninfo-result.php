@@ -12,8 +12,7 @@ echo '            <h1>'.$this->t('cron_report_title').'</h1><p>'.$this->t('ran_t
     '<p>Tag: '.$this->data['tag']."</p>\n\n".
     '<ul><li>'.join('</li><li>', $this->data['summary']).'</li></ul>';
 ?>
-		</code>
-		</pre>
+        </code></pre>
 </div>
 
 <?php

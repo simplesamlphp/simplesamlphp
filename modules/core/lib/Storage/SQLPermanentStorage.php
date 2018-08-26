@@ -4,7 +4,7 @@ namespace SimpleSAML\Module\core\Storage;
 
 /**
  * SQLPermanentStorage
- * 
+ *
  * Generic SQL Store to store key value pairs. To be used in several other modules that needs
  * to store data permanently.
  *
@@ -26,7 +26,7 @@ class SQLPermanentStorage
 
         if (!is_dir($datadir)) {
             throw new \Exception('Data directory ['.$datadir.'] does not exist');
-        } else if (!is_writable($datadir)) {
+        } elseif (!is_writable($datadir)) {
             throw new \Exception('Data directory ['.$datadir.'] is not writable');
         }
 
@@ -51,7 +51,7 @@ class SQLPermanentStorage
                         PRIMARY KEY (key1,key2,type)
                     );
                 ');
-            } 
+            }
         } else {
             throw new \Exception('Error creating SQL lite database ['.$dbfile.'].');
         }
@@ -86,7 +86,8 @@ class SQLPermanentStorage
     {
         $expire = is_null($duration) ? null : (time() + $duration);
 
-        $query = "UPDATE data SET updated = :updated, value = :value, expire = :expire WHERE key1 = :key1 AND key2 = :key2 AND type = :type";
+        $query = "UPDATE data SET updated = :updated, value = :value, ".
+            "expire = :expire WHERE key1 = :key1 AND key2 = :key2 AND type = :type";
         $prepared = $this->db->prepare($query);
         $data = array(':key1' => $key1, ':key2' => $key2,
             ':type' => $type, ':updated' => time(),
@@ -216,4 +217,3 @@ class SQLPermanentStorage
         return join(' AND ', $conditions);
     }
 }
-

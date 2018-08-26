@@ -39,12 +39,16 @@ class UserPass extends \SimpleSAML\Module\core\Auth\UserPassBase
         // Validate and parse our configuration
         foreach ($config as $userpass => $attributes) {
             if (!is_string($userpass)) {
-                throw new \Exception('Invalid <username>:<password> for authentication source '.$this->authId.': '.$userpass);
+                throw new \Exception(
+                    'Invalid <username>:<password> for authentication source '.$this->authId.': '.$userpass
+                );
             }
 
             $userpass = explode(':', $userpass, 2);
             if (count($userpass) !== 2) {
-                throw new \Exception('Invalid <username>:<password> for authentication source '.$this->authId.': '.$userpass[0]);
+                throw new \Exception(
+                    'Invalid <username>:<password> for authentication source '.$this->authId.': '.$userpass[0]
+                );
             }
             $username = $userpass[0];
             $password = $userpass[1];

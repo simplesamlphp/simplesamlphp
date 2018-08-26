@@ -13,19 +13,19 @@ function statistics_hook_cron(&$croninfo)
     assert(array_key_exists('tag', $croninfo));
 
     $statconfig = \SimpleSAML\Configuration::getConfig('module_statistics.php');
-	
+
     if (is_null($statconfig->getValue('cron_tag', null))) {
         return;
     }
     if ($statconfig->getValue('cron_tag', null) !== $croninfo['tag']) {
         return;
     }
-	
+
     $maxtime = $statconfig->getInteger('time_limit', null);
     if ($maxtime) {
         set_time_limit($maxtime);
     }
-	
+
     try {
         $aggregator = new \SimpleSAML\Module\statistics\Aggregator();
         $results = $aggregator->aggregate();

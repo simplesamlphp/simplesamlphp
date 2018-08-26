@@ -52,14 +52,18 @@ class ExpiryDate extends \SimpleSAML\Auth\ProcessingFilter
         if (array_key_exists('netid_attr', $config)) {
             $this->netid_attr = $config['netid_attr'];
             if (!is_string($this->netid_attr)) {
-                throw new \Exception('Invalid attribute name given as eduPersonPrincipalName to expirycheck::ExpiryDate filter.');
+                throw new \Exception(
+                    'Invalid attribute name given as eduPersonPrincipalName to expirycheck::ExpiryDate filter.'
+                );
             }
         }
 
         if (array_key_exists('expirydate_attr', $config)) {
             $this->expirydate_attr = $config['expirydate_attr'];
             if (!is_string($this->expirydate_attr)) {
-                throw new \Exception('Invalid attribute name given as schacExpiryDate to expirycheck::ExpiryDate filter.');
+                throw new \Exception(
+                    'Invalid attribute name given as schacExpiryDate to expirycheck::ExpiryDate filter.'
+                );
             }
         }
 

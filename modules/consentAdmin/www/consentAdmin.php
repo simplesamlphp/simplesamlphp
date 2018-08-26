@@ -24,8 +24,7 @@ function driveProcessingChain(
     $userid,
     $hashAttributes = false,
     $excludeAttributes = array()
-)
-{
+) {
     /*
      * Create a new processing chain
      */
@@ -122,7 +121,11 @@ if ($as->getAuthData('saml:sp:IdP') !== null) {
 }
 
 // Get user ID
-$userid_attributename = (isset($idp_metadata['userid.attribute']) && is_string($idp_metadata['userid.attribute'])) ? $idp_metadata['userid.attribute'] : 'eduPersonPrincipalName';
+if (isset($idp_metadata['userid.attribute']) && is_string($idp_metadata['userid.attribute'])) {
+    $userid_attributename = $idp_metadata['userid.attribute'];
+} else {
+    $userid_attributename = 'eduPersonPrincipalName';
+}
 
 $userids = $attributes[$userid_attributename];
 
@@ -168,14 +171,26 @@ $hashed_user_id = \SimpleSAML\Module\consent\Auth\Process\Consent::getHashedUser
 // If a checkbox have been clicked
 if ($action !== null && $sp_entityid !== null) {
     // init template to enable translation of status messages
-    $template = new \SimpleSAML\XHTML\Template($config, 'consentAdmin:consentadminajax.php', 'consentAdmin:consentadmin');
+    $template = new \SimpleSAML\XHTML\Template(
+        $config,
+        'consentAdmin:consentadminajax.php',
+        'consentAdmin:consentadmin'
+    );
 
     // Get SP metadata
     $sp_metadata = $metadata->getMetaData($sp_entityid, 'saml20-sp-remote');
 
     // Run AuthProc filters
-    list($targeted_id, $attribute_hash, $attributes_new) = driveProcessingChain($idp_metadata, $source, $sp_metadata,
-        $sp_entityid, $attributes, $userid, $hashAttributes, $excludeAttributes);
+    list($targeted_id, $attribute_hash, $attributes_new) = driveProcessingChain(
+        $idp_metadata,
+        $source,
+        $sp_metadata,
+        $sp_entityid,
+        $attributes,
+        $userid,
+        $hashAttributes,
+        $excludeAttributes
+    );
 
     // Add a consent (or update if attributes have changed and old consent for SP and IdP exists)
     if ($action == 'true') {
@@ -228,8 +243,16 @@ foreach ($all_sp_metadata as $sp_entityid => $sp_values) {
     $sp_metadata = $metadata->getMetaData($sp_entityid, 'saml20-sp-remote');
 
     // Run attribute filters
-    list($targeted_id, $attribute_hash, $attributes_new) = driveProcessingChain($idp_metadata, $source, $sp_metadata,
-        $sp_entityid, $attributes, $userid, $hashAttributes, $excludeAttributes);
+    list($targeted_id, $attribute_hash, $attributes_new) = driveProcessingChain(
+        $idp_metadata,
+        $source,
+        $sp_metadata,
+        $sp_entityid,
+        $attributes,
+        $userid,
+        $hashAttributes,
+        $excludeAttributes
+    );
 
     // Translate attribute-names
     foreach ($attributes_new as $orig_name => $value) {

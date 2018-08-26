@@ -151,7 +151,6 @@ class ConfigHelper
             $this->searchScope = $config->getString('search.scope', 'subtree');
             $this->searchFilter = $config->getString('search.filter', null);
             $this->searchAttributes = $config->getArray('search.attributes');
-
         } else {
             $this->dnPattern = $config->getString('dnpattern');
         }
@@ -187,7 +186,14 @@ class ConfigHelper
             throw new \SimpleSAML\Error\Error('WRONGUSERPASS');
         }
 
-        $ldap = new \SimpleSAML\Auth\LDAP($this->hostname, $this->enableTLS, $this->debug, $this->timeout, $this->port, $this->referrals);
+        $ldap = new \SimpleSAML\Auth\LDAP(
+            $this->hostname,
+            $this->enableTLS,
+            $this->debug,
+            $this->timeout,
+            $this->port,
+            $this->referrals
+        );
 
         if (!$this->searchEnable) {
             $ldapusername = addcslashes($username, ',+"\\<>;*');
@@ -199,7 +205,14 @@ class ConfigHelper
                 }
             }
 
-            $dn = $ldap->searchfordn($this->searchBase, $this->searchAttributes, $username, true, $this->searchFilter, $this->searchScope);
+            $dn = $ldap->searchfordn(
+                $this->searchBase,
+                $this->searchAttributes,
+                $username,
+                true,
+                $this->searchFilter,
+                $this->searchScope
+            );
             if ($dn === null) {
                 /* User not found with search. */
                 \SimpleSAML\Logger::info($this->location.': Unable to find users DN. username=\''.$username.'\'');
@@ -212,14 +225,14 @@ class ConfigHelper
             throw new \SimpleSAML\Error\Error('WRONGUSERPASS');
         }
 
-        /* In case of SASL bind, authenticated and authorized DN may differ */
+        // In case of SASL bind, authenticated and authorized DN may differ
         if (isset($sasl_args)) {
             $dn = $ldap->whoami($this->searchBase, $this->searchAttributes);
         }
 
-        /* Are privs needed to get the attributes? */
+        // Are privs needed to get the attributes?
         if ($this->privRead) {
-            /* Yes, rebind with privs */
+            // Yes, rebind with privs
             if (!$ldap->bind($this->privUsername, $this->privPassword)) {
                 throw new \Exception('Error authenticating using privileged DN & password.');
             }
@@ -253,12 +266,14 @@ class ConfigHelper
      */
     public function searchfordn($attribute, $value, $allowZeroHits)
     {
-        $ldap = new \SimpleSAML\Auth\LDAP($this->hostname,
+        $ldap = new \SimpleSAML\Auth\LDAP(
+            $this->hostname,
             $this->enableTLS,
             $this->debug,
             $this->timeout,
             $this->port,
-            $this->referrals);
+            $this->referrals
+        );
 
         if ($attribute == null) {
             $attribute = $this->searchAttributes;
@@ -270,8 +285,14 @@ class ConfigHelper
             }
         }
 
-        return $ldap->searchfordn($this->searchBase, $attribute,
-            $value, $allowZeroHits, $this->searchFilter, $this->searchScope);
+        return $ldap->searchfordn(
+            $this->searchBase,
+            $attribute,
+            $value,
+            $allowZeroHits,
+            $this->searchFilter,
+            $this->searchScope
+        );
     }
 
     public function getAttributes($dn, $attributes = null)
@@ -280,16 +301,18 @@ class ConfigHelper
             $attributes = $this->attributes;
         }
 
-        $ldap = new \SimpleSAML\Auth\LDAP($this->hostname,
+        $ldap = new \SimpleSAML\Auth\LDAP(
+            $this->hostname,
             $this->enableTLS,
             $this->debug,
             $this->timeout,
             $this->port,
-            $this->referrals);
+            $this->referrals
+        );
 
-        /* Are privs needed to get the attributes? */
+        // Are privs needed to get the attributes?
         if ($this->privRead) {
-            /* Yes, rebind with privs */
+            // Yes, rebind with privs
             if (!$ldap->bind($this->privUsername, $this->privPassword)) {
                 throw new \Exception('Error authenticating using privileged DN & password.');
             }

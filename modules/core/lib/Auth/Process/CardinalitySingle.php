@@ -55,7 +55,11 @@ class CardinalitySingle extends \SimpleSAML\Auth\ProcessingFilter
             $this->firstValue = $config['firstValue'];
         }
         if (array_key_exists('flattenWith', $config)) {
-            $this->flattenWith = is_array($config['flattenWith']) ? array_shift($config['flattenWith']) : $config['flattenWith'];
+            if (is_array($config['flattenWith'])) {
+                $this->flattenWith = array_shift($config['flattenWith']);
+            } else {
+                $this->flattenWith = $config['flattenWith'];
+            }
         }
         if (array_key_exists('flatten', $config)) {
             $this->flatten = $config['flatten'];

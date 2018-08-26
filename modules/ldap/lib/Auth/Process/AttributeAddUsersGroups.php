@@ -105,7 +105,8 @@ class AttributeAddUsersGroups extends BaseFilter
                 if (!isset($attributes[$map['memberof']])) {
                     throw new \SimpleSAML\Error\Exception(
                         $this->title.'The memberof attribute ['.$map['memberof'].
-                        '] is not defined in the user\'s Attributes: '.implode(', ', array_keys($attributes)));
+                        '] is not defined in the user\'s Attributes: '.implode(', ', array_keys($attributes))
+                    );
                 }
 
                 // MemberOf must be an array of group DN's
@@ -156,8 +157,14 @@ class AttributeAddUsersGroups extends BaseFilter
 
         $groups = array();
         try {
-            // Intention is to filter in 'ou=groups,dc=example,dc=com' for '(memberUid = <value of attribute.username>)' and take only the attributes 'cn' (=name of the group)
-            $all_groups = $this->getLdap()->searchformultiple($openldap_base, array($map['memberof'] => $attributes[$map['username']][0]), array($map['member']));
+            /* Intention is to filter in 'ou=groups,dc=example,dc=com' for
+             * '(memberUid = <value of attribute.username>)' and take only the attributes 'cn' (=name of the group)
+             */
+            $all_groups = $this->getLdap()->searchformultiple(
+                $openldap_base,
+                array($map['memberof'] => $attributes[$map['username']][0]),
+                array($map['member'])
+            );
         } catch (\SimpleSAML\Error\UserNotFound $e) {
             return $groups; // if no groups found return with empty (still just initialized) groups array
         }
@@ -194,7 +201,8 @@ class AttributeAddUsersGroups extends BaseFilter
         if (!isset($attributes[$map['dn']])) {
             throw new \SimpleSAML\Error\Exception(
                 $this->title.'The DN attribute ['.$map['dn'].
-                '] is not defined in the user\'s Attributes: '.implode(', ', array_keys($attributes)));
+                '] is not defined in the user\'s Attributes: '.implode(', ', array_keys($attributes))
+            );
         }
 
         // DN attribute must have a value
@@ -249,7 +257,6 @@ class AttributeAddUsersGroups extends BaseFilter
 
         // Check each DN of the passed memberOf
         foreach ($memberof as $dn) {
-
             // Avoid infinite loops, only need to check a DN once
             if (isset($searched[$dn])) {
                 continue;

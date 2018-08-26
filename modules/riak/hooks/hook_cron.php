@@ -41,14 +41,14 @@ function riak_hook_cron(&$croninfo)
 
     try {
         $store = new \SimpleSAML\Module\riak\Store\Store();
-        $result = $store->bucket->indexSearch('expires', 'int',
-            1, time() - 30);
+        $result = $store->bucket->indexSearch('expires', 'int', 1, time() - 30);
         foreach ($result as $link) {
             $link->getBinary()->delete();
         }
 
-        \SimpleSAML\Logger::info(sprintf("deleted %s riak key%s",
-            sizeof($result), sizeof($result) == 1 ? '' : 's'));
+        \SimpleSAML\Logger::info(
+            sprintf("deleted %s riak key%s", sizeof($result), sizeof($result) == 1 ? '' : 's')
+        );
     } catch (\Exception $e) {
         $message = 'riak threw exception: '.$e->getMessage();
         \SimpleSAML\Logger::warning($message);

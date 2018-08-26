@@ -1,7 +1,7 @@
-$(document).ready(function() {
+$(document).ready(function () {
     $("#tabdiv").tabs();
     $('ul.tabset_tabs li').click(
-        function() {
+        function () {
             $("html, body").animate({ scrollTop: 0 }, "slow");
         }
     )

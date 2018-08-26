@@ -84,7 +84,9 @@ class LinkedIn extends \SimpleSAML\Auth\Source
         // Get the request token
         $requestToken = $consumer->getRequestToken(
             'https://api.linkedin.com/uas/oauth/requestToken',
-            array('oauth_callback' => \SimpleSAML\Module::getModuleUrl('authlinkedin').'/linkback.php?stateid='.$stateID)
+            array(
+                'oauth_callback' => \SimpleSAML\Module::getModuleUrl('authlinkedin').'/linkback.php?stateid='.$stateID
+            )
         );
 
         \SimpleSAML\Logger::debug(
@@ -115,7 +117,8 @@ class LinkedIn extends \SimpleSAML\Auth\Source
 
         // Replace the request token with an access token (via GET method)
         $accessToken = $consumer->getAccessToken(
-            'https://api.linkedin.com/uas/oauth/accessToken', $requestToken,
+            'https://api.linkedin.com/uas/oauth/accessToken',
+            $requestToken,
             array('oauth_verifier' => $state['authlinkedin:oauth_verifier'])
         );
 
@@ -126,7 +129,7 @@ class LinkedIn extends \SimpleSAML\Auth\Source
 
         $userdata = $consumer->getUserInfo(
             'https://api.linkedin.com/v1/people/~:('.$this->attributes.')',
-            $accessToken, 
+            $accessToken,
             array('http' => array('header' => 'x-li-format: json'))
         );
 

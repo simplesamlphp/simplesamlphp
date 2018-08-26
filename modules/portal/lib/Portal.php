@@ -49,8 +49,8 @@ class Portal
         $t = new \SimpleSAML\Locale\Translate($config);
         $tabset = $this->getTabset($thispage);
         $logininfo = $this->getLoginInfo($t, $thispage);
-        $text = '';
-        $text .= '<ul class="tabset_tabs ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">';
+        $classes = 'tabset_tabs ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all';
+        $text = '<ul class="'.$classes.'">';
         foreach ($this->pages as $pageid => $page) {
             if (isset($tabset) && !in_array($pageid, $tabset, true)) {
                 continue;
@@ -65,7 +65,7 @@ class Portal
             if (!isset($page['href'])) {
                 $text .= '<li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#">'.
                     $t->t($name).'</a></li>';
-            } else if ($pageid === $thispage) {
+            } elseif ($pageid === $thispage) {
                 $text .= '<li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#">'.
                     $t->t($name).'</a></li>';
             } else {

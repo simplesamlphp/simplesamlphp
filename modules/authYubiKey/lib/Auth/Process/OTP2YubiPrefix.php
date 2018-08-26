@@ -37,7 +37,7 @@ namespace SimpleSAML\Module\authYubiKey\Auth\Process;
  *
  * You use it by adding it as an authentication filter in config.php:
  *
- * 	'authproc.idp' => array(
+ *      'authproc.idp' => array(
  *    ...
  *          90 => 'authYubiKey:OTP2YubiPrefix',
  *    ...
@@ -69,7 +69,9 @@ class OTP2YubiPrefix extends \SimpleSAML\Auth\ProcessingFilter
 
         $attributes['yubiPrefix'] = array($identity);
 
-        \SimpleSAML\Logger::info('OTP2YubiPrefix: otp: '.$otp.' identity: '.$identity.' (otp keys: '.implode(',', array_keys($otps)).')');
+        \SimpleSAML\Logger::info(
+            'OTP2YubiPrefix: otp: '.$otp.' identity: '.$identity.' (otp keys: '.implode(',', array_keys($otps)).')'
+        );
 
         unset($attributes['otp']);
 

@@ -185,7 +185,7 @@ class ConsentTest extends TestCase
         $reflection = new \ReflectionClass('\SimpleSAML\Module\consent\Auth\Process\Consent');
 
         foreach (array(
-            '_includeValues', '_checked', '_focus', '_hiddenAttributes', '_noconsentattributes', '_showNoConsentAboutService'
+            'includeValues', 'checked', 'focus', 'hiddenAttributes', 'noconsentattributes', 'showNoConsentAboutService'
         ) as $v) {
             $instanceVars[$v] = $reflection->getProperty($v);
             $instanceVars[$v]->setAccessible(true);
@@ -203,15 +203,15 @@ class ConsentTest extends TestCase
 
         $testcase = $reflection->newInstance($config, null);
 
-        $this->assertEquals($instanceVars['_includeValues']->getValue($testcase), $config['includeValues']);
-        $this->assertEquals($instanceVars['_checked']->getValue($testcase), $config['checked']);
-        $this->assertEquals($instanceVars['_focus']->getValue($testcase), $config['focus']);
-        $this->assertEquals($instanceVars['_hiddenAttributes']->getValue($testcase), $config['hiddenAttributes']);
-        $this->assertEquals($instanceVars['_noconsentattributes']->getValue($testcase), $config['attributes.exclude']);
-        $this->assertEquals($instanceVars['_showNoConsentAboutService']->getValue($testcase), $config['showNoConsentAboutService']);
+        $this->assertEquals($instanceVars['includeValues']->getValue($testcase), $config['includeValues']);
+        $this->assertEquals($instanceVars['checked']->getValue($testcase), $config['checked']);
+        $this->assertEquals($instanceVars['focus']->getValue($testcase), $config['focus']);
+        $this->assertEquals($instanceVars['hiddenAttributes']->getValue($testcase), $config['hiddenAttributes']);
+        $this->assertEquals($instanceVars['noconsentattributes']->getValue($testcase), $config['attributes.exclude']);
+        $this->assertEquals($instanceVars['showNoConsentAboutService']->getValue($testcase), $config['showNoConsentAboutService']);
 
         $deprecated = $reflection->newInstance(array('noconsentattributes' => $config['attributes.exclude'],), null);
-        $this->assertEquals($instanceVars['_noconsentattributes']->getValue($deprecated), $config['attributes.exclude']);
+        $this->assertEquals($instanceVars['noconsentattributes']->getValue($deprecated), $config['attributes.exclude']);
 
     }
 }

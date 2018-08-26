@@ -1,5 +1,5 @@
 <?php
-/* 
+/*
  * Configuration for the Cron module.
  */
 

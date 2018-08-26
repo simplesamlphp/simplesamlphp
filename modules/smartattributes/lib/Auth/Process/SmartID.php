@@ -11,7 +11,7 @@ class SmartID extends \SimpleSAML\Auth\ProcessingFilter
      * etc., be sure to comment out the entries that map xxx_targetedID to
      * eduPersonTargetedID, or there will be no way to see its origin any more.
      */
-    private $_candidates = array(
+    private $candidates = array(
         'eduPersonTargetedID',
         'eduPersonPrincipalName',
         'openid',
@@ -24,18 +24,18 @@ class SmartID extends \SimpleSAML\Auth\ProcessingFilter
     /**
      * The name of the generated ID attribute.
      */
-    private $_id_attribute = 'smart_id';
+    private $id_attribute = 'smart_id';
 
     /**
      * Whether to append the AuthenticatingAuthority, separated by '!'
      * This only works when SSP is used as a gateway.
      */
-    private $_add_authority = true;
+    private $add_authority = true;
 
     /**
      * Whether to prepend the CandidateID, separated by ':'
      */
-    private $_add_candidate = true;
+    private $add_candidate = true;
 
     /**
      * Attributes which should be added/appended.
@@ -52,29 +52,29 @@ class SmartID extends \SimpleSAML\Auth\ProcessingFilter
         assert(is_array($config));
 
         if (array_key_exists('candidates', $config)) {
-            $this->_candidates = $config['candidates'];
-            if (!is_array($this->_candidates)) {
+            $this->candidates = $config['candidates'];
+            if (!is_array($this->candidates)) {
                 throw new \Exception('SmartID authproc configuration error: \'candidates\' should be an array.');
             }
         }
 
         if (array_key_exists('id_attribute', $config)) {
-            $this->_id_attribute = $config['id_attribute'];
-            if (!is_string($this->_id_attribute)) {
+            $this->id_attribute = $config['id_attribute'];
+            if (!is_string($this->id_attribute)) {
                 throw new \Exception('SmartID authproc configuration error: \'id_attribute\' should be a string.');
             }
         }
 
         if (array_key_exists('add_authority', $config)) {
-            $this->_add_authority = $config['add_authority'];
-            if (!is_bool($this->_add_authority)) {
+            $this->add_authority = $config['add_authority'];
+            if (!is_bool($this->add_authority)) {
                 throw new \Exception('SmartID authproc configuration error: \'add_authority\' should be a boolean.');
             }
         }
 
         if (array_key_exists('add_candidate', $config)) {
-            $this->_add_candidate = $config['add_candidate'];
-            if (!is_bool($this->_add_candidate)) {
+            $this->add_candidate = $config['add_candidate'];
+            if (!is_bool($this->add_candidate)) {
                 throw new \Exception('SmartID authproc configuration error: \'add_candidate\' should be a boolean.');
             }
         }
@@ -83,12 +83,13 @@ class SmartID extends \SimpleSAML\Auth\ProcessingFilter
     private function addID($attributes, $request)
     {
         $state = $request['saml:sp:State'];
-        foreach ($this->_candidates as $idCandidate) {
+        foreach ($this->candidates as $idCandidate) {
             if (isset($attributes[$idCandidate][0])) {
-                if (($this->_add_authority) && (isset($state['saml:AuthenticatingAuthority'][0]))) {
-                    return ($this->_add_candidate ? $idCandidate.':' : '').$attributes[$idCandidate][0].'!'.$state['saml:AuthenticatingAuthority'][0];
+                if (($this->add_authority) && (isset($state['saml:AuthenticatingAuthority'][0]))) {
+                    return ($this->add_candidate ? $idCandidate.':' : '').$attributes[$idCandidate][0].'!'.
+                        $state['saml:AuthenticatingAuthority'][0];
                 } else {
-                    return ($this->_add_candidate ? $idCandidate.':' : '').$attributes[$idCandidate][0];
+                    return ($this->add_candidate ? $idCandidate.':' : '').$attributes[$idCandidate][0];
                 }
             }
         }
@@ -96,7 +97,7 @@ class SmartID extends \SimpleSAML\Auth\ProcessingFilter
          * At this stage no usable id_candidate has been detected.
          */
         throw new \SimpleSAML\Error\Exception('This service needs at least one of the following
-            attributes to identity users: '.implode(', ', $this->_candidates).'. Unfortunately not
+            attributes to identity users: '.implode(', ', $this->candidates).'. Unfortunately not
             one of them was detected. Please ask your institution administrator to release one of
             them, or try using another identity provider.');
     }
@@ -116,7 +117,7 @@ class SmartID extends \SimpleSAML\Auth\ProcessingFilter
         $id = $this->addID($request['Attributes'], $request);
 
         if (isset($id)) {
-            $request['Attributes'][$this->_id_attribute] = array($id);
+            $request['Attributes'][$this->id_attribute] = array($id);
         }
     }
 }
