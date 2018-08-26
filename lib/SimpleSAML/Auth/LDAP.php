@@ -134,7 +134,8 @@ class LDAP
         // Enable TLS, if needed
         if (stripos($hostname, "ldaps:") === false && $enable_tls) {
             if (!@ldap_start_tls($this->ldap)) {
-                throw $this->makeException('Library - LDAP __construct(): Unable to force TLS', ERR_INTERNAL);
+                throw $this->makeException('Library - LDAP __construct():'.
+                    ' Unable to force TLS', ERR_INTERNAL);
             }
         }
     }
@@ -361,8 +362,8 @@ class LDAP
             return null;
         } else {
             // Zero hits not allowed
-            throw $this->makeException('Library - LDAP searchfordn(): LDAP search returned zero entries for filter \'('.
-                join(' | ', $attribute).' = '.$value.')\' on base(s) \'('.join(' & ', $bases).')\'', 2);
+            throw $this->makeException('Library - LDAP searchfordn(): LDAP search returned zero entries for'.
+                ' filter \'('.join(' | ', $attribute).' = '.$value.')\' on base(s) \'('.join(' & ', $bases).')\'', 2);
         }
     }
 

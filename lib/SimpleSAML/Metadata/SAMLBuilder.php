@@ -322,7 +322,7 @@ class SAMLBuilder
      * @param bool  $indexed Whether the endpoints should be indexed.
      *
      * @return array An array of endpoint objects,
-     *   either \SAML2\XML\md\EndpointType or \SAML2\XML\md\IndexedEndpointType.
+     *     either \SAML2\XML\md\EndpointType or \SAML2\XML\md\IndexedEndpointType.
      */
     private static function createEndpoints(array $endpoints, $indexed)
     {
