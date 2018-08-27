@@ -37,5 +37,5 @@ $metadata['https://legacy.example.edu'] = array(
      * Please refer to the following document for more information:
      * http://csrc.nist.gov/publications/nistpubs/800-131A/sp800-131A.pdf
      */
-    //'signature.algorithm' => 'http://www.w3.org/2001/04/xmldsig-more#rsa-sha1',
+    //'signature.algorithm' => 'http://www.w3.org/2000/09/xmldsig#rsa-sha1',
 );
