@@ -1630,5 +1630,8 @@
 		"es": "Su instalaci&oacute;n de SimpleSAMLphp est&aacute; desactualizada. Por favor, actualice a la <a href=\"%LATEST_URL%\">&uacute;ltima versi&oacute;n</a> lo antes posible.",
 		"zh-tw": "\u60a8\u6b63\u5728\u4f7f\u7528\u5df2\u904e\u6642\u7684 SimpleSAMLphp \u7248\u672c\uff0c\u8acb\u76e1\u5feb\u66f4\u65b0\u81f3<a href=\"%LATEST_URL%\">\u6700\u65b0\u7248\u672c</a>\u3002",
 		"nl": "Deze installatie van SimpleSAMLphp is verouderd. Het is aan te raden zo snel mogelijk te upgraden naar <a href=\"%LATEST_URL%\">de meest recente versie</a>."
+	},
+	"warnings_curlmissing": {
+		"nl": "PHP cURL-extensie ontbreekt. Kan niet controleren op updates voor simpleSAMLphp."
 	}
 }

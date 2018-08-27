@@ -137,6 +137,9 @@ msgstr ""
 "snel mogelijk te upgraden naar <a href=\"%LATEST_URL%\">de meest recente "
 "versie</a>."
 
+msgid "{core:frontpage:warnings_curlmissing}"
+msgstr "PHP cURL-extensie ontbreekt. Kan niet controleren op updates voor SimpleSAMLphp."
+
 msgid "{core:frontpage:loggedin_as_admin}"
 msgstr "Je bent ingelogd als beheerder"
 

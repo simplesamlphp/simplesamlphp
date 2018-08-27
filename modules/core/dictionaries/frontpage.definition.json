@@ -41,6 +41,9 @@
 	"warnings": {
 		"en": "Warnings"
 	},
+	"warnings_curlmissing": {
+		"en": "PHP cURL extension missing. Cannot check for SimpleSAMLphp updates."
+	},
 	"warnings_https": {
 		"en": "<strong>You are not using HTTPS<\/strong> - encrypted communication with the user. HTTP works fine for test purposes, but in a production environment, you should use HTTPS. [ <a href=\"https:\/\/simplesamlphp.org\/docs\/stable\/simplesamlphp-maintenance\">Read more about SimpleSAMLphp maintenance<\/a> ]"
 	},
