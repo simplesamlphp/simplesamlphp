@@ -58,9 +58,12 @@ $allLinks = array(
 // don't need to fetch it on every access to this page.
 $current = $config->getVersion();
 if ($config->getBoolean('admin.checkforupdates', true) && $current !== 'master') {
-    $latest = $session->getData("core:latest_simplesamlphp_version", "version");
+    if (!function_exists('curl_init')) {
+        $warnings[] = [ '{core:frontpage:warnings_curlmissing}' ];
+    } else {
+        $latest = $session->getData("core:latest_simplesamlphp_version", "version");
 
-    if (!$latest) {
+        if (!$latest) {
         $api_url = 'https://api.github.com/repos/simplesamlphp/simplesamlphp/releases';
         $ch = curl_init($api_url.'/latest');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -75,14 +78,15 @@ if ($config->getBoolean('admin.checkforupdates', true) && $current !== 'master')
             $session->setData("core:latest_simplesamlphp_version", "version", $latest);
         }
         curl_close($ch);
-    }
+        }
 
-    if ($latest && version_compare($current, ltrim($latest['tag_name'], 'v'), 'lt')) {
+        if ($latest && version_compare($current, ltrim($latest['tag_name'], 'v'), 'lt')) {
         $outdated = true;
         $warnings[] = array(
             '{core:frontpage:warnings_outdated}',
             array('%LATEST_URL%' => $latest['html_url'])
         );
+        }
     }
 }
 
