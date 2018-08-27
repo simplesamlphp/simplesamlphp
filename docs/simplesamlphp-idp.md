@@ -16,10 +16,9 @@ This guide will describe how to configure SimpleSAMLphp as an identity provider 
 Enabling the Identity Provider functionality
 --------------------------------------------
 
-The first that must be done is to enable the identity provider functionality. This is done by editing `config/config.php`. The options `enable.saml20-idp` and `enable.shib13-idp` controls whether SAML 2.0 and Shibboleth 1.3 support is enabled. Enable one or both of those by assigning `true` to them:
+The first that must be done is to enable the identity provider functionality. This is done by editing `config/config.php`. The option `enable.saml20-idp` controls whether SAML 2.0 IdP support is enabled. Enable it by assigning `true` to them:
 
     'enable.saml20-idp' => true,
-    'enable.shib13-idp' => true,
 
 
 Authentication module
@@ -141,9 +140,9 @@ SimpleSAMLphp will only work with RSA certificates. DSA certificates are not sup
 Configuring the IdP
 -------------------
 
-The IdP is configured by the metadata stored in
-`metadata/saml20-idp-hosted.php` and `metadata/shib13-idp-hosted.php`.
-This is a minimal configuration of a SAML 2.0 IdP:
+The SAML 2.0 IdP is configured by the metadata stored in
+`metadata/saml20-idp-hosted.php`.
+This is a minimal configuration:
 
     <?php
     $metadata['__DYNAMIC:1__'] = array(
@@ -190,7 +189,7 @@ Adding SPs to the IdP
 ---------------------
 
 The identity provider you are configuring needs to know about the service providers you are going to connect to it.
-This is configured by metadata stored in `metadata/saml20-sp-remote.php` and `metadata/shib13-sp-remote.php`.
+This is configured by metadata stored in `metadata/saml20-sp-remote.php`.
 This is a minimal example of a `metadata/saml20-sp-remote.php` metadata file for a SimpleSAMLphp SP:
 
     <?php
@@ -208,7 +207,7 @@ For more information about available options in the sp-remote metadata files, se
 Adding this IdP to other SPs
 ----------------------------
 
-The method for adding this IdP to a SP varies between different types of SPs. In general, most SPs need some metadata from the IdP. This should be available from `/saml2/idp/metadata.php` and `/shib13/idp/metadata.php`.
+The method for adding this IdP to a SP varies between different types of SPs. In general, most SPs need some metadata from the IdP. This should be available from `/saml2/idp/metadata.php`.
 
 
 Testing the IdP
