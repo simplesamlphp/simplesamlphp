@@ -64,28 +64,28 @@ if ($config->getBoolean('admin.checkforupdates', true) && $current !== 'master')
         $latest = $session->getData("core:latest_simplesamlphp_version", "version");
 
         if (!$latest) {
-        $api_url = 'https://api.github.com/repos/simplesamlphp/simplesamlphp/releases';
-        $ch = curl_init($api_url.'/latest');
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_USERAGENT, 'SimpleSAMLphp');
-        curl_setopt($ch, CURLOPT_TIMEOUT, 2);
-        curl_setopt($ch, CURLOPT_PROXY, $config->getString('proxy', null));
-        curl_setopt($ch, CURLOPT_PROXYUSERPWD, $config->getValue('proxy.auth', null));
-        $response = curl_exec($ch);
+            $api_url = 'https://api.github.com/repos/simplesamlphp/simplesamlphp/releases';
+            $ch = curl_init($api_url.'/latest');
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_USERAGENT, 'SimpleSAMLphp');
+            curl_setopt($ch, CURLOPT_TIMEOUT, 2);
+            curl_setopt($ch, CURLOPT_PROXY, $config->getString('proxy', null));
+            curl_setopt($ch, CURLOPT_PROXYUSERPWD, $config->getValue('proxy.auth', null));
+            $response = curl_exec($ch);
 
-        if (curl_getinfo($ch, CURLINFO_HTTP_CODE) === 200) {
-            $latest = json_decode($response, true);
-            $session->setData("core:latest_simplesamlphp_version", "version", $latest);
-        }
-        curl_close($ch);
+            if (curl_getinfo($ch, CURLINFO_HTTP_CODE) === 200) {
+                $latest = json_decode($response, true);
+                $session->setData("core:latest_simplesamlphp_version", "version", $latest);
+            }
+            curl_close($ch);
         }
 
         if ($latest && version_compare($current, ltrim($latest['tag_name'], 'v'), 'lt')) {
-        $outdated = true;
-        $warnings[] = array(
-            '{core:frontpage:warnings_outdated}',
-            array('%LATEST_URL%' => $latest['html_url'])
-        );
+            $outdated = true;
+            $warnings[] = array(
+                '{core:frontpage:warnings_outdated}',
+                array('%LATEST_URL%' => $latest['html_url'])
+            );
         }
     }
 }
