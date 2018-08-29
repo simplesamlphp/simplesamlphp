@@ -142,16 +142,6 @@ abstract class BaseFacebook
     );
 
     /**
-     * List of query parameters that get automatically dropped when rebuilding
-     * the current URL.
-     */
-    protected static $DROP_QUERY_PARAMS = array(
-        'code',
-        'state',
-        'signed_request',
-    );
-
-    /**
      * Maps aliases to Facebook domains.
      */
     public static $DOMAIN_MAP = array(
@@ -801,6 +791,7 @@ abstract class BaseFacebook
         }
 
         try {
+            //self::errorLog('Redirect uri is ' . $redirect_uri);
             // need to circumvent json_decode by calling _oauthRequest
             // directly, since response isn't JSON format
             $access_token_response =
@@ -811,17 +802,20 @@ abstract class BaseFacebook
                             'redirect_uri' => $redirect_uri,
                             'code' => $code));
         } catch (FacebookApiException $e) {
+            self::errorLog($e->getMessage());
             // most likely that user very recently revoked authorization.
             // In any event, we don't have an access token, so say so.
             return false;
         }
 
         if (empty($access_token_response)) {
+            self::errorlog('No access token response');
             return false;
         }
 
         $response_params = json_decode($access_token_response, true);
         if (!isset($response_params['access_token'])) {
+            self::errorlog('No access token in response. ' . $access_token_response);
             return false;
         }
 
@@ -1232,22 +1226,6 @@ abstract class BaseFacebook
         $currentUrl = $protocol.$host.$_SERVER['REQUEST_URI'];
         $parts = parse_url($currentUrl);
 
-        $query = '';
-        if (!empty($parts['query'])) {
-            // drop known fb params
-            $params = explode('&', $parts['query']);
-            $retained_params = array();
-            foreach ($params as $param) {
-                if ($this->shouldRetainParam($param)) {
-                    $retained_params[] = $param;
-                }
-            }
-
-            if (!empty($retained_params)) {
-                $query = '?'.implode('&', $retained_params);
-            }
-        }
-
         // use port if non default
         $port =
             isset($parts['port']) &&
@@ -1256,29 +1234,7 @@ abstract class BaseFacebook
             ? ':'.$parts['port'] : '';
 
         // rebuild
-        return $protocol.$parts['host'].$port.$parts['path'].$query;
-    }
-
-    /**
-     * Returns true if and only if the key or key/value pair should
-     * be retained as part of the query string.  This amounts to
-     * a brute-force search of the very small list of Facebook-specific
-     * params that should be stripped out.
-     *
-     * @param string $param A key or key/value pair within a URL's query (e.g.
-     *                     'foo=a', 'foo=', or 'foo'.
-     *
-     * @return boolean
-     */
-    protected function shouldRetainParam($param)
-    {
-        foreach (self::$DROP_QUERY_PARAMS as $drop_query_param) {
-            if (strpos($param, $drop_query_param.'=') === 0) {
-                return false;
-            }
-        }
-
-        return true;
+        return $protocol.$parts['host'].$port.$parts['path'];
     }
 
     /**
