@@ -123,7 +123,7 @@ Released 2018-01-31
   * Fix _undefined method_ error when using memcacheD.
 
 ### `authfacebook`
-  * Fix compatibility with Facebook strict URI match.
+  * Fix compatibility with Facebook strict URI match and new response query parameters.
 
 ### `consent`
   * Fix statistics not being gathered.
