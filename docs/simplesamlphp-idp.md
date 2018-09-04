@@ -174,7 +174,7 @@ files, see the [IdP hosted reference](simplesamlphp-reference-idp-hosted).
 Using the `uri` NameFormat on attributes
 ----------------------------------------
 
-The [interoperable SAML 2 profile](http://saml2int.org/profile/current) specifies that attributes should be delivered using the `urn:oasis:names:tc:SAML:2.0:attrname-format:uri` NameFormat.
+The [interoperable SAML 2 profile](https://kantarainitiative.github.io/SAMLprofiles/saml2int.html) specifies that attributes should be delivered using the `urn:oasis:names:tc:SAML:2.0:attrname-format:uri` NameFormat.
 We therefore recommended enabling this in new installations.
 This can be done by adding the following to the saml20-idp-hosted configuration:
 
