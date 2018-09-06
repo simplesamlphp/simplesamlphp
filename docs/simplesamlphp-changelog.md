@@ -8,7 +8,7 @@ See the upgrade notes for specific information about upgrading.
 
 ## Version 1.16.0
 
-Released TBD
+Released 2018-09-06
 
 ### Changes
   * Default signature algorithm is now RSA-SHA256.
