@@ -88,6 +88,7 @@ class Language
         'sv'    => 'Svenska', // Swedish
         'fi'    => 'Suomeksi', // Finnish
         'es'    => 'Español', // Spanish
+        'ca'    => 'Català', // Catalan
         'fr'    => 'Français', // French
         'it'    => 'Italiano', // Italian
         'nl'    => 'Nederlands', // Dutch
