@@ -6,6 +6,13 @@ SimpleSAMLphp changelog
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
+## Version 1.16.1
+
+Released 2018-09-07
+
+  * Fix a bug preventing the consent page from showing.
+  * Add Catalan to the list of available languages.
+
 ## Version 1.16.0
 
 Released 2018-09-06
