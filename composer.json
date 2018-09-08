@@ -40,7 +40,7 @@
         "robrichards/xmlseclibs": "dev-master#93f8c07976b36b6050ab341ab5850484dc897ce0 as 3.0.2",
         "whitehat101/apr1-md5": "~1.0",
         "twig/twig": "~1.0",
-        "gettext/gettext": "^3.5",
+        "gettext/gettext": "^4.6",
         "jaimeperez/twig-configurable-i18n": "^1.2"
     },
     "require-dev": {
