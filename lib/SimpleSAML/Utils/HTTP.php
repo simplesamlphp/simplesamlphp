@@ -328,7 +328,7 @@ class HTTP
         $url = self::normalizeURL($url);
 
         // check the validity of the URL
-	if (parse_url($url,PHP_URL_HOST) === false) {
+        if (parse_url($url,PHP_URL_HOST) === false) {
             throw new \SimpleSAML_Error_Exception('Invalid URL: '.$url);
         }
 
