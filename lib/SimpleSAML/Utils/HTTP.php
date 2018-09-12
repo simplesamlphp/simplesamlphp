@@ -327,8 +327,9 @@ class HTTP
         }
         $url = self::normalizeURL($url);
 
-        if (filter_var($url, FILTER_VALIDATE_URL) === false) {
-            throw new Error\Exception('Invalid URL: '.$url);
+        // check the validity of the URL
+	if (parse_url($url,PHP_URL_HOST) === false) {
+            throw new \SimpleSAML_Error_Exception('Invalid URL: '.$url);
         }
 
         // get the white list of domains
