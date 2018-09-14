@@ -14,6 +14,8 @@ class SmartID extends \SimpleSAML\Auth\ProcessingFilter
     private $_candidates = array(
         'eduPersonTargetedID',
         'eduPersonPrincipalName',
+        'pairwise-id',
+        'subject-id',
         'openid',
         'facebook_targetedID',
         'twitter_targetedID',
