@@ -198,7 +198,7 @@ class Translate
     {
         // normalize attribute name
         $normName = strtolower($name);
-        $normName = str_replace(":", "_", $normName);
+        $normName = str_replace(array(":", "-"), "_", $normName);
 
         // check for an extra dictionary
         $extraDict = $this->configuration->getString('attributes.extradictionary', null);
