@@ -172,9 +172,6 @@ class Consumer
         $data_req = \OAuthRequest::from_consumer_and_token($this->consumer, $accessToken, "GET", $url, null);
         $data_req->sign_request($this->signer, $this->consumer, $accessToken);
 
-        if (is_array($opts)) {
-            $opts = stream_context_create($opts);
-        }
         $data = \SimpleSAML\Utils\HTTP::fetch($data_req->to_url(), $opts);
 
         return  json_decode($data, true);
