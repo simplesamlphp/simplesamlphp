@@ -896,7 +896,9 @@ class sspmod_saml_IdP_SAML2
         $a->setNotOnOrAfter($now + $assertionLifetime);
 
         if (isset($state['saml:AuthnContextClassRef'])) {
-            $a->setAuthnContext($state['saml:AuthnContextClassRef']);
+            $a->setAuthnContextClassRef($state['saml:AuthnContextClassRef']);
+        } elseif (\SimpleSAML\Utils\HTTP::isHTTPS()) {
+            $a->setAuthnContextClassRef(\SAML2\Constants::AC_PASSWORD_PROTECTED_TRANSPORT);
         } else {
             $a->setAuthnContext(\SAML2\Constants::AC_PASSWORD);
         }
