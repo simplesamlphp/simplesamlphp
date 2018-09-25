@@ -145,6 +145,7 @@ The following filters are included in the SimpleSAMLphp distribution:
 - [`expirycheck:ExpiryDate`](./expirycheck:expirycheck): Block access to accounts that have expired.
 - [`preprodwarning:Warning`](./preprodwarning:warning): Warn the user about accessing a test IdP.
 - [`saml:AttributeNameID`](./saml:nameid): Generate custom NameID with the value of an attribute.
+- [`saml:AuthnContextClassRef`](./saml:authproc_authncontextclassref): Set the authentication context in the response.
 - [`saml:ExpectedAuthnContextClassRef`](./saml:authproc_expectedauthncontextclassref): Verify the user's authentication context.
 - [`saml:FilterScopes`](./saml:filterscopes): Filter attribute values with scopes forbidden for an IdP.
 - [`saml:NameIDAttribute`](./saml:nameidattribute): Create an attribute based on the NameID we receive from the IdP.
