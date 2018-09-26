@@ -688,7 +688,7 @@ class SAML2
      * @param \SimpleSAML\Configuration $spMetadata The metadata of the SP.
      * @param array                     &$state The authentication state of the user.
      *
-     * @return string  The NameID value.
+     * @return string|null The NameID value.
      */
     private static function generateNameIdValue(
         Configuration $idpMetadata,
