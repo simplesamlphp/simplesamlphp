@@ -239,7 +239,7 @@ class LDAP
         $filter = '(|'.$filter.')';
 
         // Append LDAP filters if defined
-        if ($searchFilter != null) {
+        if ($searchFilter !== null) {
             $filter = "(&".$filter."".$searchFilter.")";
         }
 
