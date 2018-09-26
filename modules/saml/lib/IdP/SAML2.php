@@ -1146,9 +1146,9 @@ class SAML2
      *
      * @param \SimpleSAML\Configuration $idpMetadata The metadata of the IdP.
      * @param \SimpleSAML\Configuration $spMetadata The metadata of the SP.
-     * @param string                   $consumerURL The Destination URL of the response.
+     * @param string                    $consumerURL The Destination URL of the response.
      *
-     * @return \SAML2\LogoutResponse The SAML2 LogoutResponse corresponding to the given data.
+     * @return \SAML2\Response The SAML2 Response corresponding to the given data.
      */
     private static function buildResponse(
         Configuration $idpMetadata,
