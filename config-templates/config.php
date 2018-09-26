@@ -35,12 +35,19 @@ $config = array(
      */
     //'application' => array(
         /*
-         * The 'baseURL' configuration option allows you to specify a protocol,
-         * host and optionally a port that serves as the canonical base for all
-         * your application's URLs. This is useful when the environment
-         * observed in the server differs from the one observed by end users,
-         * for example, when using a load balancer to offload TLS.
+         * Here, you can customize the URL information for your application.
+         * This is useful when the environment observed in the server differs 
+         * from the one observed by end users, for example, when using a load 
+         * balancer to offload TLS.
          *
+         * This can be configured in two ways:
+         * - The 'baseURL' configuration option allows you to specify a protocol,
+         * host, and optionally a port that serves as the canonical base for all
+         * your application's URLs. 
+         * - Alternatively, you can individually configure one or more of the 'host', 
+         * 'protocol', and 'port' options. Any options left unconfigured will be 
+         * auto-detected.
+         * 
          * Note that this configuration option does not allow setting a path as
          * part of the URL. If your setup involves URL rewriting or any other
          * tricks that would result in SimpleSAMLphp observing a URL for your
@@ -49,6 +56,9 @@ $config = array(
          * to SimpleSAMLphp's API.
          */
         //'baseURL' => 'https://example.com',
+        //'protocol' => 'https',
+        //'host' => 'example.com',
+        //'port' => '8443',
     //),
 
     /*
