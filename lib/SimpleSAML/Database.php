@@ -271,7 +271,7 @@ class Database
      * @param string $stmt Prepared SQL statement
      * @param array  $params Parameters
      *
-     * @return \PDOStatement object
+     * @return \PDOStatement|bool object
      */
     public function read($stmt, $params = array())
     {
