@@ -12,7 +12,7 @@
     <import namespace="urn:oasis:names:tc:SAML:2.0:assertion"
         schemaLocation="saml-schema-assertion-2.0.xsd"/>
     <import namespace="http://www.w3.org/2000/09/xmldsig#"
-        schemaLocation="http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd"/>
+        schemaLocation="xmldsig-core-schema.xsd"/>
     <annotation>
         <documentation>
             Document identifier: saml-schema-protocol-2.0
