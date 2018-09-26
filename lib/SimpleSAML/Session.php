@@ -856,7 +856,7 @@ class Session implements \Serializable
      * @param string   $type The type of the data. This is checked when retrieving data from the store.
      * @param string   $id The identifier of the data.
      * @param mixed    $data The data.
-     * @param int|null $timeout The number of seconds this data should be stored after its last access.
+     * @param int|string|null $timeout The number of seconds this data should be stored after its last access.
      * This parameter is optional. The default value is set in 'session.datastore.timeout',
      * and the default is 4 hours.
      *
