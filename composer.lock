@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e35198f8056b95bc946a061de8010fe9",
+    "content-hash": "269c5bf97c6f645db6c61bee37261433",
     "packages": [
         {
             "name": "gettext/gettext",
@@ -220,16 +220,16 @@
         },
         {
             "name": "robrichards/xmlseclibs",
-            "version": "dev-master",
+            "version": "3.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/robrichards/xmlseclibs.git",
-                "reference": "93f8c07976b36b6050ab341ab5850484dc897ce0"
+                "reference": "1f4de0c0d121922aafd8c62c2a9f5e528830cf38"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/robrichards/xmlseclibs/zipball/93f8c07976b36b6050ab341ab5850484dc897ce0",
-                "reference": "93f8c07976b36b6050ab341ab5850484dc897ce0",
+                "url": "https://api.github.com/repos/robrichards/xmlseclibs/zipball/1f4de0c0d121922aafd8c62c2a9f5e528830cf38",
+                "reference": "1f4de0c0d121922aafd8c62c2a9f5e528830cf38",
                 "shasum": ""
             },
             "require": {
@@ -254,20 +254,20 @@
                 "xml",
                 "xmldsig"
             ],
-            "time": "2018-03-23T11:10:08+00:00"
+            "time": "2018-09-27T13:24:13+00:00"
         },
         {
             "name": "simplesamlphp/saml2",
-            "version": "v3.2",
+            "version": "v3.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/saml2.git",
-                "reference": "43590bc9614c1df5bd7b1639088f7d904842892b"
+                "reference": "b3a040ec186f4a3749228b8c13642c5295fc451b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/43590bc9614c1df5bd7b1639088f7d904842892b",
-                "reference": "43590bc9614c1df5bd7b1639088f7d904842892b",
+                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/b3a040ec186f4a3749228b8c13642c5295fc451b",
+                "reference": "b3a040ec186f4a3749228b8c13642c5295fc451b",
                 "shasum": ""
             },
             "require": {
@@ -311,7 +311,7 @@
                 }
             ],
             "description": "SAML2 PHP library from SimpleSAMLphp",
-            "time": "2018-07-12T09:56:19+00:00"
+            "time": "2018-09-27T14:09:06+00:00"
         },
         {
             "name": "twig/extensions",
@@ -2669,18 +2669,9 @@
             "time": "2018-05-01T22:52:40+00:00"
         }
     ],
-    "aliases": [
-        {
-            "alias": "3.0.2",
-            "alias_normalized": "3.0.2.0",
-            "version": "9999999-dev",
-            "package": "robrichards/xmlseclibs"
-        }
-    ],
+    "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "robrichards/xmlseclibs": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
