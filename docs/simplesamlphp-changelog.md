@@ -6,6 +6,19 @@ SimpleSAMLphp changelog
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
+## Version 1.16.2
+
+Released 2018-09-28
+
+  * Fixed an issue with PHP sessions in PHP 7.2.
+  * Fixed a bug in the OAuth module.
+  * Make schema validation work again.
+  * Properly document the `saml:AuthnContextClassRef` authentication processing filter.
+  * Fixed an issue that made it impossible to install the software with composer using the
+    "stable" minimum-stability setting.
+  * Changed the default authentication context class to "PasswordProtectedTransport" by default
+    when authentication happened on an HTTPS exchange.
+
 ## Version 1.16.1
 
 Released 2018-09-07
