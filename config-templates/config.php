@@ -385,6 +385,11 @@ $config = array(
     'database.prefix' => '',
 
     /*
+     * (Optional) Driver options
+     */
+    'database.driver_options' => array(),
+
+    /*
      * True or false if you would like a persistent database connection
      */
     'database.persistent' => false,
@@ -397,7 +402,7 @@ $config = array(
      *
      * Configuration options in the slave array are exactly the same as the
      * options for the master (shown above) with the exception of the table
-     * prefix.
+     * prefix and driver options.
      */
     'database.slaves' => array(
         /*
