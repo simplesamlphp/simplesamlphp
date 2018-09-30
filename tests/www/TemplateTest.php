@@ -38,7 +38,7 @@ class TemplateTest extends TestCase
                 } catch (\Twig_Error_Syntax $e) {
                     $this->fail($e->getMessage().' in '.$e->getFile().':'.$e->getLine());
                 }
-                ob_clean();
+                ob_end_clean();
             }
         }
 
@@ -57,7 +57,7 @@ class TemplateTest extends TestCase
                         } catch (\Twig_Error_Syntax $e) {
                             $this->fail($e->getMessage().' in '.$e->getFile().':'.$e->getLine());
                         }
-                        ob_clean();
+                        ob_end_clean();
                     }
                 }
             }
