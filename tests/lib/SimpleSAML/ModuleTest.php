@@ -107,10 +107,13 @@ class ModuleTest extends TestCase
         $this->assertEquals('sspmod_core_ACL', Module::resolveClass('core:ACL', ''));
 
         // test for the $type parameter correctly translated into a path
-        $this->assertEquals('sspmod_core_Auth_Process_PHP', Module::resolveClass('core:PHP', 'Auth_Process'));
+        $this->assertEquals(
+            '\SimpleSAML\Module\core\Auth\Process\PHP',
+            Module::resolveClass('core:PHP', 'Auth_Process')
+        );
 
         // test for valid subclasses
-        $this->assertEquals('sspmod_core_Auth_Process_PHP', Module::resolveClass(
+        $this->assertEquals('\SimpleSAML\Module\core\Auth\Process\PHP', Module::resolveClass(
             'core:PHP',
             'Auth\Process',
             '\SimpleSAML\Auth\ProcessingFilter'
