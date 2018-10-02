@@ -222,8 +222,11 @@ The following SAML 2.0 options are available:
 :   Note that this option can be set for each SP in the [SP-remote metadata](./simplesamlphp-reference-sp-remote).
 
 `NameIDFormat`
-:   The format of the NameID supported by this IdP. Defaults to the `transient` format if unspecified.
-    This parameter can be configured in multiple places, and the actual value used is fetched from metadata with
+:   The format(s) of the NameID supported by this IdP, as either an array or a string. If an array is given, the first
+    value is used as the default if the incoming request does not specify a preference. Defaults to the `transient`
+    format if unspecified.
+
+:   This parameter can be configured in multiple places, and the actual value used is fetched from metadata with
     the following priority:
 
 :   1.  SP Remote Metadata
@@ -243,7 +246,7 @@ The following SAML 2.0 options are available:
     you should configure [NameID generation filters](./saml:nameid)
     on your IdP.
 
-:   Note that the value set here will be added to the metadata generated for this IdP,
+:   Note that the value(s) set here will be added to the metadata generated for this IdP,
     in the `NameIDFormat` element.
 
 `RegistrationInfo`

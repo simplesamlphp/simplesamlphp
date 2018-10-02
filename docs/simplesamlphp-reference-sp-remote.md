@@ -174,8 +174,10 @@ The following SAML 2.0 options are available:
     `FALSE`.
 
 `NameIDFormat`
-:   The `NameIDFormat` this SP should receive. The three most commonly
-    used values are:
+:   The `NameIDFormat` this SP should receive. This may be specified as either a string or an array, but if an array
+    is given, the first format specified will be the one requested during an authentication request.
+
+:   The three most commonly used values are:
 
 :   1.  `urn:oasis:names:tc:SAML:2.0:nameid-format:transient`
     2.  `urn:oasis:names:tc:SAML:2.0:nameid-format:persistent`
@@ -371,13 +373,13 @@ relevant for this sp. The final list is the concatenation of the list
 given as parameter to InitSSO (at the sp), the list configured at the
 sp and the list configured at the ipd (here) for this sp. The intersection
 of the final list and the idps configured at the at this idp will be
-presented to the user at the discovery service if neccessary. If only one 
+presented to the user at the discovery service if neccessary. If only one
 idp is in the intersection the discoveryservice will go directly to the idp.
 
 **Example: Configuration for scoping**
 
      'IDPList' => array('https://idp1.wayf.dk', 'https://idp2.wayf.dk'),
-     
+
 
 Shibboleth 1.3 options
 ----------------------
