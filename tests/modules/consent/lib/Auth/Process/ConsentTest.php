@@ -15,7 +15,8 @@ class ConsentTest extends TestCase
 {
     public function setUp()
     {
-        $this->config = Configuration::loadFromArray(array(), '[ARRAY]', 'simplesaml');
+        $this->config = Configuration::loadFromArray(array('module.enable' => array('consent' => true)), '[ARRAY]', 'simplesaml');
+        \SimpleSAML_Configuration::setPreLoadedConfig($this->config, 'config.php');
     }
 
     /**
