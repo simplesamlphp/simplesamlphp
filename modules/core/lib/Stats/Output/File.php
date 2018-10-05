@@ -18,7 +18,7 @@ class File extends \SimpleSAML\Stats\Output
 
     /**
      * The file handle for the current file.
-     * @var resource
+     * @var resource|null|false
      */
     private $file = null;
 

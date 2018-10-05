@@ -7,7 +7,10 @@
 if (!array_key_exists('stateid', $_REQUEST)) {
     throw new \Exception('Lost OAuth Client State');
 }
-$state = \SimpleSAML\Auth\State::loadState($_REQUEST['stateid'], \SimpleSAML\Module\authlinkedin\Auth\Source\LinkedIn::STAGE_INIT);
+$state = \SimpleSAML\Auth\State::loadState(
+    $_REQUEST['stateid'],
+    \SimpleSAML\Module\authlinkedin\Auth\Source\LinkedIn::STAGE_INIT
+);
 
 // http://developer.linkedin.com/docs/DOC-1008#2_Redirect_the_User_to_our_Authorization_Server
 if (array_key_exists('oauth_verifier', $_REQUEST)) {
@@ -28,4 +31,3 @@ if ($source === null) {
 $source->finalStep($state);
 
 \SimpleSAML\Auth\Source::completeAuth($state);
-

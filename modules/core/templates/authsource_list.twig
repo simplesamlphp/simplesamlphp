@@ -5,7 +5,7 @@
     <h1>{{ header }}</h1>
     <ul>
     {% for key, name in sources %}
-    <li><a href="?as={{ name|escape('url') }}">{{ name|escape('html') }}</a></li>
+        <li><a href="?as={{ name|escape('url') }}">{{ name|escape('html') }}</a></li>
     {% endfor %}
     </ul>
 {% endblock %}

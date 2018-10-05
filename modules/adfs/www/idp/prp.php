@@ -16,7 +16,7 @@ $idp = \SimpleSAML\IdP::getById('adfs:'.$idpEntityId);
 if (isset($_GET['wa'])) {
     if ($_GET['wa'] === 'wsignout1.0') {
         \SimpleSAML\Module\adfs\IdP\ADFS::receiveLogoutMessage($idp);
-    } else if ($_GET['wa'] === 'wsignin1.0') {
+    } elseif ($_GET['wa'] === 'wsignin1.0') {
         \SimpleSAML\Module\adfs\IdP\ADFS::receiveAuthnRequest($idp);
     }
     assert(false);

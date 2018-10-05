@@ -114,7 +114,6 @@ class Cardinality extends \SimpleSAML\Auth\ProcessingFilter
         }
 
         foreach ($request['Attributes'] as $k => $v) {
-
             if (!array_key_exists($k, $this->cardinality)) {
                 continue;
             }
@@ -125,12 +124,20 @@ class Cardinality extends \SimpleSAML\Auth\ProcessingFilter
             /* minimum cardinality */
             if (count($v) < $this->cardinality[$k]['min']) {
                 if ($this->cardinality[$k]['warn']) {
-                    \SimpleSAML\Logger::warning(sprintf(
-                        'Cardinality: attribute %s from %s does not meet minimum cardinality of %d (%d)',
-                        $k, $entityid, $this->cardinality[$k]['min'], count($v)
-                    ));
+                    \SimpleSAML\Logger::warning(
+                        sprintf(
+                            'Cardinality: attribute %s from %s does not meet minimum cardinality of %d (%d)',
+                            $k,
+                            $entityid,
+                            $this->cardinality[$k]['min'],
+                            count($v)
+                        )
+                    );
                 } else {
-                    $request['core:cardinality:errorAttributes'][$k] = array(count($v), $this->cardinality[$k]['_expr']);
+                    $request['core:cardinality:errorAttributes'][$k] = array(
+                        count($v),
+                        $this->cardinality[$k]['_expr']
+                    );
                 }
                 continue;
             }
@@ -138,12 +145,20 @@ class Cardinality extends \SimpleSAML\Auth\ProcessingFilter
             /* maximum cardinality */
             if (array_key_exists('max', $this->cardinality[$k]) && count($v) > $this->cardinality[$k]['max']) {
                 if ($this->cardinality[$k]['warn']) {
-                    \SimpleSAML\Logger::warning(sprintf(
-                        'Cardinality: attribute %s from %s does not meet maximum cardinality of %d (%d)',
-                        $k, $entityid, $this->cardinality[$k]['max'], count($v)
-                    ));
+                    \SimpleSAML\Logger::warning(
+                        sprintf(
+                            'Cardinality: attribute %s from %s does not meet maximum cardinality of %d (%d)',
+                            $k,
+                            $entityid,
+                            $this->cardinality[$k]['max'],
+                            count($v)
+                        )
+                    );
                 } else {
-                    $request['core:cardinality:errorAttributes'][$k] = array(count($v), $this->cardinality[$k]['_expr']);
+                    $request['core:cardinality:errorAttributes'][$k] = array(
+                        count($v),
+                        $this->cardinality[$k]['_expr']
+                    );
                 }
                 continue;
             }
@@ -157,10 +172,14 @@ class Cardinality extends \SimpleSAML\Auth\ProcessingFilter
             if ($this->cardinality[$k]['warn']) {
                 \SimpleSAML\Logger::warning(sprintf(
                     'Cardinality: attribute %s from %s is missing',
-                    $k, $entityid
+                    $k,
+                    $entityid
                 ));
             } else {
-                $request['core:cardinality:errorAttributes'][$k] = array(0, $this->cardinality[$k]['_expr']);
+                $request['core:cardinality:errorAttributes'][$k] = array(
+                    0,
+                    $this->cardinality[$k]['_expr']
+                );
             }
         }
 

@@ -40,8 +40,8 @@ class MultiAuth extends \SimpleSAML\Auth\Source
     /**
      * Constructor for this authentication source.
      *
-     * @param array $info	 Information about this authentication source.
-     * @param array $config	 Configuration.
+     * @param array $info Information about this authentication source.
+     * @param array $config Configuration.
      */
     public function __construct($info, $config)
     {
@@ -61,7 +61,7 @@ class MultiAuth extends \SimpleSAML\Auth\Source
         $this->sources = array();
         foreach ($config['sources'] as $source => $info) {
             if (is_int($source)) {
-                // Backwards compatibility 
+                // Backwards compatibility
                 $source = $info;
                 $info = array();
             }
@@ -106,7 +106,7 @@ class MultiAuth extends \SimpleSAML\Auth\Source
      * This method never return. The authentication process is finished
      * in the delegateAuthentication method.
      *
-     * @param array &$state	 Information about the current authentication.
+     * @param array &$state Information about the current authentication.
      */
     public function authenticate(&$state)
     {
@@ -143,8 +143,8 @@ class MultiAuth extends \SimpleSAML\Auth\Source
      * to be able to logout properly. Then it calls the authenticate method
      * on such selected authentication source.
      *
-     * @param string $authId	Selected authentication source
-     * @param array	 $state	 Information about the current authentication.
+     * @param string $authId Selected authentication source
+     * @param array $state Information about the current authentication.
      */
     public static function delegateAuthentication($authId, $state)
     {
@@ -153,7 +153,7 @@ class MultiAuth extends \SimpleSAML\Auth\Source
 
         $as = \SimpleSAML\Auth\Source::getById($authId);
         $valid_sources = array_map(
-            function($src) {
+            function ($src) {
                 return $src['source'];
             },
             $state[self::SOURCESID]
@@ -164,7 +164,12 @@ class MultiAuth extends \SimpleSAML\Auth\Source
 
         // Save the selected authentication source for the logout process.
         $session = \SimpleSAML\Session::getSessionFromRequest();
-        $session->setData(self::SESSION_SOURCE, $state[self::AUTHID], $authId, \SimpleSAML\Session::DATA_TIMEOUT_SESSION_END);
+        $session->setData(
+            self::SESSION_SOURCE,
+            $state[self::AUTHID],
+            $authId,
+            \SimpleSAML\Session::DATA_TIMEOUT_SESSION_END
+        );
 
         try {
             $as->authenticate($state);
@@ -183,7 +188,7 @@ class MultiAuth extends \SimpleSAML\Auth\Source
      * This method retrieves the authentication source used for this
      * session and then call the logout method on it.
      *
-     * @param array &$state	 Information about the current logout operation.
+     * @param array &$state Information about the current logout operation.
      */
     public function logout(&$state)
     {

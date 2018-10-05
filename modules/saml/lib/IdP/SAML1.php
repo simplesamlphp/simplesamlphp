@@ -27,8 +27,10 @@ class SAML1
 
         $spMetadata = $state["SPMetadata"];
         $spEntityId = $spMetadata['entityid'];
-        $spMetadata = \SimpleSAML\Configuration::loadFromArray($spMetadata,
-            '$metadata['.var_export($spEntityId, true).']');
+        $spMetadata = \SimpleSAML\Configuration::loadFromArray(
+            $spMetadata,
+            '$metadata['.var_export($spEntityId, true).']'
+        );
 
         \SimpleSAML\Logger::info('Sending SAML 1.1 Response to '.var_export($spEntityId, true));
 
@@ -96,7 +98,9 @@ class SAML1
             $target = null;
         }
 
-        \SimpleSAML\Logger::info('Shib1.3 - IdP.SSOService: Got incoming Shib authnRequest from '.var_export($spEntityId, true).'.');
+        \SimpleSAML\Logger::info(
+            'Shib1.3 - IdP.SSOService: Got incoming Shib authnRequest from '.var_export($spEntityId, true).'.'
+        );
 
         $metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
         $spMetadata = $metadata->getMetaDataConfig($spEntityId, 'shib13-sp-remote');
@@ -113,18 +117,23 @@ class SAML1
             break;
         }
         if (!$found) {
-            throw new \Exception('Invalid AssertionConsumerService for SP '.
-                var_export($spEntityId, true).': '.var_export($shire, true));
+            throw new \Exception(
+                'Invalid AssertionConsumerService for SP '.var_export($spEntityId, true).': '.var_export($shire, true)
+            );
         }
 
-        \SimpleSAML\Stats::log('saml:idp:AuthnRequest', array(
-            'spEntityID' => $spEntityId,
-            'protocol' => 'saml1',
-        ));
+        \SimpleSAML\Stats::log(
+            'saml:idp:AuthnRequest',
+            array(
+                'spEntityID' => $spEntityId,
+                'protocol' => 'saml1',
+            )
+        );
 
         $sessionLostURL = HTTP::addURLParameters(
             HTTP::getSelfURL(),
-            array('cookieTime' => time()));
+            array('cookieTime' => time())
+        );
 
         $state = array(
             'Responder' => array('\SimpleSAML\Module\saml\IdP\SAML1', 'sendResponse'),

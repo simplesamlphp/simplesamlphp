@@ -18,7 +18,9 @@ $state = \SimpleSAML\Auth\State::loadState($authStateId, \SimpleSAML\Module\core
 
 $source = \SimpleSAML\Auth\Source::getById($state[\SimpleSAML\Module\core\Auth\UserPassBase::AUTHID]);
 if ($source === null) {
-    throw new \Exception('Could not find authentication source with id '.$state[\SimpleSAML\Module\core\Auth\UserPassBase::AUTHID]);
+    throw new \Exception(
+        'Could not find authentication source with id '.$state[\SimpleSAML\Module\core\Auth\UserPassBase::AUTHID]
+    );
 }
 
 
@@ -58,15 +60,22 @@ if (!empty($_REQUEST['username']) || !empty($password)) {
     if ($source->getRememberUsernameEnabled()) {
         $sessionHandler = \SimpleSAML\SessionHandler::getSessionHandler();
         $params = $sessionHandler->getCookieParams();
-        $params['expire'] = time();
-        $params['expire'] += (isset($_REQUEST['remember_username']) && $_REQUEST['remember_username'] == 'Yes' ? 31536000 : -300);
+        
+        if (isset($_REQUEST['remember_username']) && $_REQUEST['remember_username'] == 'Yes') {
+            $params['expire'] = time() + 31536000;
+        } else {
+            $params['expire'] = time() - 300;
+        }
         \SimpleSAML\Utils\HTTP::setCookie($source->getAuthId().'-username', $username, $params, false);
     }
 
     if ($source->isRememberMeEnabled()) {
         if (array_key_exists('remember_me', $_REQUEST) && $_REQUEST['remember_me'] === 'Yes') {
             $state['RememberMe'] = true;
-            $authStateId = \SimpleSAML\Auth\State::saveState($state, \SimpleSAML\Module\core\Auth\UserPassBase::STAGEID);
+            $authStateId = \SimpleSAML\Auth\State::saveState(
+                $state,
+                \SimpleSAML\Module\core\Auth\UserPassBase::STAGEID
+            );
         }
     }
 

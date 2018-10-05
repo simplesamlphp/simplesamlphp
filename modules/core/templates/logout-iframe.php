@@ -71,8 +71,8 @@ if ($type === 'embed') {
     $this->includeAtTemplateBase('includes/header.php');
 }
 ?>
- <div id="wrap">
-  <div id="content">
+<div id="wrap">
+    <div id="content">
 <?php
 if ($from !== null) {
     echo '<div><img style="float: left; margin-right: 12px" src="/'.$this->data['baseurlpath'].
@@ -90,9 +90,9 @@ if ($type === 'init') {
 } else {
     echo $this->t('{logout:logging_out_from}');
 }
-echo('</p>');
 ?>
-  <table id="slostatustable">
+    </p>
+    <table id="slostatustable">
 <?php
 foreach ($SPs as $assocId => $sp) {
     if (isset($sp['core:Logout-IFrame:Name'])) {
@@ -123,24 +123,26 @@ if (isset($from)) {
 }
 
 ?>
-  </table>
- </div>
+    </table>
+</div>
 
 <?php
 if ($type === 'init') {
 ?>
- <div id="confirmation" style="margin-top: 1em">
-  <p><?php echo $this->t('{logout:logout_all_question}'); ?> <br/></p>
-  <form id="startform" method="get" style="display:inline;" action="logout-iframe.php">
-   <input type="hidden" name="id" value="<?php echo $id; ?>"/>
-   <input type="hidden" id="logout-type-selector" name="type" value="nojs"/>
-   <button type="submit" id="logout-all" name="ok" class="btn"><?php echo $this->t('{logout:logout_all}'); ?></button>
-  </form>
-  <form method="get" style="display:inline;" action="logout-iframe-done.php">
-   <input type="hidden" name="id" value="<?php echo $id; ?>"/>
-   <button type="submit" name="cancel" class="btn"><?php echo $logoutCancelText; ?></button>
-  </form>
- </div>
+<div id="confirmation" style="margin-top: 1em">
+    <p><?php echo $this->t('{logout:logout_all_question}'); ?> <br/></p>
+    <form id="startform" method="get" style="display:inline;" action="logout-iframe.php">
+        <input type="hidden" name="id" value="<?php echo $id; ?>"/>
+        <input type="hidden" id="logout-type-selector" name="type" value="nojs"/>
+        <button type="submit" id="logout-all" name="ok" class="btn">
+        <?php echo $this->t('{logout:logout_all}'); ?>
+        </button>
+    </form>
+    <form method="get" style="display:inline;" action="logout-iframe-done.php">
+        <input type="hidden" name="id" value="<?php echo $id; ?>"/>
+        <button type="submit" name="cancel" class="btn"><?php echo $logoutCancelText; ?></button>
+    </form>
+</div>
 <?php
 } else {
     if ($nFailed > 0) {
@@ -150,7 +152,8 @@ if ($type === 'init') {
     }
     echo '<div id="logout-failed-message" style="margin-top: 1em; border: 1px solid #ccc; padding: 1em; '.
         'background: #eaeaea;'.$displayStyle.'">';
-    echo '<img src="/'.$this->data['baseurlpath'].'resources/icons/experience/gtk-dialog-warning.48x48.png" alt="" '.
+    echo '<img src="/'.$this->data['baseurlpath'].
+        'resources/icons/experience/gtk-dialog-warning.48x48.png" alt="" '.
         'style="float: left; margin-right: 5px;" />';
     echo '<p>'.$this->t('{logout:failedsps}').'</p>';
     echo '<form method="post" action="logout-iframe-done.php" id="failed-form" target="_top">';
@@ -166,11 +169,11 @@ if ($type === 'init') {
     }
     echo '<p>'.$this->t('{logout:success}').'</p>';
 ?>
- <form method="post" action="logout-iframe-done.php" id="done-form" target="_top">
-  <input type="hidden" name="id" value="<?php echo $id; ?>"/>
-  <button type="submit" name="continue" class="btn"><?php echo $this->t('{logout:return}'); ?></button>
- </form>
- </div>
+    <form method="post" action="logout-iframe-done.php" id="done-form" target="_top">
+        <input type="hidden" name="id" value="<?php echo $id; ?>"/>
+        <button type="submit" name="continue" class="btn"><?php echo $this->t('{logout:return}'); ?></button>
+    </form>
+</div>
 <?php
     if ($type === 'js') {
         foreach ($SPs as $assocId => $sp) {
@@ -185,8 +188,8 @@ if ($type === 'init') {
     }
 }
 ?>
-  </div><!-- #content -->
- </div><!-- #wrap -->
+        </div><!-- #content -->
+    </div><!-- #wrap -->
 <?php
 if ($type === 'embed') {
     $this->includeAtTemplateBase('includes/footer-embed.php');

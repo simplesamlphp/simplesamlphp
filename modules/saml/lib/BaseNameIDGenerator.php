@@ -117,5 +117,4 @@ abstract class BaseNameIDGenerator extends \SimpleSAML\Auth\ProcessingFilter
 
         $state['saml:NameID'][$this->format] = $nameId;
     }
-
 }

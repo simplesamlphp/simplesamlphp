@@ -65,11 +65,16 @@ class Authorize extends \SimpleSAML\Auth\ProcessingFilter
                 $values = array($values);
             }
             if (!is_array($values)) {
-                throw new \Exception('Filter Authorize: Attribute values is neither string nor array: '.var_export($attribute, true));
+                throw new \Exception(
+                    'Filter Authorize: Attribute values is neither string nor array: '.var_export($attribute, true)
+                );
             }
             foreach ($values as $value) {
                 if (!is_string($value)) {
-                    throw new \Exception('Filter Authorize: Each value should be a string for attribute: '.var_export($attribute, true).' value: '.var_export($value, true).' Config is: '.var_export($config, true));
+                    throw new \Exception(
+                        'Filter Authorize: Each value should be a string for attribute: '.var_export($attribute, true).
+                            ' value: '.var_export($value, true).' Config is: '.var_export($config, true)
+                    );
                 }
             }
             $this->valid_attribute_values[$attribute] = $values;
@@ -130,10 +135,8 @@ class Authorize extends \SimpleSAML\Auth\ProcessingFilter
     protected function unauthorized(&$request)
     {
         // Save state and redirect to 403 page
-        $id = \SimpleSAML\Auth\State::saveState($request,
-            'authorize:Authorize');
-        $url = \SimpleSAML\Module::getModuleURL(
-            'authorize/authorize_403.php');
+        $id = \SimpleSAML\Auth\State::saveState($request, 'authorize:Authorize');
+        $url = \SimpleSAML\Module::getModuleURL('authorize/authorize_403.php');
         \SimpleSAML\Utils\HTTP::redirectTrustedURL($url, array('StateId' => $id));
     }
 }

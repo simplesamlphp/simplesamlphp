@@ -1,5 +1,5 @@
 <?php
-/* 
+/*
  * The configuration of SimpleSAMLphp statistics package
  */
 
@@ -24,19 +24,19 @@ $config = array(
     'statdir' => '/tmp/stats/',
     'inputfile' => '/var/log/simplesamlphp.stat',
     'offset' => 60 * 60 * 2 + 60 * 60 * 24 * 3, // Two hours offset to match epoch and norwegian winter time.
-	
+
     'datestart' => 1,
     'datelength' => 15,
     'offsetspan' => 21,
-	
+
     // Dimensions on graph from Google Charts in pixels...
     'dimension.x' => 800,
     'dimension.y' => 350,
-	
+
     /*
      * Do you want to generate statistics using the cron module? If so, specify which cron tag to use.
      * Examples: daily, weekly
-     * To not run statistics in cron, set value to 
+     * To not run statistics in cron, set value to
      *     'cron_tag' => null,
      */
     'cron_tag' => 'daily',
@@ -48,31 +48,31 @@ $config = array(
      * CGI timeout function. Both default to 300 seconds.
      */
     'time_limit' => 300,
-	
+
     'timeres' => array(
         'day' => array(
             'name' => 'Day',
             'slot'              => 60 * 15, // Slots of 15 minutes
             'fileslot'          => 60 * 60 * 24, // One day (24 hours) file slots
-            'axislabelint'      => 6 * 4, // Number of slots per label. 4 per hour *6 = 6 hours 
-            'dateformat-period'	=> 'j. M', //  4. Mars
-            'dateformat-intra'	=> 'j. M H:i', //  4. Mars 12:30	
+            'axislabelint'      => 6 * 4, // Number of slots per label. 4 per hour *6 = 6 hours
+            'dateformat-period' => 'j. M', //  4. Mars
+            'dateformat-intra'  => 'j. M H:i', //  4. Mars 12:30
         ),
         'week' => array(
             'name' => 'Week',
             'slot'              => 60 * 60, // Slots of one hour
             'fileslot'          => 60 * 60 * 24 * 7, // 7 days of data in each file
             'axislabelint'      => 24, // Number of slots per label. 24 is one each day
-            'dateformat-period'	=> 'j. M', //  4. Mars
-            'dateformat-intra'	=> 'j. M H:i', //  4. Mars 12:30
+            'dateformat-period' => 'j. M', //  4. Mars
+            'dateformat-intra'  => 'j. M H:i', //  4. Mars 12:30
         ),
         'month' => array(
             'name' => 'Month',
             'slot'              => 60 * 60 * 24, // Slots of one day
             'fileslot'          => 60 * 60 * 24 * 30, // 30 days of data in each file
             'axislabelint'      => 7, // Number of slots per label. 7 days => 1 week
-            'dateformat-period'	=> 'j. M Y H:i', //  4. Mars 12:30
-            'dateformat-intra'	=> 'j. M', //  4. Mars
+            'dateformat-period' => 'j. M Y H:i', //  4. Mars 12:30
+            'dateformat-intra'  => 'j. M', //  4. Mars
         ),
         'monthaligned' => array(
             'name'              => 'AlignedMonth',
@@ -80,8 +80,8 @@ $config = array(
             'fileslot'          => null, // 30 days of data in each file
             'customDateHandler' => 'month',
             'axislabelint'      => 7, // Number of slots per label. 7 days => 1 week
-            'dateformat-period'	=> 'j. M Y H:i', //  4. Mars 12:30
-            'dateformat-intra'	=> 'j. M', //  4. Mars
+            'dateformat-period' => 'j. M Y H:i', //  4. Mars 12:30
+            'dateformat-intra'  => 'j. M', //  4. Mars
         ),
         'days180' => array(
             'name'              => '180 days',
@@ -96,7 +96,8 @@ $config = array(
     'statrules' => array(
         'sloratio' => array(
             'name'         => 'SLO to SSO ratio',
-            'descr'        => 'Comparison of the number of Single Log-Out compared to Single Sign-On. Graph shows how many logouts where initiated for each Single Sign-On.',
+            'descr'        => 'Comparison of the number of Single Log-Out compared to Single Sign-On.'.
+                ' Graph shows how many logouts where initiated for each Single Sign-On.',
             'type'         => 'calculated',
             'presenter'    => 'statistics:Ratio',
             'ref'          => array('slo', 'sso'),
@@ -107,7 +108,8 @@ $config = array(
         ),
         'ssomulti' => array(
             'name'         => 'Requests per session',
-            'descr'        => 'Number of SSO request pairs exchanged between IdP and SP within the same IdP session. A high number indicates that the session at the SP is timing out faster than at the IdP.',
+            'descr'        => 'Number of SSO request pairs exchanged between IdP and SP within the same IdP session.'.
+                ' A high number indicates that the session at the SP is timing out faster than at the IdP.',
             'type'         => 'calculated',
             'presenter'    => 'statistics:Ratio',
             'ref'          => array('sso', 'ssofirst'),
@@ -148,7 +150,8 @@ $config = array(
         ),
         'consent' => array(
             'name'         => 'Consent',
-            'descr'        => 'Consent statistics. Everytime a user logs in to a service an entry is logged for one of three states: consent was found, consent was not found or consent storage was not available.',
+            'descr'        => 'Consent statistics. Everytime a user logs in to a service an entry is logged for'.
+                ' one of three states: consent was found, consent was not found or consent storage was not available.',
             'action'       => 'consent',
             'col'          => 6,
             'fieldPresentation' => array(
@@ -158,7 +161,8 @@ $config = array(
         ),
         'consentresponse' => array(
             'name'         => 'Consent response',
-            'descr'        => 'Consent response statistics. Everytime a user accepts consent, it is logged whether the user selected to remember the consent to next time.',
+            'descr'        => 'Consent response statistics. Everytime a user accepts consent,'.
+                ' it is logged whether the user selected to remember the consent to next time.',
             'action'       => 'consentResponse',
             'col'          => 6,
             'fieldPresentation' => array(

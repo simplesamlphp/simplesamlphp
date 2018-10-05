@@ -1,5 +1,3 @@
-{% set autofocus = 'proceedbutton' %}
-
 {% extends "base.twig" %}
 
 {% block content %}
@@ -8,7 +6,7 @@
 <form action="{{ target | escape }}">
 
     {% for name, value in data -%}
-    <input type="hidden" name="{{ name }}" value="{{ value }}" />
+    <input type="hidden" name="{{ name }}" value="{{ value }}">
     {%- endfor %}
 
     <p>{% trans %}Your certificate will expire in {{ daysleft }} days.{% endtrans %}</p>
@@ -19,7 +17,7 @@
     <p>{% trans 'Please renew your certificate in time.' %}</p>
     {% endif -%}
 
-    <p><input type="submit" name="proceed" id="proceedbutton" value="{% trans 'Proceed' %}" /></p>
+    <p><input type="submit" name="proceed" id="proceedbutton" value="{% trans 'Proceed' %}" autofocus></p>
 
 </form>
 

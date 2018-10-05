@@ -83,8 +83,10 @@ class Radius extends \SimpleSAML\Module\core\Auth\UserPassBase
         parent::__construct($info, $config);
 
         // Parse configuration.
-        $config = \SimpleSAML\Configuration::loadFromArray($config,
-            'Authentication source '.var_export($this->authId, true));
+        $config = \SimpleSAML\Configuration::loadFromArray(
+            $config,
+            'Authentication source '.var_export($this->authId, true)
+        );
 
         $this->servers = $config->getArray('servers', array());
         // For backwards compatibility
@@ -102,7 +104,8 @@ class Radius extends \SimpleSAML\Module\core\Auth\UserPassBase
         $this->retries = $config->getInteger('retries', 3);
         $this->realm = $config->getString('realm', null);
         $this->usernameAttribute = $config->getString('username_attribute', null);
-        $this->nasIdentifier = $config->getString('nas_identifier',
+        $this->nasIdentifier = $config->getString(
+            'nas_identifier',
             \SimpleSAML\Utils\HTTP::getSelfHost()
         );
 
@@ -127,7 +130,7 @@ class Radius extends \SimpleSAML\Module\core\Auth\UserPassBase
 
         $radius = radius_auth_open();
 
-        /* Try to add all radius servers, trigger a failure if no one works. */
+        // Try to add all radius servers, trigger a failure if no one works
         $success = false;
         foreach ($this->servers as $server) {
             if (!isset($server['port'])) {
@@ -135,10 +138,14 @@ class Radius extends \SimpleSAML\Module\core\Auth\UserPassBase
             }
             if (!radius_add_server(
                 $radius,
-                $server['hostname'], $server['port'], $server['secret'], 
-                $this->timeout, $this->retries)) {
-                \SimpleSAML\Logger::info("Could not add radius server: ".
-                    radius_strerror($radius)
+                $server['hostname'],
+                $server['port'],
+                $server['secret'],
+                $this->timeout,
+                $this->retries
+            )) {
+                \SimpleSAML\Logger::info(
+                    "Could not add radius server: ".radius_strerror($radius)
                 );
                 continue;
             }
@@ -149,8 +156,8 @@ class Radius extends \SimpleSAML\Module\core\Auth\UserPassBase
         }
 
         if (!radius_create_request($radius, \RADIUS_ACCESS_REQUEST)) {
-            throw new \Exception('Error creating radius request: '.
-                radius_strerror($radius)
+            throw new \Exception(
+                'Error creating radius request: '.radius_strerror($radius)
             );
         }
 
@@ -174,9 +181,9 @@ class Radius extends \SimpleSAML\Module\core\Auth\UserPassBase
                 case \RADIUS_ACCESS_CHALLENGE:
                     throw new \Exception('Radius authentication error: Challenge requested, but not supported.');
                 default:
-                    throw new \Exception('Error during radius authentication: '.
-                        radius_strerror($radius)
-                );
+                    throw new \Exception(
+                        'Error during radius authentication: '.radius_strerror($radius)
+                    );
             }
         }
 
@@ -198,10 +205,9 @@ class Radius extends \SimpleSAML\Module\core\Auth\UserPassBase
 
         // get AAI attribute sets. Contributed by Stefan Winter, (c) RESTENA
         while ($resa = radius_get_attr($radius)) {
-
             if (!is_array($resa)) {
-                throw new \Exception('Error getting radius attributes: '.
-                    radius_strerror($radius)
+                throw new \Exception(
+                    'Error getting radius attributes: '.radius_strerror($radius)
                 );
             }
 
@@ -217,8 +223,8 @@ class Radius extends \SimpleSAML\Module\core\Auth\UserPassBase
 
             $resv = radius_get_vendor_attr($resa['data']);
             if (!is_array($resv)) {
-                throw new \Exception('Error getting vendor specific attribute: '.
-                    radius_strerror($radius)
+                throw new \Exception(
+                    'Error getting vendor specific attribute: '.radius_strerror($radius)
                 );
             }
 

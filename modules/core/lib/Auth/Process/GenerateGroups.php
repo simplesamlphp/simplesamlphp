@@ -135,7 +135,7 @@ class GenerateGroups extends \SimpleSAML\Auth\ProcessingFilter
 
         return preg_replace_callback(
             '/([^a-zA-Z0-9_@=.])/',
-            function($m) {
+            function ($m) {
                 return sprintf("%%%02x", ord($m[1]));
             },
             $string

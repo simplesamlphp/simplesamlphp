@@ -113,22 +113,21 @@ foreach ($state['core:Logout-IFrame:Associations'] as $association) {
     }
 }
 
-$id = \SimpleSAML\Auth\State::saveState($state, 'core:Logout-IFrame');
 $globalConfig = \SimpleSAML\Configuration::getInstance();
-
-$template_id = 'core:logout-iframe.php';
 if ($type === 'nojs') {
-    $template_id = 'core:logout-iframe-wrapper.php';
+    $t = new \SimpleSAML\XHTML\Template($globalConfig, 'core:logout-iframe-wrapper.php');
+} else {
+    $t = new \SimpleSAML\XHTML\Template($globalConfig, 'core:logout-iframe.php');
 }
-
-$t = new \SimpleSAML\XHTML\Template($globalConfig, $template_id);
-$t->data['auth_state'] = $id;
-$t->data['header'] = $t->getTranslator()->t('{logout:progress}');
 
 /**
  * @deprecated The "id" variable will be removed. Please use "auth_state" instead.
  */
+$id = \SimpleSAML\Auth\State::saveState($state, 'core:Logout-IFrame');
 $t->data['id'] = $id;
+$t->data['auth_state'] = $id;
+
+$t->data['header'] = $t->getTranslator()->t('{logout:progress}');
 $t->data['type'] = $type;
 $t->data['terminated_service'] = $terminated;
 $t->data['remaining_services'] = $remaining;

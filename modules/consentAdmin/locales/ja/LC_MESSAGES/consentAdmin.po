@@ -54,9 +54,6 @@ msgstr "(記述無し)"
 msgid "{consentAdmin:consentadmin:service_providers_for}"
 msgstr "サービスプロバイダ - "
 
-msgid "{consentAdmin:consentadmin:sp_empty_name}"
-msgstr "(名前無し)"
-
 msgid "{consentAdmin:consentadmin:consentadmin_description2}"
 msgstr ""
 "<h3>承認の削除方法</h3> 該当するサービスプロバイダのチェックを外します。<h3>リンク</h3> <ul> <li><a "

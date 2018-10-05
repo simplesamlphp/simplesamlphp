@@ -66,7 +66,9 @@ class Server
         $this->cookieLifetime = $config->getInteger('cookie.lifetime', 0);
 
         if ($this->key === 'ExampleSharedKey') {
-            throw new \SimpleSAML\Error\Exception('Key for CDC domain '.var_export($domain, true).' not changed from default.');
+            throw new \SimpleSAML\Error\Exception(
+                'Key for CDC domain '.var_export($domain, true).' not changed from default.'
+            );
         }
     }
 

@@ -35,7 +35,6 @@ function sanitycheck_hook_cron(&$croninfo)
                 $croninfo['summary'][] = 'Sanitycheck error: '.$err;
             }
         }
-
     } catch (Exception $e) {
         $croninfo['summary'][] = 'Error executing sanity check: '.$e->getMessage();
     }

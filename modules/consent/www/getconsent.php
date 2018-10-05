@@ -6,11 +6,10 @@
  * authorizes the release of attributes.
  *
  * @package SimpleSAMLphp
- */
-/**
- * Explicit instruct consent page to send no-cache header to browsers to make 
+ *
+ * Explicit instruct consent page to send no-cache header to browsers to make
  * sure the users attribute information are not store on client disk.
- * 
+ *
  * In an vanilla apache-php installation is the php variables set to:
  *
  * session.cache_limiter = nocache
@@ -34,7 +33,7 @@ $state = \SimpleSAML\Auth\State::loadState($id, 'consent:request');
 
 if (array_key_exists('core:SP', $state)) {
     $spentityid = $state['core:SP'];
-} else if (array_key_exists('saml:sp:State', $state)) {
+} elseif (array_key_exists('saml:sp:State', $state)) {
     $spentityid = $state['saml:sp:State']['core:SP'];
 } else {
     $spentityid = 'UNKNOWN';
@@ -57,7 +56,7 @@ if (array_key_exists('yes', $_REQUEST)) {
     }
     \SimpleSAML\Stats::log('consent:accept', $statsInfo);
 
-    if (array_key_exists('consent:store', $state) 
+    if (array_key_exists('consent:store', $state)
         && array_key_exists('saveconsent', $_REQUEST)
         && $_REQUEST['saveconsent'] === '1'
     ) {
@@ -69,7 +68,7 @@ if (array_key_exists('yes', $_REQUEST)) {
 
         \SimpleSAML\Logger::debug(
             'Consent - saveConsent() : ['.$userId.'|'.$targetedId.'|'.$attributeSet.']'
-        );	
+        );
         try {
             $store->saveConsent($userId, $targetedId, $attributeSet);
         } catch (\Exception $e) {
@@ -169,7 +168,7 @@ if (array_key_exists('privacypolicy', $state['Destination'])) {
 if ($privacypolicy !== false) {
     $privacypolicy = str_replace(
         '%SPENTITYID%',
-        urlencode($spentityid), 
+        urlencode($spentityid),
         $privacypolicy
     );
 }

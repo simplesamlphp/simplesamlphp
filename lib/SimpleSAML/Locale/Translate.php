@@ -19,15 +19,24 @@ class Translate
      */
     private $configuration;
 
+    /**
+     * Associative array of languages.
+     *
+     * @var array
+     */
     private $langtext = array();
 
     /**
      * Associative array of dictionaries.
+     *
+     * @var array
      */
     private $dictionaries = array();
 
     /**
      * The default dictionary.
+     *
+     * @var string|null
      */
     private $defaultDictionary = null;
 
@@ -37,7 +46,6 @@ class Translate
      * @var \SimpleSAML\Locale\Language
      */
     private $language;
-
 
     /**
      * Constructor
@@ -66,7 +74,6 @@ class Translate
         }
     }
 
-
     /**
      * Return the internal language object used by this translator.
      *
@@ -76,7 +83,6 @@ class Translate
     {
         return $this->language;
     }
-
 
     /**
      * This method retrieves a dictionary with the name given.
@@ -106,7 +112,6 @@ class Translate
 
         return $this->dictionaries[$name];
     }
-
 
     /**
      * This method retrieves a tag as an array with language => string mappings.
@@ -144,7 +149,6 @@ class Translate
 
         return $dictionary[$tag];
     }
-
 
     /**
      * Retrieve the preferred translation of a given text.
@@ -186,7 +190,6 @@ class Translate
         throw new \Exception('Nothing to return from translation.');
     }
 
-
     /**
      * Translate the name of an attribute.
      *
@@ -219,7 +222,6 @@ class Translate
         return $name;
     }
 
-
     /**
      * Mark a string for translation without translating it.
      *
@@ -231,7 +233,6 @@ class Translate
     {
         return $tag;
     }
-
 
     /**
      * Translate a tag into the current language, with a fallback to english.
@@ -321,7 +322,6 @@ class Translate
         return $translated;
     }
 
-
     /**
      * Return the string that should be used when no translation was found.
      *
@@ -339,7 +339,6 @@ class Translate
             return $tag;
         }
     }
-
 
     /**
      * Include a translation inline instead of putting translations in dictionaries. This function is recommended to be
@@ -363,7 +362,6 @@ class Translate
         $this->langtext[$tag] = $translation;
     }
 
-
     /**
      * Include a language file from the dictionaries directory.
      *
@@ -385,7 +383,6 @@ class Translate
         \SimpleSAML\Logger::debug('Template: Merging language array. Loading ['.$file.']');
         $this->langtext = array_merge($this->langtext, $lang);
     }
-
 
     /**
      * Read a dictionary file in JSON format.
@@ -419,7 +416,6 @@ class Translate
         return $lang;
     }
 
-
     /**
      * Read a dictionary file in PHP format.
      *
@@ -440,7 +436,6 @@ class Translate
 
         return array();
     }
-
 
     /**
      * Read a dictionary file.
@@ -471,7 +466,13 @@ class Translate
         return array();
     }
 
-
+    /**
+     * Translate a singular text.
+     *
+     * @param string $original The string before translation.
+     *
+     * @return string The translated string.
+     */
     public static function translateSingularGettext($original)
     {
         $text = \Gettext\BaseTranslator::$current->gettext($original);
@@ -485,7 +486,15 @@ class Translate
         return strtr($text, is_array($args[0]) ? $args[0] : $args);
     }
 
-
+    /**
+     * Translate a plural text.
+     *
+     * @param string $original The string before translation.
+     * @param string $plural
+     * @param string $value
+     *
+     * @return string The translated string.
+     */
     public static function translatePluralGettext($original, $plural, $value)
     {
         $text = \Gettext\BaseTranslator::$current->ngettext($original, $plural, $value);
@@ -498,7 +507,6 @@ class Translate
 
         return strtr($text, is_array($args[0]) ? $args[0] : $args);
     }
-
 
     /**
      * Pick a translation from a given array of translations for the current language.

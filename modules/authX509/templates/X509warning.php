@@ -32,10 +32,10 @@ $this->includeAtTemplateBase('includes/header.php');
 <form style="display: inline; margin: 0px; padding: 0px" action="<?php echo htmlspecialchars($this->data['target']); ?>">
 
     <?php
-        // Embed hidden fields...
-        foreach ($this->data['data'] as $name => $value) {
-            echo '<input type="hidden" name="'.htmlspecialchars($name).'" value="'.htmlspecialchars($value).'" />';
-        }
+    // Embed hidden fields...
+    foreach ($this->data['data'] as $name => $value) {
+        echo '<input type="hidden" name="'.htmlspecialchars($name).'" value="'.htmlspecialchars($value).'" />';
+    }
     ?>
     <p><?php echo $warning; ?></p>
 

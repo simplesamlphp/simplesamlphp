@@ -106,7 +106,7 @@ $functionchecks = array(
     'json_decode'      => array('required', 'JSON support'),
     'class_implements' => array('required', 'Standard PHP Library (SPL)'),
     'mb_strlen'        => array('required', 'Multibyte String Extension'),
-    'curl_init'        => array('optional', 'cURL (required if automatic version checks are used, also by some modules.'),
+    'curl_init' => array('optional', 'cURL (required if automatic version checks are used, also by some modules.'),
     'session_start'  => array('optional', 'Session Extension (required if PHP sessions are used)'),
     'pdo_drivers'    => array('optional', 'PDO Extension (required if a database backend is used)'),
 );
@@ -119,7 +119,7 @@ if (\SimpleSAML\Module::isModuleEnabled('radius')) {
 
 $funcmatrix = array();
 $funcmatrix[] = array(
-    'required' => 'required', 
+    'required' => 'required',
     'descr' => 'PHP Version >= 5.4. You run: '.phpversion(),
     'enabled' => version_compare(phpversion(), '5.4', '>=')
 );
@@ -139,7 +139,7 @@ $funcmatrix[] = array(
     'enabled' => class_exists('Memcache') || class_exists('Memcached'),
 );
 
-/* Some basic configuration checks */
+// Some basic configuration checks
 
 if ($config->getString('technicalcontact_email', 'na@example.org') === 'na@example.org') {
     $mail_ok = false;

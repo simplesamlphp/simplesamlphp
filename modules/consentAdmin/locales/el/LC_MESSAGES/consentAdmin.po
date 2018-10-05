@@ -54,9 +54,6 @@ msgstr "(χωρίς περιγραφή)"
 msgid "{consentAdmin:consentadmin:service_providers_for}"
 msgstr "Πάροχοι Υπηρεσιών για"
 
-msgid "{consentAdmin:consentadmin:sp_empty_name}"
-msgstr "(χωρίς όνομα)"
-
 msgid "{consentAdmin:consentadmin:consentadmin_description2}"
 msgstr ""
 "<h3>Πώς να αναιρέσετε τη συγκατάθεσή σας</h3>Αποεπιλέξτε το κουτί "

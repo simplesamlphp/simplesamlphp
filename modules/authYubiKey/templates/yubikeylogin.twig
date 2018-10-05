@@ -2,7 +2,7 @@
 {% extends "base.twig" %}
 
 {% block preload %}
-    <link rel="stylesheet" type="text/css" href="{{ baseurlpath }}assets/css/yubikey.css" />
+    <link rel="stylesheet" type="text/css" href="{{ baseurlpath }}assets/css/yubikey.css">
 {% endblock %}
 
 {% block postload %}
@@ -19,15 +19,15 @@
     </div>
     {% endif %}
 
-    <img style="float: right" src="{{ logoUrl }}" alt="" />
-    <img style="clear: right; float: right" src="{{ devicepicUrl }}" alt="YubiKey" />
+    <img style="float: right" src="{{ logoUrl }}" alt="">
+    <img style="clear: right; float: right" src="{{ devicepicUrl }}" alt="YubiKey">
 
     <h2>{{ '{authYubiKey:yubikey:header}'|trans }}</h2>
     <form action="?" method="post" name="f">
         <p>{{ '{authYubiKey:yubikey:intro}'|trans }}</p>
-        <p><input id="otp" type="text" tabindex="2" name="otp" /></p>
+        <p><input id="otp" type="text" tabindex="2" name="otp" autofocus></p>
     {% for key, value in stateParams %}
-        <input type="hidden" name="{{ key|escape('html') }}" value="{{ value|escape('html') }}"/>
+        <input type="hidden" name="{{ key|escape('html') }}" value="{{ value|escape('html') }}">
     {% endfor %}
     </form>
 {% endblock %}

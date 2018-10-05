@@ -55,9 +55,6 @@ msgstr "(apibūdinimas nenurodytas)"
 msgid "{consentAdmin:consentadmin:service_providers_for}"
 msgstr "Paslaugos tiekėjai"
 
-msgid "{consentAdmin:consentadmin:sp_empty_name}"
-msgstr "(pavadinimas nenurodytas)"
-
 msgid "{consentAdmin:consentadmin:consentadmin_description2}"
 msgstr ""
 "<h3>Kaip pašalinti savo leidimą</h3> Panaikinkite pažymėjimą ties "

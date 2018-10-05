@@ -414,9 +414,12 @@ class SAML2
         );
 
         $state = array(
-            'Responder'                                   => array('\SimpleSAML\Module\saml\IdP\SAML2', 'sendResponse'),
-            \SimpleSAML\Auth\State::EXCEPTION_HANDLER_FUNC => array('\SimpleSAML\Module\saml\IdP\SAML2', 'handleAuthError'),
-            \SimpleSAML\Auth\State::RESTART                => $sessionLostURL,
+            'Responder'                   => array('\SimpleSAML\Module\saml\IdP\SAML2', 'sendResponse'),
+            \SimpleSAML\Auth\State::EXCEPTION_HANDLER_FUNC => array(
+                '\SimpleSAML\Module\saml\IdP\SAML2',
+                'handleAuthError'
+            ),
+            \SimpleSAML\Auth\State::RESTART => $sessionLostURL,
 
             'SPMetadata'                  => $spMetadata->toArray(),
             'saml:RelayState'             => $relayState,

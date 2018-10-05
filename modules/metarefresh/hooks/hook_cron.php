@@ -1,4 +1,7 @@
 <?php
+
+use \SimpleSAML\Logger;
+
 /**
  * Hook to run a cron job.
  *
@@ -10,7 +13,7 @@ function metarefresh_hook_cron(&$croninfo)
     assert(array_key_exists('summary', $croninfo));
     assert(array_key_exists('tag', $croninfo));
 
-    SimpleSAML\Logger::info('cron [metarefresh]: Running cron in cron tag ['.$croninfo['tag'].'] ');
+    Logger::info('cron [metarefresh]: Running cron in cron tag ['.$croninfo['tag'].'] ');
 
     try {
         $config = \SimpleSAML\Configuration::getInstance();
@@ -26,7 +29,7 @@ function metarefresh_hook_cron(&$croninfo)
                 continue;
             }
 
-            \SimpleSAML\Logger::info('cron [metarefresh]: Executing set ['.$setkey.']');
+            Logger::info('cron [metarefresh]: Executing set ['.$setkey.']');
 
             $expireAfter = $set->getInteger('expireAfter', null);
             if ($expireAfter !== null) {
@@ -62,7 +65,6 @@ function metarefresh_hook_cron(&$croninfo)
             $set_types = $set->getArrayize('types', $available_types);
 
             foreach ($set->getArray('sources') as $source) {
-
                 // filter metadata by type of entity
                 if (isset($source['types'])) {
                     $metaloader->setTypes($source['types']);
@@ -89,7 +91,7 @@ function metarefresh_hook_cron(&$croninfo)
                     $source['conditionalGET'] = $conditionalGET;
                 }
 
-                \SimpleSAML\Logger::debug('cron [metarefresh]: In set ['.$setkey.'] loading source ['.$source['src'].']');
+                Logger::debug('cron [metarefresh]: In set ['.$setkey.'] loading source ['.$source['src'].']');
                 $metaloader->loadSource($source);
             }
 

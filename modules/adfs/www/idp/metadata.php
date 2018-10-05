@@ -150,8 +150,14 @@ try {
         $certdata = array();
         foreach (array_keys($availableCerts) as $availableCert) {
             $certdata[$availableCert]['name'] = $availableCert;
-            $certdata[$availableCert]['url'] = \SimpleSAML\Module::getModuleURL('saml/idp/certs.php').'/'.$availableCert;
-            $certdata[$availableCert]['comment'] = ($availableCerts[$availableCert]['certFingerprint'][0] === 'afe71c28ef740bc87425be13a2263d37971da1f9' ? 'This is the default certificate. Generate a new certificate if this is a production system.' : '');
+            $certdata[$availableCert]['url'] = \SimpleSAML\Module::getModuleURL('saml/idp/certs.php').
+                '/'.$availableCert;
+
+            $certdata[$availableCert]['comment'] = '';
+            if ($availableCerts[$availableCert]['certFingerprint'][0] === 'afe71c28ef740bc87425be13a2263d37971da1f9') {
+                $certdata[$availableCert]['comment'] = 'This is the default certificate.'.
+                    ' Generate a new certificate if this is a production system.';
+            }
         }
         $t->data['certdata'] = $certdata;
         $t->data['header'] = 'adfs-idp'; // TODO: Replace with headerString in 2.0

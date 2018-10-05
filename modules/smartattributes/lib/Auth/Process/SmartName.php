@@ -52,7 +52,7 @@ class SmartName extends \SimpleSAML\Auth\ProcessingFilter
             if (isset($localname)) {
                 return $localname;
             }
-        }		
+        }
 
         return null;
     }

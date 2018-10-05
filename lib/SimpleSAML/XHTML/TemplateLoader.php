@@ -62,4 +62,3 @@ class TemplateLoader extends \Twig\Loader\FilesystemLoader
         return $templatedir;
     }
 }
-

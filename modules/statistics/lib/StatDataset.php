@@ -306,4 +306,3 @@ class StatDataset
         $this->results = $combined;
     }
 }
-

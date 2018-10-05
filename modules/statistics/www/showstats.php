@@ -51,7 +51,7 @@ $t->data['selected_rule'] = $rule;
 $t->data['selected_rule2'] = $preferRule2;
 
 $t->data['post_d'] = getBaseURL($t, 'post', 'd');
-	
+
 try {
     $dataset = $statrule->getDataset($preferTimeRes, $preferTime);
     $dataset->setDelimiter($delimiter);
@@ -69,7 +69,6 @@ try {
         }
         exit;
     }
-
 } catch (\Exception $e) {
     $t->data['error'] = "No data available";
     $t->show();

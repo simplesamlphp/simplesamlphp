@@ -38,7 +38,6 @@ class AttributeCopy extends \SimpleSAML\Auth\ProcessingFilter
         assert(is_array($config));
 
         foreach ($config as $source => $destination) {
-
             if (!is_string($source)) {
                 throw new \Exception('Invalid source attribute name: '.var_export($source, true));
             }

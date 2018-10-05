@@ -93,7 +93,9 @@ class Aggregator
         }
 
         $logparser = new LogParser(
-            $this->statconfig->getValue('datestart', 0), $this->statconfig->getValue('datelength', 15), $this->statconfig->getValue('offsetspan', 44)
+            $this->statconfig->getValue('datestart', 0),
+            $this->statconfig->getValue('datelength', 15),
+            $this->statconfig->getValue('offsetspan', 44)
         );
         $datehandler = array(
             'default' => new DateHandler($this->offset),
@@ -109,7 +111,7 @@ class Aggregator
             $lastlinehash = $this->metadata['lastlinehash'];
         }
 
-        $lastlogline = 'sdfsdf'; 
+        $lastlogline = 'sdfsdf';
         $lastlineflip = false;
         $results = array();
 
@@ -138,7 +140,8 @@ class Aggregator
             if ($debug) {
                 echo "----------------------------------------\n";
                 echo 'Log line: '.$logline."\n";
-                echo 'Date parse ['.substr($logline, 0, $this->statconfig->getValue('datelength', 15)).'] to ['.date(DATE_RFC822, $epoch).']'."\n";
+                echo 'Date parse ['.substr($logline, 0, $this->statconfig->getValue('datelength', 15)).
+                    '] to ['.date(DATE_RFC822, $epoch).']'."\n";
                 echo htmlentities(print_r($content, true));
                 if ($i >= 13) {
                     exit;
@@ -270,11 +273,11 @@ class Aggregator
 
                     // Get start and end slot number within the file, based on the fileslot.
                     $start = (int) $datehandler['default']->toSlot(
-                        $datehandler[$dh]->fromSlot($fileno, $this->timeres[$tres]['fileslot']), 
+                        $datehandler[$dh]->fromSlot($fileno, $this->timeres[$tres]['fileslot']),
                         $this->timeres[$tres]['slot']
                     );
                     $end = (int) $datehandler['default']->toSlot(
-                        $datehandler[$dh]->fromSlot($fileno + 1, $this->timeres[$tres]['fileslot']), 
+                        $datehandler[$dh]->fromSlot($fileno + 1, $this->timeres[$tres]['fileslot']),
                         $this->timeres[$tres]['slot']
                     );
 
@@ -295,7 +298,7 @@ class Aggregator
                     $filename = $this->statdir.'/'.$rulename.'-'.$tres.'-'.$fileno.'.stat';
                     if (file_exists($filename)) {
                         $previousData = unserialize(file_get_contents($filename));
-                        $filledresult = $this->cummulateData($previousData, $filledresult);	
+                        $filledresult = $this->cummulateData($previousData, $filledresult);
                     }
 
                     // store file
