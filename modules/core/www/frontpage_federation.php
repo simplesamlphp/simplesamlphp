@@ -103,7 +103,8 @@ $t = new \SimpleSAML\XHTML\Template($config, 'core:frontpage_federation.tpl.php'
 $translator = $t->getTranslator();
 
 $language = $translator->getLanguage()->getLanguage();
-$defaultLanguage = $config->getString('language.default', 'en');
+$fallbackLanguage = 'en';
+$defaultLanguage = $config->getString('language.default', $fallbackLanguage);
 
 $translators = array(
     'name' => 'name_translated',
@@ -117,9 +118,9 @@ foreach ($metaentries['hosted'] as $index => $entity) {
             $metaentries['hosted'][$index][$new] = $entity[$old][$language];
         } elseif (isset($entity[$old][$defaultLanguage])) {
             $metaentries['hosted'][$index][$new] = $entity[$old][$defaultLanguage];
-        } elseif (isset($metaentries['hosted'][$index][$old])) {
-            $metaentries['hosted'][$index][$new] = $metaentries['hosted'][$index][$old];
-        }
+        } elseif (isset($entity[$old][$fallbackLanguage])) {
+            $metaentries['hosted'][$index][$new] = $entity[$old][$fallbackLanguage];
+	}
     }
 }
 foreach ($metaentries['remote'] as $key => $set) {
@@ -129,6 +130,8 @@ foreach ($metaentries['remote'] as $key => $set) {
                 $metaentries['remote'][$key][$entityid][$new] = $entity[$old][$language];
             } elseif (isset($entity[$old][$defaultLanguage])) {
                 $metaentries['remote'][$key][$entityid][$new] = $entity[$old][$defaultLanguage];
+            } elseif (isset($entity[$old][$fallbackLanguage])) {
+                $metaentries['remote'][$key][$entityid][$new] = $entity[$old][$fallbackLanguage];
             } elseif (isset($metaentries['remote'][$key][$entityid][$old])) {
                 $metaentries['remote'][$key][$entityid][$new] = $metaentries['remote'][$key][$entityid][$old];
             }
