@@ -536,14 +536,16 @@ class Translate
         // we don't have a translation for the current language, load alternative priorities
         $sspcfg = \SimpleSAML\Configuration::getInstance();
         $langcfg = $sspcfg->getConfigItem('language', null);
-        $priorities = array();
+        $priorities = [];
         if ($langcfg instanceof \SimpleSAML\Configuration) {
             $priorities = $langcfg->getArray('priorities', array());
         }
 
-        foreach ($priorities[$context['currentLanguage']] as $lang) {
-            if (isset($translations[$lang])) {
-                return $translations[$lang];
+        if ( !empty($priorities[$context['currentLanguage']]) ) {
+            foreach ($priorities[$context['currentLanguage']] as $lang) {
+                if (isset($translations[$lang])) {
+                    return $translations[$lang];
+                }
             }
         }
 
