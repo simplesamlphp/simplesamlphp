@@ -652,3 +652,8 @@ dt {
 .entity-expired {
     color: #500;
 }
+div.preferredidp {
+    border: 1px dashed #ccc;
+    background: #eee;
+    padding: 2px 2em 2px 2em;
+}
