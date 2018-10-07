@@ -131,6 +131,9 @@
 	"loggedin_as_admin": {
 		"en": "You are logged in as administrator"
 	},
+	"logout": {
+		"en": "Logout"
+	},
 	"auth": {
 		"en": "Authentication"
 	},

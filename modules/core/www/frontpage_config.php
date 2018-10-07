@@ -10,7 +10,7 @@ if ($config->getBoolean('admin.protectindexpage', false)) {
 }
 $loginurl = \SimpleSAML\Utils\Auth::getAdminLoginURL();
 $isadmin = \SimpleSAML\Utils\Auth::isAdmin();
-
+$logouturl = \SimpleSAML\Utils\Auth::getAdminLogoutURL();
 
 $warnings = array();
 
@@ -168,6 +168,7 @@ $t->data['pageid'] = 'frontpage_config';
 $t->data['header'] = $translator->t('{core:frontpage:page_title}');
 $t->data['isadmin'] = $isadmin;
 $t->data['loginurl'] = $loginurl;
+$t->data['logouturl'] = $logouturl;
 
 foreach ($warnings as &$warning) {
     if (is_array($warning)) {

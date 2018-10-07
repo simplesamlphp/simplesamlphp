@@ -8,6 +8,7 @@ $session = \SimpleSAML\Session::getSessionFromRequest();
 if ($config->getBoolean('admin.protectindexpage', false)) {
     \SimpleSAML\Utils\Auth::requireAdmin();
 }
+$logouturl = \SimpleSAML\Utils\Auth::getAdminLogoutURL();
 $loginurl = \SimpleSAML\Utils\Auth::getAdminLoginURL();
 $isadmin = \SimpleSAML\Utils\Auth::isAdmin();
 
@@ -158,7 +159,7 @@ $mtype = array(
 $t->data['pageid'] = 'frontpage_federation';
 $t->data['isadmin'] = $isadmin;
 $t->data['loginurl'] = $loginurl;
-
+$t->data['logouturl'] = $logouturl;
 
 $t->data['links'] = $links;
 $t->data['links_welcome'] = $links_welcome;
