@@ -31,6 +31,26 @@ class Auth
         return Module::getModuleURL('core/login-admin.php', array('ReturnTo' => $returnTo));
     }
 
+
+    /**
+     * Retrieve a admin logout URL.
+     *
+     * @param string|NULL $returnTo The URL the user should arrive on after admin authentication. Defaults to null.
+     *
+     * @return string A URL which can be used for logging out.
+     * @throws \InvalidArgumentException If $returnTo is neither a string nor null.
+     */
+    public static function getAdminLogoutURL($returnTo = null)
+    {
+        if (!(is_string($returnTo) || is_null($returnTo))) {
+            throw new \InvalidArgumentException('Invalid input parameters.');
+        }
+
+        $as = new \SimpleSAML\Auth\Simple('admin');
+        return $as->getLogoutURL($returnTo = null);
+    }
+
+
     /**
      * Check whether the current user is admin.
      *
