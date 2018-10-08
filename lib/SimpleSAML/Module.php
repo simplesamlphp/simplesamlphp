@@ -2,6 +2,12 @@
 
 namespace SimpleSAML;
 
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
+
 /**
  * Helper class for accessing information about modules.
  *
@@ -12,6 +18,44 @@ namespace SimpleSAML;
  */
 class Module
 {
+
+    /**
+     * Index pages: file names to attempt when accessing directories.
+     *
+     * @var array
+     */
+    public static $indexFiles = ['index.php', 'index.html', 'index.htm', 'index.txt'];
+
+    /**
+     * MIME Types
+     *
+     * The key is the file extension and the value the corresponding MIME type.
+     *
+     * @var array
+     */
+    public static $mimeTypes = [
+        'bmp'   => 'image/x-ms-bmp',
+        'css'   => 'text/css',
+        'gif'   => 'image/gif',
+        'htm'   => 'text/html',
+        'html'  => 'text/html',
+        'shtml' => 'text/html',
+        'ico'   => 'image/vnd.microsoft.icon',
+        'jpe'   => 'image/jpeg',
+        'jpeg'  => 'image/jpeg',
+        'jpg'   => 'image/jpeg',
+        'js'    => 'text/javascript',
+        'pdf'   => 'application/pdf',
+        'png'   => 'image/png',
+        'svg'   => 'image/svg+xml',
+        'svgz'  => 'image/svg+xml',
+        'swf'   => 'application/x-shockwave-flash',
+        'swfl'  => 'application/x-shockwave-flash',
+        'txt'   => 'text/plain',
+        'xht'   => 'application/xhtml+xml',
+        'xhtml' => 'application/xhtml+xml',
+    ];
+
     /**
      * A list containing the modules currently installed.
      *
@@ -60,6 +104,172 @@ class Module
     {
         $config = Configuration::getOptionalConfig();
         return self::isModuleEnabledWithConf($module, $config->getArray('module.enable', array()));
+    }
+
+
+    /**
+     * Handler for module requests.
+     *
+     * This controller receives requests for pages hosted by modules, and processes accordingly. Depending on the
+     * configuration and the actual request, it will run a PHP script and exit, or return a Response produced either
+     * by another controller or by a static file.
+     *
+     * @param Request|null $request The request to process. Defaults to the current one.
+     *
+     * @return Response|BinaryFileResponse Returns a Response object that can be sent to the browser.
+     * @throws Error\BadRequest In case the request URI is malformed.
+     * @throws Error\NotFound In case the request URI is invalid or the resource it points to cannot be found.
+     */
+    public static function process(Request $request = null)
+    {
+        if ($request === null) {
+            $request = Request::createFromGlobals();
+        }
+
+        if ($request->getPathInfo() === '/') {
+            throw new Error\NotFound('No PATH_INFO to module.php');
+        }
+
+        $url = $request->getPathInfo();
+        assert(substr($url, 0, 1) === '/');
+
+        /* clear the PATH_INFO option, so that a script can detect whether it is called with anything following the
+         *'.php'-ending.
+         */
+        unset($_SERVER['PATH_INFO']);
+
+        $modEnd = strpos($url, '/', 1);
+        if ($modEnd === false) {
+            // the path must always be on the form /module/
+            throw new Error\NotFound('The URL must at least contain a module name followed by a slash.');
+        }
+
+        $module = substr($url, 1, $modEnd - 1);
+        $url = substr($url, $modEnd + 1);
+        if ($url === false) {
+            $url = '';
+        }
+
+        if (!self::isModuleEnabled($module)) {
+            throw new Error\NotFound('The module \''.$module.'\' was either not found, or wasn\'t enabled.');
+        }
+
+        /* Make sure that the request isn't suspicious (contains references to current directory or parent directory or
+         * anything like that. Searching for './' in the URL will detect both '../' and './'. Searching for '\' will
+         * detect attempts to use Windows-style paths.
+         */
+        if (strpos($url, '\\') !== false) {
+            throw new Error\BadRequest('Requested URL contained a backslash.');
+        } elseif (strpos($url, './') !== false) {
+            throw new Error\BadRequest('Requested URL contained \'./\'.');
+        }
+
+        $config = Configuration::getInstance();
+        if ($config->getBoolean('usenewui', false) === true) {
+            $router = new Router($module);
+            try {
+                return $router->process();
+            } catch (\Symfony\Component\Config\Exception\FileLocatorFileNotFoundException $e) {
+                // no routes configured for this module, fall back to the old system
+            } catch (\Symfony\Component\HttpKernel\Exception\NotFoundHttpException $e) {
+                // this module has been migrated, but the route wasn't found
+            }
+        }
+
+        $moduleDir = self::getModuleDir($module).'/www/';
+
+        // check for '.php/' in the path, the presence of which indicates that another php-script should handle the
+        // request
+        for ($phpPos = strpos($url, '.php/'); $phpPos !== false; $phpPos = strpos($url, '.php/', $phpPos + 1)) {
+            $newURL = substr($url, 0, $phpPos + 4);
+            $param = substr($url, $phpPos + 4);
+
+            if (is_file($moduleDir.$newURL)) {
+                /* $newPath points to a normal file. Point execution to that file, and save the remainder of the path
+                 * in PATH_INFO.
+                 */
+                $url = $newURL;
+                $request->server->set('PATH_INFO', $param);
+                $_SERVER['PATH_INFO'] = $param;
+                break;
+            }
+        }
+
+        $path = $moduleDir.$url;
+
+        if ($path[strlen($path) - 1] === '/') {
+            // path ends with a slash - directory reference. Attempt to find index file in directory
+            foreach (self::$indexFiles as $if) {
+                if (file_exists($path.$if)) {
+                    $path .= $if;
+                    break;
+                }
+            }
+        }
+
+        if (is_dir($path)) {
+            /* Path is a directory - maybe no index file was found in the previous step, or maybe the path didn't end
+             * with a slash. Either way, we don't do directory listings.
+             */
+            throw new Error\NotFound('Directory listing not available.');
+        }
+
+        if (!file_exists($path)) {
+            // file not found
+            Logger::info('Could not find file \''.$path.'\'.');
+            throw new Error\NotFound('The URL wasn\'t found in the module.');
+        }
+
+        if (preg_match('#\.php$#D', $path)) {
+            // PHP file - attempt to run it
+
+            /* In some environments, $_SERVER['SCRIPT_NAME'] is already set with $_SERVER['PATH_INFO']. Check for that
+             * case, and append script name only if necessary.
+             *
+             * Contributed by Travis Hegner.
+             */
+            $script = "/$module/$url";
+            if (stripos($request->getScriptName(), $script) === false) {
+                $request->server->set('SCRIPT_NAME', $request->getScriptName().'/'.$module.'/'.$url);
+            }
+
+            require($path);
+            exit();
+        }
+
+        // some other file type - attempt to serve it
+
+        // find MIME type for file, based on extension
+        $contentType = null;
+        if (preg_match('#\.([^/\.]+)$#D', $path, $type)) {
+            $type = strtolower($type[1]);
+            if (array_key_exists($type, self::$mimeTypes)) {
+                $contentType = self::$mimeTypes[$type];
+            }
+        }
+
+        if ($contentType === null) {
+            /* We were unable to determine the MIME type from the file extension. Fall back to mime_content_type (if it
+             * exists).
+             */
+            if (function_exists('mime_content_type')) {
+                $contentType = mime_content_type($path);
+            } else {
+                // mime_content_type doesn't exist. Return a default MIME type
+                Logger::warning('Unable to determine mime content type of file: '.$path);
+                $contentType = 'application/octet-stream';
+            }
+        }
+
+        $response = new BinaryFileResponse($path);
+        $response->setCache(['public' => true, 'max_age' => 86400]);
+        $response->setExpires(new \DateTime(gmdate('D, j M Y H:i:s \G\M\T', time() + 10 * 60)));
+        $response->setLastModified(new \DateTime(gmdate('D, j M Y H:i:s \G\M\T', filemtime($path))));
+        $response->headers->set('Content-Type', $contentType);
+        $response->headers->set('Content-Length', sprintf('%u', filesize($path))); // force file size to an unsigned
+        $response->setContentDisposition(ResponseHeaderBag::DISPOSITION_INLINE);
+        $response->prepare($request);
+        return $response;
     }
 
 
@@ -309,5 +519,22 @@ class Module
             $fn = self::$module_info[$module]['hooks'][$hook]['func'];
             $fn($data);
         }
+    }
+
+
+    /**
+     * Handle a valid request that ends with a trailing slash.
+     *
+     * This method removes the trailing slash and redirects to the resulting URL.
+     *
+     * @param Request $request The request to process by this controller method.
+     *
+     * @return RedirectResponse A redirection to the URI specified in the request, but without the trailing slash.
+     */
+    public static function removeTrailingSlash(Request $request)
+    {
+        $pathInfo = $request->getPathInfo();
+        $url = str_replace($pathInfo, rtrim($pathInfo, ' /'), $request->getRequestUri());
+        return new RedirectResponse($url, 308);
     }
 }
