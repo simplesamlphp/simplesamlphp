@@ -136,7 +136,7 @@ MSG;
     {
         $config = \SimpleSAML\Configuration::getInstance();
         $t = new \SimpleSAML\XHTML\Template($config, 'adfs:postResponse.twig');
-        $t->data['baseurlpath'] = \SimpleSAML\Module::getModuleUrl('adfs');
+        $t->data['baseurlpath'] = \SimpleSAML\Module::getModuleURL('adfs');
         $t->data['url'] = $url;
         $t->data['wresult'] = $wresult;
         $t->data['wctx'] = $wctx;

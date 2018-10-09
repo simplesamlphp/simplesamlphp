@@ -710,7 +710,7 @@ class SP extends Source
         assert(array_key_exists('LogoutState', $state));
         assert(array_key_exists('saml:logout:Type', $state['LogoutState']));
 
-        $idpMetadata = $this->getIdpMetadata($idp);
+        $idpMetadata = $this->getIdPMetadata($idp);
 
         $spMetadataArray = $this->metadata->toArray();
         $idpMetadataArray = $idpMetadata->toArray();

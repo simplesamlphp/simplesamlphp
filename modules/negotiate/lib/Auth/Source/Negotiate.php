@@ -248,7 +248,7 @@ class Negotiate extends \SimpleSAML\Auth\Source
         header('WWW-Authenticate: Negotiate', false);
 
         $t = new \SimpleSAML\XHTML\Template($config, 'negotiate:redirect.twig');
-        $t->data['baseurlpath'] = \SimpleSAML\Module::getModuleUrl('negotiate');
+        $t->data['baseurlpath'] = \SimpleSAML\Module::getModuleURL('negotiate');
         $t->data['url'] = $url;
         $t->data['json_url'] = $json_url;
         $t->show();

@@ -85,7 +85,7 @@ class LinkedIn extends \SimpleSAML\Auth\Source
         $requestToken = $consumer->getRequestToken(
             'https://api.linkedin.com/uas/oauth/requestToken',
             array(
-                'oauth_callback' => \SimpleSAML\Module::getModuleUrl('authlinkedin').'/linkback.php?stateid='.$stateID
+                'oauth_callback' => \SimpleSAML\Module::getModuleURL('authlinkedin').'/linkback.php?stateid='.$stateID
             )
         );
 
