@@ -78,7 +78,7 @@ function present_attributes(\SimpleSAML\XHTML\Template $t, $attributes, $namePar
                 if ($nameraw !== $name) {
                     $str .= htmlspecialchars($name).'<br/>';
                 }
-                $str .= '<tt>'.htmlspecialchars($nameraw).'</tt>';
+                $str .= '<code>'.htmlspecialchars($nameraw).'</code>';
                 $str .= '</td><td class="attrvalue"><ul>';
                 foreach ($value as $listitem) {
                     if ($nameraw === 'jpegPhoto') {
@@ -93,7 +93,7 @@ function present_attributes(\SimpleSAML\XHTML\Template $t, $attributes, $namePar
                 if ($nameraw !== $name) {
                     $str .= htmlspecialchars($name).'<br/>';
                 }
-                $str .= '<tt>'.htmlspecialchars($nameraw).'</tt>';
+                $str .= '<code>'.htmlspecialchars($nameraw).'</code>';
                 $str .= '</td>';
                 if ($nameraw === 'jpegPhoto') {
                     $str .= '<td class="attrvalue"><img src="data:image/jpeg;base64,'.htmlspecialchars($value[0]).
