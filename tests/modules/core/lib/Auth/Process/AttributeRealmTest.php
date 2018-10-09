@@ -51,7 +51,7 @@ class Test_Core_Auth_Process_AttributeRealm extends TestCase
         $request = array(
             'Attributes' => array(),
         );
-        $result = self::processFilter($config, $request);
+        self::processFilter($config, $request);
     }
 
     /**

@@ -243,7 +243,6 @@ PHP;
      */
     public function testBadHashAlgorithmValid()
     {
-        $pw = "password";
         $algorithm = "wtf";
         $hash = "{".$algorithm."}B64STRING";
 

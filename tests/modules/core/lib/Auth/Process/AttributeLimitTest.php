@@ -208,7 +208,7 @@ class Test_Core_Auth_Process_AttributeLimitTest extends TestCase
             'invalidArg' => TRUE,
         );
 
-        $result = self::processFilter($config, self::$request);
+        self::processFilter($config, self::$request);
     }
 
     /**
@@ -222,7 +222,7 @@ class Test_Core_Auth_Process_AttributeLimitTest extends TestCase
 		null
         );
 
-        $result = self::processFilter($config, self::$request);
+        self::processFilter($config, self::$request);
     }
 
 
@@ -464,7 +464,7 @@ class Test_Core_Auth_Process_AttributeLimitTest extends TestCase
         );
 
 
-        $result = self::processFilter($config, $request);
+        self::processFilter($config, $request);
     }
 
     /**

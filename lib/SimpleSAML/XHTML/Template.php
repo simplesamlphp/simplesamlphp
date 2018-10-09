@@ -638,8 +638,6 @@ class Template
      */
     private function includeAtTemplateBase($file)
     {
-        $data = $this->data;
-
         $filename = $this->findTemplatePath($file);
 
         include($filename);

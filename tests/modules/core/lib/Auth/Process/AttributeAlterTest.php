@@ -225,7 +225,7 @@ class Test_Core_Auth_Process_AttributeAlter extends TestCase
                 'eduPersonAffiliation' => array('emperess', 'emperor'),
             ),
         );
-        $result = self::processFilter($config, $request);
+        self::processFilter($config, $request);
     }
 
     /**
@@ -243,7 +243,7 @@ class Test_Core_Auth_Process_AttributeAlter extends TestCase
                 'eduPersonAffiliation' => array('emperess', 'emperor'),
             ),
         );
-        $result = self::processFilter($config, $request);
+        self::processFilter($config, $request);
     }
 
     /**
@@ -260,16 +260,10 @@ class Test_Core_Auth_Process_AttributeAlter extends TestCase
 
         $request = array(
             'Attributes' => array(
-                 'test' => array('somethingiswrong'),
-             ),
-        );
-
-        $request = array(
-            'Attributes' => array(
                 'eduPersonAffiliation' => array('emperess', 'emperor'),
             ),
         );
-        $result = self::processFilter($config, $request);
+        self::processFilter($config, $request);
     }
 
     /**
@@ -288,16 +282,10 @@ class Test_Core_Auth_Process_AttributeAlter extends TestCase
 
         $request = array(
             'Attributes' => array(
-                 'test' => array('somethingiswrong'),
-             ),
-        );
-
-        $request = array(
-            'Attributes' => array(
                 'eduPersonAffiliation' => array('emperess', 'emperor'),
             ),
         );
-        $result = self::processFilter($config, $request);
+        self::processFilter($config, $request);
     }
 
     /**
@@ -316,16 +304,10 @@ class Test_Core_Auth_Process_AttributeAlter extends TestCase
 
         $request = array(
             'Attributes' => array(
-                 'test' => array('somethingiswrong'),
-             ),
-        );
-
-        $request = array(
-            'Attributes' => array(
                 'eduPersonAffiliation' => array('emperess', 'emperor'),
             ),
         );
-        $result = self::processFilter($config, $request);
+        self::processFilter($config, $request);
     }
 
 
@@ -344,15 +326,9 @@ class Test_Core_Auth_Process_AttributeAlter extends TestCase
 
         $request = array(
             'Attributes' => array(
-                 'test' => array('somethingiswrong'),
-             ),
-        );
-
-        $request = array(
-            'Attributes' => array(
                 'eduPersonAffiliation' => array('emperess', 'emperor'),
             ),
         );
-        $result = self::processFilter($config, $request);
+        self::processFilter($config, $request);
     }
 }
