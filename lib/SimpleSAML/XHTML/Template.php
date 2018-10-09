@@ -467,7 +467,6 @@ class Template extends Response
      */
     public function show()
     {
-        $this->send();
         echo $this->getContents();
     }
 
