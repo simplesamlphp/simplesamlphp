@@ -14,7 +14,7 @@ if (!array_key_exists('set', $_REQUEST)) {
 }
 if (!in_array(
     $_REQUEST['set'],
-    array('saml20-idp-remote', 'saml20-sp-remote', 'shib13-idp-remote', 'shib13-sp-remote'),
+    ['saml20-idp-remote', 'saml20-sp-remote', 'shib13-idp-remote', 'shib13-sp-remote'],
     true
 )) {
     throw new Exception('Invalid set');

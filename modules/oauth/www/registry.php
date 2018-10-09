@@ -43,7 +43,7 @@ if (isset($_REQUEST['delete'])) {
 
 $list = $store->getList('consumers');
 
-$slist = array('mine' => array(), 'others' => array());
+$slist = ['mine' => [], 'others' => []];
 if (is_array($list)) {
     foreach ($list as $listitem) {
         if (array_key_exists('owner', $listitem['value'])) {

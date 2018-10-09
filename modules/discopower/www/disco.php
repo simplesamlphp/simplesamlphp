@@ -2,7 +2,7 @@
 
 try {
     $discoHandler = new \SimpleSAML\Module\discopower\PowerIdPDisco(
-        array('saml20-idp-remote', 'shib13-idp-remote'),
+        ['saml20-idp-remote', 'shib13-idp-remote'],
         'poweridpdisco'
     );
 } catch (\Exception $exception) {

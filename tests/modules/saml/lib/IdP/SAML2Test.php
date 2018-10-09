@@ -6,7 +6,7 @@ class SAML2Test extends \PHPUnit_Framework_TestCase
     {
         $username = $_SERVER['PHP_AUTH_USER'] = 'username';
         $password = $_SERVER['PHP_AUTH_PW'] = 'password';
-        $state = array();
+        $state = [];
 
         \SimpleSAML\Module\saml\IdP\SAML2::processSOAPAuthnRequest($state);
 
@@ -20,7 +20,7 @@ class SAML2Test extends \PHPUnit_Framework_TestCase
 
         $_SERVER['PHP_AUTH_PW'] = 'password';
         unset($_SERVER['PHP_AUTH_USER']);
-        $state = array();
+        $state = [];
 
         \SimpleSAML\Module\saml\IdP\SAML2::processSOAPAuthnRequest($state);
     }
@@ -31,7 +31,7 @@ class SAML2Test extends \PHPUnit_Framework_TestCase
 
         $_SERVER['PHP_AUTH_USER'] = 'username';
         unset($_SERVER['PHP_AUTH_PW']);
-        $state = array();
+        $state = [];
 
         \SimpleSAML\Module\saml\IdP\SAML2::processSOAPAuthnRequest($state);
     }

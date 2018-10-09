@@ -35,7 +35,7 @@ $warnBigSlab = 0;
 // We use the stats interface to determine which servers exists
 $stats = \SimpleSAML\Memcache::getRawStats();
 
-$keys = array();
+$keys = [];
 foreach ($stats as $group) {
     foreach ($group as $server => $state) {
 
@@ -109,7 +109,7 @@ function getServerKeys($server)
     }
 
     // Read list of slabs
-    $slabs = array();
+    $slabs = [];
     while (($line = fgets($socket)) !== false) {
         $line = rtrim($line);
         if ($line === 'END') {
@@ -125,7 +125,7 @@ function getServerKeys($server)
     }
 
     // Dump keys in slabs
-    $keys = array();
+    $keys = [];
     foreach ($slabs as $slab) {
 
         if (fwrite($socket, "stats cachedump ".$slab." 1000000\r\n") === false) {

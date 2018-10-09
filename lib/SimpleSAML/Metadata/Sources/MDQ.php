@@ -104,7 +104,7 @@ class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
     public function getMetadataSet($set)
     {
         // we don't have this metadata set
-        return array();
+        return [];
     }
 
 

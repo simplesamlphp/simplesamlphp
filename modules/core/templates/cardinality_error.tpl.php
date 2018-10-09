@@ -25,7 +25,7 @@ foreach ($this->data['cardinalityErrorAttributes'] as $attr => $v) {
     echo '<dt>'.$attr.'</td><dd>';
     echo $this->t(
         '{core:cardinality:got_want}',
-        array('%GOT%' => $v[0], '%WANT%' => htmlspecialchars($v[1]))
+        ['%GOT%' => $v[0], '%WANT%' => htmlspecialchars($v[1])]
     );
     echo '</dd></tr>';
 }

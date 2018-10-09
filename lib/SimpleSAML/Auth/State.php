@@ -103,7 +103,7 @@ class State
     public static function getPersistentAuthData(array $state)
     {
         // save persistent authentication data
-        $persistent = array();
+        $persistent = [];
 
         if (array_key_exists('PersistentAuthData', $state)) {
             foreach ($state['PersistentAuthData'] as $key) {
@@ -114,14 +114,14 @@ class State
         }
 
         // add those that should always be included
-        $mandatory = array(
+        $mandatory = [
             'Attributes',
             'Expire',
             'LogoutState',
             'AuthInstant',
             'RememberMe',
             'saml:sp:NameID'
-        );
+        ];
         foreach ($mandatory as $key) {
             if (isset($state[$key])) {
                 $persistent[$key] = $state[$key];
@@ -352,7 +352,7 @@ class State
             // Redirect to the exception handler
             \SimpleSAML\Utils\HTTP::redirectTrustedURL(
                 $state[self::EXCEPTION_HANDLER_URL],
-                array(self::EXCEPTION_PARAM => $id)
+                [self::EXCEPTION_PARAM => $id]
             );
         } elseif (array_key_exists(self::EXCEPTION_HANDLER_FUNC, $state)) {
             // Call the exception handler
@@ -415,6 +415,6 @@ class State
         if (count($tmp) === 2) {
             $url = $tmp[1];
         }
-        return array('id' => $id, 'url' => $url);
+        return ['id' => $id, 'url' => $url];
     }
 }

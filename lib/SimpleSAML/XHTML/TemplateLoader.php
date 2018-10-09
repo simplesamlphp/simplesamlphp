@@ -31,11 +31,11 @@ class TemplateLoader extends \Twig\Loader\FilesystemLoader
         if (strpos($name, ':')) {
             // we have our old SSP format
             list($namespace, $shortname) = explode(':', $name, 2);
-            $shortname = strtr($shortname, array(
+            $shortname = strtr($shortname, [
                 '.tpl.php' => '.twig',
                 '.php' => '.twig',
-            ));
-            return array($namespace, $shortname);
+            ]);
+            return [$namespace, $shortname];
         }
         return parent::parseName($name, $default);
     }

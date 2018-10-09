@@ -1,19 +1,19 @@
 <?php
 
-$config = array(
+$config = [
 
     // This is a authentication source which handles admin authentication.
-    'admin' => array(
+    'admin' => [
         // The default is to use core:AdminPassword, but it can be replaced with
         // any authentication source.
 
         'core:AdminPassword',
-    ),
+    ],
 
 
     // An authentication source which can authenticate against both SAML 2.0
     // and Shibboleth 1.3 IdPs.
-    'default-sp' => array(
+    'default-sp' => [
         'saml:SP',
 
         // The entity ID of this SP.
@@ -46,7 +46,7 @@ $config = array(
         /*'attributes.required' => array (
             'urn:oid:x.x.x.x',
         ),*/
-    ),
+    ],
 
 
     /*
@@ -331,4 +331,4 @@ $config = array(
     ),
     */
 
-);
+];

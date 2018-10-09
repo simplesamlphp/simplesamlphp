@@ -26,18 +26,18 @@ try {
         $_GET['idpentityid'] : $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
     $idpmeta = $metadata->getMetaDataConfig($idpentityid, 'saml20-idp-hosted');
 
-    $availableCerts = array();
+    $availableCerts = [];
 
-    $keys = array();
+    $keys = [];
     $certInfo = Crypto::loadPublicKey($idpmeta, false, 'new_');
     if ($certInfo !== null) {
         $availableCerts['new_idp.crt'] = $certInfo;
-        $keys[] = array(
+        $keys[] = [
             'type'            => 'X509Certificate',
             'signing'         => true,
             'encryption'      => true,
             'X509Certificate' => $certInfo['certData'],
-        );
+        ];
         $hasNewCert = true;
     } else {
         $hasNewCert = false;
@@ -45,29 +45,29 @@ try {
 
     $certInfo = Crypto::loadPublicKey($idpmeta, true);
     $availableCerts['idp.crt'] = $certInfo;
-    $keys[] = array(
+    $keys[] = [
         'type'            => 'X509Certificate',
         'signing'         => true,
         'encryption'      => ($hasNewCert ? false : true),
         'X509Certificate' => $certInfo['certData'],
-    );
+    ];
 
     if ($idpmeta->hasValue('https.certificate')) {
         $httpsCert = Crypto::loadPublicKey($idpmeta, true, 'https.');
         assert(isset($httpsCert['certData']));
         $availableCerts['https.crt'] = $httpsCert;
-        $keys[] = array(
+        $keys[] = [
             'type'            => 'X509Certificate',
             'signing'         => true,
             'encryption'      => false,
             'X509Certificate' => $httpsCert['certData'],
-        );
+        ];
     }
 
-    $metaArray = array(
+    $metaArray = [
         'metadata-set' => 'saml20-idp-remote',
         'entityid'     => $idpentityid,
-    );
+    ];
 
     $ssob = $metadata->getGenerated('SingleSignOnServiceBinding', 'saml20-idp-hosted');
     $slob = $metadata->getGenerated('SingleLogoutServiceBinding', 'saml20-idp-hosted');
@@ -76,30 +76,30 @@ try {
 
     if (is_array($ssob)) {
         foreach ($ssob as $binding) {
-            $metaArray['SingleSignOnService'][] = array(
+            $metaArray['SingleSignOnService'][] = [
                 'Binding'  => $binding,
                 'Location' => $ssol,
-            );
+            ];
         }
     } else {
-        $metaArray['SingleSignOnService'][] = array(
+        $metaArray['SingleSignOnService'][] = [
             'Binding'  => $ssob,
             'Location' => $ssol,
-        );
+        ];
     }
 
     if (is_array($slob)) {
         foreach ($slob as $binding) {
-            $metaArray['SingleLogoutService'][] = array(
+            $metaArray['SingleLogoutService'][] = [
                 'Binding'  => $binding,
                 'Location' => $slol,
-            );
+            ];
         }
     } else {
-        $metaArray['SingleLogoutService'][] = array(
+        $metaArray['SingleLogoutService'][] = [
             'Binding'  => $slob,
             'Location' => $slol,
-        );
+        ];
     }
 
     if (count($keys) === 1) {
@@ -110,28 +110,28 @@ try {
 
     if ($idpmeta->getBoolean('saml20.sendartifact', false)) {
         // Artifact sending enabled
-        $metaArray['ArtifactResolutionService'][] = array(
+        $metaArray['ArtifactResolutionService'][] = [
             'index'    => 0,
             'Location' => HTTP::getBaseURL().'saml2/idp/ArtifactResolutionService.php',
             'Binding'  => Constants::BINDING_SOAP,
-        );
+        ];
     }
 
     if ($idpmeta->getBoolean('saml20.hok.assertion', false)) {
         // Prepend HoK SSO Service endpoint.
-        array_unshift($metaArray['SingleSignOnService'], array(
+        array_unshift($metaArray['SingleSignOnService'], [
             'hoksso:ProtocolBinding' => Constants::BINDING_HTTP_REDIRECT,
             'Binding'                => Constants::BINDING_HOK_SSO,
             'Location'               => HTTP::getBaseURL().'saml2/idp/SSOService.php'
-        ));
+        ]);
     }
 
     if ($idpmeta->getBoolean('saml20.ecp', false)) {
-        $metaArray['SingleSignOnService'][] = array(
+        $metaArray['SingleSignOnService'][] = [
             'index' => 0,
             'Binding'  => Constants::BINDING_SOAP,
             'Location' => HTTP::getBaseURL().'saml2/idp/SSOService.php',
-        );
+        ];
     }
 
     $metaArray['NameIDFormat'] = $idpmeta->getString(
@@ -218,7 +218,7 @@ try {
 
         $t->data['clipboard.js'] = true;
         $t->data['available_certs'] = $availableCerts;
-        $certdata = array();
+        $certdata = [];
         foreach (array_keys($availableCerts) as $availableCert) {
             $certdata[$availableCert]['name'] = $availableCert;
             $certdata[$availableCert]['url'] = SimpleSAML\Module::getModuleURL('saml/idp/certs.php').'/'.$availableCert;

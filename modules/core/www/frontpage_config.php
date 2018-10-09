@@ -12,7 +12,7 @@ $loginurl = \SimpleSAML\Utils\Auth::getAdminLoginURL();
 $isadmin = \SimpleSAML\Utils\Auth::isAdmin();
 $logouturl = \SimpleSAML\Utils\Auth::getAdminLogoutURL();
 
-$warnings = array();
+$warnings = [];
 
 if (!\SimpleSAML\Utils\HTTP::isHTTPS()) {
     $warnings[] = '{core:frontpage:warnings_https}';
@@ -29,29 +29,29 @@ if (extension_loaded('suhosin')) {
     }
 }
 
-$links = array();
-$links_welcome = array();
-$links_config = array();
-$links_auth = array();
-$links_federation = array();
+$links = [];
+$links_welcome = [];
+$links_config = [];
+$links_auth = [];
+$links_federation = [];
 
-$links_config[] = array(
+$links_config[] = [
     'href' => \SimpleSAML\Utils\HTTP::getBaseURL().'admin/hostnames.php',
     'text' => '{core:frontpage:link_diagnostics}'
-);
+];
 
-$links_config[] = array(
+$links_config[] = [
     'href' => \SimpleSAML\Utils\HTTP::getBaseURL().'admin/phpinfo.php',
     'text' => '{core:frontpage:link_phpinfo}'
-);
+];
 
-$allLinks = array(
+$allLinks = [
     'links'      => &$links,
     'welcome'    => &$links_welcome,
     'config'     => &$links_config,
     'auth'       => &$links_auth,
     'federation' => &$links_federation,
-);
+];
 \SimpleSAML\Module::callHooks('frontpage', $allLinks);
 
 // Check for updates. Store the remote result in the session so we
@@ -82,62 +82,62 @@ if ($config->getBoolean('admin.checkforupdates', true) && $current !== 'master')
 
         if ($latest && version_compare($current, ltrim($latest['tag_name'], 'v'), 'lt')) {
             $outdated = true;
-            $warnings[] = array(
+            $warnings[] = [
                 '{core:frontpage:warnings_outdated}',
-                array('%LATEST_URL%' => $latest['html_url'])
-            );
+                ['%LATEST_URL%' => $latest['html_url']]
+            ];
         }
     }
 }
 
-$enablematrix = array(
+$enablematrix = [
     'saml20idp' => $config->getBoolean('enable.saml20-idp', false),
     'shib13idp' => $config->getBoolean('enable.shib13-idp', false),
-);
+];
 
 
-$functionchecks = array(
-    'time'             => array('required', 'Date/Time Extension'),
-    'hash'             => array('required', 'Hashing function'),
-    'gzinflate'        => array('required', 'ZLib'),
-    'openssl_sign'     => array('required', 'OpenSSL'),
-    'dom_import_simplexml' => array('required', 'XML DOM'),
-    'preg_match'       => array('required', 'RegEx support'),
-    'json_decode'      => array('required', 'JSON support'),
-    'class_implements' => array('required', 'Standard PHP Library (SPL)'),
-    'mb_strlen'        => array('required', 'Multibyte String Extension'),
-    'curl_init' => array('optional', 'cURL (required if automatic version checks are used, also by some modules.'),
-    'session_start'  => array('optional', 'Session Extension (required if PHP sessions are used)'),
-    'pdo_drivers'    => array('optional', 'PDO Extension (required if a database backend is used)'),
-);
+$functionchecks = [
+    'time'             => ['required', 'Date/Time Extension'],
+    'hash'             => ['required', 'Hashing function'],
+    'gzinflate'        => ['required', 'ZLib'],
+    'openssl_sign'     => ['required', 'OpenSSL'],
+    'dom_import_simplexml' => ['required', 'XML DOM'],
+    'preg_match'       => ['required', 'RegEx support'],
+    'json_decode'      => ['required', 'JSON support'],
+    'class_implements' => ['required', 'Standard PHP Library (SPL)'],
+    'mb_strlen'        => ['required', 'Multibyte String Extension'],
+    'curl_init' => ['optional', 'cURL (required if automatic version checks are used, also by some modules.'],
+    'session_start'  => ['optional', 'Session Extension (required if PHP sessions are used)'],
+    'pdo_drivers'    => ['optional', 'PDO Extension (required if a database backend is used)'],
+];
 if (\SimpleSAML\Module::isModuleEnabled('ldap')) {
-    $functionchecks['ldap_bind'] = array('optional', 'LDAP Extension (required if an LDAP backend is used)');
+    $functionchecks['ldap_bind'] = ['optional', 'LDAP Extension (required if an LDAP backend is used)'];
 }
 if (\SimpleSAML\Module::isModuleEnabled('radius')) {
-    $functionchecks['radius_auth_open'] = array('optional', 'Radius Extension (required if a Radius backend is used)');
+    $functionchecks['radius_auth_open'] = ['optional', 'Radius Extension (required if a Radius backend is used)'];
 }
 
-$funcmatrix = array();
-$funcmatrix[] = array(
+$funcmatrix = [];
+$funcmatrix[] = [
     'required' => 'required',
     'descr' => 'PHP Version >= 5.4. You run: '.phpversion(),
     'enabled' => version_compare(phpversion(), '5.4', '>=')
-);
+];
 foreach ($functionchecks as $func => $descr) {
-    $funcmatrix[] = array('descr' => $descr[1], 'required' => $descr[0], 'enabled' => function_exists($func));
+    $funcmatrix[] = ['descr' => $descr[1], 'required' => $descr[0], 'enabled' => function_exists($func)];
 }
 
-$funcmatrix[] = array(
+$funcmatrix[] = [
     'required' => 'optional',
     'descr' => 'predis/predis (required if the redis data store is used)',
     'enabled' => class_exists('\Predis\Client'),
-);
+];
 
-$funcmatrix[] = array(
+$funcmatrix[] = [
     'required' => 'optional',
     'descr' => 'Memcache or Memcached Extension (required if a Memcached backend is used)',
     'enabled' => class_exists('Memcache') || class_exists('Memcached'),
-);
+];
 
 // Some basic configuration checks
 
@@ -146,21 +146,21 @@ if ($config->getString('technicalcontact_email', 'na@example.org') === 'na@examp
 } else {
     $mail_ok = true;
 }
-$funcmatrix[] = array(
+$funcmatrix[] = [
     'required' => 'recommended',
     'descr' => 'technicalcontact_email option set',
     'enabled' => $mail_ok
-);
+];
 if ($config->getString('auth.adminpassword', '123') === '123') {
     $password_ok = false;
 } else {
     $password_ok = true;
 }
-$funcmatrix[] = array(
+$funcmatrix[] = [
     'required' => 'required',
     'descr' => 'auth.adminpassword option set',
     'enabled' => $password_ok
-);
+];
 
 $t = new \SimpleSAML\XHTML\Template($config, 'core:frontpage_config.tpl.php');
 $translator = $t->getTranslator();
@@ -189,11 +189,11 @@ $t->data['links_federation'] = $links_federation;
 
 $t->data['enablematrix'] = $enablematrix;
 $t->data['funcmatrix'] = $funcmatrix;
-$t->data['requiredmap'] = array(
+$t->data['requiredmap'] = [
     'recommended' => $translator->noop('{core:frontpage:recommended}'),
     'required' => $translator->noop('{core:frontpage:required}'),
     'optional' => $translator->noop('{core:frontpage:optional}'),
-);
+];
 $t->data['version'] = $config->getVersion();
 $t->data['directory'] = dirname(dirname(dirname(dirname(__FILE__))));
 

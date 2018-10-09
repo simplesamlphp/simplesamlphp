@@ -20,9 +20,9 @@ class MetadataNotFound extends Error
         assert(is_string($entityId));
 
         $this->includeTemplate = 'core:no_metadata.tpl.php';
-        parent::__construct(array(
+        parent::__construct([
                 'METADATANOTFOUND',
                 '%ENTITYID%' => htmlspecialchars(var_export($entityId, true))
-        ));
+        ]);
     }
 }

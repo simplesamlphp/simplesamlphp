@@ -254,11 +254,11 @@ class LDAP
         // Search using generated filter
         Logger::debug('Library - LDAP search(): Searching base ('.$scope.') \''.$base.'\' for \''.$filter.'\'');
         if ($scope === 'base') {
-            $result = @ldap_read($this->ldap, $base, $filter, array(), 0, 0, $this->timeout, LDAP_DEREF_NEVER);
+            $result = @ldap_read($this->ldap, $base, $filter, [], 0, 0, $this->timeout, LDAP_DEREF_NEVER);
         } elseif ($scope === 'onelevel') {
-            $result = @ldap_list($this->ldap, $base, $filter, array(), 0, 0, $this->timeout, LDAP_DEREF_NEVER);
+            $result = @ldap_list($this->ldap, $base, $filter, [], 0, 0, $this->timeout, LDAP_DEREF_NEVER);
         } else {
-            $result = @ldap_search($this->ldap, $base, $filter, array(), 0, 0, $this->timeout, LDAP_DEREF_NEVER);
+            $result = @ldap_search($this->ldap, $base, $filter, [], 0, 0, $this->timeout, LDAP_DEREF_NEVER);
         }
 
         if ($result === false) {
@@ -385,7 +385,7 @@ class LDAP
     public function searchformultiple(
         $bases,
         $filters,
-        $attributes = array(),
+        $attributes = [],
         $and = true,
         $escape = true,
         $scope = 'subtree'
@@ -607,7 +607,7 @@ class LDAP
         } else {
             // Get all attributes...
             // TODO: Verify that this originally was the intended behaviour. Could $attributes be a string?
-            $attributes = array();
+            $attributes = [];
         }
         Logger::debug('Library - LDAP getAttributes(): Getting '.$description.' from DN \''.$dn.'\'');
 
@@ -629,14 +629,14 @@ class LDAP
         }
 
         // Parsing each found attribute into our result set
-        $result = array(); // Recycling $result... Possibly bad practice.
+        $result = []; // Recycling $result... Possibly bad practice.
         for ($i = 0; $i < $attributes['count']; $i++) {
             // Ignore attributes that exceed the maximum allowed size
             $name = $attributes[$i];
             $attribute = $attributes[$name];
 
             // Deciding whether to base64 encode
-            $values = array();
+            $values = [];
             for ($j = 0; $j < $attribute['count']; $j++) {
                 $value = $attribute[$j];
 
@@ -727,7 +727,7 @@ class LDAP
      * @param string|array $values Array of values to escape
      * @return array Array $values, but escaped
      */
-    public static function escape_filter_value($values = array(), $singleValue = true)
+    public static function escape_filter_value($values = [], $singleValue = true)
     {
         // Parameter validation
         $values = \SimpleSAML\Utils\Arrays::arrayize($values);

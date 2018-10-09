@@ -19,7 +19,7 @@ function metarefresh_hook_cron(&$croninfo)
         $config = \SimpleSAML\Configuration::getInstance();
         $mconfig = \SimpleSAML\Configuration::getOptionalConfig('config-metarefresh.php');
 
-        $sets = $mconfig->getConfigList('sets', array());
+        $sets = $mconfig->getConfigList('sets', []);
         $stateFile = $config->getPathValue('datadir', 'data/').'metarefresh-state.php';
 
         foreach ($sets as $setkey => $set) {
@@ -40,28 +40,28 @@ function metarefresh_hook_cron(&$croninfo)
 
             $outputDir = $set->getString('outputDir');
             $outputDir = $config->resolvePath($outputDir);
-            $outputFormat = $set->getValueValidate('outputFormat', array('flatfile', 'serialize'), 'flatfile');
+            $outputFormat = $set->getValueValidate('outputFormat', ['flatfile', 'serialize'], 'flatfile');
 
-            $oldMetadataSrc = \SimpleSAML\Metadata\MetaDataStorageSource::getSource(array(
+            $oldMetadataSrc = \SimpleSAML\Metadata\MetaDataStorageSource::getSource([
                 'type' => $outputFormat,
                 'directory' => $outputDir,
-            ));
+            ]);
 
             $metaloader = new \SimpleSAML\Module\metarefresh\MetaLoader($expire, $stateFile, $oldMetadataSrc);
 
             // Get global blacklist, whitelist and caching info
-            $blacklist = $mconfig->getArray('blacklist', array());
-            $whitelist = $mconfig->getArray('whitelist', array());
+            $blacklist = $mconfig->getArray('blacklist', []);
+            $whitelist = $mconfig->getArray('whitelist', []);
             $conditionalGET = $mconfig->getBoolean('conditionalGET', false);
 
             // get global type filters
-            $available_types = array(
+            $available_types = [
                 'saml20-idp-remote',
                 'saml20-sp-remote',
                 'shib13-idp-remote',
                 'shib13-sp-remote',
                 'attributeauthority-remote'
-            );
+            ];
             $set_types = $set->getArrayize('types', $available_types);
 
             foreach ($set->getArray('sources') as $source) {

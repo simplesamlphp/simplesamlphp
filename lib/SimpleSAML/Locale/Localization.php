@@ -54,7 +54,7 @@ class Localization
      *
      * @var array
      */
-    private $localeDomainMap = array();
+    private $localeDomainMap = [];
 
     /**
      * Pointer to currently active translator

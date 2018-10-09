@@ -15,7 +15,7 @@ class SecurityTokenServiceType extends \SAML2\XML\md\RoleDescriptor
      *
      * @var array
      */
-    public $protocolSupportEnumeration = array(FedConst::NS_FED);
+    public $protocolSupportEnumeration = [FedConst::NS_FED];
 
     /**
      * The Location of Services.

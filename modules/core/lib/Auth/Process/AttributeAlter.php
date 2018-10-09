@@ -135,7 +135,7 @@ class AttributeAlter extends \SimpleSAML\Auth\ProcessingFilter
         if ($this->replace) {
             // replace the whole value
             foreach ($attributes[$this->subject] as &$value) {
-                $matches = array();
+                $matches = [];
                 if (preg_match($this->pattern, $value, $matches) > 0) {
                     $new_value = $matches[0];
 
@@ -146,15 +146,15 @@ class AttributeAlter extends \SimpleSAML\Auth\ProcessingFilter
                     if ($this->subject === $this->target) {
                         $value = $new_value;
                     } else {
-                        $attributes[$this->target] = array($new_value);
+                        $attributes[$this->target] = [$new_value];
                     }
                 }
             }
         } elseif ($this->remove) {
             // remove the whole value
-            $removedAttrs = array();
+            $removedAttrs = [];
             foreach ($attributes[$this->subject] as $value) {
-                $matches = array();
+                $matches = [];
                 if (preg_match($this->pattern, $value, $matches) > 0) {
                     $removedAttrs[] = $value;
                 }

@@ -42,12 +42,12 @@ if (array_key_exists('password', $_REQUEST)) {
 
 $errorCode = null;
 $errorParams = null;
-$queryParams = array();
+$queryParams = [];
 
 if (isset($state['error'])) {
     $errorCode = $state['error']['code'];
     $errorParams = $state['error']['params'];
-    $queryParams = array('AuthState' => $authStateId);
+    $queryParams = ['AuthState' => $authStateId];
 }
 
 if (!empty($_REQUEST['username']) || !empty($password)) {
@@ -85,12 +85,12 @@ if (!empty($_REQUEST['username']) || !empty($password)) {
         // Login failed. Extract error code and parameters, to display the error
         $errorCode = $e->getErrorCode();
         $errorParams = $e->getParameters();
-        $state['error'] = array(
+        $state['error'] = [
             'code' => $errorCode,
             'params' => $errorParams
-        );
+        ];
         $authStateId = \SimpleSAML\Auth\State::saveState($state, \SimpleSAML\Module\core\Auth\UserPassBase::STAGEID);
-        $queryParams = array('AuthState' => $authStateId);
+        $queryParams = ['AuthState' => $authStateId];
     }
     if (isset($state['error'])) {
         unset($state['error']);
@@ -99,7 +99,7 @@ if (!empty($_REQUEST['username']) || !empty($password)) {
 
 $globalConfig = \SimpleSAML\Configuration::getInstance();
 $t = new \SimpleSAML\XHTML\Template($globalConfig, 'core:loginuserpass.php');
-$t->data['stateparams'] = array('AuthState' => $authStateId);
+$t->data['stateparams'] = ['AuthState' => $authStateId];
 if (array_key_exists('forcedUsername', $state)) {
     $t->data['username'] = $state['forcedUsername'];
     $t->data['forceUsername'] = true;

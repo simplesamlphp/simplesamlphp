@@ -4,7 +4,7 @@
  * This is the configuration file for the Auth MemCookie example.
  */
 
-$config = array(
+$config = [
     /*
      * The authentication source that should be used.
      *
@@ -70,4 +70,4 @@ $config = array(
      *  'memcache.port' => 11211,
      */
     'memcache.port' => 11211,
-);
+];

@@ -40,7 +40,7 @@ try {
     // generate the authentication information
     $attributes = $s->getAttributes();
 
-    $authData = array();
+    $authData = [];
 
     // username
     $usernameAttr = $amc->getUsernameAttr();
@@ -63,7 +63,7 @@ try {
         }
         $authData['Groups'] = $attributes[$groupsAttr];
     } else {
-        $authData['Groups'] = array();
+        $authData['Groups'] = [];
     }
 
     $authData['RemoteIP'] = $_SERVER['REMOTE_ADDR'];

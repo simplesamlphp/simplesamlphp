@@ -39,7 +39,7 @@ class BaseRule
     public function availableTimeRes()
     {
         $timeresConfigs = $this->statconfig->getValue('timeres');
-        $available_times = array();
+        $available_times = [];
         foreach ($timeresConfigs as $tres => $tresconfig) {
             if (array_key_exists($tres, $this->available)) {
                 $available_times[$tres] = $tresconfig['name'];
@@ -62,7 +62,7 @@ class BaseRule
         /*
          * Get list of avaiable times in current file (rule)
          */
-        $available_times = array();
+        $available_times = [];
         foreach ($this->available[$timeres] as $slot) {
             $available_times[$slot] = $datehandler->prettyHeader(
                 $slot,
@@ -115,7 +115,7 @@ class BaseRule
         if ($timeslotindex[$fileslot] < (count($timeslotindex) - 1)) {
             $available_times_next = $timeslots[$timeslotindex[$fileslot] + 1];
         }
-        return array('prev' => $available_times_prev, 'next' => $available_times_next);
+        return ['prev' => $available_times_prev, 'next' => $available_times_next];
     }
 
     public function getDataSet($preferTimeRes, $preferTime)

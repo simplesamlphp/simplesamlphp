@@ -1,7 +1,7 @@
 <?php
 $this->data['header'] = 'SimpleSAMLphp Statistics';
 
-$this->data['jquery'] = array('core' => true, 'ui' => true, 'css' => true);
+$this->data['jquery'] = ['core' => true, 'ui' => true, 'css' => true];
 
 $this->data['head'] = '<link rel="stylesheet" type="text/css" href="'.
     SimpleSAML\Module::getModuleURL("statistics/assets/css/statistics.css").'" />'."\n";
@@ -167,7 +167,7 @@ if (!empty($this->data['results'])) {
     /**
      * Handle table view - - - - - -
      */
-    $classint = array('odd', 'even');
+    $classint = ['odd', 'even'];
     $i = 0;
     echo '<div id="table" class="tabset_content">';
 

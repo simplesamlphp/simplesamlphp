@@ -28,7 +28,7 @@ class Auth
             $returnTo = HTTP::getSelfURL();
         }
 
-        return Module::getModuleURL('core/login-admin.php', array('ReturnTo' => $returnTo));
+        return Module::getModuleURL('core/login-admin.php', ['ReturnTo' => $returnTo]);
     }
 
 

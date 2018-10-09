@@ -34,7 +34,7 @@ class SessionHandlerPHP extends SessionHandler
      *
      * @var array
      */
-    private $previous_session = array();
+    private $previous_session = [];
 
 
     /**
@@ -147,7 +147,7 @@ class SessionHandlerPHP extends SessionHandler
             $this->previous_session['cookie_params']['httponly']
         );
         session_id($this->previous_session['id']);
-        $this->previous_session = array();
+        $this->previous_session = [];
         $this->sessionStart();
 
         /*

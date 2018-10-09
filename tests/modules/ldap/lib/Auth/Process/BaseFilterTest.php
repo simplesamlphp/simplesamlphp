@@ -15,11 +15,11 @@ class BaseFilter_Test extends TestCase
 
         $this->assertEquals(
             "array ( 'ldap.hostname' => 'ldap://172.17.101.32', 'ldap.port' => 389, 'ldap.password' => '********', )",
-            $method->invokeArgs($stub, array(array(
+            $method->invokeArgs($stub, [[
                 'ldap.hostname' => 'ldap://172.17.101.32',
                 'ldap.port' => 389,
                 'ldap.password' => 'password',
-            )))
+            ]])
         );
     }
 }

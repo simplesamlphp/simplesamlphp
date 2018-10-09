@@ -201,15 +201,15 @@ class SP extends Source
             $accr = \SimpleSAML\Utils\Arrays::arrayize($state['saml:AuthnContextClassRef']);
             $comp = \SAML2\Constants::COMPARISON_EXACT;
             if (isset($state['saml:AuthnContextComparison'])
-                && in_array($state['AuthnContextComparison'], array(
+                && in_array($state['AuthnContextComparison'], [
                     \SAML2\Constants::COMPARISON_EXACT,
                     \SAML2\Constants::COMPARISON_MINIMUM,
                     \SAML2\Constants::COMPARISON_MAXIMUM,
                     \SAML2\Constants::COMPARISON_BETTER,
-                ), true)) {
+                ], true)) {
                 $comp = $state['saml:AuthnContextComparison'];
             }
-            $ar->setRequestedAuthnContext(array('AuthnContextClassRef' => $accr, 'Comparison' => $comp));
+            $ar->setRequestedAuthnContext(['AuthnContextClassRef' => $accr, 'Comparison' => $comp]);
         }
 
         if (isset($state['ForceAuthn'])) {
@@ -229,10 +229,10 @@ class SP extends Source
 
         if (isset($state['saml:NameIDPolicy'])) {
             if (is_string($state['saml:NameIDPolicy'])) {
-                $policy = array(
+                $policy = [
                     'Format' => (string) $state['saml:NameIDPolicy'],
                     'AllowCreate' => true,
-                );
+                ];
             } elseif (is_array($state['saml:NameIDPolicy'])) {
                 $policy = $state['saml:NameIDPolicy'];
             } else {
@@ -244,14 +244,14 @@ class SP extends Source
         if (isset($state['saml:IDPList'])) {
             $IDPList = $state['saml:IDPList'];
         } else {
-            $IDPList = array();
+            $IDPList = [];
         }
 
         $ar->setIDPList(
             array_unique(
                 array_merge(
-                    $this->metadata->getArray('IDPList', array()),
-                    $idpMetadata->getArray('IDPList', array()),
+                    $this->metadata->getArray('IDPList', []),
+                    $idpMetadata->getArray('IDPList', []),
                     (array) $IDPList
                 )
             )
@@ -265,7 +265,7 @@ class SP extends Source
             $ar->setProxyCount($this->metadata->getInteger('ProxyCount', null));
         }
 
-        $requesterID = array();
+        $requesterID = [];
         if (isset($state['saml:RequesterID'])) {
             $requesterID = $state['saml:RequesterID'];
         }
@@ -294,9 +294,9 @@ class SP extends Source
         if ($ar->getProtocolBinding() === \SAML2\Constants::BINDING_HOK_SSO) {
             $dst = $idpMetadata->getDefaultEndpoint(
                 'SingleSignOnService',
-                array(
+                [
                     \SAML2\Constants::BINDING_HOK_SSO
-                )
+                ]
             );
         } else {
             $dst = $idpMetadata->getEndpointPrioritizedByBinding(
@@ -372,13 +372,13 @@ class SP extends Source
             $discoURL = \SimpleSAML\Module::getModuleURL('saml/disco.php');
         }
 
-        $returnTo = \SimpleSAML\Module::getModuleURL('saml/sp/discoresp.php', array('AuthID' => $id));
+        $returnTo = \SimpleSAML\Module::getModuleURL('saml/sp/discoresp.php', ['AuthID' => $id]);
 
-        $params = array(
+        $params = [
             'entityID' => $this->entityId,
             'return' => $returnTo,
             'returnIDParam' => 'idpentityid'
-        );
+        ];
 
         if (isset($state['saml:IDPList'])) {
             $params['IDPList'] = $state['saml:IDPList'];
@@ -556,7 +556,7 @@ class SP extends Source
         // save the state WITHOUT a restart URL, so that we don't try an IdP-initiated login if something goes wrong
         $id = State::saveState($state, 'saml:proxy:invalid_idp', true);
         $url = \SimpleSAML\Module::getModuleURL('saml/proxy/invalid_session.php');
-        \SimpleSAML\Utils\HTTP::redirectTrustedURL($url, array('AuthState' => $id));
+        \SimpleSAML\Utils\HTTP::redirectTrustedURL($url, ['AuthState' => $id]);
         assert(false);
     }
 
@@ -574,7 +574,7 @@ class SP extends Source
         if (isset($state['Responder'])) {
             $state['saml:proxy:reauthLogout:PrevResponder'] = $state['Responder'];
         }
-        $state['Responder'] = array('\SimpleSAML\Module\saml\Auth\Source\SP', 'reauthPostLogout');
+        $state['Responder'] = ['\SimpleSAML\Module\saml\Auth\Source\SP', 'reauthPostLogout'];
 
         $idp = \SimpleSAML\IdP::getByState($state);
         $idp->handleLogoutRequest($state, null);
@@ -645,9 +645,9 @@ class SP extends Source
 
         $idpMetadata = $this->getIdPMetadata($idp);
 
-        $endpoint = $idpMetadata->getEndpointPrioritizedByBinding('SingleLogoutService', array(
+        $endpoint = $idpMetadata->getEndpointPrioritizedByBinding('SingleLogoutService', [
             \SAML2\Constants::BINDING_HTTP_REDIRECT,
-            \SAML2\Constants::BINDING_HTTP_POST), false);
+            \SAML2\Constants::BINDING_HTTP_POST], false);
         if ($endpoint === false) {
             \SimpleSAML\Logger::info('No logout endpoint for IdP '.var_export($idp, true).'.');
             return;
@@ -719,15 +719,15 @@ class SP extends Source
         $state['saml:sp:IdP'] = $idp;
         $state['PersistentAuthData'][] = 'saml:sp:IdP';
 
-        $authProcState = array(
+        $authProcState = [
             'saml:sp:IdP' => $idp,
             'saml:sp:State' => $state,
-            'ReturnCall' => array('\SimpleSAML\Module\saml\Auth\Source\SP', 'onProcessingCompleted'),
+            'ReturnCall' => ['\SimpleSAML\Module\saml\Auth\Source\SP', 'onProcessingCompleted'],
 
             'Attributes' => $attributes,
             'Destination' => $spMetadataArray,
             'Source' => $idpMetadataArray,
-        );
+        ];
 
         if (isset($state['saml:sp:NameID'])) {
             $authProcState['saml:sp:NameID'] = $state['saml:sp:NameID'];

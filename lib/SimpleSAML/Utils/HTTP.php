@@ -40,7 +40,7 @@ class HTTP
         // encrypt the session ID and the random ID
         $info = base64_encode(Crypto::aesEncrypt($session_id.':'.$id));
 
-        $url = Module::getModuleURL('core/postredirect.php', array('RedirInfo' => $info));
+        $url = Module::getModuleURL('core/postredirect.php', ['RedirInfo' => $info]);
         return preg_replace('#^https:#', 'http:', $url);
     }
 
@@ -146,7 +146,7 @@ class HTTP
      * @author Mads Freek Petersen
      * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
-    private static function redirect($url, $parameters = array())
+    private static function redirect($url, $parameters = [])
     {
         if (!is_string($url) || empty($url) || !is_array($parameters)) {
             throw new \InvalidArgumentException('Invalid input parameters.');
@@ -220,10 +220,10 @@ class HTTP
     {
         // generate a random ID to avoid replay attacks
         $id = Random::generateID();
-        $postData = array(
+        $postData = [
             'post' => $data,
             'url'  => $destination,
-        );
+        ];
 
         // save the post data to the session, tied to the random ID
         $session->setData('core_postdatalink', $id, $postData);
@@ -253,13 +253,13 @@ class HTTP
 
         $queryStart = strpos($url, '?');
         if ($queryStart === false) {
-            $oldQuery = array();
+            $oldQuery = [];
             $url .= '?';
         } else {
             /** @var string|false $oldQuery */
             $oldQuery = substr($url, $queryStart + 1);
             if ($oldQuery === false) {
-                $oldQuery = array();
+                $oldQuery = [];
             } else {
                 $oldQuery = self::parseQueryString($oldQuery);
             }
@@ -300,7 +300,7 @@ class HTTP
 
         $url = Module::getModuleURL('core/no_cookie.php');
         if ($retryURL !== null) {
-            $url = self::addURLParameters($url, array('retryURL' => $retryURL));
+            $url = self::addURLParameters($url, ['retryURL' => $retryURL]);
         }
         self::redirectTrustedURL($url);
     }
@@ -333,7 +333,7 @@ class HTTP
 
         // get the white list of domains
         if ($trustedSites === null) {
-            $trustedSites = Configuration::getInstance()->getValue('trusted.url.domains', array());
+            $trustedSites = Configuration::getInstance()->getValue('trusted.url.domains', []);
         }
 
         // validates the URL's host is among those allowed
@@ -407,7 +407,7 @@ class HTTP
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      * @author Marco Ferrante, University of Genova <marco@csita.unige.it>
      */
-    public static function fetch($url, $context = array(), $getHeaders = false)
+    public static function fetch($url, $context = [], $getHeaders = false)
     {
         if (!is_string($url)) {
             throw new \InvalidArgumentException('Invalid input parameters.');
@@ -442,10 +442,10 @@ class HTTP
                 // extract the hostname
                 $hostname = parse_url($url, PHP_URL_HOST);
                 if (!empty($hostname)) {
-                    $context['ssl'] = array(
+                    $context['ssl'] = [
                         'SNI_server_name' => $hostname,
                         'SNI_enabled'     => true,
-                    );
+                    ];
                 } else {
                     Logger::warning('Invalid URL format or local URL used through a proxy');
                 }
@@ -463,10 +463,10 @@ class HTTP
         // data and headers
         if ($getHeaders) {
             if (isset($http_response_header)) {
-                $headers = array();
+                $headers = [];
                 foreach ($http_response_header as $h) {
                     if (preg_match('@^HTTP/1\.[01]\s+\d{3}\s+@', $h)) {
-                        $headers = array(); // reset
+                        $headers = []; // reset
                         $headers[0] = $h;
                         continue;
                     }
@@ -479,7 +479,7 @@ class HTTP
                 // no HTTP headers, probably a different protocol, e.g. file
                 $headers = null;
             }
-            return array($data, $headers);
+            return [$data, $headers];
         }
 
         return $data;
@@ -501,12 +501,12 @@ class HTTP
     {
         if (!array_key_exists('HTTP_ACCEPT_LANGUAGE', $_SERVER)) {
             // no Accept-Language header, return an empty set
-            return array();
+            return [];
         }
 
         $languages = explode(',', strtolower($_SERVER['HTTP_ACCEPT_LANGUAGE']));
 
-        $ret = array();
+        $ret = [];
 
         foreach ($languages as $l) {
             $opts = explode(';', $l);
@@ -681,7 +681,7 @@ class HTTP
             // post the data directly
             $session = Session::getSessionFromRequest();
             $id = self::savePOSTData($session, $destination, $data);
-            $url = Module::getModuleURL('core/postredirect.php', array('RedirId' => $id));
+            $url = Module::getModuleURL('core/postredirect.php', ['RedirId' => $id]);
         }
 
         return $url;
@@ -919,7 +919,7 @@ class HTTP
             throw new \InvalidArgumentException('Invalid input parameters.');
         }
 
-        $res = array();
+        $res = [];
         if (empty($query_string)) {
             return $res;
         }
@@ -960,7 +960,7 @@ class HTTP
      *
      * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
-    public static function redirectTrustedURL($url, $parameters = array())
+    public static function redirectTrustedURL($url, $parameters = [])
     {
         if (!is_string($url) || !is_array($parameters)) {
             throw new \InvalidArgumentException('Invalid input parameters.');
@@ -992,7 +992,7 @@ class HTTP
      *
      * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
-    public static function redirectUntrustedURL($url, $parameters = array())
+    public static function redirectUntrustedURL($url, $parameters = [])
     {
         if (!is_string($url) || !is_array($parameters)) {
             throw new \InvalidArgumentException('Invalid input parameters.');
@@ -1115,7 +1115,7 @@ class HTTP
             throw new \InvalidArgumentException('Invalid input parameters.');
         }
 
-        $default_params = array(
+        $default_params = [
             'lifetime' => 0,
             'expire'   => null,
             'path'     => '/',
@@ -1123,7 +1123,7 @@ class HTTP
             'secure'   => false,
             'httponly' => true,
             'raw'      => false,
-        );
+        ];
 
         if ($params !== null) {
             $params = array_merge($default_params, $params);

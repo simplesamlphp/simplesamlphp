@@ -1,12 +1,12 @@
 <?php
 
-$metadata['urn:federation:localhost'] = array(
+$metadata['urn:federation:localhost'] = [
     'prp' => 'https://localhost/adfs/ls/',
     'simplesaml.nameidattribute' => 'uid',
-    'authproc' => array(
-        50 => array(
+    'authproc' => [
+        50 => [
             'class' => 'core:AttributeLimit',
             'cn', 'mail', 'uid', 'eduPersonAffiliation',
-        ),
-    ),
-);
+        ],
+    ],
+];

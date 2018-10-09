@@ -140,14 +140,14 @@ class Database extends \SimpleSAML\Module\consent\Store
      */
     public function __sleep()
     {
-        return array(
+        return [
             'dsn',
             'dateTime',
             'username',
             'password',
             'table',
             'timeout',
-        );
+        ];
     }
 
 
@@ -174,7 +174,7 @@ class Database extends \SimpleSAML\Module\consent\Store
             'UPDATE '.$this->table.' '.
             'SET usage_date = '.$this->dateTime.' '.
             'WHERE hashed_user_id = ? AND service_id = ? AND attribute = ?',
-            array($userId, $destinationId, $attributeSet)
+            [$userId, $destinationId, $attributeSet]
         );
 
         if ($st === false) {
@@ -215,7 +215,7 @@ class Database extends \SimpleSAML\Module\consent\Store
             'UPDATE '.$this->table.' '.
             'SET consent_date = '.$this->dateTime.', usage_date = '.$this->dateTime.', attribute = ? '.
             'WHERE hashed_user_id = ? AND service_id = ?',
-            array($attributeSet, $userId, $destinationId)
+            [$attributeSet, $userId, $destinationId]
         );
 
         if ($st === false) {
@@ -232,7 +232,7 @@ class Database extends \SimpleSAML\Module\consent\Store
         $st = $this->execute(
             'INSERT INTO '.$this->table.' ('.'consent_date, usage_date, hashed_user_id, service_id, attribute'.
             ') '.'VALUES ('.$this->dateTime.', '.$this->dateTime.', ?, ?, ?)',
-            array($userId, $destinationId, $attributeSet)
+            [$userId, $destinationId, $attributeSet]
         );
 
         if ($st !== false) {
@@ -259,7 +259,7 @@ class Database extends \SimpleSAML\Module\consent\Store
 
         $st = $this->execute(
             'DELETE FROM '.$this->table.' WHERE hashed_user_id = ? AND service_id = ?;',
-            array($userId, $destinationId)
+            [$userId, $destinationId]
         );
 
         if ($st === false) {
@@ -290,7 +290,7 @@ class Database extends \SimpleSAML\Module\consent\Store
 
         $st = $this->execute(
             'DELETE FROM '.$this->table.' WHERE hashed_user_id = ?',
-            array($userId)
+            [$userId]
         );
 
         if ($st === false) {
@@ -319,16 +319,16 @@ class Database extends \SimpleSAML\Module\consent\Store
     {
         assert(is_string($userId));
 
-        $ret = array();
+        $ret = [];
 
         $st = $this->execute(
             'SELECT service_id, attribute, consent_date, usage_date FROM '.$this->table.
             ' WHERE hashed_user_id = ?',
-            array($userId)
+            [$userId]
         );
 
         if ($st === false) {
-            return array();
+            return [];
         }
 
         while ($row = $st->fetch(\PDO::FETCH_NUM)) {
@@ -393,13 +393,13 @@ class Database extends \SimpleSAML\Module\consent\Store
      */
     public function getStatistics()
     {
-        $ret = array();
+        $ret = [];
 
         // Get total number of consents
-        $st = $this->execute('SELECT COUNT(*) AS no FROM '.$this->table, array());
+        $st = $this->execute('SELECT COUNT(*) AS no FROM '.$this->table, []);
 
         if ($st === false) {
-            return array();
+            return [];
         }
 
         if ($row = $st->fetch(\PDO::FETCH_NUM)) {
@@ -410,11 +410,11 @@ class Database extends \SimpleSAML\Module\consent\Store
         $st = $this->execute(
             'SELECT COUNT(*) AS no '.
             'FROM (SELECT DISTINCT hashed_user_id FROM '.$this->table.' ) AS foo',
-            array()
+            []
         );
 
         if ($st === false) {
-            return array();
+            return [];
         }
 
         if ($row = $st->fetch(\PDO::FETCH_NUM)) {
@@ -424,11 +424,11 @@ class Database extends \SimpleSAML\Module\consent\Store
         // Get total number of services that has been given consent to
         $st = $this->execute(
             'SELECT COUNT(*) AS no FROM (SELECT DISTINCT service_id FROM '.$this->table.') AS foo',
-            array()
+            []
         );
 
         if ($st === false) {
-            return array();
+            return [];
         }
 
         if ($row = $st->fetch(\PDO::FETCH_NUM)) {
@@ -450,7 +450,7 @@ class Database extends \SimpleSAML\Module\consent\Store
             return $this->db;
         }
 
-        $driver_options = array();
+        $driver_options = [];
         if (isset($this->timeout)) {
             $driver_options[\PDO::ATTR_TIMEOUT] = $this->timeout;
         }
@@ -493,7 +493,7 @@ class Database extends \SimpleSAML\Module\consent\Store
     {
         $st = $this->execute(
             'SELECT * FROM '.$this->table.' WHERE hashed_user_id = ? AND service_id = ? AND attribute = ?',
-            array('test', 'test', 'test')
+            ['test', 'test', 'test']
         );
 
         if ($st === false) {

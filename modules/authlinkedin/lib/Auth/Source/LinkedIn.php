@@ -84,9 +84,9 @@ class LinkedIn extends \SimpleSAML\Auth\Source
         // Get the request token
         $requestToken = $consumer->getRequestToken(
             'https://api.linkedin.com/uas/oauth/requestToken',
-            array(
+            [
                 'oauth_callback' => \SimpleSAML\Module::getModuleUrl('authlinkedin').'/linkback.php?stateid='.$stateID
-            )
+            ]
         );
 
         \SimpleSAML\Logger::debug(
@@ -119,7 +119,7 @@ class LinkedIn extends \SimpleSAML\Auth\Source
         $accessToken = $consumer->getAccessToken(
             'https://api.linkedin.com/uas/oauth/accessToken',
             $requestToken,
-            array('oauth_verifier' => $state['authlinkedin:oauth_verifier'])
+            ['oauth_verifier' => $state['authlinkedin:oauth_verifier']]
         );
 
         \SimpleSAML\Logger::debug(
@@ -130,7 +130,7 @@ class LinkedIn extends \SimpleSAML\Auth\Source
         $userdata = $consumer->getUserInfo(
             'https://api.linkedin.com/v1/people/~:('.$this->attributes.')',
             $accessToken,
-            array('http' => array('header' => 'x-li-format: json'))
+            ['http' => ['header' => 'x-li-format: json']]
         );
 
         $attributes = $this->flatten($userdata, 'linkedin.');
@@ -138,8 +138,8 @@ class LinkedIn extends \SimpleSAML\Auth\Source
         // TODO: pass accessToken: key, secret + expiry as attributes?
 
         if (array_key_exists('id', $userdata)) {
-            $attributes['linkedin_targetedID'] = array('http://linkedin.com!'.$userdata['id']);
-            $attributes['linkedin_user'] = array($userdata['id'].'@linkedin.com');
+            $attributes['linkedin_targetedID'] = ['http://linkedin.com!'.$userdata['id']];
+            $attributes['linkedin_user'] = [$userdata['id'].'@linkedin.com'];
         }
 
         \SimpleSAML\Logger::debug('LinkedIn Returned Attributes: '.implode(", ", array_keys($attributes)));
@@ -176,12 +176,12 @@ class LinkedIn extends \SimpleSAML\Auth\Source
      */
     protected function flatten($array, $prefix = '')
     {
-        $result = array();
+        $result = [];
         foreach ($array as $key => $value) {
             if (is_array($value)) {
                 $result = $result + $this->flatten($value, $prefix.$key.'.');
             } else {
-                $result[$prefix.$key] = array($value);
+                $result[$prefix.$key] = [$value];
             }
         }
         return $result;

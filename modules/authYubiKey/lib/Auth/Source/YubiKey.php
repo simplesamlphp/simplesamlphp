@@ -107,7 +107,7 @@ class YubiKey extends \SimpleSAML\Auth\Source
 
         $id = \SimpleSAML\Auth\State::saveState($state, self::STAGEID);
         $url = \SimpleSAML\Module::getModuleURL('authYubiKey/yubikeylogin.php');
-        \SimpleSAML\Utils\HTTP::redirectTrustedURL($url, array('AuthState' => $id));
+        \SimpleSAML\Utils\HTTP::redirectTrustedURL($url, ['AuthState' => $id]);
     }
 
 
@@ -191,7 +191,7 @@ class YubiKey extends \SimpleSAML\Auth\Source
             $yubi = new \Auth_Yubico($this->yubi_id, $this->yubi_key);
             $yubi->verify($otp);
             $uid = self::getYubiKeyPrefix($otp);
-            $attributes = array('uid' => array($uid));
+            $attributes = ['uid' => [$uid]];
         } catch (\Exception $e) {
             \SimpleSAML\Logger::info(
                 'YubiKey:'.$this->authId.': Validation error (otp '.$otp.'), debug output: '.$yubi->getLastResponse()

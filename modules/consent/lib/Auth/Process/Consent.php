@@ -51,14 +51,14 @@ class Consent extends \SimpleSAML\Auth\ProcessingFilter
      *
      * @var array
      */
-    private $hiddenAttributes = array();
+    private $hiddenAttributes = [];
 
     /**
      * Attributes which should not require consent
      *
      * @var array
      */
-    private $noconsentattributes = array();
+    private $noconsentattributes = [];
 
     /**
      * Whether we should show the "about service"-link on the no consent page.
@@ -104,7 +104,7 @@ class Consent extends \SimpleSAML\Auth\ProcessingFilter
         }
 
         if (array_key_exists('focus', $config)) {
-            if (!in_array($config['focus'], array('yes', 'no'), true)) {
+            if (!in_array($config['focus'], ['yes', 'no'], true)) {
                 throw new \SimpleSAML\Error\Exception(
                     'Consent: focus must be a string with values `yes` or `no`. '.
                     var_export($config['focus'], true).' given.'
@@ -258,7 +258,7 @@ class Consent extends \SimpleSAML\Auth\ProcessingFilter
             $state['Source'] = $idpmeta;
         }
 
-        $statsData = array('spEntityID' => $spEntityId);
+        $statsData = ['spEntityID' => $spEntityId];
 
         // Do not use consent if disabled
         if (isset($state['Source']['consent.disable']) &&
@@ -344,7 +344,7 @@ class Consent extends \SimpleSAML\Auth\ProcessingFilter
         // Save state and redirect
         $id = \SimpleSAML\Auth\State::saveState($state, 'consent:request');
         $url = Module::getModuleURL('consent/getconsent.php');
-        Utils\HTTP::redirectTrustedURL($url, array('StateId' => $id));
+        Utils\HTTP::redirectTrustedURL($url, ['StateId' => $id]);
     }
 
 

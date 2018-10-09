@@ -51,13 +51,13 @@ class LDAPMulti extends \SimpleSAML\Module\core\Auth\UserPassOrgBase
         );
 
 
-        $this->orgs = array();
-        $this->ldapOrgs = array();
+        $this->orgs = [];
+        $this->ldapOrgs = [];
         foreach ($config as $name => $value) {
             if ($name === 'username_organization_method') {
                 $usernameOrgMethod = $cfgHelper->getValueValidate(
                     'username_organization_method',
-                    array('none', 'allow', 'force')
+                    ['none', 'allow', 'force']
                 );
                 $this->setUsernameOrgMethod($usernameOrgMethod);
                 continue;

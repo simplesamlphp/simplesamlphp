@@ -42,7 +42,7 @@ Check whether the user is authenticated with this authentication source.
 `requireAuth`
 -------------
 
-    void requireAuth(array $params = array())
+    void requireAuth(array $params = [])
 
 Make sure that the user is authenticated.
 This function will only return if the user is authenticated.
@@ -75,7 +75,7 @@ See the documentation for the `login`-function for a description of the paramete
 `login`
 -------------
 
-    void login(array $params = array())
+    void login(array $params = [])
 
 Start a login operation.
 This function will always start a new authentication process.

@@ -8,6 +8,6 @@
 /*
  * Example of hosted Shibboleth 1.3 SP.
  */
-$metadata['__DYNAMIC:1__'] = array(
+$metadata['__DYNAMIC:1__'] = [
     'host' => '__DEFAULT__',
-);
+];

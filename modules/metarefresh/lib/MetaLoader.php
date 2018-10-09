@@ -17,13 +17,13 @@ class MetaLoader
     private $stateFile;
     private $changed;
     private $state;
-    private $types = array(
+    private $types = [
         'saml20-idp-remote',
         'saml20-sp-remote',
         'shib13-idp-remote',
         'shib13-sp-remote',
         'attributeauthority-remote'
-    );
+    ];
 
     /**
      * Constructor
@@ -35,7 +35,7 @@ class MetaLoader
     public function __construct($expire = null, $stateFile = null, $oldMetadataSrc = null)
     {
         $this->expire = $expire;
-        $this->metadata = array();
+        $this->metadata = [];
         $this->oldMetadataSrc = $oldMetadataSrc;
         $this->stateFile = $stateFile;
         $this->changed = false;
@@ -45,7 +45,7 @@ class MetaLoader
             include $stateFile;
         }
 
-        $this->state = array();
+        $this->state = [];
     }
 
     /**
@@ -67,7 +67,7 @@ class MetaLoader
     public function setTypes($types)
     {
         if (!is_array($types)) {
-            $types = array($types);
+            $types = [$types];
         }
         $this->types = $types;
     }
@@ -223,7 +223,7 @@ class MetaLoader
             }
         }
 
-        return array('http' => array('header' => $rawheader));
+        return ['http' => ['header' => $rawheader]];
     }
 
 
@@ -251,7 +251,7 @@ class MetaLoader
         if (isset($source['conditionalGET']) && $source['conditionalGET']) {
             // Headers section
             if ($responseHeaders !== null) {
-                $candidates = array('last-modified', 'etag');
+                $candidates = ['last-modified', 'etag'];
 
                 foreach ($candidates as $candidate) {
                     if (array_key_exists($candidate, $responseHeaders)) {
@@ -347,7 +347,7 @@ class MetaLoader
 
         $metadata['metarefresh:src'] = $filename;
         if (!array_key_exists($type, $this->metadata)) {
-            $this->metadata[$type] = array();
+            $this->metadata[$type] = [];
         }
 
         // If expire is defined in constructor...
@@ -364,7 +364,7 @@ class MetaLoader
                 $metadata['expire'] = $this->expire;
             }
         }
-        $this->metadata[$type][] = array('filename' => $filename, 'metadata' => $metadata);
+        $this->metadata[$type][] = ['filename' => $filename, 'metadata' => $metadata];
     }
 
 
@@ -376,9 +376,9 @@ class MetaLoader
         assert($config instanceof \SimpleSAML\Configuration);
 
         $arpfile = $config->getValue('arpfile');
-        $types = array('saml20-sp-remote');
+        $types = ['saml20-sp-remote'];
 
-        $md = array();
+        $md = [];
         foreach ($this->metadata as $category => $elements) {
             if (!in_array($category, $types, true)) {
                 continue;
@@ -458,7 +458,7 @@ class MetaLoader
     {
         assert(is_string($outputDir));
 
-        $metaHandler = new \SimpleSAML\Metadata\MetaDataStorageHandlerSerialize(array('directory' => $outputDir));
+        $metaHandler = new \SimpleSAML\Metadata\MetaDataStorageHandlerSerialize(['directory' => $outputDir]);
 
         // First we add all the metadata entries to the metadata handler
         foreach ($this->metadata as $set => $elements) {

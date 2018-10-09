@@ -33,7 +33,7 @@ class Artifact
 
         // We need to process the query string manually, to capture all SAMLart parameters
 
-        $artifacts = array();
+        $artifacts = [];
 
         $elements = explode('&', $_SERVER['QUERY_STRING']);
         foreach ($elements as $element) {
@@ -142,7 +142,7 @@ class Artifact
 
         $url = $idpMetadata->getDefaultEndpoint(
             'ArtifactResolutionService',
-            array('urn:oasis:names:tc:SAML:1.0:bindings:SOAP-binding')
+            ['urn:oasis:names:tc:SAML:1.0:bindings:SOAP-binding']
         );
         $url = $url['Location'];
 
@@ -164,21 +164,21 @@ class Artifact
 
         $spKeyCertFile = Config::getCertPath($spMetadata->getString('privatekey'));
 
-        $opts = array(
-            'ssl' => array(
+        $opts = [
+            'ssl' => [
                 'verify_peer' => true,
                 'cafile' => $file,
                 'local_cert' => $spKeyCertFile,
                 'capture_peer_cert' => true,
                 'capture_peer_chain' => true,
-            ),
-            'http' => array(
+            ],
+            'http' => [
                 'method' => 'POST',
                 'content' => $request,
                 'header' => 'SOAPAction: http://www.oasis-open.org/committees/security'."\r\n".
                     'Content-Type: text/xml',
-            ),
-        );
+            ],
+        ];
 
         // Fetch the artifact
         $response = HTTP::fetch($url, $opts);

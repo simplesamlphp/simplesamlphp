@@ -155,7 +155,7 @@ class ACL
         $attributeName = array_shift($rule);
 
         if (!array_key_exists($attributeName, $attributes)) {
-            $attributeValues = array();
+            $attributeValues = [];
         } else {
             $attributeValues = $attributes[$attributeName];
         }
@@ -195,7 +195,7 @@ class ACL
         $attributeName = array_shift($rule);
 
         if (!array_key_exists($attributeName, $attributes)) {
-            $attributeValues = array();
+            $attributeValues = [];
         } else {
             $attributeValues = $attributes[$attributeName];
         }
@@ -236,7 +236,7 @@ class ACL
         $attributeName = array_shift($rule);
 
         if (!array_key_exists($attributeName, $attributes)) {
-            $attributeValues = array();
+            $attributeValues = [];
         } else {
             $attributeValues = $attributes[$attributeName];
         }
@@ -263,7 +263,7 @@ class ACL
         $attributeName = array_shift($rule);
 
         if (!array_key_exists($attributeName, $attributes)) {
-            $attributeValues = array();
+            $attributeValues = [];
         } else {
             $attributeValues = $attributes[$attributeName];
         }

@@ -30,7 +30,7 @@ if (array_key_exists('otp', $_REQUEST)) {
 $t->data['header'] = $translator->t('{authYubiKey:yubikey:header}');
 $t->data['autofocus'] = 'otp';
 $t->data['errorCode'] = $errorCode;
-$t->data['stateParams'] = array('AuthState' => $authStateId);
+$t->data['stateParams'] = ['AuthState' => $authStateId];
 $t->data['logoUrl'] = \SimpleSAML\Module::getModuleURL('authYubiKey/resources/logo.jpg');
 $t->data['devicepicUrl'] = \SimpleSAML\Module::getModuleURL('authYubiKey/resources/yubikey.jpg');
 $t->show();

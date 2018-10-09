@@ -20,7 +20,7 @@ class Registry
         }
     }
 
-    public function formToMeta($request, $entry = array(), $override = null)
+    public function formToMeta($request, $entry = [], $override = null)
     {
         $this->getStandardField($request, $entry, 'name');
         $this->getStandardField($request, $entry, 'description');

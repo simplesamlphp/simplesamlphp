@@ -14,7 +14,7 @@ class AttributeMap extends \SimpleSAML\Auth\ProcessingFilter
     /**
      * Associative array with the mappings of attribute names.
      */
-    private $map = array();
+    private $map = [];
 
     /**
      * Should attributes be duplicated or renamed.
@@ -35,7 +35,7 @@ class AttributeMap extends \SimpleSAML\Auth\ProcessingFilter
         parent::__construct($config, $reserved);
 
         assert(is_array($config));
-        $mapFiles = array();
+        $mapFiles = [];
 
         foreach ($config as $origName => $newName) {
             if (is_int($origName)) {
@@ -117,7 +117,7 @@ class AttributeMap extends \SimpleSAML\Auth\ProcessingFilter
         assert(is_array($request));
         assert(array_key_exists('Attributes', $request));
 
-        $mapped_attributes = array();
+        $mapped_attributes = [];
 
         foreach ($request['Attributes'] as $name => $values) {
             if (array_key_exists($name, $this->map)) {

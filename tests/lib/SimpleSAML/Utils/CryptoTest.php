@@ -21,9 +21,9 @@ class CryptoTest extends TestCase
         $this->root = vfsStream::setup(
             self::ROOTDIRNAME,
             null,
-            array(
-                self::DEFAULTCERTDIR => array(),
-            )
+            [
+                self::DEFAULTCERTDIR => [],
+            ]
         );
         $this->root_directory = vfsStream::url(self::ROOTDIRNAME);
         $this->certdir = $this->root_directory.DIRECTORY_SEPARATOR.self::DEFAULTCERTDIR;
@@ -41,7 +41,7 @@ class CryptoTest extends TestCase
         $m = new \ReflectionMethod('\SimpleSAML\Utils\Crypto', '_aesDecrypt');
         $m->setAccessible(true);
 
-        $m->invokeArgs(null, array(array(), 'SECRET'));
+        $m->invokeArgs(null, [[], 'SECRET']);
     }
 
 
@@ -57,7 +57,7 @@ class CryptoTest extends TestCase
         $m = new \ReflectionMethod('\SimpleSAML\Utils\Crypto', '_aesEncrypt');
         $m->setAccessible(true);
 
-        $m->invokeArgs(null, array(array(), 'SECRET'));
+        $m->invokeArgs(null, [[], 'SECRET']);
     }
 
 
@@ -79,7 +79,7 @@ class CryptoTest extends TestCase
 
         $plaintext = 'SUPER_SECRET_TEXT';
         $ciphertext = 'uR2Yu0r4itInKx91D/l9y/08L5CIQyev9nAr27fh3Sshous4vbXRRcMcjqHDOrquD+2vqLyw7ygnbA9jA9TpB4hLZocvAWcTN8tyO82hiSY=';
-        $this->assertEquals($plaintext, $m->invokeArgs(null, array(base64_decode($ciphertext), $secret)));
+        $this->assertEquals($plaintext, $m->invokeArgs(null, [base64_decode($ciphertext), $secret]));
     }
 
 
@@ -102,8 +102,8 @@ class CryptoTest extends TestCase
         $d->setAccessible(true);
 
         $original_plaintext = 'SUPER_SECRET_TEXT';
-        $ciphertext = $e->invokeArgs(null, array($original_plaintext, $secret));
-        $decrypted_plaintext = $d->invokeArgs(null, array($ciphertext, $secret));
+        $ciphertext = $e->invokeArgs(null, [$original_plaintext, $secret]);
+        $decrypted_plaintext = $d->invokeArgs(null, [$ciphertext, $secret]);
         $this->assertEquals($original_plaintext, $decrypted_plaintext);
     }
 
@@ -277,7 +277,7 @@ PHP;
      */
     public function testLoadPrivateKeyRequiredMetadataMissing()
     {
-        $config = new Configuration(array(), 'test');
+        $config = new Configuration([], 'test');
         $required = true;
 
         Crypto::loadPrivateKey($config, $required);
@@ -288,7 +288,7 @@ PHP;
      */
     public function testLoadPrivateKeyNotRequiredMetadataMissing()
     {
-        $config = new Configuration(array(), 'test');
+        $config = new Configuration([], 'test');
         $required = false;
 
         $res = Crypto::loadPrivateKey($config, $required);
@@ -303,7 +303,7 @@ PHP;
      */
     public function testLoadPrivateKeyMissingFile()
     {
-        $config = new Configuration(array('privatekey' => 'nonexistant'), 'test');
+        $config = new Configuration(['privatekey' => 'nonexistant'], 'test');
 
         Crypto::loadPrivateKey($config, false, '', true);
     }
@@ -315,13 +315,13 @@ PHP;
     {
         $filename = $this->certdir.DIRECTORY_SEPARATOR.'key';
         $data = 'data';
-        $config = new Configuration(array('privatekey' => $filename), 'test');
+        $config = new Configuration(['privatekey' => $filename], 'test');
         $full_path = true;
 
         file_put_contents($filename, $data);
 
         $res = Crypto::loadPrivateKey($config, false, '', $full_path);
-        $expected = array('PEM' => $data);
+        $expected = ['PEM' => $data];
 
         $this->assertEquals($expected, $res);
     }
@@ -335,10 +335,10 @@ PHP;
         $filename = $this->certdir.DIRECTORY_SEPARATOR.'key';
         $data = 'data';
         $config = new Configuration(
-            array(
+            [
                 'privatekey' => $filename,
                 'privatekey_pass' => $password,
-            ),
+            ],
             'test'
         );
         $full_path = true;
@@ -346,7 +346,7 @@ PHP;
         file_put_contents($filename, $data);
 
         $res = Crypto::loadPrivateKey($config, false, '', $full_path);
-        $expected = array('PEM' => $data, 'password' => $password);
+        $expected = ['PEM' => $data, 'password' => $password];
 
         $this->assertEquals($expected, $res);
     }
@@ -361,10 +361,10 @@ PHP;
         $filename = $this->certdir.DIRECTORY_SEPARATOR.'key';
         $data = 'data';
         $config = new Configuration(
-            array(
+            [
                 $prefix.'privatekey' => $filename,
                 $prefix.'privatekey_pass' => $password,
-            ),
+            ],
             'test'
         );
         $full_path = true;
@@ -372,7 +372,7 @@ PHP;
         file_put_contents($filename, $data);
 
         $res = Crypto::loadPrivateKey($config, false, $prefix, $full_path);
-        $expected = array('PEM' => $data, 'password' => $password);
+        $expected = ['PEM' => $data, 'password' => $password];
 
         $this->assertEquals($expected, $res);
     }
@@ -384,7 +384,7 @@ PHP;
      */
     public function testLoadPublicKeyRequiredMetadataMissing()
     {
-        $config = new Configuration(array(), 'test');
+        $config = new Configuration([], 'test');
         $required = true;
 
         Crypto::loadPublicKey($config, $required);
@@ -395,7 +395,7 @@ PHP;
      */
     public function testLoadPublicKeyNotRequiredMetadataMissing()
     {
-        $config = new Configuration(array(), 'test');
+        $config = new Configuration([], 'test');
         $required = false;
 
         $res = Crypto::loadPublicKey($config, $required);
@@ -409,10 +409,10 @@ PHP;
     public function testLoadPublicKeyFingerprintBasicString()
     {
         $fingerprint = 'fingerprint';
-        $config = new Configuration(array('certFingerprint' => $fingerprint), 'test');
+        $config = new Configuration(['certFingerprint' => $fingerprint], 'test');
 
         $res = Crypto::loadPublicKey($config);
-        $expected = array('certFingerprint' => array($fingerprint));
+        $expected = ['certFingerprint' => [$fingerprint]];
 
         $this->assertEquals($expected, $res);
     }
@@ -425,17 +425,17 @@ PHP;
         $fingerprint1 = 'fingerprint1';
         $fingerprint2 = 'fingerprint2';
         $config = new Configuration(
-            array(
-                'certFingerprint' => array(
+            [
+                'certFingerprint' => [
                     $fingerprint1,
                     $fingerprint2
-                ),
-            ),
+                ],
+            ],
             'test'
         );
 
         $res = Crypto::loadPublicKey($config);
-        $expected = array('certFingerprint' => array($fingerprint1, $fingerprint2));
+        $expected = ['certFingerprint' => [$fingerprint1, $fingerprint2]];
 
         $this->assertEquals($expected, $res);
     }
@@ -446,10 +446,10 @@ PHP;
     public function testLoadPublicKeyFingerprintLowercase()
     {
         $fingerprint = 'FINGERPRINT';
-        $config = new Configuration(array('certFingerprint' => $fingerprint), 'test');
+        $config = new Configuration(['certFingerprint' => $fingerprint], 'test');
 
         $res = Crypto::loadPublicKey($config);
-        $expected = array('certFingerprint' => array(strtolower($fingerprint)));
+        $expected = ['certFingerprint' => [strtolower($fingerprint)]];
 
         $this->assertEquals($expected, $res);
     }
@@ -460,10 +460,10 @@ PHP;
     public function testLoadPublicKeyFingerprintRemoveColons()
     {
         $fingerprint = 'f:i:n:g:e:r:p:r:i:n:t';
-        $config = new Configuration(array('certFingerprint' => $fingerprint), 'test');
+        $config = new Configuration(['certFingerprint' => $fingerprint], 'test');
 
         $res = Crypto::loadPublicKey($config);
-        $expected = array('certFingerprint' => array(str_replace(':', '', $fingerprint)));
+        $expected = ['certFingerprint' => [str_replace(':', '', $fingerprint)]];
 
         $this->assertEquals($expected, $res);
     }
@@ -474,15 +474,15 @@ PHP;
     public function testLoadPublicKeyNotX509Certificate()
     {
         $config = new Configuration(
-            array(
-                'keys' => array(
-                    array(
+            [
+                'keys' => [
+                    [
                         'X509Certificate' => '',
                         'type' => 'NotX509Certificate',
                         'signing' => true
-                    ),
-                ),
-            ),
+                    ],
+                ],
+            ],
             'test'
         );
 
@@ -497,15 +497,15 @@ PHP;
     public function testLoadPublicKeyNotSigning()
     {
         $config = new Configuration(
-            array(
-                'keys' => array(
-                    array(
+            [
+                'keys' => [
+                    [
                         'X509Certificate' => '',
                         'type' => 'X509Certificate',
                         'signing' => false
-                    ),
-                ),
-            ),
+                    ],
+                ],
+            ],
             'test'
         );
 
@@ -521,15 +521,15 @@ PHP;
     {
         $x509certificate = 'x509certificate';
         $config = new Configuration(
-            array(
-                'keys' => array(
-                    array(
+            [
+                'keys' => [
+                    [
                         'X509Certificate' => $x509certificate,
                         'type' => 'X509Certificate',
                         'signing' => true
-                    ),
-                ),
-            ),
+                    ],
+                ],
+            ],
             'test'
         );
 

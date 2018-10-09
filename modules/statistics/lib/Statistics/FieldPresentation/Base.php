@@ -17,6 +17,6 @@ class Base
 
     public function getPresentation()
     {
-        return array('_' => 'Total');
+        return ['_' => 'Total'];
     }
 }

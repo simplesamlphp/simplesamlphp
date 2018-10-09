@@ -162,9 +162,9 @@ class Server
         }
 
         if (is_string($response)) {
-            $response = array(
+            $response = [
                 'status' => $response,
-            );
+            ];
         }
 
         $response['op'] = $op;
@@ -212,12 +212,12 @@ class Server
      */
     private function handleDelete(array $request)
     {
-        $params = array(
+        $params = [
             'path' => '/',
             'domain' => '.'.$this->domain,
             'secure' => true,
             'httponly' => false,
-        );
+        ];
 
         \SimpleSAML\Utils\HTTP::setCookie('_saml_idp', null, $params, false);
         return 'ok';
@@ -234,10 +234,10 @@ class Server
     {
         $list = $this->getCDC();
 
-        return array(
+        return [
             'status' => 'ok',
             'cdc' => $list,
-        );
+        ];
     }
 
 
@@ -330,10 +330,10 @@ class Server
 
         $signature = $this->calcSignature($message);
 
-        $params = array(
+        $params = [
             $parameter => $message,
             'Signature' => $signature,
-        );
+        ];
 
         $url = \SimpleSAML\Utils\HTTP::addURLParameters($to, $params);
         if (strlen($url) < 2048) {
@@ -366,7 +366,7 @@ class Server
     private function getCDC()
     {
         if (!isset($_COOKIE['_saml_idp'])) {
-            return array();
+            return [];
         }
 
         $ret = (string) $_COOKIE['_saml_idp'];
@@ -376,7 +376,7 @@ class Server
             if ($idp === false) {
                 // Not properly base64 encoded
                 \SimpleSAML\Logger::warning('CDC - Invalid base64-encoding of CDC entry.');
-                return array();
+                return [];
             }
         }
 
@@ -411,13 +411,13 @@ class Server
             $cookie = $tmp[1];
         }
 
-        $params = array(
+        $params = [
             'lifetime' => $this->cookieLifetime,
             'path' => '/',
             'domain' => '.'.$this->domain,
             'secure' => true,
             'httponly' => false,
-        );
+        ];
 
         \SimpleSAML\Utils\HTTP::setCookie('_saml_idp', $cookie, $params, false);
     }

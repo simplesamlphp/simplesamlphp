@@ -20,7 +20,7 @@ foreach ($_COOKIE as $cookieName => $value) {
     /* Delete the cookie. We delete it once without the secure flag and once with the secure flag. This
      * ensures that the cookie will be deleted in any case.
      */
-    \SimpleSAML\Utils\HTTP::setCookie($cookieName, null, array('path' => $cookiePath, 'httponly' => false), false);
+    \SimpleSAML\Utils\HTTP::setCookie($cookieName, null, ['path' => $cookiePath, 'httponly' => false], false);
 }
 
 // Find where we should go now.

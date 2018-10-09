@@ -79,7 +79,7 @@ class Error extends Exception
             unset($this->parameters[0]);
             $this->errorCode = $errorCode[0];
         } else {
-            $this->parameters = array();
+            $this->parameters = [];
             $this->errorCode = $errorCode;
         }
 
@@ -166,7 +166,7 @@ class Error extends Exception
     protected function setHTTPCode()
     {
         // Some mostly used HTTP codes
-        $httpCodesMap = array(
+        $httpCodesMap = [
             400 => 'HTTP/1.0 400 Bad Request',
             403 => 'HTTP/1.0 403 Forbidden',
             404 => 'HTTP/1.0 404 Not Found',
@@ -174,7 +174,7 @@ class Error extends Exception
             500 => 'HTTP/1.0 500 Internal Server Error',
             501 => 'HTTP/1.0 501 Method Not Implemented',
             503 => 'HTTP/1.0 503 Service Temporarily Unavailable',
-        );
+        ];
 
         $httpCode = $this->httpCode;
 
@@ -219,7 +219,7 @@ class Error extends Exception
         } else {
             $referer = 'unknown';
         }
-        $errorData = array(
+        $errorData = [
             'exceptionMsg'   => $emsg,
             'exceptionTrace' => $etrace,
             'reportId'       => $reportId,
@@ -227,7 +227,7 @@ class Error extends Exception
             'url'            => \SimpleSAML\Utils\HTTP::getSelfURLNoQuery(),
             'version'        => $config->getVersion(),
             'referer'        => $referer,
-        );
+        ];
         $session->setData('core:errorreport', $reportId, $errorData);
 
         return $errorData;
@@ -249,7 +249,7 @@ class Error extends Exception
         $errorData = $this->saveError();
         $config = \SimpleSAML\Configuration::getInstance();
 
-        $data = array();
+        $data = [];
         $data['showerrors'] = $config->getBoolean('showerrors', true);
         $data['error'] = $errorData;
         $data['errorCode'] = $this->errorCode;

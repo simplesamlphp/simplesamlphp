@@ -35,7 +35,7 @@ class Metadata
      * @var array The valid configuration options for a contact configuration array.
      * @see "Metadata for the OASIS Security Assertion Markup Language (SAML) V2.0", section 2.3.2.2.
      */
-    public static $VALID_CONTACT_OPTIONS = array(
+    public static $VALID_CONTACT_OPTIONS = [
         'contactType',
         'emailAddress',
         'givenName',
@@ -43,20 +43,20 @@ class Metadata
         'telephoneNumber',
         'company',
         'attributes',
-    );
+    ];
 
 
     /**
      * @var array The valid types of contact for a contact configuration array.
      * @see "Metadata for the OASIS Security Assertion Markup Language (SAML) V2.0", section 2.3.2.2.
      */
-    public static $VALID_CONTACT_TYPES = array(
+    public static $VALID_CONTACT_TYPES = [
         'technical',
         'support',
         'administrative',
         'billing',
         'other',
-    );
+    ];
 
 
     /**
