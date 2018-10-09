@@ -208,7 +208,7 @@ class CAS extends \SimpleSAML\Auth\Source
 
         \SimpleSAML\Auth\Source::completeAuth($state);
 
-        return $attributes;
+        return [$username, $attributes];
     }
 
 
