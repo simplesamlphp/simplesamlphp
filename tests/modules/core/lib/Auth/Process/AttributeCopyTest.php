@@ -70,7 +70,7 @@ class Test_Core_Auth_Process_AttributeCopy extends TestCase
         ];
         $request = [
             'Attributes' => [
-                'test' => ['AAP']],
+                'test' => ['AAP'],
                 'original1' => ['original_value1'],
                 'original2' => ['original_value2'],
             ],
