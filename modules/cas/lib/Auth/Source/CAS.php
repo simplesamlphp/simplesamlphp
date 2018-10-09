@@ -207,6 +207,8 @@ class CAS extends \SimpleSAML\Auth\Source
         $state['Attributes'] = $attributes;
 
         \SimpleSAML\Auth\Source::completeAuth($state);
+
+        return $attributes;
     }
 
 

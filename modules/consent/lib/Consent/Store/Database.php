@@ -263,17 +263,16 @@ class Database extends \SimpleSAML\Module\consent\Store
         );
 
         if ($st === false) {
-            return;
+            return 0;
         }
 
         if ($st->rowCount() > 0) {
             \SimpleSAML\Logger::debug('consent:Database - Deleted consent.');
             return $st->rowCount();
-        } else {
-            \SimpleSAML\Logger::warning(
-                'consent:Database - Attempted to delete nonexistent consent'
-            );
         }
+
+        \SimpleSAML\Logger::warning('consent:Database - Attempted to delete nonexistent consent');
+        return 0;
     }
 
 
@@ -294,15 +293,16 @@ class Database extends \SimpleSAML\Module\consent\Store
         );
 
         if ($st === false) {
-            return;
+            return 0;
         }
 
         if ($st->rowCount() > 0) {
             \SimpleSAML\Logger::debug('consent:Database - Deleted ('.$st->rowCount().') consent(s).');
             return $st->rowCount();
-        } else {
-            \SimpleSAML\Logger::warning('consent:Database - Attempted to delete nonexistent consent');
         }
+
+        \SimpleSAML\Logger::warning('consent:Database - Attempted to delete nonexistent consent');
+        return 0;
     }
 
 
