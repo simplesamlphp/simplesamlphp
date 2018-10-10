@@ -480,7 +480,7 @@ class SimpleSAML_IdP
         if ($assocId !== null) {
             $this->terminateAssociation($assocId);
             $session = SimpleSAML_Session::getSessionFromRequest();
-            $session->deleteData('core:idp-ssotime', $this->id.':'.$state['saml:SPEntityId']);
+            $session->deleteData('core:idp-ssotime', $this->id.';'.$state['saml:SPEntityId']);
         }
 
         // terminate the local session
