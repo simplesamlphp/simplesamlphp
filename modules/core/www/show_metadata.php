@@ -22,7 +22,7 @@ if (!in_array(
 
 $metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
 
-$m = $metadata->getMetadata($_REQUEST['entityid'], $_REQUEST['set']);
+$m = $metadata->getMetaData($_REQUEST['entityid'], $_REQUEST['set']);
 
 $t = new \SimpleSAML\XHTML\Template($config, 'core:show_metadata.tpl.php');
 $t->data['clipboard.js'] = true;

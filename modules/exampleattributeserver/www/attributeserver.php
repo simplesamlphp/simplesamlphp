@@ -16,7 +16,7 @@ if ($spEntityId === null) {
     throw new \SimpleSAML\Error\BadRequest('Missing <saml:Issuer> in <samlp:AttributeQuery>.');
 }
 
-$idpMetadata = $metadata->getMetadataConfig($idpEntityId, 'saml20-idp-hosted');
+$idpMetadata = $metadata->getMetaDataConfig($idpEntityId, 'saml20-idp-hosted');
 $spMetadata = $metadata->getMetaDataConfig($spEntityId, 'saml20-sp-remote');
 
 // The endpoint we should deliver the message to

@@ -60,7 +60,7 @@ class Memcache
             if ($serializedInfo === false) {
                 // either the server is down, or we don't have the value stored on that server
                 $mustUpdate = true;
-                $up = $server->getstats();
+                $up = $server->getStats();
                 if ($up !== false) {
                     $allDown = false;
                 }

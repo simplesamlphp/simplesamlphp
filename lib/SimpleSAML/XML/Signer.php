@@ -84,7 +84,7 @@ class Signer
         }
 
         if (array_key_exists('id', $options)) {
-            $this->setIdAttribute($options['id']);
+            $this->setIDAttribute($options['id']);
         }
     }
 

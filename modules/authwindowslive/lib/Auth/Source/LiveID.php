@@ -76,7 +76,7 @@ class LiveID extends \SimpleSAML\Auth\Source
             '?client_id='.$this->key.
             '&response_type=code'.
             '&response_mode=query'.
-            '&redirect_uri='.urlencode(\SimpleSAML\Module::getModuleUrl('authwindowslive').'/linkback.php').
+            '&redirect_uri='.urlencode(\SimpleSAML\Module::getModuleURL('authwindowslive').'/linkback.php').
             '&state='.urlencode($stateID).
             '&scope='.urlencode('openid https://graph.microsoft.com/user.read')
         ;
@@ -102,7 +102,7 @@ class LiveID extends \SimpleSAML\Auth\Source
             '&client_secret='.urlencode($this->secret).
             '&scope='.urlencode('https://graph.microsoft.com/user.read').
             '&grant_type=authorization_code'.
-            '&redirect_uri='.urlencode(\SimpleSAML\Module::getModuleUrl('authwindowslive').'/linkback.php').
+            '&redirect_uri='.urlencode(\SimpleSAML\Module::getModuleURL('authwindowslive').'/linkback.php').
             '&code='.urlencode($state['authwindowslive:verification_code']);
 
         $context = [
