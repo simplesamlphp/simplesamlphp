@@ -23,6 +23,13 @@ class Controller
     protected $sources;
 
 
+    /**
+     * Controller constructor.
+     *
+     * It initializes the global configuration and auth source configuration for the controllers implemented here.
+     *
+     * @throws \Exception
+     */
     public function __construct()
     {
         $this->config = \SimpleSAML\Configuration::getInstance();
