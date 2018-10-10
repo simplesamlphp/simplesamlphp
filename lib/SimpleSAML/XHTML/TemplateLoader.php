@@ -22,7 +22,7 @@ class TemplateLoader extends \Twig\Loader\FilesystemLoader
         if (!in_array($namespace, $this->paths, true) && $namespace !== self::MAIN_NAMESPACE) {
             $this->addPath(self::getModuleTemplateDir($namespace), $namespace);
         }
-        return parent::findTemplate($name);
+        return parent::findTemplate($name, $throw);
     }
 
 
