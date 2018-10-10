@@ -62,7 +62,7 @@ class Negotiate extends \SimpleSAML\Auth\Source
         $this->enableTLS = $config->getBoolean('enable_tls', false);
         $this->debugLDAP = $config->getBoolean('debugLDAP', false);
         $this->timeout = $config->getInteger('timeout', 30);
-        $this->keytab = $config->getString('keytab');
+        $this->keytab = \SimpleSAML\Utils\Config::getCertPath($config->getString('keytab'));
         $this->base = $config->getArrayizeString('base');
         $this->attr = $config->getArrayizeString('attr', 'uid');
         $this->subnet = $config->getArray('subnet', null);
