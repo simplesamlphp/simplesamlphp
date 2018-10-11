@@ -178,7 +178,6 @@ class CAS extends \SimpleSAML\Auth\Source
     /**
      * Called by linkback, to finish validate/ finish logging in.
      * @param array $state
-     * @return array username, casattributes/ldap attributes
      */
     public function finalStep(&$state)
     {
@@ -207,8 +206,6 @@ class CAS extends \SimpleSAML\Auth\Source
         $state['Attributes'] = $attributes;
 
         \SimpleSAML\Auth\Source::completeAuth($state);
-
-        return [$username, $attributes];
     }
 
 
