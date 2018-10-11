@@ -69,11 +69,11 @@ $message = <<<MESSAGE
 <p>Track ID:</p>
 <pre>%s</pre>
 
-<p>Version: <tt>%s</tt></p>
+<p>Version: <code>%s</code></p>
 
-<p>Report ID: <tt>%s</tt></p>
+<p>Report ID: <code>%s</code></p>
 
-<p>Referer: <tt>%s</tt></p>
+<p>Referer: <code>%s</code></p>
 
 <hr />
 <div class="footer">

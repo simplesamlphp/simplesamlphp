@@ -15,7 +15,7 @@ echo '<p>'.$this->data['available.rules'][$this->data['selected.rule']]['descr']
 
 // Report settings
 echo '<table class="selecttime">';
-echo '<tr><td class="selecttime_icon"><img src="'.SimpleSAML\Utils\HTTP::getBaseUrl().
+echo '<tr><td class="selecttime_icon"><img src="'.SimpleSAML\Utils\HTTP::getBaseURL().
     'resources/icons/crystal_project/kchart.32x32.png" alt="Report settings" /></td>';
 
 // Select report
@@ -75,7 +75,7 @@ echo '</table>';
 
 // Select time and date
 echo '<table class="selecttime">';
-echo '<tr><td class="selecttime_icon"><img src="'.SimpleSAML\Utils\HTTP::getBaseUrl().
+echo '<tr><td class="selecttime_icon"><img src="'.SimpleSAML\Utils\HTTP::getBaseURL().
     'resources/icons/crystal_project/date.32x32.png" alt="Select date and time" /></td>';
 
 if (isset($this->data['available.times.prev'])) {

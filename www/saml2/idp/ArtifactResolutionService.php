@@ -47,7 +47,7 @@ if (!($request instanceof \SAML2\ArtifactResolve)) {
 }
 
 $issuer = $request->getIssuer();
-$spMetadata = $metadata->getMetadataConfig($issuer, 'saml20-sp-remote');
+$spMetadata = $metadata->getMetaDataConfig($issuer, 'saml20-sp-remote');
 
 $artifact = $request->getArtifact();
 

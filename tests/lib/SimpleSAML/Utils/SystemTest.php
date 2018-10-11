@@ -214,6 +214,10 @@ class SystemTest extends TestCase
      */
     public function testGetTempDirBadOwner()
     {
+        if (!function_exists('posix_getuid')) {
+            static::markTestSkipped('POSIX-functions not available;  skipping!');
+        }
+
         $bad_uid = posix_getuid() + 1;
 
         $tempdir = $this->root_directory . DIRECTORY_SEPARATOR . self::DEFAULTTEMPDIR;

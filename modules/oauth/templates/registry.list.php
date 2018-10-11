@@ -16,8 +16,8 @@ foreach ($this->data['entries']['mine'] as $entryc) {
     $entry = $entryc['value'];
     $i++;
     echo '<tr class="'.$rows[$i % 2].'"><td>'.
-        htmlspecialchars($entry['name']).'</td>	<td><tt>'.htmlspecialchars($entry['key']).
-        '</tt></td><td><a href="registry.edit.php?editkey='.urlencode($entry['key']).
+        htmlspecialchars($entry['name']).'</td>	<td><code>'.htmlspecialchars($entry['key']).
+        '</code></td><td><a href="registry.edit.php?editkey='.urlencode($entry['key']).
         '">edit</a><a href="registry.php?delete='.urlencode($entry['key']).'">delete</a></td></tr>';
 }
 if ($i == 0) {
@@ -35,8 +35,8 @@ foreach ($this->data['entries']['others'] as $entryc) {
     $entry = $entryc['value'];
     $i++;
     echo '<tr class="'.$rows[$i % 2].'"><td>'.
-        htmlspecialchars($entry['name']).'</td><td><tt>'.htmlspecialchars($entry['key']).
-        '</tt></td><td>'.(isset($entry['owner']) ? htmlspecialchars($entry['owner']) : 'No owner').
+        htmlspecialchars($entry['name']).'</td><td><code>'.htmlspecialchars($entry['key']).
+        '</code></td><td>'.(isset($entry['owner']) ? htmlspecialchars($entry['owner']) : 'No owner').
         '</td></tr>';
 }
 if ($i == 0) {

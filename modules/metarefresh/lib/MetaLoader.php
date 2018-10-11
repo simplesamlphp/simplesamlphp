@@ -130,15 +130,15 @@ class MetaLoader
 
         foreach ($entities as $entity) {
             if (isset($source['blacklist'])) {
-                if (!empty($source['blacklist']) && in_array($entity->getEntityID(), $source['blacklist'], true)) {
-                    Logger::info('Skipping "'.$entity->getEntityID().'" - blacklisted.'."\n");
+                if (!empty($source['blacklist']) && in_array($entity->getEntityId(), $source['blacklist'], true)) {
+                    Logger::info('Skipping "'.$entity->getEntityId().'" - blacklisted.'."\n");
                     continue;
                 }
             }
 
             if (isset($source['whitelist'])) {
-                if (!empty($source['whitelist']) && !in_array($entity->getEntityID(), $source['whitelist'], true)) {
-                    Logger::info('Skipping "'.$entity->getEntityID().'" - not in the whitelist.'."\n");
+                if (!empty($source['whitelist']) && !in_array($entity->getEntityId(), $source['whitelist'], true)) {
+                    Logger::info('Skipping "'.$entity->getEntityId().'" - not in the whitelist.'."\n");
                     continue;
                 }
             }

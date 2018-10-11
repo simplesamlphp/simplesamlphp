@@ -16,17 +16,25 @@ class TemplateLoader extends \Twig\Loader\FilesystemLoader
      *
      * @inheritdoc
      */
-    protected function findTemplate($name)
+    protected function findTemplate($name, $throw = true)
     {
-        list($namespace, $shortname) = $this->parseName($name);
+        list($namespace, $shortname) = $this->parseModuleName($name);
         if (!in_array($namespace, $this->paths, true) && $namespace !== self::MAIN_NAMESPACE) {
             $this->addPath(self::getModuleTemplateDir($namespace), $namespace);
         }
-        return parent::findTemplate($name);
+        return parent::findTemplate($name, $throw);
     }
 
 
-    protected function parseName($name, $default = self::MAIN_NAMESPACE)
+    /**
+     * Parse the name of a template in a module.
+     *
+     * @param string $name The full name of the template, including namespace and template name / path.
+     *
+     * @return array An array with the corresponding namespace and name of the template. The namespace defaults to
+     * \Twig\Loader\FilesystemLoader::MAIN_NAMESPACE, if none was specified in $name.
+     */
+    protected function parseModuleName($name, $default = self::MAIN_NAMESPACE)
     {
         if (strpos($name, ':')) {
             // we have our old SSP format
@@ -37,7 +45,7 @@ class TemplateLoader extends \Twig\Loader\FilesystemLoader
             ]);
             return [$namespace, $shortname];
         }
-        return parent::parseName($name, $default);
+        return [$default, $name];
     }
 
 

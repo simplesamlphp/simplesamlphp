@@ -24,7 +24,7 @@ $summary = $croninfo['summary'];
 
 if ($cronconfig->getValue('sendemail', true) && count($summary) > 0) {
     $message = '<h1>Cron report</h1><p>Cron ran at '.$time.'</p>'.
-        '<p>URL: <tt>'.$url.'</tt></p>'.
+        '<p>URL: <code>'.$url.'</code></p>'.
         '<p>Tag: '.$croninfo['tag']."</p>\n\n".
         '<ul><li>'.join('</li><li>', $summary).'</li></ul>';
 

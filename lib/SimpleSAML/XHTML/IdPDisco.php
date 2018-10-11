@@ -512,7 +512,7 @@ class IdPDisco
      */
     protected function start()
     {
-        $idp = $this->getTargetIdp();
+        $idp = $this->getTargetIdP();
         if ($idp !== null) {
             $extDiscoveryStorage = $this->config->getString('idpdisco.extDiscoveryStorage', null);
             if ($extDiscoveryStorage !== null) {
