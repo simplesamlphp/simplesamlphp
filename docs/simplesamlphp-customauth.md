@@ -45,11 +45,11 @@ Create the file `modules/mymodule/lib/Auth/Source/MyAuth.php` with the following
             if ($username !== 'theusername' || $password !== 'thepassword') {
                 throw new \SimpleSAML\Error\Error('WRONGUSERPASS');
             }
-            return array(
-                'uid' => array('theusername'),
-                'displayName' => array('Some Random User'),
-                'eduPersonAffiliation' => array('member', 'employee'),
-            );
+            return [
+                'uid' => ['theusername'],
+                'displayName' => ['Some Random User'],
+                'eduPersonAffiliation' => ['member', 'employee'],
+            ];
         }
     }
 
@@ -78,19 +78,19 @@ Before we can test our authentication source, we must add an entry for it in `co
 
 The entry looks like this:
 
-    'myauthinstance' => array(
+    'myauthinstance' => [
         'mymodule:MyAuth',
-    ),
+    ],
 
 You can add it to the beginning of the list, so that the file looks something like this:
 
     <?php
-    $config = array(
-        'myauthinstance' => array(
+    $config = [
+        'myauthinstance' => [
             'mymodule:MyAuth',
-        ),
+        ],
         /* Other authentication sources follow. */
-    );
+    ];
 
 `myauthinstance` is the name of this instance of the authentication source.
 (You are allowed to have multiple instances of an authentication source with different configuration.)
@@ -124,7 +124,7 @@ In that file you should locate the `auth`-option for your IdP, and change it to 
 
     <?php
     /* ... */
-    $metadata['__DYNAMIC:1__'] = array(
+    $metadata['__DYNAMIC:1__'] = [
         /* ... */
         /*
          * Authentication source to use. Must be one that is configured in
@@ -132,7 +132,7 @@ In that file you should locate the `auth`-option for your IdP, and change it to 
          */
         'auth' => 'myauthinstance',
         /* ... */
-    );
+    ];
 
 You can then test logging in to the IdP.
 If you have logged in previously, you may need to log out first.
@@ -189,22 +189,22 @@ The complete class file should look like this:
             if ($username !== $this->username || $password !== $this->password) {
                 throw new \SimpleSAML\Error\Error('WRONGUSERPASS');
             }
-            return array(
-                'uid' => array($this->username),
-                'displayName' => array('Some Random User'),
-                'eduPersonAffiliation' => array('member', 'employee'),
-            );
+            return [
+                'uid' => [$this->username],
+                'displayName' => ['Some Random User'],
+                'eduPersonAffiliation' => ['member', 'employee'],
+            ];
         }
 
     }
 
 We can then update our entry in `config/authsources.php` with the configuration options:
 
-    'myauthinstance' => array(
+    'myauthinstance' => [
         'mymodule:MyAuth',
         'username' => 'theconfigusername',
         'password' => 'theconfigpassword',
-    ),
+    ],
 
 Next, you should go to the "Test configured authentication sources" page again, and test logging in.
 Note that we have updated the username & password to "theconfigusername" and "theconfigpassword".
@@ -314,7 +314,7 @@ The class follows:
              */
             $st = $db->prepare('SELECT username, password_hash, full_name FROM userdb WHERE username=:username');
 
-            if (!$st->execute(array('username' => $username))) {
+            if (!$st->execute(['username' => $username])) {
                 throw new Exception('Failed to query database for user.');
             }
 
@@ -334,11 +334,11 @@ The class follows:
             }
 
             /* Create the attribute array of the user. */
-            $attributes = array(
-                'uid' => array($username),
-                'displayName' => array($row['full_name']),
-                'eduPersonAffiliation' => array('member', 'employee'),
-            );
+            $attributes = [
+                'uid' => [$username],
+                'displayName' => [$row['full_name']],
+                'eduPersonAffiliation' => ['member', 'employee'],
+            ];
 
             /* Return the attributes. */
             return $attributes;
@@ -348,10 +348,10 @@ The class follows:
 
 And configured in `config/authsources.php`:
 
-    'myauthinstance' => array(
+    'myauthinstance' => [
         'mymodule:MyAuth',
         'dsn' => 'mysql:host=sql.example.org;dbname=userdatabase',
         'username' => 'db_username',
         'password' => 'secret_db_password',
-    ),
+    ],
 

@@ -9,12 +9,12 @@ Both files have the following format:
 
     <?php
     /* The index of the array is the entity ID of this SP. */
-    $metadata['entity-id-1'] = array(
+    $metadata['entity-id-1'] = [
         /* Configuration options for the first SP. */
-    );
-    $metadata['entity-id-2'] = array(
+    ];
+    $metadata['entity-id-2'] = [
         /* Configuration options for the second SP. */
-    );
+    ];
     /* ... */
 
 
@@ -54,10 +54,10 @@ and Shibboleth 1.3 protocol:
 :   This option can be translated into multiple languages by specifying
     the value as an array of language-code to translated name:
 
-        'name' => array(
+        'name' => [
             'en' => 'A service',
             'no' => 'En tjeneste',
-        ),
+        ],
 
 `OrganizationName`
 :   The name of the organization responsible for this SPP.
@@ -65,10 +65,10 @@ and Shibboleth 1.3 protocol:
 
 :   This option can be translated into multiple languages by specifying the value as an array of language-code to translated name:
 
-        'OrganizationName' => array(
+        'OrganizationName' => [
             'en' => 'Example organization',
             'no' => 'Eksempel organisation',
-        ),
+        ],
 
 :   *Note*: If you specify this option, you must also specify the `OrganizationURL` option.
 
@@ -376,7 +376,7 @@ idp is in the intersection the discoveryservice will go directly to the idp.
 
 **Example: Configuration for scoping**
 
-     'IDPList' => array('https://idp1.wayf.dk', 'https://idp2.wayf.dk'),
+     'IDPList' => ['https://idp1.wayf.dk', 'https://idp2.wayf.dk'],
      
 
 Shibboleth 1.3 options
