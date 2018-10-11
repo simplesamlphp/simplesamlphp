@@ -6,16 +6,17 @@
             <li class="ui-state-default ui-corner-top"><a href="/{{ baseurlpath }}module.php/core/frontpage_auth.php">Authentication</a></li>
             <li class="ui-state-default ui-corner-top"><a href="/{{ baseurlpath }}module.php/core/frontpage_federation.php">Federation</a></li>
         </ul>
+        <a class='float-r' href='{{ logouturl }}'>{{ '{core:frontpage:logout}'|trans }}</a>
         <div id="portalcontent" class="ui-tabs-panel ui-widget-content ui-corner-bottom">
 
         <div style="clear: both" class="enablebox mini">
             <table>
 
                 <tr class="disabled"><td>SAML 2.0 IdP</td>
-                    <td><img src="/{{ baseurlpath }}resources/icons/silk/delete.png" alt="disabled" /></td></tr>
+                    <td><i class="fa fa-ban"></i></td></tr>
 
                 <tr class="disabled"><td>Shib 1.3 IdP</td>
-                    <td><img src="/{{ baseurlpath }}resources/icons/silk/delete.png" alt="disabled" /></td></tr>
+                    <td><i class="fa fa-ban"></i></td></tr>
 
             </table>
         </div>

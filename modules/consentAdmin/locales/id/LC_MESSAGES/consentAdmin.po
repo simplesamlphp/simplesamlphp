@@ -54,9 +54,6 @@ msgstr "(Tidak ada penjelasan)"
 msgid "{consentAdmin:consentadmin:service_providers_for}"
 msgstr "Service Provider untuk"
 
-msgid "{consentAdmin:consentadmin:sp_empty_name}"
-msgstr "(Nama tidak diisi)"
-
 msgid "{consentAdmin:consentadmin:consentadmin_description2}"
 msgstr ""
 "<h3>Bagaimana cara menghapus consent anda</h3> Hapus centak pada kotak "

@@ -8,6 +8,7 @@ $session = \SimpleSAML\Session::getSessionFromRequest();
 if ($config->getBoolean('admin.protectindexpage', false)) {
     SimpleSAML\Utils\Auth::requireAdmin();
 }
+$logouturl = \SimpleSAML\Utils\Auth::getAdminLogoutURL();
 $loginurl = \SimpleSAML\Utils\Auth::getAdminLoginURL();
 $isadmin = \SimpleSAML\Utils\Auth::isAdmin();
 
@@ -36,6 +37,7 @@ $t = new \SimpleSAML\XHTML\Template($config, 'core:frontpage_welcome.tpl.php');
 $t->data['pageid'] = 'frontpage_welcome';
 $t->data['isadmin'] = $isadmin;
 $t->data['loginurl'] = $loginurl;
+$t->data['logouturl'] = $logouturl;
 
 $t->data['links'] = $links;
 $t->data['links_welcome'] = $links_welcome;

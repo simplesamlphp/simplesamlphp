@@ -68,7 +68,7 @@ $config = array(
             ),
 
             'expireAfter' => 34560060, // Maximum 4 days cache time (3600*24*4)
-            'outputDir'	=> 'metadata/metadata-kalmar-consuming/',
+            'outputDir' => 'metadata/metadata-kalmar-consuming/',
 
             /*
              * Which output format the metadata should be saved as.

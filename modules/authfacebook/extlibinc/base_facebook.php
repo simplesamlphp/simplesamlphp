@@ -48,10 +48,10 @@ class FacebookApiException extends Exception
         if (isset($result['error_description'])) {
             // OAuth 2.0 Draft 10 style
             $msg = $result['error_description'];
-        } else if (isset($result['error']) && is_array($result['error'])) {
+        } elseif (isset($result['error']) && is_array($result['error'])) {
             // OAuth 2.0 Draft 00 style
             $msg = $result['error']['message'];
-        } else if (isset($result['error_msg'])) {
+        } elseif (isset($result['error_msg'])) {
             // Rest server style
             $msg = $result['error_msg'];
         } else {
@@ -84,7 +84,7 @@ class FacebookApiException extends Exception
             if (is_string($error)) {
                 // OAuth 2.0 Draft 10 style
                 return $error;
-            } else if (is_array($error)) {
+            } elseif (is_array($error)) {
                 // OAuth 2.0 Draft 00 style
                 if (isset($error['type'])) {
                     return $error['type'];
@@ -359,7 +359,7 @@ abstract class BaseFacebook
             // need to circumvent json_decode by calling _oauthRequest
             // directly, since response isn't JSON format
             $access_token_response = $this->_oauthRequest(
-            $this->getUrl('graph', '/oauth/access_token'),
+                $this->getUrl('graph', '/oauth/access_token'),
                 $params = array(
                     'client_id' => $this->getAppId(),
                     'client_secret' => $this->getAppSecret(),
@@ -387,7 +387,8 @@ abstract class BaseFacebook
         $this->destroySession();
 
         $this->setPersistentData(
-            'access_token', $response_params['access_token']
+            'access_token',
+            $response_params['access_token']
         );
     }
 
@@ -498,10 +499,12 @@ abstract class BaseFacebook
         if (!$this->signedRequest) {
             if (!empty($_REQUEST['signed_request'])) {
                 $this->signedRequest = $this->parseSignedRequest(
-                $_REQUEST['signed_request']);
-            } else if (!empty($_COOKIE[$this->getSignedRequestCookieName()])) {
+                    $_REQUEST['signed_request']
+                );
+            } elseif (!empty($_COOKIE[$this->getSignedRequestCookieName()])) {
                 $this->signedRequest = $this->parseSignedRequest(
-                $_COOKIE[$this->getSignedRequestCookieName()]);
+                    $_COOKIE[$this->getSignedRequestCookieName()]
+                );
             }
         }
         return $this->signedRequest;
@@ -600,11 +603,15 @@ abstract class BaseFacebook
         return $this->getUrl(
             'www',
             'dialog/oauth',
-            array_merge(array(
+            array_merge(
+                array(
                     'client_id' => $this->getAppId(),
                     'redirect_uri' => $currentUrl, // possibly overwritten
-                    'state' => $this->state),
-                    $params));
+                    'state' => $this->state
+                ),
+                $params
+            )
+        );
     }
 
     /**
@@ -708,8 +715,8 @@ abstract class BaseFacebook
         if (isset($_REQUEST['code'])) {
             if ($this->state !== null &&
                 isset($_REQUEST['state']) &&
-                $this->state === $_REQUEST['state']) {
-
+                $this->state === $_REQUEST['state']
+            ) {
                 // CSRF state has done its job, so clear it
                 $this->state = null;
                 $this->clearPersistentData('state');
@@ -797,10 +804,13 @@ abstract class BaseFacebook
             $access_token_response =
                 $this->_oauthRequest(
                     $this->getUrl('graph', '/oauth/access_token'),
-                    $params = array('client_id' => $this->getAppId(),
-                            'client_secret' => $this->getAppSecret(),
-                            'redirect_uri' => $redirect_uri,
-                            'code' => $code));
+                    $params = array(
+                        'client_id' => $this->getAppId(),
+                        'client_secret' => $this->getAppSecret(),
+                        'redirect_uri' => $redirect_uri,
+                        'code' => $code
+                    )
+                );
         } catch (FacebookApiException $e) {
             self::errorLog($e->getMessage());
             // most likely that user very recently revoked authorization.
@@ -809,13 +819,13 @@ abstract class BaseFacebook
         }
 
         if (empty($access_token_response)) {
-            self::errorlog('No access token response');
+            self::errorLog('No access token response');
             return false;
         }
 
         $response_params = json_decode($access_token_response, true);
         if (!isset($response_params['access_token'])) {
-            self::errorlog('No access token in response. ' . $access_token_response);
+            self::errorLog('No access token in response. ' . $access_token_response);
             return false;
         }
 
@@ -1036,8 +1046,7 @@ abstract class BaseFacebook
         }
 
         // check sig
-        $expected_sig = hash_hmac('sha256', $payload,
-                                $this->getAppSecret(), $raw = true);
+        $expected_sig = hash_hmac('sha256', $payload, $this->getAppSecret(), $raw = true);
         if ($sig !== $expected_sig) {
             self::errorLog('Bad Signed JSON signature!');
             return null;
@@ -1056,7 +1065,8 @@ abstract class BaseFacebook
     {
         if (!is_array($data)) {
             throw new InvalidArgumentException(
-                'makeSignedRequest expects an array. Got: '.print_r($data, true));
+                'makeSignedRequest expects an array. Got: '.print_r($data, true)
+            );
         }
         $data['algorithm'] = self::SIGNED_REQUEST_ALGORITHM;
         $data['issued_at'] = time();
@@ -1141,7 +1151,7 @@ abstract class BaseFacebook
         $name = 'api';
         if (isset($READ_ONLY_CALLS[strtolower($method)])) {
             $name = 'api_read';
-        } else if (strtolower($method) == 'video.upload') {
+        } elseif (strtolower($method) == 'video.upload') {
             $name = 'api_video';
         }
         return $this->getUrl($name, 'restserver.php');

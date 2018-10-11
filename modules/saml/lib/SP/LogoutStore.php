@@ -25,10 +25,12 @@ class LogoutStore
             switch ($store->driver) {
                 case 'pgsql':
                     // This does not affect the NOT NULL constraint
-                    $query = 'ALTER TABLE '.$store->prefix.'_saml_LogoutStore ALTER COLUMN _authSource TYPE VARCHAR(255)';
+                    $query = 'ALTER TABLE '.$store->prefix.
+                        '_saml_LogoutStore ALTER COLUMN _authSource TYPE VARCHAR(255)';
                     break;
                 default:
-                    $query = 'ALTER TABLE '.$store->prefix.'_saml_LogoutStore MODIFY _authSource VARCHAR(255) NOT NULL';
+                    $query = 'ALTER TABLE '.$store->prefix.
+                        '_saml_LogoutStore MODIFY _authSource VARCHAR(255) NOT NULL';
                     break;
             }
 
@@ -52,10 +54,12 @@ class LogoutStore
         )';
         $store->pdo->exec($query);
 
-        $query = 'CREATE INDEX '.$store->prefix.'_saml_LogoutStore_expire ON '.$store->prefix.'_saml_LogoutStore (_expire)';
+        $query = 'CREATE INDEX '.$store->prefix.'_saml_LogoutStore_expire ON ';
+        $query .= $store->prefix.'_saml_LogoutStore (_expire)';
         $store->pdo->exec($query);
 
-        $query = 'CREATE INDEX '.$store->prefix.'_saml_LogoutStore_nameId ON '.$store->prefix.'_saml_LogoutStore (_authSource, _nameId)';
+        $query = 'CREATE INDEX '.$store->prefix.'_saml_LogoutStore_nameId ON ';
+        $query .= $store->prefix.'_saml_LogoutStore (_authSource, _nameId)';
         $store->pdo->exec($query);
 
         $store->setTableVersion('saml_LogoutStore', 2);
@@ -87,8 +91,14 @@ class LogoutStore
      * @param string $nameId  The hash of the users NameID.
      * @param string $sessionIndex  The SessionIndex of the user.
      */
-    private static function addSessionSQL(\SimpleSAML\Store\SQL $store, $authId, $nameId, $sessionIndex, $expire, $sessionId)
-    {
+    private static function addSessionSQL(
+        \SimpleSAML\Store\SQL $store,
+        $authId,
+        $nameId,
+        $sessionIndex,
+        $expire,
+        $sessionId
+    ) {
         assert(is_string($authId));
         assert(is_string($nameId));
         assert(is_string($sessionIndex));
@@ -108,7 +118,11 @@ class LogoutStore
             '_expire' => gmdate('Y-m-d H:i:s', $expire),
             '_sessionId' => $sessionId,
         );
-        $store->insertOrUpdate($store->prefix.'_saml_LogoutStore', array('_authSource', '_nameId', '_sessionIndex'), $data);
+        $store->insertOrUpdate(
+            $store->prefix.'_saml_LogoutStore',
+            array('_authSource', '_nameId', '_sessionIndex'),
+            $data
+        );
     }
 
 
@@ -134,8 +148,8 @@ class LogoutStore
         );
 
         // We request the columns in lowercase in order to be compatible with PostgreSQL
-        $query = 'SELECT _sessionIndex AS _sessionindex, _sessionId AS _sessionid FROM '.$store->prefix.'_saml_LogoutStore'.
-            ' WHERE _authSource = :_authSource AND _nameId = :_nameId AND _expire >= :now';
+        $query = 'SELECT _sessionIndex AS _sessionindex, _sessionId AS _sessionid FROM '.$store->prefix;
+        $query .= '_saml_LogoutStore'.' WHERE _authSource = :_authSource AND _nameId = :_nameId AND _expire >= :now';
         $query = $store->pdo->prepare($query);
         $query->execute($params);
 
@@ -267,7 +281,9 @@ class LogoutStore
                 $sessionIndex = sha1($sessionIndex);
             }
         }
-        unset($sessionIndex); // Remove reference
+
+        // Remove reference
+        unset($sessionIndex);
 
         if ($store instanceof \SimpleSAML\Store\SQL) {
             $sessions = self::getSessionsSQL($store, $authId, $strNameId);
@@ -277,7 +293,6 @@ class LogoutStore
         } else {
             /** @var \SimpleSAML\Store $sessions At this point the store cannot be false */
             $sessions = self::getSessionsStore($store, $authId, $strNameId, $sessionIndexes);
-
         }
 
         if (empty($sessionIndexes)) {
@@ -300,11 +315,15 @@ class LogoutStore
             }
 
             if (!$session->isValid($authId)) {
-                \SimpleSAML\Logger::info('saml.LogoutStore: Skipping logout of session because it isn\'t authenticated.');
+                \SimpleSAML\Logger::info(
+                    'saml.LogoutStore: Skipping logout of session because it isn\'t authenticated.'
+                );
                 continue;
             }
 
-            \SimpleSAML\Logger::info('saml.LogoutStore: Logging out of session with trackId ['.$session->getTrackID().'].');
+            \SimpleSAML\Logger::info(
+                'saml.LogoutStore: Logging out of session with trackId ['.$session->getTrackID().'].'
+            );
             $session->doLogout($authId);
             $numLoggedOut += 1;
         }

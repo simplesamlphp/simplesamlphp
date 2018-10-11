@@ -1,7 +1,5 @@
 <?php
 
-
-
 /**
  * Support the htmlinject hook, which allows modules to change header, pre and post body on all pages.
  */
@@ -10,7 +8,6 @@ $this->data['htmlinject'] = [
     'htmlContentPost' => [],
     'htmlContentHead' => [],
 ];
-
 
 $jquery = [];
 if (array_key_exists('jquery', $this->data)) {
@@ -68,23 +65,22 @@ if (!empty($jquery)) {
 
     if ($version == '1.8') {
         if (isset($jquery['core']) && $jquery['core']) {
-            echo('<script type="text/javascript" src="/' . $this->data['baseurlpath'] . 'resources/jquery-1.8.js"></script>' . "\n");
+            echo '<script type="text/javascript" src="/'.$this->data['baseurlpath'].'resources/jquery-1.8.js"></script>'."\n";
         }
 
         if (isset($jquery['ui']) && $jquery['ui']) {
-            echo('<script type="text/javascript" src="/' . $this->data['baseurlpath'] . 'resources/jquery-ui-1.8.js"></script>' . "\n");
+            echo '<script type="text/javascript" src="/'.$this->data['baseurlpath'].'resources/jquery-ui-1.8.js"></script>'."\n";
         }
 
         if (isset($jquery['css']) && $jquery['css']) {
-            echo('<link rel="stylesheet" media="screen" type="text/css" href="/' . $this->data['baseurlpath'] .
-                'resources/uitheme1.8/jquery-ui.css" />' . "\n");
+            echo '<link rel="stylesheet" media="screen" type="text/css" href="/'.$this->data['baseurlpath'].
+                'resources/uitheme1.8/jquery-ui.css" />'."\n";
         }
     }
 }
 
 if (isset($this->data['clipboard.js'])) {
-    echo '<script type="text/javascript" src="/' . $this->data['baseurlpath'] .
-         'resources/clipboard.min.js"></script>' . "\n";
+    echo '<script type="text/javascript" src="/'.$this->data['baseurlpath'].'resources/clipboard.min.js"></script>'."\n";
 }
 
 if (!empty($this->data['htmlinject']['htmlContentHead'])) {
@@ -93,37 +89,24 @@ if (!empty($this->data['htmlinject']['htmlContentHead'])) {
     }
 }
 
-
-
-
 if ($this->isLanguageRTL()) {
     ?>
     <link rel="stylesheet" type="text/css" href="/<?php echo $this->data['baseurlpath']; ?>resources/default-rtl.css" />
 <?php
 }
 ?>
-
-
     <meta name="robots" content="noindex, nofollow" />
-
 
 <?php
 if (array_key_exists('head', $this->data)) {
-    echo '<!-- head -->' . $this->data['head'] . '<!-- /head -->';
+    echo '<!-- head -->'.$this->data['head'].'<!-- /head -->';
 }
 ?>
 </head>
 <?php
 $onLoad = '';
 if (array_key_exists('autofocus', $this->data)) {
-    $onLoad .= 'SimpleSAML_focus(\'' . $this->data['autofocus'] . '\');';
-}
-if (isset($this->data['onLoad'])) {
-    $onLoad .= $this->data['onLoad'];
-}
-
-if ($onLoad !== '') {
-    $onLoad = ' onload="' . $onLoad . '"';
+    $onLoad .= ' onload="SimpleSAML_focus(\''.$this->data['autofocus'].'\');"';
 }
 ?>
 <body<?php echo $onLoad; ?>>
@@ -198,13 +181,12 @@ if ($onLoad !== '') {
                 if ($current) {
                     $textarray[] = $langnames[$lang];
                 } else {
-                    $textarray[] = '<a href="' . htmlspecialchars(
+                    $textarray[] = '<a href="'.htmlspecialchars(
                         \SimpleSAML\Utils\HTTP::addURLParameters(
                             \SimpleSAML\Utils\HTTP::getSelfURL(),
                             [$this->getTranslator()->getLanguage()->getLanguageParameterName() => $lang]
                         )
-                    ) . '">' .
-                        $langnames[$lang] . '</a>';
+                    ).'">'.$langnames[$lang].'</a>';
                 }
             }
             echo join(' | ', $textarray);
@@ -212,12 +194,8 @@ if ($onLoad !== '') {
         }
     }
 
-
-
     ?>
     <div id="content">
-
-
 
 <?php
 

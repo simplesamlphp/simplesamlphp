@@ -55,9 +55,6 @@ msgstr "(nav apraksta)"
 msgid "{consentAdmin:consentadmin:service_providers_for}"
 msgstr "Servisa piegādātāji priekš"
 
-msgid "{consentAdmin:consentadmin:sp_empty_name}"
-msgstr "(vārds nav norādīts)"
-
 msgid "{consentAdmin:consentadmin:consentadmin_description2}"
 msgstr ""
 "<h3>Kā dzēst noteikumus</h3> Izņemiet ķeksīti pie atbilstošā servisa "

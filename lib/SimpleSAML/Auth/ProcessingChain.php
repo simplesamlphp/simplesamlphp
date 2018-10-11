@@ -336,10 +336,10 @@ class ProcessingChain
 
         if (isset($state['Destination']['userid.attribute'])) {
             $attributeName = $state['Destination']['userid.attribute'];
-            \SimpleSAML\Logger::warning("The 'userid.attribute' option has been deprecated.");
+            \SimpleSAML\Logger::debug("The 'userid.attribute' option has been deprecated.");
         } elseif (isset($state['Source']['userid.attribute'])) {
             $attributeName = $state['Source']['userid.attribute'];
-            \SimpleSAML\Logger::warning("The 'userid.attribute' option has been deprecated.");
+            \SimpleSAML\Logger::debug("The 'userid.attribute' option has been deprecated.");
         } else {
             // Default attribute
             $attributeName = 'eduPersonPrincipalName';

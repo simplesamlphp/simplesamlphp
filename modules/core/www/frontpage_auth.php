@@ -10,6 +10,7 @@ if ($config->getBoolean('admin.protectindexpage', false)) {
 }
 $loginurl = \SimpleSAML\Utils\Auth::getAdminLoginURL();
 $isadmin = \SimpleSAML\Utils\Auth::isAdmin();
+$logouturl = \SimpleSAML\Utils\Auth::getAdminLogoutURL();
 
 $links = array();
 $links_welcome = array();
@@ -35,6 +36,7 @@ $t = new \SimpleSAML\XHTML\Template($config, 'core:frontpage_auth.tpl.php');
 $t->data['pageid'] = 'frontpage_auth';
 $t->data['isadmin'] = $isadmin;
 $t->data['loginurl'] = $loginurl;
+$t->data['logouturl'] = $logouturl;
 
 $t->data['header'] = $t->getTranslator()->t('{core:frontpage:page_title}');
 $t->data['links'] = $links;
@@ -44,5 +46,3 @@ $t->data['links_auth'] = $links_auth;
 $t->data['links_federation'] = $links_federation;
 
 $t->show();
-
-

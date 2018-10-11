@@ -172,7 +172,6 @@ class SQL extends \SimpleSAML\Module\core\Auth\UserPassBase
         $attributes = array();
         foreach ($data as $row) {
             foreach ($row as $name => $value) {
-
                 if ($value === null) {
                     continue;
                 }

@@ -110,47 +110,6 @@ class Test_Configuration extends SimpleSAML\Test\Utils\ClearStateTestCase
     }
 
     /**
-     * Test \SimpleSAML\Configuration::getBaseURL()
-     */
-    public function testGetBaseURL()
-    {
-        // Need to set a default configuration because the SSP Logger attempts to use it.
-        Configuration::loadFromArray(array(), '[ARRAY]', 'simplesaml');
-        $c = Configuration::loadFromArray(array());
-        $this->assertEquals($c->getBaseURL(), 'simplesaml/');
-
-        $c = Configuration::loadFromArray(array('baseurlpath' => 'simplesaml/'));
-        $this->assertEquals($c->getBaseURL(), 'simplesaml/');
-
-        $c = Configuration::loadFromArray(array('baseurlpath' => '/simplesaml/'));
-        $this->assertEquals($c->getBaseURL(), 'simplesaml/');
-
-        $c = Configuration::loadFromArray(array('baseurlpath' => 'path/to/simplesaml/'));
-        $this->assertEquals($c->getBaseURL(), 'path/to/simplesaml/');
-
-        $c = Configuration::loadFromArray(array('baseurlpath' => '/path/to/simplesaml/'));
-        $this->assertEquals($c->getBaseURL(), 'path/to/simplesaml/');
-
-        $c = Configuration::loadFromArray(array('baseurlpath' => 'https://example.org/ssp/'));
-        $this->assertEquals($c->getBaseURL(), 'ssp/');
-
-        $c = Configuration::loadFromArray(array('baseurlpath' => 'https://example.org/'));
-        $this->assertEquals($c->getBaseURL(), '');
-
-        $c = Configuration::loadFromArray(array('baseurlpath' => 'http://example.org/ssp/'));
-        $this->assertEquals($c->getBaseURL(), 'ssp/');
-
-        $c = Configuration::loadFromArray(array('baseurlpath' => ''));
-        $this->assertEquals($c->getBaseURL(), '');
-
-        $c = Configuration::loadFromArray(array('baseurlpath' => '/'));
-        $this->assertEquals($c->getBaseURL(), '');
-
-        $c = Configuration::loadFromArray(array('baseurlpath' => 'simplesaml'));
-        $this->assertEquals($c->getBaseURL(), 'simplesaml/');
-    }
-
-    /**
      * Test \SimpleSAML\Configuration::getBasePath()
      */
     public function testGetBasePath()

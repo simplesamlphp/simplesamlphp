@@ -1,5 +1,5 @@
 <?php
-/* 
+/*
  * Configuration for the DiscoPower module.
  */
 
@@ -21,9 +21,9 @@ $config = array(
 
     /*
      * If you want to change the scoring algorithm to a more google suggest like one
-     * (filters by start of words) uncomment this ... 
+     * (filters by start of words) uncomment this ...
      *
-     * 'score' => 'suggest', 
+     * 'score' => 'suggest',
      */
 
     /*

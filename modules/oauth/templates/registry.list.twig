@@ -2,7 +2,7 @@
 {% extends "base.twig" %}
 
 {% block preload %}
-    <link href="{{ baseurlpath }}style.css" rel="stylesheet" />
+    <link href="{{ baseurlpath }}assets/css/oauth.css" rel="stylesheet" />
 {% endblock %}
 
 {% block content %}
@@ -12,7 +12,7 @@
 
     <table class="metalist" style="width: 100%;">
     {% for key, entryc in entries.mine %}
-        {% if loop.index0  % 2 == 0 %}
+        {% if loop.index0 is even %}
             {% set class = 'even' %}
         {% else %}
             {% set class = 'odd' %}
@@ -36,7 +36,7 @@
 
     <table class="metalist" style="width: 100%">
     {% for key, entryc in entries.others %}
-        {% if loop.index0  % 2 == 0 %}
+        {% if loop.index0 is even %}
             {% set class = 'even' %}
         {% else %}
             {% set class = 'odd' %}

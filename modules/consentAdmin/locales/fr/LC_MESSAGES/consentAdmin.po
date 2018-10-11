@@ -54,9 +54,6 @@ msgstr "(pas de description)"
 msgid "{consentAdmin:consentadmin:service_providers_for}"
 msgstr "Fournisseurs de service pour"
 
-msgid "{consentAdmin:consentadmin:sp_empty_name}"
-msgstr "(nom non indiqué)"
-
 msgid "{consentAdmin:consentadmin:consentadmin_description2}"
 msgstr ""
 "<h3>Comment révoquer un consentement</h3>Décochez la case correspondante "

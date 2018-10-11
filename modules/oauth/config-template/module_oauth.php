@@ -1,7 +1,7 @@
 <?php
-/* 
+/*
  * Configuration for the OAuth module.
- * 
+ *
  */
 
 $config = array(
@@ -17,7 +17,7 @@ $config = array(
     // Tag to run storage cleanup script using the cron module...
     'cron_tag' => 'hourly',
 
-    // auth is the idp to use for admin authentication, 
+    // auth is the idp to use for admin authentication,
     // useridattr is the attribute-name that contains the userid as returned from idp
     'auth' => 'default-sp',
     'useridattr', 'user',

@@ -91,9 +91,11 @@ class Ruleset
         $statrulesConfig = $this->statconfig->getConfigItem('statrules');
         $statruleConfig = $statrulesConfig->getConfigItem($rule);
 
-        $presenterClass = \SimpleSAML\Module::resolveClass($statruleConfig->getValue('presenter', 'statistics:BaseRule'), 'Statistics_Rulesets');
+        $presenterClass = \SimpleSAML\Module::resolveClass(
+            $statruleConfig->getValue('presenter', 'statistics:BaseRule'),
+            'Statistics_Rulesets'
+        );
         $statrule = new $presenterClass($this->statconfig, $statruleConfig, $rule, $this->available);
         return $statrule;
     }
 }
-

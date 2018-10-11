@@ -36,8 +36,10 @@ class Error extends \SimpleSAML\Error\Exception
      * Create a SAML 2 error.
      *
      * @param string $status  The top-level status code.
-     * @param string|null $subStatus  The second-level status code. Can be NULL, in which case there is no second-level status code.
-     * @param string|null $statusMessage  The status message. Can be NULL, in which case there is no status message.
+     * @param string|null $subStatus  The second-level status code.
+     * Can be NULL, in which case there is no second-level status code.
+     * @param string|null $statusMessage  The status message.
+     * Can be NULL, in which case there is no status message.
      * @param \Exception|null $cause  The cause of this exception. Can be NULL.
      */
     public function __construct($status, $subStatus = null, $statusMessage = null, \Exception $cause = null)
@@ -116,7 +118,7 @@ class Error extends \SimpleSAML\Error\Exception
                 \SAML2\Constants::STATUS_NO_PASSIVE,
                 $exception->getMessage(),
                 $exception
-                );
+            );
         // TODO: remove this branch in 2.0
         } elseif ($exception instanceof \SimpleSAML\Error\ProxyCountExceeded) {
             $e = new self(
@@ -131,7 +133,7 @@ class Error extends \SimpleSAML\Error\Exception
                 null,
                 get_class($exception).': '.$exception->getMessage(),
                 $exception
-                );
+            );
         }
 
         return $e;
@@ -163,7 +165,7 @@ class Error extends \SimpleSAML\Error\Exception
                         );
                         break;
                 }
-            break;
+                break;
         }
 
         if ($e === null) {

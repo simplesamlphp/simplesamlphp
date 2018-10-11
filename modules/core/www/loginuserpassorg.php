@@ -18,7 +18,9 @@ $state = \SimpleSAML\Auth\State::loadState($authStateId, \SimpleSAML\Module\core
 
 $source = \SimpleSAML\Auth\Source::getById($state[\SimpleSAML\Module\core\Auth\UserPassOrgBase::AUTHID]);
 if ($source === null) {
-    throw new \Exception('Could not find authentication source with id '.$state[\SimpleSAML\Module\core\Auth\UserPassOrgBase::AUTHID]);
+    throw new \Exception(
+        'Could not find authentication source with id '.$state[\SimpleSAML\Module\core\Auth\UserPassOrgBase::AUTHID]
+    );
 }
 
 $organizations = \SimpleSAML\Module\core\Auth\UserPassOrgBase::listOrganizations($authStateId);
@@ -41,7 +43,9 @@ if (array_key_exists('password', $_REQUEST)) {
 
 if (array_key_exists('organization', $_REQUEST)) {
     $organization = $_REQUEST['organization'];
-} elseif ($source->getRememberOrganizationEnabled() && array_key_exists($source->getAuthId().'-organization', $_COOKIE)) {
+} elseif ($source->getRememberOrganizationEnabled() &&
+    array_key_exists($source->getAuthId().'-organization', $_COOKIE)
+  ) {
     $organization = $_COOKIE[$source->getAuthId().'-organization'];
 } elseif (isset($state['core:organization'])) {
     $organization = (string) $state['core:organization'];
@@ -61,25 +65,44 @@ if (isset($state['error'])) {
 
 if ($organizations === null || !empty($organization)) {
     if (!empty($username) || !empty($password)) {
-
         if ($source->getRememberUsernameEnabled()) {
             $sessionHandler = \SimpleSAML\SessionHandler::getSessionHandler();
             $params = $sessionHandler->getCookieParams();
-            $params['expire'] = time();
-            $params['expire'] += (isset($_REQUEST['remember_username']) && $_REQUEST['remember_username'] == 'Yes' ? 31536000 : -300);
+            if (isset($_REQUEST['remember_username']) && $_REQUEST['remember_username'] == 'Yes') {
+                $params['expire'] = time() + 3153600;
+            } else {
+                $params['expire'] = time() - 300;
+            }
+
             \SimpleSAML\Utils\HTTP::setCookie($source->getAuthId().'-username', $username, $params, false);
         }
 
         if ($source->getRememberOrganizationEnabled()) {
             $sessionHandler = \SimpleSAML\SessionHandler::getSessionHandler();
             $params = $sessionHandler->getCookieParams();
-            $params['expire'] = time();
-            $params['expire'] += (isset($_REQUEST['remember_organization']) && $_REQUEST['remember_organization'] == 'Yes' ? 31536000 : -300);
-            setcookie($source->getAuthId().'-organization', $organization, $params['expire'], $params['path'], $params['domain'], $params['secure'], $params['httponly']);
+            if (isset($_REQUEST['remember_organization']) && $_REQUEST['remember_organization'] == 'Yes') {
+                $params['expire'] = time() + 3153600;
+            } else {
+                $params['expire'] = time() - 300;
+            }
+            setcookie(
+                $source->getAuthId().'-organization',
+                $organization,
+                $params['expire'],
+                $params['path'],
+                $params['domain'],
+                $params['secure'],
+                $params['httponly']
+            );
         }
 
         try {
-            \SimpleSAML\Module\core\Auth\UserPassOrgBase::handleLogin($authStateId, $username, $password, $organization);
+            \SimpleSAML\Module\core\Auth\UserPassOrgBase::handleLogin(
+                $authStateId,
+                $username,
+                $password,
+                $organization
+            );
         } catch (\SimpleSAML\Error\Error $e) {
             // Login failed. Extract error code and parameters, to display the error
             $errorCode = $e->getErrorCode();
@@ -88,7 +111,10 @@ if ($organizations === null || !empty($organization)) {
                 'code' => $errorCode,
                 'params' => $errorParams
             );
-            $authStateId = \SimpleSAML\Auth\State::saveState($state, \SimpleSAML\Module\core\Auth\UserPassOrgBase::STAGEID);
+            $authStateId = \SimpleSAML\Auth\State::saveState(
+                $state,
+                \SimpleSAML\Module\core\Auth\UserPassOrgBase::STAGEID
+            );
             $queryParams = array('AuthState' => $authStateId);
         }
         if (isset($state['error'])) {
@@ -135,4 +161,3 @@ if (isset($state['SPMetadata'])) {
 
 $t->show();
 exit();
-

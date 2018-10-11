@@ -60,7 +60,7 @@ class Memcache
             if ($serializedInfo === false) {
                 // either the server is down, or we don't have the value stored on that server
                 $mustUpdate = true;
-                $up = $server->getstats();
+                $up = $server->getStats();
                 if ($up !== false) {
                     $allDown = false;
                 }
@@ -306,8 +306,9 @@ class Memcache
     {
         $class = class_exists('\Memcache') ? '\Memcache' : (class_exists('\Memcached') ? '\Memcached' : false);
         if (!$class) {
-            throw new \Exception('Missing Memcached implementation.'.
-                ' You must install either the Memcache or Memcached extension.');
+            throw new \Exception(
+                'Missing Memcached implementation. You must install either the Memcache or Memcached extension.'
+            );
         }
         self::$extension = strtolower($class);
 

@@ -414,9 +414,12 @@ class SAML2
         );
 
         $state = array(
-            'Responder'                                   => array('\SimpleSAML\Module\saml\IdP\SAML2', 'sendResponse'),
-            \SimpleSAML\Auth\State::EXCEPTION_HANDLER_FUNC => array('\SimpleSAML\Module\saml\IdP\SAML2', 'handleAuthError'),
-            \SimpleSAML\Auth\State::RESTART                => $sessionLostURL,
+            'Responder'                   => array('\SimpleSAML\Module\saml\IdP\SAML2', 'sendResponse'),
+            \SimpleSAML\Auth\State::EXCEPTION_HANDLER_FUNC => array(
+                '\SimpleSAML\Module\saml\IdP\SAML2',
+                'handleAuthError'
+            ),
+            \SimpleSAML\Auth\State::RESTART => $sessionLostURL,
 
             'SPMetadata'                  => $spMetadata->toArray(),
             'saml:RelayState'             => $relayState,
@@ -897,6 +900,8 @@ class SAML2
 
         if (isset($state['saml:AuthnContextClassRef'])) {
             $a->setAuthnContextClassRef($state['saml:AuthnContextClassRef']);
+        } elseif (\SimpleSAML\Utils\HTTP::isHTTPS()) {
+            $a->setAuthnContextClassRef(\SAML2\Constants::AC_PASSWORD_PROTECTED_TRANSPORT);
         } else {
             $a->setAuthnContextClassRef(\SAML2\Constants::AC_PASSWORD);
         }

@@ -95,5 +95,4 @@ class ExpiryWarning extends \SimpleSAML\Auth\ProcessingFilter
         $url = \SimpleSAML\Module::getModuleURL('authX509/expirywarning.php');
         \SimpleSAML\Utils\HTTP::redirectTrustedURL($url, array('StateId' => $id));
     }
-
 }

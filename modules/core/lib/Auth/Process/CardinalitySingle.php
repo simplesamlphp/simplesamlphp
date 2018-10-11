@@ -41,12 +41,12 @@ class CardinalitySingle extends \SimpleSAML\Auth\ProcessingFilter
      * @param mixed $reserved  For future use.
      * @param HTTPAdapter $http  HTTP utility service (handles redirects).
      */
-    public function __construct($config, $reserved, HTTPAdapter $http = null)
+    public function __construct($config, $reserved, HttpAdapter $http = null)
     {
         parent::__construct($config, $reserved);
         assert(is_array($config));
 
-        $this->http = $http ? : new HTTPAdapter();
+        $this->http = $http ? : new HttpAdapter();
 
         if (array_key_exists('singleValued', $config)) {
             $this->singleValued = $config['singleValued'];
@@ -55,7 +55,11 @@ class CardinalitySingle extends \SimpleSAML\Auth\ProcessingFilter
             $this->firstValue = $config['firstValue'];
         }
         if (array_key_exists('flattenWith', $config)) {
-            $this->flattenWith = is_array($config['flattenWith']) ? array_shift($config['flattenWith']) : $config['flattenWith'];
+            if (is_array($config['flattenWith'])) {
+                $this->flattenWith = array_shift($config['flattenWith']);
+            } else {
+                $this->flattenWith = $config['flattenWith'];
+            }
         }
         if (array_key_exists('flatten', $config)) {
             $this->flatten = $config['flatten'];

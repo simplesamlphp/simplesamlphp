@@ -15,7 +15,7 @@ class Registry
     {
         if (array_key_exists('field_'.$key, $request)) {
             $entry[$key] = $request['field_'.$key];
-        } else if (isset($entry[$key])) {
+        } elseif (isset($entry[$key])) {
             unset($entry[$key]);
         }
     }
@@ -53,7 +53,7 @@ class Registry
         $this->requireStandardField($request, 'description');
         $this->requireStandardField($request, 'key');
     }
-	
+
     protected function header($name)
     {
         return '<tr><td>&nbsp;</td><td class="header">'.$name.'</td></tr>';
@@ -124,7 +124,12 @@ class Registry
                 $this->readonlyField($metadata, 'owner', 'Owner').
                 $this->standardField($metadata, 'key', 'Consumer Key').
                 $this->readonlyField($metadata, 'secret', 'Consumer Secret<br />(Used for HMAC_SHA1 signatures)').
-                $this->standardField($metadata, 'RSAcertificate', 'RSA certificate (PEM)<br />(Used for RSA_SHA1 signatures)', true).
+                $this->standardField(
+                    $metadata,
+                    'RSAcertificate',
+                    'RSA certificate (PEM)<br />(Used for RSA_SHA1 signatures)',
+                    true
+                ).
                 $this->standardField($metadata, 'callback_url', 'Static/enforcing callback-url').
             '</table></div>'.
             '</div>'.

@@ -247,13 +247,15 @@ class SP extends Source
             $IDPList = array();
         }
 
-        $ar->setIDPList(array_unique(
-            array_merge(
-                $this->metadata->getArray('IDPList', array()), 
-                $idpMetadata->getArray('IDPList', array()
-            ),
-            (array) $IDPList)
-        ));
+        $ar->setIDPList(
+            array_unique(
+                array_merge(
+                    $this->metadata->getArray('IDPList', array()),
+                    $idpMetadata->getArray('IDPList', array()),
+                    (array) $IDPList
+                )
+            )
+        );
 
         if (isset($state['saml:ProxyCount']) && $state['saml:ProxyCount'] !== null) {
             $ar->setProxyCount($state['saml:ProxyCount']);
@@ -284,19 +286,26 @@ class SP extends Source
         $id = State::saveState($state, 'saml:sp:sso', true);
         $ar->setId($id);
 
-        \SimpleSAML\Logger::debug('Sending SAML 2 AuthnRequest to '.
-            var_export($idpMetadata->getString('entityid'), true));
+        \SimpleSAML\Logger::debug(
+            'Sending SAML 2 AuthnRequest to '.var_export($idpMetadata->getString('entityid'), true)
+        );
 
         // Select appropriate SSO endpoint
         if ($ar->getProtocolBinding() === \SAML2\Constants::BINDING_HOK_SSO) {
-            $dst = $idpMetadata->getDefaultEndpoint('SingleSignOnService', array(
-                \SAML2\Constants::BINDING_HOK_SSO)
+            $dst = $idpMetadata->getDefaultEndpoint(
+                'SingleSignOnService',
+                array(
+                    \SAML2\Constants::BINDING_HOK_SSO
+                )
             );
         } else {
-            $dst = $idpMetadata->getEndpointPrioritizedByBinding('SingleSignOnService', [
-                \SAML2\Constants::BINDING_HTTP_REDIRECT,
-                \SAML2\Constants::BINDING_HTTP_POST,
-            ]);
+            $dst = $idpMetadata->getEndpointPrioritizedByBinding(
+                'SingleSignOnService',
+                [
+                    \SAML2\Constants::BINDING_HTTP_REDIRECT,
+                    \SAML2\Constants::BINDING_HTTP_POST,
+                ]
+            );
         }
         $ar->setDestination($dst['Location']);
 
@@ -539,8 +548,8 @@ class SP extends Source
         if (isset($state['isPassive']) && (bool) $state['isPassive']) {
             // passive request, we cannot authenticate the user
             throw new \SimpleSAML\Module\saml\Error\NoPassive(
-                    \SAML2\Constants::STATUS_REQUESTER,
-                    'Reauthentication required'
+                \SAML2\Constants::STATUS_REQUESTER,
+                'Reauthentication required'
             );
         }
 
@@ -701,7 +710,7 @@ class SP extends Source
         assert(array_key_exists('LogoutState', $state));
         assert(array_key_exists('saml:logout:Type', $state['LogoutState']));
 
-        $idpMetadata = $this->getIdpMetadata($idp);
+        $idpMetadata = $this->getIdPMetadata($idp);
 
         $spMetadataArray = $this->metadata->toArray();
         $idpMetadataArray = $idpMetadata->toArray();

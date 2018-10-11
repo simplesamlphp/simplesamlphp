@@ -36,6 +36,9 @@ msgstr "Suggesties om dit probleem op te lossen:"
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Login als beheerder"
 
+msgid "{core:frontpage:logout}"
+msgstr "Uitloggen"
+
 msgid "{core:short_sso_interval:warning}"
 msgstr ""
 "We hebben waargenomen dat u slechts een paar seconden geleden al "

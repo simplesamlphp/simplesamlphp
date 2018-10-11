@@ -47,7 +47,7 @@ class ARP
             $this->loadAttributeMap($attributemap_filename);
         }
     }
-	
+
     /**
      * @param string $attributemap_filename
      *

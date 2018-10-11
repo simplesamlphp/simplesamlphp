@@ -2,21 +2,11 @@
 {% extends "base.twig" %}
 
 {% block preload %}
-    <link href="{{ baseurlpath }}resources/style.css" rel="stylesheet" />
+    <link href="{{ baseurlpath }}assets/css/oauth.css" rel="stylesheet">
 {% endblock %}
 
 {% block postload %}
-<script type="text/javascript">
-    $(document).ready(function() {
-	$("#tabdiv").tabs();
-        $('ul.tabset_tabs li').click(
-            function() {
-                $("html, body").animate({ scrollTop: 0 }, "slow");
-            }
-        )
-
-    });
-</script>
+    <script src="{{ baseurlpath}}assets/js/oauth.js"></script>
 {% endblock %}
 
 {% block content %}

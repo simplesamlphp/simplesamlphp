@@ -512,7 +512,7 @@ class IdPDisco
      */
     protected function start()
     {
-        $idp = $this->getTargetIdp();
+        $idp = $this->getTargetIdP();
         if ($idp !== null) {
             $extDiscoveryStorage = $this->config->getString('idpdisco.extDiscoveryStorage', null);
             if ($extDiscoveryStorage !== null) {
@@ -587,7 +587,41 @@ class IdPDisco
         }
 
         $t = new Template($this->config, $templateFile, 'disco');
-        $t->data['idplist'] = $idpList;
+
+        $fallbackLanguage = 'en';
+        $defaultLanguage = $this->config->getString('language.default', $fallbackLanguage);
+        $translator = $t->getTranslator();
+        $language = $translator->getLanguage()->getLanguage();
+        $tryLanguages = [0 => $language, 1 => $defaultLanguage, 2 => $fallbackLanguage];
+
+        $newlist = [];
+        foreach($idpList as $entityid => $data) {
+            $newlist[$entityid]['entityid'] = $entityid;
+            foreach ( $tryLanguages as $lang ) {
+                if ( $name = $this->getEntityDisplayName($data, $lang) ) {
+                    $newlist[$entityid]['name'] = $name;
+                    continue;
+                }
+            }
+            if ( empty($newlist[$entityid]['name']) ) {
+                $newlist[$entityid]['name'] = $entityid;
+            }
+            foreach ( $tryLanguages as $lang ) {
+                if ( !empty($data['description'][$lang]) ) {
+                    $newlist[$entityid]['description'] = $data['description'][$lang];
+                    continue;
+                }
+            }
+            if ( !empty($data['icon']) ) {
+                $newlist[$entityid]['icon'] = $data['icon'];
+                $newlist[$entityid]['iconurl'] = \SimpleSAML\Utils\HTTP::resolveURL($data['icon']);
+            }
+        }
+        usort($newlist, function($idpentry1, $idpentry2) {
+            return strcasecmp($idpentry1['name'],$idpentry2['name']);
+            });
+
+        $t->data['idplist'] = $newlist;
         $t->data['preferredidp'] = $preferredIdP;
         $t->data['return'] = $this->returnURL;
         $t->data['returnIDParam'] = $this->returnIdParam;
@@ -595,5 +629,17 @@ class IdPDisco
         $t->data['urlpattern'] = htmlspecialchars(\SimpleSAML\Utils\HTTP::getSelfURLNoQuery());
         $t->data['rememberenabled'] = $this->config->getBoolean('idpdisco.enableremember', false);
         $t->show();
+    }
+
+    private function getEntityDisplayName(array $idpData, $language)
+    {
+        if(isset($idpData['UIInfo']['DisplayName'][$language]) ) {
+            return $idpData['UIInfo']['DisplayName'][$language];
+        } elseif ( isset($idpData['name'][$language]) ) {
+            return $idpData['name'][$language];
+        } elseif ( isset($idpData['OrganizationDisplayName'][$language]) ) {
+            return $idpData['OrganizationDisplayName'][$language];
+        }
+        return null;
     }
 }

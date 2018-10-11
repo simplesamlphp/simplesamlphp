@@ -40,7 +40,9 @@ class ACL
 
             $action = array_shift($rule);
             if ($action !== 'allow' && $action !== 'deny') {
-                throw new \SimpleSAML\Error\Exception('Invalid action in rule in access control list: '.var_export($action, true));
+                throw new \SimpleSAML\Error\Exception(
+                    'Invalid action in rule in access control list: '.var_export($action, true)
+                );
             }
         }
         $this->acl = $acl;

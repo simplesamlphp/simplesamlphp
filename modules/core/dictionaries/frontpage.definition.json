@@ -17,12 +17,6 @@
 	"checkphp": {
 		"en": "Checking your PHP installation"
 	},
-	"about_header": {
-		"en": "About SimpleSAMLphp"
-	},
-	"about_text": {
-		"en": "This SimpleSAMLphp thing is pretty cool, where can I read more about it? You can find more information about it at the <a href=\"https:\/\/simplesamlphp.org\/\">SimpleSAMLphp web page <\/a> over at <a href=\"http:\/\/uninett.no\">UNINETT<\/a>."
-	},
 	"required": {
 		"en": "Required"
 	},
@@ -136,6 +130,9 @@
 	},
 	"loggedin_as_admin": {
 		"en": "You are logged in as administrator"
+	},
+	"logout": {
+		"en": "Logout"
 	},
 	"auth": {
 		"en": "Authentication"

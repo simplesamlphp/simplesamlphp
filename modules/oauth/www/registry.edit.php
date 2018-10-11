@@ -28,7 +28,9 @@ function requireOwnership($entry, $userid)
         throw new \Exception('OAuth Consumer has no owner. Which means no one is granted access, not even you.');
     }
     if ($entry['owner'] !== $userid) {
-        throw new \Exception('OAuth Consumer has an owner that is not equal to your userid, hence you are not granted access.');
+        throw new \Exception(
+            'OAuth Consumer has an owner that is not equal to your userid, hence you are not granted access.'
+        );
     }
 }
 

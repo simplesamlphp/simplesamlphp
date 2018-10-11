@@ -15,7 +15,7 @@
     margin: 0px 2px 0px 0px;
 }
 .inlinesearch * {
-    margin: 0px; 
+    margin: 0px;
     padding: 0px;
 }
 div.metalist {
@@ -51,10 +51,10 @@ a.metaentry:hover img.entryicon {
     display: inline;
     top: 0px;
     bottom: 0px;
-    clear: both; 
-    float: right; 
-    margin: 1em; 
-    padding: 3px; 
+    clear: both;
+    float: right;
+    margin: 1em;
+    padding: 3px;
     border: 1px solid #999;
 }
 

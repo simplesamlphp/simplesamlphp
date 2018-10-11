@@ -143,7 +143,6 @@ $expire = null;
 $attributes = array();
 $foundAuthnStatement = false;
 foreach ($assertions as $assertion) {
-
     // check for duplicate assertion (replay attack)
     $store = \SimpleSAML\Store::getInstance();
     if ($store !== false) {

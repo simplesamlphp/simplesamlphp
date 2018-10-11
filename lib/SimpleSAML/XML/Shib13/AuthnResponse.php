@@ -119,8 +119,9 @@ class AuthnResponse
             // Validate against CA
             $this->validator->validateCA(Config::getCertPath($md->getString('caFile')));
         } else {
-            throw new \SimpleSAML\Error\Exception('Missing certificate in Shibboleth 1.3'.
-                ' IdP Remote metadata for identity provider ['.$issuer.'].');
+            throw new \SimpleSAML\Error\Exception(
+                'Missing certificate in Shibboleth 1.3 IdP Remote metadata for identity provider ['.$issuer.'].'
+            );
         }
 
         return true;
@@ -203,7 +204,7 @@ class AuthnResponse
     public function getAttributes()
     {
         $metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
-        $md = $metadata->getMetadata($this->getIssuer(), 'shib13-idp-remote');
+        $md = $metadata->getMetaData($this->getIssuer(), 'shib13-idp-remote');
         $base64 = isset($md['base64attributes']) ? $md['base64attributes'] : false;
 
         if (!($this->dom instanceof \DOMDocument)) {
@@ -362,7 +363,7 @@ class AuthnResponse
             $encodedattributes .= $subjectNode;
 
             foreach ($attributes as $name => $value) {
-                $encodedattributes .= $this->enc_attribute($name, $value, $base64, $scopedAttributes);
+                $encodedattributes .= $this->encAttribute($name, $value, $base64, $scopedAttributes);
             }
 
             $encodedattributes .= '</AttributeStatement>';
@@ -409,7 +410,7 @@ class AuthnResponse
      * @param array $scopedAttributes  Array of attributes names which are scoped.
      * @return string  The attribute encoded as an XML-string.
      */
-    private function enc_attribute($name, $values, $base64, $scopedAttributes)
+    private function encAttribute($name, $values, $base64, $scopedAttributes)
     {
         assert(is_string($name));
         assert(is_array($values));

@@ -20,7 +20,7 @@ function saml_hook_metadata_hosted(&$metadataHosted)
             $name = $metadata->getValue('OrganizationDisplayName', null);
         }
         if ($name === null) {
-            $name = $source->getAuthID();
+            $name = $source->getAuthId();
         }
 
         $md = array(

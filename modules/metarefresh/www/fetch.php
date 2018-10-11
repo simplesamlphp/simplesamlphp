@@ -36,7 +36,6 @@ foreach ($sets as $setkey => $set) {
         $set_types = $set->getArrayize('types', $available_types);
 
         foreach ($set->getArray('sources') as $source) {
-
             // filter metadata by type of entity
             if (isset($source['types'])) {
                 $metaloader->setTypes($source['types']);
@@ -73,7 +72,7 @@ foreach ($sets as $setkey => $set) {
             case 'serialize':
                 $metaloader->writeMetadataSerialize($outputDir);
                 break;
-            }
+        }
     } catch (\Exception $e) {
         $e = \SimpleSAML\Error\Exception::fromException($e);
         $e->logWarning();

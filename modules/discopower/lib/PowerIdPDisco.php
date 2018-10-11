@@ -219,7 +219,6 @@ class PowerIdPDisco extends \SimpleSAML\XHTML\IdPDisco
         if (array_key_exists('entities.include', $spmd['discopower.filter']) ||
             array_key_exists('tags.include', $spmd['discopower.filter'])
         ) {
-
             $defaultrule = false;
         }
 
@@ -326,7 +325,7 @@ class PowerIdPDisco extends \SimpleSAML\XHTML\IdPDisco
                         $translation = $t->getTranslator()->getPreferredTranslation($displayName);
                     }
                 }
-	
+
                 if (($translation === false) && array_key_exists('name', $entity)) {
                     if (is_array($entity['name'])) {
                         $translation = $t->getTranslator()->getPreferredTranslation($entity['name']);
@@ -342,14 +341,17 @@ class PowerIdPDisco extends \SimpleSAML\XHTML\IdPDisco
 
                 // HTML output
                 if ($entity['entityid'] === $favourite) {
-                    $html = '<a class="metaentry favourite" href="'.$basequerystring.urlencode($entity['entityid']).'">';
+                    $html = '<a class="metaentry favourite" href="'.
+                        $basequerystring.urlencode($entity['entityid']).'">';
                 } else {
-                    $html = '<a class="metaentry" href="'.$basequerystring.urlencode($entity['entityid']).'">';
+                    $html = '<a class="metaentry" href="'.
+                        $basequerystring.urlencode($entity['entityid']).'">';
                 }
                 $html .= $entity['translated'];
                 if (array_key_exists('icon', $entity) && $entity['icon'] !== null) {
                     $iconUrl = \SimpleSAML\Utils\HTTP::resolveURL($entity['icon']);
-                    $html .= '<img alt="Icon for identity provider" class="entryicon" src="'.htmlspecialchars($iconUrl).'" />';
+                    $html .= '<img alt="Icon for identity provider" class="entryicon" src="'.
+                        htmlspecialchars($iconUrl).'" />';
                 }
                 $html .= '</a>';
                 $entity['html'] = $html;
