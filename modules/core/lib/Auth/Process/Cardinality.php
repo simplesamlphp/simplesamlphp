@@ -2,7 +2,7 @@
 
 namespace SimpleSAML\Module\core\Auth\Process;
 
-use SimpleSAML\Utils\HTTPAdapter;
+use SimpleSAML\Utils\HttpAdapter;
 
 /**
  * Filter to ensure correct cardinality of attributes
@@ -30,12 +30,12 @@ class Cardinality extends \SimpleSAML\Auth\ProcessingFilter
      * @param HTTPAdapter $http  HTTP utility service (handles redirects).
      * @throws \SimpleSAML\Error\Exception
      */
-    public function __construct($config, $reserved, HTTPAdapter $http = null)
+    public function __construct($config, $reserved, HttpAdapter $http = null)
     {
         parent::__construct($config, $reserved);
         assert(is_array($config));
 
-        $this->http = $http ? : new HTTPAdapter();
+        $this->http = $http ? : new HttpAdapter();
 
         foreach ($config as $attribute => $rules) {
             if ($attribute === '%ignoreEntities') {

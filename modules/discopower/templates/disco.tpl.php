@@ -4,12 +4,12 @@ $this->data['header'] = $this->t('selectidp');
 $this->data['jquery'] = array('core' => true, 'ui' => true, 'css' => true);
 
 $this->data['head'] = '<link rel="stylesheet" media="screen" type="text/css" href="'.
-    SimpleSAML\Module::getModuleUrl('discopower/assets/css/style.css').'" />';
+    SimpleSAML\Module::getModuleURL('discopower/assets/css/style.css').'" />';
 
 $this->data['post'] = '<script type="text/javascript" src="'.
-    SimpleSAML\Module::getModuleUrl('discopower/assets/js/jquery.livesearch.js').'"></script>';
+    SimpleSAML\Module::getModuleURL('discopower/assets/js/jquery.livesearch.js').'"></script>';
 $this->data['post'] .= '<script type="text/javascript" src="'.
-    SimpleSAML\Module::getModuleUrl('discopower/assets/js/quicksilver.js').'"></script>';
+    SimpleSAML\Module::getModuleURL('discopower/assets/js/quicksilver.js').'"></script>';
 
 if (!empty($this->data['faventry'])) {
     $this->data['autofocus'] = 'favouritesubmit';
@@ -144,5 +144,5 @@ foreach ($this->data['idplist'] as $tab => $slist) {
 
 <?php
 $this->data['post'] .= '<script type="text/javascript" src="'.
-    SimpleSAML\Module::getModuleUrl('discopower/js/javascript.js').'"></script>';
+    SimpleSAML\Module::getModuleURL('discopower/js/javascript.js').'"></script>';
 $this->includeAtTemplateBase('includes/footer.php');

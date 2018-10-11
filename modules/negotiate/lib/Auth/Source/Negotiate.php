@@ -62,7 +62,7 @@ class Negotiate extends \SimpleSAML\Auth\Source
         $this->enableTLS = $config->getBoolean('enable_tls', false);
         $this->debugLDAP = $config->getBoolean('debugLDAP', false);
         $this->timeout = $config->getInteger('timeout', 30);
-        $this->keytab = $config->getString('keytab');
+        $this->keytab = \SimpleSAML\Utils\Config::getCertPath($config->getString('keytab'));
         $this->base = $config->getArrayizeString('base');
         $this->attr = $config->getArrayizeString('attr', 'uid');
         $this->subnet = $config->getArray('subnet', null);
@@ -248,7 +248,7 @@ class Negotiate extends \SimpleSAML\Auth\Source
         header('WWW-Authenticate: Negotiate', false);
 
         $t = new \SimpleSAML\XHTML\Template($config, 'negotiate:redirect.twig');
-        $t->data['baseurlpath'] = \SimpleSAML\Module::getModuleUrl('negotiate');
+        $t->data['baseurlpath'] = \SimpleSAML\Module::getModuleURL('negotiate');
         $t->data['url'] = $url;
         $t->data['json_url'] = $json_url;
         $t->show();

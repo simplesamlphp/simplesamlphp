@@ -204,7 +204,7 @@ class AuthnResponse
     public function getAttributes()
     {
         $metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
-        $md = $metadata->getMetadata($this->getIssuer(), 'shib13-idp-remote');
+        $md = $metadata->getMetaData($this->getIssuer(), 'shib13-idp-remote');
         $base64 = isset($md['base64attributes']) ? $md['base64attributes'] : false;
 
         if (!($this->dom instanceof \DOMDocument)) {

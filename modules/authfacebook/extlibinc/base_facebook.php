@@ -822,13 +822,13 @@ abstract class BaseFacebook
         }
 
         if (empty($access_token_response)) {
-            self::errorlog('No access token response');
+            self::errorLog('No access token response');
             return false;
         }
 
         $response_params = json_decode($access_token_response, true);
         if (!isset($response_params['access_token'])) {
-            self::errorlog('No access token in response. ' . $access_token_response);
+            self::errorLog('No access token in response. ' . $access_token_response);
             return false;
         }
 
