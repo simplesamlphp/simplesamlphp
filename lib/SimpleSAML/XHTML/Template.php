@@ -8,6 +8,7 @@
  * @package SimpleSAMLphp
  */
 
+use SimpleSAML\XHTML\TemplateLoader;
 use JaimePerez\TwigConfigurableI18n\Twig\Environment as Twig_Environment;
 use JaimePerez\TwigConfigurableI18n\Twig\Extensions\Extension\I18n as Twig_Extensions_Extension_I18n;
 
@@ -108,7 +109,7 @@ class SimpleSAML_XHTML_Template
         list($this->module) = $this->findModuleAndTemplateName($template);
 
         // parse config to find theme and module theme is in, if any
-        list($this->theme['module'], $this->theme['name']) = self::findModuleAndTemplateName(
+        list($this->theme['module'], $this->theme['name']) = $this->findModuleAndTemplateName(
             $this->configuration->getString('theme.use', 'default')
         );
 
@@ -119,7 +120,7 @@ class SimpleSAML_XHTML_Template
         // check if we need to attach a theme controller
         $controller = $this->configuration->getString('theme.controller', false);
         if ($controller && class_exists($controller) &&
-            class_implements($controller, '\SimpleSAML\XHTML\TemplateControllerInterface')
+            in_array('\SimpleSAML\XHTML\TemplateControllerInterface', class_implements($controller))
         ) {
             $this->controller = new $controller();
         }
@@ -162,16 +163,18 @@ class SimpleSAML_XHTML_Template
         $filename = $this->normalizeTemplateName($this->template);
 
         // get namespace if any
-        list($namespace, $filename) = self::findModuleAndTemplateName($filename);
+        list($namespace, $filename) = $this->findModuleAndTemplateName($filename);
         $this->twig_template = ($namespace !== null) ? '@'.$namespace.'/'.$filename : $filename;
-        $loader = new \Twig_Loader_Filesystem();
+        $loader = new TemplateLoader();
         $templateDirs = $this->findThemeTemplateDirs();
         if ($this->module) {
-            $templateDirs[] = array($this->module => $this->getModuleTemplateDir($this->module));
+            $templateDirs[] = array($this->module => TemplateLoader::getModuleTemplateDir($this->module));
         }
         if ($this->theme['module']) {
             try {
-                $templateDirs[] = array($this->theme['module'] => $this->getModuleTemplateDir($this->theme['module']));
+                $templateDirs[] = array(
+                    $this->theme['module'] => TemplateLoader::getModuleTemplateDir($this->theme['module'])
+                );
             } catch (\InvalidArgumentException $e) {
                 // either the module is not enabled or it has no "templates" directory, ignore
             }
@@ -269,14 +272,16 @@ class SimpleSAML_XHTML_Template
      */
     private function findThemeTemplateDirs()
     {
-        if ($this->theme['module'] === null) { // no module involved
+        if ($this->theme['module'] === null) {
+            // no module involved
             return array();
         }
 
         // setup directories & namespaces
         $themeDir = \SimpleSAML\Module::getModuleDir($this->theme['module']).'/themes/'.$this->theme['name'];
         $subdirs = scandir($themeDir);
-        if (empty($subdirs)) { // no subdirectories in the theme directory, nothing to do here
+        if (empty($subdirs)) {
+            // no subdirectories in the theme directory, nothing to do here
             // this is probably wrong, log a message
             \SimpleSAML\Logger::warning('Empty theme directory for theme "'.$this->theme['name'].'".');
             return array();
@@ -295,6 +300,7 @@ class SimpleSAML_XHTML_Template
         }
         return $themeTemplateDirs;
     }
+
 
     /**
      * Get the template directory of a module, if it exists.
@@ -329,7 +335,7 @@ class SimpleSAML_XHTML_Template
      */
     public function addTemplatesFromModule($module)
     {
-        $dir = $this->getModuleTemplateDir($module);
+        $dir = TemplateLoader::getModuleTemplateDir($module);
         /** @var Twig_Loader_Filesystem $loader */
         $loader = $this->twig->getLoader();
         $loader->addPath($dir, $module);
@@ -345,6 +351,7 @@ class SimpleSAML_XHTML_Template
     private function generateLanguageBar()
     {
         $languages = $this->translator->getLanguage()->getLanguageList();
+        ksort($languages);
         $langmap = null;
         if (count($languages) > 1) {
             $parameterName = $this->getTranslator()->getLanguage()->getLanguageParameterName();
@@ -653,8 +660,8 @@ class SimpleSAML_XHTML_Template
 
 
     /**
-     * @param      $file
-     * @param null $otherConfig
+     * @param string $file
+     * @param \SimpleSAML_Configuration|null $otherConfig
      *
      * @deprecated This method will be removed in SSP 2.0. Please use
      * \SimpleSAML\Locale\Translate::includeLanguageFile() instead.
