@@ -165,30 +165,7 @@ class Error extends Exception
      */
     protected function setHTTPCode()
     {
-        // Some mostly used HTTP codes
-        $httpCodesMap = array(
-            400 => 'HTTP/1.0 400 Bad Request',
-            403 => 'HTTP/1.0 403 Forbidden',
-            404 => 'HTTP/1.0 404 Not Found',
-            405 => 'HTTP/1.0 405 Method Not Allowed',
-            500 => 'HTTP/1.0 500 Internal Server Error',
-            501 => 'HTTP/1.0 501 Method Not Implemented',
-            503 => 'HTTP/1.0 503 Service Temporarily Unavailable',
-        );
-
-        $httpCode = $this->httpCode;
-
-        if (function_exists('http_response_code')) {
-            http_response_code($httpCode);
-            return;
-        }
-
-        if (!array_key_exists($this->httpCode, $httpCodesMap)) {
-            $httpCode = 500;
-            \SimpleSAML\Logger::warning('HTTP response code not defined: '.var_export($this->httpCode, true));
-        }
-
-        header($httpCodesMap[$httpCode]);
+        http_response_code($this->httpCode);
     }
 
 
