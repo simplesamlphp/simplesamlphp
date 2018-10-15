@@ -45,6 +45,44 @@ class Controller
 
 
     /**
+     * Show account information for a given authentication source.
+     *
+     * @param string $as The identifier of the authentication source.
+     *
+     * @return \SimpleSAML\XHTML\Template|RedirectResponse An HTML template or a redirection if we are not
+     * authenticated.
+     *
+     * @throws \SimpleSAML\Error\Exception An exception in case the auth source specified is invalid.
+     */
+    public function account($as)
+    {
+        if (!array_key_exists($as, $this->sources)) {
+            throw new Exception('Invalid authentication source');
+        }
+
+        $auth = new \SimpleSAML\Auth\Simple($as);
+        if (!$auth->isAuthenticated()) {
+            // not authenticated, start auth with specified source
+            return new RedirectResponse(\SimpleSAML\Module::getModuleURL('core/login/'.urlencode($as)));
+        }
+
+        $attributes = $auth->getAttributes();
+
+        $t = new \SimpleSAML\XHTML\Template($this->config, 'auth_status.php', 'attributes');
+        $t->data['header'] = '{status:header_saml20_sp}';
+        $t->data['attributes'] = $attributes;
+        $t->data['nameid'] = !is_null($auth->getAuthData('saml:sp:NameID'))
+            ? $auth->getAuthData('saml:sp:NameID')
+            : false;
+        $t->data['logouturl'] = \SimpleSAML\Module::getModuleURL('core/logout/'.urlencode($as));
+        $t->data['remaining'] = $this->session->getAuthData($as, 'Expire') - time();
+        $t->setStatusCode(200);
+
+        return $t;
+    }
+
+
+    /**
      * Perform a login operation.
      *
      * This controller will either start a login operation (if that was requested, or if only one authentication
@@ -85,10 +123,6 @@ class Controller
         $auth = new \SimpleSAML\Auth\Simple($as);
         $as = urlencode($as);
 
-        if ($request->get('logout', false) !== false) {
-            $auth->logout($this->config->getBasePath().'logout.php');
-        }
-
         if ($request->get(\SimpleSAML\Auth\State::EXCEPTION_PARAM, false) !== false) {
             // This is just a simple example of an error
 
@@ -114,39 +148,15 @@ class Controller
 
 
     /**
-     * Show account information for a given authentication source.
+     * Log the user out of a given authentication source.
      *
-     * @param string $as The identifier of the authentication source.
+     * @param string $as The name of the auth source.
      *
-     * @return \SimpleSAML\XHTML\Template|RedirectResponse An HTML template or a redirection if we are not
-     * authenticated.
-     *
-     * @throws \SimpleSAML\Error\Exception An exception in case the auth source specified is invalid.
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
-    public function account($as)
+    public function logout($as)
     {
-        if (!array_key_exists($as, $this->sources)) {
-            throw new Exception('Invalid authentication source');
-        }
-
-        $auth = new \SimpleSAML\Auth\Simple($as);
-        if (!$auth->isAuthenticated()) {
-            // not authenticated, start auth with specified source
-            return new RedirectResponse(\SimpleSAML\Module::getModuleURL('core/login/'.urlencode($as)));
-        }
-
-        $attributes = $auth->getAttributes();
-
-        $t = new \SimpleSAML\XHTML\Template($this->config, 'auth_status.php', 'attributes');
-        $t->data['header'] = '{status:header_saml20_sp}';
-        $t->data['attributes'] = $attributes;
-        $t->data['nameid'] = !is_null($auth->getAuthData('saml:sp:NameID'))
-            ? $auth->getAuthData('saml:sp:NameID')
-            : false;
-        $t->data['logouturl'] = \SimpleSAML\Module::getModuleURL('core/logout/'.urlencode($as));
-        $t->data['remaining'] = $this->session->getAuthData($as, 'Expire') - time();
-        $t->setStatusCode(200);
-
-        return $t;
+        $as = new \SimpleSAML\Auth\Simple($as);
+        $as->logout($this->config->getBasePath().'logout.php');
     }
 }
