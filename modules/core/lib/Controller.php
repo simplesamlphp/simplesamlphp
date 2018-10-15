@@ -19,6 +19,9 @@ class Controller
     /** @var \SimpleSAML\Configuration */
     protected $config;
 
+    /** @var \SimpleSAML\Session */
+    protected $session;
+
     /** @var array */
     protected $sources;
 
@@ -28,12 +31,16 @@ class Controller
      *
      * It initializes the global configuration and auth source configuration for the controllers implemented here.
      *
+     * @param \SimpleSAML\Configuration $config The configuration to use by the controllers.
+     * @param \SimpleSAML\Session $session The session to use by the controllers.
+     *
      * @throws \Exception
      */
-    public function __construct()
+    public function __construct(\SimpleSAML\Configuration $config, \SimpleSAML\Session $session)
     {
-        $this->config = \SimpleSAML\Configuration::getInstance();
-        $this->sources = \SimpleSAML\Configuration::getOptionalConfig('authsources.php')->toArray();
+        $this->config = $config;
+        $this->sources = $config::getOptionalConfig('authsources.php')->toArray();
+        $this->session = $session;
     }
 
 
@@ -48,7 +55,7 @@ class Controller
      *
      * @return \SimpleSAML\XHTML\Template|RedirectResponse An HTML template or a redirect response.
      *
-     * @throws Exception
+     * @throws \SimpleSAML\Error\Exception
      * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
     public function login(Request $request, $as = null)
@@ -114,7 +121,7 @@ class Controller
      * @return \SimpleSAML\XHTML\Template|RedirectResponse An HTML template or a redirection if we are not
      * authenticated.
      *
-     * @throws Exception An exception in case the auth source specified is invalid.
+     * @throws \SimpleSAML\Error\Exception An exception in case the auth source specified is invalid.
      */
     public function account($as)
     {
@@ -129,7 +136,6 @@ class Controller
         }
 
         $attributes = $auth->getAttributes();
-        $session = \SimpleSAML\Session::getSessionFromRequest();
 
         $t = new \SimpleSAML\XHTML\Template($this->config, 'auth_status.php', 'attributes');
         $t->data['header'] = '{status:header_saml20_sp}';
@@ -138,7 +144,7 @@ class Controller
             ? $auth->getAuthData('saml:sp:NameID')
             : false;
         $t->data['logouturl'] = \SimpleSAML\Module::getModuleURL('core/logout/'.urlencode($as));
-        $t->data['remaining'] = $session->getAuthData($as, 'Expire') - time();
+        $t->data['remaining'] = $this->session->getAuthData($as, 'Expire') - time();
         $t->setStatusCode(200);
 
         return $t;

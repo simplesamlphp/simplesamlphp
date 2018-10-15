@@ -5,6 +5,7 @@ namespace SimpleSAML;
 use SimpleSAML\Error\Exception;
 use Symfony\Component\Config\Exception\FileLocatorFileNotFoundException;
 use Symfony\Component\Config\FileLocator;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Controller\ArgumentResolverInterface;
 use Symfony\Component\HttpKernel\Controller\ControllerResolver;
@@ -29,6 +30,9 @@ class ModuleControllerResolver extends ControllerResolver implements ArgumentRes
 
     /** @var ArgumentMetadataFactory */
     protected $argFactory;
+
+    /** @var ContainerBuilder */
+    protected $container;
 
     /** @var string */
     protected $module;
@@ -55,6 +59,7 @@ class ModuleControllerResolver extends ControllerResolver implements ArgumentRes
         );
 
         $this->argFactory = new ArgumentMetadataFactory();
+        $this->container = new ContainerBuilder();
 
         try {
             $this->routes = $loader->load('routes.yaml');
@@ -92,7 +97,10 @@ class ModuleControllerResolver extends ControllerResolver implements ArgumentRes
         try {
             $matcher = new UrlMatcher($this->routes, $ctxt);
             $this->params = $matcher->match($ctxt->getPathInfo());
-            return self::createController($this->params['_controller']);
+            list($class, $method) = explode('::', $this->params['_controller']);
+            $this->container->register($class, $class)->setAutowired(true);
+            $this->container->compile();
+            return [$this->container->get($class), $method];
         } catch (ResourceNotFoundException $e) {
             // no route defined matching this request
         }
@@ -150,5 +158,29 @@ class ModuleControllerResolver extends ControllerResolver implements ArgumentRes
         }
 
         return $args;
+    }
+
+
+    /**
+     * Set the configuration to use by the controllers.
+     *
+     * @param \SimpleSAML\Configuration $config
+     */
+    public function setConfiguration(Configuration $config)
+    {
+        $this->container->set(Configuration::class, $config);
+        $this->container->register(Configuration::class)->setSynthetic(true)->setAutowired(true);
+    }
+
+
+    /**
+     * Set the session to use by the controllers.
+     *
+     * @param \SimpleSAML\Session $session
+     */
+    public function setSession(Session $session)
+    {
+        $this->container->set(Session::class, $session);
+        $this->container->register(Session::class)->setSynthetic(true)->setAutowired(true);
     }
 }

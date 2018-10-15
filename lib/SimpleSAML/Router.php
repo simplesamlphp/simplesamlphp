@@ -20,14 +20,25 @@ class Router
 
     protected $arguments;
 
+    /** @var \SimpleSAML\Configuration */
+    protected $config;
+
     /** @var RequestContext */
     protected $context;
 
-    /** @var ModuleControllerResolver */
-    protected $resolver;
+    /** @var EventDispatcher */
     protected $dispatcher;
+
+    /** @var Request */
     protected $request;
 
+    /** @var \SimpleSAML\ModuleControllerResolver */
+    protected $resolver;
+
+    /** @var \SimpleSAML\Session */
+    protected $session;
+
+    /** @var RequestStack */
     protected $stack;
 
 
@@ -48,6 +59,8 @@ class Router
     /**
      * Process a given request.
      *
+     * If no specific arguments are given, the default instances will be used (configuration, session, etc).
+     *
      * @param Request|null $request The request to process. Defaults to the current one.
      *
      * @return Response A response suitable for the given request.
@@ -56,6 +69,12 @@ class Router
      */
     public function process(Request $request = null)
     {
+        if ($this->config === null) {
+            $this->setConfiguration(Configuration::getInstance());
+        }
+        if ($this->session === null) {
+            $this->setSession(Session::getSessionFromRequest());
+        }
         $this->request = $request;
         if ($request === null) {
             $this->request = Request::createFromGlobals();
@@ -77,5 +96,29 @@ class Router
     {
         $response->prepare($this->request);
         $response->send();
+    }
+
+
+    /**
+     * Set the configuration to use by the controller.
+     *
+     * @param \SimpleSAML\Configuration $config
+     */
+    public function setConfiguration(Configuration $config)
+    {
+        $this->config = $config;
+        $this->resolver->setConfiguration($config);
+    }
+
+
+    /**
+     * Set the session to use by the controller.
+     *
+     * @param \SimpleSAML\Session $session
+     */
+    public function setSession(Session $session)
+    {
+        $this->session = $session;
+        $this->resolver->setSession($session);
     }
 }
