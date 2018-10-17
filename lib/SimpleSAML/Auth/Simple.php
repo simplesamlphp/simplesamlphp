@@ -23,22 +23,34 @@ class Simple
      */
     protected $authSource;
 
-    /**
-     * @var Configuration|null
-     */
+    /** @var \SimpleSAML\Configuration */
     protected $app_config;
+
+    /** @var \SimpleSAML\Session */
+    protected $session;
+
 
     /**
      * Create an instance with the specified authsource.
      *
      * @param string $authSource The id of the authentication source.
+     * @param \SimpleSAML\Configuration|null $config Optional configuration to use.
+     * @param \SimpleSAML\Session|null $session Optional session to use.
      */
-    public function __construct($authSource)
+    public function __construct($authSource, Configuration $config = null, Session $session = null)
     {
         assert(is_string($authSource));
 
+        if ($config === null) {
+            $config = Configuration::getInstance();
+        }
         $this->authSource = $authSource;
-        $this->app_config = Configuration::getInstance()->getConfigItem('application', null);
+        $this->app_config = $config->getConfigItem('application', null);
+
+        if ($session === null) {
+            $session = Session::getSessionFromRequest();
+        }
+        $this->session = $session;
     }
 
 
@@ -69,9 +81,7 @@ class Simple
      */
     public function isAuthenticated()
     {
-        $session = Session::getSessionFromRequest();
-
-        return $session->isValid($this->authSource);
+        return $this->session->isValid($this->authSource);
     }
 
 
@@ -90,9 +100,7 @@ class Simple
      */
     public function requireAuth(array $params = array())
     {
-        $session = Session::getSessionFromRequest();
-
-        if ($session->isValid($this->authSource)) {
+        if ($this->session->isValid($this->authSource)) {
             // Already authenticated
             return;
         }
@@ -195,14 +203,13 @@ class Simple
             assert(isset($params['ReturnStateParam'], $params['ReturnStateStage']));
         }
 
-        $session = Session::getSessionFromRequest();
-        if ($session->isValid($this->authSource)) {
-            $state = $session->getAuthData($this->authSource, 'LogoutState');
+        if ($this->session->isValid($this->authSource)) {
+            $state = $this->session->getAuthData($this->authSource, 'LogoutState');
             if ($state !== null) {
                 $params = array_merge($state, $params);
             }
 
-            $session->doLogout($this->authSource);
+            $this->session->doLogout($this->authSource);
 
             $params['LogoutCompletedHandler'] = array(get_class(), 'logoutCompleted');
 
@@ -259,8 +266,7 @@ class Simple
         }
 
         // Authenticated
-        $session = Session::getSessionFromRequest();
-        return $session->getAuthData($this->authSource, 'Attributes');
+        return $this->session->getAuthData($this->authSource, 'Attributes');
     }
 
 
@@ -279,8 +285,7 @@ class Simple
             return null;
         }
 
-        $session = Session::getSessionFromRequest();
-        return $session->getAuthData($this->authSource, $name);
+        return $this->session->getAuthData($this->authSource, $name);
     }
 
 
@@ -295,8 +300,7 @@ class Simple
             return null;
         }
 
-        $session = Session::getSessionFromRequest();
-        return $session->getAuthState($this->authSource);
+        return $this->session->getAuthState($this->authSource);
     }
 
 
