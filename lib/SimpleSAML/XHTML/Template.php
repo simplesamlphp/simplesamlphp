@@ -143,6 +143,17 @@ class Template extends Response
 
 
     /**
+     * Get the normalized template name.
+     *
+     * @return string The name of the template to use.
+     */
+    public function getTemplateName()
+    {
+        return $this->normalizeTemplateName($this->template);
+    }
+
+
+    /**
      * Normalize the name of the template to one of the possible alternatives.
      *
      * @param string $templateName The template name to normalize.
