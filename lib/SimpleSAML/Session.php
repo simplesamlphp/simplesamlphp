@@ -22,7 +22,7 @@ use SimpleSAML\Error;
  * @package SimpleSAMLphp
  */
 
-class Session implements \Serializable
+class Session implements \Serializable, Utils\ClearableState
 {
     /**
      * This is a timeout value for setData, which indicates that the data
@@ -1133,5 +1133,15 @@ class Session implements \Serializable
             }
         }
         return $authorities;
+    }
+
+
+    /**
+     * Clear any configuration information cached
+     */
+    public static function clearInternalState()
+    {
+        self::$instance = null;
+        self::$sessions = null;
     }
 }
