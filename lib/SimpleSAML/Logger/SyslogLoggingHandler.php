@@ -64,8 +64,8 @@ class SyslogLoggingHandler implements LoggingHandlerInterface
             }
         }
 
-        $formats = array('%process', '%level');
-        $replacements = array('', $level);
+        $formats = ['%process', '%level'];
+        $replacements = ['', $level];
         $string = str_replace($formats, $replacements, $string);
         $string = preg_replace('/%\w+(\{[^\}]+\})?/', '', $string);
         $string = trim($string);

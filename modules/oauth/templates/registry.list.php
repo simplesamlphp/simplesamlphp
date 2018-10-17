@@ -1,5 +1,5 @@
 <?php
-$this->data['jquery'] = array('core' => true, 'ui' => true, 'css' => true);
+$this->data['jquery'] = ['core' => true, 'ui' => true, 'css' => true];
 $this->data['head'] = '<link rel="stylesheet" type="text/css" href="/'.
     $this->data['baseurlpath'].'module.php/oauth/assets/oauth.css" />'."\n";
 $this->includeAtTemplateBase('includes/header.php');
@@ -11,7 +11,7 @@ echo '<p>Here you can register new OAuth Clients. You are successfully logged in
 echo '<h2>Your clients</h2>';
 echo '<table class="metalist" style="width: 100%">';
 $i = 0;
-$rows = array('odd', 'even');
+$rows = ['odd', 'even'];
 foreach ($this->data['entries']['mine'] as $entryc) {
     $entry = $entryc['value'];
     $i++;
@@ -30,7 +30,7 @@ echo '<p><a href="registry.edit.php">Add new client</a></p>';
 echo '<h2>Other clients</h2>';
 echo '<table class="metalist" style="width: 100%">';
 $i = 0;
-$rows = array('odd', 'even');
+$rows = ['odd', 'even'];
 foreach ($this->data['entries']['others'] as $entryc) {
     $entry = $entryc['value'];
     $i++;

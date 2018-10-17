@@ -58,7 +58,7 @@ class Client
      * @param string $op  The operation we are performing.
      * @param array $params  Additional parameters.
      */
-    public function sendRequest($returnTo, $op, array $params = array())
+    public function sendRequest($returnTo, $op, array $params = [])
     {
         assert(is_string($returnTo));
         assert(is_string($op));

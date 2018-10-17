@@ -91,7 +91,7 @@ class AuthnResponse
         }
 
         // Validate the signature
-        $this->validator = new Validator($this->dom, array('ResponseID', 'AssertionID'));
+        $this->validator = new Validator($this->dom, ['ResponseID', 'AssertionID']);
 
         // Get the issuer of the response
         $issuer = $this->getIssuer();
@@ -102,7 +102,7 @@ class AuthnResponse
 
         $publicKeys = $md->getPublicKeys('signing');
         if (!empty($publicKeys)) {
-            $certFingerprints = array();
+            $certFingerprints = [];
             foreach ($publicKeys as $key) {
                 if ($key['type'] !== 'X509Certificate') {
                     continue;
@@ -208,10 +208,10 @@ class AuthnResponse
         $base64 = isset($md['base64attributes']) ? $md['base64attributes'] : false;
 
         if (!($this->dom instanceof \DOMDocument)) {
-            return array();
+            return [];
         }
 
-        $attributes = array();
+        $attributes = [];
 
         $assertions = $this->doXPathQuery('/shibp:Response/shib:Assertion');
 
@@ -255,7 +255,7 @@ class AuthnResponse
                 }
 
                 if (!array_key_exists($name, $attributes)) {
-                    $attributes[$name] = array();
+                    $attributes[$name] = [];
                 }
 
                 if ($base64) {
@@ -287,7 +287,7 @@ class AuthnResponse
 
     public function getNameID()
     {
-        $nameID = array();
+        $nameID = [];
 
         $query = '/shibp:Response/shib:Assertion/shib:AuthenticationStatement/shib:Subject/shib:NameIdentifier';
         $nodelist = $this->doXPathQuery($query);
@@ -320,7 +320,7 @@ class AuthnResponse
         } elseif ($idp->hasValue('scopedattributes')) {
             $scopedAttributes = $idp->getArray('scopedattributes');
         } else {
-            $scopedAttributes = array();
+            $scopedAttributes = [];
         }
 
         $id = Random::generateID();

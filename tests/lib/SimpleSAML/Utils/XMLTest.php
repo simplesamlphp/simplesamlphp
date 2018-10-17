@@ -168,7 +168,7 @@ class XMLTest extends TestCase
         $dom->appendChild($element);
 
         $res = XML::getDOMChildren($dom, $name, $namespace_uri);
-        $expected = array($element);
+        $expected = [$element];
 
         $this->assertEquals($expected, $res);
     }
@@ -357,12 +357,12 @@ NOWDOC;
      */
     public function testIsValidMetadata()
     {
-        Configuration::loadFromArray(array(), '[ARRAY]', 'simplesaml');
+        Configuration::loadFromArray([], '[ARRAY]', 'simplesaml');
 
         $schema = 'saml-schema-metadata-2.0.xsd';
 
         $dom = $this->getMockBuilder('\DOMDocument')
-            ->setMethods(array('schemaValidate'))
+            ->setMethods(['schemaValidate'])
             ->disableOriginalConstructor()
             ->getMock();
 

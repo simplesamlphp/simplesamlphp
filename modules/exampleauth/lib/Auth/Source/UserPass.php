@@ -34,7 +34,7 @@ class UserPass extends \SimpleSAML\Module\core\Auth\UserPassBase
         // Call the parent constructor first, as required by the interface
         parent::__construct($info, $config);
 
-        $this->users = array();
+        $this->users = [];
 
         // Validate and parse our configuration
         foreach ($config as $userpass => $attributes) {

@@ -84,10 +84,10 @@ class Twitter extends \SimpleSAML\Auth\Source
 
         $consumer = new \SimpleSAML\Module\oauth\Consumer($this->key, $this->secret);
         // Get the request token
-        $linkback = \SimpleSAML\Module::getModuleURL('authtwitter/linkback.php', array('AuthState' => $stateID));
+        $linkback = \SimpleSAML\Module::getModuleURL('authtwitter/linkback.php', ['AuthState' => $stateID]);
         $requestToken = $consumer->getRequestToken(
             'https://api.twitter.com/oauth/request_token',
-            array('oauth_callback' => $linkback)
+            ['oauth_callback' => $linkback]
         );
         \SimpleSAML\Logger::debug("Got a request token from the OAuth service provider [".
             $requestToken->key."] with the secret [".$requestToken->secret."]");
@@ -98,7 +98,7 @@ class Twitter extends \SimpleSAML\Auth\Source
         // Authorize the request token
         $url = 'https://api.twitter.com/oauth/authenticate';
         if ($this->force_login) {
-            $url = \SimpleSAML\Utils\HTTP::addURLParameters($url, array('force_login' => 'true'));
+            $url = \SimpleSAML\Utils\HTTP::addURLParameters($url, ['force_login' => 'true']);
         }
         $consumer->getAuthorizeRequest($url, $requestToken);
     }
@@ -106,7 +106,7 @@ class Twitter extends \SimpleSAML\Auth\Source
     public function finalStep(&$state)
     {
         $requestToken = $state['authtwitter:authdata:requestToken'];
-        $parameters = array();
+        $parameters = [];
 
         if (!isset($_REQUEST['oauth_token'])) {
             throw new \SimpleSAML\Error\BadRequest("Missing oauth_token parameter.");
@@ -147,16 +147,16 @@ class Twitter extends \SimpleSAML\Auth\Source
             );
         }
 
-        $attributes = array();
+        $attributes = [];
         foreach ($userdata as $key => $value) {
             if (is_string($value)) {
-                $attributes['twitter.'.$key] = array((string) $value);
+                $attributes['twitter.'.$key] = [(string) $value];
             }
         }
 
-        $attributes['twitter_at_screen_name'] = array('@'.$userdata['screen_name']);
-        $attributes['twitter_screen_n_realm'] = array($userdata['screen_name'].'@twitter.com');
-        $attributes['twitter_targetedID'] = array('http://twitter.com!'.$userdata['id_str']);
+        $attributes['twitter_at_screen_name'] = ['@'.$userdata['screen_name']];
+        $attributes['twitter_screen_n_realm'] = [$userdata['screen_name'].'@twitter.com'];
+        $attributes['twitter_targetedID'] = ['http://twitter.com!'.$userdata['id_str']];
 
         $state['Attributes'] = $attributes;
     }

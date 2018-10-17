@@ -58,18 +58,18 @@ class MultiAuth extends \SimpleSAML\Auth\Source
         $globalConfiguration = \SimpleSAML\Configuration::getInstance();
         $defaultLanguage = $globalConfiguration->getString('language.default', 'en');
         $authsources = \SimpleSAML\Configuration::getConfig('authsources.php');
-        $this->sources = array();
+        $this->sources = [];
         foreach ($config['sources'] as $source => $info) {
             if (is_int($source)) {
                 // Backwards compatibility
                 $source = $info;
-                $info = array();
+                $info = [];
             }
 
             if (array_key_exists('text', $info)) {
                 $text = $info['text'];
             } else {
-                $text = array($defaultLanguage => $source);
+                $text = [$defaultLanguage => $source];
             }
 
             if (array_key_exists('help', $info)) {
@@ -87,12 +87,12 @@ class MultiAuth extends \SimpleSAML\Auth\Source
                 }
             }
 
-            $this->sources[] = array(
+            $this->sources[] = [
                 'source' => $source,
                 'text' => $text,
                 'help' => $help,
                 'css_class' => $css_class,
-            );
+            ];
         }
     }
 
@@ -122,7 +122,7 @@ class MultiAuth extends \SimpleSAML\Auth\Source
          * saved state array as a parameter to the login form
          */
         $url = \SimpleSAML\Module::getModuleURL('multiauth/selectsource.php');
-        $params = array('AuthState' => $id);
+        $params = ['AuthState' => $id];
 
         // Allowes the user to specify the auth souce to be used
         if (isset($_GET['source'])) {
@@ -221,13 +221,13 @@ class MultiAuth extends \SimpleSAML\Auth\Source
         $cookieName = 'multiauth_source_'.$this->authId;
 
         $config = \SimpleSAML\Configuration::getInstance();
-        $params = array(
+        $params = [
             // We save the cookies for 90 days
             'lifetime' => 7776000, //60*60*24*90
             // The base path for cookies. This should be the installation directory for SimpleSAMLphp.
             'path' => $config->getBasePath(),
             'httponly' => false,
-        );
+        ];
 
         \SimpleSAML\Utils\HTTP::setCookie($cookieName, $source, $params, false);
     }

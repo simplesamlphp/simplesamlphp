@@ -33,27 +33,27 @@ function present_assoc($attr)
 
 function present_eptid(\SimpleSAML\Locale\Translate $t, \SAML2\XML\saml\NameID $nameID)
 {
-    $eptid = array(
-        'NameID' => array($nameID->value),
-    );
+    $eptid = [
+        'NameID' => [$nameID->value],
+    ];
     if (!empty($nameID->Format)) {
-        $eptid[$t->t('{status:subject_format}')] = array($nameID->Format);
+        $eptid[$t->t('{status:subject_format}')] = [$nameID->Format];
     }
     if (!empty($nameID->NameQualifier)) {
-        $eptid['NameQualifier'] = array($nameID->NameQualifier);
+        $eptid['NameQualifier'] = [$nameID->NameQualifier];
     }
     if (!empty($nameID->SPNameQualifier)) {
-        $eptid['SPNameQualifier'] = array($nameID->SPNameQualifier);
+        $eptid['SPNameQualifier'] = [$nameID->SPNameQualifier];
     }
     if (!empty($nameID->SPProvidedID)) {
-        $eptid['SPProvidedID'] = array($nameID->SPProvidedID);
+        $eptid['SPProvidedID'] = [$nameID->SPProvidedID];
     }
     return '<td class="attrvalue">'.present_assoc($eptid);
 }
 
 function present_attributes(\SimpleSAML\XHTML\Template $t, $attributes, $nameParent)
 {
-    $alternate = array('odd', 'even');
+    $alternate = ['odd', 'even'];
     $i = 0;
 
     $parentStr = (strlen($nameParent) > 0) ? strtolower($nameParent).'_' : '';

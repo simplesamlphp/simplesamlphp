@@ -38,11 +38,11 @@ class Cron
             throw new \Exception("Invalid cron tag '$tag''");
         }
 
-        $summary = array();
-        $croninfo = array(
+        $summary = [];
+        $croninfo = [
             'summary' => &$summary,
             'tag' => $tag,
-        );
+        ];
 
         \SimpleSAML\Module::callHooks('cron', $croninfo);
 

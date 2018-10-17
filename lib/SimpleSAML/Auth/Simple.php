@@ -88,7 +88,7 @@ class Simple
      *
      * @param array $params Various options to the authentication request. See the documentation.
      */
-    public function requireAuth(array $params = array())
+    public function requireAuth(array $params = [])
     {
         $session = Session::getSessionFromRequest();
 
@@ -115,7 +115,7 @@ class Simple
      *
      * @param array $params Various options to the authentication request.
      */
-    public function login(array $params = array())
+    public function login(array $params = [])
     {
         if (array_key_exists('KeepPost', $params)) {
             $keepPost = (bool) $params['KeepPost'];
@@ -183,9 +183,9 @@ class Simple
         }
 
         if (is_string($params)) {
-            $params = array(
+            $params = [
                 'ReturnTo' => $params,
-            );
+            ];
         }
 
         assert(is_array($params));
@@ -204,7 +204,7 @@ class Simple
 
             $session->doLogout($this->authSource);
 
-            $params['LogoutCompletedHandler'] = array(get_class(), 'logoutCompleted');
+            $params['LogoutCompletedHandler'] = [get_class(), 'logoutCompleted'];
 
             $as = Source::getById($this->authSource);
             if ($as !== null) {
@@ -232,7 +232,7 @@ class Simple
             call_user_func($state['ReturnCallback'], $state);
             assert(false);
         } else {
-            $params = array();
+            $params = [];
             if (isset($state['ReturnStateParam']) || isset($state['ReturnStateStage'])) {
                 assert(isset($state['ReturnStateParam'], $state['ReturnStateStage']));
                 $stateID = State::saveState($state, $state['ReturnStateStage']);
@@ -255,7 +255,7 @@ class Simple
     {
         if (!$this->isAuthenticated()) {
             // Not authenticated
-            return array();
+            return [];
         }
 
         // Authenticated
@@ -316,10 +316,10 @@ class Simple
             $returnTo = HTTP::getSelfURL();
         }
 
-        $login = Module::getModuleURL('core/as_login.php', array(
+        $login = Module::getModuleURL('core/as_login.php', [
             'AuthId'   => $this->authSource,
             'ReturnTo' => $returnTo,
-        ));
+        ]);
 
         return $login;
     }
@@ -341,10 +341,10 @@ class Simple
             $returnTo = HTTP::getSelfURL();
         }
 
-        $logout = Module::getModuleURL('core/as_logout.php', array(
+        $logout = Module::getModuleURL('core/as_logout.php', [
             'AuthId'   => $this->authSource,
             'ReturnTo' => $returnTo,
-        ));
+        ]);
 
         return $logout;
     }

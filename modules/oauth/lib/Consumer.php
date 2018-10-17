@@ -103,7 +103,7 @@ class Consumer
 
     public function getAuthorizeRequest($url, $requestToken, $redirect = true, $callback = null)
     {
-        $params = array('oauth_token' => $requestToken->key);
+        $params = ['oauth_token' => $requestToken->key];
         if ($callback) {
             $params['oauth_callback'] = $callback;
         }
@@ -146,18 +146,18 @@ class Consumer
         $data_req->sign_request($this->signer, $this->consumer, $accessToken);
         $postdata = $data_req->to_postdata();
 
-        $opts = array(
-            'ssl' => array(
+        $opts = [
+            'ssl' => [
                 'verify_peer' => false,
                 'capture_peer_cert' => true,
                 'capture_peer_chain' => true
-            ),
-            'http' => array(
+            ],
+            'http' => [
                 'method' => 'POST',
                 'content' => $postdata,
                 'header' => 'Content-Type: application/x-www-form-urlencoded',
-            ),
-        );
+            ],
+        ];
 
         try {
             $response = \SimpleSAML\Utils\HTTP::fetch($url, $opts);

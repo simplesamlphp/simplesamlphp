@@ -32,10 +32,10 @@ function core_hook_sanitycheck(&$hookinfo)
             'Please check the requirements for your SimpleSAMLphp version and upgrade.';
     }
 
-    $info = array();
-    $mihookinfo = array(
+    $info = [];
+    $mihookinfo = [
         'info' => &$info,
-    );
+    ];
     $availmodules = SimpleSAML\Module::getModules();
     SimpleSAML\Module::callHooks('moduleinfo', $mihookinfo);
     foreach ($info as $mi => $i) {

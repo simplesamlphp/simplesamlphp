@@ -41,7 +41,7 @@ class AttributeAddUsersGroups extends BaseFilter
 
         // Make the array if it is not set already
         if (!isset($attributes[$map['groups']])) {
-            $attributes[$map['groups']] = array();
+            $attributes[$map['groups']] = [];
         }
 
         // Must be an array, else cannot merge groups
@@ -155,15 +155,15 @@ class AttributeAddUsersGroups extends BaseFilter
             "=".$attributes[$map['username']][0].") and attributes ".$map['member']
         );
 
-        $groups = array();
+        $groups = [];
         try {
             /* Intention is to filter in 'ou=groups,dc=example,dc=com' for
              * '(memberUid = <value of attribute.username>)' and take only the attributes 'cn' (=name of the group)
              */
             $all_groups = $this->getLdap()->searchformultiple(
                 $openldap_base,
-                array($map['memberof'] => $attributes[$map['username']][0]),
-                array($map['member'])
+                [$map['memberof'] => $attributes[$map['username']][0]],
+                [$map['member']]
             );
         } catch (\SimpleSAML\Error\UserNotFound $e) {
             return $groups; // if no groups found return with empty (still just initialized) groups array
@@ -231,10 +231,10 @@ class AttributeAddUsersGroups extends BaseFilter
         assert(is_array($memberof));
 
         // Used to determine what DN's have already been searched
-        static $searched = array();
+        static $searched = [];
 
         // Init the groups variable
-        $groups = array();
+        $groups = [];
 
         // Shorten the variable name
         $map = &$this->attribute_map;
@@ -249,7 +249,7 @@ class AttributeAddUsersGroups extends BaseFilter
 
         // Work out what attributes to get for a group
         $use_group_name = false;
-        $get_attributes = array($map['memberof'], $map['type']);
+        $get_attributes = [$map['memberof'], $map['type']];
         if (isset($map['name']) && $map['name']) {
             $get_attributes[] = $map['name'];
             $use_group_name = false;
@@ -263,7 +263,7 @@ class AttributeAddUsersGroups extends BaseFilter
             }
 
             // Track all DN's that are searched
-            // Use DN for key as well, isset() is faster than in_array()
+            // Use DN for key as well, isset() is faster than in_[]
             $searched[$dn] = $dn;
 
             // Query LDAP for the attribute values for the DN
@@ -329,18 +329,18 @@ class AttributeAddUsersGroups extends BaseFilter
         try {
             $entries = $this->getLdap()->searchformultiple(
                 $this->base_dn,
-                array($map['type'] => $this->type_map['group'], $map['member'].':1.2.840.113556.1.4.1941:' => $dn),
-                array($map['dn'])
+                [$map['type'] => $this->type_map['group'], $map['member'].':1.2.840.113556.1.4.1941:' => $dn],
+                [$map['dn']]
             );
 
         // The search may throw an exception if no entries
         // are found, unlikely but possible.
         } catch (\SimpleSAML\Error\UserNotFound $e) {
-            return array();
+            return [];
         }
 
         //Init the groups
-        $groups = array();
+        $groups = [];
 
         // Check each entry..
         foreach ($entries as $entry) {
@@ -365,7 +365,7 @@ class AttributeAddUsersGroups extends BaseFilter
             // Could not find DN, log and continue
             \SimpleSAML\Logger::notice(
                 $this->title.'The DN attribute ['.
-                implode(', ', array($map['dn'], strtolower($map['dn']), 'dn')).
+                implode(', ', [$map['dn'], strtolower($map['dn']), 'dn']).
                 '] could not be found in the entry. '.$this->var_export($entry)
             );
         }

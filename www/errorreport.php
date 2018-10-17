@@ -26,7 +26,7 @@ try {
 }
 
 if ($data === null) {
-    $data = array(
+    $data = [
         'exceptionMsg'   => 'not set',
         'exceptionTrace' => 'not set',
         'reportId'       => $reportId,
@@ -34,7 +34,7 @@ if ($data === null) {
         'url'            => 'not set',
         'version'        => $config->getVersion(),
         'referer'        => 'not set',
-    );
+    ];
 
     if (isset($session)) {
         $data['trackId'] = $session->getTrackID();

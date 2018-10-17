@@ -18,7 +18,7 @@ class ErrorCodes
      */
     final public static function defaultGetAllErrorCodeTitles()
     {
-        return array(
+        return [
             'ACSPARAMS' => \SimpleSAML\Locale\Translate::noop('{errors:title_ACSPARAMS}'),
             'ARSPARAMS' => \SimpleSAML\Locale\Translate::noop('{errors:title_ARSPARAMS}'),
             'AUTHSOURCEERROR' => \SimpleSAML\Locale\Translate::noop('{errors:title_AUTHSOURCEERROR}'),
@@ -52,7 +52,7 @@ class ErrorCodes
             'UNKNOWNCERT' => \SimpleSAML\Locale\Translate::noop('{errors:title_UNKNOWNCERT}'),
             'USERABORTED' => \SimpleSAML\Locale\Translate::noop('{errors:title_USERABORTED}'),
             'WRONGUSERPASS' => \SimpleSAML\Locale\Translate::noop('{errors:title_WRONGUSERPASS}'),
-        );
+        ];
     }
 
 
@@ -76,7 +76,7 @@ class ErrorCodes
      */
     final public static function defaultGetAllErrorCodeDescriptions()
     {
-        return array(
+        return [
             'ACSPARAMS' => \SimpleSAML\Locale\Translate::noop('{errors:descr_ACSPARAMS}'),
             'ARSPARAMS' => \SimpleSAML\Locale\Translate::noop('{errors:descr_ARSPARAMS}'),
             'AUTHSOURCEERROR' => \SimpleSAML\Locale\Translate::noop('{errors:descr_AUTHSOURCEERROR}'),
@@ -110,7 +110,7 @@ class ErrorCodes
             'UNKNOWNCERT' => \SimpleSAML\Locale\Translate::noop('{errors:descr_UNKNOWNCERT}'),
             'USERABORTED' => \SimpleSAML\Locale\Translate::noop('{errors:descr_USERABORTED}'),
             'WRONGUSERPASS' => \SimpleSAML\Locale\Translate::noop('{errors:descr_WRONGUSERPASS}'),
-        );
+        ];
     }
 
     /**
@@ -135,10 +135,10 @@ class ErrorCodes
      */
     public static function getAllErrorCodeMessages()
     {
-        return array(
+        return [
             'title' => self::getAllErrorCodeTitles(),
             'descr' => self::getAllErrorCodeDescriptions(),
-        );
+        ];
     }
 
 
@@ -181,9 +181,9 @@ class ErrorCodes
      */
     public static function getErrorCodeMessage($errorCode)
     {
-        return array(
+        return [
             'title' => self::getErrorCodeTitle($errorCode),
             'descr' => self::getErrorCodeDescription($errorCode),
-        );
+        ];
     }
 }

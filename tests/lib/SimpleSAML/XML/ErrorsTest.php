@@ -51,7 +51,7 @@ class ErrorsTest extends TestCase
         $error->column = 'col';
         $error->message = ' msg ';
 
-        $errors = Errors::formatErrors(array($error, $error));
+        $errors = Errors::formatErrors([$error, $error]);
 
         $this->assertEquals(
             "level=level,code=code,line=line,col=col,msg=msg\nlevel=level,code=code,line=line,col=col,msg=msg\n",

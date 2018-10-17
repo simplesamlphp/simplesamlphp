@@ -10,13 +10,13 @@ $associations = $idp->getAssociations();
 
 if (!isset($_REQUEST['cancel'])) {
     \SimpleSAML\Logger::stats('slo-iframe done');
-    \SimpleSAML\Stats::log('core:idp:logout-iframe:page', array('type' => 'done'));
+    \SimpleSAML\Stats::log('core:idp:logout-iframe:page', ['type' => 'done']);
     $SPs = $state['core:Logout-IFrame:Associations'];
 } else {
     // user skipped global logout
     \SimpleSAML\Logger::stats('slo-iframe skip');
-    \SimpleSAML\Stats::log('core:idp:logout-iframe:page', array('type' => 'skip'));
-    $SPs = array(); // no SPs should have been logged out
+    \SimpleSAML\Stats::log('core:idp:logout-iframe:page', ['type' => 'skip']);
+    $SPs = []; // no SPs should have been logged out
     $state['core:Failed'] = true; // mark as partial logout
 }
 
@@ -49,7 +49,7 @@ foreach ($SPs as $assocId => $sp) {
             $spId = $assocId;
         }
         \SimpleSAML\Logger::stats('slo-iframe-fail '.$spId);
-        \SimpleSAML\Stats::log('core:idp:logout-iframe:spfail', array('sp' => $spId));
+        \SimpleSAML\Stats::log('core:idp:logout-iframe:spfail', ['sp' => $spId]);
         $state['core:Failed'] = true;
     }
 }

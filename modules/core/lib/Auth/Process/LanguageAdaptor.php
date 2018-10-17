@@ -62,7 +62,7 @@ class LanguageAdaptor extends \SimpleSAML\Auth\ProcessingFilter
             \SimpleSAML\Locale\Language::setLanguageCookie($attrlang);
         } elseif (!isset($attrlang) && isset($lang)) {
             // Language set in cookie, but not in attribute. Update attribute
-            $request['Attributes'][$this->langattr] = array($lang);
+            $request['Attributes'][$this->langattr] = [$lang];
         }
     }
 }

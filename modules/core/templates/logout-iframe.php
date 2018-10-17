@@ -5,24 +5,24 @@ $type = $this->data['type'];
 $from = $this->data['from'];
 $SPs = $this->data['SPs'];
 
-$stateImage = array(
+$stateImage = [
     'unsupported' => '/'.$this->data['baseurlpath'].'resources/icons/silk/delete.png',
     'completed'   => '/'.$this->data['baseurlpath'].'resources/icons/silk/accept.png',
     'onhold'      => '/'.$this->data['baseurlpath'].'resources/icons/bullet16_grey.png',
     'inprogress'  => '/'.$this->data['baseurlpath'].'resources/progress.gif',
     'failed'      => '/'.$this->data['baseurlpath'].'resources/icons/silk/exclamation.png',
-);
+];
 
-$stateText = array(
+$stateText = [
     'unsupported' => '',
     'completed'   => $this->t('{logout:completed}'),
     'onhold'      => '',
     'inprogress'  => $this->t('{logout:progress}'),
     'failed'      => $this->t('{logout:failed}'),
-);
+];
 
-$spStatus = array();
-$spTimeout = array();
+$spStatus = [];
+$spTimeout = [];
 $nFailed = 0;
 $nProgress = 0;
 foreach ($SPs as $assocId => $sp) {
@@ -78,7 +78,7 @@ if ($from !== null) {
     echo '<div><img style="float: left; margin-right: 12px" src="/'.$this->data['baseurlpath'].
         'resources/icons/checkmark.48x48.png" alt="Successful logout" />';
     echo '<p style="padding-top: 16px; ">'.
-        $this->t('{logout:loggedoutfrom}', array('%SP%' => '<strong>'.htmlspecialchars($from).'</strong>')).'</p>';
+        $this->t('{logout:loggedoutfrom}', ['%SP%' => '<strong>'.htmlspecialchars($from).'</strong>']).'</p>';
     echo '<p style="height: 0px; clear: left;"></p></div>';
 }
 
@@ -117,7 +117,7 @@ foreach ($SPs as $assocId => $sp) {
 }
 
 if (isset($from)) {
-    $logoutCancelText = $this->t('{logout:logout_only}', array('%SP%' => htmlspecialchars($from)));
+    $logoutCancelText = $this->t('{logout:logout_only}', ['%SP%' => htmlspecialchars($from)]);
 } else {
     $logoutCancelText = $this->t('{logout:no}');
 }

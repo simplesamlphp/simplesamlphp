@@ -4,7 +4,7 @@
  *
  */
 
-$config = array(
+$config = [
     /* Enable the getUserInfo endpoint. Do not enable unless you know what you do.
      * It may give external parties access to userInfo unless properly secured.
      */
@@ -21,4 +21,4 @@ $config = array(
     // useridattr is the attribute-name that contains the userid as returned from idp
     'auth' => 'default-sp',
     'useridattr', 'user',
-);
+];

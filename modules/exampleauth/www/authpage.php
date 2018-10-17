@@ -39,22 +39,22 @@ if (!preg_match('@State=(.*)@', $returnTo, $matches)) {
 /*
  * Our list of users.
  */
-$users = array(
-    'student' => array(
+$users = [
+    'student' => [
         'password' => 'student',
         'uid' => 'student',
         'name' => 'Student Name',
         'mail' => 'somestudent@example.org',
         'type' => 'student',
-    ),
-    'admin' => array(
+    ],
+    'admin' => [
         'password' => 'admin',
         'uid' => 'admin',
         'name' => 'Admin Name',
         'mail' => 'someadmin@example.org',
         'type' => 'employee',
-    ),
-);
+    ],
+];
 
 /*
  * Time to handle login responses.

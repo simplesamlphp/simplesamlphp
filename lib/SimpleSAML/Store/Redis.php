@@ -33,14 +33,14 @@ class Redis extends Store
             $prefix = $config->getString('store.redis.prefix', 'SimpleSAMLphp');
 
             $redis = new \Predis\Client(
-                array(
+                [
                     'scheme' => 'tcp',
                     'host' => $host,
                     'port' => $port,
-                ),
-                array(
+                ],
+                [
                     'prefix' => $prefix,
-                )
+                ]
             );
         }
 

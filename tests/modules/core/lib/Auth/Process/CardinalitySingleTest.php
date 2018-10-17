@@ -29,9 +29,9 @@ class Test_Core_Auth_Process_CardinalitySingleTest extends \PHPUnit_Framework_Te
 
     protected function setUp()
     {
-        \SimpleSAML\Configuration::loadFromArray(array(), '[ARRAY]', 'simplesaml');
+        \SimpleSAML\Configuration::loadFromArray([], '[ARRAY]', 'simplesaml');
         $this->http = $this->getMockBuilder('SimpleSAML\Utils\HTTPAdapter')
-                           ->setMethods(array('redirectTrustedURL'))
+                           ->setMethods(['redirectTrustedURL'])
                            ->getMock();
     }
 
@@ -40,17 +40,17 @@ class Test_Core_Auth_Process_CardinalitySingleTest extends \PHPUnit_Framework_Te
      */
     public function testSingleValuedUnchanged()
     {
-        $config = array(
-            'singleValued' => array('eduPersonPrincipalName')
-        );
-        $request = array(
-            'Attributes' => array(
-                'eduPersonPrincipalName' => array('joe@example.com'),
-            ),
-        );
+        $config = [
+            'singleValued' => ['eduPersonPrincipalName']
+        ];
+        $request = [
+            'Attributes' => [
+                'eduPersonPrincipalName' => ['joe@example.com'],
+            ],
+        ];
         $result = $this->processFilter($config, $request);
         $attributes = $result['Attributes'];
-        $expectedData = array('eduPersonPrincipalName' => array('joe@example.com'));
+        $expectedData = ['eduPersonPrincipalName' => ['joe@example.com']];
         $this->assertEquals($expectedData, $attributes, "Assertion values should not have changed");
     }
 
@@ -59,33 +59,33 @@ class Test_Core_Auth_Process_CardinalitySingleTest extends \PHPUnit_Framework_Te
      */
     public function testFirstValue()
     {
-        $config = array(
-            'firstValue' => array('eduPersonPrincipalName')
-        );
-        $request = array(
-            'Attributes' => array(
-                'eduPersonPrincipalName' => array('joe@example.com', 'bob@example.net'),
-            ),
-        );
+        $config = [
+            'firstValue' => ['eduPersonPrincipalName']
+        ];
+        $request = [
+            'Attributes' => [
+                'eduPersonPrincipalName' => ['joe@example.com', 'bob@example.net'],
+            ],
+        ];
         $result = $this->processFilter($config, $request);
         $attributes = $result['Attributes'];
-        $expectedData = array('eduPersonPrincipalName' => array('joe@example.com'));
+        $expectedData = ['eduPersonPrincipalName' => ['joe@example.com']];
         $this->assertEquals($expectedData, $attributes, "Only first value should be returned");
     }
 
     public function testFirstValueUnchanged()
     {
-        $config = array(
-            'firstValue' => array('eduPersonPrincipalName')
-        );
-        $request = array(
-            'Attributes' => array(
-                'eduPersonPrincipalName' => array('joe@example.com'),
-            ),
-        );
+        $config = [
+            'firstValue' => ['eduPersonPrincipalName']
+        ];
+        $request = [
+            'Attributes' => [
+                'eduPersonPrincipalName' => ['joe@example.com'],
+            ],
+        ];
         $result = $this->processFilter($config, $request);
         $attributes = $result['Attributes'];
-        $expectedData = array('eduPersonPrincipalName' => array('joe@example.com'));
+        $expectedData = ['eduPersonPrincipalName' => ['joe@example.com']];
         $this->assertEquals($expectedData, $attributes, "Assertion values should not have changed");
     }
 
@@ -94,35 +94,35 @@ class Test_Core_Auth_Process_CardinalitySingleTest extends \PHPUnit_Framework_Te
      */
     public function testFlatten()
     {
-        $config = array(
-            'flatten' => array('eduPersonPrincipalName'),
+        $config = [
+            'flatten' => ['eduPersonPrincipalName'],
             'flattenWith' => '|',
-        );
-        $request = array(
-            'Attributes' => array(
-                'eduPersonPrincipalName' => array('joe@example.com', 'bob@example.net'),
-            ),
-        );
+        ];
+        $request = [
+            'Attributes' => [
+                'eduPersonPrincipalName' => ['joe@example.com', 'bob@example.net'],
+            ],
+        ];
         $result = $this->processFilter($config, $request);
         $attributes = $result['Attributes'];
-        $expectedData = array('eduPersonPrincipalName' => array('joe@example.com|bob@example.net'));
+        $expectedData = ['eduPersonPrincipalName' => ['joe@example.com|bob@example.net']];
         $this->assertEquals($expectedData, $attributes, "Flattened string should be returned");
     }
 
     public function testFlattenUnchanged()
     {
-        $config = array(
-            'flatten' => array('eduPersonPrincipalName'),
+        $config = [
+            'flatten' => ['eduPersonPrincipalName'],
             'flattenWith' => '|',
-        );
-        $request = array(
-            'Attributes' => array(
-                'eduPersonPrincipalName' => array('joe@example.com'),
-            ),
-        );
+        ];
+        $request = [
+            'Attributes' => [
+                'eduPersonPrincipalName' => ['joe@example.com'],
+            ],
+        ];
         $result = $this->processFilter($config, $request);
         $attributes = $result['Attributes'];
-        $expectedData = array('eduPersonPrincipalName' => array('joe@example.com'));
+        $expectedData = ['eduPersonPrincipalName' => ['joe@example.com']];
         $this->assertEquals($expectedData, $attributes, "Assertion values should not have changed");
     }
 
@@ -131,14 +131,14 @@ class Test_Core_Auth_Process_CardinalitySingleTest extends \PHPUnit_Framework_Te
      */
     public function testAbort()
     {
-        $config = array(
-            'singleValued' => array('eduPersonPrincipalName'),
-        );
-        $request = array(
-            'Attributes' => array(
-                'eduPersonPrincipalName' => array('joe@example.com', 'bob@example.net'),
-            ),
-        );
+        $config = [
+            'singleValued' => ['eduPersonPrincipalName'],
+        ];
+        $request = [
+            'Attributes' => [
+                'eduPersonPrincipalName' => ['joe@example.com', 'bob@example.net'],
+            ],
+        ];
 
         $this->http->expects($this->once())
                    ->method('redirectTrustedURL');

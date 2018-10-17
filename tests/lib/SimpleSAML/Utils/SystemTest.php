@@ -21,9 +21,9 @@ class SystemTest extends TestCase
         $this->root = vfsStream::setup(
             self::ROOTDIRNAME,
             null,
-            array(
-                self::DEFAULTTEMPDIR => array(),
-            )
+            [
+                self::DEFAULTTEMPDIR => [],
+            ]
         );
         $this->root_directory = vfsStream::url(self::ROOTDIRNAME);
     }
@@ -233,9 +233,9 @@ class SystemTest extends TestCase
 
     private function setConfigurationTempDir($directory)
     {
-        $config = Configuration::loadFromArray(array(
+        $config = Configuration::loadFromArray([
             'tempdir' => $directory,
-        ), '[ARRAY]', 'simplesaml');
+        ], '[ARRAY]', 'simplesaml');
 
         return $config;
     }

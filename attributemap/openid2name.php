@@ -1,5 +1,5 @@
 <?php
-$attributemap = array(
+$attributemap = [
     // Simple Registration + AX Schema
     'http://axschema.org/namePerson/friendly'     => 'displayName', // Alias/Username -> displayName
     'openid.sreg.nickname'                        => 'displayName',
@@ -30,4 +30,4 @@ $attributemap = array(
     'http://axschema.org/contact/phone/fax'       => 'facsimileTelephoneNumber', // Phone (fax)
 
     // Further attributes can be found at http://www.axschema.org/types/
-);
+];

@@ -29,7 +29,7 @@ class Test_Core_Auth_Process_TargetedID extends TestCase
 //        $config = array(
 //        );
 //        $request = array(
-//            'Attributes' => array(),
+//            'Attributes' => [],
 //            'UserID' => 'user2@example.org',
 //        );
 //        $result = self::processFilter($config, $request);
@@ -168,11 +168,10 @@ class Test_Core_Auth_Process_TargetedID extends TestCase
      */
     public function testNoUserID()
     {
-        $config = array(
-        );
-        $request = array(
-            'Attributes' => array(),
-        );
+        $config = [];
+        $request = [
+            'Attributes' => [],
+        ];
         self::processFilter($config, $request);
     }
 
@@ -183,14 +182,14 @@ class Test_Core_Auth_Process_TargetedID extends TestCase
      */
     public function testAttributeNotExists()
     {
-        $config = array(
+        $config = [
             'attributename' => 'uid',
-        );
-        $request = array(
-            'Attributes' => array(
+        ];
+        $request = [
+            'Attributes' => [
                 'displayName' => 'Jack Student',
-            ),
-        );
+            ],
+        ];
         self::processFilter($config, $request);
     }
 
@@ -201,14 +200,14 @@ class Test_Core_Auth_Process_TargetedID extends TestCase
      */
     public function testConfigInvalidAttributeName()
     {
-        $config = array(
+        $config = [
             'attributename' => 5,
-        );
-        $request = array(
-            'Attributes' => array(
+        ];
+        $request = [
+            'Attributes' => [
                 'displayName' => 'Jack Student',
-            ),
-        );
+            ],
+        ];
         self::processFilter($config, $request);
     }
 
@@ -219,14 +218,14 @@ class Test_Core_Auth_Process_TargetedID extends TestCase
      */
     public function testConfigInvalidNameId()
     {
-        $config = array(
+        $config = [
             'nameId' => 'persistent',
-        );
-        $request = array(
-            'Attributes' => array(
+        ];
+        $request = [
+            'Attributes' => [
                 'displayName' => 'Jack Student',
-            ),
-        );
+            ],
+        ];
         self::processFilter($config, $request);
     }
 }

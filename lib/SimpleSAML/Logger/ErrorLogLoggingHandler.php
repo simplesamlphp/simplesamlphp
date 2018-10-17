@@ -17,7 +17,7 @@ class ErrorLogLoggingHandler implements LoggingHandlerInterface
     /**
      * This array contains the mappings from syslog log level to names.
      */
-    private static $levelNames = array(
+    private static $levelNames = [
         Logger::EMERG   => 'EMERG',
         Logger::ALERT   => 'ALERT',
         Logger::CRIT    => 'CRIT',
@@ -26,7 +26,7 @@ class ErrorLogLoggingHandler implements LoggingHandlerInterface
         Logger::NOTICE  => 'NOTICE',
         Logger::INFO    => 'INFO',
         Logger::DEBUG   => 'DEBUG',
-    );
+    ];
 
     /**
      * The name of this process.
@@ -72,8 +72,8 @@ class ErrorLogLoggingHandler implements LoggingHandlerInterface
             $levelName = sprintf('UNKNOWN%d', $level);
         }
 
-        $formats = array('%process', '%level');
-        $replacements = array($this->processname, $levelName);
+        $formats = ['%process', '%level'];
+        $replacements = [$this->processname, $levelName];
         $string = str_replace($formats, $replacements, $string);
         $string = preg_replace('/%\w+(\{[^\}]+\})?/', '', $string);
         $string = trim($string);

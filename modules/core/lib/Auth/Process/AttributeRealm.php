@@ -53,6 +53,6 @@ class AttributeRealm extends \SimpleSAML\Auth\ProcessingFilter
         if (count($decomposed) !== 2) {
             return;
         }
-        $request['Attributes'][$this->attributename] = array($decomposed[1]);
+        $request['Attributes'][$this->attributename] = [$decomposed[1]];
     }
 }

@@ -24,7 +24,7 @@ class AttributeValueMap extends \SimpleSAML\Auth\ProcessingFilter
     /**
      * The required $sourceattribute values and target affiliations.
      */
-    private $values = array();
+    private $values = [];
     
     /**
      * Whether $sourceattribute should be kept or not.
@@ -114,12 +114,12 @@ class AttributeValueMap extends \SimpleSAML\Auth\ProcessingFilter
         }
 
         $sourceattribute = $attributes[$this->sourceattribute];
-        $targetvalues = array();
+        $targetvalues = [];
 
         if (is_array($sourceattribute)) {
             foreach ($this->values as $value => $values) {
                 if (!is_array($values)) {
-                    $values = array($values);
+                    $values = [$values];
                 }
                 if (count(array_intersect($values, $sourceattribute)) > 0) {
                     \SimpleSAML\Logger::debug("AttributeValueMap: intersect match for '$value'");

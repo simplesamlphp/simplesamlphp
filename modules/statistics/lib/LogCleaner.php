@@ -65,7 +65,7 @@ class LogCleaner
             $this->statconfig->getValue('offsetspan', 44)
         );
 
-        $sessioncounter = array();
+        $sessioncounter = [];
 
         $i = 0;
         // Parse through log file, line by line
@@ -105,7 +105,7 @@ class LogCleaner
             }
         }
 
-        $histogram = array();
+        $histogram = [];
         foreach ($sessioncounter as $trackid => $sc) {
             if (!isset($histogram[$sc])) {
                 $histogram[$sc] = 0;
@@ -114,7 +114,7 @@ class LogCleaner
         }
         ksort($histogram);
 
-        $todelete = array();
+        $todelete = [];
         foreach ($sessioncounter as $trackid => $sc) {
             if ($sc > 200) {
                 $todelete[] = $trackid;

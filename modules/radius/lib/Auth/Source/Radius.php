@@ -88,17 +88,17 @@ class Radius extends \SimpleSAML\Module\core\Auth\UserPassBase
             'Authentication source '.var_export($this->authId, true)
         );
 
-        $this->servers = $config->getArray('servers', array());
+        $this->servers = $config->getArray('servers', []);
         // For backwards compatibility
         if (empty($this->servers)) {
             $this->hostname = $config->getString('hostname');
             $this->port = $config->getIntegerRange('port', 1, 65535, 1812);
             $this->secret = $config->getString('secret');
-            $this->servers[] = array(
+            $this->servers[] = [
                 'hostname' => $this->hostname,
                 'port' => $this->port,
                 'secret' => $this->secret
-            );
+            ];
         }
         $this->timeout = $config->getInteger('timeout', 5);
         $this->retries = $config->getInteger('retries', 3);
@@ -189,10 +189,10 @@ class Radius extends \SimpleSAML\Module\core\Auth\UserPassBase
 
         // If we get this far, we have a valid login
 
-        $attributes = array();
+        $attributes = [];
 
         if ($this->usernameAttribute !== null) {
-            $attributes[$this->usernameAttribute] = array($username);
+            $attributes[$this->usernameAttribute] = [$username];
         }
 
         if ($this->vendor === null) {
@@ -213,7 +213,7 @@ class Radius extends \SimpleSAML\Module\core\Auth\UserPassBase
 
             // Use the received user name
             if ($resa['attr'] == \RADIUS_USER_NAME) {
-                $attributes[$this->usernameAttribute] = array($resa['data']);
+                $attributes[$this->usernameAttribute] = [$resa['data']];
                 continue;
             }
 
@@ -243,7 +243,7 @@ class Radius extends \SimpleSAML\Module\core\Auth\UserPassBase
             if (array_key_exists($attrib_name, $attributes)) {
                 $attributes[$attrib_name][] = $attrib_value;
             } else {
-                $attributes[$attrib_name] = array($attrib_value);
+                $attributes[$attrib_name] = [$attrib_value];
             }
         }
         // end of contribution

@@ -79,7 +79,7 @@ class Error extends Exception
             unset($this->parameters[0]);
             $this->errorCode = $errorCode[0];
         } else {
-            $this->parameters = array();
+            $this->parameters = [];
             $this->errorCode = $errorCode;
         }
 
@@ -196,7 +196,7 @@ class Error extends Exception
         } else {
             $referer = 'unknown';
         }
-        $errorData = array(
+        $errorData = [
             'exceptionMsg'   => $emsg,
             'exceptionTrace' => $etrace,
             'reportId'       => $reportId,
@@ -204,7 +204,7 @@ class Error extends Exception
             'url'            => \SimpleSAML\Utils\HTTP::getSelfURLNoQuery(),
             'version'        => $config->getVersion(),
             'referer'        => $referer,
-        );
+        ];
         $session->setData('core:errorreport', $reportId, $errorData);
 
         return $errorData;
@@ -226,7 +226,7 @@ class Error extends Exception
         $errorData = $this->saveError();
         $config = \SimpleSAML\Configuration::getInstance();
 
-        $data = array();
+        $data = [];
         $data['showerrors'] = $config->getBoolean('showerrors', true);
         $data['error'] = $errorData;
         $data['errorCode'] = $this->errorCode;

@@ -23,7 +23,7 @@ class AttributeCopy extends \SimpleSAML\Auth\ProcessingFilter
     /**
      * Assosiative array with the mappings of attribute names.
      */
-    private $map = array();
+    private $map = [];
 
     /**
      * Initialize this filter, parse configuration

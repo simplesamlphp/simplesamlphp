@@ -67,7 +67,7 @@ class OTP2YubiPrefix extends \SimpleSAML\Auth\ProcessingFilter
         $token_size = 32;
         $identity = substr($otp, 0, strlen($otp) - $token_size);
 
-        $attributes['yubiPrefix'] = array($identity);
+        $attributes['yubiPrefix'] = [$identity];
 
         \SimpleSAML\Logger::info(
             'OTP2YubiPrefix: otp: '.$otp.' identity: '.$identity.' (otp keys: '.implode(',', array_keys($otps)).')'

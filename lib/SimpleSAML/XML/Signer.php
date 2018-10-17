@@ -39,7 +39,7 @@ class Signer
     /**
      * @var array Extra certificates which should be included in the response.
      */
-    private $extraCertificates = array();
+    private $extraCertificates = [];
 
 
     /**
@@ -58,7 +58,7 @@ class Signer
      *
      * @param array $options  Associative array with options for the constructor. Defaults to an empty array.
      */
-    public function __construct($options = array())
+    public function __construct($options = [])
     {
         assert(is_array($options));
 
@@ -102,7 +102,7 @@ class Signer
         assert(is_array($privatekey));
         assert(array_key_exists('PEM', $privatekey));
 
-        $this->privateKey = new XMLSecurityKey(XMLSecurityKey::RSA_SHA256, array('type' => 'private'));
+        $this->privateKey = new XMLSecurityKey(XMLSecurityKey::RSA_SHA256, ['type' => 'private']);
         if (array_key_exists('password', $privatekey)) {
             $this->privateKey->passphrase = $privatekey['password'];
         }
@@ -143,7 +143,7 @@ class Signer
             throw new \Exception('Unable to read private key file "'.$keyFile.'".');
         }
 
-        $privatekey = array('PEM' => $keyData);
+        $privatekey = ['PEM' => $keyData];
         if ($pass !== null) {
             $privatekey['password'] = $pass;
         }
@@ -284,15 +284,15 @@ class Signer
         $objXMLSecDSig = new XMLSecurityDSig();
         $objXMLSecDSig->setCanonicalMethod(XMLSecurityDSig::EXC_C14N);
 
-        $options = array();
+        $options = [];
         if (!empty($this->idAttrName)) {
             $options['id_name'] = $this->idAttrName;
         }
 
         $objXMLSecDSig->addReferenceList(
-            array($node),
+            [$node],
             XMLSecurityDSig::SHA256,
-            array('http://www.w3.org/2000/09/xmldsig#enveloped-signature', XMLSecurityDSig::EXC_C14N),
+            ['http://www.w3.org/2000/09/xmldsig#enveloped-signature', XMLSecurityDSig::EXC_C14N],
             $options
         );
 

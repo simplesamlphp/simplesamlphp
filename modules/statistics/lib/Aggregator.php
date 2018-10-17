@@ -97,10 +97,10 @@ class Aggregator
             $this->statconfig->getValue('datelength', 15),
             $this->statconfig->getValue('offsetspan', 44)
         );
-        $datehandler = array(
+        $datehandler = [
             'default' => new DateHandler($this->offset),
             'month' => new  DateHandlerMonth($this->offset),
-        );
+        ];
 
         $notBefore = 0;
         $lastRead = 0;
@@ -113,7 +113,7 @@ class Aggregator
 
         $lastlogline = 'sdfsdf';
         $lastlineflip = false;
-        $results = array();
+        $results = [];
 
         $i = 0;
         // Parse through log file, line by line
@@ -215,7 +215,7 @@ class Aggregator
         if (is_int($colrule)) {
             return trim($content[$colrule]);
         } elseif (is_array($colrule)) {
-            $difcols = array();
+            $difcols = [];
             foreach ($colrule as $cr) {
                 $difcols[] = trim($content[$cr]);
             }
@@ -227,11 +227,11 @@ class Aggregator
 
     private function cummulateData($previous, $newdata)
     {
-        $dataset = array();
+        $dataset = [];
         foreach (func_get_args() as $item) {
             foreach ($item as $slot => $dataarray) {
                 if (!array_key_exists($slot, $dataset)) {
-                    $dataset[$slot] = array();
+                    $dataset[$slot] = [];
                 }
                 foreach ($dataarray as $key => $data) {
                     if (!array_key_exists($key, $dataset[$slot])) {
@@ -246,10 +246,10 @@ class Aggregator
 
     public function store($results)
     {
-        $datehandler = array(
+        $datehandler = [
             'default' => new DateHandler($this->offset),
             'month' => new DateHandlerMonth($this->offset),
-        );
+        ];
 
         // Iterate the first level of results, which is per rule, as defined in the config.
         foreach ($results as $rulename => $timeresdata) {
@@ -282,15 +282,15 @@ class Aggregator
                     );
 
                     // Fill in missing entries and sort file results
-                    $filledresult = array();
+                    $filledresult = [];
                     for ($slot = $start; $slot < $end; $slot++) {
                         if (array_key_exists($slot, $fileres)) {
                             $filledresult[$slot] = $fileres[$slot];
                         } else {
                             if ($lastfile == $fileno && $slot > $maxslot) {
-                                $filledresult[$slot] = array('_' => null);
+                                $filledresult[$slot] = ['_' => null];
                             } else {
-                                $filledresult[$slot] = array('_' => 0);
+                                $filledresult[$slot] = ['_' => 0];
                             }
                         }
                     }

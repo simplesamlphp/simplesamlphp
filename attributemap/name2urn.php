@@ -1,5 +1,5 @@
 <?php
-$attributemap = array(
+$attributemap = [
     'aRecord'                       => 'urn:mace:dir:attribute-def:aRecord',
     'aliasedEntryName'              => 'urn:mace:dir:attribute-def:aliasedEntryName',
     'aliasedObjectName'             => 'urn:mace:dir:attribute-def:aliasedObjectName',
@@ -186,4 +186,4 @@ $attributemap = array(
     'userid'                        => 'urn:mace:dir:attribute-def:userid',
     'x121Address'                   => 'urn:mace:dir:attribute-def:x121Address',
     'x500UniqueIdentifier'          => 'urn:mace:dir:attribute-def:x500UniqueIdentifier',
-);
+];

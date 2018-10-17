@@ -78,12 +78,12 @@ class SQLNameID
 
         $store = self::getStore();
 
-        $params = array(
+        $params = [
             '_idp' => $idpEntityId,
             '_sp' => $spEntityId,
             '_user' => $user,
             '_value' => $value,
-        );
+        ];
 
         $query = 'INSERT INTO '.$store->prefix;
         $query .= '_saml_PersistentNameID (_idp, _sp, _user, _value) VALUES(:_idp, :_sp, :_user, :_value)';
@@ -108,11 +108,11 @@ class SQLNameID
 
         $store = self::getStore();
 
-        $params = array(
+        $params = [
             '_idp' => $idpEntityId,
             '_sp' => $spEntityId,
             '_user' => $user,
-        );
+        ];
 
         $query = 'SELECT _value FROM '.$store->prefix;
         $query .= '_saml_PersistentNameID WHERE _idp = :_idp AND _sp = :_sp AND _user = :_user';
@@ -144,11 +144,11 @@ class SQLNameID
 
         $store = self::getStore();
 
-        $params = array(
+        $params = [
             '_idp' => $idpEntityId,
             '_sp' => $spEntityId,
             '_user' => $user,
-        );
+        ];
 
         $query = 'DELETE FROM '.$store->prefix;
         $query .= '_saml_PersistentNameID WHERE _idp = :_idp AND _sp = :_sp AND _user = :_user';
@@ -171,17 +171,17 @@ class SQLNameID
 
         $store = self::getStore();
 
-        $params = array(
+        $params = [
             '_idp' => $idpEntityId,
             '_sp' => $spEntityId,
-        );
+        ];
 
         $query = 'SELECT _user, _value FROM '.$store->prefix;
         $query .= '_saml_PersistentNameID WHERE _idp = :_idp AND _sp = :_sp';
         $query = $store->pdo->prepare($query);
         $query->execute($params);
 
-        $res = array();
+        $res = [];
         while (($row = $query->fetch(\PDO::FETCH_ASSOC)) !== false) {
             $res[$row['_user']] = $row['_value'];
         }

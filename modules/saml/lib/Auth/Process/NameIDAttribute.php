@@ -65,7 +65,7 @@ class NameIDAttribute extends \SimpleSAML\Auth\ProcessingFilter
     {
         assert(is_string($format));
 
-        $ret = array();
+        $ret = [];
         $pos = 0;
         while (($next = strpos($format, '%', $pos)) !== false) {
             $ret[] = substr($format, $pos, $next - $pos);
@@ -139,6 +139,6 @@ class NameIDAttribute extends \SimpleSAML\Auth\ProcessingFilter
             $isString = !$isString;
         }
 
-        $state['Attributes'][$this->attribute] = array($value);
+        $state['Attributes'][$this->attribute] = [$value];
     }
 }

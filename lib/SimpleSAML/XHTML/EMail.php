@@ -17,7 +17,7 @@ class EMail
     private $from = null;
     private $replyto = null;
     private $subject = null;
-    private $headers = array();
+    private $headers = [];
 
 
     /**

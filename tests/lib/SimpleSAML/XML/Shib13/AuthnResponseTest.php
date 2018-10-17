@@ -112,10 +112,10 @@ XML;
         $result = $this->xml->getNameID();
 
         $this->assertEquals(
-            array(
+            [
                 'Value' => 'NameIdentifier',
                 'Format' => 'urn:mace:shibboleth:1.0:nameIdentifier',
-            ),
+            ],
             $result
         );
     }

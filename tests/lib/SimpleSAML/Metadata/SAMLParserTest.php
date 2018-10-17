@@ -15,9 +15,9 @@ class SAMLParserTest extends TestCase
      */
     public function testRegistrationInfo()
     {
-        $expected = array(
+        $expected = [
             'registrationAuthority' => 'https://incommon.org',
-        );
+        ];
 
         $document = \SAML2\DOMDocumentFactory::fromString(
             <<<XML
@@ -47,9 +47,9 @@ XML
      */
     public function testRegistrationInfoInheritance()
     {
-        $expected = array(
+        $expected = [
             'registrationAuthority' => 'https://incommon.org',
-        );
+        ];
 
         $document = \SAML2\DOMDocumentFactory::fromString(
             <<<XML
@@ -125,8 +125,8 @@ XML
         $this->assertEquals("Example service", $metadata['name']['en']);
         $this->assertEquals("Dit is een voorbeeld voor de unittest.", $metadata['description']['nl']);
 
-        $expected_a = array("urn:mace:dir:attribute-def:eduPersonPrincipalName", "urn:mace:dir:attribute-def:mail", "urn:mace:dir:attribute-def:displayName");
-        $expected_r = array("urn:mace:dir:attribute-def:eduPersonPrincipalName");
+        $expected_a = ["urn:mace:dir:attribute-def:eduPersonPrincipalName", "urn:mace:dir:attribute-def:mail", "urn:mace:dir:attribute-def:displayName"];
+        $expected_r = ["urn:mace:dir:attribute-def:eduPersonPrincipalName"];
 
         $this->assertEquals($expected_a, $metadata['attributes']);
         $this->assertEquals($expected_r, $metadata['attributes.required']);

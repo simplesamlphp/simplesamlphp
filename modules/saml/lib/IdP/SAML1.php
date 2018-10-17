@@ -45,11 +45,11 @@ class SAML1
         $config = \SimpleSAML\Configuration::getInstance();
         $metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
 
-        $statsData = array(
+        $statsData = [
             'spEntityID' => $spEntityId,
             'idpEntityID' => $idpMetadata->getString('entityid'),
             'protocol' => 'saml1',
-        );
+        ];
         if (isset($state['saml:AuthnRequestReceivedAt'])) {
             $statsData['logintime'] = microtime(true) - $state['saml:AuthnRequestReceivedAt'];
         }
@@ -124,25 +124,25 @@ class SAML1
 
         \SimpleSAML\Stats::log(
             'saml:idp:AuthnRequest',
-            array(
+            [
                 'spEntityID' => $spEntityId,
                 'protocol' => 'saml1',
-            )
+            ]
         );
 
         $sessionLostURL = HTTP::addURLParameters(
             HTTP::getSelfURL(),
-            array('cookieTime' => time())
+            ['cookieTime' => time()]
         );
 
-        $state = array(
-            'Responder' => array('\SimpleSAML\Module\saml\IdP\SAML1', 'sendResponse'),
+        $state = [
+            'Responder' => ['\SimpleSAML\Module\saml\IdP\SAML1', 'sendResponse'],
             'SPMetadata' => $spMetadata->toArray(),
             \SimpleSAML\Auth\State::RESTART => $sessionLostURL,
             'saml:shire' => $shire,
             'saml:target' => $target,
             'saml:AuthnRequestReceivedAt' => microtime(true),
-        );
+        ];
 
         $idp->handleAuthenticationRequest($state);
     }

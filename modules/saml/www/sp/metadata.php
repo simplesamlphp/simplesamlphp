@@ -25,12 +25,12 @@ $entityId = $source->getEntityId();
 $spconfig = $source->getMetadata();
 $store = \SimpleSAML\Store::getInstance();
 
-$metaArray20 = array();
+$metaArray20 = [];
 
-$slosvcdefault = array(
+$slosvcdefault = [
     \SAML2\Constants::BINDING_HTTP_REDIRECT,
     \SAML2\Constants::BINDING_SOAP,
-);
+];
 
 $slob = $spconfig->getArray('SingleLogoutServiceBinding', $slosvcdefault);
 $slol = \SimpleSAML\Module::getModuleURL('saml/sp/saml2-logout.php/'.$sourceId);
@@ -40,18 +40,18 @@ foreach ($slob as $binding) {
         // we cannot properly support SOAP logout
         continue;
     }
-    $metaArray20['SingleLogoutService'][] = array(
+    $metaArray20['SingleLogoutService'][] = [
         'Binding'  => $binding,
         'Location' => $slol,
-    );
+    ];
 }
 
-$assertionsconsumerservicesdefault = array(
+$assertionsconsumerservicesdefault = [
     'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
     'urn:oasis:names:tc:SAML:1.0:profiles:browser-post',
     'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact',
     'urn:oasis:names:tc:SAML:1.0:profiles:artifact-01',
-);
+];
 
 if ($spconfig->getString('ProtocolBinding', '') == 'urn:oasis:names:tc:SAML:2.0:profiles:holder-of-key:SSO:browser') {
     $assertionsconsumerservicesdefault[] = 'urn:oasis:names:tc:SAML:2.0:profiles:holder-of-key:SSO:browser';
@@ -60,10 +60,10 @@ if ($spconfig->getString('ProtocolBinding', '') == 'urn:oasis:names:tc:SAML:2.0:
 $assertionsconsumerservices = $spconfig->getArray('acs.Bindings', $assertionsconsumerservicesdefault);
 
 $index = 0;
-$eps = array();
-$supported_protocols = array();
+$eps = [];
+$supported_protocols = [];
 foreach ($assertionsconsumerservices as $services) {
-    $acsArray = array('index' => $index);
+    $acsArray = ['index' => $index];
     switch ($services) {
         case 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST':
             $acsArray['Binding'] = \SAML2\Constants::BINDING_HTTP_POST;
@@ -108,19 +108,19 @@ foreach ($assertionsconsumerservices as $services) {
 
 $metaArray20['AssertionConsumerService'] = $eps;
 
-$keys = array();
+$keys = [];
 $certInfo = \SimpleSAML\Utils\Crypto::loadPublicKey($spconfig, false, 'new_');
 if ($certInfo !== null && array_key_exists('certData', $certInfo)) {
     $hasNewCert = true;
 
     $certData = $certInfo['certData'];
 
-    $keys[] = array(
+    $keys[] = [
         'type'            => 'X509Certificate',
         'signing'         => true,
         'encryption'      => true,
         'X509Certificate' => $certInfo['certData'],
-    );
+    ];
 } else {
     $hasNewCert = false;
 }
@@ -129,12 +129,12 @@ $certInfo = \SimpleSAML\Utils\Crypto::loadPublicKey($spconfig);
 if ($certInfo !== null && array_key_exists('certData', $certInfo)) {
     $certData = $certInfo['certData'];
 
-    $keys[] = array(
+    $keys[] = [
         'type'            => 'X509Certificate',
         'signing'         => true,
         'encryption'      => ($hasNewCert ? false : true),
         'X509Certificate' => $certInfo['certData'],
-    );
+    ];
 } else {
     $certData = null;
 }
@@ -145,12 +145,12 @@ if ($format !== null) {
 }
 
 $name = $spconfig->getLocalizedString('name', null);
-$attributes = $spconfig->getArray('attributes', array());
+$attributes = $spconfig->getArray('attributes', []);
 
 if ($name !== null && !empty($attributes)) {
     $metaArray20['name'] = $name;
     $metaArray20['attributes'] = $attributes;
-    $metaArray20['attributes.required'] = $spconfig->getArray('attributes.required', array());
+    $metaArray20['attributes.required'] = $spconfig->getArray('attributes.required', []);
 
     if (empty($metaArray20['attributes.required'])) {
         unset($metaArray20['attributes.required']);

@@ -94,7 +94,7 @@ class IdPDisco
      *
      * @var array
      */
-    protected $scopedIDPList = array();
+    protected $scopedIDPList = [];
 
     /**
      * The URL the user should be redirected to after choosing an IdP.
@@ -214,13 +214,13 @@ class IdPDisco
     {
         $prefixedName = 'idpdisco_'.$this->instance.'_'.$name;
 
-        $params = array(
+        $params = [
             // we save the cookies for 90 days
             'lifetime' => (60 * 60 * 24 * 90),
             // the base path for cookies. This should be the installation directory for SimpleSAMLphp
             'path'     => $this->config->getBasePath(),
             'httponly' => false,
-        );
+        ];
 
         \SimpleSAML\Utils\HTTP::setCookie($prefixedName, $value, $params, false);
     }
@@ -290,7 +290,7 @@ class IdPDisco
          * back. Therefore we do some quick and dirty parsing of the query string.
          */
         $qstr = $_SERVER['QUERY_STRING'];
-        $matches = array();
+        $matches = [];
         if (preg_match('/(?:^|&)idp_([^=]+)=/', $qstr, $matches)) {
             return $this->validateIdP(urldecode($matches[1]));
         }
@@ -459,7 +459,7 @@ class IdPDisco
      */
     protected function getIdPList()
     {
-        $idpList = array();
+        $idpList = [];
         foreach ($this->metadataSets as $metadataSet) {
             $newList = $this->metadata->getList($metadataSet);
             /*
@@ -517,18 +517,18 @@ class IdPDisco
             $extDiscoveryStorage = $this->config->getString('idpdisco.extDiscoveryStorage', null);
             if ($extDiscoveryStorage !== null) {
                 $this->log('Choice made ['.$idp.'] (Forwarding to external discovery storage)');
-                \SimpleSAML\Utils\HTTP::redirectTrustedURL($extDiscoveryStorage, array(
+                \SimpleSAML\Utils\HTTP::redirectTrustedURL($extDiscoveryStorage, [
                     'entityID'      => $this->spEntityId,
                     'IdPentityID'   => $idp,
                     'returnIDParam' => $this->returnIdParam,
                     'isPassive'     => 'true',
                     'return'        => $this->returnURL
-                ));
+                ]);
             } else {
                 $this->log(
                     'Choice made ['.$idp.'] (Redirecting the user back. returnIDParam='.$this->returnIdParam.')'
                 );
-                \SimpleSAML\Utils\HTTP::redirectTrustedURL($this->returnURL, array($this->returnIdParam => $idp));
+                \SimpleSAML\Utils\HTTP::redirectTrustedURL($this->returnURL, [$this->returnIdParam => $idp]);
             }
         }
 
@@ -567,7 +567,7 @@ class IdPDisco
             );
             \SimpleSAML\Utils\HTTP::redirectTrustedURL(
                 $this->returnURL,
-                array($this->returnIdParam => $idpintersection[0])
+                [$this->returnIdParam => $idpintersection[0]]
             );
         }
 

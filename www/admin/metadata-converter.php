@@ -19,12 +19,12 @@ if (!empty($xmldata)) {
 
     // get all metadata for the entities
     foreach ($entities as &$entity) {
-        $entity = array(
+        $entity = [
             'shib13-sp-remote'  => $entity->getMetadata1xSP(),
             'shib13-idp-remote' => $entity->getMetadata1xIdP(),
             'saml20-sp-remote'  => $entity->getMetadata20SP(),
             'saml20-idp-remote' => $entity->getMetadata20IdP(),
-        );
+        ];
     }
 
     // transpose from $entities[entityid][type] to $output[type][entityid]
@@ -49,7 +49,7 @@ if (!empty($xmldata)) {
     }
 } else {
     $xmldata = '';
-    $output = array();
+    $output = [];
 }
 
 $template = new \SimpleSAML\XHTML\Template($config, 'metadata-converter.php', 'admin');

@@ -150,26 +150,26 @@ authentication source.
 A typical configuration entry for an authentication source looks like 
 this:
 
-    'example-static' => array(
+    'example-static' => [
       /* This maps to modules/exampleauth/lib/Auth/Source/Static.php */
       'exampleauth:Static',
     
       /* The following is configuration which is passed on to
        * the exampleauth:Static authentication source. */
       'uid' => 'testuser',
-      'eduPersonAffiliation' => array('member', 'employee'),
-      'cn' => array('Test User'),
-    ),
+      'eduPersonAffiliation' => ['member', 'employee'],
+      'cn' => ['Test User'],
+    ],
 
 To use this authentication source in a SAML 2.0 IdP, set the
 `auth`-option of the IdP to `'example-static'`:
 
-    '__DYNAMIC:1__' => array(
+    '__DYNAMIC:1__' => [
       'host' => '__DEFAULT__',
       'privatekey' => 'example.org.pem',
       'certificate' => 'example.org.crt',
       'auth' => 'example-static',
-    ),
+    ],
 
 ### Creating authentication sources
 

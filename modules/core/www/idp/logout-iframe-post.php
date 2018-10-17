@@ -44,12 +44,12 @@ if ($encryptNameId) {
     $lr->encryptNameId(\SimpleSAML\Module\saml\Message::getEncryptionKey($spMetadata));
 }
 
-\SimpleSAML\Stats::log('saml:idp:LogoutRequest:sent', array(
+\SimpleSAML\Stats::log('saml:idp:LogoutRequest:sent', [
     'spEntityID'  => $association['saml:entityID'],
     'idpEntityID' => $idpMetadata->getString('entityid'),
-));
+]);
 
-$bindings = array(\SAML2\Constants::BINDING_HTTP_POST);
+$bindings = [\SAML2\Constants::BINDING_HTTP_POST];
 
 $dst = $spMetadata->getDefaultEndpoint('SingleLogoutService', $bindings);
 $binding = \SAML2\Binding::getBinding($dst['Binding']);

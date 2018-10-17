@@ -23,14 +23,14 @@ class ADFS
             throw new \SimpleSAML\Error\Error('PROCESSAUTHNREQUEST', $exception);
         }
 
-        $state = array(
-            'Responder' => array('\SimpleSAML\Module\adfs\IdP\ADFS', 'sendResponse'),
+        $state = [
+            'Responder' => ['\SimpleSAML\Module\adfs\IdP\ADFS', 'sendResponse'],
             'SPMetadata' => $spMetadata->toArray(),
             'ForceAuthn' => false,
             'isPassive' => false,
             'adfs:wctx' => $requestid,
             'adfs:wreply' => false
-        );
+        ];
 
         if (isset($query['wreply']) && !empty($query['wreply'])) {
             $state['adfs:wreply'] = \SimpleSAML\Utils\HTTP::checkURLAllowed($query['wreply']);
@@ -109,18 +109,18 @@ MSG;
     private static function signResponse($response, $key, $cert, $algo)
     {
         $objXMLSecDSig = new XMLSecurityDSig();
-        $objXMLSecDSig->idKeys = array('AssertionID');
+        $objXMLSecDSig->idKeys = ['AssertionID'];
         $objXMLSecDSig->setCanonicalMethod(XMLSecurityDSig::EXC_C14N);
         $responsedom = \SAML2\DOMDocumentFactory::fromString(str_replace("\r", "", $response));
         $firstassertionroot = $responsedom->getElementsByTagName('Assertion')->item(0);
         $objXMLSecDSig->addReferenceList(
-            array($firstassertionroot),
+            [$firstassertionroot],
             XMLSecurityDSig::SHA256,
-            array('http://www.w3.org/2000/09/xmldsig#enveloped-signature', XMLSecurityDSig::EXC_C14N),
-            array('id_name' => 'AssertionID')
+            ['http://www.w3.org/2000/09/xmldsig#enveloped-signature', XMLSecurityDSig::EXC_C14N],
+            ['id_name' => 'AssertionID']
         );
 
-        $objKey = new XMLSecurityKey($algo, array('type' => 'private'));
+        $objKey = new XMLSecurityKey($algo, ['type' => 'private']);
         $objKey->loadKey($key, true);
         $objXMLSecDSig->sign($objKey);
         if ($cert) {
@@ -168,11 +168,11 @@ MSG;
         $idpMetadata = $idp->getConfig();
         $idpEntityId = $idpMetadata->getString('entityid');
 
-        $idp->addAssociation(array(
+        $idp->addAssociation([
             'id' => 'adfs:'.$spEntityId,
             'Handler' => '\SimpleSAML\Module\adfs\IdP\ADFS',
             'adfs:entityID' => $spEntityId,
-        ));
+        ]);
 
         $assertionLifetime = $spMetadata->getInteger('assertion.lifetime', null);
         if ($assertionLifetime === null) {
@@ -213,9 +213,9 @@ MSG;
             assert(false);
         }
 
-        $state = array(
-            'Responder' => array('\SimpleSAML\Module\adfs\IdP\ADFS', 'sendLogoutResponse'),
-        );
+        $state = [
+            'Responder' => ['\SimpleSAML\Module\adfs\IdP\ADFS', 'sendLogoutResponse'],
+        ];
         $assocId = null;
         // TODO: verify that this is really no problem for:
         //       a) SSP, because there's no caller SP.

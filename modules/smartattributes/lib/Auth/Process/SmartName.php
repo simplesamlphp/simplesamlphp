@@ -16,7 +16,7 @@ class SmartName extends \SimpleSAML\Auth\ProcessingFilter
      *
      * Assiciative array of arrays.
      */
-    private $attributes = array();
+    private $attributes = [];
 
 
     private function getFullName($attributes)
@@ -86,7 +86,7 @@ class SmartName extends \SimpleSAML\Auth\ProcessingFilter
         $fullname = $this->getFullName($attributes);
 
         if (isset($fullname)) {
-            $request['Attributes']['smartname-fullname'] = array($fullname);
+            $request['Attributes']['smartname-fullname'] = [$fullname];
         }
     }
 }

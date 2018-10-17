@@ -25,15 +25,15 @@ To do this, we open `config/authsources.php`. Create the file if it does not exi
 If you create the file, it should look like this:
 
     <?php
-    $config = array(
+    $config = [
         /* Here we can add entries for authentication sources we want to use. */
-    );
+    ];
 
 
 We are going to add an entry to this file.
 The entry should look something like this:
 
-    'default-sp' => array(
+    'default-sp' => [
         'saml:SP',
 
         /*
@@ -49,7 +49,7 @@ The entry should look something like this:
         'idp' => NULL,
 
         /* Here you can add other options to the SP. */
-    ),
+    ],
 
 `default-sp` is the name of the authentication source.
 It is used to refer to this authentication source when we use it.
@@ -171,7 +171,7 @@ Blocks of code like the following:
       \SimpleSAML\Utilities::redirect(
         '/' . $config->getBaseURL() .
         'saml2/sp/initSSO.php',
-        array('RelayState' => \SimpleSAML\Utilities::selfURL())
+        ['RelayState' => \SimpleSAML\Utilities::selfURL()]
         );
     }
 
@@ -198,7 +198,7 @@ Redirecting to the initSLO-script:
     \SimpleSAML\Utilities::redirect(
         '/' . $config->getBaseURL() .
         'saml2/sp/initSLO.php',
-        array('RelayState' => \SimpleSAML\Utilities::selfURL())
+        ['RelayState' => \SimpleSAML\Utilities::selfURL()]
         );
 
 should be replaced with a call to `logout()`:
