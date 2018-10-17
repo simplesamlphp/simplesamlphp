@@ -1,15 +1,20 @@
 <?php
 
-namespace SimpleSAML;
+namespace SimpleSAML\Module;
 
 use SimpleSAML\Auth\AuthenticationFactory;
+use SimpleSAML\Configuration;
 use SimpleSAML\Error\Exception;
+use SimpleSAML\Module;
+use SimpleSAML\Session;
+
 use Symfony\Component\Config\Exception\FileLocatorFileNotFoundException;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Controller\ArgumentResolverInterface;
-use Symfony\Component\HttpKernel\Controller\ControllerResolver;
+use Symfony\Component\HttpKernel\Controller\ControllerResolver as SymfonyControllerResolver;
 use Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadata;
 use Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadataFactory;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
@@ -26,7 +31,7 @@ use Symfony\Component\Routing\RouteCollection;
  *
  * @package SimpleSAML
  */
-class ModuleControllerResolver extends ControllerResolver implements ArgumentResolverInterface
+class ControllerResolver extends SymfonyControllerResolver implements ArgumentResolverInterface
 {
 
     /** @var ArgumentMetadataFactory */
