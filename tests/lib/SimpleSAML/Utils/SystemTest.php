@@ -226,7 +226,7 @@ class SystemTest extends TestCase
         chown($tempdir, $bad_uid);
 
         $this->setExpectedException('\SimpleSAML\Error\Exception');
-        $res = System::getTempDir();
+        System::getTempDir();
 
         $this->clearInstance($config, '\SimpleSAML\Configuration');
     }

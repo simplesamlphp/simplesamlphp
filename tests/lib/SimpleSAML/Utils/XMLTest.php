@@ -150,7 +150,7 @@ class XMLTest extends TestCase
     {
         $dom = new \DOMDocument();
         $element = $dom->appendChild(new \DOMElement('root'));
-        $comment = $element->appendChild(new \DOMComment(''));
+        $element->appendChild(new \DOMComment(''));
 
         XML::getDOMText($element);
     }

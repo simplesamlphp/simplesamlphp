@@ -92,7 +92,7 @@ class DatabaseTest extends TestCase
         );
 
         $this->config = new \SimpleSAML\Configuration($config, "test/SimpleSAML/DatabaseTest.php");
-        $db = SimpleSAML\Database::getInstance($this->config);
+        SimpleSAML\Database::getInstance($this->config);
     }
 
 
