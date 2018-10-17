@@ -1340,7 +1340,7 @@ class SAMLParser
      *
      * @param $protocols Array with the protocols we accept.
      *
-     * @return Array with SP descriptors which supports one of the given protocols.
+     * @return array with SP descriptors which supports one of the given protocols.
      */
     private function getSPDescriptors($protocols)
     {
@@ -1364,7 +1364,7 @@ class SAMLParser
      *
      * @param $protocols Array with the protocols we accept.
      *
-     * @return Array with IdP descriptors which supports one of the given protocols.
+     * @return array with IdP descriptors which supports one of the given protocols.
      */
     private function getIdPDescriptors($protocols)
     {

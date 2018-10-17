@@ -168,12 +168,11 @@ class Test_Core_Auth_Process_TargetedID extends TestCase
      */
     public function testNoUserID()
     {
-        $config = [
-        ];
+        $config = [];
         $request = [
             'Attributes' => [],
         ];
-        $result = self::processFilter($config, $request);
+        self::processFilter($config, $request);
     }
 
     /**
@@ -191,7 +190,7 @@ class Test_Core_Auth_Process_TargetedID extends TestCase
                 'displayName' => 'Jack Student',
             ],
         ];
-        $result = self::processFilter($config, $request);
+        self::processFilter($config, $request);
     }
 
     /**
@@ -209,7 +208,7 @@ class Test_Core_Auth_Process_TargetedID extends TestCase
                 'displayName' => 'Jack Student',
             ],
         ];
-        $result = self::processFilter($config, $request);
+        self::processFilter($config, $request);
     }
 
     /**
@@ -227,6 +226,6 @@ class Test_Core_Auth_Process_TargetedID extends TestCase
                 'displayName' => 'Jack Student',
             ],
         ];
-        $result = self::processFilter($config, $request);
+        self::processFilter($config, $request);
     }
 }

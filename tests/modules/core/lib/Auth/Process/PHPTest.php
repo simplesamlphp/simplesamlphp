@@ -111,4 +111,42 @@ class Test_Core_Auth_Process_PHP extends TestCase
         );
         $this->processFilter($config, $request);
     }
+
+    /**
+     * Check that the entire state can be adjusted.
+     */
+    public function testStateCanBeModified()
+    {
+
+        $config = array(
+            'code' => '
+                $attributes["orig2"] = array("value0");
+                $state["newKey"] = ["newValue"];
+                $state["Destination"]["attributes"][] = "givenName";
+            ',
+        );
+        $request = array(
+            'Attributes' => array(
+                'orig1' => array('value1', 'value2'),
+                'orig2' => array('value3'),
+                'orig3' => array('value4')
+            ),
+            'Destination' => [
+                'attributes' => ['eduPersonPrincipalName']
+            ],
+        );
+        $expected = array(
+            'Attributes' => array(
+                'orig1' => array('value1', 'value2'),
+                'orig2' => array('value0'),
+                'orig3' => array('value4')
+            ),
+            'Destination' => [
+                'attributes' => ['eduPersonPrincipalName', 'givenName']
+            ],
+            'newKey' => ['newValue']
+        );
+
+        $this->assertEquals($expected, $this->processFilter($config, $request));
+    }
 }

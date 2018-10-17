@@ -155,7 +155,7 @@ class Template
     /**
      * Set up the places where twig can look for templates.
      *
-     * @return \Twig_Loader_Filesystem The twig template loader or false if the template does not exist.
+     * @return TemplateLoader The twig template loader or false if the template does not exist.
      * @throws \Twig_Error_Loader In case a failure occurs.
      */
     private function setupTwigTemplatepaths()

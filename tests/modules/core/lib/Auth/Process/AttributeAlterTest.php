@@ -225,7 +225,7 @@ class Test_Core_Auth_Process_AttributeAlter extends TestCase
                 'eduPersonAffiliation' => ['emperess', 'emperor'],
             ],
         ];
-        $result = self::processFilter($config, $request);
+        self::processFilter($config, $request);
     }
 
     /**
@@ -243,7 +243,7 @@ class Test_Core_Auth_Process_AttributeAlter extends TestCase
                 'eduPersonAffiliation' => ['emperess', 'emperor'],
             ],
         ];
-        $result = self::processFilter($config, $request);
+        self::processFilter($config, $request);
     }
 
     /**
@@ -260,16 +260,10 @@ class Test_Core_Auth_Process_AttributeAlter extends TestCase
 
         $request = [
             'Attributes' => [
-                 'test' => ['somethingiswrong'],
-             ],
-        ];
-
-        $request = [
-            'Attributes' => [
                 'eduPersonAffiliation' => ['emperess', 'emperor'],
             ],
         ];
-        $result = self::processFilter($config, $request);
+        self::processFilter($config, $request);
     }
 
     /**
@@ -288,16 +282,10 @@ class Test_Core_Auth_Process_AttributeAlter extends TestCase
 
         $request = [
             'Attributes' => [
-                 'test' => ['somethingiswrong'],
-             ],
-        ];
-
-        $request = [
-            'Attributes' => [
                 'eduPersonAffiliation' => ['emperess', 'emperor'],
             ],
         ];
-        $result = self::processFilter($config, $request);
+        self::processFilter($config, $request);
     }
 
     /**
@@ -316,16 +304,10 @@ class Test_Core_Auth_Process_AttributeAlter extends TestCase
 
         $request = [
             'Attributes' => [
-                 'test' => ['somethingiswrong'],
-             ],
-        ];
-
-        $request = [
-            'Attributes' => [
                 'eduPersonAffiliation' => ['emperess', 'emperor'],
             ],
         ];
-        $result = self::processFilter($config, $request);
+        self::processFilter($config, $request);
     }
 
 
@@ -340,12 +322,6 @@ class Test_Core_Auth_Process_AttributeAlter extends TestCase
             'subject' => 'test',
             'pattern' => '/wrong/',
             'replacement' => null,
-        ];
-
-        $request = [
-            'Attributes' => [
-                 'test' => ['somethingiswrong'],
-             ],
         ];
 
         $request = [

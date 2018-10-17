@@ -42,8 +42,8 @@ $config = [
     'cron_tag' => 'daily',
 
     /*
-     * Set max running time for this script. This is also controlle by max_execution_time in php.ini
-     * and is defalut set to 30 sec. Your web server can have other timeout configurations that may
+     * Set max running time for this script. This is also controlled by max_execution_time in php.ini
+     * and is set to 30 sec by default. Your web server can have other timeout configurations that may
      * also interrupt PHP execution. Apache has a Timeout directive and IIS has a
      * CGI timeout function. Both default to 300 seconds.
      */

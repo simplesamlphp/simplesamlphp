@@ -420,5 +420,7 @@ class Server
         ];
 
         \SimpleSAML\Utils\HTTP::setCookie('_saml_idp', $cookie, $params, false);
+
+        return '_saml_idp';
     }
 }

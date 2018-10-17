@@ -121,7 +121,7 @@ class YubiKey extends \SimpleSAML\Auth\Source
      *
      * @param string $authStateId  The identifier of the authentication state.
      * @param string $otp  The one time password entered-
-     * @return string  Error code in the case of an error.
+     * @return string|null  Error code in the case of an error.
      */
     public static function handleLogin($authStateId, $otp)
     {
@@ -158,6 +158,8 @@ class YubiKey extends \SimpleSAML\Auth\Source
 
         $state['Attributes'] = $attributes;
         \SimpleSAML\Auth\Source::completeAuth($state);
+
+        return null;
     }
 
     /**

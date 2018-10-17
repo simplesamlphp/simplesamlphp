@@ -205,6 +205,7 @@ class LDAP
                     return new Error\AuthSource('ldap', $description);
             }
         }
+        return new \Exception('Unknown LDAP error.');
     }
 
 

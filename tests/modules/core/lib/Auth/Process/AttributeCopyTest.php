@@ -139,7 +139,7 @@ class Test_Core_Auth_Process_AttributeCopy extends TestCase
                 'test' => ['value1'],
             ],
         ];
-        $result = self::processFilter($config, $request);
+        self::processFilter($config, $request);
     }
 
     /**
@@ -157,6 +157,6 @@ class Test_Core_Auth_Process_AttributeCopy extends TestCase
                 'test' => ['value1'],
             ],
         ];
-        $result = self::processFilter($config, $request);
+        self::processFilter($config, $request);
     }
 }

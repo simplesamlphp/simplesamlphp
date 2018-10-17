@@ -352,6 +352,8 @@ abstract class BaseFacebook
      * Extend an access token, while removing the short-lived token that might
      * have been generated via client-side flow. Thanks to http://bit.ly/b0Pt0H
      * for the workaround.
+     *
+     * @return boolean Return true is the access token is set.
      */
     public function setExtendedAccessToken()
     {
@@ -390,6 +392,7 @@ abstract class BaseFacebook
             'access_token',
             $response_params['access_token']
         );
+        return true;
     }
 
     /**
@@ -492,7 +495,7 @@ abstract class BaseFacebook
      * Retrieve the signed request, either from a request parameter or,
      * if not present, from a cookie.
      *
-     * @return string the signed request, if available, or null otherwise.
+     * @return array the signed request, if available, or null otherwise.
      */
     public function getSignedRequest()
     {

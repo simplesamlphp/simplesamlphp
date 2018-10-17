@@ -87,6 +87,7 @@ class ACL
                 return false;
             }
         }
+        return false;
     }
 
     /**
