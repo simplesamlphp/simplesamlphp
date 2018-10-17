@@ -328,7 +328,7 @@ class SAMLBuilder
     {
         assert(is_bool($indexed));
 
-        $ret = array();
+        $ret = [];
 
         foreach ($endpoints as &$ep) {
             if ($indexed) {
@@ -387,7 +387,7 @@ class SAMLBuilder
         \SAML2\XML\md\SPSSODescriptor $spDesc,
         \SimpleSAML\Configuration $metadata
     ) {
-        $attributes = $metadata->getArray('attributes', array());
+        $attributes = $metadata->getArray('attributes', []);
         $name = $metadata->getLocalizedString('name', null);
 
         if ($name === null || count($attributes) == 0) {
@@ -395,7 +395,7 @@ class SAMLBuilder
             return;
         }
 
-        $attributesrequired = $metadata->getArray('attributes.required', array());
+        $attributesrequired = $metadata->getArray('attributes.required', []);
 
         /*
          * Add an AttributeConsumingService element with information as name and description and list
@@ -410,7 +410,7 @@ class SAMLBuilder
         }
 
         $attributeconsumer->ServiceName = $name;
-        $attributeconsumer->ServiceDescription = $metadata->getLocalizedString('description', array());
+        $attributeconsumer->ServiceDescription = $metadata->getLocalizedString('description', []);
 
         $nameFormat = $metadata->getString('attributes.NameFormat', \SAML2\Constants::NAMEFORMAT_UNSPECIFIED);
         foreach ($attributes as $friendlyName => $attribute) {
@@ -473,7 +473,7 @@ class SAMLBuilder
      * @param array $metadata The metadata.
      * @param array $protocols The protocols supported. Defaults to \SAML2\Constants::NS_SAMLP.
      */
-    public function addMetadataSP20($metadata, $protocols = array(\SAML2\Constants::NS_SAMLP))
+    public function addMetadataSP20($metadata, $protocols = [\SAML2\Constants::NS_SAMLP])
     {
         assert(is_array($metadata));
         assert(is_array($protocols));
@@ -501,14 +501,14 @@ class SAMLBuilder
 
         $e->SingleLogoutService = self::createEndpoints($metadata->getEndpoints('SingleLogoutService'), false);
 
-        $e->NameIDFormat = $metadata->getArrayizeString('NameIDFormat', array());
+        $e->NameIDFormat = $metadata->getArrayizeString('NameIDFormat', []);
 
         $endpoints = $metadata->getEndpoints('AssertionConsumerService');
-        foreach ($metadata->getArrayizeString('AssertionConsumerService.artifact', array()) as $acs) {
-            $endpoints[] = array(
+        foreach ($metadata->getArrayizeString('AssertionConsumerService.artifact', []) as $acs) {
+            $endpoints[] = [
                 'Binding'  => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact',
                 'Location' => $acs,
-            );
+            ];
         }
         $e->AssertionConsumerService = self::createEndpoints($endpoints, true);
 
@@ -516,7 +516,7 @@ class SAMLBuilder
 
         $this->entityDescriptor->RoleDescriptor[] = $e;
 
-        foreach ($metadata->getArray('contacts', array()) as $contact) {
+        foreach ($metadata->getArray('contacts', []) as $contact) {
             if (array_key_exists('contactType', $contact) && array_key_exists('emailAddress', $contact)) {
                 $this->addContact($contact['contactType'], \SimpleSAML\Utils\Config\Metadata::getContact($contact));
             }
@@ -559,13 +559,13 @@ class SAMLBuilder
 
         $e->SingleLogoutService = self::createEndpoints($metadata->getEndpoints('SingleLogoutService'), false);
 
-        $e->NameIDFormat = $metadata->getArrayizeString('NameIDFormat', array());
+        $e->NameIDFormat = $metadata->getArrayizeString('NameIDFormat', []);
 
         $e->SingleSignOnService = self::createEndpoints($metadata->getEndpoints('SingleSignOnService'), false);
 
         $this->entityDescriptor->RoleDescriptor[] = $e;
 
-        foreach ($metadata->getArray('contacts', array()) as $contact) {
+        foreach ($metadata->getArray('contacts', []) as $contact) {
             if (array_key_exists('contactType', $contact) && array_key_exists('emailAddress', $contact)) {
                 $this->addContact($contact['contactType'], \SimpleSAML\Utils\Config\Metadata::getContact($contact));
             }
@@ -591,14 +591,14 @@ class SAMLBuilder
 
         $this->addCertificate($e, $metadata);
 
-        $e->NameIDFormat = $metadata->getArrayizeString('NameIDFormat', array());
+        $e->NameIDFormat = $metadata->getArrayizeString('NameIDFormat', []);
 
         $endpoints = $metadata->getEndpoints('AssertionConsumerService');
-        foreach ($metadata->getArrayizeString('AssertionConsumerService.artifact', array()) as $acs) {
-            $endpoints[] = array(
+        foreach ($metadata->getArrayizeString('AssertionConsumerService.artifact', []) as $acs) {
+            $endpoints[] = [
                 'Binding'  => 'urn:oasis:names:tc:SAML:1.0:profiles:artifact-01',
                 'Location' => $acs,
-            );
+            ];
         }
         $e->AssertionConsumerService = self::createEndpoints($endpoints, true);
 
@@ -627,7 +627,7 @@ class SAMLBuilder
 
         $this->addCertificate($e, $metadata);
 
-        $e->NameIDFormat = $metadata->getArrayizeString('NameIDFormat', array());
+        $e->NameIDFormat = $metadata->getArrayizeString('NameIDFormat', []);
 
         $e->SingleSignOnService = self::createEndpoints($metadata->getEndpoints('SingleSignOnService'), false);
 
@@ -650,7 +650,7 @@ class SAMLBuilder
         $metadata = \SimpleSAML\Configuration::loadFromArray($metadata, $metadata['entityid']);
 
         $e = new \SAML2\XML\md\AttributeAuthorityDescriptor();
-        $e->protocolSupportEnumeration = $metadata->getArray('protocols', array(\SAML2\Constants::NS_SAMLP));
+        $e->protocolSupportEnumeration = $metadata->getArray('protocols', [\SAML2\Constants::NS_SAMLP]);
 
         $this->addExtensions($metadata, $e);
         $this->addCertificate($e, $metadata);
@@ -661,7 +661,7 @@ class SAMLBuilder
             false
         );
 
-        $e->NameIDFormat = $metadata->getArrayizeString('NameIDFormat', array());
+        $e->NameIDFormat = $metadata->getArrayizeString('NameIDFormat', []);
 
         $this->entityDescriptor->RoleDescriptor[] = $e;
     }
@@ -684,7 +684,7 @@ class SAMLBuilder
     {
         assert(is_string($type));
         assert(is_array($details));
-        assert(in_array($type, array('technical', 'support', 'administrative', 'billing', 'other'), true));
+        assert(in_array($type, ['technical', 'support', 'administrative', 'billing', 'other'], true));
 
         // TODO: remove this check as soon as getContact() is called always before calling this function
         $details = \SimpleSAML\Utils\Config\Metadata::getContact($details);
@@ -709,7 +709,7 @@ class SAMLBuilder
         if (isset($details['emailAddress'])) {
             $eas = $details['emailAddress'];
             if (!is_array($eas)) {
-                $eas = array($eas);
+                $eas = [$eas];
             }
             foreach ($eas as $ea) {
                 $e->EmailAddress[] = $ea;
@@ -719,7 +719,7 @@ class SAMLBuilder
         if (isset($details['telephoneNumber'])) {
             $tlfNrs = $details['telephoneNumber'];
             if (!is_array($tlfNrs)) {
-                $tlfNrs = array($tlfNrs);
+                $tlfNrs = [$tlfNrs];
             }
             foreach ($tlfNrs as $tlfNr) {
                 $e->TelephoneNumber[] = $tlfNr;
@@ -739,7 +739,7 @@ class SAMLBuilder
      */
     private function addX509KeyDescriptor(\SAML2\XML\md\RoleDescriptor $rd, $use, $x509data)
     {
-        assert(in_array($use, array('encryption', 'signing'), true));
+        assert(in_array($use, ['encryption', 'signing'], true));
         assert(is_string($x509data));
 
         $keyDescriptor = \SAML2\Utils::createKeyDescriptor($x509data);

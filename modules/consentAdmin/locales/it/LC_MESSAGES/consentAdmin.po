@@ -54,9 +54,6 @@ msgstr "(nessuna descrizione)"
 msgid "{consentAdmin:consentadmin:service_providers_for}"
 msgstr "Service provider per"
 
-msgid "{consentAdmin:consentadmin:sp_empty_name}"
-msgstr "(nome non specificato)"
-
 msgid "{consentAdmin:consentadmin:consentadmin_description2}"
 msgstr ""
 "<h3>Come rimuovere il consenso></h3> Togliere il segno di spunta al "

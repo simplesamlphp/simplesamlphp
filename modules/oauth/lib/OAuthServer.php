@@ -23,4 +23,3 @@ class OAuthServer extends OAuthServer
         return $this->signature_methods;
     }
 }
-

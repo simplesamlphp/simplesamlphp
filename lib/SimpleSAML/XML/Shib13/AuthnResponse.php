@@ -91,7 +91,7 @@ class AuthnResponse
         }
 
         // Validate the signature
-        $this->validator = new Validator($this->dom, array('ResponseID', 'AssertionID'));
+        $this->validator = new Validator($this->dom, ['ResponseID', 'AssertionID']);
 
         // Get the issuer of the response
         $issuer = $this->getIssuer();
@@ -102,7 +102,7 @@ class AuthnResponse
 
         $publicKeys = $md->getPublicKeys('signing');
         if (!empty($publicKeys)) {
-            $certFingerprints = array();
+            $certFingerprints = [];
             foreach ($publicKeys as $key) {
                 if ($key['type'] !== 'X509Certificate') {
                     continue;
@@ -119,8 +119,9 @@ class AuthnResponse
             // Validate against CA
             $this->validator->validateCA(Config::getCertPath($md->getString('caFile')));
         } else {
-            throw new \SimpleSAML\Error\Exception('Missing certificate in Shibboleth 1.3'.
-                ' IdP Remote metadata for identity provider ['.$issuer.'].');
+            throw new \SimpleSAML\Error\Exception(
+                'Missing certificate in Shibboleth 1.3 IdP Remote metadata for identity provider ['.$issuer.'].'
+            );
         }
 
         return true;
@@ -203,14 +204,14 @@ class AuthnResponse
     public function getAttributes()
     {
         $metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
-        $md = $metadata->getMetadata($this->getIssuer(), 'shib13-idp-remote');
+        $md = $metadata->getMetaData($this->getIssuer(), 'shib13-idp-remote');
         $base64 = isset($md['base64attributes']) ? $md['base64attributes'] : false;
 
         if (!($this->dom instanceof \DOMDocument)) {
-            return array();
+            return [];
         }
 
-        $attributes = array();
+        $attributes = [];
 
         $assertions = $this->doXPathQuery('/shibp:Response/shib:Assertion');
 
@@ -254,7 +255,7 @@ class AuthnResponse
                 }
 
                 if (!array_key_exists($name, $attributes)) {
-                    $attributes[$name] = array();
+                    $attributes[$name] = [];
                 }
 
                 if ($base64) {
@@ -286,7 +287,7 @@ class AuthnResponse
 
     public function getNameID()
     {
-        $nameID = array();
+        $nameID = [];
 
         $query = '/shibp:Response/shib:Assertion/shib:AuthenticationStatement/shib:Subject/shib:NameIdentifier';
         $nodelist = $this->doXPathQuery($query);
@@ -319,7 +320,7 @@ class AuthnResponse
         } elseif ($idp->hasValue('scopedattributes')) {
             $scopedAttributes = $idp->getArray('scopedattributes');
         } else {
-            $scopedAttributes = array();
+            $scopedAttributes = [];
         }
 
         $id = Random::generateID();
@@ -362,7 +363,7 @@ class AuthnResponse
             $encodedattributes .= $subjectNode;
 
             foreach ($attributes as $name => $value) {
-                $encodedattributes .= $this->enc_attribute($name, $value, $base64, $scopedAttributes);
+                $encodedattributes .= $this->encAttribute($name, $value, $base64, $scopedAttributes);
             }
 
             $encodedattributes .= '</AttributeStatement>';
@@ -409,7 +410,7 @@ class AuthnResponse
      * @param array $scopedAttributes  Array of attributes names which are scoped.
      * @return string  The attribute encoded as an XML-string.
      */
-    private function enc_attribute($name, $values, $base64, $scopedAttributes)
+    private function encAttribute($name, $values, $base64, $scopedAttributes)
     {
         assert(is_string($name));
         assert(is_array($values));

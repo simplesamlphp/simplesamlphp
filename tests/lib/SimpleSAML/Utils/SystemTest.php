@@ -21,9 +21,9 @@ class SystemTest extends TestCase
         $this->root = vfsStream::setup(
             self::ROOTDIRNAME,
             null,
-            array(
-                self::DEFAULTTEMPDIR => array(),
-            )
+            [
+                self::DEFAULTTEMPDIR => [],
+            ]
         );
         $this->root_directory = vfsStream::url(self::ROOTDIRNAME);
     }
@@ -214,6 +214,10 @@ class SystemTest extends TestCase
      */
     public function testGetTempDirBadOwner()
     {
+        if (!function_exists('posix_getuid')) {
+            static::markTestSkipped('POSIX-functions not available;  skipping!');
+        }
+
         $bad_uid = posix_getuid() + 1;
 
         $tempdir = $this->root_directory . DIRECTORY_SEPARATOR . self::DEFAULTTEMPDIR;
@@ -222,16 +226,16 @@ class SystemTest extends TestCase
         chown($tempdir, $bad_uid);
 
         $this->setExpectedException('\SimpleSAML\Error\Exception');
-        $res = System::getTempDir();
+        System::getTempDir();
 
         $this->clearInstance($config, '\SimpleSAML\Configuration');
     }
 
     private function setConfigurationTempDir($directory)
     {
-        $config = Configuration::loadFromArray(array(
+        $config = Configuration::loadFromArray([
             'tempdir' => $directory,
-        ), '[ARRAY]', 'simplesaml');
+        ], '[ARRAY]', 'simplesaml');
 
         return $config;
     }

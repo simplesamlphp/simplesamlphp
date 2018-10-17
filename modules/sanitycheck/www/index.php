@@ -2,16 +2,15 @@
 
 $config = \SimpleSAML\Configuration::getInstance();
 
-$info = array();
-$errors = array();
-$hookinfo = array(
+$info = [];
+$errors = [];
+$hookinfo = [
     'info' => &$info,
     'errors' => &$errors,
-);
+];
 \SimpleSAML\Module::callHooks('sanitycheck', $hookinfo);
 
 if (isset($_REQUEST['output']) && $_REQUEST['output'] == 'text') {
-
     if (count($errors) === 0) {
         echo 'OK';
     } else {

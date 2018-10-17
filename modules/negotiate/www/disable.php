@@ -5,11 +5,11 @@
  * @package SimpleSAMLphp
  */
 
-$params = array(
+$params = [
     'expire' => (mktime(0, 0, 0, 1, 1, 2038)),
     'secure' => false,
     'httponly' => true,
-);
+];
 \SimpleSAML\Utils\HTTP::setCookie('NEGOTIATE_AUTOLOGIN_DISABLE_PERMANENT', 'True', $params, false);
 
 $globalConfig = \SimpleSAML\Configuration::getInstance();

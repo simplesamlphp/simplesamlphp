@@ -110,7 +110,6 @@ abstract class BaseFilter extends \SimpleSAML\Auth\ProcessingFilter
 
         // If an authsource was defined (an not empty string)...
         if (isset($config['authsource']) && $config['authsource']) {
-
             // Log the authsource request
             \SimpleSAML\Logger::debug(
                 $this->title.'Attempting to get configuration values from authsource ['.
@@ -142,7 +141,7 @@ abstract class BaseFilter extends \SimpleSAML\Auth\ProcessingFilter
             }
 
             // Build the authsource config
-            $authconfig = array();
+            $authconfig = [];
             if (isset($authsource['hostname'])) {
                 $authconfig['ldap.hostname']   = $authsource['hostname'];
             }
@@ -224,7 +223,7 @@ abstract class BaseFilter extends \SimpleSAML\Auth\ProcessingFilter
         );
 
         // Setup the attribute map which will be used to search LDAP
-        $this->attribute_map = array(
+        $this->attribute_map = [
             'dn'       => $this->config->getString('attribute.dn', 'distinguishedName'),
             'groups'   => $this->config->getString('attribute.groups', 'groups'),
             'member'   => $this->config->getString('attribute.member', 'member'),
@@ -232,7 +231,7 @@ abstract class BaseFilter extends \SimpleSAML\Auth\ProcessingFilter
             'name'     => $this->config->getString('attribute.groupname', 'name'),
             'type'     => $this->config->getString('attribute.type', 'objectClass'),
             'username' => $this->config->getString('attribute.username', 'sAMAccountName')
-        );
+        ];
 
         // Log the attribute map
         \SimpleSAML\Logger::debug(
@@ -240,10 +239,10 @@ abstract class BaseFilter extends \SimpleSAML\Auth\ProcessingFilter
         );
 
         // Setup the object type map which is used to determine a DNs' type
-        $this->type_map = array(
+        $this->type_map = [
             'group' => $this->config->getString('type.group', 'group'),
             'user'  => $this->config->getString('type.user', 'user')
-        );
+        ];
 
         // Log the type map
         \SimpleSAML\Logger::debug(

@@ -217,7 +217,7 @@ abstract class UserPassBase extends \SimpleSAML\Auth\Source
          * state array as a parameter to the login form.
          */
         $url = \SimpleSAML\Module::getModuleURL('core/loginuserpass.php');
-        $params = array('AuthState' => $id);
+        $params = ['AuthState' => $id];
         \SimpleSAML\Utils\HTTP::redirectTrustedURL($url, $params);
 
         // The previous function never returns, so this code is never executed.

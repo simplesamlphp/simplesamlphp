@@ -16,17 +16,17 @@ if ($spEntityId === null) {
     throw new \SimpleSAML\Error\BadRequest('Missing <saml:Issuer> in <samlp:AttributeQuery>.');
 }
 
-$idpMetadata = $metadata->getMetadataConfig($idpEntityId, 'saml20-idp-hosted');
+$idpMetadata = $metadata->getMetaDataConfig($idpEntityId, 'saml20-idp-hosted');
 $spMetadata = $metadata->getMetaDataConfig($spEntityId, 'saml20-sp-remote');
 
 // The endpoint we should deliver the message to
 $endpoint = $spMetadata->getString('testAttributeEndpoint');
 
 // The attributes we will return
-$attributes = array(
-    'name' => array('value1', 'value2', 'value3'),
-    'test' => array('test'),
-);
+$attributes = [
+    'name' => ['value1', 'value2', 'value3'],
+    'test' => ['test'],
+];
 
 // The name format of the attributes
 $attributeNameFormat = \SAML2\Constants::NAMEFORMAT_UNSPECIFIED;
@@ -38,7 +38,7 @@ if (count($returnAttributes) === 0) {
     $returnAttributes = $attributes;
 } elseif ($query->getAttributeNameFormat() !== $attributeNameFormat) {
     SimpleSAML\Logger::debug('Requested attributes with wrong NameFormat - no attributes returned.');
-    $returnAttributes = array();
+    $returnAttributes = [];
 } else {
     foreach ($returnAttributes as $name => $values) {
         if (!array_key_exists($name, $attributes)) {
@@ -63,7 +63,7 @@ $assertion->setIssuer($idpEntityId);
 $assertion->setNameId($query->getNameId());
 $assertion->setNotBefore(time());
 $assertion->setNotOnOrAfter(time() + 300); // 60*5 = 5min
-$assertion->setValidAudiences(array($spEntityId));
+$assertion->setValidAudiences([$spEntityId]);
 $assertion->setAttributes($returnAttributes);
 $assertion->setAttributeNameFormat($attributeNameFormat);
 
@@ -73,7 +73,7 @@ $sc->SubjectConfirmationData = new \SAML2\XML\saml\SubjectConfirmationData();
 $sc->SubjectConfirmationData->NotOnOrAfter = time() + 300; // 60*5 = 5min
 $sc->SubjectConfirmationData->Recipient = $endpoint;
 $sc->SubjectConfirmationData->InResponseTo = $query->getId();
-$assertion->setSubjectConfirmation(array($sc));
+$assertion->setSubjectConfirmation([$sc]);
 
 \SimpleSAML\Module\saml\Message::addSign($idpMetadata, $spMetadata, $assertion);
 
@@ -82,7 +82,7 @@ $response->setRelayState($query->getRelayState());
 $response->setDestination($endpoint);
 $response->setIssuer($idpEntityId);
 $response->setInResponseTo($query->getId());
-$response->setAssertions(array($assertion));
+$response->setAssertions([$assertion]);
 \SimpleSAML\Module\saml\Message::addSign($idpMetadata, $spMetadata, $response);
 
 $binding = new \SAML2\HTTPPost();

@@ -59,54 +59,54 @@ Examples
 
 Service Provider:
 
-    'default-sp' => array(
+    'default-sp' => [
         'saml:SP',
         'entityID' => NULL,
         ...
-        'RegistrationInfo' => array(
+        'RegistrationInfo' => [
             'authority' => 'urn:mace:sp.example.org',
             'instant' => '2008-01-17T11:28:03.577Z',
-            'policies' => array('en' => 'http://sp.example.org/policy', 'es' => 'http://sp.example.org/politica'),
-        ),
-    ),
+            'policies' => ['en' => 'http://sp.example.org/policy', 'es' => 'http://sp.example.org/politica'],
+        ],
+    ],
 
 Identity Provider:
 
-    $metadata['__DYNAMIC:1__'] = array(
+    $metadata['__DYNAMIC:1__'] = [
         'host' => '__DEFAULT__',
         ...
-        'RegistrationInfo' => array(
+        'RegistrationInfo' => [
             'authority' => 'urn:mace:idp.example.org',
             'instant' => '2008-01-17T11:28:03.577Z',
-        ),
-    );
+        ],
+    ];
 
 `aggregator` module:
 
-    $config = array(
-        'aggregators' => array(
+    $config = [
+        'aggregators' => [
             ...
-        ),
+        ],
         'maxDuration'   => 60*60*24*5,
         'reconstruct' => FALSE,
         ...
-        'RegistrationInfo' => array(
+        'RegistrationInfo' => [
             'authority' => 'urn:mace:example.federation',
             'instant' => '2008-01-17T11:28:03Z',
-            'policies' => array('en' => 'http://example.org/federation_policy', 'es' => 'https://example.org/politica_federacion'),
-        ),
-    );
+            'policies' => ['en' => 'http://example.org/federation_policy', 'es' => 'https://example.org/politica_federacion'],
+        ],
+    ];
 
 `aggregator2` module:
 
-    $config = array(
-        'example.org' => array(
-            'sources' => array(
+    $config = [
+        'example.org' => [
+            'sources' => [
                 ...
-            ),
-            'RegistrationInfo' => array(
+            ],
+            'RegistrationInfo' => [
                 'authority' => 'urn:mace:example.federation',
-                'policies' => array('en' => 'http://example.org/federation_policy', 'es' => 'https://example.org/politica_federacion'),
-            ),
-        ),
-    );
+                'policies' => ['en' => 'http://example.org/federation_policy', 'es' => 'https://example.org/politica_federacion'],
+            ],
+        ],
+    ];

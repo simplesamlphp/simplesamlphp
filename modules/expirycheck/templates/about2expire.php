@@ -17,24 +17,21 @@
  */
 
 $this->data['autofocus'] = 'yesbutton';
-
 $this->includeAtTemplateBase('includes/header.php');
 
+$yesTarget = htmlspecialchars($this->data['yesTarget']);
+$buttonContinue = htmlspecialchars($this->t('{expirycheck:expwarning:btn_continue}'));
+
+echo '<form style="display: inline; margin: 0px; padding: 0px" action="'.$yesTarget.'">';
+// Embed hidden fields...
+foreach ($this->data['yesData'] as $name => $value) {
+    echo '<input type="hidden" name="'.htmlspecialchars($name).'" value="'.htmlspecialchars($value).'" />';
+}
 ?>
 
-<form style="display: inline; margin: 0px; padding: 0px" action="<?php echo htmlspecialchars($this->data['yesTarget']); ?>">
-
-    <?php
-        // Embed hidden fields...
-        foreach ($this->data['yesData'] as $name => $value) {
-            echo '<input type="hidden" name="'.htmlspecialchars($name).'" value="'.htmlspecialchars($value).'" />';
-        }
-    ?>
-    <h3><?php echo $warning; ?></h3>
-    <p><?php echo $this->t('{expirycheck:expwarning:expiry_date_text}')." ".$this->data['expireOnDate']; ?></p>
-
-    <input type="submit" name="yes" id="yesbutton" value="<?php echo htmlspecialchars($this->t('{expirycheck:expwarning:btn_continue}')) ?>" />
-
+<h3><?php echo $warning; ?></h3>
+<p><?php echo $this->t('{expirycheck:expwarning:expiry_date_text}')." ".$this->data['expireOnDate']; ?></p>
+<input type="submit" name="yes" id="yesbutton" value="<?php echo $buttonContinue; ?>" />
 </form>
 
 <?php

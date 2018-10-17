@@ -13,10 +13,10 @@
 require_once('_include.php');
 
 // index pages - file names to attempt when accessing directories
-$indexFiles = array('index.php', 'index.html', 'index.htm', 'index.txt');
+$indexFiles = ['index.php', 'index.html', 'index.htm', 'index.txt'];
 
 // MIME types - key is file extension, value is MIME type
-$mimeTypes = array(
+$mimeTypes = [
     'bmp'   => 'image/x-ms-bmp',
     'css'   => 'text/css',
     'gif'   => 'image/gif',
@@ -37,7 +37,7 @@ $mimeTypes = array(
     'txt'   => 'text/plain',
     'xht'   => 'application/xhtml+xml',
     'xhtml' => 'application/xhtml+xml',
-);
+];
 
 if (empty($_SERVER['PATH_INFO'])) {
     throw new \SimpleSAML\Error\NotFound('No PATH_INFO to module.php');

@@ -60,7 +60,7 @@ class MetaDataStorageHandler
         // for backwards compatibility, and to provide a default configuration
         if ($sourcesConfig === null) {
             $type = $config->getString('metadata.handler', 'flatfile');
-            $sourcesConfig = array(array('type' => $type));
+            $sourcesConfig = [['type' => $type]];
         }
 
         try {
@@ -140,7 +140,7 @@ class MetaDataStorageHandler
     {
         assert(is_string($set));
 
-        $result = array();
+        $result = [];
 
         foreach ($this->sources as $source) {
             $srcList = $source->getMetadataSet($set);
@@ -335,7 +335,7 @@ class MetaDataStorageHandler
         assert(is_string($sha1));
         assert(is_string($set));
 
-        $result = array();
+        $result = [];
 
         foreach ($this->sources as $source) {
             $srcList = $source->getMetadataSet($set);

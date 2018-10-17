@@ -55,9 +55,6 @@ msgstr "(описание отсутствует)"
 msgid "{consentAdmin:consentadmin:service_providers_for}"
 msgstr "Сервис провайдеры для"
 
-msgid "{consentAdmin:consentadmin:sp_empty_name}"
-msgstr "(имя не указано)"
-
 msgid "{consentAdmin:consentadmin:consentadmin_description2}"
 msgstr ""
 "<h3>Как удалить ваше согласие</h3> Снимите выделение с сервис провайдера "

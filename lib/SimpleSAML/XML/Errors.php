@@ -19,7 +19,7 @@ class Errors
     /**
      * @var array This is an stack of error logs. The topmost element is the one we are currently working on.
      */
-    private static $errorStack = array();
+    private static $errorStack = [];
 
     /**
      * @var bool This is the xml error state we had before we began logging.
@@ -66,7 +66,7 @@ class Errors
         }
 
         // Add a new level to the error stack
-        self::$errorStack[] = array();
+        self::$errorStack[] = [];
     }
 
 
@@ -81,7 +81,7 @@ class Errors
         // Check whether the error access functions are present
         if (!function_exists('libxml_use_internal_errors')) {
             // Pretend that no errors occurred
-            return array();
+            return [];
         }
 
         // Add any errors which may have occurred

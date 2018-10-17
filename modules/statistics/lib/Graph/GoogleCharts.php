@@ -4,7 +4,7 @@ namespace SimpleSAML\Module\statistics\Graph;
 
 /*
  * \SimpleSAML\Module\statistics\Graph\GoogleCharts will help you to create a Google Chart
- * using the Google Charts API. 
+ * using the Google Charts API.
  *
  * @author Andreas Åkre Solberg <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
@@ -44,7 +44,7 @@ class GoogleCharts
     // t:10.0,58.0,95.0
     private function encodedata($datasets)
     {
-        $setstr = array();
+        $setstr = [];
         foreach ($datasets as $dataset) {
             $setstr[] = self::extEncode($dataset);
         }
@@ -64,15 +64,15 @@ class GoogleCharts
                 $second = substr($extended_table, intval(($delta * $v / 100) % $size), 1);
                 $chardata .= "$first$second";
             } else {
-                $chardata .= '__'; // Value out of max range; 
-            } 
+                $chardata .= '__'; // Value out of max range;
+            }
         }
-        return $chardata; 
+        return $chardata;
     }
 
     /**
      * Generate a Google Charts URL which points to a generated image.
-     * More documentation on Google Charts here: 
+     * More documentation on Google Charts here:
      *   http://code.google.com/apis/chart/
      *
      * @param string $axis        Axis
@@ -119,7 +119,7 @@ class GoogleCharts
         'chs='.$this->x.'x'.$this->y.
 
         // Dateset values.
-        '&chd='.$this->encodedata(array($datasets)).
+        '&chd='.$this->encodedata([$datasets]).
 
         // chart type is linechart
         '&cht=p'.
@@ -137,12 +137,14 @@ class GoogleCharts
      *
      * Here is some test code:
      * <code>
-     * 	    $foo = array(0, 2, 2.3, 2.6, 6, 10, 15, 98, 198, 256, 487, 563, 763, 801, 899, 999, 987, 198234.485, 283746);
-     *	    foreach ($foo AS $f) {
-     *	        echo '<p>' . $f . ' => ' . \SimpleSAML\Module\statistics\Graph\GoogleCharts::roof($f);
-     *	    }
+     *      $foo = array(
+     *          0, 2, 2.3, 2.6, 6, 10, 15, 98, 198, 256, 487, 563, 763, 801, 899, 999, 987, 198234.485, 283746
+     *      );
+     *      foreach ($foo as $f) {
+     *          echo '<p>'.$f.' => '.\SimpleSAML\Module\statistics\Graph\GoogleCharts::roof($f);
+     *      }
      * </code>
-     * 
+     *
      * @param integer $max    Input value.
      */
     public static function roof($max)
@@ -160,7 +162,7 @@ class GoogleCharts
         }
 
         $maxGridLines = 10;
-        $candidates = array(1, 2, 5, 10, 20, 25, 50, 100);
+        $candidates = [1, 2, 5, 10, 20, 25, 50, 100];
 
         foreach ($candidates as $c) {
             if ($t / $c < $maxGridLines) {
@@ -169,5 +171,6 @@ class GoogleCharts
                 return $target_top;
             }
         }
+        return 1;
     }
 }

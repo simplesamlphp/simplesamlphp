@@ -2,11 +2,11 @@
 {% extends "base.twig" %}
 
 {% block preload %}
-    <link href="{{ baseurlpath }}assets/statistics.css" rel="stylesheet" />
+    <link href="{{ baseurlpath }}assets/css/statistics.css" rel="stylesheet" />
 {% endblock %}
 
 {% block postload %}
-<script type="text/javascript" src="{{ baseurlpath }}assets/statistics.js"></script>
+<script type="text/javascript" src="{{ baseurlpath }}assets/js/statistics.js"></script>
 {% endblock %}
 
 {% block content %}
@@ -16,7 +16,7 @@
     <table class="selecttime">
         <tr>
             <td class="selecttime_icon">
-                <img src="/{{ baseurlpath }}resources/icons/crystal_project/kchart.32x32.png" alt="Report settings" />
+                <i class="fa fa-pie-chart"></i>
             </td>
             <td>
                 <form action="#">
@@ -66,7 +66,7 @@
     <table class="selecttime">
         <tr>
             <td class="selecttime_icon">
-                <img src="/{{ baseurlpath }}resources/icons/crystal_project/date.32x32.png" alt="Select date and time" />
+                <i class="fa fa-calendar"></i>
             </td>
             {% if available_times_prev %}
             <td><a href="{{ get_times_prev }}">&laquo; Previous</a></td>
@@ -154,7 +154,7 @@
                     <th class="category">Data range</th>
                 </tr>
                 {% for key, value in summaryDataset %}
-                {% if loop.index0  % 2 == 0 %}
+                {% if loop.index0 is even %}
                     {% set class = 'even' %}
                 {% else %}
                     {% set class = 'odd' %}
@@ -186,17 +186,16 @@
                     <th>Time</th>
                     <th>Total</th>
                     {% for key, value in topdelimiters %}
-                    {% set keyName = key %}
-                    {% if delimiterPresentation[key] is defined %}
-                        {% set keyName = delimiterPresentation[key] %}
+                    {% set keyName = value %}
+                    {% if delimiterPresentation[value] is defined %}
+                        {% set keyName = delimiterPresentation[value] %}
                     {% endif %}
                     <th>{{ keyName }}</th>
                     {% endfor %}
                 </tr>
-                {% set i = 0 %}
                 {% for slot, dd in debugdata %}
 
-                {% if i % 2 == 0 %}
+                {% if loop.index0 is even %}
                     {% set class = 'even' %}
                 {% else %}
                     {% set class = 'odd' %}
@@ -206,8 +205,8 @@
                     <td>{{ dd[0] }}</td>
                     <td class="datacontent">{{ dd[1] }}</td>
                     {% for key, value in topdelimiters %}
-                    {% if results.slot is defined %}
-                    <td class="datacontent">{{ results.slot.key }}</td>
+                    {% if results[slot] is defined %}
+                    <td class="datacontent">{{ results[slot][value] }}</td>
                     {% else %}
                     <td class="datacontent">&nbsp;</td>
                     {% endif %}

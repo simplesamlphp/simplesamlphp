@@ -13,7 +13,8 @@ function statistics_hook_sanitycheck(&$hookinfo)
     try {
         $statconfig = \SimpleSAML\Configuration::getConfig('module_statistics.php');
     } catch (Exception $e) {
-        $hookinfo['errors'][] = '[statistics] Could not get configuration: '.$e->getMessage(); return;
+        $hookinfo['errors'][] = '[statistics] Could not get configuration: '.$e->getMessage();
+        return;
     }
 
     $statdir = $statconfig->getValue('statdir');

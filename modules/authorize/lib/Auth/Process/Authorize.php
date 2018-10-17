@@ -31,7 +31,7 @@ class Authorize extends \SimpleSAML\Auth\ProcessingFilter
      * user \ to escape special chars, like '.' etc.
      *
      */
-    protected $valid_attribute_values = array();
+    protected $valid_attribute_values = [];
 
     /**
      * Initialize this filter.
@@ -62,14 +62,19 @@ class Authorize extends \SimpleSAML\Auth\ProcessingFilter
 
         foreach ($config as $attribute => $values) {
             if (is_string($values)) {
-                $values = array($values);
+                $values = [$values];
             }
             if (!is_array($values)) {
-                throw new \Exception('Filter Authorize: Attribute values is neither string nor array: '.var_export($attribute, true));
+                throw new \Exception(
+                    'Filter Authorize: Attribute values is neither string nor array: '.var_export($attribute, true)
+                );
             }
             foreach ($values as $value) {
                 if (!is_string($value)) {
-                    throw new \Exception('Filter Authorize: Each value should be a string for attribute: '.var_export($attribute, true).' value: '.var_export($value, true).' Config is: '.var_export($config, true));
+                    throw new \Exception(
+                        'Filter Authorize: Each value should be a string for attribute: '.var_export($attribute, true).
+                            ' value: '.var_export($value, true).' Config is: '.var_export($config, true)
+                    );
                 }
             }
             $this->valid_attribute_values[$attribute] = $values;
@@ -94,7 +99,7 @@ class Authorize extends \SimpleSAML\Auth\ProcessingFilter
                 foreach ($patterns as $pattern) {
                     $values = $attributes[$name];
                     if (!is_array($values)) {
-                        $values = array($values);
+                        $values = [$values];
                     }
                     foreach ($values as $value) {
                         if ($this->regex) {
@@ -130,10 +135,8 @@ class Authorize extends \SimpleSAML\Auth\ProcessingFilter
     protected function unauthorized(&$request)
     {
         // Save state and redirect to 403 page
-        $id = \SimpleSAML\Auth\State::saveState($request,
-            'authorize:Authorize');
-        $url = \SimpleSAML\Module::getModuleURL(
-            'authorize/authorize_403.php');
-        \SimpleSAML\Utils\HTTP::redirectTrustedURL($url, array('StateId' => $id));
+        $id = \SimpleSAML\Auth\State::saveState($request, 'authorize:Authorize');
+        $url = \SimpleSAML\Module::getModuleURL('authorize/authorize_403.php');
+        \SimpleSAML\Utils\HTTP::redirectTrustedURL($url, ['StateId' => $id]);
     }
 }

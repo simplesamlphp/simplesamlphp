@@ -27,7 +27,7 @@ class BaseRule
 
         $this->available = null;
         if (array_key_exists($ruleid, $available)) {
-            $this->available = $available[$ruleid];	
+            $this->available = $available[$ruleid];
         }
     }
 
@@ -39,7 +39,7 @@ class BaseRule
     public function availableTimeRes()
     {
         $timeresConfigs = $this->statconfig->getValue('timeres');
-        $available_times = array(); 
+        $available_times = [];
         foreach ($timeresConfigs as $tres => $tresconfig) {
             if (array_key_exists($tres, $this->available)) {
                 $available_times[$tres] = $tresconfig['name'];
@@ -62,9 +62,14 @@ class BaseRule
         /*
          * Get list of avaiable times in current file (rule)
          */
-        $available_times = array(); 
+        $available_times = [];
         foreach ($this->available[$timeres] as $slot) {
-            $available_times[$slot] = $datehandler->prettyHeader($slot, $slot + 1, $timeresConfig['fileslot'], $timeresConfig['dateformat-period']);
+            $available_times[$slot] = $datehandler->prettyHeader(
+                $slot,
+                $slot + 1,
+                $timeresConfig['fileslot'],
+                $timeresConfig['dateformat-period']
+            );
         }
         return $available_times;
     }
@@ -110,15 +115,20 @@ class BaseRule
         if ($timeslotindex[$fileslot] < (count($timeslotindex) - 1)) {
             $available_times_next = $timeslots[$timeslotindex[$fileslot] + 1];
         }
-        return array('prev' => $available_times_prev, 'next' => $available_times_next);
+        return ['prev' => $available_times_prev, 'next' => $available_times_next];
     }
 
     public function getDataSet($preferTimeRes, $preferTime)
     {
         $timeres = $this->resolveTimeRes($preferTimeRes);
         $fileslot = $this->resolveFileSlot($timeres, $preferTime);
-        $dataset = new \SimpleSAML\Module\statistics\StatDataset($this->statconfig, $this->ruleconfig, $this->ruleid, $timeres, $fileslot);
+        $dataset = new \SimpleSAML\Module\statistics\StatDataset(
+            $this->statconfig,
+            $this->ruleconfig,
+            $this->ruleid,
+            $timeres,
+            $fileslot
+        );
         return $dataset;
     }
 }
-

@@ -74,7 +74,7 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
      */
     public function getMetadataSets()
     {
-        $ret = array();
+        $ret = [];
 
         $dh = @opendir($this->directory);
         if ($dh === false) {
@@ -120,7 +120,7 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
     {
         assert(is_string($set));
 
-        $ret = array();
+        $ret = [];
 
         $dir = $this->directory.'/'.rawurlencode($set);
         if (!is_dir($dir)) {
@@ -130,8 +130,9 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
 
         $dh = @opendir($dir);
         if ($dh === false) {
-            \SimpleSAML\Logger::warning('Serialize metadata handler: Unable to open directory: '.
-                var_export($dir, true));
+            \SimpleSAML\Logger::warning(
+                'Serialize metadata handler: Unable to open directory: '.var_export($dir, true)
+            );
             return $ret;
         }
 

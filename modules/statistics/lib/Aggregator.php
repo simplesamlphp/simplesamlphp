@@ -93,12 +93,14 @@ class Aggregator
         }
 
         $logparser = new LogParser(
-            $this->statconfig->getValue('datestart', 0), $this->statconfig->getValue('datelength', 15), $this->statconfig->getValue('offsetspan', 44)
+            $this->statconfig->getValue('datestart', 0),
+            $this->statconfig->getValue('datelength', 15),
+            $this->statconfig->getValue('offsetspan', 44)
         );
-        $datehandler = array(
+        $datehandler = [
             'default' => new DateHandler($this->offset),
             'month' => new  DateHandlerMonth($this->offset),
-        );
+        ];
 
         $notBefore = 0;
         $lastRead = 0;
@@ -109,9 +111,9 @@ class Aggregator
             $lastlinehash = $this->metadata['lastlinehash'];
         }
 
-        $lastlogline = 'sdfsdf'; 
+        $lastlogline = 'sdfsdf';
         $lastlineflip = false;
-        $results = array();
+        $results = [];
 
         $i = 0;
         // Parse through log file, line by line
@@ -138,7 +140,8 @@ class Aggregator
             if ($debug) {
                 echo "----------------------------------------\n";
                 echo 'Log line: '.$logline."\n";
-                echo 'Date parse ['.substr($logline, 0, $this->statconfig->getValue('datelength', 15)).'] to ['.date(DATE_RFC822, $epoch).']'."\n";
+                echo 'Date parse ['.substr($logline, 0, $this->statconfig->getValue('datelength', 15)).
+                    '] to ['.date(DATE_RFC822, $epoch).']'."\n";
                 echo htmlentities(print_r($content, true));
                 if ($i >= 13) {
                     exit;
@@ -212,7 +215,7 @@ class Aggregator
         if (is_int($colrule)) {
             return trim($content[$colrule]);
         } elseif (is_array($colrule)) {
-            $difcols = array();
+            $difcols = [];
             foreach ($colrule as $cr) {
                 $difcols[] = trim($content[$cr]);
             }
@@ -224,11 +227,11 @@ class Aggregator
 
     private function cummulateData($previous, $newdata)
     {
-        $dataset = array();
+        $dataset = [];
         foreach (func_get_args() as $item) {
             foreach ($item as $slot => $dataarray) {
                 if (!array_key_exists($slot, $dataset)) {
-                    $dataset[$slot] = array();
+                    $dataset[$slot] = [];
                 }
                 foreach ($dataarray as $key => $data) {
                     if (!array_key_exists($key, $dataset[$slot])) {
@@ -243,10 +246,10 @@ class Aggregator
 
     public function store($results)
     {
-        $datehandler = array(
+        $datehandler = [
             'default' => new DateHandler($this->offset),
             'month' => new DateHandlerMonth($this->offset),
-        );
+        ];
 
         // Iterate the first level of results, which is per rule, as defined in the config.
         foreach ($results as $rulename => $timeresdata) {
@@ -270,24 +273,24 @@ class Aggregator
 
                     // Get start and end slot number within the file, based on the fileslot.
                     $start = (int) $datehandler['default']->toSlot(
-                        $datehandler[$dh]->fromSlot($fileno, $this->timeres[$tres]['fileslot']), 
+                        $datehandler[$dh]->fromSlot($fileno, $this->timeres[$tres]['fileslot']),
                         $this->timeres[$tres]['slot']
                     );
                     $end = (int) $datehandler['default']->toSlot(
-                        $datehandler[$dh]->fromSlot($fileno + 1, $this->timeres[$tres]['fileslot']), 
+                        $datehandler[$dh]->fromSlot($fileno + 1, $this->timeres[$tres]['fileslot']),
                         $this->timeres[$tres]['slot']
                     );
 
                     // Fill in missing entries and sort file results
-                    $filledresult = array();
+                    $filledresult = [];
                     for ($slot = $start; $slot < $end; $slot++) {
                         if (array_key_exists($slot, $fileres)) {
                             $filledresult[$slot] = $fileres[$slot];
                         } else {
                             if ($lastfile == $fileno && $slot > $maxslot) {
-                                $filledresult[$slot] = array('_' => null);
+                                $filledresult[$slot] = ['_' => null];
                             } else {
-                                $filledresult[$slot] = array('_' => 0);
+                                $filledresult[$slot] = ['_' => 0];
                             }
                         }
                     }
@@ -295,7 +298,7 @@ class Aggregator
                     $filename = $this->statdir.'/'.$rulename.'-'.$tres.'-'.$fileno.'.stat';
                     if (file_exists($filename)) {
                         $previousData = unserialize(file_get_contents($filename));
-                        $filledresult = $this->cummulateData($previousData, $filledresult);	
+                        $filledresult = $this->cummulateData($previousData, $filledresult);
                     }
 
                     // store file

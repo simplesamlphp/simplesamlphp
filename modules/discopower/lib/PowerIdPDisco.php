@@ -110,19 +110,19 @@ class PowerIdPDisco extends \SimpleSAML\XHTML\IdPDisco
      */
     protected function idplistStructured($list)
     {
-        $slist = array();
+        $slist = [];
 
         $order = $this->discoconfig->getValue('taborder');
         if (is_array($order)) {
             foreach ($order as $oe) {
-                $slist[$oe] = array();
+                $slist[$oe] = [];
             }
         }
 
         $enableTabs = $this->discoconfig->getValue('tabs', null);
 
         foreach ($list as $key => $val) {
-            $tags = array('misc');
+            $tags = ['misc'];
             if (array_key_exists('tags', $val)) {
                 $tags = $val['tags'];
             }
@@ -135,7 +135,7 @@ class PowerIdPDisco extends \SimpleSAML\XHTML\IdPDisco
         }
 
         foreach ($slist as $tab => $tbslist) {
-            uasort($slist[$tab], array('\SimpleSAML\Module\discopower\PowerIdPDisco', 'mcmp'));
+            uasort($slist[$tab], ['\SimpleSAML\Module\discopower\PowerIdPDisco', 'mcmp']);
         }
 
         return $slist;
@@ -203,27 +203,26 @@ class PowerIdPDisco extends \SimpleSAML\XHTML\IdPDisco
         $filter = $spmd['discopower.filter'];
 
         if (!array_key_exists('entities.include', $filter)) {
-            $filter['entities.include'] = array();
+            $filter['entities.include'] = [];
         }
         if (!array_key_exists('entities.exclude', $filter)) {
-            $filter['entities.exclude'] = array();
+            $filter['entities.exclude'] = [];
         }
         if (!array_key_exists('tags.include', $filter)) {
-            $filter['tags.include'] = array();
+            $filter['tags.include'] = [];
         }
         if (!array_key_exists('tags.exclude', $filter)) {
-            $filter['tags.exclude'] = array();
+            $filter['tags.exclude'] = [];
         }
 
         $defaultrule = true;
         if (array_key_exists('entities.include', $spmd['discopower.filter']) ||
             array_key_exists('tags.include', $spmd['discopower.filter'])
         ) {
-
             $defaultrule = false;
         }
 
-        $returnlist = array();
+        $returnlist = [];
         foreach ($list as $key => $entry) {
             if ($this->processFilter($filter, $entry, $defaultrule)) {
                 $returnlist[$key] = $entry;
@@ -248,7 +247,7 @@ class PowerIdPDisco extends \SimpleSAML\XHTML\IdPDisco
         $preferredIdP = $this->getRecommendedIdP();
 
         $t = new \SimpleSAML\XHTML\Template($this->config, 'discopower:disco.tpl.php', 'disco');
-        $discoPowerTabs = array(
+        $discoPowerTabs = [
             'denmark' => \SimpleSAML\Locale\Translate::noop('{discopower:tabs:denmark}'),
             'edugain' => \SimpleSAML\Locale\Translate::noop('{discopower:tabs:edugain}'),
             'finland' => \SimpleSAML\Locale\Translate::noop('{discopower:tabs:finland}'),
@@ -262,7 +261,7 @@ class PowerIdPDisco extends \SimpleSAML\XHTML\IdPDisco
             'sweden' => \SimpleSAML\Locale\Translate::noop('{discopower:tabs:sweden}'),
             'switzerland' => \SimpleSAML\Locale\Translate::noop('{discopower:tabs:switzerland}'),
             'ukacessfederation' => \SimpleSAML\Locale\Translate::noop('{discopower:tabs:ukacessfederation}'),
-        );
+        ];
 
         $t->data['return'] = $this->returnURL;
         $t->data['returnIDParam'] = $this->returnIdParam;
@@ -300,7 +299,7 @@ class PowerIdPDisco extends \SimpleSAML\XHTML\IdPDisco
         $t->data['urlpattern'] = htmlspecialchars(\SimpleSAML\Utils\HTTP::getSelfURLNoQuery());
         $t->data['rememberenabled'] = $this->config->getBoolean('idpdisco.enableremember', false);
         $t->data['rememberchecked'] = $this->config->getBoolean('idpdisco.rememberchecked', false);
-        $t->data['jquery'] = array('core' => true, 'ui' => true);
+        $t->data['jquery'] = ['core' => true, 'ui' => true];
         $t->show();
     }
 
@@ -326,7 +325,7 @@ class PowerIdPDisco extends \SimpleSAML\XHTML\IdPDisco
                         $translation = $t->getTranslator()->getPreferredTranslation($displayName);
                     }
                 }
-	
+
                 if (($translation === false) && array_key_exists('name', $entity)) {
                     if (is_array($entity['name'])) {
                         $translation = $t->getTranslator()->getPreferredTranslation($entity['name']);
@@ -342,14 +341,17 @@ class PowerIdPDisco extends \SimpleSAML\XHTML\IdPDisco
 
                 // HTML output
                 if ($entity['entityid'] === $favourite) {
-                    $html = '<a class="metaentry favourite" href="'.$basequerystring.urlencode($entity['entityid']).'">';
+                    $html = '<a class="metaentry favourite" href="'.
+                        $basequerystring.urlencode($entity['entityid']).'">';
                 } else {
-                    $html = '<a class="metaentry" href="'.$basequerystring.urlencode($entity['entityid']).'">';
+                    $html = '<a class="metaentry" href="'.
+                        $basequerystring.urlencode($entity['entityid']).'">';
                 }
                 $html .= $entity['translated'];
                 if (array_key_exists('icon', $entity) && $entity['icon'] !== null) {
                     $iconUrl = \SimpleSAML\Utils\HTTP::resolveURL($entity['icon']);
-                    $html .= '<img alt="Icon for identity provider" class="entryicon" src="'.htmlspecialchars($iconUrl).'" />';
+                    $html .= '<img alt="Icon for identity provider" class="entryicon" src="'.
+                        htmlspecialchars($iconUrl).'" />';
                 }
                 $html .= '</a>';
                 $entity['html'] = $html;
@@ -369,7 +371,7 @@ class PowerIdPDisco extends \SimpleSAML\XHTML\IdPDisco
     private function getCDC()
     {
         if (!isset($_COOKIE['_saml_idp'])) {
-            return array();
+            return [];
         }
 
         $ret = (string) $_COOKIE['_saml_idp'];
@@ -378,7 +380,7 @@ class PowerIdPDisco extends \SimpleSAML\XHTML\IdPDisco
             $idp = base64_decode($idp);
             if ($idp === false) {
                 // not properly base64 encoded
-                return array();
+                return [];
             }
         }
 
@@ -425,12 +427,12 @@ class PowerIdPDisco extends \SimpleSAML\XHTML\IdPDisco
             $newCookie = $tmp[1];
         }
 
-        $params = array(
+        $params = [
             'lifetime' => $this->cdcLifetime,
             'domain'   => $this->cdcDomain,
             'secure'   => true,
             'httponly' => false,
-        );
+        ];
         \SimpleSAML\Utils\HTTP::setCookie('_saml_idp', $newCookie, $params, false);
     }
 

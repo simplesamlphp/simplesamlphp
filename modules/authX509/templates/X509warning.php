@@ -10,14 +10,14 @@
  * @package SimpleSAMLphp
  */
 
-$warning = $this->t('{authX509:X509warning:warning}', array(
+$warning = $this->t('{authX509:X509warning:warning}', [
     '%daysleft%' => htmlspecialchars($this->data['daysleft']),
-));
+]);
 
 if ($this->data['renewurl']) {
-    $warning .= " ".$this->t('{authX509:X509warning:renew_url}', array(
+    $warning .= " ".$this->t('{authX509:X509warning:renew_url}', [
         '%renewurl%' => $this->data['renewurl'],
-    ));
+        ]);
 } else {
     $warning .= " ".$this->t('{authX509:X509warning:renew}');
 }
@@ -32,10 +32,10 @@ $this->includeAtTemplateBase('includes/header.php');
 <form style="display: inline; margin: 0px; padding: 0px" action="<?php echo htmlspecialchars($this->data['target']); ?>">
 
     <?php
-        // Embed hidden fields...
-        foreach ($this->data['data'] as $name => $value) {
-            echo '<input type="hidden" name="'.htmlspecialchars($name).'" value="'.htmlspecialchars($value).'" />';
-        }
+    // Embed hidden fields...
+    foreach ($this->data['data'] as $name => $value) {
+        echo '<input type="hidden" name="'.htmlspecialchars($name).'" value="'.htmlspecialchars($value).'" />';
+    }
     ?>
     <p><?php echo $warning; ?></p>
 

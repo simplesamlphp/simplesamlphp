@@ -66,19 +66,19 @@ class Auth_Yubico
      * Yubico client ID
      * @var string
      */
-    private $_id;
+    private $id;
 
     /**
      * Yubico client key
      * @var string
      */
-    private $_key;
+    private $key;
 
     /**
      * Response from server
      * @var string
      */
-    private $_response;
+    private $response;
 
     /**
      * Constructor
@@ -90,19 +90,19 @@ class Auth_Yubico
      */
     public function __construct($id, $key = '')
     {
-        $this->_id = $id;
-        $this->_key = base64_decode($key);
+        $this->id = $id;
+        $this->key = base64_decode($key);
     }
 
     /**
      * Return the last data received from the server, if any.
      *
-     * @return string	Output from server.
+     * @return string Output from server.
      * @access public
      */
     public function getLastResponse()
     {
-        return $this->_response;
+        return $this->response;
     }
 
     // TODO? Add functions to get parsed parts of server response?
@@ -116,10 +116,10 @@ class Auth_Yubico
      */
     public function verify($token)
     {
-        $parameters = "id=".$this->_id."&otp=".$token;
+        $parameters = "id=".$this->id."&otp=".$token;
         // Generate signature
-        if ($this->_key <> "") {
-            $signature = base64_encode(hash_hmac('sha1', $parameters, $this->_key, true));
+        if ($this->key <> "") {
+            $signature = base64_encode(hash_hmac('sha1', $parameters, $this->key, true));
             $parameters .= '&h='.$signature;
         }
         // Support https
@@ -134,9 +134,9 @@ class Auth_Yubico
         $status = $out[1];
 
         // Verify signature
-        if ($this->_key <> "") {
+        if ($this->key <> "") {
             $rows = explode("\r\n", $responseMsg);
-            $response = array();
+            $response = [];
             foreach ($rows as $val) {
                 // = is also used in BASE64 encoding so we only replace the first = by # which is not used in BASE64
                 $val = preg_replace('/=/', '#', $val, 1);
@@ -145,7 +145,7 @@ class Auth_Yubico
             }
 
             $check = 'status='.$response['status'].'&t='.$response['t'];
-            $checksignature = base64_encode(hash_hmac('sha1', $check, $this->_key, true));
+            $checksignature = base64_encode(hash_hmac('sha1', $check, $this->key, true));
 
             if ($response['h'] != $checksignature) {
                 throw new Exception('Checked Signature failed');

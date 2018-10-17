@@ -25,4 +25,3 @@ if ($metadata !== null) {
 }
 
 $t->show();
-

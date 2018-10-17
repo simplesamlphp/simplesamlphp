@@ -38,7 +38,7 @@ class Message
             $algo = $srcMetadata->getString('signature.algorithm', XMLSecurityKey::RSA_SHA256);
         }
 
-        $privateKey = new XMLSecurityKey($algo, array('type' => 'private'));
+        $privateKey = new XMLSecurityKey($algo, ['type' => 'private']);
         if (array_key_exists('password', $keyArray)) {
             $privateKey->passphrase = $keyArray['password'];
         }
@@ -56,7 +56,7 @@ class Message
             return;
         }
 
-        $element->setCertificates(array($certArray['PEM']));
+        $element->setCertificates([$certArray['PEM']]);
     }
 
 
@@ -114,7 +114,7 @@ class Message
      */
     private static function findCertificate(array $certFingerprints, array $certificates)
     {
-        $candidates = array();
+        $candidates = [];
 
         foreach ($certificates as $cert) {
             $fp = strtolower(sha1(base64_decode($cert)));
@@ -152,7 +152,7 @@ class Message
         // find the public key that should verify signatures by this entity
         $keys = $srcMetadata->getPublicKeys('signing');
         if (!empty($keys)) {
-            $pemKeys = array();
+            $pemKeys = [];
             foreach ($keys as $key) {
                 switch ($key['type']) {
                     case 'X509Certificate':
@@ -187,7 +187,7 @@ class Message
             }
 
             $pemCert = self::findCertificate($certFingerprint, $certificates);
-            $pemKeys = array($pemCert);
+            $pemKeys = [$pemCert];
         } else {
             throw new \SimpleSAML\Error\Exception(
                 'Missing certificate in metadata for '.
@@ -199,7 +199,7 @@ class Message
 
         $lastException = null;
         foreach ($pemKeys as $i => $pem) {
-            $key = new XMLSecurityKey(XMLSecurityKey::RSA_SHA256, array('type' => 'public'));
+            $key = new XMLSecurityKey(XMLSecurityKey::RSA_SHA256, ['type' => 'public']);
             $key->loadKey($pem);
 
             try {
@@ -287,17 +287,17 @@ class Message
         if ($sharedKey !== null) {
             $key = new XMLSecurityKey(XMLSecurityKey::AES128_CBC);
             $key->loadKey($sharedKey);
-            return array($key);
+            return [$key];
         }
 
-        $keys = array();
+        $keys = [];
 
         // load the new private key if it exists
         $keyArray = \SimpleSAML\Utils\Crypto::loadPrivateKey($dstMetadata, false, 'new_');
         if ($keyArray !== null) {
             assert(isset($keyArray['PEM']));
 
-            $key = new XMLSecurityKey(XMLSecurityKey::RSA_1_5, array('type' => 'private'));
+            $key = new XMLSecurityKey(XMLSecurityKey::RSA_1_5, ['type' => 'private']);
             if (array_key_exists('password', $keyArray)) {
                 $key->passphrase = $keyArray['password'];
             }
@@ -309,7 +309,7 @@ class Message
         $keyArray = \SimpleSAML\Utils\Crypto::loadPrivateKey($dstMetadata, true);
         assert(isset($keyArray['PEM']));
 
-        $key = new XMLSecurityKey(XMLSecurityKey::RSA_1_5, array('type' => 'private'));
+        $key = new XMLSecurityKey(XMLSecurityKey::RSA_1_5, ['type' => 'private']);
         if (array_key_exists('password', $keyArray)) {
             $key->passphrase = $keyArray['password'];
         }
@@ -336,7 +336,7 @@ class Message
     ) {
         $blacklist = $srcMetadata->getArray('encryption.blacklisted-algorithms', null);
         if ($blacklist === null) {
-            $blacklist = $dstMetadata->getArray('encryption.blacklisted-algorithms', array(XMLSecurityKey::RSA_1_5));
+            $blacklist = $dstMetadata->getArray('encryption.blacklisted-algorithms', [XMLSecurityKey::RSA_1_5]);
         }
         return $blacklist;
     }
@@ -471,7 +471,7 @@ class Message
         $ar = new \SAML2\AuthnRequest();
 
         // get the NameIDPolicy to apply. IdP metadata has precedence.
-        $nameIdPolicy = array();
+        $nameIdPolicy = [];
         if ($idpMetadata->hasValue('NameIDPolicy')) {
             $nameIdPolicy = $idpMetadata->getValue('NameIDPolicy');
         } elseif ($spMetadata->hasValue('NameIDPolicy')) {
@@ -480,14 +480,14 @@ class Message
 
         if (!is_array($nameIdPolicy)) {
             // handle old configurations where 'NameIDPolicy' was used to specify just the format
-            $nameIdPolicy = array('Format' => $nameIdPolicy);
+            $nameIdPolicy = ['Format' => $nameIdPolicy];
         }
 
         $nameIdPolicy_cf = \SimpleSAML\Configuration::loadFromArray($nameIdPolicy);
-        $policy = array(
+        $policy = [
             'Format'      => $nameIdPolicy_cf->getString('Format', \SAML2\Constants::NAMEID_TRANSIENT),
             'AllowCreate' => $nameIdPolicy_cf->getBoolean('AllowCreate', true),
-        );
+        ];
         $spNameQualifier = $nameIdPolicy_cf->getString('SPNameQualifier', false);
         if ($spNameQualifier !== false) {
             $policy['SPNameQualifier'] = $spNameQualifier;
@@ -497,12 +497,12 @@ class Message
         $ar->setForceAuthn($spMetadata->getBoolean('ForceAuthn', false));
         $ar->setIsPassive($spMetadata->getBoolean('IsPassive', false));
 
-        $protbind = $spMetadata->getValueValidate('ProtocolBinding', array(
+        $protbind = $spMetadata->getValueValidate('ProtocolBinding', [
             \SAML2\Constants::BINDING_HTTP_POST,
             \SAML2\Constants::BINDING_HOK_SSO,
             \SAML2\Constants::BINDING_HTTP_ARTIFACT,
             \SAML2\Constants::BINDING_HTTP_REDIRECT,
-        ), \SAML2\Constants::BINDING_HTTP_POST);
+        ], \SAML2\Constants::BINDING_HTTP_POST);
 
         // Shoaib: setting the appropriate binding based on parameter in sp-metadata defaults to HTTP_POST
         $ar->setProtocolBinding($protbind);
@@ -512,13 +512,13 @@ class Message
 
         if ($spMetadata->hasValue('AuthnContextClassRef')) {
             $accr = $spMetadata->getArrayizeString('AuthnContextClassRef');
-            $comp = $spMetadata->getValueValidate('AuthnContextComparison', array(
+            $comp = $spMetadata->getValueValidate('AuthnContextComparison', [
                 \SAML2\Constants::COMPARISON_EXACT,
                 \SAML2\Constants::COMPARISON_MINIMUM,
                 \SAML2\Constants::COMPARISON_MAXIMUM,
                 \SAML2\Constants::COMPARISON_BETTER,
-            ), \SAML2\Constants::COMPARISON_EXACT);
-            $ar->setRequestedAuthnContext(array('AuthnContextClassRef' => $accr, 'Comparison' => $comp));
+            ], \SAML2\Constants::COMPARISON_EXACT);
+            $ar->setRequestedAuthnContext(['AuthnContextClassRef' => $accr, 'Comparison' => $comp]);
         }
 
         self::addRedirectSign($spMetadata, $idpMetadata, $ar);
@@ -609,7 +609,7 @@ class Message
             throw new \SimpleSAML\Error\Exception('No assertions found in response from IdP.');
         }
 
-        $ret = array();
+        $ret = [];
         foreach ($assertion as $a) {
             $ret[] = self::processAssertion($spMetadata, $idpMetadata, $response, $a, $responseSigned);
         }
@@ -686,7 +686,7 @@ class Message
 
         $found = false;
         $lastError = 'No SubjectConfirmation element in Subject.';
-        $validSCMethods = array(\SAML2\Constants::CM_BEARER, \SAML2\Constants::CM_HOK, \SAML2\Constants::CM_VOUCHES);
+        $validSCMethods = [\SAML2\Constants::CM_BEARER, \SAML2\Constants::CM_HOK, \SAML2\Constants::CM_VOUCHES];
         foreach ($assertion->getSubjectConfirmation() as $sc) {
             if (!in_array($sc->Method, $validSCMethods, true)) {
                 $lastError = 'Invalid Method on SubjectConfirmation: '.var_export($sc->Method, true);
@@ -728,9 +728,9 @@ class Message
                     continue;
                 }
                 // we have a valid client certificate from the browser
-                $clientCert = str_replace(array("\r", "\n", " "), '', $matches[1]);
+                $clientCert = str_replace(["\r", "\n", " "], '', $matches[1]);
 
-                $keyInfo = array();
+                $keyInfo = [];
                 foreach ($scd->info as $thing) {
                     if ($thing instanceof \SAML2\XML\ds\KeyInfo) {
                         $keyInfo[] = $thing;
@@ -742,7 +742,7 @@ class Message
                     continue;
                 }
 
-                $x509data = array();
+                $x509data = [];
                 foreach ($keyInfo[0]->info as $thing) {
                     if ($thing instanceof \SAML2\XML\ds\X509Data) {
                         $x509data[] = $thing;
@@ -754,7 +754,7 @@ class Message
                     continue;
                 }
 
-                $x509cert = array();
+                $x509cert = [];
                 foreach ($x509data[0]->data as $thing) {
                     if ($thing instanceof \SAML2\XML\ds\X509Certificate) {
                         $x509cert[] = $thing;
@@ -811,9 +811,9 @@ class Message
         // maybe we need to base64 decode the attributes in the assertion?
         if ($idpMetadata->getBoolean('base64attributes', false)) {
             $attributes = $assertion->getAttributes();
-            $newAttributes = array();
+            $newAttributes = [];
             foreach ($attributes as $name => $values) {
-                $newAttributes[$name] = array();
+                $newAttributes[$name] = [];
                 foreach ($values as $value) {
                     foreach (explode('_', $value) as $v) {
                         $newAttributes[$name][] = base64_decode($v);
@@ -880,7 +880,7 @@ class Message
                     $pemKey = "-----BEGIN CERTIFICATE-----\n".
                         chunk_split($key['X509Certificate'], 64).
                         "-----END CERTIFICATE-----\n";
-                    $key = new XMLSecurityKey(XMLSecurityKey::RSA_OAEP_MGF1P, array('type' => 'public'));
+                    $key = new XMLSecurityKey(XMLSecurityKey::RSA_OAEP_MGF1P, ['type' => 'public']);
                     $key->loadKey($pemKey);
                     return $key;
             }

@@ -9,7 +9,7 @@ class Entity extends Base
         $mh = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
         $metadata = $mh->getList($this->config);
 
-        $translation = array('_' => 'All services');
+        $translation = ['_' => 'All services'];
         foreach ($this->fields as $field) {
             if (array_key_exists($field, $metadata)) {
                 if (array_key_exists('name', $metadata[$field])) {

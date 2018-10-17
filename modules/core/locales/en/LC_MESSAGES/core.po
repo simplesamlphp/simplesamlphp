@@ -166,6 +166,9 @@ msgstr "You are logged in as administrator"
 msgid "{core:frontpage:auth}"
 msgstr "Authentication"
 
+msgid "{core:frontpage:logout}"
+msgstr "Logout"
+
 msgid "{core:no_metadata:suggestion_user_link}"
 msgstr ""
 "If you are an user who received this error after following a link on a "

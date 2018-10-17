@@ -45,25 +45,29 @@ class LDAPMulti extends \SimpleSAML\Module\core\Auth\UserPassOrgBase
         // Call the parent constructor first, as required by the interface
         parent::__construct($info, $config);
 
-        $cfgHelper = \SimpleSAML\Configuration::loadFromArray($config,
-            'Authentication source '.var_export($this->authId, true));
+        $cfgHelper = \SimpleSAML\Configuration::loadFromArray(
+            $config,
+            'Authentication source '.var_export($this->authId, true)
+        );
 
 
-        $this->orgs = array();
-        $this->ldapOrgs = array();
+        $this->orgs = [];
+        $this->ldapOrgs = [];
         foreach ($config as $name => $value) {
-
             if ($name === 'username_organization_method') {
                 $usernameOrgMethod = $cfgHelper->getValueValidate(
                     'username_organization_method',
-                    array('none', 'allow', 'force'));
+                    ['none', 'allow', 'force']
+                );
                 $this->setUsernameOrgMethod($usernameOrgMethod);
                 continue;
             }
 
             if ($name === 'include_organization_in_username') {
                 $this->includeOrgInUsername = $cfgHelper->getBoolean(
-                    'include_organization_in_username', false);
+                    'include_organization_in_username',
+                    false
+                );
                 continue;
             }
 
@@ -76,9 +80,10 @@ class LDAPMulti extends \SimpleSAML\Module\core\Auth\UserPassOrgBase
                 $this->orgs[$orgId] = $orgId;
             }
 
-            $orgCfg = new \SimpleSAML\Module\ldap\ConfigHelper($orgCfg,
-                'Authentication source '.var_export($this->authId, true).
-                ', organization '.var_export($orgId, true));
+            $orgCfg = new \SimpleSAML\Module\ldap\ConfigHelper(
+                $orgCfg,
+                'Authentication source '.var_export($this->authId, true).', organization '.var_export($orgId, true)
+            );
             $this->ldapOrgs[$orgId] = $orgCfg;
         }
     }

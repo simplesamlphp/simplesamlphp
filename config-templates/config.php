@@ -4,7 +4,7 @@
  *
  */
 
-$config = array(
+$config = [
 
     /*******************************
      | BASIC CONFIGURATION OPTIONS |
@@ -150,7 +150,7 @@ $config = array(
      * Example:
      *   'trusted.url.domains' => array('sp.example.com', 'app.example.com'),
      */
-    'trusted.url.domains' => array(),
+    'trusted.url.domains' => [],
 
     /*
      * Enable regular expression matching of trusted.url.domains.
@@ -214,11 +214,11 @@ $config = array(
      * If you want to disable debugging completely, unset this option or set it to an
      * empty array.
      */
-    'debug' => array(
+    'debug' => [
         'saml' => false,
         'backtraces' => true,
         'validatexml' => false,
-    ),
+    ],
 
     /*
      * When 'showerrors' is enabled, all error messages and stack traces will be output
@@ -316,7 +316,7 @@ $config = array(
      * This is an array of outputs. Each output has at least a 'class' option, which
      * selects the output.
      */
-    'statistics.out' => array(// Log statistics to the normal log.
+    'statistics.out' => [// Log statistics to the normal log.
         /*
         array(
             'class' => 'core:Log',
@@ -330,7 +330,7 @@ $config = array(
             'directory' => '/var/log/stats',
         ),
         */
-    ),
+    ],
 
 
 
@@ -377,12 +377,17 @@ $config = array(
      */
     'database.username' => 'simplesamlphp',
     'database.password' => 'secret',
-    'database.options' => array(),
+    'database.options' => [],
 
     /*
      * (Optional) Table prefix
      */
     'database.prefix' => '',
+
+    /*
+     * (Optional) Driver options
+     */
+    'database.driver_options' => [],
 
     /*
      * True or false if you would like a persistent database connection
@@ -397,9 +402,9 @@ $config = array(
      *
      * Configuration options in the slave array are exactly the same as the
      * options for the master (shown above) with the exception of the table
-     * prefix.
+     * prefix and driver options.
      */
-    'database.slaves' => array(
+    'database.slaves' => [
         /*
         array(
             'dsn' => 'mysql:host=myslave;dbname=saml',
@@ -408,7 +413,7 @@ $config = array(
             'persistent' => false,
         ),
         */
-    ),
+    ],
 
 
 
@@ -623,11 +628,11 @@ $config = array(
      * ),
      *
      */
-    'memcache_store.servers' => array(
-        array(
-            array('hostname' => 'localhost'),
-        ),
-    ),
+    'memcache_store.servers' => [
+        [
+            ['hostname' => 'localhost'],
+        ],
+    ],
 
     /*
      * This value allows you to set a prefix for memcache-keys. The default
@@ -665,7 +670,7 @@ $config = array(
     /*
      * Language-related options.
      */
-    'language' => array(
+    'language' => [
         /*
          * An array in the form 'language' => <list of alternative languages>.
          *
@@ -685,23 +690,23 @@ $config = array(
          * not available, we look for translations in "nb" (Norwegian Bokmål),
          * and so on, in that order.
          */
-        'priorities' => array(
-            'no' => array('nb', 'nn', 'en', 'se'),
-            'nb' => array('no', 'nn', 'en', 'se'),
-            'nn' => array('no', 'nb', 'en', 'se'),
-            'se' => array('nb', 'no', 'nn', 'en'),
-        ),
-    ),
+        'priorities' => [
+            'no' => ['nb', 'nn', 'en', 'se'],
+            'nb' => ['no', 'nn', 'en', 'se'],
+            'nn' => ['no', 'nb', 'en', 'se'],
+            'se' => ['nb', 'no', 'nn', 'en'],
+        ],
+    ],
 
     /*
      * Languages available, RTL languages, and what language is the default.
      */
-    'language.available' => array(
+    'language.available' => [
         'en', 'no', 'nn', 'se', 'da', 'de', 'sv', 'fi', 'es', 'ca', 'fr', 'it', 'nl', 'lb', 
         'cs', 'sl', 'lt', 'hr', 'hu', 'pl', 'pt', 'pt-br', 'tr', 'ja', 'zh', 'zh-tw', 'ru',
         'et', 'he', 'id', 'sr', 'lv', 'ro', 'eu', 'el', 'af'
-    ),
-    'language.rtl' => array('ar', 'dv', 'fa', 'ur', 'he'),
+    ],
+    'language.rtl' => ['ar', 'dv', 'fa', 'ur', 'he'],
     'language.default' => 'en',
 
     /*
@@ -849,7 +854,7 @@ $config = array(
      * Authentication processing filters that will be executed for all IdPs
      * Both Shibboleth and SAML 2.0
      */
-    'authproc.idp' => array(
+    'authproc.idp' => [
         /* Enable the authproc filter below to add URN prefixes to all attributes
          10 => array(
              'class' => 'core:AttributeMap', 'addurnprefix'
@@ -861,11 +866,11 @@ $config = array(
         // Adopts language from attribute to use in UI
         30 => 'core:LanguageAdaptor',
 
-        45 => array(
+        45 => [
             'class'         => 'core:StatisticsWithAttribute',
             'attributename' => 'realm',
             'type'          => 'saml20-idp-SSO',
-        ),
+        ],
 
         /* When called without parameters, it will fallback to filter attributes ‹the old way›
          * by checking the 'attributes' parameter in metadata on IdP hosted and SP remote.
@@ -896,13 +901,13 @@ $config = array(
          */
         // If language is set in Consent module it will be added as an attribute.
         99 => 'core:LanguageAdaptor',
-    ),
+    ],
 
     /*
      * Authentication processing filters that will be executed for all SPs
      * Both Shibboleth and SAML 2.0
      */
-    'authproc.sp' => array(
+    'authproc.sp' => [
         /*
         10 => array(
             'class' => 'core:AttributeMap', 'removeurnprefix'
@@ -925,7 +930,7 @@ $config = array(
         // Adopts language from attribute to use in UI
         90 => 'core:LanguageAdaptor',
 
-    ),
+    ],
 
 
 
@@ -1013,9 +1018,9 @@ $config = array(
      *     array('type' => 'flatfile')
      * ),
      */
-    'metadata.sources' => array(
-        array('type' => 'flatfile'),
-    ),
+    'metadata.sources' => [
+        ['type' => 'flatfile'],
+    ],
 
     /*
      * Should signing of generated metadata be enabled by default.
@@ -1086,4 +1091,4 @@ $config = array(
      * The prefix we should use on our Redis datastore.
      */
     'store.redis.prefix' => 'SimpleSAMLphp',
-);
+];

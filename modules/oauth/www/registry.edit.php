@@ -28,7 +28,9 @@ function requireOwnership($entry, $userid)
         throw new \Exception('OAuth Consumer has no owner. Which means no one is granted access, not even you.');
     }
     if ($entry['owner'] !== $userid) {
-        throw new \Exception('OAuth Consumer has an owner that is not equal to your userid, hence you are not granted access.');
+        throw new \Exception(
+            'OAuth Consumer has an owner that is not equal to your userid, hence you are not granted access.'
+        );
     }
 }
 
@@ -37,11 +39,11 @@ if (array_key_exists('editkey', $_REQUEST)) {
     $entry = $entryc['value'];
     requireOwnership($entry, $userid);
 } else {
-    $entry = array(
+    $entry = [
         'owner' => $userid,
         'key' => \SimpleSAML\Utils\Random::generateID(),
         'secret' => \SimpleSAML\Utils\Random::generateID(),
-    );
+    ];
 }
 
 $editor = new \SimpleSAML\Module\oauth\Registry();
@@ -49,7 +51,7 @@ $editor = new \SimpleSAML\Module\oauth\Registry();
 if (isset($_POST['submit'])) {
     $editor->checkForm($_POST);
 
-    $entry = $editor->formToMeta($_POST, array(), array('owner' => $userid));
+    $entry = $editor->formToMeta($_POST, [], ['owner' => $userid]);
 
     requireOwnership($entry, $userid);
 
@@ -65,5 +67,5 @@ $form = $editor->metaToForm($entry);
 
 $template = new \SimpleSAML\XHTML\Template($config, 'oauth:registry.edit.tpl.php');
 $template->data['form'] = $form;
-$template->data['jquery'] = array('core' => false, 'ui' => true, 'css' => true);
+$template->data['jquery'] = ['core' => false, 'ui' => true, 'css' => true];
 $template->show();

@@ -14,7 +14,7 @@ class DateHandler
     /**
      * Constructor
      *
-     * @param array $offset 	Date offset
+     * @param array $offset Date offset
      */
     public function __construct($offset)
     {

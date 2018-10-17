@@ -44,20 +44,20 @@ How to configure Auth Proc Filters
 
 The configuration of *Auth Proc Filters* is a list of filters with priority as *index*. Here is an example of *Auth Proc Filters* configured in `config.php`:
 
-	'authproc.idp' => array(
-		10 => array(
+	'authproc.idp' => [
+		10 => [
 			'class' => 'core:AttributeMap', 
 			'addurnprefix'
-		),
+		],
 		20 => 'core:TargetedID',
 		50 => 'core:AttributeLimit',
-		90 => array(
+		90 => [
 			'class' 	=> 'consent:Consent', 
 			'store' 	=> 'consent:Cookie', 
 			'focus' 	=> 'yes', 
 			'checked' 	=> TRUE
-		),
-	),
+		],
+	],
 
 This configuration will execute *Auth Proc Filters* one by one, with the priority value in increasing order. When *Auth Proc Filters* is configured in multiple places, in example both globally, in the hosted IdP and remote SP metadata, then the list is interleaved sorted by priority.
 
@@ -73,18 +73,18 @@ When you know the class definition of a filter, and the priority, the simple way
 
 This is analogous to:
 
-	20 => array(
+	20 => [
 		'class' => 'core:TargetedID'
-	),
+	],
 
 Some *Auth Proc Filters* have optional or required *parameters*. To send parameters to *Auth Proc Filters*, you need to choose the second of the two alernatives above. Here is an example of provided parameters to the consent module:
 
-	90 => array(
+	90 => [
 		'class' 	=> 'consent:Consent', 
 		'store' 	=> 'consent:Cookie', 
 		'focus' 	=> 'yes', 
 		'checked' 	=> TRUE
-	),
+	],
 
 
 ### Filters in `config.php`
@@ -105,15 +105,15 @@ The filters in `authproc.sp` will be executed at the SP side regardless of which
 
 Filters can be added both in `hosted` and `remote` metadata. Here is an example of a filter added in a metadata file:
 
-	'__DYNAMIC:1__' => array(
+	'__DYNAMIC:1__' => [
 		'host'				=>	'__DEFAULT_',
 		'privatekey'		=>	'example.org.pem',
 		'certificate'		=>	'example.org.crt',
 		'auth'				=>	'feide',
-		'authproc' => array(
+		'authproc' => [
 			40 => 'preprodwarning:Warning',
-		),
-	)
+		],
+	]
 
 The example above is in `saml20-idp-hosted`.
 
@@ -145,6 +145,7 @@ The following filters are included in the SimpleSAMLphp distribution:
 - [`expirycheck:ExpiryDate`](./expirycheck:expirycheck): Block access to accounts that have expired.
 - [`preprodwarning:Warning`](./preprodwarning:warning): Warn the user about accessing a test IdP.
 - [`saml:AttributeNameID`](./saml:nameid): Generate custom NameID with the value of an attribute.
+- [`saml:AuthnContextClassRef`](./saml:authproc_authncontextclassref): Set the authentication context in the response.
 - [`saml:ExpectedAuthnContextClassRef`](./saml:authproc_expectedauthncontextclassref): Verify the user's authentication context.
 - [`saml:FilterScopes`](./saml:filterscopes): Filter attribute values with scopes forbidden for an IdP.
 - [`saml:NameIDAttribute`](./saml:nameidattribute): Create an attribute based on the NameID we receive from the IdP.

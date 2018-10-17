@@ -6,11 +6,10 @@
  * authorizes the release of attributes.
  *
  * @package SimpleSAMLphp
- */
-/**
- * Explicit instruct consent page to send no-cache header to browsers to make 
+ *
+ * Explicit instruct consent page to send no-cache header to browsers to make
  * sure the users attribute information are not store on client disk.
- * 
+ *
  * In an vanilla apache-php installation is the php variables set to:
  *
  * session.cache_limiter = nocache
@@ -34,7 +33,7 @@ $state = \SimpleSAML\Auth\State::loadState($id, 'consent:request');
 
 if (array_key_exists('core:SP', $state)) {
     $spentityid = $state['core:SP'];
-} else if (array_key_exists('saml:sp:State', $state)) {
+} elseif (array_key_exists('saml:sp:State', $state)) {
     $spentityid = $state['saml:sp:State']['core:SP'];
 } else {
     $spentityid = 'UNKNOWN';
@@ -49,15 +48,15 @@ if (array_key_exists('yes', $_REQUEST)) {
         \SimpleSAML\Logger::stats('consentResponse rememberNot');
     }
 
-    $statsInfo = array(
+    $statsInfo = [
         'remember' => array_key_exists('saveconsent', $_REQUEST),
-    );
+    ];
     if (isset($state['Destination']['entityid'])) {
         $statsInfo['spEntityID'] = $state['Destination']['entityid'];
     }
     \SimpleSAML\Stats::log('consent:accept', $statsInfo);
 
-    if (array_key_exists('consent:store', $state) 
+    if (array_key_exists('consent:store', $state)
         && array_key_exists('saveconsent', $_REQUEST)
         && $_REQUEST['saveconsent'] === '1'
     ) {
@@ -69,7 +68,7 @@ if (array_key_exists('yes', $_REQUEST)) {
 
         \SimpleSAML\Logger::debug(
             'Consent - saveConsent() : ['.$userId.'|'.$targetedId.'|'.$attributeSet.']'
-        );	
+        );
         try {
             $store->saveConsent($userId, $targetedId, $attributeSet);
         } catch (\Exception $e) {
@@ -90,9 +89,9 @@ foreach ($attributes as $attrkey => $attrval) {
         unset($attributes[$attrkey]);
     }
 }
-$para = array(
+$para = [
     'attributes' => &$attributes
-);
+];
 
 // Reorder attributes according to attributepresentation hooks
 \SimpleSAML\Module::callHooks('attributepresentation', $para);
@@ -120,9 +119,9 @@ $translator = $t->getTranslator();
 $t->data['srcMetadata'] = $state['Source'];
 $t->data['dstMetadata'] = $state['Destination'];
 $t->data['yesTarget'] = \SimpleSAML\Module::getModuleURL('consent/getconsent.php');
-$t->data['yesData'] = array('StateId' => $id);
+$t->data['yesData'] = ['StateId' => $id];
 $t->data['noTarget'] = \SimpleSAML\Module::getModuleURL('consent/noconsent.php');
-$t->data['noData'] = array('StateId' => $id);
+$t->data['noData'] = ['StateId' => $id];
 $t->data['attributes'] = $attributes;
 $t->data['checked'] = $state['consent:checked'];
 $t->data['stateId'] = $id;
@@ -132,18 +131,18 @@ $dstName = htmlspecialchars(is_array($dstName) ? $translator->t($dstName) : $dst
 
 $t->data['consent_attributes_header'] = $translator->t(
     '{consent:consent:consent_attributes_header}',
-    array('SPNAME' => $dstName, 'IDPNAME' => $srcName)
+    ['SPNAME' => $dstName, 'IDPNAME' => $srcName]
 );
 
 $t->data['consent_accept'] = $translator->t(
     '{consent:consent:consent_accept}',
-    array('SPNAME' => $dstName, 'IDPNAME' => $srcName)
+    ['SPNAME' => $dstName, 'IDPNAME' => $srcName]
 );
 
 if (array_key_exists('descr_purpose', $state['Destination'])) {
     $t->data['consent_purpose'] = $translator->t(
         '{consent:consent:consent_purpose}',
-        array(
+        [
             'SPNAME' => $dstName,
             'SPDESC' => $translator->getPreferredTranslation(
                 \SimpleSAML\Utils\Arrays::arrayize(
@@ -151,7 +150,7 @@ if (array_key_exists('descr_purpose', $state['Destination'])) {
                     'en'
                 )
             ),
-        )
+        ]
     );
 }
 
@@ -169,7 +168,7 @@ if (array_key_exists('privacypolicy', $state['Destination'])) {
 if ($privacypolicy !== false) {
     $privacypolicy = str_replace(
         '%SPENTITYID%',
-        urlencode($spentityid), 
+        urlencode($spentityid),
         $privacypolicy
     );
 }
@@ -193,7 +192,7 @@ $t->data['usestorage'] = array_key_exists('consent:store', $state);
 if (array_key_exists('consent:hiddenAttributes', $state)) {
     $t->data['hiddenAttributes'] = $state['consent:hiddenAttributes'];
 } else {
-    $t->data['hiddenAttributes'] = array();
+    $t->data['hiddenAttributes'] = [];
 }
 
 $t->data['attributes_html'] = present_attributes($t, $attributes, '');
@@ -214,7 +213,7 @@ function present_attributes($t, $attributes, $nameParent)
 {
     $translator = $t->getTranslator();
 
-    $alternate = array('odd', 'even');
+    $alternate = ['odd', 'even'];
     $i = 0;
     $summary = 'summary="'.$translator->t('{consent:consent:table_summary}').'"';
 

@@ -10,31 +10,33 @@ if ($config->getBoolean('admin.protectindexpage', false)) {
 }
 $loginurl = \SimpleSAML\Utils\Auth::getAdminLoginURL();
 $isadmin = \SimpleSAML\Utils\Auth::isAdmin();
+$logouturl = \SimpleSAML\Utils\Auth::getAdminLogoutURL();
 
-$links = array();
-$links_welcome = array();
-$links_config = array();
-$links_auth = array();
-$links_federation = array();
+$links = [];
+$links_welcome = [];
+$links_config = [];
+$links_auth = [];
+$links_federation = [];
 
-$links_auth[] = array(
+$links_auth[] = [
     'href' => 'login.php',
     'text' => '{core:frontpage:authtest}',
-);
+];
 
-$allLinks = array(
+$allLinks = [
     'links' => &$links,
     'welcome' => &$links_welcome,
     'config' => &$links_config,
     'auth' => &$links_auth,
     'federation' => &$links_federation,
-);
+];
 \SimpleSAML\Module::callHooks('frontpage', $allLinks);
 
 $t = new \SimpleSAML\XHTML\Template($config, 'core:frontpage_auth.tpl.php');
 $t->data['pageid'] = 'frontpage_auth';
 $t->data['isadmin'] = $isadmin;
 $t->data['loginurl'] = $loginurl;
+$t->data['logouturl'] = $logouturl;
 
 $t->data['header'] = $t->getTranslator()->t('{core:frontpage:page_title}');
 $t->data['links'] = $links;
@@ -44,5 +46,3 @@ $t->data['links_auth'] = $links_auth;
 $t->data['links_federation'] = $links_federation;
 
 $t->show();
-
-

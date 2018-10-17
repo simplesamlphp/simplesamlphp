@@ -54,7 +54,6 @@ if ($destination !== null && $destination !== \SimpleSAML\Utils\HTTP::getSelfURL
 }
 
 if ($message instanceof \SAML2\LogoutResponse) {
-
     $relayState = $message->getRelayState();
     if ($relayState === null) {
         // Somehow, our RelayState has been lost.
@@ -62,15 +61,15 @@ if ($message instanceof \SAML2\LogoutResponse) {
     }
 
     if (!$message->isSuccess()) {
-        \SimpleSAML\Logger::warning('Unsuccessful logout. Status was: '.\SimpleSAML\Module\saml\Message::getResponseError($message));
+        \SimpleSAML\Logger::warning(
+            'Unsuccessful logout. Status was: '.\SimpleSAML\Module\saml\Message::getResponseError($message)
+        );
     }
 
     $state = \SimpleSAML\Auth\State::loadState($relayState, 'saml:slosent');
     $state['saml:sp:LogoutStatus'] = $message->getStatus();
     \SimpleSAML\Auth\Source::completeLogout($state);
-
 } elseif ($message instanceof \SAML2\LogoutRequest) {
-
     \SimpleSAML\Logger::debug('module/saml2/sp/logout: Request from '.$idpEntityId);
     \SimpleSAML\Logger::stats('saml20-idp-SLO idpinit '.$spEntityId.' '.$idpEntityId);
 
@@ -119,9 +118,12 @@ if ($message instanceof \SAML2\LogoutResponse) {
         \SimpleSAML\Logger::warning('Logged out of '.$numLoggedOut.' of '.count($sessionIndexes).' sessions.');
     }
 
-    $dst = $idpMetadata->getEndpointPrioritizedByBinding('SingleLogoutService', array(
-        \SAML2\Constants::BINDING_HTTP_REDIRECT,
-        \SAML2\Constants::BINDING_HTTP_POST)
+    $dst = $idpMetadata->getEndpointPrioritizedByBinding(
+        'SingleLogoutService',
+        [
+            \SAML2\Constants::BINDING_HTTP_REDIRECT,
+            \SAML2\Constants::BINDING_HTTP_POST
+        ]
     );
 
     if (!$binding instanceof \SAML2\SOAP) {

@@ -126,7 +126,7 @@ abstract class Store
     public static function parseStoreConfig($config)
     {
         if (is_string($config)) {
-            $config = array($config);
+            $config = [$config];
         }
 
         if (!is_array($config)) {

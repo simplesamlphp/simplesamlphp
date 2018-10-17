@@ -55,9 +55,6 @@ msgstr "لا يوجد وصف"
 msgid "{consentAdmin:consentadmin:service_providers_for}"
 msgstr "مشغلي الخدمة ل"
 
-msgid "{consentAdmin:consentadmin:sp_empty_name}"
-msgstr "الاسم غير محدد"
-
 msgid "{consentAdmin:consentadmin:consentadmin_description2}"
 msgstr ""
 "لحذف موافقتك</h3>الغي  صندوق مشغل الخدمة<h3>روابط</h3> <ul> <li><a "

@@ -30,11 +30,11 @@ class GenerateGroups extends \SimpleSAML\Auth\ProcessingFilter
 
         if (count($config) === 0) {
             // Use default groups
-            $this->generateGroupsFrom = array(
+            $this->generateGroupsFrom = [
                 'eduPersonAffiliation',
                 'eduPersonOrgUnitDN',
                 'eduPersonEntitlement',
-            );
+            ];
         } else {
             // Validate configuration
             foreach ($config as $attributeName) {
@@ -57,7 +57,7 @@ class GenerateGroups extends \SimpleSAML\Auth\ProcessingFilter
         assert(is_array($request));
         assert(array_key_exists('Attributes', $request));
 
-        $groups = array();
+        $groups = [];
         $attributes = &$request['Attributes'];
 
         $realm = self::getRealm($attributes);
@@ -135,7 +135,7 @@ class GenerateGroups extends \SimpleSAML\Auth\ProcessingFilter
 
         return preg_replace_callback(
             '/([^a-zA-Z0-9_@=.])/',
-            function($m) {
+            function ($m) {
                 return sprintf("%%%02x", ord($m[1]));
             },
             $string

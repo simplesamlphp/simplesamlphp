@@ -51,9 +51,9 @@ class Consumer
      * This static helper function wraps \SimpleSAML\Utils\HTTP::fetch
      * and throws an exception with diagnostics messages if it appear
      * to be failing on an OAuth endpoint.
-     * 
+     *
      * If the status code is not 200, an exception is thrown. If the content-type
-     * of the response if text/plain, the content of the response is included in 
+     * of the response if text/plain, the content of the response is included in
      * the text of the Exception thrown.
      */
     public static function getHTTP($url, $context = '')
@@ -74,7 +74,7 @@ class Consumer
             }
 
             throw new \Exception($error.':'.$url);
-        } 
+        }
         // Fall back to return response, if could not reckognize HTTP header. Should not happen.
         return $response;
     }
@@ -103,7 +103,7 @@ class Consumer
 
     public function getAuthorizeRequest($url, $requestToken, $redirect = true, $callback = null)
     {
-        $params = array('oauth_token' => $requestToken->key);
+        $params = ['oauth_token' => $requestToken->key];
         if ($callback) {
             $params['oauth_callback'] = $callback;
         }
@@ -111,7 +111,7 @@ class Consumer
         if ($redirect) {
             \SimpleSAML\Utils\HTTP::redirectTrustedURL($authorizeURL);
             exit;
-        }	
+        }
         return $authorizeURL;
     }
 
@@ -146,18 +146,18 @@ class Consumer
         $data_req->sign_request($this->signer, $this->consumer, $accessToken);
         $postdata = $data_req->to_postdata();
 
-        $opts = array(
-            'ssl' => array(
+        $opts = [
+            'ssl' => [
                 'verify_peer' => false,
                 'capture_peer_cert' => true,
                 'capture_peer_chain' => true
-            ),
-            'http' => array(
+            ],
+            'http' => [
                 'method' => 'POST',
                 'content' => $postdata,
                 'header' => 'Content-Type: application/x-www-form-urlencoded',
-            ),
-        );
+            ],
+        ];
 
         try {
             $response = \SimpleSAML\Utils\HTTP::fetch($url, $opts);
@@ -172,9 +172,6 @@ class Consumer
         $data_req = \OAuthRequest::from_consumer_and_token($this->consumer, $accessToken, "GET", $url, null);
         $data_req->sign_request($this->signer, $this->consumer, $accessToken);
 
-        if (is_array($opts)) {
-            $opts = stream_context_create($opts);
-        }
         $data = \SimpleSAML\Utils\HTTP::fetch($data_req->to_url(), $opts);
 
         return  json_decode($data, true);

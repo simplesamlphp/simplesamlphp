@@ -52,14 +52,18 @@ class ExpiryDate extends \SimpleSAML\Auth\ProcessingFilter
         if (array_key_exists('netid_attr', $config)) {
             $this->netid_attr = $config['netid_attr'];
             if (!is_string($this->netid_attr)) {
-                throw new \Exception('Invalid attribute name given as eduPersonPrincipalName to expirycheck::ExpiryDate filter.');
+                throw new \Exception(
+                    'Invalid attribute name given as eduPersonPrincipalName to expirycheck::ExpiryDate filter.'
+                );
             }
         }
 
         if (array_key_exists('expirydate_attr', $config)) {
             $this->expirydate_attr = $config['expirydate_attr'];
             if (!is_string($this->expirydate_attr)) {
-                throw new \Exception('Invalid attribute name given as schacExpiryDate to expirycheck::ExpiryDate filter.');
+                throw new \Exception(
+                    'Invalid attribute name given as schacExpiryDate to expirycheck::ExpiryDate filter.'
+                );
             }
         }
 
@@ -138,7 +142,7 @@ class ExpiryDate extends \SimpleSAML\Auth\ProcessingFilter
             $state['netId'] = $netId;
             $id = \SimpleSAML\Auth\State::saveState($state, 'expirywarning:about2expire');
             $url = \SimpleSAML\Module::getModuleURL('expirycheck/about2expire.php');
-            \SimpleSAML\Utils\HTTP::redirectTrustedURL($url, array('StateId' => $id));
+            \SimpleSAML\Utils\HTTP::redirectTrustedURL($url, ['StateId' => $id]);
         }
 
         if (!$this->checkDate($expireOnDate)) {
@@ -150,7 +154,7 @@ class ExpiryDate extends \SimpleSAML\Auth\ProcessingFilter
             $state['netId'] = $netId;
             $id = \SimpleSAML\Auth\State::saveState($state, 'expirywarning:expired');
             $url = \SimpleSAML\Module::getModuleURL('expirycheck/expired.php');
-            \SimpleSAML\Utils\HTTP::redirectTrustedURL($url, array('StateId' => $id));
+            \SimpleSAML\Utils\HTTP::redirectTrustedURL($url, ['StateId' => $id]);
         }
     }
 }

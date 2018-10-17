@@ -17,9 +17,9 @@ if (!isset($_REQUEST['AuthId'])) {
 /*
  * Setting up the options for the requireAuth() call later..
  */
-$options = array(
+$options = [
     'ReturnTo' => \SimpleSAML\Utils\HTTP::checkURLAllowed($_REQUEST['ReturnTo']),
-);
+];
 
 /*
  * Allows a saml:idp query string parameter specify the IdP entity ID to be used

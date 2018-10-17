@@ -18,17 +18,17 @@ class SAMLBuilderTest extends TestCase
 
         //  test SP20 array parsing, no friendly name
         $set = 'saml20-sp-remote';
-        $metadata = array(
+        $metadata = [
             'entityid'     => $entityId,
-            'name'         => array('en' => 'Test SP'),
+            'name'         => ['en' => 'Test SP'],
             'metadata-set' => $set,
-            'attributes'   => array(
+            'attributes'   => [
                 'urn:oid:1.3.6.1.4.1.5923.1.1.1.10',
                 'urn:oid:1.3.6.1.4.1.5923.1.1.1.6',
                 'urn:oid:0.9.2342.19200300.100.1.3',
                 'urn:oid:2.5.4.3',
-            ),
-        );
+            ],
+        ];
 
         $samlBuilder = new SAMLBuilder($entityId);
         $samlBuilder->addMetadata($set, $metadata);
@@ -47,17 +47,17 @@ class SAMLBuilderTest extends TestCase
 
         // test SP20 array parsing, no friendly name
         $set = 'saml20-sp-remote';
-        $metadata = array(
+        $metadata = [
             'entityid'     => $entityId,
-            'name'         => array('en' => 'Test SP'),
+            'name'         => ['en' => 'Test SP'],
             'metadata-set' => $set,
-            'attributes'   => array(
+            'attributes'   => [
                 'eduPersonTargetedID'    => 'urn:oid:1.3.6.1.4.1.5923.1.1.1.10',
                 'eduPersonPrincipalName' => 'urn:oid:1.3.6.1.4.1.5923.1.1.1.6',
                 'eduPersonOrgDN'         => 'urn:oid:0.9.2342.19200300.100.1.3',
                 'cn'                     => 'urn:oid:2.5.4.3',
-            ),
-        );
+            ],
+        ];
 
         $samlBuilder = new SAMLBuilder($entityId);
         $samlBuilder->addMetadata($set, $metadata);
@@ -78,17 +78,17 @@ class SAMLBuilderTest extends TestCase
 
         //  test SP13 array parsing, no friendly name
         $set = 'shib13-sp-remote';
-        $metadata = array(
+        $metadata = [
             'entityid'     => $entityId,
-            'name'         => array('en' => 'Test SP'),
+            'name'         => ['en' => 'Test SP'],
             'metadata-set' => $set,
-            'attributes'   => array(
+            'attributes'   => [
                 'urn:oid:1.3.6.1.4.1.5923.1.1.1.10',
                 'urn:oid:1.3.6.1.4.1.5923.1.1.1.6',
                 'urn:oid:0.9.2342.19200300.100.1.3',
                 'urn:oid:2.5.4.3',
-            ),
-        );
+            ],
+        ];
 
         $samlBuilder = new SAMLBuilder($entityId);
         $samlBuilder->addMetadata($set, $metadata);
@@ -107,17 +107,17 @@ class SAMLBuilderTest extends TestCase
 
         // test SP20 array parsing, no friendly name
         $set = 'shib13-sp-remote';
-        $metadata = array(
+        $metadata = [
             'entityid'     => $entityId,
-            'name'         => array('en' => 'Test SP'),
+            'name'         => ['en' => 'Test SP'],
             'metadata-set' => $set,
-            'attributes'   => array(
+            'attributes'   => [
                 'eduPersonTargetedID'    => 'urn:oid:1.3.6.1.4.1.5923.1.1.1.10',
                 'eduPersonPrincipalName' => 'urn:oid:1.3.6.1.4.1.5923.1.1.1.6',
                 'eduPersonOrgDN'         => 'urn:oid:0.9.2342.19200300.100.1.3',
                 'cn'                     => 'urn:oid:2.5.4.3',
-            ),
-        );
+            ],
+        ];
 
         $samlBuilder = new SAMLBuilder($entityId);
         $samlBuilder->addMetadata($set, $metadata);
@@ -145,15 +145,15 @@ class SAMLBuilderTest extends TestCase
         $entityId = 'https://entity.example.com/id';
         $set = 'saml20-sp-remote';
 
-        $metadata = array(
+        $metadata = [
             'entityid'     => $entityId,
-            'name'         => array('en' => 'Test SP'),
+            'name'         => ['en' => 'Test SP'],
             'metadata-set' => $set,
-            'attributes'   => array(
+            'attributes'   => [
                 'eduPersonTargetedID'    => 'urn:oid:1.3.6.1.4.1.5923.1.1.1.10',
                 'eduPersonPrincipalName' => 'urn:oid:1.3.6.1.4.1.5923.1.1.1.6',
-            ),
-        );
+            ],
+        ];
 
         $samlBuilder = new SAMLBuilder($entityId);
         $samlBuilder->addMetadata($set, $metadata);
@@ -192,15 +192,15 @@ class SAMLBuilderTest extends TestCase
         $entityId = 'https://entity.example.com/id';
         $set = 'saml20-sp-remote';
 
-        $metadata = array(
+        $metadata = [
             'entityid'     => $entityId,
-            'name'         => array('en' => 'Test SP'),
+            'name'         => ['en' => 'Test SP'],
             'metadata-set' => $set,
-            'attributes'   => array(
+            'attributes'   => [
                 'eduPersonTargetedID'    => 'urn:oid:1.3.6.1.4.1.5923.1.1.1.10',
                 'eduPersonPrincipalName' => 'urn:oid:1.3.6.1.4.1.5923.1.1.1.6',
-            ),
-        );
+            ],
+        ];
 
         $samlBuilder = new SAMLBuilder($entityId);
         $samlBuilder->addMetadata($set, $metadata);
@@ -232,19 +232,19 @@ class SAMLBuilderTest extends TestCase
         $set = 'attributeauthority-remote';
 
         // without protocolSupportEnumeration fallback to default: urn:oasis:names:tc:SAML:2.0:protocol
-        $metadata = array(
+        $metadata = [
             'entityid'     => $entityId,
-            'name'         => array('en' => 'Test AA'),
+            'name'         => ['en' => 'Test AA'],
             'metadata-set' => $set,
             'AttributeService' =>
-                array (
+                [
                     0 =>
-                        array (
+                        [
                             'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:SOAP',
                             'Location' => 'https://entity.example.com:8443/idp/profile/SAML2/SOAP/AttributeQuery',
-                        ),
-                ),
-            );
+                        ],
+                ],
+        ];
 
         $samlBuilder = new SAMLBuilder($entityId);
         $samlBuilder->addMetadata($set, $metadata);
@@ -257,10 +257,10 @@ class SAMLBuilderTest extends TestCase
 
         // explicit protocols
         $metadata['protocols'] =
-            array(
+            [
                 0 => 'urn:oasis:names:tc:SAML:1.1:protocol',
                 1 => 'urn:oasis:names:tc:SAML:2.0:protocol',
-            );
+            ];
         $samlBuilder = new SAMLBuilder($entityId);
         $samlBuilder->addMetadata($set, $metadata);
         $entityDescriptorXml = $samlBuilder->getEntityDescriptorText();

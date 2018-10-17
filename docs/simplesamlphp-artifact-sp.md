@@ -19,11 +19,11 @@ When this is done, you can add the metadata of your SP to the IdP, and test the 
 Example configuration
 ---------------------
 
-    'artifact-sp' => array(
+    'artifact-sp' => [
         'saml:SP',
         'ProtocolBinding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact',
         'privatekey' => 'sp.example.org.pem',
         'certificate' => 'sp.example.org.crt',
-    ),
+    ],
 
 See the [SP configuration reference](./saml:sp) for a description of the options.

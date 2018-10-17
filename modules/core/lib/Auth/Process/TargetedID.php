@@ -139,7 +139,7 @@ class TargetedID extends \SimpleSAML\Auth\ProcessingFilter
             $nameId = $uid;
         }
 
-        $state['Attributes']['eduPersonTargetedID'] = array($nameId);
+        $state['Attributes']['eduPersonTargetedID'] = [$nameId];
     }
 
     /**

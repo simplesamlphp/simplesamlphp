@@ -20,30 +20,30 @@ try {
         $_GET['idpentityid'] : $metadata->getMetaDataCurrentEntityID('shib13-idp-hosted');
     $idpmeta = $metadata->getMetaDataConfig($idpentityid, 'shib13-idp-hosted');
 
-    $keys = array();
+    $keys = [];
     $certInfo = \SimpleSAML\Utils\Crypto::loadPublicKey($idpmeta, false, 'new_');
     if ($certInfo !== null) {
-        $keys[] = array(
+        $keys[] = [
             'type'            => 'X509Certificate',
             'signing'         => true,
             'encryption'      => false,
             'X509Certificate' => $certInfo['certData'],
-        );
+        ];
     }
 
     $certInfo = \SimpleSAML\Utils\Crypto::loadPublicKey($idpmeta, true);
-    $keys[] = array(
+    $keys[] = [
         'type'            => 'X509Certificate',
         'signing'         => true,
         'encryption'      => false,
         'X509Certificate' => $certInfo['certData'],
-    );
+    ];
 
-    $metaArray = array(
+    $metaArray = [
         'metadata-set'        => 'shib13-idp-remote',
         'entityid'            => $idpentityid,
         'SingleSignOnService' => $metadata->getGenerated('SingleSignOnService', 'shib13-idp-hosted'),
-    );
+    ];
 
     if (count($keys) === 1) {
         $metaArray['certData'] = $keys[0]['X509Certificate'];
@@ -71,11 +71,11 @@ try {
     $metaBuilder = new \SimpleSAML\Metadata\SAMLBuilder($idpentityid);
     $metaBuilder->addMetadataIdP11($metaArray);
     $metaBuilder->addOrganizationInfo($metaArray);
-    $metaBuilder->addContact('technical', \SimpleSAML\Utils\Config\Metadata::getContact(array(
+    $metaBuilder->addContact('technical', \SimpleSAML\Utils\Config\Metadata::getContact([
         'emailAddress' => $config->getString('technicalcontact_email', null),
         'name'         => $config->getString('technicalcontact_name', null),
         'contactType'  => 'technical',
-    )));
+    ]));
     $metaxml = $metaBuilder->getEntityDescriptorText();
 
     // sign the metadata if enabled
@@ -91,7 +91,7 @@ try {
         $t->data['headerString'] = \SimpleSAML\Locale\Translate::noop('metadata_shib13-idp');
         $t->data['metaurl'] = \SimpleSAML\Utils\HTTP::addURLParameters(
             \SimpleSAML\Utils\HTTP::getSelfURLNoQuery(),
-            array('output' => 'xml')
+            ['output' => 'xml']
         );
         $t->data['metadata'] = htmlspecialchars($metaxml);
         $t->data['metadataflat'] = htmlspecialchars($metaflat);

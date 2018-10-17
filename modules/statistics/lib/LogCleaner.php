@@ -60,10 +60,12 @@ class LogCleaner
         $file = fopen($this->inputfile, 'r');
 
         $logparser = new LogParser(
-            $this->statconfig->getValue('datestart', 0), $this->statconfig->getValue('datelength', 15), $this->statconfig->getValue('offsetspan', 44)
+            $this->statconfig->getValue('datestart', 0),
+            $this->statconfig->getValue('datelength', 15),
+            $this->statconfig->getValue('offsetspan', 44)
         );
 
-        $sessioncounter = array();
+        $sessioncounter = [];
 
         $i = 0;
         // Parse through log file, line by line
@@ -94,7 +96,8 @@ class LogCleaner
             if ($debug) {
                 echo "----------------------------------------\n";
                 echo 'Log line: '.$logline."\n";
-                echo 'Date parse ['.substr($logline, 0, $this->statconfig->getValue('datelength', 15)).'] to ['.date(DATE_RFC822, $epoch).']'."\n";
+                echo 'Date parse ['.substr($logline, 0, $this->statconfig->getValue('datelength', 15)).
+                    '] to ['.date(DATE_RFC822, $epoch).']'."\n";
                 echo htmlentities(print_r($content, true));
                 if ($i >= 13) {
                     exit;
@@ -102,7 +105,7 @@ class LogCleaner
             }
         }
 
-        $histogram = array();
+        $histogram = [];
         foreach ($sessioncounter as $trackid => $sc) {
             if (!isset($histogram[$sc])) {
                 $histogram[$sc] = 0;
@@ -111,7 +114,7 @@ class LogCleaner
         }
         ksort($histogram);
 
-        $todelete = array();
+        $todelete = [];
         foreach ($sessioncounter as $trackid => $sc) {
             if ($sc > 200) {
                 $todelete[] = $trackid;
@@ -149,7 +152,9 @@ class LogCleaner
         $outfile = fopen($outputfile, 'x'); // Create the output file
 
         $logparser = new LogParser(
-            $this->statconfig->getValue('datestart', 0), $this->statconfig->getValue('datelength', 15), $this->statconfig->getValue('offsetspan', 44)
+            $this->statconfig->getValue('datestart', 0),
+            $this->statconfig->getValue('datelength', 15),
+            $this->statconfig->getValue('offsetspan', 44)
         );
 
         $i = 0;

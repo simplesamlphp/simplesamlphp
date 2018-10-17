@@ -233,6 +233,13 @@ This styles the menu heading.
     color: #fff;
     margin: 0;
 }
+.frontpage-menu .pure-menu-item {
+    border-bottom: 1px solid lightgrey;
+}
+.frontpage-menu .pure-menu-selected {
+    border-bottom: 1px solid black;
+    font-weight: bold;
+}
 
 /* -- Dynamic Button For Responsive Menu -------------------------------------*/
 
@@ -361,12 +368,6 @@ CONTENT
 .auth_methods{
     margin-top: 2em;
     width: 35%;
-}
-.pure-menu-item {
-    border-bottom: 1px solid lightgrey;
-}
-.pure-menu-item:last-child {
-    border-bottom: none;
 }
 .code-box{
     border:1px solid #ccc;
@@ -651,4 +652,9 @@ dt {
 }
 .entity-expired {
     color: #500;
+}
+div.preferredidp {
+    border: 1px dashed #ccc;
+    background: #eee;
+    padding: 2px 2em 2px 2em;
 }

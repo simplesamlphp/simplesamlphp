@@ -65,8 +65,13 @@ class Ratio extends BaseRule
 
         $refNames = $this->ruleconfig->getArray('ref');
 
-        $dataset = new \SimpleSAML\Module\statistics\RatioDataset($this->statconfig, $this->ruleconfig, $refNames, $timeres, $fileslot);
+        $dataset = new \SimpleSAML\Module\statistics\RatioDataset(
+            $this->statconfig,
+            $this->ruleconfig,
+            $refNames,
+            $timeres,
+            $fileslot
+        );
         return $dataset;
     }
 }
-

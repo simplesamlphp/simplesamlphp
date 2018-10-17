@@ -6,8 +6,8 @@ require_once(dirname(dirname(__FILE__)).'/libextinc/OAuth.php');
 
 /**
  * OAuth Store
- * 
- * Updated version, works with consumer-callbacks, certificates and 1.0-RevA protocol 
+ *
+ * Updated version, works with consumer-callbacks, certificates and 1.0-RevA protocol
  * behaviour (requestToken-callbacks and verifiers)
  *
  * @author Andreas Åkre Solberg, <andreas.solberg@uninett.no>, UNINETT AS.
@@ -21,14 +21,14 @@ class OAuthStore extends \OAuthDataStore
     private $config;
     private $defaultversion = '1.0';
 
-    protected $_store_tables = array(
-        'consumers' => 'consumer = array with consumer attributes', 
+    protected $_store_tables = [
+        'consumers' => 'consumer = array with consumer attributes',
         'nonce' => 'nonce+consumer_key = -boolean-',
         'requesttorequest' => 'requestToken.key = array(version,callback,consumerKey,)',
         'authorized' => 'requestToken.key, verifier = array(authenticated-user-attributes)',
         'access' => 'accessToken.key+consumerKey = accesstoken',
         'request' => 'requestToken.key+consumerKey = requesttoken',
-    );
+    ];
 
 
     public function __construct()
@@ -66,11 +66,11 @@ class OAuthStore extends \OAuthDataStore
         }
 
         $verifier = \SimpleSAML\Utils\Random::generateID();
-        $url = \SimpleSAML\Utils\HTTP::addURLParameters($url, array("oauth_verifier"=>$verifier));
+        $url = \SimpleSAML\Utils\HTTP::addURLParameters($url, ["oauth_verifier"=>$verifier]);
 
         $this->store->set('authorized', $requestTokenKey, $verifier, $data, $this->config->getValue('requestTokenDuration', 1800)); //60*30=1800
 
-        return array($url, $verifier);
+        return [$url, $verifier];
     }
 
     /**
@@ -153,21 +153,23 @@ class OAuthStore extends \OAuthDataStore
     {
         \SimpleSAML\Logger::info('OAuth new_request_token('.$consumer.')');
 
-        $lifetime = $this->config->getValue('requestTokenDuration', 1800); //60*30 
+        $lifetime = $this->config->getValue('requestTokenDuration', 1800); //60*30
 
         $token = new \OAuthToken(\SimpleSAML\Utils\Random::generateID(), \SimpleSAML\Utils\Random::generateID());
         $token->callback = $callback; // OAuth1.0-RevA
         $this->store->set('request', $token->key, $consumer->key, $token, $lifetime);
 
         // also store in requestToken->key => array('callback'=>CallbackURL, 'version'=>oauth_version
-        $request_attributes = array(
-            'callback' => $callback, 
+        $request_attributes = [
+            'callback' => $callback,
             'version' => ($version ? $version : $this->defaultversion),
             'consumerKey' => $consumer->key,
-        );
+        ];
         $this->store->set('requesttorequest', $token->key, '', $request_attributes, $lifetime);
 
-        // also store in requestToken->key => Consumer->key (enables consumer-lookup during reqToken-authorization stage)
+        /* also store in requestToken->key =>
+         * Consumer->key (enables consumer-lookup during reqToken-authorization stage)
+         */
         $this->store->set('requesttoconsumer', $token->key, '', $consumer->key, $lifetime);
 
         return $token;
@@ -177,7 +179,13 @@ class OAuthStore extends \OAuthDataStore
     {
         \SimpleSAML\Logger::info('OAuth new_access_token('.$requestToken.','.$consumer.')');
         $accesstoken = new \OAuthToken(\SimpleSAML\Utils\Random::generateID(), \SimpleSAML\Utils\Random::generateID());
-        $this->store->set('access', $accesstoken->key, $consumer->key, $accesstoken, $this->config->getValue('accessTokenDuration', 86400)); //60*60*24=86400
+        $this->store->set(
+            'access',
+            $accesstoken->key,
+            $consumer->key,
+            $accesstoken,
+            $this->config->getValue('accessTokenDuration', 86400) //60*60*24=86400
+        );
         return $accesstoken;
     }
 

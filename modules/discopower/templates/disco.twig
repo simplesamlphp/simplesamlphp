@@ -26,28 +26,16 @@
 
     <div id="tabdiv">
         <ul class="tabset_tabs">
-        {% set i = 1 %}
         {% for tab, idps in idplist %}
             {% if idps is not empty %}
-            {% if i == 1 %}
-            <li class="tab-link current" data-tab="{{ tab }}"><a href="#{{ tab }}"><span>{{ tabNames[tab]|trans }}</span></a></li>
-            {% set i = 2 %}
-            {% else %}
-            <li class="tab-link" data-tab="{{ tab }}"><a href="#{{ tab }}"><span>{{ tabNames[tab]|trans }}</span></a></li>
-            {% endif %}
+            <li class="tab-link{% if loop.first %}current{% endif %}" data-tab="{{ tab }}"><a href="#{{ tab }}"><span>{{ tabNames[tab]|trans }}</span></a></li>
             {% endif %}
         {% endfor %}
         </ul>
 
-        {% set i = 1 %}
         {% for tab, idps in idplist %}
         {% if idps is not empty %}
-          {% if i == 1 %}
-          <div id="{{ tab }}" class="tabset_content current">
-          {% set i = 2 %}
-          {% else %}
-          <div id="{{ tab }}" class="tabset_content">
-          {% endif %}
+          <div id="{{ tab }}" class="tabset_content{% if loop.first %} current{% endif %}">
           <div class="inlinesearch">
               <p>Incremental search...</p>
               <form id="idpselectform" method="get">

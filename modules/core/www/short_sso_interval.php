@@ -22,7 +22,7 @@ if (array_key_exists('continue', $_REQUEST)) {
 $globalConfig = \SimpleSAML\Configuration::getInstance();
 $t = new \SimpleSAML\XHTML\Template($globalConfig, 'core:short_sso_interval.php');
 $t->data['target'] = \SimpleSAML\Module::getModuleURL('core/short_sso_interval.php');
-$t->data['params'] = array('StateId' => $id);
+$t->data['params'] = ['StateId' => $id];
 $t->data['trackId'] = $session->getTrackID();
 $this->data['header'] = $this->t('{core:short_sso_interval:warning_header}');
 $this->data['autofocus'] = 'contbutton';

@@ -25,7 +25,7 @@ class Configuration implements Utils\ClearableState
      *
      * @var array
      */
-    private static $instance = array();
+    private static $instance = [];
 
 
     /**
@@ -36,7 +36,7 @@ class Configuration implements Utils\ClearableState
      *
      * @var array
      */
-    private static $configDirs = array();
+    private static $configDirs = [];
 
 
     /**
@@ -46,7 +46,7 @@ class Configuration implements Utils\ClearableState
      *
      * @var array
      */
-    private static $loadedConfigs = array();
+    private static $loadedConfigs = [];
 
 
     /**
@@ -125,8 +125,8 @@ class Configuration implements Utils\ClearableState
                 try {
                     require($filename);
                 } catch (\ParseError $e) {
-                    self::$loadedConfigs[$filename] = self::loadFromArray(array(), '[ARRAY]', 'simplesaml');
-                    throw new Error\ConfigurationError($e->getMessage(), $filename, array());
+                    self::$loadedConfigs[$filename] = self::loadFromArray([], '[ARRAY]', 'simplesaml');
+                    throw new Error\ConfigurationError($e->getMessage(), $filename, []);
                 }
             } else {
                 require($filename);
@@ -163,7 +163,7 @@ class Configuration implements Utils\ClearableState
             throw new Error\ConfigurationError('Missing configuration file', $filename);
         } else {
             // file does not exist, but is optional, so return an empty configuration object without saving it
-            $cfg = new Configuration(array(), $filename);
+            $cfg = new Configuration([], $filename);
             $cfg->filename = $filename;
             return $cfg;
         }
@@ -842,7 +842,7 @@ class Configuration implements Utils\ClearableState
         }
 
         if (!in_array($ret, $allowedValues, true)) {
-            $strValues = array();
+            $strValues = [];
             foreach ($allowedValues as $av) {
                 $strValues[] = var_export($av, true);
             }
@@ -918,7 +918,7 @@ class Configuration implements Utils\ClearableState
         }
 
         if (!is_array($ret)) {
-            $ret = array($ret);
+            $ret = [$ret];
         }
 
         return $ret;
@@ -1040,7 +1040,7 @@ class Configuration implements Utils\ClearableState
             );
         }
 
-        $out = array();
+        $out = [];
         foreach ($ret as $index => $config) {
             $newLoc = $this->location.'['.var_export($name, true).']['.
                 var_export($index, true).']';
@@ -1132,14 +1132,14 @@ class Configuration implements Utils\ClearableState
 
         if (!array_key_exists($endpointType, $this->configuration)) {
             // no endpoints of the given type
-            return array();
+            return [];
         }
 
 
         $eps = $this->configuration[$endpointType];
         if (is_string($eps)) {
             // for backwards-compatibility
-            $eps = array($eps);
+            $eps = [$eps];
         } elseif (!is_array($eps)) {
             throw new \Exception($loc.': Expected array or string.');
         }
@@ -1150,10 +1150,10 @@ class Configuration implements Utils\ClearableState
 
             if (is_string($ep)) {
                 // for backwards-compatibility
-                $ep = array(
+                $ep = [
                     'Location' => $ep,
                     'Binding'  => $this->getDefaultBinding($endpointType),
-                );
+                ];
                 $responseLocation = $this->getString($endpointType.'Response', null);
                 if ($responseLocation !== null) {
                     $ep['ResponseLocation'] = $responseLocation;
@@ -1286,7 +1286,7 @@ class Configuration implements Utils\ClearableState
         $loc = $this->location.'['.var_export($name, true).']';
 
         if (is_string($ret)) {
-            $ret = array('en' => $ret,);
+            $ret = ['en' => $ret,];
         }
 
         if (!is_array($ret)) {
@@ -1327,7 +1327,7 @@ class Configuration implements Utils\ClearableState
         assert(is_string($prefix));
 
         if ($this->hasValue($prefix.'keys')) {
-            $ret = array();
+            $ret = [];
             foreach ($this->getArray($prefix.'keys') as $key) {
                 if ($use !== null && isset($key[$use]) && !$key[$use]) {
                     continue;
@@ -1342,14 +1342,14 @@ class Configuration implements Utils\ClearableState
         } elseif ($this->hasValue($prefix.'certData')) {
             $certData = $this->getString($prefix.'certData');
             $certData = preg_replace('/\s+/', '', $certData);
-            return array(
-                array(
+            return [
+                [
                     'encryption'      => true,
                     'signing'         => true,
                     'type'            => 'X509Certificate',
                     'X509Certificate' => $certData,
-                ),
-            );
+                ],
+            ];
         } elseif ($this->hasValue($prefix.'certificate')) {
             $file = $this->getString($prefix.'certificate');
             $file = Utils\Config::getCertPath($file);
@@ -1368,18 +1368,18 @@ class Configuration implements Utils\ClearableState
             }
             $certData = preg_replace('/\s+/', '', $matches[1]);
 
-            return array(
-                array(
+            return [
+                [
                     'encryption'      => true,
                     'signing'         => true,
                     'type'            => 'X509Certificate',
                     'X509Certificate' => $certData,
-                ),
-            );
+                ],
+            ];
         } elseif ($required === true) {
             throw new \SimpleSAML\Error\Exception($this->location.': Missing certificate in metadata.');
         } else {
-            return array();
+            return [];
         }
     }
 
@@ -1390,8 +1390,8 @@ class Configuration implements Utils\ClearableState
      */
     public static function clearInternalState()
     {
-        self::$configDirs = array();
-        self::$instance = array();
-        self::$loadedConfigs = array();
+        self::$configDirs = [];
+        self::$instance = [];
+        self::$loadedConfigs = [];
     }
 }

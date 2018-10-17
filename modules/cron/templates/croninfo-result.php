@@ -8,12 +8,11 @@ $this->includeAtTemplateBase('includes/header.php');
 <?php
 
 echo '            <h1>'.$this->t('cron_report_title').'</h1><p>'.$this->t('ran_text').
-    ' '.$this->data['time'].'</p>'.'<p>URL: <tt>'.$this->data['url'].'</tt></p>'.
+    ' '.$this->data['time'].'</p>'.'<p>URL: <code>'.$this->data['url'].'</code></p>'.
     '<p>Tag: '.$this->data['tag']."</p>\n\n".
     '<ul><li>'.join('</li><li>', $this->data['summary']).'</li></ul>';
 ?>
-		</code>
-		</pre>
+        </code></pre>
 </div>
 
 <?php

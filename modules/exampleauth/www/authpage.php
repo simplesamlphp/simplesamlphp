@@ -39,22 +39,22 @@ if (!preg_match('@State=(.*)@', $returnTo, $matches)) {
 /*
  * Our list of users.
  */
-$users = array(
-    'student' => array(
+$users = [
+    'student' => [
         'password' => 'student',
         'uid' => 'student',
         'name' => 'Student Name',
         'mail' => 'somestudent@example.org',
         'type' => 'student',
-    ),
-    'admin' => array(
+    ],
+    'admin' => [
         'password' => 'admin',
         'uid' => 'admin',
         'name' => 'Admin Name',
         'mail' => 'someadmin@example.org',
         'type' => 'employee',
-    ),
-);
+    ],
+];
 
 /*
  * Time to handle login responses.
@@ -96,7 +96,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
 <h1>exampleauth login page</h1>
-<p>In this example you can log in with two accounts: <code>student</code> and <code>admin</code>. In both cases, the password is the same as the username.</p>
+<p>
+In this example you can log in with two accounts: <code>student</code> and <code>admin</code>.
+In both cases, the password is the same as the username.
+</p>
 <?php if ($badUserPass) { ?>
 <p>Bad username or password.</p>
 <?php } ?>

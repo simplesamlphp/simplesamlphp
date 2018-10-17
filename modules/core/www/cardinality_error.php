@@ -20,7 +20,10 @@ $globalConfig = \SimpleSAML\Configuration::getInstance();
 $t = new \SimpleSAML\XHTML\Template($globalConfig, 'core:cardinality_error.tpl.php');
 $t->data['cardinalityErrorAttributes'] = $state['core:cardinality:errorAttributes'];
 if (isset($state['Source']['auth'])) {
-    $t->data['LogoutURL'] = \SimpleSAML\Module::getModuleURL('core/authenticate.php', array('as' => $state['Source']['auth']))."&logout";
+    $t->data['LogoutURL'] = \SimpleSAML\Module::getModuleURL(
+        'core/authenticate.php',
+        ['as' => $state['Source']['auth']]
+    )."&logout";
 }
 header('HTTP/1.0 403 Forbidden');
 $t->show();

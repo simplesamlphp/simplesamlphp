@@ -20,3 +20,20 @@ tr.row1 td {
 a.orange {
     color: #ffd633;
 }
+
+span.show_hide {
+    font-size: 80%;
+}
+
+a.serviceUrl {
+    color: black;
+    font-weight: bold;
+}
+
+span[id^='hiding_'], span[id*='hiding_'] {
+    display: none;
+}
+
+div[id^='attributes_'], div[id*='attributes_'] {
+    display: none;
+}

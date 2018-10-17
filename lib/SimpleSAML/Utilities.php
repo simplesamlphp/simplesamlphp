@@ -191,7 +191,7 @@ class Utilities
     }
 
 
-    private static function doRedirect($url, $parameters = array())
+    private static function doRedirect($url, $parameters = [])
     {
         assert(is_string($url));
         assert(!empty($url));
@@ -253,7 +253,7 @@ class Utilities
      * @deprecated 1.12.0 This method will be removed from the API. Instead, use the redirectTrustedURL() or
      * redirectUntrustedURL() functions accordingly.
      */
-    public static function redirect($url, $parameters = array(), $allowed_redirect_hosts = null)
+    public static function redirect($url, $parameters = [], $allowed_redirect_hosts = null)
     {
         assert(is_string($url));
         assert(strlen($url) > 0);
@@ -272,7 +272,7 @@ class Utilities
      * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Utils\HTTP::redirectTrustedURL()
      *     instead.
      */
-    public static function redirectTrustedURL($url, $parameters = array())
+    public static function redirectTrustedURL($url, $parameters = [])
     {
         \SimpleSAML\Utils\HTTP::redirectTrustedURL($url, $parameters);
     }
@@ -282,7 +282,7 @@ class Utilities
      * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Utils\HTTP::redirectUntrustedURL()
      *     instead.
      */
-    public static function redirectUntrustedURL($url, $parameters = array())
+    public static function redirectUntrustedURL($url, $parameters = [])
     {
         \SimpleSAML\Utils\HTTP::redirectUntrustedURL($url, $parameters);
     }
@@ -562,17 +562,17 @@ class Utilities
         assert(is_array($post));
 
         $postId = \SimpleSAML\Utils\Random::generateID();
-        $postData = array(
+        $postData = [
             'post' => $post,
             'url'  => $destination,
-        );
+        ];
 
         $session = \SimpleSAML\Session::getSessionFromRequest();
         $session->setData('core_postdatalink', $postId, $postData);
 
         $redirInfo = base64_encode(\SimpleSAML\Utils\Crypto::aesEncrypt($session->getSessionId().':'.$postId));
 
-        $url = \SimpleSAML\Module::getModuleURL('core/postredirect.php', array('RedirInfo' => $redirInfo));
+        $url = \SimpleSAML\Module::getModuleURL('core/postredirect.php', ['RedirInfo' => $redirInfo]);
         $url = preg_replace("#^https:#", "http:", $url);
 
         return $url;
@@ -665,7 +665,7 @@ class Utilities
     /**
      * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Utils\HTTP::fetch() instead.
      */
-    public static function fetch($path, $context = array(), $getHeaders = false)
+    public static function fetch($path, $context = [], $getHeaders = false)
     {
         return \SimpleSAML\Utils\HTTP::fetch($path, $context, $getHeaders);
     }

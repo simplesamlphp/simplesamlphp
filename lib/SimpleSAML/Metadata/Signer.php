@@ -43,10 +43,10 @@ class Signer
                 );
             }
 
-            $ret = array(
+            $ret = [
                 'privatekey'  => $entityMetadata['metadata.sign.privatekey'],
                 'certificate' => $entityMetadata['metadata.sign.certificate']
-            );
+            ];
 
             if (array_key_exists('metadata.sign.privatekey_pass', $entityMetadata)) {
                 $ret['privatekey_pass'] = $entityMetadata['metadata.sign.privatekey_pass'];
@@ -67,7 +67,7 @@ class Signer
                     ' must also be specified.'
                 );
             }
-            $ret = array('privatekey' => $privatekey, 'certificate' => $certificate);
+            $ret = ['privatekey' => $privatekey, 'certificate' => $certificate];
 
             $privatekey_pass = $config->getString('metadata.sign.privatekey_pass', null);
             if ($privatekey_pass !== null) {
@@ -92,10 +92,10 @@ class Signer
                 );
             }
 
-            $ret = array(
+            $ret = [
                 'privatekey'  => $entityMetadata['privatekey'],
                 'certificate' => $entityMetadata['certificate']
-            );
+            ];
 
             if (array_key_exists('privatekey_pass', $entityMetadata)) {
                 $ret['privatekey_pass'] = $entityMetadata['privatekey_pass'];
@@ -173,12 +173,12 @@ class Signer
             $alg = $config->getString('metadata.sign.algorithm', XMLSecurityKey::RSA_SHA256);
         }
 
-        $supported_algs = array(
+        $supported_algs = [
             XMLSecurityKey::RSA_SHA1,
             XMLSecurityKey::RSA_SHA256,
             XMLSecurityKey::RSA_SHA384,
             XMLSecurityKey::RSA_SHA512,
-        );
+        ];
 
         if (!in_array($alg, $supported_algs, true)) {
             throw new \SimpleSAML\Error\CriticalConfigurationError("Unknown signature algorithm '$alg'");
@@ -198,10 +198,10 @@ class Signer
                 $digest = XMLSecurityDSig::SHA1;
         }
 
-        return array(
+        return [
             'algorithm' => $alg,
             'digest' => $digest,
-        );
+        ];
     }
 
 
@@ -229,8 +229,9 @@ class Signer
 
         $keyFile = \SimpleSAML\Utils\Config::getCertPath($keyCertFiles['privatekey']);
         if (!file_exists($keyFile)) {
-            throw new \Exception('Could not find private key file ['.
-                $keyFile.'], which is needed to sign the metadata');
+            throw new \Exception(
+                'Could not find private key file ['.$keyFile.'], which is needed to sign the metadata'
+            );
         }
         $keyData = file_get_contents($keyFile);
 
@@ -253,7 +254,7 @@ class Signer
         $signature_cf = self::getMetadataSigningAlgorithm($config, $entityMetadata, $type);
 
         // load the private key
-        $objKey = new XMLSecurityKey($signature_cf['algorithm'], array('type' => 'private'));
+        $objKey = new XMLSecurityKey($signature_cf['algorithm'], ['type' => 'private']);
         if (array_key_exists('privatekey_pass', $keyCertFiles)) {
             $objKey->passphrase = $keyCertFiles['privatekey_pass'];
         }
@@ -268,10 +269,10 @@ class Signer
         $objXMLSecDSig->setCanonicalMethod(XMLSecurityDSig::EXC_C14N);
 
         $objXMLSecDSig->addReferenceList(
-            array($rootNode),
+            [$rootNode],
             $signature_cf['digest'],
-            array('http://www.w3.org/2000/09/xmldsig#enveloped-signature', XMLSecurityDSig::EXC_C14N),
-            array('id_name' => 'ID')
+            ['http://www.w3.org/2000/09/xmldsig#enveloped-signature', XMLSecurityDSig::EXC_C14N],
+            ['id_name' => 'ID']
         );
 
         $objXMLSecDSig->sign($objKey);

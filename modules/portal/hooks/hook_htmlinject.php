@@ -12,19 +12,19 @@ function portal_hook_htmlinject(&$hookinfo)
     assert(array_key_exists('post', $hookinfo));
     assert(array_key_exists('page', $hookinfo));
 
-    $links = array('links' => array());
+    $links = ['links' => []];
     \SimpleSAML\Module::callHooks('frontpage', $links);
 
     $portalConfig = \SimpleSAML\Configuration::getOptionalConfig('module_portal.php');
 
-    $allLinks = array();
+    $allLinks = [];
     foreach ($links as $ls) {
         $allLinks = array_merge($allLinks, $ls);
     }
 
-    $pagesets = $portalConfig->getValue('pagesets', array(
-        array('frontpage_welcome', 'frontpage_config', 'frontpage_auth', 'frontpage_federation'),
-    ));
+    $pagesets = $portalConfig->getValue('pagesets', [
+        ['frontpage_welcome', 'frontpage_config', 'frontpage_auth', 'frontpage_federation'],
+    ]);
     \SimpleSAML\Module::callHooks('portalextras', $pagesets);
     $portal = new \SimpleSAML\Module\portal\Portal($allLinks, $pagesets);
 
@@ -36,8 +36,8 @@ function portal_hook_htmlinject(&$hookinfo)
     $hookinfo['jquery']['css'] = true;
 
     // Header
-    $hookinfo['pre'][] = '<div id="portalmenu" class="ui-tabs ui-widget ui-widget-content ui-corner-all">'. 
-        $portal->getMenu($hookinfo['page']). 
+    $hookinfo['pre'][] = '<div id="portalmenu" class="ui-tabs ui-widget ui-widget-content ui-corner-all">'.
+        $portal->getMenu($hookinfo['page']).
         '<div id="portalcontent" class="ui-tabs-panel ui-widget-content ui-corner-bottom">';
 
     // Footer

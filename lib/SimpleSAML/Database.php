@@ -22,7 +22,7 @@ class Database
     /**
      * This variable holds the instance of the session - Singleton approach.
      */
-    private static $instance = array();
+    private static $instance = [];
 
     /**
      * PDO Object for the Master database server
@@ -32,7 +32,7 @@ class Database
     /**
      * Array of PDO Objects for configured database slaves
      */
-    private $dbSlaves = array();
+    private $dbSlaves = [];
 
     /**
      * Prefix to apply to the tables
@@ -75,9 +75,9 @@ class Database
      */
     private function __construct($config)
     {
-        $driverOptions = $config->getArray('database.driver_options', array());
+        $driverOptions = $config->getArray('database.driver_options', []);
         if ($config->getBoolean('database.persistent', true)) {
-            $driverOptions = array(\PDO::ATTR_PERSISTENT => true);
+            $driverOptions = [\PDO::ATTR_PERSISTENT => true];
         }
 
         // connect to the master
@@ -89,7 +89,7 @@ class Database
         );
 
         // connect to any configured slaves
-        $slaves = $config->getArray('database.slaves', array());
+        $slaves = $config->getArray('database.slaves', []);
         foreach ($slaves as $slave) {
             array_push(
                 $this->dbSlaves,
@@ -115,16 +115,16 @@ class Database
      */
     private static function generateInstanceId($config)
     {
-        $assembledConfig = array(
-            'master' => array(
+        $assembledConfig = [
+            'master' => [
                 'database.dsn'        => $config->getString('database.dsn'),
                 'database.username'   => $config->getString('database.username', null),
                 'database.password'   => $config->getString('database.password', null),
                 'database.prefix'     => $config->getString('database.prefix', ''),
                 'database.persistent' => $config->getBoolean('database.persistent', false),
-            ),
-            'slaves' => $config->getArray('database.slaves', array()),
-        );
+            ],
+            'slaves' => $config->getArray('database.slaves', []),
+        ];
 
         return sha1(serialize($assembledConfig));
     }
@@ -252,7 +252,7 @@ class Database
      *
      * @return int The number of rows affected by the query.
      */
-    public function write($stmt, $params = array())
+    public function write($stmt, $params = [])
     {
         $db = $this->dbMaster;
 
@@ -271,9 +271,9 @@ class Database
      * @param string $stmt Prepared SQL statement
      * @param array  $params Parameters
      *
-     * @return \PDOStatement object
+     * @return \PDOStatement|bool object
      */
-    public function read($stmt, $params = array())
+    public function read($stmt, $params = [])
     {
         $db = $this->getSlave();
 

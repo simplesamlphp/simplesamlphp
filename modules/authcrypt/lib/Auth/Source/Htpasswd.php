@@ -25,7 +25,7 @@ class Htpasswd extends \SimpleSAML\Module\core\Auth\UserPassBase
      *
      * @var array
      */
-    private $attributes = array();
+    private $attributes = [];
 
 
     /**
@@ -44,7 +44,7 @@ class Htpasswd extends \SimpleSAML\Module\core\Auth\UserPassBase
         // Call the parent constructor first, as required by the interface
         parent::__construct($info, $config);
 
-        $this->users = array();
+        $this->users = [];
 
         if (!$htpasswd = file_get_contents($config['htpasswd_file'])) {
             throw new \Exception('Could not read '.$config['htpasswd_file']);
@@ -88,7 +88,7 @@ class Htpasswd extends \SimpleSAML\Module\core\Auth\UserPassBase
                 $crypted = $matches[1];
 
                 // This is about the only attribute we can add
-                $attributes = array_merge(array('uid' => array($username)), $this->attributes);
+                $attributes = array_merge(['uid' => [$username]], $this->attributes);
 
                 // Traditional crypt(3)
                 if (\SimpleSAML\Utils\Crypto::secureCompare($crypted, crypt($password, $crypted))) {

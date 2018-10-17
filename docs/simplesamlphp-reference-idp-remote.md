@@ -7,12 +7,12 @@ This is a reference for metadata options available for `metadata/saml20-idp-remo
 
     <?php
     /* The index of the array is the entity ID of this IdP. */
-    $metadata['entity-id-1'] = array(
+    $metadata['entity-id-1'] = [
         /* Configuration options for the first IdP. */
-    );
-    $metadata['entity-id-2'] = array(
+    ];
+    $metadata['entity-id-2'] = [
         /* Configuration options for the second IdP. */
-    );
+    ];
     /* ... */
 
 
@@ -50,10 +50,10 @@ The following options are common between both the SAML 2.0 protocol and Shibbole
 
 :   This option can be translated into multiple languages by specifying the value as an array of language-code to translated name:
 
-        'OrganizationName' => array(
+        'OrganizationName' => [
             'en' => 'Example organization',
             'no' => 'Eksempel organisation',
-        ),
+        ],
 
 :   *Note*: If you specify this option, you must also specify the `OrganizationURL` option.
 
@@ -80,10 +80,10 @@ The following options are common between both the SAML 2.0 protocol and Shibbole
 
 :   This option can be translated into multiple languages by specifying the value as an array of language-code to translated name:
 
-        'name' => array(
+        'name' => [
             'en' => 'A service',
             'no' => 'En tjeneste',
-        ),
+        ],
 
 `scope`
 :   An array with scopes valid for this IdP.

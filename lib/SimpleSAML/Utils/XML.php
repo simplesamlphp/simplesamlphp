@@ -34,7 +34,7 @@ class XML
      */
     public static function checkSAMLMessage($message, $type)
     {
-        $allowed_types = array('saml20', 'saml11', 'saml-meta');
+        $allowed_types = ['saml20', 'saml11', 'saml-meta'];
         if (!(is_string($message) && in_array($type, $allowed_types, true))) {
             throw new \InvalidArgumentException('Invalid input parameters.');
         }
@@ -45,7 +45,7 @@ class XML
         }
 
         // see if debugging is enabled for XML validation
-        $debug = \SimpleSAML\Configuration::getInstance()->getArrayize('debug', array('validatexml' => false));
+        $debug = \SimpleSAML\Configuration::getInstance()->getArrayize('debug', ['validatexml' => false]);
         $enabled = \SimpleSAML\Configuration::getInstance()->getBoolean('debug.validatexml', false);
 
         if (!(in_array('validatexml', $debug, true) // implicitly enabled
@@ -99,7 +99,7 @@ class XML
         }
 
         // see if debugging is enabled for SAML messages
-        $debug = \SimpleSAML\Configuration::getInstance()->getArrayize('debug', array('saml' => false));
+        $debug = \SimpleSAML\Configuration::getInstance()->getArrayize('debug', ['saml' => false]);
 
         if (!(in_array('saml', $debug, true) // implicitly enabled
             || (array_key_exists('saml', $debug) && $debug['saml'] === true)
@@ -163,8 +163,8 @@ class XML
 
         // check what this element contains
         $fullText = ''; // all text in this element
-        $textNodes = array(); // text nodes which should be deleted
-        $childNodes = array(); // other child nodes
+        $textNodes = []; // text nodes which should be deleted
+        $childNodes = []; // other child nodes
         for ($i = 0; $i < $root->childNodes->length; $i++) {
             /** @var \DOMElement $child */
             $child = $root->childNodes->item($i);
@@ -285,7 +285,7 @@ class XML
             throw new \InvalidArgumentException('Invalid input parameters.');
         }
 
-        $ret = array();
+        $ret = [];
 
         for ($i = 0; $i < $element->childNodes->length; $i++) {
             /** @var \DOMElement $child */
@@ -366,7 +366,7 @@ class XML
         // check if the namespace is a shortcut, and expand it if it is
         if ($nsURI[0] === '@') {
             // the defined shortcuts
-            $shortcuts = array(
+            $shortcuts = [
                 '@ds'      => 'http://www.w3.org/2000/09/xmldsig#',
                 '@md'      => 'urn:oasis:names:tc:SAML:2.0:metadata',
                 '@saml1'   => 'urn:oasis:names:tc:SAML:1.0:assertion',
@@ -375,7 +375,7 @@ class XML
                 '@saml2'   => 'urn:oasis:names:tc:SAML:2.0:assertion',
                 '@saml2p'  => 'urn:oasis:names:tc:SAML:2.0:protocol',
                 '@shibmd'  => 'urn:mace:shibboleth:metadata:1.0',
-            );
+            ];
 
             // check if it is a valid shortcut
             if (!array_key_exists($nsURI, $shortcuts)) {

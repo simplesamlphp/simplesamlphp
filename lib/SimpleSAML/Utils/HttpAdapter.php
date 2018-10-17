@@ -52,7 +52,7 @@ class HttpAdapter
     /**
      * @see HTTP::fetch()
      */
-    public function fetch($url, $context = array(), $getHeaders = false)
+    public function fetch($url, $context = [], $getHeaders = false)
     {
         return HTTP::fetch($url, $context, $getHeaders);
     }
@@ -172,7 +172,7 @@ class HttpAdapter
     /**
      * @see HTTP::redirectTrustedURL()
      */
-    public function redirectTrustedURL($url, $parameters = array())
+    public function redirectTrustedURL($url, $parameters = [])
     {
         HTTP::redirectTrustedURL($url, $parameters);
     }
@@ -180,7 +180,7 @@ class HttpAdapter
     /**
      * @see HTTP::redirectUntrustedURL()
      */
-    public function redirectUntrustedURL($url, $parameters = array())
+    public function redirectUntrustedURL($url, $parameters = [])
     {
         HTTP::redirectUntrustedURL($url, $parameters);
     }

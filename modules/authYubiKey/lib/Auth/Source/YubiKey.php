@@ -27,14 +27,14 @@ namespace SimpleSAML\Module\authYubiKey\Auth\Source;
 
 /**
  * YubiKey authentication module, see http://www.yubico.com/developers/intro/
- * *
+ *
  * Configure it by adding an entry to config/authsources.php such as this:
  *
- *	'yubikey' => array(
- *	    'authYubiKey:YubiKey',
- *	    'id' => 997,
- *	    'key' => 'b64hmackey',
- *	),
+ *    'yubikey' => array(
+ *        'authYubiKey:YubiKey',
+ *        'id' => 997,
+ *        'key' => 'b64hmackey',
+ *    ),
  *
  * To generate your own client id/key you will need one YubiKey, and then
  * go to http://yubico.com/developers/api/
@@ -107,7 +107,7 @@ class YubiKey extends \SimpleSAML\Auth\Source
 
         $id = \SimpleSAML\Auth\State::saveState($state, self::STAGEID);
         $url = \SimpleSAML\Module::getModuleURL('authYubiKey/yubikeylogin.php');
-        \SimpleSAML\Utils\HTTP::redirectTrustedURL($url, array('AuthState' => $id));
+        \SimpleSAML\Utils\HTTP::redirectTrustedURL($url, ['AuthState' => $id]);
     }
 
 
@@ -121,7 +121,7 @@ class YubiKey extends \SimpleSAML\Auth\Source
      *
      * @param string $authStateId  The identifier of the authentication state.
      * @param string $otp  The one time password entered-
-     * @return string  Error code in the case of an error.
+     * @return string|null  Error code in the case of an error.
      */
     public static function handleLogin($authStateId, $otp)
     {
@@ -158,6 +158,8 @@ class YubiKey extends \SimpleSAML\Auth\Source
 
         $state['Attributes'] = $attributes;
         \SimpleSAML\Auth\Source::completeAuth($state);
+
+        return null;
     }
 
     /**
@@ -191,13 +193,17 @@ class YubiKey extends \SimpleSAML\Auth\Source
             $yubi = new \Auth_Yubico($this->yubi_id, $this->yubi_key);
             $yubi->verify($otp);
             $uid = self::getYubiKeyPrefix($otp);
-            $attributes = array('uid' => array($uid));
+            $attributes = ['uid' => [$uid]];
         } catch (\Exception $e) {
-            \SimpleSAML\Logger::info('YubiKey:'.$this->authId.': Validation error (otp '.$otp.'), debug output: '.$yubi->getLastResponse());
+            \SimpleSAML\Logger::info(
+                'YubiKey:'.$this->authId.': Validation error (otp '.$otp.'), debug output: '.$yubi->getLastResponse()
+            );
             throw new \SimpleSAML\Error\Error('WRONGUSERPASS', $e);
         }
 
-        \SimpleSAML\Logger::info('YubiKey:'.$this->authId.': YubiKey otp '.$otp.' validated successfully: '.$yubi->getLastResponse());
+        \SimpleSAML\Logger::info(
+            'YubiKey:'.$this->authId.': YubiKey otp '.$otp.' validated successfully: '.$yubi->getLastResponse()
+        );
         return $attributes;
     }
 }

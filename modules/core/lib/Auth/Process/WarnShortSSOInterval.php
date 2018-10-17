@@ -48,6 +48,6 @@ class WarnShortSSOInterval extends \SimpleSAML\Auth\ProcessingFilter
         // Save state and redirect
         $id = \SimpleSAML\Auth\State::saveState($state, 'core:short_sso_interval');
         $url = \SimpleSAML\Module::getModuleURL('core/short_sso_interval.php');
-        \SimpleSAML\Utils\HTTP::redirectTrustedURL($url, array('StateId' => $id));
+        \SimpleSAML\Utils\HTTP::redirectTrustedURL($url, ['StateId' => $id]);
     }
 }

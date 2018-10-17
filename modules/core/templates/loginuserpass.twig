@@ -2,6 +2,10 @@
 
 {% extends "@core/base.twig" %}
 
+{% block postload %}
+    <script src="/{{baseurlpath}}module.php/core/assets/js/loginuserpass.js"></script>
+{% endblock %}
+
 {% block content %}
     {% if errorcode -%}
     <div class="pure-g">
@@ -99,10 +103,10 @@
 
             </div> <!-- form-align-->
             <br><br>
-            <button class="pure-button pure-button-red pure-input-1-2 pure-input-sm-1-1 right" type="submit" onclick="this.value='{{ 'Processing...'|trans }}';" tabindex="6">
+            <button class="pure-button pure-button-red pure-input-1-2 pure-input-sm-1-1 right" id="submit_button" type="submit" tabindex="6">
                 {{ 'Login'|trans }}
             </button>
-
+            <input type='hidden' id="processing_trans" value="{{ 'Processing...'|trans }}" />
             {% for name, value in stateparams -%}
                 <input type="hidden" name="{{ name }}" value="{{ value }}" />
             {%- endfor %}

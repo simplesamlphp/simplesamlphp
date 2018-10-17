@@ -60,6 +60,6 @@ class AdminPassword extends \SimpleSAML\Module\core\Auth\UserPassBase
         if (!\SimpleSAML\Utils\Crypto::pwValid($adminPassword, $password)) {
             throw new \SimpleSAML\Error\Error('WRONGUSERPASS');
         }
-        return array('user' => array('admin'));
+        return ['user' => ['admin']];
     }
 }

@@ -17,14 +17,14 @@ class Module
      *
      * @var array
      */
-    public static $modules = array();
+    public static $modules = [];
 
     /**
      * A cache containing specific information for modules, like whether they are enabled or not, or their hooks.
      *
      * @var array
      */
-    public static $module_info = array();
+    public static $module_info = [];
 
 
     /**
@@ -59,7 +59,7 @@ class Module
     public static function isModuleEnabled($module)
     {
         $config = Configuration::getOptionalConfig();
-        return self::isModuleEnabledWithConf($module, $config->getArray('module.enable', array()));
+        return self::isModuleEnabledWithConf($module, $config->getArray('module.enable', []));
     }
 
 
@@ -219,7 +219,7 @@ class Module
      *
      * @return string The absolute URL to the given resource.
      */
-    public static function getModuleURL($resource, array $parameters = array())
+    public static function getModuleURL($resource, array $parameters = [])
     {
         assert(is_string($resource));
         assert($resource[0] !== '/');
@@ -249,10 +249,10 @@ class Module
 
         $hook_dir = self::getModuleDir($module).'/hooks';
         if (!is_dir($hook_dir)) {
-            return array();
+            return [];
         }
 
-        $hooks = array();
+        $hooks = [];
         $files = scandir($hook_dir);
         foreach ($files as $file) {
             if ($file[0] === '.') {
@@ -264,7 +264,7 @@ class Module
             }
             $hook_name = $matches[1];
             $hook_func = $module.'_hook_'.$hook_name;
-            $hooks[$hook_name] = array('file' => $hook_dir.'/'.$file, 'func' => $hook_func);
+            $hooks[$hook_name] = ['file' => $hook_dir.'/'.$file, 'func' => $hook_func];
         }
         return $hooks;
     }
@@ -285,7 +285,7 @@ class Module
         assert(is_string($hook));
 
         $modules = self::getModules();
-        $config = Configuration::getOptionalConfig()->getArray('module.enable', array());
+        $config = Configuration::getOptionalConfig()->getArray('module.enable', []);
         sort($modules);
         foreach ($modules as $module) {
             if (!self::isModuleEnabledWithConf($module, $config)) {

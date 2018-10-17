@@ -72,8 +72,11 @@ class Facebook extends \SimpleSAML\Auth\Source
         // Call the parent constructor first, as required by the interface
         parent::__construct($info, $config);
 
-        $cfgParse = \SimpleSAML\Configuration::loadFromArray($config, 'authsources['.var_export($this->authId, true).']');
-		
+        $cfgParse = \SimpleSAML\Configuration::loadFromArray(
+            $config,
+            'authsources['.var_export($this->authId, true).']'
+        );
+
         $this->api_key = $cfgParse->getString('api_key');
         $this->secret = $cfgParse->getString('secret');
         $this->req_perms = $cfgParse->getString('req_perms', null);
@@ -93,23 +96,29 @@ class Facebook extends \SimpleSAML\Auth\Source
         // We are going to need the authId in order to retrieve this authentication source later
         $state[self::AUTHID] = $this->authId;
         \SimpleSAML\Auth\State::saveState($state, self::STAGE_INIT);
-		
-        $facebook = new Module\authfacebook\Facebook(array('appId' => $this->api_key, 'secret' => $this->secret), $state);
+
+        $facebook = new Module\authfacebook\Facebook(
+            ['appId' => $this->api_key, 'secret' => $this->secret],
+            $state
+        );
         $facebook->destroySession();
 
         $linkback = Module::getModuleURL('authfacebook/linkback.php');
-        $url = $facebook->getLoginUrl(array('redirect_uri' => $linkback, 'scope' => $this->req_perms));
+        $url = $facebook->getLoginUrl(['redirect_uri' => $linkback, 'scope' => $this->req_perms]);
         \SimpleSAML\Auth\State::saveState($state, self::STAGE_INIT);
 
         \SimpleSAML\Utils\HTTP::redirectTrustedURL($url);
     }
-		
+
 
     public function finalStep(&$state)
     {
         assert(is_array($state));
 
-        $facebook = new Module\authfacebook\Facebook(array('appId' => $this->api_key, 'secret' => $this->secret), $state);
+        $facebook = new Module\authfacebook\Facebook(
+            ['appId' => $this->api_key, 'secret' => $this->secret],
+            $state
+        );
         $uid = $facebook->getUser();
 
         if (isset($uid) && $uid) {
@@ -123,27 +132,27 @@ class Facebook extends \SimpleSAML\Auth\Source
         if (!isset($info)) {
             throw new \SimpleSAML\Error\AuthSource($this->authId, 'Error getting user profile.');
         }
-		
-        $attributes = array();
+
+        $attributes = [];
         foreach ($info as $key => $value) {
             if (is_string($value) && !empty($value)) {
-                $attributes['facebook.'.$key] = array((string) $value);
+                $attributes['facebook.'.$key] = [(string) $value];
             }
         }
 
         if (array_key_exists('third_party_id', $info)) {
-            $attributes['facebook_user'] = array($info['third_party_id'].'@facebook.com');
+            $attributes['facebook_user'] = [$info['third_party_id'].'@facebook.com'];
         } else {
-            $attributes['facebook_user'] = array($uid.'@facebook.com');
+            $attributes['facebook_user'] = [$uid.'@facebook.com'];
         }
 
-        $attributes['facebook_targetedID'] = array('http://facebook.com!'.$uid);
-        $attributes['facebook_cn'] = array($info['name']);
+        $attributes['facebook_targetedID'] = ['http://facebook.com!'.$uid];
+        $attributes['facebook_cn'] = [$info['name']];
 
         \SimpleSAML\Logger::debug('Facebook Returned Attributes: '.implode(", ", array_keys($attributes)));
 
         $state['Attributes'] = $attributes;
-	
+
         $facebook->destroySession();
     }
 }

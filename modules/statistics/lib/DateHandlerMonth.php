@@ -12,7 +12,7 @@ class DateHandlerMonth extends DateHandler
     /**
      * Constructor
      *
-     * @param integer $offset 	Date offset
+     * @param integer $offset Date offset
      */
     public function __construct($offset)
     {

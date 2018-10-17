@@ -18,20 +18,20 @@ $cronconfig = \SimpleSAML\Configuration::getConfig('module_cron.php');
 $key = $cronconfig->getValue('key', '');
 $tags = $cronconfig->getValue('allowed_tags');
 
-$def = array(
+$def = [
     'weekly' => "22 0 * * 0",
     'daily' => "02 0 * * *",
     'hourly' => "01 * * * *",
     'default' => "XXXXXXXXXX",
-);
+];
 
-$urls = array();
+$urls = [];
 foreach ($tags as $tag) {
-    $urls[] = array(
-        'href' => \SimpleSAML\Module::getModuleURL('cron/cron.php', array('key' => $key, 'tag' => $tag)),
+    $urls[] = [
+        'href' => \SimpleSAML\Module::getModuleURL('cron/cron.php', ['key' => $key, 'tag' => $tag]),
         'tag' => $tag,
         'int' => (array_key_exists($tag, $def) ? $def[$tag] : $def['default']),
-    );
+    ];
 }
 
 $t = new \SimpleSAML\XHTML\Template($config, 'cron:croninfo.tpl.php', 'cron:cron');

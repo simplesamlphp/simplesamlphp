@@ -55,7 +55,7 @@ class SQL extends \SimpleSAML\Module\core\Auth\UserPassBase
         parent::__construct($info, $config);
 
         // Make sure that all required parameters are present.
-        foreach (array('dsn', 'username', 'password', 'query') as $param) {
+        foreach (['dsn', 'username', 'password', 'query'] as $param) {
             if (!array_key_exists($param, $config)) {
                 throw new \Exception('Missing required attribute \''.$param.
                     '\' for authentication source '.$this->authId);
@@ -142,7 +142,7 @@ class SQL extends \SimpleSAML\Module\core\Auth\UserPassBase
         }
 
         try {
-            $sth->execute(array('username' => $username, 'password' => $password));
+            $sth->execute(['username' => $username, 'password' => $password]);
         } catch (\PDOException $e) {
             throw new \Exception('sqlauth:'.$this->authId.
                 ': - Failed to execute query: '.$e->getMessage());
@@ -169,10 +169,9 @@ class SQL extends \SimpleSAML\Module\core\Auth\UserPassBase
          * which are present in more than one row will become multivalued. null values and
          * duplicate values will be skipped. All values will be converted to strings.
          */
-        $attributes = array();
+        $attributes = [];
         foreach ($data as $row) {
             foreach ($row as $name => $value) {
-
                 if ($value === null) {
                     continue;
                 }
@@ -180,7 +179,7 @@ class SQL extends \SimpleSAML\Module\core\Auth\UserPassBase
                 $value = (string) $value;
 
                 if (!array_key_exists($name, $attributes)) {
-                    $attributes[$name] = array();
+                    $attributes[$name] = [];
                 }
 
                 if (in_array($value, $attributes[$name], true)) {

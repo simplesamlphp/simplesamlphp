@@ -78,7 +78,7 @@ class ScopeAttribute extends \SimpleSAML\Auth\ProcessingFilter
         }
 
         if (!isset($attributes[$this->targetAttribute])) {
-            $attributes[$this->targetAttribute] = array();
+            $attributes[$this->targetAttribute] = [];
         }
 
         if ($this->onlyIfEmpty && count($attributes[$this->targetAttribute]) > 0) {
