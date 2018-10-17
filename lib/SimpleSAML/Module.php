@@ -166,7 +166,7 @@ class Module
 
         $config = Configuration::getInstance();
         if ($config->getBoolean('usenewui', false) === true) {
-            $router = new Router($module);
+            $router = new HTTP\Router($module);
             try {
                 return $router->process();
             } catch (\Symfony\Component\Config\Exception\FileLocatorFileNotFoundException $e) {

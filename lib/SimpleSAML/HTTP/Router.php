@@ -1,6 +1,9 @@
 <?php
 
-namespace SimpleSAML;
+namespace SimpleSAML\HTTP;
+
+use SimpleSAML\Configuration;
+use SimpleSAML\Session;
 
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\HttpFoundation\Request;
@@ -32,7 +35,7 @@ class Router
     /** @var Request */
     protected $request;
 
-    /** @var \SimpleSAML\ModuleControllerResolver */
+    /** @var \SimpleSAML\Module\ControllerResolver */
     protected $resolver;
 
     /** @var \SimpleSAML\Session */
@@ -51,7 +54,7 @@ class Router
     {
         $this->arguments = new ArgumentResolver();
         $this->context = new RequestContext();
-        $this->resolver = new ModuleControllerResolver($module);
+        $this->resolver = new \SimpleSAML\Module\ControllerResolver($module);
         $this->dispatcher = new EventDispatcher();
     }
 
