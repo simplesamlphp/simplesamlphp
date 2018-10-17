@@ -3,6 +3,8 @@
 namespace SimpleSAML\Module\core;
 
 use SimpleSAML\Error\Exception;
+use SimpleSAML\HTTP\RunnableResponse;
+
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -91,10 +93,10 @@ class Controller
      * @param Request $request The request that lead to this login operation.
      * @param string|null $as The name of the authentication source to use, if any. Optional.
      *
-     * @return \SimpleSAML\XHTML\Template|RedirectResponse An HTML template or a redirect response.
+     * @return \SimpleSAML\XHTML\Template|\SimpleSAML\HTTP\RunnableResponse|RedirectResponse An HTML template, a
+     * redirect or a "runnable" response.
      *
      * @throws \SimpleSAML\Error\Exception
-     * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
     public function login(Request $request, $as = null)
     {
@@ -143,7 +145,7 @@ class Controller
             'ErrorURL' => $url,
             'ReturnTo' => $url,
         );
-        $auth->login($params);
+        return new RunnableResponse([$auth, 'login'], [$params]);
     }
 
 
@@ -152,11 +154,13 @@ class Controller
      *
      * @param string $as The name of the auth source.
      *
+     * @return \SimpleSAML\HTTP\RunnableResponse A runnable response which will actually perform logout.
+     *
      * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
     public function logout($as)
     {
         $as = new \SimpleSAML\Auth\Simple($as);
-        $as->logout($this->config->getBasePath().'logout.php');
+        return new RunnableResponse([$as, 'logout'], [$this->config->getBasePath().'logout.php']);
     }
 }
