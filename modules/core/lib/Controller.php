@@ -105,7 +105,7 @@ class Controller
             unset($this->sources['admin']);
         }
 
-        if (count($this->sources) === 1) { // we only have one source available
+        if (count($this->sources) === 1 && $as === null) { // we only have one source available
             $as = key($this->sources);
         }
 
