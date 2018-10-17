@@ -171,5 +171,6 @@ class GoogleCharts
                 return $target_top;
             }
         }
+        return 1;
     }
 }

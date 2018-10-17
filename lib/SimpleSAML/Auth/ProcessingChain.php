@@ -316,7 +316,7 @@ class ProcessingChain
      *
      * @param string $id The state identifier.
      * @see State::parseStateID()
-     * @return Array The state referenced by the $id parameter.
+     * @return array The state referenced by the $id parameter.
      */
     public static function fetchProcessedState($id)
     {
