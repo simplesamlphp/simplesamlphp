@@ -183,6 +183,9 @@ class ModuleControllerResolver extends ControllerResolver implements ArgumentRes
     public function setSession(Session $session)
     {
         $this->container->set(Session::class, $session);
-        $this->container->register(Session::class)->setSynthetic(true)->setAutowired(true);
+        $this->container->register(Session::class)
+            ->setSynthetic(true)
+            ->setAutowired(true)
+            ->addMethodCall('setConfiguration', [new Reference(Configuration::class)]);
     }
 }
