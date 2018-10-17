@@ -2,6 +2,7 @@
 
 namespace SimpleSAML;
 
+use SimpleSAML\Auth\AuthenticationFactory;
 use SimpleSAML\Error\Exception;
 use Symfony\Component\Config\Exception\FileLocatorFileNotFoundException;
 use Symfony\Component\Config\FileLocator;
@@ -60,6 +61,7 @@ class ModuleControllerResolver extends ControllerResolver implements ArgumentRes
 
         $this->argFactory = new ArgumentMetadataFactory();
         $this->container = new ContainerBuilder();
+        $this->container->autowire(AuthenticationFactory::class, AuthenticationFactory::class);
 
         try {
             $this->routes = $loader->load('routes.yaml');

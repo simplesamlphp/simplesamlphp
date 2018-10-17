@@ -21,6 +21,9 @@ class Controller
     /** @var \SimpleSAML\Configuration */
     protected $config;
 
+    /** @var \SimpleSAML\Auth\AuthenticationFactory */
+    protected $factory;
+
     /** @var \SimpleSAML\Session */
     protected $session;
 
@@ -33,14 +36,19 @@ class Controller
      *
      * It initializes the global configuration and auth source configuration for the controllers implemented here.
      *
-     * @param \SimpleSAML\Configuration $config The configuration to use by the controllers.
-     * @param \SimpleSAML\Session $session The session to use by the controllers.
+     * @param \SimpleSAML\Configuration              $config The configuration to use by the controllers.
+     * @param \SimpleSAML\Session                    $session The session to use by the controllers.
+     * @param \SimpleSAML\Auth\AuthenticationFactory $factory A factory to instantiate \SimpleSAML\Auth\Simple objects.
      *
      * @throws \Exception
      */
-    public function __construct(\SimpleSAML\Configuration $config, \SimpleSAML\Session $session)
-    {
+    public function __construct(
+        \SimpleSAML\Configuration $config,
+        \SimpleSAML\Session $session,
+        \SimpleSAML\Auth\AuthenticationFactory $factory
+    ) {
         $this->config = $config;
+        $this->factory = $factory;
         $this->sources = $config::getOptionalConfig('authsources.php')->toArray();
         $this->session = $session;
     }
@@ -62,7 +70,7 @@ class Controller
             throw new Exception('Invalid authentication source');
         }
 
-        $auth = new \SimpleSAML\Auth\Simple($as);
+        $auth = $this->factory->create($as);
         if (!$auth->isAuthenticated()) {
             // not authenticated, start auth with specified source
             return new RedirectResponse(\SimpleSAML\Module::getModuleURL('core/login/'.urlencode($as)));
@@ -122,7 +130,7 @@ class Controller
         }
 
         // at this point, we have a valid auth source selected, start auth
-        $auth = new \SimpleSAML\Auth\Simple($as);
+        $auth = $this->factory->create($as);
         $as = urlencode($as);
 
         if ($request->get(\SimpleSAML\Auth\State::EXCEPTION_PARAM, false) !== false) {
@@ -160,7 +168,7 @@ class Controller
      */
     public function logout($as)
     {
-        $as = new \SimpleSAML\Auth\Simple($as);
-        return new RunnableResponse([$as, 'logout'], [$this->config->getBasePath().'logout.php']);
+        $auth = new \SimpleSAML\Auth\Simple($as);
+        return new RunnableResponse([$auth, 'logout'], [$this->config->getBasePath().'logout.php']);
     }
 }
