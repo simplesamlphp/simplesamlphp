@@ -98,6 +98,7 @@ class ControllerTest extends ClearStateTestCase
      */
     public function testMultipleAuthSources()
     {
+        $_SERVER['REQUEST_URI'] = '/';
         $asConfig = Configuration::loadFromArray(
             array_merge(
                 $this->authSources,
