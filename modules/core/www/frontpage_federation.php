@@ -121,7 +121,7 @@ foreach ($metaentries['hosted'] as $index => $entity) {
             $metaentries['hosted'][$index][$new] = $entity[$old][$defaultLanguage];
         } elseif (isset($entity[$old][$fallbackLanguage])) {
             $metaentries['hosted'][$index][$new] = $entity[$old][$fallbackLanguage];
-	}
+        }
     }
 }
 foreach ($metaentries['remote'] as $key => $set) {
