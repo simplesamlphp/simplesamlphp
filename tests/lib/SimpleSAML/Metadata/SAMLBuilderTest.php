@@ -160,26 +160,26 @@ class SAMLBuilderTest extends TestCase
 
         $spDesc = $samlBuilder->getEntityDescriptor();
         $acs = $spDesc->getElementsByTagName("AttributeConsumingService");
-	$acs1 = $acs->item(0);
+        $acs1 = $acs->item(0);
         $this->assertFalse($acs1->hasAttribute("isDefault"));
 
-	$metadata['attributes.isDefault'] = true;
+        $metadata['attributes.isDefault'] = true;
 
         $samlBuilder = new SAMLBuilder($entityId);
         $samlBuilder->addMetadata($set, $metadata);
         $spDesc = $samlBuilder->getEntityDescriptor();
         $acs = $spDesc->getElementsByTagName("AttributeConsumingService");
-	$acs1 = $acs->item(0);
+        $acs1 = $acs->item(0);
         $this->assertTrue($acs1->hasAttribute("isDefault"));
         $this->assertEquals("true", $acs1->getAttribute("isDefault"));
 
-	$metadata['attributes.isDefault'] = false;
+        $metadata['attributes.isDefault'] = false;
 
         $samlBuilder = new SAMLBuilder($entityId);
         $samlBuilder->addMetadata($set, $metadata);
         $spDesc = $samlBuilder->getEntityDescriptor();
         $acs = $spDesc->getElementsByTagName("AttributeConsumingService");
-	$acs1 = $acs->item(0);
+        $acs1 = $acs->item(0);
         $this->assertTrue($acs1->hasAttribute("isDefault"));
         $this->assertEquals("false", $acs1->getAttribute("isDefault"));
     }
@@ -207,18 +207,18 @@ class SAMLBuilderTest extends TestCase
 
         $spDesc = $samlBuilder->getEntityDescriptor();
         $acs = $spDesc->getElementsByTagName("AttributeConsumingService");
-	$acs1 = $acs->item(0);
+        $acs1 = $acs->item(0);
         $this->assertTrue($acs1->hasAttribute("index"));
         $this->assertEquals("0", $acs1->getAttribute("index"));
 
-	$metadata['attributes.index'] = 15;
+        $metadata['attributes.index'] = 15;
 
         $samlBuilder = new SAMLBuilder($entityId);
         $samlBuilder->addMetadata($set, $metadata);
 
         $spDesc = $samlBuilder->getEntityDescriptor();
         $acs = $spDesc->getElementsByTagName("AttributeConsumingService");
-	$acs1 = $acs->item(0);
+        $acs1 = $acs->item(0);
         $this->assertTrue($acs1->hasAttribute("index"));
         $this->assertEquals("15", $acs1->getAttribute("index"));
     }

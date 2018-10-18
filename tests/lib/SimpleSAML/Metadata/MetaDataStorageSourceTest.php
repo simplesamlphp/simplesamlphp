@@ -10,7 +10,8 @@ class MetaDataStorageSourceTest extends PHPUnit_Framework_TestCase
      * Test \SimpleSAML\Metadata\MetaDataStorageSourceTest::getConfig XML bad source
      * @expectedException \Exception
      */
-    public function testBadXMLSource() {
+    public function testBadXMLSource()
+    {
         \SimpleSAML\Metadata\MetaDataStorageSource::getSource(["type"=>"xml", "foo"=>"baa"]);
     }
 
@@ -18,7 +19,8 @@ class MetaDataStorageSourceTest extends PHPUnit_Framework_TestCase
      * Test \SimpleSAML\Metadata\MetaDataStorageSourceTest::getConfig invalid static XML source
      * @expectedException Exception
      */
-    public function testInvalidStaticXMLSource() {
+    public function testInvalidStaticXMLSource()
+    {
         $strTestXML = "
 <EntityDescriptor ID=\"_12345678-90ab-cdef-1234-567890abcdef\" entityID=\"https://saml.idp/entityid\" xmlns=\"urn:oasis:names:tc:SAML:2.0:metadata\">
 </EntityDescriptor>
@@ -29,7 +31,8 @@ class MetaDataStorageSourceTest extends PHPUnit_Framework_TestCase
     /**
      * Test \SimpleSAML\Metadata\MetaDataStorageSourceTest::getConfig XML static XML source
      */
-    public function testStaticXMLSource() {
+    public function testStaticXMLSource()
+    {
         $testEntityId = "https://saml.idp/entityid";
         $strTestXML = "
 <EntityDescriptor ID=\"_12345678-90ab-cdef-1234-567890abcdef\" entityID=\"$testEntityId\" xmlns=\"urn:oasis:names:tc:SAML:2.0:metadata\">
@@ -49,8 +52,8 @@ xmlns:fed=\"http://docs.oasis-open.org/wsfed/federation/200706\">
         // As a secondary thing, check that the entity ID from the static source provided can be extracted
         $source = \SimpleSAML\Metadata\MetaDataStorageSource::getSource(["type"=>"xml", "xml"=>$strTestXML]);
         $idpSet = $source->getMetadataSet("saml20-idp-remote");
-        $this->assertArrayHasKey($testEntityId, $idpSet,  "Did not extract expected IdP entity ID from static XML source");
-	// Finally verify that a different entity ID does not get loaded
+        $this->assertArrayHasKey($testEntityId, $idpSet, "Did not extract expected IdP entity ID from static XML source");
+        // Finally verify that a different entity ID does not get loaded
         $this->assertCount(1, $idpSet, "Unexpectedly got metadata for an alternate entity than that defined");
     }
 }

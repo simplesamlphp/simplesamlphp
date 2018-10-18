@@ -5,9 +5,8 @@ use PHPUnit\Framework\TestCase;
 /**
  * Test for the core:ScopeAttribute filter.
  */
-class Test_Core_Auth_Process_ScopeAttribute extends TestCase
+class ScopeAttributeTest extends TestCase
 {
-
     /*
      * Helper function to run the filter with a given configuration.
      *
@@ -17,7 +16,7 @@ class Test_Core_Auth_Process_ScopeAttribute extends TestCase
      */
     private static function processFilter(array $config, array $request)
     {
-        $filter = new \SimpleSAML\Module\core\Auth\Process\ScopeAttribute($config, NULL);
+        $filter = new \SimpleSAML\Module\core\Auth\Process\ScopeAttribute($config, null);
         $filter->process($request);
         return $request;
     }
@@ -63,7 +62,10 @@ class Test_Core_Auth_Process_ScopeAttribute extends TestCase
         ];
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
-        $this->assertEquals($attributes['eduPersonScopedAffiliation'], ['library-walk-in@example.edu', 'member@example.com']);
+        $this->assertEquals(
+            $attributes['eduPersonScopedAffiliation'],
+            ['library-walk-in@example.edu', 'member@example.com']
+        );
     }
 
     /*
@@ -170,7 +172,10 @@ class Test_Core_Auth_Process_ScopeAttribute extends TestCase
         ];
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
-        $this->assertEquals($attributes['eduPersonScopedAffiliation'], ['member@example.com','staff@example.com','faculty@example.com']);
+        $this->assertEquals(
+            $attributes['eduPersonScopedAffiliation'],
+            ['member@example.com','staff@example.com','faculty@example.com']
+        );
     }
 
     /*
@@ -194,26 +199,26 @@ class Test_Core_Auth_Process_ScopeAttribute extends TestCase
         $this->assertEquals($attributes['eduPersonScopedAffiliation'], ['student@example.org']);
     }
 
-	/*
-	 * When the target attribute exists and onlyIfEmpty is set
-	 */
-	public function testOnlyIfEmpty()
-	{
-       $config = [
+    /*
+     * When the target attribute exists and onlyIfEmpty is set
+     */
+    public function testOnlyIfEmpty()
+    {
+        $config = [
             'scopeAttribute' => 'schacHomeOrganization',
             'sourceAttribute' => 'eduPersonAffiliation',
             'targetAttribute' => 'eduPersonScopedAffiliation',
-			'onlyIfEmpty' => true,
-       ];
+            'onlyIfEmpty' => true,
+        ];
         $request = [
             'Attributes' => [
                 'schacHomeOrganization' => ['example.org'],
                 'eduPersonAffiliation' => ['student'],
-				'eduPersonScopedAffiliation' => ['staff@example.org', 'member@example.org'],
+                'eduPersonScopedAffiliation' => ['staff@example.org', 'member@example.org'],
             ]
         ];
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
         $this->assertEquals($attributes['eduPersonScopedAffiliation'], ['staff@example.org', 'member@example.org']);
-	}
+    }
 }

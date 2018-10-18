@@ -5,7 +5,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * Test for the core:AttributeLimit filter.
  */
-class Test_Core_Auth_Process_AttributeLimitTest extends TestCase
+class AttributeLimitTest extends TestCase
 {
     /**
      * Helper function to run the filter with a given configuration.
@@ -16,7 +16,7 @@ class Test_Core_Auth_Process_AttributeLimitTest extends TestCase
      */
     private static function processFilter(array $config, array $request)
     {
-        $filter = new \SimpleSAML\Module\core\Auth\Process\AttributeLimit($config, NULL);
+        $filter = new \SimpleSAML\Module\core\Auth\Process\AttributeLimit($config, null);
         $filter->process($request);
         return $request;
     }
@@ -54,7 +54,7 @@ class Test_Core_Auth_Process_AttributeLimitTest extends TestCase
 
         $config = [
             'cn',
-            'default' => TRUE,
+            'default' => true,
         ];
 
         $result = self::processFilter($config, $request);
@@ -64,8 +64,6 @@ class Test_Core_Auth_Process_AttributeLimitTest extends TestCase
         $this->assertArrayNotHasKey('eduPersonTargetedID', $attributes);
         $this->assertArrayNotHasKey('eduPersonAffiliation', $attributes);
         $this->assertCount(2, $attributes);
-
-
     }
 
     /**
@@ -100,7 +98,7 @@ class Test_Core_Auth_Process_AttributeLimitTest extends TestCase
 
         $config = [
             'cn',
-            'default' => TRUE,
+            'default' => true,
         ];
 
         $result = self::processFilter($config, $request);
@@ -139,7 +137,7 @@ class Test_Core_Auth_Process_AttributeLimitTest extends TestCase
                  'mail' => ['user@example.org'],
             ],
             'Destination' => [
-		'attributes' => ['cn','mail'],
+                'attributes' => ['cn','mail'],
             ],
             'Source' => [
             ],
@@ -168,7 +166,7 @@ class Test_Core_Auth_Process_AttributeLimitTest extends TestCase
     public function testDefaultWithMetadata()
     {
         $config = [
-            'default' => TRUE,
+            'default' => true,
         ];
 
         $result = self::processFilter($config, self::$request);
@@ -184,7 +182,7 @@ class Test_Core_Auth_Process_AttributeLimitTest extends TestCase
     public function testDefaultWithAttrs()
     {
         $config = [
-            'default' => TRUE,
+            'default' => true,
             'eduPersonTargetedID', 'eduPersonAffiliation',
         ];
 
@@ -205,7 +203,7 @@ class Test_Core_Auth_Process_AttributeLimitTest extends TestCase
     public function testInvalidConfig()
     {
         $config = [
-            'invalidArg' => TRUE,
+            'invalidArg' => true,
         ];
 
         self::processFilter($config, self::$request);
@@ -219,7 +217,7 @@ class Test_Core_Auth_Process_AttributeLimitTest extends TestCase
     public function testInvalidAttributeName()
     {
         $config = [
-		null
+            null
         ];
 
         self::processFilter($config, self::$request);
@@ -232,7 +230,7 @@ class Test_Core_Auth_Process_AttributeLimitTest extends TestCase
     public function testMatchAttributeValues()
     {
         $config = [
-		'eduPersonAffiliation' => ['member']
+            'eduPersonAffiliation' => ['member']
         ];
 
         $result = self::processFilter($config, self::$request);
@@ -242,7 +240,7 @@ class Test_Core_Auth_Process_AttributeLimitTest extends TestCase
         $this->assertEquals($attributes['eduPersonAffiliation'], ['member']);
 
         $config = [
-		'eduPersonAffiliation' => ['member','staff']
+            'eduPersonAffiliation' => ['member','staff']
         ];
 
         $result = self::processFilter($config, self::$request);
@@ -252,22 +250,22 @@ class Test_Core_Auth_Process_AttributeLimitTest extends TestCase
         $this->assertEquals($attributes['eduPersonAffiliation'], ['member']);
 
         $config = [
-		'eduPersonAffiliation' => ['student']
+            'eduPersonAffiliation' => ['student']
         ];
         $result = self::processFilter($config, self::$request);
         $attributes = $result['Attributes'];
         $this->assertCount(0, $attributes);
 
         $config = [
-		'eduPersonAffiliation' => ['student','staff']
+            'eduPersonAffiliation' => ['student','staff']
         ];
         $result = self::processFilter($config, self::$request);
         $attributes = $result['Attributes'];
         $this->assertCount(0, $attributes);
     }
 
-    public function testBadOptionsNotTreatedAsValidValues() {
-
+    public function testBadOptionsNotTreatedAsValidValues()
+    {
         // Ensure really misconfigured ignoreCase and regex options are not interpretted as valid valus
         $config = [
             'eduPersonAffiliation' => ['ignoreCase' => 'member', 'nomatch'],
@@ -282,7 +280,8 @@ class Test_Core_Auth_Process_AttributeLimitTest extends TestCase
      * Verify that the true value for ignoreCase doesn't get converted into a string ('1') by
      * php and matched against an attribute value of '1'
      */
-    public function testThatIgnoreCaseOptionNotMatchBooleanAsStringValue() {
+    public function testThatIgnoreCaseOptionNotMatchBooleanAsStringValue()
+    {
         $config = [
             'someAttribute' => ['ignoreCase' => true, 'someValue']
         ];
@@ -473,7 +472,7 @@ class Test_Core_Auth_Process_AttributeLimitTest extends TestCase
     public function testNoIntersection()
     {
         $config = [
-            'default' => TRUE,
+            'default' => true,
         ];
 
         $request = [

@@ -32,7 +32,7 @@ class ExitTestException extends \Exception
  * - Use introspection to make startSSO2Test available
  * - Override sendSAML2AuthnRequest() to catch the AuthnRequest being sent
  */
-class SP_Tester extends \SimpleSAML\Module\saml\Auth\Source\SP
+class SPTester extends \SimpleSAML\Module\saml\Auth\Source\SP
 {
 
     public function __construct($info, $config)
@@ -68,7 +68,7 @@ class SP_Tester extends \SimpleSAML\Module\saml\Auth\Source\SP
 /**
  * Set of test cases for \SimpleSAML\Module\saml\Auth\Source\SP.
  */
-class SP_Test extends TestCase
+class SPTest extends TestCase
 {
 
     private $idpMetadata = null;
@@ -141,7 +141,7 @@ class SP_Test extends TestCase
     {
         $info = ['AuthId' => 'default-sp'];
         $config = [];
-        $as = new SP_Tester($info, $config);
+        $as = new SPTester($info, $config);
 
         /** @var \SAML2\AuthnRequest $ar */
         $ar = null;

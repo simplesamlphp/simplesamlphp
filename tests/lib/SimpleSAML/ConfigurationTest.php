@@ -5,7 +5,7 @@ use \SimpleSAML\Configuration;
 /**
  * Tests for \SimpleSAML\Configuration
  */
-class Test_Configuration extends SimpleSAML\Test\Utils\ClearStateTestCase
+class ConfigurationTest extends SimpleSAML\Test\Utils\ClearStateTestCase
 {
     /**
      * Test \SimpleSAML\Configuration::getVersion()
@@ -364,7 +364,8 @@ class Test_Configuration extends SimpleSAML\Test\Utils\ClearStateTestCase
     /**
      * Test \SimpleSAML\Configuration::getValueValidate()
      */
-    public function testGetValueValidate() {
+    public function testGetValueValidate()
+    {
         $c = Configuration::loadFromArray([
             'opt' => 'b',
         ]);
@@ -439,7 +440,8 @@ class Test_Configuration extends SimpleSAML\Test\Utils\ClearStateTestCase
     }
 
     /**
-     * Test \SimpleSAML\Configuration::getArrayizeString() option with an array that contains something that isn't a string.
+     * Test \SimpleSAML\Configuration::getArrayizeString() option
+     * with an array that contains something that isn't a string.
      * @expectedException Exception
      */
     public function testGetArrayizeStringWrongValue()

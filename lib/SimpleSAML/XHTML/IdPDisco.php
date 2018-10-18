@@ -595,31 +595,34 @@ class IdPDisco
         $tryLanguages = [0 => $language, 1 => $defaultLanguage, 2 => $fallbackLanguage];
 
         $newlist = [];
-        foreach($idpList as $entityid => $data) {
+        foreach ($idpList as $entityid => $data) {
             $newlist[$entityid]['entityid'] = $entityid;
-            foreach ( $tryLanguages as $lang ) {
-                if ( $name = $this->getEntityDisplayName($data, $lang) ) {
+            foreach ($tryLanguages as $lang) {
+                if ($name = $this->getEntityDisplayName($data, $lang)) {
                     $newlist[$entityid]['name'] = $name;
                     continue;
                 }
             }
-            if ( empty($newlist[$entityid]['name']) ) {
+            if (empty($newlist[$entityid]['name'])) {
                 $newlist[$entityid]['name'] = $entityid;
             }
-            foreach ( $tryLanguages as $lang ) {
-                if ( !empty($data['description'][$lang]) ) {
+            foreach ($tryLanguages as $lang) {
+                if (!empty($data['description'][$lang])) {
                     $newlist[$entityid]['description'] = $data['description'][$lang];
                     continue;
                 }
             }
-            if ( !empty($data['icon']) ) {
+            if (!empty($data['icon'])) {
                 $newlist[$entityid]['icon'] = $data['icon'];
                 $newlist[$entityid]['iconurl'] = \SimpleSAML\Utils\HTTP::resolveURL($data['icon']);
             }
         }
-        usort($newlist, function($idpentry1, $idpentry2) {
-            return strcasecmp($idpentry1['name'],$idpentry2['name']);
-            });
+        usort(
+            $newlist,
+            function ($idpentry1, $idpentry2) {
+                return strcasecmp($idpentry1['name'], $idpentry2['name']);
+            }
+        );
 
         $t->data['idplist'] = $newlist;
         $t->data['preferredidp'] = $preferredIdP;
@@ -633,11 +636,11 @@ class IdPDisco
 
     private function getEntityDisplayName(array $idpData, $language)
     {
-        if(isset($idpData['UIInfo']['DisplayName'][$language]) ) {
+        if (isset($idpData['UIInfo']['DisplayName'][$language])) {
             return $idpData['UIInfo']['DisplayName'][$language];
-        } elseif ( isset($idpData['name'][$language]) ) {
+        } elseif (isset($idpData['name'][$language])) {
             return $idpData['name'][$language];
-        } elseif ( isset($idpData['OrganizationDisplayName'][$language]) ) {
+        } elseif (isset($idpData['OrganizationDisplayName'][$language])) {
             return $idpData['OrganizationDisplayName'][$language];
         }
         return null;

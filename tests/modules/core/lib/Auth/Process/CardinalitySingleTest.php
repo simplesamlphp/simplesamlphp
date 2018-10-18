@@ -7,7 +7,7 @@ if (class_exists('\PHPUnit\Framework\TestCase', true) and !class_exists('\PHPUni
 /**
  * Test for the core:CardinalitySingle filter.
  */
-class Test_Core_Auth_Process_CardinalitySingleTest extends \PHPUnit_Framework_TestCase
+class CardinalitySingleTest extends \PHPUnit_Framework_TestCase
 {
     private $http;
 

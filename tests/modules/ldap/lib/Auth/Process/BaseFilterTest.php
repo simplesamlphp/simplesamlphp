@@ -2,7 +2,7 @@
 
 use PHPUnit\Framework\TestCase;
 
-class BaseFilter_Test extends TestCase
+class BaseFilterTest extends TestCase
 {
     public function testVarExportHidesLdapPassword()
     {

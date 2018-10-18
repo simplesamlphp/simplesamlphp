@@ -27,7 +27,8 @@ class UserPassOrgBaseTest extends \PHPUnit_Framework_TestCase
 
         // When PHP 5.4 support is dropped, replace with:
         // $mockUserPassOrgBase = $this->getMockBuilder(\SimpleSAML\Module\core\Auth\UserPassOrgBase::class)
-        $mockUserPassOrgBase = $this->getMockBuilder(get_parent_class(new \SimpleSAML\Module\ldap\Auth\Source\LDAPMulti(['AuthId' => 'my-org'], [])))
+        $multi = new \SimpleSAML\Module\ldap\Auth\Source\LDAPMulti(['AuthId' => 'my-org']);
+        $mockUserPassOrgBase = $this->getMockBuilder(get_parent_class($multi, []))
             ->setConstructorArgs([['AuthId' => 'my-org'], &$config])
             ->setMethods([])
             ->getMockForAbstractClass();

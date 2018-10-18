@@ -5,7 +5,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * Test for the core:AttributeAlter filter.
  */
-class Test_Core_Auth_Process_AttributeAlter extends TestCase
+class AttributeAlterTest extends TestCase
 {
 
     /**
@@ -91,9 +91,11 @@ class Test_Core_Auth_Process_AttributeAlter extends TestCase
 
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
-        $this->assertEquals($attributes,
+        $this->assertEquals(
+            $attributes,
             ['something' => ['somevalue'],
-            'somethingelse' => ['someothervalue']]);
+            'somethingelse' => ['someothervalue']]
+        );
     }
 
     /**
