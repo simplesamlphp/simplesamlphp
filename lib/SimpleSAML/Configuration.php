@@ -1286,7 +1286,7 @@ class Configuration implements Utils\ClearableState
         $loc = $this->location.'['.var_export($name, true).']';
 
         if (is_string($ret)) {
-            $ret = ['en' => $ret,];
+            $ret = ['en' => $ret];
         }
 
         if (!is_array($ret)) {
