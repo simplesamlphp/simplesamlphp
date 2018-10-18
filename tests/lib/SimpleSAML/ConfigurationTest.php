@@ -210,7 +210,7 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
     public function testGetBaseDir()
     {
         $c = Configuration::loadFromArray([]);
-        $this->assertEquals($c->getBaseDir(), dirname(dirname(dirname(dirname(__FILE__)))) . '/');
+        $this->assertEquals($c->getBaseDir(), dirname(dirname(dirname(dirname(__FILE__)))).'/');
 
         $c = Configuration::loadFromArray([
             'basedir' => '/basedir',
@@ -487,8 +487,8 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
     {
         $c = Configuration::loadFromArray([
             'opts' => [
-               'a' => ['opt1' => 'value1'],
-               'b' => ['opt2' => 'value2'],
+                'a' => ['opt1' => 'value1'],
+                'b' => ['opt2' => 'value2'],
             ],
         ]);
         $this->assertEquals($c->getConfigList('missing_opt', '--missing--'), '--missing--');

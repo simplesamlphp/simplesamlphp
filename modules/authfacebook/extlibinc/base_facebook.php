@@ -828,7 +828,7 @@ abstract class BaseFacebook
 
         $response_params = json_decode($access_token_response, true);
         if (!isset($response_params['access_token'])) {
-            self::errorLog('No access token in response. ' . $access_token_response);
+            self::errorLog('No access token in response. '.$access_token_response);
             return false;
         }
 

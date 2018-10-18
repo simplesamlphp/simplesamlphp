@@ -135,7 +135,7 @@ class XMLTest extends TestCase
         $element->appendChild(new \DOMText($data2));
 
         $res = XML::getDOMText($element);
-        $expected = $data1 . $data2 . $data1 . $data2;
+        $expected = $data1.$data2.$data1.$data2;
 
         $this->assertEquals($expected, $res);
     }

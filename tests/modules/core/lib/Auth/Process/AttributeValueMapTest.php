@@ -151,7 +151,7 @@ class AttributeValueMapTest extends TestCase
         $attributes = $result['Attributes'];
         $this->assertArrayHasKey('memberOf', $attributes);
         $this->assertArrayHasKey('eduPersonAffiliation', $attributes);
-        $this->assertEquals($attributes['eduPersonAffiliation'], ['someValue','member']);
+        $this->assertEquals($attributes['eduPersonAffiliation'], ['someValue', 'member']);
     }
 
 

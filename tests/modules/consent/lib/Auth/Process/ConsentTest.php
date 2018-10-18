@@ -185,9 +185,15 @@ class ConsentTest extends TestCase
     {
         $reflection = new \ReflectionClass('\SimpleSAML\Module\consent\Auth\Process\Consent');
 
-        foreach ([
-            'includeValues', 'checked', 'focus', 'hiddenAttributes', 'noconsentattributes', 'showNoConsentAboutService'
-                 ] as $v) {
+        $values = [
+            'includeValues',
+            'checked',
+            'focus',
+            'hiddenAttributes',
+            'noconsentattributes',
+            'showNoConsentAboutService'
+        ];
+        foreach ($values as $v) {
             $instanceVars[$v] = $reflection->getProperty($v);
             $instanceVars[$v]->setAccessible(true);
         }

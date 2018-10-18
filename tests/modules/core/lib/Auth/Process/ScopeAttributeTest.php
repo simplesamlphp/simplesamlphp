@@ -169,14 +169,14 @@ class ScopeAttributeTest extends TestCase
         $request = [
             'Attributes' => [
                 'eduPersonPrincipalName' => ['jdoe@example.com'],
-                'eduPersonAffiliation' => ['member','staff','faculty'],
+                'eduPersonAffiliation' => ['member', 'staff', 'faculty'],
             ]
         ];
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
         $this->assertEquals(
             $attributes['eduPersonScopedAffiliation'],
-            ['member@example.com','staff@example.com','faculty@example.com']
+            ['member@example.com', 'staff@example.com', 'faculty@example.com']
         );
     }
 

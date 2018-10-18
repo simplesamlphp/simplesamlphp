@@ -48,7 +48,7 @@ class AttributeCopyTest extends TestCase
     public function testArray()
     {
         $config = [
-            'test' => ['new1','new2'],
+            'test' => ['new1', 'new2'],
         ];
         $request = [
             'Attributes' => ['test' => ['AAP']],
@@ -97,14 +97,14 @@ class AttributeCopyTest extends TestCase
             'test2' => 'new2',
         ];
         $request = [
-            'Attributes' => ['test1' => ['val1'], 'test2' => ['val2.1','val2.2']],
+            'Attributes' => ['test1' => ['val1'], 'test2' => ['val2.1', 'val2.2']],
         ];
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
         $this->assertArrayHasKey('new1', $attributes);
         $this->assertEquals($attributes['new1'], ['val1']);
         $this->assertArrayHasKey('new2', $attributes);
-        $this->assertEquals($attributes['new2'], ['val2.1','val2.2']);
+        $this->assertEquals($attributes['new2'], ['val2.1', 'val2.2']);
     }
 
     /**

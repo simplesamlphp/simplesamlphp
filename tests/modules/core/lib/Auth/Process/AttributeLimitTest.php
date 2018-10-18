@@ -42,7 +42,7 @@ class AttributeLimitTest extends TestCase
             'Destination' => [
             ],
             'Source' => [
-                'attributes' => ['cn','mail'],
+                'attributes' => ['cn', 'mail'],
             ],
         ];
 
@@ -139,7 +139,7 @@ class AttributeLimitTest extends TestCase
                  'mail' => ['user@example.org'],
             ],
             'Destination' => [
-                'attributes' => ['cn','mail'],
+                'attributes' => ['cn', 'mail'],
             ],
             'Source' => [
             ],
@@ -242,7 +242,7 @@ class AttributeLimitTest extends TestCase
         $this->assertEquals($attributes['eduPersonAffiliation'], ['member']);
 
         $config = [
-            'eduPersonAffiliation' => ['member','staff']
+            'eduPersonAffiliation' => ['member', 'staff']
         ];
 
         $result = self::processFilter($config, self::$request);
@@ -259,7 +259,7 @@ class AttributeLimitTest extends TestCase
         $this->assertCount(0, $attributes);
 
         $config = [
-            'eduPersonAffiliation' => ['student','staff']
+            'eduPersonAffiliation' => ['student', 'staff']
         ];
         $result = self::processFilter($config, self::$request);
         $attributes = $result['Attributes'];
@@ -315,7 +315,7 @@ class AttributeLimitTest extends TestCase
         $this->assertEquals($attributes['eduPersonAffiliation'], ['member']);
 
         $config = [
-            'eduPersonAffiliation' => ['ignoreCase' => true, 'membeR','sTaff']
+            'eduPersonAffiliation' => ['ignoreCase' => true, 'membeR', 'sTaff']
         ];
 
         $result = self::processFilter($config, self::$request);
@@ -332,7 +332,7 @@ class AttributeLimitTest extends TestCase
         $this->assertCount(0, $attributes);
 
         $config = [
-            'eduPersonAffiliation' => ['ignoreCase' => true, 'studeNt','sTaff']
+            'eduPersonAffiliation' => ['ignoreCase' => true, 'studeNt', 'sTaff']
         ];
         $result = self::processFilter($config, self::$request);
         $attributes = $result['Attributes'];
