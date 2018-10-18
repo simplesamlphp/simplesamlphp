@@ -34,7 +34,7 @@ class CryptoTest extends TestCase
      *
      * @expectedException \InvalidArgumentException
      *
-     * @covers \SimpleSAML\Utils\Crypto::_aesDecrypt
+     * @covers \SimpleSAML\Utils\Crypto::aesDecrypt
      */
     public function testAesDecryptBadInput()
     {
@@ -50,7 +50,7 @@ class CryptoTest extends TestCase
      *
      * @expectedException \InvalidArgumentException
      *
-     * @covers \SimpleSAML\Utils\Crypto::_aesEncrypt
+     * @covers \SimpleSAML\Utils\Crypto::aesEncrypt
      */
     public function testAesEncryptBadInput()
     {
@@ -65,7 +65,7 @@ class CryptoTest extends TestCase
      * Test that aesDecrypt() works properly, being able to decrypt some previously known (and correct)
      * ciphertext.
      *
-     * @covers \SimpleSAML\Utils\Crypto::_aesDecrypt
+     * @covers \SimpleSAML\Utils\Crypto::aesDecrypt
      */
     public function testAesDecrypt()
     {
@@ -86,8 +86,8 @@ class CryptoTest extends TestCase
     /**
      * Test that aesEncrypt() produces ciphertexts that aesDecrypt() can decrypt.
      *
-     * @covers \SimpleSAML\Utils\Crypto::_aesDecrypt
-     * @covers \SimpleSAML\Utils\Crypto::_aesEncrypt
+     * @covers \SimpleSAML\Utils\Crypto::aesDecrypt
+     * @covers \SimpleSAML\Utils\Crypto::aesEncrypt
      */
     public function testAesEncrypt()
     {
