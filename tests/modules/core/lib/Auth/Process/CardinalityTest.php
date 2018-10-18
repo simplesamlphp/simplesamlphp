@@ -244,6 +244,6 @@ class CardinalityTest extends \PHPUnit_Framework_TestCase
                 'mail' => ['joe@example.com', 'bob@example.com'],
             ],
         ];
-        self::processFilter($config, $request);
+        $this->processFilter($config, $request);
     }
 }
