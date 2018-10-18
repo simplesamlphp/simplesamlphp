@@ -34,7 +34,6 @@ if (!empty($xmldata)) {
     foreach ($output as $type => &$entities) {
         $text = '';
         foreach ($entities as $entityId => $entityMetadata) {
-
             if ($entityMetadata === null) {
                 continue;
             }
