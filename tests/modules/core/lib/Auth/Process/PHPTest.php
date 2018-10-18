@@ -1,5 +1,7 @@
 <?php
 
+namespace SimpleSAML\Test\Module\core\Auth\Process;
+
 use PHPUnit\Framework\TestCase;
 
 /**

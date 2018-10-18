@@ -1,5 +1,7 @@
 <?php
 
+namespace SimpleSAML\Test\Metadata;
+
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Metadata\SAMLBuilder;
 

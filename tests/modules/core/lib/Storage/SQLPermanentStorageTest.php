@@ -1,5 +1,7 @@
 <?php
 
+namespace SimpleSAML\Test\Module\core\Storage;
+
 use PHPUnit\Framework\TestCase;
 
 /**

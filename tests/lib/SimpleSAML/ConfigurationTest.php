@@ -1,11 +1,13 @@
 <?php
 
+namespace SimpleSAML\Test;
+
 use \SimpleSAML\Configuration;
 
 /**
  * Tests for \SimpleSAML\Configuration
  */
-class ConfigurationTest extends SimpleSAML\Test\Utils\ClearStateTestCase
+class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
 {
     /**
      * Test \SimpleSAML\Configuration::getVersion()
@@ -753,7 +755,7 @@ class ConfigurationTest extends SimpleSAML\Test\Utils\ClearStateTestCase
         try {
             $c->getDefaultEndpoint('SingleLogoutService', $valid_bindings);
             $this->fail('Failed to detect invalid endpoint binding.');
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             $this->assertEquals(
                 '[ARRAY][\'SingleLogoutService\']:Could not find a supported SingleLogoutService '.'endpoint.',
                 $e->getMessage()
@@ -764,7 +766,7 @@ class ConfigurationTest extends SimpleSAML\Test\Utils\ClearStateTestCase
         try {
             $c->getDefaultEndpoint('SingleSignOnService');
             $this->fail('No valid metadata set specified.');
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             $this->assertStringStartsWith('Missing default binding for', $e->getMessage());
         }
     }
@@ -867,7 +869,7 @@ class ConfigurationTest extends SimpleSAML\Test\Utils\ClearStateTestCase
             $c = Configuration::loadFromArray($a);
             try {
                 $c->getEndpoints('SingleSignOnService');
-            } catch (Exception $e) {
+            } catch (\Exception $e) {
                 $this->assertStringEndsWith($msgs[$i], $e->getMessage());
             }
         }

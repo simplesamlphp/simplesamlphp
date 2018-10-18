@@ -9,7 +9,6 @@
  * @package simplesamlphp/simplesamlphp
  */
 
-
 namespace SimpleSAML\Test\XML;
 
 use PHPUnit\Framework\TestCase;

@@ -1,4 +1,7 @@
 <?php
+
+namespace SimpleSAML\Test\Module\core\Auth\Process;
+
 // Alias the PHPUnit 6.0 ancestor if available, else fall back to legacy ancestor
 if (class_exists('\PHPUnit\Framework\TestCase', true) and !class_exists('\PHPUnit_Framework_TestCase', true)) {
     class_alias('\PHPUnit\Framework\TestCase', '\PHPUnit_Framework_TestCase', true);

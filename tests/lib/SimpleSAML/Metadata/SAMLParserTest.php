@@ -1,6 +1,6 @@
 <?php
 
-namespace SimpleSAML\Metadata;
+namespace SimpleSAML\Test\Metadata;
 
 use PHPUnit\Framework\TestCase;
 

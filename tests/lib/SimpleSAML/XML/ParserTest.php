@@ -8,7 +8,6 @@
  * file that was distributed with this source code.
  */
 
-
 namespace SimpleSAML\Test\XML;
 
 use PHPUnit\Framework\TestCase;

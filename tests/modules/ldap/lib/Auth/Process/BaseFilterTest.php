@@ -1,5 +1,7 @@
 <?php
 
+namespace SimpleSAML\Test\Module\ldap\Auth\Process;
+
 use PHPUnit\Framework\TestCase;
 
 class BaseFilterTest extends TestCase

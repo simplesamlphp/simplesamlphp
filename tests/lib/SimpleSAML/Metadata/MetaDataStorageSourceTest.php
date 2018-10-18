@@ -1,10 +1,12 @@
 <?php
 
+namespace SimpleSAML\Test\Metadata;
+
 /**
  * Class MetaDataStorageSourceTest
  */
 
-class MetaDataStorageSourceTest extends PHPUnit_Framework_TestCase
+class MetaDataStorageSourceTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Test \SimpleSAML\Metadata\MetaDataStorageSourceTest::getConfig XML bad source

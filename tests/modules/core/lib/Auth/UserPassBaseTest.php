@@ -1,5 +1,7 @@
 <?php
 
+namespace SimpleSAML\Test\Module\core\Auth;
+
 class UserPassBaseTest extends \PHPUnit_Framework_TestCase
 {
     public function testAuthenticateECPCallsLoginAndSetsAttributes()
