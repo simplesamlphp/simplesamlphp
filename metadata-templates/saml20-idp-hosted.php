@@ -26,10 +26,10 @@ $metadata['__DYNAMIC:1__'] = [
     /* Uncomment the following to use the uri NameFormat on attributes. */
     /*
     'attributes.NameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
-    'authproc' => array(
+    'authproc' => [
         // Convert LDAP names to oids.
-        100 => array('class' => 'core:AttributeMap', 'name2oid'),
-    ),
+        100 => ['class' => 'core:AttributeMap', 'name2oid'],
+    ],
     */
 
     /*
@@ -39,13 +39,13 @@ $metadata['__DYNAMIC:1__'] = [
      * for more information.
      */
     /*
-    'RegistrationInfo' => array(
+    'RegistrationInfo' => [
         'authority' => 'urn:mace:example.org',
         'instant' => '2008-01-17T11:28:03Z',
-        'policies' => array(
+        'policies' => [
             'en' => 'http://example.org/policy',
             'es' => 'http://example.org/politica',
-        ),
-    ),
+        ],
+    ],
     */
 ];
