@@ -402,11 +402,15 @@ class SAML2
 
         $sessionLostParams = [
             'spentityid' => $spEntityId,
-            'cookieTime' => time(),
         ];
         if ($relayState !== null) {
             $sessionLostParams['RelayState'] = $relayState;
         }
+        /*
+        Putting cookieTime as the last parameter makes unit testing easier since we don't need to handle a
+        changing time component in the middle of the url
+        */
+        $sessionLostParams['cookieTime'] = time();
 
         $sessionLostURL = \SimpleSAML\Utils\HTTP::addURLParameters(
             \SimpleSAML\Utils\HTTP::getSelfURLNoQuery(),

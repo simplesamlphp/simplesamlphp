@@ -18,7 +18,7 @@ class StateClearer
      * Class that implement \SimpleSAML\Utils\ClearableState and should have clearInternalState called between tests
      * @var array
      */
-    private $clearableState = ['SimpleSAML\Configuration'];
+    private $clearableState = ['SimpleSAML\Configuration', 'SimpleSAML\Metadata\MetaDataStorageHandler'];
 
     /**
      * Environmental variables to unset
