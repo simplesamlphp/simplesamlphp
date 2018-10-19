@@ -28,6 +28,9 @@ class SAML2Test extends ClearStateTestCase
         $_SERVER['PHP_AUTH_PW'] = 'password';
         unset($_SERVER['PHP_AUTH_USER']);
         $state = [];
+        Configuration::loadFromArray([
+            'baseurlpath' => 'https://idp.example.com/',
+        ], '', 'simplesaml');
 
         \SimpleSAML\Module\saml\IdP\SAML2::processSOAPAuthnRequest($state);
     }
@@ -52,7 +55,7 @@ class SAML2Test extends ClearStateTestCase
         '\SimpleSAML\Auth\State.exceptionFunc' => ['\SimpleSAML\Module\saml\IdP\SAML2', 'handleAuthError'],
         'saml:RelayState' => null,
         'saml:RequestId' => null,
-        'saml:IDPList' => Array (),
+        'saml:IDPList' => [],
         'saml:ProxyCount' => null,
         'saml:RequesterID' => null,
         'ForceAuthn' => false,
@@ -75,7 +78,7 @@ class SAML2Test extends ClearStateTestCase
         $this->assertStringStartsWith(
             'http://idp.examlple.com/saml2/idp/SSOService.php?spentityid=https%3A%2F%2Fsome-sp-entity-id&cookie',
             $state['\SimpleSAML\Auth\State.restartURL']
-            );
+        );
         unset($state['saml:AuthnRequestReceivedAt']); // timestamp can't be tested in equality assertion
         unset($state['SPMetadata']); // entityid asserted above
         unset($state['\SimpleSAML\Auth\State.restartURL']); // url contains a cookie time which varies by test
@@ -121,6 +124,61 @@ class SAML2Test extends ClearStateTestCase
     }
 
     /**
+     * Test that invoking the idp initiated endpoint using minimum shib params works
+     */
+    public function testIdPInitShibCompatyMinimumParams()
+    {
+        //https://wiki.shibboleth.net/confluence/display/IDP30/UnsolicitedSSOConfiguration
+        // Shib uses the param providerId instead of spentityid
+        $state = $this->idpInitiatedHelper(['providerId' => 'https://some-sp-entity-id']);
+        $this->assertEquals('https://some-sp-entity-id', $state['SPMetadata']['entityid']);
+
+        $this->assertStringStartsWith(
+            'http://idp.examlple.com/saml2/idp/SSOService.php?spentityid=https%3A%2F%2Fsome-sp-entity-id&cookie',
+            $state['\SimpleSAML\Auth\State.restartURL']
+        );
+        unset($state['saml:AuthnRequestReceivedAt']); // timestamp can't be tested in equality assertion
+        unset($state['SPMetadata']); // entityid asserted above
+        unset($state['\SimpleSAML\Auth\State.restartURL']); // url contains a cookie time which varies by test
+
+        $expectedState = $this->defaultExpectedAuthState;
+        $expectedState[ 'saml:ConsumerURL'] = 'https://example.com/Shibboleth.sso/SAML2/POST';
+        $expectedState[ 'saml:Binding'] = 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST';
+
+        $this->assertEquals($expectedState, $state);
+    }
+
+    /**
+     * Test that invoking the idp initiated endpoint using minimum shib params works
+     */
+    public function testIdPInitShibCompatOptionalParams()
+    {
+        $state = $this->idpInitiatedHelper([
+            'providerId' => 'https://some-sp-entity-id',
+            'target' => 'http://relay',
+            'shire' => 'https://example.com/Shibboleth.sso/SAML2/ECP',
+        ]);
+        $this->assertEquals('https://some-sp-entity-id', $state['SPMetadata']['entityid']);
+
+        //currently only spentityid and relay state are used in the restart url.
+        $this->assertStringStartsWith(
+            'http://idp.examlple.com/saml2/idp/SSOService.php?'
+            . 'spentityid=https%3A%2F%2Fsome-sp-entity-id&RelayState=http%3A%2F%2Frelay&cookieTime',
+            $state['\SimpleSAML\Auth\State.restartURL']
+        );
+        unset($state['saml:AuthnRequestReceivedAt']); // timestamp can't be tested in equality assertion
+        unset($state['SPMetadata']); // entityid asserted above
+        unset($state['\SimpleSAML\Auth\State.restartURL']); // url contains a cookie time which varies by test
+
+        $expectedState = $this->defaultExpectedAuthState;
+        $expectedState['saml:ConsumerURL'] = 'https://example.com/Shibboleth.sso/SAML2/ECP';
+        $expectedState['saml:Binding'] = 'urn:oasis:names:tc:SAML:2.0:bindings:PAOS';
+        $expectedState['saml:RelayState'] = 'http://relay';
+
+        $this->assertEquals($expectedState, $state);
+    }
+
+    /**
      * Invoke IDP initiated login with the given query parameters.
      * Callers should validate the return state array or confirm appropriate exceptions are returned.
      *
@@ -152,7 +210,7 @@ class SAML2Test extends ClearStateTestCase
 EOT;
         // phpcs:enable
 
-        \SimpleSAML\Configuration::loadFromArray([
+        Configuration::loadFromArray([
             'baseurlpath' => 'https://idp.example.com/',
             'metadata.sources' => [
                 ["type" => "xml", 'xml' => $spMetadataXml],
