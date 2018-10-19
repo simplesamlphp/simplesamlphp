@@ -121,7 +121,7 @@ $funcmatrix = [];
 $funcmatrix[] = [
     'required' => 'required',
     'descr' => 'PHP Version >= 5.5. You run: '.phpversion(),
-    'enabled' => version_compare(phpversion(), '5.4', '>=')
+    'enabled' => version_compare(phpversion(), '5.5', '>=')
 ];
 foreach ($functionchecks as $func => $descr) {
     $funcmatrix[] = ['descr' => $descr[1], 'required' => $descr[0], 'enabled' => function_exists($func)];
