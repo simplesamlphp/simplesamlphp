@@ -120,7 +120,7 @@ if (\SimpleSAML\Module::isModuleEnabled('radius')) {
 $funcmatrix = [];
 $funcmatrix[] = [
     'required' => 'required',
-    'descr' => 'PHP Version >= 5.4. You run: '.phpversion(),
+    'descr' => 'PHP Version >= 5.5. You run: '.phpversion(),
     'enabled' => version_compare(phpversion(), '5.4', '>=')
 ];
 foreach ($functionchecks as $func => $descr) {
