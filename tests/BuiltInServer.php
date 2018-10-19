@@ -9,7 +9,6 @@
 
 namespace SimpleSAML\Test;
 
-
 class BuiltInServer
 {
 

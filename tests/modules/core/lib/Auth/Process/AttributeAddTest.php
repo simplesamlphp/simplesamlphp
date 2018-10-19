@@ -1,11 +1,13 @@
 <?php
 
+namespace SimpleSAML\Test\Module\core\Auth\Process;
+
 use PHPUnit\Framework\TestCase;
 
 /**
  * Test for the core:AttributeAdd filter.
  */
-class Test_Core_Auth_Process_AttributeAdd extends TestCase
+class AttributeAddTest extends TestCase
 {
 
     /**

@@ -1,5 +1,7 @@
 <?php
 
+namespace SimpleSAML\Test\Module\core\Auth\Process;
+
 // Alias the PHPUnit 6.0 ancestor if available, else fall back to legacy ancestor
 if (class_exists('\PHPUnit\Framework\TestCase', true) and !class_exists('\PHPUnit_Framework_TestCase', true)) {
     class_alias('\PHPUnit\Framework\TestCase', '\PHPUnit_Framework_TestCase', true);
@@ -8,7 +10,7 @@ if (class_exists('\PHPUnit\Framework\TestCase', true) and !class_exists('\PHPUni
 /**
  * Test for the core:Cardinality filter.
  */
-class Test_Core_Auth_Process_CardinalityTest extends \PHPUnit_Framework_TestCase
+class CardinalityTest extends \PHPUnit_Framework_TestCase
 {
     private $http;
 
@@ -242,6 +244,6 @@ class Test_Core_Auth_Process_CardinalityTest extends \PHPUnit_Framework_TestCase
                 'mail' => ['joe@example.com', 'bob@example.com'],
             ],
         ];
-        self::processFilter($config, $request);
+        $this->processFilter($config, $request);
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace SimpleSAML\Metadata;
+namespace SimpleSAML\Test\Metadata;
 
 use PHPUnit\Framework\TestCase;
 
@@ -9,7 +9,6 @@ use PHPUnit\Framework\TestCase;
  */
 class SAMLParserTest extends TestCase
 {
-
     /**
      * Test Registration Info is parsed
      */
@@ -38,7 +37,6 @@ XML
         // RegistrationInfo is accessible in the SP or IDP metadata accessors
         $metadata = $entities['theEntityID']->getMetadata20SP();
         $this->assertEquals($expected, $metadata['RegistrationInfo']);
-
     }
 
     /**
@@ -125,11 +123,14 @@ XML
         $this->assertEquals("Example service", $metadata['name']['en']);
         $this->assertEquals("Dit is een voorbeeld voor de unittest.", $metadata['description']['nl']);
 
-        $expected_a = ["urn:mace:dir:attribute-def:eduPersonPrincipalName", "urn:mace:dir:attribute-def:mail", "urn:mace:dir:attribute-def:displayName"];
+        $expected_a = [
+            "urn:mace:dir:attribute-def:eduPersonPrincipalName",
+            "urn:mace:dir:attribute-def:mail",
+            "urn:mace:dir:attribute-def:displayName"
+        ];
         $expected_r = ["urn:mace:dir:attribute-def:eduPersonPrincipalName"];
 
         $this->assertEquals($expected_a, $metadata['attributes']);
         $this->assertEquals($expected_r, $metadata['attributes.required']);
     }
-
 }

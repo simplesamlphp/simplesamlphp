@@ -1,7 +1,7 @@
 
-$(document).ready(function() {
+$(document).ready(function () {
     // get available languages
-    var languages = $.map($('#language_selector option') ,function(option) {
+    var languages = $.map($('#language_selector option') ,function (option) {
         return option.text.toLowerCase();
     });
 
@@ -9,8 +9,7 @@ $(document).ready(function() {
         if (-1 !== $.inArray(
             $('#language_selector-selectized').prev().text().toLowerCase(),
             languages
-            )
-        ) {
+        )) {
             e.currentTarget.submit();
         }
     });

@@ -1,5 +1,7 @@
 <?php
 
+namespace SimpleSAML\Test;
+
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -35,7 +37,7 @@ class DatabaseTest extends TestCase
      */
     protected static function getMethod($getMethod)
     {
-        $class = new ReflectionClass('SimpleSAML\Database');
+        $class = new \ReflectionClass('SimpleSAML\Database');
         $method = $class->getMethod($getMethod);
         $method->setAccessible(true);
         return $method;
@@ -65,7 +67,7 @@ class DatabaseTest extends TestCase
         $this->assertInstanceOf('SimpleSAML\Configuration', $this->config);
         $this->assertEquals($config['database.dsn'], $this->config->getString('database.dsn'));
 
-        $this->db = SimpleSAML\Database::getInstance($this->config);
+        $this->db = \SimpleSAML\Database::getInstance($this->config);
 
         // Ensure that we have a functional database class.
         $this->assertInstanceOf('SimpleSAML\Database', $this->db);
@@ -92,7 +94,7 @@ class DatabaseTest extends TestCase
         ];
 
         $this->config = new \SimpleSAML\Configuration($config, "test/SimpleSAML/DatabaseTest.php");
-        SimpleSAML\Database::getInstance($this->config);
+        \SimpleSAML\Database::getInstance($this->config);
     }
 
 
@@ -176,7 +178,7 @@ class DatabaseTest extends TestCase
     {
         $getSlave = self::getMethod('getSlave');
 
-        $master = spl_object_hash(PHPUnit_Framework_Assert::readAttribute($this->db, 'dbMaster'));
+        $master = spl_object_hash(\PHPUnit_Framework_Assert::readAttribute($this->db, 'dbMaster'));
         $slave = spl_object_hash($getSlave->invokeArgs($this->db, []));
 
         $this->assertTrue(($master == $slave), "getSlave should have returned the master database object");
@@ -199,7 +201,7 @@ class DatabaseTest extends TestCase
         $sspConfiguration = new \SimpleSAML\Configuration($config, "test/SimpleSAML/DatabaseTest.php");
         $msdb = \SimpleSAML\Database::getInstance($sspConfiguration);
 
-        $slaves = PHPUnit_Framework_Assert::readAttribute($msdb, 'dbSlaves');
+        $slaves = \PHPUnit_Framework_Assert::readAttribute($msdb, 'dbSlaves');
         $gotSlave = spl_object_hash($getSlave->invokeArgs($msdb, []));
 
         $this->assertEquals(
@@ -248,7 +250,7 @@ class DatabaseTest extends TestCase
         $ssp_value = md5(rand(0, 10000));
         $stmt = $this->db->write(
             "INSERT INTO $table (ssp_key, ssp_value) VALUES (:ssp_key, :ssp_value)",
-            ['ssp_key' => [$ssp_key, PDO::PARAM_INT], 'ssp_value' => $ssp_value]
+            ['ssp_key' => [$ssp_key, \PDO::PARAM_INT], 'ssp_value' => $ssp_value]
         );
         $this->assertEquals(1, $stmt, "Could not insert data into $table.");
 

@@ -59,7 +59,7 @@ $allLinks = [
 $current = $config->getVersion();
 if ($config->getBoolean('admin.checkforupdates', true) && $current !== 'master') {
     if (!function_exists('curl_init')) {
-        $warnings[] = [ '{core:frontpage:warnings_curlmissing}' ];
+        $warnings[] = ['{core:frontpage:warnings_curlmissing}'];
     } else {
         $latest = $session->getData("core:latest_simplesamlphp_version", "version");
 

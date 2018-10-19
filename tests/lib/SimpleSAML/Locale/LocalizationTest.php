@@ -45,5 +45,4 @@ class LocalizationTest extends TestCase
         $this->assertArrayHasKey($newDomain, $registeredDomains);
         $this->assertEquals($registeredDomains[$newDomain], $newDomainLocaleDir);
     }
-
 }

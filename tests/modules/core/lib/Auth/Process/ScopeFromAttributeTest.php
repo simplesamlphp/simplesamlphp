@@ -1,11 +1,13 @@
 <?php
 
+namespace SimpleSAML\Test\Module\core\Auth\Process;
+
 use PHPUnit\Framework\TestCase;
 
 /**
  * Test for the core:ScopeFromAttribute filter.
  */
-class Test_Core_Auth_Process_ScopeFromAttribute extends TestCase
+class ScopeFromAttributeTest extends TestCase
 {
 
     /*
@@ -17,7 +19,7 @@ class Test_Core_Auth_Process_ScopeFromAttribute extends TestCase
      */
     private static function processFilter(array $config, array $request)
     {
-        $filter = new \SimpleSAML\Module\core\Auth\Process\ScopeFromAttribute($config, NULL);
+        $filter = new \SimpleSAML\Module\core\Auth\Process\ScopeFromAttribute($config, null);
         $filter->process($request);
         return $request;
     }

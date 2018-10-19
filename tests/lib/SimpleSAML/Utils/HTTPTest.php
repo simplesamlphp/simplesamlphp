@@ -1,4 +1,5 @@
 <?php
+
 namespace SimpleSAML\Test\Utils;
 
 use PHPUnit\Framework\TestCase;

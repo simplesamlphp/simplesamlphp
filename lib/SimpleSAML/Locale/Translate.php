@@ -541,7 +541,7 @@ class Translate
             $priorities = $langcfg->getArray('priorities', []);
         }
 
-        if ( !empty($priorities[$context['currentLanguage']]) ) {
+        if (!empty($priorities[$context['currentLanguage']])) {
             foreach ($priorities[$context['currentLanguage']] as $lang) {
                 if (isset($translations[$lang])) {
                     return $translations[$lang];

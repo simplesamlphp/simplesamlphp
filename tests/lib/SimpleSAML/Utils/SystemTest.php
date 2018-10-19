@@ -115,10 +115,10 @@ class SystemTest extends TestCase
      */
     public function testWriteFileBasic()
     {
-        $tempdir = $this->root_directory . DIRECTORY_SEPARATOR . self::DEFAULTTEMPDIR;
+        $tempdir = $this->root_directory.DIRECTORY_SEPARATOR.self::DEFAULTTEMPDIR;
         $config = $this->setConfigurationTempDir($tempdir);
 
-        $filename = $this->root_directory . DIRECTORY_SEPARATOR . 'test';
+        $filename = $this->root_directory.DIRECTORY_SEPARATOR.'test';
 
         System::writeFile($filename, '');
 
@@ -133,10 +133,10 @@ class SystemTest extends TestCase
      */
     public function testWriteFileContents()
     {
-        $tempdir = $this->root_directory . DIRECTORY_SEPARATOR . self::DEFAULTTEMPDIR;
+        $tempdir = $this->root_directory.DIRECTORY_SEPARATOR.self::DEFAULTTEMPDIR;
         $config = $this->setConfigurationTempDir($tempdir);
 
-        $filename = $this->root_directory . DIRECTORY_SEPARATOR . 'test';
+        $filename = $this->root_directory.DIRECTORY_SEPARATOR.'test';
         $contents = 'TEST';
 
         System::writeFile($filename, $contents);
@@ -155,10 +155,10 @@ class SystemTest extends TestCase
      */
     public function testWriteFileMode()
     {
-        $tempdir = $this->root_directory . DIRECTORY_SEPARATOR . self::DEFAULTTEMPDIR;
+        $tempdir = $this->root_directory.DIRECTORY_SEPARATOR.self::DEFAULTTEMPDIR;
         $config = $this->setConfigurationTempDir($tempdir);
 
-        $filename = $this->root_directory . DIRECTORY_SEPARATOR . 'test';
+        $filename = $this->root_directory.DIRECTORY_SEPARATOR.'test';
         $mode = 0666;
 
         System::writeFile($filename, '', $mode);
@@ -177,7 +177,7 @@ class SystemTest extends TestCase
      */
     public function testGetTempDirBasic()
     {
-        $tempdir = $this->root_directory . DIRECTORY_SEPARATOR . self::DEFAULTTEMPDIR;
+        $tempdir = $this->root_directory.DIRECTORY_SEPARATOR.self::DEFAULTTEMPDIR;
         $config = $this->setConfigurationTempDir($tempdir);
 
         $res = System::getTempDir();
@@ -195,7 +195,7 @@ class SystemTest extends TestCase
      */
     public function testGetTempDirNonExistant()
     {
-        $tempdir = $this->root_directory . DIRECTORY_SEPARATOR . 'nonexistant';
+        $tempdir = $this->root_directory.DIRECTORY_SEPARATOR.'nonexistant';
         $config = $this->setConfigurationTempDir($tempdir);
 
         $res = System::getTempDir();
@@ -220,7 +220,7 @@ class SystemTest extends TestCase
 
         $bad_uid = posix_getuid() + 1;
 
-        $tempdir = $this->root_directory . DIRECTORY_SEPARATOR . self::DEFAULTTEMPDIR;
+        $tempdir = $this->root_directory.DIRECTORY_SEPARATOR.self::DEFAULTTEMPDIR;
         $config = $this->setConfigurationTempDir($tempdir);
 
         chown($tempdir, $bad_uid);

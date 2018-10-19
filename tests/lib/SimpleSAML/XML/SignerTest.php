@@ -1,6 +1,6 @@
 <?php
 
-namespace SimpleSAML\Test\Utils;
+namespace SimpleSAML\Test\XML;
 
 use PHPUnit\Framework\TestCase;
 use \SimpleSAML\Configuration;

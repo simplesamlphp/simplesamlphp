@@ -202,7 +202,7 @@ NOWDOC;
         $result = $validator->getX509Certificate();
 
         // getX509Certificate returns a certificate with a newline
-        $expected = $this->good_certificate . "\n";
+        $expected = $this->good_certificate."\n";
 
         $this->assertEquals($result, $expected);
     }

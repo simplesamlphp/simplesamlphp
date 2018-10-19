@@ -1,5 +1,7 @@
 <?php
 
+namespace SimpleSAML\Test\Module\saml\IdP;
+
 class SAML2Test extends \PHPUnit_Framework_TestCase
 {
     public function testProcessSOAPAuthnRequest()

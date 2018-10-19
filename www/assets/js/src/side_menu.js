@@ -6,12 +6,13 @@
         content  = document.getElementById('content');
     footer  = document.getElementById('foot');
 
-    function toggleClass(element, className) {
+    function toggleClass(element, className)
+    {
         var classes = element.className.split(/\s+/),
             length = classes.length,
             i = 0;
 
-        for(; i < length; i++) {
+        for (; i < length; i++) {
             if (classes[i] === className) {
                 classes.splice(i, 1);
                 break;
@@ -25,7 +26,8 @@
         element.className = classes.join(' ');
     }
 
-    function toggleAll(e) {
+    function toggleAll(e)
+    {
         var active = 'active';
 
         e.preventDefault();
@@ -39,7 +41,7 @@
         toggleAll(e);
     };
 
-    content.onclick = function(e) {
+    content.onclick = function (e) {
         if (menu.className.indexOf('active') !== -1) {
             toggleAll(e);
         }

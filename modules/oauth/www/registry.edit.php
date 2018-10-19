@@ -22,22 +22,10 @@ if ($session->isValid($authsource)) {
     $as->initLogin(\SimpleSAML\Utils\HTTP::getSelfURL());
 }
 
-function requireOwnership($entry, $userid)
-{
-    if (!isset($entry['owner'])) {
-        throw new \Exception('OAuth Consumer has no owner. Which means no one is granted access, not even you.');
-    }
-    if ($entry['owner'] !== $userid) {
-        throw new \Exception(
-            'OAuth Consumer has an owner that is not equal to your userid, hence you are not granted access.'
-        );
-    }
-}
-
 if (array_key_exists('editkey', $_REQUEST)) {
     $entryc = $store->get('consumers', $_REQUEST['editkey'], '');
     $entry = $entryc['value'];
-    requireOwnership($entry, $userid);
+    \SimpleSAML\Module\oauth\Registry::requireOwnership($entry, $userid);
 } else {
     $entry = [
         'owner' => $userid,
@@ -53,7 +41,7 @@ if (isset($_POST['submit'])) {
 
     $entry = $editor->formToMeta($_POST, [], ['owner' => $userid]);
 
-    requireOwnership($entry, $userid);
+    \SimpleSAML\Module\oauth\Registry::requireOwnership($entry, $userid);
 
     $store->set('consumers', $entry['key'], '', $entry);
 

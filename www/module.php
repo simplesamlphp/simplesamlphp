@@ -81,7 +81,6 @@ $moduleDir = SimpleSAML\Module::getModuleDir($module).'/www/';
 
 // check for '.php/' in the path, the presence of which indicates that another php-script should handle the request
 for ($phpPos = strpos($url, '.php/'); $phpPos !== false; $phpPos = strpos($url, '.php/', $phpPos + 1)) {
-
     $newURL = substr($url, 0, $phpPos + 4);
     $param = substr($url, $phpPos + 4);
 

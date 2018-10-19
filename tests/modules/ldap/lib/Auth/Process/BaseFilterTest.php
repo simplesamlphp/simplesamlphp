@@ -1,8 +1,10 @@
 <?php
 
+namespace SimpleSAML\Test\Module\ldap\Auth\Process;
+
 use PHPUnit\Framework\TestCase;
 
-class BaseFilter_Test extends TestCase
+class BaseFilterTest extends TestCase
 {
     public function testVarExportHidesLdapPassword()
     {

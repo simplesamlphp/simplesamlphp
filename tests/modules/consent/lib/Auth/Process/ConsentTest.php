@@ -185,9 +185,15 @@ class ConsentTest extends TestCase
     {
         $reflection = new \ReflectionClass('\SimpleSAML\Module\consent\Auth\Process\Consent');
 
-        foreach ([
-            'includeValues', 'checked', 'focus', 'hiddenAttributes', 'noconsentattributes', 'showNoConsentAboutService'
-                 ] as $v) {
+        $values = [
+            'includeValues',
+            'checked',
+            'focus',
+            'hiddenAttributes',
+            'noconsentattributes',
+            'showNoConsentAboutService'
+        ];
+        foreach ($values as $v) {
             $instanceVars[$v] = $reflection->getProperty($v);
             $instanceVars[$v]->setAccessible(true);
         }
@@ -209,10 +215,12 @@ class ConsentTest extends TestCase
         $this->assertEquals($instanceVars['focus']->getValue($testcase), $config['focus']);
         $this->assertEquals($instanceVars['hiddenAttributes']->getValue($testcase), $config['hiddenAttributes']);
         $this->assertEquals($instanceVars['noconsentattributes']->getValue($testcase), $config['attributes.exclude']);
-        $this->assertEquals($instanceVars['showNoConsentAboutService']->getValue($testcase), $config['showNoConsentAboutService']);
+        $this->assertEquals(
+            $instanceVars['showNoConsentAboutService']->getValue($testcase),
+            $config['showNoConsentAboutService']
+        );
 
-        $deprecated = $reflection->newInstance(['noconsentattributes' => $config['attributes.exclude'],], null);
+        $deprecated = $reflection->newInstance(['noconsentattributes' => $config['attributes.exclude']], null);
         $this->assertEquals($instanceVars['noconsentattributes']->getValue($deprecated), $config['attributes.exclude']);
-
     }
 }

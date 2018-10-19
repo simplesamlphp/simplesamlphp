@@ -828,7 +828,7 @@ abstract class BaseFacebook
 
         $response_params = json_decode($access_token_response, true);
         if (!isset($response_params['access_token'])) {
-            self::errorLog('No access token in response. ' . $access_token_response);
+            self::errorLog('No access token in response. '.$access_token_response);
             return false;
         }
 
@@ -849,10 +849,13 @@ abstract class BaseFacebook
         $params['api_key'] = $this->getAppId();
         $params['format'] = 'json-strings';
 
-        $result = json_decode($this->_oauthRequest(
-            $this->getApiUrl($params['method']),
-            $params
-            ), true);
+        $result = json_decode(
+            $this->_oauthRequest(
+                $this->getApiUrl($params['method']),
+                $params
+            ),
+            true
+        );
 
         // results are returned, errors are thrown
         if (is_array($result) && isset($result['error_code'])) {
@@ -910,10 +913,13 @@ abstract class BaseFacebook
             $domainKey = 'graph';
         }
 
-        $result = json_decode($this->_oauthRequest(
-            $this->getUrl($domainKey, $path),
-            $params
-            ), true);
+        $result = json_decode(
+            $this->_oauthRequest(
+                $this->getUrl($domainKey, $path),
+                $params
+            ),
+            true
+        );
 
         // results are returned, errors are thrown
         if (is_array($result) && isset($result['error'])) {

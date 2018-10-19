@@ -1,18 +1,19 @@
 <?php
 
+namespace SimpleSAML\Test\Auth;
+
 use PHPUnit\Framework\TestCase;
 
 /**
  * Tests for \SimpleSAML\Auth\State
  */
-class Auth_StateTest extends TestCase
+class StateTest extends TestCase
 {
     /**
      * Test the getPersistentAuthData() function.
      */
     public function testGetPersistentAuthData()
     {
-
         $mandatory = [
             'Attributes' => [],
             'Expire' => 1234,

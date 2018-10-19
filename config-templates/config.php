@@ -33,7 +33,7 @@ $config = [
      * The 'application' configuration array groups a set configuration options
      * relative to an application protected by SimpleSAMLphp.
      */
-    //'application' => array(
+    //'application' => [
         /*
          * The 'baseURL' configuration option allows you to specify a protocol,
          * host and optionally a port that serves as the canonical base for all
@@ -49,7 +49,7 @@ $config = [
          * to SimpleSAMLphp's API.
          */
         //'baseURL' => 'https://example.com',
-    //),
+    //],
 
     /*
      * The following settings are *filesystem paths* which define where
@@ -148,7 +148,7 @@ $config = [
      * WHAT YOU ARE DOING!
      *
      * Example:
-     *   'trusted.url.domains' => array('sp.example.com', 'app.example.com'),
+     *   'trusted.url.domains' => ['sp.example.com', 'app.example.com'],
      */
     'trusted.url.domains' => [],
 
@@ -235,7 +235,7 @@ $config = [
      * See docs/simplesamlphp-errorhandling.txt for function code example.
      *
      * Example:
-     *   'errors.show_function' => array('SimpleSAML\Module\example\Error', 'show'),
+     *   'errors.show_function' => ['SimpleSAML\Module\example\Error', 'show'],
      */
 
 
@@ -318,17 +318,17 @@ $config = [
      */
     'statistics.out' => [// Log statistics to the normal log.
         /*
-        array(
+        [
             'class' => 'core:Log',
             'level' => 'notice',
-        ),
+        ],
         */
         // Log statistics to files in a directory. One file per day.
         /*
-        array(
+        [
             'class' => 'core:File',
             'directory' => '/var/log/stats',
-        ),
+        ],
         */
     ],
 
@@ -406,12 +406,12 @@ $config = [
      */
     'database.slaves' => [
         /*
-        array(
+        [
             'dsn' => 'mysql:host=myslave;dbname=saml',
             'username' => 'simplesamlphp',
             'password' => 'secret',
             'persistent' => false,
-        ),
+        ],
         */
     ],
 
@@ -458,11 +458,11 @@ $config = [
      *
      * Example:
      *
-     * 'module.enable' => array(
-     *      'exampleauth' => TRUE, // Setting to TRUE enables.
-     *      'saml' => FALSE, // Setting to FALSE disables.
-     *      'core' => NULL, // Unset or NULL uses default.
-     * ),
+     * 'module.enable' => [
+     *      'exampleauth' => true, // Setting to TRUE enables.
+     *      'saml' => false, // Setting to FALSE disables.
+     *      'core' => null, // Unset or NULL uses default.
+     * ],
      *
      */
 
@@ -568,7 +568,7 @@ $config = [
      * See docs/simplesamlphp-advancedfeatures.txt for function code example.
      *
      * Example:
-     *   'session.check_function' => array('\SimpleSAML\Module\example\Util', 'checkSession'),
+     *   'session.check_function' => ['\SimpleSAML\Module\example\Util', 'checkSession'],
      */
 
 
@@ -606,26 +606,26 @@ $config = [
      * Note that sessions will be lost if one server is lost from both the
      * a-group and the b-group.
      *
-     * 'memcache_store.servers' => array(
-     *     array(
-     *         array('hostname' => 'mc_a1'),
-     *         array('hostname' => 'mc_a2'),
-     *     ),
-     *     array(
-     *         array('hostname' => 'mc_b1'),
-     *         array('hostname' => 'mc_b2'),
-     *     ),
-     * ),
+     * 'memcache_store.servers' => [
+     *     [
+     *         ['hostname' => 'mc_a1'],
+     *         ['hostname' => 'mc_a2'],
+     *     ],
+     *     [
+     *         ['hostname' => 'mc_b1'],
+     *         ['hostname' => 'mc_b2'],
+     *     ],
+     * ],
      *
      * Example of simple configuration with only one memcache server,
      * running on the same computer as the web server:
      * Note that all sessions will be lost if the memcache server crashes.
      *
-     * 'memcache_store.servers' => array(
-     *     array(
-     *         array('hostname' => 'localhost'),
-     *     ),
-     * ),
+     * 'memcache_store.servers' => [
+     *     [
+     *         ['hostname' => 'localhost'],
+     *     ],
+     * ],
      *
      */
     'memcache_store.servers' => [
@@ -681,10 +681,10 @@ $config = [
          *
          * For example, for the "no" language code (Norwegian), we would have:
          *
-         * 'priorities' => array(
-         *      'no' => array('nb', 'nn', 'en', 'se'),
+         * 'priorities' => [
+         *      'no' => ['nb', 'nn', 'en', 'se'],
          *      ...
-         * ),
+         * ],
          *
          * establishing that if a translation for the "no" language code is
          * not available, we look for translations in "nb" (Norwegian Bokmål),
@@ -702,7 +702,7 @@ $config = [
      * Languages available, RTL languages, and what language is the default.
      */
     'language.available' => [
-        'en', 'no', 'nn', 'se', 'da', 'de', 'sv', 'fi', 'es', 'ca', 'fr', 'it', 'nl', 'lb', 
+        'en', 'no', 'nn', 'se', 'da', 'de', 'sv', 'fi', 'es', 'ca', 'fr', 'it', 'nl', 'lb',
         'cs', 'sl', 'lt', 'hr', 'hu', 'pl', 'pt', 'pt-br', 'tr', 'ja', 'zh', 'zh-tw', 'ru',
         'et', 'he', 'id', 'sr', 'lv', 'ro', 'eu', 'el', 'af'
     ],
@@ -745,7 +745,7 @@ $config = [
      * the default language for the user.
      *
      * Example:
-     *   'language.get_language_function' => array('\SimpleSAML\Module\example\Template', 'getLanguage'),
+     *   'language.get_language_function' => ['\SimpleSAML\Module\example\Template', 'getLanguage'],
      */
 
     /*
@@ -856,9 +856,10 @@ $config = [
      */
     'authproc.idp' => [
         /* Enable the authproc filter below to add URN prefixes to all attributes
-         10 => array(
-             'class' => 'core:AttributeMap', 'addurnprefix'
-         ), */
+        10 => array[
+            'class' => 'core:AttributeMap', 'addurnprefix'
+        ],
+        */
         /* Enable the authproc filter below to automatically generated eduPersonTargetedID.
         20 => 'core:TargetedID',
         */
@@ -879,26 +880,28 @@ $config = [
 
         /*
          * Search attribute "distinguishedName" for pattern and replaces if found
-
-        60 => array(
+         */
+        /*
+        60 => [
             'class' => 'core:AttributeAlter',
             'pattern' => '/OU=studerende/',
             'replacement' => 'Student',
             'subject' => 'distinguishedName',
             '%replace',
-        ),
-         */
+        ],
+        */
 
         /*
          * Consent module is enabled (with no permanent storage, using cookies).
-
-        90 => array(
+         */
+        /*
+        90 => [
             'class' => 'consent:Consent',
             'store' => 'consent:Cookie',
             'focus' => 'yes',
-            'checked' => TRUE
-        ),
-         */
+            'checked' => true
+        ],
+        */
         // If language is set in Consent module it will be added as an attribute.
         99 => 'core:LanguageAdaptor',
     ],
@@ -909,27 +912,28 @@ $config = [
      */
     'authproc.sp' => [
         /*
-        10 => array(
+        10 => [
             'class' => 'core:AttributeMap', 'removeurnprefix'
-        ),
+        ],
         */
 
         /*
          * Generate the 'group' attribute populated from other variables, including eduPersonAffiliation.
-         60 => array(
+        60 => [
             'class' => 'core:GenerateGroups', 'eduPersonAffiliation'
-        ),
+        ],
         */
         /*
          * All users will be members of 'users' and 'members'
-        61 => array(
-            'class' => 'core:AttributeAdd', 'groups' => array('users', 'members')
-        ),
+         */
+        /*
+        61 => [
+            'class' => 'core:AttributeAdd', 'groups' => ['users', 'members']
+        ],
         */
 
         // Adopts language from attribute to use in UI
         90 => 'core:LanguageAdaptor',
-
     ],
 
 
@@ -987,36 +991,36 @@ $config = [
      * This example defines two flatfile sources. One is the default metadata directory, the other
      * is a metadata directory with auto-generated metadata files.
      *
-     * 'metadata.sources' => array(
-     *     array('type' => 'flatfile'),
-     *     array('type' => 'flatfile', 'directory' => 'metadata-generated'),
-     * ),
+     * 'metadata.sources' => [
+     *     ['type' => 'flatfile'],
+     *     ['type' => 'flatfile', 'directory' => 'metadata-generated'],
+     * ],
      *
      * This example defines a flatfile source and an XML source.
-     * 'metadata.sources' => array(
-     *     array('type' => 'flatfile'),
-     *     array('type' => 'xml', 'file' => 'idp.example.org-idpMeta.xml'),
-     * ),
+     * 'metadata.sources' => [
+     *     ['type' => 'flatfile'],
+     *     ['type' => 'xml', 'file' => 'idp.example.org-idpMeta.xml'],
+     * ],
      *
      * This example defines an mdq source.
-     * 'metadata.sources' => array(
-     *      array(
+     * 'metadata.sources' => [
+     *      [
      *          'type' => 'mdq',
      *          'server' => 'http://mdq.server.com:8080',
      *          'cachedir' => '/var/simplesamlphp/mdq-cache',
      *          'cachelength' => 86400
-     *      )
-     * ),
+     *      ]
+     * ],
      *
      * This example defines an pdo source.
-     * 'metadata.sources' => array(
-     *     array('type' => 'pdo')
-     * ),
+     * 'metadata.sources' => [
+     *     ['type' => 'pdo']
+     * ],
      *
      * Default:
-     * 'metadata.sources' => array(
-     *     array('type' => 'flatfile')
-     * ),
+     * 'metadata.sources' => [
+     *     ['type' => 'flatfile']
+     * ],
      */
     'metadata.sources' => [
         ['type' => 'flatfile'],

@@ -1,11 +1,13 @@
 <?php
 
+namespace SimpleSAML\Test\Module\core\Auth\Process;
+
 use PHPUnit\Framework\TestCase;
 
 /**
  * Test for the core:AttributeCopy filter.
  */
-class Test_Core_Auth_Process_AttributeCopy extends TestCase
+class AttributeCopyTest extends TestCase
 {
 
     /**
@@ -17,7 +19,7 @@ class Test_Core_Auth_Process_AttributeCopy extends TestCase
      */
     private static function processFilter(array $config, array $request)
     {
-        $filter = new \SimpleSAML\Module\core\Auth\Process\AttributeCopy($config, NULL);
+        $filter = new \SimpleSAML\Module\core\Auth\Process\AttributeCopy($config, null);
         $filter->process($request);
         return $request;
     }
@@ -46,7 +48,7 @@ class Test_Core_Auth_Process_AttributeCopy extends TestCase
     public function testArray()
     {
         $config = [
-            'test' => ['new1','new2'],
+            'test' => ['new1', 'new2'],
         ];
         $request = [
             'Attributes' => ['test' => ['AAP']],
@@ -95,14 +97,14 @@ class Test_Core_Auth_Process_AttributeCopy extends TestCase
             'test2' => 'new2',
         ];
         $request = [
-            'Attributes' => ['test1' => ['val1'], 'test2' => ['val2.1','val2.2']],
+            'Attributes' => ['test1' => ['val1'], 'test2' => ['val2.1', 'val2.2']],
         ];
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
         $this->assertArrayHasKey('new1', $attributes);
         $this->assertEquals($attributes['new1'], ['val1']);
         $this->assertArrayHasKey('new2', $attributes);
-        $this->assertEquals($attributes['new2'], ['val2.1','val2.2']);
+        $this->assertEquals($attributes['new2'], ['val2.1', 'val2.2']);
     }
 
     /**

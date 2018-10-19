@@ -1,4 +1,7 @@
 <?php
+
+namespace SimpleSAML\Test\Module\saml\Auth\Process;
+
 /**
  * Test for the saml:NameIDAttribute filter.
  *

@@ -13,4 +13,3 @@ $metadata['https://sp.shiblab.feide.no'] = [
     'audience' => 'urn:mace:feide:shiblab',
     'base64attributes' => false,
 ];
-

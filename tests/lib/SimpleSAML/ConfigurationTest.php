@@ -1,11 +1,13 @@
 <?php
 
+namespace SimpleSAML\Test;
+
 use \SimpleSAML\Configuration;
 
 /**
  * Tests for \SimpleSAML\Configuration
  */
-class Test_Configuration extends SimpleSAML\Test\Utils\ClearStateTestCase
+class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
 {
     /**
      * Test \SimpleSAML\Configuration::getVersion()
@@ -208,7 +210,7 @@ class Test_Configuration extends SimpleSAML\Test\Utils\ClearStateTestCase
     public function testGetBaseDir()
     {
         $c = Configuration::loadFromArray([]);
-        $this->assertEquals($c->getBaseDir(), dirname(dirname(dirname(dirname(__FILE__)))) . '/');
+        $this->assertEquals($c->getBaseDir(), dirname(dirname(dirname(dirname(__FILE__)))).'/');
 
         $c = Configuration::loadFromArray([
             'basedir' => '/basedir',
@@ -364,7 +366,8 @@ class Test_Configuration extends SimpleSAML\Test\Utils\ClearStateTestCase
     /**
      * Test \SimpleSAML\Configuration::getValueValidate()
      */
-    public function testGetValueValidate() {
+    public function testGetValueValidate()
+    {
         $c = Configuration::loadFromArray([
             'opt' => 'b',
         ]);
@@ -439,7 +442,8 @@ class Test_Configuration extends SimpleSAML\Test\Utils\ClearStateTestCase
     }
 
     /**
-     * Test \SimpleSAML\Configuration::getArrayizeString() option with an array that contains something that isn't a string.
+     * Test \SimpleSAML\Configuration::getArrayizeString() option
+     * with an array that contains something that isn't a string.
      * @expectedException Exception
      */
     public function testGetArrayizeStringWrongValue()
@@ -483,8 +487,8 @@ class Test_Configuration extends SimpleSAML\Test\Utils\ClearStateTestCase
     {
         $c = Configuration::loadFromArray([
             'opts' => [
-               'a' => ['opt1' => 'value1'],
-               'b' => ['opt2' => 'value2'],
+                'a' => ['opt1' => 'value1'],
+                'b' => ['opt2' => 'value2'],
             ],
         ]);
         $this->assertEquals($c->getConfigList('missing_opt', '--missing--'), '--missing--');
@@ -751,7 +755,7 @@ class Test_Configuration extends SimpleSAML\Test\Utils\ClearStateTestCase
         try {
             $c->getDefaultEndpoint('SingleLogoutService', $valid_bindings);
             $this->fail('Failed to detect invalid endpoint binding.');
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             $this->assertEquals(
                 '[ARRAY][\'SingleLogoutService\']:Could not find a supported SingleLogoutService '.'endpoint.',
                 $e->getMessage()
@@ -762,7 +766,7 @@ class Test_Configuration extends SimpleSAML\Test\Utils\ClearStateTestCase
         try {
             $c->getDefaultEndpoint('SingleSignOnService');
             $this->fail('No valid metadata set specified.');
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             $this->assertStringStartsWith('Missing default binding for', $e->getMessage());
         }
     }
@@ -865,7 +869,7 @@ class Test_Configuration extends SimpleSAML\Test\Utils\ClearStateTestCase
             $c = Configuration::loadFromArray($a);
             try {
                 $c->getEndpoints('SingleSignOnService');
-            } catch (Exception $e) {
+            } catch (\Exception $e) {
                 $this->assertStringEndsWith($msgs[$i], $e->getMessage());
             }
         }
