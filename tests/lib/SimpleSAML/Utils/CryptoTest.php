@@ -157,6 +157,7 @@ PHP;
 
     /**
      * @covers \SimpleSAML\Utils\Crypto::pwHash
+     * @deprecated To be removed for 2.0
      */
     public function testGoodPwHash()
     {
@@ -174,8 +175,10 @@ PHP;
         $this->assertEquals($expected, $res);
     }
 
+
     /**
      * @covers \SimpleSAML\Utils\Crypto::pwHash
+     * @deprecated To be removed for 2.0
      */
     public function testGoodSaltedPwHash()
     {
@@ -196,6 +199,7 @@ PHP;
 
     /**
      * @expectedException \SimpleSAML\Error\Exception
+     * @deprecated To be removed for 2.0
      *
      * @covers \SimpleSAML\Utils\Crypto::pwHash
      */
@@ -213,6 +217,21 @@ PHP;
     public function testGoodPwValid()
     {
         $pw = "password";
+
+        $hash = Crypto::pwHash($pw);
+        $res = Crypto::pwValid($hash, $pw);
+
+        $this->assertTrue($res);
+    }
+
+
+    /**
+     * @covers \SimpleSAML\Utils\Crypto::pwValid
+     * @deprecated To be removed for 2.0
+     */
+    public function testGoodPwValidOld()
+    {
+        $pw = "password";
         $algorithm = "SHA1";
 
         $hash = Crypto::pwHash($pw, $algorithm);
@@ -223,6 +242,7 @@ PHP;
 
     /**
      * @covers \SimpleSAML\Utils\Crypto::pwValid
+     * @deprecated To be removed for 2.0
      */
     public function testGoodSaltedPwValid()
     {
@@ -238,6 +258,7 @@ PHP;
 
     /**
      * @expectedException \SimpleSAML\Error\Exception
+     * @deprecated To be removed for 2.0
      *
      * @covers \SimpleSAML\Utils\Crypto::pwValid
      */
