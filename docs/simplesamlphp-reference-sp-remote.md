@@ -270,6 +270,7 @@ The following SAML 2.0 options are available:
     the `attributes` array). For more advanced control over `NameID`,
     including the ability to specify any attribute regardless of
     the set sent to the SP, see the [NameID processing filters](./saml:nameid).
+    Note that the value of the attribute is collected **after** authproc-filters have run.
 
 :   Typical values can be `mail` for when using the `email` format,
     and `eduPersonTargetedID` when using the `persistent` format.
