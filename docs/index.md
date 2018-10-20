@@ -19,7 +19,6 @@ SimpleSAMLphp Documentation
  * [Using SimpleSAMLphp as a SAML Service Provider](simplesamlphp-sp)
   * [Hosted SP Configuration Reference](./saml:sp)
   * [IdP remote reference](simplesamlphp-reference-idp-remote)
-  * [Upgrading - migration to use the SAML authentication source](simplesamlphp-sp-migration)
   * [Configuring HTTP-Artifact](./simplesamlphp-artifact-sp)
   * [Using scoping](./simplesamlphp-scoping)
   * [Holder-of-Key profile](simplesamlphp-hok-sp)
