@@ -265,7 +265,7 @@ class SAML2
             $supportedBindings[] = \SAML2\Constants::BINDING_PAOS;
         }
 
-        if (isset($_REQUEST['spentityid'])) {
+        if (isset($_REQUEST['spentityid']) || isset($_REQUEST['providerId'])) {
             /* IdP initiated authentication. */
 
             if (isset($_REQUEST['cookieTime'])) {
@@ -279,11 +279,13 @@ class SAML2
                 }
             }
 
-            $spEntityId = (string) $_REQUEST['spentityid'];
+            $spEntityId = (string) isset($_REQUEST['spentityid']) ? $_REQUEST['spentityid'] : $_REQUEST['providerId'];
             $spMetadata = $metadata->getMetaDataConfig($spEntityId, 'saml20-sp-remote');
 
             if (isset($_REQUEST['RelayState'])) {
                 $relayState = (string) $_REQUEST['RelayState'];
+            } elseif (isset($_REQUEST['target'])) {
+                $relayState = (string) $_REQUEST['target'];
             } else {
                 $relayState = null;
             }
@@ -300,13 +302,20 @@ class SAML2
                 $nameIDFormat = null;
             }
 
+            if (isset($_REQUEST['ConsumerURL'])) {
+                $consumerURL = (string)$_REQUEST['ConsumerURL'];
+            } elseif (isset($_REQUEST['shire'])) {
+                $consumerURL = (string)$_REQUEST['shire'];
+            } else {
+                $consumerURL = null;
+            }
+
             $requestId = null;
             $IDPList = [];
             $ProxyCount = null;
             $RequesterID = null;
             $forceAuthn = false;
             $isPassive = false;
-            $consumerURL = null;
             $consumerIndex = null;
             $extensions = null;
             $allowCreate = true;
@@ -402,11 +411,15 @@ class SAML2
 
         $sessionLostParams = [
             'spentityid' => $spEntityId,
-            'cookieTime' => time(),
         ];
         if ($relayState !== null) {
             $sessionLostParams['RelayState'] = $relayState;
         }
+        /*
+        Putting cookieTime as the last parameter makes unit testing easier since we don't need to handle a
+        changing time component in the middle of the url
+        */
+        $sessionLostParams['cookieTime'] = time();
 
         $sessionLostURL = \SimpleSAML\Utils\HTTP::addURLParameters(
             \SimpleSAML\Utils\HTTP::getSelfURLNoQuery(),
