@@ -638,16 +638,16 @@ class HTTP
     /**
      * Retrieve the first element of the URL path.
      *
-     * @param boolean $trailingslash Whether to add a trailing slash to the element or not. Defaults to true.
+     * @param boolean $leadingSlash Whether to add a leading slash to the element or not. Defaults to true.
      *
-     * @return string The first element of the URL path, with an optional, trailing slash.
+     * @return string The first element of the URL path, with an optional, leading slash.
      *
      * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
      */
-    public static function getFirstPathElement($trailingslash = true)
+    public static function getFirstPathElement($leadingSlash = true)
     {
         if (preg_match('|^/(.*?)/|', $_SERVER['SCRIPT_NAME'], $matches)) {
-            return ($trailingslash ? '/' : '').$matches[1];
+            return ($leadingSlash ? '/' : '').$matches[1];
         }
         return '';
     }
