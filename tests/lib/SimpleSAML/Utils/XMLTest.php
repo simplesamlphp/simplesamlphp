@@ -379,4 +379,13 @@ NOWDOC;
 
         $this->assertTrue($res);
     }
+
+    /**
+     * @covers \SimpleSAML\Utils\XML::checkSAMLMessage()
+     */
+    public function testCheckSAMLMessageInvalidType()
+    {
+        $this->setExpectedException('\InvalidArgumentException');
+        XML::checkSAMLMessage('<test></test>', 'blub');
+    }
 }
