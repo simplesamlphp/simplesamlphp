@@ -177,4 +177,7 @@ Requirements for authentication processing filters:
  - No state information should be stored in the filter object. It must instead be stored in the request state array. Any changes to variables in the filter object may be lost.
  - The filter object must be serializable. It may be serialized between being constructed and the call to the `process`-function. This means that, for example, no database connections should be created in the constructor and later used in the `process`-function.
 
+.. note:: An Auth Proc Filter will not work in the Web UI of a simpleSAMLphp IdP. It will only be triggered in conjunction with an SP. 
+   So you need to set up an IdP *and* and SP when testing your Auth Proc Filter.
+
 Don't hestitate to ask on the SimpleSAMLphp mailinglist if you have problems or questions, or want to share your *Auth Proc Filter* with others.
