@@ -280,9 +280,6 @@ class SP extends Source
             $ar->setExtensions($state['saml:Extensions']);
         }
 
-        // save IdP entity ID as part of the state
-        $state['ExpectedIssuer'] = $idpMetadata->getString('entityid');
-
         $id = State::saveState($state, 'saml:sp:sso', true);
         $ar->setId($id);
 

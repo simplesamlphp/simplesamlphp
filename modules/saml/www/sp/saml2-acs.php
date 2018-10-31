@@ -95,18 +95,6 @@ if ($state) {
             'The authentication source id in the URL does not match the authentication source which sent the request.'
         );
     }
-
-    // check that the issuer is the one we are expecting
-    assert(array_key_exists('ExpectedIssuer', $state));
-    if ($state['ExpectedIssuer'] !== $idp) {
-        $idpMetadata = $source->getIdPMetadata($idp);
-        $idplist = $idpMetadata->getArrayize('IDPList', []);
-        if (!in_array($state['ExpectedIssuer'], $idplist, true)) {
-            throw new \SimpleSAML\Error\Exception(
-                'The issuer of the response does not match to the identity provider we sent the request to.'
-            );
-        }
-    }
 } else {
     // this is an unsolicited response
     $state = [
