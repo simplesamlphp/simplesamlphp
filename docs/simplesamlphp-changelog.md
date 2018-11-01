@@ -12,6 +12,23 @@ Released TBD
 
 ### Changes
   * Minimum required PHP version is now 5.5.
+  * Introduce new UI based on Twig templates.
+    The new templates co-exist next to the old ones.
+  * SimpleSAMLphp can now be used with applications that use Twig 2.
+  * Update configuration templates and documentation to PHP
+    short array syntax.
+  * All clases moved to namespaces and reformatted code to PSR-2.
+  * Many code cleanups.
+
+### consent
+  * Module is now disabled by default.
+
+### core
+  * Allow `core:PHP` to manipulate all of the state.
+  * IdP initiated login: add compatibility with Shibboleth parameters.
+
+### saml
+  * Add initial support for SAML Subject Id Attributes.
 
 ## Version 1.16.2
 
