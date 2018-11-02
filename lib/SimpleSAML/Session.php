@@ -802,7 +802,7 @@ class Session implements \Serializable
 
         if (!is_callable($logout_handler)) {
             throw new \Exception(
-                'Logout handler is not a vaild function: '.$classname.'::'.
+                'Logout handler is not a valid function: '.$classname.'::'.
                 $functionname
             );
         }
