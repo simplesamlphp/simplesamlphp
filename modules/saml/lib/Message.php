@@ -658,6 +658,15 @@ class Message
         // check various properties of the assertion
         $config = \SimpleSAML\Configuration::getInstance();
         $allowed_assertion_offset = $config->getInteger('assertion.allowed_offset', 60);
+        $options = [
+            'options' => [
+                'default' => 60, // value to return if the filter fails
+                // other options here
+                'min_range' => 0,
+                'max_range' => 300,
+            ],
+        ];
+        $allowed_assertion_offset = filter_var($allowed_assertion_offset, FILTER_VALIDATE_INT, $options);
         $notBefore = $assertion->getNotBefore();
         if ($notBefore !== null && $notBefore > time() + $allowed_assertion_offset) {
             throw new \SimpleSAML\Error\Exception(
