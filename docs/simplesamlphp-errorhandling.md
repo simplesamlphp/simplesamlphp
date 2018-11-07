@@ -240,3 +240,16 @@ Example code for this function, which implements the same functionality as \Simp
         exit;
     }
 
+
+Custom handling function for unhandled SimpleSAML exceptions
+------------------------------------------------------------
+
+Optional custom handling function for unhandled SimpleSAML exceptions, called from _include.php::SimpleSAML_exception_handler, is defined with 'errors.unhandled_exception_handler' in config.php.
+
+Example code for this function, which implements the same functionality as \SimpleSAML\Error\Error::show, looks something like:
+
+    public static function handle(\SimpleSAML\Error\Exception $exception) {
+
+        /* Handle things that should not be happening */
+    }
+

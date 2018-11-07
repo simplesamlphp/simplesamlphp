@@ -238,6 +238,13 @@ $config = [
      *   'errors.show_function' => ['SimpleSAML\Module\example\Error', 'show'],
      */
 
+    /*
+     * Custom handling function for unhandled SimpleSAML exceptions called from _include.php.
+     * See docs/simplesamlphp-errorhandling.txt for function code example.
+     *
+     * Example:
+     *   'errors.unhandled_exception_handler' => ['SimpleSAML\Module\example\Exception', 'handle'],
+     */
 
 
     /**************************
