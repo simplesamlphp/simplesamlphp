@@ -656,20 +656,22 @@ class Message
         $currentURL = \SimpleSAML\Utils\HTTP::getSelfURLNoQuery();
 
         // check various properties of the assertion
+        $config = \SimpleSAML\Configuration::getInstance();
+        $allowed_assertion_offset = $config->getInteger('assertion.allowed_offset', 60);
         $notBefore = $assertion->getNotBefore();
-        if ($notBefore !== null && $notBefore > time() + 60) {
+        if ($notBefore !== null && $notBefore > time() + $allowed_assertion_offset) {
             throw new \SimpleSAML\Error\Exception(
                 'Received an assertion that is valid in the future. Check clock synchronization on IdP and SP.'
             );
         }
         $notOnOrAfter = $assertion->getNotOnOrAfter();
-        if ($notOnOrAfter !== null && $notOnOrAfter <= time() - 60) {
+        if ($notOnOrAfter !== null && $notOnOrAfter <= time() - $allowed_assertion_offset) {
             throw new \SimpleSAML\Error\Exception(
                 'Received an assertion that has expired. Check clock synchronization on IdP and SP.'
             );
         }
         $sessionNotOnOrAfter = $assertion->getSessionNotOnOrAfter();
-        if ($sessionNotOnOrAfter !== null && $sessionNotOnOrAfter <= time() - 60) {
+        if ($sessionNotOnOrAfter !== null && $sessionNotOnOrAfter <= time() - $allowed_assertion_offset) {
             throw new \SimpleSAML\Error\Exception(
                 'Received an assertion with a session that has expired. Check clock synchronization on IdP and SP.'
             );

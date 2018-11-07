@@ -176,6 +176,15 @@ $config = [
      */
     'enable.http_post' => false,
 
+    /*
+     * Set the allowed time difference between encrypting/decrypting assertions
+     *
+     * If you have an server that is constantly out of sync, this option
+     * allows you to adjust the allowed time-frame.
+     *
+     * Defaults to 60.
+     */
+    'assertion.allowed_offset' => 60,
 
 
     /************************
