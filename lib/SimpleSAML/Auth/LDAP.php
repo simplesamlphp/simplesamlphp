@@ -838,3 +838,57 @@ class LDAP
         return $dn;
     }
 }
+
+/**
+ * Set for a given DN attributes
+ *
+ * @param string $dn
+ * The DN of an element.
+ * @param array $attributes
+ * The names and value of the attribute(s) to set using ldap_modify structure;
+ * @return bool
+ * Result of operation
+ */
+public function setAttributes($dn, $attributes)
+{
+    if (is_array($attributes)) {
+        // Log each attribute write
+        foreach ($attributes AS $attribute=>$attribute_data)
+        {
+            if ( is_array($attribute_data))
+            {
+                // Set Value
+                if ( sizeof($attribute_data) > 0 )
+                {
+                    foreach($attribute_data AS $attribute_entry=>$attribute_value)
+                    {
+                        SimpleSAML\Logger::debug('Library - LDAP setAttributes(): Setting \''.$attribute.'\' value \'' .
+                            $attribute_value.'\' to DN \''.$dn.'\'');
+                    }
+                }
+                // Delete all value
+                else
+                {
+                    SimpleSAML\Logger::debug('Library - LDAP setAttributes(): Deleting all \''.$attribute.'\' value to DN \''.$dn.'\'');
+                }
+            }
+            // Set value if not array
+            else
+            {
+                SimpleSAML\Logger::debug('Library - LDAP setAttributes(): Setting \''.$attribute.'\' value \'' .
+                    $attribute_data.'\' to DN \''.$dn.'\'');
+            }
+        }
+    } else {
+        SimpleSAML\Logger::debug('Library - LDAP setAttributes(): Setting NONE attribute to DN \''.$dn.'\'');
+        return false;
+    }
+
+    // Attempt to set attributes
+    $result = @ldap_modify($this->ldap, $dn, $attributes);
+    if ( ($result === false) ) {
+        throw $this->makeException('Library - LDAP setAttributes(): Failed to set attributes from DN \''.$dn.'\'');
+    }
+
+    return $result;
+}
