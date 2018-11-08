@@ -838,3 +838,13 @@ class LDAP
         return $dn;
     }
 }
+
+/**
+ * Get LDAP resource link
+ *
+ * @return resource
+ */
+public function getResourcelink()
+{
+    return $this->ldap;
+}
