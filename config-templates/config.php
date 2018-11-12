@@ -177,14 +177,15 @@ $config = [
     'enable.http_post' => false,
 
     /*
-     * Set the allowed time difference between encrypting/decrypting assertions
+     * Set the allowed clock skew between encrypting/decrypting assertions
      *
      * If you have an server that is constantly out of sync, this option
-     * allows you to adjust the allowed time-frame.
+     * allows you to adjust the allowed clock-skew.
      *
-     * Defaults to 60.
+     * Allowed range: 180 - 300
+     * Defaults to 180.
      */
-    'assertion.allowed_offset' => 60,
+    'assertion.allowed_clock_skew' => 180,
 
 
     /************************

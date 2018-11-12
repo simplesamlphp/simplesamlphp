@@ -657,30 +657,29 @@ class Message
 
         // check various properties of the assertion
         $config = \SimpleSAML\Configuration::getInstance();
-        $allowed_assertion_offset = $config->getInteger('assertion.allowed_offset', 60);
+        $allowed_clock_skew = $config->getInteger('assertion.allowed_clock_skew', 180);
         $options = [
             'options' => [
-                'default' => 60, // value to return if the filter fails
-                // other options here
-                'min_range' => 0,
+                'default' => 180,
+                'min_range' => 180,
                 'max_range' => 300,
             ],
         ];
-        $allowed_assertion_offset = filter_var($allowed_assertion_offset, FILTER_VALIDATE_INT, $options);
+        $allowed_clock_skew = filter_var($allowed_clock_skew, FILTER_VALIDATE_INT, $options);
         $notBefore = $assertion->getNotBefore();
-        if ($notBefore !== null && $notBefore > time() + $allowed_assertion_offset) {
+        if ($notBefore !== null && $notBefore > time() + $allowed_clock_skew) {
             throw new \SimpleSAML\Error\Exception(
                 'Received an assertion that is valid in the future. Check clock synchronization on IdP and SP.'
             );
         }
         $notOnOrAfter = $assertion->getNotOnOrAfter();
-        if ($notOnOrAfter !== null && $notOnOrAfter <= time() - $allowed_assertion_offset) {
+        if ($notOnOrAfter !== null && $notOnOrAfter <= time() - $allowed_clock_skew) {
             throw new \SimpleSAML\Error\Exception(
                 'Received an assertion that has expired. Check clock synchronization on IdP and SP.'
             );
         }
         $sessionNotOnOrAfter = $assertion->getSessionNotOnOrAfter();
-        if ($sessionNotOnOrAfter !== null && $sessionNotOnOrAfter <= time() - $allowed_assertion_offset) {
+        if ($sessionNotOnOrAfter !== null && $sessionNotOnOrAfter <= time() - $allowed_clock_skew) {
             throw new \SimpleSAML\Error\Exception(
                 'Received an assertion with a session that has expired. Check clock synchronization on IdP and SP.'
             );
