@@ -268,6 +268,9 @@ this is true (on a Windows machine). Next locate
 
 TODO
 
-#### Chrome
+#### Chromium
 
-TODO
+To allow Kerberos SPN generation on Linux-based platforms, add the
+following line to /etc/chromium.d/default-flags:
+    export CHROMIUM_FLAGS="$CHROMIUM_FLAGS --auth-server-whitelist=.example.com"
+
