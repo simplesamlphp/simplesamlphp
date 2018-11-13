@@ -29,6 +29,8 @@ Released TBD
 
 ### saml
   * Add initial support for SAML Subject Id Attributes.
+  * Allow to specify multiple supported NameIdFormats in IdP hosted and
+    SP remote metadata.
 
 ## Version 1.16.2
 
