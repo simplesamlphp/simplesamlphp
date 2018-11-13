@@ -311,6 +311,9 @@ Released 2017-11-20
   * Make sure we log the user out before reauthenticating.
   * More robust handling of IDPList support in proxy mode.
   * Increased `_authSource` field length in Logout Store.
+  * We now send the eduPersonTargetedID attribute in the correct
+    NameID XML form, instead of the incorrect simple string. We will also
+    refuse to parse an assertion with an eduPersonTargetedID in 'string' format.
 
 ### `smartattributes`
   * Fix SmartName authproc that failed to load.
