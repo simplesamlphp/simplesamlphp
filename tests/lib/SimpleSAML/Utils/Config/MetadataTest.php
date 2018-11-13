@@ -268,7 +268,7 @@ class MetadataTest extends TestCase
     {
         // Test null or unset
         $nameIdPolicy = null;
-        $this->assertEquals(Metadata::parseNameIdPolicy($nameIdPolicy), array('Format' => \SAML2\Constants::NAMEID_TRANSIENT));
+        $this->assertEquals(Metadata::parseNameIdPolicy($nameIdPolicy), ['Format' => \SAML2\Constants::NAMEID_TRANSIENT]);
 
         // Test false
         $nameIdPolicy = false;
@@ -276,27 +276,27 @@ class MetadataTest extends TestCase
 
         // Test string
         $nameIdPolicy = 'urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress';
-        $this->assertEquals(Metadata::parseNameIdPolicy($nameIdPolicy), array('Format' => 'urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress'));
+        $this->assertEquals(Metadata::parseNameIdPolicy($nameIdPolicy), ['Format' => 'urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress']);
 
         // Test array
-        $nameIdPolicy = array(
+        $nameIdPolicy = [
             'Format' => 'urn:oasis:names:tc:SAML:1.1:nameid-format:persistent',
             'AllowCreate' => false
-        );
-        $this->assertEquals(Metadata::parseNameIdPolicy($nameIdPolicy), array(
+        ];
+        $this->assertEquals(Metadata::parseNameIdPolicy($nameIdPolicy), [
             'Format' => 'urn:oasis:names:tc:SAML:1.1:nameid-format:persistent',
             'AllowCreate' => false
-        ));
+        ]);
 
-        $nameIdPolicy = array(
+        $nameIdPolicy = [
             'Format' => 'urn:oasis:names:tc:SAML:1.1:nameid-format:persistent',
             'AllowCreate' => false,
             'SPNameQualifier' => 'TEST'
-        );
-        $this->assertEquals(Metadata::parseNameIdPolicy($nameIdPolicy), array(
+        ];
+        $this->assertEquals(Metadata::parseNameIdPolicy($nameIdPolicy), [
             'Format' => 'urn:oasis:names:tc:SAML:1.1:nameid-format:persistent',
             'AllowCreate' => false,
             'SPNameQualifier' => 'TEST'
-        ));
+        ]);
     }
 }
