@@ -237,7 +237,7 @@ class SP extends Source
             } elseif (is_array($state['saml:NameIDPolicy'])) {
                 $policy = $state['saml:NameIDPolicy'];
             } elseif ($state['saml:NameIDPolicy'] === null) {
-                $policy = array('Format' => \SAML2\Constants::NAMEID_TRANSIENT);
+                $policy = ['Format' => \SAML2\Constants::NAMEID_TRANSIENT];
             }
             if ($policy !== null) {
                 $ar->setNameIdPolicy($policy);

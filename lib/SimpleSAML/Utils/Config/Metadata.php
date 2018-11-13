@@ -293,21 +293,21 @@ class Metadata
 
         if (is_string($nameIdPolicy)) {
             // handle old configurations where 'NameIDPolicy' was used to specify just the format
-            $policy = array('Format' => $nameIdPolicy);
+            $policy = ['Format' => $nameIdPolicy];
         } elseif (is_array($nameIdPolicy)) {
             // handle current configurations specifying an array in the NameIDPolicy config option
             $nameIdPolicy_cf = \SimpleSAML_Configuration::loadFromArray($nameIdPolicy);
-            $policy = array(
+            $policy = [
                 'Format'      => $nameIdPolicy_cf->getString('Format', \SAML2\Constants::NAMEID_TRANSIENT),
                 'AllowCreate' => $nameIdPolicy_cf->getBoolean('AllowCreate', true),
-            );
+            ];
             $spNameQualifier = $nameIdPolicy_cf->getString('SPNameQualifier', false);
             if ($spNameQualifier !== false) {
                 $policy['SPNameQualifier'] = $spNameQualifier;
             }
         } elseif ($nameIdPolicy === null) {
             // when NameIDPolicy is unset or set to null, default to transient as before
-            $policy = array('Format' => \SAML2\Constants::NAMEID_TRANSIENT);
+            $policy = ['Format' => \SAML2\Constants::NAMEID_TRANSIENT];
         }
 
         return $policy;
