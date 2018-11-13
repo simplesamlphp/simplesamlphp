@@ -134,7 +134,7 @@ try {
         ];
     }
 
-    $metaArray['NameIDFormat'] = $idpmeta->getString(
+    $metaArray['NameIDFormat'] = $idpmeta->getArrayizeString(
         'NameIDFormat',
         'urn:oasis:names:tc:SAML:2.0:nameid-format:transient'
     );
