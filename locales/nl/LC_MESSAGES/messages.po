@@ -44,6 +44,9 @@ msgstr "Toestandsinformatie verloren"
 msgid "{login:username}"
 msgstr "Gebruikersnaam"
 
+msgid "Back"
+msgstr "Terug"
+
 msgid "{errors:title_METADATA}"
 msgstr "Fout bij het laden van metadata"
 

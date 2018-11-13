@@ -1,17 +1,16 @@
 <?php
 
-$config = SimpleSAML_Configuration::getInstance();
+$config = \SimpleSAML\Configuration::getInstance();
 
-$info = array();
-$errors = array();
-$hookinfo = array(
+$info = [];
+$errors = [];
+$hookinfo = [
     'info' => &$info,
     'errors' => &$errors,
-);
-SimpleSAML\Module::callHooks('sanitycheck', $hookinfo);
+];
+\SimpleSAML\Module::callHooks('sanitycheck', $hookinfo);
 
 if (isset($_REQUEST['output']) && $_REQUEST['output'] == 'text') {
-
     if (count($errors) === 0) {
         echo 'OK';
     } else {
@@ -20,7 +19,7 @@ if (isset($_REQUEST['output']) && $_REQUEST['output'] == 'text') {
     exit;
 }
 
-$t = new SimpleSAML_XHTML_Template($config, 'sanitycheck:check.tpl.php');
+$t = new \SimpleSAML\XHTML\Template($config, 'sanitycheck:check.tpl.php');
 $t->data['pageid'] = 'sanitycheck';
 $t->data['errors'] = $errors;
 $t->data['info'] = $info;

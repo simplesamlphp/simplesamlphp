@@ -7,7 +7,6 @@
 !/authcrypt/
 !/authfacebook/
 !/authlinkedin/
-!/authmyspace/
 !/authorize/
 !/authtwitter/
 !/authwindowslive/
@@ -39,3 +38,6 @@
 !/smartattributes/
 !/sqlauth/
 !/statistics/
+
+*/enable
+*/disable

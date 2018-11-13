@@ -1,4 +1,7 @@
 <?php
+
+namespace SimpleSAML\Module\consent\Consent\Store;
+
 /**
  * Cookie storage for consent
  *
@@ -18,7 +21,8 @@
  * @author  Olav Morken <olav.morken@uninett.no>
  * @package SimpleSAMLphp
  */
-class sspmod_consent_Consent_Store_Cookie extends sspmod_consent_Store
+
+class Cookie extends \SimpleSAML\Module\consent\Store
 {
     /**
      * Check for consent.
@@ -38,37 +42,36 @@ class sspmod_consent_Consent_Store_Cookie extends sspmod_consent_Store
         assert(is_string($destinationId));
         assert(is_string($attributeSet));
 
-        $cookieName = self::_getCookieName($userId, $destinationId);
+        $cookieName = self::getCookieName($userId, $destinationId);
 
-        $data = $userId . ':' . $attributeSet . ':' . $destinationId;
+        $data = $userId.':'.$attributeSet.':'.$destinationId;
 
-        SimpleSAML\Logger::debug('Consent cookie - Get [' . $data . ']');
+        \SimpleSAML\Logger::debug('Consent cookie - Get ['.$data.']');
 
         if (!array_key_exists($cookieName, $_COOKIE)) {
-            SimpleSAML\Logger::debug(
-                'Consent cookie - no cookie with name \'' .
-                $cookieName . '\'.'
+            \SimpleSAML\Logger::debug(
+                'Consent cookie - no cookie with name \''.$cookieName.'\'.'
             );
             return false;
         }
         if (!is_string($_COOKIE[$cookieName])) {
-            SimpleSAML\Logger::warning(
-                'Value of consent cookie wasn\'t a string. Was: ' .
+            \SimpleSAML\Logger::warning(
+                'Value of consent cookie wasn\'t a string. Was: '.
                 var_export($_COOKIE[$cookieName], true)
             );
             return false;
         }
 
-        $data = self::_sign($data);
+        $data = self::sign($data);
 
         if ($_COOKIE[$cookieName] !== $data) {
-            SimpleSAML\Logger::info(
+            \SimpleSAML\Logger::info(
                 'Attribute set changed from the last time consent was given.'
             );
             return false;
         }
 
-        SimpleSAML\Logger::debug(
+        \SimpleSAML\Logger::debug(
             'Consent cookie - found cookie with correct name and value.'
         );
 
@@ -94,13 +97,13 @@ class sspmod_consent_Consent_Store_Cookie extends sspmod_consent_Store
         assert(is_string($destinationId));
         assert(is_string($attributeSet));
 
-        $name = self::_getCookieName($userId, $destinationId);
-        $value = $userId . ':' . $attributeSet . ':' . $destinationId;
+        $name = self::getCookieName($userId, $destinationId);
+        $value = $userId.':'.$attributeSet.':'.$destinationId;
 
-        SimpleSAML\Logger::debug('Consent cookie - Set [' . $value . ']');
+        \SimpleSAML\Logger::debug('Consent cookie - Set ['.$value.']');
 
-        $value = self::_sign($value);
-        $this->_setConsentCookie($name, $value);
+        $value = self::sign($value);
+        $this->setConsentCookie($name, $value);
     }
 
 
@@ -119,8 +122,8 @@ class sspmod_consent_Consent_Store_Cookie extends sspmod_consent_Store
         assert(is_string($userId));
         assert(is_string($destinationId));
 
-        $name = self::_getCookieName($userId, $destinationId);
-        $this->_setConsentCookie($name, null);
+        $name = self::getCookieName($userId, $destinationId);
+        $this->setConsentCookie($name, null);
     }
 
 
@@ -131,14 +134,14 @@ class sspmod_consent_Consent_Store_Cookie extends sspmod_consent_Store
      *
      * @return void This method does not return.
      *
-     * @throws Exception This method always throws an exception indicating that it is not possible to delete all given
+     * @throws \Exception This method always throws an exception indicating that it is not possible to delete all given
      * consents with this handler.
      */
     public function deleteAllConsents($userId)
     {
         assert(is_string($userId));
 
-        throw new Exception(
+        throw new \Exception(
             'The cookie consent handler does not support delete of all consents...'
         );
     }
@@ -157,24 +160,24 @@ class sspmod_consent_Consent_Store_Cookie extends sspmod_consent_Store
     {
         assert(is_string($userId));
 
-        $ret = array();
+        $ret = [];
 
-        $cookieNameStart = 'sspmod_consent:';
+        $cookieNameStart = '\SimpleSAML\Module\consent:';
         $cookieNameStartLen = strlen($cookieNameStart);
         foreach ($_COOKIE as $name => $value) {
             if (substr($name, 0, $cookieNameStartLen) !== $cookieNameStart) {
                 continue;
             }
 
-            $value = self::_verify($value);
+            $value = self::verify($value);
             if ($value === false) {
                 continue;
             }
 
             $tmp = explode(':', $value, 3);
             if (count($tmp) !== 3) {
-                SimpleSAML\Logger::warning(
-                    'Consent cookie with invalid value: ' . $value
+                \SimpleSAML\Logger::warning(
+                    'Consent cookie with invalid value: '.$value
                 );
                 continue;
             }
@@ -201,13 +204,13 @@ class sspmod_consent_Consent_Store_Cookie extends sspmod_consent_Store
      *
      * @return string The signed data.
      */
-    private static function _sign($data)
+    private static function sign($data)
     {
         assert(is_string($data));
 
-        $secretSalt = SimpleSAML\Utils\Config::getSecretSalt();
+        $secretSalt = \SimpleSAML\Utils\Config::getSecretSalt();
 
-        return sha1($secretSalt . $data . $secretSalt) . ':' . $data;
+        return sha1($secretSalt.$data.$secretSalt).':'.$data;
     }
 
 
@@ -220,20 +223,20 @@ class sspmod_consent_Consent_Store_Cookie extends sspmod_consent_Store
      *
      * @return string|false The data, or false if the signature is invalid.
      */
-    private static function _verify($signedData)
+    private static function verify($signedData)
     {
         assert(is_string($signedData));
 
         $data = explode(':', $signedData, 2);
         if (count($data) !== 2) {
-            SimpleSAML\Logger::warning('Consent cookie: Missing signature.');
+            \SimpleSAML\Logger::warning('Consent cookie: Missing signature.');
             return false;
         }
         $data = $data[1];
 
-        $newSignedData = self::_sign($data);
+        $newSignedData = self::sign($data);
         if ($newSignedData !== $signedData) {
-            SimpleSAML\Logger::warning('Consent cookie: Invalid signature.');
+            \SimpleSAML\Logger::warning('Consent cookie: Invalid signature.');
             return false;
         }
 
@@ -251,12 +254,12 @@ class sspmod_consent_Consent_Store_Cookie extends sspmod_consent_Store
      *
      * @return string The cookie name
      */
-    private static function _getCookieName($userId, $destinationId)
+    private static function getCookieName($userId, $destinationId)
     {
         assert(is_string($userId));
         assert(is_string($destinationId));
 
-        return 'sspmod_consent:' . sha1($userId . ':' . $destinationId);
+        return '\SimpleSAML\Module\consent:'.sha1($userId.':'.$destinationId);
     }
 
 
@@ -268,24 +271,18 @@ class sspmod_consent_Consent_Store_Cookie extends sspmod_consent_Store
      *
      * @return void
      */
-    private function _setConsentCookie($name, $value)
+    private function setConsentCookie($name, $value)
     {
         assert(is_string($name));
         assert(is_string($value) || $value === null);
 
-        $globalConfig = SimpleSAML_Configuration::getInstance();
-        $params = array(
-            'lifetime' => (90*24*60*60),
+        $globalConfig = \SimpleSAML\Configuration::getInstance();
+        $params = [
+            'lifetime' => 7776000, // (90*24*60*60)
             'path' => ($globalConfig->getBasePath()),
-            'httponly' => false,
-        );
-
-        if (\SimpleSAML\Utils\HTTP::isHTTPS()) {
-            // Enable secure cookie for https-requests
-            $params['secure'] = true;
-        } else {
-            $params['secure'] = false;
-        }
+            'httponly' => true,
+            'secure' => \SimpleSAML\Utils\HTTP::isHTTPS(),
+        ];
 
         \SimpleSAML\Utils\HTTP::setCookie($name, $value, $params, false);
     }

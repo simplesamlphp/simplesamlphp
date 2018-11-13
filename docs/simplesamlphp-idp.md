@@ -16,10 +16,9 @@ This guide will describe how to configure SimpleSAMLphp as an identity provider 
 Enabling the Identity Provider functionality
 --------------------------------------------
 
-The first that must be done is to enable the identity provider functionality. This is done by editing `config/config.php`. The options `enable.saml20-idp` and `enable.shib13-idp` controls whether SAML 2.0 and Shibboleth 1.3 support is enabled. Enable one or both of those by assigning `true` to them:
+The first that must be done is to enable the identity provider functionality. This is done by editing `config/config.php`. The option `enable.saml20-idp` controls whether SAML 2.0 IdP support is enabled. Enable it by assigning `true` to them:
 
     'enable.saml20-idp' => true,
-    'enable.shib13-idp' => true,
 
 
 Authentication module
@@ -97,26 +96,26 @@ The next step is to create an authentication source with this module. An authent
 In this setup, this file should contain a single entry:
 
 	<?php
-	$config = array(
-		'example-userpass' => array(
+	$config = [
+		'example-userpass' => [
 			'exampleauth:UserPass',
-			'student:studentpass' => array(
-				'uid' => array('student'),
-				'eduPersonAffiliation' => array('member', 'student'),
-			),
-			'employee:employeepass' => array(
-				'uid' => array('employee'),
-				'eduPersonAffiliation' => array('member', 'employee'),
-			),
-		),
-	);
+			'student:studentpass' => [
+				'uid' => ['student'],
+				'eduPersonAffiliation' => ['member', 'student'],
+			],
+			'employee:employeepass' => [
+				'uid' => ['employee'],
+				'eduPersonAffiliation' => ['member', 'employee'],
+			],
+		],
+	];
 
 This configuration creates two users - `student` and `employee`, with the passwords `studentpass` and `employeepass`. The username and password is stored in the array index (`student:studentpass` for the `student`-user. The attributes for each user is configured in the array referenced by the index. For the student user, these are:
 
-	array(
-		'uid' => array('student'),
-		'eduPersonAffiliation' => array('member', 'student'),
-	),
+	[
+		'uid' => ['student'],
+		'eduPersonAffiliation' => ['member', 'student'],
+	],
 
 The attributes will be returned by the IdP when the user logs on.
 
@@ -141,12 +140,12 @@ SimpleSAMLphp will only work with RSA certificates. DSA certificates are not sup
 Configuring the IdP
 -------------------
 
-The IdP is configured by the metadata stored in
-`metadata/saml20-idp-hosted.php` and `metadata/shib13-idp-hosted.php`.
-This is a minimal configuration of a SAML 2.0 IdP:
+The SAML 2.0 IdP is configured by the metadata stored in
+`metadata/saml20-idp-hosted.php`.
+This is a minimal configuration:
 
     <?php
-    $metadata['__DYNAMIC:1__'] = array(
+    $metadata['__DYNAMIC:1__'] = [
         /*
          * The hostname for this IdP. This makes it possible to run multiple
          * IdPs from the same configuration. '__DEFAULT__' means that this one
@@ -166,7 +165,7 @@ This is a minimal configuration of a SAML 2.0 IdP:
          * user. This must match one of the entries in config/authsources.php.
          */
         'auth' => 'example-userpass',
-    );
+    ];
 
 For more information about available options in the idp-hosted metadata
 files, see the [IdP hosted reference](simplesamlphp-reference-idp-hosted).
@@ -175,29 +174,29 @@ files, see the [IdP hosted reference](simplesamlphp-reference-idp-hosted).
 Using the `uri` NameFormat on attributes
 ----------------------------------------
 
-The [interoperable SAML 2 profile](http://saml2int.org/profile/current) specifies that attributes should be delivered using the `urn:oasis:names:tc:SAML:2.0:attrname-format:uri` NameFormat.
+The [interoperable SAML 2 profile](https://kantarainitiative.github.io/SAMLprofiles/saml2int.html) specifies that attributes should be delivered using the `urn:oasis:names:tc:SAML:2.0:attrname-format:uri` NameFormat.
 We therefore recommended enabling this in new installations.
 This can be done by adding the following to the saml20-idp-hosted configuration:
 
     'attributes.NameFormat' => 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri',
-    'authproc' => array(
+    'authproc' => [
         // Convert LDAP names to oids.
-        100 => array('class' => 'core:AttributeMap', 'name2oid'),
-    ),
+        100 => ['class' => 'core:AttributeMap', 'name2oid'],
+    ],
 
 
 Adding SPs to the IdP
 ---------------------
 
 The identity provider you are configuring needs to know about the service providers you are going to connect to it.
-This is configured by metadata stored in `metadata/saml20-sp-remote.php` and `metadata/shib13-sp-remote.php`.
+This is configured by metadata stored in `metadata/saml20-sp-remote.php`.
 This is a minimal example of a `metadata/saml20-sp-remote.php` metadata file for a SimpleSAMLphp SP:
 
     <?php
-    $metadata['https://sp.example.org/simplesaml/module.php/saml/sp/metadata.php/default-sp'] = array(
+    $metadata['https://sp.example.org/simplesaml/module.php/saml/sp/metadata.php/default-sp'] = [
         'AssertionConsumerService' => 'https://sp.example.org/simplesaml/module.php/saml/sp/saml2-acs.php/default-sp',
         'SingleLogoutService'      => 'https://sp.example.org/simplesaml/module.php/saml/sp/saml2-logout.php/default-sp',
-    );
+    ];
 
 Note that the URI in the entityID and the URLs to the AssertionConsumerService and SingleLogoutService endpoints change between different service providers.
 If you have the metadata of the remote SP as an XML file, you can use the built-in XML to SimpleSAMLphp metadata converter, which by default is available as `/admin/metadata-converter.php` in your SimpleSAMLphp installation.
@@ -208,7 +207,7 @@ For more information about available options in the sp-remote metadata files, se
 Adding this IdP to other SPs
 ----------------------------
 
-The method for adding this IdP to a SP varies between different types of SPs. In general, most SPs need some metadata from the IdP. This should be available from `/saml2/idp/metadata.php` and `/shib13/idp/metadata.php`.
+The method for adding this IdP to a SP varies between different types of SPs. In general, most SPs need some metadata from the IdP. This should be available from `/saml2/idp/metadata.php`.
 
 
 Testing the IdP
@@ -253,7 +252,7 @@ To send the RelayState parameter from a SimpleSAMLphp IdP, specify it in the que
 
 To set it in the SP configuration, add it to `authsources.php`:
 
-    'default-sp' => array(
+    'default-sp' => [
         'saml:SP',
         'RelayState' => 'https://sp.example.org/welcome.php',
-    ),
+    ],

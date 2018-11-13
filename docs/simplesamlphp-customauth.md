@@ -1,7 +1,7 @@
 Implementing custom username/password authentication
 ====================================================
 
-This is a step-by-step guide for creating a custom username/password [authentication source](./simplesamlphp-authsource) for SimpleSAMLphp.
+This is a step-by-step guide for creating a custom username/password [authentication source](./simplesamlphp-authsource.md) for SimpleSAMLphp.
 An authentication source is responsible for authenticating the user, typically by getting a username and password, and looking it up in some sort of database.
 
 <!-- {{TOC}} -->
@@ -9,7 +9,7 @@ An authentication source is responsible for authenticating the user, typically b
 Create a custom module
 ----------------------
 
-All custom code for SimpleSAMLphp should be contained in a [module](./simplesamlphp-modules).
+All custom code for SimpleSAMLphp should be contained in a [module](./simplesamlphp-modules.md).
 This ensures that you can upgrade your SimpleSAMLphp installation without overwriting your own code.
 In this example, we will call the module `mymodule`.
 It will be located under `modules/mymodule`.
@@ -40,31 +40,31 @@ To begin with, we will create a very simple authentication source, where the use
 Create the file `modules/mymodule/lib/Auth/Source/MyAuth.php` with the following contents:
 
     <?php
-    class sspmod_mymodule_Auth_Source_MyAuth extends sspmod_core_Auth_UserPassBase {
+    class MyAuth extends \SimpleSAML\Module\core\Auth\UserPassBase {
         protected function login($username, $password) {
             if ($username !== 'theusername' || $password !== 'thepassword') {
-                throw new SimpleSAML_Error_Error('WRONGUSERPASS');
+                throw new \SimpleSAML\Error\Error('WRONGUSERPASS');
             }
-            return array(
-                'uid' => array('theusername'),
-                'displayName' => array('Some Random User'),
-                'eduPersonAffiliation' => array('member', 'employee'),
-            );
+            return [
+                'uid' => ['theusername'],
+                'displayName' => ['Some Random User'],
+                'eduPersonAffiliation' => ['member', 'employee'],
+            ];
         }
     }
 
 Some things to note:
 
-  - The classname is `sspmod_mymodule_Auth_Source_MyAuth`.
+  - The classname is `\SimpleSAML\Module\mymodule\Auth\Source\MyAuth`.
     This tells SimpleSAMLphp to look for the class in `modules/mymodule/lib/Auth/Source/MyAuth.php`.
 
-  - Our authentication source subclassese `sspmod_core_Auth_UserPassBase`.
+  - Our authentication source subclassese `\SimpleSAML\Module\core\Auth\UserPassBase`.
     This is a helper-class that implements much of the common code needed for username/password authentication.
 
   - The `login` function receives the username and password the user enters.
     It is expected to authenticate the user.
     If the username or password is correct, it must return a set of attributes for the user.
-    Otherwise, it must throw the `SimpleSAML_Error_Error('WRONGUSERPASS');` exception.
+    Otherwise, it must throw the `\SimpleSAML\Error\Error('WRONGUSERPASS');` exception.
 
   - Attributes are returned as an associative array of `name => values` pairs.
     All attributes can have multiple values, so the values are always stored in an array.
@@ -78,26 +78,26 @@ Before we can test our authentication source, we must add an entry for it in `co
 
 The entry looks like this:
 
-    'myauthinstance' => array(
+    'myauthinstance' => [
         'mymodule:MyAuth',
-    ),
+    ],
 
 You can add it to the beginning of the list, so that the file looks something like this:
 
     <?php
-    $config = array(
-        'myauthinstance' => array(
+    $config = [
+        'myauthinstance' => [
             'mymodule:MyAuth',
-        ),
+        ],
         /* Other authentication sources follow. */
-    );
+    ];
 
 `myauthinstance` is the name of this instance of the authentication source.
 (You are allowed to have multiple instances of an authentication source with different configuration.)
 The instance name is used to refer to this authentication source in other configuration files.
 
 The first element of the configuration of the authentication source must be `'mymodule:MyAuth'`.
-This tells SimpleSAMLphp to look for the `sspmod_mymodule_Auth_Source_MyAuth` class.
+This tells SimpleSAMLphp to look for the `\SimpleSAML\Module\mymodule\Auth\Source\MyAuth` class.
 
 
 Testing our authentication source
@@ -124,7 +124,7 @@ In that file you should locate the `auth`-option for your IdP, and change it to 
 
     <?php
     /* ... */
-    $metadata['__DYNAMIC:1__'] = array(
+    $metadata['__DYNAMIC:1__'] = [
         /* ... */
         /*
          * Authentication source to use. Must be one that is configured in
@@ -132,7 +132,7 @@ In that file you should locate the `auth`-option for your IdP, and change it to 
          */
         'auth' => 'myauthinstance',
         /* ... */
-    );
+    ];
 
 You can then test logging in to the IdP.
 If you have logged in previously, you may need to log out first.
@@ -168,7 +168,7 @@ We can then use the properties in the `login` function.
 The complete class file should look like this:
 
     <?php
-    class sspmod_mymodule_Auth_Source_MyAuth extends sspmod_core_Auth_UserPassBase {
+    class MyAuth extends \SimpleSAML\Module\core\Auth\UserPassBase {
 
         private $username;
         private $password;
@@ -187,24 +187,24 @@ The complete class file should look like this:
 
         protected function login($username, $password) {
             if ($username !== $this->username || $password !== $this->password) {
-                throw new SimpleSAML_Error_Error('WRONGUSERPASS');
+                throw new \SimpleSAML\Error\Error('WRONGUSERPASS');
             }
-            return array(
-                'uid' => array($this->username),
-                'displayName' => array('Some Random User'),
-                'eduPersonAffiliation' => array('member', 'employee'),
-            );
+            return [
+                'uid' => [$this->username],
+                'displayName' => ['Some Random User'],
+                'eduPersonAffiliation' => ['member', 'employee'],
+            ];
         }
 
     }
 
 We can then update our entry in `config/authsources.php` with the configuration options:
 
-    'myauthinstance' => array(
+    'myauthinstance' => [
         'mymodule:MyAuth',
         'username' => 'theconfigusername',
         'password' => 'theconfigpassword',
-    ),
+    ],
 
 Next, you should go to the "Test configured authentication sources" page again, and test logging in.
 Note that we have updated the username & password to "theconfigusername" and "theconfigpassword".
@@ -214,7 +214,7 @@ Note that we have updated the username & password to "theconfigusername" and "th
 A more complete example - custom database authentication
 --------------------------------------------------------
 
-The [sqlauth:SQL](./sqlauth:sql) authentication source can do simple authentication against SQL databases.
+The [sqlauth:SQL](../modules/sqlauth/docs/sql.md) authentication source can do simple authentication against SQL databases.
 However, in some cases it cannot be used, for example because the database layout is too complex, or because the password validation routines cannot be implemented in SQL.
 What follows is an example of an authentication source that fetches an user from a database, and validates the password using a custom function.
 
@@ -245,7 +245,7 @@ A SSHA password is created like this:
 The class follows:
 
     <?php
-    class sspmod_mymodule_Auth_Source_MyAuth extends sspmod_core_Auth_UserPassBase {
+    class MyAuth extends \SimpleSAML\Module\core\Auth\UserPassBase {
 
         /* The database DSN.
          * See the documentation for the various database drivers for information about the syntax:
@@ -314,7 +314,7 @@ The class follows:
              */
             $st = $db->prepare('SELECT username, password_hash, full_name FROM userdb WHERE username=:username');
 
-            if (!$st->execute(array('username' => $username))) {
+            if (!$st->execute(['username' => $username])) {
                 throw new Exception('Failed to query database for user.');
             }
 
@@ -323,22 +323,22 @@ The class follows:
             if (!$row) {
                 /* User not found. */
                 SimpleSAML\Logger::warning('MyAuth: Could not find user ' . var_export($username, TRUE) . '.');
-                throw new SimpleSAML_Error_Error('WRONGUSERPASS');
+                throw new \SimpleSAML\Error\Error('WRONGUSERPASS');
             }
 
             /* Check the password. */
             if (!$this->checkPassword($row['password_hash'], $password)) {
                 /* Invalid password. */
                 SimpleSAML\Logger::warning('MyAuth: Wrong password for user ' . var_export($username, TRUE) . '.');
-                throw new SimpleSAML_Error_Error('WRONGUSERPASS');
+                throw new \SimpleSAML\Error\Error('WRONGUSERPASS');
             }
 
             /* Create the attribute array of the user. */
-            $attributes = array(
-                'uid' => array($username),
-                'displayName' => array($row['full_name']),
-                'eduPersonAffiliation' => array('member', 'employee'),
-            );
+            $attributes = [
+                'uid' => [$username],
+                'displayName' => [$row['full_name']],
+                'eduPersonAffiliation' => ['member', 'employee'],
+            ];
 
             /* Return the attributes. */
             return $attributes;
@@ -348,10 +348,10 @@ The class follows:
 
 And configured in `config/authsources.php`:
 
-    'myauthinstance' => array(
+    'myauthinstance' => [
         'mymodule:MyAuth',
         'dsn' => 'mysql:host=sql.example.org;dbname=userdatabase',
         'username' => 'db_username',
         'password' => 'secret_db_password',
-    ),
+    ],
 

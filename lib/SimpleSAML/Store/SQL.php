@@ -2,7 +2,7 @@
 
 namespace SimpleSAML\Store;
 
-use \SimpleSAML_Configuration as Configuration;
+use \SimpleSAML\Configuration;
 use \SimpleSAML\Logger;
 use \SimpleSAML\Store;
 
@@ -48,7 +48,7 @@ class SQL extends Store
     /**
      * Initialize the SQL data store.
      */
-    protected function __construct()
+    public function __construct()
     {
         $config = Configuration::getInstance();
 
@@ -57,8 +57,11 @@ class SQL extends Store
         $password = $config->getString('store.sql.password', null);
         $options = $config->getArray('store.sql.options', null);
         $this->prefix = $config->getString('store.sql.prefix', 'simpleSAMLphp');
-
-        $this->pdo = new \PDO($dsn, $username, $password, $options);
+        try {
+            $this->pdo = new \PDO($dsn, $username, $password, $options);
+        } catch (\PDOException $e) {
+            throw new \Exception("Database error: ".$e->getMessage());
+        }
         $this->pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 
         $this->driver = $this->pdo->getAttribute(\PDO::ATTR_DRIVER_NAME);
@@ -77,7 +80,7 @@ class SQL extends Store
      */
     private function initTableVersionTable()
     {
-        $this->tableVersions = array();
+        $this->tableVersions = [];
 
         try {
             $fetchTableVersion = $this->pdo->query('SELECT _name, _version FROM '.$this->prefix.'_tableVersion');
@@ -112,13 +115,13 @@ class SQL extends Store
          * Queries for updates, grouped by version.
          * New updates can be added as a new array in this array
          */
-        $table_updates = array(
-            array(
+        $table_updates = [
+            [
                 'CREATE TABLE '.$this->prefix.
                 '_kvstore (_type VARCHAR(30) NOT NULL, _key VARCHAR(50) NOT NULL, _value '.$text_t.
                 ' NOT NULL, _expire TIMESTAMP, PRIMARY KEY (_key, _type))',
                 'CREATE INDEX '.$this->prefix.'_kvstore_expire ON '.$this->prefix.'_kvstore (_expire)'
-            ),
+            ],
             /**
              * This upgrade removes the default NOT NULL constraint on the _expire field in MySQL.
              * Because SQLite does not support field alterations, the approach is to:
@@ -128,16 +131,16 @@ class SQL extends Store
              *     Rename the new table correctly
              *     Readd the index
              */
-            array(
+            [
                 'CREATE TABLE '.$this->prefix.
                 '_kvstore_new (_type VARCHAR(30) NOT NULL, _key VARCHAR(50) NOT NULL, _value '.$text_t.
                 ' NOT NULL, _expire TIMESTAMP NULL, PRIMARY KEY (_key, _type))',
-                'INSERT INTO '.$this->prefix.'_kvstore_new SELECT * FROM ' . $this->prefix.'_kvstore',
+                'INSERT INTO '.$this->prefix.'_kvstore_new SELECT * FROM '.$this->prefix.'_kvstore',
                 'DROP TABLE '.$this->prefix.'_kvstore',
-                'ALTER TABLE '.$this->prefix.'_kvstore_new RENAME TO ' . $this->prefix . '_kvstore',
+                'ALTER TABLE '.$this->prefix.'_kvstore_new RENAME TO '.$this->prefix.'_kvstore',
                 'CREATE INDEX '.$this->prefix.'_kvstore_expire ON '.$this->prefix.'_kvstore (_expire)'
-            )
-        );
+            ]
+        ];
 
         $latest_version = count($table_updates);
 
@@ -190,8 +193,8 @@ class SQL extends Store
 
         $this->insertOrUpdate(
             $this->prefix.'_tableVersion',
-            array('_name'),
-            array('_name' => $name, '_version' => $version)
+            ['_name'],
+            ['_name' => $name, '_version' => $version]
         );
         $this->tableVersions[$name] = $version;
     }
@@ -243,8 +246,8 @@ class SQL extends Store
             }
         }
 
-        $updateCols = array();
-        $condCols = array();
+        $updateCols = [];
+        $condCols = [];
         foreach ($data as $col => $value) {
             $tmp = $col.' = :'.$col;
 
@@ -269,7 +272,7 @@ class SQL extends Store
         Logger::debug('store.sql: Cleaning key-value store.');
 
         $query = 'DELETE FROM '.$this->prefix.'_kvstore WHERE _expire < :now';
-        $params = array('now' => gmdate('Y-m-d H:i:s'));
+        $params = ['now' => gmdate('Y-m-d H:i:s')];
 
         $query = $this->pdo->prepare($query);
         $query->execute($params);
@@ -294,8 +297,8 @@ class SQL extends Store
         }
 
         $query = 'SELECT _value FROM '.$this->prefix.
-                 '_kvstore WHERE _type = :type AND _key = :key AND (_expire IS NULL OR _expire > :now)';
-        $params = array('type' => $type, 'key' => $key, 'now' => gmdate('Y-m-d H:i:s'));
+            '_kvstore WHERE _type = :type AND _key = :key AND (_expire IS NULL OR _expire > :now)';
+        $params = ['type' => $type, 'key' => $key, 'now' => gmdate('Y-m-d H:i:s')];
 
         $query = $this->pdo->prepare($query);
         $query->execute($params);
@@ -348,14 +351,14 @@ class SQL extends Store
         $value = serialize($value);
         $value = rawurlencode($value);
 
-        $data = array(
+        $data = [
             '_type'   => $type,
             '_key'    => $key,
             '_value'  => $value,
             '_expire' => $expire,
-        );
+        ];
 
-        $this->insertOrUpdate($this->prefix.'_kvstore', array('_type', '_key'), $data);
+        $this->insertOrUpdate($this->prefix.'_kvstore', ['_type', '_key'], $data);
     }
 
 
@@ -374,10 +377,10 @@ class SQL extends Store
             $key = sha1($key);
         }
 
-        $data = array(
+        $data = [
             '_type' => $type,
             '_key'  => $key,
-        );
+        ];
 
         $query = 'DELETE FROM '.$this->prefix.'_kvstore WHERE _type=:_type AND _key=:_key';
         $query = $this->pdo->prepare($query);

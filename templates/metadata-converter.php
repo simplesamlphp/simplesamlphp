@@ -48,10 +48,10 @@ if (!empty($output)) {
 <?php
     for ($j = 1; $j <= $i; $j++) {
 ?>
-        var clipboard<?php echo $j; ?> = new Clipboard('#btn<?php echo $j; ?>');
+        var clipboard<?php echo $j; ?> = new ClipboardJS('#btn<?php echo $j; ?>');
 <?php
     }
- ?>
+?>
     </script>
 <?php
 }

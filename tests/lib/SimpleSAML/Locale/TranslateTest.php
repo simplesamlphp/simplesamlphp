@@ -14,7 +14,7 @@ class TranslateTest extends TestCase
     public function testNoop()
     {
         // test default
-        $c = \SimpleSAML_Configuration::loadFromArray(array());
+        $c = \SimpleSAML\Configuration::loadFromArray([]);
         $t = new Translate($c);
         $testString = 'Blablabla';
         $this->assertEquals($testString, $t->noop($testString));
@@ -25,7 +25,7 @@ class TranslateTest extends TestCase
      */
     public function testTFallback()
     {
-        $c = \SimpleSAML_Configuration::loadFromArray(array());
+        $c = \SimpleSAML\Configuration::loadFromArray([]);
         $t = new Translate($c);
         $testString = 'Blablabla';
 
@@ -34,6 +34,6 @@ class TranslateTest extends TestCase
         $this->assertEquals($result, $t->t($testString));
 
         // $fallbackdefault = false, should be a noop
-        $this->assertEquals($testString, $t->t($testString, array(), false));
+        $this->assertEquals($testString, $t->t($testString, [], false));
     }
 }

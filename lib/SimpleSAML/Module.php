@@ -1,4 +1,5 @@
 <?php
+
 namespace SimpleSAML;
 
 /**
@@ -11,20 +12,19 @@ namespace SimpleSAML;
  */
 class Module
 {
-
     /**
      * A list containing the modules currently installed.
      *
      * @var array
      */
-    public static $modules = array();
+    public static $modules = [];
 
     /**
      * A cache containing specific information for modules, like whether they are enabled or not, or their hooks.
      *
      * @var array
      */
-    public static $module_info = array();
+    public static $module_info = [];
 
 
     /**
@@ -58,8 +58,8 @@ class Module
      */
     public static function isModuleEnabled($module)
     {
-        $config = \SimpleSAML_Configuration::getOptionalConfig();
-        return self::isModuleEnabledWithConf($module, $config->getArray('module.enable', array()));
+        $config = Configuration::getOptionalConfig();
+        return self::isModuleEnabledWithConf($module, $config->getArray('module.enable', []));
     }
 
 
@@ -152,7 +152,7 @@ class Module
      *
      * This function takes a string on the form "<module>:<class>" and converts it to a class
      * name. It can also check that the given class is a subclass of a specific class. The
-     * resolved classname will be "sspmod_<module>_<$type>_<class>.
+     * resolved classname will be "\SimleSAML\Module\<module>\<$type>\<class>.
      *
      * It is also possible to specify a full classname instead of <module>:<class>.
      *
@@ -173,12 +173,14 @@ class Module
         assert(is_string($subclass) || $subclass === null);
 
         $tmp = explode(':', $id, 2);
-        if (count($tmp) === 1) { // no module involved
+        if (count($tmp) === 1) {
+            // no module involved
             $className = $tmp[0];
             if (!class_exists($className)) {
                 throw new \Exception("Could not resolve '$id': no class named '$className'.");
             }
-        } else { // should be a module
+        } else {
+            // should be a module
             // make sure empty types are handled correctly
             $type = (empty($type)) ? '_' : '_'.$type.'_';
 
@@ -217,7 +219,7 @@ class Module
      *
      * @return string The absolute URL to the given resource.
      */
-    public static function getModuleURL($resource, array $parameters = array())
+    public static function getModuleURL($resource, array $parameters = [])
     {
         assert(is_string($resource));
         assert($resource[0] !== '/');
@@ -247,10 +249,10 @@ class Module
 
         $hook_dir = self::getModuleDir($module).'/hooks';
         if (!is_dir($hook_dir)) {
-            return array();
+            return [];
         }
 
-        $hooks = array();
+        $hooks = [];
         $files = scandir($hook_dir);
         foreach ($files as $file) {
             if ($file[0] === '.') {
@@ -262,7 +264,7 @@ class Module
             }
             $hook_name = $matches[1];
             $hook_func = $module.'_hook_'.$hook_name;
-            $hooks[$hook_name] = array('file' => $hook_dir.'/'.$file, 'func' => $hook_func);
+            $hooks[$hook_name] = ['file' => $hook_dir.'/'.$file, 'func' => $hook_func];
         }
         return $hooks;
     }
@@ -276,14 +278,14 @@ class Module
      * @param string $hook The name of the hook.
      * @param mixed  &$data The data which should be passed to each hook. Will be passed as a reference.
      *
-     * @throws \SimpleSAML_Error_Exception If an invalid hook is found in a module.
+     * @throws \SimpleSAML\Error\Exception If an invalid hook is found in a module.
      */
     public static function callHooks($hook, &$data = null)
     {
         assert(is_string($hook));
 
         $modules = self::getModules();
-        $config = \SimpleSAML_Configuration::getOptionalConfig()->getArray('module.enable', array());
+        $config = Configuration::getOptionalConfig()->getArray('module.enable', []);
         sort($modules);
         foreach ($modules as $module) {
             if (!self::isModuleEnabledWithConf($module, $config)) {
@@ -301,7 +303,7 @@ class Module
             require_once(self::$module_info[$module]['hooks'][$hook]['file']);
 
             if (!is_callable(self::$module_info[$module]['hooks'][$hook]['func'])) {
-                throw new \SimpleSAML_Error_Exception('Invalid hook \''.$hook.'\' for module \''.$module.'\'.');
+                throw new \SimpleSAML\Error\Exception('Invalid hook \''.$hook.'\' for module \''.$module.'\'.');
             }
 
             $fn = self::$module_info[$module]['hooks'][$hook]['func'];

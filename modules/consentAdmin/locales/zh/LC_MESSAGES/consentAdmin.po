@@ -54,9 +54,6 @@ msgstr "（没有描述）"
 msgid "{consentAdmin:consentadmin:service_providers_for}"
 msgstr "服务提供商服务于"
 
-msgid "{consentAdmin:consentadmin:sp_empty_name}"
-msgstr "（没有指定名字）"
-
 msgid "{consentAdmin:consentadmin:consentadmin_description2}"
 msgstr ""
 "<h3>如何删除你的许可</h3>反选相应的SP选择框<h3>Links</h3> <ul> <li><a "

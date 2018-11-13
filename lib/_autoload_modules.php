@@ -33,7 +33,7 @@ function temporaryLoader($class)
     $original = $class;
 
     // list of classes that have been renamed or moved
-    $renamed = array(
+    $renamed = [
         'SimpleSAML_Metadata_MetaDataStorageHandlerMDX' => 'SimpleSAML_Metadata_Sources_MDQ',
         'SimpleSAML_Logger_LoggingHandlerSyslog' => 'SimpleSAML_Logger_SyslogLoggingHandler',
         'SimpleSAML_Logger_LoggingHandlerErrorLog' => 'SimpleSAML_Logger_ErrorLogLoggingHandler',
@@ -42,7 +42,7 @@ function temporaryLoader($class)
         'SimpleSAML_IdP_LogoutHandler' => 'SimpleSAML_IdP_LogoutHandlerInterface',
         'SimpleSAML_IdP_LogoutIFrame' => 'SimpleSAML_IdP_IFrameLogoutHandler',
         'SimpleSAML_IdP_LogoutTraditional' => 'SimpleSAML_IdP_TraditionalLogoutHandler',
-    );
+    ];
     if (array_key_exists($class, $renamed)) {
         // the class has been renamed, try to load it and create an alias
         $class = $renamed[$class];
@@ -126,7 +126,8 @@ function sspmodAutoloadPSR0($className)
 function sspmodAutoloadPSR4($className)
 {
     $elements = explode('\\', $className);
-    if ($elements[0] === '') { // class name starting with /, ignore
+    if ($elements[0] === '') {
+        // class name starting with /, ignore
         array_shift($elements);
     }
     if (count($elements) < 4) {

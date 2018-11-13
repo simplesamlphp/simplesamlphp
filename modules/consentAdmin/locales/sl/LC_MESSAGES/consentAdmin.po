@@ -55,9 +55,6 @@ msgstr "(brez opisa)"
 msgid "{consentAdmin:consentadmin:service_providers_for}"
 msgstr "Ponudniki storitev za"
 
-msgid "{consentAdmin:consentadmin:sp_empty_name}"
-msgstr "(brez naziva)"
-
 msgid "{consentAdmin:consentadmin:consentadmin_description2}"
 msgstr ""
 "<h3>Kako razveljavim dano privolitev?</h3> Odstranite kljukico pred "

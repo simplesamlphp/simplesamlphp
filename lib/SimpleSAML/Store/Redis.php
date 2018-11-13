@@ -2,7 +2,7 @@
 
 namespace SimpleSAML\Store;
 
-use \SimpleSAML_Configuration as Configuration;
+use \SimpleSAML\Configuration;
 use \SimpleSAML\Store;
 
 /**
@@ -33,14 +33,14 @@ class Redis extends Store
             $prefix = $config->getString('store.redis.prefix', 'SimpleSAMLphp');
 
             $redis = new \Predis\Client(
-                array(
+                [
                     'scheme' => 'tcp',
                     'host' => $host,
                     'port' => $port,
-                ),
-                array(
+                ],
+                [
                     'prefix' => $prefix,
-                )
+                ]
             );
         }
 
@@ -98,7 +98,8 @@ class Redis extends Store
         if ($expire === null) {
             $this->redis->set("{$type}.{$key}", $serialized);
         } else {
-            $this->redis->setex("{$type}.{$key}", $expire, $serialized);
+            // setex expire time is in seconds (not unix timestamp)
+            $this->redis->setex("{$type}.{$key}", $expire - time(), $serialized);
         }
     }
 

@@ -72,12 +72,12 @@ class IndexTest extends TestCase
         }
 
         // test most basic redirection
-        $this->updateConfig(array(
+        $this->updateConfig([
                 'baseurlpath' => 'http://example.org/simplesaml/'
-        ));
-        $resp = $this->server->get('/index.php', array(), array(
+        ]);
+        $resp = $this->server->get('/index.php', [], [
             CURLOPT_FOLLOWLOCATION => 0,
-        ));
+        ]);
         $this->assertEquals('302', $resp['code']);
         $this->assertEquals(
             'http://example.org/simplesaml/module.php/core/frontpage_welcome.php',
@@ -85,12 +85,12 @@ class IndexTest extends TestCase
         );
 
         // test non-default path and https
-        $this->updateConfig(array(
+        $this->updateConfig([
             'baseurlpath' => 'https://example.org/'
-        ));
-        $resp = $this->server->get('/index.php', array(), array(
+        ]);
+        $resp = $this->server->get('/index.php', [], [
             CURLOPT_FOLLOWLOCATION => 0,
-        ));
+        ]);
         $this->assertEquals('302', $resp['code']);
         $this->assertEquals(
             'https://example.org/module.php/core/frontpage_welcome.php',
@@ -98,12 +98,12 @@ class IndexTest extends TestCase
         );
 
         // test URL guessing
-        $this->updateConfig(array(
+        $this->updateConfig([
             'baseurlpath' => '/simplesaml/'
-        ));
-        $resp = $this->server->get('/index.php', array(), array(
+        ]);
+        $resp = $this->server->get('/index.php', [], [
             CURLOPT_FOLLOWLOCATION => 0,
-        ));
+        ]);
         $this->assertEquals('302', $resp['code']);
         $this->assertEquals(
             'http://'.$this->server_addr.'/simplesaml/module.php/core/frontpage_welcome.php',

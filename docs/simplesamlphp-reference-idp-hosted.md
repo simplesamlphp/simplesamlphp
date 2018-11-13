@@ -9,14 +9,14 @@ Both files have the following format:
 
     <?php
     /* The index of the array is the entity ID of this IdP. */
-    $metadata['entity-id-1'] = array(
+    $metadata['entity-id-1'] = [
         'host' => 'idp.example.org',
         /* Configuration options for the first IdP. */
-    );
-    $metadata['entity-id-2'] = array(
+    ];
+    $metadata['entity-id-2'] = [
         'host' => '__DEFAULT__',
         /* Configuration options for the default IdP. */
-    );
+    ];
     /* ... */
 
 The entity ID should be an URI. It can, also be on the form
@@ -50,6 +50,38 @@ Common options
 :   Certificate file which should be used by this IdP, in PEM format.
     The filename is relative to the `cert/`-directory.
 
+`contacts`
+:	Specify contacts in addition to the technical contact configured through config/config.php.
+	For example, specifying a support contact:
+
+		'contacts' => [
+		    [
+		        'contactType'       => 'support',
+		        'emailAddress'      => 'support@example.org',
+		        'givenName'         => 'John',
+		        'surName'           => 'Doe',
+		        'telephoneNumber'   => '+31(0)12345678',
+		        'company'           => 'Example Inc.',
+		    ],
+		],
+
+:	If you have support for a trust framework that requires extra attributes on the contact person element in your IdP metadata (for example, SIRTFI), you can specify an array of attributes on a contact.
+
+		'contacts' => [
+		    [
+		        'contactType'       => 'other',
+		        'emailAddress'      => 'mailto:abuse@example.org',
+		        'givenName'         => 'John',
+		        'surName'           => 'Doe',
+		        'telephoneNumber'   => '+31(0)12345678',
+		        'company'           => 'Example Inc.',
+		        'attributes'        => [
+		            'xmlns:remd'        => 'http://refeds.org/metadata',
+		            'remd:contactType'  => 'http://refeds.org/metadata/contactType/security',
+		        ],
+		    ],
+		],
+
 `host`
 :   The hostname for this IdP. One IdP can also have the `host`-option
     set to `__DEFAULT__`, and that IdP will be used when no other
@@ -64,10 +96,10 @@ Common options
 
 :   This option can be translated into multiple languages by specifying the value as an array of language-code to translated name:
 
-        'OrganizationName' => array(
+        'OrganizationName' => [
             'en' => 'Example organization',
             'no' => 'Eksempel organisation',
-        ),
+        ],
 
 :   *Note*: If you specify this option, you must also specify the `OrganizationURL` option.
 
@@ -123,37 +155,6 @@ Common options
     any value in the SP-remote metadata overrides the one configured
     in the IdP metadata.
 
-`contacts`
-:	Specify contacts in addition to the technical contact configured through config/config.php.
-	For example, specifying a support contact:
-
-		'contacts' => array(
-		    array(
-		        'contactType'       => 'support',
-		        'emailAddress'      => 'support@example.org',
-		        'givenName'         => 'John',
-		        'surName'           => 'Doe',
-		        'telephoneNumber'   => '+31(0)12345678',
-		        'company'           => 'Example Inc.',
-		    ),
-		),
-
-:	If you have support for a trust framework that requires extra attributes on the contact person element in your IdP metadata (for example, SIRTFI), you can specify an array of attributes on a contact.
-
-		'contacts' => array(
-		    array(
-		        'contactType'       => 'other',
-		        'emailAddress'      => 'mailto:abuse@example.org',
-		        'givenName'         => 'John',
-		        'surName'           => 'Doe',
-		        'telephoneNumber'   => '+31(0)12345678',
-		        'company'           => 'Example Inc.',
-		        'attributes'        => array(
-		            'xmlns:remd'        => 'http://refeds.org/metadata',
-		            'remd:contactType'  => 'http://refeds.org/metadata/contactType/security',
-		        ),
-		    ),
-		), 
 
 SAML 2.0 options
 ----------------
@@ -221,8 +222,11 @@ The following SAML 2.0 options are available:
 :   Note that this option can be set for each SP in the [SP-remote metadata](./simplesamlphp-reference-sp-remote).
 
 `NameIDFormat`
-:   The format of the NameID supported by this IdP. Defaults to the `transient` format if unspecified.
-    This parameter can be configured in multiple places, and the actual value used is fetched from metadata with
+:   The format(s) of the NameID supported by this IdP, as either an array or a string. If an array is given, the first
+    value is used as the default if the incoming request does not specify a preference. Defaults to the `transient`
+    format if unspecified.
+
+:   This parameter can be configured in multiple places, and the actual value used is fetched from metadata with
     the following priority:
 
 :   1.  SP Remote Metadata
@@ -242,7 +246,7 @@ The following SAML 2.0 options are available:
     you should configure [NameID generation filters](./saml:nameid)
     on your IdP.
 
-:   Note that the value set here will be added to the metadata generated for this IdP,
+:   Note that the value(s) set here will be added to the metadata generated for this IdP,
     in the `NameIDFormat` element.
 
 `RegistrationInfo`
@@ -329,12 +333,13 @@ The following SAML 2.0 options are available:
 	the default one.
 
 `signature.algorithm`
-:   The algorithm to use when signing any message generated by this identity provider. Defaults to RSA-SHA1.
+:   The algorithm to use when signing any message generated by this identity provider. Defaults to RSA-SHA256.
 :   Possible values:
 
     * `http://www.w3.org/2000/09/xmldsig#rsa-sha1`
        *Note*: the use of SHA1 is **deprecated** and will be disallowed in the future.
     * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha256`
+       The default.
     * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha384`
     * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha512`
 
@@ -425,7 +430,7 @@ These are some examples of IdP metadata
      * We use the '__DYNAMIC:1__' entity ID so that the entity ID
      * will be autogenerated.
      */
-    $metadata['__DYNAMIC:1__'] = array(
+    $metadata['__DYNAMIC:1__'] = [
         /*
          * We use '__DEFAULT__' as the hostname so we won't have to
          * enter a hostname.
@@ -441,4 +446,4 @@ These are some examples of IdP metadata
          * from config/authsources.php.
          */
         'auth' => 'example-userpass',
-    );
+    ];

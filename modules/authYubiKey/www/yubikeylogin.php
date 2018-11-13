@@ -2,7 +2,7 @@
 
 /**
  * This page shows a username/password login form, and passes information from it
- * to the sspmod_core_Auth_UserPassBase class, which is a generic class for
+ * to the \SimpleSAML\Module\core\Auth\UserPassBase class, which is a generic class for
  * username/password authentication.
  *
  * @author Olav Morken, UNINETT AS.
@@ -10,29 +10,27 @@
  */
 
 if (!array_key_exists('AuthState', $_REQUEST)) {
-	throw new SimpleSAML_Error_BadRequest('Missing AuthState parameter.');
+    throw new \SimpleSAML\Error\BadRequest('Missing AuthState parameter.');
 }
 $authStateId = $_REQUEST['AuthState'];
 
+$globalConfig = \SimpleSAML\Configuration::getInstance();
+$t = new \SimpleSAML\XHTML\Template($globalConfig, 'authYubiKey:yubikeylogin.php');
+$translator = $t->getTranslator();
+
+$errorCode = null;
 if (array_key_exists('otp', $_REQUEST)) {
-	$otp = $_REQUEST['otp'];
-} else {
-	$otp = '';
+    // attempt to log in
+    $errorCode = \SimpleSAML\Module\authYubiKey\Auth\Source\YubiKey::handleLogin($authStateId, $_REQUEST['otp']);
+    $errorCodes = \SimpleSAML\Error\ErrorCodes::getAllErrorCodeMessages();
+    $t->data['errorTitle'] = $errorCodes['title'][$errorCode];
+    $t->data['errorDesc'] = $errorCodes['desc'][$errorCode];
 }
 
-if (!empty($otp)) {
-	// attempt to log in
-	$errorCode = sspmod_authYubiKey_Auth_Source_YubiKey::handleLogin($authStateId, $otp);
-} else {
-	$errorCode = NULL;
-}
-
-$globalConfig = SimpleSAML_Configuration::getInstance();
-$t = new SimpleSAML_XHTML_Template($globalConfig, 'authYubiKey:yubikeylogin.php');
-$t->data['stateparams'] = array('AuthState' => $authStateId);
-$t->data['errorcode'] = $errorCode;
-$t->data['errorcodes'] = SimpleSAML\Error\ErrorCodes::getAllErrorCodeMessages();
-$t->data['logo_url'] = SimpleSAML\Module::getModuleURL('authYubiKey/resources/logo.jpg');
-$t->data['devicepic_url'] = SimpleSAML\Module::getModuleURL('authYubiKey/resources/yubikey.jpg');
+$t->data['header'] = $translator->t('{authYubiKey:yubikey:header}');
+$t->data['autofocus'] = 'otp';
+$t->data['errorCode'] = $errorCode;
+$t->data['stateParams'] = ['AuthState' => $authStateId];
+$t->data['logoUrl'] = \SimpleSAML\Module::getModuleURL('authYubiKey/resources/logo.jpg');
+$t->data['devicepicUrl'] = \SimpleSAML\Module::getModuleURL('authYubiKey/resources/yubikey.jpg');
 $t->show();
-exit();

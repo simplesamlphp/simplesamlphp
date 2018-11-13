@@ -1,5 +1,6 @@
 <?php
 
+namespace SimpleSAML\Module\authcrypt\Auth\Source;
 
 /**
  * Authentication source for username & hashed password.
@@ -10,10 +11,9 @@
  * @author Dyonisius Visser, TERENA.
  * @package SimpleSAMLphp
  */
-class sspmod_authcrypt_Auth_Source_Hash extends sspmod_core_Auth_UserPassBase
+
+class Hash extends \SimpleSAML\Module\core\Auth\UserPassBase
 {
-
-
     /**
      * Our users, stored in an associative array. The key of the array is "<username>:<passwordhash>",
      * while the value of each element is a new array with the attributes for each user.
@@ -37,27 +37,27 @@ class sspmod_authcrypt_Auth_Source_Hash extends sspmod_core_Auth_UserPassBase
         // Call the parent constructor first, as required by the interface
         parent::__construct($info, $config);
 
-        $this->users = array();
+        $this->users = [];
 
         // Validate and parse our configuration
         foreach ($config as $userpass => $attributes) {
             if (!is_string($userpass)) {
-                throw new Exception('Invalid <username>:<passwordhash> for authentication source '.
+                throw new \Exception('Invalid <username>:<passwordhash> for authentication source '.
                     $this->authId.': '.$userpass);
             }
 
             $userpass = explode(':', $userpass, 2);
             if (count($userpass) !== 2) {
-                throw new Exception('Invalid <username>:<passwordhash> for authentication source '.
+                throw new \Exception('Invalid <username>:<passwordhash> for authentication source '.
                     $this->authId.': '.$userpass[0]);
             }
             $username = $userpass[0];
             $passwordhash = $userpass[1];
 
             try {
-                $attributes = SimpleSAML\Utils\Attributes::normalizeAttributesArray($attributes);
-            } catch (Exception $e) {
-                throw new Exception('Invalid attributes for user '.$username.
+                $attributes = \SimpleSAML\Utils\Attributes::normalizeAttributesArray($attributes);
+            } catch (\Exception $e) {
+                throw new \Exception('Invalid attributes for user '.$username.
                     ' in authentication source '.$this->authId.': '.
                     $e->getMessage());
             }
@@ -72,7 +72,7 @@ class sspmod_authcrypt_Auth_Source_Hash extends sspmod_core_Auth_UserPassBase
      *
      * On a successful login, this function should return the users attributes. On failure,
      * it should throw an exception. If the error was caused by the user entering the wrong
-     * username OR password, a SimpleSAML_Error_Error('WRONGUSERPASS') should be thrown.
+     * username OR password, a \SimpleSAML\Error\Error('WRONGUSERPASS') should be thrown.
      *
      * The username is UTF-8 encoded, and the hash is base64 encoded.
      *
@@ -81,7 +81,7 @@ class sspmod_authcrypt_Auth_Source_Hash extends sspmod_core_Auth_UserPassBase
      *
      * @return array  Associative array with the users attributes.
      *
-     * @throws SimpleSAML_Error_Error if authentication fails.
+     * @throws \SimpleSAML\Error\Error if authentication fails.
      */
     protected function login($username, $password)
     {
@@ -91,13 +91,13 @@ class sspmod_authcrypt_Auth_Source_Hash extends sspmod_core_Auth_UserPassBase
         foreach ($this->users as $userpass => $attrs) {
             $matches = explode(':', $userpass, 2);
             if ($matches[0] === $username) {
-                if (SimpleSAML\Utils\Crypto::pwValid($matches[1], $password)) {
+                if (\SimpleSAML\Utils\Crypto::pwValid($matches[1], $password)) {
                     return $attrs;
                 } else {
-                    SimpleSAML\Logger::debug('Incorrect password "'.$password.'" for user '.$username);
+                    \SimpleSAML\Logger::debug('Incorrect password "'.$password.'" for user '.$username);
                 }
             }
         }
-        throw new SimpleSAML_Error_Error('WRONGUSERPASS');
+        throw new \SimpleSAML\Error\Error('WRONGUSERPASS');
     }
 }

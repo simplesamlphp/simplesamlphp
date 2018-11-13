@@ -2,6 +2,7 @@ SimpleSAMLphp Documentation
 ===========================
 
  * [Installing SimpleSAMLphp](simplesamlphp-install)
+    * [Upgrade notes for version 1.16](simplesamlphp-upgrade-notes-1.16)
     * [Upgrade notes for version 1.15](simplesamlphp-upgrade-notes-1.15)
     * [Upgrade notes for version 1.14](simplesamlphp-upgrade-notes-1.14)
     * [Upgrade notes for version 1.13](simplesamlphp-upgrade-notes-1.13)
@@ -18,7 +19,6 @@ SimpleSAMLphp Documentation
  * [Using SimpleSAMLphp as a SAML Service Provider](simplesamlphp-sp)
   * [Hosted SP Configuration Reference](./saml:sp)
   * [IdP remote reference](simplesamlphp-reference-idp-remote)
-  * [Upgrading - migration to use the SAML authentication source](simplesamlphp-sp-migration)
   * [Configuring HTTP-Artifact](./simplesamlphp-artifact-sp)
   * [Using scoping](./simplesamlphp-scoping)
   * [Holder-of-Key profile](simplesamlphp-hok-sp)

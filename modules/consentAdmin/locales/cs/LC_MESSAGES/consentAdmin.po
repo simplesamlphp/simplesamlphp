@@ -55,9 +55,6 @@ msgstr "(žádný popis)"
 msgid "{consentAdmin:consentadmin:service_providers_for}"
 msgstr "Poskytovatelé služeb pro"
 
-msgid "{consentAdmin:consentadmin:sp_empty_name}"
-msgstr "(jméno nespecifikováno)"
-
 msgid "{consentAdmin:consentadmin:consentadmin_description2}"
 msgstr ""
 "<h3>Jak smazat vaše povolení</h3> Odznačte políčko odpovídající "

@@ -44,24 +44,24 @@ How to configure Auth Proc Filters
 
 The configuration of *Auth Proc Filters* is a list of filters with priority as *index*. Here is an example of *Auth Proc Filters* configured in `config.php`:
 
-	'authproc.idp' => array(
-		10 => array(
+	'authproc.idp' => [
+		10 => [
 			'class' => 'core:AttributeMap', 
 			'addurnprefix'
-		),
+		],
 		20 => 'core:TargetedID',
 		50 => 'core:AttributeLimit',
-		90 => array(
+		90 => [
 			'class' 	=> 'consent:Consent', 
 			'store' 	=> 'consent:Cookie', 
 			'focus' 	=> 'yes', 
 			'checked' 	=> TRUE
-		),
-	),
+		],
+	],
 
 This configuration will execute *Auth Proc Filters* one by one, with the priority value in increasing order. When *Auth Proc Filters* is configured in multiple places, in example both globally, in the hosted IdP and remote SP metadata, then the list is interleaved sorted by priority.
 
-The most important parameter of each item on the list is the *class* of the *Auth Proc Filter*. The syntax of the class is `modulename:classname`. As an example the class definition `core:AttributeLimit` will be expanded to look for the class `sspmod_core_Auth_Process_AttributeLimit`. The location of this class file *must* then be: `modules/core/lib/Auth/Process/AttributeLimit.php`.
+The most important parameter of each item on the list is the *class* of the *Auth Proc Filter*. The syntax of the class is `modulename:classname`. As an example the class definition `core:AttributeLimit` will be expanded to look for the class `\SimpleSAML\Module\core\Auth\Process\AttributeLimit`. The location of this class file *must* then be: `modules/core/lib/Auth/Process/AttributeLimit.php`.
 
 You will see that a bunch of useful filters is included in the `core` module. In addition the `consent` module that is included in the SimpleSAMLphp distribution implements a filter. Beyond that, you are encouraged to create your own filters and share with the community. If you have created a cool *Auth Proc Filter* that does something useful, let us know, and we may share it on the [SimpleSAMLphp web site][].
 
@@ -73,18 +73,18 @@ When you know the class definition of a filter, and the priority, the simple way
 
 This is analogous to:
 
-	20 => array(
+	20 => [
 		'class' => 'core:TargetedID'
-	),
+	],
 
 Some *Auth Proc Filters* have optional or required *parameters*. To send parameters to *Auth Proc Filters*, you need to choose the second of the two alernatives above. Here is an example of provided parameters to the consent module:
 
-	90 => array(
+	90 => [
 		'class' 	=> 'consent:Consent', 
 		'store' 	=> 'consent:Cookie', 
 		'focus' 	=> 'yes', 
 		'checked' 	=> TRUE
-	),
+	],
 
 
 ### Filters in `config.php`
@@ -105,15 +105,15 @@ The filters in `authproc.sp` will be executed at the SP side regardless of which
 
 Filters can be added both in `hosted` and `remote` metadata. Here is an example of a filter added in a metadata file:
 
-	'__DYNAMIC:1__' => array(
+	'__DYNAMIC:1__' => [
 		'host'				=>	'__DEFAULT_',
 		'privatekey'		=>	'example.org.pem',
 		'certificate'		=>	'example.org.crt',
 		'auth'				=>	'feide',
-		'authproc' => array(
+		'authproc' => [
 			40 => 'preprodwarning:Warning',
-		),
-	)
+		],
+	]
 
 The example above is in `saml20-idp-hosted`.
 
@@ -132,6 +132,8 @@ The following filters are included in the SimpleSAMLphp distribution:
 - [`core:AttributeLimit`](./core:authproc_attributelimit): Limit the attributes in the response.
 - [`core:AttributeMap`](./core:authproc_attributemap): Change the name of the attributes.
 - [`core:AttributeRealm`](./core:authproc_attributerealm): (deprecated) Create an attribute with the realm of the user.
+- [`core:Cardinality`](./core:authproc_cardinality): Ensure the number of attribute values is within the specified multiplicity.
+- [`core:CardinalitySingle`](./core:authproc_cardinalitysingle): Ensure the correct cardinality of single-valued attributes.
 - [`core:GenerateGroups`](./core:authproc_generategroups): Generate a `group` attribute for the user.
 - [`core:LanguageAdaptor`](./core:authproc_languageadaptor): Transfering language setting from IdP to SP.
 - [`core:PHP`](./core:authproc_php): Modify attributes with custom PHP code.
@@ -143,6 +145,7 @@ The following filters are included in the SimpleSAMLphp distribution:
 - [`expirycheck:ExpiryDate`](./expirycheck:expirycheck): Block access to accounts that have expired.
 - [`preprodwarning:Warning`](./preprodwarning:warning): Warn the user about accessing a test IdP.
 - [`saml:AttributeNameID`](./saml:nameid): Generate custom NameID with the value of an attribute.
+- [`saml:AuthnContextClassRef`](./saml:authproc_authncontextclassref): Set the authentication context in the response.
 - [`saml:ExpectedAuthnContextClassRef`](./saml:authproc_expectedauthncontextclassref): Verify the user's authentication context.
 - [`saml:FilterScopes`](./saml:filterscopes): Filter attribute values with scopes forbidden for an IdP.
 - [`saml:NameIDAttribute`](./saml:nameidattribute): Create an attribute based on the NameID we receive from the IdP.
@@ -160,16 +163,16 @@ Writing your own Auth Proc Filter
 
 Look at the included *Auth Proc Filters* as examples. Copy the classes into your own module and start playing around.
 
-Authentication processing filters are created by creating a class under `Auth/Process/` in a module. This class is expected to subclass `SimpleSAML_Auth_ProcessingFilter`. A filter must implement at least one function - the `process(&$request)`-function. This function can access the `$request`-array to add, delete and modify attributes, and can also do more advanced processing based on the SP/IdP metadata (which is also included in the `$request`-array). When this function returns, it is assumed that the filter has finished processing.
+Authentication processing filters are created by creating a class under `Auth/Process/` in a module. This class is expected to subclass `\SimpleSAML\Auth\ProcessingFilter`. A filter must implement at least one function - the `process(&$request)`-function. This function can access the `$request`-array to add, delete and modify attributes, and can also do more advanced processing based on the SP/IdP metadata (which is also included in the `$request`-array). When this function returns, it is assumed that the filter has finished processing.
 
-If a filter for some reason needs to redirect the user, for example to show a web page, it should save the current request. Upon completion it should retrieve the request, update it with the changes it is going to make, and call `SimpleSAML_Auth_ProcessingChain::resumeProcessing`. This function will continue processing the next configured filter.
+If a filter for some reason needs to redirect the user, for example to show a web page, it should save the current request. Upon completion it should retrieve the request, update it with the changes it is going to make, and call `\SimpleSAML\Auth\ProcessingChain::resumeProcessing`. This function will continue processing the next configured filter.
 
 Requirements for authentication processing filters:
 
- - Must be derived from the `SimpleSAML_Auth_ProcessingFilter`-class.
+ - Must be derived from the `\SimpleSAML\Auth\ProcessingFilter`-class.
  - If a constructor is implemented, it must first call the parent constructor, passing along all parameters, before accessing any of the parameters. In general, only the $config parameter should be accessed.
  - The `process(&$request)`-function must be implemented. If this function completes, it is assumed that processing is completed, and that the $request array has been updated.
- - If the `process`-function does not return, it must at a later time call `SimpleSAML_Auth_ProcessingChain::resumeProcessing` with the new request state. The request state must be an update of the array passed to the `process`-function.
+ - If the `process`-function does not return, it must at a later time call `\SimpleSAML\Auth\ProcessingChain::resumeProcessing` with the new request state. The request state must be an update of the array passed to the `process`-function.
  - No pages may be shown to the user from the `process`-function. Instead, the request state should be saved, and the user should be redirected to a new page. This must be done to prevent unpredictable events if the user for example reloads the page.
  - No state information should be stored in the filter object. It must instead be stored in the request state array. Any changes to variables in the filter object may be lost.
  - The filter object must be serializable. It may be serialized between being constructed and the call to the `process`-function. This means that, for example, no database connections should be created in the constructor and later used in the `process`-function.

@@ -566,6 +566,9 @@
 		"af": "Aanhoudende anonieme ID",
 		"el": "\u0391\u03b4\u03b9\u03b1\u03c6\u03b1\u03bd\u03ad\u03c2 \u03b1\u03bd\u03b1\u03b3\u03bd\u03c9\u03c1\u03b9\u03c3\u03c4\u03b9\u03ba\u03cc \u03c7\u03c1\u03ae\u03c3\u03c4\u03b7 \u03bc\u03b1\u03ba\u03c1\u03ac\u03c2 \u03b4\u03b9\u03ac\u03c1\u03ba\u03b5\u03b9\u03b1\u03c2"
 	},
+	"attribute_pairwise_id": {
+		"de": "Service-spezifische pseudonyme ID bei der Heimorganisation"
+	},
 	"attribute_edupersonprincipalname": {
 		"no": "Personlig ID hos organisasjonen",
 		"nn": "Brukarnamn hos din organisasjon",
@@ -607,6 +610,9 @@
 	"attribute_edupersonuniqueid": {
 		"zh-tw": "\u500b\u4eba\u7121\u6cd5\u91cd\u65b0\u8a2d\u7f6e\uff0c\u65bc\u6240\u5c6c\u7d44\u7e54\u7684\u6c38\u4e45\u533f\u540d ID",
 		"el": "\u039c\u03cc\u03bd\u03b9\u03bc\u03bf, \u03b1\u03b4\u03b9\u03b1\u03c6\u03b1\u03bd\u03ad\u03c2 \u03b1\u03bd\u03b1\u03b3\u03bd\u03c9\u03c1\u03b9\u03c3\u03c4\u03b9\u03ba\u03cc \u03c7\u03c1\u03ae\u03c3\u03c4\u03b7 \u03c3\u03c4\u03bf\u03bd \u03bf\u03b9\u03ba\u03b5\u03af\u03bf \u03bf\u03c1\u03b3\u03b1\u03bd\u03b9\u03c3\u03bc\u03cc"
+	},
+	"attribute_subject_id": {
+		"de": "Pseudonyme ID bei der Heimorganisation"
 	},
 	"attribute_edupersonorcid": {
 		"zh-tw": "ORCID \u7814\u7a76\u8005\u8b58\u5225\u78bc",

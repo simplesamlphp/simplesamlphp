@@ -1,12 +1,14 @@
 <?php
 
+namespace SimpleSAML\Test\Module\ldap\Auth\Process;
+
 use PHPUnit\Framework\TestCase;
 
-class sspmod_ldap_Auth_Process_BaseFilter_Test extends TestCase
+class BaseFilterTest extends TestCase
 {
     public function testVarExportHidesLdapPassword()
     {
-        $stub = $this->getMockBuilder('sspmod_ldap_Auth_Process_BaseFilter')
+        $stub = $this->getMockBuilder('\SimpleSAML\Module\ldap\Auth\Process\BaseFilter')
             ->disableOriginalConstructor()
             ->getMockForAbstractClass();
         $class = new \ReflectionClass($stub);
@@ -15,11 +17,11 @@ class sspmod_ldap_Auth_Process_BaseFilter_Test extends TestCase
 
         $this->assertEquals(
             "array ( 'ldap.hostname' => 'ldap://172.17.101.32', 'ldap.port' => 389, 'ldap.password' => '********', )",
-            $method->invokeArgs($stub, array(array(
+            $method->invokeArgs($stub, [[
                 'ldap.hostname' => 'ldap://172.17.101.32',
                 'ldap.port' => 389,
                 'ldap.password' => 'password',
-            )))
+            ]])
         );
     }
 }

@@ -1,7 +1,7 @@
 Debugging "State Information Lost" errors
 =========================================
 
-**"State Information Lost"** (`SimpleSAML_Error_NoState: NOSTATE`)
+**"State Information Lost"** (`\SimpleSAML\Error\NoState: NOSTATE`)
 
 This is one of the most common errors that you can encounter when configuring
 SimpleSAMLphp. Unfortunately, it is also a generic error that can have many

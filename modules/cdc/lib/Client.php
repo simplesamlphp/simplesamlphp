@@ -1,11 +1,14 @@
 <?php
 
+namespace SimpleSAML\Module\cdc;
+
 /**
  * CDC client class.
  *
  * @package SimpleSAMLphp
  */
-class sspmod_cdc_Client
+
+class Client
 {
     /**
      * Our CDC domain.
@@ -18,7 +21,7 @@ class sspmod_cdc_Client
     /**
      * The CDC server we send requests to.
      *
-     * @var sspmod_cdc_Server|NULL
+     * @var Server|NULL
      */
     private $server;
 
@@ -33,7 +36,7 @@ class sspmod_cdc_Client
         assert(is_string($domain));
 
         $this->domain = $domain;
-        $this->server = new sspmod_cdc_Server($domain);
+        $this->server = new Server($domain);
     }
 
 
@@ -55,7 +58,7 @@ class sspmod_cdc_Client
      * @param string $op  The operation we are performing.
      * @param array $params  Additional parameters.
      */
-    public function sendRequest($returnTo, $op, array $params = array())
+    public function sendRequest($returnTo, $op, array $params = [])
     {
         assert(is_string($returnTo));
         assert(is_string($op));

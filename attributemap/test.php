@@ -1,5 +1,5 @@
 <?php
 
-$attributemap = array(
+$attributemap = [
     'mobile' => 'urn:mace:dir:attribute-def:mobile'
-);
+];

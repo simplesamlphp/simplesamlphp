@@ -1,12 +1,13 @@
 <?php
+
+namespace SimpleSAML\Error;
+
 /**
  * Class that maps SimpleSAMLphp error codes to translateable strings.
  *
  * @author Hanne Moa, UNINETT AS. <hanne.moa@uninett.no>
  * @package SimpleSAMLphp
  */
-
-namespace SimpleSAML\Error;
 
 class ErrorCodes
 {
@@ -17,7 +18,7 @@ class ErrorCodes
      */
     final public static function defaultGetAllErrorCodeTitles()
     {
-        return array(
+        return [
             'ACSPARAMS' => \SimpleSAML\Locale\Translate::noop('{errors:title_ACSPARAMS}'),
             'ARSPARAMS' => \SimpleSAML\Locale\Translate::noop('{errors:title_ARSPARAMS}'),
             'AUTHSOURCEERROR' => \SimpleSAML\Locale\Translate::noop('{errors:title_AUTHSOURCEERROR}'),
@@ -51,7 +52,7 @@ class ErrorCodes
             'UNKNOWNCERT' => \SimpleSAML\Locale\Translate::noop('{errors:title_UNKNOWNCERT}'),
             'USERABORTED' => \SimpleSAML\Locale\Translate::noop('{errors:title_USERABORTED}'),
             'WRONGUSERPASS' => \SimpleSAML\Locale\Translate::noop('{errors:title_WRONGUSERPASS}'),
-        );
+        ];
     }
 
 
@@ -71,11 +72,11 @@ class ErrorCodes
     /**
      * Fetch all default translation strings for error code descriptions.
      *
-     * @return string A map from error code to error code description
+     * @return array A map from error code to error code description
      */
     final public static function defaultGetAllErrorCodeDescriptions()
     {
-        return array(
+        return [
             'ACSPARAMS' => \SimpleSAML\Locale\Translate::noop('{errors:descr_ACSPARAMS}'),
             'ARSPARAMS' => \SimpleSAML\Locale\Translate::noop('{errors:descr_ARSPARAMS}'),
             'AUTHSOURCEERROR' => \SimpleSAML\Locale\Translate::noop('{errors:descr_AUTHSOURCEERROR}'),
@@ -109,7 +110,7 @@ class ErrorCodes
             'UNKNOWNCERT' => \SimpleSAML\Locale\Translate::noop('{errors:descr_UNKNOWNCERT}'),
             'USERABORTED' => \SimpleSAML\Locale\Translate::noop('{errors:descr_USERABORTED}'),
             'WRONGUSERPASS' => \SimpleSAML\Locale\Translate::noop('{errors:descr_WRONGUSERPASS}'),
-        );
+        ];
     }
 
     /**
@@ -117,7 +118,7 @@ class ErrorCodes
      *
      * Extend this to add error codes.
      *
-     * @return string A map from error code to error code description
+     * @return array A map from error code to error code description
      */
     public static function getAllErrorCodeDescriptions()
     {
@@ -134,10 +135,10 @@ class ErrorCodes
      */
     public static function getAllErrorCodeMessages()
     {
-        return array(
+        return [
             'title' => self::getAllErrorCodeTitles(),
             'descr' => self::getAllErrorCodeDescriptions(),
-        );
+        ];
     }
 
 
@@ -180,9 +181,9 @@ class ErrorCodes
      */
     public static function getErrorCodeMessage($errorCode)
     {
-        return array(
+        return [
             'title' => self::getErrorCodeTitle($errorCode),
             'descr' => self::getErrorCodeDescription($errorCode),
-        );
+        ];
     }
 }

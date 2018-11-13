@@ -1,5 +1,7 @@
 <?php
 
+namespace SimpleSAML\Module\riak;
+
 /*
  * Copyright (c) 2012 The University of Queensland
  *
@@ -22,32 +24,34 @@
  * and Information Technology.
  */
 
-
 /**
  * Hook to run a cron job.
  *
  * @param array &$croninfo  Output
  */
-function riak_hook_cron(&$croninfo) {
-	assert(is_array($croninfo));
-	assert(array_key_exists('summary', $croninfo));
-	assert(array_key_exists('tag', $croninfo));
+function riak_hook_cron(&$croninfo)
+{
+    assert(is_array($croninfo));
+    assert(array_key_exists('summary', $croninfo));
+    assert(array_key_exists('tag', $croninfo));
 
-	if ($croninfo['tag'] !== 'hourly') return;
+    if ($croninfo['tag'] !== 'hourly') {
+        return;
+    }
 
-	try {
-		$store = new sspmod_riak_Store_Store();
-		$result = $store->bucket->indexSearch('expires', 'int',
-		    1, time() - 30);
-		foreach ($result as $link) {
-			$link->getBinary()->delete();
-		}
+    try {
+        $store = new \SimpleSAML\Module\riak\Store\Store();
+        $result = $store->bucket->indexSearch('expires', 'int', 1, time() - 30);
+        foreach ($result as $link) {
+            $link->getBinary()->delete();
+        }
 
-		SimpleSAML\Logger::info(sprintf("deleted %s riak key%s",
-		    sizeof($result), sizeof($result) == 1 ? '' : 's'));
-	} catch (Exception $e) {
-		$message = 'riak threw exception: ' . $e->getMessage();
-		SimpleSAML\Logger::warning($message);
-		$croninfo['summary'][] = $message;
-	}
+        \SimpleSAML\Logger::info(
+            sprintf("deleted %s riak key%s", sizeof($result), sizeof($result) == 1 ? '' : 's')
+        );
+    } catch (\Exception $e) {
+        $message = 'riak threw exception: '.$e->getMessage();
+        \SimpleSAML\Logger::warning($message);
+        $croninfo['summary'][] = $message;
+    }
 }

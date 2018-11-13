@@ -36,6 +36,9 @@ msgstr "Suggesties om dit probleem op te lossen:"
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Login als beheerder"
 
+msgid "{core:frontpage:logout}"
+msgstr "Uitloggen"
+
 msgid "{core:short_sso_interval:warning}"
 msgstr ""
 "We hebben waargenomen dat u slechts een paar seconden geleden al "
@@ -136,6 +139,9 @@ msgstr ""
 "Deze installatie van SimpleSAMLphp is verouderd. Het is aan te raden zo "
 "snel mogelijk te upgraden naar <a href=\"%LATEST_URL%\">de meest recente "
 "versie</a>."
+
+msgid "{core:frontpage:warnings_curlmissing}"
+msgstr "PHP cURL-extensie ontbreekt. Kan niet controleren op updates voor SimpleSAMLphp."
 
 msgid "{core:frontpage:loggedin_as_admin}"
 msgstr "Je bent ingelogd als beheerder"

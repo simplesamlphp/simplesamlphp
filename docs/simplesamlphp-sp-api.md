@@ -42,7 +42,7 @@ Check whether the user is authenticated with this authentication source.
 `requireAuth`
 -------------
 
-    void requireAuth(array $params = array())
+    void requireAuth(array $params = [])
 
 Make sure that the user is authenticated.
 This function will only return if the user is authenticated.
@@ -65,17 +65,17 @@ See the documentation for the `login`-function for a description of the paramete
      * Return the user to the frontpage after authentication, don't post
      * the current POST data.
      */
-    $auth->requireAuth(array(
+    $auth->requireAuth([
         'ReturnTo' => 'https://sp.example.org/',
         'KeepPost' => FALSE,
-    ));
+    ]);
     print("Hello, authenticated user!");
 
 
 `login`
 -------------
 
-    void login(array $params = array())
+    void login(array $params = [])
 
 Start a login operation.
 This function will always start a new authentication process.
@@ -108,10 +108,10 @@ The [`saml:SP`](./saml:sp) authentication source also defines some parameters.
 ### Example
 
     # Send a passive authentication request.
-    $auth->login(array(
+    $auth->login([
         'isPassive' => TRUE,
         'ErrorURL' => 'https://.../error_handler.php',
-    ));
+    ]);
 
 
 `logout`
@@ -149,15 +149,15 @@ Logout, and redirect to the specified URL.
 
 Same as the previous, but check the result of the logout operation afterwards.
 
-    $auth->logout(array(
+    $auth->logout([
         'ReturnTo' => 'https://sp.example.org/logged_out.php',
         'ReturnStateParam' => 'LogoutState',
         'ReturnStateStage' => 'MyLogoutState',
-    ));
+    ]);
 
 And in logged_out.php:
 
-    $state = SimpleSAML_Auth_State::loadState((string)$_REQUEST['LogoutState'], 'MyLogoutState');
+    $state = \SimpleSAML\Auth\State::loadState((string)$_REQUEST['LogoutState'], 'MyLogoutState');
     $ls = $state['saml:sp:LogoutStatus']; /* Only works for SAML SP */
     if ($ls['Code'] === 'urn:oasis:names:tc:SAML:2.0:status:Success' && !isset($ls['SubCode'])) {
         /* Successful logout. */
@@ -178,10 +178,10 @@ If the user isn't authenticated, an empty array will be returned.
 
 The attributes will be returned as an associative array with the name of the attribute as the key and the value as an array of one or more strings:
 
-    array(
-        'uid' => array('testuser'),
-        'eduPersonAffiliation' => array('student', 'member'),
-    )
+    [
+        'uid' => ['testuser'],
+        'eduPersonAffiliation' => ['student', 'member'],
+    ]
 
 
 ### Example

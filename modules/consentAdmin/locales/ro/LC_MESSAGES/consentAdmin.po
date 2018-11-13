@@ -55,9 +55,6 @@ msgstr "(fără descriere)"
 msgid "{consentAdmin:consentadmin:service_providers_for}"
 msgstr "Furnizori de servicii pentru"
 
-msgid "{consentAdmin:consentadmin:sp_empty_name}"
-msgstr "(nu a fost specificat numele)"
-
 msgid "{consentAdmin:consentadmin:consentadmin_description2}"
 msgstr ""
 "<h3>Cum poate fi anulat acordul dumneavoastră</h3>Debifați căsuța "

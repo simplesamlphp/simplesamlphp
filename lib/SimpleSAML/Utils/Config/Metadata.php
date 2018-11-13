@@ -9,7 +9,6 @@ namespace SimpleSAML\Utils\Config;
  */
 class Metadata
 {
-
     /**
      * The string that identities Entity Categories.
      *
@@ -36,7 +35,7 @@ class Metadata
      * @var array The valid configuration options for a contact configuration array.
      * @see "Metadata for the OASIS Security Assertion Markup Language (SAML) V2.0", section 2.3.2.2.
      */
-    public static $VALID_CONTACT_OPTIONS = array(
+    public static $VALID_CONTACT_OPTIONS = [
         'contactType',
         'emailAddress',
         'givenName',
@@ -44,20 +43,20 @@ class Metadata
         'telephoneNumber',
         'company',
         'attributes',
-    );
+    ];
 
 
     /**
      * @var array The valid types of contact for a contact configuration array.
      * @see "Metadata for the OASIS Security Assertion Markup Language (SAML) V2.0", section 2.3.2.2.
      */
-    public static $VALID_CONTACT_TYPES = array(
+    public static $VALID_CONTACT_TYPES = [
         'technical',
         'support',
         'administrative',
         'billing',
         'other',
-    );
+    ];
 
 
     /**
@@ -117,8 +116,8 @@ class Metadata
 
         // check attributes is an associative array
         if (isset($contact['attributes'])) {
-            if (empty($contact['attributes']) 
-                || !is_array($contact['attributes']) 
+            if (empty($contact['attributes'])
+                || !is_array($contact['attributes'])
                 || count(array_filter(array_keys($contact['attributes']), 'is_string')) === 0
             ) {
                 throw new \InvalidArgumentException('"attributes" must be an array and cannot be empty.');

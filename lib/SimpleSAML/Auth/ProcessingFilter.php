@@ -1,5 +1,6 @@
 <?php
 
+namespace SimpleSAML\Auth;
 
 /**
  * Base class for authentication processing filters.
@@ -18,9 +19,9 @@
  * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
-abstract class SimpleSAML_Auth_ProcessingFilter
-{
 
+abstract class ProcessingFilter
+{
     /**
      * Priority of this filter.
      *
@@ -49,7 +50,7 @@ abstract class SimpleSAML_Auth_ProcessingFilter
         if (array_key_exists('%priority', $config)) {
             $this->priority = $config['%priority'];
             if (!is_int($this->priority)) {
-                throw new Exception('Invalid priority: ' . var_export($this->priority, true));
+                throw new \Exception('Invalid priority: '.var_export($this->priority, true));
             }
             unset($config['%priority']);
         }

@@ -1,11 +1,13 @@
 <?php
 
+namespace SimpleSAML\Test\Module\core\Auth\Process;
+
 use PHPUnit\Framework\TestCase;
 
 /**
  * Test for the core:AttributeAlter filter.
  */
-class Test_Core_Auth_Process_AttributeAlter extends TestCase
+class AttributeAlterTest extends TestCase
 {
 
     /**
@@ -17,7 +19,7 @@ class Test_Core_Auth_Process_AttributeAlter extends TestCase
      */
     private static function processFilter(array $config, array $request)
     {
-        $filter = new sspmod_core_Auth_Process_AttributeAlter($config, null);
+        $filter = new \SimpleSAML\Module\core\Auth\Process\AttributeAlter($config, null);
         $filter->process($request);
         return $request;
     }
@@ -27,22 +29,22 @@ class Test_Core_Auth_Process_AttributeAlter extends TestCase
      */
     public function testBasic()
     {
-        $config = array(
+        $config = [
             'subject' => 'test',
             'pattern' => '/wrong/',
             'replacement' => 'right',
-        );
+        ];
 
-        $request = array(
-            'Attributes' => array(
-                 'test' => array('somethingiswrong'),
-             ),
-        );
+        $request = [
+            'Attributes' => [
+                 'test' => ['somethingiswrong'],
+             ],
+        ];
 
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
         $this->assertArrayHasKey('test', $attributes);
-        $this->assertEquals($attributes['test'], array('somethingisright'));
+        $this->assertEquals($attributes['test'], ['somethingisright']);
     }
 
     /**
@@ -50,25 +52,25 @@ class Test_Core_Auth_Process_AttributeAlter extends TestCase
      */
     public function testWithTarget()
     {
-        $config = array(
+        $config = [
             'subject' => 'test',
             'target' => 'test2',
             'pattern' => '/wrong/',
             'replacement' => 'right',
-        );
+        ];
 
-        $request = array(
-            'Attributes' => array(
-                 'something' => array('somethingelse'),
-                 'test' => array('wrong'),
-             ),
-        );
+        $request = [
+            'Attributes' => [
+                 'something' => ['somethingelse'],
+                 'test' => ['wrong'],
+             ],
+        ];
 
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
         $this->assertArrayHasKey('test2', $attributes);
-        $this->assertEquals($attributes['test'], array('wrong'));
-        $this->assertEquals($attributes['test2'], array('right'));
+        $this->assertEquals($attributes['test'], ['wrong']);
+        $this->assertEquals($attributes['test2'], ['right']);
     }
 
     /**
@@ -76,24 +78,26 @@ class Test_Core_Auth_Process_AttributeAlter extends TestCase
      */
     public function testNomatch()
     {
-        $config = array(
+        $config = [
             'subject' => 'test',
             'pattern' => '/wrong/',
             'replacement' => 'right',
-        );
+        ];
 
-        $request = array(
-            'Attributes' => array(
-                 'something' => array('somevalue'),
-                 'somethingelse' => array('someothervalue'),
-             ),
-        );
+        $request = [
+            'Attributes' => [
+                 'something' => ['somevalue'],
+                 'somethingelse' => ['someothervalue'],
+             ],
+        ];
 
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
-        $this->assertEquals($attributes,
-            array('something' => array('somevalue'),
-            'somethingelse' => array('someothervalue')));
+        $this->assertEquals(
+            $attributes,
+            ['something' => ['somevalue'],
+            'somethingelse' => ['someothervalue']]
+        );
     }
 
     /**
@@ -101,20 +105,20 @@ class Test_Core_Auth_Process_AttributeAlter extends TestCase
      */
     public function testReplaceMatch()
     {
-        $config = array(
+        $config = [
             'subject' => 'source',
             'pattern' => '/wrong/',
             'replacement' => 'right',
             '%replace',
-        );
-        $request = array(
-            'Attributes' => array(
-                'source' => array('wrongthing'),
-            ),
-        );
+        ];
+        $request = [
+            'Attributes' => [
+                'source' => ['wrongthing'],
+            ],
+        ];
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
-        $this->assertEquals($attributes['source'], array('right'));
+        $this->assertEquals($attributes['source'], ['right']);
     }
 
     /**
@@ -122,22 +126,22 @@ class Test_Core_Auth_Process_AttributeAlter extends TestCase
      */
     public function testReplaceMatchWithTarget()
     {
-        $config = array(
+        $config = [
             'subject' => 'source',
             'pattern' => '/wrong/',
             'replacement' => 'right',
             'target' => 'test',
             '%replace',
-        );
-        $request = array(
-            'Attributes' => array(
-                'source' => array('wrong'),
-                'test'   => array('wrong'),
-            ),
-        );
+        ];
+        $request = [
+            'Attributes' => [
+                'source' => ['wrong'],
+                'test'   => ['wrong'],
+            ],
+        ];
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
-        $this->assertEquals($attributes['test'], array('right'));
+        $this->assertEquals($attributes['test'], ['right']);
     }
 
     /**
@@ -145,22 +149,22 @@ class Test_Core_Auth_Process_AttributeAlter extends TestCase
      */
     public function testReplaceNoMatch()
     {
-        $config = array(
+        $config = [
             'subject' => 'test',
             'pattern' => '/doink/',
             'replacement' => 'wrong',
             'target' => 'test',
             '%replace',
-        );
-        $request = array(
-            'Attributes' => array(
-                'source' => array('wrong'),
-                'test'   => array('right'),
-            ),
-        );
+        ];
+        $request = [
+            'Attributes' => [
+                'source' => ['wrong'],
+                'test'   => ['right'],
+            ],
+        ];
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
-        $this->assertEquals($attributes['test'], array('right'));
+        $this->assertEquals($attributes['test'], ['right']);
     }
 
     /**
@@ -170,21 +174,21 @@ class Test_Core_Auth_Process_AttributeAlter extends TestCase
      */
     public function testRemoveMatch()
     {
-        $config = array(
+        $config = [
             'subject' => 'eduPersonAffiliation',
             'pattern' => '/^emper/',
             '%remove',
-        );
-        $request = array(
-            'Attributes' => array(
-                'displayName' => array('emperor kuzco'),
-                'eduPersonAffiliation' => array('member', 'emperor', 'staff'),
-            ),
-        );
+        ];
+        $request = [
+            'Attributes' => [
+                'displayName' => ['emperor kuzco'],
+                'eduPersonAffiliation' => ['member', 'emperor', 'staff'],
+            ],
+        ];
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
-        $this->assertEquals($attributes['displayName'], array('emperor kuzco'));
-        $this->assertEquals($attributes['eduPersonAffiliation'], array(0 => 'member', 2 => 'staff'));
+        $this->assertEquals($attributes['displayName'], ['emperor kuzco']);
+        $this->assertEquals($attributes['eduPersonAffiliation'], [0 => 'member', 2 => 'staff']);
     }
 
     /**
@@ -192,17 +196,17 @@ class Test_Core_Auth_Process_AttributeAlter extends TestCase
      */
     public function testRemoveMatchAll()
     {
-        $config = array(
+        $config = [
             'subject' => 'eduPersonAffiliation',
             'pattern' => '/^emper/',
             '%remove',
-        );
-        $request = array(
-            'Attributes' => array(
-                'displayName' => array('emperor kuzco'),
-                'eduPersonAffiliation' => array('emperess', 'emperor'),
-            ),
-        );
+        ];
+        $request = [
+            'Attributes' => [
+                'displayName' => ['emperor kuzco'],
+                'eduPersonAffiliation' => ['emperess', 'emperor'],
+            ],
+        ];
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
         $this->assertArrayNotHasKey('eduPersonAffiliation', $attributes);
@@ -215,17 +219,17 @@ class Test_Core_Auth_Process_AttributeAlter extends TestCase
      */
     public function testWrongConfig()
     {
-        $config = array(
+        $config = [
             'subject' => 'eduPersonAffiliation',
             'pattern' => '/^emper/',
             '%dwiw',
-        );
-        $request = array(
-            'Attributes' => array(
-                'eduPersonAffiliation' => array('emperess', 'emperor'),
-            ),
-        );
-        $result = self::processFilter($config, $request);
+        ];
+        $request = [
+            'Attributes' => [
+                'eduPersonAffiliation' => ['emperess', 'emperor'],
+            ],
+        ];
+        self::processFilter($config, $request);
     }
 
     /**
@@ -235,15 +239,15 @@ class Test_Core_Auth_Process_AttributeAlter extends TestCase
      */
     public function testIncompleteConfig()
     {
-        $config = array(
+        $config = [
             'subject' => 'eduPersonAffiliation',
-        );
-        $request = array(
-            'Attributes' => array(
-                'eduPersonAffiliation' => array('emperess', 'emperor'),
-            ),
-        );
-        $result = self::processFilter($config, $request);
+        ];
+        $request = [
+            'Attributes' => [
+                'eduPersonAffiliation' => ['emperess', 'emperor'],
+            ],
+        ];
+        self::processFilter($config, $request);
     }
 
     /**
@@ -253,23 +257,17 @@ class Test_Core_Auth_Process_AttributeAlter extends TestCase
      */
     public function testIncompleteConfig2()
     {
-        $config = array(
+        $config = [
             'subject' => 'test',
             'pattern' => '/wrong/',
-        );
+        ];
 
-        $request = array(
-            'Attributes' => array(
-                 'test' => array('somethingiswrong'),
-             ),
-        );
-
-        $request = array(
-            'Attributes' => array(
-                'eduPersonAffiliation' => array('emperess', 'emperor'),
-            ),
-        );
-        $result = self::processFilter($config, $request);
+        $request = [
+            'Attributes' => [
+                'eduPersonAffiliation' => ['emperess', 'emperor'],
+            ],
+        ];
+        self::processFilter($config, $request);
     }
 
     /**
@@ -279,25 +277,19 @@ class Test_Core_Auth_Process_AttributeAlter extends TestCase
      */
     public function testIncompleteConfig3()
     {
-        $config = array(
+        $config = [
             'subject' => 'test',
             'pattern' => '/wrong/',
             '%replace',
             '%remove',
-        );
+        ];
 
-        $request = array(
-            'Attributes' => array(
-                 'test' => array('somethingiswrong'),
-             ),
-        );
-
-        $request = array(
-            'Attributes' => array(
-                'eduPersonAffiliation' => array('emperess', 'emperor'),
-            ),
-        );
-        $result = self::processFilter($config, $request);
+        $request = [
+            'Attributes' => [
+                'eduPersonAffiliation' => ['emperess', 'emperor'],
+            ],
+        ];
+        self::processFilter($config, $request);
     }
 
     /**
@@ -307,25 +299,19 @@ class Test_Core_Auth_Process_AttributeAlter extends TestCase
      */
     public function testIncompleteConfig4()
     {
-        $config = array(
+        $config = [
             'subject' => 'test',
             'pattern' => '/wrong/',
             'target' => 'test2',
             '%remove',
-        );
+        ];
 
-        $request = array(
-            'Attributes' => array(
-                 'test' => array('somethingiswrong'),
-             ),
-        );
-
-        $request = array(
-            'Attributes' => array(
-                'eduPersonAffiliation' => array('emperess', 'emperor'),
-            ),
-        );
-        $result = self::processFilter($config, $request);
+        $request = [
+            'Attributes' => [
+                'eduPersonAffiliation' => ['emperess', 'emperor'],
+            ],
+        ];
+        self::processFilter($config, $request);
     }
 
 
@@ -336,23 +322,17 @@ class Test_Core_Auth_Process_AttributeAlter extends TestCase
      */
     public function testIncompleteConfig5()
     {
-        $config = array(
+        $config = [
             'subject' => 'test',
             'pattern' => '/wrong/',
             'replacement' => null,
-        );
+        ];
 
-        $request = array(
-            'Attributes' => array(
-                 'test' => array('somethingiswrong'),
-             ),
-        );
-
-        $request = array(
-            'Attributes' => array(
-                'eduPersonAffiliation' => array('emperess', 'emperor'),
-            ),
-        );
+        $request = [
+            'Attributes' => [
+                'eduPersonAffiliation' => ['emperess', 'emperor'],
+            ],
+        ];
         $result = self::processFilter($config, $request);
     }
 }

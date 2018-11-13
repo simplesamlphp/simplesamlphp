@@ -6,7 +6,7 @@ $baseDir = dirname(dirname(__FILE__));
 
 // Add library autoloader and configuration
 require_once $baseDir.DIRECTORY_SEPARATOR.'lib'.DIRECTORY_SEPARATOR.'_autoload.php';
-require_once SimpleSAML\Utils\Config::getConfigDir().DIRECTORY_SEPARATOR.'config.php';
+require_once \SimpleSAML\Utils\Config::getConfigDir().DIRECTORY_SEPARATOR.'config.php';
 
 echo "Initializing Metadata Database...".PHP_EOL;
 
@@ -15,7 +15,7 @@ echo "Initializing Metadata Database...".PHP_EOL;
 foreach ($config['metadata.sources'] as $source) {
     # If pdo is configured, create the new handler and initialize the DB.
     if ($source['type'] === "pdo") {
-        $metadataStorageHandler = new SimpleSAML_Metadata_MetaDataStorageHandlerPdo($source);
+        $metadataStorageHandler = new \SimpleSAML\Metadata\MetaDataStorageHandlerPdo($source);
         $result = $metadataStorageHandler->initDatabase();
 
         if ($result === false) {

@@ -10,8 +10,6 @@ use SimpleSAML\Utils\Net;
  */
 class NetTest extends TestCase
 {
-
-
     /**
      * Test the function that checks for IPs belonging to a CIDR.
      *

@@ -1,32 +1,33 @@
 <?php
 
 // Load SimpleSAMLphp, configuration and metadata
-$config = SimpleSAML_Configuration::getInstance();
-$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+$config = \SimpleSAML\Configuration::getInstance();
+$metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
 
-if (!$config->getBoolean('enable.saml20-idp', false))
-	throw new SimpleSAML_Error_Error('NOACCESS');
+if (!$config->getBoolean('enable.saml20-idp', false)) {
+    throw new \SimpleSAML\Error\Error('NOACCESS');
+}
 
 // Check if valid local session exists..
 if ($config->getBoolean('admin.protectmetadata', false)) {
-    SimpleSAML\Utils\Auth::requireAdmin();
+    \SimpleSAML\Utils\Auth::requireAdmin();
 }
 
 $idpentityid = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
 $idpmeta = $metadata->getMetaDataConfig($idpentityid, 'saml20-idp-hosted');
 
-switch($_SERVER['PATH_INFO']) {
-	case '/new_idp.crt':
-		$certInfo = SimpleSAML\Utils\Crypto::loadPublicKey($idpmeta, FALSE, 'new_');
-		break;
-	case '/idp.crt':
-		$certInfo = SimpleSAML\Utils\Crypto::loadPublicKey($idpmeta, TRUE);
-		break;
-	case '/https.crt':
-		$certInfo = SimpleSAML\Utils\Crypto::loadPublicKey($idpmeta, TRUE, 'https.');
-		break;
-	default:
-		throw new SimpleSAML_Error_NotFound('Unknown certificate.');
+switch ($_SERVER['PATH_INFO']) {
+    case '/new_idp.crt':
+        $certInfo = SimpleSAML\Utils\Crypto::loadPublicKey($idpmeta, false, 'new_');
+        break;
+    case '/idp.crt':
+        $certInfo = SimpleSAML\Utils\Crypto::loadPublicKey($idpmeta, true);
+        break;
+    case '/https.crt':
+        $certInfo = SimpleSAML\Utils\Crypto::loadPublicKey($idpmeta, true, 'https.');
+        break;
+    default:
+        throw new \SimpleSAML\Error\NotFound('Unknown certificate.');
 }
 
 header('Content-Disposition: attachment; filename='.substr($_SERVER['PATH_INFO'], 1));

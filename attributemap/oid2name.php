@@ -1,5 +1,5 @@
 <?php
-$attributemap = array(
+$attributemap = [
     'urn:oid:0.9.2342.19200300.100.1.1'  => 'uid',
     'urn:oid:0.9.2342.19200300.100.1.10' => 'manager',
     'urn:oid:0.9.2342.19200300.100.1.11' => 'documentIdentifier',
@@ -167,4 +167,4 @@ $attributemap = array(
     'urn:oid:2.5.4.7'                    => 'l',
     'urn:oid:2.5.4.8'                    => 'st',
     'urn:oid:2.5.4.9'                    => 'street',
-);
+];

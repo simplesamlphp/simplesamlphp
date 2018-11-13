@@ -1,6 +1,11 @@
 <?php
 
-class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
+namespace SimpleSAML\Module\saml\Auth\Source;
+
+use SimpleSAML\Auth\Source;
+use SimpleSAML\Auth\State;
+
+class SP extends Source
 {
     /**
      * The entity ID of this SP.
@@ -12,7 +17,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
     /**
      * The metadata of this SP.
      *
-     * @var SimpleSAML_Configuration.
+     * @var \SimpleSAML\Configuration
      */
     private $metadata;
 
@@ -52,14 +57,16 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
          * gives the entity id. */
         $config['entityid'] = $config['entityID'];
 
-        $this->metadata = SimpleSAML_Configuration::loadFromArray($config,
-            'authsources[' . var_export($this->authId, true) . ']');
+        $this->metadata = \SimpleSAML\Configuration::loadFromArray(
+            $config,
+            'authsources['.var_export($this->authId, true).']'
+        );
         $this->entityId = $this->metadata->getString('entityID');
         $this->idp = $this->metadata->getString('idp', null);
         $this->discoURL = $this->metadata->getString('discoURL', null);
 
-        if (empty($this->discoURL) && SimpleSAML\Module::isModuleEnabled('discojuice')) {
-            $this->discoURL = SimpleSAML\Module::getModuleURL('discojuice/central.php');
+        if (empty($this->discoURL) && \SimpleSAML\Module::isModuleEnabled('discojuice')) {
+            $this->discoURL = \SimpleSAML\Module::getModuleURL('discojuice/central.php');
         }
     }
 
@@ -70,7 +77,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
      */
     public function getMetadataURL()
     {
-        return SimpleSAML\Module::getModuleURL('saml/sp/metadata.php/' . urlencode($this->authId));
+        return \SimpleSAML\Module::getModuleURL('saml/sp/metadata.php/'.urlencode($this->authId));
     }
 
     /**
@@ -86,7 +93,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
     /**
      * Retrieve the metadata of this SP.
      *
-     * @return SimpleSAML_Configuration  The metadata of this SP.
+     * @return \SimpleSAML\Configuration  The metadata of this SP.
      */
     public function getMetadata()
     {
@@ -97,48 +104,47 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
      * Retrieve the metadata of an IdP.
      *
      * @param string $entityId  The entity id of the IdP.
-     * @return SimpleSAML_Configuration  The metadata of the IdP.
+     * @return \SimpleSAML\Configuration  The metadata of the IdP.
      */
     public function getIdPMetadata($entityId)
     {
         assert(is_string($entityId));
 
         if ($this->idp !== null && $this->idp !== $entityId) {
-            throw new SimpleSAML_Error_Exception('Cannot retrieve metadata for IdP ' .
-                var_export($entityId, true) .
-                ' because it isn\'t a valid IdP for this SP.');
+            throw new \SimpleSAML\Error\Exception('Cannot retrieve metadata for IdP '.
+                var_export($entityId, true).' because it isn\'t a valid IdP for this SP.');
         }
 
-        $metadataHandler = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+        $metadataHandler = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
 
         // First, look in saml20-idp-remote.
         try {
             return $metadataHandler->getMetaDataConfig($entityId, 'saml20-idp-remote');
-        } catch (Exception $e) {
-            /* Metadata wasn't found. */
-            SimpleSAML\Logger::debug('getIdpMetadata: ' . $e->getMessage());
+        } catch (\Exception $e) {
+            // Metadata wasn't found
+            \SimpleSAML\Logger::debug('getIdpMetadata: '.$e->getMessage());
         }
 
-        /* Not found in saml20-idp-remote, look in shib13-idp-remote. */
+        // Not found in saml20-idp-remote, look in shib13-idp-remote
         try {
             return $metadataHandler->getMetaDataConfig($entityId, 'shib13-idp-remote');
-        } catch (Exception $e) {
-            /* Metadata wasn't found. */
-            SimpleSAML\Logger::debug('getIdpMetadata: ' . $e->getMessage());
+        } catch (\Exception $e) {
+            // Metadata wasn't found
+            \SimpleSAML\Logger::debug('getIdpMetadata: '.$e->getMessage());
         }
 
-        /* Not found. */
-        throw new SimpleSAML_Error_Exception('Could not find the metadata of an IdP with entity ID ' .
+        // Not found
+        throw new \SimpleSAML\Error\Exception('Could not find the metadata of an IdP with entity ID '.
             var_export($entityId, true));
     }
 
     /**
      * Send a SAML1 SSO request to an IdP.
      *
-     * @param SimpleSAML_Configuration $idpMetadata  The metadata of the IdP.
+     * @param \SimpleSAML\Configuration $idpMetadata  The metadata of the IdP.
      * @param array $state  The state array for the current authentication.
      */
-    private function startSSO1(SimpleSAML_Configuration $idpMetadata, array $state)
+    private function startSSO1(\SimpleSAML\Configuration $idpMetadata, array $state)
     {
         $idpEntityId = $idpMetadata->getString('entityid');
 
@@ -147,7 +153,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
         $ar = new \SimpleSAML\XML\Shib13\AuthnRequest();
         $ar->setIssuer($this->entityId);
 
-        $id = SimpleSAML_Auth_State::saveState($state, 'saml:sp:sso');
+        $id = State::saveState($state, 'saml:sp:sso');
         $ar->setRelayState($id);
 
         $useArtifact = $idpMetadata->getBoolean('saml1.useartifact', null);
@@ -156,66 +162,67 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
         }
 
         if ($useArtifact) {
-            $shire = SimpleSAML\Module::getModuleURL('saml/sp/saml1-acs.php/' . $this->authId . '/artifact');
+            $shire = \SimpleSAML\Module::getModuleURL('saml/sp/saml1-acs.php/'.$this->authId.'/artifact');
         } else {
-            $shire = SimpleSAML\Module::getModuleURL('saml/sp/saml1-acs.php/' . $this->authId);
+            $shire = \SimpleSAML\Module::getModuleURL('saml/sp/saml1-acs.php/'.$this->authId);
         }
 
         $url = $ar->createRedirect($idpEntityId, $shire);
 
-        SimpleSAML\Logger::debug('Starting SAML 1 SSO to ' . var_export($idpEntityId, true) .
-            ' from ' . var_export($this->entityId, true) . '.');
+        \SimpleSAML\Logger::debug('Starting SAML 1 SSO to '.var_export($idpEntityId, true).
+            ' from '.var_export($this->entityId, true).'.');
         \SimpleSAML\Utils\HTTP::redirectTrustedURL($url);
     }
 
     /**
-     * Send a SAML2 SSO request to an IdP.
+     * Send a SAML2 SSO request to an IdP
      *
-     * @param SimpleSAML_Configuration $idpMetadata  The metadata of the IdP.
+     * @param \SimpleSAML\Configuration $idpMetadata  The metadata of the IdP.
      * @param array $state  The state array for the current authentication.
      */
-    private function startSSO2(SimpleSAML_Configuration $idpMetadata, array $state)
+    private function startSSO2(\SimpleSAML\Configuration $idpMetadata, array $state)
     {
         if (isset($state['saml:ProxyCount']) && $state['saml:ProxyCount'] < 0) {
-            SimpleSAML_Auth_State::throwException(
+            State::throwException(
                 $state,
                 new \SimpleSAML\Module\saml\Error\ProxyCountExceeded(\SAML2\Constants::STATUS_RESPONDER)
             );
         }
 
-        $ar = sspmod_saml_Message::buildAuthnRequest($this->metadata, $idpMetadata);
+        $ar = \SimpleSAML\Module\saml\Message::buildAuthnRequest($this->metadata, $idpMetadata);
 
-        $ar->setAssertionConsumerServiceURL(SimpleSAML\Module::getModuleURL('saml/sp/saml2-acs.php/' . $this->authId));
+        $ar->setAssertionConsumerServiceURL(\SimpleSAML\Module::getModuleURL('saml/sp/saml2-acs.php/'.$this->authId));
 
-        if (isset($state['SimpleSAML_Auth_Source.ReturnURL'])) {
-            $ar->setRelayState($state['SimpleSAML_Auth_Source.ReturnURL']);
+        if (isset($state['\SimpleSAML\Auth\Source.ReturnURL'])) {
+            $ar->setRelayState($state['\SimpleSAML\Auth\Source.ReturnURL']);
         }
 
         if (isset($state['saml:AuthnContextClassRef'])) {
-            $accr = SimpleSAML\Utils\Arrays::arrayize($state['saml:AuthnContextClassRef']);
-            $comp = SAML2\Constants::COMPARISON_EXACT;
-            if (isset($state['saml:AuthnContextComparison']) && in_array($state['AuthnContextComparison'], array(
-                        SAML2\Constants::COMPARISON_EXACT,
-                        SAML2\Constants::COMPARISON_MINIMUM,
-                        SAML2\Constants::COMPARISON_MAXIMUM,
-                        SAML2\Constants::COMPARISON_BETTER,
-            ), true)) {
+            $accr = \SimpleSAML\Utils\Arrays::arrayize($state['saml:AuthnContextClassRef']);
+            $comp = \SAML2\Constants::COMPARISON_EXACT;
+            if (isset($state['saml:AuthnContextComparison'])
+                && in_array($state['AuthnContextComparison'], [
+                    \SAML2\Constants::COMPARISON_EXACT,
+                    \SAML2\Constants::COMPARISON_MINIMUM,
+                    \SAML2\Constants::COMPARISON_MAXIMUM,
+                    \SAML2\Constants::COMPARISON_BETTER,
+                ], true)) {
                 $comp = $state['saml:AuthnContextComparison'];
             }
-            $ar->setRequestedAuthnContext(array('AuthnContextClassRef' => $accr, 'Comparison' => $comp));
+            $ar->setRequestedAuthnContext(['AuthnContextClassRef' => $accr, 'Comparison' => $comp]);
         }
 
         if (isset($state['ForceAuthn'])) {
-            $ar->setForceAuthn((bool)$state['ForceAuthn']);
+            $ar->setForceAuthn((bool) $state['ForceAuthn']);
         }
 
         if (isset($state['isPassive'])) {
-            $ar->setIsPassive((bool)$state['isPassive']);
+            $ar->setIsPassive((bool) $state['isPassive']);
         }
 
         if (isset($state['saml:NameID'])) {
             if (!is_array($state['saml:NameID']) && !is_a($state['saml:NameID'], '\SAML2\XML\saml\NameID')) {
-                throw new SimpleSAML_Error_Exception('Invalid value of $state[\'saml:NameID\'].');
+                throw new \SimpleSAML\Error\Exception('Invalid value of $state[\'saml:NameID\'].');
             }
             $ar->setNameId($state['saml:NameID']);
         }
@@ -223,10 +230,10 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
         if (isset($state['saml:NameIDPolicy'])) {
             $policy = null;
             if (is_string($state['saml:NameIDPolicy'])) {
-                $policy = array(
-                    'Format' => (string)$state['saml:NameIDPolicy'],
+                $policy = [
+                    'Format' => (string) $state['saml:NameIDPolicy'],
                     'AllowCreate' => true,
-                );
+                ];
             } elseif (is_array($state['saml:NameIDPolicy'])) {
                 $policy = $state['saml:NameIDPolicy'];
             } elseif ($state['saml:NameIDPolicy'] === null) {
@@ -240,12 +247,18 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
         if (isset($state['saml:IDPList'])) {
             $IDPList = $state['saml:IDPList'];
         } else {
-            $IDPList = array();
+            $IDPList = [];
         }
 
-        $ar->setIDPList(array_unique(array_merge($this->metadata->getArray('IDPList', array()), 
-                                                $idpMetadata->getArray('IDPList', array()),
-                                                (array) $IDPList)));
+        $ar->setIDPList(
+            array_unique(
+                array_merge(
+                    $this->metadata->getArray('IDPList', []),
+                    $idpMetadata->getArray('IDPList', []),
+                    (array) $IDPList
+                )
+            )
+        );
 
         if (isset($state['saml:ProxyCount']) && $state['saml:ProxyCount'] !== null) {
             $ar->setProxyCount($state['saml:ProxyCount']);
@@ -255,7 +268,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
             $ar->setProxyCount($this->metadata->getInteger('ProxyCount', null));
         }
 
-        $requesterID = array();
+        $requesterID = [];
         if (isset($state['saml:RequesterID'])) {
             $requesterID = $state['saml:RequesterID'];
         }
@@ -273,21 +286,28 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
         // save IdP entity ID as part of the state
         $state['ExpectedIssuer'] = $idpMetadata->getString('entityid');
 
-        $id = SimpleSAML_Auth_State::saveState($state, 'saml:sp:sso', true);
+        $id = State::saveState($state, 'saml:sp:sso', true);
         $ar->setId($id);
 
-        SimpleSAML\Logger::debug('Sending SAML 2 AuthnRequest to ' .
-            var_export($idpMetadata->getString('entityid'), true));
+        \SimpleSAML\Logger::debug(
+            'Sending SAML 2 AuthnRequest to '.var_export($idpMetadata->getString('entityid'), true)
+        );
 
-        /* Select appropriate SSO endpoint */
+        // Select appropriate SSO endpoint
         if ($ar->getProtocolBinding() === \SAML2\Constants::BINDING_HOK_SSO) {
-            $dst = $idpMetadata->getDefaultEndpoint('SingleSignOnService', array(
-                \SAML2\Constants::BINDING_HOK_SSO)
+            $dst = $idpMetadata->getDefaultEndpoint(
+                'SingleSignOnService',
+                [
+                    \SAML2\Constants::BINDING_HOK_SSO
+                ]
             );
         } else {
-            $dst = $idpMetadata->getDefaultEndpoint('SingleSignOnService', array(
-                \SAML2\Constants::BINDING_HTTP_REDIRECT,
-                \SAML2\Constants::BINDING_HTTP_POST)
+            $dst = $idpMetadata->getEndpointPrioritizedByBinding(
+                'SingleSignOnService',
+                [
+                    \SAML2\Constants::BINDING_HTTP_REDIRECT,
+                    \SAML2\Constants::BINDING_HTTP_POST,
+                ]
             );
         }
         $ar->setDestination($dst['Location']);
@@ -328,15 +348,15 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
 
         $type = $idpMetadata->getString('metadata-set');
         switch ($type) {
-        case 'shib13-idp-remote':
-            $this->startSSO1($idpMetadata, $state);
-            assert(false); /* Should not return. */
-        case 'saml20-idp-remote':
-            $this->startSSO2($idpMetadata, $state);
-            assert(false); /* Should not return. */
-        default:
-            /* Should only be one of the known types. */
-            assert(false);
+            case 'shib13-idp-remote':
+                $this->startSSO1($idpMetadata, $state);
+                assert(false); // Should not return
+            case 'saml20-idp-remote':
+                $this->startSSO2($idpMetadata, $state);
+                assert(false); // Should not return
+            default:
+                // Should only be one of the known types
+                assert(false);
         }
     }
 
@@ -347,23 +367,23 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
      */
     private function startDisco(array $state)
     {
-        $id = SimpleSAML_Auth_State::saveState($state, 'saml:sp:sso');
+        $id = State::saveState($state, 'saml:sp:sso');
 
         $discoURL = $this->discoURL;
         if ($discoURL === null) {
-            /* Fallback to internal discovery service. */
-            $discoURL = SimpleSAML\Module::getModuleURL('saml/disco.php');
+            // Fallback to internal discovery service
+            $discoURL = \SimpleSAML\Module::getModuleURL('saml/disco.php');
         }
 
-        $returnTo = SimpleSAML\Module::getModuleURL('saml/sp/discoresp.php', array('AuthID' => $id));
+        $returnTo = \SimpleSAML\Module::getModuleURL('saml/sp/discoresp.php', ['AuthID' => $id]);
 
-        $params = array(
+        $params = [
             'entityID' => $this->entityId,
             'return' => $returnTo,
             'returnIDParam' => 'idpentityid'
-        );
+        ];
 
-        if(isset($state['saml:IDPList'])) {
+        if (isset($state['saml:IDPList'])) {
             $params['IDPList'] = $state['saml:IDPList'];
         }
 
@@ -385,24 +405,24 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
     {
         assert(is_array($state));
 
-        /* We are going to need the authId in order to retrieve this authentication source later. */
+        // We are going to need the authId in order to retrieve this authentication source later
         $state['saml:sp:AuthId'] = $this->authId;
 
         $idp = $this->idp;
 
         if (isset($state['saml:idp'])) {
-            $idp = (string)$state['saml:idp'];
+            $idp = (string) $state['saml:idp'];
         }
 
         if (isset($state['saml:IDPList']) && sizeof($state['saml:IDPList']) > 0) {
             // we have a SAML IDPList (we are a proxy): filter the list of IdPs available
-            $mdh = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+            $mdh = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
             $known_idps = $mdh->getList();
             $intersection = array_intersect($state['saml:IDPList'], array_keys($known_idps));
 
             if (empty($intersection)) {
                 // all requested IdPs are unknown
-                throw new SimpleSAML\Module\saml\Error\NoSupportedIDP(
+                throw new \SimpleSAML\Module\saml\Error\NoSupportedIDP(
                     \SAML2\Constants::STATUS_REQUESTER,
                     'None of the IdPs requested are supported by this proxy.'
                 );
@@ -410,7 +430,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
 
             if (!is_null($idp) && !in_array($idp, $intersection, true)) {
                 // the IdP is enforced but not in the IDPList
-                throw new SimpleSAML\Module\saml\Error\NoAvailableIDP(
+                throw new \SimpleSAML\Module\saml\Error\NoAvailableIDP(
                     \SAML2\Constants::STATUS_REQUESTER,
                     'None of the IdPs requested are available to this proxy.'
                 );
@@ -443,7 +463,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
     {
         assert(is_array($state));
 
-        $session = SimpleSAML_Session::getSessionFromRequest();
+        $session = \SimpleSAML\Session::getSessionFromRequest();
         $data = $session->getAuthState($this->authId);
         foreach ($data as $k => $v) {
             $state[$k] = $v;
@@ -451,8 +471,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
 
         // check if we have an IDPList specified in the request
         if (isset($state['saml:IDPList']) && sizeof($state['saml:IDPList']) > 0 &&
-            !in_array($state['saml:sp:IdP'], $state['saml:IDPList'], true))
-        {
+            !in_array($state['saml:sp:IdP'], $state['saml:IDPList'], true)) {
             /*
              * The user has an existing, valid session. However, the SP
              * provided a list of IdPs it accepts for authentication, and
@@ -461,13 +480,13 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
              * First, check if we recognize any of the IdPs requested.
              */
 
-            $mdh = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+            $mdh = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
             $known_idps = $mdh->getList();
             $intersection = array_intersect($state['saml:IDPList'], array_keys($known_idps));
 
             if (empty($intersection)) {
                 // all requested IdPs are unknown
-                throw new SimpleSAML\Module\saml\Error\NoSupportedIDP(
+                throw new \SimpleSAML\Module\saml\Error\NoSupportedIDP(
                     \SAML2\Constants::STATUS_REQUESTER,
                     'None of the IdPs requested are supported by this proxy.'
                 );
@@ -480,7 +499,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
              */
             if (!is_null($this->idp) && !in_array($this->idp, $intersection, true)) {
                 // an IdP is enforced but not requested
-                throw new SimpleSAML\Module\saml\Error\NoAvailableIDP(
+                throw new \SimpleSAML\Module\saml\Error\NoAvailableIDP(
                     \SAML2\Constants::STATUS_REQUESTER,
                     'None of the IdPs requested are available to this proxy.'
                 );
@@ -491,7 +510,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
              * starting the authentication process again with a different IdP, or
              * cancel the current SSO attempt.
              */
-            SimpleSAML\Logger::warning(
+            \SimpleSAML\Logger::warning(
                 "Reauthentication after logout is needed. The IdP '${state['saml:sp:IdP']}' is not in the IDPList ".
                 "provided by the Service Provider '${state['core:SP']}'."
             );
@@ -513,14 +532,14 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
      *
      * @param array $state The state array.
      * The following keys must be defined in the array:
-     * - 'saml:sp:IdPMetadata': a SimpleSAML_Configuration object containing
+     * - 'saml:sp:IdPMetadata': a \SimpleSAML\Configuration object containing
      *   the metadata of the IdP that authenticated the user in the current
      *   session.
      * - 'saml:sp:AuthId': the identifier of the current authentication source.
      * - 'core:IdP': the identifier of the local IdP.
      * - 'SPMetadata': an array with the metadata of this local SP.
      *
-     * @throws SimpleSAML_Error_NoPassive In case the authentication request was passive.
+     * @throws \SimpleSAML\Error\NoPassive In case the authentication request was passive.
      */
     public static function askForIdPChange(array &$state)
     {
@@ -529,18 +548,18 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
         assert(array_key_exists('core:IdP', $state));
         assert(array_key_exists('SPMetadata', $state));
 
-        if (isset($state['isPassive']) && (bool)$state['isPassive']) {
+        if (isset($state['isPassive']) && (bool) $state['isPassive']) {
             // passive request, we cannot authenticate the user
-            throw new SimpleSAML\Module\saml\Error\NoPassive(
-                    \SAML2\Constants::STATUS_REQUESTER,
-                    'Reauthentication required'
+            throw new \SimpleSAML\Module\saml\Error\NoPassive(
+                \SAML2\Constants::STATUS_REQUESTER,
+                'Reauthentication required'
             );
         }
 
         // save the state WITHOUT a restart URL, so that we don't try an IdP-initiated login if something goes wrong
-        $id = SimpleSAML_Auth_State::saveState($state, 'saml:proxy:invalid_idp', true);
-        $url = SimpleSAML\Module::getModuleURL('saml/proxy/invalid_session.php');
-        SimpleSAML\Utils\HTTP::redirectTrustedURL($url, array('AuthState' => $id));
+        $id = State::saveState($state, 'saml:proxy:invalid_idp', true);
+        $url = \SimpleSAML\Module::getModuleURL('saml/proxy/invalid_session.php');
+        \SimpleSAML\Utils\HTTP::redirectTrustedURL($url, ['AuthState' => $id]);
         assert(false);
     }
 
@@ -553,14 +572,14 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
      */
     public static function reauthLogout(array $state)
     {
-        SimpleSAML\Logger::debug('Proxy: logging the user out before re-authentication.');
+        \SimpleSAML\Logger::debug('Proxy: logging the user out before re-authentication.');
 
         if (isset($state['Responder'])) {
             $state['saml:proxy:reauthLogout:PrevResponder'] = $state['Responder'];
         }
-        $state['Responder'] = array('sspmod_saml_Auth_Source_SP', 'reauthPostLogout');
+        $state['Responder'] = ['\SimpleSAML\Module\saml\Auth\Source\SP', 'reauthPostLogout'];
 
-        $idp = SimpleSAML_IdP::getByState($state);
+        $idp = \SimpleSAML\IdP::getByState($state);
         $idp->handleLogoutRequest($state, null);
         assert(false);
     }
@@ -575,9 +594,9 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
         assert(isset($state['ReturnCallback']));
 
         // Update session state
-        $session = SimpleSAML_Session::getSessionFromRequest();
+        $session = \SimpleSAML\Session::getSessionFromRequest();
         $authId = $state['saml:sp:AuthId'];
-        $session->doLogin($authId, SimpleSAML_Auth_State::getPersistentAuthData($state));
+        $session->doLogin($authId, State::getPersistentAuthData($state));
 
         // resume the login process
         call_user_func($state['ReturnCallback'], $state);
@@ -589,22 +608,22 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
      *
      * This method will never return.
      *
-     * @param SimpleSAML_IdP $idp The IdP we are logging out from.
+     * @param \SimpleSAML\IdP $idp The IdP we are logging out from.
      * @param array &$state The state array with the state during logout.
      */
-    public static function reauthPostLogout(SimpleSAML_IdP $idp, array $state)
+    public static function reauthPostLogout(\SimpleSAML\IdP $idp, array $state)
     {
         assert(isset($state['saml:sp:AuthId']));
 
-        SimpleSAML\Logger::debug('Proxy: logout completed.');
+        \SimpleSAML\Logger::debug('Proxy: logout completed.');
 
         if (isset($state['saml:proxy:reauthLogout:PrevResponder'])) {
             $state['Responder'] = $state['saml:proxy:reauthLogout:PrevResponder'];
         }
 
-        $sp = SimpleSAML_Auth_Source::getById($state['saml:sp:AuthId'], 'sspmod_saml_Auth_Source_SP');
-        /** @var sspmod_saml_Auth_Source_SP $authSource */
-        SimpleSAML\Logger::debug('Proxy: logging in again.');
+        $sp = Source::getById($state['saml:sp:AuthId'], '\SimpleSAML\Module\saml\Auth\Source\SP');
+        /** @var \SimpleSAML\Module\saml\Auth\Source\SP $authSource */
+        \SimpleSAML\Logger::debug('Proxy: logging in again.');
         $sp->authenticate($state);
         assert(false);
     }
@@ -621,7 +640,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
         assert(array_key_exists('saml:logout:NameID', $state));
         assert(array_key_exists('saml:logout:SessionIndex', $state));
 
-        $id = SimpleSAML_Auth_State::saveState($state, 'saml:slosent');
+        $id = State::saveState($state, 'saml:slosent');
 
         $idp = $state['saml:logout:IdP'];
         $nameId = $state['saml:logout:NameID'];
@@ -629,15 +648,15 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
 
         $idpMetadata = $this->getIdPMetadata($idp);
 
-        $endpoint = $idpMetadata->getEndpointPrioritizedByBinding('SingleLogoutService', array(
+        $endpoint = $idpMetadata->getEndpointPrioritizedByBinding('SingleLogoutService', [
             \SAML2\Constants::BINDING_HTTP_REDIRECT,
-            \SAML2\Constants::BINDING_HTTP_POST), false);
+            \SAML2\Constants::BINDING_HTTP_POST], false);
         if ($endpoint === false) {
-            SimpleSAML\Logger::info('No logout endpoint for IdP ' . var_export($idp, true) . '.');
+            \SimpleSAML\Logger::info('No logout endpoint for IdP '.var_export($idp, true).'.');
             return;
         }
 
-        $lr = sspmod_saml_Message::buildLogoutRequest($this->metadata, $idpMetadata);
+        $lr = \SimpleSAML\Module\saml\Message::buildLogoutRequest($this->metadata, $idpMetadata);
         $lr->setNameId($nameId);
         $lr->setSessionIndex($sessionIndex);
         $lr->setRelayState($id);
@@ -648,7 +667,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
             $encryptNameId = $this->metadata->getBoolean('nameid.encryption', false);
         }
         if ($encryptNameId) {
-            $lr->encryptNameId(sspmod_saml_Message::getEncryptionKey($idpMetadata));
+            $lr->encryptNameId(\SimpleSAML\Module\saml\Message::getEncryptionKey($idpMetadata));
         }
 
         $b = \SAML2\Binding::getBinding($endpoint['Binding']);
@@ -669,15 +688,15 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
 
         $logoutType = $state['saml:logout:Type'];
         switch ($logoutType) {
-        case 'saml1':
-            /* Nothing to do. */
-            return;
-        case 'saml2':
-            $this->startSLO2($state);
-            return;
-        default:
-            /* Should never happen. */
-            assert(false);
+            case 'saml1':
+                // Nothing to do
+                return;
+            case 'saml2':
+                $this->startSLO2($state);
+                return;
+            default:
+                // Should never happen
+                assert(false);
         }
     }
 
@@ -694,7 +713,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
         assert(array_key_exists('LogoutState', $state));
         assert(array_key_exists('saml:logout:Type', $state['LogoutState']));
 
-        $idpMetadata = $this->getIdpMetadata($idp);
+        $idpMetadata = $this->getIdPMetadata($idp);
 
         $spMetadataArray = $this->metadata->toArray();
         $idpMetadataArray = $idpMetadata->toArray();
@@ -703,15 +722,15 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
         $state['saml:sp:IdP'] = $idp;
         $state['PersistentAuthData'][] = 'saml:sp:IdP';
 
-        $authProcState = array(
+        $authProcState = [
             'saml:sp:IdP' => $idp,
             'saml:sp:State' => $state,
-            'ReturnCall' => array('sspmod_saml_Auth_Source_SP', 'onProcessingCompleted'),
+            'ReturnCall' => ['\SimpleSAML\Module\saml\Auth\Source\SP', 'onProcessingCompleted'],
 
             'Attributes' => $attributes,
             'Destination' => $spMetadataArray,
             'Source' => $idpMetadataArray,
-        );
+        ];
 
         if (isset($state['saml:sp:NameID'])) {
             $authProcState['saml:sp:NameID'] = $state['saml:sp:NameID'];
@@ -720,7 +739,7 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
             $authProcState['saml:sp:SessionIndex'] = $state['saml:sp:SessionIndex'];
         }
 
-        $pc = new SimpleSAML_Auth_ProcessingChain($idpMetadataArray, $spMetadataArray, 'sp');
+        $pc = new \SimpleSAML\Auth\ProcessingChain($idpMetadataArray, $spMetadataArray, 'sp');
         $pc->processState($authProcState);
 
         self::onProcessingCompleted($authProcState);
@@ -758,8 +777,8 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
         assert(is_string($authId));
         assert(is_string($redirectTo));
 
-        $session = SimpleSAML_Session::getSessionFromRequest();
-        $session->doLogin($authId, SimpleSAML_Auth_State::getPersistentAuthData($state));
+        $session = \SimpleSAML\Session::getSessionFromRequest();
+        $session->doLogin($authId, State::getPersistentAuthData($state));
 
         \SimpleSAML\Utils\HTTP::redirectUntrustedURL($redirectTo);
     }
@@ -779,17 +798,17 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
         $state = $authProcState['saml:sp:State'];
 
         $sourceId = $state['saml:sp:AuthId'];
-        $source = SimpleSAML_Auth_Source::getById($sourceId);
+        $source = Source::getById($sourceId);
         if ($source === null) {
-            throw new Exception('Could not find authentication source with id ' . $sourceId);
+            throw new \Exception('Could not find authentication source with id '.$sourceId);
         }
 
-        /* Register a callback that we can call if we receive a logout request from the IdP. */
+        // Register a callback that we can call if we receive a logout request from the IdP
         $source->addLogoutCallback($idp, $state);
 
         $state['Attributes'] = $authProcState['Attributes'];
 
-        if (isset($state['saml:sp:isUnsolicited']) && (bool)$state['saml:sp:isUnsolicited']) {
+        if (isset($state['saml:sp:isUnsolicited']) && (bool) $state['saml:sp:isUnsolicited']) {
             if (!empty($state['saml:sp:RelayState'])) {
                 $redirectTo = $state['saml:sp:RelayState'];
             } else {
@@ -798,6 +817,6 @@ class sspmod_saml_Auth_Source_SP extends SimpleSAML_Auth_Source
             self::handleUnsolicitedAuth($sourceId, $state, $redirectTo);
         }
 
-        SimpleSAML_Auth_Source::completeAuth($state);
+        Source::completeAuth($state);
     }
 }

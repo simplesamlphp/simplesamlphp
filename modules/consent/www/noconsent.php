@@ -1,47 +1,63 @@
 <?php
+
 /**
  * This is the page the user lands on when choosing "no" in the consent form.
  *
  * @package SimpleSAMLphp
  */
+
 if (!array_key_exists('StateId', $_REQUEST)) {
-    throw new SimpleSAML_Error_BadRequest(
+    throw new \SimpleSAML\Error\BadRequest(
         'Missing required StateId query parameter.'
     );
 }
 
 $id = $_REQUEST['StateId'];
-$state = SimpleSAML_Auth_State::loadState($id, 'consent:request');
+$state = \SimpleSAML\Auth\State::loadState($id, 'consent:request');
 
-$resumeFrom = SimpleSAML\Module::getModuleURL(
+$resumeFrom = \SimpleSAML\Module::getModuleURL(
     'consent/getconsent.php',
-    array('StateId' => $id)
+    ['StateId' => $id]
 );
 
-$logoutLink = SimpleSAML\Module::getModuleURL(
+$logoutLink = \SimpleSAML\Module::getModuleURL(
     'consent/logout.php',
-    array('StateId' => $id)
+    ['StateId' => $id]
 );
-
 
 $aboutService = null;
 if (!isset($state['consent:showNoConsentAboutService']) || $state['consent:showNoConsentAboutService']) {
-	if (isset($state['Destination']['url.about'])) {
-		$aboutService = $state['Destination']['url.about'];
-	}
+    if (isset($state['Destination']['url.about'])) {
+        $aboutService = $state['Destination']['url.about'];
+    }
 }
 
-$statsInfo = array();
+$statsInfo = [];
 if (isset($state['Destination']['entityid'])) {
     $statsInfo['spEntityID'] = $state['Destination']['entityid'];
 }
-SimpleSAML_Stats::log('consent:reject', $statsInfo);
+\SimpleSAML\Stats::log('consent:reject', $statsInfo);
 
-$globalConfig = SimpleSAML_Configuration::getInstance();
+if (array_key_exists('name', $state['Destination'])) {
+    $dstName = $state['Destination']['name'];
+} elseif (array_key_exists('OrganizationDisplayName', $state['Destination'])) {
+    $dstName = $state['Destination']['OrganizationDisplayName'];
+} else {
+    $dstName = $state['Destination']['entityid'];
+}
 
-$t = new SimpleSAML_XHTML_Template($globalConfig, 'consent:noconsent.php');
+$globalConfig = \SimpleSAML\Configuration::getInstance();
+
+$t = new \SimpleSAML\XHTML\Template($globalConfig, 'consent:noconsent.php');
+$translator = $t->getTranslator();
 $t->data['dstMetadata'] = $state['Destination'];
 $t->data['resumeFrom'] = $resumeFrom;
 $t->data['aboutService'] = $aboutService;
 $t->data['logoutLink'] = $logoutLink;
+
+$dstName = htmlspecialchars(is_array($dstName) ? $translator->t($dstName) : $dstName);
+
+$t->data['noconsent_text'] = $translator->t('{consent:consent:noconsent_text}', ['SPNAME' => $dstName]);
+$t->data['noconsent_abort'] = $translator->t('{consent:consent:abort}', ['SPNAME' => $dstName]);
+
 $t->show();

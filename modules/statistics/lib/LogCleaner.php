@@ -1,9 +1,13 @@
 <?php
+
+namespace SimpleSAML\Module\statistics;
+
 /*
  * @author Andreas Åkre Solberg <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
  */
-class sspmod_statistics_LogCleaner
+
+class LogCleaner
 {
     private $statconfig;
     private $statdir;
@@ -16,7 +20,7 @@ class sspmod_statistics_LogCleaner
      */
     public function __construct($inputfile = null)
     {
-        $this->statconfig = SimpleSAML_Configuration::getConfig('module_statistics.php');
+        $this->statconfig = \SimpleSAML\Configuration::getConfig('module_statistics.php');
 
         $this->statdir = $this->statconfig->getValue('statdir');
         $this->inputfile = $this->statconfig->getValue('inputfile');
@@ -33,9 +37,9 @@ class sspmod_statistics_LogCleaner
      */
     public function dumpConfig()
     {
-        echo 'Statistics directory   : ' . $this->statdir . "\n";
-        echo 'Input file             : ' . $this->inputfile . "\n";
-        echo 'Offset                 : ' . $this->offset . "\n";
+        echo 'Statistics directory   : '.$this->statdir."\n";
+        echo 'Input file             : '.$this->inputfile."\n";
+        echo 'Offset                 : '.$this->offset."\n";
     }
 
 
@@ -46,20 +50,22 @@ class sspmod_statistics_LogCleaner
     public function clean($debug = false)
     {
         if (!is_dir($this->statdir)) {
-            throw new Exception('Statistics module: output dir do not exists [' . $this->statdir . ']');
+            throw new \Exception('Statistics module: output dir do not exists ['.$this->statdir.']');
         }
 
         if (!file_exists($this->inputfile)) {
-            throw new Exception('Statistics module: input file do not exists [' . $this->inputfile . ']');
+            throw new \Exception('Statistics module: input file do not exists ['.$this->inputfile.']');
         }
 
         $file = fopen($this->inputfile, 'r');
 
-        $logparser = new sspmod_statistics_LogParser(
-            $this->statconfig->getValue('datestart', 0), $this->statconfig->getValue('datelength', 15), $this->statconfig->getValue('offsetspan', 44)
+        $logparser = new LogParser(
+            $this->statconfig->getValue('datestart', 0),
+            $this->statconfig->getValue('datelength', 15),
+            $this->statconfig->getValue('offsetspan', 44)
         );
 
-        $sessioncounter = array();
+        $sessioncounter = [];
 
         $i = 0;
         // Parse through log file, line by line
@@ -77,7 +83,7 @@ class sspmod_statistics_LogCleaner
             $content = $logparser->parseContent($logline);
 
             if (($i % 10000) == 0) {
-                echo("Read line " . $i . "\n");
+                echo "Read line ".$i."\n";
             }
 
             $trackid = $content[4];
@@ -88,9 +94,10 @@ class sspmod_statistics_LogCleaner
             $sessioncounter[$trackid]++;
 
             if ($debug) {
-                echo("----------------------------------------\n");
-                echo('Log line: ' . $logline . "\n");
-                echo('Date parse [' . substr($logline, 0, $this->statconfig->getValue('datelength', 15)) . '] to [' . date(DATE_RFC822, $epoch) . ']' . "\n");
+                echo "----------------------------------------\n";
+                echo 'Log line: '.$logline."\n";
+                echo 'Date parse ['.substr($logline, 0, $this->statconfig->getValue('datelength', 15)).
+                    '] to ['.date(DATE_RFC822, $epoch).']'."\n";
                 echo htmlentities(print_r($content, true));
                 if ($i >= 13) {
                     exit;
@@ -98,7 +105,7 @@ class sspmod_statistics_LogCleaner
             }
         }
 
-        $histogram = array();
+        $histogram = [];
         foreach ($sessioncounter as $trackid => $sc) {
             if (!isset($histogram[$sc])) {
                 $histogram[$sc] = 0;
@@ -107,7 +114,7 @@ class sspmod_statistics_LogCleaner
         }
         ksort($histogram);
 
-        $todelete = array();
+        $todelete = [];
         foreach ($sessioncounter as $trackid => $sc) {
             if ($sc > 200) {
                 $todelete[] = $trackid;
@@ -125,14 +132,14 @@ class sspmod_statistics_LogCleaner
      */
     public function store($todelete, $outputfile)
     {
-        echo "Preparing to delete [" .count($todelete) . "] trackids\n";
+        echo "Preparing to delete [".count($todelete)."] trackids\n";
 
         if (!is_dir($this->statdir)) {
-            throw new Exception('Statistics module: output dir do not exists [' . $this->statdir . ']');
+            throw new \Exception('Statistics module: output dir do not exists ['.$this->statdir.']');
         }
 
         if (!file_exists($this->inputfile)) {
-            throw new Exception('Statistics module: input file do not exists [' . $this->inputfile . ']');
+            throw new \Exception('Statistics module: input file do not exists ['.$this->inputfile.']');
         }
 
         $file = fopen($this->inputfile, 'r');
@@ -142,10 +149,12 @@ class sspmod_statistics_LogCleaner
             // Delete existing output file.
             unlink($outputfile);
         }
-        $outfile = fopen($outputfile, 'x'); /* Create the output file. */
+        $outfile = fopen($outputfile, 'x'); // Create the output file
 
-        $logparser = new sspmod_statistics_LogParser(
-            $this->statconfig->getValue('datestart', 0), $this->statconfig->getValue('datelength', 15), $this->statconfig->getValue('offsetspan', 44)
+        $logparser = new LogParser(
+            $this->statconfig->getValue('datestart', 0),
+            $this->statconfig->getValue('datelength', 15),
+            $this->statconfig->getValue('offsetspan', 44)
         );
 
         $i = 0;
@@ -162,7 +171,7 @@ class sspmod_statistics_LogCleaner
             $content = $logparser->parseContent($logline);
 
             if (($i % 10000) == 0) {
-                echo("Read line " . $i . "\n");
+                echo "Read line ".$i."\n";
             }
 
             $trackid = $content[4];

@@ -46,12 +46,19 @@ if [ -f "$TARGET/composer.json" ]; then
     php "$TARGET/composer.phar" install --no-dev --prefer-dist -o -d "$TARGET"
 fi
 
-mkdir -p "$TARGET/config" "$TARGET/metadata" "$TARGET/cert" "$TARGET/log"
+# Use npm only on newer versions that have a package.json
+if [ -f "$TARGET/package.json" ]; then
+    npm install
+    npm audit fix
+fi
+
+mkdir -p "$TARGET/config" "$TARGET/metadata" "$TARGET/cert" "$TARGET/log" "$TARGET/data"
 cp -rv "$TARGET/config-templates/"* "$TARGET/config/"
 cp -rv "$TARGET/metadata-templates/"* "$TARGET/metadata/"
 rm -rf "$TARGET/.git"
 rm "$TARGET/.coveralls.yml"
 rm "$TARGET/.travis.yml"
+rm "$TARGET/.php_cs.dist"
 rm "$TARGET/psalm.xml"
 rm "$TARGET"/{,modules}/.gitignore
 rm "$TARGET/.gitattributes"

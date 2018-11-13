@@ -5,11 +5,11 @@
 $baseDir = dirname(dirname(dirname(dirname(__FILE__))));
 
 // Add library autoloader.
-require_once($baseDir . '/lib/_autoload.php');
+require_once($baseDir.'/lib/_autoload.php');
 
 // Initialize the configuration.
-$configdir = SimpleSAML\Utils\Config::getConfigDir();
-SimpleSAML_Configuration::setConfigDir($configdir);
+$configdir = \SimpleSAML\Utils\Config::getConfigDir();
+\SimpleSAML\Configuration::setConfigDir($configdir);
 
 $progName = array_shift($argv);
 $debug = false;
@@ -30,7 +30,7 @@ foreach ($argv as $a) {
     }
 
     // Map short options to long options.
-    $shortOptMap = array('-d' => '--debug');
+    $shortOptMap = ['-d' => '--debug'];
     if (array_key_exists($a, $shortOptMap)) {
         $a = $shortOptMap[$a];
     }
@@ -52,17 +52,17 @@ foreach ($argv as $a) {
             $output = $v;
             break;
         default:
-            echo('Unknown option: ' . $a . "\n");
-            echo('Please run `' . $progName . ' --help` for usage information.' . "\n");
+            echo 'Unknown option: '.$a."\n";
+            echo 'Please run `'.$progName.' --help` for usage information.'."\n";
             exit(1);
     }
 }
 
-$cleaner = new sspmod_statistics_LogCleaner($infile);
+$cleaner = new \SimpleSAML\Module\statistics\LogCleaner($infile);
 $cleaner->dumpConfig();
 $todelete = $cleaner->clean($debug);
 
-echo "Cleaning these trackIDs: " . join(', ', $todelete) . "\n";
+echo "Cleaning these trackIDs: ".join(', ', $todelete)."\n";
 
 if (!$dryrun) {
     $cleaner->store($todelete, $output);
@@ -72,7 +72,8 @@ if (!$dryrun) {
  * This function prints the help output.
  */
 
-function printHelp() {
+function printHelp()
+{
     global $progName;
 
     echo <<<END
@@ -89,4 +90,3 @@ Options:
 
 END;
 }
-

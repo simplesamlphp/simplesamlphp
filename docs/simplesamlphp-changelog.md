@@ -6,31 +6,176 @@ SimpleSAMLphp changelog
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
-## Version 1.16.0
+## Version 1.17.0
 
 Released TBD
 
+### Changes
+  * Minimum required PHP version is now 5.5.
+  * Introduce new UI based on Twig templates.
+    The new templates co-exist next to the old ones.
+  * SimpleSAMLphp can now be used with applications that use Twig 2.
+  * Update configuration templates and documentation to PHP
+    short array syntax.
+  * All clases moved to namespaces and reformatted code to PSR-2.
+  * Many code cleanups.
+
+### consent
+  * Module is now disabled by default.
+
+### core
+  * Allow `core:PHP` to manipulate all of the state.
+  * IdP initiated login: add compatibility with Shibboleth parameters.
+
+### saml
+  * Add initial support for SAML Subject Id Attributes.
+  * Allow to specify multiple supported NameIdFormats in IdP hosted and
+    SP remote metadata.
+
+## Version 1.16.2
+
+Released 2018-09-28
+
+  * Fixed an issue with PHP sessions in PHP 7.2.
+  * Fixed a bug in the OAuth module.
+  * Make schema validation work again.
+  * Properly document the `saml:AuthnContextClassRef` authentication processing filter.
+  * Fixed an issue that made it impossible to install the software with composer using the
+    "stable" minimum-stability setting.
+  * Changed the default authentication context class to "PasswordProtectedTransport" by default
+    when authentication happened on an HTTPS exchange.
+
+## Version 1.16.1
+
+Released 2018-09-07
+
+  * Fix a bug preventing the consent page from showing.
+  * Add Catalan to the list of available languages.
+
+## Version 1.16.0
+
+Released 2018-09-06
+
+### Changes
+  * Default signature algorithm is now RSA-SHA256.
+  * Renamed class `SimpleSAML_Error_BadUserInnput` to `SimpleSAML_Error_BadUserInput`
+  * PHP 7.2 compatibility, including removing deprecated use of assert with string.
+  * Avoid logging database credentials in backtraces.
+  * Fix edge case in getServerPort.
+  * Updated Spanish translation.
+  * Improvements to documentation, testsuite, code quality and coding style.
+
 ### New features
   * Added support for SAML "Enhanced Client or Proxy" (ECP) protocol,
-    IdP side with HTTP Basic Authentcation as authentication method.
+    IdP side with HTTP Basic Authentication as authentication method.
     See the [ECP IdP documentation](./simplesamlphp-ecp-idp) for details.
   * New option `sendmail_from`, the from address for email sent by SSP.
   * New option `options` for PDO database connections, e.g. for TLS setup.
+  * New option `search.scope` for LDAP authsources.
+  * Add support for the DiscoHints IPHint metadata property.
+  * Add support to specify metadata XML in config with the `xml` parameter,
+    next to the exising `file` and `url` options.
+  * Also support CGI/RewriteRule setups that set the `REDIRECT_SIMPLESAMLPHP_CONFIG_DIR`
+    environment variable next to regular `SIMPLESAMLPHP_CONFIG_DIR`.
+  * Support creating an AuthSource via factory, for example useful in tests.
+  * Support preloading of a virtual config file via `SimpleSAML_Configuration::setPreLoadedConfig`
+    to allow for dynamic population of authsources.php.
+  * Add basic documentation on Nginx configuration.
+  * Test authentication: optionally show AuthData array.
+  * Improve performance of PDO Metadata Storage handler entity lookup.
 
-### authfacebook
-  * Compatibility with Facebook strict URI match.
+### adfs
+  * Make signature algorithm configurable with `signature.algorithm`.
+  * Use configuration assertion lifetime when available.
+  * Use `adfs:wreply` parameter when available.
+
+### authmyspace
+  * Module removed because service is no longer available.
+
+### cas
+  * Respect all LDAP options in LDAP call.
+
+### casserver
+  * Module removed; superseded by externally hosted module.
+
+### consent
+  * Sort attribute values for consent.
+  * Fix table layout for MySQL > 5.6.
+  * Rename `noconsentattributes` to `attributes.exclude`; the former
+    is now considered deprecated.
+
+### consentAdmin
+  * Work better with TargetedIDs when operating as a proxy.
+  * Add `attributes.exclude` option to correspond to the same option
+    in the Consent module.
 
 ### core
   * StatisticsWithAttribute: add `passive-` prefix when logging passive
     requests, set new option `skipPassive` to skip logging these altogether.
-  * Replace deprecated create_function with an anonymous function.
+  * Replace deprecated `create_function` with an anonymous function.
+  * New authproc filter Cardinality to enforce attribute cardinality.
+  * SQLPermanentStorage: proper expiration of stored values.
+  * AttributeLimit: new options `regex` and `ignoreCase`.
+  * AttributeMap: prevent possible infinite loop with some PHP versions.
+
+### ldap
+  * AttributeAddUsersGroups: if `attribute.groupname` is set, use the
+    configured attribute as the group name rather than the DN.
+  * Also base64encode the `ms-ds-consistencyguid` attribute.
+
+### metarefresh
+  * Return XML parser error for better debugging of problems.
+  * Only actually parse metadata types that have been enabled.
+  * Fix missing translation.
 
 ### Oauth
   * Make module HTTP proxy-aware.
   * Remove unused demo app.
 
-### Sqlauth
-  * Changed from default-enabled to default-disabled.
+### saml
+  * AttributeConsumingService: allow to set isDefault and index options.
+  * Encrypted attributes in an assertion are now decrypted correctly.
+  * Prefer the HTTP-Redirect binding for AuthnRequests if available.
+
+### smartattributes
+  * Fix to make the `add_authority` option work.
+
+### sqlauth
+  * The module is now disabled by default.
+
+### statistics
+  * Show a decent error message when no data is available.
+
+## Version 1.15.4
+
+Released 2018-03-02
+
+  * Resolved a security issue related to signature validation in the SAML2 library. See [SSPSA 201803-01](https://simplesamlphp.org/security/201803-01).
+
+## Version 1.15.3
+
+Released 2018-02-27
+
+  * Resolved a security issue related to signature validation in the SAML2 library. See [SSPSA 201802-01](https://simplesamlphp.org/security/201802-01).
+  * Fixed edge-case scenario where an application uses one of the known LoggingHandlers' name as a defined class
+  * Fixed issue #793 in the PHP logging handler.
+
+## Version 1.15.2
+
+Released 2018-01-31
+
+  * Resolved a Denial of Service security issue when validating timestamps in the SAML2 library. See [SSPSA 201801-01](https://simplesamlphp.org/security/201801-01).
+  * Resolved a security issue with the open redirect protection mechanism. See [SSPSA 201801-02](https://simplesamlphp.org/security/201801-02).
+  * Fix _undefined method_ error when using memcacheD.
+
+### `authfacebook`
+  * Fix compatibility with Facebook strict URI match.
+
+### `consent`
+  * Fix statistics not being gathered.
+
+### `sqlauth`
+  * Prevented a security issue with the connection charset used for MySQL backends. See [SSPSA 201801-03](https://simplesamlphp.org/security/201801-03).
 
 ## Version 1.15.1
 
@@ -1437,7 +1582,7 @@ Updates to `config.php`. Please check for updates in your local modified configu
   * Verification of the Receipient attribute in the response. Will improve security if for some reason an IdP is not includeding sufficient Audience restrictions.
   * Added hook to let modules tell about themself moduleinfo hook.
   * Improved cron mails
-  * Improved santity check exception handling
+  * Improved sanity check exception handling
   * Preserver line breaks in stack trace UI
   * Improvements to WS-Federation support: dynamic realms, logout etc.
   * Better handling of presentation of JPEG photos as attributes.

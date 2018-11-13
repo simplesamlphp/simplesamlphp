@@ -43,7 +43,6 @@ if (is_array($this->data['metaentries']['hosted']) && count($this->data['metaent
 if (is_array($this->data['metaentries']['remote']) && count($this->data['metaentries']['remote']) > 0) {
     $now = time();
     foreach ($this->data['metaentries']['remote'] as $setkey => $set) {
-
         echo '<fieldset class="fancyfieldset"><legend>'.$this->t($this->data['mtype'][$setkey]).' (Trusted)</legend>';
         echo '<ul>';
         foreach ($set as $entry) {
@@ -52,7 +51,7 @@ if (is_array($this->data['metaentries']['remote']) && count($this->data['metaent
                 htmlspecialchars(
                     SimpleSAML\Module::getModuleURL(
                         'core/show_metadata.php',
-                        array('entityid' => $entry['entityid'], 'set' => $setkey)
+                        ['entityid' => $entry['entityid'], 'set' => $setkey]
                     )
                 ).'">');
             if (!empty($entry['name'])) {
@@ -81,26 +80,26 @@ if (is_array($this->data['metaentries']['remote']) && count($this->data['metaent
         echo '</fieldset>';
     }
 }
+
+echo '<h2>'.$this->t('{core:frontpage:tools}').'</h2>';
+echo '<ul>';
+foreach ($this->data['links_federation'] as $link) {
+    echo '<li><a href="'.htmlspecialchars($link['href']).'">'.$this->t($link['text']).'</a></li>';
+}
+echo '</ul>';
+if ($this->data['isadmin']) {
 ?>
-    <h2><?php echo $this->t('{core:frontpage:tools}'); ?></h2>
-    <ul><?php
-        foreach ($this->data['links_federation'] as $link) {
-            echo '<li><a href="'.htmlspecialchars($link['href']).'">'.$this->t($link['text']).'</a></li>';
-        }
-?>
-    </ul>
-<?php
-        if ($this->data['isadmin']) { ?>
     <fieldset class="fancyfieldset">
         <legend>Lookup metadata</legend>
         <form action="<?php echo SimpleSAML\Module::getModuleURL('core/show_metadata.php'); ?>" method="get">
             <p style="margin: 1em 2em ">Look up metadata for entity:
-                <select name="set"><?php
-            if (is_array($this->data['metaentries']['remote']) && count($this->data['metaentries']['remote']) > 0) {
-                foreach ($this->data['metaentries']['remote'] as $setkey => $set) {
-                    echo '<option value="'.htmlspecialchars($setkey).'">'.$this->t($this->data['mtype'][$setkey]).'</option>';
-                }
-            }
+                <select name="set">
+<?php
+    if (is_array($this->data['metaentries']['remote']) && count($this->data['metaentries']['remote']) > 0) {
+        foreach ($this->data['metaentries']['remote'] as $setkey => $set) {
+            echo '<option value="'.htmlspecialchars($setkey).'">'.$this->t($this->data['mtype'][$setkey]).'</option>';
+        }
+    }
 ?>
                 </select>
                 <input type="text" name="entityid" />
@@ -109,5 +108,5 @@ if (is_array($this->data['metaentries']['remote']) && count($this->data['metaent
         </form>
     </fieldset>
 <?php
-        }
+}
 $this->includeAtTemplateBase('includes/footer.php');

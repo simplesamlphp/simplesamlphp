@@ -1,14 +1,15 @@
 <?php
 
+namespace SimpleSAML\Module\core\Auth\Process;
 
 /**
  * Attribute filter for running arbitrary PHP code.
  *
  * @package SimpleSAMLphp
  */
-class sspmod_core_Auth_Process_PHP extends SimpleSAML_Auth_ProcessingFilter
-{
 
+class PHP extends \SimpleSAML\Auth\ProcessingFilter
+{
     /**
      * The PHP code that should be run.
      *
@@ -23,7 +24,7 @@ class sspmod_core_Auth_Process_PHP extends SimpleSAML_Auth_ProcessingFilter
      * @param array $config Configuration information about this filter.
      * @param mixed $reserved For future use.
      *
-     * @throws SimpleSAML_Error_Exception if the 'code' option is not defined.
+     * @throws \SimpleSAML\Error\Exception if the 'code' option is not defined.
      */
     public function __construct($config, $reserved)
     {
@@ -32,7 +33,7 @@ class sspmod_core_Auth_Process_PHP extends SimpleSAML_Auth_ProcessingFilter
         assert(is_array($config));
 
         if (!isset($config['code'])) {
-            throw new SimpleSAML_Error_Exception("core:PHP: missing mandatory configuration option 'code'.");
+            throw new \SimpleSAML\Error\Exception("core:PHP: missing mandatory configuration option 'code'.");
         }
         $this->code = (string) $config['code'];
     }
@@ -48,7 +49,12 @@ class sspmod_core_Auth_Process_PHP extends SimpleSAML_Auth_ProcessingFilter
         assert(is_array($request));
         assert(array_key_exists('Attributes', $request));
 
-        $function = function(&$attributes) { eval($this->code); };
-        $function($request['Attributes']);
+        $function = function (
+            /** @scrutinizer ignore-unused */ &$attributes,
+            /** @scrutinizer ignore-unused */ &$state
+        ) {
+            eval($this->code);
+        };
+        $function($request['Attributes'], $request);
     }
 }

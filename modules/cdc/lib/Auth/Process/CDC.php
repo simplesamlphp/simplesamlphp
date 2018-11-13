@@ -1,11 +1,14 @@
 <?php
 
+namespace SimpleSAML\module\cdc\Auth\Process;
+
 /**
  * Filter for setting the SAML 2 common domain cookie.
  *
  * @package SimpleSAMLphp
  */
-class sspmod_cdc_Auth_Process_CDC extends SimpleSAML_Auth_ProcessingFilter
+
+class CDC extends \SimpleSAML\Auth\ProcessingFilter
 {
     /**
      * Our CDC domain.
@@ -18,7 +21,7 @@ class sspmod_cdc_Auth_Process_CDC extends SimpleSAML_Auth_ProcessingFilter
     /**
      * Our CDC client.
      *
-     * @var sspmod_cdc_Client
+     * @var \SimpleSAML\Module\cdc\Client
      */
     private $client;
 
@@ -35,11 +38,11 @@ class sspmod_cdc_Auth_Process_CDC extends SimpleSAML_Auth_ProcessingFilter
         assert(is_array($config));
 
         if (!isset($config['domain'])) {
-            throw new SimpleSAML_Error_Exception('Missing domain option in cdc:CDC filter.');
+            throw new \SimpleSAML\Error\Exception('Missing domain option in cdc:CDC filter.');
         }
-        $this->domain = (string)$config['domain'];
+        $this->domain = (string) $config['domain'];
 
-        $this->client = new sspmod_cdc_Client($this->domain);
+        $this->client = new \SimpleSAML\Module\cdc\Client($this->domain);
     }
 
 
@@ -53,19 +56,19 @@ class sspmod_cdc_Auth_Process_CDC extends SimpleSAML_Auth_ProcessingFilter
         assert(is_array($state));
 
         if (!isset($state['Source']['entityid'])) {
-            SimpleSAML\Logger::warning('saml:CDC: Could not find IdP entityID.');
+            \SimpleSAML\Logger::warning('saml:CDC: Could not find IdP entityID.');
             return;
         }
 
         // Save state and build request
-        $id = SimpleSAML_Auth_State::saveState($state, 'cdc:resume');
+        $id = \SimpleSAML\Auth\State::saveState($state, 'cdc:resume');
 
-        $returnTo = SimpleSAML\Module::getModuleURL('cdc/resume.php', array('domain' => $this->domain));
+        $returnTo = \SimpleSAML\Module::getModuleURL('cdc/resume.php', ['domain' => $this->domain]);
 
-        $params = array(
+        $params = [
             'id' => $id,
             'entityID' => $state['Source']['entityid'],
-        );
+        ];
         $this->client->sendRequest($returnTo, 'append', $params);
     }
 }

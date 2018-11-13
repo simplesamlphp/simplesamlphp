@@ -1,0 +1,6 @@
+msgid "These checks failed:"
+msgstr "These checks failed:"
+
+msgid "These checks succeeded:"
+msgstr "These checks succeeded:"
+

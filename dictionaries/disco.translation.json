@@ -38,7 +38,7 @@
 		"no": "Vennligst velg hvilken identitetsleverand\u00f8r du vil bruke for \u00e5 logge inn:",
 		"nn": "Vel innloggingsteneste (IdP) der du \u00f8nskjer \u00e5 logga inn.",
 		"sv": "V\u00e4lj vilken identitetsleverant\u00f6r du vill logga in med:",
-		"es": "Por favor, seleccione el proveedor de identidad donde desea autenticarse",
+		"es": "Por favor, seleccione el proveedor de identidad que desea usar para autenticarse",
 		"fr": "S\u00e9lectionnez le fournisseur d'identit\u00e9 aupr\u00e8s duquel vous souhaitez vous authentifier :",
 		"de": "Bitte w\u00e4hlen Sie den Identity Provider, bei dem Sie sich authentifizieren m\u00f6chten:",
 		"nl": "Selecteer de Identity Provider waar je wil authenticeren:",
@@ -142,7 +142,7 @@
 	"icon_prefered_idp": {
 		"no": "[Foretrukket valg]",
 		"sv": "Prioriterat val",
-		"es": "[Opci\u00f3n preference]",
+		"es": "[Opci\u00f3n preferida]",
 		"de": "[Bevorzugte Auswahl]",
 		"nl": "[Voorkeurskeuze]",
 		"sl": "Prioritetna izbira",
@@ -177,7 +177,7 @@
 	"previous_auth": {
 		"no": "Du har tidligere valg \u00e5 autentisere deg hos",
 		"sv": "Du har  tidigare valt att logga in med",
-		"es": "Previamente solicit\u00f3 autenticarse en",
+		"es": "Previamente eligi\u00f3 autenticarse con",
 		"nl": "Je hebt eerder gekozen voor authenticatie bij",
 		"sl": "Predhodnje ste se prijavljali \u017ee pri",
 		"da": "Du har tidligere valgt at logge ind hos",
@@ -211,7 +211,7 @@
 	"login_at": {
 		"no": "Logg inn hos",
 		"sv": "Logga in med",
-		"es": "Identificarse en",
+		"es": "Iniciar sesi\u00f3n en",
 		"nl": "Inloggen bij",
 		"sl": "Prijavi se pri",
 		"da": "Login hos",

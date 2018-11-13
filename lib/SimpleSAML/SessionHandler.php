@@ -82,9 +82,9 @@ abstract class SessionHandler
     /**
      * Save the session.
      *
-     * @param \SimpleSAML_Session $session The session object we should save.
+     * @param \SimpleSAML\Session $session The session object we should save.
      */
-    abstract public function saveSession(\SimpleSAML_Session $session);
+    abstract public function saveSession(Session $session);
 
 
     /**
@@ -92,7 +92,7 @@ abstract class SessionHandler
      *
      * @param string|null $sessionId The ID of the session we should load, or null to use the default.
      *
-     * @return \SimpleSAML_Session|null The session object, or null if it doesn't exist.
+     * @return \SimpleSAML\Session|null The session object, or null if it doesn't exist.
      */
     abstract public function loadSession($sessionId = null);
 
@@ -123,13 +123,13 @@ abstract class SessionHandler
      * Initialize the session handler.
      *
      * This function creates an instance of the session handler which is
-     * selected in the 'session.handler' configuration directive. If no
+     * selected in the 'store.type' configuration directive. If no
      * session handler is selected, then we will fall back to the default
      * PHP session handler.
      */
     private static function createSessionHandler()
     {
-        $store = \SimpleSAML\Store::getInstance();
+        $store = Store::getInstance();
         if ($store === false) {
             self::$sessionHandler = new SessionHandlerPHP();
         } else {
@@ -147,14 +147,14 @@ abstract class SessionHandler
      */
     public function getCookieParams()
     {
-        $config = \SimpleSAML_Configuration::getInstance();
+        $config = Configuration::getInstance();
 
-        return array(
+        return [
             'lifetime' => $config->getInteger('session.cookie.lifetime', 0),
             'path'     => $config->getString('session.cookie.path', '/'),
             'domain'   => $config->getString('session.cookie.domain', null),
             'secure'   => $config->getBoolean('session.cookie.secure', false),
             'httponly' => true,
-        );
+        ];
     }
 }

@@ -1,10 +1,13 @@
 <?php
+
+namespace SimpleSAML\Module\metarefresh;
+
 /*
  * @author Andreas Åkre Solberg <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
  */
 
-class sspmod_metarefresh_ARP
+class ARP
 {
     /**
      * @var array
@@ -26,37 +29,37 @@ class sspmod_metarefresh_ARP
      */
     private $suffix;
 
-	/**
-	 * Constructor
-	 *
-	 * @param array $metadata
-     * @param string $attributemap
+    /**
+     * Constructor
+     *
+     * @param array $metadata
+     * @param string $attributemap_filename
      * @param string $prefix
      * @param string $suffix
-	 */
-    public function __construct($metadata, $attributemap, $prefix, $suffix)
+     */
+    public function __construct($metadata, $attributemap_filename, $prefix, $suffix)
     {
         $this->metadata = $metadata;
         $this->prefix = $prefix;
         $this->suffix = $suffix;
 
-        if (isset($attributemap)) {
-            $this->loadAttributeMap($attributemap);
+        if (isset($attributemap_filename)) {
+            $this->loadAttributeMap($attributemap_filename);
         }
     }
-	
+
     /**
-     * @param string $attributemap
+     * @param string $attributemap_filename
      *
      * @return void
      */
-    private function loadAttributeMap($attributemap)
+    private function loadAttributeMap($attributemap_filename)
     {
-        $config = SimpleSAML_Configuration::getInstance();
-        include($config->getPathValue('attributemap', 'attributemap/') . $attributemap . '.php');
-        // Note that $attributemap was a string before the call to include() and is now an array!
+        $config = \SimpleSAML\Configuration::getInstance();
+        include($config->getPathValue('attributemap', 'attributemap/').$attributemap_filename.'.php');
+        // Note that $attributemap is defined in the included attributemap-file!
         $this->attributes = $attributemap;
-	}
+    }
 
     /**
      * @param string $name
@@ -123,9 +126,9 @@ MSG;
     private function getEntryXML($entry)
     {
         $entityid = $entry['entityid'];
-        return '    <AttributeFilterPolicy id="' . $entityid .
-            '"><PolicyRequirementRule xsi:type="basic:AttributeRequesterString" value="' . $entityid .
-            '" />' . $this->getEntryXMLcontent($entry) . '</AttributeFilterPolicy>';
+        return '    <AttributeFilterPolicy id="'.$entityid.
+            '"><PolicyRequirementRule xsi:type="basic:AttributeRequesterString" value="'.$entityid.
+            '" />'.$this->getEntryXMLcontent($entry).'</AttributeFilterPolicy>';
     }
 
     /**
@@ -141,7 +144,7 @@ MSG;
 
         $ret = '';
         foreach ($entry['attributes'] as $a) {
-            $ret .= '            <AttributeRule attributeID="' . $this->getAttributeID($a) .
+            $ret .= '            <AttributeRule attributeID="'.$this->getAttributeID($a).
                 '"><PermitValueRule xsi:type="basic:ANY" /></AttributeRule>';
         }
         return $ret;
