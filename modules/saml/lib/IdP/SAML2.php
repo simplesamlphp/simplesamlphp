@@ -1004,9 +1004,9 @@ class SAML2
 
         if ($nameIdFormat === null || !isset($state['saml:NameID'][$nameIdFormat])) {
             // either not set in request, or not set to a format we supply. Fall back to old generation method
-            $nameIdFormat = $spMetadata->getString('NameIDFormat', null);
+            $nameIdFormat = array_shift($spMetadata->getArrayizeString('NameIDFormat', null));
             if ($nameIdFormat === null) {
-                $nameIdFormat = $idpMetadata->getString('NameIDFormat', \SAML2\Constants::NAMEID_TRANSIENT);
+                $nameIdFormat = array_shift($idpMetadata->getArrayizeString('NameIDFormat', \SAML2\Constants::NAMEID_TRANSIENT));
             }
         }
 
