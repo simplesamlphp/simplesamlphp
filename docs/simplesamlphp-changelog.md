@@ -31,6 +31,9 @@ Released TBD
   * Add initial support for SAML Subject Id Attributes.
   * Allow to specify multiple supported NameIdFormats in IdP hosted and
     SP remote metadata.
+  * Allow to specifiy NameIDPolicy Format and AllowCreate in hosted SP
+    and remote IdP configurtion, and restore possibility to omit it
+    from AuthnRequests entirely.
 
 ## Version 1.16.2
 

@@ -131,6 +131,15 @@ The following SAML 2.0 options are available:
     entry in the IdP-remote metadata overrides the option in the
     [SP configuration](./saml:sp).
 
+`NameIDPolicy`
+:   The format of the NameID we request from this IdP: an array in the form of
+    `[ 'Format' => the format, 'AllowCreate' => true or false ]`.
+    Set to `false` instead of an array to omit sending any specific NameIDPolicy
+    in the AuthnRequest.
+
+:   For compatibility purposes, `null` is equivalent to Transient and a format
+    can be defined as a string instead of an array. These variants are deprecated.
+
 `sign.authnrequest`
 :   Whether to sign authentication requests sent to this IdP.
 
