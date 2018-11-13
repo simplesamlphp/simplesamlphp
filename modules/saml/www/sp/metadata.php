@@ -142,7 +142,7 @@ if ($certInfo !== null && array_key_exists('certData', $certInfo)) {
 $format = $spconfig->getValue('NameIDPolicy', null);
 if ($format !== null) {
     if (is_array($format)) {
-        $metaArray20['NameIDFormat'] = SimpleSAML_Configuration::loadFromArray($format)->getString(
+        $metaArray20['NameIDFormat'] = \SimpleSAML\Configuration::loadFromArray($format)->getString(
             'Format',
             \SAML2\Constants::NAMEID_TRANSIENT
         );
