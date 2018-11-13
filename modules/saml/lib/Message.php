@@ -478,7 +478,6 @@ class Message
             $nameIdPolicy = $spMetadata->getValue('NameIDPolicy');
         }
 
-<<<<<<< HEAD
         $policy = \SimpleSAML\Utils\Config\Metadata::parseNameIdPolicy($nameIdPolicy);
         if ($policy !== null) {
             // either we have a policy set, or we used the transient default
