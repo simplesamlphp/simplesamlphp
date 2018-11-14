@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b9c34fc504ecc863bc6fe8fecd0f838e",
+    "content-hash": "859e33fa847e03f174d0e083fbd7db9e",
     "packages": [
         {
             "name": "gettext/gettext",
@@ -260,16 +260,16 @@
         },
         {
             "name": "simplesamlphp/saml2",
-            "version": "v3.2.2",
+            "version": "v3.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/saml2.git",
-                "reference": "b3a040ec186f4a3749228b8c13642c5295fc451b"
+                "reference": "5e660396a3760ef3c628f28a11a66e4850a1d9b1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/b3a040ec186f4a3749228b8c13642c5295fc451b",
-                "reference": "b3a040ec186f4a3749228b8c13642c5295fc451b",
+                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/5e660396a3760ef3c628f28a11a66e4850a1d9b1",
+                "reference": "5e660396a3760ef3c628f28a11a66e4850a1d9b1",
                 "shasum": ""
             },
             "require": {
@@ -313,7 +313,7 @@
                 }
             ],
             "description": "SAML2 PHP library from SimpleSAMLphp",
-            "time": "2018-09-27T14:09:06+00:00"
+            "time": "2018-11-14T14:01:27+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
@@ -2752,7 +2752,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=5.4",
+        "php": ">=5.5",
         "ext-spl": "*",
         "ext-zlib": "*",
         "ext-pcre": "*",
