@@ -314,6 +314,8 @@ Released 2017-11-20
   * We now send the eduPersonTargetedID attribute in the correct
     NameID XML form, instead of the incorrect simple string. We will also
     refuse to parse an assertion with an eduPersonTargetedID in 'string' format.
+  * Receiving an eduPersonTargetedID in string form will no longer break
+    parsing of the assertion.
 
 ### `smartattributes`
   * Fix SmartName authproc that failed to load.
