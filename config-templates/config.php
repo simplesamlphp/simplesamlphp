@@ -695,6 +695,8 @@ $config = [
             'nb' => ['no', 'nn', 'en', 'se'],
             'nn' => ['no', 'nb', 'en', 'se'],
             'se' => ['nb', 'no', 'nn', 'en'],
+            'nr' => ['zu', 'en'],
+            'nd' => ['zu', 'en'],
         ],
     ],
 
@@ -704,7 +706,7 @@ $config = [
     'language.available' => [
         'en', 'no', 'nn', 'se', 'da', 'de', 'sv', 'fi', 'es', 'ca', 'fr', 'it', 'nl', 'lb',
         'cs', 'sl', 'lt', 'hr', 'hu', 'pl', 'pt', 'pt-br', 'tr', 'ja', 'zh', 'zh-tw', 'ru',
-        'et', 'he', 'id', 'sr', 'lv', 'ro', 'eu', 'el', 'af'
+        'et', 'he', 'id', 'sr', 'lv', 'ro', 'eu', 'el', 'af', 'zu', 'xh',
     ],
     'language.rtl' => ['ar', 'dv', 'fa', 'ur', 'he'],
     'language.default' => 'en',
