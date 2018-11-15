@@ -249,8 +249,8 @@ class SP extends Source
             $ar->setNameIdPolicy($policy);
         }
 
-        $IDPList = array();
-        $requesterID = array();
+        $IDPList = [];
+        $requesterID = [];
 
         /* Only check for real info for Scoping element if we are going to send Scoping element */
         if ($this->disable_scoping != true && $idpMetadata->getBoolean('disable_scoping', false) != true) {
@@ -275,7 +275,7 @@ class SP extends Source
                 $requesterID[] = $state['core:SP'];
             }
         } else {
-            \SimpleSAML\Logger::debug('Disabling samlp:Scoping for ' . var_export($idpMetadata->getString('entityid'), TRUE));
+            \SimpleSAML\Logger::debug('Disabling samlp:Scoping for '.var_export($idpMetadata->getString('entityid'), true));
         }
 
         $ar->setIDPList(
