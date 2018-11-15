@@ -36,7 +36,7 @@
 		"ca": "Afiliaci\u00f3",
 		"af": "Affiliasie",
 		"el": "\u0399\u03b4\u03b9\u03cc\u03c4\u03b7\u03c4\u03b1\u002f\u03b5\u03c2",
-		"xh": "Ukumanyana",
+		"xh": "Indima",
 		"zu": "Indima"
 	},
 	"attribute_title": {
@@ -555,7 +555,7 @@
 		"af": "Affiliasie by Tuis organisasie",
 		"el": "\u0399\u03b4\u03b9\u03cc\u03c4\u03b7\u03c4\u03b1 \u03b1\u03bd\u03ac \u03b4\u03b9\u03b1\u03c7\u03b5\u03b9\u03c1\u03b9\u03c3\u03c4\u03b9\u03ba\u03ae \u03c0\u03b5\u03c1\u03b9\u03bf\u03c7\u03ae (administrative domain)",
 		"zu": "Indima enhlanganweni yasekhaya",
-		"xh": "Ukumanyana kwinkampani yekhaya"
+		"xh": "Indima kumbutho wasekhaya"
 	},
 	"attribute_edupersontargetedid": {
 		"no": "Persistent anonym ID",
@@ -594,7 +594,7 @@
 		"af": "Aanhoudende anonieme ID",
 		"el": "\u0391\u03b4\u03b9\u03b1\u03c6\u03b1\u03bd\u03ad\u03c2 \u03b1\u03bd\u03b1\u03b3\u03bd\u03c9\u03c1\u03b9\u03c3\u03c4\u03b9\u03ba\u03cc \u03c7\u03c1\u03ae\u03c3\u03c4\u03b7 \u03bc\u03b1\u03ba\u03c1\u03ac\u03c2 \u03b4\u03b9\u03ac\u03c1\u03ba\u03b5\u03b9\u03b1\u03c2",
 		"zu": "Isibizo esingashintshi esiqondene nesevisi",
-		"xh": "I-ID ebhalwe ngegama lobuxoki eqhubekayo"
+		"xh": "Igama elingelolakhe elingatshintshiyo elingqale kwinkonzo"
 	},
 	"attribute_pairwise_id": {
 		"de": "Service-spezifische pseudonyme ID bei der Heimorganisation"
@@ -1471,7 +1471,7 @@
 		"ca": "Afiliaci\u00f3 prim\u00e0ria",
 		"af": "Prim\u00eare affiliasie",
 		"el": "\u039a\u03cd\u03c1\u03b9\u03b1 \u03b9\u03b4\u03b9\u03cc\u03c4\u03b7\u03c4\u03b1",
-		"xh": "Ukumanyana kokuqala",
+		"xh": "Indima eyintloko",
 		"zu": "Indima eyinhloko"
 	},
 	"attribute_noreduorgnin": {
