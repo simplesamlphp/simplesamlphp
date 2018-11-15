@@ -196,6 +196,15 @@ Options
 
 :   *Note*: For this to be added to the metadata, you must also specify the `attributes` and `name` options.
 
+`disable_scoping`
+:    Whether sending of samlp:Scoping elements in authentication requests should be suppressed. The default value is `FALSE`.
+     When set to `TRUE`, no scoping elements will be sent. This does not comply with the SAML2 specification, but allows
+     interoperability with ADFS which [does not support Scoping elements](https://docs.microsoft.com/en-za/azure/active-directory/develop/active-directory-single-sign-on-protocol-reference#scoping).
+
+:   Note that this option also exists in the IdP remote configuration. An
+    entry in the the IdP-remote metadata overrides this the option in the
+    SP configuration.
+
 `discoURL`
 :   Set which IdP discovery service this SP should use.
     If this is unset, the IdP discovery service specified in the global option `idpdisco.url.{saml20|shib13}` in `config/config.php` will be used.

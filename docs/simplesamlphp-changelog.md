@@ -316,6 +316,9 @@ Released 2017-11-20
     refuse to parse an assertion with an eduPersonTargetedID in 'string' format.
   * Receiving an eduPersonTargetedID in string form will no longer break
     parsing of the assertion.
+  * Can disable the Scoping element in SP and remote IdP configuration with the
+    `disable_scoping` option, for compatibility with ADFS which does not accept
+    the element.
 
 ### `smartattributes`
   * Fix SmartName authproc that failed to load.
