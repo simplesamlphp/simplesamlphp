@@ -12,6 +12,7 @@ Released TBD
 
 ### Changes
   * Minimum required PHP version is now 5.5.
+    Fixed compatibility with PHP 7.3.
   * Introduce new UI based on Twig templates.
     The new templates co-exist next to the old ones.
   * SimpleSAMLphp can now be used with applications that use Twig 2.
