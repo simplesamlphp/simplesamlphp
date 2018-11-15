@@ -73,8 +73,8 @@ if (!empty($this->data['faventry'])) {
 }
 ?>
 
-<div id="tabdiv"> 
-    <ul class="tabset_tabs">     
+<div id="tabdiv">
+    <ul class="tabset_tabs">
         <?php
         $tabs = array_keys($this->data['idplist']);
         $i = 1;
@@ -91,7 +91,7 @@ if (!empty($this->data['faventry'])) {
             }
         }
         ?>
-    </ul> 
+    </ul>
 
 <?php
 
@@ -104,7 +104,7 @@ foreach ($this->data['idplist'] as $tab => $slist) {
     }
     if (!empty($slist)) {
         echo '<div class="inlinesearch">';
-        echo '<p>Incremental search...</p>';
+        echo '<p>'.htmlspecialchars($this->t('{discopower:tabs:incremental_search}')).'</p>';
         echo '<form id="idpselectform" action="?" method="get">';
         echo '<input class="inlinesearch" type="text" value="" name="query_'.$tab.'" id="query_'.$tab.'" /></form>';
         echo '</div>';
