@@ -118,6 +118,8 @@ class Language
         'ro'    => 'Românește', // Romanian
         'eu'    => 'Euskara', // Basque
         'af'    => 'Afrikaans', // Afrikaans
+        'zu'    => 'IsiZulu', // Zulu
+        'xh'    => 'isiXhosa', // Xhosa
     ];
 
     /**

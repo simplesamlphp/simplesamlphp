@@ -31,7 +31,9 @@
 		"sr": "SAML 2.0 SP Demo Primer",
 		"ro": "Exemplu demonstrativ de furnizor de servicii SAML 2.0",
 		"ru": "\u0414\u0435\u043c\u043e \u043f\u0440\u0438\u043c\u0435\u0440 \u0441\u0435\u0440\u0432\u0438\u0441 \u043f\u0440\u043e\u0432\u0430\u0439\u0434\u0435\u0440\u0430 SAML 2.0 SP",
-		"el": "\u0394\u03bf\u03ba\u03b9\u03bc\u03b1\u03c3\u03c4\u03b9\u03ba\u03cc\u03c2 \u03a0\u03b1\u03c1\u03bf\u03c7\u03ad\u03b1\u03c2 \u03a5\u03c0\u03b7\u03c1\u03b5\u03c3\u03b9\u03ce\u03bd SAML 2.0"
+		"el": "\u0394\u03bf\u03ba\u03b9\u03bc\u03b1\u03c3\u03c4\u03b9\u03ba\u03cc\u03c2 \u03a0\u03b1\u03c1\u03bf\u03c7\u03ad\u03b1\u03c2 \u03a5\u03c0\u03b7\u03c1\u03b5\u03c3\u03b9\u03ce\u03bd SAML 2.0",
+		"zu": "Isampula Ledemo Ye-SAML 2.0 SP",
+		"xh": "Umzekelo weDemo we-SAML 2.0 SP"
 	},
 	"header_shib": {
 		"no": "Shibboleth Demo",
@@ -65,7 +67,9 @@
 		"sr": "Shibboleth Demo",
 		"ro": "Demo Shibboleth",
 		"ru": "Shibboleth \u0434\u0435\u043c\u043e",
-		"el": "\u0394\u03bf\u03ba\u03b9\u03bc\u03b1\u03c3\u03c4\u03b9\u03ba\u03cc\u03c2 \u03a0\u03b1\u03c1\u03bf\u03c7\u03ad\u03b1\u03c2 \u03a5\u03c0\u03b7\u03c1\u03b5\u03c3\u03b9\u03ce\u03bd Shibboleth"
+		"el": "\u0394\u03bf\u03ba\u03b9\u03bc\u03b1\u03c3\u03c4\u03b9\u03ba\u03cc\u03c2 \u03a0\u03b1\u03c1\u03bf\u03c7\u03ad\u03b1\u03c2 \u03a5\u03c0\u03b7\u03c1\u03b5\u03c3\u03b9\u03ce\u03bd Shibboleth",
+		"xh": "Idemo ye-Shibboleth",
+		"zu": "Idemo ye-Shibboleth"
 	},
 	"header_wsfed": {
 		"no": "WS-Fed SP Demo Eksempel",
@@ -99,7 +103,9 @@
 		"sr": "WS-Fed SP Demo Primer",
 		"ro": "Exemplu demonstrativ de WS-Fed",
 		"ru": "\u0414\u0435\u043c\u043e \u043f\u0440\u0438\u043c\u0435\u0440 \u0441\u0435\u0440\u0432\u0438\u0441 \u043f\u0440\u043e\u0432\u0430\u0439\u0434\u0435\u0440\u0430 WS-Fed SP",
-		"el": "\u0394\u03bf\u03ba\u03b9\u03bc\u03b1\u03c3\u03c4\u03b9\u03ba\u03cc\u03c2 \u03a0\u03b1\u03c1\u03bf\u03c7\u03ad\u03b1\u03c2 \u03a5\u03c0\u03b7\u03c1\u03b5\u03c3\u03b9\u03ce\u03bd WS-Fed"
+		"el": "\u0394\u03bf\u03ba\u03b9\u03bc\u03b1\u03c3\u03c4\u03b9\u03ba\u03cc\u03c2 \u03a0\u03b1\u03c1\u03bf\u03c7\u03ad\u03b1\u03c2 \u03a5\u03c0\u03b7\u03c1\u03b5\u03c3\u03b9\u03ce\u03bd WS-Fed",
+		"zu": "Isibonelo Sedemo ye-WS-Fed SP",
+		"xh": "Umzekelo weDemo we-WS-Fed SP"
 	},
 	"header_diagnostics": {
 		"no": "SimpleSAMLphp diagnostikk",
@@ -133,7 +139,9 @@
 		"sr": "SimpleSAMLphp Dijagnostika",
 		"ro": "Diagnostic SimpleSAMLphp",
 		"ru": "\u0414\u0438\u0430\u0433\u043d\u043e\u0441\u0442\u0438\u043a\u0430 SimpleSAMLphp",
-		"el": "\u0394\u03b9\u03b1\u03b3\u03bd\u03c9\u03c3\u03c4\u03b9\u03ba\u03ac SimpleSAMLphp"
+		"el": "\u0394\u03b9\u03b1\u03b3\u03bd\u03c9\u03c3\u03c4\u03b9\u03ba\u03ac SimpleSAMLphp",
+		"zu": "Ukuhlonzwa Kwe-SimpleSAMLphp",
+		"xh": "Uhlalutyo lwe-SimpleSAMLphp"
 	},
 	"some_error_occurred": {
 		"no": "En feil har oppst\u00e5tt",
@@ -167,7 +175,9 @@
 		"sr": "Desila se gre\u0161ka",
 		"ro": "A ap\u0103rut o eroare",
 		"ru": "\u041f\u0440\u043e\u0438\u0437\u043e\u0448\u043b\u0430 \u043e\u0448\u0438\u0431\u043a\u0430",
-		"el": "\u03a3\u03c5\u03bd\u03ad\u03b2\u03b7 \u03c3\u03c6\u03ac\u03bb\u03bc\u03b1"
+		"el": "\u03a3\u03c5\u03bd\u03ad\u03b2\u03b7 \u03c3\u03c6\u03ac\u03bb\u03bc\u03b1",
+		"zu": "Kuvele iphutha elithile",
+		"xh": "Kwenzeke impazamo ethile"
 	},
 	"intro": {
 		"no": "Hei, dette er en statusside p\u00e5 SimpleSAMLphp. Her kan du se om sesjonen din er timet ut, hvor lenge det er til den timer ut og attributter som er knyttet til din sesjon.",
@@ -201,7 +211,9 @@
 		"ro": "Aceasta este pagina de stare pentru SimpleSAMLphp. Aici pute\u021bi verifica dac\u0103 sesiunea dumneavoastr\u0103 a expirat, c\u00e2t timp mai este p\u00e2n\u0103 la expirarea sesiunii precum \u0219i toate atributele ata\u0219ate sesiunii dumneavoastr\u0103.",
 		"ru": "\u042d\u0442\u043e \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0430 \u0441\u043e \u0441\u0442\u0430\u0442\u0443\u0441\u043e\u043c SimpleSAMLphp. \u041c\u043e\u0436\u043d\u043e \u043e\u0431\u043d\u0430\u0440\u0443\u0436\u0438\u0442\u044c \u0441\u043b\u0443\u0447\u0430\u0438 \u043e\u043a\u043e\u043d\u0447\u0430\u043d\u0438\u044f \u0441\u0435\u0441\u0441\u0438\u0438, \u043f\u0440\u043e\u0434\u043e\u043b\u0436\u0438\u0442\u0435\u043b\u044c\u043d\u043e\u0441\u0442\u044c \u0441\u0435\u0441\u0441\u0438\u0438 \u0434\u043e \u0438\u0441\u0442\u0435\u0447\u0435\u043d\u0438\u044f \u0441\u0440\u043e\u043a\u0430 \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u044f \u0438 \u0432\u0441\u0435 \u0430\u0442\u0440\u0438\u0431\u0443\u0442\u044b \u0432 \u0434\u0430\u043d\u043d\u043e\u0439 \u0441\u0435\u0441\u0441\u0438\u0438.",
 		"eu": "Kaixo, hau SimpleSAMLphp-ren egoera orria da. Hemendik ikus dezakezu zure saioa iraungi den, zenbat denbora geratzen den hau gerta dadin eta zure saioan dauden atributu guztiak.",
-		"el": "\u03a7\u03b1\u03af\u03c1\u03b5\u03c4\u03b5, \u03b1\u03c5\u03c4\u03ae \u03b5\u03af\u03bd\u03b1\u03b9 \u03b7 \u03c3\u03b5\u03bb\u03af\u03b4\u03b1 \u03ba\u03b1\u03c4\u03ac\u03c3\u03c4\u03b1\u03c3\u03b7\u03c2 \u03c4\u03bf\u03c5 SimpleSAMLphp. \u0395\u03b4\u03ce \u03bc\u03c0\u03bf\u03c1\u03b5\u03af\u03c4\u03b5 \u03bd\u03b1 \u03b4\u03b5\u03af\u03c4\u03b5 \u03b1\u03bd \u03b7 \u03c3\u03c5\u03bd\u03b5\u03b4\u03c1\u03af\u03b1 \u03c3\u03b1\u03c2 \u0028\u0073\u0065\u0073\u0073\u0069\u006f\u006e\u0029 \u03ad\u03c7\u03b5\u03b9 \u03bb\u03ae\u03be\u03b5\u03b9\u002c \u03c4\u03bf \u03c7\u03c1\u03bf\u03bd\u03b9\u03ba\u03cc \u03b4\u03b9\u03ac\u03c3\u03c4\u03b7\u03bc\u03b1 \u03c0\u03bf\u03c5 \u03b4\u03b9\u03b1\u03c1\u03ba\u03b5\u03af \u03ad\u03c9\u03c2 \u03cc\u03c4\u03bf\u03c5 \u03bb\u03ae\u03be\u03b5\u03b9\u002c \u03ba\u03b1\u03b8\u03ce\u03c2 \u03ba\u03b1\u03b9 \u03cc\u03bb\u03b5\u03c2 \u03c4\u03b9\u03c2 \u03c0\u03bb\u03b7\u03c1\u03bf\u03c6\u03bf\u03c1\u03af\u03b5\u03c2 \u03c0\u03bf\u03c5 \u03c3\u03c5\u03bd\u03b4\u03ad\u03bf\u03bd\u03c4\u03b1\u03b9 \u03bc\u03b5 \u03c4\u03b7 \u03c3\u03c5\u03bd\u03b5\u03b4\u03c1\u03af\u03b1 \u03c3\u03b1\u03c2."
+		"el": "\u03a7\u03b1\u03af\u03c1\u03b5\u03c4\u03b5, \u03b1\u03c5\u03c4\u03ae \u03b5\u03af\u03bd\u03b1\u03b9 \u03b7 \u03c3\u03b5\u03bb\u03af\u03b4\u03b1 \u03ba\u03b1\u03c4\u03ac\u03c3\u03c4\u03b1\u03c3\u03b7\u03c2 \u03c4\u03bf\u03c5 SimpleSAMLphp. \u0395\u03b4\u03ce \u03bc\u03c0\u03bf\u03c1\u03b5\u03af\u03c4\u03b5 \u03bd\u03b1 \u03b4\u03b5\u03af\u03c4\u03b5 \u03b1\u03bd \u03b7 \u03c3\u03c5\u03bd\u03b5\u03b4\u03c1\u03af\u03b1 \u03c3\u03b1\u03c2 \u0028\u0073\u0065\u0073\u0073\u0069\u006f\u006e\u0029 \u03ad\u03c7\u03b5\u03b9 \u03bb\u03ae\u03be\u03b5\u03b9\u002c \u03c4\u03bf \u03c7\u03c1\u03bf\u03bd\u03b9\u03ba\u03cc \u03b4\u03b9\u03ac\u03c3\u03c4\u03b7\u03bc\u03b1 \u03c0\u03bf\u03c5 \u03b4\u03b9\u03b1\u03c1\u03ba\u03b5\u03af \u03ad\u03c9\u03c2 \u03cc\u03c4\u03bf\u03c5 \u03bb\u03ae\u03be\u03b5\u03b9\u002c \u03ba\u03b1\u03b8\u03ce\u03c2 \u03ba\u03b1\u03b9 \u03cc\u03bb\u03b5\u03c2 \u03c4\u03b9\u03c2 \u03c0\u03bb\u03b7\u03c1\u03bf\u03c6\u03bf\u03c1\u03af\u03b5\u03c2 \u03c0\u03bf\u03c5 \u03c3\u03c5\u03bd\u03b4\u03ad\u03bf\u03bd\u03c4\u03b1\u03b9 \u03bc\u03b5 \u03c4\u03b7 \u03c3\u03c5\u03bd\u03b5\u03b4\u03c1\u03af\u03b1 \u03c3\u03b1\u03c2.",
+		"zu": "Sawubona, leli ikhasi lesimo se-SimpleSAMLphp. Lapha ungakwazi ukubona ukuthi iseshini yakho iphelelwe isikhathi yini, ukuthi ihlala isikhathi eside kangakanani ngaphambi kokuthi iphelelwe isikhathi kanye nazo zonke izici ezihambisana neseshini yakho.",
+		"xh": "Molo, eli likhasi lobume be-SimpleSAMLphp. Apha ungabona ukuba ngaba iseshoni yakho iphelelwe lixesha, iza kuhlala ixesha elide kangakanani ngaphambi kokuba iphelelwe nazo zonke iimpawu ezincanyathiselweyo kwiseshoni yakho."
 	},
 	"validfor": {
 		"no": "Din sesjon er gyldig i %SECONDS% sekunder fra n\u00e5.",
@@ -235,7 +247,9 @@
 		"ro": "Sesiunea dumneavoastr\u0103 mai este valid\u0103 \u00eenc\u0103 %SECONDS%.",
 		"ru": "\u0412\u0430\u0448\u0430 \u0441\u0435\u0441\u0441\u0438\u044f \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0442\u0435\u043b\u044c\u043d\u0430 \u0432 \u0442\u0435\u0447\u0435\u043d\u0438\u0435 \u0441\u043b\u0435\u0434\u0443\u044e\u0449\u0438\u0445 %SECONDS% \u0441\u0435\u043a\u0443\u043d\u0434.",
 		"eu": "Zure saioa %SECONDS% segundoz izango da baliagarri.",
-		"el": "\u0391\u03c0\u03bf\u03bc\u03ad\u03bd\u03bf\u03c5\u03bd %SECONDS% \u03b4\u03b5\u03c5\u03c4\u03b5\u03c1\u03cc\u03bb\u03b5\u03c0\u03c4\u03b1 \u03bc\u03ad\u03c7\u03c1\u03b9 \u03c4\u03b7 \u03bb\u03ae\u03be\u03b7 \u03c4\u03b7\u03c2 \u03c3\u03c5\u03bd\u03b5\u03b4\u03c1\u03af\u03b1\u03c2 \u03c3\u03b1\u03c2."
+		"el": "\u0391\u03c0\u03bf\u03bc\u03ad\u03bd\u03bf\u03c5\u03bd %SECONDS% \u03b4\u03b5\u03c5\u03c4\u03b5\u03c1\u03cc\u03bb\u03b5\u03c0\u03c4\u03b1 \u03bc\u03ad\u03c7\u03c1\u03b9 \u03c4\u03b7 \u03bb\u03ae\u03be\u03b7 \u03c4\u03b7\u03c2 \u03c3\u03c5\u03bd\u03b5\u03b4\u03c1\u03af\u03b1\u03c2 \u03c3\u03b1\u03c2.",
+		"xh": "Iseshoni yakho iza kusebenza kangangemizuzu e-%SECONDS% ukususela ngoku.",
+		"zu": "Iseshini yakho isebenza imizuzwana engu-%SECONDS% ukusuka manje."
 	},
 	"sessionsize": {
 		"no": "Sesjons st\u00f8rrelse: %SIZE%",
@@ -269,7 +283,9 @@
 		"id": "Ukuran session: %SIZE%",
 		"sr": "Veli\u010dina sesije: %SIZE%",
 		"ro": "Dimensiunea sesiunii: %SIZE%",
-		"el": "\u039c\u03ad\u03b3\u03b5\u03b8\u03bf\u03c2 \u03c3\u03c5\u03bd\u03b5\u03b4\u03c1\u03af\u03b1\u03c2: %SIZE%"
+		"el": "\u039c\u03ad\u03b3\u03b5\u03b8\u03bf\u03c2 \u03c3\u03c5\u03bd\u03b5\u03b4\u03c1\u03af\u03b1\u03c2: %SIZE%",
+		"xh": "Ubukhulu beseshoni: %SIZE%",
+		"zu": "Usayizi weseshini: %SIZE%"
 	},
 	"attributes_header": {
 		"no": "Dine attributter",
@@ -303,7 +319,9 @@
 		"id": "Attribut Anda",
 		"sr": "Va\u0161i atributi",
 		"ro": "Atributele dumneavoastr\u0103",
-		"el": "\u03a0\u03bb\u03b7\u03c1\u03bf\u03c6\u03bf\u03c1\u03af\u03b5\u03c2"
+		"el": "\u03a0\u03bb\u03b7\u03c1\u03bf\u03c6\u03bf\u03c1\u03af\u03b5\u03c2",
+		"zu": "Izici zakho",
+		"xh": "Iimpawu zakho"
 	},
 	"logout": {
 		"no": "Logg ut",
@@ -337,7 +355,9 @@
 		"id": "Logout",
 		"sr": "Odjava",
 		"ro": "Deautentificare",
-		"el": "\u0391\u03c0\u03bf\u03c3\u03cd\u03bd\u03b4\u03b5\u03c3\u03b7"
+		"el": "\u0391\u03c0\u03bf\u03c3\u03cd\u03bd\u03b4\u03b5\u03c3\u03b7",
+		"xh": "Phuma",
+		"zu": "Phuma"
 	},
 	"subject_header": {
 		"es": "Identificador SAML",
@@ -345,7 +365,9 @@
 		"zh-tw": "SAML \u4e3b\u984c",
 		"nl": "SAML Subject",
 		"da": "SAML emne",
-		"el": "\u03a5\u03c0\u03bf\u03ba\u03b5\u03af\u03bc\u03b5\u03bd\u03bf (subject) SAML"
+		"el": "\u03a5\u03c0\u03bf\u03ba\u03b5\u03af\u03bc\u03b5\u03bd\u03bf (subject) SAML",
+		"zu": "Isihloko Se-SAML",
+		"xh": "Umbandela we-SAML"
 	},
 	"subject_notset": {
 		"es": "sin valor",
@@ -353,7 +375,9 @@
 		"zh-tw": "\u672a\u8a2d\u5b9a",
 		"nl": "niet aanwezig",
 		"da": "ikke angivet",
-		"el": "\u03b4\u03b5\u03bd \u03ad\u03c7\u03b5\u03b9 \u03bf\u03c1\u03b9\u03c3\u03c4\u03b5\u03af"
+		"el": "\u03b4\u03b5\u03bd \u03ad\u03c7\u03b5\u03b9 \u03bf\u03c1\u03b9\u03c3\u03c4\u03b5\u03af",
+		"xh": "ayikasetwa",
+		"zu": "akusethiwe"
 	},
 	"subject_format": {
 		"es": "Formato",
@@ -361,6 +385,16 @@
 		"zh-tw": "\u683c\u5f0f",
 		"nl": "Formaat",
 		"da": "Format",
-		"el": "\u039c\u03bf\u03c1\u03c6\u03ae (format)"
+		"el": "\u039c\u03bf\u03c1\u03c6\u03ae (format)",
+		"zu": "Ifomethi",
+		"xh": "Ufomatho"
+	},
+	"authData_header": {
+		"xh": "Ungqinisiso lweNgcombolo",
+		"zu": "I-AuthData"
+	},
+	"authData_summary": {
+		"xh": "Cofa ukuze ubone uNgqinisiso lweNgcombolo",
+		"zu": "Qhafaza ukuze ubuke i-AuthData"
 	}
 }
