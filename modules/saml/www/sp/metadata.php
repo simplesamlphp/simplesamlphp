@@ -42,7 +42,7 @@ foreach ($slob as $binding) {
     }
     $metaArray20['SingleLogoutService'][] = [
         'Binding'  => $binding,
-        'Location' => $spconfig->getString('SingleLogoutService.Location', $slol),
+        'Location' => $spconfig->getString('SingleLogoutServiceLocation', $slol),
     ];
 }
 
