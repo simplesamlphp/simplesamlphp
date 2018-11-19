@@ -8,7 +8,6 @@
  * file that was distributed with this source code.
  */
 
-
 namespace SimpleSAML\Test\XML;
 
 use PHPUnit\Framework\TestCase;
@@ -96,10 +95,10 @@ XML;
     {
         $result = $this
             ->xml
-            ->getValueAlternatives(array(
+            ->getValueAlternatives([
                 '/Root/Other',
                 '/Root/Value'
-            ), true)
+            ], true)
         ;
 
         $this->assertEquals(
@@ -117,10 +116,10 @@ XML;
     {
         $result = $this
             ->xml
-            ->getValueAlternatives(array(
+            ->getValueAlternatives([
                 '/Root/Foo',
                 '/Root/Bar'
-            ), false)
+            ], false)
         ;
 
         $this->assertEquals(
@@ -139,10 +138,10 @@ XML;
     {
         $this
             ->xml
-            ->getValueAlternatives(array(
+            ->getValueAlternatives([
                 '/Root/Foo',
                 '/Root/Bar'
-            ), true)
+            ], true)
         ;
     }
 }

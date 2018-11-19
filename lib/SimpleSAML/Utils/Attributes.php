@@ -85,7 +85,7 @@ class Attributes
             );
         }
 
-        $newAttrs = array();
+        $newAttrs = [];
         foreach ($attributes as $name => $values) {
             if (!is_string($name)) {
                 throw new \InvalidArgumentException('Invalid attribute name: "'.print_r($name, true).'".');
@@ -127,6 +127,6 @@ class Attributes
             $defaultns = substr($name, 0, $slash);
             $name = substr($name, $slash + 1);
         }
-        return array(htmlspecialchars($defaultns), htmlspecialchars($name));
+        return [htmlspecialchars($defaultns), htmlspecialchars($name)];
     }
 }

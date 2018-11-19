@@ -14,7 +14,7 @@ if (!array_key_exists('set', $_REQUEST)) {
 }
 if (!in_array(
     $_REQUEST['set'],
-    array('saml20-idp-remote', 'saml20-sp-remote', 'shib13-idp-remote', 'shib13-sp-remote'),
+    ['saml20-idp-remote', 'saml20-sp-remote', 'shib13-idp-remote', 'shib13-sp-remote'],
     true
 )) {
     throw new Exception('Invalid set');
@@ -22,7 +22,7 @@ if (!in_array(
 
 $metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
 
-$m = $metadata->getMetadata($_REQUEST['entityid'], $_REQUEST['set']);
+$m = $metadata->getMetaData($_REQUEST['entityid'], $_REQUEST['set']);
 
 $t = new \SimpleSAML\XHTML\Template($config, 'core:show_metadata.tpl.php');
 $t->data['clipboard.js'] = true;

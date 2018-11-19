@@ -41,9 +41,9 @@ In `metadata/saml20-idp-hosted.php`:
 
 In `config/authsources.php`:
 
-    'default-sp' => array(
+    'default-sp' => [
         'saml:SP',
-    ),
+    ],
 
 
 

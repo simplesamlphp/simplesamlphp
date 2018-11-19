@@ -83,7 +83,7 @@ TRSTART;
         <p>
             <a href="
             <?php
-                echo \SimpleSAML\Module::getModuleURL('consentAdmin/consentAdmin.php', array('logout' => 1));
+                echo \SimpleSAML\Module::getModuleURL('consentAdmin/consentAdmin.php', ['logout' => 1]);
             ?>">Logout</a>
         </p>
 

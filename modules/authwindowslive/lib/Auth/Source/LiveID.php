@@ -76,7 +76,7 @@ class LiveID extends \SimpleSAML\Auth\Source
             '?client_id='.$this->key.
             '&response_type=code'.
             '&response_mode=query'.
-            '&redirect_uri='.urlencode(\SimpleSAML\Module::getModuleUrl('authwindowslive').'/linkback.php').
+            '&redirect_uri='.urlencode(\SimpleSAML\Module::getModuleURL('authwindowslive').'/linkback.php').
             '&state='.urlencode($stateID).
             '&scope='.urlencode('openid https://graph.microsoft.com/user.read')
         ;
@@ -102,16 +102,16 @@ class LiveID extends \SimpleSAML\Auth\Source
             '&client_secret='.urlencode($this->secret).
             '&scope='.urlencode('https://graph.microsoft.com/user.read').
             '&grant_type=authorization_code'.
-            '&redirect_uri='.urlencode(\SimpleSAML\Module::getModuleUrl('authwindowslive').'/linkback.php').
+            '&redirect_uri='.urlencode(\SimpleSAML\Module::getModuleURL('authwindowslive').'/linkback.php').
             '&code='.urlencode($state['authwindowslive:verification_code']);
 
-        $context = array(
-            'http' => array(
+        $context = [
+            'http' => [
                 'method' => 'POST',
                 'header' => 'Content-type: application/x-www-form-urlencoded',
                 'content' => $postData,
-            ),
-        );
+            ],
+        ];
 
         $result = \SimpleSAML\Utils\HTTP::fetch('https://login.microsoftonline.com/common/oauth2/v2.0/token', $context);
 
@@ -130,10 +130,10 @@ class LiveID extends \SimpleSAML\Auth\Source
         );
 
         // documentation at: http://graph.microsoft.io/en-us/docs/overview/call_api
-        $opts = array(
-            'http' => array('header' => "Accept: application/json\r\nAuthorization: Bearer ".
-                $response['access_token']."\r\n")
-        );
+        $opts = [
+            'http' => ['header' => "Accept: application/json\r\nAuthorization: Bearer ".
+                $response['access_token']."\r\n"]
+        ];
         $data = \SimpleSAML\Utils\HTTP::fetch('https://graph.microsoft.com/v1.0/me', $opts);
         $userdata = json_decode($data, true);
 
@@ -144,13 +144,13 @@ class LiveID extends \SimpleSAML\Auth\Source
                 $userdata['error']['message']
             );
         }
-        $attributes = array();
-        $attributes['windowslive_targetedID'] = array(
+        $attributes = [];
+        $attributes['windowslive_targetedID'] = [
             'https://graph.microsoft.com!'.(!empty($userdata['id']) ? $userdata['id'] : 'unknown')
-        );
+        ];
         foreach ($userdata as $key => $value) {
             if (is_string($value)) {
-                $attributes['windowslive.'.$key] = array((string) $value);
+                $attributes['windowslive.'.$key] = [(string) $value];
             }
         }
 

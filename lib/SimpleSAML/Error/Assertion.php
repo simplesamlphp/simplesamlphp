@@ -59,7 +59,7 @@ class Assertion extends Exception
 
         assert_options(ASSERT_WARNING, 0);
         assert_options(ASSERT_QUIET_EVAL, 0);
-        assert_options(ASSERT_CALLBACK, array('\SimpleSAML\Error\Assertion', 'onAssertion'));
+        assert_options(ASSERT_CALLBACK, ['\SimpleSAML\Error\Assertion', 'onAssertion']);
     }
 
 

@@ -44,7 +44,7 @@ class GoogleCharts
     // t:10.0,58.0,95.0
     private function encodedata($datasets)
     {
-        $setstr = array();
+        $setstr = [];
         foreach ($datasets as $dataset) {
             $setstr[] = self::extEncode($dataset);
         }
@@ -119,7 +119,7 @@ class GoogleCharts
         'chs='.$this->x.'x'.$this->y.
 
         // Dateset values.
-        '&chd='.$this->encodedata(array($datasets)).
+        '&chd='.$this->encodedata([$datasets]).
 
         // chart type is linechart
         '&cht=p'.
@@ -162,7 +162,7 @@ class GoogleCharts
         }
 
         $maxGridLines = 10;
-        $candidates = array(1, 2, 5, 10, 20, 25, 50, 100);
+        $candidates = [1, 2, 5, 10, 20, 25, 50, 100];
 
         foreach ($candidates as $c) {
             if ($t / $c < $maxGridLines) {
@@ -171,5 +171,6 @@ class GoogleCharts
                 return $target_top;
             }
         }
+        return 1;
     }
 }

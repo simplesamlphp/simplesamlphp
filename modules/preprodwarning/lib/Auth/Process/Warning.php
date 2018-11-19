@@ -30,6 +30,6 @@ class Warning extends \SimpleSAML\Auth\ProcessingFilter
         // Save state and redirect.
         $id = \SimpleSAML\Auth\State::saveState($state, 'warning:request');
         $url = \SimpleSAML\Module::getModuleURL('preprodwarning/showwarning.php');
-        \SimpleSAML\Utils\HTTP::redirectTrustedURL($url, array('StateId' => $id));
+        \SimpleSAML\Utils\HTTP::redirectTrustedURL($url, ['StateId' => $id]);
     }
 }

@@ -17,12 +17,12 @@ $state = \SimpleSAML\Auth\State::loadState($id, 'consent:request');
 
 $resumeFrom = \SimpleSAML\Module::getModuleURL(
     'consent/getconsent.php',
-    array('StateId' => $id)
+    ['StateId' => $id]
 );
 
 $logoutLink = \SimpleSAML\Module::getModuleURL(
     'consent/logout.php',
-    array('StateId' => $id)
+    ['StateId' => $id]
 );
 
 $aboutService = null;
@@ -32,7 +32,7 @@ if (!isset($state['consent:showNoConsentAboutService']) || $state['consent:showN
     }
 }
 
-$statsInfo = array();
+$statsInfo = [];
 if (isset($state['Destination']['entityid'])) {
     $statsInfo['spEntityID'] = $state['Destination']['entityid'];
 }
@@ -57,7 +57,7 @@ $t->data['logoutLink'] = $logoutLink;
 
 $dstName = htmlspecialchars(is_array($dstName) ? $translator->t($dstName) : $dstName);
 
-$t->data['noconsent_text'] = $translator->t('{consent:consent:noconsent_text}', array('SPNAME' => $dstName));
-$t->data['noconsent_abort'] = $translator->t('{consent:consent:abort}', array('SPNAME' => $dstName));
+$t->data['noconsent_text'] = $translator->t('{consent:consent:noconsent_text}', ['SPNAME' => $dstName]);
+$t->data['noconsent_abort'] = $translator->t('{consent:consent:abort}', ['SPNAME' => $dstName]);
 
 $t->show();

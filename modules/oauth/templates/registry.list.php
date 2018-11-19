@@ -1,5 +1,5 @@
 <?php
-$this->data['jquery'] = array('core' => true, 'ui' => true, 'css' => true);
+$this->data['jquery'] = ['core' => true, 'ui' => true, 'css' => true];
 $this->data['head'] = '<link rel="stylesheet" type="text/css" href="/'.
     $this->data['baseurlpath'].'module.php/oauth/assets/oauth.css" />'."\n";
 $this->includeAtTemplateBase('includes/header.php');
@@ -11,13 +11,13 @@ echo '<p>Here you can register new OAuth Clients. You are successfully logged in
 echo '<h2>Your clients</h2>';
 echo '<table class="metalist" style="width: 100%">';
 $i = 0;
-$rows = array('odd', 'even');
+$rows = ['odd', 'even'];
 foreach ($this->data['entries']['mine'] as $entryc) {
     $entry = $entryc['value'];
     $i++;
     echo '<tr class="'.$rows[$i % 2].'"><td>'.
-        htmlspecialchars($entry['name']).'</td>	<td><tt>'.htmlspecialchars($entry['key']).
-        '</tt></td><td><a href="registry.edit.php?editkey='.urlencode($entry['key']).
+        htmlspecialchars($entry['name']).'</td>	<td><code>'.htmlspecialchars($entry['key']).
+        '</code></td><td><a href="registry.edit.php?editkey='.urlencode($entry['key']).
         '">edit</a><a href="registry.php?delete='.urlencode($entry['key']).'">delete</a></td></tr>';
 }
 if ($i == 0) {
@@ -30,13 +30,13 @@ echo '<p><a href="registry.edit.php">Add new client</a></p>';
 echo '<h2>Other clients</h2>';
 echo '<table class="metalist" style="width: 100%">';
 $i = 0;
-$rows = array('odd', 'even');
+$rows = ['odd', 'even'];
 foreach ($this->data['entries']['others'] as $entryc) {
     $entry = $entryc['value'];
     $i++;
     echo '<tr class="'.$rows[$i % 2].'"><td>'.
-        htmlspecialchars($entry['name']).'</td><td><tt>'.htmlspecialchars($entry['key']).
-        '</tt></td><td>'.(isset($entry['owner']) ? htmlspecialchars($entry['owner']) : 'No owner').
+        htmlspecialchars($entry['name']).'</td><td><code>'.htmlspecialchars($entry['key']).
+        '</code></td><td>'.(isset($entry['owner']) ? htmlspecialchars($entry['owner']) : 'No owner').
         '</td></tr>';
 }
 if ($i == 0) {

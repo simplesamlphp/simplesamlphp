@@ -9,13 +9,13 @@ function statistics_hook_frontpage(&$links)
     assert(is_array($links));
     assert(array_key_exists('links', $links));
 
-    $links['config']['statistics'] = array(
+    $links['config']['statistics'] = [
         'href' => SimpleSAML\Module::getModuleURL('statistics/showstats.php'),
         'text' => '{core:frontpage:link_statistics}',
-    );
-    $links['config']['statisticsmeta'] = array(
+    ];
+    $links['config']['statisticsmeta'] = [
         'href' => SimpleSAML\Module::getModuleURL('statistics/statmeta.php'),
         'text' => '{core:frontpage:link_statistics_metadata}',
-        'shorttext' => array('en' => 'Statistics metadata', 'no' => 'Statistikk metadata'),
-    );
+        'shorttext' => ['en' => 'Statistics metadata', 'no' => 'Statistikk metadata'],
+    ];
 }

@@ -1,7 +1,7 @@
 <?php
 $this->data['header'] = 'SimpleSAMLphp Statistics';
 
-$this->data['jquery'] = array('core' => true, 'ui' => true, 'css' => true);
+$this->data['jquery'] = ['core' => true, 'ui' => true, 'css' => true];
 
 $this->data['head'] = '<link rel="stylesheet" type="text/css" href="'.
     SimpleSAML\Module::getModuleURL("statistics/assets/css/statistics.css").'" />'."\n";
@@ -15,7 +15,7 @@ echo '<p>'.$this->data['available.rules'][$this->data['selected.rule']]['descr']
 
 // Report settings
 echo '<table class="selecttime">';
-echo '<tr><td class="selecttime_icon"><img src="'.SimpleSAML\Utils\HTTP::getBaseUrl().
+echo '<tr><td class="selecttime_icon"><img src="'.SimpleSAML\Utils\HTTP::getBaseURL().
     'resources/icons/crystal_project/kchart.32x32.png" alt="Report settings" /></td>';
 
 // Select report
@@ -75,7 +75,7 @@ echo '</table>';
 
 // Select time and date
 echo '<table class="selecttime">';
-echo '<tr><td class="selecttime_icon"><img src="'.SimpleSAML\Utils\HTTP::getBaseUrl().
+echo '<tr><td class="selecttime_icon"><img src="'.SimpleSAML\Utils\HTTP::getBaseURL().
     'resources/icons/crystal_project/date.32x32.png" alt="Select date and time" /></td>';
 
 if (isset($this->data['available.times.prev'])) {
@@ -167,7 +167,7 @@ if (!empty($this->data['results'])) {
     /**
      * Handle table view - - - - - -
      */
-    $classint = array('odd', 'even');
+    $classint = ['odd', 'even'];
     $i = 0;
     echo '<div id="table" class="tabset_content">';
 

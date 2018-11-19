@@ -23,19 +23,19 @@ class SAMLParser
      *
      * @var string[]
      */
-    private static $SAML1xProtocols = array(
+    private static $SAML1xProtocols = [
         'urn:oasis:names:tc:SAML:1.0:protocol',
         'urn:oasis:names:tc:SAML:1.1:protocol',
-    );
+    ];
 
     /**
      * This is the list with the SAML 2.0 protocol.
      *
      * @var string[]
      */
-    private static $SAML20Protocols = array(
+    private static $SAML20Protocols = [
         'urn:oasis:names:tc:SAML:2.0:protocol',
-    );
+    ];
 
     /**
      * This is the entity id we find in the metadata.
@@ -71,7 +71,7 @@ class SAMLParser
      *
      * @var array
      */
-    private $attributeAuthorityDescriptors = array();
+    private $attributeAuthorityDescriptors = [];
 
     /**
      * This is an associative array with the organization name for this entity. The key of
@@ -80,7 +80,7 @@ class SAMLParser
      *
      * @var string[]
      */
-    private $organizationName = array();
+    private $organizationName = [];
 
     /**
      * This is an associative array with the organization display name for this entity. The key of
@@ -89,7 +89,7 @@ class SAMLParser
      *
      * @var string[]
      */
-    private $organizationDisplayName = array();
+    private $organizationDisplayName = [];
 
     /**
      * This is an associative array with the organization URI for this entity. The key of
@@ -97,14 +97,14 @@ class SAMLParser
      *
      * @var string[]
      */
-    private $organizationURL = array();
+    private $organizationURL = [];
 
     /**
      * This is an array of the Contact Persons of this entity.
      *
      * @var array[]
      */
-    private $contacts = array();
+    private $contacts = [];
 
     /**
      * @var array
@@ -132,7 +132,7 @@ class SAMLParser
      *
      * @var \SAML2\SignedElementHelper[]
      */
-    private $validators = array();
+    private $validators = [];
 
     /**
      * The original EntityDescriptor element for this entity, as a base64 encoded string.
@@ -153,13 +153,13 @@ class SAMLParser
     private function __construct(
         \SAML2\XML\md\EntityDescriptor $entityElement,
         $maxExpireTime,
-        array $validators = array(),
-        array $parentExtensions = array()
+        array $validators = [],
+        array $parentExtensions = []
     ) {
         assert($maxExpireTime === null || is_int($maxExpireTime));
 
-        $this->spDescriptors = array();
-        $this->idpDescriptors = array();
+        $this->spDescriptors = [];
+        $this->idpDescriptors = [];
 
         $e = $entityElement->toXML();
         $e = $e->ownerDocument->saveXML($e);
@@ -271,7 +271,7 @@ class SAMLParser
     public static function parseElement($entityElement)
     {
         assert($entityElement instanceof \SAML2\XML\md\EntityDescriptor);
-        return new SAMLParser($entityElement, null, array());
+        return new SAMLParser($entityElement, null, []);
     }
 
 
@@ -373,14 +373,14 @@ class SAMLParser
     private static function processDescriptorsElement(
         $element,
         $maxExpireTime = null,
-        array $validators = array(),
-        array $parentExtensions = array()
+        array $validators = [],
+        array $parentExtensions = []
     ) {
         assert($maxExpireTime === null || is_int($maxExpireTime));
 
         if ($element instanceof \SAML2\XML\md\EntityDescriptor) {
             $ret = new SAMLParser($element, $maxExpireTime, $validators, $parentExtensions);
-            $ret = array($ret->getEntityId() => $ret);
+            $ret = [$ret->getEntityId() => $ret];
             /** @var SAMLParser[] $ret */
             return $ret;
         }
@@ -392,7 +392,7 @@ class SAMLParser
 
         $validators[] = $element;
 
-        $ret = array();
+        $ret = [];
         foreach ($element->children as $child) {
             $ret += self::processDescriptorsElement($child, $expTime, $validators, $extensions);
         }
@@ -439,7 +439,7 @@ class SAMLParser
 
     private function getMetadataCommon()
     {
-        $ret = array();
+        $ret = [];
         $ret['entityid'] = $this->entityId;
         $ret['entityDescriptor'] = $this->entityDescriptor;
 
@@ -836,7 +836,7 @@ class SAMLParser
     {
         assert($expireTime === null || is_int($expireTime));
 
-        $ret = array();
+        $ret = [];
 
         $expireTime = self::getExpireTime($element, $expireTime);
 
@@ -848,7 +848,7 @@ class SAMLParser
         $ret['protocols'] = $element->protocolSupportEnumeration;
 
         // process KeyDescriptor elements
-        $ret['keys'] = array();
+        $ret['keys'] = [];
         foreach ($element->KeyDescriptor as $kd) {
             $key = self::parseKeyDescriptor($kd);
             if ($key !== null) {
@@ -999,16 +999,16 @@ class SAMLParser
      *
      * @return array An associative array with the extensions parsed.
      */
-    private static function processExtensions($element, $parentExtensions = array())
+    private static function processExtensions($element, $parentExtensions = [])
     {
-        $ret = array(
-            'scope'            => array(),
-            'tags'             => array(),
-            'EntityAttributes' => array(),
-            'RegistrationInfo' => array(),
-            'UIInfo'           => array(),
-            'DiscoHints'       => array(),
-        );
+        $ret = [
+            'scope'            => [],
+            'tags'             => [],
+            'EntityAttributes' => [],
+            'RegistrationInfo' => [],
+            'UIInfo'           => [],
+            'DiscoHints'       => [],
+        ];
 
         // Some extensions may get inherited from a parent element
         if (($element instanceof \SAML2\XML\md\EntityDescriptor || $element instanceof \SAML2\XML\md\EntitiesDescriptor)
@@ -1052,7 +1052,7 @@ class SAMLParser
                                 $name = '{'.$attr->NameFormat.'}'.$attr->Name;
                             }
 
-                            $values = array();
+                            $values = [];
                             foreach ($attr->AttributeValue as $attrvalue) {
                                 $values[] = $attrvalue->getString();
                             }
@@ -1088,11 +1088,11 @@ class SAMLParser
                         ) {
                             continue;
                         }
-                        $logo = array(
+                        $logo = [
                             'url'    => $uiItem->url,
                             'height' => $uiItem->height,
                             'width'  => $uiItem->width,
-                        );
+                        ];
                         if (!empty($uiItem->lang)) {
                             $logo['lang'] = $uiItem->lang;
                         }
@@ -1119,7 +1119,7 @@ class SAMLParser
 
                 $name = $attribute->getAttribute('Name');
                 $values = array_map(
-                    array('\SimpleSAML\Utils\XML', 'getDOMText'),
+                    ['\SimpleSAML\Utils\XML', 'getDOMText'],
                     \SimpleSAML\Utils\XML::getDOMChildren($attribute, 'AttributeValue', '@saml2')
                 );
 
@@ -1157,7 +1157,7 @@ class SAMLParser
 
     private function processContactPerson(\SAML2\XML\md\ContactPerson $element)
     {
-        $contactPerson = array();
+        $contactPerson = [];
         if (!empty($element->contactType)) {
             $contactPerson['contactType'] = $element->contactType;
         }
@@ -1196,8 +1196,8 @@ class SAMLParser
         $sp['description'] = $element->ServiceDescription;
 
         $format = null;
-        $sp['attributes'] = array();
-        $sp['attributes.required'] = array();
+        $sp['attributes'] = [];
+        $sp['attributes.required'] = [];
         foreach ($element->RequestedAttribute as $child) {
             $attrname = $child->Name;
             $sp['attributes'][] = $attrname;
@@ -1249,7 +1249,7 @@ class SAMLParser
      */
     private static function parseGenericEndpoint(\SAML2\XML\md\EndpointType $element)
     {
-        $ep = array();
+        $ep = [];
 
         $ep['Binding'] = $element->Binding;
         $ep['Location'] = $element->Location;
@@ -1279,7 +1279,7 @@ class SAMLParser
      */
     private static function extractEndpoints(array $endpoints)
     {
-        $ret = array();
+        $ret = [];
         foreach ($endpoints as $ep) {
             $ret[] = self::parseGenericEndpoint($ep);
         }
@@ -1304,7 +1304,7 @@ class SAMLParser
      */
     private static function parseKeyDescriptor(\SAML2\XML\md\KeyDescriptor $kd)
     {
-        $r = array();
+        $r = [];
 
         if ($kd->use === 'encryption') {
             $r['encryption'] = true;
@@ -1340,13 +1340,13 @@ class SAMLParser
      *
      * @param $protocols Array with the protocols we accept.
      *
-     * @return Array with SP descriptors which supports one of the given protocols.
+     * @return array with SP descriptors which supports one of the given protocols.
      */
     private function getSPDescriptors($protocols)
     {
         assert(is_array($protocols));
 
-        $ret = array();
+        $ret = [];
 
         foreach ($this->spDescriptors as $spd) {
             $sharedProtocols = array_intersect($protocols, $spd['protocols']);
@@ -1364,13 +1364,13 @@ class SAMLParser
      *
      * @param $protocols Array with the protocols we accept.
      *
-     * @return Array with IdP descriptors which supports one of the given protocols.
+     * @return array with IdP descriptors which supports one of the given protocols.
      */
     private function getIdPDescriptors($protocols)
     {
         assert(is_array($protocols));
 
-        $ret = array();
+        $ret = [];
 
         foreach ($this->idpDescriptors as $idpd) {
             $sharedProtocols = array_intersect($protocols, $idpd['protocols']);
@@ -1435,7 +1435,7 @@ class SAMLParser
             $certData = file_get_contents($certFile);
 
             foreach ($this->validators as $validator) {
-                $key = new XMLSecurityKey(XMLSecurityKey::RSA_SHA256, array('type' => 'public'));
+                $key = new XMLSecurityKey(XMLSecurityKey::RSA_SHA256, ['type' => 'public']);
                 $key->loadKey($certData);
                 try {
                     if ($validator->validate($key)) {
@@ -1466,7 +1466,7 @@ class SAMLParser
 
         $fingerprint = strtolower(str_replace(":", "", $fingerprint));
 
-        $candidates = array();
+        $candidates = [];
         foreach ($this->validators as $validator) {
             foreach ($validator->getValidatingCertificates() as $cert) {
                 $fp = strtolower(sha1(base64_decode($cert)));

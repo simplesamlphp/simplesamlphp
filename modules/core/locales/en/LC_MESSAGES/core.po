@@ -21,6 +21,9 @@ msgstr "PHP info"
 msgid "{core:no_state:report_text}"
 msgstr "If this problem persists, you can report it to the system administrators."
 
+msgid "{core:no_state:cause_badlink}"
+msgstr "The link used to get here was bad, perhaps a bookmark."
+
 msgid "{core:no_state:cause_backforward}"
 msgstr "Using the back and forward buttons in the web browser."
 
@@ -80,6 +83,9 @@ msgstr "Sanity check of your SimpleSAMLphp setup"
 
 msgid "{core:frontpage:link_diagnostics}"
 msgstr "Diagnostics on hostname, port and protocol"
+
+msgid "{core:no_state:suggestion_badlink}"
+msgstr "Check that the link you used to access the web site is correct."
 
 msgid "{core:no_state:suggestion_goback}"
 msgstr "Go back to the previous page and try again."

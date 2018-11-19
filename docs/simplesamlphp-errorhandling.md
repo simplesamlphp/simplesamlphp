@@ -205,11 +205,11 @@ The code for handling this becomes something like:
 
     $procChain = [...];
 
-    $state = array(
+    $state = [
         'ReturnURL' => \SimpleSAML\Utils\HTTP::getSelfURLNoQuery(),
         \SimpleSAML\Auth\State::EXCEPTION_HANDLER_URL => \SimpleSAML\Utils\HTTP::getSelfURLNoQuery(),
         [...],
-    )
+    ]
 
     try {
         $procChain->processState($state);

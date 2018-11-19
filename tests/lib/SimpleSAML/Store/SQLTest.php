@@ -19,11 +19,11 @@ class SQLTest extends TestCase
 {
     protected function setUp()
     {
-        Configuration::loadFromArray(array(
+        Configuration::loadFromArray([
             'store.type'                    => 'sql',
             'store.sql.dsn'                 => 'sqlite::memory:',
             'store.sql.prefix'              => 'phpunit_',
-        ), '[ARRAY]', 'simplesaml');
+        ], '[ARRAY]', 'simplesaml');
     }
 
     /**

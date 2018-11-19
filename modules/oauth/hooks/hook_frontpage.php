@@ -9,8 +9,8 @@ function oauth_hook_frontpage(&$links)
     assert(is_array($links));
     assert(array_key_exists('links', $links));
 
-    $links['federation']['oauthregistry'] = array(
+    $links['federation']['oauthregistry'] = [
         'href' => SimpleSAML\Module::getModuleURL('oauth/registry.php'),
         'text' => '{core:frontpage:link_oauth}',
-    );
+    ];
 }

@@ -25,8 +25,8 @@ class Negotiate extends \SimpleSAML\Auth\Source
     protected $debugLDAP = false;
     protected $timeout = 30;
     protected $keytab = '';
-    protected $base = array();
-    protected $attr = array('uid');
+    protected $base = [];
+    protected $attr = ['uid'];
     protected $subnet = null;
     protected $admin_user = null;
     protected $admin_pw = null;
@@ -62,7 +62,7 @@ class Negotiate extends \SimpleSAML\Auth\Source
         $this->enableTLS = $config->getBoolean('enable_tls', false);
         $this->debugLDAP = $config->getBoolean('debugLDAP', false);
         $this->timeout = $config->getInteger('timeout', 30);
-        $this->keytab = $config->getString('keytab');
+        $this->keytab = \SimpleSAML\Utils\Config::getCertPath($config->getString('keytab'));
         $this->base = $config->getArrayizeString('base');
         $this->attr = $config->getArrayizeString('attr', 'uid');
         $this->subnet = $config->getArray('subnet', null);
@@ -88,9 +88,9 @@ class Negotiate extends \SimpleSAML\Auth\Source
         assert(is_array($state));
 
         // set the default backend to config
-        $state['LogoutState'] = array(
+        $state['LogoutState'] = [
             'negotiate:backend' => $this->backend,
-        );
+        ];
         $state['negotiate:authId'] = $this->authId;
 
 
@@ -157,9 +157,9 @@ class Negotiate extends \SimpleSAML\Auth\Source
                 if ($lookup !== null) {
                     $state['Attributes'] = $lookup;
                     // Override the backend so logout will know what to look for
-                    $state['LogoutState'] = array(
+                    $state['LogoutState'] = [
                         'negotiate:backend' => null,
-                    );
+                    ];
                     Logger::info('Negotiate - authenticate(): '.$user.' authorized.');
                     \SimpleSAML\Auth\Source::completeAuth($state);
                     // Never reached.
@@ -175,7 +175,7 @@ class Negotiate extends \SimpleSAML\Auth\Source
             // Save the $state array, so that we can restore if after a redirect
             Logger::debug('Negotiate - fallback: '.$state['LogoutState']['negotiate:backend']);
             $id = \SimpleSAML\Auth\State::saveState($state, self::STAGEID);
-            $params = array('AuthState' => $id);
+            $params = ['AuthState' => $id];
 
             $this->sendNegotiate($params);
             exit;
@@ -248,7 +248,7 @@ class Negotiate extends \SimpleSAML\Auth\Source
         header('WWW-Authenticate: Negotiate', false);
 
         $t = new \SimpleSAML\XHTML\Template($config, 'negotiate:redirect.twig');
-        $t->data['baseurlpath'] = \SimpleSAML\Module::getModuleUrl('negotiate');
+        $t->data['baseurlpath'] = \SimpleSAML\Module::getModuleURL('negotiate');
         $t->data['url'] = $url;
         $t->data['json_url'] = $json_url;
         $t->show();
@@ -269,7 +269,7 @@ class Negotiate extends \SimpleSAML\Auth\Source
         $authId = $state['LogoutState']['negotiate:backend'];
 
         if ($authId === null) {
-            throw new \SimpleSAML\Error\Error(array(500, "Unable to determine auth source."));
+            throw new \SimpleSAML\Error\Error([500, "Unable to determine auth source."]);
         }
         $source = \SimpleSAML\Auth\Source::getById($authId);
 

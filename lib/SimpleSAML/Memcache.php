@@ -60,7 +60,7 @@ class Memcache
             if ($serializedInfo === false) {
                 // either the server is down, or we don't have the value stored on that server
                 $mustUpdate = true;
-                $up = $server->getstats();
+                $up = $server->getStats();
                 if ($up !== false) {
                     $allDown = false;
                 }
@@ -150,10 +150,10 @@ class Memcache
     public static function set($key, $value, $expire = null)
     {
         Logger::debug("saving key $key to memcache");
-        $savedInfo = array(
+        $savedInfo = [
             'timestamp' => microtime(true),
             'data'      => $value
-        );
+        ];
 
         if ($expire === null) {
             $expire = self::getExpireTime();
@@ -358,7 +358,7 @@ class Memcache
         }
 
         // initialize the servers-array
-        self::$serverGroups = array();
+        self::$serverGroups = [];
 
         // load the configuration
         $config = Configuration::getInstance();
@@ -448,7 +448,7 @@ class Memcache
      */
     public static function getStats()
     {
-        $ret = array();
+        $ret = [];
 
         foreach (self::getMemcacheServers() as $sg) {
             $stats = method_exists($sg, 'getExtendedStats') ? $sg->getExtendedStats() : $sg->getStats();
@@ -475,7 +475,7 @@ class Memcache
      */
     public static function getRawStats()
     {
-        $ret = array();
+        $ret = [];
 
         foreach (self::getMemcacheServers() as $sg) {
             $stats = method_exists($sg, 'getExtendedStats') ? $sg->getExtendedStats() : $sg->getStats();

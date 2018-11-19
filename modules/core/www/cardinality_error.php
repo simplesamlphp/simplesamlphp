@@ -22,7 +22,7 @@ $t->data['cardinalityErrorAttributes'] = $state['core:cardinality:errorAttribute
 if (isset($state['Source']['auth'])) {
     $t->data['LogoutURL'] = \SimpleSAML\Module::getModuleURL(
         'core/authenticate.php',
-        array('as' => $state['Source']['auth'])
+        ['as' => $state['Source']['auth']]
     )."&logout";
 }
 header('HTTP/1.0 403 Forbidden');

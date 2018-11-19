@@ -220,9 +220,9 @@ class Crypto
             throw new Error\Exception('Unable to load private key from file "'.$file.'"');
         }
 
-        $ret = array(
+        $ret = [
             'PEM' => $data,
-        );
+        ];
 
         if ($metadata->hasValue($prefix.'privatekey_pass')) {
             $ret['password'] = $metadata->getString($prefix.'privatekey_pass');
@@ -286,11 +286,11 @@ class Crypto
                     "-----END CERTIFICATE-----\n";
                 $certFingerprint = strtolower(sha1(base64_decode($certData)));
 
-                return array(
+                return [
                     'certData'        => $certData,
                     'PEM'             => $pem,
-                    'certFingerprint' => array($certFingerprint),
-                );
+                    'certFingerprint' => [$certFingerprint],
+                ];
             }
             // no valid key found
         } elseif ($metadata->hasValue($prefix.'certFingerprint')) {
@@ -307,7 +307,7 @@ class Crypto
              * We can't build a full certificate from a fingerprint, and may as well return an array with only the
              * fingerprint(s) immediately.
              */
-            return array('certFingerprint' => $fps);
+            return ['certFingerprint' => $fps];
         }
 
         // no public key/certificate available

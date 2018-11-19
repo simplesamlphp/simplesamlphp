@@ -96,16 +96,16 @@ class StatDataset
 
     public function getDebugData()
     {
-        $debugdata = array();
+        $debugdata = [];
 
         $slotsize = $this->timeresconfig->getValue('slot');
         $dateformat_intra = $this->timeresconfig->getValue('dateformat-intra');
 
         foreach ($this->results as $slot => &$res) {
-            $debugdata[$slot] = array(
+            $debugdata[$slot] = [
                 $this->datehandlerTick->prettyDateSlot($slot, $slotsize, $dateformat_intra),
                 $res[$this->delimiter]
-            );
+            ];
         }
         return $debugdata;
     }
@@ -113,7 +113,7 @@ class StatDataset
     public function aggregateSummary()
     {
         // aggregate summary table from dataset. To be used in the table view
-        $this->summary = array();
+        $this->summary = [];
         foreach ($this->results as $slot => $res) {
             foreach ($res as $key => $value) {
                 if (array_key_exists($key, $this->summary)) {
@@ -130,7 +130,7 @@ class StatDataset
     public function getTopDelimiters()
     {
         // create a list of delimiter keys that has the highest total summary in this period
-        $topdelimiters = array();
+        $topdelimiters = [];
         $maxdelimiters = 4;
         $i = 0;
         foreach ($this->summary as $key => $value) {
@@ -146,7 +146,7 @@ class StatDataset
 
     public function availDelimiters()
     {
-        $availDelimiters = array();
+        $availDelimiters = [];
         foreach ($this->summary as $key => $value) {
             $availDelimiters[$key] = 1;
         }
@@ -155,7 +155,7 @@ class StatDataset
 
     public function getPieData()
     {
-        $piedata = array();
+        $piedata = [];
         $sum = 0;
         $topdelimiters = $this->getTopDelimiters();
 
@@ -188,8 +188,8 @@ class StatDataset
         $dateformat_intra = $this->timeresconfig->getValue('dateformat-intra');
         $axislabelint = $this->timeresconfig->getValue('axislabelint');
 
-        $axis = array();
-        $axispos = array();
+        $axis = [];
+        $axispos = [];
         $xentries = count($this->results);
         $lastslot = 0;
         $i = 0;
@@ -206,7 +206,7 @@ class StatDataset
 
         $axis[] = $this->datehandlerTick->prettyDateSlot($lastslot + 1, $slotsize, $dateformat_intra);
 
-        return array('axis' => $axis, 'axispos' => $axispos);
+        return ['axis' => $axis, 'axispos' => $axispos];
     }
 
     /*
@@ -215,7 +215,7 @@ class StatDataset
     public function getPercentValues()
     {
         $i = 0;
-        $dataset = array();
+        $dataset = [];
         foreach ($this->results as $slot => $res) {
             if (array_key_exists($this->delimiter, $res)) {
                 if ($res[$this->delimiter] === null) {
@@ -254,7 +254,7 @@ class StatDataset
             return $presentationHandler->getPresentation();
         }
 
-        return array();
+        return [];
     }
 
     public function getDelimiterPresentationPie()
@@ -262,7 +262,7 @@ class StatDataset
         $topdelimiters = $this->getTopDelimiters();
         $delimiterPresentation = $this->getDelimiterPresentation();
 
-        $pieaxis = array();
+        $pieaxis = [];
         foreach ($topdelimiters as $key) {
             $keyName = $key;
             if (array_key_exists($key, $delimiterPresentation)) {
@@ -277,7 +277,7 @@ class StatDataset
     public function loadData()
     {
         $statdir = $this->statconfig->getValue('statdir');
-        $resarray = array();
+        $resarray = [];
         $rules = \SimpleSAML\Utils\Arrays::arrayize($this->ruleid);
         foreach ($rules as $rule) {
             // Get file and extract results.

@@ -63,12 +63,12 @@ class CDC extends \SimpleSAML\Auth\ProcessingFilter
         // Save state and build request
         $id = \SimpleSAML\Auth\State::saveState($state, 'cdc:resume');
 
-        $returnTo = \SimpleSAML\Module::getModuleURL('cdc/resume.php', array('domain' => $this->domain));
+        $returnTo = \SimpleSAML\Module::getModuleURL('cdc/resume.php', ['domain' => $this->domain]);
 
-        $params = array(
+        $params = [
             'id' => $id,
             'entityID' => $state['Source']['entityid'],
-        );
+        ];
         $this->client->sendRequest($returnTo, 'append', $params);
     }
 }

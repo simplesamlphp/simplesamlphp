@@ -20,11 +20,11 @@ class RedirectTest extends \SimpleSAML\Auth\ProcessingFilter
         assert(array_key_exists('Attributes', $state));
 
         // To check whether the state is saved correctly
-        $state['Attributes']['RedirectTest1'] = array('OK');
+        $state['Attributes']['RedirectTest1'] = ['OK'];
 
         // Save state and redirect
         $id = \SimpleSAML\Auth\State::saveState($state, 'exampleauth:redirectfilter-test');
         $url = \SimpleSAML\Module::getModuleURL('exampleauth/redirecttest.php');
-        \SimpleSAML\Utils\HTTP::redirectTrustedURL($url, array('StateId' => $id));
+        \SimpleSAML\Utils\HTTP::redirectTrustedURL($url, ['StateId' => $id]);
     }
 }

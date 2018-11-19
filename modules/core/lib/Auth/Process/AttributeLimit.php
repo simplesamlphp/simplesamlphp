@@ -14,7 +14,7 @@ class AttributeLimit extends \SimpleSAML\Auth\ProcessingFilter
     /**
      * List of attributes which this filter will allow through.
      */
-    private $allowedAttributes = array();
+    private $allowedAttributes = [];
 
     /**
      * Whether the 'attributes' option in the metadata takes precedence.
@@ -134,7 +134,7 @@ class AttributeLimit extends \SimpleSAML\Auth\ProcessingFilter
     private function filterAttributeValues(array $values, array $allowedConfigValues)
     {
         if (array_key_exists('regex', $allowedConfigValues) && $allowedConfigValues['regex'] === true) {
-            $matchedValues = array();
+            $matchedValues = [];
             foreach ($allowedConfigValues as $option => $pattern) {
                 if (!is_int($option)) {
                     // Ignore any configuration options in $allowedConfig. e.g. regex=>true

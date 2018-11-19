@@ -15,7 +15,7 @@ $t = new \SimpleSAML\XHTML\Template($globalConfig, 'authorize:authorize_403.php'
 if (isset($state['Source']['auth'])) {
     $t->data['logoutURL'] = \SimpleSAML\Module::getModuleURL(
         'core/authenticate.php',
-        array('as' => $state['Source']['auth'])
+        ['as' => $state['Source']['auth']]
     )."&logout";
 }
 header('HTTP/1.0 403 Forbidden');

@@ -290,7 +290,6 @@ You have now successfully installed SimpleSAMLphp, and the next steps depends on
  * [Using SimpleSAMLphp as a SAML Service Provider](simplesamlphp-sp)
   * [IdP remote reference](simplesamlphp-reference-idp-remote)
   * [Connecting SimpleSAMLphp as a SP to UK Access Federation or InCommon](simplesamlphp-ukaccess)
-  * [Upgrading - migration to use the SAML authentication source](simplesamlphp-sp-migration)
  * [Identity Provider QuickStart](simplesamlphp-idp)
   * [IdP hosted reference](simplesamlphp-reference-idp-hosted)
   * [SP remote reference](simplesamlphp-reference-sp-remote)

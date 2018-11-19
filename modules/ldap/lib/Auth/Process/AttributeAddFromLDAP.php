@@ -120,7 +120,7 @@ class AttributeAddFromLDAP extends BaseFilter
         parent::__construct($config, $reserved);
 
         // Get filter specific config options
-        $this->search_attributes = $this->config->getArrayize('attributes', array());
+        $this->search_attributes = $this->config->getArrayize('attributes', []);
         if (empty($this->search_attributes)) {
             $new_attribute = $this->config->getString('attribute.new', '');
             $this->search_attributes[$new_attribute] = $this->config->getString('search.attribute');
@@ -146,8 +146,8 @@ class AttributeAddFromLDAP extends BaseFilter
 
         // perform a merge on the ldap_search_filter
         // loop over the attributes and build the search and replace arrays
-        $arrSearch = array();
-        $arrReplace = array();
+        $arrSearch = [];
+        $arrReplace = [];
         foreach ($attributes as $attr => $val) {
             $arrSearch[] = '%'.$attr.'%';
 
@@ -167,7 +167,7 @@ class AttributeAddFromLDAP extends BaseFilter
             return;
         }
 
-        if (!in_array($this->attr_policy, array('merge', 'replace', 'add'), true)) {
+        if (!in_array($this->attr_policy, ['merge', 'replace', 'add'], true)) {
             \SimpleSAML\Logger::warning("AttributeAddFromLDAP: 'attribute.policy' must be one of 'merge',".
                 "'replace' or 'add'.");
             return;

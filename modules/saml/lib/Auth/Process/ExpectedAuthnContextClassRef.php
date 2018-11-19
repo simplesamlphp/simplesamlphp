@@ -99,6 +99,6 @@ class ExpectedAuthnContextClassRef extends \SimpleSAML\Auth\ProcessingFilter
         $url = \SimpleSAML\Module::getModuleURL(
             'saml/sp/wrong_authncontextclassref.php'
         );
-        \SimpleSAML\Utils\HTTP::redirectTrustedURL($url, array('StateId' => $id));
+        \SimpleSAML\Utils\HTTP::redirectTrustedURL($url, ['StateId' => $id]);
     }
 }

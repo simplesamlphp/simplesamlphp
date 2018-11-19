@@ -3,11 +3,12 @@
  *
  * @param id  The id of the element which should receive focus.
  */
-function SimpleSAML_focus(id) {
-  element = document.getElementById(id);
-  if(element != null) {
-    element.focus();
-  }
+function SimpleSAML_focus(id)
+{
+    element = document.getElementById(id);
+    if (element != null) {
+        element.focus();
+    }
 }
 
 
@@ -16,13 +17,14 @@ function SimpleSAML_focus(id) {
  *
  * @param id  The id of the element which should be shown.
  */
-function SimpleSAML_show(id) {
-  element = document.getElementById(id);
-  if (element == null) {
-    return;
-  }
+function SimpleSAML_show(id)
+{
+    element = document.getElementById(id);
+    if (element == null) {
+        return;
+    }
 
-  element.style.display = 'block';
+    element.style.display = 'block';
 }
 
 
@@ -31,38 +33,39 @@ function SimpleSAML_show(id) {
  *
  * @param id  The id of the element which should be hidden.
  */
-function SimpleSAML_hide(id) {
-  element = document.getElementById(id);
-  if (element == null) {
-    return;
-  }
+function SimpleSAML_hide(id)
+{
+    element = document.getElementById(id);
+    if (element == null) {
+        return;
+    }
 
-  element.style.display = 'none';
+    element.style.display = 'none';
 }
 
 // Attach the `fileselect` event to all file inputs on the page
-$(document).on('change', ':file', function() {
+$(document).on('change', ':file', function () {
     var input = $(this),
         numFiles = input.get(0).files ? input.get(0).files.length : 1,
         label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
     input.trigger('fileselect', [numFiles, label]);
 });
 
-$(document).ready(function() {
+$(document).ready(function () {
     $('.language-menu').selectize();
     $('#organization').selectize();
     new ClipboardJS('.clipboard-btn');
 
 // Watch for custom `fileselect` event
-    $(':file').on('fileselect', function(event, numFiles, label) {
+    $(':file').on('fileselect', function (event, numFiles, label) {
 
         var input = $(this).parents('.pure-button-group').find(':text'),
             log = numFiles > 1 ? numFiles + ' files selected' : label;
 
-        if( input.length ) {
+        if (input.length) {
             input.val(log);
         } else {
-            if( log ) {
+            if (log) {
                 document.getElementById('show-file').innerHTML = log;
             }
         }

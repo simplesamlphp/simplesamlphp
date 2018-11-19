@@ -6,6 +6,6 @@
  *  - host
  */
 
-$metadata['__DYNAMIC:1__'] = array(
+$metadata['__DYNAMIC:1__'] = [
     'host' => '__DEFAULT__',
-);
+];

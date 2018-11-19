@@ -2,6 +2,8 @@
 
 namespace SimpleSAML\Metadata;
 
+use SimpleSAML\Utils\ClearableState;
+
 /**
  * This file defines a class for metadata handling.
  *
@@ -9,7 +11,7 @@ namespace SimpleSAML\Metadata;
  * @package SimpleSAMLphp
  */
 
-class MetaDataStorageHandler
+class MetaDataStorageHandler implements ClearableState
 {
     /**
      * This static variable contains a reference to the current
@@ -60,7 +62,7 @@ class MetaDataStorageHandler
         // for backwards compatibility, and to provide a default configuration
         if ($sourcesConfig === null) {
             $type = $config->getString('metadata.handler', 'flatfile');
-            $sourcesConfig = array(array('type' => $type));
+            $sourcesConfig = [['type' => $type]];
         }
 
         try {
@@ -140,7 +142,7 @@ class MetaDataStorageHandler
     {
         assert(is_string($set));
 
-        $result = array();
+        $result = [];
 
         foreach ($this->sources as $source) {
             $srcList = $source->getMetadataSet($set);
@@ -335,7 +337,7 @@ class MetaDataStorageHandler
         assert(is_string($sha1));
         assert(is_string($set));
 
-        $result = array();
+        $result = [];
 
         foreach ($this->sources as $source) {
             $srcList = $source->getMetadataSet($set);
@@ -357,5 +359,15 @@ class MetaDataStorageHandler
         }
 
         return null;
+    }
+
+    /**
+     * Clear any metadata cached.
+     * Allows for metadata configuration to be changed and reloaded during a given request. Most useful
+     * when running phpunit tests and needing to alter config.php and metadata sources between test cases
+     */
+    public static function clearInternalState()
+    {
+        self::$metadataHandler = null;
     }
 }

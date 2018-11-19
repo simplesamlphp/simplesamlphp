@@ -25,17 +25,17 @@ function core_hook_sanitycheck(&$hookinfo)
         $hookinfo['info'][] = '[core] In config.php technicalcontact_email is set properly';
     }
 
-    if (version_compare(phpversion(), '5.4', '>=')) {
+    if (version_compare(phpversion(), '5.5', '>=')) {
         $hookinfo['info'][] = '[core] You are running a PHP version suitable for SimpleSAMLphp.';
     } else {
         $hookinfo['errors'][] = '[core] You are running an old PHP installation. '.
             'Please check the requirements for your SimpleSAMLphp version and upgrade.';
     }
 
-    $info = array();
-    $mihookinfo = array(
+    $info = [];
+    $mihookinfo = [
         'info' => &$info,
-    );
+    ];
     $availmodules = SimpleSAML\Module::getModules();
     SimpleSAML\Module::callHooks('moduleinfo', $mihookinfo);
     foreach ($info as $mi => $i) {

@@ -12,24 +12,24 @@ $loginurl = \SimpleSAML\Utils\Auth::getAdminLoginURL();
 $isadmin = \SimpleSAML\Utils\Auth::isAdmin();
 $logouturl = \SimpleSAML\Utils\Auth::getAdminLogoutURL();
 
-$links = array();
-$links_welcome = array();
-$links_config = array();
-$links_auth = array();
-$links_federation = array();
+$links = [];
+$links_welcome = [];
+$links_config = [];
+$links_auth = [];
+$links_federation = [];
 
-$links_auth[] = array(
+$links_auth[] = [
     'href' => 'authenticate.php',
     'text' => '{core:frontpage:authtest}',
-);
+];
 
-$allLinks = array(
+$allLinks = [
     'links' => &$links,
     'welcome' => &$links_welcome,
     'config' => &$links_config,
     'auth' => &$links_auth,
     'federation' => &$links_federation,
-);
+];
 \SimpleSAML\Module::callHooks('frontpage', $allLinks);
 
 $t = new \SimpleSAML\XHTML\Template($config, 'core:frontpage_auth.tpl.php');

@@ -1,11 +1,13 @@
 <?php
 
+namespace SimpleSAML\Test\Module\core\Auth\Process;
+
 use PHPUnit\Framework\TestCase;
 
 /**
  * Test for the core:AttributeMap filter.
  */
-class Test_Core_Auth_Process_AttributeMap extends TestCase
+class AttributeMapTest extends TestCase
 {
     /**
      * Helper function to run the filter with a given configuration.

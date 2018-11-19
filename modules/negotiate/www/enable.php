@@ -5,10 +5,10 @@
  * @package SimpleSAMLphp
  */
 
-$params = array(
+$params = [
     'secure' => false,
     'httponly' => true,
-);
+];
 \SimpleSAML\Utils\HTTP::setCookie('NEGOTIATE_AUTOLOGIN_DISABLE_PERMANENT', null, $params, false);
 
 $globalConfig = \SimpleSAML\Configuration::getInstance();

@@ -8,6 +8,9 @@
 	"suggestions": {
 		"en": "Suggestions for resolving this problem:"
 	},
+	"suggestion_badlink": {
+		"en": "Check that the link you used to access the web site is correct."
+	},
 	"suggestion_goback": {
 		"en": "Go back to the previous page and try again."
 	},
@@ -16,6 +19,9 @@
 	},
 	"causes": {
 		"en": "This error may be caused by:"
+	},
+	"cause_badlink": {
+		"en": "The link used to get here was bad, perhaps a bookmark."
 	},
 	"cause_backforward": {
 		"en": "Using the back and forward buttons in the web browser."

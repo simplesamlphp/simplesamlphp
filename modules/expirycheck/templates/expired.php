@@ -7,7 +7,7 @@ $this->includeAtTemplateBase('includes/header.php');
             <?php
                 echo $this->t(
                     '{expirycheck:expwarning:no_access_to}',
-                    array('%NETID%' => htmlspecialchars($this->data['netId']))
+                    ['%NETID%' => htmlspecialchars($this->data['netId'])]
                 );
             ?>
         </p> 

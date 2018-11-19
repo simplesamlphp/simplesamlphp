@@ -22,7 +22,7 @@ if (array_key_exists('pageid', $this->data)) {
         'jquery' => &$jquery,
         'page' => $this->data['pageid']
     ];
-        
+
     SimpleSAML\Module::callHooks('htmlinject', $hookinfo);
 }
 // - o - o - o - o - o - o - o - o - o - o - o - o -
@@ -173,6 +173,8 @@ if (array_key_exists('autofocus', $this->data)) {
                 'ro' => 'Românește', // Romanian
                 'eu' => 'Euskara', // Basque
                 'af' => 'Afrikaans', // Afrikaans
+                'zu' => 'IsiZulu', // Zulu
+                'xh' => 'isiXhosa', // Xhosa
             ];
 
             $textarray = [];

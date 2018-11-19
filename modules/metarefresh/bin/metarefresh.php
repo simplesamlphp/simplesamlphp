@@ -45,7 +45,7 @@ $certificates = null;
 $validateFingerprint = null;
 
 // This variable contains the files we will parse
-$files = array();
+$files = [];
 
 // Parse arguments
 
@@ -71,11 +71,11 @@ foreach ($argv as $a) {
     }
 
     // Map short options to long options
-    $shortOptMap = array(
+    $shortOptMap = [
         '-h' => '--help',
         '-o' => '--out-dir',
         '-s' => '--stdout',
-    );
+    ];
     if (array_key_exists($a, $shortOptMap)) {
         $a = $shortOptMap[$a];
     }
@@ -127,7 +127,7 @@ if (count($files) === 0) {
 $metaloader = new \SimpleSAML\Module\metarefresh\MetaLoader();
 
 foreach ($files as $f) {
-    $source = array('src' => $f);
+    $source = ['src' => $f];
     if (isset($certificates)) {
         $source['certificates'] = $certificates;
     }

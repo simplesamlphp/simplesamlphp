@@ -92,11 +92,11 @@ class SQLPersistentNameID extends \SimpleSAML\Module\saml\BaseNameIDGenerator
             return null;
         }
 
-        $validNameIdFormats = @array_filter(array(
+        $validNameIdFormats = @array_filter([
             $state['saml:NameIDFormat'],
             $state['SPMetadata']['NameIDPolicy'],
             $state['SPMetadata']['NameIDFormat']
-        ));
+        ]);
         if (count($validNameIdFormats) && !in_array($this->format, $validNameIdFormats, true) &&
             !$this->allowDifferent
         ) {

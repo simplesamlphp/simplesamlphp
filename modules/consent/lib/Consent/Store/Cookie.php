@@ -160,7 +160,7 @@ class Cookie extends \SimpleSAML\Module\consent\Store
     {
         assert(is_string($userId));
 
-        $ret = array();
+        $ret = [];
 
         $cookieNameStart = '\SimpleSAML\Module\consent:';
         $cookieNameStartLen = strlen($cookieNameStart);
@@ -277,12 +277,12 @@ class Cookie extends \SimpleSAML\Module\consent\Store
         assert(is_string($value) || $value === null);
 
         $globalConfig = \SimpleSAML\Configuration::getInstance();
-        $params = array(
+        $params = [
             'lifetime' => 7776000, // (90*24*60*60)
             'path' => ($globalConfig->getBasePath()),
             'httponly' => true,
             'secure' => \SimpleSAML\Utils\HTTP::isHTTPS(),
-        );
+        ];
 
         \SimpleSAML\Utils\HTTP::setCookie($name, $value, $params, false);
     }

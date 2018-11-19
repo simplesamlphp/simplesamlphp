@@ -1,6 +1,6 @@
 <?php
 
-$this->data['jquery'] = array('core' => true, 'ui' => true, 'css' => true);
+$this->data['jquery'] = ['core' => true, 'ui' => true, 'css' => true];
 $this->data['head'] = '<link rel="stylesheet" type="text/css" href="/'.
     $this->data['baseurlpath'].'module.php/oauth/assets/css/oauth.css" />'."\n";
 $this->data['head'] .= '<script type="text/javascript" src="/'.

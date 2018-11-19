@@ -48,7 +48,7 @@ class Facebook extends \BaseFacebook
         }
     }
 
-    protected static $kSupportedKeys = array('state', 'code', 'access_token', 'user_id');
+    protected static $kSupportedKeys = ['state', 'code', 'access_token', 'user_id'];
 
     protected function initSharedSession()
     {
@@ -67,10 +67,10 @@ class Facebook extends \BaseFacebook
         $base_domain = $this->getBaseDomain();
         $this->sharedSessionID = md5(uniqid(mt_rand(), true));
         $cookie_value = $this->makeSignedRequest(
-            array(
+            [
                 'domain' => $base_domain,
                 'id' => $this->sharedSessionID,
-            )
+            ]
         );
         $_COOKIE[$cookie_name] = $cookie_value;
         if (!headers_sent()) {
@@ -153,7 +153,7 @@ class Facebook extends \BaseFacebook
 
     protected function constructSessionVariableName($key)
     {
-        $parts = array('authfacebook:authdata:fb', $this->getAppId(), $key);
+        $parts = ['authfacebook:authdata:fb', $this->getAppId(), $key];
         if ($this->sharedSessionID) {
             array_unshift($parts, $this->sharedSessionID);
         }

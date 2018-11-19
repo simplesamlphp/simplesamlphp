@@ -52,7 +52,7 @@ class ProcessingChain
         assert(is_array($idpMetadata));
         assert(is_array($spMetadata));
 
-        $this->filters = array();
+        $this->filters = [];
 
         $config = \SimpleSAML\Configuration::getInstance();
         $configauthproc = $config->getArray('authproc.'.$mode, null);
@@ -101,7 +101,7 @@ class ProcessingChain
                 }
             }
             /* $i now points to the filter which should preceede the current filter. */
-            array_splice($target, $i + 1, 0, array($filter));
+            array_splice($target, $i + 1, 0, [$filter]);
         }
     }
 
@@ -116,11 +116,11 @@ class ProcessingChain
     {
         assert(is_array($filterSrc));
 
-        $parsedFilters = array();
+        $parsedFilters = [];
 
         foreach ($filterSrc as $priority => $filter) {
             if (is_string($filter)) {
-                $filter = array('class' => $filter);
+                $filter = ['class' => $filter];
             }
 
             if (!is_array($filter)) {
@@ -255,7 +255,7 @@ class ProcessingChain
              * in $state['ReturnURL'].
              */
             $id = State::saveState($state, self::COMPLETED_STAGE);
-            \SimpleSAML\Utils\HTTP::redirectTrustedURL($state['ReturnURL'], array(self::AUTHPARAM => $id));
+            \SimpleSAML\Utils\HTTP::redirectTrustedURL($state['ReturnURL'], [self::AUTHPARAM => $id]);
         } else {
             /* Pass the state to the function defined in $state['ReturnCall']. */
 
@@ -316,7 +316,7 @@ class ProcessingChain
      *
      * @param string $id The state identifier.
      * @see State::parseStateID()
-     * @return Array The state referenced by the $id parameter.
+     * @return array The state referenced by the $id parameter.
      */
     public static function fetchProcessedState($id)
     {

@@ -27,7 +27,7 @@ class MetaDataStorageHandlerFlatFile extends MetaDataStorageSource
      *
      * @var array
      */
-    private $cachedMetadata = array();
+    private $cachedMetadata = [];
 
 
     /**
@@ -78,7 +78,7 @@ class MetaDataStorageHandlerFlatFile extends MetaDataStorageSource
             return null;
         }
 
-        $metadata = array();
+        $metadata = [];
 
         include($metadatasetfile);
 
@@ -107,7 +107,7 @@ class MetaDataStorageHandlerFlatFile extends MetaDataStorageSource
 
         $metadataSet = $this->load($set);
         if ($metadataSet === null) {
-            $metadataSet = array();
+            $metadataSet = [];
         }
 
         // add the entity id of an entry to each entry in the metadata

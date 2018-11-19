@@ -6,9 +6,56 @@ SimpleSAMLphp changelog
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
-## Version 1.16.0
+## Version 1.17.0
 
 Released TBD
+
+### Changes
+  * Minimum required PHP version is now 5.5.
+    Fixed compatibility with PHP 7.3.
+  * Introduce new UI based on Twig templates.
+    The new templates co-exist next to the old ones.
+  * SimpleSAMLphp can now be used with applications that use Twig 2.
+  * Update configuration templates and documentation to PHP
+    short array syntax.
+  * All clases moved to namespaces and reformatted code to PSR-2.
+  * Many code cleanups.
+
+### consent
+  * Module is now disabled by default.
+
+### core
+  * Allow `core:PHP` to manipulate all of the state.
+  * IdP initiated login: add compatibility with Shibboleth parameters.
+
+### saml
+  * Add initial support for SAML Subject Id Attributes.
+  * Allow to specify multiple supported NameIdFormats in IdP hosted and
+    SP remote metadata.
+
+## Version 1.16.2
+
+Released 2018-09-28
+
+  * Fixed an issue with PHP sessions in PHP 7.2.
+  * Fixed a bug in the OAuth module.
+  * Make schema validation work again.
+  * Properly document the `saml:AuthnContextClassRef` authentication processing filter.
+  * Fixed an issue that made it impossible to install the software with composer using the
+    "stable" minimum-stability setting.
+  * Changed the default authentication context class to "PasswordProtectedTransport" by default
+    when authentication happened on an HTTPS exchange.
+
+## Version 1.16.1
+
+Released 2018-09-07
+
+  * Fix a bug preventing the consent page from showing.
+  * Add Catalan to the list of available languages.
+
+## Version 1.16.0
+
+Released 2018-09-06
 
 ### Changes
   * Default signature algorithm is now RSA-SHA256.
@@ -265,6 +312,14 @@ Released 2017-11-20
   * Make sure we log the user out before reauthenticating.
   * More robust handling of IDPList support in proxy mode.
   * Increased `_authSource` field length in Logout Store.
+  * We now send the eduPersonTargetedID attribute in the correct
+    NameID XML form, instead of the incorrect simple string. We will also
+    refuse to parse an assertion with an eduPersonTargetedID in 'string' format.
+  * Receiving an eduPersonTargetedID in string form will no longer break
+    parsing of the assertion.
+  * Can disable the Scoping element in SP and remote IdP configuration with the
+    `disable_scoping` option, for compatibility with ADFS which does not accept
+    the element.
 
 ### `smartattributes`
   * Fix SmartName authproc that failed to load.

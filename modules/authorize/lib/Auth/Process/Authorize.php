@@ -31,7 +31,7 @@ class Authorize extends \SimpleSAML\Auth\ProcessingFilter
      * user \ to escape special chars, like '.' etc.
      *
      */
-    protected $valid_attribute_values = array();
+    protected $valid_attribute_values = [];
 
     /**
      * Initialize this filter.
@@ -62,7 +62,7 @@ class Authorize extends \SimpleSAML\Auth\ProcessingFilter
 
         foreach ($config as $attribute => $values) {
             if (is_string($values)) {
-                $values = array($values);
+                $values = [$values];
             }
             if (!is_array($values)) {
                 throw new \Exception(
@@ -99,7 +99,7 @@ class Authorize extends \SimpleSAML\Auth\ProcessingFilter
                 foreach ($patterns as $pattern) {
                     $values = $attributes[$name];
                     if (!is_array($values)) {
-                        $values = array($values);
+                        $values = [$values];
                     }
                     foreach ($values as $value) {
                         if ($this->regex) {
@@ -137,6 +137,6 @@ class Authorize extends \SimpleSAML\Auth\ProcessingFilter
         // Save state and redirect to 403 page
         $id = \SimpleSAML\Auth\State::saveState($request, 'authorize:Authorize');
         $url = \SimpleSAML\Module::getModuleURL('authorize/authorize_403.php');
-        \SimpleSAML\Utils\HTTP::redirectTrustedURL($url, array('StateId' => $id));
+        \SimpleSAML\Utils\HTTP::redirectTrustedURL($url, ['StateId' => $id]);
     }
 }

@@ -85,12 +85,12 @@ $timeNavigation = $statrule->getTimeNavigation($timeres, $preferTime);
 
 $piedata = $dataset->getPieData();
 
-$datasets = array();
+$datasets = [];
 $datasets[] = $dataset->getPercentValues();
 
 $axis = $dataset->getAxis();
 
-$maxes = array();
+$maxes = [];
 
 $maxes[] = $dataset->getMax();
 
@@ -148,17 +148,17 @@ $t->data['get_times_next'] = getBaseURL($t, 'get', 'time', $t->data['available_t
 $t->data['availdelimiters'] = $dataset->availDelimiters();
 $t->data['delimiterPresentation'] = $dataset->getDelimiterPresentation();
 
-$t->data['jquery'] = array('core' => false, 'ui' => true, 'css' => true);
+$t->data['jquery'] = ['core' => false, 'ui' => true, 'css' => true];
 
 $t->show();
 
 function getBaseURL($t, $type = 'get', $key = null, $value = null)
 {
-    $vars = array(
+    $vars = [
         'rule' => $t->data['selected_rule'],
         'time' => $t->data['selected_time'],
         'res' => $t->data['selected_timeres'],
-    );
+    ];
     if (isset($t->data['selected_delimiter'])) {
         $vars['d'] = $t->data['selected_delimiter'];
     }

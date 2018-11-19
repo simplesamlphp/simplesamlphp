@@ -19,8 +19,8 @@
             <input type="hidden" name="return" value="{{ return|escape('html') }}" />
             <input type="hidden" name="returnIDParam" value="{{ returnIDParam|escape('html') }}" />
             <input type="hidden" name="idpentityid" value="{{ faventry.entityid|escape('html') }}" />
-            <input type="submit" name="formsubmit" id="favouritesubmit" value="{{ '{disco:login_at}'|trans }} {{ faventry.translated|escape('html') }}" /> 
-	</form>
+            <input type="submit" name="formsubmit" id="favouritesubmit" value="{{ '{disco:login_at}'|trans }} {{ faventry.translated|escape('html') }}" />
+    </form>
     </div>
     {% endif %}
 
@@ -37,7 +37,7 @@
         {% if idps is not empty %}
           <div id="{{ tab }}" class="tabset_content{% if loop.first %} current{% endif %}">
           <div class="inlinesearch">
-              <p>Incremental search...</p>
+              <p>{{ '{discopower:tabs:incremental_search}'|trans }}</p>
               <form id="idpselectform" method="get">
                   <input class="inlinesearch" type="text" value="" name="query_{{ tab }}" id="query_{{ tab }}" />
               </form>

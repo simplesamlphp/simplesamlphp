@@ -26,7 +26,7 @@
         "files": ["lib/_autoload_modules.php"]
     },
     "require": {
-        "php": ">=5.4",
+        "php": ">=5.5",
         "ext-SPL": "*",
         "ext-zlib": "*",
         "ext-pcre": "*",
@@ -50,8 +50,7 @@
     },
     "require-dev": {
         "phpunit/phpunit": "~4.8",
-        "mikey179/vfsStream": "~1.6",
-        "friendsofphp/php-cs-fixer": "^2.2"
+        "mikey179/vfsStream": "~1.6"
     },
     "suggests": {
         "predis/predis": "1.1.1"

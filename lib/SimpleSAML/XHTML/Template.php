@@ -20,7 +20,7 @@ class Template extends Response
      *
      * @var array
      */
-    public $data = array();
+    public $data = [];
 
     /**
      * A translator instance configured to work with this template.
@@ -183,7 +183,7 @@ class Template extends Response
     /**
      * Set up the places where twig can look for templates.
      *
-     * @return \Twig_Loader_Filesystem The twig template loader or false if the template does not exist.
+     * @return TemplateLoader The twig template loader or false if the template does not exist.
      * @throws \Twig_Error_Loader In case a failure occurs.
      */
     private function setupTwigTemplatepaths()
@@ -195,23 +195,25 @@ class Template extends Response
         $this->twig_template = ($namespace !== null) ? '@'.$namespace.'/'.$filename : $filename;
         $loader = new TemplateLoader();
         $templateDirs = $this->findThemeTemplateDirs();
-        if ($this->module) {
-            $templateDirs[] = array($this->module => TemplateLoader::getModuleTemplateDir($this->module));
+        if ($this->module && $this->module != 'core') {
+            $templateDirs[] = [$this->module => TemplateLoader::getModuleTemplateDir($this->module)];
         }
         if ($this->theme['module']) {
             try {
-                $templateDirs[] = array(
+                $templateDirs[] = [
                     $this->theme['module'] => TemplateLoader::getModuleTemplateDir($this->theme['module'])
-                );
+                ];
             } catch (\InvalidArgumentException $e) {
                 // either the module is not enabled or it has no "templates" directory, ignore
             }
         }
 
+        $templateDirs[] = ['core' => TemplateLoader::getModuleTemplateDir('core')];
+
         // default, themeless templates are checked last
-        $templateDirs[] = array(
+        $templateDirs[] = [
             \Twig_Loader_Filesystem::MAIN_NAMESPACE => $this->configuration->resolvePath('templates')
-        );
+        ];
         foreach ($templateDirs as $entry) {
             $loader->addPath($entry[key($entry)], key($entry));
         }
@@ -241,20 +243,20 @@ class Template extends Response
             $this->localization->addModuleDomain($this->theme['module']);
         }
 
-        $options = array(
+        $options = [
             'cache' => $cache,
             'auto_reload' => $auto_reload,
-            'translation_function' => array('\SimpleSAML\Locale\Translate', 'translateSingularNativeGettext'),
-            'translation_function_plural' => array('\SimpleSAML\Locale\Translate', 'translatePluralNativeGettext'),
-        );
+            'translation_function' => ['\SimpleSAML\Locale\Translate', 'translateSingularNativeGettext'],
+            'translation_function_plural' => ['\SimpleSAML\Locale\Translate', 'translatePluralNativeGettext'],
+        ];
 
         // set up translation
         if ($this->localization->i18nBackend === \SimpleSAML\Locale\Localization::GETTEXT_I18N_BACKEND) {
-            $options['translation_function'] = array('\SimpleSAML\Locale\Translate', 'translateSingularGettext');
-            $options['translation_function_plural'] = array(
+            $options['translation_function'] = ['\SimpleSAML\Locale\Translate', 'translateSingularGettext'];
+            $options['translation_function_plural'] = [
                 '\SimpleSAML\Locale\Translate',
                 'translatePluralGettext'
-            );
+            ];
         } // TODO: add a branch for the old SimpleSAMLphp backend
 
         $twig = new Twig_Environment($loader, $options);
@@ -281,8 +283,8 @@ class Template extends Response
         $twig->addFilter(
             new \Twig_SimpleFilter(
                 'translateFromArray',
-                array('\SimpleSAML\Locale\Translate', 'translateFromArray'),
-                array('needs_context' => true)
+                ['\SimpleSAML\Locale\Translate', 'translateFromArray'],
+                ['needs_context' => true]
             )
         );
 
@@ -302,7 +304,7 @@ class Template extends Response
     {
         if ($this->theme['module'] === null) {
             // no module involved
-            return array();
+            return [];
         }
 
         // setup directories & namespaces
@@ -312,10 +314,10 @@ class Template extends Response
             // no subdirectories in the theme directory, nothing to do here
             // this is probably wrong, log a message
             \SimpleSAML\Logger::warning('Empty theme directory for theme "'.$this->theme['name'].'".');
-            return array();
+            return [];
         }
 
-        $themeTemplateDirs = array();
+        $themeTemplateDirs = [];
         foreach ($subdirs as $entry) {
             // discard anything that's not a directory. Expression is negated to profit from lazy evaluation
             if (!($entry !== '.' && $entry !== '..' && is_dir($themeDir.'/'.$entry))) {
@@ -324,7 +326,7 @@ class Template extends Response
 
             // set correct name for the default namespace
             $ns = ($entry === 'default') ? \Twig_Loader_Filesystem::MAIN_NAMESPACE : $entry;
-            $themeTemplateDirs[] = array($ns => $themeDir.'/'.$entry);
+            $themeTemplateDirs[] = [$ns => $themeDir.'/'.$entry];
         }
         return $themeTemplateDirs;
     }
@@ -383,7 +385,7 @@ class Template extends Response
         $langmap = null;
         if (count($languages) > 1) {
             $parameterName = $this->getTranslator()->getLanguage()->getLanguageParameterName();
-            $langmap = array();
+            $langmap = [];
             foreach ($languages as $lang => $current) {
                 $lang = strtolower($lang);
                 $langname = $this->translator->getLanguage()->getLanguageLocalizedName($lang);
@@ -391,13 +393,13 @@ class Template extends Response
                 if (!$current) {
                     $url = htmlspecialchars(\SimpleSAML\Utils\HTTP::addURLParameters(
                         '',
-                        array($parameterName => $lang)
+                        [$parameterName => $lang]
                     ));
                 }
-                $langmap[$lang] = array(
+                $langmap[$lang] = [
                     'name' => $langname,
                     'url' => $url,
-                );
+                ];
             }
         }
         return $langmap;
@@ -492,7 +494,7 @@ class Template extends Response
     private function findModuleAndTemplateName($template)
     {
         $tmp = explode(':', $template, 2);
-        return (count($tmp) === 2) ? array($tmp[0], $tmp[1]) : array(null, $tmp[0]);
+        return (count($tmp) === 2) ? [$tmp[0], $tmp[1]] : [null, $tmp[0]];
     }
 
 
@@ -779,9 +781,9 @@ class Template extends Response
      */
     public function t(
         $tag,
-        $replacements = array(),
+        $replacements = [],
         $fallbackdefault = true,
-        $oldreplacements = array(),
+        $oldreplacements = [],
         $striptags = false
     ) {
         return $this->translator->t($tag, $replacements, $fallbackdefault, $oldreplacements, $striptags);

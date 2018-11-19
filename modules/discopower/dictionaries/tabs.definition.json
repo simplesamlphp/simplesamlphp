@@ -37,5 +37,8 @@
 	},
 	"ukacessfederation": {
 		"en": "UK Access Federation"
+	},
+	"incremental_search": {
+		"en": "Incremental search..."
 	}
 }

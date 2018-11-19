@@ -38,7 +38,7 @@ class Session implements \Serializable, Utils\ClearableState
      *
      * @var array
      */
-    private static $sessions = array();
+    private static $sessions = [];
 
 
     /**
@@ -108,7 +108,7 @@ class Session implements \Serializable, Utils\ClearableState
      *
      * @var array
      */
-    private $dataStore = array();
+    private $dataStore = [];
 
     /**
      * The list of IdP-SP associations.
@@ -118,7 +118,7 @@ class Session implements \Serializable, Utils\ClearableState
      *
      * @var array
      */
-    private $associations = array();
+    private $associations = [];
 
     /**
      * The authentication token.
@@ -136,7 +136,7 @@ class Session implements \Serializable, Utils\ClearableState
      *
      * @var array  Associative array of associative arrays.
      */
-    private $authData = array();
+    private $authData = [];
 
 
     /**
@@ -498,7 +498,7 @@ class Session implements \Serializable, Utils\ClearableState
             // we already have a shutdown callback registered for this object, no need to add another one
             return;
         }
-        $this->callback_registered = header_register_callback(array($this, 'save'));
+        $this->callback_registered = header_register_callback([$this, 'save']);
     }
 
     /**
@@ -567,7 +567,7 @@ class Session implements \Serializable, Utils\ClearableState
         }
         $this->rememberMeExpire = $expire;
 
-        $cookieParams = array('expire' => $this->rememberMeExpire);
+        $cookieParams = ['expire' => $this->rememberMeExpire];
         $this->updateSessionCookies($cookieParams);
     }
 
@@ -596,7 +596,7 @@ class Session implements \Serializable, Utils\ClearableState
         }
 
         if ($data === null) {
-            $data = array();
+            $data = [];
         }
 
         $data['Authority'] = $authority;
@@ -771,7 +771,7 @@ class Session implements \Serializable, Utils\ClearableState
             $sessionHandler->setCookie($sessionHandler->getSessionCookieName(), $this->sessionId, $params);
         }
 
-        $params = array_merge($sessionHandler->getCookieParams(), is_array($params) ? $params : array());
+        $params = array_merge($sessionHandler->getCookieParams(), is_array($params) ? $params : []);
 
         if ($this->authToken !== null) {
             Utils\HTTP::setCookie(
@@ -815,11 +815,11 @@ class Session implements \Serializable, Utils\ClearableState
     {
         assert(isset($this->authData[$authority]));
 
-        $logout_handler = array($classname, $functionname);
+        $logout_handler = [$classname, $functionname];
 
         if (!is_callable($logout_handler)) {
             throw new \Exception(
-                'Logout handler is not a vaild function: '.$classname.'::'.
+                'Logout handler is not a valid function: '.$classname.'::'.
                 $functionname
             );
         }
@@ -893,14 +893,14 @@ class Session implements \Serializable, Utils\ClearableState
             $expires = time() + $timeout;
         }
 
-        $dataInfo = array(
+        $dataInfo = [
             'expires' => $expires,
             'timeout' => $timeout,
             'data'    => $data
-        );
+        ];
 
         if (!array_key_exists($type, $this->dataStore)) {
-            $this->dataStore[$type] = array();
+            $this->dataStore[$type] = [];
         }
 
         $this->dataStore[$type][$id] = $dataInfo;
@@ -984,10 +984,10 @@ class Session implements \Serializable, Utils\ClearableState
         assert(is_string($type));
 
         if (!array_key_exists($type, $this->dataStore)) {
-            return array();
+            return [];
         }
 
-        $ret = array();
+        $ret = [];
         foreach ($this->dataStore[$type] as $id => $info) {
             $ret[$id] = $info['data'];
         }
@@ -1041,11 +1041,11 @@ class Session implements \Serializable, Utils\ClearableState
         assert(isset($association['Handler']));
 
         if (!isset($this->associations)) {
-            $this->associations = array();
+            $this->associations = [];
         }
 
         if (!isset($this->associations[$idp])) {
-            $this->associations[$idp] = array();
+            $this->associations[$idp] = [];
         }
 
         $this->associations[$idp][$association['id']] = $association;
@@ -1067,11 +1067,11 @@ class Session implements \Serializable, Utils\ClearableState
         assert(is_string($idp));
 
         if (!isset($this->associations)) {
-            $this->associations = array();
+            $this->associations = [];
         }
 
         if (!isset($this->associations[$idp])) {
-            return array();
+            return [];
         }
 
         foreach ($this->associations[$idp] as $id => $assoc) {
@@ -1141,7 +1141,7 @@ class Session implements \Serializable, Utils\ClearableState
      */
     public function getAuthorities()
     {
-        $authorities = array();
+        $authorities = [];
         foreach (array_keys($this->authData) as $authority) {
             if ($this->isValid($authority)) {
                 $authorities[] = $authority;

@@ -14,13 +14,13 @@ class X509userCert extends \SimpleSAML\Auth\Source
     /**
      * x509 attributes to use from the certificate for searching the user in the LDAP directory.
      */
-    private $x509attributes = array('UID' => 'uid');
+    private $x509attributes = ['UID' => 'uid'];
 
 
     /**
      * LDAP attribute containing the user certificate.
      */
-    private $ldapusercert = array('userCertificate;binary');
+    private $ldapusercert = ['userCertificate;binary'];
 
 
     /**
@@ -159,7 +159,7 @@ class X509userCert extends \SimpleSAML\Auth\Source
         }
 
 
-        $merged_ldapcerts = array();
+        $merged_ldapcerts = [];
         foreach ($this->ldapusercert as $attr) {
             $merged_ldapcerts = array_merge($merged_ldapcerts, $ldap_certs[$attr]);
         }

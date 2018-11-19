@@ -4,7 +4,7 @@
  *
  */
 
-$config = array(
+$config = [
     /*
      * This module has the following config options and defaults.
      *
@@ -13,4 +13,4 @@ $config = array(
      * 'port' => 8098,
      * 'bucket' => 'SimpleSAMLphp',
      */
-);
+];

@@ -35,19 +35,19 @@ class ModuleTest extends TestCase
      */
     public function testGetModuleURL()
     {
-        \SimpleSAML\Configuration::loadFromArray(array(
+        \SimpleSAML\Configuration::loadFromArray([
             'baseurlpath' => 'https://example.com/simplesaml/'
-        ), '', 'simplesaml');
+        ], '', 'simplesaml');
         $this->assertEquals(
             'https://example.com/simplesaml/module.php/module/script.php',
             Module::getModuleURL('module/script.php')
         );
         $this->assertEquals(
             'https://example.com/simplesaml/module.php/module/script.php?param1=value1&param2=value2',
-            Module::getModuleURL('module/script.php', array(
+            Module::getModuleURL('module/script.php', [
                 'param1' => 'value1',
                 'param2' => 'value2',
-            ))
+            ])
         );
     }
 

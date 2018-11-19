@@ -33,7 +33,9 @@
         "ro": "Da, continu\u0103",
         "eu": "Bai, jarraitu",
         "af": "Ja, voortgaan",
-        "el": "\u0391\u03c0\u03bf\u03b4\u03bf\u03c7\u03ae"
+        "el": "\u0391\u03c0\u03bf\u03b4\u03bf\u03c7\u03ae",
+        "zu": "Yebo, qhubeka",
+        "xh": "Ewe, qhubeka"
     },
     "no": {
         "no": "Nei, avbryt",
@@ -69,7 +71,9 @@
         "ro": "Nu, renun\u021b",
         "eu": "Ez, utzi",
         "af": "Nee, kanselleer",
-        "el": "\u0391\u03c0\u03cc\u03c1\u03c1\u03b9\u03c8\u03b7"
+        "el": "\u0391\u03c0\u03cc\u03c1\u03c1\u03b9\u03c8\u03b7",
+        "xh": "Hayi, rhoxisa",
+        "zu": "Cha, khansela"
     },
     "remember": {
         "no": "Godta ogs\u00e5 for fremtiden",
@@ -105,7 +109,9 @@
         "ro": "\u021aine minte",
         "eu": "Onespena gogoratu",
         "af": "Onthou",
-        "el": "\u039d\u03b1 \u03b8\u03c5\u03bc\u03ac\u03c3\u03b1\u03b9 \u03c4\u03b7\u03bd \u03b5\u03c0\u03b9\u03bb\u03bf\u03b3\u03ae \u03bc\u03bf\u03c5"
+        "el": "\u039d\u03b1 \u03b8\u03c5\u03bc\u03ac\u03c3\u03b1\u03b9 \u03c4\u03b7\u03bd \u03b5\u03c0\u03b9\u03bb\u03bf\u03b3\u03ae \u03bc\u03bf\u03c5",
+        "zu": "Khumbula",
+        "xh": "Khumbula"
     },
     "consent_accept": {
         "no": "For \u00e5 fullf\u00f8re innloggingen m\u00e5 du godta at opplysningene nedenfor sendes til SPNAME.",
@@ -141,7 +147,9 @@
         "ro": "SPNAME solicit\u0103 trimiterea informa\u021biilor de mai jos.",
         "eu": "Zerbitzuak, hemen agertzen den informazioa lekualdatzea eskatzen du.",
         "af": "SPNAME vereis dat die inligting hieronder oorgedra word.",
-        "el": "\u0395\u03ac\u03bd \u03c0\u03c1\u03bf\u03c7\u03c9\u03c1\u03ae\u03c3\u03b5\u03c4\u03b5\u002c \u03c4\u03b1 \u03c3\u03c4\u03bf\u03b9\u03c7\u03b5\u03af\u03b1 \u03c0\u03bf\u03c5 \u03b1\u03ba\u03bf\u03bb\u03bf\u03c5\u03b8\u03bf\u03cd\u03bd \u03b8\u03b1 \u03b4\u03b9\u03b1\u03bc\u03bf\u03b9\u03c1\u03b1\u03c3\u03c4\u03bf\u03cd\u03bd \u03bc\u03b5 \u03c4\u03b7\u03bd \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b1 <b>SPNAME<\/b>. \u03a3\u03c5\u03bc\u03c6\u03c9\u03bd\u03b5\u03af\u03c4\u03b5 \u03bc\u03b5 \u03c4\u03b7\u03bd \u03b1\u03c0\u03b5\u03bb\u03b5\u03c5\u03b8\u03ad\u03c1\u03c9\u03c3\u03b7 \u03c4\u03c9\u03bd \u03c3\u03c4\u03bf\u03b9\u03c7\u03b5\u03af\u03c9\u03bd \u03b1\u03c5\u03c4\u03ce\u03bd \u03c3\u03c4\u03b7\u03bd \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b1 \u03ba\u03ac\u03b8\u03b5 \u03c6\u03bf\u03c1\u03ac \u03c0\u03bf\u03c5 \u03b5\u03c0\u03b9\u03b8\u03c5\u03bc\u03b5\u03af\u03c4\u03b5 \u03c0\u03c1\u03cc\u03c3\u03b2\u03b1\u03c3\u03b7 \u03c3\u03b5 \u03b1\u03c5\u03c4\u03ae\u003b"
+        "el": "\u0395\u03ac\u03bd \u03c0\u03c1\u03bf\u03c7\u03c9\u03c1\u03ae\u03c3\u03b5\u03c4\u03b5\u002c \u03c4\u03b1 \u03c3\u03c4\u03bf\u03b9\u03c7\u03b5\u03af\u03b1 \u03c0\u03bf\u03c5 \u03b1\u03ba\u03bf\u03bb\u03bf\u03c5\u03b8\u03bf\u03cd\u03bd \u03b8\u03b1 \u03b4\u03b9\u03b1\u03bc\u03bf\u03b9\u03c1\u03b1\u03c3\u03c4\u03bf\u03cd\u03bd \u03bc\u03b5 \u03c4\u03b7\u03bd \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b1 <b>SPNAME<\/b>. \u03a3\u03c5\u03bc\u03c6\u03c9\u03bd\u03b5\u03af\u03c4\u03b5 \u03bc\u03b5 \u03c4\u03b7\u03bd \u03b1\u03c0\u03b5\u03bb\u03b5\u03c5\u03b8\u03ad\u03c1\u03c9\u03c3\u03b7 \u03c4\u03c9\u03bd \u03c3\u03c4\u03bf\u03b9\u03c7\u03b5\u03af\u03c9\u03bd \u03b1\u03c5\u03c4\u03ce\u03bd \u03c3\u03c4\u03b7\u03bd \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b1 \u03ba\u03ac\u03b8\u03b5 \u03c6\u03bf\u03c1\u03ac \u03c0\u03bf\u03c5 \u03b5\u03c0\u03b9\u03b8\u03c5\u03bc\u03b5\u03af\u03c4\u03b5 \u03c0\u03c1\u03cc\u03c3\u03b2\u03b1\u03c3\u03b7 \u03c3\u03b5 \u03b1\u03c5\u03c4\u03ae\u003b",
+        "xh": "I-SPNAME idinga ukuba inkcazelo engezantsi idluliselwe.",
+        "zu": "I-SPNAME idinga ukuthi ulwazi olungezansi ludluliswe."
     },
     "login": {
         "no": "innlogging",
@@ -177,7 +185,9 @@
         "ro": "autentificare",
         "eu": "hasi saioa",
         "af": "meld aan",
-        "el": "\u0395\u03af\u03c3\u03bf\u03b4\u03bf\u03c2"
+        "el": "\u0395\u03af\u03c3\u03bf\u03b4\u03bf\u03c2",
+        "xh": "ngena",
+        "zu": "ngena"
     },
     "service_providers_for": {
         "no": "Tjenesteleverand\u00f8r for",
@@ -213,7 +223,9 @@
         "ro": "Furnizor de servicii pentru",
         "eu": "Zerbitzu hornitzaileak hontarako: ",
         "af": "Diens Verskaffers vir",
-        "el": "\u03a0\u03ac\u03c1\u03bf\u03c7\u03bf\u03b9 \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03b9\u03ce\u03bd \u03b3\u03b9\u03b1"
+        "el": "\u03a0\u03ac\u03c1\u03bf\u03c7\u03bf\u03b9 \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03b9\u03ce\u03bd \u03b3\u03b9\u03b1",
+        "zu": "Abahlinzeki Besevisi bokuthi",
+        "xh": "Umboneleli enkonzo we-"
     },
     "service_provider_header": {
         "no": "Tjenesteleverand\u00f8r",
@@ -249,7 +261,9 @@
         "ro": "Furnizor de servicii",
         "eu": "Zerbitzu hornitzailea",
         "af": "Diens Verskaffer",
-        "el": "\u03a0\u03ac\u03c1\u03bf\u03c7\u03bf\u03c2 \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b1\u03c2"
+        "el": "\u03a0\u03ac\u03c1\u03bf\u03c7\u03bf\u03c2 \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b1\u03c2",
+        "zu": "Umhlinzeki Wesevisi",
+        "xh": "Umboneleli Wenkonzo"
     },
     "status_header": {
         "no": "Samtykke-status",
@@ -285,7 +299,9 @@
         "ro": "Stare acord",
         "eu": "Onespen egoera",
         "af": "Toestemming status",
-        "el": "\u039a\u03b1\u03c4\u03ac\u03c3\u03c4\u03b1\u03c3\u03b7 \u03c3\u03c5\u03b3\u03ba\u03b1\u03c4\u03ac\u03b8\u03b5\u03c3\u03b7\u03c2"
+        "el": "\u039a\u03b1\u03c4\u03ac\u03c3\u03c4\u03b1\u03c3\u03b7 \u03c3\u03c5\u03b3\u03ba\u03b1\u03c4\u03ac\u03b8\u03b5\u03c3\u03b7\u03c2",
+        "zu": "Isimo semvume",
+        "xh": "Ubume bemvume"
     },
     "show_hide_attributes": {
         "no": "Vis\/skjul opplysninger",
@@ -321,7 +337,9 @@
         "ro": "arat\u0103\/ascunde atributele",
         "eu": "erakutsi\/gorde atributuak",
         "af": "vertoon\/verberg eienskappe",
-        "el": "\u03b5\u03bc\u03c6\u03ac\u03bd\u03b9\u03c3\u03b7\/\u03b1\u03c0\u03cc\u03ba\u03c1\u03c5\u03c8\u03b7 \u03c3\u03c4\u03bf\u03b9\u03c7\u03b5\u03af\u03c9\u03bd"
+        "el": "\u03b5\u03bc\u03c6\u03ac\u03bd\u03b9\u03c3\u03b7\/\u03b1\u03c0\u03cc\u03ba\u03c1\u03c5\u03c8\u03b7 \u03c3\u03c4\u03bf\u03b9\u03c7\u03b5\u03af\u03c9\u03bd",
+        "xh": "bonisa/fihla iimpawu",
+        "zu": "bonisa/fihla izici"
     },
     "consent_privacypolicy": {
         "no": "Personvern for tjenesten",
@@ -356,7 +374,9 @@
         "ro": "Politica de confiden\u021bialitate pentru serviciu",
         "eu": "Zerbitzuarentzako pribatutasun-politika",
         "af": "Privaatheidsbeleid vir die diens",
-        "el": "\u03a0\u03bf\u03bb\u03b9\u03c4\u03b9\u03ba\u03ae \u03c0\u03c1\u03bf\u03c3\u03c4\u03b1\u03c3\u03af\u03b1\u03c2 \u03b1\u03c0\u03bf\u03c1\u03c1\u03ae\u03c4\u03bf\u03c5 \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b1\u03c2"
+        "el": "\u03a0\u03bf\u03bb\u03b9\u03c4\u03b9\u03ba\u03ae \u03c0\u03c1\u03bf\u03c3\u03c4\u03b1\u03c3\u03af\u03b1\u03c2 \u03b1\u03c0\u03bf\u03c1\u03c1\u03ae\u03c4\u03bf\u03c5 \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b1\u03c2",
+        "zu": "Inqubomgomo yobumfihlo yesevisi",
+        "xh": "Ipolisi yokugcinwa kwemfihlelo yenkonzo"
     },
     "noconsent_title": {
         "no": "Ikke akseptert overf\u00f8ring av informasjon",
@@ -391,7 +411,9 @@
         "ro": "Nu a fost dat acordul (consim\u021b\u0103m\u00e2ntul)",
         "eu": "Ez da onespena eman",
         "af": "Geen toestemming is gegee nie",
-        "el": "\u039c\u03b7 \u03b1\u03c0\u03bf\u03b4\u03bf\u03c7\u03ae \u03c3\u03c5\u03b3\u03ba\u03b1\u03c4\u03ac\u03b8\u03b5\u03c3\u03b7\u03c2"
+        "el": "\u039c\u03b7 \u03b1\u03c0\u03bf\u03b4\u03bf\u03c7\u03ae \u03c3\u03c5\u03b3\u03ba\u03b1\u03c4\u03ac\u03b8\u03b5\u03c3\u03b7\u03c2",
+        "zu": "Ayikho imvume enikeziwe",
+        "xh": "Akukho mvume inikelweyo"
     },
     "noconsent_text": {
         "no": "Du har ikke akseptert \u00e5 overlevere opplysninger til SPNAME.",
@@ -426,7 +448,9 @@
         "ro": "Nu a\u021bi fost de acord s\u0103 trimite\u021bi atributele c\u0103tre SPNAME.",
         "eu": "Ez duzu onespena eman zure atributuak zerbitzuari transferitzeko.",
         "af": "Jy het nie toestemming gegee vir die oordrag van jou eienskappe na SPNAME nie.",
-        "el": "\u0394\u03b5\u03bd \u03ad\u03c7\u03b5\u03c4\u03b5 \u03b4\u03ce\u03c3\u03b5\u03b9 \u03c3\u03c5\u03b3\u03ba\u03b1\u03c4\u03ac\u03b8\u03b5\u03c3\u03b7 \u03b3\u03b9\u03b1 \u03c4\u03bf\u03bd \u03b4\u03b9\u03b1\u03bc\u03bf\u03b9\u03c1\u03b1\u03c3\u03bc\u03cc \u03c0\u03c1\u03bf\u03c3\u03c9\u03c0\u03b9\u03ba\u03ce\u03bd \u03b4\u03b5\u03b4\u03bf\u03bc\u03ad\u03bd\u03c9\u03bd \u03bc\u03b5 \u03c4\u03b7\u03bd \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b1 SPNAME"
+        "el": "\u0394\u03b5\u03bd \u03ad\u03c7\u03b5\u03c4\u03b5 \u03b4\u03ce\u03c3\u03b5\u03b9 \u03c3\u03c5\u03b3\u03ba\u03b1\u03c4\u03ac\u03b8\u03b5\u03c3\u03b7 \u03b3\u03b9\u03b1 \u03c4\u03bf\u03bd \u03b4\u03b9\u03b1\u03bc\u03bf\u03b9\u03c1\u03b1\u03c3\u03bc\u03cc \u03c0\u03c1\u03bf\u03c3\u03c9\u03c0\u03b9\u03ba\u03ce\u03bd \u03b4\u03b5\u03b4\u03bf\u03bc\u03ad\u03bd\u03c9\u03bd \u03bc\u03b5 \u03c4\u03b7\u03bd \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b1 SPNAME",
+        "xh": "Awuyinikelanga imvume yokudluliselwa iimpawu zakho kwi-SPNAME.",
+        "zu": "Awuzange uyinikeze imvume yokudlulisa izici zakho ku-SPNAME."
     },
     "noconsent_return": {
         "no": "G\u00e5 tilbake til samtykkesiden",
@@ -461,7 +485,9 @@
         "ru": "\u0412\u0435\u0440\u043d\u0443\u0442\u044c\u0441\u044f \u043d\u0430 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0443 \u0434\u043b\u044f \u0432\u044b\u0440\u0430\u0436\u0435\u043d\u0438\u044f \u0441\u043e\u0433\u043b\u0430\u0441\u0438\u044f",
         "eu": "Itzuli onespen orrira",
         "af": "Keer terug na die toestemmingsbladsy",
-        "el": "\u0395\u03c0\u03b9\u03c3\u03c4\u03c1\u03bf\u03c6\u03ae \u03c3\u03c4\u03b7 \u03c3\u03b5\u03bb\u03af\u03b4\u03b1 \u03b4\u03ae\u03bb\u03c9\u03c3\u03b7\u03c2 \u03c3\u03c5\u03b3\u03ba\u03b1\u03c4\u03ac\u03b8\u03b5\u03c3\u03b7\u03c2"
+        "el": "\u0395\u03c0\u03b9\u03c3\u03c4\u03c1\u03bf\u03c6\u03ae \u03c3\u03c4\u03b7 \u03c3\u03b5\u03bb\u03af\u03b4\u03b1 \u03b4\u03ae\u03bb\u03c9\u03c3\u03b7\u03c2 \u03c3\u03c5\u03b3\u03ba\u03b1\u03c4\u03ac\u03b8\u03b5\u03c3\u03b7\u03c2",
+        "xh": "Buyela kwikhasi lemvume",
+        "zu": "Buyela ekhasini lemvume"
     },
     "consent_header": {
         "no": "Samtykke om overf\u00f8ring av personinformasjon",
@@ -496,7 +522,9 @@
         "ru": "\u0421\u043e\u0433\u043b\u0430\u0441\u0438\u0435 \u043d\u0430 \u043f\u0435\u0440\u0435\u0434\u0430\u0447\u0443 \u043d\u0435\u043a\u043e\u0442\u043e\u0440\u044b\u0445 \u043f\u0435\u0440\u0441\u043e\u043d\u0430\u043b\u044c\u043d\u044b\u0445 \u0434\u0430\u043d\u043d\u044b\u0445",
         "eu": "Informazio pertsonala askatzeko onespena ",
         "af": "Toestemming mbt. die vrystelling van persoonlike informasie",
-        "el": "\u0394\u03ae\u03bb\u03c9\u03c3\u03b7 \u03c3\u03c5\u03b3\u03ba\u03b1\u03c4\u03ac\u03b8\u03b5\u03c3\u03b7\u03c2 \u03b3\u03b9\u03b1 \u03c4\u03bf\u03bd \u03b4\u03b9\u03b1\u03bc\u03bf\u03b9\u03c1\u03b1\u03c3\u03bc\u03cc \u03c0\u03c1\u03bf\u03c3\u03c9\u03c0\u03b9\u03ba\u03ce\u03bd \u03b4\u03b5\u03b4\u03bf\u03bc\u03ad\u03bd\u03c9\u03bd"
+        "el": "\u0394\u03ae\u03bb\u03c9\u03c3\u03b7 \u03c3\u03c5\u03b3\u03ba\u03b1\u03c4\u03ac\u03b8\u03b5\u03c3\u03b7\u03c2 \u03b3\u03b9\u03b1 \u03c4\u03bf\u03bd \u03b4\u03b9\u03b1\u03bc\u03bf\u03b9\u03c1\u03b1\u03c3\u03bc\u03cc \u03c0\u03c1\u03bf\u03c3\u03c9\u03c0\u03b9\u03ba\u03ce\u03bd \u03b4\u03b5\u03b4\u03bf\u03bc\u03ad\u03bd\u03c9\u03bd",
+        "xh": "Imvume malunga nokukhutshwa kwenkcazelo yobuqu",
+        "zu": "Imvume mayelana nokukhulula ulwazi lomuntu siqu"
     },
     "consent_attributes_header": {
         "no": "Opplysninger som vil bli sendt til SPNAME",
@@ -530,7 +558,9 @@
         "ru": "\u0418\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u044f, \u043a\u043e\u0442\u043e\u0440\u0430\u044f \u0431\u0443\u0434\u0435\u0442 \u043f\u0435\u0440\u0435\u0434\u0430\u043d\u0430 \u0432 SPNAME ",
         "eu": "Zerbitzura bidaliko diren atributuak",
         "af": "Informasie wat gestuur sal word na SPNAME",
-        "el": "\u03a0\u03bb\u03b7\u03c1\u03bf\u03c6\u03bf\u03c1\u03af\u03b5\u03c2 \u03c0\u03bf\u03c5 \u03b8\u03b1 \u03b4\u03b9\u03b1\u03bc\u03bf\u03b9\u03c1\u03b1\u03c3\u03c4\u03bf\u03cd\u03bd \u03bc\u03b5 \u03c4\u03b7\u03bd \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b1 SPNAME"
+        "el": "\u03a0\u03bb\u03b7\u03c1\u03bf\u03c6\u03bf\u03c1\u03af\u03b5\u03c2 \u03c0\u03bf\u03c5 \u03b8\u03b1 \u03b4\u03b9\u03b1\u03bc\u03bf\u03b9\u03c1\u03b1\u03c3\u03c4\u03bf\u03cd\u03bd \u03bc\u03b5 \u03c4\u03b7\u03bd \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b1 SPNAME",
+        "xh": "Inkcazelo eza kuthunyelwa ku-SPNAME",
+        "zu": "Ulwazi oluzothunyelwa ku-SPNAME"
     },
     "show_attributes": {
         "no": "Vis opplysninger",
@@ -564,7 +594,9 @@
         "ro": "Arat\u0103 atributele",
         "ru": "\u041f\u043e\u043a\u0430\u0437\u0430\u0442\u044c \u0430\u0442\u0440\u0438\u0431\u0443\u0442\u044b",
         "eu": "Erakutsi atributuak",
-        "af": "Vertoon eienskappe"
+        "af": "Vertoon eienskappe",
+        "zu": "Bonisa okuqukethwe",
+        "xh": "Bonisa isiqulatho"
     },
     "noconsent_goto_about": {
         "no": "G\u00e5 til informasjonsside om tjenesten",
@@ -599,7 +631,9 @@
         "ru": "\u041f\u0435\u0440\u0435\u0439\u0442\u0438 \u043d\u0430 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0443 \u0441 \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u0435\u0439 \u043e \u0434\u0430\u043d\u043d\u043e\u0439 \u0441\u043b\u0443\u0436\u0431\u0435",
         "eu": "Joan zerbitzuaren informazio orrira",
         "af": "Gaan na die informasie bladsy vir die diens",
-        "el": "\u0395\u03c0\u03b9\u03c0\u03bb\u03ad\u03bf\u03bd \u03c0\u03bb\u03b7\u03c1\u03bf\u03c6\u03bf\u03c1\u03af\u03b5\u03c2 \u03b3\u03b9\u03b1 \u03c4\u03b7\u03bd \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b1"
+        "el": "\u0395\u03c0\u03b9\u03c0\u03bb\u03ad\u03bf\u03bd \u03c0\u03bb\u03b7\u03c1\u03bf\u03c6\u03bf\u03c1\u03af\u03b5\u03c2 \u03b3\u03b9\u03b1 \u03c4\u03b7\u03bd \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b1",
+        "xh": "Yiya kwikhasi lenkcazelo ukuze ufumane inkonzo",
+        "zu": "Iya ekhasini lolwazi lesevisi"
     },
     "consent_purpose": {
         "no": "Form\u00e5let med SPNAME er SPDESC",
@@ -633,7 +667,9 @@
         "ru": "\u0426\u0435\u043b\u044c SPNAME - SPDESC",
         "eu": "Zerbtizuaren xedea SPDESC da",
         "af": "Die doel van SPNAME is SPDESC",
-        "el": "\u03a0\u03b5\u03c1\u03b9\u03b3\u03c1\u03b1\u03c6\u03ae \u03cc\u03c0\u03c9\u03c2 \u03c0\u03b1\u03c1\u03ad\u03c7\u03b5\u03c4\u03b1\u03b9 \u03b1\u03c0\u03cc \u03c4\u03b7\u03bd \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b1\u003a SPDESC"
+        "el": "\u03a0\u03b5\u03c1\u03b9\u03b3\u03c1\u03b1\u03c6\u03ae \u03cc\u03c0\u03c9\u03c2 \u03c0\u03b1\u03c1\u03ad\u03c7\u03b5\u03c4\u03b1\u03b9 \u03b1\u03c0\u03cc \u03c4\u03b7\u03bd \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b1\u003a SPDESC",
+        "zu": "Injongo ye-SPNAME yi-SPDESC",
+        "xh": "Injongo ye-SPNAME yi-SPDESC"
     },
     "table_caption": {
         "no": "Bruker innformasjon",
@@ -667,7 +703,9 @@
         "cs": "U\u017eivatelsk\u00e9 informace",
         "eu": "Erabiltzailearen informazioa",
         "af": "Gebruiker informasie",
-        "el": "\u03a0\u03bb\u03b7\u03c1\u03bf\u03c6\u03bf\u03c1\u03af\u03b5\u03c2 \u03c7\u03c1\u03ae\u03c3\u03c4\u03b7"
+        "el": "\u03a0\u03bb\u03b7\u03c1\u03bf\u03c6\u03bf\u03c1\u03af\u03b5\u03c2 \u03c7\u03c1\u03ae\u03c3\u03c4\u03b7",
+        "xh": "Inkcazelo yomsebenzisi",
+        "zu": "Ulwazi lomsebenzisi"
     },
     "table_summary": {
         "no": "Her listes den innformasjonen om deg som blir send til den tjenesten du er i ferd med \u00e5 logge p\u00e5",
@@ -701,7 +739,9 @@
         "cs": "Seznam informac\u00ed o v\u00e1s, kter\u00e9 budou p\u0159ed\u00e1ny slu\u017eb\u011b, ke kter\u00e9 se p\u0159ihla\u0161ujete",
         "eu": "Zu identifikatuko zaren zerbitzura zure ze informazio bidaliko den erakusten du ",
         "af": "Lys die informasie mbt. jou wat op die punt is om gestuur te word vir die diens waarby jy wil aanmeld.",
-        "el": "\u0395\u03bc\u03c6\u03ac\u03bd\u03b9\u03c3\u03b7 \u03c0\u03bb\u03b7\u03c1\u03bf\u03c6\u03bf\u03c1\u03b9\u03ce\u03bd \u03c0\u03bf\u03c5 \u03b8\u03b1 \u03b4\u03b9\u03b1\u03bc\u03bf\u03b9\u03c1\u03b1\u03c3\u03c4\u03bf\u03cd\u03bd \u03bc\u03b5 \u03c4\u03b7\u03bd \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b1 \u03ba\u03b1\u03c4\u03ac \u03c4\u03b7\u03bd \u03c0\u03c1\u03cc\u03c3\u03b2\u03b1\u03c3\u03b7 \u03c3\u03b5 \u03b1\u03c5\u03c4\u03ae"
+        "el": "\u0395\u03bc\u03c6\u03ac\u03bd\u03b9\u03c3\u03b7 \u03c0\u03bb\u03b7\u03c1\u03bf\u03c6\u03bf\u03c1\u03b9\u03ce\u03bd \u03c0\u03bf\u03c5 \u03b8\u03b1 \u03b4\u03b9\u03b1\u03bc\u03bf\u03b9\u03c1\u03b1\u03c3\u03c4\u03bf\u03cd\u03bd \u03bc\u03b5 \u03c4\u03b7\u03bd \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b1 \u03ba\u03b1\u03c4\u03ac \u03c4\u03b7\u03bd \u03c0\u03c1\u03cc\u03c3\u03b2\u03b1\u03c3\u03b7 \u03c3\u03b5 \u03b1\u03c5\u03c4\u03ae",
+        "zu": "Enza uhlu olumayelana nolwazi lwakho oluzodluliselwa kusevisi ozongena kuyo",
+        "xh": "Dwelisa inkcazelo engawe eza kudluliselwa kwinkonzo oza kungena kuyo"
     },
     "show_attribute": {
         "no": "Vis innhold",
@@ -734,7 +774,9 @@
         "cs": "Zobrazit obsah",
         "eu": "Erakutsi onespena",
         "af": "Vertoon inhoud",
-        "el": "\u0395\u03bc\u03c6\u03ac\u03bd\u03b9\u03c3\u03b7 \u03bb\u03b5\u03c0\u03c4\u03bf\u03bc\u03b5\u03c1\u03b5\u03b9\u03ce\u03bd"
+        "el": "\u0395\u03bc\u03c6\u03ac\u03bd\u03b9\u03c3\u03b7 \u03bb\u03b5\u03c0\u03c4\u03bf\u03bc\u03b5\u03c1\u03b5\u03b9\u03ce\u03bd",
+        "zu": "Bonisa izici",
+        "xh": "Bonisa iimpawu"
     },
     "abort": {
         "no": "Avbryt innlogging til SPNAME",
@@ -757,6 +799,8 @@
         "zh-tw": "\u95dc\u65bc\u767b\u5165\u81f3 SPNAME",
         "da": "Afbryd login til SPNAME",
         "af": "Kanseleer aanmelding na SPNAME",
-        "el": "\u0391\u03ba\u03cd\u03c1\u03c9\u03c3\u03b7 \u03b5\u03b9\u03c3\u03cc\u03b4\u03bf\u03c5 \u03c3\u03c4\u03b7\u03bd \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b1 SPNAME"
+        "el": "\u0391\u03ba\u03cd\u03c1\u03c9\u03c3\u03b7 \u03b5\u03b9\u03c3\u03cc\u03b4\u03bf\u03c5 \u03c3\u03c4\u03b7\u03bd \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b1 SPNAME",
+        "xh": "Yeka ungeno kwi-SPNAME",
+        "zu": "Yeka ukungena ku-SPNAME"
     }
 }

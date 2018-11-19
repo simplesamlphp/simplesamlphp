@@ -8,22 +8,22 @@
          processIsolation="false"
          stopOnFailure="false"
          syntaxCheck="false"
-         bootstrap="./../../tests/bootstrap.php">
+         bootstrap="./tests/bootstrap.php">
     <testsuites>
         <testsuite name="Unit tests">
-            <directory>./../../tests/</directory>
+            <directory>./tests/</directory>
         </testsuite>
     </testsuites>
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
-            <directory suffix=".php">./../../lib/</directory>
-            <directory suffix=".php">./../../modules/consent/lib/</directory>
-            <directory suffix=".php">./../../modules/core/lib/</directory>
-            <directory suffix=".php">./../../modules/saml/lib/</directory>
+            <directory suffix=".php">./lib/</directory>
+            <directory suffix=".php">./modules/consent/lib/</directory>
+            <directory suffix=".php">./modules/core/lib/</directory>
+            <directory suffix=".php">./modules/saml/lib/</directory>
             <exclude>
-                <directory>./../../vendor/</directory>
-                <directory>./../../tests/</directory>
-                <file>./../../lib/SimpleSAML/Utils/HttpAdapter.php</file>
+                <directory>./vendor/</directory>
+                <directory>./tests/</directory>
+                <file>./lib/SimpleSAML/Utils/HttpAdapter.php</file>
             </exclude>
         </whitelist>
     </filter>

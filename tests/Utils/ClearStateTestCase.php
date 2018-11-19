@@ -2,7 +2,7 @@
 
 namespace SimpleSAML\Test\Utils;
 
-include(dirname(__FILE__) . '/StateClearer.php');
+include(dirname(__FILE__).'/StateClearer.php');
 
 use PHPUnit\Framework\TestCase;
 

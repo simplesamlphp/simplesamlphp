@@ -24,14 +24,14 @@ class Translate
      *
      * @var array
      */
-    private $langtext = array();
+    private $langtext = [];
 
     /**
      * Associative array of dictionaries.
      *
      * @var array
      */
-    private $dictionaries = array();
+    private $dictionaries = [];
 
     /**
      * The default dictionary.
@@ -201,7 +201,7 @@ class Translate
     {
         // normalize attribute name
         $normName = strtolower($name);
-        $normName = str_replace(array(":", "-"), "_", $normName);
+        $normName = str_replace([":", "-"], "_", $normName);
 
         // check for an extra dictionary
         $extraDict = $this->configuration->getString('attributes.extradictionary', null);
@@ -258,11 +258,11 @@ class Translate
      */
     public function t(
         $tag,
-        $replacements = array(),
+        $replacements = [],
         // TODO: remove this for 2.0. Assume true
         $fallbackdefault = true,
         // TODO: remove this for 2.0
-        $oldreplacements = array(),
+        $oldreplacements = [],
         // TODO: remove this for 2.0
         $striptags = false
     ) {
@@ -353,7 +353,7 @@ class Translate
     public function includeInlineTranslation($tag, $translation)
     {
         if (is_string($translation)) {
-            $translation = array('en' => $translation);
+            $translation = ['en' => $translation];
         } elseif (!is_array($translation)) {
             throw new \Exception("Inline translation should be string or array. Is ".gettype($translation)." now!");
         }
@@ -401,7 +401,7 @@ class Translate
 
         if (empty($lang)) {
             \SimpleSAML\Logger::error('Invalid dictionary definition file ['.$definitionFile.']');
-            return array();
+            return [];
         }
 
         $translationFile = $filename.'.translation.json';
@@ -434,7 +434,7 @@ class Translate
             return $lang;
         }
 
-        return array();
+        return [];
     }
 
     /**
@@ -463,7 +463,7 @@ class Translate
         \SimpleSAML\Logger::error(
             $_SERVER['PHP_SELF'].' - Template: Could not find dictionary file at ['.$filename.']'
         );
-        return array();
+        return [];
     }
 
     /**
@@ -538,10 +538,10 @@ class Translate
         $langcfg = $sspcfg->getConfigItem('language', null);
         $priorities = [];
         if ($langcfg instanceof \SimpleSAML\Configuration) {
-            $priorities = $langcfg->getArray('priorities', array());
+            $priorities = $langcfg->getArray('priorities', []);
         }
 
-        if ( !empty($priorities[$context['currentLanguage']]) ) {
+        if (!empty($priorities[$context['currentLanguage']])) {
             foreach ($priorities[$context['currentLanguage']] as $lang) {
                 if (isset($translations[$lang])) {
                     return $translations[$lang];

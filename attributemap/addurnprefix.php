@@ -1,6 +1,6 @@
 <?php
 
-$attributemap = array(
+$attributemap = [
     'sn'                         => 'urn:mace:dir:attribute-def:sn',
     'telephoneNumber'            => 'urn:mace:dir:attribute-def:telephoneNumber',
     'facsimileTelephoneNumber'   => 'urn:mace:dir:attribute-def:facsimileTelephoneNumber',
@@ -17,4 +17,4 @@ $attributemap = array(
     'eduPersonEntitlement'       => 'urn:mace:dir:attribute-def:eduPersonEntitlement',
     'eduPersonOrgDN'             => 'urn:mace:dir:attribute-def:eduPersonOrgDN',
     'eduPersonOrgUnitDN'         => 'urn:mace:dir:attribute-def:eduPersonOrgUnitDN',
-);
+];
