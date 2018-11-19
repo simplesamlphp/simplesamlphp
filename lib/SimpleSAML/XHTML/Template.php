@@ -167,7 +167,7 @@ class Template
         $this->twig_template = ($namespace !== null) ? '@'.$namespace.'/'.$filename : $filename;
         $loader = new TemplateLoader();
         $templateDirs = $this->findThemeTemplateDirs();
-        if ($this->module) {
+        if ($this->module && $this->module != 'core') {
             $templateDirs[] = [$this->module => TemplateLoader::getModuleTemplateDir($this->module)];
         }
         if ($this->theme['module']) {
@@ -179,6 +179,8 @@ class Template
                 // either the module is not enabled or it has no "templates" directory, ignore
             }
         }
+
+        $templateDirs[] = ['core' => TemplateLoader::getModuleTemplateDir('core')];
 
         // default, themeless templates are checked last
         $templateDirs[] = [
