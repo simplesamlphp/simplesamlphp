@@ -60,6 +60,9 @@ msgstr "Installatie van SimpleSAMLphp"
 msgid "{core:frontpage:link_diagnostics}"
 msgstr "Inspectie op hostnaam, poort en protocol"
 
+msgid "{core:no_state:suggestion_badlink}"
+msgstr "Controleer of u de juiste link gebruikt om de website te benaderen."
+
 msgid "{core:no_state:suggestion_goback}"
 msgstr "Ga terug naar de vorige pagina, en probeer opnieuw."
 
@@ -210,6 +213,9 @@ msgstr "Federatie"
 
 msgid "{core:frontpage:required_radius}"
 msgstr "Vereist voor Radius"
+
+msgid "{core:no_state:cause_badlink}"
+msgstr "Verkeerde link gebruikt, bijvoorbeeld een bookmark (bladwijzer)."
 
 msgid "{core:no_state:cause_openbrowser}"
 msgstr "Web browser geopend met tabs opgeslagen van de vorige sessie."

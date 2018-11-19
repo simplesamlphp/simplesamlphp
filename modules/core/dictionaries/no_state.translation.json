@@ -92,6 +92,10 @@
 		"zu": "Iziphakamiso zokuxazulula le nkinga:",
 		"xh": "Iingcebiso zokulungisa le ngxaki:"
 	},
+	"suggestion_badlink": {
+		"sv": "Kontrollera att länken du använde för att komma åt webplatsen är korrekt.",
+		"nl": "Controleer of u de juiste link gebruikt om de website te benaderen."
+	},
 	"suggestion_goback": {
 		"no": "G\u00e5 tilbake til forrige side og pr\u00f8v p\u00e5 nytt.",
 		"nn": "G\u00e5 tilbake til forrige side og pr\u00f8v p\u00e5 nytt.",
@@ -184,6 +188,10 @@
 		"el": "\u0391\u03c5\u03c4\u03cc \u03c4\u03bf \u03c3\u03c6\u03ac\u03bb\u03bc\u03b1 \u03bc\u03c0\u03bf\u03c1\u03b5\u03af \u03bd\u03b1 \u03c0\u03c1\u03bf\u03ba\u03cd\u03c8\u03b5\u03b9, \u03b5\u03ac\u03bd:",
 		"zu": "Leli phutha kungenzeka libangelwa ukuthi:",
 		"xh": "Le mpazamo isenokuba ibangelwe:"
+	},
+	"cause_badlink": {
+		"sv": "Länken till websidan var felaktig, kanske till följd av elak automatisk ifyllning, en trasig länk eller ett trasigt bokmärke.",
+		"nl": "Verkeerde link gebruikt, bijvoorbeeld een bookmark (bladwijzer)."
 	},
 	"cause_backforward": {
 		"no": "Bruk av \"frem\"- og \"tilbake\"-knappene i nettleseren.",
