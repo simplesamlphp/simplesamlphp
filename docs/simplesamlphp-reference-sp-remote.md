@@ -174,8 +174,7 @@ The following SAML 2.0 options are available:
     `FALSE`.
 
 `NameIDFormat`
-:   The `NameIDFormat` this SP should receive. This may be specified as either a string or an array, but if an array
-    is given, the first format specified will be the one requested during an authentication request.
+:   The `NameIDFormat` this SP should receive. This may be specified as either a string or an array.
 
 :   The three most commonly used values are:
 
