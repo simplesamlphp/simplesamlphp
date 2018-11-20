@@ -25,11 +25,6 @@
         },
         "files": ["lib/_autoload_modules.php"]
     },
-    "config": {
-        "platform": {
-            "php": "5.5.9"
-        }
-    },
     "require": {
         "php": ">=5.5",
         "ext-SPL": "*",
