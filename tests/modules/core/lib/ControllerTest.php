@@ -61,7 +61,7 @@ class ControllerTest extends ClearStateTestCase
             [
                 'baseurlpath' => 'https://example.org/simplesaml',
                 'module.enable' => ['exampleauth' => true],
-                'language.i18n.backend' => Localization::GETTEXT_I18N_BACKEND,
+                'usenewui' => true,
             ],
             '[ARRAY]',
             'simplesaml'

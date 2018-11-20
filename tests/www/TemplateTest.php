@@ -19,7 +19,7 @@ class TemplateTest extends TestCase
     public function testSyntax()
     {
         $config = Configuration::loadFromArray([
-            'language.i18n.backend' => 'gettext/gettext',
+            'usenewui' => true,
             'module.enable' => array_fill_keys(Module::getModules(), true),
         ]);
         Configuration::setPreLoadedConfig($config);

@@ -12,6 +12,7 @@ namespace SimpleSAML\XHTML;
 use JaimePerez\TwigConfigurableI18n\Twig\Environment as Twig_Environment;
 use JaimePerez\TwigConfigurableI18n\Twig\Extensions\Extension\I18n as Twig_Extensions_Extension_I18n;
 use Symfony\Component\HttpFoundation\Response;
+use SimpleSAML\Locale\Localization;
 
 class Template extends Response
 {
@@ -265,7 +266,7 @@ class Template extends Response
         // initialize some basic context
         $langParam = $this->configuration->getString('language.parameter.name', 'language');
         $twig->addGlobal('languageParameterName', $langParam);
-        $twig->addGlobal('localeBackend', $this->configuration->getString('language.i18n.backend', 'SimpleSAMLphp'));
+        $twig->addGlobal('localeBackend', $this->useNewUI ? Localization::GETTEXT_I18N_BACKEND : Localization::SSP_I18N_BACKEND);
         $twig->addGlobal('currentLanguage', $this->translator->getLanguage()->getLanguage());
         $twig->addGlobal('isRTL', false); // language RTL configuration
         if ($this->translator->getLanguage()->isLanguageRTL()) {

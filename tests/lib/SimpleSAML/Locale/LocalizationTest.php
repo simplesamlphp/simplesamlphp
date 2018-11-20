@@ -22,7 +22,7 @@ class LocalizationTest extends TestCase
     {
         // The constructor should activate the default domain
         $c = Configuration::loadFromArray(
-            ['language.i18n.backend' => 'SimpleSAMLphp']
+            ['usenewui' => false]
         );
         $l = new Localization($c);
         $this->assertTrue($l->isI18NBackendDefault());
@@ -35,7 +35,7 @@ class LocalizationTest extends TestCase
     public function testAddDomain()
     {
         $c = Configuration::loadFromArray(
-            ['language.i18n.backend' => 'gettext/gettext']
+            ['usenewui' => true]
         );
         $l = new Localization($c);
         $newDomain = 'test';
