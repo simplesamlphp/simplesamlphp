@@ -72,7 +72,7 @@ class Template extends Response
     /**
      * Whether to use the new user interface or not.
      *
-     * @var string
+     * @var bool
      */
     private $useNewUI;
 
