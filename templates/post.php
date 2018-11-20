@@ -4,9 +4,8 @@
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <title>POST data</title>
-    <script type="text/javascript" src="/<?php echo $this->data['baseurlpath']; ?>resources/post.js"></script>
-    <link 
-        type="text/css" rel="stylesheet" href="/<?php echo $this->data['baseurlpath']; ?>resources/post.css" />
+    <script src="/<?php echo $this->data['baseurlpath']; ?>resources/post.js"></script>
+    <link type="text/css" rel="stylesheet" href="/<?php echo $this->data['baseurlpath']; ?>resources/post.css" />
 </head>
 <body>
 
