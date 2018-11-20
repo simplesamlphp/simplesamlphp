@@ -222,7 +222,7 @@ function present_attributes($t, $attributes, $nameParent)
         $str = '<table class="attributes" '.$summary.'>';
     } else {
         $parentStr = '';
-        $str = '<table id="table_with_attributes"  class="attributes" '.$summary.'>';
+        $str = '<table id="table_with_attributes" class="attributes" '.$summary.'>';
         $str .= "\n".'<caption>'.$translator->t('{consent:consent:table_caption}').'</caption>';
     }
 
@@ -241,14 +241,14 @@ function present_attributes($t, $attributes, $nameParent)
             // insert values directly
 
             $str .= "\n".'<tr class="'.$alternate[($i++ % 2)].
-                '"><td><span class="attrname">'.htmlspecialchars($name).'</span>';
+                '"><td><span class="attrname">'.htmlspecialchars($name).'</span></td>';
 
             $isHidden = in_array($nameraw, $t->data['hiddenAttributes'], true);
             if ($isHidden) {
                 $hiddenId = \SimpleSAML\Utils\Random::generateID();
-                $str .= '<div class="attrvalue hidden" id="hidden_'.$hiddenId.'">';
+                $str .= '<td><span class="attrvalue hidden" id="hidden_'.$hiddenId.'">';
             } else {
-                $str .= '<div class="attrvalue">';
+                $str .= '<td><span class="attrvalue">';
             }
 
             if (sizeof($value) > 1) {
@@ -272,7 +272,7 @@ function present_attributes($t, $attributes, $nameParent)
                     $str .= htmlspecialchars($value[0]);
                 }
             } // end of if multivalue
-            $str .= '</div>';
+            $str .= '</span>';
 
             if ($isHidden) {
                 $str .= '<div class="attrvalue consent_showattribute" id="visible_'.$hiddenId.'">';
