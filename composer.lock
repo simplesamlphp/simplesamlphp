@@ -260,16 +260,16 @@
         },
         {
             "name": "simplesamlphp/saml2",
-            "version": "v3.2.5",
+            "version": "v3.2.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/saml2.git",
-                "reference": "0e6632e8a208fa1f3ff3786d997f27c1d430de80"
+                "reference": "a56e46ef8e0c5245a4ca7facc3d308b493215751"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/0e6632e8a208fa1f3ff3786d997f27c1d430de80",
-                "reference": "0e6632e8a208fa1f3ff3786d997f27c1d430de80",
+                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/a56e46ef8e0c5245a4ca7facc3d308b493215751",
+                "reference": "a56e46ef8e0c5245a4ca7facc3d308b493215751",
                 "shasum": ""
             },
             "require": {
@@ -313,7 +313,7 @@
                 }
             ],
             "description": "SAML2 PHP library from SimpleSAMLphp",
-            "time": "2018-11-16T09:36:27+00:00"
+            "time": "2018-11-20T11:11:28+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
