@@ -494,7 +494,7 @@ $config = [
      *
      * 'module.enable' => [
      *      'exampleauth' => true, // Setting to TRUE enables.
-     *      'saml' => false, // Setting to FALSE disables.
+     *      'consent' => false, // Setting to FALSE disables.
      *      'core' => null, // Unset or NULL uses default.
      * ],
      *
