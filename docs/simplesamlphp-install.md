@@ -31,7 +31,7 @@ Prerequisites
 -------------
 
  * Some webserver capable of executing PHP scripts.
- * PHP version >= 5.4.0.
+ * PHP version >= 5.5.0.
  * Support for the following PHP extensions:
    * Always required: `date`, `dom`, `hash`, `libxml`, `openssl`, `pcre`, `SPL`, `zlib`, `json`, `mbstring`
    * When automatically checking for latest versions, and used by some modules: `cURL`
@@ -100,7 +100,7 @@ By default, SimpleSAMLphp looks for its configuration in the `config` directory 
 has some drawbacks, like making it harder to use SimpleSAMLphp as a composer dependency, or to package it for different
 operating systems.
 
-However, it is now possible to specify an alternate location for the configuration directory by setting an environment
+It is possible to specify an alternate location for the configuration directory by setting an environment
 variable with this location. This way, the configuration directory doesn't need to be inside the library's directory,
 making it easier to manage and to update. The simplest way to set this environment variable is to set it in your web
 server's configuration. See the next section for more information.
@@ -257,6 +257,14 @@ to `disable`.
     cd modules/consent
     mv enable disable
 
+Alternatively or additionally, you can use the `module.enable` setting
+in config.php:
+
+    'module.enable' => [
+         'exampleauth' => true, // Setting to TRUE enables.
+         'saml' => false, // Setting to FALSE disables.
+         'core' => null, // Unset or NULL uses default for this module.
+    ],
 
 
 The SimpleSAMLphp installation webpage
