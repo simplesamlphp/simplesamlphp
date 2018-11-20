@@ -229,7 +229,7 @@ class Module
              * Contributed by Travis Hegner.
              */
             $script = "/$module/$url";
-            if (stripos($request->getScriptName(), $script) === false) {
+            if (strpos($request->getScriptName(), $script) === false) {
                 $request->server->set('SCRIPT_NAME', $request->getScriptName().'/'.$module.'/'.$url);
             }
 
