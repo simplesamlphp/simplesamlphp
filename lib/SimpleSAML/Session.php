@@ -22,7 +22,7 @@ use SimpleSAML\Error;
  * @package SimpleSAMLphp
  */
 
-class Session implements \Serializable
+class Session implements \Serializable, Utils\ClearableState
 {
     /**
      * This is a timeout value for setData, which indicates that the data
@@ -47,6 +47,13 @@ class Session implements \Serializable
      * Warning: do not set the instance manually, call Session::load() instead.
      */
     private static $instance = null;
+
+    /**
+     * The global configuration.
+     *
+     * @var \SimpleSAML\Configuration
+     */
+    private static $config;
 
     /**
      * The session ID of this session.
@@ -131,6 +138,7 @@ class Session implements \Serializable
      */
     private $authData = [];
 
+
     /**
      * Private constructor that restricts instantiation to either getSessionFromRequest() for the current session or
      * getSession() for a specific one.
@@ -139,6 +147,8 @@ class Session implements \Serializable
      */
     private function __construct($transient = false)
     {
+        $this->setConfiguration(Configuration::getInstance());
+
         if (php_sapi_name() === 'cli' || defined('STDIN')) {
             $this->trackid = 'CL'.bin2hex(openssl_random_pseudo_bytes(4));
             Logger::setTrackId($this->trackid);
@@ -174,14 +184,25 @@ class Session implements \Serializable
             $this->markDirty();
 
             // initialize data for session check function if defined
-            $globalConfig = Configuration::getInstance();
-            $checkFunction = $globalConfig->getArray('session.check_function', null);
+            $checkFunction = self::$config->getArray('session.check_function', null);
             if (isset($checkFunction)) {
                 assert(is_callable($checkFunction));
                 call_user_func($checkFunction, $this, true);
             }
         }
     }
+
+
+    /**
+     * Set the configuration we should use.
+     *
+     * @param Configuration $config
+     */
+    public function setConfiguration(Configuration $config)
+    {
+        self::$config = $config;
+    }
+
 
     /**
      * Serialize this session object.
@@ -192,8 +213,7 @@ class Session implements \Serializable
      */
     public function serialize()
     {
-        $serialized = serialize(get_object_vars($this));
-        return $serialized;
+        return serialize(get_object_vars($this));
     }
 
     /**
@@ -212,6 +232,7 @@ class Session implements \Serializable
                 $this->$k = $v;
             }
         }
+        self::$config = Configuration::getInstance();
 
         // look for any raw attributes and load them in the 'Attributes' array
         foreach ($this->authData as $authority => $parameters) {
@@ -542,8 +563,7 @@ class Session implements \Serializable
         assert(is_int($expire) || $expire === null);
 
         if ($expire === null) {
-            $globalConfig = Configuration::getInstance();
-            $expire = time() + $globalConfig->getInteger('session.rememberme.lifetime', 14 * 86400);
+            $expire = time() + self::$config->getInteger('session.rememberme.lifetime', 14 * 86400);
         }
         $this->rememberMeExpire = $expire;
 
@@ -581,12 +601,11 @@ class Session implements \Serializable
 
         $data['Authority'] = $authority;
 
-        $globalConfig = Configuration::getInstance();
         if (!isset($data['AuthnInstant'])) {
             $data['AuthnInstant'] = time();
         }
 
-        $maxSessionExpire = time() + $globalConfig->getInteger('session.duration', 8 * 60 * 60);
+        $maxSessionExpire = time() + self::$config->getInteger('session.duration', 8 * 60 * 60);
         if (!isset($data['Expire']) || $data['Expire'] > $maxSessionExpire) {
             // unset, or beyond our session lifetime. Clamp it to our maximum session lifetime
             $data['Expire'] = $maxSessionExpire;
@@ -621,13 +640,13 @@ class Session implements \Serializable
         $sessionHandler = SessionHandler::getSessionHandler();
 
         if (!$this->transient && (!empty($data['RememberMe']) || $this->rememberMeExpire) &&
-            $globalConfig->getBoolean('session.rememberme.enable', false)
+            self::$config->getBoolean('session.rememberme.enable', false)
         ) {
             $this->setRememberMeExpire();
         } else {
             try {
                 Utils\HTTP::setCookie(
-                    $globalConfig->getString('session.authtoken.cookiename', 'SimpleSAMLAuthToken'),
+                    self::$config->getString('session.authtoken.cookiename', 'SimpleSAMLAuthToken'),
                     $this->authToken,
                     $sessionHandler->getCookieParams()
                 );
@@ -755,9 +774,8 @@ class Session implements \Serializable
         $params = array_merge($sessionHandler->getCookieParams(), is_array($params) ? $params : []);
 
         if ($this->authToken !== null) {
-            $globalConfig = Configuration::getInstance();
             Utils\HTTP::setCookie(
-                $globalConfig->getString('session.authtoken.cookiename', 'SimpleSAMLAuthToken'),
+                self::$config->getString('session.authtoken.cookiename', 'SimpleSAMLAuthToken'),
                 $this->authToken,
                 $params
             );
@@ -778,8 +796,7 @@ class Session implements \Serializable
         $this->markDirty();
 
         if ($expire === null) {
-            $globalConfig = Configuration::getInstance();
-            $expire = time() + $globalConfig->getInteger('session.duration', 8 * 60 * 60);
+            $expire = time() + self::$config->getInteger('session.duration', 8 * 60 * 60);
         }
 
         $this->authData[$authority]['Expire'] = $expire;
@@ -859,9 +876,7 @@ class Session implements \Serializable
 
         if ($timeout === null) {
             // use the default timeout
-            $configuration = Configuration::getInstance();
-
-            $timeout = $configuration->getInteger('session.datastore.timeout', null);
+            $timeout = self::$config->getInteger('session.datastore.timeout', null);
             if ($timeout !== null) {
                 if ($timeout <= 0) {
                     throw new \Exception(
@@ -1133,5 +1148,16 @@ class Session implements \Serializable
             }
         }
         return $authorities;
+    }
+
+
+    /**
+     * Clear any configuration information cached
+     */
+    public static function clearInternalState()
+    {
+        self::$config = null;
+        self::$instance = null;
+        self::$sessions = null;
     }
 }

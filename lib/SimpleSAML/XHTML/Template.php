@@ -11,8 +11,10 @@ namespace SimpleSAML\XHTML;
 
 use JaimePerez\TwigConfigurableI18n\Twig\Environment as Twig_Environment;
 use JaimePerez\TwigConfigurableI18n\Twig\Extensions\Extension\I18n as Twig_Extensions_Extension_I18n;
+use Symfony\Component\HttpFoundation\Response;
+use SimpleSAML\Locale\Localization;
 
-class Template
+class Template extends Response
 {
     /**
      * The data associated with this template, accessible within the template itself.
@@ -69,6 +71,14 @@ class Template
     private $module;
 
     /**
+     * Whether to use the new user interface or not.
+     *
+     * @var bool
+     */
+    private $useNewUI;
+
+
+    /**
      * A template controller, if any.
      *
      * Used to intercept certain parts of the template handling, while keeping away unwanted/unexpected hooks. Set
@@ -84,10 +94,10 @@ class Template
      * Whether we are using a non-default theme or not.
      *
      * If we are using a theme, this variable holds an array with two keys: "module" and "name", those being the name
-     * of the module and the name of the theme, respectively. If we are using the default theme, the variable defaults
-     * to false.
+     * of the module and the name of the theme, respectively. If we are using the default theme, the variable has
+     * the 'default' string in the "name" key, and 'null' in the "module" key.
      *
-     * @var bool|array
+     * @var array
      */
     private $theme;
 
@@ -117,6 +127,9 @@ class Template
         $this->translator = new \SimpleSAML\Locale\Translate($configuration, $defaultDictionary);
         $this->localization = new \SimpleSAML\Locale\Localization($configuration);
 
+        // check if we are supposed to use the new UI
+        $this->useNewUI = $this->configuration->getBoolean('usenewui', false);
+
         // check if we need to attach a theme controller
         $controller = $this->configuration->getString('theme.controller', false);
         if ($controller && class_exists($controller) &&
@@ -126,6 +139,18 @@ class Template
         }
 
         $this->twig = $this->setupTwig();
+        parent::__construct();
+    }
+
+
+    /**
+     * Get the normalized template name.
+     *
+     * @return string The name of the template to use.
+     */
+    public function getTemplateName()
+    {
+        return $this->normalizeTemplateName($this->template);
     }
 
 
@@ -148,7 +173,11 @@ class Template
         if ($tplpos) {
             $templateName = substr($templateName, 0, $tplpos);
         }
-        return $templateName.'.twig';
+
+        if ($this->useNewUI || $this->theme['module'] !== null) {
+            return $templateName.'.twig';
+        }
+        return $templateName;
     }
 
 
@@ -237,7 +266,7 @@ class Template
         // initialize some basic context
         $langParam = $this->configuration->getString('language.parameter.name', 'language');
         $twig->addGlobal('languageParameterName', $langParam);
-        $twig->addGlobal('localeBackend', $this->configuration->getString('language.i18n.backend', 'SimpleSAMLphp'));
+        $twig->addGlobal('localeBackend', $this->useNewUI ? Localization::GETTEXT_I18N_BACKEND : Localization::SSP_I18N_BACKEND);
         $twig->addGlobal('currentLanguage', $this->translator->getLanguage()->getLanguage());
         $twig->addGlobal('isRTL', false); // language RTL configuration
         if ($this->translator->getLanguage()->isLanguageRTL()) {
@@ -409,20 +438,50 @@ class Template
 
 
     /**
-     * Show the template to the user.
+     * Get the contents produced by this template.
+     *
+     * @return string The HTML rendered by this template, as a string.
+     * @throws \Exception if the template cannot be found.
      */
-    public function show()
+    protected function getContents()
     {
         if ($this->twig !== false) {
             $this->twigDefaultContext();
             if ($this->controller) {
                 $this->controller->display($this->data);
             }
-            echo $this->twig->render($this->twig_template, $this->data);
+            $content = $this->twig->render($this->twig_template, $this->data);
         } else {
-            $filename = $this->findTemplatePath($this->template);
-            require($filename);
+            $content = require($this->findTemplatePath($this->template));
         }
+        return $content;
+    }
+
+
+    /**
+     * Send this template as a response.
+     *
+     * @return Response This response.
+     * @throws \Exception if the template cannot be found.
+     */
+    public function send()
+    {
+        $this->content = $this->getContents();
+        return parent::send();
+    }
+
+
+    /**
+     * Show the template to the user.
+     *
+     * This method is a remnant of the old templating system, where templates where shown manually instead of
+     * returning a response.
+     *
+     * @deprecated Do not use this method, use send() instead.
+     */
+    public function show()
+    {
+        echo $this->getContents();
     }
 
 

@@ -96,7 +96,7 @@ class Localization
         $this->localeDir = $this->configuration->resolvePath('locales');
         $this->language = new Language($configuration);
         $this->langcode = $this->language->getPosixLanguage($this->language->getLanguage());
-        $this->i18nBackend = $this->configuration->getString('language.i18n.backend', self::SSP_I18N_BACKEND);
+        $this->i18nBackend = ($this->configuration->getBoolean('usenewui', false) ? self::GETTEXT_I18N_BACKEND : self::SSP_I18N_BACKEND);
         $this->setupL10N();
     }
 

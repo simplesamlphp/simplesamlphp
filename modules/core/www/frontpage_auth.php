@@ -19,7 +19,7 @@ $links_auth = [];
 $links_federation = [];
 
 $links_auth[] = [
-    'href' => 'login.php',
+    'href' => 'authenticate.php',
     'text' => '{core:frontpage:authtest}',
 ];
 
