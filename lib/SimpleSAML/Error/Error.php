@@ -87,15 +87,8 @@ class Error extends Exception
             $this->httpCode = $httpCode;
         }
 
-        $moduleCode = explode(':', $this->errorCode, 2);
-        if (count($moduleCode) === 2) {
-            $this->module = $moduleCode[0];
-            $this->dictTitle = '{'.$this->module.':errors:title_'.$moduleCode[1].'}';
-            $this->dictDescr = '{'.$this->module.':errors:descr_'.$moduleCode[1].'}';
-        } else {
-            $this->dictTitle = ErrorCodes::getErrorCodeTitle($this->errorCode);
-            $this->dictDescr = ErrorCodes::getErrorCodeDescription($this->errorCode);
-        }
+        $this->dictTitle = ErrorCodes::getErrorCodeTitle($this->errorCode);
+        $this->dictDescr = ErrorCodes::getErrorCodeDescription($this->errorCode);
 
         if (!empty($this->parameters)) {
             $msg = $this->errorCode.'(';
