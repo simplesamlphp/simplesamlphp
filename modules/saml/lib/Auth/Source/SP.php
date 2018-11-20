@@ -236,6 +236,7 @@ class SP extends Source
         }
 
         if (isset($state['saml:NameIDPolicy'])) {
+            $policy = null;
             if (is_string($state['saml:NameIDPolicy'])) {
                 $policy = [
                     'Format' => (string) $state['saml:NameIDPolicy'],
@@ -243,10 +244,12 @@ class SP extends Source
                 ];
             } elseif (is_array($state['saml:NameIDPolicy'])) {
                 $policy = $state['saml:NameIDPolicy'];
-            } else {
-                throw new \SimpleSAML\Error\Exception('Invalid value of $state[\'saml:NameIDPolicy\'].');
+            } elseif ($state['saml:NameIDPolicy'] === null) {
+                $policy = ['Format' => \SAML2\Constants::NAMEID_TRANSIENT];
             }
-            $ar->setNameIdPolicy($policy);
+            if ($policy !== null) {
+                $ar->setNameIdPolicy($policy);
+            }
         }
 
         $IDPList = [];

@@ -54,5 +54,5 @@ Force a specific NameIdFormat. Useful if an SP misbehaves and requests (or publi
 
     90 => array(
          'class' => 'core:PHP',
-         'code' => '$state["saml:NameIDFormat"] = "urn:oasis:names:tc:SAML:2.0:nameid-format:transient";'
+         'code' => '$state["saml:NameIDFormat"] = ["Format" => "urn:oasis:names:tc:SAML:2.0:nameid-format:transient", "AllowCreate" => true];'
     ),
