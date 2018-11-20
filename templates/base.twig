@@ -21,6 +21,9 @@
 {% block header %}{% include "_header.twig" %}{% endblock %}
         <div id="content">
             <div class="wrap">
+            {% if not isProduction -%}
+            <div class="message-box warning">{{ 'pre-production-warning' | trans }}</div>
+            {% endif -%}
                 {% block contentwrapper -%}
                     {% block content %}{% endblock -%}
                 {% endblock %}
