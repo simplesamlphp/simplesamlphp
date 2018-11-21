@@ -360,6 +360,10 @@ CONTENT
     background-color: #f7e4e1;
     border-left-color: #cc4b37;
 }
+.message-box.warning {
+    background-color: #fffdbf;
+    border-left-color: #f9f56b;
+}
 .message-box.success {
     background-color: #daf7e6;
     border-left-color: #46cc48;

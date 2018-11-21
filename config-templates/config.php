@@ -808,7 +808,8 @@ $config = [
      * is running in a production environment. This will affect the way resources
      * are used, offering an optimized version when running in production, and an
      * easy-to-debug one when not. Set it to false when you are testing or
-     * developing the software.
+     * developing the software, in which case a banner will be displayed to remind
+     * users that they're dealing with a non-production instance.
      *
      * Defaults to true.
      */

@@ -111,7 +111,7 @@ Filters can be added both in `hosted` and `remote` metadata. Here is an example 
 		'certificate'		=>	'example.org.crt',
 		'auth'				=>	'feide',
 		'authproc' => [
-			40 => 'preprodwarning:Warning',
+			40 => 'core:TargetedID',
 		],
 	]
 
@@ -143,7 +143,6 @@ The following filters are included in the SimpleSAMLphp distribution:
 - [`core:TargetedID`](./core:authproc_targetedid): Generate the `eduPersonTargetedID` attribute.
 - [`core:WarnShortSSOInterval`](./core:authproc_warnshortssointerval): Give a warning if the user logs into the same SP twice within a few seconds.
 - [`expirycheck:ExpiryDate`](./expirycheck:expirycheck): Block access to accounts that have expired.
-- [`preprodwarning:Warning`](./preprodwarning:warning): Warn the user about accessing a test IdP.
 - [`saml:AttributeNameID`](./saml:nameid): Generate custom NameID with the value of an attribute.
 - [`saml:AuthnContextClassRef`](./saml:authproc_authncontextclassref): Set the authentication context in the response.
 - [`saml:ExpectedAuthnContextClassRef`](./saml:authproc_expectedauthncontextclassref): Verify the user's authentication context.
