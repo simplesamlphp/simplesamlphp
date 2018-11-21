@@ -176,6 +176,16 @@ $config = [
      */
     'enable.http_post' => false,
 
+    /*
+     * Set the allowed clock skew between encrypting/decrypting assertions
+     *
+     * If you have an server that is constantly out of sync, this option
+     * allows you to adjust the allowed clock-skew.
+     *
+     * Allowed range: 180 - 300
+     * Defaults to 180.
+     */
+    'assertion.allowed_clock_skew' => 180,
 
 
     /************************
