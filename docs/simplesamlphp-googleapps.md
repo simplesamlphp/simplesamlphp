@@ -42,7 +42,7 @@ Edit `config.php`, and enable the SAML 2.0 IdP:
 You must generate a certificate for your IdP.
 Here is an example of an openssl command to generate a new key and a self signed certificate to use for signing SAML messages:
 
-    openssl req -newkey rsa:2048 -new -x509 -days 3652 -nodes -out googleappsidp.crt -keyout googleappsidp.pem
+    openssl req -newkey rsa:3072 -new -x509 -days 3652 -nodes -out googleappsidp.crt -keyout googleappsidp.pem
 
 The certificate above will be valid for 10 years.
 

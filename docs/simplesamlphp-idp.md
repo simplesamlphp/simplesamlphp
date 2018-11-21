@@ -127,7 +127,7 @@ Here is an example of an `openssl`-command which can be used to generate a new p
 
 This key and certificate can be used to sign SAML messages:
 
-    openssl req -newkey rsa:2048 -new -x509 -days 3652 -nodes -out example.org.crt -keyout example.org.pem
+    openssl req -newkey rsa:3072 -new -x509 -days 3652 -nodes -out example.org.crt -keyout example.org.pem
 
 The certificate above will be valid for 10 years.
 
