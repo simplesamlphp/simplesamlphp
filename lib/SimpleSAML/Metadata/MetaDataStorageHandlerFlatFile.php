@@ -125,7 +125,7 @@ class MetaDataStorageHandlerFlatFile extends MetaDataStorageSource
     }
 
 
-    private function generateDynamicHostedEntityID($set)
+    public function generateDynamicHostedEntityID($set)
     {
         // get the configuration
         $baseurl = \SimpleSAML\Utils\HTTP::getBaseURL();
