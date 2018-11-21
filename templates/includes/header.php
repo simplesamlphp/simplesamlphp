@@ -206,3 +206,7 @@ if (!empty($this->data['htmlinject']['htmlContentPre'])) {
         echo $c;
     }
 }
+$config = \SimpleSAML\Configuration::getInstance();
+if(! $config->getBoolean('production', true)) {
+  echo '<div class="caution">' . $this->t('{preprodwarning:warning:warning}'). '</div>';
+}
