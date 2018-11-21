@@ -21,27 +21,4 @@ if (empty($password)) {
     exit(1);
 }
 
-$table = '';
-foreach (array_chunk(hash_algos(), 6) as $chunk) {
-    foreach ($chunk as $algo) {
-        $table .= sprintf('%-13s', $algo);
-    }
-    $table .= "\n";
-}
-
-echo "The following hashing algorithms are available:\n".$table."\n";
-echo "Which one do you want? [sha256] ";
-$algo = trim(fgets(STDIN));
-if (empty($algo)) {
-    $algo = 'sha256';
-}
-
-if (!in_array(strtolower($algo), hash_algos(), true)) {
-    echo "Hashing algorithm '$algo' is not supported\n";
-    exit(1);
-}
-
-echo "Do you want to use a salt? (yes/no) [yes] ";
-$s = (trim(fgets(STDIN)) == 'no') ? '' : 'S';
-
-echo "\n  ".SimpleSAML\Utils\Crypto::pwHash($password, strtoupper($s.$algo))."\n\n";
+echo "\n  ".SimpleSAML\Utils\Crypto::pwHash($password)."\n\n";
