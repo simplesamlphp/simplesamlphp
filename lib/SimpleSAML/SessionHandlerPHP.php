@@ -141,12 +141,20 @@ class SessionHandlerPHP extends SessionHandler
     public function newSessionId()
     {
         // generate new (secure) session id
-        $sessionId = bin2hex(openssl_random_pseudo_bytes(16));
-        Session::createSession($sessionId);
+        if (function_exists('session_create_id')) {
+            $sid_length = (int) ini_get('session.sid_length');
+            $sid_bits_per_char = (int) ini_get('session.sid_bits_per_character');
 
+            if (($sid_length * $sid_bits_per_char) < 128) {
+                \SimpleSAML\Logger::warning("Unsafe defaults used for sessionId generation!");
+            }
+            $sessionId = session_create_id();
+        } else {
+            $sessionId = bin2hex(openssl_random_pseudo_bytes(16));
+        }
+        SimpleSAML_Session::createSession($sessionId);
         return $sessionId;
     }
-
 
     /**
      * Retrieve the session ID saved in the session cookie, if there's one.
