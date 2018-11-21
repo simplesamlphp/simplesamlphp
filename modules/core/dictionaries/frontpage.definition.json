@@ -113,6 +113,27 @@
 	"link_sanitycheck": {
 		"en": "Sanity check of your SimpleSAMLphp setup"
 	},
+	"link_consentAdmin": {
+		"en": "Consent Administration"
+	},
+	"link_memcacheMonitor": {
+		"en": "MemCache Statistics"
+	},
+	"link_oauth": {
+		"en": "OAuth Consumer Registry"
+	},
+	"link_cron": {
+		"en": "Cron module information page"
+	},
+	"link_statistics": {
+		"en": "Show statistics"
+	},
+	"link_statistics_metadata": {
+		"en": "Show statistics metadata"
+	},
+	"link_metarefresh": {
+		"en": "Metarefresh: fetch metadata"
+	},
 	"welcome": {
 		"en": "Welcome"
 	},
