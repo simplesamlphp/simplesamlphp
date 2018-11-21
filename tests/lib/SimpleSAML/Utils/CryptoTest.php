@@ -224,6 +224,20 @@ PHP;
         $this->assertTrue($res);
     }
 
+    /**
+     * @covers \SimpleSAML\Utils\Crypto::pwValid
+     */
+    public function testBadPwInvalid()
+    {
+        $pw = "password";
+        $pw2 = "password2";
+
+        $hash = Crypto::pwHash($pw);
+        $res = Crypto::pwValid($hash, $pw2);
+
+        $this->assertFalse($res);
+    }
+
 
     /**
      * @covers \SimpleSAML\Utils\Crypto::pwValid
