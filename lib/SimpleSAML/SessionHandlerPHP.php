@@ -152,7 +152,7 @@ class SessionHandlerPHP extends SessionHandler
         } else {
             $sessionId = bin2hex(openssl_random_pseudo_bytes(16));
         }
-        SimpleSAML_Session::createSession($sessionId);
+        \SimpleSAML\Session::createSession($sessionId);
         return $sessionId;
     }
 
