@@ -16,6 +16,8 @@ Released TBD
   * Introduce new UI based on Twig templates.
     The new templates co-exist next to the old ones.
   * SimpleSAMLphp can now be used with applications that use Twig 2.
+  * Generate sessionID complying with PHP config settings.
+  * Update OpenSSL RSA bit length in docs.
   * Update configuration templates and documentation to PHP
     short array syntax.
   * All clases moved to namespaces and reformatted code to PSR-2.
@@ -35,6 +37,10 @@ Released TBD
   * Allow to specifiy NameIDPolicy Format and AllowCreate in hosted SP
     and remote IdP configurtion, and restore possibility to omit it
     from AuthnRequests entirely.
+  * Add setting `assertion.allowed_clock_skew` to influence how lenient
+    we should be with the timestamps in received SAML messages.
+  * If Issuer of IdP does not match the entity we sent the request to,
+    log a warning instead of bailing out with an exception.
 
 ## Version 1.16.2
 

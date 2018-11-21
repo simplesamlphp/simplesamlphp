@@ -17,7 +17,7 @@ try {
 } catch (Exception $e) {
     // TODO: look for a specific exception
     // This is dirty. Instead of checking the message of the exception, \SAML2\Binding::getCurrentBinding() should throw
-    // an specific exception when the binding is unknown, and we should capture that here
+    // a specific exception when the binding is unknown, and we should capture that here
     if ($e->getMessage() === 'Unable to find the current binding.') {
         throw new \SimpleSAML\Error\Error('ACSPARAMS', $e, 400);
     } else {
@@ -102,9 +102,7 @@ if ($state) {
         $idpMetadata = $source->getIdPMetadata($idp);
         $idplist = $idpMetadata->getArrayize('IDPList', []);
         if (!in_array($state['ExpectedIssuer'], $idplist, true)) {
-            throw new \SimpleSAML\Error\Exception(
-                'The issuer of the response does not match to the identity provider we sent the request to.'
-            );
+            SimpleSAML\Logger::warning('The issuer of the response not match to the identity provider we sent the request to.');
         }
     }
 } else {
