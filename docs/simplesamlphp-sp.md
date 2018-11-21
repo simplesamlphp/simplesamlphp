@@ -50,7 +50,7 @@ Some Identity Providers / Federations may require that your Service Providers ho
 Create a self-signed certificate in the `cert/` directory.
 
 	cd cert
-	openssl req -newkey rsa:2048 -new -x509 -days 3652 -nodes -out saml.crt -keyout saml.pem
+	openssl req -newkey rsa:3072 -new -x509 -days 3652 -nodes -out saml.crt -keyout saml.pem
 
 
 Then edit your `authsources.php` entry, and add references to your certificate:
