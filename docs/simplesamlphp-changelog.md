@@ -21,6 +21,7 @@ Released TBD
   * Update configuration templates and documentation to PHP
     short array syntax.
   * All clases moved to namespaces and reformatted code to PSR-2.
+  * Use bcrypt for new password hashes, old ones will remain working.
   * Many code cleanups.
 
 ### consent
@@ -29,6 +30,11 @@ Released TBD
 ### core
   * Allow `core:PHP` to manipulate all of the state.
   * IdP initiated login: add compatibility with Shibboleth parameters.
+
+### preprodwarning
+  * This module is now deprecated. Use the `production` configuration
+    option instead; set it to `false` to show a pre-production warning
+    before authentication.
 
 ### saml
   * Add initial support for SAML Subject Id Attributes.
