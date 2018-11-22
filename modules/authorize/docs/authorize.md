@@ -95,8 +95,10 @@ Additionally, some helpful instructions are shown.
       'CN=All Teachers,OU=Staff,DC=example,DC=edu',
     ],
     'reject_msg' => [
-      'en' => 'This service is only available to students and teachers. Please contact <a href="mailto:support@example.edu">support</a>.',
-      'nl' => 'Deze dienst is alleen beschikbaar voor studenten en docenten. Neem contact op met <a href="mailto:support@example.edu">support</a>.',
+      'en' => 'This service is only available to students and teachers.' .
+        'Please contact <a href="mailto:support@example.edu">support</a>.',
+      'nl' => 'Deze dienst is alleen beschikbaar voor studenten en docenten.' .
+        'Neem contact op met <a href="mailto:support@example.edu">support</a>.',
     ]
   ]
 ]
