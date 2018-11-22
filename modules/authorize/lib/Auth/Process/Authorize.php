@@ -27,6 +27,13 @@ class Authorize extends \SimpleSAML\Auth\ProcessingFilter
     protected $regex = true;
 
     /**
+     * Array of localised rejection messages
+     *
+     * @var array
+     */
+    protected $reject_msg = [];
+
+    /**
      * Array of valid users. Each element is a regular expression. You should
      * user \ to escape special chars, like '.' etc.
      *
@@ -58,6 +65,13 @@ class Authorize extends \SimpleSAML\Auth\ProcessingFilter
         if (isset($config['regex']) && is_bool($config['regex'])) {
             $this->regex = $config['regex'];
             unset($config['regex']);
+        }
+
+        // Check for the reject_msg option, get it and remove it
+        // Must be array of languages
+        if (isset($config['reject_msg']) && is_array($config['reject_msg'])) {
+            $this->reject_msg = $config['reject_msg'];
+            unset($config['reject_msg']);
         }
 
         foreach ($config as $attribute => $values) {
@@ -93,6 +107,10 @@ class Authorize extends \SimpleSAML\Auth\ProcessingFilter
         assert(array_key_exists('Attributes', $request));
 
         $attributes = &$request['Attributes'];
+        // Store the rejection message array in the $request
+        if(!empty($this->reject_msg)) {
+          $request['authprocAuthorize_reject_msg'] = $this->reject_msg;
+        }
 
         foreach ($this->valid_attribute_values as $name => $patterns) {
             if (array_key_exists($name, $attributes)) {

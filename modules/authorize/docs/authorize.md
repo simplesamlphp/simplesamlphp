@@ -34,6 +34,12 @@ Turn regex pattern matching on or off for the attribute values defined. For back
 
 Note: This option needs to be boolean (TRUE/FALSE) else it will be considered an attribute matching rule.
 
+### Rejection message ###
+Optionally provide a localised, custom message to an unauthorised user. This can be used to provide tailored instructions on how to fix the authorisation issue, supply specific contact details, etc.
+
+It should be an array of key/value pairs, with the keys as the language code. You can use HTML in the message. See below for an example.
+
+
 ### Attribute Rules ###
 Each additional filter configuration option is considered an attribute matching rule. For each attribute, you can specify a string or array of strings to match. If one of those attributes match one of the rules (OR operator), the user is authorized/unauthorized (depending on the deny config option).
 
@@ -72,6 +78,8 @@ An alternate way of using this filter is to deny certain users. Or even use mult
 
 The regex pattern matching can be turned off, allowing for exact attribute matching rules. This can be helpful in cases where you know what the value should be. An example of this is with the memberOf attribute or using the ldap:AttributeAddUsersGroups filter with the group attribute.
 
+Additionally, some helpful instructions are shown.
+
 	'authproc.sp' => array(
 		60 => array(
 			'class' => 'authorize:Authorize',
@@ -79,5 +87,9 @@ The regex pattern matching can be turned off, allowing for exact attribute match
 			'group' =>  array(
 				'CN=SimpleSAML Students,CN=Users,DC=example,DC=edu',
 				'CN=All Teachers,OU=Staff,DC=example,DC=edu',
+			),
+			'reject_msg' => array(
+				'en' => 'This service is only available to students and teachers. Please contact <a href="mailto:support@example.edu">support</a>.',
+				'nl' => 'Deze dienst is alleen beschikbaar voor studenten en docenten. Neem contact op met <a href="mailto:support@example.edu">support</a>.',
 			)
 	)
