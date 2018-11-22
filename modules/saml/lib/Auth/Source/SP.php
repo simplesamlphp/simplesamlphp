@@ -220,6 +220,10 @@ class SP extends Source
             $ar->setRequestedAuthnContext(['AuthnContextClassRef' => $accr, 'Comparison' => $comp]);
         }
 
+        if (isset($state['saml:Audience'])) {
+            $ar->setAudiences($state['saml:Audience']);
+        }
+
         if (isset($state['ForceAuthn'])) {
             $ar->setForceAuthn((bool) $state['ForceAuthn']);
         }

@@ -74,6 +74,12 @@ All these parameters override the equivalent option from the configuration.
 
 :   *Note*: SAML 2 specific.
 
+`saml:Audience`
+:   Add a Conditions element to the SAML AuthnRequest containing an
+    AudienceRestriction with one or more audiences.
+
+:   *Note*: SAML 2 specific.
+
 
 Authentication data
 -------------------
