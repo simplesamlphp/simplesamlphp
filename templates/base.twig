@@ -22,7 +22,12 @@
         <div id="content">
             <div class="wrap">
             {% if not isProduction -%}
-            <div class="message-box warning">{{ 'pre-production-warning' | trans }}</div>
+            <div class="message-box warning">{{ (
+"You are now accessing a pre-production system. This authentication setup " ~
+"is for testing and pre-production verification only. If someone sent you " ~
+"a link that pointed you here, and you are not <i>a tester</i> you " ~
+"probably got the wrong link, and should <b>not be here</b>."
+) | trans | raw }}</div>
             {% endif -%}
                 {% block contentwrapper -%}
                     {% block content %}{% endblock -%}

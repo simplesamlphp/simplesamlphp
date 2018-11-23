@@ -1503,3 +1503,12 @@ msgid ""
 " not intended to be accessed directly."
 msgstr "您連結消費者聲明服務界面，但是沒有提供一個 SAML 認證回應。"
 
+
+msgid ""
+"You are now accessing a pre-production system. This authentication setup "
+"is for testing and pre-production verification only. If someone sent you "
+"a link that pointed you here, and you are not <i>a tester</i> you "
+"probably got the wrong link, and should <b>not be here</b>."
+msgstr ""
+"您現在正在存取一個非正式上線系統。這個身分驗證環境僅是在測試及檢查非正式上線系統。如果有人傳遞這個連結給你，而你並非是 <i>測試人員</i> "
+"的話，你可能是取得一個錯誤連結，且您可能 <b>不適合在此</b>。"
