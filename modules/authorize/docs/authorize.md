@@ -2,9 +2,9 @@ authorize Module
 ================
 
 <!--
-  This file is written in Markdown syntax.
-  For more information about how to use the Markdown syntax, read here:
-  http://daringfireball.net/projects/markdown/syntax
+	This file is written in Markdown syntax.
+	For more information about how to use the Markdown syntax, read here:
+	http://daringfireball.net/projects/markdown/syntax
 -->
 
   * Author: Ernesto Revilla <erny@yaco.es>, Yaco Sistemas, Ryan Panning
