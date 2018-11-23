@@ -19,7 +19,7 @@ if (isset($state['Source']['auth'])) {
     )."&logout";
 }
 if (isset($state['authprocAuthorize_reject_msg'])) {
-  $t->data['reject_msg'] = $state['authprocAuthorize_reject_msg'];
+    $t->data['reject_msg'] = $state['authprocAuthorize_reject_msg'];
 }
 header('HTTP/1.0 403 Forbidden');
 $t->show();

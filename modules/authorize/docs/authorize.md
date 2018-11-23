@@ -22,7 +22,7 @@ This module provides a user authorization filter based on attribute matching for
 
 There are three configuration options that can be defined: `deny`, `regex`, and `reject_msg`. All other filter configuration options are considered attribute matching rules.
 
-Unauthorized will be shown a 403 Forbidden page.
+Unauthorized users will be shown a 403 Forbidden page.
 
 ### `deny` ###
 The default action of the filter is to authorize only if an attribute match is found (default allow). When set to TRUE, this option reverses that rule and authorizes the user unless an attribute match is found (default deny), causing an unauthorized action.
@@ -53,15 +53,15 @@ Note: If regex is enabled, you must use the preg_match format, i.e. you have to 
 To use this filter configure it in `config/config.php`:
 ```php
 'authproc.sp' => [
-  60 => [
-    'class' => 'authorize:Authorize',
-    'uid'   =>  array(
-      '/.*@example.com/',
-      '/(user1|user2|user3)@example.edu/',
-    ],
-    'schacUserStatus' => '@urn:mace:terena.org:userStatus:' .
-      'example.org:service:active.*@',
-  ]
+    60 => [
+        'class' => 'authorize:Authorize',
+        'uid'   =>  [
+            '/.*@example.com/',
+            '/(user1|user2|user3)@example.edu/',
+        ],
+        'schacUserStatus' => '@urn:mace:terena.org:userStatus:' .
+        'example.org:service:active.*@',
+    ]
 ]
 ```
 
@@ -70,14 +70,14 @@ An alternate way of using this filter is to deny certain users. Or even use mult
 
 ```php
 'authproc.sp' => [
-  60 => array[
-    'class' => 'authorize:Authorize',
-    'deny'  => TRUE,
-    'uid'   =>  [
-      '/.*@students.example.edu/',
-      '/(stu1|stu2|stu3)@example.edu/',
+    60 => array[
+        'class' => 'authorize:Authorize',
+        'deny'  => TRUE,
+        'uid'   =>  [
+            '/.*@students.example.edu/',
+            '/(stu1|stu2|stu3)@example.edu/',
+        ]
     ]
-  ]
 ]
 ```
 
@@ -87,19 +87,19 @@ Additionally, some helpful instructions are shown.
 
 ```php
 'authproc.sp' => [
-  60 => [
-    'class' => 'authorize:Authorize',
-    'regex' => FALSE,
-    'group' => [
-      'CN=SimpleSAML Students,CN=Users,DC=example,DC=edu',
-      'CN=All Teachers,OU=Staff,DC=example,DC=edu',
-    ],
-    'reject_msg' => [
-      'en' => 'This service is only available to students and teachers.' .
-        'Please contact <a href="mailto:support@example.edu">support</a>.',
-      'nl' => 'Deze dienst is alleen beschikbaar voor studenten en docenten.' .
-        'Neem contact op met <a href="mailto:support@example.edu">support</a>.',
+    60 => [
+        'class' => 'authorize:Authorize',
+        'regex' => FALSE,
+        'group' => [
+            'CN=SimpleSAML Students,CN=Users,DC=example,DC=edu',
+            'CN=All Teachers,OU=Staff,DC=example,DC=edu',
+        ],
+        'reject_msg' => [
+            'en' => 'This service is only available to students and teachers.' .
+                'Please contact <a href="mailto:support@example.edu">support</a>.',
+            'nl' => 'Deze dienst is alleen beschikbaar voor studenten en docenten.' .
+                'Neem contact op met <a href="mailto:support@example.edu">support</a>.',
+        ]
     ]
-  ]
 ]
 ```

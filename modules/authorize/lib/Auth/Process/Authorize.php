@@ -109,7 +109,7 @@ class Authorize extends \SimpleSAML\Auth\ProcessingFilter
         $attributes = &$request['Attributes'];
         // Store the rejection message array in the $request
         if(!empty($this->reject_msg)) {
-          $request['authprocAuthorize_reject_msg'] = $this->reject_msg;
+            $request['authprocAuthorize_reject_msg'] = $this->reject_msg;
         }
 
         foreach ($this->valid_attribute_values as $name => $patterns) {
