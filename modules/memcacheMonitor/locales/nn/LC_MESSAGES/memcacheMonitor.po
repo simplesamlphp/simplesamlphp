@@ -129,3 +129,5 @@ msgstr "CPU-sekund (system)"
 msgid "Total connections"
 msgstr "Opne tilkoplingar (totalt)"
 
+msgid "{memcacheMonitor:memcachestat:link_memcacheMonitor}"
+msgstr "Memcache statistikkar"

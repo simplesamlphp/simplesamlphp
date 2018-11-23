@@ -598,5 +598,10 @@
 		"cs": "\u00da\u010del slu\u017eby je",
 		"eu": "Zerbitzuaren xedea hau da",
 		"el": "\u039f \u03c3\u03ba\u03bf\u03c0\u03cc\u03c2 \u03c4\u03b7\u03c2 \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b1\u03c2 \u03b5\u03af\u03bd\u03b1\u03b9"
+	},
+	"link_consentAdmin": {
+		"es": "Administración del consentimiento",
+		"no": "Samtykke administrasjon",
+		"nn": "Samtykke administrasjon"
 	}
 }

@@ -1,0 +1,5 @@
+msgid "{statistics:statistics:link_statistics"
+msgstr "Show statistics"
+
+msgid "{statistics:statistics:link_statistics_metadata"
+msgstr "Show statistics metadata"

@@ -53,6 +53,8 @@ $allLinks = [
     'federation' => &$links_federation,
 ];
 \SimpleSAML\Module::callHooks('frontpage', $allLinks);
+\SimpleSAML\Logger::debug('The "frontpage" hook has been deprecated for the configuration page. Implement the '.'
+    "configpage" hook instead.');
 
 // Check for updates. Store the remote result in the session so we
 // don't need to fetch it on every access to this page.
@@ -196,5 +198,7 @@ $t->data['requiredmap'] = [
 ];
 $t->data['version'] = $config->getVersion();
 $t->data['directory'] = dirname(dirname(dirname(dirname(__FILE__))));
+
+\SimpleSAML\Module::callHooks('configpage', $t);
 
 $t->show();

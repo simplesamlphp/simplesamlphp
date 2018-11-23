@@ -126,7 +126,7 @@ class Localization
     }
 
 
-    /*
+    /**
      * Add a new translation domain from a module
      * (We're assuming that each domain only exists in one place)
      *
@@ -142,7 +142,7 @@ class Localization
     }
 
 
-    /*
+    /**
      * Add a new translation domain
      * (We're assuming that each domain only exists in one place)
      *

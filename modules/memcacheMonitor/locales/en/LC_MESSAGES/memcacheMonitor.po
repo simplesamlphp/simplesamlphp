@@ -264,3 +264,5 @@ msgstr "CPU Seconds (System)"
 msgid "Total connections"
 msgstr "Total connections"
 
+msgid "{memcacheMonitor:memcachestat:link_memcacheMonitor}"
+msgstr "Memcache statistics"

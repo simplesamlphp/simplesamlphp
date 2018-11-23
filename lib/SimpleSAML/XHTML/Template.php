@@ -584,6 +584,17 @@ class Template extends Response
 
 
     /**
+     * Return the internal localization object used by this template.
+     *
+     * @return \SimpleSAML\Locale\Localization The localization object that will be used with this template.
+     */
+    public function getLocalization()
+    {
+        return $this->localization;
+    }
+
+
+    /**
      * Get the current instance of Twig in use.
      *
      * @return false|Twig_Environment The Twig instance in use, or false if Twig is not used.
