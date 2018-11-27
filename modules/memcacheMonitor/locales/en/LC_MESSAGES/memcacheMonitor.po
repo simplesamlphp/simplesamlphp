@@ -266,3 +266,6 @@ msgstr "Total connections"
 
 msgid "{memcacheMonitor:memcachestat:link_memcacheMonitor}"
 msgstr "Memcache statistics"
+
+msgid "Memcache statistics"
+msgstr "Memcache statistics"

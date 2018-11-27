@@ -7,13 +7,9 @@
 
 function consentAdmin_hook_configpage(\SimpleSAML\XHTML\Template &$template)
 {
-    $template->data['links_config']['consentAdmin'] = [
+    $template->data['links']['consentAdmin'] = [
         'href' => SimpleSAML\Module::getModuleURL('consentAdmin/consentAdmin.php'),
-        'text' => '{consentAdmin:consentadmin:link_consentAdmin}',
+        'text' => \SimpleSAML\Locale\Translate::noop('Consent administration'),
     ];
-
-    $config = \SimpleSAML\Configuration::getInstance();
-    if ($config->getBoolean('usenewui', false)) {
-        $template->getLocalization()->addModuleDomain('consentAdmin');
-    }
+    $template->getLocalization()->addModuleDomain('consentAdmin');
 }

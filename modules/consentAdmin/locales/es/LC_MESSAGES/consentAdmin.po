@@ -162,3 +162,5 @@ msgstr "Mostrar/ocultar atributos"
 msgid "Organisation"
 msgstr "Organización"
 
+msgid "Consent administration"
+msgstr "Administración del consentimiento"

@@ -6,13 +6,9 @@
  */
 function sanitycheck_hook_configpage(\SimpleSAML\XHTML\Template &$template)
 {
-    $template->data['links_config']['sanitycheck'] = [
+    $template->data['links']['sanitycheck'] = [
         'href' => SimpleSAML\Module::getModuleURL('sanitycheck/index.php'),
-        'text' => '{sanitycheck:strings:link_sanitycheck}',
+        'text' => \SimpleSAML\Locale\Translate::noop('Sanity check of your SimpleSAMLphp setup'),
     ];
-
-    $config = \SimpleSAML\Configuration::getInstance();
-    if ($config->getBoolean('usenewui', false)) {
-        $template->getLocalization()->addModuleDomain('sanitycheck');
-    }
+    $template->getLocalization()->addModuleDomain('sanitycheck');
 }

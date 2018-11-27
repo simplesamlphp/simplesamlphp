@@ -7,13 +7,9 @@
 
 function cron_hook_configpage(\SimpleSAML\XHTML\Template &$template)
 {
-    $template->data['links_config']['cron'] = [
+    $template->data['links']['cron'] = [
         'href' => SimpleSAML\Module::getModuleURL('cron/croninfo.php'),
-        'text' => '{cron:cron:link_cron}',
+        'text' => \SimpleSAML\Locale\Translate::noop('Cron module information page'),
     ];
-
-    $config = \SimpleSAML\Configuration::getInstance();
-    if ($config->getBoolean('usenewui', false)) {
-        $template->getLocalization()->addModuleDomain('cron');
-    }
+    $template->getLocalization()->addModuleDomain('cron');
 }

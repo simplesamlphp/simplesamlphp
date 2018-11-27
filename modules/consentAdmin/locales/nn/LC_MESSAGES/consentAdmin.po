@@ -158,3 +158,5 @@ msgstr "vis/skjul personinformasjon"
 msgid "Organisation"
 msgstr "Organisasjon"
 
+msgid "Consent administration"
+msgstr "Samtykke administrasjon"

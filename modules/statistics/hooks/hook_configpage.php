@@ -6,18 +6,13 @@
  */
 function statistics_hook_configpage(\SimpleSAML\XHTML\Template &$template)
 {
-    $template->data['links_config']['statistics'] = [
+    $template->data['links']['statistics'] = [
         'href' => SimpleSAML\Module::getModuleURL('statistics/showstats.php'),
-        'text' => '{statistics:statistics:link_statistics}',
+        'text' => \SimpleSAML\Locale\Translate::noop('Show statistics'),
     ];
-    $template->data['links_config']['statisticsmeta'] = [
+    $template->data['links']['statisticsmeta'] = [
         'href' => SimpleSAML\Module::getModuleURL('statistics/statmeta.php'),
-        'text' => '{statistics:statistics:link_statistics_metadata}',
-        'shorttext' => ['en' => 'Statistics metadata', 'no' => 'Statistikk metadata'],
+        'text' => \SimpleSAML\Locale\Translate::noop('Show statistics metadata'),
     ];
-
-    $config = \SimpleSAML\Configuration::getInstance();
-    if ($config->getBoolean('usenewui', false)) {
-        $template->getLocalization()->addModuleDomain('statistics');
-    }
+    $template->getLocalization()->addModuleDomain('statistics');
 }

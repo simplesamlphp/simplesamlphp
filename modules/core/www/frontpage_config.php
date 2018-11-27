@@ -199,6 +199,4 @@ $t->data['requiredmap'] = [
 $t->data['version'] = $config->getVersion();
 $t->data['directory'] = dirname(dirname(dirname(dirname(__FILE__))));
 
-\SimpleSAML\Module::callHooks('configpage', $t);
-
 $t->show();

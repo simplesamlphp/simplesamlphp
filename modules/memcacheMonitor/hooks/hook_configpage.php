@@ -7,13 +7,9 @@
 
 function memcacheMonitor_hook_configpage(\SimpleSAML\XHTML\Template &$template)
 {
-    $template->data['links_config']['memcacheMonitor'] = [
+    $template->data['links']['memcacheMonitor'] = [
         'href' => SimpleSAML\Module::getModuleURL('memcacheMonitor/memcachestat.php'),
-        'text' => '{memcacheMonitor:memcachestat:link_memcacheMonitor}',
+        'text' => \SimpleSAML\Locale\Translate::noop('Memcache statistics'),
     ];
-
-    $config = \SimpleSAML\Configuration::getInstance();
-    if ($config->getBoolean('usenewui', false)) {
-        $template->getLocalization()->addModuleDomain('memcacheMonitor');
-    }
+    $template->getLocalization()->addModuleDomain('memcacheMonitor');
 }
