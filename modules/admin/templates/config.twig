@@ -1,0 +1,60 @@
+{% set pagetitle = 'SimpleSAMLphp installation page'|trans %}
+{% set frontpage_section = 'main' %}
+{% extends "base.twig" %}
+
+{% block content %}
+    {%- include "@admin/includes/menu.twig" %}
+
+    {%- for key, warning in warnings %}
+      {%- if warning is iterable %}
+
+    <div class="message-box warning">{{ warning[0]|trans(warning[1])|raw }}</div>
+      {%- else %}
+
+    <div class="message-box warning">{{ warning|trans|raw }}</div>
+      {%- endif %}
+    {%- endfor %}
+
+    <br/>
+    <div><code class="simplesaml_version">{{ directory }} ({{ version }})</code></div>
+    <div class="enablebox mini">
+      <table>
+	      <tr class="{%- if enablematrix.saml20idp %}enabled{% else %}disabled{% endif -%}">
+          <td>SAML 2.0 IdP</td>
+          <td><i class="fa fa-{%- if enablematrix.saml20idp %}check{% else %}ban{% endif %}"></i></td>
+        </tr>
+	      <tr class="{%- if enablematrix.shib13idp %}enabled{% else %}disabled{% endif -%}">
+          <td>Shib 1.3 IdP</td>
+          <td><i class="fa fa-{%- if enablematrix.shib13idp %}check{% else %}ban{% endif %}"></i></td>
+        </tr>
+      </table>
+    </div>
+    <h2>{% trans %}Configuration{% endtrans %}</h2>
+    <ul>
+      {%- for key, link in links %}
+
+      <li><a href="{{ link.href }}">{{ link.text }}</a></li>
+      {%- endfor %}
+
+    </ul>
+    <h2>{% trans %}Checking your PHP installation{% endtrans %}</h2>
+    <div class="enablebox">
+        <table>
+        {%- for key, func in funcmatrix %}
+
+          <tr class="{%- if func.enabled %}enabled{% else %}disabled{% endif -%}">
+            <td><i class="fa fa-{%- if func.enabled %}check{% else %}ban{% endif -%}"></i></td>
+            <td>
+            {%- if func.required == 'required' %}
+              {%- trans %}required{% endtrans %}
+            {%- else %}
+              {%- trans %}optional{% endtrans %}
+            {%- endif -%}
+            </td>
+            <td>{{ func.descr|trans|raw }}</td>
+          </tr>
+        {%- endfor %}
+
+        </table>
+    </div>
+{% endblock %}

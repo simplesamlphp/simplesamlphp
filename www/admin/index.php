@@ -2,6 +2,8 @@
 
 require_once('../_include.php');
 
+\SimpleSAML\Utils\HTTP::redirectTrustedURL(\SimpleSAML\Module::getModuleURL('admin/'));
+
 // Load SimpleSAMLphp configuration
 $config = \SimpleSAML\Configuration::getInstance();
 $session = \SimpleSAML\Session::getSessionFromRequest();
