@@ -33,7 +33,7 @@
     <ul>
       {%- for key, link in links %}
 
-      <li><a href="{{ link.href }}">{{ link.text }}</a></li>
+      <li><a href="{{ link.href }}">{{ link.text|trans }}</a></li>
       {%- endfor %}
 
     </ul>
