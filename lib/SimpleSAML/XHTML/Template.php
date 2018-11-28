@@ -434,6 +434,8 @@ class Template extends Response
         if (!isset($this->data['pagetitle'])) {
             $this->data['pagetitle'] = 'SimpleSAMLphp';
         }
+
+        $this->data['year'] = date('Y');
     }
 
 
