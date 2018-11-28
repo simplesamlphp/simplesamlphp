@@ -144,6 +144,29 @@ class Template extends Response
 
 
     /**
+     * Return the URL of an asset, including a cache-buster parameter that depends on the last modification time of
+     * the original file.
+     *
+     * @param string $asset
+     * @return string
+     */
+    public function asset($asset)
+    {
+        $file = $this->configuration->getBaseDir().'www/assets/'.$asset;
+        if (!file_exists($file)) {
+            // don't be too harsh if an asset is missing, just pretend it's there...
+            return $this->configuration->getBasePath().'assets/'.$asset;
+        }
+
+        $tag = $this->configuration->getVersion();
+        if ($tag === 'master') {
+            $tag = substr(hash('md5', filemtime($file)), 0, 5);
+        }
+        return $this->configuration->getBasePath().'assets/'.$asset.'?tag='.$tag;
+    }
+
+
+    /**
      * Get the normalized template name.
      *
      * @return string The name of the template to use.
@@ -288,6 +311,9 @@ class Template extends Response
                 ['needs_context' => true]
             )
         );
+
+        // add an asset() function
+        $twig->addFunction(new \Twig_SimpleFunction('asset', [$this, 'asset']));
 
         if ($this->controller) {
             $this->controller->setUpTwig($twig);
