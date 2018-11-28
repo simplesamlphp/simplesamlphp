@@ -346,7 +346,7 @@ class ConfigController
             $warnings[] = Translate::noop(
                 '<strong>The configuration uses the default secret salt</strong>. Make sure to modify the <code>'.
                 'secretsalt</code> option in the SimpleSAMLphp configuration in production environments. <a '.
-                'href="https://simplesamlphp.org/docs/stable/simplesamphp-install">Read more about the '.
+                'href="https://simplesamlphp.org/docs/stable/simplesamlphp-install">Read more about the '.
                 'maintenance of SimpleSAMLphp</a>.'
             );
         }
