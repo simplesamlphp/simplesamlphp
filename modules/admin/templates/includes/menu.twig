@@ -1,20 +1,15 @@
 <div class="pure-g frontpage-menu">
-    <div class="pure-u-2-3">
-        <div class="pure-menu pure-menu-horizontal">
-            <ul class="pure-menu-list">
-                <li class="pure-menu-item{% if frontpage_section == "main" %} pure-menu-selected{% endif %}">
-                    <a href="/{{ baseurlpath }}module.php/admin/" class="pure-menu-link">Admin</a>
-                </li>
-                <li class="pure-menu-item{% if frontpage_section == "test" %} pure-menu-selected{% endif %}">
-                    <a href="/{{ baseurlpath }}module.php/admin/test" class="pure-menu-link">Test</a>
-                </li>
-                <li class="pure-menu-item{% if frontpage_section == "federation" %} pure-menu-selected{% endif %}">
-                    <a href="/{{ baseurlpath }}module.php/admin/federation" class="pure-menu-link">Federation</a>
-                </li>
-                <li class="pure-menu-item">
-                    <a href="{{ logouturl }}" class="pure-menu-link">Logout</a>
-                </li>
-            </ul>
-        </div>
+  <div class="pure-u-2-3">
+    <div class="pure-menu pure-menu-horizontal">
+      <ul class="pure-menu-list">
+        {%- for id,option in menu %}
+
+        <li class="pure-menu-item{% if frontpage_section == id %} pure-menu-selected{% endif %}">
+          <a href="{{ option.url }}" class="pure-menu-link">{{ option.name|trans }}</a>
+        </li>
+        {%- endfor %}
+
+      </ul>
     </div>
+  </div>
 </div>

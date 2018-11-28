@@ -51,7 +51,13 @@
               {%- trans %}optional{% endtrans %}
             {%- endif -%}
             </td>
-            <td>{{ func.descr|trans|raw }}</td>
+            <td>
+              {%- if func.descr is iterable -%}
+                {{ func.descr[0]|trans(func.descr[1]|raw) }}
+              {%- else -%}
+                {{ func.descr|trans|raw }}
+              {%- endif -%}
+            </td>
           </tr>
         {%- endfor %}
 

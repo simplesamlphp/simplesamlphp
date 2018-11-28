@@ -24,6 +24,9 @@ class ConfigController
     /** @var \SimpleSAML\Configuration */
     protected $config;
 
+    /** @var Menu */
+    protected $menu;
+
     /** @var \SimpleSAML\Session */
     protected $session;
 
@@ -38,6 +41,7 @@ class ConfigController
     {
         $this->config = $config;
         $this->session = $session;
+        $this->menu = new Menu();
     }
 
 
@@ -70,7 +74,9 @@ class ConfigController
                 'getSelfURL()' => [HTTP::getSelfURL()],
             ],
         ];
-        return $t;
+
+        $this->menu->addOption('logout', \SimpleSAML\Utils\Auth::getAdminLogoutURL(), Translate::noop('Log out'));
+        return $this->menu->insert($t);
     }
 
 
@@ -107,8 +113,8 @@ class ConfigController
         ];
 
         \SimpleSAML\Module::callHooks('configpage', $t);
-
-        return $t;
+        $this->menu->addOption('logout', \SimpleSAML\Utils\Auth::getAdminLogoutURL(), Translate::noop('Log out'));
+        return $this->menu->insert($t);
     }
 
 
@@ -124,6 +130,16 @@ class ConfigController
 
 
     /**
+     * Perform a list of checks on the current installation, and return the results as an array.
+     *
+     * The elements in the array returned are also arrays with the following keys:
+     *
+     *   - required: Whether this prerequisite is mandatory or not. One of "required" or "optional".
+     *   - descr: A translatable text that describes the prerequisite. If the text uses parameters, the value must be an
+     *     array where the first value is the text to translate, and the second is a hashed array containing the
+     *     parameters needed to properly translate the text.
+     *   - enabled: True if the prerequisite is met, false otherwise.
+     *
      * @return array
      */
     protected function getPrerequisiteChecks()
@@ -131,7 +147,13 @@ class ConfigController
         $matrix = [
             [
                 'required' => 'required',
-                'descr' => 'PHP version >= 5.5. You run: '.phpversion(),
+                'descr' => [
+                    Translate::noop('PHP %minimum% or newer is needed. You are running: %current%'),
+                    [
+                        '%minimum%' => '5.5',
+                        '%current%' => explode('-', phpversion())[0]
+                    ]
+                ],
                 'enabled' => version_compare(phpversion(), '5.5', '>=')
             ]
         ];
