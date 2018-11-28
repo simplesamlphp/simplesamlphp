@@ -8,13 +8,14 @@
                         </div>
                     </div>
                 </div>
+                {% if not hideLanguageBar -%}
                 <div class="right">
                     <a href="#menu" id="menuLink" class="menu-link hide-for-large">
                         <!-- Hamburger icon -->
                         <span class="fa fa-language fa-2x" aria-hidden="true"></span>
                     </a>
                 </div>
-
+                {% endif %}
                 {% if not hideLanguageBar -%}
                     <div id="languagebar">
                         <div id="menu">
@@ -38,11 +39,10 @@
                             </div>
                         </div>
                     </div>
-                {%- endif %}
-
+                {%- endif -%}
                 <div class="right show-for-large">
                     <div class="v-center language-bar">
-                        <form id="SelectLang" class="pure-form" method="get">
+                        <form id="language-form" class="pure-form" method="get">
                             {% if not hideLanguageBar -%}
                             <div id="languagebar">
                             {% for name, value in queryParams -%}
@@ -53,7 +53,8 @@
                                 {%- endif -%}
                             {%- endfor %}
 
-                                <select  class="pure-input-1-4 language-menu selectize" name="language" id="language_selector">
+                                <select  class="pure-input-1-4 language-menu selectize" name="language"
+                                         id="language-selector">
                                     {% for key, lang in languageBar -%}
                                     {% if key == currentLanguage -%}
                                     <option value="{{ key }}" selected="selected">&#xf1ab;  {{ lang.name }}</option>
