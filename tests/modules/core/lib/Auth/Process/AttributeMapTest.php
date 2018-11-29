@@ -199,4 +199,46 @@ class AttributeMapTest extends TestCase
         $this->setExpectedException('\Exception');
         self::processFilter($config, $request);
     }
+
+    public function testOverwrite()
+    {
+        $config = [
+            'attribute1' => 'attribute2',
+        ];
+        $request = [
+            'Attributes' => [
+                'attribute1' => ['value1'],
+                'attribute2' => ['value2'],
+            ],
+        ];
+
+        $processed = self::processFilter($config, $request);
+        $result = $processed['Attributes'];
+        $expected = [
+            'attribute2' => ['value1'],
+        ];
+
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testOverwriteReversed()
+    {
+        $config = [
+            'attribute1' => 'attribute2',
+        ];
+        $request = [
+            'Attributes' => [
+                'attribute2' => ['value2'],
+                'attribute1' => ['value1'],
+            ],
+        ];
+
+        $processed = self::processFilter($config, $request);
+        $result = $processed['Attributes'];
+        $expected = [
+            'attribute2' => ['value1'],
+        ];
+
+        $this->assertEquals($expected, $result);
+    }
 }

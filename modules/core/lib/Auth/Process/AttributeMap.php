@@ -135,6 +135,9 @@ class AttributeMap extends \SimpleSAML\Auth\ProcessingFilter
                     }
                 }
             } else {
+                if (array_key_exists($name, $mapped_attributes)) {
+                    continue;
+                }
                 $mapped_attributes[$name] = $values;
             }
         }
