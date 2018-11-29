@@ -1,7 +1,5 @@
 {
-  "name": "yarn",
-  "version": "1.0.0",
-  "description": "yarn pkgmanager",
+  "name": "simplesamlphp",
   "main": "index.js",
   "repository": "https://github.com/simplesamlphp/simplesamlphp",
   "author": "olimpiam",
