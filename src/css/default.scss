@@ -212,7 +212,7 @@ appears on the left side of the page.
   right: 0;
   bottom: 0;
   z-index: 1000; /* so the menu or its navicon stays above all content */
-  background: #E8410C;
+  background: $secondaryBackground;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 }
@@ -240,7 +240,7 @@ Add that light border to separate items into groups.
 */
 #menu .pure-menu ul,
 #menu .pure-menu .menu-item-divided {
-  border-top: 1px solid #db0100;
+  border-top: 1px solid $transitionBackground;
 }
 
 /*
@@ -248,7 +248,7 @@ Change color of the anchor links on hover/focus.
 */
 #menu .pure-menu li a:hover,
 #menu .pure-menu li a:focus {
-  background: #db0100;
+  background: $transitionBackground;
 }
 
 /*
@@ -349,7 +349,7 @@ HEADER
 #header {
   height: 6rem;
   background-color: darkred;
-  background: linear-gradient(141deg, #b8002c 0%, #db0100 51%, #e8410c 75%)
+  background: linear-gradient(141deg, $primaryBackground 0%, $transitionBackground 51%, $secondaryBackground 75%)
 }
 
 .logo-header {
@@ -463,7 +463,7 @@ FOOTER
 
 #footer {
   background-color: darkred;
-  background: linear-gradient(141deg, #b8002c 0%, #db0100 51%, #e8410c 75%);
+  background: linear-gradient(141deg, $primaryBackground 0%, $transitionBackground 51%, $secondaryBackground 75%);
   height: 4rem;
   padding: 2rem 0 0;
   text-align: center;
