@@ -160,8 +160,9 @@ class Template extends Response
 
         $tag = $this->configuration->getVersion();
         if ($tag === 'master') {
-            $tag = substr(hash('md5', filemtime($file)), 0, 5);
+            $tag = filemtime($file);
         }
+        $tag = substr(hash('md5', $tag), 0, 5);
         return $this->configuration->getBasePath().'assets/'.$asset.'?tag='.$tag;
     }
 
