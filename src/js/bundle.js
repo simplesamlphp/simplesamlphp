@@ -16,4 +16,11 @@ $(document).ready(function () {
             }
         },
     });
+
+    // side menu
+    $('#menuLink').click(function (e) {
+        e.preventDefault();
+        $('#layout').toggleClass('active');
+        $(this).toggleClass('active');
+    });
 });
