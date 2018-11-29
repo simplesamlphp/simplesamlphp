@@ -787,6 +787,12 @@ $config = [
     'theme.use' => 'default',
 
     /*
+     * Set this option to the text you would like to appear at the header of each page. Set to false if you don't want
+     * any text to appear in the header.
+     */
+    //'theme.header' => 'SimpleSAMLphp'
+
+    /*
      * Templating options
      *
      * By default, twig templates are not cached. To turn on template caching:

@@ -462,6 +462,8 @@ class Template extends Response
         }
 
         $this->data['year'] = date('Y');
+
+        $this->data['header'] = $this->configuration->getValue('theme.header', 'SimpleSAMLphp');
     }
 
 

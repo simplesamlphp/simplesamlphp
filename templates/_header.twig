@@ -3,7 +3,16 @@
                 <div class="left">
                     <div class="v-center logo-header">
                         <div id="logo">
-                            <span class="simple">Simple</span><span class="saml">SAML</span><span class="simple">php</span>
+                            {%- if header == 'SimpleSAMLphp' %}
+
+                            <span class="simple">Simple</span>{# -#}
+                            <span class="saml">SAML</span>{# -#}
+                            <span class="simple">php</span>
+                            {%- else %}
+
+                            {{ header }}
+                            {%- endif %}
+
                             <img class="pure-img hidden" src="" alt="LOGO">
                         </div>
                     </div>
