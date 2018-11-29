@@ -74,6 +74,8 @@ class MultiAuth extends \SimpleSAML\Auth\Source
 
             if (array_key_exists('help', $info)) {
                 $help = $info['help'];
+            } else {
+                $help = null;
             }
             if (array_key_exists('css-class', $info)) {
                 $css_class = $info['css-class'];
