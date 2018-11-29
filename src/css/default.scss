@@ -48,7 +48,7 @@ body {
 
 h1 {
   margin: 0.2em 0;
-  font-size: 3em;
+  font-size: 2.5em;
   font-weight: 900;
 }
 
@@ -223,7 +223,7 @@ All anchors inside the menu should be styled like this.
 #menu a {
   color: #ffffff;
   border: none;
-  padding: 0.6em 0em 0.6em 0.6em;
+  padding: 0.6em 0 0.6em 0.6em;
 }
 
 /*
@@ -248,7 +248,7 @@ Change color of the anchor links on hover/focus.
 */
 #menu .pure-menu li a:hover,
 #menu .pure-menu li a:focus {
-  background: $transitionBackground;
+  background: black;
 }
 
 /*
@@ -256,7 +256,7 @@ This styles the selected menu item `<li>`.
 */
 #menu .pure-menu-selected,
 #menu .pure-menu-heading {
-  background: #ffa86f;
+  background: $primaryBackground;
   color: black;
 }
 
@@ -328,7 +328,7 @@ small screens.
 
 /* -- Responsive Styles (Media Queries) ------------------------------------- */
 
-@media screen and (max-width: 63.9375em) {
+@media screen and (max-width: 40em) {
   #layout.active {
     position: relative;
     right: 11em;
@@ -348,7 +348,6 @@ HEADER
 ************************************************************ */
 #header {
   height: 6rem;
-  background-color: darkred;
   background: linear-gradient(141deg, $primaryBackground 0%, $transitionBackground 51%, $secondaryBackground 75%)
 }
 
@@ -362,7 +361,7 @@ HEADER
   font-family: sans-serif;
   font-size: 2.5em;
   color: white;
-  text-shadow: 0px 3px 2px rgba(83, 41, 0, 1);
+  text-shadow: 0 3px 2px rgba(83, 41, 0, 1);
 }
 
 .simple {
@@ -452,7 +451,6 @@ FOOTER
 ************************************************************ */
 #layout {
   min-height: 100%;
-  height: auto !important;
   height: 100%;
   margin: 0 auto -6rem; /*negative margin = footer height + padding-top + padding-bottom*/
 }
@@ -462,7 +460,6 @@ FOOTER
 }
 
 #footer {
-  background-color: darkred;
   background: linear-gradient(141deg, $primaryBackground 0%, $transitionBackground 51%, $secondaryBackground 75%);
   height: 4rem;
   padding: 2rem 0 0;
@@ -611,22 +608,13 @@ table.attributes ul {
 MEDIA QUERIES
 ************************************************************ */
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 40em) {
   .pure-form .pure-input-sm-1-1 {
     width: 100%;
   }
 }
 
-@media screen and (max-width: 39.9375em) {
-  .hide-for-small-only {
-    display: none !important;
-  }
-  .selectize-input {
-    padding-right: 0.1rem;
-  }
-  body {
-    font-size: 75%;
-  }
+@media screen and (max-width: 40em) {
   .wrap {
     width: 90%;
   }
@@ -654,34 +642,13 @@ MEDIA QUERIES
   }
 }
 
-@media screen and (min-width: 40em) and (max-width: 63.9375em) {
-  .hide-for-medium-only {
-    display: none !important;
-  }
-  body {
-    font-size: 85%;
-  }
-}
-
-@media screen and (max-width: 39.9375em) {
-  .show-for-medium {
-    display: none !important;
-  }
-}
-
-@media screen and (max-width: 39.9375em), screen and (min-width: 64em) {
-  .show-for-medium-only {
-    display: none !important;
-  }
-}
-
-@media screen and (min-width: 64em) {
+@media screen and (min-width: 40em) {
   .hide-for-large {
     display: none !important;
   }
 }
 
-@media screen and (max-width: 63.9375em) {
+@media screen and (max-width: 40em) {
   .show-for-large {
     display: none !important;
   }
@@ -713,7 +680,7 @@ code.simplesaml_version {
 
 .enablebox tr td {
   padding: .5px 1em 1px .5em;
-  margin: 0px;
+  margin: 0;
 }
 
 .enablebox {
@@ -729,7 +696,7 @@ code.simplesaml_version {
 }
 
 fieldset.fancyfieldset {
-  margin: 2em 1em 1em 0px;
+  margin: 2em 1em 1em 0;
   border: 1px solid #bbb;
 }
 
