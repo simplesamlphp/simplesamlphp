@@ -236,8 +236,8 @@ class ConfigController
             'pdo_drivers' => [
                 'required' => $store === 'sql' ? 'required' : 'optional',
                 'descr' => [
-                    'optional' => Translate::noop('Session extension (required if PHP extensions are used)'),
-                    'required' => Translate::noop('Session extension'),
+                    'optional' => Translate::noop('PDO Extension (required if a database backend is used)'),
+                    'required' => Translate::noop('PDO extension'),
                 ]
             ],
             'ldap_bind' => [
