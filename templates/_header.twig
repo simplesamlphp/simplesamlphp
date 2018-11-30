@@ -20,7 +20,7 @@
                 {% if not hideLanguageBar -%}
                 <div class="right">
                     <a href="" id="menuLink" class="menu-link hide-for-large">
-                        <span class="fa fa-language fa-2x" aria-hidden="true"></span>
+                        <span class="fa fa-globe fa-2x" aria-hidden="true"></span>
                     </a>
                 </div>
                 {% endif %}
@@ -65,7 +65,7 @@
                                          id="language-selector">
                                     {% for key, lang in languageBar -%}
                                     {% if key == currentLanguage -%}
-                                    <option value="{{ key }}" selected="selected">&#xf1ab;  {{ lang.name }}</option>
+                                    <option value="{{ key }}" selected="selected">&#xf0ac;  {{ lang.name }}</option>
                                     {% else -%}
                                     <option value="{{ key }}">{{ lang.name }}</option>
                                     {% endif -%}
