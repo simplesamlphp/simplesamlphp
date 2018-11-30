@@ -6,7 +6,7 @@ use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
 use SimpleSAML\Module\multiauth\Auth\Source\MultiAuth;
 
-class MultiAuthTest extends TestCase
+class MultiAuthTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
 {
     /** @var Configuration */
     private $sourceConfig;
