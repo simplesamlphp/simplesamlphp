@@ -464,11 +464,25 @@ FOOTER
   height: 4rem;
   padding: 2rem 0 0;
   text-align: center;
+  color: white;
+
+  a, a:visited {
+    color: white;
+    &:hover, &:focus {
+      background-color: white;
+      color: black;
+      padding: .15rem;
+      margin-left: -.15rem;
+      margin-top: -.15rem;
+      text-decoration: none;
+    }
+  }
 }
 
 .copyrights {
+  padding-top: .5rem;
   height: 4rem;
-  font-size: .75em;
+  font-size: .8em;
 }
 
 .logo-footer-right {
