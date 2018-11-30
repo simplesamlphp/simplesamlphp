@@ -15,15 +15,18 @@
       {%- endif %}
     {%- endfor %}
 
-    <br/>
-    <div><code class="simplesaml_version">{{ directory }} ({{ version }})</code></div>
+    <div class="message-box">
+      {% trans %}SimpleSAMLphp is installed in:{% endtrans %}<br/>
+      <kbd>{{ directory }}</kbd><br/>
+      {% trans %}You are running version <kbd>{{ version }}</kbd>.{% endtrans %}
+    </div>
     <div class="enablebox mini">
       <table>
-	      <tr class="{%- if enablematrix.saml20idp %}enabled{% else %}disabled{% endif -%}">
+        <tr class="{%- if enablematrix.saml20idp %}enabled{% else %}disabled{% endif -%}">
           <td>SAML 2.0 IdP</td>
           <td><i class="fa fa-{%- if enablematrix.saml20idp %}check{% else %}ban{% endif %}"></i></td>
         </tr>
-	      <tr class="{%- if enablematrix.shib13idp %}enabled{% else %}disabled{% endif -%}">
+        <tr class="{%- if enablematrix.shib13idp %}enabled{% else %}disabled{% endif -%}">
           <td>Shib 1.3 IdP</td>
           <td><i class="fa fa-{%- if enablematrix.shib13idp %}check{% else %}ban{% endif %}"></i></td>
         </tr>
