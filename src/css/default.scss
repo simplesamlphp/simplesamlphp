@@ -638,12 +638,21 @@ MEDIA QUERIES
   }
   #layout {
     padding-top: 0;
+    margin-bottom: -4rem;
   }
   .auth_methods {
     width: 60%;
   }
   #logo {
     font-size: 1.8em;
+  }
+  #footer {
+    height: 2.5rem;
+    padding-top: 1.5rem;
+    .copyrights {
+      height: 1rem;
+      padding-top: 0;
+    }
   }
 }
 
