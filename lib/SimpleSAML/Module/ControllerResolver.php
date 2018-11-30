@@ -105,7 +105,7 @@ class ControllerResolver extends SymfonyControllerResolver implements ArgumentRe
             $matcher = new UrlMatcher($this->routes, $ctxt);
             $this->params = $matcher->match($ctxt->getPathInfo());
             list($class, $method) = explode('::', $this->params['_controller']);
-            $this->container->register($class, $class)->setAutowired(true);
+            $this->container->register($class, $class)->setAutowired(true)->setPublic(true);
             $this->container->compile();
             return [$this->container->get($class), $method];
         } catch (ResourceNotFoundException $e) {
