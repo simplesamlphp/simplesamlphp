@@ -229,7 +229,7 @@ class ConfigController
             'session_start' => [
                 'required' => $store === 'phpsession' ? 'required' : 'optional',
                 'descr' => [
-                    'optional' => Translate::noop('Session extension (required if PHP extensions are used)'),
+                    'optional' => Translate::noop('Session extension (required if PHP sessions are used)'),
                     'required' => Translate::noop('Session extension'),
                 ]
             ],
