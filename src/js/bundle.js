@@ -21,6 +21,7 @@ $(document).ready(function () {
     $('#menuLink').click(function (e) {
         e.preventDefault();
         $('#layout').toggleClass('active');
+        $('#foot').toggleClass('active');
         $(this).toggleClass('active');
     });
 });

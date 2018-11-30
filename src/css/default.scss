@@ -388,14 +388,13 @@ HEADER
 CONTENT
 ************************************************************ */
 #layout {
-  position: relative;
   right: 0;
   padding-right: 0;
 }
 
 #content {
   padding-top: 2em;
-  padding-bottom: 4rem;
+  padding-bottom: 2rem;
 }
 
 .message-box {
@@ -451,15 +450,15 @@ FOOTER
 ************************************************************ */
 #layout {
   min-height: 100%;
-  height: 100%;
-  margin: 0 auto -6rem; /*negative margin = footer height + padding-top + padding-bottom*/
+  margin: 0 auto -6rem auto; /*negative margin = footer height + padding-top + padding-bottom*/
 }
 
 #bottom, #push {
-  height: 4rem;
+  height: 6rem;
 }
 
 #footer {
+  width: 100%;
   background: linear-gradient(141deg, $primaryBackground 0%, $transitionBackground 51%, $secondaryBackground 75%);
   height: 4rem;
   padding: 2rem 0 0;
