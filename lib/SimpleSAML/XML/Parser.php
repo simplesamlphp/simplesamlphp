@@ -28,7 +28,7 @@ class Parser
         // Traverse all existing namespaces in element
         $namespaces = $element->getNamespaces();
         foreach ($namespaces as $prefix => $ns) {
-            $element[(($prefix === '') ? 'xmlns' : 'xmlns:' . $prefix)] = $ns;
+            $element[(($prefix === '') ? 'xmlns' : 'xmlns:'.$prefix)] = $ns;
         }
         
         /* Create a new parser with the xml document where the namespace definitions
@@ -50,9 +50,11 @@ class Parser
     public function getValue($xpath, $required = false)
     {
         $result = $this->simplexml->xpath($xpath);
-        if (! $result or !is_array($result)) {
+        if (!is_array($result) || empty($result)) {
             if ($required) {
-                throw new \Exception('Could not get value from XML document using the following XPath expression: ' . $xpath);
+                throw new \Exception(
+                    'Could not get value from XML document using the following XPath expression: '.$xpath
+                );
             } else {
                 return null;
             }
@@ -69,7 +71,9 @@ class Parser
             }
         }
         if ($required) {
-            throw new \Exception('Could not get value from XML document using multiple alternative XPath expressions.');
+            throw new \Exception(
+                'Could not get value from XML document using multiple alternative XPath expressions.'
+            );
         } else {
             return null;
         }

@@ -1,0 +1,18 @@
+{% set pagetitle = 'SimpleSAMLphp'|trans %}
+{% extends "base.twig" %}
+
+{% block preload %}
+    <link href="{{ baseurlpath }}assets/css/oauth.css" rel="stylesheet">
+{% endblock %}
+
+{% block postload %}
+    <script src="{{ baseurlpath}}assets/js/oauth.js"></script>
+{% endblock %}
+
+{% block content %}
+    <h1>OAuth Client</h1>
+    {{ form|raw }}
+    <p style="float: right">
+        <a href="registry.php">Return to entity listing <strong>without saving...</strong></a>
+    </p>
+{% endblock %}

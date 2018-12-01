@@ -66,7 +66,7 @@ dictionaries
 
 :   It is also possible to specify
     `<module name>:<dictionary name>` as the default
-    dictionary when instantiating the `SimpleSAML_XHTML_Template`
+    dictionary when instantiating the `\SimpleSAML\XHTML\Template`
     class.
 
 hooks
@@ -77,20 +77,20 @@ hooks
 lib
 :   This directory contains classes which belong to this module.
     All classes must be named in the following pattern:
-    `sspmod_<module name>_<class name>` When looking up the filename of
+    `\SimpleSAML\Module\<module name>\<class name>` When looking up the filename of
     a class, SimpleSAMLphp will search for `<class name>` in the `lib`
     directory. Underscores in the class name will be translated into
     slashes.
 
 :   Thus, if SimpleSAMLphp needs to load a class named
-    `sspmod_example_Auth_Source_Example`, it will load the file named
+    `\SimpleSAML\Module\example\Auth\Source\Example`, it will load the file named
     `modules/example/lib/Auth/Source/Example.php`.
 
 templates
 :   These are module-specific templates. To use one of these
     templates, specify `<module name>:<template file>.php`
     as the template file in the constructor of
-    `SimpleSAML_XHTML_Template`. For example, `example:login-form.php`
+    `\SimpleSAML\XHTML\Template`. For example, `example:login-form.php`
     is translated to the file
     `modules/example/templates/default/login-form.php`. Note that
     `default` in the previous example is defined by the `theme.use`
@@ -150,26 +150,26 @@ authentication source.
 A typical configuration entry for an authentication source looks like 
 this:
 
-    'example-static' => array(
+    'example-static' => [
       /* This maps to modules/exampleauth/lib/Auth/Source/Static.php */
       'exampleauth:Static',
     
       /* The following is configuration which is passed on to
        * the exampleauth:Static authentication source. */
       'uid' => 'testuser',
-      'eduPersonAffiliation' => array('member', 'employee'),
-      'cn' => array('Test User'),
-    ),
+      'eduPersonAffiliation' => ['member', 'employee'],
+      'cn' => ['Test User'],
+    ],
 
 To use this authentication source in a SAML 2.0 IdP, set the
 `auth`-option of the IdP to `'example-static'`:
 
-    '__DYNAMIC:1__' => array(
+    '__DYNAMIC:1__' => [
       'host' => '__DEFAULT__',
       'privatekey' => 'example.org.pem',
       'certificate' => 'example.org.crt',
       'auth' => 'example-static',
-    ),
+    ],
 
 ### Creating authentication sources
 

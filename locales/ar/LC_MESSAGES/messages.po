@@ -1522,3 +1522,13 @@ msgid ""
 " not intended to be accessed directly."
 msgstr "لقد وصلت لنطاق تأكيد خدمة زبون لكنك لم توفر استجابة توثيق SAML"
 
+
+msgid ""
+"You are now accessing a pre-production system. This authentication setup "
+"is for testing and pre-production verification only. If someone sent you "
+"a link that pointed you here, and you are not <i>a tester</i> you "
+"probably got the wrong link, and should <b>not be here</b>."
+msgstr ""
+"لقد دخلت نظاماً مبدئياً. إعدادات التصديق هذه للاختبار فقط. اذا دخلت هنا "
+"بناء علي حصولك علي هذا الرابط من شخص ما و انت لست احد مختبري هذا النظام "
+"قم رجاءاً بالخروج"

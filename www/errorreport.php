@@ -2,13 +2,13 @@
 
 require_once('_include.php');
 
-$config = SimpleSAML_Configuration::getInstance();
+$config = \SimpleSAML\Configuration::getInstance();
 
 // this page will redirect to itself after processing a POST request and sending the email
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     // the message has been sent. Show error report page
 
-    $t = new SimpleSAML_XHTML_Template($config, 'errorreport.php', 'errors');
+    $t = new \SimpleSAML\XHTML\Template($config, 'errorreport.php', 'errors');
     $t->show();
     exit;
 }
@@ -19,14 +19,14 @@ $text = htmlspecialchars((string) $_REQUEST['text']);
 
 $data = null;
 try {
-    $session = SimpleSAML_Session::getSessionFromRequest();
+    $session = \SimpleSAML\Session::getSessionFromRequest();
     $data = $session->getData('core:errorreport', $reportId);
-} catch (Exception $e) {
-    SimpleSAML\Logger::error('Error loading error report data: '.var_export($e->getMessage(), true));
+} catch (\Exception $e) {
+    \SimpleSAML\Logger::error('Error loading error report data: '.var_export($e->getMessage(), true));
 }
 
 if ($data === null) {
-    $data = array(
+    $data = [
         'exceptionMsg'   => 'not set',
         'exceptionTrace' => 'not set',
         'reportId'       => $reportId,
@@ -34,7 +34,7 @@ if ($data === null) {
         'url'            => 'not set',
         'version'        => $config->getVersion(),
         'referer'        => 'not set',
-    );
+    ];
 
     if (isset($session)) {
         $data['trackId'] = $session->getTrackID();
@@ -69,11 +69,11 @@ $message = <<<MESSAGE
 <p>Track ID:</p>
 <pre>%s</pre>
 
-<p>Version: <tt>%s</tt></p>
+<p>Version: <code>%s</code></p>
 
-<p>Report ID: <tt>%s</tt></p>
+<p>Report ID: <code>%s</code></p>
 
-<p>Referer: <tt>%s</tt></p>
+<p>Referer: <code>%s</code></p>
 
 <hr />
 <div class="footer">
@@ -82,7 +82,7 @@ $message = <<<MESSAGE
 MESSAGE;
 $message = sprintf(
     $message,
-    htmlspecialchars($text),
+    $text,
     $data['exceptionMsg'],
     $data['exceptionTrace'],
     $data['url'],
@@ -101,16 +101,27 @@ $email = trim($email);
 // check that it looks like a valid email address
 if (!preg_match('/\s/', $email) && strpos($email, '@') !== false) {
     $replyto = $email;
-    $from = $email;
 } else {
     $replyto = null;
-    $from = 'no-reply@simplesamlphp.org';
+}
+
+$from = $config->getString('sendmail_from', null);
+if ($from === null || $from === '') {
+    $from = ini_get('sendmail_from');
+    if ($from === '' || $from === false) {
+        $from = 'no-reply@example.org';
+    }
+}
+
+// If no sender email was configured at least set some relevant from address
+if ($from === 'no-reply@example.org' && $replyto !== null) {
+    $from = $replyto;
 }
 
 // send the email
 $toAddress = $config->getString('technicalcontact_email', 'na@example.org');
 if ($config->getBoolean('errorreporting', true) && $toAddress !== 'na@example.org') {
-    $email = new SimpleSAML_XHTML_EMail($toAddress, 'SimpleSAMLphp error report', $from);
+    $email = new \SimpleSAML\XHTML\EMail($toAddress, 'SimpleSAMLphp error report', $from);
     $email->setBody($message);
     $email->send();
     SimpleSAML\Logger::error('Report with id '.$reportId.' sent to <'.$toAddress.'>.');

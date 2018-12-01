@@ -1,5 +1,6 @@
 <?php
 
+namespace SimpleSAML\Metadata;
 
 /**
  * Class for handling metadata files stored in a database.
@@ -8,12 +9,11 @@
  * mooknarf@gmail.com and patched to work with the latest version
  * of SimpleSAMLphp
  *
- * @author Tyler Antonio, University of Alberta <tantonio@ualberta.ca>
  * @package SimpleSAMLphp
  */
-class SimpleSAML_Metadata_MetaDataStorageHandlerPdo extends SimpleSAML_Metadata_MetaDataStorageSource
-{
 
+class MetaDataStorageHandlerPdo extends MetaDataStorageSource
+{
     /**
      * The PDO object
      */
@@ -27,12 +27,12 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerPdo extends SimpleSAML_Metadata_
     /**
      * This is an associative array which stores the different metadata sets we have loaded.
      */
-    private $cachedMetadata = array();
+    private $cachedMetadata = [];
 
     /**
      * All the metadata sets supported by this MetaDataStorageHandler
      */
-    public $supportedSets = array(
+    public $supportedSets = [
         'adfs-idp-hosted',
         'adfs-sp-remote',
         'saml20-idp-hosted',
@@ -44,7 +44,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerPdo extends SimpleSAML_Metadata_
         'shib13-sp-remote',
         'wsfed-idp-remote',
         'wsfed-sp-hosted'
-    );
+    ];
 
 
     /**
@@ -60,9 +60,9 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerPdo extends SimpleSAML_Metadata_
      */
     public function __construct($config)
     {
-        assert('is_array($config)');
+        assert(is_array($config));
 
-        $this->db = SimpleSAML\Database::getInstance();
+        $this->db = \SimpleSAML\Database::getInstance();
     }
 
 
@@ -76,26 +76,26 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerPdo extends SimpleSAML_Metadata_
      *     given file.
      *
      * @throws Exception If a database error occurs.
-     * @throws SimpleSAML_Error_Exception If the metadata can be retrieved from the database, but cannot be decoded.
+     * @throws \SimpleSAML\Error\Exception If the metadata can be retrieved from the database, but cannot be decoded.
      */
     private function load($set)
     {
-        assert('is_string($set)');
+        assert(is_string($set));
 
         $tableName = $this->getTableName($set);
 
-        if (!in_array($set, $this->supportedSets)) {
+        if (!in_array($set, $this->supportedSets, true)) {
             return null;
         }
 
         $stmt = $this->db->read("SELECT entity_id, entity_data FROM $tableName");
         if ($stmt->execute()) {
-            $metadata = array();
+            $metadata = [];
 
             while ($d = $stmt->fetch()) {
                 $data = json_decode($d['entity_data'], true);
                 if ($data === null) {
-                    throw new SimpleSAML_Error_Exception("Cannot decode metadata for entity '${d['entity_id']}'");
+                    throw new \SimpleSAML\Error\Exception("Cannot decode metadata for entity '${d['entity_id']}'");
                 }
                 if (!array_key_exists('entityid', $data)) {
                     $data['entityid'] = $d['entity_id'];
@@ -105,7 +105,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerPdo extends SimpleSAML_Metadata_
 
             return $metadata;
         } else {
-            throw new Exception('PDO metadata handler: Database error: '.var_export($this->db->getLastError(), true));
+            throw new \Exception('PDO metadata handler: Database error: '.var_export($this->db->getLastError(), true));
         }
     }
 
@@ -119,7 +119,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerPdo extends SimpleSAML_Metadata_
      */
     public function getMetadataSet($set)
     {
-        assert('is_string($set)');
+        assert(is_string($set));
 
         if (array_key_exists($set, $this->cachedMetadata)) {
             return $this->cachedMetadata[$set];
@@ -127,7 +127,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerPdo extends SimpleSAML_Metadata_
 
         $metadataSet = $this->load($set);
         if ($metadataSet === null) {
-            $metadataSet = array();
+            $metadataSet = [];
         }
 
         foreach ($metadataSet as $entityId => &$entry) {
@@ -142,10 +142,56 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerPdo extends SimpleSAML_Metadata_
         return $metadataSet;
     }
 
+    /**
+     * Retrieve a metadata entry.
+     *
+     * @param string $entityId The entityId we are looking up.
+     * @param string $set The set we are looking for metadata in.
+     *
+     * @return array An associative array with metadata for the given entity, or NULL if we are unable to
+     *         locate the entity.
+     */
+    public function getMetaData($entityId, $set)
+    {
+        assert(is_string($entityId));
+        assert(is_string($set));
+
+        $tableName = $this->getTableName($set);
+
+        if (!in_array($set, $this->supportedSets, true)) {
+            return null;
+        }
+
+        $stmt = $this->db->read(
+            "SELECT entity_id, entity_data FROM $tableName WHERE entity_id=:entityId",
+            ['entityId' => $entityId]
+        );
+        if ($stmt->execute()) {
+            $rowCount = 0;
+            $data = null;
+
+            while ($d = $stmt->fetch()) {
+                if (++$rowCount > 1) {
+                    \SimpleSAML\Logger::warning("Duplicate match for $entityId in set $set");
+                    break;
+                }
+                $data = json_decode($d['entity_data'], true);
+                if ($data === null) {
+                    throw new \SimpleSAML\Error\Exception("Cannot decode metadata for entity '${d['entity_id']}'");
+                }
+                if (!array_key_exists('entityid', $data)) {
+                    $data['entityid'] = $d['entity_id'];
+                }
+            }
+            return $data;
+        } else {
+            throw new \Exception('PDO metadata handler: Database error: '.var_export($this->db->getLastError(), true));
+        }
+    }
 
     private function generateDynamicHostedEntityID($set)
     {
-        assert('is_string($set)');
+        assert(is_string($set));
 
         // get the configuration
         $baseurl = \SimpleSAML\Utils\HTTP::getBaseURL();
@@ -163,7 +209,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerPdo extends SimpleSAML_Metadata_
         } elseif ($set === 'adfs-idp-hosted') {
             return 'urn:federation:'.\SimpleSAML\Utils\HTTP::getSelfHost().':idp';
         } else {
-            throw new Exception('Can not generate dynamic EntityID for metadata of this type: ['.$set.']');
+            throw new \Exception('Can not generate dynamic EntityID for metadata of this type: ['.$set.']');
         }
     }
 
@@ -179,11 +225,11 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerPdo extends SimpleSAML_Metadata_
      */
     public function addEntry($index, $set, $entityData)
     {
-        assert('is_string($index)');
-        assert('is_string($set)');
-        assert('is_array($entityData)');
+        assert(is_string($index));
+        assert(is_string($set));
+        assert(is_array($entityData));
 
-        if (!in_array($set, $this->supportedSets)) {
+        if (!in_array($set, $this->supportedSets, true)) {
             return false;
         }
 
@@ -191,17 +237,17 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerPdo extends SimpleSAML_Metadata_
 
         $metadata = $this->db->read(
             "SELECT entity_id, entity_data FROM $tableName WHERE entity_id = :entity_id",
-            array(
+            [
                 'entity_id' => $index,
-            )
+            ]
         );
 
         $retrivedEntityIDs = $metadata->fetch();
 
-        $params = array(
+        $params = [
             'entity_id'   => $index,
             'entity_data' => json_encode($entityData),
-        );
+        ];
 
         if ($retrivedEntityIDs !== false && count($retrivedEntityIDs) > 0) {
             $rows = $this->db->write(
@@ -229,7 +275,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerPdo extends SimpleSAML_Metadata_
      */
     private function getTableName($table)
     {
-        assert('is_string($table)');
+        assert(is_string($table));
 
         return $this->db->applyPrefix(str_replace("-", "_", $this->tablePrefix.$table));
     }
@@ -250,7 +296,7 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerPdo extends SimpleSAML_Metadata_
                 "CREATE TABLE IF NOT EXISTS $tableName (entity_id VARCHAR(255) PRIMARY KEY NOT NULL, entity_data ".
                 "TEXT NOT NULL)"
             );
-            if ($rows === 0) {
+            if ($rows === false) {
                 $fine = false;
             } else {
                 $stmt += $rows;
@@ -261,5 +307,4 @@ class SimpleSAML_Metadata_MetaDataStorageHandlerPdo extends SimpleSAML_Metadata_
         }
         return $stmt;
     }
-
 }

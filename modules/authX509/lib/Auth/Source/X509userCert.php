@@ -1,24 +1,26 @@
 <?php
 
+namespace SimpleSAML\Module\authX509\Auth\Source;
+
 /**
  * This class implements x509 certificate authentication with certificate validation against an LDAP directory.
  *
  * @author Emmanuel Dreyfus <manu@netbsd.org>
  * @package SimpleSAMLphp
  */
-class sspmod_authX509_Auth_Source_X509userCert extends SimpleSAML_Auth_Source
-{
 
+class X509userCert extends \SimpleSAML\Auth\Source
+{
     /**
      * x509 attributes to use from the certificate for searching the user in the LDAP directory.
      */
-    private $x509attributes = array('UID' => 'uid');
+    private $x509attributes = ['UID' => 'uid'];
 
 
     /**
      * LDAP attribute containing the user certificate.
      */
-    private $ldapusercert = array('userCertificate;binary');
+    private $ldapusercert = ['userCertificate;binary'];
 
 
     /**
@@ -37,8 +39,8 @@ class sspmod_authX509_Auth_Source_X509userCert extends SimpleSAML_Auth_Source
      */
     public function __construct($info, &$config)
     {
-        assert('is_array($info)');
-        assert('is_array($config)');
+        assert(is_array($info));
+        assert(is_array($config));
 
         if (isset($config['authX509:x509attributes'])) {
             $this->x509attributes = $config['authX509:x509attributes'];
@@ -50,9 +52,9 @@ class sspmod_authX509_Auth_Source_X509userCert extends SimpleSAML_Auth_Source
 
         parent::__construct($info, $config);
 
-        $this->ldapcf = new sspmod_ldap_ConfigHelper(
+        $this->ldapcf = new \SimpleSAML\Module\ldap\ConfigHelper(
             $config,
-            'Authentication source ' . var_export($this->authId, true)
+            'Authentication source '.var_export($this->authId, true)
         );
 
         return;
@@ -68,10 +70,12 @@ class sspmod_authX509_Auth_Source_X509userCert extends SimpleSAML_Auth_Source
      */
     public function authFailed(&$state)
     {
-        $config = SimpleSAML_Configuration::getInstance();
+        $config = \SimpleSAML\Configuration::getInstance();
 
-        $t = new SimpleSAML_XHTML_Template($config, 'authX509:X509error.php');
+        $t = new \SimpleSAML\XHTML\Template($config, 'authX509:X509error.php');
+        $t->data['loginurl'] = \SimpleSAML\Utils\HTTP::getSelfURL();
         $t->data['errorcode'] = $state['authX509.error'];
+        $t->data['errorcodes'] = \SimpleSAML\Error\ErrorCodes::getAllErrorCodeMessages();
 
         $t->show();
         exit();
@@ -88,7 +92,7 @@ class sspmod_authX509_Auth_Source_X509userCert extends SimpleSAML_Auth_Source
      */
     public function authenticate(&$state)
     {
-        assert('is_array($state)');
+        assert(is_array($state));
         $ldapcf = $this->ldapcf;
 
         if (!isset($_SERVER['SSL_CLIENT_CERT']) ||
@@ -96,18 +100,18 @@ class sspmod_authX509_Auth_Source_X509userCert extends SimpleSAML_Auth_Source
             $state['authX509.error'] = "NOCERT";
             $this->authFailed($state);
 
-            assert('false'); // should never be reached
+            assert(false); // should never be reached
             return;
         }
 
         $client_cert = $_SERVER['SSL_CLIENT_CERT'];
         $client_cert_data = openssl_x509_parse($client_cert);
         if ($client_cert_data === false) {
-            SimpleSAML\Logger::error('authX509: invalid cert');
+            \SimpleSAML\Logger::error('authX509: invalid cert');
             $state['authX509.error'] = "INVALIDCERT";
             $this->authFailed($state);
 
-            assert('false'); // should never be reached
+            assert(false); // should never be reached
             return;
         }
 
@@ -116,7 +120,7 @@ class sspmod_authX509_Auth_Source_X509userCert extends SimpleSAML_Auth_Source
             // value is scalar
             if (array_key_exists($x509_attr, $client_cert_data['subject'])) {
                 $value = $client_cert_data['subject'][$x509_attr];
-                SimpleSAML\Logger::info('authX509: cert '. $x509_attr.' = '.$value);
+                \SimpleSAML\Logger::info('authX509: cert '.$x509_attr.' = '.$value);
                 $dn = $ldapcf->searchfordn($ldap_attr, $value, true);
                 if ($dn !== null) {
                     break;
@@ -125,36 +129,37 @@ class sspmod_authX509_Auth_Source_X509userCert extends SimpleSAML_Auth_Source
         }
 
         if ($dn === null) {
-            SimpleSAML\Logger::error('authX509: cert has no matching user in LDAP.');
+            \SimpleSAML\Logger::error('authX509: cert has no matching user in LDAP.');
             $state['authX509.error'] = "UNKNOWNCERT";
             $this->authFailed($state);
 
-            assert('false'); // should never be reached
+            assert(false); // should never be reached
             return;
         }
 
-        if ($this->ldapusercert === null) { // do not check for certificate match
+        if ($this->ldapusercert === null) {
+            // do not check for certificate match
             $attributes = $ldapcf->getAttributes($dn);
-            assert('is_array($attributes)');
+            assert(is_array($attributes));
             $state['Attributes'] = $attributes;
             $this->authSuccesful($state);
 
-            assert('false'); // should never be reached
+            assert(false); // should never be reached
             return;
         }
 
         $ldap_certs = $ldapcf->getAttributes($dn, $this->ldapusercert);
         if ($ldap_certs === false) {
-            SimpleSAML\Logger::error('authX509: no certificate found in LDAP for dn='.$dn);
+            \SimpleSAML\Logger::error('authX509: no certificate found in LDAP for dn='.$dn);
             $state['authX509.error'] = "UNKNOWNCERT";
             $this->authFailed($state);
 
-            assert('false'); // should never be reached
+            assert(false); // should never be reached
             return;
         }
 
 
-        $merged_ldapcerts = array();
+        $merged_ldapcerts = [];
         foreach ($this->ldapusercert as $attr) {
             $merged_ldapcerts = array_merge($merged_ldapcerts, $ldap_certs[$attr]);
         }
@@ -164,26 +169,26 @@ class sspmod_authX509_Auth_Source_X509userCert extends SimpleSAML_Auth_Source
             $pem = \SimpleSAML\Utils\Crypto::der2pem($ldap_cert);
             $ldap_cert_data = openssl_x509_parse($pem);
             if ($ldap_cert_data === false) {
-                SimpleSAML\Logger::error('authX509: cert in LDAP is invalid for dn='.$dn);
+                \SimpleSAML\Logger::error('authX509: cert in LDAP is invalid for dn='.$dn);
                 continue;
             }
 
             if ($ldap_cert_data === $client_cert_data) {
                 $attributes = $ldapcf->getAttributes($dn);
-                assert('is_array($attributes)');
+                assert(is_array($attributes));
                 $state['Attributes'] = $attributes;
                 $this->authSuccesful($state);
 
-                assert('false'); // should never be reached
+                assert(false); // should never be reached
                 return;
             }
         }
 
-        SimpleSAML\Logger::error('authX509: no matching cert in LDAP for dn='.$dn);
+        \SimpleSAML\Logger::error('authX509: no matching cert in LDAP for dn='.$dn);
         $state['authX509.error'] = "UNKNOWNCERT";
         $this->authFailed($state);
 
-        assert('false'); // should never be reached
+        assert(false); // should never be reached
         return;
     }
 
@@ -197,9 +202,9 @@ class sspmod_authX509_Auth_Source_X509userCert extends SimpleSAML_Auth_Source
      */
     public function authSuccesful(&$state)
     {
-        SimpleSAML_Auth_Source::completeAuth($state);
+        \SimpleSAML\Auth\Source::completeAuth($state);
 
-        assert('false'); // should never be reached
+        assert(false); // should never be reached
         return;
     }
 }

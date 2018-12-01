@@ -1,8 +1,8 @@
 /**
  * This function updates the global logout status.
  */
-function updateStatus() {
-
+function updateStatus()
+{
     var nFailed = 0;
     var nProgress = 0;
     for (sp in window.spStatus) {
@@ -33,7 +33,8 @@ function updateStatus() {
  * @param status The new status.
  * @param reason The reason for the status change.
  */
-function updateSPStatus(spId, status, reason) {
+function updateSPStatus(spId, status, reason)
+{
     if (window.spStatus[spId] === status) {
         // unchanged
         return;
@@ -63,7 +64,8 @@ function updateSPStatus(spId, status, reason) {
  *
  * @param spId The SP that completed logout successfully.
  */
-function logoutCompleted(spId) {
+function logoutCompleted(spId)
+{
     updateSPStatus(spId, 'completed', '');
 }
 
@@ -75,7 +77,8 @@ function logoutCompleted(spId) {
  * @param spId The SP that failed to complete logout.
  * @param reason The reason why logout failed.
  */
-function logoutFailed(spId, reason) {
+function logoutFailed(spId, reason)
+{
     updateSPStatus(spId, 'failed', reason);
 }
 
@@ -84,7 +87,8 @@ function logoutFailed(spId, reason) {
  *
  * If an SP didn't reply by the timeout, we'll mark it as failed.
  */
-function timeoutSPs() {
+function timeoutSPs()
+{
     var cTime = ((new Date()).getTime() - window.startTime) / 1000;
     for (var sp in window.spStatus) {
         if (window.spTimeout[sp] <= cTime && window.spStatus[sp] === 'inprogress') {

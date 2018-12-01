@@ -1,79 +1,78 @@
 <?php
 
 // load configuration and metadata
-$config = SimpleSAML_Configuration::getInstance();
-$metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+$config = \SimpleSAML\Configuration::getInstance();
+$metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
 
 if (!$config->getBoolean('enable.adfs-idp', false)) {
-    throw new SimpleSAML_Error_Error('NOACCESS');
+    throw new \SimpleSAML\Error\Error('NOACCESS');
 }
 
 // check if valid local session exists
 if ($config->getBoolean('admin.protectmetadata', false)) {
-    SimpleSAML\Utils\Auth::requireAdmin();
+    \SimpleSAML\Utils\Auth::requireAdmin();
 }
 
 try {
     $idpentityid = isset($_GET['idpentityid']) ?
-        $_GET['idpentityid'] :
-        $metadata->getMetaDataCurrentEntityID('adfs-idp-hosted');
+        $_GET['idpentityid'] : $metadata->getMetaDataCurrentEntityID('adfs-idp-hosted');
     $idpmeta = $metadata->getMetaDataConfig($idpentityid, 'adfs-idp-hosted');
 
-    $availableCerts = array();
+    $availableCerts = [];
 
-    $keys = array();
-    $certInfo = SimpleSAML\Utils\Crypto::loadPublicKey($idpmeta, false, 'new_');
+    $keys = [];
+    $certInfo = \SimpleSAML\Utils\Crypto::loadPublicKey($idpmeta, false, 'new_');
     if ($certInfo !== null) {
         $availableCerts['new_idp.crt'] = $certInfo;
-        $keys[] = array(
+        $keys[] = [
             'type'            => 'X509Certificate',
             'signing'         => true,
             'encryption'      => true,
             'X509Certificate' => $certInfo['certData'],
-        );
+        ];
         $hasNewCert = true;
     } else {
         $hasNewCert = false;
     }
 
-    $certInfo = SimpleSAML\Utils\Crypto::loadPublicKey($idpmeta, true);
+    $certInfo = \SimpleSAML\Utils\Crypto::loadPublicKey($idpmeta, true);
     $availableCerts['idp.crt'] = $certInfo;
-    $keys[] = array(
+    $keys[] = [
         'type'            => 'X509Certificate',
         'signing'         => true,
         'encryption'      => ($hasNewCert ? false : true),
         'X509Certificate' => $certInfo['certData'],
-    );
+    ];
 
     if ($idpmeta->hasValue('https.certificate')) {
-        $httpsCert = SimpleSAML\Utils\Crypto::loadPublicKey($idpmeta, true, 'https.');
-        assert('isset($httpsCert["certData"])');
+        $httpsCert = \SimpleSAML\Utils\Crypto::loadPublicKey($idpmeta, true, 'https.');
+        assert(isset($httpsCert['certData']));
         $availableCerts['https.crt'] = $httpsCert;
-        $keys[] = array(
+        $keys[] = [
             'type'            => 'X509Certificate',
             'signing'         => true,
             'encryption'      => false,
             'X509Certificate' => $httpsCert['certData'],
-        );
+        ];
     }
 
-    $adfs_service_location = SimpleSAML\Module::getModuleURL('adfs').'/idp/prp.php';
-    $metaArray = array(
+    $adfs_service_location = \SimpleSAML\Module::getModuleURL('adfs').'/idp/prp.php';
+    $metaArray = [
         'metadata-set'        => 'adfs-idp-remote',
         'entityid'            => $idpentityid,
-        'SingleSignOnService' => array(
-            0 => array(
+        'SingleSignOnService' => [
+            0 => [
                 'Binding'  => \SAML2\Constants::BINDING_HTTP_REDIRECT,
                 'Location' => $adfs_service_location
-            )
-        ),
-        'SingleLogoutService' => array(
-            0 => array(
+            ]
+        ],
+        'SingleLogoutService' => [
+            0 => [
                 'Binding'  => \SAML2\Constants::BINDING_HTTP_REDIRECT,
                 'Location' => $adfs_service_location
-            )
-        ),
-    );
+            ]
+        ],
+    ];
 
     if (count($keys) === 1) {
         $metaArray['certData'] = $keys[0]['X509Certificate'];
@@ -94,7 +93,7 @@ try {
         );
 
         if (!$idpmeta->hasValue('OrganizationURL')) {
-            throw new SimpleSAML_Error_Exception('If OrganizationName is set, OrganizationURL must also be set.');
+            throw new \SimpleSAML\Error\Exception('If OrganizationName is set, OrganizationURL must also be set.');
         }
         $metaArray['OrganizationURL'] = $idpmeta->getLocalizedString('OrganizationURL');
     }
@@ -121,16 +120,16 @@ try {
 
     $metaflat = '$metadata['.var_export($idpentityid, true).'] = '.var_export($metaArray, true).';';
 
-    $metaBuilder = new SimpleSAML_Metadata_SAMLBuilder($idpentityid);
+    $metaBuilder = new \SimpleSAML\Metadata\SAMLBuilder($idpentityid);
     $metaBuilder->addSecurityTokenServiceType($metaArray);
     $metaBuilder->addOrganizationInfo($metaArray);
     $technicalContactEmail = $config->getString('technicalcontact_email', null);
     if ($technicalContactEmail && $technicalContactEmail !== 'na@example.org') {
-        $metaBuilder->addContact('technical', \SimpleSAML\Utils\Config\Metadata::getContact(array(
+        $metaBuilder->addContact('technical', \SimpleSAML\Utils\Config\Metadata::getContact([
             'emailAddress' => $technicalContactEmail,
             'name'         => $config->getString('technicalcontact_name', null),
             'contactType'  => 'technical',
-        )));
+        ]));
     }
     $output_xhtml = array_key_exists('output', $_GET) && $_GET['output'] == 'xhtml';
     $metaxml = $metaBuilder->getEntityDescriptorText($output_xhtml);
@@ -139,17 +138,30 @@ try {
     }
 
     // sign the metadata if enabled
-    $metaxml = SimpleSAML_Metadata_Signer::sign($metaxml, $idpmeta->toArray(), 'ADFS IdP');
+    $metaxml = \SimpleSAML\Metadata\Signer::sign($metaxml, $idpmeta->toArray(), 'ADFS IdP');
 
     if ($output_xhtml) {
         $defaultidp = $config->getString('default-adfs-idp', null);
 
-        $t = new SimpleSAML_XHTML_Template($config, 'metadata.php', 'admin');
+        $t = new \SimpleSAML\XHTML\Template($config, 'metadata.php', 'admin');
 
         $t->data['clipboard.js'] = true;
         $t->data['available_certs'] = $availableCerts;
+        $certdata = [];
+        foreach (array_keys($availableCerts) as $availableCert) {
+            $certdata[$availableCert]['name'] = $availableCert;
+            $certdata[$availableCert]['url'] = \SimpleSAML\Module::getModuleURL('saml/idp/certs.php').
+                '/'.$availableCert;
+
+            $certdata[$availableCert]['comment'] = '';
+            if ($availableCerts[$availableCert]['certFingerprint'][0] === 'afe71c28ef740bc87425be13a2263d37971da1f9') {
+                $certdata[$availableCert]['comment'] = 'This is the default certificate.'.
+                    ' Generate a new certificate if this is a production system.';
+            }
+        }
+        $t->data['certdata'] = $certdata;
         $t->data['header'] = 'adfs-idp'; // TODO: Replace with headerString in 2.0
-        $t->data['headerString'] = $t->noop('metadata_adfs-idp');
+        $t->data['headerString'] = \SimpleSAML\Locale\Translate::noop('metadata_adfs-idp');
         $t->data['metaurl'] = \SimpleSAML\Utils\HTTP::getSelfURLNoQuery();
         $t->data['metadata'] = htmlspecialchars($metaxml);
         $t->data['metadataflat'] = htmlspecialchars($metaflat);
@@ -166,6 +178,6 @@ try {
 
         exit(0);
     }
-} catch (Exception $exception) {
-    throw new SimpleSAML_Error_Error('METADATA', $exception);
+} catch (\Exception $exception) {
+    throw new \SimpleSAML\Error\Error('METADATA', $exception);
 }

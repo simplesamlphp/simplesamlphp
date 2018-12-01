@@ -2,7 +2,8 @@
 
 namespace SimpleSAML\Test\Store;
 
-use \SimpleSAML_Configuration as Configuration;
+use PHPUnit\Framework\TestCase;
+use \SimpleSAML\Configuration;
 use \SimpleSAML\Store;
 
 /**
@@ -13,28 +14,28 @@ use \SimpleSAML\Store;
  *
  * @package simplesamlphp/simplesamlphp
  */
-class RedisTest extends \PHPUnit_Framework_TestCase
+class RedisTest extends TestCase
 {
     protected function setUp()
     {
-        $this->config = array();
+        $this->config = [];
 
         $this->mocked_redis = $this->getMockBuilder('Predis\Client')
-                                   ->setMethods(array('get', 'set', 'setex', 'del', 'disconnect'))
+                                   ->setMethods(['get', 'set', 'setex', 'del', 'disconnect'])
                                    ->disableOriginalConstructor()
                                    ->getMock();
 
         $this->mocked_redis->method('get')
-                           ->will($this->returnCallback(array($this, 'getMocked')));
+                           ->will($this->returnCallback([$this, 'getMocked']));
 
         $this->mocked_redis->method('set')
-                           ->will($this->returnCallback(array($this, 'setMocked')));
+                           ->will($this->returnCallback([$this, 'setMocked']));
 
         $this->mocked_redis->method('setex')
-                           ->will($this->returnCallback(array($this, 'setexMocked')));
+                           ->will($this->returnCallback([$this, 'setexMocked']));
 
         $this->mocked_redis->method('del')
-                           ->will($this->returnCallback(array($this, 'delMocked')));
+                           ->will($this->returnCallback([$this, 'delMocked']));
 
         $nop = function () {
             return;
@@ -48,7 +49,7 @@ class RedisTest extends \PHPUnit_Framework_TestCase
 
     public function getMocked($key)
     {
-        return array_key_exists($key, $this->config) ? $this->config[$key] : false;
+        return array_key_exists($key, $this->config) ? $this->config[$key] : null;
     }
 
     public function setMocked($key, $value)
@@ -74,16 +75,16 @@ class RedisTest extends \PHPUnit_Framework_TestCase
      */
     public function testRedisInstance()
     {
-        $config = Configuration::loadFromArray(array(
+        $config = Configuration::loadFromArray([
             'store.type' => 'redis',
             'store.redis.prefix' => 'phpunit_',
-        ), '[ARRAY]', 'simplesaml');
+        ], '[ARRAY]', 'simplesaml');
 
         $store = Store::getInstance();
 
         $this->assertInstanceOf('SimpleSAML\Store\Redis', $store);
 
-        $this->clearInstance($config, '\SimpleSAML_Configuration');
+        $this->clearInstance($config, '\SimpleSAML\Configuration');
         $this->clearInstance($store, '\SimpleSAML\Store');
     }
 

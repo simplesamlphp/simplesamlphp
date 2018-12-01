@@ -34,20 +34,20 @@ msgid "{authX509:X509error:certificate_header}"
 msgstr "X509 certifikat authentifikation"
 
 msgid "{authX509:X509warning:warning}"
-msgstr "Dit certifikat udløber om %days% dage."
+msgstr "Dit certifikat udløber om %daysleft% dage."
 
 msgid "Please renew your certificate in time."
 msgstr "Forny venligst dit certifikat i tide."
 
 #, python-format
-msgid "Your certificate will expire in %days% days."
-msgstr "Dit certifikat udløber om %days% dage."
+msgid "Your certificate will expire in %daysleft% days."
+msgstr "Dit certifikat udløber om %daysleft% dage."
 
 msgid "X509 certificate authentication"
 msgstr "X509 certifikat authentifikation"
 
 #, python-format
-msgid "Please  <a href='%renewurl%'>renew</a> your certificate in time."
+msgid "Please <a href='%renewurl%'>renew your certificate</a> in time."
 msgstr "<a href='%renewurl%'>Forny</a>, venligst dit certifikat før det udløber."
 
 msgid "Proceed"

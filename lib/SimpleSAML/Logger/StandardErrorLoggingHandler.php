@@ -16,7 +16,7 @@ class StandardErrorLoggingHandler extends FileLoggingHandler
      *
      * It runs the parent constructor and sets the log file to be the standard error descriptor.
      */
-    public function __construct(\SimpleSAML_Configuration $config)
+    public function __construct(\SimpleSAML\Configuration $config)
     {
         $this->processname = $config->getString('logging.processname', 'SimpleSAMLphp');
         $this->logFile = 'php://stderr';

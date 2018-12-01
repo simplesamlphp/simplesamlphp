@@ -36,20 +36,20 @@ msgid "{authX509:X509error:certificate_header}"
 msgstr "Ταυτοποίηση μέσω πιστοποιητικού X.509"
 
 msgid "{authX509:X509warning:warning}"
-msgstr "Η ισχύς του πιστοποιητικού σας θα λήξει σε %days%."
+msgstr "Η ισχύς του πιστοποιητικού σας θα λήξει σε %daysleft%."
 
 msgid "Please renew your certificate in time."
 msgstr "Παρακαλείστε να προχωρήσετε σε ανανέωση του πιστοποιητικού σας έγκαιρα."
 
 #, python-format
-msgid "Your certificate will expire in %days% days."
-msgstr "Η ισχύς του πιστοποιητικού σας θα λήξει σε %days%."
+msgid "Your certificate will expire in %daysleft% days."
+msgstr "Η ισχύς του πιστοποιητικού σας θα λήξει σε %daysleft%."
 
 msgid "X509 certificate authentication"
 msgstr "Ταυτοποίηση μέσω πιστοποιητικού X.509"
 
 #, python-format
-msgid "Please  <a href='%renewurl%'>renew</a> your certificate in time."
+msgid "Please <a href='%renewurl%'>renew your certificate</a> in time."
 msgstr ""
 "Παρακαλείστε να προχωρήσετε σε <a href=‘%renewurl%’>ανανέωση</a> του "
 "πιστοποιητικού σας έγκαιρα."

@@ -1435,3 +1435,10 @@ msgid ""
 " not intended to be accessed directly."
 msgstr "你访问了Assertion Consumer Service接口，但是并没有提供一个SAML认证应答"
 
+
+msgid ""
+"You are now accessing a pre-production system. This authentication setup "
+"is for testing and pre-production verification only. If someone sent you "
+"a link that pointed you here, and you are not <i>a tester</i> you "
+"probably got the wrong link, and should <b>not be here</b>."
+msgstr "你现在访问的是一个预安装系统，这个认证设置是用来测试和预发布校验之用。如果有人发送一个连接让你访问到这里，并且你又不是<i>测试人员</i>，那么你获得了一个错误连接，并且你<b>不应该在这里</b>"

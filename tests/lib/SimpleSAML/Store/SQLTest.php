@@ -2,7 +2,8 @@
 
 namespace SimpleSAML\Test\Store;
 
-use \SimpleSAML_Configuration as Configuration;
+use PHPUnit\Framework\TestCase;
+use \SimpleSAML\Configuration;
 use \SimpleSAML\Store;
 
 /**
@@ -14,15 +15,15 @@ use \SimpleSAML\Store;
  * @author Sergio Gómez <sergio@uco.es>
  * @package simplesamlphp/simplesamlphp
  */
-class SQLTest extends \PHPUnit_Framework_TestCase
+class SQLTest extends TestCase
 {
     protected function setUp()
     {
-        \SimpleSAML_Configuration::loadFromArray(array(
+        Configuration::loadFromArray([
             'store.type'                    => 'sql',
             'store.sql.dsn'                 => 'sqlite::memory:',
             'store.sql.prefix'              => 'phpunit_',
-        ), '[ARRAY]', 'simplesaml');
+        ], '[ARRAY]', 'simplesaml');
     }
 
     /**
@@ -49,7 +50,7 @@ class SQLTest extends \PHPUnit_Framework_TestCase
 
         $version = $store->getTableVersion('kvstore');
 
-        $this->assertEquals(1, $version);
+        $this->assertEquals(2, $version);
     }
 
     /**
@@ -93,7 +94,7 @@ class SQLTest extends \PHPUnit_Framework_TestCase
 
         $value = $store->get('test', 'foo');
 
-        $this->assertEquals(null, $value);
+        $this->assertNull($value);
     }
 
     /**
@@ -106,10 +107,10 @@ class SQLTest extends \PHPUnit_Framework_TestCase
     {
         /** @var \SimpleSAML\Store\SQL $store */
         $store = Store::getInstance();
-        
+
         $store->set('test', 'foo', 'bar');
         $value = $store->get('test', 'foo');
-        
+
         $this->assertEquals('bar', $value);
     }
 
@@ -147,7 +148,7 @@ class SQLTest extends \PHPUnit_Framework_TestCase
         $store->delete('test', 'foo');
         $value = $store->get('test', 'foo');
 
-        $this->assertEquals(null, $value);
+        $this->assertNull($value);
     }
 
     /**
@@ -167,7 +168,7 @@ class SQLTest extends \PHPUnit_Framework_TestCase
         $store->delete('test', $key);
         $value = $store->get('test', $key);
 
-        $this->assertEquals(null, $value);
+        $this->assertNull($value);
     }
 
     protected function tearDown()
@@ -175,7 +176,7 @@ class SQLTest extends \PHPUnit_Framework_TestCase
         $config = Configuration::getInstance();
         $store = Store::getInstance();
 
-        $this->clearInstance($config, '\SimpleSAML_Configuration');
+        $this->clearInstance($config, '\SimpleSAML\Configuration');
         $this->clearInstance($store, '\SimpleSAML\Store');
     }
 

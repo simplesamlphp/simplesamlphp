@@ -1558,3 +1558,13 @@ msgstr ""
 "Jūs izmantojat Assertion Consumer Service interfeisu, bet neesat devis "
 "SAML autentifikācijas atbildi."
 
+
+msgid ""
+"You are now accessing a pre-production system. This authentication setup "
+"is for testing and pre-production verification only. If someone sent you "
+"a link that pointed you here, and you are not <i>a tester</i> you "
+"probably got the wrong link, and should <b>not be here</b>."
+msgstr ""
+"Jūs izmantojat testa (pirmsprodukcijas) sistēmu. Šī autentifikācija ir "
+"tikai testēšanas vajadzībām. Ja kāds Jums atsūtījis saiti uz šejieni un "
+"Jūs neesat <i>testētājs</i>, Jums te <b>nav jāatrodas</b>."

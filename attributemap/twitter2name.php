@@ -1,5 +1,5 @@
 <?php
-$attributemap = array(
+$attributemap = [
 
     // Generated Twitter Attributes
     'twitter_screen_n_realm' => 'eduPersonPrincipalName', // screen_name@twitter.com
@@ -11,4 +11,4 @@ $attributemap = array(
     'twitter.url'            => 'labeledURI',
     'twitter.lang'           => 'preferredLanguage',
     'twitter.description'    => 'description',
-);
+];

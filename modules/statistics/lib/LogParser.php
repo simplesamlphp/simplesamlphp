@@ -1,20 +1,35 @@
 <?php
+
+namespace SimpleSAML\Module\statistics;
+
 /*
  * @author Andreas Åkre Solberg <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
  */
-class sspmod_statistics_LogParser
+
+class LogParser
 {
+    /**
+     * @var integer
+     */
     private $datestart;
+
+    /**
+     * @var integer
+     */
     private $datelength;
+
+    /**
+     * @var integer
+     */
     private $offset;
 
     /**
      * Constructor
      *
-     * @param $datestart   At which char is the date starting
-     * @param $datelength  How many characters is the date (on the b
-     * @param $offset      At which char is the rest of the entries starting
+     * @param integer $datestart   At which char is the date starting
+     * @param integer $datelength  How many characters is the date (on the b
+     * @param integer $offset      At which char is the rest of the entries starting
      */
     public function __construct($datestart, $datelength, $offset)
     {
@@ -23,10 +38,17 @@ class sspmod_statistics_LogParser
         $this->offset = $offset;
     }
 
+
+    /**
+     * @param string $line
+     *
+     * @return integer
+     */
     public function parseEpoch($line)
     {
         $epoch = strtotime(substr($line, 0, $this->datelength));
-        if ($epoch > time() + 2678400) {  // 60 * 60 *24 * 31 = 2678400
+        if ($epoch > time() + 2678400) {
+            // 60 * 60 * 24 * 31 = 2678400
             /*
              * More than a month in the future - probably caused by
              * the log files missing the year.
@@ -43,24 +65,16 @@ class sspmod_statistics_LogParser
         return $epoch;
     }
 
-    public function parseContent($line) {
+
+    /**
+     * @param string $line
+     *
+     * @return array
+     */
+    public function parseContent($line)
+    {
         $contentstr = substr($line, $this->offset);
         $content = explode(' ', $contentstr);
         return $content;
-    }
-
-    // Aug 27 12:54:25 ssp 5 STAT [5416262207] saml20-sp-SSO urn:mace:feide.no:services:no.uninett.wiki-feide sam.feide.no NA
-    // 
-    // Oct 30 11:07:14 www1 simplesamlphp-foodle[12677]: 5 STAT [200b4679af] saml20-sp-SLO spinit urn:mace:feide.no:services:no.feide.foodle sam.feide.no
-
-    function parse15($str) {
-        $di = date_parse($str);
-        $datestamp = mktime($di['hour'], $di['minute'], $di['second'], $di['month'], $di['day']);	
-        return $datestamp;
-    }
-
-    function parse23($str) {
-        $timestamp = strtotime($str);
-        return $timestamp;
     }
 }

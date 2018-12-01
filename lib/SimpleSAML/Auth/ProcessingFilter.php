@@ -1,5 +1,6 @@
 <?php
 
+namespace SimpleSAML\Auth;
 
 /**
  * Base class for authentication processing filters.
@@ -18,49 +19,50 @@
  * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
-abstract class SimpleSAML_Auth_ProcessingFilter {
 
-	/**
-	 * Priority of this filter.
-	 *
-	 * Used when merging IdP and SP processing chains.
-	 * The priority can be any integer. The default for most filters is 50. Filters may however
-	 * specify their own default, if they typically should be amongst the first or the last filters.
-	 *
-	 * The prioroty can also be overridden by the user by specifying the '%priority' option.
-	 */
-	public $priority = 50;
-
-
-	/**
-	 * Constructor for a processing filter.
-	 *
-	 * Any processing filter which implements its own constructor must call this
-	 * constructor first.
-	 *
-	 * @param array &$config  Configuration for this filter.
-	 * @param mixed $reserved  For future use.
-	 */
-	public function __construct(&$config, $reserved) {
-		assert('is_array($config)');
-
-		if(array_key_exists('%priority', $config)) {
-			$this->priority = $config['%priority'];
-			if(!is_int($this->priority)) {
-				throw new Exception('Invalid priority: ' . var_export($this->priority, TRUE));
-			}
-			unset($config['%priority']);
-		}
-	}
+abstract class ProcessingFilter
+{
+    /**
+     * Priority of this filter.
+     *
+     * Used when merging IdP and SP processing chains.
+     * The priority can be any integer. The default for most filters is 50. Filters may however
+     * specify their own default, if they typically should be amongst the first or the last filters.
+     *
+     * The prioroty can also be overridden by the user by specifying the '%priority' option.
+     */
+    public $priority = 50;
 
 
-	/**
-	 * Process a request.
-	 *
-	 * When a filter returns from this function, it is assumed to have completed its task.
-	 *
-	 * @param array &$request  The request we are currently processing.
-	 */
-	abstract public function process(&$request);
+    /**
+     * Constructor for a processing filter.
+     *
+     * Any processing filter which implements its own constructor must call this
+     * constructor first.
+     *
+     * @param array &$config  Configuration for this filter.
+     * @param mixed $reserved  For future use.
+     */
+    public function __construct(&$config, $reserved)
+    {
+        assert(is_array($config));
 
+        if (array_key_exists('%priority', $config)) {
+            $this->priority = $config['%priority'];
+            if (!is_int($this->priority)) {
+                throw new \Exception('Invalid priority: '.var_export($this->priority, true));
+            }
+            unset($config['%priority']);
+        }
+    }
+
+
+    /**
+     * Process a request.
+     *
+     * When a filter returns from this function, it is assumed to have completed its task.
+     *
+     * @param array &$request  The request we are currently processing.
+     */
+    abstract public function process(&$request);
 }

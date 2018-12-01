@@ -31,10 +31,10 @@ To enable support for the HoK SSO Profile in the SP, the `saml20.hok.assertion` 
 This option can also be enabled in the `saml20-idp-remote` metadata file, but in that case the endpoint will not be added to the SP metadata.
 You must also send authentication requests specifying the Holder-of-Key profile to the IdP. This is controlled by the `ProtocolBinding` option in the SP configuration.
 
-    'hok-sp' => array(
+    'hok-sp' => [
         'saml:SP',
         'saml20.hok.assertion' => TRUE,
         'ProtocolBinding' => 'urn:oasis:names:tc:SAML:2.0:profiles:holder-of-key:SSO:browser',
-    ),
+    ],
 
 When this is done, you can add the metadata of your SP to the IdP and test the authentication.

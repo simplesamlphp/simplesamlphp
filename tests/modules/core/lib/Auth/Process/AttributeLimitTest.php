@@ -1,10 +1,14 @@
 <?php
+
+namespace SimpleSAML\Test\Module\core\Auth\Process;
+
+use PHPUnit\Framework\TestCase;
+
 /**
  * Test for the core:AttributeLimit filter.
  */
-class Test_Core_Auth_Process_AttributeLimitTest extends PHPUnit_Framework_TestCase
+class AttributeLimitTest extends TestCase
 {
-
     /**
      * Helper function to run the filter with a given configuration.
      *
@@ -14,7 +18,7 @@ class Test_Core_Auth_Process_AttributeLimitTest extends PHPUnit_Framework_TestCa
      */
     private static function processFilter(array $config, array $request)
     {
-        $filter = new sspmod_core_Auth_Process_AttributeLimit($config, NULL);
+        $filter = new \SimpleSAML\Module\core\Auth\Process\AttributeLimit($config, null);
         $filter->process($request);
         return $request;
     }
@@ -24,23 +28,23 @@ class Test_Core_Auth_Process_AttributeLimitTest extends PHPUnit_Framework_TestCa
      */
     public function testIdPAttrs()
     {
-        $config = array(
+        $config = [
             'cn', 'mail'
-        );
+        ];
 
-        $request = array(
-            'Attributes' => array(
-                 'eduPersonTargetedID' => array('eptid@example.org'),
-                 'eduPersonAffiliation' => array('member'),
-                 'cn' => array('user name'),
-                 'mail' => array('user@example.org'),
-             ),
-            'Destination' => array(
-             ),
-            'Source' => array(
-                'attributes' => array('cn','mail'),
-             ),
-        );
+        $request = [
+            'Attributes' => [
+                 'eduPersonTargetedID' => ['eptid@example.org'],
+                 'eduPersonAffiliation' => ['member'],
+                 'cn' => ['user name'],
+                 'mail' => ['user@example.org'],
+            ],
+            'Destination' => [
+            ],
+            'Source' => [
+                'attributes' => ['cn', 'mail'],
+            ],
+        ];
 
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
@@ -50,10 +54,10 @@ class Test_Core_Auth_Process_AttributeLimitTest extends PHPUnit_Framework_TestCa
         $this->assertArrayNotHasKey('eduPersonAffiliation', $attributes);
         $this->assertCount(2, $attributes);
 
-        $config = array(
+        $config = [
             'cn',
-            'default' => TRUE,
-        );
+            'default' => true,
+        ];
 
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
@@ -62,8 +66,6 @@ class Test_Core_Auth_Process_AttributeLimitTest extends PHPUnit_Framework_TestCa
         $this->assertArrayNotHasKey('eduPersonTargetedID', $attributes);
         $this->assertArrayNotHasKey('eduPersonAffiliation', $attributes);
         $this->assertCount(2, $attributes);
-
-
     }
 
     /**
@@ -71,22 +73,22 @@ class Test_Core_Auth_Process_AttributeLimitTest extends PHPUnit_Framework_TestCa
      */
     public function testNULLMetadataAttrs()
     {
-        $config = array(
+        $config = [
             'cn', 'mail'
-        );
+        ];
 
-        $request = array(
-            'Attributes' => array(
-                 'eduPersonTargetedID' => array('eptid@example.org'),
-                 'eduPersonAffiliation' => array('member'),
-                 'cn' => array('user name'),
-                 'mail' => array('user@example.org'),
-             ),
-            'Destination' => array(
-             ),
-            'Source' => array(
-             ),
-        );
+        $request = [
+            'Attributes' => [
+                 'eduPersonTargetedID' => ['eptid@example.org'],
+                 'eduPersonAffiliation' => ['member'],
+                 'cn' => ['user name'],
+                 'mail' => ['user@example.org'],
+            ],
+            'Destination' => [
+            ],
+            'Source' => [
+            ],
+        ];
 
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
@@ -96,10 +98,10 @@ class Test_Core_Auth_Process_AttributeLimitTest extends PHPUnit_Framework_TestCa
         $this->assertArrayNotHasKey('eduPersonAffiliation', $attributes);
         $this->assertCount(2, $attributes);
 
-        $config = array(
+        $config = [
             'cn',
-            'default' => TRUE,
-        );
+            'default' => true,
+        ];
 
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
@@ -109,8 +111,8 @@ class Test_Core_Auth_Process_AttributeLimitTest extends PHPUnit_Framework_TestCa
         $this->assertArrayNotHasKey('eduPersonAffiliation', $attributes);
         $this->assertCount(1, $attributes);
 
-        $config = array(
-        );
+        $config = [
+        ];
 
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
@@ -129,19 +131,19 @@ class Test_Core_Auth_Process_AttributeLimitTest extends PHPUnit_Framework_TestCa
 
     public static function setUpBeforeClass()
     {
-        self::$request = array(
-            'Attributes' => array(
-                 'eduPersonTargetedID' => array('eptid@example.org'),
-                 'eduPersonAffiliation' => array('member'),
-                 'cn' => array('common name'),
-                 'mail' => array('user@example.org'),
-             ),
-            'Destination' => array(
-		'attributes' => array('cn','mail'),
-             ),
-            'Source' => array(
-             ),
-        );
+        self::$request = [
+            'Attributes' => [
+                 'eduPersonTargetedID' => ['eptid@example.org'],
+                 'eduPersonAffiliation' => ['member'],
+                 'cn' => ['common name'],
+                 'mail' => ['user@example.org'],
+            ],
+            'Destination' => [
+                'attributes' => ['cn', 'mail'],
+            ],
+            'Source' => [
+            ],
+        ];
     }
 
     /**
@@ -149,9 +151,9 @@ class Test_Core_Auth_Process_AttributeLimitTest extends PHPUnit_Framework_TestCa
      */
     public function testBasic()
     {
-        $config = array(
+        $config = [
             'cn', 'mail'
-        );
+        ];
 
         $result = self::processFilter($config, self::$request);
         $attributes = $result['Attributes'];
@@ -165,9 +167,9 @@ class Test_Core_Auth_Process_AttributeLimitTest extends PHPUnit_Framework_TestCa
      */
     public function testDefaultWithMetadata()
     {
-        $config = array(
-            'default' => TRUE,
-        );
+        $config = [
+            'default' => true,
+        ];
 
         $result = self::processFilter($config, self::$request);
         $attributes = $result['Attributes'];
@@ -181,10 +183,10 @@ class Test_Core_Auth_Process_AttributeLimitTest extends PHPUnit_Framework_TestCa
      */
     public function testDefaultWithAttrs()
     {
-        $config = array(
-            'default' => TRUE,
+        $config = [
+            'default' => true,
             'eduPersonTargetedID', 'eduPersonAffiliation',
-        );
+        ];
 
         $result = self::processFilter($config, self::$request);
         $attributes = $result['Attributes'];
@@ -197,30 +199,30 @@ class Test_Core_Auth_Process_AttributeLimitTest extends PHPUnit_Framework_TestCa
 
     /**
      * Test for exception with illegal config.
-     * 
-     * @expectedException Exception 
+     *
+     * @expectedException Exception
      */
     public function testInvalidConfig()
     {
-        $config = array(
-            'invalidArg' => TRUE,
-        );
+        $config = [
+            'invalidArg' => true,
+        ];
 
-        $result = self::processFilter($config, self::$request);
+        self::processFilter($config, self::$request);
     }
 
     /**
      * Test for invalid attribute name
-     * 
-     * @expectedException Exception 
+     *
+     * @expectedException Exception
      */
     public function testInvalidAttributeName()
     {
-        $config = array(
-		null
-        );
+        $config = [
+            null
+        ];
 
-        $result = self::processFilter($config, self::$request);
+        self::processFilter($config, self::$request);
     }
 
 
@@ -229,71 +231,241 @@ class Test_Core_Auth_Process_AttributeLimitTest extends PHPUnit_Framework_TestCa
      */
     public function testMatchAttributeValues()
     {
-        $config = array(
-		'eduPersonAffiliation' => array('member')
-        );
+        $config = [
+            'eduPersonAffiliation' => ['member']
+        ];
 
         $result = self::processFilter($config, self::$request);
         $attributes = $result['Attributes'];
         $this->assertCount(1, $attributes);
         $this->assertArrayHasKey('eduPersonAffiliation', $attributes);
-        $this->assertEquals($attributes['eduPersonAffiliation'], array('member'));
+        $this->assertEquals($attributes['eduPersonAffiliation'], ['member']);
 
-        $config = array(
-		'eduPersonAffiliation' => array('member','staff')
-        );
+        $config = [
+            'eduPersonAffiliation' => ['member', 'staff']
+        ];
 
         $result = self::processFilter($config, self::$request);
         $attributes = $result['Attributes'];
         $this->assertCount(1, $attributes);
         $this->assertArrayHasKey('eduPersonAffiliation', $attributes);
-        $this->assertEquals($attributes['eduPersonAffiliation'], array('member'));
+        $this->assertEquals($attributes['eduPersonAffiliation'], ['member']);
 
-        $config = array(
-		'eduPersonAffiliation' => array('student')
-        );
+        $config = [
+            'eduPersonAffiliation' => ['student']
+        ];
         $result = self::processFilter($config, self::$request);
         $attributes = $result['Attributes'];
         $this->assertCount(0, $attributes);
 
-        $config = array(
-		'eduPersonAffiliation' => array('student','staff')
-        );
+        $config = [
+            'eduPersonAffiliation' => ['student', 'staff']
+        ];
+        $result = self::processFilter($config, self::$request);
+        $attributes = $result['Attributes'];
+        $this->assertCount(0, $attributes);
+    }
+
+    public function testBadOptionsNotTreatedAsValidValues()
+    {
+        // Ensure really misconfigured ignoreCase and regex options are not interpretted as valid valus
+        $config = [
+            'eduPersonAffiliation' => ['ignoreCase' => 'member', 'nomatch'],
+            'mail' => ['regex' => 'user@example.org', 'nomatch']
+        ];
         $result = self::processFilter($config, self::$request);
         $attributes = $result['Attributes'];
         $this->assertCount(0, $attributes);
     }
 
     /**
-     * Test for allowed attributes not an array. 
+     * Verify that the true value for ignoreCase doesn't get converted into a string ('1') by
+     * php and matched against an attribute value of '1'
+     */
+    public function testThatIgnoreCaseOptionNotMatchBooleanAsStringValue()
+    {
+        $config = [
+            'someAttribute' => ['ignoreCase' => true, 'someValue']
+        ];
+
+        $request = [
+            'Attributes' => [
+                'someAttribute' => ['1'], //boolean true as a string
+
+            ],
+        ];
+        $result = self::processFilter($config, $request);
+        $attributes = $result['Attributes'];
+        $this->assertCount(0, $attributes);
+    }
+
+    /**
+     * Test for attribute value matching ignore case
+     */
+    public function testMatchAttributeValuesIgnoreCase()
+    {
+        $config = [
+            'eduPersonAffiliation' => ['ignoreCase' => true, 'meMber']
+        ];
+
+        $result = self::processFilter($config, self::$request);
+        $attributes = $result['Attributes'];
+        $this->assertCount(1, $attributes);
+        $this->assertArrayHasKey('eduPersonAffiliation', $attributes);
+        $this->assertEquals($attributes['eduPersonAffiliation'], ['member']);
+
+        $config = [
+            'eduPersonAffiliation' => ['ignoreCase' => true, 'membeR', 'sTaff']
+        ];
+
+        $result = self::processFilter($config, self::$request);
+        $attributes = $result['Attributes'];
+        $this->assertCount(1, $attributes);
+        $this->assertArrayHasKey('eduPersonAffiliation', $attributes);
+        $this->assertEquals($attributes['eduPersonAffiliation'], ['member']);
+
+        $config = [
+            'eduPersonAffiliation' => ['ignoreCase' => true, 'Student']
+        ];
+        $result = self::processFilter($config, self::$request);
+        $attributes = $result['Attributes'];
+        $this->assertCount(0, $attributes);
+
+        $config = [
+            'eduPersonAffiliation' => ['ignoreCase' => true, 'studeNt', 'sTaff']
+        ];
+        $result = self::processFilter($config, self::$request);
+        $attributes = $result['Attributes'];
+        $this->assertCount(0, $attributes);
+    }
+
+    /**
+     * Test for attribute value matching
+     */
+    public function testMatchAttributeValuesRegex()
+    {
+        // SSP Logger requires a configuration to be set.
+        \SimpleSAML\Configuration::loadFromArray([], '[ARRAY]', 'simplesaml');
+        $state = self::$request;
+        $state['Attributes']['eduPersonEntitlement'] = [
+            'urn:mace:example.terena.org:tcs:personal-user',
+            'urn:x-surfnet:surfdomeinen.nl:role:dnsadmin',
+            'urn:x-surfnet:surf.nl:surfdrive:quota:100',
+            '1' //boolean true as a string
+        ];
+
+        $config = [
+            'eduPersonEntitlement' => [
+                'regex' => true,
+                '/^urn:x-surfnet:surf/'
+            ]
+        ];
+
+        $result = self::processFilter($config, $state);
+        $attributes = $result['Attributes'];
+        $this->assertCount(1, $attributes);
+        $this->assertArrayHasKey('eduPersonEntitlement', $attributes);
+        $this->assertEquals(
+            ['urn:x-surfnet:surfdomeinen.nl:role:dnsadmin', 'urn:x-surfnet:surf.nl:surfdrive:quota:100'],
+            $attributes['eduPersonEntitlement']
+        );
+
+        // Matching multiple lines shouldn't duplicate the attribute
+        $config = [
+            'eduPersonEntitlement' => [
+                'regex' => true,
+                '/urn:x-surfnet:surf/',
+                '/urn:x-surfnet/'
+
+            ]
+        ];
+
+        $result = self::processFilter($config, $state);
+        $attributes = $result['Attributes'];
+        $this->assertCount(1, $attributes);
+        $this->assertArrayHasKey('eduPersonEntitlement', $attributes);
+        $this->assertEquals(
+            ['urn:x-surfnet:surfdomeinen.nl:role:dnsadmin', 'urn:x-surfnet:surf.nl:surfdrive:quota:100'],
+            $attributes['eduPersonEntitlement']
+        );
+
+        // Invalid and no-match regex expressions should not stop a valid regex from matching
+        $config = [
+            'eduPersonEntitlement' => [
+                'regex' => true,
+                '/urn:mace:example.terena.org:tcs:no-match/',
+                '$invalidRegex[',
+                '/^URN:x-surf.*SURF.*n$/i'
+            ]
+        ];
+
+        $result = self::processFilter($config, $state);
+        $attributes = $result['Attributes'];
+        $this->assertCount(1, $attributes);
+        $this->assertArrayHasKey('eduPersonEntitlement', $attributes);
+        $this->assertEquals(
+            ['urn:x-surfnet:surfdomeinen.nl:role:dnsadmin'],
+            $attributes['eduPersonEntitlement']
+        );
+
+        // No matches should remove attribute
+        $config = [
+            'eduPersonEntitlement' => [
+                'regex' => true,
+                '/urn:x-no-match/'
+            ]
+        ];
+        $result = self::processFilter($config, $state);
+        $attributes = $result['Attributes'];
+        $this->assertCount(0, $attributes);
+
+        // A regex that matches an input value multiple times should work.
+        $config = [
+            'eduPersonEntitlement' => [
+                'regex' => true,
+                '/surf/'
+            ]
+        ];
+        $result = self::processFilter($config, $state);
+        $attributes = $result['Attributes'];
+        $this->assertCount(1, $attributes);
+        $this->assertArrayHasKey('eduPersonEntitlement', $attributes);
+        $this->assertEquals(
+            ['urn:x-surfnet:surfdomeinen.nl:role:dnsadmin', 'urn:x-surfnet:surf.nl:surfdrive:quota:100'],
+            $attributes['eduPersonEntitlement']
+        );
+    }
+
+    /**
+     * Test for allowed attributes not an array.
      *
-     * This test is very unlikely and would require malformed metadata processing. 
+     * This test is very unlikely and would require malformed metadata processing.
      * Cannot be generated via config options.
      *
-     * @expectedException Exception 
+     * @expectedException Exception
      */
     public function testMatchAttributeValuesNotArray()
     {
-        $config = array(
-        );
+        $config = [
+        ];
 
-        $request = array(
-            'Attributes' => array(
-                 'eduPersonTargetedID' => array('eptid@example.org'),
-                 'eduPersonAffiliation' => array('member'),
-                 'cn' => array('user name'),
-                 'mail' => array('user@example.org'),
-                 'discardme' => array('somethingiswrong'),
-             ),
-            'Destination' => array(
-                'attributes' => array('eduPersonAffiliation' => 'student'),
-             ),
-            'Source' => array(
-             ),
-        );
+        $request = [
+            'Attributes' => [
+                 'eduPersonTargetedID' => ['eptid@example.org'],
+                 'eduPersonAffiliation' => ['member'],
+                 'cn' => ['user name'],
+                 'mail' => ['user@example.org'],
+                 'discardme' => ['somethingiswrong'],
+            ],
+            'Destination' => [
+                'attributes' => ['eduPersonAffiliation' => 'student'],
+            ],
+            'Source' => [
+            ],
+        ];
 
 
-        $result = self::processFilter($config, $request);
+        self::processFilter($config, $request);
     }
 
     /**
@@ -301,24 +473,24 @@ class Test_Core_Auth_Process_AttributeLimitTest extends PHPUnit_Framework_TestCa
      */
     public function testNoIntersection()
     {
-        $config = array(
-            'default' => TRUE,
-        );
+        $config = [
+            'default' => true,
+        ];
 
-        $request = array(
-            'Attributes' => array(
-                 'eduPersonTargetedID' => array('eptid@example.org'),
-                 'eduPersonAffiliation' => array('member'),
-                 'cn' => array('user name'),
-                 'mail' => array('user@example.org'),
-                 'discardme' => array('somethingiswrong'),
-             ),
-            'Destination' => array(
-                'attributes' => array('urn:oid:1.2.840.113549.1.9.1'),
-             ),
-            'Source' => array(
-             ),
-        );
+        $request = [
+            'Attributes' => [
+                 'eduPersonTargetedID' => ['eptid@example.org'],
+                 'eduPersonAffiliation' => ['member'],
+                 'cn' => ['user name'],
+                 'mail' => ['user@example.org'],
+                 'discardme' => ['somethingiswrong'],
+            ],
+            'Destination' => [
+                'attributes' => ['urn:oid:1.2.840.113549.1.9.1'],
+            ],
+            'Source' => [
+            ],
+        ];
 
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];

@@ -22,7 +22,7 @@ msgid "{negotiate:negotiate:enable_title}"
 msgstr "启用本浏览器上的自动登录功能"
 
 msgid "{negotiate:negotiate:disable_info_pre}"
-msgstr "<p>当您连上本页面时，本浏览器自动登录功能已关闭。</p><p>请访问<a href='URL'>此处</a>以重新启用自动登录功能。</p>"
+msgstr "<p>当您连上本页面时，本浏览器自动登录功能已关闭。</p><p>请访问<a href='%URL%'>此处</a>以重新启用自动登录功能。</p>"
 
 msgid "Turned off ability to use automatic login for this browser"
 msgstr "关闭本浏览器上的自动登录功能"
@@ -33,6 +33,6 @@ msgstr "启用本浏览器上的自动登录功能"
 msgid ""
 "<p>By accessing this page, you have turned off the ability to use "
 "automatic login for this browser.</p><p>To turn it on again, please visit"
-" <a href='URL'>this page</a>.</p>"
-msgstr "<p>当您连上本页面时，本浏览器自动登录功能已关闭。</p><p>请访问<a href='URL'>此处</a>以重新启用自动登录功能。</p>"
+" <a href='%URL%'>this page</a>.</p>"
+msgstr "<p>当您连上本页面时，本浏览器自动登录功能已关闭。</p><p>请访问<a href='%URL%'>此处</a>以重新启用自动登录功能。</p>"
 

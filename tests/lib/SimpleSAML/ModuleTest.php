@@ -1,12 +1,12 @@
 <?php
+
 namespace SimpleSAML\Test;
 
+use PHPUnit\Framework\TestCase;
 use SimpleSAML\Module;
 
-class ModuleTest extends \PHPUnit_Framework_TestCase
+class ModuleTest extends TestCase
 {
-
-
     /**
      * Test for SimpleSAML\Module::isModuleEnabled().
      */
@@ -35,19 +35,19 @@ class ModuleTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetModuleURL()
     {
-        \SimpleSAML_Configuration::loadFromArray(array(
+        \SimpleSAML\Configuration::loadFromArray([
             'baseurlpath' => 'https://example.com/simplesaml/'
-        ), '', 'simplesaml');
+        ], '', 'simplesaml');
         $this->assertEquals(
             'https://example.com/simplesaml/module.php/module/script.php',
             Module::getModuleURL('module/script.php')
         );
         $this->assertEquals(
             'https://example.com/simplesaml/module.php/module/script.php?param1=value1&param2=value2',
-            Module::getModuleURL('module/script.php', array(
+            Module::getModuleURL('module/script.php', [
                 'param1' => 'value1',
                 'param2' => 'value2',
-            ))
+            ])
         );
     }
 
@@ -107,13 +107,16 @@ class ModuleTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('sspmod_core_ACL', Module::resolveClass('core:ACL', ''));
 
         // test for the $type parameter correctly translated into a path
-        $this->assertEquals('sspmod_core_Auth_Process_PHP', Module::resolveClass('core:PHP', 'Auth_Process'));
+        $this->assertEquals(
+            '\SimpleSAML\Module\core\Auth\Process\PHP',
+            Module::resolveClass('core:PHP', 'Auth_Process')
+        );
 
         // test for valid subclasses
-        $this->assertEquals('sspmod_core_Auth_Process_PHP', Module::resolveClass(
+        $this->assertEquals('\SimpleSAML\Module\core\Auth\Process\PHP', Module::resolveClass(
             'core:PHP',
-            'Auth_Process',
-            'SimpleSAML_Auth_ProcessingFilter'
+            'Auth\Process',
+            '\SimpleSAML\Auth\ProcessingFilter'
         ));
     }
 }

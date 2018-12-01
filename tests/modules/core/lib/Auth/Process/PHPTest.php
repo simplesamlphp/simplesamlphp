@@ -1,12 +1,14 @@
 <?php
 
+namespace SimpleSAML\Test\Module\core\Auth\Process;
+
+use PHPUnit\Framework\TestCase;
 
 /**
  * Test for the core:PHP filter.
  */
-class Test_Core_Auth_Process_PHP extends PHPUnit_Framework_TestCase
+class PHPTest extends TestCase
 {
-
     /**
      * Helper function to run the filter with a given configuration.
      *
@@ -17,7 +19,7 @@ class Test_Core_Auth_Process_PHP extends PHPUnit_Framework_TestCase
      */
     private static function processFilter(array $config, array $request)
     {
-        $filter = new sspmod_core_Auth_Process_PHP($config, null);
+        $filter = new \SimpleSAML\Module\core\Auth\Process\PHP($config, null);
         @$filter->process($request);
         return $request;
     }
@@ -25,13 +27,15 @@ class Test_Core_Auth_Process_PHP extends PHPUnit_Framework_TestCase
 
     /**
      * Test the configuration of the filter.
-     *
-     * @expectedException SimpleSAML_Error_Exception
      */
     public function testInvalidConfiguration()
     {
-        $config = array();
-        new sspmod_core_Auth_Process_PHP($config, null);
+        $config = [];
+        $this->setExpectedException(
+            "\SimpleSAML\Error\Exception",
+            "core:PHP: missing mandatory configuration option 'code'."
+        );
+        new \SimpleSAML\Module\core\Auth\Process\PHP($config, null);
     }
 
 
@@ -40,16 +44,109 @@ class Test_Core_Auth_Process_PHP extends PHPUnit_Framework_TestCase
      */
     public function testCodeDefined()
     {
+        $config = [
+            'code' => '
+                $attributes["key"] = array("value");
+            ',
+        ];
+        $request = ['Attributes' => []];
+        $expected = [
+            'Attributes' => [
+                'key' => ['value'],
+            ],
+        ];
+
+        $this->assertEquals($expected, $this->processFilter($config, $request));
+    }
+
+    /**
+     * Check that the incoming attributes are also available after processing
+     */
+    public function testPreserveIncomingAttributes()
+    {
+        $config = [
+            'code' => '
+                $attributes["orig2"] = array("value0");
+            ',
+        ];
+        $request = [
+            'Attributes' => [
+                'orig1' => ['value1', 'value2'],
+                'orig2' => ['value3'],
+                'orig3' => ['value4']
+            ]
+        ];
+        $expected = [
+            'Attributes' => [
+                'orig1' => ['value1', 'value2'],
+                'orig2' => ['value0'],
+                'orig3' => ['value4']
+            ],
+        ];
+
+        $this->assertEquals($expected, $this->processFilter($config, $request));
+    }
+
+    /**
+     * Check that throwing an Exception inside the PHP code of the
+     * filter (a documented use case) works.
+     */
+    public function testThrowExceptionFromFilter()
+    {
+        $config = [
+            'code' => '
+                 if (empty($attributes["uid"])) {
+                     throw new Exception("Missing uid attribute.");
+                 }
+                 $attributes["uid"][0] = strtoupper($attributes["uid"][0]);
+            ',
+        ];
+        $request = [
+            'Attributes' => [
+                'orig1' => ['value1', 'value2'],
+            ]
+        ];
+
+        $this->setExpectedException(
+            "Exception",
+            "Missing uid attribute."
+        );
+        $this->processFilter($config, $request);
+    }
+
+    /**
+     * Check that the entire state can be adjusted.
+     */
+    public function testStateCanBeModified()
+    {
+
         $config = array(
             'code' => '
-                $attributes["key"] = "value";
+                $attributes["orig2"] = array("value0");
+                $state["newKey"] = ["newValue"];
+                $state["Destination"]["attributes"][] = "givenName";
             ',
         );
-        $request = array('Attributes' => array());
+        $request = array(
+            'Attributes' => array(
+                'orig1' => array('value1', 'value2'),
+                'orig2' => array('value3'),
+                'orig3' => array('value4')
+            ),
+            'Destination' => [
+                'attributes' => ['eduPersonPrincipalName']
+            ],
+        );
         $expected = array(
             'Attributes' => array(
-                'key' => 'value',
+                'orig1' => array('value1', 'value2'),
+                'orig2' => array('value0'),
+                'orig3' => array('value4')
             ),
+            'Destination' => [
+                'attributes' => ['eduPersonPrincipalName', 'givenName']
+            ],
+            'newKey' => ['newValue']
         );
 
         $this->assertEquals($expected, $this->processFilter($config, $request));

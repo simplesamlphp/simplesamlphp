@@ -1,7 +1,7 @@
 `core:PHP`
 ==========
 
-This is a filter which makes it possible to run arbitrary PHP code to modify the attributes of an user.
+This is a filter which makes it possible to run arbitrary PHP code to modify the attributes or state of an user.
 
 Parameters
 ----------
@@ -11,8 +11,14 @@ Parameters
     It must be `'core:PHP'`.
 
 `code`
-:   The PHP code that should be run. This code will have only one variable available: `$attributes`.
+:   The PHP code that should be run. This code will have two variables available: 
+
+* `$attributes`.
     This is an associative array of attributes, and can be modified to add or remove attributes.
+    
+* `$state`.
+    This is an associative array of request state. It can be modified to adjust data related to the authentication
+    such as desired NameId, requested Attributes, authnContextRef and many more.
 
 Examples
 --------
@@ -42,4 +48,11 @@ Create a random number variable:
                 (string)rand(),
             );
         ',
+    ),
+
+Force a specific NameIdFormat. Useful if an SP misbehaves and requests (or publishes) an incorrect NameId
+
+    90 => array(
+         'class' => 'core:PHP',
+         'code' => '$state["saml:NameIDFormat"] = ["Format" => "urn:oasis:names:tc:SAML:2.0:nameid-format:transient", "AllowCreate" => true];'
     ),

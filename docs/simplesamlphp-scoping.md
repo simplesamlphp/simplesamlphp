@@ -55,11 +55,11 @@ The ProxyCount and IDPList option can be specified in the following places:
 Example configuration:
 
     # Add the IDPList
-    'IDPList' => array(
+    'IDPList' => [
         'IdPEntityID1',
         'IdPEntityID2',
         'IdPEntityID3',
-    ),
+    ],
     
     # Set ProxyCount
     'ProxyCount' => 2,

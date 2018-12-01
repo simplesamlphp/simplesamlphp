@@ -1,24 +1,25 @@
 language: php
-dist: precise
 php:
-- 5.4
 - 5.5
 - 5.6
 - 7.0
 - 7.1
+- 7.2
+- 7.3
 - hhvm
 matrix:
   allow_failures:
   - php: hhvm
 before_script:
 - composer update
-- if [[ "$TRAVIS_PHP_VERSION" == "7.0" ]]; then composer require --dev vimeo/psalm; fi
+- if [[ "$TRAVIS_PHP_VERSION" == "7.0" ]]; then composer require --dev vimeo/psalm:0.3.92; fi
+- if [[ "$TRAVIS_PHP_VERSION" == "5.6" ]]; then composer require --dev php-coveralls/php-coveralls; fi
 script:
 - bin/check-syntax.sh
-- if [[ "$TRAVIS_PHP_VERSION" == "5.6" ]]; then php vendor/phpunit/phpunit/phpunit --configuration tools/phpunit; else php vendor/phpunit/phpunit/phpunit --configuration tools/phpunit --no-coverage; fi
-- if [[ "$TRAVIS_PHP_VERSION" == "7.0" ]]; then vendor/bin/psalm --find-dead-code; fi
+- if [[ "$TRAVIS_PHP_VERSION" == "5.6" ]]; then php vendor/phpunit/phpunit/phpunit; else php vendor/phpunit/phpunit/phpunit --no-coverage; fi
+- if [[ "$TRAVIS_PHP_VERSION" == "7.0" ]]; then vendor/bin/psalm; fi
 after_success:
-- if [[ "$TRAVIS_PHP_VERSION" == "5.6" ]]; then php vendor/bin/coveralls -v; fi
+- if [[ "$TRAVIS_PHP_VERSION" == "5.6" ]]; then php vendor/bin/php-coveralls -v; fi
 notifications:
   slack:
     secure: h5YiO7tAk5bzAQBkUZ3crnOFAOBkNqHp0nc2cxvGauogVfCLE9K8bME512uTeu9QWMht2D30uyTOHFKQ7sPEW4omHNF4qYl4p9L037oQFfEwZPBzJFo9QUzviT3mvKHTN4HSQOkq/08ZoMhh1i3p/OhyFS56J28IDJWDqGZkEUE=

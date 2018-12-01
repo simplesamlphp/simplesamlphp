@@ -2,12 +2,14 @@
 
 namespace SimpleSAML\Test\Utils;
 
-include(dirname(__FILE__) . '/StateClearer.php');
+include(dirname(__FILE__).'/StateClearer.php');
+
+use PHPUnit\Framework\TestCase;
 
 /**
  * A base SSP test case that takes care of removing global state prior to test runs
  */
-class ClearStateTestCase extends \PHPUnit_Framework_TestCase
+class ClearStateTestCase extends TestCase
 {
     /**
      * Used for managing and clearing state

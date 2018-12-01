@@ -5,29 +5,27 @@ namespace SimpleSAML\IdP;
 use SimpleSAML\Module;
 use SimpleSAML\Utils\HTTP;
 
-
 /**
  * Class that handles iframe logout.
  *
  * @package SimpleSAMLphp
  */
+
 class IFrameLogoutHandler implements LogoutHandlerInterface
 {
-
     /**
      * The IdP we are logging out from.
      *
-     * @var \SimpleSAML_IdP
+     * @var \SimpleSAML\IdP
      */
     private $idp;
-
 
     /**
      * LogoutIFrame constructor.
      *
-     * @param \SimpleSAML_IdP $idp The IdP to log out from.
+     * @param \SimpleSAML\IdP $idp The IdP to log out from.
      */
-    public function __construct(\SimpleSAML_IdP $idp)
+    public function __construct(\SimpleSAML\IdP $idp)
     {
         $this->idp = $idp;
     }
@@ -40,7 +38,7 @@ class IFrameLogoutHandler implements LogoutHandlerInterface
      */
     public function startLogout(array &$state, $assocId)
     {
-        assert('is_string($assocId) || is_null($assocId)');
+        assert(is_string($assocId) || $assocId === null);
 
         $associations = $this->idp->getAssociations();
 
@@ -49,7 +47,7 @@ class IFrameLogoutHandler implements LogoutHandlerInterface
         }
 
         foreach ($associations as $id => &$association) {
-            $idp = \SimpleSAML_IdP::getByState($association);
+            $idp = \SimpleSAML\IdP::getByState($association);
             $association['core:Logout-IFrame:Name'] = $idp->getSPName($id);
             $association['core:Logout-IFrame:State'] = 'onhold';
         }
@@ -58,7 +56,7 @@ class IFrameLogoutHandler implements LogoutHandlerInterface
         if (!is_null($assocId)) {
             $spName = $this->idp->getSPName($assocId);
             if ($spName === null) {
-                $spName = array('en' => $assocId);
+                $spName = ['en' => $assocId];
             }
 
             $state['core:Logout-IFrame:From'] = $spName;
@@ -66,9 +64,9 @@ class IFrameLogoutHandler implements LogoutHandlerInterface
             $state['core:Logout-IFrame:From'] = null;
         }
 
-        $params = array(
-            'id' => \SimpleSAML_Auth_State::saveState($state, 'core:Logout-IFrame'),
-        );
+        $params = [
+            'id' => \SimpleSAML\Auth\State::saveState($state, 'core:Logout-IFrame'),
+        ];
         if (isset($state['core:Logout-IFrame:InitType'])) {
             $params['type'] = $state['core:Logout-IFrame:InitType'];
         }
@@ -85,36 +83,22 @@ class IFrameLogoutHandler implements LogoutHandlerInterface
      *
      * @param string $assocId The association that is terminated.
      * @param string|null $relayState The RelayState from the start of the logout.
-     * @param \SimpleSAML_Error_Exception|null $error The error that occurred during session termination (if any).
+     * @param \SimpleSAML\Error\Exception|null $error The error that occurred during session termination (if any).
      */
-    public function onResponse($assocId, $relayState, \SimpleSAML_Error_Exception $error = null)
+    public function onResponse($assocId, $relayState, \SimpleSAML\Error\Exception $error = null)
     {
-        assert('is_string($assocId)');
+        assert(is_string($assocId));
 
-        $spId = sha1($assocId);
+        $config = \SimpleSAML\Configuration::getInstance();
         $this->idp->terminateAssociation($assocId);
 
-        $header = <<<HEADER
-<!DOCTYPE html>
-<html>
- <head>
-  <title>Logout response from %s</title>
-  <script>
-HEADER;
-        printf($header, htmlspecialchars(var_export($assocId, true)));
-        if ($error) {
-            $errorMsg = $error->getMessage();
-            echo('window.parent.logoutFailed("'.$spId.'", "'.addslashes($errorMsg).'");');
-        } else {
-            echo('window.parent.logoutCompleted("'.$spId.'");');
+        $t = new \SimpleSAML\XHTML\Template($config, 'IFrameLogoutHandler.twig');
+        $t->data['assocId'] = var_export($assocId, true);
+        $t->data['spId'] = sha1($assocId);
+        if (!is_null($error)) {
+            $t->data['errorMsg'] = $error->getMessage();
         }
-        echo <<<FOOTER
-  </script>
- </head>
- <body>
- </body>
-</html>
-FOOTER;
+        $t->show();
         exit(0);
     }
 }

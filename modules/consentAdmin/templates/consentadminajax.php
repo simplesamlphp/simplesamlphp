@@ -1,2 +1,2 @@
-<?php 
-print $this->t($this->data['res']);
+<?php
+echo $res;

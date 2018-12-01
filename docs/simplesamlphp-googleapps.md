@@ -1,4 +1,4 @@
-Setting up a SimpleSAMLphp SAML 2.0 IdP to use with Google Apps for Education
+Setting up a SimpleSAMLphp SAML 2.0 IdP to use with Google Apps / G Suite for Education
 ============================================
 
 <!-- 
@@ -16,7 +16,7 @@ SimpleSAMLphp news and documentation
 
 This document is part of the SimpleSAMLphp documentation suite.
 
- * [List of all SimpleSAMLphp documentation](http://simplesamlphp.org/docs)
+ * [List of all SimpleSAMLphp documentation](https://simplesamlphp.org/docs)
  * [SimpleSAMLphp homepage](https://simplesamlphp.org)
 
 
@@ -37,13 +37,12 @@ Edit `config.php`, and enable the SAML 2.0 IdP:
     'enable.saml20-idp' => true,
     'enable.shib13-idp' => false,
 
-## Setting up a SSL signing certificate
+## Setting up a signing certificate
 
-For test purposes, you can skip this section, and use the certificate included in the SimpleSAMLphp distribution. For a production system, you MUST generate a new certificate for your IdP.
-
+You must generate a certificate for your IdP.
 Here is an example of an openssl command to generate a new key and a self signed certificate to use for signing SAML messages:
 
-    openssl req -newkey rsa:2048 -new -x509 -days 3652 -nodes -out googleappsidp.crt -keyout googleappsidp.pem
+    openssl req -newkey rsa:3072 -new -x509 -days 3652 -nodes -out googleappsidp.crt -keyout googleappsidp.pem
 
 The certificate above will be valid for 10 years.
 
@@ -65,8 +64,6 @@ Here is an example of typical user input when creating a certificate request:
 **Note**: SimpleSAMLphp will only work with RSA and not DSA certificates.
 
 
-
-
 Authentication source
 ---------------------
 
@@ -86,7 +83,7 @@ For more authentication modules, see [SimpleSAMLphp Identity Provider QuickStart
 
 In this guide, we will use the `exampleauth:UserPass` authentication module. This module does not have any dependencies, and is therefore simple to set up.
 
-After you have successfuly tested that everything is working with the simple `exampleauth:UserPass`, you are encouraged to setup SimpleSAMLphp IdP towards your user storage, such as an LDAP directory. (Use the links on the authentication sources above to read more about these setups. `ldap:LDAP` is the most common authentication source).
+After you have successfuly tested that everything is working with the simple `exampleauth:UserPass`, you are encouraged to setup SimpleSAMLphp IdP towards your user storage, such as an LDAP directory. (Use the links on the authentication sources above to read more about these setups. `ldap:LDAP` is the most common authentication source.)
 
 
 Configuring the authentication source
@@ -100,27 +97,23 @@ On unix, this can be done by running (from the SimpleSAMLphp installation direct
 
 The next step is to create an authentication source with this module. An authentication source is an authentication module with a specific configuration. Each authentication source has a name, which is used to refer to this specific configuration in the IdP configuration. Configuration for authentication sources can be found in `config/authsources.php`.
 
-In this example we will use the `example-userpass`, and hence that section is what matters and will be used.
+In this example we will use `example-userpass`, and hence that section is what matters and will be used.
 
 	<?php
-	$config = array(
-		'example-userpass' => array(
+	$config = [
+		'example-userpass' => [
 			'exampleauth:UserPass',
-			'student:studentpass' => array(
-				'uid' => array('student'),
-			),
-			'employee:employeepass' => array(
-				'uid' => array('employee'),
-			),
-		),
-	);
+			'student:studentpass' => [
+				'uid' => ['student'],
+			],
+			'employee:employeepass' => [
+				'uid' => ['employee'],
+			],
+		],
+	];
 	?>
 
-This configuration creates two users - `student` and `employee`, with the passwords `studentpass` and `employeepass`. The username and password is stored in the array index `student:studentpass` for the `student`-user. The attributes (only `uid` in this example) will be returned by the IdP when the user logs on.
-
-
-
-
+This configuration creates two users - `student` and `employee`, with the passwords `studentpass` and `employeepass`. The username and password are stored in the array index `student:studentpass` for the `student`-user. The attributes (only `uid` in this example) will be returned by the IdP when the user logs on.
 
 
 
@@ -133,8 +126,8 @@ If you want to setup a SAML 2.0 IdP for Google Apps, you need to configure two m
 
 This is the configuration of the IdP itself. Here is some example config:
 
-	// The SAML entity ID is the index of this config. Dynamic:X will automatically generate an entity ID (Reccomended)
-	$metadata['__DYNAMIC:1__'] => array(
+	// The SAML entity ID is the index of this config. Dynamic:X will automatically generate an entity ID (recommended)
+	$metadata['__DYNAMIC:1__'] => [
 		
 		// The hostname of the server (VHOST) that this SAML entity will use.
 		'host'				=>	'__DEFAULT__',
@@ -144,40 +137,40 @@ This is the configuration of the IdP itself. Here is some example config:
 		'certificate'  => 'googleappsidp.crt',
 		
 		'auth' => 'example-userpass',
-	)
+	]
 
-**Note**: You can only have one entry in the file with host equal `__DEFAULT__`, therefore you should replace the existing entry with this one, instead of adding this entry as a new entry in the file. 
+**Note**: You can only have one entry in the file with host equal to `__DEFAULT__`, therefore you should replace the existing entry with this one, instead of adding this entry as a new entry in the file. 
 
 
 ### Configuring SAML 2.0 SP Remote metadata
 
-In the (`saml20-sp-remote.php`) file we will configure an entry for Google Apps for education. There is already an entry for Google Apps in the template, but we will change the domain name:
+In the `saml20-sp-remote.php` file we will configure an entry for G Suite (Google Apps) for Education. There is already an entry for G Suite in the template, but we will change the domain name:
 
       /*
-       * This example shows an example config that works with Google Apps for education.
+       * This example shows an example config that works with G Suite (Google Apps) for education.
        * What is important is that you have an attribute in your IdP that maps to the local part of the email address
-       * at Google Apps. E.g. if your google account is foo.com, and you have a user with email john@foo.com, then you
+       * at G Suite. E.g. if your google account is foo.com, and you have a user with email john@foo.com, then you
        * must set the simplesaml.nameidattribute to be the name of an attribute that for this user has the value of 'john'.
        */
-      $metadata['google.com'] => array(
+      $metadata['https://www.google.com/a/g.feide.no'] => [
         'AssertionConsumerService'   => 'https://www.google.com/a/g.feide.no/acs', 
         'NameIDFormat'               => 'urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress',
         'simplesaml.nameidattribute' => 'uid',
         'simplesaml.attributes'      => false
-      );
+      ];
 
 You must also map some attributes received from the authentication module into email field sent to Google Apps. In this example, the  `uid` attribute is set.  When you later configure the IdP to connect to a LDAP directory or some other authentication source, make sure that the `uid` attribute is set properly, or you can configure another attribute to use here. The `uid` attribute contains the local part of the user name.
 
 For an e-mail address `student@g.feide.no`, the `uid` should be set to `student`.
 
-You should modify the `AssertionConsumerService` to include your Google Apps domain name instead of `g.feide.no`.
+You should modify the `AssertionConsumerService` to include your G Suite domain name instead of `g.feide.no`.
 
 For an explanation of the parameters, see the
 [SimpleSAMLphp Identity Provider QuickStart](simplesamlphp-idp).
 
-## Configure Google Apps for education
+## Configure G Suite for education
 
-Start by logging in to our Google Apps for education account panel.
+Start by logging in to our G SUite for education account panel.
 Then select "Advanced tools":
 
 **Figure&nbsp;1.&nbsp;We go to advanced tools**
@@ -196,44 +189,49 @@ Upload a certificate, such as the googleappsidp.crt created above:
 ![Uploading certificate](resources/simplesamlphp-googleapps/googleapps-cert.png)
 Fill out the remaining fields:
 
-The most important field is the Sign-in page URL. Set it to
-something similar to:
+The most important field is the Sign-in page URL. You can find the
+correct value in your IdP metadata. Browse to your simpleSAMLphp installation,
+go to the "Federation" tab, under "SAML 2.0 IdP Metadata" select "show metadata".
 
-	http://dev2.andreas.feide.no/simplesaml/saml2/idp/SSOService.php
+You will find in the metadata the XML tag `<md:SingleSignOnService>`
+which contains the right URL to input in the field, it will look something
+like this:
 
-using the hostname of your IdP server.
+	https://dev2.andreas.feide.no/simplesaml/saml2/idp/SSOService.php
 
-You must also configure the IdP initiated Single LogOut endpoint of your server. The RelayState parameter of the endpoint is the URL where the user is redirected after successfull logout. Recommended value:
+You must also configure the IdP initiated Single LogOut endpoint of your server.
+You will find this in your metadata XML in the tag
+`<md:SingleLogoutService>`. It will look something like:
 
-	http://dev2.andreas.feide.no/simplesaml/saml2/idp/initSLO.php?RelayState=/simplesaml/logout.php
+	http://dev2.andreas.feide.no/simplesaml/saml2/idp/SingleLogoutService.php
 
 again, using the host name of your IdP server.
 
 The Sign-out page or change password URL can be static pages on your server.
 
-The network mask determines which IP addresses will be asked for SSO login. IP addresses not matching this mask will be presented with the normal Google Apps login page. I think you can leave this field empty to enable authentication for all URLs.
+The network mask determines which IP addresses will be asked for SSO login.
+IP addresses not matching this mask will be presented with the normal G Suite login page.
+It is normally best to leave this field empty to enable authentication for all URLs.
 
 **Figure&nbsp;4.&nbsp;Fill out the remaining fields**
 
 ![Fill out the remaining fields](resources/simplesamlphp-googleapps/googleapps-ssoconfig.png)
 
-### Add a user in Google Apps that is known to the IdP
+### Add a user in G Suite that is known to the IdP
 
-Before we can test login, a new user must be defined in Google Apps. This user must have a mail field matching the email prefix mapped from the attribute as described above in the metadata section.
+Before we can test login, a new user must be defined in G Suite. This user must have a mail field matching the email prefix mapped from the attribute as described above in the metadata section.
 
-## Test to login to Google Apps for education
+## Test to login to G Suite for education
 
 Go to the URL of your mail account for this domain, the URL is similar to the following:
 
 	http://mail.google.com/a/yourgoogleappsdomain.com
 
-replacing the last part with your own google apps domain name.
+replacing the last part with your own G Suite domain name.
 
 ## Security Considerations
 
-Make sure that your IdP server runs HTTPS (SSL). The Apache documentation contains information for how to configure HTTPS.
-
-Make sure you have replaced the default certificate delivered with the SimpleSAMLphp distribution with your own certificate.
+Make sure that your IdP server runs HTTPS (TLS). The Apache documentation contains information for how to configure HTTPS.
 
 Support
 -------
@@ -243,5 +241,4 @@ If you need help to make this work, or want to discuss SimpleSAMLphp with other 
 -  [SimpleSAMLphp homepage](https://simplesamlphp.org)
 -  [List of all available SimpleSAMLphp documentation](https://simplesamlphp.org/docs/)
 -  [Join the SimpleSAMLphp user's mailing list](https://simplesamlphp.org/lists)
-
 

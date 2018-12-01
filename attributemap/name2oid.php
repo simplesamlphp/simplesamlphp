@@ -1,5 +1,5 @@
 <?php
-$attributemap = array(
+$attributemap = [
     'aRecord'                       => 'urn:oid:0.9.2342.19200300.100.1.26',
     'aliasedEntryName'              => 'urn:oid:2.5.4.1',
     'aliasedObjectName'             => 'urn:oid:2.5.4.1',
@@ -189,4 +189,4 @@ $attributemap = array(
     'userid'                        => 'urn:oid:0.9.2342.19200300.100.1.1',
     'x121Address'                   => 'urn:oid:2.5.4.24',
     'x500UniqueIdentifier'          => 'urn:oid:2.5.4.45',
-);
+];

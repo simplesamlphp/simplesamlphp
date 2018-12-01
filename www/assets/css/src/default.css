@@ -1,0 +1,664 @@
+/* ***********************************************************
+GENERAL
+************************************************************ */
+* {
+    margin:0;
+    padding:0;
+}
+html, body{
+    height: 100%;
+}
+body {
+    font-family: sans-serif;
+    line-height: 1.5;
+    min-height: 100%;
+}
+.wrap{
+    width: 80%;
+    max-width: 1100px;
+    margin: auto;
+    position:relative;
+}
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+.center {
+    padding: auto;
+    text-align: center;
+}
+.v-center { /*specify a height to center vertically*/
+    display: table-cell;
+    vertical-align: middle;
+}
+h1{
+    margin: 0.2em 0;
+    font-size: 3em;
+    font-weight: 300;
+}
+h2{
+    margin: 50px 0 20px 0;
+    font-weight: 300;
+    color: #1c1c1c;
+}
+h3{
+    font-weight: 300;
+    color: #2e3436;
+    padding: 0;
+    margin-top: 0;
+}
+p{
+    padding: 0.5em;
+    margin-bottom: 1em;
+}
+a{
+   color: midnightblue;
+}
+a:hover{
+    color: rgba(25,25,112,0.5);
+}
+.dark-bg a{
+    color: #e2e2e2;
+}
+.dark-bg a:hover{
+    color: rgba(0,0,0,0.75);
+}
+.overflow {
+    overflow: hidden;
+}
+ul{
+    padding-left: 1.5em;
+}
+/* ***********************************************************
+BUTTONS
+************************************************************ */
+.code-box-title .clipboard-btn {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    position: absolute;
+    right:0;
+    height: inherit;
+    margin-top: -2em;
+    margin-right: 4px;
+}
+.pure-button-red,
+a.pure-button-red {
+    background-color: rgb(219, 1, 0);
+    color: #fff;
+}
+
+.pure-button.hollow {
+    background-color: #FFFFFF;
+    color: #6f6f6f;
+    border: solid 1px #E6E6E6;
+}
+.pure-button.hollow:hover {
+    background-image: none;
+}
+.pure-button.hollow[disabled]{
+    cursor: auto;
+    opacity: initial;
+    pointer-events: auto;
+    -webkit-user-drag: auto;
+    -webkit-user-select: auto;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+}
+.pure-button-group .pure-button:first-child,
+.pure-button-group .pure-button:last-child {
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+}
+
+.pure-button-group.two-elements .pure-button {
+    margin: 0;
+    line-height: unset;
+    border: 1px solid #E6E6E6;
+}
+.pure-button-group.two-elements .pure-button:first-child {
+    border-right: none;
+}
+.pure-button-group.two-elements .pure-button:last-child {
+    border-right: 1px solid #E6E6E6;
+}
+.pure-button-group .pure-button.show-files{
+    max-width: 450px;
+    overflow: hidden;
+}
+
+/* ***********************************************************
+SLIDING SIDE-MENU FOR SMALL SCREENS
+************************************************************ */
+/*
+Add transition to containers so they can push in and out.
+*/
+#layout,
+#menu,
+#foot,
+.menu-link {
+    -webkit-transition: all 0.2s ease-out;
+    -moz-transition: all 0.2s ease-out;
+    -ms-transition: all 0.2s ease-out;
+    -o-transition: all 0.2s ease-out;
+    transition: all 0.2s ease-out;
+}
+
+/*
+This is the parent `<div>` that contains the menu and the content area.
+*/
+#layout.active #menu {
+    right: 11em;
+    width: 11em;
+}
+#layout.active .menu-link {
+    right: 11em;
+}
+
+/*
+The `#menu` `<div>` is the parent `<div>` that contains the `.pure-menu` that
+appears on the left side of the page.
+*/
+#menu {
+    margin-right: -11em; /* "#menu" width */
+    width: 11em;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000; /* so the menu or its navicon stays above all content */
+    background: #E8410C;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/*
+All anchors inside the menu should be styled like this.
+*/
+#menu a {
+    color: #ffffff;
+    border: none;
+    padding: 0.6em 0em 0.6em 0.6em;
+}
+
+/*
+Remove all background/borders, since we are applying them to #menu.
+*/
+#menu .pure-menu,
+#menu .pure-menu ul {
+    border: none;
+    background: transparent;
+}
+
+/*
+Add that light border to separate items into groups.
+*/
+#menu .pure-menu ul,
+#menu .pure-menu .menu-item-divided {
+    border-top: 1px solid #db0100;
+}
+/*
+Change color of the anchor links on hover/focus.
+*/
+#menu .pure-menu li a:hover,
+#menu .pure-menu li a:focus {
+    background: #db0100;
+}
+
+/*
+This styles the selected menu item `<li>`.
+*/
+#menu .pure-menu-selected,
+#menu .pure-menu-heading {
+    background: #ffa86f;
+    color: black;
+}
+
+/*
+This styles a link within a selected menu item `<li>`.
+*/
+#menu .pure-menu-selected a {
+    color: #fff;
+}
+
+/*
+This styles the menu heading.
+*/
+#menu .pure-menu-heading {
+    font-size: 110%;
+    color: #fff;
+    margin: 0;
+}
+.frontpage-menu .pure-menu-item {
+    border-bottom: 1px solid lightgrey;
+}
+.frontpage-menu .pure-menu-selected {
+    border-bottom: 1px solid black;
+    font-weight: bold;
+}
+
+/* -- Dynamic Button For Responsive Menu -------------------------------------*/
+
+/*
+The button to open/close the Menu is custom-made and not part of Pure. Here's
+how it works:
+*/
+
+/*
+`.menu-link` represents the responsive menu toggle that shows/hides on
+small screens.
+*/
+.menu-link {
+    position: relative;
+    display: block; /* show this only on small screens */
+    top: 0;
+    right: 0; /* "#menu width" */
+    background: transparent;
+    z-index: 10;
+    height: 2rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    text-decoration: none;
+}
+.menu-link span:hover,
+.menu-link span:focus {
+    color: rgba(1,1,1,0.8);
+}
+.menu-link span {
+    position: relative;
+    display: block;
+    color: #FFFFFF;
+}
+.menu-link span,
+.menu-link span:before,
+.menu-link span:after {
+    background-color: transparent;
+}
+
+/* -- Responsive Styles (Media Queries) ------------------------------------- */
+
+@media screen and (max-width: 63.9375em) {
+    #layout.active {
+        position: relative;
+        right: 11em;
+        /* moves to right as many ems as the one used by the menu */
+    }
+    #menuLink.menu-link.active {
+        position: fixed;
+        right: 13em;
+    }
+    #foot.active {
+        margin-right: 11em;
+    }
+}
+
+
+/* ***********************************************************
+HEADER
+************************************************************ */
+#header{
+    height: 6rem;
+    background-color: darkred;
+    background: linear-gradient(141deg, #b8002c 0%, #db0100 51%, #e8410c 75%)
+}
+.logo-header{
+    min-width: 8em;
+    height: 6rem;
+    max-width: 70%;
+ }
+#logo{
+    font-family: sans-serif;
+    font-size: 2.5em;
+    color: white;
+    text-shadow: 0px 3px 2px rgba(83, 41, 0, 1);
+}
+.simple{
+    font-weight: 300;
+}
+.saml{
+    font-family: Verdana;
+    letter-spacing: -0.12em;
+    font-weight: 600;
+    margin-left: -0.05em;
+}
+.language-menu{
+    font-family: FontAwesome, sans-serif;
+    min-width: 10rem;
+}
+.language-bar {
+    height: 6rem;
+}
+
+/* ***********************************************************
+CONTENT
+************************************************************ */
+#layout {
+    position: relative;
+    right: 0;
+    padding-right: 0;
+  }
+#content {
+    padding-top: 2em;
+    padding-bottom: 4rem;
+}
+
+.message-box {
+    background-color: #f4f4f4;
+    border-left-color: #444444;
+    border-left-style: solid;
+    border-left-width: 0.3125rem;
+    box-shadow: 0 5px 8px -6px rgba(0, 0, 0, 0.2);
+    margin: 1rem 0;
+    padding: 1.3rem;
+    position: relative;
+}
+.message-box.error {
+    background-color: #f7e4e1;
+    border-left-color: #cc4b37;
+}
+.message-box.warning {
+    background-color: #fffdbf;
+    border-left-color: #f9f56b;
+}
+.message-box.success {
+    background-color: #daf7e6;
+    border-left-color: #46cc48;
+}
+
+.auth_methods{
+    margin-top: 2em;
+    width: 35%;
+}
+.code-box{
+    border:1px solid #ccc;
+    margin-bottom: 1em;
+}
+.code-box-content{
+    font-size: 1em;
+    line-height: 1.15;
+    padding: 0.5em 1em;
+}
+.code-box-title{
+    border-bottom: 1px solid #ccc;
+    background-color: #e0e0e0;
+    padding: 0.5em 0 0.5em 0.5em;
+}
+
+/* ***********************************************************
+FOOTER
+************************************************************ */
+#layout{
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -6rem; /*negative margin = footer height + padding-top + padding-bottom*/
+}
+#bottom, #push {
+    height:4rem;
+}
+#footer {
+    background-color: darkred;
+    background: linear-gradient(141deg, #b8002c 0%, #db0100 51%, #e8410c 75%);
+    height: 4rem;
+    padding: 2rem 0 0;
+    text-align: center;
+}
+.copyrights {
+    height:4rem;
+    font-size: .75em;
+}
+.logo-footer-right{
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translate(0, -50%);
+}
+.logo-footer {
+    height: 4rem;
+}
+
+/* ***********************************************************
+FORMS
+************************************************************ */
+.text-area{
+    margin-top: .5em;
+    width:100%;
+    font-size: 0.9em;
+    line-height: 1.15;
+}
+.file-upload input[type="url"][disabled]{
+    cursor: pointer;
+    color: inherit;
+}
+input[type="file"]{
+    color:black;
+}
+.form-align{
+     position: relative;
+ }
+.center-form{
+    display: inline-block;
+    margin-right: auto;
+    margin-left: auto;
+}
+.v-center-right{
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translate(0, -50%);
+}
+
+/* PURE */
+.pure-button,
+.pure-form input.edge,
+.pure-form textarea.edge {
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+ }
+.pure-form-aligned .pure-controls{
+     margin: 0 0 0 11em;
+ }
+.pure-select{
+    float: right;
+}
+
+/* SELECTIZE */
+.selectize-input,
+.selectize-dropdown,
+.selectize-input.dropdown-active{
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+}
+.selectize-input:after{
+    transform: translate(8px, 0);
+}
+div .item{
+    float: left;
+}
+.selectize-dropdown{
+    text-align: left;
+}
+
+.selectize-control.single .selectize-input, .selectize-dropdown.single {
+    background-color: white;
+    background-image: none;
+    border: 1px solid #ccc;
+    box-shadow: inset 0 1px 3px #ddd;
+    box-sizing: border-box;
+    font-size: inherit;
+    padding: 0.5em 0.6em;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* ***********************************************************
+IMAGES
+************************************************************ */
+.fa {
+    font-family: FontAwesome !important;
+}
+span.fa, i.fa {
+    padding: 0 0.5em;
+}
+.message-box span.fa,
+.message-box i.fa{
+    padding: 0;
+}
+
+/* ***********************************************************
+TABLES
+************************************************************ */
+.pure-table-attributes{
+    table-layout: fixed;
+    width:100%;
+}
+.attrname{
+    text-align: right;
+}
+.attrvalue{
+    overflow-wrap: break-word;
+}
+table.attributes ul{
+    padding: inherit;
+}
+/* ***********************************************************
+MEDIA QUERIES
+************************************************************ */
+
+@media screen and (max-width: 480px) {
+    .pure-form .pure-input-sm-1-1{
+        width: 100%;
+    }
+}
+@media screen and (max-width: 39.9375em) {
+    .hide-for-small-only {
+        display: none !important;
+    }
+    .selectize-input{
+        padding-right: 0.1rem;
+    }
+    body {
+        font-size:75%;
+    }
+    .wrap{
+        width: 90%;
+    }
+    .pure-form-aligned .pure-controls{
+        margin: 0.5em 0 0;
+        float: left;
+    }
+    #layout {
+        padding-top: 0;
+    }
+    .auth_methods {
+        width: 60%;
+    }
+    #logo{
+        font-size: 1.8em;
+    }
+}
+
+@media screen and (max-width: 0em), screen and (min-width: 40em) {
+    .show-for-small-only {
+        display: none !important;
+    }
+    .input-sm-placeholder {
+        display: inline-block;
+    }
+}
+
+@media screen and (min-width: 40em) and (max-width: 63.9375em) {
+    .hide-for-medium-only {
+        display: none !important;
+    }
+    body{
+        font-size: 85%;
+    }
+}
+@media screen and (max-width: 39.9375em) {
+    .show-for-medium {
+        display: none !important;
+    }
+}
+
+@media screen and (max-width: 39.9375em), screen and (min-width: 64em) {
+    .show-for-medium-only {
+        display: none !important;
+    }
+}
+@media screen and (min-width: 64em) {
+    .hide-for-large {
+        display: none !important;
+    }
+}
+@media screen and (max-width: 63.9375em) {
+    .show-for-large {
+        display: none !important;
+    }
+}
+
+/*************************************************
+ * Specifics for modules/core/frontpage*
+ ************************************************/
+code.simplesaml_version {
+    background: #f5f5f5;
+    border: 1px dotted #bbb;
+    padding: 1em;
+    color: #555;
+}
+.float-r {
+    float: right;
+}
+.enablebox table {
+    border: 1px solid #eee;
+
+    margin-left: 1em;
+}
+.enablebox.mini table {
+    float: right;
+}
+.enablebox tr td {
+    padding: .5px 1em 1px .5em;
+    margin: 0px;
+}
+.enablebox {
+    font-size: 85%;
+}
+.enablebox tr.enabled td {
+    background: #eee;
+}
+.enablebox tr.disabled td {
+    background: #ccc;
+}
+fieldset.fancyfieldset {
+    margin: 2em 1em 1em 0px;
+    border: 1px solid #bbb;
+}
+fieldset.fancyfieldset legend {
+    margin-left: 2em;
+    padding: 3px 2em 3px 2em;
+    border: 1px solid #bbb;
+}
+dt {
+    font-weight: bold;
+}
+.frontpage-menu {
+    margin-bottom: 1em;
+}
+.entity-name, .entity-deprecated, .entity-expired {
+    font-weight: bold;
+}
+.entity-expired {
+    color: #500;
+}
+div.preferredidp {
+    border: 1px dashed #ccc;
+    background: #eee;
+    padding: 2px 2em 2px 2em;
+}

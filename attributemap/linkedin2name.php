@@ -1,5 +1,5 @@
 <?php
-$attributemap = array(
+$attributemap = [
 
     // See http://developer.linkedin.com/docs/DOC-1061 for LinkedIn Profile fields.
     // NB: JSON response requires the conversion of field names from hyphened to camelCase.
@@ -15,4 +15,4 @@ $attributemap = array(
     'linkedin.id'         => 'uid', // alpha + mixed case user id
     'linkedin.headline'   => 'title',
     'linkedin.summary'    => 'description',
-);
+];

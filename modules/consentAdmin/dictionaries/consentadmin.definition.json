@@ -1,7 +1,4 @@
 {
-	"sp_empty_name": {
-		"en": "(name not specified)"
-	},
 	"sp_empty_description": {
 		"en": "(no description)"
 	},
@@ -61,5 +58,8 @@
 	},
 	"consentadmin_purpose": {
 		"en": "The purpose of the service is"
+	},
+	"link_consentAdmin": {
+		"en": "Consent administration"
 	}
 }

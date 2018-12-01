@@ -1,34 +1,4 @@
 {
-	"sp_empty_name": {
-		"da": "(navn ikke angivet)",
-		"no": "(navn ikke spesifisert)",
-		"de": "(Name nicht angegeben)",
-		"sl": "(brez naziva)",
-		"pt": "(nome n\u00e3o especificado)",
-		"sv": "(namn ej angivet)",
-		"fr": "(nom non indiqu\u00e9)",
-		"hr": "(naziv nije specificiran)",
-		"hu": "(nincs n\u00e9v)",
-		"it": "(nome non specificato)",
-		"es": "(nombre no especificado)",
-		"lt": "(pavadinimas nenurodytas)",
-		"nl": "(naam niet opgegeven)",
-		"ja": "(\u540d\u524d\u7121\u3057)",
-		"zh-tw": "(\u672a\u5b9a\u7fa9\u540d\u7a31)",
-		"nn": "(namn ikkje spesifisert)",
-		"et": "(nimi m\u00e4\u00e4ramata)",
-		"he": "(\u05dc\u05d0 \u05e0\u05d9\u05ea\u05df \u05e9\u05dd)",
-		"zh": "\uff08\u6ca1\u6709\u6307\u5b9a\u540d\u5b57\uff09",
-		"ar": "\u0627\u0644\u0627\u0633\u0645 \u063a\u064a\u0631 \u0645\u062d\u062f\u062f",
-		"lv": "(v\u0101rds nav nor\u0101d\u012bts)",
-		"id": "(Nama tidak diisi)",
-		"sr": "(ime nije specificirano)",
-		"ro": "(nu a fost specificat numele)",
-		"ru": "(\u0438\u043c\u044f \u043d\u0435 \u0443\u043a\u0430\u0437\u0430\u043d\u043e)",
-		"cs": "(jm\u00e9no nespecifikov\u00e1no)",
-		"eu": "(izena ez da zehaztu)",
-		"el": "(\u03c7\u03c9\u03c1\u03af\u03c2 \u03cc\u03bd\u03bf\u03bc\u03b1)"
-	},
 	"sp_empty_description": {
 		"da": "(ingen beskrivelse)",
 		"no": "(ingen beskrivelse)",
@@ -435,7 +405,7 @@
 		"ja": "<h3>\u627f\u8a8d\u306e\u524a\u9664\u65b9\u6cd5<\/h3> \u8a72\u5f53\u3059\u308b\u30b5\u30fc\u30d3\u30b9\u30d7\u30ed\u30d0\u30a4\u30c0\u306e\u30c1\u30a7\u30c3\u30af\u3092\u5916\u3057\u307e\u3059\u3002<h3>\u30ea\u30f3\u30af<\/h3> <ul> <li><a href=\"https:\/\/www.wayf.dk\">Start<\/a> <\/li> <li><a href=\"https:\/\/www.wayf.dk\/index.php\/en\/about-wayf\/faq-frequently-asked-questions\">FAQ<\/a> <\/li> <\/ul> ",
 		"zh-tw": "<h3>\u5728\u9019\u522a\u9664\u60a8\u7684\u6388\u6b0a<\/h3> \u53d6\u6d88\u52fe\u9078\u670d\u52d9\u63d0\u4f9b\u8005\u5c0d\u61c9\u7684\u6838\u53d6\u65b9\u584a <h3>\u9023\u7d50<\/h3> <ul> <li><a href=\"https:\/\/www.wayf.dk\">\u958b\u59cb<\/a> <\/li> <li><a href=\"https:\/\/www.wayf.dk\/index.php\/en\/about-wayf\/faq-frequently-asked-questions\">\u8aaa\u660e<\/a> <\/li> <\/ul> ",
 		"nn": "<h3>Korleis dra tilbake samtykke<\/h3> Fjern haka i boksen for enkelte tenester <h3>Lenker<\/h3> <ul> <li><a href=\"https:\/\/www.wayf.dk\">Start<\/a> <\/li> <li><a href=\"https:\/\/www.wayf.dk\/index.php\/da\/om-wayf\/faq-ofte-stillede-sporgsmal\">Ofte stilte sp\u00f8rsm\u00e5l<\/a> <\/li> <\/ul> ",
-		"nl": "<h3>Hoe verwijderdt u toestemmingen<\/h3> Vinkt u het vakje af dat overeenkomt met de dienstverlener <h3>Links<\/h3> <ul> <li><a href=\"https:\/\/www.wayf.dk\">Start<\/a> <\/li> <li><a href=\"https:\/\/www.wayf.dk\/index.php\/en\/about-wayf\/faq-frequently-asked-questions\">FAQ<\/a> <\/li> <\/ul>",
+		"nl": "<h3>Hoe verwijdert u toestemmingen<\/h3> Vinkt u het vakje af dat overeenkomt met de dienstverlener <h3>Links<\/h3> <ul> <li><a href=\"https:\/\/www.wayf.dk\">Start<\/a> <\/li> <li><a href=\"https:\/\/www.wayf.dk\/index.php\/en\/about-wayf\/faq-frequently-asked-questions\">FAQ<\/a> <\/li> <\/ul>",
 		"et": "<h3>Kuidas eemaldada n\u00f5usolekut<\/h3> Eemalda vastava teenusepakkuja juurest m\u00e4rge <h3>Viited<\/h3> <ul> <li><a href=\"https:\/\/www.wayf.dk\">Start<\/a> <\/li> <li><a href=\"https:\/\/www.wayf.dk\/index.php\/en\/about-wayf\/faq-frequently-asked-questions\">KKK<\/a> <\/li> <\/ul>",
 		"he": "<h3>\u05d0\u05d9\u05da \u05dc\u05d4\u05e1\u05d9\u05e8 \u05d0\u05ea \u05d4\u05e1\u05db\u05de\u05ea\u05da<\/h3> \u05dc\u05d7\u05e5 \u05d1\u05ea\u05d9\u05d1\u05d4 \u05d4\u05de\u05ea\u05d0\u05d9\u05de\u05d4 \u05dc\u05e1\u05e4\u05e7 \u05d4\u05e9\u05d9\u05e8\u05d5\u05ea <h3>\u05e7\u05d9\u05e9\u05d5\u05e8\u05d9\u05dd<\/h3>  <ul> <li><a href=\"https:\/\/www.wayf.dk\">\u05d4\u05ea\u05d7\u05dc\u05d4<\/a> <\/li> <li><a href=\"https:\/\/www.wayf.dk\/index.php\/en\/about-wayf\/faq-frequently-asked-questions\">\u05e9\u05d0\u05dc\u05d5\u05ea \u05e0\u05e4\u05d5\u05e6\u05d5\u05ea<\/a> <\/li> <\/ul> ",
 		"zh": "<h3>\u5982\u4f55\u5220\u9664\u4f60\u7684\u8bb8\u53ef<\/h3>\u53cd\u9009\u76f8\u5e94\u7684SP\u9009\u62e9\u6846<h3>Links<\/h3> <ul> <li><a href=\"https:\/\/www.wayf.dk\">\u5f00\u59cb<\/a> <\/li> <li><a href=\"https:\/\/www.wayf.dk\/index.php\/en\/about-wayf\/faq-frequently-asked-questions\">FAQ<\/a> <\/li> <\/ul>",
@@ -628,5 +598,10 @@
 		"cs": "\u00da\u010del slu\u017eby je",
 		"eu": "Zerbitzuaren xedea hau da",
 		"el": "\u039f \u03c3\u03ba\u03bf\u03c0\u03cc\u03c2 \u03c4\u03b7\u03c2 \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b1\u03c2 \u03b5\u03af\u03bd\u03b1\u03b9"
+	},
+	"link_consentAdmin": {
+		"es": "Administración del consentimiento",
+		"no": "Samtykke administrasjon",
+		"nn": "Samtykke administrasjon"
 	}
 }

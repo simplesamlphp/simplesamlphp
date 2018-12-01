@@ -11,7 +11,7 @@ if (!defined('SCHAC_NEW_NS')) {
     define('SCHAC_NEW_NS', 'urn:schac:attribute-def:');
 }
 
-$attributemap = array(
+$attributemap = [
     SCHAC_OLD_NS.'schacCountryOfCitizenship' => SCHAC_NEW_NS.'schacCountryOfCitizenship',
     SCHAC_OLD_NS.'schacCountryOfResidence' => SCHAC_NEW_NS.'schacCountryOfResidence',
     SCHAC_OLD_NS.'schacDateOfBirth' => SCHAC_NEW_NS.'schacDateOfBirth',
@@ -32,4 +32,4 @@ $attributemap = array(
     SCHAC_OLD_NS.'schacUserPresenceID' => SCHAC_NEW_NS.'schacUserPresenceID',
     SCHAC_OLD_NS.'schacUserPrivateAttribute' => SCHAC_NEW_NS.'schacUserPrivateAttribute',
     SCHAC_OLD_NS.'schacUserStatus' => SCHAC_NEW_NS.'schacUserStatus',
-);
+];

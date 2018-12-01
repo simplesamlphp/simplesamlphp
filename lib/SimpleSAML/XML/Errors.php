@@ -12,13 +12,14 @@
 
 namespace SimpleSAML\XML;
 
+use LibXMLError;
+
 class Errors
 {
-
     /**
      * @var array This is an stack of error logs. The topmost element is the one we are currently working on.
      */
-    private static $errorStack = array();
+    private static $errorStack = [];
 
     /**
      * @var bool This is the xml error state we had before we began logging.
@@ -65,7 +66,7 @@ class Errors
         }
 
         // Add a new level to the error stack
-        self::$errorStack[] = array();
+        self::$errorStack[] = [];
     }
 
 
@@ -80,7 +81,7 @@ class Errors
         // Check whether the error access functions are present
         if (!function_exists('libxml_use_internal_errors')) {
             // Pretend that no errors occurred
-            return array();
+            return [];
         }
 
         // Add any errors which may have occurred
@@ -108,9 +109,9 @@ class Errors
      */
     public static function formatError($error)
     {
-        assert('$error instanceof LibXMLError');
-        return 'level=' . $error->level . ',code='  . $error->code . ',line=' . $error->line . ',col=' . $error->column .
-            ',msg=' . trim($error->message);
+        assert($error instanceof LibXMLError);
+        return 'level='.$error->level.',code='.$error->code.',line='.$error->line.',col='.$error->column.
+            ',msg='.trim($error->message);
     }
 
 
@@ -126,11 +127,11 @@ class Errors
      */
     public static function formatErrors($errors)
     {
-        assert('is_array($errors)');
+        assert(is_array($errors));
 
         $ret = '';
         foreach ($errors as $error) {
-            $ret .= self::formatError($error) . "\n";
+            $ret .= self::formatError($error)."\n";
         }
 
         return $ret;

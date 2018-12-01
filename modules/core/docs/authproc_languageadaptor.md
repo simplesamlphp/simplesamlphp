@@ -5,7 +5,7 @@ SimpleSAMLphp has built in language support, and stores the preferred language i
 
 Identity systems also often has a specific attribute that indicates what language is understood by the user.
 MACE defines an attribute with preferred language: `preferredLanguage`.
-[Read more about the preferredLanguage attribute defined by MACE](http://rnd.feide.no/node/1054).
+[Read more about the preferredLanguage attribute defined by MACE](https://tools.ietf.org/html/rfc2798#section-2.7).
 
 The LanguageAdaptor brings these two concepts together.
 If executed early at the IdP it will check if the `preferredLanguage` attribute is among the users attributes, and if it is, SimpleSAMLphp will use that language in the user interface.
@@ -37,6 +37,6 @@ Custon attribute:
     'authproc' => array(
         50 => array(
             'class' => 'core:LanguageAdaptor',
-	    'attributename' => 'lang',
+            'attributename' => 'lang',
         ),
     ),

@@ -1,39 +1,50 @@
 <?php
 
-class sspmod_adfs_IdP_ADFS
+namespace SimpleSAML\Module\adfs\IdP;
+
+use RobRichards\XMLSecLibs\XMLSecurityDSig;
+use RobRichards\XMLSecLibs\XMLSecurityKey;
+
+class ADFS
 {
-    public static function receiveAuthnRequest(SimpleSAML_IdP $idp)
+    public static function receiveAuthnRequest(\SimpleSAML\IdP $idp)
     {
         try {
             parse_str($_SERVER['QUERY_STRING'], $query);
 
             $requestid = $query['wctx'];
             $issuer = $query['wtrealm'];
-            $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
+
+            $metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
             $spMetadata = $metadata->getMetaDataConfig($issuer, 'adfs-sp-remote');
 
-            SimpleSAML\Logger::info('ADFS - IdP.prp: Incoming Authentication request: '.$issuer.' id '.$requestid);
-        } catch(Exception $exception) {
-            throw new SimpleSAML_Error_Error('PROCESSAUTHNREQUEST', $exception);
+            \SimpleSAML\Logger::info('ADFS - IdP.prp: Incoming Authentication request: '.$issuer.' id '.$requestid);
+        } catch (\Exception $exception) {
+            throw new \SimpleSAML\Error\Error('PROCESSAUTHNREQUEST', $exception);
         }
 
-        $state = array(
-            'Responder' => array('sspmod_adfs_IdP_ADFS', 'sendResponse'),
+        $state = [
+            'Responder' => ['\SimpleSAML\Module\adfs\IdP\ADFS', 'sendResponse'],
             'SPMetadata' => $spMetadata->toArray(),
             'ForceAuthn' => false,
             'isPassive' => false,
             'adfs:wctx' => $requestid,
-        );
+            'adfs:wreply' => false
+        ];
 
-        $idp->handleAuthenticationRequest($state);		
+        if (isset($query['wreply']) && !empty($query['wreply'])) {
+            $state['adfs:wreply'] = \SimpleSAML\Utils\HTTP::checkURLAllowed($query['wreply']);
+        }
+
+        $idp->handleAuthenticationRequest($state);
     }
 
-    private static function generateResponse($issuer, $target, $nameid, $attributes)
+    private static function generateResponse($issuer, $target, $nameid, $attributes, $assertionLifetime)
     {
-        $issueInstant = SimpleSAML\Utils\Time::generateTimestamp();
-        $notBefore = SimpleSAML\Utils\Time::generateTimestamp(time() - 30);
-        $assertionExpire = SimpleSAML\Utils\Time::generateTimestamp(time() + 60 * 5);
-        $assertionID = SimpleSAML\Utils\Random::generateID();
+        $issueInstant = \SimpleSAML\Utils\Time::generateTimestamp();
+        $notBefore = \SimpleSAML\Utils\Time::generateTimestamp(time() - 30);
+        $assertionExpire = \SimpleSAML\Utils\Time::generateTimestamp(time() + $assertionLifetime);
+        $assertionID = \SimpleSAML\Utils\Random::generateID();
         $nameidFormat = 'http://schemas.xmlsoap.org/claims/UPN';
         $nameid = htmlspecialchars($nameid);
 
@@ -62,7 +73,10 @@ MSG;
                 continue;
             }
 
-            list($namespace, $name) = SimpleSAML\Utils\Attributes::getAttributeNamespace($name, 'http://schemas.xmlsoap.org/claims');
+            list($namespace, $name) = \SimpleSAML\Utils\Attributes::getAttributeNamespace(
+                $name,
+                'http://schemas.xmlsoap.org/claims'
+            );
             foreach ($values as $value) {
                 if ((!isset($value)) || ($value === '')) {
                     continue;
@@ -74,7 +88,6 @@ MSG;
                     <saml:AttributeValue>$value</saml:AttributeValue>
                 </saml:Attribute>
 MSG;
-
             }
         }
 
@@ -93,19 +106,21 @@ MSG;
         return $result;
     }
 
-    private static function signResponse($response, $key, $cert)
+    private static function signResponse($response, $key, $cert, $algo)
     {
         $objXMLSecDSig = new XMLSecurityDSig();
-        $objXMLSecDSig->idKeys = array('AssertionID');	
-        $objXMLSecDSig->setCanonicalMethod(XMLSecurityDSig::EXC_C14N);	
-        $responsedom = \SAML2\DOMDocumentFactory::fromString(str_replace ("\r", "", $response));
+        $objXMLSecDSig->idKeys = ['AssertionID'];
+        $objXMLSecDSig->setCanonicalMethod(XMLSecurityDSig::EXC_C14N);
+        $responsedom = \SAML2\DOMDocumentFactory::fromString(str_replace("\r", "", $response));
         $firstassertionroot = $responsedom->getElementsByTagName('Assertion')->item(0);
         $objXMLSecDSig->addReferenceList(
-            array($firstassertionroot), XMLSecurityDSig::SHA1,
-            array('http://www.w3.org/2000/09/xmldsig#enveloped-signature', XMLSecurityDSig::EXC_C14N),
-            array('id_name' => 'AssertionID')
+            [$firstassertionroot],
+            XMLSecurityDSig::SHA256,
+            ['http://www.w3.org/2000/09/xmldsig#enveloped-signature', XMLSecurityDSig::EXC_C14N],
+            ['id_name' => 'AssertionID']
         );
-        $objKey = new XMLSecurityKey(XMLSecurityKey::RSA_SHA1, array('type'=>'private'));
+
+        $objKey = new XMLSecurityKey($algo, ['type' => 'private']);
         $objKey->loadKey($key, true);
         $objXMLSecDSig->sign($objKey);
         if ($cert) {
@@ -113,105 +128,109 @@ MSG;
             $objXMLSecDSig->add509Cert($public_cert, true);
         }
         $newSig = $responsedom->importNode($objXMLSecDSig->sigNode, true);
-        $firstassertionroot->appendChild($newSig);	
+        $firstassertionroot->appendChild($newSig);
         return $responsedom->saveXML();
     }
 
     private static function postResponse($url, $wresult, $wctx)
     {
-        $wresult = htmlspecialchars($wresult);
-        $wctx = htmlspecialchars($wctx);
-
-        $post = <<<MSG
-    <body onload="document.forms[0].submit()">
-        <form method="post" action="$url">
-            <input type="hidden" name="wa" value="wsignin1.0">
-            <input type="hidden" name="wresult" value="$wresult">
-            <input type="hidden" name="wctx" value="$wctx">
-            <noscript>
-                <input type="submit" value="Continue">
-            </noscript>
-        </form>
-    </body>
-MSG;
-
-        echo $post;
-        exit;
+        $config = \SimpleSAML\Configuration::getInstance();
+        $t = new \SimpleSAML\XHTML\Template($config, 'adfs:postResponse.twig');
+        $t->data['baseurlpath'] = \SimpleSAML\Module::getModuleURL('adfs');
+        $t->data['url'] = $url;
+        $t->data['wresult'] = $wresult;
+        $t->data['wctx'] = $wctx;
+        $t->show();
     }
 
     public static function sendResponse(array $state)
     {
         $spMetadata = $state["SPMetadata"];
         $spEntityId = $spMetadata['entityid'];
-        $spMetadata = SimpleSAML_Configuration::loadFromArray($spMetadata,
-            '$metadata[' . var_export($spEntityId, true) . ']');
+        $spMetadata = \SimpleSAML\Configuration::loadFromArray(
+            $spMetadata,
+            '$metadata['.var_export($spEntityId, true).']'
+        );
 
         $attributes = $state['Attributes'];
 
         $nameidattribute = $spMetadata->getValue('simplesaml.nameidattribute');
         if (!empty($nameidattribute)) {
             if (!array_key_exists($nameidattribute, $attributes)) {
-                throw new Exception('simplesaml.nameidattribute does not exist in resulting attribute set');
+                throw new \Exception('simplesaml.nameidattribute does not exist in resulting attribute set');
             }
             $nameid = $attributes[$nameidattribute][0];
         } else {
-            $nameid = SimpleSAML\Utils\Random::generateID();
+            $nameid = \SimpleSAML\Utils\Random::generateID();
         }
 
-        $idp = SimpleSAML_IdP::getByState($state);		
+        $idp = \SimpleSAML\IdP::getByState($state);
         $idpMetadata = $idp->getConfig();
         $idpEntityId = $idpMetadata->getString('entityid');
 
-        $idp->addAssociation(array(
-            'id' => 'adfs:' . $spEntityId,
-            'Handler' => 'sspmod_adfs_IdP_ADFS',
+        $idp->addAssociation([
+            'id' => 'adfs:'.$spEntityId,
+            'Handler' => '\SimpleSAML\Module\adfs\IdP\ADFS',
             'adfs:entityID' => $spEntityId,
-        ));
+        ]);
 
-        $response = sspmod_adfs_IdP_ADFS::generateResponse($idpEntityId, $spEntityId, $nameid, $attributes);
+        $assertionLifetime = $spMetadata->getInteger('assertion.lifetime', null);
+        if ($assertionLifetime === null) {
+            $assertionLifetime = $idpMetadata->getInteger('assertion.lifetime', 300);
+        }
+
+        $response = ADFS::generateResponse($idpEntityId, $spEntityId, $nameid, $attributes, $assertionLifetime);
 
         $privateKeyFile = \SimpleSAML\Utils\Config::getCertPath($idpMetadata->getString('privatekey'));
         $certificateFile = \SimpleSAML\Utils\Config::getCertPath($idpMetadata->getString('certificate'));
-        $wresult = sspmod_adfs_IdP_ADFS::signResponse($response, $privateKeyFile, $certificateFile);
+
+        $algo = $spMetadata->getString('signature.algorithm', null);
+        if ($algo === null) {
+            $algo = $idpMetadata->getString('signature.algorithm', XMLSecurityKey::RSA_SHA256);
+        }
+        $wresult = ADFS::signResponse($response, $privateKeyFile, $certificateFile, $algo);
 
         $wctx = $state['adfs:wctx'];
-        sspmod_adfs_IdP_ADFS::postResponse($spMetadata->getValue('prp'), $wresult, $wctx);
+        $wreply = $state['adfs:wreply'] ? : $spMetadata->getValue('prp');
+        ADFS::postResponse($wreply, $wresult, $wctx);
     }
 
-    public static function sendLogoutResponse(SimpleSAML_IdP $idp, array $state)
+    public static function sendLogoutResponse(\SimpleSAML\IdP $idp, array $state)
     {
         // NB:: we don't know from which SP the logout request came from
-        $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
         $idpMetadata = $idp->getConfig();
-        \SimpleSAML\Utils\HTTP::redirectTrustedURL($idpMetadata->getValue('redirect-after-logout', \SimpleSAML\Utils\HTTP::getBaseURL()));
+        \SimpleSAML\Utils\HTTP::redirectTrustedURL(
+            $idpMetadata->getValue('redirect-after-logout', \SimpleSAML\Utils\HTTP::getBaseURL())
+        );
     }
 
-    public static function receiveLogoutMessage(SimpleSAML_IdP $idp)
+    public static function receiveLogoutMessage(\SimpleSAML\IdP $idp)
     {
         // if a redirect is to occur based on wreply, we will redirect to url as
         // this implies an override to normal sp notification
         if (isset($_GET['wreply']) && !empty($_GET['wreply'])) {
             $idp->doLogoutRedirect(\SimpleSAML\Utils\HTTP::checkURLAllowed($_GET['wreply']));
-            assert('false');
+            assert(false);
         }
 
-        $state = array(
-            'Responder' => array('sspmod_adfs_IdP_ADFS', 'sendLogoutResponse'),
-        );
+        $state = [
+            'Responder' => ['\SimpleSAML\Module\adfs\IdP\ADFS', 'sendLogoutResponse'],
+        ];
         $assocId = null;
-        // TODO: verify that this is really no problem for: 
+        // TODO: verify that this is really no problem for:
         //       a) SSP, because there's no caller SP.
         //       b) ADFS SP because caller will be called back..
         $idp->handleLogoutRequest($state, $assocId);
     }
 
     // accepts an association array, and returns a URL that can be accessed to terminate the association
-    public static function getLogoutURL(SimpleSAML_IdP $idp, array $association, $relayState)
+    public static function getLogoutURL(\SimpleSAML\IdP $idp, array $association, $relayState)
     {
-        $metadata = SimpleSAML_Metadata_MetaDataStorageHandler::getMetadataHandler();
-        $idpMetadata = $idp->getConfig();
+        $metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
         $spMetadata = $metadata->getMetaDataConfig($association['adfs:entityID'], 'adfs-sp-remote');
-        $returnTo = SimpleSAML\Module::getModuleURL('adfs/idp/prp.php?assocId=' . urlencode($association["id"]) . '&relayState=' . urlencode($relayState));
-        return $spMetadata->getValue('prp') . '?' . 'wa=wsignoutcleanup1.0&wreply=' . urlencode($returnTo);
+        $returnTo = \SimpleSAML\Module::getModuleURL(
+            'adfs/idp/prp.php?assocId='.urlencode($association["id"]).'&relayState='.urlencode($relayState)
+        );
+        return $spMetadata->getValue('prp').'?wa=wsignoutcleanup1.0&wreply='.urlencode($returnTo);
     }
 }

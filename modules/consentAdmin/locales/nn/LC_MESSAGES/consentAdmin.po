@@ -54,9 +54,6 @@ msgstr "(mangler informasjon)"
 msgid "{consentAdmin:consentadmin:service_providers_for}"
 msgstr "Tenesteleverandør for "
 
-msgid "{consentAdmin:consentadmin:sp_empty_name}"
-msgstr "(namn ikkje spesifisert)"
-
 msgid "{consentAdmin:consentadmin:consentadmin_description2}"
 msgstr ""
 "<h3>Korleis dra tilbake samtykke</h3> Fjern haka i boksen for enkelte "
@@ -161,3 +158,5 @@ msgstr "vis/skjul personinformasjon"
 msgid "Organisation"
 msgstr "Organisasjon"
 
+msgid "Consent administration"
+msgstr "Samtykke administrasjon"

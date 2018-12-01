@@ -54,9 +54,6 @@ msgstr "(無描述)"
 msgid "{consentAdmin:consentadmin:service_providers_for}"
 msgstr "服務提供者的"
 
-msgid "{consentAdmin:consentadmin:sp_empty_name}"
-msgstr "(未定義名稱)"
-
 msgid "{consentAdmin:consentadmin:consentadmin_description2}"
 msgstr ""
 "<h3>在這刪除您的授權</h3> 取消勾選服務提供者對應的核取方塊 <h3>連結</h3> <ul> <li><a "
