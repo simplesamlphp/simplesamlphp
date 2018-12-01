@@ -1,0 +1,66 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <defaults public="false"/>
+
+        <service id="routing.resolver" class="Symfony\Component\Config\Loader\LoaderResolver" />
+
+        <service id="routing.loader.xml" class="Symfony\Component\Routing\Loader\XmlFileLoader">
+            <tag name="routing.loader" />
+            <argument type="service" id="file_locator" />
+        </service>
+
+        <service id="routing.loader.yaml" class="Symfony\Component\Routing\Loader\YamlFileLoader">
+            <tag name="routing.loader" />
+            <argument type="service" id="file_locator" />
+        </service>
+
+        <service id="routing.loader.php" class="Symfony\Component\Routing\Loader\PhpFileLoader">
+            <tag name="routing.loader" />
+            <argument type="service" id="file_locator" />
+        </service>
+
+        <service id="routing.loader.glob" class="Symfony\Component\Routing\Loader\GlobFileLoader">
+            <tag name="routing.loader" />
+            <argument type="service" id="file_locator" />
+        </service>
+
+        <service id="routing.loader.directory" class="Symfony\Component\Routing\Loader\DirectoryLoader">
+            <tag name="routing.loader" />
+            <argument type="service" id="file_locator" />
+        </service>
+
+
+        <service id="routing.loader.service" class="Symfony\Component\Routing\Loader\DependencyInjection\ServiceRouterLoader">
+            <tag name="routing.loader" />
+            <argument type="service" id="service_container" />
+        </service>
+
+        <service id="routing.loader" class="Symfony\Component\Config\Loader\DelegatingLoader" public="true">
+            <argument type="service" id="routing.resolver" />
+            <argument type="collection" />
+        </service>
+
+        <service id="router.default" class="Symfony\Component\Routing\Router">
+            <argument type="service" id="routing.loader" />
+            <argument>kernel:loadRoutes</argument>
+            <argument type="collection">
+                <argument key="resource_type">service</argument>
+            </argument>
+            <argument type="service" id="router.request_context" on-invalid="ignore" />
+        </service>
+        <service id="router" alias="router.default" public="true" />
+
+        <service id="router.request_context" class="Symfony\Component\Routing\RequestContext" />
+
+        <service id="router_listener" class="Symfony\Component\HttpKernel\EventListener\RouterListener">
+            <argument type="service" id="router" />
+            <argument type="service" id="request_stack" />
+            <argument type="service" id="router.request_context" on-invalid="ignore" />
+        </service>
+    </services>
+</container>

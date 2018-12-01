@@ -1,0 +1,6 @@
+remove_trailing_slash:
+    path: /{url}
+    defaults: { _controller: SimpleSAML\Module:removeTrailingSlash }
+    requirements:
+        url: .*/$
+    methods: [GET]

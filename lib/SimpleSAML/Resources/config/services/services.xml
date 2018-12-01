@@ -1,0 +1,31 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <defaults public="false" />
+
+        <service id="request_stack" class="Symfony\Component\HttpFoundation\RequestStack" public="true" />
+        <service id="Symfony\Component\HttpFoundation\RequestStack" alias="request_stack" />
+
+        <service id="file_locator" class="Symfony\Component\Config\FileLocator" />
+
+        <service id="dispatcher" class="Symfony\Component\EventDispatcher\EventDispatcher">
+            <call method="addSubscriber">
+                <argument type="service" id="router_listener"/>
+            </call>
+            <call method="addSubscriber">
+                <argument type="service" id="response_listener"/>
+            </call>
+        </service>
+
+        <service id="http_kernel" class="Symfony\Component\HttpKernel\HttpKernel" public="true">
+            <argument type="service" id="dispatcher"/>
+            <argument type="service" id="controller_resolver"/>
+            <argument type="service" id="request_stack"/>
+            <argument type="service" id="argument_resolver"/>
+        </service>
+    </services>
+</container>
