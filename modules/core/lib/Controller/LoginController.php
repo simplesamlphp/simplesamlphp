@@ -1,6 +1,6 @@
 <?php
 
-namespace SimpleSAML\Module\core;
+namespace SimpleSAML\Module\core\Controller;
 
 use SimpleSAML\Auth;
 use SimpleSAML\Auth\AuthenticationFactory;
@@ -21,7 +21,7 @@ use Symfony\Component\HttpFoundation\Request;
  *
  * @package SimpleSAML\Module\core
  */
-class Controller
+class LoginController
 {
     /** @var \SimpleSAML\Configuration */
     protected $config;

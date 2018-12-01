@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <defaults public="false"/>
+
+        <service id="SimpleSAML\Configuration">
+            <factory class="SimpleSAML\Configuration" method="getInstance" />
+        </service>
+
+        <service id="SimpleSAML\Session">
+            <factory class="SimpleSAML\Session" method="getSessionFromRequest" />
+        </service>
+
+        <service class="SimpleSAML\Auth\AuthenticationFactory">
+            <argument type="service" id="SimpleSAML\Configuration"/>
+        </service>
+    </services>
+</container>
