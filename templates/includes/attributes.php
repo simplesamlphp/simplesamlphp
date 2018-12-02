@@ -34,19 +34,19 @@ function present_assoc($attr)
 function present_eptid(\SimpleSAML\Locale\Translate $t, \SAML2\XML\saml\NameID $nameID)
 {
     $eptid = [
-        'NameID' => [$nameID->value],
+        'NameID' => [$nameID->getValue()],
     ];
-    if (!empty($nameID->Format)) {
-        $eptid[$t->t('{status:subject_format}')] = [$nameID->Format];
+    if ($nameID->getFormat() !== null) {
+        $eptid[$t->t('{status:subject_format}')] = [$nameID->getFormat()];
     }
-    if (!empty($nameID->NameQualifier)) {
-        $eptid['NameQualifier'] = [$nameID->NameQualifier];
+    if ($nameID->getNameQualifier() !== null) {
+        $eptid['NameQualifier'] = [$nameID->getNameQualifier()];
     }
-    if (!empty($nameID->SPNameQualifier)) {
-        $eptid['SPNameQualifier'] = [$nameID->SPNameQualifier];
+    if ($nameID->getSPNameQualifier() !== null) {
+        $eptid['SPNameQualifier'] = [$nameID->getSPNameQualifier()];
     }
-    if (!empty($nameID->SPProvidedID)) {
-        $eptid['SPProvidedID'] = [$nameID->SPProvidedID];
+    if ($nameID->getSPProvidedID() !== null) {
+        $eptid['SPProvidedID'] = [$nameID->getSPProvidedID()];
     }
     return '<td class="attrvalue">'.present_assoc($eptid);
 }

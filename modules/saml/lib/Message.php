@@ -496,7 +496,9 @@ class Message
 
         // Shoaib: setting the appropriate binding based on parameter in sp-metadata defaults to HTTP_POST
         $ar->setProtocolBinding($protbind);
-        $ar->setIssuer($spMetadata->getString('entityid'));
+        $issuer = new \SAML2\XML\saml\Issuer();
+        $issuer->setValue($spMetadata->getString('entityid'));
+        $ar->setIssuer($issuer);
         $ar->setAssertionConsumerServiceIndex($spMetadata->getInteger('AssertionConsumerServiceIndex', null));
         $ar->setAttributeConsumingServiceIndex($spMetadata->getInteger('AttributeConsumingServiceIndex', null));
 

@@ -70,9 +70,9 @@ $assertion->setAttributeNameFormat($attributeNameFormat);
 $sc = new \SAML2\XML\saml\SubjectConfirmation();
 $sc->Method = \SAML2\Constants::CM_BEARER;
 $sc->SubjectConfirmationData = new \SAML2\XML\saml\SubjectConfirmationData();
-$sc->SubjectConfirmationData->NotOnOrAfter = time() + 300; // 60*5 = 5min
-$sc->SubjectConfirmationData->Recipient = $endpoint;
-$sc->SubjectConfirmationData->InResponseTo = $query->getId();
+$sc->SubjectConfirmationData->setNotOnOrAfter(time() + 300); // 60*5 = 5min
+$sc->SubjectConfirmationData->setRecipient($endpoint);
+$sc->SubjectConfirmationData->setInResponseTo($query->getId());
 $assertion->setSubjectConfirmation([$sc]);
 
 \SimpleSAML\Module\saml\Message::addSign($idpMetadata, $spMetadata, $assertion);
