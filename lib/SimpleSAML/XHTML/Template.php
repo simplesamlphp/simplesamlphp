@@ -476,16 +476,11 @@ class Template extends Response
      */
     protected function getContents()
     {
-        if ($this->twig !== false) {
-            $this->twigDefaultContext();
-            if ($this->controller) {
-                $this->controller->display($this->data);
-            }
-            $content = $this->twig->render($this->twig_template, $this->data);
-        } else {
-            $content = require($this->findTemplatePath($this->template));
+        $this->twigDefaultContext();
+        if ($this->controller) {
+            $this->controller->display($this->data);
         }
-        return $content;
+        return = $this->twig->render($this->twig_template, $this->data);
     }
 
 
@@ -508,11 +503,15 @@ class Template extends Response
      * This method is a remnant of the old templating system, where templates where shown manually instead of
      * returning a response.
      *
-     * @deprecated Do not use this method, use send() instead.
+     * @deprecated Do not use this method, use Twig + send() instead. Will be removed in 2.0
      */
     public function show()
     {
-        echo $this->getContents();
+        if ($this->twig !== false) {
+            echo $this->getContents();            
+        } else {
+            require($this->findTemplatePath($this->template));
+        }
     }
 
 
