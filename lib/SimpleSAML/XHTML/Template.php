@@ -480,7 +480,7 @@ class Template extends Response
         if ($this->controller) {
             $this->controller->display($this->data);
         }
-        return = $this->twig->render($this->twig_template, $this->data);
+        return $this->twig->render($this->twig_template, $this->data);
     }
 
 
