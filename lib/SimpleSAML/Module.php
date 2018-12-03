@@ -400,7 +400,7 @@ class Module
             if (!class_exists($className)) {
                 // check for the new-style class names, using namespaces
                 $type = str_replace('_', '\\', $type);
-                $newClassName = 'SimpleSAML\Module\\'.$tmp[0].$type.$tmp[1];
+                $newClassName = 'SimpleSAML\\Module\\'.$tmp[0].$type.$tmp[1];
 
                 if (!class_exists($newClassName)) {
                     throw new \Exception("Could not resolve '$id': no class named '$className' or '$newClassName'.");
