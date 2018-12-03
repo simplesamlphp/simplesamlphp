@@ -152,23 +152,6 @@ class Kernel extends BaseKernel
         }
     }
 
-//
-//    public function loadRoutes(LoaderInterface $loader)
-//    {
-//        $routes = new RouteCollectionBuilder($loader);
-//        $this->configureRoutes($routes);
-//
-//        return $routes->build();
-//    }
-//    public function registerContainerConfiguration(LoaderInterface $loader)
-//    {
-//        $loader->load(function (ContainerBuilder $container) use ($loader) {
-//            $this->configureContainer($container, $loader);
-//
-//            $container->addObjectResource($this);
-//        });
-//    }
-
     /**
      * @inheritDoc
      */
