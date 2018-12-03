@@ -56,7 +56,7 @@ class Template extends Response
      *
      * @var false|Twig_Environment
      */
-    private $twig;
+    private $twig = false;
 
     /**
      * The template name.
@@ -130,15 +130,17 @@ class Template extends Response
         // check if we are supposed to use the new UI
         $this->useNewUI = $this->configuration->getBoolean('usenewui', false);
 
-        // check if we need to attach a theme controller
-        $controller = $this->configuration->getString('theme.controller', false);
-        if ($controller && class_exists($controller) &&
-            in_array('\SimpleSAML\XHTML\TemplateControllerInterface', class_implements($controller))
-        ) {
-            $this->controller = new $controller();
-        }
+        if ($this->useNewUI) {
+            // check if we need to attach a theme controller
+            $controller = $this->configuration->getString('theme.controller', false);
+            if ($controller && class_exists($controller) &&
+                in_array('\SimpleSAML\XHTML\TemplateControllerInterface', class_implements($controller))
+            ) {
+                $this->controller = new $controller();
+            }
 
-        $this->twig = $this->setupTwig();
+            $this->twig = $this->setupTwig();
+        }
         parent::__construct();
     }
 
@@ -268,21 +270,13 @@ class Template extends Response
             $this->localization->addModuleDomain($this->theme['module']);
         }
 
+        // set up translation
         $options = [
             'cache' => $cache,
             'auto_reload' => $auto_reload,
-            'translation_function' => ['\SimpleSAML\Locale\Translate', 'translateSingularNativeGettext'],
-            'translation_function_plural' => ['\SimpleSAML\Locale\Translate', 'translatePluralNativeGettext'],
+            'translation_function' => ['\SimpleSAML\Locale\Translate', 'translateSingularGettext'],
+            'translation_function_plural' => ['\SimpleSAML\Locale\Translate', 'translatePluralGettext'],
         ];
-
-        // set up translation
-        if ($this->localization->i18nBackend === \SimpleSAML\Locale\Localization::GETTEXT_I18N_BACKEND) {
-            $options['translation_function'] = ['\SimpleSAML\Locale\Translate', 'translateSingularGettext'];
-            $options['translation_function_plural'] = [
-                '\SimpleSAML\Locale\Translate',
-                'translatePluralGettext'
-            ];
-        } // TODO: add a branch for the old SimpleSAMLphp backend
 
         $twig = new Twig_Environment($loader, $options);
         $twig->addExtension(new Twig_Extensions_Extension_I18n());
@@ -290,7 +284,7 @@ class Template extends Response
         // initialize some basic context
         $langParam = $this->configuration->getString('language.parameter.name', 'language');
         $twig->addGlobal('languageParameterName', $langParam);
-        $twig->addGlobal('localeBackend', $this->useNewUI ? Localization::GETTEXT_I18N_BACKEND : Localization::SSP_I18N_BACKEND);
+        $twig->addGlobal('localeBackend', Localization::GETTEXT_I18N_BACKEND);
         $twig->addGlobal('currentLanguage', $this->translator->getLanguage()->getLanguage());
         $twig->addGlobal('isRTL', false); // language RTL configuration
         if ($this->translator->getLanguage()->isLanguageRTL()) {
