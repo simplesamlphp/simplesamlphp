@@ -3,8 +3,8 @@ Installing SimpleSAMLphp from the repository
 
 These are some notes about running SimpleSAMLphp from the repository.
 
-Installing from github
-----------------------
+Installing from git
+-------------------
 
 Go to the directory where you want to install SimpleSAMLphp:
 
@@ -20,10 +20,16 @@ Initialize configuration and metadata:
     cp -r config-templates/* config/
     cp -r metadata-templates/* metadata/
 
-Install the external dependencies with Composer (you can refer to [getcomposer.org](http://getcomposer.org/) to get detailed
-instructions on how to install Composer itself):
+Install the external dependencies with Composer (you can refer to
+[getcomposer.org](https://getcomposer.org/) to get detailed
+instructions on how to install Composer itself) and npm:
 
     php composer.phar install
+    npm install
+
+Build the assets:
+
+    npm run build
 
 
 Upgrading
@@ -38,8 +44,8 @@ Ask git to update to the latest version:
     git fetch origin
     git pull origin master
 
-Install or upgrade the external dependencies with Composer and npm ([get composer](http://getcomposer.org/)):
+Install or upgrade the external dependencies with Composer and npm:
 
     php composer.phar install
     npm install
-
+    npm run build
