@@ -40,7 +40,7 @@ class Kernel extends BaseKernel
     {
         $this->module = $module;
 
-        parent::__construct('prod', false);
+        parent::__construct('dev', false);
     }
 
     public function getCacheDir()
@@ -150,26 +150,5 @@ class Kernel extends BaseKernel
             );
         } catch (FileLocatorFileNotFoundException $e) {
         }
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function setAnnotatedClassCache(array $annotatedClasses)
-    {
-        // Disabled cache
-        // parent::setAnnotatedClassCache($annotatedClasses);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    protected function initializeContainer()
-    {
-        // Disabled cache
-        // return parent::initializeContainer();
-        $this->container = $this->buildContainer();
-        $this->container->compile();
-        $this->container->set('kernel', $this);
     }
 }
