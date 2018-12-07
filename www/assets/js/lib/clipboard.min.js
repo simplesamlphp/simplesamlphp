@@ -1,1 +1,0 @@
-../../../../node_modules/clipboard/dist/clipboard.min.js
