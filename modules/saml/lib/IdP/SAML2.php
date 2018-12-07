@@ -932,9 +932,9 @@ class SAML2
 
         $sc = new \SAML2\XML\saml\SubjectConfirmation();
         $sc->SubjectConfirmationData = new \SAML2\XML\saml\SubjectConfirmationData();
-        $sc->SubjectConfirmationData->NotOnOrAfter = $now + $assertionLifetime;
-        $sc->SubjectConfirmationData->Recipient = $state['saml:ConsumerURL'];
-        $sc->SubjectConfirmationData->InResponseTo = $state['saml:RequestId'];
+        $sc->SubjectConfirmationData->setNotOnOrAfter($now + $assertionLifetime);
+        $sc->SubjectConfirmationData->setRecipient($state['saml:ConsumerURL']);
+        $sc->SubjectConfirmationData->setInResponseTo($state['saml:RequestId']);
 
         // ProtcolBinding of SP's <AuthnRequest> overwrites IdP hosted metadata configuration
         $hokAssertion = null;
@@ -947,7 +947,7 @@ class SAML2
 
         if ($hokAssertion) {
             // Holder-of-Key
-            $sc->Method = \SAML2\Constants::CM_HOK;
+            $sc->setMethod(\SAML2\Constants::CM_HOK);
             if (\SimpleSAML\Utils\HTTP::isHTTPS()) {
                 if (isset($_SERVER['SSL_CLIENT_CERT']) && !empty($_SERVER['SSL_CLIENT_CERT'])) {
                     // extract certificate data (if this is a certificate)
@@ -956,15 +956,15 @@ class SAML2
                     if (preg_match($pattern, $clientCert, $matches)) {
                         // we have a client certificate from the browser which we add to the HoK assertion
                         $x509Certificate = new \SAML2\XML\ds\X509Certificate();
-                        $x509Certificate->certificate = str_replace(["\r", "\n", " "], '', $matches[1]);
+                        $x509Certificate->setCertificate(str_replace(["\r", "\n", " "], '', $matches[1]));
 
                         $x509Data = new \SAML2\XML\ds\X509Data();
-                        $x509Data->data[] = $x509Certificate;
+                        $x509Data->addData($x509Certificate);
 
                         $keyInfo = new \SAML2\XML\ds\KeyInfo();
-                        $keyInfo->info[] = $x509Data;
+                        $keyInfo->addInfo($x509Data);
 
-                        $sc->SubjectConfirmationData->info[] = $keyInfo;
+                        $sc->SubjectConfirmationData->addInfo($keyInfo);
                     } else {
                         throw new \SimpleSAML\Error\Exception(
                             'Error creating HoK assertion: No valid client certificate provided during TLS handshake '.
@@ -983,7 +983,7 @@ class SAML2
             }
         } else {
             // Bearer
-            $sc->Method = \SAML2\Constants::CM_BEARER;
+            $sc->setMethod(\SAML2\Constants::CM_BEARER);
         }
         $a->setSubjectConfirmation([$sc]);
 
@@ -1012,7 +1012,7 @@ class SAML2
 
         if (isset($state['saml:NameID'][$nameIdFormat])) {
             $nameId = $state['saml:NameID'][$nameIdFormat];
-            $nameId->Format = $nameIdFormat;
+            $nameId->setFormat($nameIdFormat);
         } else {
             $spNameQualifier = $spMetadata->getString('SPNameQualifier', null);
             if ($spNameQualifier === null) {
@@ -1034,9 +1034,9 @@ class SAML2
             }
 
             $nameId = new \SAML2\XML\saml\NameID();
-            $nameId->Format = $nameIdFormat;
-            $nameId->value = $nameIdValue;
-            $nameId->SPNameQualifier = $spNameQualifier;
+            $nameId->setFormat($nameIdFormat);
+            $nameId->setValue($nameIdValue);
+            $nameId->setSPNameQualifier($spNameQualifier);
         }
 
         $state['saml:idp:NameID'] = $nameId;

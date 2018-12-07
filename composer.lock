@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "120214b5da440ae2e37efecc739fbc3b",
+    "content-hash": "bb48ceb41b05f94e7a7f0243d21138fa",
     "packages": [
         {
             "name": "gettext/gettext",
@@ -358,16 +358,16 @@
         },
         {
             "name": "simplesamlphp/saml2",
-            "version": "v3.2.6",
+            "version": "v3.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/saml2.git",
-                "reference": "a56e46ef8e0c5245a4ca7facc3d308b493215751"
+                "reference": "89f9ce38d614843b1115c91e2f0a6974ca2e71c1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/a56e46ef8e0c5245a4ca7facc3d308b493215751",
-                "reference": "a56e46ef8e0c5245a4ca7facc3d308b493215751",
+                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/89f9ce38d614843b1115c91e2f0a6974ca2e71c1",
+                "reference": "89f9ce38d614843b1115c91e2f0a6974ca2e71c1",
                 "shasum": ""
             },
             "require": {
@@ -411,7 +411,7 @@
                 }
             ],
             "description": "SAML2 PHP library from SimpleSAMLphp",
-            "time": "2018-11-20T11:11:28+00:00"
+            "time": "2018-12-04T21:15:52+00:00"
         },
         {
             "name": "symfony/config",

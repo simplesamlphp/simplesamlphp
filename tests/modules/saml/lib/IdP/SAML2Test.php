@@ -84,8 +84,8 @@ class SAML2Test extends ClearStateTestCase
         unset($state['\SimpleSAML\Auth\State.restartURL']); // url contains a cookie time which varies by test
 
         $expectedState = $this->defaultExpectedAuthState;
-        $expectedState[ 'saml:ConsumerURL'] = 'https://example.com/Shibboleth.sso/SAML2/POST';
-        $expectedState[ 'saml:Binding'] = 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST';
+        $expectedState['saml:ConsumerURL'] = 'https://example.com/Shibboleth.sso/SAML2/POST';
+        $expectedState['saml:Binding'] = 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST';
 
         $this->assertEquals($expectedState, $state);
     }
@@ -142,8 +142,8 @@ class SAML2Test extends ClearStateTestCase
         unset($state['\SimpleSAML\Auth\State.restartURL']); // url contains a cookie time which varies by test
 
         $expectedState = $this->defaultExpectedAuthState;
-        $expectedState[ 'saml:ConsumerURL'] = 'https://example.com/Shibboleth.sso/SAML2/POST';
-        $expectedState[ 'saml:Binding'] = 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST';
+        $expectedState['saml:ConsumerURL'] = 'https://example.com/Shibboleth.sso/SAML2/POST';
+        $expectedState['saml:Binding'] = 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST';
 
         $this->assertEquals($expectedState, $state);
     }
@@ -221,7 +221,7 @@ EOT;
         // won't line up perfectly
         $_REQUEST = $_REQUEST + $queryParams;
         $_SERVER['HTTP_HOST'] = 'idp.examlple.com';
-        $_SERVER['REQUEST_URI'] = '/saml2/idp/SSOService.php?' . http_build_query($queryParams);
+        $_SERVER['REQUEST_URI'] = '/saml2/idp/SSOService.php?'.http_build_query($queryParams);
 
 
         $state = [];
