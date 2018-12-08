@@ -246,7 +246,7 @@ $config = [
         'search.attributes' => ['uid', 'mail'],
 
         // Additional LDAP filters appended to the search attributes
-        'search.filter' => '(objectclass=inetorgperson)',
+        //'search.filter' => '(objectclass=inetorgperson)',
 
         // The username & password the SimpleSAMLphp should bind to before searching. If
         // this is left as NULL, no bind will be performed before searching.
