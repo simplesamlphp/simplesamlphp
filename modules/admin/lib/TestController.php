@@ -128,11 +128,11 @@ class TestController
 
     private function present_attributes(\SimpleSAML\XHTML\Template $t, $attributes, $nameParent)
     {
-        $alternate = ['odd', 'even'];
+        $alternate = ['pure-table-odd', 'pure-table-even'];
         $i = 0;
         $parentStr = (strlen($nameParent) > 0) ? strtolower($nameParent).'_' : '';
-        $str = (strlen($nameParent) > 0) ? '<table class="attributes" summary="attribute overview">' :
-            '<table id="table_with_attributes" class="attributes" summary="attribute overview">';
+        $str = (strlen($nameParent) > 0) ? '<table class="pure-table pure-table-attributes" summary="attribute overview">' :
+            '<table id="table_with_attributes" class="pure-table pure-table-attributes" summary="attribute overview">';
         foreach ($attributes as $name => $value) {
             $nameraw = $name;
             $trans = $t->getTranslator();
