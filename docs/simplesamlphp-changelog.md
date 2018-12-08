@@ -11,18 +11,32 @@ See the upgrade notes for specific information about upgrading.
 Released TBD
 
 ### Changes
-  * Minimum required PHP version is now 5.5.
-    Fixed compatibility with PHP 7.3.
-  * Introduce new UI based on Twig templates.
-    The new templates co-exist next to the old ones.
-  * SimpleSAMLphp can now be used with applications that use Twig 2.
-  * Generate sessionID complying with PHP config settings.
-  * Update OpenSSL RSA bit length in docs.
-  * Update configuration templates and documentation to PHP
+  * Introduce a new templating system based on Twig templates.
+    The new Twig templates co-exist next to the old ones and come
+    with a new look-and-feel for SimpleSAMLphp.
+  * Introduce Symfony-style routing (#966)
+  * Generate sessionID complying with PHP config settings (#569)
+  * Update OpenSSL RSA bit length in docs (#993)
+  * Update all code, configuration templates and documentation to PHP
     short array syntax.
   * All clases moved to namespaces and reformatted code to PSR-2.
-  * Use bcrypt for new password hashes, old ones will remain working.
+  * Use bcrypt for new password hashes, old ones will remain working (#996)
   * Many code cleanups.
+  * Bump SAML2-library to 3.2.5
+  * Bump Clipboard.JS-library to 2.0.4
+  * Added translations for Zulu and Xhosa
+
+### Inter-operability
+  * Minimum required PHP version is now 5.5.
+    Fixed compatibility with PHP 7.3 and HVVM.
+  * SimpleSAMLphp can now be used with applications that use Twig 2 and/or Symfony 4.
+  * SAML2-library now uses getters/setters to manipulate objects.
+
+### authfacebook
+  * Fix facebook compatibility (query params)
+
+### authorize
+  * Add possibility to configure a custom reject-message
 
 ### consent
   * Module is now disabled by default.
@@ -30,6 +44,12 @@ Released TBD
 ### core
   * Allow `core:PHP` to manipulate all of the state.
   * IdP initiated login: add compatibility with Shibboleth parameters.
+
+### multiauth
+  * Added preselect-option to skip authsource selection (#1005)
+
+### negotiate
+  * keytab-setting now allows for relative paths too
 
 ### preprodwarning
   * This module is now deprecated. Use the `production` configuration
@@ -42,11 +62,18 @@ Released TBD
     SP remote metadata.
   * Allow to specifiy NameIDPolicy Format and AllowCreate in hosted SP
     and remote IdP configurtion, and restore possibility to omit it
-    from AuthnRequests entirely.
+    from AuthnRequests entirely (#984).
   * Add setting `assertion.allowed_clock_skew` to influence how lenient
     we should be with the timestamps in received SAML messages.
   * If Issuer of IdP does not match the entity we sent the request to,
     log a warning instead of bailing out with an exception.
+  * Support for AudienceRestriction in SAML2 request (#998)
+  * Can disable the Scoping element in SP and remote IdP configuration with the
+    `disable_scoping` option, for compatibility with ADFS which does not accept
+    the element (#985)
+
+### sanitycheck
+  * Add translations for several languages
 
 ## Version 1.16.2
 
@@ -332,9 +359,6 @@ Released 2017-11-20
     refuse to parse an assertion with an eduPersonTargetedID in 'string' format.
   * Receiving an eduPersonTargetedID in string form will no longer break
     parsing of the assertion.
-  * Can disable the Scoping element in SP and remote IdP configuration with the
-    `disable_scoping` option, for compatibility with ADFS which does not accept
-    the element.
 
 ### `smartattributes`
   * Fix SmartName authproc that failed to load.
