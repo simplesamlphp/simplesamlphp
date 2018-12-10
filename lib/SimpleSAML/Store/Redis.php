@@ -31,13 +31,14 @@ class Redis extends Store
             $host = $config->getString('store.redis.host', 'localhost');
             $port = $config->getInteger('store.redis.port', 6379);
             $prefix = $config->getString('store.redis.prefix', 'SimpleSAMLphp');
+            $password = $config->getString('store.redis.password', '');
 
             $redis = new \Predis\Client(
                 [
                     'scheme' => 'tcp',
                     'host' => $host,
                     'port' => $port,
-                ],
+                ] + (!empty($password) ? ['password' => $password] : []),
                 [
                     'prefix' => $prefix,
                 ]
