@@ -161,7 +161,7 @@ The required tables are created automatically. If you are storing data from mult
 
 To store sessions in Redis, set the `store.type` option to `redis`.
 
-By default SimpleSAMLphp will attempt to connect to Redis on the `localhost` at port `6379`. These can be configured via the `store.redis.host` and `store.redis.port` options, respectively. You may also set a key prefix with the `store.redis.prefix` option.
+By default SimpleSAMLphp will attempt to connect to Redis on the `localhost` at port `6379`. These can be configured via the `store.redis.host` and `store.redis.port` options, respectively. You may also set a key prefix with the `store.redis.prefix` option. For Redis instances that [require authentication](https://redis.io/commands/auth), use the `store.redis.password` option.
 
 ## Metadata storage
 
