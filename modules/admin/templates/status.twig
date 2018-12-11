@@ -4,9 +4,9 @@
 
 {% block content %}
     {%- include "@admin/includes/menu.twig" %}
-    <h2>{{ '{status:header_saml20_sp}'|trans }}</h2>
 
-    <p>{{ '{status:intro}'|trans }}</p>
+    <p>{% trans %}Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long
+     it lasts until it times out and all the attributes that are attached to your session.{% endtrans %}</p>
 
     <h2>{{ '{status:attributes_header}'|trans }}</h2>
 
@@ -18,8 +18,8 @@
     {%- endif %}
 
     {% if authData -%}
-    <h2>{{ '{status:authData_header}'|trans }}</h2>
-    <details><summary>{{ '{status:authData_summary}'|trans }}</summary> 
+    <h2>{% trans %}AuthData{% endtrans %}</h2>
+    <details><summary>{% trans %}Click to view AuthData{% endtrans %}</summary>
       <pre>{{ authData|json_encode|raw }}</pre>
     </details>
     {%- endif %}    

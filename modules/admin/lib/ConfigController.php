@@ -6,7 +6,6 @@ use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Locale\Translate;
 use SimpleSAML\Utils\HTTP;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Controller class for the admin module.

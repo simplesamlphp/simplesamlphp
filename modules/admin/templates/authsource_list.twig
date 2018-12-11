@@ -6,7 +6,7 @@
     {%- include "@admin/includes/menu.twig" %}
     <ul>
     {% for key, name in sources %}
-        <li><a href="test/{{ name|escape('url') }}">{{ name|escape('html') }}</a></li>
+        <li><a href="test/{{ name|escape('url') }}">{{ name }}</a></li>
     {% endfor %}
     </ul>
 {% endblock %}

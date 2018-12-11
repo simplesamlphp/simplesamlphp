@@ -82,14 +82,14 @@ class TestController
             $t = new \SimpleSAML\XHTML\Template($this->config, 'admin:status.twig', 'attributes');
             $t->data = [
                 'attributes' => $attributes,
-                'attributesHtml' => $this->present_attributes($t, $attributes, ''),
+                'attributesHtml' => $this->getAttributesHTML($t, $attributes, ''),
                 'authData' => $authData,
                 'nameid' => $nameId,
                 'logouturl' => \SimpleSAML\Utils\HTTP::getSelfURLNoQuery().'?as='.urlencode($as).'&logout',
             ];
 
             if ($nameId !== false) {
-                $this->data['nameidHtml'] = present_nameid($t, $nameId);
+                $this->data['nameidHtml'] = $this->getNameIDHTML($t, $nameId);
             }
         }
 
@@ -99,7 +99,7 @@ class TestController
     }
 
 
-    private function present_nameid(\SimpleSAML\XHTML\Template $t, \SAML2\XML\saml\NameID $nameId)
+    private function getNameIDHTML(\SimpleSAML\XHTML\Template $t, \SAML2\XML\saml\NameID $nameId)
     {
         $result = '';
         if ($nameId->getValue() === null) {
@@ -122,11 +122,11 @@ class TestController
                 $list['SPProvidedID'] = [$nameId->getSPProvidedID()];
             }
         }
-        return $result.present_attributes($t, $list, '');
+        return $result.$this->getAttributesHTML($t, $list, '');
     }
 
 
-    private function present_attributes(\SimpleSAML\XHTML\Template $t, $attributes, $nameParent)
+    private function getAttributesHTML(\SimpleSAML\XHTML\Template $t, $attributes, $nameParent)
     {
         $alternate = ['pure-table-odd', 'pure-table-even'];
         $i = 0;
@@ -141,7 +141,7 @@ class TestController
                 $parentName = preg_replace('/^child_/', '', $nameraw);
                 foreach ($value as $child) {
                     $str .= '<tr class="odd"><td colspan="2" style="padding: 2em">'.
-                        $this->present_attributes($t, $child, $parentName).'</td></tr>';
+                        $this->getAttributesHTML($t, $child, $parentName).'</td></tr>';
                 }
             } else {
                 if (sizeof($value) > 1) {
