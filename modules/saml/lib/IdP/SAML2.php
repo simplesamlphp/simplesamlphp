@@ -3,9 +3,13 @@
 namespace SimpleSAML\Module\saml\IdP;
 
 use RobRichards\XMLSecLibs\XMLSecurityKey;
+use SAML2\Constants;
 use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
 use SAML2\SOAP;
+use SimpleSAML\Utils\Config\Metadata;
+use SimpleSAML\Utils\Crypto;
+use SimpleSAML\Utils\HTTP;
 
 /**
  * IdP implementation for SAML 2.0 protocol.
@@ -694,6 +698,204 @@ class SAML2
         } catch (\Exception $e) {
             return Configuration::loadFromArray([], 'Unknown SAML 2 entity.');
         }
+    }
+
+
+    /**
+     * Retrieve the metadata of a hosted SAML 2 IdP.
+     *
+     * @param string $entityid The entity ID of the hosted SAML 2 IdP whose metadata we want.
+     *
+     * @return array
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \SimpleSAML\Error\MetadataNotFound
+     */
+    public static function getHostedMetadata($entityid)
+    {
+        $handler = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
+        $config = $handler->getMetaDataConfig($entityid, 'saml20-idp-hosted');
+
+        // configure endpoints
+        $ssob = $handler->getGenerated('SingleSignOnServiceBinding', 'saml20-idp-hosted');
+        $slob = $handler->getGenerated('SingleLogoutServiceBinding', 'saml20-idp-hosted');
+        $ssol = $handler->getGenerated('SingleSignOnService', 'saml20-idp-hosted');
+        $slol = $handler->getGenerated('SingleLogoutService', 'saml20-idp-hosted');
+
+        $sso = [];
+        if (is_array($ssob)) {
+            foreach ($ssob as $binding) {
+                $sso[] = [
+                    'Binding'  => $binding,
+                    'Location' => $ssol,
+                ];
+            }
+        } else {
+            $sso[] = [
+                'Binding'  => $ssob,
+                'Location' => $ssol,
+            ];
+        }
+
+        $slo = [];
+        if (is_array($slob)) {
+            foreach ($slob as $binding) {
+                $slo[] = [
+                    'Binding'  => $binding,
+                    'Location' => $slol,
+                ];
+            }
+        } else {
+            $slo[] = [
+                'Binding'  => $slob,
+                'Location' => $slol,
+            ];
+        }
+
+        $metadata = [
+            'metadata-set' => 'saml20-idp-hosted',
+            'entityid' => $entityid,
+            'SingleSignOnService' => $sso,
+            'SingleLogoutService' => $slo,
+            'NameIDFormat' => $config->getArrayizeString('NameIDFormat', Constants::NAMEID_TRANSIENT),
+        ];
+
+        // add certificates
+        $keys = [];
+        $certInfo = Crypto::loadPublicKey($config, false, 'new_');
+        $hasNewCert = false;
+        if ($certInfo !== null) {
+            $keys[] = [
+                'type' => 'X509Certificate',
+                'signing' => true,
+                'encryption' => true,
+                'X509Certificate' => $certInfo['certData'],
+                'prefix' => 'new_',
+            ];
+            $hasNewCert = true;
+        }
+
+        $certInfo = Crypto::loadPublicKey($config, true);
+        $keys[] = [
+            'type' => 'X509Certificate',
+            'signing' => true,
+            'encryption' => $hasNewCert === false,
+            'X509Certificate' => $certInfo['certData'],
+            'prefix' => '',
+        ];
+
+        if ($config->hasValue('https.certificate')) {
+            $httpsCert = Crypto::loadPublicKey($config, true, 'https.');
+            $keys[] = [
+                'type' => 'X509Certificate',
+                'signing' => true,
+                'encryption' => false,
+                'X509Certificate' => $httpsCert['certData'],
+                'prefix' => 'https.'
+            ];
+        }
+        $metadata['keys'] = $keys;
+
+        // add ArtifactResolutionService endpoint, if enabled
+        if ($config->getBoolean('saml20.sendartifact', false)) {
+            $metadata['ArtifactResolutionService'][] = [
+                'index' => 0,
+                'Binding' => Constants::BINDING_SOAP,
+                'Location' => HTTP::getBaseURL().'saml2/idp/ArtifactResolutionService.php'
+            ];
+        }
+
+        // add Holder of Key, if enabled
+        if ($config->getBoolean('saml20.hok.assertion', false)) {
+            array_unshift(
+                $metadata['SingleSignOnService'],
+                [
+                    'hoksso:ProtocolBinding' => Constants::BINDING_HTTP_REDIRECT,
+                    'Binding' => Constants::BINDING_HOK_SSO,
+                    'Location' => HTTP::getBaseURL().'saml2/idp/SSOService.php',
+                ]
+            );
+        }
+
+        // add ECP profile, if enabled
+        if ($config->getBoolean('saml20.ecp', false)) {
+            $metadata['SingleSignOnService'][] = [
+                'index' => 0,
+                'Binding' => Constants::BINDING_SOAP,
+                'Location' => HTTP::getBaseURL().'saml2/idp/SSOService.php',
+            ];
+        }
+
+        // add organization information
+        if ($config->hasValue('OrganizationName')) {
+            $metadata['OrganizationName'] = $config->getLocalizedString('OrganizationName');
+            $metadata['OrganizationDisplayName'] = $config->getLocalizedString(
+                'OrganizationDisplayName',
+                $metadata['OrganizationName']
+            );
+
+            if (!$config->hasValue('OrganizationURL')) {
+                throw new \SimpleSAML\Error\Exception('If OrganizationName is set, OrganizationURL must also be set.');
+            }
+            $metadata['OrganizationURL'] = $config->getLocalizedString('OrganizationURL');
+        }
+
+        // add scope
+        if ($config->hasValue('scope')) {
+            $metadata['scope'] = $config->getArray('scope');
+        }
+
+        // add extensions
+        if ($config->hasValue('EntityAttributes')) {
+            $metadata['EntityAttributes'] = $config->getArray('EntityAttributes');
+
+            // check for entity categories
+            if (Metadata::isHiddenFromDiscovery($metadata)) {
+                $metadata['hide.from.discovery'] = true;
+            }
+        }
+
+        if ($config->hasValue('UIInfo')) {
+            $metadata['UIInfo'] = $config->getArray('UIInfo');
+        }
+
+        if ($config->hasValue('DiscoHints')) {
+            $metadata['DiscoHints'] = $config->getArray('DiscoHints');
+        }
+
+        if ($config->hasValue('RegistrationInfo')) {
+            $metadata['RegistrationInfo'] = $config->getArray('RegistrationInfo');
+        }
+
+        // configure signature options
+        if ($config->hasValue('validate.authnrequest')) {
+            $metadata['sign.authnrequest'] = $config->getBoolean('validate.authnrequest');
+        }
+
+        if ($config->hasValue('redirect.validate')) {
+            $metadata['redirect.sign'] = $config->getBoolean('redirect.validate');
+        }
+
+        // add contact information
+        if ($config->hasValue('contacts')) {
+            $contacts = $config->getArray('contacts');
+            foreach ($contacts as $contact) {
+                $metadata['contacts'][] = Metadata::getContact($contact);
+            }
+        }
+
+        $globalConfig = \SimpleSAML\Configuration::getInstance();
+        $email = $globalConfig->getString('technicalcontact_email', false);
+        if ($email && $email !== 'na@example.org') {
+            $contact = [
+                'emailAddress' => $email,
+                'name' => $globalConfig->getString('technicalcontact_name', null),
+                'contactType' => 'technical',
+            ];
+            $metadata['contacts'][] = Metadata::getContact($contact);
+        }
+
+        return $metadata;
     }
 
 

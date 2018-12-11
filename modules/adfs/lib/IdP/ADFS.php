@@ -4,6 +4,8 @@ namespace SimpleSAML\Module\adfs\IdP;
 
 use RobRichards\XMLSecLibs\XMLSecurityDSig;
 use RobRichards\XMLSecLibs\XMLSecurityKey;
+use SimpleSAML\Utils\Config\Metadata;
+use SimpleSAML\Utils\Crypto;
 
 class ADFS
 {
@@ -142,6 +144,132 @@ MSG;
         $t->data['wctx'] = $wctx;
         $t->show();
     }
+
+
+    /**
+     * Get the metadata of a given hosted ADFS IdP.
+     *
+     * @param string $entityid The entity ID of the hosted ADFS IdP whose metadata we want to fetch.
+     *
+     * @return array
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \SimpleSAML\Error\MetadataNotFound
+     */
+    public static function getHostedMetadata($entityid)
+    {
+        $handler = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
+        $config = $handler->getMetaDataConfig($entityid, 'adfs-idp-hosted');
+
+        $endpoint = \SimpleSAML\Module::getModuleURL('adfs/idp/prp.php');
+        $metadata = [
+            'metadata-set' => 'adfs-idp-hosted',
+            'entityid' => $entityid,
+            'SingleSignOnService' => [
+                [
+                    'Binding' => \SAML2\Constants::BINDING_HTTP_REDIRECT,
+                    'Location' => $endpoint,
+                ]
+            ],
+            'SingleLogoutService' => [
+                'Binding' => \SAML2\Constants::BINDING_HTTP_REDIRECT,
+                'Location' => $endpoint,
+            ],
+            'NameIDFormat' => $config->getString('NameIDFormat', \SAML2\Constants::NAMEID_TRANSIENT),
+            'contacts' => [],
+        ];
+
+        // add certificates
+        $keys = [];
+        $certInfo = Crypto::loadPublicKey($config, false, 'new_');
+        $hasNewCert = false;
+        if ($certInfo !== null) {
+            $keys[] = [
+                'type' => 'X509Certificate',
+                'signing' => true,
+                'encryption' => true,
+                'X509Certificate' => $certInfo['certData'],
+                'prefix' => 'new_',
+            ];
+            $hasNewCert = true;
+        }
+
+        $certInfo = Crypto::loadPublicKey($config, true);
+        $keys[] = [
+            'type' => 'X509Certificate',
+            'signing' => true,
+            'encryption' => $hasNewCert === false,
+            'X509Certificate' => $certInfo['certData'],
+            'prefix' => '',
+        ];
+
+        if ($config->hasValue('https.certificate')) {
+            $httpsCert = Crypto::loadPublicKey($config, true, 'https.');
+            $keys[] = [
+                'type' => 'X509Certificate',
+                'signing' => true,
+                'encryption' => false,
+                'X509Certificate' => $httpsCert['certData'],
+                'prefix' => 'https.'
+            ];
+        }
+        $metadata['keys'] = $keys;
+
+        // add organization information
+        if ($config->hasValue('OrganizationName')) {
+            $metadata['OrganizationName'] = $config->getLocalizedString('OrganizationName');
+            $metadata['OrganizationDisplayName'] = $config->getLocalizedString(
+                'OrganizationDisplayName',
+                $metadata['OrganizationName']
+            );
+
+            if (!$config->hasValue('OrganizationURL')) {
+                throw new \SimpleSAMl\Error\Exception('If OrganizationName is set, OrganizationURL must also be set.');
+            }
+            $metadata['OrganizationURL'] = $config->getLocalizedString('OrganizationURL');
+        }
+
+        // add scope
+        if ($config->hasValue('scope')) {
+            $metadata['scope'] = $config->getArray('scope');
+        }
+
+        // add extensions
+        if ($config->hasValue('EntityAttributes')) {
+            $metadata['EntityAttributes'] = $config->getArray('EntityAttributes');
+
+            // check for entity categories
+            if (Metadata::isHiddenFromDiscovery($metadata)) {
+                $metadata['hide.from.discovery'] = true;
+            }
+        }
+
+        if ($config->hasValue('UIInfo')) {
+            $metadata['UIInfo'] = $config->getArray('UIInfo');
+        }
+
+        if ($config->hasValue('DiscoHints')) {
+            $metadata['DiscoHints'] = $config->getArray('DiscoHints');
+        }
+
+        if ($config->hasValue('RegistrationInfo')) {
+            $metadata['RegistrationInfo'] = $config->getArray('RegistrationInfo');
+        }
+
+        // add contact information
+        $globalConfig = \SimpleSAML\Configuration::getInstance();
+        $email = $globalConfig->getString('technicalcontact_email', false);
+        if ($email && $email !== 'na@example.org') {
+            $contact = [
+                'emailAddress' => $email,
+                'name' => $globalConfig->getString('technicalcontact_name', null),
+                'contactType' => 'technical',
+            ];
+            $metadata['contacts'][] = Metadata::getContact($contact);
+        }
+
+        return $metadata;
+    }
+
 
     public static function sendResponse(array $state)
     {
