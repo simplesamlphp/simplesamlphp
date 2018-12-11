@@ -1,0 +1,35 @@
+{% set pagetitle = 'SimpleSAMLphp installation page'|trans %}
+{% set frontpage_section = 'test' %}
+{% extends "base.twig" %}
+
+{% block content %}
+    {%- include "@admin/includes/menu.twig" %}
+    <h2>{{ '{status:header_saml20_sp}'|trans }}</h2>
+
+    <p>{{ '{status:intro}'|trans }}</p>
+
+    <h2>{{ '{status:attributes_header}'|trans }}</h2>
+
+    {{ attributesHtml|raw }}
+
+    {% if nameidHtml -%}
+    <h2>{{ '{status:subject_header}'|trans }}</h2>
+    {{  nameidHtml|raw }}
+    {%- endif %}
+
+    {% if authData -%}
+    <h2>{{ '{status:authData_header}'|trans }}</h2>
+    <details><summary>{{ '{status:authData_summary}'|trans }}</summary> 
+      <pre>{{ authData|json_encode|raw }}</pre>
+    </details>
+    {%- endif %}    
+
+    {% if logout -%}
+    <h2>{{ '{status:logout}'|trans }}</h2>
+    <p>{{ logout }}</p> 
+    {%- endif %}
+
+    {% if logouturl -%}
+    <a href="{{ logouturl }}">{{ '{status:logout}'|trans }}</a>
+    {%- endif %}
+{% endblock %}

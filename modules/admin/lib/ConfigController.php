@@ -17,7 +17,6 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class ConfigController
 {
-
     const LATEST_VERSION_STATE_KEY = 'core:latest_simplesamlphp_version';
     const RELEASES_API = 'https://api.github.com/repos/simplesamlphp/simplesamlphp/releases/latest';
 
