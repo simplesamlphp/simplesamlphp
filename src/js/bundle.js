@@ -1,6 +1,9 @@
 import "es6-shim";
-import "clipboard/dist/clipboard";
+import ClipboardJS from "clipboard/dist/clipboard";
 import "selectize/dist/js/selectize";
+import hljs from  "highlight.js/lib/highlight";
+import xml from "highlight.js/lib/languages/xml";
+import php from "highlight.js/lib/languages/php";
 
 $(document).ready(function () {
     // get available languages
@@ -23,5 +26,28 @@ $(document).ready(function () {
         $('#layout').toggleClass('active');
         $('#foot').toggleClass('active');
         $(this).toggleClass('active');
+    });
+
+    // expander boxes
+    $('.expandable > .expander').on('click', function(e) {
+        e.preventDefault();
+        let target = $(e.currentTarget);
+        target.parents('.expandable').toggleClass('expanded');
+        target.blur();
+    });
+
+    // syntax highlight
+    hljs.registerLanguage('xml', xml);
+    hljs.registerLanguage('php', php);
+    $('.code-box-content.xml, .code-box-content.php').each(function(i, block) {
+        hljs.highlightBlock(block)
+    });
+
+    // clipboard
+    let clipboard = new ClipboardJS('.copy');
+    clipboard.on('success', function(e) {
+        setTimeout(function() {
+            e.clearSelection();
+        }, 150);
     });
 });

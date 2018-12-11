@@ -16,7 +16,8 @@
     "jquery-ui": "^1.12.1",
     "purecss": "^1.0.0",
     "reset-css": "^4.0.1",
-    "selectize": "^0.12.6"
+    "selectize": "^0.12.6",
+    "highlight.js": "^9.13.1"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
