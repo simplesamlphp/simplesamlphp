@@ -305,7 +305,7 @@ class Translate
             $tagData = $this->getTag($tag);
             if ($tagData === null) {
                 // tag not found
-                \SimpleSAML\Logger::info('Template: Looking up ['.$tag.']: not translated at all.');
+                \SimpleSAML\Logger::info('Translate: Looking up ['.$tag.']: not translated at all.');
                 return $this->getStringNotTranslated($tag, $fallbackdefault);
             }
         }
@@ -358,7 +358,7 @@ class Translate
             throw new \Exception("Inline translation should be string or array. Is ".gettype($translation)." now!");
         }
 
-        \SimpleSAML\Logger::debug('Template: Adding inline language translation for tag ['.$tag.']');
+        \SimpleSAML\Logger::debug('Translate: Adding inline language translation for tag ['.$tag.']');
         $this->langtext[$tag] = $translation;
     }
 
@@ -380,7 +380,7 @@ class Translate
         }
 
         $lang = $this->readDictionaryFile($filebase.$file);
-        \SimpleSAML\Logger::debug('Template: Merging language array. Loading ['.$file.']');
+        \SimpleSAML\Logger::debug('Translate: Merging language array. Loading ['.$file.']');
         $this->langtext = array_merge($this->langtext, $lang);
     }
 
@@ -448,7 +448,7 @@ class Translate
     {
         assert(is_string($filename));
 
-        \SimpleSAML\Logger::debug('Template: Reading ['.$filename.']');
+        \SimpleSAML\Logger::debug('Translate: Reading dictionary ['.$filename.']');
 
         $jsonFile = $filename.'.definition.json';
         if (file_exists($jsonFile)) {
@@ -461,7 +461,7 @@ class Translate
         }
 
         \SimpleSAML\Logger::error(
-            $_SERVER['PHP_SELF'].' - Template: Could not find dictionary file at ['.$filename.']'
+            $_SERVER['PHP_SELF'].' - Translate: Could not find dictionary file at ['.$filename.']'
         );
         return [];
     }
