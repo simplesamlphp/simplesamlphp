@@ -16,10 +16,11 @@
     {%- endfor %}
 
     <div class="message-box">
-      {% trans %}SimpleSAMLphp is installed in:{% endtrans %}<br/>
+      {% trans %}SimpleSAMLphp is installed in:{% endtrans %}
       <kbd>{{ directory }}</kbd><br/>
       {% trans %}You are running version <kbd>{{ version }}</kbd>.{% endtrans %}
     </div>
+    <h2>{% trans %}Configuration{% endtrans %}</h2>
     <div class="enablebox mini">
       <table>
         <tr class="{%- if enablematrix.saml20idp %}enabled{% else %}disabled{% endif -%}">
@@ -32,7 +33,6 @@
         </tr>
       </table>
     </div>
-    <h2>{% trans %}Configuration{% endtrans %}</h2>
     <ul>
       {%- for key, link in links %}
 
