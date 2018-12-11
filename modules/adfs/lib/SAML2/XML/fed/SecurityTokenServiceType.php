@@ -15,7 +15,7 @@ class SecurityTokenServiceType extends \SAML2\XML\md\RoleDescriptor
      *
      * @var array
      */
-    public $protocolSupportEnumeration = [FedConst::NS_FED];
+    public $protocolSupportEnumeration = [Constants::NS_FED];
 
     /**
      * The Location of Services.
@@ -48,7 +48,7 @@ class SecurityTokenServiceType extends \SAML2\XML\md\RoleDescriptor
         assert(is_string($this->Location));
 
         $e = parent::toXML($parent);
-        $e->setAttributeNS('http://www.w3.org/2000/xmlns/', 'xmlns:fed', FedConst::NS_FED);
+        $e->setAttributeNS('http://www.w3.org/2000/xmlns/', 'xmlns:fed', Constants::NS_FED);
         $e->setAttributeNS(\SAML2\Constants::NS_XSI, 'xsi:type', 'fed:SecurityTokenServiceType');
         TokenTypesOffered::appendXML($e);
         Endpoint::appendXML($e, 'SecurityTokenServiceEndpoint', $this->Location);

@@ -3,12 +3,12 @@
 namespace SimpleSAML\Module\adfs\SAML2\XML\fed;
 
 /**
- * Class representing fed Constants.
+ * Class holding constants relevant for ADFS.
  *
  * @package SimpleSAMLphp
  */
 
-class FedConst
+class Constants
 {
     /**
      * The namespace for WS-FED protocol.
