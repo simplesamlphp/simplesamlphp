@@ -630,7 +630,7 @@ class SAMLBuilder
 
         $e = new \SAML2\XML\md\IDPSSODescriptor();
         $e->setProtocolSupportEnumeration(
-            array_merge($e->getProtocolSupportEnumeration, [
+            array_merge($e->getProtocolSupportEnumeration(), [
                 'urn:oasis:names:tc:SAML:1.1:protocol',
                 'urn:mace:shibboleth:1.0'
             ])
