@@ -13,7 +13,7 @@
         <ul class="pure-menu-list auth_methods">
             {% for id, config in sources -%}
                 <li class="pure-menu-item">
-                    <a href="/{{ baseurlpath }}/module.php/core/login/{{ id|url_encode }}" class="pure-menu-link">
+                    <a href="/{{ baseurlpath }}module.php/core/login/{{ id|url_encode }}" class="pure-menu-link">
                       {{ config.name|translateFromArray|default(id) }}
                     </a>
                 </li>
