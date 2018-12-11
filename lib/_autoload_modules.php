@@ -87,9 +87,22 @@ function sspmodAutoloadPSR0($className)
         return;
     }
 
-    $modNameEnd = strpos($className, '_', $modulePrefixLength);
-    $module = substr($className, $modulePrefixLength, $modNameEnd - $modulePrefixLength);
-    $path = explode('_', substr($className, $modNameEnd + 1));
+    // list of classes that have been renamed or moved
+    $renamed = [
+        'sspmod_adfs_SAML2_XML_fed_Const' => [
+            'module' => 'adfs',
+            'path' => ['SAML2', 'XML', 'fed', 'Constants']
+        ],
+    ];
+    if (array_key_exists($className, $renamed)) {
+        // the class has been renamed, try to load it and create an alias
+        $module = $renamed[$className]['module'];
+        $path = $renamed[$className]['path'];
+    } else {
+        $modNameEnd = strpos($className, '_', $modulePrefixLength);
+        $module = substr($className, $modulePrefixLength, $modNameEnd - $modulePrefixLength);
+        $path = explode('_', substr($className, $modNameEnd + 1));
+    }
 
     if (!\SimpleSAML\Module::isModuleEnabled($module)) {
         return;
