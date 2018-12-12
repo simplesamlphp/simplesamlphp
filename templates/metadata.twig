@@ -8,7 +8,7 @@
     <p>{{ 'You can get the metadata xml on a dedicated URL:' | trans }}</p>
     <div class="input-group">
         <pre id="metadataurl" class="input-left">{{ metaurl }}</pre>
-        <button data-clipboard-target="#metadataurl" id="btnurl" class="pure-button right clipboard-btn">
+        <button data-clipboard-target="#metadataurl" id="btnurl" class="pure-button right clipboard-btn copy">
             <span class="fa fa-copy"></span>
         </button>
     </div>
@@ -18,7 +18,7 @@
     <div class="code-box">
         <div class="code-box-title">
     <p>{{ 'In SAML 2.0 Metadata XML format:' | trans }}</p>
-            <button data-clipboard-target="#xmlmetadata" id="btnxml" class="pure-button right clipboard-btn">
+            <button data-clipboard-target="#xmlmetadata" id="btnxml" class="pure-button right clipboard-btn copy">
                 <span class="fa fa-copy"></span>
             </button>
         </div>
@@ -30,7 +30,7 @@
     <div class="code-box">
         <div class="code-box-title">
     <p>{{ 'In SimpleSAMLphp flat file format - use this if you are using a SimpleSAMLphp entity on the other side:' | trans }}</p>
-            <button data-clipboard-target="#phpmetadata" id="btnphp" class="pure-button right clipboard-btn">
+            <button data-clipboard-target="#phpmetadata" id="btnphp" class="pure-button right clipboard-btn copy">
                 <span class="fa fa-copy"></span>
             </button>
         </div>
