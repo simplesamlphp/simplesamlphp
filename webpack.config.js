@@ -58,6 +58,17 @@ module.exports = environment => {
                             }
                         ]
                     })
+                },
+                {
+                    // expose jquery for use outside webpack bundle
+                    test: require.resolve('jquery'),
+                    use: [{
+                        loader: 'expose-loader',
+                        options: 'jQuery'
+                    }, {
+                        loader: 'expose-loader',
+                        options: '$'
+                    }]
                 }
             ]
         },
