@@ -15,7 +15,7 @@ if [ -z "$VERSION" ]; then
     exit 1
 fi
 
-if [ -z "$REPO" ]; then
+if [ -z "$REPOPATH" ]; then
     REPOPATH="https://github.com/simplesamlphp/simplesamlphp.git"
 fi
 
@@ -43,14 +43,18 @@ fi
 # Install dependencies (without vcs history or dev tools)
 php "$TARGET/composer.phar" install --no-dev --prefer-dist -o -d "$TARGET"
 
+cd $TARGET 
 npm install
 npm audit fix
 npm run build
+cd ..
 
 mkdir -p "$TARGET/config" "$TARGET/metadata" "$TARGET/cert" "$TARGET/log" "$TARGET/data"
 cp -rv "$TARGET/config-templates/"* "$TARGET/config/"
 cp -rv "$TARGET/metadata-templates/"* "$TARGET/metadata/"
 rm -rf "$TARGET/.git"
+rm -rf "$TARGET/node_modules"
+rm "$TARGET/www/assets/js/stylesheet.js"*
 rm "$TARGET/.coveralls.yml"
 rm "$TARGET/.editorconfig"
 rm "$TARGET/.gitattributes"
