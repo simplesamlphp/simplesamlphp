@@ -4,6 +4,12 @@
 @import "../../node_modules/selectize/dist/css/selectize.css";
 @import "../../node_modules/highlight.js/styles/zenburn.css";
 
+/*************
+ * VARIABLES *
+ *************/
+
+$lighYellow: "#fffdbf";
+
 /************************************************************
  * GENERAL
  ************************************************************/
@@ -91,14 +97,6 @@ a {
   }
 }
 
-.dark-bg a {
-  color: #e2e2e2;
-}
-
-.dark-bg a:hover {
-  color: rgba(0, 0, 0, 0.75);
-}
-
 .overflow {
   overflow: hidden;
 }
@@ -137,6 +135,7 @@ a.pure-button-red {
   color: #fff;
   &:hover, &:focus {
     background-color: #555;
+    padding: .5em 1em;
   }
 }
 
@@ -228,10 +227,6 @@ This is the parent `<div>` that contains the menu and the content area.
   width: 11em;
 }
 
-#layout.active .menu-link {
-  right: 11em;
-}
-
 /*
 The `#menu` `<div>` is the parent `<div>` that contains the `.pure-menu` that
 appears on the left side of the page.
@@ -273,14 +268,6 @@ Add that light border to separate items into groups.
 #menu .pure-menu ul,
 #menu .pure-menu .menu-item-divided {
   border-top: 1px solid $transitionBackground;
-}
-
-/*
-Change color of the anchor links on hover/focus.
-*/
-#menu .pure-menu li a:hover,
-#menu .pure-menu li a:focus {
-  background: black;
 }
 
 /*
@@ -341,7 +328,7 @@ small screens.
   text-decoration: none;
   &:hover, &:focus {
     padding: 2rem 0;
-    background: none;
+    background: none !important;
   }
 }
 
@@ -450,7 +437,7 @@ CONTENT
 }
 
 .message-box.warning {
-  background-color: #fffdbf;
+  background-color: $lighYellow;
   border-left-color: #f9f56b;
 }
 
@@ -483,7 +470,7 @@ CONTENT
   white-space: pre-wrap;
   &::selection {
     color: black;
-    background: #fee9be;
+    background: $lighYellow;
   }
 }
 
@@ -627,6 +614,20 @@ div .item {
   padding: 0.5em 0.6em;
   display: inline-block;
   vertical-align: middle;
+}
+
+.selectize-dropdown-content {
+  cursor: pointer;
+  .option {
+    &:hover, &:focus, &.active {
+      color: white;
+      background-color: #444444;
+    }
+    span.highlight {
+      color: black;
+      background-color: #fffbd5;
+    }
+  }
 }
 
 /* ***********************************************************
