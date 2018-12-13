@@ -11,45 +11,48 @@ See the upgrade notes for specific information about upgrading.
 Released TBD
 
 ### Changes
-  * Introduce a new templating system based on Twig templates.
+  * Introduce a new experimental user interface based on Twig templates.
     The new Twig templates co-exist next to the old ones and come
-    with a new look-and-feel for SimpleSAMLphp.
-  * Introduce Symfony-style routing (#966)
-  * Generate sessionID complying with PHP config settings (#569)
-  * Update OpenSSL RSA bit length in docs (#993)
+    with a new look-and-feel for SimpleSAMLphp and independent interfaces for
+    users and administrators. This new interface uses also a new build system
+    to generate bundled assets.
+  * Introduce Symfony-style routing and dependency injection(#966).
+  * Generate session IDs complying with PHP config settings when using the PHP
+    session handler (#569).
+  * Update OpenSSL RSA bit length in docs (#993).
   * Update all code, configuration templates and documentation to PHP
     short array syntax.
-  * All clases moved to namespaces and reformatted code to PSR-2.
-  * Use bcrypt for new password hashes, old ones will remain working (#996)
+  * All classes moved to namespaces and code reformatted to PSR-2.
+  * Use bcrypt for new password hashes, old ones will remain working (#996).
   * Many code cleanups.
-  * Bump SAML2-library to 3.2.5
-  * Bump Clipboard.JS-library to 2.0.4
-  * Added translations for Zulu and Xhosa
+  * Update the SAML2 library dependency to 3.2.5.
+  * Update the Clipboard.JS library dependency to 2.0.4.
+  * Translated to Zulu and Xhosa.
 
-### Inter-operability
-  * Minimum required PHP version is now 5.5.
-    Fixed compatibility with PHP 7.3 and HVVM.
+### Interoperability
+  * The minimum PHP version required is now 5.5.
+  * Fixed compatibility with PHP 7.3 and HVVM.
   * SimpleSAMLphp can now be used with applications that use Twig 2 and/or Symfony 4.
-  * SAML2-library now uses getters/setters to manipulate objects.
+  * The SAML2 library now uses getters/setters to manipulate objects properties.
 
 ### authfacebook
-  * Fix facebook compatibility (query params)
+  * Fix facebook compatibility (query parameters).
 
 ### authorize
-  * Add possibility to configure a custom reject-message
+  * Add the possibility to configure a custom rejecttion message.
 
 ### consent
-  * Module is now disabled by default.
+  * The module is now disabled by default.
 
 ### core
-  * Allow `core:PHP` to manipulate all of the state.
+  * Allow `core:PHP` to manipulate the entire state array.
   * IdP initiated login: add compatibility with Shibboleth parameters.
 
 ### multiauth
-  * Added preselect-option to skip authsource selection (#1005)
+  * Added a `preselect` configuration option to skip authsource selection (#1005).
 
 ### negotiate
-  * keytab-setting now allows for relative paths too
+  * The `keytab` setting now allows for relative paths too.
 
 ### preprodwarning
   * This module is now deprecated. Use the `production` configuration
@@ -57,23 +60,23 @@ Released TBD
     before authentication.
 
 ### saml
-  * Add initial support for SAML Subject Id Attributes.
-  * Allow to specify multiple supported NameIdFormats in IdP hosted and
-    SP remote metadata.
-  * Allow to specifiy NameIDPolicy Format and AllowCreate in hosted SP
-    and remote IdP configurtion, and restore possibility to omit it
-    from AuthnRequests entirely (#984).
-  * Add setting `assertion.allowed_clock_skew` to influence how lenient
+  * Add initial support for SAML Subject ID Attributes.
+  * Allow to specify multiple supported NameIdFormats in IdP hosted and SP
+    remote metadata.
+  * Allow to specify NameIDPolicy Format and AllowCreate in hosted SP
+    and remote IdP configuration. Restore the possibility to omit it from
+    AuthnRequests entirely (#984).
+  * Add a `assertion.allowed_clock_skew` setting to influence how lenient
     we should be with the timestamps in received SAML messages.
-  * If Issuer of IdP does not match the entity we sent the request to,
-    log a warning instead of bailing out with an exception.
-  * Support for AudienceRestriction in SAML2 request (#998)
-  * Can disable the Scoping element in SP and remote IdP configuration with the
-    `disable_scoping` option, for compatibility with ADFS which does not accept
-    the element (#985)
+  * If the Issuer of a SAML response does not match the entity we sent the
+    request to, log a warning instead of bailing out with an exception.
+  * Allow setting the AudienceRestriction in SAML2 requests (#998).
+  * Allow disabling the Scoping element in SP and remote IdP configuration with
+    the `disable_scoping` option, for compatibility with ADFS which does not
+    accept the element (#985).
 
 ### sanitycheck
-  * Add translations for several languages
+  * Translated into several languages.
 
 ## Version 1.16.2
 
