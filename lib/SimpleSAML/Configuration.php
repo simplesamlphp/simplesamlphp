@@ -419,7 +419,7 @@ class Configuration implements Utils\ClearableState
      */
     public function getVersion()
     {
-        return 'master';
+        return '1.17.0-rc1';
     }
 
 
