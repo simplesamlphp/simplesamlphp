@@ -244,7 +244,7 @@ class StatDataset
             $fieldpresConfig = $this->ruleconfig->getConfigItem('fieldPresentation');
             $classname = \SimpleSAML\Module::resolveClass(
                 $fieldpresConfig->getValue('class'),
-                'Statistics_FieldPresentation'
+                'Statistics\FieldPresentation'
             );
             if (!class_exists($classname)) {
                 throw new \Exception('Could not find field presentation plugin ['.$classname.']: No class found');
