@@ -43,7 +43,7 @@ header('X-Frame-Options: SAMEORIGIN');
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="viewport" content="initial-scale=1.0" />
-<script type="text/javascript" src="/<?php echo $this->data['baseurlpath']; ?>assets/js/src/script.js"></script>
+<script type="text/javascript" src="/<?php echo $this->data['baseurlpath']; ?>resources/script.js"></script>
 <title><?php
 if (array_key_exists('header', $this->data)) {
     echo $this->data['header'];
