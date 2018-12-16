@@ -93,7 +93,7 @@ class Ruleset
 
         $presenterClass = \SimpleSAML\Module::resolveClass(
             $statruleConfig->getValue('presenter', 'statistics:BaseRule'),
-            'Statistics_Rulesets'
+            'Statistics\Rulesets'
         );
         $statrule = new $presenterClass($this->statconfig, $statruleConfig, $rule, $this->available);
         return $statrule;
