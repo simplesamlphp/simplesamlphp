@@ -3,9 +3,12 @@
 
 {% block preload %}
     <link href="{{ baseurlpath }}assets/css/statistics.css" rel="stylesheet" />
+    <link rel="stylesheet" media="screen" type="text/css" href="/resources/uitheme1.8/jquery-ui.css" />
 {% endblock %}
 
 {% block postload %}
+<script type="text/javascript" src="/resources/jquery-1.8.js"></script>
+<script type="text/javascript" src="/resources/jquery-ui-1.8.js"></script>
 <script type="text/javascript" src="{{ baseurlpath }}assets/js/statistics.js"></script>
 {% endblock %}
 
