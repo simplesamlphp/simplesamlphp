@@ -50,8 +50,6 @@ $t->data['available_rules'] = $ruleset->availableRulesNames();
 $t->data['selected_rule'] = $rule;
 $t->data['selected_rule2'] = $preferRule2;
 
-$t->data['post_d'] = getBaseURL($t, 'post', 'd');
-
 try {
     $dataset = $statrule->getDataset($preferTimeRes, $preferTime);
     $dataset->setDelimiter($delimiter);
@@ -94,6 +92,10 @@ $maxes = [];
 
 $maxes[] = $dataset->getMax();
 
+$t->data['selected_time'] = $fileslot;
+$t->data['selected_timeres'] = $timeres;
+$t->data['post_d'] = getBaseURL($t, 'post', 'd');
+
 if (isset($preferRule2)) {
     $statrule = $ruleset->getRule($preferRule2);
     try {
@@ -129,8 +131,6 @@ $t->data['current_rule'] = $t->data['available_rules'][$rule];
 
 $t->data['selected_rule'] = $rule;
 $t->data['selected_rule2'] = $preferRule2;
-$t->data['selected_time'] = $fileslot;
-$t->data['selected_timeres'] = $timeres;
 $t->data['selected_delimiter'] = $delimiter;
 
 $t->data['debugdata'] = $dataset->getDebugData();
