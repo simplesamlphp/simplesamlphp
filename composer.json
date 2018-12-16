@@ -27,6 +27,7 @@
     },
     "require": {
         "php": ">=5.5",
+        "ext-curl": "*",
         "ext-SPL": "*",
         "ext-zlib": "*",
         "ext-pcre": "*",
