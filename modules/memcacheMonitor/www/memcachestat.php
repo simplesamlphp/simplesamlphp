@@ -172,5 +172,6 @@ if (array_key_exists('bytes', $statsraw) && array_key_exists('limit_maxbytes', $
 $t->data['title'] = 'Memcache stats';
 $t->data['rowTitles'] = $rowTitles;
 $t->data['colTitles'] = $colTitles;
+$t->data['statsraw'] = $statsraw;
 $t->data['table'] = $stats;
 $t->show();
