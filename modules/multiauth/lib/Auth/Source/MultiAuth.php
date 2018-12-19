@@ -130,6 +130,10 @@ class MultiAuth extends \SimpleSAML\Auth\Source
         $state[self::AUTHID] = $this->authId;
         $state[self::SOURCESID] = $this->sources;
 
+        if (!\array_key_exists('multiauth:preselect', $state) && is_string($this->preselect)) {
+            $state['multiauth:preselect'] = $this->preselect;
+        }
+
         // Save the $state array, so that we can restore if after a redirect
         $id = \SimpleSAML\Auth\State::saveState($state, self::STAGEID);
 
@@ -139,11 +143,7 @@ class MultiAuth extends \SimpleSAML\Auth\Source
         $url = \SimpleSAML\Module::getModuleURL('multiauth/selectsource.php');
         $params = ['AuthState' => $id];
 
-        if (!\array_key_exists('multiauth:preselect', $state) && is_string($this->preselect)) {
-            $state['multiauth:preselect'] = $this->preselect;
-        }
-
-        // Allowes the user to specify the auth souce to be used
+        // Allows the user to specify the auth source to be used
         if (isset($_GET['source'])) {
             $params['source'] = $_GET['source'];
         }
