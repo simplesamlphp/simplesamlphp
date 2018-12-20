@@ -455,24 +455,7 @@ class SAML2
             'saml:RequestedAuthnContext'  => $authnContext,
         ];
 
-        // ECP AuthnRequests need to supply credentials
-        if ($binding instanceof SOAP) {
-            self::processSOAPAuthnRequest($state);
-        }
-
         $idp->handleAuthenticationRequest($state);
-    }
-
-    public static function processSOAPAuthnRequest(array &$state)
-    {
-        if (!isset($_SERVER['PHP_AUTH_USER']) || !isset($_SERVER['PHP_AUTH_PW'])) {
-            Logger::error("ECP AuthnRequest did not contain Basic Authentication header");
-            // TODO Throw some sort of ECP-specific exception / convert this to SOAP fault
-            throw new \SimpleSAML\Error\Error("WRONGUSERPASS");
-        }
-
-        $state['core:auth:username'] = $_SERVER['PHP_AUTH_USER'];
-        $state['core:auth:password'] = $_SERVER['PHP_AUTH_PW'];
     }
 
     /**

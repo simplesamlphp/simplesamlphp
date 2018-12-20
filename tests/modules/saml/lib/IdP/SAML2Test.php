@@ -9,43 +9,6 @@ use SimpleSAML\Test\Utils\ClearStateTestCase;
 
 class SAML2Test extends ClearStateTestCase
 {
-    public function testProcessSOAPAuthnRequest()
-    {
-        $username = $_SERVER['PHP_AUTH_USER'] = 'username';
-        $password = $_SERVER['PHP_AUTH_PW'] = 'password';
-        $state = [];
-
-        \SimpleSAML\Module\saml\IdP\SAML2::processSOAPAuthnRequest($state);
-
-        $this->assertEquals($username, $state['core:auth:username']);
-        $this->assertEquals($password, $state['core:auth:password']);
-    }
-
-    public function testProcessSOAPAuthnRequestMissingUsername()
-    {
-        $this->setExpectedException('\SimpleSAML\Error\Error', 'WRONGUSERPASS');
-
-        $_SERVER['PHP_AUTH_PW'] = 'password';
-        unset($_SERVER['PHP_AUTH_USER']);
-        $state = [];
-        Configuration::loadFromArray([
-            'baseurlpath' => 'https://idp.example.com/',
-        ], '', 'simplesaml');
-
-        \SimpleSAML\Module\saml\IdP\SAML2::processSOAPAuthnRequest($state);
-    }
-
-    public function testProcessSOAPAuthnRequestMissingPassword()
-    {
-        $this->setExpectedException('\SimpleSAML\Error\Error', 'WRONGUSERPASS');
-
-        $_SERVER['PHP_AUTH_USER'] = 'username';
-        unset($_SERVER['PHP_AUTH_PW']);
-        $state = [];
-
-        \SimpleSAML\Module\saml\IdP\SAML2::processSOAPAuthnRequest($state);
-    }
-
     /**
      * Default values for the state array expected to be generated at the start of logins
      * @var array
