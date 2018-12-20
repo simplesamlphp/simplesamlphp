@@ -183,24 +183,33 @@ abstract class sspmod_core_Auth_UserPassBase extends SimpleSAML_Auth_Source {
 			 * is allowed to change the username.
 			 */
 			$state['forcedUsername'] = $this->forcedUsername;
-	    }
+		}
 
-	  // ECP requests supply authentication credentials with the AUthnRequest
-	  // so we validate them now rather than redirecting
-	  if (isset($state['core:auth:username']) && isset($state['core:auth:password'])) {
-	      $username = $state['core:auth:username'];
-	      $password = $state['core:auth:password'];
+		// ECP requests supply authentication credentials with the AuthnRequest
+		// so we validate them now rather than redirecting. The SAML spec
+		// doesn't define how the credentials are transferred, but Office 365
+		// uses the Authorization header, so we will just use that in lieu of
+		// other use cases
+		if (isset($state['saml:Binding']) && $state['saml:Binding'] === \SAML2\Constants::BINDING_PAOS) {
+			if (!isset($_SERVER['PHP_AUTH_USER']) || !isset($_SERVER['PHP_AUTH_PW'])) {
+				\SimpleSAML\Logger::error("ECP AuthnRequest did not contain Basic Authentication header");
+				// TODO Return a SOAP fault instead of using the current binding?
+				throw new \SimpleSAML_Error_Error("WRONGUSERPASS");
+			}
 
-	      if (isset($state['forcedUsername'])) {
-	          $username = $state['forcedUsername'];
-	      }
+			$username = $_SERVER['PHP_AUTH_USER'];
+			$password = $_SERVER['PHP_AUTH_PW'];
 
-	      $attributes = $this->login($username, $password);
-	      assert(is_array($attributes));
-	      $state['Attributes'] = $attributes;
+			if (isset($state['forcedUsername'])) {
+				$username = $state['forcedUsername'];
+			}
 
-	      return;
-	  }
+			$attributes = $this->login($username, $password);
+			assert(is_array($attributes));
+			$state['Attributes'] = $attributes;
+
+			return;
+		}
 
 		/* Save the $state-array, so that we can restore it after a redirect. */
 		$id = SimpleSAML_Auth_State::saveState($state, self::STAGEID);
