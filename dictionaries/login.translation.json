@@ -32,7 +32,6 @@
 		"lv": "K\u013c\u016bda",
 		"sr": "Gre\u0161ka",
 		"ro": "Eroare",
-		"xh": "Imposiso",
 		"af": "Fout",
 		"el": "\u03a3\u03c6\u03ac\u03bb\u03bc\u03b1",
 		"zu": "Iphutha",
@@ -74,8 +73,7 @@
 		"xh": "Nceda ngenisa igama lakho lomsebenzisi kunye negama lokugqithisa",
 		"af": "Voer jou gebruikersnaam en wagwoord in",
 		"el": "\u0395\u03b9\u03c3\u03ac\u03b3\u03b5\u03c4\u03b5 \u03cc\u03bd\u03bf\u03bc\u03b1 \u03c7\u03c1\u03ae\u03c3\u03c4\u03b7 \u03ba\u03b1\u03b9 \u03ba\u03c9\u03b4\u03b9\u03ba\u03cc \u03c0\u03c1\u03cc\u03c3\u03b2\u03b1\u03c3\u03b7\u03c2",
-		"zu": "Faka igama lakho lomsebenzisi nephasiwedi",
-		"xh": "Ngenisa igama lomsebenzisi nephaswedi yakho"
+		"zu": "Faka igama lakho lomsebenzisi nephasiwedi"
 	},
 	"user_pass_text": {
 		"no": "En tjeneste har bedt om bekreftelse p\u00e5 din identitet. Skriv inn ditt brukernavn og passord for \u00e5 autentisere deg.",
@@ -152,8 +150,7 @@
 		"xh": "Ngena",
 		"af": "Meld aan",
 		"el": "\u0395\u03af\u03c3\u03bf\u03b4\u03bf\u03c2",
-		"zu": "Ngena",
-		"xh": "Ngena"
+		"zu": "Ngena"
 	},
 	"processing": {
 		"es": "Procesando...",
@@ -198,8 +195,7 @@
 		"xh": "Igama lomsebenzisi",
 		"af": "Gebruikersnaam",
 		"el": "\u038c\u03bd\u03bf\u03bc\u03b1 \u03a7\u03c1\u03ae\u03c3\u03c4\u03b7",
-		"zu": "Igama lomsebenzisi",
-		"xh": "Igama lomsebenzisi"
+		"zu": "Igama lomsebenzisi"
 	},
 	"organization": {
 		"no": "Organisasjon",
@@ -238,8 +234,7 @@
 		"xh": "Umbutho",
 		"af": "Organisasie",
 		"el": "\u039f\u03c1\u03b3\u03b1\u03bd\u03b9\u03c3\u03bc\u03cc\u03c2",
-		"zu": "Inhlangano",
-		"xh": "Umbutho"
+		"zu": "Inhlangano"
 	},
 	"password": {
 		"no": "Passord",
@@ -278,7 +273,6 @@
 		"xh": "Igama lokugqithisa",
 		"af": "Wagwoord",
 		"el": "\u039a\u03c9\u03b4\u03b9\u03ba\u03cc\u03c2",
-		"xh": "Iphaswedi",
 		"zu": "Iphasiwedi"
 	},
 	"help_header": {
@@ -432,8 +426,7 @@
 		"xh": "Awungenanga ngoba igama olisebenzisayo okanye isigqithisi asifakwanga kakuhle.",
 		"af": "Verkeerde gebruikersnaam of wagwoord.",
 		"el": "\u03a4\u03bf \u03cc\u03bd\u03bf\u03bc\u03b1 \u03c7\u03c1\u03ae\u03c3\u03c4\u03b7 \u03ae \u03bf \u03ba\u03c9\u03b4\u03b9\u03ba\u03cc\u03c2 \u03c0\u03c1\u03cc\u03c3\u03b2\u03b1\u03c3\u03b7\u03c2 \u03b5\u03af\u03bd\u03b1\u03b9 \u03bb\u03ac\u03b8\u03bf\u03c2.",
-		"zu": "Igama lomsebenzisi noma iphasiwedi engalungile.",
-		"xh": "Igama lomsebenzisi okanye iphaswedi engachanekanga."
+		"zu": "Igama lomsebenzisi noma iphasiwedi engalungile."
 	},
 	"contact_info": {
 		"no": "Kontaktinformasjon:",
@@ -729,7 +722,6 @@
 		"xh": "Olandelayo",
 		"af": "Volgende",
 		"el": "\u0395\u03c0\u03cc\u03bc\u03b5\u03bd\u03bf",
-		"xh": "Okulandelayo",
 		"zu": "Okulandelayo"
 	},
 	"remember_username": {
