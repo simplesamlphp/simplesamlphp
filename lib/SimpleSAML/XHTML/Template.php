@@ -134,7 +134,7 @@ class Template extends Response
             // check if we need to attach a theme controller
             $controller = $this->configuration->getString('theme.controller', false);
             if ($controller && class_exists($controller) &&
-                in_array('\SimpleSAML\XHTML\TemplateControllerInterface', class_implements($controller))
+                in_array('SimpleSAML\XHTML\TemplateControllerInterface', class_implements($controller))
             ) {
                 $this->controller = new $controller();
             }
