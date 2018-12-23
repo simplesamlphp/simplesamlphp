@@ -800,7 +800,6 @@ $config = [
      * \SimpleSAML\XHTML\TemplateControllerInterface interface to use it.
      */
     //'theme.controller' => '',
-
     
     /*
      * Templating options
