@@ -792,6 +792,16 @@ $config = [
      */
     //'theme.header' => 'SimpleSAMLphp'
 
+    /**
+     * A template controller, if any.
+     *
+     * Used to intercept certain parts of the template handling, while keeping away unwanted/unexpected hooks. Set
+     * the 'theme.controller' configuration option to a class that implements the
+     * \SimpleSAML\XHTML\TemplateControllerInterface interface to use it.
+     */
+    //'theme.controller' => '',
+
+    
     /*
      * Templating options
      *
