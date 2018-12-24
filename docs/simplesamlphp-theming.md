@@ -131,7 +131,7 @@ If you need to make more extensive customizations to the base template, you shou
 
 Any references to `$this->data['baseurlpath']` in old-style templates can be replaced with `{{baseurlpath}}` in Twig templates. Likewise, references to `\SimpleSAML\Module::getModuleURL()` can be replaced with `{{baseurlpath}}module.php/mymodule/...`
 
-Even more advanced changes changes can be made by defining a theme controller in `config.php`:
+Even more advanced changes can be made by defining a theme controller in `config.php`:
 
     'theme.controller' => '\SimpleSAML\Module\mymodule\FancyThemeController',
 
