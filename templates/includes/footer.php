@@ -9,7 +9,7 @@ if (!empty($this->data['htmlinject']['htmlContentPost'])) {
             <div id="footer">
                 <hr />
                 <img src="/<?php echo $this->data['baseurlpath']; ?>resources/icons/ssplogo-fish-small.png" alt="Small fish logo" style="float: right" />		
-                    Copyright &copy; 2007-2018 <a href="http://uninett.no/">UNINETT AS</a>
+                    Copyright &copy; 2007-2019 <a href="http://uninett.no/">UNINETT AS</a>
 
                 <br style="clear: right" />
 
