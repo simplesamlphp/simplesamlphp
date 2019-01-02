@@ -3,9 +3,19 @@
 namespace SimpleSAML\Test;
 
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\Configuration;
 
 class AutoloadModulesTest extends TestCase
 {
+    /**
+     * Set up for each test.
+     */
+    protected function setUp()
+    {
+        parent::setUp();
+        $config = Configuration::loadFromArray([], '[ARRAY]', 'simplesaml');
+    }
+
     /**
      * @test
      * @runInSeparateProcess
@@ -17,7 +27,6 @@ class AutoloadModulesTest extends TestCase
 
     /**
      * @test
-     * @runInSeparateProcess
      */
     public function autoloaderSubstitutesNamespacedXmlSecClassesWhereNonNamespacedClassWasUsed()
     {
