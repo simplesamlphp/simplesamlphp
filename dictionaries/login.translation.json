@@ -736,7 +736,8 @@
 		"pt-br": "Lembrar meu nome de usu\u00e1rio",
 		"el": "\u039d\u03b1 \u03b8\u03c5\u03bc\u03ac\u03c3\u03b1\u03b9 \u03c4\u03bf \u03cc\u03bd\u03bf\u03bc\u03b1 \u03c7\u03c1\u03ae\u03c3\u03c4\u03b7",
 		"zu": "Khumbula igama lami lomsebenzisi",
-		"xh": "Khumbula igama lomsebenzisi lam"
+		"xh": "Khumbula igama lomsebenzisi lam",
+		"sl": "Zapomni si moje uporabniško ime"
 	},
 	"remember_me": {
 		"es": "Recordarme",
@@ -749,6 +750,7 @@
 		"pt-br": "Lembre-me",
 		"el": "\u039d\u03b1 \u03bc\u03b5 \u03b8\u03c5\u03bc\u03ac\u03c3\u03b1\u03b9",
 		"xh": "Ndikhumbule",
-		"zu": "Ngikhumbule"
+		"zu": "Ngikhumbule",
+		"sl": "Zapomni si me"
 	}
 }
