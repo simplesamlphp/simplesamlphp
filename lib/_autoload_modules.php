@@ -24,7 +24,7 @@ function temporaryLoader($class)
         $new = '\\RobRichards\\XMLSecLibs\\'.$class;
         if (class_exists($new, true)) {
             class_alias($new, $class);
-            SimpleSAML\Logger::warning("The class or interface '$class' is now using namespaces, please use '$new'.");
+            SimpleSAML\Logger::warning("The class '$class' is now using namespaces, please use '$new'.");
             return;
         }
     }
