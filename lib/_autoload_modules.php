@@ -20,9 +20,11 @@
 function temporaryLoader($class)
 {
     // handle the upgrade to the latest version of XMLSecLibs using namespaces
-    if (strstr($class, 'XMLSec')) {
-        if (class_exists('\\RobRichards\\XMLSecLibs\\'.$class, true)) {
-            class_alias('\\RobRichards\\XMLSecLibs\\'.$class, $class);
+    if (strstr($class, 'XMLSec') && !strstr($class, '\\RobRichards\\XMLSecLibs\\')) {
+        $new = '\\RobRichards\\XMLSecLibs\\'.$class;
+        if (class_exists($new, false)) {
+            class_alias($new, $class);
+            SimpleSAML\Logger::warning("The class or interface '$original' is now using namespaces, please use '$new'.");
             return;
         }
     }
