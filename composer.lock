@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "bb48ceb41b05f94e7a7f0243d21138fa",
+    "content-hash": "c5e5ad6a2db6a278175df4afec6b3c5b",
     "packages": [
         {
             "name": "gettext/gettext",
@@ -358,16 +358,16 @@
         },
         {
             "name": "simplesamlphp/saml2",
-            "version": "v3.3.5",
+            "version": "v3.3.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/saml2.git",
-                "reference": "5d9197697d0f1481f8f32bdd34924a3a209f76ba"
+                "reference": "513970e78c527d87a3358829d7c0f417267a582b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/5d9197697d0f1481f8f32bdd34924a3a209f76ba",
-                "reference": "5d9197697d0f1481f8f32bdd34924a3a209f76ba",
+                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/513970e78c527d87a3358829d7c0f417267a582b",
+                "reference": "513970e78c527d87a3358829d7c0f417267a582b",
                 "shasum": ""
             },
             "require": {
@@ -411,7 +411,7 @@
                 }
             ],
             "description": "SAML2 PHP library from SimpleSAMLphp",
-            "time": "2018-12-08T11:47:38+00:00"
+            "time": "2019-01-04T13:42:36+00:00"
         },
         {
             "name": "symfony/config",
@@ -2454,6 +2454,7 @@
     "prefer-lowest": false,
     "platform": {
         "php": ">=5.5",
+        "ext-curl": "*",
         "ext-spl": "*",
         "ext-zlib": "*",
         "ext-pcre": "*",
@@ -2464,8 +2465,5 @@
         "ext-json": "*",
         "ext-mbstring": "*"
     },
-    "platform-dev": [],
-    "platform-overrides": {
-        "php": "5.5.9"
-    }
+    "platform-dev": []
 }
