@@ -431,7 +431,7 @@ class MetaLoader
 
                 foreach ($elements as $m) {
                     $entityID = $m['metadata']['entityid'];
-                    $content .= "\n".'$metadata[\''.
+                    $content .= "\n".'$metadata[\'';
                     $content .= addslashes($entityID).'\'] = '.var_export($m['metadata'], true).';'."\n";
                 }
 

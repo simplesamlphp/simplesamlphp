@@ -1044,7 +1044,7 @@ class SAMLParser
                             $attrNameFormat = $attr->getNameFormat();
                             $attrValue = $attr->getAttributeValue();
 
-                            if ($attrName() === null || $attrValue === []) {
+                            if ($attrName === null || $attrValue === []) {
                                 continue;
                             }
 
