@@ -83,23 +83,30 @@ class MetaLoaderTest extends TestCase
         );
     }
 
-    public function testSignatureVerificationPass()
+    public function testSignatureVerificationFingerprintPass()
     {
         $this->metaloader->loadSource(array_merge($this->source, [ 'validateFingerprint' => '85:11:00:FF:34:55:BC:20:C0:20:5D:46:9B:2F:23:8F:41:09:68:F2' ]));
         $this->metaloader->dumpMetadataStdOut();
         $this->expectOutputRegex('/UTEbMBkGA1UECgwSRXhhbXBsZSBVbml2ZXJzaXR5MRgwFgYDVQQDDA9pZHAuZXhh/');
     }
 
-    public function testSignatureVerificationFailure()
+    public function testSignatureVerificationFingerprintFailure()
     {
         $this->metaloader->loadSource(array_merge($this->source, [ 'validateFingerprint' => 'DE:AD:BE:EF:DE:AD:BE:EF:DE:AD:BE:EF:DE:AD:BE:EF:DE:AD:BE:EF' ]));
         $this->metaloader->dumpMetadataStdOut();
         $this->expectOutputString('');
     }
 
+    public function testSignatureVerificationCertificatePass()
+    {
+        $this->metaloader->loadSource(array_merge($this->source, [ 'certificates' => [ dirname(dirname(__FILE__)) . '/mdx.pem' ] ]));
+        $this->metaloader->dumpMetadataStdOut();
+        $this->expectOutputRegex('/UTEbMBkGA1UECgwSRXhhbXBsZSBVbml2ZXJzaXR5MRgwFgYDVQQDDA9pZHAuZXhh/');
+    }
+
     public function testWriteMetadataFiles()
     {
-        $this->tmpdir = tempnam(sys_get_temp_dir(), 'SSP:tests:metarefresh');
+        $this->tmpdir = tempnam(sys_get_temp_dir(), 'SSP:tests:metarefresh:');
         @unlink($this->tmpdir); /* work around post 4.0.3 behaviour */
         $this->metaloader->loadSource($this->source);
         $this->metaloader->writeMetadataFiles($this->tmpdir);
