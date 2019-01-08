@@ -10,7 +10,7 @@ php:
 
 env:
   - COMMAND="install"
-  - COMMAND="update --ignore-platform-reqs"
+  - COMMAND="update"
 
 matrix:
   allow_failures:
