@@ -51,7 +51,8 @@
     },
     "require-dev": {
         "phpunit/phpunit": "~4.8",
-        "mikey179/vfsStream": "~1.6"
+        "mikey179/vfsStream": "~1.6",
+        "ext-curl": "*"
     },
     "suggest": {
         "predis/predis": "Needed if a Redis server is used to store session information",
