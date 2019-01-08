@@ -10,7 +10,6 @@ See the upgrade notes for specific information about upgrading.
 
 Released TBD
 
-### Changes
   * Introduce a new experimental user interface based on Twig templates.
     The new Twig templates co-exist next to the old ones and come
     with a new look-and-feel for SimpleSAMLphp and independent interfaces for
@@ -28,6 +27,7 @@ Released TBD
   * Update the SAML2 library dependency to 3.2.5.
   * Update the Clipboard.JS library dependency to 2.0.4.
   * Translated to Zulu and Xhosa.
+  * Multiple bug fixes and corrections.
 
 ### Interoperability
   * The minimum PHP version required is now 5.5.
@@ -77,6 +77,20 @@ Released TBD
 
 ### sanitycheck
   * Translated into several languages.
+
+## Version 1.16.3
+
+Released 2018-12-20
+
+  * Resolved a security issue that could expose the user's credentials locally.  See
+    [SSPSA 201812-01](https://simplesamlphp.org/security/201812-01).
+  * Downgraded the level of log messages regarding the `userid.attribute` configuration option
+    from _warning_ to _debug_.
+  * Make the `attr` configuration option of the _negotiate_ allow both a string and an array.
+  * Look for the _keytab_ file used by the _negotiate_ module in the `cert` directory, accepting
+    both absolute and relative paths.
+  * Fixed some broken links.
+  * Other minor bugfixes.
 
 ## Version 1.16.2
 
