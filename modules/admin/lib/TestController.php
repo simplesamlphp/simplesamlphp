@@ -59,7 +59,7 @@ class TestController
             $authsource = new \SimpleSAML\Auth\Simple($as);
             if (!is_null($request->query->get('logout'))) {
                 $authsource->logout($this->config->getBasePath().'logout.php');
-            } else if (!is_null($request->query->get(\SimpleSAML\Auth\State::EXCEPTION_PARAM))) {
+            } elseif (!is_null($request->query->get(\SimpleSAML\Auth\State::EXCEPTION_PARAM))) {
                 // This is just a simple example of an error
                 $state = \SimpleSAML\Auth\State::loadExceptionState();
                 assert(array_key_exists(\SimpleSAML\Auth\State::EXCEPTION_DATA, $state));
