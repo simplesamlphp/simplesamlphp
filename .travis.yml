@@ -17,7 +17,7 @@ matrix:
     - php: hhvm
 
 before_script:
-  - if [[ ${COMMAND} == "composer install" ]]; then ${COMMAND}; else composer update; fi
+  - ${COMMAND}
   - if [[ "$TRAVIS_PHP_VERSION" == "7.3" ]]; then composer require --ignore-platform-reqs --dev vimeo/psalm:0.3.92; fi
   - if [[ "$TRAVIS_PHP_VERSION" == "5.6" ]]; then composer require --dev php-coveralls/php-coveralls; fi
 
