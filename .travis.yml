@@ -10,7 +10,7 @@ php:
 
 env:
   - COMMAND="composer install"
-  - COMMAND="composer update --ignore-platform-reqs"
+  - COMMAND="composer config platform.php ${TRAVIS_PHP_VERSION} -g && composer update"
 
 matrix:
   allow_failures:
