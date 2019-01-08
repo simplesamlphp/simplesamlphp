@@ -27,7 +27,6 @@
     },
     "require": {
         "php": ">=5.5",
-        "ext-curl": "*",
         "ext-SPL": "*",
         "ext-zlib": "*",
         "ext-pcre": "*",
@@ -54,8 +53,15 @@
         "phpunit/phpunit": "~4.8",
         "mikey179/vfsStream": "~1.6"
     },
-    "suggests": {
-        "predis/predis": "1.1.1"
+    "suggest": {
+        "predis/predis": "Needed if a Redis server is used to store session information",
+        "ext-curl": "Needed in order to check for updates automatically",
+        "ext-ldap": "Needed if an LDAP backend is used",
+        "ext-radius": "Needed if a Radius backend is used",
+        "ext-memcache": "Needed if a Memcache server is used to store session information",
+        "ext-pdo": "Needed if a database backend is used, either for authentication or to store session information",
+        "ext-mysql": "Needed if a MySQL backend is used, either for authentication or to store session information",
+        "ext-pgsql": "Needed if a PostgreSQL backend is used, either for authentication or to store session information"
     },
     "support": {
         "issues": "https://github.com/simplesamlphp/simplesamlphp/issues",
