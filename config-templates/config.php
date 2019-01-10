@@ -264,7 +264,7 @@ $config = [
      *
      * Choose logging handler.
      *
-     * Options: [syslog,file,errorlog]
+     * Options: [syslog,file,errorlog,stderr]
      *
      */
     'logging.level' => SimpleSAML\Logger::NOTICE,
@@ -800,7 +800,7 @@ $config = [
      * \SimpleSAML\XHTML\TemplateControllerInterface interface to use it.
      */
     //'theme.controller' => '',
-    
+
     /*
      * Templating options
      *
