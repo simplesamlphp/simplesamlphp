@@ -356,6 +356,7 @@ class Logger
             'syslog'   => 'SimpleSAML\Logger\SyslogLoggingHandler',
             'file'     => 'SimpleSAML\Logger\FileLoggingHandler',
             'errorlog' => 'SimpleSAML\Logger\ErrorLogLoggingHandler',
+            'stderr' => 'SimpleSAML\Logger\StandardErrorLoggingHandler',
         ];
 
         // get the configuration
