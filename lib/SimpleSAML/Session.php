@@ -639,7 +639,7 @@ class Session implements \Serializable, Utils\ClearableState
         $this->authToken = Utils\Random::generateID();
         $sessionHandler = SessionHandler::getSessionHandler();
 
-        if (!$this->transient && (!empty($data['RememberMe']) || $this->rememberMeExpire) &&
+        if (!$this->transient && (!empty($data['RememberMe']) || $this->rememberMeExpire !== null) &&
             self::$config->getBoolean('session.rememberme.enable', false)
         ) {
             $this->setRememberMeExpire();
@@ -685,7 +685,7 @@ class Session implements \Serializable, Utils\ClearableState
         $this->callLogoutHandlers($authority);
         unset($this->authData[$authority]);
 
-        if (!$this->isValid($authority) && $this->rememberMeExpire) {
+        if (!$this->isValid($authority) && $this->rememberMeExpire !== null) {
             $this->rememberMeExpire = null;
             $this->updateSessionCookies();
         }
