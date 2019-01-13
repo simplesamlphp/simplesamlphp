@@ -30,14 +30,14 @@ class DateHandlerMonth extends DateHandler
     public function fromSlot($slot, $slotsize)
     {
         $month = ($slot % 12);
-        $year = 2000 + floor($slot / 12);
+        $year = 2000 + intval(floor($slot / 12));
         return mktime(0, 0, 0, $month + 1, 1, $year);
     }
 
     public function prettyHeader($from, $to, $slotsize, $dateformat)
     {
         $month = ($from % 12) + 1;
-        $year = 2000 + floor($from / 12);
+        $year = 2000 + intval(floor($from / 12));
         return $year.'-'.$month;
     }
 }
