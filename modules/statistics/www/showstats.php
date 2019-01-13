@@ -77,7 +77,6 @@ $delimiter = $dataset->getDelimiter();
 
 $timeres = $dataset->getTimeRes();
 $fileslot = $dataset->getFileslot();
-$availableFileSlots = $statrule->availableFileSlots($timeres);
 
 $timeNavigation = $statrule->getTimeNavigation($timeres, $preferTime);
 
