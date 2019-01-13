@@ -192,7 +192,7 @@ class SAMLBuilder
                 $ea->addChildren($a);
             }
             $this->entityDescriptor->setExtensions(
-                array_merge($this->entityDescriptor(), [$ea])
+                array_merge($this->entityDescriptor->getExtensions(), [$ea])
             );
         }
 

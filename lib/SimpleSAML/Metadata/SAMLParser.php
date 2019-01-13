@@ -353,7 +353,7 @@ class SAMLParser
         } elseif (\SimpleSAML\Utils\XML::isDOMNodeOfType($element, 'EntitiesDescriptor', '@md') === true) {
             return self::processDescriptorsElement(new \SAML2\XML\md\EntitiesDescriptor($element));
         } else {
-            throw new \Exception('Unexpected root node: ['.$element->getNamespaceURI().']:'.$element->getLocalName());
+            throw new \Exception('Unexpected root node: ['.$element->namespaceURI.']:'.$element->localName);
         }
     }
 
