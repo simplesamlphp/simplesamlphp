@@ -55,7 +55,7 @@ class LogParser
              * We will therefore subtrackt one year.
              */
             $hour = intval(gmdate('H', $epoch));
-            $minute = inval(gmdate('i', $epoch));
+            $minute = intval(gmdate('i', $epoch));
             $second = intval(gmdate('s', $epoch));
             $month = intval(gmdate('n', $epoch));
             $day = intval(gmdate('j', $epoch));
