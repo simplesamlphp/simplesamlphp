@@ -2,7 +2,7 @@
 /**
  * Hook to add the sanitycheck link to the config page.
  *
- * @param \SimpleSAML\XHTML\Template The template that we should alter in this hook.
+ * @param \SimpleSAML\XHTML\Template $template The template that we should alter in this hook.
  */
 function sanitycheck_hook_configpage(\SimpleSAML\XHTML\Template &$template)
 {
