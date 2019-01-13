@@ -89,7 +89,7 @@ class TestController
             ];
 
             if ($nameId !== false) {
-                $this->data['nameidHtml'] = $this->getNameIDHTML($t, $nameId);
+                $t->data['nameidHtml'] = $this->getNameIDHTML($t, $nameId);
             }
         }
 
