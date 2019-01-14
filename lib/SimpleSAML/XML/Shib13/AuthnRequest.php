@@ -41,7 +41,7 @@ class AuthnRequest
 
         $desturl = $idpmetadata->getDefaultEndpoint(
             'SingleSignOnService',
-            array('urn:mace:shibboleth:1.0:profiles:AuthnRequest')
+            ['urn:mace:shibboleth:1.0:profiles:AuthnRequest']
         );
         $desturl = $desturl['Location'];
 

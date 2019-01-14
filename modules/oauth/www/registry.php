@@ -21,29 +21,17 @@ if ($session->isValid($authsource)) {
     $as->initLogin(\SimpleSAML\Utils\HTTP::getSelfURL());
 }
 
-function requireOwnership($entry, $userid)
-{
-    if (!isset($entry['owner'])) {
-        throw new \Exception('OAuth Consumer has no owner. Which means no one is granted access, not even you.');
-    }
-    if ($entry['owner'] !== $userid) {
-        throw new \Exception(
-            'OAuth Consumer has an owner that is not equal to your userid, hence you are not granted access.'
-        );
-    }
-}
-
 if (isset($_REQUEST['delete'])) {
     $entryc = $store->get('consumers', $_REQUEST['delete'], '');
     $entry = $entryc['value'];
 
-    requireOwnership($entry, $userid);
+    \SimpleSAML\Module\oauth\Registry::requireOwnership($entry, $userid);
     $store->remove('consumers', $entry['key'], '');
 }
 
 $list = $store->getList('consumers');
 
-$slist = array('mine' => array(), 'others' => array());
+$slist = ['mine' => [], 'others' => []];
 if (is_array($list)) {
     foreach ($list as $listitem) {
         if (array_key_exists('owner', $listitem['value'])) {

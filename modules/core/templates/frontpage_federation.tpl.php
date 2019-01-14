@@ -51,7 +51,7 @@ if (is_array($this->data['metaentries']['remote']) && count($this->data['metaent
                 htmlspecialchars(
                     SimpleSAML\Module::getModuleURL(
                         'core/show_metadata.php',
-                        array('entityid' => $entry['entityid'], 'set' => $setkey)
+                        ['entityid' => $entry['entityid'], 'set' => $setkey]
                     )
                 ).'">');
             if (!empty($entry['name'])) {

@@ -1,0 +1,35 @@
+{% set pagetitle = 'SimpleSAMLphp installation page'|trans %}
+{% set frontpage_section = 'test' %}
+{% extends "base.twig" %}
+
+{% block content %}
+    {%- include "@admin/includes/menu.twig" %}
+
+    <p>{% trans %}Hi, this is the status page of SimpleSAMLphp. Here you can see if your session is timed out, how long
+     it lasts until it times out and all the attributes that are attached to your session.{% endtrans %}</p>
+
+    <h2>{{ '{status:attributes_header}'|trans }}</h2>
+
+    {{ attributesHtml|raw }}
+
+    {% if nameidHtml -%}
+    <h2>{{ '{status:subject_header}'|trans }}</h2>
+    {{  nameidHtml|raw }}
+    {%- endif %}
+
+    {% if authData -%}
+    <h2>{% trans %}AuthData{% endtrans %}</h2>
+    <details><summary>{% trans %}Click to view AuthData{% endtrans %}</summary>
+      <pre>{{ authData|json_encode|raw }}</pre>
+    </details>
+    {%- endif %}    
+
+    {% if logout -%}
+    <h2>{{ '{status:logout}'|trans }}</h2>
+    <p>{{ logout }}</p> 
+    {%- endif %}
+
+    {% if logouturl -%}
+    <a href="{{ logouturl }}">{{ '{status:logout}'|trans }}</a>
+    {%- endif %}
+{% endblock %}

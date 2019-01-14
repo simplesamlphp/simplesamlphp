@@ -88,11 +88,11 @@ class HTTPPost
             $signResponse = true;
         }
 
-        $signer = new Signer(array(
+        $signer = new Signer([
             'privatekey_array' => $privatekey,
             'publickey_array'  => $publickey,
             'id'               => ($signResponse ? 'ResponseID' : 'AssertionID'),
-        ));
+        ]);
 
         if ($idpmd->hasValue('certificatechain')) {
             $signer->addCertificate($idpmd->getString('certificatechain'));
@@ -113,10 +113,10 @@ class HTTPPost
 
         XML::debugSAMLMessage($response, 'out');
 
-        HTTP::submitPOSTData($shire, array(
+        HTTP::submitPOSTData($shire, [
             'TARGET'       => $relayState,
             'SAMLResponse' => base64_encode($response),
-        ));
+        ]);
     }
 
 

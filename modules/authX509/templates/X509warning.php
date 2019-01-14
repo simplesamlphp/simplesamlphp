@@ -10,14 +10,14 @@
  * @package SimpleSAMLphp
  */
 
-$warning = $this->t('{authX509:X509warning:warning}', array(
+$warning = $this->t('{authX509:X509warning:warning}', [
     '%daysleft%' => htmlspecialchars($this->data['daysleft']),
-));
+]);
 
 if ($this->data['renewurl']) {
-    $warning .= " ".$this->t('{authX509:X509warning:renew_url}', array(
+    $warning .= " ".$this->t('{authX509:X509warning:renew_url}', [
         '%renewurl%' => $this->data['renewurl'],
-    ));
+        ]);
 } else {
     $warning .= " ".$this->t('{authX509:X509warning:renew}');
 }

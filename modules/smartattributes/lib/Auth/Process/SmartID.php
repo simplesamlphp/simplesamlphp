@@ -11,7 +11,7 @@ class SmartID extends \SimpleSAML\Auth\ProcessingFilter
      * etc., be sure to comment out the entries that map xxx_targetedID to
      * eduPersonTargetedID, or there will be no way to see its origin any more.
      */
-    private $candidates = array(
+    private $candidates = [
         'eduPersonTargetedID',
         'eduPersonPrincipalName',
         'pairwise-id',
@@ -21,7 +21,7 @@ class SmartID extends \SimpleSAML\Auth\ProcessingFilter
         'twitter_targetedID',
         'windowslive_targetedID',
         'linkedin_targetedID',
-    );
+    ];
 
     /**
      * The name of the generated ID attribute.
@@ -44,7 +44,7 @@ class SmartID extends \SimpleSAML\Auth\ProcessingFilter
      *
      * Associative array of arrays.
      */
-    private $attributes = array();
+    private $attributes = [];
 
 
     public function __construct($config, $reserved)
@@ -119,7 +119,7 @@ class SmartID extends \SimpleSAML\Auth\ProcessingFilter
         $id = $this->addID($request['Attributes'], $request);
 
         if (isset($id)) {
-            $request['Attributes'][$this->id_attribute] = array($id);
+            $request['Attributes'][$this->id_attribute] = [$id];
         }
     }
 }

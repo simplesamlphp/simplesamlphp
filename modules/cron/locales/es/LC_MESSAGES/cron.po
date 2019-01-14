@@ -63,3 +63,8 @@ msgstr "Aqui están los resultados de las tareas en la ejecución del cron:"
 msgid "Cron result page"
 msgstr "Página de resultado del cron"
 
+msgid "{cron:cron:link_cron}"
+msgstr "Informe de cron"
+
+msgid "Cron module information page"
+msgstr "Informe de cron"

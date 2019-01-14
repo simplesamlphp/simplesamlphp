@@ -55,7 +55,7 @@ abstract class Source
 
         $config = \SimpleSAML\Configuration::getConfig('authsources.php');
 
-        $ret = array();
+        $ret = [];
 
         $sources = $config->getOptions();
         foreach ($sources as $id) {
@@ -160,25 +160,25 @@ abstract class Source
      * @param array $params Extra information about the login. Different authentication requestors may provide different
      * information. Optional, will default to an empty array.
      */
-    public function initLogin($return, $errorURL = null, array $params = array())
+    public function initLogin($return, $errorURL = null, array $params = [])
     {
         assert(is_string($return) || is_array($return));
         assert(is_string($errorURL) || $errorURL === null);
 
-        $state = array_merge($params, array(
+        $state = array_merge($params, [
             '\SimpleSAML\Auth\DefaultAuth.id' => $this->authId, // TODO: remove in 2.0
             '\SimpleSAML\Auth\Source.id' => $this->authId,
             '\SimpleSAML\Auth\DefaultAuth.Return' => $return, // TODO: remove in 2.0
             '\SimpleSAML\Auth\Source.Return' => $return,
             '\SimpleSAML\Auth\DefaultAuth.ErrorURL' => $errorURL, // TODO: remove in 2.0
             '\SimpleSAML\Auth\Source.ErrorURL' => $errorURL,
-            'LoginCompletedHandler' => array(get_class(), 'loginCompleted'),
-            'LogoutCallback' => array(get_class(), 'logoutCallback'),
-            'LogoutCallbackState' => array(
+            'LoginCompletedHandler' => [get_class(), 'loginCompleted'],
+            'LogoutCallback' => [get_class(), 'logoutCallback'],
+            'LogoutCallbackState' => [
                 '\SimpleSAML\Auth\DefaultAuth.logoutSource' => $this->authId, // TODO: remove in 2.0
                 '\SimpleSAML\Auth\Source.logoutSource' => $this->authId,
-            ),
-        ));
+            ],
+        ]);
 
         if (is_string($return)) {
             $state['\SimpleSAML\Auth\DefaultAuth.ReturnURL'] = $return; // TODO: remove in 2.0
@@ -297,7 +297,7 @@ abstract class Source
         self::validateSource($config, $authId);
 
         $id = $config[0];
-        $info = array('AuthId' => $authId);
+        $info = ['AuthId' => $authId];
         $authSource = null;
 
         unset($config[0]);
@@ -306,7 +306,7 @@ abstract class Source
             // Check whether or not there's a factory responsible for instantiating our Auth Source instance
             $factoryClass = \SimpleSAML\Module::resolveClass(
                 $id,
-                'Auth_Source_Factory',
+                'Auth\Source\Factory',
                 '\SimpleSAML\Auth\SourceFactory'
             );
 
@@ -315,7 +315,7 @@ abstract class Source
             $authSource = $factory->create($info, $config);
         } catch (\Exception $e) {
             // If not, instantiate the Auth Source here
-            $className = \SimpleSAML\Module::resolveClass($id, 'Auth_Source', '\SimpleSAML\Auth\Source');
+            $className = \SimpleSAML\Module::resolveClass($id, 'Auth\Source', '\SimpleSAML\Auth\Source');
             $authSource = new $className($info, $config);
         }
 
@@ -426,15 +426,15 @@ abstract class Source
         if (array_key_exists('LogoutCallbackState', $state)) {
             $callbackState = $state['LogoutCallbackState'];
         } else {
-            $callbackState = array();
+            $callbackState = [];
         }
 
         $id = strlen($this->authId).':'.$this->authId.$assoc;
 
-        $data = array(
+        $data = [
             'callback' => $callback,
             'state'    => $callbackState,
-        );
+        ];
 
         $session = \SimpleSAML\Session::getSessionFromRequest();
         $session->setData(

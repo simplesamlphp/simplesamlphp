@@ -37,6 +37,6 @@ Custon attribute:
     'authproc' => array(
         50 => array(
             'class' => 'core:LanguageAdaptor',
-	    'attributename' => 'lang',
+            'attributename' => 'lang',
         ),
     ),

@@ -24,5 +24,5 @@ $globalConfig = \SimpleSAML\Configuration::getInstance();
 
 $t = new \SimpleSAML\XHTML\Template($globalConfig, 'preprodwarning:warning.php');
 $t->data['yesTarget'] = \SimpleSAML\Module::getModuleURL('preprodwarning/showwarning.php');
-$t->data['yesData'] = array('StateId' => $id);
+$t->data['yesData'] = ['StateId' => $id];
 $t->show();

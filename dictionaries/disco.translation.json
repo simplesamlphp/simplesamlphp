@@ -32,7 +32,9 @@
 		"sr": "Odaberite va\u0161eg davaoca identiteta",
 		"ro": "Alege\u021bi furnizorul de identitate",
 		"af": "Kies jou identiteits verskaffer",
-		"el": "\u0395\u03c0\u03b9\u03bb\u03bf\u03b3\u03ae \u03bf\u03b9\u03ba\u03b5\u03af\u03bf\u03c5 \u03c6\u03bf\u03c1\u03ad\u03b1"
+		"el": "\u0395\u03c0\u03b9\u03bb\u03bf\u03b3\u03ae \u03bf\u03b9\u03ba\u03b5\u03af\u03bf\u03c5 \u03c6\u03bf\u03c1\u03ad\u03b1",
+		"xh": "Khetha umboneleli wesazisi wakho",
+		"zu": "Khetha umhlinzeki wakho kamazisi"
 	},
 	"selectidp_full": {
 		"no": "Vennligst velg hvilken identitetsleverand\u00f8r du vil bruke for \u00e5 logge inn:",
@@ -67,7 +69,9 @@
 		"sr": "Molimo vas odaberite davaoca identiteta kod koga se \u017eelite autentifikovati:",
 		"ro": "V\u0103 rug\u0103m s\u0103 alege\u021bi furnizorul de identitate pe care dori\u021bi s\u0103-l folosi\u021bi pentru autentificarea dumneavoastr\u0103:",
 		"af": "Kies asb. jou identiteits verskaffer waar jy wil verifieer:",
-		"el": "\u0395\u03c0\u03b9\u03bb\u03ad\u03be\u03c4\u03b5 \u03bf\u03b9\u03ba\u03b5\u03af\u03bf \u03c6\u03bf\u03c1\u03ad\u03b1 \u03c0\u03bf\u03c5 \u03bc\u03c0\u03bf\u03c1\u03b5\u03af \u03bd\u03b1 \u03c0\u03b9\u03c3\u03c4\u03bf\u03c0\u03bf\u03b9\u03ae\u03c3\u03b5\u03b9 \u03c4\u03b7\u03bd \u03c4\u03b1\u03c5\u03c4\u03cc\u03c4\u03b7\u03c4\u03ac \u03c3\u03b1\u03c2"
+		"el": "\u0395\u03c0\u03b9\u03bb\u03ad\u03be\u03c4\u03b5 \u03bf\u03b9\u03ba\u03b5\u03af\u03bf \u03c6\u03bf\u03c1\u03ad\u03b1 \u03c0\u03bf\u03c5 \u03bc\u03c0\u03bf\u03c1\u03b5\u03af \u03bd\u03b1 \u03c0\u03b9\u03c3\u03c4\u03bf\u03c0\u03bf\u03b9\u03ae\u03c3\u03b5\u03b9 \u03c4\u03b7\u03bd \u03c4\u03b1\u03c5\u03c4\u03cc\u03c4\u03b7\u03c4\u03ac \u03c3\u03b1\u03c2",
+		"zu": "Sicela ukhethe umhlinzeki kamazisi lapho ofuna ukuqinisekisa khona:",
+		"xh": "Nceda ukhethe umboneleli wesazisi apho ufuna ukungqinisisa:"
 	},
 	"select": {
 		"no": "Velg",
@@ -102,7 +106,9 @@
 		"sr": "Odaberi",
 		"ro": "Selecta\u021bi",
 		"af": "Kies",
-		"el": "\u0395\u03c0\u03b9\u03bb\u03bf\u03b3\u03ae"
+		"el": "\u0395\u03c0\u03b9\u03bb\u03bf\u03b3\u03ae",
+		"zu": "Khetha",
+		"xh": "Khetha"
 	},
 	"remember": {
 		"no": "Husk mitt valg",
@@ -137,7 +143,9 @@
 		"sr": "Zapamti moj izbor",
 		"ro": "Memoreaz\u0103 alegerea f\u0103cut\u0103",
 		"af": "Onthou my keuse",
-		"el": "\u039d\u03b1 \u03b8\u03c5\u03bc\u03ac\u03c3\u03b1\u03b9 \u03c4\u03b7\u03bd \u03b5\u03c0\u03b9\u03bb\u03bf\u03b3\u03ae \u03bc\u03bf\u03cd"
+		"el": "\u039d\u03b1 \u03b8\u03c5\u03bc\u03ac\u03c3\u03b1\u03b9 \u03c4\u03b7\u03bd \u03b5\u03c0\u03b9\u03bb\u03bf\u03b3\u03ae \u03bc\u03bf\u03cd",
+		"zu": "Khumbula ukukhetha kwami",
+		"xh": "Khumbula ukhetho lwam"
 	},
 	"icon_prefered_idp": {
 		"no": "[Foretrukket valg]",
@@ -172,7 +180,9 @@
 		"cs": "[Preferovan\u00e1 volba]",
 		"eu": "[Aukera gogokoena]",
 		"af": "[Verkies]",
-		"el": "[\u0391\u03c0\u03bf\u03b8\u03b7\u03ba\u03b5\u03c5\u03bc\u03ad\u03bd\u03b7 \u03c0\u03c1\u03bf\u03b5\u03c0\u03b9\u03bb\u03bf\u03b3\u03ae]"
+		"el": "[\u0391\u03c0\u03bf\u03b8\u03b7\u03ba\u03b5\u03c5\u03bc\u03ad\u03bd\u03b7 \u03c0\u03c1\u03bf\u03b5\u03c0\u03b9\u03bb\u03bf\u03b3\u03ae]",
+		"xh": "[Ukhetho olukhethwayo]",
+		"zu": "[Ukukhetha okuncanyelwayo]"
 	},
 	"previous_auth": {
 		"no": "Du har tidligere valg \u00e5 autentisere deg hos",
@@ -206,7 +216,9 @@
 		"cs": "D\u0159\u00edve jste zvolil(a) ov\u011b\u0159en\u00ed u",
 		"eu": "Lehenago, hemen kautotzea hautatu duzu",
 		"af": "Jy het voorheen gekies om te verifieer deur:",
-		"el": "\u0391\u03c0\u03bf\u03b8\u03b7\u03ba\u03b5\u03c5\u03bc\u03ad\u03bd\u03b7 \u03c0\u03c1\u03bf\u03b5\u03c0\u03b9\u03bb\u03bf\u03b3\u03ae \u03bf\u03b9\u03ba\u03b5\u03af\u03bf\u03c5 \u03c6\u03bf\u03c1\u03ad\u03b1:"
+		"el": "\u0391\u03c0\u03bf\u03b8\u03b7\u03ba\u03b5\u03c5\u03bc\u03ad\u03bd\u03b7 \u03c0\u03c1\u03bf\u03b5\u03c0\u03b9\u03bb\u03bf\u03b3\u03ae \u03bf\u03b9\u03ba\u03b5\u03af\u03bf\u03c5 \u03c6\u03bf\u03c1\u03ad\u03b1:",
+		"zu": "Ngaphambilini ukhethe ukuqinisekisa kokuthi",
+		"xh": "Kwixesha elidlulileyo ukhethe ukungqinisisa ngo-"
 	},
 	"login_at": {
 		"no": "Logg inn hos",
@@ -240,6 +252,8 @@
 		"cs": "P\u0159ihl\u00e1\u0161en\u00ed k",
 		"eu": "Non identifikatu",
 		"af": "Meld aan by",
-		"el": "\u0395\u03af\u03c3\u03bf\u03b4\u03bf\u03c2 \u0040"
+		"el": "\u0395\u03af\u03c3\u03bf\u03b4\u03bf\u03c2 \u0040",
+		"zu": "Ngena kokuthi",
+		"xh": "Ungeno ngo-"
 	}
 }

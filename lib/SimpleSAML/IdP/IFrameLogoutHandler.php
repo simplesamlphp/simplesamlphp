@@ -56,7 +56,7 @@ class IFrameLogoutHandler implements LogoutHandlerInterface
         if (!is_null($assocId)) {
             $spName = $this->idp->getSPName($assocId);
             if ($spName === null) {
-                $spName = array('en' => $assocId);
+                $spName = ['en' => $assocId];
             }
 
             $state['core:Logout-IFrame:From'] = $spName;
@@ -64,9 +64,9 @@ class IFrameLogoutHandler implements LogoutHandlerInterface
             $state['core:Logout-IFrame:From'] = null;
         }
 
-        $params = array(
+        $params = [
             'id' => \SimpleSAML\Auth\State::saveState($state, 'core:Logout-IFrame'),
-        );
+        ];
         if (isset($state['core:Logout-IFrame:InitType'])) {
             $params['type'] = $state['core:Logout-IFrame:InitType'];
         }

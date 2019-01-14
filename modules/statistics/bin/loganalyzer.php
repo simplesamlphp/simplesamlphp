@@ -29,7 +29,7 @@ foreach ($argv as $a) {
     }
 
     // Map short options to long options.
-    $shortOptMap = array('-d' => '--debug');
+    $shortOptMap = ['-d' => '--debug'];
     if (array_key_exists($a, $shortOptMap)) {
         $a = $shortOptMap[$a];
     }

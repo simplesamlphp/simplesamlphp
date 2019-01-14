@@ -49,13 +49,12 @@ if ($this->data['errorcode'] !== null) {
             <tr>
                 <td rowspan="2" class="loginicon">
                     <img alt=""
-                        src="/<?php echo $this->data['baseurlpath']; ?>
-                        resources/icons/experience/gtk-dialog-authentication.48x48.png" />
+                        src="/<?php echo $this->data['baseurlpath']; ?>resources/icons/experience/gtk-dialog-authentication.48x48.png" />
                 </td>
                 <td><label for="username"><?php echo $this->t('{login:username}'); ?></label></td>
                 <td>
                     <input id="username" <?php echo ($this->data['forceUsername']) ? 'disabled="disabled"' : ''; ?>
-                        type="text" name="username"<?php echo $this->data['forceUsername'] ? '' : 'tabindex="1"'; ?>
+                        type="text" name="username"<?php echo $this->data['forceUsername'] ? '' : ' tabindex="1"'; ?>
                         value="<?php echo htmlspecialchars($this->data['username']); ?>" />
                 </td>
             <?php

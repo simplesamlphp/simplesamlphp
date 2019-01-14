@@ -4,6 +4,8 @@ namespace SimpleSAML\Module\adfs\IdP;
 
 use RobRichards\XMLSecLibs\XMLSecurityDSig;
 use RobRichards\XMLSecLibs\XMLSecurityKey;
+use SimpleSAML\Utils\Config\Metadata;
+use SimpleSAML\Utils\Crypto;
 
 class ADFS
 {
@@ -23,14 +25,14 @@ class ADFS
             throw new \SimpleSAML\Error\Error('PROCESSAUTHNREQUEST', $exception);
         }
 
-        $state = array(
-            'Responder' => array('\SimpleSAML\Module\adfs\IdP\ADFS', 'sendResponse'),
+        $state = [
+            'Responder' => ['\SimpleSAML\Module\adfs\IdP\ADFS', 'sendResponse'],
             'SPMetadata' => $spMetadata->toArray(),
             'ForceAuthn' => false,
             'isPassive' => false,
             'adfs:wctx' => $requestid,
             'adfs:wreply' => false
-        );
+        ];
 
         if (isset($query['wreply']) && !empty($query['wreply'])) {
             $state['adfs:wreply'] = \SimpleSAML\Utils\HTTP::checkURLAllowed($query['wreply']);
@@ -109,18 +111,18 @@ MSG;
     private static function signResponse($response, $key, $cert, $algo)
     {
         $objXMLSecDSig = new XMLSecurityDSig();
-        $objXMLSecDSig->idKeys = array('AssertionID');
+        $objXMLSecDSig->idKeys = ['AssertionID'];
         $objXMLSecDSig->setCanonicalMethod(XMLSecurityDSig::EXC_C14N);
         $responsedom = \SAML2\DOMDocumentFactory::fromString(str_replace("\r", "", $response));
         $firstassertionroot = $responsedom->getElementsByTagName('Assertion')->item(0);
         $objXMLSecDSig->addReferenceList(
-            array($firstassertionroot),
+            [$firstassertionroot],
             XMLSecurityDSig::SHA256,
-            array('http://www.w3.org/2000/09/xmldsig#enveloped-signature', XMLSecurityDSig::EXC_C14N),
-            array('id_name' => 'AssertionID')
+            ['http://www.w3.org/2000/09/xmldsig#enveloped-signature', XMLSecurityDSig::EXC_C14N],
+            ['id_name' => 'AssertionID']
         );
 
-        $objKey = new XMLSecurityKey($algo, array('type' => 'private'));
+        $objKey = new XMLSecurityKey($algo, ['type' => 'private']);
         $objKey->loadKey($key, true);
         $objXMLSecDSig->sign($objKey);
         if ($cert) {
@@ -136,12 +138,138 @@ MSG;
     {
         $config = \SimpleSAML\Configuration::getInstance();
         $t = new \SimpleSAML\XHTML\Template($config, 'adfs:postResponse.twig');
-        $t->data['baseurlpath'] = \SimpleSAML\Module::getModuleUrl('adfs');
+        $t->data['baseurlpath'] = \SimpleSAML\Module::getModuleURL('adfs');
         $t->data['url'] = $url;
         $t->data['wresult'] = $wresult;
         $t->data['wctx'] = $wctx;
         $t->show();
     }
+
+
+    /**
+     * Get the metadata of a given hosted ADFS IdP.
+     *
+     * @param string $entityid The entity ID of the hosted ADFS IdP whose metadata we want to fetch.
+     *
+     * @return array
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \SimpleSAML\Error\MetadataNotFound
+     */
+    public static function getHostedMetadata($entityid)
+    {
+        $handler = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
+        $config = $handler->getMetaDataConfig($entityid, 'adfs-idp-hosted');
+
+        $endpoint = \SimpleSAML\Module::getModuleURL('adfs/idp/prp.php');
+        $metadata = [
+            'metadata-set' => 'adfs-idp-hosted',
+            'entityid' => $entityid,
+            'SingleSignOnService' => [
+                [
+                    'Binding' => \SAML2\Constants::BINDING_HTTP_REDIRECT,
+                    'Location' => $endpoint,
+                ]
+            ],
+            'SingleLogoutService' => [
+                'Binding' => \SAML2\Constants::BINDING_HTTP_REDIRECT,
+                'Location' => $endpoint,
+            ],
+            'NameIDFormat' => $config->getString('NameIDFormat', \SAML2\Constants::NAMEID_TRANSIENT),
+            'contacts' => [],
+        ];
+
+        // add certificates
+        $keys = [];
+        $certInfo = Crypto::loadPublicKey($config, false, 'new_');
+        $hasNewCert = false;
+        if ($certInfo !== null) {
+            $keys[] = [
+                'type' => 'X509Certificate',
+                'signing' => true,
+                'encryption' => true,
+                'X509Certificate' => $certInfo['certData'],
+                'prefix' => 'new_',
+            ];
+            $hasNewCert = true;
+        }
+
+        $certInfo = Crypto::loadPublicKey($config, true);
+        $keys[] = [
+            'type' => 'X509Certificate',
+            'signing' => true,
+            'encryption' => $hasNewCert === false,
+            'X509Certificate' => $certInfo['certData'],
+            'prefix' => '',
+        ];
+
+        if ($config->hasValue('https.certificate')) {
+            $httpsCert = Crypto::loadPublicKey($config, true, 'https.');
+            $keys[] = [
+                'type' => 'X509Certificate',
+                'signing' => true,
+                'encryption' => false,
+                'X509Certificate' => $httpsCert['certData'],
+                'prefix' => 'https.'
+            ];
+        }
+        $metadata['keys'] = $keys;
+
+        // add organization information
+        if ($config->hasValue('OrganizationName')) {
+            $metadata['OrganizationName'] = $config->getLocalizedString('OrganizationName');
+            $metadata['OrganizationDisplayName'] = $config->getLocalizedString(
+                'OrganizationDisplayName',
+                $metadata['OrganizationName']
+            );
+
+            if (!$config->hasValue('OrganizationURL')) {
+                throw new \SimpleSAMl\Error\Exception('If OrganizationName is set, OrganizationURL must also be set.');
+            }
+            $metadata['OrganizationURL'] = $config->getLocalizedString('OrganizationURL');
+        }
+
+        // add scope
+        if ($config->hasValue('scope')) {
+            $metadata['scope'] = $config->getArray('scope');
+        }
+
+        // add extensions
+        if ($config->hasValue('EntityAttributes')) {
+            $metadata['EntityAttributes'] = $config->getArray('EntityAttributes');
+
+            // check for entity categories
+            if (Metadata::isHiddenFromDiscovery($metadata)) {
+                $metadata['hide.from.discovery'] = true;
+            }
+        }
+
+        if ($config->hasValue('UIInfo')) {
+            $metadata['UIInfo'] = $config->getArray('UIInfo');
+        }
+
+        if ($config->hasValue('DiscoHints')) {
+            $metadata['DiscoHints'] = $config->getArray('DiscoHints');
+        }
+
+        if ($config->hasValue('RegistrationInfo')) {
+            $metadata['RegistrationInfo'] = $config->getArray('RegistrationInfo');
+        }
+
+        // add contact information
+        $globalConfig = \SimpleSAML\Configuration::getInstance();
+        $email = $globalConfig->getString('technicalcontact_email', false);
+        if ($email && $email !== 'na@example.org') {
+            $contact = [
+                'emailAddress' => $email,
+                'name' => $globalConfig->getString('technicalcontact_name', null),
+                'contactType' => 'technical',
+            ];
+            $metadata['contacts'][] = Metadata::getContact($contact);
+        }
+
+        return $metadata;
+    }
+
 
     public static function sendResponse(array $state)
     {
@@ -168,11 +296,11 @@ MSG;
         $idpMetadata = $idp->getConfig();
         $idpEntityId = $idpMetadata->getString('entityid');
 
-        $idp->addAssociation(array(
+        $idp->addAssociation([
             'id' => 'adfs:'.$spEntityId,
             'Handler' => '\SimpleSAML\Module\adfs\IdP\ADFS',
             'adfs:entityID' => $spEntityId,
-        ));
+        ]);
 
         $assertionLifetime = $spMetadata->getInteger('assertion.lifetime', null);
         if ($assertionLifetime === null) {
@@ -213,9 +341,9 @@ MSG;
             assert(false);
         }
 
-        $state = array(
-            'Responder' => array('\SimpleSAML\Module\adfs\IdP\ADFS', 'sendLogoutResponse'),
-        );
+        $state = [
+            'Responder' => ['\SimpleSAML\Module\adfs\IdP\ADFS', 'sendLogoutResponse'],
+        ];
         $assocId = null;
         // TODO: verify that this is really no problem for:
         //       a) SSP, because there's no caller SP.

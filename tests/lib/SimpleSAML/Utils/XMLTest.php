@@ -135,7 +135,7 @@ class XMLTest extends TestCase
         $element->appendChild(new \DOMText($data2));
 
         $res = XML::getDOMText($element);
-        $expected = $data1 . $data2 . $data1 . $data2;
+        $expected = $data1.$data2.$data1.$data2;
 
         $this->assertEquals($expected, $res);
     }
@@ -150,7 +150,7 @@ class XMLTest extends TestCase
     {
         $dom = new \DOMDocument();
         $element = $dom->appendChild(new \DOMElement('root'));
-        $comment = $element->appendChild(new \DOMComment(''));
+        $element->appendChild(new \DOMComment(''));
 
         XML::getDOMText($element);
     }
@@ -168,7 +168,7 @@ class XMLTest extends TestCase
         $dom->appendChild($element);
 
         $res = XML::getDOMChildren($dom, $name, $namespace_uri);
-        $expected = array($element);
+        $expected = [$element];
 
         $this->assertEquals($expected, $res);
     }
@@ -357,12 +357,12 @@ NOWDOC;
      */
     public function testIsValidMetadata()
     {
-        Configuration::loadFromArray(array(), '[ARRAY]', 'simplesaml');
+        Configuration::loadFromArray([], '[ARRAY]', 'simplesaml');
 
         $schema = 'saml-schema-metadata-2.0.xsd';
 
         $dom = $this->getMockBuilder('\DOMDocument')
-            ->setMethods(array('schemaValidate'))
+            ->setMethods(['schemaValidate'])
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -378,5 +378,14 @@ NOWDOC;
         $res = XML::isValid($dom, $schema);
 
         $this->assertTrue($res);
+    }
+
+    /**
+     * @covers \SimpleSAML\Utils\XML::checkSAMLMessage()
+     */
+    public function testCheckSAMLMessageInvalidType()
+    {
+        $this->setExpectedException('\InvalidArgumentException');
+        XML::checkSAMLMessage('<test></test>', 'blub');
     }
 }

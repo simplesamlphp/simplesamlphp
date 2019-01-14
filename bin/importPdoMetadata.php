@@ -14,7 +14,7 @@ foreach ($config['metadata.sources'] as $s) {
         $mdshp->initDatabase();
 
         foreach (glob("metadata/*.php") as $filename) {
-            $metadata = array();
+            $metadata = [];
             require_once $filename;
             $set = basename($filename, ".php");
             echo "importing set '$set'...".PHP_EOL;

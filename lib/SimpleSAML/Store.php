@@ -9,14 +9,14 @@ use SimpleSAML\Error\CriticalConfigurationError;
  *
  * @package SimpleSAMLphp
  */
-abstract class Store
+abstract class Store implements Utils\ClearableState
 {
     /**
      * Our singleton instance.
      *
      * This is false if the data store isn't enabled, and null if we haven't attempted to initialize it.
      *
-     * @var \SimpleSAML\Store|false|null
+     * @var \SimpleSAML\Store|bool|null
      */
     private static $instance;
 
@@ -100,4 +100,13 @@ abstract class Store
      * @param string $key The key.
      */
     abstract public function delete($type, $key);
+
+
+    /**
+     * Clear any SSP specific state, such as SSP environmental variables or cached internals.
+     */
+    public static function clearInternalState()
+    {
+        self::$instance = null;
+    }
 }

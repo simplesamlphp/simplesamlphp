@@ -10,7 +10,7 @@ if (!array_key_exists('StateId', $_GET)) {
 }
 $state = \SimpleSAML\Auth\State::loadState($_GET['StateId'], 'consent:request');
 
-$state['Responder'] = array('\SimpleSAML\Module\consent\Logout', 'postLogout');
+$state['Responder'] = ['\SimpleSAML\Module\consent\Logout', 'postLogout'];
 
 $idp = \SimpleSAML\IdP::getByState($state);
 $idp->handleLogoutRequest($state, null);

@@ -130,7 +130,7 @@ abstract class UserPassOrgBase extends \SimpleSAML\Auth\Source
      */
     protected function setUsernameOrgMethod($usernameOrgMethod)
     {
-        assert(in_array($usernameOrgMethod, array('none', 'allow', 'force'), true));
+        assert(in_array($usernameOrgMethod, ['none', 'allow', 'force'], true));
 
         $this->usernameOrgMethod = $usernameOrgMethod;
     }
@@ -205,7 +205,7 @@ abstract class UserPassOrgBase extends \SimpleSAML\Auth\Source
         $id = \SimpleSAML\Auth\State::saveState($state, self::STAGEID);
 
         $url = \SimpleSAML\Module::getModuleURL('core/loginuserpassorg.php');
-        $params = array('AuthState' => $id);
+        $params = ['AuthState' => $id];
         \SimpleSAML\Utils\HTTP::redirectTrustedURL($url, $params);
     }
 

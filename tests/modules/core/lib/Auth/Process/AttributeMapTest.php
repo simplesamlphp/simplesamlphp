@@ -1,11 +1,13 @@
 <?php
 
+namespace SimpleSAML\Test\Module\core\Auth\Process;
+
 use PHPUnit\Framework\TestCase;
 
 /**
  * Test for the core:AttributeMap filter.
  */
-class Test_Core_Auth_Process_AttributeMap extends TestCase
+class AttributeMapTest extends TestCase
 {
     /**
      * Helper function to run the filter with a given configuration.
@@ -196,5 +198,47 @@ class Test_Core_Auth_Process_AttributeMap extends TestCase
 
         $this->setExpectedException('\Exception');
         self::processFilter($config, $request);
+    }
+
+    public function testOverwrite()
+    {
+        $config = [
+            'attribute1' => 'attribute2',
+        ];
+        $request = [
+            'Attributes' => [
+                'attribute1' => ['value1'],
+                'attribute2' => ['value2'],
+            ],
+        ];
+
+        $processed = self::processFilter($config, $request);
+        $result = $processed['Attributes'];
+        $expected = [
+            'attribute2' => ['value1'],
+        ];
+
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testOverwriteReversed()
+    {
+        $config = [
+            'attribute1' => 'attribute2',
+        ];
+        $request = [
+            'Attributes' => [
+                'attribute2' => ['value2'],
+                'attribute1' => ['value1'],
+            ],
+        ];
+
+        $processed = self::processFilter($config, $request);
+        $result = $processed['Attributes'];
+        $expected = [
+            'attribute2' => ['value1'],
+        ];
+
+        $this->assertEquals($expected, $result);
     }
 }

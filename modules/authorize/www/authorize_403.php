@@ -15,8 +15,11 @@ $t = new \SimpleSAML\XHTML\Template($globalConfig, 'authorize:authorize_403.php'
 if (isset($state['Source']['auth'])) {
     $t->data['logoutURL'] = \SimpleSAML\Module::getModuleURL(
         'core/authenticate.php',
-        array('as' => $state['Source']['auth'])
+        ['as' => $state['Source']['auth']]
     )."&logout";
+}
+if (isset($state['authprocAuthorize_reject_msg'])) {
+    $t->data['reject_msg'] = $state['authprocAuthorize_reject_msg'];
 }
 header('HTTP/1.0 403 Forbidden');
 $t->show();

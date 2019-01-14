@@ -19,7 +19,7 @@ class IdP
      *
      * @var array
      */
-    private static $idpCache = array();
+    private static $idpCache = [];
 
     /**
      * The identifier for this IdP.
@@ -204,7 +204,7 @@ class IdP
         } elseif ($spMetadata->hasValue('OrganizationDisplayName')) {
             return $spMetadata->getLocalizedString('OrganizationDisplayName');
         } else {
-            return array('en' => $spEntityId);
+            return ['en' => $spEntityId];
         }
     }
 
@@ -307,7 +307,7 @@ class IdP
         if (isset($state['SPMetadata'])) {
             $spMetadata = $state['SPMetadata'];
         } else {
-            $spMetadata = array();
+            $spMetadata = [];
         }
 
         if (isset($state['core:SP'])) {
@@ -322,7 +322,7 @@ class IdP
 
         $pc = new Auth\ProcessingChain($idpMetadata, $spMetadata, 'idp');
 
-        $state['ReturnCall'] = array('\SimpleSAML\IdP', 'postAuthProc');
+        $state['ReturnCall'] = ['\SimpleSAML\IdP', 'postAuthProc'];
         $state['Destination'] = $spMetadata;
         $state['Source'] = $idpMetadata;
 
@@ -403,7 +403,7 @@ class IdP
         }
 
         $state['IdPMetadata'] = $this->getConfig()->toArray();
-        $state['ReturnCallback'] = array('\SimpleSAML\IdP', 'postAuth');
+        $state['ReturnCallback'] = ['\SimpleSAML\IdP', 'postAuth'];
 
         try {
             if ($needAuth) {
@@ -485,12 +485,12 @@ class IdP
         if ($assocId !== null) {
             $this->terminateAssociation($assocId);
             $session = Session::getSessionFromRequest();
-            $session->deleteData('core:idp-ssotime', $this->id.':'.$state['saml:SPEntityId']);
+            $session->deleteData('core:idp-ssotime', $this->id.';'.$state['saml:SPEntityId']);
         }
 
         // terminate the local session
         $id = Auth\State::saveState($state, 'core:Logout:afterbridge');
-        $returnTo = Module::getModuleURL('core/idp/resumelogout.php', array('id' => $id));
+        $returnTo = Module::getModuleURL('core/idp/resumelogout.php', ['id' => $id]);
 
         $this->authSource->logout($returnTo);
 
@@ -535,10 +535,10 @@ class IdP
     {
         assert(is_string($url));
 
-        $state = array(
-            'Responder'       => array('\SimpleSAML\IdP', 'finishLogoutRedirect'),
+        $state = [
+            'Responder'       => ['\SimpleSAML\IdP', 'finishLogoutRedirect'],
             'core:Logout:URL' => $url,
-        );
+        ];
 
         $this->handleLogoutRequest($state, null);
         assert(false);

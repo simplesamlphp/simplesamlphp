@@ -22,7 +22,7 @@ if (array_key_exists('pageid', $this->data)) {
         'jquery' => &$jquery,
         'page' => $this->data['pageid']
     ];
-        
+
     SimpleSAML\Module::callHooks('htmlinject', $hookinfo);
 }
 // - o - o - o - o - o - o - o - o - o - o - o - o -
@@ -43,7 +43,7 @@ header('X-Frame-Options: SAMEORIGIN');
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="viewport" content="initial-scale=1.0" />
-<script type="text/javascript" src="/<?php echo $this->data['baseurlpath']; ?>assets/js/src/script.js"></script>
+<script type="text/javascript" src="/<?php echo $this->data['baseurlpath']; ?>resources/script.js"></script>
 <title><?php
 if (array_key_exists('header', $this->data)) {
     echo $this->data['header'];
@@ -173,6 +173,8 @@ if (array_key_exists('autofocus', $this->data)) {
                 'ro' => 'Românește', // Romanian
                 'eu' => 'Euskara', // Basque
                 'af' => 'Afrikaans', // Afrikaans
+                'zu' => 'IsiZulu', // Zulu
+                'xh' => 'isiXhosa', // Xhosa
             ];
 
             $textarray = [];
@@ -203,4 +205,8 @@ if (!empty($this->data['htmlinject']['htmlContentPre'])) {
     foreach ($this->data['htmlinject']['htmlContentPre'] as $c) {
         echo $c;
     }
+}
+$config = \SimpleSAML\Configuration::getInstance();
+if(! $config->getBoolean('production', true)) {
+    echo '<div class="caution">' . $this->t('{preprodwarning:warning:warning}'). '</div>';
 }

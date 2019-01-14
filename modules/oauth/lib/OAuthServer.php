@@ -11,7 +11,7 @@ require_once(dirname(dirname(__FILE__)).'/libextinc/OAuth.php');
  * @package SimpleSAMLphp
  */
 
-class OAuthServer extends OAuthServer
+class OAuthServer extends \OAuthServer
 {
     public function __construct($store)
     {

@@ -72,14 +72,14 @@ $config = \SimpleSAML\Configuration::getInstance();
 // Make sure that the user has admin access rights
 \SimpleSAML\Utils\Auth::requireAdmin();
 
-$formats = array(
+$formats = [
     'bytes' => 'humanreadable',
     'bytes_read' => 'humanreadable',
     'bytes_written' => 'humanreadable',
     'limit_maxbytes' => 'humanreadable',
     'time' => 'tdate',
     'uptime' => 'hours',
-);
+];
 
 $statsraw = \SimpleSAML\Memcache::getStats();
 
@@ -95,7 +95,7 @@ foreach ($stats as $key => &$entry) {
 }
 
 $t = new \SimpleSAML\XHTML\Template($config, 'memcacheMonitor:memcachestat.tpl.php');
-$rowTitles = array(
+$rowTitles = [
     'accepting_conns' => \SimpleSAML\Locale\Translate::noop('{memcacheMonitor:memcachestat:accepting_conns}'),
     'auth_cmds' => \SimpleSAML\Locale\Translate::noop('{memcacheMonitor:memcachestat:auth_cmds}'),
     'auth_errors' => \SimpleSAML\Locale\Translate::noop('{memcacheMonitor:memcachestat:auth_errors}'),
@@ -146,10 +146,10 @@ $rowTitles = array(
     'touch_misses' => \SimpleSAML\Locale\Translate::noop('{memcacheMonitor:memcachestat:touch_misses}'),
     'uptime' => \SimpleSAML\Locale\Translate::noop('{memcacheMonitor:memcachestat:uptime}'),
     'version' => \SimpleSAML\Locale\Translate::noop('{memcacheMonitor:memcachestat:version}'),
-);
+];
 
 // Identify column headings
-$colTitles = array();
+$colTitles = [];
 foreach ($stats as $rowTitle => $rowData) {
     foreach ($rowData as $colTitle => $foo) {
         if (!in_array($colTitle, $colTitles, true)) {
@@ -159,7 +159,7 @@ foreach ($stats as $rowTitle => $rowData) {
 }
 
 if (array_key_exists('bytes', $statsraw) && array_key_exists('limit_maxbytes', $statsraw)) {
-    $usage = array();
+    $usage = [];
     $maxpix = 400;
     foreach ($statsraw['bytes'] as $key => $row_data) {
         $pix = floor($statsraw['bytes'][$key] * $maxpix / $statsraw['limit_maxbytes'][$key]);
@@ -172,5 +172,6 @@ if (array_key_exists('bytes', $statsraw) && array_key_exists('limit_maxbytes', $
 $t->data['title'] = 'Memcache stats';
 $t->data['rowTitles'] = $rowTitles;
 $t->data['colTitles'] = $colTitles;
+$t->data['statsraw'] = $statsraw;
 $t->data['table'] = $stats;
 $t->show();

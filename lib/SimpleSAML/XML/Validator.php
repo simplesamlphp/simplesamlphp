@@ -52,9 +52,9 @@ class Validator
         if ($publickey === null) {
             $publickey = false;
         } elseif (is_string($publickey)) {
-            $publickey = array(
+            $publickey = [
                 'PEM' => $publickey,
-            );
+            ];
         } else {
             assert($publickey === false || is_array($publickey));
         }
@@ -249,7 +249,7 @@ class Validator
         }
 
         if (!is_array($fingerprints)) {
-            $fingerprints = array($fingerprints);
+            $fingerprints = [$fingerprints];
         }
 
         // Normalize the fingerprints
@@ -327,7 +327,7 @@ class Validator
         while (openssl_error_string() !== false) {
         }
 
-        $res = openssl_x509_checkpurpose($certificate, X509_PURPOSE_ANY, array($caFile));
+        $res = openssl_x509_checkpurpose($certificate, X509_PURPOSE_ANY, [$caFile]);
 
         $errors = '';
         // Log errors
@@ -361,11 +361,11 @@ class Validator
         assert(is_string($certificate));
         assert(is_string($caFile));
 
-        $command = array(
+        $command = [
             'openssl', 'verify',
             '-CAfile', $caFile,
             '-purpose', 'any',
-        );
+        ];
 
         $cmdline = '';
         foreach ($command as $c) {
@@ -373,10 +373,10 @@ class Validator
         }
 
         $cmdline .= '2>&1';
-        $descSpec = array(
-            0 => array('pipe', 'r'),
-            1 => array('pipe', 'w'),
-        );
+        $descSpec = [
+            0 => ['pipe', 'r'],
+            1 => ['pipe', 'w'],
+        ];
         $process = proc_open($cmdline, $descSpec, $pipes);
         if (!is_resource($process)) {
             throw new \Exception('Failed to execute verification command: '.$cmdline);

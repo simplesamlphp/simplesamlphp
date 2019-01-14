@@ -10,8 +10,9 @@ function cron_hook_frontpage(&$links)
     assert(is_array($links));
     assert(array_key_exists('links', $links));
 
-    $links['config'][] = array(
+    $links['config'][] = [
         'href' => SimpleSAML\Module::getModuleURL('cron/croninfo.php'),
-        'text' => '{core:frontpage:link_cron}',
-    );
+        'text' => '{cron:cron:link_cron}',
+    ];
 }
+

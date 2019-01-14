@@ -3,6 +3,11 @@
 /config/
 /metadata/
 /cert/
+/www/assets/fonts/*
+/www/assets/js/*.js
+/www/assets/js/*.map
+/www/assets/css/*.css
+/www/assets/css/*.map
 
 !config/.gitkeep
 !metadata/.gitkeep

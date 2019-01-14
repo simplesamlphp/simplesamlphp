@@ -21,12 +21,12 @@ function sanitycheck_hook_cron(&$croninfo)
             return;
         }
 
-        $info = array();
-        $errors = array();
-        $hookinfo = array(
+        $info = [];
+        $errors = [];
+        $hookinfo = [
             'info' => &$info,
             'errors' => &$errors,
-        );
+        ];
 
         SimpleSAML\Module::callHooks('sanitycheck', $hookinfo);
 

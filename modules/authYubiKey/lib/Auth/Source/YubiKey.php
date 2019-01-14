@@ -107,7 +107,7 @@ class YubiKey extends \SimpleSAML\Auth\Source
 
         $id = \SimpleSAML\Auth\State::saveState($state, self::STAGEID);
         $url = \SimpleSAML\Module::getModuleURL('authYubiKey/yubikeylogin.php');
-        \SimpleSAML\Utils\HTTP::redirectTrustedURL($url, array('AuthState' => $id));
+        \SimpleSAML\Utils\HTTP::redirectTrustedURL($url, ['AuthState' => $id]);
     }
 
 
@@ -121,7 +121,7 @@ class YubiKey extends \SimpleSAML\Auth\Source
      *
      * @param string $authStateId  The identifier of the authentication state.
      * @param string $otp  The one time password entered-
-     * @return string  Error code in the case of an error.
+     * @return string|null  Error code in the case of an error.
      */
     public static function handleLogin($authStateId, $otp)
     {
@@ -158,6 +158,8 @@ class YubiKey extends \SimpleSAML\Auth\Source
 
         $state['Attributes'] = $attributes;
         \SimpleSAML\Auth\Source::completeAuth($state);
+
+        return null;
     }
 
     /**
@@ -191,7 +193,7 @@ class YubiKey extends \SimpleSAML\Auth\Source
             $yubi = new \Auth_Yubico($this->yubi_id, $this->yubi_key);
             $yubi->verify($otp);
             $uid = self::getYubiKeyPrefix($otp);
-            $attributes = array('uid' => array($uid));
+            $attributes = ['uid' => [$uid]];
         } catch (\Exception $e) {
             \SimpleSAML\Logger::info(
                 'YubiKey:'.$this->authId.': Validation error (otp '.$otp.'), debug output: '.$yubi->getLastResponse()

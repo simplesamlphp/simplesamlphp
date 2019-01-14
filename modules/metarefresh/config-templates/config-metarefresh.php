@@ -1,6 +1,6 @@
 <?php
 
-$config = array(
+$config = [
     /*
      * Global blacklist: entityIDs that should be excluded from ALL sets.
      */
@@ -16,12 +16,12 @@ $config = array(
      */
     #'conditionalGET' => true,
 
-    'sets' => array(
+    'sets' => [
 
-        'kalmar' => array(
-            'cron' => array('hourly'),
-            'sources' => array(
-                array(
+        'kalmar' => [
+            'cron' => ['hourly'],
+            'sources' => [
+                [
                     /*
                      * entityIDs that should be excluded from this src.
                      */
@@ -39,17 +39,17 @@ $config = array(
 
                     #'conditionalGET' => true,
                     'src' => 'https://kalmar2.org/simplesaml/module.php/aggregator/?id=kalmarcentral&set=saml2&exclude=norway',
-                    'certificates' => array(
+                    'certificates' => [
                         'current.crt',
                         'rollover.crt',
-                    ),
+                    ],
                     'validateFingerprint' => '59:1D:4B:46:70:46:3E:ED:A9:1F:CC:81:6D:C0:AF:2A:09:2A:A8:01',
-                    'template' => array(
-                        'tags' => array('kalmar'),
-                        'authproc' => array(
-                            51 => array('class' => 'core:AttributeMap', 'oid2name'),
-                        ),
-                    ),
+                    'template' => [
+                        'tags' => ['kalmar'],
+                        'authproc' => [
+                            51 => ['class' => 'core:AttributeMap', 'oid2name'],
+                        ],
+                    ],
 
                     /*
                      * The sets of entities to load, any combination of:
@@ -63,9 +63,9 @@ $config = array(
                      *
                      * This option takes precedence over the same option per metadata set.
                      */
-                    //'types' => array(),
-                ),
-            ),
+                    //'types' => [],
+                ],
+            ],
 
             'expireAfter' => 34560060, // Maximum 4 days cache time (3600*24*4)
             'outputDir' => 'metadata/metadata-kalmar-consuming/',
@@ -86,7 +86,7 @@ $config = array(
              *
              * All of them will be used by default.
              */
-            //'types' => array(),
-        ),
-    ),
-);
+            //'types' => [],
+        ],
+    ],
+];

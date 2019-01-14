@@ -80,7 +80,7 @@ class ScopeFromAttribute extends \SimpleSAML\Auth\ProcessingFilter
         $scopeIndex = strrpos($sourceAttrVal, '@');
 
         if ($scopeIndex !== false) {
-            $attributes[$this->targetAttribute] = array();
+            $attributes[$this->targetAttribute] = [];
             $scope = substr($sourceAttrVal, $scopeIndex + 1);
             $attributes[$this->targetAttribute][] = $scope;
             \SimpleSAML\Logger::debug('ScopeFromAttribute: Inserted new attribute '.

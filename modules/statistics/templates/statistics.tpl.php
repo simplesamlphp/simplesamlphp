@@ -1,7 +1,7 @@
 <?php
 $this->data['header'] = 'SimpleSAMLphp Statistics';
 
-$this->data['jquery'] = array('core' => true, 'ui' => true, 'css' => true);
+$this->data['jquery'] = ['core' => true, 'ui' => true, 'css' => true];
 
 $this->data['head'] = '<link rel="stylesheet" type="text/css" href="'.
     SimpleSAML\Module::getModuleURL("statistics/assets/css/statistics.css").'" />'."\n";
@@ -15,7 +15,7 @@ echo '<p>'.$this->data['available.rules'][$this->data['selected.rule']]['descr']
 
 // Report settings
 echo '<table class="selecttime">';
-echo '<tr><td class="selecttime_icon"><img src="'.SimpleSAML\Utils\HTTP::getBaseUrl().
+echo '<tr><td class="selecttime_icon"><img src="'.SimpleSAML\Utils\HTTP::getBaseURL().
     'resources/icons/crystal_project/kchart.32x32.png" alt="Report settings" /></td>';
 
 // Select report
@@ -75,10 +75,10 @@ echo '</table>';
 
 // Select time and date
 echo '<table class="selecttime">';
-echo '<tr><td class="selecttime_icon"><img src="'.SimpleSAML\Utils\HTTP::getBaseUrl().
+echo '<tr><td class="selecttime_icon"><img src="'.SimpleSAML\Utils\HTTP::getBaseURL().
     'resources/icons/crystal_project/date.32x32.png" alt="Select date and time" /></td>';
 
-if (isset($this->data['available.times.prev'])) {
+if (isset($this->data['available_times_prev'])) {
     echo '<td><a href="'.$this->data['get_times_prev'].'">« Previous</a></td>';
 } else {
     echo '<td class="selecttime_link_grey">« Previous</td>';
@@ -91,10 +91,10 @@ foreach ($this->data['post_res'] as $k => $v) {
     echo '<input type="hidden" name="'.$k.'" value="'.htmlspecialchars($v).'" />'."\n";
 }
 
-if (!empty($this->data['available.timeres'])) {
+if (!empty($this->data['available_timeres'])) {
     echo '<select onchange="submit();" name="res">';
-    foreach ($this->data['available.timeres'] as $key => $timeresname) {
-        if ($key == $this->data['selected.timeres']) {
+    foreach ($this->data['available_timeres'] as $key => $timeresname) {
+        if ($key == $this->data['selected_timeres']) {
             echo '<option selected="selected" value="'.$key.'">'.$timeresname.'</option>';
         } else {
             echo '<option  value="'.$key.'">'.$timeresname.'</option>';
@@ -111,10 +111,10 @@ foreach ($this->data['post_time'] as $k => $v) {
     echo '<input type="hidden" name="'.$k.'" value="'.htmlspecialchars($v).'" />'."\n";
 }
 
-if (!empty($this->data['available.times'])) {
+if (!empty($this->data['available_times'])) {
     echo '<select onchange="submit();" name="time">';
-    foreach ($this->data['available.times'] as $key => $timedescr) {
-        if ($key == $this->data['selected.time']) {
+    foreach ($this->data['available_times'] as $key => $timedescr) {
+        if ($key == $this->data['selected_time']) {
             echo '<option selected="selected" value="'.$key.'">'.$timedescr.'</option>';
         } else {
             echo '<option  value="'.$key.'">'.$timedescr.'</option>';
@@ -124,7 +124,7 @@ if (!empty($this->data['available.times'])) {
 }
 echo '</form></td>';
 
-if (isset($this->data['available.times.next'])) {
+if (isset($this->data['available_times_next'])) {
     echo '<td class="td_right td_next_right"><a href="'.$this->data['get_times_next'].'">Next »</a></td>';
 } else {
     echo '<td class="td_right selecttime_link_grey td_next_right">Next »</td>';
@@ -154,7 +154,7 @@ if (!empty($this->data['results'])) {
     echo '<select onchange="submit();" name="rule2">';
     echo '	<option value="_">None</option>';
     foreach ($this->data['available_rules'] as $key => $rule) {
-        if ($key === $this->data['selected.rule2']) {
+        if ($key === $this->data['selected_rule2']) {
             echo '<option selected="selected" value="'.$key.'">'.$rule['name'].'</option>';
         } else {
             echo '<option value="'.$key.'">'.$rule['name'].'</option>';
@@ -167,7 +167,7 @@ if (!empty($this->data['results'])) {
     /**
      * Handle table view - - - - - -
      */
-    $classint = array('odd', 'even');
+    $classint = ['odd', 'even'];
     $i = 0;
     echo '<div id="table" class="tabset_content">';
 

@@ -12,24 +12,24 @@ $logouturl = \SimpleSAML\Utils\Auth::getAdminLogoutURL();
 $loginurl = \SimpleSAML\Utils\Auth::getAdminLoginURL();
 $isadmin = \SimpleSAML\Utils\Auth::isAdmin();
 
-$links = array();
-$links_welcome = array();
-$links_config = array();
-$links_auth = array();
-$links_federation = array();
+$links = [];
+$links_welcome = [];
+$links_config = [];
+$links_auth = [];
+$links_federation = [];
 
-$allLinks = array(
+$allLinks = [
     'links'      => &$links,
     'welcome'    => &$links_welcome,
     'config'     => &$links_config,
     'auth'       => &$links_auth,
     'federation' => &$links_federation,
-);
+];
 
-$links_welcome[] = array(
+$links_welcome[] = [
     'href' => 'https://simplesamlphp.org/docs/stable/',
     'text' => '{core:frontpage:doc_header}',
-);
+];
 
 \SimpleSAML\Module::callHooks('frontpage', $allLinks);
 

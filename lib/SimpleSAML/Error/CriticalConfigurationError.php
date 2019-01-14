@@ -28,12 +28,12 @@ class CriticalConfigurationError extends ConfigurationError
      *
      * @var array
      */
-    private static $minimum_config = array(
+    private static $minimum_config = [
         'logging.handler' => 'errorlog',
         'logging.level'  => \SimpleSAML\Logger::DEBUG,
         'errorreporting' => false,
         'debug'          => true,
-    );
+    ];
 
 
     /**

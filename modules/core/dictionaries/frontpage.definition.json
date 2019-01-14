@@ -110,6 +110,12 @@
 	"link_cleardiscochoices": {
 		"en": "Delete my choices of IdP in the IdP discovery services"
 	},
+	"link_oauth": {
+		"en": "OAuth Consumer Registry"
+	},
+	"link_metarefresh": {
+		"en": "Metarefresh: fetch metadata"
+	},
 	"welcome": {
 		"en": "Welcome"
 	},

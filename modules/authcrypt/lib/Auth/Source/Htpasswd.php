@@ -25,7 +25,7 @@ class Htpasswd extends \SimpleSAML\Module\core\Auth\UserPassBase
      *
      * @var array
      */
-    private $attributes = array();
+    private $attributes = [];
 
 
     /**
@@ -44,7 +44,7 @@ class Htpasswd extends \SimpleSAML\Module\core\Auth\UserPassBase
         // Call the parent constructor first, as required by the interface
         parent::__construct($info, $config);
 
-        $this->users = array();
+        $this->users = [];
 
         if (!$htpasswd = file_get_contents($config['htpasswd_file'])) {
             throw new \Exception('Could not read '.$config['htpasswd_file']);
@@ -88,7 +88,7 @@ class Htpasswd extends \SimpleSAML\Module\core\Auth\UserPassBase
                 $crypted = $matches[1];
 
                 // This is about the only attribute we can add
-                $attributes = array_merge(array('uid' => array($username)), $this->attributes);
+                $attributes = array_merge(['uid' => [$username]], $this->attributes);
 
                 // Traditional crypt(3)
                 if (\SimpleSAML\Utils\Crypto::secureCompare($crypted, crypt($password, $crypted))) {
@@ -105,12 +105,9 @@ class Htpasswd extends \SimpleSAML\Module\core\Auth\UserPassBase
                     return $attributes;
                 }
 
-                // SHA1 or plain-text
+                // PASSWORD_BCRYPT
                 if (\SimpleSAML\Utils\Crypto::pwValid($crypted, $password)) {
                     \SimpleSAML\Logger::debug('User '.$username.' authenticated successfully');
-                    \SimpleSAML\Logger::warning(
-                        'SHA1 and PLAIN TEXT authentication are insecure. Please consider using something else.'
-                    );
                     return $attributes;
                 }
                 throw new \SimpleSAML\Error\Error('WRONGUSERPASS');

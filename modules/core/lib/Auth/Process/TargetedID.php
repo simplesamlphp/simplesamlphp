@@ -126,20 +126,20 @@ class TargetedID extends \SimpleSAML\Auth\ProcessingFilter
         if ($this->generateNameId) {
             // Convert the targeted ID to a SAML 2.0 name identifier element
             $nameId = new \SAML2\XML\saml\NameID();
-            $nameId->value = $uid;
-            $nameId->Format = \SAML2\Constants::NAMEID_PERSISTENT;
+            $nameId->setValue($uid);
+            $nameId->setFormat(\SAML2\Constants::NAMEID_PERSISTENT);
 
             if (isset($state['Source']['entityid'])) {
-                $nameId->NameQualifier = $state['Source']['entityid'];
+                $nameId->setNameQualifier($state['Source']['entityid']);
             }
             if (isset($state['Destination']['entityid'])) {
-                $nameId->SPNameQualifier = $state['Destination']['entityid'];
+                $nameId->setSPNameQualifier($state['Destination']['entityid']);
             }
         } else {
             $nameId = $uid;
         }
 
-        $state['Attributes']['eduPersonTargetedID'] = array($nameId);
+        $state['Attributes']['eduPersonTargetedID'] = [$nameId];
     }
 
     /**

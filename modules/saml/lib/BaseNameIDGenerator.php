@@ -93,26 +93,26 @@ abstract class BaseNameIDGenerator extends \SimpleSAML\Auth\ProcessingFilter
         }
 
         $nameId = new \SAML2\XML\saml\NameID();
-        $nameId->value = $value;
+        $nameId->setValue($value);
 
         if ($this->nameQualifier === true) {
             if (isset($state['IdPMetadata']['entityid'])) {
-                $nameId->NameQualifier = $state['IdPMetadata']['entityid'];
+                $nameId->setNameQualifier($state['IdPMetadata']['entityid']);
             } else {
                 \SimpleSAML\Logger::warning('No IdP entity ID, unable to set NameQualifier.');
             }
         } elseif (is_string($this->nameQualifier)) {
-            $nameId->NameQualifier = $this->nameQualifier;
+            $nameId->setNameQualifier($this->nameQualifier);
         }
 
         if ($this->spNameQualifier === true) {
             if (isset($state['SPMetadata']['entityid'])) {
-                $nameId->SPNameQualifier = $state['SPMetadata']['entityid'];
+                $nameId->setSPNameQualifier($state['SPMetadata']['entityid']);
             } else {
                 \SimpleSAML\Logger::warning('No SP entity ID, unable to set SPNameQualifier.');
             }
         } elseif (is_string($this->spNameQualifier)) {
-            $nameId->SPNameQualifier = $this->spNameQualifier;
+            $nameId->setSPNameQualifier($this->spNameQualifier);
         }
 
         $state['saml:NameID'][$this->format] = $nameId;

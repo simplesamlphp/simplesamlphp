@@ -94,7 +94,7 @@ class IdPDisco
      *
      * @var array
      */
-    protected $scopedIDPList = array();
+    protected $scopedIDPList = [];
 
     /**
      * The URL the user should be redirected to after choosing an IdP.
@@ -214,13 +214,13 @@ class IdPDisco
     {
         $prefixedName = 'idpdisco_'.$this->instance.'_'.$name;
 
-        $params = array(
+        $params = [
             // we save the cookies for 90 days
             'lifetime' => (60 * 60 * 24 * 90),
             // the base path for cookies. This should be the installation directory for SimpleSAMLphp
             'path'     => $this->config->getBasePath(),
             'httponly' => false,
-        );
+        ];
 
         \SimpleSAML\Utils\HTTP::setCookie($prefixedName, $value, $params, false);
     }
@@ -290,7 +290,7 @@ class IdPDisco
          * back. Therefore we do some quick and dirty parsing of the query string.
          */
         $qstr = $_SERVER['QUERY_STRING'];
-        $matches = array();
+        $matches = [];
         if (preg_match('/(?:^|&)idp_([^=]+)=/', $qstr, $matches)) {
             return $this->validateIdP(urldecode($matches[1]));
         }
@@ -459,7 +459,7 @@ class IdPDisco
      */
     protected function getIdPList()
     {
-        $idpList = array();
+        $idpList = [];
         foreach ($this->metadataSets as $metadataSet) {
             $newList = $this->metadata->getList($metadataSet);
             /*
@@ -512,23 +512,23 @@ class IdPDisco
      */
     protected function start()
     {
-        $idp = $this->getTargetIdp();
+        $idp = $this->getTargetIdP();
         if ($idp !== null) {
             $extDiscoveryStorage = $this->config->getString('idpdisco.extDiscoveryStorage', null);
             if ($extDiscoveryStorage !== null) {
                 $this->log('Choice made ['.$idp.'] (Forwarding to external discovery storage)');
-                \SimpleSAML\Utils\HTTP::redirectTrustedURL($extDiscoveryStorage, array(
+                \SimpleSAML\Utils\HTTP::redirectTrustedURL($extDiscoveryStorage, [
                     'entityID'      => $this->spEntityId,
                     'IdPentityID'   => $idp,
                     'returnIDParam' => $this->returnIdParam,
                     'isPassive'     => 'true',
                     'return'        => $this->returnURL
-                ));
+                ]);
             } else {
                 $this->log(
                     'Choice made ['.$idp.'] (Redirecting the user back. returnIDParam='.$this->returnIdParam.')'
                 );
-                \SimpleSAML\Utils\HTTP::redirectTrustedURL($this->returnURL, array($this->returnIdParam => $idp));
+                \SimpleSAML\Utils\HTTP::redirectTrustedURL($this->returnURL, [$this->returnIdParam => $idp]);
             }
         }
 
@@ -567,7 +567,7 @@ class IdPDisco
             );
             \SimpleSAML\Utils\HTTP::redirectTrustedURL(
                 $this->returnURL,
-                array($this->returnIdParam => $idpintersection[0])
+                [$this->returnIdParam => $idpintersection[0]]
             );
         }
 
@@ -595,31 +595,34 @@ class IdPDisco
         $tryLanguages = [0 => $language, 1 => $defaultLanguage, 2 => $fallbackLanguage];
 
         $newlist = [];
-        foreach($idpList as $entityid => $data) {
+        foreach ($idpList as $entityid => $data) {
             $newlist[$entityid]['entityid'] = $entityid;
-            foreach ( $tryLanguages as $lang ) {
-                if ( $name = $this->getEntityDisplayName($data, $lang) ) {
+            foreach ($tryLanguages as $lang) {
+                if ($name = $this->getEntityDisplayName($data, $lang)) {
                     $newlist[$entityid]['name'] = $name;
                     continue;
                 }
             }
-            if ( empty($newlist[$entityid]['name']) ) {
+            if (empty($newlist[$entityid]['name'])) {
                 $newlist[$entityid]['name'] = $entityid;
             }
-            foreach ( $tryLanguages as $lang ) {
-                if ( !empty($data['description'][$lang]) ) {
+            foreach ($tryLanguages as $lang) {
+                if (!empty($data['description'][$lang])) {
                     $newlist[$entityid]['description'] = $data['description'][$lang];
                     continue;
                 }
             }
-            if ( !empty($data['icon']) ) {
+            if (!empty($data['icon'])) {
                 $newlist[$entityid]['icon'] = $data['icon'];
                 $newlist[$entityid]['iconurl'] = \SimpleSAML\Utils\HTTP::resolveURL($data['icon']);
             }
         }
-        usort($newlist, function($idpentry1, $idpentry2) {
-            return strcasecmp($idpentry1['name'],$idpentry2['name']);
-            });
+        usort(
+            $newlist,
+            function ($idpentry1, $idpentry2) {
+                return strcasecmp($idpentry1['name'], $idpentry2['name']);
+            }
+        );
 
         $t->data['idplist'] = $newlist;
         $t->data['preferredidp'] = $preferredIdP;
@@ -633,11 +636,11 @@ class IdPDisco
 
     private function getEntityDisplayName(array $idpData, $language)
     {
-        if(isset($idpData['UIInfo']['DisplayName'][$language]) ) {
+        if (isset($idpData['UIInfo']['DisplayName'][$language])) {
             return $idpData['UIInfo']['DisplayName'][$language];
-        } elseif ( isset($idpData['name'][$language]) ) {
+        } elseif (isset($idpData['name'][$language])) {
             return $idpData['name'][$language];
-        } elseif ( isset($idpData['OrganizationDisplayName'][$language]) ) {
+        } elseif (isset($idpData['OrganizationDisplayName'][$language])) {
             return $idpData['OrganizationDisplayName'][$language];
         }
         return null;

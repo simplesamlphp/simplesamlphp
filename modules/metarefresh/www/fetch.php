@@ -7,7 +7,7 @@ $mconfig = \SimpleSAML\Configuration::getOptionalConfig('config-metarefresh.php'
 
 \SimpleSAML\Logger::setCaptureLog(true);
 
-$sets = $mconfig->getConfigList('sets', array());
+$sets = $mconfig->getConfigList('sets', []);
 
 foreach ($sets as $setkey => $set) {
     \SimpleSAML\Logger::info('[metarefresh]: Executing set ['.$setkey.']');
@@ -22,17 +22,17 @@ foreach ($sets as $setkey => $set) {
         $metaloader = new \SimpleSAML\Module\metarefresh\MetaLoader($expire);
 
         # Get global black/whitelists
-        $blacklist = $mconfig->getArray('blacklist', array());
-        $whitelist = $mconfig->getArray('whitelist', array());
+        $blacklist = $mconfig->getArray('blacklist', []);
+        $whitelist = $mconfig->getArray('whitelist', []);
 
         // get global type filters
-        $available_types = array(
+        $available_types = [
             'saml20-idp-remote',
             'saml20-sp-remote',
             'shib13-idp-remote',
             'shib13-sp-remote',
             'attributeauthority-remote'
-        );
+        ];
         $set_types = $set->getArrayize('types', $available_types);
 
         foreach ($set->getArray('sources') as $source) {
@@ -64,7 +64,7 @@ foreach ($sets as $setkey => $set) {
         $outputDir = $set->getString('outputDir');
         $outputDir = $config->resolvePath($outputDir);
 
-        $outputFormat = $set->getValueValidate('outputFormat', array('flatfile', 'serialize'), 'flatfile');
+        $outputFormat = $set->getValueValidate('outputFormat', ['flatfile', 'serialize'], 'flatfile');
         switch ($outputFormat) {
             case 'flatfile':
                 $metaloader->writeMetadataFiles($outputDir);

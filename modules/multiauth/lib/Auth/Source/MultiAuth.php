@@ -38,6 +38,11 @@ class MultiAuth extends \SimpleSAML\Auth\Source
     private $sources;
 
     /**
+     * @var string|null preselect source in filter module configuration
+     */
+    private $preselect;
+
+    /**
      * Constructor for this authentication source.
      *
      * @param array $info Information about this authentication source.
@@ -55,25 +60,35 @@ class MultiAuth extends \SimpleSAML\Auth\Source
             throw new \Exception('The required "sources" config option was not found');
         }
 
+        if (array_key_exists('preselect', $config) && is_string($config['preselect'])) {
+            if (!array_key_exists($config['preselect'], $config['sources'])) {
+                throw new \Exception('The optional "preselect" config option must be present in "sources"');
+            }
+
+            $this->preselect = $config['preselect'];
+        }
+
         $globalConfiguration = \SimpleSAML\Configuration::getInstance();
         $defaultLanguage = $globalConfiguration->getString('language.default', 'en');
         $authsources = \SimpleSAML\Configuration::getConfig('authsources.php');
-        $this->sources = array();
+        $this->sources = [];
         foreach ($config['sources'] as $source => $info) {
             if (is_int($source)) {
                 // Backwards compatibility
                 $source = $info;
-                $info = array();
+                $info = [];
             }
 
             if (array_key_exists('text', $info)) {
                 $text = $info['text'];
             } else {
-                $text = array($defaultLanguage => $source);
+                $text = [$defaultLanguage => $source];
             }
 
             if (array_key_exists('help', $info)) {
                 $help = $info['help'];
+            } else {
+                $help = null;
             }
             if (array_key_exists('css-class', $info)) {
                 $css_class = $info['css-class'];
@@ -87,12 +102,12 @@ class MultiAuth extends \SimpleSAML\Auth\Source
                 }
             }
 
-            $this->sources[] = array(
+            $this->sources[] = [
                 'source' => $source,
                 'text' => $text,
                 'help' => $help,
                 'css_class' => $css_class,
-            );
+            ];
         }
     }
 
@@ -115,6 +130,10 @@ class MultiAuth extends \SimpleSAML\Auth\Source
         $state[self::AUTHID] = $this->authId;
         $state[self::SOURCESID] = $this->sources;
 
+        if (!\array_key_exists('multiauth:preselect', $state) && is_string($this->preselect)) {
+            $state['multiauth:preselect'] = $this->preselect;
+        }
+
         // Save the $state array, so that we can restore if after a redirect
         $id = \SimpleSAML\Auth\State::saveState($state, self::STAGEID);
 
@@ -122,9 +141,9 @@ class MultiAuth extends \SimpleSAML\Auth\Source
          * saved state array as a parameter to the login form
          */
         $url = \SimpleSAML\Module::getModuleURL('multiauth/selectsource.php');
-        $params = array('AuthState' => $id);
+        $params = ['AuthState' => $id];
 
-        // Allowes the user to specify the auth souce to be used
+        // Allows the user to specify the auth source to be used
         if (isset($_GET['source'])) {
             $params['source'] = $_GET['source'];
         }
@@ -221,13 +240,13 @@ class MultiAuth extends \SimpleSAML\Auth\Source
         $cookieName = 'multiauth_source_'.$this->authId;
 
         $config = \SimpleSAML\Configuration::getInstance();
-        $params = array(
+        $params = [
             // We save the cookies for 90 days
             'lifetime' => 7776000, //60*60*24*90
             // The base path for cookies. This should be the installation directory for SimpleSAMLphp.
             'path' => $config->getBasePath(),
             'httponly' => false,
-        );
+        ];
 
         \SimpleSAML\Utils\HTTP::setCookie($cookieName, $source, $params, false);
     }

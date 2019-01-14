@@ -32,7 +32,7 @@ abstract class MetaDataStorageSource
     {
         assert(is_array($sourcesConfig));
 
-        $sources = array();
+        $sources = [];
 
         foreach ($sourcesConfig as $sourceConfig) {
             if (!is_array($sourceConfig)) {
@@ -111,7 +111,7 @@ abstract class MetaDataStorageSource
      */
     public function getMetadataSet($set)
     {
-        return array();
+        return [];
     }
 
 
@@ -176,7 +176,7 @@ abstract class MetaDataStorageSource
         $metadataSet = $this->getMetadataSet($set);
 
         foreach ($metadataSet as $index => $entry) {
-            $cidrHints = array();
+            $cidrHints = [];
             
             // support hint.cidr for idp discovery
             if (array_key_exists('hint.cidr', $entry) && is_array($entry['hint.cidr'])) {

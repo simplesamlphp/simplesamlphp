@@ -42,7 +42,7 @@ Edit `config.php`, and enable the SAML 2.0 IdP:
 You must generate a certificate for your IdP.
 Here is an example of an openssl command to generate a new key and a self signed certificate to use for signing SAML messages:
 
-    openssl req -newkey rsa:2048 -new -x509 -days 3652 -nodes -out googleappsidp.crt -keyout googleappsidp.pem
+    openssl req -newkey rsa:3072 -new -x509 -days 3652 -nodes -out googleappsidp.crt -keyout googleappsidp.pem
 
 The certificate above will be valid for 10 years.
 
@@ -100,17 +100,17 @@ The next step is to create an authentication source with this module. An authent
 In this example we will use `example-userpass`, and hence that section is what matters and will be used.
 
 	<?php
-	$config = array(
-		'example-userpass' => array(
+	$config = [
+		'example-userpass' => [
 			'exampleauth:UserPass',
-			'student:studentpass' => array(
-				'uid' => array('student'),
-			),
-			'employee:employeepass' => array(
-				'uid' => array('employee'),
-			),
-		),
-	);
+			'student:studentpass' => [
+				'uid' => ['student'],
+			],
+			'employee:employeepass' => [
+				'uid' => ['employee'],
+			],
+		],
+	];
 	?>
 
 This configuration creates two users - `student` and `employee`, with the passwords `studentpass` and `employeepass`. The username and password are stored in the array index `student:studentpass` for the `student`-user. The attributes (only `uid` in this example) will be returned by the IdP when the user logs on.
@@ -127,7 +127,7 @@ If you want to setup a SAML 2.0 IdP for Google Apps, you need to configure two m
 This is the configuration of the IdP itself. Here is some example config:
 
 	// The SAML entity ID is the index of this config. Dynamic:X will automatically generate an entity ID (recommended)
-	$metadata['__DYNAMIC:1__'] => array(
+	$metadata['__DYNAMIC:1__'] => [
 		
 		// The hostname of the server (VHOST) that this SAML entity will use.
 		'host'				=>	'__DEFAULT__',
@@ -137,7 +137,7 @@ This is the configuration of the IdP itself. Here is some example config:
 		'certificate'  => 'googleappsidp.crt',
 		
 		'auth' => 'example-userpass',
-	)
+	]
 
 **Note**: You can only have one entry in the file with host equal to `__DEFAULT__`, therefore you should replace the existing entry with this one, instead of adding this entry as a new entry in the file. 
 
@@ -152,12 +152,12 @@ In the `saml20-sp-remote.php` file we will configure an entry for G Suite (Googl
        * at G Suite. E.g. if your google account is foo.com, and you have a user with email john@foo.com, then you
        * must set the simplesaml.nameidattribute to be the name of an attribute that for this user has the value of 'john'.
        */
-      $metadata['https://www.google.com/a/g.feide.no'] => array(
+      $metadata['https://www.google.com/a/g.feide.no'] => [
         'AssertionConsumerService'   => 'https://www.google.com/a/g.feide.no/acs', 
         'NameIDFormat'               => 'urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress',
         'simplesaml.nameidattribute' => 'uid',
         'simplesaml.attributes'      => false
-      );
+      ];
 
 You must also map some attributes received from the authentication module into email field sent to Google Apps. In this example, the  `uid` attribute is set.  When you later configure the IdP to connect to a LDAP directory or some other authentication source, make sure that the `uid` attribute is set properly, or you can configure another attribute to use here. The `uid` attribute contains the local part of the user name.
 

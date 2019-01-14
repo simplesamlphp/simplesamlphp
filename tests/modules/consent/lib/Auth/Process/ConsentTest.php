@@ -15,8 +15,8 @@ class ConsentTest extends TestCase
 {
     public function setUp()
     {
-        $this->config = Configuration::loadFromArray(array('module.enable' => array('consent' => true)), '[ARRAY]', 'simplesaml');
-        \SimpleSAML_Configuration::setPreLoadedConfig($this->config, 'config.php');
+        $this->config = Configuration::loadFromArray(['module.enable' => ['consent' => true]], '[ARRAY]', 'simplesaml');
+        Configuration::setPreLoadedConfig($this->config, 'config.php');
     }
 
     /**
@@ -40,82 +40,82 @@ class ConsentTest extends TestCase
     public function testCheckDisable()
     {
         // test consent disable regex with match
-        $config = array();
+        $config = [];
 
         // test consent disable with match on specific SP entityid
-        $request = array(
-            'Source'     => array(
+        $request = [
+            'Source'     => [
                 'entityid' => 'https://idp.example.org',
                 'metadata-set' => 'saml20-idp-local',
-                'consent.disable' => array(
+                'consent.disable' => [
                     'https://valid.flatstring.example.that.does.not.match',
-                ),
-                'SingleSignOnService' => array(
-                    array(
+                ],
+                'SingleSignOnService' => [
+                    [
                         'Binding'  => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
                         'Location' => 'https://idp.example.org/saml2/idp/SSOService.php',
-                    ),
-                ),
-            ),
-            'Destination' => array(
+                    ],
+                ],
+            ],
+            'Destination' => [
                 // valid entityid equal to the last one in the consent.disable array
                 'entityid' => 'https://sp.example.org/my-sp',
                 'metadata-set' => 'saml20-sp-remote',
-                'consent.disable' => array(
-                    array('type' => 'regex', 'pattern' => '/invalid/i'),
+                'consent.disable' => [
+                    ['type' => 'regex', 'pattern' => '/invalid/i'],
                     'https://sp.example.org/my-sp', // accept the SP that has this specific entityid
                     'https://idp.example.org',
-                ),
-            ),
+                ],
+            ],
             'UserID' => 'jdoe',
-            'Attributes' => array(
-                'eduPersonPrincipalName' => array('jdoe@example.com'),
-            ),
-        );
+            'Attributes' => [
+                'eduPersonPrincipalName' => ['jdoe@example.com'],
+            ],
+        ];
         $result = $this->processFilter($config, $request);
         // the state should NOT have changed because NO consent should be necessary (match)
         $this->assertEquals($request, $result);
 
         // test consent disable with match on SP through regular expression
-        $request = array(
-            'Source'     => array(
+        $request = [
+            'Source'     => [
                 'entityid' => 'https://idp.example.org',
                 'metadata-set' => 'saml20-idp-local',
-                'consent.disable' => array(
-                    array(), // invalid consent option array should be ignored
+                'consent.disable' => [
+                    [], // invalid consent option array should be ignored
                     1234, // bad option
-                    array(''), // no type
-                    array('type'=>'invalid'), // invalid consent option type should be ignored
-                    array('type'=>'regex'), // regex consent option without pattern should be ignored
-                    array('type'=>'regex', 'pattern'=>'/.*\.valid.regex\.that\.does\.not\.match.*/i'),
+                    [''], // no type
+                    ['type'=>'invalid'], // invalid consent option type should be ignored
+                    ['type'=>'regex'], // regex consent option without pattern should be ignored
+                    ['type'=>'regex', 'pattern'=>'/.*\.valid.regex\.that\.does\.not\.match.*/i'],
                     // accept any SP that has an entityid that contains the string ".example.org"
-                    array('type'=>'regex', 'pattern'=>'/.*\.example\.org\/.*/i'),
-                ),
-                'SingleSignOnService' => array(
-                    array(
+                    ['type'=>'regex', 'pattern'=>'/.*\.example\.org\/.*/i'],
+                ],
+                'SingleSignOnService' => [
+                    [
                         'Binding'  => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
                         'Location' => 'https://idp.example.org/saml2/idp/SSOService.php',
-                    ),
-                ),
-            ),
-            'Destination' => array(
+                    ],
+                ],
+            ],
+            'Destination' => [
                 'entityid' => 'https://sp.example.org/my-sp', // sp contains the string ".example.org"
                 'metadata-set' => 'saml20-sp-remote',
-            ),
+            ],
             'UserID' => 'jdoe',
-            'Attributes' => array(
-                'eduPersonPrincipalName' => array('jdoe@example.com'),
-            ),
-        );
+            'Attributes' => [
+                'eduPersonPrincipalName' => ['jdoe@example.com'],
+            ],
+        ];
         $result = $this->processFilter($config, $request);
         // the state should NOT have changed because NO consent should be necessary (match)
         $this->assertEquals($request, $result);
 
         // test corner cases
-        $request['Source']['consent.disable'] = array(
+        $request['Source']['consent.disable'] = [
             'https://valid.flatstring.example.that.does.not.match',
-            array('foo' => 'bar'),
-        );
+            ['foo' => 'bar'],
+        ];
         $request['Destination']['consent.disable'] = 1;
         $result = $this->processFilter($config, $request);
         // the state should NOT have changed because NO consent should be necessary (match)
@@ -124,16 +124,16 @@ class ConsentTest extends TestCase
 
     public function testAttributeHashIsConsistentWhenOrderOfValuesChange()
     {
-        $attributes1 = array(
-            'attribute1' => array('val1', 'val2'),
-            'attribute2' => array('val1', 'val2')
-        );
+        $attributes1 = [
+            'attribute1' => ['val1', 'val2'],
+            'attribute2' => ['val1', 'val2']
+        ];
         $attributeHash1 = \SimpleSAML\Module\consent\Auth\Process\Consent::getAttributeHash($attributes1, true);
 
-        $attributes2 = array(
-            'attribute1' => array('val1', 'val2'),
-            'attribute2' => array('val2', 'val1')
-        );
+        $attributes2 = [
+            'attribute1' => ['val1', 'val2'],
+            'attribute2' => ['val2', 'val1']
+        ];
         $attributeHash2 = \SimpleSAML\Module\consent\Auth\Process\Consent::getAttributeHash($attributes2, true);
 
         $this->assertEquals($attributeHash1, $attributeHash2, "Hash is not the same when the order of values changes");
@@ -141,16 +141,16 @@ class ConsentTest extends TestCase
 
     public function testAttributeHashIsConsistentWhenOrderOfAttributesChange()
     {
-        $attributes1 = array(
-            'attribute2' => array('val1', 'val2'),
-            'attribute1' => array('val1', 'val2')
-        );
+        $attributes1 = [
+            'attribute2' => ['val1', 'val2'],
+            'attribute1' => ['val1', 'val2']
+        ];
         $attributeHash1 = \SimpleSAML\Module\consent\Auth\Process\Consent::getAttributeHash($attributes1, true);
 
-        $attributes2 = array(
-            'attribute1' => array('val1', 'val2'),
-            'attribute2' => array('val1', 'val2')
-        );
+        $attributes2 = [
+            'attribute1' => ['val1', 'val2'],
+            'attribute2' => ['val1', 'val2']
+        ];
         $attributeHash2 = \SimpleSAML\Module\consent\Auth\Process\Consent::getAttributeHash($attributes2, true);
 
         $this->assertEquals(
@@ -162,16 +162,16 @@ class ConsentTest extends TestCase
 
     public function testAttributeHashIsConsistentWithoutValuesWhenOrderOfAttributesChange()
     {
-        $attributes1 = array(
-            'attribute2' => array('val1', 'val2'),
-            'attribute1' => array('val1', 'val2')
-        );
+        $attributes1 = [
+            'attribute2' => ['val1', 'val2'],
+            'attribute1' => ['val1', 'val2']
+        ];
         $attributeHash1 = \SimpleSAML\Module\consent\Auth\Process\Consent::getAttributeHash($attributes1);
 
-        $attributes2 = array(
-            'attribute1' => array('val1', 'val2'),
-            'attribute2' => array('val1', 'val2')
-        );
+        $attributes2 = [
+            'attribute1' => ['val1', 'val2'],
+            'attribute2' => ['val1', 'val2']
+        ];
         $attributeHash2 = \SimpleSAML\Module\consent\Auth\Process\Consent::getAttributeHash($attributes2);
 
         $this->assertEquals(
@@ -185,22 +185,28 @@ class ConsentTest extends TestCase
     {
         $reflection = new \ReflectionClass('\SimpleSAML\Module\consent\Auth\Process\Consent');
 
-        foreach (array(
-            'includeValues', 'checked', 'focus', 'hiddenAttributes', 'noconsentattributes', 'showNoConsentAboutService'
-        ) as $v) {
+        $values = [
+            'includeValues',
+            'checked',
+            'focus',
+            'hiddenAttributes',
+            'noconsentattributes',
+            'showNoConsentAboutService'
+        ];
+        foreach ($values as $v) {
             $instanceVars[$v] = $reflection->getProperty($v);
             $instanceVars[$v]->setAccessible(true);
         }
 
         /* these just need to be different to the default values */
-        $config = array(
+        $config = [
             'includeValues' => true,
             'checked' => true,
             'focus' => 'yes',
-            'hiddenAttributes' => array('attribute1', 'attribute2'),
-            'attributes.exclude' => array('attribute1', 'attribute2'),
+            'hiddenAttributes' => ['attribute1', 'attribute2'],
+            'attributes.exclude' => ['attribute1', 'attribute2'],
             'showNoConsentAboutService' => false,
-        );
+        ];
 
         $testcase = $reflection->newInstance($config, null);
 
@@ -209,10 +215,12 @@ class ConsentTest extends TestCase
         $this->assertEquals($instanceVars['focus']->getValue($testcase), $config['focus']);
         $this->assertEquals($instanceVars['hiddenAttributes']->getValue($testcase), $config['hiddenAttributes']);
         $this->assertEquals($instanceVars['noconsentattributes']->getValue($testcase), $config['attributes.exclude']);
-        $this->assertEquals($instanceVars['showNoConsentAboutService']->getValue($testcase), $config['showNoConsentAboutService']);
+        $this->assertEquals(
+            $instanceVars['showNoConsentAboutService']->getValue($testcase),
+            $config['showNoConsentAboutService']
+        );
 
-        $deprecated = $reflection->newInstance(array('noconsentattributes' => $config['attributes.exclude'],), null);
+        $deprecated = $reflection->newInstance(['noconsentattributes' => $config['attributes.exclude']], null);
         $this->assertEquals($instanceVars['noconsentattributes']->getValue($deprecated), $config['attributes.exclude']);
-
     }
 }

@@ -18,11 +18,11 @@ $this->includeAtTemplateBase('includes/attributes.php');
 
 <?php
 if (isset($this->data['remaining'])) {
-    echo '<p>'.$this->t('{status:validfor}', array('%SECONDS%' => $this->data['remaining'])).'</p>';
+    echo '<p>'.$this->t('{status:validfor}', ['%SECONDS%' => $this->data['remaining']]).'</p>';
 }
 
 if (isset($this->data['sessionsize'])) {
-    echo '<p>'.$this->t('{status:sessionsize}', array('%SIZE%' => $this->data['sessionsize'])).'</p>';
+    echo '<p>'.$this->t('{status:sessionsize}', ['%SIZE%' => $this->data['sessionsize']]).'</p>';
 }
 ?>
     <h2><?php echo $this->t('{status:attributes_header}'); ?></h2>
@@ -34,24 +34,24 @@ $nameid = $this->data['nameid'];
 if ($nameid !== false) {
     /** @var \SAML2\XML\saml\NameID $nameid */
     echo "<h2>".$this->t('{status:subject_header}')."</h2>";
-    if (is_null($nameid->value)) {
-        $list = array("NameID" => array($this->t('{status:subject_notset}')));
+    if ($nameid->getValue() === null) {
+        $list = ["NameID" => [$this->t('{status:subject_notset}')]];
         echo "<p>NameID: <span class=\"notset\">".$this->t('{status:subject_notset}')."</span></p>";
     } else {
-        $list = array(
-            "NameId" => array($nameid->value),
-        );
-        if (!is_null($nameid->Format)) {
-            $list[$this->t('{status:subject_format}')] = array($nameid->Format);
+        $list = [
+            "NameId" => [$nameid->getValue()],
+        ];
+        if ($nameid->getFormat() !== null) {
+            $list[$this->t('{status:subject_format}')] = [$nameid->getFormat()];
         }
-        if (!is_null($nameid->NameQualifier)) {
-            $list['NameQualifier'] = array($nameid->NameQualifier);
+        if ($nameid->getNameQualifier() !== null) {
+            $list['NameQualifier'] = [$nameid->getNameQualifier()];
         }
-        if (!is_null($nameid->SPNameQualifier)) {
-            $list['SPNameQualifier'] = array($nameid->SPNameQualifier);
+        if ($nameid->getSPNameQualifier() !== null) {
+            $list['SPNameQualifier'] = [$nameid->getSPNameQualifier()];
         }
-        if (!is_null($nameid->SPProvidedID)) {
-            $list['SPProvidedID'] = array($nameid->SPProvidedID);
+        if ($nameid->getSPProvidedID() !== null) {
+            $list['SPProvidedID'] = [$nameid->getSPProvidedID()];
         }
     }
     echo present_attributes($this, $list, '');

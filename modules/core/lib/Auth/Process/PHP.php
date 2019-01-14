@@ -49,9 +49,12 @@ class PHP extends \SimpleSAML\Auth\ProcessingFilter
         assert(is_array($request));
         assert(array_key_exists('Attributes', $request));
 
-        $function = function (/** @scrutinizer ignore-unused */ &$attributes) {
+        $function = function (
+            /** @scrutinizer ignore-unused */ &$attributes,
+            /** @scrutinizer ignore-unused */ &$state
+        ) {
             eval($this->code);
         };
-        $function($request['Attributes']);
+        $function($request['Attributes'], $request);
     }
 }

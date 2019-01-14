@@ -24,7 +24,7 @@ $globalConfig = \SimpleSAML\Configuration::getInstance();
 
 $t = new \SimpleSAML\XHTML\Template($globalConfig, 'authX509:X509warning.php');
 $t->data['target'] = \SimpleSAML\Module::getModuleURL('authX509/expirywarning.php');
-$t->data['data'] = array('StateId' => $id);
+$t->data['data'] = ['StateId' => $id];
 $t->data['daysleft'] = $state['daysleft'];
 $t->data['renewurl'] = $state['renewurl'];
 $t->data['errorcodes'] = \SimpleSAML\Error\ErrorCodes::getAllErrorCodeMessages();

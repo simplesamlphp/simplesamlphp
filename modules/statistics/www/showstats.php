@@ -50,8 +50,6 @@ $t->data['available_rules'] = $ruleset->availableRulesNames();
 $t->data['selected_rule'] = $rule;
 $t->data['selected_rule2'] = $preferRule2;
 
-$t->data['post_d'] = getBaseURL($t, 'post', 'd');
-
 try {
     $dataset = $statrule->getDataset($preferTimeRes, $preferTime);
     $dataset->setDelimiter($delimiter);
@@ -79,20 +77,23 @@ $delimiter = $dataset->getDelimiter();
 
 $timeres = $dataset->getTimeRes();
 $fileslot = $dataset->getFileslot();
-$availableFileSlots = $statrule->availableFileSlots($timeres);
 
 $timeNavigation = $statrule->getTimeNavigation($timeres, $preferTime);
 
 $piedata = $dataset->getPieData();
 
-$datasets = array();
+$datasets = [];
 $datasets[] = $dataset->getPercentValues();
 
 $axis = $dataset->getAxis();
 
-$maxes = array();
+$maxes = [];
 
 $maxes[] = $dataset->getMax();
+
+$t->data['selected_time'] = $fileslot;
+$t->data['selected_timeres'] = $timeres;
+$t->data['post_d'] = getBaseURL($t, 'post', 'd');
 
 if (isset($preferRule2)) {
     $statrule = $ruleset->getRule($preferRule2);
@@ -129,8 +130,6 @@ $t->data['current_rule'] = $t->data['available_rules'][$rule];
 
 $t->data['selected_rule'] = $rule;
 $t->data['selected_rule2'] = $preferRule2;
-$t->data['selected_time'] = $fileslot;
-$t->data['selected_timeres'] = $timeres;
 $t->data['selected_delimiter'] = $delimiter;
 
 $t->data['debugdata'] = $dataset->getDebugData();
@@ -148,17 +147,17 @@ $t->data['get_times_next'] = getBaseURL($t, 'get', 'time', $t->data['available_t
 $t->data['availdelimiters'] = $dataset->availDelimiters();
 $t->data['delimiterPresentation'] = $dataset->getDelimiterPresentation();
 
-$t->data['jquery'] = array('core' => false, 'ui' => true, 'css' => true);
+$t->data['jquery'] = ['core' => false, 'ui' => true, 'css' => true];
 
 $t->show();
 
 function getBaseURL($t, $type = 'get', $key = null, $value = null)
 {
-    $vars = array(
+    $vars = [
         'rule' => $t->data['selected_rule'],
         'time' => $t->data['selected_time'],
         'res' => $t->data['selected_timeres'],
-    );
+    ];
     if (isset($t->data['selected_delimiter'])) {
         $vars['d'] = $t->data['selected_delimiter'];
     }

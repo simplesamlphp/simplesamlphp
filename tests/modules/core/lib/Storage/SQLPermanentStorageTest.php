@@ -1,11 +1,13 @@
 <?php
 
+namespace SimpleSAML\Test\Module\core\Storage;
+
 use PHPUnit\Framework\TestCase;
 
 /**
  * Test for the SQLPermanentStorage class.
  */
-class Test_Core_Storage_SQLPermanentStorage extends TestCase
+class SQLPermanentStorageTest extends TestCase
 {
     private static $sql;
 

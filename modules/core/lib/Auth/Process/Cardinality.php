@@ -2,7 +2,7 @@
 
 namespace SimpleSAML\Module\core\Auth\Process;
 
-use SimpleSAML\Utils\HTTPAdapter;
+use SimpleSAML\Utils\HttpAdapter;
 
 /**
  * Filter to ensure correct cardinality of attributes
@@ -14,10 +14,10 @@ use SimpleSAML\Utils\HTTPAdapter;
 class Cardinality extends \SimpleSAML\Auth\ProcessingFilter
 {
     /** @var array Associative array with the mappings of attribute names. */
-    private $cardinality = array();
+    private $cardinality = [];
 
     /** @var array Entities that should be ignored */
-    private $ignoreEntities = array();
+    private $ignoreEntities = [];
 
     /** @var HTTPAdapter */
     private $http;
@@ -30,12 +30,12 @@ class Cardinality extends \SimpleSAML\Auth\ProcessingFilter
      * @param HTTPAdapter $http  HTTP utility service (handles redirects).
      * @throws \SimpleSAML\Error\Exception
      */
-    public function __construct($config, $reserved, HTTPAdapter $http = null)
+    public function __construct($config, $reserved, HttpAdapter $http = null)
     {
         parent::__construct($config, $reserved);
         assert(is_array($config));
 
-        $this->http = $http ? : new HTTPAdapter();
+        $this->http = $http ? : new HttpAdapter();
 
         foreach ($config as $attribute => $rules) {
             if ($attribute === '%ignoreEntities') {
@@ -46,7 +46,7 @@ class Cardinality extends \SimpleSAML\Auth\ProcessingFilter
             if (!is_string($attribute)) {
                 throw new \SimpleSAML\Error\Exception('Invalid attribute name: '.var_export($attribute, true));
             }
-            $this->cardinality[$attribute] = array('warn' => false);
+            $this->cardinality[$attribute] = ['warn' => false];
 
             /* allow either positional or name-based parameters */
             if (isset($rules[0])) {
@@ -118,7 +118,7 @@ class Cardinality extends \SimpleSAML\Auth\ProcessingFilter
                 continue;
             }
             if (!is_array($v)) {
-                $v = array($v);
+                $v = [$v];
             }
 
             /* minimum cardinality */
@@ -134,10 +134,10 @@ class Cardinality extends \SimpleSAML\Auth\ProcessingFilter
                         )
                     );
                 } else {
-                    $request['core:cardinality:errorAttributes'][$k] = array(
+                    $request['core:cardinality:errorAttributes'][$k] = [
                         count($v),
                         $this->cardinality[$k]['_expr']
-                    );
+                    ];
                 }
                 continue;
             }
@@ -155,10 +155,10 @@ class Cardinality extends \SimpleSAML\Auth\ProcessingFilter
                         )
                     );
                 } else {
-                    $request['core:cardinality:errorAttributes'][$k] = array(
+                    $request['core:cardinality:errorAttributes'][$k] = [
                         count($v),
                         $this->cardinality[$k]['_expr']
-                    );
+                    ];
                 }
                 continue;
             }
@@ -176,10 +176,10 @@ class Cardinality extends \SimpleSAML\Auth\ProcessingFilter
                     $entityid
                 ));
             } else {
-                $request['core:cardinality:errorAttributes'][$k] = array(
+                $request['core:cardinality:errorAttributes'][$k] = [
                     0,
                     $this->cardinality[$k]['_expr']
-                );
+                ];
             }
         }
 
@@ -187,7 +187,7 @@ class Cardinality extends \SimpleSAML\Auth\ProcessingFilter
         if (array_key_exists('core:cardinality:errorAttributes', $request)) {
             $id = \SimpleSAML\Auth\State::saveState($request, 'core:cardinality');
             $url = \SimpleSAML\Module::getModuleURL('core/cardinality_error.php');
-            $this->http->redirectTrustedURL($url, array('StateId' => $id));
+            $this->http->redirectTrustedURL($url, ['StateId' => $id]);
             return;
         }
     }

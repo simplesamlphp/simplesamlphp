@@ -35,7 +35,7 @@ class Metadata
      * @var array The valid configuration options for a contact configuration array.
      * @see "Metadata for the OASIS Security Assertion Markup Language (SAML) V2.0", section 2.3.2.2.
      */
-    public static $VALID_CONTACT_OPTIONS = array(
+    public static $VALID_CONTACT_OPTIONS = [
         'contactType',
         'emailAddress',
         'givenName',
@@ -43,20 +43,20 @@ class Metadata
         'telephoneNumber',
         'company',
         'attributes',
-    );
+    ];
 
 
     /**
      * @var array The valid types of contact for a contact configuration array.
      * @see "Metadata for the OASIS Security Assertion Markup Language (SAML) V2.0", section 2.3.2.2.
      */
-    public static $VALID_CONTACT_TYPES = array(
+    public static $VALID_CONTACT_TYPES = [
         'technical',
         'support',
         'administrative',
         'billing',
         'other',
-    );
+    ];
 
 
     /**
@@ -277,5 +277,39 @@ class Metadata
         $hidden = in_array(self::$HIDE_FROM_DISCOVERY, $metadata['EntityAttributes'][self::$ENTITY_CATEGORY], true);
         \SimpleSAML\Logger::popErrorMask();
         return $hidden === true;
+    }
+
+
+    /**
+     * This method parses the different possible values of the NameIDPolicy metadata configuration.
+     *
+     * @param mixed $nameIdPolicy
+     *
+     * @return null|array
+     */
+    public static function parseNameIdPolicy($nameIdPolicy)
+    {
+        $policy = null;
+
+        if (is_string($nameIdPolicy)) {
+            // handle old configurations where 'NameIDPolicy' was used to specify just the format
+            $policy = ['Format' => $nameIdPolicy];
+        } elseif (is_array($nameIdPolicy)) {
+            // handle current configurations specifying an array in the NameIDPolicy config option
+            $nameIdPolicy_cf = \SimpleSAML\Configuration::loadFromArray($nameIdPolicy);
+            $policy = [
+                'Format'      => $nameIdPolicy_cf->getString('Format', \SAML2\Constants::NAMEID_TRANSIENT),
+                'AllowCreate' => $nameIdPolicy_cf->getBoolean('AllowCreate', true),
+            ];
+            $spNameQualifier = $nameIdPolicy_cf->getString('SPNameQualifier', false);
+            if ($spNameQualifier !== false) {
+                $policy['SPNameQualifier'] = $spNameQualifier;
+            }
+        } elseif ($nameIdPolicy === null) {
+            // when NameIDPolicy is unset or set to null, default to transient as before
+            $policy = ['Format' => \SAML2\Constants::NAMEID_TRANSIENT];
+        }
+
+        return $policy;
     }
 }

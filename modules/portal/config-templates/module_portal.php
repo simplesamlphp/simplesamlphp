@@ -3,9 +3,9 @@
  * Configuration for the module portal.
  */
 
-$config = array(
-    'pagesets' => array(
-        array('frontpage_welcome', 'frontpage_config', 'frontpage_auth', 'frontpage_federation'),
-        array('sanitycheck', 'statistics'),
-    ),
-);
+$config = [
+    'pagesets' => [
+        ['frontpage_welcome', 'frontpage_config', 'frontpage_auth', 'frontpage_federation'],
+        ['sanitycheck', 'statistics'],
+    ],
+];

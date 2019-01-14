@@ -76,7 +76,7 @@ class LogoutStore
         \SimpleSAML\Logger::debug('saml.LogoutStore: Cleaning logout store.');
 
         $query = 'DELETE FROM '.$store->prefix.'_saml_LogoutStore WHERE _expire < :now';
-        $params = array('now' => gmdate('Y-m-d H:i:s'));
+        $params = ['now' => gmdate('Y-m-d H:i:s')];
 
         $query = $store->pdo->prepare($query);
         $query->execute($params);
@@ -111,16 +111,16 @@ class LogoutStore
             self::cleanLogoutStore($store);
         }
 
-        $data = array(
+        $data = [
             '_authSource' => $authId,
             '_nameId' => $nameId,
             '_sessionIndex' => $sessionIndex,
             '_expire' => gmdate('Y-m-d H:i:s', $expire),
             '_sessionId' => $sessionId,
-        );
+        ];
         $store->insertOrUpdate(
             $store->prefix.'_saml_LogoutStore',
-            array('_authSource', '_nameId', '_sessionIndex'),
+            ['_authSource', '_nameId', '_sessionIndex'],
             $data
         );
     }
@@ -141,11 +141,11 @@ class LogoutStore
 
         self::createLogoutTable($store);
 
-        $params = array(
+        $params = [
             '_authSource' => $authId,
             '_nameId' => $nameId,
             'now' => gmdate('Y-m-d H:i:s'),
-        );
+        ];
 
         // We request the columns in lowercase in order to be compatible with PostgreSQL
         $query = 'SELECT _sessionIndex AS _sessionindex, _sessionId AS _sessionid FROM '.$store->prefix;
@@ -153,7 +153,7 @@ class LogoutStore
         $query = $store->pdo->prepare($query);
         $query->execute($params);
 
-        $res = array();
+        $res = [];
         while (($row = $query->fetch(\PDO::FETCH_ASSOC)) !== false) {
             $res[$row['_sessionindex']] = $row['_sessionid'];
         }
@@ -176,7 +176,7 @@ class LogoutStore
         assert(is_string($authId));
         assert(is_string($nameId));
 
-        $res = array();
+        $res = [];
         foreach ($sessionIndexes as $sessionIndex) {
             $sessionId = $store->get('saml.LogoutStore', $nameId.':'.$sessionIndex);
             if ($sessionId === null) {

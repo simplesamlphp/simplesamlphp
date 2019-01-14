@@ -1513,3 +1513,13 @@ msgid ""
 " not intended to be accessed directly."
 msgstr "ניגשת לממשק הכרזת שירות ללקוח, אבל לא סיפקת תגובת הזדהות SAML. "
 
+
+msgid ""
+"You are now accessing a pre-production system. This authentication setup "
+"is for testing and pre-production verification only. If someone sent you "
+"a link that pointed you here, and you are not <i>a tester</i> you "
+"probably got the wrong link, and should <b>not be here</b>."
+msgstr ""
+"אתה נגש למערכת קדם-ייצור. תצורת ההיזדהות הזו היא לבדיקה ולאימות מערכת "
+"הקדם-ייצור בלבד. אם מישהו שלח לך קישור שהצביע לכאן, ואתה לא <i>בודק</i> "
+"כנראה קיבלת קידור לא נכון, ואתה לא אמור להיות כאן   "

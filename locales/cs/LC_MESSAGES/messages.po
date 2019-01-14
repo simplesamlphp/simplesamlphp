@@ -1548,3 +1548,12 @@ msgstr ""
 "Přistupujete k Assertion Consumer Service rozhraní, ale neposílálate SAML"
 " Authentication Response."
 
+
+msgid ""
+"You are now accessing a pre-production system. This authentication setup "
+"is for testing and pre-production verification only. If someone sent you "
+"a link that pointed you here, and you are not <i>a tester</i> you "
+"probably got the wrong link, and should <b>not be here</b>."
+msgstr ""
+"Právě přistupujete k testovacímu systému. Pokud nejste administrátor, "
+"nebo tester, máte pravděpodobně špatný link."

@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<md:EntitiesDescriptor xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:shibmd="urn:mace:shibboleth:metadata:1.0" xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:mdui="urn:oasis:names:tc:SAML:metadata:ui" ID="54a61">
+  <ds:Signature>
+    <ds:SignedInfo>
+      <ds:CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
+      <ds:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
+      <ds:Reference>
+        <ds:Transforms>
+          <ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
+          <ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
+        </ds:Transforms>
+        <ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+        <ds:DigestValue>eMUdeshvk+dcatUsFxyAr0qzAsY=</ds:DigestValue>
+      </ds:Reference>
+    </ds:SignedInfo>
+    <ds:SignatureValue>Yu+ZjVo2wMofiBo4S/owIFm88iFC4HAHMA6gLLaBHF/YlR1VO5c9NfHCDmRznWCz
+T+87yw9GsBvPvZkO8ZBfgPK5ViRTQuk1TUr6gFHpG6/U+iNS7tjcS/HGJx4rPIqA
+sXC5ybCj2OBP1ksgB0fs+HODQ4vaSyeBxXqk83HB1sQ=</ds:SignatureValue>
+    <ds:KeyInfo>
+      <ds:X509Data>
+        <ds:X509Certificate>
+          MIIBrTCCARYCCQCS5gsoFmLx7DANBgkqhkiG9w0BAQsFADAbMQswCQYDVQQGEwJB
+          UTEMMAoGA1UEAwwDTURYMB4XDTE5MDEwNzA2NDMwMFoXDTM3MDMyNTA2NDMwMFow
+          GzELMAkGA1UEBhMCQVExDDAKBgNVBAMMA01EWDCBnzANBgkqhkiG9w0BAQEFAAOB
+          jQAwgYkCgYEAwXXyCkAJOkpece1pe36O9sURMO8RA7guGxdGVmvOfPP/9KYQ3FCA
+          vjcZQVvkYP006Cgfzy8eSSrXppbINI/TkxtExIfCRReGwAJQQjesOWVvKECRg+zk
+          s0VZomIHVzxOoZYDofan1H2q+Pbght5W/GsfRSgBI7RnpgAYATXg/W0CAwEAATAN
+          BgkqhkiG9w0BAQsFAAOBgQBmNI2M5QTEKpbrhGqozelCFK3pZfMOa1EjkeZY4NjI
+          D3yjdbWi9+9LDOuehuB1LGNvTqxpwikxS9di2h4cnzHGX9adh/DUOVWmCI3FiLF+
+          po/upTEJzuRUzkn1YHLdeDuWmX/29ayZ2rPxucw8voVVDLOMetTKFMSWGxBeQ8cu
+          Gw==
+        </ds:X509Certificate>
+      </ds:X509Data>
+    </ds:KeyInfo>
+  </ds:Signature>
+  <md:EntityDescriptor entityID="https://idp.example.com/idp/shibboleth">
+    <md:IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+      <md:Extensions>
+        <shibmd:Scope regexp="false">example.com</shibmd:Scope>
+        <mdui:UIInfo>
+          <mdui:DisplayName xml:lang="en">DisplayName</mdui:DisplayName>
+          <mdui:Description xml:lang="en">Description</mdui:Description>
+        </mdui:UIInfo>
+      </md:Extensions>
+      <md:KeyDescriptor>
+        <ds:KeyInfo>
+          <ds:X509Data>
+            <ds:X509Certificate>
+              MIIB/zCCAWgCCQCyf41J62ta0jANBgkqhkiG9w0BAQsFADBEMQswCQYDVQQGEwJB
+              UTEbMBkGA1UECgwSRXhhbXBsZSBVbml2ZXJzaXR5MRgwFgYDVQQDDA9pZHAuZXhh
+              bXBsZS5jb20wHhcNMTkwMTA3MDYyNDAyWhcNMzcwMzI1MDYyNDAyWjBEMQswCQYD
+              VQQGEwJBUTEbMBkGA1UECgwSRXhhbXBsZSBVbml2ZXJzaXR5MRgwFgYDVQQDDA9p
+              ZHAuZXhhbXBsZS5jb20wgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBAMBwa9wB
+              mgxSbFFQzw7T3F84F+EhjQS3d/4KsD3bAgm5WXz8E0H1VV8YcRpAMjRntqaitZ8X
+              NyjPIq43rUfx9MlYWdjPUthhU5xxBW80Zr9bcmztea6LgelctXnH+OCY4MSOyvji
+              /0Y4BjBE0N5PZeRiO4snPMz6hneMjtv+Qei9AgMBAAEwDQYJKoZIhvcNAQELBQAD
+              gYEAipaiTLJwjYpAkaRa8ANXPUgD0hJh6Z/lkX6m+E/mlkVvxN7OfIyDatT2R9B6
+              F+Yj7ujHmubkrLmdXvCPMjXNOqSYAtBkf5qcZ5x1d6Xas5Uw8t4uJSk/Nh2nKcom
+              l+zR8IYmcdFeaTjSMbEhYGDaIou+0T4/+/f8fDwwj8hQLYw=
+            </ds:X509Certificate>
+          </ds:X509Data>
+        </ds:KeyInfo>
+      </md:KeyDescriptor>
+      <md:SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://idp.example.com/idp/profile/SAML2/POST/SSO"/>
+    </md:IDPSSODescriptor>
+    <md:Organization>
+      <md:OrganizationName xml:lang="en">OrganizationName</md:OrganizationName>
+      <md:OrganizationDisplayName xml:lang="en">OrganizationDisplayName</md:OrganizationDisplayName>
+      <md:OrganizationURL xml:lang="en">https://example.com</md:OrganizationURL>
+    </md:Organization>
+    <md:ContactPerson contactType="technical">
+      <md:EmailAddress>mailto:technical.contact@example.com</md:EmailAddress>
+    </md:ContactPerson>
+  </md:EntityDescriptor>
+</md:EntitiesDescriptor>

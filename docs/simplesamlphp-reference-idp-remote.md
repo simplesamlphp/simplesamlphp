@@ -7,12 +7,12 @@ This is a reference for metadata options available for `metadata/saml20-idp-remo
 
     <?php
     /* The index of the array is the entity ID of this IdP. */
-    $metadata['entity-id-1'] = array(
+    $metadata['entity-id-1'] = [
         /* Configuration options for the first IdP. */
-    );
-    $metadata['entity-id-2'] = array(
+    ];
+    $metadata['entity-id-2'] = [
         /* Configuration options for the second IdP. */
-    );
+    ];
     /* ... */
 
 
@@ -50,10 +50,10 @@ The following options are common between both the SAML 2.0 protocol and Shibbole
 
 :   This option can be translated into multiple languages by specifying the value as an array of language-code to translated name:
 
-        'OrganizationName' => array(
+        'OrganizationName' => [
             'en' => 'Example organization',
             'no' => 'Eksempel organisation',
-        ),
+        ],
 
 :   *Note*: If you specify this option, you must also specify the `OrganizationURL` option.
 
@@ -80,10 +80,10 @@ The following options are common between both the SAML 2.0 protocol and Shibbole
 
 :   This option can be translated into multiple languages by specifying the value as an array of language-code to translated name:
 
-        'name' => array(
+        'name' => [
             'en' => 'A service',
             'no' => 'En tjeneste',
-        ),
+        ],
 
 `scope`
 :   An array with scopes valid for this IdP.
@@ -103,6 +103,15 @@ SAML 2.0 options
 ----------------
 
 The following SAML 2.0 options are available:
+
+`disable_scoping`
+:    Whether sending of samlp:Scoping elements in authentication requests should be suppressed. The default value is `FALSE`.
+     When set to `TRUE`, no scoping elements will be sent. This does not comply with the SAML2 specification, but allows 
+     interoperability with ADFS which [does not support Scoping elements](https://docs.microsoft.com/en-za/azure/active-directory/develop/active-directory-single-sign-on-protocol-reference#scoping).
+
+:   Note that this option also exists in the SP configuration. This
+    entry in the IdP-remote metadata overrides the option in the
+    [SP configuration](./saml:sp).
 
 `encryption.blacklisted-algorithms`
 :   Blacklisted encryption algorithms. This is an array containing the algorithm identifiers.
@@ -130,6 +139,15 @@ The following SAML 2.0 options are available:
 :   Note that this option also exists in the SP configuration. This
     entry in the IdP-remote metadata overrides the option in the
     [SP configuration](./saml:sp).
+
+`NameIDPolicy`
+:   The format of the NameID we request from this IdP: an array in the form of
+    `[ 'Format' => the format, 'AllowCreate' => true or false ]`.
+    Set to `false` instead of an array to omit sending any specific NameIDPolicy
+    in the AuthnRequest.
+
+:   For compatibility purposes, `null` is equivalent to Transient and a format
+    can be defined as a string instead of an array. These variants are deprecated.
 
 `sign.authnrequest`
 :   Whether to sign authentication requests sent to this IdP.

@@ -7,7 +7,7 @@ $title = $this->data['title'];
 $table = $this->data['table'];
 
 // Identify column headings
-$column_titles = array();
+$column_titles = [];
 foreach ($table as $row_title => $row_data) {
     foreach ($row_data as $ct => $foo) {
         if (!in_array($ct, $column_titles, true)) {
@@ -34,7 +34,7 @@ foreach ($column_titles as $ct) {
 <?php
 foreach ($table as $row_title => $row_data) {
     echo '<tr>' . "\n";
-    echo '<th class="rowtitle" style="text-align: right">'.$this->t($this->data['rowtitles'][$row_title]).'</th>'."\n";
+    echo '<th class="rowtitle" style="text-align: right">'.$this->t($this->data['rowTitles'][$row_title]).'</th>'."\n";
 
     foreach ($column_titles as $ct) {
         echo '<td>';

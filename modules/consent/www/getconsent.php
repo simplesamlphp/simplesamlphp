@@ -48,9 +48,9 @@ if (array_key_exists('yes', $_REQUEST)) {
         \SimpleSAML\Logger::stats('consentResponse rememberNot');
     }
 
-    $statsInfo = array(
+    $statsInfo = [
         'remember' => array_key_exists('saveconsent', $_REQUEST),
-    );
+    ];
     if (isset($state['Destination']['entityid'])) {
         $statsInfo['spEntityID'] = $state['Destination']['entityid'];
     }
@@ -89,9 +89,9 @@ foreach ($attributes as $attrkey => $attrval) {
         unset($attributes[$attrkey]);
     }
 }
-$para = array(
+$para = [
     'attributes' => &$attributes
-);
+];
 
 // Reorder attributes according to attributepresentation hooks
 \SimpleSAML\Module::callHooks('attributepresentation', $para);
@@ -119,9 +119,9 @@ $translator = $t->getTranslator();
 $t->data['srcMetadata'] = $state['Source'];
 $t->data['dstMetadata'] = $state['Destination'];
 $t->data['yesTarget'] = \SimpleSAML\Module::getModuleURL('consent/getconsent.php');
-$t->data['yesData'] = array('StateId' => $id);
+$t->data['yesData'] = ['StateId' => $id];
 $t->data['noTarget'] = \SimpleSAML\Module::getModuleURL('consent/noconsent.php');
-$t->data['noData'] = array('StateId' => $id);
+$t->data['noData'] = ['StateId' => $id];
 $t->data['attributes'] = $attributes;
 $t->data['checked'] = $state['consent:checked'];
 $t->data['stateId'] = $id;
@@ -131,18 +131,18 @@ $dstName = htmlspecialchars(is_array($dstName) ? $translator->t($dstName) : $dst
 
 $t->data['consent_attributes_header'] = $translator->t(
     '{consent:consent:consent_attributes_header}',
-    array('SPNAME' => $dstName, 'IDPNAME' => $srcName)
+    ['SPNAME' => $dstName, 'IDPNAME' => $srcName]
 );
 
 $t->data['consent_accept'] = $translator->t(
     '{consent:consent:consent_accept}',
-    array('SPNAME' => $dstName, 'IDPNAME' => $srcName)
+    ['SPNAME' => $dstName, 'IDPNAME' => $srcName]
 );
 
 if (array_key_exists('descr_purpose', $state['Destination'])) {
     $t->data['consent_purpose'] = $translator->t(
         '{consent:consent:consent_purpose}',
-        array(
+        [
             'SPNAME' => $dstName,
             'SPDESC' => $translator->getPreferredTranslation(
                 \SimpleSAML\Utils\Arrays::arrayize(
@@ -150,7 +150,7 @@ if (array_key_exists('descr_purpose', $state['Destination'])) {
                     'en'
                 )
             ),
-        )
+        ]
     );
 }
 
@@ -192,7 +192,7 @@ $t->data['usestorage'] = array_key_exists('consent:store', $state);
 if (array_key_exists('consent:hiddenAttributes', $state)) {
     $t->data['hiddenAttributes'] = $state['consent:hiddenAttributes'];
 } else {
-    $t->data['hiddenAttributes'] = array();
+    $t->data['hiddenAttributes'] = [];
 }
 
 $t->data['attributes_html'] = present_attributes($t, $attributes, '');
@@ -213,7 +213,7 @@ function present_attributes($t, $attributes, $nameParent)
 {
     $translator = $t->getTranslator();
 
-    $alternate = array('odd', 'even');
+    $alternate = ['odd', 'even'];
     $i = 0;
     $summary = 'summary="'.$translator->t('{consent:consent:table_summary}').'"';
 
@@ -222,7 +222,7 @@ function present_attributes($t, $attributes, $nameParent)
         $str = '<table class="attributes" '.$summary.'>';
     } else {
         $parentStr = '';
-        $str = '<table id="table_with_attributes"  class="attributes" '.$summary.'>';
+        $str = '<table id="table_with_attributes" class="attributes" '.$summary.'>';
         $str .= "\n".'<caption>'.$translator->t('{consent:consent:table_caption}').'</caption>';
     }
 
@@ -241,14 +241,14 @@ function present_attributes($t, $attributes, $nameParent)
             // insert values directly
 
             $str .= "\n".'<tr class="'.$alternate[($i++ % 2)].
-                '"><td><span class="attrname">'.htmlspecialchars($name).'</span>';
+                '"><td><span class="attrname">'.htmlspecialchars($name).'</span></td>';
 
             $isHidden = in_array($nameraw, $t->data['hiddenAttributes'], true);
             if ($isHidden) {
                 $hiddenId = \SimpleSAML\Utils\Random::generateID();
-                $str .= '<div class="attrvalue hidden" id="hidden_'.$hiddenId.'">';
+                $str .= '<td><span class="attrvalue hidden" id="hidden_'.$hiddenId.'">';
             } else {
-                $str .= '<div class="attrvalue">';
+                $str .= '<td><span class="attrvalue">';
             }
 
             if (sizeof($value) > 1) {
@@ -272,7 +272,7 @@ function present_attributes($t, $attributes, $nameParent)
                     $str .= htmlspecialchars($value[0]);
                 }
             } // end of if multivalue
-            $str .= '</div>';
+            $str .= '</span>';
 
             if ($isHidden) {
                 $str .= '<div class="attrvalue consent_showattribute" id="visible_'.$hiddenId.'">';

@@ -21,14 +21,14 @@ class OAuthStore extends \OAuthDataStore
     private $config;
     private $defaultversion = '1.0';
 
-    protected $_store_tables = array(
+    protected $_store_tables = [
         'consumers' => 'consumer = array with consumer attributes',
         'nonce' => 'nonce+consumer_key = -boolean-',
         'requesttorequest' => 'requestToken.key = array(version,callback,consumerKey,)',
         'authorized' => 'requestToken.key, verifier = array(authenticated-user-attributes)',
         'access' => 'accessToken.key+consumerKey = accesstoken',
         'request' => 'requestToken.key+consumerKey = requesttoken',
-    );
+    ];
 
 
     public function __construct()
@@ -66,11 +66,11 @@ class OAuthStore extends \OAuthDataStore
         }
 
         $verifier = \SimpleSAML\Utils\Random::generateID();
-        $url = \SimpleSAML\Utils\HTTP::addURLParameters($url, array("oauth_verifier"=>$verifier));
+        $url = \SimpleSAML\Utils\HTTP::addURLParameters($url, ["oauth_verifier"=>$verifier]);
 
         $this->store->set('authorized', $requestTokenKey, $verifier, $data, $this->config->getValue('requestTokenDuration', 1800)); //60*30=1800
 
-        return array($url, $verifier);
+        return [$url, $verifier];
     }
 
     /**
@@ -160,11 +160,11 @@ class OAuthStore extends \OAuthDataStore
         $this->store->set('request', $token->key, $consumer->key, $token, $lifetime);
 
         // also store in requestToken->key => array('callback'=>CallbackURL, 'version'=>oauth_version
-        $request_attributes = array(
+        $request_attributes = [
             'callback' => $callback,
             'version' => ($version ? $version : $this->defaultversion),
             'consumerKey' => $consumer->key,
-        );
+        ];
         $this->store->set('requesttorequest', $token->key, '', $request_attributes, $lifetime);
 
         /* also store in requestToken->key =>

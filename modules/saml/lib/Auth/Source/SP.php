@@ -36,6 +36,21 @@ class SP extends Source
     private $discoURL;
 
     /**
+     * Flag to indicate whether to disable sending the Scoping element.
+     *
+     * @var boolean|FALSE
+     */
+    private $disable_scoping;
+
+    /**
+     * A list of supported protocols.
+     *
+     * @var array
+     */
+    private $protocols = [];
+
+
+    /**
      * Constructor for SAML SP authentication source.
      *
      * @param array $info  Information about this authentication source.
@@ -64,6 +79,7 @@ class SP extends Source
         $this->entityId = $this->metadata->getString('entityID');
         $this->idp = $this->metadata->getString('idp', null);
         $this->discoURL = $this->metadata->getString('discoURL', null);
+        $this->disable_scoping = $this->metadata->getBoolean('disable_scoping', false);
 
         if (empty($this->discoURL) && \SimpleSAML\Module::isModuleEnabled('discojuice')) {
             $this->discoURL = \SimpleSAML\Module::getModuleURL('discojuice/central.php');
@@ -90,15 +106,160 @@ class SP extends Source
         return $this->entityId;
     }
 
+
     /**
-     * Retrieve the metadata of this SP.
+     * Retrieve the metadata array of this SP, as a remote IdP would see it.
      *
-     * @return \SimpleSAML\Configuration  The metadata of this SP.
+     * @return array The metadata array for its use by a remote IdP.
      */
-    public function getMetadata()
+    public function getHostedMetadata()
     {
-        return $this->metadata;
+        $entityid = $this->getEntityId();
+        $metadata = [
+            'entityid' => $entityid,
+            'metadata-set' => 'smal20-sp-remote',
+            'SingleLogoutService' => $this->getSLOEndpoints(),
+            'AssertionConsumerService' => $this->getACSEndpoints(),
+        ];
+
+        // add NameIDPolicy
+        if ($this->metadata->hasValue('NameIDValue')) {
+            $format = $this->metadata->getValue('NameIDPolicy');
+            if (is_array($format)) {
+                $metadata['NameIDFormat'] = \SimpleSAML\Configuration::loadFromArray($format)->getString(
+                    'Format',
+                    \SAML2\Constants::NAMEID_TRANSIENT
+                );
+            } elseif (is_string($format)) {
+                $metadata['NameIDFormat'] = $format;
+            }
+        }
+
+        // add attributes
+        $name = $this->metadata->getLocalizedString('name', null);
+        $attributes = $this->metadata->getArray('attributes', []);
+        if ($name !== null) {
+            if (!empty($attributes)) {
+                $metadata['name'] = $name;
+                $metadata['attributes'] = $attributes;
+                if ($this->metadata->hasValue('attributes.required')) {
+                    $metadata['attributes.required'] = $this->metadata->getArray('attributes.required');
+                }
+                if ($this->metadata->hasValue('description')) {
+                    $metadata['description'] = $this->metadata->getArray('description');
+                }
+                if ($this->metadata->hasValue('attributes.NameFormat')) {
+                    $metadata['attributes.NameFormat'] = $this->metadata->getString('attributes.NameFormat');
+                }
+                if ($this->metadata->hasValue('attributes.index')) {
+                    $metadata['attributes.index'] = $this->metadata->getInteger('attributes.index');
+                }
+                if ($this->metadata->hasValue('attributes.isDefault')) {
+                    $metadata['attributes.isDefault'] = $this->metadata->getBoolean('attributes.isDefault');
+                }
+            }
+        }
+
+        // add organization info
+        $org = $this->metadata->getLocalizedString('OrganizationName', null);
+        if ($org !== null) {
+            $metadata['OrganizationName'] = $org;
+            $metadata['OrganizationDisplayName'] = $this->metadata->getLocalizedString('OrganizationDisplayName', $org);
+            $metadata['OrganizationURL'] = $this->metadata->getLocalizedString('OrganizationURL', null);
+            if ($metadata['OrganizationURL'] === null) {
+                throw new \SimpleSAML\Error\Exception(
+                    'If OrganizationName is set, OrganizationURL must also be set.'
+                );
+            }
+        }
+
+        // add contacts
+        $contacts = $this->metadata->getArray('contact', []);
+        foreach ($contacts as $contact) {
+            $metadata['contacts'][] = \SimpleSAML\Utils\Config\Metadata::getContact($contact);
+        }
+
+        // add technical contact
+        $globalConfig = \SimpleSAML\Configuration::getInstance();
+        $email = $globalConfig->getString('technicalcontact_email', 'na@example.org');
+        if ($email && $email !== 'na@example.org') {
+            $contact = [
+                'emailAddress' => $email,
+                'name' => $globalConfig->getString('technicalcontact_name', null),
+                'contactType' => 'technical',
+            ];
+            $metadata['contacts'][] = \SimpleSAML\Utils\Config\Metadata::getContact($contact);
+        }
+
+        // add certificate(s)
+        $certInfo = \SimpleSAML\Utils\Crypto::loadPublicKey($this->metadata, false, 'new_');
+        $hasNewCert = false;
+        if ($certInfo !== null && array_key_exists('certData', $certInfo)) {
+            $hasNewCert = true;
+            $metadata['keys'][] = [
+                'type' => 'X509Certificate',
+                'signing' => true,
+                'encryption' => true,
+                'X509Certificate' => $certInfo['certData'],
+                'prefix' => 'new_',
+                'url' => \SimpleSAML\Module::getModuleURL(
+                    'admin/cert',
+                    [
+                        'sp' => $this->getAuthId(),
+                        'prefix' => 'new_'
+                    ]
+                ),
+                'name' => 'sp',
+            ];
+        }
+
+        $certInfo = \SimpleSAML\Utils\Crypto::loadPublicKey($this->metadata);
+        if ($certInfo !== null && array_key_exists('certData', $certInfo)) {
+            $metadata['keys'][] = [
+                'type' => 'X509Certificate',
+                'signing' => true,
+                'encryption' => $hasNewCert ? false : true,
+                'X509Certificate' => $certInfo['certData'],
+                'prefix' => '',
+                'url' => \SimpleSAML\Module::getModuleURL(
+                    'admin/cert',
+                    [
+                        'sp' => $this->getAuthId(),
+                        'prefix' => ''
+                    ]
+                ),
+                'name' => 'sp',
+            ];
+        }
+
+        // add EntityAttributes extension
+        if ($this->metadata->hasValue('EntityAttributes')) {
+            $metadata['EntityAttributes'] = $this->metadata->getArray('EntityAttributes');
+        }
+
+        // add UIInfo extension
+        if ($this->metadata->hasValue('UIInfo')) {
+            $metadata['UIInfo'] = $this->metadata->getArray('UIInfo');
+        }
+
+        // add RegistrationInfo extension
+        if ($this->metadata->hasValue('RegistrationInfo')) {
+            $metadata['RegistrationInfo'] = $this->metadata->getArray('RegistrationInfo');
+        }
+
+        // add signature options
+        if ($this->metadata->hasValue('WantAssertiosnsSigned')) {
+            $metadata['saml20.sign.assertion'] = $this->metadata->getBoolean('WantAssertionsSigned');
+        }
+        if ($this->metadata->hasValue('redirect.sign')) {
+            $metadata['redirect.validate'] = $this->metadata->getBoolean('redirect.sign');
+        } elseif ($this->metadata->hasValue('sign.authnrequest')) {
+            $metadata['validate.authnrequest'] = $this->metadata->getBoolean('sign.authnrequest');
+        }
+
+        return $metadata;
     }
+
 
     /**
      * Retrieve the metadata of an IdP.
@@ -137,6 +298,142 @@ class SP extends Source
         throw new \SimpleSAML\Error\Exception('Could not find the metadata of an IdP with entity ID '.
             var_export($entityId, true));
     }
+
+
+    /**
+     * Retrieve the metadata of this SP.
+     *
+     * @return \SimpleSAML\Configuration  The metadata of this SP.
+     */
+    public function getMetadata()
+    {
+        return $this->metadata;
+    }
+
+
+    /**
+     * Get a list with the protocols supported by this SP.
+     *
+     * @return array
+     */
+    public function getSupportedProtocols()
+    {
+        return $this->protocols;
+    }
+
+
+    /**
+     * Get the AssertionConsumerService endpoints for a given local SP.
+     *
+     * @return array
+     * @throws \Exception
+     */
+    private function getACSEndpoints()
+    {
+        $endpoints = [];
+        $default = [
+            \SAML2\Constants::BINDING_HTTP_POST,
+            'urn:oasis:names:tc:SAML:1.0:profiles:browser-post',
+            \SAML2\Constants::BINDING_HTTP_ARTIFACT,
+            'urn:oasis:names:tc:SAML:1.0:profiles:artifact-01',
+        ];
+        if ($this->metadata->getString('ProtocolBinding', '') === \SAML2\Constants::BINDING_HOK_SSO) {
+            $default[] = \SAML2\Constants::BINDING_HOK_SSO;
+        }
+
+        $bindings = $this->metadata->getArray('acs.Bindings', $default);
+        $index = 0;
+        foreach ($bindings as $service) {
+            switch ($service) {
+                case \SAML2\Constants::BINDING_HTTP_POST:
+                    $acs = [
+                        'Binding' => \SAML2\Constants::BINDING_HTTP_POST,
+                        'Location' => \SimpleSAML\Module::getModuleURL('saml/sp/saml2-acs.php/'.$this->getAuthId()),
+                    ];
+                    if (!in_array(\SAML2\Constants::NS_SAMLP, $this->protocols, true)) {
+                        $this->protocols[] = \SAML2\Constants::NS_SAMLP;
+                    }
+                    break;
+                case 'urn:oasis:names:tc:SAML:1.0:profiles:browser-post':
+                    $acs = [
+                        'Binding' => 'urn:oasis:names:tc:SAML:1.0:profiles:browser-post',
+                        'Location' => \SimpleSAML\Module::getModuleURL('saml/sp/saml1-acs.php/'.$this->getAuthId()),
+                    ];
+                    if (!in_array('urn:oasis:names:tc:SAML:1.0:profiles:browser-post', $this->protocols, true)) {
+                        $this->protocols[] = 'urn:oasis:names:tc:SAML:1.1:protocol';
+                    }
+                    break;
+                case \SAML2\Constants::BINDING_HTTP_ARTIFACT:
+                    $acs = [
+                        'Binding' => \SAML2\Constants::BINDING_HTTP_ARTIFACT,
+                        'Location' => \SimpleSAML\Module::getModuleURL('saml/sp/saml2-acs.php/'.$this->getAuthId()),
+                    ];
+                    if (!in_array(\SAML2\Constants::NS_SAMLP, $this->protocols, true)) {
+                        $this->protocols[] = \SAML2\Constants::NS_SAMLP;
+                    }
+                    break;
+                case 'urn:oasis:names:tc:SAML:1.0:profiles:artifact-01':
+                    $acs = [
+                        'Binding' => 'urn:oasis:names:tc:SAML:1.0:profiles:artifact-01',
+                        'Location' => \SimpleSAML\Module::getModuleURL(
+                            'saml/sp/saml1-acs.php/'.$this->getAuthId().'/artifact'
+                        ),
+                    ];
+                    if (!in_array('urn:oasis:names:tc:SAML:1.1:protocol', $this->protocols, true)) {
+                        $this->protocols[] = 'urn:oasis:names:tc:SAML:1.1:protocol';
+                    }
+                    break;
+                case \SAML2\Constants::BINDING_HOK_SSO:
+                    $acs = [
+                        'Binding' => \SAML2\Constants::BINDING_HOK_SSO,
+                        'Location' => \SimpleSAML\Module::getModuleURL('saml/sp/saml2-acs.php/'.$this->getAuthId()),
+                        'hoksso:ProtocolBinding' => \SAML2\Constants::BINDING_HTTP_REDIRECT,
+                    ];
+                    if (!in_array(\SAML2\Constants::NS_SAMLP, $this->protocols, true)) {
+                        $this->protocols[] = \SAML2\Constants::NS_SAMLP;
+                    }
+                    break;
+            }
+            $acs['index'] = $index;
+            $endpoints[] = $acs;
+            $index++;
+        }
+        return $endpoints;
+    }
+
+
+    /**
+     * Get the SingleLogoutService endpoints available for a given local SP.
+     *
+     * @return array
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
+     */
+    private function getSLOEndpoints()
+    {
+        $store = \SimpleSAML\Store::getInstance();
+        $bindings = $this->metadata->getArray(
+            'SingleLogoutServiceBinding',
+            [
+                \SAML2\Constants::BINDING_HTTP_REDIRECT,
+                \SAML2\Constants::BINDING_SOAP,
+            ]
+        );
+        $location = \SimpleSAML\Module::getModuleURL('saml/sp/saml2-logout.php/'.$this->getAuthId());
+
+        $endpoints = [];
+        foreach ($bindings as $binding) {
+            if ($binding == \SAML2\Constants::BINDING_SOAP && !($store instanceof \SimpleSAML\Store\SQL)) {
+                // we cannot properly support SOAP logout
+                continue;
+            }
+            $endpoints[] = [
+                'Binding' => $binding,
+                'Location' => $location,
+            ];
+        }
+        return $endpoints;
+    }
+
 
     /**
      * Send a SAML1 SSO request to an IdP.
@@ -201,15 +498,19 @@ class SP extends Source
             $accr = \SimpleSAML\Utils\Arrays::arrayize($state['saml:AuthnContextClassRef']);
             $comp = \SAML2\Constants::COMPARISON_EXACT;
             if (isset($state['saml:AuthnContextComparison'])
-                && in_array($state['AuthnContextComparison'], array(
+                && in_array($state['AuthnContextComparison'], [
                     \SAML2\Constants::COMPARISON_EXACT,
                     \SAML2\Constants::COMPARISON_MINIMUM,
                     \SAML2\Constants::COMPARISON_MAXIMUM,
                     \SAML2\Constants::COMPARISON_BETTER,
-                ), true)) {
+                ], true)) {
                 $comp = $state['saml:AuthnContextComparison'];
             }
-            $ar->setRequestedAuthnContext(array('AuthnContextClassRef' => $accr, 'Comparison' => $comp));
+            $ar->setRequestedAuthnContext(['AuthnContextClassRef' => $accr, 'Comparison' => $comp]);
+        }
+
+        if (isset($state['saml:Audience'])) {
+            $ar->setAudiences($state['saml:Audience']);
         }
 
         if (isset($state['ForceAuthn'])) {
@@ -224,55 +525,85 @@ class SP extends Source
             if (!is_array($state['saml:NameID']) && !is_a($state['saml:NameID'], '\SAML2\XML\saml\NameID')) {
                 throw new \SimpleSAML\Error\Exception('Invalid value of $state[\'saml:NameID\'].');
             }
-            $ar->setNameId($state['saml:NameID']);
+
+            $nameId = $state['saml:NameID'];
+            $nid = new \SAML2\XML\saml\NameID();
+            if (!array_key_exists('Value', $nameId)) {
+                throw new \InvalidArgumentException('Missing "Value" in array, cannot create NameID from it.');
+            }
+
+            $nid->setValue($nameId['Value']);
+            if (array_key_exists('NameQualifier', $nameId) && $nameId['NameQualifier'] !== null) {
+                $nid->setNameQualifier($nameId['NameQualifier']);
+            }
+            if (array_key_exists('SPNameQualifier', $nameId) && $nameId['SPNameQualifier'] !== null) {
+                $nid->setSPNameQualifier($nameId['SPNameQualifier']);
+            }
+            if (array_key_exists('SPProvidedID', $nameId) && $nameId['SPProvidedId'] !== null) {
+                $nid->setSPProvidedID($nameId['SPProvidedID']);
+            }
+            if (array_key_exists('Format', $nameId) && $nameId['Format'] !== null) {
+                $nid->setFormat($nameId['Format']);
+            }
+
+            $ar->setNameId($nid);
         }
 
         if (isset($state['saml:NameIDPolicy'])) {
+            $policy = null;
             if (is_string($state['saml:NameIDPolicy'])) {
-                $policy = array(
+                $policy = [
                     'Format' => (string) $state['saml:NameIDPolicy'],
                     'AllowCreate' => true,
-                );
+                ];
             } elseif (is_array($state['saml:NameIDPolicy'])) {
                 $policy = $state['saml:NameIDPolicy'];
-            } else {
-                throw new \SimpleSAML\Error\Exception('Invalid value of $state[\'saml:NameIDPolicy\'].');
+            } elseif ($state['saml:NameIDPolicy'] === null) {
+                $policy = ['Format' => \SAML2\Constants::NAMEID_TRANSIENT];
             }
-            $ar->setNameIdPolicy($policy);
+            if ($policy !== null) {
+                $ar->setNameIdPolicy($policy);
+            }
         }
 
-        if (isset($state['saml:IDPList'])) {
-            $IDPList = $state['saml:IDPList'];
+        $IDPList = [];
+        $requesterID = [];
+
+        /* Only check for real info for Scoping element if we are going to send Scoping element */
+        if ($this->disable_scoping !== true && $idpMetadata->getBoolean('disable_scoping', false) !== true) {
+            if (isset($state['saml:IDPList'])) {
+                $IDPList = $state['saml:IDPList'];
+            }
+
+            if (isset($state['saml:ProxyCount']) && $state['saml:ProxyCount'] !== null) {
+                $ar->setProxyCount($state['saml:ProxyCount']);
+            } elseif ($idpMetadata->getInteger('ProxyCount', null) !== null) {
+                $ar->setProxyCount($idpMetadata->getInteger('ProxyCount', null));
+            } elseif ($this->metadata->getInteger('ProxyCount', null) !== null) {
+                $ar->setProxyCount($this->metadata->getInteger('ProxyCount', null));
+            }
+
+            $requesterID = [];
+            if (isset($state['saml:RequesterID'])) {
+                $requesterID = $state['saml:RequesterID'];
+            }
+
+            if (isset($state['core:SP'])) {
+                $requesterID[] = $state['core:SP'];
+            }
         } else {
-            $IDPList = array();
+            \SimpleSAML\Logger::debug('Disabling samlp:Scoping for '.var_export($idpMetadata->getString('entityid'), true));
         }
 
         $ar->setIDPList(
             array_unique(
                 array_merge(
-                    $this->metadata->getArray('IDPList', array()),
-                    $idpMetadata->getArray('IDPList', array()),
+                    $this->metadata->getArray('IDPList', []),
+                    $idpMetadata->getArray('IDPList', []),
                     (array) $IDPList
                 )
             )
         );
-
-        if (isset($state['saml:ProxyCount']) && $state['saml:ProxyCount'] !== null) {
-            $ar->setProxyCount($state['saml:ProxyCount']);
-        } elseif ($idpMetadata->getInteger('ProxyCount', null) !== null) {
-            $ar->setProxyCount($idpMetadata->getInteger('ProxyCount', null));
-        } elseif ($this->metadata->getInteger('ProxyCount', null) !== null) {
-            $ar->setProxyCount($this->metadata->getInteger('ProxyCount', null));
-        }
-
-        $requesterID = array();
-        if (isset($state['saml:RequesterID'])) {
-            $requesterID = $state['saml:RequesterID'];
-        }
-
-        if (isset($state['core:SP'])) {
-            $requesterID[] = $state['core:SP'];
-        }
 
         $ar->setRequesterID($requesterID);
 
@@ -294,9 +625,9 @@ class SP extends Source
         if ($ar->getProtocolBinding() === \SAML2\Constants::BINDING_HOK_SSO) {
             $dst = $idpMetadata->getDefaultEndpoint(
                 'SingleSignOnService',
-                array(
+                [
                     \SAML2\Constants::BINDING_HOK_SSO
-                )
+                ]
             );
         } else {
             $dst = $idpMetadata->getEndpointPrioritizedByBinding(
@@ -372,13 +703,13 @@ class SP extends Source
             $discoURL = \SimpleSAML\Module::getModuleURL('saml/disco.php');
         }
 
-        $returnTo = \SimpleSAML\Module::getModuleURL('saml/sp/discoresp.php', array('AuthID' => $id));
+        $returnTo = \SimpleSAML\Module::getModuleURL('saml/sp/discoresp.php', ['AuthID' => $id]);
 
-        $params = array(
+        $params = [
             'entityID' => $this->entityId,
             'return' => $returnTo,
             'returnIDParam' => 'idpentityid'
-        );
+        ];
 
         if (isset($state['saml:IDPList'])) {
             $params['IDPList'] = $state['saml:IDPList'];
@@ -556,7 +887,7 @@ class SP extends Source
         // save the state WITHOUT a restart URL, so that we don't try an IdP-initiated login if something goes wrong
         $id = State::saveState($state, 'saml:proxy:invalid_idp', true);
         $url = \SimpleSAML\Module::getModuleURL('saml/proxy/invalid_session.php');
-        \SimpleSAML\Utils\HTTP::redirectTrustedURL($url, array('AuthState' => $id));
+        \SimpleSAML\Utils\HTTP::redirectTrustedURL($url, ['AuthState' => $id]);
         assert(false);
     }
 
@@ -574,7 +905,7 @@ class SP extends Source
         if (isset($state['Responder'])) {
             $state['saml:proxy:reauthLogout:PrevResponder'] = $state['Responder'];
         }
-        $state['Responder'] = array('\SimpleSAML\Module\saml\Auth\Source\SP', 'reauthPostLogout');
+        $state['Responder'] = ['\SimpleSAML\Module\saml\Auth\Source\SP', 'reauthPostLogout'];
 
         $idp = \SimpleSAML\IdP::getByState($state);
         $idp->handleLogoutRequest($state, null);
@@ -645,9 +976,9 @@ class SP extends Source
 
         $idpMetadata = $this->getIdPMetadata($idp);
 
-        $endpoint = $idpMetadata->getEndpointPrioritizedByBinding('SingleLogoutService', array(
+        $endpoint = $idpMetadata->getEndpointPrioritizedByBinding('SingleLogoutService', [
             \SAML2\Constants::BINDING_HTTP_REDIRECT,
-            \SAML2\Constants::BINDING_HTTP_POST), false);
+            \SAML2\Constants::BINDING_HTTP_POST], false);
         if ($endpoint === false) {
             \SimpleSAML\Logger::info('No logout endpoint for IdP '.var_export($idp, true).'.');
             return;
@@ -710,7 +1041,7 @@ class SP extends Source
         assert(array_key_exists('LogoutState', $state));
         assert(array_key_exists('saml:logout:Type', $state['LogoutState']));
 
-        $idpMetadata = $this->getIdpMetadata($idp);
+        $idpMetadata = $this->getIdPMetadata($idp);
 
         $spMetadataArray = $this->metadata->toArray();
         $idpMetadataArray = $idpMetadata->toArray();
@@ -719,15 +1050,15 @@ class SP extends Source
         $state['saml:sp:IdP'] = $idp;
         $state['PersistentAuthData'][] = 'saml:sp:IdP';
 
-        $authProcState = array(
+        $authProcState = [
             'saml:sp:IdP' => $idp,
             'saml:sp:State' => $state,
-            'ReturnCall' => array('\SimpleSAML\Module\saml\Auth\Source\SP', 'onProcessingCompleted'),
+            'ReturnCall' => ['\SimpleSAML\Module\saml\Auth\Source\SP', 'onProcessingCompleted'],
 
             'Attributes' => $attributes,
             'Destination' => $spMetadataArray,
             'Source' => $idpMetadataArray,
-        );
+        ];
 
         if (isset($state['saml:sp:NameID'])) {
             $authProcState['saml:sp:NameID'] = $state['saml:sp:NameID'];

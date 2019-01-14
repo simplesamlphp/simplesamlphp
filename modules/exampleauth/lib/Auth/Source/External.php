@@ -76,17 +76,17 @@ class External extends \SimpleSAML\Auth\Source
          * to store them as arrays.
          */
 
-        $attributes = array(
-            'uid' => array($_SESSION['uid']),
-            'displayName' => array($_SESSION['name']),
-            'mail' => array($_SESSION['mail']),
-        );
+        $attributes = [
+            'uid' => [$_SESSION['uid']],
+            'displayName' => [$_SESSION['name']],
+            'mail' => [$_SESSION['mail']],
+        ];
 
         // Here we generate a multivalued attribute based on the account type
-        $attributes['eduPersonAffiliation'] = array(
+        $attributes['eduPersonAffiliation'] = [
             $_SESSION['type'], /* In this example, either 'student' or 'employee'. */
             'member',
-        );
+        ];
 
         return $attributes;
     }
@@ -143,9 +143,9 @@ class External extends \SimpleSAML\Auth\Source
          * We assume that whatever authentication page we send the user to has an
          * option to return the user to a specific page afterwards.
          */
-        $returnTo = \SimpleSAML\Module::getModuleURL('exampleauth/resume.php', array(
+        $returnTo = \SimpleSAML\Module::getModuleURL('exampleauth/resume.php', [
             'State' => $stateId,
-        ));
+        ]);
 
         /*
          * Get the URL of the authentication page.
@@ -162,9 +162,9 @@ class External extends \SimpleSAML\Auth\Source
          * Note the 'ReturnTo' parameter. This must most likely be replaced with
          * the real name of the parameter for the login page.
          */
-        \SimpleSAML\Utils\HTTP::redirectTrustedURL($authPage, array(
+        \SimpleSAML\Utils\HTTP::redirectTrustedURL($authPage, [
             'ReturnTo' => $returnTo,
-        ));
+        ]);
 
         /*
          * The redirect function never returns, so we never get this far.

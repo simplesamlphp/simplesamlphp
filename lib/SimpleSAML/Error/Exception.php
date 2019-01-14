@@ -80,7 +80,7 @@ class Exception extends \Exception
      */
     protected function initBacktrace(\Exception $exception)
     {
-        $this->backtrace = array();
+        $this->backtrace = [];
 
         // position in the top function on the stack
         $pos = $exception->getFile().':'.$exception->getLine();
@@ -148,9 +148,9 @@ class Exception extends \Exception
      */
     public function format($anonymize = false)
     {
-        $ret = array(
+        $ret = [
             $this->getClass().': '.$this->getMessage(),
-        );
+        ];
         return array_merge($ret, $this->formatBacktrace($anonymize));
     }
 
@@ -166,7 +166,7 @@ class Exception extends \Exception
      */
     public function formatBacktrace($anonymize = false)
     {
-        $ret = array();
+        $ret = [];
         $basedir = \SimpleSAML\Configuration::getInstance()->getBaseDir();
 
         $e = $this;
@@ -197,7 +197,7 @@ class Exception extends \Exception
     protected function logBacktrace($level = \SimpleSAML\Logger::DEBUG)
     {
         // see if debugging is enabled for backtraces
-        $debug = \SimpleSAML\Configuration::getInstance()->getArrayize('debug', array('backtraces' => false));
+        $debug = \SimpleSAML\Configuration::getInstance()->getArrayize('debug', ['backtraces' => false]);
 
         if (!(in_array('backtraces', $debug, true) // implicitly enabled
             || (array_key_exists('backtraces', $debug) && $debug['backtraces'] === true)
@@ -210,13 +210,13 @@ class Exception extends \Exception
 
         $backtrace = $this->formatBacktrace();
 
-        $callback = array('\SimpleSAML\Logger');
-        $functions = array(
+        $callback = ['\SimpleSAML\Logger'];
+        $functions = [
             \SimpleSAML\Logger::ERR     => 'error',
             \SimpleSAML\Logger::WARNING => 'warning',
             \SimpleSAML\Logger::INFO    => 'info',
             \SimpleSAML\Logger::DEBUG   => 'debug',
-        );
+        ];
         $callback[] = $functions[$level];
 
         foreach ($backtrace as $line) {
@@ -234,13 +234,13 @@ class Exception extends \Exception
      */
     public function log($default_level)
     {
-        $fn = array(
+        $fn = [
             \SimpleSAML\Logger::ERR     => 'logError',
             \SimpleSAML\Logger::WARNING => 'logWarning',
             \SimpleSAML\Logger::INFO    => 'logInfo',
             \SimpleSAML\Logger::DEBUG   => 'logDebug',
-        );
-        call_user_func(array($this, $fn[$default_level]), $default_level);
+        ];
+        call_user_func([$this, $fn[$default_level]], $default_level);
     }
 
 

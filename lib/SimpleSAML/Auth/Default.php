@@ -23,7 +23,7 @@ class DefaultAuth
         $authId,
         $return,
         $errorURL = null,
-        array $params = array()
+        array $params = []
     ) {
 
         $as = self::getAuthSource($authId);
@@ -64,7 +64,7 @@ class DefaultAuth
         $session->doLogout($authority);
 
         $state['\SimpleSAML\Auth\DefaultAuth.ReturnURL'] = $returnURL;
-        $state['LogoutCompletedHandler'] = array(get_class(), 'logoutCompleted');
+        $state['LogoutCompletedHandler'] = [get_class(), 'logoutCompleted'];
 
         $as = Source::getById($authority);
         if ($as === null) {

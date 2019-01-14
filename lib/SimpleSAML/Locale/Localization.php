@@ -54,7 +54,7 @@ class Localization
      *
      * @var array
      */
-    private $localeDomainMap = array();
+    private $localeDomainMap = [];
 
     /**
      * Pointer to currently active translator
@@ -96,7 +96,7 @@ class Localization
         $this->localeDir = $this->configuration->resolvePath('locales');
         $this->language = new Language($configuration);
         $this->langcode = $this->language->getPosixLanguage($this->language->getLanguage());
-        $this->i18nBackend = $this->configuration->getString('language.i18n.backend', self::SSP_I18N_BACKEND);
+        $this->i18nBackend = ($this->configuration->getBoolean('usenewui', false) ? self::GETTEXT_I18N_BACKEND : self::SSP_I18N_BACKEND);
         $this->setupL10N();
     }
 
@@ -126,7 +126,7 @@ class Localization
     }
 
 
-    /*
+    /**
      * Add a new translation domain from a module
      * (We're assuming that each domain only exists in one place)
      *
@@ -142,7 +142,7 @@ class Localization
     }
 
 
-    /*
+    /**
      * Add a new translation domain
      * (We're assuming that each domain only exists in one place)
      *

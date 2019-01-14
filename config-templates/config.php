@@ -4,7 +4,7 @@
  *
  */
 
-$config = array(
+$config = [
 
     /*******************************
      | BASIC CONFIGURATION OPTIONS |
@@ -33,7 +33,7 @@ $config = array(
      * The 'application' configuration array groups a set configuration options
      * relative to an application protected by SimpleSAMLphp.
      */
-    //'application' => array(
+    //'application' => [
         /*
          * The 'baseURL' configuration option allows you to specify a protocol,
          * host and optionally a port that serves as the canonical base for all
@@ -49,7 +49,7 @@ $config = array(
          * to SimpleSAMLphp's API.
          */
         //'baseURL' => 'https://example.com',
-    //),
+    //],
 
     /*
      * The following settings are *filesystem paths* which define where
@@ -148,9 +148,9 @@ $config = array(
      * WHAT YOU ARE DOING!
      *
      * Example:
-     *   'trusted.url.domains' => array('sp.example.com', 'app.example.com'),
+     *   'trusted.url.domains' => ['sp.example.com', 'app.example.com'],
      */
-    'trusted.url.domains' => array(),
+    'trusted.url.domains' => [],
 
     /*
      * Enable regular expression matching of trusted.url.domains.
@@ -176,6 +176,16 @@ $config = array(
      */
     'enable.http_post' => false,
 
+    /*
+     * Set the allowed clock skew between encrypting/decrypting assertions
+     *
+     * If you have an server that is constantly out of sync, this option
+     * allows you to adjust the allowed clock-skew.
+     *
+     * Allowed range: 180 - 300
+     * Defaults to 180.
+     */
+    'assertion.allowed_clock_skew' => 180,
 
 
     /************************
@@ -214,11 +224,11 @@ $config = array(
      * If you want to disable debugging completely, unset this option or set it to an
      * empty array.
      */
-    'debug' => array(
+    'debug' => [
         'saml' => false,
         'backtraces' => true,
         'validatexml' => false,
-    ),
+    ],
 
     /*
      * When 'showerrors' is enabled, all error messages and stack traces will be output
@@ -235,7 +245,7 @@ $config = array(
      * See docs/simplesamlphp-errorhandling.txt for function code example.
      *
      * Example:
-     *   'errors.show_function' => array('SimpleSAML\Module\example\Error', 'show'),
+     *   'errors.show_function' => ['SimpleSAML\Module\example\Error', 'show'],
      */
 
 
@@ -254,7 +264,7 @@ $config = array(
      *
      * Choose logging handler.
      *
-     * Options: [syslog,file,errorlog]
+     * Options: [syslog,file,errorlog,stderr]
      *
      */
     'logging.level' => SimpleSAML\Logger::NOTICE,
@@ -316,21 +326,21 @@ $config = array(
      * This is an array of outputs. Each output has at least a 'class' option, which
      * selects the output.
      */
-    'statistics.out' => array(// Log statistics to the normal log.
+    'statistics.out' => [// Log statistics to the normal log.
         /*
-        array(
+        [
             'class' => 'core:Log',
             'level' => 'notice',
-        ),
+        ],
         */
         // Log statistics to files in a directory. One file per day.
         /*
-        array(
+        [
             'class' => 'core:File',
             'directory' => '/var/log/stats',
-        ),
+        ],
         */
-    ),
+    ],
 
 
 
@@ -377,7 +387,7 @@ $config = array(
      */
     'database.username' => 'simplesamlphp',
     'database.password' => 'secret',
-    'database.options' => array(),
+    'database.options' => [],
 
     /*
      * (Optional) Table prefix
@@ -387,7 +397,7 @@ $config = array(
     /*
      * (Optional) Driver options
      */
-    'database.driver_options' => array(),
+    'database.driver_options' => [],
 
     /*
      * True or false if you would like a persistent database connection
@@ -404,16 +414,16 @@ $config = array(
      * options for the master (shown above) with the exception of the table
      * prefix and driver options.
      */
-    'database.slaves' => array(
+    'database.slaves' => [
         /*
-        array(
+        [
             'dsn' => 'mysql:host=myslave;dbname=saml',
             'username' => 'simplesamlphp',
             'password' => 'secret',
             'persistent' => false,
-        ),
+        ],
         */
-    ),
+    ],
 
 
 
@@ -458,11 +468,11 @@ $config = array(
      *
      * Example:
      *
-     * 'module.enable' => array(
-     *      'exampleauth' => TRUE, // Setting to TRUE enables.
-     *      'saml' => FALSE, // Setting to FALSE disables.
-     *      'core' => NULL, // Unset or NULL uses default.
-     * ),
+     * 'module.enable' => [
+     *      'exampleauth' => true, // Setting to TRUE enables.
+     *      'saml' => false, // Setting to FALSE disables.
+     *      'core' => null, // Unset or NULL uses default.
+     * ],
      *
      */
 
@@ -568,7 +578,7 @@ $config = array(
      * See docs/simplesamlphp-advancedfeatures.txt for function code example.
      *
      * Example:
-     *   'session.check_function' => array('\SimpleSAML\Module\example\Util', 'checkSession'),
+     *   'session.check_function' => ['\SimpleSAML\Module\example\Util', 'checkSession'],
      */
 
 
@@ -606,33 +616,33 @@ $config = array(
      * Note that sessions will be lost if one server is lost from both the
      * a-group and the b-group.
      *
-     * 'memcache_store.servers' => array(
-     *     array(
-     *         array('hostname' => 'mc_a1'),
-     *         array('hostname' => 'mc_a2'),
-     *     ),
-     *     array(
-     *         array('hostname' => 'mc_b1'),
-     *         array('hostname' => 'mc_b2'),
-     *     ),
-     * ),
+     * 'memcache_store.servers' => [
+     *     [
+     *         ['hostname' => 'mc_a1'],
+     *         ['hostname' => 'mc_a2'],
+     *     ],
+     *     [
+     *         ['hostname' => 'mc_b1'],
+     *         ['hostname' => 'mc_b2'],
+     *     ],
+     * ],
      *
      * Example of simple configuration with only one memcache server,
      * running on the same computer as the web server:
      * Note that all sessions will be lost if the memcache server crashes.
      *
-     * 'memcache_store.servers' => array(
-     *     array(
-     *         array('hostname' => 'localhost'),
-     *     ),
-     * ),
+     * 'memcache_store.servers' => [
+     *     [
+     *         ['hostname' => 'localhost'],
+     *     ],
+     * ],
      *
      */
-    'memcache_store.servers' => array(
-        array(
-            array('hostname' => 'localhost'),
-        ),
-    ),
+    'memcache_store.servers' => [
+        [
+            ['hostname' => 'localhost'],
+        ],
+    ],
 
     /*
      * This value allows you to set a prefix for memcache-keys. The default
@@ -670,7 +680,7 @@ $config = array(
     /*
      * Language-related options.
      */
-    'language' => array(
+    'language' => [
         /*
          * An array in the form 'language' => <list of alternative languages>.
          *
@@ -681,32 +691,34 @@ $config = array(
          *
          * For example, for the "no" language code (Norwegian), we would have:
          *
-         * 'priorities' => array(
-         *      'no' => array('nb', 'nn', 'en', 'se'),
+         * 'priorities' => [
+         *      'no' => ['nb', 'nn', 'en', 'se'],
          *      ...
-         * ),
+         * ],
          *
          * establishing that if a translation for the "no" language code is
          * not available, we look for translations in "nb" (Norwegian Bokmål),
          * and so on, in that order.
          */
-        'priorities' => array(
-            'no' => array('nb', 'nn', 'en', 'se'),
-            'nb' => array('no', 'nn', 'en', 'se'),
-            'nn' => array('no', 'nb', 'en', 'se'),
-            'se' => array('nb', 'no', 'nn', 'en'),
-        ),
-    ),
+        'priorities' => [
+            'no' => ['nb', 'nn', 'en', 'se'],
+            'nb' => ['no', 'nn', 'en', 'se'],
+            'nn' => ['no', 'nb', 'en', 'se'],
+            'se' => ['nb', 'no', 'nn', 'en'],
+            'nr' => ['zu', 'en'],
+            'nd' => ['zu', 'en'],
+        ],
+    ],
 
     /*
      * Languages available, RTL languages, and what language is the default.
      */
-    'language.available' => array(
-        'en', 'no', 'nn', 'se', 'da', 'de', 'sv', 'fi', 'es', 'ca', 'fr', 'it', 'nl', 'lb', 
+    'language.available' => [
+        'en', 'no', 'nn', 'se', 'da', 'de', 'sv', 'fi', 'es', 'ca', 'fr', 'it', 'nl', 'lb',
         'cs', 'sl', 'lt', 'hr', 'hu', 'pl', 'pt', 'pt-br', 'tr', 'ja', 'zh', 'zh-tw', 'ru',
-        'et', 'he', 'id', 'sr', 'lv', 'ro', 'eu', 'el', 'af'
-    ),
-    'language.rtl' => array('ar', 'dv', 'fa', 'ur', 'he'),
+        'et', 'he', 'id', 'sr', 'lv', 'ro', 'eu', 'el', 'af', 'zu', 'xh',
+    ],
+    'language.rtl' => ['ar', 'dv', 'fa', 'ur', 'he'],
     'language.default' => 'en',
 
     /*
@@ -725,17 +737,6 @@ $config = array(
     'language.cookie.httponly' => false,
     'language.cookie.lifetime' => (60 * 60 * 24 * 900),
 
-    /*
-     * Which i18n backend to use.
-     *
-     * "SimpleSAMLphp" is the home made system, valid for 1.x.
-     * For 2.x, only "gettext/gettext" will be possible.
-     *
-     * Home-made templates will always use "SimpleSAMLphp".
-     * To use twig (where avaliable), select "gettext/gettext".
-     */
-    'language.i18n.backend' => 'SimpleSAMLphp',
-
     /**
      * Custom getLanguage function called from SimpleSAML\Locale\Language::getLanguage().
      * Function should return language code of one of the available languages or NULL.
@@ -745,7 +746,7 @@ $config = array(
      * the default language for the user.
      *
      * Example:
-     *   'language.get_language_function' => array('\SimpleSAML\Module\example\Template', 'getLanguage'),
+     *   'language.get_language_function' => ['\SimpleSAML\Module\example\Template', 'getLanguage'],
      */
 
     /*
@@ -786,6 +787,21 @@ $config = array(
     'theme.use' => 'default',
 
     /*
+     * Set this option to the text you would like to appear at the header of each page. Set to false if you don't want
+     * any text to appear in the header.
+     */
+    //'theme.header' => 'SimpleSAMLphp'
+
+    /**
+     * A template controller, if any.
+     *
+     * Used to intercept certain parts of the template handling, while keeping away unwanted/unexpected hooks. Set
+     * the 'theme.controller' configuration option to a class that implements the
+     * \SimpleSAML\XHTML\TemplateControllerInterface interface to use it.
+     */
+    //'theme.controller' => '',
+
+    /*
      * Templating options
      *
      * By default, twig templates are not cached. To turn on template caching:
@@ -807,7 +823,8 @@ $config = array(
      * is running in a production environment. This will affect the way resources
      * are used, offering an optimized version when running in production, and an
      * easy-to-debug one when not. Set it to false when you are testing or
-     * developing the software.
+     * developing the software, in which case a banner will be displayed to remind
+     * users that they're dealing with a non-production instance.
      *
      * Defaults to true.
      */
@@ -854,11 +871,12 @@ $config = array(
      * Authentication processing filters that will be executed for all IdPs
      * Both Shibboleth and SAML 2.0
      */
-    'authproc.idp' => array(
+    'authproc.idp' => [
         /* Enable the authproc filter below to add URN prefixes to all attributes
-         10 => array(
-             'class' => 'core:AttributeMap', 'addurnprefix'
-         ), */
+        10 => array[
+            'class' => 'core:AttributeMap', 'addurnprefix'
+        ],
+        */
         /* Enable the authproc filter below to automatically generated eduPersonTargetedID.
         20 => 'core:TargetedID',
         */
@@ -866,11 +884,11 @@ $config = array(
         // Adopts language from attribute to use in UI
         30 => 'core:LanguageAdaptor',
 
-        45 => array(
+        45 => [
             'class'         => 'core:StatisticsWithAttribute',
             'attributename' => 'realm',
             'type'          => 'saml20-idp-SSO',
-        ),
+        ],
 
         /* When called without parameters, it will fallback to filter attributes ‹the old way›
          * by checking the 'attributes' parameter in metadata on IdP hosted and SP remote.
@@ -879,58 +897,61 @@ $config = array(
 
         /*
          * Search attribute "distinguishedName" for pattern and replaces if found
-
-        60 => array(
+         */
+        /*
+        60 => [
             'class' => 'core:AttributeAlter',
             'pattern' => '/OU=studerende/',
             'replacement' => 'Student',
             'subject' => 'distinguishedName',
             '%replace',
-        ),
-         */
+        ],
+        */
 
         /*
          * Consent module is enabled (with no permanent storage, using cookies).
-
-        90 => array(
+         */
+        /*
+        90 => [
             'class' => 'consent:Consent',
             'store' => 'consent:Cookie',
             'focus' => 'yes',
-            'checked' => TRUE
-        ),
-         */
+            'checked' => true
+        ],
+        */
         // If language is set in Consent module it will be added as an attribute.
         99 => 'core:LanguageAdaptor',
-    ),
+    ],
 
     /*
      * Authentication processing filters that will be executed for all SPs
      * Both Shibboleth and SAML 2.0
      */
-    'authproc.sp' => array(
+    'authproc.sp' => [
         /*
-        10 => array(
+        10 => [
             'class' => 'core:AttributeMap', 'removeurnprefix'
-        ),
+        ],
         */
 
         /*
          * Generate the 'group' attribute populated from other variables, including eduPersonAffiliation.
-         60 => array(
+        60 => [
             'class' => 'core:GenerateGroups', 'eduPersonAffiliation'
-        ),
+        ],
         */
         /*
          * All users will be members of 'users' and 'members'
-        61 => array(
-            'class' => 'core:AttributeAdd', 'groups' => array('users', 'members')
-        ),
+         */
+        /*
+        61 => [
+            'class' => 'core:AttributeAdd', 'groups' => ['users', 'members']
+        ],
         */
 
         // Adopts language from attribute to use in UI
         90 => 'core:LanguageAdaptor',
-
-    ),
+    ],
 
 
 
@@ -987,40 +1008,40 @@ $config = array(
      * This example defines two flatfile sources. One is the default metadata directory, the other
      * is a metadata directory with auto-generated metadata files.
      *
-     * 'metadata.sources' => array(
-     *     array('type' => 'flatfile'),
-     *     array('type' => 'flatfile', 'directory' => 'metadata-generated'),
-     * ),
+     * 'metadata.sources' => [
+     *     ['type' => 'flatfile'],
+     *     ['type' => 'flatfile', 'directory' => 'metadata-generated'],
+     * ],
      *
      * This example defines a flatfile source and an XML source.
-     * 'metadata.sources' => array(
-     *     array('type' => 'flatfile'),
-     *     array('type' => 'xml', 'file' => 'idp.example.org-idpMeta.xml'),
-     * ),
+     * 'metadata.sources' => [
+     *     ['type' => 'flatfile'],
+     *     ['type' => 'xml', 'file' => 'idp.example.org-idpMeta.xml'],
+     * ],
      *
      * This example defines an mdq source.
-     * 'metadata.sources' => array(
-     *      array(
+     * 'metadata.sources' => [
+     *      [
      *          'type' => 'mdq',
      *          'server' => 'http://mdq.server.com:8080',
      *          'cachedir' => '/var/simplesamlphp/mdq-cache',
      *          'cachelength' => 86400
-     *      )
-     * ),
+     *      ]
+     * ],
      *
      * This example defines an pdo source.
-     * 'metadata.sources' => array(
-     *     array('type' => 'pdo')
-     * ),
+     * 'metadata.sources' => [
+     *     ['type' => 'pdo']
+     * ],
      *
      * Default:
-     * 'metadata.sources' => array(
-     *     array('type' => 'flatfile')
-     * ),
+     * 'metadata.sources' => [
+     *     ['type' => 'flatfile']
+     * ],
      */
-    'metadata.sources' => array(
-        array('type' => 'flatfile'),
-    ),
+    'metadata.sources' => [
+        ['type' => 'flatfile'],
+    ],
 
     /*
      * Should signing of generated metadata be enabled by default.
@@ -1091,4 +1112,4 @@ $config = array(
      * The prefix we should use on our Redis datastore.
      */
     'store.redis.prefix' => 'SimpleSAMLphp',
-);
+];

@@ -23,7 +23,7 @@ function driveProcessingChain(
     $attributes,
     $userid,
     $hashAttributes = false,
-    $excludeAttributes = array()
+    $excludeAttributes = []
 ) {
     /*
      * Create a new processing chain
@@ -34,14 +34,14 @@ function driveProcessingChain(
      * Construct the state.
      * REMEMBER: Do not set Return URL if you are calling processStatePassive
      */
-    $authProcState = array(
+    $authProcState = [
         'Attributes'  => $attributes,
         'Destination' => $sp_metadata,
         'SPMetadata'  => $sp_metadata,
         'Source'      => $idp_metadata,
         'IdPMetadata' => $idp_metadata,
         'isPassive'   => true,
-    );
+    ];
     /* we're being bridged, so add that info to the state */
     if (strpos($source, '-idp-remote|') !== false) {
         $authProcState['saml:sp:IdP'] = substr($source, strpos($source, '|') + 1);
@@ -74,7 +74,7 @@ function driveProcessingChain(
     \SimpleSAML\Logger::info('consentAdmin: attribute: '.$attribute_hash);
 
     // Return values
-    return array($targeted_id, $attribute_hash, $attributes);
+    return [$targeted_id, $attribute_hash, $attributes];
 }
 
 // Get config object
@@ -92,7 +92,7 @@ if (array_key_exists('logout', $_REQUEST)) {
 
 $hashAttributes = $cA_config->getValue('attributes.hash');
 
-$excludeAttributes = $cA_config->getValue('attributes.exclude', array());
+$excludeAttributes = $cA_config->getValue('attributes.exclude', []);
 
 // Check if valid local session exists
 $as->requireAuth();
@@ -223,12 +223,12 @@ if ($action !== null && $sp_entityid !== null) {
 $user_consent_list = $consent_storage->getConsents($hashed_user_id);
 
 // Parse list of consents
-$user_consent = array();
+$user_consent = [];
 foreach ($user_consent_list as $c) {
     $user_consent[$c[0]] = $c[1];
 }
 
-$template_sp_content = array();
+$template_sp_content = [];
 
 // Init template
 $template = new \SimpleSAML\XHTML\Template($config, 'consentAdmin:consentadmin.php', 'consentAdmin:consentadmin');
@@ -311,7 +311,7 @@ foreach ($all_sp_metadata as $sp_entityid => $sp_values) {
     $sp_description = $translator->getPreferredTranslation($translator->getTag('spdescription'));
 
     // Fill out array for the template
-    $sp_list[$sp_entityid] = array(
+    $sp_list[$sp_entityid] = [
         'spentityid'       => $sp_entityid,
         'name'             => $sp_name,
         'description'      => $sp_description,
@@ -319,7 +319,7 @@ foreach ($all_sp_metadata as $sp_entityid => $sp_values) {
         'consentValue'     => $sp_entityid,
         'attributes_by_sp' => $attributes_new,
         'serviceurl'       => $sp_service_url,
-    );
+    ];
 }
 
 $template->data['header'] = 'Consent Administration';

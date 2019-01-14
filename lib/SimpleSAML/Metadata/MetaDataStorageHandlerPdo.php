@@ -27,12 +27,12 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
     /**
      * This is an associative array which stores the different metadata sets we have loaded.
      */
-    private $cachedMetadata = array();
+    private $cachedMetadata = [];
 
     /**
      * All the metadata sets supported by this MetaDataStorageHandler
      */
-    public $supportedSets = array(
+    public $supportedSets = [
         'adfs-idp-hosted',
         'adfs-sp-remote',
         'saml20-idp-hosted',
@@ -44,7 +44,7 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
         'shib13-sp-remote',
         'wsfed-idp-remote',
         'wsfed-sp-hosted'
-    );
+    ];
 
 
     /**
@@ -90,7 +90,7 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
 
         $stmt = $this->db->read("SELECT entity_id, entity_data FROM $tableName");
         if ($stmt->execute()) {
-            $metadata = array();
+            $metadata = [];
 
             while ($d = $stmt->fetch()) {
                 $data = json_decode($d['entity_data'], true);
@@ -127,7 +127,7 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
 
         $metadataSet = $this->load($set);
         if ($metadataSet === null) {
-            $metadataSet = array();
+            $metadataSet = [];
         }
 
         foreach ($metadataSet as $entityId => &$entry) {
@@ -164,7 +164,7 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
 
         $stmt = $this->db->read(
             "SELECT entity_id, entity_data FROM $tableName WHERE entity_id=:entityId",
-            array('entityId' => $entityId)
+            ['entityId' => $entityId]
         );
         if ($stmt->execute()) {
             $rowCount = 0;
@@ -237,17 +237,17 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
 
         $metadata = $this->db->read(
             "SELECT entity_id, entity_data FROM $tableName WHERE entity_id = :entity_id",
-            array(
+            [
                 'entity_id' => $index,
-            )
+            ]
         );
 
         $retrivedEntityIDs = $metadata->fetch();
 
-        $params = array(
+        $params = [
             'entity_id'   => $index,
             'entity_data' => json_encode($entityData),
-        );
+        ];
 
         if ($retrivedEntityIDs !== false && count($retrivedEntityIDs) > 0) {
             $rows = $this->db->write(

@@ -38,7 +38,7 @@ class Portal
 
     public function getLoginInfo($translator, $thispage)
     {
-        $info = array('info' => '', 'translator' => $translator, 'thispage' => $thispage);
+        $info = ['info' => '', 'translator' => $translator, 'thispage' => $thispage];
         \SimpleSAML\Module::callHooks('portalLoginInfo', $info);
         return $info['info'];
     }

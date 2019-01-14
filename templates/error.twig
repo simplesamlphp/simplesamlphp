@@ -10,14 +10,16 @@
        e.g. "core:no_state.tpl.php". The format is "<module>:<template name>"
     #}
     {% if includeTemplate -%}
-        {% include(includeTemplate) %}
+        {% set parts = includeTemplate|replace({'.tpl.php':'.twig'})|split(':') %}
+        {% set namespacedTemplate = "@" ~ parts[0] ~ "/" ~ parts[1] %}
+        {% include(namespacedTemplate) %}
     {%- endif %}
 
     <div class="message-box">
         <p>{{ '{errors:report_trackid}' | trans }}</p>
         <div class="pure-button-group two-elements" role="group">
             <label class="pure-button hollow" disabled><pre id="trackid">{{ error.trackId }}</pre></label>
-            <button data-clipboard-target="#trackid" id="btntrackid" class="pure-button clipboard-btn">
+            <button data-clipboard-target="#trackid" id="btntrackid" class="pure-button clipboard-btn copy">
                 <i class="fa fa-copy"></i>
             </button>
         </div>

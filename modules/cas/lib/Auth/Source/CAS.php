@@ -95,15 +95,15 @@ class CAS extends \SimpleSAML\Auth\Source
      */
     private function casValidate($ticket, $service)
     {
-        $url = \SimpleSAML\Utils\HTTP::addURLParameters($this->casConfig['validate'], array(
+        $url = \SimpleSAML\Utils\HTTP::addURLParameters($this->casConfig['validate'], [
             'ticket' => $ticket,
             'service' => $service,
-        ));
+        ]);
         $result = \SimpleSAML\Utils\HTTP::fetch($url);
         $res = preg_split("/\r?\n/", $result);
 
         if (strcmp($res[0], "yes") == 0) {
-            return array($res[1], array());
+            return [$res[1], []];
         } else {
             throw new \Exception("Failed to validate CAS service ticket: $ticket");
         }
@@ -122,10 +122,10 @@ class CAS extends \SimpleSAML\Auth\Source
     {
         $url = \SimpleSAML\Utils\HTTP::addURLParameters(
             $this->casConfig['serviceValidate'],
-            array(
+            [
                 'ticket' => $ticket,
                 'service' => $service,
-            )
+            ]
         );
         $result = \SimpleSAML\Utils\HTTP::fetch($url);
 
@@ -137,7 +137,7 @@ class CAS extends \SimpleSAML\Auth\Source
             $failure = $xPath->evaluate("/cas:serviceResponse/cas:authenticationFailure");
             throw new \Exception("Error when validating CAS service ticket: ".$failure->item(0)->textContent);
         } else {
-            $attributes = array();
+            $attributes = [];
             if ($casattributes = $this->casConfig['attributes']) {
                 // Some has attributes in the xml - attributes is a list of XPath expressions to get them
                 foreach ($casattributes as $name => $query) {
@@ -149,7 +149,7 @@ class CAS extends \SimpleSAML\Auth\Source
             }
             $casusername = $success->item(0)->textContent;
 
-            return array($casusername, $attributes);
+            return [$casusername, $attributes];
         }
     }
 
@@ -178,15 +178,14 @@ class CAS extends \SimpleSAML\Auth\Source
     /**
      * Called by linkback, to finish validate/ finish logging in.
      * @param array $state
-     * @return array username, casattributes/ldap attributes
      */
     public function finalStep(&$state)
     {
         $ticket = $state['cas:ticket'];
         $stateID = \SimpleSAML\Auth\State::saveState($state, self::STAGE_INIT);
-        $service = \SimpleSAML\Module::getModuleURL('cas/linkback.php', array('stateID' => $stateID));
+        $service = \SimpleSAML\Module::getModuleURL('cas/linkback.php', ['stateID' => $stateID]);
         list($username, $casattributes) = $this->casValidation($ticket, $service);
-        $ldapattributes = array();
+        $ldapattributes = [];
 
         $config = \SimpleSAML\Configuration::loadFromArray(
             $this->ldapConfig,
@@ -224,9 +223,9 @@ class CAS extends \SimpleSAML\Auth\Source
 
         $stateID = \SimpleSAML\Auth\State::saveState($state, self::STAGE_INIT);
 
-        $serviceUrl = \SimpleSAML\Module::getModuleURL('cas/linkback.php', array('stateID' => $stateID));
+        $serviceUrl = \SimpleSAML\Module::getModuleURL('cas/linkback.php', ['stateID' => $stateID]);
 
-        \SimpleSAML\Utils\HTTP::redirectTrustedURL($this->loginMethod, array('service' => $serviceUrl));
+        \SimpleSAML\Utils\HTTP::redirectTrustedURL($this->loginMethod, ['service' => $serviceUrl]);
     }
 
 

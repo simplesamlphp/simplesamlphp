@@ -17,19 +17,19 @@ use SimpleSAML\Utils\HttpAdapter;
 class CardinalitySingle extends \SimpleSAML\Auth\ProcessingFilter
 {
     /** @var array Attributes that should be single-valued or we generate an error */
-    private $singleValued = array();
+    private $singleValued = [];
 
     /** @var array Attributes for which the first value should be taken */
-    private $firstValue = array();
+    private $firstValue = [];
 
     /** @var array Attributes that can be flattened to a single value */
-    private $flatten = array();
+    private $flatten = [];
 
     /** @var string Separator for flattened value */
     private $flattenWith = ';';
 
     /** @var array Entities that should be ignored */
-    private $ignoreEntities = array();
+    private $ignoreEntities = [];
 
     /** @var HTTPAdapter */
     private $http;
@@ -41,12 +41,12 @@ class CardinalitySingle extends \SimpleSAML\Auth\ProcessingFilter
      * @param mixed $reserved  For future use.
      * @param HTTPAdapter $http  HTTP utility service (handles redirects).
      */
-    public function __construct($config, $reserved, HTTPAdapter $http = null)
+    public function __construct($config, $reserved, HttpAdapter $http = null)
     {
         parent::__construct($config, $reserved);
         assert(is_array($config));
 
-        $this->http = $http ? : new HTTPAdapter();
+        $this->http = $http ? : new HttpAdapter();
 
         if (array_key_exists('singleValued', $config)) {
             $this->singleValued = $config['singleValued'];
@@ -100,15 +100,15 @@ class CardinalitySingle extends \SimpleSAML\Auth\ProcessingFilter
             }
 
             if (in_array($k, $this->singleValued)) {
-                $request['core:cardinality:errorAttributes'][$k] = array(count($v), '0 ≤ n ≤ 1');
+                $request['core:cardinality:errorAttributes'][$k] = [count($v), '0 ≤ n ≤ 1'];
                 continue;
             }
             if (in_array($k, $this->firstValue)) {
-                $request['Attributes'][$k] = array(array_shift($v));
+                $request['Attributes'][$k] = [array_shift($v)];
                 continue;
             }
             if (in_array($k, $this->flatten)) {
-                $request['Attributes'][$k] = array(implode($this->flattenWith, $v));
+                $request['Attributes'][$k] = [implode($this->flattenWith, $v)];
                 continue;
             }
         }
@@ -117,7 +117,7 @@ class CardinalitySingle extends \SimpleSAML\Auth\ProcessingFilter
         if (array_key_exists('core:cardinality:errorAttributes', $request)) {
             $id = \SimpleSAML\Auth\State::saveState($request, 'core:cardinality');
             $url = \SimpleSAML\Module::getModuleURL('core/cardinality_error.php');
-            $this->http->redirectTrustedURL($url, array('StateId' => $id));
+            $this->http->redirectTrustedURL($url, ['StateId' => $id]);
             return;
         }
     }

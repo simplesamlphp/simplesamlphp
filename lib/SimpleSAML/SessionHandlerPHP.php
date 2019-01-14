@@ -34,7 +34,7 @@ class SessionHandlerPHP extends SessionHandler
      *
      * @var array
      */
-    private $previous_session = array();
+    private $previous_session = [];
 
 
     /**
@@ -94,32 +94,6 @@ class SessionHandlerPHP extends SessionHandler
 
 
     /**
-     * This method starts a session, making sure no warnings are generated due to headers being already sent.
-     */
-    private function sessionStart()
-    {
-        $cacheLimiter = session_cache_limiter();
-        if (headers_sent()) {
-            /*
-             * session_start() tries to send HTTP headers depending on the configuration, according to the
-             * documentation:
-             *
-             *      http://php.net/manual/en/function.session-start.php
-             *
-             * If headers have been already sent, it will then trigger an error since no more headers can be sent.
-             * Being unable to send headers does not mean we cannot recover the session by calling session_start(),
-             * so we still want to call it. In this case, though, we want to avoid session_start() to send any
-             * headers at all so that no error is generated, so we clear the cache limiter temporarily (no headers
-             * sent then) and restore it after successfully starting the session.
-             */
-            session_cache_limiter('');
-        }
-        session_cache_limiter($cacheLimiter);
-        @session_start();
-    }
-
-
-    /**
      * Restore a previously-existing session.
      *
      * Use this method to restore a previous PHP session existing before SimpleSAMLphp initialized its own session.
@@ -147,8 +121,8 @@ class SessionHandlerPHP extends SessionHandler
             $this->previous_session['cookie_params']['httponly']
         );
         session_id($this->previous_session['id']);
-        $this->previous_session = array();
-        $this->sessionStart();
+        $this->previous_session = [];
+        @session_start();
 
         /*
          * At this point, we have restored a previously-existing session, so we can't continue to use our session here.
@@ -167,12 +141,20 @@ class SessionHandlerPHP extends SessionHandler
     public function newSessionId()
     {
         // generate new (secure) session id
-        $sessionId = bin2hex(openssl_random_pseudo_bytes(16));
-        Session::createSession($sessionId);
+        if (function_exists('session_create_id')) {
+            $sid_length = (int) ini_get('session.sid_length');
+            $sid_bits_per_char = (int) ini_get('session.sid_bits_per_character');
 
+            if (($sid_length * $sid_bits_per_char) < 128) {
+                \SimpleSAML\Logger::warning("Unsafe defaults used for sessionId generation!");
+            }
+            $sessionId = session_create_id();
+        } else {
+            $sessionId = bin2hex(openssl_random_pseudo_bytes(16));
+        }
+        \SimpleSAML\Session::createSession($sessionId);
         return $sessionId;
     }
-
 
     /**
      * Retrieve the session ID saved in the session cookie, if there's one.
@@ -196,7 +178,7 @@ class SessionHandlerPHP extends SessionHandler
             throw new \SimpleSAML\Error\Exception('Session start with secure cookie not allowed on http.');
         }
 
-        $this->sessionStart();
+        @session_start();
         return session_id();
     }
 
@@ -246,7 +228,7 @@ class SessionHandlerPHP extends SessionHandler
                 }
 
                 session_id($sessionId);
-                $this->sessionStart();
+                @session_start();
             } elseif ($sessionId !== session_id()) {
                 throw new \SimpleSAML\Error\Exception('Cannot load PHP session with a specific ID.');
             }
@@ -357,6 +339,6 @@ class SessionHandlerPHP extends SessionHandler
         );
 
         session_id($sessionID);
-        $this->sessionStart();
+        @session_start();
     }
 }

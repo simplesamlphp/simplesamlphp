@@ -19,7 +19,7 @@ class TemplateTest extends TestCase
     public function testSyntax()
     {
         $config = Configuration::loadFromArray([
-            'language.i18n.backend' => 'gettext/gettext',
+            'usenewui' => true,
             'module.enable' => array_fill_keys(Module::getModules(), true),
         ]);
         Configuration::setPreLoadedConfig($config);
@@ -27,7 +27,7 @@ class TemplateTest extends TestCase
         $basedir = dirname(dirname(dirname(__FILE__))).DIRECTORY_SEPARATOR.'templates';
 
         // Base templates
-        $files = array_diff(scandir($basedir), array('.', '..'));
+        $files = array_diff(scandir($basedir), ['.', '..']);
         foreach ($files as $file) {
             if (preg_match('/.twig$/', $file)) {
                 $t = new Template($config, $file);
@@ -46,7 +46,7 @@ class TemplateTest extends TestCase
         foreach (Module::getModules() as $module) {
             $basedir = Module::getModuleDir($module).DIRECTORY_SEPARATOR.'templates';
             if (file_exists($basedir)) {
-                $files = array_diff(scandir($basedir), array('.', '..'));
+                $files = array_diff(scandir($basedir), ['.', '..']);
                 foreach ($files as $file) {
                     if (preg_match('/.twig$/', $file)) {
                         $t = new Template($config, $module.':'.$file);

@@ -32,10 +32,10 @@ class NotFound extends Error
         $url = \SimpleSAML\Utils\HTTP::getSelfURL();
 
         if ($reason === null) {
-            parent::__construct(array('NOTFOUND', '%URL%' => $url));
+            parent::__construct(['NOTFOUND', '%URL%' => $url]);
             $this->message = "The requested page '$url' could not be found.";
         } else {
-            parent::__construct(array('NOTFOUNDREASON', '%URL%' => $url, '%REASON%' => $reason));
+            parent::__construct(['NOTFOUNDREASON', '%URL%' => $url, '%REASON%' => $reason]);
             $this->message = "The requested page '$url' could not be found. ".$reason;
         }
 
@@ -65,8 +65,8 @@ class NotFound extends Error
      */
     public function format($anonymize = false)
     {
-        return array(
+        return [
             $this->getClass().': '.$this->getMessage(),
-        );
+        ];
     }
 }

@@ -17,7 +17,7 @@ See the documentation for those extensions for more details:
 
 
 Parameters
--------
+----------
 
 These are parameters that can be used at runtime to control the authentication.
 All these parameters override the equivalent option from the configuration.
@@ -52,12 +52,6 @@ All these parameters override the equivalent option from the configuration.
 
 :   *Note*: SAML 2 specific.
 
-`saml:NameIDPolicy`
-:   The format of the NameID we request from the IdP.
-    Defaults to the transient format if unspecified.
-
-:   *Note*: SAML 2 specific.
-
 `saml:Extensions`
 :   The samlp:Extensions that will be sent in the login request.
 
@@ -66,6 +60,23 @@ All these parameters override the equivalent option from the configuration.
 `saml:NameID`
 :   Add a Subject element with a NameID to the SAML AuthnRequest for the IdP.
     This must be a \SAML2\XML\saml\NameID object.
+
+:   *Note*: SAML 2 specific.
+
+`saml:NameIDPolicy`
+:   The format of the NameID we request from the IdP: an array in the form of
+    `[ 'Format' => the format, 'allowcreate' => true or false ]`.
+    Set to `false` instead of an array to omit sending any specific NameIDPolicy
+    in the AuthnRequest.
+
+:   For compatibility purposes, `null` is equivalent to transient and a format
+    can be defined as a string instead of an array. These variants are deprecated.
+
+:   *Note*: SAML 2 specific.
+
+`saml:Audience`
+:   Add a Conditions element to the SAML AuthnRequest containing an
+    AudienceRestriction with one or more audiences.
 
 :   *Note*: SAML 2 specific.
 
@@ -196,6 +207,15 @@ Options
 
 :   *Note*: For this to be added to the metadata, you must also specify the `attributes` and `name` options.
 
+`disable_scoping`
+:    Whether sending of samlp:Scoping elements in authentication requests should be suppressed. The default value is `FALSE`.
+     When set to `TRUE`, no scoping elements will be sent. This does not comply with the SAML2 specification, but allows
+     interoperability with ADFS which [does not support Scoping elements](https://docs.microsoft.com/en-za/azure/active-directory/develop/active-directory-single-sign-on-protocol-reference#scoping).
+
+:   Note that this option also exists in the IdP remote configuration. An
+    entry in the the IdP-remote metadata overrides this the option in the
+    SP configuration.
+
 `discoURL`
 :   Set which IdP discovery service this SP should use.
     If this is unset, the IdP discovery service specified in the global option `idpdisco.url.{saml20|shib13}` in `config/config.php` will be used.
@@ -251,12 +271,15 @@ Options
 :   *Note*: SAML 2 specific.
 
 `NameIDPolicy`
-:   The format of the NameID we request from the IdP.
-    Defaults to the `transient` format if unspecified.
+:   The format of the NameID we request from the idp: an array in the form of
+    `[ 'Format' => the format, 'AllowCreate' => true or false ]`.
+    Set to `false` instead of an array to omit sending any specific NameIDPolicy
+    in the AuthnRequest.
 
-:   If this option is set, its value will be added to the metadata generated for this SP, in the NameIDFormat element.
+:   For compatibility purposes, `null` is equivalent to transient and a format
+    can be defined as a string instead of an array. These variants are deprecated.
 
-:   *Note 1*: SAML 2 specific.
+:   *Note*: SAML 2 specific.
 
 `OrganizationName`
 :   The name of the organization responsible for this SP.

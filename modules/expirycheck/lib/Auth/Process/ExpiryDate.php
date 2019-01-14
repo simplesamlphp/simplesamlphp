@@ -142,7 +142,7 @@ class ExpiryDate extends \SimpleSAML\Auth\ProcessingFilter
             $state['netId'] = $netId;
             $id = \SimpleSAML\Auth\State::saveState($state, 'expirywarning:about2expire');
             $url = \SimpleSAML\Module::getModuleURL('expirycheck/about2expire.php');
-            \SimpleSAML\Utils\HTTP::redirectTrustedURL($url, array('StateId' => $id));
+            \SimpleSAML\Utils\HTTP::redirectTrustedURL($url, ['StateId' => $id]);
         }
 
         if (!$this->checkDate($expireOnDate)) {
@@ -154,7 +154,7 @@ class ExpiryDate extends \SimpleSAML\Auth\ProcessingFilter
             $state['netId'] = $netId;
             $id = \SimpleSAML\Auth\State::saveState($state, 'expirywarning:expired');
             $url = \SimpleSAML\Module::getModuleURL('expirycheck/expired.php');
-            \SimpleSAML\Utils\HTTP::redirectTrustedURL($url, array('StateId' => $id));
+            \SimpleSAML\Utils\HTTP::redirectTrustedURL($url, ['StateId' => $id]);
         }
     }
 }

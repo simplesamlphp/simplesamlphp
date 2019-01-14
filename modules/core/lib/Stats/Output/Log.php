@@ -24,7 +24,7 @@ class Log extends \SimpleSAML\Stats\Output
     public function __construct(\SimpleSAML\Configuration $config)
     {
         $logLevel = $config->getString('level', 'notice');
-        $this->logger = array('\SimpleSAML\Logger', $logLevel);
+        $this->logger = ['\SimpleSAML\Logger', $logLevel];
         if (!is_callable($this->logger)) {
             throw new \Exception('Invalid log level: '.var_export($logLevel, true));
         }

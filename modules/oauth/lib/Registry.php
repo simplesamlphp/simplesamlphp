@@ -11,6 +11,17 @@ namespace SimpleSAML\Module\oauth;
 
 class Registry
 {
+    public static function requireOwnership($entry, $userid)
+    {
+        if (!isset($entry['owner'])) {
+            throw new \Exception('OAuth Consumer has no owner. Which means no one is granted access, not even you.');
+        } elseif ($entry['owner'] !== $userid) {
+            throw new \Exception(
+                'OAuth Consumer has an owner that is not equal to your userid, hence you are not granted access.'
+            );
+        }
+    }
+
     protected function getStandardField($request, &$entry, $key)
     {
         if (array_key_exists('field_'.$key, $request)) {
@@ -20,7 +31,7 @@ class Registry
         }
     }
 
-    public function formToMeta($request, $entry = array(), $override = null)
+    public function formToMeta($request, $entry = [], $override = null)
     {
         $this->getStandardField($request, $entry, 'name');
         $this->getStandardField($request, $entry, 'description');

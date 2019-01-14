@@ -16,10 +16,10 @@ $this->includeAtTemplateBase('includes/header.php');
 
 $translator = $this->getTranslator();
 
-$params = array(
+$params = [
     '%IDP%' => $this->data['idp_name'],
     '%SP%' => $this->data['sp_name'],
-);
+];
 ?>
     <h2><?php echo $translator->t('{saml:proxy:invalid_idp}'); ?></h2>
     <p><?php echo $translator->t('{saml:proxy:invalid_idp_description}', $params); ?></p>

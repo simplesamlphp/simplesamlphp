@@ -26,7 +26,7 @@ try {
 }
 
 if ($data === null) {
-    $data = array(
+    $data = [
         'exceptionMsg'   => 'not set',
         'exceptionTrace' => 'not set',
         'reportId'       => $reportId,
@@ -34,7 +34,7 @@ if ($data === null) {
         'url'            => 'not set',
         'version'        => $config->getVersion(),
         'referer'        => 'not set',
-    );
+    ];
 
     if (isset($session)) {
         $data['trackId'] = $session->getTrackID();
@@ -69,11 +69,11 @@ $message = <<<MESSAGE
 <p>Track ID:</p>
 <pre>%s</pre>
 
-<p>Version: <tt>%s</tt></p>
+<p>Version: <code>%s</code></p>
 
-<p>Report ID: <tt>%s</tt></p>
+<p>Report ID: <code>%s</code></p>
 
-<p>Referer: <tt>%s</tt></p>
+<p>Referer: <code>%s</code></p>
 
 <hr />
 <div class="footer">

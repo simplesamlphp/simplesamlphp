@@ -23,7 +23,7 @@ class AttributeAdd extends \SimpleSAML\Auth\ProcessingFilter
      *
      * Assiciative array of arrays.
      */
-    private $attributes = array();
+    private $attributes = [];
 
     /**
      * Initialize this filter.
@@ -48,7 +48,7 @@ class AttributeAdd extends \SimpleSAML\Auth\ProcessingFilter
             }
 
             if (!is_array($values)) {
-                $values = array($values);
+                $values = [$values];
             }
             foreach ($values as $value) {
                 if (!is_string($value)) {
