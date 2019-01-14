@@ -6,6 +6,19 @@ SimpleSAMLphp SP API reference
 This document describes the \SimpleSAML\Auth\Simple API.
 This is the preferred API for integrating SimpleSAMLphp with other applications.
 
+### Note on PHP sessions and SimpleSAMLphp API calls
+
+Some SimpleSAMLphp calls replace the current active PHP session. If you previously started a session and wish to write to it, then you must cleanup the SimpleSAMLphp session before you can write to your session. If you do not need to modify your own session, then you can leave the cleanup call out; however, forgetting to call cleanup is a common source of hard to find bugs.
+
+    session_start();
+    // ...
+    $auth = new \SimpleSAML\Auth\Simple('default-sp');
+    $auth->isAuthenticated(); // Replaces our session with the SimpleSAMLphp one
+    // $_SESSION['key'] = 'value'; // This would save to the SimpleSAMLphp session which isn't what we want
+    SimpleSAML_Session::getSessionFromRequest()->cleanup(); // Reverts to our PHP session
+    // Save to our session
+    $_SESSION['key'] = 'value';
+
 Constructor
 -----------
 
@@ -34,10 +47,10 @@ Check whether the user is authenticated with this authentication source.
 ### Example
 
     if (!$auth->isAuthenticated()) {
+        SimpleSAML_Session::getSessionFromRequest()->cleanup();
         /* Show login link. */
         print('<a href="/login">Login</a>');
     }
-
 
 `requireAuth`
 -------------
@@ -57,6 +70,7 @@ See the documentation for the `login`-function for a description of the paramete
 ### Example 1
 
     $auth->requireAuth();
+    SimpleSAML_Session::getSessionFromRequest()->cleanup();
     print("Hello, authenticated user!");
 
 ### Example 2
@@ -69,6 +83,7 @@ See the documentation for the `login`-function for a description of the paramete
         'ReturnTo' => 'https://sp.example.org/',
         'KeepPost' => FALSE,
     ]);
+    SimpleSAML_Session::getSessionFromRequest()->cleanup();
     print("Hello, authenticated user!");
 
 
@@ -112,7 +127,7 @@ The [`saml:SP`](./saml:sp) authentication source also defines some parameters.
         'isPassive' => TRUE,
         'ErrorURL' => 'https://.../error_handler.php',
     ]);
-
+    SimpleSAML_Session::getSessionFromRequest()->cleanup();
 
 `logout`
 --------
@@ -144,6 +159,7 @@ This function never returns.
 Logout, and redirect to the specified URL.
 
     $auth->logout('https://sp.example.org/logged_out.php');
+    SimpleSAML_Session::getSessionFromRequest()->cleanup();
 
 ### Example 2
 
@@ -154,6 +170,7 @@ Same as the previous, but check the result of the logout operation afterwards.
         'ReturnStateParam' => 'LogoutState',
         'ReturnStateStage' => 'MyLogoutState',
     ]);
+    SimpleSAML_Session::getSessionFromRequest()->cleanup();
 
 And in logged_out.php:
 
