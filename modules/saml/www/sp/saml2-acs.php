@@ -234,7 +234,7 @@ $state['saml:AuthnInstant'] = $assertion->getAuthnInstant();
 $state['PersistentAuthData'][] = 'saml:AuthnInstant';
 $state['saml:sp:SessionIndex'] = $sessionIndex;
 $state['PersistentAuthData'][] = 'saml:sp:SessionIndex';
-$state['saml:sp:AuthnContext'] = $assertion->getAuthnContext();
+$state['saml:sp:AuthnContext'] = $assertion->getAuthnContextClassRef();
 $state['PersistentAuthData'][] = 'saml:sp:AuthnContext';
 
 if ($expire !== null) {
