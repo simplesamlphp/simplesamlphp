@@ -727,6 +727,7 @@
 	},
 	"remember_username": {
 		"es": "Recordar mi nombre de usuario",
+        "de": "Nutzername merken"
 		"hu": "Eml\u00e9kezzen a felhaszn\u00e1l\u00f3nevemre",
 		"ru": "\u0417\u0430\u043f\u043e\u043c\u043d\u0438\u0442\u044c \u043c\u043e\u0451 \u0438\u043c\u044f \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044f",
 		"zh-tw": "\u8a18\u4f4f\u6211\u7684\u4f7f\u7528\u8005\u540d\u7a31",
@@ -741,6 +742,7 @@
 	},
 	"remember_me": {
 		"es": "Recordarme",
+        "de": "Angemeldet bleiben"
 		"hu": "Eml\u00e9kezzen r\u00e1m",
 		"ru": "\u0417\u0430\u043f\u043e\u043c\u043d\u0438\u0442\u044c \u043c\u0435\u043d\u044f",
 		"zh-tw": "\u8a18\u4f4f\u6211",
