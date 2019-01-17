@@ -4,6 +4,7 @@ namespace SimpleSAML\Module\saml\IdP;
 
 use RobRichards\XMLSecLibs\XMLSecurityKey;
 use SAML2\Constants;
+use SAML2\XML\saml\Issuer;
 use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
 use SAML2\SOAP;
@@ -1085,7 +1086,10 @@ class SAML2
             \SimpleSAML\Module\saml\Message::addSign($idpMetadata, $spMetadata, $a);
         }
 
-        $a->setIssuer($idpMetadata->getString('entityid'));
+        $issuer = new Issuer();
+        $issuer->setValue($idpMetadata->getString('entityid'));
+        $issuer->setFormat(Constants::NAMEID_ENTITY);
+        $a->setIssuer($issuer);
         $a->setValidAudiences([$spMetadata->getString('entityid')]);
 
         $a->setNotBefore($now - 30);
@@ -1116,10 +1120,11 @@ class SAML2
         $a->setSessionIndex(\SimpleSAML\Utils\Random::generateID());
 
         $sc = new \SAML2\XML\saml\SubjectConfirmation();
-        $sc->SubjectConfirmationData = new \SAML2\XML\saml\SubjectConfirmationData();
-        $sc->SubjectConfirmationData->setNotOnOrAfter($now + $assertionLifetime);
-        $sc->SubjectConfirmationData->setRecipient($state['saml:ConsumerURL']);
-        $sc->SubjectConfirmationData->setInResponseTo($state['saml:RequestId']);
+        $scd = new \SAML2\XML\saml\SubjectConfirmationData();
+        $scd->setNotOnOrAfter($now + $assertionLifetime);
+        $scd->setRecipient($state['saml:ConsumerURL']);
+        $scd->setInResponseTo($state['saml:RequestId']);
+        $sc->setSubjectConfirmationData($scd);
 
         // ProtcolBinding of SP's <AuthnRequest> overwrites IdP hosted metadata configuration
         $hokAssertion = null;
@@ -1149,7 +1154,7 @@ class SAML2
                         $keyInfo = new \SAML2\XML\ds\KeyInfo();
                         $keyInfo->addInfo($x509Data);
 
-                        $sc->SubjectConfirmationData->addInfo($keyInfo);
+                        $scd->addInfo($keyInfo);
                     } else {
                         throw new \SimpleSAML\Error\Exception(
                             'Error creating HoK assertion: No valid client certificate provided during TLS handshake '.
@@ -1170,6 +1175,7 @@ class SAML2
             // Bearer
             $sc->setMethod(\SAML2\Constants::CM_BEARER);
         }
+        $sc->setSubjectConfirmationData($scd);
         $a->setSubjectConfirmation([$sc]);
 
         // add attributes
@@ -1364,8 +1370,10 @@ class SAML2
         }
 
         $r = new \SAML2\Response();
-
-        $r->setIssuer($idpMetadata->getString('entityid'));
+        $issuer = new Issuer();
+        $issuer->setValue($idpMetadata->getString('entityid'));
+        $issuer->setFormat(Constants::NAMEID_ENTITY);
+        $r->setIssuer($issuer);
         $r->setDestination($consumerURL);
 
         if ($signResponse) {
