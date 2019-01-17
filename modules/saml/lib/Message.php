@@ -556,7 +556,10 @@ class Message
         \SimpleSAML\Configuration $dstMetadata
     ) {
         $lr = new \SAML2\LogoutResponse();
-        $lr->setIssuer($srcMetadata->getString('entityid'));
+        $issuer = new Issuer();
+        $issuer->setValue($srcMetadata->getString('entityid'));
+        $issuer->setFormat(Constants::NAMEID_ENTITY);
+        $lr->setIssuer($issuer);
 
         self::addRedirectSign($srcMetadata, $dstMetadata, $lr);
 
