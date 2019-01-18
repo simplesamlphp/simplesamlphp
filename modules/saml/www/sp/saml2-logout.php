@@ -34,10 +34,14 @@ try {
 }
 $message = $binding->receive();
 
-$idpEntityId = $message->getIssuer();
-if ($idpEntityId === null) {
+$issuer = $message->getIssuer();
+if ($issuer === null) {
     // Without an issuer we have no way to respond to the message.
     throw new \SimpleSAML\Error\BadRequest('Received message on logout endpoint without issuer.');
+} elseif ($issuer instanceof \SAML2\XML\saml\Issuer) {
+    $idpEntityId = $issuer->getValue();
+} else {
+    $idpEntityId = $issuer;
 }
 
 $spEntityId = $source->getEntityId();

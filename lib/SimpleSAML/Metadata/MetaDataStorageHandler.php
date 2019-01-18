@@ -2,6 +2,7 @@
 
 namespace SimpleSAML\Metadata;
 
+use SAML2\XML\saml\Issuer;
 use SimpleSAML\Utils\ClearableState;
 
 /**

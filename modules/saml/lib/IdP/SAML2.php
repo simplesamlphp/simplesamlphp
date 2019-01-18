@@ -342,11 +342,15 @@ class SAML2
                 );
             }
 
-            $spEntityId = $request->getIssuer();
-            if ($spEntityId === null) {
+            $issuer = $request->getIssuer();
+            if ($issuer === null) {
                 throw new \SimpleSAML\Error\BadRequest(
                     'Received message on authentication request endpoint without issuer.'
                 );
+            } elseif ($issuer instanceof Issuer) {
+                $spEntityId = $issuer->getValue();
+            } else { // we got a string, old case
+                $spEntityId = $issuer;
             }
             $spMetadata = $metadata->getMetaDataConfig($spEntityId, 'saml20-sp-remote');
 
@@ -565,10 +569,14 @@ class SAML2
         $binding = \SAML2\Binding::getCurrentBinding();
         $message = $binding->receive();
 
-        $spEntityId = $message->getIssuer();
-        if ($spEntityId === null) {
+        $issuer = $message->getIssuer();
+        if ($issuer === null) {
             /* Without an issuer we have no way to respond to the message. */
             throw new \SimpleSAML\Error\BadRequest('Received message on logout endpoint without issuer.');
+        } elseif ($issuer instanceof Issuer) {
+            $spEntityId = $issuer->getValue();
+        } else {
+            $spEntityId = $issuer;
         }
 
         $metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
