@@ -465,7 +465,7 @@ msgid "{general:no_cancel}"
 msgstr "Nein, ich stimme nicht zu"
 
 msgid "{login:user_pass_header}"
-msgstr "Bitten geben Sie ihren Nutzernamen und Passwort ein"
+msgstr "Bitte geben Sie Ihren Nutzernamen und Ihr Passwort ein"
 
 msgid "{errors:report_explain}"
 msgstr "Erläutern Sie, wodurch der Fehler auftrat..."
@@ -978,7 +978,7 @@ msgstr ""
 "Kopfzeile der SAML-Entität."
 
 msgid "Enter your username and password"
-msgstr "Bitten geben Sie ihren Nutzernamen und Passwort ein"
+msgstr "Bitte geben Sie Ihren Nutzernamen und Ihr Passwort ein"
 
 msgid "Login at"
 msgstr "Login bei"
