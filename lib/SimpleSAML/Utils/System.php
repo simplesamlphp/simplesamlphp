@@ -251,7 +251,7 @@ class System
      * @param string $path
      * @return bool
      */
-    private static function pathContainsStreamWrapper(string $path)
+    private static function pathContainsStreamWrapper($path)
     {
         return preg_match('/^[\w\d]*:\/{2}/', $path) === 1;
     }
