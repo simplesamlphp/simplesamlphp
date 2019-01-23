@@ -100,6 +100,36 @@ class SystemTest extends TestCase
     }
 
     /**
+     * @covers \SimpleSAML\Utils\System::resolvePath
+     * @test
+     */
+    public function testResolvePathAllowsStreamWrappers()
+    {
+        $base = '/base/';
+        $path = 'vfs://simplesaml';
+
+        $res = System::resolvePath($path, $base);
+        $expected = $path;
+
+        $this->assertEquals($expected, $res);
+    }
+
+    /**
+     * @covers \SimpleSAML\Utils\System::resolvePath
+     * @test
+     */
+    public function testResolvePathAllowsAwsS3StreamWrappers()
+    {
+        $base = '/base/';
+        $path = 's3://bucket-name/key-name';
+
+        $res = System::resolvePath($path, $base);
+        $expected = $path;
+
+        $this->assertEquals($expected, $res);
+    }
+
+    /**
      * @covers \SimpleSAML\Utils\System::writeFile
      * @test
      */
@@ -230,7 +260,6 @@ class SystemTest extends TestCase
 
         $this->clearInstance($config, '\SimpleSAML\Configuration');
     }
-
     private function setConfigurationTempDir($directory)
     {
         $config = Configuration::loadFromArray([
