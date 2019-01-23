@@ -107,7 +107,9 @@ class System
     /**
      * Resolve a (possibly) relative path from the given base path.
      *
-     * A path which starts with a '/' is assumed to be absolute, all others are assumed to be
+     * A path which starts with a stream wrapper pattern (e.g. s3://) will not be touched
+     * and returned as is - regardles of the value given as base path.
+     * If it starts with a '/' it is assumed to be absolute, all others are assumed to be
      * relative. The default base path is the root of the SimpleSAMLphp installation.
      *
      * @param string      $path The path we should resolve.
@@ -144,17 +146,21 @@ class System
             $ret = $base;
         }
 
-        $path = explode('/', $path);
-        foreach ($path as $d) {
-            if ($d === '.') {
-                continue;
-            } elseif ($d === '..') {
-                $ret = dirname($ret);
-            } else {
-                if ($ret && substr($ret, -1) !== '/') {
-                    $ret .= '/';
+        if (static::pathContainsStreamWrapper($path)){
+            $ret = $path;
+        } else {
+            $path = explode('/', $path);
+            foreach ($path as $d) {
+                if ($d === '.') {
+                    continue;
+                } elseif ($d === '..') {
+                    $ret = dirname($ret);
+                } else {
+                    if ($ret && substr($ret, -1) !== '/') {
+                        $ret .= '/';
+                    }
+                    $ret .= $d;
                 }
-                $ret .= $d;
             }
         }
 
@@ -238,5 +244,15 @@ class System
         $letterAsciiValue = ord(strtoupper(substr($path, 0, 1)));
         return substr($path, 1, 1) === ':'
                 && $letterAsciiValue >= 65 && $letterAsciiValue <= 90;
+    }
+
+    /**
+     * Check if the supplied path contains a stream wrapper
+     * @param string $path
+     * @return bool
+     */
+    private static function pathContainsStreamWrapper(string $path)
+    {
+        return preg_match('/^[\w\d]*:\/{2}/', $path) === 1;
     }
 }
