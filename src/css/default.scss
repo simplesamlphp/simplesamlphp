@@ -466,6 +466,7 @@ CONTENT
   display: inline-block;
   min-height: 1em;
   max-height: 20em;
+  width: 100%;
   height: 100%;
   white-space: pre-wrap;
   &::selection {
@@ -478,6 +479,10 @@ CONTENT
   border-bottom: 1px solid #ccc;
   background-color: #e0e0e0;
   padding: 0.5em 0 0.5em 0.5em;
+}
+
+pre#xmlmetadata {
+  width: 98%;
 }
 
 /* ***********************************************************
