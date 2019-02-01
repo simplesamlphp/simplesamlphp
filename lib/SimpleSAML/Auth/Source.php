@@ -293,7 +293,7 @@ abstract class Source
      * @param string $authId The authentication source identifier.
      * @param array  $config The configuration.
      *
-     * @return Source The parsed authentication source.
+     * @return \SimpleSAML\Auth\Source The parsed authentication source.
      * @throws \Exception If the authentication source is invalid.
      */
     private static function parseAuthSource($authId, $config)
@@ -514,6 +514,7 @@ abstract class Source
      * @param string $id The auth source identifier.
      *
      * @throws \Exception If the first element of $source is not an identifier for the auth source.
+     * @return void
      */
     protected static function validateSource($source, $id)
     {

@@ -46,6 +46,7 @@ class ProcessingChain
      *
      * @param array $idpMetadata  The metadata for the IdP.
      * @param array $spMetadata  The metadata for the SP.
+     * @param string $mode
      */
     public function __construct($idpMetadata, $spMetadata, $mode = 'idp')
     {
@@ -84,6 +85,7 @@ class ProcessingChain
      *
      * @param array &$target  Target filter list. This list must be sorted.
      * @param array $src  Source filters. May be unsorted.
+     * @return void
      */
     private static function addFilters(&$target, $src)
     {
@@ -181,6 +183,9 @@ class ProcessingChain
      * @see State::EXCEPTION_HANDLER_FUNC
      *
      * @param array &$state  The state we are processing.
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \SimpleSAML\Error\UnserializableException
+     * @return void
      */
     public function processState(&$state)
     {
@@ -226,6 +231,7 @@ class ProcessingChain
      * to whatever exception handler is defined in the state array.
      *
      * @param array $state  The state we are processing.
+     * @return void
      */
     public static function resumeProcessing($state)
     {
@@ -280,6 +286,7 @@ class ProcessingChain
      * This function will only return if processing completes.
      *
      * @param array &$state  The state we are processing.
+     * @return void
      */
     public function processStatePassive(&$state)
     {
@@ -316,7 +323,7 @@ class ProcessingChain
      *
      * @param string $id The state identifier.
      * @see State::parseStateID()
-     * @return array The state referenced by the $id parameter.
+     * @return array|null The state referenced by the $id parameter.
      */
     public static function fetchProcessedState($id)
     {
@@ -328,6 +335,8 @@ class ProcessingChain
 
     /**
      * @deprecated This method will be removed in SSP 2.0.
+     * @param array &$state
+     * @return void
      */
     private static function addUserID(&$state)
     {

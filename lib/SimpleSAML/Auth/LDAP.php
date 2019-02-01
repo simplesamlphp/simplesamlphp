@@ -34,12 +34,14 @@ class LDAP
     /**
      * LDAP link identifier.
      *
-     * @var resource
+     * @var resource|null
      */
     protected $ldap = null;
 
     /**
      * LDAP user: authz_id if SASL is in use, binding dn otherwise
+     *
+     * @var string|null
      */
     protected $authz_id = null;
 
@@ -59,6 +61,7 @@ class LDAP
      * @param int $timeout
      * @param int $port
      * @param bool $referrals
+     * @psalm-suppress NullArgument
      */
     public function __construct(
         $hostname,
@@ -145,8 +148,8 @@ class LDAP
      * Convenience method to create an LDAPException as well as log the
      * description.
      *
-     * @param string $description
-     * The exception's description
+     * @param string $description The exception's description
+     * @param int|null $type The exception's type
      * @return \Exception
      */
     private function makeException($description, $type = null)
@@ -235,6 +238,7 @@ class LDAP
      * - Failed to get DN for entry
      * @throws Error\UserNotFound if:
      * - Zero entries were found
+     * @psalm-suppress TypeDoesNotContainType
      */
     private function search($base, $attribute, $value, $searchFilter = null, $scope = "subtree")
     {
@@ -321,7 +325,7 @@ class LDAP
      * Additional searchFilter to be added to the (attribute=value) filter
      * @param string $scope
      * The scope of the search
-     * @return string
+     * @return string|null
      * The DN of the matching element, if found. If no element was found and
      * $allowZeroHits is set to FALSE, an exception will be thrown; otherwise
      * NULL will be returned.
@@ -419,6 +423,8 @@ class LDAP
         if (empty($bases)) {
             throw $this->makeException('ldap:LdapConnection->search_manual : No base DNs were passed', ERR_INTERNAL);
         }
+
+        $attributes = \SimpleSAML\Utils\Arrays::arrayize($attributes);
 
         // Search each base until result is found
         $result = false;
@@ -560,8 +566,8 @@ class LDAP
      * Applies an LDAP option to the current connection.
      *
      * @throws Exception
-     * @param $option
-     * @param $value
+     * @param mixed $option
+     * @param mixed $value
      * @return void
      */
     public function setOption($option, $value)
@@ -614,6 +620,7 @@ class LDAP
 
         // Attempt to get attributes
         // TODO: Should aliases be dereferenced?
+        /** @var array $attributes */
         $result = @ldap_read($this->ldap, $dn, 'objectClass=*', $attributes, 0, 0, $this->timeout);
         if ($result === false) {
             throw $this->makeException('Library - LDAP getAttributes(): Failed to get attributes from DN \''.$dn.'\'');
@@ -726,6 +733,7 @@ class LDAP
      *
      * @static
      * @param string|array $values Array of values to escape
+     * @param bool $singleValue
      * @return array Array $values, but escaped
      */
     public static function escape_filter_value($values = [], $singleValue = true)
@@ -734,20 +742,20 @@ class LDAP
         $values = \SimpleSAML\Utils\Arrays::arrayize($values);
 
         foreach ($values as $key => $val) {
-            // Escaping of filter meta characters
-            $val = str_replace('\\', '\5c', $val);
-            $val = str_replace('*', '\2a', $val);
-            $val = str_replace('(', '\28', $val);
-            $val = str_replace(')', '\29', $val);
-
-            // ASCII < 32 escaping
-            $val = self::asc2hex32($val);
-
-            if (null === $val) {
+            if ($val === null) {
                 $val = '\0'; // apply escaped "null" if string is empty
+            } else {
+                // Escaping of filter meta characters
+                $val = str_replace('\\', '\5c', $val);
+                $val = str_replace('*', '\2a', $val);
+                $val = str_replace('(', '\28', $val);
+                $val = str_replace(')', '\29', $val);
+
+                // ASCII < 32 escaping
+                $val = self::asc2hex32($val);
             }
 
-            $values[$key] = $val;
+            $values[$key] = $values;
         }
         if ($singleValue) {
             return $values[0];
@@ -783,6 +791,11 @@ class LDAP
 
     /**
      * Convert SASL authz_id into a DN
+     *
+     * @param string $searchBase
+     * @param array $searchAttributes
+     * @param string $authz_id
+     * @return string|null
      */
     private function authzidToDn($searchBase, $searchAttributes, $authz_id)
     {
@@ -811,6 +824,11 @@ class LDAP
      * When it was integrated into PHP repository, the function prototype
      * was changed, The new prototype was used in third party patch for
      * PHP 7.0 and 7.1, hence the version test below.
+     *
+     * @param string $searchBase
+     * @param array $searchAttributes
+     * @throws \Exception
+     * @return string|null
      */
     public function whoami($searchBase, $searchAttributes)
     {

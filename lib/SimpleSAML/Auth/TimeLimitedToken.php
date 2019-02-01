@@ -66,6 +66,7 @@ class TimeLimitedToken
      * not only the same data must be added, but also in the same order.
      *
      * @param string $data The data to incorporate into the current token.
+     * @return void
      */
     public function addVerificationData($data)
     {
@@ -110,6 +111,7 @@ class TimeLimitedToken
     /**
      * @see generate
      * @deprecated This method will be removed in SSP 2.0. Use generate() instead.
+     * @return string
      */
     public function generate_token()
     {
@@ -122,7 +124,7 @@ class TimeLimitedToken
      *
      * @param string $token The token to validate.
      *
-     * @return boolean True if the given token is currently valid, false otherwise.
+     * @return bool True if the given token is currently valid, false otherwise.
      */
     public function validate($token)
     {
@@ -139,6 +141,8 @@ class TimeLimitedToken
     /**
      * @see validate
      * @deprecated This method will be removed in SSP 2.0. Use validate() instead.
+     * @param string $token
+     * @return bool
      */
     public function validate_token($token)
     {
