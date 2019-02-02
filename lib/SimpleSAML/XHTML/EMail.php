@@ -11,17 +11,36 @@ namespace SimpleSAML\XHTML;
 
 class EMail
 {
+    /** @var string|null */
     private $to = null;
+
+    /** @var string|null */
     private $cc = null;
+
+    /** @var string|null */
     private $body = null;
+
+    /** @var string|null */
     private $from = null;
+
+    /** @var string|null */
     private $replyto = null;
+
+    /** @var string|null */
     private $subject = null;
+
+    /** @var array */
     private $headers = [];
 
 
     /**
      * Constructor
+     *
+     * @param string $to
+     * @param string $subject
+     * @param string|null $from
+     * @param string|null $cc
+     * @param string|null $replyto
      */
     public function __construct($to, $subject, $from = null, $cc = null, $replyto = null)
     {
@@ -32,7 +51,7 @@ class EMail
         $this->subject = $subject;
     }
 
-    /*
+    /**
      * @param string $body
      * @return void
      */
@@ -42,7 +61,7 @@ class EMail
     }
 
 
-    /*
+    /**
      * @param string $body
      * @return string
      */
@@ -55,7 +74,7 @@ class EMail
     }
 
 
-    /*
+    /**
      * @return void
      */
     public function send()

@@ -173,6 +173,7 @@ class IdPDisco
      * discovery service type.
      *
      * @param string $message The message which should be logged.
+     * @return void
      */
     protected function log($message)
     {
@@ -188,7 +189,7 @@ class IdPDisco
      *
      * @param string $name The name of the cookie.
      *
-     * @return string The value of the cookie with the given name, or null if no cookie with that name exists.
+     * @return string|null The value of the cookie with the given name, or null if no cookie with that name exists.
      */
     protected function getCookie($name)
     {
@@ -209,6 +210,7 @@ class IdPDisco
      *
      * @param string $name The name of the cookie.
      * @param string $value The value of the cookie.
+     * @return void
      */
     protected function setCookie($name, $value)
     {
@@ -267,7 +269,7 @@ class IdPDisco
      *
      * This function finds out which IdP the user has manually chosen, if any.
      *
-     * @return string The entity id of the IdP the user has chosen, or null if the user has made no choice.
+     * @return string|null The entity id of the IdP the user has chosen, or null if the user has made no choice.
      */
     protected function getSelectedIdP()
     {
@@ -303,7 +305,7 @@ class IdPDisco
     /**
      * Retrieve the users saved choice of IdP.
      *
-     * @return string The entity id of the IdP the user has saved, or null if the user hasn't saved any choice.
+     * @return string|null The entity id of the IdP the user has saved, or null if the user hasn't saved any choice.
      */
     protected function getSavedIdP()
     {
@@ -329,7 +331,7 @@ class IdPDisco
     /**
      * Retrieve the previous IdP the user used.
      *
-     * @return string The entity id of the previous IdP the user used, or null if this is the first time.
+     * @return string|null The entity id of the previous IdP the user used, or null if this is the first time.
      */
     protected function getPreviousIdP()
     {
@@ -361,7 +363,7 @@ class IdPDisco
      * This function will first look at the previous IdP the user has chosen. If the user
      * hasn't chosen an IdP before, it will look at the IP address.
      *
-     * @return string The entity id of the IdP the user should most likely use.
+     * @return string|null The entity id of the IdP the user should most likely use.
      */
     protected function getRecommendedIdP()
     {
@@ -386,6 +388,7 @@ class IdPDisco
      * Save the current IdP choice to a cookie.
      *
      * @param string $idp The entityID of the IdP.
+     * @return void
      */
     protected function setPreviousIdP($idp)
     {
@@ -419,7 +422,7 @@ class IdPDisco
     /**
      * Determine which IdP the user should go to, if any.
      *
-     * @return string The entity id of the IdP the user should be sent to, or null if the user should choose.
+     * @return string|null The entity id of the IdP the user should be sent to, or null if the user should choose.
      */
     protected function getTargetIdP()
     {
@@ -543,6 +546,7 @@ class IdPDisco
      * Handles a request to this discovery service.
      *
      * The IdP disco parameters should be set before calling this function.
+     * @return void
      */
     public function handleRequest()
     {
@@ -619,7 +623,12 @@ class IdPDisco
         }
         usort(
             $newlist,
-            function ($idpentry1, $idpentry2) {
+            /**
+             * @param array $idpentry1
+             * @param array $idpentry2
+             * @return int
+             */
+            function (array $idpentry1, array $idpentry2) {
                 return strcasecmp($idpentry1['name'], $idpentry2['name']);
             }
         );
@@ -634,6 +643,12 @@ class IdPDisco
         $t->show();
     }
 
+
+    /**
+     * @param array $idpData
+     * @param string $language
+     * @return string|null
+     */
     private function getEntityDisplayName(array $idpData, $language)
     {
         if (isset($idpData['UIInfo']['DisplayName'][$language])) {

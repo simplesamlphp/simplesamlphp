@@ -75,7 +75,7 @@ class Template extends Response
      *
      * @var bool
      */
-    private $useNewUI;
+    private $useNewUI = false;
 
 
     /**
@@ -85,9 +85,9 @@ class Template extends Response
      * the 'theme.controller' configuration option to a class that implements the
      * \SimpleSAML\XHTML\TemplateControllerInterface interface to use it.
      *
-     * @var \SimpleSAML\XHTML\TemplateControllerInterface
+     * @var \SimpleSAML\XHTML\TemplateControllerInterface|null
      */
-    private $controller;
+    private $controller = null;
 
 
     /**
@@ -97,9 +97,9 @@ class Template extends Response
      * of the module and the name of the theme, respectively. If we are using the default theme, the variable has
      * the 'default' string in the "name" key, and 'null' in the "module" key.
      *
-     * @var array
+     * @var array|null
      */
-    private $theme;
+    private $theme = null;
 
     /**
      * Constructor
@@ -200,7 +200,7 @@ class Template extends Response
             $templateName = substr($templateName, 0, $tplpos);
         }
 
-        if ($this->useNewUI || $this->theme['module'] !== null) {
+        if ($this->useNewUI || ($this->theme['module'] !== null)) {
             return $templateName.'.twig';
         }
         return $templateName;
@@ -250,6 +250,7 @@ class Template extends Response
 
     /**
      * Setup twig.
+     * @return \Twig_Environment|false
      */
     private function setupTwig()
     {
@@ -310,7 +311,7 @@ class Template extends Response
         // add an asset() function
         $twig->addFunction(new \Twig_SimpleFunction('asset', [$this, 'asset']));
 
-        if ($this->controller) {
+        if ($this->controller !== null) {
             $this->controller->setUpTwig($twig);
         }
 
@@ -357,6 +358,7 @@ class Template extends Response
     /**
      * Get the template directory of a module, if it exists.
      *
+     * @param string $module
      * @return string The templates directory of a module
      *
      * @throws \InvalidArgumentException If the module is not enabled or it has no templates directory.
@@ -382,8 +384,8 @@ class Template extends Response
      * Note that the module must be installed, enabled, and contain a "templates" directory.
      *
      * @param string $module The module where we need to search for templates.
-     *
      * @throws \InvalidArgumentException If the module is not enabled or it has no templates directory.
+     * @return void
      */
     public function addTemplatesFromModule($module)
     {
@@ -398,7 +400,7 @@ class Template extends Response
      * Generate an array for its use in the language bar, indexed by the ISO 639-2 codes of the languages available,
      * containing their localized names and the URL that should be used in order to change to that language.
      *
-     * @return array The array containing information of all available languages.
+     * @return array|null The array containing information of all available languages.
      */
     private function generateLanguageBar()
     {
@@ -430,6 +432,7 @@ class Template extends Response
 
     /**
      * Set some default context
+     * @return void
      */
     private function twigDefaultContext()
     {
@@ -497,6 +500,7 @@ class Template extends Response
      * This method is a remnant of the old templating system, where templates where shown manually instead of
      * returning a response.
      *
+     * @return void
      * @deprecated Do not use this method, use Twig + send() instead. Will be removed in 2.0
      */
     public function show()
@@ -533,8 +537,9 @@ class Template extends Response
      * template file in the given module.
      *
      * @param string $template The relative path from the theme directory to the template file.
+     * @param bool $throw_exception
      *
-     * @return string The absolute path to the template file.
+     * @return string|null The absolute path to the template file.
      *
      * @throws \Exception If the template file couldn't be found.
      */
@@ -635,7 +640,7 @@ class Template extends Response
 
 
     /**
-     * @param $name
+     * @param string $name
      *
      * @return string
      * @deprecated This method will be removed in SSP 2.0. Please use \SimpleSAML\Locale\Language::getLanguage()
@@ -659,8 +664,9 @@ class Template extends Response
 
 
     /**
-     * @param      $language
+     * @param string $language
      * @param bool $setLanguageCookie
+     * @return void
      *
      * @deprecated This method will be removed in SSP 2.0. Please use \SimpleSAML\Locale\Language::setLanguage()
      * instead.
@@ -683,7 +689,8 @@ class Template extends Response
 
 
     /**
-     * @param $language
+     * @param string $language
+     * @return void
      *
      * @deprecated This method will be removed in SSP 2.0. Please use \SimpleSAML\Locale\Language::setLanguageCookie()
      * instead.
@@ -696,6 +703,8 @@ class Template extends Response
 
     /**
      * Wraps Language->getLanguageList
+     *
+     * @return array
      */
     private function getLanguageList()
     {
@@ -704,7 +713,7 @@ class Template extends Response
 
 
     /**
-     * @param $tag
+     * @param string $tag
      *
      * @return array
      * @deprecated This method will be removed in SSP 2.0. Please use \SimpleSAML\Locale\Translate::getTag() instead.
@@ -720,6 +729,9 @@ class Template extends Response
      *
      * @deprecated This method will be removed in SSP 2.0. Please use
      * \SimpleSAML\Locale\Translate::getPreferredTranslation() instead.
+     *
+     * @param array $translations
+     * @return string
      */
     public function getTranslation($translations)
     {
@@ -731,6 +743,8 @@ class Template extends Response
      * Includes a file relative to the template base directory.
      * This function can be used to include headers and footers etc.
      *
+     * @param string $file
+     * @return void
      */
     private function includeAtTemplateBase($file)
     {
@@ -748,6 +762,10 @@ class Template extends Response
      * @see \SimpleSAML\Locale\Translate::includeInlineTranslation()
      * @deprecated This method will be removed in SSP 2.0. Please use
      * \SimpleSAML\Locale\Translate::includeInlineTranslation() instead.
+     *
+     * @param string $tag
+     * @param string $translation
+     * @return void
      */
     public function includeInlineTranslation($tag, $translation)
     {
@@ -758,6 +776,7 @@ class Template extends Response
     /**
      * @param string $file
      * @param \SimpleSAML\Configuration|null $otherConfig
+     * @return void
      *
      * @deprecated This method will be removed in SSP 2.0. Please use
      * \SimpleSAML\Locale\Translate::includeLanguageFile() instead.
@@ -770,6 +789,8 @@ class Template extends Response
 
     /**
      * Wrap Language->isLanguageRTL
+     *
+     * @return bool
      */
     private function isLanguageRTL()
     {
@@ -802,6 +823,9 @@ class Template extends Response
      *
      * @see \SimpleSAML\Locale\Translate::noop()
      * @deprecated This method will be removed in SSP 2.0. Please use \SimpleSAML\Locale\Translate::noop() instead.
+     *
+     * @param string $tag
+     * @return string
      */
     public static function noop($tag)
     {
@@ -814,6 +838,13 @@ class Template extends Response
      *
      * @see \SimpleSAML\Locale\Translate::t()
      * @deprecated This method will be removed in SSP 2.0. Please use \SimpleSAML\Locale\Translate::t() instead.
+     *
+     * @param string $tag
+     * @param array $replacements
+     * @param bool $fallbackdefault
+     * @param array $oldreplacements
+     * @param bool $striptags
+     * @return string
      */
     public function t(
         $tag,
