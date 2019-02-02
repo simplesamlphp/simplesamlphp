@@ -12,10 +12,12 @@ use \SimpleSAML\Store;
  */
 class Redis extends Store
 {
+    /** @var \Predis\Client */
     public $redis;
 
     /**
      * Initialize the Redis data store.
+     * @param \Predis\Client|null $redis
      */
     public function __construct($redis = null)
     {
@@ -87,6 +89,7 @@ class Redis extends Store
      * @param string $key The key to insert.
      * @param mixed $value The value itself.
      * @param int|null $expire The expiration time (unix timestamp), or null if it never expires.
+     * @return void
      */
     public function set($type, $key, $value, $expire = null)
     {
@@ -109,6 +112,7 @@ class Redis extends Store
      *
      * @param string $type The type of the data
      * @param string $key The key to delete.
+     * @return void
      */
     public function delete($type, $key)
     {
