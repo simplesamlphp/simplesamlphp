@@ -60,7 +60,7 @@ class CriticalConfigurationError extends ConfigurationError
 
 
     /**
-     * @param ConfigurationError $exception
+     * @param \Exception $exception
      *
      * @return CriticalConfigurationError
      */

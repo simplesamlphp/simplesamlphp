@@ -53,6 +53,7 @@ class Assertion extends Exception
      *
      * This function will register this assertion handler. If will not enable assertions if they are
      * disabled.
+     * @return void
      */
     public static function installHandler()
     {
@@ -71,6 +72,7 @@ class Assertion extends Exception
      * @param string $file  The file assert was called from.
      * @param int $line  The line assert was called from.
      * @param mixed $message  The expression which was passed to the assert-function.
+     * @return void
      */
     public static function onAssertion($file, $line, $message)
     {
