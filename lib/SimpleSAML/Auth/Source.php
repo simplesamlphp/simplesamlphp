@@ -98,6 +98,7 @@ abstract class Source
      * information about the user, and call completeAuth with the state array.
      *
      * @param array &$state Information about the current authentication.
+     * @return void
      */
     abstract public function authenticate(&$state);
 
@@ -109,6 +110,7 @@ abstract class Source
      * interact with the user even in the case when the user is already authenticated.
      *
      * @param array &$state Information about the current authentication.
+     * @return void
      */
     public function reauthenticate(array &$state)
     {
@@ -131,6 +133,7 @@ abstract class Source
      * but should instead be passed to the top-level exception handler.
      *
      * @param array &$state Information about the current authentication.
+     * @return void
      */
     public static function completeAuth(&$state)
     {
@@ -159,6 +162,7 @@ abstract class Source
      * check it by calling \SimpleSAML\Utils\HTTP::checkURLAllowed().
      * @param array $params Extra information about the login. Different authentication requestors may provide different
      * information. Optional, will default to an empty array.
+     * @return void
      */
     public function initLogin($return, $errorURL = null, array $params = [])
     {
@@ -207,6 +211,7 @@ abstract class Source
      * This method never returns.
      *
      * @param array $state The state after the login has completed.
+     * @return void
      */
     public static function loginCompleted($state)
     {
@@ -245,6 +250,7 @@ abstract class Source
      * showing the user a page, or redirecting, this function should return.
      *
      * @param array &$state Information about the current logout operation.
+     * @return void
      */
     public function logout(&$state)
     {
@@ -261,6 +267,7 @@ abstract class Source
      * but should instead be passed to the top-level exception handler.
      *
      * @param array &$state Information about the current authentication.
+     * @return void
      */
     public static function completeLogout(&$state)
     {
@@ -335,9 +342,9 @@ abstract class Source
      * authentication source of a different type is found, an exception will be thrown.
      *
      * @param string      $authId The authentication source identifier.
-     * @param string|NULL $type The type of authentication source. If NULL, any type will be accepted.
+     * @param string|null $type The type of authentication source. If NULL, any type will be accepted.
      *
-     * @return Source|NULL The AuthSource object, or NULL if no authentication
+     * @return \SimpleSAML\Auth\Source|null The AuthSource object, or NULL if no authentication
      *     source with the given identifier is found.
      * @throws \SimpleSAML\Error\Exception If no such authentication source is found or it is invalid.
      */
@@ -379,6 +386,7 @@ abstract class Source
      * Called when the authentication source receives an external logout request.
      *
      * @param array $state State array for the logout operation.
+     * @return void
      */
     public static function logoutCallback($state)
     {
@@ -411,6 +419,7 @@ abstract class Source
      *
      * @param string $assoc The identifier for this logout association.
      * @param array  $state The state array passed to the authenticate-function.
+     * @return void
      */
     protected function addLogoutCallback($assoc, $state)
     {
@@ -455,6 +464,7 @@ abstract class Source
      * This function always returns.
      *
      * @param string $assoc The logout association which should be called.
+     * @return void
      */
     protected function callLogoutCallback($assoc)
     {

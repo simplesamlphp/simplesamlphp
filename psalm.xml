@@ -27,4 +27,10 @@
         <UnusedClass errorLevel="info" />
         <PossiblyUnusedMethod errorLevel="info" />
     </issueHandlers>
+
+    <stubs>
+        <file name="tests/Utils/Stubs/memcache.php" />
+        <file name="tests/Utils/Stubs/memcached.php" />
+        <file name="tests/Utils/Stubs/radius.php" />
+    </stubs>
 </psalm>
