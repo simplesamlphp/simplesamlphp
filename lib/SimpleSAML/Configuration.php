@@ -1269,7 +1269,7 @@ class Configuration implements Utils\ClearableState
      * @param mixed  $default The default value. If no default is given, and the option isn't found, an exception will
      *     be thrown.
      *
-     * @return array Associative array with language => string pairs.
+     * @return mixed Associative array with language => string pairs, or the provided default value.
      *
      * @throws \Exception If the translation is not an array or a string, or its index or value are not strings.
      */
