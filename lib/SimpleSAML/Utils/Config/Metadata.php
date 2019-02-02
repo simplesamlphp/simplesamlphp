@@ -1,4 +1,5 @@
 <?php
+
 namespace SimpleSAML\Utils\Config;
 
 /**
@@ -106,6 +107,10 @@ class Metadata
         // check the type
         if (!isset($contact['contactType']) || !in_array($contact['contactType'], self::$VALID_CONTACT_TYPES, true)) {
             $types = join(', ', array_map(
+                 /**
+                  * @param string $t
+                  * @return string
+                  */
                 function ($t) {
                     return '"'.$t.'"';
                 },

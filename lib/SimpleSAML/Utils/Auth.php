@@ -1,4 +1,5 @@
 <?php
+
 namespace SimpleSAML\Utils;
 
 use SimpleSAML\Module;
