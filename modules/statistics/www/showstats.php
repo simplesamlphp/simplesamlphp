@@ -3,6 +3,7 @@
 $config = \SimpleSAML\Configuration::getInstance();
 $statconfig = \SimpleSAML\Configuration::getConfig('module_statistics.php');
 $session = \SimpleSAML\Session::getSessionFromRequest();
+$t = new \SimpleSAML\XHTML\Template($config, 'statistics:statistics.tpl.php');
 
 \SimpleSAML\Module\statistics\AccessCheck::checkAccess($statconfig);
 
@@ -43,7 +44,6 @@ $ruleset = new \SimpleSAML\Module\statistics\Ruleset($statconfig);
 $statrule = $ruleset->getRule($preferRule);
 $rule = $statrule->getRuleID();
 
-$t = new \SimpleSAML\XHTML\Template($config, 'statistics:statistics.tpl.php');
 $t->data['pageid'] = 'statistics';
 $t->data['header'] = 'stat';
 $t->data['available_rules'] = $ruleset->availableRulesNames();
