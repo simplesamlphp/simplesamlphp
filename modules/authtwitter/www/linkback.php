@@ -20,6 +20,7 @@ if (!array_key_exists(\SimpleSAML\Module\authtwitter\Auth\Source\Twitter::AUTHID
 }
 $sourceId = $state[\SimpleSAML\Module\authtwitter\Auth\Source\Twitter::AUTHID];
 
+/** @var \SimpleSAML\Module\authtwitter\Auth\Source\Twitter|null $source */
 $source = \SimpleSAML\Auth\Source::getById($sourceId);
 if ($source === null) {
     throw new \SimpleSAML\Error\BadRequest(
