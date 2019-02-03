@@ -39,6 +39,7 @@ if (array_key_exists('code', $_REQUEST)) {
 assert(array_key_exists(\SimpleSAML\Module\authwindowslive\Auth\Source\LiveID::AUTHID, $state));
 $sourceId = $state[\SimpleSAML\Module\authwindowslive\Auth\Source\LiveID::AUTHID];
 
+/** @var \SimpleSAML\Module\authwindowslive\Auth\Source\LiveID|null $source */
 $source = \SimpleSAML\Auth\Source::getById($sourceId);
 if ($source === null) {
     throw new \Exception('Could not find authentication source with id '.$sourceId);
