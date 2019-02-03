@@ -34,16 +34,16 @@ class IdP
      * We use this to support cross-protocol logout until
      * we implement a cross-protocol IdP.
      *
-     * @var string
+     * @var string|null
      */
-    private $associationGroup;
+    private $associationGroup = null;
 
     /**
      * The configuration for this IdP.
      *
-     * @var Configuration
+     * @var Configuration|null
      */
-    private $config;
+    private $config = null;
 
     /**
      * Our authsource.
@@ -158,7 +158,7 @@ class IdP
     /**
      * Retrieve the configuration for this IdP.
      *
-     * @return Configuration The configuration object.
+     * @return Configuration|null The configuration object.
      */
     public function getConfig()
     {
@@ -213,6 +213,7 @@ class IdP
      * Add an SP association.
      *
      * @param array $association The SP association.
+     * @return void
      */
     public function addAssociation(array $association)
     {
@@ -242,6 +243,7 @@ class IdP
      * Remove an SP association.
      *
      * @param string $assocId The association id.
+     * @return void
      */
     public function terminateAssociation($assocId)
     {
@@ -267,6 +269,7 @@ class IdP
      * Called after authproc has run.
      *
      * @param array $state The authentication request state array.
+     * @return void
      */
     public static function postAuthProc(array $state)
     {
@@ -293,6 +296,7 @@ class IdP
      * @param array $state The authentication request state array.
      *
      * @throws Exception If we are not authenticated.
+     * @return void
      */
     public static function postAuth(array $state)
     {
@@ -340,6 +344,7 @@ class IdP
      * @param array &$state The authentication request state.
      *
      * @throws Module\saml\Error\NoPassive If we were asked to do passive authentication.
+     * @return void
      */
     private function authenticate(array &$state)
     {
@@ -362,14 +367,11 @@ class IdP
      * @param array &$state The authentication request state.
      *
      * @throws Exception If there is no auth source defined for this IdP.
+     * @return void
      */
     private function reauthenticate(array &$state)
     {
         $sourceImpl = $this->authSource->getAuthSource();
-        if ($sourceImpl === null) {
-            throw new Exception('No such auth source defined.');
-        }
-
         $sourceImpl->reauthenticate($state);
     }
 
@@ -378,6 +380,7 @@ class IdP
      * Process authentication requests.
      *
      * @param array &$state The authentication request state.
+     * @return void
      */
     public function handleAuthenticationRequest(array &$state)
     {
@@ -454,6 +457,7 @@ class IdP
      * This function will never return.
      *
      * @param array &$state The logout request state.
+     * @return void
      */
     public function finishLogout(array &$state)
     {
@@ -473,6 +477,7 @@ class IdP
      * @param array       &$state The logout request state.
      * @param string|null $assocId The association we received the logout request from, or null if there was no
      * association.
+     * @return void
      */
     public function handleLogoutRequest(array &$state, $assocId)
     {
@@ -508,6 +513,7 @@ class IdP
      * @param string                 $assocId The association that is terminated.
      * @param string|null            $relayState The RelayState from the start of the logout.
      * @param Exception|null $error  The error that occurred during session termination (if any).
+     * @return void
      */
     public function handleLogoutResponse($assocId, $relayState, Exception $error = null)
     {
@@ -530,6 +536,7 @@ class IdP
      * This function never returns.
      *
      * @param string $url The URL the user should be returned to after logout.
+     * @return void
      */
     public function doLogoutRedirect($url)
     {
@@ -552,6 +559,7 @@ class IdP
      *
      * @param IdP      $idp Deprecated. Will be removed.
      * @param array    &$state The logout state from doLogoutRedirect().
+     * @return void
      */
     public static function finishLogoutRedirect(IdP $idp, array $state)
     {

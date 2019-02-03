@@ -24,7 +24,8 @@ interface LogoutHandlerInterface
      * This function must never return.
      *
      * @param array &$state The logout state.
-     * @param string|null $assocId The association that started the logout.
+     * @param string $assocId The association that started the logout.
+     * @return void
      */
     public function startLogout(array &$state, $assocId);
 
@@ -37,6 +38,7 @@ interface LogoutHandlerInterface
      * @param string $assocId The association that is terminated.
      * @param string|null $relayState The RelayState from the start of the logout.
      * @param \SimpleSAML\Error\Exception|null $error The error that occurred during session termination (if any).
+     * @return void
      */
     public function onResponse($assocId, $relayState, \SimpleSAML\Error\Exception $error = null);
 }
