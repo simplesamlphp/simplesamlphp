@@ -9,6 +9,11 @@ use SimpleSAML\Utils\Crypto;
 
 class ADFS
 {
+    /**
+     * @param \SimpleSAML\IdP $idp
+     * @throws \Exception
+     * @return void
+     */
     public static function receiveAuthnRequest(\SimpleSAML\IdP $idp)
     {
         try {
@@ -41,6 +46,15 @@ class ADFS
         $idp->handleAuthenticationRequest($state);
     }
 
+
+    /**
+     * @param string $issuer
+     * @param string $target
+     * @param string $nameid
+     * @param array $attributes
+     * @param int $assertionLifetime
+     * @return string
+     */
     private static function generateResponse($issuer, $target, $nameid, $attributes, $assertionLifetime)
     {
         $issueInstant = \SimpleSAML\Utils\Time::generateTimestamp();
@@ -49,26 +63,7 @@ class ADFS
         $assertionID = \SimpleSAML\Utils\Random::generateID();
         $nameidFormat = 'http://schemas.xmlsoap.org/claims/UPN';
         $nameid = htmlspecialchars($nameid);
-
-        $result = <<<MSG
-<wst:RequestSecurityTokenResponse xmlns:wst="http://schemas.xmlsoap.org/ws/2005/02/trust">
-    <wst:RequestedSecurityToken>
-        <saml:Assertion Issuer="$issuer" IssueInstant="$issueInstant" AssertionID="$assertionID" MinorVersion="1" MajorVersion="1" xmlns:saml="urn:oasis:names:tc:SAML:1.0:assertion">
-            <saml:Conditions NotOnOrAfter="$assertionExpire" NotBefore="$notBefore">
-                <saml:AudienceRestrictionCondition>
-                    <saml:Audience>$target</saml:Audience>
-                </saml:AudienceRestrictionCondition>
-            </saml:Conditions>
-            <saml:AuthenticationStatement AuthenticationMethod="urn:oasis:names:tc:SAML:1.0:am:unspecified" AuthenticationInstant="$issueInstant">
-                <saml:Subject>
-                    <saml:NameIdentifier Format="$nameidFormat">$nameid</saml:NameIdentifier>
-                </saml:Subject>
-            </saml:AuthenticationStatement>
-            <saml:AttributeStatement>
-                <saml:Subject>
-                    <saml:NameIdentifier Format="$nameidFormat">$nameid</saml:NameIdentifier>
-                </saml:Subject>
-MSG;
+        $parsed_attrs = [];
 
         foreach ($attributes as $name => $values) {
             if ((!is_array($values)) || (count($values) == 0)) {
@@ -83,31 +78,37 @@ MSG;
                 if ((!isset($value)) || ($value === '')) {
                     continue;
                 }
-                $value = htmlspecialchars($value);
-
-                $result .= <<<MSG
-                <saml:Attribute AttributeNamespace="$namespace" AttributeName="$name">
-                    <saml:AttributeValue>$value</saml:AttributeValue>
-                </saml:Attribute>
-MSG;
+                $parsed_attrs[] = ['name' => $name, 'namespace' => $namespace, 'value' => htmlspecialchars($value)];
             }
         }
 
-        $result .= <<<MSG
-            </saml:AttributeStatement>
-        </saml:Assertion>
-   </wst:RequestedSecurityToken>
-   <wsp:AppliesTo xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy">
-       <wsa:EndpointReference xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing">
-           <wsa:Address>$target</wsa:Address>
-       </wsa:EndpointReference>
-   </wsp:AppliesTo>
-</wst:RequestSecurityTokenResponse>
-MSG;
-
-        return $result;
+        $config = \SimpleSAML\Configuration::getInstance();
+        $t = new \SimpleSAML\XHTML\Template($config, 'adfs:generateResponse.twig');
+        $twig = $t->getTwig();
+        return $twig->render(
+            'adfs:generateResponse.twig',
+            [
+                'issueInstant' => $issueInstant,
+                'notBefore' => $notBefore,
+                'issuer' => $issuer,
+                'nameid' => $nameid,
+                'nameidFormat' => $nameidFormat,
+                'target' => $target,
+                'assertionID' => $assertionID,
+                'assertionExpire' => $assertionExpire,
+                'parsedAttributes' => $parsed_attrs,
+            ]
+        );
     }
 
+
+    /**
+     * @param string $response
+     * @param string $key
+     * @param string $cert
+     * @param string $algo
+     * @return string|bool
+     */
     private static function signResponse($response, $key, $cert, $algo)
     {
         $objXMLSecDSig = new XMLSecurityDSig();
@@ -134,6 +135,13 @@ MSG;
         return $responsedom->saveXML();
     }
 
+
+    /**
+     * @param string $url
+     * @param string $wresult
+     * @param string $wctx
+     * @return void
+     */
     private static function postResponse($url, $wresult, $wctx)
     {
         $config = \SimpleSAML\Configuration::getInstance();
@@ -150,8 +158,8 @@ MSG;
      * Get the metadata of a given hosted ADFS IdP.
      *
      * @param string $entityid The entity ID of the hosted ADFS IdP whose metadata we want to fetch.
-     *
      * @return array
+     *
      * @throws \SimpleSAML\Error\Exception
      * @throws \SimpleSAML\Error\MetadataNotFound
      */
@@ -223,7 +231,7 @@ MSG;
             );
 
             if (!$config->hasValue('OrganizationURL')) {
-                throw new \SimpleSAMl\Error\Exception('If OrganizationName is set, OrganizationURL must also be set.');
+                throw new \SimpleSAML\Error\Exception('If OrganizationName is set, OrganizationURL must also be set.');
             }
             $metadata['OrganizationURL'] = $config->getLocalizedString('OrganizationURL');
         }
@@ -271,6 +279,12 @@ MSG;
     }
 
 
+    /**
+     * @param array $state
+     * @return void
+     *
+     * @throws \Exception
+     */
     public static function sendResponse(array $state)
     {
         $spMetadata = $state["SPMetadata"];
@@ -323,6 +337,12 @@ MSG;
         ADFS::postResponse($wreply, $wresult, $wctx);
     }
 
+
+    /**
+     * @param \SimpleSAML\IdP $idp
+     * @param array $state
+     * @return void
+     */
     public static function sendLogoutResponse(\SimpleSAML\IdP $idp, array $state)
     {
         // NB:: we don't know from which SP the logout request came from
@@ -332,6 +352,11 @@ MSG;
         );
     }
 
+
+    /**
+     * @param \SimpleSAML\IdP $idp
+     * @return void
+     */
     public static function receiveLogoutMessage(\SimpleSAML\IdP $idp)
     {
         // if a redirect is to occur based on wreply, we will redirect to url as
@@ -351,7 +376,14 @@ MSG;
         $idp->handleLogoutRequest($state, $assocId);
     }
 
-    // accepts an association array, and returns a URL that can be accessed to terminate the association
+
+    /**
+     * Accepts an association array, and returns a URL that can be accessed to terminate the association
+     * @param \SimpleSAML\IdP $idp
+     * @param array $association
+     * @param string $relayState
+     * @return string
+     */
     public static function getLogoutURL(\SimpleSAML\IdP $idp, array $association, $relayState)
     {
         $metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();

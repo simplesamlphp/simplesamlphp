@@ -14,6 +14,7 @@ class TokenTypesOffered
      * Add tokentypesoffered to an XML element.
      *
      * @param \DOMElement $parent  The element we should append this endpoint to.
+     * @return \DOMElement
      */
     public static function appendXML(\DOMElement $parent)
     {
