@@ -88,6 +88,7 @@ class Facebook extends \SimpleSAML\Auth\Source
      * Log-in using Facebook platform
      *
      * @param array &$state  Information about the current authentication.
+     * @return void
      */
     public function authenticate(&$state)
     {
@@ -111,6 +112,10 @@ class Facebook extends \SimpleSAML\Auth\Source
     }
 
 
+    /**
+     * @param array &$state
+     * @return void
+     */
     public function finalStep(&$state)
     {
         assert(is_array($state));

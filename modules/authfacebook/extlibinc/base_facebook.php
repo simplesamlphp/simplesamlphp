@@ -170,25 +170,27 @@ abstract class BaseFacebook
     /**
      * The ID of the Facebook user, or 0 if the user is logged out.
      *
-     * @var integer
+     * @var integer|string|null
      */
-    protected $user;
+    protected $user = null;
 
     /**
      * The data from the signed_request token.
+     * @var array|null
      */
-    protected $signedRequest;
+    protected $signedRequest = null;
 
     /**
      * A CSRF state variable to assist in the defense against CSRF attacks.
+     * @var string|null
      */
-    protected $state;
+    protected $state = null;
 
     /**
      * The OAuth access token received in exchange for a valid authorization
      * code.  null means the access token has yet to be determined.
      *
-     * @var string
+     * @var string|null
      */
     protected $accessToken = null;
 
@@ -402,7 +404,7 @@ abstract class BaseFacebook
      * access token if a valid user access token wasn't available.  Subsequent
      * calls return whatever the first call returned.
      *
-     * @return string The access token
+     * @return string|null The access token
      */
     public function getAccessToken()
     {
@@ -495,7 +497,7 @@ abstract class BaseFacebook
      * Retrieve the signed request, either from a request parameter or,
      * if not present, from a cookie.
      *
-     * @return array the signed request, if available, or null otherwise.
+     * @return array|null the signed request, if available, or null otherwise.
      */
     public function getSignedRequest()
     {
@@ -517,7 +519,7 @@ abstract class BaseFacebook
      * Get the UID of the connected user, or 0
      * if the Facebook user is not connected.
      *
-     * @return string the UID if available.
+     * @return string|int the UID if available.
      */
     public function getUser()
     {
@@ -560,7 +562,7 @@ abstract class BaseFacebook
             return 0;
         }
 
-        $user = $this->getPersistentData('user_id', $default = 0);
+        $user = $this->getPersistentData('user_id', $default = false);
         $persisted_access_token = $this->getPersistentData('access_token');
 
         // use access_token to fetch user id if we have a user access_token, or if
@@ -787,6 +789,7 @@ abstract class BaseFacebook
      * either logged in to Facebook or has granted an offline access permission.
      *
      * @param string $code An authorization code.
+     * @param string|null $redirect_uri
      * @return mixed An access token exchanged for the authorization code, or
      *               false if an access token could not be generated.
      */
@@ -893,7 +896,7 @@ abstract class BaseFacebook
      * Invoke the Graph API.
      *
      * @param string $path The path (required)
-     * @param string $method The http method (default 'GET')
+     * @param array|string $method The http method (default 'GET')
      * @param array $params The query/post data
      *
      * @return mixed The decoded response object
@@ -937,7 +940,7 @@ abstract class BaseFacebook
      * @param string $url The path (required)
      * @param array $params The query/post data
      *
-     * @return string The decoded response object
+     * @return string|null The decoded response object
      * @throws FacebookApiException
      */
     protected function _oauthRequest($url, $params)
@@ -963,13 +966,13 @@ abstract class BaseFacebook
      *
      * @param string $url The URL to make the request to
      * @param array $params The parameters to use for the POST body
-     * @param CurlHandler $ch Initialized curl handle
+     * @param resource|null $ch Initialized curl handle
      *
-     * @return string The response text
+     * @return string|true The response text
      */
     protected function makeRequest($url, $params, $ch = null)
     {
-        if (!$ch) {
+        if ($ch === null) {
             $ch = curl_init();
         }
 
@@ -1039,7 +1042,7 @@ abstract class BaseFacebook
      * Parses a signed_request and validates the signature.
      *
      * @param string $signed_request A signed token
-     * @return array The payload inside it or null if the sig is wrong
+     * @return array|null The payload inside it or null if the sig is wrong
      */
     protected function parseSignedRequest($signed_request)
     {
@@ -1067,7 +1070,7 @@ abstract class BaseFacebook
     /**
      * Makes a signed_request blob using the given data.
      *
-     * @param $data array The data array.
+     * @param array $data The data array.
      * @return string The signed request.
      */
     protected function makeSignedRequest($data)
@@ -1089,7 +1092,7 @@ abstract class BaseFacebook
     /**
      * Build the URL for api given parameters.
      *
-     * @param $method String the method name.
+     * @param string $method String the method name.
      * @return string The URL for the given parameters
      */
     protected function getApiUrl($method)
@@ -1169,9 +1172,9 @@ abstract class BaseFacebook
     /**
      * Build the URL for given domain alias, path and parameters.
      *
-     * @param $name string The name of the domain
-     * @param $path string Optional path (without a leading slash)
-     * @param $params array Optional query parameters
+     * @param string $name The name of the domain
+     * @param string $path Optional path (without a leading slash)
+     * @param array $params Optional query parameters
      *
      * @return string The URL for the given parameters
      */
@@ -1191,6 +1194,9 @@ abstract class BaseFacebook
         return $url;
     }
 
+    /**
+     * @return string
+     */
     protected function getHttpHost()
     {
         if ($this->trustForwarded && isset($_SERVER['HTTP_X_FORWARDED_HOST'])) {
@@ -1199,6 +1205,9 @@ abstract class BaseFacebook
         return $_SERVER['HTTP_HOST'];
     }
 
+    /**
+     * @return string
+     */
     protected function getHttpProtocol()
     {
         if ($this->trustForwarded && isset($_SERVER['HTTP_X_FORWARDED_PROTO'])) {
@@ -1220,6 +1229,7 @@ abstract class BaseFacebook
 
     /**
      * Get the base domain used for the cookie.
+     * @return string
      */
     protected function getBaseDomain()
     {
@@ -1261,8 +1271,9 @@ abstract class BaseFacebook
      * because the access token is no longer valid.  If that is
      * the case, then we destroy the session.
      *
-     * @param $result array A record storing the error message returned
+     * @param array $result A record storing the error message returned
      *                      by a failed API call.
+     * @return void
      */
     protected function throwAPIException($result)
     {
@@ -1292,6 +1303,7 @@ abstract class BaseFacebook
      * Prints to the error log if you aren't in command line mode.
      *
      * @param string $msg Log message
+     * @return void
      */
     protected static function errorLog($msg)
     {
@@ -1336,6 +1348,7 @@ abstract class BaseFacebook
 
     /**
      * Destroy the current session
+     * @return void
      */
     public function destroySession()
     {
@@ -1395,6 +1408,11 @@ abstract class BaseFacebook
         return $metadata;
     }
 
+    /**
+     * @param string $big
+     * @param string $small
+     * @return string|bool
+     */
     protected static function isAllowedDomain($big, $small)
     {
         if ($big === $small) {
@@ -1403,6 +1421,11 @@ abstract class BaseFacebook
         return self::endsWith($big, '.'.$small);
     }
 
+    /**
+     * @param string $big
+     * @param string $small
+     * @return string|bool
+     */
     protected static function endsWith($big, $small)
     {
         $len = strlen($small);
@@ -1427,7 +1450,7 @@ abstract class BaseFacebook
      * getPersistentData($key) return $value. This call may be in another request.
      *
      * @param string $key
-     * @param array $value
+     * @param mixed $value
      *
      * @return void
      */

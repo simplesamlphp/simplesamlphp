@@ -27,6 +27,7 @@ if (!array_key_exists(\SimpleSAML\Module\authfacebook\Auth\Source\Facebook::AUTH
 }
 $sourceId = $state[\SimpleSAML\Module\authfacebook\Auth\Source\Facebook::AUTHID];
 
+/** @var \SimpleSAML\Module\authfacebook\Auth\Source\Facebook|null $source */
 $source = \SimpleSAML\Auth\Source::getById($sourceId);
 if ($source === null) {
     throw new \SimpleSAML\Error\BadRequest(
