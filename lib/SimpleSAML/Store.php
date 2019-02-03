@@ -104,6 +104,7 @@ abstract class Store implements Utils\ClearableState
 
     /**
      * Clear any SSP specific state, such as SSP environmental variables or cached internals.
+     * @return void
      */
     public static function clearInternalState()
     {

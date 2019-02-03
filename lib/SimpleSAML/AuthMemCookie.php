@@ -110,7 +110,7 @@ class AuthMemCookie
     /**
      * This function creates and initializes a Memcache object from our configuration.
      *
-     * @return \Memcache A Memcache object initialized from our configuration.
+     * @return \Memcache|\Memcached A Memcache object initialized from our configuration.
      * @throws \Exception If the servers configuration is invalid.
      */
     public function getMemcache()
@@ -138,6 +138,7 @@ class AuthMemCookie
 
     /**
      * This function logs the user out by deleting the session information from memcache.
+     * @return void
      */
     private function doLogout()
     {
@@ -161,6 +162,7 @@ class AuthMemCookie
 
     /**
      * This function implements the logout handler. It deletes the information from Memcache.
+     * @return void
      */
     public static function logoutHandler()
     {

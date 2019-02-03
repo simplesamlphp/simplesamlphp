@@ -16,7 +16,6 @@ use SimpleSAML\Utils\HTTP;
 
 class SessionHandlerPHP extends SessionHandler
 {
-
     /**
      * This variable contains the session cookie name.
      *
@@ -102,6 +101,8 @@ class SessionHandlerPHP extends SessionHandler
      * outside of \SimpleSAML\Session, could cause SimpleSAMLphp's session to be lost or mess the application's one. The
      * session must always be saved properly before calling this method. If you don't understand what this is about,
      * don't use this method.
+     *
+     * @return void
      */
     public function restorePrevious()
     {
@@ -198,6 +199,7 @@ class SessionHandlerPHP extends SessionHandler
      * Save the current session to the PHP session array.
      *
      * @param \SimpleSAML\Session $session The session object we should save.
+     * @return void
      */
     public function saveSession(\SimpleSAML\Session $session)
     {
@@ -302,6 +304,7 @@ class SessionHandlerPHP extends SessionHandler
      * @param string $sessionName The name of the session.
      * @param string|null $sessionID The session ID to use. Set to null to delete the cookie.
      * @param array|null $cookieParams Additional parameters to use for the session cookie.
+     * @return void
      *
      * @throws \SimpleSAML\Error\CannotSetCookie If we can't set the cookie.
      */

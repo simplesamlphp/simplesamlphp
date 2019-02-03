@@ -19,7 +19,7 @@ class Validator
      * @var string This variable contains the X509 certificate the XML document
      *             was signed with, or NULL if it wasn't signed with an X509 certificate.
      */
-    private $x509Certificate;
+    private $x509Certificate = null;
 
     /**
      * @var array|null This variable contains the nodes which are signed.
@@ -156,7 +156,7 @@ class Validator
      *
      * @param string $x509cert  The certificate as a base64-encoded string. The string may optionally
      *                          be framed with '-----BEGIN CERTIFICATE-----' and '-----END CERTIFICATE-----'.
-     * @return string  The fingerprint as a 40-character lowercase hexadecimal number. NULL is returned if the
+     * @return string|null  The fingerprint as a 40-character lowercase hexadecimal number. NULL is returned if the
      *                 argument isn't an X509 certificate.
      */
     private static function calculateX509Fingerprint($x509cert)
@@ -239,6 +239,7 @@ class Validator
      * @param string|array $fingerprints  The fingerprints which should match. This can be a single string,
      *                                    or an array of fingerprints.
      * @throws \Exception
+     * @return void
      */
     public function validateFingerprint($fingerprints)
     {
@@ -297,6 +298,7 @@ class Validator
      *
      * @param string $caFile  File with trusted certificates, in PEM-format.
      * @throws \Exception
+     * @return void
      */
     public function validateCA($caFile)
     {
@@ -413,6 +415,7 @@ class Validator
      * @param string $certificate The certificate, in PEM format.
      * @param string $caFile File with trusted certificates, in PEM-format.
      * @throws \Exception
+     * @return void
      * @deprecated
      */
     public static function validateCertificate($certificate, $caFile)

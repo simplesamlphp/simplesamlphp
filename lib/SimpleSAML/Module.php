@@ -273,6 +273,11 @@ class Module
     }
 
 
+    /**
+     * @param string $module
+     * @param array $mod_config
+     * @return bool
+     */
     private static function isModuleEnabledWithConf($module, $mod_config)
     {
         if (isset(self::$module_info[$module]['enabled'])) {
@@ -485,6 +490,7 @@ class Module
      *
      * @param string $hook The name of the hook.
      * @param mixed  &$data The data which should be passed to each hook. Will be passed as a reference.
+     * @return void
      *
      * @throws \SimpleSAML\Error\Exception If an invalid hook is found in a module.
      */

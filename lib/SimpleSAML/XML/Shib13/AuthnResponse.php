@@ -21,7 +21,7 @@ use SimpleSAML\XML\Validator;
 class AuthnResponse
 {
     /**
-     * @var \SimpleSAML\XML\Validator This variable contains an XML validator for this message.
+     * @var \SimpleSAML\XML\Validator|null This variable contains an XML validator for this message.
      */
     private $validator = null;
 
@@ -32,7 +32,11 @@ class AuthnResponse
     private $messageValidated = false;
 
 
+    /** @var string */
     const SHIB_PROTOCOL_NS = 'urn:oasis:names:tc:SAML:1.0:protocol';
+
+
+    /** @var string */
     const SHIB_ASSERT_NS = 'urn:oasis:names:tc:SAML:1.0:assertion';
 
 
@@ -51,6 +55,7 @@ class AuthnResponse
      * Set whether this message was validated externally.
      *
      * @param bool $messageValidated  TRUE if the message is already validated, FALSE if not.
+     * @return void
      */
     public function setMessageValidated($messageValidated)
     {
@@ -60,6 +65,11 @@ class AuthnResponse
     }
 
 
+    /**
+     * @param string $xml
+     * @throws \Exception
+     * @return void
+     */
     public function setXML($xml)
     {
         assert(is_string($xml));
@@ -71,16 +81,30 @@ class AuthnResponse
         }
     }
 
+
+    /**
+     * @param string|null $relayState
+     * @return void
+     */
     public function setRelayState($relayState)
     {
         $this->relayState = $relayState;
     }
 
+
+    /**
+     * @return string|null
+     */
     public function getRelayState()
     {
         return $this->relayState;
     }
 
+
+    /**
+     * @throws \SimpleSAML\Error\Exception
+     * @return bool
+     */
     public function validate()
     {
         assert($this->dom instanceof DOMDocument);
@@ -131,7 +155,7 @@ class AuthnResponse
     /**
      * Checks if the given node is validated by the signature on this response.
      *
-     * @param \DOMElement $node Node to be validated.
+     * @param \DOMElement|\SimpleXMLElement $node Node to be validated.
      * @return bool TRUE if the node is validated or FALSE if not.
      */
     private function isNodeValidated($node)
@@ -182,6 +206,7 @@ class AuthnResponse
         return $xPath->query($query, $node);
     }
 
+
     /**
      * Retrieve the session index of this response.
      *
@@ -201,6 +226,10 @@ class AuthnResponse
     }
 
     
+    /**
+     * @throws \Exception
+     * @return array
+     */
     public function getAttributes()
     {
         $metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
@@ -273,6 +302,10 @@ class AuthnResponse
     }
 
     
+    /**
+     * @throws \Exception
+     * @return string
+     */
     public function getIssuer()
     {
         $query = '/shibp:Response/shib:Assertion/@Issuer';
@@ -285,6 +318,10 @@ class AuthnResponse
         }
     }
 
+
+    /**
+     * @return array
+     */
     public function getNameID()
     {
         $nameID = [];
