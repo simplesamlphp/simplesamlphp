@@ -23,8 +23,13 @@ class LinkedIn extends \SimpleSAML\Auth\Source
      */
     const AUTHID = 'authlinkedin:AuthId';
 
+    /** @var string */
     private $key;
+
+    /** @var string */
     private $secret;
+
+    /** @var string */
     private $attributes;
 
 
@@ -33,6 +38,7 @@ class LinkedIn extends \SimpleSAML\Auth\Source
      *
      * @param array $info  Information about this authentication source.
      * @param array $config  Configuration.
+     * @throws \Exception
      */
     public function __construct($info, $config)
     {
@@ -68,6 +74,7 @@ class LinkedIn extends \SimpleSAML\Auth\Source
      * Documentation at: http://developer.linkedin.com/docs/DOC-1008
      *
      * @param array &$state  Information about the current authentication.
+     * @return void
      */
     public function authenticate(&$state)
     {
@@ -104,6 +111,10 @@ class LinkedIn extends \SimpleSAML\Auth\Source
     }
 
 
+    /**
+     * @param array &$state
+     * @return void
+     */
     public function finalStep(&$state)
     {
         $requestToken = $state['authlinkedin:requestToken'];
