@@ -13,7 +13,6 @@ use SimpleSAML\Utils\HttpAdapter;
  * @author Guy Halse, http://orcid.org/0000-0002-9388-8592
  * @package SimpleSAMLphp
  */
-
 class CardinalitySingle extends \SimpleSAML\Auth\ProcessingFilter
 {
     /** @var array Attributes that should be single-valued or we generate an error */
@@ -37,11 +36,11 @@ class CardinalitySingle extends \SimpleSAML\Auth\ProcessingFilter
     /**
      * Initialize this filter, parse configuration.
      *
-     * @param array $config  Configuration information about this filter.
+     * @param array &$config  Configuration information about this filter.
      * @param mixed $reserved  For future use.
      * @param HTTPAdapter $http  HTTP utility service (handles redirects).
      */
-    public function __construct($config, $reserved, HttpAdapter $http = null)
+    public function __construct(&$config, $reserved, HttpAdapter $http = null)
     {
         parent::__construct($config, $reserved);
         assert(is_array($config));
@@ -73,10 +72,12 @@ class CardinalitySingle extends \SimpleSAML\Auth\ProcessingFilter
         }
     }
 
+
     /**
      * Process this filter
      *
      * @param array &$request  The current request
+     * @return void
      */
     public function process(&$request)
     {

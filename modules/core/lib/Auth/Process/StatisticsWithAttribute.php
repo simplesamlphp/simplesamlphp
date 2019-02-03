@@ -8,7 +8,6 @@ namespace SimpleSAML\Module\core\Auth\Process;
  * @author Andreas Åkre Solberg, UNINETT AS.
  * @package SimpleSAMLphp
  */
-
 class StatisticsWithAttribute extends \SimpleSAML\Auth\ProcessingFilter
 {
     /**
@@ -31,10 +30,10 @@ class StatisticsWithAttribute extends \SimpleSAML\Auth\ProcessingFilter
     /**
      * Initialize this filter.
      *
-     * @param array $config  Configuration information about this filter.
+     * @param array &$config  Configuration information about this filter.
      * @param mixed $reserved  For future use.
      */
-    public function __construct($config, $reserved)
+    public function __construct(&$config, $reserved)
     {
         parent::__construct($config, $reserved);
 
@@ -64,6 +63,7 @@ class StatisticsWithAttribute extends \SimpleSAML\Auth\ProcessingFilter
      * Log line.
      *
      * @param array &$state  The current state.
+     * @return void
      */
     public function process(&$state)
     {

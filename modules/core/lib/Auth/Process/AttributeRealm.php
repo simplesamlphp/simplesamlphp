@@ -13,15 +13,16 @@ namespace SimpleSAML\Module\core\Auth\Process;
 
 class AttributeRealm extends \SimpleSAML\Auth\ProcessingFilter
 {
+    /** @var string */
     private $attributename = 'realm';
 
     /**
      * Initialize this filter.
      *
-     * @param array $config  Configuration information about this filter.
+     * @param array &$config  Configuration information about this filter.
      * @param mixed $reserved  For future use.
      */
-    public function __construct($config, $reserved)
+    public function __construct(&$config, $reserved)
     {
         parent::__construct($config, $reserved);
         assert(is_array($config));
@@ -37,6 +38,7 @@ class AttributeRealm extends \SimpleSAML\Auth\ProcessingFilter
      * Add or replace existing attributes with the configured values.
      *
      * @param array &$request  The current request
+     * @return void
      */
     public function process(&$request)
     {

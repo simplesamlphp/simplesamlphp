@@ -11,7 +11,7 @@
  * Author: Mads Freek <freek@ruc.dk>, Jacob Christiansen <jach@wayf.dk>
  */
 
-/*
+/**
  * Runs the processing chain and ignores all filter which have user
  * interaction.
  *
@@ -185,7 +185,7 @@ if ($action !== null && $sp_entityid !== null) {
         'consentAdmin:consentadminajax.php',
         'consentAdmin:consentadmin'
     );
-    $translator = $t->getTranslator();
+    $translator = $template->getTranslator();
 
     // Get SP metadata
     $sp_metadata = $metadata->getMetaData($sp_entityid, 'saml20-sp-remote');

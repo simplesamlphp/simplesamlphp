@@ -1,10 +1,11 @@
 <?php
+
 /**
  * Hook to do sanitycheck
  *
  * @param array &$hookinfo  hookinfo
+ * @return void
  */
-
 function core_hook_sanitycheck(&$hookinfo)
 {
     assert(is_array($hookinfo));
