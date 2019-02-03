@@ -120,7 +120,7 @@ class Utilities
      * @deprecated This method will be removed in SSP 2.0. Please use \SimpleSAML\Utils\HTTP::checkURLAllowed() instead.
      * @param string $url
      * @param array|null $trustedSites
-     * @return bool
+     * @return string
      */
     public static function checkURLAllowed($url, array $trustedSites = null)
     {
@@ -141,8 +141,8 @@ class Utilities
 
     /**
      * @deprecated This method will be removed in SSP 2.0.
-     * @param int|null $start
-     * @param int|null $end
+     * @param string|null $start
+     * @param string|null $end
      * @return bool
      */
     public static function checkDateConditions($start = null, $end = null)
@@ -365,7 +365,7 @@ class Utilities
 
     /**
      * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Utils\XML::getDOMChildren() instead.
-     * @param \DOMNode $element
+     * @param \DOMElement $element
      * @param string $localName
      * @param string $namespaceURI
      * @return array
@@ -390,7 +390,7 @@ class Utilities
     /**
      * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Utils\HTTP::getAcceptLanguage()
      *     instead.
-     * @return string
+     * @return array
      */
     public static function getAcceptLanguage()
     {
@@ -402,7 +402,7 @@ class Utilities
      * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Utils\XML::isValid() instead.
      * @param string $xml
      * @param string $schema
-     * @return bool
+     * @return string|false
      */
     public static function validateXML($xml, $schema)
     {
@@ -415,7 +415,7 @@ class Utilities
      * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Utils\XML::checkSAMLMessage() instead.
      * @param string $message
      * @param string $type
-     * @return bool
+     * @return void
      */
     public static function validateXMLDocument($message, $type)
     {
@@ -465,7 +465,7 @@ class Utilities
 
     /**
      * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Utils\HTTP::resolveURL() instead.
-     * @param string $path
+     * @param string $url
      * @param string|null $base
      * @return string
      */
@@ -489,7 +489,7 @@ class Utilities
     /**
      * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Utils\HTTP::parseQueryString() instead.
      * @param string $query_string
-     * @return string
+     * @return array
      */
     public static function parseQueryString($query_string)
     {
@@ -590,7 +590,7 @@ class Utilities
 
     /**
      * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Utils\XML::formatXMLString() instead.
-     * @param \DOMElement $root
+     * @param string $xml
      * @param string $indentBase
      * @return string
      */
@@ -723,7 +723,7 @@ class Utilities
     /**
      * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Utils\System::writeFile() instead.
      * @param string $filename
-     * @param array $data
+     * @param string $data
      * @param int $mode
      * @return void
      */
@@ -745,7 +745,7 @@ class Utilities
 
     /**
      * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Logger::maskErrors() instead.
-     * @param string $mask
+     * @param int $mask
      * @return void
      */
     public static function maskErrors($mask)
@@ -848,6 +848,10 @@ class Utilities
 
     /**
      * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML\Utils\HTTP::setCookie() instead.
+     * @param string $name
+     * @param string|null $value
+     * @param array|null $params
+     * @param bool $throw
      * @return void
      */
     public static function setCookie($name, $value, array $params = null, $throw = true)

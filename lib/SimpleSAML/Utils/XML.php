@@ -69,7 +69,7 @@ class XML
             case 'saml-meta':
                 $result = self::isValid($message, 'saml-schema-metadata-2.0.xsd');
         }
-        if ($result !== true) {
+        if (is_string($result)) {
             Logger::warning($result);
         }
     }
@@ -405,7 +405,7 @@ class XML
      * @param string|\DOMDocument $xml The XML string or document which should be validated.
      * @param string              $schema The filename of the schema that should be used to validate the document.
      *
-     * @return boolean|string Returns a string with errors found if validation fails. True if validation passes ok.
+     * @return bool|string Returns a string with errors found if validation fails. True if validation passes ok.
      * @throws \InvalidArgumentException If $schema is not a string, or $xml is neither a string nor a \DOMDocument.
      *
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>

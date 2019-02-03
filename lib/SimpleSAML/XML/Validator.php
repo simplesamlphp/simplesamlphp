@@ -201,6 +201,7 @@ class Validator
      * @param string $certificate The X509 certificate we should validate.
      * @param array $fingerprints The valid fingerprints.
      * @throws \Exception
+     * @return void
      */
     private static function validateCertificateFingerprint($certificate, $fingerprints)
     {

@@ -569,6 +569,7 @@ class Session implements \Serializable, Utils\ClearableState
      * Set remember me expire time.
      *
      * @param int $expire Unix timestamp when remember me session cookies expire.
+     * @return void
      */
     public function setRememberMeExpire($expire = null)
     {

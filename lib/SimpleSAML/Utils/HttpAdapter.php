@@ -20,7 +20,7 @@ class HttpAdapter
 
     /**
      * @see HTTP::getServerPort()
-     * @return int
+     * @return string
      */
     public function getServerPort()
     {
@@ -55,7 +55,7 @@ class HttpAdapter
      *
      * @param string $url
      * @param array|null $trustedSites
-     * @return bool
+     * @return string
      */
     public function checkURLAllowed($url, array $trustedSites = null)
     {
@@ -77,7 +77,7 @@ class HttpAdapter
 
     /**
      * @see HTTP::getAcceptLanguage()
-     * @return string
+     * @return array
      */
     public function getAcceptLanguage()
     {
@@ -105,7 +105,7 @@ class HttpAdapter
     /**
      * @see HTTP::getFirstPathElement()
      *
-     * @param $bool $trailingslash
+     * @param bool $trailingslash
      * @return string
      */
     public function getFirstPathElement($trailingslash = true)
@@ -116,7 +116,7 @@ class HttpAdapter
     /**
      * @see HTTP::getPOSTRedirectURL()
      *
-     * @param $string $destination
+     * @param string $destination
      * @param array $data
      * @return string
      */
@@ -190,6 +190,7 @@ class HttpAdapter
 
     /**
      * @see HTTP::normalizeURL()
+     * @param string $url
      * @return string
      */
     public function normalizeURL($url)
@@ -200,8 +201,8 @@ class HttpAdapter
     /**
      * @see HTTP::parseQueryString()
      *
-     * @param string
-     * @return string
+     * @param string $query_string
+     * @return array
      */
     public function parseQueryString($query_string)
     {
@@ -213,7 +214,7 @@ class HttpAdapter
      *
      * @param string $url
      * @param array $parameters
-     * @return string
+     * @return void
      */
     public function redirectTrustedURL($url, $parameters = [])
     {
@@ -225,7 +226,7 @@ class HttpAdapter
      *
      * @param string $url
      * @param array $parameters
-     * @return string
+     * @return void
      */
     public function redirectUntrustedURL($url, $parameters = [])
     {

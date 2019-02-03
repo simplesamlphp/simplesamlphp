@@ -39,7 +39,7 @@ class AuthnRequest
     
 
     /**
-     * @param string|null $relayState
+     * @param string|null $issuer
      * @return void
      */
     public function setIssuer($issuer)

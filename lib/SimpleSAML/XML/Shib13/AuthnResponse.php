@@ -41,9 +41,9 @@ class AuthnResponse
 
 
     /**
-     * @var \DOMDocument The DOMDocument which represents this message.
+     * @var \DOMDocument|null The DOMDocument which represents this message.
      */
-    private $dom;
+    private $dom = null;
 
     /**
      * @var string|null The relaystate which is associated with this response.

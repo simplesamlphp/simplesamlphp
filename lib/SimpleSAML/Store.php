@@ -24,7 +24,7 @@ abstract class Store implements Utils\ClearableState
     /**
      * Retrieve our singleton instance.
      *
-     * @return false|\SimpleSAML\Store The data store, or false if it isn't enabled.
+     * @return bool|\SimpleSAML\Store The data store, or false if it isn't enabled.
      *
      * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
