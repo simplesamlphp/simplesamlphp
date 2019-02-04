@@ -267,7 +267,7 @@ class IdPDisco
      *
      * This function finds out which IdP the user has manually chosen, if any.
      *
-     * @return string The entity id of the IdP the user has chosen, or null if the user has made no choice.
+     * @return string|null The entity id of the IdP the user has chosen, or null if the user has made no choice.
      */
     protected function getSelectedIdP()
     {
