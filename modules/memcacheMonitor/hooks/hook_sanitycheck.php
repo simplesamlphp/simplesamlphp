@@ -6,8 +6,8 @@
  * This function verifies that all memcache servers work.
  *
  * @param array &$hookinfo  hookinfo
+ * @return void
  */
-
 function memcacheMonitor_hook_sanitycheck(&$hookinfo)
 {
     assert(is_array($hookinfo));

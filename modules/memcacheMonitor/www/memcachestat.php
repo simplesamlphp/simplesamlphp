@@ -1,10 +1,19 @@
 <?php
 
+/**
+ * @param int $input
+ * @return string
+ */
 function tdate($input)
 {
     return date(DATE_RFC822, $input);
 }
 
+
+/**
+ * @param int $input
+ * @return string
+ */
 function hours($input)
 {
     if ($input < 60) {
@@ -19,6 +28,11 @@ function hours($input)
     return number_format($input / (24 * 60 * 60), 2).' days';
 }
 
+
+/**
+ * @param int $input
+ * @return string
+ */
 function humanreadable($input)
 {
     $output = "";
