@@ -30,5 +30,6 @@
 
     <stubs>
         <file name="tests/Utils/Stubs/krb5.php" />
+        <file name="tests/Utils/Stubs/radius.php" />
     </stubs>
 </psalm>

@@ -9,64 +9,64 @@ namespace SimpleSAML\Module\radius\Auth\Source;
  *
  * @package SimpleSAMLphp
  */
-
 class Radius extends \SimpleSAML\Module\core\Auth\UserPassBase
 {
     /**
-     * The list of radius servers to use.
+     * Var array The list of radius servers to use.
      */
     private $servers;
 
     /**
-     * The hostname of the radius server.
+     * @var string The hostname of the radius server.
      */
     private $hostname;
 
     /**
-     * The port of the radius server.
+     * @var int The port of the radius server.
      */
     private $port;
 
     /**
-     * The secret used when communicating with the radius server.
+     * @var string The secret used when communicating with the radius server.
      */
     private $secret;
 
     /**
-     * The timeout for contacting the radius server.
+     * @var int The timeout for contacting the radius server.
      */
     private $timeout;
 
     /**
-     * The number of retries which should be attempted.
+     * @var int The number of retries which should be attempted.
      */
     private $retries;
 
     /**
-     * The realm to be added to the entered username.
+     * Var string The realm to be added to the entered username.
      */
     private $realm;
 
     /**
-     * The attribute name where the username should be stored.
+     * @var string The attribute name where the username should be stored.
      */
     private $usernameAttribute;
 
     /**
-     * The vendor for the RADIUS attributes we are interrested in.
+     * @var string The vendor for the RADIUS attributes we are interrested in.
      */
     private $vendor;
 
     /**
-     * The vendor-specific attribute for the RADIUS attributes we are
-     * interrested in.
+     * @var string The vendor-specific attribute for the RADIUS attributes we are
+     *     interrested in.
      */
     private $vendorType;
 
     /**
-     * The NAS-Identifier that should be set in Access-Request packets.
+     * @var string The NAS-Identifier that should be set in Access-Request packets.
      */
     private $nasIdentifier;
+
 
     /**
      * Constructor for this authentication source.
