@@ -16,20 +16,49 @@ class Negotiate extends \SimpleSAML\Auth\Source
     // Constants used in the module
     const STAGEID = '\SimpleSAML\Module\negotiate\Auth\Source\Negotiate.StageId';
 
+    /** @var \SimpleSAML\Auth\LDAP|null */
     protected $ldap = null;
+
+    /** @var string */
     protected $backend = '';
+
+    /** @var string*/
     protected $hostname = '';
+
+    /** @var int */
     protected $port = 389;
+
+    /** @var bool */
     protected $referrals = true;
+
+    /** @var bool */
     protected $enableTLS = false;
+
+    /** @var bool */
     protected $debugLDAP = false;
+
+    /** @var int */
     protected $timeout = 30;
+
+    /** @var string */
     protected $keytab = '';
+
+    /** @var array */
     protected $base = [];
+
+    /** @var array */
     protected $attr = ['uid'];
+
+    /** @var array|null */
     protected $subnet = null;
+
+    /** @var string|null */
     protected $admin_user = null;
+
+    /** @var string|null */
     protected $admin_pw = null;
+
+    /** @var array|null */
     protected $attributes = null;
 
 
@@ -81,6 +110,7 @@ class Negotiate extends \SimpleSAML\Auth\Source
      * LDAP is used as a user metadata source.
      *
      * @param array &$state Information about the current authentication.
+     * @return void
      */
     public function authenticate(&$state)
     {
@@ -187,6 +217,10 @@ class Negotiate extends \SimpleSAML\Auth\Source
     }
 
 
+    /**
+     * @param array $spMetadata
+     * @return bool
+     */
     public function spDisabledInMetadata($spMetadata)
     {
         if (array_key_exists('negotiate:disable', $spMetadata)) {
@@ -209,7 +243,7 @@ class Negotiate extends \SimpleSAML\Auth\Source
      *
      * Will return TRUE if no subnet option is configured.
      *
-     * @return boolean
+     * @return bool
      */
     public function checkMask()
     {
@@ -235,6 +269,7 @@ class Negotiate extends \SimpleSAML\Auth\Source
      * wants to show the 401 message.
      *
      * @param array $params additional parameters to the URL in the URL in the body.
+     * @return void
      */
     protected function sendNegotiate($params)
     {
@@ -256,6 +291,7 @@ class Negotiate extends \SimpleSAML\Auth\Source
      * Passes control of the login process to a different module.
      *
      * @param array $state Information about the current authentication.
+     * @return void
      *
      * @throws \SimpleSAML\Error\Error If couldn't determine the auth source.
      * @throws \SimpleSAML\Error\Exception
@@ -290,7 +326,7 @@ class Negotiate extends \SimpleSAML\Auth\Source
      *
      * @param string $user The Kerberos user identifier.
      *
-     * @return string The DN to the user or NULL if not found.
+     * @return array|null The attributes for the user or NULL if not found.
      */
     protected function lookupUserData($user)
     {
@@ -315,6 +351,9 @@ class Negotiate extends \SimpleSAML\Auth\Source
     /**
      * Elevates the LDAP connection to allow restricted lookups if
      * so configured. Does nothing if not.
+     *
+     * @return void
+     * @throws \SimpleSAML\Error\AuthSource
      */
     protected function adminBind()
     {
@@ -339,6 +378,7 @@ class Negotiate extends \SimpleSAML\Auth\Source
      * logout call to the fallback module.
      *
      * @param array &$state Information about the current logout operation.
+     * @return void
      */
     public function logout(&$state)
     {
