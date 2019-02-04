@@ -14,7 +14,6 @@ namespace SimpleSAML\Module\ldap\Auth\Process;
  * @author Remy Blom <remy.blom@hku.nl>
  * @package SimpleSAMLphp
  */
-
 abstract class BaseFilter extends \SimpleSAML\Auth\ProcessingFilter
 {
     /**
@@ -50,7 +49,7 @@ abstract class BaseFilter extends \SimpleSAML\Auth\ProcessingFilter
      * Instance, object of the ldap connection. Stored here to
      * be access later during processing.
      *
-     * @var \SimpleSAML\Auth\Ldap
+     * @var \SimpleSAML\Auth\LDAP
      */
     private $ldap;
 
@@ -90,8 +89,8 @@ abstract class BaseFilter extends \SimpleSAML\Auth\ProcessingFilter
      * instance/object and stores everything in class members.
      *
      * @throws \SimpleSAML\Error\Exception
-     * @param array $config
-     * @param $reserved
+     * @param array &$config
+     * @param mixed $reserved
      */
     public function __construct(&$config, $reserved)
     {
@@ -255,12 +254,12 @@ abstract class BaseFilter extends \SimpleSAML\Auth\ProcessingFilter
      * rather than setting in the constructor to avoid unnecessarily
      * connecting to LDAP when it might not be needed.
      *
-     * @return \SimpleSAML\Auth\Ldap
+     * @return \SimpleSAML\Auth\LDAP
      */
     protected function getLdap()
     {
         // Check if already connected
-        if ($this->ldap) {
+        if (isset($this->ldap)) {
             return $this->ldap;
         }
 

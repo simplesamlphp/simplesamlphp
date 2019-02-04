@@ -253,7 +253,7 @@ class ConfigHelper
      * @param bool $allowZeroHits
      * Determines if the method will throw an exception if no
      * hits are found. Defaults to FALSE.
-     * @return string
+     * @return string|null
      * The DN of the matching element, if found. If no element was
      * found and $allowZeroHits is set to FALSE, an exception will
      * be thrown; otherwise NULL will be returned.
@@ -295,6 +295,13 @@ class ConfigHelper
         );
     }
 
+
+    /**
+     * @param string $dn
+     * @param array|null $attributes
+     * @return array
+     * @throws \Exception
+     */
     public function getAttributes($dn, $attributes = null)
     {
         if ($attributes == null) {

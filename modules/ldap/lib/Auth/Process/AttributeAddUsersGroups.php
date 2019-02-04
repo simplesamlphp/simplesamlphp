@@ -10,7 +10,6 @@ namespace SimpleSAML\Module\ldap\Auth\Process;
  * @author Ryan Panning <panman@traileyes.com>
  * @package SimpleSAMLphp
  */
-
 class AttributeAddUsersGroups extends BaseFilter
 {
     /**
@@ -21,6 +20,7 @@ class AttributeAddUsersGroups extends BaseFilter
      *
      * @throws \SimpleSAML\Error\Exception
      * @param $request
+     * @return void
      */
     public function process(&$request)
     {
