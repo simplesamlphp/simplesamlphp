@@ -6,16 +6,27 @@ namespace SimpleSAML\Module\statistics\Statistics\Rulesets;
  * @author Andreas Åkre Solberg <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
  */
-
 class BaseRule
 {
+    /** @var \SimpleSAML\Configuration */
     protected $statconfig;
+
+    /** @var \SimpleSAML\Configuration */
     protected $ruleconfig;
+
+    /** @var string */
     protected $ruleid;
-    protected $available;
+
+    /** @var array|null */
+    protected $available = null;
 
     /**
      * Constructor
+     *
+     * @param \SimpleSAML\Configuration $statconfig
+     * @param \SimpleSAML\Configuration $ruleconfig
+     * @param string $ruleid
+     * @param array $available
      */
     public function __construct($statconfig, $ruleconfig, $ruleid, $available)
     {
@@ -25,17 +36,24 @@ class BaseRule
         $this->ruleconfig = $ruleconfig;
         $this->ruleid = $ruleid;
 
-        $this->available = null;
         if (array_key_exists($ruleid, $available)) {
             $this->available = $available[$ruleid];
         }
     }
 
+
+    /**
+     * @return string
+     */
     public function getRuleID()
     {
         return $this->ruleid;
     }
 
+
+    /**
+     * @return array
+     */
     public function availableTimeRes()
     {
         $timeresConfigs = $this->statconfig->getValue('timeres');
@@ -48,6 +66,11 @@ class BaseRule
         return $available_times;
     }
 
+
+    /**
+     * @param string $timeres
+     * @return array
+     */
     public function availableFileSlots($timeres)
     {
         $timeresConfigs = $this->statconfig->getValue('timeres');
@@ -74,6 +97,11 @@ class BaseRule
         return $available_times;
     }
 
+
+    /**
+     * @param string $preferTimeRes
+     * @return string
+     */
     protected function resolveTimeRes($preferTimeRes)
     {
         $timeresavailable = array_keys($this->available);
@@ -86,6 +114,12 @@ class BaseRule
         return $timeres;
     }
 
+
+    /**
+     * @param string $timeres
+     * @param string $preferTime
+     * @return int
+     */
     protected function resolveFileSlot($timeres, $preferTime)
     {
         // Get which time (fileslot) to use.. First get a default, which is the most recent one.
@@ -97,6 +131,12 @@ class BaseRule
         return $fileslot;
     }
 
+
+    /**
+     * @param string $timeres
+     * @param string $preferTime
+     * @return array
+     */
     public function getTimeNavigation($timeres, $preferTime)
     {
         $fileslot = $this->resolveFileSlot($timeres, $preferTime);
@@ -118,6 +158,12 @@ class BaseRule
         return ['prev' => $available_times_prev, 'next' => $available_times_next];
     }
 
+
+    /**
+     * @param string $preferTimeRes
+     * @param string $preferTime
+     * @return \SimpleSAML\Module\statistics\StatDataset
+     */
     public function getDataSet($preferTimeRes, $preferTime)
     {
         $timeres = $this->resolveTimeRes($preferTimeRes);

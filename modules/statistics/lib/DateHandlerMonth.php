@@ -6,7 +6,6 @@ namespace SimpleSAML\Module\statistics;
  * @author Andreas Åkre Solberg <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
  */
-
 class DateHandlerMonth extends DateHandler
 {
     /**
@@ -19,6 +18,12 @@ class DateHandlerMonth extends DateHandler
         $this->offset = $offset;
     }
 
+
+    /**
+     * @param int $epoch
+     * @param int $slotsize
+     * @return int
+     */
     public function toSlot($epoch, $slotsize)
     {
         $dsttime = $this->getDST($epoch) + $epoch;
@@ -27,6 +32,12 @@ class DateHandlerMonth extends DateHandler
         return $slot;
     }
 
+
+    /**
+     * @param int $slot
+     * @param int $slotsize
+     * @return int
+     */
     public function fromSlot($slot, $slotsize)
     {
         $month = ($slot % 12);
@@ -34,6 +45,14 @@ class DateHandlerMonth extends DateHandler
         return mktime(0, 0, 0, $month + 1, 1, $year);
     }
 
+
+    /**
+     * @param int $from
+     * @param int $to
+     * @param int $slotsize
+     * @param string $dateformat
+     * @return string
+     */
     public function prettyHeader($from, $to, $slotsize, $dateformat)
     {
         $month = ($from % 12) + 1;

@@ -2,21 +2,32 @@
 
 namespace SimpleSAML\Module\statistics;
 
-/*
+/**
  * @author Andreas Åkre Solberg <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
  */
-
 class LogCleaner
 {
+    /** @var \SimpleSAML\Configuration */
     private $statconfig;
+
+    /** @var string */
     private $statdir;
+
+    /** @var string */
     private $inputfile;
+
+    /** @var array */
     private $statrules;
+
+    /** @var int */
     private $offset;
+
 
     /**
      * Constructor
+     *
+     * @param string|null $inputfile
      */
     public function __construct($inputfile = null)
     {
@@ -32,7 +43,8 @@ class LogCleaner
         }
     }
 
-    /*
+
+    /**
      * @return void
      */
     public function dumpConfig()
@@ -43,9 +55,10 @@ class LogCleaner
     }
 
 
-    /*
+    /**
      * @param bool $debug
      * @return array
+     * @throws \Exception
      */
     public function clean($debug = false)
     {
@@ -125,10 +138,11 @@ class LogCleaner
     }
 
 
-    /*
+    /**
      * @param array $todelete
      * @param string $outputfile
      * @return void
+     * @throws \Exceeption
      */
     public function store($todelete, $outputfile)
     {

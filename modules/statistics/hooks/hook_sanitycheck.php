@@ -1,8 +1,10 @@
 <?php
+
 /**
  * Hook to do sanity checks
  *
  * @param array &$hookinfo  hookinfo
+ * @return void
  */
 function statistics_hook_sanitycheck(&$hookinfo)
 {

@@ -151,6 +151,14 @@ $t->data['jquery'] = ['core' => false, 'ui' => true, 'css' => true];
 
 $t->show();
 
+
+/**
+ * @param \SimpleSAML\XHTML\Template $t
+ * @param string $type
+ * @param string|null $key
+ * @param string|null $value
+ * @return string|array
+ */
 function getBaseURL($t, $type = 'get', $key = null, $value = null)
 {
     $vars = [

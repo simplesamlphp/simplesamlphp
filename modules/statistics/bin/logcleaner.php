@@ -70,8 +70,8 @@ if (!$dryrun) {
 
 /**
  * This function prints the help output.
+ * @return void
  */
-
 function printHelp()
 {
     global $progName;
