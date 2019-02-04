@@ -56,9 +56,9 @@ class Portal
 
 
     /**
-     * @param \SimpleSAML\Locate\Translate $translator
+     * @param \SimpleSAML\Locale\Translate $translator
      * @param string $thispage
-     * @return array
+     * @return string
      */
     public function getLoginInfo($translator, $thispage)
     {
