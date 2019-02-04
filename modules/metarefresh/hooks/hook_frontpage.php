@@ -1,10 +1,11 @@
 <?php
+
 /**
  * Hook to add links to the frontpage.
  *
  * @param array &$links  The links on the frontpage, split into sections.
+ * @return void
  */
-
 function metarefresh_hook_frontpage(&$links)
 {
     assert(is_array($links));

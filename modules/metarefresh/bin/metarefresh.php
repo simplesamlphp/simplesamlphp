@@ -145,6 +145,7 @@ if ($toStdOut) {
 
 /**
  * This function prints the help output.
+ * @return void
  */
 function printHelp()
 {

@@ -6,6 +6,7 @@ use \SimpleSAML\Logger;
  * Hook to run a cron job.
  *
  * @param array &$croninfo  Output
+ * @return void
  */
 function metarefresh_hook_cron(&$croninfo)
 {

@@ -8,15 +8,27 @@ use SimpleSAML\Logger;
  * @package SimpleSAMLphp
  * @author Andreas Åkre Solberg <andreas.solberg@uninett.no>
  */
-
 class MetaLoader
 {
+    /** @var int|null */
     private $expire;
-    private $metadata;
+
+    /** @var array */
+    private $metadata = [];
+
+    /** @var object|null */
     private $oldMetadataSrc;
+
+    /** @var string|null */
     private $stateFile;
-    private $changed;
-    private $state;
+
+    /** @var bool*/
+    private $changed = false;
+
+    /** @var array */
+    private $state = [];
+
+    /** @var array */
     private $types = [
         'saml20-idp-remote',
         'saml20-sp-remote',
@@ -25,28 +37,26 @@ class MetaLoader
         'attributeauthority-remote'
     ];
 
+
     /**
      * Constructor
      *
-     * @param integer $expire
-     * @param string  $stateFile
-     * @param object  $oldMetadataSrc
+     * @param int|null $expire
+     * @param string|null  $stateFile
+     * @param object|null  $oldMetadataSrc
      */
     public function __construct($expire = null, $stateFile = null, $oldMetadataSrc = null)
     {
         $this->expire = $expire;
-        $this->metadata = [];
         $this->oldMetadataSrc = $oldMetadataSrc;
         $this->stateFile = $stateFile;
-        $this->changed = false;
 
         // Read file containing $state from disk
         if (is_readable($stateFile)) {
             include $stateFile;
         }
-
-        $this->state = [];
     }
+
 
     /**
      * Get the types of entities that will be loaded.
@@ -58,11 +68,13 @@ class MetaLoader
         return $this->types;
     }
 
+
     /**
      * Set the types of entities that will be loaded.
      *
      * @param string|array $types Either a string with the name of one single type allowed, or an array with a list of
      * types. Pass an empty array to reset to all types of entities.
+     * @return void
      */
     public function setTypes($types)
     {
@@ -72,10 +84,12 @@ class MetaLoader
         $this->types = $types;
     }
 
+
     /**
      * This function processes a SAML metadata file.
      *
-     * @param $source
+     * @param $source array
+     * @return void
      */
     public function loadSource($source)
     {
@@ -198,8 +212,12 @@ class MetaLoader
         $this->saveState($source, $responseHeaders);
     }
 
+
     /**
      * Create HTTP context, with any available caches taken into account
+     *
+     * @param array $source
+     * @return array
      */
     private function createContext($source)
     {
@@ -227,6 +245,10 @@ class MetaLoader
     }
 
 
+    /**
+     * @param array $source
+     * @return void
+     */
     private function addCachedMetadata($source)
     {
         if (isset($this->oldMetadataSrc)) {
@@ -245,6 +267,10 @@ class MetaLoader
 
     /**
      * Store caching state data for a source
+     *
+     * @param array $source
+     * @param array $responseHeaders
+     * @return void
      */
     private function saveState($source, $responseHeaders)
     {
@@ -268,8 +294,14 @@ class MetaLoader
         }
     }
 
+
     /**
      * Parse XML metadata and return entities
+     *
+     * @param string $data
+     * @param array $source
+     * @return \SimpleSAML\Metadata\SAMLParser[]
+     * @throws \Exception
      */
     private function loadXML($data, $source)
     {
@@ -287,6 +319,8 @@ class MetaLoader
 
     /**
      * This function writes the state array back to disk
+     *
+     * @return void
      */
     public function writeState()
     {
@@ -305,6 +339,8 @@ class MetaLoader
 
     /**
      * This function writes the metadata to stdout.
+     *
+     * @return void
      */
     public function dumpMetadataStdOut()
     {
@@ -332,8 +368,10 @@ class MetaLoader
      * This function will return without making any changes if $metadata is NULL.
      *
      * @param string $filename The filename the metadata comes from.
-     * @param array  $metadata The metadata.
+     * @param array $metadata The metadata.
      * @param string $type The metadata type.
+     * @param array|null $template The template.
+     * @return void
      */
     private function addMetadata($filename, $metadata, $type, $template = null)
     {
@@ -370,6 +408,9 @@ class MetaLoader
 
     /**
      * This function writes the metadata to an ARP file
+     *
+     * @param \SimpleSAML\Configuration $config
+     * @return void
      */
     public function writeARPfile($config)
     {
@@ -404,6 +445,9 @@ class MetaLoader
 
     /**
      * This function writes the metadata to to separate files in the output directory.
+     *
+     * @param string $outputDir
+     * @return void
      */
     public function writeMetadataFiles($outputDir)
     {
@@ -453,6 +497,7 @@ class MetaLoader
      * Save metadata for loading with the 'serialize' metadata loader.
      *
      * @param string $outputDir  The directory we should save the metadata to.
+     * @return void
      */
     public function writeMetadataSerialize($outputDir)
     {
@@ -499,6 +544,9 @@ class MetaLoader
     }
 
 
+    /**
+     * @return string
+     */
     private function getTime()
     {
         // The current date, as a string
