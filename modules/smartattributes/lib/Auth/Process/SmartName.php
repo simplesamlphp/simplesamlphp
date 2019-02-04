@@ -8,17 +8,20 @@ namespace SimpleSAML\Module\smartattributes\Auth\Process;
  * @author Andreas Åkre Solberg, UNINETT AS.
  * @package SimpleSAMLphp
  */
-
 class SmartName extends \SimpleSAML\Auth\ProcessingFilter
 {
     /**
      * Attributes which should be added/appended.
      *
-     * Assiciative array of arrays.
+     * @var array Associative array of arrays.
      */
     private $attributes = [];
 
 
+    /**
+     * @param array $attributes
+     * @return string|null
+     */
     private function getFullName($attributes)
     {
         if (isset($attributes['displayName'])) {
@@ -57,6 +60,11 @@ class SmartName extends \SimpleSAML\Auth\ProcessingFilter
         return null;
     }
 
+
+    /**
+     * @param string $userid
+     * @return string|null
+     */
     private function getLocalUser($userid)
     {
         if (strpos($userid, '@') === false) {
@@ -69,12 +77,14 @@ class SmartName extends \SimpleSAML\Auth\ProcessingFilter
         return null;
     }
 
+
     /**
      * Apply filter to add or replace attributes.
      *
      * Add or replace existing attributes with the configured values.
      *
      * @param array &$request  The current request
+     * @return void
      */
     public function process(&$request)
     {
