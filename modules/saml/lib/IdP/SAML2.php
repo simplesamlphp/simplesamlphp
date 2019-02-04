@@ -17,13 +17,13 @@ use SimpleSAML\Utils\HTTP;
  *
  * @package SimpleSAMLphp
  */
-
 class SAML2
 {
     /**
      * Send a response to the SP.
      *
      * @param array $state The authentication state.
+     * @return void
      */
     public static function sendResponse(array $state)
     {
@@ -101,6 +101,7 @@ class SAML2
      * \SimpleSAML\Error\Exception $exception  The exception.
      *
      * @param array $state The error state.
+     * @return void
      */
     public static function handleAuthError(\SimpleSAML\Error\Exception $exception, array $state)
     {
@@ -162,11 +163,11 @@ class SAML2
      *
      * @param array                     $supportedBindings The bindings we allow for the response.
      * @param \SimpleSAML\Configuration $spMetadata The metadata for the SP.
-     * @param string|NULL               $AssertionConsumerServiceURL AssertionConsumerServiceURL from request.
-     * @param string|NULL               $ProtocolBinding ProtocolBinding from request.
-     * @param int|NULL                  $AssertionConsumerServiceIndex AssertionConsumerServiceIndex from request.
+     * @param string|null               $AssertionConsumerServiceURL AssertionConsumerServiceURL from request.
+     * @param string|null               $ProtocolBinding ProtocolBinding from request.
+     * @param int|null                  $AssertionConsumerServiceIndex AssertionConsumerServiceIndex from request.
      *
-     * @return array  Array with the Location and Binding we should use for the response.
+     * @return array|null  Array with the Location and Binding we should use for the response.
      */
     private static function getAssertionConsumerService(
         array $supportedBindings,
@@ -252,6 +253,7 @@ class SAML2
      * Receive an authentication request.
      *
      * @param \SimpleSAML\IdP $idp The IdP we are receiving it for.
+     * @return void
      * @throws \SimpleSAML\Error\BadRequest In case an error occurs when trying to receive the request.
      */
     public static function receiveAuthnRequest(\SimpleSAML\IdP $idp)
@@ -463,12 +465,14 @@ class SAML2
         $idp->handleAuthenticationRequest($state);
     }
 
+
     /**
      * Send a logout request to a given association.
      *
      * @param \SimpleSAML\IdP $idp The IdP we are sending a logout request from.
      * @param array           $association The association that should be terminated.
-     * @param string|NULL     $relayState An id that should be carried across the logout.
+     * @param string|null     $relayState An id that should be carried across the logout.
+     * @return void
      */
     public static function sendLogoutRequest(\SimpleSAML\IdP $idp, array $association, $relayState)
     {
@@ -505,6 +509,7 @@ class SAML2
      *
      * @param \SimpleSAML\IdP $idp The IdP we are sending a logout request from.
      * @param array           &$state The logout state array.
+     * @return void
      */
     public static function sendLogoutResponse(\SimpleSAML\IdP $idp, array $state)
     {
@@ -562,6 +567,7 @@ class SAML2
      * Receive a logout message.
      *
      * @param \SimpleSAML\IdP $idp The IdP we are receiving it for.
+     * @return void
      * @throws \SimpleSAML\Error\BadRequest In case an error occurs while trying to receive the logout message.
      */
     public static function receiveLogoutMessage(\SimpleSAML\IdP $idp)

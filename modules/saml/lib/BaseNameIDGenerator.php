@@ -7,7 +7,6 @@ namespace SimpleSAML\Module\saml;
  *
  * @package SimpleSAMLphp
  */
-
 abstract class BaseNameIDGenerator extends \SimpleSAML\Auth\ProcessingFilter
 {
     /**
@@ -37,11 +36,11 @@ abstract class BaseNameIDGenerator extends \SimpleSAML\Auth\ProcessingFilter
     /**
      * The format of this NameID.
      *
-     * This property must be initialized the subclass.
+     * This property must be set by the subclass.
      *
-     * @var string
+     * @var string|null
      */
-    protected $format;
+    protected $format = null;
 
 
     /**
@@ -81,6 +80,7 @@ abstract class BaseNameIDGenerator extends \SimpleSAML\Auth\ProcessingFilter
      * Generate transient NameID.
      *
      * @param array &$state  The request state.
+     * @return void
      */
     public function process(&$state)
     {

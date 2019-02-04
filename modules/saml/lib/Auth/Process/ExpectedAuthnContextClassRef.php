@@ -29,9 +29,9 @@ class ExpectedAuthnContextClassRef extends \SimpleSAML\Auth\ProcessingFilter
 
     /**
      * AuthnContextClassRef of the assertion
-     * @var string
+     * @var string|null
      */
-    private $AuthnContextClassRef;
+    private $AuthnContextClassRef = null;
 
 
     /**
@@ -62,6 +62,7 @@ class ExpectedAuthnContextClassRef extends \SimpleSAML\Auth\ProcessingFilter
     /**
      *
      * @param array &$request The current request
+     * @return void
      */
     public function process(&$request)
     {
@@ -87,6 +88,7 @@ class ExpectedAuthnContextClassRef extends \SimpleSAML\Auth\ProcessingFilter
      * permission logic.
      *
      * @param array $request
+     * @return void
      */
     protected function unauthorized(&$request)
     {

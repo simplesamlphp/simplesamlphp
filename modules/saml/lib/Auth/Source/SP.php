@@ -86,6 +86,7 @@ class SP extends Source
         }
     }
 
+
     /**
      * Retrieve the URL to the metadata of this SP.
      *
@@ -95,6 +96,7 @@ class SP extends Source
     {
         return \SimpleSAML\Module::getModuleURL('saml/sp/metadata.php/'.urlencode($this->authId));
     }
+
 
     /**
      * Retrieve the entity id of this SP.
@@ -440,6 +442,7 @@ class SP extends Source
      *
      * @param \SimpleSAML\Configuration $idpMetadata  The metadata of the IdP.
      * @param array $state  The state array for the current authentication.
+     * @return void
      */
     private function startSSO1(\SimpleSAML\Configuration $idpMetadata, array $state)
     {
@@ -471,11 +474,13 @@ class SP extends Source
         \SimpleSAML\Utils\HTTP::redirectTrustedURL($url);
     }
 
+
     /**
      * Send a SAML2 SSO request to an IdP
      *
      * @param \SimpleSAML\Configuration $idpMetadata  The metadata of the IdP.
      * @param array $state  The state array for the current authentication.
+     * @return void
      */
     private function startSSO2(\SimpleSAML\Configuration $idpMetadata, array $state)
     {
@@ -647,6 +652,7 @@ class SP extends Source
         assert(false);
     }
 
+
     /**
      * Function to actually send the authentication request.
      *
@@ -655,6 +661,7 @@ class SP extends Source
      * @param array &$state  The state array.
      * @param \SAML2\Binding $binding  The binding.
      * @param \SAML2\AuthnRequest  $ar  The authentication request.
+     * @return void
      */
     public function sendSAML2AuthnRequest(array &$state, \SAML2\Binding $binding, \SAML2\AuthnRequest $ar)
     {
@@ -662,11 +669,13 @@ class SP extends Source
         assert(false);
     }
 
+
     /**
      * Send a SSO request to an IdP.
      *
      * @param string $idp  The entity ID of the IdP.
      * @param array $state  The state array for the current authentication.
+     * @return void
      */
     public function startSSO($idp, array $state)
     {
@@ -688,10 +697,12 @@ class SP extends Source
         }
     }
 
+
     /**
      * Start an IdP discovery service operation.
      *
      * @param array $state  The state array.
+     * @return void
      */
     private function startDisco(array $state)
     {
@@ -722,12 +733,14 @@ class SP extends Source
         \SimpleSAML\Utils\HTTP::redirectTrustedURL($discoURL, $params);
     }
 
+
     /**
      * Start login.
      *
      * This function saves the information about the login, and redirects to the IdP.
      *
      * @param array &$state  Information about the current authentication.
+     * @return void
      */
     public function authenticate(&$state)
     {
@@ -779,6 +792,7 @@ class SP extends Source
         assert(false);
     }
 
+
     /**
      * Re-authenticate an user.
      *
@@ -786,6 +800,7 @@ class SP extends Source
      * interact with the user even in the case when the user is already authenticated.
      *
      * @param array &$state  Information about the current authentication.
+     * @return void
      */
     public function reauthenticate(array &$state)
     {
@@ -867,6 +882,7 @@ class SP extends Source
      * - 'core:IdP': the identifier of the local IdP.
      * - 'SPMetadata': an array with the metadata of this local SP.
      *
+     * @return void
      * @throws \SimpleSAML\Error\NoPassive In case the authentication request was passive.
      */
     public static function askForIdPChange(array &$state)
@@ -891,12 +907,14 @@ class SP extends Source
         assert(false);
     }
 
+
     /**
      * Log the user out before logging in again.
      *
      * This method will never return.
      *
      * @param array $state The state array.
+     * @return void
      */
     public static function reauthLogout(array $state)
     {
@@ -912,10 +930,12 @@ class SP extends Source
         assert(false);
     }
 
+
     /**
      * Complete login operation after re-authenticating the user on another IdP.
      *
      * @param array $state  The authentication state.
+     * @return void
      */
     public static function reauthPostLogin(array $state)
     {
@@ -931,6 +951,7 @@ class SP extends Source
         assert(false);
     }
 
+
     /**
      * Post-logout handler for re-authentication.
      *
@@ -938,6 +959,7 @@ class SP extends Source
      *
      * @param \SimpleSAML\IdP $idp The IdP we are logging out from.
      * @param array &$state The state array with the state during logout.
+     * @return void
      */
     public static function reauthPostLogout(\SimpleSAML\IdP $idp, array $state)
     {
@@ -956,10 +978,12 @@ class SP extends Source
         assert(false);
     }
 
+
     /**
      * Start a SAML 2 logout operation.
      *
      * @param array $state  The logout state.
+     * @return void
      */
     public function startSLO2(&$state)
     {
@@ -1004,10 +1028,12 @@ class SP extends Source
         assert(false);
     }
 
+
     /**
      * Start logout operation.
      *
      * @param array $state  The logout state.
+     * @return void
      */
     public function logout(&$state)
     {
@@ -1028,12 +1054,14 @@ class SP extends Source
         }
     }
 
+
     /**
      * Handle a response from a SSO operation.
      *
      * @param array $state  The authentication state.
      * @param string $idp  The entity id of the IdP.
      * @param array $attributes  The attributes.
+     * @return void
      */
     public function handleResponse(array $state, $idp, array $attributes)
     {
@@ -1073,10 +1101,12 @@ class SP extends Source
         self::onProcessingCompleted($authProcState);
     }
 
+
     /**
      * Handle a logout request from an IdP.
      *
      * @param string $idpEntityId  The entity ID of the IdP.
+     * @return void
      */
     public function handleLogout($idpEntityId)
     {
@@ -1085,6 +1115,7 @@ class SP extends Source
         /* Call the logout callback we registered in onProcessingCompleted(). */
         $this->callLogoutCallback($idpEntityId);
     }
+
 
     /**
      * Handle an unsolicited login operations.
@@ -1099,6 +1130,7 @@ class SP extends Source
      * the session. The function will check if the URL is allowed, so there is no need to
      * manually check the URL on beforehand. Please refer to the 'trusted.url.domains'
      * configuration directive for more information about allowing (or disallowing) URLs.
+     * @return void
      */
     public static function handleUnsolicitedAuth($authId, array $state, $redirectTo)
     {
@@ -1111,10 +1143,12 @@ class SP extends Source
         \SimpleSAML\Utils\HTTP::redirectUntrustedURL($redirectTo);
     }
 
+
     /**
      * Called when we have completed the procssing chain.
      *
      * @param array $authProcState  The processing chain state.
+     * @return void
      */
     public static function onProcessingCompleted(array $authProcState)
     {

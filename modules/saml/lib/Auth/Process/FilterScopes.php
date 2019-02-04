@@ -15,7 +15,7 @@ use SimpleSAML\Logger;
 class FilterScopes extends \SimpleSAML\Auth\ProcessingFilter
 {
     /**
-     * Stores any pre-configured scoped attributes which come from the filter configuration.
+     * @var array Stores any pre-configured scoped attributes which come from the filter configuration.
      */
     private $scopedAttributes = [
         'eduPersonScopedAffiliation',
@@ -44,6 +44,7 @@ class FilterScopes extends \SimpleSAML\Auth\ProcessingFilter
      * This method applies the filter, removing any values
      *
      * @param array &$request the current request
+     * @return void
      */
     public function process(&$request)
     {

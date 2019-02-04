@@ -12,10 +12,8 @@ use SimpleSAML\Utils\HTTP;
  *
  * @package SimpleSAMLphp
  */
-
 class SAML1
 {
-
     /**
      * Retrieve the metadata of a hosted SAML 1.1 IdP.
      *
@@ -73,7 +71,7 @@ class SAML1
             );
 
             if (!$config->hasValue('OrganizationURL')) {
-                throw new \SimpleSAMl\Error\Exception('If OrganizationName is set, OrganizationURL must also be set.');
+                throw new \SimpleSAML\Error\Exception('If OrganizationName is set, OrganizationURL must also be set.');
             }
             $metadata['OrganizationURL'] = $config->getLocalizedString('OrganizationURL');
         }
@@ -125,6 +123,7 @@ class SAML1
      * Send a response to the SP.
      *
      * @param array $state  The authentication state.
+     * @return void
      */
     public static function sendResponse(array $state)
     {
@@ -176,6 +175,7 @@ class SAML1
      * Receive an authentication request.
      *
      * @param \SimpleSAML\IdP $idp  The IdP we are receiving it for.
+     * @return void
      */
     public static function receiveAuthnRequest(\SimpleSAML\IdP $idp)
     {
