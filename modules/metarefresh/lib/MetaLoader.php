@@ -2,6 +2,7 @@
 
 namespace SimpleSAML\Module\metarefresh;
 
+use RobRichards\XMLSecLibs\XMLSecurityDSig;
 use SimpleSAML\Logger;
 
 /**
@@ -154,7 +155,10 @@ class MetaLoader
 
             if (array_key_exists('validateFingerprint', $source) && $source['validateFingerprint'] !== null) {
                 if (!array_key_exists('certificates', $source) || $source['certificates'] == null) {
-                    if (!$entity->validateFingerprint($source['validateFingerprint'])) {
+                    $algo = isset($source['validateFingerprintAlgorithm'])
+                        ? $source['validateFingerprintAlgorithm']
+                        : XMLSecurityDSig::SHA1;
+                    if (!$entity->validateFingerprint($source['validateFingerprint'], $algo)) {
                         Logger::info(
                             'Skipping "'.$entity->getEntityId().'" - could not verify signature using fingerprint.'."\n"
                         );

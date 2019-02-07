@@ -2,6 +2,7 @@
 
 namespace SimpleSAML\Metadata;
 
+use RobRichards\XMLSecLibs\XMLSecurityDSig;
 use RobRichards\XMLSecLibs\XMLSecurityKey;
 
 /**
@@ -1450,16 +1451,48 @@ class SAMLParser
     }
 
 
+    private function computeFingerprint($algorithm, $data)
+    {
+        switch ($algorithm) {
+            case XMLSecurityDSig::SHA1:
+                $algo = 'SHA1';
+                break;
+            case XMLSecurityDSig::SHA256:
+                $algo = 'SHA256';
+                break;
+            case XMLSecurityDSig::SHA384:
+                $algo = 'SHA384';
+                break;
+            case XMLSecurityDSig::SHA512:
+                $algo = 'SHA512';
+                break;
+            default:
+                $known_opts = implode(", ", [
+                    XMLSecurityDSig::SHA1,
+                    XMLSecurityDSig::SHA256,
+                    XMLSecurityDSig::SHA384,
+                    XMLSecurityDSig::SHA512,
+                ]);
+                throw new \UnexpectedValueException(
+                    "Unsupported hashing function {$algorithm}. " .
+                    "Known options: [{$known_opts}]"
+                );
+        }
+        return hash($algo, $data);
+    }
+
+
     /**
      * This function checks if this EntityDescriptor was signed with a certificate with the
      * given fingerprint.
      *
      * @param string $fingerprint Fingerprint of the certificate which should have been used to sign this
      *                      EntityDescriptor.
+     * @param string $algorithm Algorithm used to compute the fingerprint of the signing certicate.
      *
      * @return boolean True if it was signed with the certificate with the given fingerprint, false otherwise.
      */
-    public function validateFingerprint($fingerprint)
+    public function validateFingerprint($fingerprint, $algorithm)
     {
         assert(is_string($fingerprint));
 
@@ -1468,7 +1501,8 @@ class SAMLParser
         $candidates = [];
         foreach ($this->validators as $validator) {
             foreach ($validator->getValidatingCertificates() as $cert) {
-                $fp = strtolower(sha1(base64_decode($cert)));
+                $decoded_cert = base64_decode($cert);
+                $fp = $this->computeFingerprint($algorithm, $decoded_cert);
                 $candidates[] = $fp;
                 if ($fp === $fingerprint) {
                     return true;

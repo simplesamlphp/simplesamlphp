@@ -44,6 +44,7 @@ $config = [
                         'rollover.crt',
                     ],
                     'validateFingerprint' => '59:1D:4B:46:70:46:3E:ED:A9:1F:CC:81:6D:C0:AF:2A:09:2A:A8:01',
+                    #'validateFingerprintAlgorithm' => RobRichards\XMLSecLibs\XMLSecurityDSig::SHA1,
                     'template' => [
                         'tags' => ['kalmar'],
                         'authproc' => [
