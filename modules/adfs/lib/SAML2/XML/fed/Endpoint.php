@@ -1,18 +1,22 @@
 <?php
+
+namespace SimpleSAML\Module\adfs\SAML2\XML\fed;
+
 /**
  * Class representing fed Endpoint.
  *
  * @package SimpleSAMLphp
  */
-class sspmod_adfs_SAML2_XML_fed_Endpoint
+
+class Endpoint
 {
     /**
      * Add this endpoint to an XML element.
      *
-     * @param DOMElement $parent  The element we should append this endpoint to.
+     * @param \DOMElement $parent  The element we should append this endpoint to.
      * @param string $name  The name of the element we should create.
      */
-    public static function appendXML(DOMElement $parent, $name, $address)
+    public static function appendXML(\DOMElement $parent, $name, $address)
     {
         assert(is_string($name));
         assert(is_string($address));

@@ -54,9 +54,6 @@ msgstr "(אין תיאור)"
 msgid "{consentAdmin:consentadmin:service_providers_for}"
 msgstr "ספקי שירות עבור"
 
-msgid "{consentAdmin:consentadmin:sp_empty_name}"
-msgstr "(לא ניתן שם)"
-
 msgid "{consentAdmin:consentadmin:consentadmin_description2}"
 msgstr ""
 "<h3>איך להסיר את הסכמתך</h3> לחץ בתיבה המתאימה לספק השירות "

@@ -3,7 +3,7 @@
 namespace SimpleSAML\Test;
 
 use PHPUnit\Framework\TestCase;
-use \SimpleSAML_Configuration as Configuration;
+use \SimpleSAML\Configuration;
 use \SimpleSAML\Store;
 
 /**
@@ -23,8 +23,8 @@ class StoreTest extends TestCase
      */
     public function defaultStore()
     {
-        Configuration::loadFromArray(array(
-        ), '[ARRAY]', 'simplesaml');
+        Configuration::loadFromArray([
+        ], '[ARRAY]', 'simplesaml');
 
         $store = Store::getInstance();
 
@@ -38,8 +38,8 @@ class StoreTest extends TestCase
      */
     public function phpSessionStore()
     {
-        Configuration::loadFromArray(array(
-        ), '[ARRAY]', 'simplesaml');
+        Configuration::loadFromArray([
+        ], '[ARRAY]', 'simplesaml');
 
         $store = Store::getInstance();
 
@@ -53,9 +53,9 @@ class StoreTest extends TestCase
      */
     public function memcacheStore()
     {
-        Configuration::loadFromArray(array(
+        Configuration::loadFromArray([
             'store.type'                    => 'memcache',
-        ), '[ARRAY]', 'simplesaml');
+        ], '[ARRAY]', 'simplesaml');
 
         $store = Store::getInstance();
 
@@ -69,11 +69,11 @@ class StoreTest extends TestCase
      */
     public function sqlStore()
     {
-        Configuration::loadFromArray(array(
+        Configuration::loadFromArray([
             'store.type'                    => 'sql',
             'store.sql.dsn'                 => 'sqlite::memory:',
             'store.sql.prefix'              => 'phpunit_',
-        ), '[ARRAY]', 'simplesaml');
+        ], '[ARRAY]', 'simplesaml');
 
         $store = Store::getInstance();
 
@@ -87,11 +87,11 @@ class StoreTest extends TestCase
      */
     public function pathStore()
     {
-        Configuration::loadFromArray(array(
+        Configuration::loadFromArray([
             'store.type'                    => '\SimpleSAML\Store\SQL',
             'store.sql.dsn'                 => 'sqlite::memory:',
             'store.sql.prefix'              => 'phpunit_',
-        ), '[ARRAY]', 'simplesaml');
+        ], '[ARRAY]', 'simplesaml');
 
         $store = Store::getInstance();
 
@@ -106,11 +106,11 @@ class StoreTest extends TestCase
      */
     public function notFoundStoreException()
     {
-        Configuration::loadFromArray(array(
+        Configuration::loadFromArray([
             'store.type'                    => '\Test\SimpleSAML\Store\Dummy',
             'store.sql.dsn'                 => 'sqlite::memory:',
             'store.sql.prefix'              => 'phpunit_',
-        ), '[ARRAY]', 'simplesaml');
+        ], '[ARRAY]', 'simplesaml');
 
         Store::getInstance();
     }
@@ -121,7 +121,7 @@ class StoreTest extends TestCase
         $config = Configuration::getInstance();
         $store = Store::getInstance();
 
-        $this->clearInstance($config, '\SimpleSAML_Configuration');
+        $this->clearInstance($config, '\SimpleSAML\Configuration');
         $this->clearInstance($store, '\SimpleSAML\Store');
     }
 

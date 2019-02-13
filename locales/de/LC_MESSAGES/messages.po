@@ -465,7 +465,7 @@ msgid "{general:no_cancel}"
 msgstr "Nein, ich stimme nicht zu"
 
 msgid "{login:user_pass_header}"
-msgstr "Bitten geben Sie ihren Nutzernamen und Passwort ein"
+msgstr "Bitte geben Sie Ihren Nutzernamen und Ihr Passwort ein"
 
 msgid "{errors:report_explain}"
 msgstr "Erläutern Sie, wodurch der Fehler auftrat..."
@@ -978,7 +978,7 @@ msgstr ""
 "Kopfzeile der SAML-Entität."
 
 msgid "Enter your username and password"
-msgstr "Bitten geben Sie ihren Nutzernamen und Passwort ein"
+msgstr "Bitte geben Sie Ihren Nutzernamen und Ihr Passwort ein"
 
 msgid "Login at"
 msgstr "Login bei"
@@ -1639,3 +1639,15 @@ msgstr ""
 "Sie haben auf die Assertion Consumer Service Schnittstelle zugegriffen, "
 "aber keine SAML Authentifizierungsantwort bereit gestellt."
 
+
+msgid ""
+"You are now accessing a pre-production system. This authentication setup "
+"is for testing and pre-production verification only. If someone sent you "
+"a link that pointed you here, and you are not <i>a tester</i> you "
+"probably got the wrong link, and should <b>not be here</b>."
+msgstr ""
+"Sie greifen jetzt auf ein System im Pilotbetrieb zu. Diese "
+"Authentifizierungs-Konfiguration dient nur zum Testen und zur Überprüfung"
+" des Pilotbetriebes. Falls Ihnen jemand einen Link gesendet hat, der Sie "
+"hierher geführt hat und Sie sind kein <i>Tester</i>, so war der Link "
+"vermutlich falsch und Sie sollten <b>nicht hier sein</b>. "

@@ -1,18 +1,21 @@
 <?php
 
+namespace SimpleSAML\Module\core\Auth\Process;
+
 /**
  * Log a line in the STAT log with one attribute.
  *
  * @author Andreas Åkre Solberg, UNINETT AS.
  * @package SimpleSAMLphp
  */
-class sspmod_core_Auth_Process_StatisticsWithAttribute extends SimpleSAML_Auth_ProcessingFilter
+
+class StatisticsWithAttribute extends \SimpleSAML\Auth\ProcessingFilter
 {
     /**
      * The attribute to log
      * @var string|null
      */
-	private $attribute = null;
+    private $attribute = null;
 
     /**
      * @var string
@@ -40,14 +43,14 @@ class sspmod_core_Auth_Process_StatisticsWithAttribute extends SimpleSAML_Auth_P
         if (array_key_exists('attributename', $config)) {
             $this->attribute = $config['attributename'];
             if (!is_string($this->attribute)) {
-                throw new Exception('Invalid attribute name given to core:StatisticsWithAttribute filter.');
+                throw new \Exception('Invalid attribute name given to core:StatisticsWithAttribute filter.');
             }
         }
 
         if (array_key_exists('type', $config)) {
             $this->typeTag = $config['type'];
             if (!is_string($this->typeTag)) {
-                throw new Exception('Invalid typeTag given to core:StatisticsWithAttribute filter.');
+                throw new \Exception('Invalid typeTag given to core:StatisticsWithAttribute filter.');
             }
         }
 
@@ -87,11 +90,11 @@ class sspmod_core_Auth_Process_StatisticsWithAttribute extends SimpleSAML_Auth_P
 
         if (!array_key_exists('PreviousSSOTimestamp', $state)) {
             // The user hasn't authenticated with this SP earlier in this session
-            SimpleSAML\Logger::stats($isPassive.$this->typeTag.'-first '.$dest.' '.$source.' '. $logAttribute);
+            \SimpleSAML\Logger::stats($isPassive.$this->typeTag.'-first '.$dest.' '.$source.' '.$logAttribute);
         }
 
-        SimpleSAML\Logger::stats($isPassive.$this->typeTag.' '.$dest.' '.$source.' '.$logAttribute);
-	}
+        \SimpleSAML\Logger::stats($isPassive.$this->typeTag.' '.$dest.' '.$source.' '.$logAttribute);
+    }
 
     /**
      * @param string &$direction  Either 'Source' or 'Destination'.

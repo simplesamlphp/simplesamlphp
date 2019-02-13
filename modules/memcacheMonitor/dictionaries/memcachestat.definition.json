@@ -142,5 +142,8 @@
 	},
 	"reclaimed": {
 		"en": "Number of times an entry was stored using memory from an expired entry"
+	},
+	"link_memcacheMonitor": {
+		"en": "Memcache statistics"
 	}
 }

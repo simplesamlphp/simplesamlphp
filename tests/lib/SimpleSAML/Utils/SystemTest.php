@@ -3,7 +3,7 @@
 namespace SimpleSAML\Test\Utils;
 
 use PHPUnit\Framework\TestCase;
-use \SimpleSAML_Configuration as Configuration;
+use \SimpleSAML\Configuration;
 use \SimpleSAML\Utils\System;
 
 use \org\bovigo\vfs\vfsStream;
@@ -21,9 +21,9 @@ class SystemTest extends TestCase
         $this->root = vfsStream::setup(
             self::ROOTDIRNAME,
             null,
-            array(
-                self::DEFAULTTEMPDIR => array(),
-            )
+            [
+                self::DEFAULTTEMPDIR => [],
+            ]
         );
         $this->root_directory = vfsStream::url(self::ROOTDIRNAME);
     }
@@ -115,16 +115,16 @@ class SystemTest extends TestCase
      */
     public function testWriteFileBasic()
     {
-        $tempdir = $this->root_directory . DIRECTORY_SEPARATOR . self::DEFAULTTEMPDIR;
+        $tempdir = $this->root_directory.DIRECTORY_SEPARATOR.self::DEFAULTTEMPDIR;
         $config = $this->setConfigurationTempDir($tempdir);
 
-        $filename = $this->root_directory . DIRECTORY_SEPARATOR . 'test';
+        $filename = $this->root_directory.DIRECTORY_SEPARATOR.'test';
 
         System::writeFile($filename, '');
 
         $this->assertFileExists($filename);
 
-        $this->clearInstance($config, '\SimpleSAML_Configuration');
+        $this->clearInstance($config, '\SimpleSAML\Configuration');
     }
 
     /**
@@ -133,10 +133,10 @@ class SystemTest extends TestCase
      */
     public function testWriteFileContents()
     {
-        $tempdir = $this->root_directory . DIRECTORY_SEPARATOR . self::DEFAULTTEMPDIR;
+        $tempdir = $this->root_directory.DIRECTORY_SEPARATOR.self::DEFAULTTEMPDIR;
         $config = $this->setConfigurationTempDir($tempdir);
 
-        $filename = $this->root_directory . DIRECTORY_SEPARATOR . 'test';
+        $filename = $this->root_directory.DIRECTORY_SEPARATOR.'test';
         $contents = 'TEST';
 
         System::writeFile($filename, $contents);
@@ -146,7 +146,7 @@ class SystemTest extends TestCase
 
         $this->assertEquals($expected, $res);
 
-        $this->clearInstance($config, '\SimpleSAML_Configuration');
+        $this->clearInstance($config, '\SimpleSAML\Configuration');
     }
 
     /**
@@ -155,10 +155,10 @@ class SystemTest extends TestCase
      */
     public function testWriteFileMode()
     {
-        $tempdir = $this->root_directory . DIRECTORY_SEPARATOR . self::DEFAULTTEMPDIR;
+        $tempdir = $this->root_directory.DIRECTORY_SEPARATOR.self::DEFAULTTEMPDIR;
         $config = $this->setConfigurationTempDir($tempdir);
 
-        $filename = $this->root_directory . DIRECTORY_SEPARATOR . 'test';
+        $filename = $this->root_directory.DIRECTORY_SEPARATOR.'test';
         $mode = 0666;
 
         System::writeFile($filename, '', $mode);
@@ -168,7 +168,7 @@ class SystemTest extends TestCase
 
         $this->assertEquals($expected, $res);
 
-        $this->clearInstance($config, '\SimpleSAML_Configuration');
+        $this->clearInstance($config, '\SimpleSAML\Configuration');
     }
 
     /**
@@ -177,7 +177,7 @@ class SystemTest extends TestCase
      */
     public function testGetTempDirBasic()
     {
-        $tempdir = $this->root_directory . DIRECTORY_SEPARATOR . self::DEFAULTTEMPDIR;
+        $tempdir = $this->root_directory.DIRECTORY_SEPARATOR.self::DEFAULTTEMPDIR;
         $config = $this->setConfigurationTempDir($tempdir);
 
         $res = System::getTempDir();
@@ -186,7 +186,7 @@ class SystemTest extends TestCase
         $this->assertEquals($expected, $res);
         $this->assertFileExists($res);
 
-        $this->clearInstance($config, '\SimpleSAML_Configuration');
+        $this->clearInstance($config, '\SimpleSAML\Configuration');
     }
 
     /**
@@ -195,7 +195,7 @@ class SystemTest extends TestCase
      */
     public function testGetTempDirNonExistant()
     {
-        $tempdir = $this->root_directory . DIRECTORY_SEPARATOR . 'nonexistant';
+        $tempdir = $this->root_directory.DIRECTORY_SEPARATOR.'nonexistant';
         $config = $this->setConfigurationTempDir($tempdir);
 
         $res = System::getTempDir();
@@ -204,7 +204,7 @@ class SystemTest extends TestCase
         $this->assertEquals($expected, $res);
         $this->assertFileExists($res);
 
-        $this->clearInstance($config, '\SimpleSAML_Configuration');
+        $this->clearInstance($config, '\SimpleSAML\Configuration');
     }
 
     /**
@@ -214,24 +214,28 @@ class SystemTest extends TestCase
      */
     public function testGetTempDirBadOwner()
     {
+        if (!function_exists('posix_getuid')) {
+            static::markTestSkipped('POSIX-functions not available;  skipping!');
+        }
+
         $bad_uid = posix_getuid() + 1;
 
-        $tempdir = $this->root_directory . DIRECTORY_SEPARATOR . self::DEFAULTTEMPDIR;
+        $tempdir = $this->root_directory.DIRECTORY_SEPARATOR.self::DEFAULTTEMPDIR;
         $config = $this->setConfigurationTempDir($tempdir);
 
         chown($tempdir, $bad_uid);
 
-        $this->setExpectedException('\SimpleSAML_Error_Exception');
-        $res = System::getTempDir();
+        $this->setExpectedException('\SimpleSAML\Error\Exception');
+        System::getTempDir();
 
-        $this->clearInstance($config, '\SimpleSAML_Configuration');
+        $this->clearInstance($config, '\SimpleSAML\Configuration');
     }
 
     private function setConfigurationTempDir($directory)
     {
-        $config = Configuration::loadFromArray(array(
+        $config = Configuration::loadFromArray([
             'tempdir' => $directory,
-        ), '[ARRAY]', 'simplesaml');
+        ], '[ARRAY]', 'simplesaml');
 
         return $config;
     }

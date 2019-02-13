@@ -1,13 +1,14 @@
 <?php
 
+namespace SimpleSAML\Test\Module\core\Auth\Process;
+
 use PHPUnit\Framework\TestCase;
 
 /**
  * Test for the core:ScopeAttribute filter.
  */
-class Test_Core_Auth_Process_ScopeAttribute extends TestCase
+class ScopeAttributeTest extends TestCase
 {
-
     /*
      * Helper function to run the filter with a given configuration.
      *
@@ -17,7 +18,7 @@ class Test_Core_Auth_Process_ScopeAttribute extends TestCase
      */
     private static function processFilter(array $config, array $request)
     {
-        $filter = new sspmod_core_Auth_Process_ScopeAttribute($config, NULL);
+        $filter = new \SimpleSAML\Module\core\Auth\Process\ScopeAttribute($config, null);
         $filter->process($request);
         return $request;
     }
@@ -27,21 +28,21 @@ class Test_Core_Auth_Process_ScopeAttribute extends TestCase
      */
     public function testBasic()
     {
-        $config = array(
+        $config = [
             'scopeAttribute' => 'eduPersonPrincipalName',
             'sourceAttribute' => 'eduPersonAffiliation',
             'targetAttribute' => 'eduPersonScopedAffiliation',
-        );
-        $request = array(
-            'Attributes' => array(
-                'eduPersonPrincipalName' => array('jdoe@example.com'),
-                'eduPersonAffiliation' => array('member'),
-            )
-        );
+        ];
+        $request = [
+            'Attributes' => [
+                'eduPersonPrincipalName' => ['jdoe@example.com'],
+                'eduPersonAffiliation' => ['member'],
+            ]
+        ];
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
         $this->assertArrayHasKey('eduPersonScopedAffiliation', $attributes);
-        $this->assertEquals($attributes['eduPersonScopedAffiliation'], array('member@example.com'));
+        $this->assertEquals($attributes['eduPersonScopedAffiliation'], ['member@example.com']);
     }
 
     /*
@@ -49,21 +50,24 @@ class Test_Core_Auth_Process_ScopeAttribute extends TestCase
      */
     public function testNoOverwrite()
     {
-        $config = array(
+        $config = [
             'scopeAttribute' => 'eduPersonPrincipalName',
             'sourceAttribute' => 'eduPersonAffiliation',
             'targetAttribute' => 'eduPersonScopedAffiliation',
-        );
-        $request = array(
-            'Attributes' => array(
-                'eduPersonPrincipalName' => array('jdoe@example.com'),
-                'eduPersonAffiliation' => array('member'),
-                'eduPersonScopedAffiliation' => array('library-walk-in@example.edu'),
-            )
-        );
+        ];
+        $request = [
+            'Attributes' => [
+                'eduPersonPrincipalName' => ['jdoe@example.com'],
+                'eduPersonAffiliation' => ['member'],
+                'eduPersonScopedAffiliation' => ['library-walk-in@example.edu'],
+            ]
+        ];
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
-        $this->assertEquals($attributes['eduPersonScopedAffiliation'], array('library-walk-in@example.edu', 'member@example.com'));
+        $this->assertEquals(
+            $attributes['eduPersonScopedAffiliation'],
+            ['library-walk-in@example.edu', 'member@example.com']
+        );
     }
 
     /*
@@ -71,21 +75,21 @@ class Test_Core_Auth_Process_ScopeAttribute extends TestCase
      */
     public function testNoDuplication()
     {
-        $config = array(
+        $config = [
             'scopeAttribute' => 'eduPersonPrincipalName',
             'sourceAttribute' => 'eduPersonAffiliation',
             'targetAttribute' => 'eduPersonScopedAffiliation',
-        );
-        $request = array(
-            'Attributes' => array(
-                'eduPersonPrincipalName' => array('jdoe@example.com'),
-                'eduPersonAffiliation' => array('member'),
-                'eduPersonScopedAffiliation' => array('member@example.com'),
-            )
-        );
+        ];
+        $request = [
+            'Attributes' => [
+                'eduPersonPrincipalName' => ['jdoe@example.com'],
+                'eduPersonAffiliation' => ['member'],
+                'eduPersonScopedAffiliation' => ['member@example.com'],
+            ]
+        ];
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
-        $this->assertEquals($attributes['eduPersonScopedAffiliation'], array('member@example.com'));
+        $this->assertEquals($attributes['eduPersonScopedAffiliation'], ['member@example.com']);
     }
 
 
@@ -94,18 +98,18 @@ class Test_Core_Auth_Process_ScopeAttribute extends TestCase
      */
     public function testNoSourceAttribute()
     {
-        $config = array(
+        $config = [
             'scopeAttribute' => 'eduPersonPrincipalName',
             'sourceAttribute' => 'eduPersonAffiliation',
             'targetAttribute' => 'eduPersonScopedAffiliation',
-        );
-        $request = array(
-            'Attributes' => array(
-                'mail' => array('j.doe@example.edu', 'john@example.org'),
-                'eduPersonAffiliation' => array('member'),
-                'eduPersonScopedAffiliation' => array('library-walk-in@example.edu'),
-            )
-        );
+        ];
+        $request = [
+            'Attributes' => [
+                'mail' => ['j.doe@example.edu', 'john@example.org'],
+                'eduPersonAffiliation' => ['member'],
+                'eduPersonScopedAffiliation' => ['library-walk-in@example.edu'],
+            ]
+        ];
         $result = self::processFilter($config, $request);
         $this->assertEquals($request['Attributes'], $result['Attributes']);
     }
@@ -115,18 +119,18 @@ class Test_Core_Auth_Process_ScopeAttribute extends TestCase
      */
     public function testNoScopeAttribute()
     {
-        $config = array(
+        $config = [
             'scopeAttribute' => 'eduPersonPrincipalName',
             'sourceAttribute' => 'eduPersonAffiliation',
             'targetAttribute' => 'eduPersonScopedAffiliation',
-        );
-        $request = array(
-            'Attributes' => array(
-                'mail' => array('j.doe@example.edu', 'john@example.org'),
-                'eduPersonScopedAffiliation' => array('library-walk-in@example.edu'),
-                'eduPersonPrincipalName' => array('jdoe@example.com'),
-            )
-        );
+        ];
+        $request = [
+            'Attributes' => [
+                'mail' => ['j.doe@example.edu', 'john@example.org'],
+                'eduPersonScopedAffiliation' => ['library-walk-in@example.edu'],
+                'eduPersonPrincipalName' => ['jdoe@example.com'],
+            ]
+        ];
         $result = self::processFilter($config, $request);
         $this->assertEquals($request['Attributes'], $result['Attributes']);
     }
@@ -136,20 +140,20 @@ class Test_Core_Auth_Process_ScopeAttribute extends TestCase
      */
     public function testMultiAt()
     {
-        $config = array(
+        $config = [
             'scopeAttribute' => 'eduPersonPrincipalName',
             'sourceAttribute' => 'eduPersonAffiliation',
             'targetAttribute' => 'eduPersonScopedAffiliation',
-        );
-        $request = array(
-            'Attributes' => array(
-                'eduPersonPrincipalName' => array('john@doe@example.com'),
-                'eduPersonAffiliation' => array('member'),
-            )
-        );
+        ];
+        $request = [
+            'Attributes' => [
+                'eduPersonPrincipalName' => ['john@doe@example.com'],
+                'eduPersonAffiliation' => ['member'],
+            ]
+        ];
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
-        $this->assertEquals($attributes['eduPersonScopedAffiliation'], array('member@doe@example.com'));
+        $this->assertEquals($attributes['eduPersonScopedAffiliation'], ['member@doe@example.com']);
     }
 
     /*
@@ -157,20 +161,23 @@ class Test_Core_Auth_Process_ScopeAttribute extends TestCase
      */
     public function testMultivaluedSource()
     {
-        $config = array(
+        $config = [
             'scopeAttribute' => 'eduPersonPrincipalName',
             'sourceAttribute' => 'eduPersonAffiliation',
             'targetAttribute' => 'eduPersonScopedAffiliation',
-        );
-        $request = array(
-            'Attributes' => array(
-                'eduPersonPrincipalName' => array('jdoe@example.com'),
-                'eduPersonAffiliation' => array('member','staff','faculty'),
-            )
-        );
+        ];
+        $request = [
+            'Attributes' => [
+                'eduPersonPrincipalName' => ['jdoe@example.com'],
+                'eduPersonAffiliation' => ['member', 'staff', 'faculty'],
+            ]
+        ];
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
-        $this->assertEquals($attributes['eduPersonScopedAffiliation'], array('member@example.com','staff@example.com','faculty@example.com'));
+        $this->assertEquals(
+            $attributes['eduPersonScopedAffiliation'],
+            ['member@example.com', 'staff@example.com', 'faculty@example.com']
+        );
     }
 
     /*
@@ -178,42 +185,42 @@ class Test_Core_Auth_Process_ScopeAttribute extends TestCase
      */
     public function testNoAt()
     {
-        $config = array(
+        $config = [
             'scopeAttribute' => 'schacHomeOrganization',
             'sourceAttribute' => 'eduPersonAffiliation',
             'targetAttribute' => 'eduPersonScopedAffiliation',
-        );
-        $request = array(
-            'Attributes' => array(
-                'schacHomeOrganization' => array('example.org'),
-                'eduPersonAffiliation' => array('student'),
-            )
-        );
+        ];
+        $request = [
+            'Attributes' => [
+                'schacHomeOrganization' => ['example.org'],
+                'eduPersonAffiliation' => ['student'],
+            ]
+        ];
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
-        $this->assertEquals($attributes['eduPersonScopedAffiliation'], array('student@example.org'));
+        $this->assertEquals($attributes['eduPersonScopedAffiliation'], ['student@example.org']);
     }
 
-	/*
-	 * When the target attribute exists and onlyIfEmpty is set
-	 */
-	public function testOnlyIfEmpty()
-	{
-       $config = array(
+    /*
+     * When the target attribute exists and onlyIfEmpty is set
+     */
+    public function testOnlyIfEmpty()
+    {
+        $config = [
             'scopeAttribute' => 'schacHomeOrganization',
             'sourceAttribute' => 'eduPersonAffiliation',
             'targetAttribute' => 'eduPersonScopedAffiliation',
-			'onlyIfEmpty' => true,
-        );
-        $request = array(
-            'Attributes' => array(
-                'schacHomeOrganization' => array('example.org'),
-                'eduPersonAffiliation' => array('student'),
-				'eduPersonScopedAffiliation' => array('staff@example.org', 'member@example.org'),
-            )
-        );
+            'onlyIfEmpty' => true,
+        ];
+        $request = [
+            'Attributes' => [
+                'schacHomeOrganization' => ['example.org'],
+                'eduPersonAffiliation' => ['student'],
+                'eduPersonScopedAffiliation' => ['staff@example.org', 'member@example.org'],
+            ]
+        ];
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
-        $this->assertEquals($attributes['eduPersonScopedAffiliation'], array('staff@example.org', 'member@example.org'));
-	}
+        $this->assertEquals($attributes['eduPersonScopedAffiliation'], ['staff@example.org', 'member@example.org']);
+    }
 }

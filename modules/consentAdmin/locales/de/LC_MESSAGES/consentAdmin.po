@@ -54,9 +54,6 @@ msgstr "(keine Beschreibung)"
 msgid "{consentAdmin:consentadmin:service_providers_for}"
 msgstr "Diensteanbieter für"
 
-msgid "{consentAdmin:consentadmin:sp_empty_name}"
-msgstr "(Name nicht angegeben)"
-
 msgid "{consentAdmin:consentadmin:consentadmin_description2}"
 msgstr ""
 "<h3>Wie Sie Ihre Einverständniserklärung löschen</h3> Entfernen Sie das "

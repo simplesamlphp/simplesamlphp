@@ -15,7 +15,6 @@ use SimpleSAML\Logger;
 
 class Validator
 {
-
     /**
      * @var string This variable contains the X509 certificate the XML document
      *             was signed with, or NULL if it wasn't signed with an X509 certificate.
@@ -36,7 +35,7 @@ class Validator
      * take the following values:
      * - NULL/FALSE: No validation will be performed. This is the default.
      * - A string: Assumed to be a PEM-encoded certificate / public key.
-     * - An array: Assumed to be an array returned by SimpleSAML_Utilities::loadPublicKey.
+     * - An array: Assumed to be an array returned by \SimpleSAML\Utils\Crypto::loadPublicKey.
      *
      * @param \DOMNode $xmlNode The XML node which contains the Signature element.
      * @param string|array $idAttribute The ID attribute which is used in node references. If
@@ -53,9 +52,9 @@ class Validator
         if ($publickey === null) {
             $publickey = false;
         } elseif (is_string($publickey)) {
-            $publickey = array(
+            $publickey = [
                 'PEM' => $publickey,
-            );
+            ];
         } else {
             assert($publickey === false || is_array($publickey));
         }
@@ -116,7 +115,7 @@ class Validator
                 $certificate = $objKey->getX509Certificate();
                 if ($certificate === null) {
                     // Wasn't signed with an X509 certificate
-                    throw new \Exception('Message wasn\'t signed with an X509 certificate,' .
+                    throw new \Exception('Message wasn\'t signed with an X509 certificate,'.
                         ' and no public key was provided in the metadata.');
                 }
 
@@ -211,7 +210,7 @@ class Validator
         $certFingerprint = self::calculateX509Fingerprint($certificate);
         if ($certFingerprint === null) {
             // Couldn't calculate fingerprint from X509 certificate. Should not happen.
-            throw new \Exception('Unable to calculate fingerprint from X509' .
+            throw new \Exception('Unable to calculate fingerprint from X509'.
                 ' certificate. Maybe it isn\'t an X509 certificate?');
         }
 
@@ -225,8 +224,8 @@ class Validator
         }
 
         // None of the fingerprints matched. Throw an exception describing the error.
-        throw new \Exception('Invalid fingerprint of certificate. Expected one of [' .
-            implode('], [', $fingerprints) . '], but got [' . $certFingerprint . ']');
+        throw new \Exception('Invalid fingerprint of certificate. Expected one of ['.
+            implode('], [', $fingerprints).'], but got ['.$certFingerprint.']');
     }
 
 
@@ -250,7 +249,7 @@ class Validator
         }
 
         if (!is_array($fingerprints)) {
-            $fingerprints = array($fingerprints);
+            $fingerprints = [$fingerprints];
         }
 
         // Normalize the fingerprints
@@ -325,14 +324,15 @@ class Validator
         assert(is_string($caFile));
 
         // Clear openssl errors
-        while (openssl_error_string() !== false);
+        while (openssl_error_string() !== false) {
+        }
 
-        $res = openssl_x509_checkpurpose($certificate, X509_PURPOSE_ANY, array($caFile));
+        $res = openssl_x509_checkpurpose($certificate, X509_PURPOSE_ANY, [$caFile]);
 
         $errors = '';
         // Log errors
         while (($error = openssl_error_string()) !== false) {
-            $errors .= ' [' . $error . ']';
+            $errors .= ' ['.$error.']';
         }
 
         if ($res !== true) {
@@ -361,25 +361,25 @@ class Validator
         assert(is_string($certificate));
         assert(is_string($caFile));
 
-        $command = array(
+        $command = [
             'openssl', 'verify',
             '-CAfile', $caFile,
             '-purpose', 'any',
-        );
+        ];
 
         $cmdline = '';
         foreach ($command as $c) {
-            $cmdline .= escapeshellarg($c) . ' ';
+            $cmdline .= escapeshellarg($c).' ';
         }
 
         $cmdline .= '2>&1';
-        $descSpec = array(
-            0 => array('pipe', 'r'),
-            1 => array('pipe', 'w'),
-        );
+        $descSpec = [
+            0 => ['pipe', 'r'],
+            1 => ['pipe', 'w'],
+        ];
         $process = proc_open($cmdline, $descSpec, $pipes);
         if (!is_resource($process)) {
-            throw new \Exception('Failed to execute verification command: ' . $cmdline);
+            throw new \Exception('Failed to execute verification command: '.$cmdline);
         }
 
         if (fwrite($pipes[0], $certificate) === false) {
@@ -391,7 +391,7 @@ class Validator
         while (!feof($pipes[1])) {
             $line = trim(fgets($pipes[1]));
             if (strlen($line) > 0) {
-                $out .= ' [' . $line . ']';
+                $out .= ' ['.$line.']';
             }
         }
         fclose($pipes[1]);
@@ -421,21 +421,21 @@ class Validator
         assert(is_string($caFile));
 
         if (!file_exists($caFile)) {
-            throw new \Exception('Could not load CA file: ' . $caFile);
+            throw new \Exception('Could not load CA file: '.$caFile);
         }
 
-        Logger::debug('Validating certificate against CA file: ' . var_export($caFile, true));
+        Logger::debug('Validating certificate against CA file: '.var_export($caFile, true));
 
         $resBuiltin = self::validateCABuiltIn($certificate, $caFile);
         if ($resBuiltin !== true) {
-            Logger::debug('Failed to validate with internal function: ' . var_export($resBuiltin, true));
+            Logger::debug('Failed to validate with internal function: '.var_export($resBuiltin, true));
 
             $resExternal = self::validateCAExec($certificate, $caFile);
             if ($resExternal !== true) {
-                Logger::debug('Failed to validate with external function: ' . var_export($resExternal, true));
-                throw new \Exception('Could not verify certificate against CA file "'
-                    . $caFile . '". Internal result:' . $resBuiltin .
-                    ' External result:' . $resExternal);
+                Logger::debug('Failed to validate with external function: '.var_export($resExternal, true));
+                throw new \Exception('Could not verify certificate against CA file "'.
+                    $caFile.'". Internal result:'.$resBuiltin.
+                    ' External result:'.$resExternal);
             }
         }
 

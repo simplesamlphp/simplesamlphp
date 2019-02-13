@@ -1,9 +1,9 @@
 <?php
 
-namespace SimpleSAML\Test\Utils;
+namespace SimpleSAML\Test\XML;
 
 use PHPUnit\Framework\TestCase;
-use \SimpleSAML_Configuration as Configuration;
+use \SimpleSAML\Configuration;
 use \SimpleSAML\XML\Signer;
 
 use \org\bovigo\vfs\vfsStream;
@@ -105,13 +105,13 @@ NOWDOC;
         $this->root = vfsStream::setup(
             self::ROOTDIRNAME,
             null,
-            array(
-                self::DEFAULTCERTDIR => array(
+            [
+                self::DEFAULTCERTDIR => [
                     self::PRIVATEKEY => $this->private_key,
                     self::CERTIFICATE1 => $this->certificate1,
                     self::CERTIFICATE2 => $this->certificate2,
-                ),
-            )
+                ],
+            ]
         );
         $this->root_directory = vfsStream::url(self::ROOTDIRNAME);
 
@@ -120,19 +120,19 @@ NOWDOC;
         $this->certificate_file1 = $this->certdir.DIRECTORY_SEPARATOR.self::CERTIFICATE1;
         $this->certificate_file2 = $this->certdir.DIRECTORY_SEPARATOR.self::CERTIFICATE2;
 
-        $this->config = Configuration::loadFromArray(array(
+        $this->config = Configuration::loadFromArray([
             'certdir' => $this->certdir,
-        ), '[ARRAY]', 'simplesaml');
+        ], '[ARRAY]', 'simplesaml');
     }
 
     public function tearDown()
     {
-        $this->clearInstance($this->config, '\SimpleSAML_Configuration', array());
+        $this->clearInstance($this->config, '\SimpleSAML\Configuration', []);
     }
 
     public function testSignerBasic()
     {
-        $res = new Signer(array());
+        $res = new Signer([]);
 
         $this->assertNotNull($res);
     }
@@ -146,7 +146,7 @@ NOWDOC;
         $doc = new \DOMDocument();
         $insertInto = $doc->appendChild(new \DOMElement('insert'));
 
-        $signer = new Signer(array());
+        $signer = new Signer([]);
         $signer->loadPrivateKey($this->privatekey_file, null, true);
         $signer->sign($element, $insertInto);
 
@@ -158,11 +158,11 @@ NOWDOC;
 
     private static function getCertificateValue($certificate)
     {
-        $replacements = array(
+        $replacements = [
             "-----BEGIN CERTIFICATE-----",
             "-----END CERTIFICATE-----",
             "\n",
-        );
+        ];
 
         return str_replace($replacements, "", $certificate);
     }
@@ -176,7 +176,7 @@ NOWDOC;
         $doc = new \DOMDocument();
         $insertInto = $doc->appendChild(new \DOMElement('insert'));
 
-        $signer = new Signer(array());
+        $signer = new Signer([]);
         $signer->loadPrivateKey($this->privatekey_file, null, true);
         $signer->loadCertificate($this->certificate_file1, true);
         $signer->sign($element, $insertInto);
@@ -198,7 +198,7 @@ NOWDOC;
         $doc = new \DOMDocument();
         $insertInto = $doc->appendChild(new \DOMElement('insert'));
 
-        $signer = new Signer(array());
+        $signer = new Signer([]);
         $signer->loadPrivateKey($this->privatekey_file, null, true);
         $signer->loadCertificate($this->certificate_file1, true);
         $signer->addCertificate($this->certificate_file2, true);
@@ -223,7 +223,7 @@ NOWDOC;
         $doc = new \DOMDocument();
         $insertInto = $doc->appendChild(new \DOMElement('insert'));
 
-        $signer = new Signer(array());
+        $signer = new Signer([]);
 
         $this->setExpectedException('\Exception');
         $signer->sign($element, $insertInto);

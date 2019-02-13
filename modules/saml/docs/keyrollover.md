@@ -11,7 +11,7 @@ First you must create the new key that you are going to use.
 To create a self signed certificate, you may use the following command:
 
     cd cert
-    openssl req -newkey rsa:2048 -new -x509 -days 3652 -nodes -out new.crt -keyout new.pem
+    openssl req -newkey rsa:3072 -new -x509 -days 3652 -nodes -out new.crt -keyout new.pem
 
 
 Add the new key to SimpleSAMLphp

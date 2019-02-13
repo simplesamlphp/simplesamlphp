@@ -1,4 +1,7 @@
 <?php
+
+namespace SimpleSAML\Module\consent;
+
 /**
  * Base class for consent storage handlers.
  *
@@ -6,7 +9,8 @@
  * @author Olav Morken <olav.morken@uninett.no>
  * @author JAcob Christiansen <jach@wayf.dk>
  */
-abstract class sspmod_consent_Store
+
+abstract class Store
 {
     /**
      * Constructor for the base class.
@@ -74,11 +78,11 @@ abstract class sspmod_consent_Store
      *
      * @return mixed Should be the number of consent removed
      *
-     * @throws Exception
+     * @throws \Exception
      */
     public function deleteAllConsents($userId)
     {
-        throw new Exception('Not implemented: deleteAllConsents()');
+        throw new \Exception('Not implemented: deleteAllConsents()');
     }
 
 
@@ -87,11 +91,11 @@ abstract class sspmod_consent_Store
      *
      * @return mixed Statistics from the consent store
      *
-     * @throws Exception
+     * @throws \Exception
      */
     public function getStatistics()
     {
-        throw new Exception('Not implemented: getStatistics()');
+        throw new \Exception('Not implemented: getStatistics()');
     }
 
 
@@ -115,28 +119,28 @@ abstract class sspmod_consent_Store
      *
      * @param mixed $config The configuration.
      *
-     * @return sspmod_consent_Store An object which implements the sspmod_consent_Store class.
+     * @return \SimpleSAML\Module\consent\Store An object which implements the \SimpleSAML\Module\consent\Store class.
      *
-     * @throws Exception if the configuration is invalid.
+     * @throws \Exception if the configuration is invalid.
      */
     public static function parseStoreConfig($config)
     {
         if (is_string($config)) {
-            $config = array($config);
+            $config = [$config];
         }
 
         if (!is_array($config)) {
-            throw new Exception('Invalid configuration for consent store option: '.var_export($config, true));
+            throw new \Exception('Invalid configuration for consent store option: '.var_export($config, true));
         }
 
         if (!array_key_exists(0, $config)) {
-            throw new Exception('Consent store without name given.');
+            throw new \Exception('Consent store without name given.');
         }
 
-        $className = SimpleSAML\Module::resolveClass(
+        $className = \SimpleSAML\Module::resolveClass(
             $config[0],
-            'Consent_Store',
-            'sspmod_consent_Store'
+            'Consent\Store',
+            '\SimpleSAML\Module\consent\Store'
         );
 
         unset($config[0]);

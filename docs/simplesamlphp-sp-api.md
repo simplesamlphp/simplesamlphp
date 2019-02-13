@@ -6,6 +6,19 @@ SimpleSAMLphp SP API reference
 This document describes the \SimpleSAML\Auth\Simple API.
 This is the preferred API for integrating SimpleSAMLphp with other applications.
 
+### Note on PHP sessions and SimpleSAMLphp API calls
+
+Some SimpleSAMLphp calls replace the current active PHP session. If you previously started a session and wish to write to it, then you must cleanup the SimpleSAMLphp session before you can write to your session. If you do not need to modify your own session, then you can leave the cleanup call out; however, forgetting to call cleanup is a common source of hard to find bugs.
+
+    session_start();
+    // ...
+    $auth = new \SimpleSAML\Auth\Simple('default-sp');
+    $auth->isAuthenticated(); // Replaces our session with the SimpleSAMLphp one
+    // $_SESSION['key'] = 'value'; // This would save to the SimpleSAMLphp session which isn't what we want
+    SimpleSAML_Session::getSessionFromRequest()->cleanup(); // Reverts to our PHP session
+    // Save to our session
+    $_SESSION['key'] = 'value';
+
 Constructor
 -----------
 
@@ -34,15 +47,15 @@ Check whether the user is authenticated with this authentication source.
 ### Example
 
     if (!$auth->isAuthenticated()) {
+        SimpleSAML_Session::getSessionFromRequest()->cleanup();
         /* Show login link. */
         print('<a href="/login">Login</a>');
     }
 
-
 `requireAuth`
 -------------
 
-    void requireAuth(array $params = array())
+    void requireAuth(array $params = [])
 
 Make sure that the user is authenticated.
 This function will only return if the user is authenticated.
@@ -57,6 +70,7 @@ See the documentation for the `login`-function for a description of the paramete
 ### Example 1
 
     $auth->requireAuth();
+    SimpleSAML_Session::getSessionFromRequest()->cleanup();
     print("Hello, authenticated user!");
 
 ### Example 2
@@ -65,17 +79,18 @@ See the documentation for the `login`-function for a description of the paramete
      * Return the user to the frontpage after authentication, don't post
      * the current POST data.
      */
-    $auth->requireAuth(array(
+    $auth->requireAuth([
         'ReturnTo' => 'https://sp.example.org/',
         'KeepPost' => FALSE,
-    ));
+    ]);
+    SimpleSAML_Session::getSessionFromRequest()->cleanup();
     print("Hello, authenticated user!");
 
 
 `login`
 -------------
 
-    void login(array $params = array())
+    void login(array $params = [])
 
 Start a login operation.
 This function will always start a new authentication process.
@@ -108,11 +123,11 @@ The [`saml:SP`](./saml:sp) authentication source also defines some parameters.
 ### Example
 
     # Send a passive authentication request.
-    $auth->login(array(
+    $auth->login([
         'isPassive' => TRUE,
         'ErrorURL' => 'https://.../error_handler.php',
-    ));
-
+    ]);
+    SimpleSAML_Session::getSessionFromRequest()->cleanup();
 
 `logout`
 --------
@@ -144,20 +159,22 @@ This function never returns.
 Logout, and redirect to the specified URL.
 
     $auth->logout('https://sp.example.org/logged_out.php');
+    SimpleSAML_Session::getSessionFromRequest()->cleanup();
 
 ### Example 2
 
 Same as the previous, but check the result of the logout operation afterwards.
 
-    $auth->logout(array(
+    $auth->logout([
         'ReturnTo' => 'https://sp.example.org/logged_out.php',
         'ReturnStateParam' => 'LogoutState',
         'ReturnStateStage' => 'MyLogoutState',
-    ));
+    ]);
+    SimpleSAML_Session::getSessionFromRequest()->cleanup();
 
 And in logged_out.php:
 
-    $state = SimpleSAML_Auth_State::loadState((string)$_REQUEST['LogoutState'], 'MyLogoutState');
+    $state = \SimpleSAML\Auth\State::loadState((string)$_REQUEST['LogoutState'], 'MyLogoutState');
     $ls = $state['saml:sp:LogoutStatus']; /* Only works for SAML SP */
     if ($ls['Code'] === 'urn:oasis:names:tc:SAML:2.0:status:Success' && !isset($ls['SubCode'])) {
         /* Successful logout. */
@@ -178,10 +195,10 @@ If the user isn't authenticated, an empty array will be returned.
 
 The attributes will be returned as an associative array with the name of the attribute as the key and the value as an array of one or more strings:
 
-    array(
-        'uid' => array('testuser'),
-        'eduPersonAffiliation' => array('student', 'member'),
-    )
+    [
+        'uid' => ['testuser'],
+        'eduPersonAffiliation' => ['student', 'member'],
+    ]
 
 
 ### Example

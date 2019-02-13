@@ -54,9 +54,6 @@ msgstr "(no description)"
 msgid "{consentAdmin:consentadmin:service_providers_for}"
 msgstr "Service Providers for"
 
-msgid "{consentAdmin:consentadmin:sp_empty_name}"
-msgstr "(name not specified)"
-
 msgid "{consentAdmin:consentadmin:consentadmin_description2}"
 msgstr ""
 "\n"
@@ -170,4 +167,7 @@ msgstr "show/hide attributes"
 
 msgid "Organisation"
 msgstr "Organisation"
+
+msgid "Consent administration"
+msgstr "Consent administration"
 

@@ -1,5 +1,5 @@
 <?php
-$attributemap = array(
+$attributemap = [
     'aRecord'                       => 'urn:mace:dir:attribute-def:aRecord',
     'aliasedEntryName'              => 'urn:mace:dir:attribute-def:aliasedEntryName',
     'aliasedObjectName'             => 'urn:mace:dir:attribute-def:aliasedObjectName',
@@ -112,6 +112,7 @@ $attributemap = array(
     'owner'                         => 'urn:mace:dir:attribute-def:owner',
     'pager'                         => 'urn:mace:dir:attribute-def:pager',
     'pagerTelephoneNumber'          => 'urn:mace:dir:attribute-def:pagerTelephoneNumber',
+    'pairwise-id'                   => 'urn:oasis:names:tc:SAML:attribute:pairwise-id',
     'personalSignature'             => 'urn:mace:dir:attribute-def:personalSignature',
     'personalTitle'                 => 'urn:mace:dir:attribute-def:personalTitle',
     'photo'                         => 'urn:mace:dir:attribute-def:photo',
@@ -163,6 +164,7 @@ $attributemap = array(
     'stateOrProvinceName'           => 'urn:mace:dir:attribute-def:stateOrProvinceName',
     'street'                        => 'urn:mace:dir:attribute-def:street',
     'streetAddress'                 => 'urn:mace:dir:attribute-def:streetAddress',
+    'subject-id'                    => 'urn:oasis:names:tc:SAML:attribute:subject-id',
     'subtreeMaximumQuality'         => 'urn:mace:dir:attribute-def:subtreeMaximumQuality',
     'subtreeMinimumQuality'         => 'urn:mace:dir:attribute-def:subtreeMinimumQuality',
     'supportedAlgorithms'           => 'urn:mace:dir:attribute-def:supportedAlgorithms',
@@ -184,4 +186,4 @@ $attributemap = array(
     'userid'                        => 'urn:mace:dir:attribute-def:userid',
     'x121Address'                   => 'urn:mace:dir:attribute-def:x121Address',
     'x500UniqueIdentifier'          => 'urn:mace:dir:attribute-def:x500UniqueIdentifier',
-);
+];

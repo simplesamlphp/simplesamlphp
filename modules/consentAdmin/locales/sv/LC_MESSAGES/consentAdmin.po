@@ -54,9 +54,6 @@ msgstr "(ingen beskrivning)"
 msgid "{consentAdmin:consentadmin:service_providers_for}"
 msgstr "Tjänsteleverantörer för"
 
-msgid "{consentAdmin:consentadmin:sp_empty_name}"
-msgstr "(namn ej angivet)"
-
 msgid "{consentAdmin:consentadmin:consentadmin_description2}"
 msgstr ""
 "<h3>Hur du tar bort ditt samtycke</h3> Ta bort markeringen i rutan "

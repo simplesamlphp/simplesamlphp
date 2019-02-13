@@ -52,7 +52,7 @@ SimpleSAMLphp as an Identity Provider, or any other applications using it are no
 settings by leaving these options unset or setting them to `null`.
 
 If you need to restore your session's application after calling SimpleSAMLphp, you can do it by calling the `cleanup()` method of the
-`SimpleSAML_Session` class, like described [here](simplesamlphp-sp#section_6).
+`\SimpleSAML\Session` class, like described [here](simplesamlphp-sp#section_6).
 
 ### Configuring memcache
 
@@ -96,26 +96,26 @@ Here are two examples of configuration of memcache session handling:
 
 Example of redundant configuration with load balancing: This configuration makes it possible to lose both servers in the a-group or both servers in the b-group without losing any sessions. Note that sessions will be lost if one server is lost from both the a-group and the b-group.
 
-    'memcache_store.servers' => array(
-      array(
-        array('hostname' => 'mc_a1'),
-        array('hostname' => 'mc_a2'),
-      ),
-      array(
-        array('hostname' => 'mc_b1'),
-        array('hostname' => 'mc_b2'),
-      ),
-    ),
+    'memcache_store.servers' => [
+      [
+        ['hostname' => 'mc_a1'],
+        ['hostname' => 'mc_a2'],
+      ],
+      [
+        ['hostname' => 'mc_b1'],
+        ['hostname' => 'mc_b2'],
+      ],
+    ],
 
 **Example&nbsp;2.&nbsp;Example of simple configuration with only one memcache server**
 
 Example of simple configuration with only one memcache server, running on the same computer as the web server: Note that all sessions will be lost if the memcache server crashes.
 
-    'memcache_store.servers' => array(
-      array(
-        array('hostname' => 'localhost'),
-      ),
-    ),
+    'memcache_store.servers' => [
+      [
+        ['hostname' => 'localhost'],
+      ],
+    ],
 
 The expiration value (`memcache_store.expires`) is the duration for which data should be retained in memcache. Data are dropped from the memcache servers when this time expires. The time will be reset every time the data is written to the memcache servers.
 
@@ -161,7 +161,7 @@ The required tables are created automatically. If you are storing data from mult
 
 To store sessions in Redis, set the `store.type` option to `redis`.
 
-By default SimpleSAMLphp will attempt to connect to Redis on the `localhost` at port `6379`. These can be configured via the `store.redis.host` and `store.redis.port` options, respectively. You may also set a key prefix with the `store.redis.prefix` option.
+By default SimpleSAMLphp will attempt to connect to Redis on the `localhost` at port `6379`. These can be configured via the `store.redis.host` and `store.redis.port` options, respectively. You may also set a key prefix with the `store.redis.prefix` option. For Redis instances that [require authentication](https://redis.io/commands/auth), use the `store.redis.password` option.
 
 ## Metadata storage
 
@@ -170,15 +170,15 @@ Several metadata storage backends are available by default, including `flatfile`
 example configuration of different metadata sources in use at the same time:
 
 ```
-'metadata.sources' => array(
-    array('type' => 'flatfile'),
-    array('type' => 'flatfile', 'directory' => 'metadata/metarefresh-kalmar'),
-    array('type' => 'serialize', 'directory' => 'metadata/metarefresh-ukaccess'),
-),
+'metadata.sources' => [
+    ['type' => 'flatfile'],
+    ['type' => 'flatfile', 'directory' => 'metadata/metarefresh-kalmar'],
+    ['type' => 'serialize', 'directory' => 'metadata/metarefresh-ukaccess'],
+],
 ```
 
 You may also implement your own metadata storage handler, in a very similar way to how you would implement
-your own session handler. Your class **must** extend the `SimpleSAML_Metadata_MetaDataStorageSource` class
+your own session handler. Your class **must** extend the `\SimpleSAML\Metadata\MetaDataStorageSource` class
 and override the methods needed to change the backend used. This class **must** also be located in the
 `lib/MetadataStore/` directory of your custom module.
 
@@ -190,7 +190,7 @@ module is named _mymodule_ and your class is named _MyMetadataHandler_, you shou
 <?php
 namespace SimpleSAML\Module\mymodule\MetadataStore;
 
-class MyMetadataHandler extends SimpleSAML_Metadata_MetaDataStorageSource
+class MyMetadataHandler extends \SimpleSAML\Metadata\MetaDataStorageSource
 {
     ...
 ```
@@ -245,7 +245,7 @@ To add support for a new language, add your new language to the `language.availa
 	/*
 	 * Languages available and which language is default
 	 */
-	'language.available' => array('en', 'no', 'da', 'es', 'xx'),
+	'language.available' => ['en', 'no', 'da', 'es', 'xx'],
 	'language.default'   => 'en',
 
 Please use the standardized two-character
@@ -255,11 +255,11 @@ You also can set the default language. You should ensure that the default langua
 
 All strings that can be localized are found in the files `dictionaries/`. Add a new entry for each string, with your language code, like this:
 
-    'user_pass_header' => array(
+    'user_pass_header' => [
         'en' => 'Enter your username and password',
         'no' => 'Skriv inn brukernavn og passord',
         'xx' => 'Pooa jujjique jamba',
-      ),
+      ],
 
 You can translate as many of the texts as you would like; a full translation is not required unless you want to make this the default language. From the end users point of view, it looks best if all text fragments used in a given screen or form is in one single language.
 

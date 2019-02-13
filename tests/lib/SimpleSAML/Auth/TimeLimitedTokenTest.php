@@ -6,13 +6,12 @@ use SimpleSAML\Auth\TimeLimitedToken;
 
 class TimeLimitedTokenTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
 {
-
     /**
      * Test for malformed tokens.
      */
     public function testMalformedToken()
     {
-        \SimpleSAML_Configuration::loadFromArray(array('secretsalt' => 'random'), '[ARRAY]', 'simplesaml');
+        \SimpleSAML\Configuration::loadFromArray(['secretsalt' => 'random'], '[ARRAY]', 'simplesaml');
 
         $token = new TimeLimitedToken();
         $this->assertFalse($token->validate('malformed'));
@@ -26,7 +25,7 @@ class TimeLimitedTokenTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
      */
     public function testValidToken()
     {
-        \SimpleSAML_Configuration::loadFromArray(array('secretsalt' => 'random'), '[ARRAY]', 'simplesaml');
+        \SimpleSAML\Configuration::loadFromArray(['secretsalt' => 'random'], '[ARRAY]', 'simplesaml');
 
         $token = new TimeLimitedToken();
         $t = $token->generate();
@@ -39,7 +38,7 @@ class TimeLimitedTokenTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
      */
     public function testValidTokenWithData()
     {
-        \SimpleSAML_Configuration::loadFromArray(array('secretsalt' => 'random'), '[ARRAY]', 'simplesaml');
+        \SimpleSAML\Configuration::loadFromArray(['secretsalt' => 'random'], '[ARRAY]', 'simplesaml');
 
         $tokenWithData = new TimeLimitedToken();
         $tokenWithData->addVerificationData('some more random data');
@@ -56,7 +55,7 @@ class TimeLimitedTokenTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
      */
     public function testExpiredToken()
     {
-        \SimpleSAML_Configuration::loadFromArray(array('secretsalt' => 'random'), '[ARRAY]', 'simplesaml');
+        \SimpleSAML\Configuration::loadFromArray(['secretsalt' => 'random'], '[ARRAY]', 'simplesaml');
 
         $token = new TimeLimitedToken();
         $this->assertFalse($token->validate('7-c0803e76fff1df0ceb222dee80aa1d73f35d84dd'));
@@ -68,7 +67,7 @@ class TimeLimitedTokenTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
      */
     public function testManipulatedToken()
     {
-        \SimpleSAML_Configuration::loadFromArray(array('secretsalt' => 'random'), '[ARRAY]', 'simplesaml');
+        \SimpleSAML\Configuration::loadFromArray(['secretsalt' => 'random'], '[ARRAY]', 'simplesaml');
 
         $token = new TimeLimitedToken(1);
         $t = $token->generate();

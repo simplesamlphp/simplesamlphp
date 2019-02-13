@@ -1,4 +1,5 @@
 <?php
+
 namespace SimpleSAML;
 
 /**
@@ -18,11 +19,10 @@ namespace SimpleSAML;
 
 class Database
 {
-
     /**
      * This variable holds the instance of the session - Singleton approach.
      */
-    private static $instance = array();
+    private static $instance = [];
 
     /**
      * PDO Object for the Master database server
@@ -32,7 +32,7 @@ class Database
     /**
      * Array of PDO Objects for configured database slaves
      */
-    private $dbSlaves = array();
+    private $dbSlaves = [];
 
     /**
      * Prefix to apply to the tables
@@ -48,13 +48,13 @@ class Database
     /**
      * Retrieves the current database instance. Will create a new one if there isn't an existing connection.
      *
-     * @param \SimpleSAML_Configuration $altConfig Optional: Instance of a SimpleSAML_Configuration class
+     * @param \SimpleSAML\Configuration $altConfig Optional: Instance of a \SimpleSAML\Configuration class
      *
      * @return \SimpleSAML\Database The shared database connection.
      */
     public static function getInstance($altConfig = null)
     {
-        $config = ($altConfig) ? $altConfig : \SimpleSAML_Configuration::getInstance();
+        $config = ($altConfig) ? $altConfig : Configuration::getInstance();
         $instanceId = self::generateInstanceId($config);
 
         // check if we already have initialized the session
@@ -71,13 +71,13 @@ class Database
     /**
      * Private constructor that restricts instantiation to getInstance().
      *
-     * @param \SimpleSAML_Configuration $config Instance of the SimpleSAML_Configuration class
+     * @param \SimpleSAML\Configuration $config Instance of the \SimpleSAML\Configuration class
      */
     private function __construct($config)
     {
-        $driverOptions = $config->getArray('database.driver_options', array());
+        $driverOptions = $config->getArray('database.driver_options', []);
         if ($config->getBoolean('database.persistent', true)) {
-            $driverOptions = array(\PDO::ATTR_PERSISTENT => true);
+            $driverOptions = [\PDO::ATTR_PERSISTENT => true];
         }
 
         // connect to the master
@@ -89,7 +89,7 @@ class Database
         );
 
         // connect to any configured slaves
-        $slaves = $config->getArray('database.slaves', array());
+        $slaves = $config->getArray('database.slaves', []);
         foreach ($slaves as $slave) {
             array_push(
                 $this->dbSlaves,
@@ -109,22 +109,22 @@ class Database
     /**
      * Generate an Instance ID based on the database configuration.
      *
-     * @param \SimpleSAML_Configuration $config Configuration class
+     * @param \SimpleSAML\Configuration $config Configuration class
      *
      * @return string $instanceId
      */
     private static function generateInstanceId($config)
     {
-        $assembledConfig = array(
-            'master' => array(
+        $assembledConfig = [
+            'master' => [
                 'database.dsn'        => $config->getString('database.dsn'),
                 'database.username'   => $config->getString('database.username', null),
                 'database.password'   => $config->getString('database.password', null),
                 'database.prefix'     => $config->getString('database.prefix', ''),
                 'database.persistent' => $config->getBoolean('database.persistent', false),
-            ),
-            'slaves' => $config->getArray('database.slaves', array()),
-        );
+            ],
+            'slaves' => $config->getArray('database.slaves', []),
+        ];
 
         return sha1(serialize($assembledConfig));
     }
@@ -192,7 +192,7 @@ class Database
      * @param array  $params Parameters
      *
      * @throws \Exception If an error happens while trying to execute the query.
-     * @return \PDOStatement object
+     * @return bool|\PDOStatement object
      */
     private function query($db, $stmt, $params)
     {
@@ -252,7 +252,7 @@ class Database
      *
      * @return int The number of rows affected by the query.
      */
-    public function write($stmt, $params = array())
+    public function write($stmt, $params = [])
     {
         $db = $this->dbMaster;
 
@@ -271,9 +271,9 @@ class Database
      * @param string $stmt Prepared SQL statement
      * @param array  $params Parameters
      *
-     * @return \PDOStatement object
+     * @return \PDOStatement|bool object
      */
-    public function read($stmt, $params = array())
+    public function read($stmt, $params = [])
     {
         $db = $this->getSlave();
 

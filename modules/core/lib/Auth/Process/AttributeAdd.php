@@ -1,5 +1,7 @@
 <?php
 
+namespace SimpleSAML\Module\core\Auth\Process;
+
 /**
  * Filter to add attributes.
  *
@@ -8,78 +10,76 @@
  * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
-class sspmod_core_Auth_Process_AttributeAdd extends SimpleSAML_Auth_ProcessingFilter {
 
-	/**
-	 * Flag which indicates wheter this filter should append new values or replace old values.
-	 */
-	private $replace = FALSE;
+class AttributeAdd extends \SimpleSAML\Auth\ProcessingFilter
+{
+    /**
+     * Flag which indicates wheter this filter should append new values or replace old values.
+     */
+    private $replace = false;
 
+    /**
+     * Attributes which should be added/appended.
+     *
+     * Assiciative array of arrays.
+     */
+    private $attributes = [];
 
-	/**
-	 * Attributes which should be added/appended.
-	 *
-	 * Assiciative array of arrays.
-	 */
-	private $attributes = array();
+    /**
+     * Initialize this filter.
+     *
+     * @param array $config  Configuration information about this filter.
+     * @param mixed $reserved  For future use.
+     */
+    public function __construct($config, $reserved)
+    {
+        parent::__construct($config, $reserved);
 
+        assert(is_array($config));
 
-	/**
-	 * Initialize this filter.
-	 *
-	 * @param array $config  Configuration information about this filter.
-	 * @param mixed $reserved  For future use.
-	 */
-	public function __construct($config, $reserved) {
-		parent::__construct($config, $reserved);
+        foreach ($config as $name => $values) {
+            if (is_int($name)) {
+                if ($values === '%replace') {
+                    $this->replace = true;
+                } else {
+                    throw new \Exception('Unknown flag: '.var_export($values, true));
+                }
+                continue;
+            }
 
-		assert(is_array($config));
+            if (!is_array($values)) {
+                $values = [$values];
+            }
+            foreach ($values as $value) {
+                if (!is_string($value)) {
+                    throw new \Exception('Invalid value for attribute '.$name.': '.var_export($values, true));
+                }
+            }
 
-		foreach($config as $name => $values) {
-			if(is_int($name)) {
-				if($values === '%replace') {
-					$this->replace = TRUE;
-				} else {
-					throw new Exception('Unknown flag: ' . var_export($values, TRUE));
-				}
-				continue;
-			}
+            $this->attributes[$name] = $values;
+        }
+    }
 
-			if(!is_array($values)) {
-				$values = array($values);
-			}
-			foreach($values as $value) {
-				if(!is_string($value)) {
-					throw new Exception('Invalid value for attribute ' . $name . ': ' .
-						var_export($values, TRUE));
-				}
-			}
+    /**
+     * Apply filter to add or replace attributes.
+     *
+     * Add or replace existing attributes with the configured values.
+     *
+     * @param array &$request  The current request
+     */
+    public function process(&$request)
+    {
+        assert(is_array($request));
+        assert(array_key_exists('Attributes', $request));
 
-			$this->attributes[$name] = $values;
-		}
-	}
+        $attributes = &$request['Attributes'];
 
-
-	/**
-	 * Apply filter to add or replace attributes.
-	 *
-	 * Add or replace existing attributes with the configured values.
-	 *
-	 * @param array &$request  The current request
-	 */
-	public function process(&$request) {
-		assert(is_array($request));
-		assert(array_key_exists('Attributes', $request));
-
-		$attributes =& $request['Attributes'];
-
-		foreach($this->attributes as $name => $values) {
-			if($this->replace === TRUE || !array_key_exists($name, $attributes)) {
-				$attributes[$name] = $values;
-			} else {
-				$attributes[$name] = array_merge($attributes[$name], $values);
-			}
-		}
-	}
-
+        foreach ($this->attributes as $name => $values) {
+            if ($this->replace === true || !array_key_exists($name, $attributes)) {
+                $attributes[$name] = $values;
+            } else {
+                $attributes[$name] = array_merge($attributes[$name], $values);
+            }
+        }
+    }
 }

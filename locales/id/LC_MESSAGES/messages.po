@@ -1593,3 +1593,12 @@ msgstr ""
 "Anda mengakses antarnyka Assertion Consumer Service, tetapi tidak "
 "menyediakan Response Autentifikasi SAML. "
 
+
+msgid ""
+"You are now accessing a pre-production system. This authentication setup "
+"is for testing and pre-production verification only. If someone sent you "
+"a link that pointed you here, and you are not <i>a tester</i> you "
+"probably got the wrong link, and should <b>not be here</b>."
+msgstr ""
+"Sekarang anda sedang mengakses sistem pra-produksi. Setup autentifikasi "
+"ini untuk keperluan uji coba dan verifikasi pra-produksi"

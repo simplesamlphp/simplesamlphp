@@ -33,32 +33,32 @@ function present_assoc($attr)
 
 function present_eptid(\SimpleSAML\Locale\Translate $t, \SAML2\XML\saml\NameID $nameID)
 {
-    $eptid = array(
-        'NameID' => array($nameID->value),
-    );
-    if (!empty($nameID->Format)) {
-        $eptid[$t->t('{status:subject_format}')] = array($nameID->Format);
+    $eptid = [
+        'NameID' => [$nameID->getValue()],
+    ];
+    if ($nameID->getFormat() !== null) {
+        $eptid[$t->t('{status:subject_format}')] = [$nameID->getFormat()];
     }
-    if (!empty($nameID->NameQualifier)) {
-        $eptid['NameQualifier'] = array($nameID->NameQualifier);
+    if ($nameID->getNameQualifier() !== null) {
+        $eptid['NameQualifier'] = [$nameID->getNameQualifier()];
     }
-    if (!empty($nameID->SPNameQualifier)) {
-        $eptid['SPNameQualifier'] = array($nameID->SPNameQualifier);
+    if ($nameID->getSPNameQualifier() !== null) {
+        $eptid['SPNameQualifier'] = [$nameID->getSPNameQualifier()];
     }
-    if (!empty($nameID->SPProvidedID)) {
-        $eptid['SPProvidedID'] = array($nameID->SPProvidedID);
+    if ($nameID->getSPProvidedID() !== null) {
+        $eptid['SPProvidedID'] = [$nameID->getSPProvidedID()];
     }
     return '<td class="attrvalue">'.present_assoc($eptid);
 }
 
-function present_attributes(SimpleSAML_XHTML_Template $t, $attributes, $nameParent)
+function present_attributes(\SimpleSAML\XHTML\Template $t, $attributes, $nameParent)
 {
-    $alternate = array('odd', 'even');
+    $alternate = ['odd', 'even'];
     $i = 0;
 
     $parentStr = (strlen($nameParent) > 0) ? strtolower($nameParent).'_' : '';
     $str = (strlen($nameParent) > 0) ? '<table class="attributes" summary="attribute overview">' :
-        '<table id="table_with_attributes"  class="attributes" summary="attribute overview">';
+        '<table id="table_with_attributes" class="attributes" summary="attribute overview">';
 
     foreach ($attributes as $name => $value) {
         $nameraw = $name;
@@ -78,7 +78,7 @@ function present_attributes(SimpleSAML_XHTML_Template $t, $attributes, $namePare
                 if ($nameraw !== $name) {
                     $str .= htmlspecialchars($name).'<br/>';
                 }
-                $str .= '<tt>'.htmlspecialchars($nameraw).'</tt>';
+                $str .= '<code>'.htmlspecialchars($nameraw).'</code>';
                 $str .= '</td><td class="attrvalue"><ul>';
                 foreach ($value as $listitem) {
                     if ($nameraw === 'jpegPhoto') {
@@ -93,18 +93,18 @@ function present_attributes(SimpleSAML_XHTML_Template $t, $attributes, $namePare
                 if ($nameraw !== $name) {
                     $str .= htmlspecialchars($name).'<br/>';
                 }
-                $str .= '<tt>'.htmlspecialchars($nameraw).'</tt>';
+                $str .= '<code>'.htmlspecialchars($nameraw).'</code>';
                 $str .= '</td>';
                 if ($nameraw === 'jpegPhoto') {
                     $str .= '<td class="attrvalue"><img src="data:image/jpeg;base64,'.htmlspecialchars($value[0]).
                         '" /></td></tr>';
                 } elseif (is_a($value[0], 'DOMNodeList')) {
                     // try to see if we have a NameID here
-                    /** @var DOMNodeList $value [0] */
+                    /** @var \DOMNodeList $value [0] */
                     $n = $value[0]->length;
                     for ($idx = 0; $idx < $n; $idx++) {
                         $elem = $value[0]->item($idx);
-                        /* @var DOMElement $elem */
+                        /* @var \DOMElement $elem */
                         if (!($elem->localName === 'NameID' && $elem->namespaceURI === \SAML2\Constants::NS_SAML)) {
                             continue;
                         }

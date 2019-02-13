@@ -1,5 +1,7 @@
 <?php
 
+namespace SimpleSAML\Error;
+
 /**
  * Exception which will show a 400 Bad Request error page.
  *
@@ -9,10 +11,9 @@
  * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
-class SimpleSAML_Error_BadRequest extends SimpleSAML_Error_Error
+
+class BadRequest extends Error
 {
-
-
     /**
      * Reason why this request was invalid.
      */
@@ -29,7 +30,7 @@ class SimpleSAML_Error_BadRequest extends SimpleSAML_Error_Error
         assert(is_string($reason));
 
         $this->reason = $reason;
-        parent::__construct(array('BADREQUEST', '%REASON%' => $this->reason));
+        parent::__construct(['BADREQUEST', '%REASON%' => $this->reason]);
         $this->httpCode = 400;
     }
 

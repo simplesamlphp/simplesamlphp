@@ -1,9 +1,13 @@
 <?php
+
+namespace SimpleSAML\Module\statistics;
+
 /*
  * @author Andreas Åkre Solberg <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
  */
-class sspmod_statistics_Ruleset
+
+class Ruleset
 {
     private $statconfig;
     private $availrulenames;
@@ -29,29 +33,30 @@ class sspmod_statistics_Ruleset
          * Walk through file lists, and get available [rule][fileslot]...
          */
         if (!is_dir($statdir)) {
-            throw new Exception('Statisics output directory [' . $statdir . '] does not exists.');
+            throw new \Exception('Statisics output directory ['.$statdir.'] does not exists.');
         }
         $filelist = scandir($statdir);
-        $this->available = array();
+        $this->available = [];
         foreach ($filelist as $file) {
-        if (preg_match('/([a-z0-9_]+)-([a-z0-9_]+)-([0-9]+)\.stat/', $file, $matches)) {
-            if (array_key_exists($matches[1], $statrules)) {
-                if (array_key_exists($matches[2], $timeres)) 
-                    $this->available[$matches[1]][$matches[2]][] = $matches[3];
+            if (preg_match('/([a-z0-9_]+)-([a-z0-9_]+)-([0-9]+)\.stat/', $file, $matches)) {
+                if (array_key_exists($matches[1], $statrules)) {
+                    if (array_key_exists($matches[2], $timeres)) {
+                        $this->available[$matches[1]][$matches[2]][] = $matches[3];
+                    }
                 }
             }
         }
         if (empty($this->available)) {
-            throw new Exception('No aggregated statistics files found in [' . $statdir . ']');
+            throw new \Exception('No aggregated statistics files found in ['.$statdir.']');
         }
 
         /*
          * Create array with information about available rules..
          */
         $this->availrules = array_keys($statrules);
-        $available_rules = array();
+        $available_rules = [];
         foreach ($this->availrules as $key) {
-            $available_rules[$key] = array('name' => $statrules[$key]['name'], 'descr' => $statrules[$key]['descr']);
+            $available_rules[$key] = ['name' => $statrules[$key]['name'], 'descr' => $statrules[$key]['descr']];
         }
         $this->availrulenames = $available_rules;
     }
@@ -86,9 +91,11 @@ class sspmod_statistics_Ruleset
         $statrulesConfig = $this->statconfig->getConfigItem('statrules');
         $statruleConfig = $statrulesConfig->getConfigItem($rule);
 
-        $presenterClass = SimpleSAML\Module::resolveClass($statruleConfig->getValue('presenter', 'statistics:BaseRule'), 'Statistics_Rulesets');
+        $presenterClass = \SimpleSAML\Module::resolveClass(
+            $statruleConfig->getValue('presenter', 'statistics:BaseRule'),
+            'Statistics\Rulesets'
+        );
         $statrule = new $presenterClass($this->statconfig, $statruleConfig, $rule, $this->available);
         return $statrule;
     }
 }
-

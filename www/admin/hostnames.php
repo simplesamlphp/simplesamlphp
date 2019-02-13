@@ -2,30 +2,30 @@
 
 require_once('../_include.php');
 
-// Load SimpleSAMLphp, configuration
-$config = SimpleSAML_Configuration::getInstance();
-$session = SimpleSAML_Session::getSessionFromRequest();
+// Load SimpleSAMLphp configuration
+$config = \SimpleSAML\Configuration::getInstance();
+$session = \SimpleSAML\Session::getSessionFromRequest();
 
 // Check if valid local session exists..
-SimpleSAML\Utils\Auth::requireAdmin();
+\SimpleSAML\Utils\Auth::requireAdmin();
 
-$attributes = array();
+$attributes = [];
 
-$attributes['HTTP_HOST'] = array($_SERVER['HTTP_HOST']);
-$attributes['HTTPS'] = isset($_SERVER['HTTPS'])? array($_SERVER['HTTPS']) : array();
-$attributes['SERVER_PROTOCOL'] = array($_SERVER['SERVER_PROTOCOL']);
-$attributes['SERVER_PORT'] = array($_SERVER['SERVER_PORT']);
+$attributes['HTTP_HOST'] = [$_SERVER['HTTP_HOST']];
+$attributes['HTTPS'] = isset($_SERVER['HTTPS']) ? [$_SERVER['HTTPS']] : [];
+$attributes['SERVER_PROTOCOL'] = [$_SERVER['SERVER_PROTOCOL']];
+$attributes['SERVER_PORT'] = [$_SERVER['SERVER_PORT']];
 
-$attributes['getBaseURL()'] = array(\SimpleSAML\Utils\HTTP::getBaseURL());
-$attributes['getSelfHost()'] = array(\SimpleSAML\Utils\HTTP::getSelfHost());
-$attributes['getSelfHostWithNonStandardPort()'] = array(\SimpleSAML\Utils\HTTP::getSelfHostWithNonStandardPort());
-$attributes['selfURLhost()'] = array(\SimpleSAML\Utils\HTTP::getSelfURLHost());
-$attributes['selfURLNoQuery()'] = array(\SimpleSAML\Utils\HTTP::getSelfURLNoQuery());
-$attributes['getSelfHostWithPath()'] = array(\SimpleSAML\Utils\HTTP::getSelfHostWithPath());
-$attributes['getFirstPathElement()'] = array(\SimpleSAML\Utils\HTTP::getFirstPathElement());
-$attributes['selfURL()'] = array(\SimpleSAML\Utils\HTTP::getSelfURL());
+$attributes['getBaseURL()'] = [\SimpleSAML\Utils\HTTP::getBaseURL()];
+$attributes['getSelfHost()'] = [\SimpleSAML\Utils\HTTP::getSelfHost()];
+$attributes['getSelfHostWithNonStandardPort()'] = [\SimpleSAML\Utils\HTTP::getSelfHostWithNonStandardPort()];
+$attributes['selfURLhost()'] = [\SimpleSAML\Utils\HTTP::getSelfURLHost()];
+$attributes['selfURLNoQuery()'] = [\SimpleSAML\Utils\HTTP::getSelfURLNoQuery()];
+$attributes['getSelfHostWithPath()'] = [\SimpleSAML\Utils\HTTP::getSelfHostWithPath()];
+$attributes['getFirstPathElement()'] = [\SimpleSAML\Utils\HTTP::getFirstPathElement()];
+$attributes['selfURL()'] = [\SimpleSAML\Utils\HTTP::getSelfURL()];
 
-$template = new SimpleSAML_XHTML_Template($config, 'hostnames.php');
+$template = new \SimpleSAML\XHTML\Template($config, 'hostnames.php');
 
 $template->data['remaining']  = $session->getAuthData('admin', 'Expire') - time();
 $template->data['attributes'] = $attributes;

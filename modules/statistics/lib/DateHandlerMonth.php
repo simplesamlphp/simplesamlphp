@@ -1,14 +1,18 @@
 <?php
+
+namespace SimpleSAML\Module\statistics;
+
 /*
  * @author Andreas Åkre Solberg <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
  */
-class sspmod_statistics_DateHandlerMonth extends sspmod_statistics_DateHandler
+
+class DateHandlerMonth extends DateHandler
 {
     /**
      * Constructor
      *
-     * @param integer $offset 	Date offset
+     * @param integer $offset Date offset
      */
     public function __construct($offset)
     {
@@ -26,14 +30,14 @@ class sspmod_statistics_DateHandlerMonth extends sspmod_statistics_DateHandler
     public function fromSlot($slot, $slotsize)
     {
         $month = ($slot % 12);
-        $year = 2000 + floor($slot / 12);
+        $year = 2000 + intval(floor($slot / 12));
         return mktime(0, 0, 0, $month + 1, 1, $year);
     }
 
     public function prettyHeader($from, $to, $slotsize, $dateformat)
     {
         $month = ($from % 12) + 1;
-        $year = 2000 + floor($from / 12);
-        return $year . '-' . $month;
+        $year = 2000 + intval(floor($from / 12));
+        return $year.'-'.$month;
     }
 }

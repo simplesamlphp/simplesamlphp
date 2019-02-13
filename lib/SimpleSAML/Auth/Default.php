@@ -1,5 +1,7 @@
 <?php
 
+namespace SimpleSAML\Auth;
+
 /**
  * Implements the default behaviour for authentication.
  *
@@ -11,18 +13,17 @@
  *
  * @deprecated This class will be removed in SSP 2.0.
  */
-class SimpleSAML_Auth_Default
+
+class DefaultAuth
 {
-
-
     /**
-     * @deprecated This method will be removed in SSP 2.0. Use SimpleSAML_Auth_Source::initLogin() instead.
+     * @deprecated This method will be removed in SSP 2.0. Use Source::initLogin() instead.
      */
     public static function initLogin(
         $authId,
         $return,
         $errorURL = null,
-        array $params = array()
+        array $params = []
     ) {
 
         $as = self::getAuthSource($authId);
@@ -32,21 +33,20 @@ class SimpleSAML_Auth_Default
 
     /**
      * @deprecated This method will be removed in SSP 2.0. Please use
-     * SimpleSAML_Auth_State::getPersistentAuthData() instead.
+     * State::getPersistentAuthData() instead.
      */
     public static function extractPersistentAuthState(array &$state)
     {
-
-        return SimpleSAML_Auth_State::getPersistentAuthData($state);
+        return State::getPersistentAuthData($state);
     }
 
 
     /**
-     * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML_Auth_Source::loginCompleted() instead.
+     * @deprecated This method will be removed in SSP 2.0. Please use Source::loginCompleted() instead.
      */
     public static function loginCompleted($state)
     {
-        SimpleSAML_Auth_Source::loginCompleted($state);
+        Source::loginCompleted($state);
     }
 
 
@@ -58,15 +58,15 @@ class SimpleSAML_Auth_Default
         assert(is_string($returnURL));
         assert(is_string($authority));
 
-        $session = SimpleSAML_Session::getSessionFromRequest();
+        $session = \SimpleSAML\Session::getSessionFromRequest();
 
         $state = $session->getAuthData($authority, 'LogoutState');
         $session->doLogout($authority);
 
-        $state['SimpleSAML_Auth_Default.ReturnURL'] = $returnURL;
-        $state['LogoutCompletedHandler'] = array(get_class(), 'logoutCompleted');
+        $state['\SimpleSAML\Auth\DefaultAuth.ReturnURL'] = $returnURL;
+        $state['LogoutCompletedHandler'] = [get_class(), 'logoutCompleted'];
 
-        $as = SimpleSAML_Auth_Source::getById($authority);
+        $as = Source::getById($authority);
         if ($as === null) {
             // The authority wasn't an authentication source...
             self::logoutCompleted($state);
@@ -96,28 +96,28 @@ class SimpleSAML_Auth_Default
     public static function logoutCompleted($state)
     {
         assert(is_array($state));
-        assert(array_key_exists('SimpleSAML_Auth_Default.ReturnURL', $state));
+        assert(array_key_exists('\SimpleSAML\Auth\DefaultAuth.ReturnURL', $state));
 
-        \SimpleSAML\Utils\HTTP::redirectTrustedURL($state['SimpleSAML_Auth_Default.ReturnURL']);
+        \SimpleSAML\Utils\HTTP::redirectTrustedURL($state['\SimpleSAML\Auth\DefaultAuth.ReturnURL']);
     }
 
 
     /**
-     * @deprecated This method will be removed in SSP 2.0. Please use SimpleSAML_Auth_Source::logoutCallback() instead.
+     * @deprecated This method will be removed in SSP 2.0. Please use Source::logoutCallback() instead.
      */
     public static function logoutCallback($state)
     {
-        SimpleSAML_Auth_Source::logoutCallback($state);
+        Source::logoutCallback($state);
     }
 
 
     /**
      * @deprecated This method will be removed in SSP 2.0. Please use
-     * sspmod_saml_Auth_Source_SP::handleUnsolicitedAuth() instead.
+     * \SimpleSAML\Module\saml\Auth\Source\SP::handleUnsolicitedAuth() instead.
      */
     public static function handleUnsolicitedAuth($authId, array $state, $redirectTo)
     {
-        sspmod_saml_Auth_Source_SP::handleUnsolicitedAuth($authId, $state, $redirectTo);
+        \SimpleSAML\Module\saml\Auth\Source\SP::handleUnsolicitedAuth($authId, $state, $redirectTo);
     }
 
 
@@ -125,14 +125,14 @@ class SimpleSAML_Auth_Default
      * Return an authentication source by ID.
      *
      * @param string $id The id of the authentication source.
-     * @return SimpleSAML_Auth_Source The authentication source.
-     * @throws Exception If the $id does not correspond with an authentication source.
+     * @return Source The authentication source.
+     * @throws \Exception If the $id does not correspond with an authentication source.
      */
     private static function getAuthSource($id)
     {
-        $as = SimpleSAML_Auth_Source::getById($id);
+        $as = Source::getById($id);
         if ($as === null) {
-            throw new Exception('Invalid authentication source: ' . $id);
+            throw new \Exception('Invalid authentication source: '.$id);
         }
         return $as;
     }

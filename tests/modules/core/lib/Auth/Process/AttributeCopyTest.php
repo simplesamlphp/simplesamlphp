@@ -1,11 +1,13 @@
 <?php
 
+namespace SimpleSAML\Test\Module\core\Auth\Process;
+
 use PHPUnit\Framework\TestCase;
 
 /**
  * Test for the core:AttributeCopy filter.
  */
-class Test_Core_Auth_Process_AttributeCopy extends TestCase
+class AttributeCopyTest extends TestCase
 {
 
     /**
@@ -17,7 +19,7 @@ class Test_Core_Auth_Process_AttributeCopy extends TestCase
      */
     private static function processFilter(array $config, array $request)
     {
-        $filter = new sspmod_core_Auth_Process_AttributeCopy($config, NULL);
+        $filter = new \SimpleSAML\Module\core\Auth\Process\AttributeCopy($config, null);
         $filter->process($request);
         return $request;
     }
@@ -27,17 +29,17 @@ class Test_Core_Auth_Process_AttributeCopy extends TestCase
      */
     public function testBasic()
     {
-        $config = array(
+        $config = [
             'test' => 'testnew',
-        );
-        $request = array(
-            'Attributes' => array('test' => array('AAP')),
-        );
+        ];
+        $request = [
+            'Attributes' => ['test' => ['AAP']],
+        ];
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
         $this->assertArrayHasKey('test', $attributes);
         $this->assertArrayHasKey('testnew', $attributes);
-        $this->assertEquals($attributes['testnew'], array('AAP'));
+        $this->assertEquals($attributes['testnew'], ['AAP']);
     }
 
     /**
@@ -45,19 +47,19 @@ class Test_Core_Auth_Process_AttributeCopy extends TestCase
      */
     public function testArray()
     {
-        $config = array(
-            'test' => array('new1','new2'),
-        );
-        $request = array(
-            'Attributes' => array('test' => array('AAP')),
-        );
+        $config = [
+            'test' => ['new1', 'new2'],
+        ];
+        $request = [
+            'Attributes' => ['test' => ['AAP']],
+        ];
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
         $this->assertArrayHasKey('test', $attributes);
         $this->assertArrayHasKey('new1', $attributes);
         $this->assertArrayHasKey('new2', $attributes);
-        $this->assertEquals($attributes['new1'], array('AAP'));
-        $this->assertEquals($attributes['new2'], array('AAP'));
+        $this->assertEquals($attributes['new1'], ['AAP']);
+        $this->assertEquals($attributes['new2'], ['AAP']);
     }
 
     /**
@@ -65,24 +67,24 @@ class Test_Core_Auth_Process_AttributeCopy extends TestCase
      */
     public function testExistingNotModified()
     {
-        $config = array(
+        $config = [
             'test' => 'testnew',
-        );
-        $request = array(
-            'Attributes' => array(
-                'test' => array('AAP'),
-                'original1' => array('original_value1'),
-                'original2' => array('original_value2'),
-            ),
-        );
+        ];
+        $request = [
+            'Attributes' => [
+                'test' => ['AAP'],
+                'original1' => ['original_value1'],
+                'original2' => ['original_value2'],
+            ],
+        ];
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
         $this->assertArrayHasKey('testnew', $attributes);
-        $this->assertEquals($attributes['test'], array('AAP'));
+        $this->assertEquals($attributes['test'], ['AAP']);
         $this->assertArrayHasKey('original1', $attributes);
-        $this->assertEquals($attributes['original1'], array('original_value1'));
+        $this->assertEquals($attributes['original1'], ['original_value1']);
         $this->assertArrayHasKey('original2', $attributes);
-        $this->assertEquals($attributes['original2'], array('original_value2'));
+        $this->assertEquals($attributes['original2'], ['original_value2']);
     }
 
     /**
@@ -90,19 +92,19 @@ class Test_Core_Auth_Process_AttributeCopy extends TestCase
      */
     public function testCopyMultiple()
     {
-        $config = array(
+        $config = [
             'test1' => 'new1',
             'test2' => 'new2',
-        );
-        $request = array(
-            'Attributes' => array('test1' => array('val1'), 'test2' => array('val2.1','val2.2')),
-        );
+        ];
+        $request = [
+            'Attributes' => ['test1' => ['val1'], 'test2' => ['val2.1', 'val2.2']],
+        ];
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
         $this->assertArrayHasKey('new1', $attributes);
-        $this->assertEquals($attributes['new1'], array('val1'));
+        $this->assertEquals($attributes['new1'], ['val1']);
         $this->assertArrayHasKey('new2', $attributes);
-        $this->assertEquals($attributes['new2'], array('val2.1','val2.2'));
+        $this->assertEquals($attributes['new2'], ['val2.1', 'val2.2']);
     }
 
     /**
@@ -110,18 +112,18 @@ class Test_Core_Auth_Process_AttributeCopy extends TestCase
      */
     public function testCopyClash()
     {
-        $config = array(
+        $config = [
             'test' => 'new1',
-        );
-        $request = array(
-            'Attributes' => array(
-                'test' => array('testvalue1'),
-                'new1' => array('newvalue1'),
-            ),
-        );
+        ];
+        $request = [
+            'Attributes' => [
+                'test' => ['testvalue1'],
+                'new1' => ['newvalue1'],
+            ],
+        ];
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
-        $this->assertEquals($attributes['new1'], array('testvalue1'));
+        $this->assertEquals($attributes['new1'], ['testvalue1']);
     }
 
     /**
@@ -131,15 +133,15 @@ class Test_Core_Auth_Process_AttributeCopy extends TestCase
      */
     public function testWrongAttributeName()
     {
-        $config = array(
-            array('value2'),
-        );
-        $request = array(
-            'Attributes' => array(
-                'test' => array('value1'),
-            ),
-        );
-        $result = self::processFilter($config, $request);
+        $config = [
+            ['value2'],
+        ];
+        $request = [
+            'Attributes' => [
+                'test' => ['value1'],
+            ],
+        ];
+        self::processFilter($config, $request);
     }
 
     /**
@@ -149,14 +151,14 @@ class Test_Core_Auth_Process_AttributeCopy extends TestCase
      */
     public function testWrongAttributeValue()
     {
-        $config = array(
+        $config = [
             'test' => 100,
-        );
-        $request = array(
-            'Attributes' => array(
-                'test' => array('value1'),
-            ),
-        );
-        $result = self::processFilter($config, $request);
+        ];
+        $request = [
+            'Attributes' => [
+                'test' => ['value1'],
+            ],
+        ];
+        self::processFilter($config, $request);
     }
 }

@@ -19,11 +19,8 @@ assert(is_string($nameIdQualifier));
 $nameIdSPQualifier = $this->data['nameIdSPQualifier'];
 assert(is_string($nameIdSPQualifier));
 
-
 $attributes = $this->data['attributes'];
 assert($attributes === null || is_array($attributes));
-
-
 ?>
 
 <h2>Attribute query test</h2>
@@ -64,17 +61,16 @@ assert($attributes === null || is_array($attributes));
 </form>
 
 <?php
-if ($attributes !== NULL) {
-
-	echo('<h3>Attributes received</h3><dl>');
-	foreach ($attributes as $name => $values) {
-		echo('<dt>' . htmlspecialchars($name) . '</dt><dd><ul>');
-		foreach ($values as $value) {
-			echo('<li>' . htmlspecialchars($value) . '</li>');
-		}
-		echo('</dd>');
-	}
-	echo('</dl>');
+if ($attributes !== null) {
+    echo '<h3>Attributes received</h3><dl>';
+    foreach ($attributes as $name => $values) {
+        echo '<dt>'.htmlspecialchars($name).'</dt><dd><ul>';
+        foreach ($values as $value) {
+            echo '<li>'.htmlspecialchars($value).'</li>';
+        }
+        echo '</dd>';
+    }
+    echo '</dl>';
 }
 ?>
 

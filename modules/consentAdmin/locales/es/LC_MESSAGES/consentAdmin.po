@@ -54,9 +54,6 @@ msgstr "(sin descripción)"
 msgid "{consentAdmin:consentadmin:service_providers_for}"
 msgstr "Proveedores de servicio para"
 
-msgid "{consentAdmin:consentadmin:sp_empty_name}"
-msgstr "(nombre no especificado)"
-
 msgid "{consentAdmin:consentadmin:consentadmin_description2}"
 msgstr ""
 "<h3>Como eliminar su consentimiento</h3> Desmarque la opción "
@@ -165,3 +162,5 @@ msgstr "Mostrar/ocultar atributos"
 msgid "Organisation"
 msgstr "Organización"
 
+msgid "Consent administration"
+msgstr "Administración del consentimiento"

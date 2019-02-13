@@ -1,5 +1,6 @@
 <?php
 
+namespace SimpleSAML\Error;
 
 /**
  * Class that wraps SimpleSAMLphp errors in exceptions.
@@ -7,7 +8,8 @@
  * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
-class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception
+
+class Error extends Exception
 {
     /**
      * The error code.
@@ -65,10 +67,10 @@ class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception
      * (with index 0), is the error code, while the other elements are replacements for the error text.
      *
      * @param mixed     $errorCode One of the error codes defined in the errors dictionary.
-     * @param Exception $cause The exception which caused this fatal error (if any). Optional.
+     * @param \Exception $cause The exception which caused this fatal error (if any). Optional.
      * @param int|null  $httpCode The HTTP response code to use. Optional.
      */
-    public function __construct($errorCode, Exception $cause = null, $httpCode = null)
+    public function __construct($errorCode, \Exception $cause = null, $httpCode = null)
     {
         assert(is_string($errorCode) || is_array($errorCode));
 
@@ -77,7 +79,7 @@ class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception
             unset($this->parameters[0]);
             $this->errorCode = $errorCode[0];
         } else {
-            $this->parameters = array();
+            $this->parameters = [];
             $this->errorCode = $errorCode;
         }
 
@@ -85,15 +87,8 @@ class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception
             $this->httpCode = $httpCode;
         }
 
-        $moduleCode = explode(':', $this->errorCode, 2);
-        if (count($moduleCode) === 2) {
-            $this->module = $moduleCode[0];
-            $this->dictTitle = '{'.$this->module.':errors:title_'.$moduleCode[1].'}';
-            $this->dictDescr = '{'.$this->module.':errors:descr_'.$moduleCode[1].'}';
-        } else {
-            $this->dictTitle = SimpleSAML\Error\ErrorCodes::getErrorCodeTitle($this->errorCode);
-            $this->dictDescr = SimpleSAML\Error\ErrorCodes::getErrorCodeDescription($this->errorCode);
-        }
+        $this->dictTitle = ErrorCodes::getErrorCodeTitle($this->errorCode);
+        $this->dictDescr = ErrorCodes::getErrorCodeDescription($this->errorCode);
 
         if (!empty($this->parameters)) {
             $msg = $this->errorCode.'(';
@@ -163,30 +158,7 @@ class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception
      */
     protected function setHTTPCode()
     {
-        // Some mostly used HTTP codes
-        $httpCodesMap = array(
-            400 => 'HTTP/1.0 400 Bad Request',
-            403 => 'HTTP/1.0 403 Forbidden',
-            404 => 'HTTP/1.0 404 Not Found',
-            405 => 'HTTP/1.0 405 Method Not Allowed',
-            500 => 'HTTP/1.0 500 Internal Server Error',
-            501 => 'HTTP/1.0 501 Method Not Implemented',
-            503 => 'HTTP/1.0 503 Service Temporarily Unavailable',
-        );
-
-        $httpCode = $this->httpCode;
-
-        if (function_exists('http_response_code')) {
-            http_response_code($httpCode);
-            return;
-        }
-
-        if (!array_key_exists($this->httpCode, $httpCodesMap)) {
-            $httpCode = 500;
-            SimpleSAML\Logger::warning('HTTP response code not defined: '.var_export($this->httpCode, true));
-        }
-
-        header($httpCodesMap[$httpCode]);
+        http_response_code($this->httpCode);
     }
 
 
@@ -202,10 +174,10 @@ class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception
         $etrace = implode("\n", $data);
 
         $reportId = bin2hex(openssl_random_pseudo_bytes(4));
-        SimpleSAML\Logger::error('Error report with id '.$reportId.' generated.');
+        \SimpleSAML\Logger::error('Error report with id '.$reportId.' generated.');
 
-        $config = SimpleSAML_Configuration::getInstance();
-        $session = SimpleSAML_Session::getSessionFromRequest();
+        $config = \SimpleSAML\Configuration::getInstance();
+        $session = \SimpleSAML\Session::getSessionFromRequest();
 
         if (isset($_SERVER['HTTP_REFERER'])) {
             $referer = $_SERVER['HTTP_REFERER'];
@@ -217,7 +189,7 @@ class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception
         } else {
             $referer = 'unknown';
         }
-        $errorData = array(
+        $errorData = [
             'exceptionMsg'   => $emsg,
             'exceptionTrace' => $etrace,
             'reportId'       => $reportId,
@@ -225,7 +197,7 @@ class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception
             'url'            => \SimpleSAML\Utils\HTTP::getSelfURLNoQuery(),
             'version'        => $config->getVersion(),
             'referer'        => $referer,
-        );
+        ];
         $session->setData('core:errorreport', $reportId, $errorData);
 
         return $errorData;
@@ -245,9 +217,9 @@ class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception
         $this->logError();
 
         $errorData = $this->saveError();
-        $config = SimpleSAML_Configuration::getInstance();
+        $config = \SimpleSAML\Configuration::getInstance();
 
-        $data = array();
+        $data = [];
         $data['showerrors'] = $config->getBoolean('showerrors', true);
         $data['error'] = $errorData;
         $data['errorCode'] = $this->errorCode;
@@ -268,7 +240,7 @@ class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception
         }
 
         $data['email'] = '';
-        $session = SimpleSAML_Session::getSessionFromRequest();
+        $session = \SimpleSAML\Session::getSessionFromRequest();
         $authorities = $session->getAuthorities();
         foreach ($authorities as $authority) {
             $attributes = $session->getAuthData($authority, 'Attributes');
@@ -284,7 +256,7 @@ class SimpleSAML_Error_Error extends SimpleSAML_Error_Exception
             call_user_func($show_function, $config, $data);
             assert(false);
         } else {
-            $t = new SimpleSAML_XHTML_Template($config, 'error.php', 'errors');
+            $t = new \SimpleSAML\XHTML\Template($config, 'error.php', 'errors');
             $t->data = array_merge($t->data, $data);
             $t->data['dictTitleTranslated'] = $t->getTranslator()->t($t->data['dictTitle']);
             $t->data['dictDescrTranslated'] = $t->getTranslator()->t($t->data['dictDescr'], $t->data['parameters']);

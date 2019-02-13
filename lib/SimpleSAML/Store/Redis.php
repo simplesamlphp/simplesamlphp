@@ -2,7 +2,7 @@
 
 namespace SimpleSAML\Store;
 
-use \SimpleSAML_Configuration as Configuration;
+use \SimpleSAML\Configuration;
 use \SimpleSAML\Store;
 
 /**
@@ -31,16 +31,17 @@ class Redis extends Store
             $host = $config->getString('store.redis.host', 'localhost');
             $port = $config->getInteger('store.redis.port', 6379);
             $prefix = $config->getString('store.redis.prefix', 'SimpleSAMLphp');
+            $password = $config->getString('store.redis.password', '');
 
             $redis = new \Predis\Client(
-                array(
+                [
                     'scheme' => 'tcp',
                     'host' => $host,
                     'port' => $port,
-                ),
-                array(
+                ] + (!empty($password) ? ['password' => $password] : []),
+                [
                     'prefix' => $prefix,
-                )
+                ]
             );
         }
 

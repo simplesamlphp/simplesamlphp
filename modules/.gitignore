@@ -4,10 +4,10 @@
 
 # Explicitly include modules that ship with simplesamlphp
 !/adfs/
+!/admin/
 !/authcrypt/
 !/authfacebook/
 !/authlinkedin/
-!/authmyspace/
 !/authorize/
 !/authtwitter/
 !/authwindowslive/
@@ -39,3 +39,6 @@
 !/smartattributes/
 !/sqlauth/
 !/statistics/
+
+*/enable
+*/disable

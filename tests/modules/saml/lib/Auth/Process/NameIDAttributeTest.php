@@ -1,4 +1,7 @@
 <?php
+
+namespace SimpleSAML\Test\Module\saml\Auth\Process;
+
 /**
  * Test for the saml:NameIDAttribute filter.
  *
@@ -7,6 +10,10 @@
  */
 
 use PHPUnit\Framework\TestCase;
+
+use SimpleSAML\Module\saml\Auth\Process\NameIDAttribute;
+use SAML2\XML\saml\NameID;
+use SAML2\Constants;
 
 class NameIDAttributeTest extends TestCase
 {
@@ -20,7 +27,7 @@ class NameIDAttributeTest extends TestCase
      */
     private function processFilter(array $config, array $request)
     {
-        $filter = new sspmod_saml_Auth_Process_NameIDAttribute($config, null);
+        $filter = new NameIDAttribute($config, null);
         $filter->process($request);
         return $request;
     }
@@ -31,26 +38,28 @@ class NameIDAttributeTest extends TestCase
      */
     public function testMinimalConfig()
     {
-        $config = array();
-
-        $nameId = new \SAML2\XML\saml\NameID();
-        $nameId->value = 'eugene@oombaas';
-        $nameId->Format = \SAML2\Constants::NAMEID_PERSISTENT;
-
+        $config = [];
         $spId = 'eugeneSP';
         $idpId = 'eugeneIdP';
 
-        $request = array(
-            'Source'     => array(
+
+        $nameId = new NameID();
+        $nameId->setValue('eugene@oombaas');
+        $nameId->setFormat(Constants::NAMEID_PERSISTENT);
+        $nameId->setNameQualifier($idpId);
+        $nameId->setSPNameQualifier($spId);
+
+        $request = [
+            'Source'     => [
                 'entityid' => $spId,
-            ),
-            'Destination' => array(
+            ],
+            'Destination' => [
                 'entityid' => $idpId,
-            ),
+            ],
             'saml:sp:NameID' => $nameId,
-        );
+        ];
         $result = $this->processFilter($config, $request);
-        $this->assertEquals("{$spId}!{$idpId}!{$nameId->value}", $result['Attributes']['nameid'][0]);
+        $this->assertEquals("{$spId}!{$idpId}!{$nameId->getValue()}", $result['Attributes']['nameid'][0]);
     }
 
     /**
@@ -59,27 +68,28 @@ class NameIDAttributeTest extends TestCase
     public function testCustomAttributeName()
     {
         $attributeName = 'eugeneNameIDAttribute';
-        $config = array('attribute' => $attributeName);
-
-        $nameId = new \SAML2\XML\saml\NameID();
-        $nameId->value = 'eugene@oombaas';
-        $nameId->Format = \SAML2\Constants::NAMEID_PERSISTENT;
-
+        $config = ['attribute' => $attributeName];
         $spId = 'eugeneSP';
         $idpId = 'eugeneIdP';
 
-        $request = array(
-            'Source'     => array(
+        $nameId = new NameID();
+        $nameId->setValue('eugene@oombaas');
+        $nameId->setFormat(Constants::NAMEID_PERSISTENT);
+        $nameId->setNameQualifier($idpId);
+        $nameId->setSPNameQualifier($spId);
+
+        $request = [
+            'Source'     => [
                 'entityid' => $spId,
-            ),
-            'Destination' => array(
+            ],
+            'Destination' => [
                 'entityid' => $idpId,
-            ),
+            ],
             'saml:sp:NameID' => $nameId,
-        );
+        ];
         $result = $this->processFilter($config, $request);
         $this->assertTrue(isset($result['Attributes'][$attributeName]));
-        $this->assertEquals("{$spId}!{$idpId}!{$nameId->value}", $result['Attributes'][$attributeName][0]);
+        $this->assertEquals("{$spId}!{$idpId}!{$nameId->getValue()}", $result['Attributes'][$attributeName][0]);
     }
 
     /**
@@ -87,26 +97,27 @@ class NameIDAttributeTest extends TestCase
      */
     public function testFormat()
     {
-        $config = array('format' => '%V');
-
-        $nameId = new \SAML2\XML\saml\NameID();
-        $nameId->value = 'eugene@oombaas';
-        $nameId->Format = \SAML2\Constants::NAMEID_PERSISTENT;
-
+        $config = ['format' => '%V'];
         $spId = 'eugeneSP';
         $idpId = 'eugeneIdP';
 
-        $request = array(
-            'Source'     => array(
+        $nameId = new NameID();
+        $nameId->setValue('eugene@oombaas');
+        $nameId->setFormat(Constants::NAMEID_PERSISTENT);
+        $nameId->setNameQualifier($idpId);
+        $nameId->setSPNameQualifier($spId);
+
+        $request = [
+            'Source'     => [
                 'entityid' => $spId,
-            ),
-            'Destination' => array(
+            ],
+            'Destination' => [
                 'entityid' => $idpId,
-            ),
+            ],
             'saml:sp:NameID' => $nameId,
-        );
+        ];
         $result = $this->processFilter($config, $request);
-        $this->assertEquals("{$nameId->value}", $result['Attributes']['nameid'][0]);
+        $this->assertEquals("{$nameId->getValue()}", $result['Attributes']['nameid'][0]);
     }
 
 
@@ -116,26 +127,27 @@ class NameIDAttributeTest extends TestCase
     public function testCustomAttributeNameAndFormat()
     {
         $attributeName = 'eugeneNameIDAttribute';
-        $config = array('attribute' => $attributeName, 'format' => '%V');
-
-        $nameId = new \SAML2\XML\saml\NameID();
-        $nameId->value = 'eugene@oombaas';
-        $nameId->Format = \SAML2\Constants::NAMEID_PERSISTENT;
-
+        $config = ['attribute' => $attributeName, 'format' => '%V'];
         $spId = 'eugeneSP';
         $idpId = 'eugeneIdP';
 
-        $request = array(
-            'Source'     => array(
+        $nameId = new NameID();
+        $nameId->setValue('eugene@oombaas');
+        $nameId->setFormat(Constants::NAMEID_PERSISTENT);
+        $nameId->setNameQualifier($idpId);
+        $nameId->setSPNameQualifier($spId);
+
+        $request = [
+            'Source'     => [
                 'entityid' => $spId,
-            ),
-            'Destination' => array(
+            ],
+            'Destination' => [
                 'entityid' => $idpId,
-            ),
+            ],
             'saml:sp:NameID' => $nameId,
-        );
+        ];
         $result = $this->processFilter($config, $request);
         $this->assertTrue(isset($result['Attributes'][$attributeName]));
-        $this->assertEquals("{$nameId->value}", $result['Attributes'][$attributeName][0]);
+        $this->assertEquals("{$nameId->getValue()}", $result['Attributes'][$attributeName][0]);
     }
 }

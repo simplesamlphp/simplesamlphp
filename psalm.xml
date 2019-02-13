@@ -1,7 +1,6 @@
 <?xml version="1.0"?>
 <psalm
     name="SimpleSAMLphp"
-    stopOnFirstError="false"
     useDocblockTypes="true"
     totallyTyped="false"
 >
@@ -23,8 +22,9 @@
 
         <PropertyNotSetInConstructor errorLevel="info" />
         <MissingConstructor errorLevel="info" />
+        <MissingClosureParamType errorLevel="info" />
+        <MissingParamType errorLevel="info" />
         <UnusedClass errorLevel="info" />
         <PossiblyUnusedMethod errorLevel="info" />
-        <UntypedParam errorLevel="info" />
     </issueHandlers>
 </psalm>

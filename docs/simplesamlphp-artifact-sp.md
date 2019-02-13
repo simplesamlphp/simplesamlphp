@@ -11,7 +11,7 @@ This is used for SSL client authentication when contacting the IdP.
 
 To generate a private key and certificate, you may use the `openssl` commandline utility:
 
-    openssl req -newkey rsa:2048 -new -x509 -days 3652 -nodes -out sp.example.org.crt -keyout sp.example.org.pem
+    openssl req -newkey rsa:3072 -new -x509 -days 3652 -nodes -out sp.example.org.crt -keyout sp.example.org.pem
 
 You can then add the private key and certificate to the SP configuration.
 When this is done, you can add the metadata of your SP to the IdP, and test the authentication.
@@ -19,11 +19,11 @@ When this is done, you can add the metadata of your SP to the IdP, and test the 
 Example configuration
 ---------------------
 
-    'artifact-sp' => array(
+    'artifact-sp' => [
         'saml:SP',
         'ProtocolBinding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact',
         'privatekey' => 'sp.example.org.pem',
         'certificate' => 'sp.example.org.crt',
-    ),
+    ],
 
 See the [SP configuration reference](./saml:sp) for a description of the options.

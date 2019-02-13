@@ -5,18 +5,18 @@
 $baseDir = dirname(dirname(dirname(dirname(__FILE__))));
 
 // Add library autoloader.
-require_once($baseDir . '/lib/_autoload.php');
+require_once($baseDir.'/lib/_autoload.php');
 
 // Initialize the configuration.
-$configdir = SimpleSAML\Utils\Config::getConfigDir();
-SimpleSAML_Configuration::setConfigDir($configdir);
-SimpleSAML\Utils\Time::initTimezone();
+$configdir = \SimpleSAML\Utils\Config::getConfigDir();
+\SimpleSAML\Configuration::setConfigDir($configdir);
+\SimpleSAML\Utils\Time::initTimezone();
 
 $progName = array_shift($argv);
 $debug = false;
 $dryrun = false;
 
-foreach($argv as $a) {
+foreach ($argv as $a) {
     if (strlen($a) === 0) {
         continue;
     }
@@ -29,7 +29,7 @@ foreach($argv as $a) {
     }
 
     // Map short options to long options.
-    $shortOptMap = array('-d' => '--debug');
+    $shortOptMap = ['-d' => '--debug'];
     if (array_key_exists($a, $shortOptMap)) {
         $a = $shortOptMap[$a];
     }
@@ -44,13 +44,13 @@ foreach($argv as $a) {
             $dryrun = true;
             break;
         default:
-            echo('Unknown option: ' . $a . "\n");
-            echo('Please run `' . $progName . ' --help` for usage information.' . "\n");
+            echo 'Unknown option: '.$a."\n";
+            echo 'Please run `'.$progName.' --help` for usage information.'."\n";
             exit(1);
     }
 }
 
-$aggregator = new sspmod_statistics_Aggregator(true);
+$aggregator = new \SimpleSAML\Module\statistics\Aggregator(true);
 $aggregator->dumpConfig();
 $aggregator->debugInfo();
 $results = $aggregator->aggregate($debug);
@@ -60,9 +60,9 @@ if (!$dryrun) {
     $aggregator->store($results);
 }
 
-foreach ($results AS $slot => $val) {
-    foreach ($val AS $sp => $no) {
-        echo $sp . " " . count($no) . " - ";
+foreach ($results as $slot => $val) {
+    foreach ($val as $sp => $no) {
+        echo $sp." ".count($no)." - ";
     }
     echo "\n";
 }
@@ -72,7 +72,8 @@ foreach ($results AS $slot => $val) {
  * This function prints the help output.
  */
 
-function printHelp() {
+function printHelp()
+{
     global $progName;
 
     echo <<<END
@@ -84,6 +85,4 @@ Options:
  -d, --debug			Used when configuring the log file syntax. See doc.
  --dry-run			Aggregate but do not store the results.
 END;
-
 }
-

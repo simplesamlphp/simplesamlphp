@@ -20,12 +20,12 @@ Getting Started
 ---------------
 If you are just using the already configured database, which would normally be the case, all you need to do is get the global instance of the Database class.
 
-	$db = SimpleSAML\Database::getInstance();
+	$db = \SimpleSAML\Database::getInstance();
 
 If there is a requirement to connect to an alternate database server (ex. authenticating users that exist on a different SQL server or database) you can specify an alternate configuration.
 
-	$config = new SimpleSAML_Configuration($myconfigarray, "mymodule/lib/Auth/Source/myauth.php");
-	$db = SimpleSAML\Database::getInstance($config);
+	$config = new \SimpleSAML\Configuration($myconfigarray, "mymodule/lib/Auth/Source/myauth.php");
+	$db = \SimpleSAML\Database::getInstance($config);
 
 That will create a new instance of the database, separate from the global instance, specific to the configuration defined in $myconfigarray. If you are going to specify an alternate config, your configuration array must contain the same keys that exist in the master config (database.dsn, database.username, database.password, database.prefix, etc).
 
@@ -47,20 +47,20 @@ Since the database class allows administrators to configure master and slave dat
 The write function takes 2 parameters: SQL, params.
 
 	$table = $db->applyPrefix("test");
-	$values = array(
+	$values = [
 		'id' => 20,
 		'data' => 'Some data',
-	);
+	];
 	
 	$query = $db->write("INSERT INTO $table (id, data) VALUES (:id, :data)", $values);
 
 The values specified in the $values array will be bound to the placeholders and will be executed on the master. By default, values are binded as PDO::PARAM_STR. If you need to override this, you can specify it in the values array.
 
 	$table = $db->applyPrefix("test");
-	$values = array(
-		'id' => array(20, PDO::PARAM_INT),
+	$values = [
+		'id' => [20, PDO::PARAM_INT],
 		'data' => 'Some data',
-	);
+	];
 	
 	$query = $db->write("INSERT INTO $table (id, data) VALUES (:id, :data)", $values);
 
@@ -75,17 +75,17 @@ Since the database class allows administrators to configure master and slave dat
 The read function takes 2 parameters: SQL, params.
 
 	$table = $db->applyPrefix("test");
-	$values = array(
+	$values = [
 		'id' => 20,
-	);
+	];
 	
 	$query = $db->read("SELECT * FROM $table WHERE id = :id", $values);
 
 The values specified in the $values array will be bound to the placeholders and will be executed on the selected slave. By default, values are binded as PDO::PARAM_STR. If you need to override this, you can specify it in the values array.
 
 	$table = $db->applyPrefix("test");
-	$values = array(
-		'id' => array(20, PDO::PARAM_INT),
-	);
+	$values = [
+		'id' => [20, PDO::PARAM_INT],
+	];
 	
 	$query = $db->read("SELECT * FROM $table WHERE id = :id", $values);

@@ -19,14 +19,13 @@ use SimpleSAML\XML\Signer;
 
 class HTTPPost
 {
-
     /**
-     * @var \SimpleSAML_Configuration
+     * @var \SimpleSAML\Configuration
      */
     private $configuration = null;
 
     /**
-     * @var \SimpleSAML_Metadata_MetaDataStorageHandler
+     * @var \SimpleSAML\Metadata\MetaDataStorageHandler
      */
     private $metadata = null;
 
@@ -34,12 +33,12 @@ class HTTPPost
     /**
      * Constructor for the \SimpleSAML\Bindings\Shib13\HTTPPost class.
      *
-     * @param \SimpleSAML_Configuration                   $configuration The configuration to use.
-     * @param \SimpleSAML_Metadata_MetaDataStorageHandler $metadatastore A store where to find metadata.
+     * @param \SimpleSAML\Configuration                   $configuration The configuration to use.
+     * @param \SimpleSAML\Metadata\MetaDataStorageHandler $metadatastore A store where to find metadata.
      */
     public function __construct(
-        \SimpleSAML_Configuration $configuration,
-        \SimpleSAML_Metadata_MetaDataStorageHandler $metadatastore
+        \SimpleSAML\Configuration $configuration,
+        \SimpleSAML\Metadata\MetaDataStorageHandler $metadatastore
     ) {
         $this->configuration = $configuration;
         $this->metadata = $metadatastore;
@@ -50,15 +49,15 @@ class HTTPPost
      * Send an authenticationResponse using HTTP-POST.
      *
      * @param string                    $response The response which should be sent.
-     * @param \SimpleSAML_Configuration $idpmd The metadata of the IdP which is sending the response.
-     * @param \SimpleSAML_Configuration $spmd The metadata of the SP which is receiving the response.
+     * @param \SimpleSAML\Configuration $idpmd The metadata of the IdP which is sending the response.
+     * @param \SimpleSAML\Configuration $spmd The metadata of the SP which is receiving the response.
      * @param string|null               $relayState The relaystate for the SP.
      * @param string                    $shire The shire which should receive the response.
      */
     public function sendResponse(
         $response,
-        \SimpleSAML_Configuration $idpmd,
-        \SimpleSAML_Configuration $spmd,
+        \SimpleSAML\Configuration $idpmd,
+        \SimpleSAML\Configuration $spmd,
         $relayState,
         $shire
     ) {
@@ -89,11 +88,11 @@ class HTTPPost
             $signResponse = true;
         }
 
-        $signer = new Signer(array(
+        $signer = new Signer([
             'privatekey_array' => $privatekey,
             'publickey_array'  => $publickey,
             'id'               => ($signResponse ? 'ResponseID' : 'AssertionID'),
-        ));
+        ]);
 
         if ($idpmd->hasValue('certificatechain')) {
             $signer->addCertificate($idpmd->getString('certificatechain'));
@@ -114,10 +113,10 @@ class HTTPPost
 
         XML::debugSAMLMessage($response, 'out');
 
-        HTTP::submitPOSTData($shire, array(
+        HTTP::submitPOSTData($shire, [
             'TARGET'       => $relayState,
             'SAMLResponse' => base64_encode($response),
-        ));
+        ]);
     }
 
 

@@ -3,7 +3,7 @@
 namespace SimpleSAML\Test\Store;
 
 use PHPUnit\Framework\TestCase;
-use \SimpleSAML_Configuration as Configuration;
+use \SimpleSAML\Configuration;
 use \SimpleSAML\Store;
 
 /**
@@ -19,11 +19,11 @@ class SQLTest extends TestCase
 {
     protected function setUp()
     {
-        \SimpleSAML_Configuration::loadFromArray(array(
+        Configuration::loadFromArray([
             'store.type'                    => 'sql',
             'store.sql.dsn'                 => 'sqlite::memory:',
             'store.sql.prefix'              => 'phpunit_',
-        ), '[ARRAY]', 'simplesaml');
+        ], '[ARRAY]', 'simplesaml');
     }
 
     /**
@@ -176,7 +176,7 @@ class SQLTest extends TestCase
         $config = Configuration::getInstance();
         $store = Store::getInstance();
 
-        $this->clearInstance($config, '\SimpleSAML_Configuration');
+        $this->clearInstance($config, '\SimpleSAML\Configuration');
         $this->clearInstance($store, '\SimpleSAML\Store');
     }
 

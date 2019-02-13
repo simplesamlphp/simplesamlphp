@@ -22,7 +22,7 @@ msgid "{core:no_state:report_text}"
 msgstr "If dit probleem behoud, dan kun je het melden aan de systeem beheerders."
 
 msgid "{core:no_state:cause_backforward}"
-msgstr "Gebruik de Volgende en Terug knoppen in de web browser."
+msgstr "Gebruik van de 'Volgende'- en 'Terug'-knoppen in de web browser."
 
 msgid "{core:no_metadata:not_found_for}"
 msgstr "De metadata voor de volgende entity kon niet gevonden worden:"
@@ -35,6 +35,9 @@ msgstr "Suggesties om dit probleem op te lossen:"
 
 msgid "{core:frontpage:login_as_admin}"
 msgstr "Login als beheerder"
+
+msgid "{core:frontpage:logout}"
+msgstr "Uitloggen"
 
 msgid "{core:short_sso_interval:warning}"
 msgstr ""
@@ -56,6 +59,9 @@ msgstr "Installatie van SimpleSAMLphp"
 
 msgid "{core:frontpage:link_diagnostics}"
 msgstr "Inspectie op hostnaam, poort en protocol"
+
+msgid "{core:no_state:suggestion_badlink}"
+msgstr "Controleer of u de juiste link gebruikt om de website te benaderen."
 
 msgid "{core:no_state:suggestion_goback}"
 msgstr "Ga terug naar de vorige pagina, en probeer opnieuw."
@@ -137,6 +143,9 @@ msgstr ""
 "snel mogelijk te upgraden naar <a href=\"%LATEST_URL%\">de meest recente "
 "versie</a>."
 
+msgid "{core:frontpage:warnings_curlmissing}"
+msgstr "PHP cURL-extensie ontbreekt. Kan niet controleren op updates voor SimpleSAMLphp."
+
 msgid "{core:frontpage:loggedin_as_admin}"
 msgstr "Je bent ingelogd als beheerder"
 
@@ -204,6 +213,9 @@ msgstr "Federatie"
 
 msgid "{core:frontpage:required_radius}"
 msgstr "Vereist voor Radius"
+
+msgid "{core:no_state:cause_badlink}"
+msgstr "Verkeerde link gebruikt, bijvoorbeeld een bookmark (bladwijzer)."
 
 msgid "{core:no_state:cause_openbrowser}"
 msgstr "Web browser geopend met tabs opgeslagen van de vorige sessie."
@@ -342,7 +354,7 @@ msgid "Configure Shibboleth 1.3 SP to work with SimpleSAMLphp IdP"
 msgstr "Configureer een Shibboleth 1.3 SP voor de SimpleSAMLphp IdP"
 
 msgid "Using the back and forward buttons in the web browser."
-msgstr "Gebruik de Volgende en Terug knoppen in de web browser."
+msgstr "Gebruik van de 'Volgende'- en 'Terug'-knoppen in de web browser."
 
 msgid ""
 "You are running an outdated version of SimpleSAMLphp. Please update to <a"

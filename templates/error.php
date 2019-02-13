@@ -68,7 +68,7 @@ if (isset($this->data['errorReportAddress'])) {
     <h2 style="clear: both"><?php echo $this->t('howto_header'); ?></h2>
     <p><?php echo $this->t('howto_text'); ?></p>
     <script type="text/javascript">
-        var clipboard = new Clipboard('#btntrackid');
+        var clipboard = new ClipboardJS('#btntrackid');
     </script>
 <?php
 $this->includeAtTemplateBase('includes/footer.php');

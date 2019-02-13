@@ -54,9 +54,6 @@ msgstr "(deskribapenik gabe)"
 msgid "{consentAdmin:consentadmin:service_providers_for}"
 msgstr "Zerbitzu hornitzaileak hontarako: "
 
-msgid "{consentAdmin:consentadmin:sp_empty_name}"
-msgstr "(izena ez da zehaztu)"
-
 msgid "{consentAdmin:consentadmin:consentadmin_description2}"
 msgstr ""
 "<h3>Zure onespena nola ezabatu</h3> Zerbitzu hornitzaileari dagokion "

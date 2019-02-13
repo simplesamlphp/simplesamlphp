@@ -9,18 +9,18 @@ class Cron
 {
     /**
      * The configuration for the Cron module
-     * @var \SimpleSAML_Configuration
+     * @var \SimpleSAML\Configuration
      */
     private $cronconfig;
 
     /*
-     * @param \SimpleSAML_Configuration $cronconfig The cron configuration to use. If not specified defaults
+     * @param \SimpleSAML\Configuration $cronconfig The cron configuration to use. If not specified defaults
      * to `config/module_cron.php`
      */
-    public function __construct(\SimpleSAML_Configuration $cronconfig = null)
+    public function __construct(\SimpleSAML\Configuration $cronconfig = null)
     {
         if ($cronconfig == null) {
-            $cronconfig = \SimpleSAML_Configuration::getConfig('module_cron.php');
+            $cronconfig = \SimpleSAML\Configuration::getConfig('module_cron.php');
         }
         $this->cronconfig = $cronconfig;
     }
@@ -38,16 +38,16 @@ class Cron
             throw new \Exception("Invalid cron tag '$tag''");
         }
 
-        $summary = array();
-        $croninfo = array(
+        $summary = [];
+        $croninfo = [
             'summary' => &$summary,
             'tag' => $tag,
-        );
+        ];
 
         \SimpleSAML\Module::callHooks('cron', $croninfo);
 
         foreach ($summary as $s) {
-            \SimpleSAML\Logger::debug('Cron - Summary: ' . $s);
+            \SimpleSAML\Logger::debug('Cron - Summary: '.$s);
         }
 
         return $croninfo;

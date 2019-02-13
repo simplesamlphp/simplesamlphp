@@ -44,6 +44,9 @@ msgstr "Toestandsinformatie verloren"
 msgid "{login:username}"
 msgstr "Gebruikersnaam"
 
+msgid "Back"
+msgstr "Terug"
+
 msgid "{errors:title_METADATA}"
 msgstr "Fout bij het laden van metadata"
 
@@ -151,14 +154,14 @@ msgstr ""
 
 msgid "{errors:descr_METADATA}"
 msgstr ""
-"SimplSAMLphp is niet goed geconfigureerd. De beheerder van deze dienst "
+"SimpleSAMLphp is niet goed geconfigureerd. De beheerder van deze dienst "
 "dient de metadata configuratie te controleren."
 
 msgid "{attributes:attribute_edupersonorgdn}"
 msgstr "Distinguished name (DN) van de organisatie van de persoon"
 
 msgid "{errors:title_BADREQUEST}"
-msgstr "Incorrect request ontvangen"
+msgstr "Incorrecte request ontvangen"
 
 msgid "{status:sessionsize}"
 msgstr "Sessiegrootte: %SIZE%"
@@ -1537,7 +1540,7 @@ msgid ""
 " are the administrator of this service, you should make sure your "
 "metadata configuration is correctly setup."
 msgstr ""
-"SimplSAMLphp is niet goed geconfigureerd. De beheerder van deze dienst "
+"SimpleSAMLphp is niet goed geconfigureerd. De beheerder van deze dienst "
 "dient de metadata configuratie te controleren."
 
 msgid "Incorrect username or password"
@@ -1667,3 +1670,14 @@ msgstr ""
 "Je hebt de Assertion Consumer Service interface aangeroepen, maar hebt "
 "geen SAML Authentication Response meegestuurd."
 
+
+msgid ""
+"You are now accessing a pre-production system. This authentication setup "
+"is for testing and pre-production verification only. If someone sent you "
+"a link that pointed you here, and you are not <i>a tester</i> you "
+"probably got the wrong link, and should <b>not be here</b>."
+msgstr ""
+"Je gaat nu een pre-productiesysteem gebruiken. Deze authenticatie is "
+"uitsluitend opgezet voor testen en pre-productie-verfificatie. Als iemand"
+" je een link hierheen stuurde, en je bent geen <i>tester</i>, dan is dit "
+"waarschijlijk een vergissing en zou je <b>niet hier moeten zijn</b>."

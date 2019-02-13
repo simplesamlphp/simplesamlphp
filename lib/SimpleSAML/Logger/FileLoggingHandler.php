@@ -25,7 +25,7 @@ class FileLoggingHandler implements LoggingHandlerInterface
      * This array contains the mappings from syslog log levels to names. Copied more or less directly from
      * SimpleSAML\Logger\ErrorLogLoggingHandler.
      */
-    private static $levelNames = array(
+    private static $levelNames = [
         Logger::EMERG   => 'EMERGENCY',
         Logger::ALERT   => 'ALERT',
         Logger::CRIT    => 'CRITICAL',
@@ -34,7 +34,7 @@ class FileLoggingHandler implements LoggingHandlerInterface
         Logger::NOTICE  => 'NOTICE',
         Logger::INFO    => 'INFO',
         Logger::DEBUG   => 'DEBUG',
-    );
+    ];
     protected $processname = null;
     protected $format;
 
@@ -42,7 +42,7 @@ class FileLoggingHandler implements LoggingHandlerInterface
     /**
      * Build a new logging handler based on files.
      */
-    public function __construct(\SimpleSAML_Configuration $config)
+    public function __construct(\SimpleSAML\Configuration $config)
     {
         // get the metadata handler option from the configuration
         $this->logFile = $config->getPathValue('loggingdir', 'log/').
@@ -92,10 +92,10 @@ class FileLoggingHandler implements LoggingHandlerInterface
                 $levelName = self::$levelNames[$level];
             }
 
-            $formats = array('%process', '%level');
-            $replacements = array($this->processname, $levelName);
+            $formats = ['%process', '%level'];
+            $replacements = [$this->processname, $levelName];
 
-            $matches = array();
+            $matches = [];
             if (preg_match('/%date(?:\{([^\}]+)\})?/', $this->format, $matches)) {
                 $format = "%b %d %H:%M:%S";
                 if (isset($matches[1])) {
@@ -107,7 +107,7 @@ class FileLoggingHandler implements LoggingHandlerInterface
             }
 
             $string = str_replace($formats, $replacements, $string);
-            file_put_contents($this->logFile, $string.PHP_EOL, FILE_APPEND);
+            file_put_contents($this->logFile, $string.\PHP_EOL, FILE_APPEND);
         }
     }
 }

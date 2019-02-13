@@ -54,9 +54,6 @@ msgstr "(nincs leírás)"
 msgid "{consentAdmin:consentadmin:service_providers_for}"
 msgstr "Szolgáltató"
 
-msgid "{consentAdmin:consentadmin:sp_empty_name}"
-msgstr "(nincs név)"
-
 msgid "{consentAdmin:consentadmin:consentadmin_description2}"
 msgstr ""
 "<h3>Hogyan kell visszavonni egy hozzájárulást?</h3> A szolgáltatóhoz "

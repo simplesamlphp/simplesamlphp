@@ -1,6 +1,8 @@
 <?php
 
-class sspmod_statistics_Statistics_FieldPresentation_Base
+namespace SimpleSAML\Module\statistics\Statistics\FieldPresentation;
+
+class Base
 {
     protected $fields;
     protected $template;
@@ -15,6 +17,6 @@ class sspmod_statistics_Statistics_FieldPresentation_Base
 
     public function getPresentation()
     {
-        return array('_' => 'Total');
+        return ['_' => 'Total'];
     }
 }

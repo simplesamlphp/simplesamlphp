@@ -99,6 +99,7 @@ You can put resource files within the www folder of your module, to make your mo
 ```
 modules
 └───mymodule
+    └───lib
     └───themes
     └───www
         └───logo.png
@@ -128,7 +129,14 @@ If you need to make more extensive customizations to the base template, you shou
 
 	cp templates/base.twig modules/mymodule/themes/fancytheme/default/
 
-Any references to `$this->data['baseurlpath']` in old-style templates can be replaced with `{{baseurlpath}}` in Twig templates. Likewise, references to `SimpleSAML_Module::getModuleURL()` can be replaced with `{{baseurlpath}}module.php/mymodule/...`
+Any references to `$this->data['baseurlpath']` in old-style templates can be replaced with `{{baseurlpath}}` in Twig templates. Likewise, references to `\SimpleSAML\Module::getModuleURL()` can be replaced with `{{baseurlpath}}module.php/mymodule/...`
+
+Even more advanced changes can be made by defining a theme controller in `config.php`:
+
+    'theme.controller' => '\SimpleSAML\Module\mymodule\FancyThemeController',
+
+This requires you to implement `\SimpleSAML\XHTML\TemplateControllerInterface.php` in your module's `lib`-directory.
+The class can then modify the Twig Environment and the variables passed to the theme's templates. In short, this allows you to set additional global variables and to write your own Twig filters and functions.
 
 See the [Twig documentation](https://twig.symfony.com/doc/1.x/templates.html) for more information on using variables and expressions in Twig templates, and the SimpleSAMLphp wiki for [our conventions](https://github.com/simplesamlphp/simplesamlphp/wiki/Twig-conventions).
 

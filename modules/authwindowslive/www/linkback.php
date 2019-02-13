@@ -5,9 +5,12 @@
  */
 
 if (!array_key_exists('state', $_REQUEST)) {
-    throw new Exception('Lost OAuth Client State');
+    throw new \Exception('Lost OAuth Client State');
 }
-$state = SimpleSAML_Auth_State::loadState($_REQUEST['state'], sspmod_authwindowslive_Auth_Source_LiveID::STAGE_INIT);
+$state = \SimpleSAML\Auth\State::loadState(
+    $_REQUEST['state'],
+    \SimpleSAML\Module\authwindowslive\Auth\Source\LiveID::STAGE_INIT
+);
 
 // http://msdn.microsoft.com/en-us/library/ff749771.aspx
 if (array_key_exists('code', $_REQUEST)) {
@@ -24,23 +27,23 @@ if (array_key_exists('code', $_REQUEST)) {
     // to preserve support for this, so this is left in as a placeholder.
     // redirect them to their original page so they can choose another auth mechanism
     if ($_REQUEST['error'] === 'user_denied') {
-        $e = new SimpleSAML_Error_UserAborted();
-        SimpleSAML_Auth_State::throwException($state, $e);
+        $e = new \SimpleSAML\Error\UserAborted();
+        \SimpleSAML\Auth\State::throwException($state, $e);
     }
 
     // error
-    throw new Exception('Authentication failed: ['.$_REQUEST['error'].'] '.$_REQUEST['error_description']);
+    throw new \Exception('Authentication failed: ['.$_REQUEST['error'].'] '.$_REQUEST['error_description']);
 }
 
 // find authentication source
-assert(array_key_exists(sspmod_authwindowslive_Auth_Source_LiveID::AUTHID, $state));
-$sourceId = $state[sspmod_authwindowslive_Auth_Source_LiveID::AUTHID];
+assert(array_key_exists(\SimpleSAML\Module\authwindowslive\Auth\Source\LiveID::AUTHID, $state));
+$sourceId = $state[\SimpleSAML\Module\authwindowslive\Auth\Source\LiveID::AUTHID];
 
-$source = SimpleSAML_Auth_Source::getById($sourceId);
+$source = \SimpleSAML\Auth\Source::getById($sourceId);
 if ($source === null) {
-    throw new Exception('Could not find authentication source with id '.$sourceId);
+    throw new \Exception('Could not find authentication source with id '.$sourceId);
 }
 
 $source->finalStep($state);
 
-SimpleSAML_Auth_Source::completeAuth($state);
+\SimpleSAML\Auth\Source::completeAuth($state);

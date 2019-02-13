@@ -1,5 +1,7 @@
 <?php
 
+namespace SimpleSAML\Error;
+
 /**
  * Exception which will show a 404 Not Found error page.
  *
@@ -9,10 +11,9 @@
  * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
-class SimpleSAML_Error_NotFound extends SimpleSAML_Error_Error
+
+class NotFound extends Error
 {
-
-
     /**
      * Reason why the given page could not be found.
      */
@@ -26,16 +27,15 @@ class SimpleSAML_Error_NotFound extends SimpleSAML_Error_Error
      */
     public function __construct($reason = null)
     {
-
         assert($reason === null || is_string($reason));
 
         $url = \SimpleSAML\Utils\HTTP::getSelfURL();
 
         if ($reason === null) {
-            parent::__construct(array('NOTFOUND', '%URL%' => $url));
+            parent::__construct(['NOTFOUND', '%URL%' => $url]);
             $this->message = "The requested page '$url' could not be found.";
         } else {
-            parent::__construct(array('NOTFOUNDREASON', '%URL%' => $url, '%REASON%' => $reason));
+            parent::__construct(['NOTFOUNDREASON', '%URL%' => $url, '%REASON%' => $reason]);
             $this->message = "The requested page '$url' could not be found. ".$reason;
         }
 
@@ -65,8 +65,8 @@ class SimpleSAML_Error_NotFound extends SimpleSAML_Error_Error
      */
     public function format($anonymize = false)
     {
-        return array(
+        return [
             $this->getClass().': '.$this->getMessage(),
-        );
+        ];
     }
 }

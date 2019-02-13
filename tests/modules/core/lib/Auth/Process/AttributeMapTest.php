@@ -1,11 +1,13 @@
 <?php
 
+namespace SimpleSAML\Test\Module\core\Auth\Process;
+
 use PHPUnit\Framework\TestCase;
 
 /**
  * Test for the core:AttributeMap filter.
  */
-class Test_Core_Auth_Process_AttributeMap extends TestCase
+class AttributeMapTest extends TestCase
 {
     /**
      * Helper function to run the filter with a given configuration.
@@ -16,7 +18,7 @@ class Test_Core_Auth_Process_AttributeMap extends TestCase
      */
     private static function processFilter(array $config, array $request)
     {
-        $filter = new sspmod_core_Auth_Process_AttributeMap($config, null);
+        $filter = new \SimpleSAML\Module\core\Auth\Process\AttributeMap($config, null);
         $filter->process($request);
         return $request;
     }
@@ -108,6 +110,51 @@ class Test_Core_Auth_Process_AttributeMap extends TestCase
         $this->assertEquals($expected, $result);
     }
 
+    public function testCircular()
+    {
+        $config = [
+            'attribute1' => 'attribute1',
+            'attribute2' => 'attribute2',
+        ];
+        $request = [
+            'Attributes' => [
+                'attribute1' => ['value'],
+                'attribute2' => ['value'],
+            ],
+        ];
+
+        $processed = self::processFilter($config, $request);
+        $result = $processed['Attributes'];
+        $expected = [
+            'attribute1' => ['value'],
+            'attribute2' => ['value'],
+        ];
+
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testMissingMap()
+    {
+        $config = [
+            'attribute1' => 'attribute3',
+        ];
+        $request = [
+            'Attributes' => [
+                'attribute1' => ['value'],
+                'attribute2' => ['value'],
+            ],
+        ];
+
+        $processed = self::processFilter($config, $request);
+        $result = $processed['Attributes'];
+        $expected = [
+            'attribute2' => ['value'],
+            'attribute3' => ['value'],
+        ];
+
+        $this->assertEquals($expected, $result);
+    }
+
     public function testInvalidOriginalAttributeType()
     {
         $config = [
@@ -151,5 +198,47 @@ class Test_Core_Auth_Process_AttributeMap extends TestCase
 
         $this->setExpectedException('\Exception');
         self::processFilter($config, $request);
+    }
+
+    public function testOverwrite()
+    {
+        $config = [
+            'attribute1' => 'attribute2',
+        ];
+        $request = [
+            'Attributes' => [
+                'attribute1' => ['value1'],
+                'attribute2' => ['value2'],
+            ],
+        ];
+
+        $processed = self::processFilter($config, $request);
+        $result = $processed['Attributes'];
+        $expected = [
+            'attribute2' => ['value1'],
+        ];
+
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testOverwriteReversed()
+    {
+        $config = [
+            'attribute1' => 'attribute2',
+        ];
+        $request = [
+            'Attributes' => [
+                'attribute2' => ['value2'],
+                'attribute1' => ['value1'],
+            ],
+        ];
+
+        $processed = self::processFilter($config, $request);
+        $result = $processed['Attributes'];
+        $expected = [
+            'attribute2' => ['value1'],
+        ];
+
+        $this->assertEquals($expected, $result);
     }
 }

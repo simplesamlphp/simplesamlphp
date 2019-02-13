@@ -22,5 +22,8 @@
 	},
 	"cron_report_title": {
 		"en": "Cron report"
+	},
+	"link_cron": {
+		"en": "Cron module information page"
 	}
 }

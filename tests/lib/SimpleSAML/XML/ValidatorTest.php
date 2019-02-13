@@ -3,7 +3,7 @@
 namespace SimpleSAML\Test\XML;
 
 use PHPUnit\Framework\TestCase;
-use \SimpleSAML_Configuration as Configuration;
+use \SimpleSAML\Configuration;
 use \SimpleSAML\XML\Signer;
 use \SimpleSAML\XML\Validator;
 
@@ -147,14 +147,14 @@ NOWDOC;
         $this->root = vfsStream::setup(
             self::ROOTDIRNAME,
             null,
-            array(
-                self::DEFAULTCERTDIR => array(
+            [
+                self::DEFAULTCERTDIR => [
                     self::CA_PRIVATE_KEY => $this->ca_private_key,
                     self::CA_CERTIFICATE => $this->ca_certificate,
                     self::GOOD_PRIVATE_KEY => $this->good_private_key,
                     self::GOOD_CERTIFICATE => $this->good_certificate,
-                ),
-            )
+                ],
+            ]
         );
         $this->root_directory = vfsStream::url(self::ROOTDIRNAME);
 
@@ -164,14 +164,14 @@ NOWDOC;
         $this->good_private_key_file = $this->certdir.DIRECTORY_SEPARATOR.self::GOOD_PRIVATE_KEY;
         $this->good_certificate_file = $this->certdir.DIRECTORY_SEPARATOR.self::GOOD_CERTIFICATE;
 
-        $this->config = Configuration::loadFromArray(array(
+        $this->config = Configuration::loadFromArray([
             'certdir' => $this->certdir,
-        ), '[ARRAY]', 'simplesaml');
+        ], '[ARRAY]', 'simplesaml');
     }
 
     public function tearDown()
     {
-        $this->clearInstance($this->config, '\SimpleSAML_Configuration', array());
+        $this->clearInstance($this->config, '\SimpleSAML\Configuration', []);
     }
 
     public function testValidatorMissingSignature()
@@ -192,7 +192,7 @@ NOWDOC;
 
         $signature_parent = $doc->appendChild(new \DOMElement('signature_parent'));
 
-        $signer = new Signer(array());
+        $signer = new Signer([]);
         $signer->loadPrivateKey($this->good_private_key_file, null, true);
         $signer->loadCertificate($this->good_certificate_file, true);
         $signer->sign($node, $signature_parent);
@@ -202,7 +202,7 @@ NOWDOC;
         $result = $validator->getX509Certificate();
 
         // getX509Certificate returns a certificate with a newline
-        $expected = $this->good_certificate . "\n";
+        $expected = $this->good_certificate."\n";
 
         $this->assertEquals($result, $expected);
     }
@@ -216,7 +216,7 @@ NOWDOC;
 
         $signature_parent = $doc->appendChild(new \DOMElement('signature_parent'));
 
-        $signer = new Signer(array());
+        $signer = new Signer([]);
         $signer->loadPrivateKey($this->good_private_key_file, null, true);
         $signer->loadCertificate($this->good_certificate_file, true);
         $signer->sign($node, $signature_parent);
@@ -228,7 +228,7 @@ NOWDOC;
         $validator = new Validator(
             $doc,
             'node',
-            array('certFingerprint' => array($fingerprint))
+            ['certFingerprint' => [$fingerprint]]
         );
 
         // Avoiding Validator::class because it's >= PHP 5.5 only
@@ -244,13 +244,13 @@ NOWDOC;
 
         $signature_parent = $doc->appendChild(new \DOMElement('signature_parent'));
 
-        $signer = new Signer(array());
+        $signer = new Signer([]);
         $signer->loadPrivateKey($this->good_private_key_file, null, true);
         $signer->loadCertificate($this->good_certificate_file, true);
         $signer->sign($node, $signature_parent);
 
         $this->setExpectedException('\Exception');
-        new Validator($doc, 'node', array('certFingerprint' => array()));
+        new Validator($doc, 'node', ['certFingerprint' => []]);
     }
 
     public function testValidateFingerprintSuccess()
@@ -262,7 +262,7 @@ NOWDOC;
 
         $signature_parent = $doc->appendChild(new \DOMElement('signature_parent'));
 
-        $signer = new Signer(array());
+        $signer = new Signer([]);
         $signer->loadPrivateKey($this->good_private_key_file, null, true);
         $signer->loadCertificate($this->good_certificate_file, true);
         $signer->sign($node, $signature_parent);
@@ -287,7 +287,7 @@ NOWDOC;
 
         $signature_parent = $doc->appendChild(new \DOMElement('signature_parent'));
 
-        $signer = new Signer(array());
+        $signer = new Signer([]);
         $signer->loadPrivateKey($this->good_private_key_file, null, true);
         $signer->loadCertificate($this->good_certificate_file, true);
         $signer->sign($node, $signature_parent);
@@ -309,14 +309,14 @@ NOWDOC;
 
         $signature_parent = $doc->appendChild(new \DOMElement('signature_parent'));
 
-        $signer = new Signer(array());
+        $signer = new Signer([]);
         $signer->loadPrivateKey($this->good_private_key_file, null, true);
         $signer->sign($node, $signature_parent);
 
         $validator = new Validator(
             $doc,
             'node',
-            array('PEM' => $this->good_certificate)
+            ['PEM' => $this->good_certificate]
         );
 
         $result = $validator->isNodeValidated($node);
@@ -334,14 +334,14 @@ NOWDOC;
 
         $signature_parent = $doc->appendChild(new \DOMElement('signature_parent'));
 
-        $signer = new Signer(array());
+        $signer = new Signer([]);
         $signer->loadPrivateKey($this->good_private_key_file, null, true);
         $signer->sign($node1, $signature_parent);
 
         $validator = new Validator(
             $doc,
             'node1',
-            array('PEM' => $this->good_certificate)
+            ['PEM' => $this->good_certificate]
         );
 
         $result = $validator->isNodeValidated($node2);

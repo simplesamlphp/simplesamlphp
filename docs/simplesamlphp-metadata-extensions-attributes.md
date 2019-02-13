@@ -19,14 +19,14 @@ The `metadata/saml20-idp-hosted.php` entries are used to define the
 metadata extension items. An example of this is:
 
     <?php
-    $metadata['entity-id-1'] = array(
+    $metadata['entity-id-1'] = [
         /* ... */
-		'EntityAttributes' => array(
-			'urn:simplesamlphp:v1:simplesamlphp' => array('is', 'really', 'cool'),
-			'{urn:simplesamlphp:v1}foo'          => array('bar'),
-		),
+		'EntityAttributes' => [
+			'urn:simplesamlphp:v1:simplesamlphp' => ['is', 'really', 'cool'],
+			'{urn:simplesamlphp:v1}foo'          => ['bar'],
+		],
         /* ... */
-    );
+    ];
 
 The OASIS specification primarily defines how to include arbitrary
 `Attribute` and `Assertion` elements within the metadata for an IdP.
@@ -43,9 +43,9 @@ metadata. Each item in the `EntityAttributes` array defines a new
 array. Each item in this array produces a separte `<AttributeValue>`
 element within the `<Attribute>` element.
 
-		'EntityAttributes' => array(
-			'urn:simplesamlphp:v1:simplesamlphp' => array('is', 'really', 'cool'),
-		),
+		'EntityAttributes' => [
+			'urn:simplesamlphp:v1:simplesamlphp' => ['is', 'really', 'cool'],
+		],
 
 This generates:
 
@@ -58,9 +58,9 @@ This generates:
 Each `<Attribute>` element requires a `NameFormat` attribute. This is
 specified using curly braces at the beginning of the key name:
 
-		'EntityAttributes' => array(
-			'{urn:simplesamlphp:v1}foo' => array('bar'),
-		),
+		'EntityAttributes' => [
+			'{urn:simplesamlphp:v1}foo' => ['bar'],
+		],
 
 This generates:
 
@@ -76,17 +76,17 @@ Generated XML Metadata Examples
 
 If given the following configuration...
 
-    $metadata['https://www.example.com/saml/saml2/idp/metadata.php'] = array(
+    $metadata['https://www.example.com/saml/saml2/idp/metadata.php'] = [
         'host' => 'www.example.com',
         'certificate' => 'example.com.crt',
         'privatekey' => 'example.com.pem',
         'auth' => 'example-userpass',
 
-		'EntityAttributes' => array(
-			'urn:simplesamlphp:v1:simplesamlphp' => array('is', 'really', 'cool'),
-			'{urn:simplesamlphp:v1}foo'          => array('bar'),
-		),
-	);
+		'EntityAttributes' => [
+			'urn:simplesamlphp:v1:simplesamlphp' => ['is', 'really', 'cool'],
+			'{urn:simplesamlphp:v1}foo'          => ['bar'],
+		],
+	];
 
 ... will generate the following XML metadata:
 

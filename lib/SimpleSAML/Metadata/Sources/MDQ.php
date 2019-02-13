@@ -13,9 +13,9 @@ use SimpleSAML\Utils\HTTP;
  * @author Tamas Frank, NIIFI
  * @package SimpleSAMLphp
  */
-class MDQ extends \SimpleSAML_Metadata_MetaDataStorageSource
-{
 
+class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
+{
     /**
      * The URL of MDQ server (url:port)
      *
@@ -80,7 +80,7 @@ class MDQ extends \SimpleSAML_Metadata_MetaDataStorageSource
         }
 
         if (array_key_exists('cachedir', $config)) {
-            $globalConfig = \SimpleSAML_Configuration::getInstance();
+            $globalConfig = \SimpleSAML\Configuration::getInstance();
             $this->cacheDir = $globalConfig->resolvePath($config['cachedir']);
         } else {
             $this->cacheDir = null;
@@ -104,7 +104,7 @@ class MDQ extends \SimpleSAML_Metadata_MetaDataStorageSource
     public function getMetadataSet($set)
     {
         // we don't have this metadata set
-        return array();
+        return [];
     }
 
 
@@ -216,13 +216,13 @@ class MDQ extends \SimpleSAML_Metadata_MetaDataStorageSource
     /**
      * Retrieve metadata for the correct set from a SAML2Parser.
      *
-     * @param \SimpleSAML_Metadata_SAMLParser $entity A SAML2Parser representing an entity.
+     * @param \SimpleSAML\Metadata\SAMLParser $entity A SAML2Parser representing an entity.
      * @param string                         $set The metadata set we are looking for.
      *
      * @return array|NULL  The associative array with the metadata, or NULL if no metadata for
      *                     the given set was found.
      */
-    private static function getParsedSet(\SimpleSAML_Metadata_SAMLParser $entity, $set)
+    private static function getParsedSet(\SimpleSAML\Metadata\SAMLParser $entity, $set)
     {
         assert(is_string($set));
 
@@ -248,7 +248,7 @@ class MDQ extends \SimpleSAML_Metadata_MetaDataStorageSource
 
 
     /**
-     * Overriding this function from the superclass SimpleSAML_Metadata_MetaDataStorageSource.
+     * Overriding this function from the superclass \SimpleSAML\Metadata\MetaDataStorageSource.
      *
      * This function retrieves metadata for the given entity id in the given set of metadata.
      * It will return NULL if it is unable to locate the metadata.
@@ -311,7 +311,7 @@ class MDQ extends \SimpleSAML_Metadata_MetaDataStorageSource
         }
 
         /** @var string $xmldata */
-        $entity = \SimpleSAML_Metadata_SAMLParser::parseString($xmldata);
+        $entity = \SimpleSAML\Metadata\SAMLParser::parseString($xmldata);
         Logger::debug(__CLASS__.': completed parsing of ['.$mdq_url.']');
 
         if ($this->validateFingerprint !== null) {

@@ -1,9 +1,13 @@
 <?php
+
+namespace SimpleSAML\Module\statistics;
+
 /*
  * @author Andreas Åkre Solberg <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
  */
-class sspmod_statistics_Aggregator
+
+class Aggregator
 {
     private $statconfig;
     private $statdir;
@@ -21,7 +25,7 @@ class sspmod_statistics_Aggregator
     public function __construct($fromcmdline = false)
     {
         $this->fromcmdline = $fromcmdline;
-        $this->statconfig = SimpleSAML_Configuration::getConfig('module_statistics.php');
+        $this->statconfig = \SimpleSAML\Configuration::getConfig('module_statistics.php');
 
         $this->statdir = $this->statconfig->getValue('statdir');
         $this->inputfile = $this->statconfig->getValue('inputfile');
@@ -35,19 +39,19 @@ class sspmod_statistics_Aggregator
 
     public function dumpConfig()
     {
-        echo 'Statistics directory   : ' . $this->statdir . "\n";
-        echo 'Input file             : ' . $this->inputfile . "\n";
-        echo 'Offset                 : ' . $this->offset . "\n";
+        echo 'Statistics directory   : '.$this->statdir."\n";
+        echo 'Input file             : '.$this->inputfile."\n";
+        echo 'Offset                 : '.$this->offset."\n";
     }
 
     public function debugInfo()
     {
-        echo 'Memory usage           : ' . number_format(memory_get_usage() / (1024*1024), 2) . " MB\n";
+        echo 'Memory usage           : '.number_format(memory_get_usage() / 1048576, 2)." MB\n"; // 1024*1024=1048576
     }
 
     public function loadMetadata()
     {
-        $filename = $this->statdir . '/.stat.metadata';
+        $filename = $this->statdir.'/.stat.metadata';
         $metadata = null;
         if (file_exists($filename)) {
             $metadata = unserialize(file_get_contents($filename));
@@ -66,34 +70,37 @@ class sspmod_statistics_Aggregator
         $this->metadata['memory'] = memory_get_usage();
         $this->metadata['lastrun'] = time();
 
-        $filename = $this->statdir . '/.stat.metadata';
+        $filename = $this->statdir.'/.stat.metadata';
         file_put_contents($filename, serialize($this->metadata), LOCK_EX);
     }
 
-    public function aggregate($debug = false) {
+    public function aggregate($debug = false)
+    {
         $this->loadMetadata();
 
         if (!is_dir($this->statdir)) {
-            throw new Exception('Statistics module: output dir do not exists [' . $this->statdir . ']');
+            throw new \Exception('Statistics module: output dir do not exists ['.$this->statdir.']');
         }
 
         if (!file_exists($this->inputfile)) {
-            throw new Exception('Statistics module: input file do not exists [' . $this->inputfile . ']');
+            throw new \Exception('Statistics module: input file do not exists ['.$this->inputfile.']');
         }
 
         $file = fopen($this->inputfile, 'r');
 
         if ($file === false) {
-            throw new Exception('Statistics module: unable to open file [' . $this->inputfile . ']');
+            throw new \Exception('Statistics module: unable to open file ['.$this->inputfile.']');
         }
 
-        $logparser = new sspmod_statistics_LogParser(
-            $this->statconfig->getValue('datestart', 0), $this->statconfig->getValue('datelength', 15), $this->statconfig->getValue('offsetspan', 44)
+        $logparser = new LogParser(
+            $this->statconfig->getValue('datestart', 0),
+            $this->statconfig->getValue('datelength', 15),
+            $this->statconfig->getValue('offsetspan', 44)
         );
-        $datehandler = array(
-            'default' => new sspmod_statistics_DateHandler($this->offset),
-            'month' => new  sspmod_statistics_DateHandlerMonth($this->offset),
-        );
+        $datehandler = [
+            'default' => new DateHandler($this->offset),
+            'month' => new  DateHandlerMonth($this->offset),
+        ];
 
         $notBefore = 0;
         $lastRead = 0;
@@ -104,9 +111,9 @@ class sspmod_statistics_Aggregator
             $lastlinehash = $this->metadata['lastlinehash'];
         }
 
-        $lastlogline = 'sdfsdf'; 
+        $lastlogline = 'sdfsdf';
         $lastlineflip = false;
-        $results = array();
+        $results = [];
 
         $i = 0;
         // Parse through log file, line by line
@@ -127,13 +134,14 @@ class sspmod_statistics_Aggregator
             $action = trim($content[5]);
 
             if ($this->fromcmdline && ($i % 10000) == 0) {
-                echo("Read line " . $i . "\n");
+                echo "Read line ".$i."\n";
             }
 
             if ($debug) {
-                echo("----------------------------------------\n");
-                echo('Log line: ' . $logline . "\n");
-                echo('Date parse [' . substr($logline, 0, $this->statconfig->getValue('datelength', 15)) . '] to [' . date(DATE_RFC822, $epoch) . ']' . "\n");
+                echo "----------------------------------------\n";
+                echo 'Log line: '.$logline."\n";
+                echo 'Date parse ['.substr($logline, 0, $this->statconfig->getValue('datelength', 15)).
+                    '] to ['.date(DATE_RFC822, $epoch).']'."\n";
                 echo htmlentities(print_r($content, true));
                 if ($i >= 13) {
                     exit;
@@ -146,7 +154,7 @@ class sspmod_statistics_Aggregator
 
             if ($epoch === $notBefore) {
                 if (!$lastlineflip) {
-                    if (sha1($logline) === $lastlinehash) { 
+                    if (sha1($logline) === $lastlinehash) {
                         $lastlineflip = true;
                     }
                     continue;
@@ -169,7 +177,7 @@ class sspmod_statistics_Aggregator
                     continue;
                 }
 
-                foreach ($this->timeres as $tres => $tresconfig ) {
+                foreach ($this->timeres as $tres => $tresconfig) {
                     $dh = 'default';
                     if (isset($tresconfig['customDateHandler'])) {
                         $dh = $tresconfig['customDateHandler'];
@@ -207,7 +215,7 @@ class sspmod_statistics_Aggregator
         if (is_int($colrule)) {
             return trim($content[$colrule]);
         } elseif (is_array($colrule)) {
-            $difcols = array();
+            $difcols = [];
             foreach ($colrule as $cr) {
                 $difcols[] = trim($content[$cr]);
             }
@@ -219,11 +227,11 @@ class sspmod_statistics_Aggregator
 
     private function cummulateData($previous, $newdata)
     {
-        $dataset = array();
+        $dataset = [];
         foreach (func_get_args() as $item) {
             foreach ($item as $slot => $dataarray) {
                 if (!array_key_exists($slot, $dataset)) {
-                    $dataset[$slot] = array();
+                    $dataset[$slot] = [];
                 }
                 foreach ($dataarray as $key => $data) {
                     if (!array_key_exists($key, $dataset[$slot])) {
@@ -238,10 +246,10 @@ class sspmod_statistics_Aggregator
 
     public function store($results)
     {
-        $datehandler = array(
-            'default' => new sspmod_statistics_DateHandler($this->offset),
-            'month' => new  sspmod_statistics_DateHandlerMonth($this->offset),
-        );
+        $datehandler = [
+            'default' => new DateHandler($this->offset),
+            'month' => new DateHandlerMonth($this->offset),
+        ];
 
         // Iterate the first level of results, which is per rule, as defined in the config.
         foreach ($results as $rulename => $timeresdata) {
@@ -264,33 +272,33 @@ class sspmod_statistics_Aggregator
                     $maxslot = $slotlist[count($slotlist) - 1];
 
                     // Get start and end slot number within the file, based on the fileslot.
-                    $start = (int)$datehandler['default']->toSlot(
-                        $datehandler[$dh]->fromSlot($fileno, $this->timeres[$tres]['fileslot']), 
+                    $start = (int) $datehandler['default']->toSlot(
+                        $datehandler[$dh]->fromSlot($fileno, $this->timeres[$tres]['fileslot']),
                         $this->timeres[$tres]['slot']
                     );
-                    $end = (int)$datehandler['default']->toSlot(
-                        $datehandler[$dh]->fromSlot($fileno+1, $this->timeres[$tres]['fileslot']), 
+                    $end = (int) $datehandler['default']->toSlot(
+                        $datehandler[$dh]->fromSlot($fileno + 1, $this->timeres[$tres]['fileslot']),
                         $this->timeres[$tres]['slot']
                     );
 
                     // Fill in missing entries and sort file results
-                    $filledresult = array();
+                    $filledresult = [];
                     for ($slot = $start; $slot < $end; $slot++) {
-                        if (array_key_exists($slot,  $fileres)) {
+                        if (array_key_exists($slot, $fileres)) {
                             $filledresult[$slot] = $fileres[$slot];
                         } else {
                             if ($lastfile == $fileno && $slot > $maxslot) {
-                                $filledresult[$slot] = array('_' => null);
+                                $filledresult[$slot] = ['_' => null];
                             } else {
-                                $filledresult[$slot] = array('_' => 0);
+                                $filledresult[$slot] = ['_' => 0];
                             }
                         }
                     }
 
-                    $filename = $this->statdir . '/' . $rulename . '-' . $tres . '-' . $fileno . '.stat';
+                    $filename = $this->statdir.'/'.$rulename.'-'.$tres.'-'.$fileno.'.stat';
                     if (file_exists($filename)) {
                         $previousData = unserialize(file_get_contents($filename));
-                        $filledresult = $this->cummulateData($previousData, $filledresult);	
+                        $filledresult = $this->cummulateData($previousData, $filledresult);
                     }
 
                     // store file

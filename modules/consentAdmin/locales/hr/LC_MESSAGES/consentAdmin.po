@@ -55,9 +55,6 @@ msgstr "(nema opisa)"
 msgid "{consentAdmin:consentadmin:service_providers_for}"
 msgstr "Davatelji usluga za"
 
-msgid "{consentAdmin:consentadmin:sp_empty_name}"
-msgstr "(naziv nije specificiran)"
-
 msgid "{consentAdmin:consentadmin:consentadmin_description2}"
 msgstr ""
 "<h3>Kako obrisati dozvolu</h3> Maknite kvačicu iz polja koje se odnosi na"

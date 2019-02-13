@@ -1,108 +1,101 @@
 <?php
 
-function tdate($input) {
-	return date(DATE_RFC822, $input); 
+function tdate($input)
+{
+    return date(DATE_RFC822, $input);
 }
 
-function hours($input) {
-	if ($input < 60) return number_format($input, 2) . ' sec';
-	if ($input < 60*60) return number_format(($input/60),2) . ' min';
-	if ($input < 24*60*60) return number_format(($input/(60*60)),2) . ' hours';
-	return number_format($input/(24*60*60),2) . ' days';
-	
+function hours($input)
+{
+    if ($input < 60) {
+        return number_format($input, 2).' sec';
+    }
+    if ($input < 60 * 60) {
+        return number_format(($input / 60), 2).' min';
+    }
+    if ($input < 24 * 60 * 60) {
+        return number_format(($input / (60 * 60)), 2).' hours';
+    }
+    return number_format($input / (24 * 60 * 60), 2).' days';
 }
 
+function humanreadable($input)
+{
+    $output = "";
+    $input = abs($input);
 
-function humanreadable($input) {
-	 
-	$output = "";
-	$input = abs($input);
-	
-	if ($input >= (1024*1024*1024*1024*1024*1024*1024*100)) {
-		$output = sprintf("%5ldEi", $input / (1024*1024*1024*1024*1024*1024) );		
-	} else if ($input >= (1024*1024*1024*1024*1024*1024*10)) {
-		$output = sprintf("%5.1fEi", $input / (1024.0*1024.0*1024.0*1024.0*1024.0*1024.0) );		
-	} else if ($input >= (1024*1024*1024*1024*1024*1024)) {
-		$output = sprintf("%5.2fEi", $input / (1024.0*1024.0*1024.0*1024.0*1024.0*1024.0) );	
+    if ($input >= (1024 * 1024 * 1024 * 1024 * 1024 * 1024 * 1024 * 100)) {
+        $output = sprintf("%5ldEi", $input / (1024 * 1024 * 1024 * 1024 * 1024 * 1024));
+    } elseif ($input >= (1024 * 1024 * 1024 * 1024 * 1024 * 1024 * 10)) {
+        $output = sprintf("%5.1fEi", $input / (1024.0 * 1024.0 * 1024.0 * 1024.0 * 1024.0 * 1024.0));
+    } elseif ($input >= (1024 * 1024 * 1024 * 1024 * 1024 * 1024)) {
+        $output = sprintf("%5.2fEi", $input / (1024.0 * 1024.0 * 1024.0 * 1024.0 * 1024.0 * 1024.0));
+    } elseif ($input >= (1024 * 1024 * 1024 * 1024 * 1024 * 100)) {
+        $output = sprintf("%5ldPi", $input / (1024 * 1024 * 1024 * 1024 * 1024));
+    } elseif ($input >= (1024 * 1024 * 1024 * 1024 * 1024 * 10)) {
+        $output = sprintf("%5.1fPi", $input / (1024.0 * 1024.0 * 1024.0 * 1024.0 * 1024.0));
+    } elseif ($input >= (1024 * 1024 * 1024 * 1024 * 1024)) {
+        $output = sprintf("%5.2fPi", $input / (1024.0 * 1024.0 * 1024.0 * 1024.0 * 1024.0));
+    } elseif ($input >= (1024 * 1024 * 1024 * 1024 * 100)) {
+        $output = sprintf("%5ldTi", $input / (1024 * 1024 * 1024 * 1024));
+    } elseif ($input >= (1024 * 1024 * 1024 * 1024 * 10)) {
+        $output = sprintf("%5.1fTi", $input / (1024.0 * 1024.0 * 1024.0 * 1024.0));
+    } elseif ($input >= (1024 * 1024 * 1024 * 1024)) {
+        $output = sprintf("%5.2fTi", $input / (1024.0 * 1024.0 * 1024.0 * 1024.0));
+    } elseif ($input >= (1024 * 1024 * 1024 * 100)) {
+        $output = sprintf("%5ldGi", $input / (1024 * 1024 * 1024));
+    } elseif ($input >= (1024 * 1024 * 1024 * 10)) {
+        $output = sprintf("%5.1fGi", $input / (1024.0 * 1024.0 * 1024.0));
+    } elseif ($input >= (1024 * 1024 * 1024)) {
+        $output = sprintf("%5.2fGi", $input / (1024.0 * 1024.0 * 1024.0));
+    } elseif ($input >= (1024 * 1024 * 100)) {
+        $output = sprintf("%5ldMi", $input / (1024 * 1024));
+    } elseif ($input >= (1024 * 1024 * 10)) {
+        $output = sprintf("%5.1fM", $input / (1024.0 * 1024.0));
+    } elseif ($input >= (1024 * 1024)) {
+        $output = sprintf("%5.2fMi", $input / (1024.0 * 1024.0));
+    } elseif ($input >= (1024 * 100)) {
+        $output = sprintf("%5ldKi", $input / 1024);
+    } elseif ($input >= (1024 * 10)) {
+        $output = sprintf("%5.1fKi", $input / 1024.0);
+    } elseif ($input >= (1024)) {
+        $output = sprintf("%5.2fKi", $input / 1024.0);
+    } else {
+        $output = sprintf("%5ld", $input);
+    }
 
-
-	} else if ($input >= (1024*1024*1024*1024*1024*100)) {
-		$output = sprintf("%5ldPi", $input / (1024*1024*1024*1024*1024) );		
-	} else if ($input >= (1024*1024*1024*1024*1024*10)) {
-		$output = sprintf("%5.1fPi", $input / (1024.0*1024.0*1024.0*1024.0*1024.0) );		
-	} else if ($input >= (1024*1024*1024*1024*1024)) {
-		$output = sprintf("%5.2fPi", $input / (1024.0*1024.0*1024.0*1024.0*1024.0) );	
-		
-	} else if ($input >= (1024*1024*1024*1024*100)) {
-		$output = sprintf("%5ldTi", $input / (1024*1024*1024*1024) );
-	} else if ($input >= (1024*1024*1024*1024*10)) {
-		$output = sprintf("%5.1fTi", $input / (1024.0*1024.0*1024.0*1024.0) );	
-	} else if ($input >= (1024*1024*1024*1024)) {
-		$output = sprintf("%5.2fTi", $input / (1024.0*1024.0*1024.0*1024.0) );
-
-
-	} else if ($input >= (1024*1024*1024*100)) {
-		$output = sprintf("%5ldGi", $input / (1024*1024*1024) );		
-	} else if ($input >= (1024*1024*1024*10)) {
-		$output = sprintf("%5.1fGi", $input / (1024.0*1024.0*1024.0) );		
-	} else if ($input >= (1024*1024*1024)) {
-		$output = sprintf("%5.2fGi", $input / (1024.0*1024.0*1024.0) );	
-		
-	} else if ($input >= (1024*1024*100)) {
-		$output = sprintf("%5ldMi", $input / (1024*1024) );
-	} else if ($input >= (1024*1024*10)) {
-		$output = sprintf("%5.1fM", $input / (1024.0*1024.0) );	
-	} else if ($input >= (1024*1024)) {
-		$output = sprintf("%5.2fMi", $input / (1024.0*1024.0) );		
-		
-	} else if ($input >= (1024 * 100)) {
-		$output = sprintf("%5ldKi", $input / (1024) );
-	} else if ($input >= (1024 * 10)) {
-		$output = sprintf("%5.1fKi", $input / 1024.0 );
-	} else if ($input >= (1024)) {
-		$output = sprintf("%5.2fKi", $input / 1024.0 );
-		
-	} else {
-		$output = sprintf("%5ld", $input );
-	}
-
-	return $output;
+    return $output;
 }
 
-
-
-
-$config = SimpleSAML_Configuration::getInstance();
+$config = \SimpleSAML\Configuration::getInstance();
 
 // Make sure that the user has admin access rights
-SimpleSAML\Utils\Auth::requireAdmin();
+\SimpleSAML\Utils\Auth::requireAdmin();
 
+$formats = [
+    'bytes' => 'humanreadable',
+    'bytes_read' => 'humanreadable',
+    'bytes_written' => 'humanreadable',
+    'limit_maxbytes' => 'humanreadable',
+    'time' => 'tdate',
+    'uptime' => 'hours',
+];
 
-$formats = array(
-	'bytes' => 'humanreadable',
-	'bytes_read' => 'humanreadable',
-	'bytes_written' => 'humanreadable',
-	'limit_maxbytes' => 'humanreadable',
-	'time' => 'tdate',
-	'uptime' => 'hours',
-);
-
-$statsraw = SimpleSAML_Memcache::getStats();
+$statsraw = \SimpleSAML\Memcache::getStats();
 
 $stats = $statsraw;
 
-foreach($stats AS $key => &$entry) {
-	if (array_key_exists($key, $formats)) {
-		$func = $formats[$key];
-		foreach($entry AS $k => $val) {
-			$entry[$k] = $func($val);
-		}
-	}
-
+foreach ($stats as $key => &$entry) {
+    if (array_key_exists($key, $formats)) {
+        $func = $formats[$key];
+        foreach ($entry as $k => $val) {
+            $entry[$k] = $func($val);
+        }
+    }
 }
 
-$t = new SimpleSAML_XHTML_Template($config, 'memcacheMonitor:memcachestat.tpl.php');
-$rowTitles = array(
+$t = new \SimpleSAML\XHTML\Template($config, 'memcacheMonitor:memcachestat.tpl.php');
+$rowTitles = [
     'accepting_conns' => \SimpleSAML\Locale\Translate::noop('{memcacheMonitor:memcachestat:accepting_conns}'),
     'auth_cmds' => \SimpleSAML\Locale\Translate::noop('{memcacheMonitor:memcachestat:auth_cmds}'),
     'auth_errors' => \SimpleSAML\Locale\Translate::noop('{memcacheMonitor:memcachestat:auth_errors}'),
@@ -116,7 +109,9 @@ $rowTitles = array(
     'cmd_get' => \SimpleSAML\Locale\Translate::noop('{memcacheMonitor:memcachestat:cmd_get}'),
     'cmd_set' => \SimpleSAML\Locale\Translate::noop('{memcacheMonitor:memcachestat:cmd_set}'),
     'cmd_touch' => \SimpleSAML\Locale\Translate::noop('{memcacheMonitor:memcachestat:cmd_touch}'),
-    'connection_structures' => \SimpleSAML\Locale\Translate::noop('{memcacheMonitor:memcachestat:connection_structures}'),
+    'connection_structures' => \SimpleSAML\Locale\Translate::noop(
+        '{memcacheMonitor:memcachestat:connection_structures}'
+    ),
     'conn_yields' => \SimpleSAML\Locale\Translate::noop('{memcacheMonitor:memcachestat:conn_yields}'),
     'curr_connections' => \SimpleSAML\Locale\Translate::noop('{memcacheMonitor:memcachestat:curr_connections}'),
     'curr_items' => \SimpleSAML\Locale\Translate::noop('{memcacheMonitor:memcachestat:curr_items}'),
@@ -151,9 +146,32 @@ $rowTitles = array(
     'touch_misses' => \SimpleSAML\Locale\Translate::noop('{memcacheMonitor:memcachestat:touch_misses}'),
     'uptime' => \SimpleSAML\Locale\Translate::noop('{memcacheMonitor:memcachestat:uptime}'),
     'version' => \SimpleSAML\Locale\Translate::noop('{memcacheMonitor:memcachestat:version}'),
-);
+];
+
+// Identify column headings
+$colTitles = [];
+foreach ($stats as $rowTitle => $rowData) {
+    foreach ($rowData as $colTitle => $foo) {
+        if (!in_array($colTitle, $colTitles, true)) {
+            $colTitles[] = $colTitle;
+        }
+    }
+}
+
+if (array_key_exists('bytes', $statsraw) && array_key_exists('limit_maxbytes', $statsraw)) {
+    $usage = [];
+    $maxpix = 400;
+    foreach ($statsraw['bytes'] as $key => $row_data) {
+        $pix = floor($statsraw['bytes'][$key] * $maxpix / $statsraw['limit_maxbytes'][$key]);
+        $usage[$key] = $pix.'px';
+    }
+    $t->data['maxpix'] = $maxpix.'px';
+    $t->data['usage'] = $usage;
+}
+
 $t->data['title'] = 'Memcache stats';
-$t->data['rowtitles'] = $rowTitles;
-$t->data['table'] = $stats;
+$t->data['rowTitles'] = $rowTitles;
+$t->data['colTitles'] = $colTitles;
 $t->data['statsraw'] = $statsraw;
+$t->data['table'] = $stats;
 $t->show();
