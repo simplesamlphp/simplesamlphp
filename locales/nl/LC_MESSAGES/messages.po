@@ -154,14 +154,14 @@ msgstr ""
 
 msgid "{errors:descr_METADATA}"
 msgstr ""
-"SimplSAMLphp is niet goed geconfigureerd. De beheerder van deze dienst "
+"SimpleSAMLphp is niet goed geconfigureerd. De beheerder van deze dienst "
 "dient de metadata configuratie te controleren."
 
 msgid "{attributes:attribute_edupersonorgdn}"
 msgstr "Distinguished name (DN) van de organisatie van de persoon"
 
 msgid "{errors:title_BADREQUEST}"
-msgstr "Incorrect request ontvangen"
+msgstr "Incorrecte request ontvangen"
 
 msgid "{status:sessionsize}"
 msgstr "Sessiegrootte: %SIZE%"
@@ -1540,7 +1540,7 @@ msgid ""
 " are the administrator of this service, you should make sure your "
 "metadata configuration is correctly setup."
 msgstr ""
-"SimplSAMLphp is niet goed geconfigureerd. De beheerder van deze dienst "
+"SimpleSAMLphp is niet goed geconfigureerd. De beheerder van deze dienst "
 "dient de metadata configuratie te controleren."
 
 msgid "Incorrect username or password"

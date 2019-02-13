@@ -38,6 +38,11 @@ class MultiAuth extends \SimpleSAML\Auth\Source
     private $sources;
 
     /**
+     * @var string|null preselect source in filter module configuration
+     */
+    private $preselect;
+
+    /**
      * Constructor for this authentication source.
      *
      * @param array $info Information about this authentication source.
@@ -53,6 +58,14 @@ class MultiAuth extends \SimpleSAML\Auth\Source
 
         if (!array_key_exists('sources', $config)) {
             throw new \Exception('The required "sources" config option was not found');
+        }
+
+        if (array_key_exists('preselect', $config) && is_string($config['preselect'])) {
+            if (!array_key_exists($config['preselect'], $config['sources'])) {
+                throw new \Exception('The optional "preselect" config option must be present in "sources"');
+            }
+
+            $this->preselect = $config['preselect'];
         }
 
         $globalConfiguration = \SimpleSAML\Configuration::getInstance();
@@ -74,6 +87,8 @@ class MultiAuth extends \SimpleSAML\Auth\Source
 
             if (array_key_exists('help', $info)) {
                 $help = $info['help'];
+            } else {
+                $help = null;
             }
             if (array_key_exists('css-class', $info)) {
                 $css_class = $info['css-class'];
@@ -115,6 +130,10 @@ class MultiAuth extends \SimpleSAML\Auth\Source
         $state[self::AUTHID] = $this->authId;
         $state[self::SOURCESID] = $this->sources;
 
+        if (!\array_key_exists('multiauth:preselect', $state) && is_string($this->preselect)) {
+            $state['multiauth:preselect'] = $this->preselect;
+        }
+
         // Save the $state array, so that we can restore if after a redirect
         $id = \SimpleSAML\Auth\State::saveState($state, self::STAGEID);
 
@@ -124,7 +143,7 @@ class MultiAuth extends \SimpleSAML\Auth\Source
         $url = \SimpleSAML\Module::getModuleURL('multiauth/selectsource.php');
         $params = ['AuthState' => $id];
 
-        // Allowes the user to specify the auth souce to be used
+        // Allows the user to specify the auth source to be used
         if (isset($_GET['source'])) {
             $params['source'] = $_GET['source'];
         }

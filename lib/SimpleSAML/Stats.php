@@ -38,7 +38,7 @@ class Stats
     private static function createOutput(\SimpleSAML\Configuration $config)
     {
         $cls = $config->getString('class');
-        $cls = \SimpleSAML\Module::resolveClass($cls, 'Stats_Output', '\SimpleSAML\Stats\Output');
+        $cls = \SimpleSAML\Module::resolveClass($cls, 'Stats\Output', '\SimpleSAML\Stats\Output');
 
         $output = new $cls($config);
         return $output;

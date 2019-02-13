@@ -17,10 +17,10 @@ class TokenTypesOffered
      */
     public static function appendXML(\DOMElement $parent)
     {
-        $e = $parent->ownerDocument->createElementNS(FedConst::NS_FED, 'fed:TokenTypesOffered');
+        $e = $parent->ownerDocument->createElementNS(Constants::NS_FED, 'fed:TokenTypesOffered');
         $parent->appendChild($e);
 
-        $tokentype = $parent->ownerDocument->createElementNS(FedConst::NS_FED, 'fed:TokenType');
+        $tokentype = $parent->ownerDocument->createElementNS(Constants::NS_FED, 'fed:TokenType');
         $tokentype->setAttribute('Uri', 'urn:oasis:names:tc:SAML:1.0:assertion');
         $e->appendChild($tokentype);
 

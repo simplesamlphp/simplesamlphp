@@ -10,26 +10,49 @@ See the upgrade notes for specific information about upgrading.
 
 Released TBD
 
-### Changes
-  * Minimum required PHP version is now 5.5.
-    Fixed compatibility with PHP 7.3.
-  * Introduce new UI based on Twig templates.
-    The new templates co-exist next to the old ones.
-  * SimpleSAMLphp can now be used with applications that use Twig 2.
-  * Generate sessionID complying with PHP config settings.
-  * Update OpenSSL RSA bit length in docs.
-  * Update configuration templates and documentation to PHP
+  * Introduce a new experimental user interface based on Twig templates.
+    The new Twig templates co-exist next to the old ones and come
+    with a new look-and-feel for SimpleSAMLphp and independent interfaces for
+    users and administrators. This new interface uses also a new build system
+    to generate bundled assets.
+  * Introduce Symfony-style routing and dependency injection(#966).
+  * Generate session IDs complying with PHP config settings when using the PHP
+    session handler (#569).
+  * Update OpenSSL RSA bit length in docs (#993).
+  * Update all code, configuration templates and documentation to PHP
     short array syntax.
-  * All clases moved to namespaces and reformatted code to PSR-2.
-  * Use bcrypt for new password hashes, old ones will remain working.
+  * All classes moved to namespaces and code reformatted to PSR-2.
+  * Use bcrypt for new password hashes, old ones will remain working (#996).
   * Many code cleanups.
+  * Update the SAML2 library dependency to 3.2.5.
+  * Update the Clipboard.JS library dependency to 2.0.4.
+  * Translated to Zulu and Xhosa.
+  * Multiple bug fixes and corrections.
+
+### Interoperability
+  * The minimum PHP version required is now 5.5.
+  * Fixed compatibility with PHP 7.3 and HVVM.
+  * SimpleSAMLphp can now be used with applications that use Twig 2 and/or Symfony 4.
+  * The SAML2 library now uses getters/setters to manipulate objects properties.
+
+### authfacebook
+  * Fix facebook compatibility (query parameters).
+
+### authorize
+  * Add the possibility to configure a custom rejecttion message.
 
 ### consent
-  * Module is now disabled by default.
+  * The module is now disabled by default.
 
 ### core
-  * Allow `core:PHP` to manipulate all of the state.
+  * Allow `core:PHP` to manipulate the entire state array.
   * IdP initiated login: add compatibility with Shibboleth parameters.
+
+### multiauth
+  * Added a `preselect` configuration option to skip authsource selection (#1005).
+
+### negotiate
+  * The `keytab` setting now allows for relative paths too.
 
 ### preprodwarning
   * This module is now deprecated. Use the `production` configuration
@@ -37,16 +60,37 @@ Released TBD
     before authentication.
 
 ### saml
-  * Add initial support for SAML Subject Id Attributes.
-  * Allow to specify multiple supported NameIdFormats in IdP hosted and
-    SP remote metadata.
-  * Allow to specifiy NameIDPolicy Format and AllowCreate in hosted SP
-    and remote IdP configurtion, and restore possibility to omit it
-    from AuthnRequests entirely.
-  * Add setting `assertion.allowed_clock_skew` to influence how lenient
+  * Add initial support for SAML Subject ID Attributes.
+  * Allow to specify multiple supported NameIdFormats in IdP hosted and SP
+    remote metadata.
+  * Allow to specify NameIDPolicy Format and AllowCreate in hosted SP
+    and remote IdP configuration. Restore the possibility to omit it from
+    AuthnRequests entirely (#984).
+  * Add a `assertion.allowed_clock_skew` setting to influence how lenient
     we should be with the timestamps in received SAML messages.
-  * If Issuer of IdP does not match the entity we sent the request to,
-    log a warning instead of bailing out with an exception.
+  * If the Issuer of a SAML response does not match the entity we sent the
+    request to, log a warning instead of bailing out with an exception.
+  * Allow setting the AudienceRestriction in SAML2 requests (#998).
+  * Allow disabling the Scoping element in SP and remote IdP configuration with
+    the `disable_scoping` option, for compatibility with ADFS which does not
+    accept the element (#985).
+
+### sanitycheck
+  * Translated into several languages.
+
+## Version 1.16.3
+
+Released 2018-12-20
+
+  * Resolved a security issue that could expose the user's credentials locally.  See
+    [SSPSA 201812-01](https://simplesamlphp.org/security/201812-01).
+  * Downgraded the level of log messages regarding the `userid.attribute` configuration option
+    from _warning_ to _debug_.
+  * Make the `attr` configuration option of the _negotiate_ allow both a string and an array.
+  * Look for the _keytab_ file used by the _negotiate_ module in the `cert` directory, accepting
+    both absolute and relative paths.
+  * Fixed some broken links.
+  * Other minor bugfixes.
 
 ## Version 1.16.2
 
@@ -332,9 +376,6 @@ Released 2017-11-20
     refuse to parse an assertion with an eduPersonTargetedID in 'string' format.
   * Receiving an eduPersonTargetedID in string form will no longer break
     parsing of the assertion.
-  * Can disable the Scoping element in SP and remote IdP configuration with the
-    `disable_scoping` option, for compatibility with ADFS which does not accept
-    the element.
 
 ### `smartattributes`
   * Fix SmartName authproc that failed to load.

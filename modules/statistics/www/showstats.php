@@ -3,6 +3,7 @@
 $config = \SimpleSAML\Configuration::getInstance();
 $statconfig = \SimpleSAML\Configuration::getConfig('module_statistics.php');
 $session = \SimpleSAML\Session::getSessionFromRequest();
+$t = new \SimpleSAML\XHTML\Template($config, 'statistics:statistics.tpl.php');
 
 \SimpleSAML\Module\statistics\AccessCheck::checkAccess($statconfig);
 
@@ -43,14 +44,11 @@ $ruleset = new \SimpleSAML\Module\statistics\Ruleset($statconfig);
 $statrule = $ruleset->getRule($preferRule);
 $rule = $statrule->getRuleID();
 
-$t = new \SimpleSAML\XHTML\Template($config, 'statistics:statistics.tpl.php');
 $t->data['pageid'] = 'statistics';
 $t->data['header'] = 'stat';
 $t->data['available_rules'] = $ruleset->availableRulesNames();
 $t->data['selected_rule'] = $rule;
 $t->data['selected_rule2'] = $preferRule2;
-
-$t->data['post_d'] = getBaseURL($t, 'post', 'd');
 
 try {
     $dataset = $statrule->getDataset($preferTimeRes, $preferTime);
@@ -79,7 +77,6 @@ $delimiter = $dataset->getDelimiter();
 
 $timeres = $dataset->getTimeRes();
 $fileslot = $dataset->getFileslot();
-$availableFileSlots = $statrule->availableFileSlots($timeres);
 
 $timeNavigation = $statrule->getTimeNavigation($timeres, $preferTime);
 
@@ -93,6 +90,10 @@ $axis = $dataset->getAxis();
 $maxes = [];
 
 $maxes[] = $dataset->getMax();
+
+$t->data['selected_time'] = $fileslot;
+$t->data['selected_timeres'] = $timeres;
+$t->data['post_d'] = getBaseURL($t, 'post', 'd');
 
 if (isset($preferRule2)) {
     $statrule = $ruleset->getRule($preferRule2);
@@ -129,8 +130,6 @@ $t->data['current_rule'] = $t->data['available_rules'][$rule];
 
 $t->data['selected_rule'] = $rule;
 $t->data['selected_rule2'] = $preferRule2;
-$t->data['selected_time'] = $fileslot;
-$t->data['selected_timeres'] = $timeres;
 $t->data['selected_delimiter'] = $delimiter;
 
 $t->data['debugdata'] = $dataset->getDebugData();

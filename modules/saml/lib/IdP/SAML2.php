@@ -3,9 +3,14 @@
 namespace SimpleSAML\Module\saml\IdP;
 
 use RobRichards\XMLSecLibs\XMLSecurityKey;
+use SAML2\Constants;
+use SAML2\XML\saml\Issuer;
 use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
 use SAML2\SOAP;
+use SimpleSAML\Utils\Config\Metadata;
+use SimpleSAML\Utils\Crypto;
+use SimpleSAML\Utils\HTTP;
 
 /**
  * IdP implementation for SAML 2.0 protocol.
@@ -337,11 +342,15 @@ class SAML2
                 );
             }
 
-            $spEntityId = $request->getIssuer();
-            if ($spEntityId === null) {
+            $issuer = $request->getIssuer();
+            if ($issuer === null) {
                 throw new \SimpleSAML\Error\BadRequest(
                     'Received message on authentication request endpoint without issuer.'
                 );
+            } elseif ($issuer instanceof Issuer) {
+                $spEntityId = $issuer->getValue();
+            } else { // we got a string, old case
+                $spEntityId = $issuer;
             }
             $spMetadata = $metadata->getMetaDataConfig($spEntityId, 'saml20-sp-remote');
 
@@ -451,24 +460,7 @@ class SAML2
             'saml:RequestedAuthnContext'  => $authnContext,
         ];
 
-        // ECP AuthnRequests need to supply credentials
-        if ($binding instanceof SOAP) {
-            self::processSOAPAuthnRequest($state);
-        }
-
         $idp->handleAuthenticationRequest($state);
-    }
-
-    public static function processSOAPAuthnRequest(array &$state)
-    {
-        if (!isset($_SERVER['PHP_AUTH_USER']) || !isset($_SERVER['PHP_AUTH_PW'])) {
-            Logger::error("ECP AuthnRequest did not contain Basic Authentication header");
-            // TODO Throw some sort of ECP-specific exception / convert this to SOAP fault
-            throw new \SimpleSAML\Error\Error("WRONGUSERPASS");
-        }
-
-        $state['core:auth:username'] = $_SERVER['PHP_AUTH_USER'];
-        $state['core:auth:password'] = $_SERVER['PHP_AUTH_PW'];
     }
 
     /**
@@ -577,10 +569,14 @@ class SAML2
         $binding = \SAML2\Binding::getCurrentBinding();
         $message = $binding->receive();
 
-        $spEntityId = $message->getIssuer();
-        if ($spEntityId === null) {
+        $issuer = $message->getIssuer();
+        if ($issuer === null) {
             /* Without an issuer we have no way to respond to the message. */
             throw new \SimpleSAML\Error\BadRequest('Received message on logout endpoint without issuer.');
+        } elseif ($issuer instanceof Issuer) {
+            $spEntityId = $issuer->getValue();
+        } else {
+            $spEntityId = $issuer;
         }
 
         $metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
@@ -694,6 +690,204 @@ class SAML2
         } catch (\Exception $e) {
             return Configuration::loadFromArray([], 'Unknown SAML 2 entity.');
         }
+    }
+
+
+    /**
+     * Retrieve the metadata of a hosted SAML 2 IdP.
+     *
+     * @param string $entityid The entity ID of the hosted SAML 2 IdP whose metadata we want.
+     *
+     * @return array
+     * @throws \SimpleSAML\Error\CriticalConfigurationError
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \SimpleSAML\Error\MetadataNotFound
+     */
+    public static function getHostedMetadata($entityid)
+    {
+        $handler = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
+        $config = $handler->getMetaDataConfig($entityid, 'saml20-idp-hosted');
+
+        // configure endpoints
+        $ssob = $handler->getGenerated('SingleSignOnServiceBinding', 'saml20-idp-hosted');
+        $slob = $handler->getGenerated('SingleLogoutServiceBinding', 'saml20-idp-hosted');
+        $ssol = $handler->getGenerated('SingleSignOnService', 'saml20-idp-hosted');
+        $slol = $handler->getGenerated('SingleLogoutService', 'saml20-idp-hosted');
+
+        $sso = [];
+        if (is_array($ssob)) {
+            foreach ($ssob as $binding) {
+                $sso[] = [
+                    'Binding'  => $binding,
+                    'Location' => $ssol,
+                ];
+            }
+        } else {
+            $sso[] = [
+                'Binding'  => $ssob,
+                'Location' => $ssol,
+            ];
+        }
+
+        $slo = [];
+        if (is_array($slob)) {
+            foreach ($slob as $binding) {
+                $slo[] = [
+                    'Binding'  => $binding,
+                    'Location' => $slol,
+                ];
+            }
+        } else {
+            $slo[] = [
+                'Binding'  => $slob,
+                'Location' => $slol,
+            ];
+        }
+
+        $metadata = [
+            'metadata-set' => 'saml20-idp-hosted',
+            'entityid' => $entityid,
+            'SingleSignOnService' => $sso,
+            'SingleLogoutService' => $slo,
+            'NameIDFormat' => $config->getArrayizeString('NameIDFormat', Constants::NAMEID_TRANSIENT),
+        ];
+
+        // add certificates
+        $keys = [];
+        $certInfo = Crypto::loadPublicKey($config, false, 'new_');
+        $hasNewCert = false;
+        if ($certInfo !== null) {
+            $keys[] = [
+                'type' => 'X509Certificate',
+                'signing' => true,
+                'encryption' => true,
+                'X509Certificate' => $certInfo['certData'],
+                'prefix' => 'new_',
+            ];
+            $hasNewCert = true;
+        }
+
+        $certInfo = Crypto::loadPublicKey($config, true);
+        $keys[] = [
+            'type' => 'X509Certificate',
+            'signing' => true,
+            'encryption' => $hasNewCert === false,
+            'X509Certificate' => $certInfo['certData'],
+            'prefix' => '',
+        ];
+
+        if ($config->hasValue('https.certificate')) {
+            $httpsCert = Crypto::loadPublicKey($config, true, 'https.');
+            $keys[] = [
+                'type' => 'X509Certificate',
+                'signing' => true,
+                'encryption' => false,
+                'X509Certificate' => $httpsCert['certData'],
+                'prefix' => 'https.'
+            ];
+        }
+        $metadata['keys'] = $keys;
+
+        // add ArtifactResolutionService endpoint, if enabled
+        if ($config->getBoolean('saml20.sendartifact', false)) {
+            $metadata['ArtifactResolutionService'][] = [
+                'index' => 0,
+                'Binding' => Constants::BINDING_SOAP,
+                'Location' => HTTP::getBaseURL().'saml2/idp/ArtifactResolutionService.php'
+            ];
+        }
+
+        // add Holder of Key, if enabled
+        if ($config->getBoolean('saml20.hok.assertion', false)) {
+            array_unshift(
+                $metadata['SingleSignOnService'],
+                [
+                    'hoksso:ProtocolBinding' => Constants::BINDING_HTTP_REDIRECT,
+                    'Binding' => Constants::BINDING_HOK_SSO,
+                    'Location' => HTTP::getBaseURL().'saml2/idp/SSOService.php',
+                ]
+            );
+        }
+
+        // add ECP profile, if enabled
+        if ($config->getBoolean('saml20.ecp', false)) {
+            $metadata['SingleSignOnService'][] = [
+                'index' => 0,
+                'Binding' => Constants::BINDING_SOAP,
+                'Location' => HTTP::getBaseURL().'saml2/idp/SSOService.php',
+            ];
+        }
+
+        // add organization information
+        if ($config->hasValue('OrganizationName')) {
+            $metadata['OrganizationName'] = $config->getLocalizedString('OrganizationName');
+            $metadata['OrganizationDisplayName'] = $config->getLocalizedString(
+                'OrganizationDisplayName',
+                $metadata['OrganizationName']
+            );
+
+            if (!$config->hasValue('OrganizationURL')) {
+                throw new \SimpleSAML\Error\Exception('If OrganizationName is set, OrganizationURL must also be set.');
+            }
+            $metadata['OrganizationURL'] = $config->getLocalizedString('OrganizationURL');
+        }
+
+        // add scope
+        if ($config->hasValue('scope')) {
+            $metadata['scope'] = $config->getArray('scope');
+        }
+
+        // add extensions
+        if ($config->hasValue('EntityAttributes')) {
+            $metadata['EntityAttributes'] = $config->getArray('EntityAttributes');
+
+            // check for entity categories
+            if (Metadata::isHiddenFromDiscovery($metadata)) {
+                $metadata['hide.from.discovery'] = true;
+            }
+        }
+
+        if ($config->hasValue('UIInfo')) {
+            $metadata['UIInfo'] = $config->getArray('UIInfo');
+        }
+
+        if ($config->hasValue('DiscoHints')) {
+            $metadata['DiscoHints'] = $config->getArray('DiscoHints');
+        }
+
+        if ($config->hasValue('RegistrationInfo')) {
+            $metadata['RegistrationInfo'] = $config->getArray('RegistrationInfo');
+        }
+
+        // configure signature options
+        if ($config->hasValue('validate.authnrequest')) {
+            $metadata['sign.authnrequest'] = $config->getBoolean('validate.authnrequest');
+        }
+
+        if ($config->hasValue('redirect.validate')) {
+            $metadata['redirect.sign'] = $config->getBoolean('redirect.validate');
+        }
+
+        // add contact information
+        if ($config->hasValue('contacts')) {
+            $contacts = $config->getArray('contacts');
+            foreach ($contacts as $contact) {
+                $metadata['contacts'][] = Metadata::getContact($contact);
+            }
+        }
+
+        $globalConfig = \SimpleSAML\Configuration::getInstance();
+        $email = $globalConfig->getString('technicalcontact_email', false);
+        if ($email && $email !== 'na@example.org') {
+            $contact = [
+                'emailAddress' => $email,
+                'name' => $globalConfig->getString('technicalcontact_name', null),
+                'contactType' => 'technical',
+            ];
+            $metadata['contacts'][] = Metadata::getContact($contact);
+        }
+
+        return $metadata;
     }
 
 
@@ -900,7 +1094,10 @@ class SAML2
             \SimpleSAML\Module\saml\Message::addSign($idpMetadata, $spMetadata, $a);
         }
 
-        $a->setIssuer($idpMetadata->getString('entityid'));
+        $issuer = new Issuer();
+        $issuer->setValue($idpMetadata->getString('entityid'));
+        $issuer->setFormat(Constants::NAMEID_ENTITY);
+        $a->setIssuer($issuer);
         $a->setValidAudiences([$spMetadata->getString('entityid')]);
 
         $a->setNotBefore($now - 30);
@@ -934,10 +1131,11 @@ class SAML2
         $a->setSessionIndex(\SimpleSAML\Utils\Random::generateID());
 
         $sc = new \SAML2\XML\saml\SubjectConfirmation();
-        $sc->SubjectConfirmationData = new \SAML2\XML\saml\SubjectConfirmationData();
-        $sc->SubjectConfirmationData->NotOnOrAfter = $now + $assertionLifetime;
-        $sc->SubjectConfirmationData->Recipient = $state['saml:ConsumerURL'];
-        $sc->SubjectConfirmationData->InResponseTo = $state['saml:RequestId'];
+        $scd = new \SAML2\XML\saml\SubjectConfirmationData();
+        $scd->setNotOnOrAfter($now + $assertionLifetime);
+        $scd->setRecipient($state['saml:ConsumerURL']);
+        $scd->setInResponseTo($state['saml:RequestId']);
+        $sc->setSubjectConfirmationData($scd);
 
         // ProtcolBinding of SP's <AuthnRequest> overwrites IdP hosted metadata configuration
         $hokAssertion = null;
@@ -950,7 +1148,7 @@ class SAML2
 
         if ($hokAssertion) {
             // Holder-of-Key
-            $sc->Method = \SAML2\Constants::CM_HOK;
+            $sc->setMethod(\SAML2\Constants::CM_HOK);
             if (\SimpleSAML\Utils\HTTP::isHTTPS()) {
                 if (isset($_SERVER['SSL_CLIENT_CERT']) && !empty($_SERVER['SSL_CLIENT_CERT'])) {
                     // extract certificate data (if this is a certificate)
@@ -959,15 +1157,15 @@ class SAML2
                     if (preg_match($pattern, $clientCert, $matches)) {
                         // we have a client certificate from the browser which we add to the HoK assertion
                         $x509Certificate = new \SAML2\XML\ds\X509Certificate();
-                        $x509Certificate->certificate = str_replace(["\r", "\n", " "], '', $matches[1]);
+                        $x509Certificate->setCertificate(str_replace(["\r", "\n", " "], '', $matches[1]));
 
                         $x509Data = new \SAML2\XML\ds\X509Data();
-                        $x509Data->data[] = $x509Certificate;
+                        $x509Data->addData($x509Certificate);
 
                         $keyInfo = new \SAML2\XML\ds\KeyInfo();
-                        $keyInfo->info[] = $x509Data;
+                        $keyInfo->addInfo($x509Data);
 
-                        $sc->SubjectConfirmationData->info[] = $keyInfo;
+                        $scd->addInfo($keyInfo);
                     } else {
                         throw new \SimpleSAML\Error\Exception(
                             'Error creating HoK assertion: No valid client certificate provided during TLS handshake '.
@@ -986,8 +1184,9 @@ class SAML2
             }
         } else {
             // Bearer
-            $sc->Method = \SAML2\Constants::CM_BEARER;
+            $sc->setMethod(\SAML2\Constants::CM_BEARER);
         }
+        $sc->setSubjectConfirmationData($scd);
         $a->setSubjectConfirmation([$sc]);
 
         // add attributes
@@ -1015,7 +1214,7 @@ class SAML2
 
         if (isset($state['saml:NameID'][$nameIdFormat])) {
             $nameId = $state['saml:NameID'][$nameIdFormat];
-            $nameId->Format = $nameIdFormat;
+            $nameId->setFormat($nameIdFormat);
         } else {
             $spNameQualifier = $spMetadata->getString('SPNameQualifier', null);
             if ($spNameQualifier === null) {
@@ -1037,9 +1236,9 @@ class SAML2
             }
 
             $nameId = new \SAML2\XML\saml\NameID();
-            $nameId->Format = $nameIdFormat;
-            $nameId->value = $nameIdValue;
-            $nameId->SPNameQualifier = $spNameQualifier;
+            $nameId->setFormat($nameIdFormat);
+            $nameId->setValue($nameIdValue);
+            $nameId->setSPNameQualifier($spNameQualifier);
         }
 
         $state['saml:idp:NameID'] = $nameId;
@@ -1182,8 +1381,10 @@ class SAML2
         }
 
         $r = new \SAML2\Response();
-
-        $r->setIssuer($idpMetadata->getString('entityid'));
+        $issuer = new Issuer();
+        $issuer->setValue($idpMetadata->getString('entityid'));
+        $issuer->setFormat(Constants::NAMEID_ENTITY);
+        $r->setIssuer($issuer);
         $r->setDestination($consumerURL);
 
         if ($signResponse) {

@@ -2,6 +2,13 @@
 @import "../../node_modules/purecss/build/pure.css";
 @import "../../node_modules/font-awesome/scss/font-awesome.scss";
 @import "../../node_modules/selectize/dist/css/selectize.css";
+@import "../../node_modules/highlight.js/styles/zenburn.css";
+
+/*************
+ * VARIABLES *
+ *************/
+
+$lighYellow: "#fffdbf";
 
 /************************************************************
  * GENERAL
@@ -47,15 +54,17 @@ body {
 }
 
 h1 {
-  margin: 0.2em 0;
-  font-size: 2.5em;
+  margin: 1em 0;
+  font-size: 2em;
   font-weight: 900;
 }
 
 h2 {
-  margin: 50px 0 20px 0;
+  margin: 1em 0;
+  font-size: 1.5em;
   font-weight: 700;
   color: #1c1c1c;
+  border-bottom: solid 1px #bbb;
 }
 
 h3 {
@@ -66,24 +75,26 @@ h3 {
 }
 
 p {
-  padding: 0.5em;
+  padding: 0.5em 0;
   margin-bottom: 1em;
 }
 
 a {
   color: midnightblue;
-}
-
-a:hover {
-  color: rgba(25, 25, 112, 0.5);
-}
-
-.dark-bg a {
-  color: #e2e2e2;
-}
-
-.dark-bg a:hover {
-  color: rgba(0, 0, 0, 0.75);
+  &:hover,
+  &:focus,
+  &.pure-menu-link:hover,
+  &.pure-menu-link:focus,
+  .pure-menu-selected &.pure-menu-link:hover,
+  .pure-menu-selected &.pure-menu-link:focus {
+    color: white;
+    background-color: #444444;
+    padding: .5em 1em;
+  }
+  &:hover,
+  &:focus {
+    padding: .15rem;
+  }
 }
 
 .overflow {
@@ -122,6 +133,10 @@ pre, code, kbd, samp, tt {
 a.pure-button-red {
   background-color: rgb(219, 1, 0);
   color: #fff;
+  &:hover, &:focus {
+    background-color: #555;
+    padding: .5em 1em;
+  }
 }
 
 .pure-button.hollow {
@@ -143,6 +158,16 @@ a.pure-button-red {
   -moz-user-select: text;
   -ms-user-select: text;
   user-select: text;
+}
+
+.pure-button.hljs {
+  display: inline-block;
+  border: 0;
+  background-color: transparent;
+  &:hover, &:focus {
+    background-color: #f0f0f0;
+    color: black;
+  }
 }
 
 .pure-button-group .pure-button:first-child,
@@ -171,6 +196,12 @@ a.pure-button-red {
   overflow: hidden;
 }
 
+.top-right-corner {
+  position: absolute;
+  right: 1.75em;
+
+}
+
 /* ***********************************************************
 SLIDING SIDE-MENU FOR SMALL SCREENS
 ************************************************************ */
@@ -194,10 +225,6 @@ This is the parent `<div>` that contains the menu and the content area.
 #layout.active #menu {
   right: 11em;
   width: 11em;
-}
-
-#layout.active .menu-link {
-  right: 11em;
 }
 
 /*
@@ -241,14 +268,6 @@ Add that light border to separate items into groups.
 #menu .pure-menu ul,
 #menu .pure-menu .menu-item-divided {
   border-top: 1px solid $transitionBackground;
-}
-
-/*
-Change color of the anchor links on hover/focus.
-*/
-#menu .pure-menu li a:hover,
-#menu .pure-menu li a:focus {
-  background: black;
 }
 
 /*
@@ -305,9 +324,12 @@ small screens.
   background: transparent;
   z-index: 10;
   height: 2rem;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
+  padding: 2rem 0;
   text-decoration: none;
+  &:hover, &:focus {
+    padding: 2rem 0;
+    background: none !important;
+  }
 }
 
 .menu-link span:hover,
@@ -415,7 +437,7 @@ CONTENT
 }
 
 .message-box.warning {
-  background-color: #fffdbf;
+  background-color: $lighYellow;
   border-left-color: #f9f56b;
 }
 
@@ -430,20 +452,37 @@ CONTENT
 }
 
 .code-box {
-  border: 1px solid #ccc;
   margin-bottom: 1em;
+  border: 1px solid #ccc;
+  a {
+    padding: .5em;
+  }
 }
 
 .code-box-content {
   font-size: 1em;
   line-height: 1.15;
   padding: 0.5em 1em;
+  display: inline-block;
+  min-height: 1em;
+  max-height: 20em;
+  width: 100%;
+  height: 100%;
+  white-space: pre-wrap;
+  &::selection {
+    color: black;
+    background: $lighYellow;
+  }
 }
 
 .code-box-title {
   border-bottom: 1px solid #ccc;
   background-color: #e0e0e0;
   padding: 0.5em 0 0.5em 0.5em;
+}
+
+pre#xmlmetadata {
+  width: 98%;
 }
 
 /* ***********************************************************
@@ -464,11 +503,25 @@ FOOTER
   height: 4rem;
   padding: 2rem 0 0;
   text-align: center;
+  color: white;
+
+  a, a:visited {
+    color: white;
+    &:hover, &:focus {
+      background-color: white;
+      color: black;
+      padding: .15rem;
+      margin-left: -.15rem;
+      margin-top: -.15rem;
+      text-decoration: none;
+    }
+  }
 }
 
 .copyrights {
-  height: 4rem;
-  font-size: .75em;
+  padding-top: .5rem;
+  height: 3.5rem;
+  font-size: .8rem;
 }
 
 .logo-footer-right {
@@ -568,6 +621,20 @@ div .item {
   vertical-align: middle;
 }
 
+.selectize-dropdown-content {
+  cursor: pointer;
+  .option {
+    &:hover, &:focus, &.active {
+      color: white;
+      background-color: #444444;
+    }
+    span.highlight {
+      color: black;
+      background-color: #fffbd5;
+    }
+  }
+}
+
 /* ***********************************************************
 IMAGES
 ************************************************************ */
@@ -624,12 +691,21 @@ MEDIA QUERIES
   }
   #layout {
     padding-top: 0;
+    margin-bottom: -4rem;
   }
   .auth_methods {
     width: 60%;
   }
   #logo {
     font-size: 1.8em;
+  }
+  #footer {
+    height: 2.5rem;
+    padding-top: 1.5rem;
+    .copyrights {
+      height: 1rem;
+      padding-top: 0;
+    }
   }
 }
 
@@ -690,14 +766,16 @@ MEDIA QUERIES
 }
 
 fieldset.fancyfieldset {
-  margin: 2em 1em 1em 0;
-  border: 1px solid #bbb;
+  padding-left: 1.5em;
+  //margin: 2em 1em 1em 0;
+  //border: 1px solid #bbb;
 }
 
 fieldset.fancyfieldset legend {
-  margin-left: 2em;
-  padding: 3px 2em 3px 2em;
-  border: 1px solid #bbb;
+  //margin-left: 2em;
+  padding: 3px 2em 3px 0;
+  //border: 1px solid #bbb;
+  width: 100%;
 }
 
 dt {
@@ -720,4 +798,62 @@ div.preferredidp {
   border: 1px dashed #ccc;
   background: #eee;
   padding: 2px 2em 2px 2em;
+}
+
+
+/*********
+ * Utils *
+ *********/
+
+.clear {
+  clear: both;
+}
+
+.breathe-top {
+  margin-top: 1em;
+}
+
+.expandable {
+  border: solid 1px #bbb;
+  width: 100%;
+
+  .general {
+    padding: 1em;
+  }
+  .content {
+    display: none;
+    padding: 1em;
+  }
+  .expander {
+    cursor: pointer;
+    text-align: center;
+    padding: .25em;
+    display: block;
+    color: black;
+    &:focus, &:hover {
+      background-color: #555;
+      color: white;
+    }
+    &:after {
+      content: "\f078";
+      font-family: FontAwesome;
+    }
+  }
+
+  &.expanded {
+    .content {
+      display: block;
+      border-left: solid .25em #555;
+      border-right: solid .25em #555;
+    }
+    .expander {
+      border-bottom: none;
+      border-top: solid 1px #bbb;
+      border-left: solid .25em #555;
+      border-right: solid .25em #555;
+      &:after {
+        content: "\f077";
+      }
+    }
+  }
 }

@@ -53,15 +53,15 @@ $allLinks = [
     'federation' => &$links_federation,
 ];
 \SimpleSAML\Module::callHooks('frontpage', $allLinks);
-\SimpleSAML\Logger::debug('The "frontpage" hook has been deprecated for the configuration page. Implement the '.'
-    "configpage" hook instead.');
+\SimpleSAML\Logger::debug('The "frontpage" hook has been deprecated for the configuration page. Implement the '.
+    '"configpage" hook instead.');
 
 // Check for updates. Store the remote result in the session so we
 // don't need to fetch it on every access to this page.
 $current = $config->getVersion();
 if ($config->getBoolean('admin.checkforupdates', true) && $current !== 'master') {
     if (!function_exists('curl_init')) {
-        $warnings[] = ['{core:frontpage:warnings_curlmissing}'];
+        $warnings[] = '{core:frontpage:warnings_curlmissing}';
     } else {
         $latest = $session->getData("core:latest_simplesamlphp_version", "version");
 

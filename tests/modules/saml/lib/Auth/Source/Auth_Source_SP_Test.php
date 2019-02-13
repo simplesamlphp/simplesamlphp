@@ -195,8 +195,8 @@ class SPTest extends TestCase
         $ar = $this->createAuthnRequest($state);
 
         $nameID = $ar->getNameId();
-        $this->assertEquals($state['saml:NameID']['Value'], $nameID->value);
-        $this->assertEquals($state['saml:NameID']['Format'], $nameID->Format);
+        $this->assertEquals($state['saml:NameID']['Value'], $nameID->getValue());
+        $this->assertEquals($state['saml:NameID']['Format'], $nameID->getFormat());
 
         /** @var $xml \DOMElement */
         $xml = $ar->toSignedXML();

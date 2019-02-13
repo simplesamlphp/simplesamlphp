@@ -28,19 +28,20 @@
     <br>
     <h2>{{ 'Converted metadata'|trans }}</h2>
         {% for type, text in output if text -%}
+{# spaceless is to work around a clipboard.js bug that would add extra whitespace #}
+{% spaceless %}
     <div class="code-box">
         <div class="code-box-title">
-            <h3> {{ type }}</h3>
-            <button data-clipboard-target="#metadata{{ loop.index }}" id="btn{{ loop.index }}" class="pure-button right clipboard-btn">
+            <h3>{{ type }}</h3>
+            <button data-clipboard-target="#metadata{{ loop.index }}" id="btn{{ loop.index }}" class="pure-button right clipboard-btn copy">
                 <i class="fa fa-copy"></i>
             </button>
         </div>
         <div class="code-box-content">
-            <pre id="metadata{{ loop.index }}">
-                {%- spaceless %}{{ text|escape }}{% endspaceless -%}
-            </pre>
+            <pre id="metadata{{ loop.index }}">{{ text|escape }}</pre>
         </div>
     </div>
+{% endspaceless %}
             <br><br>
             {%- set i=i+1 %}
         {%- endfor -%}

@@ -9,43 +9,6 @@ use SimpleSAML\Test\Utils\ClearStateTestCase;
 
 class SAML2Test extends ClearStateTestCase
 {
-    public function testProcessSOAPAuthnRequest()
-    {
-        $username = $_SERVER['PHP_AUTH_USER'] = 'username';
-        $password = $_SERVER['PHP_AUTH_PW'] = 'password';
-        $state = [];
-
-        \SimpleSAML\Module\saml\IdP\SAML2::processSOAPAuthnRequest($state);
-
-        $this->assertEquals($username, $state['core:auth:username']);
-        $this->assertEquals($password, $state['core:auth:password']);
-    }
-
-    public function testProcessSOAPAuthnRequestMissingUsername()
-    {
-        $this->setExpectedException('\SimpleSAML\Error\Error', 'WRONGUSERPASS');
-
-        $_SERVER['PHP_AUTH_PW'] = 'password';
-        unset($_SERVER['PHP_AUTH_USER']);
-        $state = [];
-        Configuration::loadFromArray([
-            'baseurlpath' => 'https://idp.example.com/',
-        ], '', 'simplesaml');
-
-        \SimpleSAML\Module\saml\IdP\SAML2::processSOAPAuthnRequest($state);
-    }
-
-    public function testProcessSOAPAuthnRequestMissingPassword()
-    {
-        $this->setExpectedException('\SimpleSAML\Error\Error', 'WRONGUSERPASS');
-
-        $_SERVER['PHP_AUTH_USER'] = 'username';
-        unset($_SERVER['PHP_AUTH_PW']);
-        $state = [];
-
-        \SimpleSAML\Module\saml\IdP\SAML2::processSOAPAuthnRequest($state);
-    }
-
     /**
      * Default values for the state array expected to be generated at the start of logins
      * @var array
@@ -84,8 +47,8 @@ class SAML2Test extends ClearStateTestCase
         unset($state['\SimpleSAML\Auth\State.restartURL']); // url contains a cookie time which varies by test
 
         $expectedState = $this->defaultExpectedAuthState;
-        $expectedState[ 'saml:ConsumerURL'] = 'https://example.com/Shibboleth.sso/SAML2/POST';
-        $expectedState[ 'saml:Binding'] = 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST';
+        $expectedState['saml:ConsumerURL'] = 'https://example.com/Shibboleth.sso/SAML2/POST';
+        $expectedState['saml:Binding'] = 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST';
 
         $this->assertEquals($expectedState, $state);
     }
@@ -142,8 +105,8 @@ class SAML2Test extends ClearStateTestCase
         unset($state['\SimpleSAML\Auth\State.restartURL']); // url contains a cookie time which varies by test
 
         $expectedState = $this->defaultExpectedAuthState;
-        $expectedState[ 'saml:ConsumerURL'] = 'https://example.com/Shibboleth.sso/SAML2/POST';
-        $expectedState[ 'saml:Binding'] = 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST';
+        $expectedState['saml:ConsumerURL'] = 'https://example.com/Shibboleth.sso/SAML2/POST';
+        $expectedState['saml:Binding'] = 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST';
 
         $this->assertEquals($expectedState, $state);
     }
@@ -221,7 +184,7 @@ EOT;
         // won't line up perfectly
         $_REQUEST = $_REQUEST + $queryParams;
         $_SERVER['HTTP_HOST'] = 'idp.examlple.com';
-        $_SERVER['REQUEST_URI'] = '/saml2/idp/SSOService.php?' . http_build_query($queryParams);
+        $_SERVER['REQUEST_URI'] = '/saml2/idp/SSOService.php?'.http_build_query($queryParams);
 
 
         $state = [];

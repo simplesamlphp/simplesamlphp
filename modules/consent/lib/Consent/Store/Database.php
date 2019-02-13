@@ -348,7 +348,7 @@ class Database extends \SimpleSAML\Module\consent\Store
      * @param string $statement  The statement which should be executed.
      * @param array  $parameters Parameters for the statement.
      *
-     * @return \PDOStatement|false  The statement, or false if execution failed.
+     * @return \PDOStatement|bool  The statement, or false if execution failed.
      */
     private function execute($statement, $parameters)
     {

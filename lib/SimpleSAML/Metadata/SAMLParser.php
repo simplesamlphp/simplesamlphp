@@ -164,7 +164,7 @@ class SAMLParser
         $e = $entityElement->toXML();
         $e = $e->ownerDocument->saveXML($e);
         $this->entityDescriptor = base64_encode($e);
-        $this->entityId = $entityElement->entityID;
+        $this->entityId = $entityElement->getEntityID();
 
         $expireTime = self::getExpireTime($entityElement, $maxExpireTime);
 
@@ -179,7 +179,7 @@ class SAMLParser
         $this->registrationInfo = $ext['RegistrationInfo'];
 
         // look over the RoleDescriptors
-        foreach ($entityElement->RoleDescriptor as $child) {
+        foreach ($entityElement->getRoleDescriptor() as $child) {
             if ($child instanceof \SAML2\XML\md\SPSSODescriptor) {
                 $this->processSPSSODescriptor($child, $expireTime);
             } elseif ($child instanceof \SAML2\XML\md\IDPSSODescriptor) {
@@ -189,12 +189,12 @@ class SAMLParser
             }
         }
 
-        if ($entityElement->Organization) {
-            $this->processOrganization($entityElement->Organization);
+        if ($entityElement->getOrganization() !== null) {
+            $this->processOrganization($entityElement->getOrganization());
         }
 
-        if (!empty($entityElement->ContactPerson)) {
-            foreach ($entityElement->ContactPerson as $contact) {
+        if ($entityElement->getContactPerson() !== []) {
+            foreach ($entityElement->getContactPerson() as $contact) {
                 $this->processContactPerson($contact);
             }
         }
@@ -393,7 +393,7 @@ class SAMLParser
         $validators[] = $element;
 
         $ret = [];
-        foreach ($element->children as $child) {
+        foreach ($element->getChildren() as $child) {
             $ret += self::processDescriptorsElement($child, $expTime, $validators, $extensions);
         }
 
@@ -416,7 +416,7 @@ class SAMLParser
     private static function getExpireTime($element, $maxExpireTime)
     {
         // validUntil may be null
-        $expire = $element->validUntil;
+        $expire = $element->getValidUntil();
 
         if ($maxExpireTime !== null && ($expire === null || $maxExpireTime < $expire)) {
             $expire = $maxExpireTime;
@@ -845,11 +845,11 @@ class SAMLParser
             $ret['expire'] = $expireTime;
         }
 
-        $ret['protocols'] = $element->protocolSupportEnumeration;
+        $ret['protocols'] = $element->getProtocolSupportEnumeration();
 
         // process KeyDescriptor elements
         $ret['keys'] = [];
-        foreach ($element->KeyDescriptor as $kd) {
+        foreach ($element->getKeyDescriptor() as $kd) {
             $key = self::parseKeyDescriptor($kd);
             if ($key !== null) {
                 $ret['keys'][] = $key;
@@ -890,14 +890,14 @@ class SAMLParser
         $sd = self::parseRoleDescriptorType($element, $expireTime);
 
         // find all SingleLogoutService elements
-        $sd['SingleLogoutService'] = self::extractEndpoints($element->SingleLogoutService);
+        $sd['SingleLogoutService'] = self::extractEndpoints($element->getSingleLogoutService());
 
         // find all ArtifactResolutionService elements
-        $sd['ArtifactResolutionService'] = self::extractEndpoints($element->ArtifactResolutionService);
+        $sd['ArtifactResolutionService'] = self::extractEndpoints($element->getArtifactResolutionService());
 
 
         // process NameIDFormat elements
-        $sd['nameIDFormats'] = $element->NameIDFormat;
+        $sd['nameIDFormats'] = $element->getNameIDFormat();
 
         return $sd;
     }
@@ -917,22 +917,22 @@ class SAMLParser
         $sp = self::parseSSODescriptor($element, $expireTime);
 
         // find all AssertionConsumerService elements
-        $sp['AssertionConsumerService'] = self::extractEndpoints($element->AssertionConsumerService);
+        $sp['AssertionConsumerService'] = self::extractEndpoints($element->getAssertionConsumerService());
 
         // find all the attributes and SP name...
-        $attcs = $element->AttributeConsumingService;
+        $attcs = $element->getAttributeConsumingService();
         if (count($attcs) > 0) {
             self::parseAttributeConsumerService($attcs[0], $sp);
         }
 
         // check AuthnRequestsSigned
-        if ($element->AuthnRequestsSigned !== null) {
-            $sp['AuthnRequestsSigned'] = $element->AuthnRequestsSigned;
+        if ($element->getAuthnRequestsSigned() !== null) {
+            $sp['AuthnRequestsSigned'] = $element->getAuthnRequestsSigned();
         }
 
         // check WantAssertionsSigned
-        if ($element->WantAssertionsSigned !== null) {
-            $sp['WantAssertionsSigned'] = $element->WantAssertionsSigned;
+        if ($element->wantAssertionsSigned() !== null) {
+            $sp['WantAssertionsSigned'] = $element->wantAssertionsSigned();
         }
 
         $this->spDescriptors[] = $sp;
@@ -953,9 +953,9 @@ class SAMLParser
         $idp = self::parseSSODescriptor($element, $expireTime);
 
         // find all SingleSignOnService elements
-        $idp['SingleSignOnService'] = self::extractEndpoints($element->SingleSignOnService);
+        $idp['SingleSignOnService'] = self::extractEndpoints($element->getSingleSignOnService());
 
-        if ($element->WantAuthnRequestsSigned) {
+        if ($element->wantAuthnRequestsSigned()) {
             $idp['WantAuthnRequestsSigned'] = true;
         } else {
             $idp['WantAuthnRequestsSigned'] = false;
@@ -979,12 +979,12 @@ class SAMLParser
         assert($expireTime === null || is_int($expireTime));
 
         $aad = self::parseRoleDescriptorType($element, $expireTime);
-        $aad['entityid'] = $this->entityId;
+        $aad['entityid'] = $this->getEntityId();
         $aad['metadata-set'] = 'attributeauthority-remote';
 
-        $aad['AttributeService'] = self::extractEndpoints($element->AttributeService);
-        $aad['AssertionIDRequestService'] = self::extractEndpoints($element->AssertionIDRequestService);
-        $aad['NameIDFormat'] = $element->NameIDFormat;
+        $aad['AttributeService'] = self::extractEndpoints($element->getAttributeService());
+        $aad['AssertionIDRequestService'] = self::extractEndpoints($element->getAssertionIDRequestService());
+        $aad['NameIDFormat'] = $element->getNameIDFormat();
 
         $this->attributeAuthorityDescriptors[] = $aad;
     }
@@ -1016,9 +1016,9 @@ class SAMLParser
             $ret['RegistrationInfo'] = $parentExtensions['RegistrationInfo'];
         }
 
-        foreach ($element->Extensions as $e) {
+        foreach ($element->getExtensions() as $e) {
             if ($e instanceof \SAML2\XML\shibmd\Scope) {
-                $ret['scope'][] = $e->scope;
+                $ret['scope'][] = $e->getScope();
                 continue;
             }
 
@@ -1028,33 +1028,37 @@ class SAMLParser
                 if ($e instanceof \SAML2\XML\mdrpi\RegistrationInfo) {
                     // Registration Authority cannot be overridden (warn only if override attempts to change the value)
                     if (isset($ret['RegistrationInfo']['registrationAuthority'])
-                        && $ret['RegistrationInfo']['registrationAuthority'] !== $e->registrationAuthority) {
+                        && $ret['RegistrationInfo']['registrationAuthority'] !== $e->getRegistrationAuthority()) {
                         \SimpleSAML\Logger::warning('Invalid attempt to override registrationAuthority \''.
-                            $ret['RegistrationInfo']['registrationAuthority']."' with '{$e->registrationAuthority}'");
+                            $ret['RegistrationInfo']['registrationAuthority']."' with '{$e->getRegistrationAuthority()}'");
                     } else {
-                        $ret['RegistrationInfo']['registrationAuthority'] = $e->registrationAuthority;
+                        $ret['RegistrationInfo']['registrationAuthority'] = $e->getRegistrationAuthority();
                     }
                 }
-                if ($e instanceof \SAML2\XML\mdattr\EntityAttributes && !empty($e->children)) {
-                    foreach ($e->children as $attr) {
+                if ($e instanceof \SAML2\XML\mdattr\EntityAttributes && !empty($e->getChildren())) {
+                    foreach ($e->getChildren() as $attr) {
                         // only saml:Attribute are currently supported here. The specifications also allows
                         // saml:Assertions, which more complex processing
                         if ($attr instanceof \SAML2\XML\saml\Attribute) {
-                            if (empty($attr->Name) || empty($attr->AttributeValue)) {
+                            $attrName = $attr->getName();
+                            $attrNameFormat = $attr->getNameFormat();
+                            $attrValue = $attr->getAttributeValue();
+
+                            if ($attrName === null || $attrValue === []) {
                                 continue;
                             }
 
                             // attribute names that is not URI is prefixed as this: '{nameformat}name'
-                            $name = $attr->Name;
-                            if (empty($attr->NameFormat)) {
-                                $name = '{'.\SAML2\Constants::NAMEFORMAT_UNSPECIFIED.'}'.$attr->Name;
-                            } elseif ($attr->NameFormat !== 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri') {
-                                $name = '{'.$attr->NameFormat.'}'.$attr->Name;
+                            $name = $attrName;
+                            if ($attrNameFormat === null) {
+                                $name = '{'.\SAML2\Constants::NAMEFORMAT_UNSPECIFIED.'}'.$attr->getName();
+                            } elseif ($attrNameFormat !== 'urn:oasis:names:tc:SAML:2.0:attrname-format:uri') {
+                                $name = '{'.$attrNameFormat.'}'.$attrName;
                             }
 
                             $values = [];
-                            foreach ($attr->AttributeValue as $attrvalue) {
-                                $values[] = $attrvalue->getString();
+                            foreach ($attrValue as $attrval) {
+                                $values[] = $attrval->getString();
                             }
 
                             $ret['EntityAttributes'][$name] = $values;
@@ -1066,35 +1070,35 @@ class SAMLParser
             // UIInfo elements are only allowed at RoleDescriptor level extensions
             if ($element instanceof \SAML2\XML\md\RoleDescriptor) {
                 if ($e instanceof \SAML2\XML\mdui\UIInfo) {
-                    $ret['UIInfo']['DisplayName'] = $e->DisplayName;
-                    $ret['UIInfo']['Description'] = $e->Description;
-                    $ret['UIInfo']['InformationURL'] = $e->InformationURL;
-                    $ret['UIInfo']['PrivacyStatementURL'] = $e->PrivacyStatementURL;
+                    $ret['UIInfo']['DisplayName'] = $e->getDisplayName();
+                    $ret['UIInfo']['Description'] = $e->getDescription();
+                    $ret['UIInfo']['InformationURL'] = $e->getInformationURL();
+                    $ret['UIInfo']['PrivacyStatementURL'] = $e->getPrivacyStatementURL();
 
-                    foreach ($e->Keywords as $uiItem) {
+                    foreach ($e->getKeywords() as $uiItem) {
                         if (!($uiItem instanceof \SAML2\XML\mdui\Keywords)
-                            || empty($uiItem->Keywords)
-                            || empty($uiItem->lang)
+                            || ($uiItem->getKeywords() !== [])
+                            || ($uiItem->getLanguage() !== null)
                         ) {
                             continue;
                         }
-                        $ret['UIInfo']['Keywords'][$uiItem->lang] = $uiItem->Keywords;
+                        $ret['UIInfo']['Keywords'][$uiItem->getLanguage()] = $uiItem->getKeywords();
                     }
-                    foreach ($e->Logo as $uiItem) {
+                    foreach ($e->getLogo() as $uiItem) {
                         if (!($uiItem instanceof \SAML2\XML\mdui\Logo)
-                            || empty($uiItem->url)
-                            || empty($uiItem->height)
-                            || empty($uiItem->width)
+                            || ($uiItem->getUrl() !== null)
+                            || ($uiItem->getHeight() !== null)
+                            || ($uiItem->getWidth() !== null)
                         ) {
                             continue;
                         }
                         $logo = [
-                            'url'    => $uiItem->url,
-                            'height' => $uiItem->height,
-                            'width'  => $uiItem->width,
+                            'url'    => $uiItem->getUrl(),
+                            'height' => $uiItem->getHeight(),
+                            'width'  => $uiItem->getWidth(),
                         ];
-                        if (!empty($uiItem->lang)) {
-                            $logo['lang'] = $uiItem->lang;
+                        if ($uiItem->getLanguage() !== null) {
+                            $logo['lang'] = $uiItem->getLanguage();
                         }
                         $ret['UIInfo']['Logo'][] = $logo;
                     }
@@ -1104,9 +1108,9 @@ class SAMLParser
             // DiscoHints elements are only allowed at IDPSSODescriptor level extensions
             if ($element instanceof \SAML2\XML\md\IDPSSODescriptor) {
                 if ($e instanceof \SAML2\XML\mdui\DiscoHints) {
-                    $ret['DiscoHints']['IPHint'] = $e->IPHint;
-                    $ret['DiscoHints']['DomainHint'] = $e->DomainHint;
-                    $ret['DiscoHints']['GeolocationHint'] = $e->GeolocationHint;
+                    $ret['DiscoHints']['IPHint'] = $e->getIPHint();
+                    $ret['DiscoHints']['DomainHint'] = $e->getDomainHint();
+                    $ret['DiscoHints']['GeolocationHint'] = $e->getGeolocationHint();
                 }
             }
 
@@ -1114,8 +1118,8 @@ class SAMLParser
                 continue;
             }
 
-            if ($e->localName === 'Attribute' && $e->namespaceURI === \SAML2\Constants::NS_SAML) {
-                $attribute = $e->xml;
+            if ($e->getLocalName() === 'Attribute' && $e->getNamespaceURI() === \SAML2\Constants::NS_SAML) {
+                $attribute = $e->getXML();
 
                 $name = $attribute->getAttribute('Name');
                 $values = array_map(
@@ -1143,9 +1147,9 @@ class SAMLParser
      */
     private function processOrganization(\SAML2\XML\md\Organization $element)
     {
-        $this->organizationName = $element->OrganizationName;
-        $this->organizationDisplayName = $element->OrganizationDisplayName;
-        $this->organizationURL = $element->OrganizationURL;
+        $this->organizationName = $element->getOrganizationName();
+        $this->organizationDisplayName = $element->getOrganizationDisplayName();
+        $this->organizationURL = $element->getOrganizationURL();
     }
 
 
@@ -1158,23 +1162,23 @@ class SAMLParser
     private function processContactPerson(\SAML2\XML\md\ContactPerson $element)
     {
         $contactPerson = [];
-        if (!empty($element->contactType)) {
-            $contactPerson['contactType'] = $element->contactType;
+        if ($element->getContactType() !== '') {
+            $contactPerson['contactType'] = $element->getContactType();
         }
-        if (!empty($element->Company)) {
-            $contactPerson['company'] = $element->Company;
+        if ($element->getCompany() !== null) {
+            $contactPerson['company'] = $element->getCompany();
         }
-        if (!empty($element->GivenName)) {
-            $contactPerson['givenName'] = $element->GivenName;
+        if ($element->getGivenName() !== null) {
+            $contactPerson['givenName'] = $element->getGivenName();
         }
-        if (!empty($element->SurName)) {
+        if ($element->getSurName() !== null) {
             $contactPerson['surName'] = $element->SurName;
         }
-        if (!empty($element->EmailAddress)) {
-            $contactPerson['emailAddress'] = $element->EmailAddress;
+        if ($element->getEmailAddress() !== []) {
+            $contactPerson['emailAddress'] = $element->getEmailAddress();
         }
-        if (!empty($element->TelephoneNumber)) {
-            $contactPerson['telephoneNumber'] = $element->TelephoneNumber;
+        if ($element->getTelephoneNumber() !== []) {
+            $contactPerson['telephoneNumber'] = $element->getTelephoneNumber();
         }
         if (!empty($contactPerson)) {
             $this->contacts[] = $contactPerson;
@@ -1192,22 +1196,22 @@ class SAMLParser
     {
         assert(is_array($sp));
 
-        $sp['name'] = $element->ServiceName;
-        $sp['description'] = $element->ServiceDescription;
+        $sp['name'] = $element->getServiceName();
+        $sp['description'] = $element->getServiceDescription();
 
         $format = null;
         $sp['attributes'] = [];
         $sp['attributes.required'] = [];
-        foreach ($element->RequestedAttribute as $child) {
-            $attrname = $child->Name;
+        foreach ($element->getRequestedAttribute() as $child) {
+            $attrname = $child->getName();
             $sp['attributes'][] = $attrname;
 
-            if ($child->isRequired !== null && $child->isRequired === true) {
+            if ($child->getIsRequired() === true) {
                 $sp['attributes.required'][] = $attrname;
             }
 
-            if ($child->NameFormat !== null) {
-                $attrformat = $child->NameFormat;
+            if ($child->getNameFormat() !== null) {
+                $attrformat = $child->getNameFormat();
             } else {
                 $attrformat = \SAML2\Constants::NAMEFORMAT_UNSPECIFIED;
             }
@@ -1251,18 +1255,18 @@ class SAMLParser
     {
         $ep = [];
 
-        $ep['Binding'] = $element->Binding;
-        $ep['Location'] = $element->Location;
+        $ep['Binding'] = $element->getBinding();
+        $ep['Location'] = $element->getLocation();
 
-        if ($element->ResponseLocation !== null) {
-            $ep['ResponseLocation'] = $element->ResponseLocation;
+        if ($element->getResponseLocation() !== null) {
+            $ep['ResponseLocation'] = $element->getResponseLocation();
         }
 
         if ($element instanceof \SAML2\XML\md\IndexedEndpointType) {
-            $ep['index'] = $element->index;
+            $ep['index'] = $element->getIndex();
 
-            if ($element->isDefault !== null) {
-                $ep['isDefault'] = $element->isDefault;
+            if ($element->getIsDefault() !== null) {
+                $ep['isDefault'] = $element->getIsDefault();
             }
         }
 
@@ -1279,12 +1283,7 @@ class SAMLParser
      */
     private static function extractEndpoints(array $endpoints)
     {
-        $ret = [];
-        foreach ($endpoints as $ep) {
-            $ret[] = self::parseGenericEndpoint($ep);
-        }
-
-        return $ret;
+        return array_map(['self', 'parseGenericEndpoint'], $endpoints);
     }
 
 
@@ -1306,10 +1305,10 @@ class SAMLParser
     {
         $r = [];
 
-        if ($kd->use === 'encryption') {
+        if ($kd->getUse() === 'encryption') {
             $r['encryption'] = true;
             $r['signing'] = false;
-        } elseif ($kd->use === 'signing') {
+        } elseif ($kd->getUse() === 'signing') {
             $r['encryption'] = false;
             $r['signing'] = true;
         } else {
@@ -1317,14 +1316,14 @@ class SAMLParser
             $r['signing'] = true;
         }
 
-        $keyInfo = $kd->KeyInfo;
+        $keyInfo = $kd->getKeyInfo();
 
-        foreach ($keyInfo->info as $i) {
+        foreach ($keyInfo->getInfo() as $i) {
             if ($i instanceof \SAML2\XML\ds\X509Data) {
-                foreach ($i->data as $d) {
+                foreach ($i->getData() as $d) {
                     if ($d instanceof \SAML2\XML\ds\X509Certificate) {
                         $r['type'] = 'X509Certificate';
-                        $r['X509Certificate'] = $d->certificate;
+                        $r['X509Certificate'] = $d->getCertificate();
                         return $r;
                     }
                 }

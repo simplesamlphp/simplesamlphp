@@ -139,7 +139,7 @@ abstract class Store
 
         $className = \SimpleSAML\Module::resolveClass(
             $config[0],
-            'Consent_Store',
+            'Consent\Store',
             '\SimpleSAML\Module\consent\Store'
         );
 

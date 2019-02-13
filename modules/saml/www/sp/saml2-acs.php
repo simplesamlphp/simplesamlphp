@@ -35,20 +35,25 @@ if (!($response instanceof \SAML2\Response)) {
     throw new \SimpleSAML\Error\BadRequest('Invalid message received to AssertionConsumerService endpoint.');
 }
 
-$idp = $response->getIssuer();
-if ($idp === null) {
+$issuer = $response->getIssuer();
+if ($issuer === null) {
     // no Issuer in the response. Look for an unencrypted assertion with an issuer
     foreach ($response->getAssertions() as $a) {
         if ($a instanceof \SAML2\Assertion) {
             // we found an unencrypted assertion, there should be an issuer here
-            $idp = $a->getIssuer();
+            $issuer = $a->getIssuer();
             break;
         }
     }
-    if ($idp === null) {
+    if ($issuer === null) {
         // no issuer found in the assertions
         throw new Exception('Missing <saml:Issuer> in message delivered to AssertionConsumerService.');
     }
+}
+
+$idp = $issuer;
+if ($issuer instanceof \SAML2\XML\saml\Issuer) {
+    $idp = $idp->getValue();
 }
 
 $session = \SimpleSAML\Session::getSessionFromRequest();
@@ -234,7 +239,7 @@ $state['saml:AuthnInstant'] = $assertion->getAuthnInstant();
 $state['PersistentAuthData'][] = 'saml:AuthnInstant';
 $state['saml:sp:SessionIndex'] = $sessionIndex;
 $state['PersistentAuthData'][] = 'saml:sp:SessionIndex';
-$state['saml:sp:AuthnContext'] = $assertion->getAuthnContext();
+$state['saml:sp:AuthnContext'] = $assertion->getAuthnContextClassRef();
 $state['PersistentAuthData'][] = 'saml:sp:AuthnContext';
 
 if ($expire !== null) {

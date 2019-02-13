@@ -110,3 +110,27 @@ You can also use the multiauth:preselect parameter to the login call:
     $as->login(array(
         'multiauth:preselect' => 'default-sp',
     ));
+
+Or add the `preselect` option in the filter:
+
+    'example-multi' => array(
+        'multiauth:MultiAuth',
+
+        /*
+         * The available authentication sources.
+         * They must be defined in this authsources.php file.
+         */
+        'sources' => array(
+            'example-saml' => array(
+            // ...
+            ),
+            'example-admin' => array(
+            // ...
+            ),
+        ),
+        'preselect' => 'example-saml',
+    ),
+
+The order of priority, in case more than one option was used is: 
+`source` url parameter, `multiauth:preselect` login state and
+`preselect` filter option.

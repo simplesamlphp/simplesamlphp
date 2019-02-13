@@ -20,9 +20,11 @@
 function temporaryLoader($class)
 {
     // handle the upgrade to the latest version of XMLSecLibs using namespaces
-    if (strstr($class, 'XMLSec')) {
-        if (class_exists('\\RobRichards\\XMLSecLibs\\'.$class, true)) {
-            class_alias('\\RobRichards\\XMLSecLibs\\'.$class, $class);
+    if (strstr($class, 'XMLSec') && !strstr($class, '\\RobRichards\\XMLSecLibs\\')) {
+        $new = '\\RobRichards\\XMLSecLibs\\'.$class;
+        if (class_exists($new, true)) {
+            class_alias($new, $class);
+            SimpleSAML\Logger::warning("The class '$class' is now using namespaces, please use '$new'.");
             return;
         }
     }
@@ -87,9 +89,22 @@ function sspmodAutoloadPSR0($className)
         return;
     }
 
-    $modNameEnd = strpos($className, '_', $modulePrefixLength);
-    $module = substr($className, $modulePrefixLength, $modNameEnd - $modulePrefixLength);
-    $path = explode('_', substr($className, $modNameEnd + 1));
+    // list of classes that have been renamed or moved
+    $renamed = [
+        'sspmod_adfs_SAML2_XML_fed_Const' => [
+            'module' => 'adfs',
+            'path' => ['SAML2', 'XML', 'fed', 'Constants']
+        ],
+    ];
+    if (array_key_exists($className, $renamed)) {
+        // the class has been renamed, try to load it and create an alias
+        $module = $renamed[$className]['module'];
+        $path = $renamed[$className]['path'];
+    } else {
+        $modNameEnd = strpos($className, '_', $modulePrefixLength);
+        $module = substr($className, $modulePrefixLength, $modNameEnd - $modulePrefixLength);
+        $path = explode('_', substr($className, $modNameEnd + 1));
+    }
 
     if (!\SimpleSAML\Module::isModuleEnabled($module)) {
         return;
@@ -104,8 +119,8 @@ function sspmodAutoloadPSR0($className)
     if (!class_exists($className, false) && !interface_exists($className, false)) {
         // the file exists, but the class is not defined. Is it using namespaces?
         $nspath = join('\\', $path);
-        if (class_exists('SimpleSAML\Module\\'.$module.'\\'.$nspath) ||
-            interface_exists('SimpleSAML\Module\\'.$module.'\\'.$nspath)
+        if (class_exists('SimpleSAML\\Module\\'.$module.'\\'.$nspath) ||
+            interface_exists('SimpleSAML\\Module\\'.$module.'\\'.$nspath)
         ) {
             // the class has been migrated, create an alias and warn about it
             \SimpleSAML\Logger::warning(

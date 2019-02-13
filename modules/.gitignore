@@ -4,6 +4,7 @@
 
 # Explicitly include modules that ship with simplesamlphp
 !/adfs/
+!/admin/
 !/authcrypt/
 !/authfacebook/
 !/authlinkedin/

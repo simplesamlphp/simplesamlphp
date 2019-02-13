@@ -392,20 +392,18 @@ class Module
         } else {
             // should be a module
             // make sure empty types are handled correctly
-            $type = (empty($type)) ? '_' : '_'.$type.'_';
+            $type = (empty($type)) ? '\\' : '\\'.$type.'\\';
 
-            // check for the old-style class names
-            $className = 'sspmod_'.$tmp[0].$type.$tmp[1];
-
+            $className = 'SimpleSAML\\Module\\'.$tmp[0].$type.$tmp[1];
             if (!class_exists($className)) {
-                // check for the new-style class names, using namespaces
-                $type = str_replace('_', '\\', $type);
-                $newClassName = 'SimpleSAML\Module\\'.$tmp[0].$type.$tmp[1];
+                // check for the old-style class names
+                $type = str_replace('\\', '_', $type);
+                $oldClassName = 'sspmod_'.$tmp[0].$type.$tmp[1];
 
-                if (!class_exists($newClassName)) {
-                    throw new \Exception("Could not resolve '$id': no class named '$className' or '$newClassName'.");
+                if (!class_exists($oldClassName)) {
+                    throw new \Exception("Could not resolve '$id': no class named '$className' or '$oldClassName'.");
                 }
-                $className = $newClassName;
+                $className = $oldClassName;
             }
         }
 

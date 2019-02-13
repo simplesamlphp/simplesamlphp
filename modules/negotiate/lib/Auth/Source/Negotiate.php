@@ -49,7 +49,6 @@ class Negotiate extends \SimpleSAML\Auth\Source
         if (!extension_loaded('krb5')) {
             throw new \Exception('KRB5 Extension not installed');
         }
-
         // call the parent constructor first, as required by the interface
         parent::__construct($info, $config);
 
@@ -242,15 +241,13 @@ class Negotiate extends \SimpleSAML\Auth\Source
         $config = \SimpleSAML\Configuration::getInstance();
 
         $url = htmlspecialchars(\SimpleSAML\Module::getModuleURL('negotiate/backend.php', $params));
-        $json_url = json_encode($url);
 
         header('HTTP/1.1 401 Unauthorized');
         header('WWW-Authenticate: Negotiate', false);
 
-        $t = new \SimpleSAML\XHTML\Template($config, 'negotiate:redirect.twig');
+        $t = new \SimpleSAML\XHTML\Template($config, 'negotiate:redirect.php');
         $t->data['baseurlpath'] = \SimpleSAML\Module::getModuleURL('negotiate');
         $t->data['url'] = $url;
-        $t->data['json_url'] = $json_url;
         $t->show();
     }
 

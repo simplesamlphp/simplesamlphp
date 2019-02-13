@@ -153,7 +153,7 @@ class ProcessingChain
 
         $className = \SimpleSAML\Module::resolveClass(
             $config['class'],
-            'Auth_Process',
+            'Auth\Process',
             '\SimpleSAML\Auth\ProcessingFilter'
         );
         $config['%priority'] = $priority;

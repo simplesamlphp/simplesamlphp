@@ -89,6 +89,27 @@ class RedisTest extends TestCase
     }
 
     /**
+     * @covers \SimpleSAML\Store::getInstance
+     * @covers \SimpleSAML\Store\Redis::__construct
+     * @test
+     */
+    public function testRedisInstanceWithPassword()
+    {
+        $config = Configuration::loadFromArray([
+            'store.type' => 'redis',
+            'store.redis.prefix' => 'phpunit_',
+            'store.redis.password' => 'password',
+        ], '[ARRAY]', 'simplesaml');
+
+        $store = Store::getInstance();
+
+        $this->assertInstanceOf('SimpleSAML\Store\Redis', $store);
+
+        $this->clearInstance($config, '\SimpleSAML\Configuration');
+        $this->clearInstance($store, '\SimpleSAML\Store');
+    }
+
+    /**
      * @covers \SimpleSAML\Store\Redis::get
      * @covers \SimpleSAML\Store\Redis::set
      * @test

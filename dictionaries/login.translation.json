@@ -32,7 +32,6 @@
 		"lv": "K\u013c\u016bda",
 		"sr": "Gre\u0161ka",
 		"ro": "Eroare",
-		"xh": "Imposiso",
 		"af": "Fout",
 		"el": "\u03a3\u03c6\u03ac\u03bb\u03bc\u03b1",
 		"zu": "Iphutha",
@@ -44,7 +43,7 @@
 		"sv": "Ange ditt anv\u00e4ndarnamn och l\u00f6senord",
 		"es": "Introduzca su nombre de usuario y contrase\u00f1a",
 		"fr": "Entrez votre identifiant et votre mot de passe",
-		"de": "Bitten geben Sie ihren Nutzernamen und Passwort ein",
+		"de": "Bitte geben Sie Ihren Nutzernamen und Ihr Passwort ein",
 		"nl": "Geef je gebruikersnaam en wachtwoord",
 		"lb": "Gid w.e.g Aeren Benotzernumm an d Passwuert an",
 		"sl": "Vnesite svoje uporabni\u0161ko ime in geslo",
@@ -74,8 +73,7 @@
 		"xh": "Nceda ngenisa igama lakho lomsebenzisi kunye negama lokugqithisa",
 		"af": "Voer jou gebruikersnaam en wagwoord in",
 		"el": "\u0395\u03b9\u03c3\u03ac\u03b3\u03b5\u03c4\u03b5 \u03cc\u03bd\u03bf\u03bc\u03b1 \u03c7\u03c1\u03ae\u03c3\u03c4\u03b7 \u03ba\u03b1\u03b9 \u03ba\u03c9\u03b4\u03b9\u03ba\u03cc \u03c0\u03c1\u03cc\u03c3\u03b2\u03b1\u03c3\u03b7\u03c2",
-		"zu": "Faka igama lakho lomsebenzisi nephasiwedi",
-		"xh": "Ngenisa igama lomsebenzisi nephaswedi yakho"
+		"zu": "Faka igama lakho lomsebenzisi nephasiwedi"
 	},
 	"user_pass_text": {
 		"no": "En tjeneste har bedt om bekreftelse p\u00e5 din identitet. Skriv inn ditt brukernavn og passord for \u00e5 autentisere deg.",
@@ -152,11 +150,11 @@
 		"xh": "Ngena",
 		"af": "Meld aan",
 		"el": "\u0395\u03af\u03c3\u03bf\u03b4\u03bf\u03c2",
-		"zu": "Ngena",
-		"xh": "Ngena"
+		"zu": "Ngena"
 	},
 	"processing": {
 		"es": "Procesando...",
+		"sl": "Procesiranje...",
 		"zh-tw": "\u8655\u7406\u4e2d...",
 		"zu": "Iyacubungula...",
 		"xh": "Iyaprosesa..."
@@ -198,8 +196,7 @@
 		"xh": "Igama lomsebenzisi",
 		"af": "Gebruikersnaam",
 		"el": "\u038c\u03bd\u03bf\u03bc\u03b1 \u03a7\u03c1\u03ae\u03c3\u03c4\u03b7",
-		"zu": "Igama lomsebenzisi",
-		"xh": "Igama lomsebenzisi"
+		"zu": "Igama lomsebenzisi"
 	},
 	"organization": {
 		"no": "Organisasjon",
@@ -238,8 +235,7 @@
 		"xh": "Umbutho",
 		"af": "Organisasie",
 		"el": "\u039f\u03c1\u03b3\u03b1\u03bd\u03b9\u03c3\u03bc\u03cc\u03c2",
-		"zu": "Inhlangano",
-		"xh": "Umbutho"
+		"zu": "Inhlangano"
 	},
 	"password": {
 		"no": "Passord",
@@ -278,7 +274,6 @@
 		"xh": "Igama lokugqithisa",
 		"af": "Wagwoord",
 		"el": "\u039a\u03c9\u03b4\u03b9\u03ba\u03cc\u03c2",
-		"xh": "Iphaswedi",
 		"zu": "Iphasiwedi"
 	},
 	"help_header": {
@@ -432,8 +427,7 @@
 		"xh": "Awungenanga ngoba igama olisebenzisayo okanye isigqithisi asifakwanga kakuhle.",
 		"af": "Verkeerde gebruikersnaam of wagwoord.",
 		"el": "\u03a4\u03bf \u03cc\u03bd\u03bf\u03bc\u03b1 \u03c7\u03c1\u03ae\u03c3\u03c4\u03b7 \u03ae \u03bf \u03ba\u03c9\u03b4\u03b9\u03ba\u03cc\u03c2 \u03c0\u03c1\u03cc\u03c3\u03b2\u03b1\u03c3\u03b7\u03c2 \u03b5\u03af\u03bd\u03b1\u03b9 \u03bb\u03ac\u03b8\u03bf\u03c2.",
-		"zu": "Igama lomsebenzisi noma iphasiwedi engalungile.",
-		"xh": "Igama lomsebenzisi okanye iphaswedi engachanekanga."
+		"zu": "Igama lomsebenzisi noma iphasiwedi engalungile."
 	},
 	"contact_info": {
 		"no": "Kontaktinformasjon:",
@@ -729,11 +723,11 @@
 		"xh": "Olandelayo",
 		"af": "Volgende",
 		"el": "\u0395\u03c0\u03cc\u03bc\u03b5\u03bd\u03bf",
-		"xh": "Okulandelayo",
 		"zu": "Okulandelayo"
 	},
 	"remember_username": {
 		"es": "Recordar mi nombre de usuario",
+        "de": "Nutzername merken",
 		"hu": "Eml\u00e9kezzen a felhaszn\u00e1l\u00f3nevemre",
 		"ru": "\u0417\u0430\u043f\u043e\u043c\u043d\u0438\u0442\u044c \u043c\u043e\u0451 \u0438\u043c\u044f \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044f",
 		"zh-tw": "\u8a18\u4f4f\u6211\u7684\u4f7f\u7528\u8005\u540d\u7a31",
@@ -743,10 +737,12 @@
 		"pt-br": "Lembrar meu nome de usu\u00e1rio",
 		"el": "\u039d\u03b1 \u03b8\u03c5\u03bc\u03ac\u03c3\u03b1\u03b9 \u03c4\u03bf \u03cc\u03bd\u03bf\u03bc\u03b1 \u03c7\u03c1\u03ae\u03c3\u03c4\u03b7",
 		"zu": "Khumbula igama lami lomsebenzisi",
-		"xh": "Khumbula igama lomsebenzisi lam"
+		"xh": "Khumbula igama lomsebenzisi lam",
+		"sl": "Zapomni si moje uporabniško ime"
 	},
 	"remember_me": {
 		"es": "Recordarme",
+        "de": "Angemeldet bleiben",
 		"hu": "Eml\u00e9kezzen r\u00e1m",
 		"ru": "\u0417\u0430\u043f\u043e\u043c\u043d\u0438\u0442\u044c \u043c\u0435\u043d\u044f",
 		"zh-tw": "\u8a18\u4f4f\u6211",
@@ -756,6 +752,7 @@
 		"pt-br": "Lembre-me",
 		"el": "\u039d\u03b1 \u03bc\u03b5 \u03b8\u03c5\u03bc\u03ac\u03c3\u03b1\u03b9",
 		"xh": "Ndikhumbule",
-		"zu": "Ngikhumbule"
+		"zu": "Ngikhumbule",
+		"sl": "Zapomni si me"
 	}
 }

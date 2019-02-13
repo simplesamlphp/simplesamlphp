@@ -3,6 +3,8 @@
 namespace SimpleSAML\Module\saml;
 
 use RobRichards\XMLSecLibs\XMLSecurityKey;
+use SAML2\Constants;
+use SAML2\XML\saml\Issuer;
 
 /**
  * Common code for building SAML 2 messages based on the available metadata.
@@ -496,7 +498,9 @@ class Message
 
         // Shoaib: setting the appropriate binding based on parameter in sp-metadata defaults to HTTP_POST
         $ar->setProtocolBinding($protbind);
-        $ar->setIssuer($spMetadata->getString('entityid'));
+        $issuer = new \SAML2\XML\saml\Issuer();
+        $issuer->setValue($spMetadata->getString('entityid'));
+        $ar->setIssuer($issuer);
         $ar->setAssertionConsumerServiceIndex($spMetadata->getInteger('AssertionConsumerServiceIndex', null));
         $ar->setAttributeConsumingServiceIndex($spMetadata->getInteger('AttributeConsumingServiceIndex', null));
 
@@ -529,7 +533,10 @@ class Message
         \SimpleSAML\Configuration $dstMetadata
     ) {
         $lr = new \SAML2\LogoutRequest();
-        $lr->setIssuer($srcMetadata->getString('entityid'));
+        $issuer = new Issuer();
+        $issuer->setValue($srcMetadata->getString('entityid'));
+        $issuer->setFormat(Constants::NAMEID_ENTITY);
+        $lr->setIssuer($issuer);
 
         self::addRedirectSign($srcMetadata, $dstMetadata, $lr);
 
@@ -549,7 +556,10 @@ class Message
         \SimpleSAML\Configuration $dstMetadata
     ) {
         $lr = new \SAML2\LogoutResponse();
-        $lr->setIssuer($srcMetadata->getString('entityid'));
+        $issuer = new Issuer();
+        $issuer->setValue($srcMetadata->getString('entityid'));
+        $issuer->setFormat(Constants::NAMEID_ENTITY);
+        $lr->setIssuer($issuer);
 
         self::addRedirectSign($srcMetadata, $dstMetadata, $lr);
 
@@ -688,8 +698,9 @@ class Message
         $lastError = 'No SubjectConfirmation element in Subject.';
         $validSCMethods = [\SAML2\Constants::CM_BEARER, \SAML2\Constants::CM_HOK, \SAML2\Constants::CM_VOUCHES];
         foreach ($assertion->getSubjectConfirmation() as $sc) {
-            if (!in_array($sc->Method, $validSCMethods, true)) {
-                $lastError = 'Invalid Method on SubjectConfirmation: '.var_export($sc->Method, true);
+            $method = $sc->getMethod();
+            if (!in_array($method, $validSCMethods, true)) {
+                $lastError = 'Invalid Method on SubjectConfirmation: '.var_export($method, true);
                 continue;
             }
 
@@ -698,18 +709,18 @@ class Message
             if ($hok === null) {
                 $hok = $spMetadata->getBoolean('saml20.hok.assertion', false);
             }
-            if ($sc->Method === \SAML2\Constants::CM_BEARER && $hok) {
+            if ($method === \SAML2\Constants::CM_BEARER && $hok) {
                 $lastError = 'Bearer SubjectConfirmation received, but Holder-of-Key SubjectConfirmation needed';
                 continue;
             }
-            if ($sc->Method === \SAML2\Constants::CM_HOK && !$hok) {
+            if ($method === \SAML2\Constants::CM_HOK && !$hok) {
                 $lastError = 'Holder-of-Key SubjectConfirmation received, '.
                     'but the Holder-of-Key profile is not enabled.';
                 continue;
             }
 
-            $scd = $sc->SubjectConfirmationData;
-            if ($sc->Method === \SAML2\Constants::CM_HOK) {
+            $scd = $sc->getSubjectConfirmationData();
+            if ($method === \SAML2\Constants::CM_HOK) {
                 // check HoK Assertion
                 if (\SimpleSAML\Utils\HTTP::isHTTPS() === false) {
                     $lastError = 'No HTTPS connection, but required for Holder-of-Key SSO';
@@ -780,25 +791,29 @@ class Message
                 continue;
             }
 
-            if ($scd->NotBefore && $scd->NotBefore > time() + 60) {
-                $lastError = 'NotBefore in SubjectConfirmationData is in the future: '.$scd->NotBefore;
+            $notBefore = $scd->getNotBefore();
+            if ($notBefore && $notBefore > time() + 60) {
+                $lastError = 'NotBefore in SubjectConfirmationData is in the future: '.$notBefore;
                 continue;
             }
-            if ($scd->NotOnOrAfter && $scd->NotOnOrAfter <= time() - 60) {
-                $lastError = 'NotOnOrAfter in SubjectConfirmationData is in the past: '.$scd->NotOnOrAfter;
+            $notOnOrAfter = $scd->getNotOnOrAfter();
+            if ($notOnOrAfter && $notOnOrAfter <= time() - 60) {
+                $lastError = 'NotOnOrAfter in SubjectConfirmationData is in the past: '.$notOnOrAfter;
                 continue;
             }
-            if ($scd->Recipient !== null && $scd->Recipient !== $currentURL) {
+            $recipient = $scd->getRecipient();
+            if ($recipient !== null && $recipient !== $currentURL) {
                 $lastError = 'Recipient in SubjectConfirmationData does not match the current URL. Recipient is '.
-                    var_export($scd->Recipient, true).', current URL is '.var_export($currentURL, true).'.';
+                    var_export($recipient, true).', current URL is '.var_export($currentURL, true).'.';
                 continue;
             }
-            if ($scd->InResponseTo !== null && $response->getInResponseTo() !== null &&
-                $scd->InResponseTo !== $response->getInResponseTo()
+            $inResponseTo = $scd->getInResponseTo();
+            if ($inResponseTo !== null && $response->getInResponseTo() !== null &&
+                $inResponseTo !== $response->getInResponseTo()
             ) {
                 $lastError = 'InResponseTo in SubjectConfirmationData does not match the Response. Response has '.
                     var_export($response->getInResponseTo(), true).
-                    ', SubjectConfirmationData has '.var_export($scd->InResponseTo, true).'.';
+                    ', SubjectConfirmationData has '.var_export($inResponseTo, true).'.';
                 continue;
             }
             $found = true;

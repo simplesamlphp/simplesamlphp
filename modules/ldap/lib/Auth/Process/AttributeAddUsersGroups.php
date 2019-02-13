@@ -171,7 +171,7 @@ class AttributeAddUsersGroups extends BaseFilter
 
         // run through all groups and add each to our groups array
         foreach ($all_groups as $group_entry) {
-            $groups[] .= $group_entry[$map['member']][0];
+            $groups[] = $group_entry[$map['member']][0];
         }
 
         return $groups;

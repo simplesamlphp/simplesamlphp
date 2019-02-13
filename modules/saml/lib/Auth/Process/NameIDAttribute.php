@@ -82,7 +82,7 @@ class NameIDAttribute extends \SimpleSAML\Auth\ProcessingFilter
                     $ret[] = 'SPNameQualifier';
                     break;
                 case 'V':
-                    $ret[] = 'value';
+                    $ret[] = 'Value';
                     break;
                 case '%':
                     $ret[] = '%';
@@ -115,17 +115,16 @@ class NameIDAttribute extends \SimpleSAML\Auth\ProcessingFilter
         }
 
         $rep = $state['saml:sp:NameID'];
-        assert(isset($rep->value));
-
+        assert(!is_null($rep->getValue()));
         $rep->{'%'} = '%';
-        if (!isset($rep->Format)) {
-            $rep->Format = \SAML2\Constants::NAMEID_UNSPECIFIED;
+        if ($rep->getFormat() !== null) {
+            $rep->setFormat(\SAML2\Constants::NAMEID_UNSPECIFIED);
         }
-        if (!isset($rep->NameQualifier)) {
-            $rep->NameQualifier = $state['Source']['entityid'];
+        if ($rep->getNameQualifier() !== null) {
+            $rep->setNameQualifier($state['Source']['entityid']);
         }
-        if (!isset($rep->SPNameQualifier)) {
-            $rep->SPNameQualifier = $state['Destination']['entityid'];
+        if ($rep->getSPNameQualifier() !== null) {
+            $rep->setSPNameQualifier($state['Destination']['entityid']);
         }
 
         $value = '';
@@ -134,7 +133,7 @@ class NameIDAttribute extends \SimpleSAML\Auth\ProcessingFilter
             if ($isString) {
                 $value .= $element;
             } else {
-                $value .= $rep->$element;
+                $value .= call_user_func([$rep, 'get'.$element]);
             }
             $isString = !$isString;
         }

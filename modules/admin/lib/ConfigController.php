@@ -6,7 +6,6 @@ use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Locale\Translate;
 use SimpleSAML\Utils\HTTP;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Controller class for the admin module.
@@ -17,7 +16,6 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class ConfigController
 {
-
     const LATEST_VERSION_STATE_KEY = 'core:latest_simplesamlphp_version';
     const RELEASES_API = 'https://api.github.com/repos/simplesamlphp/simplesamlphp/releases/latest';
 

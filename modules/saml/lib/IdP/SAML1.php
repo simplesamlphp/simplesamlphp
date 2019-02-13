@@ -3,6 +3,8 @@
 namespace SimpleSAML\Module\saml\IdP;
 
 use SimpleSAML\Bindings\Shib13\HTTPPost;
+use SimpleSAML\Utils\Config\Metadata;
+use SimpleSAML\Utils\Crypto;
 use SimpleSAML\Utils\HTTP;
 
 /**
@@ -13,6 +15,112 @@ use SimpleSAML\Utils\HTTP;
 
 class SAML1
 {
+
+    /**
+     * Retrieve the metadata of a hosted SAML 1.1 IdP.
+     *
+     * @param string $entityid The entity ID of the hosted SAML 1.1 IdP whose metadata we want.
+     *
+     * @return array
+     * @throws \SimpleSAML\Error\Exception
+     * @throws \SimpleSAML\Error\MetadataNotFound
+     * @throws \SimpleSAML_Error_Exception
+     */
+    public static function getHostedMetadata($entityid)
+    {
+        $handler = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
+        $config = $handler->getMetaDataConfig($entityid, 'shib13-idp-hosted');
+
+        $metadata = [
+            'metadata-set' => 'shib13-idp-hosted',
+            'entityid' => $entityid,
+            'SignleSignOnService' => $handler->getGenerated('SingleSignOnService', 'shib13-idp-hosted'),
+            'NameIDFormat' => $config->getArrayizeString('NameIDFormat', 'urn:mace:shibboleth:1.0:nameIdentifier'),
+            'contacts' => [],
+        ];
+
+        // add certificates
+        $keys = [];
+        $certInfo = Crypto::loadPublicKey($config, false, 'new_');
+        $hasNewCert = false;
+        if ($certInfo !== null) {
+            $keys[] = [
+                'type' => 'X509Certificate',
+                'signing' => true,
+                'encryption' => true,
+                'X509Certificate' => $certInfo['certData'],
+                'prefix' => 'new_',
+            ];
+            $hasNewCert = true;
+        }
+
+        $certInfo = Crypto::loadPublicKey($config, true);
+        $keys[] = [
+            'type' => 'X509Certificate',
+            'signing' => true,
+            'encryption' => $hasNewCert === false,
+            'X509Certificate' => $certInfo['certData'],
+            'prefix' => '',
+        ];
+        $metadata['keys'] = $keys;
+
+        // add organization information
+        if ($config->hasValue('OrganizationName')) {
+            $metadata['OrganizationName'] = $config->getLocalizedString('OrganizationName');
+            $metadata['OrganizationDisplayName'] = $config->getLocalizedString(
+                'OrganizationDisplayName',
+                $metadata['OrganizationName']
+            );
+
+            if (!$config->hasValue('OrganizationURL')) {
+                throw new \SimpleSAMl\Error\Exception('If OrganizationName is set, OrganizationURL must also be set.');
+            }
+            $metadata['OrganizationURL'] = $config->getLocalizedString('OrganizationURL');
+        }
+
+        // add scope
+        if ($config->hasValue('scope')) {
+            $metadata['scope'] = $config->getArray('scope');
+        }
+
+        // add extensions
+        if ($config->hasValue('EntityAttributes')) {
+            $metadata['EntityAttributes'] = $config->getArray('EntityAttributes');
+
+            // check for entity categories
+            if (Metadata::isHiddenFromDiscovery($metadata)) {
+                $metadata['hide.from.discovery'] = true;
+            }
+        }
+
+        if ($config->hasValue('UIInfo')) {
+            $metadata['UIInfo'] = $config->getArray('UIInfo');
+        }
+
+        if ($config->hasValue('DiscoHints')) {
+            $metadata['DiscoHints'] = $config->getArray('DiscoHints');
+        }
+
+        if ($config->hasValue('RegistrationInfo')) {
+            $metadata['RegistrationInfo'] = $config->getArray('RegistrationInfo');
+        }
+
+        // add contact information
+        $globalConfig = \SimpleSAML\Configuration::getInstance();
+        $email = $globalConfig->getString('technicalcontact_email', false);
+        if ($email && $email !== 'na@example.org') {
+            $contact = [
+                'emailAddress' => $email,
+                'name' => $globalConfig->getString('technicalcontact_name', null),
+                'contactType' => 'technical',
+            ];
+            $metadata['contacts'][] = Metadata::getContact($contact);
+        }
+
+        return $metadata;
+    }
+
+
     /**
      * Send a response to the SP.
      *
