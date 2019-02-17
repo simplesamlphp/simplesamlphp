@@ -440,7 +440,6 @@ $config = [
     'enable.shib13-idp' => false,
     'enable.adfs-idp' => false,
     'enable.wsfed-sp' => false,
-    'enable.authmemcookie' => false,
 
     /*
      * Default IdP for WS-Fed.
