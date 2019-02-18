@@ -44,11 +44,12 @@ fi
 php "$TARGET/composer.phar" install --no-dev --prefer-dist -o -d "$TARGET"
 
 # Install external modules
+php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-cdc
 php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-memcookie
-php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-riak
 php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-oauth
+php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-riak
 
-cd $TARGET 
+cd $TARGET
 npm install
 npm audit fix
 npm run build
