@@ -167,16 +167,14 @@ class SimpleSAML_IdP
         return $this->config;
     }
 
-
     /**
-     * Get SP name.
+     * Get SP object.
      *
      * @param string $assocId The association identifier.
      *
-     * @return array|null The name of the SP, as an associative array of language => text, or null if this isn't an SP.
+     * @return SimpleSAML_Configuration The SP, as a configuration object or null if this isn't an SP.
      */
-    public function getSPName($assocId)
-    {
+    public static function getSP($assocId) {
         assert('is_string($assocId)');
 
         $prefix = substr($assocId, 0, 4);
@@ -200,6 +198,25 @@ class SimpleSAML_IdP
                 return null;
             }
         }
+
+        return $spMetadata;
+    }
+
+
+    /**
+     * Get SP name.
+     *
+     * @param string $assocId The association identifier.
+     *
+     * @return array|null The name of the SP, as an associative array of language => text, or null if this isn't an SP.
+     */
+    public function getSPName($assocId)
+    {
+        assert('is_string($assocId)');
+        $prefix = substr($assocId, 0, 4);
+        $spEntityId = substr($assocId, strlen($prefix) + 1);
+
+        $spMetadata = self::getSP($assocId);
 
         if ($spMetadata->hasValue('name')) {
             return $spMetadata->getLocalizedString('name');
@@ -308,6 +325,10 @@ class SimpleSAML_IdP
 
         if (isset($state['SPMetadata'])) {
             $spMetadata = $state['SPMetadata'];
+        } elseif (isset($state['SPAssocId'])) {
+            $spMetadata = self::getSP($state['SPAssocId'])->toArray();
+            // rehydrate state for authproc
+            $state['SPMetadata'] = $spMetadata;
         } else {
             $spMetadata = array();
         }
