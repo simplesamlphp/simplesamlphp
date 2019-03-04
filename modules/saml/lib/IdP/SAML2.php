@@ -1194,17 +1194,17 @@ class SAML2
             $a->setAttributes($attributes);
         }
 
+        $nameIdFormat = null;
+
         // generate the NameID for the assertion
         if (isset($state['saml:NameIDFormat'])) {
             $nameIdFormat = $state['saml:NameIDFormat'];
-        } else {
-            $nameIdFormat = null;
         }
 
         if ($nameIdFormat === null || !isset($state['saml:NameID'][$nameIdFormat])) {
             // either not set in request, or not set to a format we supply. Fall back to old generation method
             $nameIdFormat = current($spMetadata->getArrayizeString('NameIDFormat', []));
-            if ($nameIdFormat === null) {
+            if ($nameIdFormat === false) {
                 $nameIdFormat = current($idpMetadata->getArrayizeString('NameIDFormat', [\SAML2\Constants::NAMEID_TRANSIENT]));
             }
         }
