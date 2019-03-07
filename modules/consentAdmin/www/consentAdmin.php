@@ -274,7 +274,7 @@ foreach ($all_sp_metadata as $sp_entityid => $sp_values) {
             \SimpleSAML\Logger::info('consentAdmin: ok');
             $sp_status = "ok";
         }
-        // Consent does not exists
+        // Consent does not exist
     } else {
         SimpleSAML\Logger::info('consentAdmin: none');
         $sp_status = "none";

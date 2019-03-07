@@ -33,7 +33,7 @@ class Ruleset
          * Walk through file lists, and get available [rule][fileslot]...
          */
         if (!is_dir($statdir)) {
-            throw new \Exception('Statisics output directory ['.$statdir.'] does not exists.');
+            throw new \Exception('Statisics output directory ['.$statdir.'] does not exist.');
         }
         $filelist = scandir($statdir);
         $this->available = [];
