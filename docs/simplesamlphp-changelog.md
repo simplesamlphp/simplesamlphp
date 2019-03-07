@@ -6,9 +6,18 @@ SimpleSAMLphp changelog
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
-## Version 1.17.0
+## Version 1.18.0
 
 Released TBD
+
+### metarefresh
+  * The algorithm to compute the fingerprint of the certificate that signed
+    metadata can be specified with the new `validateFingerprintAlgorithm`
+    configuration option.
+
+## Version 1.17.0
+
+Released 3 March 2019
 
   * Introduce a new experimental user interface based on Twig templates.
     The new Twig templates co-exist next to the old ones and come
@@ -47,11 +56,6 @@ Released TBD
 ### core
   * Allow `core:PHP` to manipulate the entire state array.
   * IdP initiated login: add compatibility with Shibboleth parameters.
-
-### metarefresh
-  * The algorithm to compute the fingerprint of the certificate that signed
-    metadata can be specified with the new `validateFingerprintAlgorithm`
-    configuration option.
 
 ### multiauth
   * Added a `preselect` configuration option to skip authsource selection (#1005).
