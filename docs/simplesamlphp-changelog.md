@@ -48,6 +48,11 @@ Released TBD
   * Allow `core:PHP` to manipulate the entire state array.
   * IdP initiated login: add compatibility with Shibboleth parameters.
 
+### metarefresh
+  * The algorithm to compute the fingerprint of the certificate that signed
+    metadata can be specified with the new `validateFingerprintAlgorithm`
+    configuration option.
+
 ### multiauth
   * Added a `preselect` configuration option to skip authsource selection (#1005).
 

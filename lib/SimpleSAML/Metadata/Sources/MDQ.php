@@ -2,6 +2,7 @@
 
 namespace SimpleSAML\Metadata\Sources;
 
+use RobRichards\XMLSecLibs\XMLSecurityDSig;
 use SimpleSAML\Logger;
 use SimpleSAML\Utils\HTTP;
 
@@ -77,6 +78,11 @@ class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
             $this->validateFingerprint = $config['validateFingerprint'];
         } else {
             $this->validateFingerprint = null;
+        }
+        if (isset($config['validateFingerprintAlgorithm'])) {
+            $this->validateFingerprintAlgorithm = $config['validateFingerprintAlgorithm'];
+        } else {
+            $this->validateFingerprintAlgorithm = XMLSecurityDSig::SHA1;
         }
 
         if (array_key_exists('cachedir', $config)) {
@@ -315,7 +321,10 @@ class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
         Logger::debug(__CLASS__.': completed parsing of ['.$mdq_url.']');
 
         if ($this->validateFingerprint !== null) {
-            if (!$entity->validateFingerprint($this->validateFingerprint)) {
+            if (!$entity->validateFingerprint(
+                $this->validateFingerprint,
+                $this->validateFingerprintAlgorithm
+            )) {
                 throw new \Exception(__CLASS__.': error, could not verify signature for entity: '.$index.'".');
             }
         }
