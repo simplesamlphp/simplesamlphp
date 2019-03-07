@@ -23,20 +23,9 @@ $croninfo = $cron->runTag($_REQUEST['tag']);
 $summary = $croninfo['summary'];
 
 if ($cronconfig->getValue('sendemail', true) && count($summary) > 0) {
-    $message = '<h1>Cron report</h1><p>Cron ran at '.$time.'</p>'.
-        '<p>URL: <code>'.$url.'</code></p>'.
-        '<p>Tag: '.$croninfo['tag']."</p>\n\n".
-        '<ul><li>'.join('</li><li>', $summary).'</li></ul>';
-
-    $toaddress = $config->getString('technicalcontact_email', 'na@example.org');
-    if ($toaddress == 'na@example.org') {
-        \SimpleSAML\Logger::error('Cron - Could not send email. [technicalcontact_email] not set in config.');
-    } else {
-        // Use $toaddress for both TO and FROM
-        $email = new \SimpleSAML\XHTML\EMail($toaddress, 'SimpleSAMLphp cron report', $toaddress);
-        $email->setBody($message);
-        $email->send();
-    }
+    $mail = new \SimpleSAML\Utils\EMail('SimpleSAMLphp cron report');
+    $mail->setData(['url' => $url, 'tag' => $croninfo['tag'], 'summary' => $croninfo['summary']]);
+    $mail->send();
 }
 
 if (isset($_REQUEST['output']) && $_REQUEST['output'] == "xhtml") {
