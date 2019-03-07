@@ -8,7 +8,7 @@ See the upgrade notes for specific information about upgrading.
 
 ## Version 1.17.0
 
-Released TBD
+Released 2019-03-07
 
   * Introduce a new experimental user interface based on Twig templates.
     The new Twig templates co-exist next to the old ones and come
