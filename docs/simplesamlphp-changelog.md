@@ -15,9 +15,16 @@ Released TBD
     metadata can be specified with the new `validateFingerprintAlgorithm`
     configuration option.
 
+## Version 1.17.1
+
+Released 2019-03-07
+
+  * Fixed an issue with composer that made it impossible to install modules
+    if SimpleSAMLphp was installed itself with the provided package (tar.gz file).
+
 ## Version 1.17.0
 
-Released 3 March 2019
+Released 2019-03-07
 
   * Introduce a new experimental user interface based on Twig templates.
     The new Twig templates co-exist next to the old ones and come
