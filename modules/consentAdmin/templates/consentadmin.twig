@@ -2,11 +2,11 @@
 {% extends "base.twig" %}
 
 {% block preload %}
-<link rel="stylesheet" type="text/css" href="{{ basepathurl }}assets/css/consentAdmin.css" />
+<link rel="stylesheet" href="/{{ baseurlpath }}module.php/consentAdmin/assets/css/consentAdmin.css">
 {% endblock %}
 
 {% block postload %}
-<script src="{{ baseurlpath }}assets/js/consentAdmin.js"></script>
+<script src="/{{ baseurlpath }}module.php/consentAdmin/assets/js/consentAdmin.js"></script>
 {% endblock %}
 
 {% block content %}
@@ -77,6 +77,6 @@
 <p>{{ '{consentAdmin:consentadmin:consentadmin_description2}'|trans|raw }}</p>
 
 <h2>Logout</h2>
-<p><a href="{{ baseurlpath }}consentAdmin.php?logout=1">Logout</a></p>
+<p><a href="/{{ baseurlpath }}module.php/consentAdmin/consentAdmin.php?logout=1">Logout</a></p>
 
 {% endblock %}

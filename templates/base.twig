@@ -4,11 +4,11 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="initial-scale=1.0">
     <title>{{ pagetitle }}</title>
-    <link rel="stylesheet" type="text/css" href="{{ asset("css/stylesheet.css") }}">
-    <link rel="icon" type="image/icon" href="/{{ baseurlpath }}resources/icons/favicon.ico">
+    <link rel="stylesheet" href="{{ asset("css/stylesheet.css") }}">
+    <link rel="icon" href="/{{ baseurlpath }}resources/icons/favicon.ico">
     {% if isRTL %}
 
-    <link rel="stylesheet" type="text/css" href="/{{ baseurlpath }}assets/css/src/default-rtl.css" />
+    <link rel="stylesheet" href="{{ asset("assets/css/src/default-rtl.css") }}">
     {% endif %}
 
     <meta name="robots" content="noindex, nofollow">
