@@ -11,20 +11,27 @@ namespace SimpleSAML\XML;
 
 class Parser
 {
+    /** @var \SimpleXMLElement|null */
     public $simplexml = null;
 
+    /**
+     * @param string $xml
+     */
     public function __construct($xml)
     {
-        ;
         $this->simplexml = new \SimpleXMLElement($xml);
         $this->simplexml->registerXPathNamespace('saml2', 'urn:oasis:names:tc:SAML:2.0:assertion');
         $this->simplexml->registerXPathNamespace('saml2meta', 'urn:oasis:names:tc:SAML:2.0:metadata');
         $this->simplexml->registerXPathNamespace('ds', 'http://www.w3.org/2000/09/xmldsig#');
     }
     
+
+    /**
+     * @param \SimpleXMLElement $element
+     * @return \SimpleSAML\XML\Parser
+     */
     public static function fromSimpleXMLElement(\SimpleXMLElement $element)
     {
-        
         // Traverse all existing namespaces in element
         $namespaces = $element->getNamespaces();
         foreach ($namespaces as $prefix => $ns) {
@@ -38,6 +45,13 @@ class Parser
         return $parser;
     }
     
+
+    /**
+     * @param string $xpath
+     * @param string $defvalue
+     * @throws \Exception
+     * @return string
+     */
     public function getValueDefault($xpath, $defvalue)
     {
         try {
@@ -47,6 +61,13 @@ class Parser
         }
     }
     
+
+    /**
+     * @param string $xpath
+     * @param bool $required
+     * @throws \Exception
+     * @return string
+     */
     public function getValue($xpath, $required = false)
     {
         $result = $this->simplexml->xpath($xpath);
@@ -62,6 +83,13 @@ class Parser
         return (string) $result[0];
     }
     
+
+    /**
+     * @param array $xpath
+     * @param bool $required
+     * @throws \Exception
+     * @return string|null
+     */
     public function getValueAlternatives(array $xpath, $required = false)
     {
         foreach ($xpath as $x) {

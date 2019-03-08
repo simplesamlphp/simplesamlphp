@@ -18,6 +18,11 @@ class DefaultAuth
 {
     /**
      * @deprecated This method will be removed in SSP 2.0. Use Source::initLogin() instead.
+     * @param string $authId
+     * @param string $return
+     * @param string|null $errorURL
+     * @param array $params
+     * @return void
      */
     public static function initLogin(
         $authId,
@@ -34,6 +39,8 @@ class DefaultAuth
     /**
      * @deprecated This method will be removed in SSP 2.0. Please use
      * State::getPersistentAuthData() instead.
+     * @param array &$state
+     * @return array
      */
     public static function extractPersistentAuthState(array &$state)
     {
@@ -43,6 +50,8 @@ class DefaultAuth
 
     /**
      * @deprecated This method will be removed in SSP 2.0. Please use Source::loginCompleted() instead.
+     * @param array $state
+     * @return void
      */
     public static function loginCompleted($state)
     {
@@ -52,6 +61,9 @@ class DefaultAuth
 
     /**
      * @deprecated This method will be removed in SSP 2.0.
+     * @param string $returnURL
+     * @param string $authority
+     * @return void
      */
     public static function initLogoutReturn($returnURL, $authority)
     {
@@ -78,6 +90,9 @@ class DefaultAuth
 
     /**
      * @deprecated This method will be removed in SSP 2.0.
+     * @param string $returnURL
+     * @param string $authority
+     * @return void
      */
     public static function initLogout($returnURL, $authority)
     {
@@ -92,6 +107,8 @@ class DefaultAuth
 
     /**
      * @deprecated This method will be removed in SSP 2.0.
+     * @param array $state
+     * @return void
      */
     public static function logoutCompleted($state)
     {
@@ -104,6 +121,8 @@ class DefaultAuth
 
     /**
      * @deprecated This method will be removed in SSP 2.0. Please use Source::logoutCallback() instead.
+     * @param array $state
+     * @return void
      */
     public static function logoutCallback($state)
     {
@@ -114,6 +133,10 @@ class DefaultAuth
     /**
      * @deprecated This method will be removed in SSP 2.0. Please use
      * \SimpleSAML\Module\saml\Auth\Source\SP::handleUnsolicitedAuth() instead.
+     * @param string $authId
+     * @param array $state
+     * @param string $redirectTo
+     * @return void
      */
     public static function handleUnsolicitedAuth($authId, array $state, $redirectTo)
     {

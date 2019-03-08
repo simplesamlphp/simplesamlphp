@@ -212,6 +212,7 @@ class SAMLParser
      */
     public static function parseFile($file)
     {
+        /** @var string $data */
         $data = \SimpleSAML\Utils\HTTP::fetch($file);
 
         try {
@@ -282,7 +283,7 @@ class SAMLParser
      * the file contains a single EntityDescriptorElement, then the array will contain a single SAMLParser
      * instance.
      *
-     * @param string $file The path to the file which contains the EntityDescriptor or EntitiesDescriptor element.
+     * @param string|null $file The path to the file which contains the EntityDescriptor or EntitiesDescriptor element.
      *
      * @return SAMLParser[] An array of SAMLParser instances.
      * @throws \Exception If the file does not parse as XML.
@@ -293,6 +294,7 @@ class SAMLParser
             throw new \Exception('Cannot open file NULL. File name not specified.');
         }
 
+        /** @var string $data */
         $data = \SimpleSAML\Utils\HTTP::fetch($file);
 
         try {
@@ -409,9 +411,9 @@ class SAMLParser
      * how long a given XML-element is valid. It returns this as a unix timestamp.
      *
      * @param mixed    $element The element we should determine the expiry time of.
-     * @param int|NULL $maxExpireTime The maximum expiration time.
+     * @param int|null $maxExpireTime The maximum expiration time.
      *
-     * @return int The unix timestamp for when the element should expire. Will be NULL if no
+     * @return int|null The unix timestamp for when the element should expire. Will be NULL if no
      *             limit is set for the element.
      */
     private static function getExpireTime($element, $maxExpireTime)
@@ -438,6 +440,9 @@ class SAMLParser
     }
 
 
+    /**
+     * @return array
+     */
     private function getMetadataCommon()
     {
         $ret = [];
@@ -470,6 +475,7 @@ class SAMLParser
      *
      * @param array &$metadata The metadata that should be updated.
      * @param array $roleDescriptor The parsed role descriptor.
+     * @return void
      */
     private function addExtensions(array &$metadata, array $roleDescriptor)
     {
@@ -520,7 +526,8 @@ class SAMLParser
      *
      * Metadata must be loaded with one of the parse functions before this function can be called.
      *
-     * @return array An associative array with metadata or NULL if we are unable to generate metadata for a SAML 1.x SP.
+     * @return array|null An associative array with metadata or NULL if we are unable to
+     *   generate metadata for a SAML 1.x SP.
      */
     public function getMetadata1xSP()
     {
@@ -593,8 +600,8 @@ class SAMLParser
      *
      * Metadata must be loaded with one of the parse functions before this function can be called.
      *
-     * @return array An associative array with metadata or NULL if we are unable to generate metadata for a SAML 1.x
-     *     IdP.
+     * @return array|null An associative array with metadata or NULL if we are unable to
+     *   generate metadata for a SAML 1.x IdP.
      */
     public function getMetadata1xIdP()
     {
@@ -650,7 +657,8 @@ class SAMLParser
      *
      * Metadata must be loaded with one of the parse functions before this function can be called.
      *
-     * @return array An associative array with metadata or NULL if we are unable to generate metadata for a SAML 2.x SP.
+     * @return array|null An associative array with metadata or NULL if we are unable to
+     *   generate metadata for a SAML 2.x SP.
      */
     public function getMetadata20SP()
     {
@@ -752,8 +760,8 @@ class SAMLParser
      *
      * Metadata must be loaded with one of the parse functions before this function can be called.
      *
-     * @return array An associative array with metadata or NULL if we are unable to generate metadata for a SAML 2.0
-     *     IdP.
+     * @return array|null An associative array with metadata or NULL if we are unable to
+     *   generate metadata for a SAML 2.0 IdP.
      */
     public function getMetadata20IdP()
     {
@@ -828,7 +836,7 @@ class SAMLParser
      * - 'keys': Array of associative arrays with the elements from parseKeyDescriptor.
      *
      * @param \SAML2\XML\md\RoleDescriptor $element The element we should extract metadata from.
-     * @param int|NULL                    $expireTime The unix timestamp for when this element should expire, or
+     * @param int|null $expireTime The unix timestamp for when this element should expire, or
      *                             NULL if unknown.
      *
      * @return array An associative array with metadata we have extracted from this element.
@@ -910,6 +918,7 @@ class SAMLParser
      * @param \SAML2\XML\md\SPSSODescriptor $element The element which should be parsed.
      * @param int|NULL                     $expireTime The unix timestamp for when this element should expire, or
      *                             NULL if unknown.
+     * @return void
      */
     private function processSPSSODescriptor(\SAML2\XML\md\SPSSODescriptor $element, $expireTime)
     {
@@ -946,6 +955,7 @@ class SAMLParser
      * @param \SAML2\XML\md\IDPSSODescriptor $element The element which should be parsed.
      * @param int|NULL                      $expireTime The unix timestamp for when this element should expire, or
      *                             NULL if unknown.
+     * @return void
      */
     private function processIDPSSODescriptor(\SAML2\XML\md\IDPSSODescriptor $element, $expireTime)
     {
@@ -972,6 +982,7 @@ class SAMLParser
      * @param \SAML2\XML\md\AttributeAuthorityDescriptor $element The element which should be parsed.
      * @param int|NULL                                  $expireTime The unix timestamp for when this element should
      *     expire, or NULL if unknown.
+     * @return void
      */
     private function processAttributeAuthorityDescriptor(
         \SAML2\XML\md\AttributeAuthorityDescriptor $element,
@@ -1145,6 +1156,7 @@ class SAMLParser
      * Parse and process a Organization element.
      *
      * @param \SAML2\XML\md\Organization $element The Organization element.
+     * @return void
      */
     private function processOrganization(\SAML2\XML\md\Organization $element)
     {
@@ -1158,8 +1170,8 @@ class SAMLParser
      * Parse and process a ContactPerson element.
      *
      * @param \SAML2\XML\md\ContactPerson $element The ContactPerson element.
+     * @return void
      */
-
     private function processContactPerson(\SAML2\XML\md\ContactPerson $element)
     {
         $contactPerson = [];
@@ -1192,6 +1204,7 @@ class SAMLParser
      *
      * @param \SAML2\XML\md\AttributeConsumingService $element The AttributeConsumingService to parse.
      * @param array $sp The array with the SP's metadata.
+     * @return void
      */
     private static function parseAttributeConsumerService(\SAML2\XML\md\AttributeConsumingService $element, &$sp)
     {
@@ -1338,7 +1351,7 @@ class SAMLParser
     /**
      * This function finds SP descriptors which supports one of the given protocols.
      *
-     * @param $protocols Array with the protocols we accept.
+     * @param array $protocols Array with the protocols we accept.
      *
      * @return array with SP descriptors which supports one of the given protocols.
      */
@@ -1362,7 +1375,7 @@ class SAMLParser
     /**
      * This function finds IdP descriptors which supports one of the given protocols.
      *
-     * @param $protocols Array with the protocols we accept.
+     * @param array $protocols Array with the protocols we accept.
      *
      * @return array with IdP descriptors which supports one of the given protocols.
      */

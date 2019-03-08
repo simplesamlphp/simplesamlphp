@@ -1,4 +1,5 @@
 <?php
+
 namespace SimpleSAML\Utils;
 
 /**
@@ -8,7 +9,6 @@ namespace SimpleSAML\Utils;
  */
 class Arrays
 {
-
     /**
      * Put a non-array variable into an array.
      *

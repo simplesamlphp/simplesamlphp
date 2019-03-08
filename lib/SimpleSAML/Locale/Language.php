@@ -196,6 +196,7 @@ class Language
      *
      * @param string  $language Language code for the language to set.
      * @param boolean $setLanguageCookie Whether to set the language cookie or not. Defaults to true.
+     * @return void
      */
     public function setLanguage($language, $setLanguageCookie = true)
     {
@@ -255,7 +256,7 @@ class Language
      *
      * @param string $code The ISO 639-2 code of the language.
      *
-     * @return string The localized name of the language.
+     * @return string|null The localized name of the language.
      */
     public function getLanguageLocalizedName($code)
     {
@@ -281,8 +282,8 @@ class Language
     /**
      * This method returns the preferred language for the user based on the Accept-Language HTTP header.
      *
-     * @return string The preferred language based on the Accept-Language HTTP header, or null if none of the languages
-     * in the header is available.
+     * @return string|null The preferred language based on the Accept-Language HTTP header,
+     * or null if none of the languages in the header is available.
      */
     private function getHTTPLanguage()
     {
@@ -334,7 +335,8 @@ class Language
     /**
      * Return an alias for a language code, if any.
      *
-     * @return string The alias, or null if the alias was not found.
+     * @param string $langcode
+     * @return string|null The alias, or null if the alias was not found.
      */
     public function getLanguageCodeAlias($langcode)
     {
@@ -399,6 +401,7 @@ class Language
      * specified is not in the list of available languages, or the headers have already been sent to the browser.
      *
      * @param string $language The language set by the user.
+     * @return void
      */
     public static function setLanguageCookie($language)
     {

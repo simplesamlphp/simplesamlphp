@@ -133,6 +133,7 @@ abstract class MetaDataStorageSource
     {
 
         $metadataSet = $this->getMetadataSet($set);
+        /** @psalm-suppress DocblockTypeContradiction */
         if ($metadataSet === null) {
             // this metadata source does not have this metadata set
             return null;
@@ -167,7 +168,7 @@ abstract class MetaDataStorageSource
      * @param string $ip IP address
      * @param string $type Do you want to return the metaindex or the entityID. [entityid|metaindex]
      *
-     * @return string The entity id of a entity which have a CIDR hint where the provided
+     * @return string|null The entity id of a entity which have a CIDR hint where the provided
      *        IP address match.
      */
     public function getPreferredEntityIdFromCIDRhint($set, $ip, $type = 'entityid')
@@ -211,8 +212,10 @@ abstract class MetaDataStorageSource
     }
 
 
-    /*
-     *
+    /**
+     * @param string $entityId
+     * @param string $set
+     * @return mixed|null
      */
     private function lookupIndexFromEntityId($entityId, $set)
     {
@@ -250,7 +253,7 @@ abstract class MetaDataStorageSource
      * @param string $index The entityId or metaindex we are looking up.
      * @param string $set The set we are looking for metadata in.
      *
-     * @return array An associative array with metadata for the given entity, or NULL if we are unable to
+     * @return array|null An associative array with metadata for the given entity, or NULL if we are unable to
      *         locate the entity.
      */
     public function getMetaData($index, $set)

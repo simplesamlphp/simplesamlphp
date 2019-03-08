@@ -21,7 +21,7 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
     /**
      * The base directory where metadata is stored.
      *
-     * @var string
+     * @var string|null
      */
     private $directory;
 
@@ -168,7 +168,7 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
      * @param string $entityId The entityId we are looking up.
      * @param string $set The set we are looking for metadata in.
      *
-     * @return array An associative array with metadata for the given entity, or NULL if we are unable to
+     * @return array|null An associative array with metadata for the given entity, or NULL if we are unable to
      *         locate the entity.
      */
     public function getMetaData($entityId, $set)
@@ -212,7 +212,7 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
      * @param string $set The metadata set this metadata entry belongs to.
      * @param array $metadata The metadata.
      *
-     * @return boolean True if successfully saved, false otherwise.
+     * @return bool True if successfully saved, false otherwise.
      */
     public function saveMetadata($entityId, $set, $metadata)
     {
@@ -261,6 +261,7 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
      *
      * @param string $entityId The entityId of the metadata entry.
      * @param string $set The metadata set this metadata entry belongs to.
+     * @return void
      */
     public function deleteMetadata($entityId, $set)
     {

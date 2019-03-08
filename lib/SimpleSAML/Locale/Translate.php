@@ -119,7 +119,7 @@ class Translate
      * @param string $tag The tag name. The tag name can also be on the form '{<dictionary>:<tag>}', to retrieve a tag
      * from the specific dictionary.
      *
-     * @return array An associative array with language => string mappings, or null if the tag wasn't found.
+     * @return array|null An associative array with language => string mappings, or null if the tag wasn't found.
      */
     public function getTag($tag)
     {
@@ -252,6 +252,8 @@ class Translate
      * @param array        $replacements An associative array of keys that should be replaced with values in the
      *     translated string.
      * @param boolean      $fallbackdefault Default translation to use as a fallback if no valid translation was found.
+     * @param array $oldreplacements
+     * @param bool $striptags
      * @deprecated Not used in twig, gettext
      *
      * @return string  The translated tag, or a placeholder value if the tag wasn't found.
@@ -285,7 +287,7 @@ class Translate
             );
 
             // for backwards compatibility
-            if (!$replacements && $this->getTag($tag) === null) {
+            if (!$replacements && ($this->getTag($tag) === null)) {
                 \SimpleSAML\Logger::warning(
                     'Code which uses $fallbackdefault === FALSE should be updated to use the getTag() method instead.'
                 );
@@ -349,6 +351,7 @@ class Translate
      * @param array|string $translation The translation array
      *
      * @throws \Exception If $translation is neither a string nor an array.
+     * @return void
      */
     public function includeInlineTranslation($tag, $translation)
     {
@@ -370,6 +373,7 @@ class Translate
      * one provided in the constructor to be used to find the directory of the dictionary. This allows to combine
      * dictionaries inside the SimpleSAMLphp main code distribution together with external dictionaries. Defaults to
      * null.
+     * @return void
      */
     public function includeLanguageFile($file, $otherConfig = null)
     {

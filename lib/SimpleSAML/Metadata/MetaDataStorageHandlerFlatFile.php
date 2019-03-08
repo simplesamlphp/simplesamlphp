@@ -66,7 +66,7 @@ class MetaDataStorageHandlerFlatFile extends MetaDataStorageSource
      *
      * @param string $set The set of metadata we are loading.
      *
-     * @return array An associative array with the metadata, or null if we are unable to load metadata from the given
+     * @return array|null An associative array with the metadata, or null if we are unable to load metadata from the given
      *     file.
      * @throws Exception If the metadata set cannot be loaded.
      */
@@ -109,6 +109,7 @@ class MetaDataStorageHandlerFlatFile extends MetaDataStorageSource
         if ($metadataSet === null) {
             $metadataSet = [];
         }
+        /** @var array $metadataSet */
 
         // add the entity id of an entry to each entry in the metadata
         foreach ($metadataSet as $entityId => &$entry) {
@@ -120,11 +121,15 @@ class MetaDataStorageHandlerFlatFile extends MetaDataStorageSource
         }
 
         $this->cachedMetadata[$set] = $metadataSet;
-
         return $metadataSet;
     }
 
 
+    /**
+     * @param string $set
+     * @throws \Exception
+     * @return string
+     */
     private function generateDynamicHostedEntityID($set)
     {
         // get the configuration

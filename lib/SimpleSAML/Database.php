@@ -250,7 +250,7 @@ class Database
      * @param string $stmt Prepared SQL statement
      * @param array  $params Parameters
      *
-     * @return int The number of rows affected by the query.
+     * @return int|false The number of rows affected by the query or false on error.
      */
     public function write($stmt, $params = [])
     {
@@ -258,7 +258,7 @@ class Database
 
         if (is_array($params)) {
             $obj = $this->query($db, $stmt, $params);
-            return $obj->rowCount();
+            return ($obj === false) ? $obj : $obj->rowCount();
         } else {
             return $this->exec($db, $stmt);
         }
