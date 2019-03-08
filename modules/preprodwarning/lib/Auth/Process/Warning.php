@@ -17,6 +17,7 @@ class Warning extends \SimpleSAML\Auth\ProcessingFilter
      * can authorize the release of the attributes.
      *
      * @param array $state  The state of the response.
+     * @return void
      */
     public function process(&$state)
     {

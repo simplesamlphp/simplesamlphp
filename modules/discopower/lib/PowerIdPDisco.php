@@ -11,7 +11,6 @@ namespace SimpleSAML\Module\discopower;
  * @author Andreas Åkre Solberg <andreas@uninett.no>, UNINETT AS.
  * @package SimpleSAMLphp
  */
-
 class PowerIdPDisco extends \SimpleSAML\XHTML\IdPDisco
 {
     /**
@@ -69,6 +68,7 @@ class PowerIdPDisco extends \SimpleSAML\XHTML\IdPDisco
      * This is an helper function for logging messages. It will prefix the messages with our discovery service type.
      *
      * @param string $message The message which should be logged.
+     * @return void
      */
     protected function log($message)
     {
@@ -236,6 +236,7 @@ class PowerIdPDisco extends \SimpleSAML\XHTML\IdPDisco
      * Handles a request to this discovery service.
      *
      * The IdP disco parameters should be set before calling this function.
+     * @return void
      */
     public function handleRequest()
     {
@@ -303,6 +304,13 @@ class PowerIdPDisco extends \SimpleSAML\XHTML\IdPDisco
         $t->show();
     }
 
+
+    /**
+     * @param \SimpleSAML\XHTML\Template $t
+     * @param array $metadata
+     * @param string $favourite
+     * @return array
+     */
     private function processMetadata($t, $metadata, $favourite)
     {
         $basequerystring = '?'.
@@ -394,6 +402,7 @@ class PowerIdPDisco extends \SimpleSAML\XHTML\IdPDisco
      * This function overrides the corresponding function in the parent class, to add support for common domain cookie.
      *
      * @param string $idp The entityID of the IdP.
+     * @return void
      */
     protected function setPreviousIdP($idp)
     {

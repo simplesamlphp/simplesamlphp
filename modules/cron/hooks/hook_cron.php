@@ -1,10 +1,11 @@
 <?php
+
 /**
  * Hook to run a cron job.
  *
  * @param array &$croninfo  Output
+ * @return void
  */
-
 function cron_hook_cron(&$croninfo)
 {
     assert(is_array($croninfo));

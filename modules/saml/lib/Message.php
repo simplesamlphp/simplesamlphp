@@ -19,6 +19,7 @@ class Message
      * @param \SimpleSAML\Configuration $srcMetadata The metadata of the sender.
      * @param \SimpleSAML\Configuration $dstMetadata The metadata of the recipient.
      * @param \SAML2\SignedElement $element The element we should add the data to.
+     * @return void
      */
     public static function addSign(
         \SimpleSAML\Configuration $srcMetadata,
@@ -68,6 +69,7 @@ class Message
      * @param \SimpleSAML\Configuration $srcMetadata The metadata of the sender.
      * @param \SimpleSAML\Configuration $dstMetadata The metadata of the recipient.
      * @param \SAML2\Message $message The message we should add the data to.
+     * @return void
      */
     private static function addRedirectSign(
         \SimpleSAML\Configuration $srcMetadata,
@@ -144,7 +146,7 @@ class Message
      *
      * @param \SimpleSAML\Configuration $srcMetadata The metadata of the sender.
      * @param \SAML2\SignedElement $element Either a \SAML2\Response or a \SAML2\Assertion.
-     * @return boolean True if the signature is correct, false otherwise.
+     * @return bool True if the signature is correct, false otherwise.
      *
      * @throws \SimpleSAML\Error\Exception if there is not certificate in the metadata for the entity.
      * @throws \Exception if the signature validation fails with an exception.
@@ -233,6 +235,7 @@ class Message
      * @param \SimpleSAML\Configuration $srcMetadata The metadata of the sender.
      * @param \SimpleSAML\Configuration $dstMetadata The metadata of the recipient.
      * @param \SAML2\Message $message The message we should check the signature on.
+     * @return void
      *
      * @throws \SimpleSAML\Error\Exception if message validation is enabled, but there is no signature in the message.
      */
@@ -396,6 +399,8 @@ class Message
                 $lastException = $e;
             }
         }
+
+        /** @var \Exception $lastException */
         throw $lastException;
     }
 

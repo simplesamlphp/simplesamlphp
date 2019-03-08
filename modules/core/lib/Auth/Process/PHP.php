@@ -21,12 +21,12 @@ class PHP extends \SimpleSAML\Auth\ProcessingFilter
     /**
      * Initialize this filter, parse configuration
      *
-     * @param array $config Configuration information about this filter.
+     * @param array &$config Configuration information about this filter.
      * @param mixed $reserved For future use.
      *
      * @throws \SimpleSAML\Error\Exception if the 'code' option is not defined.
      */
-    public function __construct($config, $reserved)
+    public function __construct(&$config, $reserved)
     {
         parent::__construct($config, $reserved);
 
@@ -43,12 +43,18 @@ class PHP extends \SimpleSAML\Auth\ProcessingFilter
      * Apply the PHP code to the attributes.
      *
      * @param array &$request The current request
+     * @return void
      */
     public function process(&$request)
     {
         assert(is_array($request));
         assert(array_key_exists('Attributes', $request));
 
+        /**
+         * @param array &$attributes
+         * @param array &$state
+         * @return void
+         */
         $function = function (
             /** @scrutinizer ignore-unused */ &$attributes,
             /** @scrutinizer ignore-unused */ &$state

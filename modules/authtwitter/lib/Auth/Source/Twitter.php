@@ -72,6 +72,7 @@ class Twitter extends \SimpleSAML\Auth\Source
      * Log-in using Twitter platform
      *
      * @param array &$state  Information about the current authentication.
+     * @return void
      */
     public function authenticate(&$state)
     {
@@ -103,6 +104,11 @@ class Twitter extends \SimpleSAML\Auth\Source
         $consumer->getAuthorizeRequest($url, $requestToken);
     }
 
+
+    /**
+     * @param array &$state
+     * @return void
+     */
     public function finalStep(&$state)
     {
         $requestToken = $state['authtwitter:authdata:requestToken'];

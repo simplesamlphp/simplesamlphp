@@ -1,10 +1,11 @@
 <?php
+
 /**
  * Hook to add the consentAdmin module to the frontpage.
  *
  * @param array &$links  The links on the frontpage, split into sections.
+ * @return void
  */
-
 function consentAdmin_hook_frontpage(&$links)
 {
     assert(is_array($links));

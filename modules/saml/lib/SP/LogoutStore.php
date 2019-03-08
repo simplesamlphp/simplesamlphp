@@ -14,6 +14,7 @@ class LogoutStore
      * Create logout table in SQL, if it is missing.
      *
      * @param \SimpleSAML\Store\SQL $store  The datastore.
+     * @return void
      */
     private static function createLogoutTable(\SimpleSAML\Store\SQL $store)
     {
@@ -70,6 +71,7 @@ class LogoutStore
      * Clean the logout table of expired entries.
      *
      * @param \SimpleSAML\Store\SQL $store  The datastore.
+     * @return void
      */
     private static function cleanLogoutStore(\SimpleSAML\Store\SQL $store)
     {
@@ -90,6 +92,9 @@ class LogoutStore
      * @param string $authId  The authsource ID.
      * @param string $nameId  The hash of the users NameID.
      * @param string $sessionIndex  The SessionIndex of the user.
+     * @param int $expire
+     * @param string $sessionId
+     * @return void
      */
     private static function addSessionSQL(
         \SimpleSAML\Store\SQL $store,
@@ -102,8 +107,8 @@ class LogoutStore
         assert(is_string($authId));
         assert(is_string($nameId));
         assert(is_string($sessionIndex));
-        assert(is_string($sessionId));
         assert(is_int($expire));
+        assert(is_string($sessionId));
 
         self::createLogoutTable($store);
 
@@ -202,6 +207,8 @@ class LogoutStore
      * @param string $authId  The authsource ID.
      * @param \SAML2\XML\saml\NameID $nameId The NameID of the user.
      * @param string|null $sessionIndex  The SessionIndex of the user.
+     * @param int $expire
+     * @return void
      */
     public static function addSession($authId, $nameId, $sessionIndex, $expire)
     {
@@ -254,7 +261,7 @@ class LogoutStore
      * @param string $authId  The authsource ID.
      * @param \SAML2\XML\saml\NameID $nameId The NameID of the user.
      * @param array $sessionIndexes  The SessionIndexes we should log out of. Logs out of all if this is empty.
-     * @returns int|false  Number of sessions logged out, or FALSE if not supported.
+     * @return int|false  Number of sessions logged out, or FALSE if not supported.
      */
     public static function logoutSessions($authId, $nameId, array $sessionIndexes)
     {

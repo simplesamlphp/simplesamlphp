@@ -1,8 +1,10 @@
 <?php
+
 /**
  * Hook to add the statistics module to the config page.
  *
  * @param \SimpleSAML\XHTML\Template &$template The template that we should alter in this hook.
+ * @return void
  */
 function statistics_hook_configpage(\SimpleSAML\XHTML\Template &$template)
 {

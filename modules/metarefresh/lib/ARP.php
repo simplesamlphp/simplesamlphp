@@ -6,7 +6,6 @@ namespace SimpleSAML\Module\metarefresh;
  * @author Andreas Åkre Solberg <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
  */
-
 class ARP
 {
     /**
@@ -17,7 +16,7 @@ class ARP
     /**
      * @var array
      */
-    private $attributes;
+    private $attributes = [];
 
     /**
      * @var string

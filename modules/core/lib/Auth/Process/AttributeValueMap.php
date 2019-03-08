@@ -8,42 +8,47 @@ namespace SimpleSAML\Module\core\Auth\Process;
  * @author Martin van Es, m7
  * @package SimpleSAMLphp
  */
-
 class AttributeValueMap extends \SimpleSAML\Auth\ProcessingFilter
 {
     /**
      * The name of the attribute we should assign values to (ie: the target attribute).
+     * @var string
      */
     private $targetattribute;
 
     /**
      * The name of the attribute we should create values from.
+     * @var string
      */
     private $sourceattribute;
 
     /**
      * The required $sourceattribute values and target affiliations.
+     * @var array
      */
     private $values = [];
     
     /**
      * Whether $sourceattribute should be kept or not.
+     * @var bool
      */
     private $keep = false;
 
     /**
      * Whether $target attribute values should be replaced by new values or not.
+     * @var bool
      */
     private $replace = false;
     
+
     /**
      * Initialize the filter.
      *
-     * @param array $config Configuration information about this filter.
+     * @param array &$config Configuration information about this filter.
      * @param mixed $reserved For future use.
      * @throws \SimpleSAML\Error\Exception If the configuration is not valid.
      */
-    public function __construct($config, $reserved)
+    public function __construct(&$config, $reserved)
     {
         parent::__construct($config, $reserved);
 
@@ -99,6 +104,7 @@ class AttributeValueMap extends \SimpleSAML\Auth\ProcessingFilter
      * Apply filter.
      *
      * @param array &$request The current request
+     * @return void
      */
     public function process(&$request)
     {

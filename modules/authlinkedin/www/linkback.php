@@ -23,6 +23,7 @@ if (array_key_exists('oauth_verifier', $_REQUEST)) {
 assert(array_key_exists(\SimpleSAML\Module\authlinkedin\Auth\Source\LinkedIn::AUTHID, $state));
 $sourceId = $state[\SimpleSAML\Module\authlinkedin\Auth\Source\LinkedIn::AUTHID];
 
+/** @var \SimpleSAML\Module\authlinkedin\Auth\Source\LinkedIn|null $source */
 $source = \SimpleSAML\Auth\Source::getById($sourceId);
 if ($source === null) {
     throw new \Exception('Could not find authentication source with id '.$sourceId);

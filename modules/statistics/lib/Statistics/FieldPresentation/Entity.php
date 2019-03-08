@@ -4,6 +4,9 @@ namespace SimpleSAML\Module\statistics\Statistics\FieldPresentation;
 
 class Entity extends Base
 {
+    /**
+     * @return array
+     */
     public function getPresentation()
     {
         $mh = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();

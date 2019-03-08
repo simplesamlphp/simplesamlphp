@@ -21,7 +21,7 @@ class PersistentNameID2TargetedID extends \SimpleSAML\Auth\ProcessingFilter
     /**
      * Whether we should insert it as an saml:NameID element.
      *
-     * @var boolean
+     * @var bool
      */
     private $nameId;
 
@@ -55,6 +55,7 @@ class PersistentNameID2TargetedID extends \SimpleSAML\Auth\ProcessingFilter
      * Store a NameID to attribute.
      *
      * @param array &$state The request state.
+     * @return void
      */
     public function process(&$state)
     {

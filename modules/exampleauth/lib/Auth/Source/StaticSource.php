@@ -11,7 +11,6 @@ namespace SimpleSAML\Module\exampleauth\Auth\Source;
  * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
-
 class StaticSource extends \SimpleSAML\Auth\Source
 {
     /**
@@ -42,10 +41,12 @@ class StaticSource extends \SimpleSAML\Auth\Source
         }
     }
 
+
     /**
      * Log in using static attributes.
      *
      * @param array &$state  Information about the current authentication.
+     * @return void
      */
     public function authenticate(&$state)
     {

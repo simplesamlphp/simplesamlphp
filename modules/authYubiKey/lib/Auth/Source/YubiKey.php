@@ -62,9 +62,13 @@ class YubiKey extends \SimpleSAML\Auth\Source
 
     /**
      * The client id/key for use with the Auth_Yubico PHP module.
+     * @var string
      */
     private $yubi_id;
+
+    /** @var string */
     private $yubi_key;
+
 
     /**
      * Constructor for this authentication source.
@@ -97,6 +101,7 @@ class YubiKey extends \SimpleSAML\Auth\Source
      * login page.
      *
      * @param array &$state  Information about the current authentication.
+     * @return void
      */
     public function authenticate(&$state)
     {
@@ -162,14 +167,19 @@ class YubiKey extends \SimpleSAML\Auth\Source
         return null;
     }
 
+
     /**
      * Return the user id part of a one time passord
+     *
+     * @param string $otp
+     * @return string
      */
     public static function getYubiKeyPrefix($otp)
     {
         $uid = substr($otp, 0, strlen($otp) - self::TOKENSIZE);
         return $uid;
     }
+
 
     /**
      * Attempt to log in using the given username and password.

@@ -18,7 +18,6 @@ namespace SimpleSAML\Module\core\Auth\Process;
  * to add a virtual 'scope' attribute from the eduPersonPrincipalName
  * attribute.
  */
-
 class ScopeFromAttribute extends \SimpleSAML\Auth\ProcessingFilter
 {
     /**
@@ -35,26 +34,29 @@ class ScopeFromAttribute extends \SimpleSAML\Auth\ProcessingFilter
      */
     private $targetAttribute;
 
+
     /**
      * Initialize this filter, parse configuration
      *
-     * @param array $config  Configuration information about this filter.
+     * @param array &$config  Configuration information about this filter.
      * @param mixed $reserved  For future use.
      */
-    public function __construct($config, $reserved)
+    public function __construct(&$config, $reserved)
     {
         parent::__construct($config, $reserved);
         assert(is_array($config));
 
-        $config = \SimpleSAML\Configuration::loadFromArray($config, 'ScopeFromAttribute');
-        $this->targetAttribute = $config->getString('targetAttribute');
-        $this->sourceAttribute = $config->getString('sourceAttribute');
+        $cfg = \SimpleSAML\Configuration::loadFromArray($config, 'ScopeFromAttribute');
+        $this->targetAttribute = $cfg->getString('targetAttribute');
+        $this->sourceAttribute = $cfg->getString('sourceAttribute');
     } // end constructor
+
 
     /**
      * Apply this filter.
      *
      * @param array &$request  The current request
+     * @return void
      */
     public function process(&$request)
     {

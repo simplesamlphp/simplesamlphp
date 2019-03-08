@@ -17,7 +17,6 @@ namespace SimpleSAML\Module\core\Auth\Process;
  *         ),
  *
  */
-
 class AttributeCopy extends \SimpleSAML\Auth\ProcessingFilter
 {
     /**
@@ -25,13 +24,14 @@ class AttributeCopy extends \SimpleSAML\Auth\ProcessingFilter
      */
     private $map = [];
 
+
     /**
      * Initialize this filter, parse configuration
      *
-     * @param array $config  Configuration information about this filter.
+     * @param array &$config  Configuration information about this filter.
      * @param mixed $reserved  For future use.
      */
-    public function __construct($config, $reserved)
+    public function __construct(&$config, $reserved)
     {
         parent::__construct($config, $reserved);
 
@@ -54,6 +54,7 @@ class AttributeCopy extends \SimpleSAML\Auth\ProcessingFilter
      * Apply filter to rename attributes.
      *
      * @param array &$request  The current request
+     * @return void
      */
     public function process(&$request)
     {

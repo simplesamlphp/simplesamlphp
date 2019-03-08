@@ -1,6 +1,6 @@
 <?php
 
-namespace  SimpleSAML\Module\cron;
+namespace SimpleSAML\Module\cron;
 
 /**
  * Handles interactions with SSP's cron system/hooks.
@@ -27,13 +27,12 @@ class Cron
 
     /**
      * Invoke the cron hook for the given tag
-     * @param $tag string The tag to use. Must be valid in the cronConfig
+     * @param string $tag The tag to use. Must be valid in the cronConfig
      * @return array the tag, and summary information from the run.
      * @throws Exception If an invalid tag specified
      */
     public function runTag($tag)
     {
-
         if (!$this->isValidTag($tag)) {
             throw new \Exception("Invalid cron tag '$tag''");
         }
@@ -53,6 +52,10 @@ class Cron
         return $croninfo;
     }
 
+    /**
+     * @param string $tag
+     * @return bool
+     */
     public function isValidTag($tag)
     {
         if (!is_null($this->cronconfig->getValue('allowed_tags'))) {
