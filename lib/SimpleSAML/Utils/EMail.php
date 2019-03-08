@@ -113,7 +113,9 @@ class EMail
      * @return string The body of the e-mail
      */
     public function generateBody($template) {
-        $config = Configuration::getInstance();
+        $config = Configuration::loadFromArray([
+            'usenewui' => true,
+        ]);
         $t = new Template($config, $template);
         $twig = $t->getTwig();
         // Twig does HTML escaping for us, right?
