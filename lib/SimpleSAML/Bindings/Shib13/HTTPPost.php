@@ -20,12 +20,12 @@ use SimpleSAML\XML\Signer;
 class HTTPPost
 {
     /**
-     * @var \SimpleSAML\Configuration
+     * @var \SimpleSAML\Configuration|null
      */
     private $configuration = null;
 
     /**
-     * @var \SimpleSAML\Metadata\MetaDataStorageHandler
+     * @var \SimpleSAML\Metadata\MetaDataStorageHandler|null
      */
     private $metadata = null;
 
@@ -53,6 +53,7 @@ class HTTPPost
      * @param \SimpleSAML\Configuration $spmd The metadata of the SP which is receiving the response.
      * @param string|null               $relayState The relaystate for the SP.
      * @param string                    $shire The shire which should receive the response.
+     * @return void
      */
     public function sendResponse(
         $response,

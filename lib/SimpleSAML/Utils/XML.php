@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Utility class for XML and DOM manipulation.
  *
@@ -12,7 +13,6 @@ use SimpleSAML\XML\Errors;
 
 class XML
 {
-
     /**
      * This function performs some sanity checks on XML documents, and optionally validates them against their schema
      * if the 'validatexml' debugging option is enabled. A warning will be printed to the log if validation fails.
@@ -69,7 +69,7 @@ class XML
             case 'saml-meta':
                 $result = self::isValid($message, 'saml-schema-metadata-2.0.xsd');
         }
-        if ($result !== true) {
+        if (is_string($result)) {
             Logger::warning($result);
         }
     }
@@ -166,7 +166,7 @@ class XML
         $textNodes = []; // text nodes which should be deleted
         $childNodes = []; // other child nodes
         for ($i = 0; $i < $root->childNodes->length; $i++) {
-            /** @var \DOMElement $child */
+            /** @var \DOMNode $child */
             $child = $root->childNodes->item($i);
 
             if ($child instanceof \DOMText) {
@@ -288,7 +288,7 @@ class XML
         $ret = [];
 
         for ($i = 0; $i < $element->childNodes->length; $i++) {
-            /** @var \DOMElement $child */
+            /** @var \DOMNode $child */
             $child = $element->childNodes->item($i);
 
             // skip text nodes and comment elements
@@ -405,7 +405,7 @@ class XML
      * @param string|\DOMDocument $xml The XML string or document which should be validated.
      * @param string              $schema The filename of the schema that should be used to validate the document.
      *
-     * @return boolean|string Returns a string with errors found if validation fails. True if validation passes ok.
+     * @return bool|string Returns a string with errors found if validation fails. True if validation passes ok.
      * @throws \InvalidArgumentException If $schema is not a string, or $xml is neither a string nor a \DOMDocument.
      *
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>

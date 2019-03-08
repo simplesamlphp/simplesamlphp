@@ -96,6 +96,7 @@ class Signer
      * by \SimpleSAML\Utils\Crypto::loadPrivateKey(...).
      *
      * @param array $privatekey  The private key.
+     * @return void
      */
     public function loadPrivateKeyArray($privatekey)
     {
@@ -122,6 +123,7 @@ class Signer
      * @param bool $full_path  Whether the filename found in the configuration contains the
      *                         full path to the private key or not. Default to false.
      * @throws \Exception
+     * @return void
      */
     public function loadPrivateKey($file, $pass = null, $full_path = false)
     {
@@ -159,6 +161,7 @@ class Signer
      *
      * @param array $publickey The public key.
      * @throws \Exception
+     * @return void
      */
     public function loadPublicKeyArray($publickey)
     {
@@ -185,6 +188,7 @@ class Signer
      * @param bool $full_path  Whether the filename found in the configuration contains the
      *                         full path to the private key or not. Default to false.
      * @throws \Exception
+     * @return void
      */
     public function loadCertificate($file, $full_path = false)
     {
@@ -213,6 +217,7 @@ class Signer
      * Set the attribute name for the ID value.
      *
      * @param string $idAttrName  The name of the attribute which contains the id.
+     * @return void
      */
     public function setIDAttribute($idAttrName)
     {
@@ -232,6 +237,7 @@ class Signer
      * @param bool $full_path  Whether the filename found in the configuration contains the
      *                         full path to the private key or not. Default to false.
      * @throws \Exception
+     * @return void
      */
     public function addCertificate($file, $full_path = false)
     {
@@ -268,6 +274,7 @@ class Signer
      *                                   in which case the signature will be appended to the element spesified in
      *                                   $insertInto.
      * @throws \Exception
+     * @return void
      */
     public function sign($node, $insertInto, $insertBefore = null)
     {

@@ -1,4 +1,5 @@
 <?php
+
 namespace SimpleSAML\Utils;
 
 /**
@@ -8,7 +9,6 @@ namespace SimpleSAML\Utils;
  */
 class Random
 {
-
     /**
      * The fixed length of random identifiers.
      */

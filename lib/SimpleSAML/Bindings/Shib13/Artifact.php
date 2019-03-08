@@ -181,8 +181,8 @@ class Artifact
         ];
 
         // Fetch the artifact
-        $response = HTTP::fetch($url, $opts);
         /** @var string $response */
+        $response = HTTP::fetch($url, $opts);
         XML::debugSAMLMessage($response, 'in');
 
         // Find the response in the SOAP message

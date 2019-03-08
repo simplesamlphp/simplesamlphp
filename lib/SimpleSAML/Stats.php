@@ -47,6 +47,8 @@ class Stats
 
     /**
      * Initialize the outputs.
+     *
+     * @return void
      */
     private static function initOutputs()
     {
@@ -83,7 +85,7 @@ class Stats
 
         if (empty(self::$outputs)) {
             // not enabled
-            return;
+            return false;
         }
 
         $data['op'] = $event;

@@ -14,7 +14,7 @@ class TemplateLoader extends \Twig\Loader\FilesystemLoader
     /**
      * This method adds a namespace dynamically so that we can load templates from modules whenever we want.
      *
-     * @inheritdoc
+     * {@inheritdoc}
      */
     protected function findTemplate($name, $throw = true)
     {
@@ -30,6 +30,7 @@ class TemplateLoader extends \Twig\Loader\FilesystemLoader
      * Parse the name of a template in a module.
      *
      * @param string $name The full name of the template, including namespace and template name / path.
+     * @param string $default
      *
      * @return array An array with the corresponding namespace and name of the template. The namespace defaults to
      * \Twig\Loader\FilesystemLoader::MAIN_NAMESPACE, if none was specified in $name.
@@ -52,6 +53,7 @@ class TemplateLoader extends \Twig\Loader\FilesystemLoader
     /**
      * Get the template directory of a module, if it exists.
      *
+     * @param string $module
      * @return string The templates directory of a module.
      *
      * @throws \InvalidArgumentException If the module is not enabled or it has no templates directory.

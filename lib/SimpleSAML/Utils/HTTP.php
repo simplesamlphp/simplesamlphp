@@ -1,4 +1,5 @@
 <?php
+
 namespace SimpleSAML\Utils;
 
 use SimpleSAML\Configuration;
@@ -462,8 +463,10 @@ class HTTP
 
         // data and headers
         if ($getHeaders) {
+            /** @psalm-suppress UndefinedVariable */
             if (isset($http_response_header)) {
                 $headers = [];
+                /** @psalm-suppress UndefinedVariable */
                 foreach ($http_response_header as $h) {
                     if (preg_match('@^HTTP/1\.[01]\s+\d{3}\s+@', $h)) {
                         $headers = []; // reset

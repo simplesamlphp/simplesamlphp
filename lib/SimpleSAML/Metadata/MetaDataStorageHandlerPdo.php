@@ -72,8 +72,8 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
      *
      * @param string $set The set of metadata we are loading.
      *
-     * @return array $metadata Associative array with the metadata, or NULL if we are unable to load metadata from the
-     *     given file.
+     * @return array|null $metadata Associative array with the metadata, or NULL if we are unable to load
+     *     metadata from the given file.
      *
      * @throws Exception If a database error occurs.
      * @throws \SimpleSAML\Error\Exception If the metadata can be retrieved from the database, but cannot be decoded.
@@ -129,6 +129,7 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
         if ($metadataSet === null) {
             $metadataSet = [];
         }
+        /** @var array $metadataSet */
 
         foreach ($metadataSet as $entityId => &$entry) {
             if (preg_match('/__DYNAMIC(:[0-9]+)?__/', $entityId)) {
@@ -148,7 +149,7 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
      * @param string $entityId The entityId we are looking up.
      * @param string $set The set we are looking for metadata in.
      *
-     * @return array An associative array with metadata for the given entity, or NULL if we are unable to
+     * @return array|null An associative array with metadata for the given entity, or NULL if we are unable to
      *         locate the entity.
      */
     public function getMetaData($entityId, $set)
@@ -189,6 +190,11 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
         }
     }
 
+    /**
+     * @param string $set
+     * @throws \Exception
+     * @return string
+     */
     private function generateDynamicHostedEntityID($set)
     {
         assert(is_string($set));

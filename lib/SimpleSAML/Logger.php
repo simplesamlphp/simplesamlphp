@@ -61,12 +61,16 @@ class Logger
     /**
      * This constant defines the string we set the track ID to while we are fetching the track ID from the session
      * class. This is used to prevent infinite recursion.
+     *
+     * @var string
      */
     const NO_TRACKID = '_NOTRACKIDYET_';
 
     /**
      * This variable holds the track ID we have retrieved from the session class. It can also be NULL, in which case
      * we haven't fetched the track ID yet, or self::NO_TRACKID, which means that we are fetching the track ID now.
+     *
+     * @var string
      */
     private static $trackid = self::NO_TRACKID;
 
@@ -114,20 +118,36 @@ class Logger
      */
     private static $shuttingDown = false;
 
+    /** @var int */
     const EMERG = 0;
+
+    /** @var int */
     const ALERT = 1;
+
+    /** @var int */
     const CRIT = 2;
+
+    /** @var int */
     const ERR = 3;
+
+    /** @var int */
     const WARNING = 4;
+
+    /** @var int */
     const NOTICE = 5;
+
+    /** @var int */
     const INFO = 6;
+
+    /** @var int */
     const DEBUG = 7;
 
 
     /**
      * Log an emergency message.
      *
-     * @var string $string The message to log.
+     * @param string $string The message to log.
+     * @return void
      */
     public static function emergency($string)
     {
@@ -138,7 +158,8 @@ class Logger
     /**
      * Log a critical message.
      *
-     * @var string $string The message to log.
+     * @param string $string The message to log.
+     * @return void
      */
     public static function critical($string)
     {
@@ -149,7 +170,8 @@ class Logger
     /**
      * Log an alert.
      *
-     * @var string $string The message to log.
+     * @param string $string The message to log.
+     * @return void
      */
     public static function alert($string)
     {
@@ -160,7 +182,8 @@ class Logger
     /**
      * Log an error.
      *
-     * @var string $string The message to log.
+     * @param string $string The message to log.
+     * @return void
      */
     public static function error($string)
     {
@@ -171,7 +194,8 @@ class Logger
     /**
      * Log a warning.
      *
-     * @var string $string The message to log.
+     * @param string $string The message to log.
+     * @return void
      */
     public static function warning($string)
     {
@@ -182,7 +206,8 @@ class Logger
     /**
      * We reserve the notice level for statistics, so do not use this level for other kind of log messages.
      *
-     * @var string $string The message to log.
+     * @param string $string The message to log.
+     * @return void
      */
     public static function notice($string)
     {
@@ -193,7 +218,8 @@ class Logger
     /**
      * Info messages are a bit less verbose than debug messages. This is useful to trace a session.
      *
-     * @var string $string The message to log.
+     * @param string $string The message to log.
+     * @return void
      */
     public static function info($string)
     {
@@ -205,7 +231,8 @@ class Logger
      * Debug messages are very verbose, and will contain more information than what is necessary for a production
      * system.
      *
-     * @var string $string The message to log.
+     * @param string $string The message to log.
+     * @return void
      */
     public static function debug($string)
     {
@@ -216,7 +243,8 @@ class Logger
     /**
      * Statistics.
      *
-     * @var string $string The message to log.
+     * @param string $string The message to log.
+     * @return void
      */
     public static function stats($string)
     {
@@ -227,7 +255,8 @@ class Logger
     /**
      * Set the logger to capture logs.
      *
-     * @var boolean $val Whether to capture logs or not. Defaults to TRUE.
+     * @param boolean $val Whether to capture logs or not. Defaults to TRUE.
+     * @return void
      */
     public static function setCaptureLog($val = true)
     {
@@ -237,6 +266,7 @@ class Logger
 
     /**
      * Get the captured log.
+     * @return array
      */
     public static function getCapturedLog()
     {
@@ -247,7 +277,8 @@ class Logger
     /**
      * Set the track identifier to use in all logs.
      *
-     * @param $trackId string The track identifier to use during this session.
+     * @param string $trackId The track identifier to use during this session.
+     * @return void
      */
     public static function setTrackId($trackId)
     {
@@ -261,6 +292,7 @@ class Logger
      * This method is intended to be registered as a shutdown handler, so that any pending messages that weren't sent
      * to the logging handler at that point, can still make it. It is therefore not intended to be called manually.
      *
+     * @return void
      */
     public static function flush()
     {
@@ -299,6 +331,7 @@ class Logger
      * Every call to this function must be followed by a call to popErrorMask().
      *
      * @param int $mask The log levels that should be masked.
+     * @return void
      */
     public static function maskErrors($mask)
     {
@@ -317,6 +350,8 @@ class Logger
      * Pop an error mask.
      *
      * This function restores the previous error mask.
+     *
+     * @return void
      */
     public static function popErrorMask()
     {
@@ -332,6 +367,7 @@ class Logger
      * @param int     $level The log level corresponding to this message.
      * @param string  $message The message itself to log.
      * @param boolean $stats Whether this is a stats message or a regular one.
+     * @return void
      */
     private static function defer($level, $message, $stats)
     {
@@ -346,6 +382,11 @@ class Logger
     }
 
 
+    /**
+     * @param \SimpleSAML\Logger\LoggingHandlerInterface|null $handler
+     * @return void
+     * @throws \Exception
+     */
     private static function createLoggingHandler($handler = null)
     {
         // set to false to indicate that it is being initialized
@@ -390,7 +431,12 @@ class Logger
         self::$loggingHandler->setLogFormat(self::$format);
     }
 
-
+    /**
+     * @param int $level
+     * @param string $string
+     * @param bool $statsLog
+     * @return void
+     */
     private static function log($level, $string, $statsLog = false)
     {
         if (self::$loggingHandler === false) {

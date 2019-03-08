@@ -5,23 +5,42 @@ namespace SimpleSAML\XHTML;
 /**
  * A minimalistic Emailer class. Creates and sends HTML emails.
  *
- * @author Andreas kre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
+ * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
  */
 
 class EMail
 {
+    /** @var string|null */
     private $to = null;
+
+    /** @var string|null */
     private $cc = null;
+
+    /** @var string|null */
     private $body = null;
+
+    /** @var string|null */
     private $from = null;
+
+    /** @var string|null */
     private $replyto = null;
+
+    /** @var string|null */
     private $subject = null;
+
+    /** @var array */
     private $headers = [];
 
 
     /**
      * Constructor
+     *
+     * @param string $to
+     * @param string $subject
+     * @param string|null $from
+     * @param string|null $cc
+     * @param string|null $replyto
      */
     public function __construct($to, $subject, $from = null, $cc = null, $replyto = null)
     {
@@ -32,7 +51,7 @@ class EMail
         $this->subject = $subject;
     }
 
-    /*
+    /**
      * @param string $body
      * @return void
      */
@@ -42,40 +61,20 @@ class EMail
     }
 
 
-    /*
+    /**
      * @param string $body
      * @return string
      */
     private function getHTML($body)
     {
-        return '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<title>SimpleSAMLphp Email report</title>
-	<style type="text/css">
-pre, div.box {
-	margin: .4em 2em .4em 1em;
-	padding: 4px;
-
-}
-pre {
-	background: #eee;
-	border: 1px solid #aaa;
-}
-	</style>
-</head>
-<body>
-<div class="container" style="background: #fafafa; border: 1px solid #eee; margin: 2em; padding: .6em;">
-'.$body.'
-</div>
-</body>
-</html>';
+        $config = \SimpleSAML\Configuration::getInstance();
+        $t = new \SimpleSAML\XHTML\Template($config, 'errorreport_mail.twig');
+        $twig = $t->getTwig();
+        return $twig->render('errorreport_mail.twig', ['body' => $body]);
     }
 
 
-    /*
+    /**
      * @return void
      */
     public function send()

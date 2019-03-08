@@ -60,7 +60,7 @@ class RunnableResponse extends Response
     /**
      * "Send" this response by actually running the callable.
      *
-     * @return mixed
+     * @return self
      */
     public function send()
     {

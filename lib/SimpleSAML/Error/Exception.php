@@ -21,15 +21,15 @@ class Exception extends \Exception
      *
      * @var array
      */
-    private $backtrace;
+    private $backtrace = [];
 
 
     /**
      * The cause of this exception.
      *
-     * @var Exception
+     * @var Exception|null
      */
-    private $cause;
+    private $cause = null;
 
 
     /**
@@ -77,6 +77,7 @@ class Exception extends \Exception
      * Load the backtrace from the given exception.
      *
      * @param \Exception $exception The exception we should fetch the backtrace from.
+     * @return void
      */
     protected function initBacktrace(\Exception $exception)
     {
@@ -193,6 +194,8 @@ class Exception extends \Exception
 
     /**
      * Print the backtrace to the log if the 'debug' option is enabled in the configuration.
+     * @param int $level
+     * @return void
      */
     protected function logBacktrace($level = \SimpleSAML\Logger::DEBUG)
     {
@@ -231,6 +234,7 @@ class Exception extends \Exception
      * Override to allow errors extending this class to specify the log level themselves.
      *
      * @param int $default_level The log level to use if this method was not overridden.
+     * @return void
      */
     public function log($default_level)
     {
@@ -248,6 +252,7 @@ class Exception extends \Exception
      * Print the exception to the log with log level error.
      *
      * This function will write this exception to the log, including a full backtrace.
+     * @return void
      */
     public function logError()
     {
@@ -260,6 +265,7 @@ class Exception extends \Exception
      * Print the exception to the log with log level warning.
      *
      * This function will write this exception to the log, including a full backtrace.
+     * @return void
      */
     public function logWarning()
     {
@@ -272,6 +278,7 @@ class Exception extends \Exception
      * Print the exception to the log with log level info.
      *
      * This function will write this exception to the log, including a full backtrace.
+     * @return void
      */
     public function logInfo()
     {
@@ -284,6 +291,7 @@ class Exception extends \Exception
      * Print the exception to the log with log level debug.
      *
      * This function will write this exception to the log, including a full backtrace.
+     * @return void
      */
     public function logDebug()
     {

@@ -69,6 +69,7 @@ class Memcache
             $allDown = false;
 
             // unserialize the object
+            /** @var string $serializedInfo */
             $info = unserialize($serializedInfo);
 
             /*
@@ -146,6 +147,7 @@ class Memcache
      * @param string       $key The key of the data.
      * @param mixed        $value The value of the data.
      * @param integer|null $expire The expiration timestamp of the data.
+     * @return void
      */
     public static function set($key, $value, $expire = null)
     {
@@ -176,6 +178,7 @@ class Memcache
      * Delete a key-value pair from the memcache servers.
      *
      * @param string $key The key we should delete.
+     * @return void
      */
     public static function delete($key)
     {
@@ -209,6 +212,7 @@ class Memcache
      *
      * @param \Memcache $memcache The Memcache object we should add this server to.
      * @param array    $server An associative array with the configuration options for the server to add.
+     * @return void
      *
      * @throws \Exception If any configuration option for the server is invalid.
      */

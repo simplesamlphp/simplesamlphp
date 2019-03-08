@@ -19,7 +19,7 @@ class MetaDataStorageHandler implements ClearableState
      * instance of the metadata handler. This variable will be null if
      * we haven't instantiated a metadata handler yet.
      *
-     * @var MetaDataStorageHandler
+     * @var MetaDataStorageHandler|null
      */
     private static $metadataHandler = null;
 
@@ -241,7 +241,7 @@ class MetaDataStorageHandler implements ClearableState
      * @param string $set Which set of metadata we are looking it up in.
      * @param string $ip IP address
      *
-     * @return string The entity id of a entity which have a CIDR hint where the provided
+     * @return string|null The entity id of a entity which have a CIDR hint where the provided
      *        IP address match.
      */
     public function getPreferredEntityIdFromCIDRhint($set, $ip)
@@ -261,7 +261,7 @@ class MetaDataStorageHandler implements ClearableState
      * This function looks up the metadata for the given entity id in the given set. It will throw an
      * exception if it is unable to locate the metadata.
      *
-     * @param string $index The entity id we are looking up. This parameter may be NULL, in which case we look up
+     * @param string|null $index The entity id we are looking up. This parameter may be NULL, in which case we look up
      * the current entity id based on the current hostname/path.
      * @param string $set The set of metadata we are looking up the entity id in.
      *
@@ -366,6 +366,7 @@ class MetaDataStorageHandler implements ClearableState
      * Clear any metadata cached.
      * Allows for metadata configuration to be changed and reloaded during a given request. Most useful
      * when running phpunit tests and needing to alter config.php and metadata sources between test cases
+     * @return void
      */
     public static function clearInternalState()
     {

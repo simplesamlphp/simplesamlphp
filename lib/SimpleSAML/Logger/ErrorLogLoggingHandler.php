@@ -16,6 +16,8 @@ class ErrorLogLoggingHandler implements LoggingHandlerInterface
 {
     /**
      * This array contains the mappings from syslog log level to names.
+     *
+     * @var array
      */
     private static $levelNames = [
         Logger::EMERG   => 'EMERG',
@@ -51,6 +53,7 @@ class ErrorLogLoggingHandler implements LoggingHandlerInterface
      * Set the format desired for the logs.
      *
      * @param string $format The format used for logs.
+     * @return void
      */
     public function setLogFormat($format)
     {
@@ -63,6 +66,7 @@ class ErrorLogLoggingHandler implements LoggingHandlerInterface
      *
      * @param int $level The log level.
      * @param string $string The formatted message to log.
+     * @return void
      */
     public function log($level, $string)
     {

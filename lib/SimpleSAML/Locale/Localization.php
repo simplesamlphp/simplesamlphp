@@ -132,6 +132,7 @@ class Localization
      *
      * @param string $module Module name
      * @param string $localeDir Absolute path if the module is housed elsewhere
+     * @return void
      */
     public function addModuleDomain($module, $localeDir = null)
     {
@@ -148,6 +149,7 @@ class Localization
      *
      * @param string $localeDir Location of translations
      * @param string $domain Domain at location
+     * @return void
      */
     public function addDomain($localeDir, $domain)
     {
@@ -156,7 +158,7 @@ class Localization
         $this->loadGettextGettextFromPO($domain);
     }
 
-    /*
+    /**
      * Get and check path of localization file
      *
      * @param string $domain Name of localization domain
@@ -205,6 +207,7 @@ class Localization
 
     /**
      * Setup the translator
+     * @return void
      */
     private function setupTranslator()
     {
@@ -221,6 +224,7 @@ class Localization
      *
      * @param string $domain Name of domain
      * @param boolean $catchException Whether to catch an exception on error or return early
+     * @return void
      *
      * @throws \Exception If something is wrong with the locale file for the domain and activated language
      */
@@ -268,6 +272,7 @@ class Localization
 
     /**
      * Set up L18N if configured or fallback to old system
+     * @return void
      */
     private function setupL10N()
     {
