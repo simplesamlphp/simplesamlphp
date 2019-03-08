@@ -4,6 +4,8 @@
 
 {% block content %}
     {%- include "@admin/includes/menu.twig" %}
+
+    <h2>{{ pagetitle }} </h2>
     <ul>
     {% for key, name in sources %}
         <li><a href="test/{{ name|escape('url') }}">{{ name }}</a></li>

@@ -6,9 +6,25 @@ SimpleSAMLphp changelog
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
-## Version 1.17.0
+## Version 1.18.0
 
 Released TBD
+
+### metarefresh
+  * The algorithm to compute the fingerprint of the certificate that signed
+    metadata can be specified with the new `validateFingerprintAlgorithm`
+    configuration option.
+
+## Version 1.17.1
+
+Released 2019-03-07
+
+  * Fixed an issue with composer that made it impossible to install modules
+    if SimpleSAMLphp was installed itself with the provided package (tar.gz file).
+
+## Version 1.17.0
+
+Released 2019-03-07
 
   * Introduce a new experimental user interface based on Twig templates.
     The new Twig templates co-exist next to the old ones and come

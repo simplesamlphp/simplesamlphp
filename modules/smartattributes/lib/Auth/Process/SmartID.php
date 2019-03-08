@@ -10,6 +10,8 @@ class SmartID extends \SimpleSAML\Auth\ProcessingFilter
      * IMPORTANT: If you use the (default) attributemaps (twitter2name, facebook2name,
      * etc., be sure to comment out the entries that map xxx_targetedID to
      * eduPersonTargetedID, or there will be no way to see its origin any more.
+     *
+     * @var array
      */
     private $candidates = [
         'eduPersonTargetedID',
@@ -24,29 +26,36 @@ class SmartID extends \SimpleSAML\Auth\ProcessingFilter
     ];
 
     /**
-     * The name of the generated ID attribute.
+     * @var string The name of the generated ID attribute.
      */
     private $id_attribute = 'smart_id';
 
     /**
      * Whether to append the AuthenticatingAuthority, separated by '!'
      * This only works when SSP is used as a gateway.
+     * @var bool
      */
     private $add_authority = true;
 
     /**
      * Whether to prepend the CandidateID, separated by ':'
+     * @var bool
      */
     private $add_candidate = true;
 
     /**
      * Attributes which should be added/appended.
      *
-     * Associative array of arrays.
+     * @var array Associative array of arrays.
      */
     private $attributes = [];
 
 
+    /**
+     * @param array $config
+     * @param mixed $reserved
+     * @throws \Exception
+     */
     public function __construct($config, $reserved)
     {
         parent::__construct($config, $reserved);
@@ -82,6 +91,13 @@ class SmartID extends \SimpleSAML\Auth\ProcessingFilter
         }
     }
 
+
+    /**
+     * @param array $attributes
+     * @param array $request
+     * @return string
+     * @throws \SimpleSAML\Error\Exception
+     */
     private function addID($attributes, $request)
     {
         $state = $request['saml:sp:State'];
@@ -104,12 +120,14 @@ class SmartID extends \SimpleSAML\Auth\ProcessingFilter
             them, or try using another identity provider.');
     }
 
+
     /**
      * Apply filter to add or replace attributes.
      *
      * Add or replace existing attributes with the configured values.
      *
      * @param array &$request  The current request
+     * @return void
      */
     public function process(&$request)
     {

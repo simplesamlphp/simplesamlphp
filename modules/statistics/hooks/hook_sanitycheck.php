@@ -1,8 +1,10 @@
 <?php
+
 /**
  * Hook to do sanity checks
  *
  * @param array &$hookinfo  hookinfo
+ * @return void
  */
 function statistics_hook_sanitycheck(&$hookinfo)
 {
@@ -28,12 +30,12 @@ function statistics_hook_sanitycheck(&$hookinfo)
             $hookinfo['errors'][] = '[statistics] Statistics dir ['.$statdir.'] is not writable';
         }
     } else {
-        $hookinfo['errors'][] = '[statistics] Statistics dir ['.$statdir.'] does not exists';
+        $hookinfo['errors'][] = '[statistics] Statistics dir ['.$statdir.'] does not exist';
     }
 
     if (file_exists($inputfile)) {
         $hookinfo['info'][] = '[statistics] Input file ['.$inputfile.'] exists';
     } else {
-        $hookinfo['errors'][] = '[statistics] Input file ['.$inputfile.'] does not exists';
+        $hookinfo['errors'][] = '[statistics] Input file ['.$inputfile.'] does not exist';
     }
 }

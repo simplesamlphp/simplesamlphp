@@ -40,10 +40,19 @@ if [ ! -x "$TARGET/composer.phar" ]; then
     curl -sS https://getcomposer.org/installer | php -- --install-dir=$TARGET
 fi
 
+# Set the version in composer.json
+php "$TARGET/composer.phar" config version "$VERSION" -d "$TARGET"
+
 # Install dependencies (without vcs history or dev tools)
 php "$TARGET/composer.phar" install --no-dev --prefer-dist -o -d "$TARGET"
 
-cd $TARGET 
+# Install external modules
+php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-cdc
+php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-memcookie
+php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-oauth
+php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-riak
+
+cd $TARGET
 npm install
 npm audit fix
 npm run build

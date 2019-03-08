@@ -5,6 +5,7 @@
  * This script can be used to generate metadata for SimpleSAMLphp
  * based on an XML metadata file.
  */
+use RobRichards\XMLSecLibs\XMLSecurityDSig;
 
 
 // This is the base directory of the SimpleSAMLphp installation
@@ -43,6 +44,11 @@ $certificates = null;
  * done.
  */
 $validateFingerprint = null;
+
+/* $validateFingerprintAlgorithm is the algorithm to use to compute the fingerprint of the
+ * certificate that signed the metadata.
+ */
+$validateFingerprintAlgorithm = null;
 
 // This variable contains the files we will parse
 $files = [];
@@ -97,6 +103,9 @@ foreach ($argv as $a) {
             }
             $validateFingerprint = $v;
             break;
+        case '--validate-fingerprint-algorithm':
+            $validateFingerprintAlgorithm = $v;
+            break;
         case '--help':
             printHelp();
             exit(0);
@@ -134,6 +143,9 @@ foreach ($files as $f) {
     if (isset($validateFingerprint)) {
         $source['validateFingerprint'] = $validateFingerprint;
     }
+    if (isset($validateFingerprintAlgorithm)) {
+        $source['validateFingerprintAlgorithm'] = $validateFingerprintAlgorithm;
+    }
     $metaloader->loadSource($source);
 }
 
@@ -145,6 +157,7 @@ if ($toStdOut) {
 
 /**
  * This function prints the help output.
+ * @return void
  */
 function printHelp()
 {
@@ -167,6 +180,10 @@ function printHelp()
     echo '                              Check the signature of the metadata,'."\n";
     echo '                              and check the fingerprint of the'."\n";
     echo '                              certificate against <FINGERPRINT>.'."\n";
+    echo ' --validate-fingerprint-algorithm=<ALGORITHM>'."\n";
+    echo '                              Use <ALGORITHM> to validate fingerprint of'."\n";
+    echo '                              the certificate that signed the metadata.'."\n";
+    echo '                              Default: '.XMLSecurityDSig::SHA1.".\n";
     echo ' -h, --help                   Print this help.'."\n";
     echo ' -o=<DIR>, --out-dir=<DIR>    Write the output to this directory. The'."\n";
     echo '                              default directory is metadata-generated/.'."\n";

@@ -21,22 +21,28 @@ namespace SimpleSAML\Module\expirycheck\Auth\Process;
  * @author Alex Mihičinac, ARNES. <alexm@arnes.si>
  * @package SimpleSAMLphp
  */
-
 class ExpiryDate extends \SimpleSAML\Auth\ProcessingFilter
 {
+    /** @var int */
     private $warndaysbefore = 0;
+
+    /** @var string|null */
     private $netid_attr = null;
+
+    /** @var string|null */
     private $expirydate_attr = null;
+
+    /** @var string */
     private $date_format = 'd.m.Y';
 
 
     /**
      * Initialize this filter.
      *
-     * @param array $config  Configuration information about this filter.
+     * @param array &$config  Configuration information about this filter.
      * @param mixed $reserved  For future use.
      */
-    public function __construct($config, $reserved)
+    public function __construct(&$config, $reserved)
     {
         parent::__construct($config, $reserved);
 
@@ -75,12 +81,14 @@ class ExpiryDate extends \SimpleSAML\Auth\ProcessingFilter
         }
     }
 
+
     /**
      * Show expirational warning if remaining days is equal or under defined $warndaysbefore
-     * @param integer $expireOnDate
-     * @param integer $warndaysbefore
-     * @return bool
      *
+     * @param array &$state
+     * @param int $expireOnDate
+     * @param int $warndaysbefore
+     * @return bool
      */
     public function shWarning(&$state, $expireOnDate, $warndaysbefore)
     {
@@ -97,11 +105,12 @@ class ExpiryDate extends \SimpleSAML\Auth\ProcessingFilter
         return false;
     }
 
+
     /**
-     *  Check if given date is older than today
-     *  @param integer $expireOnDate
-     *  @return bool
+     * Check if given date is older than today
      *
+     * @param int $expireOnDate
+     * @return bool
      */
     public function checkDate($expireOnDate)
     {
@@ -115,10 +124,12 @@ class ExpiryDate extends \SimpleSAML\Auth\ProcessingFilter
         }
     }
 
+
     /**
      * Apply filter
      *
      * @param array &$state  The current state.
+     * @return void
      */
     public function process(&$state)
     {

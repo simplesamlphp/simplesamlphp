@@ -4,8 +4,8 @@
  * Hook to run a cron job.
  *
  * @param array &$croninfo  Output
+ * @return void
  */
-
 function statistics_hook_cron(&$croninfo)
 {
     assert(is_array($croninfo));

@@ -29,7 +29,7 @@ class CAS extends \SimpleSAML\Auth\Source
     private $ldapConfig;
 
     /**
-     * @var cas configuration
+     * @var array cas configuration
      */
     private $casConfig;
 
@@ -178,6 +178,7 @@ class CAS extends \SimpleSAML\Auth\Source
     /**
      * Called by linkback, to finish validate/ finish logging in.
      * @param array $state
+     * @return void
      */
     public function finalStep(&$state)
     {
@@ -213,6 +214,7 @@ class CAS extends \SimpleSAML\Auth\Source
      * Log-in using cas
      *
      * @param array &$state  Information about the current authentication.
+     * @return void
      */
     public function authenticate(&$state)
     {
@@ -241,6 +243,7 @@ class CAS extends \SimpleSAML\Auth\Source
      * showing the user a page, or redirecting, this function should return.
      *
      * @param array &$state  Information about the current logout operation.
+     * @return void
      */
     public function logout(&$state)
     {

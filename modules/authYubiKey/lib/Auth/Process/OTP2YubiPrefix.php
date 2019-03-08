@@ -52,6 +52,7 @@ class OTP2YubiPrefix extends \SimpleSAML\Auth\ProcessingFilter
      * a 'yubiPrefix' attribute that leaves out the dynamic part.
      *
      * @param array &$state  The state we should update.
+     * @return void
      */
     public function process(&$state)
     {

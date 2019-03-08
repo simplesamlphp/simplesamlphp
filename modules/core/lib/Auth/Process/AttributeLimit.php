@@ -8,7 +8,6 @@ namespace SimpleSAML\Module\core\Auth\Process;
  * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
-
 class AttributeLimit extends \SimpleSAML\Auth\ProcessingFilter
 {
     /**
@@ -23,14 +22,15 @@ class AttributeLimit extends \SimpleSAML\Auth\ProcessingFilter
      */
     private $isDefault = false;
 
+
     /**
      * Initialize this filter.
      *
-     * @param array $config  Configuration information about this filter.
+     * @param array &$config  Configuration information about this filter.
      * @param mixed $reserved  For future use
      * @throws \SimpleSAML\Error\Exception If invalid configuration is found.
      */
-    public function __construct($config, $reserved)
+    public function __construct(&$config, $reserved)
     {
         parent::__construct($config, $reserved);
 
@@ -61,7 +61,7 @@ class AttributeLimit extends \SimpleSAML\Auth\ProcessingFilter
      * Get list of allowed from the SP/IdP config.
      *
      * @param array &$request  The current request.
-     * @return array|NULL  Array with attribute names, or NULL if no limit is placed.
+     * @return array|null  Array with attribute names, or NULL if no limit is placed.
      */
     private static function getSPIdPAllowed(array &$request)
     {
@@ -83,6 +83,7 @@ class AttributeLimit extends \SimpleSAML\Auth\ProcessingFilter
      *
      * @param array &$request  The current request
      * @throws \SimpleSAML\Error\Exception If invalid configuration is found.
+     * @return void
      */
     public function process(&$request)
     {

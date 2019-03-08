@@ -6,13 +6,13 @@ namespace SimpleSAML\Module\exampleautth\Auth\Process;
  * A simple processing filter for testing that redirection works as it should.
  *
  */
-
 class RedirectTest extends \SimpleSAML\Auth\ProcessingFilter
 {
     /**
      * Initialize processing of the redirect test.
      *
      * @param array &$state  The state we should update.
+     * @return void
      */
     public function process(&$state)
     {

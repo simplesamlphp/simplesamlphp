@@ -383,7 +383,7 @@ class Consent extends \SimpleSAML\Auth\ProcessingFilter
      * Create a hash value for the attributes that changes when attributes are added or removed. If the attribute
      * values are included in the hash, the hash will change if the values change.
      *
-     * @param string $attributes The attributes.
+     * @param array  $attributes The attributes.
      * @param bool   $includeValues Whether or not to include the attribute value in the generation of the hash.
      *
      * @return string SHA1 of the user id, source id, destination id and salt.

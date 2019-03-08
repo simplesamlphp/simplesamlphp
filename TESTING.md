@@ -56,14 +56,14 @@ SimpleSAMLphp installation, as the tests cannot use that. Make sure
 you have `phpunit` installed and run:
 
 ```sh
-phpunit -c tools/phpunit/phpunit.xml
+phpunit -c ./phpunit.xml
 ```
 
 If your default version of `phpunit` is more recent than 4.8, you can run
 the old version installed by composer
 
 ```sh
-./vendor/bin/phpunit -c tools/phpunit/phpunit.xml
+./vendor/bin/phpunit -c ./phpunit.xml
 ```
 
 All the tests are run by our *continuous integration* platform,

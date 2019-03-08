@@ -7,13 +7,13 @@ namespace SimpleSAML\Module\saml\IdP;
  *
  * @package SimpleSAMLphp
  */
-
 class SQLNameID
 {
     /**
      * Create NameID table in SQL, if it is missing.
      *
      * @param \SimpleSAML\Store\SQL $store  The datastore.
+     * @return void
      */
     private static function createTable(\SimpleSAML\Store\SQL $store)
     {
@@ -68,6 +68,7 @@ class SQLNameID
      * @param string $spEntityId  The SP entityID.
      * @param string $user  The user's unique identificator (e.g. username).
      * @param string $value  The NameID value.
+     * @return void
      */
     public static function add($idpEntityId, $spEntityId, $user, $value)
     {
@@ -98,7 +99,7 @@ class SQLNameID
      * @param string $idpEntityId  The IdP entityID.
      * @param string $spEntityId  The SP entityID.
      * @param string $user  The user's unique identificator (e.g. username).
-     * @return string|NULL $value  The NameID value, or NULL of no NameID value was found.
+     * @return string|null $value  The NameID value, or NULL of no NameID value was found.
      */
     public static function get($idpEntityId, $spEntityId, $user)
     {
@@ -135,6 +136,7 @@ class SQLNameID
      * @param string $idpEntityId  The IdP entityID.
      * @param string $spEntityId  The SP entityID.
      * @param string $user  The user's unique identificator (e.g. username).
+     * @return void
      */
     public static function delete($idpEntityId, $spEntityId, $user)
     {

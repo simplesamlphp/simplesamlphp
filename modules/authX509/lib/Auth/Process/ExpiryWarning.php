@@ -19,8 +19,10 @@ namespace SimpleSAML\Module\authX509\Auth\Process;
 
 class ExpiryWarning extends \SimpleSAML\Auth\ProcessingFilter
 {
-
+    /** @var int */
     private $warndaysbefore = 30;
+
+    /** @var string|null */
     private $renewurl = null;
 
     /**
@@ -57,6 +59,7 @@ class ExpiryWarning extends \SimpleSAML\Auth\ProcessingFilter
      * is informed about the expiry date of his/her certificate.
      *
      * @param array $state  The state of the response.
+     * @return void
      */
     public function process(&$state)
     {

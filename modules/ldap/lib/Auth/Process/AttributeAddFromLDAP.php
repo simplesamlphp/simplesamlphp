@@ -34,7 +34,6 @@ namespace SimpleSAML\Module\ldap\Auth\Process;
  * @author Remy Blom <remy.blom@hku.nl>
  * @package SimpleSAMLphp
  */
-
 class AttributeAddFromLDAP extends BaseFilter
 {
     /**
@@ -59,6 +58,7 @@ class AttributeAddFromLDAP extends BaseFilter
      * @var string
      */
     protected $attr_policy;
+
 
     /**
      * Initialize this filter.
@@ -136,6 +136,7 @@ class AttributeAddFromLDAP extends BaseFilter
      * Add attributes from an LDAP server.
      *
      * @param array &$request The current request
+     * @return void
      */
     public function process(&$request)
     {

@@ -9,7 +9,6 @@ namespace SimpleSAML\Module\statistics\Graph;
  * @author Andreas Åkre Solberg <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
  */
-
 class GoogleCharts
 {
     /**
@@ -36,12 +35,21 @@ class GoogleCharts
         $this->y = $y;
     }
 
+
+    /**
+     * @param array $axis
+     * @return string
+     */
     private function encodeaxis($axis)
     {
         return join('|', $axis);
     }
 
-    // t:10.0,58.0,95.0
+    /**
+     * t:10.0,58.0,95.0
+     * @param array $datasets
+     * @return string
+     */
     private function encodedata($datasets)
     {
         $setstr = [];
@@ -51,6 +59,11 @@ class GoogleCharts
         return 'e:'.join(',', $setstr);
     }
 
+
+    /**
+     * @param array $values
+     * @return string
+     */
     public static function extEncode($values) // $max = 4095, $min = 0
     {
         $extended_table = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-.';
@@ -70,15 +83,17 @@ class GoogleCharts
         return $chardata;
     }
 
+
     /**
      * Generate a Google Charts URL which points to a generated image.
      * More documentation on Google Charts here:
      *   http://code.google.com/apis/chart/
      *
-     * @param string $axis        Axis
-     * @param string $axpis       Axis positions
+     * @param array $axis        Axis
+     * @param array $axispos       Axis positions
      * @param array $datasets    Datasets values
-     * @param integer $max         Max value. Will be the topmost value on the Y-axis.
+     * @param array $maxes         Max value. Will be the topmost value on the Y-axis.
+     * @return string
      */
     public function show($axis, $axispos, $datasets, $maxes)
     {
@@ -111,6 +126,12 @@ class GoogleCharts
         return $url;
     }
 
+
+    /**
+     * @param array $axis
+     * @param array $datasets
+     * @return string
+     */
     public function showPie($axis, $datasets)
     {
         $url = 'https://chart.apis.google.com/chart?'.
@@ -129,6 +150,7 @@ class GoogleCharts
         return $url;
     }
 
+
     /**
      * Takes a input value, and generates a value that suits better as a max
      * value on the Y-axis. In example 37.6 will not make a good max value, instead
@@ -145,7 +167,8 @@ class GoogleCharts
      *      }
      * </code>
      *
-     * @param integer $max    Input value.
+     * @param int $max    Input value.
+     * @return int
      */
     public static function roof($max)
     {

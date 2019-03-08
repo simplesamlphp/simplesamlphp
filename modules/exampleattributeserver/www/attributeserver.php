@@ -10,10 +10,13 @@ if (!($query instanceof \SAML2\AttributeQuery)) {
 
 $idpEntityId = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
 
-
-$spEntityId = $query->getIssuer();
-if ($spEntityId === null) {
+$issuer = $query->getIssuer();
+if ($issuer === null) {
     throw new \SimpleSAML\Error\BadRequest('Missing <saml:Issuer> in <samlp:AttributeQuery>.');
+} elseif (is_string($issuer)) {
+    $spEntityId = $issuer;
+} else {
+    $spEntityId = $issuer->getValue();
 }
 
 $idpMetadata = $metadata->getMetaDataConfig($idpEntityId, 'saml20-idp-hosted');
@@ -41,6 +44,7 @@ if (count($returnAttributes) === 0) {
     $returnAttributes = [];
 } else {
     foreach ($returnAttributes as $name => $values) {
+        /** @var array $values */
         if (!array_key_exists($name, $attributes)) {
             // We don't have this attribute
             unset($returnAttributes[$name]);

@@ -2,13 +2,15 @@
 
 namespace SimpleSAML\Module\statistics;
 
-/*
+/**
  * @author Andreas Åkre Solberg <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
  */
-
 class RatioDataset extends StatDataset
 {
+    /**
+     * @return void
+     */
     public function aggregateSummary()
     {
         /**
@@ -42,6 +44,12 @@ class RatioDataset extends StatDataset
         $this->summary = array_reverse($this->summary, true);
     }
 
+
+    /**
+     * @param string $k
+     * @param array $a
+     * @return int
+     */
     private function ag($k, $a)
     {
         if (array_key_exists($k, $a)) {
@@ -50,6 +58,12 @@ class RatioDataset extends StatDataset
         return 0;
     }
 
+
+    /**
+     * @param int $v1
+     * @param int $v2
+     * @return int|float
+     */
     private function divide($v1, $v2)
     {
         if ($v2 == 0) {
@@ -58,6 +72,12 @@ class RatioDataset extends StatDataset
         return ($v1 / $v2);
     }
 
+
+    /**
+     * @param array $result1
+     * @param array $result2
+     * @return array
+     */
     public function combine($result1, $result2)
     {
         $combined = [];
@@ -74,6 +94,10 @@ class RatioDataset extends StatDataset
         return $combined;
     }
 
+
+    /**
+     * @return null
+     */
     public function getPieData()
     {
         return null;

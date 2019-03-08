@@ -1,4 +1,5 @@
 <?php
+
 $this->data['header'] = $this->t('{authX509:X509error:certificate_header}');
 
 $this->includeAtTemplateBase('includes/header.php');

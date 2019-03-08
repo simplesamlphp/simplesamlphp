@@ -13,18 +13,21 @@ class X509userCert extends \SimpleSAML\Auth\Source
 {
     /**
      * x509 attributes to use from the certificate for searching the user in the LDAP directory.
+     * @var array
      */
     private $x509attributes = ['UID' => 'uid'];
 
 
     /**
      * LDAP attribute containing the user certificate.
+     * This can be set to NULL to avoid looking up the certificate in LDAP
+     * @var array|null
      */
     private $ldapusercert = ['userCertificate;binary'];
 
 
     /**
-     * LDAPConfigHelper object
+     * @var \SimpleSAML\Module\ldap\ConfigHelper
      */
     private $ldapcf;
 
@@ -56,8 +59,6 @@ class X509userCert extends \SimpleSAML\Auth\Source
             $config,
             'Authentication source '.var_export($this->authId, true)
         );
-
-        return;
     }
 
 
@@ -67,6 +68,7 @@ class X509userCert extends \SimpleSAML\Auth\Source
      * This function can be overloaded by a child authentication class that wish to perform some operations on failure.
      *
      * @param array &$state Information about the current authentication.
+     * @return void
      */
     public function authFailed(&$state)
     {
@@ -89,6 +91,7 @@ class X509userCert extends \SimpleSAML\Auth\Source
      * page. On failure, The authX509:X509error.php template is loaded.
      *
      * @param array &$state Information about the current authentication.
+     * @return void
      */
     public function authenticate(&$state)
     {
@@ -199,12 +202,12 @@ class X509userCert extends \SimpleSAML\Auth\Source
      * This function can be overloaded by a child authentication class that wish to perform some operations after login.
      *
      * @param array &$state Information about the current authentication.
+     * @return void
      */
     public function authSuccesful(&$state)
     {
         \SimpleSAML\Auth\Source::completeAuth($state);
 
         assert(false); // should never be reached
-        return;
     }
 }

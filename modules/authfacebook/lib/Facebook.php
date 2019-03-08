@@ -17,14 +17,24 @@ class Facebook extends \BaseFacebook
     // expiration will trump this
     const FBSS_COOKIE_EXPIRE = 31556926; // 1 year
 
-    // Stores the shared session ID if one is set
+    /**
+     * Stores the shared session ID if one is set
+     * @var string
+     */
     protected $sharedSessionID;
 
-    // SimpleSAMLphp state array
+    /**
+     * SimpleSAMLphp state array
+     * @var array
+     */
     protected $ssp_state;
 
-    // \SimpleSAML\Auth\State
-    protected $state;
+    /** @var string|null */
+    protected $state = null;
+
+    /** @var array */
+    protected static $kSupportedKeys = ['state', 'code', 'access_token', 'user_id'];
+
 
     /**
      * Identical to the parent constructor, except that
@@ -32,7 +42,8 @@ class Facebook extends \BaseFacebook
      * access token if during the course of execution
      * we discover them.
      *
-     * @param Array $config the application configuration. Additionally
+     * @param array $config the application configuration. Additionally
+     * @param array &$ssp_state
      * accepts "sharedSession" as a boolean to turn on a secondary
      * cookie for environments with a shared session (that is, your app
      * shares the domain with other apps).
@@ -48,8 +59,10 @@ class Facebook extends \BaseFacebook
         }
     }
 
-    protected static $kSupportedKeys = ['state', 'code', 'access_token', 'user_id'];
 
+    /**
+     * @return void
+     */
     protected function initSharedSession()
     {
         $cookie_name = $this->getSharedSessionCookieName();
@@ -87,11 +100,16 @@ class Facebook extends \BaseFacebook
         }
     }
 
+
     /**
      * Provides the implementations of the inherited abstract
      * methods.  The implementation uses PHP sessions to maintain
      * a store for authorization codes, user ids, CSRF states, and
      * access tokens.
+     *
+     * @param string $key
+     * @param mixed $value
+     * @return void
      */
     protected function setPersistentData($key, $value)
     {
@@ -104,6 +122,12 @@ class Facebook extends \BaseFacebook
         $this->ssp_state[$session_var_name] = $value;
     }
 
+
+    /**
+     * @param string $key
+     * @param bool $default
+     * @return mixed
+     */
     protected function getPersistentData($key, $default = false)
     {
         if (!in_array($key, self::$kSupportedKeys)) {
@@ -115,6 +139,11 @@ class Facebook extends \BaseFacebook
         return isset($this->ssp_state[$session_var_name]) ? $this->ssp_state[$session_var_name] : $default;
     }
 
+
+    /**
+     * @param string $key
+     * @return void
+     */
     protected function clearPersistentData($key)
     {
         if (!in_array($key, self::$kSupportedKeys)) {
@@ -128,6 +157,10 @@ class Facebook extends \BaseFacebook
         }
     }
 
+
+    /**
+     * @return void
+     */
     protected function clearAllPersistentData()
     {
         foreach (self::$kSupportedKeys as $key) {
@@ -138,6 +171,10 @@ class Facebook extends \BaseFacebook
         }
     }
 
+
+    /**
+     * @return void
+     */
     protected function deleteSharedSessionCookie()
     {
         $cookie_name = $this->getSharedSessionCookieName();
@@ -146,11 +183,20 @@ class Facebook extends \BaseFacebook
         setcookie($cookie_name, '', 1, '/', '.'.$base_domain);
     }
 
+
+    /**
+     * @return string
+     */
     protected function getSharedSessionCookieName()
     {
         return self::FBSS_COOKIE_NAME.'_'.$this->getAppId();
     }
 
+
+    /**
+     * @param string $key
+     * @return string
+     */
     protected function constructSessionVariableName($key)
     {
         $parts = ['authfacebook:authdata:fb', $this->getAppId(), $key];
@@ -160,6 +206,10 @@ class Facebook extends \BaseFacebook
         return implode('_', $parts);
     }
 
+
+    /**
+     * @return void
+     */
     protected function establishCSRFTokenState()
     {
         if ($this->state === null) {

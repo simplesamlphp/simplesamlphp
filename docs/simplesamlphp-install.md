@@ -206,19 +206,18 @@ look like this:
         ssl_protocols          TLSv1.1 TLSv1.2;
         ssl_ciphers            HIGH:!aNULL:!MD5;
 
-        location / {
-            root     /var/simplesamlphp/www;
-            index    index.php;
-        }
+        location ^~ /simplesaml {
+            alias /var/simplesamlphp/www;
 
-        location ~ \.php {
-            root             /var/simplesamlphp/www;
-            fastcgi_pass     127.0.0.1:9000;
-            fastcgi_index    index.php;
-            fastcgi_param    SCRIPT_FILENAME  $document_root$fastcgi_script_name;
-            fastcgi_split_path_info ^(.+?\.php)(/.*)$;
-            fastcgi_param    PATH_INFO $fastcgi_path_info;
-            include          fastcgi_params;
+            location ~ \.php(/|$) {
+                root             /var/simplesamlphp/www;
+                fastcgi_pass     127.0.0.1:9000;
+                fastcgi_index    index.php;
+                fastcgi_param    SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+                fastcgi_split_path_info ^(.+?\.php)(/.*)$;
+                fastcgi_param    PATH_INFO $fastcgi_path_info;
+                include          fastcgi_params;
+            }
         }
     }
 ```

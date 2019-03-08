@@ -2,7 +2,7 @@
 {% extends "base.twig" %}
 
 {% block preload %}
-    <link href="{{ baseurlpath }}assets/css/statistics.css" rel="stylesheet" />
+    <link href="/{{ baseurlpath }}modules.php/statistics/assets/css/statistics.css" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
@@ -35,5 +35,5 @@
         <tr><td>No metadata found</td></tr>
     {% endif %}
     </table>
-    <p>[ <a href="{{ baseurlpath }}showstats.php">Show statistics</a> ]</p>
+    <p>[ <a href="/{{ baseurlpath }}module.php/statistics/showstats.php">Show statistics</a> ]</p>
 {% endblock %}

@@ -99,6 +99,7 @@ class Authorize extends \SimpleSAML\Auth\ProcessingFilter
      * Apply filter to validate attributes.
      *
      * @param array &$request  The current request
+     * @return void
      */
     public function process(&$request)
     {
@@ -108,7 +109,7 @@ class Authorize extends \SimpleSAML\Auth\ProcessingFilter
 
         $attributes = &$request['Attributes'];
         // Store the rejection message array in the $request
-        if(!empty($this->reject_msg)) {
+        if (!empty($this->reject_msg)) {
             $request['authprocAuthorize_reject_msg'] = $this->reject_msg;
         }
 
@@ -149,6 +150,7 @@ class Authorize extends \SimpleSAML\Auth\ProcessingFilter
      * permission logic.
      *
      * @param array $request
+     * @return void
      */
     protected function unauthorized(&$request)
     {

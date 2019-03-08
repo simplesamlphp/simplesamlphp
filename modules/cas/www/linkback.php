@@ -18,6 +18,7 @@ $state['cas:ticket'] = (string) $_GET['ticket'];
 assert(array_key_exists(\SimpleSAML\Module\cas\Auth\Source\CAS::AUTHID, $state));
 $sourceId = $state[\SimpleSAML\Module\cas\Auth\Source\CAS::AUTHID];
 
+/** @var \SimpleSAML\Module\cas\Auth\Source\CAS|null $source */
 $source = \SimpleSAML\Auth\Source::getById($sourceId);
 if ($source === null) {
     throw new \Exception('Could not find authentication source with id '.$sourceId);

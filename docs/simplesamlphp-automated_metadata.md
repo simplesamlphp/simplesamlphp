@@ -162,6 +162,10 @@ Each metadata source has the following options:
     don't need this option if you don't want to validate the signature
     on the metadata.
 
+`validateFingerprintAlgorithm`
+:   Algorithm used to compute the signing certificate's fingerprint. Defaults to
+    `XMLSecurityDSig::SHA1`.
+
 `template`
 :   This is an array which will be combined with the metadata fetched to
     generate the final metadata array.

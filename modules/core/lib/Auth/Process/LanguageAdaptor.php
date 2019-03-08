@@ -8,18 +8,18 @@ namespace SimpleSAML\Module\core\Auth\Process;
  * @author Andreas Åkre Solberg, UNINETT AS.
  * @package SimpleSAMLphp
  */
-
 class LanguageAdaptor extends \SimpleSAML\Auth\ProcessingFilter
 {
+    /** @var string */
     private $langattr = 'preferredLanguage';
 
     /**
      * Initialize this filter.
      *
-     * @param array $config  Configuration information about this filter.
+     * @param array &$config  Configuration information about this filter.
      * @param mixed $reserved  For future use.
      */
-    public function __construct($config, $reserved)
+    public function __construct(&$config, $reserved)
     {
         parent::__construct($config, $reserved);
         assert(is_array($config));
@@ -29,12 +29,14 @@ class LanguageAdaptor extends \SimpleSAML\Auth\ProcessingFilter
         }
     }
 
+
     /**
      * Apply filter to add or replace attributes.
      *
      * Add or replace existing attributes with the configured values.
      *
      * @param array &$request  The current request
+     * @return void
      */
     public function process(&$request)
     {

@@ -38,29 +38,32 @@ class ScopeAttribute extends \SimpleSAML\Auth\ProcessingFilter
      */
     private $onlyIfEmpty = false;
 
+
     /**
      * Initialize this filter, parse configuration
      *
-     * @param array $config  Configuration information about this filter.
+     * @param array &$config  Configuration information about this filter.
      * @param mixed $reserved  For future use.
      */
-    public function __construct($config, $reserved)
+    public function __construct(&$config, $reserved)
     {
         parent::__construct($config, $reserved);
         assert(is_array($config));
 
-        $config = \SimpleSAML\Configuration::loadFromArray($config, 'ScopeAttribute');
+        $cfg = \SimpleSAML\Configuration::loadFromArray($config, 'ScopeAttribute');
 
-        $this->scopeAttribute = $config->getString('scopeAttribute');
-        $this->sourceAttribute = $config->getString('sourceAttribute');
-        $this->targetAttribute = $config->getString('targetAttribute');
-        $this->onlyIfEmpty = $config->getBoolean('onlyIfEmpty', false);
+        $this->scopeAttribute = $cfg->getString('scopeAttribute');
+        $this->sourceAttribute = $cfg->getString('sourceAttribute');
+        $this->targetAttribute = $cfg->getString('targetAttribute');
+        $this->onlyIfEmpty = $cfg->getBoolean('onlyIfEmpty', false);
     }
+
 
     /**
      * Apply this filter to the request.
      *
      * @param array &$request  The current request
+     * @return void
      */
     public function process(&$request)
     {

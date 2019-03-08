@@ -10,7 +10,6 @@ use SimpleSAML\Utils\HttpAdapter;
  * @author Guy Halse, http://orcid.org/0000-0002-9388-8592
  * @package SimpleSAMLphp
  */
-
 class Cardinality extends \SimpleSAML\Auth\ProcessingFilter
 {
     /** @var array Associative array with the mappings of attribute names. */
@@ -25,12 +24,12 @@ class Cardinality extends \SimpleSAML\Auth\ProcessingFilter
     /**
      * Initialize this filter, parse configuration.
      *
-     * @param array $config  Configuration information about this filter.
+     * @param array &$config  Configuration information about this filter.
      * @param mixed $reserved  For future use.
      * @param HTTPAdapter $http  HTTP utility service (handles redirects).
      * @throws \SimpleSAML\Error\Exception
      */
-    public function __construct($config, $reserved, HttpAdapter $http = null)
+    public function __construct(&$config, $reserved, HttpAdapter $http = null)
     {
         parent::__construct($config, $reserved);
         assert(is_array($config));
@@ -98,6 +97,7 @@ class Cardinality extends \SimpleSAML\Auth\ProcessingFilter
      * Process this filter
      *
      * @param array &$request  The current request
+     * @return void
      */
     public function process(&$request)
     {

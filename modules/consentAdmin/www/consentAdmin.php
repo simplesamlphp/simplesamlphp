@@ -11,9 +11,19 @@
  * Author: Mads Freek <freek@ruc.dk>, Jacob Christiansen <jach@wayf.dk>
  */
 
-/*
+/**
  * Runs the processing chain and ignores all filter which have user
  * interaction.
+ *
+ * @param array $idp_metadata
+ * @param string $source
+ * @param array $sp_metadata
+ * @param string $sp_entityid
+ * @param array $attributes
+ * @param string $userid
+ * @param bool $hashAttributes
+ * @param array $excludeAttributes
+ * @return array
  */
 function driveProcessingChain(
     $idp_metadata,
@@ -107,7 +117,6 @@ $metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
  * Get IdP id and metadata
  */
 
-
 $idp_entityid = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
 $idp_metadata = $metadata->getMetaData($idp_entityid, 'saml20-idp-hosted');
 
@@ -176,6 +185,7 @@ if ($action !== null && $sp_entityid !== null) {
         'consentAdmin:consentadminajax.php',
         'consentAdmin:consentadmin'
     );
+    $translator = $template->getTranslator();
 
     // Get SP metadata
     $sp_metadata = $metadata->getMetaData($sp_entityid, 'saml20-sp-remote');
@@ -274,7 +284,7 @@ foreach ($all_sp_metadata as $sp_entityid => $sp_values) {
             \SimpleSAML\Logger::info('consentAdmin: ok');
             $sp_status = "ok";
         }
-        // Consent does not exists
+        // Consent does not exist
     } else {
         SimpleSAML\Logger::info('consentAdmin: none');
         $sp_status = "none";
