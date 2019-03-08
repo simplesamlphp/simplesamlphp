@@ -30,11 +30,12 @@ class EMail
      *
      * @return string Default mail address
      */
-    public static function getDefaultMailAddress() {
+    public static function getDefaultMailAddress()
+    {
         $config = Configuration::getInstance();
         $address = $config->getString('technicalcontact_email', 'na@example.org');
         if ('na@example.org' === $address) {
-            throw new \Exception('technicalcontact_email not set');
+            throw new \Exception('technicalcontact_email must be changed from the default value');
         }
         return $address;
     }
@@ -49,13 +50,21 @@ class EMail
     /**
      * Constructor
      *
-     * @throws PHPMailer\PHPMailer\Exception;
+     * If $from or $to is not provided, the <code>technicalcontact_email</code>
+     * from the configuration is used.
+     *
+     * @param string $subject The subject of the e-mail
+     * @param string $from The from-address (both envelope and header)
+     * @param string $to The recipient
+     *
+     * @throws PHPMailer\PHPMailer\Exception
      */
-    public function __construct($subject, $from = null, $to = null) {
+    public function __construct($subject, $from = null, $to = null)
+    {
         $this->mail = new PHPMailer(true);
         $this->mail->Subject = $subject;
-        $this->mail->setFrom($from ? $from : static::getDefaultMailAddress());
-        $this->mail->addAddress($to ? $to : static::getDefaultMailAddress());
+        $this->mail->setFrom($from ?: static::getDefaultMailAddress());
+        $this->mail->addAddress($to ?: static::getDefaultMailAddress());
     }
 
     /**
@@ -63,25 +72,33 @@ class EMail
      *
      * @param array $data The data that should be embedded in the e-mail body
      */
-    public function setData($data) {
+    public function setData($data)
+    {
+        /*
+         * Convert every non-array value to an array with the original
+         * as its only element. This guarantees that every value of $data
+         * can be iterated over.
+         */
         $this->data = array_map(function($v){return is_array($v) ? $v : [$v];}, $data);
     }
 
     /**
      * Set an introduction text for the e-mail
      *
-     * @param string $text
+     * @param string $text Introduction text
      */
-    public function setText($text) {
+    public function setText($text)
+    {
         $this->text = $text;
     }
 
     /**
      * Add a Reply-To address to the mail
      *
-     * @param string $address
+     * @param string $address Reply-To e-mail address
      */
-    public function addReplyTo($address) {
+    public function addReplyTo($address)
+    {
         $this->mail->addReplyTo($address);
     }
 
@@ -92,7 +109,8 @@ class EMail
      *
      * @throws \PHPMailer\PHPMailer\Exception
      */
-    public function send($plainTextOnly = false) {
+    public function send($plainTextOnly = false)
+    {
         if ($plainTextOnly) {
             $this->mail->isHTML(false);
             $this->mail->Body = $this->generateBody('mailtxt.twig');
@@ -112,7 +130,8 @@ class EMail
      *
      * @return string The body of the e-mail
      */
-    public function generateBody($template) {
+    public function generateBody($template)
+    {
         $config = Configuration::loadFromArray([
             'usenewui' => true,
         ]);
@@ -121,7 +140,6 @@ class EMail
         if (is_bool($twig)) {
             throw new \Exception('Even though we explicitly configure that we want Twig, the Template class does not give us Twig. This is a bug.');
         }
-        // Twig does HTML escaping for us, right?
         $result = $twig->render($template, [
                 'subject' => $this->mail->Subject,
                 'text' => $this->text,
