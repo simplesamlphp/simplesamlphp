@@ -72,7 +72,7 @@ class EMail
      *
      * @param array $data The data that should be embedded in the e-mail body
      */
-    public function setData($data)
+    public function setData(array $data)
     {
         /*
          * Convert every non-array value to an array with the original
