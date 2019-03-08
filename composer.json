@@ -40,6 +40,7 @@
         "jaimeperez/twig-configurable-i18n": "^2.0",
         "robrichards/xmlseclibs": "^3.0",
         "simplesamlphp/saml2": "^3.3",
+        "simplesamlphp/simplesamlphp-module-authtwitter": "^1.0.0",
         "simplesamlphp/simplesamlphp-module-cdc": "^1.0",
         "simplesamlphp/simplesamlphp-module-memcookie": "^1.2",
         "simplesamlphp/simplesamlphp-module-oauth": "^1.0",
