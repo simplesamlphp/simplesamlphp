@@ -121,7 +121,7 @@ class FederationController
         $t->data = [
             'links' => [
                 [
-                    'href' => Module::getModuleURL('admin/metadata-converter'),
+                    'href' => Module::getModuleURL('admin/federation/metadata-converter'),
                     'text' => Translate::noop('XML to SimpleSAMLphp metadata converter'),
                 ]
             ],
