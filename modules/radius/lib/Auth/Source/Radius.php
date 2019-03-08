@@ -12,7 +12,7 @@ namespace SimpleSAML\Module\radius\Auth\Source;
 class Radius extends \SimpleSAML\Module\core\Auth\UserPassBase
 {
     /**
-     * Var array The list of radius servers to use.
+     * @var array The list of radius servers to use.
      */
     private $servers;
 
