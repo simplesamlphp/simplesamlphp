@@ -118,6 +118,9 @@ class EMail
         ]);
         $t = new Template($config, $template);
         $twig = $t->getTwig();
+        if (is_bool($twig)) {
+            throw new \Exception('Even though we explicitly configure that we want Twig, the Template class does not give us Twig. This is a bug.');
+        }
         // Twig does HTML escaping for us, right?
         $result = $twig->render($template, [
                 'subject' => $this->mail->Subject,
