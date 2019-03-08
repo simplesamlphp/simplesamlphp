@@ -262,6 +262,7 @@ class Signer
 
         // get the EntityDescriptor node we should sign
         $rootNode = $xml->firstChild;
+        $rootNode->setAttribute('ID', '_'.hash('sha256', $metadataString));
 
         // sign the metadata with our private key
         $objXMLSecDSig = new XMLSecurityDSig();
@@ -272,7 +273,7 @@ class Signer
             [$rootNode],
             $signature_cf['digest'],
             ['http://www.w3.org/2000/09/xmldsig#enveloped-signature', XMLSecurityDSig::EXC_C14N],
-            ['id_name' => 'ID']
+            ['id_name' => 'ID', 'overwrite' => false]
         );
 
         $objXMLSecDSig->sign($objKey);

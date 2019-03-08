@@ -7,7 +7,7 @@
     color: #aaa;
 }
 .inlinesearch input {
-    background-image:url('../../resources/icons/silk/magnifier.png');
+    background-image:url('../../../../resources/icons/silk/magnifier.png');
     background-repeat:no-repeat;
     background-position:center left;
     border: 1px solid #ccc;
@@ -33,14 +33,14 @@ a.metaentry {
     cursor: hand;
 }
 a.metaentry.favourite {
-    background-image:url('../../resources/icons/silk/heart.png');
+    background-image:url('../../../../resources/icons/silk/heart.png');
     background-repeat:no-repeat;
     background-position:center left;
 }
 a.metaentry:hover {
     border: 1px solid #ccc;
     background: #eee;
-    background-image:url('../../resources/icons/silk/star.png');
+    background-image:url('../../../../resources/icons/silk/star.png');
     background-repeat:no-repeat;
     background-position:center left;
 }
