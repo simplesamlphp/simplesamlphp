@@ -6,9 +6,9 @@ $this->data['jquery'] = ['core' => true, 'ui' => true, 'css' => true];
 $this->data['head'] = '<link rel="stylesheet" media="screen" type="text/css" href="'.
     SimpleSAML\Module::getModuleURL('discopower/assets/css/disco.css').'" />';
 
-$this->data['post'] = '<script type="text/javascript" src="'.
+$this->data['head'] .= '<script type="text/javascript" src="'.
     SimpleSAML\Module::getModuleURL('discopower/assets/js/jquery.livesearch.js').'"></script>';
-$this->data['post'] .= '<script type="text/javascript" src="'.
+$this->data['head'] .= '<script type="text/javascript" src="'.
     SimpleSAML\Module::getModuleURL('discopower/assets/js/quicksilver.js').'"></script>';
 
 if (!empty($this->data['faventry'])) {
@@ -143,6 +143,6 @@ foreach ($this->data['idplist'] as $tab => $slist) {
 </script>
 
 <?php
-$this->data['post'] .= '<script type="text/javascript" src="'.
+$this->data['head'] .= '<script type="text/javascript" src="'.
     SimpleSAML\Module::getModuleURL('discopower/assets/js/suggest.js').'"></script>';
 $this->includeAtTemplateBase('includes/footer.php');
