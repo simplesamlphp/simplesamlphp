@@ -57,7 +57,7 @@ $config = [
      * - 'certdir': The base directory for certificate and key material.
      * - 'loggingdir': Where to write logs.
      * - 'datadir': Storage of general data.
-     * - 'temdir': Saving temporary files. SimpleSAMLphp will attempt to create
+     * - 'tempdir': Saving temporary files. SimpleSAMLphp will attempt to create
      *   this directory if it doesn't exist.
      * When specified as a relative path, this is relative to the SimpleSAMLphp
      * root directory.
@@ -949,6 +949,12 @@ $config = [
     /**************************
      | METADATA CONFIGURATION |
      **************************/
+
+    /*
+     * This option allows you to specify a directory for your metadata outside of the standard metadata directory
+     * included in the standard distribution of the software.
+     */
+    'metadatadir' => 'metadata',
 
     /*
      * This option configures the metadata sources. The metadata sources is given as an array with
