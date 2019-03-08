@@ -144,5 +144,5 @@ foreach ($this->data['idplist'] as $tab => $slist) {
 
 <?php
 $this->data['post'] .= '<script type="text/javascript" src="'.
-    SimpleSAML\Module::getModuleURL('discopower/js/javascript.js').'"></script>';
+    SimpleSAML\Module::getModuleURL('discopower/assets/js/suggest.js').'"></script>';
 $this->includeAtTemplateBase('includes/footer.php');
