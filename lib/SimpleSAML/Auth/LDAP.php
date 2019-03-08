@@ -755,7 +755,7 @@ class LDAP
                 $val = self::asc2hex32($val);
             }
 
-            $values[$key] = $values;
+            $values[$key] = $val;
         }
         if ($singleValue) {
             return $values[0];
