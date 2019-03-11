@@ -42,6 +42,7 @@
         "robrichards/xmlseclibs": "^3.0",
         "simplesamlphp/saml2": "^3.3",
         "simplesamlphp/simplesamlphp-module-authfacebook": "^1.0",
+        "simplesamlphp/simplesamlphp-module-authlinkedin": "^1.0",
         "simplesamlphp/simplesamlphp-module-authtwitter": "^1.0",
         "simplesamlphp/simplesamlphp-module-authwindowslive": "^1.0",
         "simplesamlphp/simplesamlphp-module-cdc": "^1.0",

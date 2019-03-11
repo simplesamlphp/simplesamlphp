@@ -48,6 +48,7 @@ php "$TARGET/composer.phar" install --no-dev --prefer-dist -o -d "$TARGET"
 
 # Install external modules
 php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-authfacebook
+php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-authlinkedin
 php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-authtwitter
 php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-authwindowslive
 php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-cdc
