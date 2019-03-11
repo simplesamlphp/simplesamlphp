@@ -13,9 +13,9 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-$reportId = (string) $_REQUEST['reportId'];
-$email = (string) $_REQUEST['email'];
-$text = htmlspecialchars((string) $_REQUEST['text']);
+$reportId = $_REQUEST['reportId'];
+$email = $_REQUEST['email'];
+$text = $_REQUEST['text'];
 
 $data = null;
 try {
@@ -29,10 +29,8 @@ if ($data === null) {
     $data = [
         'exceptionMsg'   => 'not set',
         'exceptionTrace' => 'not set',
-        'reportId'       => $reportId,
         'trackId'        => 'not set',
         'url'            => 'not set',
-        'version'        => $config->getVersion(),
         'referer'        => 'not set',
     ];
 
@@ -41,90 +39,18 @@ if ($data === null) {
     }
 }
 
-foreach ($data as $k => $v) {
-    $data[$k] = htmlspecialchars($v);
-}
+$data['reportId'] = $reportId;
+$data['version'] = $config->getVersion();
+$data['hostname'] = php_uname('n');
+$data['directory'] = dirname(dirname(__FILE__));
 
-// build the email message
-$message = <<<MESSAGE
-<h1>SimpleSAMLphp Error Report</h1>
-
-<p>Message from user:</p>
-<div class="box" style="background: yellow; color: #888; border: 1px solid #999900; padding: .4em; margin: .5em">
-    %s
-</div>
-
-<p>Exception: <strong>%s</strong></p>
-<pre>%s</pre>
-
-<p>URL:</p>
-<pre><a href="%s">%s</a></pre>
-
-<p>Host:</p>
-<pre>%s</pre>
-
-<p>Directory:</p>
-<pre>%s</pre>
-
-<p>Track ID:</p>
-<pre>%s</pre>
-
-<p>Version: <code>%s</code></p>
-
-<p>Report ID: <code>%s</code></p>
-
-<p>Referer: <code>%s</code></p>
-
-<hr />
-<div class="footer">
-    This message was sent using SimpleSAMLphp. Visit the <a href="http://simplesamlphp.org/">SimpleSAMLphp homepage</a>.
-</div>
-MESSAGE;
-$message = sprintf(
-    $message,
-    $text,
-    $data['exceptionMsg'],
-    $data['exceptionTrace'],
-    $data['url'],
-    $data['url'],
-    htmlspecialchars(php_uname('n')),
-    dirname(dirname(__FILE__)),
-    $data['trackId'],
-    $data['version'],
-    $data['reportId'],
-    $data['referer']
-);
-
-// add the email address of the submitter as the Reply-To address
-$email = trim($email);
-
-// check that it looks like a valid email address
-if (!preg_match('/\s/', $email) && strpos($email, '@') !== false) {
-    $replyto = $email;
-} else {
-    $replyto = null;
-}
-
-$from = $config->getString('sendmail_from', null);
-if ($from === null || $from === '') {
-    $from = ini_get('sendmail_from');
-    if ($from === '' || $from === false) {
-        $from = 'no-reply@example.org';
-    }
-}
-
-// If no sender email was configured at least set some relevant from address
-if ($from === 'no-reply@example.org' && $replyto !== null) {
-    $from = $replyto;
-}
-
-// send the email
-$toAddress = $config->getString('technicalcontact_email', 'na@example.org');
-if ($config->getBoolean('errorreporting', true) && $toAddress !== 'na@example.org') {
-    $email = new \SimpleSAML\XHTML\EMail($toAddress, 'SimpleSAMLphp error report', $from);
-    $email->setBody($message);
-    $email->send();
-    SimpleSAML\Logger::error('Report with id '.$reportId.' sent to <'.$toAddress.'>.');
+if ($config->getBoolean('errorreporting', true)) {
+    $mail = new SimpleSAML\Utils\EMail('SimpleSAMLphp error report from '.$email);
+    $mail->setData($data);
+    $mail->addReplyTo($email);
+    $mail->setText($text);
+    $mail->send();
+    SimpleSAML\Logger::error('Report with id '.$reportId.' sent');
 }
 
 // redirect the user back to this page to clear the POST request

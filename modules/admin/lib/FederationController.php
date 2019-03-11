@@ -11,6 +11,10 @@ use SimpleSAML\Module\saml\IdP\SAML1 as SAML1_IdP;
 use SimpleSAML\Module\saml\IdP\SAML2 as SAML2_IdP;
 use SimpleSAML\Utils\Auth;
 
+use SimpleSAML\HTTP\RunnableResponse;
+use SimpleSAML\Utils\HTTP;
+use Symfony\Component\HttpFoundation\Request;
+
 /**
  * Controller class for the admin module.
  *
@@ -117,7 +121,7 @@ class FederationController
         $t->data = [
             'links' => [
                 [
-                    'href' => Module::getModuleURL('admin/metadata-converter'),
+                    'href' => Module::getModuleURL('admin/federation/metadata-converter'),
                     'text' => Translate::noop('XML to SimpleSAMLphp metadata converter'),
                 ]
             ],
@@ -370,5 +374,71 @@ class FederationController
         }
 
         return $entities;
+    }
+
+    /**
+     * Metadata converter
+     *
+     * @param Request $request The current request.
+     *
+     * @return \SimpleSAML\XHTML\Template
+     */
+    public function metadataConverter(Request $request)
+    {
+        \SimpleSAML\Utils\Auth::requireAdmin();
+
+        if ($xmlfile = $request->files->get('xmlfile')) {
+            $xmldata = trim(file_get_contents($xmlfile));
+        } elseif ($xmldata = $request->request->get('xmldata')) {
+            $xmldata = trim($xmldata);
+        }
+
+        if (!empty($xmldata)) {
+            \SimpleSAML\Utils\XML::checkSAMLMessage($xmldata, 'saml-meta');
+            $entities = \SimpleSAML\Metadata\SAMLParser::parseDescriptorsString($xmldata);
+
+            // get all metadata for the entities
+            foreach ($entities as &$entity) {
+                $entity = [
+                    'shib13-sp-remote'  => $entity->getMetadata1xSP(),
+                    'shib13-idp-remote' => $entity->getMetadata1xIdP(),
+                    'saml20-sp-remote'  => $entity->getMetadata20SP(),
+                    'saml20-idp-remote' => $entity->getMetadata20IdP(),
+                ];
+            }
+
+            // transpose from $entities[entityid][type] to $output[type][entityid]
+            $output = \SimpleSAML\Utils\Arrays::transpose($entities);
+
+            // merge all metadata of each type to a single string which should be added to the corresponding file
+            foreach ($output as $type => &$entities) {
+                $text = '';
+                foreach ($entities as $entityId => $entityMetadata) {
+                    if ($entityMetadata === null) {
+                        continue;
+                    }
+
+                    // remove the entityDescriptor element because it is unused, and only makes the output harder to read
+                    unset($entityMetadata['entityDescriptor']);
+
+                    $text .= '$metadata['.var_export($entityId, true).'] = '.
+                        var_export($entityMetadata, true).";\n";
+                }
+                $entities = $text;
+            }
+        } else {
+            $xmldata = '';
+            $output = [];
+        }
+
+        $t = new \SimpleSAML\XHTML\Template($this->config, 'admin:metadata_converter.twig');
+        $t->data = [
+            'logouturl' => \SimpleSAML\Utils\Auth::getAdminLogoutURL(),
+            'xmldata' => $xmldata,
+            'output' => $output,
+        ];
+
+        $this->menu->addOption('logout', \SimpleSAML\Utils\Auth::getAdminLogoutURL(), Translate::noop('Log out'));
+        return $this->menu->insert($t);
     }
 }
