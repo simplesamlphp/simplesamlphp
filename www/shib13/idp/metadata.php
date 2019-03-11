@@ -84,7 +84,7 @@ try {
     if (array_key_exists('output', $_GET) && $_GET['output'] == 'xhtml') {
         $defaultidp = $config->getString('default-shib13-idp', null);
 
-        $t = new \SimpleSAML\XHTML\Template($config, 'metadata.php', 'admin');
+        $t = new \SimpleSAML\XHTML\Template($config, 'saml:metadata.php', 'admin');
 
         $t->data['clipboard.js'] = true;
         $t->data['header'] = 'shib13-idp'; // TODO: Replace with headerString in 2.0

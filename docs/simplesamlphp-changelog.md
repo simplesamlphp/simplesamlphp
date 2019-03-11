@@ -10,10 +10,16 @@ See the upgrade notes for specific information about upgrading.
 
 Released TBD
 
+  * Replace custom Email class with the phpmailer library.
+
 ### metarefresh
   * The algorithm to compute the fingerprint of the certificate that signed
     metadata can be specified with the new `validateFingerprintAlgorithm`
     configuration option.
+
+### saml
+  * Make the id of the generated signed metadata only change when metadata
+    content changes.
 
 ## Version 1.17.1
 

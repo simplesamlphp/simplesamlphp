@@ -268,7 +268,7 @@ class ConfigController
                 'classes' => ['\Predis\Predis'],
                 'required' => $store === 'redis' ? 'required' : 'optional',
                 'descr' => [
-                    'optional' => Translate::noop('predis/predis (required if the redis data store is used'),
+                    'optional' => Translate::noop('predis/predis (required if the redis data store is used)'),
                     'required' => Translate::noop('predis/predis library'),
                 ]
             ],
@@ -277,7 +277,7 @@ class ConfigController
                 'required' => $store === 'memcache' ? 'required' : 'optional',
                 'descr' => [
                     'optional' => Translate::noop(
-                        'Memcache or Memcached extension (required if the memcache backend is used'
+                        'Memcache or Memcached extension (required if the memcache backend is used)'
                     ),
                     'required' => Translate::noop('Memcache or Memcached extension'),
                 ]

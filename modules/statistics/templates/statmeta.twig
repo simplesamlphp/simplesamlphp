@@ -6,14 +6,15 @@
 {% endblock %}
 
 {% block content %}
+    <h2>{{ pagetitle }}</h2>
     <table id="statmeta">
     {% if metadata is defined %}
         {% if metadata.lastrun is defined %}
-            <tr><td>Aggregator last run at</td><td>{{ metadata.lastrun }}</td></tr>
+            <tr><td>Aggregator last run at</td><td>{{ metadata.lastrun|date }}</td></tr>
         {% endif %}
 
         {% if metadata.notBefore is defined %}
-            <tr><td>Aggregated data until</td><td>{{ metadata.notBefore }}</td></tr>
+            <tr><td>Aggregated data until</td><td>{{ metadata.notBefore|date }}</td></tr>
         {% endif %}
 
         {% if metadata.memory is defined %}
