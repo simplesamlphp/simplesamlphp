@@ -248,21 +248,9 @@ class PowerIdPDisco extends \SimpleSAML\XHTML\IdPDisco
         $preferredIdP = $this->getRecommendedIdP();
 
         $t = new \SimpleSAML\XHTML\Template($this->config, 'discopower:disco.tpl.php', 'disco');
-        $discoPowerTabs = [
-            'denmark' => \SimpleSAML\Locale\Translate::noop('{discopower:tabs:denmark}'),
-            'edugain' => \SimpleSAML\Locale\Translate::noop('{discopower:tabs:edugain}'),
-            'finland' => \SimpleSAML\Locale\Translate::noop('{discopower:tabs:finland}'),
-            'greece' => \SimpleSAML\Locale\Translate::noop('{discopower:tabs:greece}'),
-            'southafrica' => \SimpleSAML\Locale\Translate::noop('{discopower:tabs:southafrica}'),
-            'iceland' => \SimpleSAML\Locale\Translate::noop('{discopower:tabs:iceland}'),
-            'incommon' => \SimpleSAML\Locale\Translate::noop('{discopower:tabs:incommon}'),
-            'kalmar' => \SimpleSAML\Locale\Translate::noop('{discopower:tabs:kalmar}'),
-            'misc' => \SimpleSAML\Locale\Translate::noop('{discopower:tabs:misc}'),
-            'norway' => \SimpleSAML\Locale\Translate::noop('{discopower:tabs:norway}'),
-            'sweden' => \SimpleSAML\Locale\Translate::noop('{discopower:tabs:sweden}'),
-            'switzerland' => \SimpleSAML\Locale\Translate::noop('{discopower:tabs:switzerland}'),
-            'ukacessfederation' => \SimpleSAML\Locale\Translate::noop('{discopower:tabs:ukacessfederation}'),
-        ];
+        foreach($this->discoconfig->getValue('tabs', null) as $tab) {
+            $t->data['tabNames'][$tab] = \SimpleSAML\Locale\Translate::noop('{discopower:tabs:' . $tab . '}');
+        }
 
         $t->data['return'] = $this->returnURL;
         $t->data['returnIDParam'] = $this->returnIdParam;
@@ -290,7 +278,6 @@ class PowerIdPDisco extends \SimpleSAML\XHTML\IdPDisco
         $session->setData('discopower:tabList', 'defaulttab', $t->data['defaulttab']);
 
         $t->data['score'] = $this->discoconfig->getValue('score', 'quicksilver');
-        $t->data['tabNames'] = $discoPowerTabs;
         $t->data['preferredidp'] = $preferredIdP;
         $t->data['urlpattern'] = htmlspecialchars(\SimpleSAML\Utils\HTTP::getSelfURLNoQuery());
         $t->data['rememberenabled'] = $this->config->getBoolean('idpdisco.enableremember', false);
