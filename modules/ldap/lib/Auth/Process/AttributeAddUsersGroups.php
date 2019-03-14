@@ -252,7 +252,7 @@ class AttributeAddUsersGroups extends BaseFilter
         $get_attributes = [$map['memberof'], $map['type']];
         if (isset($map['name']) && $map['name']) {
             $get_attributes[] = $map['name'];
-            $use_group_name = false;
+            $use_group_name = true;
         }
 
         // Check each DN of the passed memberOf
