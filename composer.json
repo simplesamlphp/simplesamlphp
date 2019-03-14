@@ -48,6 +48,7 @@
         "simplesamlphp/simplesamlphp-module-authx509": "^1.0.0",
         "simplesamlphp/simplesamlphp-module-cdc": "^1.0",
         "simplesamlphp/simplesamlphp-module-memcookie": "^1.2",
+        "simplesamlphp/simplesamlphp-module-memcachemonitor": "^1.0",
         "simplesamlphp/simplesamlphp-module-oauth": "^1.0",
         "simplesamlphp/simplesamlphp-module-riak": "^1.0.0",
         "symfony/routing": "^3.4 || ^4.0",
