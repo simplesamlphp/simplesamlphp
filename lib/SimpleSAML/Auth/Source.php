@@ -184,6 +184,14 @@ abstract class Source
             ],
         ]);
 
+        $config = SimpleSAML_Configuration::getConfig('config.php');
+        $forcedUsernameEnabled = $config->getBoolean('forced_username_enabled', false);
+        $forcedUsernameField = $config->getString('forced_username_field', 'username');
+        $forcedUsernamePattern = $config->getString('forced_username_pattern', '/^(?<username>.*)$/');
+        if ($forcedUsernameEnabled && !empty($_REQUEST[$forcedUsernameField]) && preg_match($forcedUsernamePattern, $_REQUEST[$forcedUsernameField], $username)) {
+            $state['forcedUsername'] = $username['username'];
+        }
+
         if (is_string($return)) {
             $state['\SimpleSAML\Auth\DefaultAuth.ReturnURL'] = $return; // TODO: remove in 2.0
             $state['\SimpleSAML\Auth\Source.ReturnURL'] = $return;
