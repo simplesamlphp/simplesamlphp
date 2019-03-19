@@ -7,9 +7,10 @@ $this->data['head'] = '<link rel="stylesheet" media="screen" type="text/css" hre
     SimpleSAML\Module::getModuleURL('discopower/assets/css/disco.css').'" />';
 
 $this->data['head'] .= '<script type="text/javascript" src="'.
-    SimpleSAML\Module::getModuleURL('discopower/assets/js/jquery.livesearch.js').'"></script>';
+    SimpleSAML\Module::getModuleURL('discopower/assets/js/jquery.livesearch.js').'"></script>'."\n";
 $this->data['head'] .= '<script type="text/javascript" src="'.
-    SimpleSAML\Module::getModuleURL('discopower/assets/js/quicksilver.js').'"></script>';
+    SimpleSAML\Module::getModuleURL('discopower/assets/js/quicksilver.js"></script>'."\n";
+$this->data['head'] .= $this->data['search'];
 
 if (!empty($this->data['faventry'])) {
     $this->data['autofocus'] = 'favouritesubmit';
@@ -128,19 +129,6 @@ foreach ($this->data['idplist'] as $tab => $slist) {
 ?>
 
 </div>
-
-<script type="text/javascript">
-$(document).ready(function () {
-<?php
-$i = 0;
-foreach ($this->data['idplist'] as $tab => $slist) {
-    echo "\n".'$("#query_'.$tab.'").liveUpdate("#list_'.$tab.'")'.
-        (($i++ == 0) && (empty($this->data['faventry'])) ? '.focus()' : '').';';
-}
-?>
-});
-
-</script>
 
 <?php
 $this->data['head'] .= '<script type="text/javascript" src="'.
