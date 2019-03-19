@@ -9,7 +9,7 @@ $this->data['head'] = '<link rel="stylesheet" media="screen" type="text/css" hre
 $this->data['head'] .= '<script type="text/javascript" src="'.
     SimpleSAML\Module::getModuleURL('discopower/assets/js/jquery.livesearch.js').'"></script>'."\n";
 $this->data['head'] .= '<script type="text/javascript" src="'.
-    SimpleSAML\Module::getModuleURL('discopower/assets/js/quicksilver.js"></script>'."\n";
+    SimpleSAML\Module::getModuleURL('discopower/assets/js/'.$this->data['score'].'.js').'"></script>'."\n";
 $this->data['head'] .= $this->data['search'];
 
 if (!empty($this->data['faventry'])) {
@@ -131,6 +131,4 @@ foreach ($this->data['idplist'] as $tab => $slist) {
 </div>
 
 <?php
-$this->data['head'] .= '<script type="text/javascript" src="'.
-    SimpleSAML\Module::getModuleURL('discopower/assets/js/suggest.js').'"></script>';
 $this->includeAtTemplateBase('includes/footer.php');
