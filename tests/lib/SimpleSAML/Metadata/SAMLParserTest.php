@@ -247,7 +247,7 @@ XML
                 'example.net',
             ],
             'UIInfo' => [
-                'DisplayName' => ['en' => 'DisplayName',],
+                'DisplayName' => ['en' => 'DisplayName', 'af' => 'VertoonNaam'],
                 'Description' => ['en' => 'Description',],
                 'InformationURL' => ['en' => 'https://localhost/information',],
                 'PrivacyStatementURL' => ['en' => 'https://localhost/privacypolicy',],
@@ -269,7 +269,7 @@ XML
                 'DomainHint' => ['example.net', 'example.org',],
                 'GeolocationHint' => ['geo:-29.00000,24.00000;u=830000',],
             ],
-            'name' => ['en' => 'DisplayName',],
+            'name' => ['en' => 'DisplayName', 'af' => 'VertoonNaam'],
         ];
 
         $document = \SAML2\DOMDocumentFactory::fromString(
@@ -282,6 +282,7 @@ XML
           <shibmd:Scope regexp="false">example.net</shibmd:Scope>
           <mdui:UIInfo>
             <mdui:DisplayName xml:lang="en">DisplayName</mdui:DisplayName>
+            <mdui:DisplayName xml:lang="af">VertoonNaam</mdui:DisplayName>
             <mdui:Description xml:lang="en">Description</mdui:Description>
             <mdui:PrivacyStatementURL xml:lang="en">https://localhost/privacypolicy</mdui:PrivacyStatementURL>
             <mdui:InformationURL xml:lang="en">https://localhost/information</mdui:InformationURL>
