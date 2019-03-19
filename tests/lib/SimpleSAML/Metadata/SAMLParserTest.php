@@ -235,4 +235,81 @@ XML
             }
         }
     }
+
+    /**
+     * Test RoleDescriptor/Extensions is parsed
+     */
+    public function testRoleDescriptorExtensions()
+    {
+        $expected = [
+            'scope' => [
+                'example.org',
+                'example.net',
+            ],
+            'UIInfo' => [
+                'DisplayName' => ['en' => 'DisplayName',],
+                'Description' => ['en' => 'Description',],
+                'InformationURL' => ['en' => 'https://localhost/information',],
+                'PrivacyStatementURL' => ['en' => 'https://localhost/privacypolicy',],
+                'Logo' => [
+                    [
+                        'url' => 'https://localhost/logo',
+                        'height' => 16,
+                        'width' => 17,
+                    ],
+                    [
+                        'url' => 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=',
+                        'height' => 2,
+                        'width' => 1,
+                    ],
+                ],
+            ],
+            'DiscoHints' => [
+                'IPHint' => ['127.0.0.1', '127.0.0.2',],
+                'DomainHint' => ['example.net', 'example.org',],
+                'GeolocationHint' => ['geo:-29.00000,24.00000;u=830000',],
+            ],
+            'name' => ['en' => 'DisplayName',],
+        ];
+
+        $document = \SAML2\DOMDocumentFactory::fromString(
+            <<<XML
+<EntitiesDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:mdrpi="urn:oasis:names:tc:SAML:metadata:rpi" xmlns:shibmd="urn:mace:shibboleth:metadata:1.0" xmlns:mdui="urn:oasis:names:tc:SAML:metadata:ui">
+  <EntityDescriptor entityID="theEntityID">
+    <IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+        <Extensions>
+          <shibmd:Scope regexp="false">example.org</shibmd:Scope>
+          <shibmd:Scope regexp="false">example.net</shibmd:Scope>
+          <mdui:UIInfo>
+            <mdui:DisplayName xml:lang="en">DisplayName</mdui:DisplayName>
+            <mdui:Description xml:lang="en">Description</mdui:Description>
+            <mdui:PrivacyStatementURL xml:lang="en">https://localhost/privacypolicy</mdui:PrivacyStatementURL>
+            <mdui:InformationURL xml:lang="en">https://localhost/information</mdui:InformationURL>
+            <mdui:Logo width="17" height="16">https://localhost/logo</mdui:Logo>
+            <mdui:Logo width="1" height="2">data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=</mdui:Logo>
+          </mdui:UIInfo>
+          <mdui:DiscoHints>
+            <mdui:IPHint>127.0.0.1</mdui:IPHint>
+            <mdui:IPHint>127.0.0.2</mdui:IPHint>
+            <mdui:DomainHint>example.net</mdui:DomainHint>
+            <mdui:DomainHint>example.org</mdui:DomainHint>
+            <mdui:GeolocationHint>geo:-29.00000,24.00000;u=830000</mdui:GeolocationHint>
+          </mdui:DiscoHints>
+        </Extensions>
+        <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://IdentityProvider.com/SAML/SSO/Browser"/>
+    </IDPSSODescriptor>
+  </EntityDescriptor>
+</EntitiesDescriptor>
+XML
+        );
+
+        $entities = \SimpleSAML\Metadata\SAMLParser::parseDescriptorsElement($document->documentElement);
+        $this->assertArrayHasKey('theEntityID', $entities);
+        // Various MDUI elements are accessible
+        $metadata = $entities['theEntityID']->getMetadata20IdP();
+        $this->assertEquals($expected['scope'], $metadata['scope'], 'shibmd:Scope elements not reflected in parsed metadata');
+        $this->assertEquals($expected['UIInfo'], $metadata['UIInfo'], 'mdui:UIInfo elements not reflected in parsed metadata');
+        $this->assertEquals($expected['DiscoHints'], $metadata['DiscoHints'], 'mdui:DiscoHints elements not reflected in parsed metadata');
+        $this->assertEquals($expected['name'], $metadata['name']);
+    }
 }
