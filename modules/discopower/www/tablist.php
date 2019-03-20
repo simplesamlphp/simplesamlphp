@@ -22,13 +22,13 @@ if (isset($_REQUEST['callback'])) {
     }
     $jsonp = true;
     header('Content-Type: application/javascript');
-    print addslashes($_REQUEST['callback']) . '(';
+    echo addslashes($_REQUEST['callback']) . '(';
 } else {
     $jsonp = false;
     header('Content-Type: application/json');
 }
 
-print json_encode(
+echo json_encode(
     [
         'faventry' => $faventry,
         'default' => $defaulttab,
@@ -37,5 +37,5 @@ print json_encode(
 );
 
 if ($jsonp) {
-    print ');';
+    echo ');';
 }
