@@ -268,7 +268,6 @@ class PowerIdPDisco extends \SimpleSAML\XHTML\IdPDisco
         $t->data['returnIDParam'] = $this->returnIdParam;
         $t->data['entityID'] = $this->spEntityId;
         $t->data['defaulttab'] = $this->discoconfig->getValue('defaulttab', 0);
-        $t->data['pageid'] = 'discopower';
 
         $idpList = $this->processMetadata($t, $idpList, $preferredIdP);
 
