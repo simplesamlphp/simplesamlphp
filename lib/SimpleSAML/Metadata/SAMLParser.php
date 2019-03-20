@@ -1089,8 +1089,8 @@ class SAMLParser
 
                     foreach ($e->getKeywords() as $uiItem) {
                         if (!($uiItem instanceof \SAML2\XML\mdui\Keywords)
-                            || ($uiItem->getKeywords() !== [])
-                            || ($uiItem->getLanguage() !== null)
+                            || ($uiItem->getKeywords() === [])
+                            || ($uiItem->getLanguage() === null)
                         ) {
                             continue;
                         }
@@ -1098,9 +1098,9 @@ class SAMLParser
                     }
                     foreach ($e->getLogo() as $uiItem) {
                         if (!($uiItem instanceof \SAML2\XML\mdui\Logo)
-                            || ($uiItem->getUrl() !== null)
-                            || ($uiItem->getHeight() !== null)
-                            || ($uiItem->getWidth() !== null)
+                            || ($uiItem->getUrl() === null)
+                            || ($uiItem->getHeight() === null)
+                            || ($uiItem->getWidth() === null)
                         ) {
                             continue;
                         }
