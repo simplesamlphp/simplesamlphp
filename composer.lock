@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "225bbfa4f3bdc5cac6a7943c5a705be5",
+    "content-hash": "cbfc6a26f2ca4294f1d7fd5ae1722683",
     "packages": [
         {
             "name": "gettext/gettext",
@@ -358,16 +358,16 @@
         },
         {
             "name": "simplesamlphp/saml2",
-            "version": "v3.3.6",
+            "version": "v3.3.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/saml2.git",
-                "reference": "513970e78c527d87a3358829d7c0f417267a582b"
+                "reference": "a04f09e3b82829bc1efbfe0e6b95b9f8c5e7adc6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/513970e78c527d87a3358829d7c0f417267a582b",
-                "reference": "513970e78c527d87a3358829d7c0f417267a582b",
+                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/a04f09e3b82829bc1efbfe0e6b95b9f8c5e7adc6",
+                "reference": "a04f09e3b82829bc1efbfe0e6b95b9f8c5e7adc6",
                 "shasum": ""
             },
             "require": {
@@ -376,7 +376,8 @@
                 "ext-zlib": "*",
                 "php": ">=5.4",
                 "psr/log": "~1.0",
-                "robrichards/xmlseclibs": "^3.0"
+                "robrichards/xmlseclibs": "^3.0",
+                "webmozart/assert": "^1.4"
             },
             "require-dev": {
                 "mockery/mockery": "~0.9",
@@ -411,7 +412,7 @@
                 }
             ],
             "description": "SAML2 PHP library from SimpleSAMLphp",
-            "time": "2019-01-04T13:42:36+00:00"
+            "time": "2019-03-13T20:18:30+00:00"
         },
         {
             "name": "symfony/config",
@@ -1292,6 +1293,57 @@
                 "templating"
             ],
             "time": "2018-12-16T10:34:11+00:00"
+        },
+        {
+            "name": "webmozart/assert",
+            "version": "1.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/webmozart/assert.git",
+                "reference": "83e253c8e0be5b0257b881e1827274667c5c17a9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/webmozart/assert/zipball/83e253c8e0be5b0257b881e1827274667c5c17a9",
+                "reference": "83e253c8e0be5b0257b881e1827274667c5c17a9",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.3.3 || ^7.0",
+                "symfony/polyfill-ctype": "^1.8"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.6",
+                "sebastian/version": "^1.0.1"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Webmozart\\Assert\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bernhard Schussek",
+                    "email": "bschussek@gmail.com"
+                }
+            ],
+            "description": "Assertions to validate method input/output with nice error messages.",
+            "keywords": [
+                "assert",
+                "check",
+                "validate"
+            ],
+            "time": "2018-12-25T11:19:39+00:00"
         },
         {
             "name": "whitehat101/apr1-md5",
@@ -2395,57 +2447,6 @@
             "description": "Library that helps with managing the version number of Git-hosted PHP projects",
             "homepage": "https://github.com/sebastianbergmann/version",
             "time": "2015-06-21T13:59:46+00:00"
-        },
-        {
-            "name": "webmozart/assert",
-            "version": "1.4.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/webmozart/assert.git",
-                "reference": "83e253c8e0be5b0257b881e1827274667c5c17a9"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/webmozart/assert/zipball/83e253c8e0be5b0257b881e1827274667c5c17a9",
-                "reference": "83e253c8e0be5b0257b881e1827274667c5c17a9",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^5.3.3 || ^7.0",
-                "symfony/polyfill-ctype": "^1.8"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^4.6",
-                "sebastian/version": "^1.0.1"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.3-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Webmozart\\Assert\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Bernhard Schussek",
-                    "email": "bschussek@gmail.com"
-                }
-            ],
-            "description": "Assertions to validate method input/output with nice error messages.",
-            "keywords": [
-                "assert",
-                "check",
-                "validate"
-            ],
-            "time": "2018-12-25T11:19:39+00:00"
         }
     ],
     "aliases": [],
