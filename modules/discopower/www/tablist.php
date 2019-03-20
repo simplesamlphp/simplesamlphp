@@ -17,12 +17,12 @@ if (!is_array($tabs)) {
 
 // handle JSON vs JSONP requests
 if (isset($_REQUEST['callback'])) {
-    if (!preg_match('/^[a-z0-9_]+$/i', $_REQUEST['callback'])) {
-        throw new \SimpleSAML\Error\Exception('Unsafe JSONP callback function name "'.$_REQUEST['callback'].'"');
+    if (!preg_match('/^[a-z0-9_]+$/i', $_REQUEST['callback'], $matches)) {
+        throw new \SimpleSAML\Error\Exception('Unsafe JSONP callback function name "'.$matches[0].'"');
     }
     $jsonp = true;
     header('Content-Type: application/javascript');
-    echo addslashes($_REQUEST['callback']) . '(';
+    echo addslashes($matches[0]).'(';
 } else {
     $jsonp = false;
     header('Content-Type: application/json');
