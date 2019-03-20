@@ -10,7 +10,8 @@ $this->data['head'] .= '<script type="text/javascript" src="'.
     SimpleSAML\Module::getModuleURL('discopower/assets/js/jquery.livesearch.js').'"></script>'."\n";
 $this->data['head'] .= '<script type="text/javascript" src="'.
     SimpleSAML\Module::getModuleURL('discopower/assets/js/'.$this->data['score'].'.js').'"></script>'."\n";
-$this->data['head'] .= $this->data['search'];
+$this->data['head'] .= '<script type="text/javascript" src="'.
+    SimpleSAML\Module::getModuleURL('discopower/assets/js/tablist.js').'"></script>'."\n";
 
 if (!empty($this->data['faventry'])) {
     $this->data['autofocus'] = 'favouritesubmit';

@@ -268,6 +268,7 @@ class PowerIdPDisco extends \SimpleSAML\XHTML\IdPDisco
         $t->data['returnIDParam'] = $this->returnIdParam;
         $t->data['entityID'] = $this->spEntityId;
         $t->data['defaulttab'] = $this->discoconfig->getValue('defaulttab', 0);
+        $t->data['pageid'] = 'discopower';
 
         $idpList = $this->processMetadata($t, $idpList, $preferredIdP);
 
@@ -283,17 +284,12 @@ class PowerIdPDisco extends \SimpleSAML\XHTML\IdPDisco
             $t->data['autofocus'] = 'favouritesubmit';
         }
 
-        $search = '<script type="text/javascript">
-            $(document).ready(function() {
-                $("#tabdiv").tabs({ selected: '.$t->data['defaulttab'].' });';
-        $i = 0;
-        foreach ($idpList as $tab => $slist) {
-            $search .= "\n".'$("#query_'.$tab.'").liveUpdate("#list_'.$tab.'")'.
-            (($i++ == 0) && (empty($this->data['faventry'])) ? '.focus()' : '').';';
-        }
-        $search .= "});\n</script>";
+        /* store the tab list in the session */
+        $session = \SimpleSAML\Session::getSessionFromRequest();
+        $session->setData('discopower:tabList', 'faventry', $this->data['faventry']);
+        $session->setData('discopower:tabList', 'tabs', array_keys($idpList));
+        $session->setData('discopower:tabList', 'defaulttab', $t->data['defaulttab']);
 
-        $t->data['search'] = $search;
         $t->data['score'] = $this->discoconfig->getValue('score', 'quicksilver');
         $t->data['tabNames'] = $discoPowerTabs;
         $t->data['preferredidp'] = $preferredIdP;
