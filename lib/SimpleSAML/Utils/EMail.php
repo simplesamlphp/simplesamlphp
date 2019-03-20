@@ -19,33 +19,15 @@ use SimpleSAML\XHTML\Template;
 
 class EMail
 {
-
-    /**
-     * Get the default e-mail address from the configuration
-     * This is used both as source and destination address
-     * unless something else is provided at the constructor.
-     *
-     * It will refuse to return the SimpleSAMLphp default address,
-     * which is na@example.org.
-     *
-     * @return string Default mail address
-     */
-    public static function getDefaultMailAddress()
-    {
-        $config = Configuration::getInstance();
-        $address = $config->getString('technicalcontact_email', 'na@example.org');
-        if ('na@example.org' === $address) {
-            throw new \Exception('technicalcontact_email must be changed from the default value');
-        }
-        return $address;
-    }
-
     /** @var array Dictionary with multivalues */
     private $data;
+
     /** @var string Introduction text */
     private $text;
+
     /** @var PHPMailer The mailer instance */
     private $mail;
+
 
     /**
      * Constructor
@@ -67,6 +49,28 @@ class EMail
         $this->mail->addAddress($to ?: static::getDefaultMailAddress());
     }
 
+
+    /**
+     * Get the default e-mail address from the configuration
+     * This is used both as source and destination address
+     * unless something else is provided at the constructor.
+     *
+     * It will refuse to return the SimpleSAMLphp default address,
+     * which is na@example.org.
+     *
+     * @return string Default mail address
+     */
+    public static function getDefaultMailAddress()
+    {
+        $config = Configuration::getInstance();
+        $address = $config->getString('technicalcontact_email', 'na@example.org');
+        if ('na@example.org' === $address) {
+            throw new \Exception('technicalcontact_email must be changed from the default value');
+        }
+        return $address;
+    }
+
+    
     /**
      * Set the data that should be embedded in the e-mail body
      *
@@ -82,6 +86,7 @@ class EMail
         $this->data = array_map(function($v){return is_array($v) ? $v : [$v];}, $data);
     }
 
+
     /**
      * Set an introduction text for the e-mail
      *
@@ -92,6 +97,7 @@ class EMail
         $this->text = $text;
     }
 
+
     /**
      * Add a Reply-To address to the mail
      *
@@ -101,6 +107,7 @@ class EMail
     {
         $this->mail->addReplyTo($address);
     }
+
 
     /**
      * Send the mail
@@ -122,6 +129,7 @@ class EMail
 
         $this->mail->send();
     }
+
 
     /**
      * Generate the body of the e-mail
@@ -147,5 +155,4 @@ class EMail
             ]);
         return $result;
     }
-
 }
