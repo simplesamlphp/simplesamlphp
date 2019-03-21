@@ -210,17 +210,17 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
     public function testGetBaseDir()
     {
         $c = Configuration::loadFromArray([]);
-        $this->assertEquals($c->getBaseDir(), dirname(dirname(dirname(dirname(__FILE__)))).'/');
+        $this->assertEquals($c->getBaseDir(), dirname(dirname(dirname(dirname(__FILE__)))).DIRECTORY_SEPARATOR);
 
         $c = Configuration::loadFromArray([
-            'basedir' => '/basedir',
+            'basedir' => DIRECTORY_SEPARATOR.'basedir',
         ]);
-        $this->assertEquals($c->getBaseDir(), '/basedir/');
+        $this->assertEquals($c->getBaseDir(), DIRECTORY_SEPARATOR.'basedir'.DIRECTORY_SEPARATOR);
 
         $c = Configuration::loadFromArray([
-            'basedir' => '/basedir/',
+            'basedir' => DIRECTORY_SEPARATOR.'basedir'.DIRECTORY_SEPARATOR,
         ]);
-        $this->assertEquals($c->getBaseDir(), '/basedir/');
+        $this->assertEquals($c->getBaseDir(), DIRECTORY_SEPARATOR.'basedir'.DIRECTORY_SEPARATOR);
     }
 
     /**
