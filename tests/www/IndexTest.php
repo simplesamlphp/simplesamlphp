@@ -66,11 +66,6 @@ class IndexTest extends TestCase
      */
     public function testRedirection()
     {
-        if (defined('HHVM_VERSION')) {
-            // can't test this in HHVM for the moment
-            $this->markTestSkipped('The web-based tests cannot be run in HHVM for the moment.');
-        }
-
         // test most basic redirection
         $this->updateConfig([
                 'baseurlpath' => 'http://example.org/simplesaml/'
