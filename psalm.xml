@@ -26,6 +26,10 @@
         <MissingParamType errorLevel="info" />
         <UnusedClass errorLevel="info" />
         <PossiblyUnusedMethod errorLevel="info" />
+
+        <!-- Ignore these errors until we are fully typehinted -->
+        <DocblockTypeContradiction errorLevel="suppress" />
+        <RedundantConditionGivenDocblockType errorLevel="suppress" />
     </issueHandlers>
 
     <stubs>
