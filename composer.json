@@ -26,7 +26,7 @@
         "files": ["lib/_autoload_modules.php"]
     },
     "require": {
-        "php": ">=5.5",
+        "php": ">=5.6",
         "ext-SPL": "*",
         "ext-zlib": "*",
         "ext-pcre": "*",
@@ -62,7 +62,7 @@
     "require-dev": {
         "ext-curl": "*",
         "mikey179/vfsstream": "~1.6",
-        "phpunit/phpunit": "~4.8"
+        "phpunit/phpunit": "~5.7"
     },
     "suggest": {
         "predis/predis": "Needed if a Redis server is used to store session information",
