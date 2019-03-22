@@ -281,6 +281,9 @@ class PowerIdPDisco extends \SimpleSAML\XHTML\IdPDisco
         $t->data['rememberchecked'] = $this->config->getBoolean('idpdisco.rememberchecked', false);
         $t->data['jquery'] = ['core' => true, 'ui' => true];
         foreach(array_keys($idpList) as $tab) {
+            if ($t->getTag('{discopower:tabs:' . $tab . '}') === null) {
+                $t->includeInlineTranslation('{discopower:tabs:'. $tab. '}', $tab);
+            }
             $t->data['tabNames'][$tab] = \SimpleSAML\Locale\Translate::noop('{discopower:tabs:' . $tab . '}');
         }
         $t->show();
