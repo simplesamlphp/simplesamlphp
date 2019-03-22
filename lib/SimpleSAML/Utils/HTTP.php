@@ -462,8 +462,16 @@ class HTTP
 
         // data and headers
         if ($getHeaders) {
+            /**
+             * Remove for Psalm >=3.0.17
+             * @psalm-suppress UndefinedVariable
+             */
             if (!empty($http_response_header)) {
                 $headers = [];
+                /**
+                 * Remove for Psalm >=3.0.17
+                 * @psalm-suppress UndefinedVariable
+                 */
                 foreach ($http_response_header as $h) {
                     if (preg_match('@^HTTP/1\.[01]\s+\d{3}\s+@', $h)) {
                         $headers = []; // reset
