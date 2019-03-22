@@ -132,8 +132,11 @@ class BuiltInServer
     {
         if ($this->pid === 0) {
             return;
+        } else if (System::getOS() === System::WINDOWS) {
+            exec('taskkill /PID '.$this->pid);
+        } else {
+            exec('kill '.$this->pid);
         }
-        exec('kill '.$this->pid);
         $this->pid = 0;
     }
 
