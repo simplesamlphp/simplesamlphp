@@ -55,6 +55,7 @@ php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-
 php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-cdc
 php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-memcookie
 php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-oauth
+php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-radius
 php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-riak
 
 cd $TARGET
