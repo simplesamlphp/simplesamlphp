@@ -40,6 +40,8 @@ To begin with, we will create a very simple authentication source, where the use
 Create the file `modules/mymodule/lib/Auth/Source/MyAuth.php` with the following contents:
 
     <?php
+    namespace SimpleSAML\Module\mymodule\Auth\Source;
+
     class MyAuth extends \SimpleSAML\Module\core\Auth\UserPassBase {
         protected function login($username, $password) {
             if ($username !== 'theusername' || $password !== 'thepassword') {
@@ -58,7 +60,7 @@ Some things to note:
   - The classname is `\SimpleSAML\Module\mymodule\Auth\Source\MyAuth`.
     This tells SimpleSAMLphp to look for the class in `modules/mymodule/lib/Auth/Source/MyAuth.php`.
 
-  - Our authentication source subclassese `\SimpleSAML\Module\core\Auth\UserPassBase`.
+  - Our authentication source subclasses `\SimpleSAML\Module\core\Auth\UserPassBase`.
     This is a helper-class that implements much of the common code needed for username/password authentication.
 
   - The `login` function receives the username and password the user enters.
