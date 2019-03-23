@@ -396,9 +396,10 @@ class Crypto
         } else {
             if (!is_string($password)) {
                 throw new \InvalidArgumentException('Invalid input parameter.');
+            } elseif (!is_string($hash = password_hash($password, PASSWORD_DEFAULT))) {
+                throw new \InvalidArgumentException('Error while hashing password.');
             }
-
-            return password_hash($password, PASSWORD_DEFAULT);
+            return $hash;
         }
     }
 

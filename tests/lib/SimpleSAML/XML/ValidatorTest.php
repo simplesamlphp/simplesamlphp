@@ -73,8 +73,7 @@ class ValidatorTest extends SigningTestCase
             ['certFingerprint' => [$fingerprint]]
         );
 
-        // Avoiding Validator::class because it's >= PHP 5.5 only
-        $this->assertInstanceOf('\SimpleSAML\XML\Validator', $validator);
+        $this->assertInstanceOf(Validator::class, $validator);
     }
 
     public function testCertFingerprintFailure()
@@ -116,8 +115,7 @@ class ValidatorTest extends SigningTestCase
         $validator = new Validator($doc, 'node');
         $validator->validateFingerprint($fingerprint);
 
-        // Avoiding Validator::class because it's >= PHP 5.5 only
-        $this->assertInstanceOf('\SimpleSAML\XML\Validator', $validator);
+        $this->assertInstanceOf(Validator::class, $validator);
     }
 
     public function testValidateFingerprintFailure()
