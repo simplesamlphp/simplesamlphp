@@ -20,10 +20,10 @@ use SimpleSAML\XHTML\Template;
 class EMail
 {
     /** @var array Dictionary with multivalues */
-    private $data;
+    private $data = [];
 
     /** @var string Introduction text */
-    private $text;
+    private $text = '';
 
     /** @var PHPMailer The mailer instance */
     private $mail;
@@ -75,6 +75,7 @@ class EMail
      * Set the data that should be embedded in the e-mail body
      *
      * @param array $data The data that should be embedded in the e-mail body
+     * @return void
      */
     public function setData(array $data)
     {
@@ -83,7 +84,16 @@ class EMail
          * as its only element. This guarantees that every value of $data
          * can be iterated over.
          */
-        $this->data = array_map(function($v){return is_array($v) ? $v : [$v];}, $data);
+        $this->data = array_map(
+            /**
+             * @param mixed $v
+             * @return array
+             */
+            function($v) {
+                return is_array($v) ? $v : [$v];
+            },
+            $data
+        );
     }
 
 
@@ -91,6 +101,7 @@ class EMail
      * Set an introduction text for the e-mail
      *
      * @param string $text Introduction text
+     * @return void
      */
     public function setText($text)
     {
@@ -102,6 +113,7 @@ class EMail
      * Add a Reply-To address to the mail
      *
      * @param string $address Reply-To e-mail address
+     * @return void
      */
     public function addReplyTo($address)
     {
@@ -113,6 +125,7 @@ class EMail
      * Send the mail
      *
      * @param bool $plainTextOnly Do not send HTML payload
+     * @return void
      *
      * @throws \PHPMailer\PHPMailer\Exception
      */

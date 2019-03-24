@@ -339,7 +339,6 @@ class HTTP
 
         // validates the URL's host is among those allowed
         if (is_array($trustedSites)) {
-            assert(is_array($trustedSites));
             $components = parse_url($url);
             $hostname = $components['host'];
 
@@ -463,10 +462,16 @@ class HTTP
 
         // data and headers
         if ($getHeaders) {
-            /** @psalm-suppress UndefinedVariable */
-            if (isset($http_response_header)) {
+            /**
+             * Remove for Psalm >=3.0.17
+             * @psalm-suppress UndefinedVariable
+             */
+            if (!empty($http_response_header)) {
                 $headers = [];
-                /** @psalm-suppress UndefinedVariable */
+                /**
+                 * Remove for Psalm >=3.0.17
+                 * @psalm-suppress UndefinedVariable
+                 */
                 foreach ($http_response_header as $h) {
                     if (preg_match('@^HTTP/1\.[01]\s+\d{3}\s+@', $h)) {
                         $headers = []; // reset
@@ -1149,17 +1154,17 @@ class HTTP
         if ($value === null) {
             $expire = time() - 365 * 24 * 60 * 60;
         } elseif (isset($params['expire'])) {
-            $expire = $params['expire'];
+            $expire = intval($params['expire']);
         } elseif ($params['lifetime'] === 0) {
             $expire = 0;
         } else {
-            $expire = time() + $params['lifetime'];
+            $expire = time() + intval($params['lifetime']);
         }
 
         if ($params['raw']) {
             $success = @setrawcookie(
                 $name,
-                $value,
+                strval($value),
                 $expire,
                 $params['path'],
                 $params['domain'],
@@ -1169,7 +1174,7 @@ class HTTP
         } else {
             $success = @setcookie(
                 $name,
-                $value,
+                strval($value),
                 $expire,
                 $params['path'],
                 $params['domain'],

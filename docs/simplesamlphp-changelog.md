@@ -21,6 +21,9 @@ Released TBD
   * Make the id of the generated signed metadata only change when metadata
     content changes.
 
+### Interoperability
+  * The minimum PHP version required is now 5.6.
+
 ## Version 1.17.1
 
 Released 2019-03-07
