@@ -16,6 +16,7 @@ Released TBD
   * Fixed DiscoPower module tab display.
   * Fixed use group name in Attribute Add Users Groups filter.
   * Add metadatadir setting to the default config template.
+  * Fixed exception processing in loadExceptionState().
 
 ## Version 1.17.1
 
