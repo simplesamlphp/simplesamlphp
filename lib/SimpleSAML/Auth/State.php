@@ -83,8 +83,10 @@ class State
 
     /**
      * The URL parameter which contains the exception state id.
+     * Note that this does not contain a "." since it's used in the
+     * _REQUEST superglobal that does not allow dots.
      */
-    const EXCEPTION_PARAM = '\SimpleSAML\Auth\State.exceptionId';
+    const EXCEPTION_PARAM = '\SimpleSAML\Auth\State_exceptionId';
 
 
     /**
