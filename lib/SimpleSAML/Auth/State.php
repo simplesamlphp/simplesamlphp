@@ -24,7 +24,8 @@ namespace SimpleSAML\Auth;
  * By defining an exception handler when creating the state array, users of the state
  * array can call throwException with the state and the exception. This exception will
  * be passed to the handler defined by the EXCEPTION_HANDLER_URL or EXCEPTION_HANDLER_FUNC
- * elements of the state array.
+ * elements of the state array. Note that internally this uses the request parameter name
+ * defined in EXCEPTION_PARAM, which, for technical reasons, cannot contain a ".".
  *
  * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
