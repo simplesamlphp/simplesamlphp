@@ -6,7 +6,6 @@
 namespace SimpleSAML\Test\Module\consent\Auth\Process;
 
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\Module\authorize\Auth\Process\Authorize;
 use SimpleSAML\Utils\Attributes;
 
 class AuthorizeTest extends TestCase
@@ -159,17 +158,5 @@ class AuthorizeTest extends TestCase
             [['wrongAttribute' => 'CN=SimpleSAML Students,CN=Users,DC=example,DC=edu'], false],
             [['group' => 'CN=wrongCN=SimpleSAML Students,CN=Users,DC=example,DC=edu'], false],
         ];
-    }
-}
-// phpcs:ignore
-class TestableAuthorize extends Authorize
-{
-    /**
-     * Override the redirect behavior since its difficult to test
-     * @param array $request the state
-     */
-    protected function unauthorized(&$request)
-    {
-        $request['NOT_AUTHORIZED'] = true;
     }
 }
