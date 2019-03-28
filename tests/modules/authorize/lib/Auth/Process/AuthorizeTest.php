@@ -3,7 +3,7 @@
  * Test for the authorize:Authorize authproc filter.
  */
 
-namespace SimpleSAML\Test\Module\consent\Auth\Process;
+namespace SimpleSAML\Test\Module\authorize\Auth\Process;
 
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Utils\Attributes;
