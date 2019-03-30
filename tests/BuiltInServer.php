@@ -127,6 +127,7 @@ class BuiltInServer
 
     /**
      * Stop the built-in server.
+     * @return void
      */
     public function stop()
     {
@@ -167,6 +168,7 @@ class BuiltInServer
      * Set the "router" file.
      *
      * @param string $router The name of a "router" file to use when starting the server.
+     * @return void
      */
     public function setRouter($router)
     {
@@ -185,7 +187,7 @@ class BuiltInServer
      * @param array $parameters An array (can be empty) with parameters for the requested URI.
      * @param array $curlopts An array (can be empty) with options for cURL.
      *
-     * @return array|string The response obtained from the built-in server.
+     * @return array The response obtained from the built-in server.
      */
     public function get($query, $parameters, $curlopts = [])
     {
