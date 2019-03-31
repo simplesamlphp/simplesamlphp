@@ -17,6 +17,7 @@ Released TBD
   * Fixed use group name in Attribute Add Users Groups filter.
   * Add metadatadir setting to the default config template.
   * Fixed exception processing in loadExceptionState().
+  * Fixed preferredidp in built-in 'links'-style discovery.
 
 ## Version 1.17.1
 
