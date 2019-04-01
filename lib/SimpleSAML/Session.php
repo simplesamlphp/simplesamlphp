@@ -568,19 +568,19 @@ class Session implements \Serializable, Utils\ClearableState
     /**
      * Set remember me expire time.
      *
-     * @param int $expire Unix timestamp when remember me session cookies expire.
+     * @param int $lifetime Number of seconds after when remember me session cookies expire.
      * @return void
      */
-    public function setRememberMeExpire($expire = null)
+    public function setRememberMeExpire($lifetime = null)
     {
-        assert(is_int($expire) || $expire === null);
+        assert(is_int($lifetime) || $lifetime === null);
 
-        if ($expire === null) {
-            $expire = time() + self::$config->getInteger('session.rememberme.lifetime', 14 * 86400);
+        if ($lifetime === null) {
+            $lifetime = self::$config->getInteger('session.rememberme.lifetime', 14 * 86400);
         }
-        $this->rememberMeExpire = $expire;
+        $this->rememberMeExpire = time() + $lifetime;
 
-        $cookieParams = ['expire' => $this->rememberMeExpire];
+        $cookieParams = ['lifetime' => $lifetime];
         $this->updateSessionCookies($cookieParams);
     }
 
@@ -783,12 +783,11 @@ class Session implements \Serializable, Utils\ClearableState
         assert(is_null($params) || is_array($params));
 
         $sessionHandler = SessionHandler::getSessionHandler();
+        $params = array_merge($sessionHandler->getCookieParams(), is_array($params) ? $params : []);
 
         if ($this->sessionId !== null) {
             $sessionHandler->setCookie($sessionHandler->getSessionCookieName(), $this->sessionId, $params);
         }
-
-        $params = array_merge($sessionHandler->getCookieParams(), is_array($params) ? $params : []);
 
         if ($this->authToken !== null) {
             Utils\HTTP::setCookie(
