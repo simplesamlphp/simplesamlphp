@@ -577,17 +577,17 @@ class Session implements Serializable, Utils\ClearableState
     /**
      * Set remember me expire time.
      *
-     * @param int $expire Unix timestamp when remember me session cookies expire.
+     * @param int $lifetime Number of seconds after when remember me session cookies expire.
      * @return void
      */
-    public function setRememberMeExpire(int $expire = null): void
+    public function setRememberMeExpire(int $lifetime = null): void
     {
-        if ($expire === null) {
-            $expire = time() + self::$config->getInteger('session.rememberme.lifetime', 14 * 86400);
+        if ($lifetime === null) {
+            $lifetime = self::$config->getInteger('session.rememberme.lifetime', 14 * 86400);
         }
-        $this->rememberMeExpire = $expire;
+        $this->rememberMeExpire = time() + $lifetime;
 
-        $cookieParams = ['expire' => $this->rememberMeExpire];
+        $cookieParams = ['lifetime' => $lifetime];
         $this->updateSessionCookies($cookieParams);
     }
 
@@ -789,6 +789,7 @@ class Session implements Serializable, Utils\ClearableState
     public function updateSessionCookies(array $params = []): void
     {
         $sessionHandler = SessionHandler::getSessionHandler();
+        $params = array_merge($sessionHandler->getCookieParams(), is_array($params) ? $params : []);
 
         if ($this->sessionId !== null) {
             $sessionHandler->setCookie($sessionHandler->getSessionCookieName(), $this->sessionId, $params);
