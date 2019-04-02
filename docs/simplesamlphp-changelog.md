@@ -24,6 +24,19 @@ Released TBD
 ### Interoperability
   * The minimum PHP version required is now 5.6.
 
+## Version 1.17.2
+
+Released 2019-04-02
+
+  * Fixed that generated metadata was missing some information
+    when PHP's zend.assertions option is set to < 1.
+  * Fixed that MDUI Keywords and Logo were not parsed from metadata.
+  * Fixed DiscoPower module tab display.
+  * Fixed use group name in Attribute Add Users Groups filter.
+  * Add metadatadir setting to the default config template.
+  * Fixed exception processing in loadExceptionState().
+  * Fixed preferredidp in built-in 'links'-style discovery.
+
 ## Version 1.17.1
 
 Released 2019-03-07
