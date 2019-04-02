@@ -8,7 +8,7 @@ See the upgrade notes for specific information about upgrading.
 
 ## Version 1.17.2
 
-Released TBD
+Released 2019-04-02
 
   * Fixed that generated metadata was missing some information
     when PHP's zend.assertions option is set to < 1.
