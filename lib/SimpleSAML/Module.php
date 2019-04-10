@@ -107,6 +107,23 @@ class Module
     }
 
 
+    public static function getModuleInfoFromRequest($url)
+    {
+        assert(substr($url, 0, 1) === '/');
+
+        /* clear the PATH_INFO option, so that a script can detect whether it is called with anything following the
+         *'.php'-ending.
+         */
+        $modEnd = strpos($url, '/', 1);
+        if ($modEnd === false) {
+            // the path must always be on the form /module/
+            throw new Error\NotFound('The URL must at least contain a module name followed by a slash.');
+        }
+
+        $module = substr($url, 1, $modEnd - 1);
+        return array("module" => $module, "isvalid" => self::isModuleEnabled($module), "url" => substr($url, $modEnd));
+    }
+
     /**
      * Handler for module requests.
      *
@@ -126,32 +143,21 @@ class Module
             $request = Request::createFromGlobals();
         }
 
-        if ($request->getPathInfo() === '/') {
+        $basepathinfo = $request->getPathInfo();
+        $rewpathinfo = $_SERVER['PATH_INFO'];
+
+        if ($basepathinfo === '/') {
             throw new Error\NotFound('No PATH_INFO to module.php');
         }
 
-        $url = $request->getPathInfo();
-        assert(substr($url, 0, 1) === '/');
-
-        /* clear the PATH_INFO option, so that a script can detect whether it is called with anything following the
-         *'.php'-ending.
-         */
-        unset($_SERVER['PATH_INFO']);
-
-        $modEnd = strpos($url, '/', 1);
-        if ($modEnd === false) {
-            // the path must always be on the form /module/
-            throw new Error\NotFound('The URL must at least contain a module name followed by a slash.');
+        $moduleinfo = self::getModuleInfoFromRequest($basepathinfo);
+        if ($rewpathinfo !== $basepathinfo && $moduleinfo['isvalid'] === false) {
+            $moduleinfo = self::getModuleInfoFromRequest($rewpathinfo);
         }
-
-        $module = substr($url, 1, $modEnd - 1);
-        $url = substr($url, $modEnd + 1);
-        if ($url === false) {
-            $url = '';
-        }
-
-        if (!self::isModuleEnabled($module)) {
-            throw new Error\NotFound('The module \''.$module.'\' was either not found, or wasn\'t enabled.');
+        $module = $moduleinfo["module"];
+        $url = $moduleinfo["url"];
+        if ($moduleinfo["isValid"] === false) {
+            throw new Error\NotFound('The module \'' . $module . '\' was either not found, or wasn\'t enabled.');
         }
 
         /* Make sure that the request isn't suspicious (contains references to current directory or parent directory or
