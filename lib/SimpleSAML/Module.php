@@ -163,7 +163,7 @@ class Module
         $module = $moduleinfo["module"];
         $url = $moduleinfo["url"];
         if ($moduleinfo["isvalid"] === false) {
-            throw new Error\NotFound('The module \'' . $module . '\' was either not found, or wasn\'t enabled.');
+            throw new Error\NotFound('The module \''.$module.'\' was either not found, or wasn\'t enabled.');
         }
 
         /* Make sure that the request isn't suspicious (contains references to current directory or parent directory or
