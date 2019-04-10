@@ -1,11 +1,11 @@
 {% set pagetitle = 'Metadata parser'|trans %}
 {% extends "base.twig" %}
 
-{%  set i=1 %}
+{% set i=1 %}
 {% block content %}
     <h1>{{ pagetitle }}</h1>
     <form method="post" class="pure-form" enctype="multipart/form-data">
-        <h3> {% trans 'XML metadata' %}</h3>
+        <h3>{% trans 'XML metadata' %}</h3>
         <div class="pure-control-group">
             <textarea name="xmldata" rows="20" class="text-area edge">{{ xmldata }}</textarea>
         </div>
@@ -16,8 +16,7 @@
                     <span class="fa fa-folder-open"></span>{{ 'or select a file:'|trans }}
                     <input type="file" name="xmlfile" class="hidden" multiple>
                 </label>
-                {#needs translation#}
-                <label id="show-file" class="pure-button hollow show-files" disabled>No file selected.</label>
+                <label id="show-file" class="pure-button hollow show-files" disabled>{{ 'No file selected.'|trans }}</label>
             </div>
             <br>
             <button class="pure-button pure-button-red pure-input-1-3">{{ 'Parse'|trans }}</button>
