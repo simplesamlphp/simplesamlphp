@@ -94,6 +94,8 @@ Released 2019-03-07
   * Allow disabling the Scoping element in SP and remote IdP configuration with
     the `disable_scoping` option, for compatibility with ADFS which does not
     accept the element (#985).
+  * Receiving an eduPersonTargetedID in string form will no longer break
+    parsing of the assertion.
 
 ### sanitycheck
   * Translated into several languages.
@@ -394,8 +396,6 @@ Released 2017-11-20
   * We now send the eduPersonTargetedID attribute in the correct
     NameID XML form, instead of the incorrect simple string. We will also
     refuse to parse an assertion with an eduPersonTargetedID in 'string' format.
-  * Receiving an eduPersonTargetedID in string form will no longer break
-    parsing of the assertion.
 
 ### `smartattributes`
   * Fix SmartName authproc that failed to load.
