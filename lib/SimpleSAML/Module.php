@@ -106,21 +106,28 @@ class Module
         return self::isModuleEnabledWithConf($module, $config->getArray('module.enable', []));
     }
 
-
+    /**
+     * Performs module detection from a given url
+     * @param $url url to detect module from
+     * @return array , associative array with the following keys:
+     *          - module : name of module
+     *          - isvalid : the module above is a valid module
+     *          - url : part of url that is found after module
+     * @throws Error\NotFound
+     */
     public static function getModuleInfoFromRequest($url)
     {
         assert(substr($url, 0, 1) === '/');
-
+        $module=substr($url,1);
         /* clear the PATH_INFO option, so that a script can detect whether it is called with anything following the
          *'.php'-ending.
          */
         $modEnd = strpos($url, '/', 1);
-        if ($modEnd === false) {
+        if ($modEnd !== false) {
             // the path must always be on the form /module/
-            throw new Error\NotFound('The URL must at least contain a module name followed by a slash.');
+            $module = substr($url, 1, $modEnd - 1);
         }
 
-        $module = substr($url, 1, $modEnd - 1);
         return array("module" => $module, "isvalid" => self::isModuleEnabled($module), "url" => substr($url, $modEnd));
     }
 
@@ -156,7 +163,7 @@ class Module
         }
         $module = $moduleinfo["module"];
         $url = $moduleinfo["url"];
-        if ($moduleinfo["isValid"] === false) {
+        if ($moduleinfo["isvalid"] === false) {
             throw new Error\NotFound('The module \'' . $module . '\' was either not found, or wasn\'t enabled.');
         }
 
