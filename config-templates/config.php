@@ -829,7 +829,29 @@ $config = [
      */
     'production' => true,
 
+    /*
+     * Set this option to true to force username when present in GET or POST
+     * in the initial request.
+     *
+     * Defaults to false.
+     */
+    //'forced_username_enabled' => false,
 
+    /*
+     * This option allows you to specify the field of GEST or POST
+     * which holds the forced username.
+     *
+     * Defaults to 'username'.
+     */
+    //'forced_username_field' => 'username',
+
+    /*
+     * This option allows you to specify a regular expression
+     * for the forced username. The RE must contain a named group username.
+     *
+     * Defaults to '/^(?<username>.*)$/' (the entire string).
+     */
+    //'forced_username_pattern' => '/^(?<username>.*)$/',
 
     /*********************
      | DISCOVERY SERVICE |
