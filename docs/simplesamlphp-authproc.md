@@ -27,7 +27,7 @@ Be aware that Authentication Proccessing Filters do replace some of the previous
 
   * `attributemap`
   * `attributealter`
-  * attribute filter
+  * `attribute filter`
 
 Later in this document, we will desribe in detail the alternative Authentication Proccessing Filters that will replicate these functionalities.
 
