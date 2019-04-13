@@ -132,6 +132,7 @@ The following filters are included in the SimpleSAMLphp distribution:
 - [`core:AttributeLimit`](./core:authproc_attributelimit): Limit the attributes in the response.
 - [`core:AttributeMap`](./core:authproc_attributemap): Change the name of the attributes.
 - [`core:AttributeRealm`](./core:authproc_attributerealm): (deprecated) Create an attribute with the realm of the user.
+- [`core:AttributeValueMap`](./core:authproc_attributevaluemap): Map attribute values to new values and attribute name.
 - [`core:Cardinality`](./core:authproc_cardinality): Ensure the number of attribute values is within the specified multiplicity.
 - [`core:CardinalitySingle`](./core:authproc_cardinalitysingle): Ensure the correct cardinality of single-valued attributes.
 - [`core:GenerateGroups`](./core:authproc_generategroups): Generate a `group` attribute for the user.
