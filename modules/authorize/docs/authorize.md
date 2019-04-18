@@ -59,7 +59,7 @@ For unstructured attributes use `^` and `$` to anchor your regex as necessary:
         'class' => 'authorize:Authorize',
         'uid'   =>  [
             '/^.*@example.com$/',
-            // Use anchors to prevent matching 'wronguser1@exampled.edu.attacker.com'
+            // Use anchors to prevent matching 'wronguser1@example.edu.attacker.com'
             '/^(user1|user2|user3)@example.edu$/',
         ],
         'schacUserStatus' => '@urn:mace:terena.org:userStatus:' .
