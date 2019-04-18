@@ -26,7 +26,7 @@ function sspmodTestClassAutoloadPSR4($className)
         return; // the second element is not "test"
     }
     if (array_shift($elements) !== 'Module') {
-        return; // the second element is not "module"
+        return; // the third element is not "module"
     }
 
     // this is a SimpleSAMLphp module test class following PSR-4
