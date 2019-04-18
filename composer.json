@@ -25,6 +25,12 @@
         },
         "files": ["lib/_autoload_modules.php"]
     },
+    "autoload-dev": {
+        "psr-4": {
+            "SimpleSAML\\Test\\": "tests"
+        },
+        "files": ["tests/_autoload_modules.php"]
+    },
     "require": {
         "php": ">=5.6",
         "ext-SPL": "*",
