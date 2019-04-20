@@ -250,7 +250,7 @@ class Logger
      */
     public static function stats(string $string): void
     {
-        self::log(self::NOTICE, $string, true);
+        self::log(self::NOTICE, $string, self::$logLevel >= self::NOTICE);
     }
 
 
