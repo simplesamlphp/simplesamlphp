@@ -330,11 +330,15 @@ class FederationController
         /** @var \SimpleSAML\Module\saml\Auth\Source\SP $source */
         foreach (\SimpleSAML\Auth\Source::getSourcesOfType('saml:SP') as $source) {
             $metadata = $source->getHostedMetadata();
-            $certificates = $metadata['keys'] ?? [];
-            if (count($certificates) === 1) {
-                $cert = array_pop($metadata['keys']);
-                $metadata['certData'] = $cert['X509Certificate'];
-                unset($metadata['keys']);
+            if (isset($metadata['keys']) ) {
+                $certificates = $metadata['keys'];
+                if (count($metadata['keys']) === 1) {
+                    $cert = array_pop($metadata['keys']);
+                    $metadata['certData'] = $cert['X509Certificate'];
+                    unset($metadata['keys']);
+                }
+            } else {
+                $certificates = [];
             }
 
             // get the name
