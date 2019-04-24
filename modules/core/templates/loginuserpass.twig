@@ -53,8 +53,8 @@
 
                 <div class="pure-control-group">
                     <label for="password">{{ 'Password'|trans}}</label>
-                    <input id="password" type="password" tabindex="2" name="password" class="edge"
-                    {%- if forceUsername or username %} autofocus {% endif %} />
+                    <input id="password" type="password" tabindex="2" name="password" class="edge" autocomplete="current-password"
+                    {%- if forceUsername or username %} autofocus {% endif %} >
 
                 {% if rememberMeEnabled -%}
                 </div>

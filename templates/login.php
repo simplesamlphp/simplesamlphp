@@ -43,7 +43,7 @@ if (array_key_exists('admin', $this->data)) {
             </tr>
             <tr>
                 <td style="padding: .3em;"><?php echo $this->t('password'); ?></td>
-                <td><input id="password" type="password" tabindex="2" name="password" /></td>
+                <td><input id="password" type="password" tabindex="2" name="password" autocomplete="current-password" /></td>
             </tr>
             <tr>
                 <td></td>

@@ -89,7 +89,7 @@ if ($this->data['errorcode'] !== null) {
             ?>
             <tr>
                 <td><label for="password"><?php echo $this->t('{login:password}'); ?></label></td>
-                <td><input id="password" type="password" tabindex="2" name="password" /></td>
+                <td><input id="password" type="password" tabindex="2" name="password" autocomplete="current-password" /></td>
             <?php
             if ($this->data['rememberMeEnabled']) {
                 // display the remember me checkbox (keep me logged in)
