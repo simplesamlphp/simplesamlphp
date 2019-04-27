@@ -123,7 +123,7 @@ class Negotiate extends \SimpleSAML\Auth\Source
         $state['negotiate:authId'] = $this->authId;
 
 
-        // check for disabled SPs. The disable flag is store in the SP metadata
+        // check for disabled SPs. The disable flag is stored in the SP metadata
         if (array_key_exists('SPMetadata', $state) && $this->spDisabledInMetadata($state['SPMetadata'])) {
             $this->fallBack($state);
         }
