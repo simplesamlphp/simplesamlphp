@@ -104,6 +104,26 @@ SAML 2.0 options
 
 The following SAML 2.0 options are available:
 
+`AuthnContextClassRef`
+:    The AuthnContextClassRef that will be sent in the login request.
+
+:   Note that this option also exists in the SP configuration. This
+    entry in the IdP-remote metadata overrides the option in the
+    [SP configuration](./saml:sp).
+
+`AuthnContextComparison`
+
+:    The Comparison attribute of the AuthnContext that will be sent in the login request. This parameter won't be used unless AuthnContextClassRef is set and contains one or more values. Possible values:
+
+        SAML2\Constants::COMPARISON_EXACT (default)
+        SAML2\Constants::COMPARISON_BETTER
+        SAML2\Constants::COMPARISON_MINIMUM
+        SAML2\Constants::COMPARISON_MAXIMUM
+
+:   Note that this option also exists in the SP configuration. This
+    entry in the IdP-remote metadata overrides the option in the
+    [SP configuration](./saml:sp).
+
 `disable_scoping`
 :    Whether sending of samlp:Scoping elements in authentication requests should be suppressed. The default value is `FALSE`.
      When set to `TRUE`, no scoping elements will be sent. This does not comply with the SAML2 specification, but allows 
