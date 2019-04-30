@@ -499,10 +499,18 @@ class SP extends Source
             $ar->setRelayState($state['\SimpleSAML\Auth\Source.ReturnURL']);
         }
 
-        if (isset($state['saml:AuthnContextClassRef'])) {
+        $accr = null;
+        if ($idpMetadata->getString('AuthnContextClassRef', false)) {
+            $accr = \SimpleSAML\Utils\Arrays::arrayize($idpMetadata->getString('AuthnContextClassRef'));
+        } else if (isset($state['saml:AuthnContextClassRef'])) {
             $accr = \SimpleSAML\Utils\Arrays::arrayize($state['saml:AuthnContextClassRef']);
+        }
+
+        if ($accr !== null) {
             $comp = \SAML2\Constants::COMPARISON_EXACT;
-            if (isset($state['saml:AuthnContextComparison'])
+            if ($idpMetadata->getString('AuthnContextComparison', false)) {
+                $comp = $idpMetadata->getString('AuthnContextComparison');
+            } else if (isset($state['saml:AuthnContextComparison'])
                 && in_array($state['AuthnContextComparison'], [
                     \SAML2\Constants::COMPARISON_EXACT,
                     \SAML2\Constants::COMPARISON_MINIMUM,
