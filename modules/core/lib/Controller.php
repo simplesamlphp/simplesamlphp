@@ -91,6 +91,7 @@ class Controller
         $t->data['nameid'] = !is_null($auth->getAuthData('saml:sp:NameID'))
             ? $auth->getAuthData('saml:sp:NameID')
             : false;
+        $t->data['authData'] = $auth->getAuthDataArray();
         $t->data['logouturl'] = Module::getModuleURL('core/logout/'.urlencode($as));
         $t->data['remaining'] = $this->session->getAuthData($as, 'Expire') - time();
         $t->setStatusCode(200);
