@@ -11,11 +11,11 @@
 
 require_once('../../_include.php');
 
-\SimpleSAML\Logger::info('SAML2.0 - IdP.SSOService: Accessing SAML 2.0 IdP endpoint SSOService');
-
 $metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
 $idpEntityId = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
 $idp = \SimpleSAML\IdP::getById('saml2:'.$idpEntityId);
+
+\SimpleSAML\Logger::info('SAML2.0 - IdP.SSOService: Accessing SAML 2.0 IdP endpoint SSOService');
 
 try {
     \SimpleSAML\Module\saml\IdP\SAML2::receiveAuthnRequest($idp);
