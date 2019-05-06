@@ -13,7 +13,8 @@ foreach ($config['metadata.sources'] as $s) {
         $mdshp = new \SimpleSAML\Metadata\MetaDataStorageHandlerPdo($s);
         $mdshp->initDatabase();
 
-        foreach (glob("metadata/*.php") as $filename) {
+        $metadataDir = rtrim(\SimpleSAML\Configuration::getInstance()->getString('metadatadir'), '/');
+        foreach (glob("{$metadataDir}/*.php") as $filename) {
             $metadata = [];
             require_once $filename;
             $set = basename($filename, ".php");
