@@ -190,11 +190,10 @@ class AttributeValueMapTest extends TestCase
      *
      * @covers SimpleSAML\Module\core\Auth\Process\AttributeValueMap::__construct
      * @covers SimpleSAML\Module\core\Auth\Process\AttributeValueMap::process
-     *
-     * @expectedException \Exception
      */
     public function testMissingSourceAttribute()
     {
+        $this->expectException(\Exception::class);
         $config = [
             'targetattribute' => 'affiliation',
             'values' => [
@@ -217,11 +216,10 @@ class AttributeValueMapTest extends TestCase
      *
      * @covers SimpleSAML\Module\core\Auth\Process\AttributeValueMap::__construct
      * @covers SimpleSAML\Module\core\Auth\Process\AttributeValueMap::process
-     *
-     * @expectedException \Exception
      */
     public function testMissingTargetAttribute()
     {
+        $this->expectException(\Exception::class);
         $config = [
             'sourceattribute' => 'memberOf',
             'values' => [

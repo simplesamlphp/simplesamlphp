@@ -79,11 +79,11 @@ class DatabaseTest extends TestCase
      * @covers SimpleSAML\Database::generateInstanceId
      * @covers SimpleSAML\Database::__construct
      * @covers SimpleSAML\Database::connect
-     * @expectedException Exception
      * @test
      */
     public function connectionFailure()
     {
+        $this->expectException(\Exception::class);
         $config = [
             'database.dsn'        => 'mysql:host=localhost;dbname=saml',
             'database.username'   => 'notauser',
@@ -263,11 +263,11 @@ class DatabaseTest extends TestCase
     /**
      * @covers SimpleSAML\Database::read
      * @covers SimpleSAML\Database::query
-     * @expectedException Exception
      * @test
      */
     public function readFailure()
     {
+        $this->expectException(\Exception::class);
         $table = $this->db->applyPrefix("sspdbt");
         $this->assertEquals($this->config->getString('database.prefix')."sspdbt", $table);
 
@@ -278,11 +278,11 @@ class DatabaseTest extends TestCase
     /**
      * @covers SimpleSAML\Database::write
      * @covers SimpleSAML\Database::exec
-     * @expectedException Exception
      * @test
      */
     public function noSuchTable()
     {
+        $this->expectException(\Exception::class);
         $this->db->write("DROP TABLE phpunit_nonexistent", false);
     }
 

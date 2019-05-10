@@ -135,7 +135,7 @@ class SystemTest extends TestCase
      */
     public function testWriteFileInvalidArguments()
     {
-        $this->setExpectedException('\InvalidArgumentException');
+        $this->expectException(\InvalidArgumentException::class);
         System::writeFile(null, null, null);
     }
 
@@ -255,7 +255,7 @@ class SystemTest extends TestCase
 
         chown($tempdir, $bad_uid);
 
-        $this->setExpectedException('\SimpleSAML\Error\Exception');
+        $this->expectException(\SimpleSAML\Error\Exception::class);
         System::getTempDir();
 
         $this->clearInstance($config, '\SimpleSAML\Configuration');

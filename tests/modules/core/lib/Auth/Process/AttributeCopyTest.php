@@ -128,11 +128,10 @@ class AttributeCopyTest extends TestCase
 
     /**
      * Test wrong attribute name
-     *
-     * @expectedException Exception
      */
     public function testWrongAttributeName()
     {
+        $this->expectException(\Exception::class);
         $config = [
             ['value2'],
         ];
@@ -146,11 +145,10 @@ class AttributeCopyTest extends TestCase
 
     /**
      * Test wrong attribute value
-     *
-     * @expectedException Exception
      */
     public function testWrongAttributeValue()
     {
+        $this->expectException(\Exception::class);
         $config = [
             'test' => 100,
         ];

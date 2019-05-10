@@ -151,7 +151,7 @@ NOWDOC;
 
         $signer = new Signer([]);
 
-        $this->setExpectedException('\Exception');
+        $this->expectException(\Exception::class);
         $signer->sign($element, $insertInto);
     }
 

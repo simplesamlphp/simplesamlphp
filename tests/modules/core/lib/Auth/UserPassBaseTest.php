@@ -32,7 +32,7 @@ class UserPassBaseTest extends \PHPUnit_Framework_TestCase
 
     public function testAuthenticateECPMissingUsername()
     {
-        $this->setExpectedException('\SimpleSAML\Error\Error', 'WRONGUSERPASS');
+        $this->expectException(\SimpleSAML\Error\Error::class, 'WRONGUSERPASS');
 
         $state = [
             'saml:Binding' => \SAML2\Constants::BINDING_PAOS,
@@ -51,7 +51,7 @@ class UserPassBaseTest extends \PHPUnit_Framework_TestCase
 
     public function testAuthenticateECPMissingPassword()
     {
-        $this->setExpectedException('\SimpleSAML\Error\Error', 'WRONGUSERPASS');
+        $this->expectException(\SimpleSAML\Error\Error::class, 'WRONGUSERPASS');
 
         $state = [
             'saml:Binding' => \SAML2\Constants::BINDING_PAOS,
