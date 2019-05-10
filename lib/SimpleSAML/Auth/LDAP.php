@@ -682,11 +682,12 @@ class LDAP
      * @param array $config
      * @param string $username
      * @param string $password
-     * @return array|bool
+     * @return array|false
      */
     public function validate($config, $username, $password = null)
     {
-        /* Escape any characters with a special meaning in LDAP. The following
+        /**
+         * Escape any characters with a special meaning in LDAP. The following
          * characters have a special meaning (according to RFC 2253):
          * ',', '+', '"', '\', '<', '>', ';', '*'
          * These characters are escaped by prefixing them with '\'.
@@ -714,7 +715,7 @@ class LDAP
             }
         }
 
-        /*
+        /**
          * Retrieve attributes from LDAP
          */
         $attributes = $this->getAttributes($dn, $config['attributes']);
