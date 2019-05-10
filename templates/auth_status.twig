@@ -38,7 +38,7 @@
     {%  set items = {'NameId' : nameid.value} %}
 
     {% if not nameid.value %}
-        {%  set items = items|merge({'NameId' : 'not set'|trans}) %}
+        {%  set items = items|merge({'NameID' : 'not set'|trans}) %}
     {% endif %}
 
     {% if nameid.Format %}
@@ -61,7 +61,7 @@
         {% for name, value in items %}
             <tr class="{{ cycle(['odd', 'even'], loop.index0) }}">
                 <td class="attrname">{{ name }}</td>
-                <td class="attrname">{{ value }}</td>
+                <td class="attrvalue">{{ value }}</td>
             </tr>
         {% endfor %}
     </table><br>

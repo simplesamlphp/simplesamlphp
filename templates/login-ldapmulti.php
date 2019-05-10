@@ -51,7 +51,7 @@ foreach ($this->data['ldapconfig'] as $key => $entry) {
 
             <tr>
                 <td style="padding: .3em;"><?php echo $this->t('password'); ?></td>
-                <td><input type="password" tabindex="2" name="password" /></td>
+                <td><input type="password" tabindex="2" name="password" autocomplete="current-password" /></td>
             </tr>
             <tr><td></td><td>
                 <button type="submit" tabindex="5" id="mobilesubmit" class="btn"><?php echo $this->t('login_button'); ?></button>

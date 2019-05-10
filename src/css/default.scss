@@ -115,6 +115,9 @@ pre, code, kbd, samp, tt {
   //background-color: rgba(0, 0, 0, .1);
   padding: 0 .2rem;
 }
+.xmldata {
+  font-family: monospace;
+}
 
 /************************************************************
  * BUTTONS
@@ -469,6 +472,7 @@ CONTENT
   width: 100%;
   height: 100%;
   white-space: pre-wrap;
+  font-family: monospace;
   &::selection {
     color: black;
     background: $lighYellow;

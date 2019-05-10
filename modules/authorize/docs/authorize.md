@@ -50,14 +50,17 @@ Note: If regex is enabled, you must use the preg_match format, i.e. you have to 
    (as far as I know), you have to close the browser.
 
 ### Examples ###
-To use this filter configure it in `config/config.php`:
+To use this filter configure it in `config/config.php`.
+For unstructured attributes use `^` and `$` to anchor your regex as necessary:
+
 ```php
 'authproc.sp' => [
     60 => [
         'class' => 'authorize:Authorize',
         'uid'   =>  [
-            '/.*@example.com/',
-            '/(user1|user2|user3)@example.edu/',
+            '/^.*@example.com$/',
+            // Use anchors to prevent matching 'wronguser1@example.edu.attacker.com'
+            '/^(user1|user2|user3)@example.edu$/',
         ],
         'schacUserStatus' => '@urn:mace:terena.org:userStatus:' .
         'example.org:service:active.*@',
@@ -72,10 +75,10 @@ An alternate way of using this filter is to deny certain users. Or even use mult
 'authproc.sp' => [
     60 => array[
         'class' => 'authorize:Authorize',
-        'deny'  => TRUE,
+        'deny'  => true,
         'uid'   =>  [
-            '/.*@students.example.edu/',
-            '/(stu1|stu2|stu3)@example.edu/',
+            '/.*@students.example.edu$/',
+            '/^(stu1|stu2|stu3)@example.edu$/',
         ]
     ]
 ]
@@ -89,7 +92,7 @@ Additionally, some helpful instructions are shown.
 'authproc.sp' => [
     60 => [
         'class' => 'authorize:Authorize',
-        'regex' => FALSE,
+        'regex' => false,
         'group' => [
             'CN=SimpleSAML Students,CN=Users,DC=example,DC=edu',
             'CN=All Teachers,OU=Staff,DC=example,DC=edu',

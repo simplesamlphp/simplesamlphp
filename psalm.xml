@@ -37,6 +37,5 @@
         <file name="tests/Utils/Stubs/memcache.php" />
         <file name="tests/Utils/Stubs/memcached.php" />
         <file name="tests/Utils/Stubs/predis.php" />
-        <file name="tests/Utils/Stubs/radius.php" />
     </stubs>
 </psalm>
