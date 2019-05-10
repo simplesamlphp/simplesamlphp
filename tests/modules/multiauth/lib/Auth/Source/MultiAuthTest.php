@@ -56,11 +56,11 @@ class MultiAuthTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
     }
 
     /**
-     * @expectedException \Exception
-     * @expectedExceptionMessage The required "sources" config option was not found
      */
     public function testSourcesMustBePresent()
     {
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage('The required "sources" config option was not found');
         $sourceConfig = Configuration::loadFromArray(array(
             'example-multi' => array(
                 'multiauth:MultiAuth',
@@ -73,11 +73,11 @@ class MultiAuthTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
     }
 
     /**
-     * @expectedException \Exception
-     * @expectedExceptionMessage The optional "preselect" config option must be present in "sources"
      */
     public function testPreselectMustBeValid()
     {
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage('The optional "preselect" config option must be present in "sources"');
         $sourceConfig = Configuration::loadFromArray(array(
             'example-multi' => array(
                 'multiauth:MultiAuth',

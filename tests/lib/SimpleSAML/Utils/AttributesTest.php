@@ -12,7 +12,6 @@ use SimpleSAML\Utils\Attributes;
  */
 class AttributesTest extends TestCase
 {
-
     /**
      * Test the getExpectedAttribute() method with invalid attributes array.
      */
@@ -21,8 +20,8 @@ class AttributesTest extends TestCase
         // check with empty array as input
         $attributes = 'string';
         $expected = 'string';
-        $this->setExpectedException(
-            'InvalidArgumentException',
+        $this->expectException(
+            \InvalidArgumentException::class,
             'The attributes array is not an array, it is: '.print_r($attributes, true).'.'
         );
         Attributes::getExpectedAttribute($attributes, $expected);
@@ -37,8 +36,8 @@ class AttributesTest extends TestCase
         // check with invalid attribute name
         $attributes = [];
         $expected = false;
-        $this->setExpectedException(
-            'InvalidArgumentException',
+        $this->expectException(
+            \InvalidArgumentException::class,
             'The expected attribute is not a string, it is: '.print_r($expected, true).'.'
         );
         Attributes::getExpectedAttribute($attributes, $expected);
@@ -55,8 +54,8 @@ class AttributesTest extends TestCase
             'attribute' => 'value',
         ];
         $expected = 'attribute';
-        $this->setExpectedException(
-            'InvalidArgumentException',
+        $this->expectException(
+            \InvalidArgumentException::class,
             'The attributes array is not normalized, values should be arrays.'
         );
         Attributes::getExpectedAttribute($attributes, $expected);
@@ -73,8 +72,8 @@ class AttributesTest extends TestCase
             'attribute' => ['value'],
         ];
         $expected = 'missing';
-        $this->setExpectedException(
-            '\SimpleSAML\Error\Exception',
+        $this->expectException(
+            \SimpleSAML\Error\Exception::class,
             "No such attribute '".$expected."' found."
         );
         Attributes::getExpectedAttribute($attributes, $expected);
@@ -91,8 +90,8 @@ class AttributesTest extends TestCase
             'attribute' => [],
         ];
         $expected = 'attribute';
-        $this->setExpectedException(
-            '\SimpleSAML\Error\Exception',
+        $this->expectException(
+            \SimpleSAML\Error\Exception::class,
             "Empty attribute '".$expected."'.'"
         );
         Attributes::getExpectedAttribute($attributes, $expected);
@@ -112,8 +111,8 @@ class AttributesTest extends TestCase
             ],
         ];
         $expected = 'attribute';
-        $this->setExpectedException(
-            '\SimpleSAML\Error\Exception',
+        $this->expectException(
+            \SimpleSAML\Error\Exception::class,
             'More than one value found for the attribute, multiple values not allowed.'
         );
         Attributes::getExpectedAttribute($attributes, $expected);
@@ -145,31 +144,28 @@ class AttributesTest extends TestCase
 
     /**
      * Test the normalizeAttributesArray() function with input not being an array
-     *
-     * @expectedException \InvalidArgumentException
      */
     public function testNormalizeAttributesArrayBadInput()
     {
+        $this->expectException(\InvalidArgumentException::class);
         Attributes::normalizeAttributesArray('string');
     }
 
     /**
      * Test the normalizeAttributesArray() function with an array with non-string attribute names.
-     *
-     * @expectedException \InvalidArgumentException
      */
     public function testNormalizeAttributesArrayBadKeys()
     {
+        $this->expectException(\InvalidArgumentException::class);
         Attributes::normalizeAttributesArray(['attr1' => 'value1', 1 => 'value2']);
     }
 
     /**
      * Test the normalizeAttributesArray() function with an array with non-string attribute values.
-     *
-     * @expectedException \InvalidArgumentException
      */
     public function testNormalizeAttributesArrayBadValues()
     {
+        $this->expectException(\InvalidArgumentException::class);
         Attributes::normalizeAttributesArray(['attr1' => 'value1', 'attr2' => 0]);
     }
 

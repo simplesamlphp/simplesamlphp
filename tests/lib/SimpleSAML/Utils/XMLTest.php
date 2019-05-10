@@ -3,8 +3,9 @@
 namespace SimpleSAML\Test\Utils;
 
 use PHPUnit\Framework\TestCase;
-use \SimpleSAML\Configuration;
-use \SimpleSAML\Utils\XML;
+
+use SimpleSAML\Configuration;
+use SimpleSAML\Utils\XML;
 
 /**
  * Tests for SimpleSAML\Utils\XML.
@@ -27,13 +28,12 @@ class XMLTest extends TestCase
     }
 
     /**
-     * @expectedException \InvalidArgumentException
-     *
      * @covers \SimpleSAML\Utils\XML::isDOMNodeOfType
      * @test
      */
     public function testIsDomNodeOfTypeMissingNamespace()
     {
+        $this->expectException(\InvalidArgumentException::class);
         $name = 'name';
         $namespace_uri = '@missing';
         $element = new \DOMElement($name, 'value', $namespace_uri);
@@ -141,13 +141,12 @@ class XMLTest extends TestCase
     }
 
     /**
-     * @expectedException \SimpleSAML\Error\Exception
-     *
      * @covers \SimpleSAML\Utils\XML::getDOMText
      * @test
      */
     public function testGetDomTextIncorrectType()
     {
+        $this->expectException(\SimpleSAML\Error\Exception::class);
         $dom = new \DOMDocument();
         $element = $dom->appendChild(new \DOMElement('root'));
         $element->appendChild(new \DOMComment(''));
@@ -325,13 +324,12 @@ NOWDOC;
     }
 
     /**
-     * @expectedException \DOMException
-     *
      * @covers \SimpleSAML\Utils\XML::formatXMLString
      * @test
      */
     public function testFormatXmlStringMalformedXml()
     {
+        $this->expectException(\DOMException::class);
         $xml = '<root><nested>text';
 
         XML::formatXMLString($xml);
@@ -385,7 +383,7 @@ NOWDOC;
      */
     public function testCheckSAMLMessageInvalidType()
     {
-        $this->setExpectedException('\InvalidArgumentException');
+        $this->expectException(\InvalidArgumentException::class);
         XML::checkSAMLMessage('<test></test>', 'blub');
     }
 }

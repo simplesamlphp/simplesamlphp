@@ -162,11 +162,10 @@ class TargetedIDTest extends TestCase
 
     /**
      * Test no userid set
-     *
-     * @expectedException Exception
      */
     public function testNoUserID()
     {
+        $this->expectException(\Exception::class);
         $config = [];
         $request = [
             'Attributes' => [],
@@ -176,11 +175,10 @@ class TargetedIDTest extends TestCase
 
     /**
      * Test with specified attribute not set
-     *
-     * @expectedException Exception
      */
     public function testAttributeNotExists()
     {
+        $this->expectException(\Exception::class);
         $config = [
             'attributename' => 'uid',
         ];
@@ -194,11 +192,10 @@ class TargetedIDTest extends TestCase
 
     /**
      * Test with configuration error 1
-     *
-     * @expectedException Exception
      */
     public function testConfigInvalidAttributeName()
     {
+        $this->expectException(\Exception::class);
         $config = [
             'attributename' => 5,
         ];
@@ -212,11 +209,10 @@ class TargetedIDTest extends TestCase
 
     /**
      * Test with configuration error 2
-     *
-     * @expectedException Exception
      */
     public function testConfigInvalidNameId()
     {
+        $this->expectException(\Exception::class);
         $config = [
             'nameId' => 'persistent',
         ];

@@ -43,11 +43,10 @@ class AttributeRealmTest extends TestCase
 
     /**
      * Test no userid set
-     *
-     * @expectedException Exception
      */
     public function testNoUserID()
     {
+        $this->expectException(\Exception::class);
         $config = [
         ];
         $request = [

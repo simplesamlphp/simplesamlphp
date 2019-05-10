@@ -91,11 +91,11 @@ XML;
     /**
      * @covers \SimpleSAML\XML\Shib13\AuthnResponse::getIssuer
      * @covers \SimpleSAML\XML\Shib13\AuthnResponse::setXML
-     * @expectedException \Exception
      * @test
      */
     public function getIssuerException()
     {
+        $this->expectException(\Exception::class);
         $xml = new AuthnResponse();
         $xml->setXML(static::BADXMLDOC);
 
