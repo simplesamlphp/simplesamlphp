@@ -235,7 +235,7 @@ class EMail
 
         $config = Configuration::getInstance();
         $EMail->setTransportMethod(
-            $config->getString('mail.transport.method', ''),
+            $config->getString('mail.transport.method', 'mail'),
             $config->getArrayize('mail.transport.options', [])
         );
 
