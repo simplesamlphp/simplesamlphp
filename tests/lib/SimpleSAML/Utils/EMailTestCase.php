@@ -5,6 +5,7 @@ namespace SimpleSAML\Test\Utils;
 use SimpleSAML\Test\Utils\TestCase;
 
 use SimpleSAML\Configuration;
+use SimpleSAML\Utils\Config;
 use SimpleSAML\Utils\EMail;
 
 /**
@@ -70,5 +71,35 @@ class EMailTestCase extends ClearStateTestCase
     public static function mailTemplates()
     {
         return [['mailtxt.twig'], ['mailhtml.twig']];
+    }
+
+    public function testInvalidTransportConfiguration()
+    {
+        // preserve the original configuration
+        $originalTestConfiguration = Configuration::getInstance()->toArray();
+
+        // load the configuration with an invalid mail.transport.method
+        Configuration::loadFromArray(array_merge($originalTestConfiguration, [
+            'mail.transport.method' => 'foobar'
+        ]), '[ARRAY]', 'simplesaml');
+
+
+        $this->expectException(\InvalidArgumentException::class);
+        new Email('Test', 'phpunit@simplesamlphp.org', 'phpunit@simplesamlphp.org');
+
+        // reset the configuration
+        Configuration::loadFromArray($originalTestConfiguration, '[ARRAY]', 'simplesaml');
+    }
+
+    public function testInvalidSMTPConfiguration()
+    {
+        // setup a new email
+        $email = new Email('Test', 'phpunit@simplesamlphp.org', 'phpunit@simplesamlphp.org');
+
+        // set the transport option to smtp but don't set any transport options (invalid state)
+        // NOTE: this is the same method that the constructor calls, so this should be logically equivalent
+        // to setting it via the configuration file.
+        $this->expectException(\InvalidArgumentException::class);
+        $email->setTransportMethod('smtp');
     }
 }
