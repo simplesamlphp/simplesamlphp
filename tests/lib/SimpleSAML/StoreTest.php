@@ -3,8 +3,10 @@
 namespace SimpleSAML\Test;
 
 use PHPUnit\Framework\TestCase;
-use \SimpleSAML\Configuration;
-use \SimpleSAML\Store;
+
+use SimpleSAML\Configuration;
+use SimpleSAML\Error\CriticalConfigurationError;
+use SimpleSAML\Store;
 
 /**
  * Tests for the Store abstract class.
@@ -101,11 +103,11 @@ class StoreTest extends TestCase
 
     /**
      * @covers \SimpleSAML\Store::getInstance
-     * @expectedException \SimpleSAML\Error\CriticalConfigurationError
      * @test
      */
     public function notFoundStoreException()
     {
+        $this->expectException(CriticalConfigurationError::class);
         Configuration::loadFromArray([
             'store.type'                    => '\Test\SimpleSAML\Store\Dummy',
             'store.sql.dsn'                 => 'sqlite::memory:',

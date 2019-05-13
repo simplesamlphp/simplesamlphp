@@ -166,7 +166,7 @@ class AttributeMapTest extends TestCase
             ],
         ];
 
-        $this->setExpectedException('\Exception');
+        $this->expectException(\Exception::class);
         self::processFilter($config, $request);
     }
 
@@ -181,7 +181,7 @@ class AttributeMapTest extends TestCase
             ],
         ];
 
-        $this->setExpectedException('\Exception');
+        $this->expectException(\Exception::class);
         self::processFilter($config, $request);
     }
 
@@ -196,7 +196,7 @@ class AttributeMapTest extends TestCase
             ],
         ];
 
-        $this->setExpectedException('\Exception');
+        $this->expectException(\Exception::class);
         self::processFilter($config, $request);
     }
 

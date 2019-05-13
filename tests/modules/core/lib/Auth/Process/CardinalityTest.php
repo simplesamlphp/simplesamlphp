@@ -159,11 +159,11 @@ class CardinalityTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Test invalid minimum values
-     * @expectedException \SimpleSAML\Error\Exception
-     * @expectedExceptionMessageRegExp /Minimum/
      */
     public function testMinInvalid()
     {
+        $this->expectException(\SimpleSAML\Error\Exception::class);
+        $this->expectExceptionMessageRegExp('/Minimum/');
         $config = [
             'mail' => ['min' => false],
         ];
@@ -177,11 +177,11 @@ class CardinalityTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Test invalid minimum values
-     * @expectedException \SimpleSAML\Error\Exception
-     * @expectedExceptionMessageRegExp /Minimum/
      */
     public function testMinNegative()
     {
+        $this->expectException(\SimpleSAML\Error\Exception::class);
+        $this->expectExceptionMessageRegExp('/Minimum/');
         $config = [
             'mail' => ['min' => -1],
         ];
@@ -195,11 +195,11 @@ class CardinalityTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Test invalid maximum values
-     * @expectedException \SimpleSAML\Error\Exception
-     * @expectedExceptionMessageRegExp /Maximum/
      */
     public function testMaxInvalid()
     {
+        $this->expectException(\SimpleSAML\Error\Exception::class);
+        $this->expectExceptionMessageRegExp('/Maximum/');
         $config = [
             'mail' => ['max' => false],
         ];
@@ -213,11 +213,11 @@ class CardinalityTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Test maximum < minimum
-     * @expectedException \SimpleSAML\Error\Exception
-     * @expectedExceptionMessageRegExp /less than/
      */
     public function testMinGreaterThanMax()
     {
+        $this->expectException(\SimpleSAML\Error\Exception::class);
+        $this->expectExceptionMessageRegExp('/less than/');
         $config = [
             'mail' => ['min' => 2, 'max' => 1],
         ];
@@ -231,11 +231,11 @@ class CardinalityTest extends \PHPUnit_Framework_TestCase
 
     /**
      * Test invalid attribute name
-     * @expectedException \SimpleSAML\Error\Exception
-     * @expectedExceptionMessageRegExp /Invalid attribute/
      */
     public function testInvalidAttributeName()
     {
+        $this->expectException(\SimpleSAML\Error\Exception::class);
+        $this->expectExceptionMessageRegExp('/Invalid attribute/');
         $config = [
             ['min' => 2, 'max' => 1],
         ];

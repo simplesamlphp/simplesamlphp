@@ -21,7 +21,7 @@ class ValidatorTest extends SigningTestCase
         $doc = new \DOMDocument();
         $doc->loadXML('<?xml version="1.0"?><node>value</node>');
 
-        $this->setExpectedException('\Exception');
+        $this->expectException(\Exception::class);
         new Validator($doc);
     }
 
@@ -90,7 +90,7 @@ class ValidatorTest extends SigningTestCase
         $signer->loadCertificate($this->good_certificate_file, true);
         $signer->sign($node, $signature_parent);
 
-        $this->setExpectedException('\Exception');
+        $this->expectException(\Exception::class);
         new Validator($doc, 'node', ['certFingerprint' => []]);
     }
 
@@ -136,7 +136,7 @@ class ValidatorTest extends SigningTestCase
 
         $validator = new Validator($doc, 'node');
 
-        $this->setExpectedException('\Exception');
+        $this->expectException(\Exception::class);
         $validator->validateFingerprint($fingerprint);
     }
 
@@ -193,7 +193,7 @@ class ValidatorTest extends SigningTestCase
     {
         $ca_file = $this->ca_certificate_file.'NOT';
 
-        $this->setExpectedException('\Exception');
+        $this->expectException(\Exception::class);
         Validator::validateCertificate($this->good_certificate, $ca_file);
     }
 }

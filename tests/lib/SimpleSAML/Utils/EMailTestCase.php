@@ -25,28 +25,28 @@ class EMailTestCase extends ClearStateTestCase
     /**
      * Test that an exception is thrown if using default configuration,
      * and no custom from address is specified.
-     * @expectedException Exception
      */
     public function testMailFromDefaultConfigurationException()
     {
+        $this->expectException(\Exception::class);
         new EMail('test', null, 'phpunit@simplesamlphp.org');
     }
 
     /**
      * Test that an exception is thrown if using an invalid "From"-address
-     * @expectedException Exception
      */
     public function testInvalidFromAddressException()
     {
+        $this->expectException(\Exception::class);
         new EMail('test', "phpunit@simplesamlphp.org\nLorem Ipsum", 'phpunit@simplesamlphp.org');
     }
 
     /**
      * Test that an exception is thrown if using an invalid "To"-address
-     * @expectedException Exception
      */
     public function testInvalidToAddressException()
     {
+        $this->expectException(\Exception::class);
         new EMail('test', 'phpunit@simplesamlphp.org', "phpunit@simplesamlphp.org\nLorem Ipsum");
     }
 
@@ -65,10 +65,10 @@ class EMailTestCase extends ClearStateTestCase
         $this->assertRegexp('/(key-){6}/', $result);
         $this->assertRegexp('/(value-){6}/', $result);
     }
+
     /** All templates that should be tested in #testMailContents($template) */
     public static function mailTemplates()
     {
         return [['mailtxt.twig'], ['mailhtml.twig']];
     }
-
 }

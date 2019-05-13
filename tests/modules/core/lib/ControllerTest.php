@@ -135,7 +135,7 @@ class ControllerTest extends ClearStateTestCase
         $session = Session::getSessionFromRequest();
         $factory = new AuthenticationFactory($this->config, $session);
         $c = new Controller($this->config, $session, $factory);
-        $this->setExpectedException(Exception::class);
+        $this->expectException(Exception::class);
         $c->login($request, 'invalid-auth-source');
     }
 
