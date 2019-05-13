@@ -87,24 +87,18 @@ $config = [
      * Set the transport options for the transport method specified.  The valid settings are relative to the
      * selected transport method.
      */
-    //// smtp mail transport options
+    // // smtp mail transport options
     // 'mail.transport.options' => [
-    //     'host' => 'mail.example.org',
-    //     'port' => 25,
-    //     'username' => 'user@example.org', 'password' => '',
-    //     'security' => 'tls',
+    //     'host' => 'mail.example.org', // required
+    //     'port' => 25, // optional
+    //     'username' => 'user@example.org', // optional: if set, enables smtp authentication
+    //     'password' => 'password', // optional: if set, enables smtp authentication
+    //     'security' => 'tls', // optional: defaults to no smtp security
     // ],
-    //// sendmail mail transport options
+    // // sendmail mail transport options
     // 'mail.transport.options' => [
-    //     'path' => '/usr/sbin/sendmail'
+    //     'path' => '/usr/sbin/sendmail' // optional: defaults to php.ini path
     // ],
-
-    /*
-     * (Optional) When using the Sendmail transport method, provide an alternate path to the Sendmail
-     * executable.
-     */
-    //'mail.sendmail.path' => '',
-
 
     /*
      * The envelope from address for outgoing emails.
