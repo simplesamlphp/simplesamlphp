@@ -76,6 +76,37 @@ $config = [
     'technicalcontact_email' => 'na@example.org',
 
     /*
+     * (Optional) The method by which email is delivered.  Defaults to mail which utilizes the
+     * PHP mail() function.
+     *
+     * Valid options are: mail, sendmail and smtp.
+     */
+    //'mail.transport.method' => 'smtp',
+
+    /*
+     * Set the transport options for the transport method specified.  The valid settings are relative to the
+     * selected transport method.
+     */
+    //// smtp mail transport options
+    // 'mail.transport.options' => [
+    //     'host' => 'mail.example.org',
+    //     'port' => 25,
+    //     'username' => 'user@example.org', 'password' => '',
+    //     'security' => 'tls',
+    // ],
+    //// sendmail mail transport options
+    // 'mail.transport.options' => [
+    //     'path' => '/usr/sbin/sendmail'
+    // ],
+
+    /*
+     * (Optional) When using the Sendmail transport method, provide an alternate path to the Sendmail
+     * executable.
+     */
+    //'mail.sendmail.path' => '',
+
+
+    /*
      * The envelope from address for outgoing emails.
      * This should be in a domain that has your application's IP addresses in its SPF record
      * to prevent it from being rejected by mail filters.
