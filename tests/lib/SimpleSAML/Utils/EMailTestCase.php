@@ -5,7 +5,6 @@ namespace SimpleSAML\Test\Utils;
 use SimpleSAML\Test\Utils\TestCase;
 
 use SimpleSAML\Configuration;
-use SimpleSAML\Utils\Config;
 use SimpleSAML\Utils\EMail;
 
 /**
