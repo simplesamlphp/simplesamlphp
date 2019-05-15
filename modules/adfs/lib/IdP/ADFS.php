@@ -108,7 +108,7 @@ MSG;
         return $result;
     }
 
-    private static function signResponse($response, $key, $cert, $algo)
+    private static function signResponse($response, $key, $cert, $algo, $passphrase)
     {
         $objXMLSecDSig = new XMLSecurityDSig();
         $objXMLSecDSig->idKeys = ['AssertionID'];
@@ -123,6 +123,9 @@ MSG;
         );
 
         $objKey = new XMLSecurityKey($algo, ['type' => 'private']);
+        if (is_string($passphrase)) {
+            $objKey->passphrase = $passphrase;
+        }
         $objKey->loadKey($key, true);
         $objXMLSecDSig->sign($objKey);
         if ($cert) {
@@ -311,12 +314,13 @@ MSG;
 
         $privateKeyFile = \SimpleSAML\Utils\Config::getCertPath($idpMetadata->getString('privatekey'));
         $certificateFile = \SimpleSAML\Utils\Config::getCertPath($idpMetadata->getString('certificate'));
+        $passphrase = $idpMetadata->getString('privatekey_pass', null);
 
         $algo = $spMetadata->getString('signature.algorithm', null);
         if ($algo === null) {
             $algo = $idpMetadata->getString('signature.algorithm', XMLSecurityKey::RSA_SHA256);
         }
-        $wresult = ADFS::signResponse($response, $privateKeyFile, $certificateFile, $algo);
+        $wresult = ADFS::signResponse($response, $privateKeyFile, $certificateFile, $algo, $passphrase);
 
         $wctx = $state['adfs:wctx'];
         $wreply = $state['adfs:wreply'] ? : $spMetadata->getValue('prp');
