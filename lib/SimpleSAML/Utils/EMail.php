@@ -47,6 +47,8 @@ class EMail
         $this->mail->Subject = $subject;
         $this->mail->setFrom($from ?: static::getDefaultMailAddress());
         $this->mail->addAddress($to ?: static::getDefaultMailAddress());
+
+        static::initFromConfig($this);
     }
 
 
@@ -141,6 +143,103 @@ class EMail
         }
 
         $this->mail->send();
+    }
+
+    /**
+     * Sets the method by which the email will be sent.  Currently supports what
+     * PHPMailer supports: sendmail, mail and smtp.
+     *
+     * @param string $transportMethod the transport method
+     * @param array $transportOptions options for the transport method
+     *
+     * @return void
+     *
+     * @throws \InvalidArgumentException
+     */
+    public function setTransportMethod($transportMethod, array $transportOptions = [])
+    {
+        assert(is_string($transportMethod));
+        assert(is_array($transportOptions));
+
+
+        switch (strtolower($transportMethod)) {
+            // smtp transport method
+            case 'smtp':
+                $this->mail->isSMTP();
+
+                // set the host (required)
+                if (isset($transportOptions['host'])) {
+                    $this->mail->Host = $transportOptions['host'];
+                }
+                // throw an exception otherwise
+                else {
+                    throw new \InvalidArgumentException("Missing Required Email Transport Parameter 'host'");
+                }
+
+                // set the port (optional, assume standard SMTP port 25 if not provided)
+                $this->mail->Port = (isset($transportOptions['port'])) ? (int)$transportOptions['port'] : 25;
+
+                // smtp auth: enabled if username or password is set
+                if (isset($transportOptions['username']) || isset($transportOptions['password'])) {
+                    $this->mail->SMTPAuth = true;
+                }
+
+                // smtp auth: username
+                if (isset($transportOptions['username'])) {
+                    $this->mail->Username = $transportOptions['username'];
+                }
+
+                // smtp auth: password
+                if (isset($transportOptions['password'])) {
+                    $this->mail->Password = $transportOptions['password'];
+                }
+
+                // smtp security: encryption type
+                if (isset($transportOptions['secure'])) {
+                    $this->mail->SMTPSecure = $transportOptions['secure'];
+                }
+
+                // smtp security: enable or disable smtp auto tls
+                if (isset($transportOptions['autotls'])) {
+                    $this->mail->SMTPAutoTLS = (bool)$transportOptions['autotls'];
+                }
+                break;
+            //mail transport method
+            case 'mail':
+                $this->mail->isMail();
+                break;
+            // sendmail transport method
+            case 'sendmail':
+                $this->mail->isSendmail();
+
+                // override the default path of the sendmail executable
+                if (isset($transportOptions['path'])) {
+                    $this->mail->Sendmail = $transportOptions['path'];
+                }
+                break;
+            default:
+                throw new \InvalidArgumentException("Invalid Mail Transport Method - Check 'mail.transport.method' Configuration Option");
+        }
+    }
+
+    /**
+     * Initializes the provided EMail object with the configuration provided from the SimpleSAMLphp configuration.
+     *
+     * @param EMail $EMail
+     * @return EMail
+     * @throws \Exception
+     */
+    public static function initFromConfig(EMail $EMail)
+    {
+        assert($EMail instanceof EMail);
+
+        $config = Configuration::getInstance();
+        $EMail->setTransportMethod(
+            $config->getString('mail.transport.method', 'mail'),
+            $config->getArrayize('mail.transport.options', [])
+        );
+
+        return $EMail;
     }
 
 
