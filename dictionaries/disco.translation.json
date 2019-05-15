@@ -34,7 +34,8 @@
 		"af": "Kies jou identiteits verskaffer",
 		"el": "\u0395\u03c0\u03b9\u03bb\u03bf\u03b3\u03ae \u03bf\u03b9\u03ba\u03b5\u03af\u03bf\u03c5 \u03c6\u03bf\u03c1\u03ad\u03b1",
 		"xh": "Khetha umboneleli wesazisi wakho",
-		"zu": "Khetha umhlinzeki wakho kamazisi"
+		"zu": "Khetha umhlinzeki wakho kamazisi",
+		"ca": "Seleccioneu el vostre proveïdor d'identitat"
 	},
 	"selectidp_full": {
 		"no": "Vennligst velg hvilken identitetsleverand\u00f8r du vil bruke for \u00e5 logge inn:",
@@ -71,7 +72,8 @@
 		"af": "Kies asb. jou identiteits verskaffer waar jy wil verifieer:",
 		"el": "\u0395\u03c0\u03b9\u03bb\u03ad\u03be\u03c4\u03b5 \u03bf\u03b9\u03ba\u03b5\u03af\u03bf \u03c6\u03bf\u03c1\u03ad\u03b1 \u03c0\u03bf\u03c5 \u03bc\u03c0\u03bf\u03c1\u03b5\u03af \u03bd\u03b1 \u03c0\u03b9\u03c3\u03c4\u03bf\u03c0\u03bf\u03b9\u03ae\u03c3\u03b5\u03b9 \u03c4\u03b7\u03bd \u03c4\u03b1\u03c5\u03c4\u03cc\u03c4\u03b7\u03c4\u03ac \u03c3\u03b1\u03c2",
 		"zu": "Sicela ukhethe umhlinzeki kamazisi lapho ofuna ukuqinisekisa khona:",
-		"xh": "Nceda ukhethe umboneleli wesazisi apho ufuna ukungqinisisa:"
+		"xh": "Nceda ukhethe umboneleli wesazisi apho ufuna ukungqinisisa:",
+		"ca": "Seleccioneu el proveïdor d’identitat on vulgueu autenticar:"
 	},
 	"select": {
 		"no": "Velg",
@@ -108,7 +110,8 @@
 		"af": "Kies",
 		"el": "\u0395\u03c0\u03b9\u03bb\u03bf\u03b3\u03ae",
 		"zu": "Khetha",
-		"xh": "Khetha"
+		"xh": "Khetha",
+		"ca": "Seleccioneu"
 	},
 	"remember": {
 		"no": "Husk mitt valg",
@@ -145,7 +148,8 @@
 		"af": "Onthou my keuse",
 		"el": "\u039d\u03b1 \u03b8\u03c5\u03bc\u03ac\u03c3\u03b1\u03b9 \u03c4\u03b7\u03bd \u03b5\u03c0\u03b9\u03bb\u03bf\u03b3\u03ae \u03bc\u03bf\u03cd",
 		"zu": "Khumbula ukukhetha kwami",
-		"xh": "Khumbula ukhetho lwam"
+		"xh": "Khumbula ukhetho lwam",
+		"ca": "Recorda la meva elecció"
 	},
 	"icon_prefered_idp": {
 		"no": "[Foretrukket valg]",
@@ -182,7 +186,8 @@
 		"af": "[Verkies]",
 		"el": "[\u0391\u03c0\u03bf\u03b8\u03b7\u03ba\u03b5\u03c5\u03bc\u03ad\u03bd\u03b7 \u03c0\u03c1\u03bf\u03b5\u03c0\u03b9\u03bb\u03bf\u03b3\u03ae]",
 		"xh": "[Ukhetho olukhethwayo]",
-		"zu": "[Ukukhetha okuncanyelwayo]"
+		"zu": "[Ukukhetha okuncanyelwayo]",
+		"ca": "[Opció preferida]"
 	},
 	"previous_auth": {
 		"no": "Du har tidligere valg \u00e5 autentisere deg hos",
@@ -218,7 +223,8 @@
 		"af": "Jy het voorheen gekies om te verifieer deur:",
 		"el": "\u0391\u03c0\u03bf\u03b8\u03b7\u03ba\u03b5\u03c5\u03bc\u03ad\u03bd\u03b7 \u03c0\u03c1\u03bf\u03b5\u03c0\u03b9\u03bb\u03bf\u03b3\u03ae \u03bf\u03b9\u03ba\u03b5\u03af\u03bf\u03c5 \u03c6\u03bf\u03c1\u03ad\u03b1:",
 		"zu": "Ngaphambilini ukhethe ukuqinisekisa kokuthi",
-		"xh": "Kwixesha elidlulileyo ukhethe ukungqinisisa ngo-"
+		"xh": "Kwixesha elidlulileyo ukhethe ukungqinisisa ngo-",
+		"ca": "Abans heu escollit autenticar-vos a"
 	},
 	"login_at": {
 		"no": "Logg inn hos",
@@ -254,6 +260,7 @@
 		"af": "Meld aan by",
 		"el": "\u0395\u03af\u03c3\u03bf\u03b4\u03bf\u03c2 \u0040",
 		"zu": "Ngena kokuthi",
-		"xh": "Ungeno ngo-"
+		"xh": "Ungeno ngo-",
+		"ca": "Inicieu sessió a"
 	}
 }

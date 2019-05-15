@@ -13,7 +13,8 @@
 		"af": "Jy het nie toegang na die diens nie",
 		"el": "\u0394\u03b5\u03bd \u03ad\u03c7\u03b5\u03c4\u03b5 \u03c0\u03c1\u03cc\u03c3\u03b2\u03b1\u03c3\u03b7 \u03c3\u03b5 \u03b1\u03c5\u03c4\u03ae \u03c4\u03b7\u03bd \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b1",
 		"xh": "Awunalo ufikelelo kule nkonzo",
-		"zu": "Awukwazi ukufinyelela le sevisi"
+		"zu": "Awukwazi ukufinyelela le sevisi",
+		"ca": "No teniu accés a aquest servei"
 	},
 	"no_access_to": {
 		"sl": "Dostop zavrnjen, ker je va\u0161e uporabni\u0161ko (NetID) %NETID% ime poteklo!",
@@ -29,7 +30,8 @@
 		"af": "Jou rekening %NETID% het verval, toegang verbode!",
 		"el": "\u039f \u03bb\u03bf\u03b3\u03b1\u03c1\u03b9\u03b1\u03c3\u03bc\u03cc\u03c2 %NETID% u03ad\u03c7\u03b5\u03b9 \u03bb\u03ae\u03be\u03b5\u03b9 - \u03b4\u03b5\u03bd \u03b5\u03c0\u03b9\u03c4\u03c1\u03ad\u03c0\u03b5\u03c4\u03b1\u03b9 \u03b7 \u03c0\u03c1\u03cc\u03c3\u03b2\u03b1\u03c3\u03b7!",
 		"zu": "I-akhawunti yakho ethi %NETID% iphelelwe isikhathi, ukufinyelela kwenqatshiwe!",
-		"xh": "Iakhawunti yakho %NETID% iphelelwe, ufikelelo lukhatyiwe!"
+		"xh": "Iakhawunti yakho %NETID% iphelelwe, ufikelelo lukhatyiwe!",
+		"ca": "El vostre compte %NETID% ha caducat, accés denegat!"
 	},
 	"contact_home": {
 		"sl": "Mo\u017enost dostopa do storitve ureja va\u0161a doma\u010da organizacija. Obrnite se na njihov oddelek za pomo\u010d uporabnikom.",
@@ -44,7 +46,8 @@
 		"af": "Toegang tot dienste word beheer deur jou tuis organisasie. Kontak asseblief jou plaaslike IT ondersteuning vir navrae.",
 		"el": "\u0397 \u03c0\u03c1\u03cc\u03c3\u03b2\u03b1\u03c3\u03b7 \u03c3\u03c4\u03b9\u03c2 \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b5\u03c2 \u03b5\u03bb\u03ad\u03b3\u03c7\u03b5\u03c4\u03b1\u03b9 \u03b1\u03c0\u03cc \u03c4\u03bf\u03bd \u039f\u03b9\u03ba\u03b5\u03af\u03bf \u03a6\u03bf\u03c1\u03ad\u03b1. \u0393\u03b9\u03b1 \u03c0\u03b5\u03c1\u03b1\u03b9\u03c4\u03ad\u03c1\u03c9 \u03b5\u03c1\u03c9\u03c4\u03ae\u03c3\u03b5\u03b9\u03c2, \u03c0\u03b1\u03c1\u03b1\u03ba\u03b1\u03bb\u03bf\u03cd\u03bc\u03b5 \u03b1\u03c0\u03b5\u03c5\u03b8\u03c5\u03bd\u03b8\u03b5\u03af\u03c4\u03b5 \u03c3\u03c4\u03bf \u03c4\u03bf\u03c0\u03b9\u03ba\u03cc \u0393\u03c1\u03b1\u03c6\u03b5\u03af\u03bf \u0391\u03c1\u03c9\u03b3\u03ae\u03c2 \u03a7\u03c1\u03b7\u03c3\u03c4\u03ce\u03bd.",
 		"zu": "Ukufinyelela amasevisi kulawulwa inhlangano yakho yasekhaya. Sicela uthinte ukusekela kwakho kwe-IT kwasendaweni uma unemibuzo.",
-		"xh": "Ufikelelo kwiinkonzo lulawulwa ngumbutho wakho wekhaya. Nceda uqhagamshelane nenkxaso yakho ye-IT yasekuhlaleni ngemibuzo."
+		"xh": "Ufikelelo kwiinkonzo lulawulwa ngumbutho wakho wekhaya. Nceda uqhagamshelane nenkxaso yakho ye-IT yasekuhlaleni ngemibuzo.",
+		"ca": "L’accés als serveis està controlat per la vostra organització principal. Poseu-vos en contacte amb el vostre suport informàtic local per resoldre els dubtes."
 	},
 	"expiry_date_text": {
 		"sl": "Datum poteka:",
@@ -60,7 +63,8 @@
 		"af": "Verval datum:",
 		"el": "\u0397\u03bc\u03b5\u03c1\u03bf\u03bc\u03b7\u03bd\u03af\u03b1 \u03bb\u03ae\u03be\u03b7\u03c2 \u03b9\u03c3\u03c7\u03cd\u03bf\u03c2:",
 		"xh": "Umhla wpkuphelelwa:",
-		"zu": "Usuku lokuphelelwa isikhathi:"
+		"zu": "Usuku lokuphelelwa isikhathi:",
+		"ca": "Data de caducitat:"
 	},
 	"warning_header": {
 		"sl": "Pozor! Va\u0161e uporabni\u0161ko ime (NetID) %NETID% bo poteklo \u010dez %DAYSLEFT% %DAYS%!",
@@ -75,7 +79,8 @@
 		"af": "Waarskuwing, jou rekening %NETID% sal verval in %DAYSLEFT% %DAYS%!",
 		"el": "\u03a0\u03c1\u03bf\u03b5\u03b9\u03b4\u03bf\u03c0\u03bf\u03af\u03b7\u03c3\u03b7: \u039f \u03bb\u03bf\u03b3\u03b1\u03c1\u03b9\u03b1\u03c3\u03bc\u03cc\u03c2 %NETID% \u03b8\u03b1 \u03bb\u03ae\u03be\u03b5\u03b9 \u03c3\u03b5 %DAYSLEFT% %DAYS%!",
 		"zu": "Isixwayiso, i-akhawunti yakho ethi %NETID% izophelelwa isikhathi ezinsukwini ezingu-%DAYSLEFT% %DAYS%!",
-		"xh": "Isilumkiso, iakhawunti yakho %NETID% iza kuphelelwa %DAYSLEFT% %DAYS%!"
+		"xh": "Isilumkiso, iakhawunti yakho %NETID% iza kuphelelwa %DAYSLEFT% %DAYS%!",
+		"ca": "Advertència, el vostre compte %NETID% caducarà en %DAYSLEFT% %DAYS%!"
 	},
 	"warning_header_today": {
 		"sl": "Pozor! Va\u0161e uporabni\u0161ko ime (NetID) %NETID% pote\u010de danes!",
@@ -90,7 +95,8 @@
 		"af": "Waarskuwing, jou rekening %NETID% verval vandag!",
 		"el": "\u03a0\u03c1\u03bf\u03b5\u03b9\u03b4\u03bf\u03c0\u03bf\u03af\u03b7\u03c3\u03b7: \u039f \u03bb\u03bf\u03b3\u03b1\u03c1\u03b9\u03b1\u03c3\u03bc\u03cc\u03c2 %NETID% \u03bb\u03ae\u03b3\u03b5\u03b9 \u03c3\u03ae\u03bc\u03b5\u03c1\u03b1!",
 		"zu": "Isixwayiso, i-akhawunti yakho ethi %NETID% izophelelwa isikhathi namuhla!",
-		"xh": "Isilumkiso, iakhawunti yakho %NETID% iza kuphelelwa namhlanje!"
+		"xh": "Isilumkiso, iakhawunti yakho %NETID% iza kuphelelwa namhlanje!",
+		"ca": "Advertència, el vostre compte %NETID% caducarà avui!"
 	},
 	"warning": {
 		"sl": "Pozor! Va\u0161e uporabni\u0161ko ime (NetID) %NETID% bo poteklo \u010dez %DAYSLEFT% %DAYS%!",
@@ -105,7 +111,8 @@
 		"af": "Waarskuwing, jou rekening %NETID% sal verval in %DAYSLEFT% %DAYS%!",
 		"el": "\u03a0\u03c1\u03bf\u03b5\u03b9\u03b4\u03bf\u03c0\u03bf\u03af\u03b7\u03c3\u03b7: \u039f \u03bb\u03bf\u03b3\u03b1\u03c1\u03b9\u03b1\u03c3\u03bc\u03cc\u03c2 %NETID% \u03b8\u03b1 \u03bb\u03ae\u03be\u03b5\u03b9 \u03c3\u03b5 %DAYSLEFT% %DAYS%!",
 		"zu": "Isixwayiso, i-akhawunti yakho ethi %NETID% izophelelwa isikhathi ezinsukwini ezingu-%DAYSLEFT% %DAYS%!",
-		"xh": "Isilumkiso, iakhawunti yakho %NETID% iza kuphelelwa %DAYSLEFT% %DAYS%!"
+		"xh": "Isilumkiso, iakhawunti yakho %NETID% iza kuphelelwa %DAYSLEFT% %DAYS%!",
+		"ca": "Advertència, el vostre compte %NETID% caducarà en %DAYSLEFT% %DAYS%!"
 	},
 	"warning_today": {
 		"sl": "Pozor! Va\u0161e uporabni\u0161ko ime (NetID) %NETID% pote\u010de danes!",
@@ -120,7 +127,8 @@
 		"af": "Waarskuwing, jou rekening %NETID% verval vandag!",
 		"el": "\u03a0\u03c1\u03bf\u03b5\u03b9\u03b4\u03bf\u03c0\u03bf\u03af\u03b7\u03c3\u03b7: \u039f \u03bb\u03bf\u03b3\u03b1\u03c1\u03b9\u03b1\u03c3\u03bc\u03cc\u03c2 %NETID% \u03bb\u03ae\u03b3\u03b5\u03b9 \u03c3\u03ae\u03bc\u03b5\u03c1\u03b1!",
 		"xh": "Isilumkiso, iakhawunti yakho %NETID% iza kuphelelwa namhlanje!",
-		"zu": "Isixwayiso, i-akhawunti yakho ethi %NETID% izophelelwa isikhathi namuhla!"
+		"zu": "Isixwayiso, i-akhawunti yakho ethi %NETID% izophelelwa isikhathi namuhla!",
+		"ca": "Advertència, el vostre compte %NETID% caducarà avui!"
 	},
 	"day": {
 		"sl": "dan",
@@ -135,7 +143,8 @@
 		"af": "dag",
 		"el": "\u03b7\u03bc\u03ad\u03c1\u03b1",
 		"xh": "usuku",
-		"zu": "usuku"
+		"zu": "usuku",
+		"ca": "dia"
 	},
 	"days": {
 		"sl": "dni",
@@ -150,7 +159,8 @@
 		"af": "dae",
 		"el": "\u03b7\u03bc\u03ad\u03c1\u03b5\u03c2",
 		"zu": "izinsuku",
-		"xh": "iintsuku"
+		"xh": "iintsuku",
+		"ca": "dies"
 	},
 	"btn_continue": {
 		"sl": "Zavedam se tega, nadaljuj...",
@@ -166,6 +176,7 @@
 		"af": "Ek is bewus hiervan, gaan voort...",
 		"el": "\u0395\u03af\u03bc\u03b1\u03b9 \u03b5\u03bd\u03ae\u03bc\u03b5\u03c1\u03bf\u03c2 - \u03c3\u03c5\u03bd\u03ad\u03c7\u03b5\u03b9\u03b1",
 		"xh": "Ndiyakuqonda oku, qhubeka...",
-		"zu": "Ngiyakwazi lokhu, qhubeka..."
+		"zu": "Ngiyakwazi lokhu, qhubeka...",
+		"ca": "Sóc conscient d'això, continua..."
 	}
 }

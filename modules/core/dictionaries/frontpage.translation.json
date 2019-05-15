@@ -32,7 +32,8 @@
 		"sr": "<strong>\u010cestitamo<\/strong>, uspe\u0161no ste instalirali SimpleSAMLphp. Ovo je po\u010detna stranica na kojoj mo\u017eete prona\u0107i primere, dijagnostiku, metapodatke i linkove na relevantnu dokumentaciju.",
 		"ro": "<strong>Felciit\u0103ri<\/strong>, a\u021bi instalat cu succes SimpleSAMLphp. Aceasta este pagina de start unde g\u0103si\u021bi link-uri c\u0103tre exemple, diagnostic\u0103ri, metadate, documenta\u021bie.",
 		"eu": "<strong>&iexcl;Zorionak!<\/strong> SimpleSAMLphp zuzen instalatu duzu. Hau instalazioaren hasiera orria da, hemen, aurkituko dituzu loturak froga, metadatu edo dokumentu garrantzitsuetan sartzeko.",
-		"el": "<strong>\u03a3\u03c5\u03b3\u03c7\u03b1\u03c1\u03b7\u03c4\u03ae\u03c1\u03b9\u03b1<\/strong>, \u03ad\u03c7\u03b5\u03c4\u03b5 \u03b5\u03b3\u03ba\u03b1\u03c4\u03b1\u03c3\u03c4\u03ae\u03c3\u03b5\u03b9 \u03bc\u03b5 \u03b5\u03c0\u03b9\u03c4\u03c5\u03c7\u03af\u03b1 \u03c4\u03bf SimpleSAMLphp. \u0391\u03c5\u03c4\u03ae \u03b5\u03af\u03bd\u03b1\u03b9 \u03b7 \u03b1\u03c1\u03c7\u03b9\u03ba\u03ae \u03c3\u03b5\u03bb\u03af\u03b4\u03b1 \u03c4\u03b7\u03c2 \u03b5\u03b3\u03ba\u03b1\u03c4\u03ac\u03c3\u03c4\u03b1\u03c3\u03ae\u03c2 \u03c3\u03b1\u03c2, \u03cc\u03c0\u03bf\u03c5 \u03b8\u03b1 \u03b2\u03c1\u03b5\u03af\u03c4\u03b5 \u03c3\u03c5\u03bd\u03b4\u03ad\u03c3\u03bc\u03bf\u03c5\u03c2 \u03c3\u03b5 \u03b4\u03b9\u03b1\u03b3\u03bd\u03c9\u03c3\u03c4\u03b9\u03ba\u03ac\u002c \u03bc\u03b5\u03c4\u03b1\u03b4\u03b5\u03b4\u03bf\u03bc\u03ad\u03bd\u03b1\u002c \u03c0\u03b1\u03c1\u03b1\u03b4\u03b5\u03af\u03b3\u03bc\u03b1\u03c4\u03b1 \u03c1\u03c5\u03b8\u03bc\u03af\u03c3\u03b5\u03c9\u03bd \u03b3\u03b9\u03b1 \u03b4\u03bf\u03ba\u03b9\u03bc\u03ae\u002c \u03ba\u03b1\u03b8\u03ce\u03c2 \u03ba\u03b1\u03b9 \u03c4\u03b7 \u03c3\u03c7\u03b5\u03c4\u03b9\u03ba\u03ae \u03c4\u03b5\u03ba\u03bc\u03b7\u03c1\u03af\u03c9\u03c3\u03b7."
+		"el": "<strong>\u03a3\u03c5\u03b3\u03c7\u03b1\u03c1\u03b7\u03c4\u03ae\u03c1\u03b9\u03b1<\/strong>, \u03ad\u03c7\u03b5\u03c4\u03b5 \u03b5\u03b3\u03ba\u03b1\u03c4\u03b1\u03c3\u03c4\u03ae\u03c3\u03b5\u03b9 \u03bc\u03b5 \u03b5\u03c0\u03b9\u03c4\u03c5\u03c7\u03af\u03b1 \u03c4\u03bf SimpleSAMLphp. \u0391\u03c5\u03c4\u03ae \u03b5\u03af\u03bd\u03b1\u03b9 \u03b7 \u03b1\u03c1\u03c7\u03b9\u03ba\u03ae \u03c3\u03b5\u03bb\u03af\u03b4\u03b1 \u03c4\u03b7\u03c2 \u03b5\u03b3\u03ba\u03b1\u03c4\u03ac\u03c3\u03c4\u03b1\u03c3\u03ae\u03c2 \u03c3\u03b1\u03c2, \u03cc\u03c0\u03bf\u03c5 \u03b8\u03b1 \u03b2\u03c1\u03b5\u03af\u03c4\u03b5 \u03c3\u03c5\u03bd\u03b4\u03ad\u03c3\u03bc\u03bf\u03c5\u03c2 \u03c3\u03b5 \u03b4\u03b9\u03b1\u03b3\u03bd\u03c9\u03c3\u03c4\u03b9\u03ba\u03ac\u002c \u03bc\u03b5\u03c4\u03b1\u03b4\u03b5\u03b4\u03bf\u03bc\u03ad\u03bd\u03b1\u002c \u03c0\u03b1\u03c1\u03b1\u03b4\u03b5\u03af\u03b3\u03bc\u03b1\u03c4\u03b1 \u03c1\u03c5\u03b8\u03bc\u03af\u03c3\u03b5\u03c9\u03bd \u03b3\u03b9\u03b1 \u03b4\u03bf\u03ba\u03b9\u03bc\u03ae\u002c \u03ba\u03b1\u03b8\u03ce\u03c2 \u03ba\u03b1\u03b9 \u03c4\u03b7 \u03c3\u03c7\u03b5\u03c4\u03b9\u03ba\u03ae \u03c4\u03b5\u03ba\u03bc\u03b7\u03c1\u03af\u03c9\u03c3\u03b7.",
+		"ca": "<strong>Felicitats<\/strong>, heu instal·lat correctament SimpleSAMLphp. Aquesta és la pàgina d'inici de la vostra instal·lació, on trobareu enllaços per provar exemples, diagnòstics, metadades i fins i tot enllaços a la documentació rellevant."
 	},
 	"useful_links_header": {
 		"no": "Nyttige lenker for denne installasjonen",
@@ -67,7 +68,8 @@
 		"lv": "Der\u012bgas saites instal\u0101cijai",
 		"sr": "Korisni linkovi",
 		"ro": "Link-uri utile pentru instalare",
-		"el": "\u03a7\u03c1\u03ae\u03c3\u03b9\u03bc\u03bf\u03b9 \u03c3\u03cd\u03bd\u03b4\u03b5\u03c3\u03bc\u03bf\u03b9 \u03b3\u03b9\u03b1 \u03c4\u03b7\u03bd \u03b5\u03b3\u03ba\u03b1\u03c4\u03ac\u03c3\u03c4\u03b1\u03c3\u03ae \u03c3\u03b1\u03c2"
+		"el": "\u03a7\u03c1\u03ae\u03c3\u03b9\u03bc\u03bf\u03b9 \u03c3\u03cd\u03bd\u03b4\u03b5\u03c3\u03bc\u03bf\u03b9 \u03b3\u03b9\u03b1 \u03c4\u03b7\u03bd \u03b5\u03b3\u03ba\u03b1\u03c4\u03ac\u03c3\u03c4\u03b1\u03c3\u03ae \u03c3\u03b1\u03c2",
+		"ca": "Enllaços útils per a la vostra instal·lació"
 	},
 	"metadata_header": {
 		"no": "Metadata",
@@ -102,7 +104,8 @@
 		"lv": "Metadati",
 		"sr": "Medapodaci",
 		"ro": "Metadate",
-		"el": "\u039c\u03b5\u03c4\u03b1\u03b4\u03b5\u03b4\u03bf\u03bc\u03ad\u03bd\u03b1"
+		"el": "\u039c\u03b5\u03c4\u03b1\u03b4\u03b5\u03b4\u03bf\u03bc\u03ad\u03bd\u03b1",
+		"ca": "Metadades"
 	},
 	"doc_header": {
 		"no": "Dokumentasjon",
@@ -137,7 +140,8 @@
 		"lv": "Dokument\u0101cija",
 		"sr": "Dokumentacija",
 		"ro": "Documenta\u021bie",
-		"el": "\u03a4\u03b5\u03ba\u03bc\u03b7\u03c1\u03af\u03c9\u03c3\u03b7"
+		"el": "\u03a4\u03b5\u03ba\u03bc\u03b7\u03c1\u03af\u03c9\u03c3\u03b7",
+		"ca": "Documentació"
 	},
 	"checkphp": {
 		"no": "Sjekker din PHP installasjon",
@@ -172,7 +176,8 @@
 		"lv": "P\u0101rbauda J\u016bsu PHP instal\u0101ciju",
 		"sr": "Provera va\u0161e PHP instalacije",
 		"ro": "Verificarea instal\u0103rii PHP",
-		"el": "\u0388\u03bb\u03b5\u03b3\u03c7\u03bf\u03c2 \u03b5\u03b3\u03ba\u03b1\u03c4\u03ac\u03c3\u03c4\u03b1\u03c3\u03b7\u03c2 PHP"
+		"el": "\u0388\u03bb\u03b5\u03b3\u03c7\u03bf\u03c2 \u03b5\u03b3\u03ba\u03b1\u03c4\u03ac\u03c3\u03c4\u03b1\u03c3\u03b7\u03c2 PHP",
+		"ca": "Comprovant la vostra instal·lació de PHP"
 	},
 	"required": {
 		"no": "P\u00e5krevd",
@@ -207,7 +212,8 @@
 		"id": "Diperlukan",
 		"sr": "Obavezno",
 		"ro": "Necesar",
-		"el": "\u0391\u03c0\u03b1\u03b9\u03c4\u03b5\u03af\u03c4\u03b1\u03b9"
+		"el": "\u0391\u03c0\u03b1\u03b9\u03c4\u03b5\u03af\u03c4\u03b1\u03b9",
+		"ca": "Es requereix"
 	},
 	"required_ldap": {
 		"no": "P\u00e5krevd for LDAP",
@@ -242,7 +248,8 @@
 		"id": "Diperlukan untuk LDAP",
 		"sr": "Obavezno za LDAP",
 		"ro": "Necesar pentru LDAP",
-		"el": "\u0391\u03c0\u03b1\u03b9\u03c4\u03b5\u03af\u03c4\u03b1\u03b9 \u03b3\u03b9\u03b1 \u03c5\u03c0\u03bf\u03c3\u03c4\u03ae\u03c1\u03b9\u03be\u03b7 LDAP"
+		"el": "\u0391\u03c0\u03b1\u03b9\u03c4\u03b5\u03af\u03c4\u03b1\u03b9 \u03b3\u03b9\u03b1 \u03c5\u03c0\u03bf\u03c3\u03c4\u03ae\u03c1\u03b9\u03be\u03b7 LDAP",
+		"ca": "Es requereix per LDAP"
 	},
 	"required_radius": {
 		"no": "P\u00e5krevd for Radius",
@@ -277,7 +284,8 @@
 		"id": "Diperlukan untuk Radius",
 		"sr": "Obavezno za Radius",
 		"ro": "Necesar pentru RADIUS",
-		"el": "\u0391\u03c0\u03b1\u03b9\u03c4\u03b5\u03af\u03c4\u03b1\u03b9 \u03b3\u03b9\u03b1 \u03c5\u03c0\u03bf\u03c3\u03c4\u03ae\u03c1\u03b9\u03be\u03b7 RADIUS"
+		"el": "\u0391\u03c0\u03b1\u03b9\u03c4\u03b5\u03af\u03c4\u03b1\u03b9 \u03b3\u03b9\u03b1 \u03c5\u03c0\u03bf\u03c3\u03c4\u03ae\u03c1\u03b9\u03be\u03b7 RADIUS",
+		"ca": "Es requereix per a Radius"
 	},
 	"optional": {
 		"no": "Valgfritt",
@@ -312,7 +320,8 @@
 		"sr": "Opciono",
 		"ro": "Op\u021bional",
 		"eu": "Hautazkoa",
-		"el": "\u03a0\u03c1\u03bf\u03b1\u03b9\u03c1\u03b5\u03c4\u03b9\u03ba\u03cc"
+		"el": "\u03a0\u03c1\u03bf\u03b1\u03b9\u03c1\u03b5\u03c4\u03b9\u03ba\u03cc",
+		"ca": "Opcional"
 	},
 	"recommended": {
 		"no": "Anbefalt",
@@ -347,7 +356,8 @@
 		"sr": "Preporu\u010deno",
 		"ro": "Recomandat",
 		"eu": "Gomendatua",
-		"el": "\u03a0\u03c1\u03bf\u03c4\u03b5\u03af\u03bd\u03b5\u03c4\u03b1\u03b9"
+		"el": "\u03a0\u03c1\u03bf\u03c4\u03b5\u03af\u03bd\u03b5\u03c4\u03b1\u03b9",
+		"ca": "Recomanat"
 	},
 	"warnings": {
 		"no": "Advarsler",
@@ -382,7 +392,8 @@
 		"sr": "Upozorenja",
 		"ro": "Aten\u021bion\u0103ri",
 		"eu": "Oharrak",
-		"el": "\u03a0\u03c1\u03bf\u03b5\u03b9\u03b4\u03bf\u03c0\u03bf\u03b9\u03ae\u03c3\u03b5\u03b9\u03c2"
+		"el": "\u03a0\u03c1\u03bf\u03b5\u03b9\u03b4\u03bf\u03c0\u03bf\u03b9\u03ae\u03c3\u03b5\u03b9\u03c2",
+		"ca": "Advertències"
 	},
 	"warnings_https": {
 		"no": "<strong>Du bruker ikke HTTPS<\/strong> - kryptert kommunikasjon med brukeren. HTTP fungerer utmerket til testform\u00e5l, men  i et produksjonsmilj\u00f8 anbefales sterkt \u00e5 skru p\u00e5 sikker kommunikasjon med HTTPS. [ <a href=\"https:\/\/simplesamlphp.org\/docs\/stable\/simplesamlphp-maintenance\">Les mer i dokumentet: SimpleSAMLphp maintenance<\/a> ]",
@@ -417,7 +428,8 @@
 		"sr": "<strong>Ne koristite HTTPS<\/strong> - kriptovanu komunikaciju s korisnikom. HTTP se mo\u017ee koristiti za potrebe testiranja, ali u produkcionom okru\u017eenju trebali biste koristiti HTTPS. [ <a href=\"https:\/\/simplesamlphp.org\/docs\/stable\/simplesamlphp-maintenance\">Pro\u010ditajte vi\u0161e o SimpleSAMLphp pode\u0161avanjima<\/a> ]",
 		"ro": "<strong>Aten\u021bie, nu utiliza\u021bi HTTPS<\/strong> - comunicare criptat\u0103 cu utilizatorul. HTTP func\u021bioneaza bine pentru teste, dar \u00een produc\u021bie trebuie folosit HTTPS. [<a href=\"https:\/\/simplesamlphp.org\/docs\/stable\/simplesamlphp-maintenance\">Citi\u021bi mai multe despre \u00eentre\u021binerea SimpleSAMLphp<\/a> ]",
 		"eu": "<strong>Ez zara erabiltzen ari HTTPSak<\/strong> - erabiltzailearekin zifratutako komunikazioak. HTTP zuzen ibiltzen da ebaluaketa ingurunetan, baina ustiapenean erabili behar baduzu, HTTPS erabili beharko zenuke. [ <a href=\"https:\/\/simplesamlphp.org\/docs\/stable\/simplesamlphp-maintenance\">Irakur ezazu gehiago SimpleSAMLphp-ren mantentze-lanei buruz <\/a> ]",
-		"el": "\u0394\u03b5\u03bd \u03c7\u03c1\u03b7\u03c3\u03b9\u03bc\u03bf\u03c0\u03bf\u03b9\u03b5\u03af\u03c4\u03b5 <strong>HTTPS<\/strong> \u03b3\u03b9\u03b1 \u03ba\u03c1\u03c5\u03c0\u03c4\u03bf\u03b3\u03c1\u03b1\u03c6\u03b7\u03bc\u03ad\u03bd\u03b7 \u03b5\u03c0\u03b9\u03ba\u03bf\u03b9\u03bd\u03c9\u03bd\u03af\u03b1 \u03bc\u03b5 \u03c4\u03bf\u03bd \u03c7\u03c1\u03ae\u03c3\u03c4\u03b7. \u03a4\u03bf HTTP \u03b5\u03c0\u03b1\u03c1\u03ba\u03b5\u03af \u03b3\u03b9\u03b1 \u03b4\u03bf\u03ba\u03b9\u03bc\u03b1\u03c3\u03c4\u03b9\u03ba\u03bf\u03cd\u03c2 \u03c3\u03ba\u03bf\u03c0\u03bf\u03cd\u03c2, \u03c9\u03c3\u03c4\u03cc\u03c3\u03bf \u03c3\u03b5 \u03c0\u03b5\u03c1\u03b9\u03b2\u03ac\u03bb\u03bb\u03bf\u03bd \u03c0\u03b1\u03c1\u03b1\u03b3\u03c9\u03b3\u03ae\u03c2 \u03b8\u03b1 \u03c0\u03c1\u03ad\u03c0\u03b5\u03b9 \u03bd\u03b1 \u03c7\u03c1\u03b7\u03c3\u03b9\u03bc\u03bf\u03c0\u03bf\u03b9\u03ae\u03c3\u03b5\u03c4\u03b5 \u0048\u0054\u0054\u0050\u0053. [ <a href=\"https:\/\/simplesamlphp.org\/docs\/stable\/simplesamlphp-maintenance\">\u0394\u03b9\u03b1\u03b2\u03ac\u03c3\u03c4\u03b5 \u03c0\u03b5\u03c1\u03b9\u03c3\u03c3\u03cc\u03c4\u03b5\u03c1\u03b1...<\/a> ]"
+		"el": "\u0394\u03b5\u03bd \u03c7\u03c1\u03b7\u03c3\u03b9\u03bc\u03bf\u03c0\u03bf\u03b9\u03b5\u03af\u03c4\u03b5 <strong>HTTPS<\/strong> \u03b3\u03b9\u03b1 \u03ba\u03c1\u03c5\u03c0\u03c4\u03bf\u03b3\u03c1\u03b1\u03c6\u03b7\u03bc\u03ad\u03bd\u03b7 \u03b5\u03c0\u03b9\u03ba\u03bf\u03b9\u03bd\u03c9\u03bd\u03af\u03b1 \u03bc\u03b5 \u03c4\u03bf\u03bd \u03c7\u03c1\u03ae\u03c3\u03c4\u03b7. \u03a4\u03bf HTTP \u03b5\u03c0\u03b1\u03c1\u03ba\u03b5\u03af \u03b3\u03b9\u03b1 \u03b4\u03bf\u03ba\u03b9\u03bc\u03b1\u03c3\u03c4\u03b9\u03ba\u03bf\u03cd\u03c2 \u03c3\u03ba\u03bf\u03c0\u03bf\u03cd\u03c2, \u03c9\u03c3\u03c4\u03cc\u03c3\u03bf \u03c3\u03b5 \u03c0\u03b5\u03c1\u03b9\u03b2\u03ac\u03bb\u03bb\u03bf\u03bd \u03c0\u03b1\u03c1\u03b1\u03b3\u03c9\u03b3\u03ae\u03c2 \u03b8\u03b1 \u03c0\u03c1\u03ad\u03c0\u03b5\u03b9 \u03bd\u03b1 \u03c7\u03c1\u03b7\u03c3\u03b9\u03bc\u03bf\u03c0\u03bf\u03b9\u03ae\u03c3\u03b5\u03c4\u03b5 \u0048\u0054\u0054\u0050\u0053. [ <a href=\"https:\/\/simplesamlphp.org\/docs\/stable\/simplesamlphp-maintenance\">\u0394\u03b9\u03b1\u03b2\u03ac\u03c3\u03c4\u03b5 \u03c0\u03b5\u03c1\u03b9\u03c3\u03c3\u03cc\u03c4\u03b5\u03c1\u03b1...<\/a> ]",
+		"ca": "<strong>No utilitzeu HTTPS<\/strong> - comunicació xifrada amb l'usuari. HTTP funciona bé per a proves, però en un entorn de producció, heu d’utilitzar HTTPS. [ <a href=\"https:\/\/simplesamlphp.org\/docs\/stable\/simplesamlphp-maintenance\">Llegiu més sobre el manteniment de SimpleSAMLphp<\/a> ]"
 	},
 	"link_saml2example": {
 		"no": "SAML 2.0 SP eksempel - test innlogging med SAML 2.0 via din IdP",
@@ -452,7 +464,8 @@
 		"sr": "SAML 2.0 SP primer - testirajte autentifikaciju kroz va\u0161 Davalac Identieta",
 		"ro": "Exemplu furnizor de servicii SAML 2.0 - testarea autentific\u0103rii prin furnizorul dumneavoastr\u0103 de identitate",
 		"eu": "SPren adibidea SAML 2.0rekin - saiakera zure IdP erabiliz sartzen",
-		"el": "\u03a0\u03b1\u03c1\u03ac\u03b4\u03b5\u03b9\u03b3\u03bc\u03b1 \u03a0\u03b1\u03c1\u03cc\u03c7\u03bf\u03c5 \u03a5\u03c0\u03b7\u03c1\u03b5\u03c3\u03b9\u03ce\u03bd SAML 2.0 - \u03b4\u03bf\u03ba\u03b9\u03bc\u03ae \u03b5\u03b9\u03c3\u03cc\u03b4\u03bf\u03c5 \u03bc\u03ad\u03c3\u03c9 \u03c4\u03bf\u03c5 \u03a0\u03b1\u03c1\u03cc\u03c7\u03bf\u03c5 \u03a4\u03b1\u03c5\u03c4\u03cc\u03c4\u03b7\u03c4\u03ac\u03c2 \u03c3\u03b1\u03c2"
+		"el": "\u03a0\u03b1\u03c1\u03ac\u03b4\u03b5\u03b9\u03b3\u03bc\u03b1 \u03a0\u03b1\u03c1\u03cc\u03c7\u03bf\u03c5 \u03a5\u03c0\u03b7\u03c1\u03b5\u03c3\u03b9\u03ce\u03bd SAML 2.0 - \u03b4\u03bf\u03ba\u03b9\u03bc\u03ae \u03b5\u03b9\u03c3\u03cc\u03b4\u03bf\u03c5 \u03bc\u03ad\u03c3\u03c9 \u03c4\u03bf\u03c5 \u03a0\u03b1\u03c1\u03cc\u03c7\u03bf\u03c5 \u03a4\u03b1\u03c5\u03c4\u03cc\u03c4\u03b7\u03c4\u03ac\u03c2 \u03c3\u03b1\u03c2",
+		"ca": "Exemple de SAML 2.0 SP: proveu el registre a través del vostre IdP"
 	},
 	"link_shib13example": {
 		"no": "Shibboleth 1.3 SP eksempel - test innlogging med Shibboleth 1.3 via din IdP",
@@ -487,7 +500,8 @@
 		"sr": "Shibboleth 1.3 SP primer - testirajte autentifikaciju kroz va\u0161 Shib Davalac Servisa",
 		"ro": "Exemplu furnizor de servicii Shibboleth 1.3 - testarea autentific\u0103rii prin furnizorul dumneavoastr\u0103 de identitate Shib",
 		"eu": "SPren adibidea Shibboleth 1.3 erabiliz - saikera zure IdP Shibboleth erabiliz sartzen",
-		"el": "\u03a0\u03b1\u03c1\u03ac\u03b4\u03b5\u03b9\u03b3\u03bc\u03b1 \u03a0\u03b1\u03c1\u03cc\u03c7\u03bf\u03c5 \u03a5\u03c0\u03b7\u03c1\u03b5\u03c3\u03b9\u03ce\u03bd Shibboleth 1.3 - \u03b4\u03bf\u03ba\u03b9\u03bc\u03ae \u03b5\u03b9\u03c3\u03cc\u03b4\u03bf\u03c5 \u03bc\u03ad\u03c3\u03c9 \u03a0\u03b1\u03c1\u03cc\u03c7\u03bf\u03c5 \u03a4\u03b1\u03c5\u03c4\u03cc\u03c4\u03b7\u03c4\u03b1\u03c2 Shibboleth 1.3"
+		"el": "\u03a0\u03b1\u03c1\u03ac\u03b4\u03b5\u03b9\u03b3\u03bc\u03b1 \u03a0\u03b1\u03c1\u03cc\u03c7\u03bf\u03c5 \u03a5\u03c0\u03b7\u03c1\u03b5\u03c3\u03b9\u03ce\u03bd Shibboleth 1.3 - \u03b4\u03bf\u03ba\u03b9\u03bc\u03ae \u03b5\u03b9\u03c3\u03cc\u03b4\u03bf\u03c5 \u03bc\u03ad\u03c3\u03c9 \u03a0\u03b1\u03c1\u03cc\u03c7\u03bf\u03c5 \u03a4\u03b1\u03c5\u03c4\u03cc\u03c4\u03b7\u03c4\u03b1\u03c2 Shibboleth 1.3",
+		"ca": "Exemple de Shibboleth 1.3 SP: proveu el registre a través del vostre IdP"
 	},
 	"link_openidprovider": {
 		"no": "OpenID Provider side - Alpha versjon (testkode)",
@@ -522,7 +536,8 @@
 		"sr": "Davalac OpenID digitalnih identiteta - razvojna verzija (test)",
 		"ro": "Furnizor OpenID - versiune alpha (cod de test)",
 		"eu": "OpenID hornitzailearen gunea - Alfa bertsioa (proba kodea)",
-		"el": "\u03a3\u03b5\u03bb\u03af\u03b4\u03b1 \u03a0\u03b1\u03c1\u03cc\u03c7\u03bf\u03c5 OpenID - \u0388\u03ba\u03b4\u03bf\u03c3\u03b7 Alpha (\u03b4\u03bf\u03ba\u03b9\u03bc\u03b1\u03c3\u03c4\u03b9\u03ba\u03cc\u03c2 \u03ba\u03ce\u03b4\u03b9\u03ba\u03b1\u03c2)"
+		"el": "\u03a3\u03b5\u03bb\u03af\u03b4\u03b1 \u03a0\u03b1\u03c1\u03cc\u03c7\u03bf\u03c5 OpenID - \u0388\u03ba\u03b4\u03bf\u03c3\u03b7 Alpha (\u03b4\u03bf\u03ba\u03b9\u03bc\u03b1\u03c3\u03c4\u03b9\u03ba\u03cc\u03c2 \u03ba\u03ce\u03b4\u03b9\u03ba\u03b1\u03c2)",
+		"ca": "Lloc del proveïdor d'OpenID: versió Alpha (codi de prova)"
 	},
 	"link_diagnostics": {
 		"no": "Diagnostiser hostnavn, port og protokoll",
@@ -557,7 +572,8 @@
 		"sr": "Dijagnostika vezana za naziv servera (hostname), port i protokol ",
 		"ro": "Diagnostic despre numele de host, port \u0219i protocol",
 		"eu": "Host, ataka eta protokoloen gaineko diagnostikoa",
-		"el": "\u0394\u03b9\u03b1\u03b3\u03bd\u03c9\u03c3\u03c4\u03b9\u03ba\u03ac \u03c3\u03c7\u03b5\u03c4\u03b9\u03ba\u03ac \u03bc\u03b5 \u03c1\u03c5\u03b8\u03bc\u03af\u03c3\u03b5\u03b9\u03c2 \u03bf\u03bd\u03cc\u03bc\u03b1\u03c4\u03bf\u03c2 \u03b4\u03b9\u03b1\u03ba\u03bf\u03bc\u03b9\u03c3\u03c4\u03ae\u002c \u03b8\u03cd\u03c1\u03b1\u03c2 \u03ba\u03b1\u03b9 \u03c0\u03c1\u03c9\u03c4\u03bf\u03ba\u03cc\u03bb\u03bb\u03bf\u03c5"
+		"el": "\u0394\u03b9\u03b1\u03b3\u03bd\u03c9\u03c3\u03c4\u03b9\u03ba\u03ac \u03c3\u03c7\u03b5\u03c4\u03b9\u03ba\u03ac \u03bc\u03b5 \u03c1\u03c5\u03b8\u03bc\u03af\u03c3\u03b5\u03b9\u03c2 \u03bf\u03bd\u03cc\u03bc\u03b1\u03c4\u03bf\u03c2 \u03b4\u03b9\u03b1\u03ba\u03bf\u03bc\u03b9\u03c3\u03c4\u03ae\u002c \u03b8\u03cd\u03c1\u03b1\u03c2 \u03ba\u03b1\u03b9 \u03c0\u03c1\u03c9\u03c4\u03bf\u03ba\u03cc\u03bb\u03bb\u03bf\u03c5",
+		"ca": "Diagnòstic sobre el nom de host, el port i el protocol"
 	},
 	"link_phpinfo": {
 		"no": "PHPinfo",
@@ -592,7 +608,8 @@
 		"id": "PHP info",
 		"sr": "Informacije o PHP instalaciji",
 		"ro": "Informa\u021bii despre PHP",
-		"el": "\u03a0\u03bb\u03b7\u03c1\u03bf\u03c6\u03bf\u03c1\u03af\u03b5\u03c2 PHP"
+		"el": "\u03a0\u03bb\u03b7\u03c1\u03bf\u03c6\u03bf\u03c1\u03af\u03b5\u03c2 PHP",
+		"ca": "PHP info"
 	},
 	"link_meta_overview": {
 		"no": "Oversikt over metadata for din installasjon. Diagnostiser metadatafilene her.",
@@ -627,7 +644,8 @@
 		"sr": "Pregled metapodataka o va\u0161oj instalaciji. Proverite ispravnost sadr\u017eaja fajlova sa metapodacima.",
 		"ro": "Privire de ansamblu a metadatelor pentru instalarea dumneavoastr\u0103. Diagnostica\u021bi fi\u0219ierele cu metadate",
 		"eu": "Zure instalazioko metadatuen ikuspegi orokorra. Egiaztatu zure metadatu fitxategiak",
-		"el": "\u0395\u03c0\u03b9\u03c3\u03ba\u03cc\u03c0\u03b7\u03c3\u03b7 \u03bc\u03b5\u03c4\u03b1\u03b4\u03b5\u03b4\u03bf\u03bc\u03ad\u03bd\u03c9\u03bd \u03b3\u03b9\u03b1 \u03c4\u03b7\u03bd \u03b5\u03b3\u03ba\u03b1\u03c4\u03ac\u03c3\u03c4\u03b1\u03c3\u03ae \u03c3\u03b1\u03c2. \u0394\u03b9\u03ac\u03b3\u03bd\u03c9\u03c3\u03b7 \u03c4\u03c9\u03bd \u03b1\u03c1\u03c7\u03b5\u03af\u03c9\u03bd \u03bc\u03b5\u03c4\u03b1\u03b4\u03b5\u03b4\u03bf\u03bc\u03ad\u03bd\u03c9\u03bd \u03c3\u03b1\u03c2"
+		"el": "\u0395\u03c0\u03b9\u03c3\u03ba\u03cc\u03c0\u03b7\u03c3\u03b7 \u03bc\u03b5\u03c4\u03b1\u03b4\u03b5\u03b4\u03bf\u03bc\u03ad\u03bd\u03c9\u03bd \u03b3\u03b9\u03b1 \u03c4\u03b7\u03bd \u03b5\u03b3\u03ba\u03b1\u03c4\u03ac\u03c3\u03c4\u03b1\u03c3\u03ae \u03c3\u03b1\u03c2. \u0394\u03b9\u03ac\u03b3\u03bd\u03c9\u03c3\u03b7 \u03c4\u03c9\u03bd \u03b1\u03c1\u03c7\u03b5\u03af\u03c9\u03bd \u03bc\u03b5\u03c4\u03b1\u03b4\u03b5\u03b4\u03bf\u03bc\u03ad\u03bd\u03c9\u03bd \u03c3\u03b1\u03c2",
+		"ca": "Visió general de metadades per a la vostra instal·lació. Diagnosi els fitxers de metadades"
 	},
 	"link_meta_saml2sphosted": {
 		"no": "Hosted SAML 2.0 Service Provider Metadata (automatisk generert)",
@@ -662,7 +680,8 @@
 		"sr": "Metapodaci za lokalni SAML 2.0 Davalac Servisa (automatski generisani)",
 		"ro": "Metadate pentru furnizorul de servicii SAML 2.0 g\u0103zduit (generate automat)",
 		"eu": "SP SAML 2.0ren ostatatutako metadatuak (automatikoki sortuak)",
-		"el": "\u039c\u03b5\u03c4\u03b1\u03b4\u03b5\u03b4\u03bf\u03bc\u03ad\u03bd\u03b1 \u03c6\u03b9\u03bb\u03bf\u03be\u03b5\u03bd\u03bf\u03cd\u03bc\u03b5\u03bd\u03bf\u03c5 \u03a0\u03b1\u03c1\u03cc\u03c7\u03bf\u03c5 \u03a5\u03c0\u03b7\u03c1\u03b5\u03c3\u03b9\u03ce\u03bd SAML 2.0 (\u03c0\u03b1\u03c1\u03ac\u03b3\u03bf\u03bd\u03c4\u03b1\u03b9 \u03b1\u03c5\u03c4\u03cc\u03bc\u03b1\u03c4\u03b1)"
+		"el": "\u039c\u03b5\u03c4\u03b1\u03b4\u03b5\u03b4\u03bf\u03bc\u03ad\u03bd\u03b1 \u03c6\u03b9\u03bb\u03bf\u03be\u03b5\u03bd\u03bf\u03cd\u03bc\u03b5\u03bd\u03bf\u03c5 \u03a0\u03b1\u03c1\u03cc\u03c7\u03bf\u03c5 \u03a5\u03c0\u03b7\u03c1\u03b5\u03c3\u03b9\u03ce\u03bd SAML 2.0 (\u03c0\u03b1\u03c1\u03ac\u03b3\u03bf\u03bd\u03c4\u03b1\u03b9 \u03b1\u03c5\u03c4\u03cc\u03bc\u03b1\u03c4\u03b1)",
+		"ca": "Metadades del proveïdor de serveis SAML 2.0 allotjades (generades automàticament)"
 	},
 	"link_meta_saml2idphosted": {
 		"no": "Hosted SAML 2.0 Identity Provider Metadata (automatisk generert)",
@@ -697,7 +716,8 @@
 		"sr": "Metapodaci za lokalni SAML 2.0 Davalac Identiteta (automatski generisani) ",
 		"ro": "Metadate pentru furnizorul de identitate SAML 2.0 g\u0103zduit (generate automat)",
 		"eu": "IdP SAML 2.0ren ostatatutako metadatuak (automatikoki sortuak)",
-		"el": "\u039c\u03b5\u03c4\u03b1\u03b4\u03b5\u03b4\u03bf\u03bc\u03ad\u03bd\u03b1 \u03c6\u03b9\u03bb\u03bf\u03be\u03b5\u03bd\u03bf\u03cd\u03bc\u03b5\u03bd\u03bf\u03c5 \u03a0\u03b1\u03c1\u03cc\u03c7\u03bf\u03c5 \u03a4\u03b1\u03c5\u03c4\u03cc\u03c4\u03b7\u03c4\u03b1\u03c2 SAML 2.0 (\u03c0\u03b1\u03c1\u03ac\u03b3\u03bf\u03bd\u03c4\u03b1\u03b9 \u03b1\u03c5\u03c4\u03cc\u03bc\u03b1\u03c4\u03b1)"
+		"el": "\u039c\u03b5\u03c4\u03b1\u03b4\u03b5\u03b4\u03bf\u03bc\u03ad\u03bd\u03b1 \u03c6\u03b9\u03bb\u03bf\u03be\u03b5\u03bd\u03bf\u03cd\u03bc\u03b5\u03bd\u03bf\u03c5 \u03a0\u03b1\u03c1\u03cc\u03c7\u03bf\u03c5 \u03a4\u03b1\u03c5\u03c4\u03cc\u03c4\u03b7\u03c4\u03b1\u03c2 SAML 2.0 (\u03c0\u03b1\u03c1\u03ac\u03b3\u03bf\u03bd\u03c4\u03b1\u03b9 \u03b1\u03c5\u03c4\u03cc\u03bc\u03b1\u03c4\u03b1)",
+		"ca": "Metadades de proveïdors d'identitat SAML 2.0 allotjades (generats automàticament)"
 	},
 	"link_meta_shib13sphosted": {
 		"no": "Hosted Shibboleth 1.3 Service Provider Metadata (automatisk generert)",
@@ -732,7 +752,8 @@
 		"sr": "Metapodaci za lokalni Shibboleth 1.3 Davalac Servisa (automatski generisani)",
 		"ro": "Metadate pentru furnizorul de servicii Shibboleth 1.3 g\u0103zduit (generate automat)",
 		"eu": "SP Shibooleth 1.3ren ostatatutako metadatuak (automatikoki sortuak)",
-		"el": "\u039c\u03b5\u03c4\u03b1\u03b4\u03b5\u03b4\u03bf\u03bc\u03ad\u03bd\u03b1 \u03c6\u03b9\u03bb\u03bf\u03be\u03b5\u03bd\u03bf\u03cd\u03bc\u03b5\u03bd\u03bf\u03c5 \u03a0\u03b1\u03c1\u03cc\u03c7\u03bf\u03c5 \u03a5\u03c0\u03b7\u03c1\u03b5\u03c3\u03b9\u03ce\u03bd Shibboleth 1.3 (\u03c0\u03b1\u03c1\u03ac\u03b3\u03bf\u03bd\u03c4\u03b1\u03b9 \u03b1\u03c5\u03c4\u03cc\u03bc\u03b1\u03c4\u03b1)"
+		"el": "\u039c\u03b5\u03c4\u03b1\u03b4\u03b5\u03b4\u03bf\u03bc\u03ad\u03bd\u03b1 \u03c6\u03b9\u03bb\u03bf\u03be\u03b5\u03bd\u03bf\u03cd\u03bc\u03b5\u03bd\u03bf\u03c5 \u03a0\u03b1\u03c1\u03cc\u03c7\u03bf\u03c5 \u03a5\u03c0\u03b7\u03c1\u03b5\u03c3\u03b9\u03ce\u03bd Shibboleth 1.3 (\u03c0\u03b1\u03c1\u03ac\u03b3\u03bf\u03bd\u03c4\u03b1\u03b9 \u03b1\u03c5\u03c4\u03cc\u03bc\u03b1\u03c4\u03b1)",
+		"ca": "Metadades del proveïdor de serveis Shibboleth 1.3 allotjades (generades automàticament)"
 	},
 	"link_meta_shib13idphosted": {
 		"no": "Hosted Shibboleth 1.3 Identity Provider Metadata (automatisk generert)",
@@ -767,7 +788,8 @@
 		"sr": "Metapodaci za lokalni Shibboleth 1.3 Davalac Identiteta (automatski generisani)",
 		"ro": "Metadate pentru furnizorul de identitate Shibboleth 1.3 g\u0103zduit (generate automat)",
 		"eu": "IdP Shibooleth 1.3ren ostatatutako metadatuak (automatikoki sortuak)",
-		"el": "\u039c\u03b5\u03c4\u03b1\u03b4\u03b5\u03b4\u03bf\u03bc\u03ad\u03bd\u03b1 \u03c6\u03b9\u03bb\u03bf\u03be\u03b5\u03bd\u03bf\u03cd\u03bc\u03b5\u03bd\u03bf\u03c5 \u03a0\u03b1\u03c1\u03cc\u03c7\u03bf\u03c5 \u03a4\u03b1\u03c5\u03c4\u03cc\u03c4\u03b7\u03c4\u03b1\u03c2 Shibboleth 1.3 (\u03c0\u03b1\u03c1\u03ac\u03b3\u03bf\u03bd\u03c4\u03b1\u03b9 \u03b1\u03c5\u03c4\u03cc\u03bc\u03b1\u03c4\u03b1)"
+		"el": "\u039c\u03b5\u03c4\u03b1\u03b4\u03b5\u03b4\u03bf\u03bc\u03ad\u03bd\u03b1 \u03c6\u03b9\u03bb\u03bf\u03be\u03b5\u03bd\u03bf\u03cd\u03bc\u03b5\u03bd\u03bf\u03c5 \u03a0\u03b1\u03c1\u03cc\u03c7\u03bf\u03c5 \u03a4\u03b1\u03c5\u03c4\u03cc\u03c4\u03b7\u03c4\u03b1\u03c2 Shibboleth 1.3 (\u03c0\u03b1\u03c1\u03ac\u03b3\u03bf\u03bd\u03c4\u03b1\u03b9 \u03b1\u03c5\u03c4\u03cc\u03bc\u03b1\u03c4\u03b1)",
+		"ca": "Metadades del proveïdor d’identitat Shibboleth 1.3 allotjades (generades automàticament)"
 	},
 	"link_xmlconvert": {
 		"no": "XML til SimpleSAMLphp metadata-oversetter",
@@ -802,7 +824,8 @@
 		"sr": "Pretvaranje metapodataka iz XML formata u SimpleSAMLphp format",
 		"ro": "Convertor metadate din XML \u00een SimpleSAMLphp",
 		"eu": "XML-tik SimpleSAMLphp metadatuetara bihurgailua",
-		"el": "\u039c\u03b5\u03c4\u03b1\u03c4\u03c1\u03bf\u03c0\u03ae \u03bc\u03b5\u03c4\u03b1\u03b4\u03b5\u03b4\u03bf\u03bc\u03ad\u03bd\u03c9\u03bd \u03b1\u03c0\u03cc XML \u03c3\u03b5 \u03c1\u03c5\u03b8\u03bc\u03af\u03c3\u03b5\u03b9\u03c2 SimpleSAMLphp"
+		"el": "\u039c\u03b5\u03c4\u03b1\u03c4\u03c1\u03bf\u03c0\u03ae \u03bc\u03b5\u03c4\u03b1\u03b4\u03b5\u03b4\u03bf\u03bc\u03ad\u03bd\u03c9\u03bd \u03b1\u03c0\u03cc XML \u03c3\u03b5 \u03c1\u03c5\u03b8\u03bc\u03af\u03c3\u03b5\u03b9\u03c2 SimpleSAMLphp",
+		"ca": "Convertidor d'XML a metadades de SimpleSAMLphp"
 	},
 	"link_doc_install": {
 		"no": "Installerer SimpleSAMLphp",
@@ -837,7 +860,8 @@
 		"id": "Instalasi SimpleSAMLphp",
 		"sr": "Instalacija SimpleSAMLphp-a",
 		"ro": "Se instaleaz\u0103 SimpleSAMLphp",
-		"el": "\u0395\u03b3\u03ba\u03b1\u03c4\u03ac\u03c3\u03c4\u03b1\u03c3\u03b7 SimpleSAMLphp"
+		"el": "\u0395\u03b3\u03ba\u03b1\u03c4\u03ac\u03c3\u03c4\u03b1\u03c3\u03b7 SimpleSAMLphp",
+		"ca": "Instal·lació de SimpleSAMLphp"
 	},
 	"link_doc_sp": {
 		"no": "Bruk SimpleSAMLphp som Service Provider",
@@ -872,7 +896,8 @@
 		"id": "Menggunakan SimpleSAMLphp sebagai Service Provider",
 		"sr": "Kako iskoristiti SimpleSAMLphp kao autentifikacioni modul kod Davaoca Servisa",
 		"ro": "Utilizarea SimpleSAMLphp ca furnizor de servicii",
-		"el": "\u03a7\u03c1\u03ae\u03c3\u03b7 SimpleSAMLphp \u03b3\u03b9\u03b1 \u03a0\u03b1\u03c1\u03cc\u03c7\u03bf\u03c5\u03c2 \u03a5\u03c0\u03b7\u03c1\u03b5\u03c3\u03b9\u03ce\u03bd"
+		"el": "\u03a7\u03c1\u03ae\u03c3\u03b7 SimpleSAMLphp \u03b3\u03b9\u03b1 \u03a0\u03b1\u03c1\u03cc\u03c7\u03bf\u03c5\u03c2 \u03a5\u03c0\u03b7\u03c1\u03b5\u03c3\u03b9\u03ce\u03bd",
+		"ca": "Ús de SimpleSAMLphp com a proveïdor de serveis"
 	},
 	"link_doc_idp": {
 		"no": "Bruk SimpleSAMLphp som identitetstjeneste",
@@ -907,7 +932,8 @@
 		"id": "Menggunakan SimpleSAMLphp sebagai Identity Provider",
 		"sr": "Kako iskoristiti SimpleSAMLphp za implementaciju Davaoca Identiteta",
 		"ro": "Utilizarea SimpleSAMLphp ca furnizor de identitate",
-		"el": "\u03a7\u03c1\u03ae\u03c3\u03b7 SimpleSAMLphp \u03b3\u03b9\u03b1 \u03a0\u03b1\u03c1\u03cc\u03c7\u03bf\u03c5\u03c2 \u03a4\u03b1\u03c5\u03c4\u03cc\u03c4\u03b7\u03c4\u03b1\u03c2"
+		"el": "\u03a7\u03c1\u03ae\u03c3\u03b7 SimpleSAMLphp \u03b3\u03b9\u03b1 \u03a0\u03b1\u03c1\u03cc\u03c7\u03bf\u03c5\u03c2 \u03a4\u03b1\u03c5\u03c4\u03cc\u03c4\u03b7\u03c4\u03b1\u03c2",
+		"ca": "Ús de SimpleSAMLphp com a proveïdor d’identitat"
 	},
 	"link_doc_shibsp": {
 		"no": "Konfigurer Shibboleth 1.3 SP for \u00e5 fungere sammen med SimpleSAMLphp identitetstjeneste",
@@ -942,7 +968,8 @@
 		"id": "Mengkonfigurasi Shibboleth 1.3 SP untuk bekerja dengan SimpleSAMLphp IdP",
 		"sr": "Podesite Shibboleth 1.3 SP za rad sa SimpleSAMLphp Davaocem Identeteta",
 		"ro": "Configurare furnizor de servicii Shibboleth 1.3 care s\u0103 func\u021bioneze cu furnizor de identitate SimpleSAMLphp",
-		"el": "\u03a1\u03c5\u03b8\u03bc\u03af\u03c3\u03b5\u03b9\u03c2 \u03a0\u03b1\u03c1\u03cc\u03c7\u03bf\u03c5 \u03a5\u03c0\u03b7\u03c1\u03b5\u03c3\u03b9\u03ce\u03bd Shibboleth 1.3 \u0053\u0068\u0069\u0062\u0062\u006f\u006c\u0065\u0074\u0068 \u0031\u002e\u0033 \u03b3\u03b9\u03b1 \u03c3\u03c5\u03bc\u03b2\u03b1\u03c4\u03cc\u03c4\u03b7\u03c4\u03b1 \u03bc\u03b5 \u03a0\u03ac\u03c1\u03bf\u03c7\u03bf \u03a4\u03b1\u03c5\u03c4\u03cc\u03c4\u03b7\u03c4\u03b1\u03c2 SimpleSAMLphp"
+		"el": "\u03a1\u03c5\u03b8\u03bc\u03af\u03c3\u03b5\u03b9\u03c2 \u03a0\u03b1\u03c1\u03cc\u03c7\u03bf\u03c5 \u03a5\u03c0\u03b7\u03c1\u03b5\u03c3\u03b9\u03ce\u03bd Shibboleth 1.3 \u0053\u0068\u0069\u0062\u0062\u006f\u006c\u0065\u0074\u0068 \u0031\u002e\u0033 \u03b3\u03b9\u03b1 \u03c3\u03c5\u03bc\u03b2\u03b1\u03c4\u03cc\u03c4\u03b7\u03c4\u03b1 \u03bc\u03b5 \u03a0\u03ac\u03c1\u03bf\u03c7\u03bf \u03a4\u03b1\u03c5\u03c4\u03cc\u03c4\u03b7\u03c4\u03b1\u03c2 SimpleSAMLphp",
+		"ca": "Configureu Shibboleth 1.3 SP per treballar amb SimpleSAMLphp IdP"
 	},
 	"link_doc_googleapps": {
 		"no": "SimpleSAMLphp som identitetstjeneste for Google Apps for Education",
@@ -977,7 +1004,8 @@
 		"id": "SimpleSAMLphp sebagai IdP untuk Google Apps for Education",
 		"sr": "SimpleSAMLphp kao autentifikacioni servis za Google Apps for Education",
 		"ro": "Furnizor de identitate cu SimpleSAMLphp pentru GoogleApps \u00een educa\u021bie",
-		"el": "\u03a4\u03bf SimpleSAMLphp \u03c9\u03c2 \u03a0\u03ac\u03c1\u03bf\u03c7\u03bf\u03c2 \u03a4\u03b1\u03c5\u03c4\u03cc\u03c4\u03b7\u03c4\u03b1\u03c2 \u03b3\u03b9\u03b1 Google Apps"
+		"el": "\u03a4\u03bf SimpleSAMLphp \u03c9\u03c2 \u03a0\u03ac\u03c1\u03bf\u03c7\u03bf\u03c2 \u03a4\u03b1\u03c5\u03c4\u03cc\u03c4\u03b7\u03c4\u03b1\u03c2 \u03b3\u03b9\u03b1 Google Apps",
+		"ca": "SimpleSAMLphp com a IdP per a Google Apps for Education"
 	},
 	"link_doc_advanced": {
 		"no": "SimpleSAMLphp avansert funksjonalitet",
@@ -1012,7 +1040,8 @@
 		"id": "Fitur Lanjutan SimpleSAMLphp",
 		"sr": "Napredne mogu\u0107nosti SimpleSAMLphp-a",
 		"ro": "Caracteristici avansate ale SimpleSAMLphp",
-		"el": "\u03a0\u03c1\u03bf\u03b7\u03b3\u03bc\u03ad\u03bd\u03b1 \u03c7\u03b1\u03c1\u03b1\u03ba\u03c4\u03b7\u03c1\u03b9\u03c3\u03c4\u03b9\u03ba\u03ac \u03c4\u03bf\u03c5 SimpleSAMLphp"
+		"el": "\u03a0\u03c1\u03bf\u03b7\u03b3\u03bc\u03ad\u03bd\u03b1 \u03c7\u03b1\u03c1\u03b1\u03ba\u03c4\u03b7\u03c1\u03b9\u03c3\u03c4\u03b9\u03ba\u03ac \u03c4\u03bf\u03c5 SimpleSAMLphp",
+		"ca": "SimpleSAMLphp Funcions avançades"
 	},
 	"link_doc_maintenance": {
 		"no": "SimpleSAMLphp vedlikehold og konfigurasjon",
@@ -1047,7 +1076,8 @@
 		"id": "Konfigurasi dan Pemeliharaan SimpleSAMLphp",
 		"sr": "Odr\u017eavanje i pode\u0161avanja SimpleSAMLphp-a",
 		"ro": "\u00centre\u021binerea \u0219i configurarea SimpleSAMLphp",
-		"el": "\u03a3\u03c5\u03bd\u03c4\u03ae\u03c1\u03b7\u03c3\u03b7 \u03ba\u03b1\u03b9 \u03b4\u03b9\u03b1\u03bc\u03cc\u03c1\u03c6\u03c9\u03c3\u03b7 \u03c4\u03bf\u03c5 SimpleSAMLphp"
+		"el": "\u03a3\u03c5\u03bd\u03c4\u03ae\u03c1\u03b7\u03c3\u03b7 \u03ba\u03b1\u03b9 \u03b4\u03b9\u03b1\u03bc\u03cc\u03c1\u03c6\u03c9\u03c3\u03b7 \u03c4\u03bf\u03c5 SimpleSAMLphp",
+		"ca": "SimpleSAMLphp Manteniment i configuració"
 	},
 	"link_configcheck": {
 		"no": "Sjekk av SimpleSAMLphp konfigurasjonsfiler",
@@ -1081,7 +1111,8 @@
 		"id": "Pemeriksaan konfigurasi SimpleSAMLphp",
 		"sr": "Provera SimpleSAMLphp pode\u0161avanja",
 		"ro": "Verificarea configura\u021biei SimpleSAMLphp",
-		"el": "\u0388\u03bb\u03b5\u03b3\u03c7\u03bf\u03c2 \u03c1\u03c5\u03b8\u03bc\u03af\u03c3\u03b5\u03c9\u03bd SimpleSAMLphp"
+		"el": "\u0388\u03bb\u03b5\u03b3\u03c7\u03bf\u03c2 \u03c1\u03c5\u03b8\u03bc\u03af\u03c3\u03b5\u03c9\u03bd SimpleSAMLphp",
+		"ca": "Verificació de configuració SimpleSAMLphp"
 	},
 	"link_cleardiscochoices": {
 		"no": "Slett mitt valg av IdP i IdP discovery tjenestene",
@@ -1115,7 +1146,8 @@
 		"sr": "Poni\u0161ti moj izbor za Davaoca Identiteta u servisima za pronala\u017eenje Davaoca Identiteta ",
 		"ro": "\u0218terge furnizorii de identitate ale\u0219i de mine din serviciile de c\u0103utare a furnizorilor de identitate",
 		"eu": "Nire IdP aukerak ezabatu IdP aurkikuntza zerbitzuetan",
-		"el": "\u0394\u03b9\u03b1\u03b3\u03c1\u03b1\u03c6\u03ae \u03b1\u03c0\u03bf\u03b8\u03b7\u03ba\u03b5\u03c5\u03bc\u03ad\u03bd\u03b7\u03c2 \u03b5\u03c0\u03b9\u03bb\u03bf\u03b3\u03ae\u03c2 \u03a0\u03b1\u03c1\u03cc\u03c7\u03bf\u03c5 \u03a4\u03b1\u03c5\u03c4\u03cc\u03c4\u03b7\u03c4\u03b1\u03c2"
+		"el": "\u0394\u03b9\u03b1\u03b3\u03c1\u03b1\u03c6\u03ae \u03b1\u03c0\u03bf\u03b8\u03b7\u03ba\u03b5\u03c5\u03bc\u03ad\u03bd\u03b7\u03c2 \u03b5\u03c0\u03b9\u03bb\u03bf\u03b3\u03ae\u03c2 \u03a0\u03b1\u03c1\u03cc\u03c7\u03bf\u03c5 \u03a4\u03b1\u03c5\u03c4\u03cc\u03c4\u03b7\u03c4\u03b1\u03c2",
+		"ca": "Elimineu les meves opcions d'IdP als serveis de descoberta d'IdP"
 	},
 	"welcome": {
 		"no": "Velkommen",
@@ -1149,7 +1181,8 @@
 		"id": "Selamat Datang",
 		"sr": "Dobrodo\u0161li",
 		"ro": "Bine a\u021bi venit",
-		"el": "\u039a\u03b1\u03bb\u03ce\u03c2 \u03bf\u03c1\u03af\u03c3\u03b1\u03c4\u03b5"
+		"el": "\u039a\u03b1\u03bb\u03ce\u03c2 \u03bf\u03c1\u03af\u03c3\u03b1\u03c4\u03b5",
+		"ca": "Benvingut"
 	},
 	"configuration": {
 		"no": "Konfigurasjon",
@@ -1183,7 +1216,8 @@
 		"id": "Konfigurasi",
 		"sr": "Pode\u0161avanja",
 		"ro": "Configurare",
-		"el": "\u03a1\u03c5\u03b8\u03bc\u03af\u03c3\u03b5\u03b9\u03c2"
+		"el": "\u03a1\u03c5\u03b8\u03bc\u03af\u03c3\u03b5\u03b9\u03c2",
+		"ca": "Configuració"
 	},
 	"metadata": {
 		"no": "Metadata",
@@ -1217,7 +1251,8 @@
 		"id": "Metadata",
 		"sr": "Metapodaci",
 		"ro": "Metadate",
-		"el": "\u039c\u03b5\u03c4\u03b1\u03b4\u03b5\u03b4\u03bf\u03bc\u03ad\u03bd\u03b1"
+		"el": "\u039c\u03b5\u03c4\u03b1\u03b4\u03b5\u03b4\u03bf\u03bc\u03ad\u03bd\u03b1",
+		"ca": "Metadades"
 	},
 	"tools": {
 		"no": "Verkt\u00f8y",
@@ -1251,7 +1286,8 @@
 		"id": "Peralatan",
 		"sr": "Alati",
 		"ro": "Unelte",
-		"el": "\u0395\u03c1\u03b3\u03b1\u03bb\u03b5\u03af\u03b1"
+		"el": "\u0395\u03c1\u03b3\u03b1\u03bb\u03b5\u03af\u03b1",
+		"ca": "Eines"
 	},
 	"show_metadata": {
 		"no": "Vis metadata",
@@ -1285,7 +1321,8 @@
 		"id": "Perlihatkan metadata",
 		"sr": "Prika\u017ei metapodatke",
 		"ro": "Vizualizare metadate",
-		"el": "\u0395\u03bc\u03c6\u03ac\u03bd\u03b9\u03c3\u03b7 \u03bc\u03b5\u03c4\u03b1\u03b4\u03b5\u03b4\u03bf\u03bc\u03ad\u03bd\u03c9\u03bd"
+		"el": "\u0395\u03bc\u03c6\u03ac\u03bd\u03b9\u03c3\u03b7 \u03bc\u03b5\u03c4\u03b1\u03b4\u03b5\u03b4\u03bf\u03bc\u03ad\u03bd\u03c9\u03bd",
+		"ca": "Mostra les metadades"
 	},
 	"login_as_admin": {
 		"no": "Login som administrator",
@@ -1319,7 +1356,8 @@
 		"id": "Login sebagai administrator",
 		"sr": "Prijavite se kao administrator",
 		"ro": "Autentificare ca adminstrator",
-		"el": "\u0395\u03af\u03c3\u03bf\u03b4\u03bf\u03c2 \u03c9\u03c2 \u03b4\u03b9\u03b1\u03c7\u03b5\u03b9\u03c1\u03b9\u03c3\u03c4\u03ae\u03c2"
+		"el": "\u0395\u03af\u03c3\u03bf\u03b4\u03bf\u03c2 \u03c9\u03c2 \u03b4\u03b9\u03b1\u03c7\u03b5\u03b9\u03c1\u03b9\u03c3\u03c4\u03ae\u03c2",
+		"ca": "Inicieu sessió com a administrador"
 	},
 	"loggedin_as_admin": {
 		"no": "Du er logget inn som administrator",
@@ -1353,11 +1391,13 @@
 		"id": "Anda login sebagai administrator",
 		"sr": "Prijavljeni ste kao administrator",
 		"ro": "V-a\u021bi autentificat ca administrator",
-		"el": "\u03a3\u03c5\u03bd\u03b4\u03b5\u03b4\u03b5\u03bc\u03ad\u03bd\u03bf\u03c2 \u03c9\u03c2 \u03b4\u03b9\u03b1\u03c7\u03b5\u03b9\u03c1\u03b9\u03c3\u03c4\u03ae\u03c2"
+		"el": "\u03a3\u03c5\u03bd\u03b4\u03b5\u03b4\u03b5\u03bc\u03ad\u03bd\u03bf\u03c2 \u03c9\u03c2 \u03b4\u03b9\u03b1\u03c7\u03b5\u03b9\u03c1\u03b9\u03c3\u03c4\u03ae\u03c2",
+		"ca": "Heu iniciat la sessió com a administrador"
 	},
 	"logout": {
 		"en": "Logout",
-		"nl": "Uitloggen"
+		"nl": "Uitloggen",
+		"ca": "Tancar sessió"
 	},
 	"auth": {
 		"no": "Autentisering",
@@ -1391,7 +1431,8 @@
 		"ro": "Autentificare",
 		"cs": "Autentizace",
 		"eu": "Kautotzea",
-		"el": "\u03a4\u03b1\u03c5\u03c4\u03bf\u03c0\u03bf\u03af\u03b7\u03c3\u03b7"
+		"el": "\u03a4\u03b1\u03c5\u03c4\u03bf\u03c0\u03bf\u03af\u03b7\u03c3\u03b7",
+		"ca": "Autenticació"
 	},
 	"federation": {
 		"no": "F\u00f8derasjon",
@@ -1425,7 +1466,8 @@
 		"ro": "Federa\u021bie",
 		"cs": "Federace",
 		"eu": "Federazioa",
-		"el": "\u039f\u03bc\u03bf\u03c3\u03c0\u03bf\u03bd\u03b4\u03af\u03b1"
+		"el": "\u039f\u03bc\u03bf\u03c3\u03c0\u03bf\u03bd\u03b4\u03af\u03b1",
+		"ca": "Federació"
 	},
 	"authtest": {
 		"no": "Test konfigurerte autentiseringskilder",
@@ -1457,7 +1499,8 @@
 		"ro": "Surse de autentificare configurate pentru teste",
 		"cs": "Otestovat nakonfigurovan\u00e9 autentiza\u010dn\u00ed zdroje",
 		"eu": "Frogatu kautotzeko jada konfiguratuak dauden iturriak",
-		"el": "\u0394\u03bf\u03ba\u03b9\u03bc\u03ae \u03c0\u03b7\u03b3\u03ce\u03bd \u03c4\u03b1\u03c5\u03c4\u03bf\u03c0\u03bf\u03af\u03b7\u03c3\u03b7\u03c2 \u03c0\u03bf\u03c5 \u03ad\u03c7\u03bf\u03c5\u03bd \u03c1\u03c5\u03b8\u03bc\u03b9\u03c3\u03c4\u03b5\u03af"
+		"el": "\u0394\u03bf\u03ba\u03b9\u03bc\u03ae \u03c0\u03b7\u03b3\u03ce\u03bd \u03c4\u03b1\u03c5\u03c4\u03bf\u03c0\u03bf\u03af\u03b7\u03c3\u03b7\u03c2 \u03c0\u03bf\u03c5 \u03ad\u03c7\u03bf\u03c5\u03bd \u03c1\u03c5\u03b8\u03bc\u03b9\u03c3\u03c4\u03b5\u03af",
+		"ca": "Proveu les fonts d’autenticació configurades"
 	},
 	"deprecated": {
 		"no": "Utdatert",
@@ -1490,7 +1533,8 @@
 		"ro": "Depreciate",
 		"cs": "Zastaral\u00e9",
 		"eu": "Zaharkitua",
-		"el": "\u03a5\u03c0\u03cc \u03b1\u03c0\u03cc\u03c3\u03c5\u03c1\u03c3\u03b7"
+		"el": "\u03a5\u03c0\u03cc \u03b1\u03c0\u03cc\u03c3\u03c5\u03c1\u03c3\u03b7",
+		"ca": "Desacreditat"
 	},
 	"page_title": {
 		"sv": "Installationssida f\u00f6r SimpleSAMLphp",
@@ -1520,7 +1564,8 @@
 		"ro": "Pagina de instalare a SimpleSAMLphp",
 		"cs": "Instala\u010dn\u00ed str\u00e1nka SimpleSAMLphp",
 		"eu": "SimpleSAMLphp instalatzeko orria",
-		"el": "\u03a3\u03b5\u03bb\u03af\u03b4\u03b1 \u03b5\u03b3\u03ba\u03b1\u03c4\u03ac\u03c3\u03c4\u03b1\u03c3\u03b7\u03c2 SimpleSAMLphp"
+		"el": "\u03a3\u03b5\u03bb\u03af\u03b4\u03b1 \u03b5\u03b3\u03ba\u03b1\u03c4\u03ac\u03c3\u03c4\u03b1\u03c3\u03b7\u03c2 SimpleSAMLphp",
+		"ca": "Pàgina d’instal·lació de SimpleSAMLphp"
 	},
 	"warnings_suhosin_url_length": {
 		"no": "Lengden p\u00e5 foresp\u00f8rselparametre er begrenset av PHP Suhosin utvidelsen. Vennligst \u00f8k suhosin.get.max_value_length konfigurasjonsinnstillingen til minst 2048 tegn.",
@@ -1550,7 +1595,8 @@
 		"cs": "D\u00e9lka parametr\u016f dotazu je limitov\u00e1na roz\u0161\u00ed\u0159en\u00edm PHP Suhosin. Pros\u00edm, zvy\u0161te parametr suhosin.get.max_value_length alespo\u0148 na 2048 bajt\u016f.",
 		"eu": "Eskaeraren parametroen luzera PHP Suhosin luzapenak mugatzen du. Mesedez, luza ezazu suhosin.get.max_value_length aukeraren balioa gutxienez 2048 bytetara. ",
 		"zh-tw": "\u8b8a\u6578\u8981\u6c42\u9577\u5ea6\u65bc PHP Suhosin \u5957\u4ef6\u4e2d\u88ab\u9650\u5236\u3002\u8acb\u589e\u52a0 suhosin.get.max_value_length \u4e4b\u53c3\u6578\u81f3 2048 bytes \u4ee5\u4e0a\u3002",
-		"el": "\u03a4\u03bf \u03bc\u03ae\u03ba\u03bf\u03c2 \u03c4\u03c9\u03bd \u03c0\u03b1\u03c1\u03b1\u03bc\u03ad\u03c4\u03c1\u03c9\u03bd \u0071\u0075\u0065\u0072\u0079 \u03c0\u03b5\u03c1\u03b9\u03bf\u03c1\u03af\u03b6\u03b5\u03c4\u03b1\u03b9 \u03b1\u03c0\u03cc \u03c4\u03b7\u03bd \u03b5\u03c0\u03ad\u03ba\u03c4\u03b1\u03c3\u03b7 Suhosin \u03c4\u03b7\u03c2 PHP. \u03a0\u03b1\u03c1\u03b1\u03ba\u03b1\u03bb\u03b5\u03af\u03c3\u03c4\u03b5 \u03bd\u03b1 \u03b1\u03c5\u03be\u03ae\u03c3\u03b5\u03c4\u03b5 \u03c4\u03b7\u03bd \u03c4\u03b9\u03bc\u03ae \u03c4\u03b7\u03c2 \u03c0\u03b1\u03c1\u03b1\u03bc\u03ad\u03c4\u03c1\u03bf\u03c5 'suhosin.get.max_value_length' \u03c4\u03bf\u03c5\u03bb\u03ac\u03c7\u03b9\u03c3\u03c4\u03bf\u03bd \u03c3\u03c4\u03b1 2048 bytes."
+		"el": "\u03a4\u03bf \u03bc\u03ae\u03ba\u03bf\u03c2 \u03c4\u03c9\u03bd \u03c0\u03b1\u03c1\u03b1\u03bc\u03ad\u03c4\u03c1\u03c9\u03bd \u0071\u0075\u0065\u0072\u0079 \u03c0\u03b5\u03c1\u03b9\u03bf\u03c1\u03af\u03b6\u03b5\u03c4\u03b1\u03b9 \u03b1\u03c0\u03cc \u03c4\u03b7\u03bd \u03b5\u03c0\u03ad\u03ba\u03c4\u03b1\u03c3\u03b7 Suhosin \u03c4\u03b7\u03c2 PHP. \u03a0\u03b1\u03c1\u03b1\u03ba\u03b1\u03bb\u03b5\u03af\u03c3\u03c4\u03b5 \u03bd\u03b1 \u03b1\u03c5\u03be\u03ae\u03c3\u03b5\u03c4\u03b5 \u03c4\u03b7\u03bd \u03c4\u03b9\u03bc\u03ae \u03c4\u03b7\u03c2 \u03c0\u03b1\u03c1\u03b1\u03bc\u03ad\u03c4\u03c1\u03bf\u03c5 'suhosin.get.max_value_length' \u03c4\u03bf\u03c5\u03bb\u03ac\u03c7\u03b9\u03c3\u03c4\u03bf\u03bd \u03c3\u03c4\u03b1 2048 bytes.",
+		"ca": "La longitud dels paràmetres de consulta està limitada per l’extensió PHP Suhosin. Augmenteu l’opció suhosin.get.max_value_length a com a mínim 2048 bytes."
 	},
 	"warnings_secretsalt": {
 		"es": "<strong>Su configuraci&oacute;n est&aacute; usando el <em>salt<\/em> por defecto<\/strong>. Aseg&uacute;rese de modificar la opci&oacute;n de configuraci&oacute;n 'secretsalt' en entornos de producci&oacute;n. [<a href=\"https:\/\/simplesamlphp.org\/docs\/devel\/simplesamlphp-install\">Leer m&aacute;s sobre la configuraci&oacute;n de SimpleSAMLphp<\/a>]",
@@ -1558,14 +1604,23 @@
 		"zh-tw": "<strong>\u76ee\u524d\u8a2d\u5b9a\u6a94\u4f7f\u7528\u9810\u8a2d\u7684\u96dc\u6e4a\u53c3\u6578 (salt)<\/strong> - \u5728\u60a8\u4e0a\u7dda\u904b\u4f5c\u524d\u8acb\u78ba\u8a8d\u60a8\u5df2\u65bc simpleSAML \u8a2d\u5b9a\u9801\u4e2d\u4fee\u6539\u9810\u8a2d\u7684 'secretsalt'\u3002[<a href=\"https:\/\/simplesamlphp.org\/docs\/stable\/simplesamlphp-install\">\u95b1\u8b80\u66f4\u591a\u95dc\u65bc SimpleSAMLphp \u7684\u8a2d\u5b9a\u65b9\u5f0f<\/a> ]",
 		"nl": "<strong>De configuratie bevat de standaard secret salt<\/strong> - verander altijd de 'secretsalt'-optie in de simpleSAML-configuratie voor productieomgevingen. [<a href=\"https:\/\/simplesamlphp.org\/docs\/stable\/simplesamlphp-install\">Lees meer over het configureren van SimpleSAMLphp<\/a> ]",
 		"da": "<strong>Ops\u00e6tningen benytter standard 'secret salt'<\/strong> - s\u00f8rg for at \u00e6ndre standard indstillingen for 'secretsalt' i simpleSAML ops\u00e6tningen i produktionssystemer. [<a href=\"https:\/\/simplesamlphp.org\/docs\/stable\/simplesamlphp-install\">L\u00e6s mere om SimpleSAMLphp ops\u00e6tning.<\/a> ]",
-		"el": "<strong>\u03a7\u03c1\u03b7\u03c3\u03b9\u03bc\u03bf\u03c0\u03bf\u03b9\u03b5\u03af\u03c4\u03b5 \u03c4\u03b7\u03bd \u03c0\u03c1\u03bf\u03b5\u03c0\u03b9\u03bb\u03b5\u03b3\u03bc\u03ad\u03bd\u03b7 \u03c4\u03b9\u03bc\u03ae \u03c4\u03bf\u03c5 \u03bc\u03c5\u03c3\u03c4\u03b9\u03ba\u03bf\u03cd \u03ba\u03bb\u03b5\u03b9\u03b4\u03b9\u03bf\u03cd (salt)<\/strong> - \u03c6\u03c1\u03bf\u03bd\u03c4\u03af\u03c3\u03c4\u03b5 \u03bd\u03b1 \u03c4\u03c1\u03bf\u03c0\u03bf\u03c0\u03bf\u03b9\u03ae\u03c3\u03b5\u03c4\u03b5 \u03c4\u03b7\u03bd \u03c0\u03b1\u03c1\u03ac\u03bc\u03b5\u03c4\u03c1\u03bf 'secretsalt' \u03c3\u03c4\u03b9\u03c2 \u03c1\u03c5\u03b8\u03bc\u03af\u03c3\u03b5\u03b9\u03c2 \u03c4\u03bf\u03c5 SimpleSAMLphp \u03c3\u03b5 \u03c0\u03b5\u03c1\u03b9\u03b2\u03ac\u03bb\u03bb\u03bf\u03bd \u03c0\u03b1\u03c1\u03b1\u03b3\u03c9\u03b3\u03ae\u03c2. [<a href=\"https:\/\/simplesamlphp.org\/docs\/stable\/simplesamlphp-install\">\u0394\u03b9\u03b1\u03b2\u03ac\u03c3\u03c4\u03b5 \u03c0\u03b5\u03c1\u03b9\u03c3\u03c3\u03cc\u03c4\u03b5\u03c1\u03b1...<\/a> ]"
+		"el": "<strong>\u03a7\u03c1\u03b7\u03c3\u03b9\u03bc\u03bf\u03c0\u03bf\u03b9\u03b5\u03af\u03c4\u03b5 \u03c4\u03b7\u03bd \u03c0\u03c1\u03bf\u03b5\u03c0\u03b9\u03bb\u03b5\u03b3\u03bc\u03ad\u03bd\u03b7 \u03c4\u03b9\u03bc\u03ae \u03c4\u03bf\u03c5 \u03bc\u03c5\u03c3\u03c4\u03b9\u03ba\u03bf\u03cd \u03ba\u03bb\u03b5\u03b9\u03b4\u03b9\u03bf\u03cd (salt)<\/strong> - \u03c6\u03c1\u03bf\u03bd\u03c4\u03af\u03c3\u03c4\u03b5 \u03bd\u03b1 \u03c4\u03c1\u03bf\u03c0\u03bf\u03c0\u03bf\u03b9\u03ae\u03c3\u03b5\u03c4\u03b5 \u03c4\u03b7\u03bd \u03c0\u03b1\u03c1\u03ac\u03bc\u03b5\u03c4\u03c1\u03bf 'secretsalt' \u03c3\u03c4\u03b9\u03c2 \u03c1\u03c5\u03b8\u03bc\u03af\u03c3\u03b5\u03b9\u03c2 \u03c4\u03bf\u03c5 SimpleSAMLphp \u03c3\u03b5 \u03c0\u03b5\u03c1\u03b9\u03b2\u03ac\u03bb\u03bb\u03bf\u03bd \u03c0\u03b1\u03c1\u03b1\u03b3\u03c9\u03b3\u03ae\u03c2. [<a href=\"https:\/\/simplesamlphp.org\/docs\/stable\/simplesamlphp-install\">\u0394\u03b9\u03b1\u03b2\u03ac\u03c3\u03c4\u03b5 \u03c0\u03b5\u03c1\u03b9\u03c3\u03c3\u03cc\u03c4\u03b5\u03c1\u03b1...<\/a> ]",
+		"ca": "<strong>La configuració utilitza la clau secreta predeterminada</strong> - assegureu-vos de modificar l’opció per defecte 'secretsalt' a la configuració dels entorns de producció de SimpleSAMLphp. [<a href=\"https:\/\/simplesamlphp.org\/docs\/stable\/simplesamlphp-install\">Més informació sobre la configuració de SimpleSAMLphp<\/a> ]"
 	},
 	"warnings_outdated": {
 		"es": "Su instalaci&oacute;n de SimpleSAMLphp est&aacute; desactualizada. Por favor, actualice a la <a href=\"%LATEST_URL%\">&uacute;ltima versi&oacute;n</a> lo antes posible.",
 		"zh-tw": "\u60a8\u6b63\u5728\u4f7f\u7528\u5df2\u904e\u6642\u7684 SimpleSAMLphp \u7248\u672c\uff0c\u8acb\u76e1\u5feb\u66f4\u65b0\u81f3<a href=\"%LATEST_URL%\">\u6700\u65b0\u7248\u672c</a>\u3002",
-		"nl": "Deze installatie van SimpleSAMLphp is verouderd. Het is aan te raden zo snel mogelijk te upgraden naar <a href=\"%LATEST_URL%\">de meest recente versie</a>."
+		"nl": "Deze installatie van SimpleSAMLphp is verouderd. Het is aan te raden zo snel mogelijk te upgraden naar <a href=\"%LATEST_URL%\">de meest recente versie</a>.",
+		"ca": "Esteu executant una versió obsoleta de SimpleSAMLphp. Si us plau, actualitzeu a l'<a href=\"%LATEST_URL%\">última versió<\/a> el més aviat possible."
 	},
 	"warnings_curlmissing": {
-		"nl": "PHP cURL-extensie ontbreekt. Kan niet controleren op updates voor simpleSAMLphp."
+		"nl": "PHP cURL-extensie ontbreekt. Kan niet controleren op updates voor simpleSAMLphp.",
+		"ca": "Falta l'extensió PHP CURL. No es pot comprovar les actualitzacions de SimpleSAMLphp."
+	},
+	"link_oauth": {
+		"ca": "Registre OAuth Consumer"
+	},
+	"link_metarefresh": {
+		"ca": "Metarefresh: obtenir metadades"
 	}
 }

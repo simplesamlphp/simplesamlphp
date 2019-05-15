@@ -35,7 +35,8 @@
 		"af": "SimpleSAMLphp-fout",
 		"el": "\u03a3\u03c6\u03ac\u03bb\u03bc\u03b1 \u03c4\u03bf\u03c5 SimpleSAMLphp",
 		"zu": "Iphutha le-SimpleSAMLphp",
-		"xh": "Impazamo ye-SimpleSAMLphp"
+		"xh": "Impazamo ye-SimpleSAMLphp",
+		"ca": "Error SimpleSAMLphp"
 	},
 	"report_trackid": {
 		"no": "Hvis vil rapportere denne feilen, send ogs\u00e5 med dette sporingsnummeret. Det gj\u00f8r det enklere for systemadministratorene \u00e5 finne ut hva som gikk galt:",
@@ -73,7 +74,8 @@
 		"af": "Waneer jy die fout rapporteer, verskaf asb. ook die 'tracking'\/verwysings nommer wat dit moontlik maak vir die sisteem administrateur om jou sessie in die logs op te spoor:",
 		"el": "\u0391\u03bd \u03b1\u03bd\u03b1\u03c6\u03ad\u03c1\u03b5\u03c4\u03b5 \u03b1\u03c5\u03c4\u03cc \u03c4\u03bf \u03c3\u03c6\u03ac\u03bb\u03bc\u03b1\u002c \u03c0\u03b1\u03c1\u03b1\u03ba\u03b1\u03bb\u03bf\u03cd\u03bc\u03b5 \u03bd\u03b1 \u03c3\u03c5\u03bc\u03c0\u03b5\u03c1\u03b9\u03bb\u03ac\u03b2\u03b5\u03c4\u03b5 \u03c3\u03c4\u03b7\u03bd \u03b1\u03bd\u03b1\u03c6\u03bf\u03c1\u03ac \u03c3\u03b1\u03c2 \u03b1\u03c5\u03c4\u03cc\u03bd \u03c4\u03bf\u03bd \u03b1\u03c1\u03b9\u03b8\u03bc\u03cc \u03c0\u03c1\u03bf\u03ba\u03b5\u03b9\u03bc\u03ad\u03bd\u03bf\u03c5 \u03bd\u03b1 \u03b4\u03b9\u03b5\u03c5\u03ba\u03bf\u03bb\u03cd\u03bd\u03b5\u03c4\u03b5 \u03c4\u03b7 \u03b4\u03b9\u03b1\u03b4\u03b9\u03ba\u03b1\u03c3\u03af\u03b1 \u03b5\u03bd\u03c4\u03bf\u03c0\u03b9\u03c3\u03bc\u03bf\u03cd \u03ba\u03b1\u03b9 \u03b5\u03c0\u03af\u03bb\u03c5\u03c3\u03b7\u03c2 \u03c4\u03bf\u03c5 \u03c0\u03c1\u03bf\u03b2\u03bb\u03ae\u03bc\u03b1\u03c4\u03bf\u03c2:",
 		"zu": "Uma ubika leli phutha, sicela futhi ubike le nombolo yokulandelela eyenza kube nokwenzeka ukuthola iseshini yakho kumalogi atholakalayo kumlawuli wesistimu:",
-		"xh": "Ukuba ngaba uchaza le mpazamo, nceda kananjalo uchaze le nombolo yolandelelo eyenza kube lula ukufumana iseshoni yakho kwiincwadi ezifumaneka kumlawuli wesistim:"
+		"xh": "Ukuba ngaba uchaza le mpazamo, nceda kananjalo uchaze le nombolo yolandelelo eyenza kube lula ukufumana iseshoni yakho kwiincwadi ezifumaneka kumlawuli wesistim:",
+		"ca": "Si informeu d’aquest error, notifiqueu també aquest número de seguiment que permet localitzar la vostra sessió als registres disponibles per a l’administrador del sistema:"
 	},
 	"debuginfo_header": {
 		"no": "Detaljer for feils\u00f8king",
@@ -111,7 +113,8 @@
 		"af": "Ontleed informasie",
 		"el": "\u03a0\u03bb\u03b7\u03c1\u03bf\u03c6\u03bf\u03c1\u03af\u03b5\u03c2 \u03b5\u03bd\u03c4\u03bf\u03c0\u03b9\u03c3\u03bc\u03bf\u03cd \u03c3\u03c6\u03b1\u03bb\u03bc\u03ac\u03c4\u03c9\u03bd",
 		"xh": "Inkcazelo yokulungisa",
-		"zu": "Ulwazi lokususwa kwephutha"
+		"zu": "Ulwazi lokususwa kwephutha",
+		"ca": "Depurar informació"
 	},
 	"debuginfo_text": {
 		"no": "Detaljene nedenfor kan v\u00e6re av interesse for administratoren \/ brukerst\u00f8tte:",
@@ -149,7 +152,8 @@
 		"af": "Die onderstaande informasie mag van hulp wees vir die stelsel administrateur \/ hulplyn.",
 		"el": "\u039f\u03b9 \u03c0\u03b1\u03c1\u03b1\u03ba\u03ac\u03c4\u03c9 \u03c0\u03bb\u03b7\u03c1\u03bf\u03c6\u03bf\u03c1\u03af\u03b5\u03c2 \u03bc\u03c0\u03bf\u03c1\u03b5\u03af \u03bd\u03b1 \u03b4\u03b9\u03b5\u03c5\u03ba\u03bf\u03bb\u03cd\u03bd\u03bf\u03c5\u03bd \u03c4\u03b7 \u03b4\u03b9\u03b1\u03b4\u03b9\u03ba\u03b1\u03c3\u03af\u03b1 \u03b5\u03bd\u03c4\u03bf\u03c0\u03b9\u03c3\u03bc\u03bf\u03cd \u03ba\u03b1\u03b9 \u03b5\u03c0\u03af\u03bb\u03c5\u03c3\u03b7\u03c2 \u03c3\u03c6\u03b1\u03bb\u03bc\u03ac\u03c4\u03c9\u03bd.",
 		"xh": "Inkcazelo yokulungisa engezantsi isenokuba ibangela umdla kumlawuli / idesika yoncedo:",
-		"zu": "Ulwazi lokususwa kwephutha olungezansi lungase lukhange kumlawuli / ideski losizo:"
+		"zu": "Ulwazi lokususwa kwephutha olungezansi lungase lukhange kumlawuli / ideski losizo:",
+		"ca": "La informació de depuració següent pot ser d’interès per l’administrador \/ centre d'atenció a l'usuari:"
 	},
 	"report_header": {
 		"no": "Rapporter feil",
@@ -187,7 +191,8 @@
 		"af": "Rapporteer foute",
 		"el": "\u0391\u03bd\u03b1\u03c6\u03bf\u03c1\u03ac \u03c3\u03c6\u03ac\u03bb\u03bc\u03b1\u03c4\u03bf\u03c2",
 		"zu": "Amaphutha ombiko",
-		"xh": "Chaza iimpazamo"
+		"xh": "Chaza iimpazamo",
+		"ca": "Informeu d’errors"
 	},
 	"report_text": {
 		"no": "Hvis du \u00f8nsker at brukerst\u00f8tte skal kunne kontakte deg igjen i forbindelse med denne feilen, m\u00e5 du oppgi e-postadressen din nedenfor:",
@@ -225,7 +230,8 @@
 		"af": "Voeg opsioneel jou epos adres in vir die administrateurs om jou te kontak vir meer inligting m.b.t jou probleem:",
 		"el": "\u03a0\u03c1\u03bf\u03b1\u03b9\u03c1\u03b5\u03c4\u03b9\u03ba\u03ac\u002c \u03b5\u03b9\u03c3\u03ac\u03b3\u03b5\u03c4\u03b5 \u03c4\u03b7 \u03b4\u03b9\u03b5\u03cd\u03b8\u03c5\u03bd\u03c3\u03b7 \u03b7\u03bb\u03b5\u03ba\u03c4\u03c1\u03bf\u03bd\u03b9\u03ba\u03bf\u03cd \u03c4\u03b1\u03c7\u03c5\u03b4\u03c1\u03bf\u03bc\u03b5\u03af\u03bf\u03c5 \u03c3\u03b1\u03c2 \u03ce\u03c3\u03c4\u03b5 \u03bd\u03b1 \u03b5\u03af\u03bc\u03b1\u03c3\u03c4\u03b5 \u03c3\u03b5 \u03b8\u03ad\u03c3\u03b7 \u03bd\u03b1 \u03ad\u03c1\u03b8\u03bf\u03c5\u03bc\u03b5 \u03c3\u03b5 \u03b5\u03c0\u03b1\u03c6\u03ae \u03bc\u03b1\u03b6\u03af \u03c3\u03b1\u03c2 \u03b3\u03b9\u03b1 \u03c0\u03b5\u03c1\u03b1\u03b9\u03c4\u03ad\u03c1\u03c9 \u03b5\u03c1\u03c9\u03c4\u03ae\u03c3\u03b5\u03b9\u03c2 \u03c3\u03c7\u03b5\u03c4\u03b9\u03ba\u03ac \u03bc\u03b5 \u03c4\u03bf \u03b8\u03ad\u03bc\u03b1 \u03c3\u03b1\u03c2:",
 		"xh": "Unokhetho lokuthumela idilesi yeimeyile yakho, ukuze abalawuli bakwazi ukukuqhagamshela ukuba banemibuzo engakumbi malunga nomba wakho:",
-		"zu": "Faka ngokuzithandela ikheli lakho le-imeyili, ukuze abalawuli bakwazi ukukuthinta ngemibuzo eyengeziwe mayelana nenkinga yakho:"
+		"zu": "Faka ngokuzithandela ikheli lakho le-imeyili, ukuze abalawuli bakwazi ukukuthinta ngemibuzo eyengeziwe mayelana nenkinga yakho:",
+		"ca": "Opcionalment, introduïu la vostra adreça de correu electrònic, perquè els administradors puguin contactar-vos per obtenir més preguntes sobre el vostre problema:"
 	},
 	"report_email": {
 		"no": "E-postadresse:",
@@ -264,7 +270,8 @@
 		"af": "Epos adres:",
 		"el": "Email:",
 		"xh": "Idilesi ye-imeyile:",
-		"zu": "Ikheli le-imeyili:"
+		"zu": "Ikheli le-imeyili:",
+		"ca": "Correu electrònic:"
 	},
 	"report_explain": {
 		"no": "Forklar hva du gjorde da feilen oppsto...",
@@ -302,7 +309,8 @@
 		"af": "Verduidelik wat jy gedoen het toe jy die probleem ervaar...",
 		"el": "\u03a0\u03b5\u03c1\u03b9\u03b3\u03c1\u03ac\u03c8\u03c4\u03b5 \u03c4\u03b9\u03c2 \u03b5\u03bd\u03ad\u03c1\u03b3\u03b5\u03b9\u03ad\u03c2 \u03c3\u03b1\u03c2 \u03cc\u03c4\u03b1\u03bd \u03c3\u03c5\u03bd\u03ad\u03b2\u03b7 \u03c4\u03bf \u03c3\u03c6\u03ac\u03bb\u03bc\u03b1...",
 		"xh": "Cacisa ukuba wenze ntoni xa bekusenzeka le mpazamo...",
-		"zu": "Chaza ukuthi yini oyenzile ngenkathi kuvela leli phutha..."
+		"zu": "Chaza ukuthi yini oyenzile ngenkathi kuvela leli phutha...",
+		"ca": "Expliqueu què heu fet quan es va produir aquest error..."
 	},
 	"report_submit": {
 		"no": "Send feilrapport",
@@ -340,7 +348,8 @@
 		"af": "Stuur die fout verslag",
 		"el": "\u0391\u03c0\u03bf\u03c3\u03c4\u03bf\u03bb\u03ae \u03b1\u03bd\u03b1\u03c6\u03bf\u03c1\u03ac\u03c2",
 		"zu": "Thumela umbiko wephutha",
-		"xh": "Thumela ingxelo yempazamo"
+		"xh": "Thumela ingxelo yempazamo",
+		"ca": "Envia informe d'error"
 	},
 	"howto_header": {
 		"no": "Hvordan f\u00e5 hjelp",
@@ -378,7 +387,8 @@
 		"af": "Hoe om hulp te verkry",
 		"el": "\u03a0\u03ce\u03c2 \u03bd\u03b1 \u03bb\u03ac\u03b2\u03b5\u03c4\u03b5 \u03b2\u03bf\u03ae\u03b8\u03b5\u03b9\u03b1",
 		"zu": "Indlela yokuthola usizo",
-		"xh": "Indlela yokufumana uncedo"
+		"xh": "Indlela yokufumana uncedo",
+		"ca": "Com obtenir ajuda"
 	},
 	"howto_text": {
 		"no": "Denne feilen skyldes sannsynligvis feil i oppsettet av SimpleSAMLphp eller den er en f\u00f8lge av en uforutsett hendelse. Kontakt administratoren av denne tjenesten og rapporter s\u00e5 mye som mulig ang\u00e5ende feilen.",
@@ -416,7 +426,8 @@
 		"af": "Die fout is moontlik te danke aan onverwagte gedrag of weens inkorrekte instellings in SimpleSAMLphp. Kontak die administrateur in beheer van die aanmeld diens en stuur die bostaande fout boodskap aan.",
 		"el": "\u0391\u03c5\u03c4\u03cc \u03c4\u03bf \u03c3\u03c6\u03ac\u03bb\u03bc\u03b1 \u03c0\u03b9\u03b8\u03b1\u03bd\u03cc\u03c4\u03b1\u03c4\u03b1 \u03bf\u03c6\u03b5\u03af\u03bb\u03b5\u03c4\u03b1\u03b9 \u03c3\u03b5 \u03ba\u03ac\u03c0\u03bf\u03b9\u03b1 \u03b1\u03c0\u03c1\u03bf\u03c3\u03b4\u03cc\u03ba\u03b7\u03c4\u03b7 \u03c3\u03c5\u03bc\u03c0\u03b5\u03c1\u03b9\u03c6\u03bf\u03c1\u03ac \u03ae \u03b5\u03c3\u03c6\u03b1\u03bb\u03bc\u03ad\u03bd\u03b7 \u03c1\u03cd\u03b8\u03bc\u03b9\u03c3\u03b7 \u03c4\u03bf\u03c5 SimpleSAMLphp. \u0395\u03c0\u03b9\u03ba\u03bf\u03b9\u03bd\u03c9\u03bd\u03ae\u03c3\u03c4\u03b5 \u03bc\u03b5 \u03c4\u03bf\u03bd \u03b4\u03b9\u03b1\u03c7\u03b5\u03b9\u03c1\u03b9\u03c3\u03c4\u03ae \u03b1\u03c5\u03c4\u03ae\u03c2 \u03c4\u03b7\u03c2 \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b1\u03c2 \u03c3\u03c5\u03bc\u03c0\u03b5\u03c1\u03b9\u03bb\u03b1\u03bc\u03b2\u03ac\u03bd\u03bf\u03bd\u03c4\u03b1\u03c2 \u03c4\u03bf \u03c0\u03b1\u03c1\u03b1\u03c0\u03ac\u03bd\u03c9 \u03bc\u03ae\u03bd\u03c5\u03bc\u03b1 \u03c3\u03c6\u03ac\u03bb\u03bc\u03b1\u03c4\u03bf\u03c2.",
 		"zu": "Leli phutha kungenzeka ukuthi libangelwa indlela yokuziphatha engalindelwe noma umiso olungafanele lwe-SimpleSAMLphp. Thinta umlawuli wale sevisi yokungena, bese umthumela umlayezo wephutha ongenhla.",
-		"xh": "Le mpazamo kusenokwenzeka ingenxa yendlela yokwenza engalindelekanga okanye ulungiselelo olungachanekanga lwe-SimpleSAMLphp. Qhagamshelana nomlawuli wale nkonzo yokungena, uze umthumele umyalezo wempazamo ongentla."
+		"xh": "Le mpazamo kusenokwenzeka ingenxa yendlela yokwenza engalindelekanga okanye ulungiselelo olungachanekanga lwe-SimpleSAMLphp. Qhagamshelana nomlawuli wale nkonzo yokungena, uze umthumele umyalezo wempazamo ongentla.",
+		"ca": "Aquest error probablement es deu a un comportament inesperat o a una configuració incorrecta de SimpleSAMLphp. Poseu-vos en contacte amb l’administrador d’aquest servei d’inici de sessió i envieu-li el missatge d’error anterior."
 	},
 	"title_CREATEREQUEST": {
 		"no": "Feil i laging av foresp\u00f8rselen",
@@ -454,7 +465,8 @@
 		"af": "Fout met skepping van nuwe versoek",
 		"el": "\u03a3\u03c6\u03ac\u03bb\u03bc\u03b1 \u03ba\u03b1\u03c4\u03ac \u03c4\u03b7 \u03b4\u03b7\u03bc\u03b9\u03bf\u03c5\u03c1\u03b3\u03af\u03b1 \u03b1\u03b9\u03c4\u03ae\u03bc\u03b1\u03c4\u03bf\u03c2",
 		"xh": "Impazamo nokuyila isicelo",
-		"zu": "Iphutha lokwakha isicelo"
+		"zu": "Iphutha lokwakha isicelo",
+		"ca": "S'ha produït un error en crear la sol·licitud"
 	},
 	"descr_CREATEREQUEST": {
 		"no": "En feil oppstod da SAML-foresp\u00f8rselen skulle lages.",
@@ -492,7 +504,8 @@
 		"af": "Daar was 'n fout met die skepping van die SAML versoek.",
 		"el": "\u03a0\u03b1\u03c1\u03bf\u03c5\u03c3\u03b9\u03ac\u03c3\u03c4\u03b7\u03ba\u03b5 \u03c3\u03c6\u03ac\u03bb\u03bc\u03b1 \u03ba\u03b1\u03c4\u03ac \u03c4\u03b7 \u03b4\u03b7\u03bc\u03b9\u03bf\u03c5\u03c1\u03b3\u03af\u03b1 \u03c4\u03bf\u03c5 \u03b1\u03b9\u03c4\u03ae\u03bc\u03b1\u03c4\u03bf\u03c2 SAML.",
 		"xh": "Kwenzeke impazamo xa kuzanywa ukuyilwa isicelo se-SAML.",
-		"zu": "Kuvele iphutha ngenkathi izama ukwakha isicelo se-SAML."
+		"zu": "Kuvele iphutha ngenkathi izama ukwakha isicelo se-SAML.",
+		"ca": "S'ha produït un error en intentar crear la sol·licitud SAML."
 	},
 	"title_DISCOPARAMS": {
 		"no": "Ugyldig foresp\u00f8rsel til SAML 2.0 Discovery-tjenesten",
@@ -530,7 +543,8 @@
 		"af": "Toegangsfout by die ontdekkings diens",
 		"el": "\u0395\u03c3\u03c6\u03b1\u03bb\u03bc\u03ad\u03bd\u03bf \u03b1\u03af\u03c4\u03b7\u03bc\u03b1 \u03c0\u03c1\u03bf\u03c2 \u03c4\u03b7\u03bd \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b1 \u03b1\u03bd\u03b5\u03cd\u03c1\u03b5\u03c3\u03b7\u03c2 \u03c0\u03b1\u03c1\u03cc\u03c7\u03bf\u03c5 \u03c4\u03b1\u03c5\u03c4\u03cc\u03c4\u03b7\u03c4\u03b1\u03c2",
 		"zu": "Isicelo esingalungile sesevisi yokuthola",
-		"xh": "Isicelo esibi kwinkonzo yofumaniso"
+		"xh": "Isicelo esibi kwinkonzo yofumaniso",
+		"ca": "Sol·licitud incorrecta pel servei de descoberta"
 	},
 	"descr_DISCOPARAMS": {
 		"no": "Parametere sendt til discovery-tjenesten var ikke i korrekt format.",
@@ -568,7 +582,8 @@
 		"af": "Die gestuurde parameters na die ontdekkings diens was not volgens die korrekte spesifikasies nie.",
 		"el": "\u039f\u03b9 \u03c0\u03b1\u03c1\u03ac\u03bc\u03b5\u03c4\u03c1\u03bf\u03b9 \u03c0\u03bf\u03c5 \u03c3\u03c4\u03ac\u03bb\u03b8\u03b7\u03ba\u03b1\u03bd \u03c3\u03c4\u03b7\u03bd \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b1 \u03b1\u03bd\u03b5\u03cd\u03c1\u03b5\u03c3\u03b7\u03c2 \u03c0\u03b1\u03c1\u03cc\u03c7\u03bf\u03c5 \u03c4\u03b1\u03c5\u03c4\u03cc\u03c4\u03b7\u03c4\u03b1\u03c2 \u03ae\u03c4\u03b1\u03bd \u03b5\u03c3\u03c6\u03b1\u03bb\u03bc\u03ad\u03bd\u03b5\u03c2.",
 		"xh": "Iipharamitha ezithunyelwe kwinkonzo yofumaniso azihambelani neenkcukacha.",
-		"zu": "Amapharamitha athunyelwe kusevisi yokuthola abengavumelani nezici."
+		"zu": "Amapharamitha athunyelwe kusevisi yokuthola abengavumelani nezici.",
+		"ca": "Els paràmetres enviats al servei de descoberta no s'ajusten a les especificacions."
 	},
 	"title_GENERATEAUTHNRESPONSE": {
 		"no": "Fikk ikke svart p\u00e5 autentiserings-foresp\u00f8rsel",
@@ -606,7 +621,8 @@
 		"af": "Kon nie 'n verifikasie versoek skep nie",
 		"el": "\u0394\u03b5\u03bd \u03ae\u03c4\u03b1\u03bd \u03b4\u03c5\u03bd\u03b1\u03c4\u03ae \u03b7 \u03b4\u03b7\u03bc\u03b9\u03bf\u03c5\u03c1\u03b3\u03af\u03b1 \u03b1\u03c0\u03cc\u03ba\u03c1\u03b9\u03c3\u03b7\u03c2 \u03c3\u03c4\u03bf \u03b1\u03af\u03c4\u03b7\u03bc\u03b1 \u03c4\u03b1\u03c5\u03c4\u03bf\u03c0\u03bf\u03af\u03b7\u03c3\u03b7\u03c2",
 		"zu": "Ayikwazanga ukwakha impendulo yokuqinisekisa",
-		"xh": "Ayikwazanga ukuyila impendulo yongqinisiso"
+		"xh": "Ayikwazanga ukuyila impendulo yongqinisiso",
+		"ca": "No s’ha pogut crear la resposta d’autenticació"
 	},
 	"descr_GENERATEAUTHNRESPONSE": {
 		"no": "En feil oppsto da innloggingstjenesten pr\u00f8vde \u00e5 lage et svar p\u00e5 autentiserings-foresp\u00f8rselen.",
@@ -644,7 +660,8 @@
 		"af": "Daar was 'n fout tydens die verifikasie skepping deur die Identiteits Verskaffer.",
 		"el": "\u03a0\u03b1\u03c1\u03bf\u03c5\u03c3\u03b9\u03ac\u03c3\u03c4\u03b7\u03ba\u03b5 \u03c3\u03c6\u03ac\u03bb\u03bc\u03b1 \u03ba\u03b1\u03c4\u03ac \u03c4\u03b7 \u03b4\u03b7\u03bc\u03b9\u03bf\u03c5\u03c1\u03b3\u03af\u03b1 \u03b1\u03c0\u03cc\u03ba\u03c1\u03b9\u03c3\u03b7\u03c2 \u03b1\u03c0\u03cc \u03c4\u03bf\u03bd \u03c0\u03ac\u03c1\u03bf\u03c7\u03bf \u03c4\u03b1\u03c5\u03c4\u03cc\u03c4\u03b7\u03c4\u03b1\u03c2.",
 		"zu": "Ngenkathi lo mhlinzeki kamazisi ezama ukwakha impendulo yokuqinisekisa, kuvele iphutha.",
-		"xh": "Xa lo mboneleli wesazisi ezama ukuyila impendulo yongqinisiso, kwenzeke impazamo."
+		"xh": "Xa lo mboneleli wesazisi ezama ukuyila impendulo yongqinisiso, kwenzeke impazamo.",
+		"ca": "Quan aquest proveïdor d’identitat ha intentat crear una resposta d’autenticació, s’ha produït un error."
 	},
 	"title_LDAPERROR": {
 		"no": "LDAP-feil",
@@ -682,7 +699,8 @@
 		"af": "LDAP Fout",
 		"el": "\u03a3\u03c6\u03ac\u03bb\u03bc\u03b1 LDAP",
 		"xh": "Impazamo ye-LDAP",
-		"zu": "Iphutha le-LDAP"
+		"zu": "Iphutha le-LDAP",
+		"ca": "Error LDAP"
 	},
 	"descr_LDAPERROR": {
 		"no": "LDAP er brukerkatalogen, og n\u00e5r du fors\u00f8ker \u00e5 logge inn pr\u00f8ver vi \u00e5 kontakten en LDAP-katalog. Da vi fors\u00f8kte det denne gangen, oppsto en feil.",
@@ -720,7 +738,8 @@
 		"af": "LDAP is die gebruikers databasis en waneer jy probeer inteken moet ons die LDAP databasis kontak. Daar was 'n fout toe ons die slag probeer het.",
 		"el": "\u03a0\u03b1\u03c1\u03bf\u03c5\u03c3\u03b9\u03ac\u03c3\u03c4\u03b7\u03ba\u03b5 \u03c3\u03c6\u03ac\u03bb\u03bc\u03b1 \u03ba\u03b1\u03c4\u03ac \u03c4\u03b7\u03bd \u03b5\u03c0\u03b9\u03ba\u03bf\u03b9\u03bd\u03c9\u03bd\u03af\u03b1 \u03bc\u03b5 \u03c4\u03b7\u03bd \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b1 \u03ba\u03b1\u03c4\u03b1\u03bb\u03cc\u03b3\u03bf\u03c5 \u03c7\u03c1\u03b7\u03c3\u03c4\u03ce\u03bd (LDAP).",
 		"xh": "I-LDAP ngumvimba wengcombolo yomsebenzisi, yaye xa uzame ukungena, kufuneka siqhagamshele uvimba wengcombolo we-LDAP. Kwenzeke impazamo xa besiyizama.",
-		"zu": "I-LDAP iyidathabheyisi yomsebenzisi, futhi lapho uzama ukungena, sidinga ukuthinta idathabheyisi ye-LDAP. Kuvele iphutha ngesikhathi siyizama ngalesi sikhathi."
+		"zu": "I-LDAP iyidathabheyisi yomsebenzisi, futhi lapho uzama ukungena, sidinga ukuthinta idathabheyisi ye-LDAP. Kuvele iphutha ngesikhathi siyizama ngalesi sikhathi.",
+		"ca": "LDAP és la base de dades d'usuaris i, quan intenteu iniciar la sessió, necessitem contactar amb una base de dades LDAP. S'ha produït un error quan hem provat d'accedir-hi."
 	},
 	"title_LOGOUTREQUEST": {
 		"no": "Feil i behandling av logout-foresp\u00f8rselen",
@@ -758,7 +777,8 @@
 		"af": "Fout met die verwerking van die Afmeldings Versoek",
 		"el": "\u03a3\u03c6\u03ac\u03bb\u03bc\u03b1 \u03ba\u03b1\u03c4\u03ac \u03c4\u03b7 \u03b4\u03b9\u03b1\u03b4\u03b9\u03ba\u03b1\u03c3\u03af\u03b1 \u03b1\u03c0\u03bf\u03c3\u03cd\u03bd\u03b4\u03b5\u03c3\u03b7\u03c2",
 		"xh": "Impazamo iprosesa iSicelo Sokuphuma",
-		"zu": "Iphutha lokucubungula Isicelo Sokuphuma"
+		"zu": "Iphutha lokucubungula Isicelo Sokuphuma",
+		"ca": "S'ha produït un error en processar la sol·licitud de desconnexió"
 	},
 	"descr_LOGOUTREQUEST": {
 		"no": "En feil oppsto i behandlingen av logout-foresp\u00f8rselen.",
@@ -796,7 +816,8 @@
 		"af": "Daar was 'n probleem tydens die verwerking van die Afmelding  Versoek",
 		"el": "\u03a0\u03b1\u03c1\u03bf\u03c5\u03c3\u03b9\u03b1\u03c3\u03c4\u03ae\u03ba\u03b5 \u03c3\u03c6\u03ac\u03bb\u03bc\u03b1 \u03ba\u03b1\u03c4\u03ac \u03c4\u03b7\u03bd \u03b5\u03c0\u03b5\u03be\u03b5\u03c1\u03b3\u03b1\u03c3\u03af\u03b1 \u03c4\u03bf\u03c5 \u03b1\u03b9\u03c4\u03ae\u03bc\u03b1\u03c4\u03bf\u03c2 \u03b1\u03c0\u03bf\u03c3\u03cd\u03bd\u03b4\u03b5\u03c3\u03b7\u03c2.",
 		"zu": "Kuvele iphutha ngenkathi izama ukucubungula Isicelo Sokuphuma.",
-		"xh": "Kwenzeke impazamo ngoxa kuproseswa isiCelo Sokuphuma."
+		"xh": "Kwenzeke impazamo ngoxa kuproseswa isiCelo Sokuphuma.",
+		"ca": "S'ha produït un error en intentar processar la sol·licitud de desconnexió."
 	},
 	"title_METADATA": {
 		"no": "Feil ved lasting av metadata",
@@ -834,7 +855,8 @@
 		"af": "Fout met die laai van die metadata",
 		"el": "\u03a3\u03c6\u03ac\u03bb\u03bc\u03b1 \u03ba\u03b1\u03c4\u03ac \u03c4\u03b7 \u03c6\u03cc\u03c1\u03c4\u03c9\u03c3\u03b7 \u03bc\u03b5\u03c4\u03b1\u03b4\u03b5\u03b4\u03bf\u03bc\u03ad\u03bd\u03c9\u03bd",
 		"zu": "Iphutha lokulayisha imethadatha",
-		"xh": "Impazamo ilayisha imetadata"
+		"xh": "Impazamo ilayisha imetadata",
+		"ca": "S'ha produït un error en carregar les metadades"
 	},
 	"descr_METADATA": {
 		"no": "Det er en feil i oppsettet for din SimpleSAMLphp-installasjon. Hvis du er administrator for tjenesten, b\u00f8r du kontrollere at metadata er satt opp riktig.",
@@ -872,7 +894,8 @@
 		"af": "Daar is fout met jou SimplSAMLphp installasie. Indien jy die administrateur is van di\u00e9 diens moet jy verseker dat jou metadata konfigurasie korrek is.",
 		"el": "\u03a5\u03c0\u03ac\u03c1\u03c7\u03b5\u03b9 \u03ba\u03ac\u03c0\u03bf\u03b9\u03bf \u03c0\u03c1\u03cc\u03b2\u03bb\u03b7\u03bc\u03b1 \u03c3\u03c4\u03b9\u03c2 \u03c1\u03c5\u03b8\u03bc\u03af\u03c3\u03b5\u03b9\u03c2 \u03c4\u03bf\u03c5 SimpleSAMLphp. \u0395\u03ac\u03bd \u03b5\u03af\u03c3\u03c4\u03b5 \u03bf \u03b4\u03b9\u03b1\u03c7\u03b5\u03b9\u03c1\u03b9\u03c3\u03c4\u03ae\u03c2 \u03c4\u03b7\u03c2 \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b1\u03c2 \u03b1\u03c5\u03c4\u03ae\u03c2, \u03b2\u03b5\u03b2\u03b1\u03b9\u03c9\u03b8\u03b5\u03af\u03c4\u03b5 \u03cc\u03c4\u03b9 \u03c4\u03b1 \u03bc\u03b5\u03c4\u03b1\u03b4\u03b5\u03b4\u03bf\u03bc\u03ad\u03bd\u03b1 \u03ad\u03c7\u03bf\u03c5\u03bd \u03c1\u03c5\u03b8\u03bc\u03b9\u03c3\u03c4\u03b5\u03af \u03c3\u03c9\u03c3\u03c4\u03ac.",
 		"xh": "Kukho ulungiselelo olungachanekanga oluthile lofakelo lwakho lwe-SimpleSAMLphp. Ukuba ngaba ungumlawuli wale nkonzo, ufanele uqinisekise ulungiselelo lwakho  lweempawu-ngcaciso zefayile lusetwe ngokuchanekileyo.",
-		"zu": "Kukhona umiso olungafanele kukufaka kwakho kwe-SimpleSAMLphp. Uma ungumlawuli wale sevisi, kufanele wenze isiqiniseko sokuthi umiso lwakho lwemethadatha lumiswe ngendlela efanele."
+		"zu": "Kukhona umiso olungafanele kukufaka kwakho kwe-SimpleSAMLphp. Uma ungumlawuli wale sevisi, kufanele wenze isiqiniseko sokuthi umiso lwakho lwemethadatha lumiswe ngendlela efanele.",
+		"ca": "Hi ha alguna configuració incorrecta a la vostra instal·lació de SimpleSAMLphp. Si sou l’administrador d’aquest servei, heu d’assegurar-vos que la configuració de les vostres metadades s’ha realitzat correctament."
 	},
 	"title_NOACCESS": {
 		"no": "Ingen tilgang",
@@ -910,7 +933,8 @@
 		"af": "Geen toegang",
 		"el": "\u03a3\u03c6\u03ac\u03bb\u03bc\u03b1 \u03ba\u03b1\u03c4\u03ac \u03c4\u03b7\u03bd \u03c0\u03c1\u03cc\u03c3\u03b2\u03b1\u03c3\u03b7",
 		"zu": "Akukho ukufinyelela",
-		"xh": "Akukho fikelelo"
+		"xh": "Akukho fikelelo",
+		"ca": "Sense accès"
 	},
 	"descr_NOACCESS": {
 		"no": "Dette endepunktet er ikke aktivert. Sjekk aktiveringsopsjonene i ditt SimpleSAMLphp-oppsett.",
@@ -948,7 +972,8 @@
 		"af": "Die eindpunt is nie beskikbaar nie. Gaan die staat opsies in jou opset van SimpleSAMLphp na.",
 		"el": "\u0391\u03c5\u03c4\u03cc \u03c4\u03bf \u03c4\u03b5\u03bb\u03b9\u03ba\u03cc \u03c3\u03b7\u03bc\u03b5\u03af\u03bf \u03c3\u03cd\u03bd\u03b4\u03b5\u03c3\u03b7\u03c2 (endpoint) \u03b4\u03b5\u03bd \u03b5\u03af\u03bd\u03b1\u03b9 \u03b5\u03bd\u03b5\u03c1\u03b3\u03bf\u03c0\u03bf\u03b9\u03b7\u03bc\u03ad\u03bd\u03bf. \u0395\u03ac\u03bd \u03b5\u03af\u03c3\u03c4\u03b5 \u03bf \u03b4\u03b9\u03b1\u03c7\u03b5\u03b9\u03c1\u03b9\u03c3\u03c4\u03ae\u03c2 \u03c4\u03b7\u03c2 \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b1\u03c2, \u03b5\u03bb\u03ad\u03b3\u03be\u03c4\u03b5 \u03c4\u03b9\u03c2 \u03c1\u03c5\u03b8\u03bc\u03af\u03c3\u03b5\u03b9\u03c2 \u03c4\u03bf\u03c5 SimpleSAMLphp.",
 		"xh": "Le ndawo yokuphela ayenziwanga yasebenza. Jonga ukhetho lokwenza isebenze kulungiselelo lwakho lwe-SimpleSAMLphp.",
-		"zu": "Lesi siphetho asivunyelwe. Hlola izinketho zokuvumela kumiso lwakho lwe-SimpleSAMLphp."
+		"zu": "Lesi siphetho asivunyelwe. Hlola izinketho zokuvumela kumiso lwakho lwe-SimpleSAMLphp.",
+		"ca": "Aquest punt final no està habilitat. Comproveu les opcions d’habilitació en la configuració de SimpleSAMLphp."
 	},
 	"title_NORELAYSTATE": {
 		"no": "Spesifikasjon av RelayState mangler",
@@ -986,7 +1011,8 @@
 		"af": "Geen aflos staat('RelayState')",
 		"el": "\u03a3\u03c6\u03ac\u03bb\u03bc\u03b1 \u03c0\u03b1\u03c1\u03b1\u03bc\u03ad\u03c4\u03c1\u03bf\u03c5 'RelayState'",
 		"zu": "Ayikho I-RelayState",
-		"xh": "Akukho RelayState"
+		"xh": "Akukho RelayState",
+		"ca": "Sense RelayState"
 	},
 	"descr_NORELAYSTATE": {
 		"no": "Kilden til denne foresp\u00f8rselen har ikke angitt noen RelayState-parameter som angir hvor vi skal fortsette etterp\u00e5.",
@@ -1024,7 +1050,8 @@
 		"af": "Die inisieerder van hierdie versoek het nie 'n aflos staat('RelayState') parameter wat aandui waarheen om volgende te gaan nie.",
 		"el": "\u0397 \u03c0\u03b1\u03c1\u03ac\u03bc\u03b5\u03c4\u03c1\u03bf\u03c2 'RelayState' \u03c4\u03bf\u03c5 \u03c0\u03c1\u03c9\u03c4\u03bf\u03ba\u03cc\u03bb\u03bb\u03bf\u03c5 SAML \u03b4\u03b5\u03bd \u03b2\u03c1\u03ad\u03b8\u03b7\u03ba\u03b5 \u03ae \u03b4\u03b5\u03bd \u03b5\u03af\u03bd\u03b1\u03b9 \u03ad\u03b3\u03ba\u03c5\u03c1\u03b7 \u03bc\u03b5 \u03b1\u03c0\u03bf\u03c4\u03ad\u03bb\u03b5\u03c3\u03bc\u03b1 \u03bd\u03b1 \u03bc\u03b7\u03bd \u03b5\u03af\u03bd\u03b1\u03b9 \u03b4\u03c5\u03bd\u03b1\u03c4\u03ae \u03b7 \u03bc\u03b5\u03c4\u03ac\u03b2\u03b1\u03c3\u03b7 \u03c3\u03b5 \u03ba\u03ac\u03c0\u03bf\u03b9\u03bf\u03bd \u03c0\u03cc\u03c1\u03bf \u03c4\u03bf\u03c5 \u03c0\u03b1\u03c1\u03cc\u03c7\u03bf\u03c5 \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03b9\u03ce\u03bd0.",
 		"xh": "Umqalisi wesi sicelo akanikelanga ngepharamitha ye-RelayState apho kufanele kuyiwe khona.",
-		"zu": "Umqalisi walesi sicelo akazange ahlinzeke ngepharamitha ye-RelayState ebonisa ukuthi kufanele uye kuphi ngokulandelayo."
+		"zu": "Umqalisi walesi sicelo akazange ahlinzeke ngepharamitha ye-RelayState ebonisa ukuthi kufanele uye kuphi ngokulandelayo.",
+		"ca": "L’iniciador d’aquesta sol·licitud no ha proporcionat un paràmetre de RelayState que indiqui on seguirà."
 	},
 	"title_PROCESSASSERTION": {
 		"no": "Feil i behandling av svar fra innloggingstjenesten",
@@ -1062,7 +1089,8 @@
 		"af": "Fout in die Identiteits Verskaffer(IdP) versoek",
 		"el": "\u0395\u03c3\u03c6\u03b1\u03bb\u03bc\u03ad\u03bd\u03b7 \u03b1\u03c0\u03cc\u03ba\u03c1\u03b9\u03c3\u03b7 \u03b1\u03c0\u03cc \u03c4\u03bf\u03bd \u03c0\u03ac\u03c1\u03bf\u03c7\u03bf \u03c4\u03b1\u03c5\u03c4\u03cc\u03c4\u03b7\u03c4\u03b1\u03c2",
 		"xh": "Impazamo iprosesa impendulo esuka kuMboneleli Wesazisi",
-		"zu": "Iphutha lokucubungula impendulo esuka Kumhlinzeki Kamazisi"
+		"zu": "Iphutha lokucubungula impendulo esuka Kumhlinzeki Kamazisi",
+		"ca": "S'ha produït un error en processar la resposta del proveïdor d’identitat"
 	},
 	"descr_PROCESSASSERTION": {
 		"no": "Svaret mottatt fra innloggingstjenesten kan ikke aksepteres.",
@@ -1100,7 +1128,8 @@
 		"af": "Die antwoord vanaf die Indentiteits Verskaffer is nie aanvaar nie.",
 		"el": "\u03a0\u03b1\u03c1\u03bf\u03c5\u03c3\u03b9\u03ac\u03c3\u03c4\u03b7\u03ba\u03b5 \u03c3\u03c6\u03ac\u03bb\u03bc\u03b1 \u03ba\u03b1\u03c4\u03ac \u03c4\u03b7\u03bd \u03b5\u03c0\u03b5\u03be\u03b5\u03c1\u03b3\u03b1\u03c3\u03af\u03b1 \u03c4\u03b7\u03c2 \u03b1\u03c0\u03ac\u03bd\u03c4\u03b7\u03c3\u03b7\u03c2 \u03b1\u03c0\u03cc \u03c4\u03bf\u03bd \u03c0\u03ac\u03c1\u03bf\u03c7\u03bf \u03c4\u03b1\u03c5\u03c4\u03cc\u03c4\u03b7\u03c4\u03b1\u03c2.",
 		"zu": "Asizange samukele impendulo ethunyelwe ukusuka Kumhlinzeki Kamazisi.",
-		"xh": "Asiyamkelanga impendulo ethunyelwe ukusuka kuMboneleli Wesazisi."
+		"xh": "Asiyamkelanga impendulo ethunyelwe ukusuka kuMboneleli Wesazisi.",
+		"ca": "No hem acceptat la resposta enviada pel proveïdor d’identitat."
 	},
 	"title_PROCESSAUTHNREQUEST": {
 		"no": "Feil ved behandling av foresp\u00f8rsel fra SP",
@@ -1138,7 +1167,8 @@
 		"af": "Fout in Diens Verskaffer versoek proses",
 		"el": "\u0395\u03c3\u03c6\u03b1\u03bb\u03bc\u03ad\u03bd\u03bf \u03b1\u03af\u03c4\u03b7\u03bc\u03b1 \u03b1\u03c0\u03cc \u03c4\u03bf\u03bd \u03c0\u03ac\u03c1\u03bf\u03c7\u03bf \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03b9\u03ce\u03bd",
 		"xh": "Impazamo iprosesa isicelo esisuka kuMboneleli Wenkonzo",
-		"zu": "Iphutha lokucubungula isicelo esisuka Kumhlinzeki Wesevisi"
+		"zu": "Iphutha lokucubungula isicelo esisuka Kumhlinzeki Wesevisi",
+		"ca": "S'ha produït un error en processar la sol·licitud del proveïdor de serveis"
 	},
 	"descr_PROCESSAUTHNREQUEST": {
 		"no": "Innloggingstjenesten mottok en autentiserings-foresp\u00f8rsel fra en tjeneste, men en feil oppsto i behandling av foresp\u00f8rselen.",
@@ -1176,7 +1206,8 @@
 		"af": "Die Identiteits Verskaffer het 'n Verifikasie Versoek ontvang vanaf 'n Diens Verskaffer maar 'n fout het voorgekom tydens die verwerking van die versoek.",
 		"el": "\u03a0\u03b1\u03c1\u03bf\u03c5\u03c3\u03b9\u03ac\u03c3\u03c4\u03b7\u03ba\u03b5 \u03c3\u03c6\u03ac\u03bb\u03bc\u03b1 \u03ba\u03b1\u03c4\u03ac \u03c4\u03b7\u03bd \u03b5\u03c0\u03b5\u03be\u03b5\u03c1\u03b3\u03b1\u03c3\u03af\u03b1 \u03c4\u03bf\u03c5 \u03b1\u03b9\u03c4\u03ae\u03bc\u03b1\u03c4\u03bf\u03c2 \u03c4\u03b1\u03c5\u03c4\u03bf\u03c0\u03bf\u03af\u03b7\u03c3\u03b7\u03c2 \u03c0\u03bf\u03c5 \u03ad\u03bb\u03b1\u03b2\u03b5 \u03bf \u03c0\u03ac\u03c1\u03bf\u03c7\u03bf\u03c2 \u03c4\u03b1\u03c5\u03c4\u03cc\u03c4\u03b7\u03c4\u03b1\u03c2 \u03b1\u03c0\u03cc \u03c4\u03bf\u03bd \u03c0\u03ac\u03c1\u03bf\u03c7\u03bf \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03b9\u03ce\u03bd.",
 		"zu": "Lo Mhlinzeki Kamazisi uthole Isicelo Sokuqinisekisa ukusuka Kumhlinzeki Wesevisi, kodw,a kuvele iphutha ngenkathi ezama ukucubungula isicelo.",
-		"xh": "Lo Mboneleli Wesazisi ufumene Isicelo Songqinisiso esisuka kuMboneleli Wenkonzo, kodwa kwenzeke impazamo xa kuzanywa ukuprosesa isicelo."
+		"xh": "Lo Mboneleli Wesazisi ufumene Isicelo Songqinisiso esisuka kuMboneleli Wenkonzo, kodwa kwenzeke impazamo xa kuzanywa ukuprosesa isicelo.",
+		"ca": "Aquest proveïdor d’identitat ha rebut una sol·licitud d’autenticació d’un proveïdor de serveis, però s’ha produït un error en intentar processar la sol·licitud."
 	},
 	"title_SLOSERVICEPARAMS": {
 		"no": "Ingen SAML-melding angitt",
@@ -1214,7 +1245,8 @@
 		"af": "Geen SAML boodskap gevind nie",
 		"el": "\u03a3\u03c6\u03ac\u03bb\u03bc\u03b1 \u03ba\u03b1\u03c4\u03ac \u03c4\u03b7\u03bd \u03c0\u03c1\u03cc\u03c3\u03b2\u03b1\u03c3\u03b7 \u03c3\u03c4\u03b7 \u03b4\u03b9\u03b5\u03c0\u03b1\u03c6\u03ae SingleLogoutService",
 		"zu": "Awukho umlayezo we-SAML onikeziwe",
-		"xh": "Akukho myalezo we-SAML unikelweyo"
+		"xh": "Akukho myalezo we-SAML unikelweyo",
+		"ca": "No s’ha proporcionat cap missatge SAML"
 	},
 	"descr_SLOSERVICEPARAMS": {
 		"no": "Du brukte SingleLogoutService-grensesnittet uten \u00e5 angi enten en SAML LogoutRequest eller en LogoutResponse.",
@@ -1252,7 +1284,8 @@
 		"af": "Jy het toegang verkry na die SingleLogoutService koppelvlak('interface'), maar het geen SAML LogoutRequest of LogoutResponse gestuur nie.",
 		"el": "\u039a\u03b1\u03c4\u03ac \u03c4\u03b7\u03bd \u03c0\u03c1\u03cc\u03c3\u03b2\u03b1\u03c3\u03ae \u03c3\u03b1\u03c2 \u03c3\u03c4\u03b7 \u03b4\u03b9\u03b5\u03c0\u03b1\u03c6\u03ae SingleLogoutService \u03c0\u03b1\u03c1\u03b1\u03bb\u03b5\u03af\u03c8\u03b1\u03c4\u03b5 \u03bd\u03b1 \u03c3\u03c5\u03bc\u03c0\u03b5\u03c1\u03b9\u03bb\u03ac\u03b2\u03b5\u03c4\u03b5 \u03bc\u03ae\u03bd\u03c5\u03bc\u03b1 LogoutRequest \u03ae LogoutResponse \u03c4\u03bf\u03c5 \u03c0\u03c1\u03c9\u03c4\u03bf\u03ba\u03cc\u03bb\u03bb\u03bf\u03c5 SAML. \u03a3\u03b7\u03bc\u03b5\u03b9\u03ce\u03c3\u03c4\u03b5 \u03cc\u03c4\u03b9 \u03b1\u03c5\u03c4\u03cc \u03c4\u03bf \u03c4\u03b5\u03bb\u03b9\u03ba\u03cc \u03c3\u03b7\u03bc\u03b5\u03af\u03bf (endpoint) \u03b4\u03b5\u03bd \u03c0\u03c1\u03bf\u03bf\u03c1\u03af\u03b6\u03b5\u03c4\u03b1\u03b9 \u03bd\u03b1 \u03b5\u03af\u03bd\u03b1\u03b9 \u03ac\u03bc\u03b5\u03c3\u03b1 \u03c0\u03c1\u03bf\u03c3\u03b2\u03ac\u03c3\u03b9\u03bc\u03bf.",
 		"zu": "Ufinyelele ukusebenzisana kwe-SingleLogoutService, kodwa awuzange uhlinzeke nge-SAML LogoutRequest noma i-LogoutResponse. Sicela uphawule ukuthi isiphetho asihloselwe ukufinyelelwa ngokuqondile.",
-		"xh": "Ufikelele i-intafeyisi ye-SingleLogoutService, kodwa awukhange unikele i-SAML LogoutRequest okanye i-LogoutResponse. Nceda uqaphele ukuba le ndawo yokuphela ayilungiselelwanga ukuba ifikelelwe ngokuthe ngqo."
+		"xh": "Ufikelele i-intafeyisi ye-SingleLogoutService, kodwa awukhange unikele i-SAML LogoutRequest okanye i-LogoutResponse. Nceda uqaphele ukuba le ndawo yokuphela ayilungiselelwanga ukuba ifikelelwe ngokuthe ngqo.",
+		"ca": "Heu accedit a la interfície de SingleLogoutService, però no heu proporcionat un missatge SAML de LogoutRequest ni LogoutResponse. Tingueu en compte que en aquest punt no s'hi pot accedir directament."
 	},
 	"title_ACSPARAMS": {
 		"no": "Ingen SAML-respons angitt",
@@ -1290,7 +1323,8 @@
 		"af": "Geen SAML versoek gevind nie",
 		"el": "\u03a3\u03c6\u03ac\u03bb\u03bc\u03b1 \u03ba\u03b1\u03c4\u03ac \u03c4\u03b7\u03bd \u03c0\u03c1\u03cc\u03c3\u03b2\u03b1\u03c3\u03b7 \u03c3\u03c4\u03b7 \u03b4\u03b9\u03b5\u03c0\u03b1\u03c6\u03ae AssertionConsumerService",
 		"zu": "Ayikho impendulo ye-SAML enikeziwe",
-		"xh": "Akukho mpendulo ye-SAML inikelweyo"
+		"xh": "Akukho mpendulo ye-SAML inikelweyo",
+		"ca": "No s’ha proporcionat cap resposta de SAML"
 	},
 	"descr_ACSPARAMS": {
 		"no": "Du brukte AssertionConsumerService-grensesnittet uten \u00e5 angi en SAML AuthenticationResponse.",
@@ -1328,27 +1362,32 @@
 		"af": "Jy het aansoek gedoen vir toegang na die Assertion Consumer Service koppelvlak, maar geen SAML Verifikasie Versoek is saam gestuur nie.",
 		"el": "\u039a\u03b1\u03c4\u03ac \u03c4\u03b7\u03bd \u03c0\u03c1\u03cc\u03c3\u03b2\u03b1\u03c3\u03ae \u03c3\u03b1\u03c2 \u03c3\u03c4\u03b7 \u03b4\u03b9\u03b5\u03c0\u03b1\u03c6\u03ae AssertionConsumerService  \u03c0\u03b1\u03c1\u03b1\u03bb\u03b5\u03af\u03c8\u03b1\u03c4\u03b5 \u03bd\u03b1 \u03c3\u03c5\u03bc\u03c0\u03b5\u03c1\u03b9\u03bb\u03ac\u03b2\u03b5\u03c4\u03b5 \u03b1\u03c0\u03ac\u03bd\u03c4\u03b7\u03c3\u03b7 \u03c3\u03b5 \u03b1\u03af\u03c4\u03b7\u03bc\u03b1 \u03c4\u03b1\u03c5\u03c4\u03bf\u03c0\u03bf\u03af\u03b7\u03c3\u03b7\u03c2 \u03c4\u03bf\u03c5 \u03c0\u03c1\u03c9\u03c4\u03bf\u03ba\u03cc\u03bb\u03bb\u03bf\u03c5 SAML. \u03a3\u03b7\u03bc\u03b5\u03b9\u03ce\u03c3\u03c4\u03b5 \u03cc\u03c4\u03b9 \u03b1\u03c5\u03c4\u03cc \u03c4\u03bf \u03c4\u03b5\u03bb\u03b9\u03ba\u03cc \u03c3\u03b7\u03bc\u03b5\u03af\u03bf (endpoint) \u03b4\u03b5\u03bd \u03c0\u03c1\u03bf\u03bf\u03c1\u03af\u03b6\u03b5\u03c4\u03b1\u03b9 \u03bd\u03b1 \u03b5\u03af\u03bd\u03b1\u03b9 \u03ac\u03bc\u03b5\u03c3\u03b1 \u03c0\u03c1\u03bf\u03c3\u03b2\u03ac\u03c3\u03b9\u03bc\u03bf.",
 		"zu": "Ufinyelele ukusebenzisana Kwesevisi Yomthengi Yesimemezelo, kodwa awuzange uhlinzeke Ngempendulo Yokuqinisekisa ye-SAML. Sicela uphawule ukuthi isiphetho asihloselwe ukufinyelelwa ngokuqondile.",
-		"xh": "Ufikelele i-intafeyisi ye-Assertion Consumer Service, kodwa awukhange unikele iMpendulo Yongqinisiso ye-SAML. Nceda uqaphele ukuba le ndawo yokuphela ayilungiselelwanga ukuba ifikelelwe ngokuthe ngqo."
+		"xh": "Ufikelele i-intafeyisi ye-Assertion Consumer Service, kodwa awukhange unikele iMpendulo Yongqinisiso ye-SAML. Nceda uqaphele ukuba le ndawo yokuphela ayilungiselelwanga ukuba ifikelelwe ngokuthe ngqo.",
+		"ca": "Heu accedit a la interfície Assertion Consumer Service però no heu proporcionat una resposta d’autenticació SAML. Tingueu en compte que en aquest punt no s'hi pot accedir directament."
 	},
 	"title_SSOPARAMS": {
 		"zh-tw": "\u672a\u63d0\u4f9b SAML \u8acb\u6c42",
 		"zu": "Asikho isicelo se-SAML esinikeziwe",
-		"xh": "Akukho sicelo se-SAML sinikelweyo"
+		"xh": "Akukho sicelo se-SAML sinikelweyo",
+		"ca": "No s’ha proporcionat cap sol·licitud SAML"
 	},
 	"descr_SSOPARAMS": {
 		"zh-tw": "\u60a8\u9023\u7d50\u55ae\u4e00\u7c3d\u5165\u670d\u52d9\u4ecb\u9762\uff0c\u4f46\u672a\u63d0\u4f9b\u4e00\u500b SAML \u9a57\u8b49\u8acb\u6c42\u3002\u8acb\u6ce8\u610f\uff0c\u8a72\u7aef\u9ede\u4e26\u975e\u76f4\u63a5\u9023\u7dda\u3002",
 		"xh": "Ufikelele i-intafeyisi ye-Single Sign On Service, kodwa awukhange unikele iMpendulo Yongqinisiso ye-SAML. Nceda uqaphele ukuba le ndawo yokuphela ayilungiselelwanga ukuba ifikelelwe ngokuthe ngqo.",
-		"zu": "Ufinyelele ukusebenzisana Kwesevisi Yokubhalisa Okukodwa, kodwa awuzange uhlinzeke Ngempendulo Yokuqinisekisa ye-SAML. Sicela uphawule ukuthi isiphetho asihloselwe ukufinyelelwa ngokuqondile."
+		"zu": "Ufinyelele ukusebenzisana Kwesevisi Yokubhalisa Okukodwa, kodwa awuzange uhlinzeke Ngempendulo Yokuqinisekisa ye-SAML. Sicela uphawule ukuthi isiphetho asihloselwe ukufinyelelwa ngokuqondile.",
+		"ca": "Heu accedit a la interfície del servei d’inici de sessió únic, però no heu proporcionat una sol·licitud d’autenticació SAML. Tingueu en compte que en aquest punt no s'hi pot accedir directament."
 	},
 	"title_ARSPARAMS": {
 		"zh-tw": "\u672a\u63d0\u4f9b SAML \u8a0a\u606f",
 		"zu": "Awukho umlayezo we-SAML onikeziwe",
-		"xh": "Akukho myalezo we-SAML unikelweyo"
+		"xh": "Akukho myalezo we-SAML unikelweyo",
+		"ca": "No s’ha proporcionat cap missatge SAML"
 	},
 	"descr_ARSPARAMS": {
 		"zh-tw": "\u60a8\u9023\u7d50\u4eba\u5de5\u8655\u7406\u670d\u52d9\u4ecb\u9762\uff0c\u4f46\u672a\u63d0\u4f9b SAML \u4eba\u5de5\u8655\u7406\u670d\u52d9\u8a0a\u606f\u3002\u8acb\u6ce8\u610f\uff0c\u8a72\u7aef\u9ede\u4e26\u975e\u76f4\u63a5\u9023\u7dda\u3002",
 		"xh": "Ufikelele i-intafeyisi ye-Artifact Resolution Service, kodwa awukhange unikrele umyalezo we-SAML ArtifactResolve. Nceda uqaphele ukuba le ndawo yokuphela ayilungiselelwanga ukuba ifikelelwe ngokuthe ngqo.",
-		"zu": "Ufinyelele ukusebenzisana Kwesevisi Yokucaciswa Kobuciko, kodwa awuzange uhlinzeke umlayezo we-SAML ArtifactResolve. Sicela uphawule ukuthi isiphetho asihloselwe ukufinyelelwa ngokuqondile."
+		"zu": "Ufinyelele ukusebenzisana Kwesevisi Yokucaciswa Kobuciko, kodwa awuzange uhlinzeke umlayezo we-SAML ArtifactResolve. Sicela uphawule ukuthi isiphetho asihloselwe ukufinyelelwa ngokuqondile.",
+		"ca": "Heu accedit a la interfície del servei de resolució Artifact, però no heu proporcionat un missatge d’ArtifactResolve de SAML. Tingueu en compte que en aquest punt no s'hi pot accedir directament."
 
 	},
 	"title_CASERROR": {
@@ -1387,7 +1426,8 @@
 		"af": "CAS Fout",
 		"el": "\u03a3\u03c6\u03ac\u03bb\u03bc\u03b1 CAS",
 		"xh": "Impazamo ye-CAS",
-		"zu": "Iphutha Le-CAS"
+		"zu": "Iphutha Le-CAS",
+		"ca": "Error CAS"
 	},
 	"descr_CASERROR": {
 		"no": "Feil i kommunikasjonen med CAS-tjeneren.",
@@ -1425,7 +1465,8 @@
 		"af": "Fout tydens kommunikasie met die CAS bediener.",
 		"el": "\u03a0\u03b1\u03c1\u03bf\u03c5\u03c3\u03b9\u03ac\u03c3\u03c4\u03b7\u03ba\u03b5 \u03c3\u03c6\u03ac\u03bb\u03bc\u03b1 \u03ba\u03b1\u03c4\u03ac \u03c4\u03b7\u03bd \u03b5\u03c0\u03b9\u03ba\u03bf\u03b9\u03bd\u03c9\u03bd\u03af\u03b1 \u03bc\u03b5 \u03c4\u03bf\u03bd \u03b5\u03be\u03c5\u03c0\u03b7\u03c1\u03b5\u03c4\u03b7\u03c4\u03ae CAS.",
 		"zu": "Iphutha ngenkathi kuxhunyanwa neseva ye-CAS.",
-		"xh": "Impazamo xa kunxibelelwana neseva ye-CAS."
+		"xh": "Impazamo xa kunxibelelwana neseva ye-CAS.",
+		"ca": "S'ha produït un error al intentar comunicar amb el servidor CAS."
 	},
 	"title_CONFIG": {
 		"no": "Feil i oppsettet",
@@ -1463,7 +1504,8 @@
 		"af": "Instellings fout",
 		"el": "\u03a3\u03c6\u03ac\u03bb\u03bc\u03b1 \u03c1\u03c5\u03b8\u03bc\u03af\u03c3\u03b5\u03c9\u03bd",
 		"zu": "Iphutha lomiso",
-		"xh": "Impazamo yolungiselelo"
+		"xh": "Impazamo yolungiselelo",
+		"ca": "Error de configuració"
 	},
 	"descr_CONFIG": {
 		"no": "Det virker som det er en feil i oppsettet av SimpleSAMLphp.",
@@ -1501,7 +1543,8 @@
 		"af": "SimpleSAMLphp is nie korrek ingestel nie",
 		"el": "\u03a0\u03b1\u03c1\u03bf\u03c5\u03c3\u03b9\u03ac\u03c3\u03c4\u03b7\u03ba\u03b5 \u03c3\u03c6\u03ac\u03bb\u03bc\u03b1 \u03c1\u03c5\u03b8\u03bc\u03af\u03c3\u03b5\u03c9\u03bd \u03c4\u03bf\u03c5 SimpleSAMLphp. \u0395\u03c0\u03b9\u03ba\u03bf\u03b9\u03bd\u03c9\u03bd\u03ae\u03c3\u03c4\u03b5 \u03bc\u03b5 \u03c4\u03bf\u03bd \u03b4\u03b9\u03b1\u03c7\u03b5\u03b9\u03c1\u03b9\u03c3\u03c4\u03ae \u03c4\u03b7\u03c2 \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b1\u03c2.",
 		"xh": "I-SimpleSAMLphp ibonakala ingalungiselelwanga kakuhle.",
-		"zu": "I-SimpleSAMLphp ibonakala ingamisiwe ngendlela efanele."
+		"zu": "I-SimpleSAMLphp ibonakala ingamisiwe ngendlela efanele.",
+		"ca": "SimpleSAMLphp sembla estar mal configurat."
 	},
 	"title_NOTSET": {
 		"no": "Passordet er ikke satt",
@@ -1539,7 +1582,8 @@
 		"af": "Wagwoord nie opgestel nie",
 		"el": "\u03a3\u03c6\u03ac\u03bb\u03bc\u03b1 \u03ba\u03c9\u03b4\u03b9\u03ba\u03bf\u03cd \u03c0\u03c1\u03cc\u03c3\u03b2\u03b1\u03c3\u03b7\u03c2",
 		"xh": "Iphaswedi ayisetwanga",
-		"zu": "Iphasiwedi ayisethiwe"
+		"zu": "Iphasiwedi ayisethiwe",
+		"ca": "No s'ha definit la contrasenya"
 	},
 	"descr_NOTSET": {
 		"no": "Admin passordet i konfigurasjonen (auth.adminpassword) er ikke satt til noe annet enn default verdien. Bytt passord i config.php.",
@@ -1577,7 +1621,8 @@
 		"af": "Die wagwoord in die konfigurasie (auth.adminpassword) is nie aangepas nie. Redigeer asb die konfigurasie le\u00ebr.",
 		"el": "\u03a7\u03c1\u03b7\u03c3\u03b9\u03bc\u03bf\u03c0\u03bf\u03b9\u03b5\u03af\u03c4\u03b1\u03b9 \u03b7 \u03c0\u03c1\u03bf\u03ba\u03b1\u03b8\u03bf\u03c1\u03b9\u03c3\u03bc\u03ad\u03bd\u03b7 \u03c4\u03b9\u03bc\u03ae \u03c4\u03bf\u03c5 \u03ba\u03c9\u03b4\u03b9\u03ba\u03bf\u03cd \u03c0\u03c1\u03cc\u03c3\u03b2\u03b1\u03c3\u03b7\u03c2. \u03a0\u03b1\u03c1\u03b1\u03ba\u03b1\u03bb\u03bf\u03cd\u03bc\u03b5 \u03b5\u03c0\u03b5\u03be\u03b5\u03c1\u03b3\u03b1\u03c3\u03c4\u03b5\u03af\u03c4\u03b5 \u03c4\u03bf \u03b1\u03c1\u03c7\u03b5\u03af\u03bf \u03c1\u03c5\u03b8\u03bc\u03af\u03c3\u03b5\u03c9\u03bd.",
 		"xh": "Iphaswedi ekulungiselelo (auth.adminpassword) ayitshintshwanga ukusuka kwixabiso lesiseko. Nceda uhlele ifayile yolungiselelo.",
-		"zu": "Iphasiwedi kumiso (auth.adminpassword) ayishintshiwe kunani elizenzakalelayo. Sicela uhlele ifayela lomiso."
+		"zu": "Iphasiwedi kumiso (auth.adminpassword) ayishintshiwe kunani elizenzakalelayo. Sicela uhlele ifayela lomiso.",
+		"ca": "La contrasenya de la configuració (auth.adminpassword) no s'ha canviat del valor predeterminat. Editeu el fitxer de configuració."
 	},
 	"title_NOTVALIDCERT": {
 		"no": "Ugyldig sertifikat",
@@ -1615,7 +1660,8 @@
 		"af": "Ongeldige sertifikaat",
 		"el": "\u039c\u03b7 \u03ad\u03b3\u03ba\u03c5\u03c1\u03bf \u03c0\u03b9\u03c3\u03c4\u03bf\u03c0\u03bf\u03b9\u03b7\u03c4\u03b9\u03ba\u03cc",
 		"xh": "Isatifikethi esingasebenziyo",
-		"zu": "Isitifiketi esingalungile"
+		"zu": "Isitifiketi esingalungile",
+		"ca": "Certificat no vàlid"
 	},
 	"descr_NOTVALIDCERT": {
 		"no": "Du presenterte ikke et gyldig sertifikat",
@@ -1653,7 +1699,8 @@
 		"af": "Jy het nie 'n geldige sertifikaat gestuur nie.",
 		"el": "\u03a0\u03b1\u03c1\u03bf\u03c5\u03c3\u03b9\u03ac\u03c3\u03c4\u03b7\u03ba\u03b5 \u03c3\u03c6\u03ac\u03bb\u03bc\u03b1 \u03bb\u03cc\u03b3\u03c9 \u03bc\u03b7 \u03ad\u03b3\u03ba\u03c5\u03c1\u03bf\u03c5 \u03c0\u03b9\u03c3\u03c4\u03bf\u03c0\u03bf\u03b9\u03b7\u03c4\u03b9\u03ba\u03bf\u03cd.",
 		"zu": "Awuzange wethule isitifiketi esilungile.",
-		"xh": "Awukhange uzise isatifikethi esisebenzayo."
+		"xh": "Awukhange uzise isatifikethi esisebenzayo.",
+		"ca": "No heu presentat un certificat vàlid."
 	},
 	"errorreport_header": {
 		"no": "Feilrapport sent",
@@ -1690,7 +1737,8 @@
 		"af": "Foutmeldingsverslag gestuur",
 		"el": "\u0397 \u03b1\u03bd\u03b1\u03c6\u03bf\u03c1\u03ac \u03c3\u03c6\u03ac\u03bb\u03bc\u03b1\u03c4\u03bf\u03c2 \u03c3\u03c4\u03ac\u03bb\u03b8\u03b7\u03ba\u03b5",
 		"zu": "Umbiko wephutha uthunyelwe",
-		"xh": "Ingxelo yempazamo ithunyelwe"
+		"xh": "Ingxelo yempazamo ithunyelwe",
+		"ca": "S'ha enviat un informe d'error"
 	},
 	"errorreport_text": {
 		"no": "Feilrapport er sent til administrator.",
@@ -1727,7 +1775,8 @@
 		"af": "Die foutmeldings verslag is gestuur na die administrateurs.",
 		"el": "\u0397 \u03b1\u03c0\u03bf\u03c3\u03c4\u03bf\u03bb\u03ae \u03c4\u03b7\u03c2 \u03b1\u03bd\u03b1\u03c6\u03bf\u03c1\u03ac\u03c2 \u03c3\u03c6\u03ac\u03bb\u03bc\u03b1\u03c4\u03bf\u03c2 \u03c3\u03c4\u03bf\u03c5\u03c2 \u03b4\u03b9\u03b1\u03c7\u03b5\u03b9\u03c1\u03b9\u03c3\u03c4\u03ad\u03c2 \u03bf\u03bb\u03bf\u03ba\u03bb\u03b7\u03c1\u03ce\u03b8\u03b7\u03ba\u03b5.",
 		"xh": "Ingxelo yempazamo ithunyelwe kubalawuli.",
-		"zu": "Umbiko wephutha uthunyelwe kubalawuli."
+		"zu": "Umbiko wephutha uthunyelwe kubalawuli.",
+		"ca": "L’informe d’errors s’ha enviat als administradors."
 	},
 	"title_LOGOUTINFOLOST": {
 		"no": "Informasjon om utlogging er tapt",
@@ -1764,7 +1813,8 @@
 		"af": "Afmelding informasie verlore",
 		"el": "\u03a3\u03c6\u03ac\u03bb\u03bc\u03b1 \u03b1\u03c0\u03bf\u03c3\u03cd\u03bd\u03b4\u03b5\u03c3\u03b7\u03c2",
 		"zu": "Ulwazi lokuphuma lulahlekile",
-		"xh": "Inkcazelo yokuphuma ilahlekile"
+		"xh": "Inkcazelo yokuphuma ilahlekile",
+		"ca": "S'ha perdut la informació del tancament de sessió"
 	},
 	"descr_LOGOUTINFOLOST": {
 		"no": "Informasjonen om den n\u00e5v\u00e6rende utloggingen har g\u00e5tt tapt. Du b\u00f8r g\u00e5 tilbake til den opprinnelige tjesesten og pr\u00f8ve \u00e5 logge ut p\u00e5 nytt. Informasjon om utloggingsoperasjoner er kun lagret i en begrenset tid - vanligvis noen timer. Dette er lengere tid enn en vanlig utlogging skal ta, s\u00e5 denne feilen kan tyde p\u00e5 at noe er galt med oppsettet. Ta kontakt med tjenesteyteren hvis problemet gjentar seg.",
@@ -1801,7 +1851,8 @@
 		"af": "Die inligting vir die huidige uiteken sessie is verlore. Jy moet terugkeer na die diens waarvan jy probeer afmeld het en probeer om weer af te meld. Di\u00e9 fout kan voorkom weens verstreke afmelding inligting. Die afmelding inligting word gestoor vir 'n beperkte tydperk - gewoonlik 'n paar ure. Dit is langer as wat 'n normale afmelding sessie moet vat, so die fout mag 'n indikasie wees van 'n probleem met die stellings. Kontak jou diens verskaffer sou die probleem voortduur.",
 		"el": "\u039f\u03b9 \u03c0\u03bb\u03b7\u03c1\u03bf\u03c6\u03bf\u03c1\u03af\u03b5\u03c2 \u03c3\u03c7\u03b5\u03c4\u03b9\u03ba\u03ac \u03bc\u03b5 \u03c4\u03b7\u03bd \u03b1\u03c0\u03bf\u03c3\u03cd\u03bd\u03b4\u03b5\u03c3\u03b7 \u03ad\u03c7\u03bf\u03c5\u03bd \u03c7\u03b1\u03b8\u03b5\u03af. \u0398\u03b1 \u03c0\u03c1\u03ad\u03c0\u03b5\u03b9 \u03bd\u03b1 \u03b5\u03c0\u03b9\u03c3\u03c4\u03c1\u03ad\u03c8\u03b5\u03c4\u03b5 \u03c3\u03c4\u03b7\u03bd \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b1 \u03b1\u03c0\u03cc \u03c4\u03b7\u03bd \u03bf\u03c0\u03bf\u03af\u03b1 \u03c0\u03c1\u03bf\u03c3\u03c0\u03b1\u03b8\u03b5\u03af\u03c4\u03b5 \u03bd\u03b1 \u03b1\u03c0\u03bf\u03c3\u03c5\u03bd\u03b4\u03b5\u03b8\u03b5\u03af\u03c4\u03b5 \u03ba\u03b1\u03b9 \u03bd\u03b1 \u03c0\u03c1\u03bf\u03c3\u03c0\u03b1\u03b8\u03ae\u03c3\u03b5\u03c4\u03b5 \u03b5\u03ba \u03bd\u03ad\u03bf\u03c5. \u0391\u03c5\u03c4\u03cc \u03c4\u03bf \u03c3\u03c6\u03ac\u03bb\u03bc\u03b1 \u03bc\u03c0\u03bf\u03c1\u03b5\u03af \u03bd\u03b1 \u03c0\u03b1\u03c1\u03bf\u03c5\u03c3\u03b9\u03b1\u03c3\u03c4\u03b5\u03af \u03b1\u03bd \u03b7 \u03b9\u03c3\u03c7\u03cd\u03c2 \u03c4\u03c9\u03bd \u03c0\u03bb\u03b7\u03c1\u03bf\u03c6\u03bf\u03c1\u03b9\u03ce\u03bd \u03c3\u03c7\u03b5\u03c4\u03b9\u03ba\u03ac \u03bc\u03b5 \u03c4\u03b7\u03bd \u03b1\u03c0\u03bf\u03c3\u03cd\u03bd\u03b4\u03b5\u03c3\u03b7 \u03ad\u03c7\u03b5\u03b9 \u03bb\u03ae\u03be\u03b5\u03b9. \u039f\u03b9 \u03c0\u03bb\u03b7\u03c1\u03bf\u03c6\u03bf\u03c1\u03af\u03b5\u03c2 \u03b1\u03c5\u03c4\u03ad\u03c2 \u03b1\u03c0\u03bf\u03b8\u03b7\u03ba\u03b5\u03cd\u03b5\u03c4\u03b1\u03b9 \u03b3\u03b9\u03b1 \u03c0\u03b5\u03c1\u03b9\u03bf\u03c1\u03b9\u03c3\u03bc\u03ad\u03bd\u03bf \u03c7\u03c1\u03bf\u03bd\u03b9\u03ba\u03cc \u03b4\u03b9\u03ac\u03c3\u03c4\u03b7\u03bc\u03b1 - \u03c3\u03c5\u03bd\u03ae\u03b8\u03c9\u03c2 \u03bc\u03b5\u03c1\u03b9\u03ba\u03ce\u03bd \u03c9\u03c1\u03ce\u03bd. \u0391\u03c5\u03c4\u03cc \u03c3\u03c5\u03bd\u03ae\u03b8\u03c9\u03c2 \u03b5\u03c0\u03b1\u03c1\u03ba\u03b5\u03af \u03b3\u03b9\u03b1 \u03bc\u03b9\u03b1 \u03ba\u03b1\u03bd\u03bf\u03bd\u03b9\u03ba\u03ae \u03bb\u03b5\u03b9\u03c4\u03bf\u03c5\u03c1\u03b3\u03af\u03b1 \u03b1\u03c0\u03bf\u03c3\u03cd\u03bd\u03b4\u03b5\u03c3\u03b7\u03c2, \u03c3\u03c5\u03bd\u03b5\u03c0\u03ce\u03c2 \u03c3\u03c4\u03b7\u03bd \u03c0\u03c1\u03bf\u03ba\u03b5\u03b9\u03bc\u03ad\u03bd\u03b7 \u03c0\u03b5\u03c1\u03af\u03c0\u03c4\u03c9\u03c3\u03b7 \u03c4\u03bf \u03c3\u03c6\u03ac\u03bb\u03bc\u03b1 \u03bc\u03c0\u03bf\u03c1\u03b5\u03af \u03bd\u03b1 \u03c5\u03c0\u03bf\u03b4\u03b5\u03b9\u03ba\u03bd\u03cd\u03b5\u03b9 \u03ba\u03ac\u03c0\u03bf\u03b9\u03bf \u03ac\u03bb\u03bb\u03bf \u03b8\u03ad\u03bc\u03b1 \u03bc\u03b5 \u03c4\u03b9\u03c2 \u03c1\u03c5\u03b8\u03bc\u03af\u03c3\u03b5\u03b9\u03c2. \u0395\u03ac\u03bd \u03c4\u03bf \u03c0\u03c1\u03cc\u03b2\u03bb\u03b7\u03bc\u03b1 \u03c0\u03b1\u03c1\u03b1\u03bc\u03ad\u03bd\u03b5\u03b9, \u03b5\u03c0\u03b9\u03ba\u03bf\u03b9\u03bd\u03c9\u03bd\u03ae\u03c3\u03c4\u03b5 \u03bc\u03b5 \u03c4\u03bf\u03bd \u03c0\u03ac\u03c1\u03bf\u03c7\u03bf \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03b9\u03ce\u03bd.",
 		"zu": "Ulwazi olumayelana nomsebenzi wokuphuma wamanje lulahlekile. Kufanele ubuyele kusevisi obuzama ukuphuma kuyo futhi uzame ukuphuma futhi. Leli phutha lingabangelwa ukuphelelwa isikhathi kolwazi lokuphuma. Ulwazi lokuphuma lugcinwa isikhathi esilinganiselwe - ngokuvamile amahora ambalwa. Lokhu kude kunanoma yimuphi umsebenzi wokuphuma ovamile, ngakho leli phutha lingase libonise elinye iphutha ngomiso. Uma inkinga iphikelela, thinta umhlinzeki wakho wesevisi.",
-		"xh": "Inkcazelo malunga nomsebenzi wokuphuma wangoku ilahlekile. Ufanele ubuyele kwinkonzo ubuzama ukuphuma kuyo uzame ukuphuma kwakhona. Le mpazamo inokubangelwa kukuphelelwa kwenkcazelo yokuphuma. Inkcazelo yokuphuma igcinwa ixesha elithile - ngokuqhelekileyo iiyure eziliqela. Oku kuthatha ixesha elide kunawo nawuphi na umsebenzi wokuphuma ofanele ulithathe, ngoko le mpazamo isenokubonisa enye impazamo ngolungiselelo. Ukuba ingxaki iyaqhubeka, qhagamshela umboneleli wenkonzo wakho."
+		"xh": "Inkcazelo malunga nomsebenzi wokuphuma wangoku ilahlekile. Ufanele ubuyele kwinkonzo ubuzama ukuphuma kuyo uzame ukuphuma kwakhona. Le mpazamo inokubangelwa kukuphelelwa kwenkcazelo yokuphuma. Inkcazelo yokuphuma igcinwa ixesha elithile - ngokuqhelekileyo iiyure eziliqela. Oku kuthatha ixesha elide kunawo nawuphi na umsebenzi wokuphuma ofanele ulithathe, ngoko le mpazamo isenokubonisa enye impazamo ngolungiselelo. Ukuba ingxaki iyaqhubeka, qhagamshela umboneleli wenkonzo wakho.",
+		"ca": "S'ha perdut la informació sobre el tancament de sessió actual. Heu de tornar al servei del qual esteu intentant desconnectar i provar de sortir de nou. Aquest error pot ser causat per l’expiració de la informació del tancament de sessió. La informació de tancament de sessió s’emmagatzema per un període limitat de temps, normalment un nombre d'hores. Això és més llarg del que hauria de tenir qualsevol operació de tancament de sessió normal, de manera que aquest error pot indicar algun altre error amb la configuració. Si el problema continua, poseu-vos en contacte amb el vostre proveïdor de serveis."
 	},
 	"title_UNHANDLEDEXCEPTION": {
 		"no": "Uh\u00e5ndtert feil",
@@ -1838,7 +1889,8 @@
 		"af": "Onverwagte foutmelding",
 		"el": "\u0391\u03bd\u03b5\u03c0\u03af\u03bb\u03c5\u03c4\u03b7 \u03b5\u03be\u03b1\u03af\u03c1\u03b5\u03c3\u03b7",
 		"xh": "Isinxaxhi esingasingathwanga",
-		"zu": "Okuhlukile okungasingathiwe"
+		"zu": "Okuhlukile okungasingathiwe",
+		"ca": "Excepció no controlada"
 	},
 	"descr_UNHANDLEDEXCEPTION": {
 		"no": "En uventet feilsituasjon oppstod",
@@ -1875,7 +1927,8 @@
 		"af": "'n Onverwagte foutmelding is aangetoon",
 		"el": "\u03a0\u03b1\u03c1\u03bf\u03c5\u03c3\u03b9\u03ac\u03c3\u03c4\u03b7\u03ba\u03b5 \u03b1\u03bd\u03b5\u03c0\u03af\u03bb\u03c5\u03c4\u03b7 \u03b5\u03be\u03b1\u03af\u03c1\u03b5\u03c3\u03b7",
 		"xh": "Isinxaxhi esingasingathwanga silahliwe.",
-		"zu": "Okuhlukile okungasingathiwe kulahliwe."
+		"zu": "Okuhlukile okungasingathiwe kulahliwe.",
+		"ca": "S'ha enviat una excepció no controlada."
 	},
 	"title_NOTFOUND": {
 		"no": "Kan ikke finne siden",
@@ -1912,7 +1965,8 @@
 		"af": "Bladsy nie gevind nie",
 		"el": "\u0397 \u03c3\u03b5\u03bb\u03af\u03b4\u03b1 \u03b4\u03b5\u03bd \u03b2\u03c1\u03ad\u03b8\u03b7\u03ba\u03b5",
 		"xh": "Ikhasi alifunyenwanga",
-		"zu": "Ikhasi alitholakali"
+		"zu": "Ikhasi alitholakali",
+		"ca": "Pàgina no trobada"
 	},
 	"descr_NOTFOUND": {
 		"no": "Den angitte siden finnes ike. URLen var: %URL%",
@@ -1949,7 +2003,8 @@
 		"af": "Die bladsy bestaan nie. Die URL was: %URL%",
 		"el": "\u0397 \u03c3\u03b5\u03bb\u03af\u03b4\u03b1 \u03c0\u03bf\u03c5 \u03b6\u03b7\u03c4\u03ae\u03c3\u03b1\u03c4\u03b5 \u03c3\u03c4\u03b7 \u03b4\u03b9\u03b5\u03cd\u03b8\u03c5\u03bd\u03c3\u03b7 %URL% \u03b4\u03b5\u03bd \u03b2\u03c1\u03ad\u03b8\u03b7\u03ba\u03b5.",
 		"zu": "Ikhasi elinikeziwe alitholakalanga. I-URL ibithi: %URL%",
-		"xh": "Ikhasi elinikelweyo alifunyenwanga. I-URL ngu: %URL%"
+		"xh": "Ikhasi elinikelweyo alifunyenwanga. I-URL ngu: %URL%",
+		"ca": "No s’ha trobat la pàgina indicada. L’URL és: %URL%"
 	},
 	"title_NOTFOUNDREASON": {
 		"no": "Kan ikke finne siden",
@@ -1986,7 +2041,8 @@
 		"af": "Bladsy nie gevind nie",
 		"el": "\u0397 \u03c3\u03b5\u03bb\u03af\u03b4\u03b1 \u03b4\u03b5\u03bd \u03b2\u03c1\u03ad\u03b8\u03b7\u03ba\u03b5",
 		"xh": "Ikhasi alifunyenwanga",
-		"zu": "Ikhasi alitholakali"
+		"zu": "Ikhasi alitholakali",
+		"ca": "Pàgina no trobada"
 	},
 	"descr_NOTFOUNDREASON": {
 		"no": "Den angitte siden finnes ikke. Grunnen er: %REASON%. URLen var: %URL%",
@@ -2023,7 +2079,8 @@
 		"af": "Die gegewe bladsy is nie gevind nie. Die rede was: %REASON%. Die URL was: %URL%",
 		"el": "\u0397 \u03c3\u03b5\u03bb\u03af\u03b4\u03b1 \u03c0\u03bf\u03c5 \u03b6\u03b7\u03c4\u03ae\u03c3\u03b1\u03c4\u03b5 \u03c3\u03c4\u03b7 \u03b4\u03b9\u03b5\u03cd\u03b8\u03c5\u03bd\u03c3\u03b7 %URL% \u03b4\u03b5\u03bd \u03b2\u03c1\u03ad\u03b8\u03b7\u03ba\u03b5: %REASON%",
 		"zu": "Ikhasi elinikeziwe alitholakalanga. Isizathu besithi: %REASON%  I-URL ibithi: %URL%",
-		"xh": "Ikhasi elinikelweyo alifunyenwanga. Isizathu sesi: %REASON%  I-URL ngu: %URL%"
+		"xh": "Ikhasi elinikelweyo alifunyenwanga. Isizathu sesi: %REASON%  I-URL ngu: %URL%",
+		"ca": "No s’ha trobat la pàgina indicada. El motiu és: %REASON%. L’URL és: %URL%"
 	},
 	"title_BADREQUEST": {
 		"no": "Feil foresp\u00f8rsel motatt",
@@ -2060,7 +2117,8 @@
 		"af": "Foutiewe versoek ontvang",
 		"el": "\u0395\u03c3\u03c6\u03b1\u03bb\u03bc\u03ad\u03bd\u03bf \u03b1\u03af\u03c4\u03b7\u03bc\u03b1",
 		"zu": "Kutholwe umlayezo ongalungile",
-		"xh": "Kufunyenwe isicelo esibi"
+		"xh": "Kufunyenwe isicelo esibi",
+		"ca": "S'ha rebut una petició incorrecta"
 	},
 	"descr_BADREQUEST": {
 		"no": "En feil oppsto i foresp\u00f8rselen til denne siden. Grunnen var: %REASON%",
@@ -2096,7 +2154,8 @@
 		"af": "Daar is 'n fout in die versoek na die bladsy. Die rede is: %REASON%",
 		"el": "\u03a0\u03b1\u03c1\u03bf\u03c5\u03c3\u03b9\u03ac\u03c3\u03c4\u03b7\u03ba\u03b5 \u03c3\u03c6\u03ac\u03bb\u03bc\u03b1 \u03ba\u03b1\u03c4\u03ac \u03c4\u03b7\u03bd \u03b5\u03c0\u03b5\u03be\u03b5\u03c1\u03b3\u03b1\u03c3\u03af\u03b1 \u03c4\u03bf\u03c5 \u03b1\u03b9\u03c4\u03ae\u03bc\u03b1\u03c4\u03bf\u03c2: %REASON%",
 		"zu": "Kukhona iphutha kusicelo saleli khasi. Isizathu besithi: %REASON%",
-		"xh": "Kukho impazamo kwisicelo kweli khasi. Isizathu sesi: %REASON%"
+		"xh": "Kukho impazamo kwisicelo kweli khasi. Isizathu sesi: %REASON%",
+		"ca": "Hi ha un error en la sol·licitud d’aquesta pàgina. El motiu és: %REASON%"
 	},
 	"title_WRONGUSERPASS": {
 		"no": "Feil brukernavn og passord",
@@ -2133,7 +2192,8 @@
 		"af": "Inkorrekte gebruikersnaam of wagwoord",
 		"el": "\u03a4\u03bf \u03cc\u03bd\u03bf\u03bc\u03b1 \u03c7\u03c1\u03ae\u03c3\u03c4\u03b7 \u03ae \u03bf \u03ba\u03c9\u03b4\u03b9\u03ba\u03cc\u03c2 \u03c0\u03c1\u03cc\u03c3\u03b2\u03b1\u03c3\u03b7\u03c2 \u03b5\u03af\u03bd\u03b1\u03b9 \u03bb\u03ac\u03b8\u03bf\u03c2",
 		"zu": "Igama lomsebenzisi elingalungile noma iphasiwedi",
-		"xh": "Igama lomsebenzisi okanye iphaswedi engachanekanga"
+		"xh": "Igama lomsebenzisi okanye iphaswedi engachanekanga",
+		"ca": "Nom d'usuari o contrasenya incorrecta"
 	},
 	"descr_WRONGUSERPASS": {
 		"no": "Enten var brukernavnet, eller kombinasjonen med brukernavn og passord feil. Sjekk brukernavn og passord og pr\u00f8v igjen.",
@@ -2169,7 +2229,8 @@
 		"af": "Die gegewe gebruikersnaam bestaan nie, of die wagwoord wat jy verskaf het is verkeerd. Bevestig die gebruikersnaam en probeer weer.",
 		"el": "\u039f \u03c3\u03c5\u03bd\u03b4\u03c5\u03b1\u03c3\u03bc\u03cc\u03c2 \u03bf\u03bd\u03cc\u03bc\u03b1\u03c4\u03bf\u03c2 \u03c7\u03c1\u03ae\u03c3\u03c4\u03b7 \u03ba\u03b1\u03b9 \u03ba\u03c9\u03b4\u03b9\u03ba\u03bf\u03cd \u03c0\u03c1\u03cc\u03c3\u03b2\u03b1\u03c3\u03b7\u03c2 \u03b4\u03b5\u03bd \u03b5\u03af\u03bd\u03b1\u03b9 \u03c3\u03c9\u03c3\u03c4\u03cc\u03c2. \u03a0\u03b1\u03c1\u03b1\u03ba\u03b1\u03bb\u03ce \u03b5\u03bb\u03ad\u03b3\u03be\u03c4\u03b5 \u03c4\u03b7\u03bd \u03bf\u03c1\u03b8\u03cc\u03c4\u03b7\u03c4\u03b1 \u03c4\u03c9\u03bd \u03c3\u03c4\u03bf\u03b9\u03c7\u03b5\u03af\u03c9\u03bd \u03c3\u03b1\u03c2 \u03ba\u03b1\u03b9 \u03c0\u03c1\u03bf\u03c3\u03c0\u03b1\u03b8\u03ae\u03c3\u03c4\u03b5 \u03be\u03b1\u03bd\u03ac.",
 		"zu": "Kungenzeka ukuthi akekho umsebenzisi onegama lomsebenzisi otholiwe, noma iphasiwedi oyinikezile ayilungile. Sicela uhlole igama lomsebenzisi bese uzame futhi.",
-		"xh": "Kusenokwenzeka akukho msebenzisi unegama lomsebenzisi elinikelweyo ofunyenweyo, okanye iphaswedi oyinikeleyo ayichanekanga. Nceda ujonge igama lomsebenzisi uzame kwakhona."
+		"xh": "Kusenokwenzeka akukho msebenzisi unegama lomsebenzisi elinikelweyo ofunyenweyo, okanye iphaswedi oyinikeleyo ayichanekanga. Nceda ujonge igama lomsebenzisi uzame kwakhona.",
+		"ca": "No s’ha pogut trobar cap usuari amb el nom d’usuari donat, o la contrasenya no és correcta. Comproveu el nom d’usuari i torneu-ho a provar."
 	},
 	"title_RESPONSESTATUSNOSUCCESS": {
 		"no": "Feilmelding mottatt fra innloggingstjenesten",
@@ -2206,7 +2267,8 @@
 		"af": "Foutmelding ontvang vanaf die Identiteits Verskaffer",
 		"el": "\u039b\u03ae\u03c8\u03b7 \u03ba\u03c9\u03b4\u03b9\u03ba\u03bf\u03cd \u03c3\u03c6\u03ac\u03bb\u03bc\u03b1\u03c4\u03bf\u03c2 \u03b1\u03c0\u03cc \u03c4\u03bf\u03bd \u03c0\u03ac\u03c1\u03bf\u03c7\u03bf \u03c4\u03b1\u03c5\u03c4\u03cc\u03c4\u03b7\u03c4\u03b1\u03c2",
 		"zu": "Iphutha litholwe ukusuka Kumhlinzeki Kamazisi",
-		"xh": "Impazamo efunyenwe kuMboneleli Wesazisi"
+		"xh": "Impazamo efunyenwe kuMboneleli Wesazisi",
+		"ca": "S'ha rebut un error del proveïdor d’identitats"
 	},
 	"descr_RESPONSESTATUSNOSUCCESS": {
 		"no": "Innloggingstjenesten svarte med en feilmelding. (Statuskoden i SAML-svaret var noe annet enn OK)",
@@ -2243,7 +2305,8 @@
 		"af": "Die Identiteits Verskaffer reageer met 'n fout. (Die status kode in die SAML reaksie was onsuksesvol)",
 		"el": "\u039f \u03ba\u03c9\u03b4\u03b9\u03ba\u03cc\u03c2 \u03ba\u03b1\u03c4\u03ac\u03c3\u03c4\u03b1\u03c3\u03b7\u03c2 \u03c0\u03bf\u03c5 \u03c0\u03b5\u03c1\u03b9\u03ad\u03c7\u03b5\u03b9 \u03b7 \u03b1\u03c0\u03ac\u03bd\u03c4\u03b7\u03c3\u03b7 \u03c4\u03bf\u03c5 \u03c0\u03b1\u03c1\u03cc\u03c7\u03bf\u03c5 \u03c4\u03b1\u03c5\u03c4\u03cc\u03c4\u03b7\u03c4\u03b1\u03c2 \u03c5\u03c0\u03bf\u03b4\u03b5\u03b9\u03ba\u03bd\u03cd\u03b5\u03b9 \u03c3\u03c6\u03ac\u03bb\u03bc\u03b1.",
 		"xh": "Umboneleli Wesazisi uphendule ngempazamo. (Ikhowudi yobume kwiMpendulo ye-SAML ayiphumelelanga)",
-		"zu": "Umhlinzeki Womazisi uphendule ngephutha. (Ikhodi yesimo Sempendulo ye-SAML ayizange iphumelele)"
+		"zu": "Umhlinzeki Womazisi uphendule ngephutha. (Ikhodi yesimo Sempendulo ye-SAML ayizange iphumelele)",
+		"ca": "El proveïdor d’identitat ha respost amb un error. (El codi d'estat de la resposta SAML no ha estat exitós)"
 	},
 	"title_NOCERT": {
 		"fr": "Aucun certificat pr\u00e9sent\u00e9",
@@ -2278,7 +2341,8 @@
 		"af": "Geen sertifikaat",
 		"el": "\u0394\u03b5\u03bd \u03c5\u03c0\u03ac\u03c1\u03c7\u03b5\u03b9 \u03c0\u03b9\u03c3\u03c4\u03bf\u03c0\u03bf\u03b9\u03b7\u03c4\u03b9\u03ba\u03cc",
 		"xh": "Akukho satifikethi",
-		"zu": "Asikho isitifiketi"
+		"zu": "Asikho isitifiketi",
+		"ca": "Sense certificat"
 	},
 	"descr_NOCERT": {
 		"fr": "\u00c9chec de l'authentification : votre navigateur n'a pas pr\u00e9sent\u00e9 de certificat",
@@ -2312,7 +2376,8 @@
 		"af": "Verifikasie het misluk: Jou webblaaier het geen sertifikaat gestuur nie",
 		"el": "\u0397 \u03c4\u03b1\u03c5\u03c4\u03bf\u03c0\u03bf\u03af\u03b7\u03c3\u03b7 \u03b1\u03c0\u03ad\u03c4\u03c5\u03c7\u03b5: \u03a4\u03bf \u03c0\u03c1\u03cc\u03b3\u03c1\u03b1\u03bc\u03bc\u03b1 \u03c0\u03b5\u03c1\u03b9\u03ae\u03b3\u03b7\u03c3\u03b7\u03c2 \u03b9\u03c3\u03c4\u03bf\u03cd \u03c0\u03bf\u03c5 \u03c7\u03c1\u03b7\u03c3\u03b9\u03bc\u03bf\u03c0\u03bf\u03b9\u03b5\u03af\u03c4\u03b5 \u03b4\u03b5\u03bd \u03ad\u03c3\u03c4\u03b5\u03b9\u03bb\u03b5 \u03c0\u03b9\u03c3\u03c4\u03bf\u03c0\u03bf\u03b9\u03b7\u03c4\u03b9\u03ba\u03cc.",
 		"zu": "Ukuqinisekisa kuhlulekile: isiphequluli sakho asizange sithumele noma yisiphi isitifiketi",
-		"xh": "Ungqinisiso lusilele: ibhrawuza yakho ayithumelanga nasiphi na isatifikethi"
+		"xh": "Ungqinisiso lusilele: ibhrawuza yakho ayithumelanga nasiphi na isatifikethi",
+		"ca": "Ha fallat l’autenticació: el navegador no ha enviat cap certificat"
 	},
 	"title_INVALIDCERT": {
 		"fr": "Certificat invalide",
@@ -2347,7 +2412,8 @@
 		"af": "Ongeldige sertifikaat",
 		"el": "\u039c\u03b7 \u03ad\u03b3\u03ba\u03c5\u03c1\u03bf \u03c0\u03b9\u03c3\u03c4\u03bf\u03c0\u03bf\u03b9\u03b7\u03c4\u03b9\u03ba\u03cc",
 		"xh": "Isatifikethi esingasebenziyo",
-		"zu": "Isifiketi esingalungile"
+		"zu": "Isifiketi esingalungile",
+		"ca": "Certificat no vàlid"
 	},
 	"descr_INVALIDCERT": {
 		"fr": "\u00c9chec de l'authentification : le certificat pr\u00e9sent\u00e9 par votre navigateur est invalide ou illisible",
@@ -2381,7 +2447,8 @@
 		"af": "Verifikasie het misluk: Jou webblaaier het 'n ongeldige of korrupte sertifikaat gestuur",
 		"el": "\u0397 \u03c4\u03b1\u03c5\u03c4\u03bf\u03c0\u03bf\u03af\u03b7\u03c3\u03b7 \u03b1\u03c0\u03ad\u03c4\u03c5\u03c7\u03b5: \u03a4\u03bf \u03c0\u03b9\u03c3\u03c4\u03bf\u03c0\u03bf\u03b9\u03b7\u03c4\u03b9\u03ba\u03cc \u03c0\u03bf\u03c5 \u03ad\u03c3\u03c4\u03b5\u03b9\u03bb\u03b5 \u03c4\u03bf \u03c0\u03c1\u03cc\u03b3\u03c1\u03b1\u03bc\u03bc\u03b1 \u03c0\u03b5\u03c1\u03b9\u03ae\u03b3\u03b7\u03c3\u03b7\u03c2 \u03b9\u03c3\u03c4\u03bf\u03cd \u03c0\u03bf\u03c5 \u03c7\u03c1\u03b7\u03c3\u03b9\u03bc\u03bf\u03c0\u03bf\u03b9\u03b5\u03af\u03c4\u03b5 \u03b4\u03b5\u03bd \u03b5\u03af\u03bd\u03b1\u03b9 \u03ad\u03b3\u03ba\u03c5\u03c1\u03bf \u03ae \u03b4\u03b5\u03bd \u03ae\u03c4\u03b1\u03bd \u03b4\u03c5\u03bd\u03b1\u03c4\u03ae \u03b7 \u03b1\u03bd\u03ac\u03b3\u03bd\u03c9\u03c3\u03ae \u03c4\u03bf\u03c5.",
 		"xh": "Ungqinisiso lusilele: isatifikethi esithunyelwe yibhrawuza yakho asisebenzi okanye asikwazi ukufundwa",
-		"zu": "Ukuqinisekisa kuhlulekile: isitifiketi esithunyelwe isiphequluli sakho asivumelekile noma asikwazi ukufundwa"
+		"zu": "Ukuqinisekisa kuhlulekile: isitifiketi esithunyelwe isiphequluli sakho asivumelekile noma asikwazi ukufundwa",
+		"ca": "Ha fallat l’autenticació: el certificat que el navegador ha enviat no és vàlid o no es pot llegir"
 	},
 	"title_UNKNOWNCERT": {
 		"fr": "Certificat inconnu",
@@ -2416,7 +2483,8 @@
 		"af": "Onbekende sertifikaat",
 		"el": "\u0386\u03b3\u03bd\u03c9\u03c3\u03c4\u03bf \u03c0\u03b9\u03c3\u03c4\u03bf\u03c0\u03bf\u03b9\u03b7\u03c4\u03b9\u03ba\u03cc",
 		"zu": "Isitifiketi esingaziwa",
-		"xh": "Isatifikethi esingaziwayo"
+		"xh": "Isatifikethi esingaziwayo",
+		"ca": "Certificat desconegut"
 	},
 	"descr_UNKNOWNCERT": {
 		"fr": "\u00c9chec de l'authentification : le certificat pr\u00e9sent\u00e9 par votre navigateur n'est pas connu",
@@ -2450,7 +2518,8 @@
 		"af": "Verifikasie het misluk: die sertifikaat wat jou webblaaier gestuur het is onbekend",
 		"el": "\u0397 \u03c4\u03b1\u03c5\u03c4\u03bf\u03c0\u03bf\u03af\u03b7\u03c3\u03b7 \u03b1\u03c0\u03ad\u03c4\u03c5\u03c7\u03b5: \u03a4\u03bf \u03c0\u03b9\u03c3\u03c4\u03bf\u03c0\u03bf\u03b9\u03b7\u03c4\u03b9\u03ba\u03cc \u03c0\u03bf\u03c5 \u03ad\u03c3\u03c4\u03b5\u03b9\u03bb\u03b5 \u03c4\u03bf \u03c0\u03c1\u03cc\u03b3\u03c1\u03b1\u03bc\u03bc\u03b1 \u03c0\u03b5\u03c1\u03b9\u03ae\u03b3\u03b7\u03c3\u03b7\u03c2 \u03b9\u03c3\u03c4\u03bf\u03cd \u03c0\u03bf\u03c5 \u03c7\u03c1\u03b7\u03c3\u03b9\u03bc\u03bf\u03c0\u03bf\u03b9\u03b5\u03af\u03c4\u03b5 \u03b4\u03b5\u03bd \u03ae\u03c4\u03b1\u03bd \u03b4\u03c5\u03bd\u03b1\u03c4\u03cc \u03bd\u03b1 \u03b1\u03bd\u03b1\u03b3\u03bd\u03c9\u03c1\u03b9\u03c3\u03c4\u03b5\u03af.",
 		"zu": "Ukuqinisekisa kuhlulekile: isitifiketi esithunyelwe isiphequluli sakho asaziwa",
-		"xh": "Ungqinisiso lusilele: isatifikerthi esithunyelwe yibhrawuza yakho asaziwa"
+		"xh": "Ungqinisiso lusilele: isatifikerthi esithunyelwe yibhrawuza yakho asaziwa",
+		"ca": "Ha fallat l’autenticació: el certificat que el navegador ha enviat és desconegut"
 	},
 	"title_USERABORTED": {
 		"da": "Autentificering aubrudt",
@@ -2484,7 +2553,8 @@
 		"af": "Verifikasie gestop",
 		"el": "\u0397 \u03c4\u03b1\u03c5\u03c4\u03bf\u03c0\u03bf\u03af\u03b7\u03c3\u03b7 \u03bc\u03b1\u03c4\u03b1\u03b9\u03ce\u03b8\u03b7\u03ba\u03b5",
 		"zu": "Ukuqinisekisa kuyekisiwe",
-		"xh": "Ungqinisiso luyekiwe"
+		"xh": "Ungqinisiso luyekiwe",
+		"ca": "S'ha avortat l’autenticació"
 	},
 	"descr_USERABORTED": {
 		"da": "Autentificering blev afbrudt af brugeren",
@@ -2518,7 +2588,8 @@
 		"af": "Die verifikasie is gestop deur die gebruiker",
 		"el": "\u0397 \u03c4\u03b1\u03c5\u03c4\u03bf\u03c0\u03bf\u03af\u03b7\u03c3\u03b7 \u03bc\u03b1\u03c4\u03b1\u03b9\u03ce\u03b8\u03b7\u03ba\u03b5 \u03b1\u03c0\u03cc \u03c4\u03bf\u03bd \u03c7\u03c1\u03ae\u03c3\u03c4\u03b7.",
 		"zu": "Ukuqinisekisa kuyekiswe umsebenzisi",
-		"xh": "Ungqinisiso luyekiswe ngumsebenzisi"
+		"xh": "Ungqinisiso luyekiswe ngumsebenzisi",
+		"ca": "L’usuari ha cancel·lat l’autenticació"
 	},
 	"title_NOSTATE": {
 		"da": "State information tabt",
@@ -2552,7 +2623,8 @@
 		"pt-br": "Informa\u00e7\u00f5es de estado perdidas",
 		"el": "\u0394\u03b5\u03bd \u03b2\u03c1\u03ad\u03b8\u03b7\u03ba\u03b1\u03bd \u03c0\u03bb\u03b7\u03c1\u03bf\u03c6\u03bf\u03c1\u03af\u03b5\u03c2 \u03c3\u03c7\u03b5\u03c4\u03b9\u03ba\u03ac \u03bc\u03b5 \u03c4\u03b7\u03bd \u03ba\u03b1\u03c4\u03ac\u03c3\u03c4\u03b1\u03c3\u03b7 \u03c4\u03bf\u03c5 \u03b1\u03b9\u03c4\u03ae\u03bc\u03b1\u03c4\u03bf\u03c2",
 		"xh": "Inkcazelo yobume ilahlekile",
-		"zu": "Ulwazi lwesifunda lulahlekile"
+		"zu": "Ulwazi lwesifunda lulahlekile",
+		"ca": "Informació d'estat perduda"
 	},
 	"descr_NOSTATE": {
 		"da": "State information er tabt og der er ikke muligt at gentage forsp\u00f8rgelsen",
@@ -2586,7 +2658,8 @@
 		"pt-br": "Informa\u00e7\u00f5es de estado perdidas, e n\u00e3o \u00e9 poss\u00edvel reiniciar a requisi\u00e7\u00e3o",
 		"el": "\u0394\u03b5\u03bd \u03ae\u03c4\u03b1\u03bd \u03b4\u03c5\u03bd\u03b1\u03c4\u03cc \u03bd\u03b1 \u03b5\u03be\u03c5\u03c0\u03b7\u03c1\u03b5\u03c4\u03b7\u03b8\u03b5\u03af \u03c4\u03bf \u03b1\u03af\u03c4\u03b7\u03bc\u03ac \u03c3\u03b1\u03c2 \u03ba\u03b1\u03b8\u03ce\u03c2 \u03b4\u03b5\u03bd \u03b2\u03c1\u03ad\u03b8\u03b7\u03ba\u03b1\u03bd \u03c0\u03bb\u03b7\u03c1\u03bf\u03c6\u03bf\u03c1\u03af\u03b5\u03c2 \u03c3\u03c7\u03b5\u03c4\u03b9\u03ba\u03ac \u03bc\u03b5 \u03c4\u03b7\u03bd \u03ba\u03b1\u03c4\u03ac\u03c3\u03c4\u03b1\u03c3\u03ae \u03c4\u03bf\u03c5",
 		"xh": "Inkcazelo yobume ilahlekile, yaye akukho ndlela yokuqalisa isicelo",
-		"zu": "Ulwazi lwesifunda lulahlekile, futhi ayikho indlela yokuqala kabusha isicelo"
+		"zu": "Ulwazi lwesifunda lulahlekile, futhi ayikho indlela yokuqala kabusha isicelo",
+		"ca": "Infomració d'estat perduda, i no hi ha cap manera de reiniciar la sol·licitud"
 	},
 	"title_METADATANOTFOUND": {
 		"da": "Metadata ikke fundet",
@@ -2620,7 +2693,8 @@
 		"pt-br": "Metadado n\u00e3o encontrado",
 		"el": "\u0394\u03b5\u03bd \u03b2\u03c1\u03ad\u03b8\u03b7\u03ba\u03b1\u03bd \u03bc\u03b5\u03c4\u03b1\u03b4\u03b5\u03b4\u03bf\u03bc\u03ad\u03bd\u03b1",
 		"zu": "Imethadatha ayitholakalanga",
-		"xh": "Imetadata ayifunyenwanga"
+		"xh": "Imetadata ayifunyenwanga",
+		"ca": "No s'han trobat metadades"
 	},
 	"descr_METADATANOTFOUND": {
 		"da": "Kan ikke finde metadata for %ENTITYID%",
@@ -2654,7 +2728,8 @@
 		"pt-br": "N\u00e3o foi poss\u00edvel localizar os metadados de %ENTITYID%",
 		"el": "\u0394\u03b5\u03bd \u03ae\u03c4\u03b1\u03bd \u03b4\u03c5\u03bd\u03b1\u03c4\u03cc \u03bd\u03b1 \u03b2\u03c1\u03b5\u03b8\u03bf\u03cd\u03bd \u03bc\u03b5\u03c4\u03b1\u03b4\u03b5\u03b4\u03bf\u03bc\u03ad\u03bd\u03b1 \u03b3\u03b9\u03b1 \u03c4\u03b7\u03bd \u03bf\u03bd\u03c4\u03cc\u03c4\u03b7\u03c4\u03b1 %ENTITYID%",
 		"xh": "Ayikwazi ukufumana iimpawu-ngcaciso zefayile ze-%ENTITYID%",
-		"zu": "Ayikwazi ukuthola imethadatha yokuthi %ENTITYID%"
+		"zu": "Ayikwazi ukuthola imethadatha yokuthi %ENTITYID%",
+		"ca": "No es poden localitzar les metadades per a %ENTITYID%"
 	},
 	"title_AUTHSOURCEERROR": {
 		"hr": "Gre\u0161ka u autentifikacijskom modulu",
@@ -2688,7 +2763,8 @@
 		"pt-br": "Erro na fonte de autentica\u00e7\u00e3o",
 		"el": "\u03a3\u03c6\u03ac\u03bb\u03bc\u03b1 \u03bc\u03b5 \u03c4\u03b7\u03bd \u03c0\u03b7\u03b3\u03ae \u03c4\u03b1\u03c5\u03c4\u03bf\u03c0\u03bf\u03af\u03b7\u03c3\u03b7\u03c2",
 		"zu": "Iphutha lomthombo wokuqinisekisa",
-		"xh": "Impazamo yomthombo wongqinisiso"
+		"xh": "Impazamo yomthombo wongqinisiso",
+		"ca": "Error en l’autenticació d'origen"
 	},
 	"descr_AUTHSOURCEERROR": {
 		"hr": "Do\u0161lo je do gre\u0161ke u autentifikacijskom modulu %AUTHSOURCE%. Razlog: %REASON%",
@@ -2722,18 +2798,21 @@
 		"pt-br": "Erro de autentica\u00e7\u00e3o na origem %AUTHSOURCE%. O motivo foi:%REASON%",
 		"el": "\u03a0\u03b1\u03c1\u03bf\u03c5\u03c3\u03b9\u03ac\u03c3\u03c4\u03b7\u03ba\u03b5 \u03c3\u03c6\u03ac\u03bb\u03bc\u03b1 \u03ba\u03b1\u03c4\u03ac \u03c4\u03b7\u03bd \u03b5\u03c0\u03b9\u03ba\u03bf\u03b9\u03bd\u03c9\u03bd\u03af\u03b1 \u03bc\u03b5 \u03c4\u03b7\u03bd \u03c0\u03b7\u03b3\u03ae \u03c4\u03b1\u03c5\u03c4\u03bf\u03c0\u03bf\u03af\u03b7\u03c3\u03b7\u03c2 %AUTHSOURCE%: %REASON%",
 		"zu": "Iphutha lokuqinisekisa kumthombo othi %AUTHSOURCE%. Isizathu besithi: %REASON%",
-		"xh": "Impazamo yongqinisiso kumthombo %AUTHSOURCE%. Isizathu sesi: %REASON%"
+		"xh": "Impazamo yongqinisiso kumthombo %AUTHSOURCE%. Isizathu sesi: %REASON%",
+		"ca": "Error en l’autenticació d'origen %AUTHSOURCE%. El motiu és: %REASON%"
 	},
 	"title_MEMCACHEDOWN": {
 		"zh-tw": "\u7121\u6cd5\u53d6\u5f97\u9023\u7dda Session \u8cc7\u8a0a",
 		"el": "\u0394\u03b5\u03bd \u03b5\u03af\u03bd\u03b1\u03b9 \u03b4\u03c5\u03bd\u03b1\u03c4\u03ae \u03b7 \u03b1\u03bd\u03ac\u03ba\u03c4\u03b7\u03c3\u03b7 \u03b4\u03b5\u03b4\u03bf\u03bc\u03ad\u03bd\u03c9\u03bd \u03c3\u03c5\u03bd\u03b5\u03b4\u03c1\u03af\u03b1\u03c2",
 		"xh": "Ayikwazi ukubuyisela ingcombolo yeseshoni",
-		"zu": "Ayikwazi ukubuyisela idatha yeseshini"
+		"zu": "Ayikwazi ukubuyisela idatha yeseshini",
+		"ca": "No es poden recuperar les dades de la sessió"
 	},
 	"descr_MEMCACHEDOWN": {
 		"zh-tw": "\u60a8\u7684\u9023\u7dda Session \u8cc7\u8a0a\u56e0\u70ba\u6280\u8853\u56f0\u96e3\u73fe\u5728\u7121\u6cd5\u53d6\u5f97\uff0c\u8acb\u7a0d\u5f85\u5e7e\u5206\u9418\u5f8c\u518d\u91cd\u8a66",
 		"el": "\u0394\u03b5\u03bd \u03b5\u03af\u03bd\u03b1\u03b9 \u03b4\u03c5\u03bd\u03b1\u03c4\u03ae \u03b7 \u03b1\u03bd\u03ac\u03ba\u03c4\u03b7\u03c3\u03b7 \u03b4\u03b5\u03b4\u03bf\u03bc\u03ad\u03bd\u03c9\u03bd \u03c3\u03c5\u03bd\u03b5\u03b4\u03c1\u03af\u03b1\u03c2 \u03bb\u03cc\u03b3\u03c9 \u03c4\u03b5\u03c7\u03bd\u03b9\u03ba\u03ce\u03bd \u03b4\u03c5\u03c3\u03ba\u03bf\u03bb\u03b9\u03ce\u03bd. \u03a0\u03b1\u03c1\u03b1\u03ba\u03b1\u03bb\u03bf\u03cd\u03bc\u03b5 \u03b4\u03bf\u03ba\u03b9\u03bc\u03ac\u03c3\u03c4\u03b5 \u03be\u03b1\u03bd\u03ac \u03b1\u03c1\u03b3\u03cc\u03c4\u03b5\u03c1\u03b1",
 		"zu": "Idatha yeseshini yakho ayikwazi ukubuyiswa njengamanje ngenxa yezinkinga zobuchwepheshe. Sicela uzame futhi emizuzwini embalwa.",
-		"xh": "Ingcombolo yeseshoni yakho ayikwazi ukubuyiselwa okwangoku ngenxa yeengxaki zobugcisa. Nceda uzame kwakhona kwimizuzu embalwa."
+		"xh": "Ingcombolo yeseshoni yakho ayikwazi ukubuyiselwa okwangoku ngenxa yeengxaki zobugcisa. Nceda uzame kwakhona kwimizuzu embalwa.",
+		"ca": "Les vostres dades de sessió no es poden recuperar ara mateix a causa de dificultats tècniques. Torneu-ho a provar d'aquí a uns minuts."
 	}
 }

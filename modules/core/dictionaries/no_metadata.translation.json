@@ -30,7 +30,8 @@
 		"af": "Metadata nie gevind nie",
 		"el": "\u0394\u03b5\u03bd \u03b2\u03c1\u03ad\u03b8\u03b7\u03ba\u03b1\u03bd \u03bc\u03b5\u03c4\u03b1\u03b4\u03b5\u03b4\u03bf\u03bc\u03ad\u03bd\u03b1",
 		"zu": "Imethadatha ayitholakali",
-		"xh": "I-Metadata ayifunyenwanga"
+		"xh": "I-Metadata ayifunyenwanga",
+		"ca": "No s'han trobat les metadades"
 	},
 	"not_found_for": {
 		"no": "Vi fant ikke metadataene for:",
@@ -63,7 +64,8 @@
 		"af": "Ons was nie in staat om die metadata vir die entiteit op te spoor nie:",
 		"el": "\u0394\u03b5\u03bd \u03ae\u03c4\u03b1\u03bd \u03b4\u03c5\u03bd\u03b1\u03c4\u03cc \u03bd\u03b1 \u03b2\u03c1\u03b5\u03b8\u03bf\u03cd\u03bd \u03bc\u03b5\u03c4\u03b1\u03b4\u03b5\u03b4\u03bf\u03bc\u03ad\u03bd\u03b1 \u03b3\u03b9\u03b1 \u03c4\u03b7\u03bd \u03bf\u03bd\u03c4\u03cc\u03c4\u03b7\u03c4\u03b1:",
 		"xh": "Asikwazanga ukufumana imetadata ye-entithi:",
-		"zu": "Asikwazanga ukuthola imethadatha yenhlangano:"
+		"zu": "Asikwazanga ukuthola imethadatha yenhlangano:",
+		"ca": "No hem pogut localitzar les metadades de l’entitat:"
 	},
 	"config_problem": {
 		"no": "Dette er sannsynligvis et konfigurasjonsproblem hos enten tjenesteleverand\u00f8ren eller identitetsleverand\u00f8ren.",
@@ -96,7 +98,8 @@
 		"af": "Di\u00e9 is waarskynlik 'n probleem met die konfigurasie by die diensverskaffer \u00f3f die identiteit verskaffer.",
 		"el": "\u0391\u03c5\u03c4\u03cc \u03c5\u03c0\u03bf\u03b4\u03b5\u03b9\u03ba\u03bd\u03cd\u03b5\u03b9 \u03c0\u03c1\u03cc\u03b2\u03bb\u03b7\u03bc\u03b1 \u03bc\u03b5 \u03c4\u03b9\u03c2 \u03c1\u03c5\u03b8\u03bc\u03af\u03c3\u03b5\u03b9\u03c2 \u03b5\u03af\u03c4\u03b5 \u03c4\u03bf\u03c5 \u03c0\u03b1\u03c1\u03cc\u03c7\u03bf\u03c5 \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03b9\u03ce\u03bd \u03b5\u03af\u03c4\u03b5 \u03c4\u03bf\u03c5 \u03c0\u03b1\u03c1\u03cc\u03c7\u03bf\u03c5 \u03c4\u03b1\u03c5\u03c4\u03cc\u03c4\u03b7\u03c4\u03b1\u03c2.",
 		"xh": "Kusenokwenzeka yingxaki yolungiselelo kumboneleli wenkonzo okanye umboneleli wesazisi.",
-		"zu": "Lokhu kungenzeka ukuthi kubangelwa inkinga yomiso yomhlinzeki wesevisi noma umhlinzeki kamazisi."
+		"zu": "Lokhu kungenzeka ukuthi kubangelwa inkinga yomiso yomhlinzeki wesevisi noma umhlinzeki kamazisi.",
+		"ca": "Aquest és probablement un problema de configuració del proveïdor de serveis o del proveïdor d’identitat."
 	},
 	"suggestion_user_link": {
 		"no": "Hvis du er en bruker som fikk denne feilen etter at du fulgte en link p\u00e5 en nettside, s\u00e5 b\u00f8r du rapportere denne feilen til eieren av den nettsiden.",
@@ -129,7 +132,8 @@
 		"af": "As jy 'n gebruiker is wat na aanleiding van 'n skakel op 'n webwerf hierdie fout ontvang het, moet jy hierdie fout aan die eienaar van die webwerf aan stuur.",
 		"el": "\u0391\u03bd \u03bb\u03ac\u03b2\u03b1\u03c4\u03b5 \u03b1\u03c5\u03c4\u03cc \u03c4\u03bf \u03c3\u03c6\u03ac\u03bb\u03bc\u03b1 \u03b1\u03ba\u03bf\u03bb\u03bf\u03c5\u03b8\u03ce\u03bd\u03c4\u03b1\u03c2 \u03ad\u03bd\u03b1\u03bd \u03c3\u03cd\u03bd\u03b4\u03b5\u03c3\u03bc\u03bf \u03c3\u03b5 \u03ba\u03ac\u03c0\u03bf\u03b9\u03bf\u03bd \u03b9\u03c3\u03c4\u03cc\u03c4\u03bf\u03c0\u03bf, \u03b8\u03b1 \u03c0\u03c1\u03ad\u03c0\u03b5\u03b9 \u03bd\u03b1 \u03c4\u03bf \u03b1\u03bd\u03b1\u03c6\u03ad\u03c1\u03b5\u03c4\u03b5 \u03c3\u03c4\u03bf\u03bd \u03b9\u03b4\u03b9\u03bf\u03ba\u03c4\u03ae\u03c4\u03b7 \u03c4\u03bf\u03c5 \u03b5\u03bd \u03bb\u03cc\u03b3\u03c9 \u03b9\u03c3\u03c4\u03cc\u03c4\u03bf\u03c0\u03bf\u03c5.",
 		"xh": "Ukuba ngaba ungumsebenzisi ofumene le mpazamo emva kokulandela ilinki kwisayithi, ufanele uchaze le mpazamo kumnini walo sayithi.",
-		"zu": "Uma ungumsebenzisi othole leli phutha ngemva kokulandela ilinki ekusayithi, kufanele ubike leli phutha kumnikazi waleyo sayithi."
+		"zu": "Uma ungumsebenzisi othole leli phutha ngemva kokulandela ilinki ekusayithi, kufanele ubike leli phutha kumnikazi waleyo sayithi.",
+		"ca": "Si sou un usuari que ha rebut aquest error després de seguir un enllaç d’un lloc, haureu d’informar d’aquest error al propietari del lloc."
 	},
 	"suggestion_developer": {
 		"no": "Hvis du er en utvikler som setter opp en \"single sign-on\" l\u00f8sning, s\u00e5 har du et problem med metadataoppsettet. Kontroller at metadata er riktig konfigurert hos b\u00e5de identitetsleverand\u00f8ren og tjenesteleverand\u00f8ren.",
@@ -162,6 +166,7 @@
 		"af": "As jy 'n programmeerder is wat die 'single sign-on' oplossing implementeer, het jy 'n probleem met die metadata opset. Bevestig dat die metadata korrek ingestel is op beide die identiteit verskaffer en diensverskaffer.",
 		"el": "\u0395\u03ac\u03bd \u03b5\u03af\u03c3\u03c4\u03b5 \u03b4\u03b9\u03b1\u03c7\u03b5\u03b9\u03c1\u03b9\u03c3\u03c4\u03ae\u03c2 \u03c4\u03b7\u03c2 \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b1\u03c2 \u03c4\u03b1\u03c5\u03c4\u03bf\u03c0\u03bf\u03af\u03b7\u03c3\u03b7\u03c2 \u03ba\u03b1\u03b9 \u03b5\u03be\u03bf\u03c5\u03c3\u03b9\u03bf\u03b4\u03cc\u03c4\u03b7\u03c3\u03b7\u03c2, \u03c4\u03cc\u03c4\u03b5 \u03b1\u03bd\u03c4\u03b9\u03bc\u03b5\u03c4\u03c9\u03c0\u03af\u03b6\u03b5\u03c4\u03b5 \u03ba\u03ac\u03c0\u03bf\u03b9\u03bf \u03c0\u03c1\u03cc\u03b2\u03bb\u03b7\u03bc\u03b1 \u03bc\u03b5 \u03c4\u03b7 \u03b4\u03b9\u03b1\u03bc\u03cc\u03c1\u03c6\u03c9\u03c3\u03b7 \u03c4\u03c9\u03bd \u03bc\u03b5\u03c4\u03b1\u03b4\u03b5\u03b4\u03bf\u03bc\u03ad\u03bd\u03c9\u03bd. \u0392\u03b5\u03b2\u03b1\u03b9\u03c9\u03b8\u03b5\u03af\u03c4\u03b5 \u03cc\u03c4\u03b9 \u03c4\u03b1 \u03bc\u03b5\u03c4\u03b1\u03b4\u03b5\u03b4\u03bf\u03bc\u03ad\u03bd\u03b1 \u03ad\u03c7\u03bf\u03c5\u03bd \u03c1\u03c5\u03b8\u03bc\u03b9\u03c3\u03c4\u03b5\u03af \u03c3\u03c9\u03c3\u03c4\u03ac \u03c4\u03cc\u03c3\u03bf \u03c3\u03c4\u03bf\u03bd \u03c0\u03ac\u03c1\u03bf\u03c7\u03bf \u03c4\u03b1\u03c5\u03c4\u03cc\u03c4\u03b7\u03c4\u03b1\u03c2 \u03cc\u03c3\u03bf \u03ba\u03b1\u03b9 \u03c3\u03c4\u03bf\u03bd \u03c0\u03ac\u03c1\u03bf\u03c7\u03bf \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03b9\u03ce\u03bd.",
 		"xh": "Ukuba ungumvelisi osebenzisa isisombululo sokusayina ungene kanye, unengxaki nolungiselelo lwe-metadata. Qinisekisa ukuba i-metadata ilungiselelwe ngokuchanekileyo kuzo zombini umbonelei wesazisi nomboneleli wenkonzo.",
-		"zu": "Uma ungunjiniyela osebenzisa isixazululo sokusayinela ukungena esisodwa, unenkinga ngomiso lwemethadatha. Qinisekisa ukuthi imethadatha imiswe ngendlela efanele kokubili kumhlinzeki womazisi nomhlinzeki wesevisi."
+		"zu": "Uma ungunjiniyela osebenzisa isixazululo sokusayinela ukungena esisodwa, unenkinga ngomiso lwemethadatha. Qinisekisa ukuthi imethadatha imiswe ngendlela efanele kokubili kumhlinzeki womazisi nomhlinzeki wesevisi.",
+		"ca": "Si sou un desenvolupador que està desplegant una solució d'inici de sessió únic, teniu un problema amb la configuració de metadades. Verifiqueu que les metadades estiguin configurades correctament tant al proveïdor d’identitat com al proveïdor de serveis."
 	}
 }

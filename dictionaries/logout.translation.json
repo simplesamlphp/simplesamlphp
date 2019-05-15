@@ -34,7 +34,8 @@
 		"af": "Afgemeld",
 		"el": "\u0391\u03c0\u03bf\u03c3\u03c5\u03bd\u03b4\u03b5\u03b4\u03b5\u03bc\u03ad\u03bd\u03bf\u03c2/\u03b7",
 		"xh": "Uphumile",
-		"zu": "Uphume ngemvume"
+		"zu": "Uphume ngemvume",
+		"ca": "Desconnectat"
 	},
 	"logged_out_text": {
 		"no": "Du er n\u00e5 utlogget.",
@@ -71,7 +72,8 @@
 		"af": "Jy is afgemeld.",
 		"el": "\u0388\u03c7\u03b5\u03c4\u03b5 \u03b1\u03c0\u03bf\u03c3\u03c5\u03bd\u03b4\u03b5\u03b8\u03b5\u03af.",
 		"zu": "Usuphumile.",
-		"xh": "Uphumile."
+		"xh": "Uphumile.",
+		"ca": "Us heu desconnectat."
 	},
 	"default_link_text": {
 		"no": "G\u00e5 tilbake til SimpleSAMLphp installasjonen sin startside.",
@@ -108,7 +110,8 @@
 		"af": "Gaan terug na die SimpleSAMLphp installasie bladsy",
 		"el": "\u0395\u03c0\u03b9\u03c3\u03c4\u03c1\u03bf\u03c6\u03ae \u03c3\u03c4\u03b7\u03bd \u03b1\u03c1\u03c7\u03b9\u03ba\u03ae \u03c3\u03b5\u03bb\u03af\u03b4\u03b1",
 		"xh": "Buyela emva kwikhasi lofakelo le-SimpleSAMLphp",
-		"zu": "Buyela emuva ekhasini lokufaka le-SimpleSAMLphp"
+		"zu": "Buyela emuva ekhasini lokufaka le-SimpleSAMLphp",
+		"ca": "Torneu a la pàgina d’instal·lació de SimpleSAMLphp"
 	},
 	"hold": {
 		"no": "P\u00e5 vent",
@@ -145,7 +148,8 @@
 		"af": "Hou die verbinding",
 		"el": "\u03a3\u03b5 \u03b1\u03bd\u03b1\u03bc\u03bf\u03bd\u03ae",
 		"xh": "Ibanjiwe",
-		"zu": "Imisiwe"
+		"zu": "Imisiwe",
+		"ca": "En espera"
 	},
 	"completed": {
 		"no": "Fullf\u00f8rt",
@@ -182,7 +186,8 @@
 		"af": "Voltooid",
 		"el": "\u039f\u03bb\u03bf\u03ba\u03bb\u03b7\u03c1\u03ce\u03b8\u03b7\u03ba\u03b5",
 		"xh": "Igqityiwe",
-		"zu": "Kuqedile"
+		"zu": "Kuqedile",
+		"ca": "Completat"
 	},
 	"progress": {
 		"no": "Logger ut...",
@@ -219,7 +224,8 @@
 		"af": "Besig om af te meld?",
 		"el": "\u0393\u03af\u03bd\u03b5\u03c4\u03b1\u03b9 \u03b1\u03c0\u03bf\u03c3\u03cd\u03bd\u03b4\u03b5\u03c3\u03b7...",
 		"zu": "Iyaphuma...",
-		"xh": "Iyaphuma..."
+		"xh": "Iyaphuma...",
+		"ca": "Sortint de la sessió..."
 	},
 	"failed": {
 		"no": "Utlogging feilet",
@@ -256,7 +262,8 @@
 		"af": "Afmelding misluk",
 		"el": "\u0397 \u03b1\u03c0\u03bf\u03c3\u03cd\u03bd\u03b4\u03b5\u03c3\u03b7 \u03b1\u03c0\u03ad\u03c4\u03c5\u03c7\u03b5",
 		"xh": "Ukuphuma kusilele",
-		"zu": "Ukuphuma kuhlulekile"
+		"zu": "Ukuphuma kuhlulekile",
+		"ca": "Ha fallat el tancament de sessió"
 	},
 	"return": {
 		"no": "Tilbake til tjenesten",
@@ -293,7 +300,8 @@
 		"af": "Terug na diens",
 		"el": "\u0395\u03c0\u03b9\u03c3\u03c4\u03c1\u03bf\u03c6\u03ae \u03c3\u03c4\u03b7\u03bd \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b1",
 		"xh": "Buyela kwinkonzo",
-		"zu": "Buyela kusevisi"
+		"zu": "Buyela kusevisi",
+		"ca": "Tornar al servei"
 	},
 	"success": {
 		"no": "Du har n&aring; logget ut fra alle tjenestene listet ovenfor.",
@@ -330,7 +338,8 @@
 		"af": "Jy het suksesvol afgemeld.",
 		"el": "\u0388\u03c7\u03b5\u03c4\u03b5 \u03b1\u03c0\u03bf\u03c3\u03c5\u03bd\u03b4\u03b5\u03b8\u03b5\u03af \u03bc\u03b5 \u03b5\u03c0\u03b9\u03c4\u03c5\u03c7\u03af\u03b1 \u03b1\u03c0\u03cc \u03cc\u03bb\u03b5\u03c2 \u03c4\u03b9\u03c2 \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b5\u03c2 \u03c0\u03bf\u03c5 \u03b1\u03bd\u03b1\u03c6\u03ad\u03c1\u03bf\u03bd\u03c4\u03b1\u03b9 \u03c0\u03b1\u03c1\u03b1\u03c0\u03ac\u03bd\u03c9.",
 		"xh": "Uphume ngokuyimpumelelo kuzo zonke iinkonzo ezidweliswe ngasentla.",
-		"zu": "Uphume ngempumelelo kuwo wonke amasevisi abhalwe ngenhla."
+		"zu": "Uphume ngempumelelo kuwo wonke amasevisi abhalwe ngenhla.",
+		"ca": "Heu sortit correctament de tots els serveis esmentats anteriorment."
 	},
 	"loggedoutfrom": {
 		"no": "Du er n\u00e5 logget ut fra %SP%.",
@@ -367,7 +376,8 @@
 		"af": "Jy is suksesvol afgemeld van %SP% af.",
 		"el": "\u0388\u03c7\u03b5\u03c4\u03b5 \u03b1\u03c0\u03bf\u03c3\u03c5\u03bd\u03b4\u03b5\u03b8\u03b5\u03af \u03bc\u03b5 \u03b5\u03c0\u03b9\u03c4\u03c5\u03c7\u03af\u03b1 \u03b1\u03c0\u03cc \u03c4\u03b7\u03bd \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b1 %SP%.",
 		"xh": "Ngoku uphume ngokuyimpumelelo kwi-%SP%.",
-		"zu": "Usuphume ngempumelelo kokuthi %SP%."
+		"zu": "Usuphume ngempumelelo kokuthi %SP%.",
+		"ca": "S’ha tancat la sessió amb èxit de %SP%."
 	},
 	"also_from": {
 		"no": "Du er ogs\u00e5 logget inn p\u00e5 disse tjenestene:",
@@ -404,7 +414,8 @@
 		"af": "Jy is ook by di\u00e9 dienste aangemeld:",
 		"el": "\u0395\u03af\u03c3\u03c4\u03b5 \u03b5\u03c0\u03af\u03c3\u03b7\u03c2 \u03c3\u03c5\u03bd\u03b4\u03b5\u03b4\u03b5\u03bc\u03ad\u03bd\u03bf\u03c2 \u03c3\u03b5 \u03b1\u03c5\u03c4\u03ad\u03c2 \u03c4\u03b9\u03c2 \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b5\u03c2:",
 		"zu": "Ungenile futhi kulawa masevisi:",
-		"xh": "Kananjalo ungene kwezi nkonzo:"
+		"xh": "Kananjalo ungene kwezi nkonzo:",
+		"ca": "També heu iniciat la sessió en aquests serveis:"
 	},
 	"logout_all_question": {
 		"no": "Vil du logge ut fra alle tjenestene ovenfor?",
@@ -441,7 +452,8 @@
 		"af": "Wil jy van alle bogenoemde dienste afmeld?",
 		"el": "\u0395\u03c0\u03b9\u03b8\u03c5\u03bc\u03b5\u03af\u03c4\u03b5 \u03bd\u03b1 \u03b1\u03c0\u03bf\u03c3\u03c5\u03bd\u03b4\u03b5\u03b8\u03b5\u03af\u03c4\u03b5 \u03b1\u03c0\u03cc \u03cc\u03bb\u03b5\u03c2 \u03c4\u03b9\u03c2 \u03c0\u03b1\u03c1\u03b1\u03c0\u03ac\u03bd\u03c9 \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b5\u03c2\u003b",
 		"xh": "Ngaba ufuna ukuphuma kuzo zonke iinkonzo ezingasentla?",
-		"zu": "Ingabe ufuna ukuphuma kuwo wonke amasevisi angenhla?"
+		"zu": "Ingabe ufuna ukuphuma kuwo wonke amasevisi angenhla?",
+		"ca": "Voleu sortir de tots els següents serveis?"
 	},
 	"logout_all": {
 		"no": "Ja, alle tjenestene over",
@@ -478,7 +490,8 @@
 		"af": "Ja, alle dienste",
 		"el": "\u039d\u03b1\u03b9, \u03cc\u03bb\u03b5\u03c2 \u03c4\u03b9\u03c2 \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b5\u03c2",
 		"zu": "Yebo, wonke amasevisi",
-		"xh": "Ewe, zonke iinkonzo"
+		"xh": "Ewe, zonke iinkonzo",
+		"ca": "Sí, tots els serveis"
 	},
 	"logout_only": {
 		"no": "Nei, bare %SP%",
@@ -515,7 +528,8 @@
 		"af": "Nee, net %SP%",
 		"el": "\u038c\u03c7\u03b9, \u03bc\u03cc\u03bd\u03bf \u03b1\u03c0\u03cc \u03c4\u03b7\u03bd \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b1 %SP%",
 		"zu": "Cha, ku-%SP% kuphela",
-		"xh": "Hayi, kuphela %SP%"
+		"xh": "Hayi, kuphela %SP%",
+		"ca": "No, només %SP%"
 	},
 	"incapablesps": {
 		"no": "En eller flere av tjenestene du er logget inn p\u00e5 <i>st\u00f8tter ikke logout<\/i>. Lukk nettleseren, dersom du \u00f8nsker \u00e5 logge ut fra disse tjenestene.",
@@ -552,7 +566,8 @@
 		"af": "Een of meerdere dienste waarby jy aangemeld het, <i>ondersteun nie afmelding nie<\/i>. Om seker te wees datal jou sessies afgesluit word, is dit beter om jou <i>webblaaier toe te maak<\/i>.",
 		"el": "\u039c\u03af\u03b1 \u03ae \u03c0\u03b5\u03c1\u03b9\u03c3\u03c3\u03cc\u03c4\u03b5\u03c1\u03b5\u03c2 \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b5\u03c2 \u03bc\u03b5 \u03c4\u03b9\u03c2 \u03bf\u03c0\u03bf\u03af\u03b5\u03c2 \u03b5\u03af\u03c3\u03c4\u03b5 \u03c3\u03c5\u03bd\u03b4\u03b5\u03b4\u03b5\u03bc\u03ad\u03bd\u03bf\u03c2\u002f\u03b7 \u03b4\u03b5\u03bd \u03c5\u03c0\u03bf\u03c3\u03c4\u03b7\u03c1\u03af\u03b6\u03bf\u03c5\u03bd \u03b1\u03c0\u03bf\u03c3\u03cd\u03bd\u03b4\u03b5\u03c3\u03b7\u002e \u0393\u03b9\u03b1 \u03c4\u03bf \u03ba\u03bb\u03b5\u03af\u03c3\u03b9\u03bc\u03bf \u03cc\u03bb\u03c9\u03bd \u03c4\u03c9\u03bd \u03c3\u03c5\u03bd\u03b5\u03b4\u03c1\u03b9\u03ce\u03bd \u03c3\u03b1\u03c2 (sessions), \u03c3\u03b1\u03c2 \u03c3\u03c5\u03bd\u03b9\u03c3\u03c4\u03bf\u03cd\u03bc\u03b5 \u03bd\u03b1 <i>\u03ba\u03bb\u03b5\u03af\u03c3\u03b5\u03c4\u03b5<\/i> \u03c4\u03bf \u03c0\u03c1\u03cc\u03b3\u03c1\u03b1\u03bc\u03bc\u03b1 \u03c0\u03bb\u03bf\u03ae\u03b3\u03b7\u03c3\u03b7\u03c2 (web browser).",
 		"zu": "Isevisi eyodwa noma ngaphezulu ongene kuyo <i>ayikusekeli ukuphuma</i>. Ukuze wenze isiqiniseko sokuthi wonke amaseshini akho avaliwe, ukhuthazwa ukuthi <i>uvale isiphequluli sakho sewebhu</i>.",
-		"xh": "Inkonzo enye okanye ezingakumbi ongeneyo kuzo <i>azikuxhasi ukuphuma</i>. Ukuqinisekisa zonke iiseshoni zakho zivaliwe, ukhuthazwa <i>uvale ibhrawuza yewebhu</i>."
+		"xh": "Inkonzo enye okanye ezingakumbi ongeneyo kuzo <i>azikuxhasi ukuphuma</i>. Ukuqinisekisa zonke iiseshoni zakho zivaliwe, ukhuthazwa <i>uvale ibhrawuza yewebhu</i>.",
+		"ca": "Un o més dels serveis que heu accedit a <i>no admeten la sortida de sessió<\/i>. Per assegurar-vos que totes les vostres sessions estan tancades, us animem a <i>tancar el vostre navegador web<\/i>."
 	},
 	"no": {
 		"no": "Nei",
@@ -589,7 +604,8 @@
 		"af": "Nee",
 		"el": "\u038c\u03c7\u03b9",
 		"xh": "Hayi",
-		"zu": "Cha"
+		"zu": "Cha",
+		"ca": "No"
 	},
 	"logging_out_from": {
 		"sl": "Odjava iz naslednjih storitev:",
@@ -625,7 +641,8 @@
 		"af": "Afmelding van die volgende dienste:",
 		"el": "Γίνεται αποσύνδεση από τις ακόλουθες υπηρεσίες:",
 		"zu": "Iyaphuma kumasevisi alandelayo:",
-		"xh": "Iphuma kwezi nkonzo zilandelayo:"
+		"xh": "Iphuma kwezi nkonzo zilandelayo:",
+		"ca": "Sortida dels serveis següents:"
 	},
 	"failedsps": {
 		"sl": "Odjava z ene ali ve\u010d storitev ni uspela. Odjavo dokon\u010dajte tako, da <i>zaprete spletni brskalnik<\/i>.",
@@ -660,6 +677,7 @@
 		"af": "Dit was nie moontlik om van een of meer dienste af te meld nie. Om seker te wees dat al jou sessies afgesluit word, is dit beter om jou <i>webblaaier toe te maak<\/i>.",
 		"el": "\u0394\u03b5\u03bd \u03ae\u03c4\u03b1\u03bd \u03b4\u03c5\u03bd\u03b1\u03c4\u03ae \u03b7 \u03b1\u03c0\u03bf\u03c3\u03cd\u03bd\u03b4\u03b5\u03c3\u03b7 \u03b1\u03c0\u03cc \u03bc\u03af\u03b1 \u03ae \u03c0\u03b5\u03c1\u03b9\u03c3\u03c3\u03cc\u03c4\u03b5\u03c1\u03b5\u03c2 \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b5\u03c2\u002e \u0393\u03b9\u03b1 \u03c4\u03bf \u03ba\u03bb\u03b5\u03af\u03c3\u03b9\u03bc\u03bf \u03cc\u03bb\u03c9\u03bd \u03c4\u03c9\u03bd \u03c3\u03c5\u03bd\u03b5\u03b4\u03c1\u03b9\u03ce\u03bd \u03c3\u03b1\u03c2 (sessions), \u03c3\u03b1\u03c2 \u03c3\u03c5\u03bd\u03b9\u03c3\u03c4\u03bf\u03cd\u03bc\u03b5 \u03bd\u03b1 <i>\u03ba\u03bb\u03b5\u03af\u03c3\u03b5\u03c4\u03b5<\/i> \u03c4\u03bf \u03c0\u03c1\u03cc\u03b3\u03c1\u03b1\u03bc\u03bc\u03b1 \u03c0\u03bb\u03bf\u03ae\u03b3\u03b7\u03c3\u03b7\u03c2 (web browser).",
 		"xh": "Awukwazi ukuphuma kwinkonzo enye okanye ezingakumbi. Ukuqinisekisa zonke iiseshoni zakho zivaliwe, ukhuthazwa <i>uvale ibhrawuza yewebhu</i>.",
-		"zu": "Ayikwazi ukuphuma kusevisi eyodwa noma ngaphezulu. Ukuze wenze isiqiniseko sokuthi wonke amaseshini akho avaliwe, ukhuthazwa ukuthi <i>uvale isiphequluli sakho sewebhu</i>."
+		"zu": "Ayikwazi ukuphuma kusevisi eyodwa noma ngaphezulu. Ukuze wenze isiqiniseko sokuthi wonke amaseshini akho avaliwe, ukhuthazwa ukuthi <i>uvale isiphequluli sakho sewebhu</i>.",
+		"ca": "No es pot tancar la sessió d'un o més serveis. Per assegurar-vos que totes les vostres sessions estan tancades, us animem a <i>tancar el vostre navegador web<\/i>."
 	}
 }
