@@ -57,6 +57,7 @@ php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-
 php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-cdc
 php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-consent
 php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-consentadmin
+php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-ldap
 php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-memcookie
 php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-memcachemonitor
 php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-negotiate
