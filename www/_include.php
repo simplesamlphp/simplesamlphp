@@ -15,7 +15,8 @@ function SimpleSAML_exception_handler($exception)
         $exception->show();
     } elseif ($exception instanceof \Exception) {
         try {
-            $unhandled_exception_handler = (\SimpleSAML\Configuration::getInstance())->getArray('errors.unhandled_exception_handler', null);
+            $config = \SimpleSAML\Configuration::getInstance();
+            $unhandled_exception_handler = $config->getArray('errors.unhandled_exception_handler', null);
         } catch (\Exception $e) {
             $unhandled_exception_handler = null;
         }
