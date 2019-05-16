@@ -213,36 +213,6 @@ abstract class MetaDataStorageSource
 
 
     /**
-     * @param string $entityId
-     * @param string $set
-     * @return mixed|null
-     */
-    private function lookupIndexFromEntityId($entityId, $set)
-    {
-        assert(is_string($entityId));
-        assert(isset($set));
-
-        $metadataSet = $this->getMetadataSet($set);
-
-        // check for hostname
-        $currenthost = \SimpleSAML\Utils\HTTP::getSelfHost(); // sp.example.org
-
-        foreach ($metadataSet as $index => $entry) {
-            if ($index === $entityId) {
-                return $index;
-            }
-            if ($entry['entityid'] === $entityId) {
-                if ($entry['host'] === '__DEFAULT__' || $entry['host'] === $currenthost) {
-                    return $index;
-                }
-            }
-        }
-
-        return null;
-    }
-
-
-    /**
      * This function retrieves metadata for the given entity id in the given set of metadata.
      * It will return NULL if it is unable to locate the metadata.
      *
@@ -264,15 +234,110 @@ abstract class MetaDataStorageSource
 
         $metadataSet = $this->getMetadataSet($set);
 
-        if (array_key_exists($index, $metadataSet)) {
-            return $metadataSet[$index];
-        }
-
-        $indexlookup = $this->lookupIndexFromEntityId($index, $set);
-        if (isset($indexlookup) && array_key_exists($indexlookup, $metadataSet)) {
-            return $metadataSet[$indexlookup];
+        $indexLookup = $this->lookupIndexFromEntityId($index, $metadataSet);
+        if (isset($indexLookup) && array_key_exists($indexLookup, $metadataSet)) {
+            return $metadataSet[$indexLookup];
         }
 
         return null;
+    }
+
+    /**
+     * This method returns the full metadata set for a given entity id or null if the entity id cannot be found
+     * in the given metadata set.
+     *
+     * @param string $entityId
+     * @param array $metadataSet the already loaded metadata set
+     * @return mixed|null
+     */
+    protected function lookupIndexFromEntityId($entityId, array $metadataSet)
+    {
+        assert(is_string($entityId));
+        assert(is_array($metadataSet));
+
+        // check for hostname
+        $currentHost = \SimpleSAML\Utils\HTTP::getSelfHost(); // sp.example.org
+
+        foreach ($metadataSet as $index => $entry) {
+            // explicit index match
+            if ($index === $entityId) {
+                return $index;
+            }
+
+            if ($entry['entityid'] === $entityId) {
+                if ($entry['host'] === '__DEFAULT__' || $entry['host'] === $currentHost) {
+                    return $index;
+                }
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * @param string $set
+     * @throws \Exception
+     * @return string
+     */
+    private function getDynamicHostedUrl($set)
+    {
+        assert(is_string($set));
+
+        // get the configuration
+        $baseUrl = \SimpleSAML\Utils\HTTP::getBaseURL();
+
+        if ($set === 'saml20-idp-hosted') {
+            return $baseUrl.'saml2/idp/metadata.php';
+        }
+        else if ($set === 'saml20-sp-hosted') {
+            return $baseUrl.'saml2/sp/metadata.php';
+        }
+        else if ($set === 'shib13-idp-hosted') {
+            return $baseUrl.'shib13/idp/metadata.php';
+        }
+        else if ($set === 'shib13-sp-hosted') {
+            return $baseUrl.'shib13/sp/metadata.php';
+        }
+        else if ($set === 'wsfed-sp-hosted') {
+            return 'urn:federation:'.\SimpleSAML\Utils\HTTP::getSelfHost();
+        }
+        else if ($set === 'adfs-idp-hosted') {
+            return 'urn:federation:'.\SimpleSAML\Utils\HTTP::getSelfHost().':idp';
+        }
+        else {
+            throw new \Exception('Can not generate dynamic EntityID for metadata of this type: ['.$set.']');
+        }
+    }
+
+    /**
+     * Updates the metadata entry's entity id and returns the modified array.  If the entity id is __DYNAMIC:*__ a
+     * the current url is assigned.  If it is explicit the entityid array key is updated to the entityId that was
+     * provided.
+     *
+     * @param string $metadataSet a metadata set (saml20-idp-hosted, saml20-sp-remote, etc)
+     * @param string $entityId the entity id we are modifying
+     * @param array $metadataEntry the fully populated metadata entry
+     * @return array modified metadata to include the valid entityid
+     *
+     * @throws \Exception
+     */
+    protected function updateEntityID($metadataSet, $entityId, array $metadataEntry)
+    {
+        assert(is_string($metadataSet));
+        assert(is_string($entityId));
+        assert(is_array($metadataEntry));
+
+        $modifiedMetadataEntry = $metadataEntry;
+
+        // generate a dynamic hosted url
+        if (preg_match('/__DYNAMIC(:[0-9]+)?__/', $entityId)) {
+            $modifiedMetadataEntry['entityid'] = $this->getDynamicHostedUrl($metadataSet);
+        }
+        // set the entityid metadata array key to the provided entity id
+        else {
+            $modifiedMetadataEntry['entityid'] = $entityId;
+        }
+
+        return $modifiedMetadataEntry;
     }
 }
