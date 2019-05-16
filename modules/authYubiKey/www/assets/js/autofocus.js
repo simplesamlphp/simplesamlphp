@@ -1,1 +1,0 @@
-SimpleSAML_focus('otp');

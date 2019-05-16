@@ -52,6 +52,7 @@ php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-
 php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-authlinkedin
 php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-authtwitter
 php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-authx509
+php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-authyubikey
 php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-authwindowslive
 php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-cas
 php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-cdc
