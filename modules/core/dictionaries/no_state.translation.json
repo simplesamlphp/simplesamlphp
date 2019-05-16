@@ -28,7 +28,8 @@
 		"eu": "Egoeraren informazioa galdu da",
 		"el": "\u0394\u03b5\u03bd \u03b2\u03c1\u03ad\u03b8\u03b7\u03ba\u03b1\u03bd \u03c0\u03bb\u03b7\u03c1\u03bf\u03c6\u03bf\u03c1\u03af\u03b5\u03c2 \u03ba\u03b1\u03c4\u03ac\u03c3\u03c4\u03b1\u03c3\u03b7\u03c2",
 		"zu": "Ulwazi lwesifunda lulahlekile",
-		"xh": "Inkcazelo yobume ilahlekile"
+		"xh": "Inkcazelo yobume ilahlekile",
+		"ca": "Informació d'estat perduda"
 	},
 	"description": {
 		"no": "Vi kunne ikke finne tilstandsinformasjonen for denne foresp\u00f8rselen.",
@@ -59,7 +60,8 @@
 		"eu": "Ez dugu aurkitu egoeraren informaziorik eskaera honentzat.",
 		"el": "\u0394\u03b5\u03bd \u03ae\u03c4\u03b1\u03bd \u03b4\u03c5\u03bd\u03b1\u03c4\u03cc \u03bd\u03b1 \u03b5\u03bd\u03c4\u03bf\u03c0\u03b9\u03c3\u03c4\u03bf\u03cd\u03bd \u03c0\u03bb\u03b7\u03c1\u03bf\u03c6\u03bf\u03c1\u03af\u03b5\u03c2 \u03ba\u03b1\u03c4\u03ac\u03c3\u03c4\u03b1\u03c3\u03b7\u03c2 \u03b3\u03b9\u03b1 \u03c4\u03bf \u03c4\u03c1\u03ad\u03c7\u03bf\u03bd \u03b1\u03af\u03c4\u03b7\u03bc\u03b1.",
 		"xh": "Asikwazanga ukufumana inkcazelo yobume yesicelo sangoku.",
-		"zu": "Asikwazanga ukuthola ulwazi lwesifunda lwesicelo samanje."
+		"zu": "Asikwazanga ukuthola ulwazi lwesifunda lwesicelo samanje.",
+		"ca": "No hem pogut localitzar la informació de l’estat per a la sol·licitud actual."
 	},
 	"suggestions": {
 		"no": "Forslag for \u00e5 l\u00f8se dette problemet:",
@@ -90,11 +92,13 @@
 		"eu": "Arazo hau konpontzeko iradokizunak:",
 		"el": "\u03a0\u03c1\u03bf\u03c4\u03ac\u03c3\u03b5\u03b9\u03c2 \u03b3\u03b9\u03b1 \u03c4\u03b7\u03bd \u03b5\u03c0\u03af\u03bb\u03c5\u03c3\u03b7 \u03b1\u03c5\u03c4\u03bf\u03cd \u03c4\u03bf\u03c5 \u03c0\u03c1\u03bf\u03b2\u03bb\u03ae\u03bc\u03b1\u03c4\u03bf\u03c2:",
 		"zu": "Iziphakamiso zokuxazulula le nkinga:",
-		"xh": "Iingcebiso zokulungisa le ngxaki:"
+		"xh": "Iingcebiso zokulungisa le ngxaki:",
+		"ca": "Suggeriments per resoldre aquest problema:"
 	},
 	"suggestion_badlink": {
 		"sv": "Kontrollera att länken du använde för att komma åt webplatsen är korrekt.",
-		"nl": "Controleer of u de juiste link gebruikt om de website te benaderen."
+		"nl": "Controleer of u de juiste link gebruikt om de website te benaderen.",
+		"ca": "Comproveu que l’enllaç que heu utilitzat per accedir al lloc web és correcte."
 	},
 	"suggestion_goback": {
 		"no": "G\u00e5 tilbake til forrige side og pr\u00f8v p\u00e5 nytt.",
@@ -125,7 +129,8 @@
 		"eu": "Itzul zaitez aurreko orrira eta saiatu berriro",
 		"el": "\u0395\u03c0\u03b9\u03c3\u03c4\u03c1\u03ad\u03c8\u03c4\u03b5 \u03c3\u03c4\u03b7\u03bd \u03c0\u03c1\u03bf\u03b7\u03b3\u03bf\u03cd\u03bc\u03b5\u03bd\u03b7 \u03c3\u03b5\u03bb\u03af\u03b4\u03b1 \u03ba\u03b1\u03b9 \u03c0\u03c1\u03bf\u03c3\u03c0\u03b1\u03b8\u03ae\u03c3\u03c4\u03b5 \u03be\u03b1\u03bd\u03ac.",
 		"zu": "Buyela emuva ekhasini langaphambilini bese uzame futhi.",
-		"xh": "Buyela emva kwikhasi elidlulileyo uzame kwakhona."
+		"xh": "Buyela emva kwikhasi elidlulileyo uzame kwakhona.",
+		"ca": "Torneu a la pàgina anterior i torneu-ho a provar."
 	},
 	"suggestion_closebrowser": {
 		"no": "Lukk nettleseren, og pr\u00f8v p\u00e5 nytt.",
@@ -156,7 +161,8 @@
 		"eu": "Nabigatzailea itxi eta saiatu berriro",
 		"el": "\u039a\u03bb\u03b5\u03af\u03c3\u03c4\u03b5 \u03c4\u03bf \u03c0\u03c1\u03cc\u03b3\u03c1\u03b1\u03bc\u03bc\u03b1 \u03c0\u03b5\u03c1\u03b9\u03ae\u03b3\u03b7\u03c3\u03b7\u03c2 \u03b9\u03c3\u03c4\u03bf\u03cd (web browser) \u03ba\u03b1\u03b9 \u03c0\u03c1\u03bf\u03c3\u03c0\u03b1\u03b8\u03ae\u03c3\u03c4\u03b5 \u03be\u03b1\u03bd\u03ac",
 		"zu": "Vala isiphequluli sewebhu, bese uzame futhi.",
-		"xh": "Vala ibhrawuza yewebhu, uzame kwakhona."
+		"xh": "Vala ibhrawuza yewebhu, uzame kwakhona.",
+		"ca": "Tanqueu el navegador web i torneu-ho a provar."
 	},
 	"causes": {
 		"no": "Denne feilen kan v\u00e6re for\u00e5rsaket av:",
@@ -187,11 +193,13 @@
 		"eu": "Errore hau honek eragin dezake:",
 		"el": "\u0391\u03c5\u03c4\u03cc \u03c4\u03bf \u03c3\u03c6\u03ac\u03bb\u03bc\u03b1 \u03bc\u03c0\u03bf\u03c1\u03b5\u03af \u03bd\u03b1 \u03c0\u03c1\u03bf\u03ba\u03cd\u03c8\u03b5\u03b9, \u03b5\u03ac\u03bd:",
 		"zu": "Leli phutha kungenzeka libangelwa ukuthi:",
-		"xh": "Le mpazamo isenokuba ibangelwe:"
+		"xh": "Le mpazamo isenokuba ibangelwe:",
+		"ca": "Aquest error pot ser causat per:"
 	},
 	"cause_badlink": {
 		"sv": "Länken till websidan var felaktig, kanske till följd av elak automatisk ifyllning, en trasig länk eller ett trasigt bokmärke.",
-		"nl": "Verkeerde link gebruikt, bijvoorbeeld een bookmark (bladwijzer)."
+		"nl": "Verkeerde link gebruikt, bijvoorbeeld een bookmark (bladwijzer).",
+		"ca": "L’enllaç per arribar fins aquí era dolent, potser un marcador."
 	},
 	"cause_backforward": {
 		"no": "Bruk av \"frem\"- og \"tilbake\"-knappene i nettleseren.",
@@ -222,7 +230,8 @@
 		"eu": "Zure web nabigatzaileko atzera eta aurrera botoiak erabiltzen.",
 		"el": "\u039c\u03b5\u03c4\u03b1\u03b2\u03ae\u03ba\u03b1\u03c4\u03b5 \u03c0\u03af\u03c3\u03c9 \u03ba\u03b1\u03b9 \u03b5\u03bc\u03c0\u03c1\u03cc\u03c2 \u03c3\u03c4\u03bf \u03b9\u03c3\u03c4\u03bf\u03c1\u03b9\u03ba\u03cc \u03c4\u03bf\u03c5 \u03c0\u03c1\u03bf\u03b3\u03c1\u03ac\u03bc\u03bc\u03b1\u03c4\u03bf\u03c2 \u03c0\u03b5\u03c1\u03b9\u03ae\u03b3\u03b7\u03c3\u03b7\u03c2 \u03b9\u03c3\u03c4\u03bf\u03cd.",
 		"zu": "Ukusebenzisa izinkinobho ezithi emuva naphambili kusiphequluli sewebhu.",
-		"xh": "Ukusebenzisa amaqhosha okuya emva naphambili kwibhrawuza yewebhu."
+		"xh": "Ukusebenzisa amaqhosha okuya emva naphambili kwibhrawuza yewebhu.",
+		"ca": "Utilitzant els botons enrere i endavant del navegador web."
 	},
 	"cause_openbrowser": {
 		"no": "Starte nettleseren med faner lagret fra forrige gang.",
@@ -253,7 +262,8 @@
 		"eu": "Zure web nabigatzailea aurreko saiotik gordeta zeuden fitxekin ireki duzu.",
 		"el": "\u0391\u03bd\u03bf\u03af\u03be\u03b1\u03c4\u03b5 \u03c4\u03bf \u03c0\u03c1\u03cc\u03b3\u03c1\u03b1\u03bc\u03bc\u03b1 \u03c0\u03b5\u03c1\u03b9\u03ae\u03b3\u03b7\u03c3\u03b7\u03c2 \u03b9\u03c3\u03c4\u03bf\u03cd \u03ba\u03b1\u03b9 \u03b5\u03c0\u03b1\u03bd\u03b1\u03c6\u03ad\u03c1\u03b1\u03c4\u03b5 \u03ba\u03b1\u03c1\u03c4\u03ad\u03bb\u03b5\u03c2 \u03c0\u03c1\u03bf\u03b7\u03b3\u03bf\u03cd\u03bc\u03b5\u03bd\u03b7\u03c2 \u03c3\u03c5\u03bd\u03b5\u03b4\u03c1\u03af\u03b1\u03c2.",
 		"xh": "Kuvulwe ibhrawuza yewebhu ngeethebhu eziseyivwe kwiseshoni edlulileyo.",
-		"zu": "Kuvulwe isiphequluli sewebhu ngamathebhu alondolozwe kuseshini yangaphambilini."
+		"zu": "Kuvulwe isiphequluli sewebhu ngamathebhu alondolozwe kuseshini yangaphambilini.",
+		"ca": "S'ha obert el navegador web amb pestanyes desades de la sessió anterior."
 	},
 	"cause_nocookie": {
 		"no": "At informasjonskapsler ikke er aktivert i nettleseren.",
@@ -284,7 +294,8 @@
 		"eu": "Cookie-ak desgaituta egon litezke nabigatzailean.",
 		"el": "\u0397 \u03bb\u03b5\u03b9\u03c4\u03bf\u03c5\u03c1\u03b3\u03af\u03b1 cookie \u03b5\u03af\u03bd\u03b1\u03b9 \u03b1\u03c0\u03b5\u03bd\u03b5\u03c1\u03b3\u03bf\u03c0\u03bf\u03b9\u03b7\u03bc\u03ad\u03bd\u03b7 \u03c3\u03c4\u03bf \u03c0\u03c1\u03cc\u03b3\u03c1\u03b1\u03bc\u03bc\u03b1 \u03c0\u03b5\u03c1\u03b9\u03ae\u03b3\u03b7\u03c3\u03b7\u03c2 \u03b9\u03c3\u03c4\u03bf\u03cd.",
 		"xh": "Iikhuki zisenokwenziwa zingasebenzi kwibhrawuza yewebhu.",
-		"zu": "Amakhukhi kungenzeka ukuthi ayekisiwe kusiphequluli sewebhu."
+		"zu": "Amakhukhi kungenzeka ukuthi ayekisiwe kusiphequluli sewebhu.",
+		"ca": "Les cookies poden estar desactivades al navegador web."
 	},
 	"report_header": {
 		"no": "Rapporter denne feilen",
@@ -315,7 +326,8 @@
 		"eu": "Errore honen berri eman",
 		"el": "\u0391\u03bd\u03b1\u03c6\u03bf\u03c1\u03ac \u03c3\u03c6\u03ac\u03bb\u03bc\u03b1\u03c4\u03bf\u03c2",
 		"xh": "Chaza le mpazamo",
-		"zu": "Bika leli phutha"
+		"zu": "Bika leli phutha",
+		"ca": "Informeu d'aquest error"
 	},
 	"report_text": {
 		"no": "Hvis problemet vedvarer, kan du rapportere det til systemadministratorene.",
@@ -346,6 +358,7 @@
 		"eu": "Arazoak bere horretan badirau, sistemaren administratzaileei berri eman diezaiekezu.",
 		"el": "\u0391\u03bd \u03c4\u03bf \u03c0\u03c1\u03cc\u03b2\u03bb\u03b7\u03bc\u03b1 \u03b5\u03be\u03b1\u03ba\u03bf\u03bb\u03bf\u03c5\u03b8\u03b5\u03af \u03bd\u03b1 \u03c5\u03c6\u03af\u03c3\u03c4\u03b1\u03c4\u03b1\u03b9, \u03bc\u03c0\u03bf\u03c1\u03b5\u03af\u03c4\u03b5 \u03bd\u03b1 \u03c4\u03bf \u03b1\u03bd\u03b1\u03c6\u03ad\u03c1\u03b5\u03c4\u03b5 \u03c3\u03c4\u03bf\u03c5\u03c2 \u03b4\u03b9\u03b1\u03c7\u03b5\u03b9\u03c1\u03b9\u03c3\u03c4\u03ad\u03c2 \u03c4\u03bf\u03c5 \u03c3\u03c5\u03c3\u03c4\u03ae\u03bc\u03b1\u03c4\u03bf\u03c2.",
 		"xh": "Ukuba le ngxaki iyaqhubeka, ungayichaza kubalawuli besistim.",
-		"zu": "Uma le nkinga iphikelela, ungayibika kubalawuli besistimu."
+		"zu": "Uma le nkinga iphikelela, ungayibika kubalawuli besistimu.",
+		"ca": "Si aquest problema continua, podeu informar als administradors del sistema."
 	}
 }

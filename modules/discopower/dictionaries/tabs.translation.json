@@ -9,7 +9,8 @@
 		"af": "Noorwe\u00eb",
 		"el": "\u039d\u03bf\u03c1\u03b2\u03b7\u03b3\u03af\u03b1",
 		"xh": "Norowe",
-		"zu": "ENorway"
+		"zu": "ENorway",
+		"ca": "Noruega"
 	},
 	"kalmar": {
 		"es": "Kalmar",
@@ -18,7 +19,8 @@
 		"nl": "Kalmar",
 		"da": "Kalmar",
 		"af": "Kalmar",
-		"el": "Kalmar"
+		"el": "Kalmar",
+		"ca": "Kalmar"
 	},
 	"finland": {
 		"es": "Finlandia",
@@ -29,7 +31,8 @@
 		"da": "Finland",
 		"af": "Finland",
 		"el": "\u03a6\u03b9\u03bd\u03bb\u03b1\u03bd\u03b4\u03af\u03b1",
-		"xh": "Finlend"
+		"xh": "Finlend",
+		"ca": "Finlàndia"
 	},
 	"sweden": {
 		"es": "Suecia",
@@ -41,7 +44,8 @@
 		"af": "Swede",
 		"el": "\u03a3\u03bf\u03c5\u03b7\u03b4\u03af\u03b1",
 		"xh": "Swiden",
-		"zu": "Sweden"
+		"zu": "Sweden",
+		"ca": "Suècia"
 	},
 	"iceland": {
 		"es": "Islandia",
@@ -53,7 +57,8 @@
 		"af": "Ysland",
 		"el": "\u0399\u03c3\u03bb\u03b1\u03bd\u03b4\u03af\u03b1",
 		"xh": "Ayisilend",
-		"zu": "I-Iceland"
+		"zu": "I-Iceland",
+		"ca": "Islàndia"
 	},
 	"denmark": {
 		"es": "Dinamarca",
@@ -64,7 +69,8 @@
 		"da": "Danmark",
 		"af": "Denmark",
 		"el": "\u0394\u03b1\u03bd\u03af\u03b1",
-		"xh": "Dominikha"
+		"xh": "Dominikha",
+		"ca": "Dinamarca"
 	},
 	"switzerland": {
 		"es": "Suiza",
@@ -76,7 +82,8 @@
 		"af": "Switserland",
 		"el": "\u0395\u03bb\u03b2\u03b5\u03c4\u03af\u03b1",
 		"xh": "Swizalend",
-		"zu": "ESwitzerland"
+		"zu": "ESwitzerland",
+		"ca": "Suïssa"
 	},
 	"greece": {
 		"es": "Grecia",
@@ -86,7 +93,8 @@
 		"da": "Gr\u00e6kenland",
 		"af": "Griekeland",
 		"el": "\u0395\u03bb\u03bb\u03ac\u03b4\u03b1",
-		"xh": "Grisi"
+		"xh": "Grisi",
+		"ca": "Grècia"
 	},
 	"southafrica": {
 		"es": "Sud\u00e1frica",
@@ -98,7 +106,8 @@
 		"af": "Suid-Afrika",
 		"el": "\u039d\u03cc\u03c4\u03b9\u03b1 \u0391\u03c6\u03c1\u03b9\u03ba\u03ae",
 		"xh": "uMzantsi Afrika",
-		"zu": "iNingizimu Afrika"
+		"zu": "iNingizimu Afrika",
+		"ca": "Sud-Àfrica"
 	},
 	"edugain": {
 		"es": "Europa (eduGAIN)",
@@ -110,7 +119,8 @@
 		"af": "Europa (eduGAIN)",
 		"el": "\u0395\u03c5\u03c1\u03ce\u03c0\u03b7 (eduGAIN)",
 		"xh": "Yurophu (eduGAIN)",
-		"zu": "IYurophu (eduGAIN)"
+		"zu": "IYurophu (eduGAIN)",
+		"ca": "Europa (eduGAIN)"
 	},
 	"misc": {
 		"es": "Otros",
@@ -122,7 +132,8 @@
 		"af": "Verskeie",
 		"el": "\u0386\u03bb\u03bb\u03bf\u03b9 \u03c6\u03bf\u03c1\u03b5\u03af\u03c2",
 		"xh": "Ezahlukahlukeneyo",
-		"zu": "Ezihlukahlukene"
+		"zu": "Ezihlukahlukene",
+		"ca": "Altres"
 	},
 	"incommon": {
 		"es": "InCommon",
@@ -130,7 +141,8 @@
 		"nl": "InCommon",
 		"da": "InCommon",
 		"af": "InCommon",
-		"el": "InCommon"
+		"el": "InCommon",
+		"ca": "InCommon"
 	},
 	"ukacessfederation": {
 		"es": "Federaci&oacute;n de Acceso de Reino Unido",
@@ -138,11 +150,13 @@
 		"nl": "UK Access Federation",
 		"da": "Storbritanniens adgangsf\u00f8deration",
 		"af": "UK Toegangs Federasie",
-		"el": "\u039f\u03bc\u03bf\u03c3\u03c0\u03bf\u03bd\u03b4\u03af\u03b1 UK Access"
+		"el": "\u039f\u03bc\u03bf\u03c3\u03c0\u03bf\u03bd\u03b4\u03af\u03b1 UK Access",
+		"ca": "Federeació d'accès del Regne Unit"
 	},
 	"incremental_search": {
 		"af": "Inkrementele soektog...",
 		"zu": "Ukucinga okukhulayo...",
-		"xh": "Ukhangelo oluqhubekayo..."
+		"xh": "Ukhangelo oluqhubekayo...",
+		"ca": "Cerca incremental..."
 	}
 }

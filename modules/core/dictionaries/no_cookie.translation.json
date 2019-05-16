@@ -31,7 +31,8 @@
 		"af": "Verlore cookie",
 		"el": "\u03a0\u03c1\u03cc\u03b2\u03bb\u03b7\u03bc\u03b1 \u03bb\u03b5\u03b9\u03c4\u03bf\u03c5\u03c1\u03b3\u03af\u03b1\u03c2 cookie",
 		"xh": "Ikhuki engekhoyo",
-		"zu": "Ikhukhi engatholakali"
+		"zu": "Ikhukhi engatholakali",
+		"ca": "Falta la cookie"
 	},
 	"description": {
 		"no": "Du ser ut til \u00e5 ha deaktivert informasjonskapsler. Kontroller innstillingene i nettleseren din og pr\u00f8v igjen.",
@@ -65,7 +66,8 @@
 		"af": "Dit blyk dat jy cookies in jou webblaaier af geskakel het. Gaan asseblief die stellings in jou webblaaier na en probeer weer.",
 		"el": "\u0395\u03bd\u03b4\u03ad\u03c7\u03b5\u03c4\u03b1\u03b9 \u03c4\u03b1 cookie \u03c4\u03bf\u03c5 \u03c0\u03c1\u03bf\u03b3\u03c1\u03ac\u03bc\u03bc\u03b1\u03c4\u03bf\u03c2 \u03c0\u03b5\u03c1\u03b9\u03ae\u03b3\u03b7\u03c3\u03ae\u03c2 \u03c3\u03b1\u03c2 \u03bd\u03b1 \u03ad\u03c7\u03bf\u03c5\u03bd \u03b1\u03c0\u03b5\u03bd\u03b5\u03c1\u03b3\u03bf\u03c0\u03bf\u03b9\u03b7\u03b8\u03b5\u03af. \u03a0\u03b1\u03c1\u03b1\u03ba\u03b1\u03bb\u03bf\u03cd\u03bc\u03b5 \u03b5\u03bb\u03ad\u03b3\u03be\u03c4\u03b5 \u03c4\u03b9\u03c2 \u03c3\u03c7\u03b5\u03c4\u03b9\u03ba\u03ad\u03c2 \u03c1\u03c5\u03b8\u03bc\u03af\u03c3\u03b5\u03b9\u03c2 \u03ba\u03b1\u03b9 \u03ba\u03b1\u03b9 \u03b4\u03bf\u03ba\u03b9\u03bc\u03ac\u03c3\u03c4\u03b5 \u03be\u03b1\u03bd\u03ac.",
 		"xh": "Ubonakala uzenze azasebenza iikhuki kwibhrawuza yakho. Nceda ujonge iisetingi ezikwibhrawuza yakho, uzame kwakhona.",
-		"zu": "Kubonakala sengathi uyekise amakhukhi kusiphequluli sakho. Sicela uhlole amasethingi kusiphequluli sakho, bese uzame futhi."
+		"zu": "Kubonakala sengathi uyekise amakhukhi kusiphequluli sakho. Sicela uhlole amasethingi kusiphequluli sakho, bese uzame futhi.",
+		"ca": "Sembla que heu desactivat les cookies al vostre navegador. Comproveu la configuració del vostre navegador i torneu-ho a provar."
 	},
 	"retry": {
 		"no": "Pr\u00f8v igjen",
@@ -99,6 +101,7 @@
 		"af": "Probeer weer",
 		"el": "\u0394\u03bf\u03ba\u03b9\u03bc\u03ac\u03c3\u03c4\u03b5 \u03be\u03b1\u03bd\u03ac",
 		"zu": "Zama futhi",
-		"xh": "Zama kwakhona"
+		"xh": "Zama kwakhona",
+		"ca": "Torna a provar"
 	}
 }
