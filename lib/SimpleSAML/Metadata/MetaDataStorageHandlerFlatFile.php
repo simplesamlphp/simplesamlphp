@@ -68,7 +68,7 @@ class MetaDataStorageHandlerFlatFile extends MetaDataStorageSource
      *
      * @return array An associative array with the metadata, or null if we are unable to load metadata from the given
      *     file.
-     * @throws Exception If the metadata set cannot be loaded.
+     * @throws \Exception If the metadata set cannot be loaded.
      */
     private function load($set)
     {
@@ -112,34 +112,11 @@ class MetaDataStorageHandlerFlatFile extends MetaDataStorageSource
 
         // add the entity id of an entry to each entry in the metadata
         foreach ($metadataSet as $entityId => &$entry) {
-            if (preg_match('/__DYNAMIC(:[0-9]+)?__/', $entityId)) {
-                $entry['entityid'] = $this->generateDynamicHostedEntityID($set);
-            } else {
-                $entry['entityid'] = $entityId;
-            }
+            $entry = $this->updateEntityID($set, $entityId, $entry);
         }
 
         $this->cachedMetadata[$set] = $metadataSet;
 
         return $metadataSet;
-    }
-
-
-    private function generateDynamicHostedEntityID($set)
-    {
-        // get the configuration
-        $baseurl = \SimpleSAML\Utils\HTTP::getBaseURL();
-
-        if ($set === 'saml20-idp-hosted') {
-            return $baseurl.'saml2/idp/metadata.php';
-        } elseif ($set === 'shib13-idp-hosted') {
-            return $baseurl.'shib13/idp/metadata.php';
-        } elseif ($set === 'wsfed-sp-hosted') {
-            return 'urn:federation:'.\SimpleSAML\Utils\HTTP::getSelfHost();
-        } elseif ($set === 'adfs-idp-hosted') {
-            return 'urn:federation:'.\SimpleSAML\Utils\HTTP::getSelfHost().':idp';
-        } else {
-            throw new \Exception('Can not generate dynamic EntityID for metadata of this type: ['.$set.']');
-        }
     }
 }
