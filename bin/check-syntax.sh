@@ -4,7 +4,7 @@ PHP='/usr/bin/env php'
 RETURN=0
 
 # check PHP files
-for FILE in `find attributemap bin config-templates lib metadata-templates modules templates www -name "*.php"`; do
+for FILE in `find attributemap bin config-templates lib metadata-templates modules templates tests www -name "*.php"`; do
     $PHP -l $FILE > /dev/null 2>&1
     if [ $? -ne 0 ]; then
         echo "Syntax check failed for ${FILE}"
