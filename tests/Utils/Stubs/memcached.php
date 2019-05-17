@@ -1301,8 +1301,9 @@ class Memcached  {
 /**
  * @link https://php.net/manual/en/class.memcachedexception.php
  */
-class MemcachedException extends RuntimeException  {
-
+if (!class_exists('MemcachedException')) {
+    class MemcachedException extends RuntimeException
+    {
+    }
 }
 // End of memcached v.3.0.4
-?>
