@@ -252,6 +252,9 @@ class EMail
      */
     public function generateBody($template)
     {
+        // Force mail template to be rendered by Twig, even when using oldui
+        // Replace this with the following line of code in 2.0
+        // $config = Configuration::getInstance();
         $config = Configuration::loadFromArray([
             'usenewui' => true,
         ]);
