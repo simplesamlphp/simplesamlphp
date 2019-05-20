@@ -149,20 +149,6 @@ $config = [
     */
 
     /*
-    // LinkedIn OAuth Authentication API.
-    // Register your application to get an API key here:
-    //  https://www.linkedin.com/secure/developer
-    // Attributes definition:
-    //  https://developer.linkedin.com/docs/fields
-    'linkedin' => [
-        'authlinkedin:LinkedIn',
-        'key' => 'xxxxxxxxxxxxxxxx',
-        'secret' => 'xxxxxxxxxxxxxxxx',
-        'attributes' => 'id,first-name,last-name,headline,summary,specialties,picture-url,email-address',
-    ],
-    */
-
-    /*
     // Twitter OAuth Authentication API.
     // Register your application to get an API key here:
     //  http://twitter.com/oauth_clients
