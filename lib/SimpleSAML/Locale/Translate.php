@@ -119,7 +119,7 @@ class Translate
      * @param string $tag The tag name. The tag name can also be on the form '{<dictionary>:<tag>}', to retrieve a tag
      * from the specific dictionary.
      *
-     * @return array An associative array with language => string mappings, or null if the tag wasn't found.
+     * @return array|null An associative array with language => string mappings, or null if the tag wasn't found.
      */
     public function getTag($tag)
     {
