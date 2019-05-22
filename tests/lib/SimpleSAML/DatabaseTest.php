@@ -178,7 +178,7 @@ class DatabaseTest extends TestCase
     {
         $getSlave = self::getMethod('getSlave');
 
-        $master = spl_object_hash(\PHPUnit_Framework_Assert::readAttribute($this->db, 'dbMaster'));
+        $master = spl_object_hash(\PHPUnit\Framework\Assert::readAttribute($this->db, 'dbMaster'));
         $slave = spl_object_hash($getSlave->invokeArgs($this->db, []));
 
         $this->assertTrue(($master == $slave), "getSlave should have returned the master database object");
@@ -201,7 +201,7 @@ class DatabaseTest extends TestCase
         $sspConfiguration = new \SimpleSAML\Configuration($config, "test/SimpleSAML/DatabaseTest.php");
         $msdb = \SimpleSAML\Database::getInstance($sspConfiguration);
 
-        $slaves = \PHPUnit_Framework_Assert::readAttribute($msdb, 'dbSlaves');
+        $slaves = \PHPUnit\Framework\Assert::readAttribute($msdb, 'dbSlaves');
         $gotSlave = spl_object_hash($getSlave->invokeArgs($msdb, []));
 
         $this->assertEquals(
