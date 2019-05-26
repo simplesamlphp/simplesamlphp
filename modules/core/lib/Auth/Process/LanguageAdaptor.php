@@ -56,7 +56,7 @@ class LanguageAdaptor extends \SimpleSAML\Auth\ProcessingFilter
             \SimpleSAML\Logger::debug('LanguageAdaptor: Language in attribute was set ['.$attrlang.']');
         }
         if (isset($lang)) {
-            \SimpleSAML\Logger::debug('LanguageAdaptor: Language in session   was set ['.$lang.']');
+            \SimpleSAML\Logger::debug('LanguageAdaptor: Language in session was set ['.$lang.']');
         }
 
         if (isset($attrlang) && !isset($lang)) {
