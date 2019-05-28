@@ -69,6 +69,7 @@
         "simplesamlphp/simplesamlphp-module-radius": "^1.0.0",
         "simplesamlphp/simplesamlphp-module-riak": "^1.0.0",
         "simplesamlphp/simplesamlphp-module-smartattributes": "^1.0.0",
+        "simplesamlphp/simplesamlphp-module-sanitycheck": "^1.0.0",
         "simplesamlphp/simplesamlphp-module-statistics": "^1.0.0",
         "symfony/routing": "^3.4 || ^4.0",
         "symfony/http-foundation": "^3.4 || ^4.0",
