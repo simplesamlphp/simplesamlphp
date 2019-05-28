@@ -63,6 +63,7 @@
         "simplesamlphp/simplesamlphp-module-ldap": "^1.0",
         "simplesamlphp/simplesamlphp-module-memcookie": "^1.2",
         "simplesamlphp/simplesamlphp-module-memcachemonitor": "^1.0",
+        "simplesamlphp/simplesamlphp-module-metarefresh": "^1.0",
         "simplesamlphp/simplesamlphp-module-negotiate": "^1.0",
         "simplesamlphp/simplesamlphp-module-oauth": "^1.0",
         "simplesamlphp/simplesamlphp-module-radius": "^1.0.0",
