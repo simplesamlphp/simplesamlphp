@@ -70,6 +70,7 @@ php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-
 php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-preprodwarning
 php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-radius
 php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-riak
+php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-sanitycheck
 php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-smartattributes
 php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-statistics
 php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-sqlauth
