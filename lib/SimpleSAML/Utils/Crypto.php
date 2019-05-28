@@ -6,6 +6,7 @@ namespace SimpleSAML\Utils;
 
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
+use Webmozart\Assert\Assert;
 
 /**
  * A class for cryptography-related functions.
@@ -289,7 +290,7 @@ class Crypto
 
             // normalize fingerprint(s) - lowercase and no colons
             foreach ($fps as &$fp) {
-                assert(is_string($fp));
+                Assert::string($fp);
                 $fp = strtolower(str_replace(':', '', $fp));
             }
 

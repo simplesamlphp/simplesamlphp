@@ -4,6 +4,8 @@
  * Assertion consumer service handler for SAML 2.0 SP authentication client.
  */
 
+use Webmozart\Assert\Assert;
+
 if (!array_key_exists('PATH_INFO', $_SERVER)) {
     throw new \SimpleSAML\Error\BadRequest('Missing authentication source ID in assertion consumer service URL');
 }
@@ -103,7 +105,7 @@ if (!empty($stateId)) {
 
 if ($state) {
     // check that the authentication source is correct
-    assert(array_key_exists('saml:sp:AuthId', $state));
+    Assert::keyExists($state, 'saml:sp:AuthId');
     if ($state['saml:sp:AuthId'] !== $sourceId) {
         throw new \SimpleSAML\Error\Exception(
             'The authentication source id in the URL does not match the authentication source which sent the request.'
@@ -111,7 +113,7 @@ if ($state) {
     }
 
     // check that the issuer is the one we are expecting
-    assert(array_key_exists('ExpectedIssuer', $state));
+    Assert::keyExists($state, 'ExpectedIssuer');
     if ($state['ExpectedIssuer'] !== $issuer) {
         $idpMetadata = $source->getIdPMetadata($issuer);
         $idplist = $idpMetadata->getArrayize('IDPList', []);
@@ -270,4 +272,4 @@ if (isset($state['\SimpleSAML\Auth\Source.ReturnURL'])) {
 $state['PersistentAuthData'][] = 'saml:sp:prevAuth';
 
 $source->handleResponse($state, $issuer, $attributes);
-assert(false);
+Assert::true(false);

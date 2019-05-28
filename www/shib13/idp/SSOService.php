@@ -11,6 +11,8 @@
 
 require_once '../../_include.php';
 
+use Webmozart\Assert\Assert;
+
 \SimpleSAML\Logger::info('Shib1.3 - IdP.SSOService: Accessing Shibboleth 1.3 IdP endpoint SSOService');
 
 $metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
@@ -18,4 +20,4 @@ $idpEntityId = $metadata->getMetaDataCurrentEntityID('shib13-idp-hosted');
 $idp = \SimpleSAML\IdP::getById('saml1:'.$idpEntityId);
 \SimpleSAML\Module\saml\IdP\SAML1::receiveAuthnRequest($idp);
 
-assert(false);
+Assert::true(false);

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Error;
 
+use Webmozart\Assert\Assert;
+
 /**
  * Baseclass for auth source exceptions.
  *
@@ -36,8 +38,8 @@ class AuthSource extends Error
      */
     public function __construct($authsource, $reason, $cause = null)
     {
-        assert(is_string($authsource));
-        assert(is_string($reason));
+        Assert::string($authsource);
+        Assert::string($reason);
 
         $this->authsource = $authsource;
         $this->reason = $reason;

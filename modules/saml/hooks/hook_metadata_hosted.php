@@ -1,5 +1,7 @@
 <?php
 
+use Webmozart\Assert\Assert;
+
 /**
  * Hook to add the metadata for hosted entities to the frontpage.
  *
@@ -8,7 +10,7 @@
  */
 function saml_hook_metadata_hosted(&$metadataHosted)
 {
-    assert(is_array($metadataHosted));
+    Assert::isArray($metadataHosted);
 
     $sources = \SimpleSAML\Auth\Source::getSourcesOfType('saml:SP');
 

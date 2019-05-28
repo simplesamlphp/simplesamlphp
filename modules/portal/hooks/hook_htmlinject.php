@@ -1,5 +1,7 @@
 <?php
 
+use Webmozart\Assert\Assert;
+
 /**
  * Hook to inject HTML content into all pages...
  *
@@ -8,10 +10,10 @@
  */
 function portal_hook_htmlinject(&$hookinfo)
 {
-    assert(is_array($hookinfo));
-    assert(array_key_exists('pre', $hookinfo));
-    assert(array_key_exists('post', $hookinfo));
-    assert(array_key_exists('page', $hookinfo));
+    Assert::isArray($hookinfo);
+    Assert::keyExists($hookinfo, 'pre');
+    Assert::keyExists($hookinfo, 'post');
+    Assert::keyExists($hookinfo, 'page');
 
     $links = ['links' => []];
     \SimpleSAML\Module::callHooks('frontpage', $links);

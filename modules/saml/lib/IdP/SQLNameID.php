@@ -10,6 +10,7 @@ use SimpleSAML\Error;
 use SimpleSAML\Store;
 use SimpleSAML\Database;
 use SimpleSAML\Configuration;
+use Webmozart\Assert\Assert;
 
 /**
  * Helper class for working with persistent NameIDs stored in SQL datastore.
@@ -179,10 +180,10 @@ class SQLNameID
      */
     public static function add($idpEntityId, $spEntityId, $user, $value, array $config = [])
     {
-        assert(is_string($idpEntityId));
-        assert(is_string($spEntityId));
-        assert(is_string($user));
-        assert(is_string($value));
+        Assert::string($idpEntityId);
+        Assert::string($spEntityId);
+        Assert::string($user);
+        Assert::string($value);
 
         $params = [
             '_idp' => $idpEntityId,
@@ -208,9 +209,9 @@ class SQLNameID
      */
     public static function get($idpEntityId, $spEntityId, $user, array $config = [])
     {
-        assert(is_string($idpEntityId));
-        assert(is_string($spEntityId));
-        assert(is_string($user));
+        Assert::string($idpEntityId);
+        Assert::string($spEntityId);
+        Assert::string($user);
 
         $params = [
             '_idp' => $idpEntityId,
@@ -243,9 +244,9 @@ class SQLNameID
      */
     public static function delete($idpEntityId, $spEntityId, $user, array $config = [])
     {
-        assert(is_string($idpEntityId));
-        assert(is_string($spEntityId));
-        assert(is_string($user));
+        Assert::string($idpEntityId);
+        Assert::string($spEntityId);
+        assert::string($user);
 
         $params = [
             '_idp' => $idpEntityId,
@@ -269,8 +270,8 @@ class SQLNameID
      */
     public static function getIdentities($idpEntityId, $spEntityId, array $config = [])
     {
-        assert(is_string($idpEntityId));
-        assert(is_string($spEntityId));
+        Assert::string($idpEntityId);
+        assert::string($spEntityId);
 
         $params = [
             '_idp' => $idpEntityId,

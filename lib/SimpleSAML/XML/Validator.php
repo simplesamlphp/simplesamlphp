@@ -11,9 +11,11 @@ declare(strict_types=1);
 
 namespace SimpleSAML\XML;
 
+use DOMNode;
 use RobRichards\XMLSecLibs\XMLSecEnc;
 use RobRichards\XMLSecLibs\XMLSecurityDSig;
 use SimpleSAML\Logger;
+use Webmozart\Assert\Assert;
 
 class Validator
 {
@@ -49,7 +51,7 @@ class Validator
      */
     public function __construct($xmlNode, $idAttribute = null, $publickey = false)
     {
-        assert($xmlNode instanceof \DOMDocument);
+        Assert::isInstanceOf($xmlNode, DOMNode::class);
 
         if ($publickey === null) {
             $publickey = false;
@@ -58,7 +60,7 @@ class Validator
                 'PEM' => $publickey,
             ];
         } else {
-            assert($publickey === false || is_array($publickey));
+            Assert::true($publickey === false || is_array($publickey));
         }
 
         // Create an XML security object
@@ -112,7 +114,7 @@ class Validator
                  * Check that the response contains a certificate with a matching
                  * fingerprint.
                  */
-                assert(is_array($publickey['certFingerprint']));
+                Assert::isArray($publickey['certFingerprint']);
 
                 $certificate = $objKey->getX509Certificate();
                 if ($certificate === null) {
@@ -213,7 +215,7 @@ class Validator
         }
 
         foreach ($fingerprints as $fp) {
-            assert(is_string($fp));
+            Assert::string($fp);
 
             if ($fp === $certFingerprint) {
                 // The fingerprints matched
@@ -241,7 +243,7 @@ class Validator
      */
     public function validateFingerprint($fingerprints)
     {
-        assert(is_string($fingerprints) || is_array($fingerprints));
+        Assert::true(is_string($fingerprints) || is_array($fingerprints));
 
         if ($this->x509Certificate === null) {
             throw new \Exception('Key used to sign the message was not an X509 certificate.');
@@ -253,7 +255,7 @@ class Validator
 
         // Normalize the fingerprints
         foreach ($fingerprints as &$fp) {
-            assert(is_string($fp));
+            Assert::string($fp);
 
             // Make sure that the fingerprint is in the correct format
             $fp = strtolower(str_replace(":", "", $fp));
@@ -272,7 +274,7 @@ class Validator
      */
     public function isNodeValidated($node)
     {
-        assert($node instanceof \DOMNode);
+        Assert::isInstanceOf($node, DOMNode::class);
 
         if ($this->validNodes !== null) {
             while ($node !== null) {
@@ -302,7 +304,7 @@ class Validator
      */
     public function validateCA($caFile)
     {
-        assert(is_string($caFile));
+        Assert::string($caFile);
 
         if ($this->x509Certificate === null) {
             throw new \Exception('Key used to sign the message was not an X509 certificate.');
@@ -414,8 +416,8 @@ class Validator
      */
     public static function validateCertificate($certificate, $caFile)
     {
-        assert(is_string($certificate));
-        assert(is_string($caFile));
+        Assert::string($certificate);
+        Assert::string($caFile);
 
         if (!file_exists($caFile)) {
             throw new \Exception('Could not load CA file: ' . $caFile);

@@ -6,6 +6,7 @@ namespace SimpleSAML\Module\exampleauth\Auth\Source;
 
 use SimpleSAML\Error;
 use SimpleSAML\Utils;
+use Webmozart\Assert\Assert;
 
 /**
  * Example authentication source - username & password.
@@ -36,8 +37,8 @@ class UserPass extends \SimpleSAML\Module\core\Auth\UserPassBase
      */
     public function __construct($info, $config)
     {
-        assert(is_array($info));
-        assert(is_array($config));
+        Assert::isArray($info);
+        Assert::isArray($config);
 
         // Call the parent constructor first, as required by the interface
         parent::__construct($info, $config);
@@ -87,8 +88,8 @@ class UserPass extends \SimpleSAML\Module\core\Auth\UserPassBase
      */
     protected function login($username, $password)
     {
-        assert(is_string($username));
-        assert(is_string($password));
+        Assert::string($username);
+        Assert::string($password);
 
         $userpass = $username . ':' . $password;
         if (!array_key_exists($userpass, $this->users)) {

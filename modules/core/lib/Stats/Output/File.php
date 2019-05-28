@@ -6,6 +6,7 @@ namespace SimpleSAML\Module\core\Stats\Output;
 
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
+use Webmozart\Assert\Assert;
 
 /**
  * Statistics logger that writes to a set of log files
@@ -86,7 +87,7 @@ class File extends \SimpleSAML\Stats\Output
      */
     public function emit(array $data)
     {
-        assert(isset($data['time']));
+        Assert::notNull($data['time']);
 
         $time = $data['time'];
         $milliseconds = (int) (($time - (int) $time) * 1000);

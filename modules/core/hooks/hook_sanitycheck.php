@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use Webmozart\Assert\Assert;
+
 /**
  * Hook to do sanitycheck
  *
@@ -10,9 +12,9 @@ declare(strict_types=1);
  */
 function core_hook_sanitycheck(&$hookinfo)
 {
-    assert(is_array($hookinfo));
-    assert(array_key_exists('errors', $hookinfo));
-    assert(array_key_exists('info', $hookinfo));
+    Assert::isArray($hookinfo);
+    Assert::keyExists($hookinfo, 'errors');
+    Assert::keyExists($hookinfo, 'info');
 
     $config = \SimpleSAML\Configuration::getInstance();
 

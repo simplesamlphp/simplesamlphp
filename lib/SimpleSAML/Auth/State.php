@@ -9,6 +9,7 @@ use SimpleSAML\Error;
 use SimpleSAML\Logger;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
+use Webmozart\Assert\Assert;
 
 /**
  * This is a helper class for saving and loading state information.
@@ -155,8 +156,8 @@ class State
      */
     public static function getStateId(&$state, $rawId = false)
     {
-        assert(is_array($state));
-        assert(is_bool($rawId));
+        Assert::isArray($state);
+        Assert::boolean($rawId);
 
         if (!array_key_exists(self::ID, $state)) {
             $state[self::ID] = Utils\Random::generateID();
@@ -204,9 +205,9 @@ class State
      */
     public static function saveState(&$state, $stage, $rawId = false)
     {
-        assert(is_array($state));
-        assert(is_string($stage));
-        assert(is_bool($rawId));
+        Assert::isArray($state);
+        Assert::string($stage);
+        Assert::boolean($rawId);
 
         $return = self::getStateId($state, $rawId);
         $id = $state[self::ID];
@@ -269,9 +270,9 @@ class State
      */
     public static function loadState($id, $stage, $allowMissing = false)
     {
-        assert(is_string($id));
-        assert(is_string($stage));
-        assert(is_bool($allowMissing));
+        Assert::string($id);
+        Assert::string($stage);
+        Assert::boolean($allowMissing);
         Logger::debug('Loading state: ' . var_export($id, true));
 
         $sid = self::parseStateID($id);
@@ -293,9 +294,9 @@ class State
         }
 
         $state = unserialize($state);
-        assert(is_array($state));
-        assert(array_key_exists(self::ID, $state));
-        assert(array_key_exists(self::STAGE, $state));
+        Assert::isArray($state);
+        Assert::keyExists($state, self::ID);
+        Assert::keyExists($state, self::STAGE);
 
         // Verify stage
         if ($state[self::STAGE] !== $stage) {
@@ -330,7 +331,7 @@ class State
      */
     public static function deleteState(&$state)
     {
-        assert(is_array($state));
+        Assert::isArray($state);
 
         if (!array_key_exists(self::ID, $state)) {
             // This state hasn't been saved
@@ -355,7 +356,7 @@ class State
      */
     public static function throwException($state, Error\Exception $exception)
     {
-        assert(is_array($state));
+        Assert::isArray($state);
 
         if (array_key_exists(self::EXCEPTION_HANDLER_URL, $state)) {
             // Save the exception
@@ -370,10 +371,10 @@ class State
         } elseif (array_key_exists(self::EXCEPTION_HANDLER_FUNC, $state)) {
             // Call the exception handler
             $func = $state[self::EXCEPTION_HANDLER_FUNC];
-            assert(is_callable($func));
+            Assert::isCallable($func);
 
             call_user_func($func, $exception, $state);
-            assert(false);
+            Assert::true(false);
         } else {
             /*
              * No exception handler is defined for the current state.
@@ -393,7 +394,7 @@ class State
      */
     public static function loadExceptionState($id = null)
     {
-        assert(is_string($id) || $id === null);
+        Assert::nullOrString($id);
 
         if ($id === null) {
             if (!array_key_exists(self::EXCEPTION_PARAM, $_REQUEST)) {
@@ -405,7 +406,7 @@ class State
 
         /** @var array $state */
         $state = self::loadState($id, self::EXCEPTION_STAGE);
-        assert(array_key_exists(self::EXCEPTION_DATA, $state));
+        Assert::keyExists($state, self::EXCEPTION_DATA);
 
         return $state;
     }

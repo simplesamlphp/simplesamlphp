@@ -6,6 +6,7 @@ namespace SimpleSAML\Module\core\Auth\Process;
 
 use SimpleSAML\Error;
 use SimpleSAML\Logger;
+use Webmozart\Assert\Assert;
 
 /**
  * A filter for limiting which attributes are passed on.
@@ -40,7 +41,7 @@ class AttributeLimit extends \SimpleSAML\Auth\ProcessingFilter
     {
         parent::__construct($config, $reserved);
 
-        assert(is_array($config));
+        Assert::isArray($config);
 
         foreach ($config as $index => $value) {
             if ($index === 'default') {
@@ -95,8 +96,8 @@ class AttributeLimit extends \SimpleSAML\Auth\ProcessingFilter
      */
     public function process(&$request)
     {
-        assert(is_array($request));
-        assert(array_key_exists('Attributes', $request));
+        Assert::isArray($request);
+        assert::keyExists($request, 'Attributes');
 
         if ($this->isDefault) {
             $allowedAttributes = self::getSPIdPAllowed($request);

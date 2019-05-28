@@ -15,6 +15,7 @@ use SAML2\DOMDocumentFactory;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\Utils;
+use Webmozart\Assert\Assert;
 
 class Artifact
 {
@@ -28,7 +29,7 @@ class Artifact
      */
     private static function getArtifacts(): array
     {
-        assert(array_key_exists('QUERY_STRING', $_SERVER));
+        Assert::keyExists($_SERVER, 'QUERY_STRING');
 
         // We need to process the query string manually, to capture all SAMLart parameters
 

@@ -37,6 +37,7 @@ use SAML2\XML\saml\Attribute;
 use SAML2\XML\shibmd\Scope;
 use SimpleSAML\Logger;
 use SimpleSAML\Utils;
+use Webmozart\Assert\Assert;
 
 /**
  * This is class for parsing of SAML 1.x and SAML 2.0 metadata.
@@ -287,7 +288,7 @@ class SAMLParser
      */
     public static function parseDocument($document)
     {
-        assert($document instanceof DOMDocument);
+        Assert::isInstanceOf($document, DOMDocument::class);
 
         $entityElement = self::findEntityDescriptor($document);
 
@@ -305,7 +306,7 @@ class SAMLParser
      */
     public static function parseElement($entityElement)
     {
-        assert($entityElement instanceof EntityDescriptor);
+        Assert::isInstanceOf($entityElement, EntityDescriptor::class);
         return new SAMLParser($entityElement, null, []);
     }
 
@@ -412,7 +413,7 @@ class SAMLParser
             return $ret;
         }
 
-        assert($element instanceof EntitiesDescriptor);
+        Assert::isInstanceOf($element, EntitiesDescriptor::class);
 
         $extensions = self::processExtensions($element, $parentExtensions);
         $expTime = self::getExpireTime($element, $maxExpireTime);
@@ -503,8 +504,8 @@ class SAMLParser
      */
     private function addExtensions(array &$metadata, array $roleDescriptor)
     {
-        assert(array_key_exists('scope', $roleDescriptor));
-        assert(array_key_exists('tags', $roleDescriptor));
+        Assert::keyExists($roleDescriptor, 'scope');
+        Assert::keyExists($roleDescriptor, 'tags');
 
         $scopes = array_merge($this->scopes, array_diff($roleDescriptor['scope'], $this->scopes));
         if (!empty($scopes)) {
@@ -1004,7 +1005,7 @@ class SAMLParser
         AttributeAuthorityDescriptor $element,
         $expireTime
     ) {
-        assert($expireTime === null || is_int($expireTime));
+        Assert::nullOrInteger($expireTime);
 
         $aad = self::parseRoleDescriptorType($element, $expireTime);
         $aad['entityid'] = $this->getEntityId();
@@ -1456,7 +1457,7 @@ class SAMLParser
     public function validateSignature($certificates)
     {
         foreach ($certificates as $cert) {
-            assert(is_string($cert));
+            Assert::string($cert);
             $certFile = Utils\Config::getCertPath($cert);
             if (!file_exists($certFile)) {
                 throw new \Exception(
@@ -1531,7 +1532,7 @@ class SAMLParser
      */
     public function validateFingerprint($fingerprint, $algorithm)
     {
-        assert(is_string($fingerprint));
+        Assert::string($fingerprint);
 
         $fingerprint = strtolower(str_replace(":", "", $fingerprint));
 

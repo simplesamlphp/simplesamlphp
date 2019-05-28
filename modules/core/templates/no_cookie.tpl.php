@@ -1,6 +1,8 @@
 <?php
 
-assert(array_key_exists('retryURL', $this->data));
+use Webmozart\Assert\Assert;
+
+Assert::keyExists($this->data, 'retryURL');
 $retryURL = $this->data['retryURL'];
 
 $header = htmlspecialchars($this->t('{core:no_cookie:header}'));

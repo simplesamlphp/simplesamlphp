@@ -8,6 +8,7 @@ use SimpleSAML\Utils\Auth as Auth;
 use SimpleSAML\Utils\Crypto as Crypto;
 use SimpleSAML\Utils\HTTP as HTTP;
 use SimpleSAML\Utils\Config\Metadata as Metadata;
+use Webmozart\Assert\Assert;
 
 // load SimpleSAMLphp configuration and metadata
 $config = \SimpleSAML\Configuration::getInstance();
@@ -55,7 +56,7 @@ try {
 
     if ($idpmeta->hasValue('https.certificate')) {
         $httpsCert = Crypto::loadPublicKey($idpmeta, true, 'https.');
-        assert(isset($httpsCert['certData']));
+        Assert::notNull($httpsCert['certData']);
         $availableCerts['https.crt'] = $httpsCert;
         $keys[] = [
             'type'            => 'X509Certificate',

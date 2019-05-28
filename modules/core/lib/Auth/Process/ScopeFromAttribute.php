@@ -6,6 +6,7 @@ namespace SimpleSAML\Module\core\Auth\Process;
 
 use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
+use Webmozart\Assert\Assert;
 
 /**
  * Retrieve a scope from a source attribute and add it as a virtual target
@@ -49,7 +50,7 @@ class ScopeFromAttribute extends \SimpleSAML\Auth\ProcessingFilter
     public function __construct(&$config, $reserved)
     {
         parent::__construct($config, $reserved);
-        assert(is_array($config));
+        Assert::isArray($config);
 
         $cfg = Configuration::loadFromArray($config, 'ScopeFromAttribute');
         $this->targetAttribute = $cfg->getString('targetAttribute');
@@ -65,8 +66,8 @@ class ScopeFromAttribute extends \SimpleSAML\Auth\ProcessingFilter
      */
     public function process(&$request)
     {
-        assert(is_array($request));
-        assert(array_key_exists('Attributes', $request));
+        Assert::isArray($request);
+        Assert::keyExists($request, 'Attributes');
 
         $attributes = &$request['Attributes'];
 

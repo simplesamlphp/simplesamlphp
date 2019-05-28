@@ -7,6 +7,7 @@ namespace SimpleSAML\Module\core\Auth\Process;
 use SAML2\Constants;
 use SAML2\XML\saml\NameID;
 use SimpleSAML\Utils;
+use Webmozart\Assert\Assert;
 
 /**
  * Filter to generate the eduPersonTargetedID attribute.
@@ -64,7 +65,7 @@ class TargetedID extends \SimpleSAML\Auth\ProcessingFilter
     {
         parent::__construct($config, $reserved);
 
-        assert(is_array($config));
+        Assert::isArray($config);
 
         if (array_key_exists('attributename', $config)) {
             $this->attribute = $config['attributename'];
@@ -90,8 +91,8 @@ class TargetedID extends \SimpleSAML\Auth\ProcessingFilter
      */
     public function process(&$state)
     {
-        assert(is_array($state));
-        assert(array_key_exists('Attributes', $state));
+        Assert::isArray($state);
+        Assert::keyExists($state, 'Attributes');
 
         if ($this->attribute === null) {
             if (!array_key_exists('UserID', $state)) {

@@ -2,6 +2,8 @@
 
 require_once('../../_include.php');
 
+use Webmozart\Assert\Assert;
+
 $metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
 $idpEntityId = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
 $idp = \SimpleSAML\IdP::getById('saml2:' . $idpEntityId);
@@ -13,4 +15,4 @@ if (!isset($_GET['RelayState'])) {
 }
 
 $idp->doLogoutRedirect(\SimpleSAML\Utils\HTTP::checkURLAllowed((string) $_GET['RelayState']));
-assert(false);
+Assert::true(false);

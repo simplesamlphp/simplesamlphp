@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Error;
 
 use SimpleSAML\Utils;
+use Webmozart\Assert\Assert;
 
 /**
  * Exception which will show a 404 Not Found error page.
@@ -31,7 +32,7 @@ class NotFound extends Error
      */
     public function __construct($reason = null)
     {
-        assert($reason === null || is_string($reason));
+        Assert::nullOrString($reason);
 
         $url = Utils\HTTP::getSelfURL();
 

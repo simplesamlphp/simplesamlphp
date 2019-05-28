@@ -14,6 +14,7 @@ use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Stats;
 use SimpleSAML\Utils;
 use SimpleSAML\XML\Shib13\AuthnResponse;
+use Webmozart\Assert\Assert;
 
 /**
  * IdP implementation for SAML 1.1 protocol.
@@ -137,10 +138,13 @@ class SAML1
      */
     public static function sendResponse(array $state)
     {
-        assert(isset($state['Attributes']));
-        assert(isset($state['SPMetadata']));
-        assert(isset($state['saml:shire']));
-        assert(array_key_exists('saml:target', $state)); // Can be NULL
+        Assert::keyExists($state, 'Attributes');
+        Assert::keyExists($state, 'SPMetadata');
+        Assert::keyExists($state, 'saml:shire');
+        Assert::notNull($state['Attributes']);
+        Assert::notNull($state['SPMetadata']);
+        Assert::notNull($state['saml:shire']);
+        Assert::keyExists($state, 'saml:target'); // Can be NULL
 
         $spMetadata = $state["SPMetadata"];
         $spEntityId = $spMetadata['entityid'];
