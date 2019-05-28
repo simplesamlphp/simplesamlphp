@@ -50,6 +50,7 @@ php "$TARGET/composer.phar" install --no-dev --prefer-dist -o -d "$TARGET"
 php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-adfs
 php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-authcrypt
 php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-authfacebook
+php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-authorize
 php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-authtwitter
 php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-authx509
 php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-authyubikey

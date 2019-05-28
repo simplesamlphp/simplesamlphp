@@ -50,6 +50,7 @@
         "simplesamlphp/simplesamlphp-module-adfs": "^1.0",
         "simplesamlphp/simplesamlphp-module-authcrypt": "^1.0",
         "simplesamlphp/simplesamlphp-module-authfacebook": "^1.0",
+        "simplesamlphp/simplesamlphp-module-authorize": "^1.0",
         "simplesamlphp/simplesamlphp-module-authtwitter": "^1.0",
         "simplesamlphp/simplesamlphp-module-authwindowslive": "^1.0",
         "simplesamlphp/simplesamlphp-module-authx509": "^1.0.0",
