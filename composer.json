@@ -63,6 +63,7 @@
         "simplesamlphp/simplesamlphp-module-memcachemonitor": "^1.0",
         "simplesamlphp/simplesamlphp-module-negotiate": "^1.0",
         "simplesamlphp/simplesamlphp-module-oauth": "^1.0",
+        "simplesamlphp/simplesamlphp-module-preprodwarning": "^1.0",
         "simplesamlphp/simplesamlphp-module-radius": "^1.0.0",
         "simplesamlphp/simplesamlphp-module-riak": "^1.0.0",
         "simplesamlphp/simplesamlphp-module-statistics": "^1.0.0",
