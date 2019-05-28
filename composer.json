@@ -66,6 +66,7 @@
         "simplesamlphp/simplesamlphp-module-metarefresh": "^1.0",
         "simplesamlphp/simplesamlphp-module-negotiate": "^1.0",
         "simplesamlphp/simplesamlphp-module-oauth": "^1.0",
+        "simplesamlphp/simplesamlphp-module-preprodwarning": "^1.0",
         "simplesamlphp/simplesamlphp-module-radius": "^1.0.0",
         "simplesamlphp/simplesamlphp-module-riak": "^1.0.0",
         "simplesamlphp/simplesamlphp-module-smartattributes": "^1.0.0",
