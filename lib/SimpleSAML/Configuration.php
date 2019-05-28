@@ -89,9 +89,8 @@ class Configuration implements Utils\ClearableState
      * @param array $config The configuration array.
      * @param string $location The location which will be given when an error occurs.
      */
-    public function __construct($config, $location)
+    public function __construct(array $config, $location)
     {
-        assert(is_array($config));
         assert(is_string($location));
 
         $this->configuration = $config;
@@ -304,9 +303,8 @@ class Configuration implements Utils\ClearableState
      *
      * @return \SimpleSAML\Configuration The configuration object.
      */
-    public static function loadFromArray($config, $location = '[ARRAY]', $instance = null)
+    public static function loadFromArray(array $config, $location = '[ARRAY]', $instance = null)
     {
-        assert(is_array($config));
         assert(is_string($location));
 
         $c = new Configuration($config, $location);
@@ -479,7 +477,7 @@ class Configuration implements Utils\ClearableState
      *
      * @return boolean If any of the keys in $names exist in the configuration
      */
-    public function hasValueOneOf($names)
+    public function hasValueOneOf(array $names)
     {
         foreach ($names as $name) {
             if ($this->hasValue($name)) {
@@ -837,10 +835,9 @@ class Configuration implements Utils\ClearableState
      *
      * @throws \Exception If the option does not have any of the allowed values.
      */
-    public function getValueValidate($name, $allowedValues, $default = self::REQUIRED_OPTION)
+    public function getValueValidate($name, array $allowedValues, $default = self::REQUIRED_OPTION)
     {
         assert(is_string($name));
-        assert(is_array($allowedValues));
 
         $ret = $this->getValue($name, $default);
         if ($ret === $default) {

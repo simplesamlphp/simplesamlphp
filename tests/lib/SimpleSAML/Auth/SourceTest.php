@@ -34,7 +34,7 @@ class TestAuthSource extends \SimpleSAML\Auth\Source
     /**
      * @return void
      */
-    public function authenticate(&$state)
+    public function authenticate(array &$state)
     {
     }
 }

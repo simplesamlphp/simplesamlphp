@@ -33,7 +33,7 @@ class MetaDataStorageHandlerXML extends MetaDataStorageSource
      *
      * @throws Exception If neither the 'file' or 'url' options are defined in the configuration.
      */
-    protected function __construct($config)
+    protected function __construct(array $config)
     {
         $src = $srcXml = null;
         if (array_key_exists('file', $config)) {

@@ -97,11 +97,8 @@ abstract class UserPassBase extends \SimpleSAML\Auth\Source
      * @param array $info  Information about this authentication source.
      * @param array &$config  Configuration for this authentication source.
      */
-    public function __construct($info, &$config)
+    public function __construct(array $info, array &$config)
     {
-        assert(is_array($info));
-        assert(is_array($config));
-
         if (isset($config['core:loginpage_links'])) {
             $this->loginLinks = $config['core:loginpage_links'];
         }
@@ -197,10 +194,8 @@ abstract class UserPassBase extends \SimpleSAML\Auth\Source
      * @param array &$state  Information about the current authentication.
      * @return void
      */
-    public function authenticate(&$state)
+    public function authenticate(array &$state)
     {
-        assert(is_array($state));
-
         /*
          * Save the identifier of this authentication source, so that we can
          * retrieve it later. This allows us to call the login()-function on

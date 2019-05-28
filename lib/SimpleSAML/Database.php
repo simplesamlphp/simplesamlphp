@@ -55,7 +55,7 @@ class Database
      *
      * @return \SimpleSAML\Database The shared database connection.
      */
-    public static function getInstance($altConfig = null)
+    public static function getInstance(Configuration $altConfig = null)
     {
         $config = ($altConfig) ? $altConfig : Configuration::getInstance();
         $instanceId = self::generateInstanceId($config);
@@ -76,7 +76,7 @@ class Database
      *
      * @param \SimpleSAML\Configuration $config Instance of the \SimpleSAML\Configuration class
      */
-    private function __construct($config)
+    private function __construct(Configuration $config)
     {
         $driverOptions = $config->getArray('database.driver_options', []);
         if ($config->getBoolean('database.persistent', true)) {
@@ -116,7 +116,7 @@ class Database
      *
      * @return string $instanceId
      */
-    private static function generateInstanceId($config)
+    private static function generateInstanceId(Configuration $config)
     {
         $assembledConfig = [
             'master' => [
@@ -144,7 +144,7 @@ class Database
      * @throws \Exception If an error happens while trying to connect to the database.
      * @return \PDO object
      */
-    private function connect($dsn, $username, $password, $options)
+    private function connect($dsn, $username, $password, array $options)
     {
         try {
             $db = new PDO($dsn, $username, $password, $options);
@@ -197,11 +197,9 @@ class Database
      * @throws \Exception If an error happens while trying to execute the query.
      * @return bool|\PDOStatement object
      */
-    private function query($db, $stmt, $params)
+    private function query(\PDO $db, $stmt, array $params)
     {
-        assert(is_object($db));
         assert(is_string($stmt));
-        assert(is_array($params));
 
         try {
             $query = $db->prepare($stmt);
@@ -233,9 +231,8 @@ class Database
      * @throws \Exception If an error happens while trying to execute the query.
      * @return int The number of rows affected.
      */
-    private function exec($db, $stmt)
+    private function exec(\PDO $db, $stmt)
     {
-        assert(is_object($db));
         assert(is_string($stmt));
 
         try {
@@ -255,7 +252,7 @@ class Database
      *
      * @return int|false The number of rows affected by the query or false on error.
      */
-    public function write($stmt, $params = [])
+    public function write($stmt, array $params = [])
     {
         $db = $this->dbMaster;
 
@@ -276,7 +273,7 @@ class Database
      *
      * @return \PDOStatement|bool object
      */
-    public function read($stmt, $params = [])
+    public function read($stmt, array $params = [])
     {
         $db = $this->getSlave();
 

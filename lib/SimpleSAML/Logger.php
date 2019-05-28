@@ -383,9 +383,9 @@ class Logger
 
 
     /**
-     * @param \SimpleSAML\Logger\LoggingHandlerInterface|null $handler
+     * @param string|null $handler
      * @return void
-     * @throws \Exception
+     * @throws \Exception on configuration error
      */
     private static function createLoggingHandler($handler = null)
     {

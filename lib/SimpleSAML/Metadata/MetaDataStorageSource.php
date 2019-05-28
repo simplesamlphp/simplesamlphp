@@ -32,10 +32,8 @@ abstract class MetaDataStorageSource
      *
      * @throws \Exception If something is wrong in the configuration.
      */
-    public static function parseSources($sourcesConfig)
+    public static function parseSources(array $sourcesConfig)
     {
-        assert(is_array($sourcesConfig));
-
         $sources = [];
 
         foreach ($sourcesConfig as $sourceConfig) {
@@ -61,10 +59,8 @@ abstract class MetaDataStorageSource
      *
      * @throws \Exception If the metadata source type is invalid.
      */
-    public static function getSource($sourceConfig)
+    public static function getSource(array $sourceConfig)
     {
-        assert(is_array($sourceConfig));
-
         if (array_key_exists('type', $sourceConfig)) {
             $type = $sourceConfig['type'];
         } else {

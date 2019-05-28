@@ -86,7 +86,7 @@ class SAMLBuilder
      * @param array $metadata
      * @return void
      */
-    private function setExpiration($metadata)
+    private function setExpiration(array $metadata)
     {
         if (array_key_exists('expire', $metadata)) {
             if ($metadata['expire'] - time() < $this->maxDuration) {
@@ -145,7 +145,7 @@ class SAMLBuilder
      * @param array $metadata The metadata with the information about the SecurityTokenServiceType.
      * @return void
      */
-    public function addSecurityTokenServiceType($metadata)
+    public function addSecurityTokenServiceType(array $metadata)
     {
         assert(is_array($metadata));
         assert(isset($metadata['entityid']));
@@ -475,10 +475,9 @@ class SAMLBuilder
      * @param array  $metadata The metadata.
      * @return void
      */
-    public function addMetadata($set, $metadata)
+    public function addMetadata($set, array $metadata)
     {
         assert(is_string($set));
-        assert(is_array($metadata));
 
         $this->setExpiration($metadata);
 
@@ -505,10 +504,8 @@ class SAMLBuilder
      * @param array $protocols The protocols supported. Defaults to \SAML2\Constants::NS_SAMLP.
      * @return void
      */
-    public function addMetadataSP20($metadata, $protocols = [Constants::NS_SAMLP])
+    public function addMetadataSP20(array $metadata, array $protocols = [Constants::NS_SAMLP])
     {
-        assert(is_array($metadata));
-        assert(is_array($protocols));
         assert(isset($metadata['entityid']));
         assert(isset($metadata['metadata-set']));
 
@@ -562,9 +559,8 @@ class SAMLBuilder
      * @param array $metadata The metadata.
      * @return void
      */
-    public function addMetadataIdP20($metadata)
+    public function addMetadataIdP20(array $metadata)
     {
-        assert(is_array($metadata));
         assert(isset($metadata['entityid']));
         assert(isset($metadata['metadata-set']));
 
@@ -612,9 +608,8 @@ class SAMLBuilder
      * @param array $metadata The metadata.
      * @return void
      */
-    public function addMetadataSP11($metadata)
+    public function addMetadataSP11(array $metadata)
     {
-        assert(is_array($metadata));
         assert(isset($metadata['entityid']));
         assert(isset($metadata['metadata-set']));
 
@@ -653,9 +648,8 @@ class SAMLBuilder
      * @param array $metadata The metadata.
      * @return void
      */
-    public function addMetadataIdP11($metadata)
+    public function addMetadataIdP11(array $metadata)
     {
-        assert(is_array($metadata));
         assert(isset($metadata['entityid']));
         assert(isset($metadata['metadata-set']));
 
@@ -688,7 +682,6 @@ class SAMLBuilder
      */
     public function addAttributeAuthority(array $metadata)
     {
-        assert(is_array($metadata));
         assert(isset($metadata['entityid']));
         assert(isset($metadata['metadata-set']));
 

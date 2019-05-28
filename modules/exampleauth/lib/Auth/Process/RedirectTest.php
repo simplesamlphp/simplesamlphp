@@ -18,9 +18,8 @@ class RedirectTest extends \SimpleSAML\Auth\ProcessingFilter
      * @param array &$state  The state we should update.
      * @return void
      */
-    public function process(&$state)
+    public function process(array &$state)
     {
-        assert(is_array($state));
         assert(array_key_exists('Attributes', $state));
 
         // To check whether the state is saved correctly

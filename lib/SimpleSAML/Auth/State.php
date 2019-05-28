@@ -151,9 +151,8 @@ class State
      *
      * @return string  Identifier which can be used to retrieve the state later.
      */
-    public static function getStateId(&$state, $rawId = false)
+    public static function getStateId(array &$state, $rawId = false)
     {
-        assert(is_array($state));
         assert(is_bool($rawId));
 
         if (!array_key_exists(self::ID, $state)) {
@@ -200,9 +199,8 @@ class State
      *
      * @return string  Identifier which can be used to retrieve the state later.
      */
-    public static function saveState(&$state, $stage, $rawId = false)
+    public static function saveState(array &$state, $stage, $rawId = false)
     {
-        assert(is_array($state));
         assert(is_string($stage));
         assert(is_bool($rawId));
 
@@ -326,10 +324,8 @@ class State
      * @param array &$state The state which should be deleted.
      * @return void
      */
-    public static function deleteState(&$state)
+    public static function deleteState(array &$state)
     {
-        assert(is_array($state));
-
         if (!array_key_exists(self::ID, $state)) {
             // This state hasn't been saved
             return;
@@ -351,10 +347,8 @@ class State
      * @throws \SimpleSAML\Error\Exception If there is no exception handler defined, it will just throw the $exception.
      * @return void
      */
-    public static function throwException($state, Error\Exception $exception)
+    public static function throwException(array $state, Error\Exception $exception)
     {
-        assert(is_array($state));
-
         if (array_key_exists(self::EXCEPTION_HANDLER_URL, $state)) {
             // Save the exception
             $state[self::EXCEPTION_DATA] = $exception;

@@ -15,10 +15,8 @@ class ExtendIdPSession extends \SimpleSAML\Auth\ProcessingFilter
      * @param array &$state
      * @return void
      */
-    public function process(&$state)
+    public function process(array &$state)
     {
-        assert(is_array($state));
-
         if (empty($state['Expire']) || empty($state['Authority'])) {
             return;
         }

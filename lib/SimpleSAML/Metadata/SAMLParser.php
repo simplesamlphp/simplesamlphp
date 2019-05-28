@@ -273,10 +273,8 @@ class SAMLParser
      *
      * @return SAMLParser An instance of this class with the metadata loaded.
      */
-    public static function parseDocument($document)
+    public static function parseDocument(\DOMDocument $document)
     {
-        assert($document instanceof DOMDocument);
-
         $entityElement = self::findEntityDescriptor($document);
 
         return self::parseElement($entityElement);
@@ -291,9 +289,8 @@ class SAMLParser
      *
      * @return SAMLParser An instance of this class with the metadata loaded.
      */
-    public static function parseElement($entityElement)
+    public static function parseElement(\SAML2\XML\md\EntityDescriptor $entityElement)
     {
-        assert($entityElement instanceof EntityDescriptor);
         return new SAMLParser($entityElement, null, []);
     }
 
@@ -898,7 +895,7 @@ class SAMLParser
      *
      * @return array An associative array with the extensions parsed.
      */
-    private static function processExtensions($element, $parentExtensions = [])
+    private static function processExtensions($element, array $parentExtensions = [])
     {
         $ret = [
             'scope'            => [],
@@ -1092,10 +1089,8 @@ class SAMLParser
      * @param array $sp The array with the SP's metadata.
      * @return void
      */
-    private static function parseAttributeConsumerService(AttributeConsumingService $element, &$sp)
+    private static function parseAttributeConsumerService(AttributeConsumingService $element, array &$sp)
     {
-        assert(is_array($sp));
-
         $sp['name'] = $element->getServiceName();
         $sp['description'] = $element->getServiceDescription();
 
@@ -1241,10 +1236,8 @@ class SAMLParser
      *
      * @return array with SP descriptors which supports one of the given protocols.
      */
-    private function getSPDescriptors($protocols)
+    private function getSPDescriptors(array $protocols)
     {
-        assert(is_array($protocols));
-
         $ret = [];
 
         foreach ($this->spDescriptors as $spd) {
@@ -1265,10 +1258,8 @@ class SAMLParser
      *
      * @return array with IdP descriptors which supports one of the given protocols.
      */
-    private function getIdPDescriptors($protocols)
+    private function getIdPDescriptors(array $protocols)
     {
-        assert(is_array($protocols));
-
         $ret = [];
 
         foreach ($this->idpDescriptors as $idpd) {
@@ -1293,10 +1284,8 @@ class SAMLParser
      * @return \SAML2\XML\md\EntityDescriptor The \DOMEntity which represents the EntityDescriptor.
      * @throws \Exception If the document is empty or the first element is not an EntityDescriptor element.
      */
-    private static function findEntityDescriptor($doc)
+    private static function findEntityDescriptor(\DOMDocument $doc)
     {
-        assert($doc instanceof DOMDocument);
-
         // find the EntityDescriptor DOMElement. This should be the first (and only) child of the DOMDocument
         $ed = $doc->documentElement;
 
@@ -1317,7 +1306,7 @@ class SAMLParser
      * @return boolean True if it is possible to check the signature with the certificate, false otherwise.
      * @throws Exception If the certificate file cannot be found.
      */
-    public function validateSignature($certificates)
+    public function validateSignature(array $certificates)
     {
         foreach ($certificates as $cert) {
             assert(is_string($cert));

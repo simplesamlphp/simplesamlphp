@@ -55,10 +55,8 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
      *
      * @param array $config An associative array with the configuration for this handler.
      */
-    public function __construct($config)
+    public function __construct(array $config)
     {
-        assert(is_array($config));
-
         $this->db = Database::getInstance();
     }
 
@@ -215,11 +213,10 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
      *
      * @return bool True/False if entry was successfully added
      */
-    public function addEntry($index, $set, $entityData)
+    public function addEntry($index, $set, array $entityData)
     {
         assert(is_string($index));
         assert(is_string($set));
-        assert(is_array($entityData));
 
         if (!in_array($set, $this->supportedSets, true)) {
             return false;

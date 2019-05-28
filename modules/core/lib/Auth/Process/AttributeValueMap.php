@@ -51,11 +51,9 @@ class AttributeValueMap extends \SimpleSAML\Auth\ProcessingFilter
      * @param mixed $reserved For future use.
      * @throws \SimpleSAML\Error\Exception If the configuration is not valid.
      */
-    public function __construct(&$config, $reserved)
+    public function __construct(array &$config, $reserved)
     {
         parent::__construct($config, $reserved);
-
-        assert(is_array($config));
 
         // parse configuration
         foreach ($config as $name => $value) {
@@ -109,7 +107,7 @@ class AttributeValueMap extends \SimpleSAML\Auth\ProcessingFilter
      * @param array &$request The current request
      * @return void
      */
-    public function process(&$request)
+    public function process(array &$request)
     {
         Logger::debug('Processing the AttributeValueMap filter.');
 

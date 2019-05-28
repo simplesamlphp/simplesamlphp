@@ -27,10 +27,9 @@ class AuthnContextClassRef extends \SimpleSAML\Auth\ProcessingFilter
      *
      * @throws \SimpleSAML\Error\_Exception if the mandatory 'AuthnContextClassRef' option is missing.
      */
-    public function __construct($config, $reserved)
+    public function __construct(array $config, $reserved)
     {
         parent::__construct($config, $reserved);
-        assert(is_array($config));
 
         if (!isset($config['AuthnContextClassRef'])) {
             throw new Error\Exception('Missing AuthnContextClassRef option in processing filter.');
@@ -46,10 +45,8 @@ class AuthnContextClassRef extends \SimpleSAML\Auth\ProcessingFilter
      * @param array &$state The state array for this request.
      * @return void
      */
-    public function process(&$state)
+    public function process(array &$state)
     {
-        assert(is_array($state));
-
         $state['saml:AuthnContextClassRef'] = $this->authnContextClassRef;
     }
 }

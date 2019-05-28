@@ -115,6 +115,7 @@ class ConfigController
 
         Module::callHooks('configpage', $t);
         $this->menu->addOption('logout', Utils\Auth::getAdminLogoutURL(), Translate::noop('Log out'));
+
         return $this->menu->insert($t);
     }
 

@@ -21,7 +21,7 @@ class Redis extends Store
      * Initialize the Redis data store.
      * @param \Predis\Client|null $redis
      */
-    public function __construct($redis = null)
+    public function __construct(\Predis\Client $redis = null)
     {
         assert($redis === null || is_subclass_of($redis, Client::class));
 

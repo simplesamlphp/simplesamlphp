@@ -26,7 +26,7 @@ class SQLPermanentStorage
      * @param \SimpleSAML\Configuration|null $config
      * @throws \Exception
      */
-    public function __construct($name, $config = null)
+    public function __construct($name, \SimpleSAML\Configuration $config = null)
     {
         if (is_null($config)) {
             $config = Configuration::getInstance();

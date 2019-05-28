@@ -949,7 +949,6 @@ class SAML2
         Configuration $spMetadata,
         array &$state
     ) {
-
         $attribute = $spMetadata->getString('simplesaml.nameidattribute', null);
         if ($attribute === null) {
             $attribute = $idpMetadata->getString('simplesaml.nameidattribute', null);

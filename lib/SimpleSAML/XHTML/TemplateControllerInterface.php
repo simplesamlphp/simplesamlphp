@@ -31,5 +31,5 @@ interface TemplateControllerInterface
      *
      * @return void
      */
-    public function display(&$data);
+    public function display(array &$data);
 }

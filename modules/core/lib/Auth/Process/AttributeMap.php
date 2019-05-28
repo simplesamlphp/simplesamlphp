@@ -34,11 +34,10 @@ class AttributeMap extends \SimpleSAML\Auth\ProcessingFilter
      *
      * @throws Exception If the configuration of the filter is wrong.
      */
-    public function __construct(&$config, $reserved)
+    public function __construct(array &$config, $reserved)
     {
         parent::__construct($config, $reserved);
 
-        assert(is_array($config));
         $mapFiles = [];
 
         foreach ($config as $origName => $newName) {
@@ -119,9 +118,8 @@ class AttributeMap extends \SimpleSAML\Auth\ProcessingFilter
      * @param array &$request The current request.
      * @return void
      */
-    public function process(&$request)
+    public function process(array &$request)
     {
-        assert(is_array($request));
         assert(array_key_exists('Attributes', $request));
 
         $mapped_attributes = [];

@@ -29,10 +29,9 @@ class AttributeNameID extends \SimpleSAML\Module\saml\BaseNameIDGenerator
      *
      * @throws \SimpleSAMLError\Exception If the required options 'Format' or 'attribute' are missing.
      */
-    public function __construct($config, $reserved)
+    public function __construct(array $config, $reserved)
     {
         parent::__construct($config, $reserved);
-        assert(is_array($config));
 
         if (!isset($config['Format'])) {
             throw new Error\Exception("AttributeNameID: Missing required option 'Format'.");
@@ -54,7 +53,6 @@ class AttributeNameID extends \SimpleSAML\Module\saml\BaseNameIDGenerator
      */
     protected function getValue(array &$state)
     {
-
         if (!isset($state['Attributes'][$this->attribute]) || count($state['Attributes'][$this->attribute]) === 0) {
             Logger::warning(
                 'Missing attribute '.var_export($this->attribute, true).

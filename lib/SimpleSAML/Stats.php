@@ -35,7 +35,7 @@ class Stats
      *
      * @return mixed A new instance of the configured class.
      */
-    private static function createOutput(\SimpleSAML\Configuration $config)
+    private static function createOutput(Configuration $config)
     {
         $cls = $config->getString('class');
         $cls = Module::resolveClass($cls, 'Stats\Output', '\SimpleSAML\Stats\Output');

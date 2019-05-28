@@ -58,11 +58,9 @@ class TargetedID extends \SimpleSAML\Auth\ProcessingFilter
      * @param array &$config  Configuration information about this filter.
      * @param mixed $reserved  For future use.
      */
-    public function __construct(&$config, $reserved)
+    public function __construct(array &$config, $reserved)
     {
         parent::__construct($config, $reserved);
-
-        assert(is_array($config));
 
         if (array_key_exists('attributename', $config)) {
             $this->attribute = $config['attributename'];
@@ -86,9 +84,8 @@ class TargetedID extends \SimpleSAML\Auth\ProcessingFilter
      * @param array &$state  The current state.
      * @return void
      */
-    public function process(&$state)
+    public function process(array &$state)
     {
-        assert(is_array($state));
         assert(array_key_exists('Attributes', $state));
 
         if ($this->attribute === null) {
@@ -160,10 +157,8 @@ class TargetedID extends \SimpleSAML\Auth\ProcessingFilter
      * @param array $metadata  The metadata of the entity.
      * @return string  The unique identifier for the entity.
      */
-    private static function getEntityId($metadata)
+    private static function getEntityId(array $metadata)
     {
-        assert(is_array($metadata));
-
         $id = '';
 
         if (array_key_exists('metadata-set', $metadata)) {

@@ -37,10 +37,8 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
      *
      * @param array $config The configuration for this metadata handler.
      */
-    public function __construct($config)
+    public function __construct(array $config)
     {
-        assert(is_array($config));
-
         $globalConfig = Configuration::getInstance();
 
         $cfgHelp = Configuration::loadFromArray($config, 'serialize metadata source');
@@ -219,11 +217,10 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
      *
      * @return bool True if successfully saved, false otherwise.
      */
-    public function saveMetadata($entityId, $set, $metadata)
+    public function saveMetadata($entityId, $set, array $metadata)
     {
         assert(is_string($entityId));
         assert(is_string($set));
-        assert(is_array($metadata));
 
         $filePath = $this->getMetadataPath($entityId, $set);
         $newPath = $filePath.'.new';

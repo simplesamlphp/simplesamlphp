@@ -58,10 +58,8 @@ class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
      *
      * @throws \Exception If no server option can be found in the configuration.
      */
-    protected function __construct($config)
+    protected function __construct(array $config)
     {
-        assert(is_array($config));
-
         if (!array_key_exists('server', $config)) {
             throw new \Exception(__CLASS__.": the 'server' configuration option is not set.");
         } else {
@@ -189,11 +187,10 @@ class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
      * @throws \Exception If metadata cannot be written to cache.
      * @return void
      */
-    private function writeToCache($set, $entityId, $data)
+    private function writeToCache($set, $entityId, array $data)
     {
         assert(is_string($set));
         assert(is_string($entityId));
-        assert(is_array($data));
 
         if (empty($this->cacheDir)) {
             return;

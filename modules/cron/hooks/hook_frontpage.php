@@ -6,9 +6,8 @@
  * @param array &$links  The links on the frontpage, split into sections.
  * @return void
  */
-function cron_hook_frontpage(&$links)
+function cron_hook_frontpage(array &$links)
 {
-    assert(is_array($links));
     assert(array_key_exists('links', $links));
 
     $links['config'][] = [

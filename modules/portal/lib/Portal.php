@@ -19,7 +19,7 @@ class Portal
      * @param array $pages
      * @param array|null $config
      */
-    public function __construct($pages, $config = null)
+    public function __construct(array $pages, array $config = null)
     {
         $this->pages = $pages;
         $this->config = $config;

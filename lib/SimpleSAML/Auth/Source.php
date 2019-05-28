@@ -38,11 +38,8 @@ abstract class Source
      * @param array $info Information about this authentication source.
      * @param array &$config Configuration for this authentication source.
      */
-    public function __construct($info, &$config)
+    public function __construct(array $info, array &$config)
     {
-        assert(is_array($info));
-        assert(is_array($config));
-
         assert(array_key_exists('AuthId', $info));
         $this->authId = $info['AuthId'];
     }
@@ -107,7 +104,7 @@ abstract class Source
      * @param array &$state Information about the current authentication.
      * @return void
      */
-    abstract public function authenticate(&$state);
+    abstract public function authenticate(array &$state);
 
 
     /**
@@ -146,9 +143,8 @@ abstract class Source
      * @param array &$state Information about the current authentication.
      * @return void
      */
-    public static function completeAuth(&$state)
+    public static function completeAuth(array &$state)
     {
-        assert(is_array($state));
         assert(array_key_exists('LoginCompletedHandler', $state));
 
         State::deleteState($state);
@@ -224,9 +220,8 @@ abstract class Source
      * @param array $state The state after the login has completed.
      * @return void
      */
-    public static function loginCompleted($state)
+    public static function loginCompleted(array $state)
     {
-        assert(is_array($state));
         assert(array_key_exists('\SimpleSAML\Auth\Source.Return', $state));
         assert(array_key_exists('\SimpleSAML\Auth\Source.id', $state));
         assert(array_key_exists('Attributes', $state));
@@ -263,9 +258,8 @@ abstract class Source
      * @param array &$state Information about the current logout operation.
      * @return void
      */
-    public function logout(&$state)
+    public function logout(array &$state)
     {
-        assert(is_array($state));
         // default logout handler which doesn't do anything
     }
 
@@ -280,9 +274,8 @@ abstract class Source
      * @param array &$state Information about the current authentication.
      * @return void
      */
-    public static function completeLogout(&$state)
+    public static function completeLogout(array &$state)
     {
-        assert(is_array($state));
         assert(array_key_exists('LogoutCompletedHandler', $state));
 
         State::deleteState($state);
@@ -307,10 +300,9 @@ abstract class Source
      * @return \SimpleSAML\Auth\Source The parsed authentication source.
      * @throws \Exception If the authentication source is invalid.
      */
-    private static function parseAuthSource($authId, $config)
+    private static function parseAuthSource($authId, array $config)
     {
         assert(is_string($authId));
-        assert(is_array($config));
 
         self::validateSource($config, $authId);
 
@@ -400,9 +392,8 @@ abstract class Source
      * @param array $state State array for the logout operation.
      * @return void
      */
-    public static function logoutCallback($state)
+    public static function logoutCallback(array $state)
     {
-        assert(is_array($state));
         assert(array_key_exists('\SimpleSAML\Auth\Source.logoutSource', $state));
 
         $source = $state['\SimpleSAML\Auth\Source.logoutSource'];
@@ -433,10 +424,9 @@ abstract class Source
      * @param array  $state The state array passed to the authenticate-function.
      * @return void
      */
-    protected function addLogoutCallback($assoc, $state)
+    protected function addLogoutCallback($assoc, array $state)
     {
         assert(is_string($assoc));
-        assert(is_array($state));
 
         if (!array_key_exists('LogoutCallback', $state)) {
             // the authentication requester doesn't have a logout callback
@@ -528,7 +518,7 @@ abstract class Source
      * @throws \Exception If the first element of $source is not an identifier for the auth source.
      * @return void
      */
-    protected static function validateSource($source, $id)
+    protected static function validateSource(array $source, $id)
     {
         if (!array_key_exists(0, $source) || !is_string($source[0])) {
             throw new \Exception(

@@ -281,7 +281,7 @@ class Module
      * @param array $mod_config
      * @return bool
      */
-    private static function isModuleEnabledWithConf($module, $mod_config)
+    private static function isModuleEnabledWithConf($module, array $mod_config)
     {
         if (isset(self::$module_info[$module]['enabled'])) {
             return self::$module_info[$module]['enabled'];

@@ -6,9 +6,8 @@
  * @param array &$croninfo  Output
  * @return void
  */
-function cron_hook_cron(&$croninfo)
+function cron_hook_cron(array &$croninfo)
 {
-    assert(is_array($croninfo));
     assert(array_key_exists('summary', $croninfo));
     assert(array_key_exists('tag', $croninfo));
 

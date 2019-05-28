@@ -45,10 +45,8 @@ class Validator
      * @param array|bool $publickey The public key / certificate which should be used to validate the XML node.
      * @throws \Exception
      */
-    public function __construct($xmlNode, $idAttribute = null, $publickey = false)
+    public function __construct(\DOMNode $xmlNode, $idAttribute = null, $publickey = false)
     {
-        assert($xmlNode instanceof \DOMDocument);
-
         if ($publickey === null) {
             $publickey = false;
         } elseif (is_string($publickey)) {
@@ -140,10 +138,8 @@ class Validator
      *
      * @return bool  TRUE if this node (or a parent node) was signed. FALSE if not.
      */
-    public function isNodeValidated($node)
+    public function isNodeValidated(\DOMNode $node)
     {
-        assert($node instanceof \DOMNode);
-
         if ($this->validNodes !== null) {
             while ($node !== null) {
                 if (in_array($node, $this->validNodes, true)) {

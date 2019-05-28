@@ -234,9 +234,8 @@ class Simple
      * @param array $state The state after the logout.
      * @return void
      */
-    public static function logoutCompleted($state)
+    public static function logoutCompleted(array $state)
     {
-        assert(is_array($state));
         assert(isset($state['ReturnTo']) || isset($state['ReturnCallback']));
 
         if (isset($state['ReturnCallback'])) {

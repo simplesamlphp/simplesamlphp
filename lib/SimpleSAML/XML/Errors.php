@@ -110,9 +110,8 @@ class Errors
      * @param \LibXMLError $error  The LibXMLError which should be formatted.
      * @return string  A string representing the given LibXMLError.
      */
-    public static function formatError($error)
+    public static function formatError(LibXMLError $error)
     {
-        assert($error instanceof LibXMLError);
         return 'level='.$error->level.',code='.$error->code.',line='.$error->line.',col='.$error->column.
             ',msg='.trim($error->message);
     }
@@ -128,10 +127,8 @@ class Errors
      * @return string  A string representing the errors. An empty string will be returned if there were no
      *          errors in the array.
      */
-    public static function formatErrors($errors)
+    public static function formatErrors(array $errors)
     {
-        assert(is_array($errors));
-
         $ret = '';
         foreach ($errors as $error) {
             $ret .= self::formatError($error)."\n";

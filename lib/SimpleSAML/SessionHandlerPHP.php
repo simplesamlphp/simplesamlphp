@@ -220,7 +220,7 @@ class SessionHandlerPHP extends SessionHandler
      * @param \SimpleSAML\Session $session The session object we should save.
      * @return void
      */
-    public function saveSession(\SimpleSAML\Session $session)
+    public function saveSession(Session $session)
     {
         $_SESSION['SimpleSAMLphp_SESSION'] = serialize($session);
     }

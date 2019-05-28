@@ -23,17 +23,11 @@ class Attributes
      * @return mixed The value of the attribute we are expecting. If the attribute has multiple values and
      * $allow_multiple is set to true, the first value will be returned.
      *
-     * @throws \InvalidArgumentException If $attributes is not an array or $expected is not a string.
+     * @throws \InvalidArgumentException If $expected is not a string.
      * @throws \SimpleSAML\Error\Exception If the expected attribute was not found in the attributes array.
      */
-    public static function getExpectedAttribute($attributes, $expected, $allow_multiple = false)
+    public static function getExpectedAttribute(array $attributes, $expected, $allow_multiple = false)
     {
-        if (!is_array($attributes)) {
-            throw new \InvalidArgumentException(
-                'The attributes array is not an array, it is: '.print_r($attributes, true).'.'
-            );
-        }
-
         if (!is_string($expected)) {
             throw new \InvalidArgumentException(
                 'The expected attribute is not a string, it is: '.print_r($expected, true).'.'
@@ -73,20 +67,13 @@ class Attributes
      * @param array $attributes The array containing attributes that we should validate and normalize.
      *
      * @return array The normalized attributes array.
-     * @throws \InvalidArgumentException If input is not an array, array keys are not strings or attribute values are
-     *     not strings.
+     * @throws \InvalidArgumentException If array keys are not strings or attribute values are not strings.
      *
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
-    public static function normalizeAttributesArray($attributes)
+    public static function normalizeAttributesArray(array $attributes)
     {
-        if (!is_array($attributes)) {
-            throw new \InvalidArgumentException(
-                'The attributes array is not an array, it is: '.print_r($attributes, true).'".'
-            );
-        }
-
         $newAttrs = [];
         foreach ($attributes as $name => $values) {
             if (!is_string($name)) {

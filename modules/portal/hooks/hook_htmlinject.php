@@ -6,9 +6,8 @@
  * @param array &$hookinfo  hookinfo
  * @return void
  */
-function portal_hook_htmlinject(&$hookinfo)
+function portal_hook_htmlinject(array &$hookinfo)
 {
-    assert(is_array($hookinfo));
     assert(array_key_exists('pre', $hookinfo));
     assert(array_key_exists('post', $hookinfo));
     assert(array_key_exists('page', $hookinfo));

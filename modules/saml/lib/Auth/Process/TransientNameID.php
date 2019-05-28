@@ -19,10 +19,9 @@ class TransientNameID extends \SimpleSAML\Module\saml\BaseNameIDGenerator
      * @param array $config Configuration information about this filter.
      * @param mixed $reserved For future use.
      */
-    public function __construct($config, $reserved)
+    public function __construct(array $config, $reserved)
     {
         parent::__construct($config, $reserved);
-        assert(is_array($config));
 
         $this->format = Constants::NAMEID_TRANSIENT;
     }

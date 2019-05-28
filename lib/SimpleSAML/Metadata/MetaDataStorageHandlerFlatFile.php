@@ -41,10 +41,8 @@ class MetaDataStorageHandlerFlatFile extends MetaDataStorageSource
      *
      * @param array $config An associative array with the configuration for this handler.
      */
-    protected function __construct($config)
+    protected function __construct(array $config)
     {
-        assert(is_array($config));
-
         // get the configuration
         $globalConfig = Configuration::getInstance();
 

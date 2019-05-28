@@ -780,7 +780,7 @@ class Session implements \Serializable, Utils\ClearableState
      * @param array $params The parameters for the cookies.
      * @return void
      */
-    public function updateSessionCookies($params = null)
+    public function updateSessionCookies(array $params = null)
     {
         assert(is_null($params) || is_array($params));
 

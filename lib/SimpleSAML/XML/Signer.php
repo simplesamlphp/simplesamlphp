@@ -58,10 +58,8 @@ class Signer
      *
      * @param array $options  Associative array with options for the constructor. Defaults to an empty array.
      */
-    public function __construct($options = [])
+    public function __construct(array $options = [])
     {
-        assert(is_array($options));
-
         if (array_key_exists('privatekey', $options)) {
             $pass = null;
             if (array_key_exists('privatekey_pass', $options)) {
@@ -98,9 +96,8 @@ class Signer
      * @param array $privatekey  The private key.
      * @return void
      */
-    public function loadPrivateKeyArray($privatekey)
+    public function loadPrivateKeyArray(array $privatekey)
     {
-        assert(is_array($privatekey));
         assert(array_key_exists('PEM', $privatekey));
 
         $this->privateKey = new XMLSecurityKey(XMLSecurityKey::RSA_SHA256, ['type' => 'private']);
@@ -163,10 +160,8 @@ class Signer
      * @throws \Exception
      * @return void
      */
-    public function loadPublicKeyArray($publickey)
+    public function loadPublicKeyArray(array $publickey)
     {
-        assert(is_array($publickey));
-
         if (!array_key_exists('PEM', $publickey)) {
             // We have a public key with only a fingerprint
             throw new \Exception('Tried to add a certificate fingerprint in a signature.');
@@ -270,19 +265,14 @@ class Signer
      *
      * @param \DOMElement $node  The DOMElement we should generate a signature for.
      * @param \DOMElement $insertInto  The DOMElement we should insert the signature element into.
-     * @param \DOMElement $insertBefore  The element we should insert the signature element before. Defaults to NULL,
+     * @param \DOMNNode $insertBefore  The element we should insert the signature element before. Defaults to NULL,
      *                                   in which case the signature will be appended to the element spesified in
      *                                   $insertInto.
      * @throws \Exception
      * @return void
      */
-    public function sign($node, $insertInto, $insertBefore = null)
+    public function sign(DOMElement $node, DOMElement $insertInto, DOMNode $insertBefore = null)
     {
-        assert($node instanceof DOMElement);
-        assert($insertInto instanceof DOMElement);
-        assert($insertBefore === null || $insertBefore instanceof DOMElement ||
-            $insertBefore instanceof DOMComment || $insertBefore instanceof DOMText);
-
         $privateKey = $this->privateKey;
         if ($privateKey === false) {
             throw new \Exception('Private key not set.');

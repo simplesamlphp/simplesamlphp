@@ -34,11 +34,9 @@ class AttributeLimit extends \SimpleSAML\Auth\ProcessingFilter
      * @param mixed $reserved  For future use
      * @throws \SimpleSAML\Error\Exception If invalid configuration is found.
      */
-    public function __construct(&$config, $reserved)
+    public function __construct(array &$config, $reserved)
     {
         parent::__construct($config, $reserved);
-
-        assert(is_array($config));
 
         foreach ($config as $index => $value) {
             if ($index === 'default') {
@@ -91,9 +89,8 @@ class AttributeLimit extends \SimpleSAML\Auth\ProcessingFilter
      * @throws \SimpleSAML\Error\Exception If invalid configuration is found.
      * @return void
      */
-    public function process(&$request)
+    public function process(array &$request)
     {
-        assert(is_array($request));
         assert(array_key_exists('Attributes', $request));
 
         if ($this->isDefault) {

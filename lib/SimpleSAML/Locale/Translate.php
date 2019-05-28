@@ -164,10 +164,8 @@ class Translate
      *
      * @throws \Exception If there's no suitable translation.
      */
-    public function getPreferredTranslation($translations)
+    public function getPreferredTranslation(array $translations)
     {
-        assert(is_array($translations));
-
         // look up translation of tag in the selected language
         $selected_language = $this->language->getLanguage();
         if (array_key_exists($selected_language, $translations)) {
@@ -381,7 +379,7 @@ class Translate
      * null.
      * @return void
      */
-    public function includeLanguageFile($file, $otherConfig = null)
+    public function includeLanguageFile($file, Configuration $otherConfig = null)
     {
         if (!empty($otherConfig)) {
             $filebase = $otherConfig->getPathValue('dictionarydir', 'dictionaries/');
@@ -530,13 +528,11 @@ class Translate
      * @return null|string The translation appropriate for the current language, or null if none found. If the
      * $context or $translations arrays are null, or $context['currentLanguage'] is not defined, null is also returned.
      */
-    public static function translateFromArray($context, $translations)
+    public static function translateFromArray(array $context, $translations)
     {
         if (!is_array($translations)) {
             return null;
-        }
-
-        if (!is_array($context) || !isset($context['currentLanguage'])) {
+        } else if (!isset($context['currentLanguage'])) {
             return null;
         }
 

@@ -34,7 +34,7 @@ class HttpAdapter
      * @param array $parameters
      * @return string
      */
-    public function addURLParameters($url, $parameters)
+    public function addURLParameters($url, array $parameters)
     {
         return HTTP::addURLParameters($url, $parameters);
     }
@@ -70,7 +70,7 @@ class HttpAdapter
      * @param bool $getHeaders
      * @return array|string
      */
-    public function fetch($url, $context = [], $getHeaders = false)
+    public function fetch($url, array $context = [], $getHeaders = false)
     {
         return HTTP::fetch($url, $context, $getHeaders);
     }
@@ -216,7 +216,7 @@ class HttpAdapter
      * @param array $parameters
      * @return void
      */
-    public function redirectTrustedURL($url, $parameters = [])
+    public function redirectTrustedURL($url, array $parameters = [])
     {
         HTTP::redirectTrustedURL($url, $parameters);
     }
@@ -228,7 +228,7 @@ class HttpAdapter
      * @param array $parameters
      * @return void
      */
-    public function redirectUntrustedURL($url, $parameters = [])
+    public function redirectUntrustedURL($url, array $parameters = [])
     {
         HTTP::redirectUntrustedURL($url, $parameters);
     }
@@ -254,7 +254,7 @@ class HttpAdapter
      * @param bool $throw
      * @return void
      */
-    public function setCookie($name, $value, $params = null, $throw = true)
+    public function setCookie($name, $value, array $params = null, $throw = true)
     {
         HTTP::setCookie($name, $value, $params, $throw);
     }
@@ -266,7 +266,7 @@ class HttpAdapter
      * @param array $data
      * @return void
      */
-    public function submitPOSTData($destination, $data)
+    public function submitPOSTData($destination, array $data)
     {
         HTTP::submitPOSTData($destination, $data);
     }

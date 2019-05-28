@@ -56,11 +56,8 @@ class MultiAuth extends \SimpleSAML\Auth\Source
      * @param array $info Information about this authentication source.
      * @param array $config Configuration.
      */
-    public function __construct($info, $config)
+    public function __construct(array $info, array $config)
     {
-        assert(is_array($info));
-        assert(is_array($config));
-
         // Call the parent constructor first, as required by the interface
         parent::__construct($info, $config);
 
@@ -133,10 +130,8 @@ class MultiAuth extends \SimpleSAML\Auth\Source
      * @param array &$state Information about the current authentication.
      * @return void
      */
-    public function authenticate(&$state)
+    public function authenticate(array &$state)
     {
-        assert(is_array($state));
-
         $state[self::AUTHID] = $this->authId;
         $state[self::SOURCESID] = $this->sources;
 
@@ -178,10 +173,9 @@ class MultiAuth extends \SimpleSAML\Auth\Source
      * @return void
      * @throws \Exception
      */
-    public static function delegateAuthentication($authId, $state)
+    public static function delegateAuthentication($authId, array $state)
     {
         assert(is_string($authId));
-        assert(is_array($state));
 
         $as = Auth\Source::getById($authId);
         $valid_sources = array_map(
@@ -228,10 +222,8 @@ class MultiAuth extends \SimpleSAML\Auth\Source
      * @param array &$state Information about the current logout operation.
      * @return void
      */
-    public function logout(&$state)
+    public function logout(array &$state)
     {
-        assert(is_array($state));
-
         // Get the source that was used to authenticate
         $session = Session::getSessionFromRequest();
         $authId = $session->getData(self::SESSION_SOURCE, $this->authId);

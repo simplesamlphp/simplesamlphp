@@ -25,18 +25,15 @@ abstract class UserPassOrgBase extends \SimpleSAML\Auth\Source
      */
     const STAGEID = '\SimpleSAML\Module\core\Auth\UserPassOrgBase.state';
 
-
     /**
      * The key of the AuthId field in the state.
      */
     const AUTHID = '\SimpleSAML\Module\core\Auth\UserPassOrgBase.AuthId';
 
-
     /**
      * The key of the OrgId field in the state, identifies which org was selected.
      */
     const ORGID = '\SimpleSAML\Module\core\Auth\UserPassOrgBase.SelectedOrg';
-
 
     /**
      * What way do we handle the organization as part of the username.
@@ -95,11 +92,8 @@ abstract class UserPassOrgBase extends \SimpleSAML\Auth\Source
      * @param array $info  Information about this authentication source.
      * @param array &$config  Configuration for this authentication source.
      */
-    public function __construct($info, &$config)
+    public function __construct(array $info, array &$config)
     {
-        assert(is_array($info));
-        assert(is_array($config));
-
         // Call the parent constructor first, as required by the interface
         parent::__construct($info, $config);
 
@@ -212,10 +206,8 @@ abstract class UserPassOrgBase extends \SimpleSAML\Auth\Source
      * @param array &$state  Information about the current authentication.
      * @return void
      */
-    public function authenticate(&$state)
+    public function authenticate(array &$state)
     {
-        assert(is_array($state));
-
         // We are going to need the authId in order to retrieve this authentication source later
         $state[self::AUTHID] = $this->authId;
 

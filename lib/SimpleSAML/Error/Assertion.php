@@ -57,7 +57,6 @@ class Assertion extends Exception
      */
     public static function installHandler()
     {
-
         assert_options(ASSERT_WARNING, 0);
         assert_options(ASSERT_QUIET_EVAL, 0);
         assert_options(ASSERT_CALLBACK, [Assertion::class, 'onAssertion']);
@@ -76,7 +75,6 @@ class Assertion extends Exception
      */
     public static function onAssertion($file, $line, $message)
     {
-
         if (!empty($message)) {
             $exception = new self($message);
         } else {

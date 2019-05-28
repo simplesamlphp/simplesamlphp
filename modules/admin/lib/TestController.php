@@ -24,7 +24,6 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class TestController
 {
-
     /** @var \SimpleSAML\Configuration */
     protected $config;
 
@@ -151,7 +150,7 @@ class TestController
      * @param string $nameParent
      * @return string
      */
-    private function getAttributesHTML(Template $t, $attributes, $nameParent)
+    private function getAttributesHTML(Template $t, array $attributes, $nameParent)
     {
         $alternate = ['pure-table-odd', 'pure-table-even'];
         $i = 0;
@@ -208,7 +207,7 @@ class TestController
                             break; // we only support one NameID here
                         }
                         $str .= '</td></tr>';
-                    } elseif (is_a($value[0], '\SAML2\XML\saml\NameID')) {
+                    } elseif (is_a($value[0], NameID::class)) {
                         $str .= $this->present_eptid($trans, $value[0]);
                         $str .= '</td></tr>';
                     } else {

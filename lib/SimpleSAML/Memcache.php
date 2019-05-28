@@ -218,7 +218,7 @@ class Memcache
      *
      * @throws \Exception If any configuration option for the server is invalid.
      */
-    private static function addMemcacheServer($memcache, $server)
+    private static function addMemcacheServer($memcache, array $server)
     {
         // the hostname option is required
         if (!array_key_exists('hostname', $server)) {

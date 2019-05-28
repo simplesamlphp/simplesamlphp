@@ -51,10 +51,9 @@ class SQLPersistentNameID extends \SimpleSAML\Module\saml\BaseNameIDGenerator
      *
      * @throws \SimpleSAML\Error\Exception If the 'attribute' option is not specified.
      */
-    public function __construct($config, $reserved)
+    public function __construct(array $config, $reserved)
     {
         parent::__construct($config, $reserved);
-        assert(is_array($config));
 
         $this->format = Constants::NAMEID_PERSISTENT;
 
@@ -87,7 +86,6 @@ class SQLPersistentNameID extends \SimpleSAML\Module\saml\BaseNameIDGenerator
      */
     protected function getValue(array &$state)
     {
-
         if (!isset($state['saml:NameIDFormat']) && !$this->allowUnspecified) {
             Logger::debug(
                 'SQLPersistentNameID: Request did not specify persistent NameID format, '.

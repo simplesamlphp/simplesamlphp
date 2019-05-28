@@ -27,7 +27,7 @@ class HTTP
      *
      * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
-    private static function getSecurePOSTRedirectURL($destination, $data)
+    private static function getSecurePOSTRedirectURL($destination, array $data)
     {
         $session = Session::getSessionFromRequest();
         $id = self::savePOSTData($session, $destination, $data);
@@ -170,9 +170,9 @@ class HTTP
      * @author Mads Freek Petersen
      * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
-    private static function redirect($url, $parameters = [])
+    private static function redirect($url, array $parameters = [])
     {
-        if (!is_string($url) || empty($url) || !is_array($parameters)) {
+        if (!is_string($url) || empty($url)) {
             throw new \InvalidArgumentException('Invalid input parameters.');
         }
         if (!self::isValidURL($url)) {
@@ -244,7 +244,7 @@ class HTTP
      * @author Andjelko Horvat
      * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
-    private static function savePOSTData(Session $session, $destination, $data)
+    private static function savePOSTData(Session $session, $destination, array $data)
     {
         // generate a random ID to avoid replay attacks
         $id = Random::generateID();
@@ -273,9 +273,9 @@ class HTTP
      * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
-    public static function addURLParameters($url, $parameters)
+    public static function addURLParameters($url, array $parameters)
     {
-        if (!is_string($url) || !is_array($parameters)) {
+        if (!is_string($url)) {
             throw new \InvalidArgumentException('Invalid input parameters.');
         }
 
@@ -434,7 +434,7 @@ class HTTP
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      * @author Marco Ferrante, University of Genova <marco@csita.unige.it>
      */
-    public static function fetch($url, $context = [], $getHeaders = false)
+    public static function fetch($url, array $context = [], $getHeaders = false)
     {
         if (!is_string($url)) {
             throw new \InvalidArgumentException('Invalid input parameters.');
@@ -698,9 +698,9 @@ class HTTP
      * @author Andjelko Horvat
      * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
-    public static function getPOSTRedirectURL($destination, $data)
+    public static function getPOSTRedirectURL($destination, array $data)
     {
-        if (!is_string($destination) || !is_array($data)) {
+        if (!is_string($destination)) {
             throw new \InvalidArgumentException('Invalid input parameters.');
         }
 
@@ -994,9 +994,9 @@ class HTTP
      *
      * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
-    public static function redirectTrustedURL($url, $parameters = [])
+    public static function redirectTrustedURL($url, array $parameters = [])
     {
-        if (!is_string($url) || !is_array($parameters)) {
+        if (!is_string($url)) {
             throw new \InvalidArgumentException('Invalid input parameters.');
         }
 
@@ -1026,9 +1026,9 @@ class HTTP
      *
      * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
-    public static function redirectUntrustedURL($url, $parameters = [])
+    public static function redirectUntrustedURL($url, array $parameters = [])
     {
-        if (!is_string($url) || !is_array($parameters)) {
+        if (!is_string($url)) {
             throw new \InvalidArgumentException('Invalid input parameters.');
         }
 
@@ -1277,9 +1277,9 @@ class HTTP
      * @author Andjelko Horvat
      * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
-    public static function submitPOSTData($destination, $data)
+    public static function submitPOSTData($destination, array $data)
     {
-        if (!is_string($destination) || !is_array($data)) {
+        if (!is_string($destination)) {
             throw new \InvalidArgumentException('Invalid input parameters.');
         }
         if (!self::isValidURL($destination)) {

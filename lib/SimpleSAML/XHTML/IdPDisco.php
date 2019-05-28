@@ -498,7 +498,7 @@ class IdPDisco
      *
      * @return array An associative array containing metadata for the IdPs that were not filtered out.
      */
-    protected function filterList($list)
+    protected function filterList(array $list)
     {
         foreach ($list as $entity => $metadata) {
             if (array_key_exists('hide.from.discovery', $metadata) && $metadata['hide.from.discovery'] === true) {

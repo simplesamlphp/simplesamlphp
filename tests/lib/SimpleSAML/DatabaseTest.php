@@ -244,9 +244,7 @@ class DatabaseTest extends TestCase
         $table = $this->db->applyPrefix("sspdbt");
         $this->assertEquals($this->config->getString('database.prefix')."sspdbt", $table);
 
-        $this->db->write(
-            "CREATE TABLE IF NOT EXISTS $table (ssp_key INT(16) NOT NULL, ssp_value TEXT NOT NULL)"
-        );
+        $this->db->write("CREATE TABLE IF NOT EXISTS $table (ssp_key INT(16) NOT NULL, ssp_value TEXT NOT NULL)");
 
         /** @var \PDOStatement $query1 */
         $query1 = $this->db->read("SELECT * FROM $table");

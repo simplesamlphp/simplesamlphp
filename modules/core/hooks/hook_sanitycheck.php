@@ -6,9 +6,8 @@
  * @param array &$hookinfo  hookinfo
  * @return void
  */
-function core_hook_sanitycheck(&$hookinfo)
+function core_hook_sanitycheck(array &$hookinfo)
 {
-    assert(is_array($hookinfo));
     assert(array_key_exists('errors', $hookinfo));
     assert(array_key_exists('info', $hookinfo));
 

@@ -30,7 +30,6 @@ use Symfony\Component\HttpFoundation\ResponseHeaderBag;
  */
 class FederationController
 {
-
     /** @var \SimpleSAML\Configuration */
     protected $config;
 

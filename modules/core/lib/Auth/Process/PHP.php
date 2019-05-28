@@ -28,11 +28,9 @@ class PHP extends \SimpleSAML\Auth\ProcessingFilter
      *
      * @throws \SimpleSAML\Error\Exception if the 'code' option is not defined.
      */
-    public function __construct(&$config, $reserved)
+    public function __construct(array &$config, $reserved)
     {
         parent::__construct($config, $reserved);
-
-        assert(is_array($config));
 
         if (!isset($config['code'])) {
             throw new Error\Exception("core:PHP: missing mandatory configuration option 'code'.");
@@ -47,9 +45,8 @@ class PHP extends \SimpleSAML\Auth\ProcessingFilter
      * @param array &$request The current request
      * @return void
      */
-    public function process(&$request)
+    public function process(array &$request)
     {
-        assert(is_array($request));
         assert(array_key_exists('Attributes', $request));
 
         /**
