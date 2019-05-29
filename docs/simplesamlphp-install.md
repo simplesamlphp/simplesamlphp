@@ -203,8 +203,8 @@ look like this:
 
         ssl_certificate        /etc/pki/tls/certs/idp.example.com.crt;
         ssl_certificate_key    /etc/pki/tls/private/idp.example.com.key;
-        ssl_protocols          TLSv1.1 TLSv1.2;
-        ssl_ciphers            HIGH:!aNULL:!MD5;
+        ssl_protocols          TLSv1.3 TLSv1.2;
+        ssl_ciphers            EECDH+AESGCM:EDH+AESGCM;
 
         location ^~ /simplesaml {
             alias /var/simplesamlphp/www;
