@@ -244,6 +244,8 @@ class SQL extends Store
             switch ($ecode) {
                 case '23505': // PostgreSQL
                     break;
+                case '23000': // SQL Server
+                    break;
                 default:
                     Logger::error('Error while saving data: '.$e->getMessage());
                     throw $e;
