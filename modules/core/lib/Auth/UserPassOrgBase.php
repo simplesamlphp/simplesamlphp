@@ -291,7 +291,14 @@ abstract class UserPassOrgBase extends \SimpleSAML\Auth\Source
         }
 
         /* Attempt to log in. */
-        $attributes = $source->login($username, $password, $organization);
+        try {
+            $attributes = $source->login($username, $password, $organization);
+        } catch (\Exception $e) {
+            \SimpleSAML\Logger::stats('Unsuccessful login attempt from '.$_SERVER['REMOTE_ADDR'].'.');
+            throw $e;
+        }
+
+        \SimpleSAML\Logger::stats('User \''.$username.'\' at \''.$organization.'\' successfully authenticated from '.$_SERVER['REMOTE_ADDR']);
 
         // Add the selected Org to the state
         $state[self::ORGID] = $organization;
