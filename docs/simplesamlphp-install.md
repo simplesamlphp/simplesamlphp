@@ -130,7 +130,7 @@ one possible configuration.
 Find the Apache configuration file for the virtual hosts where you want to run SimpleSAMLphp. The configuration may
 look like this:
 
-```apacheconfig
+```
     <VirtualHost *>
             ServerName service.example.com
             DocumentRoot /var/www/service.example.com
@@ -140,15 +140,7 @@ look like this:
             Alias /simplesaml /var/simplesamlphp/www
 
             <Directory /var/simplesamlphp/www>
-                <IfModule !mod_authz_core.c>
-                # For Apache 2.2:
-                Order allow,deny
-                Allow from all
-                </IfModule>
-                <IfModule mod_authz_core.c>
-                # For Apache 2.4:
                 Require all granted
-                </IfModule>
             </Directory>
     </VirtualHost>
 ```
@@ -161,7 +153,7 @@ SimpleSAMLphp as described in
 [the section called “SimpleSAMLphp configuration: config.php”](#sect.config "SimpleSAMLphp configuration: config.php").
 Here is an example of how this configuration may look like in `config.php`:
 
-```php
+```
 $config = [
     [...]
     'baseurlpath' => 'simplesaml/',
@@ -230,7 +222,7 @@ There are a few steps that you should complete in the main configuration file, `
 -  Set the `baseurlpath` configuration option. Make it point to the canonical URL of your deployment, where
    SimpleSAMLphp can be reached:
    
-   ```php
+   ```
        'baseurlpath' => 'https://your.canonical.host.name/simplesaml/',
    ```
 
@@ -245,7 +237,7 @@ There are a few steps that you should complete in the main configuration file, `
    Hashed passwords can also be used here. See the [`authcrypt`](../modules/authcrypt/docs/authcrypt.md) documentation
    for more information.
 
-   ```php
+   ```
        'auth.adminpassword' => 'setnewpasswordhere',
    ```
 
@@ -259,7 +251,7 @@ There are a few steps that you should complete in the main configuration file, `
 
    Here is an example of the configuration option:
 
-   ```php
+   ```
        'secretsalt' => 'randombytesinsertedhere',
    ```
 
@@ -276,7 +268,7 @@ There are a few steps that you should complete in the main configuration file, `
 -  Set technical contact information. This information will be available in the generated metadata. The e-mail address
    will also be used for receiving error reports sent automatically by SimpleSAMLphp. Here is an example:
 
-   ```php
+   ```
        'technicalcontact_name' => 'John Smith',
        'technicalcontact_email' => 'john.smith@example.com',
    ```
@@ -284,13 +276,13 @@ There are a few steps that you should complete in the main configuration file, `
 -  If you use SimpleSAMLphp in a country where English is not widespread, you may want to change the default language
    from English to something else:
 
-   ```php
+   ```
        'language.default' => 'no',
    ```
 
 -  Set your timezone
 
-   ```php
+   ```
        'timezone' => 'Europe/Oslo',
    ```
 
@@ -314,7 +306,7 @@ Enabling and disabling modules
 If you want to enable some of the modules that are installed with SimpleSAMLphp, but are disabled by default, you 
 can do that in the configuration:
 
-```php
+```
     'module.enable' => [
          'exampleauth' => true, // Setting to TRUE enables.
          'saml' => false, // Setting to FALSE disables.
@@ -436,8 +428,8 @@ As an example, let's see how you can install SimpleSAMLphp in your home director
 3. Next, you need to set the `baseurlpath` configuration option with the URL pointing to the `simplesaml` link you 
 just created in your `public_html` directory. For example, if your home directory is reachable in
 `https://host.example/~myaccount/`, set the base URL path accordingly:
- 
-   ```php
+
+   ```
        'baseurlpath' => 'https://host.example/~myaccount/simplesaml/', 
    ```
 
@@ -467,13 +459,13 @@ Now, we need to make a few configuration changes. First, let's edit `~/public_ht
 
 Change the two lines from:
 
-```php
+```
     require_once(dirname(dirname(__FILE__)) . '/lib/_autoload.php');
 ```
 
 to something like:
 
-```php
+```
     require_once(dirname(dirname(dirname(__FILE__))) . '/lib/_autoload.php');
 ```
 
