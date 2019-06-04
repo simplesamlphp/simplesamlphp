@@ -2,7 +2,9 @@
 
 namespace SimpleSAML\Logger;
 
+use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
+use SimpleSAML\Utils;
 
 /**
  * A logging handler that dumps logs to files.
@@ -48,7 +50,7 @@ class FileLoggingHandler implements LoggingHandlerInterface
      * Build a new logging handler based on files.
      * @param \SimpleSAML\Configuration $config
      */
-    public function __construct(\SimpleSAML\Configuration $config)
+    public function __construct(Configuration $config)
     {
         // get the metadata handler option from the configuration
         $this->logFile = $config->getPathValue('loggingdir', 'log/').
@@ -68,7 +70,7 @@ class FileLoggingHandler implements LoggingHandlerInterface
             }
         }
 
-        \SimpleSAML\Utils\Time::initTimezone();
+        Utils\Time::initTimezone();
     }
 
 

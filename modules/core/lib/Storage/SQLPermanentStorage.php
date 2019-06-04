@@ -2,6 +2,9 @@
 
 namespace SimpleSAML\Module\core\Storage;
 
+use PDO;
+use SimpleSAML\Configuration;
+
 /**
  * SQLPermanentStorage
  *
@@ -26,7 +29,7 @@ class SQLPermanentStorage
     public function __construct($name, $config = null)
     {
         if (is_null($config)) {
-            $config = \SimpleSAML\Configuration::getInstance();
+            $config = Configuration::getInstance();
         }
 
         $datadir = $config->getPathValue('datadir', 'data/');
@@ -43,7 +46,7 @@ class SQLPermanentStorage
         }
 
         $dbfile = 'sqlite:'.$sqllitedir.$name.'.sqlite';
-        if ($this->db = new \PDO($dbfile)) {
+        if ($this->db = new PDO($dbfile)) {
             $q = @$this->db->query('SELECT key1 FROM data LIMIT 1');
             if ($q === false) {
                 $this->db->exec('
@@ -103,7 +106,7 @@ class SQLPermanentStorage
             ':updated' => time(), ':expire' => $expire,
             ':value' => serialize($value)];
         $prepared->execute($data);
-        $results = $prepared->fetchAll(\PDO::FETCH_ASSOC);
+        $results = $prepared->fetchAll(PDO::FETCH_ASSOC);
         return $results;
     }
 
@@ -127,7 +130,7 @@ class SQLPermanentStorage
             ':type' => $type, ':updated' => time(),
             ':expire' => $expire, ':value' => serialize($value)];
         $prepared->execute($data);
-        $results = $prepared->fetchAll(\PDO::FETCH_ASSOC);
+        $results = $prepared->fetchAll(PDO::FETCH_ASSOC);
         return $results;
     }
 
@@ -145,7 +148,7 @@ class SQLPermanentStorage
 
         $prepared = $this->db->prepare($query);
         $prepared->execute();
-        $results = $prepared->fetchAll(\PDO::FETCH_ASSOC);
+        $results = $prepared->fetchAll(PDO::FETCH_ASSOC);
         if (count($results) !== 1) {
             return null;
         }
@@ -185,7 +188,7 @@ class SQLPermanentStorage
         $prepared = $this->db->prepare($query);
         $data = [':type' => $type, ':key1' => $key1, ':key2' => $key2];
         $prepared->execute($data);
-        $results = $prepared->fetchAll(\PDO::FETCH_ASSOC);
+        $results = $prepared->fetchAll(PDO::FETCH_ASSOC);
         return (count($results) == 1);
     }
 
@@ -203,7 +206,7 @@ class SQLPermanentStorage
         $prepared = $this->db->prepare($query);
         $prepared->execute();
 
-        $results = $prepared->fetchAll(\PDO::FETCH_ASSOC);
+        $results = $prepared->fetchAll(PDO::FETCH_ASSOC);
         if (count($results) == 0) {
             return null;
         }
@@ -234,7 +237,7 @@ class SQLPermanentStorage
         $prepared = $this->db->prepare($query);
         $data = ['whichKey' => $whichKey];
         $prepared->execute($data);
-        $results = $prepared->fetchAll(\PDO::FETCH_ASSOC);
+        $results = $prepared->fetchAll(PDO::FETCH_ASSOC);
 
         if (count($results) == 0) {
             return null;
@@ -259,7 +262,7 @@ class SQLPermanentStorage
         $prepared = $this->db->prepare($query);
         $data = [':type' => $type, ':key1' => $key1, ':key2' => $key2];
         $prepared->execute($data);
-        $results = $prepared->fetchAll(\PDO::FETCH_ASSOC);
+        $results = $prepared->fetchAll(PDO::FETCH_ASSOC);
         return (count($results) == 1);
     }
 

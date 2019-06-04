@@ -376,7 +376,7 @@ class Logger
 
         // register a shutdown handler if needed
         if (!self::$shutdownRegistered) {
-            register_shutdown_function(['SimpleSAML\Logger', 'flush']);
+            register_shutdown_function([self::class, 'flush']);
             self::$shutdownRegistered = true;
         }
     }

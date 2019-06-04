@@ -2,6 +2,10 @@
 
 namespace SimpleSAML\Module\core\Auth\Process;
 
+use SimpleSAML\Configuration;
+use SimpleSAML\Session;
+use SimpleSAML\SessionHandler;
+
 /**
  * Extend IdP session and cookies.
  */
@@ -22,7 +26,7 @@ class ExtendIdPSession extends \SimpleSAML\Auth\ProcessingFilter
         $now = time();
         $delta = $state['Expire'] - $now;
 
-        $globalConfig = \SimpleSAML\Configuration::getInstance();
+        $globalConfig = Configuration::getInstance();
         $sessionDuration = $globalConfig->getInteger('session.duration', 28800); // 8*60*60
 
         // Extend only if half of session duration already passed
@@ -31,7 +35,7 @@ class ExtendIdPSession extends \SimpleSAML\Auth\ProcessingFilter
         }
 
         // Update authority expire time
-        $session = \SimpleSAML\Session::getSessionFromRequest();
+        $session = Session::getSessionFromRequest();
         $session->setAuthorityExpire($state['Authority']);
 
         // Update session cookies duration
@@ -46,7 +50,7 @@ class ExtendIdPSession extends \SimpleSAML\Auth\ProcessingFilter
         }
 
         // Or if session lifetime is more than zero
-        $sessionHandler = \SimpleSAML\SessionHandler::getSessionHandler();
+        $sessionHandler = SessionHandler::getSessionHandler();
         $cookieParams = $sessionHandler->getCookieParams();
         if ($cookieParams['lifetime'] > 0) {
             $session->updateSessionCookies();

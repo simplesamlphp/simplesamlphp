@@ -2,6 +2,8 @@
 
 namespace SimpleSAML\Module\core\Auth\Process;
 
+use SimpleSAML\Error;
+
 /**
  * Attribute filter for running arbitrary PHP code.
  *
@@ -33,7 +35,7 @@ class PHP extends \SimpleSAML\Auth\ProcessingFilter
         assert(is_array($config));
 
         if (!isset($config['code'])) {
-            throw new \SimpleSAML\Error\Exception("core:PHP: missing mandatory configuration option 'code'.");
+            throw new Error\Exception("core:PHP: missing mandatory configuration option 'code'.");
         }
         $this->code = (string) $config['code'];
     }

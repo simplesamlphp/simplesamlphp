@@ -2,7 +2,7 @@
 
 namespace SimpleSAML;
 
-use SimpleSAML\Error\CriticalConfigurationError;
+use SimpleSAML\Error;
 
 /**
  * Base class for data stores.
@@ -58,7 +58,7 @@ abstract class Store implements Utils\ClearableState
                 } catch (\Exception $e) {
                     $c = $config->toArray();
                     $c['store.type'] = 'phpsession';
-                    throw new CriticalConfigurationError(
+                    throw new Error\CriticalConfigurationError(
                         "Invalid 'store.type' configuration option. Cannot find store '$storeType'.",
                         null,
                         $c

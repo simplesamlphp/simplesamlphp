@@ -2,6 +2,13 @@
 
 namespace SimpleSAML\Auth;
 
+use SimpleSAML\Configuration;
+use SimpleSAML\Error;
+use SimpleSAML\Logger;
+use SimpleSAML\Module;
+use SimpleSAML\Session;
+use SimpleSAML\Utils;
+
 /**
  * This class defines a base class for authentication source.
  *
@@ -53,7 +60,7 @@ abstract class Source
     {
         assert(is_string($type));
 
-        $config = \SimpleSAML\Configuration::getConfig('authsources.php');
+        $config = Configuration::getConfig('authsources.php');
 
         $ret = [];
 
@@ -117,7 +124,7 @@ abstract class Source
         assert(isset($state['ReturnCallback']));
 
         // the default implementation just copies over the previous authentication data
-        $session = \SimpleSAML\Session::getSessionFromRequest();
+        $session = Session::getSessionFromRequest();
         $data = $session->getAuthState($this->authId);
         foreach ($data as $k => $v) {
             $state[$k] = $v;
@@ -195,10 +202,10 @@ abstract class Source
 
         try {
             $this->authenticate($state);
-        } catch (\SimpleSAML\Error\Exception $e) {
+        } catch (Error\Exception $e) {
             State::throwException($state, $e);
         } catch (\Exception $e) {
-            $e = new \SimpleSAML\Error\UnserializableException($e);
+            $e = new Error\UnserializableException($e);
             State::throwException($state, $e);
         }
         self::loginCompleted($state);
@@ -224,13 +231,13 @@ abstract class Source
         $return = $state['\SimpleSAML\Auth\Source.Return'];
 
         // save session state
-        $session = \SimpleSAML\Session::getSessionFromRequest();
+        $session = Session::getSessionFromRequest();
         $authId = $state['\SimpleSAML\Auth\Source.id'];
         $session->doLogin($authId, State::getPersistentAuthData($state));
 
         if (is_string($return)) {
             // redirect...
-            \SimpleSAML\Utils\HTTP::redirectTrustedURL($return);
+            Utils\HTTP::redirectTrustedURL($return);
         } else {
             call_user_func($return, $state);
         }
@@ -311,7 +318,7 @@ abstract class Source
 
         try {
             // Check whether or not there's a factory responsible for instantiating our Auth Source instance
-            $factoryClass = \SimpleSAML\Module::resolveClass(
+            $factoryClass = Module::resolveClass(
                 $id,
                 'Auth\Source\Factory',
                 '\SimpleSAML\Auth\SourceFactory'
@@ -322,7 +329,7 @@ abstract class Source
             $authSource = $factory->create($info, $config);
         } catch (\Exception $e) {
             // If not, instantiate the Auth Source here
-            $className = \SimpleSAML\Module::resolveClass($id, 'Auth\Source', '\SimpleSAML\Auth\Source');
+            $className = Module::resolveClass($id, 'Auth\Source', '\SimpleSAML\Auth\Source');
             $authSource = new $className($info, $config);
         }
 
@@ -354,12 +361,12 @@ abstract class Source
         assert($type === null || is_string($type));
 
         // for now - load and parse config file
-        $config = \SimpleSAML\Configuration::getConfig('authsources.php');
+        $config = Configuration::getConfig('authsources.php');
 
         $authConfig = $config->getArray($authId, null);
         if ($authConfig === null) {
             if ($type !== null) {
-                throw new \SimpleSAML\Error\Exception(
+                throw new Error\Exception(
                     'No authentication source with id '.
                     var_export($authId, true).' found.'
                 );
@@ -374,7 +381,7 @@ abstract class Source
         }
 
         // the authentication source doesn't have the correct type
-        throw new \SimpleSAML\Error\Exception(
+        throw new Error\Exception(
             'Invalid type of authentication source '.
             var_export($authId, true).'. Was '.var_export(get_class($ret), true).
             ', should be '.var_export($type, true).'.'
@@ -395,9 +402,9 @@ abstract class Source
 
         $source = $state['\SimpleSAML\Auth\Source.logoutSource'];
 
-        $session = \SimpleSAML\Session::getSessionFromRequest();
+        $session = Session::getSessionFromRequest();
         if (!$session->isValid($source)) {
-            \SimpleSAML\Logger::warning(
+            Logger::warning(
                 'Received logout from an invalid authentication source '.
                 var_export($source, true)
             );
@@ -445,12 +452,12 @@ abstract class Source
             'state'    => $callbackState,
         ];
 
-        $session = \SimpleSAML\Session::getSessionFromRequest();
+        $session = Session::getSessionFromRequest();
         $session->setData(
             '\SimpleSAML\Auth\Source.LogoutCallbacks',
             $id,
             $data,
-            \SimpleSAML\Session::DATA_TIMEOUT_SESSION_END
+            Session::DATA_TIMEOUT_SESSION_END
         );
     }
 
@@ -472,7 +479,7 @@ abstract class Source
 
         $id = strlen($this->authId).':'.$this->authId.$assoc;
 
-        $session = \SimpleSAML\Session::getSessionFromRequest();
+        $session = Session::getSessionFromRequest();
 
         $data = $session->getData('\SimpleSAML\Auth\Source.LogoutCallbacks', $id);
         if ($data === null) {
@@ -501,7 +508,7 @@ abstract class Source
      */
     public static function getSources()
     {
-        $config = \SimpleSAML\Configuration::getOptionalConfig('authsources.php');
+        $config = Configuration::getOptionalConfig('authsources.php');
 
         return $config->getOptions();
     }

@@ -2,6 +2,10 @@
 
 namespace SimpleSAML\Module\portal;
 
+use SimpleSAML\Configuration;
+use SimpleSAML\Module;
+use SimpleSAML\Locale\Translate;
+
 class Portal
 {
     /** @var array */
@@ -63,7 +67,7 @@ class Portal
     public function getLoginInfo($translator, $thispage)
     {
         $info = ['info' => '', 'translator' => $translator, 'thispage' => $thispage];
-        \SimpleSAML\Module::callHooks('portalLoginInfo', $info);
+        Module::callHooks('portalLoginInfo', $info);
         return $info['info'];
     }
 
@@ -74,8 +78,8 @@ class Portal
      */
     public function getMenu($thispage)
     {
-        $config = \SimpleSAML\Configuration::getInstance();
-        $t = new \SimpleSAML\Locale\Translate($config);
+        $config = Configuration::getInstance();
+        $t = new Translate($config);
         $tabset = $this->getTabset($thispage);
         $logininfo = $this->getLoginInfo($t, $thispage);
         $classes = 'tabset_tabs ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all';

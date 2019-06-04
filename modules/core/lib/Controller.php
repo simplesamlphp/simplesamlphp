@@ -2,9 +2,15 @@
 
 namespace SimpleSAML\Module\core;
 
-use SimpleSAML\Error\Exception;
+use SimpleSAML\Auth;
+use SimpleSAML\Auth\AuthenticationFactory;
+use SimpleSAML\Configuration;
+use SimpleSAML\Error;
 use SimpleSAML\HTTP\RunnableResponse;
-
+use SimpleSAML\Module;
+use SimpleSAML\Session;
+use SimpleSAML\Utils;
+use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -17,7 +23,6 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class Controller
 {
-
     /** @var \SimpleSAML\Configuration */
     protected $config;
 
@@ -43,9 +48,9 @@ class Controller
      * @throws \Exception
      */
     public function __construct(
-        \SimpleSAML\Configuration $config,
-        \SimpleSAML\Session $session,
-        \SimpleSAML\Auth\AuthenticationFactory $factory
+        Configuration $config,
+        Session $session,
+        AuthenticationFactory $factory
     ) {
         $this->config = $config;
         $this->factory = $factory;
@@ -67,24 +72,24 @@ class Controller
     public function account($as)
     {
         if (!array_key_exists($as, $this->sources)) {
-            throw new Exception('Invalid authentication source');
+            throw new Error\Exception('Invalid authentication source');
         }
 
         $auth = $this->factory->create($as);
         if (!$auth->isAuthenticated()) {
             // not authenticated, start auth with specified source
-            return new RedirectResponse(\SimpleSAML\Module::getModuleURL('core/login/'.urlencode($as)));
+            return new RedirectResponse(Module::getModuleURL('core/login/'.urlencode($as)));
         }
 
         $attributes = $auth->getAttributes();
 
-        $t = new \SimpleSAML\XHTML\Template($this->config, 'auth_status.twig', 'attributes');
+        $t = new Template($this->config, 'auth_status.twig', 'attributes');
         $t->data['header'] = '{status:header_saml20_sp}';
         $t->data['attributes'] = $attributes;
         $t->data['nameid'] = !is_null($auth->getAuthData('saml:sp:NameID'))
             ? $auth->getAuthData('saml:sp:NameID')
             : false;
-        $t->data['logouturl'] = \SimpleSAML\Module::getModuleURL('core/logout/'.urlencode($as));
+        $t->data['logouturl'] = Module::getModuleURL('core/logout/'.urlencode($as));
         $t->data['remaining'] = $this->session->getAuthData($as, 'Expire') - time();
         $t->setStatusCode(200);
 
@@ -118,37 +123,37 @@ class Controller
         }
 
         if ($as === null) { // no authentication source specified
-            $t = new \SimpleSAML\XHTML\Template($this->config, 'core:login.twig');
-            $t->data['loginurl'] = \SimpleSAML\Utils\Auth::getAdminLoginURL();
+            $t = new Template($this->config, 'core:login.twig');
+            $t->data['loginurl'] = Utils\Auth::getAdminLoginURL();
             $t->data['sources'] = $this->sources;
             return $t;
         }
 
         // auth source defined, check if valid
         if (!array_key_exists($as, $this->sources)) {
-            throw new Exception('Invalid authentication source');
+            throw new Error\Exception('Invalid authentication source');
         }
 
         // at this point, we have a valid auth source selected, start auth
         $auth = $this->factory->create($as);
         $as = urlencode($as);
 
-        if ($request->get(\SimpleSAML\Auth\State::EXCEPTION_PARAM, false) !== false) {
+        if ($request->get(Auth\State::EXCEPTION_PARAM, false) !== false) {
             // This is just a simple example of an error
 
-            $state = \SimpleSAML\Auth\State::loadExceptionState();
-            assert(array_key_exists(\SimpleSAML\Auth\State::EXCEPTION_DATA, $state));
-            $e = $state[\SimpleSAML\Auth\State::EXCEPTION_DATA];
+            $state = Auth\State::loadExceptionState();
+            assert(array_key_exists(Auth\State::EXCEPTION_DATA, $state));
+            $e = $state[Auth\State::EXCEPTION_DATA];
 
             throw $e;
         }
 
         if ($auth->isAuthenticated()) {
-            return new RedirectResponse(\SimpleSAML\Module::getModuleURL('core/account/'.$as));
+            return new RedirectResponse(Module::getModuleURL('core/account/'.$as));
         }
 
         // we're not logged in, start auth
-        $url = \SimpleSAML\Module::getModuleURL('core/login/'.$as);
+        $url = Module::getModuleURL('core/login/'.$as);
         $params = array(
             'ErrorURL' => $url,
             'ReturnTo' => $url,
@@ -168,7 +173,7 @@ class Controller
      */
     public function logout($as)
     {
-        $auth = new \SimpleSAML\Auth\Simple($as);
+        $auth = new Auth\Simple($as);
         return new RunnableResponse([$auth, 'logout'], [$this->config->getBasePath().'logout.php']);
     }
 }

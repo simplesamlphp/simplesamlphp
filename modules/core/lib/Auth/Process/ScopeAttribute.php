@@ -2,6 +2,8 @@
 
 namespace SimpleSAML\Module\core\Auth\Process;
 
+use SimpleSAML\Configuration;
+
 /**
  * Add a scoped variant of an attribute.
  *
@@ -50,7 +52,7 @@ class ScopeAttribute extends \SimpleSAML\Auth\ProcessingFilter
         parent::__construct($config, $reserved);
         assert(is_array($config));
 
-        $cfg = \SimpleSAML\Configuration::loadFromArray($config, 'ScopeAttribute');
+        $cfg = Configuration::loadFromArray($config, 'ScopeAttribute');
 
         $this->scopeAttribute = $cfg->getString('scopeAttribute');
         $this->sourceAttribute = $cfg->getString('sourceAttribute');

@@ -81,7 +81,6 @@ class Errors
      */
     public static function end()
     {
-
         // Check whether the error access functions are present
         if (!function_exists('libxml_use_internal_errors')) {
             // Pretend that no errors occurred

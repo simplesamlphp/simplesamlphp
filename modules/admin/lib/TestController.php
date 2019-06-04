@@ -2,9 +2,16 @@
 
 namespace SimpleSAML\Module\admin;
 
+use SAML2\Constants;
+use SAML2\XML\saml\NameID;
+use SimpleSAML\Auth;
+use SimpleSAML\Configuration;
 use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Locale\Translate;
-use SimpleSAML\Utils\HTTP;
+use SimpleSAML\Module;
+use SimpleSAML\Session;
+use SimpleSAML\Utils;
+use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -34,7 +41,7 @@ class TestController
      * @param \SimpleSAML\Configuration $config The configuration to use.
      * @param \SimpleSAML\Session $session The current user session.
      */
-    public function __construct(\SimpleSAML\Configuration $config, \SimpleSAML\Session $session)
+    public function __construct(Configuration $config, Session $session)
     {
         $this->config = $config;
         $this->session = $session;
@@ -50,25 +57,25 @@ class TestController
      */
     public function main(Request $request, $as)
     {
-        \SimpleSAML\Utils\Auth::requireAdmin();
+        Utils\Auth::requireAdmin();
         if (is_null($as)) {
-            $t = new \SimpleSAML\XHTML\Template($this->config, 'admin:authsource_list.twig');
+            $t = new Template($this->config, 'admin:authsource_list.twig');
             $t->data = [
-                'sources' => \SimpleSAML\Auth\Source::getSources(),
+                'sources' => Auth\Source::getSources(),
             ];
         } else {
-            $authsource = new \SimpleSAML\Auth\Simple($as);
+            $authsource = new Auth\Simple($as);
             if (!is_null($request->query->get('logout'))) {
                 $authsource->logout($this->config->getBasePath().'logout.php');
-            } elseif (!is_null($request->query->get(\SimpleSAML\Auth\State::EXCEPTION_PARAM))) {
+            } elseif (!is_null($request->query->get(Auth\State::EXCEPTION_PARAM))) {
                 // This is just a simple example of an error
-                $state = \SimpleSAML\Auth\State::loadExceptionState();
-                assert(array_key_exists(\SimpleSAML\Auth\State::EXCEPTION_DATA, $state));
-                throw $state[\SimpleSAML\Auth\State::EXCEPTION_DATA];
+                $state = Auth\State::loadExceptionState();
+                assert(array_key_exists(Auth\State::EXCEPTION_DATA, $state));
+                throw $state[Auth\State::EXCEPTION_DATA];
             }
 
             if (!$authsource->isAuthenticated()) {
-                $url = \SimpleSAML\Module::getModuleURL('admin/test/'.$as, []);
+                $url = Module::getModuleURL('admin/test/'.$as, []);
                 $params = [
                     'ErrorURL' => $url,
                     'ReturnTo' => $url,
@@ -80,13 +87,13 @@ class TestController
             $authData = $authsource->getAuthDataArray();
             $nameId = !is_null($authsource->getAuthData('saml:sp:NameID')) ? $authsource->getAuthData('saml:sp:NameID') : false;
 
-            $t = new \SimpleSAML\XHTML\Template($this->config, 'admin:status.twig', 'attributes');
+            $t = new Template($this->config, 'admin:status.twig', 'attributes');
             $t->data = [
                 'attributes' => $attributes,
                 'attributesHtml' => $this->getAttributesHTML($t, $attributes, ''),
                 'authData' => $authData,
                 'nameid' => $nameId,
-                'logouturl' => \SimpleSAML\Utils\HTTP::getSelfURLNoQuery().'?as='.urlencode($as).'&logout',
+                'logouturl' => Utils\HTTP::getSelfURLNoQuery().'?as='.urlencode($as).'&logout',
             ];
 
             if ($nameId !== false) {
@@ -94,8 +101,8 @@ class TestController
             }
         }
 
-        \SimpleSAML\Module::callHooks('configpage', $t);
-        $this->menu->addOption('logout', \SimpleSAML\Utils\Auth::getAdminLogoutURL(), Translate::noop('Log out'));
+        Module::callHooks('configpage', $t);
+        $this->menu->addOption('logout', Utils\Auth::getAdminLogoutURL(), Translate::noop('Log out'));
         return $this->menu->insert($t);
     }
 
@@ -105,7 +112,7 @@ class TestController
      * @param \SAML2\XML\saml\NameID $nameId
      * @return string
      */
-    private function getNameIDHTML(\SimpleSAML\XHTML\Template $t, \SAML2\XML\saml\NameID $nameId)
+    private function getNameIDHTML(Template $t, NameID $nameId)
     {
         $result = '';
         if ($nameId->getValue() === null) {
@@ -138,7 +145,7 @@ class TestController
      * @param string $nameParent
      * @return string
      */
-    private function getAttributesHTML(\SimpleSAML\XHTML\Template $t, $attributes, $nameParent)
+    private function getAttributesHTML(Template $t, $attributes, $nameParent)
     {
         $alternate = ['pure-table-odd', 'pure-table-even'];
         $i = 0;
@@ -188,10 +195,10 @@ class TestController
                         for ($idx = 0; $idx < $n; $idx++) {
                             $elem = $value[0]->item($idx);
                             /* @var \DOMElement $elem */
-                            if (!($elem->localName === 'NameID' && $elem->namespaceURI === \SAML2\Constants::NS_SAML)) {
+                            if (!($elem->localName === 'NameID' && $elem->namespaceURI === Constants::NS_SAML)) {
                                 continue;
                             }
-                            $str .= $this->present_eptid($trans, new \SAML2\XML\saml\NameID($elem));
+                            $str .= $this->present_eptid($trans, new NameID($elem));
                             break; // we only support one NameID here
                         }
                         $str .= '</td></tr>';
@@ -253,7 +260,7 @@ class TestController
      * @param \SAML2\XML\saml\NameID $nameID
      * @return string
      */
-    private function present_eptid(\SimpleSAML\Locale\Translate $t, \SAML2\XML\saml\NameID $nameID)
+    private function present_eptid(Translate $t, NameID $nameID)
     {
         $eptid = [
             'NameID' => [$nameID->getValue()],

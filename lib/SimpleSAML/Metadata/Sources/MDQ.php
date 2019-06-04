@@ -3,8 +3,10 @@
 namespace SimpleSAML\Metadata\Sources;
 
 use RobRichards\XMLSecLibs\XMLSecurityDSig;
+use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
-use SimpleSAML\Utils\HTTP;
+use SimpleSAML\Metadata\SAMLParser;
+use SimpleSAML\Utils;
 
 /**
  * This class implements SAML Metadata Query Protocol
@@ -86,7 +88,7 @@ class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
         }
 
         if (array_key_exists('cachedir', $config)) {
-            $globalConfig = \SimpleSAML\Configuration::getInstance();
+            $globalConfig = Configuration::getInstance();
             $this->cacheDir = $globalConfig->resolvePath($config['cachedir']);
         } else {
             $this->cacheDir = null;
@@ -229,7 +231,7 @@ class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
      * @return array|NULL  The associative array with the metadata, or NULL if no metadata for
      *                     the given set was found.
      */
-    private static function getParsedSet(\SimpleSAML\Metadata\SAMLParser $entity, $set)
+    private static function getParsedSet(SAMLParser $entity, $set)
     {
         assert(is_string($set));
 
@@ -304,7 +306,7 @@ class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
 
         Logger::debug(__CLASS__.': downloading metadata for "'.$index.'" from ['.$mdq_url.']');
         try {
-            $xmldata = HTTP::fetch($mdq_url);
+            $xmldata = Utils\HTTP::fetch($mdq_url);
         } catch (\Exception $e) {
             // Avoid propagating the exception, make sure we can handle the error later
             $xmldata = false;
@@ -318,7 +320,7 @@ class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
         }
 
         /** @var string $xmldata */
-        $entity = \SimpleSAML\Metadata\SAMLParser::parseString($xmldata);
+        $entity = SAMLParser::parseString($xmldata);
         Logger::debug(__CLASS__.': completed parsing of ['.$mdq_url.']');
 
         if ($this->validateFingerprint !== null) {

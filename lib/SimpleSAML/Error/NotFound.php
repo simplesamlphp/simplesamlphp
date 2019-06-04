@@ -2,6 +2,8 @@
 
 namespace SimpleSAML\Error;
 
+use SimpleSAML\Utils;
+
 /**
  * Exception which will show a 404 Not Found error page.
  *
@@ -29,7 +31,7 @@ class NotFound extends Error
     {
         assert($reason === null || is_string($reason));
 
-        $url = \SimpleSAML\Utils\HTTP::getSelfURL();
+        $url = Utils\HTTP::getSelfURL();
 
         if ($reason === null) {
             parent::__construct(['NOTFOUND', '%URL%' => $url]);

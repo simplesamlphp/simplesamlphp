@@ -2,6 +2,9 @@
 
 namespace SimpleSAML\Error;
 
+use SimpleSAML\Configuration;
+use SimpleSAML\Logger;
+
 /**
  * Base class for SimpleSAMLphp Exceptions
  *
@@ -168,7 +171,7 @@ class Exception extends \Exception
     public function formatBacktrace($anonymize = false)
     {
         $ret = [];
-        $basedir = \SimpleSAML\Configuration::getInstance()->getBaseDir();
+        $basedir = Configuration::getInstance()->getBaseDir();
 
         $e = $this;
         do {
@@ -197,10 +200,10 @@ class Exception extends \Exception
      * @param int $level
      * @return void
      */
-    protected function logBacktrace($level = \SimpleSAML\Logger::DEBUG)
+    protected function logBacktrace($level = Logger::DEBUG)
     {
         // see if debugging is enabled for backtraces
-        $debug = \SimpleSAML\Configuration::getInstance()->getArrayize('debug', ['backtraces' => false]);
+        $debug = Configuration::getInstance()->getArrayize('debug', ['backtraces' => false]);
 
         if (!(in_array('backtraces', $debug, true) // implicitly enabled
             || (array_key_exists('backtraces', $debug) && $debug['backtraces'] === true)
@@ -213,12 +216,12 @@ class Exception extends \Exception
 
         $backtrace = $this->formatBacktrace();
 
-        $callback = ['\SimpleSAML\Logger'];
+        $callback = [Logger::class];
         $functions = [
-            \SimpleSAML\Logger::ERR     => 'error',
-            \SimpleSAML\Logger::WARNING => 'warning',
-            \SimpleSAML\Logger::INFO    => 'info',
-            \SimpleSAML\Logger::DEBUG   => 'debug',
+            Logger::ERR     => 'error',
+            Logger::WARNING => 'warning',
+            Logger::INFO    => 'info',
+            Logger::DEBUG   => 'debug',
         ];
         $callback[] = $functions[$level];
 
@@ -239,10 +242,10 @@ class Exception extends \Exception
     public function log($default_level)
     {
         $fn = [
-            \SimpleSAML\Logger::ERR     => 'logError',
-            \SimpleSAML\Logger::WARNING => 'logWarning',
-            \SimpleSAML\Logger::INFO    => 'logInfo',
-            \SimpleSAML\Logger::DEBUG   => 'logDebug',
+            Logger::ERR     => 'logError',
+            Logger::WARNING => 'logWarning',
+            Logger::INFO    => 'logInfo',
+            Logger::DEBUG   => 'logDebug',
         ];
         call_user_func([$this, $fn[$default_level]], $default_level);
     }
@@ -256,8 +259,8 @@ class Exception extends \Exception
      */
     public function logError()
     {
-        \SimpleSAML\Logger::error($this->getClass().': '.$this->getMessage());
-        $this->logBacktrace(\SimpleSAML\Logger::ERR);
+        Logger::error($this->getClass().': '.$this->getMessage());
+        $this->logBacktrace(Logger::ERR);
     }
 
 
@@ -269,8 +272,8 @@ class Exception extends \Exception
      */
     public function logWarning()
     {
-        \SimpleSAML\Logger::warning($this->getClass().': '.$this->getMessage());
-        $this->logBacktrace(\SimpleSAML\Logger::WARNING);
+        Logger::warning($this->getClass().': '.$this->getMessage());
+        $this->logBacktrace(Logger::WARNING);
     }
 
 
@@ -282,8 +285,8 @@ class Exception extends \Exception
      */
     public function logInfo()
     {
-        \SimpleSAML\Logger::info($this->getClass().': '.$this->getMessage());
-        $this->logBacktrace(\SimpleSAML\Logger::INFO);
+        Logger::info($this->getClass().': '.$this->getMessage());
+        $this->logBacktrace(Logger::INFO);
     }
 
 
@@ -295,8 +298,8 @@ class Exception extends \Exception
      */
     public function logDebug()
     {
-        \SimpleSAML\Logger::debug($this->getClass().': '.$this->getMessage());
-        $this->logBacktrace(\SimpleSAML\Logger::DEBUG);
+        Logger::debug($this->getClass().': '.$this->getMessage());
+        $this->logBacktrace(Logger::DEBUG);
     }
 
 

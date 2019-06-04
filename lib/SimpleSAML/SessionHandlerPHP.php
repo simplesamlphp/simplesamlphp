@@ -11,8 +11,8 @@
 
 namespace SimpleSAML;
 
-use SimpleSAML\Error\CannotSetCookie;
-use SimpleSAML\Utils\HTTP;
+use SimpleSAML\Error;
+use SimpleSAML\Utils;
 
 class SessionHandlerPHP extends SessionHandler
 {
@@ -147,13 +147,13 @@ class SessionHandlerPHP extends SessionHandler
             $sid_bits_per_char = (int) ini_get('session.sid_bits_per_character');
 
             if (($sid_length * $sid_bits_per_char) < 128) {
-                \SimpleSAML\Logger::warning("Unsafe defaults used for sessionId generation!");
+                Logger::warning("Unsafe defaults used for sessionId generation!");
             }
             $sessionId = session_create_id();
         } else {
             $sessionId = bin2hex(openssl_random_pseudo_bytes(16));
         }
-        \SimpleSAML\Session::createSession($sessionId);
+        Session::createSession($sessionId);
         return $sessionId;
     }
 
@@ -175,8 +175,8 @@ class SessionHandlerPHP extends SessionHandler
 
         $session_cookie_params = session_get_cookie_params();
 
-        if ($session_cookie_params['secure'] && !HTTP::isHTTPS()) {
-            throw new \SimpleSAML\Error\Exception('Session start with secure cookie not allowed on http.');
+        if ($session_cookie_params['secure'] && !Utils\HTTP::isHTTPS()) {
+            throw new Error\Exception('Session start with secure cookie not allowed on http.');
         }
 
         @session_start();
@@ -226,13 +226,13 @@ class SessionHandlerPHP extends SessionHandler
                 // session not initiated with getCookieSessionId(), start session without setting cookie
                 $ret = ini_set('session.use_cookies', '0');
                 if ($ret === false) {
-                    throw new \SimpleSAML\Error\Exception('Disabling PHP option session.use_cookies failed.');
+                    throw new Error\Exception('Disabling PHP option session.use_cookies failed.');
                 }
 
                 session_id($sessionId);
                 @session_start();
             } elseif ($sessionId !== session_id()) {
-                throw new \SimpleSAML\Error\Exception('Cannot load PHP session with a specific ID.');
+                throw new Error\Exception('Cannot load PHP session with a specific ID.');
             }
         } elseif (session_id() === '') {
             $this->getCookieSessionId();
@@ -282,7 +282,7 @@ class SessionHandlerPHP extends SessionHandler
         $ret = parent::getCookieParams();
 
         if ($config->hasValue('session.phpsession.limitedpath') && $config->hasValue('session.cookie.path')) {
-            throw new \SimpleSAML\Error\Exception(
+            throw new Error\Exception(
                 'You cannot set both the session.phpsession.limitedpath and session.cookie.path options.'
             );
         } elseif ($config->hasValue('session.phpsession.limitedpath')) {
@@ -314,17 +314,17 @@ class SessionHandlerPHP extends SessionHandler
             $cookieParams = session_get_cookie_params();
         }
 
-        if ($cookieParams['secure'] && !HTTP::isHTTPS()) {
-            throw new CannotSetCookie(
+        if ($cookieParams['secure'] && !Utils\HTTP::isHTTPS()) {
+            throw new Error\CannotSetCookie(
                 'Setting secure cookie on plain HTTP is not allowed.',
-                CannotSetCookie::SECURE_COOKIE
+                Error\CannotSetCookie::SECURE_COOKIE
             );
         }
 
         if (headers_sent()) {
-            throw new CannotSetCookie(
+            throw new Error\CannotSetCookie(
                 'Headers already sent.',
-                CannotSetCookie::HEADERS_SENT
+                Error\CannotSetCookie::HEADERS_SENT
             );
         }
 
