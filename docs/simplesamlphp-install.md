@@ -294,11 +294,12 @@ Configuring PHP
 
 ### Sending e-mails from PHP
 
-Some parts of SimpleSAMLphp will allow you to send e-mails. For example, sending error reports to technical admin. If
+Some parts of SimpleSAMLphp will allow you to send e-mails. For example, sending error reports to the technical admin. If
 you want to make use of this functionality, you should make sure your PHP installation is configured to be able to
-send e-mails. It's a common problem that PHP is not configured to send e-mails properly. The configuration differs
-from system to system. On UNIX, PHP is using sendmail, on Windows SMTP.
+send e-mails.
 
+By default SimpleSAMLphp uses the PHP `mail()` function, which you can configure via `php.ini`.
+For more advanced configuration, including using a remote SMTP server, see the `mail.*` options in `config.php`.
 
 Enabling and disabling modules
 ------------------------------
