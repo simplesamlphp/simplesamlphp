@@ -72,7 +72,7 @@ class AttributeNameID extends \SimpleSAML\Module\saml\BaseNameIDGenerator
         if (empty($value)) {
             \SimpleSAML\Logger::warning(
                 'Empty value in attribute '.var_export($this->attribute, true).
-                ' on user - not generating persistent NameID.'
+                ' on user - not generating attribute NameID.'
             );
             return null;
         }
