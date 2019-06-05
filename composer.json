@@ -27,7 +27,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "SimpleSAML\\Test\\": "tests"
+            "SimpleSAML\\Test\\": ["tests", "tests/lib/SimpleSAML"]
         },
         "files": ["tests/_autoload_modules.php"]
     },

@@ -780,10 +780,9 @@ class SP extends \SimpleSAML\Auth\Source
         if (isset($state['saml:IDPList']) && sizeof($state['saml:IDPList']) > 0) {
             // we have a SAML IDPList (we are a proxy): filter the list of IdPs available
             $mdh = MetaDataStorageHandler::getMetadataHandler();
-            $known_idps = $mdh->getList();
-            $intersection = array_intersect($state['saml:IDPList'], array_keys($known_idps));
+            $matchedEntities = $mdh->getMetaDataForEntities($state['saml:IDPList'], 'saml20-idp-remote');
 
-            if (empty($intersection)) {
+            if (empty($matchedEntities)) {
                 // all requested IdPs are unknown
                 throw new Module\saml\Error\NoSupportedIDP(
                     Constants::STATUS_REQUESTER,
@@ -791,7 +790,7 @@ class SP extends \SimpleSAML\Auth\Source
                 );
             }
 
-            if (!is_null($idp) && !in_array($idp, $intersection, true)) {
+            if (!is_null($idp) && !array_key_exists($idp, $matchedEntities)) {
                 // the IdP is enforced but not in the IDPList
                 throw new Module\saml\Error\NoAvailableIDP(
                     Constants::STATUS_REQUESTER,
@@ -799,9 +798,9 @@ class SP extends \SimpleSAML\Auth\Source
                 );
             }
 
-            if (is_null($idp) && sizeof($intersection) === 1) {
+            if (is_null($idp) && sizeof($matchedEntities) === 1) {
                 // only one IdP requested or valid
-                $idp = current($state['saml:IDPList']);
+                $idp = key($matchedEntities);
             }
         }
 

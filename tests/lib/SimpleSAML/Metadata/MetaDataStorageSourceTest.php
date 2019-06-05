@@ -2,6 +2,8 @@
 
 namespace SimpleSAML\Test\Metadata;
 
+use SimpleSAML\Configuration;
+
 /**
  * Class MetaDataStorageSourceTest
  */
@@ -36,8 +38,54 @@ class MetaDataStorageSourceTest extends \PHPUnit\Framework\TestCase
     public function testStaticXMLSource()
     {
         $testEntityId = "https://saml.idp/entityid";
+        $strTestXML = self::generateIdpMetadataXml($testEntityId);
+        // The primary test here is that - in contrast to the others above - this loads without error
+        // As a secondary thing, check that the entity ID from the static source provided can be extracted
+        $source = \SimpleSAML\Metadata\MetaDataStorageSource::getSource(["type"=>"xml", "xml"=>$strTestXML]);
+        $idpSet = $source->getMetadataSet("saml20-idp-remote");
+        $this->assertArrayHasKey($testEntityId, $idpSet, "Did not extract expected IdP entity ID from static XML source");
+        // Finally verify that a different entity ID does not get loaded
+        $this->assertCount(1, $idpSet, "Unexpectedly got metadata for an alternate entity than that defined");
+    }
+
+    /**
+     * Test loading multiple entities
+     */
+    public function testLoadEntitiesStaticXMLSource()
+    {
+        $c = [
+            'key' => 'value'
+        ];
+        Configuration::loadFromArray($c, '', 'simplesaml');
+        $entityId1 = "https://example.com";
+        $xml1 = self::generateIdpMetadataXml($entityId1);
+        $entityId2 = "https://saml.idp/entity";
+        $xml2 = self::generateIdpMetadataXml($entityId2);
         $strTestXML = "
-<EntityDescriptor ID=\"_12345678-90ab-cdef-1234-567890abcdef\" entityID=\"$testEntityId\" xmlns=\"urn:oasis:names:tc:SAML:2.0:metadata\">
+        <EntitiesDescriptor xmlns=\"urn:oasis:names:tc:SAML:2.0:metadata\">
+        $xml1
+        $xml2
+        </EntitiesDescriptor>
+        ";
+        $source = \SimpleSAML\Metadata\MetaDataStorageSource::getSource(["type"=>"xml", "xml"=>$strTestXML]);
+        // search that is a single entity
+        $entities = $source->getMetaDataForEntities([$entityId2], "saml20-idp-remote");
+        $this->assertCount(1, $entities, 'Only 1 entity loaded');
+        $this->assertArrayHasKey($entityId2, $entities);
+        // search for multiple entities
+        $entities = $source->getMetaDataForEntities([$entityId1, 'no-such-entity', $entityId2], "saml20-idp-remote");
+        $this->assertCount(2, $entities, 'Only 2 of the entities are found');
+        $this->assertArrayHasKey($entityId1, $entities);
+        $this->assertArrayHasKey($entityId2, $entities);
+        // search for non-existant entities
+        $entities = $source->getMetaDataForEntities(['no-such-entity'], "saml20-idp-remote");
+        $this->assertCount(0, $entities, 'no matches expected');
+    }
+
+    public static function generateIdpMetadataXml($entityId)
+    {
+        return "
+<EntityDescriptor ID=\"_12345678-90ab-cdef-1234-567890abcdef\" entityID=\"$entityId\" xmlns=\"urn:oasis:names:tc:SAML:2.0:metadata\">
 <RoleDescriptor xsi:type=\"fed:ApplicationServiceType\"
 protocolSupportEnumeration=\"http://docs.oasis-open.org/ws-sx/ws-trust/200512 http://schemas.xmlsoap.org/ws/2005/02/trust http://docs.oasis-open.org/wsfed/federation/200706\"
 ServiceDisplayName=\"SimpleSAMLphp Test\"
@@ -47,15 +95,10 @@ xmlns:fed=\"http://docs.oasis-open.org/wsfed/federation/200706\">
 <SingleSignOnService Binding=\"urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect\" Location=\"https://saml.idp/sso/\"/>
 <SingleLogoutService Binding=\"urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect\" Location=\"https://saml.idp/logout/\"/>
 </RoleDescriptor>
-<IDPSSODescriptor protocolSupportEnumeration=\"urn:oasis:names:tc:SAML:2.0:protocol\"/>
+<IDPSSODescriptor protocolSupportEnumeration=\"urn:oasis:names:tc:SAML:2.0:protocol\">
+<SingleSignOnService Binding=\"urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect\" Location=\"https://saml.idp/sso/\"/>
+</IDPSSODescriptor>
 </EntityDescriptor>
 ";
-        // The primary test here is that - in contrast to the others above - this loads without error
-        // As a secondary thing, check that the entity ID from the static source provided can be extracted
-        $source = \SimpleSAML\Metadata\MetaDataStorageSource::getSource(["type"=>"xml", "xml"=>$strTestXML]);
-        $idpSet = $source->getMetadataSet("saml20-idp-remote");
-        $this->assertArrayHasKey($testEntityId, $idpSet, "Did not extract expected IdP entity ID from static XML source");
-        // Finally verify that a different entity ID does not get loaded
-        $this->assertCount(1, $idpSet, "Unexpectedly got metadata for an alternate entity than that defined");
     }
 }

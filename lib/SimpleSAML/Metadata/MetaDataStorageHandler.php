@@ -8,6 +8,8 @@ use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\Logger;
 use SimpleSAML\Utils;
+use SimpleSAML\Error\MetadataNotFound;
+use SimpleSAML\Utils\ClearableState;
 
 /**
  * This file defines a class for metadata handling.
@@ -260,6 +262,38 @@ class MetaDataStorageHandler implements \SimpleSAML\Utils\ClearableState
         return null;
     }
 
+    /**
+     * This function loads the metadata for entity IDs in $entityIds. It is returned as an associative array
+     * where the key is the entity id. An empty array may be returned if no matching entities were found
+     * @param array $entityIds The entity ids to load
+     * @param string $set The set we want to get metadata from.
+     * @return array An associative array with the metadata for the requested entities, if found.
+     */
+    public function getMetaDataForEntities(array $entityIds, $set)
+    {
+
+        $result = [];
+        foreach ($this->sources as $source) {
+            $srcList = $source->getMetaDataForEntities($entityIds, $set);
+            foreach ($srcList as $key => $le) {
+                if (array_key_exists('expire', $le)) {
+                    if ($le['expire'] < time()) {
+                        unset($srcList[$key]);
+                        \SimpleSAML\Logger::warning(
+                            "Dropping metadata entity ".var_export($key, true).", expired ".
+                            \SimpleSAML\Utils\Time::generateTimestamp($le['expire'])."."
+                        );
+                        continue;
+                    }
+                }
+                // We found the entity id so remove it from the list that needs resolving
+                unset($entityIds[array_search($key, $entityIds)]);
+            }
+            $result = array_merge($srcList, $result);
+        }
+
+        return $result;
+    }
 
     /**
      * This function looks up the metadata for the given entity id in the given set. It will throw an
