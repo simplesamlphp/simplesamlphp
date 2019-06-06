@@ -2,8 +2,10 @@
 
 namespace SimpleSAML\Store;
 
-use \SimpleSAML\Configuration;
-use \SimpleSAML\Store;
+use Predis\Client;
+use SimpleSAML\Configuration;
+use SimpleSAML\Error;
+use SimpleSAML\Store;
 
 /**
  * A data store using Redis to keep the data.
@@ -21,10 +23,10 @@ class Redis extends Store
      */
     public function __construct($redis = null)
     {
-        assert($redis === null || is_subclass_of($redis, 'Predis\\Client'));
+        assert($redis === null || is_subclass_of($redis, Client::class));
 
-        if (!class_exists('\Predis\Client')) {
-            throw new \SimpleSAML\Error\CriticalConfigurationError('predis/predis is not available.');
+        if (!class_exists(Client::class)) {
+            throw new Error\CriticalConfigurationError('predis/predis is not available.');
         }
 
         if ($redis === null) {
@@ -35,7 +37,7 @@ class Redis extends Store
             $prefix = $config->getString('store.redis.prefix', 'SimpleSAMLphp');
             $password = $config->getString('store.redis.password', '');
 
-            $redis = new \Predis\Client(
+            $redis = new Client(
                 [
                     'scheme' => 'tcp',
                     'host' => $host,
@@ -50,6 +52,7 @@ class Redis extends Store
         $this->redis = $redis;
     }
 
+
     /**
      * Deconstruct the Redis data store.
      */
@@ -59,6 +62,7 @@ class Redis extends Store
             $this->redis->disconnect();
         }
     }
+
 
     /**
      * Retrieve a value from the data store.
@@ -81,6 +85,7 @@ class Redis extends Store
 
         return unserialize($result);
     }
+
 
     /**
      * Save a value in the data store.
@@ -106,6 +111,7 @@ class Redis extends Store
             $this->redis->setex("{$type}.{$key}", $expire - time(), $serialized);
         }
     }
+
 
     /**
      * Delete an entry from the data store.

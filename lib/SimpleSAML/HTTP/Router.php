@@ -3,6 +3,7 @@
 namespace SimpleSAML\HTTP;
 
 use SimpleSAML\Configuration;
+use SimpleSAML\Module\ControllerResolver;
 use SimpleSAML\Session;
 
 use Symfony\Component\EventDispatcher\EventDispatcher;
@@ -54,7 +55,7 @@ class Router
     {
         $this->arguments = new ArgumentResolver();
         $this->context = new RequestContext();
-        $this->resolver = new \SimpleSAML\Module\ControllerResolver($module);
+        $this->resolver = new ControllerResolver($module);
         $this->dispatcher = new EventDispatcher();
     }
 

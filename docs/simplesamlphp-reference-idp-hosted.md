@@ -148,12 +148,8 @@ Common options
     the user. This attribute is used if SimpleSAMLphp needs to generate
     a persistent unique identifier for the user. This option can be set
     in both the IdP-hosted and the SP-remote metadata. The value in the
-    sp-remote metadata has the highest priority. The default value is
+    SP-remote metadata has the highest priority. The default value is
     `eduPersonPrincipalName`.
-
-:   Note that this option also exists in the SP-remote metadata, and
-    any value in the SP-remote metadata overrides the one configured
-    in the IdP metadata.
 
 
 SAML 2.0 options

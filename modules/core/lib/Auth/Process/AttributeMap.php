@@ -2,6 +2,9 @@
 
 namespace SimpleSAML\Module\core\Auth\Process;
 
+use SimpleSAML\Configuration;
+use SimpleSAML\Module;
+
 /**
  * Attribute filter for renaming attributes.
  *
@@ -76,15 +79,15 @@ class AttributeMap extends \SimpleSAML\Auth\ProcessingFilter
      */
     private function loadMapFile($fileName)
     {
-        $config = \SimpleSAML\Configuration::getInstance();
+        $config = Configuration::getInstance();
 
         $m = explode(':', $fileName);
         if (count($m) === 2) {
             // we are asked for a file in a module
-            if (!\SimpleSAML\Module::isModuleEnabled($m[0])) {
+            if (!Module::isModuleEnabled($m[0])) {
                 throw new \Exception("Module '$m[0]' is not enabled.");
             }
-            $filePath = \SimpleSAML\Module::getModuleDir($m[0]).'/attributemap/'.$m[1].'.php';
+            $filePath = Module::getModuleDir($m[0]).'/attributemap/'.$m[1].'.php';
         } else {
             $filePath = $config->getPathValue('attributenamemapdir', 'attributemap/').$fileName.'.php';
         }

@@ -2,6 +2,11 @@
 
 namespace SimpleSAML\Module\core\Auth;
 
+use SimpleSAML\Auth;
+use SimpleSAML\Error;
+use SimpleSAML\Module;
+use SimpleSAML\Utils;
+
 /**
  * Helper class for username/password/organization authentication.
  *
@@ -208,11 +213,11 @@ abstract class UserPassOrgBase extends \SimpleSAML\Auth\Source
         // We are going to need the authId in order to retrieve this authentication source later
         $state[self::AUTHID] = $this->authId;
 
-        $id = \SimpleSAML\Auth\State::saveState($state, self::STAGEID);
+        $id = Auth\State::saveState($state, self::STAGEID);
 
-        $url = \SimpleSAML\Module::getModuleURL('core/loginuserpassorg.php');
+        $url = Module::getModuleURL('core/loginuserpassorg.php');
         $params = ['AuthState' => $id];
-        \SimpleSAML\Utils\HTTP::redirectTrustedURL($url, $params);
+        Utils\HTTP::redirectTrustedURL($url, $params);
     }
 
 
@@ -267,11 +272,11 @@ abstract class UserPassOrgBase extends \SimpleSAML\Auth\Source
         assert(is_string($organization));
 
         /* Retrieve the authentication state. */
-        $state = \SimpleSAML\Auth\State::loadState($authStateId, self::STAGEID);
+        $state = Auth\State::loadState($authStateId, self::STAGEID);
 
         /* Find authentication source. */
         assert(array_key_exists(self::AUTHID, $state));
-        $source = \SimpleSAML\Auth\Source::getById($state[self::AUTHID]);
+        $source = Auth\Source::getById($state[self::AUTHID]);
         if ($source === null) {
             throw new \Exception('Could not find authentication source with id '.$state[self::AUTHID]);
         }
@@ -285,7 +290,7 @@ abstract class UserPassOrgBase extends \SimpleSAML\Auth\Source
             } else {
                 if ($orgMethod === 'force') {
                     /* The organization should be a part of the username, but isn't. */
-                    throw new \SimpleSAML\Error\Error('WRONGUSERPASS');
+                    throw new Error\Error('WRONGUSERPASS');
                 }
             }
         }
@@ -298,7 +303,7 @@ abstract class UserPassOrgBase extends \SimpleSAML\Auth\Source
         $state['PersistentAuthData'][] = self::ORGID;
 
         $state['Attributes'] = $attributes;
-        \SimpleSAML\Auth\Source::completeAuth($state);
+        Auth\Source::completeAuth($state);
     }
 
 
@@ -316,11 +321,11 @@ abstract class UserPassOrgBase extends \SimpleSAML\Auth\Source
         assert(is_string($authStateId));
 
         /* Retrieve the authentication state. */
-        $state = \SimpleSAML\Auth\State::loadState($authStateId, self::STAGEID);
+        $state = Auth\State::loadState($authStateId, self::STAGEID);
 
         /* Find authentication source. */
         assert(array_key_exists(self::AUTHID, $state));
-        $source = \SimpleSAML\Auth\Source::getById($state[self::AUTHID]);
+        $source = Auth\Source::getById($state[self::AUTHID]);
         if ($source === null) {
             throw new \Exception('Could not find authentication source with id '.$state[self::AUTHID]);
         }

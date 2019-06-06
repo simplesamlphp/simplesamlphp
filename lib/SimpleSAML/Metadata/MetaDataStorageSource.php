@@ -2,6 +2,10 @@
 
 namespace SimpleSAML\Metadata;
 
+use SimpleSAML\Error;
+use SimpleSAML\Module;
+use SimpleSAML\Utils;
+
 /**
  * This abstract class defines an interface for metadata storage sources.
  *
@@ -82,13 +86,13 @@ abstract class MetaDataStorageSource
             default:
                 // metadata store from module
                 try {
-                    $className = \SimpleSAML\Module::resolveClass(
+                    $className = Module::resolveClass(
                         $type,
                         'MetadataStore',
                         '\SimpleSAML\Metadata\MetaDataStorageSource'
                     );
                 } catch (\Exception $e) {
-                    throw new \SimpleSAML\Error\CriticalConfigurationError(
+                    throw new Error\CriticalConfigurationError(
                         "Invalid 'type' for metadata source. Cannot find store '$type'.",
                         null
                     );
@@ -173,7 +177,6 @@ abstract class MetaDataStorageSource
      */
     public function getPreferredEntityIdFromCIDRhint($set, $ip, $type = 'entityid')
     {
-
         $metadataSet = $this->getMetadataSet($set);
 
         foreach ($metadataSet as $index => $entry) {
@@ -197,7 +200,7 @@ abstract class MetaDataStorageSource
             }
 
             foreach ($cidrHints as $hint_entry) {
-                if (\SimpleSAML\Utils\Net::ipCIDRcheck($hint_entry, $ip)) {
+                if (Utils\Net::ipCIDRcheck($hint_entry, $ip)) {
                     if ($type === 'entityid') {
                         return $entry['entityid'];
                     } else {
@@ -256,7 +259,7 @@ abstract class MetaDataStorageSource
         assert(is_array($metadataSet));
 
         // check for hostname
-        $currentHost = \SimpleSAML\Utils\HTTP::getSelfHost(); // sp.example.org
+        $currentHost = Utils\HTTP::getSelfHost(); // sp.example.org
 
         foreach ($metadataSet as $index => $entry) {
             // explicit index match
@@ -284,7 +287,7 @@ abstract class MetaDataStorageSource
         assert(is_string($set));
 
         // get the configuration
-        $baseUrl = \SimpleSAML\Utils\HTTP::getBaseURL();
+        $baseUrl = Utils\HTTP::getBaseURL();
 
         if ($set === 'saml20-idp-hosted') {
             return $baseUrl.'saml2/idp/metadata.php';
@@ -299,10 +302,10 @@ abstract class MetaDataStorageSource
             return $baseUrl.'shib13/sp/metadata.php';
         }
         else if ($set === 'wsfed-sp-hosted') {
-            return 'urn:federation:'.\SimpleSAML\Utils\HTTP::getSelfHost();
+            return 'urn:federation:'.Utils\HTTP::getSelfHost();
         }
         else if ($set === 'adfs-idp-hosted') {
-            return 'urn:federation:'.\SimpleSAML\Utils\HTTP::getSelfHost().':idp';
+            return 'urn:federation:'.Utils\HTTP::getSelfHost().':idp';
         }
         else {
             throw new \Exception('Can not generate dynamic EntityID for metadata of this type: ['.$set.']');

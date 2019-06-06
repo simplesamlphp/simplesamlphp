@@ -2,6 +2,9 @@
 
 namespace SimpleSAML\Module\saml\Auth\Process;
 
+use SimpleSAML\Error;
+use SimpleSAML\Logger;
+
 /**
  * Authentication processing filter to create a NameID from an attribute.
  *
@@ -32,12 +35,12 @@ class AttributeNameID extends \SimpleSAML\Module\saml\BaseNameIDGenerator
         assert(is_array($config));
 
         if (!isset($config['Format'])) {
-            throw new \SimpleSAML\Error\Exception("AttributeNameID: Missing required option 'Format'.");
+            throw new Error\Exception("AttributeNameID: Missing required option 'Format'.");
         }
         $this->format = (string) $config['Format'];
 
         if (!isset($config['attribute'])) {
-            throw new \SimpleSAML\Error\Exception("AttributeNameID: Missing required option 'attribute'.");
+            throw new Error\Exception("AttributeNameID: Missing required option 'attribute'.");
         }
         $this->attribute = (string) $config['attribute'];
     }
@@ -53,14 +56,14 @@ class AttributeNameID extends \SimpleSAML\Module\saml\BaseNameIDGenerator
     {
 
         if (!isset($state['Attributes'][$this->attribute]) || count($state['Attributes'][$this->attribute]) === 0) {
-            \SimpleSAML\Logger::warning(
+            Logger::warning(
                 'Missing attribute '.var_export($this->attribute, true).
                 ' on user - not generating attribute NameID.'
             );
             return null;
         }
         if (count($state['Attributes'][$this->attribute]) > 1) {
-            \SimpleSAML\Logger::warning(
+            Logger::warning(
                 'More than one value in attribute '.var_export($this->attribute, true).
                 ' on user - not generating attribute NameID.'
             );
@@ -70,9 +73,9 @@ class AttributeNameID extends \SimpleSAML\Module\saml\BaseNameIDGenerator
         $value = $value[0];
 
         if (empty($value)) {
-            \SimpleSAML\Logger::warning(
+            Logger::warning(
                 'Empty value in attribute '.var_export($this->attribute, true).
-                ' on user - not generating persistent NameID.'
+                ' on user - not generating attribute NameID.'
             );
             return null;
         }

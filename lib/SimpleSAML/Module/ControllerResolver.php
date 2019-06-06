@@ -33,7 +33,6 @@ use Symfony\Component\Routing\RouteCollection;
  */
 class ControllerResolver extends SymfonyControllerResolver implements ArgumentResolverInterface
 {
-
     /** @var ArgumentMetadataFactory */
     protected $argFactory;
 
@@ -137,7 +136,7 @@ class ControllerResolver extends SymfonyControllerResolver implements ArgumentRe
 
         /** @var ArgumentMetadata $argMeta */
         foreach ($metadata as $argMeta) {
-            if ($argMeta->getType() === 'Symfony\Component\HttpFoundation\Request') {
+            if ($argMeta->getType() === Request::class) {
                 // add request argument
                 $args[] = $request;
                 continue;

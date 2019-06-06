@@ -2,6 +2,7 @@
 
 namespace SimpleSAML\Logger;
 
+use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
 
 /**
@@ -43,7 +44,7 @@ class ErrorLogLoggingHandler implements LoggingHandlerInterface
      *
      * @param \SimpleSAML\Configuration $config The configuration object for this handler.
      */
-    public function __construct(\SimpleSAML\Configuration $config)
+    public function __construct(Configuration $config)
     {
         $this->processname = $config->getString('logging.processname', 'SimpleSAMLphp');
     }

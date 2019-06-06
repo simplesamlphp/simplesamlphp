@@ -2,6 +2,8 @@
 
 namespace SimpleSAML\Module\exampleauth\Auth\Source;
 
+use SimpleSAML\Utils;
+
 /**
  * Example authentication source.
  *
@@ -34,7 +36,7 @@ class StaticSource extends \SimpleSAML\Auth\Source
 
         // Parse attributes
         try {
-            $this->attributes = \SimpleSAML\Utils\Attributes::normalizeAttributesArray($config);
+            $this->attributes = Utils\Attributes::normalizeAttributesArray($config);
         } catch (\Exception $e) {
             throw new \Exception('Invalid attributes for authentication source '.
                 $this->authId.': '.$e->getMessage());

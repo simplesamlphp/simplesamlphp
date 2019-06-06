@@ -3,10 +3,11 @@
 namespace SimpleSAML\Utils;
 
 use SimpleSAML\Configuration;
+use SimpleSAML\Error;
 use SimpleSAML\Logger;
 use SimpleSAML\Module;
 use SimpleSAML\Session;
-use SimpleSAML\Error;
+use SimpleSAML\XHTML\Template;
 
 /**
  * HTTP-related utility methods.
@@ -735,6 +736,7 @@ class HTTP
         return substr($url, $start, $length);
     }
 
+
     /**
      * Retrieve our own host together with the URL path. Please note this function will return the base URL for the
      * current SP, as defined in the global configuration.
@@ -1225,7 +1227,7 @@ class HTTP
             self::redirect(self::getSecurePOSTRedirectURL($destination, $data));
         }
 
-        $p = new \SimpleSAML\XHTML\Template($config, 'post.php');
+        $p = new Template($config, 'post.php');
         $p->data['destination'] = $destination;
         $p->data['post'] = $data;
         $p->show();

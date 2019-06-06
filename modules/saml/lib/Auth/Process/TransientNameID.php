@@ -2,6 +2,9 @@
 
 namespace SimpleSAML\Module\saml\Auth\Process;
 
+use SAML2\Constants;
+use SimpleSAML\Utils;
+
 /**
  * Authentication processing filter to generate a transient NameID.
  *
@@ -21,7 +24,7 @@ class TransientNameID extends \SimpleSAML\Module\saml\BaseNameIDGenerator
         parent::__construct($config, $reserved);
         assert(is_array($config));
 
-        $this->format = \SAML2\Constants::NAMEID_TRANSIENT;
+        $this->format = Constants::NAMEID_TRANSIENT;
     }
 
 
@@ -33,6 +36,6 @@ class TransientNameID extends \SimpleSAML\Module\saml\BaseNameIDGenerator
      */
     protected function getValue(array &$state)
     {
-        return \SimpleSAML\Utils\Random::generateID();
+        return Utils\Random::generateID();
     }
 }

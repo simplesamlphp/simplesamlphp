@@ -11,11 +11,12 @@ namespace SimpleSAML\XML\Shib13;
 
 use DOMDocument;
 use DOMNode;
+use DOMXpath;
 use SAML2\DOMDocumentFactory;
-use SAML2\Utils;
-use SimpleSAML\Utils\Config;
-use SimpleSAML\Utils\Random;
-use SimpleSAML\Utils\Time;
+use SimpleSAML\Configuration;
+use SimpleSAML\Error;
+use SimpleSAML\Metadata\MetaDataStorageHandler;
+use SimpleSAML\Utils;
 use SimpleSAML\XML\Validator;
 
 class AuthnResponse
@@ -121,7 +122,7 @@ class AuthnResponse
         $issuer = $this->getIssuer();
 
         // Get the metadata of the issuer
-        $metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
+        $metadata = MetaDataStorageHandler::getMetadataHandler();
         $md = $metadata->getMetaDataConfig($issuer, 'shib13-idp-remote');
 
         $publicKeys = $md->getPublicKeys('signing');
@@ -141,9 +142,9 @@ class AuthnResponse
             $this->validator->validateFingerprint($certFingerprints);
         } elseif ($md->hasValue('caFile')) {
             // Validate against CA
-            $this->validator->validateCA(Config::getCertPath($md->getString('caFile')));
+            $this->validator->validateCA(Utils\Config::getCertPath($md->getString('caFile')));
         } else {
-            throw new \SimpleSAML\Error\Exception(
+            throw new Error\Exception(
                 'Missing certificate in Shibboleth 1.3 IdP Remote metadata for identity provider ['.$issuer.'].'
             );
         }
@@ -174,7 +175,7 @@ class AuthnResponse
             $node = dom_import_simplexml($node);
         }
 
-        assert($node instanceof \DOMNode);
+        assert($node instanceof DOMNode);
 
         return $this->validator->isNodeValidated($node);
     }
@@ -191,15 +192,15 @@ class AuthnResponse
     private function doXPathQuery($query, $node = null)
     {
         assert(is_string($query));
-        assert($this->dom instanceof \DOMDocument);
+        assert($this->dom instanceof DOMDocument);
 
         if ($node === null) {
             $node = $this->dom->documentElement;
         }
 
-        assert($node instanceof \DOMNode);
+        assert($node instanceof DOMNode);
 
-        $xPath = new \DOMXpath($this->dom);
+        $xPath = new DOMXpath($this->dom);
         $xPath->registerNamespace('shibp', self::SHIB_PROTOCOL_NS);
         $xPath->registerNamespace('shib', self::SHIB_ASSERT_NS);
 
@@ -232,11 +233,11 @@ class AuthnResponse
      */
     public function getAttributes()
     {
-        $metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
+        $metadata = MetaDataStorageHandler::getMetadataHandler();
         $md = $metadata->getMetaData($this->getIssuer(), 'shib13-idp-remote');
         $base64 = isset($md['base64attributes']) ? $md['base64attributes'] : false;
 
-        if (!($this->dom instanceof \DOMDocument)) {
+        if (!($this->dom instanceof DOMDocument)) {
             return [];
         }
 
@@ -347,7 +348,7 @@ class AuthnResponse
      * @param array|null $attributes The attributes which should be included in the response.
      * @return string The response.
      */
-    public function generate(\SimpleSAML\Configuration $idp, \SimpleSAML\Configuration $sp, $shire, $attributes)
+    public function generate(Configuration $idp, Configuration $sp, $shire, $attributes)
     {
         assert(is_string($shire));
         assert($attributes === null || is_array($attributes));
@@ -360,16 +361,16 @@ class AuthnResponse
             $scopedAttributes = [];
         }
 
-        $id = Random::generateID();
+        $id = Utils\Random::generateID();
         
-        $issueInstant = Time::generateTimestamp();
+        $issueInstant = Utils\Time::generateTimestamp();
         
         // 30 seconds timeskew back in time to allow differing clocks
-        $notBefore = Time::generateTimestamp(time() - 30);
+        $notBefore = Utils\Time::generateTimestamp(time() - 30);
         
         
-        $assertionExpire = Time::generateTimestamp(time() + 300); // 5 minutes
-        $assertionid = Random::generateID();
+        $assertionExpire = Utils\Time::generateTimestamp(time() + 300); // 5 minutes
+        $assertionid = Utils\Random::generateID();
 
         $spEntityId = $sp->getString('entityid');
 
@@ -377,7 +378,7 @@ class AuthnResponse
         $base64 = $sp->getBoolean('base64attributes', false);
 
         $namequalifier = $sp->getString('NameQualifier', $spEntityId);
-        $nameid = Random::generateID();
+        $nameid = Utils\Random::generateID();
         $subjectNode =
             '<Subject>'.
             '<NameIdentifier'.
@@ -505,14 +506,14 @@ class AuthnResponse
         $currentTime = time();
 
         if (!empty($start)) {
-            $startTime = Utils::xsDateTimeToTimestamp($start);
+            $startTime = \SAML2\Utils::xsDateTimeToTimestamp($start);
             // allow for a 10 minute difference in time
             if (($startTime < 0) || (($startTime - 600) > $currentTime)) {
                 return false;
             }
         }
         if (!empty($end)) {
-            $endTime = Utils::xsDateTimeToTimestamp($end);
+            $endTime = \SAML2\Utils::xsDateTimeToTimestamp($end);
             if (($endTime < 0) || ($endTime <= $currentTime)) {
                 return false;
             }

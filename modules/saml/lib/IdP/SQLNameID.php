@@ -2,6 +2,10 @@
 
 namespace SimpleSAML\Module\saml\IdP;
 
+use PDO;
+use SimpleSAML\Error;
+use SimpleSAML\Store;
+
 /**
  * Helper class for working with persistent NameIDs stored in SQL datastore.
  *
@@ -15,7 +19,7 @@ class SQLNameID
      * @param \SimpleSAML\Store\SQL $store  The datastore.
      * @return void
      */
-    private static function createTable(\SimpleSAML\Store\SQL $store)
+    private static function createTable(Store\SQL $store)
     {
         if ($store->getTableVersion('saml_PersistentNameID') === 1) {
             return;
@@ -47,9 +51,9 @@ class SQLNameID
      */
     private static function getStore()
     {
-        $store = \SimpleSAML\Store::getInstance();
-        if (!($store instanceof \SimpleSAML\Store\SQL)) {
-            throw new \SimpleSAML\Error\Exception(
+        $store = Store::getInstance();
+        if (!($store instanceof Store\SQL)) {
+            throw new Error\Exception(
                 'SQL NameID store requires SimpleSAMLphp to be configured with a SQL datastore.'
             );
         }
@@ -120,7 +124,7 @@ class SQLNameID
         $query = $store->pdo->prepare($query);
         $query->execute($params);
 
-        $row = $query->fetch(\PDO::FETCH_ASSOC);
+        $row = $query->fetch(PDO::FETCH_ASSOC);
         if ($row === false) {
             // No NameID found
             return null;
@@ -184,7 +188,7 @@ class SQLNameID
         $query->execute($params);
 
         $res = [];
-        while (($row = $query->fetch(\PDO::FETCH_ASSOC)) !== false) {
+        while (($row = $query->fetch(PDO::FETCH_ASSOC)) !== false) {
             $res[$row['_user']] = $row['_value'];
         }
 

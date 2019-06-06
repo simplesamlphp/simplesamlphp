@@ -2,6 +2,8 @@
 
 namespace SimpleSAML\Module\core\Auth\Process;
 
+use SimpleSAML\Logger;
+
 /**
  * Filter to generate a groups attribute based on many of the attributes of the user.
  *
@@ -67,7 +69,7 @@ class GenerateGroups extends \SimpleSAML\Auth\ProcessingFilter
 
         foreach ($this->generateGroupsFrom as $name) {
             if (!array_key_exists($name, $attributes)) {
-                \SimpleSAML\Logger::debug('GenerateGroups - attribute \''.$name.'\' not found.');
+                Logger::debug('GenerateGroups - attribute \''.$name.'\' not found.');
                 // Attribute not present
                 continue;
             }

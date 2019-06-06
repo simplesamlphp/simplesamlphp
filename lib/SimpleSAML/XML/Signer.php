@@ -16,7 +16,7 @@ use DOMElement;
 use DOMText;
 use RobRichards\XMLSecLibs\XMLSecurityDSig;
 use RobRichards\XMLSecLibs\XMLSecurityKey;
-use SimpleSAML\Utils\Config;
+use SimpleSAML\Utils;
 
 class Signer
 {
@@ -132,7 +132,7 @@ class Signer
         assert(is_bool($full_path));
 
         if (!$full_path) {
-            $keyFile = Config::getCertPath($file);
+            $keyFile = Utils\Config::getCertPath($file);
         } else {
             $keyFile = $file;
         }
@@ -196,7 +196,7 @@ class Signer
         assert(is_bool($full_path));
 
         if (!$full_path) {
-            $certFile = Config::getCertPath($file);
+            $certFile = Utils\Config::getCertPath($file);
         } else {
             $certFile = $file;
         }
@@ -245,7 +245,7 @@ class Signer
         assert(is_bool($full_path));
 
         if (!$full_path) {
-            $certFile = Config::getCertPath($file);
+            $certFile = Utils\Config::getCertPath($file);
         } else {
             $certFile = $file;
         }

@@ -2,6 +2,7 @@
 
 namespace SimpleSAML\Utils;
 
+use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 
 /**
@@ -72,7 +73,7 @@ class System
      */
     public static function getTempDir()
     {
-        $globalConfig = \SimpleSAML\Configuration::getInstance();
+        $globalConfig = Configuration::getInstance();
 
         $tempDir = rtrim(
             $globalConfig->getString(
@@ -123,7 +124,7 @@ class System
     public static function resolvePath($path, $base = null)
     {
         if ($base === null) {
-            $config = \SimpleSAML\Configuration::getInstance();
+            $config = Configuration::getInstance();
             $base = $config->getBaseDir();
         }
 

@@ -2,6 +2,8 @@
 
 namespace SimpleSAML\Logger;
 
+use SimpleSAML\Configuration;
+
 /**
  * The interface that must be implemented by any log handler.
  *
@@ -16,7 +18,7 @@ interface LoggingHandlerInterface
      *
      * @param \SimpleSAML\Configuration $config The configuration to use in this log handler.
      */
-    public function __construct(\SimpleSAML\Configuration $config);
+    public function __construct(Configuration $config);
 
 
     /**

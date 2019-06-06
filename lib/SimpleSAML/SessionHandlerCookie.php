@@ -13,7 +13,7 @@
 
 namespace SimpleSAML;
 
-use SimpleSAML\Utils\HTTP;
+use SimpleSAML\Utils;
 
 abstract class SessionHandlerCookie extends SessionHandler
 {
@@ -167,6 +167,6 @@ abstract class SessionHandlerCookie extends SessionHandler
             $params = $this->getCookieParams();
         }
 
-        HTTP::setCookie($sessionName, $sessionID, $params, true);
+        Utils\HTTP::setCookie($sessionName, $sessionID, $params, true);
     }
 }

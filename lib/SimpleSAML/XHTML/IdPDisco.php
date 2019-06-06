@@ -2,6 +2,12 @@
 
 namespace SimpleSAML\XHTML;
 
+use SimpleSAML\Configuration;
+use SimpleSAML\Logger;
+use SimpleSAML\Metadata\MetaDataStorageHandler;
+use SimpleSAML\Session;
+use SimpleSAML\Utils;
+
 /**
  * This class implements a generic IdP discovery service, for use in various IdP
  * discovery service pages. This should reduce code duplication.
@@ -31,14 +37,12 @@ class IdPDisco
      */
     protected $instance;
 
-
     /**
      * An instance of the metadata handler, which will allow us to fetch metadata about IdPs.
      *
      * @var \SimpleSAML\Metadata\MetaDataStorageHandler
      */
     protected $metadata;
-
 
     /**
      * The users session.
@@ -47,14 +51,12 @@ class IdPDisco
      */
     protected $session;
 
-
     /**
      * The metadata sets we find allowed entities in, in prioritized order.
      *
      * @var array
      */
     protected $metadataSets;
-
 
     /**
      * The entity id of the SP which accesses this IdP discovery service.
@@ -77,7 +79,6 @@ class IdPDisco
      * @var string|null
      */
     protected $setIdPentityID = null;
-
 
     /**
      * The name of the query parameter which should contain the users choice of IdP.
@@ -119,9 +120,9 @@ class IdPDisco
         assert(is_string($instance));
 
         // initialize standard classes
-        $this->config = \SimpleSAML\Configuration::getInstance();
-        $this->metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
-        $this->session = \SimpleSAML\Session::getSessionFromRequest();
+        $this->config = Configuration::getInstance();
+        $this->metadata = MetaDataStorageHandler::getMetadataHandler();
+        $this->session = Session::getSessionFromRequest();
         $this->instance = $instance;
         $this->metadataSets = $metadataSets;
 
@@ -145,7 +146,7 @@ class IdPDisco
         if (!array_key_exists('return', $_GET)) {
             throw new \Exception('Missing parameter: return');
         } else {
-            $this->returnURL = \SimpleSAML\Utils\HTTP::checkURLAllowed($_GET['return']);
+            $this->returnURL = Utils\HTTP::checkURLAllowed($_GET['return']);
         }
 
         $this->isPassive = false;
@@ -177,7 +178,7 @@ class IdPDisco
      */
     protected function log($message)
     {
-        \SimpleSAML\Logger::info('idpDisco.'.$this->instance.': '.$message);
+        Logger::info('idpDisco.'.$this->instance.': '.$message);
     }
 
 
@@ -224,7 +225,7 @@ class IdPDisco
             'httponly' => false,
         ];
 
-        \SimpleSAML\Utils\HTTP::setCookie($prefixedName, $value, $params, false);
+        Utils\HTTP::setCookie($prefixedName, $value, $params, false);
     }
 
 
@@ -520,7 +521,7 @@ class IdPDisco
             $extDiscoveryStorage = $this->config->getString('idpdisco.extDiscoveryStorage', null);
             if ($extDiscoveryStorage !== null) {
                 $this->log('Choice made ['.$idp.'] (Forwarding to external discovery storage)');
-                \SimpleSAML\Utils\HTTP::redirectTrustedURL($extDiscoveryStorage, [
+                Utils\HTTP::redirectTrustedURL($extDiscoveryStorage, [
                     'entityID'      => $this->spEntityId,
                     'IdPentityID'   => $idp,
                     'returnIDParam' => $this->returnIdParam,
@@ -531,13 +532,13 @@ class IdPDisco
                 $this->log(
                     'Choice made ['.$idp.'] (Redirecting the user back. returnIDParam='.$this->returnIdParam.')'
                 );
-                \SimpleSAML\Utils\HTTP::redirectTrustedURL($this->returnURL, [$this->returnIdParam => $idp]);
+                Utils\HTTP::redirectTrustedURL($this->returnURL, [$this->returnIdParam => $idp]);
             }
         }
 
         if ($this->isPassive) {
             $this->log('Choice not made. (Redirecting the user back without answer)');
-            \SimpleSAML\Utils\HTTP::redirectTrustedURL($this->returnURL);
+            Utils\HTTP::redirectTrustedURL($this->returnURL);
         }
     }
 
@@ -569,7 +570,7 @@ class IdPDisco
                 'Choice made ['.$idpintersection[0].'] (Redirecting the user back. returnIDParam='.
                 $this->returnIdParam.')'
             );
-            \SimpleSAML\Utils\HTTP::redirectTrustedURL(
+            Utils\HTTP::redirectTrustedURL(
                 $this->returnURL,
                 [$this->returnIdParam => $idpintersection[0]]
             );
@@ -618,7 +619,7 @@ class IdPDisco
             }
             if (!empty($data['icon'])) {
                 $newlist[$entityid]['icon'] = $data['icon'];
-                $newlist[$entityid]['iconurl'] = \SimpleSAML\Utils\HTTP::resolveURL($data['icon']);
+                $newlist[$entityid]['iconurl'] = Utils\HTTP::resolveURL($data['icon']);
             }
         }
         usort(
@@ -638,7 +639,7 @@ class IdPDisco
         $t->data['return'] = $this->returnURL;
         $t->data['returnIDParam'] = $this->returnIdParam;
         $t->data['entityID'] = $this->spEntityId;
-        $t->data['urlpattern'] = htmlspecialchars(\SimpleSAML\Utils\HTTP::getSelfURLNoQuery());
+        $t->data['urlpattern'] = htmlspecialchars(Utils\HTTP::getSelfURLNoQuery());
         $t->data['rememberenabled'] = $this->config->getBoolean('idpdisco.enableremember', false);
         $t->show();
     }

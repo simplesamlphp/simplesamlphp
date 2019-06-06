@@ -2,7 +2,9 @@
 
 namespace SimpleSAML;
 
+use SAML2\XML\saml\AttributeValue;
 use SimpleSAML\Error;
+use SimpleSAML\Utils;
 
 /**
  * The Session class holds information about a user session, and everything attached to it.
@@ -643,7 +645,7 @@ class Session implements \Serializable, Utils\ClearableState
                 }
 
                 // create an AttributeValue object and save it to 'RawAttributes', using same attribute name and index
-                $attrval = new \SAML2\XML\saml\AttributeValue($value->item(0)->parentNode);
+                $attrval = new AttributeValue($value->item(0)->parentNode);
                 $data['RawAttributes'][$attribute][$idx] = $attrval;
             }
         }

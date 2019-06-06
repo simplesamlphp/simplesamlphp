@@ -2,6 +2,8 @@
 
 namespace SimpleSAML\Module\saml\Auth\Process;
 
+use SimpleSAML\Error;
+
 /**
  * Filter for setting the AuthnContextClassRef in the response.
  *
@@ -31,7 +33,7 @@ class AuthnContextClassRef extends \SimpleSAML\Auth\ProcessingFilter
         assert(is_array($config));
 
         if (!isset($config['AuthnContextClassRef'])) {
-            throw new \SimpleSAML\Error\Exception('Missing AuthnContextClassRef option in processing filter.');
+            throw new Error\Exception('Missing AuthnContextClassRef option in processing filter.');
         }
 
         $this->authnContextClassRef = (string) $config['AuthnContextClassRef'];

@@ -2,6 +2,12 @@
 
 namespace SimpleSAML\Auth;
 
+use SimpleSAML\Configuration;
+use SimpleSAML\Error;
+use SimpleSAML\Logger;
+use SimpleSAML\Session;
+use SimpleSAML\Utils;
+
 /**
  * This is a helper class for saving and loading state information.
  *
@@ -151,7 +157,7 @@ class State
         assert(is_bool($rawId));
 
         if (!array_key_exists(self::ID, $state)) {
-            $state[self::ID] = \SimpleSAML\Utils\Random::generateID();
+            $state[self::ID] = Utils\Random::generateID();
         }
 
         $id = $state[self::ID];
@@ -174,7 +180,7 @@ class State
     private static function getStateTimeout()
     {
         if (self::$stateTimeout === null) {
-            $globalConfig = \SimpleSAML\Configuration::getInstance();
+            $globalConfig = Configuration::getInstance();
             self::$stateTimeout = $globalConfig->getInteger('session.state.timeout', 60 * 60);
         }
 
@@ -208,10 +214,10 @@ class State
 
         // Save state
         $serializedState = serialize($state);
-        $session = \SimpleSAML\Session::getSessionFromRequest();
+        $session = Session::getSessionFromRequest();
         $session->setData('\SimpleSAML\Auth\State', $id, $serializedState, self::getStateTimeout());
 
-        \SimpleSAML\Logger::debug('Saved state: '.var_export($return, true));
+        Logger::debug('Saved state: '.var_export($return, true));
 
         return $return;
     }
@@ -234,9 +240,9 @@ class State
             $clonedState[self::CLONE_ORIGINAL_ID] = $state[self::ID];
             unset($clonedState[self::ID]);
 
-            \SimpleSAML\Logger::debug('Cloned state: '.var_export($state[self::ID], true));
+            Logger::debug('Cloned state: '.var_export($state[self::ID], true));
         } else {
-            \SimpleSAML\Logger::debug('Cloned state with undefined id.');
+            Logger::debug('Cloned state with undefined id.');
         }
 
         return $clonedState;
@@ -264,11 +270,11 @@ class State
         assert(is_string($id));
         assert(is_string($stage));
         assert(is_bool($allowMissing));
-        \SimpleSAML\Logger::debug('Loading state: '.var_export($id, true));
+        Logger::debug('Loading state: '.var_export($id, true));
 
         $sid = self::parseStateID($id);
 
-        $session = \SimpleSAML\Session::getSessionFromRequest();
+        $session = Session::getSessionFromRequest();
         $state = $session->getData('\SimpleSAML\Auth\State', $sid['id']);
 
         if ($state === null) {
@@ -278,10 +284,10 @@ class State
             }
 
             if ($sid['url'] === null) {
-                throw new \SimpleSAML\Error\NoState();
+                throw new Error\NoState();
             }
 
-            \SimpleSAML\Utils\HTTP::redirectUntrustedURL($sid['url']);
+            Utils\HTTP::redirectUntrustedURL($sid['url']);
         }
 
         $state = unserialize($state);
@@ -299,13 +305,13 @@ class State
             $msg = 'Wrong stage in state. Was \''.$state[self::STAGE].
                 '\', should be \''.$stage.'\'.';
 
-            \SimpleSAML\Logger::warning($msg);
+            Logger::warning($msg);
 
             if ($sid['url'] === null) {
                 throw new \Exception($msg);
             }
 
-            \SimpleSAML\Utils\HTTP::redirectUntrustedURL($sid['url']);
+            Utils\HTTP::redirectUntrustedURL($sid['url']);
         }
 
         return $state;
@@ -329,9 +335,9 @@ class State
             return;
         }
 
-        \SimpleSAML\Logger::debug('Deleting state: '.var_export($state[self::ID], true));
+        Logger::debug('Deleting state: '.var_export($state[self::ID], true));
 
-        $session = \SimpleSAML\Session::getSessionFromRequest();
+        $session = Session::getSessionFromRequest();
         $session->deleteData('\SimpleSAML\Auth\State', $state[self::ID]);
     }
 
@@ -345,7 +351,7 @@ class State
      * @throws \SimpleSAML\Error\Exception If there is no exception handler defined, it will just throw the $exception.
      * @return void
      */
-    public static function throwException($state, \SimpleSAML\Error\Exception $exception)
+    public static function throwException($state, Error\Exception $exception)
     {
         assert(is_array($state));
 
@@ -355,7 +361,7 @@ class State
             $id = self::saveState($state, self::EXCEPTION_STAGE);
 
             // Redirect to the exception handler
-            \SimpleSAML\Utils\HTTP::redirectTrustedURL(
+            Utils\HTTP::redirectTrustedURL(
                 $state[self::EXCEPTION_HANDLER_URL],
                 [self::EXCEPTION_PARAM => $id]
             );

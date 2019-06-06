@@ -11,15 +11,19 @@ namespace SimpleSAML\XHTML;
 
 use JaimePerez\TwigConfigurableI18n\Twig\Environment as Twig_Environment;
 use JaimePerez\TwigConfigurableI18n\Twig\Extensions\Extension\I18n as Twig_Extensions_Extension_I18n;
-use Symfony\Component\HttpFoundation\Response;
 
 use SimpleSAML\Configuration;
-use SimpleSAML\Utils\HTTP;
 use SimpleSAML\Locale\Language;
 use SimpleSAML\Locale\Localization;
 use SimpleSAML\Locale\Translate;
 use SimpleSAML\Logger;
 use SimpleSAML\Module;
+use SimpleSAML\Utils;
+
+use Symfony\Component\HttpFoundation\Response;
+use Twig\Loader\FilesystemLoader;
+use Twig\TwigFilter;
+use Twig\TwigFunction;
 
 class Template extends Response
 {
@@ -246,7 +250,7 @@ class Template extends Response
 
         // default, themeless templates are checked last
         $templateDirs[] = [
-            \Twig\Loader\FilesystemLoader::MAIN_NAMESPACE => $this->configuration->resolvePath('templates')
+            FilesystemLoader::MAIN_NAMESPACE => $this->configuration->resolvePath('templates')
         ];
         foreach ($templateDirs as $entry) {
             $loader->addPath($entry[key($entry)], key($entry));
@@ -309,7 +313,7 @@ class Template extends Response
 
         // add a filter for translations out of arrays
         $twig->addFilter(
-            new \Twig\TwigFilter(
+            new TwigFilter(
                 'translateFromArray',
                 [Translate::class, 'translateFromArray'],
                 ['needs_context' => true]
@@ -317,7 +321,7 @@ class Template extends Response
         );
 
         // add an asset() function
-        $twig->addFunction(new \Twig\TwigFunction('asset', [$this, 'asset']));
+        $twig->addFunction(new TwigFunction('asset', [$this, 'asset']));
 
         if ($this->controller !== null) {
             $this->controller->setUpTwig($twig);
@@ -356,7 +360,7 @@ class Template extends Response
             }
 
             // set correct name for the default namespace
-            $ns = ($entry === 'default') ? \Twig\Loader\FilesystemLoader::MAIN_NAMESPACE : $entry;
+            $ns = ($entry === 'default') ? FilesystemLoader::MAIN_NAMESPACE : $entry;
             $themeTemplateDirs[] = [$ns => $themeDir.'/'.$entry];
         }
         return $themeTemplateDirs;
@@ -423,7 +427,7 @@ class Template extends Response
                 $langname = $this->translator->getLanguage()->getLanguageLocalizedName($lang);
                 $url = false;
                 if (!$current) {
-                    $url = htmlspecialchars(HTTP::addURLParameters(
+                    $url = htmlspecialchars(Utils\HTTP::addURLParameters(
                         '',
                         [$parameterName => $lang]
                     ));

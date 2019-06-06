@@ -2,6 +2,8 @@
 
 namespace SimpleSAML\Auth;
 
+use SimpleSAML\Utils;
+
 /**
  * A class that generates and verifies time-limited tokens.
  */
@@ -44,7 +46,7 @@ class TimeLimitedToken
     public function __construct($lifetime = 900, $secretSalt = null, $skew = 1, $algo = 'sha1')
     {
         if ($secretSalt === null) {
-            $secretSalt = \SimpleSAML\Utils\Config::getSecretSalt();
+            $secretSalt = Utils\Config::getSecretSalt();
         }
 
         if (!in_array($algo, hash_algos(), true)) {
