@@ -2,6 +2,8 @@
 
 namespace SimpleSAML\Logger;
 
+use SimpleSAML\Configuration;
+
 /**
  * The interface that must be implemented by any log handler.
  *
@@ -11,13 +13,12 @@ namespace SimpleSAML\Logger;
 
 interface LoggingHandlerInterface
 {
-
     /**
      * Constructor for log handlers. It must accept receiving a \SimpleSAML\Configuration object.
      *
      * @param \SimpleSAML\Configuration $config The configuration to use in this log handler.
      */
-    public function __construct(\SimpleSAML\Configuration $config);
+    public function __construct(Configuration $config);
 
 
     /**
@@ -25,6 +26,7 @@ interface LoggingHandlerInterface
      *
      * @param int $level The log level.
      * @param string $string The message to log.
+     * @return void
      */
     public function log($level, $string);
 
@@ -33,6 +35,7 @@ interface LoggingHandlerInterface
      * Set the format desired for the logs.
      *
      * @param string $format The format used for logs.
+     * @return void
      */
     public function setLogFormat($format);
 }

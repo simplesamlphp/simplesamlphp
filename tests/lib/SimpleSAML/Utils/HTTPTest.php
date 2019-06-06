@@ -34,21 +34,19 @@ class HTTPTest extends TestCase
 
     /**
      * Test SimpleSAML\Utils\HTTP::addURLParameters().
-     *
-     * @expectedException \InvalidArgumentException
      */
     public function testAddURLParametersInvalidURL()
     {
+        $this->expectException(\InvalidArgumentException::class);
         HTTP::addURLParameters([], []);
     }
 
     /**
      * Test SimpleSAML\Utils\HTTP::addURLParameters().
-     *
-     * @expectedException \InvalidArgumentException
      */
     public function testAddURLParametersInvalidParameters()
     {
+        $this->expectException(\InvalidArgumentException::class);
         HTTP::addURLParameters('string', 'string');
     }
 
@@ -314,7 +312,7 @@ class HTTPTest extends TestCase
             $this->assertEquals(HTTP::checkURLAllowed($url), $url);
         }
 
-        $this->setExpectedException('\SimpleSAML\Error\Exception');
+        $this->expectException(\SimpleSAML\Error\Exception::class);
         HTTP::checkURLAllowed('https://evil.com');
 
         $_SERVER = $original;
@@ -346,7 +344,7 @@ class HTTPTest extends TestCase
             $this->assertEquals(HTTP::checkURLAllowed($url), $url);
         }
 
-        $this->setExpectedException('\SimpleSAML\Error\Exception');
+        $this->expectException(\SimpleSAML\Error\Exception::class);
         HTTP::checkURLAllowed('https://evil.com');
 
         $_SERVER = $original;
@@ -411,7 +409,7 @@ class HTTPTest extends TestCase
 
         $_SERVER['REQUEST_URI'] = '/module.php';
 
-        $this->setExpectedException('\SimpleSAML\Error\Exception');
+        $this->expectException(\SimpleSAML\Error\Exception::class);
         HTTP::checkURLAllowed('https://app.example.com.evil.com');
 
         $_SERVER = $original;

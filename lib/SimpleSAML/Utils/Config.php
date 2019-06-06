@@ -1,5 +1,8 @@
 <?php
+
 namespace SimpleSAML\Utils;
+
+use SimpleSAML\Configuration;
 
 /**
  * Utility class for SimpleSAMLphp configuration management and manipulation.
@@ -24,7 +27,7 @@ class Config
             throw new \InvalidArgumentException('Invalid input parameters.');
         }
 
-        $globalConfig = \SimpleSAML\Configuration::getInstance();
+        $globalConfig = Configuration::getInstance();
         $base = $globalConfig->getPathValue('certdir', 'cert/');
         return System::resolvePath($path, $base);
     }
@@ -47,7 +50,7 @@ class Config
      */
     public static function getSecretSalt()
     {
-        $secretSalt = \SimpleSAML\Configuration::getInstance()->getString('secretsalt');
+        $secretSalt = Configuration::getInstance()->getString('secretsalt');
         if ($secretSalt === 'defaultsecretsalt') {
             throw new \InvalidArgumentException('The "secretsalt" configuration option must be set to a secret value.');
         }

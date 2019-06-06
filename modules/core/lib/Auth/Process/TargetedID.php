@@ -2,6 +2,10 @@
 
 namespace SimpleSAML\Module\core\Auth\Process;
 
+use SAML2\Constants;
+use SAML2\XML\saml\NameID;
+use SimpleSAML\Utils;
+
 /**
  * Filter to generate the eduPersonTargetedID attribute.
  *
@@ -30,7 +34,6 @@ namespace SimpleSAML\Module\core\Auth\Process;
  * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
-
 class TargetedID extends \SimpleSAML\Auth\ProcessingFilter
 {
     /**
@@ -46,13 +49,14 @@ class TargetedID extends \SimpleSAML\Auth\ProcessingFilter
      */
     private $generateNameId = false;
 
+
     /**
      * Initialize this filter.
      *
-     * @param array $config  Configuration information about this filter.
+     * @param array &$config  Configuration information about this filter.
      * @param mixed $reserved  For future use.
      */
-    public function __construct($config, $reserved)
+    public function __construct(&$config, $reserved)
     {
         parent::__construct($config, $reserved);
 
@@ -73,10 +77,12 @@ class TargetedID extends \SimpleSAML\Auth\ProcessingFilter
         }
     }
 
+
     /**
      * Apply filter to add the targeted ID.
      *
      * @param array &$state  The current state.
+     * @return void
      */
     public function process(&$state)
     {
@@ -101,7 +107,7 @@ class TargetedID extends \SimpleSAML\Auth\ProcessingFilter
         }
 
 
-        $secretSalt = \SimpleSAML\Utils\Config::getSecretSalt();
+        $secretSalt = Utils\Config::getSecretSalt();
 
         if (array_key_exists('Source', $state)) {
             $srcID = self::getEntityId($state['Source']);
@@ -125,9 +131,9 @@ class TargetedID extends \SimpleSAML\Auth\ProcessingFilter
 
         if ($this->generateNameId) {
             // Convert the targeted ID to a SAML 2.0 name identifier element
-            $nameId = new \SAML2\XML\saml\NameID();
+            $nameId = new NameID();
             $nameId->setValue($uid);
-            $nameId->setFormat(\SAML2\Constants::NAMEID_PERSISTENT);
+            $nameId->setFormat(Constants::NAMEID_PERSISTENT);
 
             if (isset($state['Source']['entityid'])) {
                 $nameId->setNameQualifier($state['Source']['entityid']);
@@ -141,6 +147,7 @@ class TargetedID extends \SimpleSAML\Auth\ProcessingFilter
 
         $state['Attributes']['eduPersonTargetedID'] = [$nameId];
     }
+
 
     /**
      * Generate ID from entity metadata.

@@ -2,8 +2,11 @@
 
 namespace SimpleSAML\Metadata\Sources;
 
+use RobRichards\XMLSecLibs\XMLSecurityDSig;
+use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
-use SimpleSAML\Utils\HTTP;
+use SimpleSAML\Metadata\SAMLParser;
+use SimpleSAML\Utils;
 
 /**
  * This class implements SAML Metadata Query Protocol
@@ -78,9 +81,14 @@ class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
         } else {
             $this->validateFingerprint = null;
         }
+        if (isset($config['validateFingerprintAlgorithm'])) {
+            $this->validateFingerprintAlgorithm = $config['validateFingerprintAlgorithm'];
+        } else {
+            $this->validateFingerprintAlgorithm = XMLSecurityDSig::SHA1;
+        }
 
         if (array_key_exists('cachedir', $config)) {
-            $globalConfig = \SimpleSAML\Configuration::getInstance();
+            $globalConfig = Configuration::getInstance();
             $this->cacheDir = $globalConfig->resolvePath($config['cachedir']);
         } else {
             $this->cacheDir = null;
@@ -193,6 +201,7 @@ class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
      * @param array  $data The associative array with the metadata for this entity.
      *
      * @throws \Exception If metadata cannot be written to cache.
+     * @return void
      */
     private function writeToCache($set, $entityId, $data)
     {
@@ -222,7 +231,7 @@ class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
      * @return array|NULL  The associative array with the metadata, or NULL if no metadata for
      *                     the given set was found.
      */
-    private static function getParsedSet(\SimpleSAML\Metadata\SAMLParser $entity, $set)
+    private static function getParsedSet(SAMLParser $entity, $set)
     {
         assert(is_string($set));
 
@@ -260,7 +269,7 @@ class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
      * @param string $index The entityId or metaindex we are looking up.
      * @param string $set The set we are looking for metadata in.
      *
-     * @return array An associative array with metadata for the given entity, or NULL if we are unable to
+     * @return array|null An associative array with metadata for the given entity, or NULL if we are unable to
      *         locate the entity.
      * @throws \Exception If an error occurs while validating the signature or the metadata is in an
      *         incorrect set.
@@ -297,7 +306,7 @@ class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
 
         Logger::debug(__CLASS__.': downloading metadata for "'.$index.'" from ['.$mdq_url.']');
         try {
-            $xmldata = HTTP::fetch($mdq_url);
+            $xmldata = Utils\HTTP::fetch($mdq_url);
         } catch (\Exception $e) {
             // Avoid propagating the exception, make sure we can handle the error later
             $xmldata = false;
@@ -311,11 +320,14 @@ class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
         }
 
         /** @var string $xmldata */
-        $entity = \SimpleSAML\Metadata\SAMLParser::parseString($xmldata);
+        $entity = SAMLParser::parseString($xmldata);
         Logger::debug(__CLASS__.': completed parsing of ['.$mdq_url.']');
 
         if ($this->validateFingerprint !== null) {
-            if (!$entity->validateFingerprint($this->validateFingerprint)) {
+            if (!$entity->validateFingerprint(
+                $this->validateFingerprint,
+                $this->validateFingerprintAlgorithm
+            )) {
                 throw new \Exception(__CLASS__.': error, could not verify signature for entity: '.$index.'".');
             }
         }

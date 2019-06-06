@@ -9,13 +9,9 @@
 namespace SimpleSAML\Bindings\Shib13;
 
 use SAML2\DOMDocumentFactory;
+use SimpleSAML\Configuration;
 use SimpleSAML\Error;
-use SimpleSAML\Utils\Config;
-use SimpleSAML\Utils\HTTP;
-use SimpleSAML\Utils\Random;
-use SimpleSAML\Utils\System;
-use SimpleSAML\Utils\Time;
-use SimpleSAML\Utils\XML;
+use SimpleSAML\Utils;
 
 class Artifact
 {
@@ -61,9 +57,9 @@ class Artifact
         $msg = '<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">'.
             '<SOAP-ENV:Body>'.
             '<samlp:Request xmlns:samlp="urn:oasis:names:tc:SAML:1.0:protocol"'.
-            ' RequestID="'.Random::generateID().'"'.
+            ' RequestID="'.Utils\Random::generateID().'"'.
             ' MajorVersion="1" MinorVersion="1"'.
-            ' IssueInstant="'.Time::generateTimestamp().'"'.
+            ' IssueInstant="'.Utils\Time::generateTimestamp().'"'.
             '>';
 
         foreach ($artifacts as $a) {
@@ -96,18 +92,18 @@ class Artifact
         }
 
         $soapEnvelope = $doc->firstChild;
-        if (!XML::isDOMNodeOfType($soapEnvelope, 'Envelope', 'http://schemas.xmlsoap.org/soap/envelope/')) {
+        if (!Utils\XML::isDOMNodeOfType($soapEnvelope, 'Envelope', 'http://schemas.xmlsoap.org/soap/envelope/')) {
             throw new Error\Exception('Expected artifact response to contain a <soap:Envelope> element.');
         }
 
-        $soapBody = XML::getDOMChildren($soapEnvelope, 'Body', 'http://schemas.xmlsoap.org/soap/envelope/');
+        $soapBody = Utils\XML::getDOMChildren($soapEnvelope, 'Body', 'http://schemas.xmlsoap.org/soap/envelope/');
         if (count($soapBody) === 0) {
             throw new Error\Exception('Couldn\'t find <soap:Body> in <soap:Envelope>.');
         }
         $soapBody = $soapBody[0];
 
 
-        $responseElement = XML::getDOMChildren($soapBody, 'Response', 'urn:oasis:names:tc:SAML:1.0:protocol');
+        $responseElement = Utils\XML::getDOMChildren($soapBody, 'Response', 'urn:oasis:names:tc:SAML:1.0:protocol');
         if (count($responseElement) === 0) {
             throw new Error\Exception('Couldn\'t find <saml1p:Response> in <soap:Body>.');
         }
@@ -133,12 +129,12 @@ class Artifact
      * @return string The <saml1p:Response> element, as an XML string.
      * @throws Error\Exception
      */
-    public static function receive(\SimpleSAML\Configuration $spMetadata, \SimpleSAML\Configuration $idpMetadata)
+    public static function receive(Configuration $spMetadata, Configuration $idpMetadata)
     {
         $artifacts = self::getArtifacts();
         $request = self::buildRequest($artifacts);
 
-        XML::debugSAMLMessage($request, 'out');
+        Utils\XML::debugSAMLMessage($request, 'out');
 
         $url = $idpMetadata->getDefaultEndpoint(
             'ArtifactResolutionService',
@@ -157,12 +153,12 @@ class Artifact
                 "-----END CERTIFICATE-----\n";
         }
 
-        $file = System::getTempDir().DIRECTORY_SEPARATOR.sha1($certData).'.crt';
+        $file = Utils\System::getTempDir().DIRECTORY_SEPARATOR.sha1($certData).'.crt';
         if (!file_exists($file)) {
-            System::writeFile($file, $certData);
+            Utils\System::writeFile($file, $certData);
         }
 
-        $spKeyCertFile = Config::getCertPath($spMetadata->getString('privatekey'));
+        $spKeyCertFile = Utils\Config::getCertPath($spMetadata->getString('privatekey'));
 
         $opts = [
             'ssl' => [
@@ -181,9 +177,9 @@ class Artifact
         ];
 
         // Fetch the artifact
-        $response = HTTP::fetch($url, $opts);
         /** @var string $response */
-        XML::debugSAMLMessage($response, 'in');
+        $response = Utils\HTTP::fetch($url, $opts);
+        Utils\XML::debugSAMLMessage($response, 'in');
 
         // Find the response in the SOAP message
         $response = self::extractResponse($response);

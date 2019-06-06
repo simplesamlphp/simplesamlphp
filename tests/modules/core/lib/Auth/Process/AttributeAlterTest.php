@@ -214,11 +214,10 @@ class AttributeAlterTest extends TestCase
 
     /**
      * Test for exception with illegal config.
-     *
-     * @expectedException Exception
      */
     public function testWrongConfig()
     {
+        $this->expectException(\Exception::class);
         $config = [
             'subject' => 'eduPersonAffiliation',
             'pattern' => '/^emper/',
@@ -234,11 +233,10 @@ class AttributeAlterTest extends TestCase
 
     /**
      * Test for exception with illegal config.
-     *
-     * @expectedException Exception
      */
     public function testIncompleteConfig()
     {
+        $this->expectException(\Exception::class);
         $config = [
             'subject' => 'eduPersonAffiliation',
         ];
@@ -252,11 +250,10 @@ class AttributeAlterTest extends TestCase
 
     /**
      * Test for exception with illegal config.
-     *
-     * @expectedException Exception
      */
     public function testIncompleteConfig2()
     {
+        $this->expectException(\Exception::class);
         $config = [
             'subject' => 'test',
             'pattern' => '/wrong/',
@@ -272,11 +269,10 @@ class AttributeAlterTest extends TestCase
 
     /**
      * Test for exception with illegal config.
-     *
-     * @expectedException Exception
      */
     public function testIncompleteConfig3()
     {
+        $this->expectException(\Exception::class);
         $config = [
             'subject' => 'test',
             'pattern' => '/wrong/',
@@ -294,11 +290,10 @@ class AttributeAlterTest extends TestCase
 
     /**
      * Test for exception with illegal config.
-     *
-     * @expectedException Exception
      */
     public function testIncompleteConfig4()
     {
+        $this->expectException(\Exception::class);
         $config = [
             'subject' => 'test',
             'pattern' => '/wrong/',
@@ -317,11 +312,10 @@ class AttributeAlterTest extends TestCase
 
     /**
      * Test for exception with illegal config.
-     *
-     * @expectedException Exception
      */
     public function testIncompleteConfig5()
     {
+        $this->expectException(\Exception::class);
         $config = [
             'subject' => 'test',
             'pattern' => '/wrong/',

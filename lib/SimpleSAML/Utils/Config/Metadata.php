@@ -1,5 +1,10 @@
 <?php
+
 namespace SimpleSAML\Utils\Config;
+
+use SAML2\Constants;
+use SimpleSAML\Configuration;
+use SimpleSAML\Logger;
 
 /**
  * Class with utilities to fetch different configuration objects from metadata configuration arrays.
@@ -106,6 +111,10 @@ class Metadata
         // check the type
         if (!isset($contact['contactType']) || !in_array($contact['contactType'], self::$VALID_CONTACT_TYPES, true)) {
             $types = join(', ', array_map(
+                 /**
+                  * @param string $t
+                  * @return string
+                  */
                 function ($t) {
                     return '"'.$t.'"';
                 },
@@ -273,9 +282,9 @@ class Metadata
      */
     public static function isHiddenFromDiscovery(array $metadata)
     {
-        \SimpleSAML\Logger::maskErrors(E_ALL);
+        Logger::maskErrors(E_ALL);
         $hidden = in_array(self::$HIDE_FROM_DISCOVERY, $metadata['EntityAttributes'][self::$ENTITY_CATEGORY], true);
-        \SimpleSAML\Logger::popErrorMask();
+        Logger::popErrorMask();
         return $hidden === true;
     }
 
@@ -296,9 +305,9 @@ class Metadata
             $policy = ['Format' => $nameIdPolicy];
         } elseif (is_array($nameIdPolicy)) {
             // handle current configurations specifying an array in the NameIDPolicy config option
-            $nameIdPolicy_cf = \SimpleSAML\Configuration::loadFromArray($nameIdPolicy);
+            $nameIdPolicy_cf = Configuration::loadFromArray($nameIdPolicy);
             $policy = [
-                'Format'      => $nameIdPolicy_cf->getString('Format', \SAML2\Constants::NAMEID_TRANSIENT),
+                'Format'      => $nameIdPolicy_cf->getString('Format', Constants::NAMEID_TRANSIENT),
                 'AllowCreate' => $nameIdPolicy_cf->getBoolean('AllowCreate', true),
             ];
             $spNameQualifier = $nameIdPolicy_cf->getString('SPNameQualifier', false);
@@ -307,7 +316,7 @@ class Metadata
             }
         } elseif ($nameIdPolicy === null) {
             // when NameIDPolicy is unset or set to null, default to transient as before
-            $policy = ['Format' => \SAML2\Constants::NAMEID_TRANSIENT];
+            $policy = ['Format' => Constants::NAMEID_TRANSIENT];
         }
 
         return $policy;

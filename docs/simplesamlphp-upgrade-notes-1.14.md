@@ -19,7 +19,7 @@ The jQuery version in use has been bumped to the latest 1.8.X version.
 Service Providers using the eduPersonTargetedID attribute, will get a DOMNodeList object instead of the NameID value. In
 order to process the NameID, a SAML2_XML_saml_NameID object can be used:
 
-```php
+```
 $attributes = $as->getAttributes();
 $eptid = $attributes['eduPersonTargetedID'][0]->item(0);
 $nameID = new SAML2_XML_saml_NameID($eptid);

@@ -2,9 +2,13 @@
 
 namespace SimpleSAML\Module\admin;
 
+use SimpleSAML\Configuration;
 use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Locale\Translate;
-use SimpleSAML\Utils\HTTP;
+use SimpleSAML\Module;
+use SimpleSAML\Session;
+use SimpleSAML\Utils;
+use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -35,7 +39,7 @@ class ConfigController
      * @param \SimpleSAML\Configuration $config The configuration to use.
      * @param \SimpleSAML\Session $session The current user session.
      */
-    public function __construct(\SimpleSAML\Configuration $config, \SimpleSAML\Session $session)
+    public function __construct(Configuration $config, Session $session)
     {
         $this->config = $config;
         $this->session = $session;
@@ -52,28 +56,28 @@ class ConfigController
      */
     public function diagnostics(Request $request)
     {
-        \SimpleSAML\Utils\Auth::requireAdmin();
+        Utils\Auth::requireAdmin();
 
-        $t = new \SimpleSAML\XHTML\Template($this->config, 'admin:diagnostics.twig');
+        $t = new Template($this->config, 'admin:diagnostics.twig');
         $t->data = [
             'remaining' => $this->session->getAuthData('admin', 'Expire') - time(),
-            'logouturl' => \SimpleSAML\Utils\Auth::getAdminLogoutURL(),
+            'logouturl' => Utils\Auth::getAdminLogoutURL(),
             'items' => [
                 'HTTP_HOST' => [$request->getHost()],
                 'HTTPS' => $request->isSecure() ? ['on'] : [],
                 'SERVER_PROTOCOL' => [$request->getProtocolVersion()],
-                'getBaseURL()' => [HTTP::getBaseURL()],
-                'getSelfHost()' => [HTTP::getSelfHost()],
-                'getSelfHostWithNonStandardPort()' => [HTTP::getSelfHostWithNonStandardPort()],
-                'getSelfURLHost()' => [HTTP::getSelfURLHost()],
-                'getSelfURLNoQuery()' => [HTTP::getSelfURLNoQuery()],
-                'getSelfHostWithPath()' => [HTTP::getSelfHostWithPath()],
-                'getFirstPathElement()' => [HTTP::getFirstPathElement()],
-                'getSelfURL()' => [HTTP::getSelfURL()],
+                'getBaseURL()' => [Utils\HTTP::getBaseURL()],
+                'getSelfHost()' => [Utils\HTTP::getSelfHost()],
+                'getSelfHostWithNonStandardPort()' => [Utils\HTTP::getSelfHostWithNonStandardPort()],
+                'getSelfURLHost()' => [Utils\HTTP::getSelfURLHost()],
+                'getSelfURLNoQuery()' => [Utils\HTTP::getSelfURLNoQuery()],
+                'getSelfHostWithPath()' => [Utils\HTTP::getSelfHostWithPath()],
+                'getFirstPathElement()' => [Utils\HTTP::getFirstPathElement()],
+                'getSelfURL()' => [Utils\HTTP::getSelfURL()],
             ],
         ];
 
-        $this->menu->addOption('logout', \SimpleSAML\Utils\Auth::getAdminLogoutURL(), Translate::noop('Log out'));
+        $this->menu->addOption('logout', $t->data['logouturl'], Translate::noop('Log out'));
         return $this->menu->insert($t);
     }
 
@@ -85,20 +89,20 @@ class ConfigController
      */
     public function main()
     {
-        \SimpleSAML\Utils\Auth::requireAdmin();
+        Utils\Auth::requireAdmin();
 
-        $t = new \SimpleSAML\XHTML\Template($this->config, 'admin:config.twig');
+        $t = new Template($this->config, 'admin:config.twig');
         $t->data = [
             'warnings' => $this->getWarnings(),
             'directory' => $this->config->getBaseDir(),
             'version' => $this->config->getVersion(),
             'links' => [
                 [
-                    'href' => \SimpleSAML\Module::getModuleURL('admin/diagnostics'),
+                    'href' => Module::getModuleURL('admin/diagnostics'),
                     'text' => Translate::noop('Diagnostics on hostname, port and protocol')
                 ],
                 [
-                    'href' => \SimpleSAML\Module::getModuleURL('admin/phpinfo'),
+                    'href' => Module::getModuleURL('admin/phpinfo'),
                     'text' => Translate::noop('Information on your PHP installation')
                 ]
             ],
@@ -107,11 +111,11 @@ class ConfigController
                 'shib13idp' => $this->config->getBoolean('enable.shib13-idp', false),
             ],
             'funcmatrix' => $this->getPrerequisiteChecks(),
-            'logouturl' => \SimpleSAML\Utils\Auth::getAdminLogoutURL(),
+            'logouturl' => Utils\Auth::getAdminLogoutURL(),
         ];
 
-        \SimpleSAML\Module::callHooks('configpage', $t);
-        $this->menu->addOption('logout', \SimpleSAML\Utils\Auth::getAdminLogoutURL(), Translate::noop('Log out'));
+        Module::callHooks('configpage', $t);
+        $this->menu->addOption('logout', Utils\Auth::getAdminLogoutURL(), Translate::noop('Log out'));
         return $this->menu->insert($t);
     }
 
@@ -148,11 +152,11 @@ class ConfigController
                 'descr' => [
                     Translate::noop('PHP %minimum% or newer is needed. You are running: %current%'),
                     [
-                        '%minimum%' => '5.5',
+                        '%minimum%' => '5.6',
                         '%current%' => explode('-', phpversion())[0]
                     ]
                 ],
-                'enabled' => version_compare(phpversion(), '5.5', '>=')
+                'enabled' => version_compare(phpversion(), '5.6', '>=')
             ]
         ];
         $store = $this->config->getString('store.type', '');
@@ -239,14 +243,14 @@ class ConfigController
                 ]
             ],
             'ldap_bind' => [
-                'required' => \SimpleSAML\Module::isModuleEnabled('ldap') ? 'required' : 'optional',
+                'required' => Module::isModuleEnabled('ldap') ? 'required' : 'optional',
                 'descr' => [
                     'optional' => Translate::noop('LDAP extension (required if an LDAP backend is used)'),
                     'required' => Translate::noop('LDAP extension'),
                 ]
             ],
             'radius_auth_open' => [
-                'required' => \SimpleSAML\Module::isModuleEnabled('radius') ? 'required' : 'optional',
+                'required' => Module::isModuleEnabled('radius') ? 'required' : 'optional',
                 'descr' => [
                     'optional' => Translate::noop('Radius extension (required if a radius backend is used)'),
                     'required' => Translate::noop('Radius extension'),
@@ -268,7 +272,7 @@ class ConfigController
                 'classes' => ['\Predis\Predis'],
                 'required' => $store === 'redis' ? 'required' : 'optional',
                 'descr' => [
-                    'optional' => Translate::noop('predis/predis (required if the redis data store is used'),
+                    'optional' => Translate::noop('predis/predis (required if the redis data store is used)'),
                     'required' => Translate::noop('predis/predis library'),
                 ]
             ],
@@ -277,7 +281,7 @@ class ConfigController
                 'required' => $store === 'memcache' ? 'required' : 'optional',
                 'descr' => [
                     'optional' => Translate::noop(
-                        'Memcache or Memcached extension (required if the memcache backend is used'
+                        'Memcache or Memcached extension (required if the memcache backend is used)'
                     ),
                     'required' => Translate::noop('Memcache or Memcached extension'),
                 ]
@@ -330,7 +334,7 @@ class ConfigController
         $warnings = [];
 
         // make sure we're using HTTPS
-        if (!\SimpleSAML\Utils\HTTP::isHTTPS()) {
+        if (!Utils\HTTP::isHTTPS()) {
             $warnings[] = Translate::noop(
                 '<strong>You are not using HTTPS</strong> to protect communications with your users. HTTP works fine '.
                 'for testing purposes, but in a production environment you should use HTTPS. <a '.

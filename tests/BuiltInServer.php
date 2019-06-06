@@ -9,6 +9,8 @@
 
 namespace SimpleSAML\Test;
 
+use SimpleSAML\Utils\System;
+
 class BuiltInServer
 {
 
@@ -60,6 +62,10 @@ class BuiltInServer
         } else {
             $this->docroot = dirname(dirname(__FILE__)).'/www/';
         }
+
+        // Rationalize docroot
+        $this->docroot = str_replace('\\', '/', $this->docroot);
+        $this->docroot = rtrim($this->docroot, '/');
     }
 
 
@@ -80,17 +86,26 @@ class BuiltInServer
         $port = mt_rand(1025, 65535);
         $this->address = 'localhost:'.$port;
 
-        $command = sprintf(
-            'php -S %s -t %s %s >> /dev/null 2>&1 & echo $!',
-            $this->address,
-            $this->docroot,
-            $this->router
-        );
+        if (System::getOS() === System::WINDOWS) {
+            $command = sprintf(
+                'powershell $proc = start-process php -ArgumentList (\'-S %s\', \'-t %s\', \'%s\') -Passthru; Write-output $proc.Id;',
+                $this->address,
+                $this->docroot,
+                $this->router
+            );
+        } else {
+            $command = sprintf(
+                'php -S %s -t %s %s >> /dev/null 2>&1 & echo $!',
+                $this->address,
+                $this->docroot,
+                $this->router
+            );
+        }
 
         // execute the command and store the process ID
         $output = [];
         exec($command, $output);
-        $this->pid = (int) $output[0];
+        $this->pid = intval($output[0]);
 
         // wait until it's listening for connections to avoid race conditions
         $start = microtime(true);
@@ -112,13 +127,17 @@ class BuiltInServer
 
     /**
      * Stop the built-in server.
+     * @return void
      */
     public function stop()
     {
         if ($this->pid === 0) {
             return;
+        } else if (System::getOS() === System::WINDOWS) {
+            exec('taskkill /PID '.$this->pid);
+        } else {
+            exec('kill '.$this->pid);
         }
-        exec('kill '.$this->pid);
         $this->pid = 0;
     }
 
@@ -149,6 +168,7 @@ class BuiltInServer
      * Set the "router" file.
      *
      * @param string $router The name of a "router" file to use when starting the server.
+     * @return void
      */
     public function setRouter($router)
     {
@@ -167,7 +187,7 @@ class BuiltInServer
      * @param array $parameters An array (can be empty) with parameters for the requested URI.
      * @param array $curlopts An array (can be empty) with options for cURL.
      *
-     * @return array|string The response obtained from the built-in server.
+     * @return array The response obtained from the built-in server.
      */
     public function get($query, $parameters, $curlopts = [])
     {

@@ -2,7 +2,7 @@
 
 namespace SimpleSAML;
 
-use SimpleSAML\Error\CriticalConfigurationError;
+use SimpleSAML\Error;
 
 /**
  * Base class for data stores.
@@ -24,7 +24,7 @@ abstract class Store implements Utils\ClearableState
     /**
      * Retrieve our singleton instance.
      *
-     * @return false|\SimpleSAML\Store The data store, or false if it isn't enabled.
+     * @return bool|\SimpleSAML\Store The data store, or false if it isn't enabled.
      *
      * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
@@ -58,7 +58,7 @@ abstract class Store implements Utils\ClearableState
                 } catch (\Exception $e) {
                     $c = $config->toArray();
                     $c['store.type'] = 'phpsession';
-                    throw new CriticalConfigurationError(
+                    throw new Error\CriticalConfigurationError(
                         "Invalid 'store.type' configuration option. Cannot find store '$storeType'.",
                         null,
                         $c
@@ -104,6 +104,7 @@ abstract class Store implements Utils\ClearableState
 
     /**
      * Clear any SSP specific state, such as SSP environmental variables or cached internals.
+     * @return void
      */
     public static function clearInternalState()
     {

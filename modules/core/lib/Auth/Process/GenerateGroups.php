@@ -2,13 +2,14 @@
 
 namespace SimpleSAML\Module\core\Auth\Process;
 
+use SimpleSAML\Logger;
+
 /**
  * Filter to generate a groups attribute based on many of the attributes of the user.
  *
  * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
-
 class GenerateGroups extends \SimpleSAML\Auth\ProcessingFilter
 {
     /**
@@ -19,10 +20,10 @@ class GenerateGroups extends \SimpleSAML\Auth\ProcessingFilter
     /**
      * Initialize this filter.
      *
-     * @param array $config  Configuration information about this filter.
+     * @param array &$config  Configuration information about this filter.
      * @param mixed $reserved  For future use.
      */
-    public function __construct($config, $reserved)
+    public function __construct(&$config, $reserved)
     {
         parent::__construct($config, $reserved);
 
@@ -51,6 +52,7 @@ class GenerateGroups extends \SimpleSAML\Auth\ProcessingFilter
      * Apply filter to add groups attribute.
      *
      * @param array &$request  The current request
+     * @return void
      */
     public function process(&$request)
     {
@@ -67,7 +69,7 @@ class GenerateGroups extends \SimpleSAML\Auth\ProcessingFilter
 
         foreach ($this->generateGroupsFrom as $name) {
             if (!array_key_exists($name, $attributes)) {
-                \SimpleSAML\Logger::debug('GenerateGroups - attribute \''.$name.'\' not found.');
+                Logger::debug('GenerateGroups - attribute \''.$name.'\' not found.');
                 // Attribute not present
                 continue;
             }
@@ -86,6 +88,7 @@ class GenerateGroups extends \SimpleSAML\Auth\ProcessingFilter
         }
     }
 
+
     /**
      * Determine which realm the user belongs to.
      *
@@ -94,7 +97,7 @@ class GenerateGroups extends \SimpleSAML\Auth\ProcessingFilter
      * a realm, NULL will be returned.
      *
      * @param array $attributes  The attributes of the user.
-     * @return string|NULL  The realm of the user, or NULL if we are unable to determine the realm.
+     * @return string|null  The realm of the user, or NULL if we are unable to determine the realm.
      */
     private static function getRealm($attributes)
     {
@@ -119,6 +122,7 @@ class GenerateGroups extends \SimpleSAML\Auth\ProcessingFilter
         return self::escapeIllegalChars($realm);
     }
 
+
     /**
      * Escape special characters in a string.
      *
@@ -135,6 +139,10 @@ class GenerateGroups extends \SimpleSAML\Auth\ProcessingFilter
 
         return preg_replace_callback(
             '/([^a-zA-Z0-9_@=.])/',
+            /**
+             * @param array $m
+             * @return string
+             */
             function ($m) {
                 return sprintf("%%%02x", ord($m[1]));
             },

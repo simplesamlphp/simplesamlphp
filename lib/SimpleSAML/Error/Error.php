@@ -2,6 +2,12 @@
 
 namespace SimpleSAML\Error;
 
+use SimpleSAML\Configuration;
+use SimpleSAML\Logger;
+use SimpleSAML\Session;
+use SimpleSAML\Utils;
+use SimpleSAML\XHTML\Template;
+
 /**
  * Class that wraps SimpleSAMLphp errors in exceptions.
  *
@@ -155,6 +161,7 @@ class Error extends Exception
      * Set the HTTP return code for this error.
      *
      * This should be overridden by subclasses who want a different return code than 500 Internal Server Error.
+     * @return void
      */
     protected function setHTTPCode()
     {
@@ -174,10 +181,10 @@ class Error extends Exception
         $etrace = implode("\n", $data);
 
         $reportId = bin2hex(openssl_random_pseudo_bytes(4));
-        \SimpleSAML\Logger::error('Error report with id '.$reportId.' generated.');
+        Logger::error('Error report with id '.$reportId.' generated.');
 
-        $config = \SimpleSAML\Configuration::getInstance();
-        $session = \SimpleSAML\Session::getSessionFromRequest();
+        $config = Configuration::getInstance();
+        $session = Session::getSessionFromRequest();
 
         if (isset($_SERVER['HTTP_REFERER'])) {
             $referer = $_SERVER['HTTP_REFERER'];
@@ -194,7 +201,7 @@ class Error extends Exception
             'exceptionTrace' => $etrace,
             'reportId'       => $reportId,
             'trackId'        => $session->getTrackID(),
-            'url'            => \SimpleSAML\Utils\HTTP::getSelfURLNoQuery(),
+            'url'            => Utils\HTTP::getSelfURLNoQuery(),
             'version'        => $config->getVersion(),
             'referer'        => $referer,
         ];
@@ -208,6 +215,7 @@ class Error extends Exception
      * Display this error.
      *
      * This method displays a standard SimpleSAMLphp error page and exits.
+     * @return void
      */
     public function show()
     {
@@ -217,7 +225,7 @@ class Error extends Exception
         $this->logError();
 
         $errorData = $this->saveError();
-        $config = \SimpleSAML\Configuration::getInstance();
+        $config = Configuration::getInstance();
 
         $data = [];
         $data['showerrors'] = $config->getBoolean('showerrors', true);
@@ -235,12 +243,12 @@ class Error extends Exception
             $config->getString('technicalcontact_email', 'na@example.org') !== 'na@example.org'
         ) {
             // enable error reporting
-            $baseurl = \SimpleSAML\Utils\HTTP::getBaseURL();
+            $baseurl = Utils\HTTP::getBaseURL();
             $data['errorReportAddress'] = $baseurl.'errorreport.php';
         }
 
         $data['email'] = '';
-        $session = \SimpleSAML\Session::getSessionFromRequest();
+        $session = Session::getSessionFromRequest();
         $authorities = $session->getAuthorities();
         foreach ($authorities as $authority) {
             $attributes = $session->getAuthData($authority, 'Attributes');
@@ -256,10 +264,11 @@ class Error extends Exception
             call_user_func($show_function, $config, $data);
             assert(false);
         } else {
-            $t = new \SimpleSAML\XHTML\Template($config, 'error.php', 'errors');
+            $t = new Template($config, 'error.php', 'errors');
+            $translator = $t->getTranslator();
             $t->data = array_merge($t->data, $data);
-            $t->data['dictTitleTranslated'] = $t->getTranslator()->t($t->data['dictTitle']);
-            $t->data['dictDescrTranslated'] = $t->getTranslator()->t($t->data['dictDescr'], $t->data['parameters']);
+            $t->data['dictTitleTranslated'] = $translator->t($t->data['dictTitle']);
+            $t->data['dictDescrTranslated'] = $translator->t($t->data['dictDescr'], $t->data['parameters']);
             $t->show();
         }
 

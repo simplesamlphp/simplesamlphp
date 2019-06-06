@@ -120,6 +120,11 @@ Options
 
 :   *Note*: SAML 2 specific.
 
+`AssertionConsumerService`
+:   List of Assertion Consumer Services in the generated metadata. Specified in the array of
+    arrays format as seen in the [Metadata endpoints](./simplesamlphp-metadata-endpoints)
+    documentation.
+
 `attributes`
 :   List of attributes this SP requests from the IdP.
     This list will be added to the generated metadata.
@@ -409,6 +414,9 @@ Options
     * `urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect`
     * `urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST`
 	* `urn:oasis:names:tc:SAML:2.0:bindings:SOAP`
+
+`SingleLogoutServiceLocation`
+:   The Single Logout Service URL published in the generated metadata.
 
 `url`
 :   A URL to your service provider. Will be added as an OrganizationURL-element in the metadata.

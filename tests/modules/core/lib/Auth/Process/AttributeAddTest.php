@@ -141,11 +141,10 @@ class AttributeAddTest extends TestCase
 
     /**
      * Test wrong usage generates exceptions
-     *
-     * @expectedException Exception
      */
     public function testWrongFlag()
     {
+        $this->expectException(\Exception::class);
         $config = [
             '%nonsense',
             'test' => ['value2'],
@@ -160,11 +159,10 @@ class AttributeAddTest extends TestCase
 
     /**
      * Test wrong attribute value
-     *
-     * @expectedException Exception
      */
     public function testWrongAttributeValue()
     {
+        $this->expectException(\Exception::class);
         $config = [
             '%replace',
             'test' => [true],

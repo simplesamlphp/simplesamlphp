@@ -163,21 +163,6 @@ $config = [
     */
 
     /*
-    // Twitter OAuth Authentication API.
-    // Register your application to get an API key here:
-    //  http://twitter.com/oauth_clients
-    'twitter' => [
-        'authtwitter:Twitter',
-        'key' => 'xxxxxxxxxxxxxxxx',
-        'secret' => 'xxxxxxxxxxxxxxxx',
-
-        // Forces the user to enter their credentials to ensure the correct users account is authorized.
-        // Details: https://dev.twitter.com/docs/api/1/get/oauth/authenticate
-        'force_login' => false,
-    ],
-    */
-
-    /*
     // Microsoft Account (Windows Live ID) Authentication API.
     // Register your application to get an API key here:
     //  https://apps.dev.microsoft.com/

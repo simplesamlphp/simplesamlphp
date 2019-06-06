@@ -3,6 +3,7 @@
 namespace SimpleSAML\HTTP;
 
 use SimpleSAML\Configuration;
+use SimpleSAML\Module\ControllerResolver;
 use SimpleSAML\Session;
 
 use Symfony\Component\EventDispatcher\EventDispatcher;
@@ -20,11 +21,11 @@ use Symfony\Component\Routing\RequestContext;
  */
 class Router
 {
-
+    /** @var ArgumentResolver */
     protected $arguments;
 
-    /** @var \SimpleSAML\Configuration */
-    protected $config;
+    /** @var \SimpleSAML\Configuration|null */
+    protected $config = null;
 
     /** @var RequestContext */
     protected $context;
@@ -32,17 +33,17 @@ class Router
     /** @var EventDispatcher */
     protected $dispatcher;
 
-    /** @var Request */
-    protected $request;
+    /** @var Request|null */
+    protected $request = null;
 
     /** @var \SimpleSAML\Module\ControllerResolver */
     protected $resolver;
 
-    /** @var \SimpleSAML\Session */
-    protected $session;
+    /** @var \SimpleSAML\Session|null */
+    protected $session = null;
 
-    /** @var RequestStack */
-    protected $stack;
+    /** @var RequestStack|null */
+    protected $stack = null;
 
 
     /**
@@ -54,7 +55,7 @@ class Router
     {
         $this->arguments = new ArgumentResolver();
         $this->context = new RequestContext();
-        $this->resolver = new \SimpleSAML\Module\ControllerResolver($module);
+        $this->resolver = new ControllerResolver($module);
         $this->dispatcher = new EventDispatcher();
     }
 
@@ -94,6 +95,7 @@ class Router
      * Send a given response to the browser.
      *
      * @param Response $response The response to send.
+     * @return void
      */
     public function send(Response $response)
     {
@@ -106,6 +108,7 @@ class Router
      * Set the configuration to use by the controller.
      *
      * @param \SimpleSAML\Configuration $config
+     * @return void
      */
     public function setConfiguration(Configuration $config)
     {
@@ -118,6 +121,7 @@ class Router
      * Set the session to use by the controller.
      *
      * @param \SimpleSAML\Session $session
+     * @return void
      */
     public function setSession(Session $session)
     {

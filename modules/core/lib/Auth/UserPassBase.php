@@ -2,6 +2,14 @@
 
 namespace SimpleSAML\Module\core\Auth;
 
+use SAML2\Constants;
+use SimpleSAML\Auth;
+use SimpleSAML\Configuration;
+use SimpleSAML\Error;
+use SimpleSAML\Logger;
+use SimpleSAML\Module;
+use SimpleSAML\Utils\HTTP;
+
 /**
  * Helper class for username/password authentication.
  *
@@ -11,7 +19,6 @@ namespace SimpleSAML\Module\core\Auth;
  * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
-
 abstract class UserPassBase extends \SimpleSAML\Auth\Source
 {
     /**
@@ -72,6 +79,7 @@ abstract class UserPassBase extends \SimpleSAML\Auth\Source
      */
     protected $rememberMeChecked = false;
 
+
     /**
      * Constructor for this authentication source.
      *
@@ -104,15 +112,17 @@ abstract class UserPassBase extends \SimpleSAML\Auth\Source
         }
 
         // get the "remember me" config options
-        $sspcnf = \SimpleSAML\Configuration::getInstance();
+        $sspcnf = Configuration::getInstance();
         $this->rememberMeEnabled = $sspcnf->getBoolean('session.rememberme.enable', false);
         $this->rememberMeChecked = $sspcnf->getBoolean('session.rememberme.checked', false);
     }
 
+
     /**
      * Set forced username.
      *
-     * @param string|NULL $forcedUsername  The forced username.
+     * @param string|null $forcedUsername  The forced username.
+     * @return void
      */
     public function setForcedUsername($forcedUsername)
     {
@@ -122,11 +132,13 @@ abstract class UserPassBase extends \SimpleSAML\Auth\Source
 
     /**
      * Return login links from configuration
+     * @return array
      */
     public function getLoginLinks()
     {
         return $this->loginLinks;
     }
+
 
     /**
      * Getter for the authsource config option remember.username.enabled
@@ -137,6 +149,7 @@ abstract class UserPassBase extends \SimpleSAML\Auth\Source
         return $this->rememberUsernameEnabled;
     }
 
+
     /**
      * Getter for the authsource config option remember.username.checked
      * @return bool
@@ -145,6 +158,7 @@ abstract class UserPassBase extends \SimpleSAML\Auth\Source
     {
         return $this->rememberUsernameChecked;
     }
+
 
     /**
      * Check if the "remember me" feature is enabled.
@@ -155,6 +169,7 @@ abstract class UserPassBase extends \SimpleSAML\Auth\Source
         return $this->rememberMeEnabled;
     }
 
+
     /**
      * Check if the "remember me" checkbox should be checked.
      * @return bool TRUE if enabled, FALSE otherwise.
@@ -164,6 +179,7 @@ abstract class UserPassBase extends \SimpleSAML\Auth\Source
         return $this->rememberMeChecked;
     }
 
+
     /**
      * Initialize login.
      *
@@ -171,6 +187,7 @@ abstract class UserPassBase extends \SimpleSAML\Auth\Source
      * login page.
      *
      * @param array &$state  Information about the current authentication.
+     * @return void
      */
     public function authenticate(&$state)
     {
@@ -197,11 +214,11 @@ abstract class UserPassBase extends \SimpleSAML\Auth\Source
         // doesn't define how the credentials are transferred, but Office 365
         // uses the Authorization header, so we will just use that in lieu of
         // other use cases.
-        if (isset($state['saml:Binding']) && $state['saml:Binding'] === \SAML2\Constants::BINDING_PAOS) {
+        if (isset($state['saml:Binding']) && $state['saml:Binding'] === Constants::BINDING_PAOS) {
             if (!isset($_SERVER['PHP_AUTH_USER']) || !isset($_SERVER['PHP_AUTH_PW'])) {
-                \SimpleSAML\Logger::error("ECP AuthnRequest did not contain Basic Authentication header");
+                Logger::error("ECP AuthnRequest did not contain Basic Authentication header");
                 // TODO Return a SOAP fault instead of using the current binding?
-                throw new \SimpleSAML\Error\Error("WRONGUSERPASS");
+                throw new Error\Error("WRONGUSERPASS");
             }
 
             $username = $_SERVER['PHP_AUTH_USER'];
@@ -219,19 +236,20 @@ abstract class UserPassBase extends \SimpleSAML\Auth\Source
         }
 
         // Save the $state-array, so that we can restore it after a redirect
-        $id = \SimpleSAML\Auth\State::saveState($state, self::STAGEID);
+        $id = Auth\State::saveState($state, self::STAGEID);
 
         /*
          * Redirect to the login form. We include the identifier of the saved
          * state array as a parameter to the login form.
          */
-        $url = \SimpleSAML\Module::getModuleURL('core/loginuserpass.php');
+        $url = Module::getModuleURL('core/loginuserpass.php');
         $params = ['AuthState' => $id];
-        \SimpleSAML\Utils\HTTP::redirectTrustedURL($url, $params);
+        HTTP::redirectTrustedURL($url, $params);
 
         // The previous function never returns, so this code is never executed.
         assert(false);
     }
+
 
     /**
      * Attempt to log in using the given username and password.
@@ -248,6 +266,7 @@ abstract class UserPassBase extends \SimpleSAML\Auth\Source
      */
     abstract protected function login($username, $password);
 
+
     /**
      * Handle login request.
      *
@@ -258,6 +277,7 @@ abstract class UserPassBase extends \SimpleSAML\Auth\Source
      * @param string $authStateId  The identifier of the authentication state.
      * @param string $username  The username the user wrote.
      * @param string $password  The password the user wrote.
+     * @return void
      */
     public static function handleLogin($authStateId, $username, $password)
     {
@@ -266,11 +286,11 @@ abstract class UserPassBase extends \SimpleSAML\Auth\Source
         assert(is_string($password));
 
         // Here we retrieve the state array we saved in the authenticate-function.
-        $state = \SimpleSAML\Auth\State::loadState($authStateId, self::STAGEID);
+        $state = Auth\State::loadState($authStateId, self::STAGEID);
 
         // Retrieve the authentication source we are executing.
         assert(array_key_exists(self::AUTHID, $state));
-        $source = \SimpleSAML\Auth\Source::getById($state[self::AUTHID]);
+        $source = Auth\Source::getById($state[self::AUTHID]);
         if ($source === null) {
             throw new \Exception('Could not find authentication source with id '.$state[self::AUTHID]);
         }
@@ -284,17 +304,17 @@ abstract class UserPassBase extends \SimpleSAML\Auth\Source
         try {
             $attributes = $source->login($username, $password);
         } catch (\Exception $e) {
-            \SimpleSAML\Logger::stats('Unsuccessful login attempt from '.$_SERVER['REMOTE_ADDR'].'.');
+            Logger::stats('Unsuccessful login attempt from '.$_SERVER['REMOTE_ADDR'].'.');
             throw $e;
         }
 
-        \SimpleSAML\Logger::stats('User \''.$username.'\' successfully authenticated from '.$_SERVER['REMOTE_ADDR']);
+        Logger::stats('User \''.$username.'\' successfully authenticated from '.$_SERVER['REMOTE_ADDR']);
 
         // Save the attributes we received from the login-function in the $state-array
         assert(is_array($attributes));
         $state['Attributes'] = $attributes;
 
         // Return control to SimpleSAMLphp after successful authentication.
-        \SimpleSAML\Auth\Source::completeAuth($state);
+        Auth\Source::completeAuth($state);
     }
 }

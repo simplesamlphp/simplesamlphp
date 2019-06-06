@@ -2,13 +2,14 @@
 
 namespace SimpleSAML\Module\core\Auth\Process;
 
+use SimpleSAML\Logger;
+
 /**
  * Log a line in the STAT log with one attribute.
  *
  * @author Andreas Åkre Solberg, UNINETT AS.
  * @package SimpleSAMLphp
  */
-
 class StatisticsWithAttribute extends \SimpleSAML\Auth\ProcessingFilter
 {
     /**
@@ -31,10 +32,10 @@ class StatisticsWithAttribute extends \SimpleSAML\Auth\ProcessingFilter
     /**
      * Initialize this filter.
      *
-     * @param array $config  Configuration information about this filter.
+     * @param array &$config  Configuration information about this filter.
      * @param mixed $reserved  For future use.
      */
-    public function __construct($config, $reserved)
+    public function __construct(&$config, $reserved)
     {
         parent::__construct($config, $reserved);
 
@@ -64,6 +65,7 @@ class StatisticsWithAttribute extends \SimpleSAML\Auth\ProcessingFilter
      * Log line.
      *
      * @param array &$state  The current state.
+     * @return void
      */
     public function process(&$state)
     {
@@ -90,10 +92,10 @@ class StatisticsWithAttribute extends \SimpleSAML\Auth\ProcessingFilter
 
         if (!array_key_exists('PreviousSSOTimestamp', $state)) {
             // The user hasn't authenticated with this SP earlier in this session
-            \SimpleSAML\Logger::stats($isPassive.$this->typeTag.'-first '.$dest.' '.$source.' '.$logAttribute);
+            Logger::stats($isPassive.$this->typeTag.'-first '.$dest.' '.$source.' '.$logAttribute);
         }
 
-        \SimpleSAML\Logger::stats($isPassive.$this->typeTag.' '.$dest.' '.$source.' '.$logAttribute);
+        Logger::stats($isPassive.$this->typeTag.' '.$dest.' '.$source.' '.$logAttribute);
     }
 
     /**

@@ -32,7 +32,8 @@
 		"el": "\u0395\u03c0\u03b9\u03bb\u03bf\u03b3\u03ae \u03c0\u03b7\u03b3\u03ae\u03c2 \u03c4\u03b1\u03c5\u03c4\u03bf\u03c0\u03bf\u03af\u03b7\u03c3\u03b7\u03c2",
 		"pl": "Wybierz \u017aród\u0142o autentykacji",
 		"xh": "Khetha umthombo wongqinisiso",
-		"zu": "Khetha umthombo wokuqinisekisa"
+		"zu": "Khetha umthombo wokuqinisekisa",
+		"ca": "Seleccioneu una font d’autenticació"
 	},
 	"select_source_text": {
 		"no": "Den valgte autentiseringskilden vil bli brukt til \u00e5 autentisere brukeren og deretter etablere en gyldig sesjon.",
@@ -67,6 +68,7 @@
 		"el": "\u0397 \u03b5\u03c0\u03b9\u03bb\u03b5\u03b3\u03bc\u03ad\u03bd\u03b7 \u03c0\u03b7\u03b3\u03ae \u03c4\u03b1\u03c5\u03c4\u03bf\u03c0\u03bf\u03af\u03b7\u03c3\u03b7\u03c2 \u03b8\u03b1 \u03c7\u03c1\u03b7\u03c3\u03b9\u03bc\u03bf\u03c0\u03bf\u03b9\u03b7\u03b8\u03b5\u03af \u03b3\u03b9\u03b1 \u03c4\u03b7\u03bd \u03c0\u03b9\u03c3\u03c4\u03bf\u03c0\u03bf\u03af\u03b7\u03c3\u03b7 \u03c4\u03b7\u03c2 \u03c4\u03b1\u03c5\u03c4\u03cc\u03c4\u03b7\u03c4\u03ac \u03c3\u03b1\u03c2 \u03ba\u03b1\u03b9 \u03c4\u03b7 \u03b4\u03b7\u03bc\u03b9\u03bf\u03c5\u03c1\u03b3\u03af\u03b1 \u03ad\u03b3\u03ba\u03c5\u03c1\u03b7\u03c2 \u03c3\u03c5\u03bd\u03b5\u03b4\u03c1\u03af\u03b1\u03c2 (session).",
 		"pl": "Wybrane \u017aród\u0142o zostanie u\u017Cyte do autentykacji i stworzenia sesji",
 		"zu": "Umthombo wokuqinisekisa okhethiwe uzosetshenziswa ukuze uqinisekiswe futhi kwakhiwe iseshini esebenzayo.",
-		"xh": "Umthombo wongqinisiso okhethiweyo uza kusetyenziswa ukukungqinisisa nokuyila iseshoni esebenzayo."
+		"xh": "Umthombo wongqinisiso okhethiweyo uza kusetyenziswa ukukungqinisisa nokuyila iseshoni esebenzayo.",
+		"ca": "La font d’autenticació seleccionada s’utilitzarà per autenticar-vos i crear una sessió vàlida."
 	}
 }

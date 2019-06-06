@@ -32,12 +32,11 @@ class CryptoTest extends TestCase
     /**
      * Test invalid input provided to the aesDecrypt() method.
      *
-     * @expectedException \InvalidArgumentException
-     *
      * @covers \SimpleSAML\Utils\Crypto::aesDecrypt
      */
     public function testAesDecryptBadInput()
     {
+        $this->expectException(\InvalidArgumentException::class);
         $m = new \ReflectionMethod('\SimpleSAML\Utils\Crypto', '_aesDecrypt');
         $m->setAccessible(true);
 
@@ -48,12 +47,11 @@ class CryptoTest extends TestCase
     /**
      * Test invalid input provided to the aesEncrypt() method.
      *
-     * @expectedException \InvalidArgumentException
-     *
      * @covers \SimpleSAML\Utils\Crypto::aesEncrypt
      */
     public function testAesEncryptBadInput()
     {
+        $this->expectException(\InvalidArgumentException::class);
         $m = new \ReflectionMethod('\SimpleSAML\Utils\Crypto', '_aesEncrypt');
         $m->setAccessible(true);
 
@@ -70,7 +68,7 @@ class CryptoTest extends TestCase
     public function testAesDecrypt()
     {
         if (!extension_loaded('openssl')) {
-            $this->setExpectedException('\SimpleSAML\Error\Exception');
+            $this->expectException(\SimpleSAML\Error\Exception::class);
         }
 
         $secret = 'SUPER_SECRET_SALT';
@@ -92,7 +90,7 @@ class CryptoTest extends TestCase
     public function testAesEncrypt()
     {
         if (!extension_loaded('openssl')) {
-            $this->setExpectedException('\SimpleSAML\Error\Exception');
+            $this->expectException(\SimpleSAML\Error\Exception::class);
         }
 
         $secret = 'SUPER_SECRET_SALT';
@@ -198,13 +196,13 @@ PHP;
     }
 
     /**
-     * @expectedException \SimpleSAML\Error\Exception
      * @deprecated To be removed for 2.0
      *
      * @covers \SimpleSAML\Utils\Crypto::pwHash
      */
     public function testBadHashAlgorithm()
     {
+        $this->expectException(\SimpleSAML\Error\Exception::class);
         $pw = "password";
         $algorithm = "wtf";
 
@@ -271,13 +269,13 @@ PHP;
     }
 
     /**
-     * @expectedException \SimpleSAML\Error\Exception
      * @deprecated To be removed for 2.0
      *
      * @covers \SimpleSAML\Utils\Crypto::pwValid
      */
     public function testBadHashAlgorithmValid()
     {
+        $this->expectException(\SimpleSAML\Error\Exception::class);
         $algorithm = "wtf";
         $hash = "{".$algorithm."}B64STRING";
 
@@ -305,12 +303,11 @@ PHP;
     }
 
     /**
-     * @expectedException \SimpleSAML\Error\Exception
-     *
      * @covers \SimpleSAML\Utils\Crypto::loadPrivateKey
      */
     public function testLoadPrivateKeyRequiredMetadataMissing()
     {
+        $this->expectException(\SimpleSAML\Error\Exception::class);
         $config = new Configuration([], 'test');
         $required = true;
 
@@ -331,12 +328,11 @@ PHP;
     }
 
     /**
-     * @expectedException \SimpleSAML\Error\Exception
-     *
      * @covers \SimpleSAML\Utils\Crypto::loadPrivateKey
      */
     public function testLoadPrivateKeyMissingFile()
     {
+        $this->expectException(\SimpleSAML\Error\Exception::class);
         $config = new Configuration(['privatekey' => 'nonexistant'], 'test');
 
         Crypto::loadPrivateKey($config, false, '', true);
@@ -412,12 +408,11 @@ PHP;
     }
 
     /**
-     * @expectedException \SimpleSAML\Error\Exception
-     *
      * @covers \SimpleSAML\Utils\Crypto::loadPublicKey
      */
     public function testLoadPublicKeyRequiredMetadataMissing()
     {
+        $this->expectException(\SimpleSAML\Error\Exception::class);
         $config = new Configuration([], 'test');
         $required = true;
 

@@ -57,7 +57,7 @@ $config = [
      * - 'certdir': The base directory for certificate and key material.
      * - 'loggingdir': Where to write logs.
      * - 'datadir': Storage of general data.
-     * - 'temdir': Saving temporary files. SimpleSAMLphp will attempt to create
+     * - 'tempdir': Saving temporary files. SimpleSAMLphp will attempt to create
      *   this directory if it doesn't exist.
      * When specified as a relative path, this is relative to the SimpleSAMLphp
      * root directory.
@@ -74,6 +74,31 @@ $config = [
      */
     'technicalcontact_name' => 'Administrator',
     'technicalcontact_email' => 'na@example.org',
+
+    /*
+     * (Optional) The method by which email is delivered.  Defaults to mail which utilizes the
+     * PHP mail() function.
+     *
+     * Valid options are: mail, sendmail and smtp.
+     */
+    //'mail.transport.method' => 'smtp',
+
+    /*
+     * Set the transport options for the transport method specified.  The valid settings are relative to the
+     * selected transport method.
+     */
+    // // smtp mail transport options
+    // 'mail.transport.options' => [
+    //     'host' => 'mail.example.org', // required
+    //     'port' => 25, // optional
+    //     'username' => 'user@example.org', // optional: if set, enables smtp authentication
+    //     'password' => 'password', // optional: if set, enables smtp authentication
+    //     'security' => 'tls', // optional: defaults to no smtp security
+    // ],
+    // // sendmail mail transport options
+    // 'mail.transport.options' => [
+    //     'path' => '/usr/sbin/sendmail' // optional: defaults to php.ini path
+    // ],
 
     /*
      * The envelope from address for outgoing emails.
@@ -440,7 +465,6 @@ $config = [
     'enable.shib13-idp' => false,
     'enable.adfs-idp' => false,
     'enable.wsfed-sp' => false,
-    'enable.authmemcookie' => false,
 
     /*
      * Default IdP for WS-Fed.
@@ -958,6 +982,12 @@ $config = [
     /**************************
      | METADATA CONFIGURATION |
      **************************/
+
+    /*
+     * This option allows you to specify a directory for your metadata outside of the standard metadata directory
+     * included in the standard distribution of the software.
+     */
+    'metadatadir' => 'metadata',
 
     /*
      * This option configures the metadata sources. The metadata sources is given as an array with

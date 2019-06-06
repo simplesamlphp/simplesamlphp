@@ -12,13 +12,15 @@ namespace SimpleSAML\Error;
 class AuthSource extends Error
 {
     /**
-     * Authsource module name.
+     * Authsource module name
+     * @var string
      */
     private $authsource;
 
 
     /**
      * Reason why this request was invalid.
+     * @var string
      */
     private $reason;
 
@@ -28,6 +30,7 @@ class AuthSource extends Error
      *
      * @param string $authsource  Authsource module name from where this error was thrown.
      * @param string $reason  Description of the error.
+     * @param \Exception|null $cause
      */
     public function __construct($authsource, $reason, $cause = null)
     {

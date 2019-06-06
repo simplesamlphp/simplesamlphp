@@ -63,11 +63,11 @@ XML;
     /**
      * @covers \SimpleSAML\XML\Parser::getValue
      * @covers \SimpleSAML\XML\Parser::__construct
-     * @expectedException \Exception
      * @test
      */
     public function getValueException()
     {
+        $this->expectException(\Exception::class);
         $this->xml->getValue('/Root/Foo', true);
     }
 
@@ -131,17 +131,17 @@ XML;
     /**
      * @covers \SimpleSAML\XML\Parser::getValueAlternatives
      * @covers \SimpleSAML\XML\Parser::__construct
-     * @expectedException \Exception
      * @test
      */
     public function getValueAlternativesException()
     {
-        $this
-            ->xml
-            ->getValueAlternatives([
+        $this->expectException(\Exception::class);
+        $this->xml->getValueAlternatives(
+            [
                 '/Root/Foo',
                 '/Root/Bar'
-            ], true)
-        ;
+            ],
+            true
+        );
     }
 }

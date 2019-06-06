@@ -2,6 +2,9 @@
 
 namespace SimpleSAML\Module\core;
 
+use SimpleSAML\Configuration;
+use SimpleSAML\Error;
+
 /**
  * Generic library for access control lists.
  *
@@ -32,15 +35,15 @@ class ACL
 
         foreach ($acl as $rule) {
             if (!is_array($rule)) {
-                throw new \SimpleSAML\Error\Exception('Invalid rule in access control list: '.var_export($rule, true));
+                throw new Error\Exception('Invalid rule in access control list: '.var_export($rule, true));
             }
             if (count($rule) === 0) {
-                throw new \SimpleSAML\Error\Exception('Empty rule in access control list.');
+                throw new Error\Exception('Empty rule in access control list.');
             }
 
             $action = array_shift($rule);
             if ($action !== 'allow' && $action !== 'deny') {
-                throw new \SimpleSAML\Error\Exception(
+                throw new Error\Exception(
                     'Invalid action in rule in access control list: '.var_export($action, true)
                 );
             }
@@ -58,9 +61,9 @@ class ACL
     {
         assert(is_string($id));
 
-        $config = \SimpleSAML\Configuration::getOptionalConfig('acl.php');
+        $config = Configuration::getOptionalConfig('acl.php');
         if (!$config->hasValue($id)) {
-            throw new \SimpleSAML\Error\Exception('No ACL with id '.var_export($id, true).' in config/acl.php.');
+            throw new Error\Exception('No ACL with id '.var_export($id, true).' in config/acl.php.');
         }
 
         return $config->getArray($id);
@@ -121,7 +124,7 @@ class ACL
             case 'or':
                 return self::opOr($attributes, $rule);
             default:
-                throw new \SimpleSAML\Error\Exception('Invalid ACL operation: '.var_export($op, true));
+                throw new Error\Exception('Invalid ACL operation: '.var_export($op, true));
         }
     }
 

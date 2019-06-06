@@ -2,20 +2,24 @@
 
 namespace SimpleSAML\Module\saml\IdP;
 
+use SimpleSAML\Auth;
 use SimpleSAML\Bindings\Shib13\HTTPPost;
-use SimpleSAML\Utils\Config\Metadata;
-use SimpleSAML\Utils\Crypto;
-use SimpleSAML\Utils\HTTP;
+use SimpleSAML\Configuration;
+use SimpleSAML\Error;
+use SimpleSAML\IdP;
+use SimpleSAML\Logger;
+use SimpleSAML\Metadata\MetaDataStorageHandler;
+use SimpleSAML\Stats;
+use SimpleSAML\Utils;
+use SimpleSAML\XML\Shib13\AuthnResponse;
 
 /**
  * IdP implementation for SAML 1.1 protocol.
  *
  * @package SimpleSAMLphp
  */
-
 class SAML1
 {
-
     /**
      * Retrieve the metadata of a hosted SAML 1.1 IdP.
      *
@@ -24,11 +28,11 @@ class SAML1
      * @return array
      * @throws \SimpleSAML\Error\Exception
      * @throws \SimpleSAML\Error\MetadataNotFound
-     * @throws \SimpleSAML_Error_Exception
+     * @throws \SimpleSAML\Error\Exception
      */
     public static function getHostedMetadata($entityid)
     {
-        $handler = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
+        $handler = MetaDataStorageHandler::getMetadataHandler();
         $config = $handler->getMetaDataConfig($entityid, 'shib13-idp-hosted');
 
         $metadata = [
@@ -41,7 +45,7 @@ class SAML1
 
         // add certificates
         $keys = [];
-        $certInfo = Crypto::loadPublicKey($config, false, 'new_');
+        $certInfo = Utils\Crypto::loadPublicKey($config, false, 'new_');
         $hasNewCert = false;
         if ($certInfo !== null) {
             $keys[] = [
@@ -54,7 +58,7 @@ class SAML1
             $hasNewCert = true;
         }
 
-        $certInfo = Crypto::loadPublicKey($config, true);
+        $certInfo = Utils\Crypto::loadPublicKey($config, true);
         $keys[] = [
             'type' => 'X509Certificate',
             'signing' => true,
@@ -73,7 +77,7 @@ class SAML1
             );
 
             if (!$config->hasValue('OrganizationURL')) {
-                throw new \SimpleSAMl\Error\Exception('If OrganizationName is set, OrganizationURL must also be set.');
+                throw new Error\Exception('If OrganizationName is set, OrganizationURL must also be set.');
             }
             $metadata['OrganizationURL'] = $config->getLocalizedString('OrganizationURL');
         }
@@ -88,7 +92,7 @@ class SAML1
             $metadata['EntityAttributes'] = $config->getArray('EntityAttributes');
 
             // check for entity categories
-            if (Metadata::isHiddenFromDiscovery($metadata)) {
+            if (Utils\Config\Metadata::isHiddenFromDiscovery($metadata)) {
                 $metadata['hide.from.discovery'] = true;
             }
         }
@@ -106,7 +110,7 @@ class SAML1
         }
 
         // add contact information
-        $globalConfig = \SimpleSAML\Configuration::getInstance();
+        $globalConfig = Configuration::getInstance();
         $email = $globalConfig->getString('technicalcontact_email', false);
         if ($email && $email !== 'na@example.org') {
             $contact = [
@@ -114,7 +118,7 @@ class SAML1
                 'name' => $globalConfig->getString('technicalcontact_name', null),
                 'contactType' => 'technical',
             ];
-            $metadata['contacts'][] = Metadata::getContact($contact);
+            $metadata['contacts'][] = Utils\Config\Metadata::getContact($contact);
         }
 
         return $metadata;
@@ -125,6 +129,7 @@ class SAML1
      * Send a response to the SP.
      *
      * @param array $state  The authentication state.
+     * @return void
      */
     public static function sendResponse(array $state)
     {
@@ -135,23 +140,23 @@ class SAML1
 
         $spMetadata = $state["SPMetadata"];
         $spEntityId = $spMetadata['entityid'];
-        $spMetadata = \SimpleSAML\Configuration::loadFromArray(
+        $spMetadata = Configuration::loadFromArray(
             $spMetadata,
             '$metadata['.var_export($spEntityId, true).']'
         );
 
-        \SimpleSAML\Logger::info('Sending SAML 1.1 Response to '.var_export($spEntityId, true));
+        Logger::info('Sending SAML 1.1 Response to '.var_export($spEntityId, true));
 
         $attributes = $state['Attributes'];
         $shire = $state['saml:shire'];
         $target = $state['saml:target'];
 
-        $idp = \SimpleSAML\IdP::getByState($state);
+        $idp = IdP::getByState($state);
 
         $idpMetadata = $idp->getConfig();
 
-        $config = \SimpleSAML\Configuration::getInstance();
-        $metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
+        $config = Configuration::getInstance();
+        $metadata = MetaDataStorageHandler::getMetadataHandler();
 
         $statsData = [
             'spEntityID' => $spEntityId,
@@ -161,10 +166,10 @@ class SAML1
         if (isset($state['saml:AuthnRequestReceivedAt'])) {
             $statsData['logintime'] = microtime(true) - $state['saml:AuthnRequestReceivedAt'];
         }
-        \SimpleSAML\Stats::log('saml:idp:Response', $statsData);
+        Stats::log('saml:idp:Response', $statsData);
 
         // Generate and send response.
-        $ar = new \SimpleSAML\XML\Shib13\AuthnResponse();
+        $ar = new AuthnResponse();
         $authnResponseXML = $ar->generate($idpMetadata, $spMetadata, $shire, $attributes);
 
         $httppost = new HTTPPost($config, $metadata);
@@ -176,8 +181,9 @@ class SAML1
      * Receive an authentication request.
      *
      * @param \SimpleSAML\IdP $idp  The IdP we are receiving it for.
+     * @return void
      */
-    public static function receiveAuthnRequest(\SimpleSAML\IdP $idp)
+    public static function receiveAuthnRequest(IdP $idp)
     {
         if (isset($_REQUEST['cookieTime'])) {
             $cookieTime = (int) $_REQUEST['cookieTime'];
@@ -186,17 +192,17 @@ class SAML1
                  * Less than five seconds has passed since we were
                  * here the last time. Cookies are probably disabled.
                  */
-                HTTP::checkSessionCookie(HTTP::getSelfURL());
+                Utils\HTTP::checkSessionCookie(Utils\HTTP::getSelfURL());
             }
         }
 
         if (!isset($_REQUEST['providerId'])) {
-            throw new \SimpleSAML\Error\BadRequest('Missing providerId parameter.');
+            throw new Error\BadRequest('Missing providerId parameter.');
         }
         $spEntityId = (string) $_REQUEST['providerId'];
 
         if (!isset($_REQUEST['shire'])) {
-            throw new \SimpleSAML\Error\BadRequest('Missing shire parameter.');
+            throw new Error\BadRequest('Missing shire parameter.');
         }
         $shire = (string) $_REQUEST['shire'];
 
@@ -206,11 +212,11 @@ class SAML1
             $target = null;
         }
 
-        \SimpleSAML\Logger::info(
+        Logger::info(
             'Shib1.3 - IdP.SSOService: Got incoming Shib authnRequest from '.var_export($spEntityId, true).'.'
         );
 
-        $metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
+        $metadata = MetaDataStorageHandler::getMetadataHandler();
         $spMetadata = $metadata->getMetaDataConfig($spEntityId, 'shib13-sp-remote');
 
         $found = false;
@@ -230,7 +236,7 @@ class SAML1
             );
         }
 
-        \SimpleSAML\Stats::log(
+        Stats::log(
             'saml:idp:AuthnRequest',
             [
                 'spEntityID' => $spEntityId,
@@ -238,15 +244,15 @@ class SAML1
             ]
         );
 
-        $sessionLostURL = HTTP::addURLParameters(
-            HTTP::getSelfURL(),
+        $sessionLostURL = Utils\HTTP::addURLParameters(
+            Utils\HTTP::getSelfURL(),
             ['cookieTime' => time()]
         );
 
         $state = [
             'Responder' => ['\SimpleSAML\Module\saml\IdP\SAML1', 'sendResponse'],
             'SPMetadata' => $spMetadata->toArray(),
-            \SimpleSAML\Auth\State::RESTART => $sessionLostURL,
+            Auth\State::RESTART => $sessionLostURL,
             'saml:shire' => $shire,
             'saml:target' => $target,
             'saml:AuthnRequestReceivedAt' => microtime(true),

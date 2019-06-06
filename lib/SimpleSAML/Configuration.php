@@ -2,7 +2,9 @@
 
 namespace SimpleSAML;
 
-use SimpleSAML\Utils\System;
+use SAML2\Constants;
+use SimpleSAML\Error;
+use SimpleSAML\Utils;
 
 /**
  * Configuration of SimpleSAMLphp
@@ -188,6 +190,7 @@ class Configuration implements Utils\ClearableState
      *
      * @param string $path The directory which contains the configuration files.
      * @param string $configSet The configuration set. Defaults to 'simplesaml'.
+     * @return void
      */
     public static function setConfigDir($path, $configSet = 'simplesaml')
     {
@@ -206,6 +209,8 @@ class Configuration implements Utils\ClearableState
      * @param \SimpleSAML\Configuration $config  The configuration object to store
      * @param string $filename  The name of the configuration file.
      * @param string $configSet  The configuration set. Optional, defaults to 'simplesaml'.
+     * @return void
+     * @throws \Exception
      */
     public static function setPreLoadedConfig(
         Configuration $config,
@@ -358,6 +363,7 @@ class Configuration implements Utils\ClearableState
      * @param string $path
      * @param string $instancename
      * @param string $configfilename
+     * @return \SimpleSAML\Configuration
      *
      * @see setConfigDir()
      * @deprecated This function is superseeded by the setConfigDir function.
@@ -390,6 +396,7 @@ class Configuration implements Utils\ClearableState
      *
      * @param string $instancename
      * @param string $filename
+     * @return \SimpleSAML\Configuration
      *
      * @see getConfig()
      * @deprecated This function is superseeded by the getConfig() function.
@@ -574,7 +581,7 @@ class Configuration implements Utils\ClearableState
 
         assert(is_string($path));
 
-        return System::resolvePath($path, $this->getBaseDir());
+        return Utils\System::resolvePath($path, $this->getBaseDir());
     }
 
 
@@ -1100,11 +1107,11 @@ class Configuration implements Utils\ClearableState
             case 'saml20-idp-remote:SingleSignOnService':
             case 'saml20-idp-remote:SingleLogoutService':
             case 'saml20-sp-remote:SingleLogoutService':
-                return \SAML2\Constants::BINDING_HTTP_REDIRECT;
+                return Constants::BINDING_HTTP_REDIRECT;
             case 'saml20-sp-remote:AssertionConsumerService':
-                return \SAML2\Constants::BINDING_HTTP_POST;
+                return Constants::BINDING_HTTP_POST;
             case 'saml20-idp-remote:ArtifactResolutionService':
-                return \SAML2\Constants::BINDING_SOAP;
+                return Constants::BINDING_SOAP;
             case 'shib13-idp-remote:SingleSignOnService':
                 return 'urn:mace:shibboleth:1.0:profiles:AuthnRequest';
             case 'shib13-sp-remote:AssertionConsumerService':
@@ -1269,7 +1276,7 @@ class Configuration implements Utils\ClearableState
      * @param mixed  $default The default value. If no default is given, and the option isn't found, an exception will
      *     be thrown.
      *
-     * @return array Associative array with language => string pairs.
+     * @return mixed Associative array with language => string pairs, or the provided default value.
      *
      * @throws \Exception If the translation is not an array or a string, or its index or value are not strings.
      */
@@ -1387,6 +1394,8 @@ class Configuration implements Utils\ClearableState
      * Clear any configuration information cached.
      * Allows for configuration files to be changed and reloaded during a given request. Most useful
      * when running phpunit tests and needing to alter config.php between test cases
+     *
+     * @return void
      */
     public static function clearInternalState()
     {

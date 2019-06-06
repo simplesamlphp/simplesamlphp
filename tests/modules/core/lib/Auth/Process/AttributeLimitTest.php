@@ -199,11 +199,10 @@ class AttributeLimitTest extends TestCase
 
     /**
      * Test for exception with illegal config.
-     *
-     * @expectedException Exception
      */
     public function testInvalidConfig()
     {
+        $this->expectException(\Exception::class);
         $config = [
             'invalidArg' => true,
         ];
@@ -213,11 +212,10 @@ class AttributeLimitTest extends TestCase
 
     /**
      * Test for invalid attribute name
-     *
-     * @expectedException Exception
      */
     public function testInvalidAttributeName()
     {
+        $this->expectException(\Exception::class);
         $config = [
             null
         ];
@@ -441,11 +439,10 @@ class AttributeLimitTest extends TestCase
      *
      * This test is very unlikely and would require malformed metadata processing.
      * Cannot be generated via config options.
-     *
-     * @expectedException Exception
      */
     public function testMatchAttributeValuesNotArray()
     {
+        $this->expectException(\Exception::class);
         $config = [
         ];
 

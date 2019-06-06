@@ -2,7 +2,9 @@
 
 namespace SimpleSAML\Logger;
 
+use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
+use SimpleSAML\Utils;
 
 /**
  * A logging handler that dumps logs to files.
@@ -13,7 +15,6 @@ use SimpleSAML\Logger;
  */
 class FileLoggingHandler implements LoggingHandlerInterface
 {
-
     /**
      * A string with the path to the file where we should log our messages.
      *
@@ -24,6 +25,8 @@ class FileLoggingHandler implements LoggingHandlerInterface
     /**
      * This array contains the mappings from syslog log levels to names. Copied more or less directly from
      * SimpleSAML\Logger\ErrorLogLoggingHandler.
+     *
+     * @var array
      */
     private static $levelNames = [
         Logger::EMERG   => 'EMERGENCY',
@@ -35,14 +38,19 @@ class FileLoggingHandler implements LoggingHandlerInterface
         Logger::INFO    => 'INFO',
         Logger::DEBUG   => 'DEBUG',
     ];
+
+    /** @var string|null */
     protected $processname = null;
-    protected $format;
+
+    /** @var string */
+    protected $format = "%b %d %H:%M:%S";
 
 
     /**
      * Build a new logging handler based on files.
+     * @param \SimpleSAML\Configuration $config
      */
-    public function __construct(\SimpleSAML\Configuration $config)
+    public function __construct(Configuration $config)
     {
         // get the metadata handler option from the configuration
         $this->logFile = $config->getPathValue('loggingdir', 'log/').
@@ -62,7 +70,7 @@ class FileLoggingHandler implements LoggingHandlerInterface
             }
         }
 
-        \SimpleSAML\Utils\Time::initTimezone();
+        Utils\Time::initTimezone();
     }
 
 
@@ -70,6 +78,7 @@ class FileLoggingHandler implements LoggingHandlerInterface
      * Set the format desired for the logs.
      *
      * @param string $format The format used for logs.
+     * @return void
      */
     public function setLogFormat($format)
     {
@@ -82,6 +91,7 @@ class FileLoggingHandler implements LoggingHandlerInterface
      *
      * @param int    $level The log level.
      * @param string $string The formatted message to log.
+     * @return void
      */
     public function log($level, $string)
     {

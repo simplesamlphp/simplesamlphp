@@ -19,6 +19,7 @@ $state = \SimpleSAML\Auth\State::loadState($authStateId, \SimpleSAML\Module\mult
 
 if (array_key_exists("\SimpleSAML\Auth\Source.id", $state)) {
     $authId = $state["\SimpleSAML\Auth\Source.id"];
+    /** @var \SimpleSAML\Module\multiauth\Auth\Source\MultiAuth $as */
     $as = \SimpleSAML\Auth\Source::getById($authId);
 } else {
     $as = null;

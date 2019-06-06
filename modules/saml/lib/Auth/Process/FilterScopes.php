@@ -3,6 +3,7 @@
 namespace SimpleSAML\Module\saml\Auth\Process;
 
 use SimpleSAML\Logger;
+use SimpleSAML\Utils;
 
 /**
  * Filter to remove attribute values which are not properly scoped.
@@ -15,7 +16,7 @@ use SimpleSAML\Logger;
 class FilterScopes extends \SimpleSAML\Auth\ProcessingFilter
 {
     /**
-     * Stores any pre-configured scoped attributes which come from the filter configuration.
+     * @var array Stores any pre-configured scoped attributes which come from the filter configuration.
      */
     private $scopedAttributes = [
         'eduPersonScopedAffiliation',
@@ -44,6 +45,7 @@ class FilterScopes extends \SimpleSAML\Auth\ProcessingFilter
      * This method applies the filter, removing any values
      *
      * @param array &$request the current request
+     * @return void
      */
     public function process(&$request)
     {
@@ -66,7 +68,7 @@ class FilterScopes extends \SimpleSAML\Auth\ProcessingFilter
             $values = $request['Attributes'][$attribute];
             $newValues = [];
             foreach ($values as $value) {
-                $ep = \SimpleSAML\Utils\Config\Metadata::getDefaultEndpoint($request['Source']['SingleSignOnService']);
+                $ep = Utils\Config\Metadata::getDefaultEndpoint($request['Source']['SingleSignOnService']);
                 $loc = $ep['Location'];
                 $host = parse_url($loc, PHP_URL_HOST);
                 if ($host === null) {

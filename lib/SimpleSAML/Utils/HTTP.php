@@ -1,11 +1,13 @@
 <?php
+
 namespace SimpleSAML\Utils;
 
 use SimpleSAML\Configuration;
+use SimpleSAML\Error;
 use SimpleSAML\Logger;
 use SimpleSAML\Module;
 use SimpleSAML\Session;
-use SimpleSAML\Error;
+use SimpleSAML\XHTML\Template;
 
 /**
  * HTTP-related utility methods.
@@ -338,7 +340,6 @@ class HTTP
 
         // validates the URL's host is among those allowed
         if (is_array($trustedSites)) {
-            assert(is_array($trustedSites));
             $components = parse_url($url);
             $hostname = $components['host'];
 
@@ -462,8 +463,16 @@ class HTTP
 
         // data and headers
         if ($getHeaders) {
-            if (isset($http_response_header)) {
+            /**
+             * Remove for Psalm >=3.0.17
+             * @psalm-suppress UndefinedVariable
+             */
+            if (!empty($http_response_header)) {
                 $headers = [];
+                /**
+                 * Remove for Psalm >=3.0.17
+                 * @psalm-suppress UndefinedVariable
+                 */
                 foreach ($http_response_header as $h) {
                     if (preg_match('@^HTTP/1\.[01]\s+\d{3}\s+@', $h)) {
                         $headers = []; // reset
@@ -726,6 +735,7 @@ class HTTP
 
         return substr($url, $start, $length);
     }
+
 
     /**
      * Retrieve our own host together with the URL path. Please note this function will return the base URL for the
@@ -1146,17 +1156,17 @@ class HTTP
         if ($value === null) {
             $expire = time() - 365 * 24 * 60 * 60;
         } elseif (isset($params['expire'])) {
-            $expire = $params['expire'];
+            $expire = intval($params['expire']);
         } elseif ($params['lifetime'] === 0) {
             $expire = 0;
         } else {
-            $expire = time() + $params['lifetime'];
+            $expire = time() + intval($params['lifetime']);
         }
 
         if ($params['raw']) {
             $success = @setrawcookie(
                 $name,
-                $value,
+                strval($value),
                 $expire,
                 $params['path'],
                 $params['domain'],
@@ -1166,7 +1176,7 @@ class HTTP
         } else {
             $success = @setcookie(
                 $name,
-                $value,
+                strval($value),
                 $expire,
                 $params['path'],
                 $params['domain'],
@@ -1217,7 +1227,7 @@ class HTTP
             self::redirect(self::getSecurePOSTRedirectURL($destination, $data));
         }
 
-        $p = new \SimpleSAML\XHTML\Template($config, 'post.php');
+        $p = new Template($config, 'post.php');
         $p->data['destination'] = $destination;
         $p->data['post'] = $data;
         $p->show();

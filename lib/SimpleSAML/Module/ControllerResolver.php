@@ -33,7 +33,6 @@ use Symfony\Component\Routing\RouteCollection;
  */
 class ControllerResolver extends SymfonyControllerResolver implements ArgumentResolverInterface
 {
-
     /** @var ArgumentMetadataFactory */
     protected $argFactory;
 
@@ -44,9 +43,9 @@ class ControllerResolver extends SymfonyControllerResolver implements ArgumentRe
     protected $module;
 
     /** @var array */
-    protected $params;
+    protected $params = [];
 
-    /** @var RouteCollection */
+    /** @var RouteCollection|null */
     protected $routes;
 
 
@@ -137,7 +136,7 @@ class ControllerResolver extends SymfonyControllerResolver implements ArgumentRe
 
         /** @var ArgumentMetadata $argMeta */
         foreach ($metadata as $argMeta) {
-            if ($argMeta->getType() === 'Symfony\Component\HttpFoundation\Request') {
+            if ($argMeta->getType() === Request::class) {
                 // add request argument
                 $args[] = $request;
                 continue;
@@ -172,6 +171,7 @@ class ControllerResolver extends SymfonyControllerResolver implements ArgumentRe
      * Set the configuration to use by the controllers.
      *
      * @param \SimpleSAML\Configuration $config
+     * @return void
      */
     public function setConfiguration(Configuration $config)
     {
@@ -184,6 +184,7 @@ class ControllerResolver extends SymfonyControllerResolver implements ArgumentRe
      * Set the session to use by the controllers.
      *
      * @param \SimpleSAML\Session $session
+     * @return void
      */
     public function setSession(Session $session)
     {

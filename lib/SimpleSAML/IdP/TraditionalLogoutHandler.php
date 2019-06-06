@@ -2,8 +2,11 @@
 
 namespace SimpleSAML\IdP;
 
+use SimpleSAML\Auth;
+use SimpleSAML\Error;
+use SimpleSAML\IdP;
 use SimpleSAML\Logger;
-use SimpleSAML\Utils\HTTP;
+use SimpleSAML\Utils;
 
 /**
  * Class that handles traditional logout.
@@ -26,7 +29,7 @@ class TraditionalLogoutHandler implements LogoutHandlerInterface
      *
      * @param \SimpleSAML\IdP $idp The IdP to log out from.
      */
-    public function __construct(\SimpleSAML\IdP $idp)
+    public function __construct(IdP $idp)
     {
         $this->idp = $idp;
     }
@@ -38,6 +41,7 @@ class TraditionalLogoutHandler implements LogoutHandlerInterface
      * This function never returns.
      *
      * @param array &$state The logout state.
+     * @return void
      */
     private function logoutNextSP(array &$state)
     {
@@ -46,15 +50,15 @@ class TraditionalLogoutHandler implements LogoutHandlerInterface
             $this->idp->finishLogout($state);
         }
 
-        $relayState = \SimpleSAML\Auth\State::saveState($state, 'core:LogoutTraditional', true);
+        $relayState = Auth\State::saveState($state, 'core:LogoutTraditional', true);
 
         $id = $association['id'];
         Logger::info('Logging out of '.var_export($id, true).'.');
 
         try {
-            $idp = \SimpleSAML\IdP::getByState($association);
+            $idp = IdP::getByState($association);
             $url = call_user_func([$association['Handler'], 'getLogoutURL'], $idp, $association, $relayState);
-            HTTP::redirectTrustedURL($url);
+            Utils\HTTP::redirectTrustedURL($url);
         } catch (\Exception $e) {
             Logger::warning('Unable to initialize logout to '.var_export($id, true).'.');
             $this->idp->terminateAssociation($id);
@@ -74,6 +78,7 @@ class TraditionalLogoutHandler implements LogoutHandlerInterface
      *
      * @param array  &$state The logout state.
      * @param string $assocId The association that started the logout.
+     * @return void
      */
     public function startLogout(array &$state, $assocId)
     {
@@ -91,19 +96,20 @@ class TraditionalLogoutHandler implements LogoutHandlerInterface
      * @param string $assocId The association that is terminated.
      * @param string|null $relayState The RelayState from the start of the logout.
      * @param \SimpleSAML\Error\Exception|null $error The error that occurred during session termination (if any).
+     * @return void
      *
      * @throws \SimpleSAML\Error\Exception If the RelayState was lost during logout.
      */
-    public function onResponse($assocId, $relayState, \SimpleSAML\Error\Exception $error = null)
+    public function onResponse($assocId, $relayState, Error\Exception $error = null)
     {
         assert(is_string($assocId));
         assert(is_string($relayState) || $relayState === null);
 
         if ($relayState === null) {
-            throw new \SimpleSAML\Error\Exception('RelayState lost during logout.');
+            throw new Error\Exception('RelayState lost during logout.');
         }
 
-        $state = \SimpleSAML\Auth\State::loadState($relayState, 'core:LogoutTraditional');
+        $state = Auth\State::loadState($relayState, 'core:LogoutTraditional');
 
         if ($error === null) {
             Logger::info('Logged out of '.var_export($assocId, true).'.');

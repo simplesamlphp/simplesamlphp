@@ -2,6 +2,8 @@
 
 namespace SimpleSAML\Module\core\Auth\Process;
 
+use SimpleSAML\Error;
+
 /**
  * Filter to modify attributes using regular expressions
  *
@@ -10,7 +12,6 @@ namespace SimpleSAML\Module\core\Auth\Process;
  * @author Jacob Christiansen, WAYF
  * @package SimpleSAMLphp
  */
-
 class AttributeAlter extends \SimpleSAML\Auth\ProcessingFilter
 {
     /**
@@ -46,11 +47,11 @@ class AttributeAlter extends \SimpleSAML\Auth\ProcessingFilter
     /**
      * Initialize this filter.
      *
-     * @param array $config  Configuration information about this filter.
+     * @param array &$config  Configuration information about this filter.
      * @param mixed $reserved  For future use.
      * @throws \SimpleSAML\Error\Exception In case of invalid configuration.
      */
-    public function __construct($config, $reserved)
+    public function __construct(&$config, $reserved)
     {
         parent::__construct($config, $reserved);
 
@@ -65,7 +66,7 @@ class AttributeAlter extends \SimpleSAML\Auth\ProcessingFilter
                 } elseif ($value === '%remove') {
                     $this->remove = true;
                 } else {
-                    throw new \SimpleSAML\Error\Exception('Unknown flag : '.var_export($value, true));
+                    throw new Error\Exception('Unknown flag : '.var_export($value, true));
                 }
                 continue;
             } elseif ($name === 'pattern') {
@@ -91,6 +92,7 @@ class AttributeAlter extends \SimpleSAML\Auth\ProcessingFilter
      *
      * @param array &$request The current request.
      * @throws \SimpleSAML\Error\Exception In case of invalid configuration.
+     * @return void
      */
     public function process(&$request)
     {
@@ -102,20 +104,20 @@ class AttributeAlter extends \SimpleSAML\Auth\ProcessingFilter
 
         // check that all required params are set in config
         if (empty($this->pattern) || empty($this->subject)) {
-            throw new \SimpleSAML\Error\Exception("Not all params set in config.");
+            throw new Error\Exception("Not all params set in config.");
         }
 
         if (!$this->replace && !$this->remove && $this->replacement === false) {
-            throw new \SimpleSAML\Error\Exception("'replacement' must be set if neither '%replace' nor ".
+            throw new Error\Exception("'replacement' must be set if neither '%replace' nor ".
                 "'%remove' are set.");
         }
 
         if (!$this->replace && $this->replacement === null) {
-            throw new \SimpleSAML\Error\Exception("'%replace' must be set if 'replacement' is null.");
+            throw new Error\Exception("'%replace' must be set if 'replacement' is null.");
         }
 
         if ($this->replace && $this->remove) {
-            throw new \SimpleSAML\Error\Exception("'%replace' and '%remove' cannot be used together.");
+            throw new Error\Exception("'%replace' and '%remove' cannot be used together.");
         }
 
         if (empty($this->target)) {
@@ -124,7 +126,7 @@ class AttributeAlter extends \SimpleSAML\Auth\ProcessingFilter
         }
 
         if ($this->subject !== $this->target && $this->remove) {
-            throw new \SimpleSAML\Error\Exception("Cannot use '%remove' when 'target' is different than 'subject'.");
+            throw new Error\Exception("Cannot use '%remove' when 'target' is different than 'subject'.");
         }
 
         if (!array_key_exists($this->subject, $attributes)) {

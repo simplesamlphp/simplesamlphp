@@ -42,7 +42,7 @@ foreach ($slob as $binding) {
     }
     $metaArray20['SingleLogoutService'][] = [
         'Binding'  => $binding,
-        'Location' => $slol,
+        'Location' => $spconfig->getString('SingleLogoutServiceLocation', $slol),
     ];
 }
 
@@ -106,7 +106,7 @@ foreach ($assertionsconsumerservices as $services) {
     $index++;
 }
 
-$metaArray20['AssertionConsumerService'] = $eps;
+$metaArray20['AssertionConsumerService'] = $spconfig->getArray('AssertionConsumerService', $eps);
 
 $keys = [];
 $certInfo = \SimpleSAML\Utils\Crypto::loadPublicKey($spconfig, false, 'new_');
@@ -268,7 +268,7 @@ if (isset($metaArray20['attributes']) && is_array($metaArray20['attributes'])) {
 $xml = \SimpleSAML\Metadata\Signer::sign($xml, $spconfig->toArray(), 'SAML 2 SP');
 
 if (array_key_exists('output', $_REQUEST) && $_REQUEST['output'] == 'xhtml') {
-    $t = new \SimpleSAML\XHTML\Template($config, 'metadata.php', 'admin');
+    $t = new \SimpleSAML\XHTML\Template($config, 'saml:metadata.php', 'admin');
 
     $t->data['clipboard.js'] = true;
     $t->data['header'] = 'saml20-sp'; // TODO: Replace with headerString in 2.0

@@ -1,7 +1,11 @@
 <?php
+
 namespace SimpleSAML\Utils;
 
+use SimpleSAML\Auth as Authentication;
+use SimpleSAML\Error;
 use SimpleSAML\Module;
+use SimpleSAML\Session;
 
 /**
  * Auth-related utility methods.
@@ -46,7 +50,7 @@ class Auth
             throw new \InvalidArgumentException('Invalid input parameters.');
         }
 
-        $as = new \SimpleSAML\Auth\Simple('admin');
+        $as = new Authentication\Simple('admin');
         return $as->getLogoutURL($returnTo = null);
     }
 
@@ -60,7 +64,7 @@ class Auth
      */
     public static function isAdmin()
     {
-        $session = \SimpleSAML\Session::getSessionFromRequest();
+        $session = Session::getSessionFromRequest();
         return $session->isValid('admin') || $session->isValid('login-admin');
     }
 
@@ -83,11 +87,11 @@ class Auth
         }
 
         // not authenticated as admin user, start authentication
-        if (\SimpleSAML\Auth\Source::getById('admin') !== null) {
-            $as = new \SimpleSAML\Auth\Simple('admin');
+        if (Authentication\Source::getById('admin') !== null) {
+            $as = new Authentication\Simple('admin');
             $as->login();
         } else {
-            throw new \SimpleSAML\Error\Exception(
+            throw new Error\Exception(
                 'Cannot find "admin" auth source, and admin privileges are required.'
             );
         }

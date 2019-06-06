@@ -2,20 +2,24 @@
 
 namespace SimpleSAML\Module\saml\IdP;
 
+use PDO;
+use SimpleSAML\Error;
+use SimpleSAML\Store;
+
 /**
  * Helper class for working with persistent NameIDs stored in SQL datastore.
  *
  * @package SimpleSAMLphp
  */
-
 class SQLNameID
 {
     /**
      * Create NameID table in SQL, if it is missing.
      *
      * @param \SimpleSAML\Store\SQL $store  The datastore.
+     * @return void
      */
-    private static function createTable(\SimpleSAML\Store\SQL $store)
+    private static function createTable(Store\SQL $store)
     {
         if ($store->getTableVersion('saml_PersistentNameID') === 1) {
             return;
@@ -47,9 +51,9 @@ class SQLNameID
      */
     private static function getStore()
     {
-        $store = \SimpleSAML\Store::getInstance();
-        if (!($store instanceof \SimpleSAML\Store\SQL)) {
-            throw new \SimpleSAML\Error\Exception(
+        $store = Store::getInstance();
+        if (!($store instanceof Store\SQL)) {
+            throw new Error\Exception(
                 'SQL NameID store requires SimpleSAMLphp to be configured with a SQL datastore.'
             );
         }
@@ -68,6 +72,7 @@ class SQLNameID
      * @param string $spEntityId  The SP entityID.
      * @param string $user  The user's unique identificator (e.g. username).
      * @param string $value  The NameID value.
+     * @return void
      */
     public static function add($idpEntityId, $spEntityId, $user, $value)
     {
@@ -98,7 +103,7 @@ class SQLNameID
      * @param string $idpEntityId  The IdP entityID.
      * @param string $spEntityId  The SP entityID.
      * @param string $user  The user's unique identificator (e.g. username).
-     * @return string|NULL $value  The NameID value, or NULL of no NameID value was found.
+     * @return string|null $value  The NameID value, or NULL of no NameID value was found.
      */
     public static function get($idpEntityId, $spEntityId, $user)
     {
@@ -119,7 +124,7 @@ class SQLNameID
         $query = $store->pdo->prepare($query);
         $query->execute($params);
 
-        $row = $query->fetch(\PDO::FETCH_ASSOC);
+        $row = $query->fetch(PDO::FETCH_ASSOC);
         if ($row === false) {
             // No NameID found
             return null;
@@ -135,6 +140,7 @@ class SQLNameID
      * @param string $idpEntityId  The IdP entityID.
      * @param string $spEntityId  The SP entityID.
      * @param string $user  The user's unique identificator (e.g. username).
+     * @return void
      */
     public static function delete($idpEntityId, $spEntityId, $user)
     {
@@ -182,7 +188,7 @@ class SQLNameID
         $query->execute($params);
 
         $res = [];
-        while (($row = $query->fetch(\PDO::FETCH_ASSOC)) !== false) {
+        while (($row = $query->fetch(PDO::FETCH_ASSOC)) !== false) {
             $res[$row['_user']] = $row['_value'];
         }
 

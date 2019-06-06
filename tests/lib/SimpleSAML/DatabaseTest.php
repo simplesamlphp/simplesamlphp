@@ -79,11 +79,11 @@ class DatabaseTest extends TestCase
      * @covers SimpleSAML\Database::generateInstanceId
      * @covers SimpleSAML\Database::__construct
      * @covers SimpleSAML\Database::connect
-     * @expectedException Exception
      * @test
      */
     public function connectionFailure()
     {
+        $this->expectException(\Exception::class);
         $config = [
             'database.dsn'        => 'mysql:host=localhost;dbname=saml',
             'database.username'   => 'notauser',
@@ -178,7 +178,7 @@ class DatabaseTest extends TestCase
     {
         $getSlave = self::getMethod('getSlave');
 
-        $master = spl_object_hash(\PHPUnit_Framework_Assert::readAttribute($this->db, 'dbMaster'));
+        $master = spl_object_hash(\PHPUnit\Framework\Assert::readAttribute($this->db, 'dbMaster'));
         $slave = spl_object_hash($getSlave->invokeArgs($this->db, []));
 
         $this->assertTrue(($master == $slave), "getSlave should have returned the master database object");
@@ -201,7 +201,7 @@ class DatabaseTest extends TestCase
         $sspConfiguration = new \SimpleSAML\Configuration($config, "test/SimpleSAML/DatabaseTest.php");
         $msdb = \SimpleSAML\Database::getInstance($sspConfiguration);
 
-        $slaves = \PHPUnit_Framework_Assert::readAttribute($msdb, 'dbSlaves');
+        $slaves = \PHPUnit\Framework\Assert::readAttribute($msdb, 'dbSlaves');
         $gotSlave = spl_object_hash($getSlave->invokeArgs($msdb, []));
 
         $this->assertEquals(
@@ -263,11 +263,11 @@ class DatabaseTest extends TestCase
     /**
      * @covers SimpleSAML\Database::read
      * @covers SimpleSAML\Database::query
-     * @expectedException Exception
      * @test
      */
     public function readFailure()
     {
+        $this->expectException(\Exception::class);
         $table = $this->db->applyPrefix("sspdbt");
         $this->assertEquals($this->config->getString('database.prefix')."sspdbt", $table);
 
@@ -278,11 +278,11 @@ class DatabaseTest extends TestCase
     /**
      * @covers SimpleSAML\Database::write
      * @covers SimpleSAML\Database::exec
-     * @expectedException Exception
      * @test
      */
     public function noSuchTable()
     {
+        $this->expectException(\Exception::class);
         $this->db->write("DROP TABLE phpunit_nonexistent", false);
     }
 

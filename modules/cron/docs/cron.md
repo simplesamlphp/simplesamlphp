@@ -111,7 +111,7 @@ Below is an example of invoking the script. It will:
 * Run the `cron.php` script with the `hourly` tag
 * Use `nice` to lower the priority below that of web server processes
 
-```bash
+```
 su -s "/bin/sh" \
    -c "nice -n 10 \
        php -d max_execution_time=120 -d memory_limit=600M \

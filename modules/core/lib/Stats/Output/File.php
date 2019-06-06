@@ -2,12 +2,14 @@
 
 namespace SimpleSAML\Module\core\Stats\Output;
 
+use SimpleSAML\Configuration;
+use SimpleSAML\Error;
+
 /**
  * Statistics logger that writes to a set of log files
  *
  * @package SimpleSAMLphp
  */
-
 class File extends \SimpleSAML\Stats\Output
 {
     /**
@@ -24,16 +26,17 @@ class File extends \SimpleSAML\Stats\Output
 
     /**
      * The current file date.
-     * @var string
+     * @var string|null
      */
     private $fileDate = null;
+
 
     /**
      * Initialize the output.
      *
      * @param \SimpleSAML\Configuration $config  The configuration for this output.
      */
-    public function __construct(\SimpleSAML\Configuration $config)
+    public function __construct(Configuration $config)
     {
         $this->logDir = $config->getPathValue('directory');
         if ($this->logDir === null) {
@@ -44,10 +47,12 @@ class File extends \SimpleSAML\Stats\Output
         }
     }
 
+
     /**
      * Open a log file.
      *
      * @param string $date  The date for the log file.
+     * @return void
      */
     private function openLog($date)
     {
@@ -61,7 +66,7 @@ class File extends \SimpleSAML\Stats\Output
         $fileName = $this->logDir.'/'.$date.'.log';
         $this->file = @fopen($fileName, 'a');
         if ($this->file === false) {
-            throw new \SimpleSAML\Error\Exception('Error opening log file: '.var_export($fileName, true));
+            throw new Error\Exception('Error opening log file: '.var_export($fileName, true));
         }
 
         // Disable output buffering
@@ -70,10 +75,12 @@ class File extends \SimpleSAML\Stats\Output
         $this->fileDate = $date;
     }
 
+
     /**
      * Write a stats event.
      *
      * @param array $data  The event.
+     * @return void
      */
     public function emit(array $data)
     {

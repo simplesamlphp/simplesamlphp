@@ -6,23 +6,23 @@ namespace SimpleSAML\Test\Metadata;
  * Class MetaDataStorageSourceTest
  */
 
-class MetaDataStorageSourceTest extends \PHPUnit_Framework_TestCase
+class MetaDataStorageSourceTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Test \SimpleSAML\Metadata\MetaDataStorageSourceTest::getConfig XML bad source
-     * @expectedException \Exception
      */
     public function testBadXMLSource()
     {
+        $this->expectException(\Exception::class);
         \SimpleSAML\Metadata\MetaDataStorageSource::getSource(["type"=>"xml", "foo"=>"baa"]);
     }
 
     /**
      * Test \SimpleSAML\Metadata\MetaDataStorageSourceTest::getConfig invalid static XML source
-     * @expectedException Exception
      */
     public function testInvalidStaticXMLSource()
     {
+        $this->expectException(\Exception::class);
         $strTestXML = "
 <EntityDescriptor ID=\"_12345678-90ab-cdef-1234-567890abcdef\" entityID=\"https://saml.idp/entityid\" xmlns=\"urn:oasis:names:tc:SAML:2.0:metadata\">
 </EntityDescriptor>
