@@ -57,7 +57,7 @@ abstract class MetaDataStorageSource
      *
      * @param array $sourceConfig Associative array with the configuration for this metadata source.
      *
-     * @return MetaDataStorageSource An instance of a metadata source with the given configuration.
+     * @return \SimpleSAML\Metadata\MetaDataStorageSource An instance of a metadata source with the given configuration.
      *
      * @throws \Exception If the metadata source type is invalid.
      */

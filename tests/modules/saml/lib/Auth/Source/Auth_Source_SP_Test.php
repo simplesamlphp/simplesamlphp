@@ -9,6 +9,7 @@ use \SimpleSAML\Configuration;
 use SimpleSAML\Module\saml\Error\NoAvailableIDP;
 use SimpleSAML\Module\saml\Error\NoSupportedIDP;
 use SimpleSAML\Test\Metadata\MetaDataStorageSourceTest;
+use SimpleSAML\Test\Utils\ClearStateTestCase;
 
 /**
  * Custom Exception to throw to terminate a TestCase.
@@ -73,7 +74,7 @@ class SPTester extends \SimpleSAML\Module\saml\Auth\Source\SP
 /**
  * Set of test cases for \SimpleSAML\Module\saml\Auth\Source\SP.
  */
-class SPTest extends TestCase
+class SPTest extends ClearStateTestCase
 {
 
     private $idpMetadata = null;
@@ -96,6 +97,7 @@ class SPTest extends TestCase
 
     protected function setUp()
     {
+        parent::setUp();
         $this->idpConfigArray = [
             'metadata-set'        => 'saml20-idp-remote',
             'entityid'            => 'https://engine.surfconext.nl/authentication/idp/metadata',

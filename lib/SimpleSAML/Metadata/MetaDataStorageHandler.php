@@ -271,7 +271,6 @@ class MetaDataStorageHandler implements \SimpleSAML\Utils\ClearableState
      */
     public function getMetaDataForEntities(array $entityIds, $set)
     {
-
         $result = [];
         foreach ($this->sources as $source) {
             $srcList = $source->getMetaDataForEntities($entityIds, $set);
