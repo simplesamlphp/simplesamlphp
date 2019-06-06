@@ -44,6 +44,18 @@ The following options are common between both the SAML 2.0 protocol and Shibbole
 `icon`
 :   A logo which will be shown next to this IdP in the discovery service.
 
+`name`
+:   The name of this IdP. Will be used by various modules when they need to show a name of the SP to the user.
+
+:   If this option is unset, the organization name will be used instead (if it is available).
+
+:   This option can be translated into multiple languages by specifying the value as an array of language-code to translated name:
+
+        'name' => [
+            'en' => 'A service',
+            'no' => 'En tjeneste',
+        ],
+
 `OrganizationName`
 :   The name of the organization responsible for this SPP.
     This name does not need to be suitable for display to end users.
@@ -72,18 +84,6 @@ The following options are common between both the SAML 2.0 protocol and Shibbole
 :   This option can be translated into multiple languages by specifying the value as an array of language-code to translated URL.
 
 :   *Note*: If you specify this option, you must also specify the `OrganizationName` option.
-
-`name`
-:   The name of this IdP. Will be used by various modules when they need to show a name of the SP to the user.
-
-:   If this option is unset, the organization name will be used instead (if it is available).
-
-:   This option can be translated into multiple languages by specifying the value as an array of language-code to translated name:
-
-        'name' => [
-            'en' => 'A service',
-            'no' => 'En tjeneste',
-        ],
 
 `scope`
 :   An array with scopes valid for this IdP.
@@ -169,6 +169,19 @@ The following SAML 2.0 options are available:
 :   For compatibility purposes, `null` is equivalent to Transient and a format
     can be defined as a string instead of an array. These variants are deprecated.
 
+`signature.algorithm`
+:   The algorithm to use when signing any message sent to this specific identity provider. Defaults to RSA-SHA256.
+:   Note that this option also exists in the SP configuration.
+    This value in the IdP remote metadata overrides the value in the SP configuration.
+:   Possible values:
+
+    * `http://www.w3.org/2000/09/xmldsig#rsa-sha1`
+       *Note*: the use of SHA1 is **deprecated** and will be disallowed in the future.
+    * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha256`
+      The default.
+    * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha384`
+    * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha512`
+
 `sign.authnrequest`
 :   Whether to sign authentication requests sent to this IdP.
 
@@ -188,19 +201,6 @@ The following SAML 2.0 options are available:
 
 `SingleLogoutServiceResponse`
 :   Endpoint URL for logout responses. Overrides the `SingleLogoutService`-option for responses.
-
-`signature.algorithm`
-:   The algorithm to use when signing any message sent to this specific identity provider. Defaults to RSA-SHA256.
-:   Note that this option also exists in the SP configuration.
-    This value in the IdP remote metadata overrides the value in the SP configuration.
-:   Possible values:
-
-    * `http://www.w3.org/2000/09/xmldsig#rsa-sha1`
-       *Note*: the use of SHA1 is **deprecated** and will be disallowed in the future.
-    * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha256`
-      The default.
-    * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha384`
-    * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha512`
 
 `SPNameQualifier`
 :   This corresponds to the SPNameQualifier in the SAML 2.0 specification. It allows to give subjects a SP specific namespace. This option is rarely used, so if you don't need it, leave it out. When left out, SimpleSAMLphp assumes the entityID of your SP as the SPNameQualifier.
