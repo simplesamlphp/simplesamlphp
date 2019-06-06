@@ -201,6 +201,7 @@ class Crypto
             throw new \InvalidArgumentException('Invalid input parameters.');
         }
 
+        $data = false;
         $file = $metadata->getString($prefix.'privatekey', null);
         if ($file === null) {
             // no private key found
