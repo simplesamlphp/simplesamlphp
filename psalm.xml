@@ -12,6 +12,7 @@
         <LessSpecificReturnType errorLevel="info" />
 
         <!-- level 3 issues - slightly lazy code writing, but probably low false-negatives -->
+        <DeprecatedClass errorLevel="info" />
         <DeprecatedMethod errorLevel="info" />
 
         <MissingClosureReturnType errorLevel="info" />
