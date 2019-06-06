@@ -3,11 +3,13 @@
     name="SimpleSAMLphp"
     useDocblockTypes="true"
     totallyTyped="false"
+    hideExternalErrors="true"
 >
     <projectFiles>
         <directory name="lib/SimpleSAML/Auth" />
         <directory name="lib/SimpleSAML/Bindings" />
         <directory name="lib/SimpleSAML/Error" />
+        <directory name="lib/SimpleSAML/HTTP" />
         <directory name="lib/SimpleSAML/Utils" />
 
         <!-- Ignore deprecated classes -->
@@ -40,6 +42,13 @@
         <!-- Ignore these errors until we are fully typehinted -->
         <DocblockTypeContradiction errorLevel="suppress" />
         <RedundantConditionGivenDocblockType errorLevel="suppress" />
+
+        <!-- -->
+        <MissingDependency>
+            <errorLevel type="suppress">
+                <file name="lib/SimpleSAML/HTTP/Router.php" />
+            </errorLevel>
+        </MissingDependency>
     </issueHandlers>
 
     <stubs>

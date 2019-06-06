@@ -21,19 +21,19 @@ use Symfony\Component\Routing\RequestContext;
  */
 class Router
 {
-    /** @var ArgumentResolver */
+    /** @var \Symfony\Component\HttpKernel\Controller\ArgumentResolver */
     protected $arguments;
 
     /** @var \SimpleSAML\Configuration|null */
     protected $config = null;
 
-    /** @var RequestContext */
+    /** @var \Symfony\Component\Routing\RequestContext */
     protected $context;
 
-    /** @var EventDispatcher */
+    /** @var \Symfony\Component\EventDispatcher\EventDispatcher */
     protected $dispatcher;
 
-    /** @var Request|null */
+    /** @var \Symfony\Component\HttpFoundation\Request|null */
     protected $request = null;
 
     /** @var \SimpleSAML\Module\ControllerResolver */
@@ -42,7 +42,7 @@ class Router
     /** @var \SimpleSAML\Session|null */
     protected $session = null;
 
-    /** @var RequestStack|null */
+    /** @var \Symfony\Component\HttpFoundation\RequestStack|null */
     protected $stack = null;
 
 
@@ -65,9 +65,10 @@ class Router
      *
      * If no specific arguments are given, the default instances will be used (configuration, session, etc).
      *
-     * @param Request|null $request The request to process. Defaults to the current one.
+     * @param \Symfony\Component\HttpFoundation\Request|null $request
+     *     The request to process. Defaults to the current one.
      *
-     * @return Response A response suitable for the given request.
+     * @return \Symfony\Component\HttpFoundation\Response A response suitable for the given request.
      *
      * @throws \Exception If an error occurs.
      */
@@ -79,10 +80,13 @@ class Router
         if ($this->session === null) {
             $this->setSession(Session::getSessionFromRequest());
         }
-        $this->request = $request;
+
         if ($request === null) {
             $this->request = Request::createFromGlobals();
+        } else {
+            $this->request = $request;
         }
+
         $stack = new RequestStack();
         $stack->push($this->request);
         $this->context->fromRequest($this->request);
@@ -94,11 +98,14 @@ class Router
     /**
      * Send a given response to the browser.
      *
-     * @param Response $response The response to send.
+     * @param \Symfony\Component\HttpFoundation\Response $response The response to send.
      * @return void
      */
     public function send(Response $response)
     {
+        if ($this->request === null) {
+            throw new \Exception("No request found to respond to");
+        }
         $response->prepare($this->request);
         $response->send();
     }
