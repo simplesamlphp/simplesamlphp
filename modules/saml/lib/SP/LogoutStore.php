@@ -38,7 +38,7 @@ class LogoutStore
             try {
                 $store->pdo->exec($query);
             } catch (\Exception $e) {
-                \SimpleSAML\Logger::warning($store->pdo->errorInfo());
+                \SimpleSAML\Logger::warning('Database error: '.var_export($store->pdo->errorInfo(), true));
                 return;
             }
             $store->setTableVersion('saml_LogoutStore', 2);
