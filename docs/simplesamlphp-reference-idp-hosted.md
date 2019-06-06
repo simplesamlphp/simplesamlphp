@@ -35,12 +35,6 @@ Common options
 `auth`
 :   Which authentication module should be used to authenticate users on
     this IdP.
-<!--
-`authority`
-:   Who is authorized to create sessions for this IdP. Can be
-    `login` for LDAP login module, or `saml2` for SAML 2.0 SP.
-    Specifying this parameter is highly recommended.
--->
 
 `authproc`
 :   Used to manipulate attributes, and limit access for each SP. See
