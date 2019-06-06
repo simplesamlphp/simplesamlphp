@@ -5,6 +5,7 @@
     totallyTyped="false"
 >
     <projectFiles>
+        <directory name="lib/SimpleSAML/Auth" />
         <directory name="lib/SimpleSAML/Utils" />
 
         <!-- Ignore deprecated classes -->

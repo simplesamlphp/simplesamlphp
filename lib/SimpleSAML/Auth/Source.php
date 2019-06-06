@@ -126,6 +126,10 @@ abstract class Source
         // the default implementation just copies over the previous authentication data
         $session = Session::getSessionFromRequest();
         $data = $session->getAuthState($this->authId);
+        if ($data === null) {
+            throw new Error\NoState();
+        }
+
         foreach ($data as $k => $v) {
             $state[$k] = $v;
         }
@@ -333,6 +337,7 @@ abstract class Source
             $authSource = new $className($info, $config);
         }
 
+        /** @var \SimpleSAML\Auth\Source $authSource */
         return $authSource;
     }
 
