@@ -163,6 +163,25 @@ The following SAML 2.0 options are available:
 
 :   Note that this option can be set for each SP in the SP-remote metadata.
 
+`attributeencodings`
+:   What encoding should be used for the different attributes. This is
+    an array which maps attribute names to attribute encodings. There
+    are three different encodings:
+
+:   -   `string`: Will include the attribute as a normal string. This is
+        the default.
+
+:   -   `base64`: Store the attribute as a base64 encoded string. This
+        is the default when the `base64attributes`-option is set to
+        `TRUE`.
+
+:   -   `raw`: Store the attribute without any modifications. This
+        makes it possible to include raw XML in the response.
+
+:   Note that this option also exists in the SP-remote metadata, and
+    any value in the SP-remote metadata overrides the one configured
+    in the IdP metadata.
+
 `attributes.NameFormat`
 :   What value will be set in the Format field of attribute
     statements. This parameter can be configured multiple places, and
