@@ -2,9 +2,11 @@
 
 namespace SimpleSAML\Store;
 
-use \SimpleSAML\Configuration;
-use \SimpleSAML\Logger;
-use \SimpleSAML\Store;
+use PDO;
+use PDOException;
+use SimpleSAML\Configuration;
+use SimpleSAML\Logger;
+use SimpleSAML\Store;
 
 /**
  * A data store using a RDBMS to keep the data.
@@ -58,13 +60,13 @@ class SQL extends Store
         $options = $config->getArray('store.sql.options', null);
         $this->prefix = $config->getString('store.sql.prefix', 'simpleSAMLphp');
         try {
-            $this->pdo = new \PDO($dsn, $username, $password, $options);
-        } catch (\PDOException $e) {
+            $this->pdo = new PDO($dsn, $username, $password, $options);
+        } catch (PDOException $e) {
             throw new \Exception("Database error: ".$e->getMessage());
         }
-        $this->pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+        $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $this->driver = $this->pdo->getAttribute(\PDO::ATTR_DRIVER_NAME);
+        $this->driver = $this->pdo->getAttribute(PDO::ATTR_DRIVER_NAME);
 
         if ($this->driver === 'mysql') {
             $this->pdo->exec('SET time_zone = "+00:00"');
@@ -85,7 +87,7 @@ class SQL extends Store
 
         try {
             $fetchTableVersion = $this->pdo->query('SELECT _name, _version FROM '.$this->prefix.'_tableVersion');
-        } catch (\PDOException $e) {
+        } catch (PDOException $e) {
             $this->pdo->exec(
                 'CREATE TABLE '.$this->prefix.
                 '_tableVersion (_name VARCHAR(30) NOT NULL UNIQUE, _version INTEGER NOT NULL)'
@@ -93,7 +95,7 @@ class SQL extends Store
             return;
         }
 
-        while (($row = $fetchTableVersion->fetch(\PDO::FETCH_ASSOC)) !== false) {
+        while (($row = $fetchTableVersion->fetch(PDO::FETCH_ASSOC)) !== false) {
             $this->tableVersions[$row['_name']] = (int) $row['_version'];
         }
     }
@@ -239,7 +241,7 @@ class SQL extends Store
         try {
             $insertQuery->execute($data);
             return;
-        } catch (\PDOException $e) {
+        } catch (PDOException $e) {
             $ecode = (string) $e->getCode();
             switch ($ecode) {
                 case '23505': // PostgreSQL
@@ -308,7 +310,7 @@ class SQL extends Store
         $query = $this->pdo->prepare($query);
         $query->execute($params);
 
-        $row = $query->fetch(\PDO::FETCH_ASSOC);
+        $row = $query->fetch(PDO::FETCH_ASSOC);
         if ($row === false) {
             return null;
         }

@@ -2,6 +2,8 @@
 
 namespace SimpleSAML\Module\saml;
 
+use SAML2\Constants;
+
 /**
  * Class for representing a SAML 2 error.
  *
@@ -114,16 +116,16 @@ class Error extends \SimpleSAML\Error\Exception
         // TODO: remove this branch in 2.0
         } elseif ($exception instanceof \SimpleSAML\Error\NoPassive) {
             $e = new self(
-                \SAML2\Constants::STATUS_RESPONDER,
-                \SAML2\Constants::STATUS_NO_PASSIVE,
+                Constants::STATUS_RESPONDER,
+                Constants::STATUS_NO_PASSIVE,
                 $exception->getMessage(),
                 $exception
             );
         // TODO: remove this branch in 2.0
         } elseif ($exception instanceof \SimpleSAML\Error\ProxyCountExceeded) {
             $e = new self(
-                \SAML2\Constants::STATUS_RESPONDER,
-                \SAML2\Constants::STATUS_PROXY_COUNT_EXCEEDED,
+                Constants::STATUS_RESPONDER,
+                Constants::STATUS_PROXY_COUNT_EXCEEDED,
                 $exception->getMessage(),
                 $exception
             );
@@ -156,11 +158,11 @@ class Error extends \SimpleSAML\Error\Exception
         $e = null;
 
         switch ($this->status) {
-            case \SAML2\Constants::STATUS_RESPONDER:
+            case Constants::STATUS_RESPONDER:
                 switch ($this->subStatus) {
-                    case \SAML2\Constants::STATUS_NO_PASSIVE:
+                    case Constants::STATUS_NO_PASSIVE:
                         $e = new \SimpleSAML\Module\saml\Error\NoPassive(
-                            \SAML2\Constants::STATUS_RESPONDER,
+                            Constants::STATUS_RESPONDER,
                             $this->statusMessage
                         );
                         break;

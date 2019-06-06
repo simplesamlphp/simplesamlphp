@@ -2,6 +2,8 @@
 
 namespace SimpleSAML;
 
+use SimpleSAML\Utils;
+
 /**
  * This file implements functions to read and write to a group of memcache
  * servers.
@@ -417,7 +419,7 @@ class Memcache
     {
         // get the configuration instance
         $config = Configuration::getInstance();
-        assert($config instanceof \SimpleSAML\Configuration);
+        assert($config instanceof Configuration);
 
         // get the expire-value from the configuration
         $expire = $config->getInteger('memcache_store.expires', 0);

@@ -4,6 +4,10 @@ namespace SimpleSAML\Metadata;
 
 use RobRichards\XMLSecLibs\XMLSecurityKey;
 use RobRichards\XMLSecLibs\XMLSecurityDSig;
+use SAML2\DOMDocumentFactory;
+use SimpleSAML\Configuration;
+use SimpleSAML\Error;
+use SimpleSAML\Utils;
 
 /**
  * This class implements a helper function for signing of metadata.
@@ -163,7 +167,7 @@ class Signer
         // configure the algorithm to use
         if (array_key_exists('metadata.sign.algorithm', $entityMetadata)) {
             if (!is_string($entityMetadata['metadata.sign.algorithm'])) {
-                throw new \SimpleSAML\Error\CriticalConfigurationError(
+                throw new Error\CriticalConfigurationError(
                     "Invalid value for the 'metadata.sign.algorithm' configuration option for the ".$type.
                     "'".$entityMetadata['entityid']."'. This option has restricted values"
                 );
@@ -181,7 +185,7 @@ class Signer
         ];
 
         if (!in_array($alg, $supported_algs, true)) {
-            throw new \SimpleSAML\Error\CriticalConfigurationError("Unknown signature algorithm '$alg'");
+            throw new Error\CriticalConfigurationError("Unknown signature algorithm '$alg'");
         }
 
         switch ($alg) {
@@ -217,7 +221,7 @@ class Signer
      */
     public static function sign($metadataString, $entityMetadata, $type)
     {
-        $config = \SimpleSAML\Configuration::getInstance();
+        $config = Configuration::getInstance();
 
         // check if metadata signing is enabled
         if (!self::isMetadataSigningEnabled($config, $entityMetadata, $type)) {
@@ -227,7 +231,7 @@ class Signer
         // find the key & certificate which should be used to sign the metadata
         $keyCertFiles = self::findKeyCert($config, $entityMetadata, $type);
 
-        $keyFile = \SimpleSAML\Utils\Config::getCertPath($keyCertFiles['privatekey']);
+        $keyFile = Utils\Config::getCertPath($keyCertFiles['privatekey']);
         if (!file_exists($keyFile)) {
             throw new \Exception(
                 'Could not find private key file ['.$keyFile.'], which is needed to sign the metadata'
@@ -235,7 +239,7 @@ class Signer
         }
         $keyData = file_get_contents($keyFile);
 
-        $certFile = \SimpleSAML\Utils\Config::getCertPath($keyCertFiles['certificate']);
+        $certFile = Utils\Config::getCertPath($keyCertFiles['certificate']);
         if (!file_exists($certFile)) {
             throw new \Exception(
                 'Could not find certificate file ['.$certFile.'], which is needed to sign the metadata'
@@ -246,7 +250,7 @@ class Signer
 
         // convert the metadata to a DOM tree
         try {
-            $xml = \SAML2\DOMDocumentFactory::fromString($metadataString);
+            $xml = DOMDocumentFactory::fromString($metadataString);
         } catch (\Exception $e) {
             throw new \Exception('Error parsing self-generated metadata.');
         }

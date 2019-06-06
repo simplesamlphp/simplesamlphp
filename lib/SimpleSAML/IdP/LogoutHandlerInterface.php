@@ -2,6 +2,9 @@
 
 namespace SimpleSAML\IdP;
 
+use SimpleSAML\Error;
+use SimpleSAML\IdP;
+
 /**
  * Interface that all logout handlers must implement.
  *
@@ -15,7 +18,7 @@ interface LogoutHandlerInterface
      *
      * @param \SimpleSAML\IdP $idp The IdP we are logging out from.
      */
-    public function __construct(\SimpleSAML\IdP $idp);
+    public function __construct(IdP $idp);
 
 
     /**
@@ -40,5 +43,5 @@ interface LogoutHandlerInterface
      * @param \SimpleSAML\Error\Exception|null $error The error that occurred during session termination (if any).
      * @return void
      */
-    public function onResponse($assocId, $relayState, \SimpleSAML\Error\Exception $error = null);
+    public function onResponse($assocId, $relayState, Error\Exception $error = null);
 }

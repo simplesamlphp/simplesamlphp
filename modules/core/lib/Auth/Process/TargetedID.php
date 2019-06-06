@@ -2,6 +2,10 @@
 
 namespace SimpleSAML\Module\core\Auth\Process;
 
+use SAML2\Constants;
+use SAML2\XML\saml\NameID;
+use SimpleSAML\Utils;
+
 /**
  * Filter to generate the eduPersonTargetedID attribute.
  *
@@ -103,7 +107,7 @@ class TargetedID extends \SimpleSAML\Auth\ProcessingFilter
         }
 
 
-        $secretSalt = \SimpleSAML\Utils\Config::getSecretSalt();
+        $secretSalt = Utils\Config::getSecretSalt();
 
         if (array_key_exists('Source', $state)) {
             $srcID = self::getEntityId($state['Source']);
@@ -127,9 +131,9 @@ class TargetedID extends \SimpleSAML\Auth\ProcessingFilter
 
         if ($this->generateNameId) {
             // Convert the targeted ID to a SAML 2.0 name identifier element
-            $nameId = new \SAML2\XML\saml\NameID();
+            $nameId = new NameID();
             $nameId->setValue($uid);
-            $nameId->setFormat(\SAML2\Constants::NAMEID_PERSISTENT);
+            $nameId->setFormat(Constants::NAMEID_PERSISTENT);
 
             if (isset($state['Source']['entityid'])) {
                 $nameId->setNameQualifier($state['Source']['entityid']);

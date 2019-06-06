@@ -10,6 +10,8 @@
 
 namespace SimpleSAML\XML\Shib13;
 
+use SimpleSAML\Metadata\MetaDataStorageHandler;
+
 class AuthnRequest
 {
     /** @var string|null */
@@ -64,7 +66,7 @@ class AuthnRequest
      */
     public function createRedirect($destination, $shire)
     {
-        $metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
+        $metadata = MetaDataStorageHandler::getMetadataHandler();
         $idpmetadata = $metadata->getMetaDataConfig($destination, 'shib13-idp-remote');
 
         $desturl = $idpmetadata->getDefaultEndpoint(

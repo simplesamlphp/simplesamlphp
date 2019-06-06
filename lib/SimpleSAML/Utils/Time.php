@@ -8,6 +8,8 @@
 
 namespace SimpleSAML\Utils;
 
+use SimpleSAML\Configuration;
+use SimpleSAML\Error;
 use SimpleSAML\Logger;
 
 class Time
@@ -54,12 +56,12 @@ class Time
             return;
         }
 
-        $globalConfig = \SimpleSAML\Configuration::getInstance();
+        $globalConfig = Configuration::getInstance();
 
         $timezone = $globalConfig->getString('timezone', null);
         if ($timezone !== null) {
             if (!date_default_timezone_set($timezone)) {
-                throw new \SimpleSAML\Error\Exception('Invalid timezone set in the "timezone" option in config.php.');
+                throw new Error\Exception('Invalid timezone set in the "timezone" option in config.php.');
             }
             self::$tz_initialized = true;
             return;

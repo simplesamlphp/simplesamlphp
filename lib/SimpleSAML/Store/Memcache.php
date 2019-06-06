@@ -2,8 +2,8 @@
 
 namespace SimpleSAML\Store;
 
-use \SimpleSAML\Configuration;
-use \SimpleSAML\Store;
+use SimpleSAML\Configuration;
+use SimpleSAML\Store;
 
 /**
  * A memcache based data store.

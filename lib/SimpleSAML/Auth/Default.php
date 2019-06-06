@@ -2,6 +2,10 @@
 
 namespace SimpleSAML\Auth;
 
+use SimpleSAML\Module\saml\Auth\Source\SP;
+use SimpleSAML\Session;
+use SimpleSAML\Utils;
+
 /**
  * Implements the default behaviour for authentication.
  *
@@ -70,7 +74,7 @@ class DefaultAuth
         assert(is_string($returnURL));
         assert(is_string($authority));
 
-        $session = \SimpleSAML\Session::getSessionFromRequest();
+        $session = Session::getSessionFromRequest();
 
         $state = $session->getAuthData($authority, 'LogoutState');
         $session->doLogout($authority);
@@ -101,7 +105,7 @@ class DefaultAuth
 
         self::initLogoutReturn($returnURL, $authority);
 
-        \SimpleSAML\Utils\HTTP::redirectTrustedURL($returnURL);
+        Utils\HTTP::redirectTrustedURL($returnURL);
     }
 
 
@@ -115,7 +119,7 @@ class DefaultAuth
         assert(is_array($state));
         assert(array_key_exists('\SimpleSAML\Auth\DefaultAuth.ReturnURL', $state));
 
-        \SimpleSAML\Utils\HTTP::redirectTrustedURL($state['\SimpleSAML\Auth\DefaultAuth.ReturnURL']);
+        Utils\HTTP::redirectTrustedURL($state['\SimpleSAML\Auth\DefaultAuth.ReturnURL']);
     }
 
 
@@ -140,7 +144,7 @@ class DefaultAuth
      */
     public static function handleUnsolicitedAuth($authId, array $state, $redirectTo)
     {
-        \SimpleSAML\Module\saml\Auth\Source\SP::handleUnsolicitedAuth($authId, $state, $redirectTo);
+        SP::handleUnsolicitedAuth($authId, $state, $redirectTo);
     }
 
 

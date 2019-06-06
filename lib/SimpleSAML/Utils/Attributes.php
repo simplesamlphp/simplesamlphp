@@ -2,6 +2,8 @@
 
 namespace SimpleSAML\Utils;
 
+use SimpleSAML\Error;
+
 /**
  * Attribute-related utility methods.
  *
@@ -39,7 +41,7 @@ class Attributes
         }
 
         if (!array_key_exists($expected, $attributes)) {
-            throw new \SimpleSAML\Error\Exception("No such attribute '".$expected."' found.");
+            throw new Error\Exception("No such attribute '".$expected."' found.");
         }
         $attribute = $attributes[$expected];
 
@@ -48,7 +50,7 @@ class Attributes
         }
 
         if (count($attribute) === 0) {
-            throw new \SimpleSAML\Error\Exception("Empty attribute '".$expected."'.'");
+            throw new Error\Exception("Empty attribute '".$expected."'.'");
         } elseif (count($attribute) > 1) {
             if ($allow_multiple === false) {
                 throw new \SimpleSAML\Error\Exception(

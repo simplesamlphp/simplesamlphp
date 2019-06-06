@@ -2,6 +2,9 @@
 
 namespace SimpleSAML\Module\core\Auth\Process;
 
+use SimpleSAML\Error;
+use SimpleSAML\Logger;
+
 /**
  * A filter for limiting which attributes are passed on.
  *
@@ -41,18 +44,18 @@ class AttributeLimit extends \SimpleSAML\Auth\ProcessingFilter
                 $this->isDefault = (bool) $value;
             } elseif (is_int($index)) {
                 if (!is_string($value)) {
-                    throw new \SimpleSAML\Error\Exception('AttributeLimit: Invalid attribute name: '.
+                    throw new Error\Exception('AttributeLimit: Invalid attribute name: '.
                         var_export($value, true));
                 }
                 $this->allowedAttributes[] = $value;
             } elseif (is_string($index)) {
                 if (!is_array($value)) {
-                    throw new \SimpleSAML\Error\Exception('AttributeLimit: Values for '.
+                    throw new Error\Exception('AttributeLimit: Values for '.
                         var_export($index, true).' must be specified in an array.');
                 }
                 $this->allowedAttributes[$index] = $value;
             } else {
-                throw new \SimpleSAML\Error\Exception('AttributeLimit: Invalid option: '.var_export($index, true));
+                throw new Error\Exception('AttributeLimit: Invalid option: '.var_export($index, true));
             }
         }
     }
@@ -113,7 +116,7 @@ class AttributeLimit extends \SimpleSAML\Auth\ProcessingFilter
                 if (array_key_exists($name, $allowedAttributes)) {
                     // but it is an index of the array
                     if (!is_array($allowedAttributes[$name])) {
-                        throw new \SimpleSAML\Error\Exception('AttributeLimit: Values for '.
+                        throw new Error\Exception('AttributeLimit: Values for '.
                             var_export($name, true).' must be specified in an array.');
                     }
                     $attributes[$name] = $this->filterAttributeValues($attributes[$name], $allowedAttributes[$name]);
@@ -147,7 +150,7 @@ class AttributeLimit extends \SimpleSAML\Auth\ProcessingFilter
                      */
                     $regexResult = @preg_match($pattern, $attributeValue);
                     if ($regexResult === false) {
-                        \SimpleSAML\Logger::warning("Error processing regex '$pattern' on value '$attributeValue'");
+                        Logger::warning("Error processing regex '$pattern' on value '$attributeValue'");
                         break;
                     } elseif ($regexResult === 1) {
                         $matchedValues[] = $attributeValue;

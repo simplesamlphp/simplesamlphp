@@ -2,7 +2,9 @@
 
 namespace SimpleSAML;
 
-use SimpleSAML\Utils\System;
+use SAML2\Constants;
+use SimpleSAML\Error;
+use SimpleSAML\Utils;
 
 /**
  * Configuration of SimpleSAMLphp
@@ -579,7 +581,7 @@ class Configuration implements Utils\ClearableState
 
         assert(is_string($path));
 
-        return System::resolvePath($path, $this->getBaseDir());
+        return Utils\System::resolvePath($path, $this->getBaseDir());
     }
 
 
@@ -1105,11 +1107,11 @@ class Configuration implements Utils\ClearableState
             case 'saml20-idp-remote:SingleSignOnService':
             case 'saml20-idp-remote:SingleLogoutService':
             case 'saml20-sp-remote:SingleLogoutService':
-                return \SAML2\Constants::BINDING_HTTP_REDIRECT;
+                return Constants::BINDING_HTTP_REDIRECT;
             case 'saml20-sp-remote:AssertionConsumerService':
-                return \SAML2\Constants::BINDING_HTTP_POST;
+                return Constants::BINDING_HTTP_POST;
             case 'saml20-idp-remote:ArtifactResolutionService':
-                return \SAML2\Constants::BINDING_SOAP;
+                return Constants::BINDING_SOAP;
             case 'shib13-idp-remote:SingleSignOnService':
                 return 'urn:mace:shibboleth:1.0:profiles:AuthnRequest';
             case 'shib13-sp-remote:AssertionConsumerService':

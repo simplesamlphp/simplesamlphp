@@ -2,6 +2,9 @@
 
 namespace SimpleSAML\Module\core\Stats\Output;
 
+use SimpleSAML\Configuration;
+use SimpleSAML\Error;
+
 /**
  * Statistics logger that writes to a set of log files
  *
@@ -33,7 +36,7 @@ class File extends \SimpleSAML\Stats\Output
      *
      * @param \SimpleSAML\Configuration $config  The configuration for this output.
      */
-    public function __construct(\SimpleSAML\Configuration $config)
+    public function __construct(Configuration $config)
     {
         $this->logDir = $config->getPathValue('directory');
         if ($this->logDir === null) {
@@ -63,7 +66,7 @@ class File extends \SimpleSAML\Stats\Output
         $fileName = $this->logDir.'/'.$date.'.log';
         $this->file = @fopen($fileName, 'a');
         if ($this->file === false) {
-            throw new \SimpleSAML\Error\Exception('Error opening log file: '.var_export($fileName, true));
+            throw new Error\Exception('Error opening log file: '.var_export($fileName, true));
         }
 
         // Disable output buffering

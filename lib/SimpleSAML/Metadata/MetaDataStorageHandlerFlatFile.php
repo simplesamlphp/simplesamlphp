@@ -2,6 +2,8 @@
 
 namespace SimpleSAML\Metadata;
 
+use SimpleSAML\Configuration;
+
 /**
  * This file defines a flat file metadata source.
  * Instantiation of session handler objects should be done through
@@ -44,7 +46,7 @@ class MetaDataStorageHandlerFlatFile extends MetaDataStorageSource
         assert(is_array($config));
 
         // get the configuration
-        $globalConfig = \SimpleSAML\Configuration::getInstance();
+        $globalConfig = Configuration::getInstance();
 
         // find the path to the directory we should search for metadata in
         if (array_key_exists('directory', $config)) {
@@ -105,11 +107,11 @@ class MetaDataStorageHandlerFlatFile extends MetaDataStorageSource
             return $this->cachedMetadata[$set];
         }
 
+        /** @var array|null $metadataSet */
         $metadataSet = $this->load($set);
         if ($metadataSet === null) {
             $metadataSet = [];
         }
-        /** @var array $metadataSet */
 
         // add the entity id of an entry to each entry in the metadata
         foreach ($metadataSet as $entityId => &$entry) {

@@ -2,6 +2,11 @@
 
 namespace SimpleSAML\Module\exampleauth\Auth\Source;
 
+use SimpleSAML\Auth;
+use SimpleSAML\Error;
+use SimpleSAML\Module;
+use SimpleSAML\Utils;
+
 /**
  * Example external authentication source.
  *
@@ -138,14 +143,14 @@ class External extends \SimpleSAML\Auth\Source
          * and restores it in another location, and thus bypasses steps in
          * the authentication process.
          */
-        $stateId = \SimpleSAML\Auth\State::saveState($state, 'exampleauth:External');
+        $stateId = Auth\State::saveState($state, 'exampleauth:External');
 
         /*
          * Now we generate a URL the user should return to after authentication.
          * We assume that whatever authentication page we send the user to has an
          * option to return the user to a specific page afterwards.
          */
-        $returnTo = \SimpleSAML\Module::getModuleURL('exampleauth/resume.php', [
+        $returnTo = Module::getModuleURL('exampleauth/resume.php', [
             'State' => $stateId,
         ]);
 
@@ -156,7 +161,7 @@ class External extends \SimpleSAML\Auth\Source
          * is also part of this module, but in a real example, this would likely be
          * the absolute URL of the login page for the site.
          */
-        $authPage = \SimpleSAML\Module::getModuleURL('exampleauth/authpage.php');
+        $authPage = Module::getModuleURL('exampleauth/authpage.php');
 
         /*
          * The redirect to the authentication page.
@@ -164,7 +169,7 @@ class External extends \SimpleSAML\Auth\Source
          * Note the 'ReturnTo' parameter. This must most likely be replaced with
          * the real name of the parameter for the login page.
          */
-        \SimpleSAML\Utils\HTTP::redirectTrustedURL($authPage, [
+        Utils\HTTP::redirectTrustedURL($authPage, [
             'ReturnTo' => $returnTo,
         ]);
 
@@ -193,26 +198,26 @@ class External extends \SimpleSAML\Auth\Source
          * it in the 'State' request parameter.
          */
         if (!isset($_REQUEST['State'])) {
-            throw new \SimpleSAML\Error\BadRequest('Missing "State" parameter.');
+            throw new Error\BadRequest('Missing "State" parameter.');
         }
 
         /*
          * Once again, note the second parameter to the loadState function. This must
          * match the string we used in the saveState-call above.
          */
-        $state = \SimpleSAML\Auth\State::loadState($_REQUEST['State'], 'exampleauth:External');
+        $state = Auth\State::loadState($_REQUEST['State'], 'exampleauth:External');
 
         /*
          * Now we have the $state-array, and can use it to locate the authentication
          * source.
          */
-        $source = \SimpleSAML\Auth\Source::getById($state['exampleauth:AuthID']);
+        $source = Auth\Source::getById($state['exampleauth:AuthID']);
         if ($source === null) {
             /*
              * The only way this should fail is if we remove or rename the authentication source
              * while the user is at the login page.
              */
-            throw new \SimpleSAML\Error\Exception('Could not find authentication source with id '.$state[self::AUTHID]);
+            throw new Error\Exception('Could not find authentication source with id '.$state[self::AUTHID]);
         }
 
         /*
@@ -221,7 +226,7 @@ class External extends \SimpleSAML\Auth\Source
          * change config/authsources.php while an user is logging in.
          */
         if (!($source instanceof self)) {
-            throw new \SimpleSAML\Error\Exception('Authentication source type changed.');
+            throw new Error\Exception('Authentication source type changed.');
         }
 
         /*
@@ -237,7 +242,7 @@ class External extends \SimpleSAML\Auth\Source
              * Here we simply throw an exception, but we could also redirect the user back to the
              * login page.
              */
-            throw new \SimpleSAML\Error\Exception('User not authenticated after login page.');
+            throw new Error\Exception('User not authenticated after login page.');
         }
 
         /*
@@ -246,7 +251,7 @@ class External extends \SimpleSAML\Auth\Source
          */
 
         $state['Attributes'] = $attributes;
-        \SimpleSAML\Auth\Source::completeAuth($state);
+        Auth\Source::completeAuth($state);
 
         /*
          * The completeAuth-function never returns, so we never get this far.

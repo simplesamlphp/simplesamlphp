@@ -2,6 +2,9 @@
 
 namespace SimpleSAML\Module\exampleauth\Auth\Source;
 
+use SimpleSAML\Error;
+use SimpleSAML\Utils;
+
 /**
  * Example authentication source - username & password.
  *
@@ -54,7 +57,7 @@ class UserPass extends \SimpleSAML\Module\core\Auth\UserPassBase
             $password = $userpass[1];
 
             try {
-                $attributes = \SimpleSAML\Utils\Attributes::normalizeAttributesArray($attributes);
+                $attributes = Utils\Attributes::normalizeAttributesArray($attributes);
             } catch (\Exception $e) {
                 throw new \Exception('Invalid attributes for user '.$username.
                     ' in authentication source '.$this->authId.': '.$e->getMessage());
@@ -83,7 +86,7 @@ class UserPass extends \SimpleSAML\Module\core\Auth\UserPassBase
 
         $userpass = $username.':'.$password;
         if (!array_key_exists($userpass, $this->users)) {
-            throw new \SimpleSAML\Error\Error('WRONGUSERPASS');
+            throw new Error\Error('WRONGUSERPASS');
         }
 
         return $this->users[$userpass];

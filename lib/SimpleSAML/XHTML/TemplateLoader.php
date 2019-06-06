@@ -1,7 +1,8 @@
 <?php
 
-
 namespace SimpleSAML\XHTML;
+
+use SimpleSAML\Module;
 
 /**
  * This class extends the Twig\Loader\FilesystemLoader so that we can load templates from modules in twig, even
@@ -60,10 +61,10 @@ class TemplateLoader extends \Twig\Loader\FilesystemLoader
      */
     public static function getModuleTemplateDir($module)
     {
-        if (!\SimpleSAML\Module::isModuleEnabled($module)) {
+        if (!Module::isModuleEnabled($module)) {
             throw new \InvalidArgumentException('The module \''.$module.'\' is not enabled.');
         }
-        $moduledir = \SimpleSAML\Module::getModuleDir($module);
+        $moduledir = Module::getModuleDir($module);
         // check if module has a /templates dir, if so, append
         $templatedir = $moduledir.'/templates';
         if (!is_dir($templatedir)) {

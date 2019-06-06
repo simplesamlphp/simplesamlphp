@@ -2,6 +2,9 @@
 
 namespace SimpleSAML\Metadata;
 
+use SimpleSAML\Database;
+use SimpleSAML\Error;
+
 /**
  * Class for handling metadata files stored in a database.
  *
@@ -62,7 +65,7 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
     {
         assert(is_array($config));
 
-        $this->db = \SimpleSAML\Database::getInstance();
+        $this->db = Database::getInstance();
     }
 
 
@@ -95,7 +98,7 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
             while ($d = $stmt->fetch()) {
                 $data = json_decode($d['entity_data'], true);
                 if ($data === null) {
-                    throw new \SimpleSAML\Error\Exception("Cannot decode metadata for entity '${d['entity_id']}'");
+                    throw new Error\Exception("Cannot decode metadata for entity '${d['entity_id']}'");
                 }
                 if (!array_key_exists('entityid', $data)) {
                     $data['entityid'] = $d['entity_id'];

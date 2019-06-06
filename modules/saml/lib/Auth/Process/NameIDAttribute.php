@@ -2,6 +2,9 @@
 
 namespace SimpleSAML\Module\saml\Auth\Process;
 
+use SAML2\Constants;
+use SimpleSAML\Error;
+
 /**
  * Authentication processing filter to create an attribute from a NameID.
  *
@@ -88,7 +91,7 @@ class NameIDAttribute extends \SimpleSAML\Auth\ProcessingFilter
                     $ret[] = '%';
                     break;
                 default:
-                    throw new \SimpleSAML\Error\Exception('NameIDAttribute: Invalid replacement: "%'.$replacement.'"');
+                    throw new Error\Exception('NameIDAttribute: Invalid replacement: "%'.$replacement.'"');
             }
 
             $pos = $next + 2;
@@ -119,7 +122,7 @@ class NameIDAttribute extends \SimpleSAML\Auth\ProcessingFilter
         assert(!is_null($rep->getValue()));
         $rep->{'%'} = '%';
         if ($rep->getFormat() !== null) {
-            $rep->setFormat(\SAML2\Constants::NAMEID_UNSPECIFIED);
+            $rep->setFormat(Constants::NAMEID_UNSPECIFIED);
         }
         if ($rep->getNameQualifier() !== null) {
             $rep->setNameQualifier($state['Source']['entityid']);
