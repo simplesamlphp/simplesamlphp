@@ -136,6 +136,7 @@ class Artifact
 
         Utils\XML::debugSAMLMessage($request, 'out');
 
+        /** @var array $url */
         $url = $idpMetadata->getDefaultEndpoint(
             'ArtifactResolutionService',
             ['urn:oasis:names:tc:SAML:1.0:bindings:SOAP-binding']
