@@ -6,6 +6,12 @@
 >
     <projectFiles>
         <directory name="lib/SimpleSAML/Utils" />
+
+        <!-- Ignore deprecated classes -->
+        <ignoreFiles>
+            <file name="lib/SimpleSAML/Auth/Default.php" />
+            <file name="lib/SimpleSAML/Utilities.php" />
+        </ignoreFiles>
     </projectFiles>
 
     <issueHandlers>
