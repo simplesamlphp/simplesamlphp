@@ -147,7 +147,7 @@ There are two methods in this class that deals with exceptions:
 #### `throwException`
 
 This method delivers the exception to the code that initialized the exception handling in the authentication state.
-That would be `\SimpleSAML\Auth\DefaultAuth` for authtentication sources, and `www/saml2/idp/SSOService.php` for processing filters.
+That would be `www/saml2/idp/SSOService.php` for processing filters.
 To configure how and where the exception should be delivered, there are two fields in the state-array which can be set:
 
 * `\SimpleSAML\Auth\State::EXCEPTION_HANDLER_FUNC`, in which case the exception will be delivered by a function call to the function specified in that field.
@@ -171,17 +171,6 @@ The following code illustrates this behaviour:
 
         /* Process exception. */
     }
-
-
-### `\SimpleSAML\Auth\DefaultAuth`
-
-This class accepts an `$errorURL` parameter to the `initLogin()` function.
-This parameter is stored in the `\SimpleSAML\Auth\State::EXCEPTION_HANDLER_URL` of the state array.
-Exceptions thrown by the authentication source will be delivered to that URL.
-
-It also wraps the call to the `authenticate()` function inside a try-catch block.
-Any exceptions thrown during that function call will be delivered to the URL specified in the `$errorURL` parameter.
-This is done for consistency, since `\SimpleSAML\Auth\DefaultAuth` never transfers control back to the caller by returning.
 
 
 ### `\SimpleSAML\Auth\ProcessingChain`
