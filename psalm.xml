@@ -11,6 +11,7 @@
         <directory name="lib/SimpleSAML/Error" />
         <directory name="lib/SimpleSAML/HTTP" />
         <directory name="lib/SimpleSAML/IdP" />
+        <directory name="lib/SimpleSAML/Locale" />
         <directory name="lib/SimpleSAML/Utils" />
 
         <!-- Ignore deprecated classes -->

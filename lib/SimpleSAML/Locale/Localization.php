@@ -95,7 +95,9 @@ class Localization
     public function __construct(Configuration $configuration)
     {
         $this->configuration = $configuration;
-        $this->localeDir = $this->configuration->resolvePath('locales');
+        /** @var string $locales */
+        $locales =  $this->configuration->resolvePath('locales');
+        $this->localeDir = $locales;
         $this->language = new Language($configuration);
         $this->langcode = $this->language->getPosixLanguage($this->language->getLanguage());
         $this->i18nBackend = ($this->configuration->getBoolean('usenewui', false) ? self::GETTEXT_I18N_BACKEND : self::SSP_I18N_BACKEND);
@@ -123,7 +125,9 @@ class Localization
      */
     public function getDomainLocaleDir($domain)
     {
-        $localeDir = $this->configuration->resolvePath('modules').'/'.$domain.'/locales';
+        /** @var string $base */
+        $base = $this->configuration->resolvePath('modules');
+        $localeDir = $base.'/'.$domain.'/locales';
         return $localeDir;
     }
 
