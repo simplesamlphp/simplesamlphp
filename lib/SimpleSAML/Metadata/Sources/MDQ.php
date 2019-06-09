@@ -4,6 +4,7 @@ namespace SimpleSAML\Metadata\Sources;
 
 use RobRichards\XMLSecLibs\XMLSecurityDSig;
 use SimpleSAML\Configuration;
+use SimpleSAML\Error;
 use SimpleSAML\Logger;
 use SimpleSAML\Metadata\SAMLParser;
 use SimpleSAML\Utils;
@@ -33,6 +34,11 @@ class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
      * @var string|null
      */
     private $validateFingerprint;
+
+    /**
+     * @var string
+     */
+    private $validateFingerprintAlgorithm;
 
     /**
      * The cache directory, or null if no cache directory is configured.
@@ -129,6 +135,10 @@ class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
         assert(is_string($set));
         assert(is_string($entityId));
 
+        if ($this->cacheDir === null) {
+            throw new Error\ConfigurationError("Missing cache directory configuration.");
+        }
+
         $cachekey = sha1($entityId);
         return $this->cacheDir.'/'.$set.'-'.$cachekey.'.cached.xml';
     }
@@ -174,6 +184,7 @@ class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
 
         $rawData = file_get_contents($cachefilename);
         if (empty($rawData)) {
+            /** @var array $error */
             $error = error_get_last();
             throw new \Exception(
                 __CLASS__.': error reading metadata from cache file "'.$cachefilename.'": '.$error['message']

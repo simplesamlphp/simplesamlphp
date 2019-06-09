@@ -220,8 +220,9 @@ class SAMLParser
             }
         }
 
-        if ($entityElement->getOrganization() !== null) {
-            $this->processOrganization($entityElement->getOrganization());
+        $organization = $entityElement->getOrganization();
+        if ($organization !== null) {
+            $this->processOrganization($organization);
         }
 
         if ($entityElement->getContactPerson() !== []) {
@@ -331,10 +332,6 @@ class SAMLParser
             $doc = DOMDocumentFactory::fromString($data);
         } catch (\Exception $e) {
             throw new \Exception('Failed to read XML from file: '.$file);
-        }
-
-        if ($doc->documentElement === null) {
-            throw new \Exception('Opened file is not an XML document: '.$file);
         }
 
         return self::parseDescriptorsElement($doc->documentElement);
@@ -1118,13 +1115,12 @@ class SAMLParser
                     $ret['UIInfo']['PrivacyStatementURL'] = $e->getPrivacyStatementURL();
 
                     foreach ($e->getKeywords() as $uiItem) {
-                        if (!($uiItem instanceof \SAML2\XML\mdui\Keywords)
-                            || ($uiItem->getKeywords() === [])
-                            || ($uiItem->getLanguage() === null)
-                        ) {
+                        $keywords = $uiItem->getKeywords();
+                        $language = $uiItem->getLanguage();
+                        if (($keywords === []) || ($language === null)) {
                             continue;
                         }
-                        $ret['UIInfo']['Keywords'][$uiItem->getLanguage()] = $uiItem->getKeywords();
+                        $ret['UIInfo']['Keywords'][$language] = $keywords;
                     }
                     foreach ($e->getLogo() as $uiItem) {
                         if (!($uiItem instanceof Logo)
@@ -1444,10 +1440,6 @@ class SAMLParser
         // find the EntityDescriptor DOMElement. This should be the first (and only) child of the DOMDocument
         $ed = $doc->documentElement;
 
-        if ($ed === null) {
-            throw new \Exception('Failed to load SAML metadata from empty XML document.');
-        }
-
         if (Utils\XML::isDOMNodeOfType($ed, 'EntityDescriptor', '@md') === false) {
             throw new \Exception('Expected first element in the metadata document to be an EntityDescriptor element.');
         }
@@ -1494,6 +1486,12 @@ class SAMLParser
     }
 
 
+    /**
+     * @param string $algorithm
+     * @param string $data
+     * @throws \UnexpectedValueException
+     * @return string
+     */
     private function computeFingerprint($algorithm, $data)
     {
         switch ($algorithm) {

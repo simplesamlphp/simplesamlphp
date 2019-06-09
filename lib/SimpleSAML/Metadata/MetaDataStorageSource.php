@@ -97,7 +97,10 @@ abstract class MetaDataStorageSource
                         null
                     );
                 }
-                return new $className($sourceConfig);
+
+                /** @var \SimpleSAML\Metadata\MetaDataStorageSource $retval */
+                $retval = new $className($sourceConfig);
+                return $retval;
         }
     }
 
