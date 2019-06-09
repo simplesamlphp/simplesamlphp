@@ -88,7 +88,7 @@ class IFrameLogoutHandler implements LogoutHandlerInterface
      * This function will never return.
      *
      * @param string $assocId The association that is terminated.
-     * @param string $relayState The RelayState from the start of the logout.
+     * @param string|null $relayState The RelayState from the start of the logout.
      * @param \SimpleSAML\Error\Exception|null $error The error that occurred during session termination (if any).
      * @return void
      */
