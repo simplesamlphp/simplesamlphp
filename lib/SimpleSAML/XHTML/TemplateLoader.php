@@ -9,6 +9,8 @@ use SimpleSAML\Module;
  * when the main template is not part of a module (or the same one).
  *
  * @package simplesamlphp/simplesamlphp
+ *
+ * @psalm-suppress DeprecatedInterface  This suppress may be removed when Twig 3.0 becomes the default
  */
 class TemplateLoader extends \Twig\Loader\FilesystemLoader
 {
@@ -16,6 +18,12 @@ class TemplateLoader extends \Twig\Loader\FilesystemLoader
      * This method adds a namespace dynamically so that we can load templates from modules whenever we want.
      *
      * {@inheritdoc}
+     *
+     * @param string $name
+     * @param bool $throw
+     * @return string|false|null
+     *
+     * @psalm-suppress ImplementedReturnTypeMismatch  To be removed when Psalm 1.42.2 is released
      */
     protected function findTemplate($name, $throw = true)
     {

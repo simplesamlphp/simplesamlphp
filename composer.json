@@ -43,7 +43,7 @@
         "ext-json": "*",
         "ext-mbstring": "*",
         "gettext/gettext": "^4.6",
-        "jaimeperez/twig-configurable-i18n": "^2.0",
+        "jaimeperez/twig-configurable-i18n": "^2.1",
         "phpmailer/phpmailer": "^6.0",
         "robrichards/xmlseclibs": "^3.0",
         "simplesamlphp/saml2": "^3.3",
