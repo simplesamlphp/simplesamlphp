@@ -15,6 +15,7 @@
         <directory name="lib/SimpleSAML/Logger" />
         <directory name="lib/SimpleSAML/Metadata" />
         <directory name="lib/SimpleSAML/Module" />
+        <directory name="lib/SimpleSAML/Stats" />
         <directory name="lib/SimpleSAML/Utils" />
 
         <!-- Ignore deprecated classes -->
