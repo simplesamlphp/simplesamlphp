@@ -2,8 +2,14 @@
 
 namespace SimpleSAML\Test\Module\saml\Auth\Source;
 
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
+use SAML2\AuthnRequest;
 use \SimpleSAML\Configuration;
+use SimpleSAML\Module\saml\Error\NoAvailableIDP;
+use SimpleSAML\Module\saml\Error\NoSupportedIDP;
+use SimpleSAML\Test\Metadata\MetaDataStorageSourceTest;
+use SimpleSAML\Test\Utils\ClearStateTestCase;
 
 /**
  * Custom Exception to throw to terminate a TestCase.
@@ -68,7 +74,7 @@ class SPTester extends \SimpleSAML\Module\saml\Auth\Source\SP
 /**
  * Set of test cases for \SimpleSAML\Module\saml\Auth\Source\SP.
  */
-class SPTest extends TestCase
+class SPTest extends ClearStateTestCase
 {
 
     private $idpMetadata = null;
@@ -91,6 +97,7 @@ class SPTest extends TestCase
 
     protected function setUp()
     {
+        parent::setUp();
         $this->idpConfigArray = [
             'metadata-set'        => 'saml20-idp-remote',
             'entityid'            => 'https://engine.surfconext.nl/authentication/idp/metadata',
@@ -267,5 +274,155 @@ class SPTest extends TestCase
             $state['ForceAuthn'] ? 'true' : 'false',
             $q[0]->value
         );
+    }
+
+    /**
+     * Test specifying an IDPList where no metadata found for those idps is an error
+     */
+    public function testIdpListWithNoMatchingMetadata()
+    {
+        $this->expectException(NoSupportedIDP::class);
+        $state = [
+            'saml:IDPList' => ['noSuchIdp']
+        ];
+
+        $info = ['AuthId' => 'default-sp'];
+        $config = [];
+        $as = new SPTester($info, $config);
+        $as->authenticate($state);
+    }
+
+    /**
+     * Test specifying an IDPList where the list does not overlap with the Idp specified in SP config is an error
+     */
+    public function testIdpListWithExplicitIdpNotMatch()
+    {
+        $this->expectException(NoAvailableIDP::class);
+        $entityId = "https://example.com";
+        $xml = MetaDataStorageSourceTest::generateIdpMetadataXml($entityId);
+        $c = [
+            'metadata.sources' => [
+                ["type"=>"xml", "xml"=>$xml],
+            ],
+        ];
+        Configuration::loadFromArray($c, '', 'simplesaml');
+        $state = [
+            'saml:IDPList' => ['noSuchIdp', $entityId]
+        ];
+
+        $info = ['AuthId' => 'default-sp'];
+        $config = [
+            'idp' => 'https://engine.surfconext.nl/authentication/idp/metadata'
+        ];
+        $as = new SPTester($info, $config);
+        $as->authenticate($state);
+    }
+
+    /**
+     * Test that IDPList overlaps with the IDP specified in SP config results in AuthnRequest
+     */
+    public function testIdpListWithExplicitIdpMatch()
+    {
+        $entityId = "https://example.com";
+        $xml = MetaDataStorageSourceTest::generateIdpMetadataXml($entityId);
+        $c = [
+            'metadata.sources' => [
+                ["type"=>"xml", "xml"=>$xml],
+            ],
+        ];
+        Configuration::loadFromArray($c, '', 'simplesaml');
+        $state = [
+            'saml:IDPList' => ['noSuchIdp', $entityId]
+        ];
+
+        $info = ['AuthId' => 'default-sp'];
+        $config = [
+            'idp' => $entityId
+        ];
+        $as = new SPTester($info, $config);
+        try {
+            $as->authenticate($state);
+            $this->fail('Expected ExitTestException');
+        } catch (ExitTestException $e) {
+            $r = $e->getTestResult();
+            /** @var AuthnRequest $ar */
+            $ar = $r['ar'];
+            $xml = $ar->toSignedXML();
+            $q = \SAML2\Utils::xpQuery($xml, '/samlp:AuthnRequest/@Destination');
+            $this->assertEquals(
+                'https://saml.idp/sso/',
+                $q[0]->value
+            );
+        }
+    }
+
+    /**
+     * Test that IDPList with a single valid idp and no SP config idp results in AuthnRequest to that idp
+     */
+    public function testIdpListWithSingleMatch()
+    {
+        $entityId = "https://example.com";
+        $xml = MetaDataStorageSourceTest::generateIdpMetadataXml($entityId);
+        $c = [
+            'metadata.sources' => [
+                ["type"=>"xml", "xml"=>$xml],
+            ],
+        ];
+        Configuration::loadFromArray($c, '', 'simplesaml');
+        $state = [
+            'saml:IDPList' => ['noSuchIdp', $entityId]
+        ];
+
+        $info = ['AuthId' => 'default-sp'];
+        $config = [];
+        $as = new SPTester($info, $config);
+        try {
+            $as->authenticate($state);
+            $this->fail('Expected ExitTestException');
+        } catch (ExitTestException $e) {
+            $r = $e->getTestResult();
+            /** @var AuthnRequest $ar */
+            $ar = $r['ar'];
+            $xml = $ar->toSignedXML();
+            $q = \SAML2\Utils::xpQuery($xml, '/samlp:AuthnRequest/@Destination');
+            $this->assertEquals(
+                'https://saml.idp/sso/',
+                $q[0]->value
+            );
+        }
+    }
+
+    /**
+     * Test that IDPList with multiple valid idp and no SP config idp results in discovery redirect
+     */
+    public function testIdpListWithMultipleMatch()
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Invalid URL: smtp://invalidurl');
+        $entityId = "https://example.com";
+        $xml = MetaDataStorageSourceTest::generateIdpMetadataXml($entityId);
+        $entityId1 = "https://example1.com";
+        $xml1 = MetaDataStorageSourceTest::generateIdpMetadataXml($entityId1);
+        $c = [
+            'metadata.sources' => [
+                ["type"=>"xml", "xml"=>$xml],
+                ["type"=>"xml", "xml"=>$xml1],
+            ],
+        ];
+        Configuration::loadFromArray($c, '', 'simplesaml');
+        $state = [
+            'saml:IDPList' => ['noSuchIdp', $entityId, $entityId1]
+        ];
+
+        $info = ['AuthId' => 'default-sp'];
+        $config = [
+            // Use a url that is invalid for http redirects so redirect code throws an error
+            // otherwise it will call exit
+            'discoURL' => 'smtp://invalidurl'
+        ];
+        // Http redirect util library requires a request_uri to be set.
+        $_SERVER['REQUEST_URI'] = 'https://l.example.com/';
+        $as = new SPTester($info, $config);
+        $as->authenticate($state);
     }
 }

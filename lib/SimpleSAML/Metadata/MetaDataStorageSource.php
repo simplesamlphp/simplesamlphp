@@ -57,7 +57,7 @@ abstract class MetaDataStorageSource
      *
      * @param array $sourceConfig Associative array with the configuration for this metadata source.
      *
-     * @return mixed An instance of a metadata source with the given configuration.
+     * @return \SimpleSAML\Metadata\MetaDataStorageSource An instance of a metadata source with the given configuration.
      *
      * @throws \Exception If the metadata source type is invalid.
      */
@@ -243,6 +243,44 @@ abstract class MetaDataStorageSource
         }
 
         return null;
+    }
+
+    /**
+     * This function loads the metadata for entity IDs in $entityIds. It is returned as an associative array
+     * where the key is the entity id. An empty array may be returned if no matching entities were found.
+     * Subclasses should override if their getMetadataSet returns nothing or is slow. Subclasses may want to
+     * delegate to getMetaDataForEntitiesIndividually if loading entities one at a time is faster.
+     * @param array $entityIds The entity ids to load
+     * @param string $set The set we want to get metadata from.
+     * @return array An associative array with the metadata for the requested entities, if found.
+     */
+    public function getMetaDataForEntities(array $entityIds, $set)
+    {
+        if (count($entityIds) === 1) {
+            return $this->getMetaDataForEntitiesIndividually($entityIds, $set);
+        }
+        $entities = $this->getMetadataSet($set);
+        return array_intersect_key($entities, array_flip($entityIds));
+    }
+
+    /**
+     * Loads metadata entities one at a time, rather than the default implementation of loading all entities
+     * and filtering.
+     * @see MetaDataStorageSource::getMetaDataForEntities()
+     * @param array $entityIds The entity ids to load
+     * @param string $set The set we want to get metadata from.
+     * @return array An associative array with the metadata for the requested entities, if found.
+     */
+    protected function getMetaDataForEntitiesIndividually(array $entityIds, $set)
+    {
+        $entities = [];
+        foreach ($entityIds as $entityId) {
+            $metadata = $this->getMetaData($entityId, $set);
+            if ($metadata !== null) {
+                $entities[$entityId] = $metadata;
+            }
+        }
+        return $entities;
     }
 
     /**
