@@ -14,15 +14,16 @@ Released TBD
   * Fixed a bug (#926) where dynamic metadata records where not loaded from a database.
   * Removed HHVM from Travis; it is broken beyond repair and no longer supported by Symfony.
   * Fixed a minor GUI glitch in auth_status.twig
+  * Fixed an issue when an error occurs during a passive authentication request.
 
 ### adfs
   * Fixed a missing option to supply a passphrase for the ADFS IDP signing certificate.
 
 ### authlinked
-  * This module has been removed now that LinkedIn no longer supports oAuth1.
+  * This module has been removed now that LinkedIn no longer supports OAuth1.
     If you relied on this module, you may consider migrating to the
-    [authoauth2-module](https://github.com/cirrusidentity/simplesamlphp-module-authoauth2).
-    A migration guide for authlinkedin is included in their README.
+    [authoauth2 module](https://github.com/cirrusidentity/simplesamlphp-module-authoauth2).
+    A migration guide for LinkedIn authentication is included in their README.
 
 ### saml
   * Added support for per-IDP configurable AuthnContextClassRef/AuthnContextComparison
