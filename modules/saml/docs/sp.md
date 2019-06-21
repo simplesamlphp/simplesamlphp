@@ -217,9 +217,9 @@ Options
      When set to `TRUE`, no scoping elements will be sent. This does not comply with the SAML2 specification, but allows
      interoperability with ADFS which [does not support Scoping elements](https://docs.microsoft.com/en-za/azure/active-directory/develop/active-directory-single-sign-on-protocol-reference#scoping).
 
-:   Note that this option also exists in the IdP remote configuration. An
-    entry in the the IdP-remote metadata overrides this the option in the
-    SP configuration.
+:   Note that this option also exists in the IdP remote configuration. An entry
+    in the IdP-remote metadata overrides this the option in the SP
+    configuration.
 
 `discoURL`
 :   Set which IdP discovery service this SP should use.
