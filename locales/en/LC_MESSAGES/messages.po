@@ -354,9 +354,6 @@ msgstr "Contact information:"
 msgid "{errors:title_UNHANDLEDEXCEPTION}"
 msgstr "Unhandled exception"
 
-msgid "{status:validfor}"
-msgstr "Your session is valid for %SECONDS% seconds from now."
-
 msgid "{status:header_saml20_sp}"
 msgstr "SAML 2.0 SP Demo Example"
 
@@ -1207,8 +1204,8 @@ msgstr ""
 "login service, and send them the error message above."
 
 #, python-format
-msgid "Your session is valid for %SECONDS% seconds from now."
-msgstr "Your session is valid for %SECONDS% seconds from now."
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Your session is valid for %remaining% seconds from now."
 
 msgid "Domain component (DC)"
 msgstr "Domain component (DC)"

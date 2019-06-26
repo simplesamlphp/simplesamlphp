@@ -318,9 +318,6 @@ msgstr "Kontaktní informace"
 msgid "{errors:title_UNHANDLEDEXCEPTION}"
 msgstr "Neočekávaná vyjímka"
 
-msgid "{status:validfor}"
-msgstr "Vaše sezení je platné %SECONDS% sekund od teď."
-
 msgid "{status:header_saml20_sp}"
 msgstr "SAML 2.0 SP Demo"
 
@@ -1072,8 +1069,8 @@ msgstr ""
 "zašlete mu tuto zprávu."
 
 #, python-format
-msgid "Your session is valid for %SECONDS% seconds from now."
-msgstr "Vaše sezení je platné %SECONDS% sekund od teď."
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Vaše sezení je platné %remaining% sekund od teď."
 
 msgid "Domain component (DC)"
 msgstr "Doména (DC)"

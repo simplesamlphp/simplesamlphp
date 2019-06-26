@@ -336,9 +336,6 @@ msgstr "Informazioni di contatto:"
 msgid "{errors:title_UNHANDLEDEXCEPTION}"
 msgstr "Eccezione non gestita"
 
-msgid "{status:validfor}"
-msgstr "La tua sessione è valida per ulteriori %SECONDS% secondi."
-
 msgid "{status:header_saml20_sp}"
 msgstr "Demo di SAML 2.0 SP"
 
@@ -1125,8 +1122,8 @@ msgstr ""
 "riportato qui sopra."
 
 #, python-format
-msgid "Your session is valid for %SECONDS% seconds from now."
-msgstr "La tua sessione è valida per ulteriori %SECONDS% secondi."
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "La tua sessione è valida per ulteriori %remaining% secondi."
 
 msgid "Domain component (DC)"
 msgstr "Componente di dominio (DC)"

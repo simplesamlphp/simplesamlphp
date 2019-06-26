@@ -311,9 +311,6 @@ msgstr "צור קשר"
 msgid "{errors:title_UNHANDLEDEXCEPTION}"
 msgstr "חריגה לא מטופלת "
 
-msgid "{status:validfor}"
-msgstr "השיחה שלך ברת-תוקף לעוד %SECONDS% שניות מעכשיו."
-
 msgid "{status:header_saml20_sp}"
 msgstr "הדגמת דוגמה לס\"ש מסוג SAML 2.0"
 
@@ -1052,8 +1049,8 @@ msgstr ""
 "צור קשר עם מנהל המערכת של שירות ההתחברות הזה, ושלח לו את השגיאה למעלה."
 
 #, python-format
-msgid "Your session is valid for %SECONDS% seconds from now."
-msgstr "השיחה שלך ברת-תוקף לעוד %SECONDS% שניות מעכשיו."
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "השיחה שלך ברת-תוקף לעוד %remaining% שניות מעכשיו."
 
 msgid "Domain component (DC)"
 msgstr "מרכיב מתחם (DC)"

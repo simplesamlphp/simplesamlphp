@@ -334,9 +334,6 @@ msgstr "Informații de contact:"
 msgid "{errors:title_UNHANDLEDEXCEPTION}"
 msgstr "Excepție netratată"
 
-msgid "{status:validfor}"
-msgstr "Sesiunea dumneavoastră mai este validă încă %SECONDS%."
-
 msgid "{status:header_saml20_sp}"
 msgstr "Exemplu demonstrativ de furnizor de servicii SAML 2.0"
 
@@ -1132,8 +1129,8 @@ msgstr ""
 "mai sus."
 
 #, python-format
-msgid "Your session is valid for %SECONDS% seconds from now."
-msgstr "Sesiunea dumneavoastră mai este validă încă %SECONDS%."
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Sesiunea dumneavoastră mai este validă încă %remaining%."
 
 msgid "Domain component (DC)"
 msgstr "Componenta de domeniu (DC)"

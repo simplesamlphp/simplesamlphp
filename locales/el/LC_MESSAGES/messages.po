@@ -346,9 +346,6 @@ msgstr "Στοιχεία επικοινωνίας:"
 msgid "{errors:title_UNHANDLEDEXCEPTION}"
 msgstr "Ανεπίλυτη εξαίρεση"
 
-msgid "{status:validfor}"
-msgstr "Απομένουν %SECONDS% δευτερόλεπτα μέχρι τη λήξη της συνεδρίας σας."
-
 msgid "{status:header_saml20_sp}"
 msgstr "Δοκιμαστικός Παροχέας Υπηρεσιών SAML 2.0"
 
@@ -1185,8 +1182,8 @@ msgstr ""
 "αυτής της υπηρεσίας συμπεριλαμβάνοντας το παραπάνω μήνυμα σφάλματος."
 
 #, python-format
-msgid "Your session is valid for %SECONDS% seconds from now."
-msgstr "Απομένουν %SECONDS% δευτερόλεπτα μέχρι τη λήξη της συνεδρίας σας."
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Απομένουν %remaining% δευτερόλεπτα μέχρι τη λήξη της συνεδρίας σας."
 
 msgid "Domain component (DC)"
 msgstr "Συστατικό Τομέα (DC)"

@@ -328,9 +328,6 @@ msgstr "Informasi Kontak"
 msgid "{errors:title_UNHANDLEDEXCEPTION}"
 msgstr "Exception yang tidak tertangani"
 
-msgid "{status:validfor}"
-msgstr "Session anda valid untuk %SECONDS% detik dari sekarang."
-
 msgid "{status:header_saml20_sp}"
 msgstr "Contoh Demo SAML 2.0 SP"
 
@@ -1102,8 +1099,8 @@ msgstr ""
 "ini, dan kirimkan kepada mereka pesan error diatas."
 
 #, python-format
-msgid "Your session is valid for %SECONDS% seconds from now."
-msgstr "Session anda valid untuk %SECONDS% detik dari sekarang."
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Session anda valid untuk %remaining% detik dari sekarang."
 
 msgid "Domain component (DC)"
 msgstr "Domain component(DC)"

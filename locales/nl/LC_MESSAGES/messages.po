@@ -342,9 +342,6 @@ msgstr "Contactinformatie"
 msgid "{errors:title_UNHANDLEDEXCEPTION}"
 msgstr "Onverwachte foutmelding"
 
-msgid "{status:validfor}"
-msgstr "Uw sessie is nog %SECONDS% seconden geldig vanaf dit moment."
-
 msgid "{status:header_saml20_sp}"
 msgstr "SAML 2.0 SP Demo"
 
@@ -1159,8 +1156,8 @@ msgstr ""
 "van deze authenticatiedienst, en geef bovenstaande melding door."
 
 #, python-format
-msgid "Your session is valid for %SECONDS% seconds from now."
-msgstr "Uw sessie is nog %SECONDS% seconden geldig vanaf dit moment."
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Uw sessie is nog %remaining% seconden geldig vanaf dit moment."
 
 msgid "Domain component (DC)"
 msgstr "Domeincomponent"

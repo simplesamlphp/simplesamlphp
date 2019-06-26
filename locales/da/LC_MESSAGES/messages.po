@@ -322,9 +322,6 @@ msgstr "Kontaktoplysninger"
 msgid "{errors:title_UNHANDLEDEXCEPTION}"
 msgstr "Unhandled exception"
 
-msgid "{status:validfor}"
-msgstr "Du har %SECONDS% tilbage af din session"
-
 msgid "{status:header_saml20_sp}"
 msgstr "SAML 2.0 tjenesteudbyder-demo"
 
@@ -1109,8 +1106,8 @@ msgstr ""
 "rapportér så mange detaljer som muligt om fejlen"
 
 #, python-format
-msgid "Your session is valid for %SECONDS% seconds from now."
-msgstr "Du har %SECONDS% tilbage af din session"
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Du har %remaining% tilbage af din session"
 
 msgid "Domain component (DC)"
 msgstr "Domænekomponent"

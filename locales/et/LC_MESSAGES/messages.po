@@ -325,9 +325,6 @@ msgstr "Kontaktinfo:"
 msgid "{errors:title_UNHANDLEDEXCEPTION}"
 msgstr "Käsitlemata tõrge"
 
-msgid "{status:validfor}"
-msgstr "Sinu sessioon kehtib veel %SECONDS% sekundit."
-
 msgid "{status:header_saml20_sp}"
 msgstr "SAML 2.0 SP demonäide"
 
@@ -1088,8 +1085,8 @@ msgstr ""
 "administraatoriga ja saada talle ülalolev veateade."
 
 #, python-format
-msgid "Your session is valid for %SECONDS% seconds from now."
-msgstr "Sinu sessioon kehtib veel %SECONDS% sekundit."
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Sinu sessioon kehtib veel %remaining% sekundit."
 
 msgid "Domain component (DC)"
 msgstr "Domeeni komponent (DC)"

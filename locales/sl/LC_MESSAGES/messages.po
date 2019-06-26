@@ -318,9 +318,6 @@ msgstr "Kontakt"
 msgid "{errors:title_UNHANDLEDEXCEPTION}"
 msgstr "Nedefinirana izjema."
 
-msgid "{status:validfor}"
-msgstr "Vaša trenutna seja je veljavna še %SECONDS% sekund."
-
 msgid "{status:header_saml20_sp}"
 msgstr "SAML 2.0 SP Demo primer"
 
@@ -1076,8 +1073,8 @@ msgstr ""
 "ja. Obrnite se na skrbnika in mu posredujte to napako."
 
 #, python-format
-msgid "Your session is valid for %SECONDS% seconds from now."
-msgstr "Vaša trenutna seja je veljavna še %SECONDS% sekund."
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Vaša trenutna seja je veljavna še %remaining% sekund."
 
 msgid "Domain component (DC)"
 msgstr "Domenska komponenta (DC)"

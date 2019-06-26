@@ -87,9 +87,6 @@ msgstr "Kutholwe umlayezo ongalungile"
 msgid "{login:login_button}"
 msgstr "Ngena"
 
-msgid "{status:validfor}"
-msgstr "Iseshini yakho isebenza imizuzwana engu-%SECONDS% ukusuka manje."
-
 msgid "{status:header_shib}"
 msgstr "Idemo ye-Shibboleth"
 

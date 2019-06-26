@@ -338,9 +338,6 @@ msgstr "Контактная информация"
 msgid "{errors:title_UNHANDLEDEXCEPTION}"
 msgstr "Необрабатываемое исключение"
 
-msgid "{status:validfor}"
-msgstr "Ваша сессия действительна в течение следующих %SECONDS% секунд."
-
 msgid "{status:header_saml20_sp}"
 msgstr "Демо пример сервис провайдера SAML 2.0 SP"
 
@@ -1141,8 +1138,8 @@ msgstr ""
 "этого сервиса и отправьте ему вышеуказанное сообщение об ошибке."
 
 #, python-format
-msgid "Your session is valid for %SECONDS% seconds from now."
-msgstr "Ваша сессия действительна в течение следующих %SECONDS% секунд."
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Ваша сессия действительна в течение следующих %remaining% секунд."
 
 msgid "Domain component (DC)"
 msgstr "Компонент домена (DC)"

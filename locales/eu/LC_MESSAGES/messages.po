@@ -328,9 +328,6 @@ msgstr "Harremanetarako informazioa:"
 msgid "{errors:title_UNHANDLEDEXCEPTION}"
 msgstr "Kudeatu gabeko salbuespena"
 
-msgid "{status:validfor}"
-msgstr "Zure saioa %SECONDS% segundoz izango da baliagarri."
-
 msgid "{status:header_saml20_sp}"
 msgstr "SAML 2.0 SP Adibidea"
 
@@ -1098,8 +1095,8 @@ msgstr ""
 "administratzailearekin eta bidal iezaiozu lehenagoko errore mezua. "
 
 #, python-format
-msgid "Your session is valid for %SECONDS% seconds from now."
-msgstr "Zure saioa %SECONDS% segundoz izango da baliagarri."
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Zure saioa %remaining% segundoz izango da baliagarri."
 
 msgid "Domain component (DC)"
 msgstr "Domeinuaren osagaia (DC)"

@@ -322,9 +322,6 @@ msgstr "Kontaktai:"
 msgid "{errors:title_UNHANDLEDEXCEPTION}"
 msgstr "Nežinoma klaida"
 
-msgid "{status:validfor}"
-msgstr "Jūsų sesija galioja %SECONDS% sekundžių, skaičiuojant nuo šio momento."
-
 msgid "{status:header_saml20_sp}"
 msgstr "SAML 2.0 SP Demonstracinės versijos Pavyzdys"
 
@@ -1096,8 +1093,8 @@ msgstr ""
 "nusiųskite žemiau rodomą klaidos pranešimą."
 
 #, python-format
-msgid "Your session is valid for %SECONDS% seconds from now."
-msgstr "Jūsų sesija galioja %SECONDS% sekundžių, skaičiuojant nuo šio momento."
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Jūsų sesija galioja %remaining% sekundžių, skaičiuojant nuo šio momento."
 
 msgid "Domain component (DC)"
 msgstr "Domeno komponentas"

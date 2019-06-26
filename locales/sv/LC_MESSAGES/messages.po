@@ -333,9 +333,6 @@ msgstr "Kontaktinformation:"
 msgid "{errors:title_UNHANDLEDEXCEPTION}"
 msgstr "Ohanterat undantag"
 
-msgid "{status:validfor}"
-msgstr "Din session är giltig för %SECONDS% sekunder från nu."
-
 msgid "{status:header_saml20_sp}"
 msgstr "SAML 2.0 SP demoexempel"
 
@@ -1112,8 +1109,8 @@ msgstr ""
 "meddela dem ovanstående felmeddelande."
 
 #, python-format
-msgid "Your session is valid for %SECONDS% seconds from now."
-msgstr "Din session är giltig för %SECONDS% sekunder från nu."
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Din session är giltig för %remaining% sekunder från nu."
 
 msgid "Domain component (DC)"
 msgstr "Domännamnskomponent"

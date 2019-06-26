@@ -1058,7 +1058,7 @@ msgstr ""
 "أيضاً "
 
 #, python-format
-msgid "Your session is valid for %SECONDS% seconds from now."
+msgid "Your session is valid for %remaining% seconds from now."
 msgstr "ستستمر جلستك ل٪عدد ثواني٪ ثانية تبدأ الان"
 
 msgid "Domain component (DC)"

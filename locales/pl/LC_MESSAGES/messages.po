@@ -320,9 +320,6 @@ msgstr "Informacje kontaktowe:"
 msgid "{errors:title_UNHANDLEDEXCEPTION}"
 msgstr "Nieobsługiwany błąd"
 
-msgid "{status:validfor}"
-msgstr "Twoja sesja jest jeszcze ważna przez %SECONDS% sekund"
-
 msgid "{status:header_saml20_sp}"
 msgstr "Przykładowe Demo SAML 2.0 SP"
 
@@ -1058,8 +1055,8 @@ msgstr ""
 " i wyślij mu powyższy błąd."
 
 #, python-format
-msgid "Your session is valid for %SECONDS% seconds from now."
-msgstr "Twoja sesja jest jeszcze ważna przez %SECONDS% sekund"
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Twoja sesja jest jeszcze ważna przez %remaining% sekund"
 
 msgid "Domain component (DC)"
 msgstr "Składnik nazwy domenowej (DC)"

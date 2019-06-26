@@ -86,9 +86,6 @@ msgstr "Kufunyenwe isicelo esibi"
 msgid "{login:login_button}"
 msgstr "Ngena"
 
-msgid "{status:validfor}"
-msgstr "Iseshoni yakho iza kusebenza kangangemizuzu e-%SECONDS% ukususela ngoku."
-
 msgid "{status:header_shib}"
 msgstr "Idemo ye-Shibboleth"
 

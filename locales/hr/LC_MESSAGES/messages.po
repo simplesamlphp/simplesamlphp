@@ -332,9 +332,6 @@ msgstr "Kontakt podaci:"
 msgid "{errors:title_UNHANDLEDEXCEPTION}"
 msgstr "Neobrađena iznimka"
 
-msgid "{status:validfor}"
-msgstr "Vaša sjednica bit će valjana još %SECONDS% sekundi."
-
 msgid "{status:header_saml20_sp}"
 msgstr "Primjer SAML 2.0 davatelja usluge"
 
@@ -1117,8 +1114,8 @@ msgstr ""
 "administratore ovog servisa i pošaljite im gore navedenu poruku o greški."
 
 #, python-format
-msgid "Your session is valid for %SECONDS% seconds from now."
-msgstr "Vaša sjednica bit će valjana još %SECONDS% sekundi."
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Vaša sjednica bit će valjana još %remaining% sekundi."
 
 msgid "Domain component (DC)"
 msgstr "Domenska komponenta (DC)"

@@ -336,9 +336,6 @@ msgstr "Coordonnées :"
 msgid "{errors:title_UNHANDLEDEXCEPTION}"
 msgstr "Exception non gérée"
 
-msgid "{status:validfor}"
-msgstr "Votre session est encore valide pour %SECONDS% secondes."
-
 msgid "{status:header_saml20_sp}"
 msgstr "Exemple de démonstration de SP SAML 2.0"
 
@@ -1127,8 +1124,8 @@ msgstr ""
 "ce service d'identification et envoyez lui le message d'erreur."
 
 #, python-format
-msgid "Your session is valid for %SECONDS% seconds from now."
-msgstr "Votre session est encore valide pour %SECONDS% secondes."
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Votre session est encore valide pour %remaining% secondes."
 
 msgid "Domain component (DC)"
 msgstr "Fragment de domaine (DC)"

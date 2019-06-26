@@ -298,9 +298,6 @@ msgstr "連絡先:"
 msgid "{errors:title_UNHANDLEDEXCEPTION}"
 msgstr "未処理例外"
 
-msgid "{status:validfor}"
-msgstr "セッションは今から %SECONDS% 秒間有効です"
-
 msgid "{status:header_saml20_sp}"
 msgstr "SAML 2.0 SP デモ例"
 
@@ -1009,8 +1006,8 @@ msgid ""
 msgstr "このエラーは恐らく未知の問題かSimpleSAMLphpの設定ミスです。ログインサービスの管理者に上記のエラーメッセージを連絡して下さい。"
 
 #, python-format
-msgid "Your session is valid for %SECONDS% seconds from now."
-msgstr "セッションは今から %SECONDS% 秒間有効です"
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "セッションは今から %remaining% 秒間有効です"
 
 msgid "Domain component (DC)"
 msgstr "ドメイン名"

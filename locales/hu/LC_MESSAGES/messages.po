@@ -325,9 +325,6 @@ msgstr "Elérési információk"
 msgid "{errors:title_UNHANDLEDEXCEPTION}"
 msgstr "Kezeletlen kivétel"
 
-msgid "{status:validfor}"
-msgstr "Az ön munkamenete még %SECONDS% másodpercig érvényes"
-
 msgid "{status:header_saml20_sp}"
 msgstr "SAML 2.0 SP próba példa"
 
@@ -1085,8 +1082,8 @@ msgstr ""
 "szolgáltatás adminisztrátorát, és küldje el neki a fenti hibaüzenetet!"
 
 #, python-format
-msgid "Your session is valid for %SECONDS% seconds from now."
-msgstr "Az ön munkamenete még %SECONDS% másodpercig érvényes"
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Az ön munkamenete még %remaining% másodpercig érvényes"
 
 msgid "Domain component (DC)"
 msgstr "Domain összetevő (DC)"

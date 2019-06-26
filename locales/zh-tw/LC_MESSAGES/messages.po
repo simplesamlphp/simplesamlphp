@@ -299,9 +299,6 @@ msgstr "聯絡資訊："
 msgid "{errors:title_UNHANDLEDEXCEPTION}"
 msgstr "不可預期的例外"
 
-msgid "{status:validfor}"
-msgstr "您的 session 從現在起還有 %SECONDS% 有效。"
-
 msgid "{status:header_saml20_sp}"
 msgstr "SAML 2.0 SP 展示範例"
 
@@ -1041,8 +1038,8 @@ msgid ""
 msgstr "這個問題可能是因為 SimpleSAMLphp 的某些例外的行為或無效設定。連絡這個登入服務的管理員，以及傳送這些錯誤訊息。"
 
 #, python-format
-msgid "Your session is valid for %SECONDS% seconds from now."
-msgstr "您的 session 從現在起還有 %SECONDS% 有效。"
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "您的 session 從現在起還有 %remaining% 有效。"
 
 msgid "Domain component (DC)"
 msgstr "Domain component (DC)"

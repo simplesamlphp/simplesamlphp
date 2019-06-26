@@ -288,9 +288,6 @@ msgstr "联系方式"
 msgid "{errors:title_UNHANDLEDEXCEPTION}"
 msgstr "未处理的异常"
 
-msgid "{status:validfor}"
-msgstr "你的会话在%SECONDS%秒内有效"
-
 msgid "{status:header_saml20_sp}"
 msgstr "SAML 2.0 SP演示案例"
 
@@ -994,8 +991,8 @@ msgid ""
 msgstr "这个错误可能是由于一些意想不到的行为或者是SimpleSAMLphp的配置错误导致的，请联系这个登录服务器的管理员并把上面的错误消息发送给他们"
 
 #, python-format
-msgid "Your session is valid for %SECONDS% seconds from now."
-msgstr "你的会话在%SECONDS%秒内有效"
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "你的会话在%remaining%秒内有效"
 
 msgid "Domain component (DC)"
 msgstr "Opened the web browser with tabs saved from the previous session.域组件（DC）"

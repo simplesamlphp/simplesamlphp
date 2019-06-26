@@ -322,9 +322,6 @@ msgstr "Kontaktinformasjon:"
 msgid "{errors:title_UNHANDLEDEXCEPTION}"
 msgstr "Uhåndtert feil"
 
-msgid "{status:validfor}"
-msgstr "Din sesjon er gyldig i %SECONDS% sekunder fra nå."
-
 msgid "{status:header_saml20_sp}"
 msgstr "SAML 2.0 SP Demo Eksempel"
 
@@ -1106,8 +1103,8 @@ msgstr ""
 "av denne tjenesten og rapporter så mye som mulig angående feilen."
 
 #, python-format
-msgid "Your session is valid for %SECONDS% seconds from now."
-msgstr "Din sesjon er gyldig i %SECONDS% sekunder fra nå."
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Din sesjon er gyldig i %remaining% sekunder fra nå."
 
 msgid "Domain component (DC)"
 msgstr "Navneledd (DC)"

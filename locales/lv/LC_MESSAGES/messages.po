@@ -318,9 +318,6 @@ msgstr "Kontaktinformācija"
 msgid "{errors:title_UNHANDLEDEXCEPTION}"
 msgstr "Nezināma kļūda"
 
-msgid "{status:validfor}"
-msgstr "Sesija ir derīga %SECONDS% sekundes no šī brīža."
-
 msgid "{status:header_saml20_sp}"
 msgstr "SAML 2.0 SP demonstrācijas piemērs"
 
@@ -1082,8 +1079,8 @@ msgstr ""
 "SimpleSAMLphp konfigurācijas. Nosūtiet administratoram kļūdas ziņojumu."
 
 #, python-format
-msgid "Your session is valid for %SECONDS% seconds from now."
-msgstr "Sesija ir derīga %SECONDS% sekundes no šī brīža."
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Sesija ir derīga %remaining% sekundes no šī brīža."
 
 msgid "Domain component (DC)"
 msgstr "Domēns (DC)"

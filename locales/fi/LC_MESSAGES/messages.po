@@ -239,9 +239,6 @@ msgstr "Yhteystiedot"
 msgid "{errors:title_UNHANDLEDEXCEPTION}"
 msgstr "Käsittelemätön poikkeus"
 
-msgid "{status:validfor}"
-msgstr "Istuntosi on vielä voimassa %SECONDS% sekuntia"
-
 msgid "{status:header_saml20_sp}"
 msgstr "SAML 2.0 SP esimerkki"
 
@@ -804,8 +801,8 @@ msgstr ""
 " yllä oleva virheilmoitus."
 
 #, python-format
-msgid "Your session is valid for %SECONDS% seconds from now."
-msgstr "Istuntosi on vielä voimassa %SECONDS% sekuntia"
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Istuntosi on vielä voimassa %remaining% sekuntia"
 
 msgid "Domain component (DC)"
 msgstr "Domain-osio"
