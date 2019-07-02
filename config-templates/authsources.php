@@ -63,7 +63,7 @@ $config = [
 
     /*
     'example-static' => [
-        'exampleauth:Static',
+        'exampleauth:StaticSource',
         'uid' => ['testuser'],
         'eduPersonAffiliation' => ['member', 'employee'],
         'cn' => ['Test User'],
