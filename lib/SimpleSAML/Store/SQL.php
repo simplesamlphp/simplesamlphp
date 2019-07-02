@@ -242,13 +242,14 @@ class SQL extends Store
             $insertQuery->execute($data);
             return;
         } catch (PDOException $e) {
-            $ecode = (string) $e->getCode();
-            switch ($ecode) {
-                case '23505': // PostgreSQL
-                    break;
-                default:
-                    Logger::error('Error while saving data: '.$e->getMessage());
-                    throw $e;
+            $duplicateInsertErrorCodes = [
+                'pgsql' => '23505',
+                'sqlsrv' => '23000'
+            ];
+
+            if (!array_key_exists($this->driver, $duplicateInsertErrorCodes) || $duplicateInsertErrorCodes[$this->driver] !== (string) $e->getCode()) {
+                Logger::error('Error while saving data: '.$e->getMessage());
+                throw $e;
             }
         }
 
