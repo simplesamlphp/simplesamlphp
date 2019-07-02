@@ -13,6 +13,7 @@ Released TBD
   * Replace custom Email class with the phpmailer library.
   * Allow to log to STDERR in the logging.handler option.
   * Allow use of stream wrappers (e.g. s3://) in paths.
+  * Improve 'update or insert' handling for different SQL drivers
 
 ### metarefresh
   * The algorithm to compute the fingerprint of the certificate that signed
