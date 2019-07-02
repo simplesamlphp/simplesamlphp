@@ -15,6 +15,7 @@ Released TBD
   * Removed HHVM from Travis; it is broken beyond repair and no longer supported by Symfony.
   * Fixed a minor GUI glitch in auth_status.twig
   * Fixed an issue when an error occurs during a passive authentication request.
+  * Handle duplicate insertion also for SQL Server
 
 ### adfs
   * Fixed a missing option to supply a passphrase for the ADFS IDP signing certificate.
