@@ -238,6 +238,8 @@ class SQL extends Store
         } catch (\PDOException $e) {
             $ecode = (string) $e->getCode();
             switch ($ecode) {
+                case '23000': // MSSQL
+                    break;
                 case '23505': // PostgreSQL
                     break;
                 default:
