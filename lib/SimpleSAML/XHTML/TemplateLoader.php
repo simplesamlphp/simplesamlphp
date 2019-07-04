@@ -22,8 +22,6 @@ class TemplateLoader extends \Twig\Loader\FilesystemLoader
      * @param string $name
      * @param bool $throw
      * @return string|false|null
-     *
-     * @psalm-suppress ImplementedReturnTypeMismatch  To be removed when Psalm 1.42.2 is released
      */
     protected function findTemplate($name, $throw = true)
     {
