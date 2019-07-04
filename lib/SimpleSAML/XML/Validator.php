@@ -45,7 +45,7 @@ class Validator
      * @param array|bool $publickey The public key / certificate which should be used to validate the XML node.
      * @throws \Exception
      */
-    public function __construct(\DOMNode $xmlNode, $idAttribute = null, $publickey = false)
+    public function __construct(\DOMDocument $xmlNode, $idAttribute = null, $publickey = false)
     {
         if ($publickey === null) {
             $publickey = false;
