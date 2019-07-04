@@ -303,8 +303,10 @@ class Signer
             $options
         );
 
-        /** @var \RobRichards\XMLSecLibs\XMLSecurityKey $this->privateKey */
-        $objXMLSecDSig->sign($this->privateKey);
+        /** @var \RobRichards\XMLSecLibs\XMLSecurityKey $privateKey */
+        $privateKey = $this->privateKey;
+
+        $objXMLSecDSig->sign($privateKey);
 
 
         // Add the certificate to the signature

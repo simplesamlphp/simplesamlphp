@@ -11,8 +11,8 @@ namespace SimpleSAML\XML;
 
 class Parser
 {
-    /** @var \SimpleXMLElement|null */
-    public $simplexml = null;
+    /** @var \SimpleXMLElement */
+    public $simplexml;
 
     /**
      * @param string $xml
@@ -41,7 +41,10 @@ class Parser
         /* Create a new parser with the xml document where the namespace definitions
          * are added.
          */
-        $parser = new Parser($element->asXML());
+
+        /** @var string $xml */
+        $xml = $element->asXML();
+        $parser = new Parser($xml);
         return $parser;
     }
     
@@ -55,7 +58,9 @@ class Parser
     public function getValueDefault($xpath, $defvalue)
     {
         try {
-            return $this->getValue($xpath, true);
+            /** @var string $retval */
+            $retval = $this->getValue($xpath, true);
+            return $retval;
         } catch (\Exception $e) {
             return $defvalue;
         }
@@ -66,7 +71,7 @@ class Parser
      * @param string $xpath
      * @param bool $required
      * @throws \Exception
-     * @return string
+     * @return string|null
      */
     public function getValue($xpath, $required = false)
     {

@@ -19,6 +19,7 @@
         <directory name="lib/SimpleSAML/Store" />
         <directory name="lib/SimpleSAML/Utils" />
         <directory name="lib/SimpleSAML/XHTML" />
+        <directory name="lib/SimpleSAML/XML" />
 
         <!-- Ignore deprecated classes -->
         <ignoreFiles>

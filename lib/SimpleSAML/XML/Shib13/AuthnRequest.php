@@ -76,9 +76,11 @@ class AuthnRequest
         $desturl = $desturl['Location'];
 
         $target = $this->getRelayState();
-        
+        $issuer = $this->getIssuer();
+        assert($issuer !== null);
+
         $url = $desturl.'?'.
-            'providerId='.urlencode($this->getIssuer()).
+            'providerId='.urlencode($issuer).
             '&shire='.urlencode($shire).
             (isset($target) ? '&target='.urlencode($target) : '');
         return $url;
