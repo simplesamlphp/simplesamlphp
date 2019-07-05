@@ -47,9 +47,9 @@ class IdP
     /**
      * The configuration for this IdP.
      *
-     * @var Configuration|null
+     * @var Configuration
      */
-    private $config = null;
+    private $config;
 
     /**
      * Our authsource.
@@ -164,7 +164,7 @@ class IdP
     /**
      * Retrieve the configuration for this IdP.
      *
-     * @return Configuration|null The configuration object.
+     * @return Configuration The configuration object.
      */
     public function getConfig()
     {
