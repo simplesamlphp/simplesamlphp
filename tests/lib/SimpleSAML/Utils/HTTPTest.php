@@ -428,4 +428,59 @@ class HTTPTest extends TestCase
         $this->assertEquals(HTTP::getFirstPathElement(false), 'test');
         $_SERVER = $original;
     }
+
+    /**
+     * @covers SimpleSAML\Utils\HTTP::setCookie()
+     * @runInSeparateProcess
+     */
+    public function testSetCookie()
+    {
+        $original = $_SERVER;
+        Configuration::loadFromArray([
+            'baseurlpath' => 'https://example.com/simplesaml/',
+        ], '[ARRAY]', 'simplesaml');
+        $url = 'https://example.com/a?b=c';
+        $this->setupEnvFromURL($url);
+        HTTP::setCookie('TestCookie', 'value%20', ['expires'=>1, 'path'=>'/path', 'domain'=>'example.com', 'secure'=>true, 'httponly'=>true]);
+        HTTP::setCookie('RawCookie', 'value%20', ['expires'=>1, 'path'=>'/path', 'domain'=>'example.com', 'secure'=>true, 'httponly'=>true, 'raw'=>true]);
+        $this->assertEquals(xdebug_get_headers(), [
+            'Set-Cookie: TestCookie=value%2520; path=/path; domain=example.com; secure; HttpOnly',
+            'Set-Cookie: RawCookie=value%20; path=/path; domain=example.com; secure; HttpOnly'
+        ]);
+        $_SERVER = $original;
+    }
+
+    /**
+     * @covers SimpleSAML\Utils\HTTP::setCookie()
+     * @expectedException SimpleSAML\Error\CannotSetCookie
+     */
+    public function testSetCookieInsecure()
+    {
+        $original = $_SERVER;
+        Configuration::loadFromArray([
+            'baseurlpath' => 'http://example.com/simplesaml/',
+        ], '[ARRAY]', 'simplesaml');
+        $url = 'http://example.com/a?b=c';
+        $this->setupEnvFromURL($url);
+        HTTP::setCookie('testCookie', 'value', ['secure' => true], true);
+        $_SERVER = $original;
+    }
+
+    /**
+     * @covers SimpleSAML\Utils\HTTP::setCookie()
+     * @runInSeparateProcess
+     */
+    public function testSetCookieSameSite()
+    {
+        HTTP::setCookie('SameSiteNull', 'value', ['samesite' => null]);
+        HTTP::setCookie('SameSiteNone', 'value', ['samesite' => 'None']);
+        HTTP::setCookie('SameSiteLax', 'value', ['samesite' => 'Lax']);
+        HTTP::setCookie('SameSiteStrict', 'value', ['samesite' => 'Strict']);
+        $this->assertEquals(xdebug_get_headers(), [
+            'Set-Cookie: SameSiteNull=value; path=/; HttpOnly',
+            'Set-Cookie: SameSiteNone=value; path=/; SameSite=None; HttpOnly',
+            'Set-Cookie: SameSiteLax=value; path=/; SameSite=Lax; HttpOnly',
+            'Set-Cookie: SameSiteStrict=value; path=/; SameSite=Strict; HttpOnly'
+        ]);
+    }
 }
