@@ -140,6 +140,6 @@ class SessionHandlerPHPTest extends ClearStateTestCase
         Configuration::loadFromArray($this->sessionConfig, '[ARRAY]', 'simplesaml');
         $sh = SessionHandlerPHP::getSessionHandler();
         $sid = $sh->newSessionId();
-        $this->assertStringMatchesFormat('%x', $sid);
+        $this->assertStringMatchesFormat('%s', $sid);
     }
 }
