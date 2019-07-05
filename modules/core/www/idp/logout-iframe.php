@@ -115,9 +115,9 @@ foreach ($state['core:Logout-IFrame:Associations'] as $association) {
 
 $globalConfig = \SimpleSAML\Configuration::getInstance();
 if ($type === 'nojs') {
-    $t = new \SimpleSAML\XHTML\Template($globalConfig, 'core:logout-iframe-wrapper.php');
+    $t = new \SimpleSAML\XHTML\Template($globalConfig, 'core:logout-iframe-wrapper.tpl.php');
 } else {
-    $t = new \SimpleSAML\XHTML\Template($globalConfig, 'core:logout-iframe.php');
+    $t = new \SimpleSAML\XHTML\Template($globalConfig, 'core:logout-iframe.tpl.php');
 }
 
 /**

@@ -175,13 +175,15 @@ class AttributeAlter extends \SimpleSAML\Auth\ProcessingFilter
                     $attributes[$this->subject]
                 );
             } else {
+                /** @var array $attr */
+                $attr = $attributes[$this->subject];
                 $attributes[$this->target] = array_diff(
                     preg_replace(
                         $this->pattern,
                         $this->replacement,
-                        $attributes[$this->subject]
+                        $attr
                     ),
-                    $attributes[$this->subject]
+                    $attr
                 );
             }
         }

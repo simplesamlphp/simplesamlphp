@@ -287,9 +287,14 @@ abstract class UserPassBase extends \SimpleSAML\Auth\Source
 
         // Here we retrieve the state array we saved in the authenticate-function.
         $state = Auth\State::loadState($authStateId, self::STAGEID);
+        if ($state === null) {
+            throw new Error\NoState();
+        }
 
         // Retrieve the authentication source we are executing.
         assert(array_key_exists(self::AUTHID, $state));
+
+        /** @var \SimpleSAML\Module\core\Auth\UserPassBase|null $source */
         $source = Auth\Source::getById($state[self::AUTHID]);
         if ($source === null) {
             throw new \Exception('Could not find authentication source with id '.$state[self::AUTHID]);

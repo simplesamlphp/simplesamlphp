@@ -273,9 +273,14 @@ abstract class UserPassOrgBase extends \SimpleSAML\Auth\Source
 
         /* Retrieve the authentication state. */
         $state = Auth\State::loadState($authStateId, self::STAGEID);
+        if ($state === null) {
+            throw new Error\NoState();
+        }
 
         /* Find authentication source. */
         assert(array_key_exists(self::AUTHID, $state));
+
+        /** @var \SimpleSAML\Module\core\Auth\UserPassOrgBase|null $source */
         $source = Auth\Source::getById($state[self::AUTHID]);
         if ($source === null) {
             throw new \Exception('Could not find authentication source with id '.$state[self::AUTHID]);
@@ -329,9 +334,14 @@ abstract class UserPassOrgBase extends \SimpleSAML\Auth\Source
 
         /* Retrieve the authentication state. */
         $state = Auth\State::loadState($authStateId, self::STAGEID);
+        if ($state === null) {
+            throw new Error\NoState();
+        }
 
         /* Find authentication source. */
         assert(array_key_exists(self::AUTHID, $state));
+
+        /** @var \SimpleSAML\Module\core\Auth\UserPassOrgBase|null $source */
         $source = Auth\Source::getById($state[self::AUTHID]);
         if ($source === null) {
             throw new \Exception('Could not find authentication source with id '.$state[self::AUTHID]);

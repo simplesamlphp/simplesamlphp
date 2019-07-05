@@ -75,8 +75,8 @@ if ($config->getBoolean('admin.checkforupdates', true) && $current !== 'master')
             curl_setopt($ch, CURLOPT_PROXYUSERPWD, $config->getValue('proxy.auth', null));
             $response = curl_exec($ch);
 
-            if (curl_getinfo($ch, CURLINFO_HTTP_CODE) === 200) {
-                $latest = json_decode($response, true);
+            if (!is_bool($response) && (curl_getinfo($ch, CURLINFO_HTTP_CODE) === 200)) {
+                $latest = json_decode(strval($response), true);
                 $session->setData("core:latest_simplesamlphp_version", "version", $latest);
             }
             curl_close($ch);

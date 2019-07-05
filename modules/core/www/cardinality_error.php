@@ -11,6 +11,9 @@ if (!array_key_exists('StateId', $_REQUEST)) {
 }
 $id = $_REQUEST['StateId'];
 $state = \SimpleSAML\Auth\State::loadState($id, 'core:cardinality');
+if ($state === null) {
+    throw new \SimpleSAML\Error\NoState();
+}
 $session = \SimpleSAML\Session::getSessionFromRequest();
 
 \SimpleSAML\Logger::stats('core:cardinality:error '.$state['Destination']['entityid'].' '.$state['saml:sp:IdP'].

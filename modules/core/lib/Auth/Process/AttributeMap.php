@@ -89,7 +89,8 @@ class AttributeMap extends \SimpleSAML\Auth\ProcessingFilter
             }
             $filePath = Module::getModuleDir($m[0]).'/attributemap/'.$m[1].'.php';
         } else {
-            $filePath = $config->getPathValue('attributenamemapdir', 'attributemap/').$fileName.'.php';
+            $attributenamemapdir = $config->getPathValue('attributenamemapdir', 'attributemap/') ?: 'attributemap/';
+            $filePath = $attributenamemapdir.$fileName.'.php';
         }
 
         if (!file_exists($filePath)) {

@@ -21,6 +21,7 @@
         <directory name="lib/SimpleSAML/XHTML" />
         <directory name="lib/SimpleSAML/XML" />
         <directory name="modules/admin" />
+        <directory name="modules/core" />
 
         <!-- Ignore deprecated classes -->
         <ignoreFiles>
