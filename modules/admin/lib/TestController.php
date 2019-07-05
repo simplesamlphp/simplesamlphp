@@ -69,6 +69,7 @@ class TestController
                 $authsource->logout($this->config->getBasePath().'logout.php');
             } elseif (!is_null($request->query->get(Auth\State::EXCEPTION_PARAM))) {
                 // This is just a simple example of an error
+                /** @var array $state */
                 $state = Auth\State::loadExceptionState();
                 assert(array_key_exists(Auth\State::EXCEPTION_DATA, $state));
                 throw $state[Auth\State::EXCEPTION_DATA];
@@ -114,16 +115,21 @@ class TestController
      */
     private function getNameIDHTML(Template $t, NameID $nameId)
     {
+        $translator = $t->getTranslator();
         $result = '';
         if ($nameId->getValue() === null) {
-            $list = ["NameID" => [$t->t('{status:subject_notset}')]];
-            $result .= "<p>NameID: <span class=\"notset\">".$t->t('{status:subject_notset}')."</span></p>";
+            $list = ["NameID" => [$translator->t('{status:subject_notset}')]];
+            /** @var string $notset */
+            $notset = $translator->t('{status:subject_notset}');
+            $result .= "<p>NameID: <span class=\"notset\">".$notset."</span></p>";
         } else {
             $list = [
                 "NameId" => [$nameId->getValue()],
             ];
             if ($nameId->getFormat() !== null) {
-                $list[$t->t('{status:subject_format}')] = [$nameId->getFormat()];
+                /** @var string $format */
+                $format = $translator->t('{status:subject_format}');
+                $list[$format] = [$nameId->getFormat()];
             }
             if ($nameId->getNameQualifier() !== null) {
                 $list['NameQualifier'] = [$nameId->getNameQualifier()];
@@ -226,7 +232,7 @@ class TestController
         if (is_array($attr) && count($attr) > 1) {
             $str = '<ul>';
             foreach ($attr as $value) {
-                $str .= '<li>'.htmlspecialchars($attr).'</li>';
+                $str .= '<li>'.htmlspecialchars(strval($attr)).'</li>';
             }
             $str .= '</ul>';
             return $str;
@@ -266,7 +272,9 @@ class TestController
             'NameID' => [$nameID->getValue()],
         ];
         if ($nameID->getFormat() !== null) {
-            $eptid[$t->t('{status:subject_format}')] = [$nameID->getFormat()];
+            /** @var string $format */
+            $format = $t->t('{status:subject_format}');
+            $eptid[$format] = [$nameID->getFormat()];
         }
         if ($nameID->getNameQualifier() !== null) {
             $eptid['NameQualifier'] = [$nameID->getNameQualifier()];

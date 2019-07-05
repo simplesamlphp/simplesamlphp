@@ -20,6 +20,7 @@
         <directory name="lib/SimpleSAML/Utils" />
         <directory name="lib/SimpleSAML/XHTML" />
         <directory name="lib/SimpleSAML/XML" />
+        <directory name="modules/admin" />
 
         <!-- Ignore deprecated classes -->
         <ignoreFiles>
