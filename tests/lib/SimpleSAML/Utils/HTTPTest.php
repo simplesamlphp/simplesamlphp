@@ -443,12 +443,23 @@ class HTTPTest extends ClearStateTestCase
         $url = 'https://example.com/a?b=c';
         $this->setupEnvFromURL($url);
 
-        HTTP::setCookie('TestCookie', 'value%20', ['expires'=>1, 'path'=>'/path', 'domain'=>'example.com', 'secure'=>true, 'httponly'=>true]);
-        HTTP::setCookie('RawCookie', 'value%20', ['expires'=>1, 'path'=>'/path', 'domain'=>'example.com', 'secure'=>true, 'httponly'=>true, 'raw'=>true]);
-        $this->assertEquals(xdebug_get_headers(), [
-            'Set-Cookie: TestCookie=value%2520; path=/path; domain=example.com; secure; HttpOnly',
-            'Set-Cookie: RawCookie=value%20; path=/path; domain=example.com; secure; HttpOnly'
-        ]);
+        HTTP::setCookie('TestCookie', 'value%20', ['expire'=> 2147483640, 'path'=>'/ourPath', 'domain'=>'example.com', 'secure'=>true, 'httponly'=>true]);
+        HTTP::setCookie('RawCookie', 'value%20', ['lifetime'=>100, 'path'=>'/ourPath', 'domain'=>'example.com', 'secure'=>true, 'httponly'=>true, 'raw'=>true]);
+
+        $headers = xdebug_get_headers();
+        $this->assertContains('TestCookie=value%2520;', $headers[0]);
+        $this->assertRegExp('/\b[Ee]xpires=[Tt]ue/', $headers[0]);
+        $this->assertRegExp('/\b[Pp]ath=\/ourPath(;|$)/', $headers[0]);
+        $this->assertRegExp('/\b[Dd]omain=example.com(;|$)/', $headers[0]);
+        $this->assertRegExp('/\b[Ss]ecure(;|$)/', $headers[0]);
+        $this->assertRegExp('/\b[Hh]ttp[Oo]nly(;|$)/', $headers[0]);
+
+        $this->assertContains('RawCookie=value%20;', $headers[1]);
+        $this->assertRegExp('/\b[Ee]xpires=([Mm]on|[Tt]ue|[Ww]ed|[Tt]hu|[Ff]ri|[Ss]at|[Ss]un)/', $headers[1]);
+        $this->assertRegExp('/\b[Pp]ath=\/ourPath(;|$)/', $headers[1]);
+        $this->assertRegExp('/\b[Dd]omain=example.com(;|$)/', $headers[1]);
+        $this->assertRegExp('/\b[Ss]ecure(;|$)/', $headers[1]);
+        $this->assertRegExp('/\b[Hh]ttp[Oo]nly(;|$)/', $headers[1]);
 
         $_SERVER = $original;
     }
@@ -477,15 +488,15 @@ class HTTPTest extends ClearStateTestCase
      */
     public function testSetCookieSameSite()
     {
-        HTTP::setCookie('SameSiteNull', 'value', ['samesite' => null]);
-        HTTP::setCookie('SameSiteNone', 'value', ['samesite' => 'None']);
-        HTTP::setCookie('SameSiteLax', 'value', ['samesite' => 'Lax']);
-        HTTP::setCookie('SameSiteStrict', 'value', ['samesite' => 'Strict']);
-        $this->assertEquals(xdebug_get_headers(), [
-            'Set-Cookie: SameSiteNull=value; path=/; HttpOnly',
-            'Set-Cookie: SameSiteNone=value; path=/; SameSite=None; HttpOnly',
-            'Set-Cookie: SameSiteLax=value; path=/; SameSite=Lax; HttpOnly',
-            'Set-Cookie: SameSiteStrict=value; path=/; SameSite=Strict; HttpOnly'
-        ]);
+        HTTP::setCookie('SSNull', 'value', ['samesite' => null]);
+        HTTP::setCookie('SSNone', 'value', ['samesite' => 'None']);
+        HTTP::setCookie('SSLax', 'value', ['samesite' => 'Lax']);
+        HTTP::setCookie('SSStrict', 'value', ['samesite' => 'Strict']);
+
+        $headers = xdebug_get_headers();
+        $this->assertNotRegExp('/\b[Ss]ame[Ss]ite=/', $headers[0]);
+        $this->assertRegExp('/\b[Ss]ame[Ss]ite=None(;|$)/', $headers[1]);
+        $this->assertRegExp('/\b[Ss]ame[Ss]ite=Lax(;|$)/', $headers[2]);
+        $this->assertRegExp('/\b[Ss]ame[Ss]ite=Strict(;|$)/', $headers[3]);
     }
 }
