@@ -1184,7 +1184,7 @@ class HTTP
                 );
             }
         } else {
-            /* in older versions of PHP we need a nasty hack to set RFC6265bis SameSite attribute required by Chrome >= 76 */
+            /* in older versions of PHP we need a nasty hack to set RFC6265bis SameSite attribute */
             if ($params['samesite'] !== null and !preg_match('/;\s+samesite/i', $params['path'])) {
                 $params['path'] .= '; SameSite='.$params['samesite'];
             }
