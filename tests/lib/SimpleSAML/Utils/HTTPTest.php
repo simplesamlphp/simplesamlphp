@@ -3,10 +3,11 @@
 namespace SimpleSAML\Test\Utils;
 
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\Test\Utils\ClearStateTestCase;
 use SimpleSAML\Utils\HTTP;
 use SimpleSAML\Configuration;
 
-class HTTPTest extends TestCase
+class HTTPTest extends ClearStateTestCase
 {
     /**
      * Set up the environment ($_SERVER) populating the typical variables from a given URL.
@@ -441,12 +442,14 @@ class HTTPTest extends TestCase
         ], '[ARRAY]', 'simplesaml');
         $url = 'https://example.com/a?b=c';
         $this->setupEnvFromURL($url);
+
         HTTP::setCookie('TestCookie', 'value%20', ['expires'=>1, 'path'=>'/path', 'domain'=>'example.com', 'secure'=>true, 'httponly'=>true]);
         HTTP::setCookie('RawCookie', 'value%20', ['expires'=>1, 'path'=>'/path', 'domain'=>'example.com', 'secure'=>true, 'httponly'=>true, 'raw'=>true]);
         $this->assertEquals(xdebug_get_headers(), [
             'Set-Cookie: TestCookie=value%2520; path=/path; domain=example.com; secure; HttpOnly',
             'Set-Cookie: RawCookie=value%20; path=/path; domain=example.com; secure; HttpOnly'
         ]);
+
         $_SERVER = $original;
     }
 
@@ -462,7 +465,9 @@ class HTTPTest extends TestCase
         ], '[ARRAY]', 'simplesaml');
         $url = 'http://example.com/a?b=c';
         $this->setupEnvFromURL($url);
+
         HTTP::setCookie('testCookie', 'value', ['secure' => true], true);
+
         $_SERVER = $original;
     }
 
