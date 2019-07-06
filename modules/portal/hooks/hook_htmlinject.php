@@ -16,6 +16,10 @@ function portal_hook_htmlinject(&$hookinfo)
     $links = ['links' => []];
     \SimpleSAML\Module::callHooks('frontpage', $links);
 
+    if (!is_array($links)) {
+        throw new \Exception('Unexpected behaviour by hook');
+    }
+
     $portalConfig = \SimpleSAML\Configuration::getOptionalConfig('module_portal.php');
 
     $allLinks = [];
