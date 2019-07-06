@@ -36,6 +36,7 @@ if (preg_match('@^https?://@i', $target)) {
         'saml:sp:RelayState' => \SimpleSAML\Utils\HTTP::checkURLAllowed($target),
     ];
 } else {
+    /** @var array $state */
     $state = \SimpleSAML\Auth\State::loadState($_REQUEST['TARGET'], 'saml:sp:sso');
     if ($state === null) {
         throw new \SimpleSAML\Error\NoState();

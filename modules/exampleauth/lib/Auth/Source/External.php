@@ -204,10 +204,8 @@ class External extends \SimpleSAML\Auth\Source
          * Once again, note the second parameter to the loadState function. This must
          * match the string we used in the saveState-call above.
          */
+        /** @var array $state */
         $state = Auth\State::loadState($_REQUEST['State'], 'exampleauth:External');
-        if ($state === null) {
-            throw new Error\NoState();
-        }
 
         /*
          * Now we have the $state-array, and can use it to locate the authentication

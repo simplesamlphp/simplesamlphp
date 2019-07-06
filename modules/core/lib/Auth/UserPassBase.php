@@ -286,10 +286,8 @@ abstract class UserPassBase extends \SimpleSAML\Auth\Source
         assert(is_string($password));
 
         // Here we retrieve the state array we saved in the authenticate-function.
+        /** @var array $state */
         $state = Auth\State::loadState($authStateId, self::STAGEID);
-        if ($state === null) {
-            throw new Error\NoState();
-        }
 
         // Retrieve the authentication source we are executing.
         assert(array_key_exists(self::AUTHID, $state));

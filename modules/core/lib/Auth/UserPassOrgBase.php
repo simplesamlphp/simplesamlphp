@@ -272,10 +272,8 @@ abstract class UserPassOrgBase extends \SimpleSAML\Auth\Source
         assert(is_string($organization));
 
         /* Retrieve the authentication state. */
+        /** @var array $state */
         $state = Auth\State::loadState($authStateId, self::STAGEID);
-        if ($state === null) {
-            throw new Error\NoState();
-        }
 
         /* Find authentication source. */
         assert(array_key_exists(self::AUTHID, $state));
@@ -333,10 +331,8 @@ abstract class UserPassOrgBase extends \SimpleSAML\Auth\Source
         assert(is_string($authStateId));
 
         /* Retrieve the authentication state. */
+        /** @var array $state */
         $state = Auth\State::loadState($authStateId, self::STAGEID);
-        if ($state === null) {
-            throw new Error\NoState();
-        }
 
         /* Find authentication source. */
         assert(array_key_exists(self::AUTHID, $state));

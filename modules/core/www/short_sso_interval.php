@@ -11,10 +11,9 @@ if (!array_key_exists('StateId', $_REQUEST)) {
     throw new \SimpleSAML\Error\BadRequest('Missing required StateId query parameter.');
 }
 $id = $_REQUEST['StateId'];
+
+/** @var array $state */
 $state = \SimpleSAML\Auth\State::loadState($id, 'core:short_sso_interval');
-if ($state === null) {
-    throw new \SimpleSAML\Error\NoState();
-}
 
 $session = \SimpleSAML\Session::getSessionFromRequest();
 

@@ -12,6 +12,7 @@ if (!array_key_exists('idpentityid', $_REQUEST)) {
     throw new \SimpleSAML\Error\BadRequest('Missing idpentityid to discovery service response handler');
 }
 
+/** @var array $state */
 $state = \SimpleSAML\Auth\State::loadState($_REQUEST['AuthID'], 'saml:sp:sso');
 if ($state === null) {
     throw new \SimpleSAML\Error\NoState();
