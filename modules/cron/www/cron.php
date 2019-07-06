@@ -29,7 +29,7 @@ if ($cronconfig->getValue('sendemail', true) && count($summary) > 0) {
 }
 
 if (isset($_REQUEST['output']) && $_REQUEST['output'] == "xhtml") {
-    $t = new \SimpleSAML\XHTML\Template($config, 'cron:croninfo-result.php', 'cron:cron');
+    $t = new \SimpleSAML\XHTML\Template($config, 'cron:croninfo-result.tpl.php', 'cron:cron');
     $t->data['tag'] = $croninfo['tag'];
     $t->data['time'] = $time;
     $t->data['url'] = $url;
