@@ -186,7 +186,6 @@ class External extends \SimpleSAML\Auth\Source
      * This function resumes the authentication process after the user has
      * entered his or her credentials.
      *
-     * @param array &$state  The authentication state.
      * @return void
      * @throws \SimpleSAML\Error\BadRequest
      * @throws \SimpleSAML\Error\Exception
@@ -206,6 +205,9 @@ class External extends \SimpleSAML\Auth\Source
          * match the string we used in the saveState-call above.
          */
         $state = Auth\State::loadState($_REQUEST['State'], 'exampleauth:External');
+        if ($state === null) {
+            throw new Error\NoState();
+        }
 
         /*
          * Now we have the $state-array, and can use it to locate the authentication

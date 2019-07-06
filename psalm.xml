@@ -23,6 +23,7 @@
         <directory name="modules/admin" />
         <directory name="modules/core" />
         <directory name="modules/cron" />
+        <directory name="modules/exampleauth" />
 
         <!-- Ignore deprecated classes -->
         <ignoreFiles>
