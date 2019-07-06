@@ -24,6 +24,7 @@
         <directory name="modules/core" />
         <directory name="modules/cron" />
         <directory name="modules/exampleauth" />
+        <directory name="modules/multiauth" />
 
         <!-- Ignore deprecated classes -->
         <ignoreFiles>
