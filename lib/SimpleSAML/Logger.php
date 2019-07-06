@@ -389,9 +389,6 @@ class Logger
      */
     private static function createLoggingHandler($handler = null)
     {
-        // set to false to indicate that it is being initialized
-        self::$loggingHandler = false;
-
         // a set of known logging handlers
         $known_handlers = [
             'syslog'   => 'SimpleSAML\Logger\SyslogLoggingHandler',

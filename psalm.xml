@@ -26,6 +26,7 @@
         <directory name="modules/exampleauth" />
         <directory name="modules/multiauth" />
         <directory name="modules/portal" />
+        <directory name="modules/saml" />
 
         <!-- Ignore deprecated classes -->
         <ignoreFiles>
@@ -34,6 +35,8 @@
 
             <!-- Ignore deprecated PHP-templates - Remove for 2.0 -->
             <file name="modules/**/templates/*.tpl.php" />
+            <file name="modules/saml/templates/proxy/*.tpl.php" />
+            <file name="modules/saml/templates/sp/*.tpl.php" />
         </ignoreFiles>
     </projectFiles>
 

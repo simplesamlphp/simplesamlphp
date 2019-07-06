@@ -208,9 +208,11 @@ if ($spconfig->hasValue('contacts')) {
 // add technical contact
 $email = $config->getString('technicalcontact_email', 'na@example.org');
 if ($email && $email !== 'na@example.org') {
-    $techcontact['emailAddress'] = $email;
-    $techcontact['name'] = $config->getString('technicalcontact_name', null);
-    $techcontact['contactType'] = 'technical';
+    $techcontact = [
+        'emailAddress' => $email,
+        'name' => $config->getString('technicalcontact_name', null),
+        'contactType' => 'technical'
+    ];
     $metaArray20['contacts'][] = \SimpleSAML\Utils\Config\Metadata::getContact($techcontact);
 }
 
@@ -268,7 +270,7 @@ if (isset($metaArray20['attributes']) && is_array($metaArray20['attributes'])) {
 $xml = \SimpleSAML\Metadata\Signer::sign($xml, $spconfig->toArray(), 'SAML 2 SP');
 
 if (array_key_exists('output', $_REQUEST) && $_REQUEST['output'] == 'xhtml') {
-    $t = new \SimpleSAML\XHTML\Template($config, 'saml:metadata.php', 'admin');
+    $t = new \SimpleSAML\XHTML\Template($config, 'saml:metadata.tpl.php', 'admin');
 
     $t->data['clipboard.js'] = true;
     $t->data['header'] = 'saml20-sp'; // TODO: Replace with headerString in 2.0

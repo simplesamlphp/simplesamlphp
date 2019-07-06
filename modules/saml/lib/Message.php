@@ -44,9 +44,11 @@ class Message
         $dstPrivateKey = $dstMetadata->getString('signature.privatekey', null);
 
         if ($dstPrivateKey !== null) {
+            /** @var array $keyArray */
             $keyArray = Utils\Crypto::loadPrivateKey($dstMetadata, true, 'signature.');
             $certArray = Utils\Crypto::loadPublicKey($dstMetadata, false, 'signature.');
         } else {
+            /** @var array $keyArray */
             $keyArray = Utils\Crypto::loadPrivateKey($srcMetadata, true);
             $certArray = Utils\Crypto::loadPublicKey($srcMetadata, false);
         }
@@ -415,7 +417,11 @@ class Message
             }
         }
 
-        /** @var \Exception $lastException */
+        /**
+         * The annotation below is not working - See vimeo/psalm#1909
+         * @psalm-suppress InvalidThrow
+         * @var \Exception $lastException
+         */
         throw $lastException;
     }
 

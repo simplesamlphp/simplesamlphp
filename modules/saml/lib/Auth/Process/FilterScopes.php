@@ -69,23 +69,25 @@ class FilterScopes extends \SimpleSAML\Auth\ProcessingFilter
             $newValues = [];
             foreach ($values as $value) {
                 $ep = Utils\Config\Metadata::getDefaultEndpoint($request['Source']['SingleSignOnService']);
-                $loc = $ep['Location'];
-                $host = parse_url($loc, PHP_URL_HOST);
-                if ($host === null) {
-                    $host = '';
-                }
-                $value_a = explode('@', $value, 2);
-                if (count($value_a) < 2) {
-                    $newValues[] = $value;
-                    continue; // there's no scope
-                }
-                $scope = $value_a[1];
-                if (in_array($scope, $validScopes, true)) {
-                    $newValues[] = $value;
-                } elseif (strpos($host, $scope) === strlen($host) - strlen($scope)) {
-                    $newValues[] = $value;
-                } else {
-                    Logger::warning("Removing value '$value' for attribute '$attribute'. Undeclared scope.");
+                if ($ep !== null) {
+                    $loc = $ep['Location'];
+                    $host = parse_url($loc, PHP_URL_HOST);
+                    if ($host === null) {
+                        $host = '';
+                    }
+                    $value_a = explode('@', $value, 2);
+                    if (count($value_a) < 2) {
+                        $newValues[] = $value;
+                        continue; // there's no scope
+                    }
+                    $scope = $value_a[1];
+                    if (in_array($scope, $validScopes, true)) {
+                        $newValues[] = $value;
+                    } elseif (strpos($host, $scope) === strlen($host) - strlen($scope)) {
+                        $newValues[] = $value;
+                    } else {
+                        Logger::warning("Removing value '$value' for attribute '$attribute'. Undeclared scope.");
+                    }
                 }
             }
 

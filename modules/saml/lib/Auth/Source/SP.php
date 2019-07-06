@@ -409,6 +409,8 @@ class SP extends \SimpleSAML\Auth\Source
                         $this->protocols[] = Constants::NS_SAMLP;
                     }
                     break;
+                default:
+                    $acs = [];
             }
             $acs['index'] = $index;
             $endpoints[] = $acs;
@@ -549,7 +551,7 @@ class SP extends \SimpleSAML\Auth\Source
         }
 
         if (isset($state['saml:NameID'])) {
-            if (!is_array($state['saml:NameID']) && !is_a($state['saml:NameID'], NameID::class)) {
+            if (!is_array($state['saml:NameID'])) {
                 throw new Error\Exception('Invalid value of $state[\'saml:NameID\'].');
             }
 
@@ -650,6 +652,7 @@ class SP extends \SimpleSAML\Auth\Source
 
         // Select appropriate SSO endpoint
         if ($ar->getProtocolBinding() === Constants::BINDING_HOK_SSO) {
+            /** @var array $dst */
             $dst = $idpMetadata->getDefaultEndpoint(
                 'SingleSignOnService',
                 [
@@ -657,6 +660,7 @@ class SP extends \SimpleSAML\Auth\Source
                 ]
             );
         } else {
+            /** @var array $dst */
             $dst = $idpMetadata->getEndpointPrioritizedByBinding(
                 'SingleSignOnService',
                 [
@@ -829,8 +833,10 @@ class SP extends \SimpleSAML\Auth\Source
 
         $session = Session::getSessionFromRequest();
         $data = $session->getAuthState($this->authId);
-        foreach ($data as $k => $v) {
-            $state[$k] = $v;
+        if ($data !== null) {
+            foreach ($data as $k => $v) {
+                $state[$k] = $v;
+            }
         }
 
         // check if we have an IDPList specified in the request
@@ -1022,6 +1028,7 @@ class SP extends \SimpleSAML\Auth\Source
 
         $idpMetadata = $this->getIdPMetadata($idp);
 
+        /** @var array $endpoint */
         $endpoint = $idpMetadata->getEndpointPrioritizedByBinding('SingleLogoutService', [
             Constants::BINDING_HTTP_REDIRECT,
             Constants::BINDING_HTTP_POST], false);
@@ -1182,6 +1189,8 @@ class SP extends \SimpleSAML\Auth\Source
         $state = $authProcState['saml:sp:State'];
 
         $sourceId = $state['saml:sp:AuthId'];
+
+        /** @var \SimpleSAML\Module\saml\Auth\Source\SP $source */
         $source = Auth\Source::getById($sourceId);
         if ($source === null) {
             throw new \Exception('Could not find authentication source with id '.$sourceId);

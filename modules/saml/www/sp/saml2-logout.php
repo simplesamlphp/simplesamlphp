@@ -12,6 +12,7 @@ if (!array_key_exists('PATH_INFO', $_SERVER)) {
 
 $sourceId = substr($_SERVER['PATH_INFO'], 1);
 
+/** @var \SimpleSAML\Module\saml\Auth\Source\SP $source */
 $source = \SimpleSAML\Auth\Source::getById($sourceId);
 if ($source === null) {
     throw new \Exception('Could not find authentication source with id '.$sourceId);
@@ -35,15 +36,16 @@ try {
 $message = $binding->receive();
 
 $issuer = $message->getIssuer();
-if ($issuer === null) {
-    // Without an issuer we have no way to respond to the message.
-    throw new \SimpleSAML\Error\BadRequest('Received message on logout endpoint without issuer.');
-} elseif ($issuer instanceof \SAML2\XML\saml\Issuer) {
+if ($issuer instanceof \SAML2\XML\saml\Issuer) {
     $idpEntityId = $issuer->getValue();
 } else {
     $idpEntityId = $issuer;
 }
 
+if ($idpEntityId === null) {
+    // Without an issuer we have no way to respond to the message.
+    throw new \SimpleSAML\Error\BadRequest('Received message on logout endpoint without issuer.');
+}
 $spEntityId = $source->getEntityId();
 
 $metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
@@ -122,6 +124,7 @@ if ($message instanceof \SAML2\LogoutResponse) {
         \SimpleSAML\Logger::warning('Logged out of '.$numLoggedOut.' of '.count($sessionIndexes).' sessions.');
     }
 
+    /** @var array $dst */
     $dst = $idpMetadata->getEndpointPrioritizedByBinding(
         'SingleLogoutService',
         [
