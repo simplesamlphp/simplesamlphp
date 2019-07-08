@@ -149,7 +149,7 @@ class ProcessingChain
      * @param array $config      Array with the authentication processing filter configuration.
      * @param int $priority      The priority of the current filter, (not included in the filter
      *                           definition.)
-     * @return ProcessingFilter  The parsed filter.
+     * @return \SimpleSAML\Auth\ProcessingFilter  The parsed filter.
      */
     private static function parseFilter($config, $priority)
     {
@@ -166,6 +166,8 @@ class ProcessingChain
         );
         $config['%priority'] = $priority;
         unset($config['class']);
+
+        /** @var \SimpleSAML\Auth\ProcessingFilter */
         return new $className($config, null);
     }
 

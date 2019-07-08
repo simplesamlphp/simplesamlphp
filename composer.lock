@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b809e29b2bfe75e501cfdc5efe9a7c9e",
+    "content-hash": "11faaddab3dbdd175af8c5a20e8f5d0f",
     "packages": [
         {
             "name": "gettext/gettext",
@@ -131,20 +131,24 @@
         },
         {
             "name": "jaimeperez/twig-configurable-i18n",
-            "version": "v2.0",
+            "version": "v2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jaimeperez/twig-configurable-i18n.git",
-                "reference": "4ccf150ba9f28d2e31d0622ecc9b81cdc6a2638b"
+                "reference": "38a22aaa6b31efdc0d76d58f5934dea3ebac8556"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jaimeperez/twig-configurable-i18n/zipball/4ccf150ba9f28d2e31d0622ecc9b81cdc6a2638b",
-                "reference": "4ccf150ba9f28d2e31d0622ecc9b81cdc6a2638b",
+                "url": "https://api.github.com/repos/jaimeperez/twig-configurable-i18n/zipball/38a22aaa6b31efdc0d76d58f5934dea3ebac8556",
+                "reference": "38a22aaa6b31efdc0d76d58f5934dea3ebac8556",
                 "shasum": ""
             },
             "require": {
-                "twig/extensions": "^1.3"
+                "twig/extensions": "^1.5"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.8.36",
+                "twig/twig": "^1.37 || ^2.7"
             },
             "type": "project",
             "autoload": {
@@ -171,7 +175,7 @@
                 "translation",
                 "twig"
             ],
-            "time": "2018-10-10T09:12:46+00:00"
+            "time": "2019-06-07T11:03:28+00:00"
         },
         {
             "name": "paragonie/random_compat",
@@ -2714,16 +2718,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v1.42.0",
+            "version": "v1.42.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "2983fcf2e20a4afe95f07e61d89a7590b3c8df2e"
+                "reference": "21707d6ebd05476854805e4f91b836531941bcd4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/2983fcf2e20a4afe95f07e61d89a7590b3c8df2e",
-                "reference": "2983fcf2e20a4afe95f07e61d89a7590b3c8df2e",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/21707d6ebd05476854805e4f91b836531941bcd4",
+                "reference": "21707d6ebd05476854805e4f91b836531941bcd4",
                 "shasum": ""
             },
             "require": {
@@ -2776,7 +2780,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2019-05-31T06:20:05+00:00"
+            "time": "2019-06-18T15:35:16+00:00"
         },
         {
             "name": "webmozart/assert",
@@ -4153,8 +4157,5 @@
     },
     "platform-dev": {
         "ext-curl": "*"
-    },
-    "platform-overrides": {
-        "php": "5.6.40"
     }
 }

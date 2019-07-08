@@ -65,9 +65,9 @@ class Template extends Response
     /**
      * The twig environment.
      *
-     * @var false|\JaimePerez\TwigConfigurableI18n\Twig\Environment
+     * @var \Twig\Environment
      */
-    private $twig = false;
+    private $twig;
 
     /**
      * The template name.
@@ -78,6 +78,8 @@ class Template extends Response
 
     /**
      * Current module, if any.
+     *
+     * @var string
      */
     private $module;
 
@@ -108,9 +110,9 @@ class Template extends Response
      * of the module and the name of the theme, respectively. If we are using the default theme, the variable has
      * the 'default' string in the "name" key, and 'null' in the "module" key.
      *
-     * @var array|null
+     * @var array
      */
-    private $theme = null;
+    private $theme = ['module' => null, 'name' => 'default'];
 
     /**
      * Constructor
@@ -147,6 +149,7 @@ class Template extends Response
             if ($controller && class_exists($controller) &&
                 in_array(TemplateControllerInterface::class, class_implements($controller))
             ) {
+                /** @var \SimpleSAML\XHTML\TemplateControllerInterface $this->controller */
                 $this->controller = new $controller();
             }
 
@@ -173,7 +176,7 @@ class Template extends Response
 
         $tag = $this->configuration->getVersion();
         if ($tag === 'master') {
-            $tag = filemtime($file);
+            $tag = strval(filemtime($file));
         }
         $tag = substr(hash('md5', $tag), 0, 5);
         return $this->configuration->getBasePath().'assets/'.$asset.'?tag='.$tag;
@@ -261,17 +264,20 @@ class Template extends Response
 
     /**
      * Setup twig.
-     * @return Twig_Environment|false
+     * @return \Twig\Environment
+     * @throws \Exception if the template does not exist
      */
     private function setupTwig()
     {
         $auto_reload = $this->configuration->getBoolean('template.auto_reload', true);
         $cache = $this->configuration->getString('template.cache', false);
+
         // set up template paths
         $loader = $this->setupTwigTemplatepaths();
+
         // abort if twig template does not exist
         if (!$loader->exists($this->twig_template)) {
-            return false;
+            throw new \Exception('Template-file \"'.$this->template.'\" does not exist.');
         }
 
         // load extra i18n domains
@@ -337,7 +343,7 @@ class Template extends Response
      */
     private function findThemeTemplateDirs()
     {
-        if ($this->theme['module'] === null) {
+        if (!isset($this->theme['module'])) {
             // no module involved
             return [];
         }
@@ -517,7 +523,7 @@ class Template extends Response
      */
     public function show()
     {
-        if ($this->twig !== false) {
+        if ($this->useNewUI) {
             echo $this->getContents();            
         } else {
             require($this->findTemplatePath($this->template));
@@ -573,7 +579,8 @@ class Template extends Response
             $filename = Module::getModuleDir($templateModule).'/templates/'.$templateName;
         } else {
             // .../templates/<theme>/<templateName>
-            $filename = $this->configuration->getPathValue('templatedir', 'templates/').$templateName;
+            $base = $this->configuration->getPathValue('templatedir', 'templates/') ?: 'templates/';
+            $filename = $base.$templateName;
         }
 
         if (file_exists($filename)) {
@@ -592,7 +599,8 @@ class Template extends Response
             $filename = Module::getModuleDir($templateModule).'/templates/'.$templateName;
         } else {
             // .../templates/<templateName>
-            $filename = $this->configuration->getPathValue('templatedir', 'templates/').'/'.$templateName;
+            $base = $this->configuration->getPathValue('templatedir', 'templates/') ?: 'templates/';
+            $filename = $base.'/'.$templateName;
         }
 
         if (file_exists($filename)) {
@@ -638,7 +646,7 @@ class Template extends Response
     /**
      * Get the current instance of Twig in use.
      *
-     * @return false|Twig_Environment The Twig instance in use, or false if Twig is not used.
+     * @return \Twig\Environment The Twig instance in use, or null if Twig is not used.
      */
     public function getTwig()
     {
@@ -727,7 +735,7 @@ class Template extends Response
     /**
      * @param string $tag
      *
-     * @return array
+     * @return array|null
      * @deprecated This method will be removed in SSP 2.0. Please use \SimpleSAML\Locale\Translate::getTag() instead.
      */
     public function getTag($tag)
@@ -856,7 +864,7 @@ class Template extends Response
      * @param bool $fallbackdefault
      * @param array $oldreplacements
      * @param bool $striptags
-     * @return string
+     * @return string|null
      */
     public function t(
         $tag,

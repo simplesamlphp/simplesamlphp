@@ -3,15 +3,36 @@
     name="SimpleSAMLphp"
     useDocblockTypes="true"
     totallyTyped="false"
+    hideExternalErrors="true"
 >
     <projectFiles>
+        <directory name="lib/SimpleSAML/Auth" />
+        <directory name="lib/SimpleSAML/Bindings" />
+        <directory name="lib/SimpleSAML/Error" />
+        <directory name="lib/SimpleSAML/HTTP" />
+        <directory name="lib/SimpleSAML/IdP" />
+        <directory name="lib/SimpleSAML/Locale" />
+        <directory name="lib/SimpleSAML/Logger" />
+        <directory name="lib/SimpleSAML/Metadata" />
+        <directory name="lib/SimpleSAML/Module" />
+        <directory name="lib/SimpleSAML/Stats" />
+        <directory name="lib/SimpleSAML/Store" />
         <directory name="lib/SimpleSAML/Utils" />
+        <directory name="lib/SimpleSAML/XHTML" />
+        <directory name="lib/SimpleSAML/XML" />
+
+        <!-- Ignore deprecated classes -->
+        <ignoreFiles>
+            <file name="lib/SimpleSAML/Auth/DefaultAuth.php" />
+            <file name="lib/SimpleSAML/Utilities.php" />
+        </ignoreFiles>
     </projectFiles>
 
     <issueHandlers>
         <LessSpecificReturnType errorLevel="info" />
 
         <!-- level 3 issues - slightly lazy code writing, but probably low false-negatives -->
+        <DeprecatedClass errorLevel="info" />
         <DeprecatedMethod errorLevel="info" />
 
         <MissingClosureReturnType errorLevel="info" />
@@ -30,6 +51,15 @@
         <!-- Ignore these errors until we are fully typehinted -->
         <DocblockTypeContradiction errorLevel="suppress" />
         <RedundantConditionGivenDocblockType errorLevel="suppress" />
+
+        <!-- Suppress false-positive -->
+        <UnresolvableInclude errorLevel="suppress" />
+        <!-- See #1141 -->
+        <MissingDependency>
+            <errorLevel type="suppress">
+                <file name="lib/SimpleSAML/HTTP/Router.php" />
+            </errorLevel>
+        </MissingDependency>
     </issueHandlers>
 
     <stubs>

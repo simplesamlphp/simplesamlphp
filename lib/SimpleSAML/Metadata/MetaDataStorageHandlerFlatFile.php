@@ -21,7 +21,7 @@ class MetaDataStorageHandlerFlatFile extends MetaDataStorageSource
      *
      * @var string
      */
-    private $directory;
+    private $directory = '/';
 
 
     /**
@@ -50,7 +50,7 @@ class MetaDataStorageHandlerFlatFile extends MetaDataStorageSource
 
         // find the path to the directory we should search for metadata in
         if (array_key_exists('directory', $config)) {
-            $this->directory = $config['directory'];
+            $this->directory = $config['directory'] ?: 'metadata/';
         } else {
             $this->directory = $globalConfig->getString('metadatadir', 'metadata/');
         }
@@ -58,7 +58,10 @@ class MetaDataStorageHandlerFlatFile extends MetaDataStorageSource
         /* Resolve this directory relative to the SimpleSAMLphp directory (unless it is
          * an absolute path).
          */
-        $this->directory = $globalConfig->resolvePath($this->directory).'/';
+
+        /** @var string $base */
+        $base = $globalConfig->resolvePath($this->directory);
+        $this->directory = $base.'/';
     }
 
 

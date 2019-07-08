@@ -97,6 +97,8 @@ abstract class MetaDataStorageSource
                         null
                     );
                 }
+
+                /** @var \SimpleSAML\Metadata\MetaDataStorageSource */
                 return new $className($sourceConfig);
         }
     }

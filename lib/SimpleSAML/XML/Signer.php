@@ -26,7 +26,7 @@ class Signer
     private $idAttrName = '';
 
     /**
-     * @var XMLSecurityKey|bool  The private key (as an XMLSecurityKey).
+     * @var XMLSecurityKey|false  The private key (as an XMLSecurityKey).
      */
     private $privateKey = false;
 
@@ -283,7 +283,8 @@ class Signer
         assert($insertBefore === null || $insertBefore instanceof DOMElement ||
             $insertBefore instanceof DOMComment || $insertBefore instanceof DOMText);
 
-        if ($this->privateKey === false) {
+        $privateKey = $this->privateKey;
+        if ($privateKey === false) {
             throw new \Exception('Private key not set.');
         }
 
@@ -303,9 +304,7 @@ class Signer
             $options
         );
 
-        /** @var \RobRichards\XMLSecLibs\XMLSecurityKey $this->privateKey */
-        $objXMLSecDSig->sign($this->privateKey);
-
+        $objXMLSecDSig->sign($privateKey);
 
         // Add the certificate to the signature
         $objXMLSecDSig->add509Cert($this->certificate, true);

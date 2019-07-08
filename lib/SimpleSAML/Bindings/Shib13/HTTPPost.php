@@ -20,14 +20,14 @@ use SimpleSAML\XML\Signer;
 class HTTPPost
 {
     /**
-     * @var \SimpleSAML\Configuration|null
+     * @var \SimpleSAML\Configuration
      */
-    private $configuration = null;
+    private $configuration;
 
     /**
-     * @var \SimpleSAML\Metadata\MetaDataStorageHandler|null
+     * @var \SimpleSAML\Metadata\MetaDataStorageHandler
      */
-    private $metadata = null;
+    private $metadata;
 
 
     /**

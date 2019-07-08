@@ -1243,9 +1243,9 @@ class Configuration implements Utils\ClearableState
      * @param mixed  $default The default value to return if no matching endpoint is found. If no default is provided,
      *     an exception will be thrown.
      *
-     * @return array|null The default endpoint, or null if no acceptable endpoints are used.
+     * @return mixed The default endpoint, or the $default parameter if no acceptable endpoints are used.
      *
-     * @throws \Exception If no supported endpoint is found.
+     * @throws \Exception If no supported endpoint is found and no $default parameter is specified.
      */
     public function getDefaultEndpoint($endpointType, array $bindings = null, $default = self::REQUIRED_OPTION)
     {

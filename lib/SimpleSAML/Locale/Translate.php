@@ -108,7 +108,7 @@ class Translate
                 $fileName = substr($name, $sepPos + 1);
                 $dictDir = Module::getModuleDir($module).'/dictionaries/';
             } else {
-                $dictDir = $this->configuration->getPathValue('dictionarydir', 'dictionaries/');
+                $dictDir = $this->configuration->getPathValue('dictionarydir', 'dictionaries/') ?: 'dictionaries/';
                 $fileName = $name;
             }
 
@@ -261,7 +261,7 @@ class Translate
      * @param bool $striptags
      * @deprecated Not used in twig, gettext
      *
-     * @return string  The translated tag, or a placeholder value if the tag wasn't found.
+     * @return string|null  The translated tag, or a placeholder value if the tag wasn't found.
      */
     public function t(
         $tag,
@@ -292,6 +292,7 @@ class Translate
             );
 
             // for backwards compatibility
+            /** @psalm-suppress PossiblyInvalidArgument */
             if (!$replacements && ($this->getTag($tag) === null)) {
                 Logger::warning(
                     'Code which uses $fallbackdefault === FALSE should be updated to use the getTag() method instead.'
@@ -387,6 +388,7 @@ class Translate
         } else {
             $filebase = $this->configuration->getPathValue('dictionarydir', 'dictionaries/');
         }
+        $filebase = $filebase ?: 'dictionaries/';
 
         $lang = $this->readDictionaryFile($filebase.$file);
         Logger::debug('Translate: Merging language array. Loading ['.$file.']');
@@ -520,9 +522,9 @@ class Translate
     /**
      * Pick a translation from a given array of translations for the current language.
      *
-     * @param array $context An array of options. The current language must be specified as an ISO 639 code accessible
+     * @param array|null $context An array of options. The current language must be specified as an ISO 639 code accessible
      * with the key "currentLanguage" in the array.
-     * @param array $translations An array of translations. Each translation has an ISO 639 code as its key, identifying
+     * @param array|null $translations An array of translations. Each translation has an ISO 639 code as its key, identifying
      * the language it corresponds to.
      *
      * @return null|string The translation appropriate for the current language, or null if none found. If the
@@ -530,7 +532,7 @@ class Translate
      */
     public static function translateFromArray($context, $translations)
     {
-        if (!is_array($translations) || $translations === null) {
+        if (!is_array($translations)) {
             return null;
         }
 

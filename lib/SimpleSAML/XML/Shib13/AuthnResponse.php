@@ -269,10 +269,14 @@ class AuthnResponse
                 'shib:AttributeStatement/shib:Attribute/shib:AttributeValue',
                 $assertion
             );
-            /** @var \DOMElement $attribute */
+
             foreach ($attribute_nodes as $attribute) {
+                /** @var \DOMElement $attribute */
+
                 $value = $attribute->textContent;
-                $name = $attribute->parentNode->getAttribute('AttributeName');
+                /** @var \DOMElement $parentNode */
+                $parentNode = $attribute->parentNode;
+                $name = $parentNode->getAttribute('AttributeName');
 
                 if ($attribute->hasAttribute('Scope')) {
                     $scopePart = '@'.$attribute->getAttribute('Scope');
@@ -280,7 +284,7 @@ class AuthnResponse
                     $scopePart = '';
                 }
 
-                if (!is_string($name)) {
+                if (empty($name)) {
                     throw new \Exception('Shib13 Attribute node without an AttributeName.');
                 }
 

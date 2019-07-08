@@ -4,6 +4,7 @@ namespace SimpleSAML\Metadata;
 
 use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
+use SimpleSAML\Utils;
 
 /**
  * Class for handling metadata files in serialized format.
@@ -24,9 +25,9 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
     /**
      * The base directory where metadata is stored.
      *
-     * @var string|null
+     * @var string
      */
-    private $directory;
+    private $directory = '/';
 
 
     /**
@@ -49,7 +50,7 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
         /* Resolve this directory relative to the SimpleSAMLphp directory (unless it is
          * an absolute path).
          */
-        $this->directory = $globalConfig->resolvePath($this->directory);
+        $this->directory = Utils\System::resolvePath($this->directory, $globalConfig->getBaseDir());
     }
 
 
@@ -187,6 +188,7 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
 
         $data = @file_get_contents($filePath);
         if ($data === false) {
+            /** @var array $error */
             $error = error_get_last();
             Logger::warning(
                 'Error reading file '.$filePath.': '.$error['message']
@@ -231,6 +233,7 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
             Logger::info('Creating directory: '.$dir);
             $res = @mkdir($dir, 0777, true);
             if ($res === false) {
+                /** @var array $error */
                 $error = error_get_last();
                 Logger::error('Failed to create directory '.$dir.': '.$error['message']);
                 return false;
@@ -243,6 +246,7 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
 
         $res = file_put_contents($newPath, $data);
         if ($res === false) {
+            /** @var array $error */
             $error = error_get_last();
             Logger::error('Error saving file '.$newPath.': '.$error['message']);
             return false;
@@ -250,6 +254,7 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
 
         $res = rename($newPath, $filePath);
         if ($res === false) {
+            /** @var array $error */
             $error = error_get_last();
             Logger::error('Error renaming '.$newPath.' to '.$filePath.': '.$error['message']);
             return false;
@@ -283,6 +288,7 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
 
         $res = unlink($filePath);
         if ($res === false) {
+            /** @var array $error */
             $error = error_get_last();
             Logger::error(
                 'Failed to delete file '.$filePath.
