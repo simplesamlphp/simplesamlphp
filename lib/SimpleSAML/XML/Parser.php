@@ -29,6 +29,7 @@ class Parser
     /**
      * @param \SimpleXMLElement $element
      * @return \SimpleSAML\XML\Parser
+     * @psalm-return \SimpleSAML\XML\Parser
      */
     public static function fromSimpleXMLElement(\SimpleXMLElement $element)
     {
@@ -41,11 +42,7 @@ class Parser
         /* Create a new parser with the xml document where the namespace definitions
          * are added.
          */
-
-        /** @var string $xml */
-        $xml = $element->asXML();
-        $parser = new Parser($xml);
-        return $parser;
+        return new Parser($xml = $element->asXML());
     }
     
 
