@@ -42,7 +42,11 @@ class Parser
         /* Create a new parser with the xml document where the namespace definitions
          * are added.
          */
-        return new Parser($xml = $element->asXML());
+        $xml = $element->asXML();
+        if ($xml === false) {
+            throw new \Exception('Error converting SimpleXMLElement to well-formed XML string.');
+        }
+        return new Parser($xml);
     }
     
 
@@ -55,9 +59,8 @@ class Parser
     public function getValueDefault($xpath, $defvalue)
     {
         try {
-            /** @var string $retval */
-            $retval = $this->getValue($xpath, true);
-            return $retval;
+            /** @var string */
+            return $this->getValue($xpath, true);
         } catch (\Exception $e) {
             return $defvalue;
         }

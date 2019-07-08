@@ -337,7 +337,7 @@ abstract class Source
             $authSource = new $className($info, $config);
         }
 
-        /** @var \SimpleSAML\Auth\Source $authSource */
+        /** @var \SimpleSAML\Auth\Source */
         return $authSource;
     }
 

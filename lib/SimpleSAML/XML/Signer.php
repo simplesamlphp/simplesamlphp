@@ -26,7 +26,7 @@ class Signer
     private $idAttrName = '';
 
     /**
-     * @var XMLSecurityKey|bool  The private key (as an XMLSecurityKey).
+     * @var XMLSecurityKey|false  The private key (as an XMLSecurityKey).
      */
     private $privateKey = false;
 

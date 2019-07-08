@@ -167,9 +167,8 @@ class ProcessingChain
         $config['%priority'] = $priority;
         unset($config['class']);
 
-        /** @var \SimpleSAML\Auth\ProcessingFilter $filter */
-        $filter = new $className($config, null);
-        return $filter;
+        /** @var \SimpleSAML\Auth\ProcessingFilter */
+        return new $className($config, null);
     }
 
 
