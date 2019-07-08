@@ -992,8 +992,9 @@ class SP extends \SimpleSAML\Auth\Source
             $state['Responder'] = $state['saml:proxy:reauthLogout:PrevResponder'];
         }
 
+        /** @var \SimpleSAML\Module\saml\Auth\Source\SP $sp */
         $sp = Auth\Source::getById($state['saml:sp:AuthId'], Module\saml\Auth\Source\SP::class);
-        /** @var \SimpleSAML\Module\saml\Auth\Source\SP $authSource */
+
         Logger::debug('Proxy: logging in again.');
         $sp->authenticate($state);
         assert(false);

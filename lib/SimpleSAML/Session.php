@@ -60,7 +60,7 @@ class Session implements \Serializable, Utils\ClearableState
     /**
      * The session ID of this session.
      *
-     * @var string|null
+     * @var string
      */
     private $sessionId;
 
@@ -76,9 +76,9 @@ class Session implements \Serializable, Utils\ClearableState
      * This is used in the debug logs and error messages to easily track more information
      * about what went wrong.
      *
-     * @var string|null
+     * @var string
      */
-    private $trackid = null;
+    private $trackid;
 
     /**
      * @var integer|null
@@ -529,7 +529,7 @@ class Session implements \Serializable, Utils\ClearableState
     /**
      * Retrieve the session ID of this session.
      *
-     * @return string|null  The session ID, or null if this is a transient session.
+     * @return string  The session ID.
      */
     public function getSessionId()
     {
@@ -550,7 +550,7 @@ class Session implements \Serializable, Utils\ClearableState
      * Get a unique ID that will be permanent for this session.
      * Used for debugging and tracing log files related to a session.
      *
-     * @return string|null The unique ID.
+     * @return string The unique ID.
      */
     public function getTrackID()
     {

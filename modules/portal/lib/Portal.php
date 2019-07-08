@@ -73,7 +73,7 @@ class Portal
 
 
     /**
-     * @param string
+     * @param string $thispage
      * @return string
      */
     public function getMenu($thispage)

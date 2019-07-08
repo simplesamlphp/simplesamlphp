@@ -16,7 +16,7 @@ abstract class Store implements Utils\ClearableState
      *
      * This is false if the data store isn't enabled, and null if we haven't attempted to initialize it.
      *
-     * @var \SimpleSAML\Store|bool|null
+     * @var \SimpleSAML\Store|false
      */
     private static $instance;
 
@@ -24,7 +24,7 @@ abstract class Store implements Utils\ClearableState
     /**
      * Retrieve our singleton instance.
      *
-     * @return bool|\SimpleSAML\Store The data store, or false if it isn't enabled.
+     * @return \SimpleSAML\Store|false The data store, or false if it isn't enabled.
      *
      * @throws \SimpleSAML\Error\CriticalConfigurationError
      */

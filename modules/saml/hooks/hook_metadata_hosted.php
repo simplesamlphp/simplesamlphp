@@ -13,7 +13,7 @@ function saml_hook_metadata_hosted(&$metadataHosted)
     $sources = \SimpleSAML\Auth\Source::getSourcesOfType('saml:SP');
 
     foreach ($sources as $source) {
-        /** @var \SimpleSAML\Auth\Source $source */
+        /** @var \SimpleSAML\Module\saml\Auth\Source\SP $source */
         $metadata = $source->getMetadata();
 
         $name = $metadata->getValue('name', null);

@@ -62,7 +62,7 @@ class AuthnRequest
     /**
      * @param string $destination
      * @param string $shire
-     * @return string|null
+     * @return string
      */
     public function createRedirect($destination, $shire)
     {
