@@ -130,7 +130,7 @@ if ($message instanceof \SAML2\LogoutResponse) {
         ]
     );
 
-    if (!$binding instanceof \SAML2\SOAP) {
+    if (!($binding instanceof \SAML2\SOAP)) {
         $binding = \SAML2\Binding::getBinding($dst['Binding']);
         if (isset($dst['ResponseLocation'])) {
             $dst = $dst['ResponseLocation'];
