@@ -76,13 +76,28 @@ class SessionHandlerPHP extends SessionHandler
         $params = $this->getCookieParams();
 
         if (!headers_sent()) {
-            session_set_cookie_params(
-                $params['lifetime'],
-                $params['path'],
-                $params['domain'],
-                $params['secure'],
-                $params['httponly']
-            );
+            if (\PHP_VERSION_ID >= 70300) {
+                session_set_cookie_params([
+                    'lifetime' => $params['lifetime'],
+                    'path' => $params['path'],
+                    'domain' => $params['domain'],
+                    'secure' => $params['secure'],
+                    'httponly' => $params['httponly'],
+                    'samesite' => $params['samesite'],
+                ]);
+            } else {
+                /* in older versions of PHP we need a nasty hack to set RFC6265bis SameSite attribute */
+                if ($params['samesite'] !== null and !preg_match('/;\s+samesite/i', $params['path'])) {
+                    $params['path'] .= '; SameSite='.$params['samesite'];
+                }
+                session_set_cookie_params(
+                    $params['lifetime'],
+                    $params['path'],
+                    $params['domain'],
+                    $params['secure'],
+                    $params['httponly']
+                );
+            }
         }
 
         $savepath = $config->getString('session.phpsession.savepath', null);
@@ -114,13 +129,17 @@ class SessionHandlerPHP extends SessionHandler
         session_write_close();
 
         session_name($this->previous_session['name']);
-        session_set_cookie_params(
-            $this->previous_session['cookie_params']['lifetime'],
-            $this->previous_session['cookie_params']['path'],
-            $this->previous_session['cookie_params']['domain'],
-            $this->previous_session['cookie_params']['secure'],
-            $this->previous_session['cookie_params']['httponly']
-        );
+        if (\PHP_VERSION_ID >= 70300) {
+            session_set_cookie_params($this->previous_session['cookie_params']);
+        } else {
+            session_set_cookie_params(
+                $this->previous_session['cookie_params']['lifetime'],
+                $this->previous_session['cookie_params']['path'],
+                $this->previous_session['cookie_params']['domain'],
+                $this->previous_session['cookie_params']['secure'],
+                $this->previous_session['cookie_params']['httponly']
+            );
+        }
         session_id($this->previous_session['id']);
         $this->previous_session = [];
         @session_start();
@@ -333,13 +352,17 @@ class SessionHandlerPHP extends SessionHandler
             session_write_close();
         }
 
-        session_set_cookie_params(
-            $cookieParams['lifetime'],
-            $cookieParams['path'],
-            $cookieParams['domain'],
-            $cookieParams['secure'],
-            $cookieParams['httponly']
-        );
+        if (\PHP_VERSION_ID >= 70300) {
+            session_set_cookie_params($cookieParams);
+        } else {
+            session_set_cookie_params(
+                $cookieParams['lifetime'],
+                $cookieParams['path'],
+                $cookieParams['domain'],
+                $cookieParams['secure'],
+                $cookieParams['httponly']
+            );
+        }
 
         session_id($sessionID);
         @session_start();

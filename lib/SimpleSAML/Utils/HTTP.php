@@ -117,7 +117,7 @@ class HTTP
 
         // Take care of edge-case where SERVER_PORT is an integer
         $port = strval($port);
-        
+
         if ($port !== $default_port) {
             return ':'.$port;
         }
@@ -1133,6 +1133,7 @@ class HTTP
             'secure'   => false,
             'httponly' => true,
             'raw'      => false,
+            'samesite' => null,
         ];
 
         if ($params !== null) {
@@ -1163,26 +1164,61 @@ class HTTP
             $expire = time() + intval($params['lifetime']);
         }
 
-        if ($params['raw']) {
-            $success = @setrawcookie(
-                $name,
-                strval($value),
-                $expire,
-                $params['path'],
-                $params['domain'],
-                $params['secure'],
-                $params['httponly']
-            );
+        if (\PHP_VERSION_ID >= 70300) {
+            /* use the new options array for PHP >= 7.3 */
+            if ($params['raw']) {
+                $success = @setrawcookie(
+                    $name,
+                    $value,
+                    [
+                        'expires' => $expire,
+                        'path' => $params['path'],
+                        'domain' => $params['domain'],
+                        'secure' => $params['secure'],
+                        'httponly' => $params['httponly'],
+                        'samesite' => $params['samesite'],
+                    ]
+                );
+            } else {
+                $success = @setcookie(
+                    $name,
+                    $value,
+                    [
+                        'expires' => $expire,
+                        'path' => $params['path'],
+                        'domain' => $params['domain'],
+                        'secure' => $params['secure'],
+                        'httponly' => $params['httponly'],
+                        'samesite' => $params['samesite'],
+                    ]
+                );
+            }
         } else {
-            $success = @setcookie(
-                $name,
-                strval($value),
-                $expire,
-                $params['path'],
-                $params['domain'],
-                $params['secure'],
-                $params['httponly']
-            );
+            /* in older versions of PHP we need a nasty hack to set RFC6265bis SameSite attribute */
+            if ($params['samesite'] !== null and !preg_match('/;\s+samesite/i', $params['path'])) {
+                $params['path'] .= '; SameSite='.$params['samesite'];
+            }
+            if ($params['raw']) {
+                $success = @setrawcookie(
+                    $name,
+                    $value,
+                    $expire,
+                    $params['path'],
+                    $params['domain'],
+                    $params['secure'],
+                    $params['httponly']
+                );
+            } else {
+                $success = @setcookie(
+                    $name,
+                    $value,
+                    $expire,
+                    $params['path'],
+                    $params['domain'],
+                    $params['secure'],
+                    $params['httponly']
+                );
+            }
         }
 
         if (!$success) {
