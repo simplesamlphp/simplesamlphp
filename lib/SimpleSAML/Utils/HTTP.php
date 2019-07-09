@@ -1168,6 +1168,7 @@ class HTTP
         if (version_compare(PHP_VERSION, '7.3.0', '>=')) {
             /* use the new options array for PHP >= 7.3 */
             if ($params['raw']) {
+                /** @psalm-suppress InvalidArgument */
                 $success = @setrawcookie(
                     $name,
                     $value,
@@ -1181,6 +1182,7 @@ class HTTP
                     ]
                 );
             } else {
+                /** @psalm-suppress InvalidArgument */
                 $success = @setcookie(
                     $name,
                     $value,
