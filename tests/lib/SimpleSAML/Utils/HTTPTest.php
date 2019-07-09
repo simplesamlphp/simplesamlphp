@@ -464,10 +464,11 @@ class HTTPTest extends ClearStateTestCase
 
     /**
      * @covers SimpleSAML\Utils\HTTP::setCookie()
-     * @expectedException SimpleSAML\Error\CannotSetCookie
      */
     public function testSetCookieInsecure()
     {
+        $this->expectException(\SimpleSAML\Error\CannotSetCookie::class);
+
         $original = $_SERVER;
         Configuration::loadFromArray([
             'baseurlpath' => 'http://example.com/simplesaml/',
