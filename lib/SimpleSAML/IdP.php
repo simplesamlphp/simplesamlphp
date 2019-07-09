@@ -40,9 +40,9 @@ class IdP
      * We use this to support cross-protocol logout until
      * we implement a cross-protocol IdP.
      *
-     * @var string|null
+     * @var string
      */
-    private $associationGroup = null;
+    private $associationGroup;
 
     /**
      * The configuration for this IdP.
@@ -98,7 +98,7 @@ class IdP
                 // probably no SAML 2 IdP configured for this host. Ignore the error
             }
         } else {
-            assert(false);
+            throw new \Exception("Protocol not implemented.");
         }
 
         if ($this->associationGroup === null) {
@@ -435,7 +435,6 @@ class IdP
      * Find the logout handler of this IdP.
      *
      * @return IdP\LogoutHandlerInterface The logout handler class.
-     *
      * @throws Exception If we cannot find a logout handler.
      */
     public function getLogoutHandler()
@@ -453,6 +452,7 @@ class IdP
                 throw new Error\Exception('Unknown logout handler: '.var_export($logouttype, true));
         }
 
+        /** @var IdP\LogoutHandlerInterface */
         return new $handler($this);
     }
 
@@ -505,8 +505,10 @@ class IdP
 
         $this->authSource->logout($returnTo);
 
-        $handler = $this->getLogoutHandler();
-        $handler->startLogout($state, $assocId);
+        if ($assocId !== null) {
+            $handler = $this->getLogoutHandler();
+            $handler->startLogout($state, $assocId);
+        }
         assert(false);
     }
 
@@ -526,8 +528,11 @@ class IdP
         assert(is_string($assocId));
         assert(is_string($relayState) || $relayState === null);
 
+        $index = strpos($assocId, ':');
+        assert(is_int($index));
+
         $session = Session::getSessionFromRequest();
-        $session->deleteData('core:idp-ssotime', $this->id.';'.substr($assocId, strpos($assocId, ':') + 1));
+        $session->deleteData('core:idp-ssotime', $this->id.';'.substr($assocId, $index + 1));
 
         $handler = $this->getLogoutHandler();
         $handler->onResponse($assocId, $relayState, $error);
