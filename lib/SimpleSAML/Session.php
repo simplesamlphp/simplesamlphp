@@ -32,7 +32,6 @@ class Session implements \Serializable, Utils\ClearableState
      */
     const DATA_TIMEOUT_SESSION_END = 'sessionEndTimeout';
 
-
     /**
      * The list of loaded session objects.
      *
@@ -42,13 +41,12 @@ class Session implements \Serializable, Utils\ClearableState
      */
     private static $sessions = [];
 
-
     /**
      * This variable holds the instance of the session - Singleton approach.
      *
      * Warning: do not set the instance manually, call Session::load() instead.
      */
-    private static $instance = null;
+    private static $instance;
 
     /**
      * The global configuration.
@@ -169,10 +167,11 @@ class Session implements \Serializable, Utils\ClearableState
              * Initialize the session ID. It might be that we have a session cookie but we couldn't load the session.
              * If that's the case, use that ID. If not, create a new ID.
              */
-            $this->sessionId = $sh->getCookieSessionId();
-            if ($this->sessionId === null) {
-                $this->sessionId = $sh->newSessionId();
+            $sessionId = $sh->getCookieSessionId();
+            if ($sessionId === null) {
+                $sessionId = $sh->newSessionId();
             }
+            $this->sessionId = $sessionId;
         } else {
             // regular session
             $sh = SessionHandler::getSessionHandler();
@@ -321,6 +320,7 @@ class Session implements \Serializable, Utils\ClearableState
         }
 
         // we must have a session now, either regular or transient
+        /** @var \SimpleSAML\Session */
         return self::$instance;
     }
 
