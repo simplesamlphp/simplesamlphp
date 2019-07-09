@@ -20,6 +20,7 @@ Released TBD
   * Fixed an issue when an error occurs during a passive authentication request.
   * Handle duplicate insertion also for SQL Server.
   * Fix a bug in Short SSO Interval warning filter.
+  * Apply workaround for SIGSEVS on session creation with PHP 7.3.
 
 ### adfs
   * Fixed a missing option to supply a passphrase for the ADFS IDP signing certificate.
