@@ -64,9 +64,11 @@ abstract class Store implements Utils\ClearableState
                         $c
                     );
                 }
+                /** @var \SimpleSAML\Store|false */
                 self::$instance = new $className();
         }
 
+        /** @var \SimpleSAML\Store|false */
         return self::$instance;
     }
 
