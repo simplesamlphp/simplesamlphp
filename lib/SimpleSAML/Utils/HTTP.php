@@ -1164,7 +1164,7 @@ class HTTP
             $expire = time() + intval($params['lifetime']);
         }
 
-        if (\PHP_VERSION_ID >= 70300) {
+        if (version_compare(PHP_VERSION, '7.3.0', '>=')) {
             /* use the new options array for PHP >= 7.3 */
             if ($params['raw']) {
                 $success = @setrawcookie(

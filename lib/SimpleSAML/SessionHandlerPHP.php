@@ -76,7 +76,7 @@ class SessionHandlerPHP extends SessionHandler
         $params = $this->getCookieParams();
 
         if (!headers_sent()) {
-            if (\PHP_VERSION_ID >= 70300) {
+            if (version_compare(PHP_VERSION, '7.3.0', '>=')) {
                 session_set_cookie_params([
                     'lifetime' => $params['lifetime'],
                     'path' => $params['path'],
@@ -129,7 +129,7 @@ class SessionHandlerPHP extends SessionHandler
         session_write_close();
 
         session_name($this->previous_session['name']);
-        if (\PHP_VERSION_ID >= 70300) {
+        if (version_compare(PHP_VERSION, '7.3.0', '>=')) {
             session_set_cookie_params($this->previous_session['cookie_params']);
         } else {
             session_set_cookie_params(
@@ -352,7 +352,7 @@ class SessionHandlerPHP extends SessionHandler
             session_write_close();
         }
 
-        if (\PHP_VERSION_ID >= 70300) {
+        if (version_compare(PHP_VERSION, '7.3.0', '>=')) {
             session_set_cookie_params($cookieParams);
         } else {
             session_set_cookie_params(
