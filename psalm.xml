@@ -8,20 +8,7 @@
     allowStringToStandInForClass="true"
 >
     <projectFiles>
-        <directory name="lib/SimpleSAML/Auth" />
-        <directory name="lib/SimpleSAML/Bindings" />
-        <directory name="lib/SimpleSAML/Error" />
-        <directory name="lib/SimpleSAML/HTTP" />
-        <directory name="lib/SimpleSAML/IdP" />
-        <directory name="lib/SimpleSAML/Locale" />
-        <directory name="lib/SimpleSAML/Logger" />
-        <directory name="lib/SimpleSAML/Metadata" />
-        <directory name="lib/SimpleSAML/Module" />
-        <directory name="lib/SimpleSAML/Stats" />
-        <directory name="lib/SimpleSAML/Store" />
-        <directory name="lib/SimpleSAML/Utils" />
-        <directory name="lib/SimpleSAML/XHTML" />
-        <directory name="lib/SimpleSAML/XML" />
+        <directory name="lib/SimpleSAML" />
 
         <!-- Replaces all modules/... with this one-liner for 2.0
         <directory name="modules" />
