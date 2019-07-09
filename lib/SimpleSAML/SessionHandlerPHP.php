@@ -168,6 +168,10 @@ class SessionHandlerPHP extends SessionHandler
             if (($sid_length * $sid_bits_per_char) < 128) {
                 Logger::warning("Unsafe defaults used for sessionId generation!");
             }
+            /**
+             * This annotation may be removed as soon as we start using vimeo/psalm 3.x
+             * @psalm-suppress TooFewArguments
+             */
             $sessionId = session_create_id();
         } else {
             $sessionId = bin2hex(openssl_random_pseudo_bytes(16));
@@ -364,7 +368,7 @@ class SessionHandlerPHP extends SessionHandler
             );
         }
 
-        session_id($sessionID);
+        session_id(strval($sessionID));
         @session_start();
     }
 }
