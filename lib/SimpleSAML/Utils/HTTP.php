@@ -1156,6 +1156,7 @@ class HTTP
 
         if ($value === null) {
             $expire = time() - 365 * 24 * 60 * 60;
+            $value = strval($value);
         } elseif (isset($params['expire'])) {
             $expire = intval($params['expire']);
         } elseif ($params['lifetime'] === 0) {
