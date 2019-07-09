@@ -49,6 +49,7 @@ class SessionHandlerPHPTest extends ClearStateTestCase
     /**
      * @covers SimpleSAML\SessionHandlerPHP::setCookie()
      * @runInSeparateProcess
+     * @requires extension xdebug
      */
     public function testSetCookie()
     {
@@ -68,6 +69,7 @@ class SessionHandlerPHPTest extends ClearStateTestCase
     /**
      * @covers SimpleSAML\SessionHandlerPHP::setCookie()
      * @runInSeparateProcess
+     * @requires extension xdebug
      */
     public function testSetCookieSameSiteNone()
     {
@@ -83,6 +85,7 @@ class SessionHandlerPHPTest extends ClearStateTestCase
     /**
      * @covers SimpleSAML\SessionHandlerPHP::setCookie()
      * @runInSeparateProcess
+     * @requires extension xdebug
      */
     public function testSetCookieSameSiteLax()
     {
@@ -98,6 +101,7 @@ class SessionHandlerPHPTest extends ClearStateTestCase
     /**
      * @covers SimpleSAML\SessionHandlerPHP::setCookie()
      * @runInSeparateProcess
+     * @requires extension xdebug
      */
     public function testSetCookieSameSiteStrict()
     {
@@ -113,6 +117,7 @@ class SessionHandlerPHPTest extends ClearStateTestCase
     /**
      * @covers SimpleSAML\SessionHandlerPHP::restorePrevious()
      * @runInSeparateProcess
+     * @requires extension xdebug
      */
     public function testRestorePrevious()
     {

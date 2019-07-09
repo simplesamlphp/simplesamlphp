@@ -431,6 +431,7 @@ class HTTPTest extends ClearStateTestCase
     /**
      * @covers SimpleSAML\Utils\HTTP::setCookie()
      * @runInSeparateProcess
+     * @requires extension xdebug
      */
     public function testSetCookie()
     {
@@ -484,6 +485,7 @@ class HTTPTest extends ClearStateTestCase
     /**
      * @covers SimpleSAML\Utils\HTTP::setCookie()
      * @runInSeparateProcess
+     * @requires extension xdebug
      */
     public function testSetCookieSameSite()
     {
