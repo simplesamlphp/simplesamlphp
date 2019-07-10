@@ -139,7 +139,7 @@ class HTTP
             return false;
         }
         $scheme = parse_url($url, PHP_URL_SCHEME);
-        if ($scheme !== false && in_array(strtolower($scheme), ['http', 'https'], true)) {
+        if (is_string($scheme) && in_array(strtolower($scheme), ['http', 'https'], true)) {
             return true;
         }
         return false;
