@@ -25,6 +25,7 @@ Released TBD
     content changes.
   * New SP options `AssertionConsumerService` and `SingleLogoutServiceLocation`
     that allow to override the default URL paths.
+  * Added support for per-IDP configurable `AuthnContextClassRef`/`AuthnContextComparison`.
 
 ### Interoperability
   * The minimum PHP version required is now 5.6.
@@ -54,9 +55,6 @@ Released 2019-07-10
     If you relied on this module, you may consider migrating to the
     [authoauth2 module](https://github.com/cirrusidentity/simplesamlphp-module-authoauth2).
     A migration guide for LinkedIn authentication is included in their README.
-
-### saml
-  * Added support for per-IDP configurable `AuthnContextClassRef`/`AuthnContextComparison`.
 
 ## Version 1.17.2
 
