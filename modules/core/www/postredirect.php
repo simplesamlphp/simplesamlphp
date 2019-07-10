@@ -44,7 +44,7 @@ assert(is_array($postData));
 assert(array_key_exists('url', $postData));
 assert(array_key_exists('post', $postData));
 
-if (!\SimpleSAML\Utils\HTTP::isValidURL($destination)) {
+if (!\SimpleSAML\Utils\HTTP::isValidURL($postData['url'])) {
     throw new \SimpleSAML\Error\Exception('Invalid destination URL.');
 }
 
