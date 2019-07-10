@@ -124,6 +124,27 @@ class HTTP
 
 
     /**
+     * Verify that a given URL is valid.
+     *
+     * @param string $url The URL we want to verify.
+     *
+     * @return boolean True if the given URL is valid, false otherwise.
+     */
+    public static function isValidURL($url)
+    {
+        $url = filter_var($url, FILTER_VALIDATE_URL);
+        if ($url === false) {
+            return false;
+        }
+        $scheme = parse_url($url, PHP_URL_SCHEME);
+        if ($scheme !== false && in_array(strtolower($scheme), ['http', 'https'], true)) {
+            return true;
+        }
+        return false;
+    }
+
+
+    /**
      * This function redirects the user to the specified address.
      *
      * This function will use the "HTTP 303 See Other" redirection if the current request used the POST method and the
@@ -141,6 +162,7 @@ class HTTP
      *
      * @return void This function never returns.
      * @throws \InvalidArgumentException If $url is not a string or is empty, or $parameters is not an array.
+     * @throws \SimpleSAML\Error\Exception If $url is not a valid HTTP URL.
      *
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      * @author Mads Freek Petersen
@@ -151,6 +173,10 @@ class HTTP
         if (!is_string($url) || empty($url) || !is_array($parameters)) {
             throw new \InvalidArgumentException('Invalid input parameters.');
         }
+        if (!self::isValidURL($url)) {
+            throw new Error\Exception('Invalid destination URL.');
+        }
+
         if (!empty($parameters)) {
             $url = self::addURLParameters($url, $parameters);
         }
@@ -327,7 +353,7 @@ class HTTP
         }
         $url = self::normalizeURL($url);
 
-        if (filter_var($url, FILTER_VALIDATE_URL) === false) {
+        if (!self::isValidURL($url)) {
             throw new Error\Exception('Invalid URL: '.$url);
         }
 
@@ -625,7 +651,7 @@ class HTTP
              */
             $c = $globalConfig->toArray();
             $c['baseurlpath'] = self::guessBasePath();
-            throw new \SimpleSAML\Error\CriticalConfigurationError(
+            throw new Error\CriticalConfigurationError(
                 'Invalid value for \'baseurlpath\' in config.php. Valid format is in the form: '.
                 '[(http|https)://(hostname|fqdn)[:port]]/[path/to/simplesaml/]. It must end with a \'/\'.',
                 null,
@@ -1135,9 +1161,9 @@ class HTTP
         // Do not set secure cookie if not on HTTPS
         if ($params['secure'] && !self::isHTTPS()) {
             if ($throw) {
-                throw new \SimpleSAML\Error\CannotSetCookie(
+                throw new Error\CannotSetCookie(
                     'Setting secure cookie on plain HTTP is not allowed.',
-                    \SimpleSAML\Error\CannotSetCookie::SECURE_COOKIE
+                    Error\CannotSetCookie::SECURE_COOKIE
                 );
             }
             Logger::warning('Error setting cookie: setting secure cookie on plain HTTP is not allowed.');
@@ -1213,9 +1239,9 @@ class HTTP
 
         if (!$success) {
             if ($throw) {
-                throw new \SimpleSAML\Error\CannotSetCookie(
+                throw new Error\CannotSetCookie(
                     'Headers already sent.',
-                    \SimpleSAML\Error\CannotSetCookie::HEADERS_SENT
+                    Error\CannotSetCookie::HEADERS_SENT
                 );
             }
             Logger::warning('Error setting cookie: headers already sent.');
@@ -1232,6 +1258,7 @@ class HTTP
      * @param array  $data An associative array with the data to be posted to $destination.
      *
      * @throws \InvalidArgumentException If $destination is not a string or $data is not an array.
+     * @throws \SimpleSAML\Error\Exception If $destination is not a valid HTTP URL.
      *
      * @return void
      *
@@ -1243,6 +1270,9 @@ class HTTP
     {
         if (!is_string($destination) || !is_array($data)) {
             throw new \InvalidArgumentException('Invalid input parameters.');
+        }
+        if (!self::isValidURL($destination)) {
+            throw new Error\Exception('Invalid destination URL.');
         }
 
         $config = Configuration::getInstance();
