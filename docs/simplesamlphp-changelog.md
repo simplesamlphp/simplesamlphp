@@ -8,19 +8,20 @@ See the upgrade notes for specific information about upgrading.
 
 ## Version 1.17.3
 
-Released TBD
+Released 2019-07-10
 
+  * Resolved a security issue that could lead to a reflected XSS.  See
+    [SSPSA 201907-01](https://simplesamlphp.org/security/201907-01).
   * Add new options `session.cookie.samesite` and `language.cookie.samesite` that can be
     used to set a specific value for the cookies' SameSite attribute. The default it not
     to set it.
   * Upgraded jQuery to version 3.4.
+  * HHVM is no longer supported.
   * Fixed a bug (#926) where dynamic metadata records where not loaded from a database.
-  * Removed HHVM from Travis; it is broken beyond repair and no longer supported by Symfony.
-  * Fixed a minor GUI glitch in auth_status.twig.
   * Fixed an issue when an error occurs during a passive authentication request.
-  * Handle duplicate insertion also for SQL Server.
+  * Handle duplicate insertions for SQL Server.
   * Fix a bug in Short SSO Interval warning filter.
-  * Apply workaround for SIGSEGVs on session creation with PHP 7.3.
+  * Apply a workaround for SIGSEGVs during session creation with PHP-FPM 7.3.
 
 ### adfs
   * Fixed a missing option to supply a passphrase for the ADFS IDP signing certificate.
@@ -32,7 +33,7 @@ Released TBD
     A migration guide for LinkedIn authentication is included in their README.
 
 ### saml
-  * Added support for per-IDP configurable AuthnContextClassRef/AuthnContextComparison.
+  * Added support for per-IDP configurable `AuthnContextClassRef`/`AuthnContextComparison`.
 
 ## Version 1.17.2
 
