@@ -32,9 +32,6 @@ Released 2019-07-10
     [authoauth2 module](https://github.com/cirrusidentity/simplesamlphp-module-authoauth2).
     A migration guide for LinkedIn authentication is included in their README.
 
-### saml
-  * Added support for per-IDP configurable `AuthnContextClassRef`/`AuthnContextComparison`.
-
 ## Version 1.17.2
 
 Released 2019-04-02
