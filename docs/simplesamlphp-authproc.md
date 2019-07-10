@@ -124,8 +124,6 @@ Auth Proc Filters included in the SimpleSAMLphp distribution
 
 The following filters are included in the SimpleSAMLphp distribution:
 
-- [`authorize:Authorize`](./authorize:authorize): Access control based on regular expressions.
-- [`consent:Consent`](./consent:consent): Ask the user for consent before transmitting attributes.
 - [`core:AttributeAdd`](./core:authproc_attributeadd): Add attributes to the response.
 - [`core:AttributeCopy`](./core:authproc_attributecopy): Copy existing attributes to the response.
 - [`core:AttributeAlter`](./core:authproc_attributealter): Do search-and-replace on attributevalues.
@@ -143,7 +141,6 @@ The following filters are included in the SimpleSAMLphp distribution:
 - [`core:StatisticsWithAttribute`](./core:authproc_statisticswithattribute): Create a statistics logentry.
 - [`core:TargetedID`](./core:authproc_targetedid): Generate the `eduPersonTargetedID` attribute.
 - [`core:WarnShortSSOInterval`](./core:authproc_warnshortssointerval): Give a warning if the user logs into the same SP twice within a few seconds.
-- [`expirycheck:ExpiryDate`](./expirycheck:expirycheck): Block access to accounts that have expired.
 - [`saml:AttributeNameID`](./saml:nameid): Generate custom NameID with the value of an attribute.
 - [`saml:AuthnContextClassRef`](./saml:authproc_authncontextclassref): Set the authentication context in the response.
 - [`saml:ExpectedAuthnContextClassRef`](./saml:authproc_expectedauthncontextclassref): Verify the user's authentication context.
@@ -152,7 +149,6 @@ The following filters are included in the SimpleSAMLphp distribution:
 - [`saml:PersistentNameID`](./saml:nameid): Generate persistent NameID from an attribute.
 - [`saml:PersistentNameID2TargetedID`](./saml:nameid): Store persistent NameID as eduPersonTargetedID.
 - [`saml:TransientNameID`](./saml:nameid): Generate transient NameID.
-- [`smartattributes:SmartID`](./smartattributes:smartattributes): Generate user ID attribute based on several attributes.
 
 See the [Third-party modules](https://simplesamlphp.org/modules) page on the SimpleSAMLphp website
 for externally hosted modules that may provide a processing filter.
