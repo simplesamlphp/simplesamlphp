@@ -44,6 +44,10 @@ assert(is_array($postData));
 assert(array_key_exists('url', $postData));
 assert(array_key_exists('post', $postData));
 
+if (!\SimpleSAML\Utils\HTTP::isValidURL($destination)) {
+    throw new \SimpleSAML\Error\Exception('Invalid destination URL.');
+}
+
 $config = \SimpleSAML\Configuration::getInstance();
 $template = new \SimpleSAML\XHTML\Template($config, 'post.php');
 $template->data['destination'] = $postData['url'];
