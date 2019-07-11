@@ -29,7 +29,13 @@ Released TBD
 
 ### Interoperability
   * The minimum PHP version required is now 5.6.
+  
+## Version 1.17.4
 
+Released 2019-07-11
+
+  * Fix an issue introduced in 1.17.3 with `enable.http_post`.
+  
 ## Version 1.17.3
 
 Released 2019-07-10
