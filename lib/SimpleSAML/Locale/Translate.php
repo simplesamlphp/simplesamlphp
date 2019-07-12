@@ -528,7 +528,7 @@ class Translate
      * @return null|string The translation appropriate for the current language, or null if none found. If the
      * $context or $translations arrays are null, or $context['currentLanguage'] is not defined, null is also returned.
      */
-    public static function translateFromArray(array $context, $translations)
+    public static function translateFromArray(array $context = null, array $translations = null)
     {
         if (!is_array($translations)) {
             return null;

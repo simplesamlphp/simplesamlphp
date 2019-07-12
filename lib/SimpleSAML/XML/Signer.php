@@ -13,6 +13,7 @@ namespace SimpleSAML\XML;
 
 use DOMComment;
 use DOMElement;
+use DOMNode;
 use DOMText;
 use RobRichards\XMLSecLibs\XMLSecurityDSig;
 use RobRichards\XMLSecLibs\XMLSecurityKey;
@@ -265,7 +266,7 @@ class Signer
      *
      * @param \DOMElement $node  The DOMElement we should generate a signature for.
      * @param \DOMElement $insertInto  The DOMElement we should insert the signature element into.
-     * @param \DOMNNode $insertBefore  The element we should insert the signature element before. Defaults to NULL,
+     * @param \DOMNode $insertBefore  The element we should insert the signature element before. Defaults to NULL,
      *                                   in which case the signature will be appended to the element spesified in
      *                                   $insertInto.
      * @throws \Exception

@@ -9,6 +9,7 @@
 
 namespace SimpleSAML\XML;
 
+use DOMNode;
 use RobRichards\XMLSecLibs\XMLSecEnc;
 use RobRichards\XMLSecLibs\XMLSecurityDSig;
 use SimpleSAML\Logger;
@@ -138,14 +139,14 @@ class Validator
      *
      * @return bool  TRUE if this node (or a parent node) was signed. FALSE if not.
      */
-    public function isNodeValidated(\DOMNode $node)
+    public function isNodeValidated(DOMNode $node)
     {
         if ($this->validNodes !== null) {
             while ($node !== null) {
                 if (in_array($node, $this->validNodes, true)) {
                     return true;
                 }
-
+                /** @var \DOMNode|null $node */
                 $node = $node->parentNode;
             }
         }
