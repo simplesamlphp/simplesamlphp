@@ -46,7 +46,7 @@ class Validator
      *          this attribute is NULL (the default), then we will use whatever is the default
      *          ID. Can be eigther a string with one value, or an array with multiple ID
      *          attrbute names.
-     * @param array|bool $publickey The public key / certificate which should be used to validate the XML node.
+     * @param array|false $publickey The public key / certificate which should be used to validate the XML node.
      * @throws \Exception
      */
     public function __construct($xmlNode, $idAttribute = null, $publickey = false)

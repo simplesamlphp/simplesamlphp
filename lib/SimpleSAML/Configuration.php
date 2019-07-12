@@ -412,6 +412,7 @@ class Configuration implements Utils\ClearableState
             return self::$instance[$instancename];
         }
 
+        /** @var string $this->filename */
         $dir = dirname($this->filename);
 
         self::$instance[$instancename] = self::loadFromFile($dir . '/' . $filename, true);

@@ -121,6 +121,7 @@ class AuthnResponse
         }
 
         // Validate the signature
+        /** @var \DOMDocument $this->dom */
         $this->validator = new Validator($this->dom, ['ResponseID', 'AssertionID']);
 
         // Get the issuer of the response
@@ -197,13 +198,14 @@ class AuthnResponse
     private function doXPathQuery(string $query, DOMNode $node = null): DOMNodeList
     {
         Assert::isInstanceOf($this->dom, DOMDocument::class);
-
         if ($node === null) {
+            /** @var \DOMDocument $this->dom */
             $node = $this->dom->documentElement;
         }
 
         Assert::isInstanceOf($node, DOMNode::class);
 
+        /** @var \DOMDocument $this->dom */
         $xPath = new DOMXpath($this->dom);
         $xPath->registerNamespace('shibp', self::SHIB_PROTOCOL_NS);
         $xPath->registerNamespace('shib', self::SHIB_ASSERT_NS);
