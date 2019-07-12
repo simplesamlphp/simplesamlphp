@@ -187,12 +187,6 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
         if (!$stmt->execute()) {
             throw new \Exception('PDO metadata handler: Database error: '.var_export($this->db->getLastError(), true));
         }
-    }
-
-
-    private function generateDynamicHostedEntityID($set)
-    {
-        assert(is_string($set));
 
         // load the metadata into an array
         $metadataSet = [];
