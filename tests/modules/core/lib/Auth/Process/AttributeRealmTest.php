@@ -23,6 +23,7 @@ class AttributeRealmTest extends TestCase
         return $request;
     }
 
+
     /**
      * Test the most basic functionality.
      * @return void

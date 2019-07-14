@@ -22,7 +22,7 @@ class ParserTest extends TestCase
 </Root>
 XML;
 
-    /** @var Parser $xml */
+    /** @var Parser */
     private $xml;
 
 

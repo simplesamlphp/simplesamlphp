@@ -139,6 +139,21 @@ hQc0xnrLQ255SjMn+nQtMkVSuKwAUqaAP1ByyiVbN1cBlHnMiJCjvBI58bSTdlVK
 -----END CERTIFICATE-----
 NOWDOC;
 
+    /** @var string */
+    protected $good_private_key_file;
+
+    /** @var string */
+    protected $good_certificate_file;
+
+    /** @var string */
+    protected $certdir;
+
+    /** @var string */
+    protected $root_directory;
+
+    /** @var \SimpleSAML\Configuration */
+    protected $config;
+
     const ROOTDIRNAME = 'testdir';
     const DEFAULTCERTDIR = 'certdir';
     const CA_PRIVATE_KEY = 'ca.key.pem';

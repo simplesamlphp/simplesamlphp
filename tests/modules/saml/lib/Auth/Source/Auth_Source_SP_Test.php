@@ -16,7 +16,7 @@ use SimpleSAML\Test\Utils\ClearStateTestCase;
  */
 class ExitTestException extends \Exception
 {
-    /** @var array $testResult */
+    /** @var array */
     private $testResult;
 
 

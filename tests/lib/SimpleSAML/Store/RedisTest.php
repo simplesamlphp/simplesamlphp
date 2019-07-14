@@ -16,6 +16,16 @@ use SimpleSAML\Store;
  */
 class RedisTest extends TestCase
 {
+    /** @var \PHPUnit_Framework_MockObject_MockObject */
+    protected $mocked_redis;
+
+    /** @var \SimpleSAML\Store\Redis */
+    protected $redis;
+
+    /** @var array */
+    protected $config;
+
+
     /**
      * @return void
      */
