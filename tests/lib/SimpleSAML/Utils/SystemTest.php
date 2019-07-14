@@ -152,11 +152,13 @@ class SystemTest extends TestCase
     /**
      * @covers \SimpleSAML\Utils\System::writeFile
      * @test
+     * @deprecated Test becomes obsolete as soon as the codebase is fully type hinted
      * @return void
      */
     public function testWriteFileInvalidArguments()
     {
         $this->expectException(\InvalidArgumentException::class);
+        /** @psalm-suppress NullArgument */
         System::writeFile(null, null, null);
     }
 
