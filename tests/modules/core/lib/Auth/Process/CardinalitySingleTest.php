@@ -7,6 +7,7 @@ namespace SimpleSAML\Test\Module\core\Auth\Process;
  */
 class CardinalitySingleTest extends \PHPUnit\Framework\TestCase
 {
+    /** @var string \SimpleSAML\Utils\HttpAdapter */
     private $http;
 
 

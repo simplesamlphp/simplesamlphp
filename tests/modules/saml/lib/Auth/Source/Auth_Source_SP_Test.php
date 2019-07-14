@@ -16,6 +16,7 @@ use SimpleSAML\Test\Utils\ClearStateTestCase;
  */
 class ExitTestException extends \Exception
 {
+    /** @var array $testResult */
     private $testResult;
 
 
@@ -93,8 +94,10 @@ class SPTester extends \SimpleSAML\Module\saml\Auth\Source\SP
  */
 class SPTest extends ClearStateTestCase
 {
+    /** @var \SimpleSAML\Configuration|null $idpMetadata */
     private $idpMetadata = null;
 
+    /** @var array $idpConfigArray */
     private $idpConfigArray;
 
 

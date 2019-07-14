@@ -9,6 +9,7 @@ use PHPUnit\Framework\TestCase;
  */
 class SQLPermanentStorageTest extends TestCase
 {
+    /** @var \SimpleSAML\Module\core\Storage\SQLPermanentStorage $sql */
     private static $sql;
 
 

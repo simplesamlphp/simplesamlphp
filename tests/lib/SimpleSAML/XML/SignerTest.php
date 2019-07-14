@@ -17,6 +17,7 @@ use \org\bovigo\vfs\vfsStream;
 class SignerTest extends SigningTestCase
 {
     // openssl req -new -x509 -key good.key.pem -out public2.pem -days 3650
+    /** @var string $other_certificate */
     private $other_certificate = <<<'NOWDOC'
 -----BEGIN CERTIFICATE-----
 MIIDazCCAlOgAwIBAgIUGPKUWW1GN07xxAsGENQ+rZPyABAwDQYJKoZIhvcNAQEL
