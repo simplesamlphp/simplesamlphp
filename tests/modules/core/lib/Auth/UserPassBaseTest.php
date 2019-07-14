@@ -4,6 +4,9 @@ namespace SimpleSAML\Test\Module\core\Auth;
 
 class UserPassBaseTest extends \PHPUnit\Framework\TestCase
 {
+    /**
+     * @return void
+     */
     public function testAuthenticateECPCallsLoginAndSetsAttributes()
     {
         $state = [
@@ -30,6 +33,9 @@ class UserPassBaseTest extends \PHPUnit\Framework\TestCase
     }
 
 
+    /**
+     * @return void
+     */
     public function testAuthenticateECPMissingUsername()
     {
         $this->expectException(\SimpleSAML\Error\Error::class, 'WRONGUSERPASS');
@@ -49,6 +55,9 @@ class UserPassBaseTest extends \PHPUnit\Framework\TestCase
     }
 
 
+    /**
+     * @return void
+     */
     public function testAuthenticateECPMissingPassword()
     {
         $this->expectException(\SimpleSAML\Error\Error::class, 'WRONGUSERPASS');
@@ -68,6 +77,9 @@ class UserPassBaseTest extends \PHPUnit\Framework\TestCase
     }
 
 
+    /**
+     * @return void
+     */
     public function testAuthenticateECPCallsLoginWithForcedUsername()
     {
         $state = [

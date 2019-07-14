@@ -12,6 +12,9 @@ use SimpleSAML\Utils\EMail;
  */
 class EMailTestCase extends ClearStateTestCase
 {
+    /**
+     * @return void
+     */
     public function setUp()
     {
         parent::setUp();
@@ -22,9 +25,11 @@ class EMailTestCase extends ClearStateTestCase
         ], '[ARRAY]', 'simplesaml');
     }
 
+
     /**
      * Test that an exception is thrown if using default configuration,
      * and no custom from address is specified.
+     * @return void
      */
     public function testMailFromDefaultConfigurationException()
     {
@@ -32,8 +37,10 @@ class EMailTestCase extends ClearStateTestCase
         new EMail('test', null, 'phpunit@simplesamlphp.org');
     }
 
+
     /**
      * Test that an exception is thrown if using an invalid "From"-address
+     * @return void
      */
     public function testInvalidFromAddressException()
     {
@@ -41,8 +48,10 @@ class EMailTestCase extends ClearStateTestCase
         new EMail('test', "phpunit@simplesamlphp.org\nLorem Ipsum", 'phpunit@simplesamlphp.org');
     }
 
+
     /**
      * Test that an exception is thrown if using an invalid "To"-address
+     * @return void
      */
     public function testInvalidToAddressException()
     {
@@ -50,9 +59,11 @@ class EMailTestCase extends ClearStateTestCase
         new EMail('test', 'phpunit@simplesamlphp.org', "phpunit@simplesamlphp.org\nLorem Ipsum");
     }
 
+
     /**
      * Test that the data given is visible in the resulting mail
      * @dataProvider mailTemplates
+     * @return void
      */
     public function testMailContents($template)
     {
@@ -66,12 +77,20 @@ class EMailTestCase extends ClearStateTestCase
         $this->assertRegexp('/(value-){6}/', $result);
     }
 
-    /** All templates that should be tested in #testMailContents($template) */
+
+    /**
+     * All templates that should be tested in #testMailContents($template)
+     * @return array
+     */
     public static function mailTemplates()
     {
         return [['mailtxt.twig'], ['mailhtml.twig']];
     }
 
+
+    /**
+     * @return void
+     */
     public function testInvalidTransportConfiguration()
     {
         // preserve the original configuration
@@ -90,6 +109,10 @@ class EMailTestCase extends ClearStateTestCase
         Configuration::loadFromArray($originalTestConfiguration, '[ARRAY]', 'simplesaml');
     }
 
+
+    /**
+     * @return void
+     */
     public function testInvalidSMTPConfiguration()
     {
         // setup a new email

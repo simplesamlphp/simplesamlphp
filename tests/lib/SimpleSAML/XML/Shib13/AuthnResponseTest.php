@@ -51,20 +51,24 @@ XML;
 </Response>
 XML;
 
-    /**
-     * @var AuthnResponse
-     */
+    /** @var AuthnResponse */
     private $xml;
 
+
+    /**
+     * @return void
+     */
     protected function setUp()
     {
         $this->xml = new AuthnResponse();
         $this->xml->setXML(static::XMLDOC);
     }
 
+
     /**
      * @covers \SimpleSAML\XML\Shib13\AuthnResponse::setXML
      * @test
+     * @return void
      */
     public function setXML()
     {
@@ -72,11 +76,13 @@ XML;
         $this->xml->setXML(static::XMLDOC);
     }
 
+
     /**
      * @covers \SimpleSAML\XML\Shib13\AuthnResponse::doXPathQuery
      * @covers \SimpleSAML\XML\Shib13\AuthnResponse::getIssuer
      * @covers \SimpleSAML\XML\Shib13\AuthnResponse::setXML
      * @test
+     * @return void
      */
     public function getIssuer()
     {
@@ -88,10 +94,12 @@ XML;
         );
     }
 
+
     /**
      * @covers \SimpleSAML\XML\Shib13\AuthnResponse::getIssuer
      * @covers \SimpleSAML\XML\Shib13\AuthnResponse::setXML
      * @test
+     * @return void
      */
     public function getIssuerException()
     {
@@ -102,10 +110,12 @@ XML;
         $xml->getIssuer();
     }
 
+
     /**
      * @covers \SimpleSAML\XML\Shib13\AuthnResponse::getNameID
      * @covers \SimpleSAML\XML\Shib13\AuthnResponse::setXML
      * @test
+     * @return void
      */
     public function getNameID()
     {

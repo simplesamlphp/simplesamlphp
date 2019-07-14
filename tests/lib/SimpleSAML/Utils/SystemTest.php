@@ -3,8 +3,8 @@
 namespace SimpleSAML\Test\Utils;
 
 use PHPUnit\Framework\TestCase;
-use \SimpleSAML\Configuration;
-use \SimpleSAML\Utils\System;
+use SimpleSAML\Configuration;
+use SimpleSAML\Utils\System;
 
 use \org\bovigo\vfs\vfsStream;
 
@@ -14,8 +14,13 @@ use \org\bovigo\vfs\vfsStream;
 class SystemTest extends TestCase
 {
     const ROOTDIRNAME = 'testdir';
+
     const DEFAULTTEMPDIR = 'tempdir';
 
+
+    /**
+     * @return void
+     */
     public function setUp()
     {
         $this->root = vfsStream::setup(
@@ -28,9 +33,11 @@ class SystemTest extends TestCase
         $this->root_directory = vfsStream::url(self::ROOTDIRNAME);
     }
 
+
     /**
      * @covers \SimpleSAML\Utils\System::getOS
      * @test
+     * @return void
      */
     public function testGetOSBasic()
     {
@@ -39,9 +46,11 @@ class SystemTest extends TestCase
         $this->assertInternalType("int", $res);
     }
 
+
     /**
      * @covers \SimpleSAML\Utils\System::resolvePath
      * @test
+     * @return void
      */
     public function testResolvePathRemoveTrailingSlashes()
     {
@@ -54,9 +63,11 @@ class SystemTest extends TestCase
         $this->assertEquals($expected, $res);
     }
 
+
     /**
      * @covers \SimpleSAML\Utils\System::resolvePath
      * @test
+     * @return void
      */
     public function testResolvePathPreferAbsolutePathToBase()
     {
@@ -69,9 +80,11 @@ class SystemTest extends TestCase
         $this->assertEquals($expected, $res);
     }
 
+
     /**
      * @covers \SimpleSAML\Utils\System::resolvePath
      * @test
+     * @return void
      */
     public function testResolvePathCurDirPath()
     {
@@ -84,9 +97,11 @@ class SystemTest extends TestCase
         $this->assertEquals($expected, $res);
     }
 
+
     /**
      * @covers \SimpleSAML\Utils\System::resolvePath
      * @test
+     * @return void
      */
     public function testResolvePathParentPath()
     {
@@ -99,9 +114,11 @@ class SystemTest extends TestCase
         $this->assertEquals($expected, $res);
     }
 
+
     /**
      * @covers \SimpleSAML\Utils\System::resolvePath
      * @test
+     * @return void
      */
     public function testResolvePathAllowsStreamWrappers()
     {
@@ -114,9 +131,11 @@ class SystemTest extends TestCase
         $this->assertEquals($expected, $res);
     }
 
+
     /**
      * @covers \SimpleSAML\Utils\System::resolvePath
      * @test
+     * @return void
      */
     public function testResolvePathAllowsAwsS3StreamWrappers()
     {
@@ -129,9 +148,11 @@ class SystemTest extends TestCase
         $this->assertEquals($expected, $res);
     }
 
+
     /**
      * @covers \SimpleSAML\Utils\System::writeFile
      * @test
+     * @return void
      */
     public function testWriteFileInvalidArguments()
     {
@@ -139,9 +160,11 @@ class SystemTest extends TestCase
         System::writeFile(null, null, null);
     }
 
+
     /**
      * @covers \SimpleSAML\Utils\System::writeFile
      * @test
+     * @return void
      */
     public function testWriteFileBasic()
     {
@@ -157,9 +180,11 @@ class SystemTest extends TestCase
         $this->clearInstance($config, '\SimpleSAML\Configuration');
     }
 
+
     /**
      * @covers \SimpleSAML\Utils\System::writeFile
      * @test
+     * @return void
      */
     public function testWriteFileContents()
     {
@@ -179,9 +204,11 @@ class SystemTest extends TestCase
         $this->clearInstance($config, '\SimpleSAML\Configuration');
     }
 
+
     /**
      * @covers \SimpleSAML\Utils\System::writeFile
      * @test
+     * @return void
      */
     public function testWriteFileMode()
     {
@@ -201,9 +228,11 @@ class SystemTest extends TestCase
         $this->clearInstance($config, '\SimpleSAML\Configuration');
     }
 
+
     /**
      * @covers \SimpleSAML\Utils\System::getTempDir
      * @test
+     * @return void
      */
     public function testGetTempDirBasic()
     {
@@ -219,9 +248,11 @@ class SystemTest extends TestCase
         $this->clearInstance($config, '\SimpleSAML\Configuration');
     }
 
+
     /**
      * @covers \SimpleSAML\Utils\System::getTempDir
      * @test
+     * @return void
      */
     public function testGetTempDirNonExistant()
     {
@@ -237,10 +268,12 @@ class SystemTest extends TestCase
         $this->clearInstance($config, '\SimpleSAML\Configuration');
     }
 
+
     /**
      * @requires OS Linux
      * @covers \SimpleSAML\Utils\System::getTempDir
      * @test
+     * @return void
      */
     public function testGetTempDirBadOwner()
     {
@@ -260,6 +293,11 @@ class SystemTest extends TestCase
 
         $this->clearInstance($config, '\SimpleSAML\Configuration');
     }
+
+
+    /**
+     * @return \SimpleSAML\Configuration
+     */
     private function setConfigurationTempDir($directory)
     {
         $config = Configuration::loadFromArray([
@@ -269,6 +307,10 @@ class SystemTest extends TestCase
         return $config;
     }
 
+
+    /**
+     * @return void
+     */
     protected function clearInstance($service, $className)
     {
         $reflectedClass = new \ReflectionClass($className);

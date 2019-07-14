@@ -2,14 +2,17 @@
 
 namespace SimpleSAML\Test\Web;
 
+use PHPUnit\Framework\TestCase;
+use SimpleSAML\Configuration;
+use SimpleSAML\Module;
 use Symfony\Component\Yaml\Parser;
 use Symfony\Component\Yaml\Exception\ParseException;
-use PHPUnit\Framework\TestCase;
-use \SimpleSAML\Configuration;
-use \SimpleSAML\Module;
 
 class RouterTest extends TestCase
 {
+    /**
+     * @return void
+     */
     public function testSyntax()
     {
         $config = Configuration::loadFromArray([

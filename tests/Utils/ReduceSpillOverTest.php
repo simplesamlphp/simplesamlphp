@@ -8,9 +8,9 @@ namespace SimpleSAML\Test\Utils;
  */
 class ReduceSpillOverTest extends ClearStateTestCase
 {
-
     /**
      * Set some global state
+     * @return void
      */
     public function testSetState()
     {
@@ -20,8 +20,11 @@ class ReduceSpillOverTest extends ClearStateTestCase
         putenv('SIMPLESAMLPHP_CONFIG_DIR='.__DIR__);
     }
 
+
     /**
      * Confirm global state removed prior to next test
+     * @return void
+     * @throws \SimpleSAML\Error\ConfigurationError
      */
     public function testStateRemoved()
     {

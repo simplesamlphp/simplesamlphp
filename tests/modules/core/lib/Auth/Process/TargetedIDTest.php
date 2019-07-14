@@ -23,8 +23,10 @@ class TargetedIDTest extends TestCase
         return $request;
     }
 
+
 //    /**
 //     * Test the most basic functionality
+//     * @return void
 //     */
 //    public function testBasic()
 //    {
@@ -39,9 +41,11 @@ class TargetedIDTest extends TestCase
 //        $this->assertRegExp('/^[0-9a-f]{40}$/', $attributes['eduPersonTargetedID'][0]);
 //    }
 //
+//
 //    /**
 //     * Test with src and dst entityIds.
 //     * Make sure to overwrite any present eduPersonTargetedId
+//     * @return void
 //     */
 //    public function testWithSrcDst()
 //    {
@@ -66,8 +70,10 @@ class TargetedIDTest extends TestCase
 //        $this->assertRegExp('/^[0-9a-f]{40}$/', $attributes['eduPersonTargetedID'][0]);
 //    }
 //
+//
 //    /**
 //     * Test with nameId config option set.
+//     * @return void
 //     */
 //    public function testNameIdGeneration()
 //    {
@@ -95,8 +101,10 @@ class TargetedIDTest extends TestCase
 //        );
 //    }
 //
+//
 //    /**
 //     * Test that Id is the same for subsequent invocations with same input.
+//     * @return void
 //     */
 //    public function testIdIsPersistent()
 //    {
@@ -126,8 +134,10 @@ class TargetedIDTest extends TestCase
 //        }
 //    }
 //
+//
 //    /**
 //     * Test that Id is different for two different usernames and two different sp's
+//     * @return void
 //     */
 //    public function testIdIsUnique()
 //    {
@@ -160,8 +170,10 @@ class TargetedIDTest extends TestCase
 //        $this->assertNotEquals($tid2, $tid3);
 //    }
 
+
     /**
      * Test no userid set
+     * @return void
      */
     public function testNoUserID()
     {
@@ -173,8 +185,10 @@ class TargetedIDTest extends TestCase
         self::processFilter($config, $request);
     }
 
+
     /**
      * Test with specified attribute not set
+     * @return void
      */
     public function testAttributeNotExists()
     {
@@ -190,8 +204,10 @@ class TargetedIDTest extends TestCase
         self::processFilter($config, $request);
     }
 
+
     /**
      * Test with configuration error 1
+     * @return void
      */
     public function testConfigInvalidAttributeName()
     {
@@ -207,8 +223,10 @@ class TargetedIDTest extends TestCase
         self::processFilter($config, $request);
     }
 
+
     /**
      * Test with configuration error 2
+     * @return void
      */
     public function testConfigInvalidNameId()
     {

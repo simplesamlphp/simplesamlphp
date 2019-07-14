@@ -22,6 +22,7 @@ class StoreTest extends TestCase
     /**
      * @covers \SimpleSAML\Store::getInstance
      * @test
+     * @return void
      */
     public function defaultStore()
     {
@@ -37,6 +38,7 @@ class StoreTest extends TestCase
     /**
      * @covers \SimpleSAML\Store::getInstance
      * @test
+     * @return void
      */
     public function phpSessionStore()
     {
@@ -52,6 +54,7 @@ class StoreTest extends TestCase
     /**
      * @covers \SimpleSAML\Store::getInstance
      * @test
+     * @return void
      */
     public function memcacheStore()
     {
@@ -68,6 +71,7 @@ class StoreTest extends TestCase
     /**
      * @covers \SimpleSAML\Store::getInstance
      * @test
+     * @return void
      */
     public function sqlStore()
     {
@@ -86,6 +90,7 @@ class StoreTest extends TestCase
     /**
      * @covers \SimpleSAML\Store::getInstance
      * @test
+     * @return void
      */
     public function pathStore()
     {
@@ -104,6 +109,7 @@ class StoreTest extends TestCase
     /**
      * @covers \SimpleSAML\Store::getInstance
      * @test
+     * @return void
      */
     public function notFoundStoreException()
     {
@@ -118,6 +124,9 @@ class StoreTest extends TestCase
     }
 
 
+    /**
+     * @return void
+     */
     protected function tearDown()
     {
         $config = Configuration::getInstance();
@@ -128,6 +137,9 @@ class StoreTest extends TestCase
     }
 
 
+    /**
+     * @return void
+     */
     protected function clearInstance($service, $className)
     {
         $reflectedClass = new \ReflectionClass($className);

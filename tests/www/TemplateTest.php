@@ -16,6 +16,9 @@ use Twig\Error\SyntaxError;
 
 class TemplateTest extends TestCase
 {
+    /**
+     * @return void
+     */
     public function testSyntax()
     {
         $config = Configuration::loadFromArray([

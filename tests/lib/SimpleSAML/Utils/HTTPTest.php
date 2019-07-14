@@ -12,6 +12,7 @@ class HTTPTest extends TestCase
      * Set up the environment ($_SERVER) populating the typical variables from a given URL.
      *
      * @param string $url The URL to use as the current one.
+     * @return void
      */
     private function setupEnvFromURL($url)
     {
@@ -32,8 +33,10 @@ class HTTPTest extends TestCase
         $_SERVER['REQUEST_URI'] = $addr['path'].'?'.$addr['query'];
     }
 
+
     /**
      * Test SimpleSAML\Utils\HTTP::addURLParameters().
+     * @return void
      */
     public function testAddURLParametersInvalidURL()
     {
@@ -41,8 +44,10 @@ class HTTPTest extends TestCase
         HTTP::addURLParameters([], []);
     }
 
+
     /**
      * Test SimpleSAML\Utils\HTTP::addURLParameters().
+     * @return void
      */
     public function testAddURLParametersInvalidParameters()
     {
@@ -50,8 +55,10 @@ class HTTPTest extends TestCase
         HTTP::addURLParameters('string', 'string');
     }
 
+
     /**
      * Test SimpleSAML\Utils\HTTP::addURLParameters().
+     * @return void
      */
     public function testAddURLParameters()
     {
@@ -76,8 +83,10 @@ class HTTPTest extends TestCase
         $this->assertEquals($url.'&bar=foo', HTTP::addURLParameters($url, $params));
     }
 
+
     /**
      * Test SimpleSAML\Utils\HTTP::guessBasePath().
+     * @return void
      */
     public function testGuessBasePath()
     {
@@ -118,8 +127,10 @@ class HTTPTest extends TestCase
         $_SERVER = $original;
     }
 
+
     /**
      * Test SimpleSAML\Utils\HTTP::getSelfHost() with and without custom port.
+     * @return void
      */
     public function testGetSelfHost()
     {
@@ -136,8 +147,10 @@ class HTTPTest extends TestCase
         $_SERVER = $original;
     }
 
+
     /**
      * Test SimpleSAML\Utils\HTTP::getSelfHostWithPort(), with and without custom port.
+     * @return void
      */
     public function testGetSelfHostWithPort()
     {
@@ -163,8 +176,10 @@ class HTTPTest extends TestCase
         $_SERVER = $original;
     }
 
+
     /**
      * Test SimpleSAML\Utils\HTTP::getSelfURL().
+     * @return void
      */
     public function testGetSelfURLMethods()
     {
@@ -288,8 +303,10 @@ class HTTPTest extends TestCase
         $_SERVER = $original;
     }
 
+
     /**
      * Test SimpleSAML\Utils\HTTP::checkURLAllowed(), without regex.
+     * @return void
      */
     public function testCheckURLAllowedWithoutRegex()
     {
@@ -318,8 +335,10 @@ class HTTPTest extends TestCase
         $_SERVER = $original;
     }
 
+
     /**
      * Test SimpleSAML\Utils\HTTP::checkURLAllowed(), with regex.
+     * @return void
      */
     public function testCheckURLAllowedWithRegex()
     {
@@ -350,8 +369,10 @@ class HTTPTest extends TestCase
         $_SERVER = $original;
     }
 
+
     /**
      * Test SimpleSAML\Utils\HTTP::getServerPort().
+     * @return void
      */
     public function testGetServerPort()
     {
@@ -394,9 +415,11 @@ class HTTPTest extends TestCase
         $_SERVER = $original;
     }
 
+
     /**
      * Test SimpleSAML\Utils\HTTP::checkURLAllowed(), with the regex as a
      * subdomain of an evil domain.
+     * @return void
      */
     public function testCheckURLAllowedWithRegexWithoutDelimiters()
     {
@@ -415,8 +438,10 @@ class HTTPTest extends TestCase
         $_SERVER = $original;
     }
 
+
     /**
      * @covers SimpleSAML\Utils\HTTP::getFirstPathElement()
+     * @return void
      */
     public function testGetFirstPathElement()
     {

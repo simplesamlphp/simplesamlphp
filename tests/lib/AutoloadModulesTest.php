@@ -9,6 +9,7 @@ class AutoloadModulesTest extends TestCase
 {
     /**
      * Set up for each test.
+     * @return void
      */
     protected function setUp()
     {
@@ -19,6 +20,7 @@ class AutoloadModulesTest extends TestCase
     /**
      * @test
      * @runInSeparateProcess
+     * @return void
      */
     public function autoloaderDoesNotRecurseInfinitely()
     {
@@ -27,6 +29,7 @@ class AutoloadModulesTest extends TestCase
 
     /**
      * @test
+     * @return void
      */
     public function autoloaderSubstitutesNamespacedXmlSecClassesWhereNonNamespacedClassWasUsed()
     {

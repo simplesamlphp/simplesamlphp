@@ -10,9 +10,9 @@ use SimpleSAML\Utils\Config;
  */
 class ConfigTest extends TestCase
 {
-
     /**
      * Test default config dir with not environment variable
+     * @return void
      */
     public function testDefaultConfigDir()
     {
@@ -26,6 +26,7 @@ class ConfigTest extends TestCase
 
     /**
      * Test valid dir specified by env var overrides default config dir
+     * @return void
      */
     public function testEnvVariableConfigDir()
     {
@@ -37,6 +38,7 @@ class ConfigTest extends TestCase
 
     /**
      * Test valid dir specified by env redirect var overrides default config dir
+     * @return void
      */
     public function testEnvRedirectVariableConfigDir()
     {
@@ -46,8 +48,10 @@ class ConfigTest extends TestCase
         $this->assertEquals($configDir, __DIR__);
     }
 
+
     /**
      * Test which directory takes precedence
+     * @return void
      */
     public function testEnvRedirectPriorityVariableConfigDir()
     {
@@ -61,6 +65,7 @@ class ConfigTest extends TestCase
 
     /**
      * Test invalid dir specified by env var results in a thrown exception
+     * @return void
      */
     public function testInvalidEnvVariableConfigDirThrowsException()
     {

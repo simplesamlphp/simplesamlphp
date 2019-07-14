@@ -9,6 +9,7 @@ class CardinalityTest extends \PHPUnit\Framework\TestCase
 {
     private $http;
 
+
     /**
      * Helper function to run the filter with a given configuration.
      *
@@ -25,6 +26,10 @@ class CardinalityTest extends \PHPUnit\Framework\TestCase
         return $request;
     }
 
+
+    /**
+     * @return void
+     */
     protected function setUp()
     {
         \SimpleSAML\Configuration::loadFromArray([], '[ARRAY]', 'simplesaml');
@@ -33,8 +38,10 @@ class CardinalityTest extends \PHPUnit\Framework\TestCase
                            ->getMock();
     }
 
-    /*
+
+    /**
      * Test where a minimum is set but no maximum
+     * @return void
      */
     public function testMinNoMax()
     {
@@ -52,8 +59,10 @@ class CardinalityTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($expectedData, $attributes, "Assertion values should not have changed");
     }
 
-    /*
+
+    /**
      * Test where a maximum is set but no minimum
+     * @return void
      */
     public function testMaxNoMin()
     {
@@ -71,8 +80,10 @@ class CardinalityTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($expectedData, $attributes, "Assertion values should not have changed");
     }
 
-    /*
+
+    /**
      * Test in bounds within a maximum an minimum
+     * @return void
      */
     public function testMaxMin()
     {
@@ -90,8 +101,10 @@ class CardinalityTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($expectedData, $attributes, "Assertion values should not have changed");
     }
 
+
     /**
      * Test maximum is out of bounds results in redirect
+     * @return void
      */
     public function testMaxOutOfBounds()
     {
@@ -110,8 +123,10 @@ class CardinalityTest extends \PHPUnit\Framework\TestCase
         $this->processFilter($config, $request);
     }
 
+
     /**
      * Test minimum is out of bounds results in redirect
+     * @return void
      */
     public function testMinOutOfBounds()
     {
@@ -130,8 +145,10 @@ class CardinalityTest extends \PHPUnit\Framework\TestCase
         $this->processFilter($config, $request);
     }
 
+
     /**
      * Test missing attribute results in redirect
+     * @return void
      */
     public function testMissingAttribute()
     {
@@ -148,12 +165,15 @@ class CardinalityTest extends \PHPUnit\Framework\TestCase
         $this->processFilter($config, $request);
     }
 
+
     /*
      * Configuration errors
      */
 
+
     /**
      * Test invalid minimum values
+     * @return void
      */
     public function testMinInvalid()
     {
@@ -170,8 +190,10 @@ class CardinalityTest extends \PHPUnit\Framework\TestCase
         $this->processFilter($config, $request);
     }
 
+
     /**
      * Test invalid minimum values
+     * @return void
      */
     public function testMinNegative()
     {
@@ -188,8 +210,10 @@ class CardinalityTest extends \PHPUnit\Framework\TestCase
         $this->processFilter($config, $request);
     }
 
+
     /**
      * Test invalid maximum values
+     * @return void
      */
     public function testMaxInvalid()
     {
@@ -206,8 +230,10 @@ class CardinalityTest extends \PHPUnit\Framework\TestCase
         $this->processFilter($config, $request);
     }
 
+
     /**
      * Test maximum < minimum
+     * @return void
      */
     public function testMinGreaterThanMax()
     {
@@ -224,8 +250,10 @@ class CardinalityTest extends \PHPUnit\Framework\TestCase
         $this->processFilter($config, $request);
     }
 
+
     /**
      * Test invalid attribute name
+     * @return void
      */
     public function testInvalidAttributeName()
     {

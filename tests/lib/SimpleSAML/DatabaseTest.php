@@ -49,6 +49,7 @@ class DatabaseTest extends TestCase
      * @covers SimpleSAML\Database::generateInstanceId
      * @covers SimpleSAML\Database::__construct
      * @covers SimpleSAML\Database::connect
+     * @return void
      */
     public function setUp()
     {
@@ -80,6 +81,7 @@ class DatabaseTest extends TestCase
      * @covers SimpleSAML\Database::__construct
      * @covers SimpleSAML\Database::connect
      * @test
+     * @return void
      */
     public function connectionFailure()
     {
@@ -104,6 +106,7 @@ class DatabaseTest extends TestCase
      * @covers SimpleSAML\Database::__construct
      * @covers SimpleSAML\Database::connect
      * @test
+     * @return void
      */
     public function instances()
     {
@@ -173,6 +176,7 @@ class DatabaseTest extends TestCase
      * @covers SimpleSAML\Database::connect
      * @covers SimpleSAML\Database::getSlave
      * @test
+     * @return void
      */
     public function slaves()
     {
@@ -215,6 +219,7 @@ class DatabaseTest extends TestCase
     /**
      * @covers SimpleSAML\Database::applyPrefix
      * @test
+     * @return void
      */
     public function prefix()
     {
@@ -232,6 +237,7 @@ class DatabaseTest extends TestCase
      * @covers SimpleSAML\Database::exec
      * @covers SimpleSAML\Database::query
      * @test
+     * @return void
      */
     public function querying()
     {
@@ -264,6 +270,7 @@ class DatabaseTest extends TestCase
      * @covers SimpleSAML\Database::read
      * @covers SimpleSAML\Database::query
      * @test
+     * @return void
      */
     public function readFailure()
     {
@@ -279,6 +286,7 @@ class DatabaseTest extends TestCase
      * @covers SimpleSAML\Database::write
      * @covers SimpleSAML\Database::exec
      * @test
+     * @return void
      */
     public function noSuchTable()
     {
@@ -287,6 +295,9 @@ class DatabaseTest extends TestCase
     }
 
 
+    /**
+     * @return void
+     */
     public function tearDown()
     {
         $table = $this->db->applyPrefix("sspdbt");

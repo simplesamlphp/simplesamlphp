@@ -14,8 +14,13 @@ use \org\bovigo\vfs\vfsStream;
 class CryptoTest extends TestCase
 {
     const ROOTDIRNAME = 'testdir';
+
     const DEFAULTCERTDIR = 'certdir';
 
+
+    /**
+     * @return void
+     */
     public function setUp()
     {
         $this->root = vfsStream::setup(
@@ -29,10 +34,12 @@ class CryptoTest extends TestCase
         $this->certdir = $this->root_directory.DIRECTORY_SEPARATOR.self::DEFAULTCERTDIR;
     }
 
+
     /**
      * Test invalid input provided to the aesDecrypt() method.
      *
      * @covers \SimpleSAML\Utils\Crypto::aesDecrypt
+     * @return void
      */
     public function testAesDecryptBadInput()
     {
@@ -48,6 +55,7 @@ class CryptoTest extends TestCase
      * Test invalid input provided to the aesEncrypt() method.
      *
      * @covers \SimpleSAML\Utils\Crypto::aesEncrypt
+     * @return void
      */
     public function testAesEncryptBadInput()
     {
@@ -64,6 +72,7 @@ class CryptoTest extends TestCase
      * ciphertext.
      *
      * @covers \SimpleSAML\Utils\Crypto::aesDecrypt
+     * @return void
      */
     public function testAesDecrypt()
     {
@@ -86,6 +95,7 @@ class CryptoTest extends TestCase
      *
      * @covers \SimpleSAML\Utils\Crypto::aesDecrypt
      * @covers \SimpleSAML\Utils\Crypto::aesEncrypt
+     * @return void
      */
     public function testAesEncrypt()
     {
@@ -111,6 +121,7 @@ class CryptoTest extends TestCase
      *
      * @covers \SimpleSAML\Utils\Crypto::der2pem
      * @covers \SimpleSAML\Utils\Crypto::pem2der
+     * @return void
      */
     public function testFormatConversion()
     {
@@ -153,9 +164,11 @@ PHP;
         $this->assertEquals(trim($pem), trim(Crypto::der2pem(Crypto::pem2der($pem))));
     }
 
+
     /**
      * @covers \SimpleSAML\Utils\Crypto::pwHash
      * @deprecated To be removed for 2.0
+     * @return void
      */
     public function testGoodPwHash()
     {
@@ -177,6 +190,7 @@ PHP;
     /**
      * @covers \SimpleSAML\Utils\Crypto::pwHash
      * @deprecated To be removed for 2.0
+     * @return void
      */
     public function testGoodSaltedPwHash()
     {
@@ -195,10 +209,12 @@ PHP;
         $this->assertEquals($expected, $res);
     }
 
+
     /**
      * @deprecated To be removed for 2.0
      *
      * @covers \SimpleSAML\Utils\Crypto::pwHash
+     * @return void
      */
     public function testBadHashAlgorithm()
     {
@@ -209,8 +225,10 @@ PHP;
         Crypto::pwHash($pw, $algorithm);
     }
 
+
     /**
      * @covers \SimpleSAML\Utils\Crypto::pwValid
+     * @return void
      */
     public function testGoodPwValid()
     {
@@ -222,8 +240,10 @@ PHP;
         $this->assertTrue($res);
     }
 
+
     /**
      * @covers \SimpleSAML\Utils\Crypto::pwValid
+     * @return void
      */
     public function testBadPwInvalid()
     {
@@ -240,6 +260,7 @@ PHP;
     /**
      * @covers \SimpleSAML\Utils\Crypto::pwValid
      * @deprecated To be removed for 2.0
+     * @return void
      */
     public function testGoodPwValidOld()
     {
@@ -252,9 +273,11 @@ PHP;
         $this->assertTrue($res);
     }
 
+
     /**
      * @covers \SimpleSAML\Utils\Crypto::pwValid
      * @deprecated To be removed for 2.0
+     * @return void
      */
     public function testGoodSaltedPwValid()
     {
@@ -268,10 +291,12 @@ PHP;
         $this->assertTrue($res);
     }
 
+
     /**
      * @deprecated To be removed for 2.0
      *
      * @covers \SimpleSAML\Utils\Crypto::pwValid
+     * @return void
      */
     public function testBadHashAlgorithmValid()
     {
@@ -282,8 +307,10 @@ PHP;
         Crypto::pwValid($hash, $algorithm);
     }
 
+
     /**
      * @covers \SimpleSAML\Utils\Crypto::secureCompare
+     * @return void
      */
     public function testSecureCompareEqual()
     {
@@ -292,8 +319,10 @@ PHP;
         $this->assertTrue($res);
     }
 
+
     /**
      * @covers \SimpleSAML\Utils\Crypto::secureCompare
+     * @return void
      */
     public function testSecureCompareNotEqual()
     {
@@ -302,8 +331,10 @@ PHP;
         $this->assertFalse($res);
     }
 
+
     /**
      * @covers \SimpleSAML\Utils\Crypto::loadPrivateKey
+     * @return void
      */
     public function testLoadPrivateKeyRequiredMetadataMissing()
     {
@@ -314,8 +345,10 @@ PHP;
         Crypto::loadPrivateKey($config, $required);
     }
 
+
     /**
      * @covers \SimpleSAML\Utils\Crypto::loadPrivateKey
+     * @return void
      */
     public function testLoadPrivateKeyNotRequiredMetadataMissing()
     {
@@ -327,8 +360,10 @@ PHP;
         $this->assertNull($res);
     }
 
+
     /**
      * @covers \SimpleSAML\Utils\Crypto::loadPrivateKey
+     * @return void
      */
     public function testLoadPrivateKeyMissingFile()
     {
@@ -338,8 +373,10 @@ PHP;
         Crypto::loadPrivateKey($config, false, '', true);
     }
 
+
     /**
      * @covers \SimpleSAML\Utils\Crypto::loadPrivateKey
+     * @return void
      */
     public function testLoadPrivateKeyBasic()
     {
@@ -356,8 +393,10 @@ PHP;
         $this->assertEquals($expected, $res);
     }
 
+
     /**
      * @covers \SimpleSAML\Utils\Crypto::loadPrivateKey
+     * @return void
      */
     public function testLoadPrivateKeyPassword()
     {
@@ -381,8 +420,10 @@ PHP;
         $this->assertEquals($expected, $res);
     }
 
+
     /**
      * @covers \SimpleSAML\Utils\Crypto::loadPrivateKey
+     * @return void
      */
     public function testLoadPrivateKeyPrefix()
     {
@@ -407,8 +448,10 @@ PHP;
         $this->assertEquals($expected, $res);
     }
 
+
     /**
      * @covers \SimpleSAML\Utils\Crypto::loadPublicKey
+     * @return void
      */
     public function testLoadPublicKeyRequiredMetadataMissing()
     {
@@ -419,8 +462,10 @@ PHP;
         Crypto::loadPublicKey($config, $required);
     }
 
+
     /**
      * @covers \SimpleSAML\Utils\Crypto::loadPublicKey
+     * @return void
      */
     public function testLoadPublicKeyNotRequiredMetadataMissing()
     {
@@ -432,8 +477,10 @@ PHP;
         $this->assertNull($res);
     }
 
+
     /**
      * @covers \SimpleSAML\Utils\Crypto::loadPublicKey
+     * @return void
      */
     public function testLoadPublicKeyFingerprintBasicString()
     {
@@ -446,8 +493,10 @@ PHP;
         $this->assertEquals($expected, $res);
     }
 
+
     /**
      * @covers \SimpleSAML\Utils\Crypto::loadPublicKey
+     * @return void
      */
     public function testLoadPublicKeyFingerprintBasicArray()
     {
@@ -469,8 +518,10 @@ PHP;
         $this->assertEquals($expected, $res);
     }
 
+
     /**
      * @covers \SimpleSAML\Utils\Crypto::loadPublicKey
+     * @return void
      */
     public function testLoadPublicKeyFingerprintLowercase()
     {
@@ -483,8 +534,10 @@ PHP;
         $this->assertEquals($expected, $res);
     }
 
+
     /**
      * @covers \SimpleSAML\Utils\Crypto::loadPublicKey
+     * @return void
      */
     public function testLoadPublicKeyFingerprintRemoveColons()
     {
@@ -497,8 +550,10 @@ PHP;
         $this->assertEquals($expected, $res);
     }
 
+
     /**
      * @covers \SimpleSAML\Utils\Crypto::loadPublicKey
+     * @return void
      */
     public function testLoadPublicKeyNotX509Certificate()
     {
@@ -520,8 +575,10 @@ PHP;
         $this->assertNull($res);
     }
 
+
     /**
      * @covers \SimpleSAML\Utils\Crypto::loadPublicKey
+     * @return void
      */
     public function testLoadPublicKeyNotSigning()
     {
@@ -543,8 +600,10 @@ PHP;
         $this->assertNull($res);
     }
 
+
     /**
      * @covers \SimpleSAML\Utils\Crypto::loadPublicKey
+     * @return void
      */
     public function testLoadPublicKeyBasic()
     {

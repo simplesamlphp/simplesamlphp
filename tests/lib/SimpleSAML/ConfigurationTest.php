@@ -12,6 +12,7 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
 {
     /**
      * Test \SimpleSAML\Configuration::getVersion()
+     * @return void
      */
     public function testGetVersion()
     {
@@ -19,8 +20,10 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
         $this->assertTrue(is_string($c->getVersion()));
     }
 
+
     /**
      * Test that the default instance fails to load even if we previously loaded another instance.
+     * @return void
      */
     public function testLoadDefaultInstance()
     {
@@ -33,6 +36,7 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
     /**
      * Test that after a \SimpleSAML\Error\CriticalConfigurationError exception, a basic, self-survival configuration
      * is loaded.
+     * @return void
      */
     public function testCriticalConfigurationError()
     {
@@ -50,8 +54,10 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
         $this->assertNotEmpty($c->toArray());
     }
 
+
     /**
      * Test \SimpleSAML\Configuration::getValue()
+     * @return void
      */
     public function testGetValue()
     {
@@ -69,8 +75,10 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
         $this->assertEquals($c->getValue('exists_null', false), null);
     }
 
+
     /**
      * Test \SimpleSAML\Configuration::getValue(), REQUIRED_OPTION flag.
+     * @return void
      */
     public function testGetValueRequired()
     {
@@ -79,8 +87,10 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
         $c->getValue('missing', Configuration::REQUIRED_OPTION);
     }
 
+
     /**
      * Test \SimpleSAML\Configuration::hasValue()
+     * @return void
      */
     public function testHasValue()
     {
@@ -93,8 +103,10 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
         $this->assertEquals($c->hasValue('exists_null'), true);
     }
 
+
     /**
      * Test \SimpleSAML\Configuration::hasValue()
+     * @return void
      */
     public function testHasValueOneOf()
     {
@@ -112,8 +124,10 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
         $this->assertEquals($c->hasValueOneOf(['missing', 'exists_true']), true);
     }
 
+
     /**
      * Test \SimpleSAML\Configuration::getBasePath()
+     * @return void
      */
     public function testGetBasePath()
     {
@@ -169,8 +183,10 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
         $this->assertEquals($c->getBasePath(), '/');
     }
 
+
     /**
      * Test \SimpleSAML\Configuration::resolvePath()
+     * @return void
      */
     public function testResolvePath()
     {
@@ -189,8 +205,10 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
         $this->assertEquals($c->resolvePath('C:/otherdir'), 'C:/otherdir');
     }
 
+
     /**
      * Test \SimpleSAML\Configuration::getPathValue()
+     * @return void
      */
     public function testGetPathValue()
     {
@@ -205,8 +223,10 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
         $this->assertEquals($c->getPathValue('slashes_opt'), '/basedir/slashes/');
     }
 
+
     /**
      * Test \SimpleSAML\Configuration::getBaseDir()
+     * @return void
      */
     public function testGetBaseDir()
     {
@@ -224,8 +244,10 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
         $this->assertEquals($c->getBaseDir(), DIRECTORY_SEPARATOR.'basedir'.DIRECTORY_SEPARATOR);
     }
 
+
     /**
      * Test \SimpleSAML\Configuration::getBoolean()
+     * @return void
      */
     public function testGetBoolean()
     {
@@ -238,8 +260,10 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
         $this->assertEquals($c->getBoolean('false_opt', '--missing--'), false);
     }
 
+
     /**
      * Test \SimpleSAML\Configuration::getBoolean() missing option
+     * @return void
      */
     public function testGetBooleanMissing()
     {
@@ -248,8 +272,10 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
         $c->getBoolean('missing_opt');
     }
 
+
     /**
      * Test \SimpleSAML\Configuration::getBoolean() wrong option
+     * @return void
      */
     public function testGetBooleanWrong()
     {
@@ -260,8 +286,10 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
         $c->getBoolean('wrong');
     }
 
+
     /**
      * Test \SimpleSAML\Configuration::getString()
+     * @return void
      */
     public function testGetString()
     {
@@ -272,8 +300,10 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
         $this->assertEquals($c->getString('str_opt', '--missing--'), 'Hello World!');
     }
 
+
     /**
      * Test \SimpleSAML\Configuration::getString() missing option
+     * @return void
      */
     public function testGetStringMissing()
     {
@@ -282,8 +312,10 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
         $c->getString('missing_opt');
     }
 
+
     /**
      * Test \SimpleSAML\Configuration::getString() wrong option
+     * @return void
      */
     public function testGetStringWrong()
     {
@@ -294,8 +326,10 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
         $c->getString('wrong');
     }
 
+
     /**
      * Test \SimpleSAML\Configuration::getInteger()
+     * @return void
      */
     public function testGetInteger()
     {
@@ -306,8 +340,10 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
         $this->assertEquals($c->getInteger('int_opt', '--missing--'), 42);
     }
 
+
     /**
      * Test \SimpleSAML\Configuration::getInteger() missing option
+     * @return void
      */
     public function testGetIntegerMissing()
     {
@@ -316,8 +352,10 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
         $c->getInteger('missing_opt');
     }
 
+
     /**
      * Test \SimpleSAML\Configuration::getInteger() wrong option
+     * @return void
      */
     public function testGetIntegerWrong()
     {
@@ -328,8 +366,10 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
         $c->getInteger('wrong');
     }
 
+
     /**
      * Test \SimpleSAML\Configuration::getIntegerRange()
+     * @return void
      */
     public function testGetIntegerRange()
     {
@@ -340,8 +380,10 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
         $this->assertEquals($c->getIntegerRange('int_opt', 0, 100), 42);
     }
 
+
     /**
      * Test \SimpleSAML\Configuration::getIntegerRange() below limit
+     * @return void
      */
     public function testGetIntegerRangeBelow()
     {
@@ -352,8 +394,10 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
         $this->assertEquals($c->getIntegerRange('int_opt', 10, 100), 42);
     }
 
+
     /**
      * Test \SimpleSAML\Configuration::getIntegerRange() above limit
+     * @return void
      */
     public function testGetIntegerRangeAbove()
     {
@@ -364,8 +408,10 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
         $this->assertEquals($c->getIntegerRange('int_opt', 10, 100), 42);
     }
 
+
     /**
      * Test \SimpleSAML\Configuration::getValueValidate()
+     * @return void
      */
     public function testGetValueValidate()
     {
@@ -376,8 +422,10 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
         $this->assertEquals($c->getValueValidate('opt', ['a', 'b', 'c']), 'b');
     }
 
+
     /**
      * Test \SimpleSAML\Configuration::getValueValidate() wrong option
+     * @return void
      */
     public function testGetValueValidateWrong()
     {
@@ -388,8 +436,10 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
         $c->getValueValidate('opt', ['a', 'b', 'c']);
     }
 
+
     /**
      * Test \SimpleSAML\Configuration::getArray()
+     * @return void
      */
     public function testGetArray()
     {
@@ -400,8 +450,10 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
         $this->assertEquals($c->getArray('opt'), ['a', 'b', 'c']);
     }
 
+
     /**
      * Test \SimpleSAML\Configuration::getArray() wrong option
+     * @return void
      */
     public function testGetArrayWrong()
     {
@@ -412,8 +464,10 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
         $c->getArray('opt');
     }
 
+
     /**
      * Test \SimpleSAML\Configuration::getArrayize()
+     * @return void
      */
     public function testGetArrayize()
     {
@@ -428,8 +482,10 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
         $this->assertEquals($c->getArrayize('opt_str'), ['string']);
     }
 
+
     /**
      * Test \SimpleSAML\Configuration::getArrayizeString()
+     * @return void
      */
     public function testGetArrayizeString()
     {
@@ -442,9 +498,11 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
         $this->assertEquals($c->getArrayizeString('opt_str'), ['string']);
     }
 
+
     /**
      * Test \SimpleSAML\Configuration::getArrayizeString() option
      * with an array that contains something that isn't a string.
+     * @return void
      */
     public function testGetArrayizeStringWrongValue()
     {
@@ -455,8 +513,10 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
         $c->getArrayizeString('opt');
     }
 
+
     /**
      * Test \SimpleSAML\Configuration::getConfigItem()
+     * @return void
      */
     public function testGetConfigItem()
     {
@@ -469,8 +529,10 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
         $this->assertEquals($opt->getValue('a'), 42);
     }
 
+
     /**
      * Test \SimpleSAML\Configuration::getConfigItem() wrong option
+     * @return void
      */
     public function testGetConfigItemWrong()
     {
@@ -481,8 +543,10 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
         $c->getConfigItem('opt');
     }
 
+
     /**
      * Test \SimpleSAML\Configuration::getConfigList()
+     * @return void
      */
     public function testGetConfigList()
     {
@@ -502,8 +566,10 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
         $this->assertEquals($opts['b']->getValue('opt2'), 'value2');
     }
 
+
     /**
      * Test \SimpleSAML\Configuration::getConfigList() wrong option
+     * @return void
      */
     public function testGetConfigListWrong()
     {
@@ -517,6 +583,7 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
 
     /**
      * Test \SimpleSAML\Configuration::getConfigList() with an array of wrong options.
+     * @return void
      */
     public function testGetConfigListWrongArrayValues()
     {
@@ -533,6 +600,7 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
 
     /**
      * Test \SimpleSAML\Configuration::getOptions()
+     * @return void
      */
     public function testGetOptions()
     {
@@ -543,8 +611,10 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
         $this->assertEquals($c->getOptions(), ['a', 'b']);
     }
 
+
     /**
      * Test \SimpleSAML\Configuration::toArray()
+     * @return void
      */
     public function testToArray()
     {
@@ -560,6 +630,7 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
      * Test \SimpleSAML\Configuration::getDefaultEndpoint().
      *
      * Iterate over all different valid definitions of endpoints and check if the expected output is produced.
+     * @return void
      */
     public function testGetDefaultEndpoint()
     {
@@ -775,6 +846,7 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
 
     /**
      * Test \SimpleSAML\Configuration::getEndpoints().
+     * @return void
      */
     public function testGetEndpoints()
     {
@@ -879,6 +951,7 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
 
     /**
      * Test \SimpleSAML\Configuration::getLocalizedString()
+     * @return void
      */
     public function testGetLocalizedString()
     {
@@ -894,8 +967,10 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
         $this->assertEquals($c->getLocalizedString('str_array'), ['en' => 'Hello World!', 'no' => 'Hei Verden!']);
     }
 
+
     /**
      * Test \SimpleSAML\Configuration::getLocalizedString() not array nor simple string
+     * @return void
      */
     public function testGetLocalizedStringNotArray()
     {
@@ -906,8 +981,10 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
         $c->getLocalizedString('opt');
     }
 
+
     /**
      * Test \SimpleSAML\Configuration::getLocalizedString() not string key
+     * @return void
      */
     public function testGetLocalizedStringNotStringKey()
     {
@@ -918,8 +995,10 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
         $c->getLocalizedString('opt');
     }
 
+
     /**
      * Test \SimpleSAML\Configuration::getLocalizedString() not string value
+     * @return void
      */
     public function testGetLocalizedStringNotStringValue()
     {
@@ -930,8 +1009,10 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
         $c->getLocalizedString('opt');
     }
 
+
     /**
      * Test \SimpleSAML\Configuration::getConfig() nonexistent file
+     * @return void
      */
     public function testGetConfigNonexistentFile()
     {
@@ -939,8 +1020,10 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
         Configuration::getConfig('nonexistent-nopreload.php');
     }
 
+
     /**
      * Test \SimpleSAML\Configuration::getConfig() preloaded nonexistent file
+     * @return void
      */
     public function testGetConfigNonexistentFilePreload()
     {
@@ -953,10 +1036,12 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
         $this->assertEquals('value', $nc->getValue('key', null));
     }
 
+
     /**
      * Test that Configuration objects can be initialized from an array.
      *
      * ATTENTION: this test must be kept the last.
+     * @return void
      */
     public function testLoadInstanceFromArray()
     {

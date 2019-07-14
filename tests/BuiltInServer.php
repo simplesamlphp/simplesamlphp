@@ -13,7 +13,6 @@ use SimpleSAML\Utils\System;
 
 class BuiltInServer
 {
-
     /**
      * The PID of the running server.
      *

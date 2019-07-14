@@ -8,6 +8,7 @@ class TimeLimitedTokenTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
 {
     /**
      * Test for malformed tokens.
+     * @return void
      */
     public function testMalformedToken()
     {
@@ -22,6 +23,7 @@ class TimeLimitedTokenTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
 
     /**
      * Basic test to see if validation works for valid tokens.
+     * @return void
      */
     public function testValidToken()
     {
@@ -35,6 +37,7 @@ class TimeLimitedTokenTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
 
     /**
      * Test that token validation takes the verification data into account.
+     * @return void
      */
     public function testValidTokenWithData()
     {
@@ -52,6 +55,7 @@ class TimeLimitedTokenTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
 
     /**
      * Test that expired tokens are rejected.
+     * @return void
      */
     public function testExpiredToken()
     {
@@ -64,6 +68,7 @@ class TimeLimitedTokenTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
 
     /**
      * Test that a token that has been manipulated to extend its validity is rejected.
+     * @return void
      */
     public function testManipulatedToken()
     {

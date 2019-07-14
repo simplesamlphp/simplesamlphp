@@ -9,7 +9,6 @@ use PHPUnit\Framework\TestCase;
  */
 class AttributeRealmTest extends TestCase
 {
-
     /**
      * Helper function to run the filter with a given configuration.
      *
@@ -26,6 +25,7 @@ class AttributeRealmTest extends TestCase
 
     /**
      * Test the most basic functionality.
+     * @return void
      */
     public function testBasic()
     {
@@ -41,8 +41,10 @@ class AttributeRealmTest extends TestCase
         $this->assertEquals($attributes['realm'], ['example.org']);
     }
 
+
     /**
      * Test no userid set
+     * @return void
      */
     public function testNoUserID()
     {
@@ -55,8 +57,10 @@ class AttributeRealmTest extends TestCase
         self::processFilter($config, $request);
     }
 
+
     /**
      * Test with configuration.
+     * @return void
      */
     public function testAttributeNameConfig()
     {
@@ -77,8 +81,10 @@ class AttributeRealmTest extends TestCase
         $this->assertEquals($attributes['schacHomeOrganization'], ['example.org']);
     }
 
+
     /**
      * When target attribute exists it will be overwritten
+     * @return void
      */
     public function testTargetAttributeOverwritten()
     {
@@ -99,8 +105,10 @@ class AttributeRealmTest extends TestCase
         $this->assertEquals($attributes['schacHomeOrganization'], ['example.org']);
     }
 
+
     /**
      * When source attribute has no "@" no realm is added
+     * @return void
      */
     public function testNoAtisNoOp()
     {
@@ -116,8 +124,10 @@ class AttributeRealmTest extends TestCase
         $this->assertArrayNotHasKey('realm', $attributes);
     }
 
+
     /**
      * When source attribute has more than one "@" no realm is added
+     * @return void
      */
     public function testMultiAtisNoOp()
     {

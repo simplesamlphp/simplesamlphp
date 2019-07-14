@@ -10,6 +10,7 @@ class LanguageTest extends TestCase
 {
     /**
      * Test SimpleSAML\Locale\Language::getDefaultLanguage().
+     * @return void
      */
     public function testGetDefaultLanguage()
     {
@@ -30,6 +31,7 @@ class LanguageTest extends TestCase
 
     /**
      * Test SimpleSAML\Locale\Language::getLanguageCookie().
+     * @return void
      */
     public function testGetLanguageCookie()
     {
@@ -54,6 +56,7 @@ class LanguageTest extends TestCase
 
     /**
      * Test SimpleSAML\Locale\Language::getLanguageList().
+     * @return void
      */
     public function testGetLanguageListNoConfig()
     {
@@ -67,6 +70,7 @@ class LanguageTest extends TestCase
 
     /**
      * Test SimpleSAML\Locale\Language::getLanguageList().
+     * @return void
      */
     public function testGetLanguageListCorrectConfig()
     {
@@ -86,6 +90,7 @@ class LanguageTest extends TestCase
 
     /**
      * Test SimpleSAML\Locale\Language::getLanguageList().
+     * @return void
      */
     public function testGetLanguageListIncorrectConfig()
     {
@@ -101,6 +106,7 @@ class LanguageTest extends TestCase
 
     /**
      * Test SimpleSAML\Locale\Language::getLanguageParameterName().
+     * @return void
      */
     public function testGetLanguageParameterName()
     {
@@ -120,6 +126,7 @@ class LanguageTest extends TestCase
 
     /**
      * Test SimpleSAML\Locale\Language::isLanguageRTL().
+     * @return void
      */
     public function testIsLanguageRTL()
     {
@@ -150,6 +157,7 @@ class LanguageTest extends TestCase
 
     /**
      * Test SimpleSAML\Locale\Language::setLanguage().
+     * @return void
      */
     public function testSetLanguage()
     {

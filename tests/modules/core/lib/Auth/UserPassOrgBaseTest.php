@@ -6,6 +6,9 @@ use SimpleSAML\Module\core\Auth\UserPassOrgBase;
 
 class UserPassOrgBaseTest extends \PHPUnit\Framework\TestCase
 {
+    /**
+     * @return void
+     */
     public function testRememberOrganizationEnabled()
     {
         $config = [

@@ -10,6 +10,13 @@ use PHPUnit\Framework\TestCase;
 class AttributeLimitTest extends TestCase
 {
     /**
+     * setUpBeforeClass a request that will be used for the following tests.
+     * note the above tests don't use self::$request for processFilter input.
+     */
+    protected static $request;
+
+
+    /**
      * Helper function to run the filter with a given configuration.
      *
      * @param array $config  The filter configuration.
@@ -23,8 +30,10 @@ class AttributeLimitTest extends TestCase
         return $request;
     }
 
+
     /**
      * Test reading IdP Attributes.
+     * @return void
      */
     public function testIdPAttrs()
     {
@@ -68,8 +77,10 @@ class AttributeLimitTest extends TestCase
         $this->assertCount(2, $attributes);
     }
 
+
     /**
      * Tests when no attributes are in metadata.
+     * @return void
      */
     public function testNULLMetadataAttrs()
     {
@@ -123,12 +134,10 @@ class AttributeLimitTest extends TestCase
         $this->assertArrayHasKey('mail', $attributes);
     }
 
-    /**
-     * setUpBeforeClass a request that will be used for the following tests.
-     * note the above tests don't use self::$request for processFilter input.
-     */
-    protected static $request;
 
+    /**
+     * @return void
+     */
     public static function setUpBeforeClass()
     {
         self::$request = [
@@ -146,8 +155,10 @@ class AttributeLimitTest extends TestCase
         ];
     }
 
+
     /**
      * Test the most basic functionality.
+     * @return void
      */
     public function testBasic()
     {
@@ -162,8 +173,10 @@ class AttributeLimitTest extends TestCase
         $this->assertCount(2, $attributes);
     }
 
+
     /**
      * Test defaults with metadata available.
+     * @return void
      */
     public function testDefaultWithMetadata()
     {
@@ -178,8 +191,10 @@ class AttributeLimitTest extends TestCase
         $this->assertCount(2, $attributes);
     }
 
+
     /**
      * Test defaults with attributes and metadata
+     * @return void
      */
     public function testDefaultWithAttrs()
     {
@@ -197,8 +212,10 @@ class AttributeLimitTest extends TestCase
         $this->assertArrayNotHasKey('eduPersonAffiliation', $attributes);
     }
 
+
     /**
      * Test for exception with illegal config.
+     * @return void
      */
     public function testInvalidConfig()
     {
@@ -210,8 +227,10 @@ class AttributeLimitTest extends TestCase
         self::processFilter($config, self::$request);
     }
 
+
     /**
      * Test for invalid attribute name
+     * @return void
      */
     public function testInvalidAttributeName()
     {
@@ -226,6 +245,7 @@ class AttributeLimitTest extends TestCase
 
     /**
      * Test for attribute value matching
+     * @return void
      */
     public function testMatchAttributeValues()
     {
@@ -264,6 +284,10 @@ class AttributeLimitTest extends TestCase
         $this->assertCount(0, $attributes);
     }
 
+
+    /**
+     * @return void
+     */
     public function testBadOptionsNotTreatedAsValidValues()
     {
         // Ensure really misconfigured ignoreCase and regex options are not interpretted as valid valus
@@ -276,9 +300,11 @@ class AttributeLimitTest extends TestCase
         $this->assertCount(0, $attributes);
     }
 
+
     /**
      * Verify that the true value for ignoreCase doesn't get converted into a string ('1') by
      * php and matched against an attribute value of '1'
+     * @return void
      */
     public function testThatIgnoreCaseOptionNotMatchBooleanAsStringValue()
     {
@@ -297,8 +323,10 @@ class AttributeLimitTest extends TestCase
         $this->assertCount(0, $attributes);
     }
 
+
     /**
      * Test for attribute value matching ignore case
+     * @return void
      */
     public function testMatchAttributeValuesIgnoreCase()
     {
@@ -337,8 +365,10 @@ class AttributeLimitTest extends TestCase
         $this->assertCount(0, $attributes);
     }
 
+
     /**
      * Test for attribute value matching
+     * @return void
      */
     public function testMatchAttributeValuesRegex()
     {
@@ -434,11 +464,13 @@ class AttributeLimitTest extends TestCase
         );
     }
 
+
     /**
      * Test for allowed attributes not an array.
      *
      * This test is very unlikely and would require malformed metadata processing.
      * Cannot be generated via config options.
+     * @return void
      */
     public function testMatchAttributeValuesNotArray()
     {
@@ -465,8 +497,10 @@ class AttributeLimitTest extends TestCase
         self::processFilter($config, $request);
     }
 
+
     /**
      * Test attributes not intersecting
+     * @return void
      */
     public function testNoIntersection()
     {

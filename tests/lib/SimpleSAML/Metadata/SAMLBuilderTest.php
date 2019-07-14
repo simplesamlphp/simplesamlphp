@@ -13,6 +13,7 @@ class SAMLBuilderTest extends TestCase
 {
     /**
      * Test the requested attributes are valued correctly.
+     * @return void
      */
     public function testAttributes()
     {
@@ -139,8 +140,10 @@ class SAMLBuilderTest extends TestCase
         }
     }
 
+
     /**
      * Test the working of the isDefault config option
+     * @return void
      */
     public function testAttributeConsumingServiceDefault()
     {
@@ -186,8 +189,10 @@ class SAMLBuilderTest extends TestCase
         $this->assertEquals("false", $acs1->getAttribute("isDefault"));
     }
 
+
     /**
      * Test the index option is used correctly.
+     * @return void
      */
     public function testAttributeConsumingServiceIndex()
     {
@@ -225,8 +230,10 @@ class SAMLBuilderTest extends TestCase
         $this->assertEquals("15", $acs1->getAttribute("index"));
     }
 
+
     /**
      * Test the required protocolSupportEnumeration in AttributeAuthorityDescriptor
+     * @return void
      */
     public function testProtocolSupportEnumeration()
     {

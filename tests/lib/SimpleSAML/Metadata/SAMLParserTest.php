@@ -16,6 +16,7 @@ class SAMLParserTest extends \SimpleSAML\Test\SigningTestCase
 {
     /**
      * Test Registration Info is parsed
+     * @return void
      */
     public function testRegistrationInfo()
     {
@@ -44,9 +45,11 @@ XML
         $this->assertEquals($expected, $metadata['RegistrationInfo']);
     }
 
+
     /**
      * Test RegistrationInfo is inherited correctly from parent EntitiesDescriptor.
      * According to the spec overriding RegistrationInfo is not valid. We ignore attempts to override
+     * @return void
      */
     public function testRegistrationInfoInheritance()
     {
@@ -92,8 +95,10 @@ XML
         $this->assertEquals($expected, $metadata['RegistrationInfo']);
     }
 
+
     /**
      * Test AttributeConsumingService is parsed
+     * @return void
      */
     public function testAttributeConsumingServiceParsing()
     {
@@ -140,6 +145,9 @@ XML
     }
 
 
+    /**
+     * @return \DOMDocument
+     */
     public function makeTestDocument()
     {
         $doc = new \DOMDocument();
@@ -163,6 +171,10 @@ XML
         return $doc;
     }
 
+
+    /**
+     * @return void
+     */
     public function _testValidateFingerprint($algo, $expected_fingerprint)
     {
         $doc = $this->makeTestDocument();
@@ -175,6 +187,9 @@ XML
     }
 
 
+    /**
+     * @return void
+     */
     public function testValidateFingerprintSHA1()
     {
         $this->_testValidateFingerprint(
@@ -184,6 +199,9 @@ XML
     }
 
 
+    /**
+     * @return void
+     */
     public function testValidateFingerprintSHA256()
     {
         $this->_testValidateFingerprint(
@@ -194,6 +212,9 @@ XML
     }
 
 
+    /**
+     * @return void
+     */
     public function testValidateFingerprintSHA384()
     {
         $this->_testValidateFingerprint(
@@ -205,6 +226,9 @@ XML
     }
 
 
+    /**
+     * @return void
+     */
     public function testValidateFingerprintSHA512()
     {
         $this->_testValidateFingerprint(
@@ -216,6 +240,9 @@ XML
     }
 
 
+    /**
+     * @return void
+     */
     public function testValidateFingerprintUnknownAlgorithmThrows()
     {
         $doc = $this->makeTestDocument();
@@ -236,8 +263,10 @@ XML
         }
     }
 
+
     /**
      * Test RoleDescriptor/Extensions is parsed
+     * @return void
      */
     public function testRoleDescriptorExtensions()
     {

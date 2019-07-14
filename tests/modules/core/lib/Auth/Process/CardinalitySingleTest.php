@@ -9,6 +9,7 @@ class CardinalitySingleTest extends \PHPUnit\Framework\TestCase
 {
     private $http;
 
+
     /**
      * Helper function to run the filter with a given configuration.
      *
@@ -25,6 +26,10 @@ class CardinalitySingleTest extends \PHPUnit\Framework\TestCase
         return $request;
     }
 
+
+    /**
+     * @return void
+     */
     protected function setUp()
     {
         \SimpleSAML\Configuration::loadFromArray([], '[ARRAY]', 'simplesaml');
@@ -33,8 +38,10 @@ class CardinalitySingleTest extends \PHPUnit\Framework\TestCase
                            ->getMock();
     }
 
+
     /**
      * Test singleValued
+     * @return void
      */
     public function testSingleValuedUnchanged()
     {
@@ -52,8 +59,10 @@ class CardinalitySingleTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($expectedData, $attributes, "Assertion values should not have changed");
     }
 
+
     /**
      * Test first value extraction
+     * @return void
      */
     public function testFirstValue()
     {
@@ -71,6 +80,10 @@ class CardinalitySingleTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($expectedData, $attributes, "Only first value should be returned");
     }
 
+
+    /**
+     * @return void
+     */
     public function testFirstValueUnchanged()
     {
         $config = [
@@ -87,8 +100,10 @@ class CardinalitySingleTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($expectedData, $attributes, "Assertion values should not have changed");
     }
 
+
     /**
      * Test flattening
+     * @return void
      */
     public function testFlatten()
     {
@@ -107,6 +122,10 @@ class CardinalitySingleTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($expectedData, $attributes, "Flattened string should be returned");
     }
 
+
+    /**
+     * @return void
+     */
     public function testFlattenUnchanged()
     {
         $config = [
@@ -124,8 +143,10 @@ class CardinalitySingleTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($expectedData, $attributes, "Assertion values should not have changed");
     }
 
+
     /**
      * Test abort
+     * @return void
      */
     public function testAbort()
     {

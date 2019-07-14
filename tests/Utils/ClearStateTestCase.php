@@ -17,6 +17,10 @@ class ClearStateTestCase extends TestCase
      */
     protected static $stateClearer;
 
+
+    /**
+     * @return void
+     */
     public static function setUpBeforeClass()
     {
         if (!self::$stateClearer) {
@@ -26,11 +30,18 @@ class ClearStateTestCase extends TestCase
     }
 
 
+    /**
+     * @return void
+     */
     protected function setUp()
     {
         self::clearState();
     }
 
+
+    /**
+     * @return void
+     */
     public static function tearDownAfterClass()
     {
         self::clearState();
@@ -39,6 +50,7 @@ class ClearStateTestCase extends TestCase
 
     /**
      * Clear any SSP global state to reduce spill over between tests.
+     * @return void
      */
     public static function clearState()
     {

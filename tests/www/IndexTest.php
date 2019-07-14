@@ -41,6 +41,7 @@ class IndexTest extends TestCase
 
     /**
      * The setup method that is run before any tests in this class.
+     * @return void
      */
     protected function setup()
     {
@@ -53,6 +54,9 @@ class IndexTest extends TestCase
     }
 
 
+    /**
+     * @return void
+     */
     protected function updateConfig($config)
     {
         @unlink($this->shared_file);
@@ -63,6 +67,7 @@ class IndexTest extends TestCase
 
     /**
      * A simple test to make sure the index.php file redirects appropriately to the right URL.
+     * @return void
      */
     public function testRedirection()
     {
@@ -109,6 +114,7 @@ class IndexTest extends TestCase
 
     /**
      * The tear down method that is executed after all tests in this class.
+     * @return void
      */
     protected function tearDown()
     {

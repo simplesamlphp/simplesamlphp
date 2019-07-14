@@ -42,9 +42,15 @@ d2udRIYG0WcjQTk86+EraXNGtuwUaknQ7WPKlJwLzypuZM8lk3F1FXxXWomHN3SH
 NOWDOC;
 
     const ROOTDIRNAME = 'testdir';
+
     const DEFAULTCERTDIR = 'certdir';
+
     const OTHER_CERTIFICATE = 'other_certificate.pem';
 
+
+    /**
+     * @return array
+     */
     public function getCertDirContent()
     {
         return [
@@ -54,6 +60,10 @@ NOWDOC;
         ];
     }
 
+
+    /**
+     * @return void
+     */
     public function testSignerBasic()
     {
         $res = new Signer([]);
@@ -61,6 +71,10 @@ NOWDOC;
         $this->assertNotNull($res);
     }
 
+
+    /**
+     * @return void
+     */
     public function testSignBasic()
     {
         $node = new \DOMDocument();
@@ -80,6 +94,10 @@ NOWDOC;
         $this->assertContains('SignatureValue', $res);
     }
 
+
+    /**
+     * @return string
+     */
     private static function getCertificateValue($certificate)
     {
         $replacements = [
@@ -91,6 +109,10 @@ NOWDOC;
         return str_replace($replacements, "", $certificate);
     }
 
+
+    /**
+     * @return void
+     */
     public function testSignWithCertificate()
     {
         $node = new \DOMDocument();
@@ -113,6 +135,10 @@ NOWDOC;
         $this->assertContains($expected, $res);
     }
 
+
+    /**
+     * @return void
+     */
     public function testSignWithMultiCertificate()
     {
         $this->other_certificate_file = $this->certdir.DIRECTORY_SEPARATOR.self::OTHER_CERTIFICATE;
@@ -140,6 +166,10 @@ NOWDOC;
         $this->assertContains($expected2, $res);
     }
 
+
+    /**
+     * @return void
+     */
     public function testSignMissingPrivateKey()
     {
         $node = new \DOMDocument();
@@ -155,6 +185,10 @@ NOWDOC;
         $signer->sign($element, $insertInto);
     }
 
+
+    /**
+     * @return void
+     */
     protected function clearInstance($service, $className, $value = null)
     {
         $reflectedClass = new \ReflectionClass($className);

@@ -16,6 +16,9 @@ use \org\bovigo\vfs\vfsStream;
  */
 class ValidatorTest extends SigningTestCase
 {
+    /**
+     * @return void
+     */
     public function testValidatorMissingSignature()
     {
         $doc = new \DOMDocument();
@@ -25,6 +28,10 @@ class ValidatorTest extends SigningTestCase
         new Validator($doc);
     }
 
+
+    /**
+     * @return void
+     */
     public function testGetX509Certificate()
     {
         $doc = new \DOMDocument();
@@ -49,6 +56,10 @@ class ValidatorTest extends SigningTestCase
         $this->assertEquals($result, $expected);
     }
 
+
+    /**
+     * @return void
+     */
     public function testCertFingerprintSuccess()
     {
         $doc = new \DOMDocument();
@@ -76,6 +87,10 @@ class ValidatorTest extends SigningTestCase
         $this->assertInstanceOf(Validator::class, $validator);
     }
 
+
+    /**
+     * @return void
+     */
     public function testCertFingerprintFailure()
     {
         $doc = new \DOMDocument();
@@ -94,6 +109,10 @@ class ValidatorTest extends SigningTestCase
         new Validator($doc, 'node', ['certFingerprint' => []]);
     }
 
+
+    /**
+     * @return void
+     */
     public function testValidateFingerprintSuccess()
     {
         $doc = new \DOMDocument();
@@ -118,6 +137,10 @@ class ValidatorTest extends SigningTestCase
         $this->assertInstanceOf(Validator::class, $validator);
     }
 
+
+    /**
+     * @return void
+     */
     public function testValidateFingerprintFailure()
     {
         $doc = new \DOMDocument();
@@ -140,6 +163,10 @@ class ValidatorTest extends SigningTestCase
         $validator->validateFingerprint($fingerprint);
     }
 
+
+    /**
+     * @return void
+     */
     public function testIsNodeValidatedSuccess()
     {
         $doc = new \DOMDocument();
@@ -164,6 +191,10 @@ class ValidatorTest extends SigningTestCase
         $this->assertTrue($result);
     }
 
+
+    /**
+     * @return void
+     */
     public function testIsNodeValidatedFailure()
     {
         $doc = new \DOMDocument();
@@ -189,6 +220,10 @@ class ValidatorTest extends SigningTestCase
         $this->assertFalse($result);
     }
 
+
+    /**
+     * @return void
+     */
     public function testValidateCertificateMissingCAFile()
     {
         $ca_file = $this->ca_certificate_file.'NOT';

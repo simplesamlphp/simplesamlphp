@@ -28,10 +28,13 @@ class SAML2Test extends ClearStateTestCase
         'saml:NameIDFormat' => null,
         'saml:AllowCreate' => true,
         'saml:Extensions' => null,
-        'saml:RequestedAuthnContext' => null];
+        'saml:RequestedAuthnContext' => null
+    ];
+
 
     /**
      * Test that invoking the idp initiated endpoint with the minimum necessary parameters works.
+     * @return void
      */
     public function testIdPInitiatedLoginMinimumParams()
     {
@@ -53,8 +56,10 @@ class SAML2Test extends ClearStateTestCase
         $this->assertEquals($expectedState, $state);
     }
 
+
     /**
      * Test that invoking the idp initiated endpoint with the optional parameters works.
+     * @return void
      */
     public function testIdPInitiatedLoginOptionalParams()
     {
@@ -86,8 +91,10 @@ class SAML2Test extends ClearStateTestCase
         $this->assertEquals($expectedState, $state);
     }
 
+
     /**
      * Test that invoking the idp initiated endpoint using minimum shib params works
+     * @return void
      */
     public function testIdPInitShibCompatyMinimumParams()
     {
@@ -111,8 +118,10 @@ class SAML2Test extends ClearStateTestCase
         $this->assertEquals($expectedState, $state);
     }
 
+
     /**
      * Test that invoking the idp initiated endpoint using minimum shib params works
+     * @return void
      */
     public function testIdPInitShibCompatOptionalParams()
     {
@@ -140,6 +149,7 @@ class SAML2Test extends ClearStateTestCase
 
         $this->assertEquals($expectedState, $state);
     }
+
 
     /**
      * Invoke IDP initiated login with the given query parameters.

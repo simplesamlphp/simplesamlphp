@@ -12,6 +12,7 @@ class ArraysTest extends TestCase
 {
     /**
      * Test the arrayize() function.
+     * @return void
      */
     public function testArrayize()
     {
@@ -39,6 +40,7 @@ class ArraysTest extends TestCase
 
     /**
      * Test the transpose() function.
+     * @return void
      */
     public function testTranspose()
     {

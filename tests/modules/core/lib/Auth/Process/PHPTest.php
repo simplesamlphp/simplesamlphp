@@ -27,6 +27,7 @@ class PHPTest extends TestCase
 
     /**
      * Test the configuration of the filter.
+     * @return void
      */
     public function testInvalidConfiguration()
     {
@@ -41,6 +42,7 @@ class PHPTest extends TestCase
 
     /**
      * Check that defining the code works as expected.
+     * @return void
      */
     public function testCodeDefined()
     {
@@ -59,8 +61,10 @@ class PHPTest extends TestCase
         $this->assertEquals($expected, $this->processFilter($config, $request));
     }
 
+
     /**
      * Check that the incoming attributes are also available after processing
+     * @return void
      */
     public function testPreserveIncomingAttributes()
     {
@@ -87,9 +91,11 @@ class PHPTest extends TestCase
         $this->assertEquals($expected, $this->processFilter($config, $request));
     }
 
+
     /**
      * Check that throwing an Exception inside the PHP code of the
      * filter (a documented use case) works.
+     * @return void
      */
     public function testThrowExceptionFromFilter()
     {
@@ -114,8 +120,10 @@ class PHPTest extends TestCase
         $this->processFilter($config, $request);
     }
 
+
     /**
      * Check that the entire state can be adjusted.
+     * @return void
      */
     public function testStateCanBeModified()
     {

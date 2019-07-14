@@ -26,7 +26,6 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class ControllerTest extends ClearStateTestCase
 {
-
     /** @var array */
     protected $authSources;
 
@@ -42,6 +41,7 @@ class ControllerTest extends ClearStateTestCase
 
     /**
      * Set up for each test.
+     * @return void
      */
     protected function setUp()
     {
@@ -73,6 +73,7 @@ class ControllerTest extends ClearStateTestCase
     /**
      * Test that authentication is started immediately if we hit the login endpoint and there's only one non-admin
      * source configured.
+     * @return void
      */
     public function testAutomaticLoginWhenOnlyOneSource()
     {
@@ -95,6 +96,7 @@ class ControllerTest extends ClearStateTestCase
 
     /**
      * Test that the user can choose what auth source to use when there are multiple defined (admin excluded).
+     * @return void
      */
     public function testMultipleAuthSources()
     {
@@ -126,6 +128,7 @@ class ControllerTest extends ClearStateTestCase
 
     /**
      * Test that specifying an invalid auth source while trying to login raises an exception.
+     * @return void
      */
     public function testLoginWithInvalidAuthSource()
     {
@@ -143,6 +146,7 @@ class ControllerTest extends ClearStateTestCase
     /**
      * Test that we get redirected to /account/authsource when accessing the login endpoint while being already
      * authenticated.
+     * @return void
      */
     public function testLoginWhenAlreadyAuthenticated()
     {
@@ -176,6 +180,7 @@ class ControllerTest extends ClearStateTestCase
 
     /**
      * Test that triggering the logout controller actually proceeds to log out from the specified source.
+     * @return void
      */
     public function testLogout()
     {
@@ -196,6 +201,7 @@ class ControllerTest extends ClearStateTestCase
     /**
      * Test that accessing the "account" endpoint without being authenticated gets you redirected to the "login"
      * endpoint.
+     * @return void
      */
     public function testNotAuthenticated()
     {
@@ -216,6 +222,7 @@ class ControllerTest extends ClearStateTestCase
 
     /**
      * Test that we are presented with a regular page if we are authenticated and try to access the "account" endpoint.
+     * @return void
      */
     public function testAuthenticated()
     {

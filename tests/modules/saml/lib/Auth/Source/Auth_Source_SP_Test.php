@@ -19,6 +19,9 @@ class ExitTestException extends \Exception
     private $testResult;
 
 
+    /**
+     * @return void
+     */
     public function __construct($testResult)
     {
         parent::__construct("ExitTestException", 0, null);
@@ -26,6 +29,9 @@ class ExitTestException extends \Exception
     }
 
 
+    /**
+     * @return array
+     */
     public function getTestResult()
     {
         return $this->testResult;
@@ -40,13 +46,18 @@ class ExitTestException extends \Exception
  */
 class SPTester extends \SimpleSAML\Module\saml\Auth\Source\SP
 {
-
+    /**
+     * @return void
+     */
     public function __construct($info, $config)
     {
         parent::__construct($info, $config);
     }
 
 
+    /**
+     * @return void
+     */
     public function startSSO2Test(Configuration $idpMetadata, array $state)
     {
         $reflector = new \ReflectionObject($this);
@@ -56,7 +67,10 @@ class SPTester extends \SimpleSAML\Module\saml\Auth\Source\SP
     }
 
 
-    // override the method that sends the request to avoid sending anything
+    /**
+     * override the method that sends the request to avoid sending anything
+     * @return void
+     */
     public function sendSAML2AuthnRequest(array &$state, \SAML2\Binding $binding, \SAML2\AuthnRequest $ar)
     {
         // Exit test. Continuing would mean running into a assert(FALSE)
@@ -76,12 +90,14 @@ class SPTester extends \SimpleSAML\Module\saml\Auth\Source\SP
  */
 class SPTest extends ClearStateTestCase
 {
-
     private $idpMetadata = null;
 
     private $idpConfigArray;
 
 
+    /**
+     * @return \SimpleSAML\Configuration
+     */
     private function getIdpMetadata()
     {
         if (!$this->idpMetadata) {
@@ -95,6 +111,9 @@ class SPTest extends ClearStateTestCase
     }
 
 
+    /**
+     * @return void
+     */
     protected function setUp()
     {
         parent::setUp();
@@ -166,6 +185,7 @@ class SPTest extends ClearStateTestCase
     /**
      * Test generating an AuthnRequest
      * @test
+     * @return void
      */
     public function testAuthnRequest()
     {
@@ -190,7 +210,8 @@ class SPTest extends ClearStateTestCase
 
     /**
      * Test setting a Subject
-     * @test *
+     * @test
+     * @return void
      */
     public function testNameID()
     {
@@ -222,7 +243,8 @@ class SPTest extends ClearStateTestCase
 
     /**
      * Test setting an AuthnConextClassRef
-     * @test *
+     * @test
+     * @return void
      */
     public function testAuthnContextClassRef()
     {
@@ -251,7 +273,8 @@ class SPTest extends ClearStateTestCase
 
     /**
      * Test setting ForcedAuthn
-     * @test *
+     * @test
+     * @return void
      */
     public function testForcedAuthn()
     {
@@ -276,8 +299,10 @@ class SPTest extends ClearStateTestCase
         );
     }
 
+
     /**
      * Test specifying an IDPList where no metadata found for those idps is an error
+     * @return void
      */
     public function testIdpListWithNoMatchingMetadata()
     {
@@ -292,8 +317,10 @@ class SPTest extends ClearStateTestCase
         $as->authenticate($state);
     }
 
+
     /**
      * Test specifying an IDPList where the list does not overlap with the Idp specified in SP config is an error
+     * @return void
      */
     public function testIdpListWithExplicitIdpNotMatch()
     {
@@ -318,8 +345,10 @@ class SPTest extends ClearStateTestCase
         $as->authenticate($state);
     }
 
+
     /**
      * Test that IDPList overlaps with the IDP specified in SP config results in AuthnRequest
+     * @return void
      */
     public function testIdpListWithExplicitIdpMatch()
     {
@@ -356,8 +385,10 @@ class SPTest extends ClearStateTestCase
         }
     }
 
+
     /**
      * Test that IDPList with a single valid idp and no SP config idp results in AuthnRequest to that idp
+     * @return void
      */
     public function testIdpListWithSingleMatch()
     {
@@ -392,8 +423,10 @@ class SPTest extends ClearStateTestCase
         }
     }
 
+
     /**
      * Test that IDPList with multiple valid idp and no SP config idp results in discovery redirect
+     * @return void
      */
     public function testIdpListWithMultipleMatch()
     {

@@ -7,9 +7,9 @@ use SimpleSAML\Locale\Translate;
 
 class TranslateTest extends TestCase
 {
-
     /**
      * Test SimpleSAML\Locale\Translate::noop().
+     * @return void
      */
     public function testNoop()
     {
@@ -20,8 +20,10 @@ class TranslateTest extends TestCase
         $this->assertEquals($testString, $t->noop($testString));
     }
 
+
     /**
      * Test SimpleSAML\Locale\Translate::t().
+     * @return void
      */
     public function testTFallback()
     {

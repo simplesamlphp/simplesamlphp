@@ -11,6 +11,10 @@ class SQLPermanentStorageTest extends TestCase
 {
     private static $sql;
 
+
+    /**
+     * @return void
+     */
     public static function setUpBeforeClass()
     {
         // Create instance
@@ -20,12 +24,20 @@ class SQLPermanentStorageTest extends TestCase
         self::$sql = new \SimpleSAML\Module\core\Storage\SQLPermanentStorage('test', $config);
     }
 
+
+    /**
+     * @return void
+     */
     public static function tearDownAfterClass()
     {
         self::$sql = null;
         unlink(sys_get_temp_dir().'/sqllite/test.sqlite');
     }
 
+
+    /**
+     * @return void
+     */
     public function testSet()
     {
         // Set a new value
@@ -36,6 +48,10 @@ class SQLPermanentStorageTest extends TestCase
         $this->assertEquals('testvalue', $result['value']);
     }
 
+
+    /**
+     * @return void
+     */
     public function testSetOverwrite()
     {
         // Overwrite existing value
@@ -49,6 +65,10 @@ class SQLPermanentStorageTest extends TestCase
         $this->assertEquals('testvaluemodified', $result[0]['value']);
     }
 
+
+    /**
+     * @return void
+     */
     public function testNonexistentKey()
     {
         // Test that getting some non-existing key will return null
@@ -60,6 +80,10 @@ class SQLPermanentStorageTest extends TestCase
         $this->assertNull($result);
     }
 
+
+    /**
+     * @return void
+     */
     public function testExpiration()
     {
         // Make sure the earlier created entry has expired now
@@ -78,6 +102,10 @@ class SQLPermanentStorageTest extends TestCase
         $this->assertEquals('testvalue_nonexpiring', $result);
     }
 
+
+    /**
+     * @return void
+     */
     public function testRemove()
     {
         // Now remove the nonexpiring entry and make sure it's gone

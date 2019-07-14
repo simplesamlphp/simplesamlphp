@@ -8,6 +8,9 @@ use \SimpleSAML\Configuration;
 
 class LocalizationTest extends TestCase
 {
+    /**
+     * @return void
+     */
     protected function setUp()
     {
         // Localization/Language code attempts to load a cookie, and looks in the config for a name of the cookie
@@ -17,6 +20,7 @@ class LocalizationTest extends TestCase
 
     /**
      * Test SimpleSAML\Locale\Localization().
+     * @return void
      */
     public function testLocalization()
     {
@@ -29,8 +33,10 @@ class LocalizationTest extends TestCase
         $this->assertEquals(Localization::DEFAULT_DOMAIN, 'messages');
     }
 
+
     /**
      * Test SimpleSAML\Locale\Localization::activateDomain().
+     * @return void
      */
     public function testAddDomain()
     {

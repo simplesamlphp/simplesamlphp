@@ -17,8 +17,7 @@ use SAML2\Constants;
 
 class NameIDAttributeTest extends TestCase
 {
-
-    /*
+    /**
      * Helper function to run the filter with a given configuration.
      *
      * @param array $config  The filter configuration.
@@ -35,6 +34,7 @@ class NameIDAttributeTest extends TestCase
 
     /**
      * Test minimal configuration.
+     * @return void
      */
     public function testMinimalConfig()
     {
@@ -62,8 +62,10 @@ class NameIDAttributeTest extends TestCase
         $this->assertEquals("{$spId}!{$idpId}!{$nameId->getValue()}", $result['Attributes']['nameid'][0]);
     }
 
+
     /**
      * Test custom attribute name.
+     * @return void
      */
     public function testCustomAttributeName()
     {
@@ -92,8 +94,10 @@ class NameIDAttributeTest extends TestCase
         $this->assertEquals("{$spId}!{$idpId}!{$nameId->getValue()}", $result['Attributes'][$attributeName][0]);
     }
 
+
     /**
      * Test custom format.
+     * @return void
      */
     public function testFormat()
     {
@@ -123,6 +127,7 @@ class NameIDAttributeTest extends TestCase
 
     /**
      * Test custom attribute name with format.
+     * @return void
      */
     public function testCustomAttributeNameAndFormat()
     {

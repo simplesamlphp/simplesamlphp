@@ -8,9 +8,11 @@ use SimpleSAML\Test\Utils\ClearStateTestCase;
 /**
  * Tests for \SimpleSAML\Auth\Source
  */
-
 class SourceTest extends ClearStateTestCase
 {
+    /**
+     * @return void
+     */
     public function testParseAuthSource()
     {
         $class = new \ReflectionClass('\SimpleSAML\Auth\Source');
@@ -29,6 +31,9 @@ class SourceTest extends ClearStateTestCase
 
 class TestAuthSource extends \SimpleSAML\Auth\Source
 {
+    /**
+     * @return void
+     */
     public function authenticate(&$state)
     {
     }
@@ -36,6 +41,9 @@ class TestAuthSource extends \SimpleSAML\Auth\Source
 
 class TestAuthSourceFactory implements SourceFactory
 {
+    /**
+     * @return \SimpleSAML\Test\Auth\TestAuthSource
+     */
     public function create(array $info, array $config)
     {
         return new TestAuthSource($info, $config);

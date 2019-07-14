@@ -12,6 +12,7 @@ class MetaDataStorageSourceTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Test \SimpleSAML\Metadata\MetaDataStorageSourceTest::getConfig XML bad source
+     * @return void
      */
     public function testBadXMLSource()
     {
@@ -19,8 +20,10 @@ class MetaDataStorageSourceTest extends \PHPUnit\Framework\TestCase
         \SimpleSAML\Metadata\MetaDataStorageSource::getSource(["type"=>"xml", "foo"=>"baa"]);
     }
 
+
     /**
      * Test \SimpleSAML\Metadata\MetaDataStorageSourceTest::getConfig invalid static XML source
+     * @return void
      */
     public function testInvalidStaticXMLSource()
     {
@@ -32,8 +35,10 @@ class MetaDataStorageSourceTest extends \PHPUnit\Framework\TestCase
         \SimpleSAML\Metadata\MetaDataStorageSource::getSource(["type"=>"xml", "xml"=>$strTestXML]);
     }
 
+
     /**
      * Test \SimpleSAML\Metadata\MetaDataStorageSourceTest::getConfig XML static XML source
+     * @return void
      */
     public function testStaticXMLSource()
     {
@@ -48,8 +53,10 @@ class MetaDataStorageSourceTest extends \PHPUnit\Framework\TestCase
         $this->assertCount(1, $idpSet, "Unexpectedly got metadata for an alternate entity than that defined");
     }
 
+
     /**
      * Test loading multiple entities
+     * @return void
      */
     public function testLoadEntitiesStaticXMLSource()
     {
@@ -82,6 +89,11 @@ class MetaDataStorageSourceTest extends \PHPUnit\Framework\TestCase
         $this->assertCount(0, $entities, 'no matches expected');
     }
 
+
+    /**
+     * @param string $entityId
+     * @return string
+     */
     public static function generateIdpMetadataXml($entityId)
     {
         return "

@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
  */
 class ScopeAttributeTest extends TestCase
 {
-    /*
+    /**
      * Helper function to run the filter with a given configuration.
      *
      * @param array $config  The filter configuration.
@@ -23,8 +23,10 @@ class ScopeAttributeTest extends TestCase
         return $request;
     }
 
-    /*
+
+    /**
      * Test the most basic functionality.
+     * @return void
      */
     public function testBasic()
     {
@@ -45,8 +47,10 @@ class ScopeAttributeTest extends TestCase
         $this->assertEquals($attributes['eduPersonScopedAffiliation'], ['member@example.com']);
     }
 
-    /*
+
+    /**
      * If target attribute already set, module must add, not overwrite.
+     * @return void
      */
     public function testNoOverwrite()
     {
@@ -70,8 +74,10 @@ class ScopeAttributeTest extends TestCase
         );
     }
 
-    /*
+
+    /**
      * If same scope already set, module must do nothing, not duplicate value.
+     * @return void
      */
     public function testNoDuplication()
     {
@@ -93,8 +99,9 @@ class ScopeAttributeTest extends TestCase
     }
 
 
-    /*
+    /**
      * If source attribute not set, nothing happens
+     * @return void
      */
     public function testNoSourceAttribute()
     {
@@ -114,8 +121,10 @@ class ScopeAttributeTest extends TestCase
         $this->assertEquals($request['Attributes'], $result['Attributes']);
     }
 
-    /*
+
+    /**
      * If scope attribute not set, nothing happens
+     * @return void
      */
     public function testNoScopeAttribute()
     {
@@ -135,8 +144,10 @@ class ScopeAttributeTest extends TestCase
         $this->assertEquals($request['Attributes'], $result['Attributes']);
     }
 
-    /*
+
+    /**
      * When multiple @ signs in attribute, will use the first one.
+     * @return void
      */
     public function testMultiAt()
     {
@@ -156,8 +167,10 @@ class ScopeAttributeTest extends TestCase
         $this->assertEquals($attributes['eduPersonScopedAffiliation'], ['member@doe@example.com']);
     }
 
-    /*
+
+    /**
      * When multiple values in source attribute, should render multiple targets.
+     * @return void
      */
     public function testMultivaluedSource()
     {
@@ -180,8 +193,10 @@ class ScopeAttributeTest extends TestCase
         );
     }
 
-    /*
+
+    /**
      * When the source attribute doesn't have a scope, the entire value is used.
+     * @return void
      */
     public function testNoAt()
     {
@@ -201,8 +216,10 @@ class ScopeAttributeTest extends TestCase
         $this->assertEquals($attributes['eduPersonScopedAffiliation'], ['student@example.org']);
     }
 
-    /*
+
+    /**
      * When the target attribute exists and onlyIfEmpty is set
+     * @return void
      */
     public function testOnlyIfEmpty()
     {

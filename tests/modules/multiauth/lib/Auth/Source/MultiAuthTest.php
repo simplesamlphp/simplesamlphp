@@ -11,6 +11,10 @@ class MultiAuthTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
     /** @var Configuration */
     private $sourceConfig;
 
+
+    /**
+     * @return void
+     */
     public function setUp()
     {
         $this->config = Configuration::loadFromArray(['module.enable' => ['multiauth' => true]], '[ARRAY]', 'simplesaml');
@@ -55,7 +59,9 @@ class MultiAuthTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
         Configuration::setPreLoadedConfig($this->sourceConfig, 'authsources.php');
     }
 
+
     /**
+     * @return void
      */
     public function testSourcesMustBePresent()
     {
@@ -72,7 +78,9 @@ class MultiAuthTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
         new MultiAuth(['AuthId' => 'example-multi'], $sourceConfig->getArray('example-multi'));
     }
 
+
     /**
+     * @return void
      */
     public function testPreselectMustBeValid()
     {
@@ -119,6 +127,10 @@ class MultiAuthTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
         new MultiAuth(['AuthId' => 'example-multi'], $sourceConfig->getArray('example-multi'));
     }
 
+
+    /**
+     * @return void
+     */
     public function testPreselectIsOptional()
     {
         $sourceConfig = Configuration::loadFromArray(array(
@@ -171,6 +183,10 @@ class MultiAuthTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
         $this->assertArrayNotHasKey('multiauth:preselect', $state);
     }
 
+
+    /**
+     * @return void
+     */
     public function testPreselectCanBeConfigured()
     {
         $state = [];
@@ -186,6 +202,10 @@ class MultiAuthTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
         $this->assertEquals('example-saml', $state['multiauth:preselect']);
     }
 
+
+    /**
+     * @return void
+     */
     public function testStatePreselectHasPriority()
     {
         $state = ['multiauth:preselect' => 'example-admin'];

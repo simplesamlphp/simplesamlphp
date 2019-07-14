@@ -9,8 +9,7 @@ use PHPUnit\Framework\TestCase;
  */
 class ScopeFromAttributeTest extends TestCase
 {
-
-    /*
+    /**
      * Helper function to run the filter with a given configuration.
      *
      * @param array $config  The filter configuration.
@@ -24,8 +23,10 @@ class ScopeFromAttributeTest extends TestCase
         return $request;
     }
 
-    /*
+
+    /**
      * Test the most basic functionality.
+     * @return void
      */
     public function testBasic()
     {
@@ -44,8 +45,10 @@ class ScopeFromAttributeTest extends TestCase
         $this->assertEquals($attributes['scope'], ['example.com']);
     }
 
-    /*
+
+    /**
      * If scope already set, module must not overwrite.
+     * @return void
      */
     public function testNoOverwrite()
     {
@@ -64,8 +67,10 @@ class ScopeFromAttributeTest extends TestCase
         $this->assertEquals($attributes['scope'], ['example.edu']);
     }
 
-    /*
+
+    /**
      * If source attribute not set, nothing happens
+     * @return void
      */
     public function testNoSourceAttribute()
     {
@@ -83,8 +88,10 @@ class ScopeFromAttributeTest extends TestCase
         $this->assertEquals($request['Attributes'], $result['Attributes']);
     }
 
-    /*
+
+    /**
      * When multiple @ signs in attribute, should use last one.
+     * @return void
      */
     public function testMultiAt()
     {
@@ -102,8 +109,10 @@ class ScopeFromAttributeTest extends TestCase
         $this->assertEquals($attributes['scope'], ['example.com']);
     }
 
-    /*
+
+    /**
      * When the source attribute doesn't have a scope, a warning is emitted
+     * @return void
      */
     public function testNoAt()
     {

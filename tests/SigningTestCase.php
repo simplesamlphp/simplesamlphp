@@ -9,6 +9,7 @@
 namespace SimpleSAML\Test;
 
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\Configuration;
 use \org\bovigo\vfs\vfsStream;
 
 class SigningTestCase extends TestCase
@@ -142,6 +143,9 @@ NOWDOC;
     const GOOD_CERTIFICATE = 'good.cert.pem';
 
 
+    /**
+     * @return array
+     */
     public function getCertDirContent()
     {
         return [
@@ -153,6 +157,9 @@ NOWDOC;
     }
 
 
+    /**
+     * @return void
+     */
     public function setUp()
     {
         $this->root = vfsStream::setup(
@@ -176,13 +183,22 @@ NOWDOC;
     }
 
 
+    /**
+     * @return void
+     */
     public function tearDown()
     {
         $this->clearInstance($this->config, '\SimpleSAML\Configuration', []);
     }
 
 
-    protected function clearInstance($service, $className, $value = null)
+    /**
+     * @param \SimpleSAML\Configuration $service
+     * @param string $className
+     * @param mixed|null $value
+     * @return void
+     */
+    protected function clearInstance(Configuration $service, $className, $value = null)
     {
         $reflectedClass = new \ReflectionClass($className);
         $reflectedInstance = $reflectedClass->getProperty('instance');

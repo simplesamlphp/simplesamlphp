@@ -11,6 +11,7 @@ class TimeTest extends TestCase
      * Test the SimpleSAML\Utils\Time::generateTimestamp() method.
      *
      * @covers SimpleSAML\Utils\Time::generateTimestamp
+     * @return void
      */
     public function testGenerateTimestamp()
     {
@@ -26,6 +27,7 @@ class TimeTest extends TestCase
      * Test the SimpleSAML\Utils\Time::initTimezone() method.
      *
      * @covers SimpleSAML\Utils\Time::initTimezone
+     * @return void
      */
     public function testInitTimezone()
     {
@@ -70,6 +72,7 @@ class TimeTest extends TestCase
      * Test the SimpleSAML\Utils\Time::parseDuration() method.
      *
      * @covers SimpleSAML\Utils\Time::parseDuration
+     * @return void
      */
     public function testParseDuration()
     {
