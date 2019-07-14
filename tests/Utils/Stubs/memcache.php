@@ -2,8 +2,8 @@
 
 // Start of memcache v.3.0.8
 
-class MemcachePool  {
-
+class MemcachePool
+{
     /**
      * (PECL memcache &gt;= 0.2.0)<br/>
      * Open memcached server connection
@@ -325,38 +325,36 @@ class MemcachePool  {
      * @return boolean Returns <b>TRUE</b> on success or <b>FALSE</b> on failure.
      */
     public function flush () {}
-
 }
 
 /**
  * Represents a connection to a set of memcache servers.
  * @link https://php.net/manual/en/class.memcache.php
  */
-class Memcache extends MemcachePool  {
-
-
-	/**
-	 * (PECL memcache &gt;= 0.4.0)<br/>
-	 * Open memcached server persistent connection
-	 * @link https://php.net/manual/en/memcache.pconnect.php
-	 * @param string $host <p>
-	 * Point to the host where memcached is listening for connections. This parameter
-	 * may also specify other transports like unix:///path/to/memcached.sock
-	 * to use UNIX domain sockets, in this case <i>port</i> must also
-	 * be set to 0.
-	 * </p>
-	 * @param int $port [optional] <p>
-	 * Point to the port where memcached is listening for connections. Set this
-	 * parameter to 0 when using UNIX domain sockets.
-	 * </p>
-	 * @param int $timeout [optional] <p>
-	 * Value in seconds which will be used for connecting to the daemon. Think
-	 * twice before changing the default value of 1 second - you can lose all
-	 * the advantages of caching if your connection is too slow.
-	 * </p>
-	 * @return mixed a Memcache object or <b>FALSE</b> on failure.
-	 */
-	public function pconnect ($host, $port, $timeout = 1) {}
+class Memcache extends MemcachePool
+{
+    /**
+     * (PECL memcache &gt;= 0.4.0)<br/>
+     * Open memcached server persistent connection
+     * @link https://php.net/manual/en/memcache.pconnect.php
+     * @param string $host <p>
+     * Point to the host where memcached is listening for connections. This parameter
+     * may also specify other transports like unix:///path/to/memcached.sock
+     * to use UNIX domain sockets, in this case <i>port</i> must also
+     * be set to 0.
+     * </p>
+     * @param int $port [optional] <p>
+     * Point to the port where memcached is listening for connections. Set this
+     * parameter to 0 when using UNIX domain sockets.
+     * </p>
+     * @param int $timeout [optional] <p>
+     * Value in seconds which will be used for connecting to the daemon. Think
+     * twice before changing the default value of 1 second - you can lose all
+     * the advantages of caching if your connection is too slow.
+     * </p>
+     * @return mixed a Memcache object or <b>FALSE</b> on failure.
+     */
+    public function pconnect ($host, $port, $timeout = 1) {}
 }
 
 //  string $host [, int $port [, int $timeout ]]
