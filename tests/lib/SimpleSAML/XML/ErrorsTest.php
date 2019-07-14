@@ -47,16 +47,16 @@ class ErrorsTest extends TestCase
     public function formatErrors()
     {
         $error = new \LibXMLError();
-        $error->level = 'level';
-        $error->code = 'code';
-        $error->line = 'line';
-        $error->column = 'col';
+        $error->level = 3;
+        $error->code = 76;
+        $error->line = 1;
+        $error->column = 18;
         $error->message = ' msg ';
 
         $errors = Errors::formatErrors([$error, $error]);
 
         $this->assertEquals(
-            "level=level,code=code,line=line,col=col,msg=msg\nlevel=level,code=code,line=line,col=col,msg=msg\n",
+            "level=3,code=76,line=1,col=18,msg=msg\nlevel=3,code=76,line=1,col=18,msg=msg\n",
             $errors
         );
     }

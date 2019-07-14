@@ -7,7 +7,7 @@ namespace SimpleSAML\Test\Module\core\Auth\Process;
  */
 class CardinalityTest extends \PHPUnit\Framework\TestCase
 {
-    /** @var \SimpleSAML\Utils\HttpAdapter */
+    /** @var \SimpleSAML\Utils\HttpAdapter|\PHPUnit_Framework_MockObject_MockObject */
     private $http;
 
 
@@ -22,7 +22,11 @@ class CardinalityTest extends \PHPUnit\Framework\TestCase
     {
         $_SERVER['SERVER_PROTOCOL'] = 'HTTP/1.1';
         $_SERVER['REQUEST_METHOD'] = 'GET';
-        $filter = new \SimpleSAML\Module\core\Auth\Process\Cardinality($config, null, $this->http);
+
+        /** @var \SimpleSAML\Utils\HttpAdapter $http */
+        $http = $this->http;
+
+        $filter = new \SimpleSAML\Module\core\Auth\Process\Cardinality($config, null, $http);
         $filter->process($request);
         return $request;
     }
