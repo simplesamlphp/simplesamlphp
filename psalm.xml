@@ -32,6 +32,9 @@
             <file name="modules/**/templates/*.tpl.php" />
             <file name="modules/saml/templates/proxy/*.tpl.php" />
             <file name="modules/saml/templates/sp/*.tpl.php" />
+
+            <directory name="tests/Utils/Stubs" />
+            <directory name="vendor" />
         </ignoreFiles>
     </projectFiles>
 
@@ -82,6 +85,13 @@
                 <file name="modules/*/www/*.php" />
             </errorLevel>
         </MissingFile>
+
+        <!-- Suppress PHPunit-issue -->
+        <PropertyNotSetInConstructor>
+            <errorLevel type="suppress">
+                <directory name="tests" />
+            </errorLevel>
+        </PropertyNotSetInConstructor>
     </issueHandlers>
 
     <stubs>
