@@ -108,6 +108,7 @@ class BuiltInServer
 
         // wait until it's listening for connections to avoid race conditions
         $start = microtime(true);
+        $sock = false;
         while (($sock = @fsockopen('localhost', $port, $errno, $errstr, 10)) === false) {
             // set a 5 secs timeout waiting for the server to start
             if (microtime(true) > $start + 5) {
