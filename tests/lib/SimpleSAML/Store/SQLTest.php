@@ -199,6 +199,7 @@ class SQLTest extends TestCase
     protected function tearDown()
     {
         $config = Configuration::getInstance();
+        /** @var \SimpleSAML\Store\SQL $store */
         $store = Store::getInstance();
 
         $this->clearInstance($config, '\SimpleSAML\Configuration');

@@ -30,6 +30,8 @@ class AttributesTest extends TestCase
 
     /**
      * Test the getExpectedAttributeMethod() method with invalid expected attribute parameter.
+     * @deprecated Remove this test as soon as the codebase is fully typehinted
+     * @psalm-suppress PossiblyFalseArgument
      * @return void
      */
     public function testGetExpectedAttributeInvalidAttributeName()

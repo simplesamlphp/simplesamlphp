@@ -245,8 +245,7 @@ class DatabaseTest extends TestCase
         $this->assertEquals($this->config->getString('database.prefix')."sspdbt", $table);
 
         $this->db->write(
-            "CREATE TABLE IF NOT EXISTS $table (ssp_key INT(16) NOT NULL, ssp_value TEXT NOT NULL)",
-            false
+            "CREATE TABLE IF NOT EXISTS $table (ssp_key INT(16) NOT NULL, ssp_value TEXT NOT NULL)"
         );
 
         $query1 = $this->db->read("SELECT * FROM $table");
@@ -291,7 +290,7 @@ class DatabaseTest extends TestCase
     public function noSuchTable()
     {
         $this->expectException(\Exception::class);
-        $this->db->write("DROP TABLE phpunit_nonexistent", false);
+        $this->db->write("DROP TABLE phpunit_nonexistent");
     }
 
 
@@ -301,7 +300,7 @@ class DatabaseTest extends TestCase
     public function tearDown()
     {
         $table = $this->db->applyPrefix("sspdbt");
-        $this->db->write("DROP TABLE IF EXISTS $table", false);
+        $this->db->write("DROP TABLE IF EXISTS $table");
 
         unset($this->config);
         unset($this->db);

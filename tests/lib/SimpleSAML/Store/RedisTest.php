@@ -118,6 +118,7 @@ class RedisTest extends TestCase
             'store.redis.prefix' => 'phpunit_',
         ], '[ARRAY]', 'simplesaml');
 
+        /** @var \SimpleSAML\Store\Redis $store */
         $store = Store::getInstance();
 
         $this->assertInstanceOf('SimpleSAML\Store\Redis', $store);
@@ -141,6 +142,7 @@ class RedisTest extends TestCase
             'store.redis.password' => 'password',
         ], '[ARRAY]', 'simplesaml');
 
+        /** @var \SimpleSAML\Store\Redis $store */
         $store = Store::getInstance();
 
         $this->assertInstanceOf('SimpleSAML\Store\Redis', $store);
