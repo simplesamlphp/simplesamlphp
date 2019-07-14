@@ -296,6 +296,7 @@ class SystemTest extends TestCase
 
 
     /**
+     * @param string $directory
      * @return \SimpleSAML\Configuration
      */
     private function setConfigurationTempDir($directory)
@@ -309,9 +310,11 @@ class SystemTest extends TestCase
 
 
     /**
+     * @param \SimpleSAML\Configuration $service
+     * @param string $className
      * @return void
      */
-    protected function clearInstance($service, $className)
+    protected function clearInstance(Configuration $service, $className)
     {
         $reflectedClass = new \ReflectionClass($className);
         $reflectedInstance = $reflectedClass->getProperty('instance');

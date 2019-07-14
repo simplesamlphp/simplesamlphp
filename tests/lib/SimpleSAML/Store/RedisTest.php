@@ -3,8 +3,8 @@
 namespace SimpleSAML\Test\Store;
 
 use PHPUnit\Framework\TestCase;
-use \SimpleSAML\Configuration;
-use \SimpleSAML\Store;
+use SimpleSAML\Configuration;
+use SimpleSAML\Store;
 
 /**
  * Tests for the Redis store.
@@ -52,7 +52,8 @@ class RedisTest extends TestCase
 
 
     /**
-     * @return \Predis\Client 
+     * @param string $key
+     * @return \Predis\Client
      */
     public function getMocked($key)
     {
@@ -61,6 +62,8 @@ class RedisTest extends TestCase
 
 
     /**
+     * @param string $key
+     * @param mixed $value
      * @return void
      */
     public function setMocked($key, $value)
@@ -70,6 +73,9 @@ class RedisTest extends TestCase
 
 
     /**
+     * @param string $key
+     * @param int $expire
+     * @param mixed $value
      * @return void
      */
     public function setexMocked($key, $expire, $value)
@@ -80,6 +86,7 @@ class RedisTest extends TestCase
 
 
     /**
+     * @param string $key
      * @return void
      */
     public function delMocked($key)
@@ -220,6 +227,8 @@ class RedisTest extends TestCase
 
 
     /**
+     * @param \SimpleSAML\Configuration|\SimpleSAML\Store $service
+     * @param string $className
      * @return void
      */
     protected function clearInstance($service, $className)

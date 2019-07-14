@@ -20,9 +20,10 @@ class ExitTestException extends \Exception
 
 
     /**
+     * @param array $testResult
      * @return void
      */
-    public function __construct($testResult)
+    public function __construct(array $testResult)
     {
         parent::__construct("ExitTestException", 0, null);
         $this->testResult = $testResult;
@@ -47,6 +48,8 @@ class ExitTestException extends \Exception
 class SPTester extends \SimpleSAML\Module\saml\Auth\Source\SP
 {
     /**
+     * @param array $info
+     * @param array $config
      * @return void
      */
     public function __construct($info, $config)

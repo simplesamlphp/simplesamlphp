@@ -6,8 +6,8 @@ require_once(__DIR__.'/../../../SigningTestCase.php');
 
 use PHPUnit\Framework\TestCase;
 use RobRichards\XMLSecLibs\XMLSecurityDSig;
-use \SimpleSAML\XML\Signer;
-use \SimpleSAML\Metadata\SAMLParser;
+use SimpleSAML\XML\Signer;
+use SimpleSAML\Metadata\SAMLParser;
 
 /**
  * Test SAML parsing
@@ -173,6 +173,8 @@ XML
 
 
     /**
+     * @param string $algo
+     * @param string $expected_fingerprint
      * @return void
      */
     public function _testValidateFingerprint($algo, $expected_fingerprint)

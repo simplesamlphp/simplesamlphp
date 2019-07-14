@@ -3,8 +3,8 @@
 namespace SimpleSAML\Test\Store;
 
 use PHPUnit\Framework\TestCase;
-use \SimpleSAML\Configuration;
-use \SimpleSAML\Store;
+use SimpleSAML\Configuration;
+use SimpleSAML\Store;
 
 /**
  * Tests for the SQL store.
@@ -207,6 +207,8 @@ class SQLTest extends TestCase
 
 
     /**
+     * @param \SimpleSAML\Configuration|\SimpleSAML\Store $service
+     * @param string $className
      * @return void
      */
     protected function clearInstance($service, $className)

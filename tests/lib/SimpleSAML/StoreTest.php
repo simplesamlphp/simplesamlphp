@@ -138,6 +138,8 @@ class StoreTest extends TestCase
 
 
     /**
+     * @param \SimpleSAML\Configuration|\SimpleSAML\Store $service
+     * @param string $className
      * @return void
      */
     protected function clearInstance($service, $className)

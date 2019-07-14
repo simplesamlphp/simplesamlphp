@@ -5,9 +5,9 @@ namespace SimpleSAML\Test\XML;
 require_once(__DIR__.'/../../../SigningTestCase.php');
 
 use PHPUnit\Framework\TestCase;
-use \SimpleSAML\Configuration;
-use \SimpleSAML\Test\SigningTestCase;
-use \SimpleSAML\XML\Signer;
+use SimpleSAML\Configuration;
+use SimpleSAML\Test\SigningTestCase;
+use SimpleSAML\XML\Signer;
 
 use \org\bovigo\vfs\vfsStream;
 
@@ -96,6 +96,7 @@ NOWDOC;
 
 
     /**
+     * @param string $certificate
      * @return string
      */
     private static function getCertificateValue($certificate)
@@ -187,9 +188,12 @@ NOWDOC;
 
 
     /**
+     * @param \SimpleSAML\Configuration $service
+     * @param string $className
+     * @param mixed|null $value
      * @return void
      */
-    protected function clearInstance($service, $className, $value = null)
+    protected function clearInstance(Configuration $service, $className, $value = null)
     {
         $reflectedClass = new \ReflectionClass($className);
         $reflectedInstance = $reflectedClass->getProperty('instance');

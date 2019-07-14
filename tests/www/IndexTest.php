@@ -55,9 +55,10 @@ class IndexTest extends TestCase
 
 
     /**
+     * @param array $config
      * @return void
      */
-    protected function updateConfig($config)
+    protected function updateConfig(array $config)
     {
         @unlink($this->shared_file);
         $config = "<?php\n\$config = ".var_export($config, true).";\n";

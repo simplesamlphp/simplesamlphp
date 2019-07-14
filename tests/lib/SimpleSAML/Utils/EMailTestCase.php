@@ -63,6 +63,7 @@ class EMailTestCase extends ClearStateTestCase
     /**
      * Test that the data given is visible in the resulting mail
      * @dataProvider mailTemplates
+     * @param string $template
      * @return void
      */
     public function testMailContents($template)
