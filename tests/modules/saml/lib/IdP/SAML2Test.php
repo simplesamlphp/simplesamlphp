@@ -160,7 +160,7 @@ class SAML2Test extends ClearStateTestCase
      */
     private function idpInitiatedHelper(array $queryParams)
     {
-        /** @var \PHPUnit_Framework_MockObject_MockObject|\SimpleSAML\IdP $idpStub */
+        /** @var \PHPUnit_Framework_MockObject_MockObject $idpStub */
         $idpStub = $this->getMockBuilder(IdP::class)
             ->disableOriginalConstructor()
             ->getMock();
@@ -169,6 +169,7 @@ class SAML2Test extends ClearStateTestCase
             'saml20.ecp' => true, //enable additional bindings so we can test selection logic
         ]);
 
+        /** @psalm-suppress UndefinedMethod   Remove when Psalm 3.x is in place */
         $idpStub->method("getConfig")
             ->willReturn($idpMetadata);
 
@@ -198,13 +199,22 @@ EOT;
 
 
         $state = [];
+
+        /** @psalm-suppress InvalidArgument   Remove when PHPunit 8 is in place */
         $idpStub->expects($this->once())
             ->method('handleAuthenticationRequest')
-            ->with($this->callback(function ($arg) use (&$state) {
-                $state = $arg;
-                return true;
-            }));
+            ->with($this->callback(
+                /**
+                 * @param array $arg
+                 * @return bool
+                 */
+                function ($arg) use (&$state) {
+                    $state = $arg;
+                    return true;
+                }
+            ));
 
+        /** @psalm-suppress InvalidArgument */
         SAML2::receiveAuthnRequest($idpStub);
 
         return $state;
