@@ -3,6 +3,7 @@
 namespace SimpleSAML\Test\Web;
 
 use Symfony\Component\Yaml\Parser;
+use Symfony\Component\Yaml\Exception\ParseException;
 use PHPUnit\Framework\TestCase;
 use \SimpleSAML\Configuration;
 use \SimpleSAML\Module;
@@ -28,7 +29,7 @@ class RouterTest extends TestCase
                         try {
                             $value = $yaml->parse(file_get_contents('modules/'.$module.'/'.$file));
                             $this->addToAssertionCount(1);
-                        } catch (\ParseException $e) {
+                        } catch (ParseException $e) {
                             $this->fail($e->getMessage().' in '.$e->getFile().':'.$e->getLine());
                         }
                     }

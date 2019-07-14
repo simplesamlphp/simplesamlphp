@@ -4,7 +4,7 @@ namespace SimpleSAML\Test\Module\core\Auth;
 
 use SimpleSAML\Module\core\Auth\UserPassOrgBase;
 
-class UserPassOrgBaseTest extends \PHPUnit_Framework_TestCase
+class UserPassOrgBaseTest extends \PHPUnit\Framework\TestCase
 {
     public function testRememberOrganizationEnabled()
     {

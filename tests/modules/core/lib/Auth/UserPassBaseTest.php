@@ -2,7 +2,7 @@
 
 namespace SimpleSAML\Test\Module\core\Auth;
 
-class UserPassBaseTest extends \PHPUnit_Framework_TestCase
+class UserPassBaseTest extends \PHPUnit\Framework\TestCase
 {
     public function testAuthenticateECPCallsLoginAndSetsAttributes()
     {
