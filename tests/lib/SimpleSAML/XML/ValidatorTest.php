@@ -16,10 +16,6 @@ use \org\bovigo\vfs\vfsStream;
  */
 class ValidatorTest extends SigningTestCase
 {
-    /** @var string */
-    private $ca_certificate_file = '';
-
-
     /**
      * @return void
      */

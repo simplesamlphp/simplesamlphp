@@ -100,6 +100,9 @@ class SPTest extends ClearStateTestCase
     /** @var array $idpConfigArray */
     private $idpConfigArray;
 
+    /** @var \SimpleSAML\Configuration */
+    private $config;
+
 
     /**
      * @return \SimpleSAML\Configuration

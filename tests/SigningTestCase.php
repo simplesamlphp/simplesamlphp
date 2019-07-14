@@ -148,8 +148,17 @@ NOWDOC;
     /** @var string */
     protected $certdir;
 
+    /** @var \org\bovigo\vfs\vfsStreamDirectory */
+    protected $root;
+
     /** @var string */
     protected $root_directory;
+
+    /** @var string */
+    protected $ca_private_key_file;
+
+    /** @var string */
+    protected $ca_certificate_file;
 
     /** @var \SimpleSAML\Configuration */
     protected $config;
