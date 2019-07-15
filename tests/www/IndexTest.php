@@ -17,7 +17,6 @@ use \SimpleSAML\Test\BuiltInServer;
 
 class IndexTest extends TestCase
 {
-
     /**
      * @var \SimpleSAML\Test\BuiltInServer
      */
