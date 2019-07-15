@@ -294,6 +294,7 @@ class SPTest extends ClearStateTestCase
      */
     public function testForcedAuthn()
     {
+        /** @var bool $state['ForceAuthn'] */
         $state = [
             'ForceAuthn' => true
         ];
