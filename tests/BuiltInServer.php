@@ -75,7 +75,7 @@ class BuiltInServer
      * the server has started and is listening for connections. If it returns false on the other hand, there will be no
      * guarantee that the server started properly.
      *
-     * @return string The address where the server is listening for connections, or false if the server failed to start
+     * @return string|false The address where the server is listening for connections, or false if the server failed to start
      * for some reason.
      *
      * @todo This method should be resilient to clashes in the randomly-picked port number.
