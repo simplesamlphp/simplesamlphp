@@ -1,5 +1,7 @@
 <?php
 
+$metadata = [];
+
 $metadata['entityA'] = [
     'entityid' => 'entityA',
     'name' =>
