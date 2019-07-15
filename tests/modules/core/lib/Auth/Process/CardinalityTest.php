@@ -122,6 +122,7 @@ class CardinalityTest extends \PHPUnit\Framework\TestCase
             ],
         ];
 
+        /** @psalm-suppress UndefinedMethod   It's a mock-object */
         $this->http->expects($this->once())
                    ->method('redirectTrustedURL');
 
@@ -144,6 +145,7 @@ class CardinalityTest extends \PHPUnit\Framework\TestCase
             ],
         ];
 
+        /** @psalm-suppress UndefinedMethod   It's a mock-object */
         $this->http->expects($this->once())
                    ->method('redirectTrustedURL');
 
@@ -164,6 +166,7 @@ class CardinalityTest extends \PHPUnit\Framework\TestCase
             'Attributes' => [],
         ];
 
+        /** @psalm-suppress UndefinedMethod   It's a mock-object */
         $this->http->expects($this->once())
                    ->method('redirectTrustedURL');
 

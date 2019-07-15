@@ -164,6 +164,7 @@ class CardinalitySingleTest extends \PHPUnit\Framework\TestCase
             ],
         ];
 
+        /** @psalm-suppress UndefinedMethod */
         $this->http->expects($this->once())
                    ->method('redirectTrustedURL');
 

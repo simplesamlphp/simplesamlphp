@@ -79,13 +79,18 @@ class ControllerTest extends ClearStateTestCase
     {
         $asConfig = Configuration::loadFromArray($this->authSources);
         Configuration::setPreLoadedConfig($asConfig, 'authsources.php');
+
         $request = new Request();
         $session = Session::getSessionFromRequest();
         $factory = new AuthenticationFactory($this->config, $session);
+
         $c = new Controller($this->config, $session, $factory);
+        /** @var \SimpleSAML\HTTP\RunnableResponse $response */
         $response = $c->login($request);
+
         $this->assertInstanceOf(RunnableResponse::class, $response);
         list($object, $method) = $response->getCallable();
+
         $this->assertInstanceOf(Simple::class, $object);
         $this->assertEquals('login', $method);
         $arguments = $response->getArguments();
@@ -112,12 +117,16 @@ class ControllerTest extends ClearStateTestCase
                 ]
             )
         );
+
         Configuration::setPreLoadedConfig($asConfig, 'authsources.php');
         $request = new Request();
         $session = Session::getSessionFromRequest();
         $factory = new AuthenticationFactory($this->config, $session);
+
         $c = new Controller($this->config, $session, $factory);
+        /** @var \SimpleSAML\XHTML\Template $response */
         $response = $c->login($request);
+
         $this->assertInstanceOf(Template::class, $response);
         $this->assertEquals('core:login.twig', $response->getTemplateName());
         $this->assertArrayHasKey('sources', $response->data);
@@ -152,10 +161,11 @@ class ControllerTest extends ClearStateTestCase
     {
         $asConfig = Configuration::loadFromArray($this->authSources);
         Configuration::setPreLoadedConfig($asConfig, 'authsources.php');
-        $request = new Request();
+
         $session = Session::getSessionFromRequest();
         $session->setConfiguration($this->config);
         $class = new \ReflectionClass($session);
+
         $authData = $class->getProperty('authData');
         $authData->setAccessible(true);
         $authData->setValue($session, [
@@ -167,8 +177,12 @@ class ControllerTest extends ClearStateTestCase
                 'Expire' => time() + 8 * 60* 60
             ]
         ]);
+
         $factory = new AuthenticationFactory($this->config, $session);
         $c = new Controller($this->config, $session, $factory);
+
+        $request = new Request();
+        /** @var \Symfony\Component\HttpFoundation\RedirectResponse $response */
         $response = $c->login($request);
         $this->assertInstanceOf(RedirectResponse::class, $response);
         $this->assertEquals(

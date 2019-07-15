@@ -403,11 +403,13 @@ NOWDOC;
             ->disableOriginalConstructor()
             ->getMock();
 
-        /*
+        /**
          * Unfortunately, we cannot actually test schemaValidate. To
          * effectively unit test this function we'd have to enable LIBXML_NONET
          * which disables network access when loading documents. PHP does not
          * currently support enabling this flag.
+         *
+         * @psalm-suppress UndefinedMethod
          */
         $dom->method('schemaValidate')
             ->willReturn(true);
