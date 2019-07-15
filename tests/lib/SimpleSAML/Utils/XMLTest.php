@@ -14,6 +14,7 @@ class XMLTest extends TestCase
 {
     /**
      * @covers \SimpleSAML\Utils\XML::isDOMNodeOfType
+     * @test
      * @return void
      */
     public function testIsDomNodeOfTypeBasic()
@@ -30,6 +31,7 @@ class XMLTest extends TestCase
 
     /**
      * @covers \SimpleSAML\Utils\XML::isDOMNodeOfType
+     * @test
      * @return void
      */
     public function testIsDomNodeOfTypeMissingNamespace()
@@ -45,6 +47,7 @@ class XMLTest extends TestCase
 
     /**
      * @covers \SimpleSAML\Utils\XML::isDOMNodeOfType
+     * @test
      * @return void
      */
     public function testIsDomNodeOfTypeEmpty()
@@ -61,6 +64,7 @@ class XMLTest extends TestCase
 
     /**
      * @covers \SimpleSAML\Utils\XML::isDOMNodeOfType
+     * @test
      * @return void
      */
     public function testIsDomNodeOfTypeShortcut()
@@ -78,6 +82,7 @@ class XMLTest extends TestCase
 
     /**
      * @covers \SimpleSAML\Utils\XML::isDOMNodeOfType
+     * @test
      * @return void
      */
     public function testIsDomNodeOfTypeIncorrectName()
@@ -95,6 +100,7 @@ class XMLTest extends TestCase
 
     /**
      * @covers \SimpleSAML\Utils\XML::isDOMNodeOfType
+     * @test
      * @return void
      */
     public function testIsDomNodeOfTypeIncorrectNamespace()
@@ -112,6 +118,7 @@ class XMLTest extends TestCase
 
     /**
      * @covers \SimpleSAML\Utils\XML::getDOMText
+     * @test
      * @return void
      */
     public function testGetDomTextBasic()
@@ -130,6 +137,7 @@ class XMLTest extends TestCase
 
     /**
      * @covers \SimpleSAML\Utils\XML::getDOMText
+     * @test
      * @return void
      */
     public function testGetDomTextMulti()
@@ -150,6 +158,7 @@ class XMLTest extends TestCase
 
     /**
      * @covers \SimpleSAML\Utils\XML::getDOMText
+     * @test
      * @return void
      */
     public function testGetDomTextIncorrectType()
@@ -165,6 +174,7 @@ class XMLTest extends TestCase
 
     /**
      * @covers \SimpleSAML\Utils\XML::getDOMChildren
+     * @test
      * @return void
      */
     public function testGetDomChildrenBasic()
@@ -184,6 +194,7 @@ class XMLTest extends TestCase
 
     /**
      * @covers \SimpleSAML\Utils\XML::getDOMChildren
+     * @test
      * @return void
      */
     public function testGetDomChildrenIncorrectType()
@@ -202,6 +213,7 @@ class XMLTest extends TestCase
 
     /**
      * @covers \SimpleSAML\Utils\XML::getDOMChildren
+     * @test
      * @return void
      */
     public function testGetDomChildrenIncorrectName()
@@ -221,6 +233,7 @@ class XMLTest extends TestCase
 
     /**
      * @covers \SimpleSAML\Utils\XML::formatDOMElement
+     * @test
      * @return void
      */
     public function testFormatDomElementBasic()
@@ -244,6 +257,7 @@ NOWDOC;
 
     /**
      * @covers \SimpleSAML\Utils\XML::formatDOMElement
+     * @test
      * @return void
      */
     public function testFormatDomElementNested()
@@ -271,6 +285,7 @@ NOWDOC;
 
     /**
      * @covers \SimpleSAML\Utils\XML::formatDOMElement
+     * @test
      * @return void
      */
     public function testFormatDomElementIndentBase()
@@ -299,6 +314,7 @@ HEREDOC;
 
     /**
      * @covers \SimpleSAML\Utils\XML::formatDOMElement
+     * @test
      * @return void
      */
     public function testFormatDomElementTextAndChild()
@@ -323,6 +339,7 @@ HEREDOC;
 
     /**
      * @covers \SimpleSAML\Utils\XML::formatXMLString
+     * @test
      * @return void
      */
     public function testFormatXmlStringBasic()
@@ -342,6 +359,7 @@ NOWDOC;
 
     /**
      * @covers \SimpleSAML\Utils\XML::formatXMLString
+     * @test
      * @return void
      */
     public function testFormatXmlStringMalformedXml()
@@ -355,6 +373,7 @@ NOWDOC;
 
     /**
      * @covers \SimpleSAML\Utils\XML::isValid
+     * @test
      * @return void
      */
     public function testIsValidMalformedXml()
@@ -370,6 +389,7 @@ NOWDOC;
 
     /**
      * @covers \SimpleSAML\Utils\XML::isValid
+     * @test
      * @return void
      */
     public function testIsValidMetadata()

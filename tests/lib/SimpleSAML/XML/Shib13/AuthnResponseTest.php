@@ -67,6 +67,7 @@ XML;
 
     /**
      * @covers \SimpleSAML\XML\Shib13\AuthnResponse::setXML
+     * @test
      * @return void
      */
     public function setXML()
@@ -80,6 +81,7 @@ XML;
      * @covers \SimpleSAML\XML\Shib13\AuthnResponse::doXPathQuery
      * @covers \SimpleSAML\XML\Shib13\AuthnResponse::getIssuer
      * @covers \SimpleSAML\XML\Shib13\AuthnResponse::setXML
+     * @test
      * @return void
      */
     public function getIssuer()
@@ -96,6 +98,7 @@ XML;
     /**
      * @covers \SimpleSAML\XML\Shib13\AuthnResponse::getIssuer
      * @covers \SimpleSAML\XML\Shib13\AuthnResponse::setXML
+     * @test
      * @return void
      */
     public function getIssuerException()
@@ -111,6 +114,7 @@ XML;
     /**
      * @covers \SimpleSAML\XML\Shib13\AuthnResponse::getNameID
      * @covers \SimpleSAML\XML\Shib13\AuthnResponse::setXML
+     * @test
      * @return void
      */
     public function getNameID()

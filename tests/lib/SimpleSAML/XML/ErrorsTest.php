@@ -20,6 +20,7 @@ class ErrorsTest extends TestCase
      * @covers \SimpleSAML\XML\Errors::begin
      * @covers \SimpleSAML\XML\Errors::addErrors
      * @covers \SimpleSAML\XML\Errors::end
+     * @test
      * @return void
      */
     public function loggingErrors()
@@ -40,6 +41,7 @@ class ErrorsTest extends TestCase
     /**
      * @covers \SimpleSAML\XML\Errors::formatError
      * @covers \SimpleSAML\XML\Errors::formatErrors
+     * @test
      * @return void
      */
     public function formatErrors()

@@ -38,6 +38,7 @@ XML;
     /**
      * @covers \SimpleSAML\XML\Parser::getValue
      * @covers \SimpleSAML\XML\Parser::__construct
+     * @test
      * @return void
      */
     public function getValue()
@@ -53,6 +54,7 @@ XML;
     /**
      * @covers \SimpleSAML\XML\Parser::getValue
      * @covers \SimpleSAML\XML\Parser::__construct
+     * @test
      * @return void
      */
     public function getEmptyValue()
@@ -68,6 +70,7 @@ XML;
     /**
      * @covers \SimpleSAML\XML\Parser::getValue
      * @covers \SimpleSAML\XML\Parser::__construct
+     * @test
      * @return void
      */
     public function getValueException()
@@ -80,6 +83,7 @@ XML;
     /**
      * @covers \SimpleSAML\XML\Parser::getValueDefault
      * @covers \SimpleSAML\XML\Parser::__construct
+     * @test
      * @return void
      */
     public function getDefaultValue()
@@ -95,6 +99,7 @@ XML;
     /**
      * @covers \SimpleSAML\XML\Parser::getValueAlternatives
      * @covers \SimpleSAML\XML\Parser::__construct
+     * @test
      * @return void
      */
     public function getValueAlternatives()
@@ -117,6 +122,7 @@ XML;
     /**
      * @covers \SimpleSAML\XML\Parser::getValueAlternatives
      * @covers \SimpleSAML\XML\Parser::__construct
+     * @test
      * @return void
      */
     public function getEmptyValueAlternatives()
@@ -139,6 +145,7 @@ XML;
     /**
      * @covers \SimpleSAML\XML\Parser::getValueAlternatives
      * @covers \SimpleSAML\XML\Parser::__construct
+     * @test
      * @return void
      */
     public function getValueAlternativesException()

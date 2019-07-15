@@ -33,6 +33,7 @@ class SQLTest extends TestCase
     /**
      * @covers \SimpleSAML\Store::getInstance
      * @covers \SimpleSAML\Store\SQL::__construct
+     * @test
      * @return void
      */
     public function SQLInstance()
@@ -46,6 +47,7 @@ class SQLTest extends TestCase
     /**
      * @covers \SimpleSAML\Store\SQL::initTableVersionTable
      * @covers \SimpleSAML\Store\SQL::initKVTable
+     * @test
      * @return void
      */
     public function kvstoreTableVersion()
@@ -61,6 +63,7 @@ class SQLTest extends TestCase
 
     /**
      * @covers \SimpleSAML\Store\SQL::getTableVersion
+     * @test
      * @return void
      */
     public function newTableVersion()
@@ -77,6 +80,7 @@ class SQLTest extends TestCase
     /**
      * @covers \SimpleSAML\Store\SQL::setTableVersion
      * @covers \SimpleSAML\Store\SQL::insertOrUpdate
+     * @test
      * @return void
      */
     public function testSetTableVersion()
@@ -93,6 +97,7 @@ class SQLTest extends TestCase
 
     /**
      * @covers \SimpleSAML\Store\SQL::get
+     * @test
      * @return void
      */
     public function testGetEmptyData()
@@ -110,6 +115,7 @@ class SQLTest extends TestCase
      * @covers \SimpleSAML\Store\SQL::get
      * @covers \SimpleSAML\Store\SQL::set
      * @covers \SimpleSAML\Store\SQL::insertOrUpdate
+     * @test
      * @return void
      */
     public function testInsertData()
@@ -128,6 +134,7 @@ class SQLTest extends TestCase
      * @covers \SimpleSAML\Store\SQL::get
      * @covers \SimpleSAML\Store\SQL::set
      * @covers \SimpleSAML\Store\SQL::insertOrUpdate
+     * @test
      * @return void
      */
     public function testOverwriteData()
@@ -148,6 +155,7 @@ class SQLTest extends TestCase
      * @covers \SimpleSAML\Store\SQL::set
      * @covers \SimpleSAML\Store\SQL::insertOrUpdate
      * @covers \SimpleSAML\Store\SQL::delete
+     * @test
      * @return void
      */
     public function testDeleteData()
@@ -168,6 +176,7 @@ class SQLTest extends TestCase
      * @covers \SimpleSAML\Store\SQL::set
      * @covers \SimpleSAML\Store\SQL::insertOrUpdate
      * @covers \SimpleSAML\Store\SQL::delete
+     * @test
      * @return void
      */
     public function testVeryLongKey()

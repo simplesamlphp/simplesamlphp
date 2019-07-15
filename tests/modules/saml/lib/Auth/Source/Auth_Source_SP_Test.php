@@ -187,6 +187,7 @@ class SPTest extends ClearStateTestCase
 
     /**
      * Test generating an AuthnRequest
+     * @test
      * @return void
      */
     public function testAuthnRequest()
@@ -212,6 +213,7 @@ class SPTest extends ClearStateTestCase
 
     /**
      * Test setting a Subject
+     * @test
      * @return void
      */
     public function testNameID()
@@ -244,6 +246,7 @@ class SPTest extends ClearStateTestCase
 
     /**
      * Test setting an AuthnConextClassRef
+     * @test
      * @return void
      */
     public function testAuthnContextClassRef()
@@ -273,6 +276,7 @@ class SPTest extends ClearStateTestCase
 
     /**
      * Test setting ForcedAuthn
+     * @test
      * @return void
      */
     public function testForcedAuthn()
