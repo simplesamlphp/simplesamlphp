@@ -156,7 +156,7 @@ class SAML2Test extends ClearStateTestCase
      * Callers should validate the return state array or confirm appropriate exceptions are returned.
      *
      * @param array $queryParams
-     * @return string[] The state array used for handling the authentication request.
+     * @return array The state array used for handling the authentication request.
      */
     private function idpInitiatedHelper(array $queryParams)
     {
