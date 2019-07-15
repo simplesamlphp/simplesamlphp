@@ -98,7 +98,6 @@ class RedisTest extends TestCase
     /**
      * @covers \SimpleSAML\Store::getInstance
      * @covers \SimpleSAML\Store\Redis::__construct
-     * @test
      * @return void
      */
     public function testRedisInstance()
@@ -120,7 +119,6 @@ class RedisTest extends TestCase
     /**
      * @covers \SimpleSAML\Store::getInstance
      * @covers \SimpleSAML\Store\Redis::__construct
-     * @test
      * @return void
      */
     public function testRedisInstanceWithPassword()
@@ -143,7 +141,6 @@ class RedisTest extends TestCase
     /**
      * @covers \SimpleSAML\Store\Redis::get
      * @covers \SimpleSAML\Store\Redis::set
-     * @test
      * @return void
      */
     public function testInsertData()
@@ -161,7 +158,6 @@ class RedisTest extends TestCase
     /**
      * @covers \SimpleSAML\Store\Redis::get
      * @covers \SimpleSAML\Store\Redis::set
-     * @test
      * @return void
      */
     public function testInsertExpiringData()
@@ -178,7 +174,6 @@ class RedisTest extends TestCase
 
     /**
      * @covers \SimpleSAML\Store\Redis::get
-     * @test
      * @return void
      */
     public function testGetEmptyData()
@@ -192,7 +187,6 @@ class RedisTest extends TestCase
     /**
      * @covers \SimpleSAML\Store\Redis::get
      * @covers \SimpleSAML\Store\Redis::set
-     * @test
      * @return void
      */
     public function testOverwriteData()
@@ -213,7 +207,6 @@ class RedisTest extends TestCase
      * @covers \SimpleSAML\Store\Redis::get
      * @covers \SimpleSAML\Store\Redis::set
      * @covers \SimpleSAML\Store\Redis::delete
-     * @test
      * @return void
      */
     public function testDeleteData()

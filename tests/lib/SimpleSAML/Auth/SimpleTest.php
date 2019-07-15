@@ -9,7 +9,6 @@ namespace SimpleSAML\Test\Auth;
 class SimpleTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
 {
     /**
-     * @test
      * @return void
      */
     public function testGetProcessedURL()

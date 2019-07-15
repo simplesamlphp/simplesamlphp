@@ -36,7 +36,6 @@ class SystemTest extends TestCase
 
     /**
      * @covers \SimpleSAML\Utils\System::getOS
-     * @test
      * @return void
      */
     public function testGetOSBasic()
@@ -49,7 +48,6 @@ class SystemTest extends TestCase
 
     /**
      * @covers \SimpleSAML\Utils\System::resolvePath
-     * @test
      * @return void
      */
     public function testResolvePathRemoveTrailingSlashes()
@@ -66,7 +64,6 @@ class SystemTest extends TestCase
 
     /**
      * @covers \SimpleSAML\Utils\System::resolvePath
-     * @test
      * @return void
      */
     public function testResolvePathPreferAbsolutePathToBase()
@@ -83,7 +80,6 @@ class SystemTest extends TestCase
 
     /**
      * @covers \SimpleSAML\Utils\System::resolvePath
-     * @test
      * @return void
      */
     public function testResolvePathCurDirPath()
@@ -100,7 +96,6 @@ class SystemTest extends TestCase
 
     /**
      * @covers \SimpleSAML\Utils\System::resolvePath
-     * @test
      * @return void
      */
     public function testResolvePathParentPath()
@@ -117,7 +112,6 @@ class SystemTest extends TestCase
 
     /**
      * @covers \SimpleSAML\Utils\System::resolvePath
-     * @test
      * @return void
      */
     public function testResolvePathAllowsStreamWrappers()
@@ -134,7 +128,6 @@ class SystemTest extends TestCase
 
     /**
      * @covers \SimpleSAML\Utils\System::resolvePath
-     * @test
      * @return void
      */
     public function testResolvePathAllowsAwsS3StreamWrappers()
@@ -151,7 +144,6 @@ class SystemTest extends TestCase
 
     /**
      * @covers \SimpleSAML\Utils\System::writeFile
-     * @test
      * @deprecated Test becomes obsolete as soon as the codebase is fully type hinted
      * @return void
      */
@@ -165,7 +157,6 @@ class SystemTest extends TestCase
 
     /**
      * @covers \SimpleSAML\Utils\System::writeFile
-     * @test
      * @return void
      */
     public function testWriteFileBasic()
@@ -185,7 +176,6 @@ class SystemTest extends TestCase
 
     /**
      * @covers \SimpleSAML\Utils\System::writeFile
-     * @test
      * @return void
      */
     public function testWriteFileContents()
@@ -209,7 +199,6 @@ class SystemTest extends TestCase
 
     /**
      * @covers \SimpleSAML\Utils\System::writeFile
-     * @test
      * @return void
      */
     public function testWriteFileMode()
@@ -233,7 +222,6 @@ class SystemTest extends TestCase
 
     /**
      * @covers \SimpleSAML\Utils\System::getTempDir
-     * @test
      * @return void
      */
     public function testGetTempDirBasic()
@@ -253,7 +241,6 @@ class SystemTest extends TestCase
 
     /**
      * @covers \SimpleSAML\Utils\System::getTempDir
-     * @test
      * @return void
      */
     public function testGetTempDirNonExistant()
@@ -274,7 +261,6 @@ class SystemTest extends TestCase
     /**
      * @requires OS Linux
      * @covers \SimpleSAML\Utils\System::getTempDir
-     * @test
      * @return void
      */
     public function testGetTempDirBadOwner()

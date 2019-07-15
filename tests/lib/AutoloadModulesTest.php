@@ -18,7 +18,6 @@ class AutoloadModulesTest extends TestCase
     }
 
     /**
-     * @test
      * @runInSeparateProcess
      * @return void
      */
@@ -28,7 +27,6 @@ class AutoloadModulesTest extends TestCase
     }
 
     /**
-     * @test
      * @return void
      */
     public function autoloaderSubstitutesNamespacedXmlSecClassesWhereNonNamespacedClassWasUsed()

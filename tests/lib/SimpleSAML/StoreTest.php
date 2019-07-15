@@ -21,7 +21,6 @@ class StoreTest extends TestCase
 {
     /**
      * @covers \SimpleSAML\Store::getInstance
-     * @test
      * @return void
      */
     public function defaultStore()
@@ -37,7 +36,6 @@ class StoreTest extends TestCase
 
     /**
      * @covers \SimpleSAML\Store::getInstance
-     * @test
      * @return void
      */
     public function phpSessionStore()
@@ -53,7 +51,6 @@ class StoreTest extends TestCase
 
     /**
      * @covers \SimpleSAML\Store::getInstance
-     * @test
      * @return void
      */
     public function memcacheStore()
@@ -70,7 +67,6 @@ class StoreTest extends TestCase
 
     /**
      * @covers \SimpleSAML\Store::getInstance
-     * @test
      * @return void
      */
     public function sqlStore()
@@ -89,7 +85,6 @@ class StoreTest extends TestCase
 
     /**
      * @covers \SimpleSAML\Store::getInstance
-     * @test
      * @return void
      */
     public function pathStore()
@@ -108,7 +103,6 @@ class StoreTest extends TestCase
 
     /**
      * @covers \SimpleSAML\Store::getInstance
-     * @test
      * @return void
      */
     public function notFoundStoreException()
