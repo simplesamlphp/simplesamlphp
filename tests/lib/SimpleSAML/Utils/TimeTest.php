@@ -146,6 +146,10 @@ class TimeTest extends TestCase
         }
         try {
             // invalid timestamp
+            /**
+             * @deprecated This test becomes useless as soon as the codebase is fully typehinted
+             * @psalm-suppress InvalidArgument
+             */
             Time::parseDuration('', []);
             $this->fail("Did not fail with invalid timestamp parameter.");
         } catch (\InvalidArgumentException $e) {

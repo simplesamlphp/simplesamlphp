@@ -398,6 +398,7 @@ NOWDOC;
 
         $schema = 'saml-schema-metadata-2.0.xsd';
 
+        /** @var \DOMDocument $dom */
         $dom = $this->getMockBuilder('\DOMDocument')
             ->setMethods(['schemaValidate'])
             ->disableOriginalConstructor()
@@ -414,6 +415,7 @@ NOWDOC;
         $dom->method('schemaValidate')
             ->willReturn(true);
 
+        
         $res = XML::isValid($dom, $schema);
 
         $this->assertTrue($res);

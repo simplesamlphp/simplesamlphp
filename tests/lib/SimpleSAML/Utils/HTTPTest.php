@@ -38,6 +38,8 @@ class HTTPTest extends ClearStateTestCase
     /**
      * Test SimpleSAML\Utils\HTTP::addURLParameters().
      * @return void
+     * @psalm-suppress InvalidArgument
+     * @deprecated Can be removed in 2.0 when codebase if fully typehinted
      */
     public function testAddURLParametersInvalidURL()
     {
@@ -49,6 +51,8 @@ class HTTPTest extends ClearStateTestCase
     /**
      * Test SimpleSAML\Utils\HTTP::addURLParameters().
      * @return void
+     * @psalm-suppress InvalidArgument
+     * @deprecated Can be removed in 2.0 when codebase if fully typehinted
      */
     public function testAddURLParametersInvalidParameters()
     {

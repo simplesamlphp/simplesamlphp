@@ -62,6 +62,7 @@ class RedisTest extends TestCase
         $this->mocked_redis->method('disconnect')
                            ->will($this->returnCallback($nop));
 
+        /** @var \Predis\Client $this->mocked_redis */
         $this->redis = new Store\Redis($this->mocked_redis);
     }
 

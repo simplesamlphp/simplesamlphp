@@ -18,6 +18,7 @@ class MetadataTest extends TestCase
     {
         // test invalid argument
         try {
+            /** @psalm-suppress InvalidArgument   May be removed in 2.0 when codebase is fully typehinted */
             Metadata::getContact('string');
         } catch (\InvalidArgumentException $e) {
             $this->assertEquals('Invalid input parameters', $e->getMessage());
