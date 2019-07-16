@@ -197,7 +197,7 @@ class SQLPermanentStorage
      * @param string $type
      * @param mixed $key1
      * @param mixed $key2
-     * @return array|false|null
+     * @return array|false
      */
     public function getList($type = null, $key1 = null, $key2 = null)
     {
@@ -207,8 +207,8 @@ class SQLPermanentStorage
         $prepared->execute();
 
         $results = $prepared->fetchAll(PDO::FETCH_ASSOC);
-        if (count($results) == 0) {
-            return null;
+        if ($results === false) {
+            return false;
         }
 
         foreach ($results as $key => $value) {
