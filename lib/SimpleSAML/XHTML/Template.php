@@ -66,6 +66,7 @@ class Template extends Response
      * The twig environment.
      *
      * @var \Twig\Environment
+     * @psalm-suppress PropertyNotSetInConstructor  Remove this annotation in 2.0
      */
     private $twig;
 
@@ -155,6 +156,8 @@ class Template extends Response
 
             $this->twig = $this->setupTwig();
         }
+
+        $this->charset = 'UTF-8';
         parent::__construct();
     }
 

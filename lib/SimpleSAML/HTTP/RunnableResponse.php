@@ -31,6 +31,7 @@ class RunnableResponse extends Response
     {
         $this->arguments = $args;
         $this->callable = $callable;
+        $this->charset = 'UTF-8';
         parent::__construct();
     }
 
