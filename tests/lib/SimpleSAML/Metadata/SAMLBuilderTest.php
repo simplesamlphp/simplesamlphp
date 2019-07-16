@@ -37,6 +37,7 @@ class SAMLBuilderTest extends TestCase
         $samlBuilder->addMetadata($set, $metadata);
 
         $spDesc = $samlBuilder->getEntityDescriptor();
+        /** @var \DOMNodeList $acs */
         $acs = $spDesc->getElementsByTagName("AttributeConsumingService");
         $this->assertEquals(1, $acs->length);
         $attributes = $acs->item(0)->getElementsByTagName("RequestedAttribute");
@@ -66,6 +67,7 @@ class SAMLBuilderTest extends TestCase
         $samlBuilder->addMetadata($set, $metadata);
 
         $spDesc = $samlBuilder->getEntityDescriptor();
+        /** @var \DOMNodeList $acs */
         $acs = $spDesc->getElementsByTagName("AttributeConsumingService");
         $this->assertEquals(1, $acs->length);
         $attributes = $acs->item(0)->getElementsByTagName("RequestedAttribute");
@@ -97,6 +99,7 @@ class SAMLBuilderTest extends TestCase
         $samlBuilder->addMetadata($set, $metadata);
 
         $spDesc = $samlBuilder->getEntityDescriptor();
+        /** @var \DOMNodeList $acs */
         $acs = $spDesc->getElementsByTagName("AttributeConsumingService");
         $this->assertEquals(1, $acs->length);
         $attributes = $acs->item(0)->getElementsByTagName("RequestedAttribute");
@@ -126,6 +129,7 @@ class SAMLBuilderTest extends TestCase
         $samlBuilder->addMetadata($set, $metadata);
 
         $spDesc = $samlBuilder->getEntityDescriptor();
+        /** @var \DOMNodeList $acs */
         $acs = $spDesc->getElementsByTagName("AttributeConsumingService");
         $this->assertEquals(1, $acs->length);
         $attributes = $acs->item(0)->getElementsByTagName("RequestedAttribute");
@@ -164,6 +168,7 @@ class SAMLBuilderTest extends TestCase
         $samlBuilder->addMetadata($set, $metadata);
 
         $spDesc = $samlBuilder->getEntityDescriptor();
+        /** @var \DOMNodeList $acs */
         $acs = $spDesc->getElementsByTagName("AttributeConsumingService");
         $acs1 = $acs->item(0);
         $this->assertFalse($acs1->hasAttribute("isDefault"));
@@ -174,6 +179,7 @@ class SAMLBuilderTest extends TestCase
         $samlBuilder->addMetadata($set, $metadata);
         $spDesc = $samlBuilder->getEntityDescriptor();
         $acs = $spDesc->getElementsByTagName("AttributeConsumingService");
+        /** @var \DOMElement $acs1 */
         $acs1 = $acs->item(0);
         $this->assertTrue($acs1->hasAttribute("isDefault"));
         $this->assertEquals("true", $acs1->getAttribute("isDefault"));
@@ -184,6 +190,7 @@ class SAMLBuilderTest extends TestCase
         $samlBuilder->addMetadata($set, $metadata);
         $spDesc = $samlBuilder->getEntityDescriptor();
         $acs = $spDesc->getElementsByTagName("AttributeConsumingService");
+        /** @var \DOMElement $acs1 */
         $acs1 = $acs->item(0);
         $this->assertTrue($acs1->hasAttribute("isDefault"));
         $this->assertEquals("false", $acs1->getAttribute("isDefault"));
@@ -214,6 +221,7 @@ class SAMLBuilderTest extends TestCase
 
         $spDesc = $samlBuilder->getEntityDescriptor();
         $acs = $spDesc->getElementsByTagName("AttributeConsumingService");
+        /** @var \DOMElement $acs1 */
         $acs1 = $acs->item(0);
         $this->assertTrue($acs1->hasAttribute("index"));
         $this->assertEquals("0", $acs1->getAttribute("index"));
@@ -225,6 +233,7 @@ class SAMLBuilderTest extends TestCase
 
         $spDesc = $samlBuilder->getEntityDescriptor();
         $acs = $spDesc->getElementsByTagName("AttributeConsumingService");
+        /** @var \DOMElement $acs1 */
         $acs1 = $acs->item(0);
         $this->assertTrue($acs1->hasAttribute("index"));
         $this->assertEquals("15", $acs1->getAttribute("index"));

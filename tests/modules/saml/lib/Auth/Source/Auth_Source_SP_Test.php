@@ -234,6 +234,7 @@ class SPTest extends ClearStateTestCase
         /** @var \SAML2\AuthnRequest $ar */
         $ar = $this->createAuthnRequest($state);
 
+        /** @var \SAML2\XML\saml\NameID $nameID */
         $nameID = $ar->getNameId();
         $this->assertEquals($state['saml:NameID']['Value'], $nameID->getValue());
         $this->assertEquals($state['saml:NameID']['Format'], $nameID->getFormat());
