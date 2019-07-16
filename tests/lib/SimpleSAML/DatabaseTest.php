@@ -248,6 +248,7 @@ class DatabaseTest extends TestCase
             "CREATE TABLE IF NOT EXISTS $table (ssp_key INT(16) NOT NULL, ssp_value TEXT NOT NULL)"
         );
 
+        /** @var \PDOStatement $query1 */
         $query1 = $this->db->read("SELECT * FROM $table");
         $this->assertEquals(0, $query1->fetch(), "Table $table is not empty when it should be.");
 
@@ -259,6 +260,7 @@ class DatabaseTest extends TestCase
         );
         $this->assertEquals(1, $stmt, "Could not insert data into $table.");
 
+        /** @var \PDOStatement $query2 */
         $query2 = $this->db->read("SELECT * FROM $table WHERE ssp_key = :ssp_key", ['ssp_key' => $ssp_key]);
         $data = $query2->fetch();
         $this->assertEquals($data['ssp_value'], $ssp_value, "Inserted data doesn't match what is in the database");
