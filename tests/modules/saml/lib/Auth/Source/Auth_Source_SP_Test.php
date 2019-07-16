@@ -270,6 +270,7 @@ class SPTest extends ClearStateTestCase
         /** @var \SAML2\AuthnRequest $ar */
         $ar = $this->createAuthnRequest($state);
 
+        /** @var array $a */
         $a = $ar->getRequestedAuthnContext();
         $this->assertEquals(
             $state['saml:AuthnContextClassRef'],

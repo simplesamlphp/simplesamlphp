@@ -45,6 +45,7 @@ class SQLPermanentStorageTest extends TestCase
         self::$sql->set('testtype', 'testkey1', 'testkey2', 'testvalue', 2);
 
         // Test getCondition
+        /** @var array $result */
         $result = self::$sql->get();
         $this->assertEquals('testvalue', $result['value']);
     }
@@ -62,6 +63,7 @@ class SQLPermanentStorageTest extends TestCase
         $result = self::$sql->getValue('testtype', 'testkey1', 'testkey2');
         $this->assertEquals('testvaluemodified', $result);
 
+        /** @var array $result */
         $result = self::$sql->getList('testtype', 'testkey1', 'testkey2');
         $this->assertEquals('testvaluemodified', $result[0]['value']);
     }

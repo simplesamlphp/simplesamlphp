@@ -630,6 +630,7 @@ PHP;
             'test'
         );
 
+        /** @var array $pubkey */
         $pubkey = Crypto::loadPublicKey($config);
         $res = $pubkey['certData'];
         $expected = $x509certificate;
