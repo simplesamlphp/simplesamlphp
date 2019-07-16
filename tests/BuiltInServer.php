@@ -202,6 +202,7 @@ class BuiltInServer
             CURLOPT_HEADER => 1,
         ]);
         curl_setopt_array($ch, $curlopts);
+        /** @var mixed $resp */
         $resp = curl_exec($ch);
         $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         list($header, $body) = explode("\r\n\r\n", $resp, 2);

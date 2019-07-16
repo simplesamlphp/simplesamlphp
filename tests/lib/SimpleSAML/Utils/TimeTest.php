@@ -139,6 +139,10 @@ class TimeTest extends TestCase
         // test invalid input parameters
         try {
             // invalid duration
+            /**
+             * @deprecated This test becomes useless as soon as the codebase is fully typehinted
+             * @psalm-suppress InvalidScalarArgument
+             */
             Time::parseDuration(0);
             $this->fail("Did not fail with invalid duration parameter.");
         } catch (\InvalidArgumentException $e) {

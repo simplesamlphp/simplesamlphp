@@ -252,7 +252,7 @@ class DatabaseTest extends TestCase
         $this->assertEquals(0, $query1->fetch(), "Table $table is not empty when it should be.");
 
         $ssp_key = time();
-        $ssp_value = md5(rand(0, 10000));
+        $ssp_value = md5(strval(rand(0, 10000)));
         $stmt = $this->db->write(
             "INSERT INTO $table (ssp_key, ssp_value) VALUES (:ssp_key, :ssp_value)",
             ['ssp_key' => [$ssp_key, \PDO::PARAM_INT], 'ssp_value' => $ssp_value]

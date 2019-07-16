@@ -416,6 +416,7 @@ NOWDOC;
             ->willReturn(true);
 
         
+        /** @var bool $res */
         $res = XML::isValid($dom, $schema);
 
         $this->assertTrue($res);
