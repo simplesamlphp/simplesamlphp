@@ -6,6 +6,7 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Test for the core:AttributeRealm filter.
+ * @deprecated Remove in 2.0
  */
 class AttributeRealmTest extends TestCase
 {
