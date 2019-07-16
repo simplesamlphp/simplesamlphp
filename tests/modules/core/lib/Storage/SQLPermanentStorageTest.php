@@ -71,11 +71,11 @@ class SQLPermanentStorageTest extends TestCase
      */
     public function testNonexistentKey()
     {
-        // Test that getting some non-existing key will return null
+        // Test that getting some non-existing key will return null / empty array
         $result = self::$sql->getValue('testtype_nonexistent', 'testkey1_nonexistent', 'testkey2_nonexistent');
         $this->assertNull($result);
         $result = self::$sql->getList('testtype_nonexistent', 'testkey1_nonexistent', 'testkey2_nonexistent');
-        $this->assertNull($result);
+        $this->assertEmpty($result);
         $result = self::$sql->get('testtype_nonexistent', 'testkey1_nonexistent', 'testkey2_nonexistent');
         $this->assertNull($result);
     }
