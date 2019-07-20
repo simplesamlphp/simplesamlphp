@@ -124,7 +124,9 @@ class SQL extends Store
                 'CREATE TABLE '.$this->prefix.
                 '_kvstore (_type VARCHAR(30) NOT NULL, _key VARCHAR(50) NOT NULL, _value '.$text_t.
                 ' NOT NULL, _expire TIMESTAMP, PRIMARY KEY (_key, _type))',
-                'CREATE INDEX '.$this->prefix.'_kvstore_expire ON '.$this->prefix.'_kvstore (_expire)'
+                $this->driver === 'sqlite' ?
+                'CREATE INDEX '.$this->prefix.'_kvstore_expire ON '.$this->prefix.'_kvstore (_expire)' :
+                'ALTER TABLE '.$this->prefix.'_kvstore ADD INDEX '.$this->prefix.'_kvstore_expire (_expire)'                 
             ],
             /**
              * This upgrade removes the default NOT NULL constraint on the _expire field in MySQL.
@@ -142,7 +144,9 @@ class SQL extends Store
                 'INSERT INTO '.$this->prefix.'_kvstore_new SELECT * FROM '.$this->prefix.'_kvstore',
                 'DROP TABLE '.$this->prefix.'_kvstore',
                 'ALTER TABLE '.$this->prefix.'_kvstore_new RENAME TO '.$this->prefix.'_kvstore',
-                'CREATE INDEX '.$this->prefix.'_kvstore_expire ON '.$this->prefix.'_kvstore (_expire)'
+                $this->driver === 'sqlite' ?
+                'CREATE INDEX '.$this->prefix.'_kvstore_expire ON '.$this->prefix.'_kvstore (_expire)' :
+                'ALTER TABLE '.$this->prefix.'_kvstore ADD INDEX '.$this->prefix.'_kvstore_expire (_expire)'                
             ]
         ];
 
