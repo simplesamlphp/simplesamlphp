@@ -133,7 +133,7 @@ class SQL extends Store
              *     Copy the current data to the new table
              *     Drop the old table
              *     Rename the new table correctly
-             *     Readd the index
+             *     Read the index
              */
             [
                 'CREATE TABLE '.$this->prefix.
