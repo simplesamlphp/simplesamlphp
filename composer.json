@@ -86,6 +86,7 @@
     },
     "require-dev": {
         "ext-curl": "*",
+        "ext-krb5": "*",
         "mikey179/vfsstream": "~1.6",
         "phpunit/phpunit": "~5.7"
     },
