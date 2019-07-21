@@ -18,7 +18,24 @@ class LogoutStore
     private static function createLogoutTable(\SimpleSAML\Store\SQL $store)
     {
         $tableVer = $store->getTableVersion('saml_LogoutStore');
-        if ($tableVer === 2) {
+        if ($tableVer === 3) {
+            return;
+        } elseif ($tableVer === 2) {
+            // Drop old indexes
+            $query = 'ALTER TABLE '.$store->prefix.'_saml_LogoutStore DROP INDEX '.$store->prefix.'_saml_LogoutStore_nameId';
+            $store->pdo->exec($query);
+            $query = 'ALTER TABLE '.$store->prefix.'_saml_LogoutStore DROP INDEX _authSource';
+            $store->pdo->exec($query);
+
+            // Create new indexes
+            $query = 'CREATE INDEX '.$store->prefix.'_saml_LogoutStore_nameId ON ';
+            $query .= $store->prefix.'_saml_LogoutStore (_authSource(191), _nameId)';
+            $store->pdo->exec($query);
+
+            $query = 'ALTER TABLE '.$store->prefix.'_saml_LogoutStore ADD UNIQUE KEY (_authSource(191), _nameID, _sessionIndex)';
+            $store->pdo->exec($query);
+
+            $store->setTableVersion('saml_LogoutStore', 3);
             return;
         } elseif ($tableVer === 1) {
             // TableVersion 2 increased the column size to 255 which is the maximum length of a FQDN
@@ -50,7 +67,7 @@ class LogoutStore
             _sessionIndex VARCHAR(50) NOT NULL,
             _expire TIMESTAMP NOT NULL,
             _sessionId VARCHAR(50) NOT NULL,
-            UNIQUE (_authSource, _nameID, _sessionIndex)
+            UNIQUE (_authSource(191), _nameID, _sessionIndex)
         )';
         $store->pdo->exec($query);
 
@@ -59,7 +76,7 @@ class LogoutStore
         $store->pdo->exec($query);
 
         $query = 'CREATE INDEX '.$store->prefix.'_saml_LogoutStore_nameId ON ';
-        $query .= $store->prefix.'_saml_LogoutStore (_authSource, _nameId)';
+        $query .= $store->prefix.'_saml_LogoutStore (_authSource(191), _nameId)';
         $store->pdo->exec($query);
 
         $store->setTableVersion('saml_LogoutStore', 2);
