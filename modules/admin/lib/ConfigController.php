@@ -385,7 +385,7 @@ class ConfigController
                     curl_setopt($ch, CURLOPT_PROXYUSERPWD, $this->config->getValue('proxy.auth', null));
                     $response = curl_exec($ch);
 
-                    if (!is_bool($response) && (curl_getinfo($ch, CURLINFO_HTTP_CODE) === 200)) {
+                    if (!is_bool($response) && (curl_getinfo($ch, CURLINFO_RESPONSE_CODE) === 200)) {
                         $latest = json_decode($response, true);
                         $this->session->setData(self::LATEST_VERSION_STATE_KEY, 'version', $latest);
                     }
