@@ -6,6 +6,15 @@ SimpleSAMLphp changelog
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
+## Version 1.17.5
+
+Released TBD
+
+  * Fixed a regression where MetaDataStorageHandlerPdo::getMetaData() would not return a value (#1165)
+  * Fixed an issue with table indeces (#1089)
+  * Fixed an issue with table migrations on SQlite (#1169)
+  * Updated composer dependencies
+
 ## Version 1.17.4
 
 Released 2019-07-11
