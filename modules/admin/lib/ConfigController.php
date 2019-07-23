@@ -363,7 +363,7 @@ class ConfigController
                 );
             }
         }
-        
+
         /*
          * Check for updates. Store the remote result in the session so we don't need to fetch it on every access to
          * this page.

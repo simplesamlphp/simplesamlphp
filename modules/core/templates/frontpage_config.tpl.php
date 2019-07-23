@@ -5,7 +5,7 @@ $this->includeAtTemplateBase('includes/header.php');
 
 ?>
 
-<!-- 
+<!--
 <div id="tabdiv">
 <ul>
     <li><a href="#welcome"><?php echo $this->t('{core:frontpage:welcome}'); ?></a></li>

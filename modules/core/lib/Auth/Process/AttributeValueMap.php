@@ -30,7 +30,7 @@ class AttributeValueMap extends \SimpleSAML\Auth\ProcessingFilter
      * @var array
      */
     private $values = [];
-    
+
     /**
      * Whether $sourceattribute should be kept or not.
      * @var bool
@@ -42,7 +42,7 @@ class AttributeValueMap extends \SimpleSAML\Auth\ProcessingFilter
      * @var bool
      */
     private $replace = false;
-    
+
 
     /**
      * Initialize the filter.
@@ -83,7 +83,7 @@ class AttributeValueMap extends \SimpleSAML\Auth\ProcessingFilter
             if ($name === 'sourceattribute') {
                 $this->sourceattribute = $value;
             }
-        
+
             // set the values
             if ($name === 'values') {
                 $this->values = $value;

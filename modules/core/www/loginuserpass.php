@@ -61,7 +61,7 @@ if (!empty($_REQUEST['username']) || !empty($password)) {
     if ($source->getRememberUsernameEnabled()) {
         $sessionHandler = \SimpleSAML\SessionHandler::getSessionHandler();
         $params = $sessionHandler->getCookieParams();
-        
+
         if (isset($_REQUEST['remember_username']) && $_REQUEST['remember_username'] == 'Yes') {
             $params['expire'] = time() + 31536000;
         } else {
