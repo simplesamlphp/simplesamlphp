@@ -13,9 +13,14 @@ namespace SimpleSAML;
 class Logger
 {
     /**
-     * @var \SimpleSAML\Logger\LoggingHandlerInterface|false
+     * @var \SimpleSAML\Logger\LoggingHandlerInterface
      */
     private static $loggingHandler;
+
+    /**
+     * @var bool
+     */
+    private static $initializing = false;
 
     /**
      * @var integer|null
@@ -393,6 +398,9 @@ class Logger
             register_shutdown_function([self::class, 'shutdown']);
             self::$shutdownRegistered = true;
         }
+
+        // Set initializing to true > all went well!
+        self::$initializing = true;
     }
 
 
@@ -403,9 +411,6 @@ class Logger
      */
     private static function createLoggingHandler($handler = null)
     {
-        // set to false to indicate that it is being initialized
-        self::$loggingHandler = false;
-
         // a set of known logging handlers
         $known_handlers = [
             'syslog'   => 'SimpleSAML\Logger\SyslogLoggingHandler',
@@ -439,6 +444,7 @@ class Logger
             }
             $handler = $known_handlers[$handler];
         }
+
         /** @var \SimpleSAML\Logger\LoggingHandlerInterface */
         self::$loggingHandler = new $handler($config);
 
@@ -455,20 +461,20 @@ class Logger
      */
     private static function log($level, $string, $statsLog = false)
     {
-        if (self::$loggingHandler === false) {
+        if (self::$initializing === false) {
             // some error occurred while initializing logging
             self::defer($level, $string, $statsLog);
             return;
         } elseif (php_sapi_name() === 'cli' || defined('STDIN')) {
             // we are being executed from the CLI, nowhere to log
-            if (is_null(self::$loggingHandler)) {
+            if (!isset(self::$loggingHandler)) {
                 self::createLoggingHandler(\SimpleSAML\Logger\StandardErrorLoggingHandler::class);
             }
             $_SERVER['REMOTE_ADDR'] = "CLI";
             if (self::$trackid === self::NO_TRACKID) {
                 self::$trackid = 'CL'.bin2hex(openssl_random_pseudo_bytes(4));
             }
-        } elseif (self::$loggingHandler === null) {
+        } elseif (!isset(self::$loggingHandler)) {
             // Initialize logging
             self::createLoggingHandler();
             self::flush();
