@@ -52,7 +52,7 @@ class SP extends \SimpleSAML\Auth\Source
     /**
      * Flag to indicate whether to disable sending the Scoping element.
      *
-     * @var boolean|FALSE
+     * @var bool
      */
     private $disable_scoping;
 
@@ -409,6 +409,8 @@ class SP extends \SimpleSAML\Auth\Source
                         $this->protocols[] = Constants::NS_SAMLP;
                     }
                     break;
+                default:
+                    $acs = [];
             }
             $acs['index'] = $index;
             $endpoints[] = $acs;
@@ -554,23 +556,29 @@ class SP extends \SimpleSAML\Auth\Source
             }
 
             $nameId = $state['saml:NameID'];
-            $nid = new NameID();
-            if (!array_key_exists('Value', $nameId)) {
-                throw new \InvalidArgumentException('Missing "Value" in array, cannot create NameID from it.');
-            }
+            if (is_array($nameId)) {
+                // Must be an array > convert to object
 
-            $nid->setValue($nameId['Value']);
-            if (array_key_exists('NameQualifier', $nameId) && $nameId['NameQualifier'] !== null) {
-                $nid->setNameQualifier($nameId['NameQualifier']);
-            }
-            if (array_key_exists('SPNameQualifier', $nameId) && $nameId['SPNameQualifier'] !== null) {
-                $nid->setSPNameQualifier($nameId['SPNameQualifier']);
-            }
-            if (array_key_exists('SPProvidedID', $nameId) && $nameId['SPProvidedId'] !== null) {
-                $nid->setSPProvidedID($nameId['SPProvidedID']);
-            }
-            if (array_key_exists('Format', $nameId) && $nameId['Format'] !== null) {
-                $nid->setFormat($nameId['Format']);
+                $nid = new NameID();
+                if (!array_key_exists('Value', $nameId)) {
+                    throw new \InvalidArgumentException('Missing "Value" in array, cannot create NameID from it.');
+                }
+
+                $nid->setValue($nameId['Value']);
+                if (array_key_exists('NameQualifier', $nameId) && $nameId['NameQualifier'] !== null) {
+                    $nid->setNameQualifier($nameId['NameQualifier']);
+                }
+                if (array_key_exists('SPNameQualifier', $nameId) && $nameId['SPNameQualifier'] !== null) {
+                    $nid->setSPNameQualifier($nameId['SPNameQualifier']);
+                }
+                if (array_key_exists('SPProvidedID', $nameId) && $nameId['SPProvidedId'] !== null) {
+                    $nid->setSPProvidedID($nameId['SPProvidedID']);
+                }
+                if (array_key_exists('Format', $nameId) && $nameId['Format'] !== null) {
+                    $nid->setFormat($nameId['Format']);
+                }
+            } else {
+                $nid = $nameId;
             }
 
             $ar->setNameId($nid);
@@ -650,6 +658,7 @@ class SP extends \SimpleSAML\Auth\Source
 
         // Select appropriate SSO endpoint
         if ($ar->getProtocolBinding() === Constants::BINDING_HOK_SSO) {
+            /** @var array $dst */
             $dst = $idpMetadata->getDefaultEndpoint(
                 'SingleSignOnService',
                 [
@@ -657,6 +666,7 @@ class SP extends \SimpleSAML\Auth\Source
                 ]
             );
         } else {
+            /** @var array $dst */
             $dst = $idpMetadata->getEndpointPrioritizedByBinding(
                 'SingleSignOnService',
                 [
@@ -829,6 +839,10 @@ class SP extends \SimpleSAML\Auth\Source
 
         $session = Session::getSessionFromRequest();
         $data = $session->getAuthState($this->authId);
+        if ($data === null) {
+            throw new Error\NoState();
+        }
+
         foreach ($data as $k => $v) {
             $state[$k] = $v;
         }
@@ -1022,6 +1036,7 @@ class SP extends \SimpleSAML\Auth\Source
 
         $idpMetadata = $this->getIdPMetadata($idp);
 
+        /** @var array $endpoint */
         $endpoint = $idpMetadata->getEndpointPrioritizedByBinding('SingleLogoutService', [
             Constants::BINDING_HTTP_REDIRECT,
             Constants::BINDING_HTTP_POST], false);
@@ -1182,6 +1197,8 @@ class SP extends \SimpleSAML\Auth\Source
         $state = $authProcState['saml:sp:State'];
 
         $sourceId = $state['saml:sp:AuthId'];
+
+        /** @var \SimpleSAML\Module\saml\Auth\Source\SP $source */
         $source = Auth\Source::getById($sourceId);
         if ($source === null) {
             throw new \Exception('Could not find authentication source with id '.$sourceId);

@@ -40,6 +40,7 @@ class MultiAuth extends \SimpleSAML\Auth\Source
 
     /**
      * Array of sources we let the user chooses among.
+     * @var array
      */
     private $sources;
 
@@ -237,7 +238,7 @@ class MultiAuth extends \SimpleSAML\Auth\Source
 
         $source = Auth\Source::getById($authId);
         if ($source === null) {
-            throw new \Exception('Invalid authentication source during logout: '.$source);
+            throw new \Exception('Invalid authentication source during logout: '.$authId);
         }
         // Then, do the logout on it
         $source->logout($state);

@@ -83,7 +83,7 @@ class StatisticsWithAttribute extends \SimpleSAML\Auth\ProcessingFilter
             $isPassive = 'passive-';
         }
 
-        if (array_key_exists($this->attribute, $state['Attributes'])) {
+        if (!is_null($this->attribute) && array_key_exists($this->attribute, $state['Attributes'])) {
             $logAttribute = $state['Attributes'][$this->attribute][0];
         }
 

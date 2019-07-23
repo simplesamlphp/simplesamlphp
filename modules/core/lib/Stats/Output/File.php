@@ -38,13 +38,14 @@ class File extends \SimpleSAML\Stats\Output
      */
     public function __construct(Configuration $config)
     {
-        $this->logDir = $config->getPathValue('directory');
-        if ($this->logDir === null) {
+        $logDir = $config->getPathValue('directory');
+        if ($logDir === null) {
             throw new \Exception('Missing "directory" option for core:File');
         }
-        if (!is_dir($this->logDir)) {
-            throw new \Exception('Could not find log directory: '.var_export($this->logDir, true));
+        if (!is_dir($logDir)) {
+            throw new \Exception('Could not find log directory: '.var_export($logDir, true));
         }
+        $this->logDir = $logDir;
     }
 
 
@@ -85,6 +86,10 @@ class File extends \SimpleSAML\Stats\Output
     public function emit(array $data)
     {
         assert(isset($data['time']));
+
+        if ($this->file === false || $this->file === null) {
+            throw new Error\Exception('Error opening log file:  invalid handle');
+        }
 
         $time = $data['time'];
         $milliseconds = (int) (($time - (int) $time) * 1000);

@@ -58,6 +58,7 @@ class SAML1
             $hasNewCert = true;
         }
 
+        /** @var array $certInfo */
         $certInfo = Utils\Crypto::loadPublicKey($config, true);
         $keys[] = [
             'type' => 'X509Certificate',

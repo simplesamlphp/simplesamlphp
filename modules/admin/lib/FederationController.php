@@ -227,7 +227,7 @@ class FederationController
                             $this->mdHandler->getMetaDataCurrentEntityID('shib13-idp-hosted')
                         );
                 }
-                
+
                 foreach ($shib13entities as $index => $entity) {
                     $builder = new SAMLBuilder($entity['entityid']);
                     $builder->addMetadataIdP11($entity['metadata_array']);

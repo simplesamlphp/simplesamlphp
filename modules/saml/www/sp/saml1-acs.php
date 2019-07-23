@@ -21,6 +21,7 @@ if ($end === false) {
 }
 $sourceId = substr($sourceId, 1, $end - 1);
 
+/** @var \SimpleSAML\Module\saml\Auth\Source\SP $source */
 $source = \SimpleSAML\Auth\Source::getById($sourceId, '\SimpleSAML\Module\saml\Auth\Source\SP');
 
 SimpleSAML\Logger::debug('Received SAML1 response');
@@ -35,6 +36,7 @@ if (preg_match('@^https?://@i', $target)) {
         'saml:sp:RelayState' => \SimpleSAML\Utils\HTTP::checkURLAllowed($target),
     ];
 } else {
+    /** @var array $state  State can never be null without a third argument */
     $state = \SimpleSAML\Auth\State::loadState($_REQUEST['TARGET'], 'saml:sp:sso');
 
     // Check that the authentication source is correct
@@ -66,7 +68,7 @@ if (array_key_exists('SAMLart', $_REQUEST)) {
     $responseXML = base64_decode($responseXML);
     $isValidated = false; /* Must check signature on response. */
 } else {
-    assert(false);
+    throw new \SimpleSAML\Error\BadRequest('Missing SAMLResponse or SAMLart parameter.');
 }
 
 $response = new \SimpleSAML\XML\Shib13\AuthnResponse();

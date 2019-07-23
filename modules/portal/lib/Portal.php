@@ -50,6 +50,9 @@ class Portal
      */
     public function isPortalized($thispage)
     {
+        if (!isset($this->config)) {
+            return false;
+        }
         foreach ($this->config as $set) {
             if (in_array($thispage, $set, true)) {
                 return true;
@@ -95,15 +98,19 @@ class Portal
             if (isset($page['shorttext'])) {
                 $name = $page['shorttext'];
             }
+
+            /** @var string $name */
+            $name = $t->t($name);
+
             if (!isset($page['href'])) {
                 $text .= '<li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#">'.
-                    $t->t($name).'</a></li>';
+                    $name.'</a></li>';
             } elseif ($pageid === $thispage) {
                 $text .= '<li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#">'.
-                    $t->t($name).'</a></li>';
+                    $name.'</a></li>';
             } else {
                 $text .= '<li class="ui-state-default ui-corner-top"><a href="'.$page['href'].'">'.
-                    $t->t($name).'</a></li>';
+                    $name.'</a></li>';
             }
         }
         $text .= '</ul>';

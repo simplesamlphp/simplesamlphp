@@ -14,8 +14,11 @@ if (!array_key_exists('AuthState', $_REQUEST)) {
     throw new \SimpleSAML\Error\BadRequest('Missing AuthState parameter.');
 }
 $authStateId = $_REQUEST['AuthState'];
+
+/** @var array $state */
 $state = \SimpleSAML\Auth\State::loadState($authStateId, \SimpleSAML\Module\core\Auth\UserPassOrgBase::STAGEID);
 
+/** @var \SimpleSAML\Module\core\Auth\UserPassOrgBase $source */
 $source = \SimpleSAML\Auth\Source::getById($state[\SimpleSAML\Module\core\Auth\UserPassOrgBase::AUTHID]);
 if ($source === null) {
     throw new \Exception(
@@ -124,7 +127,7 @@ if ($organizations === null || !empty($organization)) {
 }
 
 $globalConfig = \SimpleSAML\Configuration::getInstance();
-$t = new \SimpleSAML\XHTML\Template($globalConfig, 'core:loginuserpass.php');
+$t = new \SimpleSAML\XHTML\Template($globalConfig, 'core:loginuserpass.tpl.php');
 $t->data['stateparams'] = ['AuthState' => $authStateId];
 $t->data['username'] = $username;
 $t->data['forceUsername'] = false;

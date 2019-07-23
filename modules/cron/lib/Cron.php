@@ -17,6 +17,7 @@ class Cron
      */
     private $cronconfig;
 
+
     /*
      * @param \SimpleSAML\Configuration $cronconfig The cron configuration to use. If not specified defaults
      * to `config/module_cron.php`

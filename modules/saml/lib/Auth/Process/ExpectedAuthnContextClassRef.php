@@ -73,7 +73,7 @@ class ExpectedAuthnContextClassRef extends \SimpleSAML\Auth\ProcessingFilter
     public function process(&$request)
     {
         assert(is_array($request));
-        assert(array_key_exists('Attributes', $request));
+        assert(array_key_exists('saml:sp:State', $request));
 
         $this->AuthnContextClassRef = $request['saml:sp:State']['saml:sp:AuthnContext'];
 
@@ -99,7 +99,7 @@ class ExpectedAuthnContextClassRef extends \SimpleSAML\Auth\ProcessingFilter
     protected function unauthorized(&$request)
     {
         Logger::error(
-            'ExpectedAuthnContextClassRef: Invalid authentication context: '.$this->AuthnContextClassRef.
+            'ExpectedAuthnContextClassRef: Invalid authentication context: '.strval($this->AuthnContextClassRef).
             '. Accepted values are: '.var_export($this->accepted, true)
         );
 

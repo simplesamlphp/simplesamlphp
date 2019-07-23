@@ -363,7 +363,7 @@ class ConfigController
                 );
             }
         }
-        
+
         /*
          * Check for updates. Store the remote result in the session so we don't need to fetch it on every access to
          * this page.
@@ -385,7 +385,8 @@ class ConfigController
                     curl_setopt($ch, CURLOPT_PROXYUSERPWD, $this->config->getValue('proxy.auth', null));
                     $response = curl_exec($ch);
 
-                    if (curl_getinfo($ch, CURLINFO_HTTP_CODE) === 200) {
+                    if (curl_getinfo($ch, CURLINFO_RESPONSE_CODE) === 200) {
+                        /** @psalm-suppress InvalidScalarArgument */
                         $latest = json_decode($response, true);
                         $this->session->setData(self::LATEST_VERSION_STATE_KEY, 'version', $latest);
                     }

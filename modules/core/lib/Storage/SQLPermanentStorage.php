@@ -32,7 +32,7 @@ class SQLPermanentStorage
             $config = Configuration::getInstance();
         }
 
-        $datadir = $config->getPathValue('datadir', 'data/');
+        $datadir = $config->getPathValue('datadir', 'data/') ?: 'data/';
 
         if (!is_dir($datadir)) {
             throw new \Exception('Data directory ['.$datadir.'] does not exist');
@@ -51,7 +51,7 @@ class SQLPermanentStorage
             if ($q === false) {
                 $this->db->exec('
 		    CREATE TABLE data (
-                        key1 text, 
+                        key1 text,
                         key2 text,
                         type text,
                         value text,

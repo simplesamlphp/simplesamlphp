@@ -16,6 +16,7 @@ class LanguageAdaptor extends \SimpleSAML\Auth\ProcessingFilter
     /** @var string */
     private $langattr = 'preferredLanguage';
 
+
     /**
      * Initialize this filter.
      *

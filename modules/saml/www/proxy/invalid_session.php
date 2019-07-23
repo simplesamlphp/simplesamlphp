@@ -16,9 +16,11 @@ if (!array_key_exists('AuthState', $_REQUEST)) {
 
 try {
     // try to get the state
+    /** @var array $state  State can never be null without a third argument */
     $state = \SimpleSAML\Auth\State::loadState($_REQUEST['AuthState'], 'saml:proxy:invalid_idp');
 } catch (\Exception $e) {
     // the user probably hit the back button after starting the logout, try to recover the state with another stage
+    /** @var array $state  State can never be null without a third argument */
     $state = \SimpleSAML\Auth\State::loadState($_REQUEST['AuthState'], 'core:Logout:afterbridge');
 
     // success! Try to continue with reauthentication, since we no longer have a valid session here
@@ -38,14 +40,15 @@ if (isset($_POST['cancel'])) {
 }
 
 if (isset($_POST['continue'])) {
-    // log the user out before being able to login again
-    $as = \SimpleSAML\Auth\Source::getById($state['saml:sp:AuthId'], '\SimpleSAML\Module\saml\Auth\Source\SP');
     /** @var \SimpleSAML\Module\saml\Auth\Source\SP $as */
+    $as = \SimpleSAML\Auth\Source::getById($state['saml:sp:AuthId'], '\SimpleSAML\Module\saml\Auth\Source\SP');
+
+    // log the user out before being able to login again
     $as->reauthLogout($state);
 }
 
 $cfg = \SimpleSAML\Configuration::getInstance();
-$template = new \SimpleSAML\XHTML\Template($cfg, 'saml:proxy/invalid_session.php');
+$template = new \SimpleSAML\XHTML\Template($cfg, 'saml:proxy/invalid_session.tpl.php');
 $translator = $template->getTranslator();
 $template->data['AuthState'] = (string) $_REQUEST['AuthState'];
 

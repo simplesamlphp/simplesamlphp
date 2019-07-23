@@ -371,6 +371,10 @@ class SAML2
                 );
             } elseif ($issuer instanceof Issuer) {
                 $spEntityId = $issuer->getValue();
+                if ($spEntityId === null) {
+                    /* Without an issuer we have no way to respond to the message. */
+                    throw new Error\BadRequest('Received message on logout endpoint without issuer.');
+                }
             } else { // we got a string, old case
                 $spEntityId = $issuer;
             }
@@ -430,6 +434,9 @@ class SAML2
             $protocolBinding,
             $consumerIndex
         );
+        if ($acsEndpoint === null) {
+            throw new \Exception('Unable to use any of the ACS endpoints found for SP \''.$spEntityId.'\'');
+        }
 
         $IDPList = array_unique(array_merge($IDPList, $spMetadata->getArrayizeString('IDPList', [])));
         if ($ProxyCount === null) {
@@ -509,6 +516,7 @@ class SAML2
             'idpEntityID' => $idpMetadata->getString('entityid'),
         ]);
 
+        /** @var array $dst */
         $dst = $spMetadata->getEndpointPrioritizedByBinding(
             'SingleLogoutService',
             [
@@ -564,6 +572,8 @@ class SAML2
             'idpEntityID' => $idpMetadata->getString('entityid'),
             'partial'     => $partial
         ]);
+
+        /** @var array $dst */
         $dst = $spMetadata->getEndpointPrioritizedByBinding(
             'SingleLogoutService',
             [
@@ -601,6 +611,10 @@ class SAML2
             throw new Error\BadRequest('Received message on logout endpoint without issuer.');
         } elseif ($issuer instanceof Issuer) {
             $spEntityId = $issuer->getValue();
+            if ($spEntityId === null) {
+                /* Without an issuer we have no way to respond to the message. */
+                throw new Error\BadRequest('Received message on logout endpoint without issuer.');
+            }
         } else {
             $spEntityId = $issuer;
         }
@@ -682,6 +696,8 @@ class SAML2
             Constants::BINDING_HTTP_REDIRECT,
             Constants::BINDING_HTTP_POST
         ];
+
+        /** @var array $dst */
         $dst = $spMetadata->getEndpointPrioritizedByBinding('SingleLogoutService', $bindings);
 
         if ($dst['Binding'] === Constants::BINDING_HTTP_POST) {
@@ -793,6 +809,7 @@ class SAML2
             $hasNewCert = true;
         }
 
+        /** @var array $certInfo */
         $certInfo = Utils\Crypto::loadPublicKey($config, true);
         $keys[] = [
             'type' => 'X509Certificate',
@@ -803,6 +820,7 @@ class SAML2
         ];
 
         if ($config->hasValue('https.certificate')) {
+            /** @var array $httpsCert */
             $httpsCert = Utils\Crypto::loadPublicKey($config, true, 'https.');
             $keys[] = [
                 'type' => 'X509Certificate',

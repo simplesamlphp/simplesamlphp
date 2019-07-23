@@ -20,8 +20,11 @@ class UserPass extends \SimpleSAML\Module\core\Auth\UserPassBase
     /**
      * Our users, stored in an associative array. The key of the array is "<username>:<password>",
      * while the value of each element is a new array with the attributes for each user.
+     *
+     * @var array
      */
     private $users;
+
 
     /**
      * Constructor for this authentication source.
@@ -65,6 +68,7 @@ class UserPass extends \SimpleSAML\Module\core\Auth\UserPassBase
             $this->users[$username.':'.$password] = $attributes;
         }
     }
+
 
     /**
      * Attempt to log in using the given username and password.

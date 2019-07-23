@@ -34,6 +34,7 @@ class External extends \SimpleSAML\Auth\Source
      */
     const AUTHID = 'SimpleSAML\Module\exampleautth\Auth\Sourc\External.AuthId';
 
+
     /**
      * Constructor for this authentication source.
      *
@@ -186,7 +187,6 @@ class External extends \SimpleSAML\Auth\Source
      * This function resumes the authentication process after the user has
      * entered his or her credentials.
      *
-     * @param array &$state  The authentication state.
      * @return void
      * @throws \SimpleSAML\Error\BadRequest
      * @throws \SimpleSAML\Error\Exception
@@ -205,6 +205,7 @@ class External extends \SimpleSAML\Auth\Source
          * Once again, note the second parameter to the loadState function. This must
          * match the string we used in the saveState-call above.
          */
+        /** @var array $state */
         $state = Auth\State::loadState($_REQUEST['State'], 'exampleauth:External');
 
         /*

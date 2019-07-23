@@ -378,6 +378,7 @@ class State
              */
             throw $exception;
         }
+        throw new \Exception(); // This should never happen
     }
 
 

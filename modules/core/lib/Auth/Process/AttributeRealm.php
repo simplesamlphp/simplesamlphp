@@ -16,6 +16,7 @@ class AttributeRealm extends \SimpleSAML\Auth\ProcessingFilter
     /** @var string */
     private $attributename = 'realm';
 
+
     /**
      * Initialize this filter.
      *
@@ -31,6 +32,7 @@ class AttributeRealm extends \SimpleSAML\Auth\ProcessingFilter
             $this->attributename = $config['attributename'];
         }
     }
+
 
     /**
      * Apply filter to add or replace attributes.

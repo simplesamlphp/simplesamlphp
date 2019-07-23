@@ -36,6 +36,7 @@ class CardinalitySingle extends \SimpleSAML\Auth\ProcessingFilter
     /** @var \SimpleSAML\Utils\HttpAdapter */
     private $http;
 
+
     /**
      * Initialize this filter, parse configuration.
      *

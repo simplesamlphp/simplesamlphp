@@ -55,11 +55,12 @@ class PHP extends \SimpleSAML\Auth\ProcessingFilter
         /**
          * @param array &$attributes
          * @param array &$state
-         * @return void
          */
-        $function = function (
-            /** @scrutinizer ignore-unused */ &$attributes,
-            /** @scrutinizer ignore-unused */ &$state
+        $function = /** @return void */ function (
+            /** @scrutinizer ignore-unused */
+            array &$attributes,
+            /** @scrutinizer ignore-unused */
+            array &$state
         ) {
             eval($this->code);
         };

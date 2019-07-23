@@ -141,7 +141,9 @@ class Controller
         if ($request->get(Auth\State::EXCEPTION_PARAM, false) !== false) {
             // This is just a simple example of an error
 
+            /** @var array $state */
             $state = Auth\State::loadExceptionState();
+
             assert(array_key_exists(Auth\State::EXCEPTION_DATA, $state));
             $e = $state[Auth\State::EXCEPTION_DATA];
 

@@ -14,15 +14,16 @@ if (!array_key_exists('AuthState', $_REQUEST)) {
     throw new \SimpleSAML\Error\BadRequest('Missing AuthState parameter.');
 }
 $authStateId = $_REQUEST['AuthState'];
+/** @var array $state */
 $state = \SimpleSAML\Auth\State::loadState($authStateId, \SimpleSAML\Module\core\Auth\UserPassBase::STAGEID);
 
+/** @var \SimpleSAML\Module\core\Auth\UserPassBase|null $source */
 $source = \SimpleSAML\Auth\Source::getById($state[\SimpleSAML\Module\core\Auth\UserPassBase::AUTHID]);
 if ($source === null) {
     throw new \Exception(
         'Could not find authentication source with id '.$state[\SimpleSAML\Module\core\Auth\UserPassBase::AUTHID]
     );
 }
-
 
 if (array_key_exists('username', $_REQUEST)) {
     $username = $_REQUEST['username'];
@@ -60,7 +61,7 @@ if (!empty($_REQUEST['username']) || !empty($password)) {
     if ($source->getRememberUsernameEnabled()) {
         $sessionHandler = \SimpleSAML\SessionHandler::getSessionHandler();
         $params = $sessionHandler->getCookieParams();
-        
+
         if (isset($_REQUEST['remember_username']) && $_REQUEST['remember_username'] == 'Yes') {
             $params['expire'] = time() + 31536000;
         } else {
@@ -98,7 +99,7 @@ if (!empty($_REQUEST['username']) || !empty($password)) {
 }
 
 $globalConfig = \SimpleSAML\Configuration::getInstance();
-$t = new \SimpleSAML\XHTML\Template($globalConfig, 'core:loginuserpass.php');
+$t = new \SimpleSAML\XHTML\Template($globalConfig, 'core:loginuserpass.tpl.php');
 $t->data['stateparams'] = ['AuthState' => $authStateId];
 if (array_key_exists('forcedUsername', $state)) {
     $t->data['username'] = $state['forcedUsername'];

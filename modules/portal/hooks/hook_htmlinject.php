@@ -16,6 +16,8 @@ function portal_hook_htmlinject(&$hookinfo)
     $links = ['links' => []];
     \SimpleSAML\Module::callHooks('frontpage', $links);
 
+    assert(is_array($links));
+
     $portalConfig = \SimpleSAML\Configuration::getOptionalConfig('module_portal.php');
 
     $allLinks = [];
