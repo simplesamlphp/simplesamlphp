@@ -122,6 +122,7 @@ abstract class BaseNameIDGenerator extends \SimpleSAML\Auth\ProcessingFilter
             $nameId->setSPNameQualifier($this->spNameQualifier);
         }
 
+        /** @psalm-suppress PossiblyNullArrayOffset */
         $state['saml:NameID'][$this->format] = $nameId;
     }
 }

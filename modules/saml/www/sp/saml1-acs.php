@@ -69,7 +69,7 @@ if (array_key_exists('SAMLart', $_REQUEST)) {
     $responseXML = base64_decode($responseXML);
     $isValidated = false; /* Must check signature on response. */
 } else {
-    Assert::true(false);
+    throw new \SimpleSAML\Error\BadRequest('Missing SAMLResponse or SAMLart parameter.');
 }
 
 $response = new \SimpleSAML\XML\Shib13\AuthnResponse();
