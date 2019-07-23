@@ -36,7 +36,7 @@ if (preg_match('@^https?://@i', $target)) {
         'saml:sp:RelayState' => \SimpleSAML\Utils\HTTP::checkURLAllowed($target),
     ];
 } else {
-    /** @var array $state */
+    /** @var array $state  State can never be null without a third argument */
     $state = \SimpleSAML\Auth\State::loadState($_REQUEST['TARGET'], 'saml:sp:sso');
 
     // Check that the authentication source is correct
