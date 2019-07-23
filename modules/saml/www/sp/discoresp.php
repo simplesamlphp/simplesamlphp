@@ -14,9 +14,6 @@ if (!array_key_exists('idpentityid', $_REQUEST)) {
 
 /** @var array $state */
 $state = \SimpleSAML\Auth\State::loadState($_REQUEST['AuthID'], 'saml:sp:sso');
-if ($state === null) {
-    throw new \SimpleSAML\Error\NoState();
-}
 
 // Find authentication source
 assert(array_key_exists('saml:sp:AuthId', $state));
