@@ -833,10 +833,12 @@ class SP extends \SimpleSAML\Auth\Source
 
         $session = Session::getSessionFromRequest();
         $data = $session->getAuthState($this->authId);
-        if ($data !== null) {
-            foreach ($data as $k => $v) {
-                $state[$k] = $v;
-            }
+        if ($data === null) {
+            throw new Error\NoState();
+        }
+
+        foreach ($data as $k => $v) {
+            $state[$k] = $v;
         }
 
         // check if we have an IDPList specified in the request
