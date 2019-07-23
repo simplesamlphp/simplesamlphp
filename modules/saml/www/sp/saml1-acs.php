@@ -38,9 +38,6 @@ if (preg_match('@^https?://@i', $target)) {
 } else {
     /** @var array $state */
     $state = \SimpleSAML\Auth\State::loadState($_REQUEST['TARGET'], 'saml:sp:sso');
-    if ($state === null) {
-        throw new \SimpleSAML\Error\NoState();
-    }
 
     // Check that the authentication source is correct
     assert(array_key_exists('saml:sp:AuthId', $state));
