@@ -40,6 +40,7 @@ class MultiAuth extends \SimpleSAML\Auth\Source
 
     /**
      * Array of sources we let the user chooses among.
+     * @var array
      */
     private $sources;
 

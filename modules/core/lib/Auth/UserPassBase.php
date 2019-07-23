@@ -36,12 +36,16 @@ abstract class UserPassBase extends \SimpleSAML\Auth\Source
      *
      * A forced username cannot be changed by the user.
      * If this is NULL, we won't force any username.
+     *
+     * @var string|null
      */
     private $forcedUsername;
 
     /**
      * Links to pages from login page.
      * From configuration
+     *
+     * @var array
      */
     protected $loginLinks;
 
@@ -49,6 +53,7 @@ abstract class UserPassBase extends \SimpleSAML\Auth\Source
      * Storage for authsource config option remember.username.enabled
      * loginuserpass.php and loginuserpassorg.php pages/templates use this option to
      * present users with a checkbox to save their username for the next login request.
+     *
      * @var bool
      */
     protected $rememberUsernameEnabled = false;
@@ -57,6 +62,7 @@ abstract class UserPassBase extends \SimpleSAML\Auth\Source
      * Storage for authsource config option remember.username.checked
      * loginuserpass.php and loginuserpassorg.php pages/templates use this option
      * to default the remember username checkbox to checked or not.
+     *
      * @var bool
      */
     protected $rememberUsernameChecked = false;
@@ -67,6 +73,7 @@ abstract class UserPassBase extends \SimpleSAML\Auth\Source
      * users with a checkbox to keep their session alive across
      * different browser sessions (that is, closing and opening the
      * browser again).
+     *
      * @var bool
      */
     protected $rememberMeEnabled = false;
@@ -75,6 +82,7 @@ abstract class UserPassBase extends \SimpleSAML\Auth\Source
      * Storage for general config option session.rememberme.checked.
      * loginuserpass.php page/template uses this option to default
      * the "remember me" checkbox to checked or not.
+     *
      * @var bool
      */
     protected $rememberMeChecked = false;

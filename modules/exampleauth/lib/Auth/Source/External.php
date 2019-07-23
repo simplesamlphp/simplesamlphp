@@ -34,6 +34,7 @@ class External extends \SimpleSAML\Auth\Source
      */
     const AUTHID = 'SimpleSAML\Module\exampleautth\Auth\Sourc\External.AuthId';
 
+
     /**
      * Constructor for this authentication source.
      *

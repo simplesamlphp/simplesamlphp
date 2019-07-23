@@ -14,15 +14,18 @@ class AttributeAdd extends \SimpleSAML\Auth\ProcessingFilter
 {
     /**
      * Flag which indicates wheter this filter should append new values or replace old values.
+     * @var bool
      */
     private $replace = false;
 
     /**
      * Attributes which should be added/appended.
      *
-     * Assiciative array of arrays.
+     * Associative array of arrays.
+     * @var array
      */
     private $attributes = [];
+
 
     /**
      * Initialize this filter.
@@ -58,6 +61,7 @@ class AttributeAdd extends \SimpleSAML\Auth\ProcessingFilter
             $this->attributes[$name] = $values;
         }
     }
+
 
     /**
      * Apply filter to add or replace attributes.

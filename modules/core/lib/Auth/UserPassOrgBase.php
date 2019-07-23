@@ -44,6 +44,8 @@ abstract class UserPassOrgBase extends \SimpleSAML\Auth\Source
      *  'none': Force the user to select the correct organization from the dropdown box.
      *  'allow': Allow the user to enter the organization as part of the username.
      *  'force': Remove the dropdown box.
+     *
+     * @var string
      */
     private $usernameOrgMethod;
 
@@ -51,6 +53,7 @@ abstract class UserPassOrgBase extends \SimpleSAML\Auth\Source
      * Storage for authsource config option remember.username.enabled
      * loginuserpass.php and loginuserpassorg.php pages/templates use this option to
      * present users with a checkbox to save their username for the next login request.
+     *
      * @var bool
      */
     protected $rememberUsernameEnabled = false;
@@ -59,6 +62,7 @@ abstract class UserPassOrgBase extends \SimpleSAML\Auth\Source
      * Storage for authsource config option remember.username.checked
      * loginuserpass.php and loginuserpassorg.php pages/templates use this option
      * to default the remember username checkbox to checked or not.
+     *
      * @var bool
      */
     protected $rememberUsernameChecked = false;
@@ -67,6 +71,7 @@ abstract class UserPassOrgBase extends \SimpleSAML\Auth\Source
      * Storage for authsource config option remember.organization.enabled
      * loginuserpassorg.php page/template use this option to present users
      * with a checkbox to save their organization choice for the next login request.
+     *
      * @var bool
      */
     protected $rememberOrganizationEnabled = false;
@@ -75,6 +80,7 @@ abstract class UserPassOrgBase extends \SimpleSAML\Auth\Source
      * Storage for authsource config option remember.organization.checked
      * loginuserpassorg.php page/template use this option to
      * default the remember organization checkbox to checked or not.
+     *
      * @var bool
      */
     protected $rememberOrganizationChecked = false;

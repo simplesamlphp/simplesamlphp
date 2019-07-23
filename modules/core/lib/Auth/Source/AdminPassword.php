@@ -31,6 +31,7 @@ class AdminPassword extends \SimpleSAML\Module\core\Auth\UserPassBase
         $this->setForcedUsername("admin");
     }
 
+
     /**
      * Attempt to log in using the given username and password.
      *

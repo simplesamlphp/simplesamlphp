@@ -39,6 +39,8 @@ class TargetedID extends \SimpleSAML\Auth\ProcessingFilter
     /**
      * The attribute we should generate the targeted id from, or NULL if we should use the
      * UserID.
+     *
+     * @var string|null
      */
     private $attribute = null;
 

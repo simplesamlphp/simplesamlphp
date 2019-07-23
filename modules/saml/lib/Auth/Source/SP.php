@@ -52,7 +52,7 @@ class SP extends \SimpleSAML\Auth\Source
     /**
      * Flag to indicate whether to disable sending the Scoping element.
      *
-     * @var boolean|FALSE
+     * @var bool
      */
     private $disable_scoping;
 

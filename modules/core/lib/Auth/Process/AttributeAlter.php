@@ -16,33 +16,40 @@ class AttributeAlter extends \SimpleSAML\Auth\ProcessingFilter
 {
     /**
      * Should the pattern found be replaced?
+     * @var bool
      */
     private $replace = false;
 
     /**
      * Should the value found be removed?
+     * @var bool
      */
     private $remove = false;
 
     /**
      * Pattern to search for.
+     * @var string
      */
     private $pattern = '';
 
     /**
      * String to replace the pattern found with.
+     * @var string|false
      */
     private $replacement = false;
 
     /**
      * Attribute to search in
+     * @var string
      */
     private $subject = '';
 
     /**
      * Attribute to place the result in.
+     * @var string
      */
     private $target = '';
+
 
     /**
      * Initialize this filter.
@@ -84,6 +91,7 @@ class AttributeAlter extends \SimpleSAML\Auth\ProcessingFilter
             }
         }
     }
+
 
     /**
      * Apply the filter to modify attributes.

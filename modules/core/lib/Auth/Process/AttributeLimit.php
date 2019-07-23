@@ -15,6 +15,7 @@ class AttributeLimit extends \SimpleSAML\Auth\ProcessingFilter
 {
     /**
      * List of attributes which this filter will allow through.
+     * @var array
      */
     private $allowedAttributes = [];
 
@@ -60,6 +61,7 @@ class AttributeLimit extends \SimpleSAML\Auth\ProcessingFilter
         }
     }
 
+
     /**
      * Get list of allowed from the SP/IdP config.
      *
@@ -78,6 +80,7 @@ class AttributeLimit extends \SimpleSAML\Auth\ProcessingFilter
         }
         return null;
     }
+
 
     /**
      * Apply filter to remove attributes.
@@ -128,6 +131,7 @@ class AttributeLimit extends \SimpleSAML\Auth\ProcessingFilter
             }
         }
     }
+
 
     /**
      * Perform the filtering of attributes
