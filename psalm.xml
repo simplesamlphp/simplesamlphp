@@ -74,6 +74,7 @@
         <UnresolvableInclude>
             <errorLevel type="suppress">
                 <file name="bin/*.php" />
+                <file name="lib/SimpleSAML/Module.php" />
                 <file name="lib/SimpleSAML/XHTML/Template.php" />
                 <file name="modules/*/bin/*.php" />
                 <file name="tests/bootstrap.php" />
