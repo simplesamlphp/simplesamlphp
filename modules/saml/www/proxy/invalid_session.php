@@ -16,16 +16,12 @@ if (!array_key_exists('AuthState', $_REQUEST)) {
 
 try {
     // try to get the state
+    /** @var array $state */
     $state = \SimpleSAML\Auth\State::loadState($_REQUEST['AuthState'], 'saml:proxy:invalid_idp');
-    if ($state === null) {
-        throw new \SimpleSAML\Error\NoState();
-    }
 } catch (\Exception $e) {
     // the user probably hit the back button after starting the logout, try to recover the state with another stage
+    /** @var array $state */
     $state = \SimpleSAML\Auth\State::loadState($_REQUEST['AuthState'], 'core:Logout:afterbridge');
-    if ($state === null) {
-        throw new \SimpleSAML\Error\NoState();
-    }
 
     // success! Try to continue with reauthentication, since we no longer have a valid session here
     $idp = \SimpleSAML\IdP::getById($state['core:IdP']);
