@@ -551,7 +551,7 @@ class SP extends \SimpleSAML\Auth\Source
         }
 
         if (isset($state['saml:NameID'])) {
-            if (!is_array($state['saml:NameID'])) {
+            if (!is_array($state['saml:NameID']) && !is_a($state['saml:NameID'], NameID::class)) {
                 throw new Error\Exception('Invalid value of $state[\'saml:NameID\'].');
             }
 
