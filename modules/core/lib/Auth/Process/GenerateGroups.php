@@ -14,8 +14,10 @@ class GenerateGroups extends \SimpleSAML\Auth\ProcessingFilter
 {
     /**
      * The attributes we should generate groups from.
+     * @var array
      */
     private $generateGroupsFrom;
+
 
     /**
      * Initialize this filter.
@@ -47,6 +49,7 @@ class GenerateGroups extends \SimpleSAML\Auth\ProcessingFilter
             $this->generateGroupsFrom = $config;
         }
     }
+
 
     /**
      * Apply filter to add groups attribute.

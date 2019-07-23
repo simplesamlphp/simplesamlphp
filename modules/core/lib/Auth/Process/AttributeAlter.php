@@ -50,6 +50,7 @@ class AttributeAlter extends \SimpleSAML\Auth\ProcessingFilter
      */
     private $target = '';
 
+
     /**
      * Initialize this filter.
      *
@@ -90,6 +91,7 @@ class AttributeAlter extends \SimpleSAML\Auth\ProcessingFilter
             }
         }
     }
+
 
     /**
      * Apply the filter to modify attributes.

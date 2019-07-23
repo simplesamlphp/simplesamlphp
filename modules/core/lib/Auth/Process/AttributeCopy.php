@@ -21,6 +21,7 @@ class AttributeCopy extends \SimpleSAML\Auth\ProcessingFilter
 {
     /**
      * Assosiative array with the mappings of attribute names.
+     * @var array
      */
     private $map = [];
 
@@ -49,6 +50,7 @@ class AttributeCopy extends \SimpleSAML\Auth\ProcessingFilter
             $this->map[$source] = $destination;
         }
     }
+
 
     /**
      * Apply filter to rename attributes.

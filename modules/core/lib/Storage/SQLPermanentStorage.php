@@ -51,7 +51,7 @@ class SQLPermanentStorage
             if ($q === false) {
                 $this->db->exec('
 		    CREATE TABLE data (
-                        key1 text, 
+                        key1 text,
                         key2 text,
                         type text,
                         value text,

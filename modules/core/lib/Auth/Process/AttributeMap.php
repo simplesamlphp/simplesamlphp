@@ -15,11 +15,13 @@ class AttributeMap extends \SimpleSAML\Auth\ProcessingFilter
 {
     /**
      * Associative array with the mappings of attribute names.
+     * @var array
      */
     private $map = [];
 
     /**
      * Should attributes be duplicated or renamed.
+     * @var bool
      */
     private $duplicate = false;
 

@@ -60,16 +60,16 @@ class FilterScopes extends \SimpleSAML\Auth\ProcessingFilter
             $validScopes = $src['scope'];
         }
 
-        foreach ($this->scopedAttributes as $attribute) {
-            if (!isset($request['Attributes'][$attribute])) {
-                continue;
-            }
+        $ep = Utils\Config\Metadata::getDefaultEndpoint($request['Source']['SingleSignOnService']);
+        if ($ep !== null) {
+            foreach ($this->scopedAttributes as $attribute) {
+                if (!isset($request['Attributes'][$attribute])) {
+                    continue;
+                }
 
-            $values = $request['Attributes'][$attribute];
-            $newValues = [];
-            foreach ($values as $value) {
-                $ep = Utils\Config\Metadata::getDefaultEndpoint($request['Source']['SingleSignOnService']);
-                if ($ep !== null) {
+                $values = $request['Attributes'][$attribute];
+                $newValues = [];
+                foreach ($values as $value) {
                     $loc = $ep['Location'];
                     $host = parse_url($loc, PHP_URL_HOST);
                     if ($host === null) {

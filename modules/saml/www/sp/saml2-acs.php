@@ -59,7 +59,7 @@ if ($issuer instanceof \SAML2\XML\saml\Issuer) {
         // no issuer found in the assertions
         throw new Exception('Missing <saml:Issuer> in message delivered to AssertionConsumerService.');
     }
-} 
+}
 
 $session = \SimpleSAML\Session::getSessionFromRequest();
 $prevAuth = $session->getAuthData($sourceId, 'saml:sp:prevAuth');
@@ -141,7 +141,6 @@ try {
     // the status of the response wasn't "success"
     $e = $e->toException();
     \SimpleSAML\Auth\State::throwException($state, $e);
-    return;
 }
 
 $authenticatingAuthority = null;

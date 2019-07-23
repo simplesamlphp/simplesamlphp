@@ -17,8 +17,10 @@ class StaticSource extends \SimpleSAML\Auth\Source
 {
     /**
      * The attributes we return.
+     * @var array
      */
     private $attributes;
+
 
     /**
      * Constructor for this authentication source.
