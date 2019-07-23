@@ -556,23 +556,29 @@ class SP extends \SimpleSAML\Auth\Source
             }
 
             $nameId = $state['saml:NameID'];
-            $nid = new NameID();
-            if (!array_key_exists('Value', $nameId)) {
-                throw new \InvalidArgumentException('Missing "Value" in array, cannot create NameID from it.');
-            }
+            if (is_array($nameId)) {
+                // Must be an array > convert to object
 
-            $nid->setValue($nameId['Value']);
-            if (array_key_exists('NameQualifier', $nameId) && $nameId['NameQualifier'] !== null) {
-                $nid->setNameQualifier($nameId['NameQualifier']);
-            }
-            if (array_key_exists('SPNameQualifier', $nameId) && $nameId['SPNameQualifier'] !== null) {
-                $nid->setSPNameQualifier($nameId['SPNameQualifier']);
-            }
-            if (array_key_exists('SPProvidedID', $nameId) && $nameId['SPProvidedId'] !== null) {
-                $nid->setSPProvidedID($nameId['SPProvidedID']);
-            }
-            if (array_key_exists('Format', $nameId) && $nameId['Format'] !== null) {
-                $nid->setFormat($nameId['Format']);
+                $nid = new NameID();
+                if (!array_key_exists('Value', $nameId)) {
+                    throw new \InvalidArgumentException('Missing "Value" in array, cannot create NameID from it.');
+                }
+
+                $nid->setValue($nameId['Value']);
+                if (array_key_exists('NameQualifier', $nameId) && $nameId['NameQualifier'] !== null) {
+                    $nid->setNameQualifier($nameId['NameQualifier']);
+                }
+                if (array_key_exists('SPNameQualifier', $nameId) && $nameId['SPNameQualifier'] !== null) {
+                    $nid->setSPNameQualifier($nameId['SPNameQualifier']);
+                }
+                if (array_key_exists('SPProvidedID', $nameId) && $nameId['SPProvidedId'] !== null) {
+                    $nid->setSPProvidedID($nameId['SPProvidedID']);
+                }
+                if (array_key_exists('Format', $nameId) && $nameId['Format'] !== null) {
+                    $nid->setFormat($nameId['Format']);
+                }
+            } else {
+                $nid = $nameId;
             }
 
             $ar->setNameId($nid);
