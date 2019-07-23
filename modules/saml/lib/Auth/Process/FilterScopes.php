@@ -89,13 +89,13 @@ class FilterScopes extends \SimpleSAML\Auth\ProcessingFilter
                         Logger::warning("Removing value '$value' for attribute '$attribute'. Undeclared scope.");
                     }
                 }
-            }
 
-            if (empty($newValues)) {
-                Logger::warning("No suitable values for attribute '$attribute', removing it.");
-                unset($request['Attributes'][$attribute]); // remove empty attributes
-            } else {
-                $request['Attributes'][$attribute] = $newValues;
+                if (empty($newValues)) {
+                    Logger::warning("No suitable values for attribute '$attribute', removing it.");
+                    unset($request['Attributes'][$attribute]); // remove empty attributes
+                } else {
+                    $request['Attributes'][$attribute] = $newValues;
+                }
             }
         }
     }
