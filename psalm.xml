@@ -86,6 +86,8 @@
                 <file name="bin/*.php" />
                 <file name="lib/SimpleSAML/XHTML/Template.php" />
                 <file name="modules/*/bin/*.php" />
+                <file name="tests/bootstrap.php" />
+                <file name="tests/routers/configLoader.php" />
             </errorLevel>
         </UnresolvableInclude>
 
