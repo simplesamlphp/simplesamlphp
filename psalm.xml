@@ -32,7 +32,7 @@
         <directory name="modules/portal" />
         <directory name="modules/saml" />
 
-        <directory name="tests/" />
+        <directory name="tests" />
 
         <!-- Ignore deprecated classes -->
         <ignoreFiles>
