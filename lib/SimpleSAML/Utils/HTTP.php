@@ -464,14 +464,12 @@ class HTTP
         // data and headers
         if ($getHeaders) {
             /**
-             * Remove for Psalm >=3.0.17
-             * @psalm-suppress UndefinedVariable
+             * @psalm-suppress UndefinedVariable    Remove when Psalm >= 3.0.17
              */
             if (!empty($http_response_header)) {
                 $headers = [];
                 /**
-                 * Remove for Psalm >=3.0.17
-                 * @psalm-suppress UndefinedVariable
+                 * @psalm-suppress UndefinedVariable    Remove when Psalm >= 3.0.17
                  */
                 foreach ($http_response_header as $h) {
                     if (preg_match('@^HTTP/1\.[01]\s+\d{3}\s+@', $h)) {
@@ -1168,7 +1166,7 @@ class HTTP
         if (version_compare(PHP_VERSION, '7.3.0', '>=')) {
             /* use the new options array for PHP >= 7.3 */
             if ($params['raw']) {
-                /** @psalm-suppress InvalidArgument */
+                /** @psalm-suppress InvalidArgument  Remove when Psalm >= 3.4.10 */
                 $success = @setrawcookie(
                     $name,
                     $value,
@@ -1182,7 +1180,7 @@ class HTTP
                     ]
                 );
             } else {
-                /** @psalm-suppress InvalidArgument */
+                /** @psalm-suppress InvalidArgument  Remove when Psalm >= 3.4.10 */
                 $success = @setcookie(
                     $name,
                     $value,
