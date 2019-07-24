@@ -569,6 +569,18 @@ $config = [
     'session.cookie.secure' => false,
 
     /*
+     * Set the SameSite attribute in the cookie.
+     *
+     * You can set this to the strings 'None', 'Lax', or 'Strict' to support
+     * the RFC6265bis SameSite cookie attribute. If set to null, no SameSite
+     * attribute will be sent.
+     *
+     * Example:
+     *  'session.cookie.samesite' => 'None',
+     */
+    'session.cookie.samesite' => null,
+
+    /*
      * Options to override the default settings for php sessions.
      */
     'session.phpsession.cookiename' => 'SimpleSAML',
@@ -760,6 +772,7 @@ $config = [
     'language.cookie.secure' => false,
     'language.cookie.httponly' => false,
     'language.cookie.lifetime' => (60 * 60 * 24 * 900),
+    'language.cookie.samesite' => null,
 
     /**
      * Custom getLanguage function called from SimpleSAML\Locale\Language::getLanguage().
