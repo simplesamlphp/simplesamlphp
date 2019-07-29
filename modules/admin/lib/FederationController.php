@@ -488,4 +488,25 @@ class FederationController
 
         return $response;
     }
+
+    /**
+     * Show remote entity metadata
+     *
+     * @param Request $request The current request.
+     *
+     * @return Response
+     */
+    public function showRemoteEntity(Request $request)
+    {
+        Utils\Auth::requireAdmin();
+
+        $entityId = $request->get('entityid');
+        $set = $request->get('set');
+
+        $metadata = $this->mdHandler->getMetaData($entityId, $set);
+
+        $t = new Template($this->config, 'admin:show_metadata.twig');
+        $t->data['metadata'] = var_export($metadata, true);
+        return $t;
+    }
 }

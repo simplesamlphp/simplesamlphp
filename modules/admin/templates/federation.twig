@@ -105,18 +105,17 @@
       <ul>
       {% for entityid, entity in set %}
 
-        <li><a href="{{ (metadata_url ~ '?entityid=' ~ entity.entityid ~ '&set=' ~ key) }}">
-          {%- if entity.name_translated %}
+        <li><a href="federation/show{{ ('?entityid=' ~ (entity.entityid|url_encode) ~ '&set=' ~ key) }}">
+          {%- if entity.name_translated -%}
 
           {{ entity.name_translated }}
-          {%- elseif entity.organizationdisplayname_translated %}
+          {%- elseif entity.organizationdisplayname_translated -%}
 
           {{ entity.organizationdisplayname_translated }}
-          {%- else %}
+          {%- else -%}
 
           {{ entity.entityid|escape('html') }}
-          {% endif -%}
-
+          {%- endif -%}
           </a>
           {%- if entity.expire %}
             {%- if entity.expire < date().timestamp %}
@@ -126,9 +125,8 @@
               {%- set expiration = (entity.expire - date().timestamp) / 3600 %}
 
           ({% trans %}expires in {{ expiration }} hours{% endtrans %})
-            {%- endif %}
-          {%- endif %}
-
+            {%- endif -%}
+          {%- endif -%}
         </li>
       {% endfor %}
       </ul>
@@ -144,7 +142,7 @@
       {%- endfor %}
 
     </ul>
-    <form action="{{ metadata_url }}" method="get" class="pure-form">
+    <form action="federation/show" method="get" class="pure-form">
       <fieldset class="fancyfieldset">
         <legend>{% trans %}Look up metadata for entity:{% endtrans %}</legend>
         <select name="set">
@@ -156,7 +154,7 @@
           {%- endif %}
 
         </select>
-        <input type="text" name="entityid" placeholder="{% trans %}EntityID{% endtrans %}" />
+        <input type="text" name="entityid" placeholder="{% trans %}EntityID{% endtrans %}">
         <button class="pure-button pure-button-red" type="submit">{% trans %}Search{% endtrans %}</button>
       </fieldset>
     </form>

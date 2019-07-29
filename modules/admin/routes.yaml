@@ -16,6 +16,9 @@ admin-fed:
 admin-fed-cert:
     path:       /federation/cert
     defaults:   { _controller: 'SimpleSAML\Module\admin\FederationController::downloadCert' }
+admin-fed-show:
+    path:       /federation/show
+    defaults:   { _controller: 'SimpleSAML\Module\admin\FederationController::showRemoteEntity' }
 admin-fed-converter:
     path:       /federation/metadata-converter
     defaults:   { _controller: 'SimpleSAML\Module\admin\FederationController::metadataConverter' }
