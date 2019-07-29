@@ -18,6 +18,8 @@ use SimpleSAML\Module\saml\IdP\SAML2 as SAML2_IdP;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 
 /**
  * Controller class for the admin module.
@@ -295,7 +297,7 @@ class FederationController
             $entities[$index]['type'] = $entity['metadata-set'];
             foreach ($entity['metadata_array']['keys'] as $kidx => $key) {
                 $key['url'] = Module::getModuleURL(
-                    'admin/cert',
+                    'admin/federation/cert',
                     [
                         'set' => $entity['metadata-set'],
                         'idp' => $entity['metadata-index'],
@@ -448,5 +450,42 @@ class FederationController
 
         $this->menu->addOption('logout', $t->data['logouturl'], Translate::noop('Log out'));
         return $this->menu->insert($t);
+    }
+
+    /**
+     * Download a certificate for a given entity.
+     *
+     * @param Request $request The current request.
+     *
+     * @return Response PEM-encoded certificate.
+     */
+    public function downloadCert(Request $request)
+    {
+        Utils\Auth::requireAdmin();
+
+        $set = $request->get('set');
+        $prefix = $request->get('prefix');
+
+        if ($set === 'saml20-sp-hosted') {
+                $sourceID = $request->get('source');
+                $source = \SimpleSAML\Auth\Source::getById($sourceID);
+                $mdconfig = $source->getMetadata();
+        } else {
+                $entityID = $request->get('entity');
+                $mdconfig = $this->mdHandler->getMetaDataConfig($entityID, $set);
+        }
+
+        $certInfo = Utils\Crypto::loadPublicKey($mdconfig, true, $prefix);
+
+        $response = new Response($certInfo['PEM']);
+        $disposition = $response->headers->makeDisposition(
+            ResponseHeaderBag::DISPOSITION_ATTACHMENT,
+            'cert.pem'
+        );
+
+        $response->headers->set('Content-Disposition', $disposition);
+        $response->headers->set('Content-Type', 'application/x-pem-file');
+
+        return $response;
     }
 }

@@ -219,9 +219,10 @@ class SP extends \SimpleSAML\Auth\Source
                 'X509Certificate' => $certInfo['certData'],
                 'prefix' => 'new_',
                 'url' => Module::getModuleURL(
-                    'admin/cert',
+                    'admin/federation/cert',
                     [
-                        'sp' => $this->getAuthId(),
+                        'set' => 'saml20-sp-hosted',
+                        'source' => $this->getAuthId(),
                         'prefix' => 'new_'
                     ]
                 ),
@@ -238,9 +239,10 @@ class SP extends \SimpleSAML\Auth\Source
                 'X509Certificate' => $certInfo['certData'],
                 'prefix' => '',
                 'url' => Module::getModuleURL(
-                    'admin/cert',
+                    'admin/federation/cert',
                     [
-                        'sp' => $this->getAuthId(),
+                        'set' => 'saml20-sp-hosted',
+                        'source' => $this->getAuthId(),
                         'prefix' => ''
                     ]
                 ),

@@ -71,9 +71,9 @@
                 {#- #}$metadata['{{ set.entityid }}'] = {{ set.metadata_array }};{# -#}
               </div>
             </dd>
-            <dt>{% trans %}Certificates{% endtrans %}</dt>
             {%- for cert in set.certificates %}
               {%- if loop.first %}
+              <dt>{% trans %}Certificates{% endtrans %}</dt>
 
               <ul>
               {%- endif %}
