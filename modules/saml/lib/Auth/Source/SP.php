@@ -133,7 +133,7 @@ class SP extends \SimpleSAML\Auth\Source
         $entityid = $this->getEntityId();
         $metadata = [
             'entityid' => $entityid,
-            'metadata-set' => 'smal20-sp-remote',
+            'metadata-set' => 'saml20-sp-remote',
             'SingleLogoutService' => $this->getSLOEndpoints(),
             'AssertionConsumerService' => $this->getACSEndpoints(),
         ];
