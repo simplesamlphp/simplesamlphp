@@ -479,6 +479,7 @@ class FederationController
             $mdconfig = $this->mdHandler->getMetaDataConfig($entityID, $set);
         }
 
+        /** @var array $certInfo  Second param ensures non-nullable return-value */
         $certInfo = Utils\Crypto::loadPublicKey($mdconfig, true, $prefix);
 
         $response = new Response($certInfo['PEM']);
