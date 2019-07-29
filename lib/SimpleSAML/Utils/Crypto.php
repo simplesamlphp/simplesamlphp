@@ -250,7 +250,7 @@ class Crypto
      *   certificate.)
      *
      * @param \SimpleSAML\Configuration $metadata The metadata.
-     * @param bool                      $required Whether the private key is required. If this is TRUE, a missing key
+     * @param bool                      $required Whether the public key is required. If this is TRUE, a missing key
      *     will cause an exception. Default is FALSE.
      * @param string                    $prefix The prefix which should be used when reading from the metadata array.
      *     Defaults to ''.
@@ -258,7 +258,7 @@ class Crypto
      * @return array|NULL Public key or certificate data, or NULL if no public key or certificate was found.
      * @throws \InvalidArgumentException If $metadata is not an instance of \SimpleSAML\Configuration, $required is not
      *     boolean or $prefix is not a string.
-     * @throws Error\Exception If no private key is found in the metadata, or it was not possible to load
+     * @throws Error\Exception If no public key is found in the metadata, or it was not possible to load
      *     it.
      *
      * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
