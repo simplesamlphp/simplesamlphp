@@ -467,12 +467,16 @@ class FederationController
         $prefix = $request->get('prefix');
 
         if ($set === 'saml20-sp-hosted') {
-                $sourceID = $request->get('source');
-                $source = \SimpleSAML\Auth\Source::getById($sourceID, Module\saml\Auth\Source\SP::class);
-                $mdconfig = $source->getMetadata();
+            $sourceID = $request->get('source');
+            /**
+             * The second argument ensures non-nullable return-value
+             * @var \SimpleSAML\Module\saml\Auth\Source\SP $source
+             */
+            $source = \SimpleSAML\Auth\Source::getById($sourceID, Module\saml\Auth\Source\SP::class);
+            $mdconfig = $source->getMetadata();
         } else {
-                $entityID = $request->get('entity');
-                $mdconfig = $this->mdHandler->getMetaDataConfig($entityID, $set);
+            $entityID = $request->get('entity');
+            $mdconfig = $this->mdHandler->getMetaDataConfig($entityID, $set);
         }
 
         $certInfo = Utils\Crypto::loadPublicKey($mdconfig, true, $prefix);
