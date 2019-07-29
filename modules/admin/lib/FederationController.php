@@ -69,14 +69,14 @@ class FederationController
         $entries = [
             'hosted' => array_merge($hostedSPs, $hostedIdPs),
             'remote' => [
-                'saml20-idp-remote' => !empty($hostedSPs) ? $this->mdHandler->getList('saml20-idp-remote') : [],
-                'shib13-idp-remote' => !empty($hostedSPs) ? $this->mdHandler->getList('shib13-idp-remote') : [],
+                'saml20-idp-remote' => !empty($hostedSPs) ? $this->mdHandler->getList('saml20-idp-remote', true) : [],
+                'shib13-idp-remote' => !empty($hostedSPs) ? $this->mdHandler->getList('shib13-idp-remote', true) : [],
                 'saml20-sp-remote' => $this->config->getBoolean('enable.saml20-idp', false) === true
-                    ? $this->mdHandler->getList('saml20-sp-remote') : [],
+                    ? $this->mdHandler->getList('saml20-sp-remote', true) : [],
                 'shib13-sp-remote' => $this->config->getBoolean('enable.shib13-idp', false) === true
-                    ? $this->mdHandler->getList('shib13-sp-remote') : [],
+                    ? $this->mdHandler->getList('shib13-sp-remote', true) : [],
                 'adfs-sp-remote' => ($this->config->getBoolean('enable.adfs-idp', false) === true) &&
-                    Module::isModuleEnabled('adfs') ? $this->mdHandler->getList('adfs-sp-remote') : [],
+                    Module::isModuleEnabled('adfs') ? $this->mdHandler->getList('adfs-sp-remote', true) : [],
             ],
         ];
 
