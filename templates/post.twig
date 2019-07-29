@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <script src="/{{ baseurlpath }}resources/post.js"></script>
+    <link rel="stylesheet" href="/{{ baseurlpath }}resources/post.css">
+    </head>
+    <body>
+
+    <noscript>
+        <p><strong>Note:</strong> 
+        Since your browser does not support JavaScript, 
+        you must press the button below once to proceed.</p> 
+    </noscript> 
+
+    <form method="post" action="{{ destination }}">
+    <!-- Need to add this element and call click method, because calling 
+    submit() on the form causes failed submission if the form has another 
+    element with name or id of submit.
+    See: https://developer.mozilla.org/en/DOM/form.submit#Specification -->
+    <input type="submit" id="postLoginSubmitButton">
+
+    {% for name, value in post %}
+        {% if value is iterable %}
+            {% for index, item in value %}
+                <input type="hidden" name="{{ name }}[{{ index }}]" value = "{{ value }}">
+            {% endfor %}
+        {% else %}
+            <input type="hidden" name="{{ name }}" value = "{{ value }}">
+        {% endif %}
+    {% endfor %}
+
+        <noscript>
+            <button type="submit" class="btn">Continue</button>
+        </noscript>
+    </form>
+
+    </body>
+</html>
