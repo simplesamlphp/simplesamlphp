@@ -51,8 +51,8 @@ $metaentries = ['hosted' => $metadataHosted, 'remote' => []];
 
 
 if ($isadmin) {
-    $metaentries['remote']['saml20-idp-remote'] = $metadata->getList('saml20-idp-remote');
-    $metaentries['remote']['shib13-idp-remote'] = $metadata->getList('shib13-idp-remote');
+    $metaentries['remote']['saml20-idp-remote'] = $metadata->getList('saml20-idp-remote', true);
+    $metaentries['remote']['shib13-idp-remote'] = $metadata->getList('shib13-idp-remote', true);
 }
 
 if ($config->getBoolean('enable.saml20-idp', false) === true) {
@@ -61,7 +61,7 @@ if ($config->getBoolean('enable.saml20-idp', false) === true) {
         $metaentries['hosted']['saml20-idp']['metadata-url'] =
             $config->getBasePath().'saml2/idp/metadata.php?output=xhtml';
         if ($isadmin) {
-            $metaentries['remote']['saml20-sp-remote'] = $metadata->getList('saml20-sp-remote');
+            $metaentries['remote']['saml20-sp-remote'] = $metadata->getList('saml20-sp-remote', true);
         }
     } catch (Exception $e) {
         \SimpleSAML\Logger::error('Federation: Error loading saml20-idp: '.$e->getMessage());
@@ -73,7 +73,7 @@ if ($config->getBoolean('enable.shib13-idp', false) === true) {
         $metaentries['hosted']['shib13-idp']['metadata-url'] =
             $config->getBasePath().'shib13/idp/metadata.php?output=xhtml';
         if ($isadmin) {
-            $metaentries['remote']['shib13-sp-remote'] = $metadata->getList('shib13-sp-remote');
+            $metaentries['remote']['shib13-sp-remote'] = $metadata->getList('shib13-sp-remote', true);
         }
     } catch (Exception $e) {
         \SimpleSAML\Logger::error('Federation: Error loading shib13-idp: '.$e->getMessage());
@@ -87,7 +87,7 @@ if ($config->getBoolean('enable.adfs-idp', false) === true) {
             ['output' => 'xhtml']
         );
         if ($isadmin) {
-            $metaentries['remote']['adfs-sp-remote'] = $metadata->getList('adfs-sp-remote');
+            $metaentries['remote']['adfs-sp-remote'] = $metadata->getList('adfs-sp-remote', true);
         }
     } catch (Exception $e) {
         \SimpleSAML\Logger::error('Federation: Error loading adfs-idp: '.$e->getMessage());
