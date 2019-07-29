@@ -142,10 +142,11 @@ class MetaDataStorageHandler implements \SimpleSAML\Utils\ClearableState
      * where the key is the entity id.
      *
      * @param string $set The set we want to list metadata from.
+     * @param bool $showExpired A boolean specifying whether expired entities should be returned
      *
      * @return array An associative array with the metadata from from the given set.
      */
-    public function getList($set = 'saml20-idp-remote')
+    public function getList($set = 'saml20-idp-remote', $showExpired = false)
     {
         assert(is_string($set));
 
@@ -154,9 +155,9 @@ class MetaDataStorageHandler implements \SimpleSAML\Utils\ClearableState
         foreach ($this->sources as $source) {
             $srcList = $source->getMetadataSet($set);
 
-            foreach ($srcList as $key => $le) {
-                if (array_key_exists('expire', $le)) {
-                    if ($le['expire'] < time()) {
+            if ($showExpired === false) {
+                foreach ($srcList as $key => $le) {
+                    if (array_key_exists('expire', $le) && ($le['expire'] < time())) {
                         unset($srcList[$key]);
                         Logger::warning(
                             "Dropping metadata entity ".var_export($key, true).", expired ".
