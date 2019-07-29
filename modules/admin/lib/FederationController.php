@@ -468,7 +468,7 @@ class FederationController
 
         if ($set === 'saml20-sp-hosted') {
                 $sourceID = $request->get('source');
-                $source = \SimpleSAML\Auth\Source::getById($sourceID);
+                $source = \SimpleSAML\Auth\Source::getById($sourceID, Module\saml\Auth\Source\SP::class);
                 $mdconfig = $source->getMetadata();
         } else {
                 $entityID = $request->get('entity');
