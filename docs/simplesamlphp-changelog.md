@@ -10,11 +10,12 @@ See the upgrade notes for specific information about upgrading.
 
 Released TBD
 
-  * Fixed a bug in the SP API where NameID-objects weren't taken care of (introduced in 1.17.0)
-  * Fixed a regression where MetaDataStorageHandlerPdo::getMetaData() would not return a value (#1165)
-  * Fixed an issue with table indeces (#1089)
-  * Fixed an issue with table migrations on SQlite (#1169)
-  * Updated composer dependencies
+  * Fixed a bug in the SP API where NameID objects weren't taken care of (introduced in 1.17.0).
+  * Fixed a regression where MetaDataStorageHandlerPdo::getMetaData() would not return a value (#1165).
+  * Fixed an issue with table indexes (#1089).
+  * Fixed an issue with table migrations on SQlite (#1169).
+  * Fixed an issue with generated eduPersonTargetedID lacking a format specified (#1135).
+  * Updated composer dependencies.
 
 ## Version 1.17.4
 
