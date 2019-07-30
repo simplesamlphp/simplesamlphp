@@ -3,9 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'unsafe-inline'">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'">
     <link rel="icon" href="/{{ baseurlpath }}resources/icons/favicon.ico">
     <title>{% trans %}Sending message{% endtrans %}</title>
+    <link rel="stylesheet" href="/{{ baseurlpath }}resources/post.css">
     <script src="/{{ baseurlpath }}resources/post.js"></script>
   </head>
   <body>
@@ -15,7 +16,7 @@
           https://developer.mozilla.org/en/DOM/form.submit#Specification
        #}
 
-      <input type="submit" id="postLoginSubmitButton" style="display: none">
+      <input type="submit" id="postLoginSubmitButton">
       {%- for name, value in post %}
         {%- if value is iterable %}
           {%- for index, item in value %}
