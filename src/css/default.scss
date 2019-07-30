@@ -53,6 +53,10 @@ body {
   vertical-align: middle;
 }
 
+i {
+  font-style: italic;
+}
+
 h1 {
   margin: 1em 0;
   font-size: 2em;
@@ -132,8 +136,13 @@ pre, code, kbd, samp, tt {
   margin-right: 4px;
 }
 
-.pure-button-red,
-a.pure-button-red {
+.pure-button {
+  &:hover {
+    padding: .5em 1em;
+  }
+}
+
+.pure-button-red {
   background-color: rgb(219, 1, 0);
   color: #fff;
   &:hover, &:focus {
@@ -184,6 +193,10 @@ a.pure-button-red {
   margin: 0;
   line-height: unset;
   border: 1px solid #E6E6E6;
+}
+
+.pure-button-group.two-elements form {
+  display: inline;
 }
 
 .pure-button-group.two-elements .pure-button:first-child {
@@ -859,4 +872,8 @@ div.preferredidp {
       }
     }
   }
+}
+
+.hidden {
+  display: none;
 }
