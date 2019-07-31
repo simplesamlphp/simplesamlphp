@@ -99,6 +99,10 @@ foreach ($state['core:Logout-IFrame:Associations'] as $association) {
         $mdset = 'adfs-sp-remote';
     }
 
+    if ($association['core:Logout-IFrame:State'] === 'completed') {
+        continue;
+    }
+
     $remaining[$key] = [
         'id' => $association['id'],
         'expires_on' => $association['Expires'],
