@@ -18,6 +18,7 @@ module.exports = environment => {
     return {
         entry: {
             bundle: './src/js/bundle',
+            logout: './src/js/logout/main',
             stylesheet: './src/js/style'
         },
         output: {
