@@ -1,3 +1,4 @@
+{% spaceless %}
 <!DOCTYPE html>
 <html lang="{{ currentLanguage }}" xml:lang="{{ currentLanguage }}">
   <head>
@@ -7,35 +8,27 @@
     <link rel="stylesheet" href="{{ asset("css/stylesheet.css") }}">
     <link rel="icon" href="/{{ baseurlpath }}resources/icons/favicon.ico">
     {% if isRTL %}
-
     <link rel="stylesheet" href="{{ asset("assets/css/src/default-rtl.css") }}">
     {% endif %}
-
     <meta name="robots" content="noindex, nofollow">
-    <link rel="preload" href="{{ asset('js/bundle.js') }}" as="script" />
-    {%- block preload %}{% endblock %}
-
+    <link rel="preload" href="{{ asset('js/bundle.js') }}" as="script">
+    {% block preload %}{% endblock %}
   </head>
   <body id="{{ templateId }}">
     <div id="layout">
-    {%- block header %}{% include "_header.twig" %}{% endblock %}
-
+    {% block header %}{% include "_header.twig" %}{% endblock %}
       <div id="content">
         <div class="wrap">
-          {%- block contentwrapper %}
-            {%- block content %}{% endblock %}
-          {%- endblock contentwrapper %}
-
+          {% block contentwrapper %}{% block content %}{% endblock %}{% endblock contentwrapper %}
         </div>
-      </div><!-- content -->
+      </div>{# content #}
       <div id="push"></div>
-    </div><!-- layout -->
+    </div>{# layout #}
     <div id="foot">
-      {%- block footer %}{% include "_footer.twig" %}{% endblock %}
-
+      {% block footer %}{% include "_footer.twig" %}{% endblock %}
     </div>
     <script src="{{ asset('js/bundle.js') }}"></script>
-    {%- block postload %}{% endblock %}
-
+    {% block postload %}{% endblock %}
   </body>
 </html>
+{% endspaceless %}
