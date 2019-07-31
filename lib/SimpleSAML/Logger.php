@@ -386,7 +386,9 @@ class Logger
     private static function defer($level, $message, $stats)
     {
         // save the message for later
-        self::$earlyLog[] = ['level' => $level, 'string' => $message, 'statsLog' => $stats];
+        self::$earlyLog[] = [
+            'level' => $level, 'string' => $message, 'statsLog' => $stats
+        ];
 
         // register a shutdown handler if needed
         if (!self::$shutdownRegistered) {

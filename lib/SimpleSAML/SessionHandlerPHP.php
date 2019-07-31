@@ -68,7 +68,7 @@ class SessionHandlerPHP extends SessionHandler
         }
 
         if (!empty($this->cookie_name)) {
-            session_name($this->cookie_name);
+            @session_name($this->cookie_name);
         } else {
             $this->cookie_name = session_name();
         }
