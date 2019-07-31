@@ -511,6 +511,7 @@ class FederationController
         $metadata = $this->mdHandler->getMetaData($entityId, $set);
 
         $t = new Template($this->config, 'admin:show_metadata.twig');
+        $t->data['entityid'] = $entityId;
         $t->data['metadata'] = var_export($metadata, true);
         return $t;
     }
