@@ -137,8 +137,10 @@ pre, code, kbd, samp, tt {
 }
 
 .pure-button {
-  &:hover {
+  &:hover, &:focus {
+    background-color: #555;
     padding: .5em 1em;
+    color: #fff;
   }
 }
 
