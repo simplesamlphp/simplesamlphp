@@ -36,7 +36,7 @@
         <li id="sp-{{ key }}" data-id="{{ key }}" data-status="{{ sp['status'] }}"
             {#- #} data-timeout="{{ timeout }}">
           <span class="fa-li"><i id="icon-{{ key }}" class="fa fa-{{ icon }}"></i></span>
-          {{ name }} ({{ sp['status'] }})
+          {{ name }}
       {%- if sp['status'] != 'completed' and sp['status'] != 'failed' %}
         {%- if type == 'nojs' %}
 
