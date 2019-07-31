@@ -4,6 +4,14 @@
 {% block preload %}
 
     <link rel="preload" href="{{ asset('js/logout.js') }}" as="script">
+    {%- if type != "init" %}
+      {%- set content = '2' %}
+      {%- if remaining_services|length == 0 %}
+        {%- set content = '0; url=logout-iframe-done.php?id=' ~ auth_state %}
+      {%- endif %}
+
+    <meta http-equiv="refresh" content="{{ content }}">
+    {% endif %}
 {% endblock preload %}
 
 {% block content %}
@@ -17,8 +25,11 @@
   {%- if remaining_services %}
     {%- set failed = false  %}
     {%- set remaining = 0 %}
+    {%- if remaining_services|length > 0 %}
 
     <p>{% trans %}You are also logged in on these services:{% endtrans %}</p>
+    {%- endif %}
+
     <div class="custom-restricted-width">
       <ul class="fa-ul">
     {%- for key, sp in remaining_services %}
@@ -29,8 +40,12 @@
         {%- set icon = 'check-circle' %}
       {%- elseif sp['status'] == 'failed' %}
         {%- set icon = 'exclamation-circle' %}
-      {%- elseif sp['status'] == 'onhold' or sp['status'] == 'inprogress '%}
+        {%- set failed = true %}
+      {%- elseif (sp['status'] == 'onhold' or sp['status'] == 'inprogress') %}
         {%- set remaining = remaining + 1 %}
+      {%- endif %}
+      {%- if type == 'nojs' and sp['status'] == 'inprogress' %}
+        {%- set icon = icon ~ ' fa-spin' %}
       {%- endif %}
 
         <li id="sp-{{ key }}" data-id="{{ key }}" data-status="{{ sp['status'] }}"
@@ -47,7 +62,6 @@
         {%- endif %}
       {%- else %}
         {%- if sp['status'] == 'failed' %}
-
           ({% trans %}logout is not supported{% endtrans %})
         {%- endif %}
       {%- endif %}
@@ -57,25 +71,28 @@
 
       </ul>
     </div>
-    <br/>
-    <div id="error-message"{% if not failed %} class="hidden"{% endif %}>
+    <br>
+    <div id="error-message"{% if not failed or type == 'init' %} class="hidden"{% endif %}>
       <div class="message-box error">
         {% trans %}Unable to log out of one or more services. To ensure that all your
         {#- #} sessions are closed, you are encouraged to <i>close your webbrowser</i>.{% endtrans %}
       </div>
     </div>
-    <form id="error-form" action="logout-iframe-done.php"{% if remaining %} class="hidden"{% endif %}>
+    <form id="error-form" action="logout-iframe-done.php"
+          {%- if (not failed or type == 'init') and remaining %} class="hidden"{% endif %}>
       <input type="hidden" name="id" value="{{ auth_state }}">
       <button type="submit" id="btn-continue" name="ok" class="pure-button pure-button-red">
         {%- trans %}Continue{% endtrans -%}
       </button>
     </form>
-    <div id="original-actions"{% if remaining == 0 %} class="hidden"{% endif %}>
+    <div id="original-actions"{% if type != 'init' %} class="hidden"{% endif %}>
       <p>{% trans %}Do you want to logout from all the services above?{% endtrans %}</p>
       <div class="pure-button-group two-elements">
         <form id="startform" action="logout-iframe.php">
           <input type="hidden" name="id" value="{{ auth_state }}">
-          <input type="hidden" name="type" value="nojs" id="logout-type-selector">{# ?? #}
+          <noscript>
+            <input type="hidden" name="type" value="nojs" id="logout-type-selector">
+          </noscript>
           <button type="submit" id="btn-all" name="ok" class="pure-button pure-button-red">
             {%- trans %}Yes, all services{% endtrans -%}
           </button>
@@ -90,6 +107,13 @@
         </form>
       </div>
     </div>
+  {%- else %}
+    <form id="error-form" action="logout-iframe-done.php">
+      <input type="hidden" name="id" value="{{ auth_state }}">
+      <button type="submit" id="btn-continue" name="ok" class="pure-button pure-button-red">
+        {%- trans %}Continue{% endtrans -%}
+      </button>
+    </form>
   {% endif %}
 {% endblock %}
 
