@@ -8,7 +8,7 @@ See the upgrade notes for specific information about upgrading.
 
 ## Version 1.18.0
 
-Released TBD
+Released 2019-08-02
 
   * Replace custom Email class with the phpmailer library.
   * Allow to log to STDERR in the logging.handler option.
