@@ -110,7 +110,7 @@ class LogoutStore
         $query .= $store->prefix.'_saml_LogoutStore (_authSource(191), _nameId)';
         $store->pdo->exec($query);
 
-        $store->setTableVersion('saml_LogoutStore', 2);
+        $store->setTableVersion('saml_LogoutStore', 3);
     }
 
 
