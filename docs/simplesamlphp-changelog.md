@@ -8,7 +8,7 @@ See the upgrade notes for specific information about upgrading.
 
 ## Version 1.17.5
 
-Released TBD
+Released 2019-08-02
 
   * Fixed a bug in the SP API where NameID objects weren't taken care of (introduced in 1.17.0).
   * Fixed a regression where MetaDataStorageHandlerPdo::getMetaData() would not return a value (#1165).
