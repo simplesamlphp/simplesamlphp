@@ -2,6 +2,7 @@
 
 namespace SimpleSAML\Command;
 
+use Closure;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputInterface;
@@ -20,6 +21,7 @@ class RouterDebugCommand extends Command
      */
     private $router;
 
+
     /**
      * {@inheritdoc}
      */
@@ -29,8 +31,9 @@ class RouterDebugCommand extends Command
         $this->router = $router;
     }
 
+
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     protected function configure()
     {
@@ -46,6 +49,7 @@ EOF
         ;
     }
 
+
     /**
      * {@inheritdoc}
      */
@@ -58,19 +62,19 @@ EOF
 
         $tableRows = array();
         foreach ($routes->all() as $name => $route) {
-            $row = array(
+            $row = [
                 $name,
                 $route->getMethods() ? implode('|', $route->getMethods()) : 'ANY',
                 $route->getSchemes() ? implode('|', $route->getSchemes()) : 'ANY',
                 '' !== $route->getHost() ? $route->getHost() : 'ANY',
                 $route->getPath(),
-            );
+            ];
 
             $controller = $route->getDefault('_controller');
-            if ($controller instanceof \Closure) {
+            if ($controller instanceof Closure) {
                 $controller = 'Closure';
-            } elseif (\is_object($controller)) {
-                $controller = \get_class($controller);
+            } elseif (is_object($controller)) {
+                $controller = get_class($controller);
             }
             $row[] = $controller;
 

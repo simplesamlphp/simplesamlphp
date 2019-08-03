@@ -9,11 +9,16 @@ use Symfony\Component\HttpKernel\HttpKernelInterface;
 
 class Application extends BaseApplication
 {
+    /**
+     * @param \Symfony\Component\HttpKernel\HttpKernelInterface $kernel
+     */
     public function __construct(HttpKernelInterface $kernel)
     {
         parent::__construct($kernel, Kernel::VERSION);
 
         $inputDefinition = $this->getDefinition();
-        $inputDefinition->addOption(new InputOption('--module', '-m', InputOption::VALUE_REQUIRED, 'The module name', $kernel->getModule()));
+        $inputDefinition->addOption(
+            new InputOption('--module', '-m', InputOption::VALUE_REQUIRED, 'The module name', $kernel->getModule())
+        );
     }
 }

@@ -75,7 +75,7 @@
         "simplesamlphp/simplesamlphp-module-statistics": "^0.9",
         "simplesamlphp/simplesamlphp-module-sqlauth": "^0.9",
         "simplesamlphp/twig-configurable-i18n": "^2.1",
-        "symfony/cache": "^3.4 || ^4.0"
+        "symfony/cache": "^3.4 || ^4.0",
         "symfony/config": "^3.4 || ^4.0",
         "symfony/console": "^3.4 || ^4.0",
         "symfony/dependency-injection": "^3.4 || ^4.0",
