@@ -35,7 +35,9 @@ class Kernel extends BaseKernel
     {
         $this->module = $module;
 
-        parent::__construct('dev', false);
+        $env = getenv('APP_ENV') ?: (getenv('SYMFONY_ENV') ?: 'prod');
+
+        parent::__construct($env, false);
     }
 
 
@@ -143,6 +145,7 @@ class Kernel extends BaseKernel
         try {
             $definition = new Definition();
             $definition->setAutowired(true);
+            $definition->setPublic(true);
 
             $controllerDir = Module::getModuleDir($this->module) . '/lib/Controller';
 
