@@ -32,8 +32,8 @@ class PHPTest extends TestCase
     public function testInvalidConfiguration()
     {
         $config = [];
-        $this->expectException(
-            \SimpleSAML\Error\Exception::class,
+        $this->expectException(\SimpleSAML\Error\Exception::class);
+        $this->expectExceptionMessage(
             "core:PHP: missing mandatory configuration option 'code'."
         );
         new \SimpleSAML\Module\core\Auth\Process\PHP($config, null);
@@ -113,10 +113,8 @@ class PHPTest extends TestCase
             ]
         ];
 
-        $this->expectException(
-            \Exception::class,
-            "Missing uid attribute."
-        );
+        $this->expectException(Exception::class);
+        $this->expectExceptionMessage("Missing uid attribute.");
         $this->processFilter($config, $request);
     }
 

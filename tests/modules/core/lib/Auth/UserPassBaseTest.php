@@ -60,7 +60,8 @@ class UserPassBaseTest extends \PHPUnit\Framework\TestCase
      */
     public function testAuthenticateECPMissingPassword()
     {
-        $this->expectException(\SimpleSAML\Error\Error::class, 'WRONGUSERPASS');
+        $this->expectException(\SimpleSAML\Error\Error::class);
+        $this->expectExceptionMessage('WRONGUSERPASS');
 
         $state = [
             'saml:Binding' => \SAML2\Constants::BINDING_PAOS,
