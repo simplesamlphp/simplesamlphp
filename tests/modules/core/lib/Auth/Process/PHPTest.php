@@ -34,7 +34,9 @@ class PHPTest extends TestCase
     {
         $config = [];
         $this->expectException(\SimpleSAML\Error\Exception::class);
-        $this->expectExceptionMessage("core:PHP: missing mandatory configuration option 'code'.");
+        $this->expectExceptionMessage(
+            "core:PHP: missing mandatory configuration option 'code'."
+        );
         new \SimpleSAML\Module\core\Auth\Process\PHP($config, null);
     }
 

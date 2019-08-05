@@ -25,7 +25,9 @@ class AttributesTest extends TestCase
         $attributes = 'string';
         $expected = 'string';
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('The attributes array is not an array, it is: '.print_r($attributes, true).'.');
+        $this->expectExceptionMessage(
+            'The attributes array is not an array, it is: '.print_r($attributes, true).'.'
+        );
         Attributes::getExpectedAttribute($attributes, $expected);
     }
 
@@ -42,7 +44,9 @@ class AttributesTest extends TestCase
         $attributes = [];
         $expected = false;
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('The expected attribute is not a string, it is: '.print_r($expected, true).'.');
+        $this->expectExceptionMessage(
+            'The expected attribute is not a string, it is: '.print_r($expected, true).'.'
+        );
         Attributes::getExpectedAttribute($attributes, $expected);
     }
 
@@ -59,7 +63,9 @@ class AttributesTest extends TestCase
         ];
         $expected = 'attribute';
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('The attributes array is not normalized, values should be arrays.');
+        $this->expectExceptionMessage(
+            'The attributes array is not normalized, values should be arrays.'
+        );
         Attributes::getExpectedAttribute($attributes, $expected);
     }
 
@@ -113,7 +119,9 @@ class AttributesTest extends TestCase
         ];
         $expected = 'attribute';
         $this->expectException(\SimpleSAML\Error\Exception::class);
-        $this->expectExceptionMessage('More than one value found for the attribute, multiple values not allowed.');
+        $this->expectExceptionMessage(
+            'More than one value found for the attribute, multiple values not allowed.'
+        );
         Attributes::getExpectedAttribute($attributes, $expected);
     }
 
