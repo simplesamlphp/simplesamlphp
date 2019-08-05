@@ -2,6 +2,7 @@
 
 namespace SimpleSAML\Test\Utils;
 
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Utils\Attributes;
 
@@ -21,8 +22,8 @@ class AttributesTest extends TestCase
         // check with empty array as input
         $attributes = 'string';
         $expected = 'string';
-        $this->expectException(
-            \InvalidArgumentException::class,
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage(
             'The attributes array is not an array, it is: '.print_r($attributes, true).'.'
         );
         Attributes::getExpectedAttribute($attributes, $expected);
@@ -38,8 +39,8 @@ class AttributesTest extends TestCase
         // check with invalid attribute name
         $attributes = [];
         $expected = false;
-        $this->expectException(
-            \InvalidArgumentException::class,
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage(
             'The expected attribute is not a string, it is: '.print_r($expected, true).'.'
         );
         Attributes::getExpectedAttribute($attributes, $expected);
@@ -57,8 +58,8 @@ class AttributesTest extends TestCase
             'attribute' => 'value',
         ];
         $expected = 'attribute';
-        $this->expectException(
-            \InvalidArgumentException::class,
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage(
             'The attributes array is not normalized, values should be arrays.'
         );
         Attributes::getExpectedAttribute($attributes, $expected);
@@ -76,10 +77,8 @@ class AttributesTest extends TestCase
             'attribute' => ['value'],
         ];
         $expected = 'missing';
-        $this->expectException(
-            \SimpleSAML\Error\Exception::class,
-            "No such attribute '".$expected."' found."
-        );
+        $this->expectException(SimpleSAML\Error\Exception::class);
+        $this->expectExceptionMessage("No such attribute '".$expected."' found.");
         Attributes::getExpectedAttribute($attributes, $expected);
     }
 
@@ -95,10 +94,8 @@ class AttributesTest extends TestCase
             'attribute' => [],
         ];
         $expected = 'attribute';
-        $this->expectException(
-            \SimpleSAML\Error\Exception::class,
-            "Empty attribute '".$expected."'.'"
-        );
+        $this->expectException(SimpleSAML\Error\Exception::class);
+        $this->expectExceptionMessage("Empty attribute '".$expected."'.'");
         Attributes::getExpectedAttribute($attributes, $expected);
     }
 
@@ -117,8 +114,8 @@ class AttributesTest extends TestCase
             ],
         ];
         $expected = 'attribute';
-        $this->expectException(
-            \SimpleSAML\Error\Exception::class,
+        $this->expectException(SimpleSAML\Error\Exception::class);
+        $this->expectExceptionMessage(
             'More than one value found for the attribute, multiple values not allowed.'
         );
         Attributes::getExpectedAttribute($attributes, $expected);
@@ -155,7 +152,7 @@ class AttributesTest extends TestCase
      */
     public function testNormalizeAttributesArrayBadInput()
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         Attributes::normalizeAttributesArray('string');
     }
 
@@ -166,7 +163,7 @@ class AttributesTest extends TestCase
      */
     public function testNormalizeAttributesArrayBadKeys()
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         Attributes::normalizeAttributesArray(['attr1' => 'value1', 1 => 'value2']);
     }
 
@@ -177,7 +174,7 @@ class AttributesTest extends TestCase
      */
     public function testNormalizeAttributesArrayBadValues()
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         Attributes::normalizeAttributesArray(['attr1' => 'value1', 'attr2' => 0]);
     }
 
