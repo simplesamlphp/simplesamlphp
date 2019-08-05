@@ -77,7 +77,7 @@ class AttributesTest extends TestCase
             'attribute' => ['value'],
         ];
         $expected = 'missing';
-        $this->expectException(SimpleSAML\Error\Exception::class);
+        $this->expectException(\SimpleSAML\Error\Exception::class);
         $this->expectExceptionMessage("No such attribute '".$expected."' found.");
         Attributes::getExpectedAttribute($attributes, $expected);
     }
@@ -94,7 +94,7 @@ class AttributesTest extends TestCase
             'attribute' => [],
         ];
         $expected = 'attribute';
-        $this->expectException(SimpleSAML\Error\Exception::class);
+        $this->expectException(\SimpleSAML\Error\Exception::class);
         $this->expectExceptionMessage("Empty attribute '".$expected."'.'");
         Attributes::getExpectedAttribute($attributes, $expected);
     }
@@ -114,7 +114,7 @@ class AttributesTest extends TestCase
             ],
         ];
         $expected = 'attribute';
-        $this->expectException(SimpleSAML\Error\Exception::class);
+        $this->expectException(\SimpleSAML\Error\Exception::class);
         $this->expectExceptionMessage(
             'More than one value found for the attribute, multiple values not allowed.'
         );
