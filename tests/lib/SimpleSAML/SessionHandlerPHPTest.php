@@ -9,6 +9,7 @@ use SimpleSAML\Configuration;
 
 class SessionHandlerPHPTest extends ClearStateTestCase
 {
+    /** @var array */
     protected $sessionConfig = [
         'session.cookie.name' => 'SimpleSAMLSessionID',
         'session.cookie.lifetime' => 100,
@@ -17,8 +18,14 @@ class SessionHandlerPHPTest extends ClearStateTestCase
         'session.cookie.secure' => true,
         'session.phpsession.cookiename' => 'SimpleSAML',
     ];
+
+    /** @var array */
     protected $original;
 
+
+    /**
+     * @return void
+     */
     protected function setUp()
     {
         $this->original = $_SERVER;
@@ -29,15 +36,21 @@ class SessionHandlerPHPTest extends ClearStateTestCase
         $_SERVER['REQUEST_URI'] = '/simplesaml';
     }
 
+
+    /**
+     * @return void
+     */
     protected function tearDown()
     {
         $_SERVER = $this->original;
     }
 
+
     /**
      * @covers SimpleSAML\SessionHandlerPHP::__construct()
      * @covers SimpleSAML\SessionHandlerPHP::getSessionHandler()
      * @covers SimpleSAML\SessionHandler::getSessionHandler()
+     * @return void
      */
     public function testGetSessionHandler()
     {
@@ -46,16 +59,18 @@ class SessionHandlerPHPTest extends ClearStateTestCase
         $this->assertInstanceOf('\SimpleSAML\SessionHandlerPHP', $sh);
     }
 
+
     /**
      * @covers SimpleSAML\SessionHandlerPHP::setCookie()
      * @runInSeparateProcess
      * @requires extension xdebug
+     * @return void
      */
     public function testSetCookie()
     {
         Configuration::loadFromArray($this->sessionConfig, '[ARRAY]', 'simplesaml');
         $sh = SessionHandlerPHP::getSessionHandler();
-        $sh->setCookie('SimpleSAMLSessionID', 1);
+        $sh->setCookie('SimpleSAMLSessionID', '1');
 
         $headers = xdebug_get_headers();
         $this->assertContains('SimpleSAML=1;', $headers[0]);
@@ -66,14 +81,20 @@ class SessionHandlerPHPTest extends ClearStateTestCase
         $this->assertRegExp('/\b[Hh]ttp[Oo]nly(;|$)/', $headers[0]);
     }
 
+
     /**
      * @covers SimpleSAML\SessionHandlerPHP::setCookie()
      * @runInSeparateProcess
      * @requires extension xdebug
+     * @return void
      */
     public function testSetCookieSameSiteNone()
     {
-        Configuration::loadFromArray(array_merge($this->sessionConfig, ['session.cookie.samesite' => 'None']), '[ARRAY]', 'simplesaml');
+        Configuration::loadFromArray(
+            array_merge($this->sessionConfig, ['session.cookie.samesite' => 'None']),
+            '[ARRAY]',
+            'simplesaml'
+        );
         $sh = SessionHandlerPHP::getSessionHandler();
         $sh->setCookie('SimpleSAMLSessionID', 'None');
 
@@ -82,14 +103,20 @@ class SessionHandlerPHPTest extends ClearStateTestCase
         $this->assertRegExp('/\b[Ss]ame[Ss]ite=None(;|$)/', $headers[0]);
     }
 
+
     /**
      * @covers SimpleSAML\SessionHandlerPHP::setCookie()
      * @runInSeparateProcess
      * @requires extension xdebug
+     * @return void
      */
     public function testSetCookieSameSiteLax()
     {
-        Configuration::loadFromArray(array_merge($this->sessionConfig, ['session.cookie.samesite' => 'Lax']), '[ARRAY]', 'simplesaml');
+        Configuration::loadFromArray(
+            array_merge($this->sessionConfig, ['session.cookie.samesite' => 'Lax']),
+            '[ARRAY]',
+            'simplesaml'
+        );
         $sh = SessionHandlerPHP::getSessionHandler();
         $sh->setCookie('SimpleSAMLSessionID', 'Lax');
 
@@ -98,14 +125,20 @@ class SessionHandlerPHPTest extends ClearStateTestCase
         $this->assertRegExp('/\b[Ss]ame[Ss]ite=Lax(;|$)/', $headers[0]);
     }
 
+
     /**
      * @covers SimpleSAML\SessionHandlerPHP::setCookie()
      * @runInSeparateProcess
      * @requires extension xdebug
+     * @return void
      */
     public function testSetCookieSameSiteStrict()
     {
-        Configuration::loadFromArray(array_merge($this->sessionConfig, ['session.cookie.samesite' => 'Strict']), '[ARRAY]', 'simplesaml');
+        Configuration::loadFromArray(
+            array_merge($this->sessionConfig, ['session.cookie.samesite' => 'Strict']),
+            '[ARRAY]',
+            'simplesaml'
+        );
         $sh = SessionHandlerPHP::getSessionHandler();
         $sh->setCookie('SimpleSAMLSessionID', 'Strict');
 
@@ -114,10 +147,12 @@ class SessionHandlerPHPTest extends ClearStateTestCase
         $this->assertRegExp('/\b[Ss]ame[Ss]ite=Strict(;|$)/', $headers[0]);
     }
 
+
     /**
      * @covers SimpleSAML\SessionHandlerPHP::restorePrevious()
      * @runInSeparateProcess
      * @requires extension xdebug
+     * @return void
      */
     public function testRestorePrevious()
     {
@@ -126,9 +161,10 @@ class SessionHandlerPHPTest extends ClearStateTestCase
         session_start();
 
         Configuration::loadFromArray($this->sessionConfig, '[ARRAY]', 'simplesaml');
+        /** @var SessionHandlerPHP $sh */
         $sh = SessionHandlerPHP::getSessionHandler();
         $sh->setCookie('SimpleSAMLSessionID', 'Restore');
-        $oldSh = $sh->restorePrevious();
+        $sh->restorePrevious();
 
         $headers = xdebug_get_headers();
         $this->assertContains('PHPSESSID='.$sid, $headers[0]);
@@ -137,8 +173,10 @@ class SessionHandlerPHPTest extends ClearStateTestCase
         $this->assertEquals($headers[0], $headers[2]);
     }
 
+
     /**
      * @covers SimpleSAML\SessionHandlerPHP::newSessionId()
+     * @return void
      */
     public function testNewSessionId()
     {
