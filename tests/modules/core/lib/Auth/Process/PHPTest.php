@@ -154,7 +154,7 @@ class PHPTest extends TestCase
                 'attributes' => ['eduPersonPrincipalName', 'givenName']
             ],
             'newKey' => ['newValue']
-        );
+        ];
 
         $this->assertEquals($expected, $this->processFilter($config, $request));
     }
