@@ -149,7 +149,7 @@ class PHPTest extends TestCase
                 'orig1' => ['value1', 'value2'],
                 'orig2' => ['value0'],
                 'orig3' => ['value4']
-            ),
+            ],
             'Destination' => [
                 'attributes' => ['eduPersonPrincipalName', 'givenName']
             ],
