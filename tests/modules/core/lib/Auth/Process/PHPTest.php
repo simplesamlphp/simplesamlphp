@@ -2,6 +2,7 @@
 
 namespace SimpleSAML\Test\Module\core\Auth\Process;
 
+use Exception;
 use PHPUnit\Framework\TestCase;
 
 /**
