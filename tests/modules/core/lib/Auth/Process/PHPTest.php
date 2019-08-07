@@ -127,28 +127,28 @@ class PHPTest extends TestCase
     public function testStateCanBeModified()
     {
 
-        $config = array(
+        $config = ]
             'code' => '
                 $attributes["orig2"] = array("value0");
                 $state["newKey"] = ["newValue"];
                 $state["Destination"]["attributes"][] = "givenName";
             ',
-        );
-        $request = array(
-            'Attributes' => array(
-                'orig1' => array('value1', 'value2'),
-                'orig2' => array('value3'),
-                'orig3' => array('value4')
-            ),
+        ];
+        $request = [
+            'Attributes' => [
+                'orig1' => ['value1', 'value2'],
+                'orig2' => ['value3'],
+                'orig3' => ['value4']
+            ],
             'Destination' => [
                 'attributes' => ['eduPersonPrincipalName']
             ],
-        );
-        $expected = array(
-            'Attributes' => array(
-                'orig1' => array('value1', 'value2'),
-                'orig2' => array('value0'),
-                'orig3' => array('value4')
+        ];
+        $expected = [
+            'Attributes' => [
+                'orig1' => ['value1', 'value2'],
+                'orig2' => ['value0'],
+                'orig3' => ['value4']
             ),
             'Destination' => [
                 'attributes' => ['eduPersonPrincipalName', 'givenName']
