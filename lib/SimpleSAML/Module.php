@@ -264,12 +264,12 @@ class Module
             }
         }
 
-        $response = new BinaryFileResponse($path);
-        $response->setCache(['public' => true, 'max_age' => 86400]);
+        $response = new BinaryFileResponse($path, 200, [], true, null, true, true);
+        $response->setMaxAge(0);
+        $response->headers->addCacheControlDirective('must-revalidate', true);
+        $response->isNotModified($request);
         $response->setExpires(new \DateTime(gmdate('D, j M Y H:i:s \G\M\T', time() + 10 * 60)));
-        $response->setLastModified(new \DateTime(gmdate('D, j M Y H:i:s \G\M\T', filemtime($path))));
         $response->headers->set('Content-Type', $contentType);
-        $response->headers->set('Content-Length', sprintf('%u', filesize($path))); // force file size to an unsigned
         $response->setContentDisposition(ResponseHeaderBag::DISPOSITION_INLINE);
         $response->prepare($request);
         return $response;
