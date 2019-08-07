@@ -127,7 +127,7 @@ class PHPTest extends TestCase
     public function testStateCanBeModified()
     {
 
-        $config = ]
+        $config = [
             'code' => '
                 $attributes["orig2"] = array("value0");
                 $state["newKey"] = ["newValue"];
