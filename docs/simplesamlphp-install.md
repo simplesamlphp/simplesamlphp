@@ -20,7 +20,7 @@ This document is part of the SimpleSAMLphp documentation suite.
 
 This document covers the installation of the latest stable version of SimpleSAMLphp.
 If you want to install the development version, take a look at the instructions for [installing SimpleSAMLphp from the 
-repository](simplesamlphp-install-repo).
+repository](simplesamlphp-install-repo.md).
 
 
 Prerequisites
@@ -366,16 +366,16 @@ Provider (in order to protect access to an existing application) or an Identity 
 a user database where your users can authenticate). Documentation on bridging between federation protocols is found 
 in a separate document.
 
- - [Using SimpleSAMLphp as a Service Provider (SP)](simplesamlphp-sp)
-   + [Remote IdP reference](simplesamlphp-reference-idp-remote)
+ - [Using SimpleSAMLphp as a Service Provider (SP)](simplesamlphp-sp.md)
+   + [Remote IdP reference](simplesamlphp-reference-idp-remote.md)
    + [Connecting to the UK Access Federation or InCommon](simplesamlphp-ukaccess)
- - [Using SimpleSAMLphp as an Identity Provider (IdP)](simplesamlphp-idp)
-   + [Hosted IdP reference](simplesamlphp-reference-idp-hosted)
-   + [Remote SP reference](simplesamlphp-reference-sp-remote)
-   + [Setting up an IdP for G Suite (Google Apps)](simplesamlphp-googleapps)
-   + [Advanced Topics](simplesamlphp-idp-more)
- - [Automated Metadata Management](simplesamlphp-automated_metadata)
- - [Maintenance and configuration](simplesamlphp-maintenance)
+ - [Using SimpleSAMLphp as an Identity Provider (IdP)](simplesamlphp-idp.md)
+   + [Hosted IdP reference](simplesamlphp-reference-idp-hosted.md)
+   + [Remote SP reference](simplesamlphp-reference-sp-remote.md)
+   + [Setting up an IdP for G Suite (Google Apps)](simplesamlphp-googleapps.md)
+   + [Advanced Topics](simplesamlphp-idp-more.md)
+ - [Automated Metadata Management](simplesamlphp-automated_metadata.md)
+ - [Maintenance and configuration](simplesamlphp-maintenance.md)
 
 
 Support
