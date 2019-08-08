@@ -21,4 +21,18 @@ for FILE in `find dictionaries modules -name "*.json"`; do
     fi
 done
 
+# check YAML files
+for i in `find . -path ./vendor -prune -o -path ./node_modules -prune -o -name '*.yml' -print`
+do
+    if [ -f "$i" ]; then
+        FILE="${i%/*}/${i##*/}"
+        echo "Checking file $i"
+        $PHP -r "require(dirname(dirname(__FILE__)).'/vendor/autoload.php'); use Symfony\Component\Yaml\Yaml; use Symfony\Component\Yaml\Exception\ParseException; try { Yaml::parseFile('$FILE'); } catch(ParseException \$e) { exit(1); }"
+        if [ $? -ne 0 ]; then
+            echo "Syntax check failed for ${FILE}"
+            RETURN=$((RETURN + 1))
+        fi
+    fi
+done
+
 exit $RETURN
