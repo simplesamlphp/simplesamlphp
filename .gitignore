@@ -1,4 +1,3 @@
-.gitignore
 /log/
 /config/
 /metadata/
@@ -9,12 +8,16 @@
 /www/assets/css/*.css
 /www/assets/css/*.map
 
-!config/.gitkeep
-!metadata/.gitkeep
+!/config/.gitkeep
+!/metadata/.gitkeep
+!/cache/.gitkeep
+!/locales/.gitkeep
+!/www/assets/fonts/.gitkeep
+!/www/assets/js/.gitkeep
+!/www/assets/css/.gitkeep
+
 
 # https://www.gitignore.io/api/osx,windows,linux,netbeans,sublimetext,composer,phpstorm,vagrant
-# Created by https://www.gitignore.io
-
 # Created by https://www.gitignore.io
 
 ### OSX ###
