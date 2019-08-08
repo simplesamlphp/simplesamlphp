@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SimpleSAML\Module\admin;
+namespace SimpleSAML\Module\admin\Controller;
 
 use SAML2\Constants;
 use SAML2\XML\saml\NameID;

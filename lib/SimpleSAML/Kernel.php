@@ -104,9 +104,10 @@ class Kernel extends BaseKernel
      */
     protected function configureContainer(ContainerBuilder $container, LoaderInterface $loader)
     {
-        $confDir = __DIR__;
-        $loader->load($confDir . '/Resources/config/services/*' . self::CONFIG_EXTS, 'glob');
-        $confDir = Module::getModuleDir($this->module) . '/config/services';
+        $configuration = Configuration::getInstance();
+        $baseDir = $configuration->getBaseDir();
+        $loader->load($baseDir . '/routing/services/*' . self::CONFIG_EXTS, 'glob');
+        $confDir = Module::getModuleDir($this->module) . '/routing/services';
         if (is_dir($confDir)) {
             $loader->load($confDir . '/**/*' . self::CONFIG_EXTS, 'glob');
         }
@@ -127,9 +128,10 @@ class Kernel extends BaseKernel
      */
     protected function configureRoutes(RouteCollectionBuilder $routes)
     {
-        $confDir = __DIR__;
-        $routes->import($confDir . '/Resources/config/routes/*' . self::CONFIG_EXTS, '/', 'glob');
-        $confDir = Module::getModuleDir($this->module) . '/config/routes';
+        $configuration = Configuration::getInstance();
+        $baseDir = $configuration->getBaseDir();
+        $routes->import($baseDir . '/routing/routes/*' . self::CONFIG_EXTS, '/', 'glob');
+        $confDir = Module::getModuleDir($this->module) . '/routing/routes';
         if (is_dir($confDir)) {
             $routes->import($confDir . '/**/*' . self::CONFIG_EXTS, $this->module, 'glob');
         }

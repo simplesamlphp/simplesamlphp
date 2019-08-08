@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SimpleSAML\Module\admin;
+namespace SimpleSAML\Module\admin\Controller;
 
 use SimpleSAML\Locale\Translate;
 use SimpleSAML\Module;
