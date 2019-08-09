@@ -119,7 +119,7 @@ class LoginController
      */
     public function login(Request $request, $as = null)
     {
-        //delete admin
+        // delete admin
         if (isset($this->sources['admin'])) {
             unset($this->sources['admin']);
         }
@@ -183,5 +183,40 @@ class LoginController
     {
         $auth = new Auth\Simple($as);
         return new RunnableResponse([$auth, 'logout'], [$this->config->getBasePath() . 'logout.php']);
+    }
+
+
+    /**
+     * This clears the user's IdP discovery choices.
+     *
+     * @param Request $request The request that lead to this login operation.
+     * @return void
+     */
+    public function cleardiscochoices(Request $request)
+    {
+        // The base path for cookies. This should be the installation directory for SimpleSAMLphp.
+        $cookiePath = $this->config->getBasePath();
+
+        // We delete all cookies which starts with 'idpdisco_'
+        foreach ($request->cookies->all() as $cookieName => $value) {
+            if (substr($cookieName, 0, 9) !== 'idpdisco_') {
+                // Not a idpdisco cookie.
+                continue;
+            }
+
+            Utils\HTTP::setCookie($cookieName, null, ['path' => $cookiePath, 'httponly' => false], false);
+        }
+
+        // Find where we should go now.
+        $returnTo = $request->get('ReturnTo', false);
+        if ($returnTo !== false) {
+            $returnTo = Utils\HTTP::checkURLAllowed($returnTo);
+        } else {
+            // Return to the front page if no other destination is given. This is the same as the base cookie path.
+            $returnTo = $cookiePath;
+        }
+
+        // Redirect to destination.
+        Utils\HTTP::redirectTrustedURL($returnTo);
     }
 }
