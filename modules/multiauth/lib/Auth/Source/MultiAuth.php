@@ -151,7 +151,11 @@ class MultiAuth extends \SimpleSAML\Auth\Source
         /* Redirect to the select source page. We include the identifier of the
          * saved state array as a parameter to the login form
          */
-        $url = Module::getModuleURL('multiauth/selectsource.php');
+        if ($newui === false) {
+            $url = Module::getModuleURL('multiauth/selectsource.php');
+        } else {
+            $url = Module::getModuleURL('multiauth/discovery');
+        }
         $params = ['AuthState' => $id];
 
         // Allows the user to specify the auth source to be used
