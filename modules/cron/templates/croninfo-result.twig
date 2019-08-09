@@ -22,9 +22,14 @@ Tag: {{ tag }}
 {% for sum in summary %}
         <li> {{ sum }}</li>
 {% endfor %}
-</ul><br />
-</p>
+</ul>
+</p><br />
 </code>
-
 </div>
+
+{% if mail_required == true and mail_sent == false %}
+<div class="message-box error">
+Cron-report was not emailed due to an error.
+</div>
+{% endif %}
 {% endblock %}
