@@ -16,3 +16,6 @@ core-cardinality:
 core-warning-shortssointerval:
     path:       /warning/short_sso_interval
     defaults:   { _controller: 'SimpleSAML\Module\core\Controller\ExceptionController:shortSsoInterval' }
+core-post-redirect:
+    path:       /postredirect
+    defaults:   { _controller: 'SimpleSAML\Module\core\Controller\RedirectionController:postredirect' }
