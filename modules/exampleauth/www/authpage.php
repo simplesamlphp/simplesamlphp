@@ -18,7 +18,7 @@ $returnTo = \SimpleSAML\Utils\HTTP::checkURLAllowed($_REQUEST['ReturnTo']);
 /*
  * The following piece of code would never be found in a real authentication page. Its
  * purpose in this example is to make this example safer in the case where the
- * administrator of * the IdP leaves the exampleauth-module enabled in a production
+ * administrator of the IdP leaves the exampleauth-module enabled in a production
  * environment.
  *
  * What we do here is to extract the $state-array identifier, and check that it belongs to
