@@ -7,3 +7,12 @@ core-account:
 core-logout:
     path:       /logout/{as}
     defaults:   { _controller: 'SimpleSAML\Module\core\Controller\LoginController:logout' }
+core-error-nocookie:
+    path:       /error/nocookie
+    defaults:   { _controller: 'SimpleSAML\Module\core\Controller\ExceptionController:nocookie' }
+core-cardinality:
+    path:       /error/cardinality
+    defaults:   { _controller: 'SimpleSAML\Module\core\Controller\ExceptionController:cardinality' }
+core-warning-shortssointerval:
+    path:       /warning/short_sso_interval
+    defaults:   { _controller: 'SimpleSAML\Module\core\Controller\ExceptionController:shortSsoInterval' }
