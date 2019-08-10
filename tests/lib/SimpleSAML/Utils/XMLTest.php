@@ -426,6 +426,7 @@ XMLDOC;
 
         $dom = new \DOMDocument('1.0');
         $dom->loadXML($xml, LIBXML_NONET);
+
         $res = XML::isValid($dom, $schema);
         $this->assertTrue($res);
     }

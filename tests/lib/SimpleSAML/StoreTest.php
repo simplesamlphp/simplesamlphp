@@ -29,6 +29,7 @@ class StoreTest extends TestCase
         Configuration::loadFromArray([
         ], '[ARRAY]', 'simplesaml');
 
+        /** @var false $store */
         $store = Store::getInstance();
 
         $this->assertFalse($store);
@@ -45,6 +46,7 @@ class StoreTest extends TestCase
         Configuration::loadFromArray([
         ], '[ARRAY]', 'simplesaml');
 
+        /** @var false $store */
         $store = Store::getInstance();
 
         $this->assertFalse($store);
@@ -130,6 +132,7 @@ class StoreTest extends TestCase
     protected function tearDown()
     {
         $config = Configuration::getInstance();
+        /** @var \SimpleSAML\Store $store */
         $store = Store::getInstance();
 
         $this->clearInstance($config, '\SimpleSAML\Configuration');

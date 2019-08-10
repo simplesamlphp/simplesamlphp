@@ -20,6 +20,10 @@
         <directory name="lib/SimpleSAML/Utils" />
         <directory name="lib/SimpleSAML/XHTML" />
         <directory name="lib/SimpleSAML/XML" />
+
+        <!-- Replaces all modules/... with this one-liner for 2.0
+        <directory name="modules" />
+        -->
         <directory name="modules/admin" />
         <directory name="modules/core" />
         <directory name="modules/cron" />
@@ -27,6 +31,8 @@
         <directory name="modules/multiauth" />
         <directory name="modules/portal" />
         <directory name="modules/saml" />
+
+        <directory name="tests" />
 
         <!-- Ignore deprecated classes -->
         <ignoreFiles>
@@ -37,6 +43,9 @@
             <file name="modules/**/templates/*.tpl.php" />
             <file name="modules/saml/templates/proxy/*.tpl.php" />
             <file name="modules/saml/templates/sp/*.tpl.php" />
+
+            <directory name="tests/Utils/Stubs" />
+            <directory name="vendor" />
         </ignoreFiles>
     </projectFiles>
 
@@ -77,6 +86,8 @@
                 <file name="bin/*.php" />
                 <file name="lib/SimpleSAML/XHTML/Template.php" />
                 <file name="modules/*/bin/*.php" />
+                <file name="tests/bootstrap.php" />
+                <file name="tests/routers/configLoader.php" />
             </errorLevel>
         </UnresolvableInclude>
 
@@ -87,6 +98,13 @@
                 <file name="modules/*/www/*.php" />
             </errorLevel>
         </MissingFile>
+
+        <!-- Suppress PHPunit-issue -->
+        <PropertyNotSetInConstructor>
+            <errorLevel type="suppress">
+                <directory name="tests" />
+            </errorLevel>
+        </PropertyNotSetInConstructor>
     </issueHandlers>
 
     <stubs>

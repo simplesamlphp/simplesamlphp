@@ -245,21 +245,22 @@ class DatabaseTest extends TestCase
         $this->assertEquals($this->config->getString('database.prefix')."sspdbt", $table);
 
         $this->db->write(
-            "CREATE TABLE IF NOT EXISTS $table (ssp_key INT(16) NOT NULL, ssp_value TEXT NOT NULL)",
-            false
+            "CREATE TABLE IF NOT EXISTS $table (ssp_key INT(16) NOT NULL, ssp_value TEXT NOT NULL)"
         );
 
+        /** @var \PDOStatement $query1 */
         $query1 = $this->db->read("SELECT * FROM $table");
         $this->assertEquals(0, $query1->fetch(), "Table $table is not empty when it should be.");
 
         $ssp_key = time();
-        $ssp_value = md5(rand(0, 10000));
+        $ssp_value = md5(strval(rand(0, 10000)));
         $stmt = $this->db->write(
             "INSERT INTO $table (ssp_key, ssp_value) VALUES (:ssp_key, :ssp_value)",
             ['ssp_key' => [$ssp_key, \PDO::PARAM_INT], 'ssp_value' => $ssp_value]
         );
         $this->assertEquals(1, $stmt, "Could not insert data into $table.");
 
+        /** @var \PDOStatement $query2 */
         $query2 = $this->db->read("SELECT * FROM $table WHERE ssp_key = :ssp_key", ['ssp_key' => $ssp_key]);
         $data = $query2->fetch();
         $this->assertEquals($data['ssp_value'], $ssp_value, "Inserted data doesn't match what is in the database");
@@ -291,7 +292,7 @@ class DatabaseTest extends TestCase
     public function noSuchTable()
     {
         $this->expectException(\Exception::class);
-        $this->db->write("DROP TABLE phpunit_nonexistent", false);
+        $this->db->write("DROP TABLE phpunit_nonexistent");
     }
 
 
@@ -301,7 +302,7 @@ class DatabaseTest extends TestCase
     public function tearDown()
     {
         $table = $this->db->applyPrefix("sspdbt");
-        $this->db->write("DROP TABLE IF EXISTS $table", false);
+        $this->db->write("DROP TABLE IF EXISTS $table");
 
         unset($this->config);
         unset($this->db);

@@ -15,6 +15,7 @@ use \org\bovigo\vfs\vfsStream;
 class SigningTestCase extends TestCase
 {
     // openssl genrsa -out ca.key.pem 2048
+    /** @var string $ca_private_key */
     protected $ca_private_key = <<<'NOWDOC'
 -----BEGIN RSA PRIVATE KEY-----
 MIIEpQIBAAKCAQEAtj5GuvnC5aCg8bhq2Yy4isp/uXtRRWKhbB5aYP7/1DwwwQ1Z
@@ -46,6 +47,7 @@ mHreqJFXp12lURaL+esz01oaH49ZUzVeZVGmVyOzoSDYEOq9K7L/j14=
 NOWDOC;
 
     // openssl req -key ca.key.pem -new -x509 -days 3650 -out ca.cert.pem
+    /** @var string $ca_certificate */
     private $ca_certificate = <<<'NOWDOC'
 -----BEGIN CERTIFICATE-----
 MIIDtjCCAp6gAwIBAgIJAII4rW68Q+IsMA0GCSqGSIb3DQEBCwUAMHAxCzAJBgNV
@@ -72,6 +74,7 @@ BdyrA5DmvSuL/Yfq03J9btXX4NnANQFVvfSbun7ts5F1qTkSe/vHCoke
 NOWDOC;
 
     // openssl genrsa -out good.key.pem 2048
+    /** @var string $good_private_key */
     protected $good_private_key = <<<'NOWDOC'
 -----BEGIN RSA PRIVATE KEY-----
 MIIEowIBAAKCAQEAqmNn4bt/jrMHgoWtwXLc2ok17BHh1O5ETbn9rK3KFjk3BXp5
@@ -111,6 +114,7 @@ NOWDOC;
     //      -days 3650 \
     //      -in good.csr.pem \
     //      -out good.cert.pem
+    /** @var string $good_certificate */
     protected $good_certificate = <<<'NOWDOC'
 -----BEGIN CERTIFICATE-----
 MIIDZTCCAk0CCQC+sxqJmyko6TANBgkqhkiG9w0BAQsFADBwMQswCQYDVQQGEwJB
@@ -134,6 +138,30 @@ hQc0xnrLQ255SjMn+nQtMkVSuKwAUqaAP1ByyiVbN1cBlHnMiJCjvBI58bSTdlVK
 0ZppWlc39T6m
 -----END CERTIFICATE-----
 NOWDOC;
+
+    /** @var string */
+    protected $good_private_key_file;
+
+    /** @var string */
+    protected $good_certificate_file;
+
+    /** @var string */
+    protected $certdir;
+
+    /** @var \org\bovigo\vfs\vfsStreamDirectory */
+    protected $root;
+
+    /** @var string */
+    protected $root_directory;
+
+    /** @var string */
+    protected $ca_private_key_file;
+
+    /** @var string */
+    protected $ca_certificate_file;
+
+    /** @var \SimpleSAML\Configuration */
+    protected $config;
 
     const ROOTDIRNAME = 'testdir';
     const DEFAULTCERTDIR = 'certdir';

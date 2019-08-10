@@ -38,6 +38,8 @@ class HTTPTest extends ClearStateTestCase
     /**
      * Test SimpleSAML\Utils\HTTP::addURLParameters().
      * @return void
+     * @psalm-suppress InvalidArgument
+     * @deprecated Can be removed in 2.0 when codebase if fully typehinted
      */
     public function testAddURLParametersInvalidURL()
     {
@@ -49,6 +51,8 @@ class HTTPTest extends ClearStateTestCase
     /**
      * Test SimpleSAML\Utils\HTTP::addURLParameters().
      * @return void
+     * @psalm-suppress InvalidArgument
+     * @deprecated Can be removed in 2.0 when codebase if fully typehinted
      */
     public function testAddURLParametersInvalidParameters()
     {
@@ -457,6 +461,7 @@ class HTTPTest extends ClearStateTestCase
      * @covers SimpleSAML\Utils\HTTP::setCookie()
      * @runInSeparateProcess
      * @requires extension xdebug
+     * @return void
      */
     public function testSetCookie()
     {
@@ -490,6 +495,7 @@ class HTTPTest extends ClearStateTestCase
 
     /**
      * @covers SimpleSAML\Utils\HTTP::setCookie()
+     * @return void
      */
     public function testSetCookieInsecure()
     {
@@ -511,6 +517,7 @@ class HTTPTest extends ClearStateTestCase
      * @covers SimpleSAML\Utils\HTTP::setCookie()
      * @runInSeparateProcess
      * @requires extension xdebug
+     * @return void
      */
     public function testSetCookieSameSite()
     {

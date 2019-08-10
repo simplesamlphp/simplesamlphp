@@ -16,6 +16,8 @@ class AttributesTest extends TestCase
     /**
      * Test the getExpectedAttribute() method with invalid attributes array.
      * @return void
+     * @psalm-suppress InvalidArgument
+     * @deprecated Can be removed as soon as the codebase is fully typehinted
      */
     public function testGetExpectedAttributeInvalidAttributesArray()
     {
@@ -32,6 +34,8 @@ class AttributesTest extends TestCase
 
     /**
      * Test the getExpectedAttributeMethod() method with invalid expected attribute parameter.
+     * @deprecated Remove this test as soon as the codebase is fully typehinted
+     * @psalm-suppress PossiblyFalseArgument
      * @return void
      */
     public function testGetExpectedAttributeInvalidAttributeName()
@@ -149,6 +153,8 @@ class AttributesTest extends TestCase
     /**
      * Test the normalizeAttributesArray() function with input not being an array
      * @return void
+     * @psalm-suppress InvalidArgument
+     * @deprecated Can be removed as soon as the codebase is fully typehinted
      */
     public function testNormalizeAttributesArrayBadInput()
     {

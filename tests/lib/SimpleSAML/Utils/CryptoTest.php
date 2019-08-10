@@ -3,8 +3,8 @@
 namespace SimpleSAML\Test\Utils;
 
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\Configuration;
 use SimpleSAML\Utils\Crypto;
-use \SimpleSAML\Configuration;
 
 use \org\bovigo\vfs\vfsStream;
 
@@ -16,6 +16,15 @@ class CryptoTest extends TestCase
     const ROOTDIRNAME = 'testdir';
 
     const DEFAULTCERTDIR = 'certdir';
+
+    /** @var \org\bovigo\vfs\vfsStreamDirectory */
+    protected $root;
+
+    /** @var string */
+    protected $root_directory;
+
+    /** @var string */
+    protected $certdir;
 
 
     /**
@@ -621,6 +630,7 @@ PHP;
             'test'
         );
 
+        /** @var array $pubkey */
         $pubkey = Crypto::loadPublicKey($config);
         $res = $pubkey['certData'];
         $expected = $x509certificate;

@@ -28,9 +28,10 @@ class ReduceSpillOverTest extends ClearStateTestCase
      */
     public function testStateRemoved()
     {
-
         $this->assertArrayNotHasKey('QUERY_STRING', $_SERVER);
-        $this->assertFalse(getenv('SIMPLESAMLPHP_CONFIG_DIR'));
+        /** @var false $env */
+        $env = getenv('SIMPLESAMLPHP_CONFIG_DIR');
+        $this->assertFalse($env);
         try {
             \SimpleSAML\Configuration::getInstance();
             $this->fail('Expected config configured in other tests to no longer be valid');

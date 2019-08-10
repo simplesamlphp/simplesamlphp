@@ -17,6 +17,12 @@ class SystemTest extends TestCase
 
     const DEFAULTTEMPDIR = 'tempdir';
 
+    /** @var \org\bovigo\vfs\vfsStreamDirectory */
+    protected $root;
+
+    /** @var string */
+    protected $root_directory;
+
 
     /**
      * @return void

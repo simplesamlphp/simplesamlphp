@@ -9,7 +9,6 @@ use PHPUnit\Framework\TestCase;
  */
 class AttributeCopyTest extends TestCase
 {
-
     /**
      * Helper function to run the filter with a given configuration.
      *

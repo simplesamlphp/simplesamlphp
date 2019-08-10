@@ -41,6 +41,7 @@ XML
         $entities = \SimpleSAML\Metadata\SAMLParser::parseDescriptorsElement($document->documentElement);
         $this->assertArrayHasKey('theEntityID', $entities);
         // RegistrationInfo is accessible in the SP or IDP metadata accessors
+        /** @var array $metadata */
         $metadata = $entities['theEntityID']->getMetadata20SP();
         $this->assertEquals($expected, $metadata['RegistrationInfo']);
     }
@@ -85,12 +86,15 @@ XML
         $this->assertArrayHasKey('theEntityID', $entities);
         $this->assertArrayHasKey('subEntityId', $entities);
         // RegistrationInfo is accessible in the SP or IDP metadata accessors
+        /** @var array $metadata */
         $metadata = $entities['theEntityID']->getMetadata20SP();
         $this->assertEquals($expected, $metadata['RegistrationInfo']);
 
+        /** @var array $metadata */
         $metadata = $entities['subEntityId']->getMetadata20SP();
         $this->assertEquals($expected, $metadata['RegistrationInfo']);
 
+        /** @var array $metadata */
         $metadata = $entities['subEntityIdOverride']->getMetadata20SP();
         $this->assertEquals($expected, $metadata['RegistrationInfo']);
     }
@@ -128,6 +132,7 @@ XML
         $entities = \SimpleSAML\Metadata\SAMLParser::parseDescriptorsElement($document->documentElement);
         $this->assertArrayHasKey('theEntityID', $entities);
 
+        /** @var array $metadata */
         $metadata = $entities['theEntityID']->getMetadata20SP();
 
         $this->assertEquals("Example service", $metadata['name']['en']);
@@ -338,6 +343,7 @@ XML
         $entities = \SimpleSAML\Metadata\SAMLParser::parseDescriptorsElement($document->documentElement);
         $this->assertArrayHasKey('theEntityID', $entities);
         // Various MDUI elements are accessible
+        /** @var array $metadata */
         $metadata = $entities['theEntityID']->getMetadata20IdP();
         $this->assertEquals($expected['scope'], $metadata['scope'], 'shibmd:Scope elements not reflected in parsed metadata');
         $this->assertEquals($expected['UIInfo'], $metadata['UIInfo'], 'mdui:UIInfo elements not reflected in parsed metadata');

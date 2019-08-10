@@ -9,6 +9,9 @@ use SimpleSAML\Module\multiauth\Auth\Source\MultiAuth;
 class MultiAuthTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
 {
     /** @var Configuration */
+    private $config;
+
+    /** @var Configuration */
     private $sourceConfig;
 
 

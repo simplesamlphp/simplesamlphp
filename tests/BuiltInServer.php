@@ -25,7 +25,7 @@ class BuiltInServer
      *
      * @var string
      */
-    protected $address;
+    protected $address = 'example.org';
 
     /**
      * The name of a "router" file to run for every request performed to this server.
@@ -72,7 +72,7 @@ class BuiltInServer
      * Start the built-in server in a random port.
      *
      * This method will wait up to 5 seconds for the server to start. When it returns an address, it is guaranteed that
-     * the server has started and is listening for connections. If it returns false on the other hand, there will be no
+     * the server has started and is listening for connections. If it returns the default value on the other hand, there will be no
      * guarantee that the server started properly.
      *
      * @return string The address where the server is listening for connections, or false if the server failed to start
@@ -108,14 +108,17 @@ class BuiltInServer
 
         // wait until it's listening for connections to avoid race conditions
         $start = microtime(true);
-        while (($sock = @fsockopen('localhost', $port, $errno, $errstr, 10)) === false) {
-            // set a 5 secs timeout waiting for the server to start
-            if (microtime(true) > $start + 5) {
-                $this->pid = false; // signal failure
-                $this->address = false;
-                break;
+        do {
+            $sock = @fsockopen('localhost', $port, $errno, $errstr, 10);
+            if ($sock === false) {
+                // set a 5 secs timeout waiting for the server to start
+                if (microtime(true) > $start + 5) {
+                    $this->pid = 0; // signal failure
+                    break;
+                }
             }
-        }
+        } while ($sock === false);
+
         if ($sock !== false) {
             fclose($sock);
         }
@@ -199,6 +202,7 @@ class BuiltInServer
             CURLOPT_HEADER => 1,
         ]);
         curl_setopt_array($ch, $curlopts);
+        /** @var mixed $resp */
         $resp = curl_exec($ch);
         $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         list($header, $body) = explode("\r\n\r\n", $resp, 2);

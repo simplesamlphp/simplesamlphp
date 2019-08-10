@@ -16,6 +16,16 @@ use SimpleSAML\Store;
  */
 class RedisTest extends TestCase
 {
+    /** @var \PHPUnit_Framework_MockObject_MockObject */
+    protected $mocked_redis;
+
+    /** @var \SimpleSAML\Store\Redis */
+    protected $redis;
+
+    /** @var array */
+    protected $config;
+
+
     /**
      * @return void
      */
@@ -28,25 +38,31 @@ class RedisTest extends TestCase
                                    ->disableOriginalConstructor()
                                    ->getMock();
 
+        /** @psalm-suppress UndefinedMethod   Remove when Psalm 3.x is in place */
         $this->mocked_redis->method('get')
                            ->will($this->returnCallback([$this, 'getMocked']));
 
+        /** @psalm-suppress UndefinedMethod   Remove when Psalm 3.x is in place */
         $this->mocked_redis->method('set')
                            ->will($this->returnCallback([$this, 'setMocked']));
 
+        /** @psalm-suppress UndefinedMethod   Remove when Psalm 3.x is in place */
         $this->mocked_redis->method('setex')
                            ->will($this->returnCallback([$this, 'setexMocked']));
 
+        /** @psalm-suppress UndefinedMethod   Remove when Psalm 3.x is in place */
         $this->mocked_redis->method('del')
                            ->will($this->returnCallback([$this, 'delMocked']));
 
-        $nop = function () {
+        $nop = /** @return void */ function () {
             return;
         };
 
+        /** @psalm-suppress UndefinedMethod   Remove when Psalm 3.x is in place */
         $this->mocked_redis->method('disconnect')
                            ->will($this->returnCallback($nop));
 
+        /** @var \Predis\Client $this->mocked_redis */
         $this->redis = new Store\Redis($this->mocked_redis);
     }
 
@@ -108,6 +124,7 @@ class RedisTest extends TestCase
             'store.redis.prefix' => 'phpunit_',
         ], '[ARRAY]', 'simplesaml');
 
+        /** @var \SimpleSAML\Store\Redis $store */
         $store = Store::getInstance();
 
         $this->assertInstanceOf('SimpleSAML\Store\Redis', $store);
@@ -131,6 +148,7 @@ class RedisTest extends TestCase
             'store.redis.password' => 'password',
         ], '[ARRAY]', 'simplesaml');
 
+        /** @var \SimpleSAML\Store\Redis $store */
         $store = Store::getInstance();
 
         $this->assertInstanceOf('SimpleSAML\Store\Redis', $store);

@@ -7,6 +7,7 @@ namespace SimpleSAML\Test\Module\core\Auth\Process;
  */
 class CardinalitySingleTest extends \PHPUnit\Framework\TestCase
 {
+    /** @var \SimpleSAML\Utils\HttpAdapter|\PHPUnit_Framework_MockObject_MockObject */
     private $http;
 
 
@@ -21,7 +22,11 @@ class CardinalitySingleTest extends \PHPUnit\Framework\TestCase
     {
         $_SERVER['SERVER_PROTOCOL'] = 'HTTP/1.1';
         $_SERVER['REQUEST_METHOD'] = 'GET';
-        $filter = new \SimpleSAML\Module\core\Auth\Process\CardinalitySingle($config, null, $this->http);
+
+        /** @var \SimpleSAML\Utils\HttpAdapter $http */
+        $http = $this->http;
+
+        $filter = new \SimpleSAML\Module\core\Auth\Process\CardinalitySingle($config, null, $http);
         $filter->process($request);
         return $request;
     }
@@ -159,6 +164,7 @@ class CardinalitySingleTest extends \PHPUnit\Framework\TestCase
             ],
         ];
 
+        /** @psalm-suppress UndefinedMethod */
         $this->http->expects($this->once())
                    ->method('redirectTrustedURL');
 
