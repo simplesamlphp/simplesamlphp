@@ -389,34 +389,49 @@ NOWDOC;
 
     /**
      * @covers \SimpleSAML\Utils\XML::isValid
-     * @test
      * @return void
      */
     public function testIsValidMetadata()
     {
-        Configuration::loadFromArray([], '[ARRAY]', 'simplesaml');
-
         $schema = 'saml-schema-metadata-2.0.xsd';
 
-        $dom = $this->getMockBuilder('\DOMDocument')
-            ->setMethods(['schemaValidate'])
-            ->disableOriginalConstructor()
-            ->getMock();
+        $xml = <<<'XMLDOC'
+<md:EntityDescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" entityID="https://idp.example.org/saml2/idp/metadata.php" ID="_2e4a0d35d4dce732c0977c72351d41fd1df7bc5adff8a4617560ce93841acf48"><ds:Signature>
+  <ds:SignedInfo><ds:CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
+    <ds:SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/>
+  <ds:Reference URI="#_2e4a0d35d4dce732c0977c72351d41fd1df7bc5adff8a4617560ce93841acf48"><ds:Transforms><ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/><ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/></ds:Transforms><ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/><ds:DigestValue>PD/YD/rjAj7q4T1qa/aYrRsKpmmPD8qEPdmYI22LLsz6+fIqajFxoYdcPwiSHtLwPdD9VxC2fZ/l7fdORPln5A==</ds:DigestValue></ds:Reference></ds:SignedInfo><ds:SignatureValue>inZ/3PjU7mxUBaY3BGRMIquTaBiaPxbbYXAH2wL8TuYcsSLOE7tIYOZLJY37cfcoJZlXl3StqnmAkiDul8gmN1P+yaficKVLhWspWEGOSMRlLr3gyuFkbiTX4RS1kHPHn5jK0TbVD7ZRPqkrJHWIfH1R5NiMk4nq31UqjKw3ncv9VtirLI5TAW7E/g8vBjbBYnJepOsiZ+szOyj5KyIyURCtrrAFfA6qxl6nmw6SvBWlKv4HW/xbBU8TsJkdQF+kM+F+e2pH+OK0q8EOGJoK/a6rrvcvm8Ypqzn7G0G6zVmfLgSO9pTDqvQbHx1HeFpdGgg7D+eUC2hOA6Ul9uA8gg==</ds:SignatureValue>
+<ds:KeyInfo><ds:X509Data><ds:X509Certificate>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</ds:X509Certificate></ds:X509Data></ds:KeyInfo></ds:Signature>
+  <md:IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+    <md:KeyDescriptor use="signing">
+      <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+        <ds:X509Data>
+          <ds:X509Certificate>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</ds:X509Certificate>
+        </ds:X509Data>
+      </ds:KeyInfo>
+    </md:KeyDescriptor>
+    <md:KeyDescriptor use="encryption">
+      <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+        <ds:X509Data>
+          <ds:X509Certificate>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</ds:X509Certificate>
+        </ds:X509Data>
+      </ds:KeyInfo>
+    </md:KeyDescriptor>
+    <md:SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://idp.example.org/saml2/idp/SingleLogoutService.php"/>
+    <md:NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</md:NameIDFormat>
+    <md:SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://idp.example.org/saml2/idp/SSOService.php"/>
+  </md:IDPSSODescriptor>
+  <md:ContactPerson contactType="technical">
+    <md:GivenName>Tim van Dijen</md:GivenName>
+    <md:EmailAddress>tvdijen@gmail.com</md:EmailAddress>
+  </md:ContactPerson>
+</md:EntityDescriptor>
+XMLDOC;
 
-        /*
-         * Unfortunately, we cannot actually test schemaValidate. To
-         * effectively unit test this function we'd have to enable LIBXML_NONET
-         * which disables network access when loading documents. PHP does not
-         * currently support enabling this flag.
-         */
-        $dom->method('schemaValidate')
-            ->willReturn(true);
+        $dom = new \DOMDocument($xml, LIBXML_NONET);
 
-        $res = XML::isValid($dom, $schema);
-
+        $res = XML::isValid($xml, $schema);
         $this->assertTrue($res);
     }
-
 
     /**
      * @covers \SimpleSAML\Utils\XML::checkSAMLMessage()
