@@ -428,7 +428,7 @@ XMLDOC;
         $dom->loadXML($xml, LIBXML_NONET);
 
         $res = XML::isValid($dom, $schema);
-        $this->assertTrue($res);
+        $this->assertTrue($res === true);
     }
 
     /**
