@@ -14,6 +14,7 @@ use SimpleSAML\Session;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Controller class for the cron module.
@@ -58,7 +59,7 @@ class CronController
     /**
      * Show cron info.
      *
-     * @return \SimpleSAML\XHTML\Template|\Symfony\Component\HttpFoundation\RedirectResponse
+     * @return \SimpleSAML\XHTML\Template
      *   An HTML template or a redirection if we are not authenticated.
      */
     public function info()
@@ -100,7 +101,7 @@ class CronController
      * @param string $key The secret key
      * @param string|null $output The output format, defaulting to xhtml
      *
-     * @return \SimpleSAML\XHTML\Template|\SimpleSAML\HTTP\RunnableResponse|\Symfony\Component\HttpFoundation\RedirectResponse
+     * @return \SimpleSAML\XHTML\Template|\Symfony\Component\HttpFoundation\Response
      *   An HTML template, a redirect or a "runnable" response.
      *
      * @throws \SimpleSAML\Error\Exception
@@ -135,7 +136,7 @@ class CronController
             }
         }
 
-        if ($output !== null && $output === 'xhtml') {
+        if ($output === 'xhtml') {
             $t = new Template($this->config, 'cron:croninfo-result.tpl.php', 'cron:cron');
             $t->data['tag'] = $croninfo['tag'];
             $t->data['time'] = $time;
@@ -144,8 +145,7 @@ class CronController
             $t->data['mail_sent'] = !isSet($e);
             $t->data['summary'] = $summary;
             return $t;
-        } else {
-            return new Template($this->config, 'cron:silent-result.twig', 'cron:cron');
         }
+        return new Response();
     }
 }
