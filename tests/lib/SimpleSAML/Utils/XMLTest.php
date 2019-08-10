@@ -396,6 +396,7 @@ NOWDOC;
         $schema = 'saml-schema-metadata-2.0.xsd';
 
         $xml = <<<'XMLDOC'
+<?xml version="1.0"?>
 <md:EntityDescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" entityID="https://idp.example.org/saml2/idp/metadata.php" ID="_2e4a0d35d4dce732c0977c72351d41fd1df7bc5adff8a4617560ce93841acf48"><ds:Signature>
   <ds:SignedInfo><ds:CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
     <ds:SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/>
@@ -427,9 +428,9 @@ NOWDOC;
 </md:EntityDescriptor>
 XMLDOC;
 
-        $dom = new \DOMDocument($xml, LIBXML_NONET);
-
-        $res = XML::isValid($xml, $schema);
+        $dom = new \DOMDocument('1.0');
+        $dom->loadXML($xml, LIBXML_NONET);
+        $res = XML::isValid($dom, $schema);
         $this->assertTrue($res);
     }
 
