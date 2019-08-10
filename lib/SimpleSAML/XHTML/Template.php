@@ -247,6 +247,7 @@ class Template extends Response
                 $templateDirs[] = [
                     $this->theme['module'] => TemplateLoader::getModuleTemplateDir($this->theme['module'])
                 ];
+                $templateDirs[] = ['__parent__' => TemplateLoader::getModuleTemplateDir($this->module)];
             } catch (\InvalidArgumentException $e) {
                 // either the module is not enabled or it has no "templates" directory, ignore
             }
@@ -527,7 +528,7 @@ class Template extends Response
     public function show()
     {
         if ($this->useNewUI) {
-            echo $this->getContents();            
+            echo $this->getContents();
         } else {
             require($this->findTemplatePath($this->template));
         }

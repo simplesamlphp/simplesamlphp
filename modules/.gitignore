@@ -1,43 +1,12 @@
-# Ignore any files or directories in this directory
+# Ignore any file or directory in this directory
 /*
 !/.gitignore
 
 # Explicitly include modules that ship with simplesamlphp
-!/adfs/
 !/admin/
-!/authcrypt/
-!/authfacebook/
-!/authorize/
-!/authtwitter/
-!/authwindowslive/
-!/authX509/
-!/authYubiKey/
-!/cas/
-!/casserver/
-!/cdc/
-!/consent/
-!/consentAdmin/
 !/core/
 !/cron/
-!/discopower/
-!/exampleattributeserver/
 !/exampleauth/
-!/expirycheck/
-!/ldap/
-!/memcacheMonitor/
-!/metarefresh/
 !/multiauth/
-!/negotiate/
-!/oauth/
 !/portal/
-!/preprodwarning/
-!/radius/
-!/riak/
 !/saml/
-!/sanitycheck/
-!/smartattributes/
-!/sqlauth/
-!/statistics/
-
-*/enable
-*/disable
