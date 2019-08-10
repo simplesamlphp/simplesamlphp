@@ -59,7 +59,7 @@ class FederationController
      *
      * @return \SimpleSAML\XHTML\Template
      * @throws \SimpleSAML\Error\Exception
-     * @throws \SimpleSAML_Error_Exception
+     * @throws \SimpleSAML\Error\Exception
      */
     public function main()
     {
