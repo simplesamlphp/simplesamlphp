@@ -70,6 +70,7 @@ class IdP
         assert(is_string($id));
 
         $this->id = $id;
+        $this->associationGroup = $id;
 
         $metadata = MetaDataStorageHandler::getMetadataHandler();
         $globalConfig = Configuration::getInstance();
@@ -99,10 +100,6 @@ class IdP
             }
         } else {
             throw new \Exception("Protocol not implemented.");
-        }
-
-        if ($this->associationGroup === null) {
-            $this->associationGroup = $this->id;
         }
 
         $auth = $this->config->getString('auth');

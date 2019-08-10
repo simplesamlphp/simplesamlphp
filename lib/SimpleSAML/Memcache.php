@@ -322,7 +322,9 @@ class Memcache
             throw new \Exception(
                 'Missing Memcached implementation. You must install either the Memcache or Memcached extension.'
             );
-        } elseif (strtolower($class) === '\memcache') {
+        }
+
+        if (self::$extension === '\memcache') {
             Logger::warning("The use of PHP-extension memcache is deprecated. Please migrate to the memcached extension.");
         }
 
