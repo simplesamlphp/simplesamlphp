@@ -61,7 +61,7 @@ class External extends \SimpleSAML\Auth\Source
      *
      * @return array|null  The user's attributes, or NULL if the user isn't authenticated.
      */
-    private function getUser()
+    private function getUser(): ?array
     {
         /*
          * In this example we assume that the attributes are
@@ -107,7 +107,7 @@ class External extends \SimpleSAML\Auth\Source
      * @param array &$state  Information about the current authentication.
      * @return void
      */
-    public function authenticate(&$state)
+    public function authenticate(array &$state): void
     {
         Assert::isArray($state);
 
@@ -194,7 +194,7 @@ class External extends \SimpleSAML\Auth\Source
      * @throws \SimpleSAML\Error\BadRequest
      * @throws \SimpleSAML\Error\Exception
      */
-    public static function resume()
+    public static function resume(): void
     {
         /*
          * First we need to restore the $state-array. We should have the identifier for
@@ -271,7 +271,7 @@ class External extends \SimpleSAML\Auth\Source
      * @param array &$state  The logout state array.
      * @return void
      */
-    public function logout(&$state)
+    public function logout(array &$state): void
     {
         Assert::isArray($state);
 

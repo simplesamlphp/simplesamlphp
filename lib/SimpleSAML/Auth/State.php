@@ -112,7 +112,7 @@ class State
      *
      * @return array The persistent authentication state.
      */
-    public static function getPersistentAuthData(array $state)
+    public static function getPersistentAuthData(array $state): array
     {
         // save persistent authentication data
         $persistent = [];
@@ -154,11 +154,8 @@ class State
      *
      * @return string  Identifier which can be used to retrieve the state later.
      */
-    public static function getStateId(&$state, $rawId = false)
+    public static function getStateId(array &$state, bool $rawId = false): string
     {
-        Assert::isArray($state);
-        Assert::boolean($rawId);
-
         if (!array_key_exists(self::ID, $state)) {
             $state[self::ID] = Utils\Random::generateID();
         }
@@ -203,12 +200,8 @@ class State
      *
      * @return string  Identifier which can be used to retrieve the state later.
      */
-    public static function saveState(&$state, $stage, $rawId = false)
+    public static function saveState(array &$state, string $stage, bool $rawId = false) : string
     {
-        Assert::isArray($state);
-        Assert::string($stage);
-        Assert::boolean($rawId);
-
         $return = self::getStateId($state, $rawId);
         $id = $state[self::ID];
 
@@ -235,7 +228,7 @@ class State
      *
      * @return array  Cloned state data.
      */
-    public static function cloneState(array $state)
+    public static function cloneState(array $state): array
     {
         $clonedState = $state;
 
@@ -268,11 +261,8 @@ class State
      *
      * @return array|null  State information, or NULL if the state is missing and $allowMissing is true.
      */
-    public static function loadState($id, $stage, $allowMissing = false)
+    public static function loadState(string $id, string $stage, bool $allowMissing = false): ?array
     {
-        Assert::string($id);
-        Assert::string($stage);
-        Assert::boolean($allowMissing);
         Logger::debug('Loading state: ' . var_export($id, true));
 
         $sid = self::parseStateID($id);
@@ -329,10 +319,8 @@ class State
      * @param array &$state The state which should be deleted.
      * @return void
      */
-    public static function deleteState(&$state)
+    public static function deleteState(array &$state): void
     {
-        Assert::isArray($state);
-
         if (!array_key_exists(self::ID, $state)) {
             // This state hasn't been saved
             return;
@@ -354,10 +342,8 @@ class State
      * @throws \SimpleSAML\Error\Exception If there is no exception handler defined, it will just throw the $exception.
      * @return void
      */
-    public static function throwException($state, Error\Exception $exception)
+    public static function throwException(array $state, Error\Exception $exception): void
     {
-        Assert::isArray($state);
-
         if (array_key_exists(self::EXCEPTION_HANDLER_URL, $state)) {
             // Save the exception
             $state[self::EXCEPTION_DATA] = $exception;
@@ -392,10 +378,8 @@ class State
      *
      * @return array|null  The state array with the exception, or NULL if no exception was thrown.
      */
-    public static function loadExceptionState($id = null)
+    public static function loadExceptionState(?string $id = null): ?array
     {
-        Assert::nullOrString($id);
-
         if ($id === null) {
             if (!array_key_exists(self::EXCEPTION_PARAM, $_REQUEST)) {
                 // No exception
@@ -423,7 +407,7 @@ class State
      * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
      * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
-    public static function parseStateID($stateId)
+    public static function parseStateID(string $stateId): array
     {
         $tmp = explode(':', $stateId, 2);
         $id = $tmp[0];

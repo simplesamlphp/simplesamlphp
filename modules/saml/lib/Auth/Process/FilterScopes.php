@@ -33,10 +33,9 @@ class FilterScopes extends \SimpleSAML\Auth\ProcessingFilter
      * @param array &$config Configuration for this filter.
      * @param mixed $reserved For future use.
      */
-    public function __construct(&$config, $reserved)
+    public function __construct(array &$config, $reserved)
     {
         parent::__construct($config, $reserved);
-        Assert::isArray($config);
 
         if (array_key_exists('attributes', $config) && !empty($config['attributes'])) {
             $this->scopedAttributes = $config['attributes'];
@@ -50,7 +49,7 @@ class FilterScopes extends \SimpleSAML\Auth\ProcessingFilter
      * @param array &$request the current request
      * @return void
      */
-    public function process(&$request)
+    public function process(array &$request): void
     {
         $src = $request['Source'];
         if (!count($this->scopedAttributes)) {

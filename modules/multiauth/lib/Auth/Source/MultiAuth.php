@@ -139,7 +139,7 @@ class MultiAuth extends \SimpleSAML\Auth\Source
      * @param array &$state Information about the current authentication.
      * @return void
      */
-    public function authenticate(&$state)
+    public function authenticate(array &$state) : void
     {
         Assert::isArray($state);
 
@@ -234,7 +234,7 @@ class MultiAuth extends \SimpleSAML\Auth\Source
      * @param array &$state Information about the current logout operation.
      * @return void
      */
-    public function logout(&$state)
+    public function logout(array &$state) : void
     {
         Assert::isArray($state);
 

@@ -38,11 +38,9 @@ class StatisticsWithAttribute extends \SimpleSAML\Auth\ProcessingFilter
      * @param array &$config  Configuration information about this filter.
      * @param mixed $reserved  For future use.
      */
-    public function __construct(&$config, $reserved)
+    public function __construct(array &$config, $reserved)
     {
         parent::__construct($config, $reserved);
-
-        Assert::isArray($config);
 
         if (array_key_exists('attributename', $config)) {
             $this->attribute = $config['attributename'];
@@ -70,9 +68,8 @@ class StatisticsWithAttribute extends \SimpleSAML\Auth\ProcessingFilter
      * @param array &$state  The current state.
      * @return void
      */
-    public function process(&$state)
+    public function process(array &$state): void
     {
-        Assert::isArray($state);
         Assert::keyExists($state, 'Attributes');
 
         $logAttribute = 'NA';
@@ -100,6 +97,7 @@ class StatisticsWithAttribute extends \SimpleSAML\Auth\ProcessingFilter
 
         Logger::stats($isPassive . $this->typeTag . ' ' . $dest . ' ' . $source . ' ' . $logAttribute);
     }
+
 
     /**
      * @param string &$direction  Either 'Source' or 'Destination'.

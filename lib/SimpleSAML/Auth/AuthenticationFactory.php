@@ -34,7 +34,7 @@ class AuthenticationFactory
      *
      * @return \SimpleSAML\Auth\Simple
      */
-    public function create($as)
+    public function create(string $as): Simple
     {
         return new Simple($as, $this->config, $this->session);
     }

@@ -57,11 +57,8 @@ class ProcessingChain
      * @param array $spMetadata  The metadata for the SP.
      * @param string $mode
      */
-    public function __construct($idpMetadata, $spMetadata, $mode = 'idp')
+    public function __construct(array $idpMetadata, array $spMetadata, string $mode = 'idp')
     {
-        Assert::isArray($idpMetadata);
-        Assert::isArray($spMetadata);
-
         $this->filters = [];
 
         $config = Configuration::getInstance();
@@ -96,7 +93,7 @@ class ProcessingChain
      * @param array $src  Source filters. May be unsorted.
      * @return void
      */
-    private static function addFilters(array &$target, array $src)
+    private static function addFilters(array &$target, array $src): void
     {
         foreach ($src as $filter) {
             $fp = $filter->priority;
@@ -191,9 +188,8 @@ class ProcessingChain
      * @throws \SimpleSAML\Error\UnserializableException
      * @return void
      */
-    public function processState(&$state)
+    public function processState(array &$state): void
     {
-        Assert::isArray($state);
         Assert::true(array_key_exists('ReturnURL', $state) || array_key_exists('ReturnCall', $state));
         Assert::true(!array_key_exists('ReturnURL', $state) || !array_key_exists('ReturnCall', $state));
 
@@ -231,10 +227,8 @@ class ProcessingChain
      * @param array $state  The state we are processing.
      * @return void
      */
-    public static function resumeProcessing($state)
+    public static function resumeProcessing(array $state): void
     {
-        Assert::isArray($state);
-
         while (count($state[self::FILTERS_INDEX]) > 0) {
             $filter = array_shift($state[self::FILTERS_INDEX]);
             try {
@@ -286,9 +280,8 @@ class ProcessingChain
      * @param array &$state  The state we are processing.
      * @return void
      */
-    public function processStatePassive(&$state)
+    public function processStatePassive(array &$state): void
     {
-        Assert::isArray($state);
         // Should not be set when calling this method
         Assert::keyNotExists($state, 'ReturnURL');
 
@@ -307,6 +300,7 @@ class ProcessingChain
         }
     }
 
+
     /**
      * Retrieve a state which has finished processing.
      *
@@ -314,10 +308,8 @@ class ProcessingChain
      * @see State::parseStateID()
      * @return array|null The state referenced by the $id parameter.
      */
-    public static function fetchProcessedState($id)
+    public static function fetchProcessedState(string $id): ?array
     {
-        Assert::string($id);
-
         return State::loadState($id, self::COMPLETED_STAGE);
     }
 }

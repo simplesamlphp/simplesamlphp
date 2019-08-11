@@ -36,11 +36,9 @@ class AttributeCopy extends \SimpleSAML\Auth\ProcessingFilter
      * @param array &$config  Configuration information about this filter.
      * @param mixed $reserved  For future use.
      */
-    public function __construct(&$config, $reserved)
+    public function __construct(array &$config, $reserved)
     {
         parent::__construct($config, $reserved);
-
-        Assert::isArray($config);
 
         foreach ($config as $source => $destination) {
             if (!is_string($source)) {
@@ -62,9 +60,8 @@ class AttributeCopy extends \SimpleSAML\Auth\ProcessingFilter
      * @param array &$request  The current request
      * @return void
      */
-    public function process(&$request)
+    public function process(array &$request): void
     {
-        Assert::isArray($request);
         Assert::keyExists($request, 'Attributes');
 
         $attributes = &$request['Attributes'];
