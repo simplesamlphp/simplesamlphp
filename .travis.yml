@@ -3,9 +3,6 @@ sudo: required
 language: php
 
 php:
-  - 5.6
-  - 7.0
-  - 7.1
   - 7.2
   - 7.3
 
@@ -17,15 +14,15 @@ before_script:
   - pecl install krb5
   - composer ${COMMAND}
   - if [[ "$TRAVIS_PHP_VERSION" == "7.3" ]]; then composer require --dev vimeo/psalm:1.1.9; fi
-  - if [[ "$TRAVIS_PHP_VERSION" == "5.6" ]]; then composer require --dev php-coveralls/php-coveralls; fi
+  - if [[ "$TRAVIS_PHP_VERSION" == "7.2" ]]; then composer require --dev php-coveralls/php-coveralls; fi
 
 script:
   - bin/check-syntax.sh
-  - if [[ "$TRAVIS_PHP_VERSION" == "5.6" ]]; then php vendor/phpunit/phpunit/phpunit; else php vendor/phpunit/phpunit/phpunit --no-coverage; fi
+  - if [[ "$TRAVIS_PHP_VERSION" == "7.2" ]]; then php vendor/phpunit/phpunit/phpunit; else php vendor/phpunit/phpunit/phpunit --no-coverage; fi
   - if [[ "$TRAVIS_PHP_VERSION" == "7.3" ]]; then vendor/bin/psalm; fi
 
 after_success:
-  - if [[ "$TRAVIS_PHP_VERSION" == "5.6" ]]; then php vendor/bin/php-coveralls -v; fi
+  - if [[ "$TRAVIS_PHP_VERSION" == "7.2" ]]; then php vendor/bin/php-coveralls -v; fi
 
 notifications:
   slack:
