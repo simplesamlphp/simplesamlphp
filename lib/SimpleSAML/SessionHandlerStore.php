@@ -42,10 +42,8 @@ class SessionHandlerStore extends SessionHandlerCookie
      *
      * @return \SimpleSAML\Session|null The session object, or null if it doesn't exist.
      */
-    public function loadSession($sessionId = null)
+    public function loadSession(?string $sessionId): ?Session
     {
-        Assert::nullOrString($sessionId);
-
         if ($sessionId === null) {
             $sessionId = $this->getCookieSessionId();
             if ($sessionId === null) {
@@ -70,7 +68,7 @@ class SessionHandlerStore extends SessionHandlerCookie
      * @param \SimpleSAML\Session $session The session object we should save.
      * @return void
      */
-    public function saveSession(Session $session)
+    public function saveSession(Session $session) : void
     {
         if ($session->isTransient()) {
             // transient session, nothing to save

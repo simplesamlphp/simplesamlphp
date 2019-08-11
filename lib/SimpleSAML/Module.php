@@ -86,7 +86,7 @@ class Module
      *
      * @return string The base directory of a module.
      */
-    public static function getModuleDir($module)
+    public static function getModuleDir(string $module) : string
     {
         $baseDir = dirname(dirname(dirname(__FILE__))) . '/modules';
         $moduleDir = $baseDir . '/' . $module;
@@ -106,7 +106,7 @@ class Module
      *
      * @throws \Exception If module.enable is set and is not boolean.
      */
-    public static function isModuleEnabled($module)
+    public static function isModuleEnabled(string $module) : bool
     {
         $config = Configuration::getOptionalConfig();
         return self::isModuleEnabledWithConf($module, $config->getArray('module.enable', []));
@@ -374,7 +374,7 @@ class Module
      *
      * @throws \Exception If we cannot open the module's directory.
      */
-    public static function getModules()
+    public static function getModules() : array
     {
         if (!empty(self::$modules)) {
             return self::$modules;
@@ -422,12 +422,8 @@ class Module
      *
      * @throws \Exception If the class cannot be resolved.
      */
-    public static function resolveClass($id, $type, $subclass = null)
+    public static function resolveClass(string $id, string $type, ?string $subclass = null): string
     {
-        Assert::string($id);
-        Assert::string($type);
-        Assert::nullOrString($subclass);
-
         $tmp = explode(':', $id, 2);
         if (count($tmp) === 1) {
             // no module involved
@@ -474,9 +470,8 @@ class Module
      *
      * @return string The absolute URL to the given resource.
      */
-    public static function getModuleURL($resource, array $parameters = [])
+    public static function getModuleURL(string $resource, array $parameters = []): string
     {
-        Assert::string($resource);
         Assert::notSame($resource[0], '/');
 
         $url = Utils\HTTP::getBaseURL() . 'module.php/' . $resource;
@@ -496,7 +491,7 @@ class Module
      * points to the file that contains the hook, and 'func' contains the name of the function implementing that hook.
      * When there are no hooks defined, an empty array is returned.
      */
-    public static function getModuleHooks($module)
+    public static function getModuleHooks(string $module): array
     {
         if (isset(self::$modules[$module]['hooks'])) {
             return self::$modules[$module]['hooks'];
@@ -536,10 +531,8 @@ class Module
      *
      * @throws \SimpleSAML\Error\Exception If an invalid hook is found in a module.
      */
-    public static function callHooks($hook, &$data = null)
+    public static function callHooks(string $hook, &$data = null): void
     {
-        Assert::string($hook);
-
         $modules = self::getModules();
         $config = Configuration::getOptionalConfig()->getArray('module.enable', []);
         sort($modules);
@@ -592,11 +585,12 @@ class Module
      *
      * This method removes the trailing slash and redirects to the resulting URL.
      *
-     * @param Request $request The request to process by this controller method.
+     * @param Symfony\Component\HttpFoundation\Request $request The request to process by this controller method.
      *
-     * @return RedirectResponse A redirection to the URI specified in the request, but without the trailing slash.
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     *   A redirection to the URI specified in the request, but without the trailing slash.
      */
-    public static function removeTrailingSlash(Request $request)
+    public static function removeTrailingSlash(Request $request) : RedirectResponse
     {
         $pathInfo = $request->server->get('PATH_INFO');
         $url = str_replace($pathInfo, rtrim($pathInfo, ' /'), $request->getRequestUri());
