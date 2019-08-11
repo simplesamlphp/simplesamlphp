@@ -24,6 +24,7 @@ env:
   - COMMAND="composer update"
 
 before_script:
+<<<<<<< HEAD
   - ${COMMAND}
 
 script:
