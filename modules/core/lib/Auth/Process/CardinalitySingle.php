@@ -47,10 +47,9 @@ class CardinalitySingle extends \SimpleSAML\Auth\ProcessingFilter
      * @param mixed $reserved  For future use.
      * @param \SimpleSAML\Utils\HttpAdapter $http  HTTP utility service (handles redirects).
      */
-    public function __construct(&$config, $reserved, Utils\HttpAdapter $http = null)
+    public function __construct(array &$config, $reserved, Utils\HttpAdapter $http = null)
     {
         parent::__construct($config, $reserved);
-        Assert::isArray($config);
 
         $this->http = $http ? : new Utils\HttpAdapter();
 
@@ -86,9 +85,8 @@ class CardinalitySingle extends \SimpleSAML\Auth\ProcessingFilter
      * @param array &$request  The current request
      * @return void
      */
-    public function process(&$request)
+    public function process(array &$request): void
     {
-        Assert::isArray($request);
         Assert::keyExists($request, 'Attributes');
 
         if (

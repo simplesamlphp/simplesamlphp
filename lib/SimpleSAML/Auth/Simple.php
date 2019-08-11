@@ -40,10 +40,8 @@ class Simple
      * @param \SimpleSAML\Configuration|null $config Optional configuration to use.
      * @param \SimpleSAML\Session|null $session Optional session to use.
      */
-    public function __construct($authSource, Configuration $config = null, Session $session = null)
+    public function __construct(string $authSource, Configuration $config = null, Session $session = null)
     {
-        Assert::string($authSource);
-
         if ($config === null) {
             $config = Configuration::getInstance();
         }
@@ -60,11 +58,11 @@ class Simple
     /**
      * Retrieve the implementing authentication source.
      *
-     * @return Source The authentication source.
+     * @return \SimpleSAML\Auth\Source The authentication source.
      *
      * @throws \SimpleSAML\Error\AuthSource If the requested auth source is unknown.
      */
-    public function getAuthSource()
+    public function getAuthSource(): Source
     {
         $as = Source::getById($this->authSource);
         if ($as === null) {
@@ -82,7 +80,7 @@ class Simple
      *
      * @return bool True if the user is authenticated, false if not.
      */
-    public function isAuthenticated()
+    public function isAuthenticated(): bool
     {
         return $this->session->isValid($this->authSource);
     }
@@ -102,7 +100,7 @@ class Simple
      * @param array $params Various options to the authentication request. See the documentation.
      * @return void
      */
-    public function requireAuth(array $params = [])
+    public function requireAuth(array $params = []): void
     {
         if ($this->session->isValid($this->authSource)) {
             // Already authenticated
@@ -128,7 +126,7 @@ class Simple
      * @param array $params Various options to the authentication request.
      * @return void
      */
-    public function login(array $params = [])
+    public function login(array $params = []): void
     {
         if (array_key_exists('KeepPost', $params)) {
             $keepPost = (bool) $params['KeepPost'];
@@ -188,7 +186,7 @@ class Simple
      * with parameters for the logout. If this parameter is null, we will return to the current page.
      * @return void
      */
-    public function logout($params = null)
+    public function logout($params = null): void
     {
         Assert::true(is_array($params) || is_string($params) || $params === null);
 
@@ -237,9 +235,8 @@ class Simple
      * @param array $state The state after the logout.
      * @return void
      */
-    public static function logoutCompleted($state)
+    public static function logoutCompleted(array $state): void
     {
-        Assert::isArray($state);
         Assert::true(isset($state['ReturnTo']) || isset($state['ReturnCallback']));
 
         if (isset($state['ReturnCallback'])) {
@@ -265,7 +262,7 @@ class Simple
      *
      * @return array The users attributes.
      */
-    public function getAttributes()
+    public function getAttributes(): array
     {
         if (!$this->isAuthenticated()) {
             // Not authenticated
@@ -284,10 +281,8 @@ class Simple
      *
      * @return mixed|null The value of the parameter, or null if it isn't found or we are unauthenticated.
      */
-    public function getAuthData($name)
+    public function getAuthData(string $name)
     {
-        Assert::string($name);
-
         if (!$this->isAuthenticated()) {
             return null;
         }
@@ -301,7 +296,7 @@ class Simple
      *
      * @return array|null All persistent authentication data, or null if we aren't authenticated.
      */
-    public function getAuthDataArray()
+    public function getAuthDataArray(): ?array
     {
         if (!$this->isAuthenticated()) {
             return null;
@@ -319,10 +314,8 @@ class Simple
      *
      * @return string A URL which is suitable for use in link-elements.
      */
-    public function getLoginURL($returnTo = null)
+    public function getLoginURL(?string $returnTo = null): string
     {
-        Assert::nullOrString($returnTo);
-
         if ($returnTo === null) {
             $returnTo = Utils\HTTP::getSelfURL();
         }
@@ -344,10 +337,8 @@ class Simple
      *
      * @return string A URL which is suitable for use in link-elements.
      */
-    public function getLogoutURL($returnTo = null)
+    public function getLogoutURL(?string $returnTo = null): string
     {
-        Assert::nullOrString($returnTo);
-
         if ($returnTo === null) {
             $returnTo = Utils\HTTP::getSelfURL();
         }
@@ -371,7 +362,7 @@ class Simple
      *
      * @return string The URL modified according to the precedence rules.
      */
-    protected function getProcessedURL($url = null)
+    protected function getProcessedURL(?string $url = null): string
     {
         if ($url === null) {
             $url = Utils\HTTP::getSelfURL();

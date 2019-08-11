@@ -38,10 +38,9 @@ class NameIDAttribute extends \SimpleSAML\Auth\ProcessingFilter
      * @param array $config Configuration information about this filter.
      * @param mixed $reserved For future use.
      */
-    public function __construct($config, $reserved)
+    public function __construct(array $config, $reserved)
     {
         parent::__construct($config, $reserved);
-        Assert::isArray($config);
 
         if (isset($config['attribute'])) {
             $this->attribute = (string) $config['attribute'];
@@ -109,9 +108,8 @@ class NameIDAttribute extends \SimpleSAML\Auth\ProcessingFilter
      * @param array &$state The request state.
      * @return void
      */
-    public function process(&$state)
+    public function process(array &$state): void
     {
-        Assert::isArray($state);
         Assert::keyExists($state['Source'], 'entityid');
         Assert::keyExists($state['Destination'], 'entityid');
 

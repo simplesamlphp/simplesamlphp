@@ -26,10 +26,8 @@ class WarnShortSSOInterval extends \SimpleSAML\Auth\ProcessingFilter
      * @param array $state  The state of the response.
      * @return void
      */
-    public function process(&$state)
+    public function process(array &$state): void
     {
-        Assert::isArray($state);
-
         if (!array_key_exists('PreviousSSOTimestamp', $state)) {
             /*
              * No timestamp from the previous SSO to this SP. This is the first

@@ -730,7 +730,7 @@ class SP extends \SimpleSAML\Auth\Source
      * @param array &$state  Information about the current authentication.
      * @return void
      */
-    public function authenticate(&$state)
+    public function authenticate(array &$state) : void
     {
         Assert::isArray($state);
 
@@ -789,7 +789,7 @@ class SP extends \SimpleSAML\Auth\Source
      * @param array &$state  Information about the current authentication.
      * @return void
      */
-    public function reauthenticate(array &$state)
+    public function reauthenticate(array &$state) : void
     {
         $session = Session::getSessionFromRequest();
         $data = $session->getAuthState($this->authId);
@@ -1034,7 +1034,7 @@ class SP extends \SimpleSAML\Auth\Source
      * @param array $state  The logout state.
      * @return void
      */
-    public function logout(&$state)
+    public function logout(array &$state) : void
     {
         Assert::isArray($state);
         Assert::keyExists($state, 'saml:logout:Type');

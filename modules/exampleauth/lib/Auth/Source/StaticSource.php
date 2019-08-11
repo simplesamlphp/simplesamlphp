@@ -55,7 +55,7 @@ class StaticSource extends \SimpleSAML\Auth\Source
      * @param array &$state  Information about the current authentication.
      * @return void
      */
-    public function authenticate(&$state)
+    public function authenticate(array &$state): void
     {
         Assert::isArray($state);
         $state['Attributes'] = $this->attributes;

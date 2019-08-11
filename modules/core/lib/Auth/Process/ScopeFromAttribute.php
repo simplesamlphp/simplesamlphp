@@ -47,10 +47,9 @@ class ScopeFromAttribute extends \SimpleSAML\Auth\ProcessingFilter
      * @param array &$config  Configuration information about this filter.
      * @param mixed $reserved  For future use.
      */
-    public function __construct(&$config, $reserved)
+    public function __construct(array &$config, $reserved)
     {
         parent::__construct($config, $reserved);
-        Assert::isArray($config);
 
         $cfg = Configuration::loadFromArray($config, 'ScopeFromAttribute');
         $this->targetAttribute = $cfg->getString('targetAttribute');
@@ -64,9 +63,8 @@ class ScopeFromAttribute extends \SimpleSAML\Auth\ProcessingFilter
      * @param array &$request  The current request
      * @return void
      */
-    public function process(&$request)
+    public function process(array &$request): void
     {
-        Assert::isArray($request);
         Assert::keyExists($request, 'Attributes');
 
         $attributes = &$request['Attributes'];

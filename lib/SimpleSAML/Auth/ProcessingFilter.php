@@ -47,10 +47,8 @@ abstract class ProcessingFilter
      * @param array &$config  Configuration for this filter.
      * @param mixed $reserved  For future use.
      */
-    public function __construct(&$config, $reserved)
+    public function __construct(array &$config, $reserved)
     {
-        Assert::isArray($config);
-
         if (array_key_exists('%priority', $config)) {
             $this->priority = $config['%priority'];
             if (!is_int($this->priority)) {
@@ -69,5 +67,5 @@ abstract class ProcessingFilter
      * @param array &$request  The request we are currently processing.
      * @return void
      */
-    abstract public function process(&$request);
+    abstract public function process(array &$request) : void;
 }
