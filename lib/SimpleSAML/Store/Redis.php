@@ -77,11 +77,8 @@ class Redis extends Store
      *
      * @return mixed|null The value associated with that key, or null if there's no such key.
      */
-    public function get($type, $key)
+    public function get(string $type, string $key)
     {
-        Assert::string($type);
-        Assert::string($key);
-
         $result = $this->redis->get("{$type}.{$key}");
 
         if ($result === false || $result === null) {
@@ -101,10 +98,8 @@ class Redis extends Store
      * @param int|null $expire The expiration time (unix timestamp), or null if it never expires.
      * @return void
      */
-    public function set($type, $key, $value, $expire = null)
+    public function set(string $type, string $key, $value, ?int $expire = null): void
     {
-        Assert::string($type);
-        Assert::string($key);
         Assert::nullOrGreaterThan($expire, 2592000);
 
         $serialized = serialize($value);
@@ -125,11 +120,8 @@ class Redis extends Store
      * @param string $key The key to delete.
      * @return void
      */
-    public function delete($type, $key)
+    public function delete(string $type, string $key): void
     {
-        Assert::string($type);
-        Assert::string($key);
-
         $this->redis->del("{$type}.{$key}");
     }
 }
