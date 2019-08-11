@@ -46,7 +46,7 @@ class TraditionalLogoutHandler implements LogoutHandlerInterface
      * @param array &$state The logout state.
      * @return void
      */
-    private function logoutNextSP(array &$state)
+    private function logoutNextSP(array &$state): void
     {
         $association = array_pop($state['core:LogoutTraditional:Remaining']);
         if ($association === null) {
@@ -83,7 +83,7 @@ class TraditionalLogoutHandler implements LogoutHandlerInterface
      * @param string $assocId The association that started the logout.
      * @return void
      */
-    public function startLogout(array &$state, $assocId)
+    public function startLogout(array &$state, string $assocId): void
     {
         $state['core:LogoutTraditional:Remaining'] = $this->idp->getAssociations();
 
@@ -103,11 +103,8 @@ class TraditionalLogoutHandler implements LogoutHandlerInterface
      *
      * @throws \SimpleSAML\Error\Exception If the RelayState was lost during logout.
      */
-    public function onResponse($assocId, $relayState, Error\Exception $error = null)
+    public function onResponse(string $assocId, ?string $relayState, Error\Exception $error = null): void
     {
-        Assert::string($assocId);
-        Assert::nullOrString($relayState);
-
         if ($relayState === null) {
             throw new Error\Exception('RelayState lost during logout.');
         }
