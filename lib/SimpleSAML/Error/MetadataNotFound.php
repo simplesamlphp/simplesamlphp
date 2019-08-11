@@ -19,10 +19,8 @@ class MetadataNotFound extends Error
      *
      * @param string $entityId  The entityID we were unable to locate.
      */
-    public function __construct($entityId)
+    public function __construct(string $entityId)
     {
-        Assert::string($entityId);
-
         $this->includeTemplate = 'core:no_metadata.tpl.php';
         parent::__construct([
                 'METADATANOTFOUND',

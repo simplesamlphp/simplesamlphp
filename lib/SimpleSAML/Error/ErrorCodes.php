@@ -20,7 +20,7 @@ class ErrorCodes
      *
      * @return array A map from error code to error code title
      */
-    final public static function defaultGetAllErrorCodeTitles()
+    final public static function defaultGetAllErrorCodeTitles() : array
     {
         return [
             'ACSPARAMS' => Translate::noop('{errors:title_ACSPARAMS}'),
@@ -67,7 +67,7 @@ class ErrorCodes
      *
      * @return array A map from error code to error code title
      */
-    public static function getAllErrorCodeTitles()
+    public static function getAllErrorCodeTitles(): array
     {
         return self::defaultGetAllErrorCodeTitles();
     }
@@ -78,7 +78,7 @@ class ErrorCodes
      *
      * @return array A map from error code to error code description
      */
-    final public static function defaultGetAllErrorCodeDescriptions()
+    final public static function defaultGetAllErrorCodeDescriptions(): array
     {
         return [
             'ACSPARAMS' => Translate::noop('{errors:descr_ACSPARAMS}'),
@@ -124,7 +124,7 @@ class ErrorCodes
      *
      * @return array A map from error code to error code description
      */
-    public static function getAllErrorCodeDescriptions()
+    public static function getAllErrorCodeDescriptions(): array
     {
         return self::defaultGetAllErrorCodeDescriptions();
     }
@@ -137,7 +137,7 @@ class ErrorCodes
      *
      * @return array An array containing both errorcode maps.
      */
-    public static function getAllErrorCodeMessages()
+    public static function getAllErrorCodeMessages(): array
     {
         return [
             'title' => self::getAllErrorCodeTitles(),
@@ -153,7 +153,7 @@ class ErrorCodes
      *
      * @return string A string to translate
      */
-    public static function getErrorCodeTitle($errorCode)
+    public static function getErrorCodeTitle(string $errorCode): string
     {
         $errorCodeTitles = self::getAllErrorCodeTitles();
         return $errorCodeTitles[$errorCode];
@@ -167,7 +167,7 @@ class ErrorCodes
      *
      * @return string A string to translate
      */
-    public static function getErrorCodeDescription($errorCode)
+    public static function getErrorCodeDescription(string $errorCode): string
     {
         $errorCodeDescriptions = self::getAllErrorCodeDescriptions();
         return $errorCodeDescriptions[$errorCode];
@@ -183,7 +183,7 @@ class ErrorCodes
      *
      * @return array An array containing both errorcode strings.
      */
-    public static function getErrorCodeMessage($errorCode)
+    public static function getErrorCodeMessage(string $errorCode): array
     {
         return [
             'title' => self::getErrorCodeTitle($errorCode),

@@ -150,6 +150,7 @@ class SAML2
 
         $idpMetadata = $idp->getConfig();
 
+        /** @var \SimpleSAML\Module\saml\Error $error */
         $error = \SimpleSAML\Module\saml\Error::fromException($exception);
 
         Logger::warning("Returning error to SP with entity ID '" . var_export($spEntityId, true) . "'.");

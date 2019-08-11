@@ -108,9 +108,9 @@ class Error extends \SimpleSAML\Error\Exception
      * status codes from an arbitrary exception.
      *
      * @param \Exception $exception  The original exception.
-     * @return \SimpleSAML\Module\saml\Error  The new exception.
+     * @return \Exception  The new exception.
      */
-    public static function fromException(\Exception $exception)
+    public static function fromException(\Exception $exception) : \Exception
     {
         if ($exception instanceof \SimpleSAML\Module\saml\Error) {
             // Return the original exception unchanged
