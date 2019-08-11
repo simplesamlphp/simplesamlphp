@@ -49,7 +49,7 @@ class Memcache
      *
      * @return mixed The data stored with the given key, or null if no data matching the key was found.
      */
-    public static function get($key)
+    public static function get(string $key)
     {
         Logger::debug("loading key $key from memcache");
 
@@ -154,7 +154,7 @@ class Memcache
      * @param integer|null $expire The expiration timestamp of the data.
      * @return void
      */
-    public static function set($key, $value, $expire = null)
+    public static function set(string $key, $value, ?int $expire = null) : void
     {
         Logger::debug("saving key $key to memcache");
         $savedInfo = [
@@ -185,9 +185,8 @@ class Memcache
      * @param string $key The key we should delete.
      * @return void
      */
-    public static function delete($key)
+    public static function delete(string $key): void
     {
-        Assert::string($key);
         Logger::debug("deleting key $key from memcache");
 
         // store this object to all groups of memcache servers
@@ -221,7 +220,7 @@ class Memcache
      *
      * @throws \Exception If any configuration option for the server is invalid.
      */
-    private static function addMemcacheServer($memcache, array $server)
+    private static function addMemcacheServer($memcache, array $server): void
     {
         // the hostname option is required
         if (!array_key_exists('hostname', $server)) {
@@ -444,7 +443,7 @@ class Memcache
      *
      * @throws \Exception If memcache server status couldn't be retrieved.
      */
-    public static function getStats()
+    public static function getStats() : array
     {
         $ret = [];
 
@@ -471,7 +470,7 @@ class Memcache
      *
      * @return array An array with the extended stats output for each server group.
      */
-    public static function getRawStats()
+    public static function getRawStats() : array
     {
         $ret = [];
 

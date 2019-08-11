@@ -58,7 +58,7 @@ class Database
      *
      * @return \SimpleSAML\Database The shared database connection.
      */
-    public static function getInstance($altConfig = null)
+    public static function getInstance(Configuration $altConfig = null) : Database
     {
         $config = ($altConfig) ? $altConfig : Configuration::getInstance();
         $instanceId = self::generateInstanceId($config);
@@ -184,7 +184,7 @@ class Database
      *
      * @return string Table with configured prefix
      */
-    public function applyPrefix($table)
+    public function applyPrefix(string $table) : string
     {
         return $this->tablePrefix . $table;
     }
@@ -251,7 +251,7 @@ class Database
      *
      * @return int|false The number of rows affected by the query or false on error.
      */
-    public function write($stmt, $params = [])
+    public function write(string $stmt, array $params = [])
     {
         $db = $this->dbMaster;
 
@@ -271,7 +271,7 @@ class Database
      *
      * @return \PDOStatement object
      */
-    public function read($stmt, $params = [])
+    public function read(string $stmt, array $params = [])
     {
         $db = $this->getSlave();
 
@@ -284,7 +284,7 @@ class Database
      *
      * @return array The array with error information.
      */
-    public function getLastError()
+    public function getLastError() : array
     {
         return $this->lastError;
     }

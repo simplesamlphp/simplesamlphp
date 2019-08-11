@@ -54,7 +54,7 @@ class Stats
      *
      * @return void
      */
-    private static function initOutputs()
+    private static function initOutputs() : void
     {
         $config = Configuration::getInstance();
         $outputCfgs = $config->getArray('statistics.out', []);
@@ -74,9 +74,8 @@ class Stats
      *
      * @return void|boolean False if output is not enabled, void otherwise.
      */
-    public static function log($event, array $data = [])
+    public static function log(string $event, array $data = [])
     {
-        Assert::string($event);
         Assert::keyNotExists($data, 'op');
         Assert::keyNotExists($data, 'time');
         Assert::keyNotExists($data, '_id');

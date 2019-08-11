@@ -15,7 +15,7 @@ declare(strict_types=1);
  *
  * @param string $className Name of the class.
  */
-function sspmodAutoloadPSR4(string $className)
+function sspmodAutoloadPSR4(string $className): void
 {
     $elements = explode('\\', $className);
     if ($elements[0] === '') {

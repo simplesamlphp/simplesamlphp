@@ -55,7 +55,7 @@ abstract class SessionHandlerCookie extends SessionHandler
      *
      * @return string The new session id.
      */
-    public function newSessionId()
+    public function newSessionId() : string
     {
         $this->session_id = self::createSessionID();
         Session::createSession($this->session_id);
@@ -69,7 +69,7 @@ abstract class SessionHandlerCookie extends SessionHandler
      *
      * @return string|null The session id saved in the cookie or null if no session cookie was set.
      */
-    public function getCookieSessionId()
+    public function getCookieSessionId() : ?string
     {
         if ($this->session_id === null) {
             if ($this->hasSessionCookie()) {
@@ -93,7 +93,7 @@ abstract class SessionHandlerCookie extends SessionHandler
      *
      * @return string The session cookie name.
      */
-    public function getSessionCookieName()
+    public function getSessionCookieName() : string
     {
         return $this->cookie_name;
     }
@@ -120,7 +120,6 @@ abstract class SessionHandlerCookie extends SessionHandler
      */
     private static function isValidSessionID(string $session_id): bool
     {
-
         if (strlen($session_id) != 32) {
             return false;
         }
@@ -140,7 +139,7 @@ abstract class SessionHandlerCookie extends SessionHandler
      *
      * @return boolean True if it was set, false otherwise.
      */
-    public function hasSessionCookie()
+    public function hasSessionCookie(): bool
     {
         return array_key_exists($this->cookie_name, $_COOKIE);
     }
@@ -156,11 +155,8 @@ abstract class SessionHandlerCookie extends SessionHandler
      *
      * @throws \SimpleSAML\Error\CannotSetCookie If we can't set the cookie.
      */
-    public function setCookie($sessionName, $sessionID, array $cookieParams = null)
+    public function setCookie(string $sessionName, ?string $sessionID, array $cookieParams = null): void
     {
-        Assert::string($sessionName);
-        Assert::nullOrString($sessionID);
-
         if ($cookieParams !== null) {
             $params = array_merge($this->getCookieParams(), $cookieParams);
         } else {

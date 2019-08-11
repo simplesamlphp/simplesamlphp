@@ -4,7 +4,12 @@ declare(strict_types=1);
 
 namespace SimpleSAML;
 
+use Exception;
 use SimpleSAML\Logger\ErrorLogLoggingHandler;
+use SimpleSAML\Logger\FileLoggingHandler;
+use SimpleSAML\Logger\LoggingHandlerInterface;
+use SimpleSAML\Logger\StandardErrorLoggingHandler;
+use SimpleSAML\Logger\SyslogLoggingHandler;
 use Webmozart\Assert\Assert;
 
 /**
@@ -159,7 +164,7 @@ class Logger
      * @param string $string The message to log.
      * @return void
      */
-    public static function emergency($string)
+    public static function emergency(string $string) : void
     {
         self::log(self::EMERG, $string);
     }
@@ -171,7 +176,7 @@ class Logger
      * @param string $string The message to log.
      * @return void
      */
-    public static function critical($string)
+    public static function critical(string $string) : void
     {
         self::log(self::CRIT, $string);
     }
@@ -183,7 +188,7 @@ class Logger
      * @param string $string The message to log.
      * @return void
      */
-    public static function alert($string)
+    public static function alert(string $string) : void
     {
         self::log(self::ALERT, $string);
     }
@@ -195,7 +200,7 @@ class Logger
      * @param string $string The message to log.
      * @return void
      */
-    public static function error($string)
+    public static function error(string $string) : void
     {
         self::log(self::ERR, $string);
     }
@@ -207,7 +212,7 @@ class Logger
      * @param string $string The message to log.
      * @return void
      */
-    public static function warning($string)
+    public static function warning(string $string) : void
     {
         self::log(self::WARNING, $string);
     }
@@ -219,7 +224,7 @@ class Logger
      * @param string $string The message to log.
      * @return void
      */
-    public static function notice($string)
+    public static function notice(string $string) : void
     {
         self::log(self::NOTICE, $string);
     }
@@ -231,7 +236,7 @@ class Logger
      * @param string $string The message to log.
      * @return void
      */
-    public static function info($string)
+    public static function info(string $string) : void
     {
         self::log(self::INFO, $string);
     }
@@ -244,7 +249,7 @@ class Logger
      * @param string $string The message to log.
      * @return void
      */
-    public static function debug($string)
+    public static function debug(string $string) : void
     {
         self::log(self::DEBUG, $string);
     }
@@ -256,7 +261,7 @@ class Logger
      * @param string $string The message to log.
      * @return void
      */
-    public static function stats($string)
+    public static function stats(string $string) : void
     {
         self::log(self::NOTICE, $string, true);
     }
@@ -268,7 +273,7 @@ class Logger
      * @param boolean $val Whether to capture logs or not. Defaults to TRUE.
      * @return void
      */
-    public static function setCaptureLog($val = true)
+    public static function setCaptureLog(bool $val = true) : void
     {
         self::$captureLog = $val;
     }
@@ -278,7 +283,7 @@ class Logger
      * Get the captured log.
      * @return array
      */
-    public static function getCapturedLog()
+    public static function getCapturedLog() : array
     {
         return self::$capturedLog;
     }
@@ -290,7 +295,7 @@ class Logger
      * @param string $trackId The track identifier to use during this session.
      * @return void
      */
-    public static function setTrackId($trackId)
+    public static function setTrackId(string $trackId) : void
     {
         self::$trackid = $trackId;
         self::flush();
@@ -319,12 +324,12 @@ class Logger
      *
      * @return void
      */
-    public static function shutdown()
+    public static function shutdown() : void
     {
         if (self::$trackid === self::NO_TRACKID) {
             try {
                 $s = Session::getSessionFromRequest();
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 // loading session failed. We don't care why, at this point we have a transient session, so we use that
                 $s = Session::getSessionFromRequest();
             }
@@ -342,7 +347,7 @@ class Logger
      *
      * @return bool True if the error is masked, false otherwise.
      */
-    public static function isErrorMasked($errno)
+    public static function isErrorMasked(int $errno) : bool
     {
         return ($errno & self::$logMask) || !($errno & error_reporting());
     }
@@ -356,10 +361,8 @@ class Logger
      * @param int $mask The log levels that should be masked.
      * @return void
      */
-    public static function maskErrors($mask)
+    public static function maskErrors(int $mask) : void
     {
-        Assert::integer($mask);
-
         $currentEnabled = error_reporting();
         self::$logLevelStack[] = [$currentEnabled, self::$logMask];
 
@@ -376,7 +379,7 @@ class Logger
      *
      * @return void
      */
-    public static function popErrorMask()
+    public static function popErrorMask(): void
     {
         $lastMask = array_pop(self::$logLevelStack);
         error_reporting($lastMask[0]);
@@ -392,7 +395,7 @@ class Logger
      * @param boolean $stats Whether this is a stats message or a regular one.
      * @return void
      */
-    private static function defer(int $level, string $message, bool $stats)
+    private static function defer(int $level, string $message, bool $stats): void
     {
         // save the message for later
         self::$earlyLog[] = ['level' => $level, 'string' => $message, 'statsLog' => $stats];
@@ -410,16 +413,16 @@ class Logger
      * @return void
      * @throws \Exception
      */
-    private static function createLoggingHandler(string $handler = null)
+    private static function createLoggingHandler(?string $handler = null): void
     {
         self::$initializing = true;
 
         // a set of known logging handlers
         $known_handlers = [
-            'syslog'   => 'SimpleSAML\Logger\SyslogLoggingHandler',
-            'file'     => 'SimpleSAML\Logger\FileLoggingHandler',
-            'errorlog' => 'SimpleSAML\Logger\ErrorLogLoggingHandler',
-            'stderr' => 'SimpleSAML\Logger\StandardErrorLoggingHandler',
+            'syslog'   => SyslogLoggingHandler::class,
+            'file'     => FileLoggingHandler::class,
+            'errorlog' => ErrorLogLoggingHandler::class,
+            'stderr' => StandardErrorLoggingHandler::class,
         ];
 
         // get the configuration
@@ -435,13 +438,13 @@ class Logger
         }
 
         if (!array_key_exists($handler, $known_handlers) && class_exists($handler)) {
-            if (!in_array('SimpleSAML\Logger\LoggingHandlerInterface', class_implements($handler), true)) {
-                throw new \Exception("The logging handler '$handler' is invalid.");
+            if (!in_array(LoggingHandlerInterface::class, class_implements($handler), true)) {
+                throw new Exception("The logging handler '$handler' is invalid.");
             }
         } else {
             $handler = strtolower($handler);
             if (!array_key_exists($handler, $known_handlers)) {
-                throw new \Exception(
+                throw new Exception(
                     "Invalid value for the 'logging.handler' configuration option. Unknown handler '" . $handler . "'."
                 );
             }
@@ -455,7 +458,7 @@ class Logger
             self::$loggingHandler = new $handler($config);
             self::$loggingHandler->setLogFormat(self::$format);
             self::$initializing = false;
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             self::$loggingHandler = new ErrorLogLoggingHandler($config);
             self::$initializing = false;
             self::log(self::CRIT, $e->getMessage(), false);
@@ -469,7 +472,7 @@ class Logger
      * @param bool $statsLog
      * @return void
      */
-    private static function log(int $level, string $string, bool $statsLog = false)
+    private static function log(int $level, string $string, bool $statsLog = false): void
     {
         if (self::$initializing) {
             // some error occurred while initializing logging
@@ -478,7 +481,7 @@ class Logger
         } elseif (php_sapi_name() === 'cli' || defined('STDIN')) {
             // we are being executed from the CLI, nowhere to log
             if (!isset(self::$loggingHandler)) {
-                self::createLoggingHandler(\SimpleSAML\Logger\StandardErrorLoggingHandler::class);
+                self::createLoggingHandler(StandardErrorLoggingHandler::class);
             }
             $_SERVER['REMOTE_ADDR'] = "CLI";
             if (self::$trackid === self::NO_TRACKID) {
