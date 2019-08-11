@@ -30,10 +30,8 @@ class NotFound extends Error
      *
      * @param string $reason  Optional description of why the given page could not be found.
      */
-    public function __construct($reason = null)
+    public function __construct(?string $reason = null)
     {
-        Assert::nullOrString($reason);
-
         $url = Utils\HTTP::getSelfURL();
 
         if ($reason === null) {
@@ -54,7 +52,7 @@ class NotFound extends Error
      *
      * @return string|null  The reason why the page could not be found.
      */
-    public function getReason()
+    public function getReason(): ?string
     {
         return $this->reason;
     }
@@ -68,7 +66,7 @@ class NotFound extends Error
      *
      * @return array
      */
-    public function format($anonymize = false)
+    public function format(bool $anonymize = false): array
     {
         return [
             $this->getClass() . ': ' . $this->getMessage(),
