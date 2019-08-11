@@ -32,7 +32,7 @@
         "files": ["tests/_autoload_modules.php"]
     },
     "require": {
-        "php": ">=7.0",
+        "php": ">=7.2",
         "ext-SPL": "*",
         "ext-zlib": "*",
         "ext-pcre": "*",
