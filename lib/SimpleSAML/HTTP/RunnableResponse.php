@@ -29,7 +29,7 @@ class RunnableResponse extends Response
      * @param callable $callable A callable that we should run as part of this response.
      * @param array $args An array of arguments to be passed to the callable. Note that each element of the array
      */
-    public function __construct(callable $callable, $args = [])
+    public function __construct(callable $callable, array $args = [])
     {
         $this->arguments = $args;
         $this->callable = $callable;
@@ -43,7 +43,7 @@ class RunnableResponse extends Response
      *
      * @return callable
      */
-    public function getCallable()
+    public function getCallable() : callable
     {
         return $this->callable;
     }
@@ -54,7 +54,7 @@ class RunnableResponse extends Response
      *
      * @return array
      */
-    public function getArguments()
+    public function getArguments() : array
     {
         return $this->arguments;
     }
