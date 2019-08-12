@@ -74,9 +74,7 @@ class ValidatorTest extends SigningTestCase
         $signer->loadCertificate($this->good_certificate_file, true);
         $signer->sign($node, $signature_parent);
 
-        // openssl x509 -in good.cert.pem -noout -sha1 -fingerprint
-        // Avoiding openssl_x509_fingerprint because it's >= PHP 5.6 only
-        $fingerprint = 'a7fb75225788a1b0d0290a4bd1ea0c01f89844a0';
+        $fingerprint = openssl_x509_fingerprint($this->good_certificate);
 
         $validator = new Validator(
             $doc,
@@ -127,9 +125,7 @@ class ValidatorTest extends SigningTestCase
         $signer->loadCertificate($this->good_certificate_file, true);
         $signer->sign($node, $signature_parent);
 
-        // openssl x509 -in good.cert.pem -noout -sha1 -fingerprint
-        // Avoiding openssl_x509_fingerprint because it's >= PHP 5.6 only
-        $fingerprint = 'a7fb75225788a1b0d0290a4bd1ea0c01f89844a0';
+        $fingerprint = openssl_x509_fingerprint($this->good_certificate);
 
         $validator = new Validator($doc, 'node');
         $validator->validateFingerprint($fingerprint);

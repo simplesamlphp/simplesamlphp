@@ -417,22 +417,7 @@ class Crypto
      */
     public static function secureCompare($known, $user)
     {
-        if (function_exists('hash_equals')) {
-            // use hash_equals() if available (PHP >= 5.6)
-            return hash_equals($known, $user);
-        }
-
-        // compare manually in constant time
-        $len = mb_strlen($known, '8bit'); // see mbstring.func_overload
-        if ($len !== mb_strlen($user, '8bit')) {
-            return false; // length differs
-        }
-        $diff = 0;
-        for ($i = 0; $i < $len; $i++) {
-            $diff |= ord($known[$i]) ^ ord($user[$i]);
-        }
-        // if all the bytes in $a and $b are identical, $diff should be equal to 0
-        return $diff === 0;
+        return hash_equals($known, $user);
     }
 
 
