@@ -35,9 +35,7 @@ if (!preg_match('@State=(.*)@', $returnTo, $matches)) {
  */
 \SimpleSAML\Auth\State::loadState(urldecode($matches[1]), 'exampleauth:External');
 
-/**
- * Our list of users.
- */
+// our list of users.
 $users = [
     'student' => [
         'password' => 'student',
@@ -55,11 +53,7 @@ $users = [
     ],
 ];
 
-/**
- * Time to handle login responses.
- * Since this is a dummy example, we accept any data.
- */
-
+// time to handle login responses; since this is a dummy example, we accept any data
 $badUserPass = false;
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = (string) $_REQUEST['username'];
@@ -84,9 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-/**
- * If we get this far, we need to show the login page to the user.
- */
+// if we get this far, we need to show the login page to the user
 $config = \SimpleSAML\Configuration::getInstance();
 $t = new \SimpleSAML\XHTML\Template($config, 'exampleauth:authenticate.twig');
 $t->data['badUserPass'] = $badUserPass;
