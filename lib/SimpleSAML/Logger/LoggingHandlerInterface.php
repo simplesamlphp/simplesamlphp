@@ -30,7 +30,7 @@ interface LoggingHandlerInterface
      * @param string $string The message to log.
      * @return void
      */
-    public function log($level, $string);
+    public function log(int $level, string $string) : void;
 
 
     /**
@@ -39,5 +39,5 @@ interface LoggingHandlerInterface
      * @param string $format The format used for logs.
      * @return void
      */
-    public function setLogFormat($format);
+    public function setLogFormat(string $format) : void;
 }
