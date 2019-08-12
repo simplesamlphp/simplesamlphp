@@ -116,7 +116,7 @@ class Localization
      *
      * @return string
      */
-    public function getLocaleDir()
+    public function getLocaleDir(): string
     {
         return $this->localeDir;
     }
@@ -129,7 +129,7 @@ class Localization
      *
      * @return string
      */
-    public function getDomainLocaleDir($domain)
+    public function getDomainLocaleDir(string $domain): string
     {
         /** @var string $base */
         $base = $this->configuration->resolvePath('modules');
@@ -146,7 +146,7 @@ class Localization
      * @param string $localeDir Absolute path if the module is housed elsewhere
      * @return void
      */
-    public function addModuleDomain($module, $localeDir = null)
+    public function addModuleDomain(string $module, string $localeDir = null): void
     {
         if (!$localeDir) {
             $localeDir = $this->getDomainLocaleDir($module);
@@ -163,12 +163,13 @@ class Localization
      * @param string $domain Domain at location
      * @return void
      */
-    public function addDomain($localeDir, $domain)
+    public function addDomain(string $localeDir, string $domain): void
     {
         $this->localeDomainMap[$domain] = $localeDir;
         Logger::debug("Localization: load domain '$domain' at '$localeDir'");
         $this->loadGettextGettextFromPO($domain);
     }
+
 
     /**
      * Get and check path of localization file
@@ -178,7 +179,7 @@ class Localization
      *
      * @return string
      */
-    public function getLangPath($domain = self::DEFAULT_DOMAIN)
+    public function getLangPath(string $domain = self::DEFAULT_DOMAIN): string
     {
         $langcode = explode('_', $this->langcode);
         $langcode = $langcode[0];
@@ -221,7 +222,7 @@ class Localization
      * Setup the translator
      * @return void
      */
-    private function setupTranslator()
+    private function setupTranslator(): void
     {
         $this->translator = new Translator();
         $this->translator->register();
@@ -240,8 +241,10 @@ class Localization
      *
      * @throws \Exception If something is wrong with the locale file for the domain and activated language
      */
-    private function loadGettextGettextFromPO(string $domain = self::DEFAULT_DOMAIN, bool $catchException = true)
-    {
+    private function loadGettextGettextFromPO(
+        string $domain = self::DEFAULT_DOMAIN,
+         bool $catchException = true
+    ): void {
         try {
             $langPath = $this->getLangPath($domain);
         } catch (\Exception $e) {
@@ -273,7 +276,7 @@ class Localization
      *
      * @return bool
      */
-    public function isI18NBackendDefault()
+    public function isI18NBackendDefault(): bool
     {
         if ($this->i18nBackend === $this::SSP_I18N_BACKEND) {
             return true;
@@ -286,7 +289,7 @@ class Localization
      * Set up L18N if configured or fallback to old system
      * @return void
      */
-    private function setupL10N()
+    private function setupL10N(): void
     {
         if ($this->i18nBackend === self::SSP_I18N_BACKEND) {
             Logger::debug("Localization: using old system");
@@ -303,7 +306,7 @@ class Localization
      *
      * @return array
      */
-    public function getRegisteredDomains()
+    public function getRegisteredDomains(): array
     {
         return $this->localeDomainMap;
     }
