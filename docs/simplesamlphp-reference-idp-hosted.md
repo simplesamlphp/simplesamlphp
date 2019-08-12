@@ -123,6 +123,8 @@ Common options
     any value in the SP-remote metadata overrides the one configured
     in the IdP metadata.
 
+:   *Note*: **deprecated** Will be removed in a future release; use the MDUI-extension instead
+
 `privatekey`
 :   Name of private key file for this IdP, in PEM format. The filename
     is relative to the `cert/`-directory.

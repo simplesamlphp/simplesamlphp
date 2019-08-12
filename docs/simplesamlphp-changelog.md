@@ -14,6 +14,8 @@ Released TBD
   * Allow to log to STDERR in the logging.handler option.
   * Allow use of stream wrappers (e.g. s3://) in paths.
   * Improve 'update or insert' handling for different SQL drivers
+  * The default algorithm within the TimeLimitedToken-class has been bumped from SHA-1 to SHA-256
+    as announced by deprecation notice in 1.15-RC1
 
 ### metarefresh
   * The algorithm to compute the fingerprint of the certificate that signed
@@ -29,6 +31,14 @@ Released TBD
 
 ### Interoperability
   * The minimum PHP version required is now 5.6.
+
+### Deprecation
+  * The class SimpleSAML\Auth\TimeLimitedToken is now deprecated and will be removed in a future release
+    If your custom module relies on this class, be sure to make a copy into your repository and
+    make sure to also copy the unit tests that come along.
+  * Setting 'privacypolicy' in metadata-files will be removed in a future release. It was only used
+    by the consent-module, which supports UIInfo's PrivacyStatementURL.
+    See https://simplesamlphp.org/docs/stable/simplesamlphp-metadata-extensions-ui on how to configure this.
 
 ## Version 1.17.5
 

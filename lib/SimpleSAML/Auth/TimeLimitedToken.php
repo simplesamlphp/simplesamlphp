@@ -6,6 +6,8 @@ use SimpleSAML\Utils;
 
 /**
  * A class that generates and verifies time-limited tokens.
+ *
+ * @deprecated  This class was deprecated in 1.18 and will be removed in a future release
  */
 
 class TimeLimitedToken

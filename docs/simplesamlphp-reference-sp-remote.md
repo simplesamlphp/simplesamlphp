@@ -98,6 +98,8 @@ and Shibboleth 1.3 protocol:
     entry in the SP-remote metadata overrides the option in the
     IdP-hosted metadata.
 
+:   *Note*: **deprecated** Will be removed in a future release; use the MDUI-extension instead
+
 `userid.attribute`
 :   The attribute name of an attribute which uniquely identifies
     the user. This attribute is used if SimpleSAMLphp needs to generate

@@ -37,6 +37,7 @@
         <!-- Ignore deprecated classes -->
         <ignoreFiles>
             <file name="lib/SimpleSAML/Auth/DefaultAuth.php" />
+            <file name="lib/SimpleSAML/Auth/TimeLimitedToken.php" />
             <file name="lib/SimpleSAML/Utilities.php" />
 
             <!-- Ignore deprecated PHP-templates - Remove for 2.0 -->
