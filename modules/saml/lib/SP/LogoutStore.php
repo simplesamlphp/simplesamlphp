@@ -148,12 +148,12 @@ class LogoutStore
         }
 
         $query = 'CREATE TABLE '.$store->prefix.'_saml_LogoutStore (
-            _authSource VARCHAR('.$store->driver === 'mysql' ? '191' : '255'.') NOT NULL,
+            _authSource VARCHAR('.($store->driver === 'mysql' ? '191' : '255').') NOT NULL,
             _nameId VARCHAR(40) NOT NULL,
             _sessionIndex VARCHAR(50) NOT NULL,
             _expire DATETIME NOT NULL,
             _sessionId VARCHAR(50) NOT NULL,
-            UNIQUE (_authSource'.$store->driver === 'mysql' ? '(191)' : ''.', _nameID, _sessionIndex)
+            UNIQUE (_authSource'.($store->driver === 'mysql' ? '(191)' : '').', _nameID, _sessionIndex)
         )';
         $store->pdo->exec($query);
 
@@ -162,7 +162,7 @@ class LogoutStore
         $store->pdo->exec($query);
 
         $query = 'CREATE INDEX '.$store->prefix.'_saml_LogoutStore_nameId ON ';
-        $query .= $store->prefix.'_saml_LogoutStore (_authSource'.$store->driver === 'mysql' ? '(191)' : ''.', _nameId)';
+        $query .= $store->prefix.'_saml_LogoutStore (_authSource'.($store->driver === 'mysql' ? '(191)' : '').', _nameId)';
         $store->pdo->exec($query);
 
         $store->setTableVersion('saml_LogoutStore', 4);
