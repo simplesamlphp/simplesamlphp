@@ -32,7 +32,6 @@ use Symfony\Component\HttpFoundation\ResponseHeaderBag;
  */
 class FederationController
 {
-
     /** @var \SimpleSAML\Configuration */
     protected $config;
 
@@ -385,6 +384,7 @@ class FederationController
         return $entities;
     }
 
+
     /**
      * Metadata converter
      *
@@ -454,6 +454,7 @@ class FederationController
         return $this->menu->insert($t);
     }
 
+
     /**
      * Download a certificate for a given entity.
      *
@@ -495,6 +496,7 @@ class FederationController
 
         return $response;
     }
+
 
     /**
      * Show remote entity metadata
