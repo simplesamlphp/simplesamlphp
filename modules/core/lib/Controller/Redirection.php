@@ -11,6 +11,7 @@ use SimpleSAML\Session;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\Request;
+use Webmozart\Assert\Assert;
 
 /**
  * Controller class for the core module.
@@ -19,7 +20,7 @@ use Symfony\Component\HttpFoundation\Request;
  *
  * @package SimpleSAML\Module\core
  */
-class RedirectionController
+class Redirection
 {
     /** @var \SimpleSAML\Configuration */
     protected $config;
@@ -73,6 +74,7 @@ class RedirectionController
             if (empty($sessionId) || empty($postId)) {
                 throw new Error\BadRequest('Invalid session info data.');
             }
+
         } else {
             throw new Error\BadRequest('Missing redirection info parameter.');
         }
@@ -91,15 +93,15 @@ class RedirectionController
 
         $session->deleteData('core_postdatalink', $postId);
 
-        assert(is_array($postData));
-        assert(array_key_exists('url', $postData));
-        assert(array_key_exists('post', $postData));
+        Assert::isArray($postData);
+        Assert::keyExists($postData, 'url');
+        Assert::keyExists($postData, 'post');
 
         if (!Utils\HTTP::isValidURL($postData['url'])) {
             throw new Error\Exception('Invalid destination URL.');
         }
 
-        $t = new Template($this->config, 'post.php');
+        $t = new Template($this->config, 'post.twig');
         $t->data['destination'] = $postData['url'];
         $t->data['post'] = $postData['post'];
         return $t;

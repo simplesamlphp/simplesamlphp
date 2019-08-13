@@ -13,6 +13,7 @@ use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Webmozart\Assert\Assert;
 
 /**
  * Controller class for the core module.
@@ -21,7 +22,7 @@ use Symfony\Component\HttpFoundation\Request;
  *
  * @package SimpleSAML\Module\core
  */
-class LoginController
+class Login
 {
     /** @var \SimpleSAML\Configuration */
     protected $config;
@@ -64,8 +65,8 @@ class LoginController
      *
      * @param string $as The identifier of the authentication source.
      *
-     * @return \SimpleSAML\XHTML\Template|RedirectResponse An HTML template or a redirection if we are not
-     * authenticated.
+     * @return \SimpleSAML\XHTML\Template|\Symfony\Component\HttpFoundation\RedirectResponse
+     * An HTML template or a redirection if we are not authenticated.
      *
      * @throws \SimpleSAML\Error\Exception An exception in case the auth source specified is invalid.
      */
@@ -112,8 +113,8 @@ class LoginController
      * @param Request $request The request that lead to this login operation.
      * @param string|null $as The name of the authentication source to use, if any. Optional.
      *
-     * @return \SimpleSAML\XHTML\Template|\SimpleSAML\HTTP\RunnableResponse|RedirectResponse An HTML template, a
-     * redirect or a "runnable" response.
+     * @return \SimpleSAML\XHTML\Template|\SimpleSAML\HTTP\RunnableResponse|\Symfony\Component\HttpFoundation\RedirectResponse
+     * An HTML template, a redirect or a "runnable" response.
      *
      * @throws \SimpleSAML\Error\Exception
      */
@@ -150,7 +151,7 @@ class LoginController
             /** @var array $state */
             $state = Auth\State::loadExceptionState();
 
-            assert(array_key_exists(Auth\State::EXCEPTION_DATA, $state));
+            Assert::keyExists($state, Auth\State::EXCEPTION_DATA);
             $e = $state[Auth\State::EXCEPTION_DATA];
 
             throw $e;
@@ -182,7 +183,7 @@ class LoginController
     public function logout($as)
     {
         $auth = new Auth\Simple($as);
-        return new RunnableResponse([$auth, 'logout'], [$this->config->getBasePath() . 'logout.php']);
+        return new RunnableResponse([$auth, 'logout'], [$this->config->getBasePath() . 'core/logout/' . urlencode($as)]);
     }
 
 

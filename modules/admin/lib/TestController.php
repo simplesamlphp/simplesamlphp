@@ -14,6 +14,7 @@ use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Webmozart\Assert\Assert;
 
 /**
  * Controller class for the admin module.
@@ -71,7 +72,7 @@ class TestController
                 // This is just a simple example of an error
                 /** @var array $state */
                 $state = Auth\State::loadExceptionState();
-                assert(array_key_exists(Auth\State::EXCEPTION_DATA, $state));
+                Assert::keyExists($state, Auth\State::EXCEPTION_DATA);
                 throw $state[Auth\State::EXCEPTION_DATA];
             }
 
