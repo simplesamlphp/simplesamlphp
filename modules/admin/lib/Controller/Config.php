@@ -20,7 +20,7 @@ use Symfony\Component\HttpFoundation\Request;
  *
  * @package SimpleSAML\Module\admin
  */
-class ConfigController
+class Config
 {
     const LATEST_VERSION_STATE_KEY = 'core:latest_simplesamlphp_version';
 
