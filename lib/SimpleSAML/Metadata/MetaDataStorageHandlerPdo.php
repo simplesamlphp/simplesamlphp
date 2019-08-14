@@ -58,10 +58,8 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
      *
      * @param array $config An associative array with the configuration for this handler.
      */
-    public function __construct($config)
+    public function __construct(array $config)
     {
-        Assert::isArray($config);
-
         $this->db = Database::getInstance();
     }
 
@@ -78,7 +76,7 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
      * @throws \Exception If a database error occurs.
      * @throws \SimpleSAML\Error\Exception If the metadata can be retrieved from the database, but cannot be decoded.
      */
-    private function load(string $set)
+    private function load(string $set): ?array
     {
         $tableName = $this->getTableName($set);
 
@@ -117,10 +115,8 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
      *
      * @return array $metadata An associative array with all the metadata for the given set.
      */
-    public function getMetadataSet($set)
+    public function getMetadataSet(string $set): array
     {
-        Assert::string($set);
-
         if (array_key_exists($set, $this->cachedMetadata)) {
             return $this->cachedMetadata[$set];
         }
@@ -138,6 +134,7 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
         return $metadataSet;
     }
 
+
     /**
      * Retrieve a metadata entry.
      *
@@ -147,11 +144,8 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
      * @return array|null An associative array with metadata for the given entity, or NULL if we are unable to
      *         locate the entity.
      */
-    public function getMetaData($entityId, $set)
+    public function getMetaData(string $entityId, string $set): ?array
     {
-        Assert::string($entityId);
-        Assert::string($set);
-
         // validate the metadata set is valid
         if (!in_array($set, $this->supportedSets, true)) {
             return null;
@@ -212,6 +206,7 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
         return null;
     }
 
+
     /**
      * Add metadata to the configured database
      *
@@ -221,12 +216,8 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
      *
      * @return bool True/False if entry was successfully added
      */
-    public function addEntry($index, $set, $entityData)
+    public function addEntry(string $index, string $set, array $entityData): bool
     {
-        Assert::string($index);
-        Assert::string($set);
-        assert::isArray($entityData);
-
         if (!in_array($set, $this->supportedSets, true)) {
             return false;
         }

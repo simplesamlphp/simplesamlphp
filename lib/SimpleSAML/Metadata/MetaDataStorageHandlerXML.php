@@ -35,7 +35,7 @@ class MetaDataStorageHandlerXML extends MetaDataStorageSource
      *
      * @throws \Exception If neither the 'file' or 'url' options are defined in the configuration.
      */
-    protected function __construct($config)
+    protected function __construct(array $config)
     {
         $src = $srcXml = null;
         if (array_key_exists('file', $config)) {
@@ -97,7 +97,7 @@ class MetaDataStorageHandlerXML extends MetaDataStorageSource
      *
      * @return array An associative array with all entities in the given set.
      */
-    public function getMetadataSet($set)
+    public function getMetadataSet(string $set): array
     {
         if (array_key_exists($set, $this->metadata)) {
             return $this->metadata[$set];

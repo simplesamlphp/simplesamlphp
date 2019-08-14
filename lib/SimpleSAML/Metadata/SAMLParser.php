@@ -178,7 +178,7 @@ class SAMLParser
      */
     private function __construct(
         EntityDescriptor $entityElement,
-        int $maxExpireTime = null,
+        ?int $maxExpireTime,
         array $validators = [],
         array $parentExtensions = []
     ) {
@@ -234,7 +234,7 @@ class SAMLParser
      * @return SAMLParser An instance of this class with the metadata loaded.
      * @throws \Exception If the file does not parse as XML.
      */
-    public static function parseFile($file)
+    public static function parseFile(string $file): SAMLParser
     {
         /** @var string $data */
         $data = Utils\HTTP::fetch($file);
@@ -257,7 +257,7 @@ class SAMLParser
      * @return SAMLParser An instance of this class with the metadata loaded.
      * @throws \Exception If the string does not parse as XML.
      */
-    public static function parseString($metadata)
+    public static function parseString(string $metadata): SAMLParser
     {
         try {
             $doc = DOMDocumentFactory::fromString($metadata);
@@ -276,7 +276,7 @@ class SAMLParser
      *
      * @return SAMLParser An instance of this class with the metadata loaded.
      */
-    public static function parseDocument($document)
+    public static function parseDocument(DOMDocument $document): SAMLParser
     {
         Assert::isInstanceOf($document, DOMDocument::class);
 
@@ -294,9 +294,10 @@ class SAMLParser
      *
      * @return SAMLParser An instance of this class with the metadata loaded.
      */
-    public static function parseElement($entityElement)
+    public static function parseElement(\SAML2\XML\md\EntityDescriptor $entityElement): SAMLParser
     {
         Assert::isInstanceOf($entityElement, EntityDescriptor::class);
+
         return new SAMLParser($entityElement, null, []);
     }
 
@@ -307,15 +308,15 @@ class SAMLParser
      * the file contains a single EntityDescriptorElement, then the array will contain a single SAMLParser
      * instance.
      *
-     * @param string|null $file The path to the file which contains the EntityDescriptor or EntitiesDescriptor element.
+     * @param string $file The path to the file which contains the EntityDescriptor or EntitiesDescriptor element.
      *
      * @return SAMLParser[] An array of SAMLParser instances.
      * @throws \Exception If the file does not parse as XML.
      */
-    public static function parseDescriptorsFile($file)
+    public static function parseDescriptorsFile(string $file): array
     {
-        if ($file === null) {
-            throw new \Exception('Cannot open file NULL. File name not specified.');
+        if (empty($file)) {
+            throw new \Exception('Cannot open file; file name not specified.');
         }
 
         /** @var string $data */
@@ -342,7 +343,7 @@ class SAMLParser
      *     be the entity id.
      * @throws \Exception If the string does not parse as XML.
      */
-    public static function parseDescriptorsString($string)
+    public static function parseDescriptorsString(string $string): array
     {
         try {
             $doc = DOMDocumentFactory::fromString($string);
@@ -365,7 +366,7 @@ class SAMLParser
      *     be the entity id.
      * @throws \Exception if the document is empty or the root is an unexpected node.
      */
-    public static function parseDescriptorsElement(DOMElement $element = null)
+    public static function parseDescriptorsElement(DOMElement $element = null): array
     {
         if ($element === null) {
             throw new \Exception('Document was empty.');
@@ -392,10 +393,10 @@ class SAMLParser
      */
     private static function processDescriptorsElement(
         SignedElementHelper $element,
-        int $maxExpireTime = null,
+        ?int $maxExpireTime,
         array $validators = [],
         array $parentExtensions = []
-    ) {
+    ): array {
         if ($element instanceof EntityDescriptor) {
             $ret = new SAMLParser($element, $maxExpireTime, $validators, $parentExtensions);
             $ret = [$ret->getEntityId() => $ret];
@@ -431,7 +432,7 @@ class SAMLParser
      * @return int|null The unix timestamp for when the element should expire. Will be NULL if no
      *             limit is set for the element.
      */
-    private static function getExpireTime($element, int $maxExpireTime = null)
+    private static function getExpireTime($element, ?int $maxExpireTime): ?int
     {
         // validUntil may be null
         $expire = $element->getValidUntil();
@@ -449,7 +450,7 @@ class SAMLParser
      *
      * @return string The entity id of this parsed entity.
      */
-    public function getEntityId()
+    public function getEntityId(): string
     {
         return $this->entityId;
     }
@@ -492,7 +493,7 @@ class SAMLParser
      * @param array $roleDescriptor The parsed role descriptor.
      * @return void
      */
-    private function addExtensions(array &$metadata, array $roleDescriptor)
+    private function addExtensions(array &$metadata, array $roleDescriptor): void
     {
         Assert::keyExists($roleDescriptor, 'scope');
         Assert::keyExists($roleDescriptor, 'tags');
@@ -546,7 +547,7 @@ class SAMLParser
      * @return array|null An associative array with metadata or NULL if we are unable to
      *   generate metadata for a SAML 2.x SP.
      */
-    public function getMetadata20SP()
+    public function getMetadata20SP(): ?array
     {
         $ret = $this->getMetadataCommon();
         $ret['metadata-set'] = 'saml20-sp-remote';
@@ -648,7 +649,7 @@ class SAMLParser
      * @return array|null An associative array with metadata or NULL if we are unable to
      *   generate metadata for a SAML 2.0 IdP.
      */
-    public function getMetadata20IdP()
+    public function getMetadata20IdP(): ?array
     {
         $ret = $this->getMetadataCommon();
         $ret['metadata-set'] = 'saml20-idp-remote';
@@ -706,7 +707,7 @@ class SAMLParser
      *
      * @return array Array of AttributeAuthorityDescriptor entries.
      */
-    public function getAttributeAuthorities()
+    public function getAttributeAuthorities(): array
     {
         return $this->attributeAuthorityDescriptors;
     }
@@ -726,7 +727,7 @@ class SAMLParser
      *
      * @return array An associative array with metadata we have extracted from this element.
      */
-    private static function parseRoleDescriptorType(RoleDescriptor $element, int $expireTime = null)
+    private static function parseRoleDescriptorType(RoleDescriptor $element, ?int $expireTime): array
     {
         $ret = [];
 
@@ -775,7 +776,7 @@ class SAMLParser
      *
      * @return array An associative array with metadata we have extracted from this element.
      */
-    private static function parseSSODescriptor(SSODescriptorType $element, int $expireTime = null): array
+    private static function parseSSODescriptor(SSODescriptorType $element, ?int $expireTime): array
     {
         $sd = self::parseRoleDescriptorType($element, $expireTime);
 
@@ -801,7 +802,7 @@ class SAMLParser
      *                             NULL if unknown.
      * @return void
      */
-    private function processSPSSODescriptor(SPSSODescriptor $element, int $expireTime = null)
+    private function processSPSSODescriptor(SPSSODescriptor $element, ?int $expireTime): void
     {
         $sp = self::parseSSODescriptor($element, $expireTime);
 
@@ -836,7 +837,7 @@ class SAMLParser
      *                             NULL if unknown.
      * @return void
      */
-    private function processIDPSSODescriptor(IDPSSODescriptor $element, int $expireTime = null)
+    private function processIDPSSODescriptor(IDPSSODescriptor $element, ?int $expireTime): void
     {
         $idp = self::parseSSODescriptor($element, $expireTime);
 
@@ -863,8 +864,8 @@ class SAMLParser
      */
     private function processAttributeAuthorityDescriptor(
         AttributeAuthorityDescriptor $element,
-        $expireTime
-    ) {
+        ?int $expireTime
+    ): void {
         Assert::nullOrInteger($expireTime);
 
         $aad = self::parseRoleDescriptorType($element, $expireTime);
@@ -1041,7 +1042,7 @@ class SAMLParser
      * @param \SAML2\XML\md\Organization $element The Organization element.
      * @return void
      */
-    private function processOrganization(Organization $element)
+    private function processOrganization(Organization $element): void
     {
         $this->organizationName = $element->getOrganizationName();
         $this->organizationDisplayName = $element->getOrganizationDisplayName();
@@ -1055,7 +1056,7 @@ class SAMLParser
      * @param \SAML2\XML\md\ContactPerson $element The ContactPerson element.
      * @return void
      */
-    private function processContactPerson(ContactPerson $element)
+    private function processContactPerson(ContactPerson $element): void
     {
         $contactPerson = [];
         if ($element->getContactType() !== '') {
@@ -1089,7 +1090,7 @@ class SAMLParser
      * @param array $sp The array with the SP's metadata.
      * @return void
      */
-    private static function parseAttributeConsumerService(AttributeConsumingService $element, array &$sp)
+    private static function parseAttributeConsumerService(AttributeConsumingService $element, array &$sp): void
     {
         $sp['name'] = $element->getServiceName();
         $sp['description'] = $element->getServiceDescription();
@@ -1196,7 +1197,7 @@ class SAMLParser
      *
      * @return array|null An associative array describing the key, or null if this is an unsupported key.
      */
-    private static function parseKeyDescriptor(KeyDescriptor $kd)
+    private static function parseKeyDescriptor(KeyDescriptor $kd): ?array
     {
         $r = [];
 
@@ -1307,7 +1308,7 @@ class SAMLParser
      * @return boolean True if it is possible to check the signature with the certificate, false otherwise.
      * @throws \Exception If the certificate file cannot be found.
      */
-    public function validateSignature($certificates)
+    public function validateSignature(array $certificates): bool
     {
         foreach ($certificates as $cert) {
             Assert::string($cert);

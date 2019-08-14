@@ -228,7 +228,7 @@ class Signer
      * @return string The $metadataString with the signature embedded.
      * @throws \Exception If the certificate or private key cannot be loaded, or the metadata doesn't parse properly.
      */
-    public static function sign($metadataString, $entityMetadata, $type)
+    public static function sign(string $metadataString, array $entityMetadata, string $type): string
     {
         $config = Configuration::getInstance();
 

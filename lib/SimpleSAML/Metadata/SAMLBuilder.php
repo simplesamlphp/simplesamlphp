@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Metadata;
 
+use DOMElement;
 use SAML2\Constants;
 use SAML2\XML\md\AttributeAuthorityDescriptor;
 use SAML2\XML\md\AttributeConsumingService;
@@ -73,7 +74,7 @@ class SAMLBuilder
      * to null.
      * @return void
      */
-    public function __construct($entityId, $maxCache = null, $maxDuration = null)
+    public function __construct(string $entityId, int $maxCache = null, int $maxDuration = null)
     {
         Assert::string($entityId);
 
@@ -89,7 +90,7 @@ class SAMLBuilder
      * @param array $metadata
      * @return void
      */
-    private function setExpiration(array $metadata)
+    private function setExpiration(array $metadata): void
     {
         if (array_key_exists('expire', $metadata)) {
             if ($metadata['expire'] - time() < $this->maxDuration) {
@@ -111,7 +112,7 @@ class SAMLBuilder
      *
      * @return \DOMElement The EntityDescriptor element of this entity.
      */
-    public function getEntityDescriptor()
+    public function getEntityDescriptor(): DOMElement
     {
         $xml = $this->entityDescriptor->toXML();
         $xml->ownerDocument->appendChild($xml);
@@ -129,7 +130,7 @@ class SAMLBuilder
      *
      * @return string The serialized EntityDescriptor.
      */
-    public function getEntityDescriptorText($formatted = true)
+    public function getEntityDescriptorText(bool $formatted = true): string
     {
         Assert::boolean($formatted);
 
@@ -148,9 +149,8 @@ class SAMLBuilder
      * @param array $metadata The metadata with the information about the SecurityTokenServiceType.
      * @return void
      */
-    public function addSecurityTokenServiceType($metadata)
+    public function addSecurityTokenServiceType(array $metadata): void
     {
-        Assert::isArray($metadata);
         Assert::notNull($metadata['entityid']);
         Assert::notNull($metadata['metadata-set']);
 
@@ -172,7 +172,7 @@ class SAMLBuilder
      * @param \SAML2\XML\md\RoleDescriptor $e Reference to the element where the Extensions element should be included.
      * @return void
      */
-    private function addExtensions(Configuration $metadata, RoleDescriptor $e)
+    private function addExtensions(Configuration $metadata, RoleDescriptor $e): void
     {
         if ($metadata->hasValue('tags')) {
             $a = new Attribute();
@@ -320,7 +320,7 @@ class SAMLBuilder
      * @param array $orgURL An array with the localized OrganizationURL.
      * @return void
      */
-    public function addOrganization(array $orgName, array $orgDisplayName, array $orgURL)
+    public function addOrganization(array $orgName, array $orgDisplayName, array $orgURL): void
     {
         $org = new Organization();
 
@@ -338,7 +338,7 @@ class SAMLBuilder
      * @param array $metadata The metadata we should extract the organization information from.
      * @return void
      */
-    public function addOrganizationInfo(array $metadata)
+    public function addOrganizationInfo(array $metadata): void
     {
         if (
             empty($metadata['OrganizationName']) ||
@@ -424,7 +424,7 @@ class SAMLBuilder
     private function addAttributeConsumingService(
         SPSSODescriptor $spDesc,
         Configuration $metadata
-    ) {
+    ): void {
         $attributes = $metadata->getArray('attributes', []);
         $name = $metadata->getLocalizedString('name', null);
 
@@ -477,11 +477,8 @@ class SAMLBuilder
      * @param array  $metadata The metadata.
      * @return void
      */
-    public function addMetadata($set, $metadata)
+    public function addMetadata(string $set, array $metadata): void
     {
-        Assert::string($set);
-        Assert::isArray($metadata);
-
         $this->setExpiration($metadata);
 
         switch ($set) {
@@ -507,10 +504,8 @@ class SAMLBuilder
      * @param array $protocols The protocols supported. Defaults to \SAML2\Constants::NS_SAMLP.
      * @return void
      */
-    public function addMetadataSP20($metadata, $protocols = [Constants::NS_SAMLP])
+    public function addMetadataSP20(array $metadata, array $protocols = [Constants::NS_SAMLP]): void
     {
-        Assert::isArray($metadata);
-        Assert::isArray($protocols);
         Assert::notNull($metadata['entityid']);
         Assert::notNull($metadata['metadata-set']);
 
@@ -564,9 +559,8 @@ class SAMLBuilder
      * @param array $metadata The metadata.
      * @return void
      */
-    public function addMetadataIdP20($metadata)
+    public function addMetadataIdP20(array $metadata): void
     {
-        Assert::isArray($metadata);
         Assert::notNull($metadata['entityid']);
         Assert::notNull($metadata['metadata-set']);
 
@@ -614,9 +608,8 @@ class SAMLBuilder
      * @param array $metadata The metadata.
      * @return void
      */
-    public function addMetadataSP11($metadata)
+    public function addMetadataSP11(array $metadata): void
     {
-        Assert::isArray($metadata);
         Assert::notNull($metadata['entityid']);
         Assert::notNull($metadata['metadata-set']);
 
@@ -655,9 +648,8 @@ class SAMLBuilder
      * @param array $metadata The metadata.
      * @return void
      */
-    public function addMetadataIdP11($metadata)
+    public function addMetadataIdP11(array $metadata): void
     {
-        Assert::isArray($metadata);
         Assert::notNull($metadata['entityid']);
         Assert::notNull($metadata['metadata-set']);
 
@@ -688,7 +680,7 @@ class SAMLBuilder
      * \SimpleSAML\Metadata\SAMLParser.
      * @return void
      */
-    public function addAttributeAuthority(array $metadata)
+    public function addAttributeAuthority(array $metadata): void
     {
         Assert::notNull($metadata['entityid']);
         Assert::notNull($metadata['metadata-set']);
@@ -727,10 +719,8 @@ class SAMLBuilder
      * @todo Change the signature to remove $type.
      * @todo Remove the capability to pass a name and parse it inside the method.
      */
-    public function addContact($type, $details)
+    public function addContact(string $type, array $details): void
     {
-        Assert::string($type);
-        Assert::isArray($details);
         Assert::oneOf($type, ['technical', 'support', 'administrative', 'billing', 'other']);
 
         // TODO: remove this check as soon as getContact() is called always before calling this function
@@ -785,7 +775,7 @@ class SAMLBuilder
      * @param string                      $x509data The certificate data.
      * @return void
      */
-    private function addX509KeyDescriptor(RoleDescriptor $rd, string $use, string $x509data)
+    private function addX509KeyDescriptor(RoleDescriptor $rd, string $use, string $x509data): void
     {
         Assert::oneOf($use, ['encryption', 'signing']);
 
@@ -804,7 +794,7 @@ class SAMLBuilder
      * @param \SimpleSAML\Configuration    $metadata The metadata of the entity.
      * @return void
      */
-    private function addCertificate(RoleDescriptor $rd, Configuration $metadata)
+    private function addCertificate(RoleDescriptor $rd, Configuration $metadata): void
     {
         $keys = $metadata->getPublicKeys();
         foreach ($keys as $key) {
