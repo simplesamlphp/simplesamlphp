@@ -399,12 +399,15 @@ class Translate
     /**
      * Translate a singular text.
      *
-     * @param string $original The string before translation.
+     * @param string|null $original The string before translation.
      *
      * @return string The translated string.
      */
-    public static function translateSingularGettext(string $original): string
+    public static function translateSingularGettext(?string $original): string
     {
+        // This may happen if you forget to set a variable and then run undefinedVar through the trans-filter
+        $original = $original ?? 'undefined variable';
+
         $text = BaseTranslator::$current->gettext($original);
 
         if (func_num_args() === 1 || $original === null) {
@@ -420,14 +423,17 @@ class Translate
     /**
      * Translate a plural text.
      *
-     * @param string $original The string before translation.
+     * @param string|null $original The string before translation.
      * @param string $plural
      * @param string $value
      *
      * @return string The translated string.
      */
-    public static function translatePluralGettext(string $original, string $plural, string $value): string
+    public static function translatePluralGettext(?string $original, string $plural, string $value): string
     {
+        // This may happen if you forget to set a variable and then run undefinedVar through the trans-filter
+        $original = $original ?? 'undefined variable';
+
         $text = BaseTranslator::$current->ngettext($original, $plural, $value);
 
         if (func_num_args() === 3) {
