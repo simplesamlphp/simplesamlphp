@@ -40,10 +40,8 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
      *
      * @param array $config The configuration for this metadata handler.
      */
-    public function __construct($config)
+    public function __construct(array $config)
     {
-        Assert::isArray($config);
-
         $globalConfig = Configuration::getInstance();
 
         $cfgHelp = Configuration::loadFromArray($config, 'serialize metadata source');
@@ -76,7 +74,7 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
      *
      * @return array An array with the available sets.
      */
-    public function getMetadataSets()
+    public function getMetadataSets(): array
     {
         $ret = [];
 
@@ -120,10 +118,8 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
      *
      * @return array An associative array with all the metadata for the given set.
      */
-    public function getMetadataSet($set)
+    public function getMetadataSet(string $set): array
     {
-        Assert::string($set);
-
         $ret = [];
 
         $dir = $this->directory . '/' . rawurlencode($set);
@@ -175,11 +171,8 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
      * @return array|null An associative array with metadata for the given entity, or NULL if we are unable to
      *         locate the entity.
      */
-    public function getMetaData($entityId, $set)
+    public function getMetaData(string $entityId, string $set): ?array
     {
-        Assert::string($entityId);
-        Assert::string($set);
-
         $filePath = $this->getMetadataPath($entityId, $set);
 
         if (!file_exists($filePath)) {
@@ -219,12 +212,8 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
      *
      * @return bool True if successfully saved, false otherwise.
      */
-    public function saveMetadata($entityId, $set, $metadata)
+    public function saveMetadata(string $entityId, string $set, array $metadata): bool
     {
-        Assert::string($entityId);
-        Assert::string($set);
-        Assert::isArray($metadata);
-
         $filePath = $this->getMetadataPath($entityId, $set);
         $newPath = $filePath . '.new';
 
@@ -271,11 +260,8 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
      * @param string $set The metadata set this metadata entry belongs to.
      * @return void
      */
-    public function deleteMetadata($entityId, $set)
+    public function deleteMetadata(string $entityId, string $set): void
     {
-        Assert::string($entityId);
-        Assert::string($set);
-
         $filePath = $this->getMetadataPath($entityId, $set);
 
         if (!file_exists($filePath)) {
@@ -297,6 +283,7 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
         }
     }
 
+
     /**
      * This function loads the metadata for entity IDs in $entityIds. It is returned as an associative array
      * where the key is the entity id. An empty array may be returned if no matching entities were found
@@ -304,7 +291,7 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
      * @param string $set The set we want to get metadata from.
      * @return array An associative array with the metadata for the requested entities, if found.
      */
-    public function getMetaDataForEntities(array $entityIds, $set)
+    public function getMetaDataForEntities(array $entityIds, string $set): array
     {
         return $this->getMetaDataForEntitiesIndividually($entityIds, $set);
     }
