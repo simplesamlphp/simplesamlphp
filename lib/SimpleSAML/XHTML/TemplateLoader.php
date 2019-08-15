@@ -24,6 +24,8 @@ class TemplateLoader extends \Twig\Loader\FilesystemLoader
      * @param string $name
      * @param bool $throw
      * @return string|false|null
+     *
+     * NOTE: cannot typehint due to upstream restrictions
      */
     protected function findTemplate($name, $throw = true)
     {
@@ -44,7 +46,7 @@ class TemplateLoader extends \Twig\Loader\FilesystemLoader
      * @return array An array with the corresponding namespace and name of the template. The namespace defaults to
      * \Twig\Loader\FilesystemLoader::MAIN_NAMESPACE, if none was specified in $name.
      */
-    protected function parseModuleName($name, $default = self::MAIN_NAMESPACE)
+    protected function parseModuleName(string $name, string $default = self::MAIN_NAMESPACE) : array
     {
         if (strpos($name, ':')) {
             // we have our old SSP format
@@ -67,7 +69,7 @@ class TemplateLoader extends \Twig\Loader\FilesystemLoader
      *
      * @throws \InvalidArgumentException If the module is not enabled or it has no templates directory.
      */
-    public static function getModuleTemplateDir($module)
+    public static function getModuleTemplateDir(string $module) : string
     {
         if (!Module::isModuleEnabled($module)) {
             throw new \InvalidArgumentException('The module \'' . $module . '\' is not enabled.');

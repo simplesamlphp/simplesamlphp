@@ -92,7 +92,6 @@ class Template extends Response
      */
     private $useNewUI = false;
 
-
     /**
      * A template controller, if any.
      *
@@ -103,7 +102,6 @@ class Template extends Response
      * @var \SimpleSAML\XHTML\TemplateControllerInterface|null
      */
     private $controller = null;
-
 
     /**
      * Whether we are using a non-default theme or not.
@@ -116,6 +114,7 @@ class Template extends Response
      */
     private $theme = ['module' => null, 'name' => 'default'];
 
+
     /**
      * Constructor
      *
@@ -123,7 +122,7 @@ class Template extends Response
      * @param string                   $template Which template file to load
      * @param string|null              $defaultDictionary The default dictionary where tags will come from.
      */
-    public function __construct(Configuration $configuration, $template, $defaultDictionary = null)
+    public function __construct(Configuration $configuration, string $template, string $defaultDictionary = null)
     {
         $this->configuration = $configuration;
         $this->template = $template;
@@ -172,7 +171,7 @@ class Template extends Response
      * @param string|null $module
      * @return string
      */
-    public function asset($asset, $module = null)
+    public function asset(string $asset, string $module = null): string
     {
         $baseDir = $this->configuration->getBaseDir();
         if (is_null($module)) {
@@ -204,7 +203,7 @@ class Template extends Response
      *
      * @return string The name of the template to use.
      */
-    public function getTemplateName()
+    public function getTemplateName() : string
     {
         return $this->normalizeTemplateName($this->template);
     }
@@ -356,6 +355,7 @@ class Template extends Response
         return $twig;
     }
 
+
     /**
      * Add overriding templates from the configured theme.
      *
@@ -425,7 +425,7 @@ class Template extends Response
      * @throws \InvalidArgumentException If the module is not enabled or it has no templates directory.
      * @return void
      */
-    public function addTemplatesFromModule($module)
+    public function addTemplatesFromModule(string $module): void
     {
         $dir = TemplateLoader::getModuleTemplateDir($module);
         /** @var \Twig\Loader\FilesystemLoader $loader */
@@ -440,7 +440,7 @@ class Template extends Response
      *
      * @return array|null The array containing information of all available languages.
      */
-    private function generateLanguageBar()
+    private function generateLanguageBar(): ?array
     {
         $languages = $this->translator->getLanguage()->getLanguageList();
         ksort($languages);
@@ -472,7 +472,7 @@ class Template extends Response
      * Set some default context
      * @return void
      */
-    private function twigDefaultContext()
+    private function twigDefaultContext(): void
     {
         // show language bar by default
         if (!isset($this->data['hideLanguageBar'])) {
@@ -509,7 +509,7 @@ class Template extends Response
      * @return string The HTML rendered by this template, as a string.
      * @throws \Exception if the template cannot be found.
      */
-    protected function getContents()
+    protected function getContents(): string
     {
         $this->twigDefaultContext();
         if ($this->controller) {
@@ -529,7 +529,7 @@ class Template extends Response
      * @return Response This response.
      * @throws \Exception if the template cannot be found.
      */
-    public function send()
+    public function send(): Response
     {
         $this->content = $this->getContents();
         return parent::send();
@@ -566,7 +566,7 @@ class Template extends Response
      *
      * @throws \Exception If the template file couldn't be found.
      */
-    private function findTemplatePath(string $template, bool $throw_exception = true)
+    private function findTemplatePath(string $template, bool $throw_exception = true): ?string
     {
         $extensions = ['.tpl.php', '.php'];
 
@@ -637,7 +637,7 @@ class Template extends Response
      *
      * @return \SimpleSAML\Locale\Translate The translator that will be used with this template.
      */
-    public function getTranslator()
+    public function getTranslator(): Translate
     {
         return $this->translator;
     }
@@ -648,7 +648,7 @@ class Template extends Response
      *
      * @return \SimpleSAML\Locale\Localization The localization object that will be used with this template.
      */
-    public function getLocalization()
+    public function getLocalization(): Localization
     {
         return $this->localization;
     }
@@ -659,7 +659,7 @@ class Template extends Response
      *
      * @return \Twig\Environment The Twig instance in use, or null if Twig is not used.
      */
-    public function getTwig()
+    public function getTwig(): \Twig\Environment
     {
         return $this->twig;
     }
@@ -670,7 +670,7 @@ class Template extends Response
      *
      * @return array
      */
-    private function getLanguageList()
+    private function getLanguageList(): array
     {
         return $this->translator->getLanguage()->getLanguageList();
     }
