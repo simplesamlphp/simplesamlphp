@@ -24,12 +24,8 @@ class Auth
      * @return string A URL which can be used for admin authentication.
      * @throws \InvalidArgumentException If $returnTo is neither a string nor null.
      */
-    public static function getAdminLoginURL($returnTo = null)
+    public static function getAdminLoginURL(?string $returnTo = null) : string
     {
-        if (!(is_string($returnTo) || is_null($returnTo))) {
-            throw new \InvalidArgumentException('Invalid input parameters.');
-        }
-
         if ($returnTo === null) {
             $returnTo = HTTP::getSelfURL();
         }
@@ -46,12 +42,8 @@ class Auth
      * @return string A URL which can be used for logging out.
      * @throws \InvalidArgumentException If $returnTo is neither a string nor null.
      */
-    public static function getAdminLogoutURL($returnTo = null)
+    public static function getAdminLogoutURL(?string $returnTo = null) : string
     {
-        if (!(is_string($returnTo) || is_null($returnTo))) {
-            throw new \InvalidArgumentException('Invalid input parameters.');
-        }
-
         $as = new Authentication\Simple('admin');
         return $as->getLogoutURL($returnTo = null);
     }
@@ -64,11 +56,12 @@ class Auth
      *
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
-    public static function isAdmin()
+    public static function isAdmin() : bool
     {
         $session = Session::getSessionFromRequest();
         return $session->isValid('admin') || $session->isValid('login-admin');
     }
+
 
     /**
      * Require admin access to the current page.
@@ -82,7 +75,7 @@ class Auth
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
-    public static function requireAdmin()
+    public static function requireAdmin() : void
     {
         if (self::isAdmin()) {
             return;

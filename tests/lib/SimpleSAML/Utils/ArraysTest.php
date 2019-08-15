@@ -46,10 +46,6 @@ class ArraysTest extends TestCase
      */
     public function testTranspose()
     {
-        // check not array
-        /** @psalm-suppress InvalidArgument   Can be removed as soon as the codebase is fully typehinted */
-        $this->assertFalse(Arrays::transpose('string'));
-
         // check bad arrays
         $this->assertFalse(
             Arrays::transpose(['1', '2', '3']),

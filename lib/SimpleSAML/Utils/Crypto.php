@@ -79,7 +79,7 @@ class Crypto
      * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
      * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
-    public static function aesDecrypt($ciphertext)
+    public static function aesDecrypt(string $ciphertext): string
     {
         return self::aesDecryptInternal($ciphertext, Config::getSecretSalt());
     }
@@ -139,7 +139,7 @@ class Crypto
      * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
      * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
-    public static function aesEncrypt($data)
+    public static function aesEncrypt(string $data): string
     {
         return self::aesEncryptInternal($data, Config::getSecretSalt());
     }
@@ -153,7 +153,7 @@ class Crypto
      * @return string The same data encoded in PEM format.
      * @see RFC7648 for known types and PEM format specifics.
      */
-    public static function der2pem($der, $type = 'CERTIFICATE')
+    public static function der2pem(string $der, string $type = 'CERTIFICATE'): string
     {
         return "-----BEGIN " . $type . "-----\n" .
             chunk_split(base64_encode($der), 64, "\n") .
@@ -188,12 +188,12 @@ class Crypto
      * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
-    public static function loadPrivateKey(Configuration $metadata, $required = false, $prefix = '', $full_path = false)
-    {
-        if (!is_bool($required) || !is_string($prefix) || !is_bool($full_path)) {
-            throw new \InvalidArgumentException('Invalid input parameters.');
-        }
-
+    public static function loadPrivateKey(
+        Configuration $metadata,
+        bool $required = false,
+        string $prefix = '',
+        bool $full_path = false
+    ): ?array {
         $file = $metadata->getString($prefix . 'privatekey', null);
         if ($file === null) {
             // no private key found
@@ -251,12 +251,8 @@ class Crypto
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      * @author Lasse Birnbaum Jensen
      */
-    public static function loadPublicKey(Configuration $metadata, $required = false, $prefix = '')
+    public static function loadPublicKey(Configuration $metadata, bool $required = false, string $prefix = ''): ?array
     {
-        if (!is_bool($required) || !is_string($prefix)) {
-            throw new \InvalidArgumentException('Invalid input parameters.');
-        }
-
         $keys = $metadata->getPublicKeys(null, false, $prefix);
         if (!empty($keys)) {
             foreach ($keys as $key) {
@@ -295,7 +291,7 @@ class Crypto
      * @throws \InvalidArgumentException If $pem is not encoded in PEM format.
      * @see RFC7648 for PEM format specifics.
      */
-    public static function pem2der($pem)
+    public static function pem2der(string $pem): string
     {
         $pem   = trim($pem);
         $begin = "-----BEGIN ";
@@ -330,7 +326,7 @@ class Crypto
      * @author Dyonisius Visser, TERENA <visser@terena.org>
      * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
-    public static function pwHash($password)
+    public static function pwHash(string $password): string
     {
         if (!is_string($password)) {
             throw new \InvalidArgumentException('Invalid input parameter.');
@@ -352,7 +348,7 @@ class Crypto
      *
      * @return bool True if both strings are equal, false otherwise.
      */
-    public static function secureCompare($known, $user)
+    public static function secureCompare(string $known, string $user): bool
     {
         return hash_equals($known, $user);
     }
@@ -370,12 +366,8 @@ class Crypto
      *
      * @author Dyonisius Visser, TERENA <visser@terena.org>
      */
-    public static function pwValid($hash, $password)
+    public static function pwValid(string $hash, string $password): bool
     {
-        if (!is_string($hash) || !is_string($password)) {
-            throw new \InvalidArgumentException('Invalid input parameters.');
-        }
-
         if (password_verify($password, $hash)) {
             return true;
         }

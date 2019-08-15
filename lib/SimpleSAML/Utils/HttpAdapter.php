@@ -15,7 +15,7 @@ class HttpAdapter
      * @see HTTP::getServerHTTPS()
      * @return bool
      */
-    public function getServerHTTPS()
+    public function getServerHTTPS() : bool
     {
         return HTTP::getServerHTTPS();
     }
@@ -24,7 +24,7 @@ class HttpAdapter
      * @see HTTP::getServerPort()
      * @return string
      */
-    public function getServerPort()
+    public function getServerPort() : string
     {
         return HTTP::getServerPort();
     }
@@ -36,7 +36,7 @@ class HttpAdapter
      * @param array $parameters
      * @return string
      */
-    public function addURLParameters($url, $parameters)
+    public function addURLParameters(string $url, array $parameters) : string
     {
         return HTTP::addURLParameters($url, $parameters);
     }
@@ -47,7 +47,7 @@ class HttpAdapter
      * @param string|null $retryURL
      * @return void
      */
-    public function checkSessionCookie($retryURL = null)
+    public function checkSessionCookie(string $retryURL = null) : void
     {
         HTTP::checkSessionCookie($retryURL);
     }
@@ -59,7 +59,7 @@ class HttpAdapter
      * @param array|null $trustedSites
      * @return string
      */
-    public function checkURLAllowed($url, array $trustedSites = null)
+    public function checkURLAllowed(string $url, array $trustedSites = null) : string
     {
         return HTTP::checkURLAllowed($url, $trustedSites);
     }
@@ -72,7 +72,7 @@ class HttpAdapter
      * @param bool $getHeaders
      * @return array|string
      */
-    public function fetch($url, $context = [], $getHeaders = false)
+    public function fetch(string $url, array $context = [], bool $getHeaders = false)
     {
         return HTTP::fetch($url, $context, $getHeaders);
     }
@@ -81,7 +81,7 @@ class HttpAdapter
      * @see HTTP::getAcceptLanguage()
      * @return array
      */
-    public function getAcceptLanguage()
+    public function getAcceptLanguage() : array
     {
         return HTTP::getAcceptLanguage();
     }
@@ -90,7 +90,7 @@ class HttpAdapter
      * @see HTTP::guessBasePath()
      * @return string
      */
-    public function guessBasePath()
+    public function guessBasePath() : string
     {
         return HTTP::guessBasePath();
     }
@@ -99,7 +99,7 @@ class HttpAdapter
      * @see HTTP::getBaseURL()
      * @return string
      */
-    public function getBaseURL()
+    public function getBaseURL() : string
     {
         return HTTP::getBaseURL();
     }
@@ -110,7 +110,7 @@ class HttpAdapter
      * @param bool $trailingslash
      * @return string
      */
-    public function getFirstPathElement($trailingslash = true)
+    public function getFirstPathElement(bool $trailingslash = true) : string
     {
         return HTTP::getFirstPathElement($trailingslash);
     }
@@ -122,7 +122,7 @@ class HttpAdapter
      * @param array $data
      * @return string
      */
-    public function getPOSTRedirectURL($destination, $data)
+    public function getPOSTRedirectURL(string $destination, array $data) : string
     {
         return HTTP::getPOSTRedirectURL($destination, $data);
     }
@@ -131,7 +131,7 @@ class HttpAdapter
      * @see HTTP::getSelfHost()
      * @return string
      */
-    public function getSelfHost()
+    public function getSelfHost() : string
     {
         return HTTP::getSelfHost();
     }
@@ -140,7 +140,7 @@ class HttpAdapter
      * @see HTTP::getSelfHostWithNonStandardPort()
      * @return string
      */
-    public function getSelfHostWithNonStandardPort()
+    public function getSelfHostWithNonStandardPort() : string
     {
         return HTTP::getSelfHostWithNonStandardPort();
     }
@@ -149,7 +149,7 @@ class HttpAdapter
      * @see HTTP::getSelfHostWithPath()
      * @return string
      */
-    public function getSelfHostWithPath()
+    public function getSelfHostWithPath() : string
     {
         return HTTP::getSelfHostWithPath();
     }
@@ -158,7 +158,7 @@ class HttpAdapter
      * @see HTTP::getSelfURL()
      * @return string
      */
-    public function getSelfURL()
+    public function getSelfURL() : string
     {
         return HTTP::getSelfURL();
     }
@@ -167,7 +167,7 @@ class HttpAdapter
      * @see HTTP::getSelfURLHost()
      * @return string
      */
-    public function getSelfURLHost()
+    public function getSelfURLHost() : string
     {
         return HTTP::getSelfURLHost();
     }
@@ -176,7 +176,7 @@ class HttpAdapter
      * @see HTTP::getSelfURLNoQuery()
      * @return string
      */
-    public function getSelfURLNoQuery()
+    public function getSelfURLNoQuery() : string
     {
         return HTTP::getSelfURLNoQuery();
     }
@@ -185,7 +185,7 @@ class HttpAdapter
      * @see HTTP::isHTTPS()
      * @return bool
      */
-    public function isHTTPS()
+    public function isHTTPS() : bool
     {
         return HTTP::isHTTPS();
     }
@@ -195,7 +195,7 @@ class HttpAdapter
      * @param string $url
      * @return string
      */
-    public function normalizeURL($url)
+    public function normalizeURL(string $url) : string
     {
         return HTTP::normalizeURL($url);
     }
@@ -206,7 +206,7 @@ class HttpAdapter
      * @param string $query_string
      * @return array
      */
-    public function parseQueryString($query_string)
+    public function parseQueryString(string $query_string) : array
     {
         return HTTP::parseQueryString($query_string);
     }
@@ -218,7 +218,7 @@ class HttpAdapter
      * @param array $parameters
      * @return void
      */
-    public function redirectTrustedURL($url, $parameters = [])
+    public function redirectTrustedURL(string $url, array $parameters = []) : void
     {
         HTTP::redirectTrustedURL($url, $parameters);
     }
@@ -230,7 +230,7 @@ class HttpAdapter
      * @param array $parameters
      * @return void
      */
-    public function redirectUntrustedURL($url, $parameters = [])
+    public function redirectUntrustedURL(string $url, array $parameters = []) : void
     {
         HTTP::redirectUntrustedURL($url, $parameters);
     }
@@ -242,7 +242,7 @@ class HttpAdapter
      * @param string|null $base
      * @return string
      */
-    public function resolveURL($url, $base = null)
+    public function resolveURL(string $url, string $base = null) : string
     {
         return HTTP::resolveURL($url, $base);
     }
@@ -256,7 +256,7 @@ class HttpAdapter
      * @param bool $throw
      * @return void
      */
-    public function setCookie($name, $value, $params = null, $throw = true)
+    public function setCookie(string $name, string $value, array $params = null, bool $throw = true) : void
     {
         HTTP::setCookie($name, $value, $params, $throw);
     }
@@ -268,7 +268,7 @@ class HttpAdapter
      * @param array $data
      * @return void
      */
-    public function submitPOSTData($destination, $data)
+    public function submitPOSTData(string $destination, array $data) : void
     {
         HTTP::submitPOSTData($destination, $data);
     }

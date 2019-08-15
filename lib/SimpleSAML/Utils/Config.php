@@ -23,12 +23,8 @@ class Config
      *
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
-    public static function getCertPath($path)
+    public static function getCertPath(string $path)  : string
     {
-        if (!is_string($path)) {
-            throw new \InvalidArgumentException('Invalid input parameters.');
-        }
-
         $globalConfig = Configuration::getInstance();
         $base = $globalConfig->getPathValue('certdir', 'cert/');
         return System::resolvePath($path, $base);
@@ -50,7 +46,7 @@ class Config
      *
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
-    public static function getSecretSalt()
+    public static function getSecretSalt() : string
     {
         $secretSalt = Configuration::getInstance()->getString('secretsalt');
         if ($secretSalt === 'defaultsecretsalt') {
@@ -68,15 +64,15 @@ class Config
      *
      * @return string The path to the configuration directory.
      */
-    public static function getConfigDir()
+    public static function getConfigDir() : string
     {
         $configDir = dirname(dirname(dirname(__DIR__))) . '/config';
         $configDirEnv = getenv('SIMPLESAMLPHP_CONFIG_DIR');
-        
+
         if ($configDirEnv === false) {
             $configDirEnv = getenv('REDIRECT_SIMPLESAMLPHP_CONFIG_DIR');
         }
-        
+
         if ($configDirEnv !== false) {
             if (!is_dir($configDirEnv)) {
                 throw new \InvalidArgumentException(
