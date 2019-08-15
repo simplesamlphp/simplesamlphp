@@ -25,7 +25,7 @@ class Net
      * @author Brook Schofield, GÉANT
      * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
-    public static function ipCIDRcheck($cidr, $ip = null)
+    public static function ipCIDRcheck(string $cidr, string $ip = null) : bool
     {
         if ($ip === null) {
             $ip = $_SERVER['REMOTE_ADDR'];
