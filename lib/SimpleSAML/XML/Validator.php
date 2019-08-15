@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace SimpleSAML\XML;
 
 use DOMNode;
+use DOMDocument;
 use RobRichards\XMLSecLibs\XMLSecEnc;
 use RobRichards\XMLSecLibs\XMLSecurityDSig;
 use SimpleSAML\Logger;
@@ -49,10 +50,8 @@ class Validator
      * @param array|false $publickey The public key / certificate which should be used to validate the XML node.
      * @throws \Exception
      */
-    public function __construct($xmlNode, $idAttribute = null, $publickey = false)
+    public function __construct(DOMDocument $xmlNode, $idAttribute = null, $publickey = false)
     {
-        Assert::isInstanceOf($xmlNode, DOMNode::class);
-
         if ($publickey === null) {
             $publickey = false;
         } elseif (is_string($publickey)) {
@@ -131,7 +130,7 @@ class Validator
      *
      * @return string|null  The certificate as a PEM-encoded string, or NULL if not signed with an X509 certificate.
      */
-    public function getX509Certificate()
+    public function getX509Certificate(): ?string
     {
         return $this->x509Certificate;
     }
@@ -144,10 +143,8 @@ class Validator
      *
      * @return bool  TRUE if this node (or a parent node) was signed. FALSE if not.
      */
-    public function isNodeValidated($node)
+    public function isNodeValidated(DOMNode $node): bool
     {
-        Assert::isInstanceOf($node, DOMNode::class);
-
         if ($this->validNodes !== null) {
             while ($node !== null) {
                 if (in_array($node, $this->validNodes, true)) {
