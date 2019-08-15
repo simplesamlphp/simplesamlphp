@@ -35,7 +35,7 @@ class Errors
      *
      * @return void
      */
-    private static function addErrors()
+    private static function addErrors(): void
     {
         $currentErrors = libxml_get_errors();
         libxml_clear_errors();
@@ -53,7 +53,7 @@ class Errors
      *
      * @return void
      */
-    public static function begin()
+    public static function begin(): void
     {
 
         // Check whether the error access functions are present
@@ -82,7 +82,7 @@ class Errors
      *
      * @return array  An array with the LibXMLErrors which has occurred since begin() was called.
      */
-    public static function end()
+    public static function end(): array
     {
         // Check whether the error access functions are present
         if (!function_exists('libxml_use_internal_errors')) {
@@ -113,9 +113,8 @@ class Errors
      * @param \LibXMLError $error  The LibXMLError which should be formatted.
      * @return string  A string representing the given LibXMLError.
      */
-    public static function formatError($error)
+    public static function formatError(LibXMLError $error): string
     {
-        Assert::isInstanceOf($error, LibXMLError::class);
         return 'level=' . $error->level
             . ',code=' . $error->code
             . ',line=' . $error->line
@@ -134,10 +133,8 @@ class Errors
      * @return string  A string representing the errors. An empty string will be returned if there were no
      *          errors in the array.
      */
-    public static function formatErrors($errors)
+    public static function formatErrors(array $errors): string
     {
-        Assert::isArray($errors);
-
         $ret = '';
         foreach ($errors as $error) {
             $ret .= self::formatError($error) . "\n";
