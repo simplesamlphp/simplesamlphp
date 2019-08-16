@@ -231,14 +231,10 @@ class Crypto
      * It will search for the following elements in the metadata:
      * - 'certData': The certificate as a base64-encoded string.
      * - 'certificate': A file with a certificate or public key in PEM-format.
-     * - 'certFingerprint': The fingerprint of the certificate. Can be a single fingerprint, or an array of multiple
-     * valid fingerprints. (deprecated)
      *
      * This function will return an array with these elements:
      * - 'PEM': The public key/certificate in PEM-encoding.
      * - 'certData': The certificate data, base64 encoded, on a single line. (Only present if this is a certificate.)
-     * - 'certFingerprint': Array of valid certificate fingerprints. (Deprecated. Only present if this is a
-     *   certificate.)
      *
      * @param \SimpleSAML\Configuration $metadata The metadata.
      * @param bool                      $required Whether the public key is required. If this is TRUE, a missing key
@@ -275,30 +271,12 @@ class Crypto
                 $pem = "-----BEGIN CERTIFICATE-----\n" .
                     chunk_split($certData, 64) .
                     "-----END CERTIFICATE-----\n";
-                $certFingerprint = strtolower(sha1(base64_decode($certData)));
-
                 return [
                     'certData'        => $certData,
                     'PEM'             => $pem,
-                    'certFingerprint' => [$certFingerprint],
                 ];
             }
             // no valid key found
-        } elseif ($metadata->hasValue($prefix . 'certFingerprint')) {
-            // we only have a fingerprint available
-            $fps = $metadata->getArrayizeString($prefix . 'certFingerprint');
-
-            // normalize fingerprint(s) - lowercase and no colons
-            foreach ($fps as &$fp) {
-                Assert::string($fp);
-                $fp = strtolower(str_replace(':', '', $fp));
-            }
-
-            /*
-             * We can't build a full certificate from a fingerprint, and may as well return an array with only the
-             * fingerprint(s) immediately.
-             */
-            return ['certFingerprint' => $fps];
         }
 
         // no public key/certificate available

@@ -141,11 +141,6 @@ class AuthnResponse
                 $certFingerprints[] = sha1(base64_decode($key['X509Certificate']));
             }
             $this->validator->validateFingerprint($certFingerprints);
-        } elseif ($md->hasValue('certFingerprint')) {
-            $certFingerprints = $md->getArrayizeString('certFingerprint');
-
-            // Validate the fingerprint
-            $this->validator->validateFingerprint($certFingerprints);
         } elseif ($md->hasValue('caFile')) {
             // Validate against CA
             $this->validator->validateCA(Utils\Config::getCertPath($md->getString('caFile')));

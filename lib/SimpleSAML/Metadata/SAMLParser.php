@@ -621,7 +621,6 @@ class SAMLParser
      * - 'SingleSignOnService': String with the URL of the SSO service which supports the redirect binding.
      * - 'SingleLogoutService': String with the URL where we should send logout requests/responses.
      * - 'certData': X509Certificate for entity (if present).
-     * - 'certFingerprint': Fingerprint of the X509Certificate from the metadata. (deprecated)
      *
      * Metadata must be loaded with one of the parse functions before this function can be called.
      *
@@ -781,7 +780,6 @@ class SAMLParser
      *   the 'SingleLogoutService' endpoint.
      * - 'NameIDFormats': The name ID formats this IdP supports.
      * - 'certData': X509Certificate for entity (if present).
-     * - 'certFingerprint': Fingerprint of the X509Certificate from the metadata. (deprecated)
      *
      * Metadata must be loaded with one of the parse functions before this function can be called.
      *
@@ -1473,75 +1471,6 @@ class SAMLParser
             }
         }
         Logger::debug('Could not validate signature');
-        return false;
-    }
-
-
-    /**
-     * @param string $algorithm
-     * @param string $data
-     * @throws \UnexpectedValueException
-     * @return string
-     */
-    private function computeFingerprint(string $algorithm, string $data): string
-    {
-        switch ($algorithm) {
-            case XMLSecurityDSig::SHA1:
-                $algo = 'SHA1';
-                break;
-            case XMLSecurityDSig::SHA256:
-                $algo = 'SHA256';
-                break;
-            case XMLSecurityDSig::SHA384:
-                $algo = 'SHA384';
-                break;
-            case XMLSecurityDSig::SHA512:
-                $algo = 'SHA512';
-                break;
-            default:
-                $known_opts = implode(", ", [
-                    XMLSecurityDSig::SHA1,
-                    XMLSecurityDSig::SHA256,
-                    XMLSecurityDSig::SHA384,
-                    XMLSecurityDSig::SHA512,
-                ]);
-                throw new \UnexpectedValueException(
-                    "Unsupported hashing function {$algorithm}. " .
-                    "Known options: [{$known_opts}]"
-                );
-        }
-        return hash($algo, $data);
-    }
-
-
-    /**
-     * This function checks if this EntityDescriptor was signed with a certificate with the
-     * given fingerprint.
-     *
-     * @param string $fingerprint Fingerprint of the certificate which should have been used to sign this
-     *                      EntityDescriptor.
-     * @param string $algorithm Algorithm used to compute the fingerprint of the signing certicate.
-     *
-     * @return boolean True if it was signed with the certificate with the given fingerprint, false otherwise.
-     */
-    public function validateFingerprint($fingerprint, $algorithm)
-    {
-        Assert::string($fingerprint);
-
-        $fingerprint = strtolower(str_replace(":", "", $fingerprint));
-
-        $candidates = [];
-        foreach ($this->validators as $validator) {
-            foreach ($validator->getValidatingCertificates() as $cert) {
-                $decoded_cert = base64_decode($cert);
-                $fp = $this->computeFingerprint($algorithm, $decoded_cert);
-                $candidates[] = $fp;
-                if ($fp === $fingerprint) {
-                    return true;
-                }
-            }
-        }
-        Logger::debug('Fingerprint was [' . $fingerprint . '] not one of [' . join(', ', $candidates) . ']');
         return false;
     }
 }
