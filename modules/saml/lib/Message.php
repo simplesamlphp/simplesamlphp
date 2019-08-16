@@ -185,30 +185,6 @@ class Message
                         Logger::debug('Skipping unknown key type: '.$key['type']);
                 }
             }
-        } elseif ($srcMetadata->hasValue('certFingerprint')) {
-            Logger::notice(
-                "Validating certificates by fingerprint is deprecated. Please use ".
-                "certData or certificate options in your remote metadata configuration."
-            );
-
-            $certFingerprint = $srcMetadata->getArrayizeString('certFingerprint');
-            foreach ($certFingerprint as &$fp) {
-                $fp = strtolower(str_replace(':', '', $fp));
-            }
-
-            $certificates = $element->getCertificates();
-
-            // we don't have the full certificate stored. Try to find it in the message or the assertion instead
-            if (count($certificates) === 0) {
-                /* We need the full certificate in order to match it against the fingerprint. */
-                Logger::debug('No certificate in message when validating against fingerprint.');
-                return false;
-            } else {
-                Logger::debug('Found '.count($certificates).' certificates in '.get_class($element));
-            }
-
-            $pemCert = self::findCertificate($certFingerprint, $certificates);
-            $pemKeys = [$pemCert];
         } else {
             throw new SSP_Error\Exception(
                 'Missing certificate in metadata for '.
