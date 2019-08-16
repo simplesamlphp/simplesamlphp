@@ -204,12 +204,6 @@ class ProcessingChain
         $state[self::FILTERS_INDEX] = $this->filters;
 
         try {
-            // TODO: remove this in SSP 2.0
-            if (!array_key_exists('UserID', $state)) {
-                // No unique user ID present. Attempt to add one.
-                self::addUserID($state);
-            }
-
             while (count($state[self::FILTERS_INDEX]) > 0) {
                 $filter = array_shift($state[self::FILTERS_INDEX]);
                 $filter->process($state);
@@ -307,12 +301,6 @@ class ProcessingChain
 
         $state[self::FILTERS_INDEX] = $this->filters;
 
-        // TODO: remove this in SSP 2.0
-        if (!array_key_exists('UserID', $state)) {
-            // No unique user ID present. Attempt to add one.
-            self::addUserID($state);
-        }
-
         while (count($state[self::FILTERS_INDEX]) > 0) {
             $filter = array_shift($state[self::FILTERS_INDEX]);
             try {
@@ -338,52 +326,5 @@ class ProcessingChain
         assert(is_string($id));
 
         return State::loadState($id, self::COMPLETED_STAGE);
-    }
-
-
-    /**
-     * @deprecated This method will be removed in SSP 2.0.
-     * @param array &$state
-     * @return void
-     */
-    private static function addUserID(&$state)
-    {
-        assert(is_array($state));
-        assert(array_key_exists('Attributes', $state));
-
-        if (isset($state['Destination']['userid.attribute'])) {
-            $attributeName = $state['Destination']['userid.attribute'];
-            Logger::debug("The 'userid.attribute' option has been deprecated.");
-        } elseif (isset($state['Source']['userid.attribute'])) {
-            $attributeName = $state['Source']['userid.attribute'];
-            Logger::debug("The 'userid.attribute' option has been deprecated.");
-        } else {
-            // Default attribute
-            $attributeName = 'eduPersonPrincipalName';
-        }
-
-        if (!array_key_exists($attributeName, $state['Attributes'])) {
-            return;
-        }
-
-        $uid = $state['Attributes'][$attributeName];
-        if (count($uid) === 0) {
-            Logger::warning('Empty user id attribute ['.$attributeName.'].');
-            return;
-        }
-
-        if (count($uid) > 1) {
-            Logger::warning('Multiple attribute values for user id attribute ['.$attributeName.'].');
-            return;
-        }
-
-        // TODO: the attribute value should be trimmed
-        $uid = $uid[0];
-
-        if (empty($uid)) {
-            Logger::warning('Empty value in attribute '.$attributeName.". on user. Cannot set UserID.");
-            return;
-        }
-        $state['UserID'] = $uid;
     }
 }
