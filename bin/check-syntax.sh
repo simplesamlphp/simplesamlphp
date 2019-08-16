@@ -12,15 +12,6 @@ for FILE in `find attributemap bin config-templates lib metadata-templates modul
     fi
 done
 
-# check JSON files
-for FILE in `find dictionaries modules -name "*.json"`; do
-    $PHP -r "exit((json_decode(file_get_contents('$FILE')) === null) ? 1 : 0);"
-    if [ $? -ne 0 ]; then
-        echo "Syntax check failed for ${FILE}"
-        RETURN=`expr ${RETURN} + 1`
-    fi
-done
-
 # check YAML files
 for i in `find . -path ./vendor -prune -o -path ./node_modules -prune -name '*.yml' -o -name '*.yaml' -print`
 do
