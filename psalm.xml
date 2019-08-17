@@ -5,9 +5,7 @@
     totallyTyped="false"
     hideExternalErrors="true"
     allowCoercionFromStringToClassConst="true"
-    <!-- Use this for Psalm 3.4 instead of allowCoercionFromStringToClassConst
     allowStringToStandInForClass="true"
-    -->
 >
     <projectFiles>
         <directory name="lib/SimpleSAML/Auth" />
