@@ -66,18 +66,6 @@ XML;
 
 
     /**
-     * @covers \SimpleSAML\XML\Shib13\AuthnResponse::setXML
-     * @test
-     * @return void
-     */
-    public function setXML()
-    {
-        $this->xml = new AuthnResponse();
-        $this->xml->setXML(static::XMLDOC);
-    }
-
-
-    /**
      * @covers \SimpleSAML\XML\Shib13\AuthnResponse::doXPathQuery
      * @covers \SimpleSAML\XML\Shib13\AuthnResponse::getIssuer
      * @covers \SimpleSAML\XML\Shib13\AuthnResponse::setXML
