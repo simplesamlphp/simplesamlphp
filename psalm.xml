@@ -4,6 +4,7 @@
     useDocblockTypes="true"
     totallyTyped="false"
     hideExternalErrors="true"
+    allowStringToStandInForClass="true"
 >
     <projectFiles>
         <directory name="lib/SimpleSAML/Auth" />
