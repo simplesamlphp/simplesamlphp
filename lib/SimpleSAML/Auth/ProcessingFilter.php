@@ -67,6 +67,7 @@ abstract class ProcessingFilter
      * When a filter returns from this function, it is assumed to have completed its task.
      *
      * @param array &$request  The request we are currently processing.
+     * @return void
      */
     abstract public function process(&$request);
 }
