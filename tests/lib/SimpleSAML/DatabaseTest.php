@@ -5,6 +5,9 @@ declare(strict_types=1);
 namespace SimpleSAML\Test;
 
 use PHPUnit\Framework\TestCase;
+use ReflectionClass;
+use ReflectionMethod;
+use ReflectionProperty;
 use SimpleSAML\Configuration;
 use SimpleSAML\Database;
 
@@ -181,9 +184,13 @@ class DatabaseTest extends TestCase
      */
     public function slaves()
     {
-        $getSlave = self::getMethod('getSlave');
+        $ref = new ReflectionClass($this->db);
+        $dbMaster = $ref->getProperty('dbMaster');
+        $dbMaster->setAccessible(true);
+        $master = spl_object_hash($dbMaster->getValue($this->db));
 
-        $master = spl_object_hash(\PHPUnit\Framework\Assert::readAttribute($this->db, 'dbMaster'));
+        $getSlave = $ref->getMethod('getSlave');
+        $getSlave->setAccessible(true);
         $slave = spl_object_hash($getSlave->invokeArgs($this->db, []));
 
         $this->assertTrue(($master == $slave), "getSlave should have returned the master database object");
@@ -206,7 +213,13 @@ class DatabaseTest extends TestCase
         $sspConfiguration = new Configuration($config, "test/SimpleSAML/DatabaseTest.php");
         $msdb = Database::getInstance($sspConfiguration);
 
-        $slaves = \PHPUnit\Framework\Assert::readAttribute($msdb, 'dbSlaves');
+        $ref = new ReflectionClass($msdb);
+        $dbSlaves = $ref->getProperty('dbSlaves');
+        $dbSlaves->setAccessible(true);
+        $slaves = $dbSlaves->getValue($msdb);
+
+        $getSlave = $ref->getMethod('getSlave');
+        $getSlave->setAccessible(true);
         $gotSlave = spl_object_hash($getSlave->invokeArgs($msdb, []));
 
         $this->assertEquals(
