@@ -45,9 +45,6 @@ msgstr "Asikho isicelo se-SAML esinikeziwe"
 msgid "{attributes:attribute_ou}"
 msgstr "Iyunithi yenhlangano"
 
-msgid "{status:header_wsfed}"
-msgstr "Isibonelo Sedemo ye-WS-Fed SP"
-
 msgid "{errors:descr_CASERROR}"
 msgstr "Iphutha ngenkathi kuxhunyanwa neseva ye-CAS."
 

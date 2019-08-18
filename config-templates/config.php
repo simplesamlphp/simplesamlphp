@@ -464,12 +464,6 @@ $config = [
     'enable.saml20-idp' => false,
     'enable.shib13-idp' => false,
     'enable.adfs-idp' => false,
-    'enable.wsfed-sp' => false,
-
-    /*
-     * Default IdP for WS-Fed.
-     */
-    'default-wsfed-idp' => 'urn:federation:pingfederate:localhost',
 
     /*
      * Whether SimpleSAMLphp should sign the response or the assertion in SAML 1.1 authentication

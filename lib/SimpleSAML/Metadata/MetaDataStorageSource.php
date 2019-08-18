@@ -341,9 +341,6 @@ abstract class MetaDataStorageSource
         else if ($set === 'shib13-sp-hosted') {
             return $baseUrl.'shib13/sp/metadata.php';
         }
-        else if ($set === 'wsfed-sp-hosted') {
-            return 'urn:federation:'.Utils\HTTP::getSelfHost();
-        }
         else if ($set === 'adfs-idp-hosted') {
             return 'urn:federation:'.Utils\HTTP::getSelfHost().':idp';
         }

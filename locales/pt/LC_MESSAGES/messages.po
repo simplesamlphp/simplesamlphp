@@ -122,9 +122,6 @@ msgstr ""
 msgid "{logout:default_link_text}"
 msgstr "Voltar à página de instalação do SimpleSAMLphp"
 
-msgid "{admin:metaover_group_metadata.wsfed-idp-remote}"
-msgstr "Fornecedor de identidade (IdP) WS-Federation (Remoto)"
-
 msgid "{errors:error_header}"
 msgstr "Erro no SimpleSAMLphp"
 
@@ -336,9 +333,6 @@ msgstr "A sair dos serviços seguintes:"
 
 msgid "{logout:loggedoutfrom}"
 msgstr "Saiu com sucesso de %SP%."
-
-msgid "{admin:metaover_group_metadata.wsfed-sp-hosted}"
-msgstr "Fornecedor de serviço (SP) WS-Federation (Local)"
 
 msgid "{errors:errorreport_text}"
 msgstr "O relatório de erro foi enviado aos administradores"
@@ -684,9 +678,6 @@ msgstr ""
 
 msgid "{attributes:attribute_schacuserprivateattribute}"
 msgstr "Elementos privados de informação"
-
-msgid "{status:header_wsfed}"
-msgstr "Exemplo de demonstração do SP WS-Fed"
 
 msgid "{attributes:attribute_eduorglegalname}"
 msgstr "Nome legal da organização de origem"

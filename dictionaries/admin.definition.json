@@ -68,18 +68,12 @@
 	"metaover_group_metadata.shib13-idp-remote": {
 		"en": "Shib 1.3 Identity Provider (Remote)"
 	},
-    "metaover_group_metadata.adfs-sp-remote": {
-        "en": "ADFS Service Provider (Remote)"
-    },
-    "metaover_group_metadata.adfs-idp-hosted": {
-        "en": "ADFS Identity Provider (Hosted)"
-    },
-	"metaover_group_metadata.wsfed-sp-hosted": {
-		"en": "WS-Federation Service Provider (Hosted)"
-	},
-	"metaover_group_metadata.wsfed-idp-remote": {
-		"en": "WS-Federation Identity Provider (Remote)"
-	},
+        "metaover_group_metadata.adfs-sp-remote": {
+            "en": "ADFS Service Provider (Remote)"
+        },
+        "metaover_group_metadata.adfs-idp-hosted": {
+            "en": "ADFS Identity Provider (Hosted)"
+        },
 	"metaconv_title": {
 		"en": "Metadata parser"
 	},

@@ -139,9 +139,6 @@ msgstr ""
 msgid "{logout:default_link_text}"
 msgstr "Volver a la página de instalación de SimpleSAMLphp"
 
-msgid "{admin:metaover_group_metadata.wsfed-idp-remote}"
-msgstr "Proveedor de Identidad WS-Federation (remoto)"
-
 msgid "{errors:error_header}"
 msgstr "Error de SimpleSAMLphp"
 
@@ -387,9 +384,6 @@ msgstr "Desconectarse de los siguientes servicios:"
 
 msgid "{logout:loggedoutfrom}"
 msgstr "Ha sido desconectado correctamente de %SP%."
-
-msgid "{admin:metaover_group_metadata.wsfed-sp-hosted}"
-msgstr "Proveedor de Servicios WS-Federation (local)"
 
 msgid "{errors:errorreport_text}"
 msgstr "El informe de error ha sido enviado a los administradores."
@@ -792,9 +786,6 @@ msgstr ""
 
 msgid "{attributes:attribute_schacuserprivateattribute}"
 msgstr "Elementos de información privada"
-
-msgid "{status:header_wsfed}"
-msgstr "Ejemplo WS-Fed SP"
 
 msgid "{admin:metadata_cert}"
 msgstr "Certificados"

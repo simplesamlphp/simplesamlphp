@@ -113,9 +113,6 @@ msgstr "喔喔！如果您的帳號和密碼錯誤，系統將無法提供相關
 msgid "{logout:default_link_text}"
 msgstr "回到 SimpleSAMLphp 安裝頁面"
 
-msgid "{admin:metaover_group_metadata.wsfed-idp-remote}"
-msgstr "WS-Federation 驗證提供者(遠端)"
-
 msgid "{errors:error_header}"
 msgstr "SimpleSAMLphp 異常"
 
@@ -340,9 +337,6 @@ msgstr "從下列服務登出："
 
 msgid "{logout:loggedoutfrom}"
 msgstr "您已成功從 %SP% 登出。"
-
-msgid "{admin:metaover_group_metadata.wsfed-sp-hosted}"
-msgstr "WS-Federation 服務提供者(主機)"
 
 msgid "{errors:errorreport_text}"
 msgstr "錯誤報告已送給管理員。"
@@ -702,9 +696,6 @@ msgstr "這是 SimpleSAMLphp 產生給您的 Metadata，您可以傳送此 Metad
 
 msgid "{attributes:attribute_schacuserprivateattribute}"
 msgstr "個人資料"
-
-msgid "{status:header_wsfed}"
-msgstr "WS-Fed SP 展示範例"
 
 msgid "{admin:metadata_cert}"
 msgstr "憑證"

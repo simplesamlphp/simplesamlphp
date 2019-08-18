@@ -135,9 +135,6 @@ msgstr ""
 msgid "{logout:default_link_text}"
 msgstr "Itzuli SimpleSAMLphp instalazio orrira "
 
-msgid "{admin:metaover_group_metadata.wsfed-idp-remote}"
-msgstr "WS-Federation Identitate hornitzailea (Urrunekoa)"
-
 msgid "{errors:error_header}"
 msgstr "SimpleSAMLphp-en errorea"
 
@@ -369,9 +366,6 @@ msgstr "Honako zerbitzu hauen saioak itxi:"
 
 msgid "{logout:loggedoutfrom}"
 msgstr "%SP% saioa zuzen itxi da."
-
-msgid "{admin:metaover_group_metadata.wsfed-sp-hosted}"
-msgstr "WS-Federation Zerbitzu hornitzailea (Anfitrioia)"
 
 msgid "{errors:errorreport_text}"
 msgstr "Errore txostena administratzaileei bidali zaie."
@@ -742,9 +736,6 @@ msgstr ""
 
 msgid "{attributes:attribute_schacuserprivateattribute}"
 msgstr "Informazio pribatuaren elementuak"
-
-msgid "{status:header_wsfed}"
-msgstr "WS-Fed SP Adibidea"
 
 msgid "{admin:metadata_cert}"
 msgstr "Ziurtagiriak"

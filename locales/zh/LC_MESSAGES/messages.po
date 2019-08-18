@@ -111,9 +111,6 @@ msgstr "太糟糕了！-没有你的用户名和密码你将不能访问该服�
 msgid "{logout:default_link_text}"
 msgstr "返回SimpleSAMLphp安装页面"
 
-msgid "{admin:metaover_group_metadata.wsfed-idp-remote}"
-msgstr "WS-Federation 身份提供者（远程）"
-
 msgid "{errors:error_header}"
 msgstr "SimpleSAMLphp错误"
 
@@ -326,9 +323,6 @@ msgstr "从下列服务中退出"
 
 msgid "{logout:loggedoutfrom}"
 msgstr "你已成功从%SP%退出"
-
-msgid "{admin:metaover_group_metadata.wsfed-sp-hosted}"
-msgstr "WS-Federation 服务提供者（本地）"
 
 msgid "{errors:errorreport_text}"
 msgstr "错误报告已经发送给管理员"
@@ -668,9 +662,6 @@ msgstr "这里是SimpleSAMLphp为你生成的元信息，你应该发送这个�
 
 msgid "{attributes:attribute_schacuserprivateattribute}"
 msgstr "个人资料"
-
-msgid "{status:header_wsfed}"
-msgstr "WS-Fed SP 演示案例"
 
 msgid "{admin:metadata_cert}"
 msgstr "证书"

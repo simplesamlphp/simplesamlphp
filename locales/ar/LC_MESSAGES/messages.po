@@ -126,9 +126,6 @@ msgstr ""
 msgid "{logout:default_link_text}"
 msgstr "عد لصفحة إنزال SimpleSAMLphp"
 
-msgid "{admin:metaover_group_metadata.wsfed-idp-remote}"
-msgstr "مقدم خدمة WS-الفدرالية البعيد"
-
 msgid "{errors:error_header}"
 msgstr "خطا ب SimpleSAMLphp"
 
@@ -356,9 +353,6 @@ msgstr "تسجيل خروج من الخدمات أدناه "
 
 msgid "{logout:loggedoutfrom}"
 msgstr "لقد خرجت بنجاح من %SP%"
-
-msgid "{admin:metaover_group_metadata.wsfed-sp-hosted}"
-msgstr "مقدم خدمة WS-الفدرالية المستضاف "
 
 msgid "{errors:errorreport_text}"
 msgstr "تم إرسال التقرير عن الخطأ  للمشرف"
@@ -715,9 +709,6 @@ msgstr ""
 
 msgid "{attributes:attribute_schacuserprivateattribute}"
 msgstr "وحدات التعريف الخاصة"
-
-msgid "{status:header_wsfed}"
-msgstr "استعراض مثال ل WS-Fed"
 
 msgid "{admin:metadata_cert}"
 msgstr "الشهادات"

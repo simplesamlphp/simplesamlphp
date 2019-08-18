@@ -44,9 +44,6 @@ msgstr "Akukho sicelo se-SAML sinikelweyo"
 msgid "{attributes:attribute_ou}"
 msgstr "Iyunithi yombutho"
 
-msgid "{status:header_wsfed}"
-msgstr "Umzekelo weDemo we-WS-Fed SP"
-
 msgid "{errors:descr_CASERROR}"
 msgstr "Impazamo xa kunxibelelwana neseva ye-CAS."
 

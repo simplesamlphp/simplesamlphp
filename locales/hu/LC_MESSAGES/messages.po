@@ -132,9 +132,6 @@ msgstr ""
 msgid "{logout:default_link_text}"
 msgstr "Vissza a SimpleSAMLphp telepítő oldalára"
 
-msgid "{admin:metaover_group_metadata.wsfed-idp-remote}"
-msgstr "WS-Federation alkalmazásszolgáltató (távoli)"
-
 msgid "{errors:error_header}"
 msgstr "SimpleSAMLphp hiba"
 
@@ -366,9 +363,6 @@ msgstr "Kilépés az alábbi szolgáltatásokból:"
 
 msgid "{logout:loggedoutfrom}"
 msgstr "Sikeresen kilépett a(z) %SP% szolgáltatásból"
-
-msgid "{admin:metaover_group_metadata.wsfed-sp-hosted}"
-msgstr "WS-Federation alkalmazásszolgáltató (helyi)"
 
 msgid "{errors:errorreport_text}"
 msgstr "A hibabejelentést elküldtük az adminisztrátoroknak."
@@ -734,9 +728,6 @@ msgstr ""
 
 msgid "{attributes:attribute_schacuserprivateattribute}"
 msgstr "Védett adatokat tartalmazó attribútumok"
-
-msgid "{status:header_wsfed}"
-msgstr "WS-Fed SP próba példa"
 
 msgid "{admin:metadata_cert}"
 msgstr "Tanúsítványok."

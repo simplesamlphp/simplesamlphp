@@ -137,9 +137,6 @@ msgstr ""
 msgid "{logout:default_link_text}"
 msgstr "Ga terug naar de SimpleSAMLphp installatiepagina"
 
-msgid "{admin:metaover_group_metadata.wsfed-idp-remote}"
-msgstr "WS-Federation Identity Provider (Remote)"
-
 msgid "{errors:error_header}"
 msgstr "SimpleSAMLphp-fout"
 
@@ -388,9 +385,6 @@ msgstr "Uitloggen van de volgende diensten:"
 
 msgid "{logout:loggedoutfrom}"
 msgstr "Je bent nu succesvol uitgelogd van %SP%."
-
-msgid "{admin:metaover_group_metadata.wsfed-sp-hosted}"
-msgstr "WS-Federation Service Provider (Hosted)"
 
 msgid "{errors:errorreport_text}"
 msgstr "Het foutmeldingsrapport is verstuurd naar de beheerders"
@@ -785,9 +779,6 @@ msgstr ""
 
 msgid "{attributes:attribute_schacuserprivateattribute}"
 msgstr "Privé informatie-elementen"
-
-msgid "{status:header_wsfed}"
-msgstr "WS-Fed SP Demo"
 
 msgid "{admin:metadata_cert}"
 msgstr "Certificaten"

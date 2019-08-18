@@ -130,9 +130,6 @@ msgstr ""
 msgid "{logout:default_link_text}"
 msgstr "Wróc do strony \"instalacja SimpleSAMLphp\""
 
-msgid "{admin:metaover_group_metadata.wsfed-idp-remote}"
-msgstr "WS-Federation Dostawca Tożsamości (Zdalny)"
-
 msgid "{errors:error_header}"
 msgstr "błąd SimpleSAMLphp"
 
@@ -363,9 +360,6 @@ msgstr "Wylogowanie z następujących serwisów:"
 
 msgid "{logout:loggedoutfrom}"
 msgstr "Zostałeś pomyślnie wylogowany z %SP%."
-
-msgid "{admin:metaover_group_metadata.wsfed-sp-hosted}"
-msgstr "WS-Federation Dostawca Serwisu (Lokalny)"
 
 msgid "{errors:errorreport_text}"
 msgstr "Raport o błędzie został wysłany do administratorów."
@@ -711,9 +705,6 @@ msgstr ""
 
 msgid "{attributes:attribute_schacuserprivateattribute}"
 msgstr "Poufne atrybuty"
-
-msgid "{status:header_wsfed}"
-msgstr "Przykładowe Demo WS-Fed SP"
 
 msgid "{errors:descr_INVALIDCERT}"
 msgstr ""

@@ -129,9 +129,6 @@ msgstr ""
 msgid "{logout:default_link_text}"
 msgstr "Zpátky na SimpleSAMLphp instalační stránku"
 
-msgid "{admin:metaover_group_metadata.wsfed-idp-remote}"
-msgstr "WS-Federation Identity Provider (Remote - vzdálený)"
-
 msgid "{errors:error_header}"
 msgstr "SimpleSAMLphp chyba"
 
@@ -361,9 +358,6 @@ msgstr ""
 "Zahájil jste <strong>globální odhlášení</strong> z služby "
 "<strong>%REQUESTERNAME%</strong>. Globální odhlášení znamená, že budete "
 "odhlášen z všech následující služeb."
-
-msgid "{admin:metaover_group_metadata.wsfed-sp-hosted}"
-msgstr "WS-Federation Service Provider (Hosted - lokální)"
 
 msgid "{errors:errorreport_text}"
 msgstr "Chybový report byl zaslán administrátorům."
@@ -723,9 +717,6 @@ msgstr ""
 
 msgid "{attributes:attribute_schacuserprivateattribute}"
 msgstr "Privátní informační elementy"
-
-msgid "{status:header_wsfed}"
-msgstr "WS-Fed SP Demo"
 
 msgid "{admin:metadata_cert}"
 msgstr "Certifikáty"

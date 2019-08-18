@@ -121,9 +121,6 @@ msgstr ""
 msgid "{logout:default_link_text}"
 msgstr "SimpleSAMLphpの設定ページに戻る"
 
-msgid "{admin:metaover_group_metadata.wsfed-idp-remote}"
-msgstr "WS-Federationアイデンティティプロバイダ(リモート)"
-
 msgid "{errors:error_header}"
 msgstr "SimpleSAMLphpエラー"
 
@@ -336,9 +333,6 @@ msgstr "以下のサービスからログアウトしました:"
 
 msgid "{logout:loggedoutfrom}"
 msgstr "あなたは %SP% からのログアウトに成功しました。"
-
-msgid "{admin:metaover_group_metadata.wsfed-sp-hosted}"
-msgstr "WS-Federationサービスプロバイダ(ホスト)"
 
 msgid "{errors:errorreport_text}"
 msgstr "このエラーは管理者に送信されました。"
@@ -679,9 +673,6 @@ msgstr "ここは SimpleSAMLphp が生成したメタデータがあります。
 
 msgid "{attributes:attribute_schacuserprivateattribute}"
 msgstr "個人情報要素"
-
-msgid "{status:header_wsfed}"
-msgstr "WS-Fed SP デモ例"
 
 msgid "{errors:descr_INVALIDCERT}"
 msgstr "認証失敗: あなたのブラウザは無効か読むことの出来ない証明書を送信しました。"

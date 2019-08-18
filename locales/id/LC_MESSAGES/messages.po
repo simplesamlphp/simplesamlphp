@@ -135,9 +135,6 @@ msgstr ""
 msgid "{logout:default_link_text}"
 msgstr "Kembali ke halaman instalasi SimpleSAMLphp"
 
-msgid "{admin:metaover_group_metadata.wsfed-idp-remote}"
-msgstr "Identity Provider WS-Federation (Remote)"
-
 msgid "{errors:error_header}"
 msgstr "Error simpelSAMLphp"
 
@@ -369,9 +366,6 @@ msgstr "Log out dari layanan-layanan berikut:"
 
 msgid "{logout:loggedoutfrom}"
 msgstr "Sekarang anda telah sukses log out dari %SP%."
-
-msgid "{admin:metaover_group_metadata.wsfed-sp-hosted}"
-msgstr "Servide Provider WS-Federation (Hosted)"
 
 msgid "{errors:errorreport_text}"
 msgstr "Laporan error telah dikirimkan ke administrator"
@@ -745,9 +739,6 @@ msgstr ""
 
 msgid "{attributes:attribute_schacuserprivateattribute}"
 msgstr "Elemen-elemen informasi personal"
-
-msgid "{status:header_wsfed}"
-msgstr "Contoh Demo WS-Fed SP"
 
 msgid "{admin:metadata_cert}"
 msgstr "Sertifikat"

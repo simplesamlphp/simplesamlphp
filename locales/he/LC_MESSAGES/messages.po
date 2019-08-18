@@ -126,9 +126,6 @@ msgstr ""
 msgid "{logout:default_link_text}"
 msgstr "חזור לדף ההתקנה של SimpleSAMLphp"
 
-msgid "{admin:metaover_group_metadata.wsfed-idp-remote}"
-msgstr "ספק זהות מרוחק מסוג איחוד-WS"
-
 msgid "{errors:error_header}"
 msgstr "שגיאה ב SimpleSAMLphp"
 
@@ -351,9 +348,6 @@ msgstr "מתנתק מהשרותים הבאים:"
 
 msgid "{logout:loggedoutfrom}"
 msgstr "%SP%-נותקת בהצלחה מ"
-
-msgid "{admin:metaover_group_metadata.wsfed-sp-hosted}"
-msgstr "ספק שירות מקומי מסוג איחוד-WS"
 
 msgid "{errors:errorreport_text}"
 msgstr "דוח השגיאה נשלח למנהל המערכת."
@@ -707,9 +701,6 @@ msgstr ""
 
 msgid "{attributes:attribute_schacuserprivateattribute}"
 msgstr "רכיבי המידע האישי"
-
-msgid "{status:header_wsfed}"
-msgstr "הדגמת דוגמה לס\"ש מסוג WS-Fed"
 
 msgid "{admin:metadata_cert}"
 msgstr "תעודות"

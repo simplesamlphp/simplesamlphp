@@ -141,9 +141,6 @@ msgstr ""
 msgid "{logout:default_link_text}"
 msgstr "Zurück zur SimpleSAMLphp Installationsseite"
 
-msgid "{admin:metaover_group_metadata.wsfed-idp-remote}"
-msgstr "WS-Federation Identity Provider (entfernt)"
-
 msgid "{errors:error_header}"
 msgstr "SimpleSAMLphp Fehler"
 
@@ -383,9 +380,6 @@ msgstr "Melde Sie von den folgenden Diensten ab:"
 
 msgid "{logout:loggedoutfrom}"
 msgstr "Sie wurden nun erfolgreich von %SP% abgemeldet"
-
-msgid "{admin:metaover_group_metadata.wsfed-sp-hosted}"
-msgstr "WS-Federation Service Provider (gehosted)"
 
 msgid "{errors:errorreport_text}"
 msgstr "Der Fehlerbericht wurde an den Administrator gesandt."
@@ -768,9 +762,6 @@ msgstr ""
 
 msgid "{attributes:attribute_schacuserprivateattribute}"
 msgstr "Private Informationselemente"
-
-msgid "{status:header_wsfed}"
-msgstr "WS-Fed SP Demo Beispiel"
 
 msgid "{admin:metadata_cert}"
 msgstr "Zertifikate"

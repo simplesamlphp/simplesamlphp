@@ -123,9 +123,6 @@ msgstr ""
 msgid "{logout:default_link_text}"
 msgstr "SimpleSAMLphp kurulum sayfasına geri dön"
 
-msgid "{admin:metaover_group_metadata.wsfed-idp-remote}"
-msgstr "WS-Federasyon Kimlik Sağlayıcı (Uzak sistemde sunulan)"
-
 msgid "{errors:error_header}"
 msgstr "SimpleSAMLphp hatası"
 
@@ -337,9 +334,6 @@ msgstr "Kurumsal websayfası"
 
 msgid "{logout:loggedoutfrom}"
 msgstr "%SP%'den başarıyla çıktınız."
-
-msgid "{admin:metaover_group_metadata.wsfed-sp-hosted}"
-msgstr "WS-Federasyon Servis Sağlayıcı (Bu sistemde sunulan)"
 
 msgid "{errors:errorreport_text}"
 msgstr "Hata raporu yöneticilere gönderildi"
@@ -678,9 +672,6 @@ msgstr ""
 
 msgid "{attributes:attribute_schacuserprivateattribute}"
 msgstr "Özel bilgi elemanları"
-
-msgid "{status:header_wsfed}"
-msgstr "WS-Fed SP Demo Örneği"
 
 msgid "{attributes:attribute_eduorglegalname}"
 msgstr "Organizasyonu'un resmi adı"

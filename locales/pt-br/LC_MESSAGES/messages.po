@@ -138,9 +138,6 @@ msgstr ""
 msgid "{logout:default_link_text}"
 msgstr "Voltar a instalação do SimpleSAMLphp"
 
-msgid "{admin:metaover_group_metadata.wsfed-idp-remote}"
-msgstr "WS-Federation Identity Provider (Remoto)"
-
 msgid "{errors:error_header}"
 msgstr "Erro do SimpleSAMLphp"
 
@@ -379,9 +376,6 @@ msgstr "Saindo dos seguintes serviços:"
 
 msgid "{logout:loggedoutfrom}"
 msgstr "Você está saiu com sucesso de %SP%."
-
-msgid "{admin:metaover_group_metadata.wsfed-sp-hosted}"
-msgstr "WS-Federation Service Provider (Local)"
 
 msgid "{errors:errorreport_text}"
 msgstr "O relatório de erro foi enviado com sucesso para os administradores."
@@ -742,9 +736,6 @@ msgstr ""
 "Aqui está a metadata que o SimpleSAMLphp gerou para você. Você pode "
 "enviar este documento metadata para parceiros confiáveis para a "
 "configuração de uma federação confiável."
-
-msgid "{status:header_wsfed}"
-msgstr "WS-Fed SP Exemplo"
 
 msgid "{errors:descr_INVALIDCERT}"
 msgstr ""

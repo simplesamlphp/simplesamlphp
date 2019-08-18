@@ -82,8 +82,6 @@ tar cf - . | (cd %{buildroot}%{_prefix}simplesamlphp; tar xfp -)
 %config(noreplace) %attr(0640, root,apache) /var/lib/simplesamlphp/metadata/shib13-idp-remote.php
 %config(noreplace) %attr(0640, root,apache) /var/lib/simplesamlphp/metadata/shib13-sp-hosted.php
 %config(noreplace) %attr(0640, root,apache) /var/lib/simplesamlphp/metadata/shib13-sp-remote.php
-%config(noreplace) %attr(0640, root,apache) /var/lib/simplesamlphp/metadata/wsfed-idp-remote.php
-%config(noreplace) %attr(0640, root,apache) /var/lib/simplesamlphp/metadata/wsfed-sp-hosted.php
 %dir %attr(0770, root, apache) /var/lib/simplesamlphp/log
 %dir %attr(0770, root, apache) /var/lib/simplesamlphp/data
 %dir %attr(0750, root, apache) /var/lib/simplesamlphp/cert

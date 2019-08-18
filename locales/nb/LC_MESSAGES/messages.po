@@ -131,9 +131,6 @@ msgstr ""
 msgid "{logout:default_link_text}"
 msgstr "Gå tilbake til SimpleSAMLphp installasjonen sin startside."
 
-msgid "{admin:metaover_group_metadata.wsfed-idp-remote}"
-msgstr "WS-Federation identitetsleverandør (ekstern)"
-
 msgid "{errors:error_header}"
 msgstr "SimpleSAMLphp-feil"
 
@@ -363,9 +360,6 @@ msgstr "Logger ut fra følgende tjenester:"
 
 msgid "{logout:loggedoutfrom}"
 msgstr "Du er nå logget ut fra %SP%."
-
-msgid "{admin:metaover_group_metadata.wsfed-sp-hosted}"
-msgstr "WS-Federation tjenesteleverandør (intern)"
 
 msgid "{errors:errorreport_text}"
 msgstr "Feilrapport er sent til administrator."
@@ -738,9 +732,6 @@ msgstr ""
 
 msgid "{attributes:attribute_schacuserprivateattribute}"
 msgstr "Private informasjonselement"
-
-msgid "{status:header_wsfed}"
-msgstr "WS-Fed SP Demo Eksempel"
 
 msgid "{admin:metadata_cert}"
 msgstr "Sertifikater"

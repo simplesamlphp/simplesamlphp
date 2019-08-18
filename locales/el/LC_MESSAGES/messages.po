@@ -139,9 +139,6 @@ msgstr ""
 msgid "{logout:default_link_text}"
 msgstr "Επιστροφή στην αρχική σελίδα"
 
-msgid "{admin:metaover_group_metadata.wsfed-idp-remote}"
-msgstr "Πάροχος Ταυτότητας WS-Federation (Απομακρυσμένος)"
-
 msgid "{errors:error_header}"
 msgstr "Σφάλμα του SimpleSAMLphp"
 
@@ -396,9 +393,6 @@ msgstr "Γίνεται αποσύνδεση από τις ακόλουθες υ�
 
 msgid "{logout:loggedoutfrom}"
 msgstr "Έχετε αποσυνδεθεί με επιτυχία από την υπηρεσία %SP%."
-
-msgid "{admin:metaover_group_metadata.wsfed-sp-hosted}"
-msgstr "Πάροχος Υπηρεσιών WS-Federation (Φιλοξενούμενος)"
 
 msgid "{errors:errorreport_text}"
 msgstr "Η αποστολή της αναφοράς σφάλματος στους διαχειριστές ολοκληρώθηκε."
@@ -809,9 +803,6 @@ msgstr ""
 
 msgid "{attributes:attribute_schacuserprivateattribute}"
 msgstr "Απόρρητα προσωπικά στοιχεία"
-
-msgid "{status:header_wsfed}"
-msgstr "Δοκιμαστικός Παροχέας Υπηρεσιών WS-Fed"
 
 msgid "{admin:metadata_cert}"
 msgstr "Πιστοποιητικά"

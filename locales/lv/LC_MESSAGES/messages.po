@@ -131,9 +131,6 @@ msgstr ""
 msgid "{logout:default_link_text}"
 msgstr "Iet atpakaļ uz SimpleSAMLphp instalācijas lapu"
 
-msgid "{admin:metaover_group_metadata.wsfed-idp-remote}"
-msgstr "WS-Federation servisa piegādātājs (attālināts)"
-
 msgid "{errors:error_header}"
 msgstr "SimpleSAMLphp kļūda"
 
@@ -360,9 +357,6 @@ msgstr "Atslēgšanās no šiem servisiem:"
 
 msgid "{logout:loggedoutfrom}"
 msgstr "Jūs esat sekmīgi atslēdzies no %SP%."
-
-msgid "{admin:metaover_group_metadata.wsfed-sp-hosted}"
-msgstr "WS-Federation servisa piegādātājs (hostēts)"
 
 msgid "{errors:errorreport_text}"
 msgstr "Kļūdas ziņojums administratoriem ir nosūtīts."
@@ -728,9 +722,6 @@ msgstr ""
 
 msgid "{attributes:attribute_schacuserprivateattribute}"
 msgstr "Privātās informācijas elementi"
-
-msgid "{status:header_wsfed}"
-msgstr "WS-Fed SP demonstrācijas piemērs"
 
 msgid "{admin:metadata_cert}"
 msgstr "Sertifikāti"

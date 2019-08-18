@@ -134,9 +134,6 @@ msgstr ""
 msgid "{logout:default_link_text}"
 msgstr "Grįžti atgal į SimpleSAMLphp diegimo puslapį"
 
-msgid "{admin:metaover_group_metadata.wsfed-idp-remote}"
-msgstr "WS-Federacijos Paslaugos teikėjas (nutolęs)"
-
 msgid "{errors:error_header}"
 msgstr "SimpleSAMLphp klaida"
 
@@ -363,9 +360,6 @@ msgstr "Vyksta atjungimas nuo šių paslaugų:"
 
 msgid "{logout:loggedoutfrom}"
 msgstr "Jūs sėkmingai buvote atjungtas iš %SP%."
-
-msgid "{admin:metaover_group_metadata.wsfed-sp-hosted}"
-msgstr "WS-Federacijos Paslaugos teikėjas (vietinis)"
 
 msgid "{errors:errorreport_text}"
 msgstr "Pranešimas apie klaidą išsiųstas administratoriams."
@@ -738,9 +732,6 @@ msgstr ""
 
 msgid "{attributes:attribute_schacuserprivateattribute}"
 msgstr "Privačios informacijos elementai"
-
-msgid "{status:header_wsfed}"
-msgstr "WS-Fed SP Demonstracinės versijos Pavyzdys"
 
 msgid "{admin:metadata_cert}"
 msgstr "Sertifikatai"

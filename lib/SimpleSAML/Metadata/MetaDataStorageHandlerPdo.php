@@ -44,9 +44,7 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
         'shib13-idp-hosted',
         'shib13-idp-remote',
         'shib13-sp-hosted',
-        'shib13-sp-remote',
-        'wsfed-idp-remote',
-        'wsfed-sp-hosted'
+        'shib13-sp-remote'
     ];
 
 

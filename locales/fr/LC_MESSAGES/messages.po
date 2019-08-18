@@ -137,9 +137,6 @@ msgstr ""
 msgid "{logout:default_link_text}"
 msgstr "Retournez à la page d'installation de SimpleSAML."
 
-msgid "{admin:metaover_group_metadata.wsfed-idp-remote}"
-msgstr "Fournisseur d'identité Shib 1.3 distant"
-
 msgid "{errors:error_header}"
 msgstr "erreur de SimpleSAMLphp"
 
@@ -379,9 +376,6 @@ msgstr "Déconnexion des services suivants :"
 
 msgid "{logout:loggedoutfrom}"
 msgstr "Vous avez été déconnecté de %SP%."
-
-msgid "{admin:metaover_group_metadata.wsfed-sp-hosted}"
-msgstr "Fournisseur de service WS-federation local"
 
 msgid "{errors:errorreport_text}"
 msgstr "Le rapport d'erreur a été envoyé aux administrateurs."
@@ -759,9 +753,6 @@ msgstr ""
 
 msgid "{attributes:attribute_schacuserprivateattribute}"
 msgstr "Éléments d'informations privées"
-
-msgid "{status:header_wsfed}"
-msgstr "Exemple de démonstration de WS-Fed SP"
 
 msgid "{admin:metadata_cert}"
 msgstr "Certificats"

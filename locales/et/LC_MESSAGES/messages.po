@@ -133,9 +133,6 @@ msgstr ""
 msgid "{logout:default_link_text}"
 msgstr "Mine tagasi SimpleSAMLphp paigaldusleheküljele"
 
-msgid "{admin:metaover_group_metadata.wsfed-idp-remote}"
-msgstr "WS-Federation identiteedipakkuja (kaug)"
-
 msgid "{errors:error_header}"
 msgstr "SimpleSAMLphp tõrge"
 
@@ -366,9 +363,6 @@ msgstr "Välja logimine järgmistest teenustest:"
 
 msgid "{logout:loggedoutfrom}"
 msgstr "Sa oled nüüd edukalt välja logitud teenusest %SP%."
-
-msgid "{admin:metaover_group_metadata.wsfed-sp-hosted}"
-msgstr "WS-Federation teenusepakkuja (hostitud)"
 
 msgid "{errors:errorreport_text}"
 msgstr "Tõrkeraport saadeti administraatoritele."
@@ -732,9 +726,6 @@ msgstr ""
 
 msgid "{attributes:attribute_schacuserprivateattribute}"
 msgstr "Privaatandmete elemendid"
-
-msgid "{status:header_wsfed}"
-msgstr "WS-Fed SP demonäide"
 
 msgid "{admin:metadata_cert}"
 msgstr "Sertifikaadid"

@@ -137,9 +137,6 @@ msgstr ""
 msgid "{logout:default_link_text}"
 msgstr "Вернуться на страницу установки SimpleSAMLphp"
 
-msgid "{admin:metaover_group_metadata.wsfed-idp-remote}"
-msgstr "Провайдер идентификации WS-Federation (удаленное размещение)"
-
 msgid "{errors:error_header}"
 msgstr "Ошибка SimpleSAMLphp"
 
@@ -382,9 +379,6 @@ msgstr "Выход из следующих служб:"
 
 msgid "{logout:loggedoutfrom}"
 msgstr "Вы успешно вышли из службы %SP%."
-
-msgid "{admin:metaover_group_metadata.wsfed-sp-hosted}"
-msgstr "Сервис провайдер WS-Federation (локальное размещение)"
 
 msgid "{errors:errorreport_text}"
 msgstr "Сообщение об ошибке было отправлено администраторам."
@@ -773,9 +767,6 @@ msgstr ""
 
 msgid "{attributes:attribute_schacuserprivateattribute}"
 msgstr "Элементы личной информации"
-
-msgid "{status:header_wsfed}"
-msgstr "Демо пример сервис провайдера WS-Fed SP"
 
 msgid "{admin:metadata_cert}"
 msgstr "Сертификаты"

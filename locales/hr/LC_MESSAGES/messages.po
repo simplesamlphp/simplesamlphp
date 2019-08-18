@@ -140,9 +140,6 @@ msgstr ""
 msgid "{logout:default_link_text}"
 msgstr "Natrag na početnu stranicu SimpleSAMLphp instalacije"
 
-msgid "{admin:metaover_group_metadata.wsfed-idp-remote}"
-msgstr "WS-Federation autentifikacijski servis (udaljeni)"
-
 msgid "{errors:error_header}"
 msgstr "SimpleSAMLphp greška"
 
@@ -375,9 +372,6 @@ msgstr "Odjavljujete se iz sljedećih servisa:"
 
 msgid "{logout:loggedoutfrom}"
 msgstr "Uspješno ste odjavljeni iz %SP%."
-
-msgid "{admin:metaover_group_metadata.wsfed-sp-hosted}"
-msgstr "WS-Federation davatelj usluge (lokalni)"
 
 msgid "{errors:errorreport_text}"
 msgstr "Prijava greške poslana je administratorima."
@@ -754,9 +748,6 @@ msgstr ""
 
 msgid "{attributes:attribute_schacuserprivateattribute}"
 msgstr "Postavke privatnosti"
-
-msgid "{status:header_wsfed}"
-msgstr "Primjer WS-Fed davatelja usluge"
 
 msgid "{admin:metadata_cert}"
 msgstr "Certifikati"

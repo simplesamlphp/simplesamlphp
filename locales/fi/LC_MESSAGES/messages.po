@@ -546,9 +546,6 @@ msgstr "Vaikuttaa siltä, että SimpleSAMLphp:na asetuksissa on virhe."
 msgid "{attributes:attribute_schacuserprivateattribute}"
 msgstr "Yksilöivät tunnisteet"
 
-msgid "{status:header_wsfed}"
-msgstr "WS-FED SP esimerkki"
-
 msgid "{attributes:attribute_eduorglegalname}"
 msgstr "Organisaation virallinen nimi"
 
