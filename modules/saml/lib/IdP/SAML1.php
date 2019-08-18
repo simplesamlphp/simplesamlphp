@@ -17,6 +17,7 @@ use SimpleSAML\XML\Shib13\AuthnResponse;
  * IdP implementation for SAML 1.1 protocol.
  *
  * @package SimpleSAMLphp
+ * @deprecated This class will be removed in a future release
  */
 class SAML1
 {

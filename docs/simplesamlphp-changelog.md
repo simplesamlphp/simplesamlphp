@@ -33,6 +33,7 @@ Released TBD
   * The minimum PHP version required is now 5.6.
 
 ### Deprecation
+  * Support for SAML1.1 / Shibboleth 1.3 will be discontinued in a future release
   * The class SimpleSAML\Auth\TimeLimitedToken is now deprecated and will be removed in a future release
     If your custom module relies on this class, be sure to make a copy into your repository and
     make sure to also copy the unit tests that come along.

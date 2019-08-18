@@ -5,6 +5,7 @@
  *
  * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
+ * @deprecated This class will be removed in a future release
  */
 
 namespace SimpleSAML\XML\Shib13;

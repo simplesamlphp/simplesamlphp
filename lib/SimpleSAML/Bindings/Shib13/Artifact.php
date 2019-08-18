@@ -4,6 +4,7 @@
  * Implementation of the Shibboleth 1.3 Artifact binding.
  *
  * @package SimpleSAMLphp
+ * @deprecated This class will be removed in a future release
  */
 
 namespace SimpleSAML\Bindings\Shib13;
