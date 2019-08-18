@@ -114,9 +114,6 @@ msgstr "يمكنك رؤية محتوي الرسالة طالما كنت في ح�
 msgid "{errors:descr_RESPONSESTATUSNOSUCCESS}"
 msgstr "مقدم الهوية استجاب بخطأ. (رمز الحالة باستجابة SAML فاشل)"
 
-msgid "{admin:metadata_shib13-idp}"
-msgstr "البيانات الوصفية لShib 1.3 IdP"
-
 msgid "{login:help_text}"
 msgstr ""
 "لسوء الحظ لا يمكننا التوثق من هويتك بدون اسم المستخدم و كلمة السر "
@@ -241,9 +238,6 @@ msgstr "تسجيل الخروج"
 
 msgid "{login:error_wrongpassword}"
 msgstr " اسم مستخدم او كلمة سر خطا"
-
-msgid "{admin:metaover_group_metadata.shib13-sp-remote}"
-msgstr "مقدم خدمة Shib 1.3 البعيد"
 
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"
 msgstr "حصل مقدم الهوية هذا علي طلب توثيق من مقدم الخدمة لكن حدث خطا بالإجراءات "
@@ -522,9 +516,6 @@ msgstr "ارسل رسالة"
 msgid "{errors:title_RESPONSESTATUSNOSUCCESS}"
 msgstr "خطا تم الحصول عليه من مقدم الهوية"
 
-msgid "{admin:metadata_shib13-sp}"
-msgstr "البيانات الوصفية لShib 1.3 SP"
-
 msgid "{admin:metaover_intro}"
 msgstr "لإلغاء نظرة علي تفاصيل احدي وحدات SAML, اضغط علي ترويسة  الوحدة "
 
@@ -613,9 +604,6 @@ msgstr "الصفحة غير موجودة"
 msgid "{logout:logged_out_text}"
 msgstr "لقدخروج لقد قمت بالخروج"
 
-msgid "{admin:metaover_group_metadata.shib13-sp-hosted}"
-msgstr "مقدم خدمة Shib 1.3 المستضاف"
-
 msgid "{admin:metadata_cert_intro}"
 msgstr "حمل شهادات X509 كملفات بترميز PEM"
 
@@ -647,9 +635,6 @@ msgstr ""
 
 msgid "{attributes:attribute_mobile}"
 msgstr "رقم الهاتف السيار"
-
-msgid "{admin:metaover_group_metadata.shib13-idp-hosted}"
-msgstr "مقدم هوية Shib 1.3 المستضاف"
 
 msgid "{attributes:attribute_preferredlanguage}"
 msgstr "اللغة المفضلة"
@@ -695,9 +680,6 @@ msgstr "كلمة السر"
 
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "معلومات تسجيل الخروج مفقودة"
-
-msgid "{admin:metaover_group_metadata.shib13-idp-remote}"
-msgstr "مقدم هوية Shib 1.3 البعيد"
 
 msgid "{errors:descr_CONFIG}"
 msgstr "يبدو ان ترتيب SimpleSAMLphp غير صحيح"

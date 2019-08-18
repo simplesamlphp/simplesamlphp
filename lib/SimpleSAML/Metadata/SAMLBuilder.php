@@ -489,12 +489,6 @@ class SAMLBuilder
             case 'saml20-idp-remote':
                 $this->addMetadataIdP20($metadata);
                 break;
-            case 'shib13-sp-remote':
-                $this->addMetadataSP11($metadata);
-                break;
-            case 'shib13-idp-remote':
-                $this->addMetadataIdP11($metadata);
-                break;
             case 'attributeauthority-remote':
                 $this->addAttributeAuthority($metadata);
                 break;

@@ -9,7 +9,6 @@
 >
     <projectFiles>
         <directory name="lib/SimpleSAML/Auth" />
-        <directory name="lib/SimpleSAML/Bindings" />
         <directory name="lib/SimpleSAML/Error" />
         <directory name="lib/SimpleSAML/HTTP" />
         <directory name="lib/SimpleSAML/IdP" />
@@ -36,7 +35,6 @@
 
         <directory name="tests" />
 
-        <!-- Ignore deprecated classes -->
         <ignoreFiles>
             <directory name="tests/Utils/Stubs" />
             <directory name="vendor" />

@@ -3,7 +3,7 @@ IdP remote metadata reference
 
 <!-- {{TOC}} -->
 
-This is a reference for metadata options available for `metadata/saml20-idp-remote.php` and `metadata/shib13-idp-remote.php`. Both files have the following format:
+This is a reference for metadata options available for `metadata/saml20-idp-remote.php`. The file has the following format:
 
     <?php
     /* The index of the array is the entity ID of this IdP. */

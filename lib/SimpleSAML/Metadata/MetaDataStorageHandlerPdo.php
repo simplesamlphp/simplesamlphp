@@ -41,10 +41,6 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
         'saml20-idp-hosted',
         'saml20-idp-remote',
         'saml20-sp-remote',
-        'shib13-idp-hosted',
-        'shib13-idp-remote',
-        'shib13-sp-hosted',
-        'shib13-sp-remote'
     ];
 
 

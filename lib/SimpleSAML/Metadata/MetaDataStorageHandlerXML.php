@@ -63,16 +63,6 @@ class MetaDataStorageHandlerXML extends MetaDataStorageSource
             throw new \Exception("Neither source file path/URI nor string data provided");
         }
         foreach ($entities as $entityId => $entity) {
-            $md = $entity->getMetadata1xSP();
-            if ($md !== null) {
-                $SP1x[$entityId] = $md;
-            }
-
-            $md = $entity->getMetadata1xIdP();
-            if ($md !== null) {
-                $IdP1x[$entityId] = $md;
-            }
-
             $md = $entity->getMetadata20SP();
             if ($md !== null) {
                 $SP20[$entityId] = $md;
@@ -90,8 +80,6 @@ class MetaDataStorageHandlerXML extends MetaDataStorageSource
         }
 
         $this->metadata = [
-            'shib13-sp-remote'          => $SP1x,
-            'shib13-idp-remote'         => $IdP1x,
             'saml20-sp-remote'          => $SP20,
             'saml20-idp-remote'         => $IdP20,
             'attributeauthority-remote' => $AAD,

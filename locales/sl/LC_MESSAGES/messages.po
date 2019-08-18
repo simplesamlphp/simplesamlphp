@@ -118,9 +118,6 @@ msgstr "Ste v debug načinu, lahko si ogledate vsebino sporočila, ki ga pošilj
 msgid "{errors:descr_RESPONSESTATUSNOSUCCESS}"
 msgstr "Odziv IdP vsebuje napako (\"SAML-Response\" ni uspel)! "
 
-msgid "{admin:metadata_shib13-idp}"
-msgstr "Shib 1.3 IdP Metapodatki"
-
 msgid "{login:help_text}"
 msgstr ""
 "Žal se brez uporabniškega imena in gesla ne morete prijaviti in "
@@ -244,9 +241,6 @@ msgstr "Odjavljanje..."
 
 msgid "{login:error_wrongpassword}"
 msgstr "Napačno uporabniško ime ali geslo!"
-
-msgid "{admin:metaover_group_metadata.shib13-sp-remote}"
-msgstr "Shib 1.3 SP (Oddaljeni)"
 
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"
 msgstr ""
@@ -531,9 +525,6 @@ msgstr "Pošiljanje sporočila"
 msgid "{errors:title_RESPONSESTATUSNOSUCCESS}"
 msgstr "Napaka na IdP"
 
-msgid "{admin:metadata_shib13-sp}"
-msgstr "Shib 1.3 SP Metapodatki"
-
 msgid "{admin:metaover_intro}"
 msgstr "Za pregled podrobnosti SAML entitete, kliknite na glavo te entitete"
 
@@ -622,9 +613,6 @@ msgstr "Strani ni bilo mogoče najti."
 msgid "{logout:logged_out_text}"
 msgstr "Odjava je bila uspešna. Hvala, ker uporabljate to storitev."
 
-msgid "{admin:metaover_group_metadata.shib13-sp-hosted}"
-msgstr "Shib 1.3 SP (Lokalni)"
-
 msgid "{admin:metadata_cert_intro}"
 msgstr "Prenesi X509 digitalno potrdilo v PEM datoteki."
 
@@ -655,9 +643,6 @@ msgstr ""
 
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobilni telefon"
-
-msgid "{admin:metaover_group_metadata.shib13-idp-hosted}"
-msgstr "Shib 1.3 SP (Lokalni)"
 
 msgid "{attributes:attribute_preferredlanguage}"
 msgstr "Želen jezik"
@@ -705,9 +690,6 @@ msgstr "Uporabnikovo zgoščeno geslo"
 
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "Odjavni (Logout) parametri niso na voljo."
-
-msgid "{admin:metaover_group_metadata.shib13-idp-remote}"
-msgstr "Shib 1.3 SP (Oddaljeni)"
 
 msgid "{errors:descr_CONFIG}"
 msgstr "Nastavitve SimpleSAMLphp so napačne ali se med seboj izključujejo."

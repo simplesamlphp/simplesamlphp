@@ -1112,10 +1112,6 @@ class Configuration implements Utils\ClearableState
                 return Constants::BINDING_HTTP_POST;
             case 'saml20-idp-remote:ArtifactResolutionService':
                 return Constants::BINDING_SOAP;
-            case 'shib13-idp-remote:SingleSignOnService':
-                return 'urn:mace:shibboleth:1.0:profiles:AuthnRequest';
-            case 'shib13-sp-remote:AssertionConsumerService':
-                return 'urn:oasis:names:tc:SAML:1.0:profiles:browser-post';
             default:
                 throw new \Exception('Missing default binding for '.$endpointType.' in '.$set);
         }

@@ -18,9 +18,6 @@ msgstr ""
 msgid "{core:frontpage:link_phpinfo}"
 msgstr "PHPinfo"
 
-msgid "{core:frontpage:link_shib13example}"
-msgstr "Shibboleth 1.3 SP Beispill - probeier dech iwer dain Shib IdP anzeloggen"
-
 msgid "{core:frontpage:link_doc_sp}"
 msgstr "SimpleSAMLphp als Service Provicer benotzen"
 
@@ -41,9 +38,6 @@ msgstr "Hosted SAML 2.0 Identity Provider Meta Données (automatesch erstallt)"
 
 msgid "{core:frontpage:optional}"
 msgstr "Optional"
-
-msgid "{core:frontpage:link_meta_shib13sphosted}"
-msgstr "Hosted Shibboleth 1.3 Service Provider Meta Données (automatesch erstallt)"
 
 msgid "{core:frontpage:doc_header}"
 msgstr "Dokumentatioun"
@@ -80,11 +74,6 @@ msgstr ""
 "wor en Succéss. Dest as d'Startsäit vun aerer Installatioun wou der "
 "Links, Beispiller, Diagnoseméiglechkeeten, Meta Données an Links op "
 "relevant Dokumenter fannt."
-
-msgid "{core:frontpage:link_meta_shib13idphosted}"
-msgstr ""
-"Hosted Shibboleth 1.3 Identity Provider Meta Données (automatesch "
-"erstallt)"
 
 msgid "{core:frontpage:required}"
 msgstr "Néideg"

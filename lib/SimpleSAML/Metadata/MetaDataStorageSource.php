@@ -335,12 +335,6 @@ abstract class MetaDataStorageSource
         else if ($set === 'saml20-sp-hosted') {
             return $baseUrl.'saml2/sp/metadata.php';
         }
-        else if ($set === 'shib13-idp-hosted') {
-            return $baseUrl.'shib13/idp/metadata.php';
-        }
-        else if ($set === 'shib13-sp-hosted') {
-            return $baseUrl.'shib13/sp/metadata.php';
-        }
         else if ($set === 'adfs-idp-hosted') {
             return 'urn:federation:'.Utils\HTTP::getSelfHost().':idp';
         }

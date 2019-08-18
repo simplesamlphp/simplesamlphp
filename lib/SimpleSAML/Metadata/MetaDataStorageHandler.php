@@ -127,10 +127,6 @@ class MetaDataStorageHandler implements \SimpleSAML\Utils\ClearableState
                 case 'SingleLogoutServiceBinding':
                     return Constants::BINDING_HTTP_REDIRECT;
             }
-        } elseif ($set == 'shib13-idp-hosted') {
-            if ($property === 'SingleSignOnService') {
-                return $baseurl.'shib13/idp/SSOService.php';
-            }
         }
 
         throw new \Exception('Could not generate metadata property '.$property.' for set '.$set.'.');

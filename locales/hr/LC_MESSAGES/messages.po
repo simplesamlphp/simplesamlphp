@@ -128,9 +128,6 @@ msgstr ""
 "pojavi greške. (Šifra statusa dostavljena u SAML odgovoru ne odgovara "
 "šifri uspješno obrađenog zahtjeva)"
 
-msgid "{admin:metadata_shib13-idp}"
-msgstr "Shib 1.3 metapodaci o autentifikacijskom servisu"
-
 msgid "{login:help_text}"
 msgstr ""
 "Šteta! - Bez ispravne korisničke oznake i zaporke ne možete pristupiti "
@@ -256,9 +253,6 @@ msgstr "Odjava u tijeku..."
 
 msgid "{login:error_wrongpassword}"
 msgstr "Neispravna korisnička oznaka ili zaporka."
-
-msgid "{admin:metaover_group_metadata.shib13-sp-remote}"
-msgstr "Shib 1.3 davatelj usluge (udaljeni)"
 
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"
 msgstr ""
@@ -554,9 +548,6 @@ msgstr "Šaljem poruku"
 msgid "{errors:title_RESPONSESTATUSNOSUCCESS}"
 msgstr "Autentifikacijski servis je prijavio grešku"
 
-msgid "{admin:metadata_shib13-sp}"
-msgstr "Shib 1.3 metapodaci o davatelju usluge"
-
 msgid "{admin:metaover_intro}"
 msgstr "Da biste vidjeli detalje o SAML entitetu, kliknite na njegovo zaglavlje."
 
@@ -645,9 +636,6 @@ msgstr "Stranica nije pronađena"
 msgid "{logout:logged_out_text}"
 msgstr "Uspješno ste se odjavili."
 
-msgid "{admin:metaover_group_metadata.shib13-sp-hosted}"
-msgstr "Shib 1.3 davatelj usluge (lokalni)"
-
 msgid "{admin:metadata_cert_intro}"
 msgstr "Preuzmite X509 certifikate u PEM formatu."
 
@@ -680,9 +668,6 @@ msgstr ""
 
 msgid "{attributes:attribute_mobile}"
 msgstr "Broj mobilnog telefona"
-
-msgid "{admin:metaover_group_metadata.shib13-idp-hosted}"
-msgstr "Shib 1.3 autentifikacijski servis (lokalni)"
 
 msgid "{attributes:attribute_preferredlanguage}"
 msgstr "Primarni jezik"
@@ -732,9 +717,6 @@ msgstr "Kriptirana zaporka"
 
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "Informacija o odjavljivanju je izgubljena"
-
-msgid "{admin:metaover_group_metadata.shib13-idp-remote}"
-msgstr "Shib 1.3 autentifikacijski servis (udaljeni)"
 
 msgid "{errors:descr_CONFIG}"
 msgstr "Čini se da je SimpleSAMLphp pogrešno iskonfiguriran."

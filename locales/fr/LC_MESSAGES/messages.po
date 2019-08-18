@@ -125,9 +125,6 @@ msgstr ""
 "Le fournisseur d'identité a renvoyé une erreur (le code de statut de la "
 "réponse SAML n'indiquait pas le succès)"
 
-msgid "{admin:metadata_shib13-idp}"
-msgstr "Métadonnées d'IdP Shib 1.3"
-
 msgid "{login:help_text}"
 msgstr ""
 "Pas de chance! Sans votre identifiant et votre mot de passe vous ne "
@@ -258,9 +255,6 @@ msgstr "Déconnexion..."
 
 msgid "{login:error_wrongpassword}"
 msgstr "Mauvais identifiant ou mot de passe."
-
-msgid "{admin:metaover_group_metadata.shib13-sp-remote}"
-msgstr "Fournisseur de service Shib 1.3 distant"
 
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"
 msgstr ""
@@ -557,9 +551,6 @@ msgstr "Envoi du message"
 msgid "{errors:title_RESPONSESTATUSNOSUCCESS}"
 msgstr "Erreur levée par le fournisseur d'identité"
 
-msgid "{admin:metadata_shib13-sp}"
-msgstr "Métadonnées de SP Shib 1.3"
-
 msgid "{admin:metaover_intro}"
 msgstr "Pour examiner les détails d'une entité SAML, cliquez sur son en-tête."
 
@@ -649,9 +640,6 @@ msgstr "Page introuvable"
 msgid "{logout:logged_out_text}"
 msgstr "Vous avez été déconnecté. Merci d'avoir utilisé ce service."
 
-msgid "{admin:metaover_group_metadata.shib13-sp-hosted}"
-msgstr "Fournisseur de service Shib 1.3 local"
-
 msgid "{admin:metadata_cert_intro}"
 msgstr "Télécharger les certificats X509 en tant que fichiers encodés PEM."
 
@@ -684,9 +672,6 @@ msgstr ""
 
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobile"
-
-msgid "{admin:metaover_group_metadata.shib13-idp-hosted}"
-msgstr "Fournisseur d'identité Shib 1.3 local"
 
 msgid "{attributes:attribute_preferredlanguage}"
 msgstr "Langue préférée"
@@ -738,9 +723,6 @@ msgstr "Mot de passe chiffré"
 
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "Information de déconnexion perdue"
-
-msgid "{admin:metaover_group_metadata.shib13-idp-remote}"
-msgstr "Fournisseur d'identité Shib 1.3 distant"
 
 msgid "{errors:descr_CONFIG}"
 msgstr "Il semble que SimpleSAMLphp soit mal configuré."

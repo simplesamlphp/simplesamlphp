@@ -776,16 +776,6 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
             ));
         }
 
-        // now make sure SingleSignOnService, SingleLogoutService and ArtifactResolutionService works fine
-        $a['metadata-set'] = 'shib13-idp-remote';
-        $c = Configuration::loadFromArray($a);
-        $this->assertEquals(
-            [
-                'Location' => 'https://example.com/sso',
-                'Binding' => 'urn:mace:shibboleth:1.0:profiles:AuthnRequest',
-            ],
-            $c->getDefaultEndpoint('SingleSignOnService')
-        );
         $a['metadata-set'] = 'saml20-idp-remote';
         $c = Configuration::loadFromArray($a);
         $this->assertEquals(
@@ -801,18 +791,6 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
                 'Binding' => \SAML2\Constants::BINDING_HTTP_REDIRECT,
             ],
             $c->getDefaultEndpoint('SingleLogoutService')
-        );
-
-        // test for old shib1.3 AssertionConsumerService
-        $a['metadata-set'] = 'shib13-sp-remote';
-        $a['AssertionConsumerService'] = 'https://example.com/endpoint.php';
-        $c = Configuration::loadFromArray($a);
-        $this->assertEquals(
-            [
-                'Location' => 'https://example.com/endpoint.php',
-                'Binding' => 'urn:oasis:names:tc:SAML:1.0:profiles:browser-post',
-            ],
-            $c->getDefaultEndpoint('AssertionConsumerService')
         );
 
         // test for no valid endpoints specified

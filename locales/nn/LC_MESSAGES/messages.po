@@ -122,9 +122,6 @@ msgstr ""
 "Vertsorganisasjonen din (IdP) gav feilmelding (SAML-svaret hadde "
 "statuskode som varsla om feil)"
 
-msgid "{admin:metadata_shib13-idp}"
-msgstr "Shib 1.3 IdP Metadata"
-
 msgid "{login:help_text}"
 msgstr ""
 "Synd! - Utan riktig brukarnamn og passord kan du ikkje autentisera deg.  "
@@ -249,9 +246,6 @@ msgstr "Loggar ut..."
 
 msgid "{login:error_wrongpassword}"
 msgstr "Feil brukarnamn eller passord."
-
-msgid "{admin:metaover_group_metadata.shib13-sp-remote}"
-msgstr "Shib 1.3 Service Provider (Remote)"
 
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"
 msgstr ""
@@ -545,9 +539,6 @@ msgstr "Sender melding"
 msgid "{errors:title_RESPONSESTATUSNOSUCCESS}"
 msgstr "Feil frå vertsorganisasjonen (IdP)"
 
-msgid "{admin:metadata_shib13-sp}"
-msgstr "Shib 1.3 SP Metadata"
-
 msgid "{admin:metaover_intro}"
 msgstr "For å sjå på detaljane for ein SAML entitet, klikk på SAML entitet"
 
@@ -636,9 +627,6 @@ msgstr "Fann ikkje sida"
 msgid "{logout:logged_out_text}"
 msgstr "Du har blitt logga ut.  Takk for at du brukte denne tenesta."
 
-msgid "{admin:metaover_group_metadata.shib13-sp-hosted}"
-msgstr "Shib 1.3 Service Provider (Hosted)"
-
 msgid "{admin:metadata_cert_intro}"
 msgstr "Last ned X509-sertifikat som PEM-koda filer"
 
@@ -670,9 +658,6 @@ msgstr ""
 
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobiltelefon"
-
-msgid "{admin:metaover_group_metadata.shib13-idp-hosted}"
-msgstr "Shib 1.3 Identity Provider (Hosted)"
 
 msgid "{attributes:attribute_preferredlanguage}"
 msgstr "Førsteval for språk eller målform"
@@ -722,9 +707,6 @@ msgstr "Passord for brukaren (lagra som hash-verdi)"
 
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "Mista utloggingsinformasjon"
-
-msgid "{admin:metaover_group_metadata.shib13-idp-remote}"
-msgstr "Shib 1.3 Identity Provider (Remote)"
 
 msgid "{errors:descr_CONFIG}"
 msgstr "SimpleSAMLphp ser ut til å vera feilkonfigurert"

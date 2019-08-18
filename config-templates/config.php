@@ -462,18 +462,7 @@ $config = [
      * In example when you are setting up a federation bridge.
      */
     'enable.saml20-idp' => false,
-    'enable.shib13-idp' => false,
     'enable.adfs-idp' => false,
-
-    /*
-     * Whether SimpleSAMLphp should sign the response or the assertion in SAML 1.1 authentication
-     * responses.
-     *
-     * The default is to sign the assertion element, but that can be overridden by setting this
-     * option to TRUE. It can also be overridden on a pr. SP basis by adding an option with the
-     * same name to the metadata of the SP.
-     */
-    'shib13.signresponse' => true,
 
 
 
@@ -900,7 +889,6 @@ $config = [
 
     /*
      * Authentication processing filters that will be executed for all IdPs
-     * Both Shibboleth and SAML 2.0
      */
     'authproc.idp' => [
         /* Enable the authproc filter below to add URN prefixes to all attributes
@@ -956,7 +944,6 @@ $config = [
 
     /*
      * Authentication processing filters that will be executed for all SPs
-     * Both Shibboleth and SAML 2.0
      */
     'authproc.sp' => [
         /*

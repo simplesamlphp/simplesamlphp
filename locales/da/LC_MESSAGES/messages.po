@@ -118,9 +118,6 @@ msgstr ""
 "Institutionen har sendt en fejl. (Status koden i SAML responset var ikke "
 "succes)"
 
-msgid "{admin:metadata_shib13-idp}"
-msgstr "Shibboleth 1.3 identitetsudbyders metadata"
-
 msgid "{login:help_text}"
 msgstr ""
 "Desværre, uden korrekt brugernavn og kodeord kan du ikke få adgang til "
@@ -247,9 +244,6 @@ msgstr "Logger ud..."
 
 msgid "{login:error_wrongpassword}"
 msgstr "Forkert brugernavn eller kodeord."
-
-msgid "{admin:metaover_group_metadata.shib13-sp-remote}"
-msgstr "Shibboleth 1.3 tjenesteudbyder (remote)"
 
 msgid "{login:remember_username}"
 msgstr "Husk mit brugernavn"
@@ -541,9 +535,6 @@ msgstr "Sender besked"
 msgid "{errors:title_RESPONSESTATUSNOSUCCESS}"
 msgstr "Fejl modtaget fra institution"
 
-msgid "{admin:metadata_shib13-sp}"
-msgstr "Shibboleth 1.3 tjenesteudbyders metadata"
-
 msgid "{admin:metaover_intro}"
 msgstr "For at se detaljer vedrørende SAML-entiteten, klik på entitets-headeren"
 
@@ -641,9 +632,6 @@ msgstr "Siden kunne ikke findes"
 msgid "{logout:logged_out_text}"
 msgstr "Du er blevet logget ud. Tak for fordi du brugte denne tjeneste."
 
-msgid "{admin:metaover_group_metadata.shib13-sp-hosted}"
-msgstr "Shibboleth 1.3 tjenesteudbyder (hosted)"
-
 msgid "{admin:metadata_cert_intro}"
 msgstr "Download X509 certifikaterne som PEM-indkodet filer."
 
@@ -681,9 +669,6 @@ msgstr "Telefonnummer (mobil)"
 
 msgid "{admin:metadata_adfs-idp}"
 msgstr "ADFS identitetsudbyder metadata"
-
-msgid "{admin:metaover_group_metadata.shib13-idp-hosted}"
-msgstr "Shibboleth 1.3 identitetsudbyder (hosted)"
 
 msgid "{attributes:attribute_preferredlanguage}"
 msgstr "Foretrukket sprog (evt. flere)"
@@ -729,9 +714,6 @@ msgstr "Hash-værdi af brugerens kodeord"
 
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "Manglende logout-oplysninger"
-
-msgid "{admin:metaover_group_metadata.shib13-idp-remote}"
-msgstr "Shibboleth 1.3 identitetsudbyder (remote)"
 
 msgid "{errors:descr_CONFIG}"
 msgstr "SimpleSAMLphp er tilsyneladende ikke Konfigureret korrekt"

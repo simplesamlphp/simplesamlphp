@@ -38,9 +38,9 @@ How to configure Auth Proc Filters
 
   * Globally in `config.php`
   * On the SP: Specific for only the SP in `authsources.php`
-  * On the SP: Specific for only one remote IdP in `saml20-idp-remote` or `shib13-idp-remote`
-  * On the IdP: Specific for only one hosted IdP in `saml20-idp-hosted` or `shib13-idp-hosted`
-  * On the IdP: Specific for only one remote SP in `saml20-sp-remote` or `shib13-sp-remote`
+  * On the SP: Specific for only one remote IdP in `saml20-idp-remote`
+  * On the IdP: Specific for only one hosted IdP in `saml20-idp-hosted`
+  * On the IdP: Specific for only one remote SP in `saml20-sp-remote`
 
 The configuration of *Auth Proc Filters* is a list of filters with priority as *index*. Here is an example of *Auth Proc Filters* configured in `config.php`:
 

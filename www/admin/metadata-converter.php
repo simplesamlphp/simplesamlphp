@@ -20,8 +20,6 @@ if (!empty($xmldata)) {
     // get all metadata for the entities
     foreach ($entities as &$entity) {
         $entity = [
-            'shib13-sp-remote'  => $entity->getMetadata1xSP(),
-            'shib13-idp-remote' => $entity->getMetadata1xIdP(),
             'saml20-sp-remote'  => $entity->getMetadata20SP(),
             'saml20-idp-remote' => $entity->getMetadata20IdP(),
         ];

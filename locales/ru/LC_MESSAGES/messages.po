@@ -124,9 +124,6 @@ msgstr ""
 "Провайдер идентификации сообщает об ошибке. (Код статус в отклике SAML "
 "сообщает о неуспешной попытке)"
 
-msgid "{admin:metadata_shib13-idp}"
-msgstr "Метаданные провайдера идентификации Shib 1.3 IdP"
-
 msgid "{login:help_text}"
 msgstr ""
 "Очень плохо! - Без ваших имени пользователя и пароля вы не можете "
@@ -261,9 +258,6 @@ msgstr "Выход из системы..."
 
 msgid "{login:error_wrongpassword}"
 msgstr "Неправильное имя пользователя или пароль."
-
-msgid "{admin:metaover_group_metadata.shib13-sp-remote}"
-msgstr "Сервис провайдер Shib 1.3 (удаленное размещение)"
 
 msgid "{login:remember_username}"
 msgstr "Запомнить моё имя пользователя"
@@ -560,9 +554,6 @@ msgstr "Отправка сообщения"
 msgid "{errors:title_RESPONSESTATUSNOSUCCESS}"
 msgstr "От провайдера идентификации получена ошибка"
 
-msgid "{admin:metadata_shib13-sp}"
-msgstr "Метаданные сервис провайдера Shib 1.3 SP"
-
 msgid "{admin:metaover_intro}"
 msgstr "Для просмотра подробностей записи SAML, кликните на заголовок записи SAML."
 
@@ -658,9 +649,6 @@ msgstr "Страница не найдена"
 msgid "{logout:logged_out_text}"
 msgstr "Вы успешно вышли из системы"
 
-msgid "{admin:metaover_group_metadata.shib13-sp-hosted}"
-msgstr "Сервис провайдер Shib 1.3 (локальное размещение)"
-
 msgid "{admin:metadata_cert_intro}"
 msgstr "Скачать сертификаты X509 в формате PEM файлов."
 
@@ -698,9 +686,6 @@ msgstr "Мобильный"
 
 msgid "{admin:metadata_adfs-idp}"
 msgstr "Метаданные провайдера идентификации ADFS"
-
-msgid "{admin:metaover_group_metadata.shib13-idp-hosted}"
-msgstr "Провайдер идентификации Shib 1.3 (локальное размещение)"
 
 msgid "{attributes:attribute_preferredlanguage}"
 msgstr "Предпочитаемый язык"
@@ -752,9 +737,6 @@ msgstr "Хэш пароля пользователя"
 
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "Потеряна информация о выходе."
-
-msgid "{admin:metaover_group_metadata.shib13-idp-remote}"
-msgstr "Провайдер идентификации Shib 1.3 (удаленное размещение)"
 
 msgid "{errors:descr_CONFIG}"
 msgstr "Видимо, SimpleSAMLphp сконфигурирован неправильно."
