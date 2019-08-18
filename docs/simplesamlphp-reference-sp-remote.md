@@ -3,8 +3,7 @@ SP remote metadata reference
 
 <!-- {{TOC}} -->
 
-This is a reference for metadata options available for
-`metadata/saml20-sp-remote.php` and `metadata/shib13-sp-remote.php`.
+This is a reference for metadata options available for `metadata/saml20-sp-remote.php`.
 Both files have the following format:
 
     <?php
@@ -21,8 +20,7 @@ Both files have the following format:
 Common options
 --------------
 
-The following options are common between both the SAML 2.0 protocol
-and Shibboleth 1.3 protocol:
+The following options can be set:
 
 `attributes`
 :   This should indicate which attributes an SP should receive. It is
@@ -107,12 +105,6 @@ and Shibboleth 1.3 protocol:
     in both the IdP-hosted and the SP-remote metadata. The value in the
     SP-remote metadata has the highest priority. The default value is
     `eduPersonPrincipalName`.
-
-
-SAML 2.0 options
-----------------
-
-The following SAML 2.0 options are available:
 
 `AssertionConsumerService`
 :   The URL of the AssertionConsumerService endpoint for this SP.
@@ -378,44 +370,3 @@ idp is in the intersection the discoveryservice will go directly to the idp.
 
 
      'IDPList' => ['https://idp1.wayf.dk', 'https://idp2.wayf.dk'],
-     
-
-Shibboleth 1.3 options
-----------------------
-
-The following options for Shibboleth 1.3 SP's are avaiblable:
-
-`audience`
-:   The value which should be given in the `<Audience>`-element in the
-    `<AudienceRestrictionCondition>`-element in the response. The
-    default value is the entity ID of the SP.
-
-`AssertionConsumerService`
-:   The URL of the AssertionConsumerService endpoint for this SP.
-    This endpoint must accept the SAML responses encoded with the
-    `urn:oasis:names:tc:SAML:1.0:profiles:browser-post` encoding.
-    This option is required - without it you will not be able to send
-    responses back to the SP.
-
-:   The value of this option is specified in one of several [endpoint formats](./simplesamlphp-metadata-endpoints).
-
-`NameQualifier`
-:   What the value of the `NameQualifier`-attribute of the
-    `<NameIdentifier>`-element should be. The default value is the
-    entity ID of the SP.
-
-`scopedattributes`
-:   Array with names of attributes which should be scoped. Scoped
-    attributes will receive a `Scope`-attribute on the
-    `AttributeValue`-element. The value of the Scope-attribute will
-    be taken from the attribute value:
-
-:   `<AttributeValue>someuser@example.org</AttributeValue>`
-
-:   will be transformed into
-
-:   `<AttributeValue Scope="example.org">someuser</AttributeValue>`
-
-:   By default, no attributes are scoped. This option overrides the
-    option with the same name in the `shib13-idp-hosted.php` metadata
-    file.

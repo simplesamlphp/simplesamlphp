@@ -121,9 +121,6 @@ msgstr ""
 "Ο κωδικός κατάστασης που περιέχει η απάντηση του παρόχου ταυτότητας "
 "υποδεικνύει σφάλμα."
 
-msgid "{admin:metadata_shib13-idp}"
-msgstr "Μεταδεδομένα Παρόχου Ταυτότητας Shib 1.3"
-
 msgid "{login:help_text}"
 msgstr ""
 "Λυπούμαστε. Χωρίς το όνομα χρήστη και τον κωδικό σας, δεν μπορείτε να "
@@ -231,9 +228,6 @@ msgstr "Γίνεται αποσύνδεση..."
 
 msgid "{login:error_wrongpassword}"
 msgstr "Το όνομα χρήστη ή ο κωδικός πρόσβασης είναι λάθος."
-
-msgid "{admin:metaover_group_metadata.shib13-sp-remote}"
-msgstr "Πάροχος Υπηρεσιών Shib 1.3 (Απομακρυσμένος)"
 
 msgid "{login:remember_username}"
 msgstr "Να θυμάσαι το όνομα χρήστη"
@@ -492,9 +486,6 @@ msgstr "Αποστολή αρχείου"
 msgid "{errors:title_RESPONSESTATUSNOSUCCESS}"
 msgstr "Λήψη κωδικού σφάλματος από τον πάροχο ταυτότητας"
 
-msgid "{admin:metadata_shib13-sp}"
-msgstr "Μεταδεδομένα Παρόχου Υπηρεσιών Shib 1.3"
-
 msgid "{admin:metaover_intro}"
 msgstr ""
 "Για να δείτε τις λεπτομέρειες για μια οντότητα SAML, κάντε κλικ στην "
@@ -574,9 +565,6 @@ msgstr "Η σελίδα δεν βρέθηκε"
 msgid "{logout:logged_out_text}"
 msgstr "Έχετε αποσυνδεθεί."
 
-msgid "{admin:metaover_group_metadata.shib13-sp-hosted}"
-msgstr "Πάροχος Υπηρεσιών Shib 1.3 (Φιλοξενούμενος)"
-
 msgid "{admin:metadata_cert_intro}"
 msgstr "Λήψη πιστοποιητικών X.509 σε κωδικοποίηση PEM."
 
@@ -610,8 +598,11 @@ msgstr ""
 msgid "{admin:metadata_adfs-idp}"
 msgstr "Μεταδεδομένα Παρόχου Ταυτότητας ADFS"
 
-msgid "{admin:metaover_group_metadata.shib13-idp-hosted}"
-msgstr "Πάροχος Ταυτότητας Shib 1.3 (Φιλοξενούμενος)"
+msgid "{attributes:attribute_edupersonorcid}"
+msgstr "Αναγνωριστικά ερευνητή ORCID"
+
+msgid "{attributes:attribute_preferredlanguage}"
+msgstr "Προτιμώμενη γλώσσα"
 
 msgid "{errors:descr_NOTVALIDCERT}"
 msgstr "Παρουσιάστηκε σφάλμα λόγω μη έγκυρου πιστοποιητικού."

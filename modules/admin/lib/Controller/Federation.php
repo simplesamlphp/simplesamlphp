@@ -73,11 +73,8 @@ class Federation
             'hosted' => array_merge($hostedSPs, $hostedIdPs),
             'remote' => [
                 'saml20-idp-remote' => !empty($hostedSPs) ? $this->mdHandler->getList('saml20-idp-remote', true) : [],
-                'shib13-idp-remote' => !empty($hostedSPs) ? $this->mdHandler->getList('shib13-idp-remote', true) : [],
                 'saml20-sp-remote' => $this->config->getBoolean('enable.saml20-idp', false) === true
                     ? $this->mdHandler->getList('saml20-sp-remote', true) : [],
-                'shib13-sp-remote' => $this->config->getBoolean('enable.shib13-idp', false) === true
-                    ? $this->mdHandler->getList('shib13-sp-remote', true) : [],
                 'adfs-sp-remote' => ($this->config->getBoolean('enable.adfs-idp', false) === true) &&
                     Module::isModuleEnabled('adfs') ? $this->mdHandler->getList('adfs-sp-remote', true) : [],
             ],
@@ -139,10 +136,6 @@ class Federation
                 'saml20-sp-hosted' => Translate::noop('SAML 2.0 SP metadata'),
                 'saml20-idp-remote' => Translate::noop('SAML 2.0 IdP metadata'),
                 'saml20-idp-hosted' => Translate::noop('SAML 2.0 IdP metadata'),
-                'shib13-sp-remote' => Translate::noop('SAML 1.1 SP metadata'),
-                'shib13-sp-hosted' => Translate::noop('SAML 1.1 SP metadata'),
-                'shib13-idp-remote' => Translate::noop('SAML 1.1 IdP metadata'),
-                'shib13-idp-hosted' => Translate::noop('SAML 1.1 IdP metadata'),
                 'adfs-sp-remote' => Translate::noop('ADFS SP metadata'),
                 'adfs-sp-hosted' => Translate::noop('ADFS SP metadata'),
                 'adfs-idp-remote' => Translate::noop('ADFS IdP metadata'),
@@ -205,47 +198,6 @@ class Federation
                 }
             } catch (\Exception $e) {
                 Logger::error('Federation: Error loading saml20-idp: ' . $e->getMessage());
-            }
-        }
-
-        // SAML 1.1 / Shib13
-        if ($this->config->getBoolean('enable.shib13-idp', false)) {
-            try {
-                $idps = $this->mdHandler->getList('shib13-idp-hosted');
-                $shib13entities = [];
-                if (count($idps) > 1) {
-                    foreach ($idps as $index => $idp) {
-                        $idp['url'] = Module::getModuleURL('saml/1.1/idp/metadata/' . $idp['auth']);
-                        $idp['metadata-set'] = 'shib13-idp-hosted';
-                        $idp['metadata-index'] = $index;
-                        $idp['metadata_array'] = SAML1_IdP::getHostedMetadata($idp['entityid']);
-                        $shib13entities[] = $idp;
-                    }
-                } else {
-                    $shib13entities['shib13-idp'] = $this->mdHandler->getMetaDataCurrent('shib13-idp-hosted');
-                    $shib13entities['shib13-idp']['url'] = Utils\HTTP::getBaseURL() . 'shib13/idp/metadata.php';
-                    $shib13entities['shib13-idp']['metadata_array'] = SAML1_IdP::getHostedMetadata(
-                        $this->mdHandler->getMetaDataCurrentEntityID('shib13-idp-hosted')
-                    );
-                }
-
-                foreach ($shib13entities as $index => $entity) {
-                    $builder = new SAMLBuilder($entity['entityid']);
-                    $builder->addMetadataIdP11($entity['metadata_array']);
-                    $builder->addOrganizationInfo($entity['metadata_array']);
-                    foreach ($entity['metadata_array']['contacts'] as $contact) {
-                        $builder->addContact($contact['contactType'], $contact);
-                    }
-
-                    $entity['metadata'] = Signer::sign(
-                        $builder->getEntityDescriptorText(),
-                        $entity['metadata_array'],
-                        'Shib 1.3 IdP'
-                    );
-                    $entities[$index] = $entity;
-                }
-            } catch (\Exception $e) {
-                Logger::error('Federation: Error loading shib13-idp: ' . $e->getMessage());
             }
         }
 
@@ -408,8 +360,6 @@ class Federation
             // get all metadata for the entities
             foreach ($entities as &$entity) {
                 $entity = [
-                    'shib13-sp-remote'  => $entity->getMetadata1xSP(),
-                    'shib13-idp-remote' => $entity->getMetadata1xIdP(),
                     'saml20-sp-remote'  => $entity->getMetadata20SP(),
                     'saml20-idp-remote' => $entity->getMetadata20IdP(),
                 ];

@@ -65,7 +65,7 @@ Then edit your `authsources.php` entry, and add references to your certificate:
 Adding IdPs to the SP
 ---------------------
 
-The service provider you are configuring needs to know about the identity providers you are going to connect to it. This is configured by metadata stored in `metadata/saml20-idp-remote.php` and `metadata/shib13-idp-remote.php`.
+The service provider you are configuring needs to know about the identity providers you are going to connect to it. This is configured by metadata stored in `metadata/saml20-idp-remote.php`.
 This is a minimal example of a `metadata/saml20-idp-remote.php` metadata file:
 
     <?php

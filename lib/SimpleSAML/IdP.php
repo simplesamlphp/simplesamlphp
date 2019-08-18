@@ -80,11 +80,6 @@ class IdP
                 throw new Error\Exception('enable.saml20-idp disabled in config.php.');
             }
             $this->config = $metadata->getMetaDataConfig(substr($id, 6), 'saml20-idp-hosted');
-        } elseif (substr($id, 0, 6) === 'saml1:') {
-            if (!$globalConfig->getBoolean('enable.shib13-idp', false)) {
-                throw new Error\Exception('enable.shib13-idp disabled in config.php.');
-            }
-            $this->config = $metadata->getMetaDataConfig(substr($id, 6), 'shib13-idp-hosted');
         } elseif (substr($id, 0, 5) === 'adfs:') {
             if (!$globalConfig->getBoolean('enable.adfs-idp', false)) {
                 throw new Error\Exception('enable.adfs-idp disabled in config.php.');
@@ -188,11 +183,7 @@ class IdP
             try {
                 $spMetadata = $metadata->getMetaDataConfig($spEntityId, 'saml20-sp-remote');
             } catch (\Exception $e) {
-                try {
-                    $spMetadata = $metadata->getMetaDataConfig($spEntityId, 'shib13-sp-remote');
-                } catch (\Exception $e) {
-                    return null;
-                }
+                return null;
             }
         } else {
             if ($prefix === 'adfs') {

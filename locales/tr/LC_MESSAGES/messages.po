@@ -105,9 +105,6 @@ msgstr ""
 "Kimlik Sağlayıcı hatalı cevap verdi. (SAML Cevabı'ndaki durum kodu "
 "başarılamadı)"
 
-msgid "{admin:metadata_shib13-idp}"
-msgstr "Shib 1.3 IdP Üstveri (Metadata)"
-
 msgid "{login:help_text}"
 msgstr ""
 "Çok kötü! - Kullanıcı adınız ve şifreniz olmadan bu servisi "
@@ -202,9 +199,6 @@ msgstr "Çıkıyor"
 
 msgid "{login:error_wrongpassword}"
 msgstr "Kullanıcı adı ve/veya şifre yanlış."
-
-msgid "{admin:metaover_group_metadata.shib13-sp-remote}"
-msgstr "Shib 1.3 Servis Sağlayıcı (Uzak sistemde sunulan)"
 
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"
 msgstr ""
@@ -416,9 +410,6 @@ msgstr "Mesaj gönderiliyor"
 msgid "{errors:title_RESPONSESTATUSNOSUCCESS}"
 msgstr "Kimlik Sağlayıcıdan hata alındı."
 
-msgid "{admin:metadata_shib13-sp}"
-msgstr "Shib 1.3 SP Üstveri (Metadata)"
-
 msgid "{admin:metaover_intro}"
 msgstr ""
 "Bir SAML elemanı hakkındaki detayları görmek için, SAML elemanı başlığına"
@@ -485,9 +476,6 @@ msgstr "Sayfa bulunamadı"
 msgid "{logout:logged_out_text}"
 msgstr "Çıktınız"
 
-msgid "{admin:metaover_group_metadata.shib13-sp-hosted}"
-msgstr "Shib 1.3 Servis Sağlayıcı (Bu sistemde sunulan)"
-
 msgid "{admin:debug_sending_message_msg_title}"
 msgstr "Mesaj"
 
@@ -503,8 +491,11 @@ msgstr ""
 " ndeniyle oluşmuş olabilir. Bu oturum açma servisinin yöneticisi ile "
 "iletişim kurun ve yukarıdaki hata mesajını gönderin."
 
-msgid "{admin:metaover_group_metadata.shib13-idp-hosted}"
-msgstr "Shib 1.3 Kimlik Sağlayıcı (Bu sistemde sunulan)"
+msgid "{attributes:attribute_mobile}"
+msgstr "Cep telefonu numarası"
+
+msgid "{attributes:attribute_preferredlanguage}"
+msgstr "Tercih edilen dil"
 
 msgid "{errors:descr_NOTVALIDCERT}"
 msgstr "Geçerli bir sertifika sağlamadınız. "
@@ -534,9 +525,6 @@ msgstr "Verilen sayfa bulunamadı. Nedeni %REASON% idi. URL %URL% idi."
 
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "Çıkış bilgisi kaybedildi"
-
-msgid "{admin:metaover_group_metadata.shib13-idp-remote}"
-msgstr "Shib 1.3 Kimlik Sağlayıcı (Uzak sistemde sunulan)"
 
 msgid "{errors:descr_CONFIG}"
 msgstr "SimpleSAMLphp doğru yapılandırılmış gibi görünmüyor."

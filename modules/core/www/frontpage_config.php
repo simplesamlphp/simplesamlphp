@@ -95,7 +95,6 @@ if ($config->getBoolean('admin.checkforupdates', true) && $current !== 'master')
 
 $enablematrix = [
     'saml20idp' => $config->getBoolean('enable.saml20-idp', false),
-    'shib13idp' => $config->getBoolean('enable.shib13-idp', false),
 ];
 
 

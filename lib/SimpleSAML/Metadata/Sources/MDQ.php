@@ -220,10 +220,6 @@ class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
                 return $entity->getMetadata20IdP();
             case 'saml20-sp-remote':
                 return $entity->getMetadata20SP();
-            case 'shib13-idp-remote':
-                return $entity->getMetadata1xIdP();
-            case 'shib13-sp-remote':
-                return $entity->getMetadata1xSP();
             case 'attributeauthority-remote':
                 $ret = $entity->getAttributeAuthorities();
                 return $ret[0];

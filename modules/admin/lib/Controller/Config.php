@@ -111,7 +111,6 @@ class Config
             ],
             'enablematrix' => [
                 'saml20idp' => $this->config->getBoolean('enable.saml20-idp', false),
-                'shib13idp' => $this->config->getBoolean('enable.shib13-idp', false),
             ],
             'funcmatrix' => $this->getPrerequisiteChecks(),
             'logouturl' => Utils\Auth::getAdminLogoutURL(),

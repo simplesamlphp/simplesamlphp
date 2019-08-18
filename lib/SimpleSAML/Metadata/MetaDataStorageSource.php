@@ -332,19 +332,19 @@ abstract class MetaDataStorageSource
         $baseUrl = Utils\HTTP::getBaseURL();
 
         if ($set === 'saml20-idp-hosted') {
-            return $baseUrl . 'saml2/idp/metadata.php';
-        } elseif ($set === 'saml20-sp-hosted') {
-            return $baseUrl . 'saml2/sp/metadata.php';
-        } elseif ($set === 'shib13-idp-hosted') {
-            return $baseUrl . 'shib13/idp/metadata.php';
-        } elseif ($set === 'shib13-sp-hosted') {
-            return $baseUrl . 'shib13/sp/metadata.php';
-        } elseif ($set === 'adfs-idp-hosted') {
-            return 'urn:federation:' . Utils\HTTP::getSelfHost() . ':idp';
-        } else {
-            throw new \Exception('Can not generate dynamic EntityID for metadata of this type: [' . $set . ']');
+            return $baseUrl.'saml2/idp/metadata.php';
+        }
+        else if ($set === 'saml20-sp-hosted') {
+            return $baseUrl.'saml2/sp/metadata.php';
+        }
+        else if ($set === 'adfs-idp-hosted') {
+            return 'urn:federation:'.Utils\HTTP::getSelfHost().':idp';
+        }
+        else {
+            throw new \Exception('Can not generate dynamic EntityID for metadata of this type: ['.$set.']');
         }
     }
+
 
     /**
      * Updates the metadata entry's entity id and returns the modified array.  If the entity id is __DYNAMIC:*__ a

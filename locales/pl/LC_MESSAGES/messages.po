@@ -112,9 +112,6 @@ msgstr ""
 "Odpowiedź dostawcy tożsamości oznacza błąd (kod stanu w odpowiedzi SAML "
 "nie oznacza sukcesu)"
 
-msgid "{admin:metadata_shib13-idp}"
-msgstr "Shib 1.3 IdP - Metadane"
-
 msgid "{login:help_text}"
 msgstr ""
 "Niedobrze! - Bez nazwy użytkownika i/lub hasła nie możesz zostać "
@@ -211,9 +208,6 @@ msgstr "Wylogowywanie..."
 
 msgid "{login:error_wrongpassword}"
 msgstr "Nieprawidłowa nazwa użytkownika lub hasło."
-
-msgid "{admin:metaover_group_metadata.shib13-sp-remote}"
-msgstr "Shib 1.3 Dostawca Serwisu (Zdalny)"
 
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"
 msgstr ""
@@ -441,9 +435,6 @@ msgstr "Wysyłanie wiadomości"
 msgid "{errors:title_RESPONSESTATUSNOSUCCESS}"
 msgstr "Dostawca tożsamości przesłał błąd"
 
-msgid "{admin:metadata_shib13-sp}"
-msgstr "Shib 1.3 SP - Metadane"
-
 msgid "{admin:metaover_intro}"
 msgstr "Kliknij na nagłówek końcówki aby wyświetlić szczegóły SAML."
 
@@ -509,9 +500,6 @@ msgstr "Nie znaleziono strony"
 msgid "{logout:logged_out_text}"
 msgstr "Zostałeś wylogowany. Dziękuję za skorzystanie z serwisu."
 
-msgid "{admin:metaover_group_metadata.shib13-sp-hosted}"
-msgstr "Shib 1.3 Dostawca Serwisu (Lokalny)"
-
 msgid "{admin:debug_sending_message_msg_title}"
 msgstr "Wiadomość"
 
@@ -565,9 +553,6 @@ msgstr "Brak certyfikatu"
 
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "Utracono informację o wylogowaniu"
-
-msgid "{admin:metaover_group_metadata.shib13-idp-remote}"
-msgstr "Shib 1.3 Dostawca Tożsamości (Zdalny)"
 
 msgid "{errors:descr_CONFIG}"
 msgstr "wydaje się, że SimpleSAMLphp jest błędnie skonfigurowany."
