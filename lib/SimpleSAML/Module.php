@@ -265,11 +265,21 @@ class Module
         }
 
         $response = new BinaryFileResponse($path);
-        $response->setCache(['public' => true, 'max_age' => 86400]);
-        $response->setExpires(new \DateTime(gmdate('D, j M Y H:i:s \G\M\T', time() + 10 * 60)));
-        $response->setLastModified(new \DateTime(gmdate('D, j M Y H:i:s \G\M\T', filemtime($path))));
+        $cacheSettings = $config->getArray('module.php.cache', ['public' => true, 'max_age' => 86400]);
+        $response->setCache($cacheSettings);
+        $cacheExpiration = $config->getValue('module.php.expires', 10 * 60);
+        $expires = $cacheExpiration === null ? null : new \DateTime('@' . (time() + $cacheExpiration));
+        $response->setExpires($expires);
+        $cacheEtag = $config->getBoolean('module.php.etag', false);
+        if ($cacheEtag) {
+            $response->setAutoEtag();
+        }
+        $cacheDirectives = $config->getArray('module.php.directives', []);
+        foreach ($cacheDirectives as $directiveName => $directiveValue) {
+            $response->headers->addCacheControlDirective($directiveName, $directiveValue);
+        }
+        $response->isNotModified($request);
         $response->headers->set('Content-Type', $contentType);
-        $response->headers->set('Content-Length', sprintf('%u', filesize($path))); // force file size to an unsigned
         $response->setContentDisposition(ResponseHeaderBag::DISPOSITION_INLINE);
         $response->prepare($request);
         return $response;
