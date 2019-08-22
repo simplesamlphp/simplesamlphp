@@ -51,12 +51,6 @@ msgstr "Errorea metadatuak kargatzean"
 msgid "{admin:metaconv_title}"
 msgstr "Metadatuak aztertu"
 
-msgid "{attributes:attribute_edupersonentitlement}"
-msgstr "Zerbitzuari dagokion eskubidea"
-
-msgid "{attributes:attribute_jpegphoto}"
-msgstr "JPEG argazkia"
-
 msgid "{admin:cfg_check_noerrors}"
 msgstr "Ez da errorerik aurkitu"
 
@@ -153,17 +147,11 @@ msgstr ""
 "Zerbitzuaren administratzailea bazara, ziurta ezazu metadatuen "
 "konfigurazioa zuzena dela."
 
-msgid "{attributes:attribute_edupersonorgdn}"
-msgstr "Pertsonaren jatorrizko erakundearen izen osatua (DN)"
-
 msgid "{errors:title_BADREQUEST}"
 msgstr "Eskaera oker bat jaso da."
 
 msgid "{status:sessionsize}"
 msgstr "Saioaren tamaina: %SIZE%"
-
-msgid "{attributes:attribute_postaladdress}"
-msgstr "Posta-helbidea"
 
 msgid "{logout:title}"
 msgstr "Saioa itxita."
@@ -186,31 +174,16 @@ msgstr "Itxaroten"
 msgid "{admin:cfg_check_header}"
 msgstr "Konfigurazioa egiaztatu"
 
-msgid "{attributes:attribute_edupersonscopedaffiliation}"
-msgstr "Afiliazioa jatorrizko erakundean"
-
-msgid "{attributes:attribute_sn}"
-msgstr "Abizenak"
-
 msgid "{admin:debug_sending_message_send}"
 msgstr "Mezua bidali"
 
 msgid "{status:logout}"
 msgstr "Irten"
 
-msgid "{attributes:attribute_organisationname}"
-msgstr "Erakundearen izena"
-
-msgid "{attributes:attribute_telephonenumber}"
-msgstr "Telefono zenbakia"
-
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr ""
 "Aurkikuntza zerbitzuari bidalitako prametroak ez dira zehaztapenera "
 "doitzen."
-
-msgid "{attributes:attribute_mail}"
-msgstr "Posta"
 
 msgid "{errors:descr_CREATEREQUEST}"
 msgstr "Errore bat jazo da SAML eskaera sortzen saiatzean."
@@ -220,9 +193,6 @@ msgstr "Hautazko datuak"
 
 msgid "{logout:return}"
 msgstr "Itzuli zerbitzura"
-
-msgid "{attributes:attribute_displayname}"
-msgstr "Bistaratzeko izena"
 
 msgid "{admin:metadata_xmlurl}"
 msgstr "<a href=\"%METAURL%\">xml metadatuekin URL bat</a> eskura dezakezu:"
@@ -234,9 +204,6 @@ msgid "{admin:debug_disable_debug_mode}"
 msgstr ""
 "Arazketa modua desaktibatu daiteke SimpleSAMLphp "
 "<tt>config/config.php</tt> konfigurazio orokorreko fitxategian."
-
-msgid "{attributes:attribute_homepostaladdress}"
-msgstr "Etxeko helbidea"
 
 msgid "{disco:select}"
 msgstr "Hautatu"
@@ -264,9 +231,6 @@ msgstr ""
 msgid "{logout:logout_all_question}"
 msgstr "Goian agertzen diren zerbitzu guztietako saioak itxi nahi al dituzu?"
 
-msgid "{attributes:attribute_title}"
-msgstr "Tratamendua"
-
 msgid "{errors:title_NOACCESS}"
 msgstr "Sarrera zehaztu gabe"
 
@@ -280,9 +244,6 @@ msgstr "RelayState zehaztu gabe"
 
 msgid "{errors:descr_NOSTATE}"
 msgstr "Egoera informazioa galdua eta ez dago modurik eskaera berrabiarazteko"
-
-msgid "{attributes:attribute_noredupersonnin}"
-msgstr "Gizarte-segurantzako zenbakia"
 
 msgid "{login:password}"
 msgstr "Pasahitza"
@@ -310,14 +271,8 @@ msgstr "Errorea saioa ixteko eskaera prozesatzean "
 msgid "{admin:metaover_errorentry}"
 msgstr "Metadatu sarrera honetan  errorea"
 
-msgid "{attributes:attribute_edupersonaffiliation}"
-msgstr "Afiliazioa"
-
 msgid "{errors:title_METADATANOTFOUND}"
 msgstr "Ez dira metadatuak aurkitu"
-
-msgid "{attributes:attribute_givenname}"
-msgstr "Izena"
 
 msgid "{login:contact_info}"
 msgstr "Harremanetarako informazioa:"
@@ -358,9 +313,6 @@ msgstr "Hautatu ezazu egiaztatu beharreko konfigurazio fitxategia: "
 msgid "{errors:descr_UNKNOWNCERT}"
 msgstr "Kautotze okerra: zure nabigatzaileak bidalitako ziurtagiria ezezaguna da"
 
-msgid "{attributes:attribute_eduorghomepageuri}"
-msgstr "Erakundearen hasiera-orria"
-
 msgid "{logout:logging_out_from}"
 msgstr "Honako zerbitzu hauen saioak itxi:"
 
@@ -370,14 +322,8 @@ msgstr "%SP% saioa zuzen itxi da."
 msgid "{errors:errorreport_text}"
 msgstr "Errore txostena administratzaileei bidali zaie."
 
-msgid "{attributes:attribute_noredupersonbirthdate}"
-msgstr "Jaioteguna"
-
 msgid "{errors:descr_LOGOUTREQUEST}"
 msgstr "Errore bat jazo da saioa ixteko eskaera prozesatzean."
-
-msgid "{attributes:attribute_edupersontargetedid}"
-msgstr "Goitizen ID etengabea"
 
 msgid "{logout:success}"
 msgstr "Hemen adierazten den zerrendako zerbitzu guztietako saioak zuzen itxi dira"
@@ -388,12 +334,6 @@ msgstr "Oharrak"
 msgid "{errors:descr_USERABORTED}"
 msgstr "Kautotzea bertan behera utzi du erabiltzaileak"
 
-msgid "{attributes:attribute_edupersonprimaryaffiliation}"
-msgstr "Lehen afiliazioa"
-
-msgid "{attributes:attribute_postalcode}"
-msgstr "Posta-kodea"
-
 msgid "{errors:descr_CASERROR}"
 msgstr "Errorea CAS zerbitzariarekin komunikatzen saiatzean"
 
@@ -403,9 +343,6 @@ msgstr "Ez"
 msgid "{admin:metaconv_converted}"
 msgstr "Bihurtutako metadatuak"
 
-msgid "{attributes:attribute_cn}"
-msgstr "Izen arrunta (CN)"
-
 msgid "{logout:completed}"
 msgstr "Amaitua"
 
@@ -414,17 +351,8 @@ msgstr ""
 "Ez da aldatu konfigurazio fitxategiaren pasahitzaren (auth.adminpassword)"
 " balio lehenetsia. Mesedez, edita ezazu fitxategia"
 
-msgid "{attributes:attribute_ou}"
-msgstr "Antolamendu-unitatea"
-
 msgid "{general:service_provider}"
 msgstr "Zerbitzu hornitzailea"
-
-msgid "{attributes:attribute_homephone}"
-msgstr "Etxeko telefonoa"
-
-msgid "{attributes:attribute_dc}"
-msgstr "Domeinuaren osagaia (DC)"
 
 msgid "{errors:descr_BADREQUEST}"
 msgstr "Errore bat dago orri honen eskaeran. Arrazoia hau da: %REASON%"
@@ -444,22 +372,13 @@ msgstr "Sartu erabiltzaile-izena eta pasahitza"
 msgid "{errors:report_explain}"
 msgstr "Azal ezazu zer egin duzun errore honetara iristeko..."
 
-msgid "{attributes:attribute_manager}"
-msgstr "Kudeatzailea"
-
 msgid "{errors:title_ACSPARAMS}"
 msgstr "SAML erantzuna falta da"
-
-msgid "{attributes:attribute_edupersonnickname}"
-msgstr "Ezizena"
 
 msgid "{errors:descr_SLOSERVICEPARAMS}"
 msgstr ""
 "SingleLogoutService interfazera sartu zara baina ez duzu erantsi  SAML "
 "LogoutRequest edo LogoutResponse mezurik"
-
-msgid "{attributes:attribute_street}"
-msgstr "Kalea"
 
 msgid "{login:organization}"
 msgstr "Erakundea"
@@ -500,9 +419,6 @@ msgstr "Jatorrizko erakundea hautatu"
 msgid "{admin:cfg_check_superfluous}"
 msgstr "Konfigurazio fitxategian soberan dauden aukerak"
 
-msgid "{attributes:attribute_labeleduri}"
-msgstr "URI etiketatua"
-
 msgid "{errors:report_email}"
 msgstr "E-posta:"
 
@@ -517,9 +433,6 @@ msgstr ""
 "Eskaera honen abiarazleak ez du ematen ondoren nora joan adierazten duen "
 "RelayState parametroa"
 
-msgid "{attributes:attribute_noredupersonlegalname}"
-msgstr "Izen legala"
-
 msgid "{status:header_diagnostics}"
 msgstr "SimpleSAMLphp Diagnostikoa"
 
@@ -528,9 +441,6 @@ msgstr ""
 "Kaixo, hau SimpleSAMLphp-ren egoera orria da. Hemendik ikus dezakezu zure"
 " saioa iraungi den, zenbat denbora geratzen den hau gerta dadin eta zure "
 "saioan dauden atributu guztiak."
-
-msgid "{attributes:attribute_schachomeorganization}"
-msgstr "Jatorrizko erakundearen domeinu izena"
 
 msgid "{errors:title_NOTFOUNDREASON}"
 msgstr "Ez da orria aurkitu"
@@ -550,29 +460,17 @@ msgstr "SAML entitate baten xehetasunak ikusteko, klikatu entitatearen goiburua.
 msgid "{errors:title_NOTVALIDCERT}"
 msgstr "Ziurtagiri balio gabea"
 
-msgid "{attributes:attribute_edupersonorgunitdn}"
-msgstr "Pertsonaren jatorrizko erakundeko antolamendu-unitatearen izen osatua (DN)"
-
 msgid "{general:remember}"
 msgstr "Onespena gogoratu"
 
 msgid "{disco:selectidp}"
 msgstr "Hauta ezazu zure identitate hornitzailea"
 
-msgid "{attributes:attribute_postofficebox}"
-msgstr "Posta-bulegoko ontzia"
-
-msgid "{attributes:attribute_edupersonprincipalname}"
-msgstr "Jatorrizko erakundean pertsonak duen izen nagusia"
-
 msgid "{login:help_desk_email}"
 msgstr "Bidali posta laguntza teknikoari "
 
 msgid "{login:help_desk_link}"
 msgstr "Laguntza teknikoaren orria "
-
-msgid "{attributes:attribute_uid}"
-msgstr "Erabiltzaile ID"
 
 msgid "{errors:title_CASERROR}"
 msgstr "CAS Errorea"
@@ -593,12 +491,6 @@ msgstr "Nire hautaketa gogoratu"
 
 msgid "{admin:metaover_group_metadata.saml20-sp-hosted}"
 msgstr "SAML 2.0 Zerbitzu hornitzailea (Anfitrioia)"
-
-msgid "{attributes:attribute_l}"
-msgstr "Herria"
-
-msgid "{attributes:attribute_edupersonassurance}"
-msgstr "Bermearen profilaren identifikatzailea"
 
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
@@ -644,9 +536,6 @@ msgstr "Mezua"
 msgid "{errors:title_UNKNOWNCERT}"
 msgstr "Ziurtagiri ezezaguna"
 
-msgid "{attributes:attribute_facsimiletelephonenumber}"
-msgstr "Fax-zenbakia"
-
 msgid "{errors:title_LDAPERROR}"
 msgstr "LDAP Errorea"
 
@@ -665,14 +554,8 @@ msgstr ""
 "okerra izan da. Jar zaitez harremanetan identifikazio zerbitzu honen "
 "administratzailearekin eta bidal iezaiozu lehenagoko errore mezua. "
 
-msgid "{attributes:attribute_mobile}"
-msgstr "Mugikorra"
-
 msgid "{admin:metaover_group_metadata.shib13-idp-hosted}"
 msgstr "Shib 1.3 Identitate hornitzailea (Anfitrioia)"
-
-msgid "{attributes:attribute_preferredlanguage}"
-msgstr "Hizkuntza lehenetsia"
 
 msgid "{errors:descr_NOTVALIDCERT}"
 msgstr "Ez duzu baliozko ziurtagiririk aurkeztu "
@@ -687,15 +570,6 @@ msgstr "Hautazko datu hauek ez dira aurkitu"
 
 msgid "{logout:logout_only}"
 msgstr "Ez, %SPS bakarrik"
-
-msgid "{attributes:attribute_o}"
-msgstr "Erakundearen izena"
-
-msgid "{attributes:attribute_edupersonprimaryorgunitdn}"
-msgstr "Pertsonaren antolamendu-unitatearen izen osatua (DN)"
-
-msgid "{attributes:attribute_noredupersonlin}"
-msgstr "Tokiko zenbaki identifikatzailea"
 
 msgid "{login:next}"
 msgstr "Hurrengoa"
@@ -716,9 +590,6 @@ msgstr ""
 msgid "{errors:title_NOCERT}"
 msgstr "Ziurtagiri gabe"
 
-msgid "{attributes:attribute_userpassword}"
-msgstr "Erabiltzailearen pasahitzaren hash-a"
-
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "Saioa ixteko informazioa galdu da"
 
@@ -734,9 +605,6 @@ msgstr ""
 "dokumentu hau konfidantzazko zure kideei bidal diezaiekezu federazio bat "
 "konfiguratzeko."
 
-msgid "{attributes:attribute_schacuserprivateattribute}"
-msgstr "Informazio pribatuaren elementuak"
-
 msgid "{admin:metadata_cert}"
 msgstr "Ziurtagiriak"
 
@@ -745,17 +613,11 @@ msgstr ""
 "Kautotze okerra: Zure nabigatzaileak bidalitako ziurtagiria baliogabea da"
 " edo ezin da irakurri"
 
-msgid "{attributes:attribute_eduorglegalname}"
-msgstr "Erakundearen izen legala"
-
 msgid "{status:header_shib}"
 msgstr "Shibboleth Adibidea"
 
 msgid "{admin:metaconv_parse}"
 msgstr "Aztertu"
-
-msgid "{attributes:attribute_noreduorgnin}"
-msgstr "Erakundearen zenbakia"
 
 msgid "Person's principal name at home organization"
 msgstr "Jatorrizko erakundean pertsonak duen izen nagusia"

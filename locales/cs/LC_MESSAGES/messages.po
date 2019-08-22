@@ -51,12 +51,6 @@ msgstr "Chyba nahravání metadat"
 msgid "{admin:metaconv_title}"
 msgstr "Metadata parser"
 
-msgid "{attributes:attribute_edupersonentitlement}"
-msgstr "Právo ke službě"
-
-msgid "{attributes:attribute_jpegphoto}"
-msgstr "Foto JPEG"
-
 msgid "{admin:cfg_check_noerrors}"
 msgstr "Nenalezeny žádné chyby"
 
@@ -145,17 +139,11 @@ msgstr ""
 "Je zde chyba v konfiguraci SimpleSAMLphp. Pokud jsi administrátorem "
 "služby zkontroluj metadata."
 
-msgid "{attributes:attribute_edupersonorgdn}"
-msgstr "Uživatelské jméno přidělené organizací"
-
 msgid "{errors:title_BADREQUEST}"
 msgstr "Zaslán špatný požadavek"
 
 msgid "{status:sessionsize}"
 msgstr "Velikost sezeni: %SIZE%"
-
-msgid "{attributes:attribute_postaladdress}"
-msgstr "Poštovní adresa"
 
 msgid "{logout:title}"
 msgstr "Odhlášen"
@@ -178,29 +166,14 @@ msgstr "Čekám"
 msgid "{admin:cfg_check_header}"
 msgstr "Verifikace konfigurace"
 
-msgid "{attributes:attribute_edupersonscopedaffiliation}"
-msgstr "Vztah k domovksé organizaci"
-
-msgid "{attributes:attribute_sn}"
-msgstr "Příjmení"
-
 msgid "{admin:debug_sending_message_send}"
 msgstr "Poslat zprávu"
 
 msgid "{status:logout}"
 msgstr "Odhlášení"
 
-msgid "{attributes:attribute_organisationname}"
-msgstr "Jméno organizace"
-
-msgid "{attributes:attribute_telephonenumber}"
-msgstr "Telefon"
-
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "Parametr zaslaný vyhledávací službě neodpovídá specifikaci."
-
-msgid "{attributes:attribute_mail}"
-msgstr "Email"
 
 msgid "{errors:descr_CREATEREQUEST}"
 msgstr "Chyba vznikla při vytváření SAML požadavku."
@@ -210,9 +183,6 @@ msgstr "Volitelná pole"
 
 msgid "{logout:return}"
 msgstr "Zpátky na službu"
-
-msgid "{attributes:attribute_displayname}"
-msgstr "Jméno k zobrazení"
 
 msgid "{admin:metadata_xmlurl}"
 msgstr ""
@@ -226,9 +196,6 @@ msgid "{admin:debug_disable_debug_mode}"
 msgstr ""
 "Můžete vypnout debug mód v globalní konfiguraci SimpleSAMLphp "
 "<tt>config/config.php</tt>."
-
-msgid "{attributes:attribute_homepostaladdress}"
-msgstr "Adresa domů"
 
 msgid "{disco:select}"
 msgstr "Zvol"
@@ -256,9 +223,6 @@ msgstr ""
 msgid "{logout:logout_all_question}"
 msgstr "Chcete se odhlásit ze všech těchto služeb?"
 
-msgid "{attributes:attribute_title}"
-msgstr "Nadpis"
-
 msgid "{errors:title_NOACCESS}"
 msgstr "Nemáte přístup"
 
@@ -272,9 +236,6 @@ msgstr "Nenalezen RelayState."
 
 msgid "{errors:descr_NOSTATE}"
 msgstr "Stavová informace "
-
-msgid "{attributes:attribute_noredupersonnin}"
-msgstr "Identifikační kód přidělený veřejnou autoritou"
 
 msgid "{login:password}"
 msgstr "Heslo"
@@ -300,14 +261,8 @@ msgstr "Chyba zpracování odhlašovacího požadavku"
 msgid "{admin:metaover_errorentry}"
 msgstr "Chyba v této položce metadat"
 
-msgid "{attributes:attribute_edupersonaffiliation}"
-msgstr "Vztah k organizaci"
-
 msgid "{errors:title_METADATANOTFOUND}"
 msgstr "Metadata nenalezena"
-
-msgid "{attributes:attribute_givenname}"
-msgstr "Křestní jméno"
 
 msgid "{login:contact_info}"
 msgstr "Kontaktní informace"
@@ -347,9 +302,6 @@ msgstr "Vyber konfiguračního souboru k verifikaci:"
 msgid "{errors:descr_UNKNOWNCERT}"
 msgstr "Přihlášení neproběhlo: certifikát který odeslal Váš prohlížeč je neznámý"
 
-msgid "{attributes:attribute_eduorghomepageuri}"
-msgstr "URL organizace"
-
 msgid "{logout:logging_out_from}"
 msgstr "Odhlášení z následujících služeb:"
 
@@ -362,14 +314,8 @@ msgstr ""
 msgid "{errors:errorreport_text}"
 msgstr "Chybový report byl zaslán administrátorům."
 
-msgid "{attributes:attribute_noredupersonbirthdate}"
-msgstr "Datum narozeni"
-
 msgid "{errors:descr_LOGOUTREQUEST}"
 msgstr "Při procesu odhlášení vznikla chyba."
-
-msgid "{attributes:attribute_edupersontargetedid}"
-msgstr "Perzistentí pseudoanonymní ID"
 
 msgid "{logout:success}"
 msgstr "Úspěšně jste se odhlásili z následujících služeb."
@@ -379,12 +325,6 @@ msgstr "Poznamky"
 
 msgid "{errors:descr_USERABORTED}"
 msgstr "Přihlášení bylo přerušeno uživatelem"
-
-msgid "{attributes:attribute_edupersonprimaryaffiliation}"
-msgstr "Hlavní příslušnost"
-
-msgid "{attributes:attribute_postalcode}"
-msgstr "Poštovní kód PSČ"
 
 msgid "{errors:descr_CASERROR}"
 msgstr "Chyba při komunikaci s CAS serverem."
@@ -398,9 +338,6 @@ msgstr "SAML 2.0 SP Metadata"
 msgid "{admin:metaconv_converted}"
 msgstr "Konvertovaná metadata"
 
-msgid "{attributes:attribute_cn}"
-msgstr "Celé jméno (CN)"
-
 msgid "{logout:completed}"
 msgstr "Dokončeno"
 
@@ -409,17 +346,8 @@ msgstr ""
 "Heslo v konfiguraci (auth.adminpassword) není nastaveno. Prosím nastavte "
 "ho."
 
-msgid "{attributes:attribute_ou}"
-msgstr "Organizační jednotka"
-
 msgid "{general:service_provider}"
 msgstr "Poskytovatel služby"
-
-msgid "{attributes:attribute_homephone}"
-msgstr "Telefon domů"
-
-msgid "{attributes:attribute_dc}"
-msgstr "Doména (DC)"
 
 msgid "{errors:descr_BADREQUEST}"
 msgstr "Toho je chyba požadavku pro tuto stránku. Důvod je: %REASON%"
@@ -439,22 +367,13 @@ msgstr "Vložte své jméno a heslo"
 msgid "{errors:report_explain}"
 msgstr "Vysvětlete jak došlo k této chybě ..."
 
-msgid "{attributes:attribute_manager}"
-msgstr "Manažer"
-
 msgid "{errors:title_ACSPARAMS}"
 msgstr "Žádná SAML odpověď nebyla zaslána"
-
-msgid "{attributes:attribute_edupersonnickname}"
-msgstr "Přezdívka"
 
 msgid "{errors:descr_SLOSERVICEPARAMS}"
 msgstr ""
 "Přistupujete k SingleLogoutService rozhraní, ale nezadáváte SAML "
 "LogoutRequest, nebo LogoutResponse."
-
-msgid "{attributes:attribute_street}"
-msgstr "Ulice"
 
 msgid "{login:organization}"
 msgstr "Organizace"
@@ -491,9 +410,6 @@ msgstr "Zvolte domovskou organizaci"
 msgid "{admin:cfg_check_superfluous}"
 msgstr "Nadbytečné položky v konfiguračním souboru"
 
-msgid "{attributes:attribute_labeleduri}"
-msgstr "URI"
-
 msgid "{errors:report_email}"
 msgstr "Email"
 
@@ -506,9 +422,6 @@ msgstr "Heslo nebylo zadáno."
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr "Původce této žádosti nezadal parametr RelayState, který určuje kam dál."
 
-msgid "{attributes:attribute_noredupersonlegalname}"
-msgstr "Právní jméno"
-
 msgid "{status:header_diagnostics}"
 msgstr "SimpleSAMLphp diagnostika"
 
@@ -516,9 +429,6 @@ msgid "{status:intro}"
 msgstr ""
 "Vítejte na informační stránce. Zde uvidíte, pokud vypršelo vaše sezení, "
 "jak dlouho jste pryč a všechny atributy připojené k vašemu sezení."
-
-msgid "{attributes:attribute_schachomeorganization}"
-msgstr "Jméno organizace"
 
 msgid "{errors:title_NOTFOUNDREASON}"
 msgstr "Stránka nenalezena"
@@ -538,29 +448,17 @@ msgstr "Pro zobrazení detailu SAML entity, klikni na hlavičku entity"
 msgid "{errors:title_NOTVALIDCERT}"
 msgstr "Špatný certifikát"
 
-msgid "{attributes:attribute_edupersonorgunitdn}"
-msgstr "Uživatelské jméno přidělené organizační jednotkou"
-
 msgid "{general:remember}"
 msgstr "Zapamatuj"
 
 msgid "{disco:selectidp}"
 msgstr "Zvol svého poskytovatele identity (IdP)"
 
-msgid "{attributes:attribute_postofficebox}"
-msgstr "Postbox"
-
-msgid "{attributes:attribute_edupersonprincipalname}"
-msgstr "Jméno nadřízeného"
-
 msgid "{login:help_desk_email}"
 msgstr "Email helpdesku zaslán."
 
 msgid "{login:help_desk_link}"
 msgstr "Help desk"
-
-msgid "{attributes:attribute_uid}"
-msgstr "Identifikátor (UID)"
 
 msgid "{errors:title_CASERROR}"
 msgstr "CAS chyba"
@@ -579,12 +477,6 @@ msgstr "Zapamatuj moji volbu"
 
 msgid "{admin:metaover_group_metadata.saml20-sp-hosted}"
 msgstr "SAML 2.0 Service Provider (Hosted - lokální)"
-
-msgid "{attributes:attribute_l}"
-msgstr "Lokalita"
-
-msgid "{attributes:attribute_edupersonassurance}"
-msgstr "Poskytovatel identifikačního profilu"
 
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
@@ -630,9 +522,6 @@ msgstr "Zpráva"
 msgid "{errors:title_UNKNOWNCERT}"
 msgstr "Neznámý certifikát"
 
-msgid "{attributes:attribute_facsimiletelephonenumber}"
-msgstr "Fax"
-
 msgid "{errors:title_LDAPERROR}"
 msgstr "LDAP chyba"
 
@@ -651,14 +540,8 @@ msgstr ""
 "konfiguraci. Kontaktujte administratora této přihlašovací služby a "
 "zašlete mu tuto zprávu."
 
-msgid "{attributes:attribute_mobile}"
-msgstr "Mobil"
-
 msgid "{admin:metaover_group_metadata.shib13-idp-hosted}"
 msgstr "Shib 1.3 Identity Provider (Hosted - lokální)"
-
-msgid "{attributes:attribute_preferredlanguage}"
-msgstr "Preferovaný jazyk"
 
 msgid "{errors:descr_NOTVALIDCERT}"
 msgstr "Nepředložil jste validní certifikát."
@@ -671,15 +554,6 @@ msgstr "Nasledující volitelná pole nenalezena"
 
 msgid "{logout:logout_only}"
 msgstr "Ne, jen %SP%"
-
-msgid "{attributes:attribute_o}"
-msgstr "Jméno organizace"
-
-msgid "{attributes:attribute_edupersonprimaryorgunitdn}"
-msgstr "Jméno hlavní organizační jednotky"
-
-msgid "{attributes:attribute_noredupersonlin}"
-msgstr "Lokální identifikační kód"
 
 msgid "{login:next}"
 msgstr "Další"
@@ -698,9 +572,6 @@ msgstr "Stránka nenalezena. Důvod je: %REASON%  URL je: %URL%"
 msgid "{errors:title_NOCERT}"
 msgstr "Chybí certiifikát"
 
-msgid "{attributes:attribute_userpassword}"
-msgstr "Uživatelské heslo (hash)"
-
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "Odhlašovací informace ztracena"
 
@@ -715,9 +586,6 @@ msgstr ""
 "Zde jsou metadata, která pro vás SimpleSAMLphp generuje. Můžete zaslat "
 "tento dokument svým důvěryhodným partnerům a založit tak federaci."
 
-msgid "{attributes:attribute_schacuserprivateattribute}"
-msgstr "Privátní informační elementy"
-
 msgid "{admin:metadata_cert}"
 msgstr "Certifikáty"
 
@@ -726,17 +594,11 @@ msgstr ""
 "Přihlášení neproběhlo: certifikát který odeslal Váš rohlížeč nemohl být "
 "přečten"
 
-msgid "{attributes:attribute_eduorglegalname}"
-msgstr "Plné jméno organizace"
-
 msgid "{status:header_shib}"
 msgstr "Shibboleth demo"
 
 msgid "{admin:metaconv_parse}"
 msgstr "Analýza"
-
-msgid "{attributes:attribute_noreduorgnin}"
-msgstr "Čislo organizace"
 
 msgid "Person's principal name at home organization"
 msgstr "Jméno nadřízeného"
