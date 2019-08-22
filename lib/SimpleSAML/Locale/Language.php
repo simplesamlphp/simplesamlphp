@@ -79,7 +79,7 @@ class Language
      *
      * @var array
      */
-    private $language_names = [
+    public static $language_names = [
         'no'    => 'Bokmål', // Norwegian Bokmål
         'nn'    => 'Nynorsk', // Norwegian Nynorsk
         'se'    => 'Sámegiella', // Northern Sami
@@ -160,14 +160,14 @@ class Language
     /**
      * Filter configured (available) languages against installed languages.
      *
-     * @return array The set of languages both in 'language.available' and $this->language_names.
+     * @return array The set of languages both in 'language.available' and self::$language_names.
      */
     private function getInstalledLanguages()
     {
         $configuredAvailableLanguages = $this->configuration->getArray('language.available', ['en']);
         $availableLanguages = [];
         foreach ($configuredAvailableLanguages as $code) {
-            if (array_key_exists($code, $this->language_names) && isset($this->language_names[$code])) {
+            if (array_key_exists($code, self::$language_names) && isset(self::$language_names[$code])) {
                 $availableLanguages[] = $code;
             } else {
                 Logger::error("Language \"$code\" not installed. Check config.");
@@ -262,8 +262,8 @@ class Language
      */
     public function getLanguageLocalizedName($code)
     {
-        if (array_key_exists($code, $this->language_names) && isset($this->language_names[$code])) {
-            return $this->language_names[$code];
+        if (array_key_exists($code, self::$language_names) && isset(self::$language_names[$code])) {
+            return self::$language_names[$code];
         }
         Logger::error("Name for language \"$code\" not found. Check config.");
         return null;
