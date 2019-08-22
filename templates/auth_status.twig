@@ -17,9 +17,8 @@
 {% embed '_table.twig' -%}
 
     {% block namecol -%}
-    {% set attr = ('{attributes:attribute_'~(name|lower)~'}') %}
-    {% set translated = attr|trans %}
-    <td class="attrname">{% if translated != attr %} {{ translated }} <br>{% endif %} <samp>{{ name }}</samp></td>
+    {% set translated = name|trans %}
+    <td class="attrname">{% if translated != name %} {{ translated }} <br>{% endif %} <samp>{{ name }}</samp></td>
     {% endblock %}
 
 
