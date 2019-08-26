@@ -16,6 +16,8 @@ Released TBD
   * Improve 'update or insert' handling for different SQL drivers
   * The default algorithm within the TimeLimitedToken-class has been bumped from SHA-1 to SHA-256
     as announced by deprecation notice in 1.15-RC1
+  * Most modules have been externalized. They will not be included in our future releases by default,
+    but will be easily installable using Composer.
 
 ### metarefresh
   * The algorithm to compute the fingerprint of the certificate that signed
@@ -40,6 +42,8 @@ Released TBD
   * Setting 'privacypolicy' in metadata-files will be removed in a future release. It was only used
     by the consent-module, which supports UIInfo's PrivacyStatementURL.
     See https://simplesamlphp.org/docs/stable/simplesamlphp-metadata-extensions-ui on how to configure this.
+  * The use of the PHP memcache-extension was deprecated in favour of memcached-extension.
+    The former is considered abandoned and it's safe use can no longer be guaranteed.
 
 ## Version 1.17.5
 
