@@ -41,7 +41,6 @@ class LogoutStore
                     break;
                 case  'sqlite':
                     /**
-                     * TableVersion 2 increased the column size to 255 which is the maximum length of a FQDN
                      * Because SQLite does not support field alterations, the approach is to:
                      *     Create a new table without the proper column size
                      *     Copy the current data to the new table
@@ -78,25 +77,28 @@ class LogoutStore
             return;
 
         } elseif ($tableVer === 2) {
-            // TableVersion 3 fixes the indexes that were set to 255 in version 2; they cannot be larger than 191
-            // Drop old indexes
-            $query = 'ALTER TABLE '.$store->prefix.'_saml_LogoutStore DROP INDEX '.$store->prefix.'_saml_LogoutStore_nameId';
-            $store->pdo->exec($query);
-            $query = 'ALTER TABLE '.$store->prefix.'_saml_LogoutStore DROP INDEX _authSource';
-            $store->pdo->exec($query);
+            // TableVersion 3 fixes the indexes that were set to 255 in version 2; they cannot be larger than 191 on MySQL
 
-            // Create new indexes
-            $query = 'CREATE INDEX '.$store->prefix.'_saml_LogoutStore_nameId ON ';
-            $query .= $store->prefix.'_saml_LogoutStore (_authSource(191), _nameId)';
-            $store->pdo->exec($query);
+            if ($store->driver === 'mysql') {
+                // Drop old indexes
+                $query = 'ALTER TABLE '.$store->prefix.'_saml_LogoutStore DROP INDEX '.$store->prefix.'_saml_LogoutStore_nameId';
+                $store->pdo->exec($query);
+                $query = 'ALTER TABLE '.$store->prefix.'_saml_LogoutStore DROP INDEX _authSource';
+                $store->pdo->exec($query);
 
-            $query = 'ALTER TABLE '.$store->prefix.'_saml_LogoutStore ADD UNIQUE KEY (_authSource(191), _nameID, _sessionIndex)';
-            $store->pdo->exec($query);
+                // Create new indexes
+                $query = 'CREATE INDEX '.$store->prefix.'_saml_LogoutStore_nameId ON ';
+                $query .= $store->prefix.'_saml_LogoutStore (_authSource(191), _nameId)';
+                $store->pdo->exec($query);
+
+                $query = 'ALTER TABLE '.$store->prefix.'_saml_LogoutStore ADD UNIQUE KEY (_authSource(191), _nameID, _sessionIndex)';
+                $store->pdo->exec($query);
+            }
 
             $store->setTableVersion('saml_LogoutStore', 3);
             return;
         } elseif ($tableVer === 1) {
-            // TableVersion 2 increased the column size to 255 which is the maximum length of a FQDN
+            // TableVersion 2 increased the column size to 255 (191 for mysql) which is the maximum length of a FQDN
             switch ($store->driver) {
                 case 'pgsql':
                     // This does not affect the NOT NULL constraint
@@ -105,7 +107,6 @@ class LogoutStore
                     break;
                 case  'sqlite':
                     /**
-                     * TableVersion 2 increased the column size to 255 which is the maximum length of a FQDN
                      * Because SQLite does not support field alterations, the approach is to:
                      *     Create a new table without the proper column size
                      *     Copy the current data to the new table
@@ -123,6 +124,10 @@ class LogoutStore
                         'CREATE INDEX '.$store->prefix.'_saml_LogoutStore_expire ON '.$store->prefix.'_saml_LogoutStore (_expire)',
                         'CREATE INDEX '.$store->prefix.'_saml_LogoutStore_nameId ON '.$store->prefix.'_saml_LogoutStore (_authSource, _nameId)'
                     ];
+                    break;
+                case 'mysql':
+                    $update = ['ALTER TABLE '.$store->prefix.
+                        '_saml_LogoutStore MODIFY _authSource VARCHAR(191) NOT NULL'];
                     break;
                 default:
                     $update = ['ALTER TABLE '.$store->prefix.
@@ -143,12 +148,12 @@ class LogoutStore
         }
 
         $query = 'CREATE TABLE '.$store->prefix.'_saml_LogoutStore (
-            _authSource VARCHAR(255) NOT NULL,
+            _authSource VARCHAR('.($store->driver === 'mysql' ? '191' : '255').') NOT NULL,
             _nameId VARCHAR(40) NOT NULL,
             _sessionIndex VARCHAR(50) NOT NULL,
             _expire DATETIME NOT NULL,
             _sessionId VARCHAR(50) NOT NULL,
-            UNIQUE (_authSource(191), _nameID, _sessionIndex)
+            UNIQUE (_authSource'.($store->driver === 'mysql' ? '(191)' : '').', _nameID, _sessionIndex)
         )';
         $store->pdo->exec($query);
 
@@ -157,7 +162,7 @@ class LogoutStore
         $store->pdo->exec($query);
 
         $query = 'CREATE INDEX '.$store->prefix.'_saml_LogoutStore_nameId ON ';
-        $query .= $store->prefix.'_saml_LogoutStore (_authSource(191), _nameId)';
+        $query .= $store->prefix.'_saml_LogoutStore (_authSource'.($store->driver === 'mysql' ? '(191)' : '').', _nameId)';
         $store->pdo->exec($query);
 
         $store->setTableVersion('saml_LogoutStore', 4);
