@@ -347,7 +347,6 @@ class SAML2
             $extensions = null;
             $allowCreate = true;
             $authnContext = null;
-            $binding = null;
 
             $idpInit = true;
 
