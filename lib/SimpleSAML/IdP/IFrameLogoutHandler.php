@@ -115,12 +115,13 @@ class IFrameLogoutHandler implements LogoutHandlerInterface
             $t->data['errorMsg'] = $error->getMessage();
         }
 
+        // Remove the if-clause in 2.0, leave the else-part
         if ($usenewui === false) {
             $twig = $t->getTwig();
             if (!isset($twig)) {
                 throw new \Exception('Even though we explicitly configure that we want Twig, the Template class does not give us Twig. This is a bug.');
             }
-            $result = $twig->render($template, $t->data);
+            $result = $twig->render('IFrameLogoutHandler.twig', $t->data);
             echo $result;
         } else {
             $t->show();
