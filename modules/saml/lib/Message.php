@@ -818,12 +818,12 @@ class Message
             }
 
             $notBefore = $scd->getNotBefore();
-            if ($notBefore && $notBefore > time() + 60) {
+            if (is_int($notBefore) && $notBefore > time() + 60) {
                 $lastError = 'NotBefore in SubjectConfirmationData is in the future: '.$notBefore;
                 continue;
             }
             $notOnOrAfter = $scd->getNotOnOrAfter();
-            if ($notOnOrAfter && $notOnOrAfter <= time() - 60) {
+            if (is_int($notOnOrAfter) && $notOnOrAfter <= time() - 60) {
                 $lastError = 'NotOnOrAfter in SubjectConfirmationData is in the past: '.$notOnOrAfter;
                 continue;
             }
