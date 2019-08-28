@@ -383,7 +383,7 @@ class Logger
 
 
     /**
-     * @param \SimpleSAML\Logger\LoggingHandlerInterface|null $handler
+     * @param string|null $handler
      * @return void
      * @throws \Exception
      */
