@@ -96,8 +96,17 @@ class IFrameLogoutHandler implements LogoutHandlerInterface
     {
         assert(is_string($assocId));
 
-        $config = Configuration::getInstance();
         $this->idp->terminateAssociation($assocId);
+
+        $config = Configuration::getInstance();
+        $usenewui = $config->getBoolean('usenewui', false);
+
+        // Force the use of Twig for this method. Remove if-clause in 2.0
+        if ($usenewui === false) {
+            $config = Configuration::loadFromArray([
+                'usenewui' => true,
+            ]);
+        }
 
         $t = new Template($config, 'IFrameLogoutHandler.twig');
         $t->data['assocId'] = var_export($assocId, true);
@@ -105,7 +114,16 @@ class IFrameLogoutHandler implements LogoutHandlerInterface
         if (!is_null($error)) {
             $t->data['errorMsg'] = $error->getMessage();
         }
-        $t->show();
-        exit(0);
+
+        if ($usenewui === false) {
+            $twig = $t->getTwig();
+            if (!isset($twig)) {
+                throw new \Exception('Even though we explicitly configure that we want Twig, the Template class does not give us Twig. This is a bug.');
+            }
+            $result = $twig->render($template, $t->data);
+            echo $result;
+        } else {
+            $t->show();
+        }
     }
 }
