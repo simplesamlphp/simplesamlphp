@@ -82,10 +82,10 @@ if ($prevAuth !== null && $prevAuth['id'] === $response->getId() && $prevAuth['i
     throw new \SimpleSAML\Error\Exception('Duplicate assertion received.');
 }
 
-$idpMetadata = [];
-
+$idpMetadata = null;
 $state = null;
 $stateId = $response->getInResponseTo();
+
 if (!empty($stateId)) {
     // this should be a response to a request we sent earlier
     try {
@@ -131,7 +131,7 @@ if ($state) {
 
 SimpleSAML\Logger::debug('Received SAML2 Response from '.var_export($issuer, true).'.');
 
-if (empty($idpMetadata)) {
+if (is_null($idpMetadata)) {
     $idpMetadata = $source->getIdPmetadata($issuer);
 }
 
