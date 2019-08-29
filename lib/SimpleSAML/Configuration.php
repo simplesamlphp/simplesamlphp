@@ -419,7 +419,7 @@ class Configuration implements Utils\ClearableState
      */
     public function getVersion()
     {
-        return '1.17.5';
+        return '1.17.6';
     }
 
 
