@@ -252,22 +252,45 @@ class EMail
      */
     public function generateBody($template)
     {
-        // Force mail template to be rendered by Twig, even when using oldui
-        // Replace this with the following line of code in 2.0
-        // $config = Configuration::getInstance();
-        $config = Configuration::loadFromArray([
-            'usenewui' => true,
-        ]);
-        $t = new Template($config, $template);
-        $twig = $t->getTwig();
-        if (!isset($twig)) {
-            throw new \Exception('Even though we explicitly configure that we want Twig, the Template class does not give us Twig. This is a bug.');
-        }
-        $result = $twig->render($template, [
+        $config = Configuration::getInstance();
+        $newui = $config->getBoolean('usenewui', false);
+
+        if ($newui === false) {
+            return '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title>SimpleSAMLphp Email report</title>
+	<style type="text/css">
+pre, div.box {
+	margin: .4em 2em .4em 1em;
+	padding: 4px;
+}
+pre {
+	background: #eee;
+	border: 1px solid #aaa;
+}
+	</style>
+</head>
+<body>
+<div class="container" style="background: #fafafa; border: 1px solid #eee; margin: 2em; padding: .6em;">
+'.$this->text.'
+</div>
+</body>
+</html>';
+        } else {
+            $t = new Template($config, $template);
+            $twig = $t->getTwig();
+            if (!isset($twig)) {
+                throw new \Exception('Even though we explicitly configure that we want Twig, the Template class does not give us Twig. This is a bug.');
+            }
+            $result = $twig->render($template, [
                 'subject' => $this->mail->Subject,
                 'text' => $this->text,
                 'data' => $this->data
             ]);
-        return $result;
+            return $result;
+        }
     }
 }
