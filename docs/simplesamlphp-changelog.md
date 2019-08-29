@@ -6,6 +6,14 @@ SimpleSAMLphp changelog
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
+## Version 1.17.6
+
+Released 2019-08-29
+
+  * Fixed a regression with logout database initialization when using MySQL (#1177).
+  * Fixed an issue with logout when using iframes (#1191).
+  * Fixed an issue causing log entries to be logged with incorrect relative order (#1107).
+
 ## Version 1.17.5
 
 Released 2019-08-02
