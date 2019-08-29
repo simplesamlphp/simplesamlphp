@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "98acca2eaa9fb55266529a31de6b742c",
+    "content-hash": "4d188ebe69a1f4f1eee30bf48b36d32c",
     "packages": [
         {
             "name": "gettext/gettext",
@@ -541,16 +541,16 @@
         },
         {
             "name": "simplesamlphp/simplesamlphp-module-adfs",
-            "version": "v0.9.2",
+            "version": "v0.9.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/simplesamlphp-module-adfs.git",
-                "reference": "a62e8abf6b166061de7e10ea2ab30e59b5c1db7d"
+                "reference": "516e16951af459a52eb6d393e87fe44af95278bb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-module-adfs/zipball/a62e8abf6b166061de7e10ea2ab30e59b5c1db7d",
-                "reference": "a62e8abf6b166061de7e10ea2ab30e59b5c1db7d",
+                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-module-adfs/zipball/516e16951af459a52eb6d393e87fe44af95278bb",
+                "reference": "516e16951af459a52eb6d393e87fe44af95278bb",
                 "shasum": ""
             },
             "require": {
@@ -582,7 +582,7 @@
                 "adfs",
                 "simplesamlphp"
             ],
-            "time": "2019-08-28T12:04:25+00:00"
+            "time": "2019-08-29T20:40:06+00:00"
         },
         {
             "name": "simplesamlphp/simplesamlphp-module-authcrypt",
@@ -1025,16 +1025,16 @@
         },
         {
             "name": "simplesamlphp/simplesamlphp-module-consent",
-            "version": "v0.9.1",
+            "version": "v0.9.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/simplesamlphp-module-consent.git",
-                "reference": "ac39fbd212fff7c999c6911b174e2bc4cb313955"
+                "reference": "adbfee34a06e4dec7a04340943b8f87c2a9c5d3a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-module-consent/zipball/ac39fbd212fff7c999c6911b174e2bc4cb313955",
-                "reference": "ac39fbd212fff7c999c6911b174e2bc4cb313955",
+                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-module-consent/zipball/adbfee34a06e4dec7a04340943b8f87c2a9c5d3a",
+                "reference": "adbfee34a06e4dec7a04340943b8f87c2a9c5d3a",
                 "shasum": ""
             },
             "require": {
@@ -1066,7 +1066,7 @@
                 "consent",
                 "simplesamlphp"
             ],
-            "time": "2019-08-12T17:01:53+00:00"
+            "time": "2019-08-29T13:59:49+00:00"
         },
         {
             "name": "simplesamlphp/simplesamlphp-module-consentadmin",
