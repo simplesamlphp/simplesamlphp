@@ -2,8 +2,10 @@
 
 namespace SimpleSAML\IdP;
 
+use SimpleSAML\Configuration;
 use SimpleSAML\Module;
 use SimpleSAML\Utils\HTTP;
+use SimpleSAML\XHTML\Template;
 
 /**
  * Class that handles iframe logout.
@@ -91,33 +93,15 @@ class IFrameLogoutHandler implements LogoutHandlerInterface
 
         $this->idp->terminateAssociation($assocId);
 
-        $config = \SimpleSAML\Configuration::getInstance();
-        $usenewui = $config->getBoolean('usenewui', false);
+        $config = Configuration::getInstance();
 
-        // Force the use of Twig for this method. Remove if-clause in 2.0
-        if ($usenewui === false) {
-            $config = Configuration::loadFromArray([
-                'usenewui' => true,
-            ]);
-        }
-
-        $t = new Template($config, 'IFrameLogoutHandler.twig');
+        $t = new Template($config, 'IFrameLogoutHandler.tpl.php');
         $t->data['assocId'] = var_export($assocId, true);
         $t->data['spId'] = sha1($assocId);
         if (!is_null($error)) {
             $t->data['errorMsg'] = $error->getMessage();
         }
 
-        // Remove the if-clause in 2.0, leave the else-part
-        if ($usenewui === false) {
-            $twig = $t->getTwig();
-            if (!isset($twig)) {
-                throw new \Exception('Even though we explicitly configure that we want Twig, the Template class does not give us Twig. This is a bug.');
-            }
-            $result = $twig->render('IFrameLogoutHandler.twig', $t->data);
-            echo $result;
-        } else {
-            $t->show();
-        }
+        $t->show();
     }
 }
