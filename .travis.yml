@@ -13,6 +13,11 @@ env:
   - COMMAND="install"
   - COMMAND="update"
 
+matrix:
+  allow_failures:
+  - php: 7.3
+    env: COMMAND="update"
+
 before_script:
   - pecl install krb5
   - composer ${COMMAND}
