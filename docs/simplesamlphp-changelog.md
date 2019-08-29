@@ -6,9 +6,16 @@ SimpleSAMLphp changelog
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
-## Version 1.18.0
+## Version 1.19.0
 
 Released TBD
+
+  * This version will be the last of the 1.x branch and will provide a migration path to our new
+    templating system, routing system, translation system and hooks.
+
+## Version 1.18.0
+
+Released 2019-09-xx
 
   * Replace custom Email class with the phpmailer library.
   * Allow to log to STDERR in the logging.handler option.
@@ -18,6 +25,8 @@ Released TBD
     as announced by deprecation notice in 1.15-RC1
   * Most modules have been externalized. They will not be included in our future releases by default,
     but will be easily installable using Composer.
+  * The saml2-libary has been updated to v3.4.1
+  * Many minor fixes to code, css, documentation
 
 ### metarefresh
   * The algorithm to compute the fingerprint of the certificate that signed
@@ -33,6 +42,9 @@ Released TBD
 
 ### Interoperability
   * The minimum PHP version required is now 5.6.
+  * Windows CI was added using Appveyor
+  * The codebase is now completely covered by Psalm static analysis
+  * Test coverage has increased by 3%
 
 ### Deprecation
   * Support for SAML1.1 / Shibboleth 1.3 will be discontinued in a future release
@@ -44,6 +56,14 @@ Released TBD
     See https://simplesamlphp.org/docs/stable/simplesamlphp-metadata-extensions-ui on how to configure this.
   * The use of the PHP memcache-extension was deprecated in favour of memcached-extension.
     The former is considered abandoned and it's safe use can no longer be guaranteed.
+
+## Version 1.17.6
+
+Released 2019-08-29
+
+  * Fixed a regression with logout database initialization when using MySQL (#1177).
+  * Fixed an issue with logout when using iframes (#1191).
+  * Fixed an issue causing log entries to be logged with incorrect relative order (#1107).
 
 ## Version 1.17.5
 
