@@ -252,31 +252,45 @@ class Logger
     public static function setTrackId($trackId)
     {
         self::$trackid = $trackId;
+        self::flush();
     }
 
 
     /**
      * Flush any pending log messages to the logging handler.
      *
+     * @return void
+     */
+    public static function flush()
+    {
+        foreach (self::$earlyLog as $msg) {
+            self::log($msg['level'], $msg['string'], $msg['statsLog']);
+        }
+        self::$earlyLog = [];
+    }
+
+
+    /**
+     * Flush any pending deferred logs during shutdown.
+     *
      * This method is intended to be registered as a shutdown handler, so that any pending messages that weren't sent
      * to the logging handler at that point, can still make it. It is therefore not intended to be called manually.
      *
      */
-    public static function flush()
+    public static function shutdown()
     {
-        try {
-            $s = Session::getSessionFromRequest();
-        } catch (\Exception $e) {
-            // loading session failed. We don't care why, at this point we have a transient session, so we use that
-            self::error('Cannot load or create session: '.$e->getMessage());
-            $s = Session::getSessionFromRequest();
+        if (self::$trackid === self::NO_TRACKID) {
+            try {
+                $s = Session::getSessionFromRequest();
+            } catch (\Exception $e) {
+                // loading session failed. We don't care why, at this point we have a transient session, so we use that
+                self::error('Cannot load or create session: '.$e->getMessage());
+                $s = Session::getSessionFromRequest();
+            }
+            self::$trackid = $s->getTrackID();
         }
-        self::$trackid = $s->getTrackID();
-
         self::$shuttingDown = true;
-        foreach (self::$earlyLog as $msg) {
-            self::log($msg['level'], $msg['string'], $msg['statsLog']);
-        }
+        self::flush();
     }
 
 
@@ -340,7 +354,7 @@ class Logger
 
         // register a shutdown handler if needed
         if (!self::$shutdownRegistered) {
-            register_shutdown_function(['SimpleSAML\Logger', 'flush']);
+            register_shutdown_function([self::class, 'shutdown']);
             self::$shutdownRegistered = true;
         }
     }
@@ -408,13 +422,7 @@ class Logger
         } elseif (self::$loggingHandler === null) {
             // Initialize logging
             self::createLoggingHandler();
-
-            if (!empty(self::$earlyLog)) {
-                // output messages which were logged before we properly initialized logging
-                foreach (self::$earlyLog as $msg) {
-                    self::log($msg['level'], $msg['string'], $msg['statsLog']);
-                }
-            }
+            self::flush();
         }
 
         if (self::$captureLog) {
