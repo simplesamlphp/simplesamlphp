@@ -54,7 +54,6 @@ class AttributeNameID extends \SimpleSAML\Module\saml\BaseNameIDGenerator
      */
     protected function getValue(array &$state)
     {
-
         if (!isset($state['Attributes'][$this->attribute]) || count($state['Attributes'][$this->attribute]) === 0) {
             Logger::warning(
                 'Missing attribute '.var_export($this->attribute, true).
@@ -70,7 +69,7 @@ class AttributeNameID extends \SimpleSAML\Module\saml\BaseNameIDGenerator
             return null;
         }
         $value = array_values($state['Attributes'][$this->attribute]); // just in case the first index is no longer 0
-        $value = $value[0];
+        $value = strval($value[0]);
 
         if (empty($value)) {
             Logger::warning(
