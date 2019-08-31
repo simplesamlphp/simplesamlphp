@@ -240,6 +240,8 @@ class SQL extends Store
             default:
                 $updateCols = [];
                 $condCols = [];
+                $condData = [];
+
                 foreach ($data as $col => $value) {
                     $tmp = $col.' = :'.$col;
 
