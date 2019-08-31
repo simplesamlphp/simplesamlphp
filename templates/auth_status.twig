@@ -68,8 +68,8 @@
 {% endif %}
 
 {% if authData -%}
-    <h2>{% trans %}AuthData{% endtrans %}</h2>
-    <details><summary>{% trans %}Click to view AuthData{% endtrans %}</summary>
+    <h2>{% trans %}Debug information to be used by support staff{% endtrans %}</h2>
+    <details><summary>{% trans %}Click to view debug information{% endtrans %}</summary>
       <pre>{{ authData|json_encode(constant('JSON_UNESCAPED_SLASHES') b-or constant('JSON_PRETTY_PRINT'))|raw }}</pre>
     </details>
 {%- endif %}
