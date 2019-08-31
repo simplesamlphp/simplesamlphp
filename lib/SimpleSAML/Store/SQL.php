@@ -245,15 +245,15 @@ class SQL extends Store
 
                     if (in_array($col, $keys, true)) {
                         $condCols[] = $tmp;
+                        $condData[$col] = $value;
                     } else {
                         $updateCols[] = $tmp;
                     }
                 }
 
-
-                $selectQuery = 'SELECT FROM '.$table.' WHERE '.implode(' AND ', $condCols);
+                $selectQuery = 'SELECT * FROM '.$table.' WHERE '.implode(' AND ', $condCols);
                 $selectQuery = $this->pdo->prepare($selectQuery);
-                $selectQuery->execute();
+                $selectQuery->execute($condData);
 
                 if ($selectQuery->rowCount() > 0) {
                     // Update
