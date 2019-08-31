@@ -254,5 +254,10 @@
 		"af": "Cron verslag",
 		"pt-br": "Relat\u00f3rio do cron",
 		"el": "\u0391\u03bd\u03b1\u03c6\u03bf\u03c1\u03ac cron"
+	},
+	"link_cron": {
+		"es": "Informe de cron",
+		"no": "Informasjon om cron",
+		"nn": "Informasjon om cron"
 	}
 }

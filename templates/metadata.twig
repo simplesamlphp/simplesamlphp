@@ -1,0 +1,54 @@
+{% set pagetile = 'SimpleSAMLphp Show Metadata'|trans %}
+{% extends 'base.twig' %}
+{% block content %}
+    <h2>{{ header }}</h2>
+    <p>{{ metadata_intro }}</p>
+
+{% if metaurl is defined %}
+    <p>{{ 'You can get the metadata xml on a dedicated URL:' | trans }}</p>
+    <div class="input-group">
+        <pre id="metadataurl" class="input-left">{{ metaurl }}</pre>
+        <button data-clipboard-target="#metadataurl" id="btnurl" class="pure-button right clipboard-btn copy">
+            <span class="fa fa-copy"></span>
+        </button>
+    </div>
+{% endif %}
+
+    <h2>{{ 'Metadata' | trans }}</h2>
+    <div class="code-box">
+        <div class="code-box-title">
+    <p>{{ 'In SAML 2.0 Metadata XML format:' | trans }}</p>
+            <button data-clipboard-target="#xmlmetadata" id="btnxml" class="pure-button right clipboard-btn copy">
+                <span class="fa fa-copy"></span>
+            </button>
+        </div>
+        <div class="code-box-content">
+            <pre id="xmlmetadata">{{ metadata | raw }}</pre>
+        </div>
+    </div>
+
+    <div class="code-box">
+        <div class="code-box-title">
+    <p>{{ 'In SimpleSAMLphp flat file format - use this if you are using a SimpleSAMLphp entity on the other side:' | trans }}</p>
+            <button data-clipboard-target="#phpmetadata" id="btnphp" class="pure-button right clipboard-btn copy">
+                <span class="fa fa-copy"></span>
+            </button>
+        </div>
+        <div class="code-box-content">
+            <pre id="phpmetadata">{{ metadataflat | raw }}</pre>
+        </div>
+    </div>
+
+{% if certdata is defined %}
+    <h2>{{ 'Certificates' |trans }}</h2>
+    <p>{{ 'Download the X509 certificates as PEM-encoded files.' |trans }}</p>
+
+    <ul>
+    {% for cert in certdata %}
+        <li><a href="{{ cert.url }}">{{ cert.name }}</a> {{ cert.comment }}</li>
+    {% endfor %}
+    </ul>
+
+{% endif %}
+
+{% endblock content %}

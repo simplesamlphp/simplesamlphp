@@ -1,5 +1,6 @@
 <?php
 
+namespace SimpleSAML\Metadata;
 
 /**
  * This abstract class defines an interface for metadata storage sources.
@@ -12,10 +13,9 @@
  * @author Andreas Aakre Solberg, UNINETT AS.
  * @package SimpleSAMLphp
  */
-abstract class SimpleSAML_Metadata_MetaDataStorageSource
+
+abstract class MetaDataStorageSource
 {
-
-
     /**
      * Parse array with metadata sources.
      *
@@ -26,17 +26,17 @@ abstract class SimpleSAML_Metadata_MetaDataStorageSource
      *
      * @return array  Parsed metadata configuration.
      *
-     * @throws Exception If something is wrong in the configuration.
+     * @throws \Exception If something is wrong in the configuration.
      */
     public static function parseSources($sourcesConfig)
     {
-        assert('is_array($sourcesConfig)');
+        assert(is_array($sourcesConfig));
 
-        $sources = array();
+        $sources = [];
 
         foreach ($sourcesConfig as $sourceConfig) {
             if (!is_array($sourceConfig)) {
-                throw new Exception("Found an element in metadata source configuration which wasn't an array.");
+                throw new \Exception("Found an element in metadata source configuration which wasn't an array.");
             }
 
             $sources[] = self::getSource($sourceConfig);
@@ -55,7 +55,7 @@ abstract class SimpleSAML_Metadata_MetaDataStorageSource
      *
      * @return mixed An instance of a metadata source with the given configuration.
      *
-     * @throws Exception If the metadata source type is invalid.
+     * @throws \Exception If the metadata source type is invalid.
      */
     public static function getSource($sourceConfig)
     {
@@ -69,18 +69,31 @@ abstract class SimpleSAML_Metadata_MetaDataStorageSource
 
         switch ($type) {
             case 'flatfile':
-                return new SimpleSAML_Metadata_MetaDataStorageHandlerFlatFile($sourceConfig);
+                return new MetaDataStorageHandlerFlatFile($sourceConfig);
             case 'xml':
-                return new SimpleSAML_Metadata_MetaDataStorageHandlerXML($sourceConfig);
+                return new MetaDataStorageHandlerXML($sourceConfig);
             case 'serialize':
-                return new SimpleSAML_Metadata_MetaDataStorageHandlerSerialize($sourceConfig);
+                return new MetaDataStorageHandlerSerialize($sourceConfig);
             case 'mdx':
             case 'mdq':
-                return new \SimpleSAML\Metadata\Sources\MDQ($sourceConfig);
+                return new Sources\MDQ($sourceConfig);
             case 'pdo':
-                return new SimpleSAML_Metadata_MetaDataStorageHandlerPdo($sourceConfig);
+                return new MetaDataStorageHandlerPdo($sourceConfig);
             default:
-                throw new Exception('Invalid metadata source type: "'.$type.'".');
+                // metadata store from module
+                try {
+                    $className = \SimpleSAML\Module::resolveClass(
+                        $type,
+                        'MetadataStore',
+                        '\SimpleSAML\Metadata\MetaDataStorageSource'
+                    );
+                } catch (\Exception $e) {
+                    throw new \SimpleSAML\Error\CriticalConfigurationError(
+                        "Invalid 'type' for metadata source. Cannot find store '$type'.",
+                        null
+                    );
+                }
+                return new $className($sourceConfig);
         }
     }
 
@@ -98,7 +111,7 @@ abstract class SimpleSAML_Metadata_MetaDataStorageSource
      */
     public function getMetadataSet($set)
     {
-        return array();
+        return [];
     }
 
 
@@ -126,7 +139,6 @@ abstract class SimpleSAML_Metadata_MetaDataStorageSource
         }
 
         foreach ($metadataSet as $index => $entry) {
-
             if (!array_key_exists('host', $entry)) {
                 continue;
             }
@@ -146,7 +158,7 @@ abstract class SimpleSAML_Metadata_MetaDataStorageSource
 
 
     /**
-     * This function will go through all the metadata, and check the hint.cidr
+     * This function will go through all the metadata, and check the DiscoHints->IPHint
      * parameter, which defines a network space (ip range) for each remote entry.
      * This function returns the entityID for any of the entities that have an
      * IP range which the IP falls within.
@@ -164,16 +176,27 @@ abstract class SimpleSAML_Metadata_MetaDataStorageSource
         $metadataSet = $this->getMetadataSet($set);
 
         foreach ($metadataSet as $index => $entry) {
+            $cidrHints = [];
+            
+            // support hint.cidr for idp discovery
+            if (array_key_exists('hint.cidr', $entry) && is_array($entry['hint.cidr'])) {
+                $cidrHints = $entry['hint.cidr'];
+            }
 
-            if (!array_key_exists('hint.cidr', $entry)) {
+            // support discohints in idp metadata for idp discovery
+            if (array_key_exists('DiscoHints', $entry)
+                && array_key_exists('IPHint', $entry['DiscoHints'])
+                && is_array($entry['DiscoHints']['IPHint'])) {
+                // merge with hints derived from discohints, but prioritize hint.cidr in case it is used
+                $cidrHints = array_merge($entry['DiscoHints']['IPHint'], $cidrHints);
+            }
+
+            if (empty($cidrHints)) {
                 continue;
             }
-            if (!is_array($entry['hint.cidr'])) {
-                continue;
-            }
 
-            foreach ($entry['hint.cidr'] as $hint_entry) {
-                if (SimpleSAML\Utils\Net::ipCIDRcheck($hint_entry, $ip)) {
+            foreach ($cidrHints as $hint_entry) {
+                if (\SimpleSAML\Utils\Net::ipCIDRcheck($hint_entry, $ip)) {
                     if ($type === 'entityid') {
                         return $entry['entityid'];
                     } else {
@@ -184,34 +207,6 @@ abstract class SimpleSAML_Metadata_MetaDataStorageSource
         }
 
         // no entries matched, we should return null
-        return null;
-    }
-
-
-    /*
-     *
-     */
-    private function lookupIndexFromEntityId($entityId, $set)
-    {
-        assert('is_string($entityId)');
-        assert('isset($set)');
-
-        $metadataSet = $this->getMetadataSet($set);
-
-        // check for hostname
-        $currenthost = \SimpleSAML\Utils\HTTP::getSelfHost(); // sp.example.org
-
-        foreach ($metadataSet as $index => $entry) {
-            if ($index === $entityId) {
-                return $index;
-            }
-            if ($entry['entityid'] === $entityId) {
-                if ($entry['host'] === '__DEFAULT__' || $entry['host'] === $currenthost) {
-                    return $index;
-                }
-            }
-        }
-
         return null;
     }
 
@@ -227,27 +222,122 @@ abstract class SimpleSAML_Metadata_MetaDataStorageSource
      * @param string $index The entityId or metaindex we are looking up.
      * @param string $set The set we are looking for metadata in.
      *
-     * @return array An associative array with metadata for the given entity, or NULL if we are unable to
+     * @return array|null An associative array with metadata for the given entity, or NULL if we are unable to
      *         locate the entity.
      */
     public function getMetaData($index, $set)
     {
 
-        assert('is_string($index)');
-        assert('isset($set)');
+        assert(is_string($index));
+        assert(isset($set));
 
         $metadataSet = $this->getMetadataSet($set);
 
-        if (array_key_exists($index, $metadataSet)) {
-            return $metadataSet[$index];
-        }
-
-        $indexlookup = $this->lookupIndexFromEntityId($index, $set);
-        if (isset($indexlookup) && array_key_exists($indexlookup, $metadataSet)) {
-            return $metadataSet[$indexlookup];
+        $indexLookup = $this->lookupIndexFromEntityId($index, $metadataSet);
+        if (isset($indexLookup) && array_key_exists($indexLookup, $metadataSet)) {
+            return $metadataSet[$indexLookup];
         }
 
         return null;
     }
 
+    /**
+     * This method returns the full metadata set for a given entity id or null if the entity id cannot be found
+     * in the given metadata set.
+     *
+     * @param string $entityId
+     * @param array $metadataSet the already loaded metadata set
+     * @return mixed|null
+     */
+    protected function lookupIndexFromEntityId($entityId, array $metadataSet)
+    {
+        assert(is_string($entityId));
+        assert(is_array($metadataSet));
+
+        // check for hostname
+        $currentHost = \SimpleSAML\Utils\HTTP::getSelfHost(); // sp.example.org
+
+        foreach ($metadataSet as $index => $entry) {
+            // explicit index match
+            if ($index === $entityId) {
+                return $index;
+            }
+
+            if ($entry['entityid'] === $entityId) {
+                if ($entry['host'] === '__DEFAULT__' || $entry['host'] === $currentHost) {
+                    return $index;
+                }
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * @param string $set
+     * @throws \Exception
+     * @return string
+     */
+    private function getDynamicHostedUrl($set)
+    {
+        assert(is_string($set));
+
+        // get the configuration
+        $baseUrl = \SimpleSAML\Utils\HTTP::getBaseURL();
+
+        if ($set === 'saml20-idp-hosted') {
+            return $baseUrl.'saml2/idp/metadata.php';
+        }
+        else if ($set === 'saml20-sp-hosted') {
+            return $baseUrl.'saml2/sp/metadata.php';
+        }
+        else if ($set === 'shib13-idp-hosted') {
+            return $baseUrl.'shib13/idp/metadata.php';
+        }
+        else if ($set === 'shib13-sp-hosted') {
+            return $baseUrl.'shib13/sp/metadata.php';
+        }
+        else if ($set === 'wsfed-sp-hosted') {
+            return 'urn:federation:'.\SimpleSAML\Utils\HTTP::getSelfHost();
+        }
+        else if ($set === 'adfs-idp-hosted') {
+            return 'urn:federation:'.\SimpleSAML\Utils\HTTP::getSelfHost().':idp';
+        }
+        else {
+            throw new \Exception('Can not generate dynamic EntityID for metadata of this type: ['.$set.']');
+        }
+    }
+
+    /**
+     * Updates the metadata entry's entity id and returns the modified array.  If the entity id is __DYNAMIC:*__ a
+     * the current url is assigned.  If it is explicit the entityid array key is updated to the entityId that was
+     * provided.
+     *
+     * @param string $metadataSet a metadata set (saml20-idp-hosted, saml20-sp-remote, etc)
+     * @param string $entityId the entity id we are modifying
+     * @param array $metadataEntry the fully populated metadata entry
+     *
+     * @return array An associative array with metadata for the given entity, or NULL if we are unable to
+     *         locate the entity.
+     * @throws \Exception
+     */
+    protected function updateEntityID($metadataSet, $entityId, array $metadataEntry)
+    {
+        assert(is_string($metadataSet));
+        assert(is_string($entityId));
+        assert(is_array($metadataEntry));
+
+        $modifiedMetadataEntry = $metadataEntry;
+
+        // generate a dynamic hosted url
+        if (preg_match('/__DYNAMIC(:[0-9]+)?__/', $entityId)) {
+            $modifiedMetadataEntry['entityid'] = $this->getDynamicHostedUrl($metadataSet);
+        }
+        // set the entityid metadata array key to the provided entity id
+        else {
+            $modifiedMetadataEntry['entityid'] = $entityId;
+        }
+
+        return $modifiedMetadataEntry;
+    }
 }

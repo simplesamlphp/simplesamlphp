@@ -1,5 +1,7 @@
 <?php
 
+namespace SimpleSAML\Module\riak\Store;
+
 /*
  * Copyright (c) 2012 The University of Queensland
  *
@@ -22,82 +24,88 @@
  * and Information Technology.
  */
 
-class sspmod_riak_Store_Store extends SimpleSAML_Store {
-	protected function __construct() {
-		$config = SimpleSAML_Configuration::getConfig('module_riak.php');
+class Store extends \SimpleSAML\Store
+{
+    public $client;
+    public $bucket;
 
-		$path = $config->getString('path', 'riak-php-client/riak.php');
-		$host = $config->getString('host', 'localhost');
-		$port = $config->getString('port', 8098);
-		$bucket = $config->getString('bucket', 'simpleSAMLphp');
+    protected function __construct()
+    {
+        $config = \SimpleSAML\Configuration::getConfig('module_riak.php');
 
-		require_once($path);
-		$this->client = new RiakClient($host, $port);
-		$this->bucket = $this->client->bucket($bucket);
-	}
+        $path = $config->getString('path', 'riak-php-client/riak.php');
+        $host = $config->getString('host', 'localhost');
+        $port = $config->getString('port', 8098);
+        $bucket = $config->getString('bucket', 'simpleSAMLphp');
 
-	/**
-	 * Retrieve a value from the datastore.
-	 *
-	 * @param string $type  The datatype.
-	 * @param string $key  The key.
-	 * @return mixed|NULL  The value.
-	 */
-	public function get($type, $key) {
-		assert('is_string($type)');
-		assert('is_string($key)');
+        require_once($path);
+        $this->client = new \RiakClient($host, $port);
+        $this->bucket = $this->client->bucket($bucket);
+    }
 
-		$v = $this->bucket->getBinary("$type.$key");
-		if (!$v->exists()) {
-			return (NULL);
-		}
+    /**
+     * Retrieve a value from the datastore.
+     *
+     * @param string $type  The datatype.
+     * @param string $key  The key.
+     * @return mixed|NULL  The value.
+     */
+    public function get($type, $key)
+    {
+        assert(is_string($type));
+        assert(is_string($key));
 
-		$expires = $v->getIndex('Expires', 'int');
-		if (sizeof($expires) && (int)array_shift($expires) <= time()) {
-			$v->delete();
-			return (NULL);
-		}
+        $v = $this->bucket->getBinary("$type.$key");
+        if (!$v->exists()) {
+            return null;
+        }
 
-		return (unserialize($v->getData()));
-	}
+        $expires = $v->getIndex('Expires', 'int');
+        if (sizeof($expires) && (int) array_shift($expires) <= time()) {
+            $v->delete();
+            return null;
+        }
 
+        return (unserialize($v->getData()));
+    }
 
-	/**
-	 * Save a value to the datastore.
-	 *
-	 * @param string $type  The datatype.
-	 * @param string $key  The key.
-	 * @param mixed $value  The value.
-	 * @param int|NULL $expire  The expiration time (unix timestamp), or NULL if it never expires.
-	 */
-	public function set($type, $key, $value, $expire = NULL) {
-		assert('is_string($type)');
-		assert('is_string($key)');
-		assert('is_null($expire) || (is_int($expire) && $expire > 2592000)');
+    /**
+     * Save a value to the datastore.
+     *
+     * @param string $type  The datatype.
+     * @param string $key  The key.
+     * @param mixed $value  The value.
+     * @param int|NULL $expire  The expiration time (unix timestamp), or NULL if it never expires.
+     */
+    public function set($type, $key, $value, $expire = null)
+    {
+        assert(is_string($type));
+        assert(is_string($key));
+        assert($expire === null || (is_int($expire) && $expire > 2592000));
 
-		$v = $this->bucket->newBinary("$type.$key", serialize($value), 'application/php');
-		if (!is_null($expire)) {
-			$v->addIndex("Expires", "int", $expire);
-		}
+        $v = $this->bucket->newBinary("$type.$key", serialize($value), 'application/php');
+        if (!is_null($expire)) {
+            $v->addIndex("Expires", "int", $expire);
+        }
 
-		$v->store();
-	}
+        $v->store();
+    }
 
-	/**
-	 * Delete a value from the datastore.
-	 *
-	 * @param string $type  The datatype.
-	 * @param string $key  The key.
-	 */
-	public function delete($type, $key) {
-		assert('is_string($type)');
-		assert('is_string($key)');
+    /**
+     * Delete a value from the datastore.
+     *
+     * @param string $type  The datatype.
+     * @param string $key  The key.
+     */
+    public function delete($type, $key)
+    {
+        assert(is_string($type));
+        assert(is_string($key));
 
-		$v = $this->bucket->getBinary("$type.$key");
-		if (!$v->exists()) {
-			return;
-		}
-
-		$v->delete();
-	}
+        $v = $this->bucket->getBinary("$type.$key");
+        if (!$v->exists()) {
+            return;
+        }
+        $v->delete();
+    }
 }

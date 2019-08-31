@@ -1,5 +1,5 @@
 <?php
-$attributemap = array(
+$attributemap = [
     'urn:oid:0.9.2342.19200300.100.1.1'  => 'uid',
     'urn:oid:0.9.2342.19200300.100.1.10' => 'manager',
     'urn:oid:0.9.2342.19200300.100.1.11' => 'documentIdentifier',
@@ -50,7 +50,7 @@ $attributemap = array(
     'urn:oid:1.2.752.194.10.2.2'         => 'sisSchoolGrade',
     'urn:oid:1.2.752.194.10.2.1'         => 'sisLegalGuardianFor',
     'urn:oid:1.2.752.194.10.3'           => 'sisOrgDepartment',
-    'urn:oid:1.2.752.194.10.4'           => 'sisSchoolUnitCode',
+    'urn:oid:1.2.752.194.10.2.4'         => 'sisSchoolUnitCode',
     'urn:oid:1.3.6.1.4.1.2428.90.1.1'    => 'norEduOrgUniqueNumber',
     'urn:oid:1.3.6.1.4.1.2428.90.1.11'   => 'norEduOrgSchemaVersion',
     'urn:oid:1.3.6.1.4.1.2428.90.1.12'   => 'norEduOrgNIN',
@@ -62,6 +62,7 @@ $attributemap = array(
     'urn:oid:1.3.6.1.4.1.2428.90.1.7'    => 'norEduOrgUniqueIdentifier',
     'urn:oid:1.3.6.1.4.1.2428.90.1.8'    => 'norEduOrgUnitUniqueIdentifier',
     'urn:oid:1.3.6.1.4.1.2428.90.1.9'    => 'federationFeideSchemaVersion',
+    'urn:oid:1.3.6.1.4.1.24552.500.1.1.1.13' => 'sshPublicKey',
     'urn:oid:1.3.6.1.4.1.250.1.57'       => 'labeledURI',
     'urn:oid:1.3.6.1.4.1.5923.1.1.1.1'   => 'eduPersonAffiliation',
     'urn:oid:1.3.6.1.4.1.5923.1.1.1.11'  => 'eduPersonAssurance',
@@ -166,4 +167,4 @@ $attributemap = array(
     'urn:oid:2.5.4.7'                    => 'l',
     'urn:oid:2.5.4.8'                    => 'st',
     'urn:oid:2.5.4.9'                    => 'street',
-);
+];

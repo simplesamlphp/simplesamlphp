@@ -1,4 +1,5 @@
 <?php
+
 namespace SimpleSAML\Utils;
 
 /**
@@ -7,9 +8,9 @@ namespace SimpleSAML\Utils;
  * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
  * @package SimpleSAML
  */
+
 class Attributes
 {
-
     /**
      * Look for an attribute in a normalized attributes array, failing if it's not there.
      *
@@ -21,7 +22,7 @@ class Attributes
      * $allow_multiple is set to true, the first value will be returned.
      *
      * @throws \InvalidArgumentException If $attributes is not an array or $expected is not a string.
-     * @throws \SimpleSAML_Error_Exception If the expected attribute was not found in the attributes array.
+     * @throws \SimpleSAML\Error\Exception If the expected attribute was not found in the attributes array.
      */
     public static function getExpectedAttribute($attributes, $expected, $allow_multiple = false)
     {
@@ -38,7 +39,7 @@ class Attributes
         }
 
         if (!array_key_exists($expected, $attributes)) {
-            throw new \SimpleSAML_Error_Exception("No such attribute '".$expected."' found.");
+            throw new \SimpleSAML\Error\Exception("No such attribute '".$expected."' found.");
         }
         $attribute = $attributes[$expected];
 
@@ -47,11 +48,10 @@ class Attributes
         }
 
         if (count($attribute) === 0) {
-            throw new \SimpleSAML_Error_Exception("Empty attribute '".$expected."'.'");
-
+            throw new \SimpleSAML\Error\Exception("Empty attribute '".$expected."'.'");
         } elseif (count($attribute) > 1) {
             if ($allow_multiple === false) {
-                throw new \SimpleSAML_Error_Exception(
+                throw new \SimpleSAML\Error\Exception(
                     'More than one value found for the attribute, multiple values not allowed.'
                 );
             }
@@ -85,7 +85,7 @@ class Attributes
             );
         }
 
-        $newAttrs = array();
+        $newAttrs = [];
         foreach ($attributes as $name => $values) {
             if (!is_string($name)) {
                 throw new \InvalidArgumentException('Invalid attribute name: "'.print_r($name, true).'".');
@@ -105,5 +105,28 @@ class Attributes
         }
 
         return $newAttrs;
+    }
+
+
+    /**
+     * Extract an attribute's namespace, or revert to default.
+     *
+     * This function takes in a namespaced attribute name and splits it in a namespace/attribute name tuple.
+     * When no namespace is found in the attribute name, it will be namespaced with the default namespace.
+     * This default namespace can be overriden by supplying a second parameter to this function.
+     *
+     * @param string $name The namespaced attribute name.
+     * @param string $defaultns The default namespace that should be used when no namespace is found.
+     *
+     * @return array The attribute name, split to the namespace and the actual attribute name.
+     */
+    public static function getAttributeNamespace($name, $defaultns)
+    {
+        $slash = strrpos($name, '/');
+        if ($slash !== false) {
+            $defaultns = substr($name, 0, $slash);
+            $name = substr($name, $slash + 1);
+        }
+        return [htmlspecialchars($defaultns), htmlspecialchars($name)];
     }
 }

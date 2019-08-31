@@ -2,6 +2,7 @@
 
 namespace SimpleSAML\Test\Utils;
 
+use PHPUnit\Framework\TestCase;
 use SimpleSAML\Utils\Attributes;
 
 /**
@@ -9,7 +10,7 @@ use SimpleSAML\Utils\Attributes;
  *
  * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
  */
-class AttributesTest extends \PHPUnit_Framework_TestCase
+class AttributesTest extends TestCase
 {
 
     /**
@@ -34,7 +35,7 @@ class AttributesTest extends \PHPUnit_Framework_TestCase
     public function testGetExpectedAttributeInvalidAttributeName()
     {
         // check with invalid attribute name
-        $attributes = array();
+        $attributes = [];
         $expected = false;
         $this->setExpectedException(
             'InvalidArgumentException',
@@ -50,9 +51,9 @@ class AttributesTest extends \PHPUnit_Framework_TestCase
     public function testGetExpectedAttributeNonNormalizedArray()
     {
         // check with non-normalized attributes array
-        $attributes = array(
+        $attributes = [
             'attribute' => 'value',
-        );
+        ];
         $expected = 'attribute';
         $this->setExpectedException(
             'InvalidArgumentException',
@@ -68,12 +69,12 @@ class AttributesTest extends \PHPUnit_Framework_TestCase
     public function testGetExpectedAttributeMissingAttribute()
     {
         // check missing attribute
-        $attributes = array(
-            'attribute' => array('value'),
-        );
+        $attributes = [
+            'attribute' => ['value'],
+        ];
         $expected = 'missing';
         $this->setExpectedException(
-            'SimpleSAML_Error_Exception',
+            '\SimpleSAML\Error\Exception',
             "No such attribute '".$expected."' found."
         );
         Attributes::getExpectedAttribute($attributes, $expected);
@@ -86,12 +87,12 @@ class AttributesTest extends \PHPUnit_Framework_TestCase
     public function testGetExpectedAttributeEmptyAttribute()
     {
         // check empty attribute
-        $attributes = array(
-            'attribute' => array(),
-        );
+        $attributes = [
+            'attribute' => [],
+        ];
         $expected = 'attribute';
         $this->setExpectedException(
-            'SimpleSAML_Error_Exception',
+            '\SimpleSAML\Error\Exception',
             "Empty attribute '".$expected."'.'"
         );
         Attributes::getExpectedAttribute($attributes, $expected);
@@ -104,15 +105,15 @@ class AttributesTest extends \PHPUnit_Framework_TestCase
     public function testGetExpectedAttributeMultipleValues()
     {
         // check attribute with more than value, that being not allowed
-        $attributes = array(
-            'attribute' => array(
+        $attributes = [
+            'attribute' => [
                 'value1',
                 'value2',
-            ),
-        );
+            ],
+        ];
         $expected = 'attribute';
         $this->setExpectedException(
-            'SimpleSAML_Error_Exception',
+            '\SimpleSAML\Error\Exception',
             'More than one value found for the attribute, multiple values not allowed.'
         );
         Attributes::getExpectedAttribute($attributes, $expected);
@@ -126,17 +127,17 @@ class AttributesTest extends \PHPUnit_Framework_TestCase
     {
         // check one value
         $value = 'value';
-        $attributes = array(
-            'attribute' => array($value),
-        );
+        $attributes = [
+            'attribute' => [$value],
+        ];
         $expected = 'attribute';
         $this->assertEquals($value, Attributes::getExpectedAttribute($attributes, $expected));
 
         // check multiple (allowed) values
         $value = 'value';
-        $attributes = array(
-            'attribute' => array($value, 'value2', 'value3'),
-        );
+        $attributes = [
+            'attribute' => [$value, 'value2', 'value3'],
+        ];
         $expected = 'attribute';
         $this->assertEquals($value, Attributes::getExpectedAttribute($attributes, $expected, true));
     }
@@ -159,7 +160,7 @@ class AttributesTest extends \PHPUnit_Framework_TestCase
      */
     public function testNormalizeAttributesArrayBadKeys()
     {
-        Attributes::normalizeAttributesArray(array('attr1' => 'value1', 1 => 'value2'));
+        Attributes::normalizeAttributesArray(['attr1' => 'value1', 1 => 'value2']);
     }
 
     /**
@@ -169,7 +170,7 @@ class AttributesTest extends \PHPUnit_Framework_TestCase
      */
     public function testNormalizeAttributesArrayBadValues()
     {
-        Attributes::normalizeAttributesArray(array('attr1' => 'value1', 'attr2' => 0));
+        Attributes::normalizeAttributesArray(['attr1' => 'value1', 'attr2' => 0]);
     }
 
     /**
@@ -177,20 +178,39 @@ class AttributesTest extends \PHPUnit_Framework_TestCase
      */
     public function testNormalizeAttributesArray()
     {
-        $attributes = array(
+        $attributes = [
             'key1' => 'value1',
-            'key2' => array('value2', 'value3'),
+            'key2' => ['value2', 'value3'],
             'key3' => 'value1'
-        );
-        $expected = array(
-            'key1' => array('value1'),
-            'key2' => array('value2', 'value3'),
-            'key3' => array('value1')
-        );
+        ];
+        $expected = [
+            'key1' => ['value1'],
+            'key2' => ['value2', 'value3'],
+            'key3' => ['value1']
+        ];
         $this->assertEquals(
             $expected,
             Attributes::normalizeAttributesArray($attributes),
             'Attribute array normalization failed'
+        );
+    }
+
+
+    /**
+     * Test the getAttributeNamespace() function.
+     */
+    public function testNamespacedAttributes()
+    {
+        // test for only the name
+        $this->assertEquals(
+            ['default', 'name'],
+            Attributes::getAttributeNamespace('name', 'default')
+        );
+
+        // test for a given namespace and multiple '/'
+        $this->assertEquals(
+            ['some/namespace', 'name'],
+            Attributes::getAttributeNamespace('some/namespace/name', 'default')
         );
     }
 }

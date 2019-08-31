@@ -1,0 +1,11 @@
+        <div class="expandable{% if expanded %} expanded{% endif %}">
+          <div class="general">
+            {%- block general%}{% endblock %}
+
+          </div>
+          <a tabindex="0" class="expander"></a>
+          <div class="content">
+            {%- block content %}{% endblock %}
+
+          </div>
+        </div>

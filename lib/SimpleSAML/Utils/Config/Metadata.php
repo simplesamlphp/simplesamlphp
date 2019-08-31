@@ -9,7 +9,6 @@ namespace SimpleSAML\Utils\Config;
  */
 class Metadata
 {
-
     /**
      * The string that identities Entity Categories.
      *
@@ -27,30 +26,37 @@ class Metadata
 
 
     /**
+     * Valid options for the ContactPerson element
+     *
+     * The 'attributes' option isn't defined in section 2.3.2.2 of the OASIS document, but
+     * it is required to allow additons to the main contact person element for trust
+     * frameworks.
+     *
      * @var array The valid configuration options for a contact configuration array.
      * @see "Metadata for the OASIS Security Assertion Markup Language (SAML) V2.0", section 2.3.2.2.
      */
-    public static $VALID_CONTACT_OPTIONS = array(
+    public static $VALID_CONTACT_OPTIONS = [
         'contactType',
         'emailAddress',
         'givenName',
         'surName',
         'telephoneNumber',
         'company',
-    );
+        'attributes',
+    ];
 
 
     /**
      * @var array The valid types of contact for a contact configuration array.
      * @see "Metadata for the OASIS Security Assertion Markup Language (SAML) V2.0", section 2.3.2.2.
      */
-    public static $VALID_CONTACT_TYPES = array(
+    public static $VALID_CONTACT_TYPES = [
         'technical',
         'support',
         'administrative',
         'billing',
         'other',
-    );
+    ];
 
 
     /**
@@ -106,6 +112,16 @@ class Metadata
                 self::$VALID_CONTACT_TYPES
             ));
             throw new \InvalidArgumentException('"contactType" is mandatory and must be one of '.$types.".");
+        }
+
+        // check attributes is an associative array
+        if (isset($contact['attributes'])) {
+            if (empty($contact['attributes'])
+                || !is_array($contact['attributes'])
+                || count(array_filter(array_keys($contact['attributes']), 'is_string')) === 0
+            ) {
+                throw new \InvalidArgumentException('"attributes" must be an array and cannot be empty.');
+            }
         }
 
         // try to fill in givenName and surName from name
@@ -207,13 +223,13 @@ class Metadata
         $firstAllowed = null;
 
         // look through the endpoint list for acceptable endpoints
-        foreach ($endpoints as $i => $ep) {
+        foreach ($endpoints as $ep) {
             if ($bindings !== null && !in_array($ep['Binding'], $bindings, true)) {
                 // unsupported binding, skip it
                 continue;
             }
 
-            if (array_key_exists('isDefault', $ep)) {
+            if (isset($ep['isDefault'])) {
                 if ($ep['isDefault'] === true) {
                     // this is the first endpoint with isDefault set to true
                     return $ep;
@@ -258,11 +274,42 @@ class Metadata
     public static function isHiddenFromDiscovery(array $metadata)
     {
         \SimpleSAML\Logger::maskErrors(E_ALL);
-        $hidden = in_array(self::$HIDE_FROM_DISCOVERY, $metadata['EntityAttributes'][self::$ENTITY_CATEGORY]);
+        $hidden = in_array(self::$HIDE_FROM_DISCOVERY, $metadata['EntityAttributes'][self::$ENTITY_CATEGORY], true);
         \SimpleSAML\Logger::popErrorMask();
-        if (is_bool($hidden)) {
-            return $hidden;
+        return $hidden === true;
+    }
+
+
+    /**
+     * This method parses the different possible values of the NameIDPolicy metadata configuration.
+     *
+     * @param mixed $nameIdPolicy
+     *
+     * @return null|array
+     */
+    public static function parseNameIdPolicy($nameIdPolicy)
+    {
+        $policy = null;
+
+        if (is_string($nameIdPolicy)) {
+            // handle old configurations where 'NameIDPolicy' was used to specify just the format
+            $policy = ['Format' => $nameIdPolicy];
+        } elseif (is_array($nameIdPolicy)) {
+            // handle current configurations specifying an array in the NameIDPolicy config option
+            $nameIdPolicy_cf = \SimpleSAML\Configuration::loadFromArray($nameIdPolicy);
+            $policy = [
+                'Format'      => $nameIdPolicy_cf->getString('Format', \SAML2\Constants::NAMEID_TRANSIENT),
+                'AllowCreate' => $nameIdPolicy_cf->getBoolean('AllowCreate', true),
+            ];
+            $spNameQualifier = $nameIdPolicy_cf->getString('SPNameQualifier', false);
+            if ($spNameQualifier !== false) {
+                $policy['SPNameQualifier'] = $spNameQualifier;
+            }
+        } elseif ($nameIdPolicy === null) {
+            // when NameIDPolicy is unset or set to null, default to transient as before
+            $policy = ['Format' => \SAML2\Constants::NAMEID_TRANSIENT];
         }
-        return false;
+
+        return $policy;
     }
 }

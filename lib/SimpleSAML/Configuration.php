@@ -1,5 +1,8 @@
 <?php
 
+namespace SimpleSAML;
+
+use SimpleSAML\Utils\System;
 
 /**
  * Configuration of SimpleSAMLphp
@@ -7,9 +10,8 @@
  * @author Andreas Aakre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
  */
-class SimpleSAML_Configuration
+class Configuration implements Utils\ClearableState
 {
-
     /**
      * A default value which means that the given option is required.
      *
@@ -23,7 +25,7 @@ class SimpleSAML_Configuration
      *
      * @var array
      */
-    private static $instance = array();
+    private static $instance = [];
 
 
     /**
@@ -34,7 +36,7 @@ class SimpleSAML_Configuration
      *
      * @var array
      */
-    private static $configDirs = array();
+    private static $configDirs = [];
 
 
     /**
@@ -44,7 +46,7 @@ class SimpleSAML_Configuration
      *
      * @var array
      */
-    private static $loadedConfigs = array();
+    private static $loadedConfigs = [];
 
 
     /**
@@ -72,6 +74,14 @@ class SimpleSAML_Configuration
 
 
     /**
+     * Temporary property that tells if the deprecated getBaseURL() method has been called or not.
+     *
+     * @var bool
+     */
+    private $deprecated_base_url_used = false;
+
+
+    /**
      * Initializes a configuration from the given array.
      *
      * @param array $config The configuration array.
@@ -79,13 +89,12 @@ class SimpleSAML_Configuration
      */
     public function __construct($config, $location)
     {
-        assert('is_array($config)');
-        assert('is_string($location)');
+        assert(is_array($config));
+        assert(is_string($location));
 
         $this->configuration = $config;
         $this->location = $location;
     }
-
 
     /**
      * Load the given configuration file.
@@ -93,33 +102,42 @@ class SimpleSAML_Configuration
      * @param string $filename The full path of the configuration file.
      * @param bool $required Whether the file is required.
      *
-     * @return SimpleSAML_Configuration The configuration file. An exception will be thrown if the
+     * @return \SimpleSAML\Configuration The configuration file. An exception will be thrown if the
      *                                   configuration file is missing.
      *
-     * @throws Exception If the configuration file is invalid or missing.
+     * @throws \Exception If the configuration file is invalid or missing.
      */
     private static function loadFromFile($filename, $required)
     {
-        assert('is_string($filename)');
-        assert('is_bool($required)');
+        assert(is_string($filename));
+        assert(is_bool($required));
 
         if (array_key_exists($filename, self::$loadedConfigs)) {
             return self::$loadedConfigs[$filename];
         }
 
-        $spurious_output = false;
         if (file_exists($filename)) {
             $config = 'UNINITIALIZED';
 
             // the file initializes a variable named '$config'
             ob_start();
-            require($filename);
+            if (interface_exists('Throwable', false)) {
+                try {
+                    require($filename);
+                } catch (\ParseError $e) {
+                    self::$loadedConfigs[$filename] = self::loadFromArray([], '[ARRAY]', 'simplesaml');
+                    throw new Error\ConfigurationError($e->getMessage(), $filename, []);
+                }
+            } else {
+                require($filename);
+            }
+
             $spurious_output = ob_get_length() > 0;
             ob_end_clean();
 
             // check that $config exists
             if (!isset($config)) {
-                throw new \SimpleSAML\Error\ConfigurationError(
+                throw new Error\ConfigurationError(
                     '$config is not defined in the configuration file.',
                     $filename
                 );
@@ -127,7 +145,7 @@ class SimpleSAML_Configuration
 
             // check that $config is initialized to an array
             if (!is_array($config)) {
-                throw new \SimpleSAML\Error\ConfigurationError(
+                throw new Error\ConfigurationError(
                     '$config is not an array.',
                     $filename
                 );
@@ -135,28 +153,28 @@ class SimpleSAML_Configuration
 
             // check that $config is not empty
             if (empty($config)) {
-                throw new \SimpleSAML\Error\ConfigurationError(
+                throw new Error\ConfigurationError(
                     '$config is empty.',
                     $filename
                 );
             }
         } elseif ($required) {
             // file does not exist, but is required
-            throw new \SimpleSAML\Error\ConfigurationError('Missing configuration file', $filename);
+            throw new Error\ConfigurationError('Missing configuration file', $filename);
         } else {
             // file does not exist, but is optional, so return an empty configuration object without saving it
-            $cfg = new SimpleSAML_Configuration(array(), $filename);
+            $cfg = new Configuration([], $filename);
             $cfg->filename = $filename;
             return $cfg;
         }
 
-        $cfg = new SimpleSAML_Configuration($config, $filename);
+        $cfg = new Configuration($config, $filename);
         $cfg->filename = $filename;
 
         self::$loadedConfigs[$filename] = $cfg;
 
         if ($spurious_output) {
-            SimpleSAML\Logger::warning(
+            Logger::warning(
                 "The configuration file '$filename' generates output. Please review your configuration."
             );
         }
@@ -173,10 +191,42 @@ class SimpleSAML_Configuration
      */
     public static function setConfigDir($path, $configSet = 'simplesaml')
     {
-        assert('is_string($path)');
-        assert('is_string($configSet)');
+        assert(is_string($path));
+        assert(is_string($configSet));
 
         self::$configDirs[$configSet] = $path;
+    }
+
+    /**
+     * Store a pre-initialized configuration.
+     *
+     * Allows consumers to create configuration objects without having them
+     * loaded from a file.
+     *
+     * @param \SimpleSAML\Configuration $config  The configuration object to store
+     * @param string $filename  The name of the configuration file.
+     * @param string $configSet  The configuration set. Optional, defaults to 'simplesaml'.
+     */
+    public static function setPreLoadedConfig(
+        Configuration $config,
+        $filename = 'config.php',
+        $configSet = 'simplesaml'
+    ) {
+        assert(is_string($filename));
+        assert(is_string($configSet));
+
+        if (!array_key_exists($configSet, self::$configDirs)) {
+            if ($configSet !== 'simplesaml') {
+                throw new \Exception('Configuration set \''.$configSet.'\' not initialized.');
+            } else {
+                self::$configDirs['simplesaml'] = dirname(dirname(dirname(__FILE__))).'/config';
+            }
+        }
+
+        $dir = self::$configDirs[$configSet];
+        $filePath = $dir.'/'.$filename;
+
+        self::$loadedConfigs[$filePath] = $config;
     }
 
 
@@ -186,19 +236,19 @@ class SimpleSAML_Configuration
      * @param string $filename The name of the configuration file.
      * @param string $configSet The configuration set. Optional, defaults to 'simplesaml'.
      *
-     * @return SimpleSAML_Configuration The SimpleSAML_Configuration object.
-     * @throws Exception If the configuration set is not initialized.
+     * @return \SimpleSAML\Configuration The Configuration object.
+     * @throws \Exception If the configuration set is not initialized.
      */
     public static function getConfig($filename = 'config.php', $configSet = 'simplesaml')
     {
-        assert('is_string($filename)');
-        assert('is_string($configSet)');
+        assert(is_string($filename));
+        assert(is_string($configSet));
 
         if (!array_key_exists($configSet, self::$configDirs)) {
             if ($configSet !== 'simplesaml') {
-                throw new Exception('Configuration set \''.$configSet.'\' not initialized.');
+                throw new \Exception('Configuration set \''.$configSet.'\' not initialized.');
             } else {
-                self::$configDirs['simplesaml'] = SimpleSAML\Utils\Config::getConfigDir();
+                self::$configDirs['simplesaml'] = Utils\Config::getConfigDir();
             }
         }
 
@@ -216,19 +266,19 @@ class SimpleSAML_Configuration
      * @param string $filename The name of the configuration file.
      * @param string $configSet The configuration set. Optional, defaults to 'simplesaml'.
      *
-     * @return SimpleSAML_Configuration A configuration object.
-     * @throws Exception If the configuration set is not initialized.
+     * @return \SimpleSAML\Configuration A configuration object.
+     * @throws \Exception If the configuration set is not initialized.
      */
     public static function getOptionalConfig($filename = 'config.php', $configSet = 'simplesaml')
     {
-        assert('is_string($filename)');
-        assert('is_string($configSet)');
+        assert(is_string($filename));
+        assert(is_string($configSet));
 
         if (!array_key_exists($configSet, self::$configDirs)) {
             if ($configSet !== 'simplesaml') {
-                throw new Exception('Configuration set \''.$configSet.'\' not initialized.');
+                throw new \Exception('Configuration set \''.$configSet.'\' not initialized.');
             } else {
-                self::$configDirs['simplesaml'] = SimpleSAML\Utils\Config::getConfigDir();
+                self::$configDirs['simplesaml'] = Utils\Config::getConfigDir();
             }
         }
 
@@ -247,14 +297,14 @@ class SimpleSAML_Configuration
      * instance with that name will be kept for it to be retrieved later with getInstance($instance). If null, the
      * configuration will not be kept for later use. Defaults to null.
      *
-     * @return SimpleSAML_Configuration The configuration object.
+     * @return \SimpleSAML\Configuration The configuration object.
      */
     public static function loadFromArray($config, $location = '[ARRAY]', $instance = null)
     {
-        assert('is_array($config)');
-        assert('is_string($location)');
+        assert(is_array($config));
+        assert(is_string($location));
 
-        $c = new SimpleSAML_Configuration($config, $location);
+        $c = new Configuration($config, $location);
         if ($instance !== null) {
             self::$instance[$instance] = $c;
         }
@@ -273,13 +323,13 @@ class SimpleSAML_Configuration
      *
      * @param string $instancename The instance name of the configuration file. Deprecated.
      *
-     * @return SimpleSAML_Configuration The configuration object.
+     * @return \SimpleSAML\Configuration The configuration object.
      *
-     * @throws Exception If the configuration with $instancename name is not initialized.
+     * @throws \Exception If the configuration with $instancename name is not initialized.
      */
     public static function getInstance($instancename = 'simplesaml')
     {
-        assert('is_string($instancename)');
+        assert(is_string($instancename));
 
         // check if the instance exists already
         if (array_key_exists($instancename, self::$instance)) {
@@ -289,13 +339,12 @@ class SimpleSAML_Configuration
         if ($instancename === 'simplesaml') {
             try {
                 return self::getConfig();
-            } catch (SimpleSAML\Error\ConfigurationError $e) {
-                throw \SimpleSAML\Error\CriticalConfigurationError::fromException($e);
+            } catch (Error\ConfigurationError $e) {
+                throw Error\CriticalConfigurationError::fromException($e);
             }
-
         }
 
-        throw new \SimpleSAML\Error\CriticalConfigurationError(
+        throw new Error\CriticalConfigurationError(
             'Configuration with name '.$instancename.' is not initialized.'
         );
     }
@@ -315,9 +364,9 @@ class SimpleSAML_Configuration
      */
     public static function init($path, $instancename = 'simplesaml', $configfilename = 'config.php')
     {
-        assert('is_string($path)');
-        assert('is_string($instancename)');
-        assert('is_string($configfilename)');
+        assert(is_string($path));
+        assert(is_string($instancename));
+        assert(is_string($configfilename));
 
         if ($instancename === 'simplesaml') {
             // for backwards compatibility
@@ -347,9 +396,9 @@ class SimpleSAML_Configuration
      */
     public function copyFromBase($instancename, $filename)
     {
-        assert('is_string($instancename)');
-        assert('is_string($filename)');
-        assert('$this->filename !== NULL');
+        assert(is_string($instancename));
+        assert(is_string($filename));
+        assert($this->filename !== null);
 
         // check if we already have loaded the given config - return the existing instance if we have
         if (array_key_exists($instancename, self::$instance)) {
@@ -370,7 +419,7 @@ class SimpleSAML_Configuration
      */
     public function getVersion()
     {
-        return 'master';
+        return '1.17.6';
     }
 
 
@@ -379,19 +428,19 @@ class SimpleSAML_Configuration
      *
      * @param string $name Name of the configuration option.
      * @param mixed  $default Default value of the configuration option. This parameter will default to null if not
-     *                        specified. This can be set to SimpleSAML_Configuration::REQUIRED_OPTION, which will
+     *                        specified. This can be set to \SimpleSAML\Configuration::REQUIRED_OPTION, which will
      *                        cause an exception to be thrown if the option isn't found.
      *
      * @return mixed The configuration option with name $name, or $default if the option was not found.
      *
-     * @throws Exception If the required option cannot be retrieved.
+     * @throws \Exception If the required option cannot be retrieved.
      */
     public function getValue($name, $default = null)
     {
         // return the default value if the option is unset
         if (!array_key_exists($name, $this->configuration)) {
             if ($default === self::REQUIRED_OPTION) {
-                throw new Exception(
+                throw new \Exception(
                     $this->location.': Could not retrieve the required option '.
                     var_export($name, true)
                 );
@@ -404,7 +453,7 @@ class SimpleSAML_Configuration
 
 
     /**
-     * Check whether an key in the configuration exists.
+     * Check whether a key in the configuration exists or not.
      *
      * @param string $name The key in the configuration to look for.
      *
@@ -443,34 +492,60 @@ class SimpleSAML_Configuration
      *
      * @return string The absolute path relative to the root of the website.
      *
-     * @throws SimpleSAML\Error\CriticalConfigurationError If the format of 'baseurlpath' is incorrect.
+     * @throws \SimpleSAML\Error\CriticalConfigurationError If the format of 'baseurlpath' is incorrect.
+     *
+     * @deprecated This method will be removed in SimpleSAMLphp 2.0. Please use getBasePath() instead.
      */
     public function getBaseURL()
     {
+        if (!$this->deprecated_base_url_used) {
+            $this->deprecated_base_url_used = true;
+            Logger::warning(
+                "\SimpleSAML\Configuration::getBaseURL() is deprecated, please use getBasePath() instead."
+            );
+        }
+        if (preg_match('/^\*(.*)$/D', $this->getString('baseurlpath', 'simplesaml/'), $matches)) {
+            // deprecated behaviour, will be removed in the future
+            return Utils\HTTP::getFirstPathElement(false).$matches[1];
+        }
+        return ltrim($this->getBasePath(), '/');
+    }
+
+
+    /**
+     * Retrieve the absolute path pointing to the SimpleSAMLphp installation.
+     *
+     * The path is guaranteed to start and end with a slash ('/'). E.g.: /simplesaml/
+     *
+     * @return string The absolute path where SimpleSAMLphp can be reached in the web server.
+     *
+     * @throws \SimpleSAML\Error\CriticalConfigurationError If the format of 'baseurlpath' is incorrect.
+     */
+    public function getBasePath()
+    {
         $baseURL = $this->getString('baseurlpath', 'simplesaml/');
 
-        if (preg_match('/^\*(.*)$/D', $baseURL, $matches)) {
-            // deprecated behaviour, will be removed in the future
-            return \SimpleSAML\Utils\HTTP::getFirstPathElement(false).$matches[1];
-        }
-
-        if (preg_match('#^https?://[^/]*/(.*)$#', $baseURL, $matches)) {
+        if (preg_match('#^https?://[^/]*(?:/(.+/?)?)?$#', $baseURL, $matches)) {
             // we have a full url, we need to strip the path
-            return $matches[1];
+            if (!array_key_exists(1, $matches)) {
+                // absolute URL without path
+                return '/';
+            }
+            return '/'.rtrim($matches[1], '/')."/";
         } elseif ($baseURL === '' || $baseURL === '/') {
-            // Root directory of site
-            return '';
-        } elseif (preg_match('#^/?([^/]?.*/)#D', $baseURL, $matches)) {
+            // root directory of site
+            return '/';
+        } elseif (preg_match('#^/?((?:[^/\s]+/?)+)#', $baseURL, $matches)) {
             // local path only
-            return $matches[1];
+            return '/'.rtrim($matches[1], '/').'/';
         } else {
             /*
              * Invalid 'baseurlpath'. We cannot recover from this, so throw a critical exception and try to be graceful
              * with the configuration. Use a guessed base path instead of the one provided.
              */
             $c = $this->toArray();
-            $c['baseurlpath'] = SimpleSAML\Utils\HTTP::guessBasePath();
-            throw new SimpleSAML\Error\CriticalConfigurationError(
+            $c['baseurlpath'] = Utils\HTTP::guessBasePath();
+            throw new Error\CriticalConfigurationError(
                 'Incorrect format for option \'baseurlpath\'. Value is: "'.
                 $this->getString('baseurlpath', 'simplesaml/').'". Valid format is in the form'.
                 ' [(http|https)://(hostname|fqdn)[:port]]/[path/to/simplesaml/].',
@@ -497,21 +572,9 @@ class SimpleSAML_Configuration
             return null;
         }
 
-        assert('is_string($path)');
+        assert(is_string($path));
 
-        /* Prepend path with basedir if it doesn't start with a slash or a Windows drive letter (e.g. "C:\"). We assume
-         * getBaseDir ends with a slash.
-         */
-        if ($path[0] !== '/' &&
-            !(preg_match('@^[a-z]:[\\\\/]@i', $path, $matches) && is_dir($matches[0]))
-        ) {
-            $path = $this->getBaseDir().$path;
-        }
-
-        // remove trailing slashes
-        $path = rtrim($path, '/');
-
-        return $path;
+        return System::resolvePath($path, $this->getBaseDir());
     }
 
 
@@ -561,8 +624,8 @@ class SimpleSAML_Configuration
         $dir = $this->getString('basedir', null);
         if ($dir !== null) {
             // add trailing slash if it is missing
-            if (substr($dir, -1) !== '/') {
-                $dir .= '/';
+            if (substr($dir, -1) !== DIRECTORY_SEPARATOR) {
+                $dir .= DIRECTORY_SEPARATOR;
             }
 
             return $dir;
@@ -570,18 +633,18 @@ class SimpleSAML_Configuration
 
         // the directory wasn't set in the configuration file, path is <base directory>/lib/SimpleSAML/Configuration.php
         $dir = __FILE__;
-        assert('basename($dir) === "Configuration.php"');
+        assert(basename($dir) === 'Configuration.php');
 
         $dir = dirname($dir);
-        assert('basename($dir) === "SimpleSAML"');
+        assert(basename($dir) === 'SimpleSAML');
 
         $dir = dirname($dir);
-        assert('basename($dir) === "lib"');
+        assert(basename($dir) === 'lib');
 
         $dir = dirname($dir);
 
-        // Add trailing slash
-        $dir .= '/';
+        // Add trailing directory separator
+        $dir .= DIRECTORY_SEPARATOR;
 
         return $dir;
     }
@@ -601,11 +664,11 @@ class SimpleSAML_Configuration
      * @return boolean|mixed The option with the given name, or $default if the option isn't found and $default is
      *     specified.
      *
-     * @throws Exception If the option is not boolean.
+     * @throws \Exception If the option is not boolean.
      */
     public function getBoolean($name, $default = self::REQUIRED_OPTION)
     {
-        assert('is_string($name)');
+        assert(is_string($name));
 
         $ret = $this->getValue($name, $default);
 
@@ -615,7 +678,7 @@ class SimpleSAML_Configuration
         }
 
         if (!is_bool($ret)) {
-            throw new Exception(
+            throw new \Exception(
                 $this->location.': The option '.var_export($name, true).
                 ' is not a valid boolean value.'
             );
@@ -639,11 +702,11 @@ class SimpleSAML_Configuration
      * @return string|mixed The option with the given name, or $default if the option isn't found and $default is
      *     specified.
      *
-     * @throws Exception If the option is not a string.
+     * @throws \Exception If the option is not a string.
      */
     public function getString($name, $default = self::REQUIRED_OPTION)
     {
-        assert('is_string($name)');
+        assert(is_string($name));
 
         $ret = $this->getValue($name, $default);
 
@@ -653,7 +716,7 @@ class SimpleSAML_Configuration
         }
 
         if (!is_string($ret)) {
-            throw new Exception(
+            throw new \Exception(
                 $this->location.': The option '.var_export($name, true).
                 ' is not a valid string value.'
             );
@@ -677,11 +740,11 @@ class SimpleSAML_Configuration
      * @return int|mixed The option with the given name, or $default if the option isn't found and $default is
      * specified.
      *
-     * @throws Exception If the option is not an integer.
+     * @throws \Exception If the option is not an integer.
      */
     public function getInteger($name, $default = self::REQUIRED_OPTION)
     {
-        assert('is_string($name)');
+        assert(is_string($name));
 
         $ret = $this->getValue($name, $default);
 
@@ -691,7 +754,7 @@ class SimpleSAML_Configuration
         }
 
         if (!is_int($ret)) {
-            throw new Exception(
+            throw new \Exception(
                 $this->location.': The option '.var_export($name, true).
                 ' is not a valid integer value.'
             );
@@ -719,13 +782,13 @@ class SimpleSAML_Configuration
      * @return int|mixed The option with the given name, or $default if the option isn't found and $default is
      *     specified.
      *
-     * @throws Exception If the option is not in the range specified.
+     * @throws \Exception If the option is not in the range specified.
      */
     public function getIntegerRange($name, $minimum, $maximum, $default = self::REQUIRED_OPTION)
     {
-        assert('is_string($name)');
-        assert('is_int($minimum)');
-        assert('is_int($maximum)');
+        assert(is_string($name));
+        assert(is_int($minimum));
+        assert(is_int($maximum));
 
         $ret = $this->getInteger($name, $default);
 
@@ -735,7 +798,7 @@ class SimpleSAML_Configuration
         }
 
         if ($ret < $minimum || $ret > $maximum) {
-            throw new Exception(
+            throw new \Exception(
                 $this->location.': Value of option '.var_export($name, true).
                 ' is out of range. Value is '.$ret.', allowed range is ['
                 .$minimum.' - '.$maximum.']'
@@ -763,14 +826,14 @@ class SimpleSAML_Configuration
      *                  isn't given, the option will be considered to be mandatory. The default value can be
      *                  any value, including null.
      *
-     * @return mixed The option with the given name, or $default if the option isn't found adn $default is given.
+     * @return mixed The option with the given name, or $default if the option isn't found and $default is given.
      *
-     * @throws Exception If the option does not have any of the allowed values.
+     * @throws \Exception If the option does not have any of the allowed values.
      */
     public function getValueValidate($name, $allowedValues, $default = self::REQUIRED_OPTION)
     {
-        assert('is_string($name)');
-        assert('is_array($allowedValues)');
+        assert(is_string($name));
+        assert(is_array($allowedValues));
 
         $ret = $this->getValue($name, $default);
         if ($ret === $default) {
@@ -779,13 +842,13 @@ class SimpleSAML_Configuration
         }
 
         if (!in_array($ret, $allowedValues, true)) {
-            $strValues = array();
+            $strValues = [];
             foreach ($allowedValues as $av) {
                 $strValues[] = var_export($av, true);
             }
             $strValues = implode(', ', $strValues);
 
-            throw new Exception(
+            throw new \Exception(
                 $this->location.': Invalid value given for the option '.
                 var_export($name, true).'. It should have one of the following values: '.
                 $strValues.'; but it had the following value: '.var_export($ret, true)
@@ -810,11 +873,11 @@ class SimpleSAML_Configuration
      * @return array|mixed The option with the given name, or $default if the option isn't found and $default is
      * specified.
      *
-     * @throws Exception If the option is not an array.
+     * @throws \Exception If the option is not an array.
      */
     public function getArray($name, $default = self::REQUIRED_OPTION)
     {
-        assert('is_string($name)');
+        assert(is_string($name));
 
         $ret = $this->getValue($name, $default);
 
@@ -824,7 +887,7 @@ class SimpleSAML_Configuration
         }
 
         if (!is_array($ret)) {
-            throw new Exception($this->location.': The option '.var_export($name, true).' is not an array.');
+            throw new \Exception($this->location.': The option '.var_export($name, true).' is not an array.');
         }
 
         return $ret;
@@ -845,7 +908,7 @@ class SimpleSAML_Configuration
      */
     public function getArrayize($name, $default = self::REQUIRED_OPTION)
     {
-        assert('is_string($name)');
+        assert(is_string($name));
 
         $ret = $this->getValue($name, $default);
 
@@ -855,7 +918,7 @@ class SimpleSAML_Configuration
         }
 
         if (!is_array($ret)) {
-            $ret = array($ret);
+            $ret = [$ret];
         }
 
         return $ret;
@@ -874,11 +937,11 @@ class SimpleSAML_Configuration
      *
      * @return array The option with the given name, or $default if the option isn't found and $default is specified.
      *
-     * @throws Exception If the option is not a string or an array of strings.
+     * @throws \Exception If the option is not a string or an array of strings.
      */
     public function getArrayizeString($name, $default = self::REQUIRED_OPTION)
     {
-        assert('is_string($name)');
+        assert(is_string($name));
 
         $ret = $this->getArrayize($name, $default);
 
@@ -889,7 +952,7 @@ class SimpleSAML_Configuration
 
         foreach ($ret as $value) {
             if (!is_string($value)) {
-                throw new Exception(
+                throw new \Exception(
                     $this->location.': The option '.var_export($name, true).
                     ' must be a string or an array of strings.'
                 );
@@ -901,9 +964,9 @@ class SimpleSAML_Configuration
 
 
     /**
-     * Retrieve an array as a SimpleSAML_Configuration object.
+     * Retrieve an array as a \SimpleSAML\Configuration object.
      *
-     * This function will load the value of an option into a SimpleSAML_Configuration object. The option must contain
+     * This function will load the value of an option into a \SimpleSAML\Configuration object. The option must contain
      * an array.
      *
      * An exception will be thrown if this option isn't an array, or if this option isn't found, and no default value
@@ -916,11 +979,11 @@ class SimpleSAML_Configuration
      *
      * @return mixed The option with the given name, or $default if the option isn't found and $default is specified.
      *
-     * @throws Exception If the option is not an array.
+     * @throws \Exception If the option is not an array.
      */
     public function getConfigItem($name, $default = self::REQUIRED_OPTION)
     {
-        assert('is_string($name)');
+        assert(is_string($name));
 
         $ret = $this->getValue($name, $default);
 
@@ -930,7 +993,7 @@ class SimpleSAML_Configuration
         }
 
         if (!is_array($ret)) {
-            throw new Exception(
+            throw new \Exception(
                 $this->location.': The option '.var_export($name, true).
                 ' is not an array.'
             );
@@ -941,11 +1004,11 @@ class SimpleSAML_Configuration
 
 
     /**
-     * Retrieve an array of arrays as an array of SimpleSAML_Configuration objects.
+     * Retrieve an array of arrays as an array of \SimpleSAML\Configuration objects.
      *
      * This function will retrieve an option containing an array of arrays, and create an array of
-     * SimpleSAML_Configuration objects from that array. The indexes in the new array will be the same as the original
-     * indexes, but the values will be SimpleSAML_Configuration objects.
+     * \SimpleSAML\Configuration objects from that array. The indexes in the new array will be the same as the original
+     * indexes, but the values will be \SimpleSAML\Configuration objects.
      *
      * An exception will be thrown if this option isn't an array of arrays, or if this option isn't found, and no
      * default value is given.
@@ -957,11 +1020,11 @@ class SimpleSAML_Configuration
      *
      * @return mixed The option with the given name, or $default if the option isn't found and $default is specified.
      *
-     * @throws Exception If the value of this element is not an array.
+     * @throws \Exception If the value of this element is not an array.
      */
     public function getConfigList($name, $default = self::REQUIRED_OPTION)
     {
-        assert('is_string($name)');
+        assert(is_string($name));
 
         $ret = $this->getValue($name, $default);
 
@@ -971,18 +1034,18 @@ class SimpleSAML_Configuration
         }
 
         if (!is_array($ret)) {
-            throw new Exception(
+            throw new \Exception(
                 $this->location.': The option '.var_export($name, true).
                 ' is not an array.'
             );
         }
 
-        $out = array();
+        $out = [];
         foreach ($ret as $index => $config) {
             $newLoc = $this->location.'['.var_export($name, true).']['.
                 var_export($index, true).']';
             if (!is_array($config)) {
-                throw new Exception($newLoc.': The value of this element was expected to be an array.');
+                throw new \Exception($newLoc.': The value of this element was expected to be an array.');
             }
             $out[$index] = self::loadFromArray($config, $newLoc);
         }
@@ -1026,28 +1089,28 @@ class SimpleSAML_Configuration
      *
      * @return string The default binding.
      *
-     * @throws Exception If the default binding is missing for this endpoint type.
+     * @throws \Exception If the default binding is missing for this endpoint type.
      */
     private function getDefaultBinding($endpointType)
     {
-        assert('is_string($endpointType)');
+        assert(is_string($endpointType));
 
         $set = $this->getString('metadata-set');
         switch ($set.':'.$endpointType) {
             case 'saml20-idp-remote:SingleSignOnService':
             case 'saml20-idp-remote:SingleLogoutService':
             case 'saml20-sp-remote:SingleLogoutService':
-                return SAML2_Const::BINDING_HTTP_REDIRECT;
+                return \SAML2\Constants::BINDING_HTTP_REDIRECT;
             case 'saml20-sp-remote:AssertionConsumerService':
-                return SAML2_Const::BINDING_HTTP_POST;
+                return \SAML2\Constants::BINDING_HTTP_POST;
             case 'saml20-idp-remote:ArtifactResolutionService':
-                return SAML2_Const::BINDING_SOAP;
+                return \SAML2\Constants::BINDING_SOAP;
             case 'shib13-idp-remote:SingleSignOnService':
                 return 'urn:mace:shibboleth:1.0:profiles:AuthnRequest';
             case 'shib13-sp-remote:AssertionConsumerService':
                 return 'urn:oasis:names:tc:SAML:1.0:profiles:browser-post';
             default:
-                throw new Exception('Missing default binding for '.$endpointType.' in '.$set);
+                throw new \Exception('Missing default binding for '.$endpointType.' in '.$set);
         }
     }
 
@@ -1059,26 +1122,26 @@ class SimpleSAML_Configuration
      *
      * @return array Array of endpoints of the given type.
      *
-     * @throws Exception If any element of the configuration options for this endpoint type is incorrect.
+     * @throws \Exception If any element of the configuration options for this endpoint type is incorrect.
      */
     public function getEndpoints($endpointType)
     {
-        assert('is_string($endpointType)');
+        assert(is_string($endpointType));
 
         $loc = $this->location.'['.var_export($endpointType, true).']:';
 
         if (!array_key_exists($endpointType, $this->configuration)) {
             // no endpoints of the given type
-            return array();
+            return [];
         }
 
 
         $eps = $this->configuration[$endpointType];
         if (is_string($eps)) {
             // for backwards-compatibility
-            $eps = array($eps);
+            $eps = [$eps];
         } elseif (!is_array($eps)) {
-            throw new Exception($loc.': Expected array or string.');
+            throw new \Exception($loc.': Expected array or string.');
         }
 
 
@@ -1087,41 +1150,41 @@ class SimpleSAML_Configuration
 
             if (is_string($ep)) {
                 // for backwards-compatibility
-                $ep = array(
+                $ep = [
                     'Location' => $ep,
                     'Binding'  => $this->getDefaultBinding($endpointType),
-                );
+                ];
                 $responseLocation = $this->getString($endpointType.'Response', null);
                 if ($responseLocation !== null) {
                     $ep['ResponseLocation'] = $responseLocation;
                 }
             } elseif (!is_array($ep)) {
-                throw new Exception($iloc.': Expected a string or an array.');
+                throw new \Exception($iloc.': Expected a string or an array.');
             }
 
             if (!array_key_exists('Location', $ep)) {
-                throw new Exception($iloc.': Missing Location.');
+                throw new \Exception($iloc.': Missing Location.');
             }
             if (!is_string($ep['Location'])) {
-                throw new Exception($iloc.': Location must be a string.');
+                throw new \Exception($iloc.': Location must be a string.');
             }
 
             if (!array_key_exists('Binding', $ep)) {
-                throw new Exception($iloc.': Missing Binding.');
+                throw new \Exception($iloc.': Missing Binding.');
             }
             if (!is_string($ep['Binding'])) {
-                throw new Exception($iloc.': Binding must be a string.');
+                throw new \Exception($iloc.': Binding must be a string.');
             }
 
             if (array_key_exists('ResponseLocation', $ep)) {
                 if (!is_string($ep['ResponseLocation'])) {
-                    throw new Exception($iloc.': ResponseLocation must be a string.');
+                    throw new \Exception($iloc.': ResponseLocation must be a string.');
                 }
             }
 
             if (array_key_exists('index', $ep)) {
                 if (!is_int($ep['index'])) {
-                    throw new Exception($iloc.': index must be an integer.');
+                    throw new \Exception($iloc.': index must be an integer.');
                 }
             }
         }
@@ -1140,11 +1203,11 @@ class SimpleSAML_Configuration
      *
      * @return array|null The default endpoint, or null if no acceptable endpoints are used.
      *
-     * @throws Exception If no supported endpoint is found.
+     * @throws \Exception If no supported endpoint is found.
      */
     public function getEndpointPrioritizedByBinding($endpointType, array $bindings, $default = self::REQUIRED_OPTION)
     {
-        assert('is_string($endpointType)');
+        assert(is_string($endpointType));
 
         $endpoints = $this->getEndpoints($endpointType);
 
@@ -1158,7 +1221,7 @@ class SimpleSAML_Configuration
 
         if ($default === self::REQUIRED_OPTION) {
             $loc = $this->location.'['.var_export($endpointType, true).']:';
-            throw new Exception($loc.'Could not find a supported '.$endpointType.' endpoint.');
+            throw new \Exception($loc.'Could not find a supported '.$endpointType.' endpoint.');
         }
 
         return $default;
@@ -1175,22 +1238,22 @@ class SimpleSAML_Configuration
      *
      * @return array|null The default endpoint, or null if no acceptable endpoints are used.
      *
-     * @throws Exception If no supported endpoint is found.
+     * @throws \Exception If no supported endpoint is found.
      */
     public function getDefaultEndpoint($endpointType, array $bindings = null, $default = self::REQUIRED_OPTION)
     {
-        assert('is_string($endpointType)');
+        assert(is_string($endpointType));
 
         $endpoints = $this->getEndpoints($endpointType);
 
-        $defaultEndpoint = \SimpleSAML\Utils\Config\Metadata::getDefaultEndpoint($endpoints, $bindings);
+        $defaultEndpoint = Utils\Config\Metadata::getDefaultEndpoint($endpoints, $bindings);
         if ($defaultEndpoint !== null) {
             return $defaultEndpoint;
         }
 
         if ($default === self::REQUIRED_OPTION) {
             $loc = $this->location.'['.var_export($endpointType, true).']:';
-            throw new Exception($loc.'Could not find a supported '.$endpointType.' endpoint.');
+            throw new \Exception($loc.'Could not find a supported '.$endpointType.' endpoint.');
         }
 
         return $default;
@@ -1208,11 +1271,11 @@ class SimpleSAML_Configuration
      *
      * @return array Associative array with language => string pairs.
      *
-     * @throws Exception If the translation is not an array or a string, or its index or value are not strings.
+     * @throws \Exception If the translation is not an array or a string, or its index or value are not strings.
      */
     public function getLocalizedString($name, $default = self::REQUIRED_OPTION)
     {
-        assert('is_string($name)');
+        assert(is_string($name));
 
         $ret = $this->getValue($name, $default);
         if ($ret === $default) {
@@ -1223,19 +1286,19 @@ class SimpleSAML_Configuration
         $loc = $this->location.'['.var_export($name, true).']';
 
         if (is_string($ret)) {
-            $ret = array('en' => $ret,);
+            $ret = ['en' => $ret];
         }
 
         if (!is_array($ret)) {
-            throw new Exception($loc.': Must be an array or a string.');
+            throw new \Exception($loc.': Must be an array or a string.');
         }
 
         foreach ($ret as $k => $v) {
             if (!is_string($k)) {
-                throw new Exception($loc.': Invalid language code: '.var_export($k, true));
+                throw new \Exception($loc.': Invalid language code: '.var_export($k, true));
             }
             if (!is_string($v)) {
-                throw new Exception($loc.'['.var_export($v, true).']: Must be a string.');
+                throw new \Exception($loc.'['.var_export($v, true).']: Must be a string.');
             }
         }
 
@@ -1252,19 +1315,19 @@ class SimpleSAML_Configuration
      * @param string $prefix The prefix which should be used when reading from the metadata
      *                       array. Defaults to ''.
      *
-     * @return array|null Public key data, or null if no public key or was found.
+     * @return array Public key data, or empty array if no public key or was found.
      *
-     * @throws Exception If the certificate or public key cannot be loaded from a file.
-     * @throws SimpleSAML_Error_Exception If the file does not contain a valid PEM-encoded certificate, or there is no
+     * @throws \Exception If the certificate or public key cannot be loaded from a file.
+     * @throws \SimpleSAML\Error\Exception If the file does not contain a valid PEM-encoded certificate, or there is no
      * certificate in the metadata.
      */
     public function getPublicKeys($use = null, $required = false, $prefix = '')
     {
-        assert('is_bool($required)');
-        assert('is_string($prefix)');
+        assert(is_bool($required));
+        assert(is_string($prefix));
 
         if ($this->hasValue($prefix.'keys')) {
-            $ret = array();
+            $ret = [];
             foreach ($this->getArray($prefix.'keys') as $key) {
                 if ($use !== null && isset($key[$use]) && !$key[$use]) {
                     continue;
@@ -1275,52 +1338,60 @@ class SimpleSAML_Configuration
                 }
                 $ret[] = $key;
             }
-            if (!empty($ret)) {
-                return $ret;
-            }
+            return $ret;
         } elseif ($this->hasValue($prefix.'certData')) {
             $certData = $this->getString($prefix.'certData');
             $certData = preg_replace('/\s+/', '', $certData);
-            return array(
-                array(
+            return [
+                [
                     'encryption'      => true,
                     'signing'         => true,
                     'type'            => 'X509Certificate',
                     'X509Certificate' => $certData,
-                ),
-            );
+                ],
+            ];
         } elseif ($this->hasValue($prefix.'certificate')) {
             $file = $this->getString($prefix.'certificate');
-            $file = \SimpleSAML\Utils\Config::getCertPath($file);
+            $file = Utils\Config::getCertPath($file);
             $data = @file_get_contents($file);
 
             if ($data === false) {
-                throw new Exception($this->location.': Unable to load certificate/public key from file "'.$file.'".');
+                throw new \Exception($this->location.': Unable to load certificate/public key from file "'.$file.'".');
             }
 
             // extract certificate data (if this is a certificate)
             $pattern = '/^-----BEGIN CERTIFICATE-----([^-]*)^-----END CERTIFICATE-----/m';
             if (!preg_match($pattern, $data, $matches)) {
-                throw new SimpleSAML_Error_Exception(
+                throw new \SimpleSAML\Error\Exception(
                     $this->location.': Could not find PEM encoded certificate in "'.$file.'".'
                 );
             }
             $certData = preg_replace('/\s+/', '', $matches[1]);
 
-            return array(
-                array(
+            return [
+                [
                     'encryption'      => true,
                     'signing'         => true,
                     'type'            => 'X509Certificate',
                     'X509Certificate' => $certData,
-                ),
-            );
-        }
-
-        if ($required) {
-            throw new SimpleSAML_Error_Exception($this->location.': Missing certificate in metadata.');
+                ],
+            ];
+        } elseif ($required === true) {
+            throw new \SimpleSAML\Error\Exception($this->location.': Missing certificate in metadata.');
         } else {
-            return null;
+            return [];
         }
+    }
+
+    /**
+     * Clear any configuration information cached.
+     * Allows for configuration files to be changed and reloaded during a given request. Most useful
+     * when running phpunit tests and needing to alter config.php between test cases
+     */
+    public static function clearInternalState()
+    {
+        self::$configDirs = [];
+        self::$instance = [];
+        self::$loadedConfigs = [];
     }
 }

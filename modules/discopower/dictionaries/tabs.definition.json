@@ -23,6 +23,9 @@
 	"greece": {
 		"en": "Greece"
 	},
+	"southafrica": {
+		"en": "South Africa"
+	},
 	"edugain": {
 		"en": "Europe (eduGAIN)"
 	},
@@ -34,5 +37,8 @@
 	},
 	"ukacessfederation": {
 		"en": "UK Access Federation"
+	},
+	"incremental_search": {
+		"en": "Incremental search..."
 	}
 }

@@ -4,39 +4,38 @@
  *
  * @param array &$croninfo  Output
  */
-function sanitycheck_hook_cron(&$croninfo) {
-	assert('is_array($croninfo)');
-	assert('array_key_exists("summary", $croninfo)');
-	assert('array_key_exists("tag", $croninfo)');
 
-	SimpleSAML\Logger::info('cron [sanitycheck]: Running cron in cron tag [' . $croninfo['tag'] . '] ');
+function sanitycheck_hook_cron(&$croninfo)
+{
+    assert(is_array($croninfo));
+    assert(array_key_exists('summary', $croninfo));
+    assert(array_key_exists('tag', $croninfo));
 
-	try {
-	
-		$sconfig = SimpleSAML_Configuration::getOptionalConfig('config-sanitycheck.php');
+    \SimpleSAML\Logger::info('cron [sanitycheck]: Running cron in cron tag ['.$croninfo['tag'].'] ');
 
-		$cronTag = $sconfig->getString('cron_tag', NULL);
-		if ($cronTag === NULL || $cronTag !== $croninfo['tag']) {
-			return;
-		}
+    try {
+        $sconfig = \SimpleSAML\Configuration::getOptionalConfig('config-sanitycheck.php');
 
-		$info = array();
-		$errors = array();
-		$hookinfo = array(
-			'info' => &$info,
-			'errors' => &$errors,
-		);
-		
-		SimpleSAML\Module::callHooks('sanitycheck', $hookinfo);
-		
-		if (count($errors) > 0) {
-			foreach ($errors AS $err) {
-				$croninfo['summary'][] = 'Sanitycheck error: ' . $err;
-			}
-		}
-		
-	} catch (Exception $e) {
-		$croninfo['summary'][] = 'Error executing sanity check: ' . $e->getMessage();
-	}
+        $cronTag = $sconfig->getString('cron_tag', null);
+        if ($cronTag === null || $cronTag !== $croninfo['tag']) {
+            return;
+        }
 
+        $info = [];
+        $errors = [];
+        $hookinfo = [
+            'info' => &$info,
+            'errors' => &$errors,
+        ];
+
+        SimpleSAML\Module::callHooks('sanitycheck', $hookinfo);
+
+        if (count($errors) > 0) {
+            foreach ($errors as $err) {
+                $croninfo['summary'][] = 'Sanitycheck error: '.$err;
+            }
+        }
+    } catch (Exception $e) {
+        $croninfo['summary'][] = 'Error executing sanity check: '.$e->getMessage();
+    }
 }

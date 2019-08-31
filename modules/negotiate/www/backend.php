@@ -8,9 +8,12 @@
  * @package SimpleSAMLphp
  */
 
-$state = SimpleSAML_Auth_State::loadState($_REQUEST['AuthState'], sspmod_negotiate_Auth_Source_Negotiate::STAGEID);
-SimpleSAML\Logger::debug('backend - fallback: '.$state['LogoutState']['negotiate:backend']);
+$state = \SimpleSAML\Auth\State::loadState(
+    $_REQUEST['AuthState'],
+    \SimpleSAML\Module\negotiate\Auth\Source\Negotiate::STAGEID
+);
+\SimpleSAML\Logger::debug('backend - fallback: '.$state['LogoutState']['negotiate:backend']);
 
-sspmod_negotiate_Auth_Source_Negotiate::fallBack($state);
+\SimpleSAML\Module\negotiate\Auth\Source\Negotiate::fallBack($state);
 
 exit;

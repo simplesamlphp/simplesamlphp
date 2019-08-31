@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="{{ currentLanguage }}" xml:lang="{{ currentLanguage }}">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="initial-scale=1.0">
+    <title>{{ pagetitle }}</title>
+    <link rel="stylesheet" type="text/css" href="{{ asset("css/stylesheet.css") }}">
+    <link rel="icon" type="image/icon" href="/{{ baseurlpath }}resources/icons/favicon.ico">
+    {% if isRTL %}
+
+    <link rel="stylesheet" type="text/css" href="/{{ baseurlpath }}assets/css/src/default-rtl.css" />
+    {% endif %}
+
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="preload" href="{{ asset('js/bundle.js') }}" as="script" />
+    {%- block preload %}{% endblock %}
+
+  </head>
+  <body id="{{ templateId }}">
+    <div id="layout">
+    {%- block header %}{% include "_header.twig" %}{% endblock %}
+
+      <div id="content">
+        <div class="wrap">
+          {%- if not isProduction %}
+
+          <div class="message-box warning">
+            {% trans %}You are now accessing a pre-production system. This authentication setup
+            {#- #} is for testing and pre-production verification only. If someone sent you
+            {#- #} a link that pointed you here, and you are not <i>a tester</i> you
+            {#- #} probably got the wrong link, and should <b>not be here</b>.{% endtrans %}
+          </div>
+          {% endif -%}
+          {%- block contentwrapper %}
+            {%- block content %}{% endblock %}
+          {%- endblock contentwrapper %}
+
+          </div>
+        </div><!-- content -->
+      <div id="push"></div>
+    </div><!-- layout -->
+    <div id="foot">
+      {%- block footer %}{% include "_footer.twig" %}{% endblock %}
+
+    </div>
+    <script src="{{ asset('js/bundle.js') }}"></script>
+    {%- block postload %}{% endblock %}
+
+  </body>
+</html>

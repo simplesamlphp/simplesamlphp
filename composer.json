@@ -4,7 +4,7 @@
     "type": "project",
     "keywords": [ "saml2", "shibboleth","oauth","ws-federation","sp","idp" ],
     "homepage": "http://simplesamlphp.org",
-    "license": "LGPL-2.1",
+    "license": "LGPL-2.1-or-later",
     "authors": [
         {
             "name": "Andreas Åkre Solberg",
@@ -26,15 +26,43 @@
         "files": ["lib/_autoload_modules.php"]
     },
     "require": {
-        "php": ">=5.3",
-        "simplesamlphp/saml2": "~1.9",
-        "robrichards/xmlseclibs": "~1.4.1",
-        "whitehat101/apr1-md5": "~1.0"
+        "php": ">=5.5",
+        "ext-SPL": "*",
+        "ext-zlib": "*",
+        "ext-pcre": "*",
+        "ext-openssl": "*",
+        "ext-dom": "*",
+        "ext-date": "*",
+        "ext-hash": "*",
+        "ext-json": "*",
+        "ext-mbstring": "*",
+        "simplesamlphp/saml2": "^3.3",
+        "robrichards/xmlseclibs": "^3.0",
+        "whitehat101/apr1-md5": "~1.0",
+        "twig/twig": "~1.0 || ~2.0",
+        "gettext/gettext": "^4.6",
+        "jaimeperez/twig-configurable-i18n": "^2.0",
+        "symfony/routing": "^3.4 || ^4.0",
+        "symfony/http-foundation": "^3.4 || ^4.0",
+        "symfony/config": "^3.4 || ^4.0",
+        "symfony/http-kernel": "^3.4 || ^4.0",
+        "symfony/dependency-injection": "^3.4 || ^4.0",
+        "symfony/yaml": "^3.4 || ^4.0"
     },
     "require-dev": {
-        "ext-pdo_sqlite": "*",
-        "phpunit/phpunit": "~3.7",
-        "satooshi/php-coveralls": "^1.0"
+        "phpunit/phpunit": "~4.8",
+        "mikey179/vfsstream": "~1.6",
+        "ext-curl": "*"
+    },
+    "suggest": {
+        "predis/predis": "Needed if a Redis server is used to store session information",
+        "ext-curl": "Needed in order to check for updates automatically",
+        "ext-ldap": "Needed if an LDAP backend is used",
+        "ext-radius": "Needed if a Radius backend is used",
+        "ext-memcache": "Needed if a Memcache server is used to store session information",
+        "ext-pdo": "Needed if a database backend is used, either for authentication or to store session information",
+        "ext-mysql": "Needed if a MySQL backend is used, either for authentication or to store session information",
+        "ext-pgsql": "Needed if a PostgreSQL backend is used, either for authentication or to store session information"
     },
     "support": {
         "issues": "https://github.com/simplesamlphp/simplesamlphp/issues",

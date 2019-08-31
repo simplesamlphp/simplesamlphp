@@ -1,5 +1,5 @@
 <?php
-$attributemap = array(
+$attributemap = [
     'urn:oid:0.9.2342.19200300.100.1.1'  => 'urn:mace:dir:attribute-def:uid',
     'urn:oid:0.9.2342.19200300.100.1.10' => 'urn:mace:dir:attribute-def:manager',
     'urn:oid:0.9.2342.19200300.100.1.11' => 'urn:mace:dir:attribute-def:documentIdentifier',
@@ -50,7 +50,7 @@ $attributemap = array(
     'urn:oid:1.2.752.194.10.2.2'         => 'urn:mace:dir:attribute-def:sisSchoolGrade',
     'urn:oid:1.2.752.194.10.2.1'         => 'urn:mace:dir:attribute-def:sisLegalGuardianFor',
     'urn:oid:1.2.752.194.10.3'           => 'urn:mace:dir:attribute-def:sisOrgDepartment',
-    'urn:oid:1.2.752.194.10.4'           => 'urn:mace:dir:attribute-def:sisSchoolUnitCode',
+    'urn:oid:1.2.752.194.10.2.4'         => 'urn:mace:dir:attribute-def:sisSchoolUnitCode',
     'urn:oid:1.3.6.1.4.1.2428.90.1.1'    => 'urn:mace:dir:attribute-def:norEduOrgUniqueNumber',
     'urn:oid:1.3.6.1.4.1.2428.90.1.11'   => 'urn:mace:dir:attribute-def:norEduOrgSchemaVersion',
     'urn:oid:1.3.6.1.4.1.2428.90.1.12'   => 'urn:mace:dir:attribute-def:norEduOrgNIN',
@@ -164,4 +164,4 @@ $attributemap = array(
     'urn:oid:2.5.4.7'                    => 'urn:mace:dir:attribute-def:l',
     'urn:oid:2.5.4.8'                    => 'urn:mace:dir:attribute-def:st',
     'urn:oid:2.5.4.9'                    => 'urn:mace:dir:attribute-def:street',
-);
+];

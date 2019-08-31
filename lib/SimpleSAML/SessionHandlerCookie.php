@@ -11,7 +11,12 @@
  * @package SimpleSAMLphp
  * @abstract
  */
-abstract class SimpleSAML_SessionHandlerCookie extends SimpleSAML_SessionHandler
+
+namespace SimpleSAML;
+
+use SimpleSAML\Utils\HTTP;
+
+abstract class SessionHandlerCookie extends SessionHandler
 {
 
     /**
@@ -39,21 +44,20 @@ abstract class SimpleSAML_SessionHandlerCookie extends SimpleSAML_SessionHandler
         // call the constructor in the base class in case it should become necessary in the future
         parent::__construct();
 
-        $config = SimpleSAML_Configuration::getInstance();
+        $config = Configuration::getInstance();
         $this->cookie_name = $config->getString('session.cookie.name', 'SimpleSAMLSessionID');
     }
 
 
     /**
-     * Create and set new session id.
+     * Create a new session id.
      *
      * @return string The new session id.
      */
     public function newSessionId()
     {
         $this->session_id = self::createSessionID();
-        SimpleSAML_Session::createSession($this->session_id);
-        $this->setCookie($this->cookie_name, $this->session_id);
+        Session::createSession($this->session_id);
 
         return $this->session_id;
     }
@@ -67,7 +71,7 @@ abstract class SimpleSAML_SessionHandlerCookie extends SimpleSAML_SessionHandler
     public function getCookieSessionId()
     {
         if ($this->session_id === null) {
-            if (self::hasSessionCookie()) {
+            if ($this->hasSessionCookie()) {
                 // attempt to retrieve the session id from the cookie
                 $this->session_id = $_COOKIE[$this->cookie_name];
             }
@@ -141,5 +145,29 @@ abstract class SimpleSAML_SessionHandlerCookie extends SimpleSAML_SessionHandler
     public function hasSessionCookie()
     {
         return array_key_exists($this->cookie_name, $_COOKIE);
+    }
+
+
+    /**
+     * Set a session cookie.
+     *
+     * @param string $sessionName The name of the session.
+     * @param string|null $sessionID The session ID to use. Set to null to delete the cookie.
+     * @param array|null $cookieParams Additional parameters to use for the session cookie.
+     *
+     * @throws \SimpleSAML\Error\CannotSetCookie If we can't set the cookie.
+     */
+    public function setCookie($sessionName, $sessionID, array $cookieParams = null)
+    {
+        assert(is_string($sessionName));
+        assert(is_string($sessionID) || $sessionID === null);
+
+        if ($cookieParams !== null) {
+            $params = array_merge($this->getCookieParams(), $cookieParams);
+        } else {
+            $params = $this->getCookieParams();
+        }
+
+        HTTP::setCookie($sessionName, $sessionID, $params, true);
     }
 }

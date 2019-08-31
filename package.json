@@ -1,0 +1,35 @@
+{
+  "name": "simplesamlphp",
+  "main": "index.js",
+  "repository": "https://github.com/simplesamlphp/simplesamlphp",
+  "author": "olimpiam",
+  "license": "MIT",
+  "scripts": {
+    "clean": "rm -rf www/assets/css/* && rm -rf www/assets/js/*",
+    "build": "webpack -p"
+  },
+  "dependencies": {
+    "clipboard": "^2.0.1",
+    "es6-shim": "^0.35.4",
+    "font-awesome": "^4.7.0",
+    "highlight.js": "^9.13.1",
+    "jquery": "^3.4.0",
+    "jquery-ui": "^1.12.1",
+    "purecss": "^1.0.0",
+    "reset-css": "^4.0.1",
+    "selectize": "^0.12.6"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "copy-webpack-plugin": "^4.6.0",
+    "css-loader": "^1.0.1",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "node-sass": "^4.10.0",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.26.1",
+    "webpack-cli": "^3.1.2",
+    "expose-loader": "^0.7.5"
+  }
+}

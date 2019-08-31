@@ -1,5 +1,6 @@
 <?php
 
+namespace SimpleSAML\Module\core\Auth\Process;
 
 /**
  * Attribute filter for renaming attributes.
@@ -7,13 +8,13 @@
  * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
-class sspmod_core_Auth_Process_AttributeMap extends SimpleSAML_Auth_ProcessingFilter
-{
 
+class AttributeMap extends \SimpleSAML\Auth\ProcessingFilter
+{
     /**
      * Associative array with the mappings of attribute names.
      */
-    private $map = array();
+    private $map = [];
 
     /**
      * Should attributes be duplicated or renamed.
@@ -33,8 +34,8 @@ class sspmod_core_Auth_Process_AttributeMap extends SimpleSAML_Auth_ProcessingFi
     {
         parent::__construct($config, $reserved);
 
-        assert('is_array($config)');
-        $mapFiles = array();
+        assert(is_array($config));
+        $mapFiles = [];
 
         foreach ($config as $origName => $newName) {
             if (is_int($origName)) {
@@ -48,11 +49,11 @@ class sspmod_core_Auth_Process_AttributeMap extends SimpleSAML_Auth_ProcessingFi
             }
 
             if (!is_string($origName)) {
-                throw new Exception('Invalid attribute name: '.var_export($origName, true));
+                throw new \Exception('Invalid attribute name: '.var_export($origName, true));
             }
 
             if (!is_string($newName) && !is_array($newName)) {
-                throw new Exception('Invalid attribute name: '.var_export($newName, true));
+                throw new \Exception('Invalid attribute name: '.var_export($newName, true));
             }
 
             $this->map[$origName] = $newName;
@@ -75,26 +76,27 @@ class sspmod_core_Auth_Process_AttributeMap extends SimpleSAML_Auth_ProcessingFi
      */
     private function loadMapFile($fileName)
     {
-        $config = SimpleSAML_Configuration::getInstance();
+        $config = \SimpleSAML\Configuration::getInstance();
 
         $m = explode(':', $fileName);
-        if (count($m) === 2) { // we are asked for a file in a module
-            if (!SimpleSAML\Module::isModuleEnabled($m[0])) {
-                throw new Exception("Module '$m[0]' is not enabled.");
+        if (count($m) === 2) {
+            // we are asked for a file in a module
+            if (!\SimpleSAML\Module::isModuleEnabled($m[0])) {
+                throw new \Exception("Module '$m[0]' is not enabled.");
             }
-            $filePath = SimpleSAML\Module::getModuleDir($m[0]).'/attributemap/'.$m[1].'.php';
+            $filePath = \SimpleSAML\Module::getModuleDir($m[0]).'/attributemap/'.$m[1].'.php';
         } else {
             $filePath = $config->getPathValue('attributenamemapdir', 'attributemap/').$fileName.'.php';
         }
 
         if (!file_exists($filePath)) {
-            throw new Exception('Could not find attribute map file: '.$filePath);
+            throw new \Exception('Could not find attribute map file: '.$filePath);
         }
 
         $attributemap = null;
         include($filePath);
         if (!is_array($attributemap)) {
-            throw new Exception('Attribute map file "'.$filePath.'" didn\'t define an attribute map.');
+            throw new \Exception('Attribute map file "'.$filePath.'" didn\'t define an attribute map.');
         }
 
         if ($this->duplicate) {
@@ -112,27 +114,34 @@ class sspmod_core_Auth_Process_AttributeMap extends SimpleSAML_Auth_ProcessingFi
      */
     public function process(&$request)
     {
-        assert('is_array($request)');
-        assert('array_key_exists("Attributes", $request)');
+        assert(is_array($request));
+        assert(array_key_exists('Attributes', $request));
 
-        $attributes =& $request['Attributes'];
+        $mapped_attributes = [];
 
-        foreach ($attributes as $name => $values) {
+        foreach ($request['Attributes'] as $name => $values) {
             if (array_key_exists($name, $this->map)) {
                 if (!is_array($this->map[$name])) {
-                    if (!$this->duplicate) {
-                        unset($attributes[$name]);
+                    if ($this->duplicate) {
+                        $mapped_attributes[$name] = $values;
                     }
-                    $attributes[$this->map[$name]] = $values;
+                    $mapped_attributes[$this->map[$name]] = $values;
                 } else {
                     foreach ($this->map[$name] as $to_map) {
-                        $attributes[$to_map] = $values;
+                        $mapped_attributes[$to_map] = $values;
                     }
-                    if (!$this->duplicate && !in_array($name, $this->map[$name], true)) {
-                        unset($attributes[$name]);
+                    if ($this->duplicate && !in_array($name, $this->map[$name], true)) {
+                        $mapped_attributes[$name] = $values;
                     }
                 }
+            } else {
+                if (array_key_exists($name, $mapped_attributes)) {
+                    continue;
+                }
+                $mapped_attributes[$name] = $values;
             }
         }
+
+        $request['Attributes'] = $mapped_attributes;
     }
 }

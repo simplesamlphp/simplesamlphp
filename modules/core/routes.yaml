@@ -1,0 +1,9 @@
+core-login:
+    path:       /login/{as}
+    defaults:   { _controller: 'SimpleSAML\Module\core\Controller::login', as: null }
+core-account:
+    path:       /account/{as}
+    defaults:   { _controller: 'SimpleSAML\Module\core\Controller::account' }
+core-logout:
+    path:       /logout/{as}
+    defaults:   { _controller: 'SimpleSAML\Module\core\Controller::logout' }
