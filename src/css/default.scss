@@ -848,6 +848,8 @@ div.preferredidp {
     padding: .25em;
     display: block;
     color: black;
+    background-color: #f4f4f4;
+    border-top: solid 1px #bbb;
     &:focus, &:hover {
       background-color: #555;
       color: white;
