@@ -231,47 +231,44 @@ class SQL extends Store
                 $query = 'REPLACE INTO '.$table.' '.$colNames.' '.$values;
                 $query = $this->pdo->prepare($query);
                 $query->execute($data);
-                return;
+                break;
             case 'sqlite':
                 $query = 'INSERT OR REPLACE INTO '.$table.' '.$colNames.' '.$values;
                 $query = $this->pdo->prepare($query);
                 $query->execute($data);
-                return;
+                break;
+            default:
+                $updateCols = [];
+                $condCols = [];
+                $condData = [];
+
+                foreach ($data as $col => $value) {
+                    $tmp = $col.' = :'.$col;
+
+                    if (in_array($col, $keys, true)) {
+                        $condCols[] = $tmp;
+                        $condData[$col] = $value;
+                    } else {
+                        $updateCols[] = $tmp;
+                    }
+                }
+
+                $selectQuery = 'SELECT * FROM '.$table.' WHERE '.implode(' AND ', $condCols);
+                $selectQuery = $this->pdo->prepare($selectQuery);
+                $selectQuery->execute($condData);
+
+                if ($selectQuery->rowCount() > 0) {
+                    // Update
+                    $insertOrUpdateQuery = 'UPDATE '.$table.' SET '.implode(',', $updateCols).' WHERE '.implode(' AND ', $condCols);
+                    $insertOrUpdateQuery = $this->pdo->prepare($insertOrUpdateQuery);
+                } else {
+                    // Insert
+                    $insertOrUpdateQuery = 'INSERT INTO '.$table.' '.$colNames.' '.$values;
+                    $insertOrUpdateQuery = $this->pdo->prepare($insertOrUpdateQuery);
+                }
+                $insertOrUpdateQuery->execute($data);
+                break;                
         }
-
-        // default implementation, try INSERT, and UPDATE if that fails.
-        $insertQuery = 'INSERT INTO '.$table.' '.$colNames.' '.$values;
-        $insertQuery = $this->pdo->prepare($insertQuery);
-        try {
-            $insertQuery->execute($data);
-            return;
-        } catch (PDOException $e) {
-            $duplicateInsertErrorCodes = [
-                'pgsql' => '23505',
-                'sqlsrv' => '23000'
-            ];
-
-            if (!array_key_exists($this->driver, $duplicateInsertErrorCodes) || $duplicateInsertErrorCodes[$this->driver] !== (string) $e->getCode()) {
-                Logger::error('Error while saving data: '.$e->getMessage());
-                throw $e;
-            }
-        }
-
-        $updateCols = [];
-        $condCols = [];
-        foreach ($data as $col => $value) {
-            $tmp = $col.' = :'.$col;
-
-            if (in_array($col, $keys, true)) {
-                $condCols[] = $tmp;
-            } else {
-                $updateCols[] = $tmp;
-            }
-        }
-
-        $updateQuery = 'UPDATE '.$table.' SET '.implode(',', $updateCols).' WHERE '.implode(' AND ', $condCols);
-        $updateQuery = $this->pdo->prepare($updateQuery);
-        $updateQuery->execute($data);
     }
 
 
