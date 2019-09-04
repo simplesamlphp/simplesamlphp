@@ -453,6 +453,9 @@ class Session implements \Serializable, Utils\ClearableState
      */
     public function save()
     {
+        // clean out old data
+        $this->expireData();
+
         if (!$this->dirty) {
             // session hasn't changed, don't bother saving it
             return;
@@ -894,9 +897,6 @@ class Session implements \Serializable, Utils\ClearableState
         assert(is_string($id));
         assert(is_int($timeout) || $timeout === null || $timeout === self::DATA_TIMEOUT_SESSION_END);
 
-        // clean out old data
-        $this->expireData();
-
         if ($timeout === null) {
             // use the default timeout
             $timeout = self::$config->getInteger('session.datastore.timeout', null);
@@ -952,6 +952,7 @@ class Session implements \Serializable, Utils\ClearableState
 
                 if ($ct > $info['expires']) {
                     unset($typedData[$id]);
+                    $this->markDirty();
                 }
             }
         }
@@ -976,8 +977,6 @@ class Session implements \Serializable, Utils\ClearableState
         if ($id === null) {
             return null;
         }
-
-        $this->expireData();
 
         if (!array_key_exists($type, $this->dataStore)) {
             return null;
