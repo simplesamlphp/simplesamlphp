@@ -264,11 +264,17 @@ class Module
             }
         }
 
-        $assetConfig = $config->getArray('assets', ['caching' => ['max_age' => 86400, 'etag' => false]]);
+        $assetConfig = $config->getConfigItem('assets', new Configuration([], '[assets]'));
+        $cacheConfig = $assetConfig->getConfigItem('caching', new Configuration([], '[assets][caching]'));
         $response = new BinaryFileResponse($path);
-        $response->setCache(['public' => true, 'max_age' => $assetConfig['caching']['max_age']]);
+        $response->setCache([
+            // "public" allows response caching even if the request was authenticated,
+            // which is exactly what we want for static resources
+            'public' => true,
+            'max_age' => (string)$cacheConfig->getInteger('max_age', 86400)
+        ]);
         $response->setAutoLastModified();
-        if ($assetConfig['caching']['etag']) {
+        if ($cacheConfig->getBoolean('etag', false)) {
             $response->setAutoEtag();
         }
         $response->isNotModified($request);
