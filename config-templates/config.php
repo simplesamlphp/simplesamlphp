@@ -862,37 +862,19 @@ $config = [
     'production' => true,
 
     /*
-     * Set this option to adjust basic caching directives sent by module.php.
-     *
-     * Defaults to ['public' => true, 'max_age' => 86400]
+     * SimpleSAMLphp modules can host static resources which are served through PHP.
+     * The serving of the resources can be configured through these settings.
      */
-    // 'module.php.cache' => ['public' => true, 'max_age' => 86400],
-
-    /*
-     * Set this option to adjust expiration timestamp sent by module.php.
-     * The value (in seconds) is added to current time.
-     * If set to null, the Expiration header is not sent at all.
-     *
-     * Defaults to 10 * 60 (ten minutes).
-     */
-    // 'module.php.expires' => 10 * 60,
-
-    /*
-     * Set this option to make module.php automatically send Etag.
-     *
-     * Defaults to false.
-     */
-    // 'module.php.etag' => false,
-
-    /*
-     * Set this option to adjust more caching directives sent by module.php,
-     * for example must-revalidate. The option takes an array
-     * where keys are the caching directive names and values are the corresponding values.
-     *
-     * Defaults to [] (empty array).
-     */
-    // 'module.php.directives' => [],
-
+    'assets' => [
+        'caching' => [
+            /**
+             * These settings adjust the caching headers that are sent
+             * when serving static resources.
+             */
+            'max_age' => 86400,
+            'etag' => false,
+        ],
+    ],
 
     /*********************
      | DISCOVERY SERVICE |

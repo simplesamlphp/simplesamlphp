@@ -264,19 +264,12 @@ class Module
             }
         }
 
+        $assetConfig = $config->getArray('assets', ['caching' => ['max_age' => 86400, 'etag' => false]]);
         $response = new BinaryFileResponse($path);
-        $cacheSettings = $config->getArray('module.php.cache', ['public' => true, 'max_age' => 86400]);
-        $response->setCache($cacheSettings);
-        $cacheExpiration = $config->getValue('module.php.expires', 10 * 60);
-        $expires = $cacheExpiration === null ? null : new \DateTime('@' . (time() + $cacheExpiration));
-        $response->setExpires($expires);
-        $cacheEtag = $config->getBoolean('module.php.etag', false);
-        if ($cacheEtag) {
+        $response->setCache(['public' => true, 'max_age' => $assetConfig['caching']['max_age']]);
+        $response->setAutoLastModified();
+        if ($assetConfig['caching']['etag']) {
             $response->setAutoEtag();
-        }
-        $cacheDirectives = $config->getArray('module.php.directives', []);
-        foreach ($cacheDirectives as $directiveName => $directiveValue) {
-            $response->headers->addCacheControlDirective($directiveName, $directiveValue);
         }
         $response->isNotModified($request);
         $response->headers->set('Content-Type', $contentType);
