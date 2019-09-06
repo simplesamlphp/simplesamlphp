@@ -23,7 +23,7 @@ class Simple
      */
     protected $authSource;
 
-    /** @var \SimpleSAML\Configuration|null */
+    /** @var \SimpleSAML\Configuration */
     protected $app_config;
 
     /** @var \SimpleSAML\Session */
@@ -45,7 +45,7 @@ class Simple
             $config = Configuration::getInstance();
         }
         $this->authSource = $authSource;
-        $this->app_config = $config->getConfigItem('application', null);
+        $this->app_config = $config->getConfigItem('application');
 
         if ($session === null) {
             $session = Session::getSessionFromRequest();
@@ -387,11 +387,6 @@ class Simple
         $port = !empty($port) ? ':'.$port : '';
         if (($scheme === 'http' && $port === ':80') || ($scheme === 'https' && $port === ':443')) {
             $port = '';
-        }
-
-        if (is_null($this->app_config)) {
-            // nothing more we can do here
-            return $scheme.'://'.$host.$port.$path.($query ? '?'.$query : '').($fragment ? '#'.$fragment : '');
         }
 
         $base = trim($this->app_config->getString(

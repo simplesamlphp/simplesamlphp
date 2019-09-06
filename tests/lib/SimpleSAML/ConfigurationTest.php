@@ -523,9 +523,11 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
         $c = Configuration::loadFromArray([
             'opt' => ['a' => 42],
         ]);
-        $this->assertEquals($c->getConfigItem('missing_opt', '--missing--'), '--missing--');
+        $this->assertNull($c->getConfigItem('missing_opt', null));
         $opt = $c->getConfigItem('opt');
+        $notOpt = $c->getConfigItem('notOpt');
         $this->assertInstanceOf('SimpleSAML\Configuration', $opt);
+        $this->assertInstanceOf('SimpleSAML\Configuration', $notOpt);
         $this->assertEquals($opt->getValue('a'), 42);
     }
 
@@ -556,7 +558,7 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
                 'b' => ['opt2' => 'value2'],
             ],
         ]);
-        $this->assertEquals($c->getConfigList('missing_opt', '--missing--'), '--missing--');
+        $this->assertEquals($c->getConfigList('missing_opt'), []);
         $opts = $c->getConfigList('opts');
         $this->assertInternalType('array', $opts);
         $this->assertEquals(array_keys($opts), ['a', 'b']);
