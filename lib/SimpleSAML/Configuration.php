@@ -1027,6 +1027,8 @@ class Configuration implements Utils\ClearableState
      * @return array The array of \SimpleSAML\Configuration objects.
      *
      * @throws \Exception If the value of this element is not an array.
+     *
+     * @deprecated Very specific function, will be removed in a future release; use getConfigItem or getArray instead
      */
     public function getConfigList($name)
     {
