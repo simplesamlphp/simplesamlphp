@@ -264,12 +264,21 @@ class Module
             }
         }
 
+        $assetConfig = $config->getConfigItem('assets', new Configuration([], '[assets]'));
+        $cacheConfig = $assetConfig->getConfigItem('caching', new Configuration([], '[assets][caching]'));
         $response = new BinaryFileResponse($path);
-        $response->setCache(['public' => true, 'max_age' => 86400]);
-        $response->setExpires(new \DateTime(gmdate('D, j M Y H:i:s \G\M\T', time() + 10 * 60)));
-        $response->setLastModified(new \DateTime(gmdate('D, j M Y H:i:s \G\M\T', filemtime($path))));
+        $response->setCache([
+            // "public" allows response caching even if the request was authenticated,
+            // which is exactly what we want for static resources
+            'public' => true,
+            'max_age' => (string)$cacheConfig->getInteger('max_age', 86400)
+        ]);
+        $response->setAutoLastModified();
+        if ($cacheConfig->getBoolean('etag', false)) {
+            $response->setAutoEtag();
+        }
+        $response->isNotModified($request);
         $response->headers->set('Content-Type', $contentType);
-        $response->headers->set('Content-Length', sprintf('%u', filesize($path))); // force file size to an unsigned
         $response->setContentDisposition(ResponseHeaderBag::DISPOSITION_INLINE);
         $response->prepare($request);
         return $response;
