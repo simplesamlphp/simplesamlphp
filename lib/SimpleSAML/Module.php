@@ -264,8 +264,8 @@ class Module
             }
         }
 
-        $assetConfig = $config->getConfigItem('assets', new Configuration([], '[assets]'));
-        $cacheConfig = $assetConfig->getConfigItem('caching', new Configuration([], '[assets][caching]'));
+        $assetConfig = $config->getConfigItem('assets');
+        $cacheConfig = $assetConfig->getConfigItem('caching');
         $response = new BinaryFileResponse($path);
         $response->setCache([
             // "public" allows response caching even if the request was authenticated,
