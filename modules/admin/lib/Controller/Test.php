@@ -122,31 +122,22 @@ class Test
     {
         $translator = $t->getTranslator();
         $result = '';
-
-        /** @psalm-suppress TypeDoesNotContainNull  Remove if-case in 2.0 */
-        if ($nameId->getValue() === null) {
-            $list = ["NameID" => [$translator->t('{status:subject_notset}')]];
-            /** @var string $notset */
-            $notset = $translator->t('{status:subject_notset}');
-            $result .= "<p>NameID: <span class=\"notset\">" . $notset . "</span></p>";
-        } else {
-            $list = [
-                "NameId" => [$nameId->getValue()],
-            ];
-            if ($nameId->getFormat() !== null) {
-                /** @var string $format */
-                $format = $translator->t('{status:subject_format}');
-                $list[$format] = [$nameId->getFormat()];
-            }
-            if ($nameId->getNameQualifier() !== null) {
-                $list['NameQualifier'] = [$nameId->getNameQualifier()];
-            }
-            if ($nameId->getSPNameQualifier() !== null) {
-                $list['SPNameQualifier'] = [$nameId->getSPNameQualifier()];
-            }
-            if ($nameId->getSPProvidedID() !== null) {
-                $list['SPProvidedID'] = [$nameId->getSPProvidedID()];
-            }
+        $list = [
+            "NameId" => [$nameId->getValue()],
+        ];
+        if ($nameId->getFormat() !== null) {
+            /** @var string $format */
+            $format = $translator->t('{status:subject_format}');
+            $list[$format] = [$nameId->getFormat()];
+        }
+        if ($nameId->getNameQualifier() !== null) {
+            $list['NameQualifier'] = [$nameId->getNameQualifier()];
+        }
+        if ($nameId->getSPNameQualifier() !== null) {
+            $list['SPNameQualifier'] = [$nameId->getSPNameQualifier()];
+        }
+        if ($nameId->getSPProvidedID() !== null) {
+            $list['SPProvidedID'] = [$nameId->getSPProvidedID()];
         }
         return $result . $this->getAttributesHTML($t, $list, '');
     }
