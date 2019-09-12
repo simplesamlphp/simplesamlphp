@@ -1211,7 +1211,7 @@ class SAMLParser
             $contactPerson['givenName'] = $element->getGivenName();
         }
         if ($element->getSurName() !== null) {
-            $contactPerson['surName'] = $element->SurName;
+            $contactPerson['surName'] = $element->SurName();
         }
         if ($element->getEmailAddress() !== []) {
             $contactPerson['emailAddress'] = $element->getEmailAddress();
