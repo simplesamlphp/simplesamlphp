@@ -377,7 +377,7 @@ class Simple
         $scheme = parse_url($url, PHP_URL_SCHEME);
         $host = parse_url($url, PHP_URL_HOST) ? : Utils\HTTP::getSelfHost();
         $port = parse_url($url, PHP_URL_PORT) ? : (
-            $scheme ? '' : trim(Utils\HTTP::getServerPort(), ':')
+            $scheme ? '' : ltrim(Utils\HTTP::getServerPort(), ':')
         );
         $scheme = $scheme ? : (Utils\HTTP::getServerHTTPS() ? 'https' : 'http');
         $path = parse_url($url, PHP_URL_PATH) ? : '/';
