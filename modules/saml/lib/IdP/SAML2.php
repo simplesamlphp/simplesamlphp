@@ -368,15 +368,11 @@ class SAML2
                 throw new Error\BadRequest(
                     'Received message on authentication request endpoint without issuer.'
                 );
-            } elseif ($issuer instanceof Issuer) {
-                /** @psalm-var string|null $spEntityId */
                 $spEntityId = $issuer->getValue();
                 if ($spEntityId === null) {
                     /* Without an issuer we have no way to respond to the message. */
                     throw new Error\BadRequest('Received message on logout endpoint without issuer.');
                 }
-            } else { // we got a string, old case
-                $spEntityId = $issuer;
             }
             $spMetadata = $metadata->getMetaDataConfig($spEntityId, 'saml20-sp-remote');
 
