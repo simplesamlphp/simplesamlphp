@@ -368,12 +368,16 @@ class SAML2
                 throw new Error\BadRequest(
                     'Received message on authentication request endpoint without issuer.'
                 );
+<<<<<<< HEAD
                 $spEntityId = $issuer->getValue();
                 if ($spEntityId === null) {
                     /* Without an issuer we have no way to respond to the message. */
                     throw new Error\BadRequest('Received message on logout endpoint without issuer.');
                 }
+=======
+>>>>>>> Stop using string issuers
             }
+            $spEntityId = $issuer->getValue();
             $spMetadata = $metadata->getMetaDataConfig($spEntityId, 'saml20-sp-remote');
 
             \SimpleSAML\Module\saml\Message::validateMessage($spMetadata, $idpMetadata, $request);
