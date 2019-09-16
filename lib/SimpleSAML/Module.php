@@ -133,7 +133,7 @@ class Module
             throw new Error\NotFound('No PATH_INFO to module.php');
         }
 
-        $url = $request->getPathInfo();
+        $url = $request->server->get('PATH_INFO');
         assert(substr($url, 0, 1) === '/');
 
         /* clear the PATH_INFO option, so that a script can detect whether it is called with anything following the
@@ -168,10 +168,18 @@ class Module
         }
 
         $config = Configuration::getInstance();
+
+        // rebuild REQUEST_URI and SCRIPT_NAME just in case we need to. This is needed for server aliases and rewrites
+        $translated_uri = $config->getBasePath().'module.php/'.$module.'/'.$url;
+        $request->server->set('REQUEST_URI', $translated_uri);
+        $request->server->set('SCRIPT_NAME', $config->getBasePath().'module.php');
+        $request->initialize($request->query->all(), $request->request->all(), $request->attributes->all(),
+            $request->cookies->all(), $request->files->all(), $request->server->all(), $request->getContent());
+
         if ($config->getBoolean('usenewui', false) === true) {
             $router = new Router($module);
             try {
-                return $router->process();
+                return $router->process($request);
             } catch (FileLocatorFileNotFoundException $e) {
                 // no routes configured for this module, fall back to the old system
             } catch (NotFoundHttpException $e) {
