@@ -934,9 +934,6 @@ class Session implements \Serializable, Utils\ClearableState
     /**
      * This function removes expired data from the data store.
      *
-     * Note that this function doesn't mark the session object as dirty. This means that
-     * if the only change to the session object is that some data has expired, it will not be
-     * written back to the session store.
      * @return void
      */
     private function expireData()
