@@ -189,6 +189,11 @@ class SessionHandlerPHP extends SessionHandler
             return null; // there's no session cookie, can't return ID
         }
 
+        if (version_compare(PHP_VERSION, '7.2', 'ge') && headers_sent()) {
+            // latest versions of PHP don't allow loading a session when output sent, get the ID from the cookie
+            return $_COOKIE[$this->cookie_name];
+        }
+
         // do not rely on session_id() as it can return the ID of a previous session. Get it from the cookie instead.
         session_id($_COOKIE[$this->cookie_name]);
 
@@ -241,7 +246,7 @@ class SessionHandlerPHP extends SessionHandler
         assert(is_string($sessionId) || $sessionId === null);
 
         if ($sessionId !== null) {
-            if (session_id() === '') {
+            if (session_id() === '' && !(version_compare(PHP_VERSION, '7.2', 'ge') && headers_sent())) {
                 // session not initiated with getCookieSessionId(), start session without setting cookie
                 $ret = ini_set('session.use_cookies', '0');
                 if ($ret === false) {
