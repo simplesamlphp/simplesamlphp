@@ -160,19 +160,10 @@ class Session implements \Serializable, Utils\ClearableState
 
         if ($transient) {
             // transient session
-            $sh = SessionHandler::getSessionHandler();
             $this->trackid = 'TR'.bin2hex(openssl_random_pseudo_bytes(4));
             Logger::setTrackId($this->trackid);
             $this->transient = true;
 
-            /*
-             * Initialize the session ID. It might be that we have a session cookie but we couldn't load the session.
-             * If that's the case, use that ID. If not, create a new ID.
-             */
-            $this->sessionId = $sh->getCookieSessionId();
-            if ($this->sessionId === null) {
-                $this->sessionId = $sh->newSessionId();
-            }
         } else {
             // regular session
             $sh = SessionHandler::getSessionHandler();
@@ -276,8 +267,8 @@ class Session implements \Serializable, Utils\ClearableState
              * session here. Therefore, use just a transient session and throw the exception for someone else to handle
              * it.
              */
-            Logger::error('Error loading session: '.$e->getMessage());
             self::useTransientSession();
+            Logger::error('Error loading session: '.$e->getMessage());
             if ($e instanceof Error\Exception) {
                 $cause = $e->getCause();
                 if ($cause instanceof \Exception) {
