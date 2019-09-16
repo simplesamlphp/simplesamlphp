@@ -32,6 +32,8 @@ abstract class SessionHandler
      * to this function.
      *
      * @return \SimpleSAML\SessionHandler The current session handler.
+     *
+     * @throws \Exception If we cannot instantiate the session handler.
      */
     public static function getSessionHandler()
     {
@@ -126,6 +128,8 @@ abstract class SessionHandler
      * PHP session handler.
      *
      * @return void
+     *
+     * @throws \Exception If we cannot instantiate the session handler.
      */
     private static function createSessionHandler()
     {
