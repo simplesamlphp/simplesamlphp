@@ -87,10 +87,6 @@ class File extends \SimpleSAML\Stats\Output
     {
         assert(isset($data['time']));
 
-        if ($this->file === false || $this->file === null) {
-            throw new Error\Exception('Error opening log file:  invalid handle');
-        }
-
         $time = $data['time'];
         $milliseconds = (int) (($time - (int) $time) * 1000);
 
