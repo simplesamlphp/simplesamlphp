@@ -20,7 +20,7 @@ class File extends \SimpleSAML\Stats\Output
 
     /**
      * The file handle for the current file.
-     * @var resource|null|false
+     * @var resource|null
      */
     private $file = null;
 
@@ -65,14 +65,15 @@ class File extends \SimpleSAML\Stats\Output
         }
 
         $fileName = $this->logDir.'/'.$date.'.log';
-        $this->file = @fopen($fileName, 'a');
-        if ($this->file === false) {
+        $fh = @fopen($fileName, 'a');
+        if ($fh === false) {
             throw new Error\Exception('Error opening log file: '.var_export($fileName, true));
         }
 
         // Disable output buffering
-        stream_set_write_buffer($this->file, 0);
+        stream_set_write_buffer($fh, 0);
 
+        $this->file = $fh;
         $this->fileDate = $date;
     }
 
@@ -87,10 +88,6 @@ class File extends \SimpleSAML\Stats\Output
     {
         assert(isset($data['time']));
 
-        if ($this->file === false || $this->file === null) {
-            throw new Error\Exception('Error opening log file:  invalid handle');
-        }
-
         $time = $data['time'];
         $milliseconds = (int) (($time - (int) $time) * 1000);
 
@@ -103,6 +100,7 @@ class File extends \SimpleSAML\Stats\Output
         }
 
         $line = $timestamp.' '.json_encode($data)."\n";
+        /** @psalm-suppress PossiblyNullArgument */
         fwrite($this->file, $line);
     }
 }
