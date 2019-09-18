@@ -69,11 +69,11 @@ class File extends \SimpleSAML\Stats\Output
         if ($fh === false) {
             throw new Error\Exception('Error opening log file: '.var_export($fileName, true));
         }
-        $this->file = $fh;
 
         // Disable output buffering
-        stream_set_write_buffer($this->file, 0);
+        stream_set_write_buffer($fh, 0);
 
+        $this->file = $fh;
         $this->fileDate = $date;
     }
 
