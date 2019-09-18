@@ -20,7 +20,7 @@ class File extends \SimpleSAML\Stats\Output
 
     /**
      * The file handle for the current file.
-     * @var resource|null|false
+     * @var resource|null
      */
     private $file = null;
 
@@ -65,10 +65,11 @@ class File extends \SimpleSAML\Stats\Output
         }
 
         $fileName = $this->logDir.'/'.$date.'.log';
-        $this->file = @fopen($fileName, 'a');
-        if ($this->file === false) {
+        $fh = @fopen($fileName, 'a');
+        if ($fh === false) {
             throw new Error\Exception('Error opening log file: '.var_export($fileName, true));
         }
+        $this->file = $fh;
 
         // Disable output buffering
         stream_set_write_buffer($this->file, 0);
