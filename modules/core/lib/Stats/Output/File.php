@@ -100,6 +100,7 @@ class File extends \SimpleSAML\Stats\Output
         }
 
         $line = $timestamp.' '.json_encode($data)."\n";
+        /** @psalm-suppress PossiblyNullArgument */
         fwrite($this->file, $line);
     }
 }
