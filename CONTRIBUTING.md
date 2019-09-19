@@ -8,10 +8,14 @@ These guidelines briefly explain how to contribute to SimpleSAMLphp effectively 
 ## Team members
 Currently, the core team members are:
 
-* Jaime Pérez Crespo, *main developer and release manager*, UNINETT <jaime.perez@uninett.no>
-* Olav Morken, *main developer*, UNINETT <olav.morken@uninett.no>
+* Jaime Pérez Crespo, *maintainer and main developer*, UNINETT <jaime.perez@uninett.no>
+* Tim van Dijen, *main developer*
+* Thijs Kinkhorst, *main developer*
+
+Two other persons are listed here for historical reasons, even though they are no longer involved in the project:
+
 * Andreas Åkre Solberg, *architect and original developer*, UNINETT <andreas.solberg@uninett.no>
-* Hanne Moa, *developer*, UNINETT <hanne.moa@uninett.no>
+* Olav Morken, *architect and main developer*, UNINETT <olav.morken@uninett.no>
 
 We have been lucky enough to have so many people help us through the years. SimpleSAMLphp wouldn't have reached so far without them. We want to thank them from here, but unfortunately they are so many it is nearly impossible to mention all of them. [Here is a Github page that summarizes everyone's contributions](https://github.com/simplesamlphp/simplesamlphp/graphs/contributors?from=2007-09-09&to=2015-09-06&type=c).
 
