@@ -16,6 +16,6 @@ $config = Configuration::getInstance();
 $session = Session::getSessionFromRequest();
 $request = Request::createFromGlobals();
 
-$controller = new CronController($config, $session);
+$controller = new Controller\CronController($config, $session);
 $response = $controller->info($request);
 $response->send();
