@@ -21,5 +21,5 @@ $session = Session::getSessionFromRequest();
 $request = Request::createFromGlobals();
 
 $controller = new DiscoController($config, $session);
-$response = $controller->metadata($request);
+$response = $controller->discovery($request);
 $response->send();
