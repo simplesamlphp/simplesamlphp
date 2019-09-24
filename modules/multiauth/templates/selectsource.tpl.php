@@ -21,7 +21,7 @@ foreach ($this->data['sources'] as $source) {
     $name = 'src-'.base64_encode($source['source']);
     echo '<input type="submit" name="'.htmlspecialchars($name).'"'.$autofocus.' '.
         'id="button-'.htmlspecialchars($source['source']).'" '.
-        'value="'.htmlspecialchars($this->t($source['text'])).'" />';
+        'value="'.htmlspecialchars($source['text']).'" />';
     echo '</li>';
 }
 ?>
