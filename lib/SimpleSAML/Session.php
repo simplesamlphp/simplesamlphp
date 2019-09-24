@@ -58,7 +58,7 @@ class Session implements \Serializable, Utils\ClearableState
     /**
      * The session ID of this session.
      *
-     * @var string
+     * @var string|null
      */
     private $sessionId;
 
@@ -521,7 +521,7 @@ class Session implements \Serializable, Utils\ClearableState
     /**
      * Retrieve the session ID of this session.
      *
-     * @return string  The session ID.
+     * @return string|null  The session ID, or null if this is a transient session.
      */
     public function getSessionId()
     {

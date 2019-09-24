@@ -32,12 +32,13 @@ class HTTP
         $session = Session::getSessionFromRequest();
         $id = self::savePOSTData($session, $destination, $data);
 
-        // get the session ID
-        $session_id = $session->getSessionId();
-        if (is_null($session_id)) {
+        if ($session->isTransient()) {
             // this is a transient session, it is pointless to continue
             throw new Error\Exception('Cannot save POST data to a transient session.');
         }
+
+        /** @var string $session_id */
+        $session_id = $session->getSessionId();
 
         // encrypt the session ID and the random ID
         $info = base64_encode(Crypto::aesEncrypt($session_id.':'.$id));

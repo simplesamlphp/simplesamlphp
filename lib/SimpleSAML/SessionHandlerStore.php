@@ -69,6 +69,12 @@ class SessionHandlerStore extends SessionHandlerCookie
      */
     public function saveSession(Session $session)
     {
+        if ($session->isTransient()) {
+            // transient session, nothing to save
+            return;
+        }
+
+        /** @var string $sessionId */
         $sessionId = $session->getSessionId();
 
         $config = Configuration::getInstance();

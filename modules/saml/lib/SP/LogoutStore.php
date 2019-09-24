@@ -318,6 +318,12 @@ class LogoutStore
         assert(is_string($sessionIndex) || $sessionIndex === null);
         assert(is_int($expire));
 
+        $session = Session::getSessionFromRequest();
+        if ($session->isTransient()) {
+            // transient sessions are useless for this purpose, nothing to do
+            return;
+        }
+
         if ($sessionIndex === null) {
             /* This IdP apparently did not include a SessionIndex, and thus probably does not
              * support SLO. We still want to add the session to the data store just in case
@@ -346,7 +352,7 @@ class LogoutStore
             $sessionIndex = sha1($sessionIndex);
         }
 
-        $session = Session::getSessionFromRequest();
+        /** @var string $sessionId */
         $sessionId = $session->getSessionId();
 
         if ($store instanceof Store\SQL) {

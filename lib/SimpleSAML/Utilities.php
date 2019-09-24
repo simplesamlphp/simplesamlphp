@@ -2,6 +2,8 @@
 
 namespace SimpleSAML;
 
+use SimpleSAML\Error\Error;
+
 /**
  * Misc static functions that is used several places.in example parsing and id generation.
  *
@@ -674,6 +676,7 @@ class Utilities
      * @param string $destination
      * @param array $post
      * @return string
+     * @throws Error If the current session is a transient session.
      */
     public static function createHttpPostRedirectLink($destination, $post)
     {
@@ -687,6 +690,10 @@ class Utilities
         ];
 
         $session = \SimpleSAML\Session::getSessionFromRequest();
+        if ($session->isTransient()) {
+            throw new Error('Cannot save data to a transient session');
+        }
+
         $session->setData('core_postdatalink', $postId, $postData);
 
         $redirInfo = base64_encode(\SimpleSAML\Utils\Crypto::aesEncrypt($session->getSessionId().':'.$postId));
