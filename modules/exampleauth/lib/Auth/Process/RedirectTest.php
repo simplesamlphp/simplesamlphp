@@ -1,6 +1,6 @@
 <?php
 
-namespace SimpleSAML\Module\exampleautth\Auth\Process;
+namespace SimpleSAML\Module\exampleauth\Auth\Process;
 
 use SimpleSAML\Auth;
 use SimpleSAML\Module;
