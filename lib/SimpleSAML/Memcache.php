@@ -2,8 +2,6 @@
 
 namespace SimpleSAML;
 
-use Memcache as _Memcache;
-use Memcached as _Memcached;
 use SimpleSAML\Utils;
 
 /**
@@ -312,12 +310,12 @@ class Memcache
      */
     private static function loadMemcacheServerGroup(array $group)
     {
-        if (class_exists(_Memcache::class)) {
-            $memcache = new _Memcache();
-            self::$extension = strtolower(_Memcache::class);
-        } elseif (class_exists(_Memcached::class)) {
-            $memcache = new _Memcached();
-            self::$extension = strtolower(_Memcached::class);
+        if (class_exists(\Memcache::class)) {
+            $memcache = new \Memcache();
+            self::$extension = strtolower(\Memcache::class);
+        } elseif (class_exists(\Memcached::class)) {
+            $memcache = new \Memcached();
+            self::$extension = strtolower(\Memcached::class);
         } else {
             throw new \Exception(
                 'Missing Memcached implementation. You must install either the Memcache or Memcached extension.'
