@@ -16,7 +16,7 @@ abstract class Store implements Utils\ClearableState
      *
      * This is false if the data store isn't enabled, and null if we haven't attempted to initialize it.
      *
-     * @var \SimpleSAML\Store|false
+     * @var \SimpleSAML\Store|false|null
      */
     private static $instance;
 
@@ -68,7 +68,6 @@ abstract class Store implements Utils\ClearableState
                 self::$instance = new $className();
         }
 
-        /** @var \SimpleSAML\Store|false */
         return self::$instance;
     }
 
