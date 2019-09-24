@@ -546,11 +546,8 @@ class Translate
 
         // we don't have a translation for the current language, load alternative priorities
         $sspcfg = Configuration::getInstance();
-        $langcfg = $sspcfg->getConfigItem('language', null);
-        $priorities = [];
-        if ($langcfg instanceof Configuration) {
-            $priorities = $langcfg->getArray('priorities', []);
-        }
+        $langcfg = $sspcfg->getConfigItem('language');
+        $priorities = $langcfg->getArray('priorities', []);
 
         if (!empty($priorities[$context['currentLanguage']])) {
             foreach ($priorities[$context['currentLanguage']] as $lang) {

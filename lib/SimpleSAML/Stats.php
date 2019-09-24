@@ -54,7 +54,7 @@ class Stats
     {
 
         $config = Configuration::getInstance();
-        $outputCfgs = $config->getConfigList('statistics.out', []);
+        $outputCfgs = $config->getConfigList('statistics.out');
 
         self::$outputs = [];
         foreach ($outputCfgs as $cfg) {

@@ -981,23 +981,25 @@ class Configuration implements Utils\ClearableState
      * is given.
      *
      * @param string $name The name of the option.
-     * @param mixed  $default A default value which will be returned if the option isn't found. The option will be
-     *                        required if this parameter isn't given. The default value can be any value, including
-     *                        null.
+     * @param array|null $default A default value which will be used if the option isn't found. An empty Configuration
+     *                        object will be returned if this parameter isn't given and the option doesn't exist.
+     *                        This function will only return null if $default is set to null and the option
+     *                        doesn't exist.
      *
      * @return mixed The option with the given name, or $default if the option isn't found and $default is specified.
      *
      * @throws \Exception If the option is not an array.
      */
-    public function getConfigItem($name, $default = self::REQUIRED_OPTION)
+    public function getConfigItem($name, $default = [])
     {
         assert(is_string($name));
 
         $ret = $this->getValue($name, $default);
 
-        if ($ret === $default) {
-            // the option wasn't found, or it matches the default value. In any case, return this value
-            return $ret;
+        if ($ret === null) {
+            // the option wasn't found, or it is explicitly null
+            // do not instantiate a new Configuration instance, but just return null
+            return null;
         }
 
         if (!is_array($ret)) {
@@ -1022,24 +1024,18 @@ class Configuration implements Utils\ClearableState
      * default value is given.
      *
      * @param string $name The name of the option.
-     * @param mixed  $default A default value which will be returned if the option isn't found. The option will be
-     *                        required if this parameter isn't given. The default value can be any value, including
-     *                        null.
      *
-     * @return mixed The option with the given name, or $default if the option isn't found and $default is specified.
+     * @return array The array of \SimpleSAML\Configuration objects.
      *
      * @throws \Exception If the value of this element is not an array.
+     *
+     * @deprecated Very specific function, will be removed in a future release; use getConfigItem or getArray instead
      */
-    public function getConfigList($name, $default = self::REQUIRED_OPTION)
+    public function getConfigList($name)
     {
         assert(is_string($name));
 
-        $ret = $this->getValue($name, $default);
-
-        if ($ret === $default) {
-            // the option wasn't found, or it matches the default value. In any case, return this value
-            return $ret;
-        }
+        $ret = $this->getValue($name, []);
 
         if (!is_array($ret)) {
             throw new \Exception(
