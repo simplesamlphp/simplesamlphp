@@ -20,6 +20,6 @@ $config = Configuration::getInstance();
 $session = Session::getSessionFromRequest();
 $request = Request::createFromGlobals();
 
-$controller = new DiscoController($config, $session);
+$controller = new Controller\DiscoController($config, $session);
 $response = $controller->discovery($request);
 $response->send();
