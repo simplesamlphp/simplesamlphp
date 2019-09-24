@@ -608,11 +608,12 @@ class Configuration implements Utils\ClearableState
             $path = $this->configuration[$name];
         }
 
+        $path = $this->resolvePath($path);
         if ($path === null) {
             return null;
         }
 
-        return $this->resolvePath($path).'/';
+        return $path.'/';
     }
 
 

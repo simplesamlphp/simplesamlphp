@@ -21,9 +21,9 @@ abstract class SessionHandler
      * instance of the session handler. This variable will be NULL if
      * we haven't instantiated a session handler yet.
      *
-     * @var \SimpleSAML\SessionHandler|null
+     * @var \SimpleSAML\SessionHandler
      */
-    protected static $sessionHandler = null;
+    protected static $sessionHandler;
 
 
     /**

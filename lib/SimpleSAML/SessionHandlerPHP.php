@@ -77,6 +77,7 @@ class SessionHandlerPHP extends SessionHandler
 
         if (!headers_sent()) {
             if (version_compare(PHP_VERSION, '7.3.0', '>=')) {
+                /** @psalm-suppress InvalidArgument  This annotation may be removed in Psalm >=3.0.15 */
                 session_set_cookie_params([
                     'lifetime' => $params['lifetime'],
                     'path' => $params['path'],
@@ -168,6 +169,10 @@ class SessionHandlerPHP extends SessionHandler
             if (($sid_length * $sid_bits_per_char) < 128) {
                 Logger::warning("Unsafe defaults used for sessionId generation!");
             }
+            /**
+             * This annotation may be removed as soon as we start using vimeo/psalm 3.x
+             * @psalm-suppress TooFewArguments
+             */
             $sessionId = session_create_id();
         } else {
             $sessionId = bin2hex(openssl_random_pseudo_bytes(16));
@@ -358,6 +363,7 @@ class SessionHandlerPHP extends SessionHandler
         }
 
         if (version_compare(PHP_VERSION, '7.3.0', '>=')) {
+            /** @psalm-suppress InvalidArgument  This annotation may be removed in Psalm >=3.0.15 */
             session_set_cookie_params($cookieParams);
         } else {
             session_set_cookie_params(
@@ -369,7 +375,7 @@ class SessionHandlerPHP extends SessionHandler
             );
         }
 
-        session_id($sessionID);
+        session_id(strval($sessionID));
         @session_start();
     }
 }

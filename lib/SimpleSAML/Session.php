@@ -32,7 +32,6 @@ class Session implements \Serializable, Utils\ClearableState
      */
     const DATA_TIMEOUT_SESSION_END = 'sessionEndTimeout';
 
-
     /**
      * The list of loaded session objects.
      *
@@ -42,13 +41,12 @@ class Session implements \Serializable, Utils\ClearableState
      */
     private static $sessions = [];
 
-
     /**
      * This variable holds the instance of the session - Singleton approach.
      *
      * Warning: do not set the instance manually, call Session::load() instead.
      */
-    private static $instance = null;
+    private static $instance;
 
     /**
      * The global configuration.
@@ -60,7 +58,7 @@ class Session implements \Serializable, Utils\ClearableState
     /**
      * The session ID of this session.
      *
-     * @var string
+     * @var string|null
      */
     private $sessionId;
 
@@ -163,7 +161,6 @@ class Session implements \Serializable, Utils\ClearableState
             $this->trackid = 'TR'.bin2hex(openssl_random_pseudo_bytes(4));
             Logger::setTrackId($this->trackid);
             $this->transient = true;
-
         } else {
             // regular session
             $sh = SessionHandler::getSessionHandler();
@@ -312,6 +309,7 @@ class Session implements \Serializable, Utils\ClearableState
         }
 
         // we must have a session now, either regular or transient
+        /** @var \SimpleSAML\Session */
         return self::$instance;
     }
 
@@ -523,7 +521,7 @@ class Session implements \Serializable, Utils\ClearableState
     /**
      * Retrieve the session ID of this session.
      *
-     * @return string  The session ID.
+     * @return string|null  The session ID, or null if this is a transient session.
      */
     public function getSessionId()
     {

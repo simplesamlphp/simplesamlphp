@@ -13,9 +13,14 @@ namespace SimpleSAML;
 class Logger
 {
     /**
-     * @var \SimpleSAML\Logger\LoggingHandlerInterface|false|null
+     * @var \SimpleSAML\Logger\LoggingHandlerInterface
      */
-    private static $loggingHandler = null;
+    private static $loggingHandler;
+
+    /**
+     * @var bool
+     */
+    private static $initializing = false;
 
     /**
      * @var integer|null
@@ -402,8 +407,7 @@ class Logger
      */
     private static function createLoggingHandler($handler = null)
     {
-        // set to false to indicate that it is being initialized
-        self::$loggingHandler = false;
+        self::$initializing = true;
 
         // a set of known logging handlers
         $known_handlers = [
@@ -438,11 +442,16 @@ class Logger
             }
             $handler = $known_handlers[$handler];
         }
+
+        /** @var \SimpleSAML\Logger\LoggingHandlerInterface */
         self::$loggingHandler = new $handler($config);
 
         self::$format = $config->getString('logging.format', self::$format);
         self::$loggingHandler->setLogFormat(self::$format);
+
+        self::$initializing = false;
     }
+
 
     /**
      * @param int $level
@@ -452,20 +461,20 @@ class Logger
      */
     private static function log($level, $string, $statsLog = false)
     {
-        if (self::$loggingHandler === false) {
+        if (self::$initializing) {
             // some error occurred while initializing logging
             self::defer($level, $string, $statsLog);
             return;
         } elseif (php_sapi_name() === 'cli' || defined('STDIN')) {
             // we are being executed from the CLI, nowhere to log
-            if (is_null(self::$loggingHandler)) {
-                self::createLoggingHandler('SimpleSAML\Logger\StandardErrorLoggingHandler');
+            if (!isset(self::$loggingHandler)) {
+                self::createLoggingHandler(\SimpleSAML\Logger\StandardErrorLoggingHandler::class);
             }
             $_SERVER['REMOTE_ADDR'] = "CLI";
             if (self::$trackid === self::NO_TRACKID) {
                 self::$trackid = 'CL'.bin2hex(openssl_random_pseudo_bytes(4));
             }
-        } elseif (self::$loggingHandler === null) {
+        } elseif (!isset(self::$loggingHandler)) {
             // Initialize logging
             self::createLoggingHandler();
             self::flush();
