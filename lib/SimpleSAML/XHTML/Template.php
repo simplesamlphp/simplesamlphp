@@ -774,6 +774,7 @@ class Template extends Response
      * Includes a file relative to the template base directory.
      * This function can be used to include headers and footers etc.
      *
+     * @deprecated This function will be removed in SSP 2.0. Use Twig-templates instead
      * @param string $file
      * @return void
      */

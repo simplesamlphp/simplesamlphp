@@ -133,7 +133,7 @@ class Module
             throw new Error\NotFound('No PATH_INFO to module.php');
         }
 
-        $url = $request->getPathInfo();
+        $url = $request->server->get('PATH_INFO');
         assert(substr($url, 0, 1) === '/');
 
         /* clear the PATH_INFO option, so that a script can detect whether it is called with anything following the
@@ -168,10 +168,18 @@ class Module
         }
 
         $config = Configuration::getInstance();
+
+        // rebuild REQUEST_URI and SCRIPT_NAME just in case we need to. This is needed for server aliases and rewrites
+        $translated_uri = $config->getBasePath().'module.php/'.$module.'/'.$url;
+        $request->server->set('REQUEST_URI', $translated_uri);
+        $request->server->set('SCRIPT_NAME', $config->getBasePath().'module.php');
+        $request->initialize($request->query->all(), $request->request->all(), $request->attributes->all(),
+            $request->cookies->all(), $request->files->all(), $request->server->all(), $request->getContent());
+
         if ($config->getBoolean('usenewui', false) === true) {
             $router = new Router($module);
             try {
-                return $router->process();
+                return $router->process($request);
             } catch (FileLocatorFileNotFoundException $e) {
                 // no routes configured for this module, fall back to the old system
             } catch (NotFoundHttpException $e) {
@@ -264,12 +272,21 @@ class Module
             }
         }
 
+        $assetConfig = $config->getConfigItem('assets', new Configuration([], '[assets]'));
+        $cacheConfig = $assetConfig->getConfigItem('caching', new Configuration([], '[assets][caching]'));
         $response = new BinaryFileResponse($path);
-        $response->setCache(['public' => true, 'max_age' => 86400]);
-        $response->setExpires(new \DateTime(gmdate('D, j M Y H:i:s \G\M\T', time() + 10 * 60)));
-        $response->setLastModified(new \DateTime(gmdate('D, j M Y H:i:s \G\M\T', filemtime($path))));
+        $response->setCache([
+            // "public" allows response caching even if the request was authenticated,
+            // which is exactly what we want for static resources
+            'public' => true,
+            'max_age' => (string)$cacheConfig->getInteger('max_age', 86400)
+        ]);
+        $response->setAutoLastModified();
+        if ($cacheConfig->getBoolean('etag', false)) {
+            $response->setAutoEtag();
+        }
+        $response->isNotModified($request);
         $response->headers->set('Content-Type', $contentType);
-        $response->headers->set('Content-Length', sprintf('%u', filesize($path))); // force file size to an unsigned
         $response->setContentDisposition(ResponseHeaderBag::DISPOSITION_INLINE);
         $response->prepare($request);
         return $response;

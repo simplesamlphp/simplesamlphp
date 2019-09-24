@@ -240,7 +240,7 @@ class Localization
             $langPath = $this->getLangPath($domain);
         } catch (\Exception $e) {
             $error = "Something went wrong when trying to get path to language file, cannot load domain '$domain'.";
-            Logger::error($_SERVER['PHP_SELF'].' - '.$error);
+            Logger::debug($_SERVER['PHP_SELF'].' - '.$error);
             if ($catchException) {
                 // bail out!
                 return;
@@ -255,7 +255,7 @@ class Localization
             $this->translator->loadTranslations($translations);
         } else {
             $error = "Localization file '$poFile' not found in '$langPath', falling back to default";
-            Logger::error($_SERVER['PHP_SELF'].' - '.$error);
+            Logger::debug($_SERVER['PHP_SELF'].' - '.$error);
         }
     }
 

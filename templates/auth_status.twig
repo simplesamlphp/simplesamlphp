@@ -67,6 +67,40 @@
 
 {% endif %}
 
+    <dl>
+      <dt>{% trans %}Debug information to be used by your support staff{% endtrans %}</dt>
+      {%- embed "includes/expander.twig" %}
+        {%- block content %}
+
+        <dl>
+          <dd>{% trans %}Tracking number{% endtrans %}</dd>
+          <dd class="code-box hljs">
+            <div class="pure-button-group top-right-corner">
+              <a class="pure-button copy hljs" data-clipboard-target="#trackid"
+                 title="{% trans %}Copy to clipboard{% endtrans %}"><span class="fa fa-copy"></span></a>
+            </div>
+            <code id="trackid" class="code-box-content">{{ trackid }}</code>
+          </dd>
+          {%- if authData %}
+
+          <dd>{% trans %}Information about your current session{% endtrans %}</dd>
+          <dd class="code-box hljs">
+            <div class="pure-button-group top-right-corner">
+              <a class="pure-button copy hljs" data-clipboard-target="#authdata"
+                 title="{% trans %}Copy to clipboard{% endtrans %}"><span class="fa fa-copy"></span></a>
+            </div>
+            <div id="authdata" class="code-box-content php">
+              {{- authData|json_encode(constant('JSON_UNESCAPED_SLASHES') b-or constant('JSON_PRETTY_PRINT')) |raw -}}
+            </div>
+          </dd>
+          {%- endif %}
+
+        </dl>
+        {%- endblock content %}
+      {%- endembed %}
+
+    </dl>
+    <br>
 
 {% if logout %}
     <h2>{% trans %}Logout{% endtrans %}</h2>
