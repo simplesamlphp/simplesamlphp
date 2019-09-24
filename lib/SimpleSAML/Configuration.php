@@ -980,7 +980,7 @@ class Configuration implements Utils\ClearableState
      * is given.
      *
      * @param string $name The name of the option.
-     * @param ?array $default A default value which will be used if the option isn't found. An empty Configuration
+     * @param array|null $default A default value which will be used if the option isn't found. An empty Configuration
      *                        object will be returned if this parameter isn't given and the option doesn't exist.
      *                        This function will only return null if $default is set to null and the option
      *                        doesn't exist.
