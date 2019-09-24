@@ -5,36 +5,17 @@
  * initializes the SimpleSAMLphp config class with the correct path.
  */
 
-require_once('_include.php');
 
-// Load SimpleSAMLphp configuration and metadata
-$config = \SimpleSAML\Configuration::getInstance();
-$session = \SimpleSAML\Session::getSessionFromRequest();
+namespace SimpleSAML\Module\cron;
 
-\SimpleSAML\Utils\Auth::requireAdmin();
+use SimpleSAML\Configuration;
+use SimpleSAML\Session;
+use Symfony\Component\HttpFoundation\Request;
 
-$cronconfig = \SimpleSAML\Configuration::getConfig('module_cron.php');
+$config = Configuration::getInstance();
+$session = Session::getSessionFromRequest();
+$request = Request::createFromGlobals();
 
-$key = $cronconfig->getValue('key', '');
-$tags = $cronconfig->getValue('allowed_tags');
-
-$def = [
-    'weekly' => "22 0 * * 0",
-    'daily' => "02 0 * * *",
-    'hourly' => "01 * * * *",
-    'default' => "XXXXXXXXXX",
-];
-
-$urls = [];
-foreach ($tags as $tag) {
-    $urls[] = [
-        'exec_href' => \SimpleSAML\Module::getModuleURL('cron/cron.php', ['key' => $key, 'tag' => $tag]),
-        'href' => \SimpleSAML\Module::getModuleURL('cron/cron.php', ['key' => $key, 'tag' => $tag, 'output' => 'xhtml']),
-        'tag' => $tag,
-        'int' => (array_key_exists($tag, $def) ? $def[$tag] : $def['default']),
-    ];
-}
-
-$t = new \SimpleSAML\XHTML\Template($config, 'cron:croninfo.tpl.php', 'cron:cron');
-$t->data['urls'] = $urls;
-$t->show();
+$controller = new CronController($config, $session);
+$response = $controller->info($request);
+$response->send();
