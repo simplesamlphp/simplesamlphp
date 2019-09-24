@@ -2,6 +2,8 @@
 
 namespace SimpleSAML;
 
+use SimpleSAML\Logger\ErrorLogLoggingHandler;
+
 /**
  * The main logger class for SimpleSAMLphp.
  *
@@ -443,13 +445,18 @@ class Logger
             $handler = $known_handlers[$handler];
         }
 
-        /** @var \SimpleSAML\Logger\LoggingHandlerInterface */
-        self::$loggingHandler = new $handler($config);
-
         self::$format = $config->getString('logging.format', self::$format);
-        self::$loggingHandler->setLogFormat(self::$format);
 
-        self::$initializing = false;
+        try {
+            /** @var \SimpleSAML\Logger\LoggingHandlerInterface */
+            self::$loggingHandler = new $handler($config);
+            self::$loggingHandler->setLogFormat(self::$format);
+            self::$initializing = false;
+        } catch (\Exception $e) {
+            self::$loggingHandler = new ErrorLogLoggingHandler($config);
+            self::$initializing = false;
+            self::log(self::CRIT, $e->getMessage(), false);
+        }
     }
 
 
