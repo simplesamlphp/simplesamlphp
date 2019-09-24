@@ -17,15 +17,17 @@ Released TBD
 
 Released 2019-09-xx
 
+  * Fixed an issue with warnings being logged when using PHP 7.2 or newer (#1168).
+  * Fixed an issue with web server aliases or rewritten URLs not working (#1023, #1093).
+  * Fixed an issue that prevented errors to be logged if the log file was not writeable (#1194).
   * Replace custom Email class with the phpmailer library.
-  * Allow to log to STDERR in the logging.handler option.
+  * Allow logging to STDERR in the `logging.handler` option by setting it to `stderr`.
   * Allow use of stream wrappers (e.g. s3://) in paths.
-  * Improve 'update or insert' handling for different SQL drivers
-  * The default algorithm within the TimeLimitedToken-class has been bumped from SHA-1 to SHA-256
-    as announced by deprecation notice in 1.15-RC1
+  * Improved 'update or insert' handling for different SQL drivers.
+  * The default algorithm within the TimeLimitedToken class has been bumped from SHA-1 to SHA-256
+    as announced by deprecation notice in 1.15-RC1.
   * Most modules have been externalized. They will not be included in our future releases by default,
-    but will be easily installable using Composer.
-  * The saml2-libary has been updated to v3.4.1
+    but will be easily installable using Composer. For now, they are still included in the package.
   * Many minor fixes to code, css, documentation
 
 ### metarefresh
@@ -34,28 +36,10 @@ Released 2019-09-xx
     configuration option.
 
 ### saml
-  * Make the id of the generated signed metadata only change when metadata
-    content changes.
-  * New SP options `AssertionConsumerService` and `SingleLogoutServiceLocation`
-    that allow to override the default URL paths.
+  * Make the id of the generated signed metadata only change when metadata content changes.
+  * New SP metadata configuration options `AssertionConsumerService` and `SingleLogoutServiceLocation`
+    to allow overriding the default URL paths.
   * Added support for per-IDP configurable `AuthnContextClassRef`/`AuthnContextComparison`.
-
-### Interoperability
-  * The minimum PHP version required is now 5.6.
-  * Windows CI was added using Appveyor
-  * The codebase is now completely covered by Psalm static analysis
-  * Test coverage has increased by 3%
-
-### Deprecation
-  * Support for SAML1.1 / Shibboleth 1.3 will be discontinued in a future release
-  * The class SimpleSAML\Auth\TimeLimitedToken is now deprecated and will be removed in a future release
-    If your custom module relies on this class, be sure to make a copy into your repository and
-    make sure to also copy the unit tests that come along.
-  * Setting 'privacypolicy' in metadata-files will be removed in a future release. It was only used
-    by the consent-module, which supports UIInfo's PrivacyStatementURL.
-    See https://simplesamlphp.org/docs/stable/simplesamlphp-metadata-extensions-ui on how to configure this.
-  * The use of the PHP memcache-extension was deprecated in favour of memcached-extension.
-    The former is considered abandoned and it's safe use can no longer be guaranteed.
 
 ## Version 1.17.6
 
