@@ -477,7 +477,6 @@ class Logger
         } elseif (!isset(self::$loggingHandler)) {
             // Initialize logging
             self::createLoggingHandler();
-            self::flush();
         }
 
         if (self::$captureLog) {
