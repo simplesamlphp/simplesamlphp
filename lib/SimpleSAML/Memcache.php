@@ -167,7 +167,7 @@ class Memcache
 
         // store this object to all groups of memcache servers
         foreach (self::getMemcacheServers() as $server) {
-            if (self::$extension === '\memcached') {
+            if (self::$extension === \Memcached::class) {
                 $server->set($key, $savedInfoSerialized, $expire);
             } else {
                 $server->set($key, $savedInfoSerialized, 0, $expire);
@@ -312,10 +312,10 @@ class Memcache
     {
         if (class_exists(\Memcached::class)) {
             $memcache = new \Memcached();
-            self::$extension = strtolower(\Memcached::class);
+            self::$extension = \Memcached::class;
         } elseif (class_exists(\Memcache::class)) {
             $memcache = new \Memcache();
-            self::$extension = strtolower(\Memcache::class);
+            self::$extension = \Memcache::class;
         } else {
             throw new \Exception(
                 'Missing Memcached implementation. You must install either the Memcache or Memcached extension.'
