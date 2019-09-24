@@ -398,9 +398,6 @@ class Logger
             register_shutdown_function([self::class, 'shutdown']);
             self::$shutdownRegistered = true;
         }
-
-        // Set initializing to true > all went well!
-        self::$initializing = true;
     }
 
 
@@ -411,6 +408,8 @@ class Logger
      */
     private static function createLoggingHandler($handler = null)
     {
+        self::$initializing = true;
+
         // a set of known logging handlers
         $known_handlers = [
             'syslog'   => 'SimpleSAML\Logger\SyslogLoggingHandler',
@@ -450,6 +449,8 @@ class Logger
 
         self::$format = $config->getString('logging.format', self::$format);
         self::$loggingHandler->setLogFormat(self::$format);
+
+        self::$initializing = false;
     }
 
 
@@ -461,7 +462,7 @@ class Logger
      */
     private static function log($level, $string, $statsLog = false)
     {
-        if (self::$initializing === false) {
+        if (self::$initializing) {
             // some error occurred while initializing logging
             self::defer($level, $string, $statsLog);
             return;
