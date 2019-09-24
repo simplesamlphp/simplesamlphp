@@ -67,10 +67,11 @@ class SessionHandlerPHP extends SessionHandler
             session_write_close();
         }
 
-        if (!empty($this->cookie_name)) {
-            session_name($this->cookie_name);
-        } else {
+
+        if (empty($this->cookie_name)) {
             $this->cookie_name = session_name();
+        } elseif (!headers_sent() || version_compare(PHP_VERSION, '7.2', '<')) {
+            session_name($this->cookie_name);
         }
 
         $params = $this->getCookieParams();
