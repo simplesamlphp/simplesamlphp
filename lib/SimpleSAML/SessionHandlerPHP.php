@@ -163,7 +163,7 @@ class SessionHandlerPHP extends SessionHandler
     public function newSessionId()
     {
         // generate new (secure) session id
-        if (function_exists('session_create_id')) {
+        if (function_exists('session_create_id') && version_compare(PHP_VERSION, '7.2', '<')) {
             $sid_length = (int) ini_get('session.sid_length');
             $sid_bits_per_char = (int) ini_get('session.sid_bits_per_character');
 
