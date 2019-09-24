@@ -310,12 +310,12 @@ class Memcache
      */
     private static function loadMemcacheServerGroup(array $group)
     {
-        if (class_exists(\Memcache::class)) {
-            $memcache = new \Memcache();
-            self::$extension = strtolower(\Memcache::class);
-        } elseif (class_exists(\Memcached::class)) {
+        if (class_exists(\Memcached::class)) {
             $memcache = new \Memcached();
             self::$extension = strtolower(\Memcached::class);
+        } elseif (class_exists(\Memcache::class)) {
+            $memcache = new \Memcache();
+            self::$extension = strtolower(\Memcache::class);
         } else {
             throw new \Exception(
                 'Missing Memcached implementation. You must install either the Memcache or Memcached extension.'
