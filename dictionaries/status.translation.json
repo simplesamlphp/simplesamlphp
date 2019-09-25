@@ -71,7 +71,7 @@
 		"el": "\u0394\u03bf\u03ba\u03b9\u03bc\u03b1\u03c3\u03c4\u03b9\u03ba\u03cc\u03c2 \u03a0\u03b1\u03c1\u03bf\u03c7\u03ad\u03b1\u03c2 \u03a5\u03c0\u03b7\u03c1\u03b5\u03c3\u03b9\u03ce\u03bd Shibboleth",
 		"xh": "Idemo ye-Shibboleth",
 		"zu": "Idemo ye-Shibboleth",
-		"ca": "Demo de Shibboleth"
+		"ca": "Exemple de demostració Shibboleth"
 	},
 	"header_diagnostics": {
 		"no": "SimpleSAMLphp diagnostikk",
@@ -108,7 +108,7 @@
 		"el": "\u0394\u03b9\u03b1\u03b3\u03bd\u03c9\u03c3\u03c4\u03b9\u03ba\u03ac SimpleSAMLphp",
 		"zu": "Ukuhlonzwa Kwe-SimpleSAMLphp",
 		"xh": "Uhlalutyo lwe-SimpleSAMLphp",
-		"ca": "SimpleSAMLphp Diagnostics"
+		"ca": "Diagnòstic SimpleSAMLphp"
 	},
 	"some_error_occurred": {
 		"no": "En feil har oppst\u00e5tt",

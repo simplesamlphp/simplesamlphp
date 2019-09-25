@@ -33,7 +33,7 @@
 		"ro": "<strong>Felciit\u0103ri<\/strong>, a\u021bi instalat cu succes SimpleSAMLphp. Aceasta este pagina de start unde g\u0103si\u021bi link-uri c\u0103tre exemple, diagnostic\u0103ri, metadate, documenta\u021bie.",
 		"eu": "<strong>&iexcl;Zorionak!<\/strong> SimpleSAMLphp zuzen instalatu duzu. Hau instalazioaren hasiera orria da, hemen, aurkituko dituzu loturak froga, metadatu edo dokumentu garrantzitsuetan sartzeko.",
 		"el": "<strong>\u03a3\u03c5\u03b3\u03c7\u03b1\u03c1\u03b7\u03c4\u03ae\u03c1\u03b9\u03b1<\/strong>, \u03ad\u03c7\u03b5\u03c4\u03b5 \u03b5\u03b3\u03ba\u03b1\u03c4\u03b1\u03c3\u03c4\u03ae\u03c3\u03b5\u03b9 \u03bc\u03b5 \u03b5\u03c0\u03b9\u03c4\u03c5\u03c7\u03af\u03b1 \u03c4\u03bf SimpleSAMLphp. \u0391\u03c5\u03c4\u03ae \u03b5\u03af\u03bd\u03b1\u03b9 \u03b7 \u03b1\u03c1\u03c7\u03b9\u03ba\u03ae \u03c3\u03b5\u03bb\u03af\u03b4\u03b1 \u03c4\u03b7\u03c2 \u03b5\u03b3\u03ba\u03b1\u03c4\u03ac\u03c3\u03c4\u03b1\u03c3\u03ae\u03c2 \u03c3\u03b1\u03c2, \u03cc\u03c0\u03bf\u03c5 \u03b8\u03b1 \u03b2\u03c1\u03b5\u03af\u03c4\u03b5 \u03c3\u03c5\u03bd\u03b4\u03ad\u03c3\u03bc\u03bf\u03c5\u03c2 \u03c3\u03b5 \u03b4\u03b9\u03b1\u03b3\u03bd\u03c9\u03c3\u03c4\u03b9\u03ba\u03ac\u002c \u03bc\u03b5\u03c4\u03b1\u03b4\u03b5\u03b4\u03bf\u03bc\u03ad\u03bd\u03b1\u002c \u03c0\u03b1\u03c1\u03b1\u03b4\u03b5\u03af\u03b3\u03bc\u03b1\u03c4\u03b1 \u03c1\u03c5\u03b8\u03bc\u03af\u03c3\u03b5\u03c9\u03bd \u03b3\u03b9\u03b1 \u03b4\u03bf\u03ba\u03b9\u03bc\u03ae\u002c \u03ba\u03b1\u03b8\u03ce\u03c2 \u03ba\u03b1\u03b9 \u03c4\u03b7 \u03c3\u03c7\u03b5\u03c4\u03b9\u03ba\u03ae \u03c4\u03b5\u03ba\u03bc\u03b7\u03c1\u03af\u03c9\u03c3\u03b7.",
-		"ca": "<strong>Felicitats<\/strong>, heu instal·lat correctament SimpleSAMLphp. Aquesta és la pàgina d'inici de la vostra instal·lació, on trobareu enllaços per provar exemples, diagnòstics, metadades i fins i tot enllaços a la documentació rellevant."
+		"ca": "<strong>Felicitats<\/strong>, heu instal·lat correctament SimpleSAMLphp. Aquesta és la pàgina d'inici de la vostra instal·lació, on trobareu enllaços per provar exemples, diagnòstics, les metadades i documentació rellevant."
 	},
 	"useful_links_header": {
 		"no": "Nyttige lenker for denne installasjonen",
@@ -213,7 +213,7 @@
 		"sr": "Obavezno",
 		"ro": "Necesar",
 		"el": "\u0391\u03c0\u03b1\u03b9\u03c4\u03b5\u03af\u03c4\u03b1\u03b9",
-		"ca": "Es requereix"
+		"ca": "Necessari"
 	},
 	"required_ldap": {
 		"no": "P\u00e5krevd for LDAP",
@@ -249,7 +249,7 @@
 		"sr": "Obavezno za LDAP",
 		"ro": "Necesar pentru LDAP",
 		"el": "\u0391\u03c0\u03b1\u03b9\u03c4\u03b5\u03af\u03c4\u03b1\u03b9 \u03b3\u03b9\u03b1 \u03c5\u03c0\u03bf\u03c3\u03c4\u03ae\u03c1\u03b9\u03be\u03b7 LDAP",
-		"ca": "Es requereix per LDAP"
+		"ca": "Necessari per LDAP"
 	},
 	"required_radius": {
 		"no": "P\u00e5krevd for Radius",
@@ -285,7 +285,7 @@
 		"sr": "Obavezno za Radius",
 		"ro": "Necesar pentru RADIUS",
 		"el": "\u0391\u03c0\u03b1\u03b9\u03c4\u03b5\u03af\u03c4\u03b1\u03b9 \u03b3\u03b9\u03b1 \u03c5\u03c0\u03bf\u03c3\u03c4\u03ae\u03c1\u03b9\u03be\u03b7 RADIUS",
-		"ca": "Es requereix per a Radius"
+		"ca": "Necessari per a Radius"
 	},
 	"optional": {
 		"no": "Valgfritt",
@@ -645,7 +645,7 @@
 		"ro": "Privire de ansamblu a metadatelor pentru instalarea dumneavoastr\u0103. Diagnostica\u021bi fi\u0219ierele cu metadate",
 		"eu": "Zure instalazioko metadatuen ikuspegi orokorra. Egiaztatu zure metadatu fitxategiak",
 		"el": "\u0395\u03c0\u03b9\u03c3\u03ba\u03cc\u03c0\u03b7\u03c3\u03b7 \u03bc\u03b5\u03c4\u03b1\u03b4\u03b5\u03b4\u03bf\u03bc\u03ad\u03bd\u03c9\u03bd \u03b3\u03b9\u03b1 \u03c4\u03b7\u03bd \u03b5\u03b3\u03ba\u03b1\u03c4\u03ac\u03c3\u03c4\u03b1\u03c3\u03ae \u03c3\u03b1\u03c2. \u0394\u03b9\u03ac\u03b3\u03bd\u03c9\u03c3\u03b7 \u03c4\u03c9\u03bd \u03b1\u03c1\u03c7\u03b5\u03af\u03c9\u03bd \u03bc\u03b5\u03c4\u03b1\u03b4\u03b5\u03b4\u03bf\u03bc\u03ad\u03bd\u03c9\u03bd \u03c3\u03b1\u03c2",
-		"ca": "Visió general de metadades per a la vostra instal·lació. Diagnosi els fitxers de metadades"
+		"ca": "Visió general de metadades per a la vostra instal·lació. Comprova els teus fitxers de metadades"
 	},
 	"link_meta_saml2sphosted": {
 		"no": "Hosted SAML 2.0 Service Provider Metadata (automatisk generert)",
@@ -1041,7 +1041,7 @@
 		"sr": "Napredne mogu\u0107nosti SimpleSAMLphp-a",
 		"ro": "Caracteristici avansate ale SimpleSAMLphp",
 		"el": "\u03a0\u03c1\u03bf\u03b7\u03b3\u03bc\u03ad\u03bd\u03b1 \u03c7\u03b1\u03c1\u03b1\u03ba\u03c4\u03b7\u03c1\u03b9\u03c3\u03c4\u03b9\u03ba\u03ac \u03c4\u03bf\u03c5 SimpleSAMLphp",
-		"ca": "SimpleSAMLphp Funcions avançades"
+		"ca": "Característiques avançades de SimpleSAMLphp"
 	},
 	"link_doc_maintenance": {
 		"no": "SimpleSAMLphp vedlikehold og konfigurasjon",
@@ -1077,7 +1077,7 @@
 		"sr": "Odr\u017eavanje i pode\u0161avanja SimpleSAMLphp-a",
 		"ro": "\u00centre\u021binerea \u0219i configurarea SimpleSAMLphp",
 		"el": "\u03a3\u03c5\u03bd\u03c4\u03ae\u03c1\u03b7\u03c3\u03b7 \u03ba\u03b1\u03b9 \u03b4\u03b9\u03b1\u03bc\u03cc\u03c1\u03c6\u03c9\u03c3\u03b7 \u03c4\u03bf\u03c5 SimpleSAMLphp",
-		"ca": "SimpleSAMLphp Manteniment i configuració"
+		"ca": "Manteniment i configuració de SimpleSAMLphp"
 	},
 	"link_configcheck": {
 		"no": "Sjekk av SimpleSAMLphp konfigurasjonsfiler",
@@ -1112,7 +1112,7 @@
 		"sr": "Provera SimpleSAMLphp pode\u0161avanja",
 		"ro": "Verificarea configura\u021biei SimpleSAMLphp",
 		"el": "\u0388\u03bb\u03b5\u03b3\u03c7\u03bf\u03c2 \u03c1\u03c5\u03b8\u03bc\u03af\u03c3\u03b5\u03c9\u03bd SimpleSAMLphp",
-		"ca": "Verificació de configuració SimpleSAMLphp"
+		"ca": "Verificació de la configuració de SimpleSAMLphp"
 	},
 	"link_cleardiscochoices": {
 		"no": "Slett mitt valg av IdP i IdP discovery tjenestene",
@@ -1357,7 +1357,7 @@
 		"sr": "Prijavite se kao administrator",
 		"ro": "Autentificare ca adminstrator",
 		"el": "\u0395\u03af\u03c3\u03bf\u03b4\u03bf\u03c2 \u03c9\u03c2 \u03b4\u03b9\u03b1\u03c7\u03b5\u03b9\u03c1\u03b9\u03c3\u03c4\u03ae\u03c2",
-		"ca": "Inicieu sessió com a administrador"
+		"ca": "Inicieu la sessió com a administrador"
 	},
 	"loggedin_as_admin": {
 		"no": "Du er logget inn som administrator",
@@ -1534,7 +1534,7 @@
 		"cs": "Zastaral\u00e9",
 		"eu": "Zaharkitua",
 		"el": "\u03a5\u03c0\u03cc \u03b1\u03c0\u03cc\u03c3\u03c5\u03c1\u03c3\u03b7",
-		"ca": "Desacreditat"
+		"ca": "Obsolet"
 	},
 	"page_title": {
 		"sv": "Installationssida f\u00f6r SimpleSAMLphp",

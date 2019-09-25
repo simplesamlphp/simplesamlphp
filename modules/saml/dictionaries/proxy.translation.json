@@ -11,6 +11,6 @@
     "es": "Ya existe una sesión válida con un proveedor de identidad (<em>%IDP%</em>) que <em>%SP%</em> no acepta. ¿Desea cerrar su sesión actual e iniciar una nueva con otro proveedor de identidad?",
     "zu": "Kakade uneseshini evumelekile nomhlinzeki kamazisi (<em>%IDP%</em>) engamukelwa okuthi <em>%SP%</em>. Ungathanda ukuphuma kuseshini yakho ekhona kakade futhi uphinde ungene ngomunye umhlinzeki kamazisi?",
     "xh": "Sele unayo iseshoni esebenzayo nomboneleli wesazisi (<em>%IDP%</em>) engamkelwanga yi-<em>%SP%</em>. Ingaba ungathanda ukuphuma kwiseshoni yakho esele ikho uze ungene kwakhona ngomnye umboneleli wesazisi?",
-    "ca": "Ja teniu una sessió vàlida amb un proveïdor d’identitats (<em>%IDP%</em>) que no es acceptada per <em>%SP%</em>. Voleu sortir de la sessió existent i tornar a iniciar sessió amb un altre proveïdor d’identitats?"
+    "ca": "Ja teniu una sessió vàlida amb un proveïdor d’identitats (<em>%IDP%</em>) que no es acceptada per <em>%SP%</em>. Voleu sortir de la sessió existent i tornar a iniciar sessió amb un altre proveïdor d’identitat?"
   }
 }

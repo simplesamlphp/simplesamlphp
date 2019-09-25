@@ -154,7 +154,7 @@
 		"af": "Meld aan",
 		"el": "\u0395\u03af\u03c3\u03bf\u03b4\u03bf\u03c2",
 		"zu": "Ngena",
-		"ca": "iniciar Sessió"
+		"ca": "Inicia la sessió"
 	},
 	"processing": {
 		"es": "Procesando...",
@@ -591,7 +591,7 @@
 		"el": "\u0395\u03c0\u03b9\u03bb\u03b5\u03b3\u03bc\u03ad\u03bd\u03bf\u03c2 \u03bf\u03b9\u03ba\u03b5\u03af\u03bf\u03c2 \u03c6\u03bf\u03c1\u03ad\u03b1\u03c2: <b>%HOMEORG%<\/b>.",
 		"zu": "Ukhethe okuthi <b>%HOMEORG%</b> njengenhlangano yakho yasekhaya. Uma lokhu kungalungile ungase ukhethe enye.",
 		"xh": "Uye wakhetha u-<b>%HOMEORG%</b> njengombutho wakho wekhaya. Ukuba oku akuchanekanga usenokukhetha omnye.",
-		"ca": "Heu triat <b>%HOMEORG%<\/b> com la vostra organització principal. Si això és incorrecte, podeu triar-ne una altra."
+		"ca": "Heu triat <b>%HOMEORG%<\/b> com la vostra organització principal. Si això no és correcte, podeu triar-ne una altra."
 	},
 	"change_home_org_button": {
 		"no": "Velg vertsorganisasjon",
@@ -778,6 +778,6 @@
 		"ca": "Recorda'm"
 	},
 	"remember_organization": {
-        "ca": "Recorda la meva organització"
+		"ca": "Recorda la meva organització principal"
     }
 }

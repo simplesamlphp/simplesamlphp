@@ -36,7 +36,7 @@
 		"el": "\u03a3\u03c6\u03ac\u03bb\u03bc\u03b1 \u03c4\u03bf\u03c5 SimpleSAMLphp",
 		"zu": "Iphutha le-SimpleSAMLphp",
 		"xh": "Impazamo ye-SimpleSAMLphp",
-		"ca": "Error SimpleSAMLphp"
+		"ca": "Error de SimpleSAMLphp"
 	},
 	"report_trackid": {
 		"no": "Hvis vil rapportere denne feilen, send ogs\u00e5 med dette sporingsnummeret. Det gj\u00f8r det enklere for systemadministratorene \u00e5 finne ut hva som gikk galt:",
@@ -114,7 +114,7 @@
 		"el": "\u03a0\u03bb\u03b7\u03c1\u03bf\u03c6\u03bf\u03c1\u03af\u03b5\u03c2 \u03b5\u03bd\u03c4\u03bf\u03c0\u03b9\u03c3\u03bc\u03bf\u03cd \u03c3\u03c6\u03b1\u03bb\u03bc\u03ac\u03c4\u03c9\u03bd",
 		"xh": "Inkcazelo yokulungisa",
 		"zu": "Ulwazi lokususwa kwephutha",
-		"ca": "Depurar informació"
+		"ca": "Informació de depuració"
 	},
 	"debuginfo_text": {
 		"no": "Detaljene nedenfor kan v\u00e6re av interesse for administratoren \/ brukerst\u00f8tte:",
@@ -192,7 +192,7 @@
 		"el": "\u0391\u03bd\u03b1\u03c6\u03bf\u03c1\u03ac \u03c3\u03c6\u03ac\u03bb\u03bc\u03b1\u03c4\u03bf\u03c2",
 		"zu": "Amaphutha ombiko",
 		"xh": "Chaza iimpazamo",
-		"ca": "Informeu d’errors"
+		"ca": "Informeu de l’error"
 	},
 	"report_text": {
 		"no": "Hvis du \u00f8nsker at brukerst\u00f8tte skal kunne kontakte deg igjen i forbindelse med denne feilen, m\u00e5 du oppgi e-postadressen din nedenfor:",
@@ -231,7 +231,7 @@
 		"el": "\u03a0\u03c1\u03bf\u03b1\u03b9\u03c1\u03b5\u03c4\u03b9\u03ba\u03ac\u002c \u03b5\u03b9\u03c3\u03ac\u03b3\u03b5\u03c4\u03b5 \u03c4\u03b7 \u03b4\u03b9\u03b5\u03cd\u03b8\u03c5\u03bd\u03c3\u03b7 \u03b7\u03bb\u03b5\u03ba\u03c4\u03c1\u03bf\u03bd\u03b9\u03ba\u03bf\u03cd \u03c4\u03b1\u03c7\u03c5\u03b4\u03c1\u03bf\u03bc\u03b5\u03af\u03bf\u03c5 \u03c3\u03b1\u03c2 \u03ce\u03c3\u03c4\u03b5 \u03bd\u03b1 \u03b5\u03af\u03bc\u03b1\u03c3\u03c4\u03b5 \u03c3\u03b5 \u03b8\u03ad\u03c3\u03b7 \u03bd\u03b1 \u03ad\u03c1\u03b8\u03bf\u03c5\u03bc\u03b5 \u03c3\u03b5 \u03b5\u03c0\u03b1\u03c6\u03ae \u03bc\u03b1\u03b6\u03af \u03c3\u03b1\u03c2 \u03b3\u03b9\u03b1 \u03c0\u03b5\u03c1\u03b1\u03b9\u03c4\u03ad\u03c1\u03c9 \u03b5\u03c1\u03c9\u03c4\u03ae\u03c3\u03b5\u03b9\u03c2 \u03c3\u03c7\u03b5\u03c4\u03b9\u03ba\u03ac \u03bc\u03b5 \u03c4\u03bf \u03b8\u03ad\u03bc\u03b1 \u03c3\u03b1\u03c2:",
 		"xh": "Unokhetho lokuthumela idilesi yeimeyile yakho, ukuze abalawuli bakwazi ukukuqhagamshela ukuba banemibuzo engakumbi malunga nomba wakho:",
 		"zu": "Faka ngokuzithandela ikheli lakho le-imeyili, ukuze abalawuli bakwazi ukukuthinta ngemibuzo eyengeziwe mayelana nenkinga yakho:",
-		"ca": "Opcionalment, introduïu la vostra adreça de correu electrònic, perquè els administradors puguin contactar-vos per obtenir més preguntes sobre el vostre problema:"
+		"ca": "Opcionalment, introduïu la vostra adreça de correu electrònic, per a que els administradors puguin contactar amb vosaltres per obtenir més detalls del problema:"
 	},
 	"report_email": {
 		"no": "E-postadresse:",
@@ -271,7 +271,7 @@
 		"el": "Email:",
 		"xh": "Idilesi ye-imeyile:",
 		"zu": "Ikheli le-imeyili:",
-		"ca": "Correu electrònic:"
+		"ca": "Adreça de correu electrònic:"
 	},
 	"report_explain": {
 		"no": "Forklar hva du gjorde da feilen oppsto...",
@@ -427,7 +427,7 @@
 		"el": "\u0391\u03c5\u03c4\u03cc \u03c4\u03bf \u03c3\u03c6\u03ac\u03bb\u03bc\u03b1 \u03c0\u03b9\u03b8\u03b1\u03bd\u03cc\u03c4\u03b1\u03c4\u03b1 \u03bf\u03c6\u03b5\u03af\u03bb\u03b5\u03c4\u03b1\u03b9 \u03c3\u03b5 \u03ba\u03ac\u03c0\u03bf\u03b9\u03b1 \u03b1\u03c0\u03c1\u03bf\u03c3\u03b4\u03cc\u03ba\u03b7\u03c4\u03b7 \u03c3\u03c5\u03bc\u03c0\u03b5\u03c1\u03b9\u03c6\u03bf\u03c1\u03ac \u03ae \u03b5\u03c3\u03c6\u03b1\u03bb\u03bc\u03ad\u03bd\u03b7 \u03c1\u03cd\u03b8\u03bc\u03b9\u03c3\u03b7 \u03c4\u03bf\u03c5 SimpleSAMLphp. \u0395\u03c0\u03b9\u03ba\u03bf\u03b9\u03bd\u03c9\u03bd\u03ae\u03c3\u03c4\u03b5 \u03bc\u03b5 \u03c4\u03bf\u03bd \u03b4\u03b9\u03b1\u03c7\u03b5\u03b9\u03c1\u03b9\u03c3\u03c4\u03ae \u03b1\u03c5\u03c4\u03ae\u03c2 \u03c4\u03b7\u03c2 \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b1\u03c2 \u03c3\u03c5\u03bc\u03c0\u03b5\u03c1\u03b9\u03bb\u03b1\u03bc\u03b2\u03ac\u03bd\u03bf\u03bd\u03c4\u03b1\u03c2 \u03c4\u03bf \u03c0\u03b1\u03c1\u03b1\u03c0\u03ac\u03bd\u03c9 \u03bc\u03ae\u03bd\u03c5\u03bc\u03b1 \u03c3\u03c6\u03ac\u03bb\u03bc\u03b1\u03c4\u03bf\u03c2.",
 		"zu": "Leli phutha kungenzeka ukuthi libangelwa indlela yokuziphatha engalindelwe noma umiso olungafanele lwe-SimpleSAMLphp. Thinta umlawuli wale sevisi yokungena, bese umthumela umlayezo wephutha ongenhla.",
 		"xh": "Le mpazamo kusenokwenzeka ingenxa yendlela yokwenza engalindelekanga okanye ulungiselelo olungachanekanga lwe-SimpleSAMLphp. Qhagamshelana nomlawuli wale nkonzo yokungena, uze umthumele umyalezo wempazamo ongentla.",
-		"ca": "Aquest error probablement es deu a un comportament inesperat o a una configuració incorrecta de SimpleSAMLphp. Poseu-vos en contacte amb l’administrador d’aquest servei d’inici de sessió i envieu-li el missatge d’error anterior."
+		"ca": "Segurament aquest error es deu a un comportament inesperat o a una configuració incorrecta de SimpleSAMLphp. Poseu-vos en contacte amb l’administrador d’aquest servei i envieu-li el missatge d’error anterior."
 	},
 	"title_CREATEREQUEST": {
 		"no": "Feil i laging av foresp\u00f8rselen",
@@ -661,7 +661,7 @@
 		"el": "\u03a0\u03b1\u03c1\u03bf\u03c5\u03c3\u03b9\u03ac\u03c3\u03c4\u03b7\u03ba\u03b5 \u03c3\u03c6\u03ac\u03bb\u03bc\u03b1 \u03ba\u03b1\u03c4\u03ac \u03c4\u03b7 \u03b4\u03b7\u03bc\u03b9\u03bf\u03c5\u03c1\u03b3\u03af\u03b1 \u03b1\u03c0\u03cc\u03ba\u03c1\u03b9\u03c3\u03b7\u03c2 \u03b1\u03c0\u03cc \u03c4\u03bf\u03bd \u03c0\u03ac\u03c1\u03bf\u03c7\u03bf \u03c4\u03b1\u03c5\u03c4\u03cc\u03c4\u03b7\u03c4\u03b1\u03c2.",
 		"zu": "Ngenkathi lo mhlinzeki kamazisi ezama ukwakha impendulo yokuqinisekisa, kuvele iphutha.",
 		"xh": "Xa lo mboneleli wesazisi ezama ukuyila impendulo yongqinisiso, kwenzeke impazamo.",
-		"ca": "Quan aquest proveïdor d’identitat ha intentat crear una resposta d’autenticació, s’ha produït un error."
+		"ca": "Quan el proveïdor d’identitat ha intentat crear una resposta d’autenticació, s’ha produït un error."
 	},
 	"title_LDAPERROR": {
 		"no": "LDAP-feil",
@@ -739,7 +739,7 @@
 		"el": "\u03a0\u03b1\u03c1\u03bf\u03c5\u03c3\u03b9\u03ac\u03c3\u03c4\u03b7\u03ba\u03b5 \u03c3\u03c6\u03ac\u03bb\u03bc\u03b1 \u03ba\u03b1\u03c4\u03ac \u03c4\u03b7\u03bd \u03b5\u03c0\u03b9\u03ba\u03bf\u03b9\u03bd\u03c9\u03bd\u03af\u03b1 \u03bc\u03b5 \u03c4\u03b7\u03bd \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b1 \u03ba\u03b1\u03c4\u03b1\u03bb\u03cc\u03b3\u03bf\u03c5 \u03c7\u03c1\u03b7\u03c3\u03c4\u03ce\u03bd (LDAP).",
 		"xh": "I-LDAP ngumvimba wengcombolo yomsebenzisi, yaye xa uzame ukungena, kufuneka siqhagamshele uvimba wengcombolo we-LDAP. Kwenzeke impazamo xa besiyizama.",
 		"zu": "I-LDAP iyidathabheyisi yomsebenzisi, futhi lapho uzama ukungena, sidinga ukuthinta idathabheyisi ye-LDAP. Kuvele iphutha ngesikhathi siyizama ngalesi sikhathi.",
-		"ca": "LDAP és la base de dades d'usuaris i, quan intenteu iniciar la sessió, necessitem contactar amb una base de dades LDAP. S'ha produït un error quan hem provat d'accedir-hi."
+		"ca": "LDAP és la base de dades d'usuaris i, quan intenteu iniciar la sessió, necessitem connectar amb una base de dades LDAP. S'ha produït un error quan hem provat d'accedir-hi."
 	},
 	"title_LOGOUTREQUEST": {
 		"no": "Feil i behandling av logout-foresp\u00f8rselen",
@@ -1129,7 +1129,7 @@
 		"el": "\u03a0\u03b1\u03c1\u03bf\u03c5\u03c3\u03b9\u03ac\u03c3\u03c4\u03b7\u03ba\u03b5 \u03c3\u03c6\u03ac\u03bb\u03bc\u03b1 \u03ba\u03b1\u03c4\u03ac \u03c4\u03b7\u03bd \u03b5\u03c0\u03b5\u03be\u03b5\u03c1\u03b3\u03b1\u03c3\u03af\u03b1 \u03c4\u03b7\u03c2 \u03b1\u03c0\u03ac\u03bd\u03c4\u03b7\u03c3\u03b7\u03c2 \u03b1\u03c0\u03cc \u03c4\u03bf\u03bd \u03c0\u03ac\u03c1\u03bf\u03c7\u03bf \u03c4\u03b1\u03c5\u03c4\u03cc\u03c4\u03b7\u03c4\u03b1\u03c2.",
 		"zu": "Asizange samukele impendulo ethunyelwe ukusuka Kumhlinzeki Kamazisi.",
 		"xh": "Asiyamkelanga impendulo ethunyelwe ukusuka kuMboneleli Wesazisi.",
-		"ca": "No hem acceptat la resposta enviada pel proveïdor d’identitat."
+		"ca": "La resposta enviada pel proveïdor d’identitat no ha estat acceptada."
 	},
 	"title_PROCESSAUTHNREQUEST": {
 		"no": "Feil ved behandling av foresp\u00f8rsel fra SP",
@@ -1466,7 +1466,7 @@
 		"el": "\u03a0\u03b1\u03c1\u03bf\u03c5\u03c3\u03b9\u03ac\u03c3\u03c4\u03b7\u03ba\u03b5 \u03c3\u03c6\u03ac\u03bb\u03bc\u03b1 \u03ba\u03b1\u03c4\u03ac \u03c4\u03b7\u03bd \u03b5\u03c0\u03b9\u03ba\u03bf\u03b9\u03bd\u03c9\u03bd\u03af\u03b1 \u03bc\u03b5 \u03c4\u03bf\u03bd \u03b5\u03be\u03c5\u03c0\u03b7\u03c1\u03b5\u03c4\u03b7\u03c4\u03ae CAS.",
 		"zu": "Iphutha ngenkathi kuxhunyanwa neseva ye-CAS.",
 		"xh": "Impazamo xa kunxibelelwana neseva ye-CAS.",
-		"ca": "S'ha produït un error al intentar comunicar amb el servidor CAS."
+		"ca": "S'ha produït un error al intentar connectar amb el servidor CAS."
 	},
 	"title_CONFIG": {
 		"no": "Feil i oppsettet",
@@ -2306,7 +2306,7 @@
 		"el": "\u039f \u03ba\u03c9\u03b4\u03b9\u03ba\u03cc\u03c2 \u03ba\u03b1\u03c4\u03ac\u03c3\u03c4\u03b1\u03c3\u03b7\u03c2 \u03c0\u03bf\u03c5 \u03c0\u03b5\u03c1\u03b9\u03ad\u03c7\u03b5\u03b9 \u03b7 \u03b1\u03c0\u03ac\u03bd\u03c4\u03b7\u03c3\u03b7 \u03c4\u03bf\u03c5 \u03c0\u03b1\u03c1\u03cc\u03c7\u03bf\u03c5 \u03c4\u03b1\u03c5\u03c4\u03cc\u03c4\u03b7\u03c4\u03b1\u03c2 \u03c5\u03c0\u03bf\u03b4\u03b5\u03b9\u03ba\u03bd\u03cd\u03b5\u03b9 \u03c3\u03c6\u03ac\u03bb\u03bc\u03b1.",
 		"xh": "Umboneleli Wesazisi uphendule ngempazamo. (Ikhowudi yobume kwiMpendulo ye-SAML ayiphumelelanga)",
 		"zu": "Umhlinzeki Womazisi uphendule ngephutha. (Ikhodi yesimo Sempendulo ye-SAML ayizange iphumelele)",
-		"ca": "El proveïdor d’identitat ha respost amb un error. (El codi d'estat de la resposta SAML no ha estat exitós)"
+		"ca": "El proveïdor d’identitat ha respost amb un error (el codi d'estat de la resposta SAML no ha estat exitós)."
 	},
 	"title_NOCERT": {
 		"fr": "Aucun certificat pr\u00e9sent\u00e9",
@@ -2694,7 +2694,7 @@
 		"el": "\u0394\u03b5\u03bd \u03b2\u03c1\u03ad\u03b8\u03b7\u03ba\u03b1\u03bd \u03bc\u03b5\u03c4\u03b1\u03b4\u03b5\u03b4\u03bf\u03bc\u03ad\u03bd\u03b1",
 		"zu": "Imethadatha ayitholakalanga",
 		"xh": "Imetadata ayifunyenwanga",
-		"ca": "No s'han trobat metadades"
+		"ca": "Metadades no trobades"
 	},
 	"descr_METADATANOTFOUND": {
 		"da": "Kan ikke finde metadata for %ENTITYID%",
