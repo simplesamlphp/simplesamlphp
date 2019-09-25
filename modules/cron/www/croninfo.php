@@ -14,8 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 $config = Configuration::getInstance();
 $session = Session::getSessionFromRequest();
-$request = Request::createFromGlobals();
 
 $controller = new Controller\CronController($config, $session);
-$response = $controller->info($request);
+$response = $controller->info();
 $response->send();
