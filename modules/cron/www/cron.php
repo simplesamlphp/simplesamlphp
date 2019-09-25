@@ -14,6 +14,6 @@ $tag = $request->get('tag');
 $key = $request->get('key');
 $output = $request->get('output');
 
-$controller = new Controller\CronController($config, $session);
+$controller = new Controller\Cron($config, $session);
 $response = $controller->run($tag, $key, $output);
 $response->send();

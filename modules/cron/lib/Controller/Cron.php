@@ -9,7 +9,6 @@ use SimpleSAML\Error;
 use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Logger;
 use SimpleSAML\Module;
-use SimpleSAML\Module\cron\Cron;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
@@ -23,7 +22,7 @@ use Symfony\Component\HttpFoundation\Response;
  *
  * @package SimpleSAML\Module\cron
  */
-class CronController
+class Cron
 {
     /** @var \SimpleSAML\Configuration */
     protected $config;
