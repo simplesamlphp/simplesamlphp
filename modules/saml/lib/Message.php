@@ -768,7 +768,7 @@ class Message
                 $clientCert = str_replace(["\r", "\n", " "], '', $matches[1]);
 
                 $keyInfo = [];
-                foreach ($scd->info as $thing) {
+                foreach ($scd->getInfo() as $thing) {
                     if ($thing instanceof KeyInfo) {
                         $keyInfo[] = $thing;
                     }
@@ -780,7 +780,7 @@ class Message
                 }
 
                 $x509data = [];
-                foreach ($keyInfo[0]->info as $thing) {
+                foreach ($keyInfo[0]->getInfo() as $thing) {
                     if ($thing instanceof X509Data) {
                         $x509data[] = $thing;
                     }
@@ -792,7 +792,7 @@ class Message
                 }
 
                 $x509cert = [];
-                foreach ($x509data[0]->data as $thing) {
+                foreach ($x509data[0]->getData() as $thing) {
                     if ($thing instanceof X509Certificate) {
                         $x509cert[] = $thing;
                     }
@@ -803,7 +803,7 @@ class Message
                     continue;
                 }
 
-                $HoKCertificate = $x509cert[0]->certificate;
+                $HoKCertificate = $x509cert[0]->getCertificate();
                 if ($HoKCertificate !== $clientCert) {
                     $lastError = 'Provided client certificate does not match the certificate bound to the '.
                         'Holder-of-Key assertion';
