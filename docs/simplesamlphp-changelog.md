@@ -8,7 +8,7 @@ See the upgrade notes for specific information about upgrading.
 
 ## Version 1.18.0
 
-Released 2019-09-25
+Released TBD
 
   * Fixed an issue with warnings being logged when using PHP 7.2 or newer (#1168).
   * Fixed an issue with web server aliases or rewritten URLs not working (#1023, #1093).
