@@ -6,16 +6,9 @@ SimpleSAMLphp changelog
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
-## Version 1.19.0
-
-Released TBD
-
-  * This version will be the last of the 1.x branch and will provide a migration path to our new
-    templating system, routing system, translation system and hooks.
-
 ## Version 1.18.0
 
-Released 2019-09-xx
+Released 2019-09-25
 
   * Fixed an issue with warnings being logged when using PHP 7.2 or newer (#1168).
   * Fixed an issue with web server aliases or rewritten URLs not working (#1023, #1093).
