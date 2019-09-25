@@ -76,7 +76,7 @@
 		"el": "\u03a4\u03af\u03c4\u03bb\u03bf\u03c2",
 		"xh": "Isibizo",
 		"zu": "Isiqu",
-		"ca": "Títol"
+		"ca": "Tractament"
 	},
 	"attribute_uid": {
 		"no": "Bruker-ID",
@@ -156,7 +156,7 @@
 		"el": "\u0395\u03c0\u03ce\u03bd\u03c5\u03bc\u03bf",
 		"zu": "Isibongo",
 		"xh": "Ifani",
-		"ca": "Cognom"
+		"ca": "Cognoms"
 	},
 	"attribute_givenname": {
 		"no": "Fornavn",
@@ -236,7 +236,7 @@
 		"el": "\u039a\u03bf\u03b9\u03bd\u03cc \u03cc\u03bd\u03bf\u03bc\u03b1 (CN)",
 		"zu": "Igama elivamile",
 		"xh": "Igama eliqhelekileyo",
-		"ca": "Nom comú"
+		"ca": "Nom comú (CN)"
 	},
 	"attribute_mail": {
 		"no": "E-post",
@@ -276,7 +276,7 @@
 		"el": "Email",
 		"zu": "Imeyili",
 		"xh": "Iposi",
-		"ca": "Correu electrònic"
+		"ca": "Adreça de correu electrònic"
 	},
 	"attribute_mobile": {
 		"no": "Mobiltelefon",
@@ -316,7 +316,7 @@
 		"el": "\u039a\u03b9\u03bd\u03b7\u03c4\u03cc \u03c4\u03b7\u03bb\u03ad\u03c6\u03c9\u03bd\u03bf",
 		"zu": "Imobhayili",
 		"xh": "Imobhayili",
-		"ca": "Mòbil"
+		"ca": "Telèfon mòbil"
 	},
 	"attribute_preferredlanguage": {
 		"no": "Foretrukket spr\u00e5k",
@@ -396,7 +396,7 @@
 		"el": "\u0391\u03c1\u03b9\u03b8\u03bc\u03cc\u03c2 \u03c4\u03b1\u03c5\u03c4\u03cc\u03c4\u03b7\u03c4\u03b1\u03c2 \u03b1\u03c0\u03cc \u03b4\u03b7\u03bc\u03cc\u03c3\u03b9\u03b1 \u03b1\u03c1\u03c7\u03ae",
 		"xh": "Inombolo yesazisi eyabelwe ngamagunya oluntu",
 		"zu": "Inombolo kamazisi eyabelwe amagunya omphakathi",
-		"ca": "Número d’identitat assignat per autoritats públiques"
+		"ca": "Número de la Seguretat Social"
 	},
 	"attribute_schachomeorganization": {
 		"no": "Unik ID for organisasjon",
@@ -435,7 +435,7 @@
 		"el": "\u038c\u03bd\u03bf\u03bc\u03b1 \u03c0\u03b5\u03c1\u03b9\u03bf\u03c7\u03ae\u03c2 (domain) \u03bf\u03b9\u03ba\u03b5\u03af\u03bf\u03c5 \u03bf\u03c1\u03b3\u03b1\u03bd\u03b9\u03c3\u03bc\u03bf\u03cd",
 		"zu": "Igama lesizinda senhlangano yasekhaya",
 		"xh": "Igama ledomeyini yombutho wekhaya",
-		"ca": "Nom de domini de l’organització principal"
+		"ca": "Identificador únic de l’organització principal"
 	},
 	"attribute_organisationname": {
 		"no": "Navn p\u00e5 organisasjon",
@@ -515,7 +515,7 @@
 		"el": "\u0394\u03b9\u03ba\u03b1\u03b9\u03ce\u03bc\u03b1\u03c4\u03b1 \u03c0\u03c1\u03cc\u03c3\u03b2\u03b1\u03c3\u03b7\u03c2 \u03c3\u03c4\u03b7\u03bd \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b1",
 		"zu": "Ilungelo eliphathelene nesevisi",
 		"xh": "Ilungelo ngokuphathelele inkonzo",
-		"ca": "Dret referent al servei"
+		"ca": "Drets relatiu al servei"
 	},
 	"attribute_edupersonscopedaffiliation": {
 		"no": "Gruppetilh\u00f8righet",
@@ -555,7 +555,7 @@
 		"el": "\u0399\u03b4\u03b9\u03cc\u03c4\u03b7\u03c4\u03b1 \u03b1\u03bd\u03ac \u03b4\u03b9\u03b1\u03c7\u03b5\u03b9\u03c1\u03b9\u03c3\u03c4\u03b9\u03ba\u03ae \u03c0\u03b5\u03c1\u03b9\u03bf\u03c7\u03ae (administrative domain)",
 		"zu": "Indima enhlanganweni yasekhaya",
 		"xh": "Indima kumbutho wasekhaya",
-		"ca": "Afiliació a l’organització d'origen"
+		"ca": "Afiliació a l’organització principal"
 	},
 	"attribute_edupersontargetedid": {
 		"no": "Persistent anonym ID",
@@ -638,7 +638,7 @@
 		"el": "\u0391\u03bd\u03b1\u03b3\u03bd\u03c9\u03c1\u03b9\u03c3\u03c4\u03b9\u03ba\u03cc \u03c7\u03c1\u03ae\u03c3\u03c4\u03b7 \u03c3\u03c4\u03bf\u03bd \u03bf\u03b9\u03ba\u03b5\u03af\u03bf \u03bf\u03c1\u03b3\u03b1\u03bd\u03b9\u03c3\u03bc\u03cc",
 		"xh": "Igama elingundoqo lomntu kwinkampani yekhaya",
 		"zu": "Igama eliyinhloko lomuntu enhlanganweni yasekhaya",
- 		"ca": "Identificador \u00fanic de la persona a la seva organitzaci\u00f3 d'origen"
+ 		"ca": "Identificador \u00fanic de la persona a l'organitzaci\u00f3 principal"
 	},
 	"attribute_edupersonuniqueid": {
 		"zh-tw": "\u500b\u4eba\u7121\u6cd5\u91cd\u65b0\u8a2d\u7f6e\uff0c\u65bc\u6240\u5c6c\u7d44\u7e54\u7684\u6c38\u4e45\u533f\u540d ID",
@@ -657,7 +657,7 @@
 		"af": "ORCID identifiseerder",
 		"zu": "Isihlonzi se-ORCID",
 		"xh": "Isazisi se-ORCID",
-		"ca": "Identificadors d'investigador ORCID"
+		"ca": "Identificador d'investigador ORCID"
 	},
 	"attribute_o": {
 		"no": "Navn p\u00e5 organisasjon",
@@ -852,7 +852,7 @@
 		"el": "\u03a4\u03b7\u03bb\u03ad\u03c6\u03c9\u03bd\u03bf \u03bf\u03b9\u03ba\u03af\u03b1\u03c2",
 		"xh": "Umnxeba wasekhaya",
 		"zu": "Ucingo lwasekhaya",
-		"ca": "Telèfon de domicili"
+		"ca": "Telèfon fix particular"
 	},
 	"attribute_homepostaladdress": {
 		"no": "Postadresse hjemme",
@@ -891,7 +891,7 @@
 		"el": "\u03a4\u03b1\u03c7\u03c5\u03b4\u03c1\u03bf\u03bc\u03b9\u03ba\u03ae \u03b4\u03b9\u03b5\u03cd\u03b8\u03c5\u03bd\u03c3\u03b7 \u03bf\u03b9\u03ba\u03af\u03b1\u03c2",
 		"zu": "Ikheli leposi lasekhaya",
 		"xh": "Idilesi yeposi yasekhaya",
-		"ca": "Adreça postal del domicili"
+		"ca": "Adreça particular"
 	},
 	"attribute_jpegphoto": {
 		"no": "JPEG-foto",
@@ -930,7 +930,7 @@
 		"el": "\u03a6\u03c9\u03c4\u03bf\u03b3\u03c1\u03b1\u03c6\u03af\u03b1 \u03c3\u03b5 \u03bc\u03bf\u03c1\u03c6\u03ae JPEG",
 		"xh": "Ifoto ye-JPEG",
 		"zu": "Isithombe se-JPEG",
-		"ca": "Foto JPEG"
+		"ca": "Fotografia en JPEG"
 	},
 	"attribute_l": {
 		"no": "Sted",
@@ -1281,7 +1281,7 @@
 		"el": "\u0394\u03b9\u03b5\u03cd\u03b8\u03c5\u03bd\u03c3\u03b7 \u03b1\u03c1\u03c7\u03b9\u03ba\u03ae\u03c2 \u03c3\u03b5\u03bb\u03af\u03b4\u03b1\u03c2 \u03bf\u03b9\u03ba\u03b5\u03af\u03bf\u03c5 \u03bf\u03c1\u03b3\u03b1\u03bd\u03b9\u03c3\u03bc\u03bf\u03cd",
 		"xh": "Ikhasi lekhaya Lenkampani",
 		"zu": "Ikhasi lasekhaya lenhlangano",
-		"ca": "Pàgina inicial d'organització"
+		"ca": "Pàgina principal de l'organització"
 	},
 	"attribute_eduorglegalname": {
 		"no": "Foretaksnavn",
@@ -1398,7 +1398,7 @@
 		"el": "\u0394\u03b9\u03b1\u03ba\u03b5\u03ba\u03c1\u03b9\u03bc\u03ad\u03bd\u03bf \u03cc\u03bd\u03bf\u03bc\u03b1 (DN) \u03bf\u03b9\u03ba\u03b5\u03af\u03bf\u03c5 \u03bf\u03c1\u03b3\u03b1\u03bd\u03b9\u03c3\u03bc\u03bf\u03cd",
 		"xh": "Igama elahlukileyo (DN) lenkampani yekhaya yomntu",
 		"zu": "Igama elihloniphekile (I-DN) lenhlangano yasekhaya yomuntu",
-		"ca": "Nom distingit (DN) de l'organització d'origen"
+		"ca": "Nom distingit (DN) de l'organització principal de la persona"
 	},
 	"attribute_edupersonorgunitdn": {
 		"no": "Entydig navn (DN) for brukerens organisasjonsenhet",
@@ -1437,7 +1437,7 @@
 		"el": "\u0394\u03b9\u03b1\u03ba\u03b5\u03ba\u03c1\u03b9\u03bc\u03ad\u03bd\u03bf \u03cc\u03bd\u03bf\u03bc\u03b1 (DN) \u03bf\u03b9\u03ba\u03b5\u03af\u03b1\u03c2 \u03bf\u03c1\u03b3\u03b1\u03bd\u03c9\u03c4\u03b9\u03ba\u03ae\u03c2 \u03bc\u03bf\u03bd\u03ac\u03b4\u03b1\u03c2",
 		"xh": "Igama elahlukileyo (DN) leyunithi yenkampani yekhaya yomntu",
 		"zu": "Igama elihloniphekile (I-DN) leyunithi yenhlangano yasekhaya yomuntu",
-		"ca": "Nom distingit (DN) de la unitat organitzativa de l'organització d'origen"
+		"ca": "Nom distingit (DN) de la unitat organitzativa (OU) de l'organització principal de la persona"
 	},
 	"attribute_edupersonprimaryaffiliation": {
 		"no": "Prim\u00e6r tilknytning til organisasjon",
@@ -1515,7 +1515,7 @@
 		"el": "\u0391\u03c1\u03b9\u03b8\u03bc\u03cc\u03c2 \u03bf\u03b9\u03ba\u03b5\u03af\u03bf\u03c5 \u03bf\u03c1\u03b3\u03b1\u03bd\u03b9\u03c3\u03bc\u03bf\u03cd",
 		"zu": "Inombolo yenhlangano",
 		"xh": "Inombolo yenkampani",
-		"ca": "Número d’organització"
+		"ca": "Número de l’organització"
 	},
 	"attribute_noredupersonbirthdate": {
 		"no": "F\u00f8dselsdato",
@@ -1670,7 +1670,7 @@
 		"el": "\u039a\u03c1\u03c5\u03c0\u03c4\u03bf\u03b3\u03c1\u03b1\u03c6\u03b7\u03bc\u03ad\u03bd\u03bf\u03c2 \u03ba\u03c9\u03b4\u03b9\u03ba\u03cc\u03c2",
 		"xh": "Iheshi yephaswedi yomsebenzisi",
 		"zu": "Uheshi wephasiwedi yomsebenzisi",
-		"ca": "Hash de la contrasenya de l'usuari"
+		"ca": "Clau o contrasenya i mètode d'encriptació utilitzat"
 	},
 	"attribute_edupersonprimaryorgunitdn": {
 		"no": "Entydig navn for organisasjonsenheten som brukeren prim\u00e6rt er tilknyttet",
@@ -1706,7 +1706,7 @@
 		"el": "\u0394\u03b9\u03b1\u03ba\u03b5\u03ba\u03c1\u03b9\u03bc\u03ad\u03bd\u03bf \u03cc\u03bd\u03bf\u03bc\u03b1 (DN) \u03ba\u03cd\u03c1\u03b9\u03b1\u03c2 \u03bf\u03c1\u03b3\u03b1\u03bd\u03c9\u03c4\u03b9\u03ba\u03ae\u03c2 \u03bc\u03bf\u03bd\u03ac\u03b4\u03b1\u03c2",
 		"xh": "Igama elahlukileyo (DN) leYunithi Yenkampani yokuqala yomntu",
 		"zu": "Igama elihloniphekile (I-DN) Leyunithi Yenhlangano eyinhloko yomuntu",
-		"ca": "Nom distingit (DN) de la unitat organitzativa principal de la persona"
+		"ca": "Nom distingit (DN) de l'entrada del directori que representa l'identificador"
 	},
 	"attribute_schacuserprivateattribute": {
 		"no": "Private informasjonselement",
@@ -1743,7 +1743,7 @@
 		"el": "\u0391\u03c0\u03cc\u03c1\u03c1\u03b7\u03c4\u03b1 \u03c0\u03c1\u03bf\u03c3\u03c9\u03c0\u03b9\u03ba\u03ac \u03c3\u03c4\u03bf\u03b9\u03c7\u03b5\u03af\u03b1",
 		"zu": "Izingxenye zolwazi oluyimfihlo",
 		"xh": "Iimpawu zenkcazelo yangasese",
-		"ca": "Elements d'informació privats"
+		"ca": "Elements d'informació privada"
 	},
 	"attribute_noredupersonlegalname": {
 		"no": "Folkeregistrert navn",
@@ -1810,7 +1810,7 @@
 		"el": "\u0395\u03c0\u03af\u03c0\u03b5\u03b4\u03bf \u03b1\u03be\u03b9\u03bf\u03c0\u03b9\u03c3\u03c4\u03af\u03b1\u03c2 \u03c4\u03b1\u03c5\u03c4\u03bf\u03c0\u03bf\u03af\u03b7\u03c3\u03b7\u03c2",
 		"zu": "Iphrofayela yokuqinisekisa umazisi",
 		"xh": "Iprofayile yokuqinisekisa isazisi",
-		"ca": "Perfil d'assegurament de la identitat"
+		"ca": "Identificador del perfil de garantia"
 	},
 	"attribute_ismemberof": {
 		"es": "Membres\u00eda a grupos",

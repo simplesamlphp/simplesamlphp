@@ -225,7 +225,7 @@
 		"el": "\u0393\u03af\u03bd\u03b5\u03c4\u03b1\u03b9 \u03b1\u03c0\u03bf\u03c3\u03cd\u03bd\u03b4\u03b5\u03c3\u03b7...",
 		"zu": "Iyaphuma...",
 		"xh": "Iyaphuma...",
-		"ca": "Sortint de la sessió..."
+		"ca": "Tancant la sessió..."
 	},
 	"failed": {
 		"no": "Utlogging feilet",
@@ -453,7 +453,7 @@
 		"el": "\u0395\u03c0\u03b9\u03b8\u03c5\u03bc\u03b5\u03af\u03c4\u03b5 \u03bd\u03b1 \u03b1\u03c0\u03bf\u03c3\u03c5\u03bd\u03b4\u03b5\u03b8\u03b5\u03af\u03c4\u03b5 \u03b1\u03c0\u03cc \u03cc\u03bb\u03b5\u03c2 \u03c4\u03b9\u03c2 \u03c0\u03b1\u03c1\u03b1\u03c0\u03ac\u03bd\u03c9 \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b5\u03c2\u003b",
 		"xh": "Ngaba ufuna ukuphuma kuzo zonke iinkonzo ezingasentla?",
 		"zu": "Ingabe ufuna ukuphuma kuwo wonke amasevisi angenhla?",
-		"ca": "Voleu sortir de tots els següents serveis?"
+		"ca": "Voleu sortir de tots els serveis següents?"
 	},
 	"logout_all": {
 		"no": "Ja, alle tjenestene over",
@@ -567,7 +567,7 @@
 		"el": "\u039c\u03af\u03b1 \u03ae \u03c0\u03b5\u03c1\u03b9\u03c3\u03c3\u03cc\u03c4\u03b5\u03c1\u03b5\u03c2 \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b5\u03c2 \u03bc\u03b5 \u03c4\u03b9\u03c2 \u03bf\u03c0\u03bf\u03af\u03b5\u03c2 \u03b5\u03af\u03c3\u03c4\u03b5 \u03c3\u03c5\u03bd\u03b4\u03b5\u03b4\u03b5\u03bc\u03ad\u03bd\u03bf\u03c2\u002f\u03b7 \u03b4\u03b5\u03bd \u03c5\u03c0\u03bf\u03c3\u03c4\u03b7\u03c1\u03af\u03b6\u03bf\u03c5\u03bd \u03b1\u03c0\u03bf\u03c3\u03cd\u03bd\u03b4\u03b5\u03c3\u03b7\u002e \u0393\u03b9\u03b1 \u03c4\u03bf \u03ba\u03bb\u03b5\u03af\u03c3\u03b9\u03bc\u03bf \u03cc\u03bb\u03c9\u03bd \u03c4\u03c9\u03bd \u03c3\u03c5\u03bd\u03b5\u03b4\u03c1\u03b9\u03ce\u03bd \u03c3\u03b1\u03c2 (sessions), \u03c3\u03b1\u03c2 \u03c3\u03c5\u03bd\u03b9\u03c3\u03c4\u03bf\u03cd\u03bc\u03b5 \u03bd\u03b1 <i>\u03ba\u03bb\u03b5\u03af\u03c3\u03b5\u03c4\u03b5<\/i> \u03c4\u03bf \u03c0\u03c1\u03cc\u03b3\u03c1\u03b1\u03bc\u03bc\u03b1 \u03c0\u03bb\u03bf\u03ae\u03b3\u03b7\u03c3\u03b7\u03c2 (web browser).",
 		"zu": "Isevisi eyodwa noma ngaphezulu ongene kuyo <i>ayikusekeli ukuphuma</i>. Ukuze wenze isiqiniseko sokuthi wonke amaseshini akho avaliwe, ukhuthazwa ukuthi <i>uvale isiphequluli sakho sewebhu</i>.",
 		"xh": "Inkonzo enye okanye ezingakumbi ongeneyo kuzo <i>azikuxhasi ukuphuma</i>. Ukuqinisekisa zonke iiseshoni zakho zivaliwe, ukhuthazwa <i>uvale ibhrawuza yewebhu</i>.",
-		"ca": "Un o més dels serveis que heu accedit a <i>no admeten la sortida de sessió<\/i>. Per assegurar-vos que totes les vostres sessions estan tancades, us animem a <i>tancar el vostre navegador web<\/i>."
+		"ca": "Un o més dels serveis que heu accedit a <i>no admeten tancar la sessió<\/i>. Per assegurar-vos que totes les vostres sessions estan tancades, us animem a <i>tancar el vostre navegador web<\/i>."
 	},
 	"no": {
 		"no": "Nei",

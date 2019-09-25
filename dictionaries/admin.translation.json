@@ -473,7 +473,7 @@
 		"ru": "\u0421\u043b\u0435\u0434\u0443\u044e\u0449\u0438\u0435 \u043f\u043e\u043b\u044f \u043d\u0435 \u0440\u0430\u0441\u043f\u043e\u0437\u043d\u0430\u043d\u044b",
 		"eu": "Datu hauek ez dira antzeman",
 		"el": "\u03a4\u03b1 \u03c0\u03b1\u03c1\u03b1\u03ba\u03ac\u03c4\u03c9 \u03c0\u03b5\u03b4\u03af\u03b1 \u03b4\u03b5\u03bd \u03b1\u03bd\u03b1\u03b3\u03bd\u03c9\u03c1\u03af\u03c3\u03c4\u03b7\u03ba\u03b1\u03bd",
-		"ca": "No s'han reconegut els camps seg\u00fcents"
+		"ca": "No s'han reconegut els seg\u00fcents camps"
 	},
 	"metadata_metadata": {
 		"no": "Metadata",
@@ -1256,7 +1256,7 @@
 		"ru": "\u0412\u044b \u043c\u043e\u0436\u0435\u0442\u0435<a href=\"%METAURL%\"> \u043f\u043e\u043b\u0443\u0447\u0438\u0442\u044c xml \u0444\u0430\u0439\u043b \u0441 \u043c\u0435\u0442\u0430\u0434\u0430\u043d\u043d\u044b\u043c\u0438 \u043f\u043e \u0441\u043b\u0435\u0434\u0443\u044e\u0449\u0435\u043c\u0443 URL<\/a>:",
 		"eu": "<a href=\"%METAURL%\">xml metadatuekin URL bat<\/a> eskura dezakezu:",
 		"el": "\u0394\u03b9\u03b5\u03cd\u03b8\u03c5\u03bd\u03c3\u03b7 <a href=\"%METAURL%\">\u03bb\u03ae\u03c8\u03b7\u03c2<\/a> \u03bc\u03b5\u03c4\u03b1\u03b4\u03b5\u03b4\u03bf\u03bc\u03ad\u03bd\u03c9\u03bd:",
-		"ca": "Podeu <a href=\"%METAURL%\"> obtenir el xml de metadades en una URL dedicada <\/a>:"
+		"ca": "Podeu <a href=\"%METAURL%\"> obtenir una URL amb les metadades en XML <\/a>:"
 	},
 	"metadata_simplesamlformat": {
 		"no": "I SimpleSAMLphp format - bruk denne dersom du benytter SimpleSAMLphp i den andre enden:",
@@ -1289,7 +1289,7 @@
 		"ru": "\u0424\u043e\u0440\u043c\u0430\u0442 \u043f\u0440\u043e\u0441\u0442\u043e\u0433\u043e SimpleSAMLphp \u0444\u0430\u0439\u043b\u0430",
 		"eu": "SimpleSAMLphp formatuko fitxategi batean - beste muturrean SimpleSAMLphp entitate bat erabiltzen ariz gero, erabil ezazu aukera hau:",
 		"el": "\u03a3\u03b5 \u03bc\u03bf\u03c1\u03c6\u03ae \u03b1\u03c0\u03bb\u03bf\u03cd \u03b1\u03c1\u03c7\u03b5\u03af\u03bf\u03c5 SimpleSAMLphp - \u03bc\u03c0\u03bf\u03c1\u03b5\u03af\u03c4\u03b5 \u03bd\u03b1 \u03c3\u03c4\u03b5\u03af\u03bb\u03b5\u03c4\u03b5 \u03c4\u03b1 \u03bc\u03b5\u03c4\u03b1\u03b4\u03b5\u03b4\u03bf\u03bc\u03ad\u03bd\u03b1 \u03c3\u03b5 \u03b1\u03c5\u03c4\u03ae \u03c4\u03b7 \u03bc\u03bf\u03c1\u03c6\u03ae \u03b1\u03bd \u03c5\u03c0\u03ac\u03c1\u03c7\u03b5\u03b9 \u03bf\u03bd\u03c4\u03cc\u03c4\u03b7\u03c4\u03b1 \u0053\u0069\u006d\u0070\u006c\u0065\u0053\u0041\u004d\u004c\u0070\u0068\u0070 \u03c3\u03c4\u03b7\u03bd \u03ac\u03bb\u03bb\u03b7 \u03c0\u03bb\u03b5\u03c5\u03c1\u03ac:",
-		"ca": "En el format de fitxer pla SimpleSAMLphp: utilitzeu aquesta opci\u00f3 si utilitzeu una entitat SimpleSAMLphp de l'altra banda:"
+		"ca": "En un fitxer de format SimpleSAMLphp: utilitzeu aquesta opci\u00f3 si utilitzeu una entitat SimpleSAMLphp en l'altre extrem:"
 	},
 	"debug_sending_message_title": {
 		"no": "Sender melding",
@@ -1516,7 +1516,7 @@
 		"eu": "X509 ziurtagiriak PEM formatuan deskargatu.",
 		"zh-tw": "\u4e0b\u8f09 PEM \u683c\u5f0f\u4e4b X.509 \u6191\u8b49\u6a94\u6848",
 		"el": "\u039b\u03ae\u03c8\u03b7 \u03c0\u03b9\u03c3\u03c4\u03bf\u03c0\u03bf\u03b9\u03b7\u03c4\u03b9\u03ba\u03ce\u03bd X.509 \u03c3\u03b5 \u03ba\u03c9\u03b4\u03b9\u03ba\u03bf\u03c0\u03bf\u03af\u03b7\u03c3\u03b7 PEM.",
-		"ca": "Baixeu els certificats X509 com a fitxers codificats per PEM."
+		"ca": "Baixeu els certificats X509 en format PEM."
 	},
 	"metaover_group_metadata.adfs-sp-remote": {
 		"es": "Proveedor de Servicio ADFS (remoto)",

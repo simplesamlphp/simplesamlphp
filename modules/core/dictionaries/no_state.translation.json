@@ -199,7 +199,7 @@
 	"cause_badlink": {
 		"sv": "Länken till websidan var felaktig, kanske till följd av elak automatisk ifyllning, en trasig länk eller ett trasigt bokmärke.",
 		"nl": "Verkeerde link gebruikt, bijvoorbeeld een bookmark (bladwijzer).",
-		"ca": "L’enllaç per arribar fins aquí era dolent, potser un marcador."
+		"ca": "L’enllaç per arribar fins aquí era erroni, potser era un marcador."
 	},
 	"cause_backforward": {
 		"no": "Bruk av \"frem\"- og \"tilbake\"-knappene i nettleseren.",
