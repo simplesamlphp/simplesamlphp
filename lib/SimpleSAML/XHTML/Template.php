@@ -165,7 +165,7 @@ class Template extends Response
     /**
      * Return the URL of an asset, including a cache-buster parameter that depends on the last modification time of
      * the original file.
-     *d$mosset
+     * @param string $asset
      * @param string|null $module
      * @return string
      */
