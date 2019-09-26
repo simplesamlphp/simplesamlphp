@@ -172,18 +172,18 @@ class Template extends Response
     public function asset($asset, $module = null)
     {
         $baseDir = $this->configuration->getBaseDir();
-        $basePath =  $this->configuration->getBasePath();
         if (is_null($module)) {
             $file = $baseDir.'www/assets/'.$asset;
+            $basePath =  $this->configuration->getBasePath();
             $path = $basePath.'assets/'.$asset;
         } else {
             $file = $baseDir.'modules/'.$module.'/www/assets/'.$asset;
-            $path = $basePath.'module.php/'.$module.'/assets/'.$asset;
+            $path = Module::getModuleUrl($module.'/assets/'.$asset);
         }
 
         if (!file_exists($file)) {
             // don't be too harsh if an asset is missing, just pretend it's there...
-            return $basePath.'assets/'.$asset;
+            return $path;
         }
 
         $tag = $this->configuration->getVersion();
