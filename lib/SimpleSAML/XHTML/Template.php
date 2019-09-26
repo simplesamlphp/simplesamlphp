@@ -169,7 +169,7 @@ class Template extends Response
      * @param string|null $module
      * @return string
      */
-    public function asset($asset, $module)
+    public function asset($asset, $module = null)
     {
         $baseDir = $this->configuration->getBaseDir();
         $basePath =  $this->configuration->getBasePath();
