@@ -165,16 +165,25 @@ class Template extends Response
     /**
      * Return the URL of an asset, including a cache-buster parameter that depends on the last modification time of
      * the original file.
-     *
      * @param string $asset
+     * @param string|null $module
      * @return string
      */
-    public function asset($asset)
+    public function asset($asset, $module = null)
     {
-        $file = $this->configuration->getBaseDir().'www/assets/'.$asset;
+        $baseDir = $this->configuration->getBaseDir();
+        $basePath =  $this->configuration->getBasePath();
+        if (is_null($module)) {
+            $file = $baseDir.'www/assets/'.$asset;
+            $path = $basePath.'assets/'.$asset;
+        } else {
+            $file = $baseDir.'modules/'.$module.'/www/assets/'.$asset;
+            $path = $basePath.'module.php/'.$module.'/assets/'.$asset;
+        }
+
         if (!file_exists($file)) {
             // don't be too harsh if an asset is missing, just pretend it's there...
-            return $this->configuration->getBasePath().'assets/'.$asset;
+            return $basePath.'assets/'.$asset;
         }
 
         $tag = $this->configuration->getVersion();
@@ -182,7 +191,8 @@ class Template extends Response
             $tag = strval(filemtime($file));
         }
         $tag = substr(hash('md5', $tag), 0, 5);
-        return $this->configuration->getBasePath().'assets/'.$asset.'?tag='.$tag;
+
+        return $path.'?tag='.$tag;
     }
 
 
