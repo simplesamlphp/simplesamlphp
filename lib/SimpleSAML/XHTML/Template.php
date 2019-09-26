@@ -175,10 +175,10 @@ class Template extends Response
         $basePath =  $this->configuration->getBasePath();
         if (is_null($module)) {
             $file = $baseDir.'www/assets/'.$asset;
-            $path = $basePath.'assets/'.$asset.'?tag='.$tag;
+            $path = $basePath.'assets/'.$asset;
         } else {
             $file = $baseDir.'modules/'.$module.'/www/assets/'.$asset;
-            $path = $basePath.'module.php/'.$module.'/assets/'.$asset.'?tag='.$tag;
+            $path = $basePath.'module.php/'.$module.'/assets/'.$asset;
         }
 
         if (!file_exists($file)) {
