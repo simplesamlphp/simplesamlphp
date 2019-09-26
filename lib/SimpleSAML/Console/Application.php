@@ -2,7 +2,6 @@
 
 namespace SimpleSAML\Console;
 
-use SimpleSAML\Kernel;
 use Symfony\Bundle\FrameworkBundle\Console\Application as BaseApplication;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
@@ -14,7 +13,7 @@ class Application extends BaseApplication
      */
     public function __construct(HttpKernelInterface $kernel)
     {
-        parent::__construct($kernel, Kernel::VERSION);
+        parent::__construct($kernel);
 
         $inputDefinition = $this->getDefinition();
         $inputDefinition->addOption(
