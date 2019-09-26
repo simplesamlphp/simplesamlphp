@@ -174,10 +174,10 @@ class Template extends Response
         $baseDir = $this->configuration->getBaseDir();
         $basePath =  $this->configuration->getBasePath();
         if (is_null($module)) {
-            $file = $base.'www/assets/'.$asset;
+            $file = $baseDir.'www/assets/'.$asset;
             $path = $basePath.'assets/'.$asset.'?tag='.$tag;
         } else {
-            $file = $base.'modules/'.$module.'/www/assets/'.$asset;
+            $file = $baseDir.'modules/'.$module.'/www/assets/'.$asset;
             $path = $basePath.'module.php/'.$module.'/assets/'.$asset.'?tag='.$tag;
         }
 
