@@ -526,7 +526,7 @@ class IdP
         Assert::nullOrString($relayState);
 
         $index = strpos($assocId, ':');
-        assert(is_int($index));
+        Assert::integer($index);
 
         $session = Session::getSessionFromRequest();
         $session->deleteData('core:idp-ssotime', $this->id . ';' . substr($assocId, $index + 1));
