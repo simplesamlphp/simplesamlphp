@@ -35,7 +35,7 @@ New features are always welcome, provided they will be useful to someone apart f
 When submitting a pull request, please make sure to account for:
 
 ### Coding standards
-* Respect the coding standards. We try to comply with PHP's [PSR-2](http://www.php-fig.org/psr/psr-2/). Pay special attention to the rules below:
+* Respect the coding standards. We try to comply with PHP's [PSR-12](http://www.php-fig.org/psr/psr-12/). Pay special attention to the rules below:
     * Lines should not be longer than 80 characters.
     * Use **4 spaces** instead of tabs.
     * Keep the keywords in **lowercase**, including `true`, `false` and `null`.
