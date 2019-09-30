@@ -461,6 +461,7 @@ class SP extends \SimpleSAML\Auth\Source
      * @param \SimpleSAML\Configuration $idpMetadata  The metadata of the IdP.
      * @param array $state  The state array for the current authentication.
      * @return void
+     * @deprecated will be removed in a future version
      */
     private function startSSO1(Configuration $idpMetadata, array $state)
     {
