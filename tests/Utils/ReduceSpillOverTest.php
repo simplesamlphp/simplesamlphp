@@ -17,7 +17,7 @@ class ReduceSpillOverTest extends ClearStateTestCase
         $_SERVER['QUERY_STRING'] = 'a=b';
         \SimpleSAML\Configuration::loadFromArray(['a' => 'b'], '[ARRAY]', 'simplesaml');
         $this->assertEquals('b', \SimpleSAML\Configuration::getInstance()->getString('a'));
-        putenv('SIMPLESAMLPHP_CONFIG_DIR='.__DIR__);
+        putenv('SIMPLESAMLPHP_CONFIG_DIR=' . __DIR__);
     }
 
 

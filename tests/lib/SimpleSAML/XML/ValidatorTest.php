@@ -2,14 +2,13 @@
 
 namespace SimpleSAML\Test\XML;
 
-require_once(__DIR__.'/../../../SigningTestCase.php');
+require_once(__DIR__ . '/../../../SigningTestCase.php');
 
+use org\bovigo\vfs\vfsStream;
 use PHPUnit\Framework\TestCase;
-use \SimpleSAML\Test\SigningTestCase;
-use \SimpleSAML\XML\Signer;
-use \SimpleSAML\XML\Validator;
-
-use \org\bovigo\vfs\vfsStream;
+use SimpleSAML\Test\SigningTestCase;
+use SimpleSAML\XML\Signer;
+use SimpleSAML\XML\Validator;
 
 /**
  * Tests for SimpleSAML\XML\Validator.
@@ -51,7 +50,7 @@ class ValidatorTest extends SigningTestCase
         $result = $validator->getX509Certificate();
 
         // getX509Certificate returns a certificate with a newline
-        $expected = $this->good_certificate."\n";
+        $expected = $this->good_certificate . "\n";
 
         $this->assertEquals($result, $expected);
     }
@@ -222,7 +221,7 @@ class ValidatorTest extends SigningTestCase
      */
     public function testValidateCertificateMissingCAFile()
     {
-        $ca_file = $this->ca_certificate_file.'NOT';
+        $ca_file = $this->ca_certificate_file . 'NOT';
 
         $this->expectException(\Exception::class);
         Validator::validateCertificate($this->good_certificate, $ca_file);

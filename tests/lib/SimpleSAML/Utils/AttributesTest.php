@@ -26,7 +26,7 @@ class AttributesTest extends TestCase
         $expected = 'string';
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(
-            'The attributes array is not an array, it is: '.print_r($attributes, true).'.'
+            'The attributes array is not an array, it is: ' . print_r($attributes, true) . '.'
         );
         Attributes::getExpectedAttribute($attributes, $expected);
     }
@@ -45,7 +45,7 @@ class AttributesTest extends TestCase
         $expected = false;
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(
-            'The expected attribute is not a string, it is: '.print_r($expected, true).'.'
+            'The expected attribute is not a string, it is: ' . print_r($expected, true) . '.'
         );
         Attributes::getExpectedAttribute($attributes, $expected);
     }
@@ -82,7 +82,7 @@ class AttributesTest extends TestCase
         ];
         $expected = 'missing';
         $this->expectException(\SimpleSAML\Error\Exception::class);
-        $this->expectExceptionMessage("No such attribute '".$expected."' found.");
+        $this->expectExceptionMessage("No such attribute '" . $expected . "' found.");
         Attributes::getExpectedAttribute($attributes, $expected);
     }
 
@@ -99,7 +99,7 @@ class AttributesTest extends TestCase
         ];
         $expected = 'attribute';
         $this->expectException(\SimpleSAML\Error\Exception::class);
-        $this->expectExceptionMessage("Empty attribute '".$expected."'.'");
+        $this->expectExceptionMessage("Empty attribute '" . $expected . "'.'");
         Attributes::getExpectedAttribute($attributes, $expected);
     }
 

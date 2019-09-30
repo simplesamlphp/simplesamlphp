@@ -3,7 +3,6 @@
 namespace SimpleSAML\Test;
 
 use PHPUnit\Framework\TestCase;
-
 use SimpleSAML\Configuration;
 use SimpleSAML\Error\CriticalConfigurationError;
 use SimpleSAML\Store;
@@ -11,8 +10,8 @@ use SimpleSAML\Store;
 /**
  * Tests for the Store abstract class.
  *
- * For the full copyright and license information, please view the LICENSE file that was distributed with this source
- * code.
+ * For the full copyright and license information, please view the LICENSE file that was
+ * distributed with this source code.
  *
  * @author Sergio Gómez <sergio@uco.es>
  * @package simplesamlphp/simplesamlphp
@@ -26,8 +25,7 @@ class StoreTest extends TestCase
      */
     public function defaultStore()
     {
-        Configuration::loadFromArray([
-        ], '[ARRAY]', 'simplesaml');
+        Configuration::loadFromArray([], '[ARRAY]', 'simplesaml');
 
         /** @var false $store */
         $store = Store::getInstance();
@@ -43,8 +41,7 @@ class StoreTest extends TestCase
      */
     public function phpSessionStore()
     {
-        Configuration::loadFromArray([
-        ], '[ARRAY]', 'simplesaml');
+        Configuration::loadFromArray([], '[ARRAY]', 'simplesaml');
 
         /** @var false $store */
         $store = Store::getInstance();

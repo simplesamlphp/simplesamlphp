@@ -1,4 +1,12 @@
 <?php
+
+namespace SimpleSAML\Test\Web;
+
+use PHPUnit\Framework\TestCase;
+use SimpleSAML\Test\BuiltInServer;
+
+include(dirname(__FILE__) . '/../BuiltInServer.php');
+
 /**
  * Simple test for the www/index.php script.
  *
@@ -7,14 +15,6 @@
  * @author Jaime Pérez Crespo <jaime.perez@uninett.no>
  * @package SimpleSAMLphp
  */
-
-namespace SimpleSAML\Test\Web;
-
-include(dirname(__FILE__).'/../BuiltInServer.php');
-
-use PHPUnit\Framework\TestCase;
-use \SimpleSAML\Test\BuiltInServer;
-
 class IndexTest extends TestCase
 {
     /**
@@ -48,7 +48,7 @@ class IndexTest extends TestCase
         $this->server_addr = $this->server->start();
         $this->server_pid = $this->server->getPid();
 
-        $this->shared_file = sys_get_temp_dir().'/'.$this->server_pid.'.lock';
+        $this->shared_file = sys_get_temp_dir() . '/' . $this->server_pid . '.lock';
         @unlink($this->shared_file); // remove it if it exists
     }
 
@@ -60,7 +60,7 @@ class IndexTest extends TestCase
     protected function updateConfig(array $config)
     {
         @unlink($this->shared_file);
-        $config = "<?php\n\$config = ".var_export($config, true).";\n";
+        $config = "<?php\n\$config = " . var_export($config, true) . ";\n";
         file_put_contents($this->shared_file, $config);
     }
 
@@ -106,7 +106,7 @@ class IndexTest extends TestCase
         ]);
         $this->assertEquals('302', $resp['code']);
         $this->assertEquals(
-            'http://'.$this->server_addr.'/simplesaml/module.php/core/frontpage_welcome.php',
+            'http://' . $this->server_addr . '/simplesaml/module.php/core/frontpage_welcome.php',
             $resp['headers']['Location']
         );
     }

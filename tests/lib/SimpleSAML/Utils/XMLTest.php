@@ -3,7 +3,6 @@
 namespace SimpleSAML\Test\Utils;
 
 use PHPUnit\Framework\TestCase;
-
 use SimpleSAML\Configuration;
 use SimpleSAML\Utils\XML;
 
@@ -150,7 +149,7 @@ class XMLTest extends TestCase
         $element->appendChild(new \DOMText($data2));
 
         $res = XML::getDOMText($element);
-        $expected = $data1.$data2.$data1.$data2;
+        $expected = $data1 . $data2 . $data1 . $data2;
 
         $this->assertEquals($expected, $res);
     }

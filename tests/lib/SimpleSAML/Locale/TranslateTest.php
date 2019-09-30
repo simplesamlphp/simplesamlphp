@@ -32,7 +32,7 @@ class TranslateTest extends TestCase
         $testString = 'Blablabla';
 
         // $fallbackdefault = true
-        $result = 'not translated ('.$testString.')';
+        $result = 'not translated (' . $testString . ')';
         $this->assertEquals($result, $t->t($testString));
 
         // $fallbackdefault = false, should be a noop

@@ -2,11 +2,10 @@
 
 namespace SimpleSAML\Test\Utils;
 
+use org\bovigo\vfs\vfsStream;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
 use SimpleSAML\Utils\Crypto;
-
-use \org\bovigo\vfs\vfsStream;
 
 /**
  * Tests for SimpleSAML\Utils\Crypto.
@@ -40,7 +39,7 @@ class CryptoTest extends TestCase
             ]
         );
         $this->root_directory = vfsStream::url(self::ROOTDIRNAME);
-        $this->certdir = $this->root_directory.DIRECTORY_SEPARATOR.self::DEFAULTCERTDIR;
+        $this->certdir = $this->root_directory . DIRECTORY_SEPARATOR . self::DEFAULTCERTDIR;
     }
 
 
@@ -94,7 +93,8 @@ class CryptoTest extends TestCase
         $m->setAccessible(true);
 
         $plaintext = 'SUPER_SECRET_TEXT';
-        $ciphertext = 'uR2Yu0r4itInKx91D/l9y/08L5CIQyev9nAr27fh3Sshous4vbXRRcMcjqHDOrquD+2vqLyw7ygnbA9jA9TpB4hLZocvAWcTN8tyO82hiSY=';
+        $ciphertext = 'uR2Yu0r4itInKx91D/l9y/08L5CIQyev9nAr27fh3Sshous4'
+            . 'vbXRRcMcjqHDOrquD+2vqLyw7ygnbA9jA9TpB4hLZocvAWcTN8tyO82hiSY=';
         $this->assertEquals($plaintext, $m->invokeArgs(null, [base64_decode($ciphertext), $secret]));
     }
 
@@ -210,8 +210,8 @@ PHP;
         $res = Crypto::pwHash($pw, $algorithm, $salt);
 
         /*
-         * echo -n "password""salt" | sha1sum | awk -v salt=$(echo -n "salt" | xxd -u -p) -F " " '{print $1 salt}' | xxd -r -p | base64
-         * yI6cZwQadOA1e+/f+T+H3eCQQhRzYWx0
+         * echo -n "password""salt" | sha1sum | awk -v salt=$(echo -n "salt" | xxd -u -p)
+         *   -F " " '{print $1 salt}' | xxd -r -p | base64 yI6cZwQadOA1e+/f+T+H3eCQQhRzYWx0
          */
         $expected = "{SSHA}yI6cZwQadOA1e+/f+T+H3eCQQhRzYWx0";
 
@@ -311,7 +311,7 @@ PHP;
     {
         $this->expectException(\SimpleSAML\Error\Exception::class);
         $algorithm = "wtf";
-        $hash = "{".$algorithm."}B64STRING";
+        $hash = "{" . $algorithm . "}B64STRING";
 
         Crypto::pwValid($hash, $algorithm);
     }
@@ -389,7 +389,7 @@ PHP;
      */
     public function testLoadPrivateKeyBasic()
     {
-        $filename = $this->certdir.DIRECTORY_SEPARATOR.'key';
+        $filename = $this->certdir . DIRECTORY_SEPARATOR . 'key';
         $data = 'data';
         $config = new Configuration(['privatekey' => $filename], 'test');
         $full_path = true;
@@ -410,7 +410,7 @@ PHP;
     public function testLoadPrivateKeyPassword()
     {
         $password = 'password';
-        $filename = $this->certdir.DIRECTORY_SEPARATOR.'key';
+        $filename = $this->certdir . DIRECTORY_SEPARATOR . 'key';
         $data = 'data';
         $config = new Configuration(
             [
@@ -438,12 +438,12 @@ PHP;
     {
         $prefix = 'prefix';
         $password = 'password';
-        $filename = $this->certdir.DIRECTORY_SEPARATOR.'key';
+        $filename = $this->certdir . DIRECTORY_SEPARATOR . 'key';
         $data = 'data';
         $config = new Configuration(
             [
-                $prefix.'privatekey' => $filename,
-                $prefix.'privatekey_pass' => $password,
+                $prefix . 'privatekey' => $filename,
+                $prefix . 'privatekey_pass' => $password,
             ],
             'test'
         );

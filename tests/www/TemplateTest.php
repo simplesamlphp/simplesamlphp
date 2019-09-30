@@ -1,10 +1,4 @@
 <?php
-/**
- * Simple test for syntax-checking Twig-templates.
- *
- * @author Tim van Dijen <tvdijen@gmail.com>
- * @package SimpleSAMLphp
- */
 
 namespace SimpleSAML\Test\Web;
 
@@ -14,6 +8,12 @@ use SimpleSAML\XHTML\Template;
 use SimpleSAML\Module;
 use Twig\Error\SyntaxError;
 
+/**
+ * Simple test for syntax-checking Twig-templates.
+ *
+ * @author Tim van Dijen <tvdijen@gmail.com>
+ * @package SimpleSAMLphp
+ */
 class TemplateTest extends TestCase
 {
     /**
@@ -27,7 +27,7 @@ class TemplateTest extends TestCase
         ]);
         Configuration::setPreLoadedConfig($config);
 
-        $basedir = dirname(dirname(dirname(__FILE__))).DIRECTORY_SEPARATOR.'templates';
+        $basedir = dirname(dirname(dirname(__FILE__))) . DIRECTORY_SEPARATOR . 'templates';
 
         // Base templates
         $files = array_diff(scandir($basedir), ['.', '..']);
@@ -39,7 +39,7 @@ class TemplateTest extends TestCase
                     $t->show();
                     $this->addToAssertionCount(1);
                 } catch (SyntaxError $e) {
-                    $this->fail($e->getMessage().' in '.$e->getFile().':'.$e->getLine());
+                    $this->fail($e->getMessage() . ' in ' . $e->getFile() . ':' . $e->getLine());
                 }
                 ob_end_clean();
             }
@@ -47,18 +47,18 @@ class TemplateTest extends TestCase
 
         // Module templates
         foreach (Module::getModules() as $module) {
-            $basedir = Module::getModuleDir($module).DIRECTORY_SEPARATOR.'templates';
+            $basedir = Module::getModuleDir($module) . DIRECTORY_SEPARATOR . 'templates';
             if (file_exists($basedir)) {
                 $files = array_diff(scandir($basedir), ['.', '..']);
                 foreach ($files as $file) {
                     if (preg_match('/.twig$/', $file)) {
-                        $t = new Template($config, $module.':'.$file);
+                        $t = new Template($config, $module . ':' . $file);
                         ob_start();
                         try {
                             $t->show();
                             $this->addToAssertionCount(1);
                         } catch (SyntaxError $e) {
-                            $this->fail($e->getMessage().' in '.$e->getFile().':'.$e->getLine());
+                            $this->fail($e->getMessage() . ' in ' . $e->getFile() . ':' . $e->getLine());
                         }
                         ob_end_clean();
                     }

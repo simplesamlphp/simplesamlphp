@@ -227,7 +227,7 @@ class DatabaseTest extends TestCase
         $table = "saml20_idp_hosted";
         $pftable = $this->db->applyPrefix($table);
 
-        $this->assertEquals($prefix.$table, $pftable, "Did not properly apply the table prefix");
+        $this->assertEquals($prefix . $table, $pftable, "Did not properly apply the table prefix");
     }
 
 
@@ -242,7 +242,7 @@ class DatabaseTest extends TestCase
     public function querying()
     {
         $table = $this->db->applyPrefix("sspdbt");
-        $this->assertEquals($this->config->getString('database.prefix')."sspdbt", $table);
+        $this->assertEquals($this->config->getString('database.prefix') . "sspdbt", $table);
 
         $this->db->write(
             "CREATE TABLE IF NOT EXISTS $table (ssp_key INT(16) NOT NULL, ssp_value TEXT NOT NULL)"
@@ -277,7 +277,7 @@ class DatabaseTest extends TestCase
     {
         $this->expectException(\Exception::class);
         $table = $this->db->applyPrefix("sspdbt");
-        $this->assertEquals($this->config->getString('database.prefix')."sspdbt", $table);
+        $this->assertEquals($this->config->getString('database.prefix') . "sspdbt", $table);
 
         $this->db->read("SELECT * FROM $table");
     }
