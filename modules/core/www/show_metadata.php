@@ -12,11 +12,13 @@ if (!array_key_exists('entityid', $_REQUEST)) {
 if (!array_key_exists('set', $_REQUEST)) {
     throw new Exception('required parameter [set] missing');
 }
-if (!in_array(
-    $_REQUEST['set'],
-    ['saml20-idp-remote', 'saml20-sp-remote', 'shib13-idp-remote', 'shib13-sp-remote'],
-    true
-)) {
+if (
+    !in_array(
+        $_REQUEST['set'],
+        ['saml20-idp-remote', 'saml20-sp-remote', 'shib13-idp-remote', 'shib13-sp-remote'],
+        true
+    )
+) {
     throw new Exception('Invalid set');
 }
 

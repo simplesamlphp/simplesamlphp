@@ -86,7 +86,7 @@ class Portal
         $tabset = $this->getTabset($thispage);
         $logininfo = $this->getLoginInfo($t, $thispage);
         $classes = 'tabset_tabs ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all';
-        $text = '<ul class="'.$classes.'">';
+        $text = '<ul class="' . $classes . '">';
         foreach ($this->pages as $pageid => $page) {
             if (isset($tabset) && !in_array($pageid, $tabset, true)) {
                 continue;
@@ -103,19 +103,19 @@ class Portal
             $name = $t->t($name);
 
             if (!isset($page['href'])) {
-                $text .= '<li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#">'.
-                    $name.'</a></li>';
+                $text .= '<li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#">' .
+                    $name . '</a></li>';
             } elseif ($pageid === $thispage) {
-                $text .= '<li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#">'.
-                    $name.'</a></li>';
+                $text .= '<li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#">' .
+                    $name . '</a></li>';
             } else {
-                $text .= '<li class="ui-state-default ui-corner-top"><a href="'.$page['href'].'">'.
-                    $name.'</a></li>';
+                $text .= '<li class="ui-state-default ui-corner-top"><a href="' . $page['href'] . '">' .
+                    $name . '</a></li>';
             }
         }
         $text .= '</ul>';
         if (!empty($logininfo)) {
-            $text .= '<p class="logininfo" style="text-align: right; margin: 0px">'.$logininfo.'</p>';
+            $text .= '<p class="logininfo" style="text-align: right; margin: 0px">' . $logininfo . '</p>';
         }
         return $text;
     }

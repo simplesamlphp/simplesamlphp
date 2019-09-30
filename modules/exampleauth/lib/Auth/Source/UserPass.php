@@ -46,14 +46,14 @@ class UserPass extends \SimpleSAML\Module\core\Auth\UserPassBase
         foreach ($config as $userpass => $attributes) {
             if (!is_string($userpass)) {
                 throw new \Exception(
-                    'Invalid <username>:<password> for authentication source '.$this->authId.': '.$userpass
+                    'Invalid <username>:<password> for authentication source ' . $this->authId . ': ' . $userpass
                 );
             }
 
             $userpass = explode(':', $userpass, 2);
             if (count($userpass) !== 2) {
                 throw new \Exception(
-                    'Invalid <username>:<password> for authentication source '.$this->authId.': '.$userpass[0]
+                    'Invalid <username>:<password> for authentication source ' . $this->authId . ': ' . $userpass[0]
                 );
             }
             $username = $userpass[0];
@@ -62,10 +62,10 @@ class UserPass extends \SimpleSAML\Module\core\Auth\UserPassBase
             try {
                 $attributes = Utils\Attributes::normalizeAttributesArray($attributes);
             } catch (\Exception $e) {
-                throw new \Exception('Invalid attributes for user '.$username.
-                    ' in authentication source '.$this->authId.': '.$e->getMessage());
+                throw new \Exception('Invalid attributes for user ' . $username .
+                    ' in authentication source ' . $this->authId . ': ' . $e->getMessage());
             }
-            $this->users[$username.':'.$password] = $attributes;
+            $this->users[$username . ':' . $password] = $attributes;
         }
     }
 
@@ -88,7 +88,7 @@ class UserPass extends \SimpleSAML\Module\core\Auth\UserPassBase
         assert(is_string($username));
         assert(is_string($password));
 
-        $userpass = $username.':'.$password;
+        $userpass = $username . ':' . $password;
         if (!array_key_exists($userpass, $this->users)) {
             throw new Error\Error('WRONGUSERPASS');
         }

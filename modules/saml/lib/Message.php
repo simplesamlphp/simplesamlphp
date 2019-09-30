@@ -145,16 +145,16 @@ class Message
             }
 
             /* We have found a matching fingerprint. */
-            $pem = "-----BEGIN CERTIFICATE-----\n".
-                chunk_split($cert, 64).
+            $pem = "-----BEGIN CERTIFICATE-----\n" .
+                chunk_split($cert, 64) .
                 "-----END CERTIFICATE-----\n";
             return $pem;
         }
 
-        $candidates = "'".implode("', '", $candidates)."'";
-        $fps = "'".implode("', '", $certFingerprints)."'";
-        throw new SSP_Error\Exception('Unable to find a certificate matching the configured '.
-            'fingerprint. Candidates: '.$candidates.'; certFingerprint: '.$fps.'.');
+        $candidates = "'" . implode("', '", $candidates) . "'";
+        $fps = "'" . implode("', '", $certFingerprints) . "'";
+        throw new SSP_Error\Exception('Unable to find a certificate matching the configured ' .
+            'fingerprint. Candidates: ' . $candidates . '; certFingerprint: ' . $fps . '.');
     }
 
 
@@ -177,17 +177,17 @@ class Message
             foreach ($keys as $key) {
                 switch ($key['type']) {
                     case 'X509Certificate':
-                        $pemKeys[] = "-----BEGIN CERTIFICATE-----\n".
-                            chunk_split($key['X509Certificate'], 64).
+                        $pemKeys[] = "-----BEGIN CERTIFICATE-----\n" .
+                            chunk_split($key['X509Certificate'], 64) .
                             "-----END CERTIFICATE-----\n";
                         break;
                     default:
-                        Logger::debug('Skipping unknown key type: '.$key['type']);
+                        Logger::debug('Skipping unknown key type: ' . $key['type']);
                 }
             }
         } elseif ($srcMetadata->hasValue('certFingerprint')) {
             Logger::notice(
-                "Validating certificates by fingerprint is deprecated. Please use ".
+                "Validating certificates by fingerprint is deprecated. Please use " .
                 "certData or certificate options in your remote metadata configuration."
             );
 
@@ -204,19 +204,19 @@ class Message
                 Logger::debug('No certificate in message when validating against fingerprint.');
                 return false;
             } else {
-                Logger::debug('Found '.count($certificates).' certificates in '.get_class($element));
+                Logger::debug('Found ' . count($certificates) . ' certificates in ' . get_class($element));
             }
 
             $pemCert = self::findCertificate($certFingerprint, $certificates);
             $pemKeys = [$pemCert];
         } else {
             throw new SSP_Error\Exception(
-                'Missing certificate in metadata for '.
+                'Missing certificate in metadata for ' .
                 var_export($srcMetadata->getString('entityid'), true)
             );
         }
 
-        Logger::debug('Has '.count($pemKeys).' candidate keys for validation.');
+        Logger::debug('Has ' . count($pemKeys) . ' candidate keys for validation.');
 
         $lastException = null;
         foreach ($pemKeys as $i => $pem) {
@@ -227,12 +227,12 @@ class Message
                 // make sure that we have a valid signature on either the response or the assertion
                 $res = $element->validate($key);
                 if ($res) {
-                    Logger::debug('Validation with key #'.$i.' succeeded.');
+                    Logger::debug('Validation with key #' . $i . ' succeeded.');
                     return true;
                 }
-                Logger::debug('Validation with key #'.$i.' failed without exception.');
+                Logger::debug('Validation with key #' . $i . ' failed without exception.');
             } catch (\Exception $e) {
-                Logger::debug('Validation with key #'.$i.' failed with exception: '.$e->getMessage());
+                Logger::debug('Validation with key #' . $i . ' failed with exception: ' . $e->getMessage());
                 $lastException = $e;
             }
         }
@@ -400,7 +400,7 @@ class Message
         try {
             $keys = self::getDecryptionKeys($srcMetadata, $dstMetadata);
         } catch (\Exception $e) {
-            throw new SSP_Error\Exception('Error decrypting assertion: '.$e->getMessage());
+            throw new SSP_Error\Exception('Error decrypting assertion: ' . $e->getMessage());
         }
 
         $blacklist = self::getBlacklistedAlgorithms($srcMetadata, $dstMetadata);
@@ -409,10 +409,10 @@ class Message
         foreach ($keys as $i => $key) {
             try {
                 $ret = $assertion->getAssertion($key, $blacklist);
-                Logger::debug('Decryption with key #'.$i.' succeeded.');
+                Logger::debug('Decryption with key #' . $i . ' succeeded.');
                 return $ret;
             } catch (\Exception $e) {
-                Logger::debug('Decryption with key #'.$i.' failed with exception: '.$e->getMessage());
+                Logger::debug('Decryption with key #' . $i . ' failed with exception: ' . $e->getMessage());
                 $lastException = $e;
             }
         }
@@ -449,7 +449,7 @@ class Message
         try {
             $keys = self::getDecryptionKeys($srcMetadata, $dstMetadata);
         } catch (\Exception $e) {
-            throw new SSP_Error\Exception('Error decrypting attributes: '.$e->getMessage());
+            throw new SSP_Error\Exception('Error decrypting attributes: ' . $e->getMessage());
         }
 
         $blacklist = self::getBlacklistedAlgorithms($srcMetadata, $dstMetadata);
@@ -458,11 +458,11 @@ class Message
         foreach ($keys as $i => $key) {
             try {
                 $assertion->decryptAttributes($key, $blacklist);
-                Logger::debug('Attribute decryption with key #'.$i.' succeeded.');
+                Logger::debug('Attribute decryption with key #' . $i . ' succeeded.');
                 $error = false;
                 break;
             } catch (\Exception $e) {
-                Logger::debug('Attribute decryption failed with exception: '.$e->getMessage());
+                Logger::debug('Attribute decryption failed with exception: ' . $e->getMessage());
             }
         }
         if ($error) {
@@ -620,8 +620,8 @@ class Message
         $currentURL = Utils\HTTP::getSelfURLNoQuery();
         $msgDestination = $response->getDestination();
         if ($msgDestination !== null && $msgDestination !== $currentURL) {
-            throw new \Exception('Destination in response doesn\'t match the current URL. Destination is "'.
-                $msgDestination.'", current URL is "'.$currentURL.'".');
+            throw new \Exception('Destination in response doesn\'t match the current URL. Destination is "' .
+                $msgDestination . '", current URL is "' . $currentURL . '".');
         }
 
         $responseSigned = self::checkSign($idpMetadata, $response);
@@ -714,9 +714,11 @@ class Message
         if ($validAudiences !== null) {
             $spEntityId = $spMetadata->getString('entityid');
             if (!in_array($spEntityId, $validAudiences, true)) {
-                $candidates = '['.implode('], [', $validAudiences).']';
-                throw new SSP_Error\Exception('This SP ['.$spEntityId.
-                    ']  is not a valid audience for the assertion. Candidates were: '.$candidates);
+                $candidates = '[' . implode('], [', $validAudiences) . ']';
+                throw new SSP_Error\Exception(
+                    'This SP [' . $spEntityId .
+                    ']  is not a valid audience for the assertion. Candidates were: ' . $candidates
+                );
             }
         }
 
@@ -726,7 +728,7 @@ class Message
         foreach ($assertion->getSubjectConfirmation() as $sc) {
             $method = $sc->getMethod();
             if (!in_array($method, $validSCMethods, true)) {
-                $lastError = 'Invalid Method on SubjectConfirmation: '.var_export($method, true);
+                $lastError = 'Invalid Method on SubjectConfirmation: ' . var_export($method, true);
                 continue;
             }
 
@@ -740,7 +742,7 @@ class Message
                 continue;
             }
             if ($method === Constants::CM_HOK && !$hok) {
-                $lastError = 'Holder-of-Key SubjectConfirmation received, '.
+                $lastError = 'Holder-of-Key SubjectConfirmation received, ' .
                     'but the Holder-of-Key profile is not enabled.';
                 continue;
             }
@@ -760,8 +762,8 @@ class Message
                 $clientCert = $_SERVER['SSL_CLIENT_CERT'];
                 $pattern = '/^-----BEGIN CERTIFICATE-----([^-]*)^-----END CERTIFICATE-----/m';
                 if (!preg_match($pattern, $clientCert, $matches)) {
-                    $lastError = 'Error while looking for client certificate during TLS handshake with SP, the client '.
-                        'certificate does not have the expected structure';
+                    $lastError = 'Error while looking for client certificate during TLS handshake with SP, ' .
+                        'the client certificate does not have the expected structure';
                     continue;
                 }
                 // we have a valid client certificate from the browser
@@ -774,7 +776,7 @@ class Message
                     }
                 }
                 if (count($keyInfo) != 1) {
-                    $lastError = 'Error validating Holder-of-Key assertion: Only one <ds:KeyInfo> element in '.
+                    $lastError = 'Error validating Holder-of-Key assertion: Only one <ds:KeyInfo> element in ' .
                         '<SubjectConfirmationData> allowed';
                     continue;
                 }
@@ -786,7 +788,7 @@ class Message
                     }
                 }
                 if (count($x509data) != 1) {
-                    $lastError = 'Error validating Holder-of-Key assertion: Only one <ds:X509Data> element in '.
+                    $lastError = 'Error validating Holder-of-Key assertion: Only one <ds:X509Data> element in ' .
                         '<ds:KeyInfo> within <SubjectConfirmationData> allowed';
                     continue;
                 }
@@ -798,14 +800,14 @@ class Message
                     }
                 }
                 if (count($x509cert) != 1) {
-                    $lastError = 'Error validating Holder-of-Key assertion: Only one <ds:X509Certificate> element in '.
+                    $lastError = 'Error validating Holder-of-Key assertion: Only one <ds:X509Certificate> element in ' .
                         '<ds:X509Data> within <SubjectConfirmationData> allowed';
                     continue;
                 }
 
                 $HoKCertificate = $x509cert[0]->getCertificate();
                 if ($HoKCertificate !== $clientCert) {
-                    $lastError = 'Provided client certificate does not match the certificate bound to the '.
+                    $lastError = 'Provided client certificate does not match the certificate bound to the ' .
                         'Holder-of-Key assertion';
                     continue;
                 }
@@ -819,35 +821,38 @@ class Message
 
             $notBefore = $scd->getNotBefore();
             if (is_int($notBefore) && $notBefore > time() + 60) {
-                $lastError = 'NotBefore in SubjectConfirmationData is in the future: '.$notBefore;
+                $lastError = 'NotBefore in SubjectConfirmationData is in the future: ' . $notBefore;
                 continue;
             }
             $notOnOrAfter = $scd->getNotOnOrAfter();
             if (is_int($notOnOrAfter) && $notOnOrAfter <= time() - 60) {
-                $lastError = 'NotOnOrAfter in SubjectConfirmationData is in the past: '.$notOnOrAfter;
+                $lastError = 'NotOnOrAfter in SubjectConfirmationData is in the past: ' . $notOnOrAfter;
                 continue;
             }
             $recipient = $scd->getRecipient();
             if ($recipient !== null && $recipient !== $currentURL) {
-                $lastError = 'Recipient in SubjectConfirmationData does not match the current URL. Recipient is '.
-                    var_export($recipient, true).', current URL is '.var_export($currentURL, true).'.';
+                $lastError = 'Recipient in SubjectConfirmationData does not match the current URL. Recipient is ' .
+                    var_export($recipient, true) . ', current URL is ' . var_export($currentURL, true) . '.';
                 continue;
             }
             $inResponseTo = $scd->getInResponseTo();
-            if ($inResponseTo !== null && $response->getInResponseTo() !== null &&
-                $inResponseTo !== $response->getInResponseTo()
+            if (
+                $inResponseTo !== null
+                && $response->getInResponseTo() !== null
+                && $inResponseTo !== $response->getInResponseTo()
             ) {
-                $lastError = 'InResponseTo in SubjectConfirmationData does not match the Response. Response has '.
-                    var_export($response->getInResponseTo(), true).
-                    ', SubjectConfirmationData has '.var_export($inResponseTo, true).'.';
+                $lastError = 'InResponseTo in SubjectConfirmationData does not match the Response. Response has ' .
+                    var_export($response->getInResponseTo(), true) .
+                    ', SubjectConfirmationData has ' . var_export($inResponseTo, true) . '.';
                 continue;
             }
             $found = true;
             break;
         }
         if (!$found) {
-            throw new SSP_Error\Exception('Error validating SubjectConfirmation in Assertion: '.$lastError);
-        } // as far as we can tell, the assertion is valid
+            throw new SSP_Error\Exception('Error validating SubjectConfirmation in Assertion: ' . $lastError);
+        }
+        // as far as we can tell, the assertion is valid
 
         // maybe we need to base64 decode the attributes in the assertion?
         if ($idpMetadata->getBoolean('base64attributes', false)) {
@@ -869,7 +874,7 @@ class Message
             try {
                 $keys = self::getDecryptionKeys($idpMetadata, $spMetadata);
             } catch (\Exception $e) {
-                throw new SSP_Error\Exception('Error decrypting NameID: '.$e->getMessage());
+                throw new SSP_Error\Exception('Error decrypting NameID: ' . $e->getMessage());
             }
 
             $blacklist = self::getBlacklistedAlgorithms($idpMetadata, $spMetadata);
@@ -878,11 +883,11 @@ class Message
             foreach ($keys as $i => $key) {
                 try {
                     $assertion->decryptNameId($key, $blacklist);
-                    Logger::debug('Decryption with key #'.$i.' succeeded.');
+                    Logger::debug('Decryption with key #' . $i . ' succeeded.');
                     $lastException = null;
                     break;
                 } catch (\Exception $e) {
-                    Logger::debug('Decryption with key #'.$i.' failed with exception: '.$e->getMessage());
+                    Logger::debug('Decryption with key #' . $i . ' failed with exception: ' . $e->getMessage());
                     $lastException = $e;
                 }
             }
@@ -918,8 +923,8 @@ class Message
         foreach ($keys as $key) {
             switch ($key['type']) {
                 case 'X509Certificate':
-                    $pemKey = "-----BEGIN CERTIFICATE-----\n".
-                        chunk_split($key['X509Certificate'], 64).
+                    $pemKey = "-----BEGIN CERTIFICATE-----\n" .
+                        chunk_split($key['X509Certificate'], 64) .
                         "-----END CERTIFICATE-----\n";
                     $key = new XMLSecurityKey(XMLSecurityKey::RSA_OAEP_MGF1P, ['type' => 'public']);
                     $key->loadKey($pemKey);
@@ -927,7 +932,7 @@ class Message
             }
         }
 
-        throw new SSP_Error\Exception('No supported encryption key in '.
+        throw new SSP_Error\Exception('No supported encryption key in ' .
             var_export($metadata->getString('entityid'), true));
     }
 }

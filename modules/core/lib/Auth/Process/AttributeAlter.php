@@ -73,7 +73,7 @@ class AttributeAlter extends \SimpleSAML\Auth\ProcessingFilter
                 } elseif ($value === '%remove') {
                     $this->remove = true;
                 } else {
-                    throw new Error\Exception('Unknown flag : '.var_export($value, true));
+                    throw new Error\Exception('Unknown flag : ' . var_export($value, true));
                 }
                 continue;
             } elseif ($name === 'pattern') {
@@ -116,8 +116,9 @@ class AttributeAlter extends \SimpleSAML\Auth\ProcessingFilter
         }
 
         if (!$this->replace && !$this->remove && $this->replacement === false) {
-            throw new Error\Exception("'replacement' must be set if neither '%replace' nor ".
-                "'%remove' are set.");
+            throw new Error\Exception(
+                "'replacement' must be set if neither '%replace' nor " . "'%remove' are set."
+            );
         }
 
         if (!$this->replace && $this->replacement === null) {

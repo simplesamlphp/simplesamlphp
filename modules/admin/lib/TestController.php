@@ -66,7 +66,7 @@ class TestController
         } else {
             $authsource = new Auth\Simple($as);
             if (!is_null($request->query->get('logout'))) {
-                $authsource->logout($this->config->getBasePath().'logout.php');
+                $authsource->logout($this->config->getBasePath() . 'logout.php');
             } elseif (!is_null($request->query->get(Auth\State::EXCEPTION_PARAM))) {
                 // This is just a simple example of an error
                 /** @var array $state */
@@ -76,7 +76,7 @@ class TestController
             }
 
             if (!$authsource->isAuthenticated()) {
-                $url = Module::getModuleURL('admin/test/'.$as, []);
+                $url = Module::getModuleURL('admin/test/' . $as, []);
                 $params = [
                     'ErrorURL' => $url,
                     'ReturnTo' => $url,
@@ -86,7 +86,9 @@ class TestController
 
             $attributes = $authsource->getAttributes();
             $authData = $authsource->getAuthDataArray();
-            $nameId = !is_null($authsource->getAuthData('saml:sp:NameID')) ? $authsource->getAuthData('saml:sp:NameID') : false;
+            $nameId = !is_null($authsource->getAuthData('saml:sp:NameID'))
+                ? $authsource->getAuthData('saml:sp:NameID')
+                : false;
 
             $t = new Template($this->config, 'admin:status.twig', 'attributes');
             $t->data = [
@@ -94,7 +96,7 @@ class TestController
                 'attributesHtml' => $this->getAttributesHTML($t, $attributes, ''),
                 'authData' => $authData,
                 'nameid' => $nameId,
-                'logouturl' => Utils\HTTP::getSelfURLNoQuery().'?as='.urlencode($as).'&logout',
+                'logouturl' => Utils\HTTP::getSelfURLNoQuery() . '?as=' . urlencode($as) . '&logout',
             ];
 
             if ($nameId !== false) {
@@ -121,7 +123,7 @@ class TestController
             $list = ["NameID" => [$translator->t('{status:subject_notset}')]];
             /** @var string $notset */
             $notset = $translator->t('{status:subject_notset}');
-            $result .= "<p>NameID: <span class=\"notset\">".$notset."</span></p>";
+            $result .= "<p>NameID: <span class=\"notset\">" . $notset . "</span></p>";
         } else {
             $list = [
                 "NameId" => [$nameId->getValue()],
@@ -141,7 +143,7 @@ class TestController
                 $list['SPProvidedID'] = [$nameId->getSPProvidedID()];
             }
         }
-        return $result.$this->getAttributesHTML($t, $list, '');
+        return $result . $this->getAttributesHTML($t, $list, '');
     }
 
 
@@ -155,45 +157,47 @@ class TestController
     {
         $alternate = ['pure-table-odd', 'pure-table-even'];
         $i = 0;
-        $parentStr = (strlen($nameParent) > 0) ? strtolower($nameParent).'_' : '';
-        $str = (strlen($nameParent) > 0) ? '<table class="pure-table pure-table-attributes" summary="attribute overview">' :
-            '<table id="table_with_attributes" class="pure-table pure-table-attributes" summary="attribute overview">';
+        $parentStr = (strlen($nameParent) > 0) ? strtolower($nameParent) . '_' : '';
+        $str = (strlen($nameParent) > 0)
+            ? '<table class="pure-table pure-table-attributes" summary="attribute overview">'
+            : '<table id="table_with_attributes" class="pure-table pure-table-attributes"'
+            . ' summary="attribute overview">';
         foreach ($attributes as $name => $value) {
             $nameraw = $name;
             $trans = $t->getTranslator();
-            $name = $trans->getAttributeTranslation($parentStr.$nameraw);
+            $name = $trans->getAttributeTranslation($parentStr . $nameraw);
             if (preg_match('/^child_/', $nameraw)) {
                 $parentName = preg_replace('/^child_/', '', $nameraw);
                 foreach ($value as $child) {
-                    $str .= '<tr class="odd"><td colspan="2" style="padding: 2em">'.
-                        $this->getAttributesHTML($t, $child, $parentName).'</td></tr>';
+                    $str .= '<tr class="odd"><td colspan="2" style="padding: 2em">' .
+                        $this->getAttributesHTML($t, $child, $parentName) . '</td></tr>';
                 }
             } else {
                 if (sizeof($value) > 1) {
-                    $str .= '<tr class="'.$alternate[($i++ % 2)].'"><td class="attrname">';
+                    $str .= '<tr class="' . $alternate[($i++ % 2)] . '"><td class="attrname">';
                     if ($nameraw !== $name) {
-                        $str .= htmlspecialchars($name).'<br/>';
+                        $str .= htmlspecialchars($name) . '<br/>';
                     }
-                    $str .= '<code>'.htmlspecialchars($nameraw).'</code>';
+                    $str .= '<code>' . htmlspecialchars($nameraw) . '</code>';
                     $str .= '</td><td class="attrvalue"><ul>';
                     foreach ($value as $listitem) {
                         if ($nameraw === 'jpegPhoto') {
-                            $str .= '<li><img src="data:image/jpeg;base64,'.htmlspecialchars($listitem).'" /></li>';
+                            $str .= '<li><img src="data:image/jpeg;base64,' . htmlspecialchars($listitem) . '" /></li>';
                         } else {
-                            $str .= '<li>'.$this->present_assoc($listitem).'</li>';
+                            $str .= '<li>' . $this->presentAssoc($listitem) . '</li>';
                         }
                     }
                     $str .= '</ul></td></tr>';
                 } elseif (isset($value[0])) {
-                    $str .= '<tr class="'.$alternate[($i++ % 2)].'"><td class="attrname">';
+                    $str .= '<tr class="' . $alternate[($i++ % 2)] . '"><td class="attrname">';
                     if ($nameraw !== $name) {
-                        $str .= htmlspecialchars($name).'<br/>';
+                        $str .= htmlspecialchars($name) . '<br/>';
                     }
-                    $str .= '<code>'.htmlspecialchars($nameraw).'</code>';
+                    $str .= '<code>' . htmlspecialchars($nameraw) . '</code>';
                     $str .= '</td>';
                     if ($nameraw === 'jpegPhoto') {
-                        $str .= '<td class="attrvalue"><img src="data:image/jpeg;base64,'.htmlspecialchars($value[0]).
-                            '" /></td></tr>';
+                        $str .= '<td class="attrvalue"><img src="data:image/jpeg;base64,' . htmlspecialchars($value[0])
+                            . '" /></td></tr>';
                     } elseif (is_a($value[0], 'DOMNodeList')) {
                         // try to see if we have a NameID here
                         /** @var \DOMNodeList $value [0] */
@@ -204,15 +208,15 @@ class TestController
                             if (!($elem->localName === 'NameID' && $elem->namespaceURI === Constants::NS_SAML)) {
                                 continue;
                             }
-                            $str .= $this->present_eptid($trans, new NameID($elem));
+                            $str .= $this->presentEptid($trans, new NameID($elem));
                             break; // we only support one NameID here
                         }
                         $str .= '</td></tr>';
                     } elseif (is_a($value[0], '\SAML2\XML\saml\NameID')) {
-                        $str .= $this->present_eptid($trans, $value[0]);
+                        $str .= $this->presentEptid($trans, $value[0]);
                         $str .= '</td></tr>';
                     } else {
-                        $str .= '<td class="attrvalue">'.htmlspecialchars($value[0]).'</td></tr>';
+                        $str .= '<td class="attrvalue">' . htmlspecialchars($value[0]) . '</td></tr>';
                     }
                 }
             }
@@ -227,12 +231,12 @@ class TestController
      * @param array|string $attr
      * @return string
      */
-    private function present_list($attr)
+    private function presentList($attr)
     {
         if (is_array($attr) && count($attr) > 1) {
             $str = '<ul>';
             foreach ($attr as $value) {
-                $str .= '<li>'.htmlspecialchars(strval($attr)).'</li>';
+                $str .= '<li>' . htmlspecialchars(strval($attr)) . '</li>';
             }
             $str .= '</ul>';
             return $str;
@@ -246,12 +250,12 @@ class TestController
      * @param array|string $attr
      * @return string
      */
-    private function present_assoc($attr)
+    private function presentAssoc($attr)
     {
         if (is_array($attr)) {
             $str = '<dl>';
             foreach ($attr as $key => $value) {
-                $str .= "\n".'<dt>'.htmlspecialchars($key).'</dt><dd>'.$this->present_list($value).'</dd>';
+                $str .= "\n" . '<dt>' . htmlspecialchars($key) . '</dt><dd>' . $this->presentList($value) . '</dd>';
             }
             $str .= '</dl>';
             return $str;
@@ -266,7 +270,7 @@ class TestController
      * @param \SAML2\XML\saml\NameID $nameID
      * @return string
      */
-    private function present_eptid(Translate $t, NameID $nameID)
+    private function presentEptid(Translate $t, NameID $nameID)
     {
         $eptid = [
             'NameID' => [$nameID->getValue()],
@@ -285,6 +289,6 @@ class TestController
         if ($nameID->getSPProvidedID() !== null) {
             $eptid['SPProvidedID'] = [$nameID->getSPProvidedID()];
         }
-        return '<td class="attrvalue">'.$this->present_assoc($eptid);
+        return '<td class="attrvalue">' . $this->presentAssoc($eptid);
     }
 }

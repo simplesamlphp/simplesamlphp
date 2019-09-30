@@ -92,7 +92,7 @@ if (!empty($stateId)) {
         $state = \SimpleSAML\Auth\State::loadState($stateId, 'saml:sp:sso');
     } catch (Exception $e) {
         // something went wrong,
-        SimpleSAML\Logger::warning('Could not load state specified by InResponseTo: '.$e->getMessage().
+        SimpleSAML\Logger::warning('Could not load state specified by InResponseTo: ' . $e->getMessage() .
             ' Processing response as unsolicited.');
     }
 }
@@ -112,7 +112,9 @@ if ($state) {
         $idpMetadata = $source->getIdPMetadata($issuer);
         $idplist = $idpMetadata->getArrayize('IDPList', []);
         if (!in_array($state['ExpectedIssuer'], $idplist, true)) {
-            SimpleSAML\Logger::warning('The issuer of the response not match to the identity provider we sent the request to.');
+            SimpleSAML\Logger::warning(
+                'The issuer of the response not match to the identity provider we sent the request to.'
+            );
         }
     }
 } else {
@@ -129,7 +131,7 @@ if ($state) {
     ];
 }
 
-SimpleSAML\Logger::debug('Received SAML2 Response from '.var_export($issuer, true).'.');
+SimpleSAML\Logger::debug('Received SAML2 Response from ' . var_export($issuer, true) . '.');
 
 if (is_null($idpMetadata)) {
     $idpMetadata = $source->getIdPmetadata($issuer);

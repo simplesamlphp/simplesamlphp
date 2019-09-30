@@ -21,14 +21,14 @@ $state = \SimpleSAML\Auth\State::loadState($authStateId, \SimpleSAML\Module\core
 $source = \SimpleSAML\Auth\Source::getById($state[\SimpleSAML\Module\core\Auth\UserPassBase::AUTHID]);
 if ($source === null) {
     throw new \Exception(
-        'Could not find authentication source with id '.$state[\SimpleSAML\Module\core\Auth\UserPassBase::AUTHID]
+        'Could not find authentication source with id ' . $state[\SimpleSAML\Module\core\Auth\UserPassBase::AUTHID]
     );
 }
 
 if (array_key_exists('username', $_REQUEST)) {
     $username = $_REQUEST['username'];
-} elseif ($source->getRememberUsernameEnabled() && array_key_exists($source->getAuthId().'-username', $_COOKIE)) {
-    $username = $_COOKIE[$source->getAuthId().'-username'];
+} elseif ($source->getRememberUsernameEnabled() && array_key_exists($source->getAuthId() . '-username', $_COOKIE)) {
+    $username = $_COOKIE[$source->getAuthId() . '-username'];
 } elseif (isset($state['core:username'])) {
     $username = (string) $state['core:username'];
 } else {
@@ -67,7 +67,7 @@ if (!empty($_REQUEST['username']) || !empty($password)) {
         } else {
             $params['expire'] = time() - 300;
         }
-        \SimpleSAML\Utils\HTTP::setCookie($source->getAuthId().'-username', $username, $params, false);
+        \SimpleSAML\Utils\HTTP::setCookie($source->getAuthId() . '-username', $username, $params, false);
     }
 
     if ($source->isRememberMeEnabled()) {
@@ -115,7 +115,7 @@ if (array_key_exists('forcedUsername', $state)) {
     $t->data['rememberUsernameChecked'] = $source->getRememberUsernameChecked();
     $t->data['rememberMeEnabled'] = $source->isRememberMeEnabled();
     $t->data['rememberMeChecked'] = $source->isRememberMeChecked();
-    if (isset($_COOKIE[$source->getAuthId().'-username'])) {
+    if (isset($_COOKIE[$source->getAuthId() . '-username'])) {
         $t->data['rememberUsernameChecked'] = true;
     }
 }

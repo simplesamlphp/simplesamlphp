@@ -87,10 +87,9 @@ class SQLPersistentNameID extends \SimpleSAML\Module\saml\BaseNameIDGenerator
      */
     protected function getValue(array &$state)
     {
-
         if (!isset($state['saml:NameIDFormat']) && !$this->allowUnspecified) {
             Logger::debug(
-                'SQLPersistentNameID: Request did not specify persistent NameID format, '.
+                'SQLPersistentNameID: Request did not specify persistent NameID format, ' .
                 'not generating persistent NameID.'
             );
             return null;
@@ -100,12 +99,14 @@ class SQLPersistentNameID extends \SimpleSAML\Module\saml\BaseNameIDGenerator
             $state['saml:NameIDFormat'],
             $state['SPMetadata']['NameIDFormat']
         ]);
-        if (count($validNameIdFormats) && !in_array($this->format, $validNameIdFormats, true) &&
-            !$this->allowDifferent
+        if (
+            count($validNameIdFormats)
+            && !in_array($this->format, $validNameIdFormats, true)
+            && !$this->allowDifferent
         ) {
             Logger::debug(
-                'SQLPersistentNameID: SP expects different NameID format ('.
-                implode(', ', $validNameIdFormats).'),  not generating persistent NameID.'
+                'SQLPersistentNameID: SP expects different NameID format (' .
+                implode(', ', $validNameIdFormats) . '),  not generating persistent NameID.'
             );
             return null;
         }
@@ -124,14 +125,14 @@ class SQLPersistentNameID extends \SimpleSAML\Module\saml\BaseNameIDGenerator
 
         if (!isset($state['Attributes'][$this->attribute]) || count($state['Attributes'][$this->attribute]) === 0) {
             Logger::warning(
-                'SQLPersistentNameID: Missing attribute '.var_export($this->attribute, true).
+                'SQLPersistentNameID: Missing attribute ' . var_export($this->attribute, true) .
                 ' on user - not generating persistent NameID.'
             );
             return null;
         }
         if (count($state['Attributes'][$this->attribute]) > 1) {
             Logger::warning(
-                'SQLPersistentNameID: More than one value in attribute '.var_export($this->attribute, true).
+                'SQLPersistentNameID: More than one value in attribute ' . var_export($this->attribute, true) .
                 ' on user - not generating persistent NameID.'
             );
             return null;
@@ -141,7 +142,7 @@ class SQLPersistentNameID extends \SimpleSAML\Module\saml\BaseNameIDGenerator
 
         if (empty($uid)) {
             Logger::warning(
-                'Empty value in attribute '.var_export($this->attribute, true).
+                'Empty value in attribute ' . var_export($this->attribute, true) .
                 ' on user - not generating persistent NameID.'
             );
             return null;
@@ -150,8 +151,8 @@ class SQLPersistentNameID extends \SimpleSAML\Module\saml\BaseNameIDGenerator
         $value = \SimpleSAML\Module\saml\IdP\SQLNameID::get($idpEntityId, $spEntityId, $uid);
         if ($value !== null) {
             Logger::debug(
-                'SQLPersistentNameID: Found persistent NameID '.var_export($value, true).' for user '.
-                var_export($uid, true).'.'
+                'SQLPersistentNameID: Found persistent NameID ' . var_export($value, true) . ' for user ' .
+                var_export($uid, true) . '.'
             );
             return $value;
         }
@@ -168,8 +169,8 @@ class SQLPersistentNameID extends \SimpleSAML\Module\saml\BaseNameIDGenerator
 
         $value = bin2hex(openssl_random_pseudo_bytes(20));
         Logger::debug(
-            'SQLPersistentNameID: Created persistent NameID '.var_export($value, true).' for user '.
-            var_export($uid, true).'.'
+            'SQLPersistentNameID: Created persistent NameID ' . var_export($value, true) . ' for user ' .
+            var_export($uid, true) . '.'
         );
         \SimpleSAML\Module\saml\IdP\SQLNameID::add($idpEntityId, $spEntityId, $uid, $value);
 

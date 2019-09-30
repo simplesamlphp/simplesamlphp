@@ -195,7 +195,7 @@ class MultiAuth extends \SimpleSAML\Auth\Source
             $state[self::SOURCESID]
         );
         if ($as === null || !in_array($authId, $valid_sources, true)) {
-            throw new \Exception('Invalid authentication source: '.$authId);
+            throw new \Exception('Invalid authentication source: ' . $authId);
         }
 
         // Save the selected authentication source for the logout process.
@@ -238,7 +238,7 @@ class MultiAuth extends \SimpleSAML\Auth\Source
 
         $source = Auth\Source::getById($authId);
         if ($source === null) {
-            throw new \Exception('Invalid authentication source during logout: '.$authId);
+            throw new \Exception('Invalid authentication source during logout: ' . $authId);
         }
         // Then, do the logout on it
         $source->logout($state);
@@ -258,7 +258,7 @@ class MultiAuth extends \SimpleSAML\Auth\Source
     {
         assert(is_string($source));
 
-        $cookieName = 'multiauth_source_'.$this->authId;
+        $cookieName = 'multiauth_source_' . $this->authId;
 
         $config = Configuration::getInstance();
         $params = [
@@ -282,7 +282,7 @@ class MultiAuth extends \SimpleSAML\Auth\Source
      */
     public function getPreviousSource()
     {
-        $cookieName = 'multiauth_source_'.$this->authId;
+        $cookieName = 'multiauth_source_' . $this->authId;
         if (array_key_exists($cookieName, $_COOKIE)) {
             return $_COOKIE[$cookieName];
         } else {

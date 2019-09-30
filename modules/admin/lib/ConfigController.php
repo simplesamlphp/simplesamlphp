@@ -21,6 +21,7 @@ use Symfony\Component\HttpFoundation\Request;
 class ConfigController
 {
     const LATEST_VERSION_STATE_KEY = 'core:latest_simplesamlphp_version';
+
     const RELEASES_API = 'https://api.github.com/repos/simplesamlphp/simplesamlphp/releases/latest';
 
     /** @var \SimpleSAML\Configuration */
@@ -336,9 +337,9 @@ class ConfigController
         // make sure we're using HTTPS
         if (!Utils\HTTP::isHTTPS()) {
             $warnings[] = Translate::noop(
-                '<strong>You are not using HTTPS</strong> to protect communications with your users. HTTP works fine '.
-                'for testing purposes, but in a production environment you should use HTTPS. <a '.
-                'href="https://simplesamlphp.org/docs/stable/simplesamlphp-maintenance">Read more about the '.
+                '<strong>You are not using HTTPS</strong> to protect communications with your users. HTTP works fine ' .
+                'for testing purposes, but in a production environment you should use HTTPS. <a ' .
+                'href="https://simplesamlphp.org/docs/stable/simplesamlphp-maintenance">Read more about the ' .
                 'maintenance of SimpleSAMLphp</a>.'
             );
         }
@@ -346,9 +347,9 @@ class ConfigController
         // make sure we have a secret salt set
         if ($this->config->getValue('secretsalt') === 'defaultsecretsalt') {
             $warnings[] = Translate::noop(
-                '<strong>The configuration uses the default secret salt</strong>. Make sure to modify the <code>'.
-                'secretsalt</code> option in the SimpleSAMLphp configuration in production environments. <a '.
-                'href="https://simplesamlphp.org/docs/stable/simplesamlphp-install">Read more about the '.
+                '<strong>The configuration uses the default secret salt</strong>. Make sure to modify the <code>' .
+                'secretsalt</code> option in the SimpleSAMLphp configuration in production environments. <a ' .
+                'href="https://simplesamlphp.org/docs/stable/simplesamlphp-install">Read more about the ' .
                 'maintenance of SimpleSAMLphp</a>.'
             );
         }
@@ -358,7 +359,7 @@ class ConfigController
             $len = ini_get('suhosin.get.max_value_length');
             if (empty($len) || $len < 2048) {
                 $warnings[] = Translate::noop(
-                    'The length of query parameters is limited by the PHP Suhosin extension. Please increase the '.
+                    'The length of query parameters is limited by the PHP Suhosin extension. Please increase the ' .
                     '<code>suhosin.get.max_value_length</code> option in your php.ini to at least 2048 bytes.'
                 );
             }
@@ -397,7 +398,7 @@ class ConfigController
                 if ($latest && version_compare($this->config->getVersion(), ltrim($latest['tag_name'], 'v'), 'lt')) {
                     $warnings[] = [
                         Translate::noop(
-                            'You are running an outdated version of SimpleSAMLphp. Please update to <a href="'.
+                            'You are running an outdated version of SimpleSAMLphp. Please update to <a href="' .
                             '%latest%">the latest version</a> as soon as possible.'
                         ),
                             [

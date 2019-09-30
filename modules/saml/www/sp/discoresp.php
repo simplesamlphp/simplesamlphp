@@ -21,7 +21,7 @@ $sourceId = $state['saml:sp:AuthId'];
 
 $source = \SimpleSAML\Auth\Source::getById($sourceId);
 if ($source === null) {
-    throw new Exception('Could not find authentication source with id '.$sourceId);
+    throw new Exception('Could not find authentication source with id ' . $sourceId);
 }
 if (!($source instanceof \SimpleSAML\Module\saml\Auth\Source\SP)) {
     throw new \SimpleSAML\Error\Exception('Source type changed?');

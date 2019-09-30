@@ -303,7 +303,7 @@ abstract class UserPassBase extends \SimpleSAML\Auth\Source
         /** @var \SimpleSAML\Module\core\Auth\UserPassBase|null $source */
         $source = Auth\Source::getById($state[self::AUTHID]);
         if ($source === null) {
-            throw new \Exception('Could not find authentication source with id '.$state[self::AUTHID]);
+            throw new \Exception('Could not find authentication source with id ' . $state[self::AUTHID]);
         }
 
         /*
@@ -315,11 +315,11 @@ abstract class UserPassBase extends \SimpleSAML\Auth\Source
         try {
             $attributes = $source->login($username, $password);
         } catch (\Exception $e) {
-            Logger::stats('Unsuccessful login attempt from '.$_SERVER['REMOTE_ADDR'].'.');
+            Logger::stats('Unsuccessful login attempt from ' . $_SERVER['REMOTE_ADDR'] . '.');
             throw $e;
         }
 
-        Logger::stats('User \''.$username.'\' successfully authenticated from '.$_SERVER['REMOTE_ADDR']);
+        Logger::stats('User \'' . $username . '\' successfully authenticated from ' . $_SERVER['REMOTE_ADDR']);
 
         // Save the attributes we received from the login-function in the $state-array
         assert(is_array($attributes));
