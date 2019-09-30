@@ -197,9 +197,24 @@ your own session after calling SimpleSAMLphp, you can do so by cleaning up the s
 If you don't cleanup SimpleSAMLphp's session and try to use $_SESSION afterwards, you won't be using your own session
 and all your data is likely to get lost or inaccessible.
 
-Note that if your application uses a [custom session handler](https://www.php.net/manual/en/function.session-set-save-handler.php), SimpleSAMLphp will use it as well. This can lead to problems because SimpleSAMLphp's stand-alone web UI uses the default PHP session handlers. Therefore, you may need to unset the custom handler before making any calls to SimpleSAMLphp using:
+Note that if your application uses a [custom session handler](https://www.php.net/manual/en/function.session-set-save-handler.php), SimpleSAMLphp will use it as well. This can lead to problems because SimpleSAMLphp's stand-alone web UI uses the default PHP session handlers. Therefore, you may need to unset the custom handler before making any calls to SimpleSAMLphp:
 
-    session_set_save_handler($handler);
+    // use custom save handler
+    session-set-save-handler($handler);
+    session_start();
+    
+    // close session and restore default handler
+    session_write_close();
+    session_set_save_handler(new SessionHandler(), true);
+    
+    // use SimpleSAML\Session
+    $session = \SimpleSAML\Session::getSessionFromRequest();
+    $session->cleanup();
+    session_write_close();
+    
+    // back to custom save handler
+    session-set-save-handler($handler);
+    session_start();
 
 
 
