@@ -53,18 +53,18 @@ class FileLoggingHandler implements LoggingHandlerInterface
     public function __construct(Configuration $config)
     {
         // get the metadata handler option from the configuration
-        $this->logFile = $config->getPathValue('loggingdir', 'log/').
+        $this->logFile = $config->getPathValue('loggingdir', 'log/') .
             $config->getString('logging.logfile', 'simplesamlphp.log');
         $this->processname = $config->getString('logging.processname', 'SimpleSAMLphp');
 
         if (@file_exists($this->logFile)) {
             if (!@is_writeable($this->logFile)) {
-                throw new \Exception("Could not write to logfile: ".$this->logFile);
+                throw new \Exception("Could not write to logfile: " . $this->logFile);
             }
         } else {
             if (!@touch($this->logFile)) {
                 throw new \Exception(
-                    "Could not create logfile: ".$this->logFile.
+                    "Could not create logfile: " . $this->logFile .
                     " The logging directory is not writable for the web server user."
                 );
             }
@@ -117,7 +117,7 @@ class FileLoggingHandler implements LoggingHandlerInterface
             }
 
             $string = str_replace($formats, $replacements, $string);
-            file_put_contents($this->logFile, $string.\PHP_EOL, FILE_APPEND);
+            file_put_contents($this->logFile, $string . \PHP_EOL, FILE_APPEND);
         }
     }
 }

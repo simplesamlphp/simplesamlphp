@@ -21,7 +21,7 @@ function temporaryLoader($class)
 {
     // handle the upgrade to the latest version of XMLSecLibs using namespaces
     if (strstr($class, 'XMLSec') && !strstr($class, '\\RobRichards\\XMLSecLibs\\')) {
-        $new = '\\RobRichards\\XMLSecLibs\\'.$class;
+        $new = '\\RobRichards\\XMLSecLibs\\' . $class;
         if (class_exists($new, true)) {
             class_alias($new, $class);
             SimpleSAML\Logger::warning("The class '$class' is now using namespaces, please use '$new'.");
@@ -53,7 +53,7 @@ function temporaryLoader($class)
 
     // try to load it from the corresponding file
     $path = explode('_', $class);
-    $file = dirname(__FILE__).DIRECTORY_SEPARATOR.join(DIRECTORY_SEPARATOR, $path).'.php';
+    $file = dirname(__FILE__) . DIRECTORY_SEPARATOR . join(DIRECTORY_SEPARATOR, $path) . '.php';
     if (file_exists($file)) {
         require_once $file;
     }
@@ -111,7 +111,7 @@ function sspmodAutoloadPSR0($className)
         return;
     }
 
-    $file = \SimpleSAML\Module::getModuleDir($module).'/lib/'.join('/', $path).'.php';
+    $file = \SimpleSAML\Module::getModuleDir($module) . '/lib/' . join('/', $path) . '.php';
     if (!file_exists($file)) {
         return;
     }
@@ -120,13 +120,14 @@ function sspmodAutoloadPSR0($className)
     if (!class_exists($className, false) && !interface_exists($className, false)) {
         // the file exists, but the class is not defined. Is it using namespaces?
         $nspath = join('\\', $path);
-        if (class_exists('SimpleSAML\\Module\\'.$module.'\\'.$nspath) ||
-            interface_exists('SimpleSAML\\Module\\'.$module.'\\'.$nspath)
+        if (
+            class_exists('SimpleSAML\\Module\\' . $module . '\\' . $nspath)
+            || interface_exists('SimpleSAML\\Module\\' . $module . '\\' . $nspath)
         ) {
             // the class has been migrated, create an alias and warn about it
             \SimpleSAML\Logger::warning(
-                "The class or interface '$className' is now using namespaces, please use 'SimpleSAML\\Module\\".
-                $module."\\".$nspath."' instead."
+                "The class or interface '$className' is now using namespaces, please use 'SimpleSAML\\Module\\" .
+                $module . "\\" . $nspath . "' instead."
             );
             class_alias("SimpleSAML\\Module\\$module\\$nspath", $className);
         }
@@ -162,7 +163,7 @@ function sspmodAutoloadPSR4($className)
         return; // module not enabled, avoid giving out any information at all
     }
 
-    $file = \SimpleSAML\Module::getModuleDir($module).'/lib/'.implode('/', $elements).'.php';
+    $file = \SimpleSAML\Module::getModuleDir($module) . '/lib/' . implode('/', $elements) . '.php';
 
     if (file_exists($file)) {
         require_once($file);

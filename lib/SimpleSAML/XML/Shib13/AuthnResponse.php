@@ -146,7 +146,7 @@ class AuthnResponse
             $this->validator->validateCA(Utils\Config::getCertPath($md->getString('caFile')));
         } else {
             throw new Error\Exception(
-                'Missing certificate in Shibboleth 1.3 IdP Remote metadata for identity provider ['.$issuer.'].'
+                'Missing certificate in Shibboleth 1.3 IdP Remote metadata for identity provider [' . $issuer . '].'
             );
         }
 
@@ -260,7 +260,7 @@ class AuthnResponse
 
                 if ($start && $end) {
                     if (!self::checkDateConditions($start, $end)) {
-                        error_log('Date check failed ... (from '.$start.' to '.$end.')');
+                        error_log('Date check failed ... (from ' . $start . ' to ' . $end . ')');
                         continue;
                     }
                 }
@@ -280,7 +280,7 @@ class AuthnResponse
                 $name = $parentNode->getAttribute('AttributeName');
 
                 if ($attribute->hasAttribute('Scope')) {
-                    $scopePart = '@'.$attribute->getAttribute('Scope');
+                    $scopePart = '@' . $attribute->getAttribute('Scope');
                 } else {
                     $scopePart = '';
                 }
@@ -296,10 +296,10 @@ class AuthnResponse
                 if ($base64) {
                     $encodedvalues = explode('_', $value);
                     foreach ($encodedvalues as $v) {
-                        $attributes[$name][] = base64_decode($v).$scopePart;
+                        $attributes[$name][] = base64_decode($v) . $scopePart;
                     }
                 } else {
-                    $attributes[$name][] = $value.$scopePart;
+                    $attributes[$name][] = $value . $scopePart;
                 }
             }
         }
@@ -385,18 +385,18 @@ class AuthnResponse
         $namequalifier = $sp->getString('NameQualifier', $spEntityId);
         $nameid = Utils\Random::generateID();
         $subjectNode =
-            '<Subject>'.
-            '<NameIdentifier'.
-            ' Format="urn:mace:shibboleth:1.0:nameIdentifier"'.
-            ' NameQualifier="'.htmlspecialchars($namequalifier).'"'.
-            '>'.
-            htmlspecialchars($nameid).
-            '</NameIdentifier>'.
-            '<SubjectConfirmation>'.
-            '<ConfirmationMethod>'.
-            'urn:oasis:names:tc:SAML:1.0:cm:bearer'.
-            '</ConfirmationMethod>'.
-            '</SubjectConfirmation>'.
+            '<Subject>' .
+            '<NameIdentifier' .
+            ' Format="urn:mace:shibboleth:1.0:nameIdentifier"' .
+            ' NameQualifier="' . htmlspecialchars($namequalifier) . '"' .
+            '>' .
+            htmlspecialchars($nameid) .
+            '</NameIdentifier>' .
+            '<SubjectConfirmation>' .
+            '<ConfirmationMethod>' .
+            'urn:oasis:names:tc:SAML:1.0:cm:bearer' .
+            '</ConfirmationMethod>' .
+            '</SubjectConfirmation>' .
             '</Subject>';
 
         $encodedattributes = '';
@@ -418,25 +418,25 @@ class AuthnResponse
         $response = '<Response xmlns="urn:oasis:names:tc:SAML:1.0:protocol"
     xmlns:saml="urn:oasis:names:tc:SAML:1.0:assertion"
     xmlns:samlp="urn:oasis:names:tc:SAML:1.0:protocol" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" IssueInstant="'.$issueInstant.'"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" IssueInstant="' . $issueInstant . '"
     MajorVersion="1" MinorVersion="1"
-    Recipient="'.htmlspecialchars($shire).'" ResponseID="'.$id.'">
+    Recipient="' . htmlspecialchars($shire) . '" ResponseID="' . $id . '">
     <Status>
         <StatusCode Value="samlp:Success" />
     </Status>
     <Assertion xmlns="urn:oasis:names:tc:SAML:1.0:assertion"
-        AssertionID="'.$assertionid.'" IssueInstant="'.$issueInstant.'"
-        Issuer="'.htmlspecialchars($idp->getString('entityid')).'" MajorVersion="1" MinorVersion="1">
-        <Conditions NotBefore="'.$notBefore.'" NotOnOrAfter="'.$assertionExpire.'">
+        AssertionID="' . $assertionid . '" IssueInstant="' . $issueInstant . '"
+        Issuer="' . htmlspecialchars($idp->getString('entityid')) . '" MajorVersion="1" MinorVersion="1">
+        <Conditions NotBefore="' . $notBefore . '" NotOnOrAfter="' . $assertionExpire . '">
             <AudienceRestrictionCondition>
-                <Audience>'.htmlspecialchars($audience).'</Audience>
+                <Audience>' . htmlspecialchars($audience) . '</Audience>
             </AudienceRestrictionCondition>
         </Conditions>
-        <AuthenticationStatement AuthenticationInstant="'.$issueInstant.'"
-            AuthenticationMethod="urn:oasis:names:tc:SAML:1.0:am:unspecified">'.
-            $subjectNode.'
+        <AuthenticationStatement AuthenticationInstant="' . $issueInstant . '"
+            AuthenticationMethod="urn:oasis:names:tc:SAML:1.0:am:unspecified">' .
+            $subjectNode . '
         </AuthenticationStatement>
-        '.$encodedattributes.'
+        ' . $encodedattributes . '
     </Assertion>
 </Response>';
 
@@ -466,7 +466,7 @@ class AuthnResponse
             $scoped = false;
         }
 
-        $attr = '<Attribute AttributeName="'.htmlspecialchars($name).
+        $attr = '<Attribute AttributeName="' . htmlspecialchars($name) .
             '" AttributeNamespace="urn:mace:shibboleth:1.0:attributeNamespace:uri">';
         foreach ($values as $value) {
             $scopePart = '';
@@ -474,7 +474,7 @@ class AuthnResponse
                 $tmp = explode('@', $value, 2);
                 if (count($tmp) === 2) {
                     $value = $tmp[0];
-                    $scopePart = ' Scope="'.htmlspecialchars($tmp[1]).'"';
+                    $scopePart = ' Scope="' . htmlspecialchars($tmp[1]) . '"';
                 }
             }
 
@@ -482,7 +482,7 @@ class AuthnResponse
                 $value = base64_encode($value);
             }
 
-            $attr .= '<AttributeValue'.$scopePart.'>'.htmlspecialchars($value).'</AttributeValue>';
+            $attr .= '<AttributeValue' . $scopePart . '>' . htmlspecialchars($value) . '</AttributeValue>';
         }
         $attr .= '</Attribute>';
 

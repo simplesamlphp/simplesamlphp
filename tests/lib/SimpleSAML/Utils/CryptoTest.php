@@ -53,7 +53,7 @@ class CryptoTest extends TestCase
     public function testAesDecryptBadInput()
     {
         $this->expectException(\InvalidArgumentException::class);
-        $m = new \ReflectionMethod('\SimpleSAML\Utils\Crypto', '_aesDecrypt');
+        $m = new \ReflectionMethod('\SimpleSAML\Utils\Crypto', 'aesDecryptInternal');
         $m->setAccessible(true);
 
         $m->invokeArgs(null, [[], 'SECRET']);
@@ -69,7 +69,7 @@ class CryptoTest extends TestCase
     public function testAesEncryptBadInput()
     {
         $this->expectException(\InvalidArgumentException::class);
-        $m = new \ReflectionMethod('\SimpleSAML\Utils\Crypto', '_aesEncrypt');
+        $m = new \ReflectionMethod('\SimpleSAML\Utils\Crypto', 'aesEncryptInternal');
         $m->setAccessible(true);
 
         $m->invokeArgs(null, [[], 'SECRET']);
@@ -90,7 +90,7 @@ class CryptoTest extends TestCase
         }
 
         $secret = 'SUPER_SECRET_SALT';
-        $m = new \ReflectionMethod('\SimpleSAML\Utils\Crypto', '_aesDecrypt');
+        $m = new \ReflectionMethod('\SimpleSAML\Utils\Crypto', 'aesDecryptInternal');
         $m->setAccessible(true);
 
         $plaintext = 'SUPER_SECRET_TEXT';
@@ -113,8 +113,8 @@ class CryptoTest extends TestCase
         }
 
         $secret = 'SUPER_SECRET_SALT';
-        $e = new \ReflectionMethod('\SimpleSAML\Utils\Crypto', '_aesEncrypt');
-        $d = new \ReflectionMethod('\SimpleSAML\Utils\Crypto', '_aesDecrypt');
+        $e = new \ReflectionMethod('\SimpleSAML\Utils\Crypto', 'aesEncryptInternal');
+        $d = new \ReflectionMethod('\SimpleSAML\Utils\Crypto', 'aesDecryptInternal');
         $e->setAccessible(true);
         $d->setAccessible(true);
 

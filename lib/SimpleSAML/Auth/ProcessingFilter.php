@@ -50,7 +50,7 @@ abstract class ProcessingFilter
         if (array_key_exists('%priority', $config)) {
             $this->priority = $config['%priority'];
             if (!is_int($this->priority)) {
-                throw new \Exception('Invalid priority: '.var_export($this->priority, true));
+                throw new \Exception('Invalid priority: ' . var_export($this->priority, true));
             }
             unset($config['%priority']);
         }

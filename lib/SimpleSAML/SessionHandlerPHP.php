@@ -51,8 +51,8 @@ class SessionHandlerPHP extends SessionHandler
         if (session_status() === PHP_SESSION_ACTIVE) {
             if (session_name() === $this->cookie_name || $this->cookie_name === null) {
                 Logger::warning(
-                    'There is already a PHP session with the same name as SimpleSAMLphp\'s session, or the '.
-                    "'session.phpsession.cookiename' configuration option is not set. Make sure to set ".
+                    'There is already a PHP session with the same name as SimpleSAMLphp\'s session, or the ' .
+                    "'session.phpsession.cookiename' configuration option is not set. Make sure to set " .
                     "SimpleSAMLphp's cookie name with a value not used by any other applications."
                 );
             }
@@ -90,7 +90,7 @@ class SessionHandlerPHP extends SessionHandler
             } else {
                 /* in older versions of PHP we need a nasty hack to set RFC6265bis SameSite attribute */
                 if ($params['samesite'] !== null and !preg_match('/;\s+samesite/i', $params['path'])) {
-                    $params['path'] .= '; SameSite='.$params['samesite'];
+                    $params['path'] .= '; SameSite=' . $params['samesite'];
                 }
                 session_set_cookie_params(
                     $params['lifetime'],

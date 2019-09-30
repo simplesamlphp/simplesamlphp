@@ -113,8 +113,11 @@ class Errors
     public static function formatError($error)
     {
         assert($error instanceof LibXMLError);
-        return 'level='.$error->level.',code='.$error->code.',line='.$error->line.',col='.$error->column.
-            ',msg='.trim($error->message);
+        return 'level=' . $error->level
+            . ',code=' . $error->code
+            . ',line=' . $error->line
+            . ',col=' . $error->column
+            . ',msg=' . trim($error->message);
     }
 
 
@@ -134,7 +137,7 @@ class Errors
 
         $ret = '';
         foreach ($errors as $error) {
-            $ret .= self::formatError($error)."\n";
+            $ret .= self::formatError($error) . "\n";
         }
 
         return $ret;

@@ -439,7 +439,7 @@ class Logger
             $handler = strtolower($handler);
             if (!array_key_exists($handler, $known_handlers)) {
                 throw new \Exception(
-                    "Invalid value for the 'logging.handler' configuration option. Unknown handler '".$handler."''."
+                    "Invalid value for the 'logging.handler' configuration option. Unknown handler '" . $handler . "'."
                 );
             }
             $handler = $known_handlers[$handler];
@@ -479,7 +479,7 @@ class Logger
             }
             $_SERVER['REMOTE_ADDR'] = "CLI";
             if (self::$trackid === self::NO_TRACKID) {
-                self::$trackid = 'CL'.bin2hex(openssl_random_pseudo_bytes(4));
+                self::$trackid = 'CL' . bin2hex(openssl_random_pseudo_bytes(4));
             }
         } elseif (!isset(self::$loggingHandler)) {
             // Initialize logging
@@ -489,8 +489,8 @@ class Logger
         if (self::$captureLog) {
             $ts = microtime(true);
             $msecs = (int) (($ts - (int) $ts) * 1000);
-            $ts = gmdate('H:i:s', $ts).sprintf('.%03d', $msecs).'Z';
-            self::$capturedLog[] = $ts.' '.$string;
+            $ts = gmdate('H:i:s', $ts) . sprintf('.%03d', $msecs) . 'Z';
+            self::$capturedLog[] = $ts . ' ' . $string;
         }
 
         if (self::$logLevel >= $level || $statsLog) {

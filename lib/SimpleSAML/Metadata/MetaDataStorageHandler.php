@@ -76,7 +76,7 @@ class MetaDataStorageHandler implements \SimpleSAML\Utils\ClearableState
             $this->sources = MetaDataStorageSource::parseSources($sourcesConfig);
         } catch (\Exception $e) {
             throw new \Exception(
-                "Invalid configuration of the 'metadata.sources' configuration option: ".$e->getMessage()
+                "Invalid configuration of the 'metadata.sources' configuration option: " . $e->getMessage()
             );
         }
     }
@@ -107,7 +107,7 @@ class MetaDataStorageHandler implements \SimpleSAML\Utils\ClearableState
         $config = Configuration::getInstance();
         assert($config instanceof Configuration);
 
-        $baseurl = Utils\HTTP::getSelfURLHost().$config->getBasePath();
+        $baseurl = Utils\HTTP::getSelfURLHost() . $config->getBasePath();
 
         if ($set == 'saml20-sp-hosted') {
             if ($property === 'SingleLogoutServiceBinding') {
@@ -116,24 +116,24 @@ class MetaDataStorageHandler implements \SimpleSAML\Utils\ClearableState
         } elseif ($set == 'saml20-idp-hosted') {
             switch ($property) {
                 case 'SingleSignOnService':
-                    return $baseurl.'saml2/idp/SSOService.php';
+                    return $baseurl . 'saml2/idp/SSOService.php';
 
                 case 'SingleSignOnServiceBinding':
                     return Constants::BINDING_HTTP_REDIRECT;
 
                 case 'SingleLogoutService':
-                    return $baseurl.'saml2/idp/SingleLogoutService.php';
+                    return $baseurl . 'saml2/idp/SingleLogoutService.php';
 
                 case 'SingleLogoutServiceBinding':
                     return Constants::BINDING_HTTP_REDIRECT;
             }
         } elseif ($set == 'shib13-idp-hosted') {
             if ($property === 'SingleSignOnService') {
-                return $baseurl.'shib13/idp/SSOService.php';
+                return $baseurl . 'shib13/idp/SSOService.php';
             }
         }
 
-        throw new \Exception('Could not generate metadata property '.$property.' for set '.$set.'.');
+        throw new \Exception('Could not generate metadata property ' . $property . ' for set ' . $set . '.');
     }
 
 
@@ -160,8 +160,8 @@ class MetaDataStorageHandler implements \SimpleSAML\Utils\ClearableState
                     if (array_key_exists('expire', $le) && ($le['expire'] < time())) {
                         unset($srcList[$key]);
                         Logger::warning(
-                            "Dropping metadata entity ".var_export($key, true).", expired ".
-                            Utils\Time::generateTimestamp($le['expire'])."."
+                            "Dropping metadata entity " . var_export($key, true) . ", expired " .
+                            Utils\Time::generateTimestamp($le['expire']) . "."
                         );
                     }
                 }
@@ -235,8 +235,8 @@ class MetaDataStorageHandler implements \SimpleSAML\Utils\ClearableState
 
         // we were unable to find the hostname/path in any metadata source
         throw new \Exception(
-            'Could not find any default metadata entities in set ['.$set.'] for host ['.$currenthost.' : '.
-            $currenthostwithpath.']'
+            'Could not find any default metadata entities in set [' . $set . '] for host [' . $currenthost . ' : ' .
+            $currenthostwithpath . ']'
         );
     }
 
@@ -280,8 +280,8 @@ class MetaDataStorageHandler implements \SimpleSAML\Utils\ClearableState
                     if ($le['expire'] < time()) {
                         unset($srcList[$key]);
                         \SimpleSAML\Logger::warning(
-                            "Dropping metadata entity ".var_export($key, true).", expired ".
-                            \SimpleSAML\Utils\Time::generateTimestamp($le['expire'])."."
+                            "Dropping metadata entity " . var_export($key, true) . ", expired " .
+                            \SimpleSAML\Utils\Time::generateTimestamp($le['expire']) . "."
                         );
                         continue;
                     }
@@ -324,8 +324,8 @@ class MetaDataStorageHandler implements \SimpleSAML\Utils\ClearableState
                 if (array_key_exists('expire', $metadata)) {
                     if ($metadata['expire'] < time()) {
                         throw new \Exception(
-                            'Metadata for the entity ['.$index.'] expired '.
-                            (time() - $metadata['expire']).' seconds ago.'
+                            'Metadata for the entity [' . $index . '] expired ' .
+                            (time() - $metadata['expire']) . ' seconds ago.'
                         );
                     }
                 }
@@ -358,7 +358,7 @@ class MetaDataStorageHandler implements \SimpleSAML\Utils\ClearableState
         assert(is_string($set));
 
         $metadata = $this->getMetaData($entityId, $set);
-        return Configuration::loadFromArray($metadata, $set.'/'.var_export($entityId, true));
+        return Configuration::loadFromArray($metadata, $set . '/' . var_export($entityId, true));
     }
 
 
@@ -392,7 +392,7 @@ class MetaDataStorageHandler implements \SimpleSAML\Utils\ClearableState
 
                 return Configuration::loadFromArray(
                     $remote_provider,
-                    $set.'/'.var_export($remote_provider['entityid'], true)
+                    $set . '/' . var_export($remote_provider['entityid'], true)
                 );
             }
         }

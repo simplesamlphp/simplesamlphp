@@ -168,7 +168,7 @@ class State
         }
 
         // We have a restart URL. Return the ID with that URL.
-        return $id.':'.$state[self::RESTART];
+        return $id . ':' . $state[self::RESTART];
     }
 
 
@@ -217,7 +217,7 @@ class State
         $session = Session::getSessionFromRequest();
         $session->setData('\SimpleSAML\Auth\State', $id, $serializedState, self::getStateTimeout());
 
-        Logger::debug('Saved state: '.var_export($return, true));
+        Logger::debug('Saved state: ' . var_export($return, true));
 
         return $return;
     }
@@ -240,7 +240,7 @@ class State
             $clonedState[self::CLONE_ORIGINAL_ID] = $state[self::ID];
             unset($clonedState[self::ID]);
 
-            Logger::debug('Cloned state: '.var_export($state[self::ID], true));
+            Logger::debug('Cloned state: ' . var_export($state[self::ID], true));
         } else {
             Logger::debug('Cloned state with undefined id.');
         }
@@ -270,7 +270,7 @@ class State
         assert(is_string($id));
         assert(is_string($stage));
         assert(is_bool($allowMissing));
-        Logger::debug('Loading state: '.var_export($id, true));
+        Logger::debug('Loading state: ' . var_export($id, true));
 
         $sid = self::parseStateID($id);
 
@@ -302,8 +302,8 @@ class State
              * request if that is possible. If not, show an error.
              */
 
-            $msg = 'Wrong stage in state. Was \''.$state[self::STAGE].
-                '\', should be \''.$stage.'\'.';
+            $msg = 'Wrong stage in state. Was \'' . $state[self::STAGE] .
+                '\', should be \'' . $stage . '\'.';
 
             Logger::warning($msg);
 
@@ -335,7 +335,7 @@ class State
             return;
         }
 
-        Logger::debug('Deleting state: '.var_export($state[self::ID], true));
+        Logger::debug('Deleting state: ' . var_export($state[self::ID], true));
 
         $session = Session::getSessionFromRequest();
         $session->deleteData('\SimpleSAML\Auth\State', $state[self::ID]);

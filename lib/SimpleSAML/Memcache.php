@@ -232,7 +232,7 @@ class Memcache
         // the hostname must be a valid string
         if (!is_string($hostname)) {
             throw new \Exception(
-                "Invalid hostname for server in the 'memcache_store.servers' configuration option. The hostname is".
+                "Invalid hostname for server in the 'memcache_store.servers' configuration option. The hostname is" .
                 ' supposed to be a string.'
             );
         }
@@ -246,7 +246,7 @@ class Memcache
             $port = (int) $server['port'];
             if (($port <= 0) || ($port > 65535)) {
                 throw new \Exception(
-                    "Invalid port for server in the 'memcache_store.servers' configuration option. The port number".
+                    "Invalid port for server in the 'memcache_store.servers' configuration option. The port number" .
                     ' is supposed to be an integer between 0 and 65535.'
                 );
             }
@@ -265,7 +265,7 @@ class Memcache
             $weight = (int) $server['weight'];
             if ($weight <= 0) {
                 throw new \Exception(
-                    "Invalid weight for server in the 'memcache_store.servers' configuration option. The weight is".
+                    "Invalid weight for server in the 'memcache_store.servers' configuration option. The weight is" .
                     ' supposed to be a positive integer.'
                 );
             }
@@ -280,7 +280,7 @@ class Memcache
             $timeout = (int) $server['timeout'];
             if ($timeout <= 0) {
                 throw new \Exception(
-                    "Invalid timeout for server in the 'memcache_store.servers' configuration option. The timeout is".
+                    "Invalid timeout for server in the 'memcache_store.servers' configuration option. The timeout is" .
                     ' supposed to be a positive integer.'
                 );
             }
@@ -323,7 +323,9 @@ class Memcache
         }
 
         if (self::$extension === '\memcache') {
-            Logger::warning("The use of PHP-extension memcache is deprecated. Please migrate to the memcached extension.");
+            Logger::warning(
+                "The use of PHP-extension memcache is deprecated. Please migrate to the memcached extension."
+            );
         }
 
         // iterate over all the servers in the group and add them to the Memcache object
@@ -331,8 +333,8 @@ class Memcache
             // make sure that we don't have an index. An index would be a sign of invalid configuration
             if (!is_int($index)) {
                 throw new \Exception(
-                    "Invalid index on element in the 'memcache_store.servers' configuration option. Perhaps you".
-                    ' have forgotten to add an array(...) around one of the server groups? The invalid index was: '.
+                    "Invalid index on element in the 'memcache_store.servers' configuration option. Perhaps you" .
+                    ' have forgotten to add an array(...) around one of the server groups? The invalid index was: ' .
                     $index
                 );
             }
@@ -340,8 +342,8 @@ class Memcache
             // make sure that the server object is an array. Each server is an array with name-value pairs
             if (!is_array($server)) {
                 throw new \Exception(
-                    'Invalid value for the server with index '.$index.
-                    '. Remeber that the \'memcache_store.servers\' configuration option'.
+                    'Invalid value for the server with index ' . $index .
+                    '. Remeber that the \'memcache_store.servers\' configuration option' .
                     ' contains an array of arrays of arrays.'
                 );
             }
@@ -383,9 +385,9 @@ class Memcache
             // make sure that the group doesn't have an index. An index would be a sign of invalid configuration
             if (!is_int($index)) {
                 throw new \Exception(
-                    "Invalid index on element in the 'memcache_store.servers'".
-                    ' configuration option. Perhaps you have forgotten to add an array(...)'.
-                    ' around one of the server groups? The invalid index was: '.$index
+                    "Invalid index on element in the 'memcache_store.servers'" .
+                    ' configuration option. Perhaps you have forgotten to add an array(...)' .
+                    ' around one of the server groups? The invalid index was: ' . $index
                 );
             }
 
@@ -395,8 +397,8 @@ class Memcache
              */
             if (!is_array($group)) {
                 throw new \Exception(
-                    "Invalid value for the server with index ".$index.
-                    ". Remeber that the 'memcache_store.servers' configuration option".
+                    "Invalid value for the server with index " . $index .
+                    ". Remeber that the 'memcache_store.servers' configuration option" .
                     ' contains an array of arrays of arrays.'
                 );
             }

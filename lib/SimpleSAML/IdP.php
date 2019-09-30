@@ -3,7 +3,6 @@
 namespace SimpleSAML;
 
 use SAML2\Constants as SAML2;
-
 use SimpleSAML\Auth;
 use SimpleSAML\Error;
 use SimpleSAML\Metadata\MetaDataStorageHandler;
@@ -94,7 +93,7 @@ class IdP
             try {
                 // this makes the ADFS IdP use the same SP associations as the SAML 2.0 IdP
                 $saml2EntityId = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
-                $this->associationGroup = 'saml2:'.$saml2EntityId;
+                $this->associationGroup = 'saml2:' . $saml2EntityId;
             } catch (\Exception $e) {
                 // probably no SAML 2 IdP configured for this host. Ignore the error
             }
@@ -106,7 +105,7 @@ class IdP
         if (Auth\Source::getById($auth) !== null) {
             $this->authSource = new Auth\Simple($auth);
         } else {
-            throw new Error\Exception('No such "'.$auth.'" auth source found.');
+            throw new Error\Exception('No such "' . $auth . '" auth source found.');
         }
     }
 
@@ -282,7 +281,7 @@ class IdP
             $session = Session::getSessionFromRequest();
             $session->setData(
                 'core:idp-ssotime',
-                $state['core:IdP'].';'.$state['core:SP'],
+                $state['core:IdP'] . ';' . $state['core:SP'],
                 time(),
                 Session::DATA_TIMEOUT_SESSION_END
             );
@@ -319,7 +318,7 @@ class IdP
 
         if (isset($state['core:SP'])) {
             $session = Session::getSessionFromRequest();
-            $previousSSOTime = $session->getData('core:idp-ssotime', $state['core:IdP'].';'.$state['core:SP']);
+            $previousSSOTime = $session->getData('core:idp-ssotime', $state['core:IdP'] . ';' . $state['core:SP']);
             if ($previousSSOTime !== null) {
                 $state['PreviousSSOTimestamp'] = $previousSSOTime;
             }
@@ -446,7 +445,7 @@ class IdP
                 $handler = '\SimpleSAML\IdP\IFrameLogoutHandler';
                 break;
             default:
-                throw new Error\Exception('Unknown logout handler: '.var_export($logouttype, true));
+                throw new Error\Exception('Unknown logout handler: ' . var_export($logouttype, true));
         }
 
         /** @var IdP\LogoutHandlerInterface */
@@ -493,7 +492,7 @@ class IdP
         if ($assocId !== null) {
             $this->terminateAssociation($assocId);
             $session = Session::getSessionFromRequest();
-            $session->deleteData('core:idp-ssotime', $this->id.';'.$state['saml:SPEntityId']);
+            $session->deleteData('core:idp-ssotime', $this->id . ';' . $state['saml:SPEntityId']);
         }
 
         // terminate the local session
@@ -529,7 +528,7 @@ class IdP
         assert(is_int($index));
 
         $session = Session::getSessionFromRequest();
-        $session->deleteData('core:idp-ssotime', $this->id.';'.substr($assocId, $index + 1));
+        $session->deleteData('core:idp-ssotime', $this->id . ';' . substr($assocId, $index + 1));
 
         $handler = $this->getLogoutHandler();
         $handler->onResponse($assocId, $relayState, $error);

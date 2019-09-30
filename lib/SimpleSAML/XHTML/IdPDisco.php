@@ -141,7 +141,7 @@ class IdPDisco
             $this->returnIdParam = $_GET['returnIDParam'];
         }
 
-        $this->log('returnIdParam initially set to ['.$this->returnIdParam.']');
+        $this->log('returnIdParam initially set to [' . $this->returnIdParam . ']');
 
         if (!array_key_exists('return', $_GET)) {
             throw new \Exception('Missing parameter: return');
@@ -155,7 +155,7 @@ class IdPDisco
                 $this->isPassive = true;
             }
         }
-        $this->log('isPassive initially set to ['.($this->isPassive ? 'TRUE' : 'FALSE').']');
+        $this->log('isPassive initially set to [' . ($this->isPassive ? 'TRUE' : 'FALSE') . ']');
 
         if (array_key_exists('IdPentityID', $_GET)) {
             $this->setIdPentityID = $_GET['IdPentityID'];
@@ -178,7 +178,7 @@ class IdPDisco
      */
     protected function log($message)
     {
-        Logger::info('idpDisco.'.$this->instance.': '.$message);
+        Logger::info('idpDisco.' . $this->instance . ': ' . $message);
     }
 
 
@@ -194,7 +194,7 @@ class IdPDisco
      */
     protected function getCookie($name)
     {
-        $prefixedName = 'idpdisco_'.$this->instance.'_'.$name;
+        $prefixedName = 'idpdisco_' . $this->instance . '_' . $name;
         if (array_key_exists($prefixedName, $_COOKIE)) {
             return $_COOKIE[$prefixedName];
         } else {
@@ -215,7 +215,7 @@ class IdPDisco
      */
     protected function setCookie($name, $value)
     {
-        $prefixedName = 'idpdisco_'.$this->instance.'_'.$name;
+        $prefixedName = 'idpdisco_' . $this->instance . '_' . $name;
 
         $params = [
             // we save the cookies for 90 days
@@ -258,7 +258,7 @@ class IdPDisco
             }
         }
 
-        $this->log('Unable to validate IdP entity id ['.$idp.'].');
+        $this->log('Unable to validate IdP entity id [' . $idp . '].');
 
         // the entity id wasn't valid
         return null;
@@ -370,14 +370,14 @@ class IdPDisco
     {
         $idp = $this->getPreviousIdP();
         if ($idp !== null) {
-            $this->log('Preferred IdP from previous use ['.$idp.'].');
+            $this->log('Preferred IdP from previous use [' . $idp . '].');
             return $idp;
         }
 
         $idp = $this->getFromCIDRhint();
 
         if (!empty($idp)) {
-            $this->log('Preferred IdP from CIDR hint ['.$idp.'].');
+            $this->log('Preferred IdP from CIDR hint [' . $idp . '].');
             return $idp;
         }
 
@@ -395,7 +395,7 @@ class IdPDisco
     {
         assert(is_string($idp));
 
-        $this->log('Choice made ['.$idp.'] Setting cookie.');
+        $this->log('Choice made [' . $idp . '] Setting cookie.');
         $this->setCookie('lastidp', $idp);
     }
 
@@ -447,7 +447,7 @@ class IdPDisco
         // check if the user has saved an choice earlier
         $idp = $this->getSavedIdP();
         if ($idp !== null) {
-            $this->log('Using saved choice ['.$idp.'].');
+            $this->log('Using saved choice [' . $idp . '].');
             return $idp;
         }
 
@@ -520,7 +520,7 @@ class IdPDisco
         if ($idp !== null) {
             $extDiscoveryStorage = $this->config->getString('idpdisco.extDiscoveryStorage', null);
             if ($extDiscoveryStorage !== null) {
-                $this->log('Choice made ['.$idp.'] (Forwarding to external discovery storage)');
+                $this->log('Choice made [' . $idp . '] (Forwarding to external discovery storage)');
                 Utils\HTTP::redirectTrustedURL($extDiscoveryStorage, [
                     'entityID'      => $this->spEntityId,
                     'IdPentityID'   => $idp,
@@ -530,7 +530,8 @@ class IdPDisco
                 ]);
             } else {
                 $this->log(
-                    'Choice made ['.$idp.'] (Redirecting the user back. returnIDParam='.$this->returnIdParam.')'
+                    'Choice made [' . $idp . '] (Redirecting the user back. returnIDParam='
+                    . $this->returnIdParam . ')'
                 );
                 Utils\HTTP::redirectTrustedURL($this->returnURL, [$this->returnIdParam => $idp]);
             }
@@ -567,8 +568,8 @@ class IdPDisco
 
         if (sizeof($idpintersection) == 1) {
             $this->log(
-                'Choice made ['.$idpintersection[0].'] (Redirecting the user back. returnIDParam='.
-                $this->returnIdParam.')'
+                'Choice made [' . $idpintersection[0] . '] (Redirecting the user back. returnIDParam=' .
+                $this->returnIdParam . ')'
             );
             Utils\HTTP::redirectTrustedURL(
                 $this->returnURL,

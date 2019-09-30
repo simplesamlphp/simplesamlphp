@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * Session storage in the data store.
  *

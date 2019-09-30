@@ -67,7 +67,7 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
         assert(is_string($entityId));
         assert(is_string($set));
 
-        return $this->directory.'/'.rawurlencode($set).'/'.rawurlencode($entityId).self::EXTENSION;
+        return $this->directory . '/' . rawurlencode($set) . '/' . rawurlencode($entityId) . self::EXTENSION;
     }
 
 
@@ -83,7 +83,7 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
         $dh = @opendir($this->directory);
         if ($dh === false) {
             Logger::warning(
-                'Serialize metadata handler: Unable to open directory: '.var_export($this->directory, true)
+                'Serialize metadata handler: Unable to open directory: ' . var_export($this->directory, true)
             );
             return $ret;
         }
@@ -94,12 +94,12 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
                 continue;
             }
 
-            $path = $this->directory.'/'.$entry;
+            $path = $this->directory . '/' . $entry;
 
             if (!is_dir($path)) {
                 Logger::warning(
-                    'Serialize metadata handler: Metadata directory contained a file where only directories should '.
-                    'exist: '.var_export($path, true)
+                    'Serialize metadata handler: Metadata directory contained a file where only directories should ' .
+                    'exist: ' . var_export($path, true)
                 );
                 continue;
             }
@@ -126,7 +126,7 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
 
         $ret = [];
 
-        $dir = $this->directory.'/'.rawurlencode($set);
+        $dir = $this->directory . '/' . rawurlencode($set);
         if (!is_dir($dir)) {
             // probably some code asked for a metadata set which wasn't available
             return $ret;
@@ -135,7 +135,7 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
         $dh = @opendir($dir);
         if ($dh === false) {
             Logger::warning(
-                'Serialize metadata handler: Unable to open directory: '.var_export($dir, true)
+                'Serialize metadata handler: Unable to open directory: ' . var_export($dir, true)
             );
             return $ret;
         }
@@ -191,14 +191,14 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
             /** @var array $error */
             $error = error_get_last();
             Logger::warning(
-                'Error reading file '.$filePath.': '.$error['message']
+                'Error reading file ' . $filePath . ': ' . $error['message']
             );
             return null;
         }
 
         $data = @unserialize($data);
         if ($data === false) {
-            Logger::warning('Error unserializing file: '.$filePath);
+            Logger::warning('Error unserializing file: ' . $filePath);
             return null;
         }
 
@@ -226,29 +226,29 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
         assert(is_array($metadata));
 
         $filePath = $this->getMetadataPath($entityId, $set);
-        $newPath = $filePath.'.new';
+        $newPath = $filePath . '.new';
 
         $dir = dirname($filePath);
         if (!is_dir($dir)) {
-            Logger::info('Creating directory: '.$dir);
+            Logger::info('Creating directory: ' . $dir);
             $res = @mkdir($dir, 0777, true);
             if ($res === false) {
                 /** @var array $error */
                 $error = error_get_last();
-                Logger::error('Failed to create directory '.$dir.': '.$error['message']);
+                Logger::error('Failed to create directory ' . $dir . ': ' . $error['message']);
                 return false;
             }
         }
 
         $data = serialize($metadata);
 
-        Logger::debug('Writing: '.$newPath);
+        Logger::debug('Writing: ' . $newPath);
 
         $res = file_put_contents($newPath, $data);
         if ($res === false) {
             /** @var array $error */
             $error = error_get_last();
-            Logger::error('Error saving file '.$newPath.': '.$error['message']);
+            Logger::error('Error saving file ' . $newPath . ': ' . $error['message']);
             return false;
         }
 
@@ -256,7 +256,7 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
         if ($res === false) {
             /** @var array $error */
             $error = error_get_last();
-            Logger::error('Error renaming '.$newPath.' to '.$filePath.': '.$error['message']);
+            Logger::error('Error renaming ' . $newPath . ' to ' . $filePath . ': ' . $error['message']);
             return false;
         }
 
@@ -280,8 +280,8 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
 
         if (!file_exists($filePath)) {
             Logger::warning(
-                'Attempted to erase nonexistent metadata entry '.
-                var_export($entityId, true).' in set '.var_export($set, true).'.'
+                'Attempted to erase nonexistent metadata entry ' .
+                var_export($entityId, true) . ' in set ' . var_export($set, true) . '.'
             );
             return;
         }
@@ -291,8 +291,8 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
             /** @var array $error */
             $error = error_get_last();
             Logger::error(
-                'Failed to delete file '.$filePath.
-                ': '.$error['message']
+                'Failed to delete file ' . $filePath .
+                ': ' . $error['message']
             );
         }
     }
