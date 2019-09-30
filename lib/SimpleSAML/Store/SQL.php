@@ -266,7 +266,7 @@ class SQL extends Store
                 $selectQuery = $this->pdo->prepare($selectQuery);
                 $selectQuery->execute($condData);
 
-                if ($selectQuery->rowCount() > 0) {
+                if (count($selectQuery->fetchAll()) > 0) {
                     // Update
                     $insertOrUpdateQuery = 'UPDATE '.$table.' SET '.implode(',', $updateCols).' WHERE '.implode(' AND ', $condCols);
                     $insertOrUpdateQuery = $this->pdo->prepare($insertOrUpdateQuery);
