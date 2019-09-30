@@ -200,7 +200,7 @@ and all your data is likely to get lost or inaccessible.
 Note that if your application uses a [custom session handler](https://www.php.net/manual/en/function.session-set-save-handler.php), SimpleSAMLphp will use it as well. This can lead to problems because SimpleSAMLphp's stand-alone web UI uses the default PHP session handlers. Therefore, you may need to unset the custom handler before making any calls to SimpleSAMLphp:
 
     // use custom save handler
-    session-set-save-handler($handler);
+    session_set_save_handler($handler);
     session_start();
     
     // close session and restore default handler
@@ -213,7 +213,7 @@ Note that if your application uses a [custom session handler](https://www.php.ne
     session_write_close();
     
     // back to custom save handler
-    session-set-save-handler($handler);
+    session_set_save_handler($handler);
     session_start();
 
 
