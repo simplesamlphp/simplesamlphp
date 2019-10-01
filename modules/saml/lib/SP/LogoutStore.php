@@ -37,7 +37,7 @@ class LogoutStore
                 case 'pgsql':
                     // This does not affect the NOT NULL constraint
                     $update = ['ALTER TABLE '.$store->prefix.
-                        '_saml_LogoutStore ALTER COLUMN _expire DATETIME'];
+                        '_saml_LogoutStore ALTER COLUMN _expire TIMESTAMP'];
                     break;
                 case  'sqlite':
                     /**
@@ -151,7 +151,7 @@ class LogoutStore
             _authSource VARCHAR('.($store->driver === 'mysql' ? '191' : '255').') NOT NULL,
             _nameId VARCHAR(40) NOT NULL,
             _sessionIndex VARCHAR(50) NOT NULL,
-            _expire DATETIME NOT NULL,
+            _expire ' . ($store->driver === 'pgsql' ? 'TIMESTAMP' : 'DATETIME') . ' NOT NULL,
             _sessionId VARCHAR(50) NOT NULL,
             UNIQUE (_authSource'.($store->driver === 'mysql' ? '(191)' : '').', _nameID, _sessionIndex)
         )';
