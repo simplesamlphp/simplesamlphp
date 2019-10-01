@@ -764,7 +764,7 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
             \SAML2\Constants::BINDING_HTTP_POST,
             \SAML2\Constants::BINDING_HTTP_REDIRECT,
             \SAML2\Constants::BINDING_HOK_SSO,
-            \SAML2\Constants::BINDING_HTTP_ARTIFACT.
+            \SAML2\Constants::BINDING_HTTP_ARTIFACT,
             \SAML2\Constants::BINDING_SOAP,
         ];
 
