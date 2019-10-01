@@ -283,8 +283,9 @@ class SAMLBuilderTest extends TestCase
         $samlBuilder->addMetadata($set, $metadata);
         $entityDescriptorXml = $samlBuilder->getEntityDescriptorText();
 
+        $protocols = implode(' ', $metadata['protocols']);
         $this->assertRegExp(
-            '/<md:AttributeAuthorityDescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:1.1:protocol urn:oasis:names:tc:SAML:2.0:protocol">/',
+            '/<md:AttributeAuthorityDescriptor protocolSupportEnumeration="' . $protocols . '">/',
             $entityDescriptorXml
         );
     }

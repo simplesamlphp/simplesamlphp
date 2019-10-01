@@ -11,12 +11,12 @@
 $baseDir = dirname(dirname(dirname(dirname(__FILE__))));
 
 // Add library autoloader.
-require_once($baseDir.'/lib/_autoload.php');
+require_once($baseDir . '/lib/_autoload.php');
 
 if (!SimpleSAML\Module::isModuleEnabled('cron')) {
     echo "You need to enable the cron module before this script can be used.\n";
     echo "You can enable it by running the following command:\n";
-    echo '  echo >"'.$baseDir.'/modules/cron/enable'."\"\n";
+    echo '  echo >"' . $baseDir . '/modules/cron/enable' . "\"\n";
     exit(1);
 }
 
@@ -35,7 +35,7 @@ if (!array_key_exists('t', $options)) {
 $tag = $options['t'];
 $cron = new SimpleSAML\Module\cron\Cron();
 if (!$cron->isValidTag($tag)) {
-    echo "Invalid tag option '$tag'.\n";
+    echo "Invalid tag option '$tag' . \n";
     exit(2);
 }
 

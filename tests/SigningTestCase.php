@@ -1,17 +1,17 @@
 <?php
+
+namespace SimpleSAML\Test;
+
+use org\bovigo\vfs\vfsStream;
+use PHPUnit\Framework\TestCase;
+use SimpleSAML\Configuration;
+
 /**
  * A test case that provides a certificate directory with public and private
  * keys.
  *
  * @package SimpleSAMLphp
  */
-
-namespace SimpleSAML\Test;
-
-use PHPUnit\Framework\TestCase;
-use SimpleSAML\Configuration;
-use \org\bovigo\vfs\vfsStream;
-
 class SigningTestCase extends TestCase
 {
     // openssl genrsa -out ca.key.pem 2048
@@ -199,11 +199,11 @@ NOWDOC;
         );
         $this->root_directory = vfsStream::url(self::ROOTDIRNAME);
 
-        $this->certdir = $this->root_directory.DIRECTORY_SEPARATOR.self::DEFAULTCERTDIR;
-        $this->ca_private_key_file = $this->certdir.DIRECTORY_SEPARATOR.self::CA_PRIVATE_KEY;
-        $this->ca_certificate_file = $this->certdir.DIRECTORY_SEPARATOR.self::CA_CERTIFICATE;
-        $this->good_private_key_file = $this->certdir.DIRECTORY_SEPARATOR.self::GOOD_PRIVATE_KEY;
-        $this->good_certificate_file = $this->certdir.DIRECTORY_SEPARATOR.self::GOOD_CERTIFICATE;
+        $this->certdir = $this->root_directory . DIRECTORY_SEPARATOR . self::DEFAULTCERTDIR;
+        $this->ca_private_key_file = $this->certdir . DIRECTORY_SEPARATOR . self::CA_PRIVATE_KEY;
+        $this->ca_certificate_file = $this->certdir . DIRECTORY_SEPARATOR . self::CA_CERTIFICATE;
+        $this->good_private_key_file = $this->certdir . DIRECTORY_SEPARATOR . self::GOOD_PRIVATE_KEY;
+        $this->good_certificate_file = $this->certdir . DIRECTORY_SEPARATOR . self::GOOD_CERTIFICATE;
 
         $this->config = \SimpleSAML\Configuration::loadFromArray([
             'certdir' => $this->certdir,

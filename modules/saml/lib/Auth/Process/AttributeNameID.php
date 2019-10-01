@@ -56,14 +56,14 @@ class AttributeNameID extends \SimpleSAML\Module\saml\BaseNameIDGenerator
     {
         if (!isset($state['Attributes'][$this->attribute]) || count($state['Attributes'][$this->attribute]) === 0) {
             Logger::warning(
-                'Missing attribute '.var_export($this->attribute, true).
+                'Missing attribute ' . var_export($this->attribute, true) .
                 ' on user - not generating attribute NameID.'
             );
             return null;
         }
         if (count($state['Attributes'][$this->attribute]) > 1) {
             Logger::warning(
-                'More than one value in attribute '.var_export($this->attribute, true).
+                'More than one value in attribute ' . var_export($this->attribute, true) .
                 ' on user - not generating attribute NameID.'
             );
             return null;
@@ -73,7 +73,7 @@ class AttributeNameID extends \SimpleSAML\Module\saml\BaseNameIDGenerator
 
         if (empty($value)) {
             Logger::warning(
-                'Empty value in attribute '.var_export($this->attribute, true).
+                'Empty value in attribute ' . var_export($this->attribute, true) .
                 ' on user - not generating attribute NameID.'
             );
             return null;

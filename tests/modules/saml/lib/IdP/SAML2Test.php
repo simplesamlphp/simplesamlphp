@@ -14,7 +14,7 @@ class SAML2Test extends ClearStateTestCase
      * @var array
      */
     private $defaultExpectedAuthState = [
-        'Responder' =>['\SimpleSAML\Module\saml\IdP\SAML2', 'sendResponse'],
+        'Responder' => ['\SimpleSAML\Module\saml\IdP\SAML2', 'sendResponse'],
         '\SimpleSAML\Auth\State.exceptionFunc' => ['\SimpleSAML\Module\saml\IdP\SAML2', 'handleAuthError'],
         'saml:RelayState' => null,
         'saml:RequestId' => null,
@@ -195,7 +195,7 @@ EOT;
         // won't line up perfectly
         $_REQUEST = $_REQUEST + $queryParams;
         $_SERVER['HTTP_HOST'] = 'idp.examlple.com';
-        $_SERVER['REQUEST_URI'] = '/saml2/idp/SSOService.php?'.http_build_query($queryParams);
+        $_SERVER['REQUEST_URI'] = '/saml2/idp/SSOService.php?' . http_build_query($queryParams);
 
 
         $state = [];

@@ -91,7 +91,7 @@ class NameIDAttribute extends \SimpleSAML\Auth\ProcessingFilter
                     $ret[] = '%';
                     break;
                 default:
-                    throw new Error\Exception('NameIDAttribute: Invalid replacement: "%'.$replacement.'"');
+                    throw new Error\Exception('NameIDAttribute: Invalid replacement: "%' . $replacement . '"');
             }
 
             $pos = $next + 2;
@@ -137,7 +137,7 @@ class NameIDAttribute extends \SimpleSAML\Auth\ProcessingFilter
             if ($isString) {
                 $value .= $element;
             } else {
-                $value .= call_user_func([$rep, 'get'.$element]);
+                $value .= call_user_func([$rep, 'get' . $element]);
             }
             $isString = !$isString;
         }

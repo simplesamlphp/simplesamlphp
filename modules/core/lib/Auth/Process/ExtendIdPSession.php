@@ -42,8 +42,10 @@ class ExtendIdPSession extends \SimpleSAML\Auth\ProcessingFilter
 
         // If remember me is active
         $rememberMeExpire = $session->getRememberMeExpire();
-        if (!empty($state['RememberMe']) && $rememberMeExpire !== null &&
-            $globalConfig->getBoolean('session.rememberme.enable', false)
+        if (
+            !empty($state['RememberMe'])
+            && $rememberMeExpire !== null
+            && $globalConfig->getBoolean('session.rememberme.enable', false)
         ) {
             $session->setRememberMeExpire();
             return;

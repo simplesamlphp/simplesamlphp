@@ -56,12 +56,14 @@ class XML
         $debug = Configuration::getInstance()->getArrayize('debug', ['validatexml' => false]);
         $enabled = Configuration::getInstance()->getBoolean('debug.validatexml', false);
 
-        if (!(in_array('validatexml', $debug, true) // implicitly enabled
-            || (array_key_exists('validatexml', $debug) && $debug['validatexml'] === true)
+        if (
+            !(in_array('validatexml', $debug, true) // implicitly enabled
+            || (array_key_exists('validatexml', $debug)
+            && $debug['validatexml'] === true)
             // explicitly enabled
             // TODO: deprecate this option and remove it in 2.0
-            || $enabled // old 'debug.validatexml' configuration option
-        )) {
+            || $enabled) // old 'debug.validatexml' configuration option
+        ) {
             // XML validation is disabled
             return;
         }
@@ -109,12 +111,15 @@ class XML
         // see if debugging is enabled for SAML messages
         $debug = Configuration::getInstance()->getArrayize('debug', ['saml' => false]);
 
-        if (!(in_array('saml', $debug, true) // implicitly enabled
-            || (array_key_exists('saml', $debug) && $debug['saml'] === true)
+        if (
+            !(in_array('saml', $debug, true) // implicitly enabled
+            || (array_key_exists('saml', $debug)
+            && $debug['saml'] === true)
             // explicitly enabled
             // TODO: deprecate the old style and remove it in 2.0
-            || (array_key_exists(0, $debug) && $debug[0] === true) // old style 'debug'
-        )) {
+            || (array_key_exists(0, $debug)
+            && $debug[0] === true)) // old style 'debug'
+        ) {
             // debugging messages is disabled
             return;
         }
@@ -222,10 +227,10 @@ class XML
         /* Element contains only child nodes - add indentation before each one, and
          * format child elements.
          */
-        $childIndentation = $indentBase.'  ';
+        $childIndentation = $indentBase . '  ';
         foreach ($childNodes as $node) {
             // add indentation before node
-            $root->insertBefore(new DOMText("\n".$childIndentation), $node);
+            $root->insertBefore(new DOMText("\n" . $childIndentation), $node);
 
             // format child elements
             if ($node instanceof \DOMElement) {
@@ -234,7 +239,7 @@ class XML
         }
 
         // add indentation before closing tag
-        $root->appendChild(new DOMText("\n".$indentBase));
+        $root->appendChild(new DOMText("\n" . $indentBase));
     }
 
 
@@ -331,7 +336,7 @@ class XML
             /** @var \DOMElement $child */
             $child = $element->childNodes->item($i);
             if (!($child instanceof DOMText)) {
-                throw new Error\Exception($element->localName.' contained a non-text child node.');
+                throw new Error\Exception($element->localName . ' contained a non-text child node.');
             }
 
             $txt .= $child->wholeText;
@@ -387,7 +392,7 @@ class XML
 
             // check if it is a valid shortcut
             if (!array_key_exists($nsURI, $shortcuts)) {
-                throw new \InvalidArgumentException('Unknown namespace shortcut: '.$nsURI);
+                throw new \InvalidArgumentException('Unknown namespace shortcut: ' . $nsURI);
             }
 
             // expand the shortcut
@@ -442,7 +447,7 @@ class XML
             $config = Configuration::getInstance();
             /** @var string $schemaPath */
             $schemaPath = $config->resolvePath('schemas');
-            $schemaFile = $schemaPath.'/'.$schema;
+            $schemaFile = $schemaPath . '/' . $schema;
 
             $res = $dom->schemaValidate($schemaFile);
             if ($res) {

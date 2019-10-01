@@ -97,15 +97,15 @@ class Error extends Exception
         $this->dictDescr = ErrorCodes::getErrorCodeDescription($this->errorCode);
 
         if (!empty($this->parameters)) {
-            $msg = $this->errorCode.'(';
+            $msg = $this->errorCode . '(';
             foreach ($this->parameters as $k => $v) {
                 if ($k === 0) {
                     continue;
                 }
 
-                $msg .= var_export($k, true).' => '.var_export($v, true).', ';
+                $msg .= var_export($k, true) . ' => ' . var_export($v, true) . ', ';
             }
-            $msg = substr($msg, 0, -2).')';
+            $msg = substr($msg, 0, -2) . ')';
         } else {
             $msg = $this->errorCode;
         }
@@ -181,7 +181,7 @@ class Error extends Exception
         $etrace = implode("\n", $data);
 
         $reportId = bin2hex(openssl_random_pseudo_bytes(4));
-        Logger::error('Error report with id '.$reportId.' generated.');
+        Logger::error('Error report with id ' . $reportId . ' generated.');
 
         $config = Configuration::getInstance();
         $session = Session::getSessionFromRequest();
@@ -239,12 +239,13 @@ class Error extends Exception
         $data['clipboard.js'] = true;
 
         // check if there is a valid technical contact email address
-        if ($config->getBoolean('errorreporting', true) &&
-            $config->getString('technicalcontact_email', 'na@example.org') !== 'na@example.org'
+        if (
+            $config->getBoolean('errorreporting', true)
+            && $config->getString('technicalcontact_email', 'na@example.org') !== 'na@example.org'
         ) {
             // enable error reporting
             $baseurl = Utils\HTTP::getBaseURL();
-            $data['errorReportAddress'] = $baseurl.'errorreport.php';
+            $data['errorReportAddress'] = $baseurl . 'errorreport.php';
         }
 
         $data['email'] = '';

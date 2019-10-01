@@ -249,7 +249,7 @@ class SAMLParser
         try {
             $doc = DOMDocumentFactory::fromString($data);
         } catch (\Exception $e) {
-            throw new \Exception('Failed to read XML from file: '.$file);
+            throw new \Exception('Failed to read XML from file: ' . $file);
         }
 
         return self::parseDocument($doc);
@@ -331,7 +331,7 @@ class SAMLParser
         try {
             $doc = DOMDocumentFactory::fromString($data);
         } catch (\Exception $e) {
-            throw new \Exception('Failed to read XML from file: '.$file);
+            throw new \Exception('Failed to read XML from file: ' . $file);
         }
 
         return self::parseDescriptorsElement($doc->documentElement);
@@ -383,7 +383,7 @@ class SAMLParser
         } elseif (Utils\XML::isDOMNodeOfType($element, 'EntitiesDescriptor', '@md') === true) {
             return self::processDescriptorsElement(new EntitiesDescriptor($element));
         } else {
-            throw new \Exception('Unexpected root node: ['.$element->namespaceURI.']:'.$element->localName);
+            throw new \Exception('Unexpected root node: [' . $element->namespaceURI . ']:' . $element->localName);
         }
     }
 
@@ -391,12 +391,9 @@ class SAMLParser
     /**
      *
      * @param \SAML2\XML\md\EntityDescriptor|\SAML2\XML\md\EntitiesDescriptor $element The element we should process.
-     * @param int|NULL                                                      $maxExpireTime The maximum expiration time
-     *     of the entities.
-     * @param array                                                         $validators The parent-elements that may be
-     *     signed.
-     * @param array                                                         $parentExtensions An optional array of
-     *     extensions from the parent element.
+     * @param int|NULL              $maxExpireTime The maximum expiration time of the entities.
+     * @param array                 $validators The parent-elements that may be signed.
+     * @param array                 $parentExtensions An optional array of extensions from the parent element.
      *
      * @return SAMLParser[] Array of SAMLParser instances.
      */
@@ -1050,8 +1047,11 @@ class SAMLParser
         ];
 
         // Some extensions may get inherited from a parent element
-        if (($element instanceof EntityDescriptor || $element instanceof EntitiesDescriptor)
-                && !empty($parentExtensions['RegistrationInfo'])) {
+        if (
+            ($element instanceof EntityDescriptor
+            || $element instanceof EntitiesDescriptor)
+            && !empty($parentExtensions['RegistrationInfo'])
+        ) {
             $ret['RegistrationInfo'] = $parentExtensions['RegistrationInfo'];
         }
 
@@ -1062,14 +1062,21 @@ class SAMLParser
             }
 
             // Entity Attributes are only allowed at entity level extensions and not at RoleDescriptor level
-            if ($element instanceof EntityDescriptor ||
-                $element instanceof EntitiesDescriptor) {
+            if (
+                $element instanceof EntityDescriptor
+                || $element instanceof EntitiesDescriptor
+            ) {
                 if ($e instanceof RegistrationInfo) {
                     // Registration Authority cannot be overridden (warn only if override attempts to change the value)
-                    if (isset($ret['RegistrationInfo']['registrationAuthority'])
-                        && $ret['RegistrationInfo']['registrationAuthority'] !== $e->getRegistrationAuthority()) {
-                        Logger::warning('Invalid attempt to override registrationAuthority \''.
-                            $ret['RegistrationInfo']['registrationAuthority']."' with '{$e->getRegistrationAuthority()}'");
+                    if (
+                        isset($ret['RegistrationInfo']['registrationAuthority'])
+                        && $ret['RegistrationInfo']['registrationAuthority'] !== $e->getRegistrationAuthority()
+                    ) {
+                        Logger::warning(
+                            'Invalid attempt to override registrationAuthority \''
+                            . $ret['RegistrationInfo']['registrationAuthority']
+                            . "' with '{$e->getRegistrationAuthority()}'"
+                        );
                     } else {
                         $ret['RegistrationInfo']['registrationAuthority'] = $e->getRegistrationAuthority();
                     }
@@ -1090,9 +1097,9 @@ class SAMLParser
                             // attribute names that is not URI is prefixed as this: '{nameformat}name'
                             $name = $attrName;
                             if ($attrNameFormat === null) {
-                                $name = '{'.Constants::NAMEFORMAT_UNSPECIFIED.'}'.$attr->getName();
+                                $name = '{' . Constants::NAMEFORMAT_UNSPECIFIED . '}' . $attr->getName();
                             } elseif ($attrNameFormat !== Constants::NAMEFORMAT_URI) {
-                                $name = '{'.$attrNameFormat.'}'.$attrName;
+                                $name = '{' . $attrNameFormat . '}' . $attrName;
                             }
 
                             $values = [];
@@ -1123,7 +1130,8 @@ class SAMLParser
                         $ret['UIInfo']['Keywords'][$language] = $keywords;
                     }
                     foreach ($e->getLogo() as $uiItem) {
-                        if (!($uiItem instanceof Logo)
+                        if (
+                            !($uiItem instanceof Logo)
                             || ($uiItem->getUrl() === null)
                             || ($uiItem->getHeight() === null)
                             || ($uiItem->getWidth() === null)
@@ -1464,7 +1472,7 @@ class SAMLParser
             $certFile = Utils\Config::getCertPath($cert);
             if (!file_exists($certFile)) {
                 throw new \Exception(
-                    'Could not find certificate file ['.$certFile.'], which is needed to validate signature'
+                    'Could not find certificate file [' . $certFile . '], which is needed to validate signature'
                 );
             }
             $certData = file_get_contents($certFile);
@@ -1550,7 +1558,7 @@ class SAMLParser
                 }
             }
         }
-        Logger::debug('Fingerprint was ['.$fingerprint.'] not one of ['.join(', ', $candidates).']');
+        Logger::debug('Fingerprint was [' . $fingerprint . '] not one of [' . join(', ', $candidates) . ']');
         return false;
     }
 }

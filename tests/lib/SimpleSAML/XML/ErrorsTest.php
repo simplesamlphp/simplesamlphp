@@ -1,4 +1,10 @@
 <?php
+
+namespace SimpleSAML\Test\XML;
+
+use PHPUnit\Framework\TestCase;
+use SimpleSAML\XML\Errors;
+
 /**
  * Tests for the SQL store.
  *
@@ -8,12 +14,6 @@
  * @author Sergio Gómez <sergio@uco.es>
  * @package simplesamlphp/simplesamlphp
  */
-
-namespace SimpleSAML\Test\XML;
-
-use PHPUnit\Framework\TestCase;
-use SimpleSAML\XML\Errors;
-
 class ErrorsTest extends TestCase
 {
     /**

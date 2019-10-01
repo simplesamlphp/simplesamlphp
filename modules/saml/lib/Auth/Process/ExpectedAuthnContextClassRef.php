@@ -99,8 +99,8 @@ class ExpectedAuthnContextClassRef extends \SimpleSAML\Auth\ProcessingFilter
     protected function unauthorized(&$request)
     {
         Logger::error(
-            'ExpectedAuthnContextClassRef: Invalid authentication context: '.strval($this->AuthnContextClassRef).
-            '. Accepted values are: '.var_export($this->accepted, true)
+            'ExpectedAuthnContextClassRef: Invalid authentication context: ' . strval($this->AuthnContextClassRef) .
+            '. Accepted values are: ' . var_export($this->accepted, true)
         );
 
         $id = Auth\State::saveState($request, 'saml:ExpectedAuthnContextClassRef:unauthorized');

@@ -1,15 +1,15 @@
 <?php
+
+namespace SimpleSAML\Test\Module\saml\Auth\Process;
+
+use PHPUnit\Framework\TestCase;
+
 /**
  * Test for the saml:FilterScopes filter.
  *
  * @author Jaime Pérez Crespo, UNINETT AS <jaime.perez@uninett.no>
  * @package SimpleSAMLphp
  */
-
-namespace SimpleSAML\Test\Module\saml\Auth\Process;
-
-use PHPUnit\Framework\TestCase;
-
 class FilterScopesTest extends TestCase
 {
     /**

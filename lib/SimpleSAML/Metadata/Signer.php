@@ -33,16 +33,18 @@ class Signer
     private static function findKeyCert($config, $entityMetadata, $type)
     {
         // first we look for metadata.privatekey and metadata.certificate in the metadata
-        if (array_key_exists('metadata.sign.privatekey', $entityMetadata)
+        if (
+            array_key_exists('metadata.sign.privatekey', $entityMetadata)
             || array_key_exists('metadata.sign.certificate', $entityMetadata)
         ) {
-            if (!array_key_exists('metadata.sign.privatekey', $entityMetadata)
+            if (
+                !array_key_exists('metadata.sign.privatekey', $entityMetadata)
                 || !array_key_exists('metadata.sign.certificate', $entityMetadata)
             ) {
                 throw new \Exception(
-                    'Missing either the "metadata.sign.privatekey" or the'.
-                    ' "metadata.sign.certificate" configuration option in the metadata for'.
-                    ' the '.$type.' "'.$entityMetadata['entityid'].'". If one of'.
+                    'Missing either the "metadata.sign.privatekey" or the' .
+                    ' "metadata.sign.certificate" configuration option in the metadata for' .
+                    ' the ' . $type . ' "' . $entityMetadata['entityid'] . '". If one of' .
                     ' these options is specified, then the other must also be specified.'
                 );
             }
@@ -65,9 +67,9 @@ class Signer
         if ($privatekey !== null || $certificate !== null) {
             if ($privatekey === null || $certificate === null) {
                 throw new \Exception(
-                    'Missing either the "metadata.sign.privatekey" or the'.
-                    ' "metadata.sign.certificate" configuration option in the global'.
-                    ' configuration. If one of these options is specified, then the other'.
+                    'Missing either the "metadata.sign.privatekey" or the' .
+                    ' "metadata.sign.certificate" configuration option in the global' .
+                    ' configuration. If one of these options is specified, then the other' .
                     ' must also be specified.'
                 );
             }
@@ -82,16 +84,18 @@ class Signer
         }
 
         // as a last resort we attempt to use the privatekey and certificate option from the metadata
-        if (array_key_exists('privatekey', $entityMetadata)
+        if (
+            array_key_exists('privatekey', $entityMetadata)
             || array_key_exists('certificate', $entityMetadata)
         ) {
-            if (!array_key_exists('privatekey', $entityMetadata)
+            if (
+                !array_key_exists('privatekey', $entityMetadata)
                 || !array_key_exists('certificate', $entityMetadata)
             ) {
                 throw new \Exception(
-                    'Both the "privatekey" and the "certificate" option must'.
-                    ' be set in the metadata for the '.$type.' "'.
-                    $entityMetadata['entityid'].'" before it is possible to sign metadata'.
+                    'Both the "privatekey" and the "certificate" option must' .
+                    ' be set in the metadata for the ' . $type . ' "' .
+                    $entityMetadata['entityid'] . '" before it is possible to sign metadata' .
                     ' from this entity.'
                 );
             }
@@ -109,8 +113,8 @@ class Signer
         }
 
         throw new \Exception(
-            'Could not find what key & certificate should be used to sign the metadata'.
-            ' for the '.$type.' "'.$entityMetadata['entityid'].'".'
+            'Could not find what key & certificate should be used to sign the metadata' .
+            ' for the ' . $type . ' "' . $entityMetadata['entityid'] . '".'
         );
     }
 
@@ -132,8 +136,8 @@ class Signer
         if (array_key_exists('metadata.sign.enable', $entityMetadata)) {
             if (!is_bool($entityMetadata['metadata.sign.enable'])) {
                 throw new \Exception(
-                    'Invalid value for the "metadata.sign.enable" configuration option for'.
-                    ' the '.$type.' "'.$entityMetadata['entityid'].'". This option'.
+                    'Invalid value for the "metadata.sign.enable" configuration option for' .
+                    ' the ' . $type . ' "' . $entityMetadata['entityid'] . '". This option' .
                     ' should be a boolean.'
                 );
             }
@@ -168,8 +172,8 @@ class Signer
         if (array_key_exists('metadata.sign.algorithm', $entityMetadata)) {
             if (!is_string($entityMetadata['metadata.sign.algorithm'])) {
                 throw new Error\CriticalConfigurationError(
-                    "Invalid value for the 'metadata.sign.algorithm' configuration option for the ".$type.
-                    "'".$entityMetadata['entityid']."'. This option has restricted values"
+                    "Invalid value for the 'metadata.sign.algorithm' configuration option for the " . $type .
+                    "'" . $entityMetadata['entityid'] . "'. This option has restricted values"
                 );
             }
             $alg = $entityMetadata['metadata.sign.algorithm'];
@@ -234,7 +238,7 @@ class Signer
         $keyFile = Utils\Config::getCertPath($keyCertFiles['privatekey']);
         if (!file_exists($keyFile)) {
             throw new \Exception(
-                'Could not find private key file ['.$keyFile.'], which is needed to sign the metadata'
+                'Could not find private key file [' . $keyFile . '], which is needed to sign the metadata'
             );
         }
         $keyData = file_get_contents($keyFile);
@@ -242,7 +246,7 @@ class Signer
         $certFile = Utils\Config::getCertPath($keyCertFiles['certificate']);
         if (!file_exists($certFile)) {
             throw new \Exception(
-                'Could not find certificate file ['.$certFile.'], which is needed to sign the metadata'
+                'Could not find certificate file [' . $certFile . '], which is needed to sign the metadata'
             );
         }
         $certData = file_get_contents($certFile);
@@ -267,7 +271,7 @@ class Signer
         // get the EntityDescriptor node we should sign
         /** @var \DOMElement $rootNode */
         $rootNode = $xml->firstChild;
-        $rootNode->setAttribute('ID', '_'.hash('sha256', $metadataString));
+        $rootNode->setAttribute('ID', '_' . hash('sha256', $metadataString));
 
         // sign the metadata with our private key
         $objXMLSecDSig = new XMLSecurityDSig();

@@ -36,10 +36,11 @@ class LogoutStore
             switch ($store->driver) {
                 case 'pgsql':
                     // This does not affect the NOT NULL constraint
-                    $update = ['ALTER TABLE '.$store->prefix.
-                        '_saml_LogoutStore ALTER COLUMN _expire TIMESTAMP'];
+                    $update = [
+                        'ALTER TABLE ' . $store->prefix . '_saml_LogoutStore ALTER COLUMN _expire TIMESTAMP'
+                    ];
                     break;
-                case  'sqlite':
+                case 'sqlite':
                     /**
                      * Because SQLite does not support field alterations, the approach is to:
                      *     Create a new table without the proper column size
@@ -49,19 +50,25 @@ class LogoutStore
                      *     Read the index
                      */
                     $update = [
-                        'CREATE TABLE '.$store->prefix.'_saml_LogoutStore_new (_authSource VARCHAR(255) NOT NULL,'.
-                        '_nameId VARCHAR(40) NOT NULL, _sessionIndex VARCHAR(50) NOT NULL, _expire DATETIME NOT NULL,'.
+                        'CREATE TABLE ' . $store->prefix . '_saml_LogoutStore_new (' .
+                        '_authSource VARCHAR(255) NOT NULL, _nameId VARCHAR(40) NOT NULL' .
+                        ', _sessionIndex VARCHAR(50) NOT NULL, _expire DATETIME NOT NULL,' .
                         '_sessionId VARCHAR(50) NOT NULL, UNIQUE (_authSource, _nameID, _sessionIndex))',
-                        'INSERT INTO '.$store->prefix.'_saml_LogoutStore_new SELECT * FROM '.$store->prefix.'_saml_LogoutStore',
-                        'DROP TABLE '.$store->prefix.'_saml_LogoutStore',
-                        'ALTER TABLE '.$store->prefix.'_saml_LogoutStore_new RENAME TO '.$store->prefix.'_saml_LogoutStore',
-                        'CREATE INDEX '.$store->prefix.'_saml_LogoutStore_expire ON '.$store->prefix.'_saml_LogoutStore (_expire)',
-                        'CREATE INDEX '.$store->prefix.'_saml_LogoutStore_nameId ON '.$store->prefix.'_saml_LogoutStore (_authSource, _nameId)'
+                        'INSERT INTO ' . $store->prefix . '_saml_LogoutStore_new SELECT * FROM ' .
+                        $store->prefix . '_saml_LogoutStore',
+                        'DROP TABLE ' . $store->prefix . '_saml_LogoutStore',
+                        'ALTER TABLE ' . $store->prefix . '_saml_LogoutStore_new RENAME TO ' .
+                        $store->prefix . '_saml_LogoutStore',
+                        'CREATE INDEX ' . $store->prefix . '_saml_LogoutStore_expire ON ' .
+                        $store->prefix . '_saml_LogoutStore (_expire)',
+                        'CREATE INDEX ' . $store->prefix . '_saml_LogoutStore_nameId ON ' .
+                        $store->prefix . '_saml_LogoutStore (_authSource, _nameId)'
                     ];
                     break;
                 default:
-                    $update = ['ALTER TABLE '.$store->prefix.
-                        '_saml_LogoutStore MODIFY _expire DATETIME NOT NULL'];
+                    $update = [
+                        'ALTER TABLE ' . $store->prefix . '_saml_LogoutStore MODIFY _expire DATETIME NOT NULL'
+                    ];
                     break;
             }
 
@@ -70,28 +77,32 @@ class LogoutStore
                     $store->pdo->exec($query);
                 }
             } catch (\Exception $e) {
-                Logger::warning('Database error: '.var_export($store->pdo->errorInfo(), true));
+                Logger::warning('Database error: ' . var_export($store->pdo->errorInfo(), true));
                 return;
             }
             $store->setTableVersion('saml_LogoutStore', 4);
             return;
-
         } elseif ($tableVer === 2) {
-            // TableVersion 3 fixes the indexes that were set to 255 in version 2; they cannot be larger than 191 on MySQL
+            /**
+             * TableVersion 3 fixes the indexes that were set to 255 in version 2;
+             *   they cannot be larger than 191 on MySQL
+             */
 
             if ($store->driver === 'mysql') {
                 // Drop old indexes
-                $query = 'ALTER TABLE '.$store->prefix.'_saml_LogoutStore DROP INDEX '.$store->prefix.'_saml_LogoutStore_nameId';
+                $query = 'ALTER TABLE ' . $store->prefix . '_saml_LogoutStore DROP INDEX ' .
+                $store->prefix . '_saml_LogoutStore_nameId';
                 $store->pdo->exec($query);
-                $query = 'ALTER TABLE '.$store->prefix.'_saml_LogoutStore DROP INDEX _authSource';
+                $query = 'ALTER TABLE ' . $store->prefix . '_saml_LogoutStore DROP INDEX _authSource';
                 $store->pdo->exec($query);
 
                 // Create new indexes
-                $query = 'CREATE INDEX '.$store->prefix.'_saml_LogoutStore_nameId ON ';
-                $query .= $store->prefix.'_saml_LogoutStore (_authSource(191), _nameId)';
+                $query = 'CREATE INDEX ' . $store->prefix . '_saml_LogoutStore_nameId ON ';
+                $query .= $store->prefix . '_saml_LogoutStore (_authSource(191), _nameId)';
                 $store->pdo->exec($query);
 
-                $query = 'ALTER TABLE '.$store->prefix.'_saml_LogoutStore ADD UNIQUE KEY (_authSource(191), _nameID, _sessionIndex)';
+                $query = 'ALTER TABLE ' . $store->prefix .
+                '_saml_LogoutStore ADD UNIQUE KEY (_authSource(191), _nameID, _sessionIndex)';
                 $store->pdo->exec($query);
             }
 
@@ -102,10 +113,11 @@ class LogoutStore
             switch ($store->driver) {
                 case 'pgsql':
                     // This does not affect the NOT NULL constraint
-                    $update = ['ALTER TABLE '.$store->prefix.
+                    $update = [
+                        'ALTER TABLE ' . $store->prefix .
                         '_saml_LogoutStore ALTER COLUMN _authSource TYPE VARCHAR(255)'];
                     break;
-                case  'sqlite':
+                case 'sqlite':
                     /**
                      * Because SQLite does not support field alterations, the approach is to:
                      *     Create a new table without the proper column size
@@ -115,23 +127,33 @@ class LogoutStore
                      *     Read the index
                      */
                     $update = [
-                        'CREATE TABLE '.$store->prefix.'_saml_LogoutStore_new (_authSource VARCHAR(255) NOT NULL,'.
-                        '_nameId VARCHAR(40) NOT NULL, _sessionIndex VARCHAR(50) NOT NULL, _expire TIMESTAMP NOT NULL,'.
-                        '_sessionId VARCHAR(50) NOT NULL, UNIQUE (_authSource, _nameID, _sessionIndex))',
-                        'INSERT INTO '.$store->prefix.'_saml_LogoutStore_new SELECT * FROM '.$store->prefix.'_saml_LogoutStore',
-                        'DROP TABLE '.$store->prefix.'_saml_LogoutStore',
-                        'ALTER TABLE '.$store->prefix.'_saml_LogoutStore_new RENAME TO '.$store->prefix.'_saml_LogoutStore',
-                        'CREATE INDEX '.$store->prefix.'_saml_LogoutStore_expire ON '.$store->prefix.'_saml_LogoutStore (_expire)',
-                        'CREATE INDEX '.$store->prefix.'_saml_LogoutStore_nameId ON '.$store->prefix.'_saml_LogoutStore (_authSource, _nameId)'
+                        'CREATE TABLE ' . $store->prefix .
+                        '_saml_LogoutStore_new (_authSource VARCHAR(255) NOT NULL,' .
+                        '_nameId VARCHAR(40) NOT NULL, _sessionIndex VARCHAR(50) NOT NULL, ' .
+                        '_expire TIMESTAMP NOT NULL, _sessionId VARCHAR(50) NOT NULL, UNIQUE ' .
+                        '(_authSource, _nameID, _sessionIndex))',
+                        'INSERT INTO ' . $store->prefix . '_saml_LogoutStore_new SELECT * FROM ' .
+                        $store->prefix . '_saml_LogoutStore',
+                        'DROP TABLE ' . $store->prefix . '_saml_LogoutStore',
+                        'ALTER TABLE ' . $store->prefix . '_saml_LogoutStore_new RENAME TO ' .
+                        $store->prefix . '_saml_LogoutStore',
+                        'CREATE INDEX ' . $store->prefix . '_saml_LogoutStore_expire ON ' .
+                        $store->prefix . '_saml_LogoutStore (_expire)',
+                        'CREATE INDEX ' . $store->prefix . '_saml_LogoutStore_nameId ON ' .
+                        $store->prefix . '_saml_LogoutStore (_authSource, _nameId)'
                     ];
                     break;
                 case 'mysql':
-                    $update = ['ALTER TABLE '.$store->prefix.
-                        '_saml_LogoutStore MODIFY _authSource VARCHAR(191) NOT NULL'];
+                    $update = [
+                        'ALTER TABLE ' . $store->prefix .
+                        '_saml_LogoutStore MODIFY _authSource VARCHAR(191) NOT NULL'
+                    ];
                     break;
                 default:
-                    $update = ['ALTER TABLE '.$store->prefix.
-                        '_saml_LogoutStore MODIFY _authSource VARCHAR(255) NOT NULL'];
+                    $update = [
+                        'ALTER TABLE ' . $store->prefix .
+                        '_saml_LogoutStore MODIFY _authSource VARCHAR(255) NOT NULL'
+                    ];
                     break;
             }
 
@@ -140,29 +162,30 @@ class LogoutStore
                     $store->pdo->exec($query);
                 }
             } catch (\Exception $e) {
-                Logger::warning('Database error: '.var_export($store->pdo->errorInfo(), true));
+                Logger::warning('Database error: ' . var_export($store->pdo->errorInfo(), true));
                 return;
             }
             $store->setTableVersion('saml_LogoutStore', 2);
             return;
         }
 
-        $query = 'CREATE TABLE '.$store->prefix.'_saml_LogoutStore (
-            _authSource VARCHAR('.($store->driver === 'mysql' ? '191' : '255').') NOT NULL,
+        $query = 'CREATE TABLE ' . $store->prefix . '_saml_LogoutStore (
+            _authSource VARCHAR(' . ($store->driver === 'mysql' ? '191' : '255') . ') NOT NULL,
             _nameId VARCHAR(40) NOT NULL,
             _sessionIndex VARCHAR(50) NOT NULL,
             _expire ' . ($store->driver === 'pgsql' ? 'TIMESTAMP' : 'DATETIME') . ' NOT NULL,
             _sessionId VARCHAR(50) NOT NULL,
-            UNIQUE (_authSource'.($store->driver === 'mysql' ? '(191)' : '').', _nameID, _sessionIndex)
+            UNIQUE (_authSource' . ($store->driver === 'mysql' ? '(191)' : '') . ', _nameID, _sessionIndex)
         )';
         $store->pdo->exec($query);
 
-        $query = 'CREATE INDEX '.$store->prefix.'_saml_LogoutStore_expire ON ';
-        $query .= $store->prefix.'_saml_LogoutStore (_expire)';
+        $query = 'CREATE INDEX ' . $store->prefix . '_saml_LogoutStore_expire ON ';
+        $query .= $store->prefix . '_saml_LogoutStore (_expire)';
         $store->pdo->exec($query);
 
-        $query = 'CREATE INDEX '.$store->prefix.'_saml_LogoutStore_nameId ON ';
-        $query .= $store->prefix.'_saml_LogoutStore (_authSource'.($store->driver === 'mysql' ? '(191)' : '').', _nameId)';
+        $query = 'CREATE INDEX ' . $store->prefix . '_saml_LogoutStore_nameId ON ';
+        $query .= $store->prefix . '_saml_LogoutStore (_authSource' . ($store->driver === 'mysql' ? '(191)' : '') .
+        ', _nameId)';
         $store->pdo->exec($query);
 
         $store->setTableVersion('saml_LogoutStore', 4);
@@ -179,7 +202,7 @@ class LogoutStore
     {
         Logger::debug('saml.LogoutStore: Cleaning logout store.');
 
-        $query = 'DELETE FROM '.$store->prefix.'_saml_LogoutStore WHERE _expire < :now';
+        $query = 'DELETE FROM ' . $store->prefix . '_saml_LogoutStore WHERE _expire < :now';
         $params = ['now' => gmdate('Y-m-d H:i:s')];
 
         $query = $store->pdo->prepare($query);
@@ -226,7 +249,7 @@ class LogoutStore
             '_sessionId' => $sessionId,
         ];
         $store->insertOrUpdate(
-            $store->prefix.'_saml_LogoutStore',
+            $store->prefix . '_saml_LogoutStore',
             ['_authSource', '_nameId', '_sessionIndex'],
             $data
         );
@@ -255,8 +278,8 @@ class LogoutStore
         ];
 
         // We request the columns in lowercase in order to be compatible with PostgreSQL
-        $query = 'SELECT _sessionIndex AS _sessionindex, _sessionId AS _sessionid FROM '.$store->prefix;
-        $query .= '_saml_LogoutStore'.' WHERE _authSource = :_authSource AND _nameId = :_nameId AND _expire >= :now';
+        $query = 'SELECT _sessionIndex AS _sessionindex, _sessionId AS _sessionid FROM ' . $store->prefix;
+        $query .= '_saml_LogoutStore WHERE _authSource = :_authSource AND _nameId = :_nameId AND _expire >= :now';
         $query = $store->pdo->prepare($query);
         $query->execute($params);
 
@@ -285,7 +308,7 @@ class LogoutStore
 
         $res = [];
         foreach ($sessionIndexes as $sessionIndex) {
-            $sessionId = $store->get('saml.LogoutStore', $nameId.':'.$sessionIndex);
+            $sessionId = $store->get('saml.LogoutStore', $nameId . ':' . $sessionIndex);
             if ($sessionId === null) {
                 continue;
             }
@@ -358,7 +381,7 @@ class LogoutStore
         if ($store instanceof Store\SQL) {
             self::addSessionSQL($store, $authId, $strNameId, $sessionIndex, $expire, $sessionId);
         } else {
-            $store->set('saml.LogoutStore', $strNameId.':'.$sessionIndex, $sessionId, $expire);
+            $store->set('saml.LogoutStore', $strNameId . ':' . $sessionIndex, $sessionId, $expire);
         }
     }
 
@@ -437,7 +460,7 @@ class LogoutStore
             }
 
             Logger::info(
-                'saml.LogoutStore: Logging out of session with trackId ['.$session->getTrackID().'].'
+                'saml.LogoutStore: Logging out of session with trackId [' . $session->getTrackID() . '].'
             );
             $session->doLogout($authId);
             $numLoggedOut += 1;

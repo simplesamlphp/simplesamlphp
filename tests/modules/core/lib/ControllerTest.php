@@ -12,7 +12,6 @@ use SimpleSAML\Module\core\Controller;
 use SimpleSAML\Session;
 use SimpleSAML\Test\Utils\ClearStateTestCase;
 use SimpleSAML\XHTML\Template;
-
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -174,7 +173,7 @@ class ControllerTest extends ClearStateTestCase
                 'Attributes' => ['uid' => ['test']],
                 'Authority' => 'example-userpass',
                 'AuthnInstant' => time(),
-                'Expire' => time() + 8 * 60* 60
+                'Expire' => time() + 8 * 60 * 60
             ]
         ]);
 
@@ -252,7 +251,7 @@ class ControllerTest extends ClearStateTestCase
                 'Attributes' => ['uid' => ['test']],
                 'Authority' => 'example-userpass',
                 'AuthnInstant' => time(),
-                'Expire' => time() + 8 * 60* 60
+                'Expire' => time() + 8 * 60 * 60
             ]
         ]);
         $factory = new AuthenticationFactory($this->config, $session);

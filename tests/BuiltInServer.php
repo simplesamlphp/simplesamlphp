@@ -1,4 +1,9 @@
 <?php
+
+namespace SimpleSAML\Test;
+
+use SimpleSAML\Utils\System;
+
 /**
  * An extremely simple class to start and stop PHP's built-in server, with the possibility to specify the document
  * root and the "router" file to run for every request.
@@ -6,10 +11,6 @@
  * @author Jaime Pérez Crespo <jaime.perez@uninett.no>
  * @package SimpleSAMLphp
  */
-
-namespace SimpleSAML\Test;
-
-use SimpleSAML\Utils\System;
 
 class BuiltInServer
 {
@@ -59,7 +60,7 @@ class BuiltInServer
         if (!is_null($docroot)) {
             $this->docroot = $docroot;
         } else {
-            $this->docroot = dirname(dirname(__FILE__)).'/www/';
+            $this->docroot = dirname(dirname(__FILE__)) . '/www/';
         }
 
         // Rationalize docroot
@@ -72,8 +73,8 @@ class BuiltInServer
      * Start the built-in server in a random port.
      *
      * This method will wait up to 5 seconds for the server to start. When it returns an address, it is guaranteed that
-     * the server has started and is listening for connections. If it returns the default value on the other hand, there will be no
-     * guarantee that the server started properly.
+     * the server has started and is listening for connections. If it returns the default value on the other hand,
+     * there will be no guarantee that the server started properly.
      *
      * @return string The address where the server is listening for connections, or false if the server failed to start
      * for some reason.
@@ -83,11 +84,12 @@ class BuiltInServer
     public function start()
     {
         $port = mt_rand(1025, 65535);
-        $this->address = 'localhost:'.$port;
+        $this->address = 'localhost:' . $port;
 
         if (System::getOS() === System::WINDOWS) {
             $command = sprintf(
-                'powershell $proc = start-process php -ArgumentList (\'-S %s\', \'-t %s\', \'%s\') -Passthru; Write-output $proc.Id;',
+                'powershell $proc = start-process php -ArgumentList (\'-S %s\', \'-t %s\', \'%s\') '
+                    . '-Passthru; Write-output $proc.Id;',
                 $this->address,
                 $this->docroot,
                 $this->router
@@ -135,10 +137,10 @@ class BuiltInServer
     {
         if ($this->pid === 0) {
             return;
-        } else if (System::getOS() === System::WINDOWS) {
-            exec('taskkill /PID '.$this->pid);
+        } elseif (System::getOS() === System::WINDOWS) {
+            exec('taskkill /PID ' . $this->pid);
         } else {
-            exec('kill '.$this->pid);
+            exec('kill ' . $this->pid);
         }
         $this->pid = 0;
     }
@@ -174,9 +176,9 @@ class BuiltInServer
      */
     public function setRouter($router)
     {
-        $file = dirname(dirname(__FILE__)).'/tests/routers/'.$router.'.php';
+        $file = dirname(dirname(__FILE__)) . '/tests/routers/' . $router . '.php';
         if (!file_exists($file)) {
-            throw new \InvalidArgumentException('Unknown router "'.$router.'".');
+            throw new \InvalidArgumentException('Unknown router "' . $router . '".');
         }
         $this->router = $file;
     }
@@ -194,8 +196,8 @@ class BuiltInServer
     public function get($query, $parameters, $curlopts = [])
     {
         $ch = curl_init();
-        $url = 'http://'.$this->address.$query;
-        $url .= (!empty($parameters)) ? '?'.http_build_query($parameters) : '';
+        $url = 'http://' . $this->address . $query;
+        $url .= (!empty($parameters)) ? '?' . http_build_query($parameters) : '';
         curl_setopt_array($ch, [
             CURLOPT_URL => $url,
             CURLOPT_RETURNTRANSFER => 1,

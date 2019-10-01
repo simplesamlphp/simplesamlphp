@@ -329,7 +329,7 @@ abstract class Source
             );
 
             /** @var SourceFactory $factory */
-            $factory = new $factoryClass;
+            $factory = new $factoryClass();
             $authSource = $factory->create($info, $config);
         } catch (\Exception $e) {
             // If not, instantiate the Auth Source here
@@ -372,8 +372,8 @@ abstract class Source
         if ($authConfig === null) {
             if ($type !== null) {
                 throw new Error\Exception(
-                    'No authentication source with id '.
-                    var_export($authId, true).' found.'
+                    'No authentication source with id ' .
+                    var_export($authId, true) . ' found.'
                 );
             }
             return null;
@@ -387,9 +387,9 @@ abstract class Source
 
         // the authentication source doesn't have the correct type
         throw new Error\Exception(
-            'Invalid type of authentication source '.
-            var_export($authId, true).'. Was '.var_export(get_class($ret), true).
-            ', should be '.var_export($type, true).'.'
+            'Invalid type of authentication source ' .
+            var_export($authId, true) . '. Was ' . var_export(get_class($ret), true) .
+            ', should be ' . var_export($type, true) . '.'
         );
     }
 
@@ -410,7 +410,7 @@ abstract class Source
         $session = Session::getSessionFromRequest();
         if (!$session->isValid($source)) {
             Logger::warning(
-                'Received logout from an invalid authentication source '.
+                'Received logout from an invalid authentication source ' .
                 var_export($source, true)
             );
 
@@ -450,7 +450,7 @@ abstract class Source
             $callbackState = [];
         }
 
-        $id = strlen($this->authId).':'.$this->authId.$assoc;
+        $id = strlen($this->authId) . ':' . $this->authId . $assoc;
 
         $data = [
             'callback' => $callback,
@@ -482,7 +482,7 @@ abstract class Source
     {
         assert(is_string($assoc));
 
-        $id = strlen($this->authId).':'.$this->authId.$assoc;
+        $id = strlen($this->authId) . ':' . $this->authId . $assoc;
 
         $session = Session::getSessionFromRequest();
 
@@ -532,7 +532,7 @@ abstract class Source
     {
         if (!array_key_exists(0, $source) || !is_string($source[0])) {
             throw new \Exception(
-                'Invalid authentication source \''.$id.
+                'Invalid authentication source \'' . $id .
                 '\': First element must be a string which identifies the authentication source.'
             );
         }

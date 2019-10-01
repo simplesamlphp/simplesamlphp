@@ -30,7 +30,7 @@ class StateTest extends TestCase
         $this->assertEquals(
             $expected,
             \SimpleSAML\Auth\State::getPersistentAuthData($state),
-            'Mandatory state attributes did not survive as expected'.print_r($expected, true)
+            'Mandatory state attributes did not survive as expected' . print_r($expected, true)
         );
 
         // check missing mandatory parameters

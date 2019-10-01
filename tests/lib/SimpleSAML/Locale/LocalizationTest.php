@@ -3,8 +3,8 @@
 namespace SimpleSAML\Test\Locale;
 
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\Configuration;
 use SimpleSAML\Locale\Localization;
-use \SimpleSAML\Configuration;
 
 class LocalizationTest extends TestCase
 {

@@ -271,7 +271,10 @@ class MetadataTest extends TestCase
     {
         // Test null or unset
         $nameIdPolicy = null;
-        $this->assertEquals(['Format' => \SAML2\Constants::NAMEID_TRANSIENT], Metadata::parseNameIdPolicy($nameIdPolicy));
+        $this->assertEquals(
+            ['Format' => \SAML2\Constants::NAMEID_TRANSIENT],
+            Metadata::parseNameIdPolicy($nameIdPolicy)
+        );
 
         // Test false
         $nameIdPolicy = false;
@@ -279,7 +282,10 @@ class MetadataTest extends TestCase
 
         // Test string
         $nameIdPolicy = 'urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress';
-        $this->assertEquals(['Format' => 'urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress'], Metadata::parseNameIdPolicy($nameIdPolicy));
+        $this->assertEquals(
+            ['Format' => 'urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress'],
+            Metadata::parseNameIdPolicy($nameIdPolicy)
+        );
 
         // Test array
         $nameIdPolicy = [

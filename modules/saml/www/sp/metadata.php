@@ -33,7 +33,7 @@ $slosvcdefault = [
 ];
 
 $slob = $spconfig->getArray('SingleLogoutServiceBinding', $slosvcdefault);
-$slol = \SimpleSAML\Module::getModuleURL('saml/sp/saml2-logout.php/'.$sourceId);
+$slol = \SimpleSAML\Module::getModuleURL('saml/sp/saml2-logout.php/' . $sourceId);
 
 foreach ($slob as $binding) {
     if ($binding == \SAML2\Constants::BINDING_SOAP && !($store instanceof \SimpleSAML\Store\SQL)) {
@@ -67,35 +67,37 @@ foreach ($assertionsconsumerservices as $services) {
     switch ($services) {
         case 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST':
             $acsArray['Binding'] = \SAML2\Constants::BINDING_HTTP_POST;
-            $acsArray['Location'] = \SimpleSAML\Module::getModuleURL('saml/sp/saml2-acs.php/'.$sourceId);
+            $acsArray['Location'] = \SimpleSAML\Module::getModuleURL('saml/sp/saml2-acs.php/' . $sourceId);
             if (!in_array(\SAML2\Constants::NS_SAMLP, $supported_protocols, true)) {
                 $supported_protocols[] = \SAML2\Constants::NS_SAMLP;
             }
             break;
         case 'urn:oasis:names:tc:SAML:1.0:profiles:browser-post':
             $acsArray['Binding'] = 'urn:oasis:names:tc:SAML:1.0:profiles:browser-post';
-            $acsArray['Location'] = \SimpleSAML\Module::getModuleURL('saml/sp/saml1-acs.php/'.$sourceId);
+            $acsArray['Location'] = \SimpleSAML\Module::getModuleURL('saml/sp/saml1-acs.php/' . $sourceId);
             if (!in_array('urn:oasis:names:tc:SAML:1.1:protocol', $supported_protocols, true)) {
                 $supported_protocols[] = 'urn:oasis:names:tc:SAML:1.1:protocol';
             }
             break;
         case 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact':
             $acsArray['Binding'] = 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact';
-            $acsArray['Location'] = \SimpleSAML\Module::getModuleURL('saml/sp/saml2-acs.php/'.$sourceId);
+            $acsArray['Location'] = \SimpleSAML\Module::getModuleURL('saml/sp/saml2-acs.php/' . $sourceId);
             if (!in_array(\SAML2\Constants::NS_SAMLP, $supported_protocols, true)) {
                 $supported_protocols[] = \SAML2\Constants::NS_SAMLP;
             }
             break;
         case 'urn:oasis:names:tc:SAML:1.0:profiles:artifact-01':
             $acsArray['Binding'] = 'urn:oasis:names:tc:SAML:1.0:profiles:artifact-01';
-            $acsArray['Location'] = \SimpleSAML\Module::getModuleURL('saml/sp/saml1-acs.php/'.$sourceId.'/artifact');
+            $acsArray['Location'] = \SimpleSAML\Module::getModuleURL(
+                'saml/sp/saml1-acs.php/' . $sourceId . '/artifact'
+            );
             if (!in_array('urn:oasis:names:tc:SAML:1.1:protocol', $supported_protocols, true)) {
                 $supported_protocols[] = 'urn:oasis:names:tc:SAML:1.1:protocol';
             }
             break;
         case 'urn:oasis:names:tc:SAML:2.0:profiles:holder-of-key:SSO:browser':
             $acsArray['Binding'] = 'urn:oasis:names:tc:SAML:2.0:profiles:holder-of-key:SSO:browser';
-            $acsArray['Location'] = \SimpleSAML\Module::getModuleURL('saml/sp/saml2-acs.php/'.$sourceId);
+            $acsArray['Location'] = \SimpleSAML\Module::getModuleURL('saml/sp/saml2-acs.php/' . $sourceId);
             $acsArray['hoksso:ProtocolBinding'] = \SAML2\Constants::BINDING_HTTP_REDIRECT;
             if (!in_array(\SAML2\Constants::NS_SAMLP, $supported_protocols, true)) {
                 $supported_protocols[] = \SAML2\Constants::NS_SAMLP;
@@ -276,7 +278,8 @@ if (array_key_exists('output', $_REQUEST) && $_REQUEST['output'] == 'xhtml') {
     $t->data['header'] = 'saml20-sp'; // TODO: Replace with headerString in 2.0
     $t->data['headerString'] = \SimpleSAML\Locale\Translate::noop('metadata_saml20-sp');
     $t->data['metadata'] = htmlspecialchars($xml);
-    $t->data['metadataflat'] = '$metadata['.var_export($entityId, true).'] = '.var_export($metaArray20, true).';';
+    $t->data['metadataflat'] = '$metadata[' . var_export($entityId, true)
+        . '] = ' . var_export($metaArray20, true) . ';';
     $t->data['metaurl'] = $source->getMetadataURL();
     $t->show();
 } else {

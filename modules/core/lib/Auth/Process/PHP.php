@@ -46,6 +46,8 @@ class PHP extends \SimpleSAML\Auth\ProcessingFilter
      *
      * @param array &$request The current request
      * @return void
+     *
+     * @scrutinizer ignore-unused
      */
     public function process(&$request)
     {
@@ -57,9 +59,7 @@ class PHP extends \SimpleSAML\Auth\ProcessingFilter
          * @param array &$state
          */
         $function = /** @return void */ function (
-            /** @scrutinizer ignore-unused */
             array &$attributes,
-            /** @scrutinizer ignore-unused */
             array &$state
         ) {
             eval($this->code);

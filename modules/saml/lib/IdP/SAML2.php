@@ -57,10 +57,10 @@ class SAML2
         $spEntityId = $spMetadata['entityid'];
         $spMetadata = Configuration::loadFromArray(
             $spMetadata,
-            '$metadata['.var_export($spEntityId, true).']'
+            '$metadata[' . var_export($spEntityId, true) . ']'
         );
 
-        Logger::info('Sending SAML 2.0 Response to '.var_export($spEntityId, true));
+        Logger::info('Sending SAML 2.0 Response to ' . var_export($spEntityId, true));
 
         $requestId = $state['saml:RequestId'];
         $relayState = $state['saml:RelayState'];
@@ -79,7 +79,7 @@ class SAML2
 
         // create the session association (for logout)
         $association = [
-            'id'                => 'saml:'.$spEntityId,
+            'id'                => 'saml:' . $spEntityId,
             'Handler'           => '\SimpleSAML\Module\saml\IdP\SAML2',
             'Expires'           => $assertion->getSessionNotOnOrAfter(),
             'saml:entityID'     => $spEntityId,
@@ -134,7 +134,7 @@ class SAML2
         $spEntityId = $spMetadata['entityid'];
         $spMetadata = Configuration::loadFromArray(
             $spMetadata,
-            '$metadata['.var_export($spEntityId, true).']'
+            '$metadata[' . var_export($spEntityId, true) . ']'
         );
 
         $requestId = $state['saml:RequestId'];
@@ -148,7 +148,7 @@ class SAML2
 
         $error = \SimpleSAML\Module\saml\Error::fromException($exception);
 
-        Logger::warning("Returning error to SP with entity ID '".var_export($spEntityId, true)."'.");
+        Logger::warning("Returning error to SP with entity ID '" . var_export($spEntityId, true) . "'.");
         $exception->log(Logger::WARNING);
 
         $ar = self::buildResponse($idpMetadata, $spMetadata, $consumerURL);
@@ -253,14 +253,14 @@ class SAML2
 
         Logger::warning('Authentication request specifies invalid AssertionConsumerService:');
         if ($AssertionConsumerServiceURL !== null) {
-            Logger::warning('AssertionConsumerServiceURL: '.var_export($AssertionConsumerServiceURL, true));
+            Logger::warning('AssertionConsumerServiceURL: ' . var_export($AssertionConsumerServiceURL, true));
         }
         if ($ProtocolBinding !== null) {
-            Logger::warning('ProtocolBinding: '.var_export($ProtocolBinding, true));
+            Logger::warning('ProtocolBinding: ' . var_export($ProtocolBinding, true));
         }
         if ($AssertionConsumerServiceIndex !== null) {
             Logger::warning(
-                'AssertionConsumerServiceIndex: '.var_export($AssertionConsumerServiceIndex, true)
+                'AssertionConsumerServiceIndex: ' . var_export($AssertionConsumerServiceIndex, true)
             );
         }
 
@@ -351,7 +351,7 @@ class SAML2
             $idpInit = true;
 
             Logger::info(
-                'SAML2.0 - IdP.SSOService: IdP initiated authentication: '.var_export($spEntityId, true)
+                'SAML2.0 - IdP.SSOService: IdP initiated authentication: ' . var_export($spEntityId, true)
             );
         } else {
             $binding = Binding::getCurrentBinding();
@@ -413,7 +413,7 @@ class SAML2
             $idpInit = false;
 
             Logger::info(
-                'SAML2.0 - IdP.SSOService: incoming authentication request: '.var_export($spEntityId, true)
+                'SAML2.0 - IdP.SSOService: incoming authentication request: ' . var_export($spEntityId, true)
             );
         }
 
@@ -434,7 +434,7 @@ class SAML2
             $consumerIndex
         );
         if ($acsEndpoint === null) {
-            throw new \Exception('Unable to use any of the ACS endpoints found for SP \''.$spEntityId.'\'');
+            throw new \Exception('Unable to use any of the ACS endpoints found for SP \'' . $spEntityId . '\'');
         }
 
         $IDPList = array_unique(array_merge($IDPList, $spMetadata->getArrayizeString('IDPList', [])));
@@ -504,7 +504,7 @@ class SAML2
     {
         assert(is_string($relayState) || $relayState === null);
 
-        Logger::info('Sending SAML 2.0 LogoutRequest to: '.var_export($association['saml:entityID'], true));
+        Logger::info('Sending SAML 2.0 LogoutRequest to: ' . var_export($association['saml:entityID'], true));
 
         $metadata = MetaDataStorageHandler::getMetadataHandler();
         $idpMetadata = $idp->getConfig();
@@ -560,10 +560,10 @@ class SAML2
                 'Code'    => Constants::STATUS_SUCCESS,
                 'SubCode' => Constants::STATUS_PARTIAL_LOGOUT,
             ]);
-            Logger::info('Sending logout response for partial logout to SP '.var_export($spEntityId, true));
+            Logger::info('Sending logout response for partial logout to SP ' . var_export($spEntityId, true));
         } else {
             $partial = false;
-            Logger::debug('Sending logout response to SP '.var_export($spEntityId, true));
+            Logger::debug('Sending logout response to SP ' . var_export($spEntityId, true));
         }
 
         Stats::log('saml:idp:LogoutResponse:sent', [
@@ -625,7 +625,7 @@ class SAML2
         \SimpleSAML\Module\saml\Message::validateMessage($spMetadata, $idpMetadata, $message);
 
         if ($message instanceof LogoutResponse) {
-            Logger::info('Received SAML 2.0 LogoutResponse from: '.var_export($spEntityId, true));
+            Logger::info('Received SAML 2.0 LogoutResponse from: ' . var_export($spEntityId, true));
             $statsData = [
                 'spEntityID'  => $spEntityId,
                 'idpEntityID' => $idpMetadata->getString('entityid'),
@@ -639,23 +639,23 @@ class SAML2
 
             if (!$message->isSuccess()) {
                 $logoutError = \SimpleSAML\Module\saml\Message::getResponseError($message);
-                Logger::warning('Unsuccessful logout. Status was: '.$logoutError);
+                Logger::warning('Unsuccessful logout. Status was: ' . $logoutError);
             } else {
                 $logoutError = null;
             }
 
-            $assocId = 'saml:'.$spEntityId;
+            $assocId = 'saml:' . $spEntityId;
 
             $idp->handleLogoutResponse($assocId, $relayState, $logoutError);
         } elseif ($message instanceof LogoutRequest) {
-            Logger::info('Received SAML 2.0 LogoutRequest from: '.var_export($spEntityId, true));
+            Logger::info('Received SAML 2.0 LogoutRequest from: ' . var_export($spEntityId, true));
             Stats::log('saml:idp:LogoutRequest:recv', [
                 'spEntityID'  => $spEntityId,
                 'idpEntityID' => $idpMetadata->getString('entityid'),
             ]);
 
             $spStatsId = $spMetadata->getString('core:statistics-id', $spEntityId);
-            Logger::stats('saml20-idp-SLO spinit '.$spStatsId.' '.$idpMetadata->getString('entityid'));
+            Logger::stats('saml20-idp-SLO spinit ' . $spStatsId . ' ' . $idpMetadata->getString('entityid'));
 
             $state = [
                 'Responder'       => ['\SimpleSAML\Module\saml\IdP\SAML2', 'sendLogoutResponse'],
@@ -664,10 +664,10 @@ class SAML2
                 'saml:RequestId'  => $message->getId(),
             ];
 
-            $assocId = 'saml:'.$spEntityId;
+            $assocId = 'saml:' . $spEntityId;
             $idp->handleLogoutRequest($state, $assocId);
         } else {
-            throw new Error\BadRequest('Unknown message received on logout endpoint: '.get_class($message));
+            throw new Error\BadRequest('Unknown message received on logout endpoint: ' . get_class($message));
         }
     }
 
@@ -685,7 +685,7 @@ class SAML2
     {
         assert(is_string($relayState) || $relayState === null);
 
-        Logger::info('Sending SAML 2.0 LogoutRequest to: '.var_export($association['saml:entityID'], true));
+        Logger::info('Sending SAML 2.0 LogoutRequest to: ' . var_export($association['saml:entityID'], true));
 
         $metadata = MetaDataStorageHandler::getMetadataHandler();
         $idpMetadata = $idp->getConfig();
@@ -836,7 +836,7 @@ class SAML2
             $metadata['ArtifactResolutionService'][] = [
                 'index' => 0,
                 'Binding' => Constants::BINDING_SOAP,
-                'Location' => Utils\HTTP::getBaseURL().'saml2/idp/ArtifactResolutionService.php'
+                'Location' => Utils\HTTP::getBaseURL() . 'saml2/idp/ArtifactResolutionService.php'
             ];
         }
 
@@ -847,7 +847,7 @@ class SAML2
                 [
                     'hoksso:ProtocolBinding' => Constants::BINDING_HTTP_REDIRECT,
                     'Binding' => Constants::BINDING_HOK_SSO,
-                    'Location' => Utils\HTTP::getBaseURL().'saml2/idp/SSOService.php',
+                    'Location' => Utils\HTTP::getBaseURL() . 'saml2/idp/SSOService.php',
                 ]
             );
         }
@@ -857,7 +857,7 @@ class SAML2
             $metadata['SingleSignOnService'][] = [
                 'index' => 0,
                 'Binding' => Constants::BINDING_SOAP,
-                'Location' => Utils\HTTP::getBaseURL().'saml2/idp/SSOService.php',
+                'Location' => Utils\HTTP::getBaseURL() . 'saml2/idp/SSOService.php',
             ];
         }
 
@@ -963,10 +963,10 @@ class SAML2
 
                 $secretSalt = Utils\Config::getSecretSalt();
 
-                $uidData = 'uidhashbase'.$secretSalt;
-                $uidData .= strlen($idpEntityId).':'.$idpEntityId;
-                $uidData .= strlen($spEntityId).':'.$spEntityId;
-                $uidData .= strlen($attributeValue).':'.$attributeValue;
+                $uidData = 'uidhashbase' . $secretSalt;
+                $uidData .= strlen($idpEntityId) . ':' . $idpEntityId;
+                $uidData .= strlen($spEntityId) . ':' . $spEntityId;
+                $uidData .= strlen($attributeValue) . ':' . $attributeValue;
                 $uidData .= $secretSalt;
 
                 return hash('sha1', $uidData);
@@ -975,7 +975,7 @@ class SAML2
 
         $attributes = $state['Attributes'];
         if (!array_key_exists($attribute, $attributes)) {
-            Logger::error('Unable to add NameID: Missing '.var_export($attribute, true).
+            Logger::error('Unable to add NameID: Missing ' . var_export($attribute, true) .
                 ' in the attributes of the user.');
             return null;
         }
@@ -1050,14 +1050,14 @@ class SAML2
                         break;
                     case 'raw':
                         if (is_string($value)) {
-                            $doc = DOMDocumentFactory::fromString('<root>'.$value.'</root>');
+                            $doc = DOMDocumentFactory::fromString('<root>' . $value . '</root>');
                             $value = $doc->firstChild->childNodes;
                         }
                         assert($value instanceof DOMNodeList || $value instanceof NameID);
                         break;
                     default:
-                        throw new Error\Exception('Invalid encoding for attribute '.
-                            var_export($name, true).': '.var_export($encoding, true));
+                        throw new Error\Exception('Invalid encoding for attribute ' .
+                            var_export($name, true) . ': ' . var_export($encoding, true));
                 }
                 $ret[$name][] = $value;
             }
@@ -1208,8 +1208,8 @@ class SAML2
                         $scd->addInfo($keyInfo);
                     } else {
                         throw new Error\Exception(
-                            'Error creating HoK assertion: No valid client certificate provided during TLS handshake '.
-                            'with IdP'
+                            'Error creating HoK assertion: No valid client certificate provided during '
+                            . 'TLS handshake with IdP'
                         );
                     }
                 } else {
@@ -1336,12 +1336,12 @@ class SAML2
                 $key = $keys[0];
                 switch ($key['type']) {
                     case 'X509Certificate':
-                        $pemKey = "-----BEGIN CERTIFICATE-----\n".
-                            chunk_split($key['X509Certificate'], 64).
+                        $pemKey = "-----BEGIN CERTIFICATE-----\n" .
+                            chunk_split($key['X509Certificate'], 64) .
                             "-----END CERTIFICATE-----\n";
                         break;
                     default:
-                        throw new Error\Exception('Unsupported encryption key type: '.$key['type']);
+                        throw new Error\Exception('Unsupported encryption key type: ' . $key['type']);
                 }
 
                 // extract the public key from the certificate for encryption
@@ -1349,8 +1349,8 @@ class SAML2
                 $key->loadKey($pemKey);
             } else {
                 throw new Error\ConfigurationError(
-                    'Missing encryption key for entity `'.$spMetadata->getString('entityid').'`',
-                    $spMetadata->getString('metadata-set').'.php',
+                    'Missing encryption key for entity `' . $spMetadata->getString('entityid') . '`',
+                    $spMetadata->getString('metadata-set') . '.php',
                     null
                 );
             }

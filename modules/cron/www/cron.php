@@ -12,7 +12,7 @@ if (!is_null($cronconfig->getValue('key'))) {
 
 $cron = new \SimpleSAML\Module\cron\Cron();
 if (!$cron->isValidTag($_REQUEST['tag'])) {
-    SimpleSAML\Logger::error('Cron - Illegal tag ['.$_REQUEST['tag'].'].');
+    SimpleSAML\Logger::error('Cron - Illegal tag [' . $_REQUEST['tag'] . '].');
     exit;
 }
 

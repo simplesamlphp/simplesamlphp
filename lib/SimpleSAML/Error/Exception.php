@@ -87,24 +87,24 @@ class Exception extends \Exception
         $this->backtrace = [];
 
         // position in the top function on the stack
-        $pos = $exception->getFile().':'.$exception->getLine();
+        $pos = $exception->getFile() . ':' . $exception->getLine();
 
         foreach ($exception->getTrace() as $t) {
             $function = $t['function'];
             if (array_key_exists('class', $t)) {
-                $function = $t['class'].'::'.$function;
+                $function = $t['class'] . '::' . $function;
             }
 
-            $this->backtrace[] = $pos.' ('.$function.')';
+            $this->backtrace[] = $pos . ' (' . $function . ')';
 
             if (array_key_exists('file', $t)) {
-                $pos = $t['file'].':'.$t['line'];
+                $pos = $t['file'] . ':' . $t['line'];
             } else {
                 $pos = '[builtin]';
             }
         }
 
-        $this->backtrace[] = $pos.' (N/A)';
+        $this->backtrace[] = $pos . ' (N/A)';
     }
 
 
@@ -153,7 +153,7 @@ class Exception extends \Exception
     public function format($anonymize = false)
     {
         $ret = [
-            $this->getClass().': '.$this->getMessage(),
+            $this->getClass() . ': ' . $this->getMessage(),
         ];
         return array_merge($ret, $this->formatBacktrace($anonymize));
     }
@@ -176,7 +176,7 @@ class Exception extends \Exception
         $e = $this;
         do {
             if ($e !== $this) {
-                $ret[] = 'Caused by: '.$e->getClass().': '.$e->getMessage();
+                $ret[] = 'Caused by: ' . $e->getClass() . ': ' . $e->getMessage();
             }
             $ret[] = 'Backtrace:';
 
@@ -186,7 +186,7 @@ class Exception extends \Exception
                     $trace = str_replace($basedir, '', $trace);
                 }
 
-                $ret[] = ($depth - $i - 1).' '.$trace;
+                $ret[] = ($depth - $i - 1) . ' ' . $trace;
             }
             $e = $e->cause;
         } while ($e !== null);
@@ -205,12 +205,15 @@ class Exception extends \Exception
         // see if debugging is enabled for backtraces
         $debug = Configuration::getInstance()->getArrayize('debug', ['backtraces' => false]);
 
-        if (!(in_array('backtraces', $debug, true) // implicitly enabled
-            || (array_key_exists('backtraces', $debug) && $debug['backtraces'] === true)
+        if (
+            !(in_array('backtraces', $debug, true) // implicitly enabled
+            || (array_key_exists('backtraces', $debug)
+            && $debug['backtraces'] === true)
             // explicitly set
             // TODO: deprecate the old style and remove it in 2.0
-            || (array_key_exists(0, $debug) && $debug[0] === true) // old style 'debug' configuration option
-        )) {
+            || (array_key_exists(0, $debug)
+            && $debug[0] === true)) // old style 'debug' configuration option
+        ) {
             return;
         }
 
@@ -259,7 +262,7 @@ class Exception extends \Exception
      */
     public function logError()
     {
-        Logger::error($this->getClass().': '.$this->getMessage());
+        Logger::error($this->getClass() . ': ' . $this->getMessage());
         $this->logBacktrace(Logger::ERR);
     }
 
@@ -272,7 +275,7 @@ class Exception extends \Exception
      */
     public function logWarning()
     {
-        Logger::warning($this->getClass().': '.$this->getMessage());
+        Logger::warning($this->getClass() . ': ' . $this->getMessage());
         $this->logBacktrace(Logger::WARNING);
     }
 
@@ -285,7 +288,7 @@ class Exception extends \Exception
      */
     public function logInfo()
     {
-        Logger::info($this->getClass().': '.$this->getMessage());
+        Logger::info($this->getClass() . ': ' . $this->getMessage());
         $this->logBacktrace(Logger::INFO);
     }
 
@@ -298,7 +301,7 @@ class Exception extends \Exception
      */
     public function logDebug()
     {
-        Logger::debug($this->getClass().': '.$this->getMessage());
+        Logger::debug($this->getClass() . ': ' . $this->getMessage());
         $this->logBacktrace(Logger::DEBUG);
     }
 

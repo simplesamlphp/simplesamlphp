@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<ruleset name="SimpleSAMLphp ruleset">
+    <description>
+        By default it is less stringent about long lines than other coding standards
+    </description>
+
+    <!-- Use this to exclude paths. You can have multiple patterns -->
+    <!--<exclude-pattern>*/tests/*</exclude-pattern>-->
+    <!--<exclude-pattern>*/other/*</exclude-pattern>-->
+    <exclude-pattern>lib/SimpleSAML/Auth/LDAP.php</exclude-pattern>
+    <exclude-pattern>lib/SimpleSAML/Auth/TimeLimitedToken.php</exclude-pattern>
+    <exclude-pattern>lib/SimpleSAML/Bindings/Shib13/*</exclude-pattern>
+    <exclude-pattern>lib/SimpleSAML/Utilities.php</exclude-pattern>
+    <exclude-pattern>lib/SimpleSAML/XML/Shib13/*</exclude-pattern>
+    <exclude-pattern>modules/*/templates/*.tpl.php</exclude-pattern>
+    <exclude-pattern>modules/saml/lib/IdP/SAML1.php</exclude-pattern>
+    <exclude-pattern>modules/saml/www/sp/saml1-acs.php</exclude-pattern>
+    <exclude-pattern>templates/*.tpl.php</exclude-pattern>
+    <exclude-pattern>tests/lib/SimpleSAML/Auth/TimeLimitedTokenTest.php</exclude-pattern>
+    <exclude-pattern>tests/Utils/Stubs/*</exclude-pattern>
+ 
+    <!-- This is the rule we inherit from. If you want to exlude some specific rules, see the docs on how to do that -->
+    <rule ref="PSR12"/>
+
+    <!-- Lines can be a little bit longer before they break the build -->
+    <rule ref="Generic.Files.LineLength">
+        <properties>
+            <property name="lineLimit" value="120"/>
+            <property name="absoluteLineLimit" value="130"/>
+        </properties>
+    </rule>
+
+    <rule ref="PSR1.Methods.CamelCapsMethodName">
+        <exclude-pattern>lib/SimpleSAML/XHTML/Template.php</exclude-pattern>
+    </rule>
+</ruleset>
+

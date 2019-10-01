@@ -111,21 +111,22 @@ class Metadata
         // check the type
         if (!isset($contact['contactType']) || !in_array($contact['contactType'], self::$VALID_CONTACT_TYPES, true)) {
             $types = join(', ', array_map(
-                 /**
-                  * @param string $t
-                  * @return string
-                  */
+                /**
+                 * @param string $t
+                 * @return string
+                 */
                 function ($t) {
-                    return '"'.$t.'"';
+                    return '"' . $t . '"';
                 },
                 self::$VALID_CONTACT_TYPES
             ));
-            throw new \InvalidArgumentException('"contactType" is mandatory and must be one of '.$types.".");
+            throw new \InvalidArgumentException('"contactType" is mandatory and must be one of ' . $types . ".");
         }
 
         // check attributes is an associative array
         if (isset($contact['attributes'])) {
-            if (empty($contact['attributes'])
+            if (
+                empty($contact['attributes'])
                 || !is_array($contact['attributes'])
                 || count(array_filter(array_keys($contact['attributes']), 'is_string')) === 0
             ) {
@@ -154,24 +155,33 @@ class Metadata
         }
 
         // check givenName
-        if (isset($contact['givenName']) && (
-                empty($contact['givenName']) || !is_string($contact['givenName'])
+        if (
+            isset($contact['givenName'])
+            && (
+                empty($contact['givenName'])
+                || !is_string($contact['givenName'])
             )
         ) {
             throw new \InvalidArgumentException('"givenName" must be a string and cannot be empty.');
         }
 
         // check surName
-        if (isset($contact['surName']) && (
-                empty($contact['surName']) || !is_string($contact['surName'])
+        if (
+            isset($contact['surName'])
+            && (
+                empty($contact['surName'])
+                || !is_string($contact['surName'])
             )
         ) {
             throw new \InvalidArgumentException('"surName" must be a string and cannot be empty.');
         }
 
         // check company
-        if (isset($contact['company']) && (
-                empty($contact['company']) || !is_string($contact['company'])
+        if (
+            isset($contact['company'])
+            && (
+                empty($contact['company'])
+                || !is_string($contact['company'])
             )
         ) {
             throw new \InvalidArgumentException('"company" must be a string and cannot be empty.');
@@ -179,8 +189,12 @@ class Metadata
 
         // check emailAddress
         if (isset($contact['emailAddress'])) {
-            if (empty($contact['emailAddress']) ||
-                !(is_string($contact['emailAddress']) || is_array($contact['emailAddress']))
+            if (
+                empty($contact['emailAddress'])
+                || !(
+                    is_string($contact['emailAddress'])
+                    || is_array($contact['emailAddress'])
+                )
             ) {
                 throw new \InvalidArgumentException('"emailAddress" must be a string or an array and cannot be empty.');
             }
@@ -195,8 +209,12 @@ class Metadata
 
         // check telephoneNumber
         if (isset($contact['telephoneNumber'])) {
-            if (empty($contact['telephoneNumber']) ||
-                !(is_string($contact['telephoneNumber']) || is_array($contact['telephoneNumber']))
+            if (
+                empty($contact['telephoneNumber'])
+                || !(
+                    is_string($contact['telephoneNumber'])
+                    || is_array($contact['telephoneNumber'])
+                )
             ) {
                 throw new \InvalidArgumentException(
                     '"telephoneNumber" must be a string or an array and cannot be empty.'

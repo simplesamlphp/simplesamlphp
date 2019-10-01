@@ -40,8 +40,8 @@ class StaticSource extends \SimpleSAML\Auth\Source
         try {
             $this->attributes = Utils\Attributes::normalizeAttributesArray($config);
         } catch (\Exception $e) {
-            throw new \Exception('Invalid attributes for authentication source '.
-                $this->authId.': '.$e->getMessage());
+            throw new \Exception('Invalid attributes for authentication source ' .
+                $this->authId . ': ' . $e->getMessage());
         }
     }
 

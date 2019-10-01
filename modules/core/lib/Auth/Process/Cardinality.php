@@ -48,7 +48,7 @@ class Cardinality extends \SimpleSAML\Auth\ProcessingFilter
             }
 
             if (!is_string($attribute)) {
-                throw new Error\Exception('Invalid attribute name: '.var_export($attribute, true));
+                throw new Error\Exception('Invalid attribute name: ' . var_export($attribute, true));
             }
             $this->cardinality[$attribute] = ['warn' => false];
 
@@ -70,23 +70,26 @@ class Cardinality extends \SimpleSAML\Auth\ProcessingFilter
             /* sanity check the rules */
             if (!array_key_exists('min', $this->cardinality[$attribute])) {
                 $this->cardinality[$attribute]['min'] = 0;
-            } elseif (!is_int($this->cardinality[$attribute]['min']) ||
-                $this->cardinality[$attribute]['min'] < 0
+            } elseif (
+                !is_int($this->cardinality[$attribute]['min'])
+                || $this->cardinality[$attribute]['min'] < 0
             ) {
-                throw new Error\Exception('Minimum cardinality must be a positive integer: '.
+                throw new Error\Exception('Minimum cardinality must be a positive integer: ' .
                     var_export($attribute, true));
             }
-            if (array_key_exists('max', $this->cardinality[$attribute]) &&
-                !is_int($this->cardinality[$attribute]['max'])
+            if (
+                array_key_exists('max', $this->cardinality[$attribute])
+                && !is_int($this->cardinality[$attribute]['max'])
             ) {
-                throw new Error\Exception('Maximum cardinality must be a positive integer: '.
+                throw new Error\Exception('Maximum cardinality must be a positive integer: ' .
                     var_export($attribute, true));
             }
-            if (array_key_exists('min', $this->cardinality[$attribute]) &&
-                array_key_exists('max', $this->cardinality[$attribute]) &&
-                $this->cardinality[$attribute]['min'] > $this->cardinality[$attribute]['max']
+            if (
+                array_key_exists('min', $this->cardinality[$attribute])
+                && array_key_exists('max', $this->cardinality[$attribute])
+                && $this->cardinality[$attribute]['min'] > $this->cardinality[$attribute]['max']
             ) {
-                throw new Error\Exception('Minimum cardinality must be less than maximium: '.
+                throw new Error\Exception('Minimum cardinality must be less than maximium: ' .
                     var_export($attribute, true));
             }
 
@@ -115,7 +118,7 @@ class Cardinality extends \SimpleSAML\Auth\ProcessingFilter
             $entityid = $request['Source']['entityid'];
         }
         if (in_array($entityid, $this->ignoreEntities, true)) {
-            Logger::debug('Cardinality: Ignoring assertions from '.$entityid);
+            Logger::debug('Cardinality: Ignoring assertions from ' . $entityid);
             return;
         }
 

@@ -5,7 +5,6 @@ namespace SimpleSAML\HTTP;
 use SimpleSAML\Configuration;
 use SimpleSAML\Module\ControllerResolver;
 use SimpleSAML\Session;
-
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;

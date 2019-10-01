@@ -2,7 +2,10 @@
 
 namespace SimpleSAML\Auth;
 
-@trigger_error(sprintf('Using the "SimpleSAML\Auth\LDAP" class is deprecated, use "SimpleSAML\Module\ldap\Auth\Ldap" instead.'), E_USER_DEPRECATED);
+@trigger_error(
+    sprintf('Using the "SimpleSAML\Auth\LDAP" class is deprecated, use "SimpleSAML\Module\ldap\Auth\Ldap" instead.'),
+    E_USER_DEPRECATED
+);
 
 /**
  * @deprecated To be removed in 2.0

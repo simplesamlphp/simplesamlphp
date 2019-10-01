@@ -21,7 +21,7 @@ class ConfigTest extends TestCase
         putenv('SIMPLESAMLPHP_CONFIG_DIR');
         $configDir = Config::getConfigDir();
 
-        $this->assertEquals($configDir, dirname(dirname(dirname(dirname(__DIR__)))).'/config');
+        $this->assertEquals($configDir, dirname(dirname(dirname(dirname(__DIR__)))) . '/config');
     }
 
 
@@ -31,7 +31,7 @@ class ConfigTest extends TestCase
      */
     public function testEnvVariableConfigDir()
     {
-        putenv('SIMPLESAMLPHP_CONFIG_DIR='.__DIR__);
+        putenv('SIMPLESAMLPHP_CONFIG_DIR=' . __DIR__);
         $configDir = Config::getConfigDir();
 
         $this->assertEquals($configDir, __DIR__);
@@ -43,7 +43,7 @@ class ConfigTest extends TestCase
      */
     public function testEnvRedirectVariableConfigDir()
     {
-        putenv('REDIRECT_SIMPLESAMLPHP_CONFIG_DIR='.__DIR__);
+        putenv('REDIRECT_SIMPLESAMLPHP_CONFIG_DIR=' . __DIR__);
         $configDir = Config::getConfigDir();
 
         $this->assertEquals($configDir, __DIR__);
@@ -56,8 +56,8 @@ class ConfigTest extends TestCase
      */
     public function testEnvRedirectPriorityVariableConfigDir()
     {
-        putenv('SIMPLESAMLPHP_CONFIG_DIR='.dirname(__DIR__));
-        putenv('REDIRECT_SIMPLESAMLPHP_CONFIG_DIR='.__DIR__);
+        putenv('SIMPLESAMLPHP_CONFIG_DIR=' . dirname(__DIR__));
+        putenv('REDIRECT_SIMPLESAMLPHP_CONFIG_DIR=' . __DIR__);
         $configDir = Config::getConfigDir();
 
         $this->assertEquals($configDir, dirname(__DIR__));
@@ -71,13 +71,13 @@ class ConfigTest extends TestCase
     public function testInvalidEnvVariableConfigDirThrowsException()
     {
         // I used a random hash to ensure this test directory is always invalid
-        $invalidDir = __DIR__.'/e9826ad19cbc4f5bf20c0913ffcd2ce6';
-        putenv('SIMPLESAMLPHP_CONFIG_DIR='.$invalidDir);
+        $invalidDir = __DIR__ . '/e9826ad19cbc4f5bf20c0913ffcd2ce6';
+        putenv('SIMPLESAMLPHP_CONFIG_DIR=' . $invalidDir);
 
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(
-            'Config directory specified by environment variable SIMPLESAMLPHP_CONFIG_DIR is not a directory.  '.
-            'Given: "'.$invalidDir.'"'
+            'Config directory specified by environment variable SIMPLESAMLPHP_CONFIG_DIR is not a directory.  ' .
+            'Given: "' . $invalidDir . '"'
         );
 
         Config::getConfigDir();

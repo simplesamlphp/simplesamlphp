@@ -61,7 +61,7 @@ class MetaDataStorageHandlerFlatFile extends MetaDataStorageSource
 
         /** @var string $base */
         $base = $globalConfig->resolvePath($this->directory);
-        $this->directory = $base.'/';
+        $this->directory = $base . '/';
     }
 
 
@@ -71,13 +71,13 @@ class MetaDataStorageHandlerFlatFile extends MetaDataStorageSource
      *
      * @param string $set The set of metadata we are loading.
      *
-     * @return array|null An associative array with the metadata, or null if we are unable to load metadata from the given
-     *     file.
+     * @return array|null An associative array with the metadata,
+     *     or null if we are unable to load metadata from the given file.
      * @throws \Exception If the metadata set cannot be loaded.
      */
     private function load($set)
     {
-        $metadatasetfile = $this->directory.$set.'.php';
+        $metadatasetfile = $this->directory . $set . '.php';
 
         if (!file_exists($metadatasetfile)) {
             return null;
@@ -88,7 +88,7 @@ class MetaDataStorageHandlerFlatFile extends MetaDataStorageSource
         include($metadatasetfile);
 
         if (!is_array($metadata)) {
-            throw new \Exception('Could not load metadata set ['.$set.'] from file: '.$metadatasetfile);
+            throw new \Exception('Could not load metadata set [' . $set . '] from file: ' . $metadatasetfile);
         }
 
         return $metadata;

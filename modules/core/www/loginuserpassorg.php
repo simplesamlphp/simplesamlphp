@@ -22,7 +22,7 @@ $state = \SimpleSAML\Auth\State::loadState($authStateId, \SimpleSAML\Module\core
 $source = \SimpleSAML\Auth\Source::getById($state[\SimpleSAML\Module\core\Auth\UserPassOrgBase::AUTHID]);
 if ($source === null) {
     throw new \Exception(
-        'Could not find authentication source with id '.$state[\SimpleSAML\Module\core\Auth\UserPassOrgBase::AUTHID]
+        'Could not find authentication source with id ' . $state[\SimpleSAML\Module\core\Auth\UserPassOrgBase::AUTHID]
     );
 }
 
@@ -30,8 +30,8 @@ $organizations = \SimpleSAML\Module\core\Auth\UserPassOrgBase::listOrganizations
 
 if (array_key_exists('username', $_REQUEST)) {
     $username = $_REQUEST['username'];
-} elseif ($source->getRememberUsernameEnabled() && array_key_exists($source->getAuthId().'-username', $_COOKIE)) {
-    $username = $_COOKIE[$source->getAuthId().'-username'];
+} elseif ($source->getRememberUsernameEnabled() && array_key_exists($source->getAuthId() . '-username', $_COOKIE)) {
+    $username = $_COOKIE[$source->getAuthId() . '-username'];
 } elseif (isset($state['core:username'])) {
     $username = (string) $state['core:username'];
 } else {
@@ -46,10 +46,11 @@ if (array_key_exists('password', $_REQUEST)) {
 
 if (array_key_exists('organization', $_REQUEST)) {
     $organization = $_REQUEST['organization'];
-} elseif ($source->getRememberOrganizationEnabled() &&
-    array_key_exists($source->getAuthId().'-organization', $_COOKIE)
-  ) {
-    $organization = $_COOKIE[$source->getAuthId().'-organization'];
+} elseif (
+    $source->getRememberOrganizationEnabled()
+    && array_key_exists($source->getAuthId() . '-organization', $_COOKIE)
+) {
+    $organization = $_COOKIE[$source->getAuthId() . '-organization'];
 } elseif (isset($state['core:organization'])) {
     $organization = (string) $state['core:organization'];
 } else {
@@ -77,7 +78,7 @@ if ($organizations === null || !empty($organization)) {
                 $params['expire'] = time() - 300;
             }
 
-            \SimpleSAML\Utils\HTTP::setCookie($source->getAuthId().'-username', $username, $params, false);
+            \SimpleSAML\Utils\HTTP::setCookie($source->getAuthId() . '-username', $username, $params, false);
         }
 
         if ($source->getRememberOrganizationEnabled()) {
@@ -89,7 +90,7 @@ if ($organizations === null || !empty($organization)) {
                 $params['expire'] = time() - 300;
             }
             setcookie(
-                $source->getAuthId().'-organization',
+                $source->getAuthId() . '-organization',
                 $organization,
                 $params['expire'],
                 $params['path'],
@@ -135,12 +136,12 @@ $t->data['rememberUsernameEnabled'] = $source->getRememberUsernameEnabled();
 $t->data['rememberUsernameChecked'] = $source->getRememberUsernameChecked();
 $t->data['rememberMeEnabled'] = false;
 $t->data['rememberMeChecked'] = false;
-if (isset($_COOKIE[$source->getAuthId().'-username'])) {
+if (isset($_COOKIE[$source->getAuthId() . '-username'])) {
     $t->data['rememberUsernameChecked'] = true;
 }
 $t->data['rememberOrganizationEnabled'] = $source->getRememberOrganizationEnabled();
 $t->data['rememberOrganizationChecked'] = $source->getRememberOrganizationChecked();
-if (isset($_COOKIE[$source->getAuthId().'-organization'])) {
+if (isset($_COOKIE[$source->getAuthId() . '-organization'])) {
     $t->data['rememberOrganizationChecked'] = true;
 }
 $t->data['errorcode'] = $errorCode;

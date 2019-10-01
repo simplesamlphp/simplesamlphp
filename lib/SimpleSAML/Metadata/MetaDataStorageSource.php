@@ -190,9 +190,11 @@ abstract class MetaDataStorageSource
             }
 
             // support discohints in idp metadata for idp discovery
-            if (array_key_exists('DiscoHints', $entry)
+            if (
+                array_key_exists('DiscoHints', $entry)
                 && array_key_exists('IPHint', $entry['DiscoHints'])
-                && is_array($entry['DiscoHints']['IPHint'])) {
+                && is_array($entry['DiscoHints']['IPHint'])
+            ) {
                 // merge with hints derived from discohints, but prioritize hint.cidr in case it is used
                 $cidrHints = array_merge($entry['DiscoHints']['IPHint'], $cidrHints);
             }
@@ -330,22 +332,17 @@ abstract class MetaDataStorageSource
         $baseUrl = Utils\HTTP::getBaseURL();
 
         if ($set === 'saml20-idp-hosted') {
-            return $baseUrl.'saml2/idp/metadata.php';
-        }
-        else if ($set === 'saml20-sp-hosted') {
-            return $baseUrl.'saml2/sp/metadata.php';
-        }
-        else if ($set === 'shib13-idp-hosted') {
-            return $baseUrl.'shib13/idp/metadata.php';
-        }
-        else if ($set === 'shib13-sp-hosted') {
-            return $baseUrl.'shib13/sp/metadata.php';
-        }
-        else if ($set === 'adfs-idp-hosted') {
-            return 'urn:federation:'.Utils\HTTP::getSelfHost().':idp';
-        }
-        else {
-            throw new \Exception('Can not generate dynamic EntityID for metadata of this type: ['.$set.']');
+            return $baseUrl . 'saml2/idp/metadata.php';
+        } elseif ($set === 'saml20-sp-hosted') {
+            return $baseUrl . 'saml2/sp/metadata.php';
+        } elseif ($set === 'shib13-idp-hosted') {
+            return $baseUrl . 'shib13/idp/metadata.php';
+        } elseif ($set === 'shib13-sp-hosted') {
+            return $baseUrl . 'shib13/sp/metadata.php';
+        } elseif ($set === 'adfs-idp-hosted') {
+            return 'urn:federation:' . Utils\HTTP::getSelfHost() . ':idp';
+        } else {
+            throw new \Exception('Can not generate dynamic EntityID for metadata of this type: [' . $set . ']');
         }
     }
 
@@ -372,9 +369,8 @@ abstract class MetaDataStorageSource
         // generate a dynamic hosted url
         if (preg_match('/__DYNAMIC(:[0-9]+)?__/', $entityId)) {
             $modifiedMetadataEntry['entityid'] = $this->getDynamicHostedUrl($metadataSet);
-        }
-        // set the entityid metadata array key to the provided entity id
-        else {
+        } else {
+            // set the entityid metadata array key to the provided entity id
             $modifiedMetadataEntry['entityid'] = $entityId;
         }
 
