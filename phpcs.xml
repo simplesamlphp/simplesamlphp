@@ -33,5 +33,9 @@
     <rule ref="PSR1.Methods.CamelCapsMethodName">
         <exclude-pattern>lib/SimpleSAML/XHTML/Template.php</exclude-pattern>
     </rule>
+
+    <rule ref="PSR1.Files.SideEffects">
+        <exclude-pattern>src/_autoload_modules.php</exclude-pattern>
+    </rule>
 </ruleset>
 
