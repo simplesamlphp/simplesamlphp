@@ -368,7 +368,7 @@ class IdP
      *
      * @param array &$state The authentication request state.
      *
-     * @throws Exception If there is no auth source defined for this IdP.
+     * @throws \Exception If there is no auth source defined for this IdP.
      * @return void
      */
     private function reauthenticate(array &$state)
@@ -431,7 +431,7 @@ class IdP
      * Find the logout handler of this IdP.
      *
      * @return IdP\LogoutHandlerInterface The logout handler class.
-     * @throws Exception If we cannot find a logout handler.
+     * @throws \Exception If we cannot find a logout handler.
      */
     public function getLogoutHandler()
     {

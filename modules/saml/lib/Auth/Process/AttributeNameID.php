@@ -27,7 +27,7 @@ class AttributeNameID extends \SimpleSAML\Module\saml\BaseNameIDGenerator
      * @param array $config Configuration information about this filter.
      * @param mixed $reserved For future use.
      *
-     * @throws \SimpleSAMLError\Exception If the required options 'Format' or 'attribute' are missing.
+     * @throws \SimpleSAML\Error\Exception If the required options 'Format' or 'attribute' are missing.
      */
     public function __construct($config, $reserved)
     {

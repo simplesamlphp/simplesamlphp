@@ -113,7 +113,7 @@ class IdPDisco
      * @param array  $metadataSets Array with metadata sets we find remote entities in.
      * @param string $instance The name of this instance of the discovery service.
      *
-     * @throws Exception If the request is invalid.
+     * @throws \Exception If the request is invalid.
      */
     public function __construct(array $metadataSets, $instance)
     {

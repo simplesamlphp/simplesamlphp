@@ -54,7 +54,7 @@ abstract class Source
      * @param string $type The type of the authentication source.
      *
      * @return Source[]  Array of \SimpleSAML\Auth\Source objects of the specified type.
-     * @throws Exception If the authentication source is invalid.
+     * @throws \Exception If the authentication source is invalid.
      */
     public static function getSourcesOfType($type)
     {

@@ -32,7 +32,7 @@ class AttributeMap extends \SimpleSAML\Auth\ProcessingFilter
      * @param array &$config Configuration information about this filter.
      * @param mixed $reserved For future use.
      *
-     * @throws Exception If the configuration of the filter is wrong.
+     * @throws \Exception If the configuration of the filter is wrong.
      */
     public function __construct(&$config, $reserved)
     {
@@ -76,7 +76,7 @@ class AttributeMap extends \SimpleSAML\Auth\ProcessingFilter
      * @param string $fileName Name of attribute map file. Expected to be in the attributemap directory in the root
      * of the SimpleSAMLphp installation, or in the root of a module.
      *
-     * @throws Exception If the filter could not load the requested attribute map file.
+     * @throws \Exception If the filter could not load the requested attribute map file.
      * @return void
      */
     private function loadMapFile($fileName)

@@ -28,7 +28,7 @@ class Signer
      *     'Shib 1.3 SP'.
      *
      * @return array An associative array with the keys 'privatekey', 'certificate', and optionally 'privatekey_pass'.
-     * @throws Exception If the key and certificate used to sign is unknown.
+     * @throws \Exception If the key and certificate used to sign is unknown.
      */
     private static function findKeyCert($config, $entityMetadata, $type)
     {

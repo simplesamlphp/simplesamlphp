@@ -59,7 +59,7 @@ class Simple
      *
      * @return Source The authentication source.
      *
-     * @throws AuthSourceError If the requested auth source is unknown.
+     * @throws \SimpleSAML\Error\AuthSource If the requested auth source is unknown.
      */
     public function getAuthSource()
     {

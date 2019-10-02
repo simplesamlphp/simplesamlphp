@@ -3,7 +3,6 @@
 namespace SimpleSAML\Utils;
 
 use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
 use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
 use SimpleSAML\XHTML\Template;
@@ -38,7 +37,7 @@ class EMail
      * @param string $from The from-address (both envelope and header)
      * @param string $to The recipient
      *
-     * @throws PHPMailer\PHPMailer\Exception
+     * @throws \PHPMailer\PHPMailer\Exception
      */
     public function __construct($subject, $from = null, $to = null)
     {

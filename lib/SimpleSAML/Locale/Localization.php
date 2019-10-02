@@ -172,7 +172,7 @@ class Localization
      * Get and check path of localization file
      *
      * @param string $domain Name of localization domain
-     * @throws Exception If the path does not exist even for the default, fallback language
+     * @throws \Exception If the path does not exist even for the default, fallback language
      *
      * @return string
      */

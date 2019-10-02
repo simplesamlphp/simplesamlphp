@@ -31,7 +31,7 @@ class MetaDataStorageHandlerXML extends MetaDataStorageSource
      *
      * @param array $config The configuration for this instance of the XML metadata source.
      *
-     * @throws Exception If neither the 'file' or 'url' options are defined in the configuration.
+     * @throws \Exception If neither the 'file' or 'url' options are defined in the configuration.
      */
     protected function __construct($config)
     {

@@ -25,7 +25,7 @@ class AuthnContextClassRef extends \SimpleSAML\Auth\ProcessingFilter
      * @param array $config Configuration information about this filter.
      * @param mixed $reserved For future use.
      *
-     * @throws \SimpleSAML\Error\_Exception if the mandatory 'AuthnContextClassRef' option is missing.
+     * @throws \SimpleSAML\Error\Exception if the mandatory 'AuthnContextClassRef' option is missing.
      */
     public function __construct($config, $reserved)
     {

@@ -239,7 +239,7 @@ class SAMLParser
      * @param string $file The path to the file which contains the metadata.
      *
      * @return SAMLParser An instance of this class with the metadata loaded.
-     * @throws Exception If the file does not parse as XML.
+     * @throws \Exception If the file does not parse as XML.
      */
     public static function parseFile($file)
     {
@@ -262,7 +262,7 @@ class SAMLParser
      * @param string $metadata A string which contains XML encoded metadata.
      *
      * @return SAMLParser An instance of this class with the metadata loaded.
-     * @throws Exception If the string does not parse as XML.
+     * @throws \Exception If the string does not parse as XML.
      */
     public static function parseString($metadata)
     {
@@ -1463,7 +1463,7 @@ class SAMLParser
      *                      to do a key rollover.
      *
      * @return boolean True if it is possible to check the signature with the certificate, false otherwise.
-     * @throws Exception If the certificate file cannot be found.
+     * @throws \Exception If the certificate file cannot be found.
      */
     public function validateSignature($certificates)
     {

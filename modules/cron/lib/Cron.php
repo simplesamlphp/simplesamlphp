@@ -34,7 +34,7 @@ class Cron
      * Invoke the cron hook for the given tag
      * @param string $tag The tag to use. Must be valid in the cronConfig
      * @return array the tag, and summary information from the run.
-     * @throws Exception If an invalid tag specified
+     * @throws \Exception If an invalid tag specified
      */
     public function runTag($tag)
     {
