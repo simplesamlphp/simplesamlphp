@@ -63,7 +63,7 @@ class StoreTest extends TestCase
 
         $store = Store::getInstance();
 
-        $this->assertInstanceOf('\SimpleSAML\Store\Memcache', $store);
+        $this->assertInstanceOf(Store\Memcache::class, $store);
     }
 
 
@@ -82,7 +82,7 @@ class StoreTest extends TestCase
 
         $store = Store::getInstance();
 
-        $this->assertInstanceOf('SimpleSAML\Store\SQL', $store);
+        $this->assertInstanceOf(Store\SQL::class, $store);
     }
 
 
@@ -101,7 +101,7 @@ class StoreTest extends TestCase
 
         $store = Store::getInstance();
 
-        $this->assertInstanceOf('SimpleSAML\Store\SQL', $store);
+        $this->assertInstanceOf(Store\SQL::class, $store);
     }
 
 
@@ -132,8 +132,8 @@ class StoreTest extends TestCase
         /** @var \SimpleSAML\Store $store */
         $store = Store::getInstance();
 
-        $this->clearInstance($config, '\SimpleSAML\Configuration');
-        $this->clearInstance($store, '\SimpleSAML\Store');
+        $this->clearInstance($config, Configuration::class);
+        $this->clearInstance($store, Store::class);
     }
 
 

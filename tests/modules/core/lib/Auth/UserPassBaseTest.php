@@ -2,6 +2,10 @@
 
 namespace SimpleSAML\Test\Module\core\Auth;
 
+use SAML2\Constants;
+use SimpleSAML\Error\Error as SspError;
+use SimpleSAML\Module\core\Auth\UserPassBase;
+
 class UserPassBaseTest extends \PHPUnit\Framework\TestCase
 {
     /**
@@ -10,7 +14,7 @@ class UserPassBaseTest extends \PHPUnit\Framework\TestCase
     public function testAuthenticateECPCallsLoginAndSetsAttributes()
     {
         $state = [
-            'saml:Binding' => \SAML2\Constants::BINDING_PAOS,
+            'saml:Binding' => Constants::BINDING_PAOS,
         ];
         $attributes = ['attrib' => 'val'];
 
@@ -18,7 +22,7 @@ class UserPassBaseTest extends \PHPUnit\Framework\TestCase
         $password = $_SERVER['PHP_AUTH_PW'] = 'password';
 
         /** @var \SimpleSAML\Module\core\Auth\UserPassBase $stub */
-        $stub = $this->getMockBuilder('\SimpleSAML\Module\core\Auth\UserPassBase')
+        $stub = $this->getMockBuilder(UserPassBase::class)
             ->disableOriginalConstructor()
             ->setMethods(['login'])
             ->getMockForAbstractClass();
@@ -43,18 +47,18 @@ class UserPassBaseTest extends \PHPUnit\Framework\TestCase
      */
     public function testAuthenticateECPMissingUsername()
     {
-        $this->expectException(\SimpleSAML\Error\Error::class);
+        $this->expectException(SspError::class);
         $this->expectExceptionMessage('WRONGUSERPASS');
 
         $state = [
-            'saml:Binding' => \SAML2\Constants::BINDING_PAOS,
+            'saml:Binding' => Constants::BINDING_PAOS,
         ];
 
         unset($_SERVER['PHP_AUTH_USER']);
         $_SERVER['PHP_AUTH_PW'] = 'password';
 
         /** @var \SimpleSAML\Module\core\Auth\UserPassBase $stub */
-        $stub = $this->getMockBuilder('\SimpleSAML\Module\core\Auth\UserPassBase')
+        $stub = $this->getMockBuilder(UserPassBase::class)
             ->disableOriginalConstructor()
             ->getMockForAbstractClass();
 
@@ -67,17 +71,17 @@ class UserPassBaseTest extends \PHPUnit\Framework\TestCase
      */
     public function testAuthenticateECPMissingPassword()
     {
-        $this->expectException(\SimpleSAML\Error\Error::class);
+        $this->expectException(SspError::class);
         $this->expectExceptionMessage('WRONGUSERPASS');
 
         $state = [
-            'saml:Binding' => \SAML2\Constants::BINDING_PAOS,
+            'saml:Binding' => Constants::BINDING_PAOS,
         ];
 
         $_SERVER['PHP_AUTH_USER'] = 'username';
         unset($_SERVER['PHP_AUTH_PW']);
 
-        $stub = $this->getMockBuilder('\SimpleSAML\Module\core\Auth\UserPassBase')
+        $stub = $this->getMockBuilder(UserPassBase::class)
             ->disableOriginalConstructor()
             ->getMockForAbstractClass();
 
@@ -92,7 +96,7 @@ class UserPassBaseTest extends \PHPUnit\Framework\TestCase
     public function testAuthenticateECPCallsLoginWithForcedUsername()
     {
         $state = [
-            'saml:Binding' => \SAML2\Constants::BINDING_PAOS,
+            'saml:Binding' => Constants::BINDING_PAOS,
         ];
         $attributes = [];
 
@@ -102,7 +106,7 @@ class UserPassBaseTest extends \PHPUnit\Framework\TestCase
         $password = $_SERVER['PHP_AUTH_PW'] = 'password';
 
         /** @var \SimpleSAML\Module\core\Auth\UserPassBase $stub */
-        $stub = $this->getMockBuilder('\SimpleSAML\Module\core\Auth\UserPassBase')
+        $stub = $this->getMockBuilder(UserPassBase::class)
             ->disableOriginalConstructor()
             ->setMethods(['login'])
             ->getMockForAbstractClass();

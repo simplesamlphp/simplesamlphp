@@ -2,6 +2,9 @@
 
 namespace SimpleSAML\Test\Module\core\Auth\Process;
 
+use SimpleSAML\Error\Exception as SspException;
+use SimpleSAML\Utils\HTTPAdapter;
+
 /**
  * Test for the core:Cardinality filter.
  */
@@ -38,7 +41,7 @@ class CardinalityTest extends \PHPUnit\Framework\TestCase
     protected function setUp()
     {
         \SimpleSAML\Configuration::loadFromArray([], '[ARRAY]', 'simplesaml');
-        $this->http = $this->getMockBuilder('SimpleSAML\Utils\HTTPAdapter')
+        $this->http = $this->getMockBuilder(HTTPAdapter::class)
                            ->setMethods(['redirectTrustedURL'])
                            ->getMock();
     }
@@ -185,7 +188,7 @@ class CardinalityTest extends \PHPUnit\Framework\TestCase
      */
     public function testMinInvalid()
     {
-        $this->expectException(\SimpleSAML\Error\Exception::class);
+        $this->expectException(SspException::class);
         $this->expectExceptionMessageRegExp('/Minimum/');
         $config = [
             'mail' => ['min' => false],
@@ -205,7 +208,7 @@ class CardinalityTest extends \PHPUnit\Framework\TestCase
      */
     public function testMinNegative()
     {
-        $this->expectException(\SimpleSAML\Error\Exception::class);
+        $this->expectException(SspException::class);
         $this->expectExceptionMessageRegExp('/Minimum/');
         $config = [
             'mail' => ['min' => -1],
@@ -225,7 +228,7 @@ class CardinalityTest extends \PHPUnit\Framework\TestCase
      */
     public function testMaxInvalid()
     {
-        $this->expectException(\SimpleSAML\Error\Exception::class);
+        $this->expectException(SspException::class);
         $this->expectExceptionMessageRegExp('/Maximum/');
         $config = [
             'mail' => ['max' => false],
@@ -245,7 +248,7 @@ class CardinalityTest extends \PHPUnit\Framework\TestCase
      */
     public function testMinGreaterThanMax()
     {
-        $this->expectException(\SimpleSAML\Error\Exception::class);
+        $this->expectException(SspException::class);
         $this->expectExceptionMessageRegExp('/less than/');
         $config = [
             'mail' => ['min' => 2, 'max' => 1],
@@ -265,7 +268,7 @@ class CardinalityTest extends \PHPUnit\Framework\TestCase
      */
     public function testInvalidAttributeName()
     {
-        $this->expectException(\SimpleSAML\Error\Exception::class);
+        $this->expectException(SspException::class);
         $this->expectExceptionMessageRegExp('/Invalid attribute/');
         $config = [
             ['min' => 2, 'max' => 1],

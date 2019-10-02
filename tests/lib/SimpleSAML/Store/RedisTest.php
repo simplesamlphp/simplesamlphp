@@ -3,6 +3,7 @@
 namespace SimpleSAML\Test\Store;
 
 use PHPUnit\Framework\TestCase;
+use Predis\Client;
 use SimpleSAML\Configuration;
 use SimpleSAML\Store;
 
@@ -33,7 +34,7 @@ class RedisTest extends TestCase
     {
         $this->config = [];
 
-        $this->mocked_redis = $this->getMockBuilder('Predis\Client')
+        $this->mocked_redis = $this->getMockBuilder(Client::class)
                                    ->setMethods(['get', 'set', 'setex', 'del', 'disconnect'])
                                    ->disableOriginalConstructor()
                                    ->getMock();
@@ -127,10 +128,10 @@ class RedisTest extends TestCase
         /** @var \SimpleSAML\Store\Redis $store */
         $store = Store::getInstance();
 
-        $this->assertInstanceOf('SimpleSAML\Store\Redis', $store);
+        $this->assertInstanceOf(Store\Redis::class, $store);
 
-        $this->clearInstance($config, '\SimpleSAML\Configuration');
-        $this->clearInstance($store, '\SimpleSAML\Store');
+        $this->clearInstance($config, Configuration::Class);
+        $this->clearInstance($store, Store::class);
     }
 
 
@@ -151,10 +152,10 @@ class RedisTest extends TestCase
         /** @var \SimpleSAML\Store\Redis $store */
         $store = Store::getInstance();
 
-        $this->assertInstanceOf('SimpleSAML\Store\Redis', $store);
+        $this->assertInstanceOf(Store\Redis::class, $store);
 
-        $this->clearInstance($config, '\SimpleSAML\Configuration');
-        $this->clearInstance($store, '\SimpleSAML\Store');
+        $this->clearInstance($config, Configuration::class);
+        $this->clearInstance($store, Store::class);
     }
 
 

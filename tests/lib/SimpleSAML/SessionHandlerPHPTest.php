@@ -56,7 +56,7 @@ class SessionHandlerPHPTest extends ClearStateTestCase
     {
         Configuration::loadFromArray($this->sessionConfig, '[ARRAY]', 'simplesaml');
         $sh = SessionHandlerPHP::getSessionHandler();
-        $this->assertInstanceOf('\SimpleSAML\SessionHandlerPHP', $sh);
+        $this->assertInstanceOf(SessionHandlerPHP::class, $sh);
     }
 
 
