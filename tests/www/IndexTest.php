@@ -5,8 +5,6 @@ namespace SimpleSAML\Test\Web;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Test\BuiltInServer;
 
-include(dirname(__FILE__) . '/../BuiltInServer.php');
-
 /**
  * Simple test for the www/index.php script.
  *
