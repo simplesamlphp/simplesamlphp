@@ -45,18 +45,18 @@ class AttributeLimit extends \SimpleSAML\Auth\ProcessingFilter
                 $this->isDefault = (bool) $value;
             } elseif (is_int($index)) {
                 if (!is_string($value)) {
-                    throw new Error\Exception('AttributeLimit: Invalid attribute name: '.
+                    throw new Error\Exception('AttributeLimit: Invalid attribute name: ' .
                         var_export($value, true));
                 }
                 $this->allowedAttributes[] = $value;
             } elseif (is_string($index)) {
                 if (!is_array($value)) {
-                    throw new Error\Exception('AttributeLimit: Values for '.
-                        var_export($index, true).' must be specified in an array.');
+                    throw new Error\Exception('AttributeLimit: Values for ' .
+                        var_export($index, true) . ' must be specified in an array.');
                 }
                 $this->allowedAttributes[$index] = $value;
             } else {
-                throw new Error\Exception('AttributeLimit: Invalid option: '.var_export($index, true));
+                throw new Error\Exception('AttributeLimit: Invalid option: ' . var_export($index, true));
             }
         }
     }
@@ -119,8 +119,8 @@ class AttributeLimit extends \SimpleSAML\Auth\ProcessingFilter
                 if (array_key_exists($name, $allowedAttributes)) {
                     // but it is an index of the array
                     if (!is_array($allowedAttributes[$name])) {
-                        throw new Error\Exception('AttributeLimit: Values for '.
-                            var_export($name, true).' must be specified in an array.');
+                        throw new Error\Exception('AttributeLimit: Values for ' .
+                            var_export($name, true) . ' must be specified in an array.');
                     }
                     $attributes[$name] = $this->filterAttributeValues($attributes[$name], $allowedAttributes[$name]);
                     if (!empty($attributes[$name])) {

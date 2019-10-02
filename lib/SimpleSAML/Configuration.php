@@ -222,14 +222,14 @@ class Configuration implements Utils\ClearableState
 
         if (!array_key_exists($configSet, self::$configDirs)) {
             if ($configSet !== 'simplesaml') {
-                throw new \Exception('Configuration set \''.$configSet.'\' not initialized.');
+                throw new \Exception('Configuration set \'' . $configSet . '\' not initialized.');
             } else {
-                self::$configDirs['simplesaml'] = dirname(dirname(dirname(__FILE__))).'/config';
+                self::$configDirs['simplesaml'] = dirname(dirname(dirname(__FILE__))) . '/config';
             }
         }
 
         $dir = self::$configDirs[$configSet];
-        $filePath = $dir.'/'.$filename;
+        $filePath = $dir . '/' . $filename;
 
         self::$loadedConfigs[$filePath] = $config;
     }
@@ -251,14 +251,14 @@ class Configuration implements Utils\ClearableState
 
         if (!array_key_exists($configSet, self::$configDirs)) {
             if ($configSet !== 'simplesaml') {
-                throw new \Exception('Configuration set \''.$configSet.'\' not initialized.');
+                throw new \Exception('Configuration set \'' . $configSet . '\' not initialized.');
             } else {
                 self::$configDirs['simplesaml'] = Utils\Config::getConfigDir();
             }
         }
 
         $dir = self::$configDirs[$configSet];
-        $filePath = $dir.'/'.$filename;
+        $filePath = $dir . '/' . $filename;
         return self::loadFromFile($filePath, true);
     }
 
@@ -281,14 +281,14 @@ class Configuration implements Utils\ClearableState
 
         if (!array_key_exists($configSet, self::$configDirs)) {
             if ($configSet !== 'simplesaml') {
-                throw new \Exception('Configuration set \''.$configSet.'\' not initialized.');
+                throw new \Exception('Configuration set \'' . $configSet . '\' not initialized.');
             } else {
                 self::$configDirs['simplesaml'] = Utils\Config::getConfigDir();
             }
         }
 
         $dir = self::$configDirs[$configSet];
-        $filePath = $dir.'/'.$filename;
+        $filePath = $dir . '/' . $filename;
         return self::loadFromFile($filePath, false);
     }
 
@@ -350,7 +350,7 @@ class Configuration implements Utils\ClearableState
         }
 
         throw new Error\CriticalConfigurationError(
-            'Configuration with name '.$instancename.' is not initialized.'
+            'Configuration with name ' . $instancename . ' is not initialized.'
         );
     }
 
@@ -384,7 +384,7 @@ class Configuration implements Utils\ClearableState
             return self::$instance[$instancename];
         }
 
-        self::$instance[$instancename] = self::loadFromFile($path.'/'.$configfilename, true);
+        self::$instance[$instancename] = self::loadFromFile($path . '/' . $configfilename, true);
         return self::$instance[$instancename];
     }
 
@@ -414,7 +414,7 @@ class Configuration implements Utils\ClearableState
 
         $dir = dirname($this->filename);
 
-        self::$instance[$instancename] = self::loadFromFile($dir.'/'.$filename, true);
+        self::$instance[$instancename] = self::loadFromFile($dir . '/' . $filename, true);
         return self::$instance[$instancename];
     }
 
@@ -448,7 +448,7 @@ class Configuration implements Utils\ClearableState
         if (!array_key_exists($name, $this->configuration)) {
             if ($default === self::REQUIRED_OPTION) {
                 throw new \Exception(
-                    $this->location.': Could not retrieve the required option '.
+                    $this->location . ': Could not retrieve the required option ' .
                     var_export($name, true)
                 );
             }
@@ -513,7 +513,7 @@ class Configuration implements Utils\ClearableState
         }
         if (preg_match('/^\*(.*)$/D', $this->getString('baseurlpath', 'simplesaml/'), $matches)) {
             // deprecated behaviour, will be removed in the future
-            return Utils\HTTP::getFirstPathElement(false).$matches[1];
+            return Utils\HTTP::getFirstPathElement(false) . $matches[1];
         }
         return ltrim($this->getBasePath(), '/');
     }
@@ -538,13 +538,13 @@ class Configuration implements Utils\ClearableState
                 // absolute URL without path
                 return '/';
             }
-            return '/'.rtrim($matches[1], '/')."/";
+            return '/' . rtrim($matches[1], '/') . '/';
         } elseif ($baseURL === '' || $baseURL === '/') {
             // root directory of site
             return '/';
         } elseif (preg_match('#^/?((?:[^/\s]+/?)+)#', $baseURL, $matches)) {
             // local path only
-            return '/'.rtrim($matches[1], '/').'/';
+            return '/' . rtrim($matches[1], '/') . '/';
         } else {
             /*
              * Invalid 'baseurlpath'. We cannot recover from this, so throw a critical exception and try to be graceful
@@ -553,8 +553,8 @@ class Configuration implements Utils\ClearableState
             $c = $this->toArray();
             $c['baseurlpath'] = Utils\HTTP::guessBasePath();
             throw new Error\CriticalConfigurationError(
-                'Incorrect format for option \'baseurlpath\'. Value is: "'.
-                $this->getString('baseurlpath', 'simplesaml/').'". Valid format is in the form'.
+                'Incorrect format for option \'baseurlpath\'. Value is: "' .
+                $this->getString('baseurlpath', 'simplesaml/') . '". Valid format is in the form' .
                 ' [(http|https)://(hostname|fqdn)[:port]]/[path/to/simplesaml/].',
                 $this->filename,
                 $c
@@ -613,7 +613,7 @@ class Configuration implements Utils\ClearableState
             return null;
         }
 
-        return $path.'/';
+        return $path . '/';
     }
 
 
@@ -687,7 +687,7 @@ class Configuration implements Utils\ClearableState
 
         if (!is_bool($ret)) {
             throw new \Exception(
-                $this->location.': The option '.var_export($name, true).
+                $this->location . ': The option ' . var_export($name, true) .
                 ' is not a valid boolean value.'
             );
         }
@@ -725,7 +725,7 @@ class Configuration implements Utils\ClearableState
 
         if (!is_string($ret)) {
             throw new \Exception(
-                $this->location.': The option '.var_export($name, true).
+                $this->location . ': The option ' . var_export($name, true) .
                 ' is not a valid string value.'
             );
         }
@@ -763,7 +763,7 @@ class Configuration implements Utils\ClearableState
 
         if (!is_int($ret)) {
             throw new \Exception(
-                $this->location.': The option '.var_export($name, true).
+                $this->location . ': The option ' . var_export($name, true) .
                 ' is not a valid integer value.'
             );
         }
@@ -807,9 +807,9 @@ class Configuration implements Utils\ClearableState
 
         if ($ret < $minimum || $ret > $maximum) {
             throw new \Exception(
-                $this->location.': Value of option '.var_export($name, true).
-                ' is out of range. Value is '.$ret.', allowed range is ['
-                .$minimum.' - '.$maximum.']'
+                $this->location . ': Value of option ' . var_export($name, true) .
+                ' is out of range. Value is ' . $ret . ', allowed range is ['
+                . $minimum . ' - ' . $maximum . ']'
             );
         }
 
@@ -857,9 +857,9 @@ class Configuration implements Utils\ClearableState
             $strValues = implode(', ', $strValues);
 
             throw new \Exception(
-                $this->location.': Invalid value given for the option '.
-                var_export($name, true).'. It should have one of the following values: '.
-                $strValues.'; but it had the following value: '.var_export($ret, true)
+                $this->location . ': Invalid value given for the option ' .
+                var_export($name, true) . '. It should have one of the following values: ' .
+                $strValues . '; but it had the following value: ' . var_export($ret, true)
             );
         }
 
@@ -895,7 +895,7 @@ class Configuration implements Utils\ClearableState
         }
 
         if (!is_array($ret)) {
-            throw new \Exception($this->location.': The option '.var_export($name, true).' is not an array.');
+            throw new \Exception($this->location . ': The option ' . var_export($name, true) . ' is not an array.');
         }
 
         return $ret;
@@ -961,7 +961,7 @@ class Configuration implements Utils\ClearableState
         foreach ($ret as $value) {
             if (!is_string($value)) {
                 throw new \Exception(
-                    $this->location.': The option '.var_export($name, true).
+                    $this->location . ': The option ' . var_export($name, true) .
                     ' must be a string or an array of strings.'
                 );
             }
@@ -1004,12 +1004,12 @@ class Configuration implements Utils\ClearableState
 
         if (!is_array($ret)) {
             throw new \Exception(
-                $this->location.': The option '.var_export($name, true).
+                $this->location . ': The option ' . var_export($name, true) .
                 ' is not an array.'
             );
         }
 
-        return self::loadFromArray($ret, $this->location.'['.var_export($name, true).']');
+        return self::loadFromArray($ret, $this->location . '[' . var_export($name, true) . ']');
     }
 
 
@@ -1039,17 +1039,17 @@ class Configuration implements Utils\ClearableState
 
         if (!is_array($ret)) {
             throw new \Exception(
-                $this->location.': The option '.var_export($name, true).
+                $this->location . ': The option ' . var_export($name, true) .
                 ' is not an array.'
             );
         }
 
         $out = [];
         foreach ($ret as $index => $config) {
-            $newLoc = $this->location.'['.var_export($name, true).']['.
-                var_export($index, true).']';
+            $newLoc = $this->location . '[' . var_export($name, true) . '][' .
+                var_export($index, true) . ']';
             if (!is_array($config)) {
-                throw new \Exception($newLoc.': The value of this element was expected to be an array.');
+                throw new \Exception($newLoc . ': The value of this element was expected to be an array.');
             }
             $out[$index] = self::loadFromArray($config, $newLoc);
         }
@@ -1100,7 +1100,7 @@ class Configuration implements Utils\ClearableState
         assert(is_string($endpointType));
 
         $set = $this->getString('metadata-set');
-        switch ($set.':'.$endpointType) {
+        switch ($set . ':' . $endpointType) {
             case 'saml20-idp-remote:SingleSignOnService':
             case 'saml20-idp-remote:SingleLogoutService':
             case 'saml20-sp-remote:SingleLogoutService':
@@ -1114,7 +1114,7 @@ class Configuration implements Utils\ClearableState
             case 'shib13-sp-remote:AssertionConsumerService':
                 return 'urn:oasis:names:tc:SAML:1.0:profiles:browser-post';
             default:
-                throw new \Exception('Missing default binding for '.$endpointType.' in '.$set);
+                throw new \Exception('Missing default binding for ' . $endpointType . ' in ' . $set);
         }
     }
 
@@ -1132,7 +1132,7 @@ class Configuration implements Utils\ClearableState
     {
         assert(is_string($endpointType));
 
-        $loc = $this->location.'['.var_export($endpointType, true).']:';
+        $loc = $this->location . '[' . var_export($endpointType, true) . ']:';
 
         if (!array_key_exists($endpointType, $this->configuration)) {
             // no endpoints of the given type
@@ -1145,12 +1145,12 @@ class Configuration implements Utils\ClearableState
             // for backwards-compatibility
             $eps = [$eps];
         } elseif (!is_array($eps)) {
-            throw new \Exception($loc.': Expected array or string.');
+            throw new \Exception($loc . ': Expected array or string.');
         }
 
 
         foreach ($eps as $i => &$ep) {
-            $iloc = $loc.'['.var_export($i, true).']';
+            $iloc = $loc . '[' . var_export($i, true) . ']';
 
             if (is_string($ep)) {
                 // for backwards-compatibility
@@ -1158,37 +1158,37 @@ class Configuration implements Utils\ClearableState
                     'Location' => $ep,
                     'Binding'  => $this->getDefaultBinding($endpointType),
                 ];
-                $responseLocation = $this->getString($endpointType.'Response', null);
+                $responseLocation = $this->getString($endpointType . 'Response', null);
                 if ($responseLocation !== null) {
                     $ep['ResponseLocation'] = $responseLocation;
                 }
             } elseif (!is_array($ep)) {
-                throw new \Exception($iloc.': Expected a string or an array.');
+                throw new \Exception($iloc . ': Expected a string or an array.');
             }
 
             if (!array_key_exists('Location', $ep)) {
-                throw new \Exception($iloc.': Missing Location.');
+                throw new \Exception($iloc . ': Missing Location.');
             }
             if (!is_string($ep['Location'])) {
-                throw new \Exception($iloc.': Location must be a string.');
+                throw new \Exception($iloc . ': Location must be a string.');
             }
 
             if (!array_key_exists('Binding', $ep)) {
-                throw new \Exception($iloc.': Missing Binding.');
+                throw new \Exception($iloc . ': Missing Binding.');
             }
             if (!is_string($ep['Binding'])) {
-                throw new \Exception($iloc.': Binding must be a string.');
+                throw new \Exception($iloc . ': Binding must be a string.');
             }
 
             if (array_key_exists('ResponseLocation', $ep)) {
                 if (!is_string($ep['ResponseLocation'])) {
-                    throw new \Exception($iloc.': ResponseLocation must be a string.');
+                    throw new \Exception($iloc . ': ResponseLocation must be a string.');
                 }
             }
 
             if (array_key_exists('index', $ep)) {
                 if (!is_int($ep['index'])) {
-                    throw new \Exception($iloc.': index must be an integer.');
+                    throw new \Exception($iloc . ': index must be an integer.');
                 }
             }
         }
@@ -1224,8 +1224,8 @@ class Configuration implements Utils\ClearableState
         }
 
         if ($default === self::REQUIRED_OPTION) {
-            $loc = $this->location.'['.var_export($endpointType, true).']:';
-            throw new \Exception($loc.'Could not find a supported '.$endpointType.' endpoint.');
+            $loc = $this->location . '[' . var_export($endpointType, true) . ']:';
+            throw new \Exception($loc . 'Could not find a supported ' . $endpointType . ' endpoint.');
         }
 
         return $default;
@@ -1256,8 +1256,8 @@ class Configuration implements Utils\ClearableState
         }
 
         if ($default === self::REQUIRED_OPTION) {
-            $loc = $this->location.'['.var_export($endpointType, true).']:';
-            throw new \Exception($loc.'Could not find a supported '.$endpointType.' endpoint.');
+            $loc = $this->location . '[' . var_export($endpointType, true) . ']:';
+            throw new \Exception($loc . 'Could not find a supported ' . $endpointType . ' endpoint.');
         }
 
         return $default;
@@ -1287,22 +1287,22 @@ class Configuration implements Utils\ClearableState
             return $ret;
         }
 
-        $loc = $this->location.'['.var_export($name, true).']';
+        $loc = $this->location . '[' . var_export($name, true) . ']';
 
         if (is_string($ret)) {
             $ret = ['en' => $ret];
         }
 
         if (!is_array($ret)) {
-            throw new \Exception($loc.': Must be an array or a string.');
+            throw new \Exception($loc . ': Must be an array or a string.');
         }
 
         foreach ($ret as $k => $v) {
             if (!is_string($k)) {
-                throw new \Exception($loc.': Invalid language code: '.var_export($k, true));
+                throw new \Exception($loc . ': Invalid language code: ' . var_export($k, true));
             }
             if (!is_string($v)) {
-                throw new \Exception($loc.'['.var_export($v, true).']: Must be a string.');
+                throw new \Exception($loc . '[' . var_export($v, true) . ']: Must be a string.');
             }
         }
 
@@ -1330,9 +1330,9 @@ class Configuration implements Utils\ClearableState
         assert(is_bool($required));
         assert(is_string($prefix));
 
-        if ($this->hasValue($prefix.'keys')) {
+        if ($this->hasValue($prefix . 'keys')) {
             $ret = [];
-            foreach ($this->getArray($prefix.'keys') as $key) {
+            foreach ($this->getArray($prefix . 'keys') as $key) {
                 if ($use !== null && isset($key[$use]) && !$key[$use]) {
                     continue;
                 }
@@ -1343,8 +1343,8 @@ class Configuration implements Utils\ClearableState
                 $ret[] = $key;
             }
             return $ret;
-        } elseif ($this->hasValue($prefix.'certData')) {
-            $certData = $this->getString($prefix.'certData');
+        } elseif ($this->hasValue($prefix . 'certData')) {
+            $certData = $this->getString($prefix . 'certData');
             $certData = preg_replace('/\s+/', '', $certData);
             return [
                 [
@@ -1354,20 +1354,22 @@ class Configuration implements Utils\ClearableState
                     'X509Certificate' => $certData,
                 ],
             ];
-        } elseif ($this->hasValue($prefix.'certificate')) {
-            $file = $this->getString($prefix.'certificate');
+        } elseif ($this->hasValue($prefix . 'certificate')) {
+            $file = $this->getString($prefix . 'certificate');
             $file = Utils\Config::getCertPath($file);
             $data = @file_get_contents($file);
 
             if ($data === false) {
-                throw new \Exception($this->location.': Unable to load certificate/public key from file "'.$file.'".');
+                throw new \Exception(
+                    $this->location . ': Unable to load certificate/public key from file "' . $file . '".'
+                );
             }
 
             // extract certificate data (if this is a certificate)
             $pattern = '/^-----BEGIN CERTIFICATE-----([^-]*)^-----END CERTIFICATE-----/m';
             if (!preg_match($pattern, $data, $matches)) {
                 throw new \SimpleSAML\Error\Exception(
-                    $this->location.': Could not find PEM encoded certificate in "'.$file.'".'
+                    $this->location . ': Could not find PEM encoded certificate in "' . $file . '".'
                 );
             }
             $certData = preg_replace('/\s+/', '', $matches[1]);
@@ -1381,7 +1383,7 @@ class Configuration implements Utils\ClearableState
                 ],
             ];
         } elseif ($required === true) {
-            throw new \SimpleSAML\Error\Exception($this->location.': Missing certificate in metadata.');
+            throw new \SimpleSAML\Error\Exception($this->location . ': Missing certificate in metadata.');
         } else {
             return [];
         }

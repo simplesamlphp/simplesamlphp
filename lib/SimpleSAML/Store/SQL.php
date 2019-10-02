@@ -62,7 +62,7 @@ class SQL extends Store
         try {
             $this->pdo = new PDO($dsn, $username, $password, $options);
         } catch (PDOException $e) {
-            throw new \Exception("Database error: ".$e->getMessage());
+            throw new \Exception("Database error: " . $e->getMessage());
         }
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -86,10 +86,10 @@ class SQL extends Store
         $this->tableVersions = [];
 
         try {
-            $fetchTableVersion = $this->pdo->query('SELECT _name, _version FROM '.$this->prefix.'_tableVersion');
+            $fetchTableVersion = $this->pdo->query('SELECT _name, _version FROM ' . $this->prefix . '_tableVersion');
         } catch (PDOException $e) {
             $this->pdo->exec(
-                'CREATE TABLE '.$this->prefix.
+                'CREATE TABLE ' . $this->prefix .
                 '_tableVersion (_name VARCHAR(30) NOT NULL UNIQUE, _version INTEGER NOT NULL)'
             );
             return;
@@ -127,12 +127,12 @@ class SQL extends Store
          */
         $table_updates = [
             [
-                'CREATE TABLE '.$this->prefix.
-                '_kvstore (_type VARCHAR(30) NOT NULL, _key VARCHAR(50) NOT NULL, _value '.$text_t.
+                'CREATE TABLE ' . $this->prefix .
+                '_kvstore (_type VARCHAR(30) NOT NULL, _key VARCHAR(50) NOT NULL, _value ' . $text_t .
                 ' NOT NULL, _expire ' . $time_field . ', PRIMARY KEY (_key, _type))',
                 $this->driver === 'sqlite' || $this->driver === 'sqlsrv' ?
-                'CREATE INDEX '.$this->prefix.'_kvstore_expire ON '.$this->prefix.'_kvstore (_expire)' :
-                'ALTER TABLE '.$this->prefix.'_kvstore ADD INDEX '.$this->prefix.'_kvstore_expire (_expire)'                 
+                'CREATE INDEX ' . $this->prefix . '_kvstore_expire ON ' . $this->prefix . '_kvstore (_expire)' :
+                'ALTER TABLE ' . $this->prefix . '_kvstore ADD INDEX ' . $this->prefix . '_kvstore_expire (_expire)'
             ],
             /**
              * This upgrade removes the default NOT NULL constraint on the _expire field in MySQL.
@@ -144,18 +144,18 @@ class SQL extends Store
              *     Read the index
              */
             [
-                'CREATE TABLE '.$this->prefix.
-                '_kvstore_new (_type VARCHAR(30) NOT NULL, _key VARCHAR(50) NOT NULL, _value '.$text_t.
+                'CREATE TABLE ' . $this->prefix .
+                '_kvstore_new (_type VARCHAR(30) NOT NULL, _key VARCHAR(50) NOT NULL, _value ' . $text_t .
                 ' NOT NULL, _expire ' . $time_field . ' NULL, PRIMARY KEY (_key, _type))',
-                'INSERT INTO '.$this->prefix.'_kvstore_new SELECT * FROM '.$this->prefix.'_kvstore',
-                'DROP TABLE '.$this->prefix.'_kvstore',
+                'INSERT INTO ' . $this->prefix . '_kvstore_new SELECT * FROM ' . $this->prefix . '_kvstore',
+                'DROP TABLE ' . $this->prefix . '_kvstore',
                 // FOR MSSQL use EXEC sp_rename to rename a table (RENAME won't work)
                 $this->driver === 'sqlsrv' ?
                 'EXEC sp_rename ' . $this->prefix . '_kvstore_new, ' . $this->prefix . '_kvstore' :
-                'ALTER TABLE '.$this->prefix.'_kvstore_new RENAME TO '.$this->prefix.'_kvstore',
+                'ALTER TABLE '. $this->prefix . '_kvstore_new RENAME TO ' . $this->prefix . '_kvstore',
                 $this->driver === 'sqlite' || $this->driver === 'sqlsrv' ?
-                'CREATE INDEX '.$this->prefix.'_kvstore_expire ON '.$this->prefix.'_kvstore (_expire)' :
-                'ALTER TABLE '.$this->prefix.'_kvstore ADD INDEX '.$this->prefix.'_kvstore_expire (_expire)'                
+                'CREATE INDEX ' . $this->prefix . '_kvstore_expire ON ' . $this->prefix . '_kvstore (_expire)' :
+                'ALTER TABLE ' . $this->prefix . '_kvstore ADD INDEX ' . $this->prefix . '_kvstore_expire (_expire)'
             ]
         ];
 
@@ -210,7 +210,7 @@ class SQL extends Store
         assert(is_int($version));
 
         $this->insertOrUpdate(
-            $this->prefix.'_tableVersion',
+            $this->prefix . '_tableVersion',
             ['_name'],
             ['_name' => $name, '_version' => $version]
         );
@@ -232,17 +232,17 @@ class SQL extends Store
     {
         assert(is_string($table));
 
-        $colNames = '('.implode(', ', array_keys($data)).')';
-        $values = 'VALUES(:'.implode(', :', array_keys($data)).')';
+        $colNames = '(' . implode(', ', array_keys($data)) . ')';
+        $values = 'VALUES(:' . implode(', :', array_keys($data)) . ')';
 
         switch ($this->driver) {
             case 'mysql':
-                $query = 'REPLACE INTO '.$table.' '.$colNames.' '.$values;
+                $query = 'REPLACE INTO ' . $table . ' ' . $colNames . ' ' . $values;
                 $query = $this->pdo->prepare($query);
                 $query->execute($data);
                 break;
             case 'sqlite':
-                $query = 'INSERT OR REPLACE INTO '.$table.' '.$colNames.' '.$values;
+                $query = 'INSERT OR REPLACE INTO ' . $table . ' ' . $colNames . ' ' . $values;
                 $query = $this->pdo->prepare($query);
                 $query->execute($data);
                 break;
@@ -252,7 +252,7 @@ class SQL extends Store
                 $condData = [];
 
                 foreach ($data as $col => $value) {
-                    $tmp = $col.' = :'.$col;
+                    $tmp = $col . ' = :' . $col;
 
                     if (in_array($col, $keys, true)) {
                         $condCols[] = $tmp;
@@ -262,21 +262,22 @@ class SQL extends Store
                     }
                 }
 
-                $selectQuery = 'SELECT * FROM '.$table.' WHERE '.implode(' AND ', $condCols);
+                $selectQuery = 'SELECT * FROM ' . $table . ' WHERE ' . implode(' AND ', $condCols);
                 $selectQuery = $this->pdo->prepare($selectQuery);
                 $selectQuery->execute($condData);
 
                 if (count($selectQuery->fetchAll()) > 0) {
                     // Update
-                    $insertOrUpdateQuery = 'UPDATE '.$table.' SET '.implode(',', $updateCols).' WHERE '.implode(' AND ', $condCols);
+                    $insertOrUpdateQuery = 'UPDATE ' . $table . ' SET ' . implode(',', $updateCols);
+                    $insertOrUpdateQuery .= ' WHERE ' . implode(' AND ', $condCols);
                     $insertOrUpdateQuery = $this->pdo->prepare($insertOrUpdateQuery);
                 } else {
                     // Insert
-                    $insertOrUpdateQuery = 'INSERT INTO '.$table.' '.$colNames.' '.$values;
+                    $insertOrUpdateQuery = 'INSERT INTO ' . $table . ' ' . $colNames . ' ' . $values;
                     $insertOrUpdateQuery = $this->pdo->prepare($insertOrUpdateQuery);
                 }
                 $insertOrUpdateQuery->execute($data);
-                break;                
+                break;
         }
     }
 
@@ -289,7 +290,7 @@ class SQL extends Store
     {
         Logger::debug('store.sql: Cleaning key-value store.');
 
-        $query = 'DELETE FROM '.$this->prefix.'_kvstore WHERE _expire < :now';
+        $query = 'DELETE FROM ' . $this->prefix . '_kvstore WHERE _expire < :now';
         $params = ['now' => gmdate('Y-m-d H:i:s')];
 
         $query = $this->pdo->prepare($query);
@@ -314,7 +315,7 @@ class SQL extends Store
             $key = sha1($key);
         }
 
-        $query = 'SELECT _value FROM '.$this->prefix.
+        $query = 'SELECT _value FROM ' . $this->prefix .
             '_kvstore WHERE _type = :type AND _key = :key AND (_expire IS NULL OR _expire > :now)';
         $params = ['type' => $type, 'key' => $key, 'now' => gmdate('Y-m-d H:i:s')];
 
@@ -377,7 +378,7 @@ class SQL extends Store
             '_expire' => $expire,
         ];
 
-        $this->insertOrUpdate($this->prefix.'_kvstore', ['_type', '_key'], $data);
+        $this->insertOrUpdate($this->prefix . '_kvstore', ['_type', '_key'], $data);
     }
 
 
@@ -402,7 +403,7 @@ class SQL extends Store
             '_key'  => $key,
         ];
 
-        $query = 'DELETE FROM '.$this->prefix.'_kvstore WHERE _type=:_type AND _key=:_key';
+        $query = 'DELETE FROM ' . $this->prefix . '_kvstore WHERE _type=:_type AND _key=:_key';
         $query = $this->pdo->prepare($query);
         $query->execute($data);
     }

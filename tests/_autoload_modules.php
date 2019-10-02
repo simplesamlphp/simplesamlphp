@@ -32,8 +32,8 @@ function sspmodTestClassAutoloadPSR4($className)
 
     // this is a SimpleSAMLphp module test class following PSR-4
     $module = array_shift($elements);
-    $moduleTestDir = __DIR__ .'/modules/'.$module;
-    $file = $moduleTestDir .'/lib/'.implode('/', $elements).'.php';
+    $moduleTestDir = __DIR__  . '/modules/' . $module;
+    $file = $moduleTestDir . '/lib/' . implode('/', $elements) . '.php';
 
     if (file_exists($file)) {
         require_once($file);

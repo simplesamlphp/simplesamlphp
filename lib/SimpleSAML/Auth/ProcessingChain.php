@@ -62,7 +62,7 @@ class ProcessingChain
         $this->filters = [];
 
         $config = Configuration::getInstance();
-        $configauthproc = $config->getArray('authproc.'.$mode, null);
+        $configauthproc = $config->getArray('authproc.' . $mode, null);
 
         if (!empty($configauthproc)) {
             $configfilters = self::parseFilterList($configauthproc);
@@ -79,8 +79,8 @@ class ProcessingChain
             self::addFilters($this->filters, $spFilters);
         }
 
-        Logger::debug('Filter config for '.$idpMetadata['entityid'].'->'.
-            $spMetadata['entityid'].': '.str_replace("\n", '', var_export($this->filters, true)));
+        Logger::debug('Filter config for ' . $idpMetadata['entityid'] . '->' .
+            $spMetadata['entityid'] . ': ' . str_replace("\n", '', var_export($this->filters, true)));
     }
 
 
@@ -132,7 +132,7 @@ class ProcessingChain
             }
 
             if (!is_array($filter)) {
-                throw new \Exception('Invalid authentication processing filter configuration: '.
+                throw new \Exception('Invalid authentication processing filter configuration: ' .
                     'One of the filters wasn\'t a string or an array.');
             }
 
@@ -368,12 +368,12 @@ class ProcessingChain
 
         $uid = $state['Attributes'][$attributeName];
         if (count($uid) === 0) {
-            Logger::warning('Empty user id attribute ['.$attributeName.'].');
+            Logger::warning('Empty user id attribute [' . $attributeName . '].');
             return;
         }
 
         if (count($uid) > 1) {
-            Logger::warning('Multiple attribute values for user id attribute ['.$attributeName.'].');
+            Logger::warning('Multiple attribute values for user id attribute [' . $attributeName . '].');
             return;
         }
 
@@ -381,7 +381,7 @@ class ProcessingChain
         $uid = $uid[0];
 
         if (empty($uid)) {
-            Logger::warning('Empty value in attribute '.$attributeName.". on user. Cannot set UserID.");
+            Logger::warning('Empty value in attribute ' . $attributeName . ". on user. Cannot set UserID.");
             return;
         }
         $state['UserID'] = $uid;

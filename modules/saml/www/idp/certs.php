@@ -32,7 +32,7 @@ switch ($_SERVER['PATH_INFO']) {
     default:
         throw new \SimpleSAML\Error\NotFound('Unknown certificate.');
 }
-header('Content-Disposition: attachment; filename='.substr($_SERVER['PATH_INFO'], 1));
+header('Content-Disposition: attachment; filename=' . substr($_SERVER['PATH_INFO'], 1));
 header('Content-Type: application/x-x509-ca-cert');
 
 echo $certInfo['PEM'];

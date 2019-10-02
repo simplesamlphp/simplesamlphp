@@ -1,4 +1,10 @@
 <?php
+
+namespace SimpleSAML\Test\XML;
+
+use PHPUnit\Framework\TestCase;
+use SimpleSAML\XML\Parser;
+
 /*
  * This file is part of the sgomezsimplesamlphp.
  *
@@ -7,12 +13,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
-namespace SimpleSAML\Test\XML;
-
-use PHPUnit\Framework\TestCase;
-use SimpleSAML\XML\Parser;
-
 class ParserTest extends TestCase
 {
     const XMLDOC = <<< XML

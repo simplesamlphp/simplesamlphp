@@ -36,12 +36,12 @@ $links_auth = [];
 $links_federation = [];
 
 $links_config[] = [
-    'href' => \SimpleSAML\Utils\HTTP::getBaseURL().'admin/hostnames.php',
+    'href' => \SimpleSAML\Utils\HTTP::getBaseURL() . 'admin/hostnames.php',
     'text' => '{core:frontpage:link_diagnostics}'
 ];
 
 $links_config[] = [
-    'href' => \SimpleSAML\Utils\HTTP::getBaseURL().'admin/phpinfo.php',
+    'href' => \SimpleSAML\Utils\HTTP::getBaseURL() . 'admin/phpinfo.php',
     'text' => '{core:frontpage:link_phpinfo}'
 ];
 
@@ -53,7 +53,7 @@ $allLinks = [
     'federation' => &$links_federation,
 ];
 \SimpleSAML\Module::callHooks('frontpage', $allLinks);
-\SimpleSAML\Logger::debug('The "frontpage" hook has been deprecated for the configuration page. Implement the '.
+\SimpleSAML\Logger::debug('The "frontpage" hook has been deprecated for the configuration page. Implement the ' .
     '"configpage" hook instead.');
 
 // Check for updates. Store the remote result in the session so we
@@ -67,7 +67,7 @@ if ($config->getBoolean('admin.checkforupdates', true) && $current !== 'master')
 
         if (!$latest) {
             $api_url = 'https://api.github.com/repos/simplesamlphp/simplesamlphp/releases';
-            $ch = curl_init($api_url.'/latest');
+            $ch = curl_init($api_url . '/latest');
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
             curl_setopt($ch, CURLOPT_USERAGENT, 'SimpleSAMLphp');
             curl_setopt($ch, CURLOPT_TIMEOUT, 2);
@@ -123,7 +123,7 @@ if (\SimpleSAML\Module::isModuleEnabled('radius')) {
 $funcmatrix = [];
 $funcmatrix[] = [
     'required' => 'required',
-    'descr' => 'PHP Version >= 5.6. You run: '.phpversion(),
+    'descr' => 'PHP Version >= 5.6. You run: ' . phpversion(),
     'enabled' => version_compare(phpversion(), '5.6', '>=')
 ];
 foreach ($functionchecks as $func => $descr) {

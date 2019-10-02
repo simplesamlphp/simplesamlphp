@@ -53,14 +53,14 @@ class TraditionalLogoutHandler implements LogoutHandlerInterface
         $relayState = Auth\State::saveState($state, 'core:LogoutTraditional', true);
 
         $id = $association['id'];
-        Logger::info('Logging out of '.var_export($id, true).'.');
+        Logger::info('Logging out of ' . var_export($id, true) . '.');
 
         try {
             $idp = IdP::getByState($association);
             $url = call_user_func([$association['Handler'], 'getLogoutURL'], $idp, $association, $relayState);
             Utils\HTTP::redirectTrustedURL($url);
         } catch (\Exception $e) {
-            Logger::warning('Unable to initialize logout to '.var_export($id, true).'.');
+            Logger::warning('Unable to initialize logout to ' . var_export($id, true) . '.');
             $this->idp->terminateAssociation($id);
             $state['core:Failed'] = true;
 
@@ -112,10 +112,10 @@ class TraditionalLogoutHandler implements LogoutHandlerInterface
         $state = Auth\State::loadState($relayState, 'core:LogoutTraditional');
 
         if ($error === null) {
-            Logger::info('Logged out of '.var_export($assocId, true).'.');
+            Logger::info('Logged out of ' . var_export($assocId, true) . '.');
             $this->idp->terminateAssociation($assocId);
         } else {
-            Logger::warning('Error received from '.var_export($assocId, true).' during logout:');
+            Logger::warning('Error received from ' . var_export($assocId, true) . ' during logout:');
             $error->logWarning();
             $state['core:Failed'] = true;
         }

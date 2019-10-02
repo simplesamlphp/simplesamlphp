@@ -78,7 +78,7 @@ class Controller
         $auth = $this->factory->create($as);
         if (!$auth->isAuthenticated()) {
             // not authenticated, start auth with specified source
-            return new RedirectResponse(Module::getModuleURL('core/login/'.urlencode($as)));
+            return new RedirectResponse(Module::getModuleURL('core/login/' . urlencode($as)));
         }
 
         $attributes = $auth->getAttributes();
@@ -95,7 +95,7 @@ class Controller
             : false;
         $t->data['authData'] = $auth->getAuthDataArray();
         $t->data['trackid'] = $session->getTrackID();
-        $t->data['logouturl'] = Module::getModuleURL('core/logout/'.urlencode($as));
+        $t->data['logouturl'] = Module::getModuleURL('core/logout/' . urlencode($as));
         $t->data['remaining'] = $this->session->getAuthData($as, 'Expire') - time();
         $t->setStatusCode(200);
 
@@ -157,11 +157,11 @@ class Controller
         }
 
         if ($auth->isAuthenticated()) {
-            return new RedirectResponse(Module::getModuleURL('core/account/'.$as));
+            return new RedirectResponse(Module::getModuleURL('core/account/' . $as));
         }
 
         // we're not logged in, start auth
-        $url = Module::getModuleURL('core/login/'.$as);
+        $url = Module::getModuleURL('core/login/' . $as);
         $params = array(
             'ErrorURL' => $url,
             'ReturnTo' => $url,
@@ -182,6 +182,6 @@ class Controller
     public function logout($as)
     {
         $auth = new Auth\Simple($as);
-        return new RunnableResponse([$auth, 'logout'], [$this->config->getBasePath().'logout.php']);
+        return new RunnableResponse([$auth, 'logout'], [$this->config->getBasePath() . 'logout.php']);
     }
 }

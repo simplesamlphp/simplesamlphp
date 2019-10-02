@@ -78,7 +78,7 @@ class System
         $tempDir = rtrim(
             $globalConfig->getString(
                 'tempdir',
-                sys_get_temp_dir().DIRECTORY_SEPARATOR.'simplesaml'
+                sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'simplesaml'
             ),
             DIRECTORY_SEPARATOR
         );
@@ -87,7 +87,7 @@ class System
             if (!mkdir($tempDir, 0700, true)) {
                 $error = error_get_last();
                 throw new Error\Exception(
-                    'Error creating temporary directory "'.$tempDir.'": '.
+                    'Error creating temporary directory "' . $tempDir . '": ' .
                     (is_array($error) ? $error['message'] : 'no error available')
                 );
             }
@@ -96,7 +96,7 @@ class System
             $stat = lstat($tempDir);
             if ($stat['uid'] !== posix_getuid()) {
                 throw new Error\Exception(
-                    'Temporary directory "'.$tempDir.'" does not belong to the current user.'
+                    'Temporary directory "' . $tempDir . '" does not belong to the current user.'
                 );
             }
         }
@@ -147,7 +147,7 @@ class System
             $ret = $base;
         }
 
-        if (static::pathContainsStreamWrapper($path)){
+        if (static::pathContainsStreamWrapper($path)) {
             $ret = $path;
         } else {
             $path = explode('/', $path);
@@ -196,13 +196,13 @@ class System
             throw new \InvalidArgumentException('Invalid input parameters');
         }
 
-        $tmpFile = self::getTempDir().DIRECTORY_SEPARATOR.rand();
+        $tmpFile = self::getTempDir() . DIRECTORY_SEPARATOR . rand();
 
         $res = @file_put_contents($tmpFile, $data);
         if ($res === false) {
             $error = error_get_last();
             throw new Error\Exception(
-                'Error saving file "'.$tmpFile.'": '.
+                'Error saving file "' . $tmpFile . '": ' .
                 (is_array($error) ? $error['message'] : 'no error available')
             );
         }
@@ -213,7 +213,7 @@ class System
                 $error = error_get_last();
                 //$error = (is_array($error) ? $error['message'] : 'no error available');
                 throw new Error\Exception(
-                    'Error changing file mode of "'.$tmpFile.'": '.
+                    'Error changing file mode of "' . $tmpFile . '": ' .
                     (is_array($error) ? $error['message'] : 'no error available')
                 );
             }
@@ -223,7 +223,7 @@ class System
             unlink($tmpFile);
             $error = error_get_last();
             throw new Error\Exception(
-                'Error moving "'.$tmpFile.'" to "'.$filename.'": '.
+                'Error moving "' . $tmpFile . '" to "' . $filename . '": ' .
                 (is_array($error) ? $error['message'] : 'no error available')
             );
         }

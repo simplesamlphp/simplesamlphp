@@ -2,11 +2,11 @@
 
 namespace SimpleSAML\Auth;
 
-use \SimpleSAML\Configuration;
-use \SimpleSAML\Error;
-use \SimpleSAML\Module;
-use \SimpleSAML\Session;
-use \SimpleSAML\Utils;
+use SimpleSAML\Configuration;
+use SimpleSAML\Error;
+use SimpleSAML\Module;
+use SimpleSAML\Session;
+use SimpleSAML\Utils;
 
 /**
  * Helper class for simple authentication applications.
@@ -384,15 +384,15 @@ class Simple
         $query = parse_url($url, PHP_URL_QUERY) ? : '';
         $fragment = parse_url($url, PHP_URL_FRAGMENT) ? : '';
 
-        $port = !empty($port) ? ':'.$port : '';
+        $port = !empty($port) ? ':' . $port : '';
         if (($scheme === 'http' && $port === ':80') || ($scheme === 'https' && $port === ':443')) {
             $port = '';
         }
 
         $base = trim($this->app_config->getString(
             'baseURL',
-            $scheme.'://'.$host.$port
+            $scheme . '://' . $host . $port
         ), '/');
-        return $base.$path.($query ? '?'.$query : '').($fragment ? '#'.$fragment : '');
+        return $base . $path . ($query ? '?' . $query : '') . ($fragment ? '#' . $fragment : '');
     }
 }

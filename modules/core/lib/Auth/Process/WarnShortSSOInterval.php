@@ -47,8 +47,8 @@ class WarnShortSSOInterval extends \SimpleSAML\Auth\ProcessingFilter
             $entityId = 'UNKNOWN';
         }
 
-        Logger::warning('WarnShortSSOInterval: Only '.$timeDelta.
-            ' seconds since last SSO for this user from the SP '.var_export($entityId, true));
+        Logger::warning('WarnShortSSOInterval: Only ' . $timeDelta .
+            ' seconds since last SSO for this user from the SP ' . var_export($entityId, true));
 
         // Save state and redirect
         $id = Auth\State::saveState($state, 'core:short_sso_interval');

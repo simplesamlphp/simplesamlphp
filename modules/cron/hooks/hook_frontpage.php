@@ -16,4 +16,3 @@ function cron_hook_frontpage(&$links)
         'text' => '{cron:cron:link_cron}',
     ];
 }
-

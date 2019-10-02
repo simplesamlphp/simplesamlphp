@@ -32,7 +32,7 @@ class SQLPermanentStorageTest extends TestCase
     public static function tearDownAfterClass()
     {
         self::$sql = null;
-        unlink(sys_get_temp_dir().'/sqllite/test.sqlite');
+        unlink(sys_get_temp_dir() . '/sqllite/test.sqlite');
     }
 
 

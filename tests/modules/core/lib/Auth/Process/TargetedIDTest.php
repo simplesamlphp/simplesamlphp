@@ -96,7 +96,9 @@ class TargetedIDTest extends TestCase
 //        $attributes = $result['Attributes'];
 //        $this->assertArrayHasKey('eduPersonTargetedID', $attributes);
 //        $this->assertRegExp(
-//            '#^<saml:NameID xmlns:saml="urn:oasis:names:tc:SAML:2\.0:assertion" NameQualifier="urn:example:src:id" SPNameQualifier="joe" Format="urn:oasis:names:tc:SAML:2\.0:nameid-format:persistent">[0-9a-f]{40}</saml:NameID>$#',
+//            '#^<saml:NameID xmlns:saml="urn:oasis:names:tc:SAML:2\.0:assertion" NameQualifier="urn:example:src:id"' .
+//            ' SPNameQualifier="joe"' .
+//            ' Format="urn:oasis:names:tc:SAML:2\.0:nameid-format:persistent">[0-9a-f]{40}</saml:NameID>$#',
 //            $attributes['eduPersonTargetedID'][0]
 //        );
 //    }

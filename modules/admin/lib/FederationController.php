@@ -173,7 +173,7 @@ class FederationController
                 $saml2entities = [];
                 if (count($idps) > 1) {
                     foreach ($idps as $index => $idp) {
-                        $idp['url'] = Module::getModuleURL('saml/2/idp/metadata/'.$idp['auth']);
+                        $idp['url'] = Module::getModuleURL('saml/2/idp/metadata/' . $idp['auth']);
                         $idp['metadata-set'] = 'saml20-idp-hosted';
                         $idp['metadata-index'] = $index;
                         $idp['metadata_array'] = SAML2_IdP::getHostedMetadata($idp['entityid']);
@@ -181,7 +181,7 @@ class FederationController
                     }
                 } else {
                     $saml2entities['saml20-idp'] = $this->mdHandler->getMetaDataCurrent('saml20-idp-hosted');
-                    $saml2entities['saml20-idp']['url'] = Utils\HTTP::getBaseURL().'saml2/idp/metadata.php';
+                    $saml2entities['saml20-idp']['url'] = Utils\HTTP::getBaseURL() . 'saml2/idp/metadata.php';
                     $saml2entities['saml20-idp']['metadata_array'] =
                         SAML2_IdP::getHostedMetadata(
                             $this->mdHandler->getMetaDataCurrentEntityID('saml20-idp-hosted')
@@ -204,7 +204,7 @@ class FederationController
                     $entities[$index] = $entity;
                 }
             } catch (\Exception $e) {
-                Logger::error('Federation: Error loading saml20-idp: '.$e->getMessage());
+                Logger::error('Federation: Error loading saml20-idp: ' . $e->getMessage());
             }
         }
 
@@ -215,7 +215,7 @@ class FederationController
                 $shib13entities = [];
                 if (count($idps) > 1) {
                     foreach ($idps as $index => $idp) {
-                        $idp['url'] = Module::getModuleURL('saml/1.1/idp/metadata/'.$idp['auth']);
+                        $idp['url'] = Module::getModuleURL('saml/1.1/idp/metadata/' . $idp['auth']);
                         $idp['metadata-set'] = 'shib13-idp-hosted';
                         $idp['metadata-index'] = $index;
                         $idp['metadata_array'] = SAML1_IdP::getHostedMetadata($idp['entityid']);
@@ -223,12 +223,10 @@ class FederationController
                     }
                 } else {
                     $shib13entities['shib13-idp'] = $this->mdHandler->getMetaDataCurrent('shib13-idp-hosted');
-                    $shib13entities['shib13-idp']['url'] = Utils\HTTP::getBaseURL().
-                        'shib13/idp/metadata.php';
-                    $shib13entities['shib13-idp']['metadata_array'] =
-                        SAML1_IdP::getHostedMetadata(
-                            $this->mdHandler->getMetaDataCurrentEntityID('shib13-idp-hosted')
-                        );
+                    $shib13entities['shib13-idp']['url'] = Utils\HTTP::getBaseURL() . 'shib13/idp/metadata.php';
+                    $shib13entities['shib13-idp']['metadata_array'] = SAML1_IdP::getHostedMetadata(
+                        $this->mdHandler->getMetaDataCurrentEntityID('shib13-idp-hosted')
+                    );
                 }
 
                 foreach ($shib13entities as $index => $entity) {
@@ -247,7 +245,7 @@ class FederationController
                     $entities[$index] = $entity;
                 }
             } catch (\Exception $e) {
-                Logger::error('Federation: Error loading shib13-idp: '.$e->getMessage());
+                Logger::error('Federation: Error loading shib13-idp: ' . $e->getMessage());
             }
         }
 
@@ -258,7 +256,7 @@ class FederationController
                 $adfsentities = [];
                 if (count($idps) > 1) {
                     foreach ($idps as $index => $idp) {
-                        $idp['url'] = Module::getModuleURL('adfs/idp/metadata/'.$idp['auth']);
+                        $idp['url'] = Module::getModuleURL('adfs/idp/metadata/' . $idp['auth']);
                         $idp['metadata-set'] = 'adfs-idp-hosted';
                         $idp['metadata-index'] = $index;
                         $idp['metadata_array'] = ADFS_IdP::getHostedMetadata($idp['entityid']);
@@ -267,10 +265,9 @@ class FederationController
                 } else {
                     $adfsentities['adfs-idp'] = $this->mdHandler->getMetaDataCurrent('adfs-idp-hosted');
                     $adfsentities['adfs-idp']['url'] = Module::getModuleURL('adfs/idp/metadata.php');
-                    $adfsentities['adfs-idp']['metadata_array'] =
-                        ADFS_IdP::getHostedMetadata(
-                            $this->mdHandler->getMetaDataCurrentEntityID('adfs-idp-hosted')
-                        );
+                    $adfsentities['adfs-idp']['metadata_array'] = ADFS_IdP::getHostedMetadata(
+                        $this->mdHandler->getMetaDataCurrentEntityID('adfs-idp-hosted')
+                    );
                 }
 
                 foreach ($adfsentities as $index => $entity) {
@@ -289,7 +286,7 @@ class FederationController
                     $entities[$index] = $entity;
                 }
             } catch (\Exception $e) {
-                Logger::error('Federation: Error loading adfs-idp: '.$e->getMessage());
+                Logger::error('Federation: Error loading adfs-idp: ' . $e->getMessage());
             }
         }
 
@@ -337,7 +334,7 @@ class FederationController
         /** @var \SimpleSAML\Module\saml\Auth\Source\SP $source */
         foreach (Auth\Source::getSourcesOfType('saml:SP') as $source) {
             $metadata = $source->getHostedMetadata();
-            if (isset($metadata['keys']) ) {
+            if (isset($metadata['keys'])) {
                 $certificates = $metadata['keys'];
                 if (count($metadata['keys']) === 1) {
                     $cert = array_pop($metadata['keys']);
@@ -429,11 +426,14 @@ class FederationController
                         continue;
                     }
 
-                    // remove the entityDescriptor element because it is unused, and only makes the output harder to read
+                    /**
+                     * remove the entityDescriptor element because it is unused,
+                     * and only makes the output harder to read
+                     */
                     unset($entityMetadata['entityDescriptor']);
 
-                    $text .= '$metadata['.var_export($entityId, true).'] = '.
-                        var_export($entityMetadata, true).";\n";
+                    $text .= '$metadata[' . var_export($entityId, true) . '] = '
+                        . var_export($entityMetadata, true) . ";\n";
                 }
                 $entities = $text;
             }

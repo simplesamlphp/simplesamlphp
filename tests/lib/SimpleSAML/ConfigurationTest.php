@@ -231,17 +231,17 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
     public function testGetBaseDir()
     {
         $c = Configuration::loadFromArray([]);
-        $this->assertEquals($c->getBaseDir(), dirname(dirname(dirname(dirname(__FILE__)))).DIRECTORY_SEPARATOR);
+        $this->assertEquals($c->getBaseDir(), dirname(dirname(dirname(dirname(__FILE__)))) . DIRECTORY_SEPARATOR);
 
         $c = Configuration::loadFromArray([
-            'basedir' => DIRECTORY_SEPARATOR.'basedir',
+            'basedir' => DIRECTORY_SEPARATOR . 'basedir',
         ]);
-        $this->assertEquals($c->getBaseDir(), DIRECTORY_SEPARATOR.'basedir'.DIRECTORY_SEPARATOR);
+        $this->assertEquals($c->getBaseDir(), DIRECTORY_SEPARATOR . 'basedir' . DIRECTORY_SEPARATOR);
 
         $c = Configuration::loadFromArray([
-            'basedir' => DIRECTORY_SEPARATOR.'basedir'.DIRECTORY_SEPARATOR,
+            'basedir' => DIRECTORY_SEPARATOR . 'basedir' . DIRECTORY_SEPARATOR,
         ]);
-        $this->assertEquals($c->getBaseDir(), DIRECTORY_SEPARATOR.'basedir'.DIRECTORY_SEPARATOR);
+        $this->assertEquals($c->getBaseDir(), DIRECTORY_SEPARATOR . 'basedir' . DIRECTORY_SEPARATOR);
     }
 
 
@@ -764,7 +764,7 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
             \SAML2\Constants::BINDING_HTTP_POST,
             \SAML2\Constants::BINDING_HTTP_REDIRECT,
             \SAML2\Constants::BINDING_HOK_SSO,
-            \SAML2\Constants::BINDING_HTTP_ARTIFACT.
+            \SAML2\Constants::BINDING_HTTP_ARTIFACT,
             \SAML2\Constants::BINDING_SOAP,
         ];
 
@@ -831,7 +831,7 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
             $this->fail('Failed to detect invalid endpoint binding.');
         } catch (\Exception $e) {
             $this->assertEquals(
-                '[ARRAY][\'SingleLogoutService\']:Could not find a supported SingleLogoutService '.'endpoint.',
+                '[ARRAY][\'SingleLogoutService\']:Could not find a supported SingleLogoutService ' . 'endpoint.',
                 $e->getMessage()
             );
         }

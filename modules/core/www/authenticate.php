@@ -14,7 +14,7 @@ $asId = (string) $_REQUEST['as'];
 $as = new \SimpleSAML\Auth\Simple($asId);
 
 if (array_key_exists('logout', $_REQUEST)) {
-    $as->logout($config->getBasePath().'logout.php');
+    $as->logout($config->getBasePath() . 'logout.php');
 }
 
 if (array_key_exists(\SimpleSAML\Auth\State::EXCEPTION_PARAM, $_REQUEST)) {
@@ -47,5 +47,5 @@ $t->data['header'] = '{status:header_saml20_sp}';
 $t->data['attributes'] = $attributes;
 $t->data['authData'] = $authData;
 $t->data['nameid'] = !is_null($as->getAuthData('saml:sp:NameID')) ? $as->getAuthData('saml:sp:NameID') : false;
-$t->data['logouturl'] = \SimpleSAML\Utils\HTTP::getSelfURLNoQuery().'?as='.urlencode($asId).'&logout';
+$t->data['logouturl'] = \SimpleSAML\Utils\HTTP::getSelfURLNoQuery() . '?as=' . urlencode($asId) . '&logout';
 $t->show();

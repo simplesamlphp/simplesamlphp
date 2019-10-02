@@ -30,10 +30,10 @@ class RouterTest extends TestCase
                 foreach ($files as $file) {
                     if (preg_match('/.(yml|yaml)$/', $file)) {
                         try {
-                            $value = $yaml->parse(file_get_contents('modules/'.$module.'/'.$file));
+                            $value = $yaml->parse(file_get_contents('modules/' . $module . '/' . $file));
                             $this->addToAssertionCount(1);
                         } catch (ParseException $e) {
-                            $this->fail($e->getMessage().' in '.$e->getFile().':'.$e->getLine());
+                            $this->fail($e->getMessage() . ' in ' . $e->getFile() . ':' . $e->getLine());
                         }
                     }
                 }

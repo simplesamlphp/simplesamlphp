@@ -93,15 +93,15 @@ class TargetedID extends \SimpleSAML\Auth\ProcessingFilter
 
         if ($this->attribute === null) {
             if (!array_key_exists('UserID', $state)) {
-                throw new \Exception('core:TargetedID: Missing UserID for this user. Please'.
-                    ' check the \'userid.attribute\' option in the metadata against the'.
+                throw new \Exception('core:TargetedID: Missing UserID for this user. Please' .
+                    ' check the \'userid.attribute\' option in the metadata against the' .
                     ' attributes provided by the authentication source.');
             }
 
             $userID = $state['UserID'];
         } else {
             if (!array_key_exists($this->attribute, $state['Attributes'])) {
-                throw new \Exception('core:TargetedID: Missing attribute \''.$this->attribute.
+                throw new \Exception('core:TargetedID: Missing attribute \'' . $this->attribute .
                     '\', which is needed to generate the targeted ID.');
             }
 
@@ -123,10 +123,10 @@ class TargetedID extends \SimpleSAML\Auth\ProcessingFilter
             $dstID = '';
         }
 
-        $uidData = 'uidhashbase'.$secretSalt;
-        $uidData .= strlen($srcID).':'.$srcID;
-        $uidData .= strlen($dstID).':'.$dstID;
-        $uidData .= strlen($userID).':'.$userID;
+        $uidData = 'uidhashbase' . $secretSalt;
+        $uidData .= strlen($srcID) . ':' . $srcID;
+        $uidData .= strlen($dstID) . ':' . $dstID;
+        $uidData .= strlen($userID) . ':' . $userID;
         $uidData .= $secretSalt;
 
         $uid = hash('sha1', $uidData);
@@ -168,12 +168,12 @@ class TargetedID extends \SimpleSAML\Auth\ProcessingFilter
 
         if (array_key_exists('metadata-set', $metadata)) {
             $set = $metadata['metadata-set'];
-            $id .= 'set'.strlen($set).':'.$set;
+            $id .= 'set' . strlen($set) . ':' . $set;
         }
 
         if (array_key_exists('entityid', $metadata)) {
             $entityid = $metadata['entityid'];
-            $id .= 'set'.strlen($entityid).':'.$entityid;
+            $id .= 'set' . strlen($entityid) . ':' . $entityid;
         }
 
         return $id;

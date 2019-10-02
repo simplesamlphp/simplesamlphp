@@ -26,10 +26,10 @@
  *      unlink($file);
  */
 
-include_once(sys_get_temp_dir().'/'.getmypid().'.lock');
+include_once(sys_get_temp_dir() . '/' . getmypid() . '.lock');
 
 // load SimpleSAMLphp's autoloader
-require_once(dirname(__FILE__).'/../../vendor/autoload.php');
+require_once(dirname(__FILE__) . '/../../vendor/autoload.php');
 
 // initialize configuration
 if (isset($config)) {

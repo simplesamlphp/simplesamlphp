@@ -68,7 +68,7 @@ class AttributeValueMap extends \SimpleSAML\Auth\ProcessingFilter
                 } else {
                     // unknown configuration option, log it and ignore the error
                     Logger::warning(
-                        "AttributeValueMap: unknown configuration flag '".var_export($value, true)."'"
+                        "AttributeValueMap: unknown configuration flag '" . var_export($value, true) . "'"
                     );
                 }
                 continue;

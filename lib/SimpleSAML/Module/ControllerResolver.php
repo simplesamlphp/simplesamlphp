@@ -7,7 +7,6 @@ use SimpleSAML\Configuration;
 use SimpleSAML\Error\Exception;
 use SimpleSAML\Module;
 use SimpleSAML\Session;
-
 use Symfony\Component\Config\Exception\FileLocatorFileNotFoundException;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -75,7 +74,7 @@ class ControllerResolver extends SymfonyControllerResolver implements ArgumentRe
                 ['url' => '.*/$']
             );
             $this->routes->add('trailing-slash', $redirect);
-            $this->routes->addPrefix('/'.$this->module);
+            $this->routes->addPrefix('/' . $this->module);
         } catch (FileLocatorFileNotFoundException $e) {
         }
     }
@@ -160,7 +159,7 @@ class ControllerResolver extends SymfonyControllerResolver implements ArgumentRe
                 $args[] = null;
             }
 
-            throw new Exception('Missing value for argument '.$argName.'. This is probably a bug.');
+            throw new Exception('Missing value for argument ' . $argName . '. This is probably a bug.');
         }
 
         return $args;

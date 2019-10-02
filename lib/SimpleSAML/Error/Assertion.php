@@ -30,7 +30,7 @@ class Assertion extends Exception
     {
         assert($assertion === null || is_string($assertion));
 
-        $msg = 'Assertion failed: '.var_export($assertion, true);
+        $msg = 'Assertion failed: ' . var_export($assertion, true);
         parent::__construct($msg);
 
         $this->assertion = $assertion;

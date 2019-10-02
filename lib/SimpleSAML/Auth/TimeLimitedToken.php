@@ -50,7 +50,7 @@ class TimeLimitedToken
         }
 
         if (!in_array($algo, hash_algos(), true)) {
-            throw new \InvalidArgumentException('Invalid hash algorithm "'.$algo.'"');
+            throw new \InvalidArgumentException('Invalid hash algorithm "' . $algo . '"');
         }
 
         $this->secretSalt = $secretSalt;
@@ -72,7 +72,7 @@ class TimeLimitedToken
      */
     public function addVerificationData($data)
     {
-        $this->secretSalt .= '|'.$data;
+        $this->secretSalt .= '|' . $data;
     }
 
 
@@ -92,7 +92,7 @@ class TimeLimitedToken
         // a secret salt that should be randomly generated for each installation
         return hash(
             $this->algo,
-            $offset.':'.floor(($time - $offset) / ($this->lifetime + $this->skew)).':'.$this->secretSalt
+            $offset . ':' . floor(($time - $offset) / ($this->lifetime + $this->skew)) . ':' . $this->secretSalt
         );
     }
 
@@ -106,7 +106,7 @@ class TimeLimitedToken
     {
         $time = time();
         $current_offset = ($time - $this->skew) % ($this->lifetime + $this->skew);
-        return dechex($current_offset).'-'.$this->calculateTokenValue($current_offset, $time);
+        return dechex($current_offset) . '-' . $this->calculateTokenValue($current_offset, $time);
     }
 
 

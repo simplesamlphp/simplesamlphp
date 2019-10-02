@@ -4,7 +4,6 @@ namespace SimpleSAML\Utils;
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-
 use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
 use SimpleSAML\XHTML\Template;
@@ -91,7 +90,7 @@ class EMail
              * @param mixed $v
              * @return array
              */
-            function($v) {
+            function ($v) {
                 return is_array($v) ? $v : [$v];
             },
             $data
@@ -170,9 +169,8 @@ class EMail
                 // set the host (required)
                 if (isset($transportOptions['host'])) {
                     $this->mail->Host = $transportOptions['host'];
-                }
-                // throw an exception otherwise
-                else {
+                } else {
+                    // throw an exception otherwise
                     throw new \InvalidArgumentException("Missing Required Email Transport Parameter 'host'");
                 }
 
@@ -218,7 +216,9 @@ class EMail
                 }
                 break;
             default:
-                throw new \InvalidArgumentException("Invalid Mail Transport Method - Check 'mail.transport.method' Configuration Option");
+                throw new \InvalidArgumentException(
+                    "Invalid Mail Transport Method - Check 'mail.transport.method' Configuration Option"
+                );
         }
     }
 
@@ -275,7 +275,7 @@ pre {
 </head>
 <body>
 <div class="container" style="background: #fafafa; border: 1px solid #eee; margin: 2em; padding: .6em;">
-'.$this->text.'
+' . $this->text . '
 </div>
 </body>
 </html>';
@@ -283,7 +283,10 @@ pre {
             $t = new Template($config, $template);
             $twig = $t->getTwig();
             if (!isset($twig)) {
-                throw new \Exception('Even though we explicitly configure that we want Twig, the Template class does not give us Twig. This is a bug.');
+                throw new \Exception(
+                    'Even though we explicitly configure that we want Twig,'
+                        . ' the Template class does not give us Twig. This is a bug.'
+                );
             }
             $result = $twig->render($template, [
                 'subject' => $this->mail->Subject,

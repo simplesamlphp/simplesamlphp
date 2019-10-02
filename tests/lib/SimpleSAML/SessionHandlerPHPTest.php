@@ -167,9 +167,9 @@ class SessionHandlerPHPTest extends ClearStateTestCase
         $sh->restorePrevious();
 
         $headers = xdebug_get_headers();
-        $this->assertContains('PHPSESSID='.$sid, $headers[0]);
+        $this->assertContains('PHPSESSID=' . $sid, $headers[0]);
         $this->assertContains('SimpleSAML=Restore;', $headers[1]);
-        $this->assertContains('PHPSESSID='.$sid, $headers[2]);
+        $this->assertContains('PHPSESSID=' . $sid, $headers[2]);
         $this->assertEquals($headers[0], $headers[2]);
     }
 

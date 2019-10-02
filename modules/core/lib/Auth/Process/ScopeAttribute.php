@@ -97,7 +97,7 @@ class ScopeAttribute extends \SimpleSAML\Auth\ProcessingFilter
             }
 
             foreach ($attributes[$this->sourceAttribute] as $value) {
-                $value = $value.'@'.$scope;
+                $value = $value . '@' . $scope;
 
                 if (in_array($value, $attributes[$this->targetAttribute], true)) {
                     // Already present

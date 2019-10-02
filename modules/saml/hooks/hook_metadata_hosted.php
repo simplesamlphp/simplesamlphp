@@ -28,7 +28,7 @@ function saml_hook_metadata_hosted(&$metadataHosted)
             'entityid' => $source->getEntityId(),
             'metadata-index' => $source->getEntityId(),
             'metadata-set' => 'saml20-sp-hosted',
-            'metadata-url' => $source->getMetadataURL().'?output=xhtml',
+            'metadata-url' => $source->getMetadataURL() . '?output=xhtml',
             'name' => $name,
         ];
 

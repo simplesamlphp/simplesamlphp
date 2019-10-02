@@ -38,7 +38,7 @@ class NotFound extends Error
             $this->message = "The requested page '$url' could not be found.";
         } else {
             parent::__construct(['NOTFOUNDREASON', '%URL%' => $url, '%REASON%' => $reason]);
-            $this->message = "The requested page '$url' could not be found. ".$reason;
+            $this->message = "The requested page '$url' could not be found. " . $reason;
         }
 
         $this->reason = $reason;
@@ -68,7 +68,7 @@ class NotFound extends Error
     public function format($anonymize = false)
     {
         return [
-            $this->getClass().': '.$this->getMessage(),
+            $this->getClass() . ': ' . $this->getMessage(),
         ];
     }
 }

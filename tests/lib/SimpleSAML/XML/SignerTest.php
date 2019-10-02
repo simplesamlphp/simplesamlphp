@@ -2,14 +2,13 @@
 
 namespace SimpleSAML\Test\XML;
 
-require_once(__DIR__.'/../../../SigningTestCase.php');
-
+use org\bovigo\vfs\vfsStream;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;
 use SimpleSAML\Test\SigningTestCase;
 use SimpleSAML\XML\Signer;
 
-use \org\bovigo\vfs\vfsStream;
+require_once(__DIR__ . '/../../../SigningTestCase.php');
 
 /**
  * Tests for SimpleSAML\XML\Signer.
@@ -146,7 +145,7 @@ NOWDOC;
      */
     public function testSignWithMultiCertificate()
     {
-        $this->other_certificate_file = $this->certdir.DIRECTORY_SEPARATOR.self::OTHER_CERTIFICATE;
+        $this->other_certificate_file = $this->certdir . DIRECTORY_SEPARATOR . self::OTHER_CERTIFICATE;
 
         $node = new \DOMDocument();
         $node->loadXML('<?xml version="1.0"?><node>value</node>');

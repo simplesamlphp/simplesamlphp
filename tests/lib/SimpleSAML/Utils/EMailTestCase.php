@@ -2,9 +2,8 @@
 
 namespace SimpleSAML\Test\Utils;
 
-use SimpleSAML\Test\Utils\TestCase;
-
 use SimpleSAML\Configuration;
+use SimpleSAML\Test\Utils\TestCase;
 use SimpleSAML\Utils\EMail;
 
 /**
@@ -68,7 +67,11 @@ class EMailTestCase extends ClearStateTestCase
      */
     public function testMailContents($template)
     {
-        $mail = new EMail('subject-subject-subject-subject-subject-subject-subject', 'phpunit@simplesamlphp.org', 'phpunit@simplesamlphp.org');
+        $mail = new EMail(
+            'subject-subject-subject-subject-subject-subject-subject',
+            'phpunit@simplesamlphp.org',
+            'phpunit@simplesamlphp.org'
+        );
         $mail->setText('text-text-text-text-text-text-text');
         $mail->setData(['key-key-key-key-key-key-key' => 'value-value-value-value-value-value-value']);
         $result = $mail->generateBody($template);

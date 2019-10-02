@@ -48,8 +48,8 @@ class AttributeRealm extends \SimpleSAML\Auth\ProcessingFilter
         assert(array_key_exists('Attributes', $request));
 
         if (!array_key_exists('UserID', $request)) {
-            throw new \Exception('core:AttributeRealm: Missing UserID for this user. Please'.
-                ' check the \'userid.attribute\' option in the metadata against the'.
+            throw new \Exception('core:AttributeRealm: Missing UserID for this user. Please' .
+                ' check the \'userid.attribute\' option in the metadata against the' .
                 ' attributes provided by the authentication source.');
         }
         $userID = $request['UserID'];

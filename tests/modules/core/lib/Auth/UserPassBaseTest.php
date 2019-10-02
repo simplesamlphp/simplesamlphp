@@ -23,7 +23,7 @@ class UserPassBaseTest extends \PHPUnit\Framework\TestCase
             ->setMethods(['login'])
             ->getMockForAbstractClass();
 
-        /** 
+        /**
          * @psalm-suppress InvalidArgument   Remove when PHPunit 8 is in place
          * @psalm-suppress UndefinedMethod
          */

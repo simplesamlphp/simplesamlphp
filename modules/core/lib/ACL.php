@@ -35,7 +35,7 @@ class ACL
 
         foreach ($acl as $rule) {
             if (!is_array($rule)) {
-                throw new Error\Exception('Invalid rule in access control list: '.var_export($rule, true));
+                throw new Error\Exception('Invalid rule in access control list: ' . var_export($rule, true));
             }
             if (count($rule) === 0) {
                 throw new Error\Exception('Empty rule in access control list.');
@@ -44,7 +44,7 @@ class ACL
             $action = array_shift($rule);
             if ($action !== 'allow' && $action !== 'deny') {
                 throw new Error\Exception(
-                    'Invalid action in rule in access control list: '.var_export($action, true)
+                    'Invalid action in rule in access control list: ' . var_export($action, true)
                 );
             }
         }
@@ -63,7 +63,7 @@ class ACL
 
         $config = Configuration::getOptionalConfig('acl.php');
         if (!$config->hasValue($id)) {
-            throw new Error\Exception('No ACL with id '.var_export($id, true).' in config/acl.php.');
+            throw new Error\Exception('No ACL with id ' . var_export($id, true) . ' in config/acl.php.');
         }
 
         return $config->getArray($id);
@@ -124,7 +124,7 @@ class ACL
             case 'or':
                 return self::opOr($attributes, $rule);
             default:
-                throw new Error\Exception('Invalid ACL operation: '.var_export($op, true));
+                throw new Error\Exception('Invalid ACL operation: ' . var_export($op, true));
         }
     }
 

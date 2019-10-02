@@ -52,10 +52,10 @@ class Error extends \SimpleSAML\Error\Exception
 
         $st = self::shortStatus($status);
         if ($subStatus !== null) {
-            $st .= '/'.self::shortStatus($subStatus);
+            $st .= '/' . self::shortStatus($subStatus);
         }
         if ($statusMessage !== null) {
-            $st .= ': '.$statusMessage;
+            $st .= ': ' . $statusMessage;
         }
         parent::__construct($st, 0, $cause);
 
@@ -133,7 +133,7 @@ class Error extends \SimpleSAML\Error\Exception
             $e = new self(
                 \SAML2\Constants::STATUS_RESPONDER,
                 null,
-                get_class($exception).': '.$exception->getMessage(),
+                get_class($exception) . ': ' . $exception->getMessage(),
                 $exception
             );
         }

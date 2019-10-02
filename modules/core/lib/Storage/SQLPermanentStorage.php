@@ -35,17 +35,17 @@ class SQLPermanentStorage
         $datadir = $config->getPathValue('datadir', 'data/') ?: 'data/';
 
         if (!is_dir($datadir)) {
-            throw new \Exception('Data directory ['.$datadir.'] does not exist');
+            throw new \Exception('Data directory [' . $datadir . '] does not exist');
         } elseif (!is_writable($datadir)) {
-            throw new \Exception('Data directory ['.$datadir.'] is not writable');
+            throw new \Exception('Data directory [' . $datadir . '] is not writable');
         }
 
-        $sqllitedir = $datadir.'sqllite/';
+        $sqllitedir = $datadir . 'sqllite/';
         if (!is_dir($sqllitedir)) {
             mkdir($sqllitedir);
         }
 
-        $dbfile = 'sqlite:'.$sqllitedir.$name.'.sqlite';
+        $dbfile = 'sqlite:' . $sqllitedir . $name . '.sqlite';
         if ($this->db = new PDO($dbfile)) {
             $q = @$this->db->query('SELECT key1 FROM data LIMIT 1');
             if ($q === false) {
@@ -63,7 +63,7 @@ class SQLPermanentStorage
                 ');
             }
         } else {
-            throw new \Exception('Error creating SQL lite database ['.$dbfile.'].');
+            throw new \Exception('Error creating SQL lite database [' . $dbfile . '].');
         }
     }
 
@@ -98,13 +98,14 @@ class SQLPermanentStorage
     {
         $expire = is_null($duration) ? null : (time() + $duration);
 
-        $query = "INSERT INTO data (key1, key2, type, created, updated, expire, value)".
+        $query = "INSERT INTO data (key1, key2, type, created, updated, expire, value)" .
             " VALUES(:key1, :key2, :type, :created, :updated, :expire, :value)";
         $prepared = $this->db->prepare($query);
         $data = [':key1' => $key1, ':key2' => $key2,
             ':type' => $type, ':created' => time(),
             ':updated' => time(), ':expire' => $expire,
-            ':value' => serialize($value)];
+            ':value' => serialize($value)
+        ];
         $prepared->execute($data);
         $results = $prepared->fetchAll(PDO::FETCH_ASSOC);
         return $results;
@@ -123,12 +124,13 @@ class SQLPermanentStorage
     {
         $expire = is_null($duration) ? null : (time() + $duration);
 
-        $query = "UPDATE data SET updated = :updated, value = :value, ".
+        $query = "UPDATE data SET updated = :updated, value = :value, " .
             "expire = :expire WHERE key1 = :key1 AND key2 = :key2 AND type = :type";
         $prepared = $this->db->prepare($query);
         $data = [':key1' => $key1, ':key2' => $key2,
             ':type' => $type, ':updated' => time(),
-            ':expire' => $expire, ':value' => serialize($value)];
+            ':expire' => $expire, ':value' => serialize($value)
+        ];
         $prepared->execute($data);
         $results = $prepared->fetchAll(PDO::FETCH_ASSOC);
         return $results;
@@ -144,7 +146,7 @@ class SQLPermanentStorage
     public function get($type = null, $key1 = null, $key2 = null)
     {
         $conditions = $this->getCondition($type, $key1, $key2);
-        $query = 'SELECT * FROM data WHERE '.$conditions;
+        $query = 'SELECT * FROM data WHERE ' . $conditions;
 
         $prepared = $this->db->prepare($query);
         $prepared->execute();
@@ -202,7 +204,7 @@ class SQLPermanentStorage
     public function getList($type = null, $key1 = null, $key2 = null)
     {
         $conditions = $this->getCondition($type, $key1, $key2);
-        $query = 'SELECT * FROM data WHERE '.$conditions;
+        $query = 'SELECT * FROM data WHERE ' . $conditions;
         $prepared = $this->db->prepare($query);
         $prepared->execute();
 
@@ -233,7 +235,7 @@ class SQLPermanentStorage
         }
 
         $conditions = $this->getCondition($type, $key1, $key2);
-        $query = 'SELECT DISTINCT :whichKey FROM data WHERE '.$conditions;
+        $query = 'SELECT DISTINCT :whichKey FROM data WHERE ' . $conditions;
         $prepared = $this->db->prepare($query);
         $data = ['whichKey' => $whichKey];
         $prepared->execute($data);
@@ -291,16 +293,16 @@ class SQLPermanentStorage
     {
         $conditions = [];
         if (!is_null($type)) {
-            $conditions[] = "type = ".$this->db->quote($type);
+            $conditions[] = "type = " . $this->db->quote($type);
         }
         if (!is_null($key1)) {
-            $conditions[] = "key1 = ".$this->db->quote($key1);
+            $conditions[] = "key1 = " . $this->db->quote($key1);
         }
         if (!is_null($key2)) {
-            $conditions[] = "key2 = ".$this->db->quote($key2);
+            $conditions[] = "key2 = " . $this->db->quote($key2);
         }
 
-        $conditions[] = "(expire IS NULL OR expire >= ".time().")";
+        $conditions[] = "(expire IS NULL OR expire >= " . time() . ")";
         return join(' AND ', $conditions);
     }
 }

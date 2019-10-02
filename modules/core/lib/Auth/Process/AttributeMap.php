@@ -53,11 +53,11 @@ class AttributeMap extends \SimpleSAML\Auth\ProcessingFilter
             }
 
             if (!is_string($origName)) {
-                throw new \Exception('Invalid attribute name: '.var_export($origName, true));
+                throw new \Exception('Invalid attribute name: ' . var_export($origName, true));
             }
 
             if (!is_string($newName) && !is_array($newName)) {
-                throw new \Exception('Invalid attribute name: '.var_export($newName, true));
+                throw new \Exception('Invalid attribute name: ' . var_export($newName, true));
             }
 
             $this->map[$origName] = $newName;
@@ -89,20 +89,20 @@ class AttributeMap extends \SimpleSAML\Auth\ProcessingFilter
             if (!Module::isModuleEnabled($m[0])) {
                 throw new \Exception("Module '$m[0]' is not enabled.");
             }
-            $filePath = Module::getModuleDir($m[0]).'/attributemap/'.$m[1].'.php';
+            $filePath = Module::getModuleDir($m[0]) . '/attributemap/' . $m[1] . '.php';
         } else {
             $attributenamemapdir = $config->getPathValue('attributenamemapdir', 'attributemap/') ?: 'attributemap/';
-            $filePath = $attributenamemapdir.$fileName.'.php';
+            $filePath = $attributenamemapdir . $fileName . '.php';
         }
 
         if (!file_exists($filePath)) {
-            throw new \Exception('Could not find attribute map file: '.$filePath);
+            throw new \Exception('Could not find attribute map file: ' . $filePath);
         }
 
         $attributemap = null;
         include($filePath);
         if (!is_array($attributemap)) {
-            throw new \Exception('Attribute map file "'.$filePath.'" didn\'t define an attribute map.');
+            throw new \Exception('Attribute map file "' . $filePath . '" didn\'t define an attribute map.');
         }
 
         if ($this->duplicate) {

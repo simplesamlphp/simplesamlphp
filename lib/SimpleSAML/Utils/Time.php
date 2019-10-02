@@ -97,10 +97,10 @@ class Time
         }
 
         // parse the duration. We use a very strict pattern
-        $durationRegEx = '#^(-?)P(?:(?:(?:(\\d+)Y)?(?:(\\d+)M)?(?:(\\d+)D)?(?:T(?:(\\d+)H)?(?:(\\d+)M)?(?:(\\d+)'.
+        $durationRegEx = '#^(-?)P(?:(?:(?:(\\d+)Y)?(?:(\\d+)M)?(?:(\\d+)D)?(?:T(?:(\\d+)H)?(?:(\\d+)M)?(?:(\\d+)' .
             '(?:[.,]\d+)?S)?)?)|(?:(\\d+)W))$#D';
         if (!preg_match($durationRegEx, $duration, $matches)) {
-            throw new \InvalidArgumentException('Invalid ISO 8601 duration: '.$duration);
+            throw new \InvalidArgumentException('Invalid ISO 8601 duration: ' . $duration);
         }
 
         $durYears = (empty($matches[2]) ? 0 : (int) $matches[2]);

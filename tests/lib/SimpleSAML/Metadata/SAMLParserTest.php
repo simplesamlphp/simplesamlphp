@@ -2,7 +2,7 @@
 
 namespace SimpleSAML\Test\Metadata;
 
-require_once(__DIR__.'/../../../SigningTestCase.php');
+require_once(__DIR__ . '/../../../SigningTestCase.php');
 
 use PHPUnit\Framework\TestCase;
 use RobRichards\XMLSecLibs\XMLSecurityDSig;
@@ -182,7 +182,7 @@ XML
      * @param string $expected_fingerprint
      * @return void
      */
-    public function _testValidateFingerprint($algo, $expected_fingerprint)
+    private function validateFingerprint($algo, $expected_fingerprint)
     {
         $doc = $this->makeTestDocument();
         $entities = \SimpleSAML\Metadata\SAMLParser::parseDescriptorsElement($doc->documentElement);
@@ -199,7 +199,7 @@ XML
      */
     public function testValidateFingerprintSHA1()
     {
-        $this->_testValidateFingerprint(
+        $this->validateFingerprint(
             XMLSecurityDSig::SHA1,
             'A7:FB:75:22:57:88:A1:B0:D0:29:0A:4B:D1:EA:0C:01:F8:98:44:A0'
         );
@@ -211,7 +211,7 @@ XML
      */
     public function testValidateFingerprintSHA256()
     {
-        $this->_testValidateFingerprint(
+        $this->validateFingerprint(
             XMLSecurityDSig::SHA256,
             '3E:04:6B:2C:13:B5:02:FB:FC:93:66:EE:6C:A3:D1:BB:B8:9E:D8:38:03' .
             ':96:C5:C0:EC:95:D5:C9:F6:C1:D5:FC'
@@ -224,7 +224,7 @@ XML
      */
     public function testValidateFingerprintSHA384()
     {
-        $this->_testValidateFingerprint(
+        $this->validateFingerprint(
             XMLSecurityDSig::SHA384,
             '38:87:CC:59:54:CF:ED:FC:71:B6:21:F3:8A:52:76:EF:30:C8:8C:A0:38' .
             ':48:77:87:58:14:A0:B3:55:EF:48:9C:B4:B3:44:1F:B7:BB:FC:28:65' .
@@ -238,7 +238,7 @@ XML
      */
     public function testValidateFingerprintSHA512()
     {
-        $this->_testValidateFingerprint(
+        $this->validateFingerprint(
             XMLSecurityDSig::SHA512,
             '72:6C:51:01:A1:E9:76:D8:61:C4:B2:4F:AC:0B:64:7D:0D:4E:B7:DC:B3' .
             ':4A:92:23:51:A6:DC:A5:A1:9A:A5:DD:43:F5:05:6A:B7:7D:83:1F:B6:' .
@@ -294,7 +294,7 @@ XML
                         'width' => 17,
                     ],
                     [
-                        'url' => 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=',
+                        'url' => 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==',
                         'height' => 2,
                         'width' => 1,
                     ],
@@ -323,7 +323,7 @@ XML
             <mdui:PrivacyStatementURL xml:lang="en">https://localhost/privacypolicy</mdui:PrivacyStatementURL>
             <mdui:InformationURL xml:lang="en">https://localhost/information</mdui:InformationURL>
             <mdui:Logo width="17" height="16">https://localhost/logo</mdui:Logo>
-            <mdui:Logo width="1" height="2">data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=</mdui:Logo>
+            <mdui:Logo width="1" height="2">data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==</mdui:Logo>
           </mdui:UIInfo>
           <mdui:DiscoHints>
             <mdui:IPHint>127.0.0.1</mdui:IPHint>
@@ -345,9 +345,21 @@ XML
         // Various MDUI elements are accessible
         /** @var array $metadata */
         $metadata = $entities['theEntityID']->getMetadata20IdP();
-        $this->assertEquals($expected['scope'], $metadata['scope'], 'shibmd:Scope elements not reflected in parsed metadata');
-        $this->assertEquals($expected['UIInfo'], $metadata['UIInfo'], 'mdui:UIInfo elements not reflected in parsed metadata');
-        $this->assertEquals($expected['DiscoHints'], $metadata['DiscoHints'], 'mdui:DiscoHints elements not reflected in parsed metadata');
+        $this->assertEquals(
+            $expected['scope'],
+            $metadata['scope'],
+            'shibmd:Scope elements not reflected in parsed metadata'
+        );
+        $this->assertEquals(
+            $expected['UIInfo'],
+            $metadata['UIInfo'],
+            'mdui:UIInfo elements not reflected in parsed metadata'
+        );
+        $this->assertEquals(
+            $expected['DiscoHints'],
+            $metadata['DiscoHints'],
+            'mdui:DiscoHints elements not reflected in parsed metadata'
+        );
         $this->assertEquals($expected['name'], $metadata['name']);
     }
 }

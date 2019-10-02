@@ -51,7 +51,7 @@ class Cron
         Module::callHooks('cron', $croninfo);
 
         foreach ($summary as $s) {
-            Logger::debug('Cron - Summary: '.$s);
+            Logger::debug('Cron - Summary: ' . $s);
         }
 
         return $croninfo;

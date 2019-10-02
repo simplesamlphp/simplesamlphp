@@ -14,8 +14,8 @@ $id = $_REQUEST['StateId'];
 $state = \SimpleSAML\Auth\State::loadState($id, 'core:cardinality');
 $session = \SimpleSAML\Session::getSessionFromRequest();
 
-\SimpleSAML\Logger::stats('core:cardinality:error '.$state['Destination']['entityid'].' '.$state['saml:sp:IdP'].
-    ' '.implode(',', array_keys($state['core:cardinality:errorAttributes'])));
+\SimpleSAML\Logger::stats('core:cardinality:error ' . $state['Destination']['entityid']
+    . ' ' . $state['saml:sp:IdP'] . ' ' . implode(',', array_keys($state['core:cardinality:errorAttributes'])));
 
 $globalConfig = \SimpleSAML\Configuration::getInstance();
 $t = new \SimpleSAML\XHTML\Template($globalConfig, 'core:cardinality_error.tpl.php');
@@ -24,7 +24,7 @@ if (isset($state['Source']['auth'])) {
     $t->data['LogoutURL'] = \SimpleSAML\Module::getModuleURL(
         'core/authenticate.php',
         ['as' => $state['Source']['auth']]
-    )."&logout";
+    ) . "&logout";
 }
 header('HTTP/1.0 403 Forbidden');
 $t->show();

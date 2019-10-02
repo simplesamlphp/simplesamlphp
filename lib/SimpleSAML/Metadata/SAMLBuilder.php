@@ -95,7 +95,7 @@ class SAMLBuilder
         }
 
         if ($this->maxCache !== null) {
-            $this->entityDescriptor->setCacheDuration('PT'.$this->maxCache.'S');
+            $this->entityDescriptor->setCacheDuration('PT' . $this->maxCache . 'S');
         }
         if ($this->maxDuration !== null) {
             $this->entityDescriptor->setValidUntil(time() + $this->maxDuration);
@@ -337,7 +337,8 @@ class SAMLBuilder
      */
     public function addOrganizationInfo(array $metadata)
     {
-        if (empty($metadata['OrganizationName']) ||
+        if (
+            empty($metadata['OrganizationName']) ||
             empty($metadata['OrganizationDisplayName']) ||
             empty($metadata['OrganizationURL'])
         ) {
@@ -499,7 +500,7 @@ class SAMLBuilder
                 $this->addAttributeAuthority($metadata);
                 break;
             default:
-                Logger::warning('Unable to generate metadata for unknown type \''.$set.'\'.');
+                Logger::warning('Unable to generate metadata for unknown type \'' . $set . '\'.');
         }
     }
 

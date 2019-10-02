@@ -218,7 +218,7 @@ class External extends \SimpleSAML\Auth\Source
              * The only way this should fail is if we remove or rename the authentication source
              * while the user is at the login page.
              */
-            throw new Error\Exception('Could not find authentication source with id '.$state[self::AUTHID]);
+            throw new Error\Exception('Could not find authentication source with id ' . $state[self::AUTHID]);
         }
 
         /*

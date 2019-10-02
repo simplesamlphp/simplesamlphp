@@ -4,6 +4,7 @@ namespace SimpleSAML\Module\core\Auth;
 
 use SimpleSAML\Auth;
 use SimpleSAML\Error;
+use SimpleSAML\Logger;
 use SimpleSAML\Module;
 use SimpleSAML\Utils;
 
@@ -287,7 +288,7 @@ abstract class UserPassOrgBase extends \SimpleSAML\Auth\Source
         /** @var \SimpleSAML\Module\core\Auth\UserPassOrgBase|null $source */
         $source = Auth\Source::getById($state[self::AUTHID]);
         if ($source === null) {
-            throw new \Exception('Could not find authentication source with id '.$state[self::AUTHID]);
+            throw new \Exception('Could not find authentication source with id ' . $state[self::AUTHID]);
         }
 
         $orgMethod = $source->getUsernameOrgMethod();
@@ -308,11 +309,14 @@ abstract class UserPassOrgBase extends \SimpleSAML\Auth\Source
         try {
             $attributes = $source->login($username, $password, $organization);
         } catch (\Exception $e) {
-            \SimpleSAML\Logger::stats('Unsuccessful login attempt from '.$_SERVER['REMOTE_ADDR'].'.');
+            Logger::stats('Unsuccessful login attempt from ' . $_SERVER['REMOTE_ADDR'] . '.');
             throw $e;
         }
 
-        \SimpleSAML\Logger::stats('User \''.$username.'\' at \''.$organization.'\' successfully authenticated from '.$_SERVER['REMOTE_ADDR']);
+        Logger::stats(
+            'User \'' . $username . '\' at \'' . $organization
+            . '\' successfully authenticated from ' . $_SERVER['REMOTE_ADDR']
+        );
 
         // Add the selected Org to the state
         $state[self::ORGID] = $organization;
@@ -346,7 +350,7 @@ abstract class UserPassOrgBase extends \SimpleSAML\Auth\Source
         /** @var \SimpleSAML\Module\core\Auth\UserPassOrgBase|null $source */
         $source = Auth\Source::getById($state[self::AUTHID]);
         if ($source === null) {
-            throw new \Exception('Could not find authentication source with id '.$state[self::AUTHID]);
+            throw new \Exception('Could not find authentication source with id ' . $state[self::AUTHID]);
         }
 
         $orgMethod = $source->getUsernameOrgMethod();

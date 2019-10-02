@@ -42,7 +42,7 @@ class GenerateGroups extends \SimpleSAML\Auth\ProcessingFilter
             // Validate configuration
             foreach ($config as $attributeName) {
                 if (!is_string($attributeName)) {
-                    throw new \Exception('Invalid attribute name for core:GenerateGroups filter: '.
+                    throw new \Exception('Invalid attribute name for core:GenerateGroups filter: ' .
                         var_export($attributeName, true));
                 }
             }
@@ -67,21 +67,21 @@ class GenerateGroups extends \SimpleSAML\Auth\ProcessingFilter
 
         $realm = self::getRealm($attributes);
         if ($realm !== null) {
-            $groups[] = 'realm-'.$realm;
+            $groups[] = 'realm-' . $realm;
         }
 
         foreach ($this->generateGroupsFrom as $name) {
             if (!array_key_exists($name, $attributes)) {
-                Logger::debug('GenerateGroups - attribute \''.$name.'\' not found.');
+                Logger::debug('GenerateGroups - attribute \'' . $name . '\' not found.');
                 // Attribute not present
                 continue;
             }
 
             foreach ($attributes[$name] as $value) {
                 $value = self::escapeIllegalChars($value);
-                $groups[] = $name.'-'.$value;
+                $groups[] = $name . '-' . $value;
                 if ($realm !== null) {
-                    $groups[] = $name.'-'.$realm.'-'.$value;
+                    $groups[] = $name . '-' . $realm . '-' . $value;
                 }
             }
         }

@@ -22,7 +22,7 @@ if (!isset($_REQUEST['cancel'])) {
 
 // find the status of all SPs
 foreach ($SPs as $assocId => &$sp) {
-    $spId = 'logout-iframe-'.sha1($assocId);
+    $spId = 'logout-iframe-' . sha1($assocId);
 
     if (isset($_REQUEST[$spId])) {
         $spStatus = $_REQUEST[$spId];
@@ -42,13 +42,13 @@ foreach ($SPs as $assocId => $sp) {
     if ($sp['core:Logout-IFrame:State'] === 'completed') {
         $idp->terminateAssociation($assocId);
     } else {
-        \SimpleSAML\Logger::warning('Unable to terminate association with '.var_export($assocId, true).'.');
+        \SimpleSAML\Logger::warning('Unable to terminate association with ' . var_export($assocId, true) . '.');
         if (isset($sp['saml:entityID'])) {
             $spId = $sp['saml:entityID'];
         } else {
             $spId = $assocId;
         }
-        \SimpleSAML\Logger::stats('slo-iframe-fail '.$spId);
+        \SimpleSAML\Logger::stats('slo-iframe-fail ' . $spId);
         \SimpleSAML\Stats::log('core:idp:logout-iframe:spfail', ['sp' => $spId]);
         $state['core:Failed'] = true;
     }

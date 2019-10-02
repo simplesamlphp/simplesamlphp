@@ -88,11 +88,12 @@ class CardinalitySingle extends \SimpleSAML\Auth\ProcessingFilter
         assert(is_array($request));
         assert(array_key_exists("Attributes", $request));
 
-        if (array_key_exists('Source', $request) &&
-            array_key_exists('entityid', $request['Source']) &&
-            in_array($request['Source']['entityid'], $this->ignoreEntities, true)
+        if (
+            array_key_exists('Source', $request)
+            && array_key_exists('entityid', $request['Source'])
+            && in_array($request['Source']['entityid'], $this->ignoreEntities, true)
         ) {
-            Logger::debug('CardinalitySingle: Ignoring assertions from '.$request['Source']['entityid']);
+            Logger::debug('CardinalitySingle: Ignoring assertions from ' . $request['Source']['entityid']);
             return;
         }
 

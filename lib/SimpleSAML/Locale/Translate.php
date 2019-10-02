@@ -67,9 +67,9 @@ class Translate
             // TODO: drop this entire if clause for 2.0
             // for backwards compatibility - print warning
             $backtrace = debug_backtrace();
-            $where = $backtrace[0]['file'].':'.$backtrace[0]['line'];
+            $where = $backtrace[0]['file'] . ':' . $backtrace[0]['line'];
             Logger::warning(
-                'Deprecated use of new SimpleSAML\Locale\Translate(...) at '.$where.
+                'Deprecated use of new SimpleSAML\Locale\Translate(...) at ' . $where .
                 '. The last parameter is now a dictionary name, which should not end in ".php".'
             );
 
@@ -106,13 +106,13 @@ class Translate
             if ($sepPos !== false) {
                 $module = substr($name, 0, $sepPos);
                 $fileName = substr($name, $sepPos + 1);
-                $dictDir = Module::getModuleDir($module).'/dictionaries/';
+                $dictDir = Module::getModuleDir($module) . '/dictionaries/';
             } else {
                 $dictDir = $this->configuration->getPathValue('dictionarydir', 'dictionaries/') ?: 'dictionaries/';
                 $fileName = $name;
             }
 
-            $this->dictionaries[$name] = $this->readDictionaryFile($dictDir.$fileName);
+            $this->dictionaries[$name] = $this->readDictionaryFile($dictDir . $fileName);
         }
 
         return $this->dictionaries[$name];
@@ -219,8 +219,8 @@ class Translate
 
         // search the default attribute dictionary
         $dict = $this->getDictionary('attributes');
-        if (array_key_exists('attribute_'.$normName, $dict)) {
-            return $this->getPreferredTranslation($dict['attribute_'.$normName]);
+        if (array_key_exists('attribute_' . $normName, $dict)) {
+            return $this->getPreferredTranslation($dict['attribute_' . $normName]);
         }
 
         // no translations found
@@ -274,11 +274,11 @@ class Translate
         $striptags = false
     ) {
         $backtrace = debug_backtrace();
-        $where = $backtrace[0]['file'].':'.$backtrace[0]['line'];
+        $where = $backtrace[0]['file'] . ':' . $backtrace[0]['line'];
         if (!$fallbackdefault) {
             Logger::warning(
-                'Deprecated use of new SimpleSAML\Locale\Translate::t(...) at '.$where.
-                '. This parameter will go away, the fallback will become'.
+                'Deprecated use of new SimpleSAML\Locale\Translate::t(...) at ' . $where .
+                '. This parameter will go away, the fallback will become' .
                 ' identical to the $tag in 2.0.'
             );
         }
@@ -287,7 +287,7 @@ class Translate
 
             // old style call to t(...). Print warning to log
             Logger::warning(
-                'Deprecated use of SimpleSAML\Locale\Translate::t(...) at '.$where.
+                'Deprecated use of SimpleSAML\Locale\Translate::t(...) at ' . $where .
                 '. Please update the code to use the new style of parameters.'
             );
 
@@ -306,14 +306,14 @@ class Translate
         if (is_array($tag)) {
             $tagData = $tag;
             Logger::warning(
-                'Deprecated use of new SimpleSAML\Locale\Translate::t(...) at '.$where.
+                'Deprecated use of new SimpleSAML\Locale\Translate::t(...) at ' . $where .
                 '. The $tag-parameter can only be a string in 2.0.'
             );
         } else {
             $tagData = $this->getTag($tag);
             if ($tagData === null) {
                 // tag not found
-                Logger::info('Translate: Looking up ['.$tag.']: not translated at all.');
+                Logger::info('Translate: Looking up [' . $tag . ']: not translated at all.');
                 return $this->getStringNotTranslated($tag, $fallbackdefault);
             }
         }
@@ -342,7 +342,7 @@ class Translate
     private function getStringNotTranslated($tag, $fallbacktag)
     {
         if ($fallbacktag) {
-            return 'not translated ('.$tag.')';
+            return 'not translated (' . $tag . ')';
         } else {
             return $tag;
         }
@@ -364,10 +364,12 @@ class Translate
         if (is_string($translation)) {
             $translation = ['en' => $translation];
         } elseif (!is_array($translation)) {
-            throw new \Exception("Inline translation should be string or array. Is ".gettype($translation)." now!");
+            throw new \Exception(
+                "Inline translation should be string or array. Is " . gettype($translation) . " now!"
+            );
         }
 
-        Logger::debug('Translate: Adding inline language translation for tag ['.$tag.']');
+        Logger::debug('Translate: Adding inline language translation for tag [' . $tag . ']');
         $this->langtext[$tag] = $translation;
     }
 
@@ -390,8 +392,8 @@ class Translate
         }
         $filebase = $filebase ?: 'dictionaries/';
 
-        $lang = $this->readDictionaryFile($filebase.$file);
-        Logger::debug('Translate: Merging language array. Loading ['.$file.']');
+        $lang = $this->readDictionaryFile($filebase . $file);
+        Logger::debug('Translate: Merging language array. Loading [' . $file . ']');
         $this->langtext = array_merge($this->langtext, $lang);
     }
 
@@ -404,18 +406,18 @@ class Translate
      */
     private function readDictionaryJSON($filename)
     {
-        $definitionFile = $filename.'.definition.json';
+        $definitionFile = $filename . '.definition.json';
         assert(file_exists($definitionFile));
 
         $fileContent = file_get_contents($definitionFile);
         $lang = json_decode($fileContent, true);
 
         if (empty($lang)) {
-            Logger::error('Invalid dictionary definition file ['.$definitionFile.']');
+            Logger::error('Invalid dictionary definition file [' . $definitionFile . ']');
             return [];
         }
 
-        $translationFile = $filename.'.translation.json';
+        $translationFile = $filename . '.translation.json';
         if (file_exists($translationFile)) {
             $fileContent = file_get_contents($translationFile);
             $moreTrans = json_decode($fileContent, true);
@@ -436,7 +438,7 @@ class Translate
      */
     private function readDictionaryPHP($filename)
     {
-        $phpFile = $filename.'.php';
+        $phpFile = $filename . '.php';
         assert(file_exists($phpFile));
 
         $lang = null;
@@ -459,20 +461,20 @@ class Translate
     {
         assert(is_string($filename));
 
-        Logger::debug('Translate: Reading dictionary ['.$filename.']');
+        Logger::debug('Translate: Reading dictionary [' . $filename . ']');
 
-        $jsonFile = $filename.'.definition.json';
+        $jsonFile = $filename . '.definition.json';
         if (file_exists($jsonFile)) {
             return $this->readDictionaryJSON($filename);
         }
 
-        $phpFile = $filename.'.php';
+        $phpFile = $filename . '.php';
         if (file_exists($phpFile)) {
             return $this->readDictionaryPHP($filename);
         }
 
         Logger::error(
-            $_SERVER['PHP_SELF'].' - Translate: Could not find dictionary file at ['.$filename.']'
+            $_SERVER['PHP_SELF'] . ' - Translate: Could not find dictionary file at [' . $filename . ']'
         );
         return [];
     }
@@ -522,10 +524,10 @@ class Translate
     /**
      * Pick a translation from a given array of translations for the current language.
      *
-     * @param array|null $context An array of options. The current language must be specified as an ISO 639 code accessible
-     * with the key "currentLanguage" in the array.
-     * @param array|null $translations An array of translations. Each translation has an ISO 639 code as its key, identifying
-     * the language it corresponds to.
+     * @param array|null $context An array of options. The current language must be specified
+     *     as an ISO 639 code accessible with the key "currentLanguage" in the array.
+     * @param array|null $translations An array of translations. Each translation has an
+     *     ISO 639 code as its key, identifying the language it corresponds to.
      *
      * @return null|string The translation appropriate for the current language, or null if none found. If the
      * $context or $translations arrays are null, or $context['currentLanguage'] is not defined, null is also returned.
