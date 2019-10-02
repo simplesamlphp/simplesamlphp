@@ -322,7 +322,7 @@ class Memcache
             );
         }
 
-        if (self::$extension === '\memcache') {
+        if (self::$extension === \Memcache::class) {
             Logger::warning(
                 "The use of PHP-extension memcache is deprecated. Please migrate to the memcached extension."
             );
