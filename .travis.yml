@@ -2,6 +2,11 @@ sudo: required
 
 language: php
 
+stages:
+  - pre-conditions
+  - test
+  - quality
+
 php:
   - 5.6
   - 7.0
@@ -10,27 +15,73 @@ php:
   - 7.3
 
 env:
-  - COMMAND="install"
-  - COMMAND="update"
-
-matrix:
-  allow_failures:
-  - php: 7.3
-    env: COMMAND="update"
+  - COMMAND="composer install"
+  - COMMAND="composer update"
 
 before_script:
   - pecl install krb5
-  - composer ${COMMAND}
-  - if [[ "$TRAVIS_PHP_VERSION" == "7.3" ]]; then composer require --dev vimeo/psalm:1.1.9; fi
-  - if [[ "$TRAVIS_PHP_VERSION" == "5.6" ]]; then composer require --dev php-coveralls/php-coveralls; fi
+  - ${COMMAND}
 
 script:
-  - bin/check-syntax.sh
-  - if [[ "$TRAVIS_PHP_VERSION" == "5.6" ]]; then php vendor/phpunit/phpunit/phpunit; else php vendor/phpunit/phpunit/phpunit --no-coverage; fi
-  - if [[ "$TRAVIS_PHP_VERSION" == "7.3" ]]; then vendor/bin/psalm; fi
+  - vendor/simplesamlphp/simplesamlphp-test-framework/bin/check-syntax-php.sh
+  - php vendor/phpunit/phpunit/phpunit --no-coverage
 
-after_success:
-  - if [[ "$TRAVIS_PHP_VERSION" == "5.6" ]]; then php vendor/bin/php-coveralls -v; fi
+jobs:
+  fast_finish: true
+  allow_failures:
+    - php: 7.3
+      env: Psalm
+    - php: 7.3
+      env: PHP Codesniffer
+
+  include:
+    - stage: pre-conditions
+      env: Syntax checks
+      before_script:
+        - composer require simplesamlphp/simplesamlphp-test-framework --dev
+      script:
+        - vendor/simplesamlphp/simplesamlphp-test-framework/bin/check-syntax-yaml.sh
+        - vendor/simplesamlphp/simplesamlphp-test-framework/bin/check-syntax-xml.sh
+        - vendor/simplesamlphp/simplesamlphp-test-framework/bin/check-syntax-json.sh
+
+    - stage: pre-conditions
+      env: Security check
+      before_script:
+        - composer require sensiolabs/security-checker --dev
+      script:
+        - vendor/bin/security-checker security:check
+
+    - stage: quality
+      php: 7.2
+      env: Codecov
+      before_script:
+        - composer update
+        - php vendor/phpunit/phpunit/phpunit
+      script:
+        # Codecov, need to edit bash uploader for incorrect TRAVIS_PYTHON_VERSION environment variable matching, at least until codecov/codecov-bash#133 is resolved
+        - curl -s https://codecov.io/bash > .codecov
+        - sed -i -e 's/TRAVIS_.*_VERSION/^TRAVIS_.*_VERSION=/' .codecov
+        - chmod +x .codecov
+        - ./.codecov -X gcov
+        # - <(curl -s https://codecov.io/bash)
+
+
+    - stage: quality
+      php: 7.3
+      env: Psalm
+      before_script:
+        - composer remove phpunit/phpunit --dev
+        - composer remove vimeo/psalm --dev
+      script:
+        - vendor/bin/psalm
+
+    - stage: quality
+      php: 7.3
+      env: PHP Codesniffer
+      before_script:
+        - composer require squizlabs/php_codesniffer --dev
+      script:
+        - vendor/bin/phpcs lib/
 
 notifications:
   slack:
