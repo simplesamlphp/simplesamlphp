@@ -110,9 +110,15 @@ class SQL extends Store
         $current_version = $this->getTableVersion('kvstore');
 
         $text_t = 'TEXT';
+        $time_field = 'TIMESTAMP';
         if ($this->driver === 'mysql') {
             // TEXT data type has size constraints that can be hit at some point, so we use LONGTEXT instead
             $text_t = 'LONGTEXT';
+        }
+        if ($this->driver === 'sqlsrv') {
+            // TIMESTAMP will not work for MSSQL. TIMESTAMP is automatically generated and cannot be inserted
+            //    so we use DATETIME instead
+            $time_field = 'DATETIME';
         }
 
         /**
@@ -123,8 +129,8 @@ class SQL extends Store
             [
                 'CREATE TABLE ' . $this->prefix .
                 '_kvstore (_type VARCHAR(30) NOT NULL, _key VARCHAR(50) NOT NULL, _value ' . $text_t .
-                ' NOT NULL, _expire TIMESTAMP, PRIMARY KEY (_key, _type))',
-                $this->driver === 'sqlite' ?
+                ' NOT NULL, _expire ' . $time_field . ', PRIMARY KEY (_key, _type))',
+                $this->driver === 'sqlite' || $this->driver === 'sqlsrv' ?
                 'CREATE INDEX ' . $this->prefix . '_kvstore_expire ON ' . $this->prefix . '_kvstore (_expire)' :
                 'ALTER TABLE ' . $this->prefix . '_kvstore ADD INDEX ' . $this->prefix . '_kvstore_expire (_expire)'
             ],
@@ -140,11 +146,14 @@ class SQL extends Store
             [
                 'CREATE TABLE ' . $this->prefix .
                 '_kvstore_new (_type VARCHAR(30) NOT NULL, _key VARCHAR(50) NOT NULL, _value ' . $text_t .
-                ' NOT NULL, _expire TIMESTAMP NULL, PRIMARY KEY (_key, _type))',
+                ' NOT NULL, _expire ' . $time_field . ' NULL, PRIMARY KEY (_key, _type))',
                 'INSERT INTO ' . $this->prefix . '_kvstore_new SELECT * FROM ' . $this->prefix . '_kvstore',
                 'DROP TABLE ' . $this->prefix . '_kvstore',
-                'ALTER TABLE ' . $this->prefix . '_kvstore_new RENAME TO ' . $this->prefix . '_kvstore',
-                $this->driver === 'sqlite' ?
+                // FOR MSSQL use EXEC sp_rename to rename a table (RENAME won't work)
+                $this->driver === 'sqlsrv' ?
+                'EXEC sp_rename ' . $this->prefix . '_kvstore_new, ' . $this->prefix . '_kvstore' :
+                'ALTER TABLE '. $this->prefix . '_kvstore_new RENAME TO ' . $this->prefix . '_kvstore',
+                $this->driver === 'sqlite' || $this->driver === 'sqlsrv' ?
                 'CREATE INDEX ' . $this->prefix . '_kvstore_expire ON ' . $this->prefix . '_kvstore (_expire)' :
                 'ALTER TABLE ' . $this->prefix . '_kvstore ADD INDEX ' . $this->prefix . '_kvstore_expire (_expire)'
             ]
@@ -257,7 +266,7 @@ class SQL extends Store
                 $selectQuery = $this->pdo->prepare($selectQuery);
                 $selectQuery->execute($condData);
 
-                if ($selectQuery->rowCount() > 0) {
+                if (count($selectQuery->fetchAll()) > 0) {
                     // Update
                     $insertOrUpdateQuery = 'UPDATE ' . $table . ' SET ' . implode(',', $updateCols);
                     $insertOrUpdateQuery .= ' WHERE ' . implode(' AND ', $condCols);
