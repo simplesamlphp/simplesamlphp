@@ -152,7 +152,7 @@ class SQL extends Store
                 // FOR MSSQL use EXEC sp_rename to rename a table (RENAME won't work)
                 $this->driver === 'sqlsrv' ?
                 'EXEC sp_rename ' . $this->prefix . '_kvstore_new, ' . $this->prefix . '_kvstore' :
-                'ALTER TABLE '. $this->prefix . '_kvstore_new RENAME TO ' . $this->prefix . '_kvstore',
+                'ALTER TABLE '. $this->prefix . '_kvstore_new RENAME TO ' . $this->prefix . '_kvstore' ,
                 $this->driver === 'sqlite' || $this->driver === 'sqlsrv' ?
                 'CREATE INDEX ' . $this->prefix . '_kvstore_expire ON ' . $this->prefix . '_kvstore (_expire)' :
                 'ALTER TABLE ' . $this->prefix . '_kvstore ADD INDEX ' . $this->prefix . '_kvstore_expire (_expire)'
