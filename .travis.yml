@@ -29,7 +29,7 @@ before_script:
   - ${COMMAND}
 
 script:
-  - php vendor/phpunit/phpunit/phpunit --no-coverage
+  - php vendor/bin/phpunit --no-coverage
 
 jobs:
   fast_finish: true
@@ -122,7 +122,7 @@ jobs:
       env: Codecov
       before_script:
         - composer update
-        - php vendor/phpunit/phpunit/phpunit
+        - php vendor/bin/phpunit
       script:
         # Codecov, need to edit bash uploader for incorrect TRAVIS_PYTHON_VERSION environment variable matching, at least until codecov/codecov-bash#133 is resolved
         - curl -s https://codecov.io/bash > .codecov
