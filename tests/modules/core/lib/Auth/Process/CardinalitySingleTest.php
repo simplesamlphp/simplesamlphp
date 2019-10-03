@@ -2,7 +2,7 @@
 
 namespace SimpleSAML\Test\Module\core\Auth\Process;
 
-use SimpleSAML\Utils\HTTPAdapter;
+use SimpleSAML\Utils\HttpAdapter;
 
 /**
  * Test for the core:CardinalitySingle filter.
@@ -40,7 +40,7 @@ class CardinalitySingleTest extends \PHPUnit\Framework\TestCase
     protected function setUp()
     {
         \SimpleSAML\Configuration::loadFromArray([], '[ARRAY]', 'simplesaml');
-        $this->http = $this->getMockBuilder(HTTPAdapter::class)
+        $this->http = $this->getMockBuilder(HttpAdapter::class)
                            ->setMethods(['redirectTrustedURL'])
                            ->getMock();
     }
