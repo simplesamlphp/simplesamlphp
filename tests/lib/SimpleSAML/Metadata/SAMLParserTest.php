@@ -2,8 +2,6 @@
 
 namespace SimpleSAML\Test\Metadata;
 
-require_once(__DIR__ . '/../../../SigningTestCase.php');
-
 use PHPUnit\Framework\TestCase;
 use RobRichards\XMLSecLibs\XMLSecurityDSig;
 use SimpleSAML\XML\Signer;

@@ -2,8 +2,6 @@
 
 namespace SimpleSAML\Test\XML;
 
-require_once(__DIR__ . '/../../../SigningTestCase.php');
-
 use org\bovigo\vfs\vfsStream;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Test\SigningTestCase;

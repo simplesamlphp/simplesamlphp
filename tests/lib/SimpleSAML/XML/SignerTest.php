@@ -8,8 +8,6 @@ use SimpleSAML\Configuration;
 use SimpleSAML\Test\SigningTestCase;
 use SimpleSAML\XML\Signer;
 
-require_once(__DIR__ . '/../../../SigningTestCase.php');
-
 /**
  * Tests for SimpleSAML\XML\Signer.
  */
