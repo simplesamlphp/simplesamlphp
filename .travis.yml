@@ -36,7 +36,7 @@ jobs:
   include:
     - stage: pre-conditions
       php: 5.6
-      env: COMMAND="Syntax check PHP"
+      env: Syntax check PHP
       before_script:
         - composer install
       script:
@@ -44,7 +44,7 @@ jobs:
 
     - stage: pre-conditions
       php: 7.0
-      env: COMMAND="Syntax check PHP"
+      env: Syntax check PHP
       before_script:
         - composer install
       script:
@@ -52,7 +52,7 @@ jobs:
 
     - stage: pre-conditions
       php: 7.1
-      env: COMMAND="Syntax check PHP"
+      env: Syntax check PHP
       before_script:
         - composer install
       script:
@@ -60,7 +60,7 @@ jobs:
 
     - stage: pre-conditions
       php: 7.2
-      env: COMMAND="Syntax check PHP"
+      env: Syntax check PHP
       before_script:
         - composer install
       script:
@@ -68,7 +68,7 @@ jobs:
 
     - stage: pre-conditions
       php: 7.3
-      env: COMMAND="Syntax check PHP"
+      env: Syntax check PHP
       before_script:
         - composer install
       script:
