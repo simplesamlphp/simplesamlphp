@@ -23,7 +23,6 @@ before_script:
   - ${COMMAND}
 
 script:
-  - vendor/bin/check-syntax-php.sh
   - php vendor/phpunit/phpunit/phpunit --no-coverage
 
 jobs:
@@ -36,7 +35,20 @@ jobs:
 
   include:
     - stage: pre-conditions
-      env: Syntax checks
+      php:
+        - 5.6
+        - 7.0
+        - 7.1
+        - 7.2
+        - 7.3
+      env: Syntax check PHP
+      before_script:
+          - composer install
+      script:
+        - vendor/bin/check-syntax-php.sh
+
+    - stage: pre-conditions
+      env: Syntax check YAML / XML / JSON
       before_script:
         - composer update
       script:
