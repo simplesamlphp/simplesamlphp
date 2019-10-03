@@ -38,11 +38,11 @@ jobs:
     - stage: pre-conditions
       env: Syntax checks
       before_script:
-        - composer require update
+        - composer update
       script:
         - vendor/bin/check-syntax-yaml.sh
         - vendor/bin/check-syntax-xml.sh
-        - vendor/check-syntax-json.sh
+        - vendor/bin/check-syntax-json.sh
 
     - stage: pre-conditions
       env: Security check
@@ -67,7 +67,6 @@ jobs:
 
 
     - stage: quality
-      php: 7.3
       env: Psalm
       before_script:
         - composer update
@@ -75,7 +74,6 @@ jobs:
         - vendor/bin/psalm
 
     - stage: quality
-      php: 7.3
       env: PHP Codesniffer
       before_script:
         - composer update

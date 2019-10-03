@@ -35,7 +35,7 @@
     </rule>
 
     <rule ref="PSR1.Files.SideEffects">
-        <exclude-pattern>src/_autoload_modules.php</exclude-pattern>
+        <exclude-pattern>lib/_autoload_modules.php</exclude-pattern>
     </rule>
 </ruleset>
 
