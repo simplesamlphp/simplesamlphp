@@ -2,10 +2,16 @@ sudo: required
 
 language: php
 
+# Stage order
 stages:
   - pre-conditions
   - test
   - quality
+
+
+################
+#  Test stage  #
+################
 
 php:
   - 5.6
@@ -31,9 +37,18 @@ jobs:
     - php: 5.6
       env: Psalm
     - php: 5.6
+      env: Security check (composer install)
+    - php: 5.6
+      env: Security check (composer update)
+    - php: 5.6
       env: PHP Codesniffer
 
   include:
+
+    ##########################
+    #  Pre-conditions stage  #
+    ##########################
+
     - stage: pre-conditions
       php: 5.6
       env: Syntax check PHP
@@ -83,8 +98,20 @@ jobs:
         - vendor/bin/check-syntax-xml.sh
         - vendor/bin/check-syntax-json.sh
 
-    - stage: pre-conditions
-      env: Security check
+
+    ###################
+    #  Quality stage  #
+    ###################
+
+    - stage: quality
+      env: Security check (composer install)
+      before_script:
+        - composer install
+      script:
+        - vendor/bin/security-checker security:check
+
+    - stage: quality
+      env: Security check (composer update)
       before_script:
         - composer update
       script:
@@ -103,7 +130,6 @@ jobs:
         - chmod +x .codecov
         - ./.codecov -X gcov
         # - <(curl -s https://codecov.io/bash)
-
 
     - stage: quality
       env: Psalm
