@@ -46,6 +46,7 @@
 
     <rule ref="PSR1.Files.SideEffects">
         <exclude-pattern>lib/_autoload_modules.php</exclude-pattern>
+        <exclude-pattern>tests/_autoload_modules.php</exclude-pattern>
     </rule>
 </ruleset>
 
