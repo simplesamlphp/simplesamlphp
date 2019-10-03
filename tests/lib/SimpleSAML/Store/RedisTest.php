@@ -130,7 +130,7 @@ class RedisTest extends TestCase
 
         $this->assertInstanceOf(Store\Redis::class, $store);
 
-        $this->clearInstance($config, configuration::Class);
+        $this->clearInstance($config, Configuration::class);
         $this->clearInstance($store, Store::class);
     }
 
