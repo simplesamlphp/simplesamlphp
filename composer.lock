@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "526c93abc84a9cdb1799d75de36515b0",
+    "content-hash": "264ae3da56101d2c96cc1bcce75a1161",
     "packages": [
         {
             "name": "gettext/gettext",
@@ -4856,16 +4856,16 @@
         },
         {
             "name": "simplesamlphp/simplesamlphp-test-framework",
-            "version": "v0.0.11",
+            "version": "v0.0.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/simplesamlphp-test-framework.git",
-                "reference": "39595c00895a09e9b1d9beaafa860cc11c8e641c"
+                "reference": "e582a10084c14dd9bd1ff107d33c48c397e57f64"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-test-framework/zipball/39595c00895a09e9b1d9beaafa860cc11c8e641c",
-                "reference": "39595c00895a09e9b1d9beaafa860cc11c8e641c",
+                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-test-framework/zipball/e582a10084c14dd9bd1ff107d33c48c397e57f64",
+                "reference": "e582a10084c14dd9bd1ff107d33c48c397e57f64",
                 "shasum": ""
             },
             "require": {
@@ -4879,6 +4879,12 @@
                 "ext-krb5": "*",
                 "simplesamlphp/simplesamlphp": "dev-master"
             },
+            "bin": [
+                "bin/check-syntax-json.sh",
+                "bin/check-syntax-php.sh",
+                "bin/check-syntax-xml.sh",
+                "bin/check-syntax-yaml.sh"
+            ],
             "type": "project",
             "autoload": {
                 "psr-4": {
@@ -4899,7 +4905,7 @@
             "keywords": [
                 "test-framework"
             ],
-            "time": "2019-08-12T20:28:03+00:00"
+            "time": "2019-10-03T09:29:11+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",

@@ -23,7 +23,7 @@ before_script:
   - ${COMMAND}
 
 script:
-  - vendor/simplesamlphp/simplesamlphp-test-framework/bin/check-syntax-php.sh
+  - vendor/bin/check-syntax-php.sh
   - php vendor/phpunit/phpunit/phpunit --no-coverage
 
 jobs:
@@ -40,9 +40,9 @@ jobs:
       before_script:
         - composer require update
       script:
-        - vendor/simplesamlphp/simplesamlphp-test-framework/bin/check-syntax-yaml.sh
-        - vendor/simplesamlphp/simplesamlphp-test-framework/bin/check-syntax-xml.sh
-        - vendor/simplesamlphp/simplesamlphp-test-framework/bin/check-syntax-json.sh
+        - vendor/bin/check-syntax-yaml.sh
+        - vendor/bin/check-syntax-xml.sh
+        - vendor/check-syntax-json.sh
 
     - stage: pre-conditions
       env: Security check
