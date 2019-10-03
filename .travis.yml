@@ -38,7 +38,7 @@ jobs:
     - stage: pre-conditions
       env: Syntax checks
       before_script:
-        - composer require simplesamlphp/simplesamlphp-test-framework --dev
+        - composer require update
       script:
         - vendor/simplesamlphp/simplesamlphp-test-framework/bin/check-syntax-yaml.sh
         - vendor/simplesamlphp/simplesamlphp-test-framework/bin/check-syntax-xml.sh
@@ -47,7 +47,7 @@ jobs:
     - stage: pre-conditions
       env: Security check
       before_script:
-        - composer require sensiolabs/security-checker --dev
+        - composer update
       script:
         - vendor/bin/security-checker security:check
 
@@ -70,8 +70,7 @@ jobs:
       php: 7.3
       env: Psalm
       before_script:
-        - composer remove phpunit/phpunit --dev
-        - composer remove vimeo/psalm --dev
+        - composer update
       script:
         - vendor/bin/psalm
 
@@ -79,7 +78,7 @@ jobs:
       php: 7.3
       env: PHP Codesniffer
       before_script:
-        - composer require squizlabs/php_codesniffer --dev
+        - composer update
       script:
         - vendor/bin/phpcs lib/
 
