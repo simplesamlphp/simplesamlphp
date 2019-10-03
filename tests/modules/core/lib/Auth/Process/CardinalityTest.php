@@ -3,7 +3,7 @@
 namespace SimpleSAML\Test\Module\core\Auth\Process;
 
 use SimpleSAML\Error\Exception as SspException;
-use SimpleSAML\Utils\HTTPAdapter;
+use SimpleSAML\Utils\HttpAdapter;
 
 /**
  * Test for the core:Cardinality filter.
@@ -41,7 +41,7 @@ class CardinalityTest extends \PHPUnit\Framework\TestCase
     protected function setUp()
     {
         \SimpleSAML\Configuration::loadFromArray([], '[ARRAY]', 'simplesaml');
-        $this->http = $this->getMockBuilder(HTTPAdapter::class)
+        $this->http = $this->getMockBuilder(HttpAdapter::class)
                            ->setMethods(['redirectTrustedURL'])
                            ->getMock();
     }
