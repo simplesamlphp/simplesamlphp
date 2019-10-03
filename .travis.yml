@@ -144,6 +144,8 @@ jobs:
         - composer update
       script:
         - vendor/bin/phpcs lib/
+        - vendor/bin/phpcs modules/
+        - vendor/bin/phpcs tests/
 
 notifications:
   slack:
