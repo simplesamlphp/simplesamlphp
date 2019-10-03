@@ -144,7 +144,12 @@ jobs:
         - composer update
       script:
         - vendor/bin/phpcs lib/
-        - vendor/bin/phpcs modules/
+        - vendor/bin/phpcs modules/admin
+        - vendor/bin/phpcs modules/core
+        - vendor/bin/phpcs modules/cron
+        - vendor/bin/phpcs modules/multiauth
+        - vendor/bin/phpcs modules/portal
+        - vendor/bin/phpcs modules/saml
         - vendor/bin/phpcs tests/
 
 notifications:
