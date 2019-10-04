@@ -6,19 +6,35 @@
         By default it is less stringent about long lines than other coding standards
     </description>
 
-    <!-- Use this to exclude paths. You can have multiple patterns -->
-    <!--<exclude-pattern>*/tests/*</exclude-pattern>-->
-    <!--<exclude-pattern>*/other/*</exclude-pattern>-->
+    <file>bin</file>
+    <file>config-templates</file>
+    <file>lib</file>
+    <file>metadata-templates</file>
+    <file>modules/admin</file>
+    <file>modules/core</file>
+    <file>modules/cron</file>
+    <file>modules/multiauth</file>
+    <file>modules/portal</file>
+    <file>modules/saml</file>
+    <file>src</file>
+    <file>tests</file>
+    <file>www</file>
+
+    <!-- Exclude deprecated classes; they are removed in SSP 2.0 -->
     <exclude-pattern>lib/SimpleSAML/Auth/LDAP.php</exclude-pattern>
     <exclude-pattern>lib/SimpleSAML/Auth/TimeLimitedToken.php</exclude-pattern>
     <exclude-pattern>lib/SimpleSAML/Bindings/Shib13/*</exclude-pattern>
     <exclude-pattern>lib/SimpleSAML/Utilities.php</exclude-pattern>
     <exclude-pattern>lib/SimpleSAML/XML/Shib13/*</exclude-pattern>
-    <exclude-pattern>modules/*/templates/*.tpl.php</exclude-pattern>
     <exclude-pattern>modules/saml/lib/IdP/SAML1.php</exclude-pattern>
     <exclude-pattern>modules/saml/www/sp/saml1-acs.php</exclude-pattern>
-    <exclude-pattern>templates/*.tpl.php</exclude-pattern>
     <exclude-pattern>tests/lib/SimpleSAML/Auth/TimeLimitedTokenTest.php</exclude-pattern>
+
+    <!-- Exclude old PHP templates; they are removed in SSP 2.0 -->
+    <exclude-pattern>modules/*/templates/*.tpl.php</exclude-pattern>
+    <exclude-pattern>templates/*.tpl.php</exclude-pattern>
+
+    <!-- Exclude Stubs until we use simplesamlphp/simplesamlphp-test-framework -->
     <exclude-pattern>tests/Utils/Stubs/*</exclude-pattern>
  
     <!-- This is the rule we inherit from. If you want to exlude some specific rules, see the docs on how to do that -->
@@ -44,6 +60,7 @@
         <exclude-pattern>lib/SimpleSAML/XHTML/Template.php</exclude-pattern>
     </rule>
 
+    <!-- Ignore files with sid effects that we cannot fix -->
     <rule ref="PSR1.Files.SideEffects">
         <exclude-pattern>lib/_autoload_modules.php</exclude-pattern>
         <exclude-pattern>tests/_autoload_modules.php</exclude-pattern>
