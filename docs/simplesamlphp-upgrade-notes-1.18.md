@@ -6,7 +6,7 @@ The minimum PHP version required is now PHP 5.6.
 ### Deprecations
 
 * The use of the PHP `memcache` extension was deprecated in favour of `memcached`.
-In order to keep using memcache functionality you have to move to the PHP `memchached` extension,
+In order to keep using memcache functionality you have to move to the PHP `memcached` extension,
 which is available from PECL; see https://pecl.php.net/package/memcached. The former is considered abandoned
 and it's safe use can no longer be guaranteed.
 
