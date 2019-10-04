@@ -1,4 +1,5 @@
 <?php
+
 /**
  * WS-Federation remote IdP metadata for SimpleSAMLphp.
  */

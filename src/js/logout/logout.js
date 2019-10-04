@@ -12,7 +12,8 @@
  * error or not, and call the appropriate method (either completed() or failed()).
  */
 class SimpleSAMLLogout {
-    constructor(page) {
+    constructor(page)
+    {
         if (page === 'core:logout-iframe') { // main page
             this.populateData();
             if (Object.keys(this.sps).length === 0) {
@@ -21,7 +22,6 @@ class SimpleSAMLLogout {
             }
             this.btnall.on('click', this.initLogout.bind(this));
             window.addEventListener('message', this.clearAssociation.bind(this), false);
-
         } else if (page === 'IFrameLogoutHandler') { // iframe
             let data = $('i[id="data"]');
             let message = {
@@ -41,7 +41,8 @@ class SimpleSAMLLogout {
      *
      * @param event The event containing the message from the iframe.
      */
-    clearAssociation(event) {
+    clearAssociation(event)
+    {
         if (event.origin !== SimpleSAMLLogout.getOrigin()) {
             // we don't accept events from other origins
             return;
@@ -69,7 +70,8 @@ class SimpleSAMLLogout {
      *
      * @param id The ID of the SP that completed logout successfully.
      */
-    completed(id) {
+    completed(id)
+    {
         if (typeof this.sps[id] === 'undefined') {
             return;
         }
@@ -91,7 +93,8 @@ class SimpleSAMLLogout {
      * @param id The ID of the SP that failed to complete logout.
      * @param reason The reason why logout failed.
      */
-    failed(id, reason) {
+    failed(id, reason)
+    {
         if (typeof this.sps[id] === 'undefined') {
             return;
         }
@@ -121,7 +124,8 @@ class SimpleSAMLLogout {
      *
      * Note: this method won't do anything if there are SPs pending logout (e.g. waiting for the timeout).
      */
-    finish() {
+    finish()
+    {
         if (Object.keys(this.sps).length > 0) { // pending services
             return;
         }
@@ -134,7 +138,6 @@ class SimpleSAMLLogout {
             this.errmsg.removeClass('hidden');
             this.errfrm.removeClass('hidden');
             this.actions.addClass('hidden');
-
         } else { // all services done
             this.btncontinue.click();
         }
@@ -144,12 +147,13 @@ class SimpleSAMLLogout {
     /**
      * Get the origin of the current page.
      */
-    static getOrigin() {
+    static getOrigin()
+    {
         let origin = window.location.origin;
         if (!origin) {
             // IE < 11 does not support window.location.origin
             origin = window.location.protocol + "//" + window.location.hostname +
-                (window.location.port ? ':' + window.location.port: '');
+                (window.location.port ? ':' + window.location.port : '');
         }
         return origin;
     }
@@ -160,7 +164,8 @@ class SimpleSAMLLogout {
      *
      * @param event The click event on the "Yes, all services" button.
      */
-    initLogout(event) {
+    initLogout(event)
+    {
         event.preventDefault();
 
         this.btnall.prop('disabled', true);
@@ -180,7 +185,8 @@ class SimpleSAMLLogout {
      *
      * If an SP didn't reply by the timeout, we'll mark it as failed.
      */
-    initTimeout() {
+    initTimeout()
+    {
         let timeout = 10;
 
         for (const id in this.sps) {
@@ -217,7 +223,8 @@ class SimpleSAMLLogout {
     /**
      * This method populates the data we need from data-* properties in the page.
      */
-    populateData() {
+    populateData()
+    {
         this.sps = {};
         this.btnall = $('button[id="btn-all"]');
         this.btncancel = $('button[id="btn-cancel"]');
@@ -231,7 +238,7 @@ class SimpleSAMLLogout {
         // initialise SP status and timeout arrays
         $('li[id^="sp-"]').each(function () {
             let id = $(this).data('id');
-            let iframe = $('iframe[id="iframe-'+id+'"]');
+            let iframe = $('iframe[id="iframe-' + id + '"]');
             let status = $(this).data('status');
 
             switch (status) {
@@ -246,7 +253,7 @@ class SimpleSAMLLogout {
                 timeout: $(this).data('timeout'),
                 element: $(this),
                 iframe: iframe,
-                icon: $('i[id="icon-'+id+'"]'),
+                icon: $('i[id="icon-' + id + '"]'),
             };
         });
     }

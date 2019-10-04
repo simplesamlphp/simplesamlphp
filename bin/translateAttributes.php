@@ -6,17 +6,17 @@
  * translation file for each supported language.
  */
 
-$base = __DIR__.'/../';
+$base = __DIR__ . '/../';
 
-include_once($base.'vendor/autoload.php');
+include_once($base . 'vendor/autoload.php');
 
-include_once($base.'attributemap/name2urn.php');
+include_once($base . 'attributemap/name2urn.php');
 $names = $attributemap;
 
-include_once($base.'attributemap/urn2oid.php');
+include_once($base . 'attributemap/urn2oid.php');
 $urns = $attributemap;
 
-include_once($base.'attributemap/newSchacNS.php');
+include_once($base . 'attributemap/newSchacNS.php');
 $schac = $attributemap;
 
 /*
@@ -25,8 +25,8 @@ $schac = $attributemap;
  * probably consider moving the "dictionaries/attributes.definition.json" file somewhere else, and keep using it as
  * the authoritative source of known attributes for this script.
  */
-$defs = json_decode(file_get_contents($base.'dictionaries/attributes.definition.json'), true);
-$trans = json_decode(file_get_contents($base.'dictionaries/attributes.translation.json'), true);
+$defs = json_decode(file_get_contents($base . 'dictionaries/attributes.definition.json'), true);
+$trans = json_decode(file_get_contents($base . 'dictionaries/attributes.translation.json'), true);
 
 $attributes = [];
 
@@ -38,16 +38,16 @@ unset($languages['no']);
 // build the list of attributes with their corresponding aliases
 foreach ($names as $name => $urn) {
     $lower = str_replace([':', '-'], '_', strtolower($name));
-    if (!array_key_exists('attribute_'.$lower, $defs)) {
+    if (!array_key_exists('attribute_' . $lower, $defs)) {
         $defs['attribute_'.$lower] = [];
     }
-    if (!array_key_exists('attribute_'.$lower, $trans)) {
+    if (!array_key_exists('attribute_' . $lower, $trans)) {
         $trans['attribute_'.$lower] = [];
     }
-    if (array_key_exists('no', $trans['attribute_'.$lower])) {
+    if (array_key_exists('no', $trans['attribute_' . $lower])) {
         // fix the locale code
-        $trans['attribute_'.$lower]['nb'] = $trans['attribute_'.$lower]['no'];
-        unset($trans['attribute_'.$lower]['no']);
+        $trans['attribute_' . $lower]['nb'] = $trans['attribute_' . $lower]['no'];
+        unset($trans['attribute_' . $lower]['no']);
     }
     $names = [$name, $urn, $urns[$urn]];
     if (array_key_exists($urn, $schac)) {
@@ -57,16 +57,16 @@ foreach ($names as $name => $urn) {
         'names' => $names,
         'translations' => array_merge(
             [
-                'en' => $defs['attribute_'.$lower]['en'],
+                'en' => $defs['attribute_' . $lower]['en'],
             ],
-            $trans['attribute_'.$lower]
+            $trans['attribute_' . $lower]
         ),
     ];
 }
 
 // process other sets of attributes
 foreach (['facebook', 'linkedin', 'openid', 'twitter', 'windowslive'] as $set) {
-    include_once($base.'attributemap/'.$set.'2name.php');
+    include_once($base . 'attributemap/' . $set . '2name.php');
     foreach ($attributemap as $alias => $attr) {
         if (array_key_exists($attr, $attributes)) {
             $attributes[$attr]['names'][] = $alias;
@@ -79,7 +79,7 @@ foreach (array_keys($languages) as $language) {
     $strings = new Gettext\Translations();
 
     // load existing translations in the PO files
-    $strings->addFromPoFile($base.'locales/'.$language."/LC_MESSAGES/attributes.po");
+    $strings->addFromPoFile($base . 'locales/' . $language . "/LC_MESSAGES/attributes.po");
 
     foreach ($attributes as $attribute) {
         foreach ($attribute['names'] as $name) {
@@ -88,7 +88,8 @@ foreach (array_keys($languages) as $language) {
             }
             $translation = new Gettext\Translation('', $name);
             if (array_key_exists($language, $attribute['translations']) &&
-                !is_null($attribute['translations'][$language])) {
+                !is_null($attribute['translations'][$language])
+            ) {
                 $t = $strings->find($translation);
                 if ($t) {
                     if ($t->getOriginal() === $t->getTranslation()) {
@@ -98,7 +99,7 @@ foreach (array_keys($languages) as $language) {
                 }
             }
             if (!is_null($attribute['translations']['en']) && $language !== 'en') {
-                $translation->addComment('English string: '.$attribute['translations']['en']);
+                $translation->addComment('English string: ' . $attribute['translations']['en']);
             }
             $strings[] = $translation;
         }
@@ -116,6 +117,6 @@ foreach (array_keys($languages) as $language) {
     $strings->deleteHeader('PO-Revision-Date');
 
     $strings->setLanguage($language);
-    echo "Saving translations to ".$base."locales/".$language."/LC_MESSAGES/attributes.po\n";
-    Gettext\Generators\Po::toFile($strings, $base.'locales/'.$language.'/LC_MESSAGES/attributes.po');
+    echo "Saving translations to " . $base . "locales/" . $language . "/LC_MESSAGES/attributes.po\n";
+    Gettext\Generators\Po::toFile($strings, $base . 'locales/' . $language . '/LC_MESSAGES/attributes.po');
 }

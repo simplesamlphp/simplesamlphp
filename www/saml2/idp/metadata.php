@@ -112,7 +112,7 @@ try {
         // Artifact sending enabled
         $metaArray['ArtifactResolutionService'][] = [
             'index'    => 0,
-            'Location' => HTTP::getBaseURL().'saml2/idp/ArtifactResolutionService.php',
+            'Location' => HTTP::getBaseURL() . 'saml2/idp/ArtifactResolutionService.php',
             'Binding'  => Constants::BINDING_SOAP,
         ];
     }
@@ -122,7 +122,7 @@ try {
         array_unshift($metaArray['SingleSignOnService'], [
             'hoksso:ProtocolBinding' => Constants::BINDING_HTTP_REDIRECT,
             'Binding'                => Constants::BINDING_HOK_SSO,
-            'Location'               => HTTP::getBaseURL().'saml2/idp/SSOService.php'
+            'Location'               => HTTP::getBaseURL() . 'saml2/idp/SSOService.php'
         ]);
     }
 
@@ -130,7 +130,7 @@ try {
         $metaArray['SingleSignOnService'][] = [
             'index' => 0,
             'Binding'  => Constants::BINDING_SOAP,
-            'Location' => HTTP::getBaseURL().'saml2/idp/SSOService.php',
+            'Location' => HTTP::getBaseURL() . 'saml2/idp/SSOService.php',
         ];
     }
 
@@ -206,7 +206,7 @@ try {
 
     $metaxml = $metaBuilder->getEntityDescriptorText();
 
-    $metaflat = '$metadata['.var_export($idpentityid, true).'] = '.var_export($metaArray, true).';';
+    $metaflat = '$metadata[' . var_export($idpentityid, true) . '] = ' . var_export($metaArray, true) . ';';
 
     // sign the metadata if enabled
     $metaxml = \SimpleSAML\Metadata\Signer::sign($metaxml, $idpmeta->toArray(), 'SAML 2 IdP');
@@ -219,7 +219,7 @@ try {
         $certdata = [];
         foreach (array_keys($availableCerts) as $availableCert) {
             $certdata[$availableCert]['name'] = $availableCert;
-            $certdata[$availableCert]['url'] = SimpleSAML\Module::getModuleURL('saml/idp/certs.php').'/'.$availableCert;
+            $certdata[$availableCert]['url'] = SimpleSAML\Module::getModuleURL('saml/idp/certs.php') . '/' . $availableCert;
             $certdata[$availableCert]['comment'] = (
                 $availableCerts[$availableCert]['certFingerprint'][0] === 'afe71c28ef740bc87425be13a2263d37971da1f9' ?
                 'This is the default certificate. Generate a new certificate if this is a production system.' :

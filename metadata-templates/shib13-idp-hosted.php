@@ -1,4 +1,5 @@
 <?php
+
 /**
  * SAML 1.1 IdP configuration for SimpleSAMLphp.
  *

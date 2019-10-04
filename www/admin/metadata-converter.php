@@ -41,8 +41,8 @@ if (!empty($xmldata)) {
             // remove the entityDescriptor element because it is unused, and only makes the output harder to read
             unset($entityMetadata['entityDescriptor']);
 
-            $text .= '$metadata['.var_export($entityId, true).'] = '.
-                var_export($entityMetadata, true).";\n";
+            $text .= '$metadata[' . var_export($entityId, true) . '] = ' .
+                var_export($entityMetadata, true) . ";\n";
         }
         $entities = $text;
     }

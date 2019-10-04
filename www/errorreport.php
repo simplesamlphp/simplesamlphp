@@ -22,7 +22,7 @@ try {
     $session = \SimpleSAML\Session::getSessionFromRequest();
     $data = $session->getData('core:errorreport', $reportId);
 } catch (\Exception $e) {
-    \SimpleSAML\Logger::error('Error loading error report data: '.var_export($e->getMessage(), true));
+    \SimpleSAML\Logger::error('Error loading error report data: ' . var_export($e->getMessage(), true));
 }
 
 if ($data === null) {
@@ -45,12 +45,12 @@ $data['hostname'] = php_uname('n');
 $data['directory'] = dirname(dirname(__FILE__));
 
 if ($config->getBoolean('errorreporting', true)) {
-    $mail = new SimpleSAML\Utils\EMail('SimpleSAMLphp error report from '.$email);
+    $mail = new SimpleSAML\Utils\EMail('SimpleSAMLphp error report from ' . $email);
     $mail->setData($data);
     $mail->addReplyTo($email);
     $mail->setText($text);
     $mail->send();
-    SimpleSAML\Logger::error('Report with id '.$reportId.' sent');
+    SimpleSAML\Logger::error('Report with id ' . $reportId . ' sent');
 }
 
 // redirect the user back to this page to clear the POST request

@@ -9,7 +9,7 @@ import json from "highlight.js/lib/languages/json";
 $(document).ready(function () {
     // get available languages
     let languages = $.map($('#language-selector option'), function (option) {
-       return option.text.toLowerCase();
+        return option.text.toLowerCase();
     });
 
     // initialize selectize
@@ -30,7 +30,7 @@ $(document).ready(function () {
     });
 
     // expander boxes
-    $('.expandable > .expander').on('click', function(e) {
+    $('.expandable > .expander').on('click', function (e) {
         e.preventDefault();
         let target = $(e.currentTarget);
         target.parents('.expandable').toggleClass('expanded');
@@ -41,14 +41,14 @@ $(document).ready(function () {
     hljs.registerLanguage('xml', xml);
     hljs.registerLanguage('php', php);
     hljs.registerLanguage('json', json);
-    $('.code-box-content.xml, .code-box-content.php, .code-box-content.json').each(function(i, block) {
+    $('.code-box-content.xml, .code-box-content.php, .code-box-content.json').each(function (i, block) {
         hljs.highlightBlock(block)
     });
 
     // clipboard
     let clipboard = new ClipboardJS('.copy');
-    clipboard.on('success', function(e) {
-        setTimeout(function() {
+    clipboard.on('success', function (e) {
+        setTimeout(function () {
             e.clearSelection();
         }, 150);
     });

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * WS-Federation SP configuration for SimpleSAMLphp.
  *

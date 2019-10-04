@@ -1,4 +1,5 @@
 <?php
+
 /**
  * SAML 1.1 SP configuration for SimpleSAMLphp.
  *
