@@ -88,7 +88,10 @@
         "ext-curl": "*",
         "mikey179/vfsstream": "~1.6",
         "phpunit/phpunit": "~5.7",
-        "squizlabs/php_codesniffer": "^3.5"
+        "sensiolabs/security-checker": "^5.0.3",
+        "simplesamlphp/simplesamlphp-test-framework": "^0.0.12",
+        "squizlabs/php_codesniffer": "^3.5",
+        "vimeo/psalm": "~1.1.9"
     },
     "suggest": {
         "predis/predis": "Needed if a Redis server is used to store session information",
