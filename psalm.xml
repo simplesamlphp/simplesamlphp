@@ -34,7 +34,6 @@
             <file name="modules/saml/templates/proxy/*.tpl.php" />
             <file name="modules/saml/templates/sp/*.tpl.php" />
 
-            <directory name="tests/Utils/Stubs" />
             <directory name="vendor" />
         </ignoreFiles>
     </projectFiles>
