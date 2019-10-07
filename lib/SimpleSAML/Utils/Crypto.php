@@ -222,11 +222,8 @@ class Crypto
 
         $ret = [
             'PEM' => $data,
+            'password' => $metadata->getString($prefix . 'privatekey_pass', null),
         ];
-
-        if ($metadata->hasValue($prefix . 'privatekey_pass')) {
-            $ret['password'] = $metadata->getString($prefix . 'privatekey_pass');
-        }
 
         return $ret;
     }
