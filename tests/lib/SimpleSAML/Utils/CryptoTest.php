@@ -391,13 +391,13 @@ PHP;
     {
         $filename = $this->certdir . DIRECTORY_SEPARATOR . 'key';
         $data = 'data';
-        $config = new Configuration(['privatekey' => $filename, 'privatekey_pass' => null], 'test');
+        $config = new Configuration(['privatekey' => $filename], 'test');
         $full_path = true;
 
         file_put_contents($filename, $data);
 
         $res = Crypto::loadPrivateKey($config, false, '', $full_path);
-        $expected = ['PEM' => $data];
+        $expected = ['PEM' => $data, 'password' => null];
 
         $this->assertEquals($expected, $res);
     }
