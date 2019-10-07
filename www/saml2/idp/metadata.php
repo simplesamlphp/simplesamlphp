@@ -147,7 +147,9 @@ try {
         );
 
         if (!$idpmeta->hasValue('OrganizationURL')) {
-            throw new \SimpleSAML\Error\Exception('If OrganizationName is set, OrganizationURL must also be set.');
+            throw new \SimpleSAML\Error\Exception(
+                'If OrganizationName is set, OrganizationURL must also be set.'
+            );
         }
         $metaArray['OrganizationURL'] = $idpmeta->getLocalizedString('OrganizationURL');
     }

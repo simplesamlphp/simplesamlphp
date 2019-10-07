@@ -2,7 +2,7 @@
 <?php
 $baseDir = dirname(dirname(__FILE__));
 
-require_once $baseDir.DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR . '_autoload.php';
+require_once $baseDir . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR . '_autoload.php';
 require_once \SimpleSAML\Utils\Config::getConfigDir() . DIRECTORY_SEPARATOR . 'config.php';
 
 # Iterate through configured metadata sources and ensure

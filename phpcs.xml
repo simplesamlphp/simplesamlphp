@@ -29,6 +29,7 @@
     <exclude-pattern>modules/saml/lib/IdP/SAML1.php</exclude-pattern>
     <exclude-pattern>modules/saml/www/sp/saml1-acs.php</exclude-pattern>
     <exclude-pattern>tests/lib/SimpleSAML/Auth/TimeLimitedTokenTest.php</exclude-pattern>
+    <exclude-pattern>www/shib13</exclude-pattern>
 
     <!-- Exclude old PHP templates; they are removed in SSP 2.0 -->
     <exclude-pattern>modules/*/templates/*.tpl.php</exclude-pattern>

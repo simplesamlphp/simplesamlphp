@@ -38,11 +38,11 @@ unset($languages['no']);
 // build the list of attributes with their corresponding aliases
 foreach ($names as $name => $urn) {
     $lower = str_replace([':', '-'], '_', strtolower($name));
-    if (!array_key_exists('attribute_' . $lower, $defs)) {
-        $defs['attribute_'.$lower] = [];
+    if (!array_key_exists('attribute_'  . $lower, $defs)) {
+        $defs['attribute_' . $lower] = [];
     }
     if (!array_key_exists('attribute_' . $lower, $trans)) {
-        $trans['attribute_'.$lower] = [];
+        $trans['attribute_' . $lower] = [];
     }
     if (array_key_exists('no', $trans['attribute_' . $lower])) {
         // fix the locale code
@@ -87,8 +87,9 @@ foreach (array_keys($languages) as $language) {
                 continue;
             }
             $translation = new Gettext\Translation('', $name);
-            if (array_key_exists($language, $attribute['translations']) &&
-                !is_null($attribute['translations'][$language])
+            if (
+                array_key_exists($language, $attribute['translations'])
+                && !is_null($attribute['translations'][$language])
             ) {
                 $t = $strings->find($translation);
                 if ($t) {

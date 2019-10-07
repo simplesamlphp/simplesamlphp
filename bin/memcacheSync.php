@@ -21,7 +21,7 @@ if (!class_exists('Memcache') && !class_exists('Memcached')) {
 $baseDir = dirname(dirname(__FILE__));
 
 // Add library autoloader
-require_once($baseDir.'/lib/_autoload.php');
+require_once($baseDir . '/lib/_autoload.php');
 
 // Initialize the configuration
 $configdir = SimpleSAML\Utils\Config::getConfigDir();
@@ -52,7 +52,7 @@ foreach ($stats as $group) {
 
 echo "Total number of keys: " . count($keys) . "\n";
 $keys = array_unique($keys);
-echo "Total number of unique keys: ".count($keys) . "\n";
+echo "Total number of unique keys: " . count($keys) . "\n";
 
 echo "Starting synchronization.\n" ;
 
@@ -150,7 +150,7 @@ function getServerKeys($server)
             }
         }
         if ($resultSize > 1900000 || count($keys) >= 1000000) {
-            echo "WARNING: Slab ".$slab." on server " . $host . ":" . $port .
+            echo "WARNING: Slab " . $slab . " on server " . $host . ":" . $port .
                 " may have contained more keys than we were told about.\n";
             $GLOBALS['warnBigSlab'] += 1;
         }
