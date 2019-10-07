@@ -391,7 +391,7 @@ PHP;
     {
         $filename = $this->certdir . DIRECTORY_SEPARATOR . 'key';
         $data = 'data';
-        $config = new Configuration(['privatekey' => $filename], 'test');
+        $config = new Configuration(['privatekey' => $filename, 'privatekey_pass' => null], 'test');
         $full_path = true;
 
         file_put_contents($filename, $data);
