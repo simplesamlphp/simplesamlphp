@@ -78,8 +78,8 @@ class Cron
         $urls = [];
         foreach ($tags as $tag) {
             $urls[] = [
-                'exec_href' => Module::getModuleURL('cron').'/run/'.$tag.'/'.$key,
-                'href' => Module::getModuleURL('cron').'/run/'.$tag.'/'.$key.'/xhtml',
+                'exec_href' => Module::getModuleURL('cron') . '/run/' . $tag . '/' . $key,
+                'href' => Module::getModuleURL('cron') . '/run/' . $tag . '/' . $key . '/xhtml',
                 'tag' => $tag,
                 'int' => (array_key_exists($tag, $def) ? $def[$tag] : $def['default']),
             ];
@@ -115,7 +115,7 @@ class Cron
 
         $cron = new \SimpleSAML\Module\cron\Cron();
         if ($tag === null || !$cron->isValidTag($tag)) {
-            Logger::error('Cron - Illegal tag ['.$tag.'].');
+            Logger::error('Cron - Illegal tag [' . $tag . '].');
             exit;
         }
 
@@ -140,8 +140,8 @@ class Cron
             $t->data['tag'] = $croninfo['tag'];
             $t->data['time'] = $time;
             $t->data['url'] = $url;
-            $t->data['mail_required'] = isSet($mail);
-            $t->data['mail_sent'] = !isSet($e);
+            $t->data['mail_required'] = isset($mail);
+            $t->data['mail_sent'] = !isset($e);
             $t->data['summary'] = $summary;
             return $t;
         }
