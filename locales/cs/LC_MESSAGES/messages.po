@@ -601,7 +601,7 @@ msgid "{admin:metaconv_parse}"
 msgstr "Analýza"
 
 msgid "Person's principal name at home organization"
-msgstr "Jméno nadřízeného"
+msgstr "Hlavní jméno osoby v organizaci"
 
 msgid "Superfluous options in config file"
 msgstr "Nadbytečné položky v konfiguračním souboru"
@@ -830,7 +830,7 @@ msgid ""
 msgstr "Můžete poslat zprávu. Požijte tlačítko k pokračování."
 
 msgid "Home organization domain name"
-msgstr "Jméno organizace"
+msgstr "Doménové jméno organizace"
 
 msgid "Go back to the file list"
 msgstr "Zpátky na seznam souborů"
@@ -839,7 +839,7 @@ msgid "Error report sent"
 msgstr "Zpráva o chybě odeslána"
 
 msgid "Common name"
-msgstr "Celé jméno (CN)"
+msgstr "Celé jméno"
 
 msgid "Please select the identity provider where you want to authenticate:"
 msgstr "Prosím zvolte svého poskytovatele identity, který vám dovolí se přihlásit"
