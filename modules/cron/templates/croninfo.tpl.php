@@ -13,7 +13,7 @@ $run_text = $this->t('run_text');
 <?php
 foreach ($this->data['urls'] as $url) {
     echo "# ".$run_text. ' ['.$url['tag'].']'."\n";
-    echo $url['int']." curl --silent \"".$url['href']."\" > /dev/null 2>&1\n";
+    echo $url['int']." curl --silent \"".$url['exec_href']."\" > /dev/null 2>&1\n";
 }
 ?>
         </code></pre>
@@ -23,7 +23,7 @@ foreach ($this->data['urls'] as $url) {
         <ul>
 <?php
 foreach ($this->data['urls'] as $url) {
-    echo '        <li><a href="'.$url['href'].'&amp;output=xhtml">'.$run_text.' ['.$url['tag'].']'.'</a></li>';
+    echo '        <li><a href="'.$url['href'].'">'.$run_text.' ['.$url['tag'].']'.'</a></li>';
 }
 ?>
         </ul>
