@@ -31,13 +31,13 @@ script:
 jobs:
   fast_finish: true
   allow_failures:
-    - php: 7.0
+    - php: 7.2
       env: Psalm
-    - php: 7.0
+    - php: 7.2
       env: Security check (composer install)
-    - php: 7.0
+    - php: 7.2
       env: Security check (composer update)
-    - php: 7.0
+    - php: 7.2
       env: PHP Codesniffer
 
   include:
@@ -47,15 +47,7 @@ jobs:
     ##########################
 
     - stage: pre-conditions
-      php: 7.0
-      env: Syntax check PHP
-      before_script:
-        - composer install
-      script:
-        - vendor/bin/check-syntax-php.sh
-
-    - stage: pre-conditions
-      php: 7.1
+      php: 7.2
       env: Syntax check PHP
       before_script:
         - composer install
@@ -72,6 +64,14 @@ jobs:
 
     - stage: pre-conditions
       php: 7.3
+      env: Syntax check PHP
+      before_script:
+        - composer install
+      script:
+        - vendor/bin/check-syntax-php.sh
+
+    - stage: pre-conditions
+      php: 7.4snapshot
       env: Syntax check PHP
       before_script:
         - composer install
