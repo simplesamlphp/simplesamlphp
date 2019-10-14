@@ -69,7 +69,6 @@ class Exception
         $state = Auth\State::loadState($stateId, 'core:cardinality');
 
         Logger::stats(
-<<<<<<< HEAD
             'core:cardinality:error ' . $state['Destination']['entityid'] . ' ' . $state['saml:sp:IdP'] .
             ' ' . implode(',', array_keys($state['core:cardinality:errorAttributes']))
         );
@@ -81,18 +80,16 @@ class Exception
                 'core/authenticate.php',
                 ['as' => $state['Source']['auth']]
             ) . "&logout";
-=======
-            'core:cardinality:error '.$state['Destination']['entityid'].' '.$state['saml:sp:IdP'].
-            ' '.implode(',', array_keys($state['core:cardinality:errorAttributes']))
+            'core:cardinality:error ' . $state['Destination']['entityid'] . ' ' . $state['saml:sp:IdP'] .
+            ' ' . implode(',', array_keys($state['core:cardinality:errorAttributes']))
         );
 
         $t = new Template($this->config, 'core:cardinality_error.twig');
         $t->data['cardinalityErrorAttributes'] = $state['core:cardinality:errorAttributes'];
         if (isset($state['Source']['auth'])) {
             $t->data['LogoutURL'] = Module::getModuleURL(
-                'core/login/'.urlencode($state['Source']['auth'])
+                'core/login/' . urlencode($state['Source']['auth'])
             );
->>>>>>> Rename Controller-classes
         }
 
         $t->setStatusCode(403);
@@ -114,9 +111,6 @@ class Exception
             $retryURL = Utils\HTTP::checkURLAllowed(strval($retryURL));
         }
 
-<<<<<<< HEAD
-        $t = new Template($this->config, 'core:no_cookie.tpl.php');
-=======
         $t = new Template($this->config, 'core:no_cookie.twig');
         $translator = $t->getTranslator();
 
@@ -132,7 +126,6 @@ class Exception
         $t->data['header'] = htmlspecialchars($header);
         $t->data['description'] = htmlspecialchars($desc);
         $t->data['retry'] = htmlspecialchars($retry);
->>>>>>> Rename Controller-classes
         $t->data['retryURL'] = $retryURL;
         return $t;
     }
@@ -165,19 +158,10 @@ class Exception
             Auth\ProcessingChain::resumeProcessing($state);
         }
 
-<<<<<<< HEAD
-        $t = new Template($this->config, 'core:short_sso_interval.tpl.php');
-        $translator = $t->getTranslator();
-        $t->data['params'] = ['StateId' => $stateId];
-        $t->data['trackId'] = $this->session->getTrackID();
-=======
         $t = new Template($this->config, 'core:short_sso_interval.twig');
         $translator = $t->getTranslator();
-        $t->data['target'] = Module::getModuleURL('core/warning/short_sso_interval');
         $t->data['params'] = ['StateId' => $stateId];
         $t->data['trackId'] = $this->session->getTrackID();
-        $t->data['header'] = $translator->t('{core:short_sso_interval:warning_header}');
->>>>>>> Rename Controller-classes
         $t->data['autofocus'] = 'contbutton';
         return $t;
     }
