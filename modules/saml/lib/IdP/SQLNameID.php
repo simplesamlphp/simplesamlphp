@@ -26,7 +26,8 @@ class SQLNameID
      * @param array $config
      * @return \PDOStatement
      */
-    private static function query($query, array $params = [], array $config = []) {
+    private static function query($query, array $params = [], array $config = [])
+    {
         if (!empty($config)) {
             $database = Database::getInstance(Configuration::loadFromArray($config));
             if (stripos($query, 'SELECT') === 0) {
@@ -47,7 +48,8 @@ class SQLNameID
      * @param array $config
      * @return string
      */
-    private static function tableName(array $config = []) {
+    private static function tableName(array $config = [])
+    {
         $store = empty($config) ? self::getStore() : null;
         $prefix = $store === null ? self::DEFAULT_TABLE_PREFIX : $store->prefix;
         $table = $prefix . self::TABLE_SUFFIX;
@@ -61,13 +63,14 @@ class SQLNameID
      * @param array $config
      * @return \PDOStatement
      */
-    private static function createAndQuery($query, array $params = [], array $config = []) {
+    private static function createAndQuery($query, array $params = [], array $config = [])
+    {
         $store = empty($config) ? self::getStore() : null;
         $table = self::tableName($config);
         if ($store === null) {
             $stmt = self::query(
                 'SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME=:tablename',
-                ['tablename'=>$table],
+                ['tablename' => $table],
                 $config
             );
             if ($stmt !== false && $stmt->fetchColumn() !== '1') {
