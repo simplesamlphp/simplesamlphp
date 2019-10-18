@@ -19,6 +19,13 @@ class SQLNameID
     const DEFAULT_TABLE_PREFIX = '';
     const TABLE_SUFFIX = '_saml_PersistentNameID';
 
+
+    /**
+     * @param string $query
+     * @param array $params
+     * @param array $config
+     * @return \PDOStatement
+     */
     private static function query($query, array $params = [], array $config = []) {
         if (!empty($config)) {
             $database = Database::getInstance(Configuration::loadFromArray($config));
@@ -35,6 +42,11 @@ class SQLNameID
         return $stmt;
     }
 
+
+    /**
+     * @param array $config
+     * @return string
+     */
     private static function tableName(array $config = []) {
         $store = empty($config) ? self::getStore() : null;
         $prefix = $store === null ? self::DEFAULT_TABLE_PREFIX : $store->prefix;
@@ -42,6 +54,13 @@ class SQLNameID
         return $table;
     }
 
+
+    /**
+     * @param string $query
+     * @param array $params
+     * @param array $config
+     * @return \PDOStatement
+     */
     private static function createAndQuery($query, array $params = [], array $config = []) {
         $store = empty($config) ? self::getStore() : null;
         $table = self::tableName($config);
@@ -67,6 +86,7 @@ class SQLNameID
      * Create NameID table in SQL.
      *
      * @param string $table  The table name.
+     * @param array $config
      * @return void
      */
     private static function createTable($table, array $config = [])
@@ -112,6 +132,7 @@ class SQLNameID
      * @param string $spEntityId  The SP entityID.
      * @param string $user  The user's unique identificator (e.g. username).
      * @param string $value  The NameID value.
+     * @param array $config
      * @return void
      */
     public static function add($idpEntityId, $spEntityId, $user, $value, array $config = [])
@@ -140,6 +161,7 @@ class SQLNameID
      * @param string $idpEntityId  The IdP entityID.
      * @param string $spEntityId  The SP entityID.
      * @param string $user  The user's unique identificator (e.g. username).
+     * @param array $config
      * @return string|null $value  The NameID value, or NULL of no NameID value was found.
      */
     public static function get($idpEntityId, $spEntityId, $user, array $config = [])
@@ -174,6 +196,7 @@ class SQLNameID
      * @param string $idpEntityId  The IdP entityID.
      * @param string $spEntityId  The SP entityID.
      * @param string $user  The user's unique identificator (e.g. username).
+     * @param array $config
      * @return void
      */
     public static function delete($idpEntityId, $spEntityId, $user, array $config = [])
@@ -199,6 +222,7 @@ class SQLNameID
      *
      * @param string $idpEntityId  The IdP entityID.
      * @param string $spEntityId  The SP entityID.
+     * @param array $config
      * @return array  Array of userid => NameID.
      */
     public static function getIdentities($idpEntityId, $spEntityId, array $config = [])
