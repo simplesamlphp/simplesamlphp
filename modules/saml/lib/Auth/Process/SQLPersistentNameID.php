@@ -47,7 +47,7 @@ class SQLPersistentNameID extends \SimpleSAML\Module\saml\BaseNameIDGenerator
      *
      * @var array
      */
-    private $storeConfig = null;
+    private $storeConfig = [];
 
 
     /**
