@@ -291,7 +291,7 @@ class Template extends Response
 
         // abort if twig template does not exist
         if (!$loader->exists($this->twig_template)) {
-            throw new \Exception('Template-file \"' . $this->template . '\" does not exist.');
+            throw new \Exception('Template-file \"' . $this->getTemplateName() . '\" does not exist.');
         }
 
         // load extra i18n domains
