@@ -42,6 +42,13 @@ class SQLPersistentNameID extends \SimpleSAML\Module\saml\BaseNameIDGenerator
      */
     private $alwaysCreate = false;
 
+    /**
+     * Database store configuration.
+     *
+     * @var array
+     */
+    private $storeConfig = null;
+
 
     /**
      * Initialize this filter, parse configuration.
@@ -73,6 +80,10 @@ class SQLPersistentNameID extends \SimpleSAML\Module\saml\BaseNameIDGenerator
 
         if (isset($config['alwaysCreate'])) {
             $this->alwaysCreate = (bool) $config['alwaysCreate'];
+        }
+
+        if (isset($config['store'])) {
+            $this->storeConfig = (array) $config['store'];
         }
     }
 
@@ -148,7 +159,7 @@ class SQLPersistentNameID extends \SimpleSAML\Module\saml\BaseNameIDGenerator
             return null;
         }
 
-        $value = \SimpleSAML\Module\saml\IdP\SQLNameID::get($idpEntityId, $spEntityId, $uid);
+        $value = \SimpleSAML\Module\saml\IdP\SQLNameID::get($idpEntityId, $spEntityId, $uid, $this->storeConfig);
         if ($value !== null) {
             Logger::debug(
                 'SQLPersistentNameID: Found persistent NameID ' . var_export($value, true) . ' for user ' .
@@ -172,7 +183,7 @@ class SQLPersistentNameID extends \SimpleSAML\Module\saml\BaseNameIDGenerator
             'SQLPersistentNameID: Created persistent NameID ' . var_export($value, true) . ' for user ' .
             var_export($uid, true) . '.'
         );
-        \SimpleSAML\Module\saml\IdP\SQLNameID::add($idpEntityId, $spEntityId, $uid, $value);
+        \SimpleSAML\Module\saml\IdP\SQLNameID::add($idpEntityId, $spEntityId, $uid, $value, $this->storeConfig);
 
         return $value;
     }
