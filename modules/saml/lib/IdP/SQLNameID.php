@@ -22,25 +22,44 @@ class SQLNameID
 
     /**
      * @param string $query
-     * @param array $params
+     * @param array $params Parameters
      * @param array $config
-     * @return \PDOStatement
+     * @return \PDOStatement object
      */
-    private static function query($query, array $params = [], array $config = [])
+    private static function read($query, array $params = [], array $config = [])
     {
         if (!empty($config)) {
             $database = Database::getInstance(Configuration::loadFromArray($config));
-            if (stripos($query, 'SELECT') === 0) {
-                $stmt = $database->read($query, $params);
-            } else {
-                $stmt = $database->write($query, $params);
-            }
+            $stmt = $database->read($query, $params);
+        } else {
+            $store = self::getStore();
+            $stmt = $store->pdo->prepare($query);
+            $stmt->execute($params);
+        }
+        return $stmt;
+    }
+
+
+    /**
+     * @param string $query
+     * @param array $params Parameters
+     * @param array $config
+     * @return int|false The number of rows affected by the query or false on error.
+     */
+    private static function write($query, array $params = [], array $config = [])
+    {
+        if (!empty($config)) {
+            $database = Database::getInstance(Configuration::loadFromArray($config));
+            $res = $database->write($query, $params);
         } else {
             $store = self::getStore();
             $query = $store->pdo->prepare($query);
-            $stmt = $query->execute($params);
+            $res = $query->execute($params);
+            if ($res) {
+                $res = $query->rowCount();
+            }
         }
-        return $stmt;
+        return $res;
     }
 
 
@@ -56,19 +75,15 @@ class SQLNameID
         return $table;
     }
 
-
     /**
-     * @param string $query
-     * @param array $params
      * @param array $config
-     * @return \PDOStatement
+     * @return void
      */
-    private static function createAndQuery($query, array $params = [], array $config = [])
-    {
+    private static function create(array $config = []) {
         $store = empty($config) ? self::getStore() : null;
         $table = self::tableName($config);
         if ($store === null) {
-            $stmt = self::query(
+            $stmt = self::read(
                 'SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME=:tablename',
                 ['tablename' => $table],
                 $config
@@ -80,8 +95,32 @@ class SQLNameID
             self::createTable($table);
             $store->setTableVersion('saml_PersistentNameID', self::TABLE_VERSION);
         }
+    }
 
-        return self::query($query, $params, $config);
+
+    /**
+     * @param string $query
+     * @param array $params
+     * @param array $config
+     * @return \PDOStatement
+     */
+    private static function createAndRead($query, array $params = [], array $config = [])
+    {
+        self::create($config);
+        return self::read($query, $params, $config);
+    }
+
+
+    /**
+     * @param string $query
+     * @param array $params
+     * @param array $config
+     * @return int|false The number of rows affected by the query or false on error.
+     */
+    private static function createAndWrite($query, array $params = [], array $config = [])
+    {
+        self::create($config);
+        return self::write($query, $params, $config);
     }
 
 
@@ -101,11 +140,11 @@ class SQLNameID
             _value VARCHAR(40) NOT NULL,
             UNIQUE (_idp, _sp, _user)
         )';
-        self::query($query, [], $config);
+        self::write($query, [], $config);
 
         $query = 'CREATE INDEX ' . $table . '_idp_sp ON ';
         $query .= $table . ' (_idp, _sp)';
-        self::query($query, [], $config);
+        self::write($query, [], $config);
     }
 
 
@@ -154,7 +193,7 @@ class SQLNameID
 
         $query = 'INSERT INTO ' . self::tableName($config);
         $query .= ' (_idp, _sp, _user, _value) VALUES(:_idp, :_sp, :_user, :_value)';
-        self::createAndQuery($query, $params, $config);
+        self::createAndWrite($query, $params, $config);
     }
 
 
@@ -181,7 +220,7 @@ class SQLNameID
 
         $query = 'SELECT _value FROM ' . self::tableName($config);
         $query .= ' WHERE _idp = :_idp AND _sp = :_sp AND _user = :_user';
-        $query = self::createAndQuery($query, $params, $config);
+        $query = self::createAndRead($query, $params, $config);
 
         $row = $query->fetch(PDO::FETCH_ASSOC);
         if ($row === false) {
@@ -216,7 +255,7 @@ class SQLNameID
 
         $query = 'DELETE FROM ' . self::tableName($config);
         $query .= ' WHERE _idp = :_idp AND _sp = :_sp AND _user = :_user';
-        self::createAndQuery($query, $params, $config);
+        self::createAndWrite($query, $params, $config);
     }
 
 
@@ -240,7 +279,7 @@ class SQLNameID
 
         $query = 'SELECT _user, _value FROM ' . self::tableName($config);
         $query .= ' WHERE _idp = :_idp AND _sp = :_sp';
-        $query = self::createAndQuery($query, $params, $config);
+        $query = self::createAndRead($query, $params, $config);
 
         $res = [];
         while (($row = $query->fetch(PDO::FETCH_ASSOC)) !== false) {
