@@ -79,7 +79,8 @@ class SQLNameID
      * @param array $config
      * @return void
      */
-    private static function create(array $config = []) {
+    private static function create(array $config = [])
+    {
         $store = empty($config) ? self::getStore() : null;
         $table = self::tableName($config);
         if ($store === null) {
