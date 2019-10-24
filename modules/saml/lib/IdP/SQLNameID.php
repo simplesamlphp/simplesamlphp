@@ -84,13 +84,10 @@ class SQLNameID
         $store = empty($config) ? self::getStore() : null;
         $table = self::tableName($config);
         if ($store === null) {
-            $stmt = self::read(
-                'SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME=:tablename',
-                ['tablename' => $table],
-                $config
-            );
-            if ($stmt !== false && $stmt->fetchColumn() !== '1') {
+            try {
                 self::createTable($table, $config);
+            } catch (\Exception $e) {
+                \SimpleSAML\Logger::debug('SQL persistent NameID table already exists.');
             }
         } elseif ($store->getTableVersion('saml_PersistentNameID') !== self::TABLE_VERSION) {
             self::createTable($table);
@@ -170,7 +167,6 @@ class SQLNameID
     /**
      * Add a NameID into the database.
      *
-     * @param \SimpleSAML\Store\SQL $store  The data store.
      * @param string $idpEntityId  The IdP entityID.
      * @param string $spEntityId  The SP entityID.
      * @param string $user  The user's unique identificator (e.g. username).
