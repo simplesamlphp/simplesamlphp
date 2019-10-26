@@ -49,8 +49,8 @@
         </properties>
 
         <!-- Exclude files with long lines that we cannot immediately fix -->
-        <exlude-pattern>tests/lib/SimpleSAML/Metadata/MetaDataStorageSourceTest.php</exclude-pattern>
-        <exlude-pattern>tests/lib/SimpleSAML/Metadata/SAMLParserTest.php</exclude-pattern>
+        <exclude-pattern>tests/lib/SimpleSAML/Metadata/MetaDataStorageSourceTest.php</exclude-pattern>
+        <exclude-pattern>tests/lib/SimpleSAML/Metadata/SAMLParserTest.php</exclude-pattern>
     </rule>
 
     <!-- Ignore these warnings until PHP 7.1 becomes the minimum required version -->
