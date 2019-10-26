@@ -38,9 +38,6 @@
     <exclude-pattern>www/resources/clipboard.min.js</exclude-pattern>
     <exclude-pattern>www/resources/jquery-1.8.js</exclude-pattern>
 
-    <!-- Exclude Stubs until we use simplesamlphp/simplesamlphp-test-framework -->
-    <exclude-pattern>tests/Utils/Stubs/*</exclude-pattern>
- 
     <!-- This is the rule we inherit from. If you want to exlude some specific rules, see the docs on how to do that -->
     <rule ref="PSR12"/>
 
