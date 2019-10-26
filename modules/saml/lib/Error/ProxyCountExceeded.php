@@ -1,13 +1,13 @@
 <?php
 
-namespace SimpleSAML\Module\saml\Error;
-
 /**
  * A SAML error indicating that the maximum amount of proxies traversed has been reached.
  *
  * @author Jaime Pérez Crespo, UNINETT AS <jaime.perez@uninett.no>
  * @package SimpleSAMLphp
  */
+
+namespace SimpleSAML\Module\saml\Error;
 
 use SAML2\Constants;
 

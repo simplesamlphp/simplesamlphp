@@ -1,13 +1,13 @@
 <?php
 
-namespace SimpleSAML\Test\Module\saml\Auth\Process;
-
 /**
  * Test for the saml:NameIDAttribute filter.
  *
  * @author Eugene Venter <eugene@catalyst.net.nz>
  * @package SimpleSAMLphp
  */
+
+namespace SimpleSAML\Test\Module\saml\Auth\Process;
 
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Module\saml\Auth\Process\NameIDAttribute;

@@ -1,13 +1,13 @@
 <?php
 
-namespace SimpleSAML\Test\Module\saml\IdP;
-
 /**
  * Test for the SQLNameID helper class.
  *
  * @author Pavel Brousek <brousek@ics.muni.cz>
  * @package SimpleSAMLphp
  */
+
+namespace SimpleSAML\Test\Module\saml\IdP;
 
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Configuration;

@@ -5,7 +5,6 @@
  * initializes the SimpleSAMLphp config class with the correct path.
  */
 
-
 namespace SimpleSAML\Module\cron;
 
 use SimpleSAML\Configuration;

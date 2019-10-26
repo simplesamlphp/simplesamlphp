@@ -66,6 +66,7 @@
 
     <!-- Ignore files with side effects that we cannot fix -->
     <rule ref="PSR1.Files.SideEffects">
+        <exclude-pattern>bin/*</exclude-pattern>
         <exclude-pattern>lib/_autoload_modules.php</exclude-pattern>
         <exclude-pattern>tests/_autoload_modules.php</exclude-pattern>
         <exclude-pattern>www/_include.php</exclude-pattern>

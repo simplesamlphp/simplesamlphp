@@ -182,10 +182,9 @@ class FederationController
                 } else {
                     $saml2entities['saml20-idp'] = $this->mdHandler->getMetaDataCurrent('saml20-idp-hosted');
                     $saml2entities['saml20-idp']['url'] = Utils\HTTP::getBaseURL() . 'saml2/idp/metadata.php';
-                    $saml2entities['saml20-idp']['metadata_array'] =
-                        SAML2_IdP::getHostedMetadata(
-                            $this->mdHandler->getMetaDataCurrentEntityID('saml20-idp-hosted')
-                        );
+                    $saml2entities['saml20-idp']['metadata_array'] = SAML2_IdP::getHostedMetadata(
+                        $this->mdHandler->getMetaDataCurrentEntityID('saml20-idp-hosted')
+                    );
                 }
 
                 foreach ($saml2entities as $index => $entity) {
