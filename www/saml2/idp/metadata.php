@@ -3,6 +3,7 @@
 require_once('../../_include.php');
 
 use SAML2\Constants;
+use SimpleSAML\Module;
 use SimpleSAML\Utils\Auth as Auth;
 use SimpleSAML\Utils\Crypto as Crypto;
 use SimpleSAML\Utils\HTTP as HTTP;
@@ -221,7 +222,7 @@ try {
         $certdata = [];
         foreach (array_keys($availableCerts) as $availableCert) {
             $certdata[$availableCert]['name'] = $availableCert;
-            $certdata[$availableCert]['url'] = SimpleSAML\Module::getModuleURL('saml/idp/certs.php') . '/' . $availableCert;
+            $certdata[$availableCert]['url'] = Module::getModuleURL('saml/idp/certs.php') . '/' . $availableCert;
             $certdata[$availableCert]['comment'] = (
                 $availableCerts[$availableCert]['certFingerprint'][0] === 'afe71c28ef740bc87425be13a2263d37971da1f9' ?
                 'This is the default certificate. Generate a new certificate if this is a production system.' :
