@@ -135,7 +135,7 @@ class SAMLBuilder
             Utils\XML::formatDOMElement($xml);
         }
 
-        return $xml->ownerDocument->saveXML();
+        return $xml->ownerDocument->saveXML($xml); // Added it-self as input to fix issue with miltibyte characters beeing messed up.
     }
 
 
