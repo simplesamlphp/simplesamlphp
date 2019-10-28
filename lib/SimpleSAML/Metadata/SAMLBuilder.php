@@ -137,7 +137,7 @@ class SAMLBuilder
 
         // Fix issue with multibyte characters beeing messed up. 
         // See here: https://stackoverflow.com/questions/8218230/php-domdocument-loadhtml-not-encoding-utf-8-correctly
-        // Maby should be added as configuration option?
+        // Maybe should be added as configuration option?
         $xml->ownerDocument->encoding = "utf-8"; 
         
         return $xml->ownerDocument->saveXML();
