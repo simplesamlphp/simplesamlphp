@@ -135,6 +135,8 @@ class SAMLBuilder
             $xmlUtils->formatDOMElement($xml);
         }
 
+        $xml->ownerDocument->encoding = "utf-8";
+
         return $xml->ownerDocument->saveXML();
     }
 
