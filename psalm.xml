@@ -25,9 +25,14 @@
 
         <!-- Ignore deprecated classes -->
         <ignoreFiles>
+            <directory name="lib/SimpleSAML/Bindings/Shib13" />
+            <directory name="lib/SimpleSAML/XML/Shib13" />
+            <directory name="tests/lib/SimpleSAML/XML/Shib13" />
+
             <file name="lib/SimpleSAML/Auth/DefaultAuth.php" />
             <file name="lib/SimpleSAML/Auth/TimeLimitedToken.php" />
             <file name="lib/SimpleSAML/Utilities.php" />
+            <file name="tests/lib/SimpleSAML/Auth/TimeLimitedTokenTest.php" />
 
             <!-- Ignore deprecated PHP-templates - Remove for 2.0 -->
             <file name="modules/**/templates/*.tpl.php" />
