@@ -1,12 +1,11 @@
 build: false
 shallow_clone: false
-version: '1.17.1.{build}'
+version: '1.19.0.{build}'
 platform: 'x64'
 clone_folder: C:\projects\simplesamlphp
 
 environment:
   matrix:
-    - PHP_VERSION: "5.6"
     - PHP_VERSION: "7.0"
     - PHP_VERSION: "7.1"
     - PHP_VERSION: "7.2"

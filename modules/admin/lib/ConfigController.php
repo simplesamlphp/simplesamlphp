@@ -155,11 +155,11 @@ class ConfigController
                 'descr' => [
                     Translate::noop('PHP %minimum% or newer is needed. You are running: %current%'),
                     [
-                        '%minimum%' => '5.6',
+                        '%minimum%' => '7.0',
                         '%current%' => explode('-', phpversion())[0]
                     ]
                 ],
-                'enabled' => version_compare(phpversion(), '5.6', '>=')
+                'enabled' => version_compare(phpversion(), '7.0', '>=')
             ]
         ];
         $store = $this->config->getString('store.type', '');

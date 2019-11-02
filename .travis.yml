@@ -15,7 +15,6 @@ stages:
 ################
 
 php:
-  - 5.6
   - 7.0
   - 7.1
   - 7.2
@@ -35,13 +34,13 @@ script:
 jobs:
   fast_finish: true
   allow_failures:
-    - php: 5.6
+    - php: 7.0
       env: Psalm
-    - php: 5.6
+    - php: 7.0
       env: Security check (composer install)
-    - php: 5.6
+    - php: 7.0
       env: Security check (composer update)
-    - php: 5.6
+    - php: 7.0
       env: PHP Codesniffer
 
   include:
@@ -49,14 +48,6 @@ jobs:
     ##########################
     #  Pre-conditions stage  #
     ##########################
-
-    - stage: pre-conditions
-      php: 5.6
-      env: Syntax check PHP
-      before_script:
-        - composer install
-      script:
-        - vendor/bin/check-syntax-php.sh
 
     - stage: pre-conditions
       php: 7.0
