@@ -1174,4 +1174,9 @@ $config = [
      * The prefix we should use on our Redis datastore.
      */
     'store.redis.prefix' => 'SimpleSAMLphp',
+
+    /*
+     * The database we should use on our Redis datastore.
+     */
+    'store.redis.database' => 0,
 ];
