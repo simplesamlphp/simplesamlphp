@@ -64,10 +64,8 @@ class NameIDAttribute extends \SimpleSAML\Auth\ProcessingFilter
      *
      * @throws \SimpleSAML\Error\Exception if the replacement is invalid.
      */
-    private static function parseFormat($format)
+    private static function parseFormat(string $format): array
     {
-        assert(is_string($format));
-
         $ret = [];
         $pos = 0;
         while (($next = strpos($format, '%', $pos)) !== false) {

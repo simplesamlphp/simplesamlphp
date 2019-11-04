@@ -97,10 +97,8 @@ class Translate
      *
      * @return array An associative array with the dictionary.
      */
-    private function getDictionary($name)
+    private function getDictionary(string $name): array
     {
-        assert(is_string($name));
-
         if (!array_key_exists($name, $this->dictionaries)) {
             $sepPos = strpos($name, ':');
             if ($sepPos !== false) {
@@ -339,7 +337,7 @@ class Translate
      *
      * @return string The string that should be used, or the tag name if $fallbacktag is set to false.
      */
-    private function getStringNotTranslated($tag, $fallbacktag)
+    private function getStringNotTranslated(string $tag, bool $fallbacktag)
     {
         if ($fallbacktag) {
             return 'not translated (' . $tag . ')';
@@ -404,7 +402,7 @@ class Translate
      *
      * @return array An array holding all the translations in the file.
      */
-    private function readDictionaryJSON($filename)
+    private function readDictionaryJSON(string $filename): array
     {
         $definitionFile = $filename . '.definition.json';
         assert(file_exists($definitionFile));
@@ -436,7 +434,7 @@ class Translate
      *
      * @return array An array holding all the translations in the file.
      */
-    private function readDictionaryPHP($filename)
+    private function readDictionaryPHP(string $filename): array
     {
         $phpFile = $filename . '.php';
         assert(file_exists($phpFile));
@@ -457,10 +455,8 @@ class Translate
      *
      * @return array An array holding all the translations in the file.
      */
-    private function readDictionaryFile($filename)
+    private function readDictionaryFile(string $filename): array
     {
-        assert(is_string($filename));
-
         Logger::debug('Translate: Reading dictionary [' . $filename . ']');
 
         $jsonFile = $filename . '.definition.json';

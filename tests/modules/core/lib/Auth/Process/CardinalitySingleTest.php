@@ -20,7 +20,7 @@ class CardinalitySingleTest extends \PHPUnit\Framework\TestCase
      * @param  array $request The request state.
      * @return array  The state array after processing.
      */
-    private function processFilter(array $config, array $request)
+    private function processFilter(array $config, array $request): array
     {
         $_SERVER['SERVER_PROTOCOL'] = 'HTTP/1.1';
         $_SERVER['REQUEST_METHOD'] = 'GET';

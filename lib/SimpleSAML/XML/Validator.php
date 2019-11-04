@@ -159,10 +159,8 @@ class Validator
      * @return string|null  The fingerprint as a 40-character lowercase hexadecimal number. NULL is returned if the
      *                 argument isn't an X509 certificate.
      */
-    private static function calculateX509Fingerprint($x509cert)
+    private static function calculateX509Fingerprint(string $x509cert)
     {
-        assert(is_string($x509cert));
-
         $lines = explode("\n", $x509cert);
 
         $data = '';
@@ -203,11 +201,8 @@ class Validator
      * @throws \Exception
      * @return void
      */
-    private static function validateCertificateFingerprint($certificate, $fingerprints)
+    private static function validateCertificateFingerprint(string $certificate, array $fingerprints)
     {
-        assert(is_string($certificate));
-        assert(is_array($fingerprints));
-
         $certFingerprint = self::calculateX509Fingerprint($certificate);
         if ($certFingerprint === null) {
             // Couldn't calculate fingerprint from X509 certificate. Should not happen.
@@ -323,11 +318,8 @@ class Validator
      * @return boolean|string TRUE on success, or a string with error messages if it failed.
      * @deprecated
      */
-    private static function validateCABuiltIn($certificate, $caFile)
+    private static function validateCABuiltIn(string $certificate, string $caFile)
     {
-        assert(is_string($certificate));
-        assert(is_string($caFile));
-
         // Clear openssl errors
         while (openssl_error_string() !== false) {
         }
@@ -361,11 +353,8 @@ class Validator
      * @throws \Exception
      * @deprecated
      */
-    private static function validateCAExec($certificate, $caFile)
+    private static function validateCAExec(string $certificate, string $caFile)
     {
-        assert(is_string($certificate));
-        assert(is_string($caFile));
-
         $command = [
             'openssl', 'verify',
             '-CAfile', $caFile,

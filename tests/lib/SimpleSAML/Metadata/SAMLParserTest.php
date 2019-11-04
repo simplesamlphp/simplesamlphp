@@ -180,7 +180,7 @@ XML
      * @param string $expected_fingerprint
      * @return void
      */
-    private function validateFingerprint($algo, $expected_fingerprint)
+    private function validateFingerprint(string $algo, string $expected_fingerprint)
     {
         $doc = $this->makeTestDocument();
         $entities = \SimpleSAML\Metadata\SAMLParser::parseDescriptorsElement($doc->documentElement);

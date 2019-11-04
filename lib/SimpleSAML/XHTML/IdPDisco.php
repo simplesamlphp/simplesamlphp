@@ -651,7 +651,7 @@ class IdPDisco
      * @param string $language
      * @return string|null
      */
-    private function getEntityDisplayName(array $idpData, $language)
+    private function getEntityDisplayName(array $idpData, string $language)
     {
         if (isset($idpData['UIInfo']['DisplayName'][$language])) {
             return $idpData['UIInfo']['DisplayName'][$language];

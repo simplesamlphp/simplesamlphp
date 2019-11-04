@@ -62,11 +62,8 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
      *
      * @return string The path to the metadata file.
      */
-    private function getMetadataPath($entityId, $set)
+    private function getMetadataPath(string $entityId, string $set): string
     {
-        assert(is_string($entityId));
-        assert(is_string($set));
-
         return $this->directory . '/' . rawurlencode($set) . '/' . rawurlencode($entityId) . self::EXTENSION;
     }
 

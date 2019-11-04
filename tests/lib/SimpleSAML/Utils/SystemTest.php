@@ -306,7 +306,7 @@ class SystemTest extends TestCase
      * @param string $directory
      * @return \SimpleSAML\Configuration
      */
-    private function setConfigurationTempDir($directory)
+    private function setConfigurationTempDir(string $directory): Configuration
     {
         $config = Configuration::loadFromArray([
             'tempdir' => $directory,

@@ -154,11 +154,8 @@ class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
      *                     if the entity could not be found.
      * @throws \Exception If an error occurs while loading metadata from cache.
      */
-    private function getFromCache($set, $entityId)
+    private function getFromCache(string $set, string $entityId)
     {
-        assert(is_string($set));
-        assert(is_string($entityId));
-
         if (empty($this->cacheDir)) {
             return null;
         }
@@ -214,12 +211,8 @@ class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
      * @throws \Exception If metadata cannot be written to cache.
      * @return void
      */
-    private function writeToCache($set, $entityId, $data)
+    private function writeToCache(string $set, string $entityId, array $data)
     {
-        assert(is_string($set));
-        assert(is_string($entityId));
-        assert(is_array($data));
-
         if (empty($this->cacheDir)) {
             return;
         }
@@ -242,10 +235,8 @@ class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
      * @return array|NULL  The associative array with the metadata, or NULL if no metadata for
      *                     the given set was found.
      */
-    private static function getParsedSet(SAMLParser $entity, $set)
+    private static function getParsedSet(SAMLParser $entity, string $set)
     {
-        assert(is_string($set));
-
         switch ($set) {
             case 'saml20-idp-remote':
                 return $entity->getMetadata20IdP();

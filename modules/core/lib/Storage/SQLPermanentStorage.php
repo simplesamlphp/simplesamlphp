@@ -94,7 +94,7 @@ class SQLPermanentStorage
      * @param int|null $duration
      * @return array
      */
-    private function insert($type, $key1, $key2, $value, $duration = null)
+    private function insert(string $type, $key1, $key2, $value, int $duration = null): array
     {
         $expire = is_null($duration) ? null : (time() + $duration);
 
@@ -120,7 +120,7 @@ class SQLPermanentStorage
      * @param int|null $duration
      * @return array
      */
-    private function update($type, $key1, $key2, $value, $duration = null)
+    private function update(string $type, $key1, $key2, $value, int $duration = null): array
     {
         $expire = is_null($duration) ? null : (time() + $duration);
 
@@ -289,7 +289,7 @@ class SQLPermanentStorage
      * @param mixed $key2
      * @return string
      */
-    private function getCondition($type = null, $key1 = null, $key2 = null)
+    private function getCondition(string $type = null, $key1 = null, $key2 = null): string
     {
         $conditions = [];
         if (!is_null($type)) {

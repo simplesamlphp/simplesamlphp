@@ -101,7 +101,7 @@ abstract class SessionHandlerCookie extends SessionHandler
      *
      * @return string A random session id.
      */
-    private static function createSessionID()
+    private static function createSessionID(): string
     {
         return bin2hex(openssl_random_pseudo_bytes(16));
     }
@@ -115,11 +115,8 @@ abstract class SessionHandlerCookie extends SessionHandler
      *
      * @return boolean True if this session ID is valid, false otherwise.
      */
-    private static function isValidSessionID($session_id)
+    private static function isValidSessionID(string $session_id): bool
     {
-        if (!is_string($session_id)) {
-            return false;
-        }
 
         if (strlen($session_id) != 32) {
             return false;

@@ -389,7 +389,7 @@ class Logger
      * @param boolean $stats Whether this is a stats message or a regular one.
      * @return void
      */
-    private static function defer($level, $message, $stats)
+    private static function defer(int $level, string $message, bool $stats)
     {
         // save the message for later
         self::$earlyLog[] = ['level' => $level, 'string' => $message, 'statsLog' => $stats];
@@ -407,7 +407,7 @@ class Logger
      * @return void
      * @throws \Exception
      */
-    private static function createLoggingHandler($handler = null)
+    private static function createLoggingHandler(string $handler = null)
     {
         self::$initializing = true;
 
@@ -466,7 +466,7 @@ class Logger
      * @param bool $statsLog
      * @return void
      */
-    private static function log($level, $string, $statsLog = false)
+    private static function log(int $level, string $string, bool $statsLog = false)
     {
         if (self::$initializing) {
             // some error occurred while initializing logging
@@ -494,10 +494,6 @@ class Logger
         }
 
         if (self::$logLevel >= $level || $statsLog) {
-            if (is_array($string)) {
-                $string = implode(",", $string);
-            }
-
             $formats = ['%trackid', '%msg', '%srcip', '%stat'];
             $replacements = [self::$trackid, $string, $_SERVER['REMOTE_ADDR']];
 

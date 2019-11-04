@@ -223,18 +223,12 @@ class LogoutStore
      */
     private static function addSessionSQL(
         Store\SQL $store,
-        $authId,
-        $nameId,
-        $sessionIndex,
-        $expire,
-        $sessionId
+        string $authId,
+        string $nameId,
+        string $sessionIndex,
+        int $expire,
+        string $sessionId
     ) {
-        assert(is_string($authId));
-        assert(is_string($nameId));
-        assert(is_string($sessionIndex));
-        assert(is_int($expire));
-        assert(is_string($sessionId));
-
         self::createLogoutTable($store);
 
         if (rand(0, 1000) < 10) {
@@ -264,11 +258,8 @@ class LogoutStore
      * @param string $nameId  The hash of the users NameID.
      * @return array  Associative array of SessionIndex =>  SessionId.
      */
-    private static function getSessionsSQL(Store\SQL $store, $authId, $nameId)
+    private static function getSessionsSQL(Store\SQL $store, string $authId, string $nameId): array
     {
-        assert(is_string($authId));
-        assert(is_string($nameId));
-
         self::createLogoutTable($store);
 
         $params = [
@@ -301,11 +292,12 @@ class LogoutStore
      * @param array $sessionIndexes  The session indexes.
      * @return array  Associative array of SessionIndex =>  SessionId.
      */
-    private static function getSessionsStore(Store $store, $authId, $nameId, array $sessionIndexes)
-    {
-        assert(is_string($authId));
-        assert(is_string($nameId));
-
+    private static function getSessionsStore(
+        Store $store,
+        string $authId,
+        string $nameId,
+        array $sessionIndexes
+    ): array {
         $res = [];
         foreach ($sessionIndexes as $sessionIndex) {
             $sessionId = $store->get('saml.LogoutStore', $nameId . ':' . $sessionIndex);

@@ -25,13 +25,8 @@ class Crypto
      *
      * @see \SimpleSAML\Utils\Crypto::aesDecrypt()
      */
-    private static function aesDecryptInternal($ciphertext, $secret)
+    private static function aesDecryptInternal(string $ciphertext, string $secret): string
     {
-        if (!is_string($ciphertext)) {
-            throw new \InvalidArgumentException(
-                'Input parameter "$ciphertext" must be a string with more than 48 characters.'
-            );
-        }
         /** @var int $len */
         $len = mb_strlen($ciphertext, '8bit');
         if ($len < 48) {
@@ -99,12 +94,8 @@ class Crypto
      *
      * @see \SimpleSAML\Utils\Crypto::aesEncrypt()
      */
-    private static function aesEncryptInternal($data, $secret)
+    private static function aesEncryptInternal(string $data, string $secret): string
     {
-        if (!is_string($data)) {
-            throw new \InvalidArgumentException('Input parameter "$data" must be a string.');
-        }
-
         if (!function_exists("openssl_encrypt")) {
             throw new Error\Exception('The openssl PHP module is not loaded.');
         }

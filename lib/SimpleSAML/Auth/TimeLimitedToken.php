@@ -84,7 +84,7 @@ class TimeLimitedToken
      *
      * @return string The token for the given time and offset.
      */
-    private function calculateTokenValue($offset, $time = null)
+    private function calculateTokenValue(int $offset, int $time = null): string
     {
         if ($time === null) {
             $time = time();

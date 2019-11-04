@@ -19,7 +19,7 @@ class FilterScopesTest extends TestCase
      * @param array $request  The request state.
      * @return array  The state array after processing.
      */
-    private function processFilter(array $config, array $request)
+    private function processFilter(array $config, array $request): array
     {
         $filter = new \SimpleSAML\Module\saml\Auth\Process\FilterScopes($config, null);
         $filter->process($request);

@@ -162,7 +162,7 @@ class FederationController
      * @return array
      * @throws \Exception
      */
-    private function getHostedIdP()
+    private function getHostedIdP(): array
     {
         $entities = [];
 
@@ -326,7 +326,7 @@ class FederationController
      * @return array
      * @throws \SimpleSAML\Error\Exception If OrganizationName is set for an SP instance but OrganizationURL is not.
      */
-    private function getHostedSP()
+    private function getHostedSP(): array
     {
         $entities = [];
 

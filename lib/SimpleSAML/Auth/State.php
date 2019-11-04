@@ -177,7 +177,7 @@ class State
      *
      * @return integer  State timeout.
      */
-    private static function getStateTimeout()
+    private static function getStateTimeout(): int
     {
         if (self::$stateTimeout === null) {
             $globalConfig = Configuration::getInstance();

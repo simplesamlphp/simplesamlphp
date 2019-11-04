@@ -324,10 +324,8 @@ abstract class MetaDataStorageSource
      * @throws \Exception
      * @return string
      */
-    private function getDynamicHostedUrl($set)
+    private function getDynamicHostedUrl(string $set): string
     {
-        assert(is_string($set));
-
         // get the configuration
         $baseUrl = Utils\HTTP::getBaseURL();
 

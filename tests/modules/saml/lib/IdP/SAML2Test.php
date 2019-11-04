@@ -158,7 +158,7 @@ class SAML2Test extends ClearStateTestCase
      * @param array $queryParams
      * @return array The state array used for handling the authentication request.
      */
-    private function idpInitiatedHelper(array $queryParams)
+    private function idpInitiatedHelper(array $queryParams): array
     {
         /** @var \PHPUnit_Framework_MockObject_MockObject $idpStub */
         $idpStub = $this->getMockBuilder(IdP::class)

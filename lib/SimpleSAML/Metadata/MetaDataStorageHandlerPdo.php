@@ -79,10 +79,8 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
      * @throws \Exception If a database error occurs.
      * @throws \SimpleSAML\Error\Exception If the metadata can be retrieved from the database, but cannot be decoded.
      */
-    private function load($set)
+    private function load(string $set)
     {
-        assert(is_string($set));
-
         $tableName = $this->getTableName($set);
 
         if (!in_array($set, $this->supportedSets, true)) {
@@ -275,10 +273,8 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
      *
      * @return string Replaced table name
      */
-    private function getTableName($table)
+    private function getTableName(string $table): string
     {
-        assert(is_string($table));
-
         return $this->db->applyPrefix(str_replace("-", "_", $this->tablePrefix . $table));
     }
 

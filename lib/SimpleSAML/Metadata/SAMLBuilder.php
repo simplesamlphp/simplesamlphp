@@ -86,7 +86,7 @@ class SAMLBuilder
      * @param array $metadata
      * @return void
      */
-    private function setExpiration($metadata)
+    private function setExpiration(array $metadata)
     {
         if (array_key_exists('expire', $metadata)) {
             if ($metadata['expire'] - time() < $this->maxDuration) {
@@ -363,10 +363,8 @@ class SAMLBuilder
      * @return array An array of endpoint objects,
      *     either \SAML2\XML\md\EndpointType or \SAML2\XML\md\IndexedEndpointType.
      */
-    private static function createEndpoints(array $endpoints, $indexed)
+    private static function createEndpoints(array $endpoints, bool $indexed): array
     {
-        assert(is_bool($indexed));
-
         $ret = [];
 
         foreach ($endpoints as &$ep) {
@@ -791,10 +789,9 @@ class SAMLBuilder
      * @param string                      $x509data The certificate data.
      * @return void
      */
-    private function addX509KeyDescriptor(RoleDescriptor $rd, $use, $x509data)
+    private function addX509KeyDescriptor(RoleDescriptor $rd, string $use, string $x509data)
     {
         assert(in_array($use, ['encryption', 'signing'], true));
-        assert(is_string($x509data));
 
         $keyDescriptor = \SAML2\Utils::createKeyDescriptor($x509data);
         $keyDescriptor->setUse($use);

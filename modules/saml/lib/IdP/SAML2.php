@@ -13,6 +13,7 @@ use SAML2\EncryptedAssertion;
 use SAML2\HTTPRedirect;
 use SAML2\LogoutRequest;
 use SAML2\LogoutResponse;
+use SAML2\Response;
 use SAML2\SOAP;
 use SAML2\XML\ds\X509Certificate;
 use SAML2\XML\ds\X509Data;
@@ -192,14 +193,10 @@ class SAML2
     private static function getAssertionConsumerService(
         array $supportedBindings,
         Configuration $spMetadata,
-        $AssertionConsumerServiceURL,
-        $ProtocolBinding,
-        $AssertionConsumerServiceIndex
+        string $AssertionConsumerServiceURL = null,
+        string $ProtocolBinding = null,
+        int $AssertionConsumerServiceIndex = null
     ) {
-        assert(is_string($AssertionConsumerServiceURL) || $AssertionConsumerServiceURL === null);
-        assert(is_string($ProtocolBinding) || $ProtocolBinding === null);
-        assert(is_int($AssertionConsumerServiceIndex) || $AssertionConsumerServiceIndex === null);
-
         /* We want to pick the best matching endpoint in the case where for example
          * only the ProtocolBinding is given. We therefore pick endpoints with the
          * following priority:
@@ -948,7 +945,6 @@ class SAML2
         Configuration $spMetadata,
         array &$state
     ) {
-
         $attribute = $spMetadata->getString('simplesaml.nameidattribute', null);
         if ($attribute === null) {
             $attribute = $idpMetadata->getString('simplesaml.nameidattribute', null);
@@ -999,7 +995,7 @@ class SAML2
         Configuration $idpMetadata,
         Configuration $spMetadata,
         array $attributes
-    ) {
+    ): array {
         $base64Attributes = $spMetadata->getBoolean('base64attributes', null);
         if ($base64Attributes === null) {
             $base64Attributes = $idpMetadata->getBoolean('base64attributes', false);
@@ -1078,7 +1074,7 @@ class SAML2
     private static function getAttributeNameFormat(
         Configuration $idpMetadata,
         Configuration $spMetadata
-    ) {
+    ): string {
         // try SP metadata first
         $attributeNameFormat = $spMetadata->getString('attributes.NameFormat', null);
         if ($attributeNameFormat !== null) {
@@ -1119,7 +1115,7 @@ class SAML2
         Configuration $idpMetadata,
         Configuration $spMetadata,
         array &$state
-    ) {
+    ): Assertion {
         assert(isset($state['Attributes']));
         assert(isset($state['saml:ConsumerURL']));
 
@@ -1376,8 +1372,8 @@ class SAML2
         Configuration $idpMetadata,
         Configuration $spMetadata,
         array $association,
-        $relayState
-    ) {
+        string $relayState = null
+    ): LogoutRequest {
         $lr = \SimpleSAML\Module\saml\Message::buildLogoutRequest($idpMetadata, $spMetadata);
         $lr->setRelayState($relayState);
         $lr->setSessionIndex($association['saml:SessionIndex']);
@@ -1413,14 +1409,14 @@ class SAML2
     private static function buildResponse(
         Configuration $idpMetadata,
         Configuration $spMetadata,
-        $consumerURL
-    ) {
+        string $consumerURL
+    ): Response {
         $signResponse = $spMetadata->getBoolean('saml20.sign.response', null);
         if ($signResponse === null) {
             $signResponse = $idpMetadata->getBoolean('saml20.sign.response', true);
         }
 
-        $r = new \SAML2\Response();
+        $r = new Response();
         $issuer = new Issuer();
         $issuer->setValue($idpMetadata->getString('entityid'));
         $issuer->setFormat(Constants::NAMEID_ENTITY);

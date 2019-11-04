@@ -12,6 +12,7 @@ namespace SimpleSAML\XML\Shib13;
 
 use DOMDocument;
 use DOMNode;
+use DOMNodeList;
 use DOMXpath;
 use SAML2\DOMDocumentFactory;
 use SimpleSAML\Configuration;
@@ -160,7 +161,7 @@ class AuthnResponse
      * @param \DOMElement|\SimpleXMLElement $node Node to be validated.
      * @return bool TRUE if the node is validated or FALSE if not.
      */
-    private function isNodeValidated($node)
+    private function isNodeValidated($node): bool
     {
         if ($this->messageValidated) {
             // This message was validated externally
@@ -190,9 +191,8 @@ class AuthnResponse
      *                        then the query will be relative to the root of the response.
      * @return \DOMNodeList
      */
-    private function doXPathQuery($query, $node = null)
+    private function doXPathQuery(string $query, DOMNode $node = null): DOMNodeList
     {
-        assert(is_string($query));
         assert($this->dom instanceof DOMDocument);
 
         if ($node === null) {
@@ -453,13 +453,8 @@ class AuthnResponse
      * @param array $scopedAttributes  Array of attributes names which are scoped.
      * @return string  The attribute encoded as an XML-string.
      */
-    private function encAttribute($name, $values, $base64, $scopedAttributes)
+    private function encAttribute(string $name, array $values, bool $base64, array $scopedAttributes): string
     {
-        assert(is_string($name));
-        assert(is_array($values));
-        assert(is_bool($base64));
-        assert(is_array($scopedAttributes));
-
         if (in_array($name, $scopedAttributes, true)) {
             $scoped = true;
         } else {

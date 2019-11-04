@@ -17,7 +17,7 @@
  * with 'SimpleSAML_'.
  * @deprecated This function will be removed in SSP 2.0.
  */
-function temporaryLoader($class)
+function temporaryLoader(string $class)
 {
     // handle the upgrade to the latest version of XMLSecLibs using namespaces
     if (strstr($class, 'XMLSec') && !strstr($class, '\\RobRichards\\XMLSecLibs\\')) {
@@ -82,7 +82,7 @@ function temporaryLoader($class)
  *
  * TODO: this autoloader should be removed once everything has been migrated to namespaces.
  */
-function sspmodAutoloadPSR0($className)
+function sspmodAutoloadPSR0(string $className)
 {
     $modulePrefixLength = strlen('sspmod_');
     $classPrefix = substr($className, 0, $modulePrefixLength);
@@ -140,7 +140,7 @@ function sspmodAutoloadPSR0($className)
  *
  * @param string $className Name of the class.
  */
-function sspmodAutoloadPSR4($className)
+function sspmodAutoloadPSR4(string $className)
 {
     $elements = explode('\\', $className);
     if ($elements[0] === '') {

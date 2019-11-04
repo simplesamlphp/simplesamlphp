@@ -187,10 +187,8 @@ class Error extends \SimpleSAML\Error\Exception
      * @param string $status  The status code.
      * @return string  A shorter version of the status code.
      */
-    private static function shortStatus($status)
+    private static function shortStatus(string $status): string
     {
-        assert(is_string($status));
-
         $t = 'urn:oasis:names:tc:SAML:2.0:status:';
         if (substr($status, 0, strlen($t)) === $t) {
             return substr($status, strlen($t));
