@@ -259,7 +259,7 @@ class Translate
      * @param bool $striptags
      * @deprecated Not used in twig, gettext
      *
-     * @return string|null  The translated tag, or a placeholder value if the tag wasn't found.
+     * @return string  The translated tag, or a placeholder value if the tag wasn't found.
      */
     public function t(
         $tag,
@@ -279,26 +279,6 @@ class Translate
                 '. This parameter will go away, the fallback will become' .
                 ' identical to the $tag in 2.0.'
             );
-        }
-        if (!is_array($replacements)) {
-            // TODO: remove this entire if for 2.0
-
-            // old style call to t(...). Print warning to log
-            Logger::warning(
-                'Deprecated use of SimpleSAML\Locale\Translate::t(...) at ' . $where .
-                '. Please update the code to use the new style of parameters.'
-            );
-
-            // for backwards compatibility
-            /** @psalm-suppress PossiblyInvalidArgument */
-            if (!$replacements && ($this->getTag($tag) === null)) {
-                Logger::warning(
-                    'Code which uses $fallbackdefault === FALSE should be updated to use the getTag() method instead.'
-                );
-                return null;
-            }
-
-            $replacements = $oldreplacements;
         }
 
         if (is_array($tag)) {
