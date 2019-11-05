@@ -1076,6 +1076,7 @@ class SAMLParser
                         // only saml:Attribute are currently supported here. The specifications also allows
                         // saml:Assertions, which more complex processing
                         if ($attr instanceof Attribute) {
+                            /** @psalm-var string|null $attrName   Remove for SSP 2.0 */
                             $attrName = $attr->getName();
                             $attrNameFormat = $attr->getNameFormat();
                             $attrValue = $attr->getAttributeValue();
@@ -1113,6 +1114,7 @@ class SAMLParser
 
                     foreach ($e->getKeywords() as $uiItem) {
                         $keywords = $uiItem->getKeywords();
+                        /** @psalm-var string|null $language */
                         $language = $uiItem->getLanguage();
                         if (($keywords === []) || ($language === null)) {
                             continue;
@@ -1120,6 +1122,7 @@ class SAMLParser
                         $ret['UIInfo']['Keywords'][$language] = $keywords;
                     }
                     foreach ($e->getLogo() as $uiItem) {
+                        /** @psalm-suppress TypeDoesNotContainNull  Remove in SSP 2.0 */
                         if (
                             !($uiItem instanceof Logo)
                             || ($uiItem->getUrl() === null)

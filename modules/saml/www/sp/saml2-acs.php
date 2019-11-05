@@ -47,6 +47,7 @@ if ($issuer === null) {
             break;
         }
     }
+    /** @psalm-var string|null $issuer  Remove in SSP 2.0 */
     if ($issuer === null) {
         // no issuer found in the assertions
         throw new Exception('Missing <saml:Issuer> in message delivered to AssertionConsumerService.');
@@ -54,6 +55,7 @@ if ($issuer === null) {
 }
 
 if ($issuer instanceof \SAML2\XML\saml\Issuer) {
+    /** @psalm-var string|null $issuer */
     $issuer = $issuer->getValue();
     if ($issuer === null) {
         // no issuer found in the assertions

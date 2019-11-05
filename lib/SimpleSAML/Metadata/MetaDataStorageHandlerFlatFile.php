@@ -83,6 +83,7 @@ class MetaDataStorageHandlerFlatFile extends MetaDataStorageSource
             return null;
         }
 
+        /** @psalm-var mixed $metadata   We cannot be sure what the include below will do with this var */
         $metadata = [];
 
         include($metadatasetfile);

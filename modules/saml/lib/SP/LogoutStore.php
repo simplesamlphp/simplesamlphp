@@ -417,10 +417,11 @@ class LogoutStore
 
         if ($store instanceof Store\SQL) {
             $sessions = self::getSessionsSQL($store, $authId, $strNameId);
-        } elseif (empty($sessionIndexes)) {
-            // We cannot fetch all sessions without a SQL store
-            return false;
         } else {
+            if (empty($sessionIndexes)) {
+                // We cannot fetch all sessions without a SQL store
+                return false;
+            }
             /** @var array $sessions At this point the store cannot be false */
             $sessions = self::getSessionsStore($store, $authId, $strNameId, $sessionIndexes);
         }
