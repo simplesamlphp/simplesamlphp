@@ -129,7 +129,7 @@ class External extends \SimpleSAML\Auth\Source
          * First we add the identifier of this authentication source
          * to the state array, so that we know where to resume.
          */
-        $state['exampleauth:AuthID'] = self::AUTHID;
+        $state['exampleauth:AuthID'] = $this->authId;
 
         /*
          * We need to save the $state-array, so that we can resume the
