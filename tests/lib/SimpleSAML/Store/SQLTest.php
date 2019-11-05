@@ -3,6 +3,7 @@
 namespace SimpleSAML\Test\Store;
 
 use PHPUnit\Framework\TestCase;
+use ReflectionClass;
 use SimpleSAML\Configuration;
 use SimpleSAML\Store;
 
@@ -199,22 +200,23 @@ class SQLTest extends TestCase
     protected function tearDown()
     {
         $config = Configuration::getInstance();
+
         /** @var \SimpleSAML\Store\SQL $store */
         $store = Store::getInstance();
 
-        $this->clearInstance($config, '\SimpleSAML\Configuration');
-        $this->clearInstance($store, '\SimpleSAML\Store');
+        $this->clearInstance($config, Configuration::class);
+        $this->clearInstance($store, Store::class);
     }
 
 
     /**
      * @param \SimpleSAML\Configuration|\SimpleSAML\Store $service
-     * @param string $className
+     * @param class-string $className
      * @return void
      */
     protected function clearInstance($service, $className)
     {
-        $reflectedClass = new \ReflectionClass($className);
+        $reflectedClass = new ReflectionClass($className);
         $reflectedInstance = $reflectedClass->getProperty('instance');
         $reflectedInstance->setAccessible(true);
         $reflectedInstance->setValue($service, null);

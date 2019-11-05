@@ -3,6 +3,7 @@
 namespace SimpleSAML\Test;
 
 use PHPUnit\Framework\TestCase;
+use ReflectionClass;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error\CriticalConfigurationError;
 use SimpleSAML\Store;
@@ -139,12 +140,12 @@ class StoreTest extends TestCase
 
     /**
      * @param \SimpleSAML\Configuration|\SimpleSAML\Store $service
-     * @param string $className
+     * @param class-string $className
      * @return void
      */
     protected function clearInstance($service, $className)
     {
-        $reflectedClass = new \ReflectionClass($className);
+        $reflectedClass = new ReflectionClass($className);
         $reflectedInstance = $reflectedClass->getProperty('instance');
         $reflectedInstance->setAccessible(true);
         $reflectedInstance->setValue($service, null);

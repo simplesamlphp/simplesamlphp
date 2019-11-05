@@ -96,7 +96,7 @@ class SQLNameIDTest extends TestCase
 
     /**
      * @param \SimpleSAML\Configuration|\SimpleSAML\Store $service
-     * @param string $className
+     * @param class-string $className
      * @return void
      */
     protected function clearInstance($service, $className)

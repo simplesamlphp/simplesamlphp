@@ -203,7 +203,7 @@ NOWDOC;
 
     /**
      * @param \SimpleSAML\Configuration $service
-     * @param string $className
+     * @param class-string $className
      * @param mixed|null $value
      * @return void
      */
