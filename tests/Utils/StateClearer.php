@@ -44,7 +44,7 @@ class StateClearer
         $this->backups['$_GET'] = $_GET;
         $this->backups['$_POST'] = $_POST;
         $this->backups['$_SERVER'] = $_SERVER;
-        $this->backups['$_SESSION'] = isset($_SESSION) ? $_SESSION : [];
+        $this->backups['$_SESSION'] = $_SESSION;
         $this->backups['$_REQUEST'] = $_REQUEST;
     }
 

@@ -298,7 +298,6 @@ abstract class MetaDataStorageSource
     protected function lookupIndexFromEntityId($entityId, array $metadataSet)
     {
         assert(is_string($entityId));
-        assert(is_array($metadataSet));
 
         // check for hostname
         $currentHost = Utils\HTTP::getSelfHost(); // sp.example.org
@@ -360,7 +359,6 @@ abstract class MetaDataStorageSource
     {
         assert(is_string($metadataSet));
         assert(is_string($entityId));
-        assert(is_array($metadataEntry));
 
         $modifiedMetadataEntry = $metadataEntry;
 

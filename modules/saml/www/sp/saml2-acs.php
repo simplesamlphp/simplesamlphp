@@ -37,6 +37,7 @@ if (!($response instanceof \SAML2\Response)) {
     throw new \SimpleSAML\Error\BadRequest('Invalid message received to AssertionConsumerService endpoint.');
 }
 
+/** @psalm-var null|string|\SAML2\XML\saml\Issuer $issuer   Remove in SSP 2.0 */
 $issuer = $response->getIssuer();
 if ($issuer === null) {
     // no Issuer in the response. Look for an unencrypted assertion with an issuer

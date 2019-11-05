@@ -360,6 +360,7 @@ class SAML2
                 );
             }
 
+            /** @psalm-var null|string|\SAML2\XML\saml\Issuer $issuer   Remove in SSP 2.0 */
             $issuer = $request->getIssuer();
             if ($issuer === null) {
                 throw new Error\BadRequest(
@@ -602,6 +603,7 @@ class SAML2
         $binding = Binding::getCurrentBinding();
         $message = $binding->receive();
 
+        /** @psalm-var null|string|\SAML2\XML\saml\Issuer  Remove in SSP 2.0 */
         $issuer = $message->getIssuer();
         if ($issuer === null) {
             /* Without an issuer we have no way to respond to the message. */

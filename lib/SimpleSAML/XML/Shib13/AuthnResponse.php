@@ -252,7 +252,7 @@ class AuthnResponse
             }
 
             $conditions = $this->doXPathQuery('shib:Conditions', $assertion);
-            if ($conditions && $conditions->length > 0) {
+            if ($conditions->length > 0) {
                 $condition = $conditions->item(0);
 
                 $start = $condition->getAttribute('NotBefore');

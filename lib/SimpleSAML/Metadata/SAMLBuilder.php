@@ -693,7 +693,6 @@ class SAMLBuilder
      */
     public function addAttributeAuthority(array $metadata)
     {
-        assert(is_array($metadata));
         assert(isset($metadata['entityid']));
         assert(isset($metadata['metadata-set']));
 
