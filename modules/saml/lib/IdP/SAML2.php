@@ -1038,6 +1038,7 @@ class SAML2
 
                 $attrval = $value;
                 if ($value instanceof DOMNodeList) {
+                    /** @psalm-suppress PossiblyNullPropertyFetch */
                     $attrval = new AttributeValue($value->item(0)->parentNode);
                 }
 
