@@ -287,6 +287,7 @@ class MetaDataStorageHandler implements \SimpleSAML\Utils\ClearableState
                     }
                 }
                 // We found the entity id so remove it from the list that needs resolving
+                /** @psalm-suppress PossiblyInvalidArrayOffset */
                 unset($entityIds[array_search($key, $entityIds)]);
             }
             $result = array_merge($srcList, $result);
