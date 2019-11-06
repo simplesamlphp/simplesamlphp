@@ -34,6 +34,14 @@ Released TBD
     to allow overriding the default URL paths.
   * Added support for per-IDP configurable `AuthnContextClassRef`/`AuthnContextComparison`.
 
+## Version 1.17.7
+
+Released 2019-11-06
+
+  * Resolved a security issue that allows to bypass signature validation. See
+    [SSPSA 201911-01](https://simplesamlphp.org/security/201911-01).
+
+
 ## Version 1.17.6
 
 Released 2019-08-29
