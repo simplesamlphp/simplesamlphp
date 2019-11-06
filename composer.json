@@ -37,7 +37,7 @@
         "ext-json": "*",
         "ext-mbstring": "*",
         "simplesamlphp/saml2": "^3.3",
-        "robrichards/xmlseclibs": "^3.0",
+        "robrichards/xmlseclibs": "^3.0.4",
         "whitehat101/apr1-md5": "~1.0",
         "twig/twig": "~1.0 || ~2.0",
         "gettext/gettext": "^4.6",
