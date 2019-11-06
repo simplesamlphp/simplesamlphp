@@ -47,7 +47,7 @@ abstract class UserPassBase extends \SimpleSAML\Auth\Source
      *
      * @var array
      */
-    protected $loginLinks;
+    protected $loginLinks = [];
 
     /**
      * Storage for authsource config option remember.username.enabled
