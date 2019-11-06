@@ -489,7 +489,7 @@ class Logger
         if (self::$captureLog) {
             $ts = microtime(true);
             $msecs = (int) (($ts - (int) $ts) * 1000);
-            $ts = gmdate('H:i:s', $ts) . sprintf('.%03d', $msecs) . 'Z';
+            $ts = gmdate('H:i:s') . sprintf('.%03d', $msecs) . 'Z';
             self::$capturedLog[] = $ts . ' ' . $string;
         }
 
