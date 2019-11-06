@@ -44,7 +44,7 @@
         "ext-mbstring": "*",
         "gettext/gettext": "^4.6",
         "phpmailer/phpmailer": "^6.0",
-        "robrichards/xmlseclibs": "^3.0",
+        "robrichards/xmlseclibs": "^3.0.4",
         "simplesamlphp/saml2": "^3.4 || ^4.0",
         "simplesamlphp/simplesamlphp-module-adfs": "^0.9",
         "simplesamlphp/simplesamlphp-module-authcrypt": "^0.9",
