@@ -80,7 +80,10 @@ class MultiAuth extends \SimpleSAML\Auth\Source
         $defaultLanguage = $globalConfiguration->getString('language.default', 'en');
         $authsources = Configuration::getConfig('authsources.php');
         $this->sources = [];
-        foreach ($config['sources'] as $source => $info) {
+
+        /** @psalm-var array $sources */
+        $sources = $config['sources'];
+        foreach ($sources as $source => $info) {
             if (is_int($source)) {
                 // Backwards compatibility
                 $source = $info;
