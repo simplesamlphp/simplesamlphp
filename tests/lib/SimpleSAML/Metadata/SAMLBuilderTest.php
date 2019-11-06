@@ -46,6 +46,7 @@ class SAMLBuilderTest extends TestCase
         $attributes = $first->getElementsByTagName("RequestedAttribute");
         $this->assertEquals(4, $attributes->length);
         for ($c = 0; $c < $attributes->length; $c++) {
+            /** @psalm-var \DOMElement $curAttribute */
             $curAttribute = $attributes->item($c);
             $this->assertTrue($curAttribute->hasAttribute("Name"));
             $this->assertFalse($curAttribute->hasAttribute("FriendlyName"));
@@ -80,6 +81,7 @@ class SAMLBuilderTest extends TestCase
         $this->assertEquals(4, $attributes->length);
         $keys = array_keys($metadata['attributes']);
         for ($c = 0; $c < $attributes->length; $c++) {
+            /** @psalm-var \DOMElement $curAttribute */
             $curAttribute = $attributes->item($c);
             $this->assertTrue($curAttribute->hasAttribute("Name"));
             $this->assertTrue($curAttribute->hasAttribute("FriendlyName"));
@@ -114,6 +116,7 @@ class SAMLBuilderTest extends TestCase
         $attributes = $first->getElementsByTagName("RequestedAttribute");
         $this->assertEquals(4, $attributes->length);
         for ($c = 0; $c < $attributes->length; $c++) {
+            /** @psalm-var \DOMElement $curAttribute */
             $curAttribute = $attributes->item($c);
             $this->assertTrue($curAttribute->hasAttribute("Name"));
             $this->assertFalse($curAttribute->hasAttribute("FriendlyName"));
@@ -148,6 +151,7 @@ class SAMLBuilderTest extends TestCase
         $this->assertEquals(4, $attributes->length);
         $keys = array_keys($metadata['attributes']);
         for ($c = 0; $c < $attributes->length; $c++) {
+            /** @psalm-var \DOMElement $curAttribute */
             $curAttribute = $attributes->item($c);
             $this->assertTrue($curAttribute->hasAttribute("Name"));
             $this->assertTrue($curAttribute->hasAttribute("FriendlyName"));
