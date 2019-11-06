@@ -66,6 +66,7 @@ if ($issuer instanceof \SAML2\XML\saml\Issuer) {
 
 $session = \SimpleSAML\Session::getSessionFromRequest();
 $prevAuth = $session->getAuthData($sourceId, 'saml:sp:prevAuth');
+/** @psalm-var string $issuer */
 if ($prevAuth !== null && $prevAuth['id'] === $response->getId() && $prevAuth['issuer'] === $issuer) {
     /* OK, it looks like this message has the same issuer
      * and ID as the SP session we already have active. We
