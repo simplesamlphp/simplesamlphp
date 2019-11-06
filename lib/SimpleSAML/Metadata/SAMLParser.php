@@ -1162,7 +1162,7 @@ class SAMLParser
 
                 $name = $attribute->getAttribute('Name');
                 $values = array_map(
-                    ['\SimpleSAML\Utils\XML', 'getDOMText'],
+                    '\SimpleSAML\Utils\XML::getDOMText',
                     Utils\XML::getDOMChildren($attribute, 'AttributeValue', '@saml2')
                 );
 
@@ -1322,7 +1322,7 @@ class SAMLParser
      */
     private static function extractEndpoints(array $endpoints): array
     {
-        return array_map(['self', 'parseGenericEndpoint'], $endpoints);
+        return array_map('self::parseGenericEndpoint', $endpoints);
     }
 
 
