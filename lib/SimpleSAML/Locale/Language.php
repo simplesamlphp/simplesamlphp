@@ -8,6 +8,8 @@
  * @package SimpleSAMLphp
  */
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Locale;
 
 use SimpleSAML\Configuration;

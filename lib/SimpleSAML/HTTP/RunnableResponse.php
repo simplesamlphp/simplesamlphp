@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\HTTP;
 
 use Symfony\Component\HttpFoundation\Response;

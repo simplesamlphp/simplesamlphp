@@ -7,6 +7,8 @@
  * @package SimpleSAMLphp
  */
 
+declare(strict_types=1);
+
 namespace SimpleSAML\XHTML;
 
 use SimpleSAML\Configuration;

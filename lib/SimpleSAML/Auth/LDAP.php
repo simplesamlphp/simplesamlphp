@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Auth;
 
 \SimpleSAML\Logger::warning("The class \SimpleSAML\Auth\LDAP has been moved to the ldap module, please use \SimpleSAML\Module\saml\Auth\Ldap instead.");
