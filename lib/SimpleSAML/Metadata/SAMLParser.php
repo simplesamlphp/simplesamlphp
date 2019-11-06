@@ -1088,7 +1088,7 @@ class SAMLParser
                             // attribute names that is not URI is prefixed as this: '{nameformat}name'
                             $name = $attrName;
                             if ($attrNameFormat === null) {
-                                $name = '{' . Constants::NAMEFORMAT_UNSPECIFIED . '}' . $attr->getName();
+                                $name = '{' . Constants::NAMEFORMAT_UNSPECIFIED . '}' . $attrName;
                             } elseif ($attrNameFormat !== Constants::NAMEFORMAT_URI) {
                                 $name = '{' . $attrNameFormat . '}' . $attrName;
                             }
