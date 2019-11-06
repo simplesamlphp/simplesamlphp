@@ -357,6 +357,7 @@ class LogoutStore
         // serialize and anonymize the NameID
         // TODO: remove this conditional statement
         if (is_array($nameId)) {
+            /** @psalm-suppress UndefinedMethod */
             $nameId = NameID::fromArray($nameId);
         }
         $strNameId = serialize($nameId);
@@ -399,6 +400,7 @@ class LogoutStore
         // serialize and anonymize the NameID
         // TODO: remove this conditional statement
         if (is_array($nameId)) {
+            /** @psalm-suppress UndefinedMethod */
             $nameId = NameID::fromArray($nameId);
         }
         $strNameId = serialize($nameId);

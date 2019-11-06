@@ -37,10 +37,13 @@ class SAMLBuilderTest extends TestCase
         $samlBuilder->addMetadata($set, $metadata);
 
         $spDesc = $samlBuilder->getEntityDescriptor();
-        /** @var \DOMNodeList $acs */
+        /** @psalm-var \DOMNodeList $acs */
         $acs = $spDesc->getElementsByTagName("AttributeConsumingService");
         $this->assertEquals(1, $acs->length);
-        $attributes = $acs->item(0)->getElementsByTagName("RequestedAttribute");
+
+        /** @psalm-var \DOMElement $first */
+        $first = $acs->item(0);
+        $attributes = $first->getElementsByTagName("RequestedAttribute");
         $this->assertEquals(4, $attributes->length);
         for ($c = 0; $c < $attributes->length; $c++) {
             $curAttribute = $attributes->item($c);
@@ -70,7 +73,10 @@ class SAMLBuilderTest extends TestCase
         /** @var \DOMNodeList $acs */
         $acs = $spDesc->getElementsByTagName("AttributeConsumingService");
         $this->assertEquals(1, $acs->length);
-        $attributes = $acs->item(0)->getElementsByTagName("RequestedAttribute");
+
+        /** @psalm-var \DOMElement $first */
+        $first = $acs->item(0);
+        $attributes = $first->getElementsByTagName("RequestedAttribute");
         $this->assertEquals(4, $attributes->length);
         $keys = array_keys($metadata['attributes']);
         for ($c = 0; $c < $attributes->length; $c++) {
@@ -102,7 +108,10 @@ class SAMLBuilderTest extends TestCase
         /** @var \DOMNodeList $acs */
         $acs = $spDesc->getElementsByTagName("AttributeConsumingService");
         $this->assertEquals(1, $acs->length);
-        $attributes = $acs->item(0)->getElementsByTagName("RequestedAttribute");
+
+        /** @psalm-var \DOMElement $first */
+        $first = $acs->item(0);
+        $attributes = $first->getElementsByTagName("RequestedAttribute");
         $this->assertEquals(4, $attributes->length);
         for ($c = 0; $c < $attributes->length; $c++) {
             $curAttribute = $attributes->item($c);
@@ -132,7 +141,10 @@ class SAMLBuilderTest extends TestCase
         /** @var \DOMNodeList $acs */
         $acs = $spDesc->getElementsByTagName("AttributeConsumingService");
         $this->assertEquals(1, $acs->length);
-        $attributes = $acs->item(0)->getElementsByTagName("RequestedAttribute");
+
+        /** @psalm-var \DOMElement $first */
+        $first = $acs->item(0);
+        $attributes = $first->getElementsByTagName("RequestedAttribute");
         $this->assertEquals(4, $attributes->length);
         $keys = array_keys($metadata['attributes']);
         for ($c = 0; $c < $attributes->length; $c++) {
@@ -170,6 +182,8 @@ class SAMLBuilderTest extends TestCase
         $spDesc = $samlBuilder->getEntityDescriptor();
         /** @var \DOMNodeList $acs */
         $acs = $spDesc->getElementsByTagName("AttributeConsumingService");
+
+        /** @psalm-var \DOMElement $acs1 */
         $acs1 = $acs->item(0);
         $this->assertFalse($acs1->hasAttribute("isDefault"));
 
@@ -179,6 +193,7 @@ class SAMLBuilderTest extends TestCase
         $samlBuilder->addMetadata($set, $metadata);
         $spDesc = $samlBuilder->getEntityDescriptor();
         $acs = $spDesc->getElementsByTagName("AttributeConsumingService");
+
         /** @var \DOMElement $acs1 */
         $acs1 = $acs->item(0);
         $this->assertTrue($acs1->hasAttribute("isDefault"));
@@ -190,6 +205,7 @@ class SAMLBuilderTest extends TestCase
         $samlBuilder->addMetadata($set, $metadata);
         $spDesc = $samlBuilder->getEntityDescriptor();
         $acs = $spDesc->getElementsByTagName("AttributeConsumingService");
+
         /** @var \DOMElement $acs1 */
         $acs1 = $acs->item(0);
         $this->assertTrue($acs1->hasAttribute("isDefault"));
@@ -221,6 +237,7 @@ class SAMLBuilderTest extends TestCase
 
         $spDesc = $samlBuilder->getEntityDescriptor();
         $acs = $spDesc->getElementsByTagName("AttributeConsumingService");
+
         /** @var \DOMElement $acs1 */
         $acs1 = $acs->item(0);
         $this->assertTrue($acs1->hasAttribute("index"));
@@ -233,6 +250,7 @@ class SAMLBuilderTest extends TestCase
 
         $spDesc = $samlBuilder->getEntityDescriptor();
         $acs = $spDesc->getElementsByTagName("AttributeConsumingService");
+
         /** @var \DOMElement $acs1 */
         $acs1 = $acs->item(0);
         $this->assertTrue($acs1->hasAttribute("index"));
