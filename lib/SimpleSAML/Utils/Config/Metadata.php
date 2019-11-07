@@ -5,6 +5,7 @@ namespace SimpleSAML\Utils\Config;
 use SAML2\Constants;
 use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
+use Webmozart\Assert\Assert;
 
 /**
  * Class with utilities to fetch different configuration objects from metadata configuration arrays.
@@ -300,6 +301,11 @@ class Metadata
      */
     public static function isHiddenFromDiscovery(array $metadata)
     {
+        Assert::keyExists($metadata, 'EntityAttributes');
+        Assert::isArray($metadata['EntityAttributes']);
+        Assert::keyExists($metadata['EntityAttributes'], self::$ENTITY_CATEGORY);
+        Assert::isArray($metadata['EntityAttributes'][self::$ENTITY_CATEGORY]);
+
         Logger::maskErrors(E_ALL);
         $hidden = in_array(self::$HIDE_FROM_DISCOVERY, $metadata['EntityAttributes'][self::$ENTITY_CATEGORY], true);
         Logger::popErrorMask();
