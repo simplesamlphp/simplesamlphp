@@ -466,7 +466,7 @@ class Translate
     {
         $text = BaseTranslator::$current->gettext($original);
 
-        if (func_num_args() === 1) {
+        if (func_num_args() === 1 || $original === null) {
             return $text;
         }
 
