@@ -304,8 +304,9 @@ class Template extends Response
 
         // set up translation
         $options = [
-            'cache' => $cache,
             'auto_reload' => $auto_reload,
+            'cache' => $cache,
+            'strict_variables' => true,
             'translation_function' => [Translate::class, 'translateSingularGettext'],
             'translation_function_plural' => [Translate::class, 'translatePluralGettext'],
         ];
@@ -512,7 +513,11 @@ class Template extends Response
         if ($this->controller) {
             $this->controller->display($this->data);
         }
-        return $this->twig->render($this->twig_template, $this->data);
+        try {
+            return $this->twig->render($this->twig_template, $this->data);
+        } catch (\Twig\Error\RuntimeError $e) {
+            throw new \SimpleSAML\Error\Exception(substr($e->getMessage(), 0, -1) . ' in ' . $this->template, 0, $e);
+        }
     }
 
 
