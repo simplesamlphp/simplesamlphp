@@ -16,4 +16,4 @@ $output = $request->get('output');
 
 $controller = new Controller\Cron($config, $session);
 $response = $controller->run($tag, $key, $output);
-$response->send();
+$response->show();
