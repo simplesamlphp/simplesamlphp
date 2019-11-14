@@ -45,12 +45,20 @@ $data['hostname'] = php_uname('n');
 $data['directory'] = dirname(dirname(__FILE__));
 
 if ($config->getBoolean('errorreporting', true)) {
-    $mail = new SimpleSAML\Utils\EMail('SimpleSAMLphp error report from ' . $email);
-    $mail->setData($data);
-    $mail->addReplyTo($email);
-    $mail->setText($text);
-    $mail->send();
-    SimpleSAML\Logger::error('Report with id ' . $reportId . ' sent');
+    if ($data['exceptionMsg'] !== 'not set' &&
+        $data['exceptionTrace'] !== 'not set' &&
+        $data['trackId'] !== 'not set' &&
+        $data['url'] !== 'not set'
+    ) {
+        $mail = new SimpleSAML\Utils\EMail('SimpleSAMLphp error report from ' . $email);
+        $mail->setData($data);
+        $mail->addReplyTo($email);
+        $mail->setText($text);
+        $mail->send();
+        SimpleSAML\Logger::error('Report with id ' . $reportId . ' sent');
+    } else {
+        SimpleSAML\Logger::error('Report wasn\'t sent because any of mandatory fields wasn\'t filled');
+    }
 }
 
 // redirect the user back to this page to clear the POST request
