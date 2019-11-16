@@ -636,8 +636,11 @@ class Session implements \Serializable, Utils\ClearableState
                     continue;
                 }
 
+                /** @psalm-var \DOMNode $node   We made sure value has at least 1 item in the check above */
+                $node = $value->item(0);
+
                 // create an AttributeValue object and save it to 'RawAttributes', using same attribute name and index
-                $attrval = new AttributeValue($value->item(0)->parentNode);
+                $attrval = new AttributeValue($node->parentNode);
                 $data['RawAttributes'][$attribute][$idx] = $attrval;
             }
         }
