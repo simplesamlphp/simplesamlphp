@@ -90,7 +90,7 @@
         "mikey179/vfsstream": "~1.6",
         "phpunit/phpunit": "~6.3",
         "sensiolabs/security-checker": "^5.0.3",
-        "simplesamlphp/simplesamlphp-test-framework": "^0.0.14",
+        "simplesamlphp/simplesamlphp-test-framework": "^0.1.0",
         "squizlabs/php_codesniffer": "^3.5",
         "vimeo/psalm": "~3.2"
     },
