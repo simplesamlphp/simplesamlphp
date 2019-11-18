@@ -129,7 +129,7 @@ class Module
             $request = Request::createFromGlobals();
         }
 
-        if ($request->getPathInfo() === '/') {
+        if ($request->server->get('PATH_INFO') === '/') {
             throw new Error\NotFound('No PATH_INFO to module.php');
         }
 
@@ -566,7 +566,7 @@ class Module
      */
     public static function removeTrailingSlash(Request $request)
     {
-        $pathInfo = $request->getPathInfo();
+        $pathInfo = $request->server->get('PATH_INFO');
         $url = str_replace($pathInfo, rtrim($pathInfo, ' /'), $request->getRequestUri());
         return new RedirectResponse($url, 308);
     }
