@@ -61,7 +61,7 @@
         "simplesamlphp/simplesamlphp-module-discopower": "^0.9",
         "simplesamlphp/simplesamlphp-module-exampleattributeserver": "^1.0",
         "simplesamlphp/simplesamlphp-module-expirycheck": "^0.9",
-        "simplesamlphp/simplesamlphp-module-ldap": "^0.9",
+        "simplesamlphp/simplesamlphp-module-ldap": "^0.9 | ^1.0",
         "simplesamlphp/simplesamlphp-module-memcookie": "^1.2",
         "simplesamlphp/simplesamlphp-module-memcachemonitor": "^0.9",
         "simplesamlphp/simplesamlphp-module-metarefresh": "^0.9",
