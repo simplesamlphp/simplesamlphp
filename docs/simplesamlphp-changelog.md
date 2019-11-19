@@ -15,12 +15,15 @@ Released TBD
 
 ## Version 1.18.0
 
-Released 2019-09-xx
+Released 2019-11-19
 
   * Fixed an issue with warnings being logged when using PHP 7.2 or newer (#1168).
   * Fixed an issue with web server aliases or rewritten URLs not working (#1023, #1093).
   * Fixed an issue that prevented errors to be logged if the log file was not writeable (#1194).
-  * Replace custom Email class with the phpmailer library.
+  * Fixed an issue with old-style NameIDPolicy configurations that disallowed creating new NameIDs (#1230).
+  * Resolved a security issue that exposed host information to unauthenticated users. See
+    [SSPSA 201911-02](https://simplesamlphp.org/security/201911-02).
+  * Replaced custom Email class with the phpmailer library.
   * Allow logging to STDERR in the `logging.handler` option by setting it to `stderr`.
   * Allow use of stream wrappers (e.g. s3://) in paths.
   * Improved 'update or insert' handling for different SQL drivers.
