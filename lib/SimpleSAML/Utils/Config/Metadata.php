@@ -320,7 +320,7 @@ class Metadata
 
         if (is_string($nameIdPolicy)) {
             // handle old configurations where 'NameIDPolicy' was used to specify just the format
-            $policy = ['Format' => $nameIdPolicy];
+            $policy = ['Format' => $nameIdPolicy, 'AllowCreate' => true];
         } elseif (is_array($nameIdPolicy)) {
             // handle current configurations specifying an array in the NameIDPolicy config option
             $nameIdPolicy_cf = Configuration::loadFromArray($nameIdPolicy);
@@ -334,7 +334,7 @@ class Metadata
             }
         } elseif ($nameIdPolicy === null) {
             // when NameIDPolicy is unset or set to null, default to transient as before
-            $policy = ['Format' => Constants::NAMEID_TRANSIENT];
+            $policy = ['Format' => Constants::NAMEID_TRANSIENT, 'AllowCreate' => true];
         }
 
         return $policy;
