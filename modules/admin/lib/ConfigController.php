@@ -123,6 +123,8 @@ class ConfigController
      */
     public function phpinfo()
     {
+        Utils\Auth::requireAdmin();
+
         return new RunnableResponse('phpinfo');
     }
 
