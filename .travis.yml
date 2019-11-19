@@ -7,6 +7,7 @@ stages:
   - pre-conditions
   - test
   - quality
+  - build
 
 
 ################
@@ -124,12 +125,7 @@ jobs:
         - composer update
         - php vendor/bin/phpunit
       script:
-        # Codecov, need to edit bash uploader for incorrect TRAVIS_PYTHON_VERSION environment variable matching, at least until codecov/codecov-bash#133 is resolved
-        - curl -s https://codecov.io/bash > .codecov
-        - sed -i -e 's/TRAVIS_.*_VERSION/^TRAVIS_.*_VERSION=/' .codecov
-        - chmod +x .codecov
-        - ./.codecov -X gcov
-        # - <(curl -s https://codecov.io/bash)
+        - bash <(curl -s https://codecov.io/bash)
 
     - stage: quality
       env: Psalm
@@ -144,6 +140,18 @@ jobs:
         - composer update
       script:
         - vendor/bin/phpcs
+
+    ###################
+    #  Quality stage  #
+    ###################
+
+    - stage: build
+      env: NPM build
+      before_script:
+        - npm install
+        - npm audit fix
+      script:
+        - npm run build
 
 notifications:
   slack:
