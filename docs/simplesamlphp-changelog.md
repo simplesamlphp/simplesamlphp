@@ -13,8 +13,9 @@ Released 2019-11-20
   * Resolved a security issue that exposed host information to unauthenticated users. See
     [SSPSA 201911-02](https://simplesamlphp.org/security/201911-02).
 
+### consentAdmin
 
-
+  * Fixed an issue with CSS and Javascript not loading for the module.
 
 ## Version 1.17.7
 
@@ -22,10 +23,6 @@ Released 2019-11-06
 
   * Resolved a security issue that allows to bypass signature validation. See
     [SSPSA 201911-01](https://simplesamlphp.org/security/201911-01).
-
-### consentAdmin
-
-  * Fixed an issue with CSS and Javascript not loading for the module.
 
 ## Version 1.17.6
 
