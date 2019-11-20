@@ -15,7 +15,8 @@ Released 2019-11-20
 
 ### consentAdmin
 
-  * Fixed an issue with CSS and Javascript not loading for the module.
+  * Fixed an issue with CSS and Javascript not loading for the module in the new user
+    interface.
 
 ## Version 1.17.7
 
