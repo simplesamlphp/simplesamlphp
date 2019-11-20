@@ -6,6 +6,12 @@ SimpleSAMLphp changelog
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
+## Version 1.18.1
+
+Released 2019-11-20
+
+  * Fixed an issue that prevented custom themes from working (#1240).
+
 ## Version 1.18.0
 
 Released 2019-11-19
