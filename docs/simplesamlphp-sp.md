@@ -122,7 +122,7 @@ directory.
 If you intend to add your SP to a federation, the procedure for managing trust in federations differ, but the common part is
 that you would need to provide the *SAML 2.0 metadata of your SP*, and register that with the federation administration.
 You will probably be required too to consume the federation metadata periodically. Read more about
-[automated metadata management](simplesamlphp-automated_metadata) to learn more about that. 
+[automated metadata management](https://github.com/simplesamlphp/simplesamlphp-module-metarefresh/blob/master/docs/simplesamlphp-automated_metadata.md) to learn more about that. 
 
 
 Test the SP
