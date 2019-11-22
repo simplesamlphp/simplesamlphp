@@ -8,7 +8,7 @@ use SimpleSAML\Configuration;
 use SimpleSAML\Error\Exception;
 use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Locale\Localization;
-use SimpleSAML\Module\core\Controller\LoginController;
+use SimpleSAML\Module\core\Controller;
 use SimpleSAML\Session;
 use SimpleSAML\Test\Utils\ClearStateTestCase;
 use SimpleSAML\XHTML\Template;
@@ -23,7 +23,7 @@ use Symfony\Component\HttpFoundation\Request;
  *
  * @package SimpleSAML\Test
  */
-class LoginControllerTest extends ClearStateTestCase
+class LoginTest extends ClearStateTestCase
 {
     /** @var array */
     protected $authSources;
@@ -79,7 +79,7 @@ class LoginControllerTest extends ClearStateTestCase
         $session = Session::getSessionFromRequest();
         $factory = new AuthenticationFactory($this->config, $session);
 
-        $c = new LoginController($this->config, $session, $factory);
+        $c = new Controller/Login($this->config, $session, $factory);
         /** @var \SimpleSAML\HTTP\RunnableResponse $response */
         $response = $c->login($request);
 
@@ -118,7 +118,7 @@ class LoginControllerTest extends ClearStateTestCase
         $session = Session::getSessionFromRequest();
         $factory = new AuthenticationFactory($this->config, $session);
 
-        $c = new LoginController($this->config, $session, $factory);
+        $c = new Controller/Login($this->config, $session, $factory);
         /** @var \SimpleSAML\XHTML\Template $response */
         $response = $c->login($request);
 
@@ -141,7 +141,7 @@ class LoginControllerTest extends ClearStateTestCase
         $request = new Request();
         $session = Session::getSessionFromRequest();
         $factory = new AuthenticationFactory($this->config, $session);
-        $c = new LoginController($this->config, $session, $factory);
+        $c = new Controller/Login($this->config, $session, $factory);
         $this->expectException(Exception::class);
         $c->login($request, 'invalid-auth-source');
     }
@@ -176,7 +176,7 @@ class LoginControllerTest extends ClearStateTestCase
         $factory = new AuthenticationFactory($this->config, $session);
 
         $request = new Request();
-        $c = new LoginController($this->config, $session, $factory);
+        $c = new Controller/Login($this->config, $session, $factory);
         /** @var \Symfony\Component\HttpFoundation\RedirectResponse $response */
         $response = $c->login($request);
         $this->assertInstanceOf(RedirectResponse::class, $response);
@@ -197,7 +197,7 @@ class LoginControllerTest extends ClearStateTestCase
         Configuration::setPreLoadedConfig($asConfig, 'authsources.php');
         $session = Session::getSessionFromRequest();
         $factory = new AuthenticationFactory($this->config, $session);
-        $c = new LoginController($this->config, $session, $factory);
+        $c = new Controller/Login($this->config, $session, $factory);
         $response = $c->logout('example-userpass');
         $this->assertInstanceOf(RunnableResponse::class, $response);
         list($object, $method) = $response->getCallable();
@@ -218,7 +218,7 @@ class LoginControllerTest extends ClearStateTestCase
         Configuration::setPreLoadedConfig($asConfig, 'authsources.php');
         $session = Session::getSessionFromRequest();
         $factory = new AuthenticationFactory($this->config, $session);
-        $c = new LoginController($this->config, $session, $factory);
+        $c = new Controller/Login($this->config, $session, $factory);
         /** @var RedirectResponse $response */
         $response = $c->account('example-userpass');
         $this->assertInstanceOf(RedirectResponse::class, $response);
@@ -251,7 +251,7 @@ class LoginControllerTest extends ClearStateTestCase
             ]
         ]);
         $factory = new AuthenticationFactory($this->config, $session);
-        $c = new LoginController($this->config, $session, $factory);
+        $c = new Controller/Login($this->config, $session, $factory);
         /** @var \SimpleSAML\XHTML\Template $response */
         $response = $c->account('example-userpass');
         $this->assertInstanceOf(Template::class, $response);
