@@ -2,7 +2,7 @@
 {% extends "base.twig" %}
 
 {% block preload %}
-<link rel="stylesheet" href="/{{ baseurlpath }}module.php/cron/assets/css/cron.css">
+<link rel="stylesheet" href="{{ asset('css/cron.css', 'cron') }}">
 {% endblock %}
 
 {% block content %}
