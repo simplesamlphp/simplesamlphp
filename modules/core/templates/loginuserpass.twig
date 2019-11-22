@@ -3,7 +3,7 @@
 {% extends "@core/base.twig" %}
 
 {% block postload %}
-    <script src="/{{baseurlpath}}module.php/core/assets/js/loginuserpass.js"></script>
+    <script src="{{ asset('js/loginuserpass.js', 'core') }}"></script>
 {% endblock %}
 
 {% block content %}
