@@ -66,8 +66,8 @@ class ExceptionController
         $state = Auth\State::loadState($stateId, 'core:cardinality');
 
         Logger::stats(
-            'core:cardinality:error '.$state['Destination']['entityid'].' '.$state['saml:sp:IdP'].
-            ' '.implode(',', array_keys($state['core:cardinality:errorAttributes']))
+            'core:cardinality:error ' . $state['Destination']['entityid'] . ' ' . $state['saml:sp:IdP'] .
+            ' ' . implode(',', array_keys($state['core:cardinality:errorAttributes']))
         );
 
         $t = new Template($this->config, 'core:cardinality_error.tpl.php');
@@ -76,7 +76,7 @@ class ExceptionController
             $t->data['LogoutURL'] = Module::getModuleURL(
                 'core/authenticate.php',
                 ['as' => $state['Source']['auth']]
-            )."&logout";
+            ) . "&logout";
         }
 
         $t->setStatusCode(403);

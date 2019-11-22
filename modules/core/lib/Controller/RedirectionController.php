@@ -68,7 +68,7 @@ class RedirectionController
                 throw new Error\BadRequest('Invalid RedirInfo data.');
             }
 
-            list($sessionId, $postId) = explode(':', \SimpleSAML\Utils\Crypto::aesDecrypt($encData));
+            list($sessionId, $postId) = explode(':', Utils\Crypto::aesDecrypt($encData));
 
             if (empty($sessionId) || empty($postId)) {
                 throw new Error\BadRequest('Invalid session info data.');
