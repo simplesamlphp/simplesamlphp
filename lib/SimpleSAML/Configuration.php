@@ -912,7 +912,8 @@ class Configuration implements Utils\ClearableState
      *                       required if this parameter isn't given. The default value can be any value, including
      *                       null.
      *
-     * @return array|mixed The option with the given name, or $default if the option isn't found and $default is specified.
+     * @return array|mixed The option with the given name, or $default
+     * if the option isn't found and $default is specified.
      */
     public function getArrayize($name, $default = self::REQUIRED_OPTION)
     {
