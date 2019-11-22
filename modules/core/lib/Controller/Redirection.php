@@ -74,7 +74,6 @@ class Redirection
             if (empty($sessionId) || empty($postId)) {
                 throw new Error\BadRequest('Invalid session info data.');
             }
-
         } else {
             throw new Error\BadRequest('Missing redirection info parameter.');
         }
