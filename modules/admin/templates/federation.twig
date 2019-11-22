@@ -105,7 +105,7 @@
       <ul>
       {% for entityid, entity in set %}
 
-        <li><a href="federation/show{{ ('?entityid=' ~ (entity.entityid|url_encode) ~ '&set=' ~ key) }}">
+        <li><a href="{{ moduleURL('admin/federation/show?entityid=' ~ (entity.entityid|url_encode) ~ '&set=' ~ key) }}">
           {%- if entity.name_translated -%}
 
           {{ entity.name_translated }}
@@ -142,7 +142,7 @@
       {%- endfor %}
 
     </ul>
-    <form action="federation/show" method="get" class="pure-form">
+    <form action="{{ moduleURL('federation/show') }}" method="get" class="pure-form">
       <fieldset class="fancyfieldset">
         <legend>{% trans %}Look up metadata for entity:{% endtrans %}</legend>
         <select name="set">
