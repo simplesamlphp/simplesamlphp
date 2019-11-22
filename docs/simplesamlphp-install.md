@@ -77,6 +77,9 @@ keep reading for other alternatives):
     cp -rv ../simplesamlphp/metadata metadata
 ```
 
+If you have installed any [third-party modules](https://simplesamlphp.org/modules) or [customised the theme](simplesamlphp-theming.md), 
+you should check whether your third-party modules need upgrading and then copy or replace those directories too.
+
 Replace the old version with the new version:
 
 ```
