@@ -2,6 +2,8 @@
 
 namespace SimpleSAML\Stats;
 
+use SimpleSAML\Configuration;
+
 /**
  * Interface for statistics outputs.
  *
@@ -15,7 +17,7 @@ abstract class Output
      *
      * @param \SimpleSAML\Configuration $config The configuration for this output.
      */
-    public function __construct(\SimpleSAML\Configuration $config)
+    public function __construct(Configuration $config)
     {
         // do nothing by default
     }

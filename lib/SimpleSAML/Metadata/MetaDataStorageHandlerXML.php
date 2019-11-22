@@ -2,6 +2,8 @@
 
 namespace SimpleSAML\Metadata;
 
+use SimpleSAML\Configuration;
+
 /**
  * This class implements a metadata source which loads metadata from XML files.
  * The XML files should be in the SAML 2.0 metadata format.
@@ -12,7 +14,6 @@ namespace SimpleSAML\Metadata;
 
 class MetaDataStorageHandlerXML extends MetaDataStorageSource
 {
-
     /**
      * This variable contains an associative array with the parsed metadata.
      *
@@ -30,14 +31,14 @@ class MetaDataStorageHandlerXML extends MetaDataStorageSource
      *
      * @param array $config The configuration for this instance of the XML metadata source.
      *
-     * @throws Exception If neither the 'file' or 'url' options are defined in the configuration.
+     * @throws \Exception If neither the 'file' or 'url' options are defined in the configuration.
      */
     protected function __construct($config)
     {
         $src = $srcXml = null;
         if (array_key_exists('file', $config)) {
             // get the configuration
-            $globalConfig = \SimpleSAML\Configuration::getInstance();
+            $globalConfig = Configuration::getInstance();
             $src = $globalConfig->resolvePath($config['file']);
         } elseif (array_key_exists('url', $config)) {
             $src = $config['url'];
@@ -48,15 +49,15 @@ class MetaDataStorageHandlerXML extends MetaDataStorageSource
         }
 
 
-        $SP1x = array();
-        $IdP1x = array();
-        $SP20 = array();
-        $IdP20 = array();
-        $AAD = array();
+        $SP1x = [];
+        $IdP1x = [];
+        $SP20 = [];
+        $IdP20 = [];
+        $AAD = [];
 
-        if(isset($src)) {
+        if (isset($src)) {
             $entities = SAMLParser::parseDescriptorsFile($src);
-        } elseif(isset($srcXml)) {
+        } elseif (isset($srcXml)) {
             $entities = SAMLParser::parseDescriptorsString($srcXml);
         } else {
             throw new \Exception("Neither source file path/URI nor string data provided");
@@ -88,13 +89,13 @@ class MetaDataStorageHandlerXML extends MetaDataStorageSource
             }
         }
 
-        $this->metadata = array(
+        $this->metadata = [
             'shib13-sp-remote'          => $SP1x,
             'shib13-idp-remote'         => $IdP1x,
             'saml20-sp-remote'          => $SP20,
             'saml20-idp-remote'         => $IdP20,
             'attributeauthority-remote' => $AAD,
-        );
+        ];
     }
 
 
@@ -113,6 +114,6 @@ class MetaDataStorageHandlerXML extends MetaDataStorageSource
         }
 
         // we don't have this metadata set
-        return array();
+        return [];
     }
 }

@@ -44,12 +44,6 @@ msgstr "Üstveri (metadata) yüklenmesinde hata"
 msgid "{admin:metaconv_title}"
 msgstr "Üstveri (metadata) çözümleyici"
 
-msgid "{attributes:attribute_edupersonentitlement}"
-msgstr "Servise göre yetki"
-
-msgid "{attributes:attribute_jpegphoto}"
-msgstr "JPEG fotoğraf"
-
 msgid "{admin:cfg_check_noerrors}"
 msgstr "Hata bulunmadı."
 
@@ -123,9 +117,6 @@ msgstr ""
 msgid "{logout:default_link_text}"
 msgstr "SimpleSAMLphp kurulum sayfasına geri dön"
 
-msgid "{admin:metaover_group_metadata.wsfed-idp-remote}"
-msgstr "WS-Federasyon Kimlik Sağlayıcı (Uzak sistemde sunulan)"
-
 msgid "{errors:error_header}"
 msgstr "SimpleSAMLphp hatası"
 
@@ -144,17 +135,11 @@ msgstr ""
 "servisin yöneticisi sizseniz, üstveri (metadata) ayarlarınızın düzgün bir"
 " şekilde yapıldığından emin olun."
 
-msgid "{attributes:attribute_edupersonorgdn}"
-msgstr "Kişinin bağlı olduğu kuruluşun belirgin adı"
-
 msgid "{errors:title_BADREQUEST}"
 msgstr "Hatalı istek alındı"
 
 msgid "{status:sessionsize}"
 msgstr "Oturum büyüklüğü: %SIZE%"
-
-msgid "{attributes:attribute_postaladdress}"
-msgstr "Posta adresi"
 
 msgid "{logout:title}"
 msgstr "Çıktınız"
@@ -174,29 +159,14 @@ msgstr "Beklemede"
 msgid "{admin:cfg_check_header}"
 msgstr "Konfigürasyon kontrolü"
 
-msgid "{attributes:attribute_edupersonscopedaffiliation}"
-msgstr "Bağlı olunan kuruluşla bağlantı"
-
-msgid "{attributes:attribute_sn}"
-msgstr "Soyadı"
-
 msgid "{admin:debug_sending_message_send}"
 msgstr "Mesaj gönder"
 
 msgid "{status:logout}"
 msgstr "Çıkış"
 
-msgid "{attributes:attribute_organisationname}"
-msgstr "Kuruluş adı"
-
-msgid "{attributes:attribute_telephonenumber}"
-msgstr "Telefon numarası"
-
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "Tanıma servisine gönderilen parametreler tanımlananlara göre değildi."
-
-msgid "{attributes:attribute_mail}"
-msgstr "Posta"
 
 msgid "{errors:descr_CREATEREQUEST}"
 msgstr "SAML isteği oluşturmaya çalışırken bir hata meydana geldi"
@@ -206,9 +176,6 @@ msgstr "İsteğe bağlı alanlar"
 
 msgid "{logout:return}"
 msgstr "Servise geri dön"
-
-msgid "{attributes:attribute_displayname}"
-msgstr "Görüntülenen isim"
 
 msgid "{admin:metadata_xmlurl}"
 msgstr "<a href=\"%METAURL%\">Üstveri xml'ini bu bağlantıdan alabilirsiniz</a>:"
@@ -220,9 +187,6 @@ msgid "{admin:debug_disable_debug_mode}"
 msgstr ""
 "\"Debug\" modunu global SimpleSAMLphp konfigürasyon dosyasında "
 "<tt>config/config.php</tt> kapatabilirsiniz."
-
-msgid "{attributes:attribute_homepostaladdress}"
-msgstr "Ev posta adresi"
 
 msgid "{disco:select}"
 msgstr "Seç"
@@ -250,9 +214,6 @@ msgstr ""
 msgid "{logout:logout_all_question}"
 msgstr "Yukarıdaki tüm servislerden çıkmak istiyor musunuz?"
 
-msgid "{attributes:attribute_title}"
-msgstr "Başlık"
-
 msgid "{errors:title_NOACCESS}"
 msgstr "Giriş yok"
 
@@ -263,9 +224,6 @@ msgstr ""
 
 msgid "{errors:title_NORELAYSTATE}"
 msgstr "RelayState verilmemiş."
-
-msgid "{attributes:attribute_noredupersonnin}"
-msgstr "Kamu yetkilileri tarafından belirlenmiş kimlik numarası"
 
 msgid "{login:password}"
 msgstr "Şifre"
@@ -293,20 +251,11 @@ msgstr "Çıkış İsteğini işlerken hata oluştu"
 msgid "{admin:metaover_errorentry}"
 msgstr "Üstveri (metadata) bilgisinde hata var"
 
-msgid "{attributes:attribute_edupersonaffiliation}"
-msgstr "Bağlantı"
-
-msgid "{attributes:attribute_givenname}"
-msgstr "Verilen isim"
-
 msgid "{login:contact_info}"
 msgstr "İletişim bilgileri:"
 
 msgid "{errors:title_UNHANDLEDEXCEPTION}"
 msgstr "Beklenmeyen durum"
-
-msgid "{status:validfor}"
-msgstr "Oturumunuz, şu andan itibaren %SECONDS% saniyeliğine geçerlidir."
 
 msgid "{status:header_saml20_sp}"
 msgstr "SAML 2.0 SP Demo Örneği"
@@ -335,38 +284,20 @@ msgstr "Gerekli alanlar"
 msgid "{admin:cfg_check_select_file}"
 msgstr "Kontrol edilecek konfigürasyon dosyasını seç:"
 
-msgid "{attributes:attribute_eduorghomepageuri}"
-msgstr "Kurumsal websayfası"
-
 msgid "{logout:loggedoutfrom}"
 msgstr "%SP%'den başarıyla çıktınız."
-
-msgid "{admin:metaover_group_metadata.wsfed-sp-hosted}"
-msgstr "WS-Federasyon Servis Sağlayıcı (Bu sistemde sunulan)"
 
 msgid "{errors:errorreport_text}"
 msgstr "Hata raporu yöneticilere gönderildi"
 
-msgid "{attributes:attribute_noredupersonbirthdate}"
-msgstr "Doğum tarihi"
-
 msgid "{errors:descr_LOGOUTREQUEST}"
 msgstr "Çıkış İsteğini işlemeye çalışırken bir hata oluştu"
-
-msgid "{attributes:attribute_edupersontargetedid}"
-msgstr "Kalıcı takma adı ID"
 
 msgid "{logout:success}"
 msgstr "Yukarıda listelenen tüm servislerden başarıyla çıktınız."
 
 msgid "{admin:cfg_check_notices}"
 msgstr "Notlar"
-
-msgid "{attributes:attribute_edupersonprimaryaffiliation}"
-msgstr "Öncelikli bağlantı"
-
-msgid "{attributes:attribute_postalcode}"
-msgstr "Posta kodu"
 
 msgid "{errors:descr_CASERROR}"
 msgstr "CAS sunucusu ile iletişim kurarken hata"
@@ -380,9 +311,6 @@ msgstr "SAML 2.0 SP Üstveri (Metadata)"
 msgid "{admin:metaconv_converted}"
 msgstr "Dönüştürülmüş üstveri (metadata)"
 
-msgid "{attributes:attribute_cn}"
-msgstr "Ortak ad"
-
 msgid "{logout:completed}"
 msgstr "Tamamlandı"
 
@@ -391,17 +319,8 @@ msgstr ""
 "Yapılandırmadaki (auth.adminpassword) şifrenin öntanımlı değeri "
 "değişmedi. Lütfen yapılandırma dosyasını düzeltin."
 
-msgid "{attributes:attribute_ou}"
-msgstr "Organizasyonel birim"
-
 msgid "{general:service_provider}"
 msgstr "Servis Sağlayıcı"
-
-msgid "{attributes:attribute_homephone}"
-msgstr "Ev telefonu"
-
-msgid "{attributes:attribute_dc}"
-msgstr "Alan bileşeni"
 
 msgid "{errors:descr_BADREQUEST}"
 msgstr "Bu sayfaya yapılan istekte bir hata var. Nedeni %REASON% idi."
@@ -421,22 +340,13 @@ msgstr "Kullanıcı adı ve şifrenizi giriniz"
 msgid "{errors:report_explain}"
 msgstr "Bu hatanın neden oluştuğunu açıklayın..."
 
-msgid "{attributes:attribute_manager}"
-msgstr "Yönetici"
-
 msgid "{errors:title_ACSPARAMS}"
 msgstr "SAML cevabı verilmemiş"
-
-msgid "{attributes:attribute_edupersonnickname}"
-msgstr "Takma ad"
 
 msgid "{errors:descr_SLOSERVICEPARAMS}"
 msgstr ""
 "TekliÇıkışServis (SingleLogoutService) arayüzüne giriş yaptınız, ancak "
 "bir SAML Çıkışİsteği ya da ÇıkışCevabı sağlamadınız."
-
-msgid "{attributes:attribute_street}"
-msgstr "Sokak"
 
 msgid "{login:organization}"
 msgstr "Organizasyon"
@@ -474,9 +384,6 @@ msgstr "Organizasyon seçiniz"
 msgid "{admin:cfg_check_superfluous}"
 msgstr "Config dosyasındaki gereksiz tercihler"
 
-msgid "{attributes:attribute_labeleduri}"
-msgstr "Etiketlenen URI"
-
 msgid "{errors:report_email}"
 msgstr "E-posta adresi:"
 
@@ -500,9 +407,6 @@ msgstr ""
 "dolmadığını, oturumunuzun ne kadar sürdüğünü ve oturumunuza ait tüm "
 "bilgileri buradan görebilirsiniz."
 
-msgid "{attributes:attribute_schachomeorganization}"
-msgstr "Ana kuruluş alan adı"
-
 msgid "{errors:title_NOTFOUNDREASON}"
 msgstr "Sayfa bulunamadı"
 
@@ -523,29 +427,17 @@ msgstr ""
 msgid "{errors:title_NOTVALIDCERT}"
 msgstr "Geçerli olmayan sertifika"
 
-msgid "{attributes:attribute_edupersonorgunitdn}"
-msgstr "Kişinin bağlı olduğu birimin belirgin adı"
-
 msgid "{general:remember}"
 msgstr "Hatırla"
 
 msgid "{disco:selectidp}"
 msgstr "Kimlik sağlayıcınızı seçiniz."
 
-msgid "{attributes:attribute_postofficebox}"
-msgstr "Posta kutusu"
-
-msgid "{attributes:attribute_edupersonprincipalname}"
-msgstr "Kişinin bağlı olduğu kuruluştaki asıl adı"
-
 msgid "{login:help_desk_email}"
 msgstr "Yardım'a e-posta gönderin"
 
 msgid "{login:help_desk_link}"
 msgstr "Yardım anasayfası"
-
-msgid "{attributes:attribute_uid}"
-msgstr "Kullanıcı ID"
 
 msgid "{errors:title_CASERROR}"
 msgstr "CAS Hatası"
@@ -566,9 +458,6 @@ msgstr "Seçimimi hatırla"
 
 msgid "{admin:metaover_group_metadata.saml20-sp-hosted}"
 msgstr "SAML 2.0 Servis Sağlayıcı (Bu sistemde sunulan)"
-
-msgid "{attributes:attribute_l}"
-msgstr "Bölge"
 
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
@@ -602,9 +491,6 @@ msgstr "Shib 1.3 Servis Sağlayıcı (Bu sistemde sunulan)"
 msgid "{admin:debug_sending_message_msg_title}"
 msgstr "Mesaj"
 
-msgid "{attributes:attribute_facsimiletelephonenumber}"
-msgstr "Faks numarası"
-
 msgid "{errors:title_LDAPERROR}"
 msgstr "LDAP hatası"
 
@@ -617,14 +503,8 @@ msgstr ""
 " ndeniyle oluşmuş olabilir. Bu oturum açma servisinin yöneticisi ile "
 "iletişim kurun ve yukarıdaki hata mesajını gönderin."
 
-msgid "{attributes:attribute_mobile}"
-msgstr "Cep telefonu numarası"
-
 msgid "{admin:metaover_group_metadata.shib13-idp-hosted}"
 msgstr "Shib 1.3 Kimlik Sağlayıcı (Bu sistemde sunulan)"
-
-msgid "{attributes:attribute_preferredlanguage}"
-msgstr "Tercih edilen dil"
 
 msgid "{errors:descr_NOTVALIDCERT}"
 msgstr "Geçerli bir sertifika sağlamadınız. "
@@ -640,15 +520,6 @@ msgstr "Şu isteğe bağlı alanlar bulunamadı"
 msgid "{logout:logout_only}"
 msgstr "Hayır, sadece %SP%"
 
-msgid "{attributes:attribute_o}"
-msgstr "Organizasyon adı"
-
-msgid "{attributes:attribute_edupersonprimaryorgunitdn}"
-msgstr "Kişinin öncelikli Kurumsal Birimi'nin belirgin adı"
-
-msgid "{attributes:attribute_noredupersonlin}"
-msgstr "Yerel kimlik numarası"
-
 msgid "{login:next}"
 msgstr "Sıradaki"
 
@@ -660,9 +531,6 @@ msgstr "Lütfen, kimlik doğrulaması yapacağınız kimlik sağlayıcıyı seç
 
 msgid "{errors:descr_NOTFOUNDREASON}"
 msgstr "Verilen sayfa bulunamadı. Nedeni %REASON% idi. URL %URL% idi."
-
-msgid "{attributes:attribute_userpassword}"
-msgstr "Kullanıcının şifre karması"
 
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "Çıkış bilgisi kaybedildi"
@@ -679,23 +547,11 @@ msgstr ""
 "dokümanını güvenilir bir federasyon kurmak için güvenilir paydaşlara "
 "gönderebilirsiniz."
 
-msgid "{attributes:attribute_schacuserprivateattribute}"
-msgstr "Özel bilgi elemanları"
-
-msgid "{status:header_wsfed}"
-msgstr "WS-Fed SP Demo Örneği"
-
-msgid "{attributes:attribute_eduorglegalname}"
-msgstr "Organizasyonu'un resmi adı"
-
 msgid "{status:header_shib}"
 msgstr "Shibboleth demo"
 
 msgid "{admin:metaconv_parse}"
 msgstr "Çözümle"
-
-msgid "{attributes:attribute_noreduorgnin}"
-msgstr "Kurumsal numara"
 
 msgid "Person's principal name at home organization"
 msgstr "Kişinin bağlı olduğu kuruluştaki asıl adı"
@@ -1006,8 +862,8 @@ msgstr ""
 "iletişim kurun ve yukarıdaki hata mesajını gönderin."
 
 #, python-format
-msgid "Your session is valid for %SECONDS% seconds from now."
-msgstr "Oturumunuz, şu andan itibaren %SECONDS% saniyeliğine geçerlidir."
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Oturumunuz, şu andan itibaren %remaining% saniyeliğine geçerlidir."
 
 msgid "Domain component (DC)"
 msgstr "Alan bileşeni"
@@ -1441,3 +1297,15 @@ msgstr ""
 "Onay Alıcı Servis (Assertion Consumer Service) arayüzüne giriş yaptınız, "
 "ancak SAML Kimlik Doğrulama Cevabı sağlamadınız."
 
+
+msgid ""
+"You are now accessing a pre-production system. This authentication setup "
+"is for testing and pre-production verification only. If someone sent you "
+"a link that pointed you here, and you are not <i>a tester</i> you "
+"probably got the wrong link, and should <b>not be here</b>."
+msgstr ""
+"Şu anda tamamlanmamış bir sisteme giriyorsunuz. Bu doğrulama kurulumu "
+"sadece test ve tamamlanma öncesi onaylama amaçlıdır. Eğer birileri size "
+"burayı gösteren bir bağlantı gönderdiyse, ve siz <i>test edici</i> "
+"değilseniz, muhtemelen yanlış bir bağlantı aldınızı, ve şu anda <b>burada"
+" olmamalısınız</b>. "

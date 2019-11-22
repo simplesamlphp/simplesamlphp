@@ -7,25 +7,33 @@ namespace SimpleSAML\Test\Utils;
  */
 class StateClearer
 {
-
     /**
      * Global state to restore between test runs
      * @var array
      */
-    private $backups = array();
+    private $backups = [];
 
     /**
      * Class that implement \SimpleSAML\Utils\ClearableState and should have clearInternalState called between tests
      * @var array
      */
-    private $clearableState = array('SimpleSAML\Configuration');
+    private $clearableState = [
+        'SimpleSAML\Configuration',
+        'SimpleSAML\Metadata\MetaDataStorageHandler',
+        'SimpleSAML\Store',
+        'SimpleSAML\Session'
+    ];
 
     /**
      * Environmental variables to unset
      * @var array
      */
-    private $vars_to_unset = array('SIMPLESAMLPHP_CONFIG_DIR');
+    private $vars_to_unset = ['SIMPLESAMLPHP_CONFIG_DIR'];
 
+
+    /**
+     * @return void
+     */
     public function backupGlobals()
     {
         // Backup any state that is needed as part of processing, so we can restore it later.
@@ -36,13 +44,14 @@ class StateClearer
         $this->backups['$_GET'] = $_GET;
         $this->backups['$_POST'] = $_POST;
         $this->backups['$_SERVER'] = $_SERVER;
-        $this->backups['$_SESSION'] = isset($_SESSION) ? $_SESSION : array();
+        $this->backups['$_SESSION'] = isset($_SESSION) ? $_SESSION : [];
         $this->backups['$_REQUEST'] = $_REQUEST;
     }
 
 
     /**
      * Clear any global state.
+     * @return void
      */
     public function clearGlobals()
     {
@@ -60,12 +69,13 @@ class StateClearer
         }
     }
 
+
     /**
      * Clear any SSP specific state, such as SSP enviormental variables or cached internals.
+     * @return void
      */
     public function clearSSPState()
     {
-
         foreach ($this->clearableState as $var) {
             $var::clearInternalState();
         }

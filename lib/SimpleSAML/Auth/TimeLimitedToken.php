@@ -2,8 +2,12 @@
 
 namespace SimpleSAML\Auth;
 
+use SimpleSAML\Utils;
+
 /**
  * A class that generates and verifies time-limited tokens.
+ *
+ * @deprecated  This class was deprecated in 1.18 and will be removed in a future release
  */
 
 class TimeLimitedToken
@@ -32,23 +36,21 @@ class TimeLimitedToken
     /**
      * Create a new time-limited token.
      *
-     * Please note that the default algorithm will change in SSP 1.15.0 to SHA-256 instead of SHA-1.
-     *
      * @param int $lifetime Token lifetime in seconds. Defaults to 900 (15 min).
      * @param string $secretSalt A random and unique salt per installation. Defaults to the salt in the configuration.
      * @param int $skew The allowed time skew (in seconds) to correct clock deviations. Defaults to 1 second.
-     * @param string $algo The hash algorithm to use to generate the tokens. Defaults to SHA-1.
+     * @param string $algo The hash algorithm to use to generate the tokens. Defaults to SHA-256.
      *
      * @throws \InvalidArgumentException if the given parameters are invalid.
      */
-    public function __construct($lifetime = 900, $secretSalt = null, $skew = 1, $algo = 'sha1')
+    public function __construct($lifetime = 900, $secretSalt = null, $skew = 1, $algo = 'sha256')
     {
         if ($secretSalt === null) {
-            $secretSalt = \SimpleSAML\Utils\Config::getSecretSalt();
+            $secretSalt = Utils\Config::getSecretSalt();
         }
 
         if (!in_array($algo, hash_algos(), true)) {
-            throw new \InvalidArgumentException('Invalid hash algorithm "'.$algo.'"');
+            throw new \InvalidArgumentException('Invalid hash algorithm "' . $algo . '"');
         }
 
         $this->secretSalt = $secretSalt;
@@ -66,10 +68,11 @@ class TimeLimitedToken
      * not only the same data must be added, but also in the same order.
      *
      * @param string $data The data to incorporate into the current token.
+     * @return void
      */
     public function addVerificationData($data)
     {
-        $this->secretSalt .= '|'.$data;
+        $this->secretSalt .= '|' . $data;
     }
 
 
@@ -89,7 +92,7 @@ class TimeLimitedToken
         // a secret salt that should be randomly generated for each installation
         return hash(
             $this->algo,
-            $offset.':'.floor(($time - $offset) / ($this->lifetime + $this->skew)).':'.$this->secretSalt
+            $offset . ':' . floor(($time - $offset) / ($this->lifetime + $this->skew)) . ':' . $this->secretSalt
         );
     }
 
@@ -103,13 +106,14 @@ class TimeLimitedToken
     {
         $time = time();
         $current_offset = ($time - $this->skew) % ($this->lifetime + $this->skew);
-        return dechex($current_offset).'-'.$this->calculateTokenValue($current_offset, $time);
+        return dechex($current_offset) . '-' . $this->calculateTokenValue($current_offset, $time);
     }
 
 
     /**
      * @see generate
      * @deprecated This method will be removed in SSP 2.0. Use generate() instead.
+     * @return string
      */
     public function generate_token()
     {
@@ -122,7 +126,7 @@ class TimeLimitedToken
      *
      * @param string $token The token to validate.
      *
-     * @return boolean True if the given token is currently valid, false otherwise.
+     * @return bool True if the given token is currently valid, false otherwise.
      */
     public function validate($token)
     {
@@ -139,6 +143,8 @@ class TimeLimitedToken
     /**
      * @see validate
      * @deprecated This method will be removed in SSP 2.0. Use validate() instead.
+     * @param string $token
+     * @return bool
      */
     public function validate_token($token)
     {

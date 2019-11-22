@@ -51,12 +51,6 @@ msgstr "خطا بتحميل البيانات الوصفية/ الميتادات�
 msgid "{admin:metaconv_title}"
 msgstr "محلل البيانات الوصفية/الميتاداتا"
 
-msgid "{attributes:attribute_edupersonentitlement}"
-msgstr "استحقاقات الخدمة"
-
-msgid "{attributes:attribute_jpegphoto}"
-msgstr "صورة (JPEG)"
-
 msgid "{admin:cfg_check_noerrors}"
 msgstr "لا توجد أخطاء "
 
@@ -126,9 +120,6 @@ msgstr ""
 msgid "{logout:default_link_text}"
 msgstr "عد لصفحة إنزال SimpleSAMLphp"
 
-msgid "{admin:metaover_group_metadata.wsfed-idp-remote}"
-msgstr "مقدم خدمة WS-الفدرالية البعيد"
-
 msgid "{errors:error_header}"
 msgstr "خطا ب SimpleSAMLphp"
 
@@ -145,17 +136,11 @@ msgstr ""
 "هناك خطا بترتيب SimpleSAMLphp الخاص بك. ان كنت المشرف علي الموقع، تأكد "
 "رجاءاً من ان ترتيب الميتاداتا صحيح"
 
-msgid "{attributes:attribute_edupersonorgdn}"
-msgstr "الاسم المميز للمنظمة رب العمل"
-
 msgid "{errors:title_BADREQUEST}"
 msgstr "استقبال طلب سيء"
 
 msgid "{status:sessionsize}"
 msgstr "حجم الجلسة ٪حجم٪"
-
-msgid "{attributes:attribute_postaladdress}"
-msgstr "العنوان البريدي للمنظمة"
 
 msgid "{logout:title}"
 msgstr "خروج"
@@ -178,29 +163,14 @@ msgstr "بالانتظار "
 msgid "{admin:cfg_check_header}"
 msgstr "مراجعة الترتيب"
 
-msgid "{attributes:attribute_edupersonscopedaffiliation}"
-msgstr "الوضع أو الوظيفة بالمنظمةالام\\الموقع الام"
-
-msgid "{attributes:attribute_sn}"
-msgstr "اسم العائله"
-
 msgid "{admin:debug_sending_message_send}"
 msgstr "سلم الرسالة"
 
 msgid "{status:logout}"
 msgstr "تسجيل الخروج"
 
-msgid "{attributes:attribute_organisationname}"
-msgstr "اسم المنظمةالام\\الموقع الام"
-
-msgid "{attributes:attribute_telephonenumber}"
-msgstr "رقم الهاتف"
-
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "الخصائص المرفقة لا تطابق المواصفات"
-
-msgid "{attributes:attribute_mail}"
-msgstr "العنوان البريدي"
 
 msgid "{errors:descr_CREATEREQUEST}"
 msgstr "حدث خطا عند محاولة تكوين طلب SAML"
@@ -210,9 +180,6 @@ msgstr "حقل اختياري"
 
 msgid "{logout:return}"
 msgstr "عد للخدمة"
-
-msgid "{attributes:attribute_displayname}"
-msgstr "الاسم المستخدم "
 
 msgid "{admin:metadata_xmlurl}"
 msgstr ""
@@ -226,9 +193,6 @@ msgid "{admin:debug_disable_debug_mode}"
 msgstr ""
 "يمكنك إغلاق حالة التصحيح بملف ترتيب "
 "SimpleSAMLphp<tt>config/config.php</tt>"
-
-msgid "{attributes:attribute_homepostaladdress}"
-msgstr "العنوان البريدي"
 
 msgid "{disco:select}"
 msgstr "اختار"
@@ -254,9 +218,6 @@ msgstr "حصل مقدم الهوية هذا علي طلب توثيق من مقد
 msgid "{logout:logout_all_question}"
 msgstr "هل ترغب بتسجيل الخروج من جميع الخدمات أعلا؟"
 
-msgid "{attributes:attribute_title}"
-msgstr "اللقب"
-
 msgid "{errors:title_NOACCESS}"
 msgstr "ممنوع الدخول"
 
@@ -270,9 +231,6 @@ msgstr "انعدام التقوية"
 
 msgid "{errors:descr_NOSTATE}"
 msgstr "فقدان معلومات الحالة و لا يمكن اعادة البدء للطلب"
-
-msgid "{attributes:attribute_noredupersonnin}"
-msgstr "الرقم التعريفي المعين من قبل السلطات العامة "
 
 msgid "{login:password}"
 msgstr "كلمة السر"
@@ -298,14 +256,8 @@ msgstr "خطا عند تسجيل الخروج"
 msgid "{admin:metaover_errorentry}"
 msgstr "خطا بهذا البيان الوصفي/ الميتاداتا"
 
-msgid "{attributes:attribute_edupersonaffiliation}"
-msgstr "جهة العمل"
-
 msgid "{errors:title_METADATANOTFOUND}"
 msgstr "الميتاداتا مفقودة"
-
-msgid "{attributes:attribute_givenname}"
-msgstr "الاسم"
 
 msgid "{login:contact_info}"
 msgstr "بيانات الاتصال"
@@ -348,29 +300,17 @@ msgstr "اختارملف الترتيب الذي ترغب  بمراجعته"
 msgid "{errors:descr_UNKNOWNCERT}"
 msgstr "فشل التوثيق لان متصفحك ارسل شهاده غير معلومة"
 
-msgid "{attributes:attribute_eduorghomepageuri}"
-msgstr " عنوان الصفحة الالكترونية للمنظمة"
-
 msgid "{logout:logging_out_from}"
 msgstr "تسجيل خروج من الخدمات أدناه "
 
 msgid "{logout:loggedoutfrom}"
 msgstr "لقد خرجت بنجاح من %SP%"
 
-msgid "{admin:metaover_group_metadata.wsfed-sp-hosted}"
-msgstr "مقدم خدمة WS-الفدرالية المستضاف "
-
 msgid "{errors:errorreport_text}"
 msgstr "تم إرسال التقرير عن الخطأ  للمشرف"
 
-msgid "{attributes:attribute_noredupersonbirthdate}"
-msgstr "تاريخ الميلاد"
-
 msgid "{errors:descr_LOGOUTREQUEST}"
 msgstr "خطا عند محاولة تسجيل الخروج"
-
-msgid "{attributes:attribute_edupersontargetedid}"
-msgstr "الاسم المستعار "
 
 msgid "{logout:success}"
 msgstr "تسجيل خروج ناجح من جميع الخدمات أعلاه "
@@ -380,12 +320,6 @@ msgstr "ملحوظات"
 
 msgid "{errors:descr_USERABORTED}"
 msgstr "تم إيقاف التوثيق بواسطة المستخدم"
-
-msgid "{attributes:attribute_edupersonprimaryaffiliation}"
-msgstr "الوظيفة الاساسية"
-
-msgid "{attributes:attribute_postalcode}"
-msgstr "الرمز البريدي"
 
 msgid "{errors:descr_CASERROR}"
 msgstr "خطا عند محاولة الاتصال بمقدم خدمة CAS"
@@ -399,9 +333,6 @@ msgstr "البيانات الوصفية ل SAML 2.0 SP"
 msgid "{admin:metaconv_converted}"
 msgstr "بيانات وصفية محولة"
 
-msgid "{attributes:attribute_cn}"
-msgstr "أسماء اخري"
-
 msgid "{logout:completed}"
 msgstr "اكتمل"
 
@@ -410,17 +341,8 @@ msgstr ""
 "لم تقم بتغيير كلمة السر الافتراضية بالترتيب (auth.adminpassword). رجاءاً "
 "قم بتحرير ملف الترتيب"
 
-msgid "{attributes:attribute_ou}"
-msgstr "الوحدة"
-
 msgid "{general:service_provider}"
 msgstr "مقدم خدمات"
-
-msgid "{attributes:attribute_homephone}"
-msgstr "رقم الهاتف المنزلي"
-
-msgid "{attributes:attribute_dc}"
-msgstr "مكونات النطاق"
 
 msgid "{errors:descr_BADREQUEST}"
 msgstr "خطا بطلب هذه الصفحة. السبب %REASON%"
@@ -440,22 +362,13 @@ msgstr "ادخل اسم المستخدم و كلمة السر"
 msgid "{errors:report_explain}"
 msgstr "اشرح ما فعلته عند حدوث الخطأ "
 
-msgid "{attributes:attribute_manager}"
-msgstr "المدير"
-
 msgid "{errors:title_ACSPARAMS}"
 msgstr "لا توجد استجابة SAML"
-
-msgid "{attributes:attribute_edupersonnickname}"
-msgstr "الكنية"
 
 msgid "{errors:descr_SLOSERVICEPARAMS}"
 msgstr ""
 "لقد وصلت لنقطة تسجيل الخروج الموحد لكنك لم توفر طلب تسجيل خروج SAML او "
 "استجابة لطلب الخروج"
-
-msgid "{attributes:attribute_street}"
-msgstr "الشارع"
 
 msgid "{login:organization}"
 msgstr "الجهة "
@@ -490,9 +403,6 @@ msgstr "اختار جهتك الام"
 msgid "{admin:cfg_check_superfluous}"
 msgstr "خيارات فائضة بملف الترتيب"
 
-msgid "{attributes:attribute_labeleduri}"
-msgstr "URI أسم "
-
 msgid "{errors:report_email}"
 msgstr "عنوان الأميل"
 
@@ -505,9 +415,6 @@ msgstr "لم تقم بتحديد كلمة السر"
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr "لم يوفر طالب الخدمة خصائص تقوية تقود للخطوة التالية"
 
-msgid "{attributes:attribute_noredupersonlegalname}"
-msgstr "الاسم الشرعي"
-
 msgid "{status:header_diagnostics}"
 msgstr "تشخيص SimpleSAMLphp"
 
@@ -515,9 +422,6 @@ msgid "{status:intro}"
 msgstr ""
 "مرحباً بكم في صفحة حالة SimpleSAMLphp. يمكنك هنا مراقبة وقت انتهاء جلستك،"
 " فترة استمرارها، متي ستنتهي و جميع السمات المرتبطة بالجلسة"
-
-msgid "{attributes:attribute_schachomeorganization}"
-msgstr "اسم النطاق المخصص للمنظمةالام\\الموقع الام "
 
 msgid "{errors:title_NOTFOUNDREASON}"
 msgstr "الصفحة غير موجودة"
@@ -537,29 +441,17 @@ msgstr "لإلغاء نظرة علي تفاصيل احدي وحدات SAML, اض
 msgid "{errors:title_NOTVALIDCERT}"
 msgstr "شهادة غير صحيحة"
 
-msgid "{attributes:attribute_edupersonorgunitdn}"
-msgstr "الاسم المميز للوحدة بالمنظمة رب العمل"
-
 msgid "{general:remember}"
 msgstr "تذكرألغت ذكر"
 
 msgid "{disco:selectidp}"
 msgstr "اختار موقع هويتك"
 
-msgid "{attributes:attribute_postofficebox}"
-msgstr "الصندوق البريدي"
-
-msgid "{attributes:attribute_edupersonprincipalname}"
-msgstr "ألاسم بالمنظمة الام\\الموقع الام "
-
 msgid "{login:help_desk_email}"
 msgstr "ارسل إيميل لصفحة المساعدة"
 
 msgid "{login:help_desk_link}"
 msgstr "صفحة المساعدة"
-
-msgid "{attributes:attribute_uid}"
-msgstr "الاسم التعريفي للمستخدم"
 
 msgid "{errors:title_CASERROR}"
 msgstr "خطا CAS"
@@ -580,12 +472,6 @@ msgstr "تذكر خياراتي"
 
 msgid "{admin:metaover_group_metadata.saml20-sp-hosted}"
 msgstr "مقدم خدمة SAML 2.0 (المستضاف)"
-
-msgid "{attributes:attribute_l}"
-msgstr "المحلية"
-
-msgid "{attributes:attribute_edupersonassurance}"
-msgstr "هوية الضمان"
 
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
@@ -631,9 +517,6 @@ msgstr "رسالة"
 msgid "{errors:title_UNKNOWNCERT}"
 msgstr "شهادة غير معلومة"
 
-msgid "{attributes:attribute_facsimiletelephonenumber}"
-msgstr "رقم الفاكس"
-
 msgid "{errors:title_LDAPERROR}"
 msgstr "خطا LDAP"
 
@@ -651,14 +534,8 @@ msgstr ""
 " بالمشرف علي تسجيل الدخول لهذه الخدمة و قم بإرسال تقرير الخطأ أعلاه لهم "
 "أيضاً "
 
-msgid "{attributes:attribute_mobile}"
-msgstr "رقم الهاتف السيار"
-
 msgid "{admin:metaover_group_metadata.shib13-idp-hosted}"
 msgstr "مقدم هوية Shib 1.3 المستضاف"
-
-msgid "{attributes:attribute_preferredlanguage}"
-msgstr "اللغة المفضلة"
 
 msgid "{errors:descr_NOTVALIDCERT}"
 msgstr "لم تقدم شهادة صحيحة"
@@ -671,15 +548,6 @@ msgstr "الحقول الاختيارية أدناه مفقودة"
 
 msgid "{logout:logout_only}"
 msgstr "لا من %SP% فقط"
-
-msgid "{attributes:attribute_o}"
-msgstr "اسم المنظمة"
-
-msgid "{attributes:attribute_edupersonprimaryorgunitdn}"
-msgstr "الاسم المميز للوحدة الأساسية بالمنظمة رب العمل"
-
-msgid "{attributes:attribute_noredupersonlin}"
-msgstr "رقم الهوية المحلي"
 
 msgid "{login:next}"
 msgstr "التالي"
@@ -696,9 +564,6 @@ msgstr "الصفحة غير موجودة. السبب %REASON% و العنوان 
 msgid "{errors:title_NOCERT}"
 msgstr "الشهادات مفقودة"
 
-msgid "{attributes:attribute_userpassword}"
-msgstr "كلمة السر"
-
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "معلومات تسجيل الخروج مفقودة"
 
@@ -713,29 +578,17 @@ msgstr ""
 "هذه هي بياناتك الوصفية المجهزة بواسطة SAMLphp. للتجهيز لفدرالية موثوق بها"
 " قم بإرسال هذه الوثيقة  لشركاء موثوق بهم"
 
-msgid "{attributes:attribute_schacuserprivateattribute}"
-msgstr "وحدات التعريف الخاصة"
-
-msgid "{status:header_wsfed}"
-msgstr "استعراض مثال ل WS-Fed"
-
 msgid "{admin:metadata_cert}"
 msgstr "الشهادات"
 
 msgid "{errors:descr_INVALIDCERT}"
 msgstr "فشل التوثيق لان متصفحك ارسل شهادات غير صحيحة او لا يمكن قراءتها "
 
-msgid "{attributes:attribute_eduorglegalname}"
-msgstr "الاسم القانوني للمنظمة"
-
 msgid "{status:header_shib}"
 msgstr "استعراض Shibboleth"
 
 msgid "{admin:metaconv_parse}"
 msgstr "حلل"
-
-msgid "{attributes:attribute_noreduorgnin}"
-msgstr "الرقم بالمنظمة"
 
 msgid "Person's principal name at home organization"
 msgstr "ألاسم بالمنظمة الام\\الموقع الام "
@@ -1058,7 +911,7 @@ msgstr ""
 "أيضاً "
 
 #, python-format
-msgid "Your session is valid for %SECONDS% seconds from now."
+msgid "Your session is valid for %remaining% seconds from now."
 msgstr "ستستمر جلستك ل٪عدد ثواني٪ ثانية تبدأ الان"
 
 msgid "Domain component (DC)"
@@ -1522,3 +1375,13 @@ msgid ""
 " not intended to be accessed directly."
 msgstr "لقد وصلت لنطاق تأكيد خدمة زبون لكنك لم توفر استجابة توثيق SAML"
 
+
+msgid ""
+"You are now accessing a pre-production system. This authentication setup "
+"is for testing and pre-production verification only. If someone sent you "
+"a link that pointed you here, and you are not <i>a tester</i> you "
+"probably got the wrong link, and should <b>not be here</b>."
+msgstr ""
+"لقد دخلت نظاماً مبدئياً. إعدادات التصديق هذه للاختبار فقط. اذا دخلت هنا "
+"بناء علي حصولك علي هذا الرابط من شخص ما و انت لست احد مختبري هذا النظام "
+"قم رجاءاً بالخروج"

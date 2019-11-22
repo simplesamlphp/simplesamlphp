@@ -9,14 +9,14 @@ Both files have the following format:
 
     <?php
     /* The index of the array is the entity ID of this IdP. */
-    $metadata['entity-id-1'] = array(
+    $metadata['entity-id-1'] = [
         'host' => 'idp.example.org',
         /* Configuration options for the first IdP. */
-    );
-    $metadata['entity-id-2'] = array(
+    ];
+    $metadata['entity-id-2'] = [
         'host' => '__DEFAULT__',
         /* Configuration options for the default IdP. */
-    );
+    ];
     /* ... */
 
 The entity ID should be an URI. It can, also be on the form
@@ -35,12 +35,6 @@ Common options
 `auth`
 :   Which authentication module should be used to authenticate users on
     this IdP.
-<!--
-`authority`
-:   Who is authorized to create sessions for this IdP. Can be
-    `login` for LDAP login module, or `saml2` for SAML 2.0 SP.
-    Specifying this parameter is highly recommended.
--->
 
 `authproc`
 :   Used to manipulate attributes, and limit access for each SP. See
@@ -49,6 +43,38 @@ Common options
 `certificate`
 :   Certificate file which should be used by this IdP, in PEM format.
     The filename is relative to the `cert/`-directory.
+
+`contacts`
+:	Specify contacts in addition to the technical contact configured through config/config.php.
+	For example, specifying a support contact:
+
+		'contacts' => [
+		    [
+		        'contactType'       => 'support',
+		        'emailAddress'      => 'support@example.org',
+		        'givenName'         => 'John',
+		        'surName'           => 'Doe',
+		        'telephoneNumber'   => '+31(0)12345678',
+		        'company'           => 'Example Inc.',
+		    ],
+		],
+
+:	If you have support for a trust framework that requires extra attributes on the contact person element in your IdP metadata (for example, SIRTFI), you can specify an array of attributes on a contact.
+
+		'contacts' => [
+		    [
+		        'contactType'       => 'other',
+		        'emailAddress'      => 'mailto:abuse@example.org',
+		        'givenName'         => 'John',
+		        'surName'           => 'Doe',
+		        'telephoneNumber'   => '+31(0)12345678',
+		        'company'           => 'Example Inc.',
+		        'attributes'        => [
+		            'xmlns:remd'        => 'http://refeds.org/metadata',
+		            'remd:contactType'  => 'http://refeds.org/metadata/contactType/security',
+		        ],
+		    ],
+		],
 
 `host`
 :   The hostname for this IdP. One IdP can also have the `host`-option
@@ -64,10 +90,10 @@ Common options
 
 :   This option can be translated into multiple languages by specifying the value as an array of language-code to translated name:
 
-        'OrganizationName' => array(
+        'OrganizationName' => [
             'en' => 'Example organization',
             'no' => 'Eksempel organisation',
-        ),
+        ],
 
 :   *Note*: If you specify this option, you must also specify the `OrganizationURL` option.
 
@@ -97,6 +123,8 @@ Common options
     any value in the SP-remote metadata overrides the one configured
     in the IdP metadata.
 
+:   *Note*: **deprecated** Will be removed in a future release; use the MDUI-extension instead
+
 `privatekey`
 :   Name of private key file for this IdP, in PEM format. The filename
     is relative to the `cert/`-directory.
@@ -116,44 +144,9 @@ Common options
     the user. This attribute is used if SimpleSAMLphp needs to generate
     a persistent unique identifier for the user. This option can be set
     in both the IdP-hosted and the SP-remote metadata. The value in the
-    sp-remote metadata has the highest priority. The default value is
+    SP-remote metadata has the highest priority. The default value is
     `eduPersonPrincipalName`.
 
-:   Note that this option also exists in the SP-remote metadata, and
-    any value in the SP-remote metadata overrides the one configured
-    in the IdP metadata.
-
-`contacts`
-:	Specify contacts in addition to the technical contact configured through config/config.php.
-	For example, specifying a support contact:
-
-		'contacts' => array(
-		    array(
-		        'contactType'       => 'support',
-		        'emailAddress'      => 'support@example.org',
-		        'givenName'         => 'John',
-		        'surName'           => 'Doe',
-		        'telephoneNumber'   => '+31(0)12345678',
-		        'company'           => 'Example Inc.',
-		    ),
-		),
-
-:	If you have support for a trust framework that requires extra attributes on the contact person element in your IdP metadata (for example, SIRTFI), you can specify an array of attributes on a contact.
-
-		'contacts' => array(
-		    array(
-		        'contactType'       => 'other',
-		        'emailAddress'      => 'mailto:abuse@example.org',
-		        'givenName'         => 'John',
-		        'surName'           => 'Doe',
-		        'telephoneNumber'   => '+31(0)12345678',
-		        'company'           => 'Example Inc.',
-		        'attributes'        => array(
-		            'xmlns:remd'        => 'http://refeds.org/metadata',
-		            'remd:contactType'  => 'http://refeds.org/metadata/contactType/security',
-		        ),
-		    ),
-		), 
 
 SAML 2.0 options
 ----------------
@@ -165,6 +158,25 @@ The following SAML 2.0 options are available:
     value is `FALSE`.
 
 :   Note that this option can be set for each SP in the SP-remote metadata.
+
+`attributeencodings`
+:   What encoding should be used for the different attributes. This is
+    an array which maps attribute names to attribute encodings. There
+    are three different encodings:
+
+:   -   `string`: Will include the attribute as a normal string. This is
+        the default.
+
+:   -   `base64`: Store the attribute as a base64 encoded string. This
+        is the default when the `base64attributes`-option is set to
+        `TRUE`.
+
+:   -   `raw`: Store the attribute without any modifications. This
+        makes it possible to include raw XML in the response.
+
+:   Note that this option also exists in the SP-remote metadata, and
+    any value in the SP-remote metadata overrides the one configured
+    in the IdP metadata.
 
 `attributes.NameFormat`
 :   What value will be set in the Format field of attribute
@@ -221,8 +233,11 @@ The following SAML 2.0 options are available:
 :   Note that this option can be set for each SP in the [SP-remote metadata](./simplesamlphp-reference-sp-remote).
 
 `NameIDFormat`
-:   The format of the NameID supported by this IdP. Defaults to the `transient` format if unspecified.
-    This parameter can be configured in multiple places, and the actual value used is fetched from metadata with
+:   The format(s) of the NameID supported by this IdP, as either an array or a string. If an array is given, the first
+    value is used as the default if the incoming request does not specify a preference. Defaults to the `transient`
+    format if unspecified.
+
+:   This parameter can be configured in multiple places, and the actual value used is fetched from metadata with
     the following priority:
 
 :   1.  SP Remote Metadata
@@ -242,18 +257,12 @@ The following SAML 2.0 options are available:
     you should configure [NameID generation filters](./saml:nameid)
     on your IdP.
 
-:   Note that the value set here will be added to the metadata generated for this IdP,
+:   Note that the value(s) set here will be added to the metadata generated for this IdP,
     in the `NameIDFormat` element.
 
 `RegistrationInfo`
 :   Allows to specify information about the registrar of this SP. Please refer to the
     [MDRPI extension](./simplesamlphp-metadata-extensions-rpi) document for further information.
-
-`saml20.sendartifact`
-:   Set to `TRUE` to enable the IdP to send responses with the HTTP-Artifact binding.
-    Defaults to `FALSE`.
-
-:   Note that this requires a configured memcache server.
 
 `saml20.ecp`
 :   Set to `true` to enable the IdP to recieve authnrequests and send responses according the Enhanced Client or Proxy (ECP) Profile. Note: authentication filters that require interaction with the user will not work with ECP.
@@ -263,13 +272,11 @@ The following SAML 2.0 options are available:
 :   Set to `TRUE` to enable the IdP to send responses according the [Holder-of-Key Web Browser SSO Profile](./simplesamlphp-hok-idp).
     Defaults to `FALSE`.
 
-`saml20.sign.response`
-:   Whether `<samlp:Response>` messages should be signed.
-    Defaults to `TRUE`.
+`saml20.sendartifact`
+:   Set to `TRUE` to enable the IdP to send responses with the HTTP-Artifact binding.
+    Defaults to `FALSE`.
 
-:   Note that this option also exists in the SP-remote metadata, and
-    any value in the SP-remote metadata overrides the one configured
-    in the IdP metadata.
+:   Note that this requires a configured memcache server.
 
 `saml20.sign.assertion`
 :   Whether `<saml:Assertion>` elements should be signed.
@@ -278,6 +285,25 @@ The following SAML 2.0 options are available:
 :   Note that this option also exists in the SP-remote metadata, and
     any value in the SP-remote metadata overrides the one configured
     in the IdP metadata.
+
+`saml20.sign.response`
+:   Whether `<samlp:Response>` messages should be signed.
+    Defaults to `TRUE`.
+
+:   Note that this option also exists in the SP-remote metadata, and
+    any value in the SP-remote metadata overrides the one configured
+    in the IdP metadata.
+
+`signature.algorithm`
+:   The algorithm to use when signing any message generated by this identity provider. Defaults to RSA-SHA256.
+:   Possible values:
+
+    * `http://www.w3.org/2000/09/xmldsig#rsa-sha1`
+       *Note*: the use of SHA1 is **deprecated** and will be disallowed in the future.
+    * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha256`
+       The default.
+    * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha384`
+    * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha512`
 
 `sign.logout`
 :   Whether to sign logout messages sent from this IdP.
@@ -327,17 +353,6 @@ The following SAML 2.0 options are available:
 :	Defaults to HTTP-Redirect binding. Please note that the order
 	specified will be kept in the metadata, making the first binding
 	the default one.
-
-`signature.algorithm`
-:   The algorithm to use when signing any message generated by this identity provider. Defaults to RSA-SHA256.
-:   Possible values:
-
-    * `http://www.w3.org/2000/09/xmldsig#rsa-sha1`
-       *Note*: the use of SHA1 is **deprecated** and will be disallowed in the future.
-    * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha256`
-       The default.
-    * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha384`
-    * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha512`
 
 `validate.authnrequest`
 :   Whether we require signatures on authentication requests sent to this IdP.
@@ -426,7 +441,7 @@ These are some examples of IdP metadata
      * We use the '__DYNAMIC:1__' entity ID so that the entity ID
      * will be autogenerated.
      */
-    $metadata['__DYNAMIC:1__'] = array(
+    $metadata['__DYNAMIC:1__'] = [
         /*
          * We use '__DEFAULT__' as the hostname so we won't have to
          * enter a hostname.
@@ -442,4 +457,4 @@ These are some examples of IdP metadata
          * from config/authsources.php.
          */
         'auth' => 'example-userpass',
-    );
+    ];

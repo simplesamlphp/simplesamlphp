@@ -2,6 +2,7 @@
 
 namespace SimpleSAML\Utils;
 
+use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 
 /**
@@ -72,12 +73,12 @@ class System
      */
     public static function getTempDir()
     {
-        $globalConfig = \SimpleSAML\Configuration::getInstance();
+        $globalConfig = Configuration::getInstance();
 
         $tempDir = rtrim(
             $globalConfig->getString(
                 'tempdir',
-                sys_get_temp_dir().DIRECTORY_SEPARATOR.'simplesaml'
+                sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'simplesaml'
             ),
             DIRECTORY_SEPARATOR
         );
@@ -86,7 +87,7 @@ class System
             if (!mkdir($tempDir, 0700, true)) {
                 $error = error_get_last();
                 throw new Error\Exception(
-                    'Error creating temporary directory "'.$tempDir.'": '.
+                    'Error creating temporary directory "' . $tempDir . '": ' .
                     (is_array($error) ? $error['message'] : 'no error available')
                 );
             }
@@ -95,7 +96,7 @@ class System
             $stat = lstat($tempDir);
             if ($stat['uid'] !== posix_getuid()) {
                 throw new Error\Exception(
-                    'Temporary directory "'.$tempDir.'" does not belong to the current user.'
+                    'Temporary directory "' . $tempDir . '" does not belong to the current user.'
                 );
             }
         }
@@ -107,7 +108,9 @@ class System
     /**
      * Resolve a (possibly) relative path from the given base path.
      *
-     * A path which starts with a '/' is assumed to be absolute, all others are assumed to be
+     * A path which starts with a stream wrapper pattern (e.g. s3://) will not be touched
+     * and returned as is - regardles of the value given as base path.
+     * If it starts with a '/' it is assumed to be absolute, all others are assumed to be
      * relative. The default base path is the root of the SimpleSAMLphp installation.
      *
      * @param string      $path The path we should resolve.
@@ -121,7 +124,7 @@ class System
     public static function resolvePath($path, $base = null)
     {
         if ($base === null) {
-            $config = \SimpleSAML\Configuration::getInstance();
+            $config = Configuration::getInstance();
             $base = $config->getBaseDir();
         }
 
@@ -144,17 +147,21 @@ class System
             $ret = $base;
         }
 
-        $path = explode('/', $path);
-        foreach ($path as $d) {
-            if ($d === '.') {
-                continue;
-            } elseif ($d === '..') {
-                $ret = dirname($ret);
-            } else {
-                if ($ret && substr($ret, -1) !== '/') {
-                    $ret .= '/';
+        if (static::pathContainsStreamWrapper($path)) {
+            $ret = $path;
+        } else {
+            $path = explode('/', $path);
+            foreach ($path as $d) {
+                if ($d === '.') {
+                    continue;
+                } elseif ($d === '..') {
+                    $ret = dirname($ret);
+                } else {
+                    if ($ret && substr($ret, -1) !== '/') {
+                        $ret .= '/';
+                    }
+                    $ret .= $d;
                 }
-                $ret .= $d;
             }
         }
 
@@ -189,13 +196,13 @@ class System
             throw new \InvalidArgumentException('Invalid input parameters');
         }
 
-        $tmpFile = self::getTempDir().DIRECTORY_SEPARATOR.rand();
+        $tmpFile = self::getTempDir() . DIRECTORY_SEPARATOR . rand();
 
         $res = @file_put_contents($tmpFile, $data);
         if ($res === false) {
             $error = error_get_last();
             throw new Error\Exception(
-                'Error saving file "'.$tmpFile.'": '.
+                'Error saving file "' . $tmpFile . '": ' .
                 (is_array($error) ? $error['message'] : 'no error available')
             );
         }
@@ -206,7 +213,7 @@ class System
                 $error = error_get_last();
                 //$error = (is_array($error) ? $error['message'] : 'no error available');
                 throw new Error\Exception(
-                    'Error changing file mode of "'.$tmpFile.'": '.
+                    'Error changing file mode of "' . $tmpFile . '": ' .
                     (is_array($error) ? $error['message'] : 'no error available')
                 );
             }
@@ -216,7 +223,7 @@ class System
             unlink($tmpFile);
             $error = error_get_last();
             throw new Error\Exception(
-                'Error moving "'.$tmpFile.'" to "'.$filename.'": '.
+                'Error moving "' . $tmpFile . '" to "' . $filename . '": ' .
                 (is_array($error) ? $error['message'] : 'no error available')
             );
         }
@@ -238,5 +245,15 @@ class System
         $letterAsciiValue = ord(strtoupper(substr($path, 0, 1)));
         return substr($path, 1, 1) === ':'
                 && $letterAsciiValue >= 65 && $letterAsciiValue <= 90;
+    }
+
+    /**
+     * Check if the supplied path contains a stream wrapper
+     * @param string $path
+     * @return bool
+     */
+    private static function pathContainsStreamWrapper($path)
+    {
+        return preg_match('/^[\w\d]*:\/{2}/', $path) === 1;
     }
 }

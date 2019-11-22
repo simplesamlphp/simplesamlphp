@@ -47,17 +47,14 @@ msgstr "Username"
 msgid "{login:processing}"
 msgstr "Processing..."
 
+msgid "Back"
+msgstr "Back"
+
 msgid "{errors:title_METADATA}"
 msgstr "Error loading metadata"
 
 msgid "{admin:metaconv_title}"
 msgstr "Metadata parser"
-
-msgid "{attributes:attribute_edupersonentitlement}"
-msgstr "Entitlement regarding the service"
-
-msgid "{attributes:attribute_jpegphoto}"
-msgstr "JPEG Photo"
 
 msgid "{admin:cfg_check_noerrors}"
 msgstr "No errors found."
@@ -141,9 +138,6 @@ msgstr ""
 msgid "{logout:default_link_text}"
 msgstr "Go back to SimpleSAMLphp installation page"
 
-msgid "{admin:metaover_group_metadata.wsfed-idp-remote}"
-msgstr "WS-Federation Identity Provider (Remote)"
-
 msgid "{errors:error_header}"
 msgstr "SimpleSAMLphp error"
 
@@ -161,17 +155,11 @@ msgstr ""
 " are the administrator of this service, you should make sure your "
 "metadata configuration is correctly setup."
 
-msgid "{attributes:attribute_edupersonorgdn}"
-msgstr "Distinguished name (DN) of person's home organization"
-
 msgid "{errors:title_BADREQUEST}"
 msgstr "Bad request received"
 
 msgid "{status:sessionsize}"
 msgstr "Session size: %SIZE%"
-
-msgid "{attributes:attribute_postaladdress}"
-msgstr "Postal address"
 
 msgid "{logout:title}"
 msgstr "Logged out"
@@ -200,23 +188,11 @@ msgstr "On hold"
 msgid "{admin:cfg_check_header}"
 msgstr "Configuration check"
 
-msgid "{attributes:attribute_edupersonscopedaffiliation}"
-msgstr "Affiliation at home organization"
-
-msgid "{attributes:attribute_sn}"
-msgstr "Surname"
-
 msgid "{admin:debug_sending_message_send}"
 msgstr "Submit message"
 
 msgid "{status:logout}"
 msgstr "Logout"
-
-msgid "{attributes:attribute_organisationname}"
-msgstr "Organization name"
-
-msgid "{attributes:attribute_telephonenumber}"
-msgstr "Telephone number"
 
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr ""
@@ -225,9 +201,6 @@ msgstr ""
 
 msgid "{errors:title_ARSPARAMS}"
 msgstr "No SAML message provided"
-
-msgid "{attributes:attribute_mail}"
-msgstr "Mail"
 
 msgid "{errors:descr_CREATEREQUEST}"
 msgstr "An error occurred when trying to create the SAML request."
@@ -241,9 +214,6 @@ msgstr "Return to service"
 msgid "{errors:title_MEMCACHEDOWN}"
 msgstr "Cannot retrieve session data"
 
-msgid "{attributes:attribute_displayname}"
-msgstr "Display name"
-
 msgid "{admin:metadata_xmlurl}"
 msgstr "You can <a href=\"%METAURL%\">get the metadata xml on a dedicated URL</a>:"
 
@@ -254,9 +224,6 @@ msgid "{admin:debug_disable_debug_mode}"
 msgstr ""
 "You can turn off debug mode in the global SimpleSAMLphp configuration "
 "file <tt>config/config.php</tt>."
-
-msgid "{attributes:attribute_homepostaladdress}"
-msgstr "Home postal address"
 
 msgid "{disco:select}"
 msgstr "Select"
@@ -287,9 +254,6 @@ msgstr ""
 msgid "{logout:logout_all_question}"
 msgstr "Do you want to logout from all the services above?"
 
-msgid "{attributes:attribute_title}"
-msgstr "Title"
-
 msgid "{errors:title_NOACCESS}"
 msgstr "No access"
 
@@ -303,9 +267,6 @@ msgstr "No RelayState"
 
 msgid "{errors:descr_NOSTATE}"
 msgstr "State information lost, and no way to restart the request"
-
-msgid "{attributes:attribute_noredupersonnin}"
-msgstr "Identity number assigned by public authorities"
 
 msgid "{login:password}"
 msgstr "Password"
@@ -333,26 +294,14 @@ msgstr "Error processing the Logout Request"
 msgid "{admin:metaover_errorentry}"
 msgstr "Error in this metadata entry"
 
-msgid "{attributes:attribute_edupersonuniqueid}"
-msgstr "Person's non-reassignable, persistent pseudonymous ID at home organization"
-
-msgid "{attributes:attribute_edupersonaffiliation}"
-msgstr "Affiliation"
-
 msgid "{errors:title_METADATANOTFOUND}"
 msgstr "Metadata not found"
-
-msgid "{attributes:attribute_givenname}"
-msgstr "Given name"
 
 msgid "{login:contact_info}"
 msgstr "Contact information:"
 
 msgid "{errors:title_UNHANDLEDEXCEPTION}"
 msgstr "Unhandled exception"
-
-msgid "{status:validfor}"
-msgstr "Your session is valid for %SECONDS% seconds from now."
 
 msgid "{status:header_saml20_sp}"
 msgstr "SAML 2.0 SP Demo Example"
@@ -393,17 +342,11 @@ msgstr "Select configuration file to check:"
 msgid "{errors:descr_UNKNOWNCERT}"
 msgstr "Authentication failed: the certificate your browser sent is unknown"
 
-msgid "{attributes:attribute_eduorghomepageuri}"
-msgstr "Organizational homepage"
-
 msgid "{logout:logging_out_from}"
 msgstr "Logging out of the following services:"
 
 msgid "{logout:loggedoutfrom}"
 msgstr "You are now successfully logged out from %SP%."
-
-msgid "{admin:metaover_group_metadata.wsfed-sp-hosted}"
-msgstr "WS-Federation Service Provider (Hosted)"
 
 msgid "{errors:errorreport_text}"
 msgstr "The error report has been sent to the administrators."
@@ -411,14 +354,8 @@ msgstr "The error report has been sent to the administrators."
 msgid "{status:subject_header}"
 msgstr "SAML Subject"
 
-msgid "{attributes:attribute_noredupersonbirthdate}"
-msgstr "Date of birth"
-
 msgid "{errors:descr_LOGOUTREQUEST}"
 msgstr "An error occurred when trying to process the Logout Request."
-
-msgid "{attributes:attribute_edupersontargetedid}"
-msgstr "Persistent pseudonymous ID"
 
 msgid "{logout:success}"
 msgstr "You have successfully logged out from all services listed above."
@@ -428,12 +365,6 @@ msgstr "Notices"
 
 msgid "{errors:descr_USERABORTED}"
 msgstr "The authentication was aborted by the user"
-
-msgid "{attributes:attribute_edupersonprimaryaffiliation}"
-msgstr "Primary affiliation"
-
-msgid "{attributes:attribute_postalcode}"
-msgstr "Postal code"
 
 msgid "{errors:descr_CASERROR}"
 msgstr "Error when communicating with the CAS server."
@@ -447,9 +378,6 @@ msgstr "SAML 2.0 SP Metadata"
 msgid "{admin:metaconv_converted}"
 msgstr "Converted metadata"
 
-msgid "{attributes:attribute_cn}"
-msgstr "Common name"
-
 msgid "{logout:completed}"
 msgstr "Completed"
 
@@ -458,17 +386,8 @@ msgstr ""
 "The password in the configuration (auth.adminpassword) is not changed "
 "from the default value. Please edit the configuration file."
 
-msgid "{attributes:attribute_ou}"
-msgstr "Organizational unit"
-
 msgid "{general:service_provider}"
 msgstr "Service Provider"
-
-msgid "{attributes:attribute_homephone}"
-msgstr "Home telephone"
-
-msgid "{attributes:attribute_dc}"
-msgstr "Domain component (DC)"
 
 msgid "{errors:descr_BADREQUEST}"
 msgstr "There is an error in the request to this page. The reason was: %REASON%"
@@ -488,23 +407,14 @@ msgstr "Enter your username and password"
 msgid "{errors:report_explain}"
 msgstr "Explain what you did when this error occurred..."
 
-msgid "{attributes:attribute_manager}"
-msgstr "Manager"
-
 msgid "{errors:title_ACSPARAMS}"
 msgstr "No SAML response provided"
-
-msgid "{attributes:attribute_edupersonnickname}"
-msgstr "Nickname"
 
 msgid "{errors:descr_SLOSERVICEPARAMS}"
 msgstr ""
 "You accessed the SingleLogoutService interface, but did not provide a "
 "SAML LogoutRequest or LogoutResponse. Please note that this endpoint is "
 "not intended to be accessed directly."
-
-msgid "{attributes:attribute_street}"
-msgstr "Street"
 
 msgid "{login:organization}"
 msgstr "Organization"
@@ -544,9 +454,6 @@ msgstr "Choose home organization"
 msgid "{admin:cfg_check_superfluous}"
 msgstr "Superfluous options in config file"
 
-msgid "{attributes:attribute_labeleduri}"
-msgstr "Labeled URI"
-
 msgid "{errors:report_email}"
 msgstr "E-mail address:"
 
@@ -561,9 +468,6 @@ msgstr ""
 "The initiator of this request did not provide a RelayState parameter "
 "indicating where to go next."
 
-msgid "{attributes:attribute_noredupersonlegalname}"
-msgstr "Legal name"
-
 msgid "{status:header_diagnostics}"
 msgstr "SimpleSAMLphp Diagnostics"
 
@@ -572,9 +476,6 @@ msgstr ""
 "Hi, this is the status page of SimpleSAMLphp. Here you can see if your "
 "session is timed out, how long it lasts until it times out and all the "
 "attributes that are attached to your session."
-
-msgid "{attributes:attribute_schachomeorganization}"
-msgstr "Home organization domain name"
 
 msgid "{errors:title_NOTFOUNDREASON}"
 msgstr "Page not found"
@@ -596,20 +497,11 @@ msgstr ""
 msgid "{errors:title_NOTVALIDCERT}"
 msgstr "Invalid certificate"
 
-msgid "{attributes:attribute_edupersonorgunitdn}"
-msgstr "Distinguished name (DN) of the person's home organizational unit"
-
 msgid "{general:remember}"
 msgstr "Remember"
 
 msgid "{disco:selectidp}"
 msgstr "Select your identity provider"
-
-msgid "{attributes:attribute_postofficebox}"
-msgstr "Post office box"
-
-msgid "{attributes:attribute_edupersonprincipalname}"
-msgstr "Person's principal name at home organization"
 
 msgid "{login:help_desk_email}"
 msgstr "Send e-mail to help desk"
@@ -617,17 +509,11 @@ msgstr "Send e-mail to help desk"
 msgid "{login:help_desk_link}"
 msgstr "Help desk homepage"
 
-msgid "{attributes:attribute_ismemberof}"
-msgstr "Group membership"
-
 msgid "{errors:descr_ARSPARAMS}"
 msgstr ""
 "You accessed the Artifact Resolution Service interface, but did not "
 "provide a SAML ArtifactResolve message. Please note that this endpoint is"
 " not intended to be accessed directly."
-
-msgid "{attributes:attribute_uid}"
-msgstr "User ID"
 
 msgid "{login:remember_me}"
 msgstr "Remember me"
@@ -651,12 +537,6 @@ msgstr "Remember my choice"
 
 msgid "{admin:metaover_group_metadata.saml20-sp-hosted}"
 msgstr "SAML 2.0 Service Provider (Hosted)"
-
-msgid "{attributes:attribute_l}"
-msgstr "Locality"
-
-msgid "{attributes:attribute_edupersonassurance}"
-msgstr "Identity assurance profile"
 
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
@@ -708,9 +588,6 @@ msgstr "ADFS Identity Provider (Hosted)"
 msgid "{errors:title_UNKNOWNCERT}"
 msgstr "Unknown certificate"
 
-msgid "{attributes:attribute_facsimiletelephonenumber}"
-msgstr "Fax number"
-
 msgid "{errors:title_LDAPERROR}"
 msgstr "LDAP Error"
 
@@ -728,20 +605,11 @@ msgstr ""
 "misconfiguration of SimpleSAMLphp. Contact the administrator of this "
 "login service, and send them the error message above."
 
-msgid "{attributes:attribute_mobile}"
-msgstr "Mobile"
-
 msgid "{admin:metadata_adfs-idp}"
 msgstr "ADFS IdP Metadata"
 
-msgid "{attributes:attribute_edupersonorcid}"
-msgstr "ORCID researcher identifiers"
-
 msgid "{admin:metaover_group_metadata.shib13-idp-hosted}"
 msgstr "Shib 1.3 Identity Provider (Hosted)"
-
-msgid "{attributes:attribute_preferredlanguage}"
-msgstr "Preferred language"
 
 msgid "{errors:descr_NOTVALIDCERT}"
 msgstr "You did not present a valid certificate."
@@ -756,15 +624,6 @@ msgstr "The following optional fields was not found"
 
 msgid "{logout:logout_only}"
 msgstr "No, only %SP%"
-
-msgid "{attributes:attribute_o}"
-msgstr "Organization name"
-
-msgid "{attributes:attribute_edupersonprimaryorgunitdn}"
-msgstr "Distinguished name (DN) of person's primary Organizational Unit"
-
-msgid "{attributes:attribute_noredupersonlin}"
-msgstr "Local identity number"
 
 msgid "{login:next}"
 msgstr "Next"
@@ -789,9 +648,6 @@ msgstr "The given page was not found. The reason was: %REASON%  The URL was: %UR
 msgid "{errors:title_NOCERT}"
 msgstr "No certificate"
 
-msgid "{attributes:attribute_userpassword}"
-msgstr "User's password hash"
-
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "Logout information lost"
 
@@ -812,12 +668,6 @@ msgstr ""
 "send this metadata document to trusted partners to setup a trusted "
 "federation."
 
-msgid "{attributes:attribute_schacuserprivateattribute}"
-msgstr "Private information elements"
-
-msgid "{status:header_wsfed}"
-msgstr "WS-Fed SP Demo Example"
-
 msgid "{admin:metadata_cert}"
 msgstr "Certificates"
 
@@ -826,17 +676,11 @@ msgstr ""
 "Authentication failed: the certificate your browser sent is invalid or "
 "cannot be read"
 
-msgid "{attributes:attribute_eduorglegalname}"
-msgstr "Organization's legal name"
-
 msgid "{status:header_shib}"
 msgstr "Shibboleth demo"
 
 msgid "{admin:metaconv_parse}"
 msgstr "Parse"
-
-msgid "{attributes:attribute_noreduorgnin}"
-msgstr "Organizational number"
 
 msgid "Hello, Untranslated World!"
 msgstr "Hello, Translated World!"
@@ -1204,8 +1048,8 @@ msgstr ""
 "login service, and send them the error message above."
 
 #, python-format
-msgid "Your session is valid for %SECONDS% seconds from now."
-msgstr "Your session is valid for %SECONDS% seconds from now."
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Your session is valid for %remaining% seconds from now."
 
 msgid "Domain component (DC)"
 msgstr "Domain component (DC)"
@@ -1739,3 +1583,13 @@ msgstr ""
 "provide a SAML Authentication Response. Please note that this endpoint is"
 " not intended to be accessed directly."
 
+msgid ""
+"You are now accessing a pre-production system. This authentication setup "
+"is for testing and pre-production verification only. If someone sent you "
+"a link that pointed you here, and you are not <i>a tester</i> you "
+"probably got the wrong link, and should <b>not be here</b>."
+msgstr ""
+"You are now accessing a pre-production system. This authentication setup "
+"is for testing and pre-production verification only. If someone sent you "
+"a link that pointed you here, and you are not <i>a tester</i> you "
+"probably got the wrong link, and should <b>not be here</b>."

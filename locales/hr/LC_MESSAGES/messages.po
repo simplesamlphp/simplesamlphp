@@ -54,12 +54,6 @@ msgstr "Greška prilikom učitavanja metapodataka"
 msgid "{admin:metaconv_title}"
 msgstr "Analizator metapodataka"
 
-msgid "{attributes:attribute_edupersonentitlement}"
-msgstr "Pripadnost grupi"
-
-msgid "{attributes:attribute_jpegphoto}"
-msgstr "Slika u JPEG formatu"
-
 msgid "{admin:cfg_check_noerrors}"
 msgstr "Nije pronađena niti jedna greška."
 
@@ -140,9 +134,6 @@ msgstr ""
 msgid "{logout:default_link_text}"
 msgstr "Natrag na početnu stranicu SimpleSAMLphp instalacije"
 
-msgid "{admin:metaover_group_metadata.wsfed-idp-remote}"
-msgstr "WS-Federation autentifikacijski servis (udaljeni)"
-
 msgid "{errors:error_header}"
 msgstr "SimpleSAMLphp greška"
 
@@ -162,17 +153,11 @@ msgstr ""
 "administrator ovog servisa, provjerite jesu li svi metapodaci u "
 "konfiguraciji ispravni."
 
-msgid "{attributes:attribute_edupersonorgdn}"
-msgstr "Jedinstveni naziv (DN) korisnikove matične ustanove"
-
 msgid "{errors:title_BADREQUEST}"
 msgstr "Dobiveni zahtjev nije ispravan"
 
 msgid "{status:sessionsize}"
 msgstr "Veličina sjednice: %SIZE%"
-
-msgid "{attributes:attribute_postaladdress}"
-msgstr "Poštanska adresa"
 
 msgid "{logout:title}"
 msgstr "Odjavljeni ste"
@@ -195,29 +180,14 @@ msgstr "Na čekanju"
 msgid "{admin:cfg_check_header}"
 msgstr "Provjera konfiguracije"
 
-msgid "{attributes:attribute_edupersonscopedaffiliation}"
-msgstr "Povezanost s matičnom ustanovom"
-
-msgid "{attributes:attribute_sn}"
-msgstr "Prezime"
-
 msgid "{admin:debug_sending_message_send}"
 msgstr "Pošalji poruku"
 
 msgid "{status:logout}"
 msgstr "Odjava"
 
-msgid "{attributes:attribute_organisationname}"
-msgstr "Naziv ustanove"
-
-msgid "{attributes:attribute_telephonenumber}"
-msgstr "Broj telefona"
-
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "Parametri poslani lokacijskom servisu nisu u ispravnom formatu."
-
-msgid "{attributes:attribute_mail}"
-msgstr "Elektronička adresa"
 
 msgid "{errors:descr_CREATEREQUEST}"
 msgstr "Pojavila se greška prilikom kreiranja SAML zahtjeva."
@@ -227,9 +197,6 @@ msgstr "Opcionalna polja"
 
 msgid "{logout:return}"
 msgstr "Povratak u aplikaciju"
-
-msgid "{attributes:attribute_displayname}"
-msgstr "Mrežno ime"
 
 msgid "{admin:metadata_xmlurl}"
 msgstr "Metapodaci su dostupni na <a href=\"%METAURL%\">ovoj adresi</a>:"
@@ -241,9 +208,6 @@ msgid "{admin:debug_disable_debug_mode}"
 msgstr ""
 "Mod za otkrivanje grešaka možete isključiti u glavnoj SimpleSAMLphp "
 "konfiguracijskoj datoteci <tt>config/config.php</tt>. "
-
-msgid "{attributes:attribute_homepostaladdress}"
-msgstr "Kućna poštanska adresa"
 
 msgid "{disco:select}"
 msgstr "Odaberi"
@@ -271,9 +235,6 @@ msgstr ""
 msgid "{logout:logout_all_question}"
 msgstr "Želite li se odjaviti iz svih gore navedenih servisa?"
 
-msgid "{attributes:attribute_title}"
-msgstr "Naziv"
-
 msgid "{errors:title_NOACCESS}"
 msgstr "Pristup nije dozvoljen"
 
@@ -287,9 +248,6 @@ msgstr "Parametar RelayState nije zadan"
 
 msgid "{errors:descr_NOSTATE}"
 msgstr "Podaci o stanju su izgubljeni i zahtjev se ne može reproducirati"
-
-msgid "{attributes:attribute_noredupersonnin}"
-msgstr "Brojčani identifikator osobe"
 
 msgid "{login:password}"
 msgstr "Zaporka"
@@ -317,23 +275,14 @@ msgstr "Greška prilikom odjavljivanja"
 msgid "{admin:metaover_errorentry}"
 msgstr "Ovaj zapis metapodataka sadrži grešku"
 
-msgid "{attributes:attribute_edupersonaffiliation}"
-msgstr "Povezanost s ustanovom"
-
 msgid "{errors:title_METADATANOTFOUND}"
 msgstr "Metapodaci nisu pronađeni"
-
-msgid "{attributes:attribute_givenname}"
-msgstr "Ime"
 
 msgid "{login:contact_info}"
 msgstr "Kontakt podaci:"
 
 msgid "{errors:title_UNHANDLEDEXCEPTION}"
 msgstr "Neobrađena iznimka"
-
-msgid "{status:validfor}"
-msgstr "Vaša sjednica bit će valjana još %SECONDS% sekundi."
 
 msgid "{status:header_saml20_sp}"
 msgstr "Primjer SAML 2.0 davatelja usluge"
@@ -370,29 +319,17 @@ msgstr ""
 "Neuspješna autentifikacija: digitalni certifikat kojeg je poslao vaš web "
 "preglednik je nepoznat"
 
-msgid "{attributes:attribute_eduorghomepageuri}"
-msgstr "Web stranice ustanove"
-
 msgid "{logout:logging_out_from}"
 msgstr "Odjavljujete se iz sljedećih servisa:"
 
 msgid "{logout:loggedoutfrom}"
 msgstr "Uspješno ste odjavljeni iz %SP%."
 
-msgid "{admin:metaover_group_metadata.wsfed-sp-hosted}"
-msgstr "WS-Federation davatelj usluge (lokalni)"
-
 msgid "{errors:errorreport_text}"
 msgstr "Prijava greške poslana je administratorima."
 
-msgid "{attributes:attribute_noredupersonbirthdate}"
-msgstr "Datum rođenja"
-
 msgid "{errors:descr_LOGOUTREQUEST}"
 msgstr "Došlo je do greške prilikom obrade zahtjeva za odjavljivanjem."
-
-msgid "{attributes:attribute_edupersontargetedid}"
-msgstr "Trajni anonimni identifikator"
 
 msgid "{logout:success}"
 msgstr "Uspješno ste se odjavili iz svih gore navedenih servisa."
@@ -402,12 +339,6 @@ msgstr "Napomene"
 
 msgid "{errors:descr_USERABORTED}"
 msgstr "Korisnik je prekinuo proces autentifikacie"
-
-msgid "{attributes:attribute_edupersonprimaryaffiliation}"
-msgstr "Temeljna povezanost s ustanovom"
-
-msgid "{attributes:attribute_postalcode}"
-msgstr "Broj pošte"
 
 msgid "{errors:descr_CASERROR}"
 msgstr "Greška u komunikaciji sa CAS poslužiteljem."
@@ -421,9 +352,6 @@ msgstr "SAML 2.0 metapodaci o davatelju usluge"
 msgid "{admin:metaconv_converted}"
 msgstr "Pretvoreni metapodaci"
 
-msgid "{attributes:attribute_cn}"
-msgstr "Ime i prezime"
-
 msgid "{logout:completed}"
 msgstr "Završeno"
 
@@ -433,17 +361,8 @@ msgstr ""
 "auth.adminpassword) u konfiguraciji nije promjenjena. Molimo promjenite "
 "administratorsku zaporku u konfiguracijskoj datoteci."
 
-msgid "{attributes:attribute_ou}"
-msgstr "Organizacijska jedinica"
-
 msgid "{general:service_provider}"
 msgstr "Davatelj usluge"
-
-msgid "{attributes:attribute_homephone}"
-msgstr "Kućni telefonski broj"
-
-msgid "{attributes:attribute_dc}"
-msgstr "Domenska komponenta (DC)"
 
 msgid "{errors:descr_BADREQUEST}"
 msgstr "Dogodila se greška prilikom dohvaćanja ove stranice. Razlog: %REASON%"
@@ -463,23 +382,14 @@ msgstr "Unesite korisničku oznaku i zaporku"
 msgid "{errors:report_explain}"
 msgstr "Opišite što ste radili kad se pojavila greška..."
 
-msgid "{attributes:attribute_manager}"
-msgstr "Voditelj"
-
 msgid "{errors:title_ACSPARAMS}"
 msgstr "Nije dostavljen nikakav SAML odgovor"
-
-msgid "{attributes:attribute_edupersonnickname}"
-msgstr "Nadimak"
 
 msgid "{errors:descr_SLOSERVICEPARAMS}"
 msgstr ""
 "Pristupili ste sučelju za odjavljivanje iz sustava jedinstvene "
 "autentifikacije, ali niste dostavili SAML LogoutRequest ili "
 "LogoutResponse poruku."
-
-msgid "{attributes:attribute_street}"
-msgstr "Ulica"
 
 msgid "{login:organization}"
 msgstr "Ustanova"
@@ -520,9 +430,6 @@ msgstr "Odaberite matičnu ustanovu"
 msgid "{admin:cfg_check_superfluous}"
 msgstr "Suvišni parametri u konfiguracijskoj datoteci"
 
-msgid "{attributes:attribute_labeleduri}"
-msgstr "URI adresa"
-
 msgid "{errors:report_email}"
 msgstr "E-mail adresa:"
 
@@ -538,9 +445,6 @@ msgstr ""
 "parametar koji sadrži adresu na koju treba preusmjeriti korisnikov web "
 "preglednik nakon uspješne autentifikacije."
 
-msgid "{attributes:attribute_noredupersonlegalname}"
-msgstr "Službeni naziv"
-
 msgid "{status:header_diagnostics}"
 msgstr "SimpleSAMLphp dijagnostika"
 
@@ -550,9 +454,6 @@ msgstr ""
 "ovoj stranici možete vidjeti je li vam istekla sjednica, koliko će još "
 "dugo vaša sjednica trajati te sve atribute koji su vezani uz vašu "
 "sjednicu."
-
-msgid "{attributes:attribute_schachomeorganization}"
-msgstr "Oznaka matične ustanove"
 
 msgid "{errors:title_NOTFOUNDREASON}"
 msgstr "Stranica nije pronađena"
@@ -572,29 +473,17 @@ msgstr "Da biste vidjeli detalje o SAML entitetu, kliknite na njegovo zaglavlje.
 msgid "{errors:title_NOTVALIDCERT}"
 msgstr "Certifikat nije valjan"
 
-msgid "{attributes:attribute_edupersonorgunitdn}"
-msgstr "Jedinstveni naziv (DN) korisnikove organizacijske jedinice"
-
 msgid "{general:remember}"
 msgstr "Zapamti moj odabir"
 
 msgid "{disco:selectidp}"
 msgstr "Odaberite autentifikacijski servis"
 
-msgid "{attributes:attribute_postofficebox}"
-msgstr "Broj poštanskog pretinca"
-
-msgid "{attributes:attribute_edupersonprincipalname}"
-msgstr "Korisnička oznaka"
-
 msgid "{login:help_desk_email}"
 msgstr "Pošaljite e-mail službi za podršku korisnicima"
 
 msgid "{login:help_desk_link}"
 msgstr "Stranice službe za podršku korisnicima"
-
-msgid "{attributes:attribute_uid}"
-msgstr "Identifikator korisnika u ustanovi"
 
 msgid "{errors:title_CASERROR}"
 msgstr "CAS greška"
@@ -615,12 +504,6 @@ msgstr "Zapamti moj odabir"
 
 msgid "{admin:metaover_group_metadata.saml20-sp-hosted}"
 msgstr "SAML 2.0 davatelj usluge (lokalni)"
-
-msgid "{attributes:attribute_l}"
-msgstr "Mjesto (lokalitet)"
-
-msgid "{attributes:attribute_edupersonassurance}"
-msgstr "Usklađenost sa standardima zaštite korisničkih podataka"
 
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
@@ -666,9 +549,6 @@ msgstr "Poruka"
 msgid "{errors:title_UNKNOWNCERT}"
 msgstr "Nepoznat digitalni certifikat"
 
-msgid "{attributes:attribute_facsimiletelephonenumber}"
-msgstr "Broj telefaksa"
-
 msgid "{errors:title_LDAPERROR}"
 msgstr "LDAP greška"
 
@@ -687,14 +567,8 @@ msgstr ""
 "neispravne konfiguracije programskog alata SimpleSAMLphp. Kontaktirajte "
 "administratore ovog servisa i pošaljite im gore navedenu poruku o greški."
 
-msgid "{attributes:attribute_mobile}"
-msgstr "Broj mobilnog telefona"
-
 msgid "{admin:metaover_group_metadata.shib13-idp-hosted}"
 msgstr "Shib 1.3 autentifikacijski servis (lokalni)"
-
-msgid "{attributes:attribute_preferredlanguage}"
-msgstr "Primarni jezik"
 
 msgid "{errors:descr_NOTVALIDCERT}"
 msgstr "Niste predočili valjani certifikat."
@@ -707,15 +581,6 @@ msgstr "Nisu pronađena sljedeća opcionalna polja"
 
 msgid "{logout:logout_only}"
 msgstr "Ne, samo iz %SP%"
-
-msgid "{attributes:attribute_o}"
-msgstr "Naziv matične ustanove"
-
-msgid "{attributes:attribute_edupersonprimaryorgunitdn}"
-msgstr "Jedinstveni naziv (DN) korisnikove primarne organizacijske jedinice"
-
-msgid "{attributes:attribute_noredupersonlin}"
-msgstr "Lokalni brojčani identifikator osobe u ustanovi (LOCAL_NO)"
 
 msgid "{login:next}"
 msgstr "Dalje"
@@ -736,9 +601,6 @@ msgstr ""
 msgid "{errors:title_NOCERT}"
 msgstr "Nema digitalnog certifikata"
 
-msgid "{attributes:attribute_userpassword}"
-msgstr "Kriptirana zaporka"
-
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "Informacija o odjavljivanju je izgubljena"
 
@@ -755,12 +617,6 @@ msgstr ""
 "identiteta u koje imate povjerenja i s kojima želite uspostaviti "
 "federaciju."
 
-msgid "{attributes:attribute_schacuserprivateattribute}"
-msgstr "Postavke privatnosti"
-
-msgid "{status:header_wsfed}"
-msgstr "Primjer WS-Fed davatelja usluge"
-
 msgid "{admin:metadata_cert}"
 msgstr "Certifikati"
 
@@ -769,17 +625,11 @@ msgstr ""
 "Neuspješna autentifikacija: digitalni certifikat koji je poslao vaš web "
 "preglednik nije ispravan ili se ne može pročitati"
 
-msgid "{attributes:attribute_eduorglegalname}"
-msgstr "Službeni naziv ustanove"
-
 msgid "{status:header_shib}"
 msgstr "Shibboleth primjer"
 
 msgid "{admin:metaconv_parse}"
 msgstr "Analiziraj"
-
-msgid "{attributes:attribute_noreduorgnin}"
-msgstr "Brojčani identifikator ustanove"
 
 msgid "Person's principal name at home organization"
 msgstr "Korisnička oznaka"
@@ -1117,8 +967,8 @@ msgstr ""
 "administratore ovog servisa i pošaljite im gore navedenu poruku o greški."
 
 #, python-format
-msgid "Your session is valid for %SECONDS% seconds from now."
-msgstr "Vaša sjednica bit će valjana još %SECONDS% sekundi."
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Vaša sjednica bit će valjana još %remaining% sekundi."
 
 msgid "Domain component (DC)"
 msgstr "Domenska komponenta (DC)"
@@ -1610,3 +1460,15 @@ msgstr ""
 "Pristupili ste sučelju za obradu SAML potvrda, ali niste dostavili SAML "
 "autentifikacijski odgovor."
 
+
+msgid ""
+"You are now accessing a pre-production system. This authentication setup "
+"is for testing and pre-production verification only. If someone sent you "
+"a link that pointed you here, and you are not <i>a tester</i> you "
+"probably got the wrong link, and should <b>not be here</b>."
+msgstr ""
+"Pristupate sustavu koji se nalazi u pretprodukcijskoj fazi. Ove "
+"autentifikacijske postavke služe za testiranje i provjeru ispravnosti "
+"rada pretprodukcijskog sustava. Ako vam je netko poslao adresu koja "
+"pokazuje na ovu stranicu, a vi niste <i>osoba zadužena za testiranje</i>,"
+" vjerojatno ste <b>na ovu stranicu došli greškom</b>."

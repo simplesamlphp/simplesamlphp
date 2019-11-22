@@ -16,7 +16,7 @@ use DOMElement;
 use DOMText;
 use RobRichards\XMLSecLibs\XMLSecurityDSig;
 use RobRichards\XMLSecLibs\XMLSecurityKey;
-use SimpleSAML\Utils\Config;
+use SimpleSAML\Utils;
 
 class Signer
 {
@@ -26,7 +26,7 @@ class Signer
     private $idAttrName = '';
 
     /**
-     * @var XMLSecurityKey|bool  The private key (as an XMLSecurityKey).
+     * @var XMLSecurityKey|false  The private key (as an XMLSecurityKey).
      */
     private $privateKey = false;
 
@@ -39,7 +39,7 @@ class Signer
     /**
      * @var array Extra certificates which should be included in the response.
      */
-    private $extraCertificates = array();
+    private $extraCertificates = [];
 
 
     /**
@@ -58,7 +58,7 @@ class Signer
      *
      * @param array $options  Associative array with options for the constructor. Defaults to an empty array.
      */
-    public function __construct($options = array())
+    public function __construct($options = [])
     {
         assert(is_array($options));
 
@@ -84,7 +84,7 @@ class Signer
         }
 
         if (array_key_exists('id', $options)) {
-            $this->setIdAttribute($options['id']);
+            $this->setIDAttribute($options['id']);
         }
     }
 
@@ -96,13 +96,14 @@ class Signer
      * by \SimpleSAML\Utils\Crypto::loadPrivateKey(...).
      *
      * @param array $privatekey  The private key.
+     * @return void
      */
     public function loadPrivateKeyArray($privatekey)
     {
         assert(is_array($privatekey));
         assert(array_key_exists('PEM', $privatekey));
 
-        $this->privateKey = new XMLSecurityKey(XMLSecurityKey::RSA_SHA256, array('type' => 'private'));
+        $this->privateKey = new XMLSecurityKey(XMLSecurityKey::RSA_SHA256, ['type' => 'private']);
         if (array_key_exists('password', $privatekey)) {
             $this->privateKey->passphrase = $privatekey['password'];
         }
@@ -122,6 +123,7 @@ class Signer
      * @param bool $full_path  Whether the filename found in the configuration contains the
      *                         full path to the private key or not. Default to false.
      * @throws \Exception
+     * @return void
      */
     public function loadPrivateKey($file, $pass = null, $full_path = false)
     {
@@ -130,7 +132,7 @@ class Signer
         assert(is_bool($full_path));
 
         if (!$full_path) {
-            $keyFile = Config::getCertPath($file);
+            $keyFile = Utils\Config::getCertPath($file);
         } else {
             $keyFile = $file;
         }
@@ -143,7 +145,7 @@ class Signer
             throw new \Exception('Unable to read private key file "' . $keyFile . '".');
         }
 
-        $privatekey = array('PEM' => $keyData);
+        $privatekey = ['PEM' => $keyData];
         if ($pass !== null) {
             $privatekey['password'] = $pass;
         }
@@ -159,6 +161,7 @@ class Signer
      *
      * @param array $publickey The public key.
      * @throws \Exception
+     * @return void
      */
     public function loadPublicKeyArray($publickey)
     {
@@ -185,6 +188,7 @@ class Signer
      * @param bool $full_path  Whether the filename found in the configuration contains the
      *                         full path to the private key or not. Default to false.
      * @throws \Exception
+     * @return void
      */
     public function loadCertificate($file, $full_path = false)
     {
@@ -192,7 +196,7 @@ class Signer
         assert(is_bool($full_path));
 
         if (!$full_path) {
-            $certFile = Config::getCertPath($file);
+            $certFile = Utils\Config::getCertPath($file);
         } else {
             $certFile = $file;
         }
@@ -213,6 +217,7 @@ class Signer
      * Set the attribute name for the ID value.
      *
      * @param string $idAttrName  The name of the attribute which contains the id.
+     * @return void
      */
     public function setIDAttribute($idAttrName)
     {
@@ -232,6 +237,7 @@ class Signer
      * @param bool $full_path  Whether the filename found in the configuration contains the
      *                         full path to the private key or not. Default to false.
      * @throws \Exception
+     * @return void
      */
     public function addCertificate($file, $full_path = false)
     {
@@ -239,7 +245,7 @@ class Signer
         assert(is_bool($full_path));
 
         if (!$full_path) {
-            $certFile = Config::getCertPath($file);
+            $certFile = Utils\Config::getCertPath($file);
         } else {
             $certFile = $file;
         }
@@ -268,6 +274,7 @@ class Signer
      *                                   in which case the signature will be appended to the element spesified in
      *                                   $insertInto.
      * @throws \Exception
+     * @return void
      */
     public function sign($node, $insertInto, $insertBefore = null)
     {
@@ -276,7 +283,8 @@ class Signer
         assert($insertBefore === null || $insertBefore instanceof DOMElement ||
             $insertBefore instanceof DOMComment || $insertBefore instanceof DOMText);
 
-        if ($this->privateKey === false) {
+        $privateKey = $this->privateKey;
+        if ($privateKey === false) {
             throw new \Exception('Private key not set.');
         }
 
@@ -284,21 +292,19 @@ class Signer
         $objXMLSecDSig = new XMLSecurityDSig();
         $objXMLSecDSig->setCanonicalMethod(XMLSecurityDSig::EXC_C14N);
 
-        $options = array();
+        $options = [];
         if (!empty($this->idAttrName)) {
             $options['id_name'] = $this->idAttrName;
         }
 
         $objXMLSecDSig->addReferenceList(
-            array($node),
+            [$node],
             XMLSecurityDSig::SHA256,
-            array('http://www.w3.org/2000/09/xmldsig#enveloped-signature', XMLSecurityDSig::EXC_C14N),
+            ['http://www.w3.org/2000/09/xmldsig#enveloped-signature', XMLSecurityDSig::EXC_C14N],
             $options
         );
 
-        /** @var \RobRichards\XMLSecLibs\XMLSecurityKey $this->privateKey */
-        $objXMLSecDSig->sign($this->privateKey);
-
+        $objXMLSecDSig->sign($privateKey);
 
         // Add the certificate to the signature
         $objXMLSecDSig->add509Cert($this->certificate, true);

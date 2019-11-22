@@ -41,9 +41,9 @@ In `metadata/saml20-idp-hosted.php`:
 
 In `config/authsources.php`:
 
-    'default-sp' => array(
+    'default-sp' => [
         'saml:SP',
-    ),
+    ],
 
 
 
@@ -60,7 +60,7 @@ Automatic update of SAML 2.0 Metadata XML from HTTPS
 ----------------------------------------------------
 
 The `metarefresh` module is the preferred method for doing this.
-Please see the [metarefresh documentation](simplesamlphp-automated_metadata).
+Please see the [metarefresh documentation](https://github.com/simplesamlphp/simplesamlphp-module-metarefresh/blob/master/docs/simplesamlphp-automated_metadata.md).
 
 
 

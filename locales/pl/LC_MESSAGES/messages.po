@@ -51,12 +51,6 @@ msgstr "Błąd ładowania metadanych"
 msgid "{admin:metaconv_title}"
 msgstr "Parser metadanych"
 
-msgid "{attributes:attribute_edupersonentitlement}"
-msgstr "Uprawnienie dotyczące serwisu"
-
-msgid "{attributes:attribute_jpegphoto}"
-msgstr "Fotografia JPEG"
-
 msgid "{admin:cfg_check_noerrors}"
 msgstr "Nie znaleziono błędów."
 
@@ -130,9 +124,6 @@ msgstr ""
 msgid "{logout:default_link_text}"
 msgstr "Wróc do strony \"instalacja SimpleSAMLphp\""
 
-msgid "{admin:metaover_group_metadata.wsfed-idp-remote}"
-msgstr "WS-Federation Dostawca Tożsamości (Zdalny)"
-
 msgid "{errors:error_header}"
 msgstr "błąd SimpleSAMLphp"
 
@@ -150,17 +141,11 @@ msgstr ""
 "Wykryto błąd w konfiguracji SimpleSAMLphp. Jeśli jesteś administratorem "
 "tej usługi, to sprawdź, czy prawidłowo zostały skonfigurowane metadane."
 
-msgid "{attributes:attribute_edupersonorgdn}"
-msgstr "Distinguished name (DN) macierzystej organizacji osoby"
-
 msgid "{errors:title_BADREQUEST}"
 msgstr "Otrzymano nieprawidłowe żadanie"
 
 msgid "{status:sessionsize}"
 msgstr "Rozmiar sesji: %SIZE%"
-
-msgid "{attributes:attribute_postaladdress}"
-msgstr "Adres pocztowy (Postal address)"
 
 msgid "{logout:title}"
 msgstr "Wylogowano"
@@ -183,29 +168,14 @@ msgstr "W zawieszeniu"
 msgid "{admin:cfg_check_header}"
 msgstr "Sprawdzenie konfiguracji"
 
-msgid "{attributes:attribute_edupersonscopedaffiliation}"
-msgstr "Przynależność w macierzystej organizacji"
-
-msgid "{attributes:attribute_sn}"
-msgstr "Nazwisko (Surname)"
-
 msgid "{admin:debug_sending_message_send}"
 msgstr "Wyślij wiadomość"
 
 msgid "{status:logout}"
 msgstr "Wyloguj"
 
-msgid "{attributes:attribute_organisationname}"
-msgstr "Nazwa organizacji (Organization name)"
-
-msgid "{attributes:attribute_telephonenumber}"
-msgstr "Numer telefonu (Telephone number)"
-
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "Parametry wysłane do usługi wyszukiwania nie są zgodne ze specyfikacją"
-
-msgid "{attributes:attribute_mail}"
-msgstr "E-mail"
 
 msgid "{errors:descr_CREATEREQUEST}"
 msgstr "Wystąpił błąd podczas próby budowania żądania SAML"
@@ -215,9 +185,6 @@ msgstr "Pola opcjonalne"
 
 msgid "{logout:return}"
 msgstr "Powrót do serwisu"
-
-msgid "{attributes:attribute_displayname}"
-msgstr "Nazwa wyświetlana (Display name)"
 
 msgid "{admin:metadata_xmlurl}"
 msgstr "Możesz <a href=\"%METAURL%\">pobrać metadane w formacie xml</a>:"
@@ -229,9 +196,6 @@ msgid "{admin:debug_disable_debug_mode}"
 msgstr ""
 "Możesz wyłaczyć globalnie tryb debugowania w pliku  "
 "<tt>config/config.php</tt>."
-
-msgid "{attributes:attribute_homepostaladdress}"
-msgstr "Domowy address pocztowy"
 
 msgid "{disco:select}"
 msgstr "Wybierz"
@@ -259,9 +223,6 @@ msgstr ""
 msgid "{logout:logout_all_question}"
 msgstr "Czy chcesz zostać wylogowany z powyższych serwisów?"
 
-msgid "{attributes:attribute_title}"
-msgstr "Tytuł (Title)"
-
 msgid "{errors:title_NOACCESS}"
 msgstr "Brak dostępu"
 
@@ -275,9 +236,6 @@ msgstr "Brak RelayState"
 
 msgid "{errors:descr_NOSTATE}"
 msgstr "Utracono informacje o stanie i nie ma możliwości ponowienia zlecenia"
-
-msgid "{attributes:attribute_noredupersonnin}"
-msgstr "Numer tożsamości wydany przez administrację publiczną"
 
 msgid "{login:password}"
 msgstr "Hasło"
@@ -305,23 +263,14 @@ msgstr "Błąd przetwarzania żądania wylogowania"
 msgid "{admin:metaover_errorentry}"
 msgstr "Błąd w metadanych"
 
-msgid "{attributes:attribute_edupersonaffiliation}"
-msgstr "Przynależność (Affiliation)"
-
 msgid "{errors:title_METADATANOTFOUND}"
 msgstr "Nie znaleziono metadanych"
-
-msgid "{attributes:attribute_givenname}"
-msgstr "Imię (Given name)"
 
 msgid "{login:contact_info}"
 msgstr "Informacje kontaktowe:"
 
 msgid "{errors:title_UNHANDLEDEXCEPTION}"
 msgstr "Nieobsługiwany błąd"
-
-msgid "{status:validfor}"
-msgstr "Twoja sesja jest jeszcze ważna przez %SECONDS% sekund"
 
 msgid "{status:header_saml20_sp}"
 msgstr "Przykładowe Demo SAML 2.0 SP"
@@ -358,29 +307,17 @@ msgstr ""
 "Nie powiodło się uwierzytelnienie: certyfikat przesłany przez "
 "przeglądarkę jest nieznany"
 
-msgid "{attributes:attribute_eduorghomepageuri}"
-msgstr "Strona domowa organizacji"
-
 msgid "{logout:logging_out_from}"
 msgstr "Wylogowanie z następujących serwisów:"
 
 msgid "{logout:loggedoutfrom}"
 msgstr "Zostałeś pomyślnie wylogowany z %SP%."
 
-msgid "{admin:metaover_group_metadata.wsfed-sp-hosted}"
-msgstr "WS-Federation Dostawca Serwisu (Lokalny)"
-
 msgid "{errors:errorreport_text}"
 msgstr "Raport o błędzie został wysłany do administratorów."
 
-msgid "{attributes:attribute_noredupersonbirthdate}"
-msgstr "Data urodzenia (Date of birth)"
-
 msgid "{errors:descr_LOGOUTREQUEST}"
 msgstr "Wystąpił bład podczas próby wylogowania."
-
-msgid "{attributes:attribute_edupersontargetedid}"
-msgstr "Trwały anonimowy identyfikator"
 
 msgid "{logout:success}"
 msgstr "Zostałeś pomyślnie wylogowany ze wszystkich powyższych serwisów."
@@ -390,12 +327,6 @@ msgstr "Uwagi"
 
 msgid "{errors:descr_USERABORTED}"
 msgstr "Uwierzytelnienie zostało przerwane przez użytkownika"
-
-msgid "{attributes:attribute_edupersonprimaryaffiliation}"
-msgstr "Główna przynależność (Primary affiliation)"
-
-msgid "{attributes:attribute_postalcode}"
-msgstr "Kod pocztowy"
 
 msgid "{errors:descr_CASERROR}"
 msgstr "Błąd podczas komunikacji z serwerem CAS"
@@ -409,9 +340,6 @@ msgstr "SAML 2.0 SP - Metadane"
 msgid "{admin:metaconv_converted}"
 msgstr "Skonwertowane metadane"
 
-msgid "{attributes:attribute_cn}"
-msgstr "Nazwa (Common name)"
-
 msgid "{logout:completed}"
 msgstr "Zakończono"
 
@@ -420,17 +348,8 @@ msgstr ""
 "Hasło w konfiguracji (auth.adminpassword) ma domyślną wartość. Proszę "
 "poprawić konfigurację."
 
-msgid "{attributes:attribute_ou}"
-msgstr "Jednostka organizacyjna (Organizational unit)"
-
 msgid "{general:service_provider}"
 msgstr "Dostawca serwisu"
-
-msgid "{attributes:attribute_homephone}"
-msgstr "Telefon domowy (Home telephone)"
-
-msgid "{attributes:attribute_dc}"
-msgstr "Składnik nazwy domenowej (DC)"
 
 msgid "{errors:descr_BADREQUEST}"
 msgstr "Wystąpił następujący błąd w zleceniu: %REASON%"
@@ -450,22 +369,13 @@ msgstr "Wprowadź nazwę uzytkownika i hasło"
 msgid "{errors:report_explain}"
 msgstr "Opisz, co zrobiłeś kiedy wystąpił błąd..."
 
-msgid "{attributes:attribute_manager}"
-msgstr "Menadżer (Manager)"
-
 msgid "{errors:title_ACSPARAMS}"
 msgstr "Nie dostarczo odpowiedzi SAML"
-
-msgid "{attributes:attribute_edupersonnickname}"
-msgstr "Ksywka (Nickname)"
 
 msgid "{errors:descr_SLOSERVICEPARAMS}"
 msgstr ""
 "Została wywołana usługa SingleLogoutService, ale nie dostarczono "
 "komunikatu SAML LogoutRequest lub LogoutResponse."
-
-msgid "{attributes:attribute_street}"
-msgstr "Ulica (Street)"
 
 msgid "{login:organization}"
 msgstr "Organizacja"
@@ -499,9 +409,6 @@ msgstr "Wybierz domową organizację"
 msgid "{admin:cfg_check_superfluous}"
 msgstr "Zbędne opcje w pliku konfiguracyjnym"
 
-msgid "{attributes:attribute_labeleduri}"
-msgstr "Labeled URI"
-
 msgid "{errors:report_email}"
 msgstr "Adres e-mail"
 
@@ -516,9 +423,6 @@ msgstr ""
 "Inicjator zlecenia nie dostarczył parametru RelayState, wskazującego, "
 "gdzie przekazać zlecenie."
 
-msgid "{attributes:attribute_noredupersonlegalname}"
-msgstr "Formalna nazwa użytkownika"
-
 msgid "{status:header_diagnostics}"
 msgstr "Diagnostyka SimpleSAMLphp"
 
@@ -527,9 +431,6 @@ msgstr ""
 "Hej, to jest status strony SimpleSAMLphp. Tutaj możesz zaboaczyć, czy "
 "Twoja sesja jest nadal aktywna, jak długo pozostało czasu do zakończenia "
 "sesji i wszystkie atrybuty, które zostały załączone do sesji."
-
-msgid "{attributes:attribute_schachomeorganization}"
-msgstr "Nazwa organizacji macierzystej"
 
 msgid "{errors:title_NOTFOUNDREASON}"
 msgstr "Nie znaleziono strony"
@@ -549,29 +450,17 @@ msgstr "Kliknij na nagłówek końcówki aby wyświetlić szczegóły SAML."
 msgid "{errors:title_NOTVALIDCERT}"
 msgstr "Nieprawidłowy certyfikat"
 
-msgid "{attributes:attribute_edupersonorgunitdn}"
-msgstr "Distinguished name (DN) macierzystej jednostki organizacyjnej osoby"
-
 msgid "{general:remember}"
 msgstr "Pamiętaj moją zgodę"
 
 msgid "{disco:selectidp}"
 msgstr "wybierz swojego Dostawcę Tożsamości."
 
-msgid "{attributes:attribute_postofficebox}"
-msgstr "Skrzynka pocztowa (Post office box)"
-
-msgid "{attributes:attribute_edupersonprincipalname}"
-msgstr "Główna nazwa użytkownika w instytucji macierzystej"
-
 msgid "{login:help_desk_email}"
 msgstr "wyślij e-mail do helpdesku"
 
 msgid "{login:help_desk_link}"
 msgstr "Strona domowa pomocy technicznej (Helpdesk)"
-
-msgid "{attributes:attribute_uid}"
-msgstr "ID użytkownika (User ID)"
 
 msgid "{errors:title_CASERROR}"
 msgstr "Błąd CAS"
@@ -592,9 +481,6 @@ msgstr "Zapamiętaj mój wybór"
 
 msgid "{admin:metaover_group_metadata.saml20-sp-hosted}"
 msgstr "SAML 2.0 Dostawca Serwisu (Lokalny)"
-
-msgid "{attributes:attribute_l}"
-msgstr "Locality"
 
 msgid "{disco:login_at}"
 msgstr "Zaloguj w"
@@ -632,9 +518,6 @@ msgstr "Wiadomość"
 msgid "{errors:title_UNKNOWNCERT}"
 msgstr "Nieznany certyfikat"
 
-msgid "{attributes:attribute_facsimiletelephonenumber}"
-msgstr "Numer Faksu (Fax number)"
-
 msgid "{errors:title_LDAPERROR}"
 msgstr "Bład LDAP'a"
 
@@ -647,14 +530,8 @@ msgstr ""
 "konfigurację SimpleSAMLphp. Skontaktuj się z administratorem tego serwisu"
 " i wyślij mu powyższy błąd."
 
-msgid "{attributes:attribute_mobile}"
-msgstr "Telefon komórkowy (Mobile)"
-
 msgid "{admin:metaover_group_metadata.shib13-idp-hosted}"
 msgstr "Shib 1.3 Dostawca Tożsamości (Lokalny)"
-
-msgid "{attributes:attribute_preferredlanguage}"
-msgstr "Preferowany język (Preferred language)"
 
 msgid "{errors:descr_NOTVALIDCERT}"
 msgstr "Nie przedstawiłeś prawidłowego certyfikaty"
@@ -664,15 +541,6 @@ msgstr "Nastepujące pola opcjonalne nie zostały znalezione"
 
 msgid "{logout:logout_only}"
 msgstr "Nie, tylko %SP%"
-
-msgid "{attributes:attribute_o}"
-msgstr "Nazwa organizacji (Organization name)"
-
-msgid "{attributes:attribute_edupersonprimaryorgunitdn}"
-msgstr "Nazwa osoby w jednostce organizacyjnej"
-
-msgid "{attributes:attribute_noredupersonlin}"
-msgstr "Local identity number"
 
 msgid "{login:next}"
 msgstr "Następny"
@@ -695,9 +563,6 @@ msgstr ""
 msgid "{errors:title_NOCERT}"
 msgstr "Brak certyfikatu"
 
-msgid "{attributes:attribute_userpassword}"
-msgstr "Zakodowane hasło użytkownika"
-
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "Utracono informację o wylogowaniu"
 
@@ -712,28 +577,16 @@ msgstr ""
 "Tutaj sa metadane, które SimpleSAMLphp wygenerował dla Ciebie. Możesz je "
 "wysłać zaufanym partnerom w celu stworzenia zaufanej federacji."
 
-msgid "{attributes:attribute_schacuserprivateattribute}"
-msgstr "Poufne atrybuty"
-
-msgid "{status:header_wsfed}"
-msgstr "Przykładowe Demo WS-Fed SP"
-
 msgid "{errors:descr_INVALIDCERT}"
 msgstr ""
 "Nie powiodło się uwierzytelnienie: certyfikat przesłany przez "
 "przeglądarkę jest niepoprawny lub nie może zostać przeczytany"
-
-msgid "{attributes:attribute_eduorglegalname}"
-msgstr "Zarejestrowana nazwa organizacji"
 
 msgid "{status:header_shib}"
 msgstr "Demo Shibboleth"
 
 msgid "{admin:metaconv_parse}"
 msgstr "Przetwórz"
-
-msgid "{attributes:attribute_noreduorgnin}"
-msgstr "Numer organizacji"
 
 msgid "Person's principal name at home organization"
 msgstr "Główna nazwa użytkownika w instytucji macierzystej"
@@ -1058,8 +911,8 @@ msgstr ""
 " i wyślij mu powyższy błąd."
 
 #, python-format
-msgid "Your session is valid for %SECONDS% seconds from now."
-msgstr "Twoja sesja jest jeszcze ważna przez %SECONDS% sekund"
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Twoja sesja jest jeszcze ważna przez %remaining% sekund"
 
 msgid "Domain component (DC)"
 msgstr "Składnik nazwy domenowej (DC)"
@@ -1510,3 +1363,14 @@ msgstr ""
 "Została wywołana usługa Assertion Consumer Service, ale nie dostarczono "
 "komunikatu SAML 'Authentication Response'"
 
+
+msgid ""
+"You are now accessing a pre-production system. This authentication setup "
+"is for testing and pre-production verification only. If someone sent you "
+"a link that pointed you here, and you are not <i>a tester</i> you "
+"probably got the wrong link, and should <b>not be here</b>."
+msgstr ""
+"Korzystasz w tej chwili z wersji testowej systemu. To ustawienie "
+"uwierzytelniania jest tylko dla testów. Jeśli ktoś wysłał Ci link "
+"kierujący tutaj, a ty nie jesteś <i>testerem</i> to prawdopodobnie "
+"otrzymałeś błędny link i <b>nie powinieneś być tutaj</b>."

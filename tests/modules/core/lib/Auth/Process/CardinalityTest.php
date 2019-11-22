@@ -1,16 +1,18 @@
 <?php
 
-// Alias the PHPUnit 6.0 ancestor if available, else fall back to legacy ancestor
-if (class_exists('\PHPUnit\Framework\TestCase', true) and !class_exists('\PHPUnit_Framework_TestCase', true)) {
-    class_alias('\PHPUnit\Framework\TestCase', '\PHPUnit_Framework_TestCase', true);
-}
+namespace SimpleSAML\Test\Module\core\Auth\Process;
+
+use SimpleSAML\Error\Exception as SspException;
+use SimpleSAML\Utils\HttpAdapter;
 
 /**
  * Test for the core:Cardinality filter.
  */
-class Test_Core_Auth_Process_CardinalityTest extends \PHPUnit_Framework_TestCase
+class CardinalityTest extends \PHPUnit\Framework\TestCase
 {
+    /** @var \SimpleSAML\Utils\HttpAdapter|\PHPUnit_Framework_MockObject_MockObject */
     private $http;
+
 
     /**
      * Helper function to run the filter with a given configuration.
@@ -23,225 +25,259 @@ class Test_Core_Auth_Process_CardinalityTest extends \PHPUnit_Framework_TestCase
     {
         $_SERVER['SERVER_PROTOCOL'] = 'HTTP/1.1';
         $_SERVER['REQUEST_METHOD'] = 'GET';
-        $filter = new \SimpleSAML\Module\core\Auth\Process\Cardinality($config, null, $this->http);
+
+        /** @var \SimpleSAML\Utils\HttpAdapter $http */
+        $http = $this->http;
+
+        $filter = new \SimpleSAML\Module\core\Auth\Process\Cardinality($config, null, $http);
         $filter->process($request);
         return $request;
     }
 
+
+    /**
+     * @return void
+     */
     protected function setUp()
     {
-        \SimpleSAML\Configuration::loadFromArray(array(), '[ARRAY]', 'simplesaml');
-        $this->http = $this->getMockBuilder('SimpleSAML\Utils\HTTPAdapter')
-                           ->setMethods(array('redirectTrustedURL'))
+        \SimpleSAML\Configuration::loadFromArray([], '[ARRAY]', 'simplesaml');
+        $this->http = $this->getMockBuilder(HttpAdapter::class)
+                           ->setMethods(['redirectTrustedURL'])
                            ->getMock();
     }
 
-    /*
+
+    /**
      * Test where a minimum is set but no maximum
+     * @return void
      */
     public function testMinNoMax()
     {
-        $config = array(
-            'mail' => array('min' => 1),
-        );
-        $request = array(
-            'Attributes' => array(
-                'mail' => array('joe@example.com', 'bob@example.com'),
-            ),
-        );
+        $config = [
+            'mail' => ['min' => 1],
+        ];
+        $request = [
+            'Attributes' => [
+                'mail' => ['joe@example.com', 'bob@example.com'],
+            ],
+        ];
         $result = $this->processFilter($config, $request);
         $attributes = $result['Attributes'];
-        $expectedData = array('mail' => array('joe@example.com', 'bob@example.com'));
+        $expectedData = ['mail' => ['joe@example.com', 'bob@example.com']];
         $this->assertEquals($expectedData, $attributes, "Assertion values should not have changed");
     }
 
-    /*
+
+    /**
      * Test where a maximum is set but no minimum
+     * @return void
      */
     public function testMaxNoMin()
     {
-        $config = array(
-            'mail' => array('max' => 2),
-        );
-        $request = array(
-            'Attributes' => array(
-                'mail' => array('joe@example.com', 'bob@example.com'),
-            ),
-        );
+        $config = [
+            'mail' => ['max' => 2],
+        ];
+        $request = [
+            'Attributes' => [
+                'mail' => ['joe@example.com', 'bob@example.com'],
+            ],
+        ];
         $result = $this->processFilter($config, $request);
         $attributes = $result['Attributes'];
-        $expectedData = array('mail' => array('joe@example.com', 'bob@example.com'));
+        $expectedData = ['mail' => ['joe@example.com', 'bob@example.com']];
         $this->assertEquals($expectedData, $attributes, "Assertion values should not have changed");
     }
 
-    /*
+
+    /**
      * Test in bounds within a maximum an minimum
+     * @return void
      */
     public function testMaxMin()
     {
-        $config = array(
-            'mail' => array('min' => 1, 'max' => 2),
-        );
-        $request = array(
-            'Attributes' => array(
-                'mail' => array('joe@example.com', 'bob@example.com'),
-            ),
-        );
+        $config = [
+            'mail' => ['min' => 1, 'max' => 2],
+        ];
+        $request = [
+            'Attributes' => [
+                'mail' => ['joe@example.com', 'bob@example.com'],
+            ],
+        ];
         $result = $this->processFilter($config, $request);
         $attributes = $result['Attributes'];
-        $expectedData = array('mail' => array('joe@example.com', 'bob@example.com'));
+        $expectedData = ['mail' => ['joe@example.com', 'bob@example.com']];
         $this->assertEquals($expectedData, $attributes, "Assertion values should not have changed");
     }
 
+
     /**
      * Test maximum is out of bounds results in redirect
+     * @return void
      */
     public function testMaxOutOfBounds()
     {
-        $config = array(
-            'mail' => array('max' => 2),
-        );
-        $request = array(
-            'Attributes' => array(
-                'mail' => array('joe@example.com', 'bob@example.com', 'fred@example.com'),
-            ),
-        );
+        $config = [
+            'mail' => ['max' => 2],
+        ];
+        $request = [
+            'Attributes' => [
+                'mail' => ['joe@example.com', 'bob@example.com', 'fred@example.com'],
+            ],
+        ];
 
+        /** @psalm-suppress UndefinedMethod   It's a mock-object */
         $this->http->expects($this->once())
                    ->method('redirectTrustedURL');
 
         $this->processFilter($config, $request);
     }
+
 
     /**
      * Test minimum is out of bounds results in redirect
+     * @return void
      */
     public function testMinOutOfBounds()
     {
-        $config = array(
-            'mail' => array('min' => 3),
-        );
-        $request = array(
-            'Attributes' => array(
-                'mail' => array('joe@example.com', 'bob@example.com'),
-            ),
-        );
+        $config = [
+            'mail' => ['min' => 3],
+        ];
+        $request = [
+            'Attributes' => [
+                'mail' => ['joe@example.com', 'bob@example.com'],
+            ],
+        ];
 
+        /** @psalm-suppress UndefinedMethod   It's a mock-object */
         $this->http->expects($this->once())
                    ->method('redirectTrustedURL');
 
         $this->processFilter($config, $request);
     }
+
 
     /**
      * Test missing attribute results in redirect
+     * @return void
      */
     public function testMissingAttribute()
     {
-        $config = array(
-            'mail' => array('min' => 1),
-        );
-        $request = array(
-            'Attributes' => array( ),
-        );
+        $config = [
+            'mail' => ['min' => 1],
+        ];
+        $request = [
+            'Attributes' => [],
+        ];
 
+        /** @psalm-suppress UndefinedMethod   It's a mock-object */
         $this->http->expects($this->once())
                    ->method('redirectTrustedURL');
 
         $this->processFilter($config, $request);
     }
+
 
     /*
      * Configuration errors
      */
 
+
     /**
      * Test invalid minimum values
-     * @expectedException \SimpleSAML\Error\Exception
-     * @expectedExceptionMessageRegExp /Minimum/
+     * @return void
      */
     public function testMinInvalid()
     {
-        $config = array(
-            'mail' => array('min' => false),
-        );
-        $request = array(
-            'Attributes' => array(
-                'mail' => array('joe@example.com', 'bob@example.com'),
-            ),
-        );
+        $this->expectException(SspException::class);
+        $this->expectExceptionMessageRegExp('/Minimum/');
+        $config = [
+            'mail' => ['min' => false],
+        ];
+        $request = [
+            'Attributes' => [
+                'mail' => ['joe@example.com', 'bob@example.com'],
+            ],
+        ];
         $this->processFilter($config, $request);
     }
+
 
     /**
      * Test invalid minimum values
-     * @expectedException \SimpleSAML\Error\Exception
-     * @expectedExceptionMessageRegExp /Minimum/
+     * @return void
      */
     public function testMinNegative()
     {
-        $config = array(
-            'mail' => array('min' => -1),
-        );
-        $request = array(
-            'Attributes' => array(
-                'mail' => array('joe@example.com', 'bob@example.com'),
-            ),
-        );
+        $this->expectException(SspException::class);
+        $this->expectExceptionMessageRegExp('/Minimum/');
+        $config = [
+            'mail' => ['min' => -1],
+        ];
+        $request = [
+            'Attributes' => [
+                'mail' => ['joe@example.com', 'bob@example.com'],
+            ],
+        ];
         $this->processFilter($config, $request);
     }
+
 
     /**
      * Test invalid maximum values
-     * @expectedException \SimpleSAML\Error\Exception
-     * @expectedExceptionMessageRegExp /Maximum/
+     * @return void
      */
     public function testMaxInvalid()
     {
-        $config = array(
-            'mail' => array('max' => false),
-        );
-        $request = array(
-            'Attributes' => array(
-                'mail' => array('joe@example.com', 'bob@example.com'),
-            ),
-        );
+        $this->expectException(SspException::class);
+        $this->expectExceptionMessageRegExp('/Maximum/');
+        $config = [
+            'mail' => ['max' => false],
+        ];
+        $request = [
+            'Attributes' => [
+                'mail' => ['joe@example.com', 'bob@example.com'],
+            ],
+        ];
         $this->processFilter($config, $request);
     }
+
 
     /**
      * Test maximum < minimum
-     * @expectedException \SimpleSAML\Error\Exception
-     * @expectedExceptionMessageRegExp /less than/
+     * @return void
      */
     public function testMinGreaterThanMax()
     {
-        $config = array(
-            'mail' => array('min' => 2, 'max' => 1),
-        );
-        $request = array(
-            'Attributes' => array(
-                'mail' => array('joe@example.com', 'bob@example.com'),
-            ),
-        );
+        $this->expectException(SspException::class);
+        $this->expectExceptionMessageRegExp('/less than/');
+        $config = [
+            'mail' => ['min' => 2, 'max' => 1],
+        ];
+        $request = [
+            'Attributes' => [
+                'mail' => ['joe@example.com', 'bob@example.com'],
+            ],
+        ];
         $this->processFilter($config, $request);
     }
 
+
     /**
      * Test invalid attribute name
-     * @expectedException \SimpleSAML\Error\Exception
-     * @expectedExceptionMessageRegExp /Invalid attribute/
+     * @return void
      */
     public function testInvalidAttributeName()
     {
-        $config = array(
-            array('min' => 2, 'max' => 1),
-        );
-        $request = array(
-            'Attributes' => array(
-                'mail' => array('joe@example.com', 'bob@example.com'),
-            ),
-        );
-        self::processFilter($config, $request);
+        $this->expectException(SspException::class);
+        $this->expectExceptionMessageRegExp('/Invalid attribute/');
+        $config = [
+            ['min' => 2, 'max' => 1],
+        ];
+        $request = [
+            'Attributes' => [
+                'mail' => ['joe@example.com', 'bob@example.com'],
+            ],
+        ];
+        $this->processFilter($config, $request);
     }
 }

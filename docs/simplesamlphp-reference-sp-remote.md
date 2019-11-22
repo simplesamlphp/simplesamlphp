@@ -9,12 +9,12 @@ Both files have the following format:
 
     <?php
     /* The index of the array is the entity ID of this SP. */
-    $metadata['entity-id-1'] = array(
+    $metadata['entity-id-1'] = [
         /* Configuration options for the first SP. */
-    );
-    $metadata['entity-id-2'] = array(
+    ];
+    $metadata['entity-id-2'] = [
         /* Configuration options for the second SP. */
-    );
+    ];
     /* ... */
 
 
@@ -54,10 +54,10 @@ and Shibboleth 1.3 protocol:
 :   This option can be translated into multiple languages by specifying
     the value as an array of language-code to translated name:
 
-        'name' => array(
+        'name' => [
             'en' => 'A service',
             'no' => 'En tjeneste',
-        ),
+        ],
 
 `OrganizationName`
 :   The name of the organization responsible for this SPP.
@@ -65,10 +65,10 @@ and Shibboleth 1.3 protocol:
 
 :   This option can be translated into multiple languages by specifying the value as an array of language-code to translated name:
 
-        'OrganizationName' => array(
+        'OrganizationName' => [
             'en' => 'Example organization',
             'no' => 'Eksempel organisation',
-        ),
+        ],
 
 :   *Note*: If you specify this option, you must also specify the `OrganizationURL` option.
 
@@ -98,17 +98,15 @@ and Shibboleth 1.3 protocol:
     entry in the SP-remote metadata overrides the option in the
     IdP-hosted metadata.
 
+:   *Note*: **deprecated** Will be removed in a future release; use the MDUI-extension instead
+
 `userid.attribute`
 :   The attribute name of an attribute which uniquely identifies
     the user. This attribute is used if SimpleSAMLphp needs to generate
     a persistent unique identifier for the user. This option can be set
     in both the IdP-hosted and the SP-remote metadata. The value in the
-    sp-remote metadata has the highest priority. The default value is
+    SP-remote metadata has the highest priority. The default value is
     `eduPersonPrincipalName`.
-
-:   Note that this option also exists in the IdP-hosted metadata. This
-    entry in the SP-remote metadata overrides the option in the
-    IdP-hosted metadata.
 
 
 SAML 2.0 options
@@ -122,6 +120,21 @@ The following SAML 2.0 options are available:
     responses back to the SP.
 
 :   The value of this option is specified in one of several [endpoint formats](./simplesamlphp-metadata-endpoints).
+
+`attributeencodings`
+:   What encoding should be used for the different attributes. This is
+    an array which maps attribute names to attribute encodings. There
+    are three different encodings:
+
+:   -   `string`: Will include the attribute as a normal string. This is
+        the default.
+
+:   -   `base64`: Store the attribute as a base64 encoded string. This
+        is the default when the `base64attributes`-option is set to
+        `TRUE`.
+
+:   -   `raw`: Store the attribute without any modifications. This
+        makes it possible to include raw XML in the response.
 
 `attributes.NameFormat`
 :   What value will be set in the Format field of attribute
@@ -155,6 +168,16 @@ The following SAML 2.0 options are available:
 
 :   (This option was previously named `AttributeNameFormat`.)
 
+`certData`
+:   The base64 encoded certificate for this SP. This is an alternative to storing the certificate in a file on disk and specifying the filename in the `certificate`-option.
+
+`certificate`
+:   Name of certificate file for this SP. The certificate is used to
+    verify the signature of messages received from the SP (if
+    `redirect.validate`is set to `TRUE`), and to encrypting assertions
+    (if `assertion.encryption` is set to TRUE and `sharedkey` is
+    unset.)
+
 `encryption.blacklisted-algorithms`
 :   Blacklisted encryption algorithms. This is an array containing the algorithm identifiers.
 
@@ -174,8 +197,9 @@ The following SAML 2.0 options are available:
     `FALSE`.
 
 `NameIDFormat`
-:   The `NameIDFormat` this SP should receive. The three most commonly
-    used values are:
+:   The `NameIDFormat` this SP should receive. This may be specified as either a string or an array.
+
+:   The three most commonly used values are:
 
 :   1.  `urn:oasis:names:tc:SAML:2.0:nameid-format:transient`
     2.  `urn:oasis:names:tc:SAML:2.0:nameid-format:persistent`
@@ -195,33 +219,6 @@ The following SAML 2.0 options are available:
 :   Note that this option also exists in the IdP-hosted metadata. This
     entry in the SP-remote metadata overrides the option in the
     [IdP-hosted metadata](./simplesamlphp-reference-idp-hosted).
-
-`SingleLogoutService`
-:   The URL of the SingleLogoutService endpoint for this SP.
-    This option is required if you want to implement single logout for
-    this SP. If the option isn't specified, this SP will not be logged
-    out automatically when a single logout operation is initialized.
-
-:   The value of this option is specified in one of several [endpoint formats](./simplesamlphp-metadata-endpoints).
-
-`SingleLogoutServiceResponse`
-:   The URL logout responses to this SP should be sent. If this option
-    is unspecified, the `SingleLogoutService` endpoint will be used as
-    the recipient of logout responses.
-
-`SPNameQualifier`
-:   SP NameQualifier for this SP. If not set, the IdP will set the
-    SPNameQualifier to be the SP entity ID.
-
-`certData`
-:   The base64 encoded certificate for this SP. This is an alternative to storing the certificate in a file on disk and specifying the filename in the `certificate`-option.
-
-`certificate`
-:   Name of certificate file for this SP. The certificate is used to
-    verify the signature of messages received from the SP (if
-    `redirect.validate`is set to `TRUE`), and to encrypting assertions
-    (if `assertion.encryption` is set to TRUE and `sharedkey` is
-    unset.)
 
 `saml20.sign.response`
 :   Whether `<samlp:Response>` messages should be signed.
@@ -262,6 +259,12 @@ The following SAML 2.0 options are available:
 :   Certificate file included by IdP for KeyInfo within the signature for the SP, in PEM format. The filename is relative to the cert/-directory.
 :   If `signature.privatekey` is present and `signature.certificate` is left blank, X509Certificate will not be included with the signature.
 
+`sign.logout`
+:   Whether to sign logout messages sent to this SP.
+
+:   Note that this option also exists in the IdP-hosted metadata.
+    The value in the SP-remote metadata overrides the value in the IdP-hosted metadata.
+
 `simplesaml.nameidattribute`
 :   When the value of the `NameIDFormat`-option is set to either
     `email` or `persistent`, this is the name of the attribute which
@@ -270,6 +273,7 @@ The following SAML 2.0 options are available:
     the `attributes` array). For more advanced control over `NameID`,
     including the ability to specify any attribute regardless of
     the set sent to the SP, see the [NameID processing filters](./saml:nameid).
+    Note that the value of the attribute is collected **after** authproc-filters have run.
 
 :   Typical values can be `mail` for when using the `email` format,
     and `eduPersonTargetedID` when using the `persistent` format.
@@ -278,26 +282,22 @@ The following SAML 2.0 options are available:
 :   Whether the SP should receive any attributes from the IdP. The
     default value is `TRUE`.
 
-`attributeencodings`
-:   What encoding should be used for the different attributes. This is
-    an array which maps attribute names to attribute encodings. There
-    are three different encodings:
+`SingleLogoutService`
+:   The URL of the SingleLogoutService endpoint for this SP.
+    This option is required if you want to implement single logout for
+    this SP. If the option isn't specified, this SP will not be logged
+    out automatically when a single logout operation is initialized.
 
-:   -   `string`: Will include the attribute as a normal string. This is
-        the default.
+:   The value of this option is specified in one of several [endpoint formats](./simplesamlphp-metadata-endpoints).
 
-:   -   `base64`: Store the attribute as a base64 encoded string. This
-        is the default when the `base64attributes`-option is set to
-        `TRUE`.
+`SingleLogoutServiceResponse`
+:   The URL logout responses to this SP should be sent. If this option
+    is unspecified, the `SingleLogoutService` endpoint will be used as
+    the recipient of logout responses.
 
-:   -   `raw`: Store the attribute without any modifications. This
-        makes it possible to include raw XML in the response.
-
-`sign.logout`
-:   Whether to sign logout messages sent to this SP.
-
-:   Note that this option also exists in the IdP-hosted metadata.
-    The value in the SP-remote metadata overrides the value in the IdP-hosted metadata.
+`SPNameQualifier`
+:   SP NameQualifier for this SP. If not set, the IdP will set the
+    SPNameQualifier to be the SP entity ID.
 
 `validate.authnrequest`
 :   Whether we require signatures on authentication requests sent from this SP.
@@ -371,18 +371,24 @@ relevant for this sp. The final list is the concatenation of the list
 given as parameter to InitSSO (at the sp), the list configured at the
 sp and the list configured at the ipd (here) for this sp. The intersection
 of the final list and the idps configured at the at this idp will be
-presented to the user at the discovery service if neccessary. If only one 
+presented to the user at the discovery service if neccessary. If only one
 idp is in the intersection the discoveryservice will go directly to the idp.
 
 **Example: Configuration for scoping**
 
-     'IDPList' => array('https://idp1.wayf.dk', 'https://idp2.wayf.dk'),
+
+     'IDPList' => ['https://idp1.wayf.dk', 'https://idp2.wayf.dk'],
      
 
 Shibboleth 1.3 options
 ----------------------
 
 The following options for Shibboleth 1.3 SP's are avaiblable:
+
+`audience`
+:   The value which should be given in the `<Audience>`-element in the
+    `<AudienceRestrictionCondition>`-element in the response. The
+    default value is the entity ID of the SP.
 
 `AssertionConsumerService`
 :   The URL of the AssertionConsumerService endpoint for this SP.
@@ -397,11 +403,6 @@ The following options for Shibboleth 1.3 SP's are avaiblable:
 :   What the value of the `NameQualifier`-attribute of the
     `<NameIdentifier>`-element should be. The default value is the
     entity ID of the SP.
-
-`audience`
-:   The value which should be given in the `<Audience>`-element in the
-    `<AudienceRestrictionCondition>`-element in the response. The
-    default value is the entity ID of the SP.
 
 `scopedattributes`
 :   Array with names of attributes which should be scoped. Scoped

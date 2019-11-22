@@ -2,6 +2,7 @@
 
 namespace SimpleSAML\Test\Utils;
 
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Utils\Config;
 
@@ -10,9 +11,9 @@ use SimpleSAML\Utils\Config;
  */
 class ConfigTest extends TestCase
 {
-
     /**
      * Test default config dir with not environment variable
+     * @return void
      */
     public function testDefaultConfigDir()
     {
@@ -26,6 +27,7 @@ class ConfigTest extends TestCase
 
     /**
      * Test valid dir specified by env var overrides default config dir
+     * @return void
      */
     public function testEnvVariableConfigDir()
     {
@@ -37,6 +39,7 @@ class ConfigTest extends TestCase
 
     /**
      * Test valid dir specified by env redirect var overrides default config dir
+     * @return void
      */
     public function testEnvRedirectVariableConfigDir()
     {
@@ -46,8 +49,10 @@ class ConfigTest extends TestCase
         $this->assertEquals($configDir, __DIR__);
     }
 
+
     /**
      * Test which directory takes precedence
+     * @return void
      */
     public function testEnvRedirectPriorityVariableConfigDir()
     {
@@ -61,6 +66,7 @@ class ConfigTest extends TestCase
 
     /**
      * Test invalid dir specified by env var results in a thrown exception
+     * @return void
      */
     public function testInvalidEnvVariableConfigDirThrowsException()
     {
@@ -68,8 +74,8 @@ class ConfigTest extends TestCase
         $invalidDir = __DIR__ . '/e9826ad19cbc4f5bf20c0913ffcd2ce6';
         putenv('SIMPLESAMLPHP_CONFIG_DIR=' . $invalidDir);
 
-        $this->setExpectedException(
-            'InvalidArgumentException',
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage(
             'Config directory specified by environment variable SIMPLESAMLPHP_CONFIG_DIR is not a directory.  ' .
             'Given: "' . $invalidDir . '"'
         );

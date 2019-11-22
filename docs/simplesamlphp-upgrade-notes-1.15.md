@@ -26,3 +26,7 @@ full certificate in `certData` instead.
 
 The `core:AttributeRealm` authproc filter has been deprecated.
 Please use `core:ScopeFromAttribute`, which is a generalised version of this.
+
+simpleSAMLphp will now send the eduPersonTargetedID attribute in the correct
+NameID XML form, instead of the incorrect simple string. It will also refuse
+to parse an assertion with an eduPersonTargetedID in 'string' format.

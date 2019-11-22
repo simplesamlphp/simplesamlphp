@@ -2,6 +2,8 @@
 
 namespace SimpleSAML\Module\saml;
 
+use SAML2\Constants;
+
 /**
  * Class for representing a SAML 2 error.
  *
@@ -36,8 +38,10 @@ class Error extends \SimpleSAML\Error\Exception
      * Create a SAML 2 error.
      *
      * @param string $status  The top-level status code.
-     * @param string|null $subStatus  The second-level status code. Can be NULL, in which case there is no second-level status code.
-     * @param string|null $statusMessage  The status message. Can be NULL, in which case there is no status message.
+     * @param string|null $subStatus  The second-level status code.
+     * Can be NULL, in which case there is no second-level status code.
+     * @param string|null $statusMessage  The status message.
+     * Can be NULL, in which case there is no status message.
      * @param \Exception|null $cause  The cause of this exception. Can be NULL.
      */
     public function __construct($status, $subStatus = null, $statusMessage = null, \Exception $cause = null)
@@ -100,10 +104,10 @@ class Error extends \SimpleSAML\Error\Exception
      * This function attempts to create a SAML2 error with the appropriate
      * status codes from an arbitrary exception.
      *
-     * @param \SimpleSAML\Error\Exception $exception  The original exception.
+     * @param \Exception $exception  The original exception.
      * @return \SimpleSAML\Module\saml\Error  The new exception.
      */
-    public static function fromException(\SimpleSAML\Error\Exception $exception)
+    public static function fromException(\Exception $exception)
     {
         if ($exception instanceof \SimpleSAML\Module\saml\Error) {
             // Return the original exception unchanged
@@ -112,16 +116,16 @@ class Error extends \SimpleSAML\Error\Exception
         // TODO: remove this branch in 2.0
         } elseif ($exception instanceof \SimpleSAML\Error\NoPassive) {
             $e = new self(
-                \SAML2\Constants::STATUS_RESPONDER,
-                \SAML2\Constants::STATUS_NO_PASSIVE,
+                Constants::STATUS_RESPONDER,
+                Constants::STATUS_NO_PASSIVE,
                 $exception->getMessage(),
                 $exception
-                );
+            );
         // TODO: remove this branch in 2.0
         } elseif ($exception instanceof \SimpleSAML\Error\ProxyCountExceeded) {
             $e = new self(
-                \SAML2\Constants::STATUS_RESPONDER,
-                \SAML2\Constants::STATUS_PROXY_COUNT_EXCEEDED,
+                Constants::STATUS_RESPONDER,
+                Constants::STATUS_PROXY_COUNT_EXCEEDED,
                 $exception->getMessage(),
                 $exception
             );
@@ -131,7 +135,7 @@ class Error extends \SimpleSAML\Error\Exception
                 null,
                 get_class($exception) . ': ' . $exception->getMessage(),
                 $exception
-                );
+            );
         }
 
         return $e;
@@ -154,16 +158,16 @@ class Error extends \SimpleSAML\Error\Exception
         $e = null;
 
         switch ($this->status) {
-            case \SAML2\Constants::STATUS_RESPONDER:
+            case Constants::STATUS_RESPONDER:
                 switch ($this->subStatus) {
-                    case \SAML2\Constants::STATUS_NO_PASSIVE:
+                    case Constants::STATUS_NO_PASSIVE:
                         $e = new \SimpleSAML\Module\saml\Error\NoPassive(
-                            \SAML2\Constants::STATUS_RESPONDER,
+                            Constants::STATUS_RESPONDER,
                             $this->statusMessage
                         );
                         break;
                 }
-            break;
+                break;
         }
 
         if ($e === null) {

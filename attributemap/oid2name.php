@@ -1,5 +1,5 @@
 <?php
-$attributemap = array(
+$attributemap = [
     'urn:oid:0.9.2342.19200300.100.1.1'  => 'uid',
     'urn:oid:0.9.2342.19200300.100.1.10' => 'manager',
     'urn:oid:0.9.2342.19200300.100.1.11' => 'documentIdentifier',
@@ -83,6 +83,7 @@ $attributemap = array(
     'urn:oid:1.3.6.1.4.1.5923.1.2.1.5'   => 'eduOrgSuperiorURI',
     'urn:oid:1.3.6.1.4.1.5923.1.2.1.6'   => 'eduOrgWhitePagesURI',
     'urn:oid:1.3.6.1.4.1.5923.1.5.1.1'   => 'isMemberOf',
+    'urn:oid:1.3.6.1.4.1.25178.1.0.2.3'  => 'schacYearOfBirth',
     'urn:oid:1.3.6.1.4.1.25178.1.2.1'    => 'schacMotherTongue',
     'urn:oid:1.3.6.1.4.1.25178.1.2.2'    => 'schacGender',
     'urn:oid:1.3.6.1.4.1.25178.1.2.3'    => 'schacDateOfBirth',
@@ -167,4 +168,4 @@ $attributemap = array(
     'urn:oid:2.5.4.7'                    => 'l',
     'urn:oid:2.5.4.8'                    => 'st',
     'urn:oid:2.5.4.9'                    => 'street',
-);
+];

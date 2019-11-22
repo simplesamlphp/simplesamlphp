@@ -14,14 +14,15 @@ require_once('../../_include.php');
 
 $metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
 $idpEntityId = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
-$idp = \SimpleSAML\IdP::getById('saml2:'.$idpEntityId);
+$idp = \SimpleSAML\IdP::getById('saml2:' . $idpEntityId);
 
 if (isset($_REQUEST['ReturnTo'])) {
     $idp->doLogoutRedirect(\SimpleSAML\Utils\HTTP::checkURLAllowed((string) $_REQUEST['ReturnTo']));
 } else {
     try {
         \SimpleSAML\Module\saml\IdP\SAML2::receiveLogoutMessage($idp);
-    } catch (\Exception $e) { // TODO: look for a specific exception
+    } catch (\Exception $e) {
+        // TODO: look for a specific exception
         /*
          * This is dirty. Instead of checking the message of the exception, \SAML2\Binding::getCurrentBinding() should
          * throw an specific exception when the binding is unknown, and we should capture that here

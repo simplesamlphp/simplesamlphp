@@ -3,17 +3,22 @@
 namespace SimpleSAML\Test\Utils;
 
 use PHPUnit\Framework\TestCase;
-use \SimpleSAML\Configuration;
-use \SimpleSAML\Utils\XML;
+use SimpleSAML\Configuration;
+use SimpleSAML\Utils\XML;
 
 /**
  * Tests for SimpleSAML\Utils\XML.
  */
 class XMLTest extends TestCase
 {
+    const FRAMEWORK = 'vendor/simplesamlphp/simplesamlphp-test-framework';
+    // Visibility on constants is supported from PHP 7.1 and up
+    // private const FRAMEWORK = 'vendor/simplesamlphp/simplesamlphp-test-framework';
+
     /**
      * @covers \SimpleSAML\Utils\XML::isDOMNodeOfType
      * @test
+     * @return void
      */
     public function testIsDomNodeOfTypeBasic()
     {
@@ -26,14 +31,15 @@ class XMLTest extends TestCase
         $this->assertTrue($res);
     }
 
+
     /**
-     * @expectedException \InvalidArgumentException
-     *
      * @covers \SimpleSAML\Utils\XML::isDOMNodeOfType
      * @test
+     * @return void
      */
     public function testIsDomNodeOfTypeMissingNamespace()
     {
+        $this->expectException(\InvalidArgumentException::class);
         $name = 'name';
         $namespace_uri = '@missing';
         $element = new \DOMElement($name, 'value', $namespace_uri);
@@ -41,9 +47,11 @@ class XMLTest extends TestCase
         XML::isDOMNodeOfType($element, $name, $namespace_uri);
     }
 
+
     /**
      * @covers \SimpleSAML\Utils\XML::isDOMNodeOfType
      * @test
+     * @return void
      */
     public function testIsDomNodeOfTypeEmpty()
     {
@@ -56,9 +64,11 @@ class XMLTest extends TestCase
         $this->assertFalse($res);
     }
 
+
     /**
      * @covers \SimpleSAML\Utils\XML::isDOMNodeOfType
      * @test
+     * @return void
      */
     public function testIsDomNodeOfTypeShortcut()
     {
@@ -72,9 +82,11 @@ class XMLTest extends TestCase
         $this->assertTrue($res);
     }
 
+
     /**
      * @covers \SimpleSAML\Utils\XML::isDOMNodeOfType
      * @test
+     * @return void
      */
     public function testIsDomNodeOfTypeIncorrectName()
     {
@@ -88,9 +100,11 @@ class XMLTest extends TestCase
         $this->assertFalse($res);
     }
 
+
     /**
      * @covers \SimpleSAML\Utils\XML::isDOMNodeOfType
      * @test
+     * @return void
      */
     public function testIsDomNodeOfTypeIncorrectNamespace()
     {
@@ -104,9 +118,11 @@ class XMLTest extends TestCase
         $this->assertFalse($res);
     }
 
+
     /**
      * @covers \SimpleSAML\Utils\XML::getDOMText
      * @test
+     * @return void
      */
     public function testGetDomTextBasic()
     {
@@ -121,9 +137,11 @@ class XMLTest extends TestCase
         $this->assertEquals($expected, $res);
     }
 
+
     /**
      * @covers \SimpleSAML\Utils\XML::getDOMText
      * @test
+     * @return void
      */
     public function testGetDomTextMulti()
     {
@@ -140,24 +158,27 @@ class XMLTest extends TestCase
         $this->assertEquals($expected, $res);
     }
 
+
     /**
-     * @expectedException \SimpleSAML\Error\Exception
-     *
      * @covers \SimpleSAML\Utils\XML::getDOMText
      * @test
+     * @return void
      */
     public function testGetDomTextIncorrectType()
     {
+        $this->expectException(\SimpleSAML\Error\Exception::class);
         $dom = new \DOMDocument();
         $element = $dom->appendChild(new \DOMElement('root'));
-        $comment = $element->appendChild(new \DOMComment(''));
+        $element->appendChild(new \DOMComment(''));
 
         XML::getDOMText($element);
     }
 
+
     /**
      * @covers \SimpleSAML\Utils\XML::getDOMChildren
      * @test
+     * @return void
      */
     public function testGetDomChildrenBasic()
     {
@@ -168,14 +189,16 @@ class XMLTest extends TestCase
         $dom->appendChild($element);
 
         $res = XML::getDOMChildren($dom, $name, $namespace_uri);
-        $expected = array($element);
+        $expected = [$element];
 
         $this->assertEquals($expected, $res);
     }
 
+
     /**
      * @covers \SimpleSAML\Utils\XML::getDOMChildren
      * @test
+     * @return void
      */
     public function testGetDomChildrenIncorrectType()
     {
@@ -190,9 +213,11 @@ class XMLTest extends TestCase
         $this->assertEmpty($res);
     }
 
+
     /**
      * @covers \SimpleSAML\Utils\XML::getDOMChildren
      * @test
+     * @return void
      */
     public function testGetDomChildrenIncorrectName()
     {
@@ -208,9 +233,11 @@ class XMLTest extends TestCase
         $this->assertEmpty($res);
     }
 
+
     /**
      * @covers \SimpleSAML\Utils\XML::formatDOMElement
      * @test
+     * @return void
      */
     public function testFormatDomElementBasic()
     {
@@ -230,9 +257,11 @@ NOWDOC;
         $this->assertEquals($expected, $res);
     }
 
+
     /**
      * @covers \SimpleSAML\Utils\XML::formatDOMElement
      * @test
+     * @return void
      */
     public function testFormatDomElementNested()
     {
@@ -256,9 +285,11 @@ NOWDOC;
         $this->assertEquals($expected, $res);
     }
 
+
     /**
      * @covers \SimpleSAML\Utils\XML::formatDOMElement
      * @test
+     * @return void
      */
     public function testFormatDomElementIndentBase()
     {
@@ -283,9 +314,11 @@ HEREDOC;
         $this->assertEquals($expected, $res);
     }
 
+
     /**
      * @covers \SimpleSAML\Utils\XML::formatDOMElement
      * @test
+     * @return void
      */
     public function testFormatDomElementTextAndChild()
     {
@@ -306,9 +339,11 @@ HEREDOC;
         $this->assertEquals($expected, $res);
     }
 
+
     /**
      * @covers \SimpleSAML\Utils\XML::formatXMLString
      * @test
+     * @return void
      */
     public function testFormatXmlStringBasic()
     {
@@ -324,22 +359,25 @@ NOWDOC;
         $this->assertEquals($expected, $res);
     }
 
+
     /**
-     * @expectedException \DOMException
-     *
      * @covers \SimpleSAML\Utils\XML::formatXMLString
      * @test
+     * @return void
      */
     public function testFormatXmlStringMalformedXml()
     {
+        $this->expectException(\DOMException::class);
         $xml = '<root><nested>text';
 
         XML::formatXMLString($xml);
     }
 
+
     /**
      * @covers \SimpleSAML\Utils\XML::isValid
      * @test
+     * @return void
      */
     public function testIsValidMalformedXml()
     {
@@ -351,32 +389,30 @@ NOWDOC;
         $this->assertContains($expected, $res);
     }
 
+
     /**
      * @covers \SimpleSAML\Utils\XML::isValid
-     * @test
+     * @return void
      */
     public function testIsValidMetadata()
     {
-        Configuration::loadFromArray(array(), '[ARRAY]', 'simplesaml');
-
         $schema = 'saml-schema-metadata-2.0.xsd';
+        $xml = file_get_contents(self::FRAMEWORK . '/metadata/xml/valid-metadata-selfsigned.xml');
 
-        $dom = $this->getMockBuilder('\DOMDocument')
-            ->setMethods(array('schemaValidate'))
-            ->disableOriginalConstructor()
-            ->getMock();
-
-        /*
-         * Unfortunately, we cannot actually test schemaValidate. To
-         * effectively unit test this function we'd have to enable LIBXML_NONET
-         * which disables network access when loading documents. PHP does not
-         * currently support enabling this flag.
-         */
-        $dom->method('schemaValidate')
-            ->willReturn(true);
+        $dom = new \DOMDocument('1.0');
+        $dom->loadXML($xml, LIBXML_NONET);
 
         $res = XML::isValid($dom, $schema);
+        $this->assertTrue($res === true);
+    }
 
-        $this->assertTrue($res);
+    /**
+     * @covers \SimpleSAML\Utils\XML::checkSAMLMessage()
+     * @return void
+     */
+    public function testCheckSAMLMessageInvalidType()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        XML::checkSAMLMessage('<test></test>', 'blub');
     }
 }

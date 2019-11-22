@@ -7,12 +7,12 @@ This is a reference for metadata options available for `metadata/saml20-idp-remo
 
     <?php
     /* The index of the array is the entity ID of this IdP. */
-    $metadata['entity-id-1'] = array(
+    $metadata['entity-id-1'] = [
         /* Configuration options for the first IdP. */
-    );
-    $metadata['entity-id-2'] = array(
+    ];
+    $metadata['entity-id-2'] = [
         /* Configuration options for the second IdP. */
-    );
+    ];
     /* ... */
 
 
@@ -44,16 +44,28 @@ The following options are common between both the SAML 2.0 protocol and Shibbole
 `icon`
 :   A logo which will be shown next to this IdP in the discovery service.
 
+`name`
+:   The name of this IdP. Will be used by various modules when they need to show a name of the SP to the user.
+
+:   If this option is unset, the organization name will be used instead (if it is available).
+
+:   This option can be translated into multiple languages by specifying the value as an array of language-code to translated name:
+
+        'name' => [
+            'en' => 'A service',
+            'no' => 'En tjeneste',
+        ],
+
 `OrganizationName`
 :   The name of the organization responsible for this SPP.
     This name does not need to be suitable for display to end users.
 
 :   This option can be translated into multiple languages by specifying the value as an array of language-code to translated name:
 
-        'OrganizationName' => array(
+        'OrganizationName' => [
             'en' => 'Example organization',
             'no' => 'Eksempel organisation',
-        ),
+        ],
 
 :   *Note*: If you specify this option, you must also specify the `OrganizationURL` option.
 
@@ -73,18 +85,6 @@ The following options are common between both the SAML 2.0 protocol and Shibbole
 
 :   *Note*: If you specify this option, you must also specify the `OrganizationName` option.
 
-`name`
-:   The name of this IdP. Will be used by various modules when they need to show a name of the SP to the user.
-
-:   If this option is unset, the organization name will be used instead (if it is available).
-
-:   This option can be translated into multiple languages by specifying the value as an array of language-code to translated name:
-
-        'name' => array(
-            'en' => 'A service',
-            'no' => 'En tjeneste',
-        ),
-
 `scope`
 :   An array with scopes valid for this IdP.
     The IdP will send scopes in scoped attributes, that is, attributes containing a value with an `@` sign and a domain name
@@ -103,6 +103,35 @@ SAML 2.0 options
 ----------------
 
 The following SAML 2.0 options are available:
+
+`AuthnContextClassRef`
+:    The AuthnContextClassRef that will be sent in the login request.
+
+:   Note that this option also exists in the SP configuration. This
+    entry in the IdP-remote metadata overrides the option in the
+    [SP configuration](./saml:sp).
+
+`AuthnContextComparison`
+
+:    The Comparison attribute of the AuthnContext that will be sent in the login request. This parameter won't be used unless AuthnContextClassRef is set and contains one or more values. Possible values:
+
+        SAML2\Constants::COMPARISON_EXACT (default)
+        SAML2\Constants::COMPARISON_BETTER
+        SAML2\Constants::COMPARISON_MINIMUM
+        SAML2\Constants::COMPARISON_MAXIMUM
+
+:   Note that this option also exists in the SP configuration. This
+    entry in the IdP-remote metadata overrides the option in the
+    [SP configuration](./saml:sp).
+
+`disable_scoping`
+:    Whether sending of samlp:Scoping elements in authentication requests should be suppressed. The default value is `FALSE`.
+     When set to `TRUE`, no scoping elements will be sent. This does not comply with the SAML2 specification, but allows 
+     interoperability with ADFS which [does not support Scoping elements](https://docs.microsoft.com/en-za/azure/active-directory/develop/active-directory-single-sign-on-protocol-reference#scoping).
+
+:   Note that this option also exists in the SP configuration. This
+    entry in the IdP-remote metadata overrides the option in the
+    [SP configuration](./saml:sp).
 
 `encryption.blacklisted-algorithms`
 :   Blacklisted encryption algorithms. This is an array containing the algorithm identifiers.
@@ -131,6 +160,28 @@ The following SAML 2.0 options are available:
     entry in the IdP-remote metadata overrides the option in the
     [SP configuration](./saml:sp).
 
+`NameIDPolicy`
+:   The format of the NameID we request from this IdP: an array in the form of
+    `[ 'Format' => the format, 'AllowCreate' => true or false ]`.
+    Set to `false` instead of an array to omit sending any specific NameIDPolicy
+    in the AuthnRequest.
+
+:   For compatibility purposes, `null` is equivalent to Transient and a format
+    can be defined as a string instead of an array. These variants are deprecated.
+
+`signature.algorithm`
+:   The algorithm to use when signing any message sent to this specific identity provider. Defaults to RSA-SHA256.
+:   Note that this option also exists in the SP configuration.
+    This value in the IdP remote metadata overrides the value in the SP configuration.
+:   Possible values:
+
+    * `http://www.w3.org/2000/09/xmldsig#rsa-sha1`
+       *Note*: the use of SHA1 is **deprecated** and will be disallowed in the future.
+    * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha256`
+      The default.
+    * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha384`
+    * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha512`
+
 `sign.authnrequest`
 :   Whether to sign authentication requests sent to this IdP.
 
@@ -150,19 +201,6 @@ The following SAML 2.0 options are available:
 
 `SingleLogoutServiceResponse`
 :   Endpoint URL for logout responses. Overrides the `SingleLogoutService`-option for responses.
-
-`signature.algorithm`
-:   The algorithm to use when signing any message sent to this specific identity provider. Defaults to RSA-SHA256.
-:   Note that this option also exists in the SP configuration.
-    This value in the IdP remote metadata overrides the value in the SP configuration.
-:   Possible values:
-
-    * `http://www.w3.org/2000/09/xmldsig#rsa-sha1`
-       *Note*: the use of SHA1 is **deprecated** and will be disallowed in the future.
-    * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha256`
-      The default.
-    * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha384`
-    * `http://www.w3.org/2001/04/xmldsig-more#rsa-sha512`
 
 `SPNameQualifier`
 :   This corresponds to the SPNameQualifier in the SAML 2.0 specification. It allows to give subjects a SP specific namespace. This option is rarely used, so if you don't need it, leave it out. When left out, SimpleSAMLphp assumes the entityID of your SP as the SPNameQualifier.

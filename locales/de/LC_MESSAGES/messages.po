@@ -51,12 +51,6 @@ msgstr "Fehler beim Laden der Metadaten"
 msgid "{admin:metaconv_title}"
 msgstr "Metadaten-Parser"
 
-msgid "{attributes:attribute_edupersonentitlement}"
-msgstr "Berechtigung"
-
-msgid "{attributes:attribute_jpegphoto}"
-msgstr "JPEG Foto"
-
 msgid "{admin:cfg_check_noerrors}"
 msgstr "Keine Fehler gefunden."
 
@@ -141,9 +135,6 @@ msgstr ""
 msgid "{logout:default_link_text}"
 msgstr "Zurück zur SimpleSAMLphp Installationsseite"
 
-msgid "{admin:metaover_group_metadata.wsfed-idp-remote}"
-msgstr "WS-Federation Identity Provider (entfernt)"
-
 msgid "{errors:error_header}"
 msgstr "SimpleSAMLphp Fehler"
 
@@ -162,17 +153,11 @@ msgstr ""
 "der Administrator dieses Dienstes sind, sollten Sie sicherstellen, dass "
 "die Metadatenkonfiguration korrekt ist."
 
-msgid "{attributes:attribute_edupersonorgdn}"
-msgstr "Distinguished name (DN) der Organisation"
-
 msgid "{errors:title_BADREQUEST}"
 msgstr "Ungültige Anfrage"
 
 msgid "{status:sessionsize}"
 msgstr "Grösse der Sitzung: %SIZE%"
-
-msgid "{attributes:attribute_postaladdress}"
-msgstr "Anschrift"
 
 msgid "{logout:title}"
 msgstr "Abgemeldet"
@@ -195,31 +180,16 @@ msgstr "In der Wartschleife"
 msgid "{admin:cfg_check_header}"
 msgstr "Konfigurationscheck"
 
-msgid "{attributes:attribute_edupersonscopedaffiliation}"
-msgstr "Organisationszugehörigkeit bei der Heimorganisation"
-
-msgid "{attributes:attribute_sn}"
-msgstr "Nachname"
-
 msgid "{admin:debug_sending_message_send}"
 msgstr "Nachricht senden"
 
 msgid "{status:logout}"
 msgstr "Abmelden"
 
-msgid "{attributes:attribute_organisationname}"
-msgstr "Name der Organisation"
-
-msgid "{attributes:attribute_telephonenumber}"
-msgstr "Telefonnummer"
-
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr ""
 "Die Parameter, die an den Discovery Service geschickt wurden, entsprachen"
 " nicht der Spezifikation."
-
-msgid "{attributes:attribute_mail}"
-msgstr "Emailadresse"
 
 msgid "{errors:descr_CREATEREQUEST}"
 msgstr "Ein Fehler beim Erzeugen der SAML-Anfrage ist aufgetreten."
@@ -229,9 +199,6 @@ msgstr "Optionale Felder"
 
 msgid "{logout:return}"
 msgstr "Zum Dienst zurückkehren"
-
-msgid "{attributes:attribute_displayname}"
-msgstr "Anzeigename"
 
 msgid "{admin:metadata_xmlurl}"
 msgstr ""
@@ -245,9 +212,6 @@ msgid "{admin:debug_disable_debug_mode}"
 msgstr ""
 "Sie können den Debug-Modus in der globalen SimpleSAMLphp "
 "Konfigurationsdatei <tt>config/config.php</tt> ausschalten."
-
-msgid "{attributes:attribute_homepostaladdress}"
-msgstr "Privatanschrift"
 
 msgid "{disco:select}"
 msgstr "Auswahl"
@@ -276,9 +240,6 @@ msgstr ""
 msgid "{logout:logout_all_question}"
 msgstr "Wollen Sie sich von allen obenstehenden Diensten abmelden?"
 
-msgid "{attributes:attribute_title}"
-msgstr "Titel"
-
 msgid "{errors:title_NOACCESS}"
 msgstr "Kein Zugriff"
 
@@ -295,9 +256,6 @@ msgid "{errors:descr_NOSTATE}"
 msgstr ""
 "Die Statusinformationen gingen verloren und die Anfrage kann nicht neu "
 "gestartet werden"
-
-msgid "{attributes:attribute_noredupersonnin}"
-msgstr "Norwegische Personenkennziffer"
 
 msgid "{login:password}"
 msgstr "Passwort"
@@ -325,23 +283,14 @@ msgstr "Fehler beim Bearbeiten der Abmeldeanfrage"
 msgid "{admin:metaover_errorentry}"
 msgstr "Fehler in diesem Metadaten Eintrag"
 
-msgid "{attributes:attribute_edupersonaffiliation}"
-msgstr "Organisationszugehörigkeit"
-
 msgid "{errors:title_METADATANOTFOUND}"
 msgstr "Keine Metadaten gefunden"
-
-msgid "{attributes:attribute_givenname}"
-msgstr "Vorname"
 
 msgid "{login:contact_info}"
 msgstr "Kontakt"
 
 msgid "{errors:title_UNHANDLEDEXCEPTION}"
 msgstr "Nicht abgefangene Code-Exception"
-
-msgid "{status:validfor}"
-msgstr "Ihre Sitzung ist noch für %SECONDS% gültig."
 
 msgid "{status:header_saml20_sp}"
 msgstr "SAML 2.0 SP Demo Beispiel"
@@ -378,29 +327,17 @@ msgstr ""
 "Authentifizierung fehlgeschlagen: das von ihrem Browser gesandte "
 "Zertifikat ist unbekannt"
 
-msgid "{attributes:attribute_eduorghomepageuri}"
-msgstr "Homepage der Organisation"
-
 msgid "{logout:logging_out_from}"
 msgstr "Melde Sie von den folgenden Diensten ab:"
 
 msgid "{logout:loggedoutfrom}"
 msgstr "Sie wurden nun erfolgreich von %SP% abgemeldet"
 
-msgid "{admin:metaover_group_metadata.wsfed-sp-hosted}"
-msgstr "WS-Federation Service Provider (gehosted)"
-
 msgid "{errors:errorreport_text}"
 msgstr "Der Fehlerbericht wurde an den Administrator gesandt."
 
-msgid "{attributes:attribute_noredupersonbirthdate}"
-msgstr "Geburtsdatum"
-
 msgid "{errors:descr_LOGOUTREQUEST}"
 msgstr "Beim Versuch die Abmeldeanfrage zu bearbeiten ist ein Fehler aufgetreten."
-
-msgid "{attributes:attribute_edupersontargetedid}"
-msgstr "Persistente pseudonyme ID"
 
 msgid "{logout:success}"
 msgstr "Sie haben sich erfolgreich von allen obenstehenden Diensten abgemeldet."
@@ -410,12 +347,6 @@ msgstr "Anmerkungen"
 
 msgid "{errors:descr_USERABORTED}"
 msgstr "Die Authentifizierung wurde durch den Benutzer abgebrochen"
-
-msgid "{attributes:attribute_edupersonprimaryaffiliation}"
-msgstr "Primäre Organisationszugehörigkeit"
-
-msgid "{attributes:attribute_postalcode}"
-msgstr "Postleitzahl"
 
 msgid "{errors:descr_CASERROR}"
 msgstr "Fehler bei der Kommunikation mit dem CAS Server."
@@ -429,9 +360,6 @@ msgstr "SAML 2.0 SP Metadaten"
 msgid "{admin:metaconv_converted}"
 msgstr "Konvertierte Metadaten"
 
-msgid "{attributes:attribute_cn}"
-msgstr "Voller Name"
-
 msgid "{logout:completed}"
 msgstr "abgeschlossen"
 
@@ -440,17 +368,8 @@ msgstr ""
 "Sie benutzen noch immer das Standardpasswort, bitte ändern Sie die "
 "Konfiguration (auth.adminpassword)."
 
-msgid "{attributes:attribute_ou}"
-msgstr "Organisationseinheit"
-
 msgid "{general:service_provider}"
 msgstr "Service-Provider"
-
-msgid "{attributes:attribute_homephone}"
-msgstr "Private Telefonnummer"
-
-msgid "{attributes:attribute_dc}"
-msgstr "Domain-Komponente"
 
 msgid "{errors:descr_BADREQUEST}"
 msgstr "In der Anfrage dieser Seite trat ein Fehler auf, der Grund ist: %REASON%"
@@ -465,27 +384,18 @@ msgid "{general:no_cancel}"
 msgstr "Nein, ich stimme nicht zu"
 
 msgid "{login:user_pass_header}"
-msgstr "Bitten geben Sie ihren Nutzernamen und Passwort ein"
+msgstr "Bitte geben Sie Ihren Nutzernamen und Ihr Passwort ein"
 
 msgid "{errors:report_explain}"
 msgstr "Erläutern Sie, wodurch der Fehler auftrat..."
 
-msgid "{attributes:attribute_manager}"
-msgstr "Manager/in"
-
 msgid "{errors:title_ACSPARAMS}"
 msgstr "Keine SAML Antwort bereit gestellt"
-
-msgid "{attributes:attribute_edupersonnickname}"
-msgstr "Spitzname"
 
 msgid "{errors:descr_SLOSERVICEPARAMS}"
 msgstr ""
 "Sie haben auf die SingleLogoutService Schnittstelle zugegriffen, aber "
 "keine SAML Abmeldeanfrage oder Abmeldeantwort bereit gestellt."
-
-msgid "{attributes:attribute_street}"
-msgstr "Straße"
 
 msgid "{login:organization}"
 msgstr "Organisation"
@@ -528,9 +438,6 @@ msgstr "Einrichtung auswählen"
 msgid "{admin:cfg_check_superfluous}"
 msgstr "Überflüssige Optionen in der Konfigurationsdatei"
 
-msgid "{attributes:attribute_labeleduri}"
-msgstr "URI mit zusätzlicher Kennzeichnung"
-
 msgid "{errors:report_email}"
 msgstr "E-Mail-Adresse:"
 
@@ -545,9 +452,6 @@ msgstr ""
 "Der Initiator dieser Anfrage hat keinen Weiterleitungsparameter bereit "
 "gestellt, der Auskunft gibt, wohin es als nächstes gehen soll."
 
-msgid "{attributes:attribute_noredupersonlegalname}"
-msgstr "Offizeller Name"
-
 msgid "{status:header_diagnostics}"
 msgstr "SimpleSAMLphp Diagnose"
 
@@ -556,9 +460,6 @@ msgstr ""
 "Hallo, das ist die Statusseite von SimpleSAMLphp. Hier können Sie sehen, "
 "ob Ihre Sitzung ausgelaufen ist, wie lange die Sitzung noch gültig ist "
 "und alle Attribute Ihrer Sitzung."
-
-msgid "{attributes:attribute_schachomeorganization}"
-msgstr "Domain-Name der Heimorganisation"
 
 msgid "{errors:title_NOTFOUNDREASON}"
 msgstr "Seite nicht gefunden"
@@ -580,29 +481,17 @@ msgstr ""
 msgid "{errors:title_NOTVALIDCERT}"
 msgstr "Ungültiges Zertifikat"
 
-msgid "{attributes:attribute_edupersonorgunitdn}"
-msgstr "Distinguished name (DN) der Organisationseinheit"
-
 msgid "{general:remember}"
 msgstr "Zustimmung merken"
 
 msgid "{disco:selectidp}"
 msgstr "Wählen Sie Ihren Identity Provider"
 
-msgid "{attributes:attribute_postofficebox}"
-msgstr "Postfach"
-
-msgid "{attributes:attribute_edupersonprincipalname}"
-msgstr "Persönliche ID bei der Heimorganisation"
-
 msgid "{login:help_desk_email}"
 msgstr "Email an den Helpdesk senden"
 
 msgid "{login:help_desk_link}"
 msgstr "Seite des Helpdesk"
-
-msgid "{attributes:attribute_uid}"
-msgstr "Nutzer ID"
 
 msgid "{errors:title_CASERROR}"
 msgstr "CAS Fehler"
@@ -623,12 +512,6 @@ msgstr "Meine Auswahl merken"
 
 msgid "{admin:metaover_group_metadata.saml20-sp-hosted}"
 msgstr "SAML 2.0 Service Provider (gehosted)"
-
-msgid "{attributes:attribute_l}"
-msgstr "Ort"
-
-msgid "{attributes:attribute_edupersonassurance}"
-msgstr "Identity Assurance Profil"
 
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
@@ -674,9 +557,6 @@ msgstr "Nachricht"
 msgid "{errors:title_UNKNOWNCERT}"
 msgstr "Unbekanntes Zertifikat"
 
-msgid "{attributes:attribute_facsimiletelephonenumber}"
-msgstr "Faxnummer"
-
 msgid "{errors:title_LDAPERROR}"
 msgstr "LDAP Fehler"
 
@@ -698,14 +578,8 @@ msgstr ""
 "Kontaktieren Sie bitte den Administrator dieses Dienstes und teilen die "
 "obige Fehlermeldung mit."
 
-msgid "{attributes:attribute_mobile}"
-msgstr "Mobiltelefon"
-
 msgid "{admin:metaover_group_metadata.shib13-idp-hosted}"
 msgstr "Shib 1.3 Identity Provider (gehosted)"
-
-msgid "{attributes:attribute_preferredlanguage}"
-msgstr "Bevorzugte Sprache"
 
 msgid "{errors:descr_NOTVALIDCERT}"
 msgstr "Sie haben kein gültiges Zertifikat benutzt."
@@ -720,15 +594,6 @@ msgstr "Die folgenden optionalen Felder wurden nicht gefunden"
 
 msgid "{logout:logout_only}"
 msgstr "Nein, nur %SP%"
-
-msgid "{attributes:attribute_o}"
-msgstr "Name der Organisation"
-
-msgid "{attributes:attribute_edupersonprimaryorgunitdn}"
-msgstr "Distinguished name (DN) der primären Organisationseinheit"
-
-msgid "{attributes:attribute_noredupersonlin}"
-msgstr "Lokale Kennummer"
 
 msgid "{login:next}"
 msgstr "Weiter"
@@ -751,9 +616,6 @@ msgstr ""
 msgid "{errors:title_NOCERT}"
 msgstr "Kein Zertifikat"
 
-msgid "{attributes:attribute_userpassword}"
-msgstr "Passwort Hash des Benutzers"
-
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "Abmeldeinformation verloren gegangen"
 
@@ -769,12 +631,6 @@ msgstr ""
 " können dieses Metadaten-Dokument zu Partnern schicken, denen Sie "
 "vertrauen, um eine vertrauensbasierte Föderation aufzusetzen."
 
-msgid "{attributes:attribute_schacuserprivateattribute}"
-msgstr "Private Informationselemente"
-
-msgid "{status:header_wsfed}"
-msgstr "WS-Fed SP Demo Beispiel"
-
 msgid "{admin:metadata_cert}"
 msgstr "Zertifikate"
 
@@ -783,17 +639,11 @@ msgstr ""
 "Authentifizierung fehlgeschlagen: das von ihrem Browser gesandte "
 "Zertifikat ist ungültig oder kann nicht gelesen werden"
 
-msgid "{attributes:attribute_eduorglegalname}"
-msgstr "Name der Körperschaft"
-
 msgid "{status:header_shib}"
 msgstr "Shibboleth Demo"
 
 msgid "{admin:metaconv_parse}"
 msgstr "Parse"
-
-msgid "{attributes:attribute_noreduorgnin}"
-msgstr "Firmennummer nach dem Norwegischen Firmenregister"
 
 msgid "Person's principal name at home organization"
 msgstr "Persönliche ID bei der Heimorganisation"
@@ -978,7 +828,7 @@ msgstr ""
 "Kopfzeile der SAML-Entität."
 
 msgid "Enter your username and password"
-msgstr "Bitten geben Sie ihren Nutzernamen und Passwort ein"
+msgstr "Bitte geben Sie Ihren Nutzernamen und Ihr Passwort ein"
 
 msgid "Login at"
 msgstr "Login bei"
@@ -1139,8 +989,8 @@ msgstr ""
 "obige Fehlermeldung mit."
 
 #, python-format
-msgid "Your session is valid for %SECONDS% seconds from now."
-msgstr "Ihre Sitzung ist noch für %SECONDS% gültig."
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Ihre Sitzung ist noch für %remaining% gültig."
 
 msgid "Domain component (DC)"
 msgstr "Domain-Komponente"
@@ -1639,3 +1489,15 @@ msgstr ""
 "Sie haben auf die Assertion Consumer Service Schnittstelle zugegriffen, "
 "aber keine SAML Authentifizierungsantwort bereit gestellt."
 
+
+msgid ""
+"You are now accessing a pre-production system. This authentication setup "
+"is for testing and pre-production verification only. If someone sent you "
+"a link that pointed you here, and you are not <i>a tester</i> you "
+"probably got the wrong link, and should <b>not be here</b>."
+msgstr ""
+"Sie greifen jetzt auf ein System im Pilotbetrieb zu. Diese "
+"Authentifizierungs-Konfiguration dient nur zum Testen und zur Überprüfung"
+" des Pilotbetriebes. Falls Ihnen jemand einen Link gesendet hat, der Sie "
+"hierher geführt hat und Sie sind kein <i>Tester</i>, so war der Link "
+"vermutlich falsch und Sie sollten <b>nicht hier sein</b>. "

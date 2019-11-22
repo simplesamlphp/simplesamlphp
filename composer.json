@@ -25,8 +25,14 @@
         },
         "files": ["lib/_autoload_modules.php"]
     },
+    "autoload-dev": {
+        "psr-4": {
+            "SimpleSAML\\Test\\": ["tests", "tests/lib/SimpleSAML"]
+        },
+        "files": ["tests/_autoload_modules.php"]
+    },
     "require": {
-        "php": ">=5.4",
+        "php": ">=5.6",
         "ext-SPL": "*",
         "ext-zlib": "*",
         "ext-pcre": "*",
@@ -36,20 +42,66 @@
         "ext-hash": "*",
         "ext-json": "*",
         "ext-mbstring": "*",
-        "simplesamlphp/saml2": "~3.1.4",
-        "robrichards/xmlseclibs": "~3.0",
-        "whitehat101/apr1-md5": "~1.0",
-        "twig/twig": "~1.0",
-        "gettext/gettext": "^3.5",
-        "jaimeperez/twig-configurable-i18n": "^1.2"
+        "gettext/gettext": "^4.6",
+        "phpmailer/phpmailer": "^6.0",
+        "robrichards/xmlseclibs": "^3.0.4",
+        "simplesamlphp/saml2": "^3.4 || ^4.0",
+        "simplesamlphp/simplesamlphp-module-adfs": "^0.9",
+        "simplesamlphp/simplesamlphp-module-authcrypt": "^0.9",
+        "simplesamlphp/simplesamlphp-module-authfacebook": "^0.9",
+        "simplesamlphp/simplesamlphp-module-authorize": "^0.9",
+        "simplesamlphp/simplesamlphp-module-authtwitter": "^0.9",
+        "simplesamlphp/simplesamlphp-module-authwindowslive": "^0.9",
+        "simplesamlphp/simplesamlphp-module-authx509": "^0.9",
+        "simplesamlphp/simplesamlphp-module-authyubikey": "^0.9",
+        "simplesamlphp/simplesamlphp-module-cas": "^0.9",
+        "simplesamlphp/simplesamlphp-module-cdc": "^0.9",
+        "simplesamlphp/simplesamlphp-module-consent": "^0.9",
+        "simplesamlphp/simplesamlphp-module-consentadmin": "^0.9",
+        "simplesamlphp/simplesamlphp-module-discopower": "^0.9",
+        "simplesamlphp/simplesamlphp-module-exampleattributeserver": "^1.0",
+        "simplesamlphp/simplesamlphp-module-expirycheck": "^0.9",
+        "simplesamlphp/simplesamlphp-module-ldap": "^0.9 | ^1.0",
+        "simplesamlphp/simplesamlphp-module-memcookie": "^1.2",
+        "simplesamlphp/simplesamlphp-module-memcachemonitor": "^0.9",
+        "simplesamlphp/simplesamlphp-module-metarefresh": "^0.9",
+        "simplesamlphp/simplesamlphp-module-negotiate": "^0.9",
+        "simplesamlphp/simplesamlphp-module-oauth": "^0.9",
+        "simplesamlphp/simplesamlphp-module-preprodwarning": "^0.9",
+        "simplesamlphp/simplesamlphp-module-radius": "^0.9",
+        "simplesamlphp/simplesamlphp-module-riak": "^0.9",
+        "simplesamlphp/simplesamlphp-module-smartattributes": "^0.9",
+        "simplesamlphp/simplesamlphp-module-sanitycheck": "^0.9",
+        "simplesamlphp/simplesamlphp-module-statistics": "^0.9",
+        "simplesamlphp/simplesamlphp-module-sqlauth": "^0.9",
+        "simplesamlphp/twig-configurable-i18n": "^2.1",
+        "symfony/routing": "^3.4 || ^4.0",
+        "symfony/http-foundation": "^3.4 || ^4.0",
+        "symfony/config": "^3.4 || ^4.0",
+        "symfony/http-kernel": "^3.4 || ^4.0",
+        "symfony/dependency-injection": "^3.4 || ^4.0",
+        "symfony/yaml": "^3.4 || ^4.0",
+        "twig/twig": "~1.0 || ~2.0",
+        "whitehat101/apr1-md5": "~1.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "~4.8.35",
-        "mikey179/vfsStream": "~1.6",
-        "friendsofphp/php-cs-fixer": "^2.2"
+        "ext-curl": "*",
+        "mikey179/vfsstream": "~1.6",
+        "phpunit/phpunit": "~5.7",
+        "sensiolabs/security-checker": "^5.0.3",
+        "simplesamlphp/simplesamlphp-test-framework": "^0.0.12",
+        "squizlabs/php_codesniffer": "^3.5",
+        "vimeo/psalm": "~1.1.9"
     },
-    "suggests": {
-        "predis/predis": "1.1.1"
+    "suggest": {
+        "predis/predis": "Needed if a Redis server is used to store session information",
+        "ext-curl": "Needed in order to check for updates automatically",
+        "ext-ldap": "Needed if an LDAP backend is used",
+        "ext-radius": "Needed if a Radius backend is used",
+        "ext-memcache": "Needed if a Memcache server is used to store session information",
+        "ext-pdo": "Needed if a database backend is used, either for authentication or to store session information",
+        "ext-mysql": "Needed if a MySQL backend is used, either for authentication or to store session information",
+        "ext-pgsql": "Needed if a PostgreSQL backend is used, either for authentication or to store session information"
     },
     "support": {
         "issues": "https://github.com/simplesamlphp/simplesamlphp/issues",

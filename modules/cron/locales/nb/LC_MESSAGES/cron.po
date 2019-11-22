@@ -63,3 +63,8 @@ msgstr "Her er resultatene fra kjøring av cron-jobben:"
 msgid "Cron result page"
 msgstr "Cron resultatside"
 
+msgid "{cron:cron:link_cron}"
+msgstr "Informasjon om cron"
+
+msgid "Cron module information page"
+msgstr "Informasjon om cron"

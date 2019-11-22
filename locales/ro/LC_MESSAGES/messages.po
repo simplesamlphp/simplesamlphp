@@ -53,12 +53,6 @@ msgstr "Eroare la încărcarea metadatelor"
 msgid "{admin:metaconv_title}"
 msgstr "Analizor de metadate"
 
-msgid "{attributes:attribute_edupersonentitlement}"
-msgstr "Drepturi relativ la acest serviciu"
-
-msgid "{attributes:attribute_jpegphoto}"
-msgstr "Fotografie JPEG"
-
 msgid "{admin:cfg_check_noerrors}"
 msgstr "Nu au fost depistate erori."
 
@@ -140,9 +134,6 @@ msgstr ""
 msgid "{logout:default_link_text}"
 msgstr "Mergeți înapoi la pagina de instalare a SimpleSAMLphp"
 
-msgid "{admin:metaover_group_metadata.wsfed-idp-remote}"
-msgstr "Furnizor de servicii federație WS (distant)"
-
 msgid "{errors:error_header}"
 msgstr "Eroare SimpleSAMLphp"
 
@@ -160,17 +151,11 @@ msgstr ""
 "Există o eroare în configurarea SimpleSAMLphp. Dacă sunteți "
 "administratorul acestui serviciu, verificați configurarea metadatelor."
 
-msgid "{attributes:attribute_edupersonorgdn}"
-msgstr "Nume distincitv (DN) al instituție de origine a persoanei"
-
 msgid "{errors:title_BADREQUEST}"
 msgstr "S-a primit o cerere incorectă"
 
 msgid "{status:sessionsize}"
 msgstr "Dimensiunea sesiunii: %SIZE%"
-
-msgid "{attributes:attribute_postaladdress}"
-msgstr "Adresa poștală"
 
 msgid "{logout:title}"
 msgstr "Ieșire din sistem (deautentificare)"
@@ -193,31 +178,16 @@ msgstr "În așteptare"
 msgid "{admin:cfg_check_header}"
 msgstr "Verificarea configurației"
 
-msgid "{attributes:attribute_edupersonscopedaffiliation}"
-msgstr "Afiliere în cadrul instituției de origine"
-
-msgid "{attributes:attribute_sn}"
-msgstr "Nume de familie"
-
 msgid "{admin:debug_sending_message_send}"
 msgstr "Trimite mesajul"
 
 msgid "{status:logout}"
 msgstr "Deautentificare"
 
-msgid "{attributes:attribute_organisationname}"
-msgstr "Denumirea instituției"
-
-msgid "{attributes:attribute_telephonenumber}"
-msgstr "Număr de telefon"
-
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr ""
 "Parametrii trimiși către serviciul de căutare nu sunt în conformitate cu "
 "specificațiile."
-
-msgid "{attributes:attribute_mail}"
-msgstr "Mail"
 
 msgid "{errors:descr_CREATEREQUEST}"
 msgstr "A apărut o eroare la crearea cererii SAML."
@@ -227,9 +197,6 @@ msgstr "Câmpuri opționale"
 
 msgid "{logout:return}"
 msgstr "Întoarcere la serviciu"
-
-msgid "{attributes:attribute_displayname}"
-msgstr "Nume afișat"
 
 msgid "{admin:metadata_xmlurl}"
 msgstr ""
@@ -243,9 +210,6 @@ msgid "{admin:debug_disable_debug_mode}"
 msgstr ""
 "Se poate opri modul de depanare în fișierul de configurare SimpleSAMLphp "
 "<tt>config/config.php</tt>."
-
-msgid "{attributes:attribute_homepostaladdress}"
-msgstr "Adresa poștală de acasă"
 
 msgid "{disco:select}"
 msgstr "Selectați"
@@ -273,9 +237,6 @@ msgstr ""
 msgid "{logout:logout_all_question}"
 msgstr "Doriți să vă deautentificați de la toate serviciile de mai sus ?"
 
-msgid "{attributes:attribute_title}"
-msgstr "Titlu/titulatură"
-
 msgid "{errors:title_NOACCESS}"
 msgstr "Accesul este interzis"
 
@@ -289,9 +250,6 @@ msgstr "Nu există <i>RelayState</i>"
 
 msgid "{errors:descr_NOSTATE}"
 msgstr "Informația de stare a fost pierdută, cererea nu poate fi reluată"
-
-msgid "{attributes:attribute_noredupersonnin}"
-msgstr "Număr de identitate atribuit de autorități publice"
 
 msgid "{login:password}"
 msgstr "Parola"
@@ -319,23 +277,14 @@ msgstr "Eroare la procesarea cererii de deautentificare"
 msgid "{admin:metaover_errorentry}"
 msgstr "Eroare în această metadată"
 
-msgid "{attributes:attribute_edupersonaffiliation}"
-msgstr "Afiliere"
-
 msgid "{errors:title_METADATANOTFOUND}"
 msgstr "Metadatele nu au fost găsite"
-
-msgid "{attributes:attribute_givenname}"
-msgstr "Prenume"
 
 msgid "{login:contact_info}"
 msgstr "Informații de contact:"
 
 msgid "{errors:title_UNHANDLEDEXCEPTION}"
 msgstr "Excepție netratată"
-
-msgid "{status:validfor}"
-msgstr "Sesiunea dumneavoastră mai este validă încă %SECONDS%."
 
 msgid "{status:header_saml20_sp}"
 msgstr "Exemplu demonstrativ de furnizor de servicii SAML 2.0"
@@ -372,29 +321,17 @@ msgstr ""
 "Autentificare eșuată: certificatul trimis de browser-ul dumneavoastră nu "
 "este recunoscut"
 
-msgid "{attributes:attribute_eduorghomepageuri}"
-msgstr "Pagina web a institutuției"
-
 msgid "{logout:logging_out_from}"
 msgstr "Deautentificare din următoarele servicii:"
 
 msgid "{logout:loggedoutfrom}"
 msgstr "Ați fost deautentificat din %SP%."
 
-msgid "{admin:metaover_group_metadata.wsfed-sp-hosted}"
-msgstr "Furnizor de servicii federație WS (găzduit)"
-
 msgid "{errors:errorreport_text}"
 msgstr "Raportul cu erori a fost trimis către administratori."
 
-msgid "{attributes:attribute_noredupersonbirthdate}"
-msgstr "Data nașterii"
-
 msgid "{errors:descr_LOGOUTREQUEST}"
 msgstr "A apărut o eroare la procesarea cererii de deautentificare."
-
-msgid "{attributes:attribute_edupersontargetedid}"
-msgstr "ID pseudonim persistent"
 
 msgid "{logout:success}"
 msgstr "Ați fost deautentificat de la toate serviciile enumerate mai sus."
@@ -404,12 +341,6 @@ msgstr "Note/Observații"
 
 msgid "{errors:descr_USERABORTED}"
 msgstr "Autentificarea a fost întreruptă de utilizator"
-
-msgid "{attributes:attribute_edupersonprimaryaffiliation}"
-msgstr "Afiliere primară"
-
-msgid "{attributes:attribute_postalcode}"
-msgstr "Cod poștal"
 
 msgid "{errors:descr_CASERROR}"
 msgstr "Eroare de comunicare cu serverul CAS."
@@ -423,9 +354,6 @@ msgstr "Metadate furnizor de servicii (SP) SAML 2.0"
 msgid "{admin:metaconv_converted}"
 msgstr "Metadate convertite"
 
-msgid "{attributes:attribute_cn}"
-msgstr "Nume comun"
-
 msgid "{logout:completed}"
 msgstr "Terminat"
 
@@ -434,17 +362,8 @@ msgstr ""
 "Parola din configurare (<i>auth.adminpassword</i>) este cea implicită, vă"
 " rugăm să o modificați."
 
-msgid "{attributes:attribute_ou}"
-msgstr "Unitate organizațională"
-
 msgid "{general:service_provider}"
 msgstr "Furnizor de servicii"
-
-msgid "{attributes:attribute_homephone}"
-msgstr "Telefon acasă"
-
-msgid "{attributes:attribute_dc}"
-msgstr "Componenta de domeniu (DC)"
 
 msgid "{errors:descr_BADREQUEST}"
 msgstr "Există o eroare în cererea către această pagină. Motivul este: %REASON%"
@@ -464,22 +383,13 @@ msgstr "Vă rugăm să completați numele de utilizator și parola"
 msgid "{errors:report_explain}"
 msgstr "Descrieți ce operațiuini executați când a apărut această eroare  ..."
 
-msgid "{attributes:attribute_manager}"
-msgstr "Director/Manager"
-
 msgid "{errors:title_ACSPARAMS}"
 msgstr "Nu a fost furnizat răspunsul SAML"
-
-msgid "{attributes:attribute_edupersonnickname}"
-msgstr "Poreclă"
 
 msgid "{errors:descr_SLOSERVICEPARAMS}"
 msgstr ""
 "Ați accesat interfața <i>SingleLogoutService</i>, dar nu ați furnizat o "
 "cerere de deautentificare sau un răspuns de deautentificare SAML."
-
-msgid "{attributes:attribute_street}"
-msgstr "Strada"
 
 msgid "{login:organization}"
 msgstr "Instituție"
@@ -520,9 +430,6 @@ msgstr "Alegeți instituția de origine"
 msgid "{admin:cfg_check_superfluous}"
 msgstr "Opțiuni inutile în fișierul de configurare"
 
-msgid "{attributes:attribute_labeleduri}"
-msgstr "URI etichetat"
-
 msgid "{errors:report_email}"
 msgstr "Adresa e-mail:"
 
@@ -537,9 +444,6 @@ msgstr ""
 "Inițiatorul acestei cereri nu a furnizat parametrul <i>RelayState</i> "
 "care indică următorul pas."
 
-msgid "{attributes:attribute_noredupersonlegalname}"
-msgstr "Nume legal"
-
 msgid "{status:header_diagnostics}"
 msgstr "Diagnostic SimpleSAMLphp"
 
@@ -549,9 +453,6 @@ msgstr ""
 "dacă sesiunea dumneavoastră a expirat, cât timp mai este până la "
 "expirarea sesiunii precum și toate atributele atașate sesiunii "
 "dumneavoastră."
-
-msgid "{attributes:attribute_schachomeorganization}"
-msgstr "Njumele de domeniu pentru instituția de origine"
 
 msgid "{errors:title_NOTFOUNDREASON}"
 msgstr "Pagina nu a fost găsită"
@@ -573,31 +474,17 @@ msgstr ""
 msgid "{errors:title_NOTVALIDCERT}"
 msgstr "Certificat nevalid"
 
-msgid "{attributes:attribute_edupersonorgunitdn}"
-msgstr "Nume distincitv (DN) al unității organizaționale de origine a persoanei"
-
 msgid "{general:remember}"
 msgstr "Ține minte"
 
 msgid "{disco:selectidp}"
 msgstr "Alegeți furnizorul de identitate"
 
-msgid "{attributes:attribute_postofficebox}"
-msgstr "Cutie poștală"
-
-msgid "{attributes:attribute_edupersonprincipalname}"
-msgstr ""
-"Numele de identificare a persoanei la instituția de origine (de forma "
-"nume_utilizator@domeniu.ro)"
-
 msgid "{login:help_desk_email}"
 msgstr "Trimiteți un mesaj la echipa de suport tehnic"
 
 msgid "{login:help_desk_link}"
 msgstr "Pagina echipei de suport tehnic"
-
-msgid "{attributes:attribute_uid}"
-msgstr "ID utilizator"
 
 msgid "{errors:title_CASERROR}"
 msgstr "Eroare CAS"
@@ -618,12 +505,6 @@ msgstr "Memorează alegerea făcută"
 
 msgid "{admin:metaover_group_metadata.saml20-sp-hosted}"
 msgstr "Furnizor de servicii SAML 2.0 (găzduit)"
-
-msgid "{attributes:attribute_l}"
-msgstr "Localitate"
-
-msgid "{attributes:attribute_edupersonassurance}"
-msgstr "Profilul de asigurare a identității"
 
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
@@ -669,9 +550,6 @@ msgstr "Mesaj"
 msgid "{errors:title_UNKNOWNCERT}"
 msgstr "Certificat necunoscut"
 
-msgid "{attributes:attribute_facsimiletelephonenumber}"
-msgstr "Număr de fax"
-
 msgid "{errors:title_LDAPERROR}"
 msgstr "Eroare LDAP"
 
@@ -691,14 +569,8 @@ msgstr ""
 "administratorul acestui serviciu și să-i furnizați mesajul de eroare de "
 "mai sus."
 
-msgid "{attributes:attribute_mobile}"
-msgstr "Mobil"
-
 msgid "{admin:metaover_group_metadata.shib13-idp-hosted}"
 msgstr "Furnizor de identitate Shib 1.3 (găzduit)"
-
-msgid "{attributes:attribute_preferredlanguage}"
-msgstr "Limba preferată"
 
 msgid "{errors:descr_NOTVALIDCERT}"
 msgstr "Nu ați oferit un certificat valid."
@@ -713,15 +585,6 @@ msgstr "Următoarele câmpuri opționale nu au fost găsite"
 
 msgid "{logout:logout_only}"
 msgstr "Nu, doar %SP%"
-
-msgid "{attributes:attribute_o}"
-msgstr "Denumirea instituției"
-
-msgid "{attributes:attribute_edupersonprimaryorgunitdn}"
-msgstr "Nume distincitv (DN) al unității organizaționale primare a persoanei"
-
-msgid "{attributes:attribute_noredupersonlin}"
-msgstr "Număr de identificare local"
 
 msgid "{login:next}"
 msgstr "Următorul pas"
@@ -744,9 +607,6 @@ msgstr ""
 msgid "{errors:title_NOCERT}"
 msgstr "Lipsește certificatul"
 
-msgid "{attributes:attribute_userpassword}"
-msgstr "Parola utilizatorului în format <i>hash</i>"
-
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "Informația de deautentificare a fost pierdută"
 
@@ -762,12 +622,6 @@ msgstr ""
 "trimise către parteneri de încredere pentru a configura o federație de "
 "încredere."
 
-msgid "{attributes:attribute_schacuserprivateattribute}"
-msgstr "Informații private"
-
-msgid "{status:header_wsfed}"
-msgstr "Exemplu demonstrativ de WS-Fed"
-
 msgid "{admin:metadata_cert}"
 msgstr "Certificate"
 
@@ -776,17 +630,11 @@ msgstr ""
 "Autentificare eșuată: certificatul trimis de browser-ul dumneavoastră nu "
 "este valid sau nu poate fi citit"
 
-msgid "{attributes:attribute_eduorglegalname}"
-msgstr "Denumirea legală a instituției"
-
 msgid "{status:header_shib}"
 msgstr "Demo Shibboleth"
 
 msgid "{admin:metaconv_parse}"
 msgstr "Analizează"
-
-msgid "{attributes:attribute_noreduorgnin}"
-msgstr "Număr organizațional"
 
 msgid "Person's principal name at home organization"
 msgstr ""
@@ -1132,8 +980,8 @@ msgstr ""
 "mai sus."
 
 #, python-format
-msgid "Your session is valid for %SECONDS% seconds from now."
-msgstr "Sesiunea dumneavoastră mai este validă încă %SECONDS%."
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Sesiunea dumneavoastră mai este validă încă %remaining%."
 
 msgid "Domain component (DC)"
 msgstr "Componenta de domeniu (DC)"
@@ -1624,3 +1472,15 @@ msgstr ""
 "Ați accesat interfața <i>Assertion Consumer Service</i> dar nu ați "
 "furnizat răspunsul de autentificare SAML."
 
+
+msgid ""
+"You are now accessing a pre-production system. This authentication setup "
+"is for testing and pre-production verification only. If someone sent you "
+"a link that pointed you here, and you are not <i>a tester</i> you "
+"probably got the wrong link, and should <b>not be here</b>."
+msgstr ""
+"În acest moment accesați un sistem pre-producție. Acest sistem de "
+"autentificare este realizat doar pentru testare și verificare. Dacă ați "
+"primit de la cineva acest link și nu sunteți <i>tester</i>, atunci "
+"probabil ați primit un link greșit și <b>nu</b> ar fi trebuit să ajungeți"
+" aici."

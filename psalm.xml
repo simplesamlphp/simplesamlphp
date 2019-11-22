@@ -1,18 +1,48 @@
 <?xml version="1.0"?>
 <psalm
     name="SimpleSAMLphp"
-    stopOnFirstError="false"
     useDocblockTypes="true"
     totallyTyped="false"
+    hideExternalErrors="true"
+    allowCoercionFromStringToClassConst="true"
+    allowStringToStandInForClass="true"
 >
     <projectFiles>
-        <directory name="lib/SimpleSAML/Utils" />
+        <directory name="lib/SimpleSAML" />
+
+        <!-- Replaces all modules/... with this one-liner for 2.0
+        <directory name="modules" />
+        -->
+        <directory name="modules/admin" />
+        <directory name="modules/core" />
+        <directory name="modules/cron" />
+        <directory name="modules/exampleauth" />
+        <directory name="modules/multiauth" />
+        <directory name="modules/portal" />
+        <directory name="modules/saml" />
+
+        <directory name="tests" />
+
+        <!-- Ignore deprecated classes -->
+        <ignoreFiles>
+            <file name="lib/SimpleSAML/Auth/DefaultAuth.php" />
+            <file name="lib/SimpleSAML/Auth/TimeLimitedToken.php" />
+            <file name="lib/SimpleSAML/Utilities.php" />
+
+            <!-- Ignore deprecated PHP-templates - Remove for 2.0 -->
+            <file name="modules/**/templates/*.tpl.php" />
+            <file name="modules/saml/templates/proxy/*.tpl.php" />
+            <file name="modules/saml/templates/sp/*.tpl.php" />
+
+            <directory name="vendor" />
+        </ignoreFiles>
     </projectFiles>
 
     <issueHandlers>
         <LessSpecificReturnType errorLevel="info" />
 
         <!-- level 3 issues - slightly lazy code writing, but probably low false-negatives -->
+        <DeprecatedClass errorLevel="info" />
         <DeprecatedMethod errorLevel="info" />
 
         <MissingClosureReturnType errorLevel="info" />
@@ -27,6 +57,50 @@
         <MissingParamType errorLevel="info" />
         <UnusedClass errorLevel="info" />
         <PossiblyUnusedMethod errorLevel="info" />
-        <UntypedParam errorLevel="info" />
+
+        <!-- Ignore these errors until we are fully typehinted -->
+        <DocblockTypeContradiction errorLevel="suppress" />
+        <RedundantConditionGivenDocblockType errorLevel="suppress" />
+
+        <!-- See #1141 -->
+        <MissingDependency>
+            <errorLevel type="suppress">
+                <file name="lib/SimpleSAML/HTTP/Router.php" />
+            </errorLevel>
+        </MissingDependency>
+
+        <!-- Ignore UnresolvableInclude on CLI-scripts -->
+        <UnresolvableInclude>
+            <errorLevel type="suppress">
+                <file name="bin/*.php" />
+                <file name="lib/SimpleSAML/Module.php" />
+                <file name="lib/SimpleSAML/XHTML/Template.php" />
+                <file name="modules/*/bin/*.php" />
+                <file name="tests/bootstrap.php" />
+                <file name="tests/routers/configLoader.php" />
+            </errorLevel>
+        </UnresolvableInclude>
+
+        <!-- Ignore MissingFile on www-scripts - Remove for 2.0 -->
+        <MissingFile>
+            <errorLevel type="suppress">
+                <file name="www/*.php" />
+                <file name="modules/*/www/*.php" />
+            </errorLevel>
+        </MissingFile>
+
+        <!-- Suppress PHPunit-issue -->
+        <PropertyNotSetInConstructor>
+            <errorLevel type="suppress">
+                <directory name="tests" />
+            </errorLevel>
+        </PropertyNotSetInConstructor>
     </issueHandlers>
+
+    <stubs>
+        <file name="vendor/simplesamlphp/simplesamlphp-test-framework/stubs/krb5.php" />
+        <file name="vendor/simplesamlphp/simplesamlphp-test-framework/stubs/memcache.php" />
+        <file name="vendor/simplesamlphp/simplesamlphp-test-framework/stubs/memcached.php" />
+        <file name="vendor/simplesamlphp/simplesamlphp-test-framework/stubs/predis.php" />
+    </stubs>
 </psalm>

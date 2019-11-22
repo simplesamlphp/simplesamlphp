@@ -50,12 +50,6 @@ msgstr "Feil under lasting av metadata"
 msgid "{admin:metaconv_title}"
 msgstr "Parser for metadata"
 
-msgid "{attributes:attribute_edupersonentitlement}"
-msgstr "URI som viser til eit sett av rettar til spesifikke ressursar"
-
-msgid "{attributes:attribute_jpegphoto}"
-msgstr "Foto på JPEG-format"
-
 msgid "{admin:cfg_check_noerrors}"
 msgstr "Fann ingen feil"
 
@@ -133,9 +127,6 @@ msgstr ""
 msgid "{logout:default_link_text}"
 msgstr "Gå tilbake til SimpleSAMLphp installasjonssida"
 
-msgid "{admin:metaover_group_metadata.wsfed-idp-remote}"
-msgstr "WS-Federation Identity Provider (Remote)"
-
 msgid "{errors:error_header}"
 msgstr "SimpleSAMLphp feil"
 
@@ -153,17 +144,11 @@ msgstr ""
 "administrator må du sjekka metadata-konfigurasjonen.  Dersom du ikkje er "
 "administrator, ta kontakt med henne."
 
-msgid "{attributes:attribute_edupersonorgdn}"
-msgstr "Eintydig namn (DN) til heimeorganisasjon for brukaren"
-
 msgid "{errors:title_BADREQUEST}"
 msgstr "Feil spørsmål mottatt"
 
 msgid "{status:sessionsize}"
 msgstr "Sesjonsstorleik: %SIZE%"
-
-msgid "{attributes:attribute_postaladdress}"
-msgstr "Postadresse"
 
 msgid "{logout:title}"
 msgstr "Utlogga"
@@ -186,31 +171,16 @@ msgstr "Venter"
 msgid "{admin:cfg_check_header}"
 msgstr "Konfigurasjonssjekk"
 
-msgid "{attributes:attribute_edupersonscopedaffiliation}"
-msgstr "Rolle hos organisasjonen "
-
-msgid "{attributes:attribute_sn}"
-msgstr "Etternamn"
-
 msgid "{admin:debug_sending_message_send}"
 msgstr "Send melding"
 
 msgid "{status:logout}"
 msgstr "Logg ut"
 
-msgid "{attributes:attribute_organisationname}"
-msgstr "Namn på organisasjon"
-
-msgid "{attributes:attribute_telephonenumber}"
-msgstr "Telefon"
-
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr ""
 "Parameter sendt til Discovery Service er ikkje i samsvar med "
 "spesifikasjon."
-
-msgid "{attributes:attribute_mail}"
-msgstr "Epostadresse"
 
 msgid "{errors:descr_CREATEREQUEST}"
 msgstr "Ein feil oppsto i prosessen med laging av SAML-spørsmålet"
@@ -220,9 +190,6 @@ msgstr "Valfrie felt"
 
 msgid "{logout:return}"
 msgstr "Gå tilbake til tenesta"
-
-msgid "{attributes:attribute_displayname}"
-msgstr "Namn slik det normalt blir vist fram"
 
 msgid "{admin:metadata_xmlurl}"
 msgstr "Du kan <a href=\"%METAURL%\">få metadata i XML på ein URL</a>:"
@@ -234,9 +201,6 @@ msgid "{admin:debug_disable_debug_mode}"
 msgstr ""
 "Du kan skru av feilsøkingsmodus i den globale konfigurasjonsfila for "
 "SimpleSAMLphp <tt>config/config.php</tt>."
-
-msgid "{attributes:attribute_homepostaladdress}"
-msgstr "Postadresse heime"
 
 msgid "{disco:select}"
 msgstr "Vel"
@@ -265,9 +229,6 @@ msgstr ""
 msgid "{logout:logout_all_question}"
 msgstr "Vil du logga ut frå alle tenestene?"
 
-msgid "{attributes:attribute_title}"
-msgstr "Tittel"
-
 msgid "{errors:title_NOACCESS}"
 msgstr "Ingen tilgang"
 
@@ -279,9 +240,6 @@ msgstr "Ingen RelayState"
 
 msgid "{errors:descr_NOSTATE}"
 msgstr "Mista tilstandsinformasjon, og klarer ikkje å gjera omstart"
-
-msgid "{attributes:attribute_noredupersonnin}"
-msgstr "Fødselsnummer"
 
 msgid "{login:password}"
 msgstr "Passord"
@@ -309,23 +267,14 @@ msgstr "Feil under prosessering av utloggingsspørsmål"
 msgid "{admin:metaover_errorentry}"
 msgstr "Feil i dette metadatainnslaget"
 
-msgid "{attributes:attribute_edupersonaffiliation}"
-msgstr "Rolle ved organisasjonen"
-
 msgid "{errors:title_METADATANOTFOUND}"
 msgstr "Finn ikkje metadata"
-
-msgid "{attributes:attribute_givenname}"
-msgstr "Fornamn"
 
 msgid "{login:contact_info}"
 msgstr "Kontaktinformasjon:"
 
 msgid "{errors:title_UNHANDLEDEXCEPTION}"
 msgstr "Feilsituasjon som ikkje er riktig handtert"
-
-msgid "{status:validfor}"
-msgstr "Din sesjon er gyldig i %SECONDS% sekund frå no."
 
 msgid "{status:header_saml20_sp}"
 msgstr "Demonstrasjon av SAML 2.0 SP"
@@ -360,29 +309,17 @@ msgstr "Vel konfigurasjonsfil som skal sjekkast"
 msgid "{errors:descr_UNKNOWNCERT}"
 msgstr "Feil autentisering: ukjent sertifikat mottatt frå din browser"
 
-msgid "{attributes:attribute_eduorghomepageuri}"
-msgstr "Organisasjonen si heimeside (URL)"
-
 msgid "{logout:logging_out_from}"
 msgstr "Logger ut frå følgende tenester:"
 
 msgid "{logout:loggedoutfrom}"
 msgstr "Du er ferdig utlogga frå %SP%."
 
-msgid "{admin:metaover_group_metadata.wsfed-sp-hosted}"
-msgstr "WS-Federation Service Provider (Hosted)"
-
 msgid "{errors:errorreport_text}"
 msgstr "Feilrapport har blitt sendt til administrator"
 
-msgid "{attributes:attribute_noredupersonbirthdate}"
-msgstr "Fødselsdato"
-
 msgid "{errors:descr_LOGOUTREQUEST}"
 msgstr "Handteringa av spørsmål om utlogging er ikkje ferdig, det oppsto ein feil."
-
-msgid "{attributes:attribute_edupersontargetedid}"
-msgstr "Persistent anonym ID"
 
 msgid "{logout:success}"
 msgstr "Du er ferdig utlogga frå alle tenestene"
@@ -392,12 +329,6 @@ msgstr "Legg merke til"
 
 msgid "{errors:descr_USERABORTED}"
 msgstr "Innlogging blei avbroten av sluttbrukaren"
-
-msgid "{attributes:attribute_edupersonprimaryaffiliation}"
-msgstr "Primærtilknyting til organisasjonen"
-
-msgid "{attributes:attribute_postalcode}"
-msgstr "Postnummer"
 
 msgid "{errors:descr_CASERROR}"
 msgstr "Feil under kommunikasjon med CAS-tenaren"
@@ -411,9 +342,6 @@ msgstr "SAML 2.0 SP Metadata"
 msgid "{admin:metaconv_converted}"
 msgstr "Konverterte metadata"
 
-msgid "{attributes:attribute_cn}"
-msgstr "Fullt namn"
-
 msgid "{logout:completed}"
 msgstr "Ferdig"
 
@@ -423,17 +351,8 @@ msgstr ""
 "opprinneleg verdi, dette er usikkert.  Gå inn i konfigurasjonen og bytt "
 "passord."
 
-msgid "{attributes:attribute_ou}"
-msgstr "Organisasjonseining"
-
 msgid "{general:service_provider}"
 msgstr "Tenesteleverandør"
-
-msgid "{attributes:attribute_homephone}"
-msgstr "Heimetelefon"
-
-msgid "{attributes:attribute_dc}"
-msgstr "Namneledd (DC)"
 
 msgid "{errors:descr_BADREQUEST}"
 msgstr ""
@@ -455,23 +374,14 @@ msgstr "Skriv inn brukarnamn og passord"
 msgid "{errors:report_explain}"
 msgstr "Forklar kva du gjorde og korleis feilen oppsto..."
 
-msgid "{attributes:attribute_manager}"
-msgstr "Overordna"
-
 msgid "{errors:title_ACSPARAMS}"
 msgstr "Fann ikkje SAML-svar"
-
-msgid "{attributes:attribute_edupersonnickname}"
-msgstr "Kallenamn"
 
 msgid "{errors:descr_SLOSERVICEPARAMS}"
 msgstr ""
 "Du har bruk utloggingstenesta (SingleLogoutService), men har ikkje sendt "
 "utloggingsmelding (SAML LogoutRequest) eller utloggingssvar (SAML "
 "LogoutResponse)"
-
-msgid "{attributes:attribute_street}"
-msgstr "Gateadresse"
 
 msgid "{login:organization}"
 msgstr "Organisasjon"
@@ -513,9 +423,6 @@ msgstr "Vel vertsorganisasjon"
 msgid "{admin:cfg_check_superfluous}"
 msgstr "Overflødig informasjon i konfigurasjonsfila"
 
-msgid "{attributes:attribute_labeleduri}"
-msgstr "URI med valfri tilleggskommentar"
-
 msgid "{errors:report_email}"
 msgstr "E-postadresse:"
 
@@ -530,9 +437,6 @@ msgstr ""
 "Opphavsmann til denne meldinga har ikkje sendt med RelayState-parameter. "
 "Då veit vi ikke kvar vi skal, og det blir feil."
 
-msgid "{attributes:attribute_noredupersonlegalname}"
-msgstr "Namn registrert i Folkeregisteret"
-
 msgid "{status:header_diagnostics}"
 msgstr "Feilsøking av SimpleSAMLphp"
 
@@ -541,9 +445,6 @@ msgstr ""
 "Hei, dette er statussida for SimpleSAMLphp.  Her kan du sjå om sesjonen "
 "din er gyldig, kor lenge han varer og du kan sjå alle attributt som blir "
 "brukte i sesjonen din."
-
-msgid "{attributes:attribute_schachomeorganization}"
-msgstr "Unik ID for organisasjon"
 
 msgid "{errors:title_NOTFOUNDREASON}"
 msgstr "Fann ikkje sida"
@@ -563,29 +464,17 @@ msgstr "For å sjå på detaljane for ein SAML entitet, klikk på SAML entitet"
 msgid "{errors:title_NOTVALIDCERT}"
 msgstr "Ugyldig sertifikat"
 
-msgid "{attributes:attribute_edupersonorgunitdn}"
-msgstr "Eintydig namn (DN) til organisasjonseining for brukaren"
-
 msgid "{general:remember}"
 msgstr "Godta også for framtida"
 
 msgid "{disco:selectidp}"
 msgstr "Vel innloggingsteneste"
 
-msgid "{attributes:attribute_postofficebox}"
-msgstr "Postboks"
-
-msgid "{attributes:attribute_edupersonprincipalname}"
-msgstr "Brukarnamn hos din organisasjon"
-
 msgid "{login:help_desk_email}"
 msgstr "Send epost til brukarstøtte"
 
 msgid "{login:help_desk_link}"
 msgstr "Heimeside for brukarstøtte"
-
-msgid "{attributes:attribute_uid}"
-msgstr "Lokalt brukarnamn"
 
 msgid "{errors:title_CASERROR}"
 msgstr "CAS-feil"
@@ -606,12 +495,6 @@ msgstr "Hugs mitt val"
 
 msgid "{admin:metaover_group_metadata.saml20-sp-hosted}"
 msgstr "SAML 2.0 Service Provider (Hosted)"
-
-msgid "{attributes:attribute_l}"
-msgstr "Stad"
-
-msgid "{attributes:attribute_edupersonassurance}"
-msgstr "Tillitsnivå for autentisering"
 
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
@@ -657,9 +540,6 @@ msgstr "Melding"
 msgid "{errors:title_UNKNOWNCERT}"
 msgstr "Ukjent sertifikat"
 
-msgid "{attributes:attribute_facsimiletelephonenumber}"
-msgstr "Faksnummer"
-
 msgid "{errors:title_LDAPERROR}"
 msgstr "LDAP-feil"
 
@@ -677,14 +557,8 @@ msgstr ""
 "eller ein ukjent feil. Kontakt administrator av tenesta og rapporter "
 "detaljar om feilen."
 
-msgid "{attributes:attribute_mobile}"
-msgstr "Mobiltelefon"
-
 msgid "{admin:metaover_group_metadata.shib13-idp-hosted}"
 msgstr "Shib 1.3 Identity Provider (Hosted)"
-
-msgid "{attributes:attribute_preferredlanguage}"
-msgstr "Førsteval for språk eller målform"
 
 msgid "{errors:descr_NOTVALIDCERT}"
 msgstr "Du har ikkje brukt eit gyldig sertifikat i kommunikasjonen din"
@@ -699,15 +573,6 @@ msgstr "Fann ikkje følgjande valfrie felt"
 
 msgid "{logout:logout_only}"
 msgstr "Nei, logg berre ut frå %SP%"
-
-msgid "{attributes:attribute_o}"
-msgstr "Namn på organisasjon"
-
-msgid "{attributes:attribute_edupersonprimaryorgunitdn}"
-msgstr "Eintydig namn (DN) til primær organisasjonseining for personen"
-
-msgid "{attributes:attribute_noredupersonlin}"
-msgstr "Lokalt brukarnummer (ansattnummer, studentnummer, elevnummer osb)"
 
 msgid "{login:next}"
 msgstr "Neste"
@@ -726,9 +591,6 @@ msgstr "Fann ikkje den aktuelle sida på grunn av %REASON%.  URLen var %URL%"
 msgid "{errors:title_NOCERT}"
 msgstr "Manglar sertifikat"
 
-msgid "{attributes:attribute_userpassword}"
-msgstr "Passord for brukaren (lagra som hash-verdi)"
-
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "Mista utloggingsinformasjon"
 
@@ -744,12 +606,6 @@ msgstr ""
 "metadata-dokumentet til dine partnarar, slik at de kan setja opp ein "
 "tillitsføderasjon."
 
-msgid "{attributes:attribute_schacuserprivateattribute}"
-msgstr "Private informasjonselement"
-
-msgid "{status:header_wsfed}"
-msgstr "Demonstrasjon av WS-Federation SP"
-
 msgid "{admin:metadata_cert}"
 msgstr "Sertifikat"
 
@@ -758,17 +614,11 @@ msgstr ""
 "Feil autentisering: sertifikatet frå browsaren din er ugyldig eller "
 "uleseleg"
 
-msgid "{attributes:attribute_eduorglegalname}"
-msgstr "Formelt namn på organisasjonen"
-
 msgid "{status:header_shib}"
 msgstr "Demonstrasjon av Shibboleth"
 
 msgid "{admin:metaconv_parse}"
 msgstr "Parser"
-
-msgid "{attributes:attribute_noreduorgnin}"
-msgstr "Organisasjonsnummer"
 
 msgid "Hello, Untranslated World!"
 msgstr "Hallo, oversette verd!"
@@ -1112,8 +962,8 @@ msgstr ""
 "detaljar om feilen."
 
 #, python-format
-msgid "Your session is valid for %SECONDS% seconds from now."
-msgstr "Din sesjon er gyldig i %SECONDS% sekund frå no."
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Din sesjon er gyldig i %remaining% sekund frå no."
 
 msgid "Domain component (DC)"
 msgstr "Namneledd (DC)"
@@ -1598,3 +1448,14 @@ msgstr ""
 "Service), men utan å senda SAML autentiseringssvar (Authentication "
 "Response)"
 
+
+msgid ""
+"You are now accessing a pre-production system. This authentication setup "
+"is for testing and pre-production verification only. If someone sent you "
+"a link that pointed you here, and you are not <i>a tester</i> you "
+"probably got the wrong link, and should <b>not be here</b>."
+msgstr ""
+"Du er no inne på eit testsystem.  Denne autentiseringsløysinga er for "
+"testing og beta-drift, ikkje for vanleg drift.  Dersom du har fått peikar"
+" hit og du ikkje er  <i>utviklar</i>, så er du truleg på feil plass og "
+"<i>skulle ikkje vore her</i>."

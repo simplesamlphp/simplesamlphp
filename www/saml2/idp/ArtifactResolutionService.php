@@ -31,7 +31,8 @@ if ($store === false) {
 $binding = new \SAML2\SOAP();
 try {
     $request = $binding->receive();
-} catch (Exception $e) { // TODO: look for a specific exception
+} catch (Exception $e) {
+    // TODO: look for a specific exception
     // This is dirty. Instead of checking the message of the exception, \SAML2\Binding::getCurrentBinding() should throw
     // an specific exception when the binding is unknown, and we should capture that here. Also note that the exception
     // message here is bogus!
@@ -46,7 +47,7 @@ if (!($request instanceof \SAML2\ArtifactResolve)) {
 }
 
 $issuer = $request->getIssuer();
-$spMetadata = $metadata->getMetadataConfig($issuer, 'saml20-sp-remote');
+$spMetadata = $metadata->getMetaDataConfig($issuer, 'saml20-sp-remote');
 
 $artifact = $request->getArtifact();
 

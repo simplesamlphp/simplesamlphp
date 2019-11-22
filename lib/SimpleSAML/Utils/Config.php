@@ -1,5 +1,8 @@
 <?php
+
 namespace SimpleSAML\Utils;
+
+use SimpleSAML\Configuration;
 
 /**
  * Utility class for SimpleSAMLphp configuration management and manipulation.
@@ -8,7 +11,6 @@ namespace SimpleSAML\Utils;
  */
 class Config
 {
-
     /**
      * Resolves a path that may be relative to the cert-directory.
      *
@@ -25,7 +27,7 @@ class Config
             throw new \InvalidArgumentException('Invalid input parameters.');
         }
 
-        $globalConfig = \SimpleSAML\Configuration::getInstance();
+        $globalConfig = Configuration::getInstance();
         $base = $globalConfig->getPathValue('certdir', 'cert/');
         return System::resolvePath($path, $base);
     }
@@ -48,7 +50,7 @@ class Config
      */
     public static function getSecretSalt()
     {
-        $secretSalt = \SimpleSAML\Configuration::getInstance()->getString('secretsalt');
+        $secretSalt = Configuration::getInstance()->getString('secretsalt');
         if ($secretSalt === 'defaultsecretsalt') {
             throw new \InvalidArgumentException('The "secretsalt" configuration option must be set to a secret value.');
         }
@@ -66,11 +68,11 @@ class Config
      */
     public static function getConfigDir()
     {
-        $configDir    = dirname(dirname(dirname(__DIR__))) . '/config';
+        $configDir = dirname(dirname(dirname(__DIR__))) . '/config';
         /** @var string|false $configDirEnv */
         $configDirEnv = getenv('SIMPLESAMLPHP_CONFIG_DIR');
         
-        if($configDirEnv === false) {
+        if ($configDirEnv === false) {
             $configDirEnv = getenv('REDIRECT_SIMPLESAMLPHP_CONFIG_DIR');
         }
         

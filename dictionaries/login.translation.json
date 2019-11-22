@@ -32,9 +32,11 @@
 		"lv": "K\u013c\u016bda",
 		"sr": "Gre\u0161ka",
 		"ro": "Eroare",
-		"xh": "Imposiso",
 		"af": "Fout",
-		"el": "\u03a3\u03c6\u03ac\u03bb\u03bc\u03b1"
+		"el": "\u03a3\u03c6\u03ac\u03bb\u03bc\u03b1",
+		"zu": "Iphutha",
+		"xh": "Impazamo",
+		"ca": "Error"
 	},
 	"user_pass_header": {
 		"no": "Skriv inn brukernavn og passord",
@@ -42,7 +44,7 @@
 		"sv": "Ange ditt anv\u00e4ndarnamn och l\u00f6senord",
 		"es": "Introduzca su nombre de usuario y contrase\u00f1a",
 		"fr": "Entrez votre identifiant et votre mot de passe",
-		"de": "Bitten geben Sie ihren Nutzernamen und Passwort ein",
+		"de": "Bitte geben Sie Ihren Nutzernamen und Ihr Passwort ein",
 		"nl": "Geef je gebruikersnaam en wachtwoord",
 		"lb": "Gid w.e.g Aeren Benotzernumm an d Passwuert an",
 		"sl": "Vnesite svoje uporabni\u0161ko ime in geslo",
@@ -71,7 +73,9 @@
 		"ro": "V\u0103 rug\u0103m s\u0103 completa\u021bi numele de utilizator \u0219i parola",
 		"xh": "Nceda ngenisa igama lakho lomsebenzisi kunye negama lokugqithisa",
 		"af": "Voer jou gebruikersnaam en wagwoord in",
-		"el": "\u0395\u03b9\u03c3\u03ac\u03b3\u03b5\u03c4\u03b5 \u03cc\u03bd\u03bf\u03bc\u03b1 \u03c7\u03c1\u03ae\u03c3\u03c4\u03b7 \u03ba\u03b1\u03b9 \u03ba\u03c9\u03b4\u03b9\u03ba\u03cc \u03c0\u03c1\u03cc\u03c3\u03b2\u03b1\u03c3\u03b7\u03c2"
+		"el": "\u0395\u03b9\u03c3\u03ac\u03b3\u03b5\u03c4\u03b5 \u03cc\u03bd\u03bf\u03bc\u03b1 \u03c7\u03c1\u03ae\u03c3\u03c4\u03b7 \u03ba\u03b1\u03b9 \u03ba\u03c9\u03b4\u03b9\u03ba\u03cc \u03c0\u03c1\u03cc\u03c3\u03b2\u03b1\u03c3\u03b7\u03c2",
+		"zu": "Faka igama lakho lomsebenzisi nephasiwedi",
+		"ca": "Introduïu el vostre nom d’usuari i contrasenya"
 	},
 	"user_pass_text": {
 		"no": "En tjeneste har bedt om bekreftelse p\u00e5 din identitet. Skriv inn ditt brukernavn og passord for \u00e5 autentisere deg.",
@@ -107,7 +111,10 @@
 		"ro": "Un serviciu a solicitat autentificarea dumneavoastr\u0103. V\u0103 rug\u0103m s\u0103 completa\u021bi numele de utilizator \u0219i parola \u00een c\u00e2mpurile de mai jos.",
 		"eu": "Zerbitzu batek kautotu zaitezen eskatzen du. Mesedez, zure erabiltzaile-izena eta pasahitza honako formulario honetan sartu itzazu.",
 		"af": "'n Diens vereis dat jy jouself identifiseer. Voer jou gebruikersnaam en wagwoord in die onderstaande vorm in.",
-		"el": "\u039c\u03b9\u03b1 \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b1 \u03ad\u03c7\u03b5\u03b9 \u03b6\u03b7\u03c4\u03ae\u03c3\u03b5\u03b9 \u03c4\u03b7\u03bd \u03c4\u03b1\u03c5\u03c4\u03bf\u03c0\u03bf\u03af\u03b7\u03c3\u03ae \u03c3\u03b1\u03c2. \u03a0\u03b1\u03c1\u03b1\u03ba\u03b1\u03bb\u03ce \u03b5\u03b9\u03c3\u03ac\u03b3\u03b5\u03c4\u03b5 \u03c4\u03bf \u03cc\u03bd\u03bf\u03bc\u03b1 \u03c7\u03c1\u03ae\u03c3\u03c4\u03b7 \u03ba\u03b1\u03b9 \u03c4\u03bf\u03bd \u03ba\u03c9\u03b4\u03b9\u03ba\u03cc \u03c0\u03c1\u03cc\u03c3\u03b2\u03b1\u03c3\u03ae\u03c2 \u03c3\u03b1\u03c2 \u03c3\u03c4\u03b7\u03bd \u03c0\u03b1\u03c1\u03b1\u03ba\u03ac\u03c4\u03c9 \u03c6\u03cc\u03c1\u03bc\u03b1."
+		"el": "\u039c\u03b9\u03b1 \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b1 \u03ad\u03c7\u03b5\u03b9 \u03b6\u03b7\u03c4\u03ae\u03c3\u03b5\u03b9 \u03c4\u03b7\u03bd \u03c4\u03b1\u03c5\u03c4\u03bf\u03c0\u03bf\u03af\u03b7\u03c3\u03ae \u03c3\u03b1\u03c2. \u03a0\u03b1\u03c1\u03b1\u03ba\u03b1\u03bb\u03ce \u03b5\u03b9\u03c3\u03ac\u03b3\u03b5\u03c4\u03b5 \u03c4\u03bf \u03cc\u03bd\u03bf\u03bc\u03b1 \u03c7\u03c1\u03ae\u03c3\u03c4\u03b7 \u03ba\u03b1\u03b9 \u03c4\u03bf\u03bd \u03ba\u03c9\u03b4\u03b9\u03ba\u03cc \u03c0\u03c1\u03cc\u03c3\u03b2\u03b1\u03c3\u03ae\u03c2 \u03c3\u03b1\u03c2 \u03c3\u03c4\u03b7\u03bd \u03c0\u03b1\u03c1\u03b1\u03ba\u03ac\u03c4\u03c9 \u03c6\u03cc\u03c1\u03bc\u03b1.",
+		"zu": "Isevisi icele ukuthi uziqinisekise. Sicela ufake igama lakho lomsebenzisi nephasiwedi ngohlobo olungezansi.",
+		"xh": "Inkonzo icele ukuba uzingqinisise. Nceda ungenise igama lomsebenzisi nephaswedi yakho kwifomu ngezantsi.",
+		"ca": "Un servei us ha demanat autenticar-vos. Introduïu el vostre nom d’usuari i contrasenya en el formulari següent."
 	},
 	"login_button": {
 		"no": "Logg inn",
@@ -145,11 +152,17 @@
 		"ro": "Autentificare",
 		"xh": "Ngena",
 		"af": "Meld aan",
-		"el": "\u0395\u03af\u03c3\u03bf\u03b4\u03bf\u03c2"
+		"el": "\u0395\u03af\u03c3\u03bf\u03b4\u03bf\u03c2",
+		"zu": "Ngena",
+		"ca": "Inicia la sessió"
 	},
 	"processing": {
 		"es": "Procesando...",
-		"zh-tw": "\u8655\u7406\u4e2d..."
+		"sl": "Procesiranje...",
+		"zh-tw": "\u8655\u7406\u4e2d...",
+		"zu": "Iyacubungula...",
+		"xh": "Iyaprosesa...",
+		"ca": "Processant.."
 	},
 	"username": {
 		"no": "Brukernavn",
@@ -187,7 +200,9 @@
 		"ro": "Nume de utilizator",
 		"xh": "Igama lomsebenzisi",
 		"af": "Gebruikersnaam",
-		"el": "\u038c\u03bd\u03bf\u03bc\u03b1 \u03a7\u03c1\u03ae\u03c3\u03c4\u03b7"
+		"el": "\u038c\u03bd\u03bf\u03bc\u03b1 \u03a7\u03c1\u03ae\u03c3\u03c4\u03b7",
+		"zu": "Igama lomsebenzisi",
+		"ca": "Nom d'usuari"
 	},
 	"organization": {
 		"no": "Organisasjon",
@@ -225,7 +240,9 @@
 		"ro": "Institu\u021bie",
 		"xh": "Umbutho",
 		"af": "Organisasie",
-		"el": "\u039f\u03c1\u03b3\u03b1\u03bd\u03b9\u03c3\u03bc\u03cc\u03c2"
+		"el": "\u039f\u03c1\u03b3\u03b1\u03bd\u03b9\u03c3\u03bc\u03cc\u03c2",
+		"zu": "Inhlangano",
+		"ca": "Organització"
 	},
 	"password": {
 		"no": "Passord",
@@ -263,7 +280,9 @@
 		"ro": "Parola",
 		"xh": "Igama lokugqithisa",
 		"af": "Wagwoord",
-		"el": "\u039a\u03c9\u03b4\u03b9\u03ba\u03cc\u03c2"
+		"el": "\u039a\u03c9\u03b4\u03b9\u03ba\u03cc\u03c2",
+		"zu": "Iphasiwedi",
+		"ca": "Contrasenya"
 	},
 	"help_header": {
 		"no": "Hjelp! Jeg har glemt passordet mitt.",
@@ -299,7 +318,10 @@
 		"sr": "Upomo\u0107! Zaboravio\/la sam svoju lozinku.",
 		"ro": "Nu mai \u0219tiu parola.",
 		"af": "Hulp! Ek het nie my wagwoord onthou nie.",
-		"el": "\u0392\u03bf\u03ae\u03b8\u03b5\u03b9\u03b1! \u0394\u03b5 \u03b8\u03c5\u03bc\u03ac\u03bc\u03b1\u03b9 \u03c4\u03bf\u03bd \u03ba\u03c9\u03b4\u03b9\u03ba\u03cc \u03bc\u03bf\u03c5."
+		"el": "\u0392\u03bf\u03ae\u03b8\u03b5\u03b9\u03b1! \u0394\u03b5 \u03b8\u03c5\u03bc\u03ac\u03bc\u03b1\u03b9 \u03c4\u03bf\u03bd \u03ba\u03c9\u03b4\u03b9\u03ba\u03cc \u03bc\u03bf\u03c5.",
+		"zu": "Siza! Angiyikhumbuli iphasiwedi yami.",
+		"xh": "Ncedani! Andiyikhumbuli iphaswedi yam.",
+		"ca": "Ajuda! No recordo la meva contrasenya."
 	},
 	"help_text": {
 		"no": "Synd! - Uten riktig brukernavn og passord kan du ikke autentisere deg. Det kan v\u00e6re noen som kan hjelpe deg. Fors\u00f8k \u00e5 kontakt brukerst\u00f8tte ved din vertsorganisasjon.",
@@ -335,7 +357,10 @@
 		"ro": "Din p\u0103cate f\u0103r\u0103 nume de utilizator \u0219i parol\u0103 nu v\u0103 pute\u021bi autentifica pentru accesul la acest serviciu. Contacta\u021bi echipa de suport tehnic de la universitatea dumneavoastr\u0103.",
 		"eu": "Zeinen txarto! - Zure erabiltziale-izena eta pasahitza gabe ezin zara identifikatu ezta zerbitzuan sartu ere. Agian bada norbait lagun diezazukeena. Jar zaitez harremanetan erakundeko laguntza zentroarekin!",
 		"af": "Jammer! - Sonder jou gebruikersnaam en wagwoord kan jy jouself nie vir toegang tot die diens identifiseer nie. Dalk is daar iemand wat jou kan help. Raadpleeg die hulplyn by jou organisasie!",
-		"el": "\u039b\u03c5\u03c0\u03bf\u03cd\u03bc\u03b1\u03c3\u03c4\u03b5. \u03a7\u03c9\u03c1\u03af\u03c2 \u03c4\u03bf \u03cc\u03bd\u03bf\u03bc\u03b1 \u03c7\u03c1\u03ae\u03c3\u03c4\u03b7 \u03ba\u03b1\u03b9 \u03c4\u03bf\u03bd \u03ba\u03c9\u03b4\u03b9\u03ba\u03cc \u03c3\u03b1\u03c2, \u03b4\u03b5\u03bd \u03bc\u03c0\u03bf\u03c1\u03b5\u03af\u03c4\u03b5 \u03bd\u03b1 \u03c4\u03b1\u03c5\u03c4\u03bf\u03c0\u03bf\u03b9\u03b7\u03b8\u03b5\u03af\u03c4\u03b5 \u03ce\u03c3\u03c4\u03b5 \u03bd\u03b1 \u03b1\u03c0\u03bf\u03ba\u03c4\u03ae\u03c3\u03b5\u03c4\u03b5 \u03c0\u03c1\u03cc\u03c3\u03b2\u03b1\u03c3\u03b7 \u03c3\u03c4\u03b7\u03bd \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b1. \u03a3\u03c5\u03bc\u03b2\u03bf\u03c5\u03bb\u03b5\u03c5\u03c4\u03b5\u03af\u03c4\u03b5 \u03c4\u03b7\u03bd \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b1 \u03b1\u03c1\u03c9\u03b3\u03ae\u03c2 \u03c7\u03c1\u03b7\u03c3\u03c4\u03ce\u03bd \u0028\u0068\u0065\u006c\u0070 \u0064\u0065\u0073\u006b\u0029 \u03c4\u03bf\u03c5 \u03bf\u03c1\u03b3\u03b1\u03bd\u03b9\u03c3\u03bc\u03bf\u03cd \u03c3\u03b1\u03c2."
+		"el": "\u039b\u03c5\u03c0\u03bf\u03cd\u03bc\u03b1\u03c3\u03c4\u03b5. \u03a7\u03c9\u03c1\u03af\u03c2 \u03c4\u03bf \u03cc\u03bd\u03bf\u03bc\u03b1 \u03c7\u03c1\u03ae\u03c3\u03c4\u03b7 \u03ba\u03b1\u03b9 \u03c4\u03bf\u03bd \u03ba\u03c9\u03b4\u03b9\u03ba\u03cc \u03c3\u03b1\u03c2, \u03b4\u03b5\u03bd \u03bc\u03c0\u03bf\u03c1\u03b5\u03af\u03c4\u03b5 \u03bd\u03b1 \u03c4\u03b1\u03c5\u03c4\u03bf\u03c0\u03bf\u03b9\u03b7\u03b8\u03b5\u03af\u03c4\u03b5 \u03ce\u03c3\u03c4\u03b5 \u03bd\u03b1 \u03b1\u03c0\u03bf\u03ba\u03c4\u03ae\u03c3\u03b5\u03c4\u03b5 \u03c0\u03c1\u03cc\u03c3\u03b2\u03b1\u03c3\u03b7 \u03c3\u03c4\u03b7\u03bd \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b1. \u03a3\u03c5\u03bc\u03b2\u03bf\u03c5\u03bb\u03b5\u03c5\u03c4\u03b5\u03af\u03c4\u03b5 \u03c4\u03b7\u03bd \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b1 \u03b1\u03c1\u03c9\u03b3\u03ae\u03c2 \u03c7\u03c1\u03b7\u03c3\u03c4\u03ce\u03bd \u0028\u0068\u0065\u006c\u0070 \u0064\u0065\u0073\u006b\u0029 \u03c4\u03bf\u03c5 \u03bf\u03c1\u03b3\u03b1\u03bd\u03b9\u03c3\u03bc\u03bf\u03cd \u03c3\u03b1\u03c2.",
+		"xh": "Ngaphandle kwegama lomsebenzisi nephaswedi yakho awukwazi ukuzingqinisisa ukuze ufumane ufikelelo kwinkonzo. Kusenokuba ukho umntu onokukunceda. Qhagamshelana nedesika yoncedo kumbutho wakho!",
+		"zu": "Ngaphandle kwegama lakho lomsebenzisi nephasiwedi awukwazi ukuziqinisekisa ukuze ufinyelele isevisi. Kungase kube khona ozokusiza. Thinta ideski losizo enhlanganweni yakho!",
+		"ca": "Sense el vostre nom d'usuari i contrasenya, no podeu autenticar-vos per accedir al servei. Pot ser que algú us pugui ajudar. Poseu-vos en contacte amb el centre d'atenció a l'usuari"
 	},
 	"error_nopassword": {
 		"no": "Du kontaktet loginsiden, men passordet ble ikke sendt med. Fors\u00f8k igjen.",
@@ -371,7 +396,10 @@
 		"ro": "A\u021bi trimis informa\u021bii c\u0103tre pagina de autentificare dar din motive necunoscute parola nu a fost trimis\u0103. V\u0103 rug\u0103m s\u0103 \u00eencerca\u021bi din nou.",
 		"eu": "Sarrera orrira zerbait bidali duzu baina, arrazoiren bategatik, pasahitza ez da bidali.Saia zaitez berriro, mesedez.",
 		"af": "Jy het probeer aanmeld maar jou wagwoord is nie verstuur nie, probeer asb. weer.",
-		"el": "\u039f \u03ba\u03c9\u03b4\u03b9\u03ba\u03cc\u03c2 \u03c0\u03c1\u03cc\u03c3\u03b2\u03b1\u03c3\u03b7\u03c2 \u03b4\u03b5\u03bd \u03b5\u03c3\u03c4\u03ac\u03bb\u03b7. \u03a0\u03b1\u03c1\u03b1\u03ba\u03b1\u03bb\u03ce, \u03c0\u03c1\u03bf\u03c3\u03c0\u03b1\u03b8\u03ae\u03c3\u03c4\u03b5 \u03be\u03b1\u03bd\u03ac."
+		"el": "\u039f \u03ba\u03c9\u03b4\u03b9\u03ba\u03cc\u03c2 \u03c0\u03c1\u03cc\u03c3\u03b2\u03b1\u03c3\u03b7\u03c2 \u03b4\u03b5\u03bd \u03b5\u03c3\u03c4\u03ac\u03bb\u03b7. \u03a0\u03b1\u03c1\u03b1\u03ba\u03b1\u03bb\u03ce, \u03c0\u03c1\u03bf\u03c3\u03c0\u03b1\u03b8\u03ae\u03c3\u03c4\u03b5 \u03be\u03b1\u03bd\u03ac.",
+		"zu": "Uthumele okuthile ekhasini lokungena, kodwa ngasizathu simbe iphasiwedi ayizange ithunyelwe. Sicela uzame futhi.",
+		"xh": "Uthumele into kwikhasi lokungena, kodwa ngesizathu esithile iphaswedi ayithunyelwanga. Nceda uzame kwakhona.",
+		"ca": "Heu enviat alguna cosa a la pàgina d’inici de sessió, però per alguna raó la contrasenya no s’ha enviat. Torneu-ho a provar."
 	},
 	"error_wrongpassword": {
 		"no": "Feil brukernavn eller passord.",
@@ -409,7 +437,9 @@
 		"ro": "Nume de utilizator incorect sau parola incorect\u0103.",
 		"xh": "Awungenanga ngoba igama olisebenzisayo okanye isigqithisi asifakwanga kakuhle.",
 		"af": "Verkeerde gebruikersnaam of wagwoord.",
-		"el": "\u03a4\u03bf \u03cc\u03bd\u03bf\u03bc\u03b1 \u03c7\u03c1\u03ae\u03c3\u03c4\u03b7 \u03ae \u03bf \u03ba\u03c9\u03b4\u03b9\u03ba\u03cc\u03c2 \u03c0\u03c1\u03cc\u03c3\u03b2\u03b1\u03c3\u03b7\u03c2 \u03b5\u03af\u03bd\u03b1\u03b9 \u03bb\u03ac\u03b8\u03bf\u03c2."
+		"el": "\u03a4\u03bf \u03cc\u03bd\u03bf\u03bc\u03b1 \u03c7\u03c1\u03ae\u03c3\u03c4\u03b7 \u03ae \u03bf \u03ba\u03c9\u03b4\u03b9\u03ba\u03cc\u03c2 \u03c0\u03c1\u03cc\u03c3\u03b2\u03b1\u03c3\u03b7\u03c2 \u03b5\u03af\u03bd\u03b1\u03b9 \u03bb\u03ac\u03b8\u03bf\u03c2.",
+		"zu": "Igama lomsebenzisi noma iphasiwedi engalungile.",
+		"ca": "Nom d'usuari o contrasenya incorrecta."
 	},
 	"contact_info": {
 		"no": "Kontaktinformasjon:",
@@ -444,7 +474,10 @@
 		"sr": "Kontakt podaci:",
 		"ro": "Informa\u021bii de contact:",
 		"af": "Kontak detail:",
-		"el": "\u03a3\u03c4\u03bf\u03b9\u03c7\u03b5\u03af\u03b1 \u03b5\u03c0\u03b9\u03ba\u03bf\u03b9\u03bd\u03c9\u03bd\u03af\u03b1\u03c2:"
+		"el": "\u03a3\u03c4\u03bf\u03b9\u03c7\u03b5\u03af\u03b1 \u03b5\u03c0\u03b9\u03ba\u03bf\u03b9\u03bd\u03c9\u03bd\u03af\u03b1\u03c2:",
+		"zu": "Ulwazi lokuxhumana:",
+		"xh": "Inkcazelo yoqhagamshelwano:",
+		"ca": "Informació de contacte:"
 	},
 	"select_home_org": {
 		"no": "Velg vertsorganisasjon",
@@ -479,7 +512,10 @@
 		"ro": "Alege\u021bi institu\u021bia de origine",
 		"eu": "Hautatu zure jatorrizko erakundea",
 		"af": "Kies jou tuisorganisasie",
-		"el": "\u0395\u03c0\u03b9\u03bb\u03bf\u03b3\u03ae \u03bf\u03b9\u03ba\u03b5\u03af\u03bf\u03c5 \u03c6\u03bf\u03c1\u03ad\u03b1"
+		"el": "\u0395\u03c0\u03b9\u03bb\u03bf\u03b3\u03ae \u03bf\u03b9\u03ba\u03b5\u03af\u03bf\u03c5 \u03c6\u03bf\u03c1\u03ad\u03b1",
+		"xh": "Khetha umbutho wakho wekhaya",
+		"zu": "Khetha inhlangano yakho yasekhaya",
+		"ca": "Trieu la vostra organització principal"
 	},
 	"change_home_org_title": {
 		"no": "Endre din vertsorganisasjon",
@@ -514,7 +550,10 @@
 		"ro": "Modifica\u021bi institu\u021bia de origine",
 		"eu": "Zure jatorrizko erakundea aldatu",
 		"af": "Verander jou tuisorganisasie",
-		"el": "\u0391\u03bb\u03bb\u03b1\u03b3\u03ae \u03bf\u03b9\u03ba\u03b5\u03af\u03bf\u03c5 \u03c6\u03bf\u03c1\u03ad\u03b1"
+		"el": "\u0391\u03bb\u03bb\u03b1\u03b3\u03ae \u03bf\u03b9\u03ba\u03b5\u03af\u03bf\u03c5 \u03c6\u03bf\u03c1\u03ad\u03b1",
+		"xh": "Tshintsha umbutho wakho wekhaya",
+		"zu": "Shintsha inhlangano yakho yasekhaya",
+		"ca": "Canvieu la vostra organització principal"
 	},
 	"change_home_org_text": {
 		"no": "Du har valgt <b>%HOMEORG%<\/b> som din vertsorganisasjon. Dersom dette er feil kan du velge en annen.",
@@ -549,7 +588,10 @@
 		"ro": "A\u021bi ales ca institu\u021bie de origine<b>%HOMEORG%<\/b>. Dac\u0103 nu este corect v\u0103 rug\u0103m s\u0103 alege\u021bi alt\u0103 institu\u021bie.",
 		"eu": "<b>%HOMEORG%<\/b> hautatu duzu zure jatorrizko erakunde bezala. Informazio hau okerra bada beste bat hautatu dezakezu.",
 		"af": "Jy het <b>%HOMEORG%<\/b> gekies as jou tuisorganisasie. As dit is verkeerd jy kan 'n ander een te kies.",
-		"el": "\u0395\u03c0\u03b9\u03bb\u03b5\u03b3\u03bc\u03ad\u03bd\u03bf\u03c2 \u03bf\u03b9\u03ba\u03b5\u03af\u03bf\u03c2 \u03c6\u03bf\u03c1\u03ad\u03b1\u03c2: <b>%HOMEORG%<\/b>."
+		"el": "\u0395\u03c0\u03b9\u03bb\u03b5\u03b3\u03bc\u03ad\u03bd\u03bf\u03c2 \u03bf\u03b9\u03ba\u03b5\u03af\u03bf\u03c2 \u03c6\u03bf\u03c1\u03ad\u03b1\u03c2: <b>%HOMEORG%<\/b>.",
+		"zu": "Ukhethe okuthi <b>%HOMEORG%</b> njengenhlangano yakho yasekhaya. Uma lokhu kungalungile ungase ukhethe enye.",
+		"xh": "Uye wakhetha u-<b>%HOMEORG%</b> njengombutho wakho wekhaya. Ukuba oku akuchanekanga usenokukhetha omnye.",
+		"ca": "Heu triat <b>%HOMEORG%<\/b> com la vostra organització principal. Si això no és correcte, podeu triar-ne una altra."
 	},
 	"change_home_org_button": {
 		"no": "Velg vertsorganisasjon",
@@ -584,7 +626,10 @@
 		"ro": "Alege\u021bi institu\u021bia de origine",
 		"eu": "Jatorrizko erakundea hautatu",
 		"af": "Kies tuisorganisasie",
-		"el": "\u0395\u03c0\u03b9\u03bb\u03bf\u03b3\u03ae \u03bf\u03b9\u03ba\u03b5\u03af\u03bf\u03c5 \u03c6\u03bf\u03c1\u03ad\u03b1"
+		"el": "\u0395\u03c0\u03b9\u03bb\u03bf\u03b3\u03ae \u03bf\u03b9\u03ba\u03b5\u03af\u03bf\u03c5 \u03c6\u03bf\u03c1\u03ad\u03b1",
+		"xh": "Khetha umbutho wekhaya",
+		"zu": "Khetha inhlangano yasekhaya",
+		"ca": "Escull la teva organització principal"
 	},
 	"help_desk_link": {
 		"no": "Hjemmesiden til brukerst\u00f8tte",
@@ -619,7 +664,10 @@
 		"ro": "Pagina echipei de suport tehnic",
 		"eu": "Laguntza teknikoaren orria ",
 		"af": "Hulplyn-tuisblad",
-		"el": "\u03a3\u03b5\u03bb\u03af\u03b4\u03b1 \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b1\u03c2 \u03b1\u03c1\u03c9\u03b3\u03ae\u03c2 \u03c7\u03c1\u03b7\u03c3\u03c4\u03ce\u03bd"
+		"el": "\u03a3\u03b5\u03bb\u03af\u03b4\u03b1 \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b1\u03c2 \u03b1\u03c1\u03c9\u03b3\u03ae\u03c2 \u03c7\u03c1\u03b7\u03c3\u03c4\u03ce\u03bd",
+		"zu": "Ikhasi lasekhaya ledeski losizo",
+		"xh": "Ikhasi lekhaya ledesika yoncedo",
+		"ca": "Pàgina d'inici del centre d'atenció a l'usuari"
 	},
 	"help_desk_email": {
 		"no": "Send e-post til brukerst\u00f8tte",
@@ -654,7 +702,10 @@
 		"ro": "Trimite\u021bi un mesaj la echipa de suport tehnic",
 		"eu": "Bidali posta laguntza teknikoari ",
 		"af": "Stuur e-pos aan hulplyn",
-		"el": "\u0391\u03c0\u03bf\u03c3\u03c4\u03bf\u03bb\u03ae \u0065\u006d\u0061\u0069\u006c \u03c3\u03c4\u03b7\u03bd \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b1 \u03b1\u03c1\u03c9\u03b3\u03ae\u03c2 \u03c7\u03c1\u03b7\u03c3\u03c4\u03ce\u03bd"
+		"el": "\u0391\u03c0\u03bf\u03c3\u03c4\u03bf\u03bb\u03ae \u0065\u006d\u0061\u0069\u006c \u03c3\u03c4\u03b7\u03bd \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b1 \u03b1\u03c1\u03c9\u03b3\u03ae\u03c2 \u03c7\u03c1\u03b7\u03c3\u03c4\u03ce\u03bd",
+		"xh": "Thumela i-imeyile kwidesika yoncedo",
+		"zu": "Thumela i-imeyili edeskini losizo",
+		"ca": "Envia un correu electrònic el centre d'atenció a l'usuari"
 	},
 	"next": {
 		"no": "Fortsett",
@@ -690,10 +741,13 @@
 		"eu": "Hurrengoa",
 		"xh": "Olandelayo",
 		"af": "Volgende",
-		"el": "\u0395\u03c0\u03cc\u03bc\u03b5\u03bd\u03bf"
+		"el": "\u0395\u03c0\u03cc\u03bc\u03b5\u03bd\u03bf",
+		"zu": "Okulandelayo",
+		"ca": "Següent"
 	},
 	"remember_username": {
 		"es": "Recordar mi nombre de usuario",
+        "de": "Nutzername merken",
 		"hu": "Eml\u00e9kezzen a felhaszn\u00e1l\u00f3nevemre",
 		"ru": "\u0417\u0430\u043f\u043e\u043c\u043d\u0438\u0442\u044c \u043c\u043e\u0451 \u0438\u043c\u044f \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044f",
 		"zh-tw": "\u8a18\u4f4f\u6211\u7684\u4f7f\u7528\u8005\u540d\u7a31",
@@ -701,10 +755,15 @@
 		"da": "Husk mit brugernavn",
 		"af": "Onthou my gebruikersnaam",
 		"pt-br": "Lembrar meu nome de usu\u00e1rio",
-		"el": "\u039d\u03b1 \u03b8\u03c5\u03bc\u03ac\u03c3\u03b1\u03b9 \u03c4\u03bf \u03cc\u03bd\u03bf\u03bc\u03b1 \u03c7\u03c1\u03ae\u03c3\u03c4\u03b7"
+		"el": "\u039d\u03b1 \u03b8\u03c5\u03bc\u03ac\u03c3\u03b1\u03b9 \u03c4\u03bf \u03cc\u03bd\u03bf\u03bc\u03b1 \u03c7\u03c1\u03ae\u03c3\u03c4\u03b7",
+		"zu": "Khumbula igama lami lomsebenzisi",
+		"xh": "Khumbula igama lomsebenzisi lam",
+		"sl": "Zapomni si moje uporabniško ime",
+		"ca": "Recorda el meu nom d’usuari"
 	},
 	"remember_me": {
 		"es": "Recordarme",
+        "de": "Angemeldet bleiben",
 		"hu": "Eml\u00e9kezzen r\u00e1m",
 		"ru": "\u0417\u0430\u043f\u043e\u043c\u043d\u0438\u0442\u044c \u043c\u0435\u043d\u044f",
 		"zh-tw": "\u8a18\u4f4f\u6211",
@@ -712,6 +771,13 @@
 		"da": "Husk mig",
 		"af": "Onthou my",
 		"pt-br": "Lembre-me",
-		"el": "\u039d\u03b1 \u03bc\u03b5 \u03b8\u03c5\u03bc\u03ac\u03c3\u03b1\u03b9"
-	}
+		"el": "\u039d\u03b1 \u03bc\u03b5 \u03b8\u03c5\u03bc\u03ac\u03c3\u03b1\u03b9",
+		"xh": "Ndikhumbule",
+		"zu": "Ngikhumbule",
+		"sl": "Zapomni si me",
+		"ca": "Recorda'm"
+	},
+	"remember_organization": {
+		"ca": "Recorda la meva organització principal"
+    }
 }

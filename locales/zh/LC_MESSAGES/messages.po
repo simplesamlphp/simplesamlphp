@@ -48,12 +48,6 @@ msgstr "载入元信息时发生错误"
 msgid "{admin:metaconv_title}"
 msgstr "元信息分析器"
 
-msgid "{attributes:attribute_edupersonentitlement}"
-msgstr "关于服务的权利"
-
-msgid "{attributes:attribute_jpegphoto}"
-msgstr "JPEG图片"
-
 msgid "{admin:cfg_check_noerrors}"
 msgstr "没有发现错误"
 
@@ -111,9 +105,6 @@ msgstr "太糟糕了！-没有你的用户名和密码你将不能访问该服�
 msgid "{logout:default_link_text}"
 msgstr "返回SimpleSAMLphp安装页面"
 
-msgid "{admin:metaover_group_metadata.wsfed-idp-remote}"
-msgstr "WS-Federation 身份提供者（远程）"
-
 msgid "{errors:error_header}"
 msgstr "SimpleSAMLphp错误"
 
@@ -126,17 +117,11 @@ msgstr "LDAP是一个用户数据库，当你试图登录时，我们需要连�
 msgid "{errors:descr_METADATA}"
 msgstr "你的SimpleSAMLphp配置错误，如果你是该服务的管理员，那么请确认你的配置是正确的"
 
-msgid "{attributes:attribute_edupersonorgdn}"
-msgstr "人的家庭组织的分辨名称（DN）"
-
 msgid "{errors:title_BADREQUEST}"
 msgstr "收到了错误的请求"
 
 msgid "{status:sessionsize}"
 msgstr "Session 大小: %SIZE%"
-
-msgid "{attributes:attribute_postaladdress}"
-msgstr "邮政地址"
 
 msgid "{logout:title}"
 msgstr "退出"
@@ -159,29 +144,14 @@ msgstr "保持"
 msgid "{admin:cfg_check_header}"
 msgstr "配置检查"
 
-msgid "{attributes:attribute_edupersonscopedaffiliation}"
-msgstr "家庭联络地址"
-
-msgid "{attributes:attribute_sn}"
-msgstr "姓"
-
 msgid "{admin:debug_sending_message_send}"
 msgstr "提交信息"
 
 msgid "{status:logout}"
 msgstr "退出"
 
-msgid "{attributes:attribute_organisationname}"
-msgstr "组织名称"
-
-msgid "{attributes:attribute_telephonenumber}"
-msgstr "电话号码"
-
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "发送给搜寻服务的参数不符合规范"
-
-msgid "{attributes:attribute_mail}"
-msgstr "邮箱"
 
 msgid "{errors:descr_CREATEREQUEST}"
 msgstr "在创建SAML请求中发生了一个错误"
@@ -192,9 +162,6 @@ msgstr "选项区域"
 msgid "{logout:return}"
 msgstr "返回至服务"
 
-msgid "{attributes:attribute_displayname}"
-msgstr "显示名称"
-
 msgid "{admin:metadata_xmlurl}"
 msgstr "你可以在 <a href=\"%METAURL%\">获取元信息XML</a>"
 
@@ -203,9 +170,6 @@ msgstr "是的，所有的服务"
 
 msgid "{admin:debug_disable_debug_mode}"
 msgstr "你可以关闭调试模式，在SimpleSAMLphp全局配置文件<tt>config/config.php</tt>中"
-
-msgid "{attributes:attribute_homepostaladdress}"
-msgstr "家庭邮政地址"
 
 msgid "{disco:select}"
 msgstr "选择"
@@ -231,9 +195,6 @@ msgstr "该身份提供者接受到了一个来自服务提供者的认证请求
 msgid "{logout:logout_all_question}"
 msgstr "你想同时从上面的这些服务中退出吗？"
 
-msgid "{attributes:attribute_title}"
-msgstr "标题"
-
 msgid "{errors:title_NOACCESS}"
 msgstr "禁止访问"
 
@@ -245,9 +206,6 @@ msgstr "无依赖状态"
 
 msgid "{errors:descr_NOSTATE}"
 msgstr "状态信息丢失，并且无法重新请求"
-
-msgid "{attributes:attribute_noredupersonnin}"
-msgstr "身份证号码"
 
 msgid "{login:password}"
 msgstr "密码"
@@ -273,23 +231,14 @@ msgstr "处理退出请求时发生错误"
 msgid "{admin:metaover_errorentry}"
 msgstr "该元信息实体存在错误"
 
-msgid "{attributes:attribute_edupersonaffiliation}"
-msgstr "联络方式"
-
 msgid "{errors:title_METADATANOTFOUND}"
 msgstr "没有找到元信息"
-
-msgid "{attributes:attribute_givenname}"
-msgstr "名"
 
 msgid "{login:contact_info}"
 msgstr "联系方式"
 
 msgid "{errors:title_UNHANDLEDEXCEPTION}"
 msgstr "未处理的异常"
-
-msgid "{status:validfor}"
-msgstr "你的会话在%SECONDS%秒内有效"
 
 msgid "{status:header_saml20_sp}"
 msgstr "SAML 2.0 SP演示案例"
@@ -321,29 +270,17 @@ msgstr "选择一个配置文件用于检测"
 msgid "{errors:descr_UNKNOWNCERT}"
 msgstr "认证失败：你的浏览器发送的是未知的证书"
 
-msgid "{attributes:attribute_eduorghomepageuri}"
-msgstr "组织的首页"
-
 msgid "{logout:logging_out_from}"
 msgstr "从下列服务中退出"
 
 msgid "{logout:loggedoutfrom}"
 msgstr "你已成功从%SP%退出"
 
-msgid "{admin:metaover_group_metadata.wsfed-sp-hosted}"
-msgstr "WS-Federation 服务提供者（本地）"
-
 msgid "{errors:errorreport_text}"
 msgstr "错误报告已经发送给管理员"
 
-msgid "{attributes:attribute_noredupersonbirthdate}"
-msgstr "生日"
-
 msgid "{errors:descr_LOGOUTREQUEST}"
 msgstr "试图处理退出请求时发生了一个错误"
-
-msgid "{attributes:attribute_edupersontargetedid}"
-msgstr "持续的匿名ID"
 
 msgid "{logout:success}"
 msgstr "你成功的退出了上面列表中的服务"
@@ -353,12 +290,6 @@ msgstr "通告"
 
 msgid "{errors:descr_USERABORTED}"
 msgstr "认证被用户中止"
-
-msgid "{attributes:attribute_edupersonprimaryaffiliation}"
-msgstr "主要的联系方式"
-
-msgid "{attributes:attribute_postalcode}"
-msgstr "邮政编码"
 
 msgid "{errors:descr_CASERROR}"
 msgstr "在和CAS服务器的通讯中发生了错误"
@@ -372,26 +303,14 @@ msgstr "SAML 2.0 SP 元信息"
 msgid "{admin:metaconv_converted}"
 msgstr "转换过的元信息"
 
-msgid "{attributes:attribute_cn}"
-msgstr "常用名字"
-
 msgid "{logout:completed}"
 msgstr "完成"
 
 msgid "{errors:descr_NOTSET}"
 msgstr "你没有修改配置文件中的默认密码，请修改该密码"
 
-msgid "{attributes:attribute_ou}"
-msgstr "组织单位"
-
 msgid "{general:service_provider}"
 msgstr "服务提供者"
-
-msgid "{attributes:attribute_homephone}"
-msgstr "家庭电话"
-
-msgid "{attributes:attribute_dc}"
-msgstr "Opened the web browser with tabs saved from the previous session.域组件（DC）"
 
 msgid "{errors:descr_BADREQUEST}"
 msgstr "请求该页的请求存在错误，原因：%REASON%"
@@ -411,20 +330,11 @@ msgstr "输入你的用户名和密码"
 msgid "{errors:report_explain}"
 msgstr "说明一下，你正在做什么的时候发生了这个错误"
 
-msgid "{attributes:attribute_manager}"
-msgstr "管理员"
-
 msgid "{errors:title_ACSPARAMS}"
 msgstr "没有提供SAML应答"
 
-msgid "{attributes:attribute_edupersonnickname}"
-msgstr "昵称"
-
 msgid "{errors:descr_SLOSERVICEPARAMS}"
 msgstr "你访问了SingleLogoutService接口，但是并没有提供一个SAML的LogoutRequest或者LogoutResponse"
-
-msgid "{attributes:attribute_street}"
-msgstr "街道"
 
 msgid "{login:organization}"
 msgstr "组织"
@@ -459,9 +369,6 @@ msgstr "选择你的家庭组织"
 msgid "{admin:cfg_check_superfluous}"
 msgstr "配置文件中拥有过多的选项"
 
-msgid "{attributes:attribute_labeleduri}"
-msgstr "标签URI"
-
 msgid "{errors:report_email}"
 msgstr "E-mail地址"
 
@@ -474,17 +381,11 @@ msgstr "没有设置密码"
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr "这个请求的发起人没有提供RelayState参数，以说明下一步处理"
 
-msgid "{attributes:attribute_noredupersonlegalname}"
-msgstr "正式名称"
-
 msgid "{status:header_diagnostics}"
 msgstr "SimpleSAMLphp 诊断"
 
 msgid "{status:intro}"
 msgstr "嗨，这是SimpleSAMLphp状态页。这里你可以看到，如果您的会话超时，它持续多久，直到超时和连接到您的会话的所有属性。"
-
-msgid "{attributes:attribute_schachomeorganization}"
-msgstr "首页组织的域名"
 
 msgid "{errors:title_NOTFOUNDREASON}"
 msgstr "页面没有找到"
@@ -504,29 +405,17 @@ msgstr "想要查看SAML实体的详细情况，请点击SAML实体载入器"
 msgid "{errors:title_NOTVALIDCERT}"
 msgstr "无效的证书"
 
-msgid "{attributes:attribute_edupersonorgunitdn}"
-msgstr "人的家组织单位的辨别名称（DN）"
-
 msgid "{general:remember}"
 msgstr "记住"
 
 msgid "{disco:selectidp}"
 msgstr "选择你的身份提供者"
 
-msgid "{attributes:attribute_postofficebox}"
-msgstr "邮政信箱"
-
-msgid "{attributes:attribute_edupersonprincipalname}"
-msgstr "人的主要在家中组织的名称"
-
 msgid "{login:help_desk_email}"
 msgstr "发送Email给服务台"
 
 msgid "{login:help_desk_link}"
 msgstr "服务台的主页"
-
-msgid "{attributes:attribute_uid}"
-msgstr "用户ID"
 
 msgid "{errors:title_CASERROR}"
 msgstr "CAS错误"
@@ -545,12 +434,6 @@ msgstr "记住我的选择"
 
 msgid "{admin:metaover_group_metadata.saml20-sp-hosted}"
 msgstr "SAML 2.0 服务提供者（本地）"
-
-msgid "{attributes:attribute_l}"
-msgstr "位置"
-
-msgid "{attributes:attribute_edupersonassurance}"
-msgstr "可靠验证配置文件"
 
 msgid "{admin:metadata_simplesamlformat}"
 msgstr "如果你想在其他网站使用的SimpleSAMLphp，那么你应该使用SimpleSAMLphp扁平的文件格式"
@@ -594,9 +477,6 @@ msgstr "信息"
 msgid "{errors:title_UNKNOWNCERT}"
 msgstr "未知的证书"
 
-msgid "{attributes:attribute_facsimiletelephonenumber}"
-msgstr "传真号码"
-
 msgid "{errors:title_LDAPERROR}"
 msgstr "LDAP错误"
 
@@ -609,14 +489,8 @@ msgstr "没有找到给定的URL：%URL%"
 msgid "{errors:howto_text}"
 msgstr "这个错误可能是由于一些意想不到的行为或者是SimpleSAMLphp的配置错误导致的，请联系这个登录服务器的管理员并把上面的错误消息发送给他们"
 
-msgid "{attributes:attribute_mobile}"
-msgstr "手机"
-
 msgid "{admin:metaover_group_metadata.shib13-idp-hosted}"
 msgstr "Shib 1.3 认证提供者（本地）"
-
-msgid "{attributes:attribute_preferredlanguage}"
-msgstr "首选语言"
 
 msgid "{errors:descr_NOTVALIDCERT}"
 msgstr "你没有提交一个有效的证书"
@@ -629,15 +503,6 @@ msgstr "下列必需的选项区域没有找到"
 
 msgid "{logout:logout_only}"
 msgstr "不，仅%SP%"
-
-msgid "{attributes:attribute_o}"
-msgstr "组织名称"
-
-msgid "{attributes:attribute_edupersonprimaryorgunitdn}"
-msgstr "人的主要组织单位的辨别名称（DN）"
-
-msgid "{attributes:attribute_noredupersonlin}"
-msgstr "本地身份号码"
 
 msgid "{login:next}"
 msgstr "下一步"
@@ -654,9 +519,6 @@ msgstr "给定的页面没有找到，原因: %REASON%; URL: %URL%"
 msgid "{errors:title_NOCERT}"
 msgstr "无证书"
 
-msgid "{attributes:attribute_userpassword}"
-msgstr "用户密码的HASH值"
-
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "丢失了退出消息"
 
@@ -669,29 +531,17 @@ msgstr "SimpleSAMLphp出现配置错误"
 msgid "{admin:metadata_intro}"
 msgstr "这里是SimpleSAMLphp为你生成的元信息，你应该发送这个元信息文档给你的信任的合作伙伴以建立信任的联盟"
 
-msgid "{attributes:attribute_schacuserprivateattribute}"
-msgstr "个人资料"
-
-msgid "{status:header_wsfed}"
-msgstr "WS-Fed SP 演示案例"
-
 msgid "{admin:metadata_cert}"
 msgstr "证书"
 
 msgid "{errors:descr_INVALIDCERT}"
 msgstr "认证失败：你的浏览器发送的证书无效或者不能读取"
 
-msgid "{attributes:attribute_eduorglegalname}"
-msgstr "组织的法定名称"
-
 msgid "{status:header_shib}"
 msgstr "Shibboleth演示"
 
 msgid "{admin:metaconv_parse}"
 msgstr "分析器"
-
-msgid "{attributes:attribute_noreduorgnin}"
-msgstr "组织号码"
 
 msgid "Person's principal name at home organization"
 msgstr "人的主要在家中组织的名称"
@@ -994,8 +844,8 @@ msgid ""
 msgstr "这个错误可能是由于一些意想不到的行为或者是SimpleSAMLphp的配置错误导致的，请联系这个登录服务器的管理员并把上面的错误消息发送给他们"
 
 #, python-format
-msgid "Your session is valid for %SECONDS% seconds from now."
-msgstr "你的会话在%SECONDS%秒内有效"
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "你的会话在%remaining%秒内有效"
 
 msgid "Domain component (DC)"
 msgstr "Opened the web browser with tabs saved from the previous session.域组件（DC）"
@@ -1435,3 +1285,10 @@ msgid ""
 " not intended to be accessed directly."
 msgstr "你访问了Assertion Consumer Service接口，但是并没有提供一个SAML认证应答"
 
+
+msgid ""
+"You are now accessing a pre-production system. This authentication setup "
+"is for testing and pre-production verification only. If someone sent you "
+"a link that pointed you here, and you are not <i>a tester</i> you "
+"probably got the wrong link, and should <b>not be here</b>."
+msgstr "你现在访问的是一个预安装系统，这个认证设置是用来测试和预发布校验之用。如果有人发送一个连接让你访问到这里，并且你又不是<i>测试人员</i>，那么你获得了一个错误连接，并且你<b>不应该在这里</b>"

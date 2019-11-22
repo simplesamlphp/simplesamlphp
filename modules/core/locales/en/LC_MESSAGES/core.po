@@ -21,6 +21,9 @@ msgstr "PHP info"
 msgid "{core:no_state:report_text}"
 msgstr "If this problem persists, you can report it to the system administrators."
 
+msgid "{core:no_state:cause_badlink}"
+msgstr "The link used to get here was bad, perhaps a bookmark."
+
 msgid "{core:no_state:cause_backforward}"
 msgstr "Using the back and forward buttons in the web browser."
 
@@ -54,8 +57,35 @@ msgstr "OpenID Provider site - Alpha version (test code)"
 msgid "{core:frontpage:link_doc_install}"
 msgstr "Installing SimpleSAMLphp"
 
+msgid "{core:frontpage:link_consentAdmin}"
+msgstr "Consent Administration"
+
+msgid "{core:frontpage:link_memcacheMonitor}"
+msgstr "MemCache Statistics"
+
+msgid "{core:frontpage:link_oauth}"
+msgstr "OAuth Consumer Registry"
+
+msgid "{core:frontpage:link_cron}"
+msgstr "Cron module information page"
+
+msgid "{core:frontpage:link_statistics}"
+msgstr "Show statistics"
+
+msgid "{core:frontpage:link_statistics_metadata}"
+msgstr "Show statistics metadata"
+
+msgid "{core:frontpage:link_metarefresh}"
+msgstr "Metarefresh: fetch metadata"
+
+msgid "{core:frontpage:link_sanitycheck}"
+msgstr "Sanity check of your SimpleSAMLphp setup"
+
 msgid "{core:frontpage:link_diagnostics}"
 msgstr "Diagnostics on hostname, port and protocol"
+
+msgid "{core:no_state:suggestion_badlink}"
+msgstr "Check that the link you used to access the web site is correct."
 
 msgid "{core:no_state:suggestion_goback}"
 msgstr "Go back to the previous page and try again."
@@ -141,6 +171,9 @@ msgstr "You are logged in as administrator"
 
 msgid "{core:frontpage:auth}"
 msgstr "Authentication"
+
+msgid "{core:frontpage:logout}"
+msgstr "Logout"
 
 msgid "{core:no_metadata:suggestion_user_link}"
 msgstr ""
@@ -335,6 +368,9 @@ msgstr "Configure Shibboleth 1.3 SP to work with SimpleSAMLphp IdP"
 
 msgid "Using the back and forward buttons in the web browser."
 msgstr "Using the back and forward buttons in the web browser."
+
+msgid "PHP cURL extension missing. Cannot check for SimpleSAMLphp updates."
+msgstr "PHP cURL extension missing. Cannot check for SimpleSAMLphp updates."
 
 msgid ""
 "You are running an outdated version of SimpleSAMLphp. Please update to <a"

@@ -15,10 +15,13 @@ if (!array_key_exists('AuthState', $_REQUEST)) {
     throw new \SimpleSAML\Error\BadRequest('Missing AuthState parameter.');
 }
 $authStateId = $_REQUEST['AuthState'];
+
+/** @var array $state */
 $state = \SimpleSAML\Auth\State::loadState($authStateId, \SimpleSAML\Module\multiauth\Auth\Source\MultiAuth::STAGEID);
 
 if (array_key_exists("\SimpleSAML\Auth\Source.id", $state)) {
     $authId = $state["\SimpleSAML\Auth\Source.id"];
+    /** @var \SimpleSAML\Module\multiauth\Auth\Source\MultiAuth $as */
     $as = \SimpleSAML\Auth\Source::getById($authId);
 } else {
     $as = null;
@@ -48,9 +51,31 @@ if (array_key_exists('multiauth:preselect', $state)) {
 }
 
 $globalConfig = \SimpleSAML\Configuration::getInstance();
-$t = new \SimpleSAML\XHTML\Template($globalConfig, 'multiauth:selectsource.php');
+$t = new \SimpleSAML\XHTML\Template($globalConfig, 'multiauth:selectsource.tpl.php');
+
+$defaultLanguage = $globalConfig->getString('language.default', 'en');
+$language = $t->getTranslator()->getLanguage()->getLanguage();
+
+$sources = $state[\SimpleSAML\Module\multiauth\Auth\Source\MultiAuth::SOURCESID];
+foreach ($sources as $key => $source) {
+    $sources[$key]['source64'] = base64_encode($sources[$key]['source']);
+    if (isset($sources[$key]['text'][$language])) {
+        $sources[$key]['text'] = $sources[$key]['text'][$language];
+    } else {
+        $sources[$key]['text'] = $sources[$key]['text'][$defaultLanguage];
+    }
+
+    if (isset($sources[$key]['help'][$language])) {
+        $sources[$key]['help'] = $sources[$key]['help'][$language];
+    } else {
+        $sources[$key]['help'] = $sources[$key]['help'][$defaultLanguage];
+    }
+}
+
 $t->data['authstate'] = $authStateId;
-$t->data['sources'] = $state[\SimpleSAML\Module\multiauth\Auth\Source\MultiAuth::SOURCESID];
+$t->data['sources'] = $sources;
+$t->data['selfUrl'] = $_SERVER['PHP_SELF'];
+
 if ($as !== null) {
     $t->data['preferred'] = $as->getPreviousSource();
 } else {

@@ -47,11 +47,17 @@
 	"attribute_edupersontargetedid": {
 		"en": "Persistent pseudonymous ID"
 	},
+	"attribute_pairwise_id": {
+		"en": "Service-specific pseudonymous ID at home organization"
+	},
 	"attribute_edupersonprincipalname": {
 		"en": "Person's principal name at home organization"
 	},
 	"attribute_edupersonuniqueid": {
 		"en": "Person's non-reassignable, persistent pseudonymous ID at home organization"
+	},
+	"attribute_subject_id": {
+		"en": "Pseudonymous ID at home organization"
 	},
 	"attribute_edupersonorcid": {
 		"en": "ORCID researcher identifiers"

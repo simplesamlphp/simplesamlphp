@@ -40,15 +40,14 @@ throws an exception in a specific situation:
 ```php
   /**
     * Test SimpleSAML\Utils\HTTP::addURLParameters().
-    *
-    * @expectedException \InvalidArgumentException
     */
   public function testAddURLParametersInvalidParameters() {
+      $this->expectException(ExpectedException::class);
 ```
 
-Refer to [the `phpunit 4.8` documentation](https://phpunit.de/manual/4.8/en/installation.html)
-for more information on how to write tests. We currently use the `phpunit 4.8`
-since it is the last version to support php 5.3.
+Refer to [the `phpunit 5.7` documentation](https://phpunit.de/manual/5.7/en/installation.html)
+for more information on how to write tests. We currently use the `phpunit 5.7`
+since it is the last version to support php 5.6.
 
 Once you have implemented your tests, you can run them locally. First,
 make sure the `config` directory is **not** in the root of your
@@ -56,14 +55,14 @@ SimpleSAMLphp installation, as the tests cannot use that. Make sure
 you have `phpunit` installed and run:
 
 ```sh
-phpunit -c tools/phpunit/phpunit.xml
+phpunit -c ./phpunit.xml
 ```
 
-If your default version of `phpunit` is more recent than 4.8, you can run
+If your default version of `phpunit` is more recent than 5.7, you can run
 the old version installed by composer
 
 ```sh
-./vendor/bin/phpunit -c tools/phpunit/phpunit.xml
+./vendor/bin/phpunit -c ./phpunit.xml
 ```
 
 All the tests are run by our *continuous integration* platform,

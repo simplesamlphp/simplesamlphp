@@ -48,12 +48,6 @@ msgstr "Metaadat betöltési hiba"
 msgid "{admin:metaconv_title}"
 msgstr "Metaadat értelmező"
 
-msgid "{attributes:attribute_edupersonentitlement}"
-msgstr "Ezekre a szolgáltatásokra jogosult"
-
-msgid "{attributes:attribute_jpegphoto}"
-msgstr "Fotó JPEG formátumban"
-
 msgid "{admin:cfg_check_noerrors}"
 msgstr "Nincs hiba."
 
@@ -132,9 +126,6 @@ msgstr ""
 msgid "{logout:default_link_text}"
 msgstr "Vissza a SimpleSAMLphp telepítő oldalára"
 
-msgid "{admin:metaover_group_metadata.wsfed-idp-remote}"
-msgstr "WS-Federation alkalmazásszolgáltató (távoli)"
-
 msgid "{errors:error_header}"
 msgstr "SimpleSAMLphp hiba"
 
@@ -152,17 +143,11 @@ msgstr ""
 "adminisztrátora, bizonyosodjon meg arról, hogy a metaadatok helyesen "
 "vannak beállítva!"
 
-msgid "{attributes:attribute_edupersonorgdn}"
-msgstr "A felhasználó munkahelyének azonosító neve (DN-je)"
-
 msgid "{errors:title_BADREQUEST}"
 msgstr "Hibás kérés"
 
 msgid "{status:sessionsize}"
 msgstr "Munkamenet mérete: %SIZE%"
-
-msgid "{attributes:attribute_postaladdress}"
-msgstr "Levelezési cím"
 
 msgid "{logout:title}"
 msgstr "Sikeres kilépés"
@@ -185,31 +170,16 @@ msgstr "Felfüggesztve"
 msgid "{admin:cfg_check_header}"
 msgstr "Beállítások ellenőrzése"
 
-msgid "{attributes:attribute_edupersonscopedaffiliation}"
-msgstr "Saját intézményhez való viszony"
-
-msgid "{attributes:attribute_sn}"
-msgstr "Vezetéknév"
-
 msgid "{admin:debug_sending_message_send}"
 msgstr "Üzenet küldése"
 
 msgid "{status:logout}"
 msgstr "Kilépés"
 
-msgid "{attributes:attribute_organisationname}"
-msgstr "Szervezet neve"
-
-msgid "{attributes:attribute_telephonenumber}"
-msgstr "Telefonszám"
-
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr ""
 "A felfedező szolgáltatás (discovery service) olyan paramétereket kapott, "
 "amelyek nem felelnek meg a specifikációnak."
-
-msgid "{attributes:attribute_mail}"
-msgstr "E-mail"
 
 msgid "{errors:descr_CREATEREQUEST}"
 msgstr "Hiba történt a SAML kérés létrehozása közben."
@@ -219,9 +189,6 @@ msgstr "Opcionális mező"
 
 msgid "{logout:return}"
 msgstr "Vissza a szolgáltatáshoz"
-
-msgid "{attributes:attribute_displayname}"
-msgstr "Megjeleníthető név"
 
 msgid "{admin:metadata_xmlurl}"
 msgstr "A következő címről <a href=\"%METAURL%\">töltheti le a metaadatokat</a>:"
@@ -233,9 +200,6 @@ msgid "{admin:debug_disable_debug_mode}"
 msgstr ""
 "A SimpleSAMLphp <tt>config/config.php</tt> fájljában kikapcsolhatja a "
 "hibakereső módot."
-
-msgid "{attributes:attribute_homepostaladdress}"
-msgstr "Otthoni levelezési cím"
 
 msgid "{disco:select}"
 msgstr "Választ"
@@ -266,9 +230,6 @@ msgstr ""
 msgid "{logout:logout_all_question}"
 msgstr "Ki akar jelentkezni az összes fenti alkalmazásból?"
 
-msgid "{attributes:attribute_title}"
-msgstr "Cím"
-
 msgid "{errors:title_NOACCESS}"
 msgstr "Hozzáférés megtagadva"
 
@@ -280,9 +241,6 @@ msgstr "Nincs RelayState paraméter"
 
 msgid "{errors:descr_NOSTATE}"
 msgstr "Állapotinformáció elveszett, a kérést nem lehet újraindítani"
-
-msgid "{attributes:attribute_noredupersonnin}"
-msgstr "Társadalombiztosítási azonosító szám"
 
 msgid "{login:password}"
 msgstr "Jelszó"
@@ -310,23 +268,14 @@ msgstr "Feldolgozhatatlan kijelentkezési kérés"
 msgid "{admin:metaover_errorentry}"
 msgstr "Hiba ebben a metaadat bejegyzésben"
 
-msgid "{attributes:attribute_edupersonaffiliation}"
-msgstr "Viszony"
-
 msgid "{errors:title_METADATANOTFOUND}"
 msgstr "Metadata nem található"
-
-msgid "{attributes:attribute_givenname}"
-msgstr "Keresztnév"
 
 msgid "{login:contact_info}"
 msgstr "Elérési információk"
 
 msgid "{errors:title_UNHANDLEDEXCEPTION}"
 msgstr "Kezeletlen kivétel"
-
-msgid "{status:validfor}"
-msgstr "Az ön munkamenete még %SECONDS% másodpercig érvényes"
 
 msgid "{status:header_saml20_sp}"
 msgstr "SAML 2.0 SP próba példa"
@@ -361,29 +310,17 @@ msgstr "Válassza ki az ellenőrizendő konfigurációs állományt"
 msgid "{errors:descr_UNKNOWNCERT}"
 msgstr "Azonosítási hiba: a böngésző által küldött tanúsítványt ismeretlen típusú."
 
-msgid "{attributes:attribute_eduorghomepageuri}"
-msgstr "Szervezet weboldala"
-
 msgid "{logout:logging_out_from}"
 msgstr "Kilépés az alábbi szolgáltatásokból:"
 
 msgid "{logout:loggedoutfrom}"
 msgstr "Sikeresen kilépett a(z) %SP% szolgáltatásból"
 
-msgid "{admin:metaover_group_metadata.wsfed-sp-hosted}"
-msgstr "WS-Federation alkalmazásszolgáltató (helyi)"
-
 msgid "{errors:errorreport_text}"
 msgstr "A hibabejelentést elküldtük az adminisztrátoroknak."
 
-msgid "{attributes:attribute_noredupersonbirthdate}"
-msgstr "Születési dátum"
-
 msgid "{errors:descr_LOGOUTREQUEST}"
 msgstr "A kijelentkezési kérés (logout request) feldolgozása során hiba történt."
-
-msgid "{attributes:attribute_edupersontargetedid}"
-msgstr "Állandó anonim azonosító"
 
 msgid "{logout:success}"
 msgstr "Sikeresen kijelentkezett az fent felsorolt összes alkalmazásból."
@@ -393,12 +330,6 @@ msgstr "Megjegyzések"
 
 msgid "{errors:descr_USERABORTED}"
 msgstr "Az azonosítást a felhasználó megszakította"
-
-msgid "{attributes:attribute_edupersonprimaryaffiliation}"
-msgstr "Elsődleges viszony"
-
-msgid "{attributes:attribute_postalcode}"
-msgstr "Irányítószám"
 
 msgid "{errors:descr_CASERROR}"
 msgstr "Hiba történt a CAS kiszolgálóval való kommunikáció közben."
@@ -412,9 +343,6 @@ msgstr "SAML 2.0 SP Metaadatok"
 msgid "{admin:metaconv_converted}"
 msgstr "Konvertált metaadatok"
 
-msgid "{attributes:attribute_cn}"
-msgstr "Teljes név"
-
 msgid "{logout:completed}"
 msgstr "Befejezve"
 
@@ -423,17 +351,8 @@ msgstr ""
 "Még nem lett megváltoztatva a karbantartói jelszó (auth.adminpassword) a "
 "konfigurációs fájlban, kérjük, változtassa meg most! "
 
-msgid "{attributes:attribute_ou}"
-msgstr "Szervezeti egység"
-
 msgid "{general:service_provider}"
 msgstr "Alkalmazásszolgáltató"
-
-msgid "{attributes:attribute_homephone}"
-msgstr "Otthoni telefon"
-
-msgid "{attributes:attribute_dc}"
-msgstr "Domain összetevő (DC)"
 
 msgid "{errors:descr_BADREQUEST}"
 msgstr "Hiba történt az oldal lekérdezése közben. A hibaüzenet: %REASON%"
@@ -453,22 +372,13 @@ msgstr "Felhasználónév és jelszó"
 msgid "{errors:report_explain}"
 msgstr "Írja le milyen lépéseket hajtott végre, aminek végén hiba történt..."
 
-msgid "{attributes:attribute_manager}"
-msgstr "Manager"
-
 msgid "{errors:title_ACSPARAMS}"
 msgstr "Nincs SAML válasz"
-
-msgid "{attributes:attribute_edupersonnickname}"
-msgstr "Becenév"
 
 msgid "{errors:descr_SLOSERVICEPARAMS}"
 msgstr ""
 "A Single Logout interfészen vagy SAML LogoutRequest vagy LogoutResponse "
 "üzenetet kell megadni."
-
-msgid "{attributes:attribute_street}"
-msgstr "Utca"
 
 msgid "{login:organization}"
 msgstr "Szervezet"
@@ -507,9 +417,6 @@ msgstr "Válassza ki a szervezetét"
 msgid "{admin:cfg_check_superfluous}"
 msgstr "Felesleges opciók a konfigurációs állományban"
 
-msgid "{attributes:attribute_labeleduri}"
-msgstr "Honlap cím"
-
 msgid "{errors:report_email}"
 msgstr "E-mail címek:"
 
@@ -524,9 +431,6 @@ msgstr ""
 "A kérés összeállítója nem adta meg a RelayState paramétert, amely azt "
 "határozza meg, hogy hová irányítsuk tovább."
 
-msgid "{attributes:attribute_noredupersonlegalname}"
-msgstr "Hivatalos név (noreduperson)"
-
 msgid "{status:header_diagnostics}"
 msgstr "SimpleSAMLphp hibakeresés"
 
@@ -535,9 +439,6 @@ msgstr ""
 "Üdvözöljük, ez a SimpleSAMLphp státus oldala. Itt láthatja, ha lejárt a "
 "munkamenete, mikor lépett be utoljára és a munkamenethez tartozó "
 "attribútumokat."
-
-msgid "{attributes:attribute_schachomeorganization}"
-msgstr "Saját intézmény domain neve"
 
 msgid "{errors:title_NOTFOUNDREASON}"
 msgstr "Oldal nem található"
@@ -557,29 +458,17 @@ msgstr "A SAML entitások részleteiért kattintson a SAML entitás fejlécére"
 msgid "{errors:title_NOTVALIDCERT}"
 msgstr "Érvénytelen tanúsítvány"
 
-msgid "{attributes:attribute_edupersonorgunitdn}"
-msgstr "A felhasználó szervezeti egység azonosító neve (DN-je)"
-
 msgid "{general:remember}"
 msgstr "Emlékezzen a hozzájárulásra"
 
 msgid "{disco:selectidp}"
 msgstr "Válasszon személyazonosság-szolgáltatót (IdP)"
 
-msgid "{attributes:attribute_postofficebox}"
-msgstr "Postafiók"
-
-msgid "{attributes:attribute_edupersonprincipalname}"
-msgstr "Állandó azonosító a saját intézményben"
-
 msgid "{login:help_desk_email}"
 msgstr "Küldjön e-mailt az ügyfélszolgálatnak"
 
 msgid "{login:help_desk_link}"
 msgstr "Ügyfélszolgálat weboldala"
-
-msgid "{attributes:attribute_uid}"
-msgstr "Felhasználói azonosító"
 
 msgid "{login:remember_me}"
 msgstr "Emlékezzen rám"
@@ -603,9 +492,6 @@ msgstr "Emlékezzen erre"
 
 msgid "{admin:metaover_group_metadata.saml20-sp-hosted}"
 msgstr "SAML 2.0 alkalmazásszolgáltató (helyi)"
-
-msgid "{attributes:attribute_l}"
-msgstr "Település"
 
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
@@ -651,9 +537,6 @@ msgstr "Üzenet"
 msgid "{errors:title_UNKNOWNCERT}"
 msgstr "Ismeretlen tanúsítvány"
 
-msgid "{attributes:attribute_facsimiletelephonenumber}"
-msgstr "Fax"
-
 msgid "{errors:title_LDAPERROR}"
 msgstr "LDAP hiba"
 
@@ -671,14 +554,8 @@ msgstr ""
 "félrekonfigurálásával kapcsolatos. Kérjük, keresse meg a bejelentkező "
 "szolgáltatás adminisztrátorát, és küldje el neki a fenti hibaüzenetet!"
 
-msgid "{attributes:attribute_mobile}"
-msgstr "Mobil"
-
 msgid "{admin:metaover_group_metadata.shib13-idp-hosted}"
 msgstr "Shib 1.3 személyazonosság-szolgáltató (helyi)"
-
-msgid "{attributes:attribute_preferredlanguage}"
-msgstr "Elsődleges nyelv"
 
 msgid "{errors:descr_NOTVALIDCERT}"
 msgstr "Nem található hiteles tanúsítvány"
@@ -691,15 +568,6 @@ msgstr "A következő opcionális mezők nem találhatók"
 
 msgid "{logout:logout_only}"
 msgstr "Nem, csak innen: %SP%"
-
-msgid "{attributes:attribute_o}"
-msgstr "Szervezet neve"
-
-msgid "{attributes:attribute_edupersonprimaryorgunitdn}"
-msgstr "A személy elsődleges szervezeti egységének azonosító neve (DN-je)"
-
-msgid "{attributes:attribute_noredupersonlin}"
-msgstr "Helyi azonosító szám"
 
 msgid "{login:next}"
 msgstr "Következő"
@@ -718,9 +586,6 @@ msgstr "%URL% oldal nem található, a következő ok miatt: %REASON% "
 msgid "{errors:title_NOCERT}"
 msgstr "Hiányzó tanúsítvány."
 
-msgid "{attributes:attribute_userpassword}"
-msgstr "A felhasználó jelszava (kódolva)"
-
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "Elveszett kijelentkezési információk"
 
@@ -735,29 +600,17 @@ msgstr ""
 "Ezeket a metaadatokat a SimpleSAMLphp generálta. Ezt a dokumentumot "
 "küldheti el föderációs partnerei számára."
 
-msgid "{attributes:attribute_schacuserprivateattribute}"
-msgstr "Védett adatokat tartalmazó attribútumok"
-
-msgid "{status:header_wsfed}"
-msgstr "WS-Fed SP próba példa"
-
 msgid "{admin:metadata_cert}"
 msgstr "Tanúsítványok."
 
 msgid "{errors:descr_INVALIDCERT}"
 msgstr "Azonosítási hiba: a böngésző által küldött tanúsítvány hibás."
 
-msgid "{attributes:attribute_eduorglegalname}"
-msgstr "Szervezet hivatalos neve"
-
 msgid "{status:header_shib}"
 msgstr "Shibboleth próba"
 
 msgid "{admin:metaconv_parse}"
 msgstr "Értelmez"
-
-msgid "{attributes:attribute_noreduorgnin}"
-msgstr "Szervezeti szám"
 
 msgid "Person's principal name at home organization"
 msgstr "Állandó azonosító a saját intézményben"
@@ -1085,8 +938,8 @@ msgstr ""
 "szolgáltatás adminisztrátorát, és küldje el neki a fenti hibaüzenetet!"
 
 #, python-format
-msgid "Your session is valid for %SECONDS% seconds from now."
-msgstr "Az ön munkamenete még %SECONDS% másodpercig érvényes"
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Az ön munkamenete még %remaining% másodpercig érvényes"
 
 msgid "Domain component (DC)"
 msgstr "Domain összetevő (DC)"
@@ -1567,3 +1420,14 @@ msgstr ""
 "Az Assertion Consumer Service interfészen SAML Authentication Response "
 "üzenetet kell megadni."
 
+
+msgid ""
+"You are now accessing a pre-production system. This authentication setup "
+"is for testing and pre-production verification only. If someone sent you "
+"a link that pointed you here, and you are not <i>a tester</i> you "
+"probably got the wrong link, and should <b>not be here</b>."
+msgstr ""
+"Egy teszt, vagy fejlesztői oldalra jutottál. Az azonosítás csak próba "
+"miatt történik. Ha valaki olyan linket küldött, amire kattintva ide "
+"jutottál, és nem vagy <i>tesztelő</i>, valószínűleg elrontott valamit, és"
+" amit keresel, azt <b>itt nem találod</b>."

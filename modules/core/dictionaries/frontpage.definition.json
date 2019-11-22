@@ -17,12 +17,6 @@
 	"checkphp": {
 		"en": "Checking your PHP installation"
 	},
-	"about_header": {
-		"en": "About SimpleSAMLphp"
-	},
-	"about_text": {
-		"en": "This SimpleSAMLphp thing is pretty cool, where can I read more about it? You can find more information about it at the <a href=\"https:\/\/simplesamlphp.org\/\">SimpleSAMLphp web page <\/a> over at <a href=\"http:\/\/uninett.no\">UNINETT<\/a>."
-	},
 	"required": {
 		"en": "Required"
 	},
@@ -40,6 +34,9 @@
 	},
 	"warnings": {
 		"en": "Warnings"
+	},
+	"warnings_curlmissing": {
+		"en": "PHP cURL extension missing. Cannot check for SimpleSAMLphp updates."
 	},
 	"warnings_https": {
 		"en": "<strong>You are not using HTTPS<\/strong> - encrypted communication with the user. HTTP works fine for test purposes, but in a production environment, you should use HTTPS. [ <a href=\"https:\/\/simplesamlphp.org\/docs\/stable\/simplesamlphp-maintenance\">Read more about SimpleSAMLphp maintenance<\/a> ]"
@@ -113,6 +110,12 @@
 	"link_cleardiscochoices": {
 		"en": "Delete my choices of IdP in the IdP discovery services"
 	},
+	"link_oauth": {
+		"en": "OAuth Consumer Registry"
+	},
+	"link_metarefresh": {
+		"en": "Metarefresh: fetch metadata"
+	},
 	"welcome": {
 		"en": "Welcome"
 	},
@@ -133,6 +136,9 @@
 	},
 	"loggedin_as_admin": {
 		"en": "You are logged in as administrator"
+	},
+	"logout": {
+		"en": "Logout"
 	},
 	"auth": {
 		"en": "Authentication"

@@ -12,17 +12,18 @@ if (!array_key_exists('PATH_INFO', $_SERVER)) {
 
 $sourceId = substr($_SERVER['PATH_INFO'], 1);
 
+/** @var \SimpleSAML\Module\saml\Auth\Source\SP $source */
 $source = \SimpleSAML\Auth\Source::getById($sourceId);
 if ($source === null) {
     throw new \Exception('Could not find authentication source with id ' . $sourceId);
-}
-if (!($source instanceof \SimpleSAML\Module\saml\Auth\Source\SP)) {
+} elseif (!($source instanceof \SimpleSAML\Module\saml\Auth\Source\SP)) {
     throw new \SimpleSAML\Error\Exception('Source type changed?');
 }
 
 try {
     $binding = \SAML2\Binding::getCurrentBinding();
-} catch (\Exception $e) { // TODO: look for a specific exception
+} catch (\Exception $e) {
+    // TODO: look for a specific exception
     // This is dirty. Instead of checking the message of the exception, \SAML2\Binding::getCurrentBinding() should throw
     // an specific exception when the binding is unknown, and we should capture that here
     if ($e->getMessage() === 'Unable to find the current binding.') {
@@ -33,12 +34,19 @@ try {
 }
 $message = $binding->receive();
 
-$idpEntityId = $message->getIssuer();
+$issuer = $message->getIssuer();
+if ($issuer instanceof \SAML2\XML\saml\Issuer) {
+    $idpEntityId = $issuer->getValue();
+} else {
+    $idpEntityId = $issuer;
+}
+
 if ($idpEntityId === null) {
     // Without an issuer we have no way to respond to the message.
     throw new \SimpleSAML\Error\BadRequest('Received message on logout endpoint without issuer.');
 }
 
+/** @var \SimpleSAML\Module\saml\Auth\Source\SP $source */
 $spEntityId = $source->getEntityId();
 
 $metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
@@ -53,7 +61,6 @@ if ($destination !== null && $destination !== \SimpleSAML\Utils\HTTP::getSelfURL
 }
 
 if ($message instanceof \SAML2\LogoutResponse) {
-
     $relayState = $message->getRelayState();
     if ($relayState === null) {
         // Somehow, our RelayState has been lost.
@@ -61,15 +68,15 @@ if ($message instanceof \SAML2\LogoutResponse) {
     }
 
     if (!$message->isSuccess()) {
-        \SimpleSAML\Logger::warning('Unsuccessful logout. Status was: ' . \SimpleSAML\Module\saml\Message::getResponseError($message));
+        \SimpleSAML\Logger::warning(
+            'Unsuccessful logout. Status was: ' . \SimpleSAML\Module\saml\Message::getResponseError($message)
+        );
     }
 
     $state = \SimpleSAML\Auth\State::loadState($relayState, 'saml:slosent');
     $state['saml:sp:LogoutStatus'] = $message->getStatus();
     \SimpleSAML\Auth\Source::completeLogout($state);
-
 } elseif ($message instanceof \SAML2\LogoutRequest) {
-
     \SimpleSAML\Logger::debug('module/saml2/sp/logout: Request from ' . $idpEntityId);
     \SimpleSAML\Logger::stats('saml20-idp-SLO idpinit ' . $spEntityId . ' ' . $idpEntityId);
 
@@ -104,26 +111,30 @@ if ($message instanceof \SAML2\LogoutResponse) {
 
     $numLoggedOut = \SimpleSAML\Module\saml\SP\LogoutStore::logoutSessions($sourceId, $nameId, $sessionIndexes);
     if ($numLoggedOut === false) {
-        /* This type of logout was unsupported. Use the old method. */
+        // This type of logout was unsupported. Use the old method
         $source->handleLogout($idpEntityId);
         $numLoggedOut = count($sessionIndexes);
     }
 
-    /* Create and send response. */
+    // Create and send response
     $lr = \SimpleSAML\Module\saml\Message::buildLogoutResponse($spMetadata, $idpMetadata);
     $lr->setRelayState($message->getRelayState());
     $lr->setInResponseTo($message->getId());
 
     if ($numLoggedOut < count($sessionIndexes)) {
-        \SimpleSAML\Logger::warning('Logged out of ' . $numLoggedOut  . ' of ' . count($sessionIndexes) . ' sessions.');
+        \SimpleSAML\Logger::warning('Logged out of ' . $numLoggedOut . ' of ' . count($sessionIndexes) . ' sessions.');
     }
 
-    $dst = $idpMetadata->getEndpointPrioritizedByBinding('SingleLogoutService', array(
-        \SAML2\Constants::BINDING_HTTP_REDIRECT,
-        \SAML2\Constants::BINDING_HTTP_POST)
+    /** @var array $dst */
+    $dst = $idpMetadata->getEndpointPrioritizedByBinding(
+        'SingleLogoutService',
+        [
+            \SAML2\Constants::BINDING_HTTP_REDIRECT,
+            \SAML2\Constants::BINDING_HTTP_POST
+        ]
     );
 
-    if (!$binding instanceof \SAML2\SOAP) {
+    if (!($binding instanceof \SAML2\SOAP)) {
         $binding = \SAML2\Binding::getBinding($dst['Binding']);
         if (isset($dst['ResponseLocation'])) {
             $dst = $dst['ResponseLocation'];

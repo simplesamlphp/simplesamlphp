@@ -1,14 +1,18 @@
 <?php
 
-use \SimpleSAML\Configuration;
+namespace SimpleSAML\Test;
+
+use SimpleSAML\Configuration;
+use SimpleSAML\Error\CriticalConfigurationError;
 
 /**
  * Tests for \SimpleSAML\Configuration
  */
-class Test_Configuration extends SimpleSAML\Test\Utils\ClearStateTestCase
+class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
 {
     /**
      * Test \SimpleSAML\Configuration::getVersion()
+     * @return void
      */
     public function testGetVersion()
     {
@@ -16,13 +20,15 @@ class Test_Configuration extends SimpleSAML\Test\Utils\ClearStateTestCase
         $this->assertTrue(is_string($c->getVersion()));
     }
 
+
     /**
      * Test that the default instance fails to load even if we previously loaded another instance.
-     * @expectedException \SimpleSAML\Error\CriticalConfigurationError
+     * @return void
      */
     public function testLoadDefaultInstance()
     {
-        Configuration::loadFromArray(array('key' => 'value'), '', 'dummy');
+        $this->expectException(CriticalConfigurationError::class);
+        Configuration::loadFromArray(['key' => 'value'], '', 'dummy');
         Configuration::getInstance();
     }
 
@@ -30,6 +36,7 @@ class Test_Configuration extends SimpleSAML\Test\Utils\ClearStateTestCase
     /**
      * Test that after a \SimpleSAML\Error\CriticalConfigurationError exception, a basic, self-survival configuration
      * is loaded.
+     * @return void
      */
     public function testCriticalConfigurationError()
     {
@@ -47,8 +54,10 @@ class Test_Configuration extends SimpleSAML\Test\Utils\ClearStateTestCase
         $this->assertNotEmpty($c->toArray());
     }
 
+
     /**
      * Test \SimpleSAML\Configuration::getValue()
+     * @return void
      */
     public function testGetValue()
     {
@@ -66,149 +75,118 @@ class Test_Configuration extends SimpleSAML\Test\Utils\ClearStateTestCase
         $this->assertEquals($c->getValue('exists_null', false), null);
     }
 
+
     /**
      * Test \SimpleSAML\Configuration::getValue(), REQUIRED_OPTION flag.
-     * @expectedException Exception
+     * @return void
      */
     public function testGetValueRequired()
     {
-        $c = Configuration::loadFromArray(array());
+        $this->expectException(\Exception::class);
+        $c = Configuration::loadFromArray([]);
         $c->getValue('missing', Configuration::REQUIRED_OPTION);
     }
 
+
     /**
      * Test \SimpleSAML\Configuration::hasValue()
+     * @return void
      */
     public function testHasValue()
     {
-        $c = Configuration::loadFromArray(array(
+        $c = Configuration::loadFromArray([
             'exists_true' => true,
             'exists_null' => null,
-        ));
+        ]);
         $this->assertEquals($c->hasValue('missing'), false);
         $this->assertEquals($c->hasValue('exists_true'), true);
         $this->assertEquals($c->hasValue('exists_null'), true);
     }
 
+
     /**
      * Test \SimpleSAML\Configuration::hasValue()
+     * @return void
      */
     public function testHasValueOneOf()
     {
-        $c = Configuration::loadFromArray(array(
+        $c = Configuration::loadFromArray([
             'exists_true' => true,
             'exists_null' => null,
-        ));
-        $this->assertEquals($c->hasValueOneOf(array()), false);
-        $this->assertEquals($c->hasValueOneOf(array('missing')), false);
-        $this->assertEquals($c->hasValueOneOf(array('exists_true')), true);
-        $this->assertEquals($c->hasValueOneOf(array('exists_null')), true);
+        ]);
+        $this->assertEquals($c->hasValueOneOf([]), false);
+        $this->assertEquals($c->hasValueOneOf(['missing']), false);
+        $this->assertEquals($c->hasValueOneOf(['exists_true']), true);
+        $this->assertEquals($c->hasValueOneOf(['exists_null']), true);
 
-        $this->assertEquals($c->hasValueOneOf(array('missing1', 'missing2')), false);
-        $this->assertEquals($c->hasValueOneOf(array('exists_true', 'missing')), true);
-        $this->assertEquals($c->hasValueOneOf(array('missing', 'exists_true')), true);
+        $this->assertEquals($c->hasValueOneOf(['missing1', 'missing2']), false);
+        $this->assertEquals($c->hasValueOneOf(['exists_true', 'missing']), true);
+        $this->assertEquals($c->hasValueOneOf(['missing', 'exists_true']), true);
     }
 
-    /**
-     * Test \SimpleSAML\Configuration::getBaseURL()
-     */
-    public function testGetBaseURL()
-    {
-        // Need to set a default configuration because the SSP Logger attempts to use it.
-        Configuration::loadFromArray(array(), '[ARRAY]', 'simplesaml');
-        $c = Configuration::loadFromArray(array());
-        $this->assertEquals($c->getBaseURL(), 'simplesaml/');
-
-        $c = Configuration::loadFromArray(array('baseurlpath' => 'simplesaml/'));
-        $this->assertEquals($c->getBaseURL(), 'simplesaml/');
-
-        $c = Configuration::loadFromArray(array('baseurlpath' => '/simplesaml/'));
-        $this->assertEquals($c->getBaseURL(), 'simplesaml/');
-
-        $c = Configuration::loadFromArray(array('baseurlpath' => 'path/to/simplesaml/'));
-        $this->assertEquals($c->getBaseURL(), 'path/to/simplesaml/');
-
-        $c = Configuration::loadFromArray(array('baseurlpath' => '/path/to/simplesaml/'));
-        $this->assertEquals($c->getBaseURL(), 'path/to/simplesaml/');
-
-        $c = Configuration::loadFromArray(array('baseurlpath' => 'https://example.org/ssp/'));
-        $this->assertEquals($c->getBaseURL(), 'ssp/');
-
-        $c = Configuration::loadFromArray(array('baseurlpath' => 'https://example.org/'));
-        $this->assertEquals($c->getBaseURL(), '');
-
-        $c = Configuration::loadFromArray(array('baseurlpath' => 'http://example.org/ssp/'));
-        $this->assertEquals($c->getBaseURL(), 'ssp/');
-
-        $c = Configuration::loadFromArray(array('baseurlpath' => ''));
-        $this->assertEquals($c->getBaseURL(), '');
-
-        $c = Configuration::loadFromArray(array('baseurlpath' => '/'));
-        $this->assertEquals($c->getBaseURL(), '');
-
-        $c = Configuration::loadFromArray(array('baseurlpath' => 'simplesaml'));
-        $this->assertEquals($c->getBaseURL(), 'simplesaml/');
-    }
 
     /**
      * Test \SimpleSAML\Configuration::getBasePath()
+     * @return void
      */
     public function testGetBasePath()
     {
-        $c = Configuration::loadFromArray(array());
+        $c = Configuration::loadFromArray([]);
         $this->assertEquals($c->getBasePath(), '/simplesaml/');
 
-        $c = Configuration::loadFromArray(array('baseurlpath' => 'simplesaml/'));
+        $c = Configuration::loadFromArray(['baseurlpath' => 'simplesaml/']);
         $this->assertEquals($c->getBasePath(), '/simplesaml/');
 
-        $c = Configuration::loadFromArray(array('baseurlpath' => '/simplesaml/'));
+        $c = Configuration::loadFromArray(['baseurlpath' => '/simplesaml/']);
         $this->assertEquals($c->getBasePath(), '/simplesaml/');
 
-        $c = Configuration::loadFromArray(array('baseurlpath' => 'simplesaml'));
+        $c = Configuration::loadFromArray(['baseurlpath' => 'simplesaml']);
         $this->assertEquals($c->getBasePath(), '/simplesaml/');
 
-        $c = Configuration::loadFromArray(array('baseurlpath' => '/simplesaml'));
+        $c = Configuration::loadFromArray(['baseurlpath' => '/simplesaml']);
         $this->assertEquals($c->getBasePath(), '/simplesaml/');
 
-        $c = Configuration::loadFromArray(array('baseurlpath' => 'path/to/simplesaml/'));
+        $c = Configuration::loadFromArray(['baseurlpath' => 'path/to/simplesaml/']);
         $this->assertEquals($c->getBasePath(), '/path/to/simplesaml/');
 
-        $c = Configuration::loadFromArray(array('baseurlpath' => '/path/to/simplesaml/'));
+        $c = Configuration::loadFromArray(['baseurlpath' => '/path/to/simplesaml/']);
         $this->assertEquals($c->getBasePath(), '/path/to/simplesaml/');
 
-        $c = Configuration::loadFromArray(array('baseurlpath' => '/path/to/simplesaml'));
+        $c = Configuration::loadFromArray(['baseurlpath' => '/path/to/simplesaml']);
         $this->assertEquals($c->getBasePath(), '/path/to/simplesaml/');
 
-        $c = Configuration::loadFromArray(array('baseurlpath' => 'https://example.org/ssp/'));
+        $c = Configuration::loadFromArray(['baseurlpath' => 'https://example.org/ssp/']);
         $this->assertEquals($c->getBasePath(), '/ssp/');
 
-        $c = Configuration::loadFromArray(array('baseurlpath' => 'https://example.org/'));
+        $c = Configuration::loadFromArray(['baseurlpath' => 'https://example.org/']);
         $this->assertEquals($c->getBasePath(), '/');
 
-        $c = Configuration::loadFromArray(array('baseurlpath' => 'http://example.org/ssp/'));
+        $c = Configuration::loadFromArray(['baseurlpath' => 'http://example.org/ssp/']);
         $this->assertEquals($c->getBasePath(), '/ssp/');
 
-        $c = Configuration::loadFromArray(array('baseurlpath' => 'http://example.org/ssp/simplesaml'));
+        $c = Configuration::loadFromArray(['baseurlpath' => 'http://example.org/ssp/simplesaml']);
         $this->assertEquals($c->getBasePath(), '/ssp/simplesaml/');
 
-        $c = Configuration::loadFromArray(array('baseurlpath' => 'http://example.org/ssp/simplesaml/'));
+        $c = Configuration::loadFromArray(['baseurlpath' => 'http://example.org/ssp/simplesaml/']);
         $this->assertEquals($c->getBasePath(), '/ssp/simplesaml/');
 
-        $c = Configuration::loadFromArray(array('baseurlpath' => ''));
+        $c = Configuration::loadFromArray(['baseurlpath' => '']);
         $this->assertEquals($c->getBasePath(), '/');
 
-        $c = Configuration::loadFromArray(array('baseurlpath' => '/'));
+        $c = Configuration::loadFromArray(['baseurlpath' => '/']);
         $this->assertEquals($c->getBasePath(), '/');
 
-        $c = Configuration::loadFromArray(array('baseurlpath' => 'https://example.org:8443'));
+        $c = Configuration::loadFromArray(['baseurlpath' => 'https://example.org:8443']);
         $this->assertEquals($c->getBasePath(), '/');
 
-        $c = Configuration::loadFromArray(array('baseurlpath' => 'https://example.org:8443/'));
+        $c = Configuration::loadFromArray(['baseurlpath' => 'https://example.org:8443/']);
         $this->assertEquals($c->getBasePath(), '/');
     }
 
+
     /**
      * Test \SimpleSAML\Configuration::resolvePath()
+     * @return void
      */
     public function testResolvePath()
     {
@@ -227,8 +205,10 @@ class Test_Configuration extends SimpleSAML\Test\Utils\ClearStateTestCase
         $this->assertEquals($c->resolvePath('C:/otherdir'), 'C:/otherdir');
     }
 
+
     /**
      * Test \SimpleSAML\Configuration::getPathValue()
+     * @return void
      */
     public function testGetPathValue()
     {
@@ -243,27 +223,31 @@ class Test_Configuration extends SimpleSAML\Test\Utils\ClearStateTestCase
         $this->assertEquals($c->getPathValue('slashes_opt'), '/basedir/slashes/');
     }
 
+
     /**
      * Test \SimpleSAML\Configuration::getBaseDir()
+     * @return void
      */
     public function testGetBaseDir()
     {
         $c = Configuration::loadFromArray([]);
-        $this->assertEquals($c->getBaseDir(), dirname(dirname(dirname(dirname(__FILE__)))) . '/');
+        $this->assertEquals($c->getBaseDir(), dirname(dirname(dirname(dirname(__FILE__)))) . DIRECTORY_SEPARATOR);
 
         $c = Configuration::loadFromArray([
-            'basedir' => '/basedir',
+            'basedir' => DIRECTORY_SEPARATOR . 'basedir',
         ]);
-        $this->assertEquals($c->getBaseDir(), '/basedir/');
+        $this->assertEquals($c->getBaseDir(), DIRECTORY_SEPARATOR . 'basedir' . DIRECTORY_SEPARATOR);
 
-        $c = Configuration::loadFromArray(array(
-            'basedir' => '/basedir/',
-        ));
-        $this->assertEquals($c->getBaseDir(), '/basedir/');
+        $c = Configuration::loadFromArray([
+            'basedir' => DIRECTORY_SEPARATOR . 'basedir' . DIRECTORY_SEPARATOR,
+        ]);
+        $this->assertEquals($c->getBaseDir(), DIRECTORY_SEPARATOR . 'basedir' . DIRECTORY_SEPARATOR);
     }
+
 
     /**
      * Test \SimpleSAML\Configuration::getBoolean()
+     * @return void
      */
     public function testGetBoolean()
     {
@@ -276,30 +260,36 @@ class Test_Configuration extends SimpleSAML\Test\Utils\ClearStateTestCase
         $this->assertEquals($c->getBoolean('false_opt', '--missing--'), false);
     }
 
+
     /**
      * Test \SimpleSAML\Configuration::getBoolean() missing option
-     * @expectedException Exception
+     * @return void
      */
     public function testGetBooleanMissing()
     {
+        $this->expectException(\Exception::class);
         $c = Configuration::loadFromArray([]);
         $c->getBoolean('missing_opt');
     }
 
+
     /**
      * Test \SimpleSAML\Configuration::getBoolean() wrong option
-     * @expectedException Exception
+     * @return void
      */
     public function testGetBooleanWrong()
     {
+        $this->expectException(\Exception::class);
         $c = Configuration::loadFromArray([
             'wrong' => 'true',
         ]);
         $c->getBoolean('wrong');
     }
 
+
     /**
      * Test \SimpleSAML\Configuration::getString()
+     * @return void
      */
     public function testGetString()
     {
@@ -310,30 +300,36 @@ class Test_Configuration extends SimpleSAML\Test\Utils\ClearStateTestCase
         $this->assertEquals($c->getString('str_opt', '--missing--'), 'Hello World!');
     }
 
+
     /**
      * Test \SimpleSAML\Configuration::getString() missing option
-     * @expectedException Exception
+     * @return void
      */
     public function testGetStringMissing()
     {
+        $this->expectException(\Exception::class);
         $c = Configuration::loadFromArray([]);
         $c->getString('missing_opt');
     }
 
+
     /**
      * Test \SimpleSAML\Configuration::getString() wrong option
-     * @expectedException Exception
+     * @return void
      */
     public function testGetStringWrong()
     {
+        $this->expectException(\Exception::class);
         $c = Configuration::loadFromArray([
             'wrong' => false,
         ]);
         $c->getString('wrong');
     }
 
+
     /**
      * Test \SimpleSAML\Configuration::getInteger()
+     * @return void
      */
     public function testGetInteger()
     {
@@ -344,30 +340,36 @@ class Test_Configuration extends SimpleSAML\Test\Utils\ClearStateTestCase
         $this->assertEquals($c->getInteger('int_opt', '--missing--'), 42);
     }
 
+
     /**
      * Test \SimpleSAML\Configuration::getInteger() missing option
-     * @expectedException Exception
+     * @return void
      */
     public function testGetIntegerMissing()
     {
+        $this->expectException(\Exception::class);
         $c = Configuration::loadFromArray([]);
         $c->getInteger('missing_opt');
     }
 
+
     /**
      * Test \SimpleSAML\Configuration::getInteger() wrong option
-     * @expectedException Exception
+     * @return void
      */
     public function testGetIntegerWrong()
     {
+        $this->expectException(\Exception::class);
         $c = Configuration::loadFromArray([
             'wrong' => '42',
         ]);
         $c->getInteger('wrong');
     }
 
+
     /**
      * Test \SimpleSAML\Configuration::getIntegerRange()
+     * @return void
      */
     public function testGetIntegerRange()
     {
@@ -378,172 +380,202 @@ class Test_Configuration extends SimpleSAML\Test\Utils\ClearStateTestCase
         $this->assertEquals($c->getIntegerRange('int_opt', 0, 100), 42);
     }
 
+
     /**
      * Test \SimpleSAML\Configuration::getIntegerRange() below limit
-     * @expectedException Exception
+     * @return void
      */
     public function testGetIntegerRangeBelow()
     {
+        $this->expectException(\Exception::class);
         $c = Configuration::loadFromArray([
             'int_opt' => 9,
         ]);
         $this->assertEquals($c->getIntegerRange('int_opt', 10, 100), 42);
     }
 
+
     /**
      * Test \SimpleSAML\Configuration::getIntegerRange() above limit
-     * @expectedException Exception
+     * @return void
      */
     public function testGetIntegerRangeAbove()
     {
+        $this->expectException(\Exception::class);
         $c = Configuration::loadFromArray([
             'int_opt' => 101,
         ]);
         $this->assertEquals($c->getIntegerRange('int_opt', 10, 100), 42);
     }
 
+
     /**
      * Test \SimpleSAML\Configuration::getValueValidate()
+     * @return void
      */
-    public function testGetValueValidate() {
-        $c = Configuration::loadFromArray(array(
+    public function testGetValueValidate()
+    {
+        $c = Configuration::loadFromArray([
             'opt' => 'b',
-        ));
-        $this->assertEquals($c->getValueValidate('missing_opt', array('a', 'b', 'c'), '--missing--'), '--missing--');
-        $this->assertEquals($c->getValueValidate('opt', array('a', 'b', 'c')), 'b');
+        ]);
+        $this->assertEquals($c->getValueValidate('missing_opt', ['a', 'b', 'c'], '--missing--'), '--missing--');
+        $this->assertEquals($c->getValueValidate('opt', ['a', 'b', 'c']), 'b');
     }
+
 
     /**
      * Test \SimpleSAML\Configuration::getValueValidate() wrong option
-     * @expectedException Exception
+     * @return void
      */
     public function testGetValueValidateWrong()
     {
+        $this->expectException(\Exception::class);
         $c = Configuration::loadFromArray([
             'opt' => 'd',
         ]);
-        $c->getValueValidate('opt', array('a', 'b', 'c'));
+        $c->getValueValidate('opt', ['a', 'b', 'c']);
     }
+
 
     /**
      * Test \SimpleSAML\Configuration::getArray()
+     * @return void
      */
     public function testGetArray()
     {
         $c = Configuration::loadFromArray([
-            'opt' => array('a', 'b', 'c'),
+            'opt' => ['a', 'b', 'c'],
         ]);
         $this->assertEquals($c->getArray('missing_opt', '--missing--'), '--missing--');
-        $this->assertEquals($c->getArray('opt'), array('a', 'b', 'c'));
+        $this->assertEquals($c->getArray('opt'), ['a', 'b', 'c']);
     }
+
 
     /**
      * Test \SimpleSAML\Configuration::getArray() wrong option
-     * @expectedException Exception
+     * @return void
      */
     public function testGetArrayWrong()
     {
+        $this->expectException(\Exception::class);
         $c = Configuration::loadFromArray([
             'opt' => 'not_an_array',
         ]);
         $c->getArray('opt');
     }
 
+
     /**
      * Test \SimpleSAML\Configuration::getArrayize()
+     * @return void
      */
     public function testGetArrayize()
     {
         $c = Configuration::loadFromArray([
-            'opt' => array('a', 'b', 'c'),
+            'opt' => ['a', 'b', 'c'],
             'opt_int' => 42,
             'opt_str' => 'string',
         ]);
         $this->assertEquals($c->getArrayize('missing_opt', '--missing--'), '--missing--');
-        $this->assertEquals($c->getArrayize('opt'), array('a', 'b', 'c'));
-        $this->assertEquals($c->getArrayize('opt_int'), array(42));
-        $this->assertEquals($c->getArrayize('opt_str'), array('string'));
+        $this->assertEquals($c->getArrayize('opt'), ['a', 'b', 'c']);
+        $this->assertEquals($c->getArrayize('opt_int'), [42]);
+        $this->assertEquals($c->getArrayize('opt_str'), ['string']);
     }
+
 
     /**
      * Test \SimpleSAML\Configuration::getArrayizeString()
+     * @return void
      */
     public function testGetArrayizeString()
     {
         $c = Configuration::loadFromArray([
-            'opt' => array('a', 'b', 'c'),
+            'opt' => ['a', 'b', 'c'],
             'opt_str' => 'string',
         ]);
         $this->assertEquals($c->getArrayizeString('missing_opt', '--missing--'), '--missing--');
-        $this->assertEquals($c->getArrayizeString('opt'), array('a', 'b', 'c'));
-        $this->assertEquals($c->getArrayizeString('opt_str'), array('string'));
+        $this->assertEquals($c->getArrayizeString('opt'), ['a', 'b', 'c']);
+        $this->assertEquals($c->getArrayizeString('opt_str'), ['string']);
     }
 
+
     /**
-     * Test \SimpleSAML\Configuration::getArrayizeString() option with an array that contains something that isn't a string.
-     * @expectedException Exception
+     * Test \SimpleSAML\Configuration::getArrayizeString() option
+     * with an array that contains something that isn't a string.
+     * @return void
      */
     public function testGetArrayizeStringWrongValue()
     {
+        $this->expectException(\Exception::class);
         $c = Configuration::loadFromArray([
-            'opt' => array('a', 'b', 42),
+            'opt' => ['a', 'b', 42],
         ]);
         $c->getArrayizeString('opt');
     }
 
+
     /**
      * Test \SimpleSAML\Configuration::getConfigItem()
+     * @return void
      */
     public function testGetConfigItem()
     {
         $c = Configuration::loadFromArray([
-            'opt' => array('a' => 42),
+            'opt' => ['a' => 42],
         ]);
-        $this->assertEquals($c->getConfigItem('missing_opt', '--missing--'), '--missing--');
+        $this->assertNull($c->getConfigItem('missing_opt', null));
         $opt = $c->getConfigItem('opt');
-        $this->assertInstanceOf('SimpleSAML\Configuration', $opt);
+        $notOpt = $c->getConfigItem('notOpt');
+        $this->assertInstanceOf(Configuration::class, $opt);
+        $this->assertInstanceOf(Configuration::class, $notOpt);
         $this->assertEquals($opt->getValue('a'), 42);
     }
 
+
     /**
      * Test \SimpleSAML\Configuration::getConfigItem() wrong option
-     * @expectedException Exception
+     * @return void
      */
     public function testGetConfigItemWrong()
     {
+        $this->expectException(\Exception::class);
         $c = Configuration::loadFromArray([
             'opt' => 'not_an_array',
         ]);
         $c->getConfigItem('opt');
     }
 
+
     /**
      * Test \SimpleSAML\Configuration::getConfigList()
+     * @return void
      */
     public function testGetConfigList()
     {
         $c = Configuration::loadFromArray([
-            'opts' => array(
-               'a' => array('opt1' => 'value1'),
-               'b' => array('opt2' => 'value2'),
-            ),
+            'opts' => [
+                'a' => ['opt1' => 'value1'],
+                'b' => ['opt2' => 'value2'],
+            ],
         ]);
-        $this->assertEquals($c->getConfigList('missing_opt', '--missing--'), '--missing--');
+        $this->assertEquals($c->getConfigList('missing_opt'), []);
         $opts = $c->getConfigList('opts');
         $this->assertInternalType('array', $opts);
-        $this->assertEquals(array_keys($opts), array('a', 'b'));
-        $this->assertInstanceOf('SimpleSAML\Configuration', $opts['a']);
+        $this->assertEquals(array_keys($opts), ['a', 'b']);
+        $this->assertInstanceOf(Configuration::class, $opts['a']);
         $this->assertEquals($opts['a']->getValue('opt1'), 'value1');
-        $this->assertInstanceOf('SimpleSAML\Configuration', $opts['b']);
+        $this->assertInstanceOf(Configuration::class, $opts['b']);
         $this->assertEquals($opts['b']->getValue('opt2'), 'value2');
     }
 
+
     /**
      * Test \SimpleSAML\Configuration::getConfigList() wrong option
-     * @expectedException Exception
+     * @return void
      */
     public function testGetConfigListWrong()
     {
+        $this->expectException(\Exception::class);
         $c = Configuration::loadFromArray([
             'opt' => 'not_an_array',
         ]);
@@ -553,15 +585,16 @@ class Test_Configuration extends SimpleSAML\Test\Utils\ClearStateTestCase
 
     /**
      * Test \SimpleSAML\Configuration::getConfigList() with an array of wrong options.
-     * @expectedException Exception
+     * @return void
      */
     public function testGetConfigListWrongArrayValues()
     {
+        $this->expectException(\Exception::class);
         $c = Configuration::loadFromArray([
-            'opts' => array(
+            'opts' => [
                 'a',
                 'b',
-            ),
+            ],
         ]);
         $c->getConfigList('opts');
     }
@@ -569,6 +602,7 @@ class Test_Configuration extends SimpleSAML\Test\Utils\ClearStateTestCase
 
     /**
      * Test \SimpleSAML\Configuration::getOptions()
+     * @return void
      */
     public function testGetOptions()
     {
@@ -576,11 +610,13 @@ class Test_Configuration extends SimpleSAML\Test\Utils\ClearStateTestCase
             'a' => true,
             'b' => null,
         ]);
-        $this->assertEquals($c->getOptions(), array('a', 'b'));
+        $this->assertEquals($c->getOptions(), ['a', 'b']);
     }
+
 
     /**
      * Test \SimpleSAML\Configuration::toArray()
+     * @return void
      */
     public function testToArray()
     {
@@ -588,7 +624,7 @@ class Test_Configuration extends SimpleSAML\Test\Utils\ClearStateTestCase
             'a' => true,
             'b' => null,
         ]);
-        $this->assertEquals($c->toArray(), array('a' => true, 'b' => null));
+        $this->assertEquals($c->toArray(), ['a' => true, 'b' => null]);
     }
 
 
@@ -596,6 +632,7 @@ class Test_Configuration extends SimpleSAML\Test\Utils\ClearStateTestCase
      * Test \SimpleSAML\Configuration::getDefaultEndpoint().
      *
      * Iterate over all different valid definitions of endpoints and check if the expected output is produced.
+     * @return void
      */
     public function testGetDefaultEndpoint()
     {
@@ -604,132 +641,132 @@ class Test_Configuration extends SimpleSAML\Test\Utils\ClearStateTestCase
          * basically AssertionConsumerService and ArtifactResolutionService. Since both are the same, we just run the
          * tests for AssertionConsumerService.
          */
-        $acs_eps = array(
+        $acs_eps = [
             // just a string with the location
             'https://example.com/endpoint.php',
             // an array of strings with location of different endpoints
-            array(
+            [
                 'https://www1.example.com/endpoint.php',
                 'https://www2.example.com/endpoint.php',
-            ),
+            ],
             // define location and binding
-            array(
-                array(
+            [
+                [
                     'Location' => 'https://example.com/endpoint.php',
                     'Binding' => \SAML2\Constants::BINDING_HTTP_POST,
-                ),
-            ),
+                ],
+            ],
             // define the ResponseLocation too
-            array(
-                array(
+            [
+                [
                     'Location' => 'https://example.com/endpoint.php',
                     'Binding' => \SAML2\Constants::BINDING_HTTP_POST,
                     'ResponseLocation' => 'https://example.com/endpoint.php',
-                ),
-            ),
+                ],
+            ],
             // make sure indexes are NOT taken into account (they just identify endpoints)
-            array(
-                array(
+            [
+                [
                     'index' => 1,
                     'Location' => 'https://www1.example.com/endpoint.php',
                     'Binding' => \SAML2\Constants::BINDING_HTTP_REDIRECT,
-                ),
-                array(
+                ],
+                [
                     'index' => 2,
                     'Location' => 'https://www2.example.com/endpoint.php',
                     'Binding' => \SAML2\Constants::BINDING_HTTP_POST,
-                ),
-            ),
+                ],
+            ],
             // make sure isDefault has priority over indexes
-            array(
-                array(
+            [
+                [
                     'index' => 1,
                     'Location' => 'https://www2.example.com/endpoint.php',
                     'Binding' => \SAML2\Constants::BINDING_HTTP_POST,
-                ),
-                array(
+                ],
+                [
                     'index' => 2,
                     'isDefault' => true,
                     'Location' => 'https://www1.example.com/endpoint.php',
                     'Binding' => \SAML2\Constants::BINDING_HTTP_REDIRECT,
-                ),
-            ),
+                ],
+            ],
             // make sure endpoints with invalid bindings are ignored and those marked as NOT default are still used
-            array(
-                array(
+            [
+                [
                     'index' => 1,
                     'Location' => 'https://www1.example.com/endpoint.php',
                     'Binding' => 'invalid_binding',
-                ),
-                array(
+                ],
+                [
                     'index' => 2,
                     'isDefault' => false,
                     'Location' => 'https://www2.example.com/endpoint.php',
                     'Binding' => \SAML2\Constants::BINDING_HTTP_POST,
-                ),
-            ),
-        );
-        $acs_expected_eps = array(
+                ],
+            ],
+        ];
+        $acs_expected_eps = [
             // output should be completed with the default binding (HTTP-POST for ACS)
-            array(
+            [
                 'Location' => 'https://example.com/endpoint.php',
                 'Binding' => \SAML2\Constants::BINDING_HTTP_POST,
-            ),
+            ],
             // we should just get the first endpoint with the default binding
-            array(
+            [
                 'Location' => 'https://www1.example.com/endpoint.php',
                 'Binding' => \SAML2\Constants::BINDING_HTTP_POST,
-            ),
+            ],
             // if we specify the binding, we should get it back
-            array(
+            [
                 'Location' => 'https://example.com/endpoint.php',
                 'Binding' => \SAML2\Constants::BINDING_HTTP_POST
-            ),
+            ],
             // if we specify ResponseLocation, we should get it back too
-            array(
+            [
                 'Location' => 'https://example.com/endpoint.php',
                 'Binding' => \SAML2\Constants::BINDING_HTTP_POST,
                 'ResponseLocation' => 'https://example.com/endpoint.php',
-            ),
+            ],
             // indexes must NOT be taken into account, order is the only thing that matters here
-            array(
+            [
                 'Location' => 'https://www1.example.com/endpoint.php',
                 'Binding' => \SAML2\Constants::BINDING_HTTP_REDIRECT,
                 'index' => 1,
-            ),
+            ],
             // isDefault must have higher priority than indexes
-            array(
+            [
                 'Location' => 'https://www1.example.com/endpoint.php',
                 'Binding' => \SAML2\Constants::BINDING_HTTP_REDIRECT,
                 'isDefault' => true,
                 'index' => 2,
-            ),
+            ],
             // the first valid enpoint should be used even if it's marked as NOT default
-            array(
+            [
                 'index' => 2,
                 'isDefault' => false,
                 'Location' => 'https://www2.example.com/endpoint.php',
                 'Binding' => \SAML2\Constants::BINDING_HTTP_POST,
-            )
-        );
+            ]
+        ];
 
-        $a = array(
+        $a = [
             'metadata-set' => 'saml20-sp-remote',
             'ArtifactResolutionService' => 'https://example.com/ars',
             'SingleSignOnService' => 'https://example.com/sso',
-            'SingleLogoutService' => array(
+            'SingleLogoutService' => [
                 'Location' => 'https://example.com/slo',
                 'Binding' => 'valid_binding', // test unknown bindings if we don't specify a list of valid ones
-            ),
-        );
+            ],
+        ];
 
-        $valid_bindings = array(
+        $valid_bindings = [
             \SAML2\Constants::BINDING_HTTP_POST,
             \SAML2\Constants::BINDING_HTTP_REDIRECT,
             \SAML2\Constants::BINDING_HOK_SSO,
-            \SAML2\Constants::BINDING_HTTP_ARTIFACT.
+            \SAML2\Constants::BINDING_HTTP_ARTIFACT,
             \SAML2\Constants::BINDING_SOAP,
-        );
+        ];
 
         // run all general tests with AssertionConsumerService endpoint type
         foreach ($acs_eps as $i => $ep) {
@@ -745,26 +782,26 @@ class Test_Configuration extends SimpleSAML\Test\Utils\ClearStateTestCase
         $a['metadata-set'] = 'shib13-idp-remote';
         $c = Configuration::loadFromArray($a);
         $this->assertEquals(
-            array(
+            [
                 'Location' => 'https://example.com/sso',
                 'Binding' => 'urn:mace:shibboleth:1.0:profiles:AuthnRequest',
-            ),
+            ],
             $c->getDefaultEndpoint('SingleSignOnService')
         );
         $a['metadata-set'] = 'saml20-idp-remote';
         $c = Configuration::loadFromArray($a);
         $this->assertEquals(
-            array(
+            [
                 'Location' => 'https://example.com/ars',
                 'Binding' => \SAML2\Constants::BINDING_SOAP,
-            ),
+            ],
             $c->getDefaultEndpoint('ArtifactResolutionService')
         );
         $this->assertEquals(
-            array(
+            [
                 'Location' => 'https://example.com/slo',
                 'Binding' => \SAML2\Constants::BINDING_HTTP_REDIRECT,
-            ),
+            ],
             $c->getDefaultEndpoint('SingleLogoutService')
         );
 
@@ -773,28 +810,28 @@ class Test_Configuration extends SimpleSAML\Test\Utils\ClearStateTestCase
         $a['AssertionConsumerService'] = 'https://example.com/endpoint.php';
         $c = Configuration::loadFromArray($a);
         $this->assertEquals(
-            array(
+            [
                 'Location' => 'https://example.com/endpoint.php',
                 'Binding' => 'urn:oasis:names:tc:SAML:1.0:profiles:browser-post',
-            ),
+            ],
             $c->getDefaultEndpoint('AssertionConsumerService')
         );
 
         // test for no valid endpoints specified
-        $a['SingleLogoutService'] = array(
-            array(
+        $a['SingleLogoutService'] = [
+            [
                 'Location' => 'https://example.com/endpoint.php',
                 'Binding' => 'invalid_binding',
                 'isDefault' => true,
-            ),
-        );
+            ],
+        ];
         $c = Configuration::loadFromArray($a);
         try {
             $c->getDefaultEndpoint('SingleLogoutService', $valid_bindings);
             $this->fail('Failed to detect invalid endpoint binding.');
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             $this->assertEquals(
-                '[ARRAY][\'SingleLogoutService\']:Could not find a supported SingleLogoutService '.'endpoint.',
+                '[ARRAY][\'SingleLogoutService\']:Could not find a supported SingleLogoutService ' . 'endpoint.',
                 $e->getMessage()
             );
         }
@@ -803,7 +840,7 @@ class Test_Configuration extends SimpleSAML\Test\Utils\ClearStateTestCase
         try {
             $c->getDefaultEndpoint('SingleSignOnService');
             $this->fail('No valid metadata set specified.');
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             $this->assertStringStartsWith('Missing default binding for', $e->getMessage());
         }
     }
@@ -811,85 +848,86 @@ class Test_Configuration extends SimpleSAML\Test\Utils\ClearStateTestCase
 
     /**
      * Test \SimpleSAML\Configuration::getEndpoints().
+     * @return void
      */
     public function testGetEndpoints()
     {
         // test response location for old-style configurations
-        $c = Configuration::loadFromArray(array(
+        $c = Configuration::loadFromArray([
             'metadata-set' => 'saml20-idp-remote',
             'SingleSignOnService' => 'https://example.com/endpoint.php',
             'SingleSignOnServiceResponse' => 'https://example.com/response.php',
-        ));
-        $e = array(
-            array(
+        ]);
+        $e = [
+            [
                 'Location' => 'https://example.com/endpoint.php',
                 'Binding' => \SAML2\Constants::BINDING_HTTP_REDIRECT,
                 'ResponseLocation' => 'https://example.com/response.php',
-            )
-        );
+            ]
+        ];
         $this->assertEquals($e, $c->getEndpoints('SingleSignOnService'));
 
         // test for input failures
 
         // define a basic configuration array
-        $a = array(
+        $a = [
             'metadata-set' => 'saml20-idp-remote',
             'SingleSignOnService' => null,
-        );
+        ];
 
         // define a set of tests
-        $tests = array(
+        $tests = [
             // invalid endpoint definition
             10,
             // invalid definition of endpoint inside the endpoints array
-            array(
+            [
                 1234
-            ),
+            ],
             // missing location
-            array(
-                array(
+            [
+                [
                     'foo' => 'bar',
-                ),
-            ),
+                ],
+            ],
             // invalid location
-            array(
-                array(
+            [
+                [
                     'Location' => 1234,
-                )
-            ),
+                ]
+            ],
             // missing binding
-            array(
-                array(
+            [
+                [
                     'Location' => 'https://example.com/endpoint.php',
-                ),
-            ),
+                ],
+            ],
             // invalid binding
-            array(
-                array(
+            [
+                [
                     'Location' => 'https://example.com/endpoint.php',
                     'Binding' => 1234,
-                ),
-            ),
+                ],
+            ],
             // invalid response location
-            array(
-                array(
+            [
+                [
                     'Location' => 'https://example.com/endpoint.php',
                     'Binding' => \SAML2\Constants::BINDING_HTTP_REDIRECT,
                     'ResponseLocation' => 1234,
-                ),
-            ),
+                ],
+            ],
             // invalid index
-            array(
-                array(
+            [
+                [
                     'Location' => 'https://example.com/endpoint.php',
                     'Binding' => \SAML2\Constants::BINDING_HTTP_REDIRECT,
                     'index' => 'string',
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
 
         // define a set of exception messages to expect
-        $msgs = array(
+        $msgs = [
             'Expected array or string.',
             'Expected a string or an array.',
             'Missing Location.',
@@ -898,7 +936,7 @@ class Test_Configuration extends SimpleSAML\Test\Utils\ClearStateTestCase
             'Binding must be a string.',
             'ResponseLocation must be a string.',
             'index must be an integer.',
-        );
+        ];
 
         // now run all the tests expecting the correct exception message
         foreach ($tests as $i => $test) {
@@ -906,7 +944,7 @@ class Test_Configuration extends SimpleSAML\Test\Utils\ClearStateTestCase
             $c = Configuration::loadFromArray($a);
             try {
                 $c->getEndpoints('SingleSignOnService');
-            } catch (Exception $e) {
+            } catch (\Exception $e) {
                 $this->assertStringEndsWith($msgs[$i], $e->getMessage());
             }
         }
@@ -915,68 +953,79 @@ class Test_Configuration extends SimpleSAML\Test\Utils\ClearStateTestCase
 
     /**
      * Test \SimpleSAML\Configuration::getLocalizedString()
+     * @return void
      */
     public function testGetLocalizedString()
     {
         $c = Configuration::loadFromArray([
             'str_opt' => 'Hello World!',
-            'str_array' => array(
+            'str_array' => [
                 'en' => 'Hello World!',
                 'no' => 'Hei Verden!',
-            ),
+            ],
         ]);
         $this->assertEquals($c->getLocalizedString('missing_opt', '--missing--'), '--missing--');
-        $this->assertEquals($c->getLocalizedString('str_opt'), array('en' => 'Hello World!'));
-        $this->assertEquals($c->getLocalizedString('str_array'), array('en' => 'Hello World!', 'no' => 'Hei Verden!'));
+        $this->assertEquals($c->getLocalizedString('str_opt'), ['en' => 'Hello World!']);
+        $this->assertEquals($c->getLocalizedString('str_array'), ['en' => 'Hello World!', 'no' => 'Hei Verden!']);
     }
+
 
     /**
      * Test \SimpleSAML\Configuration::getLocalizedString() not array nor simple string
-     * @expectedException Exception
+     * @return void
      */
     public function testGetLocalizedStringNotArray()
     {
+        $this->expectException(\Exception::class);
         $c = Configuration::loadFromArray([
             'opt' => 42,
         ]);
         $c->getLocalizedString('opt');
     }
 
+
     /**
      * Test \SimpleSAML\Configuration::getLocalizedString() not string key
-     * @expectedException Exception
+     * @return void
      */
     public function testGetLocalizedStringNotStringKey()
     {
+        $this->expectException(\Exception::class);
         $c = Configuration::loadFromArray([
-            'opt' => array(42 => 'text'),
+            'opt' => [42 => 'text'],
         ]);
         $c->getLocalizedString('opt');
     }
+
 
     /**
      * Test \SimpleSAML\Configuration::getLocalizedString() not string value
-     * @expectedException Exception
+     * @return void
      */
     public function testGetLocalizedStringNotStringValue()
     {
+        $this->expectException(\Exception::class);
         $c = Configuration::loadFromArray([
-            'opt' => array('en' => 42),
+            'opt' => ['en' => 42],
         ]);
         $c->getLocalizedString('opt');
     }
 
+
     /**
      * Test \SimpleSAML\Configuration::getConfig() nonexistent file
-     * @expectedException Exception
+     * @return void
      */
     public function testGetConfigNonexistentFile()
     {
+        $this->expectException(\Exception::class);
         Configuration::getConfig('nonexistent-nopreload.php');
     }
 
+
     /**
      * Test \SimpleSAML\Configuration::getConfig() preloaded nonexistent file
+     * @return void
      */
     public function testGetConfigNonexistentFilePreload()
     {
@@ -989,16 +1038,18 @@ class Test_Configuration extends SimpleSAML\Test\Utils\ClearStateTestCase
         $this->assertEquals('value', $nc->getValue('key', null));
     }
 
+
     /**
      * Test that Configuration objects can be initialized from an array.
      *
      * ATTENTION: this test must be kept the last.
+     * @return void
      */
     public function testLoadInstanceFromArray()
     {
-        $c = array(
+        $c = [
             'key' => 'value'
-        );
+        ];
         // test loading a custom instance
         Configuration::loadFromArray($c, '', 'dummy');
         $this->assertEquals('value', Configuration::getInstance('dummy')->getValue('key', null));

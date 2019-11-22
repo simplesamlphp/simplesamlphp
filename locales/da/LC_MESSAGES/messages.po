@@ -50,12 +50,6 @@ msgstr "Fejl i læsning af metadata"
 msgid "{admin:metaconv_title}"
 msgstr "Metadata parser"
 
-msgid "{attributes:attribute_edupersonentitlement}"
-msgstr "Specifik rolle i forhold til tjenesten"
-
-msgid "{attributes:attribute_jpegphoto}"
-msgstr "JPEG-foto"
-
 msgid "{admin:cfg_check_noerrors}"
 msgstr "Ingen fejl"
 
@@ -129,9 +123,6 @@ msgstr ""
 msgid "{logout:default_link_text}"
 msgstr "Tilbage til SimpleSAMLphp installationssiden"
 
-msgid "{admin:metaover_group_metadata.wsfed-idp-remote}"
-msgstr "WS-Federation identitetsudbyder (remote)"
-
 msgid "{errors:error_header}"
 msgstr "SimpleSAMLphp fejl"
 
@@ -147,17 +138,11 @@ msgstr ""
 "du er administrator for denne server, check at din metadata konfiguration"
 " er korrekt."
 
-msgid "{attributes:attribute_edupersonorgdn}"
-msgstr "Din hjemmeorganisations 'distinguished name' (DN)"
-
 msgid "{errors:title_BADREQUEST}"
 msgstr "Fejlagtig forespørgsel"
 
 msgid "{status:sessionsize}"
 msgstr "Sessionsstørrelse: %SIZE%"
-
-msgid "{attributes:attribute_postaladdress}"
-msgstr "Adresse"
 
 msgid "{logout:title}"
 msgstr "Du er logget ud"
@@ -186,29 +171,14 @@ msgstr "I kø"
 msgid "{admin:cfg_check_header}"
 msgstr "Undersøgelse af konfiguration"
 
-msgid "{attributes:attribute_edupersonscopedaffiliation}"
-msgstr "Gruppemedlemskab"
-
-msgid "{attributes:attribute_sn}"
-msgstr "Efternavn"
-
 msgid "{admin:debug_sending_message_send}"
 msgstr "Send besked"
 
 msgid "{status:logout}"
 msgstr "Log ud"
 
-msgid "{attributes:attribute_organisationname}"
-msgstr "Hjemmeorganisationens kaldenavn"
-
-msgid "{attributes:attribute_telephonenumber}"
-msgstr "Telefonnummer"
-
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "De afsendte værdier overholder ikke Discovery Servicens' krav"
-
-msgid "{attributes:attribute_mail}"
-msgstr "Emailadresse"
 
 msgid "{errors:descr_CREATEREQUEST}"
 msgstr "Fejl ved generering af SAML-forespørgsel"
@@ -218,9 +188,6 @@ msgstr "Valgfrie felter"
 
 msgid "{logout:return}"
 msgstr "Tilbage til service"
-
-msgid "{attributes:attribute_displayname}"
-msgstr "Visningsnavn"
 
 msgid "{admin:metadata_xmlurl}"
 msgstr "Du kan få metadata-xml <a href=\"%METAURL%\">her</a>:"
@@ -232,9 +199,6 @@ msgid "{admin:debug_disable_debug_mode}"
 msgstr ""
 "Du kan slå debug-mode fra i den globale SimpleSAMLphp-konfigurationsfil "
 "<tt>config/config.php</tt>"
-
-msgid "{attributes:attribute_homepostaladdress}"
-msgstr "Privatadresse"
 
 msgid "{disco:select}"
 msgstr "Vælg"
@@ -265,9 +229,6 @@ msgstr ""
 msgid "{logout:logout_all_question}"
 msgstr "Vil du logge ud fra alle ovenstående services?"
 
-msgid "{attributes:attribute_title}"
-msgstr "Titel"
-
 msgid "{errors:title_NOACCESS}"
 msgstr "Ingen Adgang"
 
@@ -279,9 +240,6 @@ msgstr "RelayState mangler"
 
 msgid "{errors:descr_NOSTATE}"
 msgstr "State information er tabt og der er ikke muligt at gentage forspørgelsen"
-
-msgid "{attributes:attribute_noredupersonnin}"
-msgstr "CPR-nummer"
 
 msgid "{login:password}"
 msgstr "Kodeord"
@@ -307,23 +265,14 @@ msgstr "Fejl i Logout Request"
 msgid "{admin:metaover_errorentry}"
 msgstr "Fejl i denne sektion af metadata"
 
-msgid "{attributes:attribute_edupersonaffiliation}"
-msgstr "Brugerens tilknytning til hjemmeorganisationen"
-
 msgid "{errors:title_METADATANOTFOUND}"
 msgstr "Metadata ikke fundet"
-
-msgid "{attributes:attribute_givenname}"
-msgstr "Fornavn(e)"
 
 msgid "{login:contact_info}"
 msgstr "Kontaktoplysninger"
 
 msgid "{errors:title_UNHANDLEDEXCEPTION}"
 msgstr "Unhandled exception"
-
-msgid "{status:validfor}"
-msgstr "Du har %SECONDS% tilbage af din session"
 
 msgid "{status:header_saml20_sp}"
 msgstr "SAML 2.0 tjenesteudbyder-demo"
@@ -361,17 +310,11 @@ msgstr "Vælg den konfiguration som skal undersøges"
 msgid "{errors:descr_UNKNOWNCERT}"
 msgstr "Authentifikation fejlede: Certifikatet som din browser har send er ukendt"
 
-msgid "{attributes:attribute_eduorghomepageuri}"
-msgstr "Hjemmeside"
-
 msgid "{logout:logging_out_from}"
 msgstr "Du logger ud af følgende services:"
 
 msgid "{logout:loggedoutfrom}"
 msgstr "Du er nu logget ud fra %SP%."
-
-msgid "{admin:metaover_group_metadata.wsfed-sp-hosted}"
-msgstr "WS-Federation tjenesteudbyder (hosted)"
 
 msgid "{errors:errorreport_text}"
 msgstr "Fejlrapporten er nu sendt til system-administrator"
@@ -379,14 +322,8 @@ msgstr "Fejlrapporten er nu sendt til system-administrator"
 msgid "{status:subject_header}"
 msgstr "SAML emne"
 
-msgid "{attributes:attribute_noredupersonbirthdate}"
-msgstr "Fødselsdato"
-
 msgid "{errors:descr_LOGOUTREQUEST}"
 msgstr "Der opstod en fejl under behandlingen af Logout forespørgelsen"
-
-msgid "{attributes:attribute_edupersontargetedid}"
-msgstr "Pseudonymt bruger-ID"
 
 msgid "{logout:success}"
 msgstr "Du har logget ud fra alle overnævnte services. "
@@ -396,12 +333,6 @@ msgstr "Beskeder"
 
 msgid "{errors:descr_USERABORTED}"
 msgstr "Autentificering blev afbrudt af brugeren"
-
-msgid "{attributes:attribute_edupersonprimaryaffiliation}"
-msgstr "Primær tilknytning"
-
-msgid "{attributes:attribute_postalcode}"
-msgstr "Postnummer"
 
 msgid "{errors:descr_CASERROR}"
 msgstr "Der opstod en fejl ved kommunikationen med CAS serveren"
@@ -415,9 +346,6 @@ msgstr "SAML 2.0 tjenesteudbyders metadata"
 msgid "{admin:metaconv_converted}"
 msgstr "Konverteret metadata"
 
-msgid "{attributes:attribute_cn}"
-msgstr "Kaldenavn"
-
 msgid "{logout:completed}"
 msgstr "Færdig"
 
@@ -427,17 +355,8 @@ msgstr ""
 "(auth.adminpassword). Opdater konfigurationen med et nyt password, der er"
 " forskelligt fra stadardpasswordet."
 
-msgid "{attributes:attribute_ou}"
-msgstr "Organisatorisk enhed"
-
 msgid "{general:service_provider}"
 msgstr "Tjenesteudbyder"
-
-msgid "{attributes:attribute_homephone}"
-msgstr "Telefonnummer (privat)"
-
-msgid "{attributes:attribute_dc}"
-msgstr "Domænekomponent"
 
 msgid "{errors:descr_BADREQUEST}"
 msgstr "Der er en fejl i forespørgslen til siden. Grunden er: %REASON%"
@@ -457,22 +376,13 @@ msgstr "Indtast brugernavn og kodeord"
 msgid "{errors:report_explain}"
 msgstr "Forklar hvad du gjorde og hvordan fejlen opstod"
 
-msgid "{attributes:attribute_manager}"
-msgstr "Manager"
-
 msgid "{errors:title_ACSPARAMS}"
 msgstr "SAML response mangler"
-
-msgid "{attributes:attribute_edupersonnickname}"
-msgstr "Kaldenavn"
 
 msgid "{errors:descr_SLOSERVICEPARAMS}"
 msgstr ""
 "Du forsøger at tilgå Single Logout grænsefladen, uden at sendet et SAML "
 "LogoutRequest eller LogoutResponse"
-
-msgid "{attributes:attribute_street}"
-msgstr "Gade"
 
 msgid "{login:organization}"
 msgstr "Organisationsnavn"
@@ -509,9 +419,6 @@ msgstr "Vælg hjemmeinstitution"
 msgid "{admin:cfg_check_superfluous}"
 msgstr "Overflødigt valg i konfigurationsfil"
 
-msgid "{attributes:attribute_labeleduri}"
-msgstr "Labeled URI"
-
 msgid "{errors:report_email}"
 msgstr "E-mailadresse:"
 
@@ -526,9 +433,6 @@ msgstr ""
 "Afsenderen af denne forespørgelse har ikke angivet en RelayStay "
 "parameter, der hvilket hvor der skal fortsættes"
 
-msgid "{attributes:attribute_noredupersonlegalname}"
-msgstr "Officielt navn"
-
 msgid "{status:header_diagnostics}"
 msgstr "SimpleSAMLphp diagnostik"
 
@@ -537,9 +441,6 @@ msgstr ""
 "Dette er statussiden for SimpleSAMLphp. Du kan se om din session er "
 "udløbet, hvor lang tid der er til at den udløber, samt alle øvrige "
 "oplysninger om din session."
-
-msgid "{attributes:attribute_schachomeorganization}"
-msgstr "Hjemmeorganisationens entydige ID (domænenavn)"
 
 msgid "{errors:title_NOTFOUNDREASON}"
 msgstr "Siden kunne ikke findes"
@@ -559,32 +460,17 @@ msgstr "For at se detaljer vedrørende SAML-entiteten, klik på entitets-headere
 msgid "{errors:title_NOTVALIDCERT}"
 msgstr "Ugyldigt Certifikat"
 
-msgid "{attributes:attribute_edupersonorgunitdn}"
-msgstr "Din organisatoriske enheds 'distinguished name' (DN)"
-
 msgid "{general:remember}"
 msgstr "Husk samtykke"
 
 msgid "{disco:selectidp}"
 msgstr "Vælg institution (identitetsudbyder)"
 
-msgid "{attributes:attribute_postofficebox}"
-msgstr "Postboks"
-
-msgid "{attributes:attribute_edupersonprincipalname}"
-msgstr "Bruger-ID hos hjemmeorganisationen"
-
 msgid "{login:help_desk_email}"
 msgstr "Send en e-mail til servicedesk"
 
 msgid "{login:help_desk_link}"
 msgstr "Servicedesk"
-
-msgid "{attributes:attribute_ismemberof}"
-msgstr "Gruppemedlemsskab"
-
-msgid "{attributes:attribute_uid}"
-msgstr "Brugernavn"
 
 msgid "{login:remember_me}"
 msgstr "Husk mig"
@@ -608,12 +494,6 @@ msgstr "Husk valget"
 
 msgid "{admin:metaover_group_metadata.saml20-sp-hosted}"
 msgstr "SAML 2.0 tjenesteudbyder (hosted)"
-
-msgid "{attributes:attribute_l}"
-msgstr "Sted"
-
-msgid "{attributes:attribute_edupersonassurance}"
-msgstr "Tillidsniveau for autentificering"
 
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
@@ -665,9 +545,6 @@ msgstr "ADFS identitetsudbyder (hosted)"
 msgid "{errors:title_UNKNOWNCERT}"
 msgstr "Ukendt certifikat"
 
-msgid "{attributes:attribute_facsimiletelephonenumber}"
-msgstr "Faxnummer"
-
 msgid "{errors:title_LDAPERROR}"
 msgstr "LDAP fejl"
 
@@ -685,17 +562,11 @@ msgstr ""
 "alternativt en ukendt fejl. Kontakt administratoren af denne tjeneste og "
 "rapportér så mange detaljer som muligt om fejlen"
 
-msgid "{attributes:attribute_mobile}"
-msgstr "Telefonnummer (mobil)"
-
 msgid "{admin:metadata_adfs-idp}"
 msgstr "ADFS identitetsudbyder metadata"
 
 msgid "{admin:metaover_group_metadata.shib13-idp-hosted}"
 msgstr "Shibboleth 1.3 identitetsudbyder (hosted)"
-
-msgid "{attributes:attribute_preferredlanguage}"
-msgstr "Foretrukket sprog (evt. flere)"
 
 msgid "{errors:descr_NOTVALIDCERT}"
 msgstr "Du har ikke valgt et gyldigt certifikat"
@@ -708,15 +579,6 @@ msgstr "Følgende valgfrie felter kunne ikke findes"
 
 msgid "{logout:logout_only}"
 msgstr "Nej, kun %SP%"
-
-msgid "{attributes:attribute_o}"
-msgstr "Hjemmeorganisationens kaldenavn"
-
-msgid "{attributes:attribute_edupersonprimaryorgunitdn}"
-msgstr "Primær enhed/institution"
-
-msgid "{attributes:attribute_noredupersonlin}"
-msgstr "Lokalt identifikationsnummer"
 
 msgid "{login:next}"
 msgstr "Næste"
@@ -733,9 +595,6 @@ msgstr "Siden kunne ikke findes på grund af %REASON%. Url'en var %URL%"
 msgid "{errors:title_NOCERT}"
 msgstr "Intet certifikat"
 
-msgid "{attributes:attribute_userpassword}"
-msgstr "Hash-værdi af brugerens kodeord"
-
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "Manglende logout-oplysninger"
 
@@ -750,12 +609,6 @@ msgstr ""
 "Her er det metadata, som SimpleSAMLphp har genereret. Du kan sende det "
 "til dem du stoler i forbindelse med oprettelsen af en føderation."
 
-msgid "{attributes:attribute_schacuserprivateattribute}"
-msgstr "Private informationselementer"
-
-msgid "{status:header_wsfed}"
-msgstr "WS-Federation tjenesteudbyder-demo"
-
 msgid "{admin:metadata_cert}"
 msgstr "Certifikater"
 
@@ -764,17 +617,11 @@ msgstr ""
 "Authentifikation fejlede: Certifikatet som din browser har sendt er "
 "ugyldigt og kan ikke læses"
 
-msgid "{attributes:attribute_eduorglegalname}"
-msgstr "Organisationens officielle navn"
-
 msgid "{status:header_shib}"
 msgstr "Shibboleth-demo"
 
 msgid "{admin:metaconv_parse}"
 msgstr "Parse"
-
-msgid "{attributes:attribute_noreduorgnin}"
-msgstr "CVR-nummer"
 
 msgid "Person's principal name at home organization"
 msgstr "Bruger-ID hos hjemmeorganisationen"
@@ -1109,8 +956,8 @@ msgstr ""
 "rapportér så mange detaljer som muligt om fejlen"
 
 #, python-format
-msgid "Your session is valid for %SECONDS% seconds from now."
-msgstr "Du har %SECONDS% tilbage af din session"
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Du har %remaining% tilbage af din session"
 
 msgid "Domain component (DC)"
 msgstr "Domænekomponent"
@@ -1601,3 +1448,14 @@ msgstr ""
 "Du forsøger at tilgå Assertion Consumer Service grænsefladen uden at "
 "sende et SAML Authentication Response"
 
+
+msgid ""
+"You are now accessing a pre-production system. This authentication setup "
+"is for testing and pre-production verification only. If someone sent you "
+"a link that pointed you here, and you are not <i>a tester</i> you "
+"probably got the wrong link, and should <b>not be here</b>."
+msgstr ""
+"Du tilgår nu et pre-produktions-system. Dette autentificeringssetup er "
+"kun til test og pre-produktion verifikation. Hvis nogen har sendt et "
+"link, som peger her og du ikke er en <i>tester</i>, så har du sikekrt "
+"fået et forkert lin og burde <b>ikke være her.</b> "

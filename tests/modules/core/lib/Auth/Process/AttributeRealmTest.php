@@ -1,13 +1,15 @@
 <?php
 
+namespace SimpleSAML\Test\Module\core\Auth\Process;
+
 use PHPUnit\Framework\TestCase;
 
 /**
  * Test for the core:AttributeRealm filter.
+ * @deprecated Remove in 2.0
  */
-class Test_Core_Auth_Process_AttributeRealm extends TestCase
+class AttributeRealmTest extends TestCase
 {
-
     /**
      * Helper function to run the filter with a given configuration.
      *
@@ -17,116 +19,127 @@ class Test_Core_Auth_Process_AttributeRealm extends TestCase
      */
     private static function processFilter(array $config, array $request)
     {
-        $filter = new \SimpleSAML\Module\core\Auth\Process\AttributeRealm($config, NULL);
+        $filter = new \SimpleSAML\Module\core\Auth\Process\AttributeRealm($config, null);
         $filter->process($request);
         return $request;
     }
 
+
     /**
      * Test the most basic functionality.
+     * @return void
      */
     public function testBasic()
     {
-        $config = array(
-        );
-        $request = array(
-            'Attributes' => array(),
+        $config = [
+        ];
+        $request = [
+            'Attributes' => [],
             'UserID' => 'user2@example.org',
-        );
+        ];
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
         $this->assertArrayHasKey('realm', $attributes);
-        $this->assertEquals($attributes['realm'], array('example.org'));
+        $this->assertEquals($attributes['realm'], ['example.org']);
     }
+
 
     /**
      * Test no userid set
-     *
-     * @expectedException Exception
+     * @return void
      */
     public function testNoUserID()
     {
-        $config = array(
-        );
-        $request = array(
-            'Attributes' => array(),
-        );
-        $result = self::processFilter($config, $request);
+        $this->expectException(\Exception::class);
+        $config = [
+        ];
+        $request = [
+            'Attributes' => [],
+        ];
+        self::processFilter($config, $request);
     }
+
 
     /**
      * Test with configuration.
+     * @return void
      */
     public function testAttributeNameConfig()
     {
-        $config = array(
+        $config = [
             'attributename' => 'schacHomeOrganization',
-        );
-        $request = array(
-            'Attributes' => array(
+        ];
+        $request = [
+            'Attributes' => [
                 'displayName' => 'Joe User',
                 'schacGender' => 9,
-            ),
+            ],
             'UserID' => 'user2@example.org',
-        );
+        ];
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
         $this->assertArrayHasKey('schacHomeOrganization', $attributes);
         $this->assertArrayHasKey('displayName', $attributes);
-        $this->assertEquals($attributes['schacHomeOrganization'], array('example.org'));
+        $this->assertEquals($attributes['schacHomeOrganization'], ['example.org']);
     }
+
 
     /**
      * When target attribute exists it will be overwritten
+     * @return void
      */
     public function testTargetAttributeOverwritten()
     {
-        $config = array(
+        $config = [
             'attributename' => 'schacHomeOrganization',
-        );
-        $request = array(
-            'Attributes' => array(
+        ];
+        $request = [
+            'Attributes' => [
                 'displayName' => 'Joe User',
                 'schacGender' => 9,
                 'schacHomeOrganization' => 'example.com',
-            ),
+            ],
             'UserID' => 'user2@example.org',
-        );
+        ];
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
         $this->assertArrayHasKey('schacHomeOrganization', $attributes);
-        $this->assertEquals($attributes['schacHomeOrganization'], array('example.org'));
+        $this->assertEquals($attributes['schacHomeOrganization'], ['example.org']);
     }
+
 
     /**
      * When source attribute has no "@" no realm is added
+     * @return void
      */
     public function testNoAtisNoOp()
     {
-        $config = array();
-        $request = array(
-            'Attributes' => array(
+        $config = [];
+        $request = [
+            'Attributes' => [
                 'displayName' => 'Joe User',
-            ),
+            ],
             'UserID' => 'user2',
-        );
+        ];
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
         $this->assertArrayNotHasKey('realm', $attributes);
     }
 
+
     /**
      * When source attribute has more than one "@" no realm is added
+     * @return void
      */
     public function testMultiAtisNoOp()
     {
-        $config = array();
-        $request = array(
-            'Attributes' => array(
+        $config = [];
+        $request = [
+            'Attributes' => [
                 'displayName' => 'Joe User',
-            ),
+            ],
             'UserID' => 'user2@home@example.org',
-        );
+        ];
         $result = self::processFilter($config, $request);
         $attributes = $result['Attributes'];
         $this->assertArrayNotHasKey('realm', $attributes);

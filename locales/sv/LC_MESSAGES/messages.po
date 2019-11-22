@@ -50,12 +50,6 @@ msgstr "Fel vi laddandet av metadata"
 msgid "{admin:metaconv_title}"
 msgstr "Metadataanalyserare"
 
-msgid "{attributes:attribute_edupersonentitlement}"
-msgstr "Roll(er) i aktuell tjänst"
-
-msgid "{attributes:attribute_jpegphoto}"
-msgstr "JPEG-bild"
-
 msgid "{admin:cfg_check_noerrors}"
 msgstr "Inga fel funna."
 
@@ -135,9 +129,6 @@ msgstr ""
 msgid "{logout:default_link_text}"
 msgstr "Åter till installationssidan för SimpleSAMLphp"
 
-msgid "{admin:metaover_group_metadata.wsfed-idp-remote}"
-msgstr "WS-Federation Service Provider (Fjärr)"
-
 msgid "{errors:error_header}"
 msgstr "SimpleSAMLphp fel"
 
@@ -156,17 +147,11 @@ msgstr ""
 " du är adminstratör av tjänsten ska du kontrollera om konfigurationen av "
 "metadata är rätt konfigurerad."
 
-msgid "{attributes:attribute_edupersonorgdn}"
-msgstr "LDAP-pekare (DN) till personens organisation"
-
 msgid "{errors:title_BADREQUEST}"
 msgstr "Felaktigt anrop"
 
 msgid "{status:sessionsize}"
 msgstr "Sessionsstorlek: %SIZE%"
-
-msgid "{attributes:attribute_postaladdress}"
-msgstr "Postadress"
 
 msgid "{logout:title}"
 msgstr "Utloggad"
@@ -189,31 +174,16 @@ msgstr "Vilande"
 msgid "{admin:cfg_check_header}"
 msgstr "Konfigurationskontroll"
 
-msgid "{attributes:attribute_edupersonscopedaffiliation}"
-msgstr "Grupptillhörighet"
-
-msgid "{attributes:attribute_sn}"
-msgstr "Efternamn"
-
 msgid "{admin:debug_sending_message_send}"
 msgstr "Skicka meddelande"
 
 msgid "{status:logout}"
 msgstr "Logga ut"
 
-msgid "{attributes:attribute_organisationname}"
-msgstr "Namn på organisationen"
-
-msgid "{attributes:attribute_telephonenumber}"
-msgstr "Telefonnummer"
-
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr ""
 "Parametrarna som skickades till lokaliseringstjänsten följde inte "
 "specifikationen."
-
-msgid "{attributes:attribute_mail}"
-msgstr "E-postadress"
 
 msgid "{errors:descr_CREATEREQUEST}"
 msgstr "Ett fel har inträffat vid försöket att skapa en SAML-förfrågan."
@@ -223,9 +193,6 @@ msgstr "Frivilliga alternativ"
 
 msgid "{logout:return}"
 msgstr "Åter till tjänsten"
-
-msgid "{attributes:attribute_displayname}"
-msgstr "Visningsnamn"
 
 msgid "{admin:metadata_xmlurl}"
 msgstr ""
@@ -239,9 +206,6 @@ msgid "{admin:debug_disable_debug_mode}"
 msgstr ""
 "Du kan stänga av debugläget i SimpleSAMLphps globala konfigurationsfil "
 "<tt>config/config.php</tt>."
-
-msgid "{attributes:attribute_homepostaladdress}"
-msgstr "Hemadress"
 
 msgid "{disco:select}"
 msgstr "Välj"
@@ -270,9 +234,6 @@ msgstr ""
 msgid "{logout:logout_all_question}"
 msgstr "Vill du logga ut från alla ovanstående tjänster?"
 
-msgid "{attributes:attribute_title}"
-msgstr "Titel"
-
 msgid "{errors:title_NOACCESS}"
 msgstr "Ingen åtkomst"
 
@@ -288,9 +249,6 @@ msgid "{errors:descr_NOSTATE}"
 msgstr ""
 "Sessionsinformationen är borttappad och det är inte möjligt att "
 "återstarta förfrågan"
-
-msgid "{attributes:attribute_noredupersonnin}"
-msgstr "Officiellt personnummer eller intermimspersonnummer"
 
 msgid "{login:password}"
 msgstr "Lösenord"
@@ -318,23 +276,14 @@ msgstr "Fel vid utloggningsförfrågan"
 msgid "{admin:metaover_errorentry}"
 msgstr "Fel i dessa metadat"
 
-msgid "{attributes:attribute_edupersonaffiliation}"
-msgstr "Anknytning"
-
 msgid "{errors:title_METADATANOTFOUND}"
 msgstr "Metadata saknas"
-
-msgid "{attributes:attribute_givenname}"
-msgstr "Förnamn"
 
 msgid "{login:contact_info}"
 msgstr "Kontaktinformation:"
 
 msgid "{errors:title_UNHANDLEDEXCEPTION}"
 msgstr "Ohanterat undantag"
-
-msgid "{status:validfor}"
-msgstr "Din session är giltig för %SECONDS% sekunder från nu."
 
 msgid "{status:header_saml20_sp}"
 msgstr "SAML 2.0 SP demoexempel"
@@ -369,29 +318,17 @@ msgstr "Välj vilken konfigurationfil som ska kontrolleras:"
 msgid "{errors:descr_UNKNOWNCERT}"
 msgstr "Inloggning mislyckades: Certifikatet som din webbläsare skickade är okänt"
 
-msgid "{attributes:attribute_eduorghomepageuri}"
-msgstr "Organisationens hemsida"
-
 msgid "{logout:logging_out_from}"
 msgstr "Loggar ut från följande tjänster:"
 
 msgid "{logout:loggedoutfrom}"
 msgstr "Du har nu loggat ut från %SP%."
 
-msgid "{admin:metaover_group_metadata.wsfed-sp-hosted}"
-msgstr "WS-Federation Service Provider (Värd)"
-
 msgid "{errors:errorreport_text}"
 msgstr "Felrapporten är skickad till den som sköter systemet."
 
-msgid "{attributes:attribute_noredupersonbirthdate}"
-msgstr "Födelsedata"
-
 msgid "{errors:descr_LOGOUTREQUEST}"
 msgstr "Ett fel uppstod när utloggningsförfrågan skulle bearbetas."
-
-msgid "{attributes:attribute_edupersontargetedid}"
-msgstr "Varaktig anonym identitet i aktuell tjänst"
 
 msgid "{logout:success}"
 msgstr "Du har loggat ut från alla nedanstående tjänster."
@@ -401,12 +338,6 @@ msgstr "Meddelanden"
 
 msgid "{errors:descr_USERABORTED}"
 msgstr "Inloggning avbröts av användaren"
-
-msgid "{attributes:attribute_edupersonprimaryaffiliation}"
-msgstr "Primär anknytning"
-
-msgid "{attributes:attribute_postalcode}"
-msgstr "Postkod"
 
 msgid "{errors:descr_CASERROR}"
 msgstr "Ett fel uppstod vid kommunikation med CAS-servern."
@@ -420,9 +351,6 @@ msgstr "SAML 2.0 SP Metadata"
 msgid "{admin:metaconv_converted}"
 msgstr "Omformat metadata"
 
-msgid "{attributes:attribute_cn}"
-msgstr "Fullständigt namn"
-
 msgid "{logout:completed}"
 msgstr "Klar"
 
@@ -431,17 +359,8 @@ msgstr ""
 "Konfigurationslösenordet (auth.adminpassword) är inte ändrat från "
 "standardvärdet. Uppdatera kongiruationen med ett nytt lösenord!"
 
-msgid "{attributes:attribute_ou}"
-msgstr "Organisationsenhet"
-
 msgid "{general:service_provider}"
 msgstr "Tjänsteleverantör"
-
-msgid "{attributes:attribute_homephone}"
-msgstr "Hemtelefon"
-
-msgid "{attributes:attribute_dc}"
-msgstr "Domännamnskomponent"
 
 msgid "{errors:descr_BADREQUEST}"
 msgstr "Det är ett fel i anropet till denna sida. Orsak: %REASON%"
@@ -461,22 +380,13 @@ msgstr "Ange ditt användarnamn och lösenord"
 msgid "{errors:report_explain}"
 msgstr "Förklara hur felet uppstod..."
 
-msgid "{attributes:attribute_manager}"
-msgstr "Chef"
-
 msgid "{errors:title_ACSPARAMS}"
 msgstr "Inget SAML-svar tillhandahölls"
-
-msgid "{attributes:attribute_edupersonnickname}"
-msgstr "Smeknamn"
 
 msgid "{errors:descr_SLOSERVICEPARAMS}"
 msgstr ""
 "Du har anroppat tjänsten för Single Sing-Out utan att skicka med någon "
 "SAML LogoutRequest eller LogoutResponse."
-
-msgid "{attributes:attribute_street}"
-msgstr "Gata"
 
 msgid "{login:organization}"
 msgstr "Organisation"
@@ -517,9 +427,6 @@ msgstr "Ändra organisation"
 msgid "{admin:cfg_check_superfluous}"
 msgstr "Överflödiga alternativ i konfigurationsfilen"
 
-msgid "{attributes:attribute_labeleduri}"
-msgstr "Hemsida"
-
 msgid "{errors:report_email}"
 msgstr "E-postadress"
 
@@ -534,9 +441,6 @@ msgstr ""
 "Avsändaren av denna förfrågan hade ingen parameter för RelayState vilket "
 "medför att nästa plats inte är definierad."
 
-msgid "{attributes:attribute_noredupersonlegalname}"
-msgstr "Officiellt (legalt) namn"
-
 msgid "{status:header_diagnostics}"
 msgstr "SimpleSAMLphp diagnostik "
 
@@ -545,9 +449,6 @@ msgstr ""
 "Detta är stutussidan för SimpleSAMLphp. Här kan du se om sessions giltig "
 "har gått ut, hur länge det dröjer innan den går ut samt alla attribut som"
 " tillhör sessionen."
-
-msgid "{attributes:attribute_schachomeorganization}"
-msgstr "Domännamn för organisationen"
 
 msgid "{errors:title_NOTFOUNDREASON}"
 msgstr "Sidan finns inte"
@@ -569,29 +470,17 @@ msgstr ""
 msgid "{errors:title_NOTVALIDCERT}"
 msgstr "Felaktigt certifikat"
 
-msgid "{attributes:attribute_edupersonorgunitdn}"
-msgstr "LDAP-pekare (DN) till personens organisationsenhet"
-
 msgid "{general:remember}"
 msgstr "Spara samtycke"
 
 msgid "{disco:selectidp}"
 msgstr "Välj din identitetsleverantör"
 
-msgid "{attributes:attribute_postofficebox}"
-msgstr "Box"
-
-msgid "{attributes:attribute_edupersonprincipalname}"
-msgstr "Användaridentitet vid din organisationen"
-
 msgid "{login:help_desk_email}"
 msgstr "Skicka e-post till helpdesk"
 
 msgid "{login:help_desk_link}"
 msgstr "Hemsida för helpdesk"
-
-msgid "{attributes:attribute_uid}"
-msgstr "Användaridentitet"
 
 msgid "{errors:title_CASERROR}"
 msgstr "CAS-error"
@@ -612,12 +501,6 @@ msgstr "Kom ihåg mitt val"
 
 msgid "{admin:metaover_group_metadata.saml20-sp-hosted}"
 msgstr "SAML 2.0 Service Provider (Värd)"
-
-msgid "{attributes:attribute_l}"
-msgstr "Plats"
-
-msgid "{attributes:attribute_edupersonassurance}"
-msgstr "Identitetens tillförlitlighetsprofil"
 
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
@@ -663,9 +546,6 @@ msgstr "Meddelande"
 msgid "{errors:title_UNKNOWNCERT}"
 msgstr "Okänt certfikat"
 
-msgid "{attributes:attribute_facsimiletelephonenumber}"
-msgstr "Faxnummer"
-
 msgid "{errors:title_LDAPERROR}"
 msgstr "LDAP-fel"
 
@@ -684,14 +564,8 @@ msgstr ""
 " av SimpleSAMLphp. Kontakta den som sköter inloggningtjänsten för att "
 "meddela dem ovanstående felmeddelande."
 
-msgid "{attributes:attribute_mobile}"
-msgstr "Mobiltelefon"
-
 msgid "{admin:metaover_group_metadata.shib13-idp-hosted}"
 msgstr "Shib 1.3 Identity Provider (Värd)"
-
-msgid "{attributes:attribute_preferredlanguage}"
-msgstr "Önskvärt språk"
 
 msgid "{errors:descr_NOTVALIDCERT}"
 msgstr "Du tillhandahöll inget godkänt certifikat"
@@ -706,15 +580,6 @@ msgstr "Följande frivilliga alternativ hittades inte"
 
 msgid "{logout:logout_only}"
 msgstr "Nej, endast %SP%"
-
-msgid "{attributes:attribute_o}"
-msgstr "Namn på organisationen"
-
-msgid "{attributes:attribute_edupersonprimaryorgunitdn}"
-msgstr "LDAP-pekare (DN) till personens pimära organisationsenhet"
-
-msgid "{attributes:attribute_noredupersonlin}"
-msgstr "Lokal identifierare"
 
 msgid "{login:next}"
 msgstr "Nästa"
@@ -733,9 +598,6 @@ msgstr "Den angivna sidan finns inte. Orsak: %REASON% URL: %URL%"
 msgid "{errors:title_NOCERT}"
 msgstr "Inget certfikat"
 
-msgid "{attributes:attribute_userpassword}"
-msgstr "Användarens lösenordshash"
-
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "Utloggningsinformation är borta"
 
@@ -751,12 +613,6 @@ msgstr ""
 "betrodd federation kan du skicka metadata till de parter du har "
 "förtroende för."
 
-msgid "{attributes:attribute_schacuserprivateattribute}"
-msgstr "Information om vilka attribut som har skyddsbehov"
-
-msgid "{status:header_wsfed}"
-msgstr "WS-Fed SP demoexempel"
-
 msgid "{admin:metadata_cert}"
 msgstr "Certifikat"
 
@@ -765,17 +621,11 @@ msgstr ""
 "Inloggning mislyckades: Certfikatet som din webbläsare skickade var "
 "felaktigt eller kunde inte läsas"
 
-msgid "{attributes:attribute_eduorglegalname}"
-msgstr "Organisationens legala namn"
-
 msgid "{status:header_shib}"
 msgstr "Shibboleth demoexempel"
 
 msgid "{admin:metaconv_parse}"
 msgstr "Analysera"
-
-msgid "{attributes:attribute_noreduorgnin}"
-msgstr "Organisationsnummer"
 
 msgid "Person's principal name at home organization"
 msgstr "Användaridentitet vid din organisationen"
@@ -1112,8 +962,8 @@ msgstr ""
 "meddela dem ovanstående felmeddelande."
 
 #, python-format
-msgid "Your session is valid for %SECONDS% seconds from now."
-msgstr "Din session är giltig för %SECONDS% sekunder från nu."
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Din session är giltig för %remaining% sekunder från nu."
 
 msgid "Domain component (DC)"
 msgstr "Domännamnskomponent"
@@ -1603,3 +1453,14 @@ msgstr ""
 "Du har anropat gränssnittet för Assertion Consumer Service utan att "
 "skicka med någon SAML Authentication Responce."
 
+
+msgid ""
+"You are now accessing a pre-production system. This authentication setup "
+"is for testing and pre-production verification only. If someone sent you "
+"a link that pointed you here, and you are not <i>a tester</i> you "
+"probably got the wrong link, and should <b>not be here</b>."
+msgstr ""
+"Du har kommit till en tjänst som ännu inte är i drift. Denna "
+"autentisieringskonfiguration är för testning och tidig "
+"produktionskontroll. Om någon har skickat dig en länk hit och du inte är "
+"en <i>en testare</i> har du troligtvis fått fel länk."

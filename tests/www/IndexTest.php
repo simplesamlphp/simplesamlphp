@@ -1,4 +1,10 @@
 <?php
+
+namespace SimpleSAML\Test\Web;
+
+use PHPUnit\Framework\TestCase;
+use SimpleSAML\Test\BuiltInServer;
+
 /**
  * Simple test for the www/index.php script.
  *
@@ -7,17 +13,8 @@
  * @author Jaime Pérez Crespo <jaime.perez@uninett.no>
  * @package SimpleSAMLphp
  */
-
-namespace SimpleSAML\Test\Web;
-
-include(dirname(__FILE__).'/../BuiltInServer.php');
-
-use PHPUnit\Framework\TestCase;
-use \SimpleSAML\Test\BuiltInServer;
-
 class IndexTest extends TestCase
 {
-
     /**
      * @var \SimpleSAML\Test\BuiltInServer
      */
@@ -41,6 +38,7 @@ class IndexTest extends TestCase
 
     /**
      * The setup method that is run before any tests in this class.
+     * @return void
      */
     protected function setup()
     {
@@ -48,36 +46,36 @@ class IndexTest extends TestCase
         $this->server_addr = $this->server->start();
         $this->server_pid = $this->server->getPid();
 
-        $this->shared_file = sys_get_temp_dir().'/'.$this->server_pid.'.lock';
+        $this->shared_file = sys_get_temp_dir() . '/' . $this->server_pid . '.lock';
         @unlink($this->shared_file); // remove it if it exists
     }
 
 
-    protected function updateConfig($config)
+    /**
+     * @param array $config
+     * @return void
+     */
+    protected function updateConfig(array $config)
     {
         @unlink($this->shared_file);
-        $config = "<?php\n\$config = ".var_export($config, true).";\n";
+        $config = "<?php\n\$config = " . var_export($config, true) . ";\n";
         file_put_contents($this->shared_file, $config);
     }
 
 
     /**
      * A simple test to make sure the index.php file redirects appropriately to the right URL.
+     * @return void
      */
     public function testRedirection()
     {
-        if (defined('HHVM_VERSION')) {
-            // can't test this in HHVM for the moment
-            $this->markTestSkipped('The web-based tests cannot be run in HHVM for the moment.');
-        }
-
         // test most basic redirection
-        $this->updateConfig(array(
+        $this->updateConfig([
                 'baseurlpath' => 'http://example.org/simplesaml/'
-        ));
-        $resp = $this->server->get('/index.php', array(), array(
+        ]);
+        $resp = $this->server->get('/index.php', [], [
             CURLOPT_FOLLOWLOCATION => 0,
-        ));
+        ]);
         $this->assertEquals('302', $resp['code']);
         $this->assertEquals(
             'http://example.org/simplesaml/module.php/core/frontpage_welcome.php',
@@ -85,12 +83,12 @@ class IndexTest extends TestCase
         );
 
         // test non-default path and https
-        $this->updateConfig(array(
+        $this->updateConfig([
             'baseurlpath' => 'https://example.org/'
-        ));
-        $resp = $this->server->get('/index.php', array(), array(
+        ]);
+        $resp = $this->server->get('/index.php', [], [
             CURLOPT_FOLLOWLOCATION => 0,
-        ));
+        ]);
         $this->assertEquals('302', $resp['code']);
         $this->assertEquals(
             'https://example.org/module.php/core/frontpage_welcome.php',
@@ -98,15 +96,15 @@ class IndexTest extends TestCase
         );
 
         // test URL guessing
-        $this->updateConfig(array(
+        $this->updateConfig([
             'baseurlpath' => '/simplesaml/'
-        ));
-        $resp = $this->server->get('/index.php', array(), array(
+        ]);
+        $resp = $this->server->get('/index.php', [], [
             CURLOPT_FOLLOWLOCATION => 0,
-        ));
+        ]);
         $this->assertEquals('302', $resp['code']);
         $this->assertEquals(
-            'http://'.$this->server_addr.'/simplesaml/module.php/core/frontpage_welcome.php',
+            'http://' . $this->server_addr . '/simplesaml/module.php/core/frontpage_welcome.php',
             $resp['headers']['Location']
         );
     }
@@ -114,6 +112,7 @@ class IndexTest extends TestCase
 
     /**
      * The tear down method that is executed after all tests in this class.
+     * @return void
      */
     protected function tearDown()
     {

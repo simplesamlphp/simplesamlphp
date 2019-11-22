@@ -2,6 +2,10 @@
 
 namespace SimpleSAML\Metadata;
 
+use SimpleSAML\Configuration;
+use SimpleSAML\Logger;
+use SimpleSAML\Utils;
+
 /**
  * Class for handling metadata files in serialized format.
  *
@@ -23,7 +27,7 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
      *
      * @var string
      */
-    private $directory;
+    private $directory = '/';
 
 
     /**
@@ -37,16 +41,16 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
     {
         assert(is_array($config));
 
-        $globalConfig = \SimpleSAML\Configuration::getInstance();
+        $globalConfig = Configuration::getInstance();
 
-        $cfgHelp = \SimpleSAML\Configuration::loadFromArray($config, 'serialize metadata source');
+        $cfgHelp = Configuration::loadFromArray($config, 'serialize metadata source');
 
         $this->directory = $cfgHelp->getString('directory');
 
         /* Resolve this directory relative to the SimpleSAMLphp directory (unless it is
          * an absolute path).
          */
-        $this->directory = $globalConfig->resolvePath($this->directory);
+        $this->directory = Utils\System::resolvePath($this->directory, $globalConfig->getBaseDir());
     }
 
 
@@ -63,7 +67,7 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
         assert(is_string($entityId));
         assert(is_string($set));
 
-        return $this->directory.'/'.rawurlencode($set).'/'.rawurlencode($entityId).self::EXTENSION;
+        return $this->directory . '/' . rawurlencode($set) . '/' . rawurlencode($entityId) . self::EXTENSION;
     }
 
 
@@ -74,12 +78,12 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
      */
     public function getMetadataSets()
     {
-        $ret = array();
+        $ret = [];
 
         $dh = @opendir($this->directory);
         if ($dh === false) {
-            \SimpleSAML\Logger::warning(
-                'Serialize metadata handler: Unable to open directory: '.var_export($this->directory, true)
+            Logger::warning(
+                'Serialize metadata handler: Unable to open directory: ' . var_export($this->directory, true)
             );
             return $ret;
         }
@@ -90,12 +94,12 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
                 continue;
             }
 
-            $path = $this->directory.'/'.$entry;
+            $path = $this->directory . '/' . $entry;
 
             if (!is_dir($path)) {
-                \SimpleSAML\Logger::warning(
-                    'Serialize metadata handler: Metadata directory contained a file where only directories should '.
-                    'exist: '.var_export($path, true)
+                Logger::warning(
+                    'Serialize metadata handler: Metadata directory contained a file where only directories should ' .
+                    'exist: ' . var_export($path, true)
                 );
                 continue;
             }
@@ -120,9 +124,9 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
     {
         assert(is_string($set));
 
-        $ret = array();
+        $ret = [];
 
-        $dir = $this->directory.'/'.rawurlencode($set);
+        $dir = $this->directory . '/' . rawurlencode($set);
         if (!is_dir($dir)) {
             // probably some code asked for a metadata set which wasn't available
             return $ret;
@@ -130,7 +134,9 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
 
         $dh = @opendir($dir);
         if ($dh === false) {
-            \SimpleSAML\Logger::warning('Serialize metadata handler: Unable to open directory: '.var_export($dir, true));
+            Logger::warning(
+                'Serialize metadata handler: Unable to open directory: ' . var_export($dir, true)
+            );
             return $ret;
         }
 
@@ -166,7 +172,7 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
      * @param string $entityId The entityId we are looking up.
      * @param string $set The set we are looking for metadata in.
      *
-     * @return array An associative array with metadata for the given entity, or NULL if we are unable to
+     * @return array|null An associative array with metadata for the given entity, or NULL if we are unable to
      *         locate the entity.
      */
     public function getMetaData($entityId, $set)
@@ -182,16 +188,17 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
 
         $data = @file_get_contents($filePath);
         if ($data === false) {
+            /** @var array $error */
             $error = error_get_last();
-            \SimpleSAML\Logger::warning(
-                'Error reading file '.$filePath.': '.$error['message']
+            Logger::warning(
+                'Error reading file ' . $filePath . ': ' . $error['message']
             );
             return null;
         }
 
         $data = @unserialize($data);
         if ($data === false) {
-            \SimpleSAML\Logger::warning('Error unserializing file: '.$filePath);
+            Logger::warning('Error unserializing file: ' . $filePath);
             return null;
         }
 
@@ -210,7 +217,7 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
      * @param string $set The metadata set this metadata entry belongs to.
      * @param array $metadata The metadata.
      *
-     * @return boolean True if successfully saved, false otherwise.
+     * @return bool True if successfully saved, false otherwise.
      */
     public function saveMetadata($entityId, $set, $metadata)
     {
@@ -219,34 +226,37 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
         assert(is_array($metadata));
 
         $filePath = $this->getMetadataPath($entityId, $set);
-        $newPath = $filePath.'.new';
+        $newPath = $filePath . '.new';
 
         $dir = dirname($filePath);
         if (!is_dir($dir)) {
-            \SimpleSAML\Logger::info('Creating directory: '.$dir);
+            Logger::info('Creating directory: ' . $dir);
             $res = @mkdir($dir, 0777, true);
             if ($res === false) {
+                /** @var array $error */
                 $error = error_get_last();
-                \SimpleSAML\Logger::error('Failed to create directory '.$dir.': '.$error['message']);
+                Logger::error('Failed to create directory ' . $dir . ': ' . $error['message']);
                 return false;
             }
         }
 
         $data = serialize($metadata);
 
-        \SimpleSAML\Logger::debug('Writing: '.$newPath);
+        Logger::debug('Writing: ' . $newPath);
 
         $res = file_put_contents($newPath, $data);
         if ($res === false) {
+            /** @var array $error */
             $error = error_get_last();
-            \SimpleSAML\Logger::error('Error saving file '.$newPath.': '.$error['message']);
+            Logger::error('Error saving file ' . $newPath . ': ' . $error['message']);
             return false;
         }
 
         $res = rename($newPath, $filePath);
         if ($res === false) {
+            /** @var array $error */
             $error = error_get_last();
-            \SimpleSAML\Logger::error('Error renaming '.$newPath.' to '.$filePath.': '.$error['message']);
+            Logger::error('Error renaming ' . $newPath . ' to ' . $filePath . ': ' . $error['message']);
             return false;
         }
 
@@ -259,6 +269,7 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
      *
      * @param string $entityId The entityId of the metadata entry.
      * @param string $set The metadata set this metadata entry belongs to.
+     * @return void
      */
     public function deleteMetadata($entityId, $set)
     {
@@ -268,20 +279,33 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
         $filePath = $this->getMetadataPath($entityId, $set);
 
         if (!file_exists($filePath)) {
-            \SimpleSAML\Logger::warning(
-                'Attempted to erase nonexistent metadata entry '.
-                var_export($entityId, true).' in set '.var_export($set, true).'.'
+            Logger::warning(
+                'Attempted to erase nonexistent metadata entry ' .
+                var_export($entityId, true) . ' in set ' . var_export($set, true) . '.'
             );
             return;
         }
 
         $res = unlink($filePath);
         if ($res === false) {
+            /** @var array $error */
             $error = error_get_last();
-            \SimpleSAML\Logger::error(
-                'Failed to delete file '.$filePath.
-                ': '.$error['message']
+            Logger::error(
+                'Failed to delete file ' . $filePath .
+                ': ' . $error['message']
             );
         }
+    }
+
+    /**
+     * This function loads the metadata for entity IDs in $entityIds. It is returned as an associative array
+     * where the key is the entity id. An empty array may be returned if no matching entities were found
+     * @param array $entityIds The entity ids to load
+     * @param string $set The set we want to get metadata from.
+     * @return array An associative array with the metadata for the requested entities, if found.
+     */
+    public function getMetaDataForEntities(array $entityIds, $set)
+    {
+        return $this->getMetaDataForEntitiesIndividually($entityIds, $set);
     }
 }

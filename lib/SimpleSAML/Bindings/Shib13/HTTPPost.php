@@ -6,14 +6,15 @@
  *
  * @author Andreas Åkre Solberg, UNINETT AS. <andreas.solberg@uninett.no>
  * @package SimpleSAMLphp
+ * @deprecated This class will be removed in a future release
  */
 
 namespace SimpleSAML\Bindings\Shib13;
 
 use SAML2\DOMDocumentFactory;
-use SimpleSAML\Utils\Crypto;
-use SimpleSAML\Utils\HTTP;
-use SimpleSAML\Utils\XML;
+use SimpleSAML\Configuration;
+use SimpleSAML\Metadata\MetaDataStorageHandler;
+use SimpleSAML\Utils;
 use SimpleSAML\XML\Shib13\AuthnResponse;
 use SimpleSAML\XML\Signer;
 
@@ -22,12 +23,12 @@ class HTTPPost
     /**
      * @var \SimpleSAML\Configuration
      */
-    private $configuration = null;
+    private $configuration;
 
     /**
      * @var \SimpleSAML\Metadata\MetaDataStorageHandler
      */
-    private $metadata = null;
+    private $metadata;
 
 
     /**
@@ -37,8 +38,8 @@ class HTTPPost
      * @param \SimpleSAML\Metadata\MetaDataStorageHandler $metadatastore A store where to find metadata.
      */
     public function __construct(
-        \SimpleSAML\Configuration $configuration,
-        \SimpleSAML\Metadata\MetaDataStorageHandler $metadatastore
+        Configuration $configuration,
+        MetaDataStorageHandler $metadatastore
     ) {
         $this->configuration = $configuration;
         $this->metadata = $metadatastore;
@@ -53,18 +54,19 @@ class HTTPPost
      * @param \SimpleSAML\Configuration $spmd The metadata of the SP which is receiving the response.
      * @param string|null               $relayState The relaystate for the SP.
      * @param string                    $shire The shire which should receive the response.
+     * @return void
      */
     public function sendResponse(
         $response,
-        \SimpleSAML\Configuration $idpmd,
-        \SimpleSAML\Configuration $spmd,
+        Configuration $idpmd,
+        Configuration $spmd,
         $relayState,
         $shire
     ) {
-        XML::checkSAMLMessage($response, 'saml11');
+        Utils\XML::checkSAMLMessage($response, 'saml11');
 
-        $privatekey = Crypto::loadPrivateKey($idpmd, true);
-        $publickey = Crypto::loadPublicKey($idpmd, true);
+        $privatekey = Utils\Crypto::loadPrivateKey($idpmd, true);
+        $publickey = Utils\Crypto::loadPublicKey($idpmd, true);
 
         $responsedom = DOMDocumentFactory::fromString(str_replace("\r", "", $response));
 
@@ -88,11 +90,11 @@ class HTTPPost
             $signResponse = true;
         }
 
-        $signer = new Signer(array(
+        $signer = new Signer([
             'privatekey_array' => $privatekey,
             'publickey_array'  => $publickey,
             'id'               => ($signResponse ? 'ResponseID' : 'AssertionID'),
-        ));
+        ]);
 
         if ($idpmd->hasValue('certificatechain')) {
             $signer->addCertificate($idpmd->getString('certificatechain'));
@@ -101,7 +103,7 @@ class HTTPPost
         if ($signResponse) {
             // sign the response - this must be done after encrypting the assertion
             // we insert the signature before the saml2p:Status element
-            $statusElements = XML::getDOMChildren($responseroot, 'Status', '@saml1p');
+            $statusElements = Utils\XML::getDOMChildren($responseroot, 'Status', '@saml1p');
             assert(count($statusElements) === 1);
             $signer->sign($responseroot, $responseroot, $statusElements[0]);
         } else {
@@ -111,12 +113,12 @@ class HTTPPost
 
         $response = $responsedom->saveXML();
 
-        XML::debugSAMLMessage($response, 'out');
+        Utils\XML::debugSAMLMessage($response, 'out');
 
-        HTTP::submitPOSTData($shire, array(
+        Utils\HTTP::submitPOSTData($shire, [
             'TARGET'       => $relayState,
             'SAMLResponse' => base64_encode($response),
-        ));
+        ]);
     }
 
 
@@ -137,9 +139,9 @@ class HTTPPost
         $rawResponse = $post['SAMLResponse'];
         $samlResponseXML = base64_decode($rawResponse);
 
-        XML::debugSAMLMessage($samlResponseXML, 'in');
+        Utils\XML::debugSAMLMessage($samlResponseXML, 'in');
 
-        XML::checkSAMLMessage($samlResponseXML, 'saml11');
+        Utils\XML::checkSAMLMessage($samlResponseXML, 'saml11');
 
         $samlResponse = new AuthnResponse();
         $samlResponse->setXML($samlResponseXML);

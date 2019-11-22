@@ -1,4 +1,5 @@
 <?php
+
 /**
  * SAML 1.1 remote IdP metadata for SimpleSAMLphp.
  *
@@ -8,8 +9,8 @@
  */
 
 /*
-$metadata['theproviderid-of-the-idp'] = array(
-	'SingleSignOnService'  => 'https://idp.example.org/shibboleth-idp/SSO',
-	'certificate'          => 'example.pem',
-);
+$metadata['theproviderid-of-the-idp'] = [
+    'SingleSignOnService' => 'https://idp.example.org/shibboleth-idp/SSO',
+    'certificate' => 'example.pem',
+];
 */

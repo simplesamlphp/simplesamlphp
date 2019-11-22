@@ -2,14 +2,14 @@
 
 namespace SimpleSAML;
 
-use SimpleSAML\Error\CriticalConfigurationError;
+use SimpleSAML\Error;
 
 /**
  * Base class for data stores.
  *
  * @package SimpleSAMLphp
  */
-abstract class Store
+abstract class Store implements Utils\ClearableState
 {
     /**
      * Our singleton instance.
@@ -24,7 +24,7 @@ abstract class Store
     /**
      * Retrieve our singleton instance.
      *
-     * @return false|\SimpleSAML\Store The data store, or false if it isn't enabled.
+     * @return \SimpleSAML\Store|false The data store, or false if it isn't enabled.
      *
      * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
@@ -35,10 +35,7 @@ abstract class Store
         }
 
         $config = Configuration::getInstance();
-        $storeType = $config->getString('store.type', null);
-        if ($storeType === null) {
-            $storeType = $config->getString('session.handler', 'phpsession');
-        }
+        $storeType = $config->getString('store.type', 'phpsession');
 
         switch ($storeType) {
             case 'phpsession':
@@ -61,12 +58,13 @@ abstract class Store
                 } catch (\Exception $e) {
                     $c = $config->toArray();
                     $c['store.type'] = 'phpsession';
-                    throw new CriticalConfigurationError(
+                    throw new Error\CriticalConfigurationError(
                         "Invalid 'store.type' configuration option. Cannot find store '$storeType'.",
                         null,
                         $c
                     );
                 }
+                /** @var \SimpleSAML\Store|false */
                 self::$instance = new $className();
         }
 
@@ -103,4 +101,14 @@ abstract class Store
      * @param string $key The key.
      */
     abstract public function delete($type, $key);
+
+
+    /**
+     * Clear any SSP specific state, such as SSP environmental variables or cached internals.
+     * @return void
+     */
+    public static function clearInternalState()
+    {
+        self::$instance = null;
+    }
 }

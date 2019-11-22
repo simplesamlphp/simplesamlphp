@@ -2,6 +2,8 @@
 
 namespace SimpleSAML\Utils;
 
+use SimpleSAML\Error;
+
 /**
  * Attribute-related utility methods.
  *
@@ -28,18 +30,18 @@ class Attributes
     {
         if (!is_array($attributes)) {
             throw new \InvalidArgumentException(
-                'The attributes array is not an array, it is: '.print_r($attributes, true).'.'
+                'The attributes array is not an array, it is: ' . print_r($attributes, true) . '.'
             );
         }
 
         if (!is_string($expected)) {
             throw new \InvalidArgumentException(
-                'The expected attribute is not a string, it is: '.print_r($expected, true).'.'
+                'The expected attribute is not a string, it is: ' . print_r($expected, true) . '.'
             );
         }
 
         if (!array_key_exists($expected, $attributes)) {
-            throw new \SimpleSAML\Error\Exception("No such attribute '".$expected."' found.");
+            throw new Error\Exception("No such attribute '" . $expected . "' found.");
         }
         $attribute = $attributes[$expected];
 
@@ -48,7 +50,7 @@ class Attributes
         }
 
         if (count($attribute) === 0) {
-            throw new \SimpleSAML\Error\Exception("Empty attribute '".$expected."'.'");
+            throw new Error\Exception("Empty attribute '" . $expected . "'.'");
         } elseif (count($attribute) > 1) {
             if ($allow_multiple === false) {
                 throw new \SimpleSAML\Error\Exception(
@@ -81,14 +83,14 @@ class Attributes
     {
         if (!is_array($attributes)) {
             throw new \InvalidArgumentException(
-                'The attributes array is not an array, it is: '.print_r($attributes, true).'".'
+                'The attributes array is not an array, it is: ' . print_r($attributes, true) . '".'
             );
         }
 
-        $newAttrs = array();
+        $newAttrs = [];
         foreach ($attributes as $name => $values) {
             if (!is_string($name)) {
-                throw new \InvalidArgumentException('Invalid attribute name: "'.print_r($name, true).'".');
+                throw new \InvalidArgumentException('Invalid attribute name: "' . print_r($name, true) . '".');
             }
 
             $values = Arrays::arrayize($values);
@@ -96,7 +98,7 @@ class Attributes
             foreach ($values as $value) {
                 if (!is_string($value)) {
                     throw new \InvalidArgumentException(
-                        'Invalid attribute value for attribute '.$name.': "'.print_r($value, true).'".'
+                        'Invalid attribute value for attribute ' . $name . ': "' . print_r($value, true) . '".'
                     );
                 }
             }
@@ -127,6 +129,6 @@ class Attributes
             $defaultns = substr($name, 0, $slash);
             $name = substr($name, $slash + 1);
         }
-        return array(htmlspecialchars($defaultns), htmlspecialchars($name));
+        return [htmlspecialchars($defaultns), htmlspecialchars($name)];
     }
 }

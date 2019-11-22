@@ -37,20 +37,20 @@ class ConfigurationError extends Error
     {
         $file_str = '';
         $reason_str = '.';
-        $params = array('CONFIG');
+        $params = ['CONFIG'];
         if ($file !== null) {
             $params['%FILE%'] = $file;
-            $basepath = dirname(dirname(dirname(dirname(__FILE__)))).'/';
-            $file_str = '('.str_replace($basepath, '', $file).') ';
+            $basepath = dirname(dirname(dirname(dirname(__FILE__)))) . '/';
+            $file_str = '(' . str_replace($basepath, '', $file) . ') ';
         }
         if ($reason !== null) {
             $params['%REASON%'] = $reason;
-            $reason_str = ': '.$reason;
+            $reason_str = ': ' . $reason;
         }
         $this->reason = $reason;
         $this->config_file = $file;
         parent::__construct($params);
-        $this->message = 'The configuration '.$file_str.'is invalid'.$reason_str;
+        $this->message = 'The configuration ' . $file_str . 'is invalid' . $reason_str;
     }
 
 

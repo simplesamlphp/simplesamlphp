@@ -2,6 +2,8 @@ SimpleSAMLphp Documentation
 ===========================
 
  * [Installing SimpleSAMLphp](simplesamlphp-install)
+    * [Upgrade notes for version 1.18](simplesamlphp-upgrade-notes-1.18)
+    * [Upgrade notes for version 1.17](simplesamlphp-upgrade-notes-1.17)
     * [Upgrade notes for version 1.16](simplesamlphp-upgrade-notes-1.16)
     * [Upgrade notes for version 1.15](simplesamlphp-upgrade-notes-1.15)
     * [Upgrade notes for version 1.14](simplesamlphp-upgrade-notes-1.14)
@@ -19,7 +21,6 @@ SimpleSAMLphp Documentation
  * [Using SimpleSAMLphp as a SAML Service Provider](simplesamlphp-sp)
   * [Hosted SP Configuration Reference](./saml:sp)
   * [IdP remote reference](simplesamlphp-reference-idp-remote)
-  * [Upgrading - migration to use the SAML authentication source](simplesamlphp-sp-migration)
   * [Configuring HTTP-Artifact](./simplesamlphp-artifact-sp)
   * [Using scoping](./simplesamlphp-scoping)
   * [Holder-of-Key profile](simplesamlphp-hok-sp)
@@ -30,7 +31,7 @@ SimpleSAMLphp Documentation
   * [Configuring HTTP-Artifact](./simplesamlphp-artifact-idp)
   * [Identity Provider Advanced Topics](simplesamlphp-idp-more)
   * [Holder-of-Key profile](simplesamlphp-hok-idp)
- * [Automated Metadata Management](simplesamlphp-automated_metadata)
+ * [Automated Metadata Management](https://github.com/simplesamlphp/simplesamlphp-module-metarefresh/blob/master/docs/simplesamlphp-automated_metadata.md)
  * [Maintenance and configuration](simplesamlphp-maintenance) - covers session handling, php configuration etc.
  * [Authentication Processing Filters](simplesamlphp-authproc) - attribute filtering, attribute mapping, consent, group generation etc.
  * [Advanced features](simplesamlphp-advancedfeatures) - covers bridging protocols, attribute filtering, etc.

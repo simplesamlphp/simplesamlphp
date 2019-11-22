@@ -3,8 +3,9 @@
 namespace SimpleSAML\Test\Store;
 
 use PHPUnit\Framework\TestCase;
-use \SimpleSAML\Configuration;
-use \SimpleSAML\Store;
+use Predis\Client;
+use SimpleSAML\Configuration;
+use SimpleSAML\Store;
 
 /**
  * Tests for the Redis store.
@@ -16,82 +17,153 @@ use \SimpleSAML\Store;
  */
 class RedisTest extends TestCase
 {
+    /** @var \PHPUnit_Framework_MockObject_MockObject */
+    protected $mocked_redis;
+
+    /** @var \SimpleSAML\Store\Redis */
+    protected $redis;
+
+    /** @var array */
+    protected $config;
+
+
+    /**
+     * @return void
+     */
     protected function setUp()
     {
-        $this->config = array();
+        $this->config = [];
 
-        $this->mocked_redis = $this->getMockBuilder('Predis\Client')
-                                   ->setMethods(array('get', 'set', 'setex', 'del', 'disconnect'))
+        $this->mocked_redis = $this->getMockBuilder(Client::class)
+                                   ->setMethods(['get', 'set', 'setex', 'del', 'disconnect'])
                                    ->disableOriginalConstructor()
                                    ->getMock();
 
+        /** @psalm-suppress UndefinedMethod   Remove when Psalm 3.x is in place */
         $this->mocked_redis->method('get')
-                           ->will($this->returnCallback(array($this, 'getMocked')));
+                           ->will($this->returnCallback([$this, 'getMocked']));
 
+        /** @psalm-suppress UndefinedMethod   Remove when Psalm 3.x is in place */
         $this->mocked_redis->method('set')
-                           ->will($this->returnCallback(array($this, 'setMocked')));
+                           ->will($this->returnCallback([$this, 'setMocked']));
 
+        /** @psalm-suppress UndefinedMethod   Remove when Psalm 3.x is in place */
         $this->mocked_redis->method('setex')
-                           ->will($this->returnCallback(array($this, 'setexMocked')));
+                           ->will($this->returnCallback([$this, 'setexMocked']));
 
+        /** @psalm-suppress UndefinedMethod   Remove when Psalm 3.x is in place */
         $this->mocked_redis->method('del')
-                           ->will($this->returnCallback(array($this, 'delMocked')));
+                           ->will($this->returnCallback([$this, 'delMocked']));
 
-        $nop = function () {
+        $nop = /** @return void */ function () {
             return;
         };
 
+        /** @psalm-suppress UndefinedMethod   Remove when Psalm 3.x is in place */
         $this->mocked_redis->method('disconnect')
                            ->will($this->returnCallback($nop));
 
+        /** @var \Predis\Client $this->mocked_redis */
         $this->redis = new Store\Redis($this->mocked_redis);
     }
 
+
+    /**
+     * @param string $key
+     * @return \Predis\Client
+     */
     public function getMocked($key)
     {
         return array_key_exists($key, $this->config) ? $this->config[$key] : null;
     }
 
+
+    /**
+     * @param string $key
+     * @param mixed $value
+     * @return void
+     */
     public function setMocked($key, $value)
     {
         $this->config[$key] = $value;
     }
 
+
+    /**
+     * @param string $key
+     * @param int $expire
+     * @param mixed $value
+     * @return void
+     */
     public function setexMocked($key, $expire, $value)
     {
         // Testing expiring data is more trouble than it's worth for now
         $this->setMocked($key, $value);
     }
 
+
+    /**
+     * @param string $key
+     * @return void
+     */
     public function delMocked($key)
     {
         unset($this->config[$key]);
     }
 
+
     /**
      * @covers \SimpleSAML\Store::getInstance
      * @covers \SimpleSAML\Store\Redis::__construct
      * @test
+     * @return void
      */
     public function testRedisInstance()
     {
-        $config = Configuration::loadFromArray(array(
+        $config = Configuration::loadFromArray([
             'store.type' => 'redis',
             'store.redis.prefix' => 'phpunit_',
-        ), '[ARRAY]', 'simplesaml');
+        ], '[ARRAY]', 'simplesaml');
 
+        /** @var \SimpleSAML\Store\Redis $store */
         $store = Store::getInstance();
 
-        $this->assertInstanceOf('SimpleSAML\Store\Redis', $store);
+        $this->assertInstanceOf(Store\Redis::class, $store);
 
-        $this->clearInstance($config, '\SimpleSAML\Configuration');
-        $this->clearInstance($store, '\SimpleSAML\Store');
+        $this->clearInstance($config, Configuration::class);
+        $this->clearInstance($store, Store::class);
     }
+
+
+    /**
+     * @covers \SimpleSAML\Store::getInstance
+     * @covers \SimpleSAML\Store\Redis::__construct
+     * @test
+     * @return void
+     */
+    public function testRedisInstanceWithPassword()
+    {
+        $config = Configuration::loadFromArray([
+            'store.type' => 'redis',
+            'store.redis.prefix' => 'phpunit_',
+            'store.redis.password' => 'password',
+        ], '[ARRAY]', 'simplesaml');
+
+        /** @var \SimpleSAML\Store\Redis $store */
+        $store = Store::getInstance();
+
+        $this->assertInstanceOf(Store\Redis::class, $store);
+
+        $this->clearInstance($config, Configuration::class);
+        $this->clearInstance($store, Store::class);
+    }
+
 
     /**
      * @covers \SimpleSAML\Store\Redis::get
      * @covers \SimpleSAML\Store\Redis::set
      * @test
+     * @return void
      */
     public function testInsertData()
     {
@@ -104,10 +176,12 @@ class RedisTest extends TestCase
         $this->assertEquals($expected, $res);
     }
 
+
     /**
      * @covers \SimpleSAML\Store\Redis::get
      * @covers \SimpleSAML\Store\Redis::set
      * @test
+     * @return void
      */
     public function testInsertExpiringData()
     {
@@ -120,9 +194,11 @@ class RedisTest extends TestCase
         $this->assertEquals($expected, $res);
     }
 
+
     /**
      * @covers \SimpleSAML\Store\Redis::get
      * @test
+     * @return void
      */
     public function testGetEmptyData()
     {
@@ -131,10 +207,12 @@ class RedisTest extends TestCase
         $this->assertNull($res);
     }
 
+
     /**
      * @covers \SimpleSAML\Store\Redis::get
      * @covers \SimpleSAML\Store\Redis::set
      * @test
+     * @return void
      */
     public function testOverwriteData()
     {
@@ -149,11 +227,13 @@ class RedisTest extends TestCase
         $this->assertEquals($expected, $res);
     }
 
+
     /**
      * @covers \SimpleSAML\Store\Redis::get
      * @covers \SimpleSAML\Store\Redis::set
      * @covers \SimpleSAML\Store\Redis::delete
      * @test
+     * @return void
      */
     public function testDeleteData()
     {
@@ -164,6 +244,12 @@ class RedisTest extends TestCase
         $this->assertNull($res);
     }
 
+
+    /**
+     * @param \SimpleSAML\Configuration|\SimpleSAML\Store $service
+     * @param string $className
+     * @return void
+     */
     protected function clearInstance($service, $className)
     {
         $reflectedClass = new \ReflectionClass($className);

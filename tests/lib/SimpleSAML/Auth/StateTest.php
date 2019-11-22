@@ -1,26 +1,28 @@
 <?php
 
+namespace SimpleSAML\Test\Auth;
+
 use PHPUnit\Framework\TestCase;
 
 /**
  * Tests for \SimpleSAML\Auth\State
  */
-class Auth_StateTest extends TestCase
+class StateTest extends TestCase
 {
     /**
      * Test the getPersistentAuthData() function.
+     * @return void
      */
     public function testGetPersistentAuthData()
     {
-
-        $mandatory = array(
-            'Attributes' => array(),
+        $mandatory = [
+            'Attributes' => [],
             'Expire' => 1234,
             'LogoutState' => 'logoutState',
             'AuthInstant' => 123456,
             'RememberMe' => true,
             'saml:sp:NameID' => 'nameID',
-        );
+        ];
 
         // check just mandatory parameters
         $state = $mandatory;
@@ -28,7 +30,7 @@ class Auth_StateTest extends TestCase
         $this->assertEquals(
             $expected,
             \SimpleSAML\Auth\State::getPersistentAuthData($state),
-            'Mandatory state attributes did not survive as expected'.print_r($expected, true)
+            'Mandatory state attributes did not survive as expected' . print_r($expected, true)
         );
 
         // check missing mandatory parameters
@@ -42,10 +44,10 @@ class Auth_StateTest extends TestCase
         );
 
         // check additional non-persistent parameters
-        $additional = array(
+        $additional = [
             'additional1' => 1,
             'additional2' => 2,
-        );
+        ];
         $state = array_merge($mandatory, $additional);
         $expected = $mandatory;
         $this->assertEquals(
@@ -55,7 +57,7 @@ class Auth_StateTest extends TestCase
         );
 
         // check additional persistent parameters
-        $additional['PersistentAuthData'] = array('additional1');
+        $additional['PersistentAuthData'] = ['additional1'];
         $state = array_merge($mandatory, $additional);
         $expected = $state;
         unset($expected['additional2']);

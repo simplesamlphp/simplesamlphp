@@ -47,20 +47,20 @@ Since the database class allows administrators to configure master and slave dat
 The write function takes 2 parameters: SQL, params.
 
 	$table = $db->applyPrefix("test");
-	$values = array(
+	$values = [
 		'id' => 20,
 		'data' => 'Some data',
-	);
+	];
 	
 	$query = $db->write("INSERT INTO $table (id, data) VALUES (:id, :data)", $values);
 
 The values specified in the $values array will be bound to the placeholders and will be executed on the master. By default, values are binded as PDO::PARAM_STR. If you need to override this, you can specify it in the values array.
 
 	$table = $db->applyPrefix("test");
-	$values = array(
-		'id' => array(20, PDO::PARAM_INT),
+	$values = [
+		'id' => [20, PDO::PARAM_INT],
 		'data' => 'Some data',
-	);
+	];
 	
 	$query = $db->write("INSERT INTO $table (id, data) VALUES (:id, :data)", $values);
 
@@ -75,17 +75,17 @@ Since the database class allows administrators to configure master and slave dat
 The read function takes 2 parameters: SQL, params.
 
 	$table = $db->applyPrefix("test");
-	$values = array(
+	$values = [
 		'id' => 20,
-	);
+	];
 	
 	$query = $db->read("SELECT * FROM $table WHERE id = :id", $values);
 
 The values specified in the $values array will be bound to the placeholders and will be executed on the selected slave. By default, values are binded as PDO::PARAM_STR. If you need to override this, you can specify it in the values array.
 
 	$table = $db->applyPrefix("test");
-	$values = array(
-		'id' => array(20, PDO::PARAM_INT),
-	);
+	$values = [
+		'id' => [20, PDO::PARAM_INT],
+	];
 	
 	$query = $db->read("SELECT * FROM $table WHERE id = :id", $values);

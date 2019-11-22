@@ -51,12 +51,6 @@ msgstr "Klaida siunčiant metaduomenis"
 msgid "{admin:metaconv_title}"
 msgstr "Metaduomenų analizatorius"
 
-msgid "{attributes:attribute_edupersonentitlement}"
-msgstr "Teisės susiję su paslauga"
-
-msgid "{attributes:attribute_jpegphoto}"
-msgstr "JPEG nuotrauka"
-
 msgid "{admin:cfg_check_noerrors}"
 msgstr "Klaidų nerasta."
 
@@ -134,9 +128,6 @@ msgstr ""
 msgid "{logout:default_link_text}"
 msgstr "Grįžti atgal į SimpleSAMLphp diegimo puslapį"
 
-msgid "{admin:metaover_group_metadata.wsfed-idp-remote}"
-msgstr "WS-Federacijos Paslaugos teikėjas (nutolęs)"
-
 msgid "{errors:error_header}"
 msgstr "SimpleSAMLphp klaida"
 
@@ -154,17 +145,11 @@ msgstr ""
 "sistemos administratorius, turėtumėte patikrinti, ar teisingai nustatyti "
 "metaduomenys."
 
-msgid "{attributes:attribute_edupersonorgdn}"
-msgstr "Asmens organizacijos atpažinimo vardas"
-
 msgid "{errors:title_BADREQUEST}"
 msgstr "Gauta neteisinga užklausa"
 
 msgid "{status:sessionsize}"
 msgstr "Sesijos trukmė: %SIZE%"
-
-msgid "{attributes:attribute_postaladdress}"
-msgstr "Adresas"
 
 msgid "{logout:title}"
 msgstr "Atsijungta"
@@ -187,29 +172,14 @@ msgstr "Prašome palaukti"
 msgid "{admin:cfg_check_header}"
 msgstr "Konfigūracijos patikrinimas"
 
-msgid "{attributes:attribute_edupersonscopedaffiliation}"
-msgstr "Sąsaja su organizacija"
-
-msgid "{attributes:attribute_sn}"
-msgstr "Pavardė"
-
 msgid "{admin:debug_sending_message_send}"
 msgstr "Patvirtinti pranešimą"
 
 msgid "{status:logout}"
 msgstr "Atsijungti"
 
-msgid "{attributes:attribute_organisationname}"
-msgstr "Organizacijos pavadinimas"
-
-msgid "{attributes:attribute_telephonenumber}"
-msgstr "Telefono nr."
-
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "Parametrai, nusiųsti \"discovery\" servisui neatitiko specifikacijų."
-
-msgid "{attributes:attribute_mail}"
-msgstr "El.paštas"
 
 msgid "{errors:descr_CREATEREQUEST}"
 msgstr "Klaida kuriant SAML užklausą."
@@ -219,9 +189,6 @@ msgstr "Neprivalomi laukai"
 
 msgid "{logout:return}"
 msgstr "Grįžti į paslaugą"
-
-msgid "{attributes:attribute_displayname}"
-msgstr "Rodomas vardas"
 
 msgid "{admin:metadata_xmlurl}"
 msgstr "Jūs galite <a href=\"%METAURL%\">gauti metaduomenis XML formatu</a>:"
@@ -233,9 +200,6 @@ msgid "{admin:debug_disable_debug_mode}"
 msgstr ""
 "Jūs galite išjungti detalųjį naršymą globaliame SimpleSAMLphp "
 "konfigūraciniame faile <tt>config/config.php</tt>."
-
-msgid "{attributes:attribute_homepostaladdress}"
-msgstr "Namų adresas"
 
 msgid "{disco:select}"
 msgstr "Pasirinkite"
@@ -263,9 +227,6 @@ msgstr ""
 msgid "{logout:logout_all_question}"
 msgstr "Ar norite atsijungti nuo visų žemiau išvardintų paslaugų?"
 
-msgid "{attributes:attribute_title}"
-msgstr "Pavadinimas"
-
 msgid "{errors:title_NOACCESS}"
 msgstr "Prieigos nėra"
 
@@ -279,9 +240,6 @@ msgstr "Nėra perdavimo statuso"
 
 msgid "{errors:descr_NOSTATE}"
 msgstr "Būsenos informacija prarasta, nėra galimybių pakartoti užklausą"
-
-msgid "{attributes:attribute_noredupersonnin}"
-msgstr "Valstybės institucijų priskirtas tapatybės numeris"
 
 msgid "{login:password}"
 msgstr "Slaptažodis"
@@ -307,23 +265,14 @@ msgstr "Klaida vykdant atsijungimo užklausą"
 msgid "{admin:metaover_errorentry}"
 msgstr "Klaida šiame metaduomenų įraše"
 
-msgid "{attributes:attribute_edupersonaffiliation}"
-msgstr "Pareigos"
-
 msgid "{errors:title_METADATANOTFOUND}"
 msgstr "Metaduomenys nerasti"
-
-msgid "{attributes:attribute_givenname}"
-msgstr "Vardas"
 
 msgid "{login:contact_info}"
 msgstr "Kontaktai:"
 
 msgid "{errors:title_UNHANDLEDEXCEPTION}"
 msgstr "Nežinoma klaida"
-
-msgid "{status:validfor}"
-msgstr "Jūsų sesija galioja %SECONDS% sekundžių, skaičiuojant nuo šio momento."
 
 msgid "{status:header_saml20_sp}"
 msgstr "SAML 2.0 SP Demonstracinės versijos Pavyzdys"
@@ -358,29 +307,17 @@ msgstr "Tikrinti konfigūracijos failą:"
 msgid "{errors:descr_UNKNOWNCERT}"
 msgstr "Autentikacija nepavyko: Jūsų naršyklės siųstas sertifikatas yra nežinomas"
 
-msgid "{attributes:attribute_eduorghomepageuri}"
-msgstr "Organizacijos svetainė"
-
 msgid "{logout:logging_out_from}"
 msgstr "Vyksta atjungimas nuo šių paslaugų:"
 
 msgid "{logout:loggedoutfrom}"
 msgstr "Jūs sėkmingai buvote atjungtas iš %SP%."
 
-msgid "{admin:metaover_group_metadata.wsfed-sp-hosted}"
-msgstr "WS-Federacijos Paslaugos teikėjas (vietinis)"
-
 msgid "{errors:errorreport_text}"
 msgstr "Pranešimas apie klaidą išsiųstas administratoriams."
 
-msgid "{attributes:attribute_noredupersonbirthdate}"
-msgstr "Gimimo data"
-
 msgid "{errors:descr_LOGOUTREQUEST}"
 msgstr "Klaida įvyko bandant įvykdyti atsijungimo užklausą."
-
-msgid "{attributes:attribute_edupersontargetedid}"
-msgstr "Nuolatinio pseudonimo ID"
 
 msgid "{logout:success}"
 msgstr "Jūs sėkmingai buvote atjungtas nuo visų žemiau išvardintų paslaugų."
@@ -390,12 +327,6 @@ msgstr "Pranešimai"
 
 msgid "{errors:descr_USERABORTED}"
 msgstr "Autentikacija nutraukė naudotojas"
-
-msgid "{attributes:attribute_edupersonprimaryaffiliation}"
-msgstr "Pirminė sąsaja"
-
-msgid "{attributes:attribute_postalcode}"
-msgstr "Pašto kodas"
 
 msgid "{errors:descr_CASERROR}"
 msgstr "Klaida bandant jungtis prie CAS serverio."
@@ -409,9 +340,6 @@ msgstr "SAML 2.0 SP Metaduomenys"
 msgid "{admin:metaconv_converted}"
 msgstr "Sukonvertuoti metaduomenys"
 
-msgid "{attributes:attribute_cn}"
-msgstr "Pilnas vardas"
-
 msgid "{logout:completed}"
 msgstr "Atlikta"
 
@@ -420,17 +348,8 @@ msgstr ""
 "Konfigūracijoje esantis slaptažodis (auth.adminpassword) nepakeistas iš "
 "pradinės reikšmės. Prašome pakeisti konfigūracijos failą."
 
-msgid "{attributes:attribute_ou}"
-msgstr "Organizacijos skyrius"
-
 msgid "{general:service_provider}"
 msgstr "Paslaugos teikėjas"
-
-msgid "{attributes:attribute_homephone}"
-msgstr "Namų telefo nr."
-
-msgid "{attributes:attribute_dc}"
-msgstr "Domeno komponentas"
 
 msgid "{errors:descr_BADREQUEST}"
 msgstr "Užklausoje į šį puslapį rasta klaida. Priežastis buvo: %REASON%"
@@ -450,22 +369,13 @@ msgstr "Įveskite savo prisijungimo vardą ir slaptažodį"
 msgid "{errors:report_explain}"
 msgstr "Aprašykite kokius veiksmus atlikote, kuomet pasirodė ši klaida..."
 
-msgid "{attributes:attribute_manager}"
-msgstr "Vadovas"
-
 msgid "{errors:title_ACSPARAMS}"
 msgstr "Nepateiktas SAML atsakymas"
-
-msgid "{attributes:attribute_edupersonnickname}"
-msgstr "Slapyvardis"
 
 msgid "{errors:descr_SLOSERVICEPARAMS}"
 msgstr ""
 "Jūs pasiekėte SingleLogoutService paslaugą, tačiau nepateikėte SAML "
 "LogoutRequest ar LogoutResponse užklausų."
-
-msgid "{attributes:attribute_street}"
-msgstr "Gatvė"
 
 msgid "{login:organization}"
 msgstr "Organizacija"
@@ -504,9 +414,6 @@ msgstr "Pasirinkite organizaciją"
 msgid "{admin:cfg_check_superfluous}"
 msgstr "Pertekliniai parametrai konfigūraciniame faile"
 
-msgid "{attributes:attribute_labeleduri}"
-msgstr "Žymėtasis URI"
-
 msgid "{errors:report_email}"
 msgstr "El. pašto adresas:"
 
@@ -521,9 +428,6 @@ msgstr ""
 "Šios užklausos iniciatorius nepateikė perdavimo statuso parametro, kuris "
 "nusako kur toliau kreiptis."
 
-msgid "{attributes:attribute_noredupersonlegalname}"
-msgstr "Juridinis vardas"
-
 msgid "{status:header_diagnostics}"
 msgstr "SimpleSAMLphp Diagnostika"
 
@@ -532,9 +436,6 @@ msgstr ""
 "Sveikia, čia SimpleSAMLphp būsenos tinklapis. Čia galite pamatyti, ar "
 "Jūsų sesija turi laiko apribojimą, kiek trunka tas laiko apribojimas bei "
 "kitus Jūsų sesijai priskirtus atributus."
-
-msgid "{attributes:attribute_schachomeorganization}"
-msgstr "Organizacijos domenas"
 
 msgid "{errors:title_NOTFOUNDREASON}"
 msgstr "Puslapis nerastas"
@@ -556,29 +457,17 @@ msgstr ""
 msgid "{errors:title_NOTVALIDCERT}"
 msgstr "Neteisingas sertifikatas"
 
-msgid "{attributes:attribute_edupersonorgunitdn}"
-msgstr "Asmens organizacijos skyriaus atpažinimo vardas"
-
 msgid "{general:remember}"
 msgstr "Įsiminti"
 
 msgid "{disco:selectidp}"
 msgstr "Pasirinkite savo tapatybių tiekėją"
 
-msgid "{attributes:attribute_postofficebox}"
-msgstr "Pašto dėžutės nr."
-
-msgid "{attributes:attribute_edupersonprincipalname}"
-msgstr "Asmens pagrindinis vardas organizacijoje"
-
 msgid "{login:help_desk_email}"
 msgstr "Siųsti el. laišką naudotojų aptarnavimo specialistams"
 
 msgid "{login:help_desk_link}"
 msgstr "Naudotojų aptarnavimo puslapis"
-
-msgid "{attributes:attribute_uid}"
-msgstr "Naudotojo ID"
 
 msgid "{errors:title_CASERROR}"
 msgstr "CAS klaida"
@@ -599,12 +488,6 @@ msgstr "Prisiminti pasirinkimą"
 
 msgid "{admin:metaover_group_metadata.saml20-sp-hosted}"
 msgstr "SAML 2.0 Paslaugos teikėjas (vietinis)"
-
-msgid "{attributes:attribute_l}"
-msgstr "Vietovė"
-
-msgid "{attributes:attribute_edupersonassurance}"
-msgstr "Tapatybės tikrumo profilis"
 
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
@@ -650,9 +533,6 @@ msgstr "Pranešimas"
 msgid "{errors:title_UNKNOWNCERT}"
 msgstr "Nežinomas sertifikatas"
 
-msgid "{attributes:attribute_facsimiletelephonenumber}"
-msgstr "Fakso numeris"
-
 msgid "{errors:title_LDAPERROR}"
 msgstr "LDAP klaida"
 
@@ -670,14 +550,8 @@ msgstr ""
 "sukonfigūravimo. Susisiekite su šios sistemos administratoriumi ir "
 "nusiųskite žemiau rodomą klaidos pranešimą."
 
-msgid "{attributes:attribute_mobile}"
-msgstr "Mobiliojo numeris"
-
 msgid "{admin:metaover_group_metadata.shib13-idp-hosted}"
 msgstr "Shib 1.3 Tapatybių teikėjas (vietinis)"
-
-msgid "{attributes:attribute_preferredlanguage}"
-msgstr "Kalba"
 
 msgid "{errors:descr_NOTVALIDCERT}"
 msgstr "Jūs nepateikėte teisingo sertifikato."
@@ -692,15 +566,6 @@ msgstr "Šie neprivalomi laukai nerasti"
 
 msgid "{logout:logout_only}"
 msgstr "Ne, tik %SP%"
-
-msgid "{attributes:attribute_o}"
-msgstr "Organizacijos pavadinimas"
-
-msgid "{attributes:attribute_edupersonprimaryorgunitdn}"
-msgstr "Asmens pirminio organizacijos skyriaus atpažinimo vardas"
-
-msgid "{attributes:attribute_noredupersonlin}"
-msgstr "Vietinis tapatybės numeris"
 
 msgid "{login:next}"
 msgstr "Kitas"
@@ -721,9 +586,6 @@ msgstr ""
 msgid "{errors:title_NOCERT}"
 msgstr "Nėra sertifikato"
 
-msgid "{attributes:attribute_userpassword}"
-msgstr "Naudotojo slaptažodžio maiša"
-
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "Atsijungimo informacija prarasta"
 
@@ -739,12 +601,6 @@ msgstr ""
 "patikimą federaciją, galite patikimiems partneriams išsiųsti šiuos "
 "metaduomenis."
 
-msgid "{attributes:attribute_schacuserprivateattribute}"
-msgstr "Privačios informacijos elementai"
-
-msgid "{status:header_wsfed}"
-msgstr "WS-Fed SP Demonstracinės versijos Pavyzdys"
-
 msgid "{admin:metadata_cert}"
 msgstr "Sertifikatai"
 
@@ -753,17 +609,11 @@ msgstr ""
 "Autentikacija nepavyko: Jūsų naršyklės siųstas sertifikatas yra nevalidus"
 " arba negali būti perskaitytas"
 
-msgid "{attributes:attribute_eduorglegalname}"
-msgstr "Organizacijos juridinis pavadinimas"
-
 msgid "{status:header_shib}"
 msgstr "Shibboleth demonstracinė versija"
 
 msgid "{admin:metaconv_parse}"
 msgstr "Nagrinėti"
-
-msgid "{attributes:attribute_noreduorgnin}"
-msgstr "Organizacijos numeris"
 
 msgid "Person's principal name at home organization"
 msgstr "Asmens pagrindinis vardas organizacijoje"
@@ -1096,8 +946,8 @@ msgstr ""
 "nusiųskite žemiau rodomą klaidos pranešimą."
 
 #, python-format
-msgid "Your session is valid for %SECONDS% seconds from now."
-msgstr "Jūsų sesija galioja %SECONDS% sekundžių, skaičiuojant nuo šio momento."
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Jūsų sesija galioja %remaining% sekundžių, skaičiuojant nuo šio momento."
 
 msgid "Domain component (DC)"
 msgstr "Domeno komponentas"
@@ -1578,3 +1428,15 @@ msgstr ""
 "Jūs pasiekėte vartotojų aptarnavimo servisą, tačiau nepateikėte SAML "
 "autentikacijos atsakymo."
 
+
+msgid ""
+"You are now accessing a pre-production system. This authentication setup "
+"is for testing and pre-production verification only. If someone sent you "
+"a link that pointed you here, and you are not <i>a tester</i> you "
+"probably got the wrong link, and should <b>not be here</b>."
+msgstr ""
+"Šiuo metu Jūs kreipiatės į nebaigtą diegti sistemą. Šie autentiškumo "
+"patvirtinimo nustatymai skirti tik testavimui ir sistemos veikimo "
+"tikrinimui. Jei kažkas Jums atsiuntė nuorodą, vedančią čia, ir Jūs nesate"
+" <i>testuotojas</i>, Jūs greičiausiai gavote neteisingą nuorodą ir "
+"<b>neturėtumėte čia būti</b>."

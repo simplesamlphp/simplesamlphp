@@ -1,4 +1,10 @@
 <?php
+
+namespace SimpleSAML\Test\XML;
+
+use PHPUnit\Framework\TestCase;
+use SimpleSAML\XML\Errors;
+
 /**
  * Tests for the SQL store.
  *
@@ -8,13 +14,6 @@
  * @author Sergio Gómez <sergio@uco.es>
  * @package simplesamlphp/simplesamlphp
  */
-
-
-namespace SimpleSAML\Test\XML;
-
-use PHPUnit\Framework\TestCase;
-use SimpleSAML\XML\Errors;
-
 class ErrorsTest extends TestCase
 {
     /**
@@ -22,6 +21,7 @@ class ErrorsTest extends TestCase
      * @covers \SimpleSAML\XML\Errors::addErrors
      * @covers \SimpleSAML\XML\Errors::end
      * @test
+     * @return void
      */
     public function loggingErrors()
     {
@@ -37,24 +37,26 @@ class ErrorsTest extends TestCase
         );
     }
 
+
     /**
      * @covers \SimpleSAML\XML\Errors::formatError
      * @covers \SimpleSAML\XML\Errors::formatErrors
      * @test
+     * @return void
      */
     public function formatErrors()
     {
         $error = new \LibXMLError();
-        $error->level = 'level';
-        $error->code = 'code';
-        $error->line = 'line';
-        $error->column = 'col';
+        $error->level = 3;
+        $error->code = 76;
+        $error->line = 1;
+        $error->column = 18;
         $error->message = ' msg ';
 
-        $errors = Errors::formatErrors(array($error, $error));
+        $errors = Errors::formatErrors([$error, $error]);
 
         $this->assertEquals(
-            "level=level,code=code,line=line,col=col,msg=msg\nlevel=level,code=code,line=line,col=col,msg=msg\n",
+            "level=3,code=76,line=1,col=18,msg=msg\nlevel=3,code=76,line=1,col=18,msg=msg\n",
             $errors
         );
     }

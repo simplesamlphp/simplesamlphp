@@ -16,6 +16,7 @@ class BadRequest extends Error
 {
     /**
      * Reason why this request was invalid.
+     * @var string
      */
     private $reason;
 
@@ -30,7 +31,7 @@ class BadRequest extends Error
         assert(is_string($reason));
 
         $this->reason = $reason;
-        parent::__construct(array('BADREQUEST', '%REASON%' => $this->reason));
+        parent::__construct(['BADREQUEST', '%REASON%' => $this->reason]);
         $this->httpCode = 400;
     }
 

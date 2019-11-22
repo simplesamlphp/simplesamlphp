@@ -1,5 +1,5 @@
 <?php
-$attributemap = array(
+$attributemap = [
     'urn:oid:0.9.2342.19200300.100.1.1'  => 'urn:mace:dir:attribute-def:uid',
     'urn:oid:0.9.2342.19200300.100.1.10' => 'urn:mace:dir:attribute-def:manager',
     'urn:oid:0.9.2342.19200300.100.1.11' => 'urn:mace:dir:attribute-def:documentIdentifier',
@@ -80,6 +80,7 @@ $attributemap = array(
     'urn:oid:1.3.6.1.4.1.5923.1.2.1.4'   => 'urn:mace:dir:attribute-def:eduOrgLegalName',
     'urn:oid:1.3.6.1.4.1.5923.1.2.1.5'   => 'urn:mace:dir:attribute-def:eduOrgSuperiorURI',
     'urn:oid:1.3.6.1.4.1.5923.1.2.1.6'   => 'urn:mace:dir:attribute-def:eduOrgWhitePagesURI',
+    'urn:oid:1.3.6.1.4.1.25178.1.0.2.3'  => 'urn:mace:terena.org:attribute-def:schacYearOfBirth',
     'urn:oid:1.3.6.1.4.1.25178.1.2.1'    => 'urn:mace:terena.org:attribute-def:schacMotherTongue',
     'urn:oid:1.3.6.1.4.1.25178.1.2.2'    => 'urn:mace:terena.org:attribute-def:schacGender',
     'urn:oid:1.3.6.1.4.1.25178.1.2.3'    => 'urn:mace:terena.org:attribute-def:schacDateOfBirth',
@@ -164,4 +165,4 @@ $attributemap = array(
     'urn:oid:2.5.4.7'                    => 'urn:mace:dir:attribute-def:l',
     'urn:oid:2.5.4.8'                    => 'urn:mace:dir:attribute-def:st',
     'urn:oid:2.5.4.9'                    => 'urn:mace:dir:attribute-def:street',
-);
+];

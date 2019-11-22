@@ -2,7 +2,12 @@
 
 namespace SimpleSAML;
 
-use SimpleSAML\Error\Exception;
+use SAML2\Constants as SAML2;
+use SimpleSAML\Auth;
+use SimpleSAML\Error;
+use SimpleSAML\Metadata\MetaDataStorageHandler;
+use SimpleSAML\Module\saml\Error\NoPassive;
+use SimpleSAML\Utils;
 
 /**
  * IdP class.
@@ -19,7 +24,7 @@ class IdP
      *
      * @var array
      */
-    private static $idpCache = array();
+    private static $idpCache = [];
 
     /**
      * The identifier for this IdP.
@@ -57,53 +62,50 @@ class IdP
      *
      * @param string $id The identifier of this IdP.
      *
-     * @throws Exception If the IdP is disabled or no such auth source was found.
+     * @throws \SimpleSAML\Error\Exception If the IdP is disabled or no such auth source was found.
      */
     private function __construct($id)
     {
         assert(is_string($id));
 
         $this->id = $id;
+        $this->associationGroup = $id;
 
-        $metadata = Metadata\MetaDataStorageHandler::getMetadataHandler();
+        $metadata = MetaDataStorageHandler::getMetadataHandler();
         $globalConfig = Configuration::getInstance();
 
         if (substr($id, 0, 6) === 'saml2:') {
             if (!$globalConfig->getBoolean('enable.saml20-idp', false)) {
-                throw new Exception('enable.saml20-idp disabled in config.php.');
+                throw new Error\Exception('enable.saml20-idp disabled in config.php.');
             }
             $this->config = $metadata->getMetaDataConfig(substr($id, 6), 'saml20-idp-hosted');
         } elseif (substr($id, 0, 6) === 'saml1:') {
             if (!$globalConfig->getBoolean('enable.shib13-idp', false)) {
-                throw new Exception('enable.shib13-idp disabled in config.php.');
+                throw new Error\Exception('enable.shib13-idp disabled in config.php.');
             }
             $this->config = $metadata->getMetaDataConfig(substr($id, 6), 'shib13-idp-hosted');
         } elseif (substr($id, 0, 5) === 'adfs:') {
             if (!$globalConfig->getBoolean('enable.adfs-idp', false)) {
-                throw new Exception('enable.adfs-idp disabled in config.php.');
+                throw new Error\Exception('enable.adfs-idp disabled in config.php.');
             }
             $this->config = $metadata->getMetaDataConfig(substr($id, 5), 'adfs-idp-hosted');
 
             try {
                 // this makes the ADFS IdP use the same SP associations as the SAML 2.0 IdP
                 $saml2EntityId = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
-                $this->associationGroup = 'saml2:'.$saml2EntityId;
+                $this->associationGroup = 'saml2:' . $saml2EntityId;
             } catch (\Exception $e) {
                 // probably no SAML 2 IdP configured for this host. Ignore the error
             }
         } else {
-            assert(false);
-        }
-
-        if ($this->associationGroup === null) {
-            $this->associationGroup = $this->id;
+            throw new \Exception("Protocol not implemented.");
         }
 
         $auth = $this->config->getString('auth');
         if (Auth\Source::getById($auth) !== null) {
             $this->authSource = new Auth\Simple($auth);
         } else {
-            throw new Exception('No such "'.$auth.'" auth source found.');
+            throw new Error\Exception('No such "' . $auth . '" auth source found.');
         }
     }
 
@@ -179,7 +181,7 @@ class IdP
 
         $prefix = substr($assocId, 0, 4);
         $spEntityId = substr($assocId, strlen($prefix) + 1);
-        $metadata = Metadata\MetaDataStorageHandler::getMetadataHandler();
+        $metadata = MetaDataStorageHandler::getMetadataHandler();
 
         if ($prefix === 'saml') {
             try {
@@ -204,7 +206,7 @@ class IdP
         } elseif ($spMetadata->hasValue('OrganizationDisplayName')) {
             return $spMetadata->getLocalizedString('OrganizationDisplayName');
         } else {
-            return array('en' => $spEntityId);
+            return ['en' => $spEntityId];
         }
     }
 
@@ -213,6 +215,7 @@ class IdP
      * Add an SP association.
      *
      * @param array $association The SP association.
+     * @return void
      */
     public function addAssociation(array $association)
     {
@@ -242,6 +245,7 @@ class IdP
      * Remove an SP association.
      *
      * @param string $assocId The association id.
+     * @return void
      */
     public function terminateAssociation($assocId)
     {
@@ -267,16 +271,17 @@ class IdP
      * Called after authproc has run.
      *
      * @param array $state The authentication request state array.
+     * @return void
      */
     public static function postAuthProc(array $state)
     {
         assert(is_callable($state['Responder']));
 
         if (isset($state['core:SP'])) {
-            $session = \SimpleSAML\Session::getSessionFromRequest();
+            $session = Session::getSessionFromRequest();
             $session->setData(
                 'core:idp-ssotime',
-                $state['core:IdP'].';'.$state['core:SP'],
+                $state['core:IdP'] . ';' . $state['core:SP'],
                 time(),
                 Session::DATA_TIMEOUT_SESSION_END
             );
@@ -292,14 +297,15 @@ class IdP
      *
      * @param array $state The authentication request state array.
      *
-     * @throws Exception If we are not authenticated.
+     * @throws \SimpleSAML\Error\Exception If we are not authenticated.
+     * @return void
      */
     public static function postAuth(array $state)
     {
         $idp = IdP::getByState($state);
 
         if (!$idp->isAuthenticated()) {
-            throw new Exception('Not authenticated.');
+            throw new Error\Exception('Not authenticated.');
         }
 
         $state['Attributes'] = $idp->authSource->getAttributes();
@@ -307,12 +313,12 @@ class IdP
         if (isset($state['SPMetadata'])) {
             $spMetadata = $state['SPMetadata'];
         } else {
-            $spMetadata = array();
+            $spMetadata = [];
         }
 
         if (isset($state['core:SP'])) {
             $session = Session::getSessionFromRequest();
-            $previousSSOTime = $session->getData('core:idp-ssotime', $state['core:IdP'].';'.$state['core:SP']);
+            $previousSSOTime = $session->getData('core:idp-ssotime', $state['core:IdP'] . ';' . $state['core:SP']);
             if ($previousSSOTime !== null) {
                 $state['PreviousSSOTimestamp'] = $previousSSOTime;
             }
@@ -322,7 +328,7 @@ class IdP
 
         $pc = new Auth\ProcessingChain($idpMetadata, $spMetadata, 'idp');
 
-        $state['ReturnCall'] = array('\SimpleSAML\IdP', 'postAuthProc');
+        $state['ReturnCall'] = ['\SimpleSAML\IdP', 'postAuthProc'];
         $state['Destination'] = $spMetadata;
         $state['Source'] = $idpMetadata;
 
@@ -339,12 +345,13 @@ class IdP
      *
      * @param array &$state The authentication request state.
      *
-     * @throws Module\saml\Error\NoPassive If we were asked to do passive authentication.
+     * @throws \SimpleSAML\Module\saml\Error\NoPassive If we were asked to do passive authentication.
+     * @return void
      */
     private function authenticate(array &$state)
     {
         if (isset($state['isPassive']) && (bool) $state['isPassive']) {
-            throw new Module\saml\Error\NoPassive('Passive authentication not supported.');
+            throw new NoPassive(SAML2::STATUS_RESPONDER, 'Passive authentication not supported.');
         }
 
         $this->authSource->login($state);
@@ -361,15 +368,12 @@ class IdP
      *
      * @param array &$state The authentication request state.
      *
-     * @throws Exception If there is no auth source defined for this IdP.
+     * @throws \Exception If there is no auth source defined for this IdP.
+     * @return void
      */
     private function reauthenticate(array &$state)
     {
         $sourceImpl = $this->authSource->getAuthSource();
-        if ($sourceImpl === null) {
-            throw new Exception('No such auth source defined.');
-        }
-
         $sourceImpl->reauthenticate($state);
     }
 
@@ -378,6 +382,7 @@ class IdP
      * Process authentication requests.
      *
      * @param array &$state The authentication request state.
+     * @return void
      */
     public function handleAuthenticationRequest(array &$state)
     {
@@ -403,7 +408,7 @@ class IdP
         }
 
         $state['IdPMetadata'] = $this->getConfig()->toArray();
-        $state['ReturnCallback'] = array('\SimpleSAML\IdP', 'postAuth');
+        $state['ReturnCallback'] = ['\SimpleSAML\IdP', 'postAuth'];
 
         try {
             if ($needAuth) {
@@ -413,8 +418,8 @@ class IdP
                 $this->reauthenticate($state);
             }
             $this->postAuth($state);
-        } catch (Exception $e) {
-            \SimpleSAML\Auth\State::throwException($state, $e);
+        } catch (Error\Exception $e) {
+            Auth\State::throwException($state, $e);
         } catch (\Exception $e) {
             $e = new Error\UnserializableException($e);
             Auth\State::throwException($state, $e);
@@ -426,8 +431,7 @@ class IdP
      * Find the logout handler of this IdP.
      *
      * @return IdP\LogoutHandlerInterface The logout handler class.
-     *
-     * @throws Exception If we cannot find a logout handler.
+     * @throws \Exception If we cannot find a logout handler.
      */
     public function getLogoutHandler()
     {
@@ -441,9 +445,10 @@ class IdP
                 $handler = '\SimpleSAML\IdP\IFrameLogoutHandler';
                 break;
             default:
-                throw new Exception('Unknown logout handler: '.var_export($logouttype, true));
+                throw new Error\Exception('Unknown logout handler: ' . var_export($logouttype, true));
         }
 
+        /** @var IdP\LogoutHandlerInterface */
         return new $handler($this);
     }
 
@@ -454,6 +459,7 @@ class IdP
      * This function will never return.
      *
      * @param array &$state The logout request state.
+     * @return void
      */
     public function finishLogout(array &$state)
     {
@@ -473,6 +479,7 @@ class IdP
      * @param array       &$state The logout request state.
      * @param string|null $assocId The association we received the logout request from, or null if there was no
      * association.
+     * @return void
      */
     public function handleLogoutRequest(array &$state, $assocId)
     {
@@ -485,17 +492,19 @@ class IdP
         if ($assocId !== null) {
             $this->terminateAssociation($assocId);
             $session = Session::getSessionFromRequest();
-            $session->deleteData('core:idp-ssotime', $this->id.':'.$state['saml:SPEntityId']);
+            $session->deleteData('core:idp-ssotime', $this->id . ';' . $state['saml:SPEntityId']);
         }
 
         // terminate the local session
         $id = Auth\State::saveState($state, 'core:Logout:afterbridge');
-        $returnTo = Module::getModuleURL('core/idp/resumelogout.php', array('id' => $id));
+        $returnTo = Module::getModuleURL('core/idp/resumelogout.php', ['id' => $id]);
 
         $this->authSource->logout($returnTo);
 
-        $handler = $this->getLogoutHandler();
-        $handler->startLogout($state, $assocId);
+        if ($assocId !== null) {
+            $handler = $this->getLogoutHandler();
+            $handler->startLogout($state, $assocId);
+        }
         assert(false);
     }
 
@@ -507,15 +516,19 @@ class IdP
      *
      * @param string                 $assocId The association that is terminated.
      * @param string|null            $relayState The RelayState from the start of the logout.
-     * @param Exception|null $error  The error that occurred during session termination (if any).
+     * @param \SimpleSAML\Error\Exception|null $error  The error that occurred during session termination (if any).
+     * @return void
      */
-    public function handleLogoutResponse($assocId, $relayState, Exception $error = null)
+    public function handleLogoutResponse($assocId, $relayState, Error\Exception $error = null)
     {
         assert(is_string($assocId));
         assert(is_string($relayState) || $relayState === null);
 
+        $index = strpos($assocId, ':');
+        assert(is_int($index));
+
         $session = Session::getSessionFromRequest();
-        $session->deleteData('core:idp-ssotime', $this->id.';'.substr($assocId, strpos($assocId, ':') + 1));
+        $session->deleteData('core:idp-ssotime', $this->id . ';' . substr($assocId, $index + 1));
 
         $handler = $this->getLogoutHandler();
         $handler->onResponse($assocId, $relayState, $error);
@@ -530,15 +543,16 @@ class IdP
      * This function never returns.
      *
      * @param string $url The URL the user should be returned to after logout.
+     * @return void
      */
     public function doLogoutRedirect($url)
     {
         assert(is_string($url));
 
-        $state = array(
-            'Responder'       => array('\SimpleSAML\IdP', 'finishLogoutRedirect'),
+        $state = [
+            'Responder'       => ['\SimpleSAML\IdP', 'finishLogoutRedirect'],
             'core:Logout:URL' => $url,
-        );
+        ];
 
         $this->handleLogoutRequest($state, null);
         assert(false);
@@ -552,6 +566,7 @@ class IdP
      *
      * @param IdP      $idp Deprecated. Will be removed.
      * @param array    &$state The logout state from doLogoutRedirect().
+     * @return void
      */
     public static function finishLogoutRedirect(IdP $idp, array $state)
     {

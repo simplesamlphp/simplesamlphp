@@ -52,12 +52,6 @@ msgstr "Erreur lors du chargement des métadonnées (metadata)"
 msgid "{admin:metaconv_title}"
 msgstr "Analyseur de métadonnées"
 
-msgid "{attributes:attribute_edupersonentitlement}"
-msgstr "Appartenance à un groupe"
-
-msgid "{attributes:attribute_jpegphoto}"
-msgstr "Photo JPEG"
-
 msgid "{admin:cfg_check_noerrors}"
 msgstr "Aucune erreur."
 
@@ -137,9 +131,6 @@ msgstr ""
 msgid "{logout:default_link_text}"
 msgstr "Retournez à la page d'installation de SimpleSAML."
 
-msgid "{admin:metaover_group_metadata.wsfed-idp-remote}"
-msgstr "Fournisseur d'identité Shib 1.3 distant"
-
 msgid "{errors:error_header}"
 msgstr "erreur de SimpleSAMLphp"
 
@@ -160,17 +151,11 @@ msgstr ""
 "vous assurer que votre configuration des métadonnées est correctement "
 "réalisée."
 
-msgid "{attributes:attribute_edupersonorgdn}"
-msgstr "Nom unique (DN) de l'institution d'origine"
-
 msgid "{errors:title_BADREQUEST}"
 msgstr "Requête invalide"
 
 msgid "{status:sessionsize}"
 msgstr "Taille de la session : %SIZE%"
-
-msgid "{attributes:attribute_postaladdress}"
-msgstr "Adresse postale"
 
 msgid "{logout:title}"
 msgstr "Déconnecté"
@@ -193,31 +178,16 @@ msgstr "En cours"
 msgid "{admin:cfg_check_header}"
 msgstr "Vérification de la configuration"
 
-msgid "{attributes:attribute_edupersonscopedaffiliation}"
-msgstr "Rôles pour ce service"
-
-msgid "{attributes:attribute_sn}"
-msgstr "Nom"
-
 msgid "{admin:debug_sending_message_send}"
 msgstr "Envoi du message"
 
 msgid "{status:logout}"
 msgstr "Déconnexion"
 
-msgid "{attributes:attribute_organisationname}"
-msgstr "Rôles pour ce service"
-
-msgid "{attributes:attribute_telephonenumber}"
-msgstr "Numéro de téléphone"
-
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr ""
 "Les paramètres envoyés au service de découverte automatique (discovery "
 "service) ne respectent pas les spécifications."
-
-msgid "{attributes:attribute_mail}"
-msgstr "Courriel"
 
 msgid "{errors:descr_CREATEREQUEST}"
 msgstr "Une erreur s'est produite lors de la tentative de créer la requête SAML."
@@ -227,9 +197,6 @@ msgstr "Champs optionnels"
 
 msgid "{logout:return}"
 msgstr "Retour au service"
-
-msgid "{attributes:attribute_displayname}"
-msgstr "Nom pour affichage"
 
 msgid "{admin:metadata_xmlurl}"
 msgstr ""
@@ -243,9 +210,6 @@ msgid "{admin:debug_disable_debug_mode}"
 msgstr ""
 "Vous pouvez désactivez le mode débogage dans le fichier de configuration "
 "globale de SimpleSAMLphp (<tt>config/config.php</tt>)."
-
-msgid "{attributes:attribute_homepostaladdress}"
-msgstr "Adresse postale personnelle"
 
 msgid "{disco:select}"
 msgstr "Sélectionner"
@@ -274,9 +238,6 @@ msgstr ""
 msgid "{logout:logout_all_question}"
 msgstr "Voulez vous réellement terminer les connexions à tout ces services?"
 
-msgid "{attributes:attribute_title}"
-msgstr "Titre"
-
 msgid "{errors:title_NOACCESS}"
 msgstr "Pas d'accès"
 
@@ -291,9 +252,6 @@ msgstr "Pas d'information RelayState"
 
 msgid "{errors:descr_NOSTATE}"
 msgstr "Information d'état perdue, et aucun moyen de relancer la requête"
-
-msgid "{attributes:attribute_noredupersonnin}"
-msgstr "Numéro de sécurité sociale"
 
 msgid "{login:password}"
 msgstr "Mot de passe"
@@ -321,23 +279,14 @@ msgstr "Erreur lors du traitement de la requête de déconnexion"
 msgid "{admin:metaover_errorentry}"
 msgstr "Erreur dans les métadonnées de cet élément"
 
-msgid "{attributes:attribute_edupersonaffiliation}"
-msgstr "Affiliation"
-
 msgid "{errors:title_METADATANOTFOUND}"
 msgstr "Métadonnées non trouvées"
-
-msgid "{attributes:attribute_givenname}"
-msgstr "Prénom"
 
 msgid "{login:contact_info}"
 msgstr "Coordonnées :"
 
 msgid "{errors:title_UNHANDLEDEXCEPTION}"
 msgstr "Exception non gérée"
-
-msgid "{status:validfor}"
-msgstr "Votre session est encore valide pour %SECONDS% secondes."
 
 msgid "{status:header_saml20_sp}"
 msgstr "Exemple de démonstration de SP SAML 2.0"
@@ -374,31 +323,19 @@ msgstr ""
 "Échec de l'authentification : le certificat présenté par votre navigateur"
 " n'est pas connu"
 
-msgid "{attributes:attribute_eduorghomepageuri}"
-msgstr "Site web institutionnel"
-
 msgid "{logout:logging_out_from}"
 msgstr "Déconnexion des services suivants :"
 
 msgid "{logout:loggedoutfrom}"
 msgstr "Vous avez été déconnecté de %SP%."
 
-msgid "{admin:metaover_group_metadata.wsfed-sp-hosted}"
-msgstr "Fournisseur de service WS-federation local"
-
 msgid "{errors:errorreport_text}"
 msgstr "Le rapport d'erreur a été envoyé aux administrateurs."
-
-msgid "{attributes:attribute_noredupersonbirthdate}"
-msgstr "Date de naissance"
 
 msgid "{errors:descr_LOGOUTREQUEST}"
 msgstr ""
 "Une erreur s'est produite lors de la tentative de traiter la demande de "
 "déconnexion."
-
-msgid "{attributes:attribute_edupersontargetedid}"
-msgstr "Identifiant persistant anonyme"
 
 msgid "{logout:success}"
 msgstr "Vous avez été déconnecté avec succès des services listés ci dessus"
@@ -408,12 +345,6 @@ msgstr "A noter"
 
 msgid "{errors:descr_USERABORTED}"
 msgstr "L'authentification a été abandonnée par l'usager"
-
-msgid "{attributes:attribute_edupersonprimaryaffiliation}"
-msgstr "Affiliation primaire"
-
-msgid "{attributes:attribute_postalcode}"
-msgstr "Code postal"
 
 msgid "{errors:descr_CASERROR}"
 msgstr "Erreur de communication avec le serveur CAS"
@@ -427,9 +358,6 @@ msgstr "Métadonnées de SP SAML 2.0"
 msgid "{admin:metaconv_converted}"
 msgstr "Métadonnées converties"
 
-msgid "{attributes:attribute_cn}"
-msgstr "Nom usuel"
-
 msgid "{logout:completed}"
 msgstr "Fait"
 
@@ -439,17 +367,8 @@ msgstr ""
 "changé par rapport à la valeur par défaut. Veuillez modifier la "
 "configuration."
 
-msgid "{attributes:attribute_ou}"
-msgstr "Section"
-
 msgid "{general:service_provider}"
 msgstr "Fournisseur de service"
-
-msgid "{attributes:attribute_homephone}"
-msgstr "Téléphone personnel"
-
-msgid "{attributes:attribute_dc}"
-msgstr "Fragment de domaine (DC)"
 
 msgid "{errors:descr_BADREQUEST}"
 msgstr "Erreur dans la requête de cette page. Motif : %REASON%"
@@ -469,22 +388,13 @@ msgstr "Entrez votre identifiant et votre mot de passe"
 msgid "{errors:report_explain}"
 msgstr "Expliquez ce que vous faisiez lorsque cette erreur est apparue..."
 
-msgid "{attributes:attribute_manager}"
-msgstr "Gestionnaire"
-
 msgid "{errors:title_ACSPARAMS}"
 msgstr "Aucune réponse SAML fournie"
-
-msgid "{attributes:attribute_edupersonnickname}"
-msgstr "Pseudonyme"
 
 msgid "{errors:descr_SLOSERVICEPARAMS}"
 msgstr ""
 "Vous avez accédé à l'interface SingleLogoutService, mais vous n'avez pas "
 "fourni de LogoutRequest ou LogoutResponse SAML."
-
-msgid "{attributes:attribute_street}"
-msgstr "Rue"
 
 msgid "{login:organization}"
 msgstr "Fournisseur"
@@ -525,9 +435,6 @@ msgstr "Choisissez votre fournisseur."
 msgid "{admin:cfg_check_superfluous}"
 msgstr "Options superflues dans le fichier de configuration"
 
-msgid "{attributes:attribute_labeleduri}"
-msgstr "URI"
-
 msgid "{errors:report_email}"
 msgstr "Adresse de courriel :"
 
@@ -542,9 +449,6 @@ msgstr ""
 "L'émetteur de cette requête n'a pas fourni de paramètre RelayState "
 "indiquant quelle page afficher ensuite."
 
-msgid "{attributes:attribute_noredupersonlegalname}"
-msgstr "État civil"
-
 msgid "{status:header_diagnostics}"
 msgstr "Diagnostics SimpleSAMLphp"
 
@@ -553,9 +457,6 @@ msgstr ""
 "Bonjour, vous êtes sur la page de statut de SimpleSAMLphp. Vous pouvez "
 "consulter ici le temps restant sur votre session, ainsi que les attributs"
 " qui y sont attachés."
-
-msgid "{attributes:attribute_schachomeorganization}"
-msgstr "Identifiant unique de l'organisation de rattachement"
 
 msgid "{errors:title_NOTFOUNDREASON}"
 msgstr "Page introuvable"
@@ -575,29 +476,17 @@ msgstr "Pour examiner les détails d'une entité SAML, cliquez sur son en-tête.
 msgid "{errors:title_NOTVALIDCERT}"
 msgstr "Certificat invalide"
 
-msgid "{attributes:attribute_edupersonorgunitdn}"
-msgstr "Nom unique (DN) de la section d'origine"
-
 msgid "{general:remember}"
 msgstr "Se souvenir du consentement"
 
 msgid "{disco:selectidp}"
 msgstr "Sélectionnez votre fournisseur d'identité"
 
-msgid "{attributes:attribute_postofficebox}"
-msgstr "Boite postale"
-
-msgid "{attributes:attribute_edupersonprincipalname}"
-msgstr "Nom de l'utilisateur dans l'organisation de rattachement"
-
 msgid "{login:help_desk_email}"
 msgstr "Assistance technique par courriel"
 
 msgid "{login:help_desk_link}"
 msgstr "Page web de l'assistance technique"
-
-msgid "{attributes:attribute_uid}"
-msgstr "ID Utilisateur"
 
 msgid "{errors:title_CASERROR}"
 msgstr "Erreur CAS"
@@ -619,12 +508,6 @@ msgstr "Retenir ce choix"
 
 msgid "{admin:metaover_group_metadata.saml20-sp-hosted}"
 msgstr "Fournisseur de service SAML 2.0 local"
-
-msgid "{attributes:attribute_l}"
-msgstr "Lieu"
-
-msgid "{attributes:attribute_edupersonassurance}"
-msgstr "Profil d'assertion d'identité"
 
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
@@ -670,9 +553,6 @@ msgstr "Message"
 msgid "{errors:title_UNKNOWNCERT}"
 msgstr "Certificat inconnu"
 
-msgid "{attributes:attribute_facsimiletelephonenumber}"
-msgstr "Numéro de fax"
-
 msgid "{errors:title_LDAPERROR}"
 msgstr "Erreur LDAP"
 
@@ -691,14 +571,8 @@ msgstr ""
 "mauvaise configuration de SimpleSAMLphp.  Contactez l'administrateur de "
 "ce service d'identification et envoyez lui le message d'erreur."
 
-msgid "{attributes:attribute_mobile}"
-msgstr "Mobile"
-
 msgid "{admin:metaover_group_metadata.shib13-idp-hosted}"
 msgstr "Fournisseur d'identité Shib 1.3 local"
-
-msgid "{attributes:attribute_preferredlanguage}"
-msgstr "Langue préférée"
 
 msgid "{errors:descr_NOTVALIDCERT}"
 msgstr "Vous n'avez pas présenté de certificat valide"
@@ -713,15 +587,6 @@ msgstr "Les champs optionnels suivants n'ont pas été trouvés"
 
 msgid "{logout:logout_only}"
 msgstr "Non, seulement de %SP%"
-
-msgid "{attributes:attribute_o}"
-msgstr "Rôles pour ce service"
-
-msgid "{attributes:attribute_edupersonprimaryorgunitdn}"
-msgstr "Nom unique (DN) de la section d'origine"
-
-msgid "{attributes:attribute_noredupersonlin}"
-msgstr "Immatriculation territoriale"
 
 msgid "{login:next}"
 msgstr "Suivant"
@@ -742,9 +607,6 @@ msgstr "La page demandée est introuvable. Motif : %REASON%  L'url était : %URL
 msgid "{errors:title_NOCERT}"
 msgstr "Aucun certificat présenté"
 
-msgid "{attributes:attribute_userpassword}"
-msgstr "Mot de passe chiffré"
-
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "Information de déconnexion perdue"
 
@@ -760,12 +622,6 @@ msgstr ""
 " à vos partenaires de confiances pour construire une fédération "
 "d'identité."
 
-msgid "{attributes:attribute_schacuserprivateattribute}"
-msgstr "Éléments d'informations privées"
-
-msgid "{status:header_wsfed}"
-msgstr "Exemple de démonstration de WS-Fed SP"
-
 msgid "{admin:metadata_cert}"
 msgstr "Certificats"
 
@@ -774,17 +630,11 @@ msgstr ""
 "Échec de l'authentification : le certificat présenté par votre navigateur"
 " est invalide ou illisible"
 
-msgid "{attributes:attribute_eduorglegalname}"
-msgstr "Nom légal de l'institution"
-
 msgid "{status:header_shib}"
 msgstr "Exemple de démonstration de Shibboleth"
 
 msgid "{admin:metaconv_parse}"
 msgstr "Analyser"
-
-msgid "{attributes:attribute_noreduorgnin}"
-msgstr "Immatriculation de l'institution"
 
 msgid "Person's principal name at home organization"
 msgstr "Nom de l'utilisateur dans l'organisation de rattachement"
@@ -1127,8 +977,8 @@ msgstr ""
 "ce service d'identification et envoyez lui le message d'erreur."
 
 #, python-format
-msgid "Your session is valid for %SECONDS% seconds from now."
-msgstr "Votre session est encore valide pour %SECONDS% secondes."
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Votre session est encore valide pour %remaining% secondes."
 
 msgid "Domain component (DC)"
 msgstr "Fragment de domaine (DC)"
@@ -1621,3 +1471,13 @@ msgstr ""
 "Vous avez accédé à l'interface du service de traitement des assertions, "
 "mais vous n'avez pas fourni de réponse d'authentification SAML."
 
+
+msgid ""
+"You are now accessing a pre-production system. This authentication setup "
+"is for testing and pre-production verification only. If someone sent you "
+"a link that pointed you here, and you are not <i>a tester</i> you "
+"probably got the wrong link, and should <b>not be here</b>."
+msgstr ""
+"Ceci est un système en pré-production. La configuration "
+"d'authentification n'est destinée qu'aux tests. Si vous n'êtes pas un "
+"testeur, <b>vous ne devriez pas être là</b>."

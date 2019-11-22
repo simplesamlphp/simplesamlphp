@@ -42,12 +42,6 @@ msgstr "Erro na leitura dos metadados"
 msgid "{admin:metaconv_title}"
 msgstr "Conversor de Metadados"
 
-msgid "{attributes:attribute_edupersonentitlement}"
-msgstr "Direitos oferecidos pela organização de origem"
-
-msgid "{attributes:attribute_jpegphoto}"
-msgstr "Foto JPEG"
-
 msgid "{admin:cfg_check_noerrors}"
 msgstr "Não foram encontrados erros."
 
@@ -122,9 +116,6 @@ msgstr ""
 msgid "{logout:default_link_text}"
 msgstr "Voltar à página de instalação do SimpleSAMLphp"
 
-msgid "{admin:metaover_group_metadata.wsfed-idp-remote}"
-msgstr "Fornecedor de identidade (IdP) WS-Federation (Remoto)"
-
 msgid "{errors:error_header}"
 msgstr "Erro no SimpleSAMLphp"
 
@@ -140,17 +131,11 @@ msgstr ""
 "administrador deste serviço, verifique que a configuração dos metadados "
 "está correcta."
 
-msgid "{attributes:attribute_edupersonorgdn}"
-msgstr "DN da organização de origem"
-
 msgid "{errors:title_BADREQUEST}"
 msgstr "Pedido inválido recebido"
 
 msgid "{status:sessionsize}"
 msgstr "Tamanho da sessão: %SIZE%"
-
-msgid "{attributes:attribute_postaladdress}"
-msgstr "Morada"
 
 msgid "{logout:title}"
 msgstr "Saída efectuada com sucesso"
@@ -170,31 +155,16 @@ msgstr "Em espera"
 msgid "{admin:cfg_check_header}"
 msgstr "Verificação da configuração"
 
-msgid "{attributes:attribute_edupersonscopedaffiliation}"
-msgstr "Afiliação com a organização de origem (com contexto)"
-
-msgid "{attributes:attribute_sn}"
-msgstr "Nome de família"
-
 msgid "{admin:debug_sending_message_send}"
 msgstr "Enviar mensagem"
 
 msgid "{status:logout}"
 msgstr "Sair"
 
-msgid "{attributes:attribute_organisationname}"
-msgstr "Nome da Organização"
-
-msgid "{attributes:attribute_telephonenumber}"
-msgstr "Telefone"
-
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr ""
 "O pedido efectuado ao serviço de descoberta de IdP não está de acordo com"
 " as especificações."
-
-msgid "{attributes:attribute_mail}"
-msgstr "E-mail"
 
 msgid "{errors:descr_CREATEREQUEST}"
 msgstr "Ocorreu um erro ao tentar criar o pedido SAML"
@@ -204,9 +174,6 @@ msgstr "Campos opcionais"
 
 msgid "{logout:return}"
 msgstr "Regressar ao serviço"
-
-msgid "{attributes:attribute_displayname}"
-msgstr "Nome de apresentação"
 
 msgid "{admin:metadata_xmlurl}"
 msgstr "Pode <a href=\"%METAURL%\">obter os metadados em XML num URL dedicado</a>:"
@@ -218,9 +185,6 @@ msgid "{admin:debug_disable_debug_mode}"
 msgstr ""
 "Pode desligar o modo debug no ficheiro global de configuração "
 "<tt>config/config.php</tt> do SimpleSAMLphp."
-
-msgid "{attributes:attribute_homepostaladdress}"
-msgstr "Morada de redidência"
 
 msgid "{disco:select}"
 msgstr "Escolher"
@@ -248,9 +212,6 @@ msgstr ""
 msgid "{logout:logout_all_question}"
 msgstr "Deseja sair de todos os serviços listados em cima?"
 
-msgid "{attributes:attribute_title}"
-msgstr "Título"
-
 msgid "{errors:title_NOACCESS}"
 msgstr "Acesso negado"
 
@@ -259,9 +220,6 @@ msgstr "A senha não foi enviada no seu pedido. Por favor tente de novo."
 
 msgid "{errors:title_NORELAYSTATE}"
 msgstr "RelayState não definido"
-
-msgid "{attributes:attribute_noredupersonnin}"
-msgstr "Número de Identificação atribuído por autoridades públicas"
 
 msgid "{login:password}"
 msgstr "Senha"
@@ -289,20 +247,11 @@ msgstr "Erro ao processar o pedido de logout"
 msgid "{admin:metaover_errorentry}"
 msgstr "Erro nesta entrada de metadados"
 
-msgid "{attributes:attribute_edupersonaffiliation}"
-msgstr "Afiliação com a organização de origem"
-
-msgid "{attributes:attribute_givenname}"
-msgstr "Nome Próprio"
-
 msgid "{login:contact_info}"
 msgstr "Contactos:"
 
 msgid "{errors:title_UNHANDLEDEXCEPTION}"
 msgstr "Excepção não tratada"
-
-msgid "{status:validfor}"
-msgstr "A sua sessão é válida por %SECONDS% segundos."
 
 msgid "{status:header_saml20_sp}"
 msgstr "Exemplo de demonstração do SP SAML 2.0"
@@ -331,41 +280,23 @@ msgstr "Campos obrigatórios"
 msgid "{admin:cfg_check_select_file}"
 msgstr "Escolha o ficheiro de configuração a verificar:"
 
-msgid "{attributes:attribute_eduorghomepageuri}"
-msgstr "Página web da organização de origem"
-
 msgid "{logout:logging_out_from}"
 msgstr "A sair dos serviços seguintes:"
 
 msgid "{logout:loggedoutfrom}"
 msgstr "Saiu com sucesso de %SP%."
 
-msgid "{admin:metaover_group_metadata.wsfed-sp-hosted}"
-msgstr "Fornecedor de serviço (SP) WS-Federation (Local)"
-
 msgid "{errors:errorreport_text}"
 msgstr "O relatório de erro foi enviado aos administradores"
 
-msgid "{attributes:attribute_noredupersonbirthdate}"
-msgstr "Data de nascimento"
-
 msgid "{errors:descr_LOGOUTREQUEST}"
 msgstr "Ocorreu um erro ao processar o pedido de logout."
-
-msgid "{attributes:attribute_edupersontargetedid}"
-msgstr "Identificação persistente tipo pseudónimo"
 
 msgid "{logout:success}"
 msgstr "Saiu com sucesso de todos os serviços listados em cima."
 
 msgid "{admin:cfg_check_notices}"
 msgstr "Observações"
-
-msgid "{attributes:attribute_edupersonprimaryaffiliation}"
-msgstr "Afiliação principal com a organização de origem"
-
-msgid "{attributes:attribute_postalcode}"
-msgstr "Código Postal"
 
 msgid "{errors:descr_CASERROR}"
 msgstr "Ocorreu um erro ao comunicar com o servidor CAS."
@@ -379,9 +310,6 @@ msgstr "Metadados SAML 2.0 SP"
 msgid "{admin:metaconv_converted}"
 msgstr "Resultado da conversão de Metadados"
 
-msgid "{attributes:attribute_cn}"
-msgstr "Nome completo"
-
 msgid "{logout:completed}"
 msgstr "Completa"
 
@@ -390,17 +318,8 @@ msgstr ""
 "A password presente na configuração (auth.adminpassword) tem o valor de "
 "omissão. Por favor altere esta password no ficheiro de configuração."
 
-msgid "{attributes:attribute_ou}"
-msgstr "Unidade organizacional"
-
 msgid "{general:service_provider}"
 msgstr "Fornecedor de Serviço (SP)"
-
-msgid "{attributes:attribute_homephone}"
-msgstr "Telefone de residência"
-
-msgid "{attributes:attribute_dc}"
-msgstr "Componente de domínio"
 
 msgid "{errors:descr_BADREQUEST}"
 msgstr "Ocorreu um erro com o pedido a esta página. A razão foi: %REASON%"
@@ -420,22 +339,13 @@ msgstr "Introduza o seu nome de utilizador e senha"
 msgid "{errors:report_explain}"
 msgstr "Introduza uma breve explicação do sucedido..."
 
-msgid "{attributes:attribute_manager}"
-msgstr "Responsável hierárquico"
-
 msgid "{errors:title_ACSPARAMS}"
 msgstr "Mensagem SAML não fornecida"
-
-msgid "{attributes:attribute_edupersonnickname}"
-msgstr "Alcunha"
 
 msgid "{errors:descr_SLOSERVICEPARAMS}"
 msgstr ""
 "Na interface SingleLogoutService deve fornecer uma mensagem SAML do tipo "
 "LogoutRequest ou LogoutResponse."
-
-msgid "{attributes:attribute_street}"
-msgstr "Rua"
 
 msgid "{login:organization}"
 msgstr "Organização"
@@ -471,9 +381,6 @@ msgstr "Escolha a sua organização de origem"
 msgid "{admin:cfg_check_superfluous}"
 msgstr "Opções supérfluas do ficheiro de configuração"
 
-msgid "{attributes:attribute_labeleduri}"
-msgstr "Página web"
-
 msgid "{errors:report_email}"
 msgstr "Endereço de email:"
 
@@ -496,9 +403,6 @@ msgstr ""
 "Está na página de status do SimpleSAMLphp. Aqui poderá consultar "
 "informações sobre a sua sessão: o tempo de expiração e os seus atributos."
 
-msgid "{attributes:attribute_schachomeorganization}"
-msgstr "Nome de domínio da Organização de origem"
-
 msgid "{errors:title_NOTFOUNDREASON}"
 msgstr "Página não encontrada"
 
@@ -517,29 +421,17 @@ msgstr "Para obter detalhes sobre uma entidade SAML, clique no título da entida
 msgid "{errors:title_NOTVALIDCERT}"
 msgstr "Certificado inválido"
 
-msgid "{attributes:attribute_edupersonorgunitdn}"
-msgstr "DN da unidade orgânica na organização de origem"
-
 msgid "{general:remember}"
 msgstr "Lembrar a minha escolha"
 
 msgid "{disco:selectidp}"
 msgstr "Escolha o seu fornecedor de identidade (IdP)"
 
-msgid "{attributes:attribute_postofficebox}"
-msgstr "Apartado"
-
-msgid "{attributes:attribute_edupersonprincipalname}"
-msgstr "Nome de utilizador na organização de origem"
-
 msgid "{login:help_desk_email}"
 msgstr "Enviar um e-mail para o serviço de apoio ao utilizador"
 
 msgid "{login:help_desk_link}"
 msgstr "Página do serviço de apoio ao utilizador"
-
-msgid "{attributes:attribute_uid}"
-msgstr "Identificação de utilizador"
 
 msgid "{errors:title_CASERROR}"
 msgstr "Erro de CAS"
@@ -560,9 +452,6 @@ msgstr "Lembrar esta escolha"
 
 msgid "{admin:metaover_group_metadata.saml20-sp-hosted}"
 msgstr "Fornecedor de serviço (SP) SAML 2.0 (Local)"
-
-msgid "{attributes:attribute_l}"
-msgstr "Localidade"
 
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
@@ -599,9 +488,6 @@ msgstr "Fornecedor de serviço (SP) Shib 1.3 (Local)"
 msgid "{admin:debug_sending_message_msg_title}"
 msgstr "Mensagem"
 
-msgid "{attributes:attribute_facsimiletelephonenumber}"
-msgstr "Número de Fax"
-
 msgid "{errors:title_LDAPERROR}"
 msgstr "Erro de LDAP"
 
@@ -619,14 +505,8 @@ msgstr ""
 "uma má configuração do SimpleSAMLphp. Contacte o administrador deste "
 "serviço de login, e comunique a mensagem de erro."
 
-msgid "{attributes:attribute_mobile}"
-msgstr "Telemóvel"
-
 msgid "{admin:metaover_group_metadata.shib13-idp-hosted}"
 msgstr "Fornecedor de identidade (IdP) Shib 1.3 (Local)"
-
-msgid "{attributes:attribute_preferredlanguage}"
-msgstr "Idioma"
 
 msgid "{errors:descr_NOTVALIDCERT}"
 msgstr "Não foi apresentado um certificado válido."
@@ -639,15 +519,6 @@ msgstr "Os seguintes campos opcionais não foram encontrados"
 
 msgid "{logout:logout_only}"
 msgstr "Não, apenas %SP%"
-
-msgid "{attributes:attribute_o}"
-msgstr "Nome da organização"
-
-msgid "{attributes:attribute_edupersonprimaryorgunitdn}"
-msgstr "DN da unidade orgânica"
-
-msgid "{attributes:attribute_noredupersonlin}"
-msgstr "Número de Identificação local"
 
 msgid "{login:next}"
 msgstr "Seguinte"
@@ -667,9 +538,6 @@ msgstr ""
 "A página não foi encontrada. A razão foi: %REASON% O URL fornecido foi: "
 "%URL%"
 
-msgid "{attributes:attribute_userpassword}"
-msgstr "Senha do utilizador"
-
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "Informação de logout perdida"
 
@@ -685,23 +553,11 @@ msgstr ""
 "enviar este documento de metadados aos seus parceiros para configurar uma"
 " federação."
 
-msgid "{attributes:attribute_schacuserprivateattribute}"
-msgstr "Elementos privados de informação"
-
-msgid "{status:header_wsfed}"
-msgstr "Exemplo de demonstração do SP WS-Fed"
-
-msgid "{attributes:attribute_eduorglegalname}"
-msgstr "Nome legal da organização de origem"
-
 msgid "{status:header_shib}"
 msgstr "Exemplo de demonstração do SP Shibboleth 1.3"
 
 msgid "{admin:metaconv_parse}"
 msgstr "Converter"
-
-msgid "{attributes:attribute_noreduorgnin}"
-msgstr "Número de Organização"
 
 msgid "Person's principal name at home organization"
 msgstr "Nome de utilizador na organização de origem"
@@ -1005,8 +861,8 @@ msgstr ""
 "serviço de login, e comunique a mensagem de erro."
 
 #, python-format
-msgid "Your session is valid for %SECONDS% seconds from now."
-msgstr "A sua sessão é válida por %SECONDS% segundos."
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "A sua sessão é válida por %remaining% segundos."
 
 msgid "Domain component (DC)"
 msgstr "Componente de domínio"
@@ -1455,3 +1311,14 @@ msgstr ""
 "Na interface Assertion Consumer Service deve fornecer uma mensagem SAML "
 "do tipo Authentication Response."
 
+
+msgid ""
+"You are now accessing a pre-production system. This authentication setup "
+"is for testing and pre-production verification only. If someone sent you "
+"a link that pointed you here, and you are not <i>a tester</i> you "
+"probably got the wrong link, and should <b>not be here</b>."
+msgstr ""
+"Está a aceder a um sistema em pré-produção. Este passo de autenticação "
+"servirá apenas para testes e verificações de pré-produção. Se alguém lhe "
+"enviou este endereço, e você não é um <i>testador</i>, então "
+"provavelmente recebeu um link errado, e <b>não deveria estar aqui</b>."

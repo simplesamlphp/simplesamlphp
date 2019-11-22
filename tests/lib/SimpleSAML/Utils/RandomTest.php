@@ -14,6 +14,7 @@ class RandomTest extends TestCase
      * Test for SimpleSAML\Utils\Random::generateID().
      *
      * @covers SimpleSAML\Utils\Random::generateID
+     * @return void
      */
     public function testGenerateID()
     {

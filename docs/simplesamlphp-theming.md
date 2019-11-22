@@ -50,7 +50,7 @@ The first thing you need to do is having a SimpleSAMLphp module to place your th
 Then within this module, you can create a new theme named `fancytheme`.
 
 	cd modules/mymodule
-	mkdir -p themes/fancytheme
+	mkdir -p themes/fancytheme/default/includes
 
 Now, configure SimpleSAMLphp to use your new theme in `config.php`:
 
@@ -99,6 +99,7 @@ You can put resource files within the www folder of your module, to make your mo
 ```
 modules
 └───mymodule
+    └───lib
     └───themes
     └───www
         └───logo.png
@@ -106,13 +107,13 @@ modules
 ```
 
 Reference these resources in your custom PHP templates under `themes/fancytheme` by using a generator for the URL:
-```php
+```
 <?php echo SimpleSAML\Module::getModuleURL('mymodule/logo.png'); ?>
 ```
 
 Example for a custom CSS stylesheet file:
-```html
-<link rel="stylesheet" type="text/css" href="<?php echo SimpleSAML\Module::getModuleURL('mymodule/style.css'); ?>" />
+```
+<link rel="stylesheet" href="<?php echo SimpleSAML\Module::getModuleURL('mymodule/style.css'); ?>">
 ```
 
 Migrating to Twig templates
@@ -129,6 +130,15 @@ If you need to make more extensive customizations to the base template, you shou
 	cp templates/base.twig modules/mymodule/themes/fancytheme/default/
 
 Any references to `$this->data['baseurlpath']` in old-style templates can be replaced with `{{baseurlpath}}` in Twig templates. Likewise, references to `\SimpleSAML\Module::getModuleURL()` can be replaced with `{{baseurlpath}}module.php/mymodule/...`
+
+Within templates each module is defined as a separate namespace matching the module name. This allows one template to reference templates from other modules using Twig's `@namespace_name/template_path` notation. For instance, a template in `mymodule` can include the widget template from the `yourmodule` module using the notation `@yourmodule/widget.twig`. A special namespace, `__parent__`, exists to allow theme developers to more easily extend a module's stock template.
+
+Even more advanced changes can be made by defining a theme controller in `config.php`:
+
+    'theme.controller' => '\SimpleSAML\Module\mymodule\FancyThemeController',
+
+This requires you to implement `\SimpleSAML\XHTML\TemplateControllerInterface.php` in your module's `lib`-directory.
+The class can then modify the Twig Environment and the variables passed to the theme's templates. In short, this allows you to set additional global variables and to write your own Twig filters and functions.
 
 See the [Twig documentation](https://twig.symfony.com/doc/1.x/templates.html) for more information on using variables and expressions in Twig templates, and the SimpleSAMLphp wiki for [our conventions](https://github.com/simplesamlphp/simplesamlphp/wiki/Twig-conventions).
 

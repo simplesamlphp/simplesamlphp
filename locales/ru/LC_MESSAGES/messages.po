@@ -51,12 +51,6 @@ msgstr "Ошибка загрузки метаданных"
 msgid "{admin:metaconv_title}"
 msgstr "Средство синтаксического анализа метаданных"
 
-msgid "{attributes:attribute_edupersonentitlement}"
-msgstr "Право на предоставление услуг"
-
-msgid "{attributes:attribute_jpegphoto}"
-msgstr "Фотография в формате JPEG"
-
 msgid "{admin:cfg_check_noerrors}"
 msgstr "Ошибок не обнаружено."
 
@@ -137,9 +131,6 @@ msgstr ""
 msgid "{logout:default_link_text}"
 msgstr "Вернуться на страницу установки SimpleSAMLphp"
 
-msgid "{admin:metaover_group_metadata.wsfed-idp-remote}"
-msgstr "Провайдер идентификации WS-Federation (удаленное размещение)"
-
 msgid "{errors:error_header}"
 msgstr "Ошибка SimpleSAMLphp"
 
@@ -157,17 +148,11 @@ msgstr ""
 "Ваш SimpleSAMLphp содержит неправильные конфигурационные данные. Если вы "
 "являетесь администратором системы, проверьте конфигурацию метаданных."
 
-msgid "{attributes:attribute_edupersonorgdn}"
-msgstr "Отличительное имя (DN) человека домашней организации"
-
 msgid "{errors:title_BADREQUEST}"
 msgstr "Получен неправильный отклик"
 
 msgid "{status:sessionsize}"
 msgstr "Размер сессии: %SIZE%"
-
-msgid "{attributes:attribute_postaladdress}"
-msgstr "Почтовый адрес"
 
 msgid "{logout:title}"
 msgstr "Успешный выход"
@@ -196,31 +181,16 @@ msgstr "В состоянии ожидания"
 msgid "{admin:cfg_check_header}"
 msgstr "Проверка конфигурации"
 
-msgid "{attributes:attribute_edupersonscopedaffiliation}"
-msgstr "Членство в главной организации"
-
-msgid "{attributes:attribute_sn}"
-msgstr "Фамилия"
-
 msgid "{admin:debug_sending_message_send}"
 msgstr "Отправить сообщение"
 
 msgid "{status:logout}"
 msgstr "Выйти"
 
-msgid "{attributes:attribute_organisationname}"
-msgstr "Название организации"
-
-msgid "{attributes:attribute_telephonenumber}"
-msgstr "Номер телефона"
-
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr ""
 "Параметры, отправленные в службу обнаружения, не соответствуют "
 "спецификации."
-
-msgid "{attributes:attribute_mail}"
-msgstr "Почта"
 
 msgid "{errors:descr_CREATEREQUEST}"
 msgstr "Произошла ошибка при попытке создать SAML запрос."
@@ -230,9 +200,6 @@ msgstr "Необязательные поля"
 
 msgid "{logout:return}"
 msgstr "Вернуться к службе"
-
-msgid "{attributes:attribute_displayname}"
-msgstr "Отображаемое имя"
 
 msgid "{admin:metadata_xmlurl}"
 msgstr ""
@@ -246,9 +213,6 @@ msgid "{admin:debug_disable_debug_mode}"
 msgstr ""
 "Вы можете отключить режим отладки в файле конфигурации global "
 "SimpleSAMLphp -<tt>config/config.php</tt>. "
-
-msgid "{attributes:attribute_homepostaladdress}"
-msgstr "Домашний почтовый адрес"
 
 msgid "{disco:select}"
 msgstr "Выбрать"
@@ -279,9 +243,6 @@ msgstr ""
 msgid "{logout:logout_all_question}"
 msgstr "Вы хотите выйти из всех служб, перечисленных выше?"
 
-msgid "{attributes:attribute_title}"
-msgstr "Заглавие"
-
 msgid "{errors:title_NOACCESS}"
 msgstr "Отказ в доступе"
 
@@ -295,9 +256,6 @@ msgstr "Отсутствует параметр RelayState"
 
 msgid "{errors:descr_NOSTATE}"
 msgstr "Информация о состоянии утеряна, нет способа инициировать запрос заново"
-
-msgid "{attributes:attribute_noredupersonnin}"
-msgstr "Идентификационный номер, присваиваемый органами государственной власти"
 
 msgid "{login:password}"
 msgstr "Пароль"
@@ -323,23 +281,14 @@ msgstr "Ошибка при обработке запроса на выход и
 msgid "{admin:metaover_errorentry}"
 msgstr "Ошибка при вводе данной записи метаданных"
 
-msgid "{attributes:attribute_edupersonaffiliation}"
-msgstr "Членство"
-
 msgid "{errors:title_METADATANOTFOUND}"
 msgstr "Метаданные не найдены"
-
-msgid "{attributes:attribute_givenname}"
-msgstr "Имя"
 
 msgid "{login:contact_info}"
 msgstr "Контактная информация"
 
 msgid "{errors:title_UNHANDLEDEXCEPTION}"
 msgstr "Необрабатываемое исключение"
-
-msgid "{status:validfor}"
-msgstr "Ваша сессия действительна в течение следующих %SECONDS% секунд."
 
 msgid "{status:header_saml20_sp}"
 msgstr "Демо пример сервис провайдера SAML 2.0 SP"
@@ -377,17 +326,11 @@ msgstr "Выберите файл конфигурации для проверк
 msgid "{errors:descr_UNKNOWNCERT}"
 msgstr "Ошибка при аутентификации: ваш браузер выслал неизвестный сертификат"
 
-msgid "{attributes:attribute_eduorghomepageuri}"
-msgstr "Домашняя страница организации"
-
 msgid "{logout:logging_out_from}"
 msgstr "Выход из следующих служб:"
 
 msgid "{logout:loggedoutfrom}"
 msgstr "Вы успешно вышли из службы %SP%."
-
-msgid "{admin:metaover_group_metadata.wsfed-sp-hosted}"
-msgstr "Сервис провайдер WS-Federation (локальное размещение)"
 
 msgid "{errors:errorreport_text}"
 msgstr "Сообщение об ошибке было отправлено администраторам."
@@ -395,14 +338,8 @@ msgstr "Сообщение об ошибке было отправлено ад�
 msgid "{status:subject_header}"
 msgstr "Тема SAML"
 
-msgid "{attributes:attribute_noredupersonbirthdate}"
-msgstr "Дата рождения"
-
 msgid "{errors:descr_LOGOUTREQUEST}"
 msgstr "Ошибка произошла при попытке обработки запроса на выход из системы"
-
-msgid "{attributes:attribute_edupersontargetedid}"
-msgstr "ID постоянного псевдонима"
 
 msgid "{logout:success}"
 msgstr "Вы успешно вышли из всех служб перечисленных выше."
@@ -412,12 +349,6 @@ msgstr "Уведомления"
 
 msgid "{errors:descr_USERABORTED}"
 msgstr "Аутентификация прервана пользователем"
-
-msgid "{attributes:attribute_edupersonprimaryaffiliation}"
-msgstr "Главное членство"
-
-msgid "{attributes:attribute_postalcode}"
-msgstr "Почтовый индекс"
 
 msgid "{errors:descr_CASERROR}"
 msgstr "Произошла ошибка при обмене данными с сервером CAS."
@@ -431,9 +362,6 @@ msgstr "Метаданные сервис провайдера SAML 2.0 SP"
 msgid "{admin:metaconv_converted}"
 msgstr "Преобразованные метаданные"
 
-msgid "{attributes:attribute_cn}"
-msgstr "Полное имя"
-
 msgid "{logout:completed}"
 msgstr "Выполнено"
 
@@ -442,17 +370,8 @@ msgstr ""
 "Пароль в файле конфигурации (auth.adminpassword) не изменен от значения "
 "по умолчанию. Пожалуйста, отредактируйте файл конфигурации."
 
-msgid "{attributes:attribute_ou}"
-msgstr "Подразделение организации"
-
 msgid "{general:service_provider}"
 msgstr "Поставщик услуг"
-
-msgid "{attributes:attribute_homephone}"
-msgstr "Домашний телефон"
-
-msgid "{attributes:attribute_dc}"
-msgstr "Компонент домена (DC)"
 
 msgid "{errors:descr_BADREQUEST}"
 msgstr "Ошибка в запросе к этой странице. Причина: %REASON%"
@@ -472,22 +391,13 @@ msgstr "Введите имя пользователя и пароль"
 msgid "{errors:report_explain}"
 msgstr "Уточните ваши действия перед появлением ошибки... "
 
-msgid "{attributes:attribute_manager}"
-msgstr "Управляющий"
-
 msgid "{errors:title_ACSPARAMS}"
 msgstr "Отсутствует SAML отклик"
-
-msgid "{attributes:attribute_edupersonnickname}"
-msgstr "Псевдоним"
 
 msgid "{errors:descr_SLOSERVICEPARAMS}"
 msgstr ""
 "Вы получили доступ к интерфейсу SingleLogoutService, но не предоставили "
 "SAML LogoutRequest или LogoutResponse утверждения."
-
-msgid "{attributes:attribute_street}"
-msgstr "Улица"
 
 msgid "{login:organization}"
 msgstr "Организация"
@@ -528,9 +438,6 @@ msgstr "Выберите домашнюю организацию"
 msgid "{admin:cfg_check_superfluous}"
 msgstr "Избыточные параметры в файле конфигурации"
 
-msgid "{attributes:attribute_labeleduri}"
-msgstr "Маркированный URI (LabeledURI)"
-
 msgid "{errors:report_email}"
 msgstr "Адрес вашей электронной почты:"
 
@@ -545,9 +452,6 @@ msgstr ""
 "Инициатор данного запроса не предоставил параметр RelayState с указанием "
 "следующей точки перехода."
 
-msgid "{attributes:attribute_noredupersonlegalname}"
-msgstr "Официальное название"
-
 msgid "{status:header_diagnostics}"
 msgstr "Диагностика SimpleSAMLphp"
 
@@ -556,9 +460,6 @@ msgstr ""
 "Это страница со статусом SimpleSAMLphp. Можно обнаружить случаи окончания"
 " сессии, продолжительность сессии до истечения срока действия и все "
 "атрибуты в данной сессии."
-
-msgid "{attributes:attribute_schachomeorganization}"
-msgstr "Доменное имя главной организации"
 
 msgid "{errors:title_NOTFOUNDREASON}"
 msgstr "Страница не найдена"
@@ -578,32 +479,17 @@ msgstr "Для просмотра подробностей записи SAML, к
 msgid "{errors:title_NOTVALIDCERT}"
 msgstr "Недействительный сертификат"
 
-msgid "{attributes:attribute_edupersonorgunitdn}"
-msgstr "Отличительное имя (DN) человека подразделения домашней организации"
-
 msgid "{general:remember}"
 msgstr "Запомнить"
 
 msgid "{disco:selectidp}"
 msgstr "Выберите вашего identity provider"
 
-msgid "{attributes:attribute_postofficebox}"
-msgstr "Абонементный почтовый ящик"
-
-msgid "{attributes:attribute_edupersonprincipalname}"
-msgstr "Имя руководителя в главной организации"
-
 msgid "{login:help_desk_email}"
 msgstr "Послать email в службу поддержки"
 
 msgid "{login:help_desk_link}"
 msgstr "Домашняя страница службы поддержки"
-
-msgid "{attributes:attribute_ismemberof}"
-msgstr "Членство в группе"
-
-msgid "{attributes:attribute_uid}"
-msgstr "ID пользователя"
 
 msgid "{login:remember_me}"
 msgstr "Запомнить меня"
@@ -627,12 +513,6 @@ msgstr "Запомнить мой выбор"
 
 msgid "{admin:metaover_group_metadata.saml20-sp-hosted}"
 msgstr "Сервис провайдер SAML 2.0 (локальное размещение)"
-
-msgid "{attributes:attribute_l}"
-msgstr "Район"
-
-msgid "{attributes:attribute_edupersonassurance}"
-msgstr "Идентификатор гарантированного профайла"
 
 msgid "{admin:metadata_simplesamlformat}"
 msgstr "Формат простого SimpleSAMLphp файла"
@@ -682,9 +562,6 @@ msgstr "Провайдер идентификации ADFS (локальное �
 msgid "{errors:title_UNKNOWNCERT}"
 msgstr "Неизвестный сертификат"
 
-msgid "{attributes:attribute_facsimiletelephonenumber}"
-msgstr "Номер факса"
-
 msgid "{errors:title_LDAPERROR}"
 msgstr "Ошибка LDAP"
 
@@ -702,17 +579,11 @@ msgstr ""
 "неправильной конфигурации SimpleSAMLphp. Свяжитесь с администратором "
 "этого сервиса и отправьте ему вышеуказанное сообщение об ошибке."
 
-msgid "{attributes:attribute_mobile}"
-msgstr "Мобильный"
-
 msgid "{admin:metadata_adfs-idp}"
 msgstr "Метаданные провайдера идентификации ADFS"
 
 msgid "{admin:metaover_group_metadata.shib13-idp-hosted}"
 msgstr "Провайдер идентификации Shib 1.3 (локальное размещение)"
-
-msgid "{attributes:attribute_preferredlanguage}"
-msgstr "Предпочитаемый язык"
 
 msgid "{errors:descr_NOTVALIDCERT}"
 msgstr "Вы не предоставили действительный сертификат."
@@ -727,15 +598,6 @@ msgstr "Следующие необязательные поля не найде
 
 msgid "{logout:logout_only}"
 msgstr "Нет, только для службы %SP%"
-
-msgid "{attributes:attribute_o}"
-msgstr "Название организации"
-
-msgid "{attributes:attribute_edupersonprimaryorgunitdn}"
-msgstr "Отличительное имя (DN) человека основного подразделения организации"
-
-msgid "{attributes:attribute_noredupersonlin}"
-msgstr "Местный идентификационный номер"
 
 msgid "{login:next}"
 msgstr "Далее"
@@ -756,9 +618,6 @@ msgstr "Запрашиваемая страница не найдена. При�
 msgid "{errors:title_NOCERT}"
 msgstr "Сертификат отсутствует"
 
-msgid "{attributes:attribute_userpassword}"
-msgstr "Хэш пароля пользователя"
-
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "Потеряна информация о выходе."
 
@@ -774,12 +633,6 @@ msgstr ""
 "отправить данный документ с метаданными доверенным партнерам для создания"
 " федерации."
 
-msgid "{attributes:attribute_schacuserprivateattribute}"
-msgstr "Элементы личной информации"
-
-msgid "{status:header_wsfed}"
-msgstr "Демо пример сервис провайдера WS-Fed SP"
-
 msgid "{admin:metadata_cert}"
 msgstr "Сертификаты"
 
@@ -788,17 +641,11 @@ msgstr ""
 "Ошибка при аутентификации: ваш браузер выслал недействительный или "
 "нечитаемый сертификат"
 
-msgid "{attributes:attribute_eduorglegalname}"
-msgstr "Юридическое название организации"
-
 msgid "{status:header_shib}"
 msgstr "Shibboleth демо"
 
 msgid "{admin:metaconv_parse}"
 msgstr "Выполнить синтаксический анализ"
-
-msgid "{attributes:attribute_noreduorgnin}"
-msgstr "Номер организации"
 
 msgid "Person's principal name at home organization"
 msgstr "Имя руководителя в главной организации"
@@ -1141,8 +988,8 @@ msgstr ""
 "этого сервиса и отправьте ему вышеуказанное сообщение об ошибке."
 
 #, python-format
-msgid "Your session is valid for %SECONDS% seconds from now."
-msgstr "Ваша сессия действительна в течение следующих %SECONDS% секунд."
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Ваша сессия действительна в течение следующих %remaining% секунд."
 
 msgid "Domain component (DC)"
 msgstr "Компонент домена (DC)"
@@ -1648,3 +1495,15 @@ msgstr ""
 "Вы получили доступ к интерфейсу Assertion Consumer Service, но не "
 "предоставили отклик SAML аутентификации."
 
+
+msgid ""
+"You are now accessing a pre-production system. This authentication setup "
+"is for testing and pre-production verification only. If someone sent you "
+"a link that pointed you here, and you are not <i>a tester</i> you "
+"probably got the wrong link, and should <b>not be here</b>."
+msgstr ""
+"Сейчас вы имеете доступ к предварительной версии системы. Эта настройка "
+"аутентификации только для тестирования и проверки предварительной версии."
+" Если кто-то прислал вам ссылку, которую вы указали здесь, и вы не "
+"<i>тестер</i>, то вы, вероятно, получили неправильную ссылку, и <b>не "
+"должны быть здесь</b>."
