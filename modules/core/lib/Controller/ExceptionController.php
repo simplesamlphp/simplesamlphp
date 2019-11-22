@@ -99,20 +99,6 @@ class ExceptionController
         }
 
         $t = new Template($this->config, 'core:no_cookie.tpl.php');
-        $translator = $t->getTranslator();
-
-        /** @var string $header */
-        $header = $translator->t('{core:no_cookie:header}');
-
-        /** @var string $desc */
-        $desc = $translator->t('{core:no_cookie:description}');
-
-        /** @var string $retry */
-        $retry = $translator->t('{core:no_cookie:retry}');
-
-        $t->data['header'] = htmlspecialchars($header);
-        $t->data['description'] = htmlspecialchars($desc);
-        $t->data['retry'] = htmlspecialchars($retry);
         $t->data['retryURL'] = $retryURL;
         return $t;
     }
@@ -147,10 +133,8 @@ class ExceptionController
 
         $t = new Template($this->config, 'core:short_sso_interval.tpl.php');
         $translator = $t->getTranslator();
-        $t->data['target'] = Module::getModuleURL('core/short_sso_interval.php');
         $t->data['params'] = ['StateId' => $stateId];
         $t->data['trackId'] = $this->session->getTrackID();
-        $t->data['header'] = $translator->t('{core:short_sso_interval:warning_header}');
         $t->data['autofocus'] = 'contbutton';
         return $t;
     }

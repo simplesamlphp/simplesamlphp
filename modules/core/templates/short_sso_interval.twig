@@ -2,8 +2,8 @@
 {% extends "base.twig" %}
 
 {% block content %}
-    <h1>{{ header }}</h1>
-    <form style="display: inline; margin: 0px; padding: 0px" action="{{ target|escape('html') }}">
+    <h1>{{ '{core:short_sso_interval:warning_header}'|trans }}</h1>
+    <form style="display: inline; margin: 0px; padding: 0px" action="{{ moduleUrl('core/short_sso_interval.php') }}">
         {% for name, value in params %}
             <input type="hidden" name="{{ name|escape('html') }}" value="{{ value|escape('html') }}">
         {% endfor %}
