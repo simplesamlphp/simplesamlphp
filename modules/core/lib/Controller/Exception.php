@@ -19,7 +19,7 @@ use Symfony\Component\HttpFoundation\Request;
  *
  * @package SimpleSAML\Module\core
  */
-class ExceptionController
+class Exception
 {
     /** @var \SimpleSAML\Configuration */
     protected $config;
