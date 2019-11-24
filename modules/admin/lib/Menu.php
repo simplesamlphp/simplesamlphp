@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Module\admin;
 
 use SimpleSAML\Locale\Translate;

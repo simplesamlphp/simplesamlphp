@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Module\core\Stats\Output;
 
 use SimpleSAML\Configuration;

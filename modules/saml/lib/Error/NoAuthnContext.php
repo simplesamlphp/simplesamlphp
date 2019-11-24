@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * A SAML error indicating that none of the requested Authentication Contexts can be used.
  *

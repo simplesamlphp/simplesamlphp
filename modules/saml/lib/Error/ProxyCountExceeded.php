@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * A SAML error indicating that the maximum amount of proxies traversed has been reached.
  *

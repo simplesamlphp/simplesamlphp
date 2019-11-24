@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Module\saml;
 
 use SAML2\XML\saml\NameID;

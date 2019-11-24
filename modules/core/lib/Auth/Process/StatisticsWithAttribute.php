@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Module\core\Auth\Process;
 
 use SimpleSAML\Logger;
