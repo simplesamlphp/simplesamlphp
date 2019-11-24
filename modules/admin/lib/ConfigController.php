@@ -389,7 +389,7 @@ class ConfigController
                     $response = curl_exec($ch);
 
                     if (curl_getinfo($ch, CURLINFO_RESPONSE_CODE) === 200) {
-                        /** @psalm-suppress InvalidScalarArgument */
+                        /** @psalm-var string $response */
                         $latest = json_decode($response, true);
                         $this->session->setData(self::LATEST_VERSION_STATE_KEY, 'version', $latest);
                     }
