@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * This file registers an autoloader for test classes used by SimpleSAMLphp modules unit tests.
  */

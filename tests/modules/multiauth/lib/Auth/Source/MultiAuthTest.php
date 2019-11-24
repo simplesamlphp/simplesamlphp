@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Test\Module\multiauth\Auth\Source;
 
 use PHPUnit\Framework\TestCase;
