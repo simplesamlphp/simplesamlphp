@@ -80,9 +80,7 @@ class Exception
                 'core/authenticate.php',
                 ['as' => $state['Source']['auth']]
             ) . "&logout";
-            'core:cardinality:error ' . $state['Destination']['entityid'] . ' ' . $state['saml:sp:IdP'] .
-            ' ' . implode(',', array_keys($state['core:cardinality:errorAttributes']))
-        );
+        }
 
         $t = new Template($this->config, 'core:cardinality_error.twig');
         $t->data['cardinalityErrorAttributes'] = $state['core:cardinality:errorAttributes'];
