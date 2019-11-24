@@ -7,6 +7,8 @@
  * @package SimpleSAMLphp
  */
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Module\saml\Error;
 
 use SAML2\Constants;
