@@ -606,7 +606,7 @@ class IdPDisco
             foreach ($tryLanguages as $lang) {
                 if ($name = $this->getEntityDisplayName($data, $lang)) {
                     $newlist[$entityid]['name'] = $name;
-                    continue;
+                    break 1;
                 }
             }
             if (empty($newlist[$entityid]['name'])) {
@@ -615,7 +615,7 @@ class IdPDisco
             foreach ($tryLanguages as $lang) {
                 if (!empty($data['description'][$lang])) {
                     $newlist[$entityid]['description'] = $data['description'][$lang];
-                    continue;
+                    break 1;
                 }
             }
             if (!empty($data['icon'])) {
