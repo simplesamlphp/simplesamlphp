@@ -600,6 +600,23 @@ class IdPDisco
         $language = $translator->getLanguage()->getLanguage();
         $tryLanguages = [0 => $language, 1 => $defaultLanguage, 2 => $fallbackLanguage];
 
+        $t->data['idplist'] = $this->getPreferredTranslations($idpList, $tryLanguages);
+        $t->data['preferredidp'] = $preferredIdP;
+        $t->data['return'] = $this->returnURL;
+        $t->data['returnIDParam'] = $this->returnIdParam;
+        $t->data['entityID'] = $this->spEntityId;
+        $t->data['urlpattern'] = htmlspecialchars(Utils\HTTP::getSelfURLNoQuery());
+        $t->data['rememberenabled'] = $this->config->getBoolean('idpdisco.enableremember', false);
+        $t->show();
+    }
+
+
+    /**
+     * @param array $idpList
+     * @return array
+     */
+    private function getPreferredTranslations(array $idpList, array $tryLanguages): array
+    {
         $newlist = [];
         foreach ($idpList as $entityid => $data) {
             $newlist[$entityid]['entityid'] = $entityid;
@@ -623,6 +640,7 @@ class IdPDisco
                 $newlist[$entityid]['iconurl'] = Utils\HTTP::resolveURL($data['icon']);
             }
         }
+
         usort(
             $newlist,
             /**
@@ -635,14 +653,7 @@ class IdPDisco
             }
         );
 
-        $t->data['idplist'] = $newlist;
-        $t->data['preferredidp'] = $preferredIdP;
-        $t->data['return'] = $this->returnURL;
-        $t->data['returnIDParam'] = $this->returnIdParam;
-        $t->data['entityID'] = $this->spEntityId;
-        $t->data['urlpattern'] = htmlspecialchars(Utils\HTTP::getSelfURLNoQuery());
-        $t->data['rememberenabled'] = $this->config->getBoolean('idpdisco.enableremember', false);
-        $t->show();
+        return $newlist;
     }
 
 
