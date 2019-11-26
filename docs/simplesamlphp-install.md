@@ -234,7 +234,7 @@ There are a few steps that you should complete in the main configuration file, `
 -  Set an administrator password. This is needed to access some of the pages in your SimpleSAMLphp installation web
    interface.
    
-   Hashed passwords can also be used here. See the [`authcrypt`](authcrypt:authcrypt) documentation
+   Hashed passwords can also be used here. See the [`authcrypt`](./authcrypt:authcrypt) documentation
    for more information.
 
    ```
@@ -374,7 +374,7 @@ in a separate document.
    + [Remote SP reference](simplesamlphp-reference-sp-remote)
    + [Setting up an IdP for G Suite (Google Apps)](simplesamlphp-googleapps)
    + [Advanced Topics](simplesamlphp-idp-more)
- - [Automated Metadata Management](metarefresh:simplesamlphp-automated_metadata)
+ - [Automated Metadata Management](./metarefresh:simplesamlphp-automated_metadata)
  - [Maintenance and configuration](simplesamlphp-maintenance)
 
 

@@ -31,7 +31,7 @@ SimpleSAMLphp Documentation
   * [Configuring HTTP-Artifact](./simplesamlphp-artifact-idp)
   * [Identity Provider Advanced Topics](simplesamlphp-idp-more)
   * [Holder-of-Key profile](simplesamlphp-hok-idp)
- * [Automated Metadata Management](metarefresh:simplesamlphp-automated_metadata)
+ * [Automated Metadata Management](./metarefresh:simplesamlphp-automated_metadata)
  * [Maintenance and configuration](simplesamlphp-maintenance) - covers session handling, php configuration etc.
  * [Authentication Processing Filters](simplesamlphp-authproc) - attribute filtering, attribute mapping, consent, group generation etc.
  * [Advanced features](simplesamlphp-advancedfeatures) - covers bridging protocols, attribute filtering, etc.

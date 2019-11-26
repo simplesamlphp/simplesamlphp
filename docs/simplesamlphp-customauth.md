@@ -216,7 +216,7 @@ Note that we have updated the username & password to "theconfigusername" and "th
 A more complete example - custom database authentication
 --------------------------------------------------------
 
-The [sqlauth:SQL](sqlauth:sql) authentication source can do simple authentication against SQL databases.
+The [sqlauth:SQL](./sqlauth:sql) authentication source can do simple authentication against SQL databases.
 However, in some cases it cannot be used, for example because the database layout is too complex, or because the password validation routines cannot be implemented in SQL.
 What follows is an example of an authentication source that fetches an user from a database, and validates the password using a custom function.
 
