@@ -6,13 +6,19 @@ SimpleSAMLphp changelog
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
+## Version 1.18.2
+
+Released 2019-11-26
+
+  * Fixed an issue with the `ldap` module that prevented installing SimpleSAMLphp from the repository (#1241).
+
 ## Version 1.18.1
 
 Released 2019-11-26
 
   * Fixed an issue that prevented custom themes from working (#1240).
   * Fixed an issue with translations in the discovery service (#1244).
-   * Fixed an issue with schema validation.
+  * Fixed an issue with schema validation.
 
 ## Version 1.18.0
 
