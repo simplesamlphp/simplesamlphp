@@ -13,9 +13,15 @@ Released TBD
   * This version will be the last of the 1.x branch and will provide a migration path to our new
     templating system, routing system, translation system and hooks.
 
+## Version 1.18.2
+
+Released 2019-11-26
+
+  * Fixed an issue with the `ldap` module that prevented installing SimpleSAMLphp from the repository (#1241).
+
  ## Version 1.18.1
  
-+Released 2019-11-26
+Released 2019-11-26
  
    * Fixed an issue that prevented custom themes from working (#1240).
    * Fixed an issue with translations in the discovery service (#1244).
