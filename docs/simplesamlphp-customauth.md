@@ -1,7 +1,7 @@
 Implementing custom username/password authentication
 ====================================================
 
-This is a step-by-step guide for creating a custom username/password [authentication source](./simplesamlphp-authsource.md) for SimpleSAMLphp.
+This is a step-by-step guide for creating a custom username/password [authentication source](./simplesamlphp-authsource) for SimpleSAMLphp.
 An authentication source is responsible for authenticating the user, typically by getting a username and password, and looking it up in some sort of database.
 
 <!-- {{TOC}} -->
@@ -9,7 +9,7 @@ An authentication source is responsible for authenticating the user, typically b
 Create a custom module
 ----------------------
 
-All custom code for SimpleSAMLphp should be contained in a [module](./simplesamlphp-modules.md).
+All custom code for SimpleSAMLphp should be contained in a [module](./simplesamlphp-modules).
 This ensures that you can upgrade your SimpleSAMLphp installation without overwriting your own code.
 In this example, we will call the module `mymodule`.
 It will be located under `modules/mymodule`.
@@ -216,7 +216,7 @@ Note that we have updated the username & password to "theconfigusername" and "th
 A more complete example - custom database authentication
 --------------------------------------------------------
 
-The [sqlauth:SQL](../modules/sqlauth/docs/sql.md) authentication source can do simple authentication against SQL databases.
+The [sqlauth:SQL](sqlauth:sql) authentication source can do simple authentication against SQL databases.
 However, in some cases it cannot be used, for example because the database layout is too complex, or because the password validation routines cannot be implemented in SQL.
 What follows is an example of an authentication source that fetches an user from a database, and validates the password using a custom function.
 
