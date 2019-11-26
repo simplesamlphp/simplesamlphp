@@ -449,6 +449,15 @@ class XML
             $schemaPath = $config->resolvePath('schemas');
             $schemaFile = $schemaPath . '/' . $schema;
 
+            libxml_set_external_entity_loader(
+                function ($public, $system, $context) {
+                    if (filter_var($system, FILTER_VALIDATE_URL) === $system) {
+                        return null;
+                    }
+                    return $system;
+                }
+            );
+
             $res = $dom->schemaValidate($schemaFile);
             if ($res) {
                 Errors::end();
