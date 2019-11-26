@@ -449,16 +449,7 @@ class XML
             $schemaPath = $config->resolvePath('schemas');
             $schemaFile = $schemaPath . '/' . $schema;
 
-            $entityLoader = libxml_disable_entity_loader(true);
-            $internalErrors = libxml_use_internal_errors(true);
-            libxml_clear_errors();
-
             $res = $dom->schemaValidate($schemaFile);
-
-            libxml_use_internal_errors($internalErrors);
-            libxml_disable_entity_loader($entityLoader);
-            libxml_clear_errors();
-
             if ($res) {
                 Errors::end();
                 return true;
