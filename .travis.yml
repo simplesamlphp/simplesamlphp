@@ -26,7 +26,6 @@ env:
   - COMMAND="composer update"
 
 before_script:
-  - pecl install krb5
   - ${COMMAND}
 
 script:
