@@ -7,7 +7,7 @@ $this->includeAtTemplateBase('includes/header.php');
              alt="Copy to clipboard" />
     </button>
     <pre id="metadata">
-$metadata['<?php echo $this->data['m']['metadata-index']; unset($this->data['m']['metadata-index']) ?>'] => <?php
+$metadata['<?php echo $this->data['m']['metadata-index']; unset($this->data['m']['metadata-index']) ?>'] = <?php
     echo htmlspecialchars(var_export($this->data['m'], true));
 ?>
     </pre>
