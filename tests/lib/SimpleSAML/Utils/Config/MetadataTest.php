@@ -248,35 +248,20 @@ class MetadataTest extends TestCase
                 Metadata::$ENTITY_CATEGORY => [],
             ],
         ]));
-    }
-
-    /**
-     * Test \SimpleSAML\Utils\Config\Metadata::isHiddenFromDiscovery().
-     * @param mixed $wrongInput
-     * @return void
-     * @dataProvider provider
-     */
-    public function testIsHiddenFromDiscoveryWrongInput($wrongInput)
-    {
-        $this->expectException(\InvalidArgumentException::class);
 
         // test for failures
-        Metadata::isHiddenFromDiscovery($wrongInput);
-    }
-
-
-    /**
-     * Provider for testIsHiddenFromDiscoveryWrongInput
-     * @return array
-     */
-    public function provider()
-    {
-        return [
-            [['foo']],
-            [['EntityAttributes' => 'bar']],
-            [['EntityAttributes' => []]],
-            [['EntityAttributes' => [Metadata::$ENTITY_CATEGORY => '']]],
-        ];
+        $this->assertFalse(Metadata::isHiddenFromDiscovery(['foo']));
+        $this->assertFalse(Metadata::isHiddenFromDiscovery([
+            'EntityAttributes' => 'bar',
+        ]));
+        $this->assertFalse(Metadata::isHiddenFromDiscovery([
+            'EntityAttributes' => [],
+        ]));
+        $this->assertFalse(Metadata::isHiddenFromDiscovery([
+            'EntityAttributes' => [
+                Metadata::$ENTITY_CATEGORY => '',
+            ],
+        ]));
     }
 
 
