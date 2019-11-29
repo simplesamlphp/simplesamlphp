@@ -9,7 +9,7 @@ $this->includeAtTemplateBase('includes/header.php');
     <pre id="metadata">
 $metadata['<?php echo $this->data['m']['metadata-index']; unset($this->data['m']['metadata-index']) ?>'] = <?php
     echo htmlspecialchars(var_export($this->data['m'], true));
-?>
+?>;
     </pre>
 </div>
 <script type="text/javascript">
