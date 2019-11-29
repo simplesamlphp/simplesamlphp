@@ -2,6 +2,7 @@
 
 namespace SimpleSAML\Test\Utils\Config;
 
+use DOMDocument;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Utils\Config\Metadata;
 

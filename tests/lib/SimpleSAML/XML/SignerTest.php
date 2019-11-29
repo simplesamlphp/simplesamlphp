@@ -8,7 +8,6 @@ use Exception;
 use org\bovigo\vfs\vfsStream;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
-use SAML2\DOMDocumentFactory;
 use SimpleSAML\Configuration;
 use SimpleSAML\Test\SigningTestCase;
 use SimpleSAML\XML\Signer;
@@ -83,13 +82,13 @@ NOWDOC;
      */
     public function testSignBasic()
     {
-        $node = DOMDocumentFactory::create();
+        $node = new DOMDocument();
         $node->loadXML('<?xml version="1.0"?><node>value</node>');
 
         /** @psalm-var DOMElement $element */
         $element = $node->getElementsByTagName("node")->item(0);
 
-        $doc = DOMDocumentFactory::create();
+        $doc = new DOMDocument();
         $insertInto = $doc->appendChild(new DOMElement('insert'));
 
         $signer = new Signer([]);
@@ -124,13 +123,13 @@ NOWDOC;
      */
     public function testSignWithCertificate()
     {
-        $node = DOMDocumentFactory::create();
+        $node = new DOMDocument();
         $node->loadXML('<?xml version="1.0"?><node>value</node>');
 
         /** @psalm-var DOMElement $element */
         $element = $node->getElementsByTagName("node")->item(0);
 
-        $doc = DOMDocumentFactory::create();
+        $doc = new DOMDocument();
         $insertInto = $doc->appendChild(new DOMElement('insert'));
 
         $signer = new Signer([]);
@@ -154,13 +153,13 @@ NOWDOC;
     {
         $this->other_certificate_file = $this->certdir . DIRECTORY_SEPARATOR . self::OTHER_CERTIFICATE;
 
-        $node = DOMDocumentFactory::create();
+        $node = new DOMDocument();
         $node->loadXML('<?xml version="1.0"?><node>value</node>');
 
         /** @psalm-var DOMElement $element */
         $element = $node->getElementsByTagName("node")->item(0);
 
-        $doc = DOMDocumentFactory::create();
+        $doc = new DOMDocument();
         $insertInto = $doc->appendChild(new DOMElement('insert'));
 
         $signer = new Signer([]);
@@ -185,13 +184,13 @@ NOWDOC;
      */
     public function testSignMissingPrivateKey()
     {
-        $node = DOMDocumentFactory::create();
+        $node = new DOMDocument();
         $node->loadXML('<?xml version="1.0"?><node>value</node>');
 
         /** @psalm-var DOMElement $element */
         $element = $node->getElementsByTagName("node")->item(0);
 
-        $doc = DOMDocumentFactory::create();
+        $doc = new DOMDocument();
         $insertInto = $doc->appendChild(new DOMElement('insert'));
 
         $signer = new Signer([]);

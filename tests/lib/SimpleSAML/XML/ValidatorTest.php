@@ -2,10 +2,10 @@
 
 namespace SimpleSAML\Test\XML;
 
+use DOMDocument;
 use DOMElement;
 use org\bovigo\vfs\vfsStream;
 use PHPUnit\Framework\TestCase;
-use SAML2\DOMDocumentFactory;
 use SimpleSAML\Test\SigningTestCase;
 use SimpleSAML\XML\Signer;
 use SimpleSAML\XML\Validator;
@@ -33,7 +33,7 @@ class ValidatorTest extends SigningTestCase
      */
     public function testGetX509Certificate()
     {
-        $doc = DOMDocumentFactory::create();
+        $doc = new DOMDocument();
         $doc->loadXML('<?xml version="1.0"?><node>value</node>');
 
         /** @psalm-var DOMElement $node */
@@ -62,7 +62,7 @@ class ValidatorTest extends SigningTestCase
      */
     public function testCertFingerprintSuccess()
     {
-        $doc = DOMDocumentFactory::create();
+        $doc = new DOMDocument();
         $doc->loadXML('<?xml version="1.0"?><node>value</node>');
 
         /** @psalm-var DOMElement $node */
@@ -92,7 +92,7 @@ class ValidatorTest extends SigningTestCase
      */
     public function testCertFingerprintFailure()
     {
-        $doc = DOMDocumentFactory::create();
+        $doc = new DOMDocument();
         $doc->loadXML('<?xml version="1.0"?><node>value</node>');
 
         /** @psalm-var DOMElement $node */
@@ -115,7 +115,7 @@ class ValidatorTest extends SigningTestCase
      */
     public function testValidateFingerprintSuccess()
     {
-        $doc = DOMDocumentFactory::create();
+        $doc = new DOMDocument();
         $doc->loadXML('<?xml version="1.0"?><node>value</node>');
 
         /** @psalm-var DOMElement $node */
@@ -142,7 +142,7 @@ class ValidatorTest extends SigningTestCase
      */
     public function testValidateFingerprintFailure()
     {
-        $doc = DOMDocumentFactory::create();
+        $doc = new DOMDocument();
         $doc->loadXML('<?xml version="1.0"?><node>value</node>');
 
         /** @psalm-var DOMElement $node */
@@ -169,7 +169,7 @@ class ValidatorTest extends SigningTestCase
      */
     public function testIsNodeValidatedSuccess()
     {
-        $doc = DOMDocumentFactory::create();
+        $doc = new DOMDocument();
         $doc->loadXML('<?xml version="1.0"?><node>value</node>');
 
         /** @psalm-var DOMElement $node */
@@ -198,7 +198,7 @@ class ValidatorTest extends SigningTestCase
      */
     public function testIsNodeValidatedFailure()
     {
-        $doc = DOMDocumentFactory::create();
+        $doc = new DOMDocument();
         $doc->loadXML('<?xml version="1.0"?><parent><node1>value1</node1><node2>value2</node2></parent>');
 
         /** @psalm-var DOMElement $node1 */
