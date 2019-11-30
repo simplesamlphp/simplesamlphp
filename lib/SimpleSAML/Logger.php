@@ -487,9 +487,13 @@ class Logger
         }
 
         if (self::$captureLog) {
-            $ts = microtime(true);
-            $msecs = (int) (($ts - (int) $ts) * 1000);
-            $ts = gmdate('H:i:s') . sprintf('.%03d', $msecs) . 'Z';
+            $sample = microtime(false);
+            list($msecs, $mtime) = explode(' ', $sample);
+
+            $time = intval($mtime);
+            $usec = substr($msecs, 2, 3);
+
+            $ts = gmdate('H:i:s', $time) . '.' . $usec . 'Z';
             self::$capturedLog[] = $ts . ' ' . $string;
         }
 
