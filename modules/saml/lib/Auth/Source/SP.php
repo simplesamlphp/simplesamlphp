@@ -530,7 +530,7 @@ class SP extends \SimpleSAML\Auth\Source
                 $comp = $idpMetadata->getString('AuthnContextComparison');
             } elseif (
                 isset($state['saml:AuthnContextComparison'])
-                && in_array($state['AuthnContextComparison'], [
+                && in_array($state['saml:AuthnContextComparison'], [
                     Constants::COMPARISON_EXACT,
                     Constants::COMPARISON_MINIMUM,
                     Constants::COMPARISON_MAXIMUM,
