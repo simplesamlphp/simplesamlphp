@@ -45,6 +45,7 @@ function temporaryLoader($class)
         'SimpleSAML_IdP_LogoutIFrame' => 'SimpleSAML_IdP_IFrameLogoutHandler',
         'SimpleSAML_IdP_LogoutTraditional' => 'SimpleSAML_IdP_TraditionalLogoutHandler',
         'SimpleSAML_Auth_Default' => 'SimpleSAML_Auth_DefaultAuth',
+        'SimpleSAML_Auth_LDAP' => 'SimpleSAML_Module_ldap_Auth_Ldap',
     ];
     if (array_key_exists($class, $renamed)) {
         // the class has been renamed, try to load it and create an alias
