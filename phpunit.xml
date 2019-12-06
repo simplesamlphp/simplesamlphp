@@ -22,6 +22,7 @@
                 <directory>./vendor/</directory>
                 <directory>./tests/</directory>
                 <file>./lib/SimpleSAML/Utils/HttpAdapter.php</file>
+                <file>./lib/SimpleSAML/Auth/LDAP.php</file>
             </exclude>
         </whitelist>
     </filter>
