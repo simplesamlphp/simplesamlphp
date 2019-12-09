@@ -13,6 +13,16 @@ Released TBD
   * This version will be the last of the 1.x branch and will provide a migration path to our new
     templating system, routing system, translation system and hooks.
 
+## Version 1.18.3
+
+Released 2019-12-09
+
+  * Fixed an issue with several modules being enabled by default (#1257).
+  * Fixed an issue with metadata generation for trusted entities (#1247, #1251).
+
+### ldap
+  * Fixed an issue affecting the installation in case-insensitive file systems (#1253).
+
 ## Version 1.18.2
 
 Released 2019-11-26
