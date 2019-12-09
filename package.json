@@ -20,10 +20,10 @@
     "selectize": "^0.12.6"
   },
   "devDependencies": {
-    "@babel/core": "^7.7.2",
+    "@babel/core": "^7.7.5",
     "babel-loader": "^8.0.6",
     "copy-webpack-plugin": "^5.0.5",
-    "css-loader": "^3.2.0",
+    "css-loader": "^3.2.1",
     "expose-loader": "^0.7.5",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "node-sass": "^4.13.0",
