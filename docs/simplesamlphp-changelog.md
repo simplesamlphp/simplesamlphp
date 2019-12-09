@@ -6,7 +6,7 @@ SimpleSAMLphp changelog
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
-## Versino 1.18.3
+## Version 1.18.3
 
 Released 2019-12-09
 
