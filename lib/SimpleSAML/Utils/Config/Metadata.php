@@ -300,11 +300,6 @@ class Metadata
      */
     public static function isHiddenFromDiscovery(array $metadata)
     {
-        assert(array_key_exists('EntityAttributes', $metadata));
-        assert(is_array($metadata['EntityAttributes']));
-        assert(array_key_exists(self::$ENTITY_CATEGORY, $metadata['EntityAttributes']));
-        assert(is_array($metadata['EntityAttributes'][self::$ENTITY_CATEGORY]));
-
         Logger::maskErrors(E_ALL);
         $hidden = in_array(self::$HIDE_FROM_DISCOVERY, $metadata['EntityAttributes'][self::$ENTITY_CATEGORY], true);
         Logger::popErrorMask();
