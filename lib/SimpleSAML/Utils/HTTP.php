@@ -1165,7 +1165,7 @@ class HTTP
             'lifetime' => 0,
             'expire'   => null,
             'path'     => '/',
-            'domain'   => null,
+            'domain'   => '',
             'secure'   => false,
             'httponly' => true,
             'raw'      => false,
