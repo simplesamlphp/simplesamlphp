@@ -6,6 +6,7 @@
     "no": "Ugyldige atributter",
     "zu": "Izici Ezingalungile",
     "xh": "Iimpawu Ezingachanekanga",
+    "st": "Makgabane a Fosahetseng",
     "ca": "Atributs incorrectes"
   },
   "cardinality_text": {
@@ -15,6 +16,7 @@
     "no": "Én eller flere atributter levert av din identitetsleverandør har ikke så mange verdier som forventes.",
     "zu": "Isici esisodwa noma ngaphezulu esinikezwe umhlinzeki wakho kamazisi asizange siqukathe inani lezinombolo ezilindelwe.",
     "xh": "Uphawu olunye okanye olungakumbi olunikelwe ngumboonelei wesazisi sakho aluqulethanga inani lamaxabiso alindelekileyo.",
+    "st": "E le nngwe kapa ho feta ya makgabane a fanweng ke wena ke mofani wa boitsebiso wa hao ha e na lenane le nepahetseng la dipalo.",
     "ca": "Un o més dels atributs facilitats pel vostre proveïdor d’identitat no contenia el nombre de valors esperat."
   },
   "problematic_attributes": {
@@ -24,6 +26,7 @@
     "no": "De ugyldige atributter er:",
     "zu": "Isici(izici) esiyinkinga sithi:",
     "xh": "Iimpawu eziyingxaki zezi:",
+    "st": "Makgabane a nang le mathata ke:",
     "ca": "Els atributs problemàtics són:"
   },
   "got_want": {
@@ -33,6 +36,7 @@
     "no": "har %GOT% verdier, forventer %WANT%",
     "zu": "uthole amanani angu-%GOT%, ufuna %WANT%",
     "xh": "kukho amaxabiso e-%GOT%, sifuna %WANT%",
+    "st": "o fumane dipalo tse %GOT%, o batla tse %WANT%",
     "ca": "tens %GOT% valors, desitjats %WANT%"
   }
 }

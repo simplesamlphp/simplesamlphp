@@ -737,6 +737,8 @@ $config = [
             'se' => ['nb', 'no', 'nn', 'en'],
             'nr' => ['zu', 'en'],
             'nd' => ['zu', 'en'],
+            'tw' => ['st', 'en'],
+            'nso' => ['st', 'en'],
         ],
     ],
 
@@ -746,7 +748,7 @@ $config = [
     'language.available' => [
         'en', 'no', 'nn', 'se', 'da', 'de', 'sv', 'fi', 'es', 'ca', 'fr', 'it', 'nl', 'lb',
         'cs', 'sl', 'lt', 'hr', 'hu', 'pl', 'pt', 'pt-br', 'tr', 'ja', 'zh', 'zh-tw', 'ru',
-        'et', 'he', 'id', 'sr', 'lv', 'ro', 'eu', 'el', 'af', 'zu', 'xh',
+        'et', 'he', 'id', 'sr', 'lv', 'ro', 'eu', 'el', 'af', 'zu', 'xh', 'st',
     ],
     'language.rtl' => ['ar', 'dv', 'fa', 'ur', 'he'],
     'language.default' => 'en',

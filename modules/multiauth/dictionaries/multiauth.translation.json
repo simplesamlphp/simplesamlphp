@@ -33,6 +33,7 @@
 		"pl": "Wybierz \u017aród\u0142o autentykacji",
 		"xh": "Khetha umthombo wongqinisiso",
 		"zu": "Khetha umthombo wokuqinisekisa",
+        "st": "Kgetha mohlodi wa netafatso",
 		"ca": "Seleccioneu una font d’autenticació"
 	},
 	"select_source_text": {
@@ -69,6 +70,7 @@
 		"pl": "Wybrane \u017aród\u0142o zostanie u\u017Cyte do autentykacji i stworzenia sesji",
 		"zu": "Umthombo wokuqinisekisa okhethiwe uzosetshenziswa ukuze uqinisekiswe futhi kwakhiwe iseshini esebenzayo.",
 		"xh": "Umthombo wongqinisiso okhethiweyo uza kusetyenziswa ukukungqinisisa nokuyila iseshoni esebenzayo.",
+        "st": "Mohlodi wa netefatso o kgethilweng o tla sebediswa ho netefatsa wena le ho theha seshene e nepahetseng.",
 		"ca": "La font d’autenticació seleccionada s’utilitzarà per autenticar-vos i crear una sessió vàlida."
 	}
 }

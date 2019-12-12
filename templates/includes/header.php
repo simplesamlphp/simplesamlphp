@@ -175,6 +175,7 @@ if (array_key_exists('autofocus', $this->data)) {
                 'af' => 'Afrikaans', // Afrikaans
                 'zu' => 'IsiZulu', // Zulu
                 'xh' => 'isiXhosa', // Xhosa
+                'st' => 'Sesotho', // Sesotho
             ];
 
             $textarray = [];
