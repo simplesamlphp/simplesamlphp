@@ -125,7 +125,6 @@ jobs:
       env: Psalm
       before_script:
         - composer update
-        - composer require simplesamlphp/saml2:dev-patch-return-type
       script:
         - vendor/bin/psalm
 
