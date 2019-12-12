@@ -254,8 +254,7 @@ class Database
         $db = $this->dbMaster;
 
         if (is_array($params)) {
-            $obj = $this->query($db, $stmt, $params);
-            return $obj->rowCount();
+            return $this->query($db, $stmt, $params)->rowCount();
         } else {
             return $this->exec($db, $stmt);
         }
