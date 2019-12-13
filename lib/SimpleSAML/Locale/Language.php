@@ -122,6 +122,7 @@ class Language
         'af'    => 'Afrikaans', // Afrikaans
         'zu'    => 'IsiZulu', // Zulu
         'xh'    => 'isiXhosa', // Xhosa
+        'st'    => 'Sesotho', // Sesotho
     ];
 
     /**

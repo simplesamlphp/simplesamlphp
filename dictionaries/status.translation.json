@@ -34,6 +34,7 @@
 		"el": "\u0394\u03bf\u03ba\u03b9\u03bc\u03b1\u03c3\u03c4\u03b9\u03ba\u03cc\u03c2 \u03a0\u03b1\u03c1\u03bf\u03c7\u03ad\u03b1\u03c2 \u03a5\u03c0\u03b7\u03c1\u03b5\u03c3\u03b9\u03ce\u03bd SAML 2.0",
 		"zu": "Isampula Ledemo Ye-SAML 2.0 SP",
 		"xh": "Umzekelo weDemo we-SAML 2.0 SP",
+		"st": "Mohlala wa Pontsho wa SAML 2.0 SP",
 		"ca": "Exemple de demostració SAML 2.0 SP"
 	},
 	"header_shib": {
@@ -71,6 +72,7 @@
 		"el": "\u0394\u03bf\u03ba\u03b9\u03bc\u03b1\u03c3\u03c4\u03b9\u03ba\u03cc\u03c2 \u03a0\u03b1\u03c1\u03bf\u03c7\u03ad\u03b1\u03c2 \u03a5\u03c0\u03b7\u03c1\u03b5\u03c3\u03b9\u03ce\u03bd Shibboleth",
 		"xh": "Idemo ye-Shibboleth",
 		"zu": "Idemo ye-Shibboleth",
+		"st": "Pontsho ya Shibboleth",
 		"ca": "Exemple de demostració Shibboleth"
 	},
 	"header_diagnostics": {
@@ -108,6 +110,7 @@
 		"el": "\u0394\u03b9\u03b1\u03b3\u03bd\u03c9\u03c3\u03c4\u03b9\u03ba\u03ac SimpleSAMLphp",
 		"zu": "Ukuhlonzwa Kwe-SimpleSAMLphp",
 		"xh": "Uhlalutyo lwe-SimpleSAMLphp",
+		"st": "Dimanollo tsa SimpleSAMLphp",
 		"ca": "Diagnòstic SimpleSAMLphp"
 	},
 	"some_error_occurred": {
@@ -145,6 +148,7 @@
 		"el": "\u03a3\u03c5\u03bd\u03ad\u03b2\u03b7 \u03c3\u03c6\u03ac\u03bb\u03bc\u03b1",
 		"zu": "Kuvele iphutha elithile",
 		"xh": "Kwenzeke impazamo ethile",
+		"st": "Ho na le phoso e etsahetseng",
 		"ca": "S'ha produït un error"
 	},
 	"intro": {
@@ -182,6 +186,7 @@
 		"el": "\u03a7\u03b1\u03af\u03c1\u03b5\u03c4\u03b5, \u03b1\u03c5\u03c4\u03ae \u03b5\u03af\u03bd\u03b1\u03b9 \u03b7 \u03c3\u03b5\u03bb\u03af\u03b4\u03b1 \u03ba\u03b1\u03c4\u03ac\u03c3\u03c4\u03b1\u03c3\u03b7\u03c2 \u03c4\u03bf\u03c5 SimpleSAMLphp. \u0395\u03b4\u03ce \u03bc\u03c0\u03bf\u03c1\u03b5\u03af\u03c4\u03b5 \u03bd\u03b1 \u03b4\u03b5\u03af\u03c4\u03b5 \u03b1\u03bd \u03b7 \u03c3\u03c5\u03bd\u03b5\u03b4\u03c1\u03af\u03b1 \u03c3\u03b1\u03c2 \u0028\u0073\u0065\u0073\u0073\u0069\u006f\u006e\u0029 \u03ad\u03c7\u03b5\u03b9 \u03bb\u03ae\u03be\u03b5\u03b9\u002c \u03c4\u03bf \u03c7\u03c1\u03bf\u03bd\u03b9\u03ba\u03cc \u03b4\u03b9\u03ac\u03c3\u03c4\u03b7\u03bc\u03b1 \u03c0\u03bf\u03c5 \u03b4\u03b9\u03b1\u03c1\u03ba\u03b5\u03af \u03ad\u03c9\u03c2 \u03cc\u03c4\u03bf\u03c5 \u03bb\u03ae\u03be\u03b5\u03b9\u002c \u03ba\u03b1\u03b8\u03ce\u03c2 \u03ba\u03b1\u03b9 \u03cc\u03bb\u03b5\u03c2 \u03c4\u03b9\u03c2 \u03c0\u03bb\u03b7\u03c1\u03bf\u03c6\u03bf\u03c1\u03af\u03b5\u03c2 \u03c0\u03bf\u03c5 \u03c3\u03c5\u03bd\u03b4\u03ad\u03bf\u03bd\u03c4\u03b1\u03b9 \u03bc\u03b5 \u03c4\u03b7 \u03c3\u03c5\u03bd\u03b5\u03b4\u03c1\u03af\u03b1 \u03c3\u03b1\u03c2.",
 		"zu": "Sawubona, leli ikhasi lesimo se-SimpleSAMLphp. Lapha ungakwazi ukubona ukuthi iseshini yakho iphelelwe isikhathi yini, ukuthi ihlala isikhathi eside kangakanani ngaphambi kokuthi iphelelwe isikhathi kanye nazo zonke izici ezihambisana neseshini yakho.",
 		"xh": "Molo, eli likhasi lobume be-SimpleSAMLphp. Apha ungabona ukuba ngaba iseshoni yakho iphelelwe lixesha, iza kuhlala ixesha elide kangakanani ngaphambi kokuba iphelelwe nazo zonke iimpawu ezincanyathiselweyo kwiseshoni yakho.",
+		"st": "Dumela, lena ke leqephe la boemo la SimpleSAMLphp. Mona o ka bona hore na seshene ya hao e feletswe ke nako na, hore e nka nako e kae hore e fellwe ke nako le makgabane ohle a hoketsweng sesheneng ya hao.",
 		"ca": "Hola, aquesta és la pàgina d'estat de SimpleSAMLphp. Aquí podeu veure si la vostra sessió ha caducat, quant de temps dura fins que finalitza el temps i tots els atributs que s'adjunten a la vostra sessió."
 	},
 	"validfor": {
@@ -219,6 +224,7 @@
 		"el": "\u0391\u03c0\u03bf\u03bc\u03ad\u03bd\u03bf\u03c5\u03bd %SECONDS% \u03b4\u03b5\u03c5\u03c4\u03b5\u03c1\u03cc\u03bb\u03b5\u03c0\u03c4\u03b1 \u03bc\u03ad\u03c7\u03c1\u03b9 \u03c4\u03b7 \u03bb\u03ae\u03be\u03b7 \u03c4\u03b7\u03c2 \u03c3\u03c5\u03bd\u03b5\u03b4\u03c1\u03af\u03b1\u03c2 \u03c3\u03b1\u03c2.",
 		"xh": "Iseshoni yakho iza kusebenza kangangemizuzu e-%SECONDS% ukususela ngoku.",
 		"zu": "Iseshini yakho isebenza imizuzwana engu-%SECONDS% ukusuka manje.",
+		"st": "Seshene ya hao e na le matla feela bakeng sa metsotswana e %SECONDS% ho tloha hona jwale.",
 		"ca": "La vostra sessió és vàlida durant %SECONDS% segons des d’ara."
 	},
 	"sessionsize": {
@@ -256,6 +262,7 @@
 		"el": "\u039c\u03ad\u03b3\u03b5\u03b8\u03bf\u03c2 \u03c3\u03c5\u03bd\u03b5\u03b4\u03c1\u03af\u03b1\u03c2: %SIZE%",
 		"xh": "Ubukhulu beseshoni: %SIZE%",
 		"zu": "Usayizi weseshini: %SIZE%",
+		"st": "Saese ya seshene: %SIZE%",
 		"ca": "Mida de la sessió: %SIZE%"
 	},
 	"attributes_header": {
@@ -293,6 +300,7 @@
 		"el": "\u03a0\u03bb\u03b7\u03c1\u03bf\u03c6\u03bf\u03c1\u03af\u03b5\u03c2",
 		"zu": "Izici zakho",
 		"xh": "Iimpawu zakho",
+		"st": "Makgabane a hao",
 		"ca": "Els teus atributs"
 	},
 	"logout": {
@@ -330,6 +338,7 @@
 		"el": "\u0391\u03c0\u03bf\u03c3\u03cd\u03bd\u03b4\u03b5\u03c3\u03b7",
 		"xh": "Phuma",
 		"zu": "Phuma",
+		"st": "Ho tswa",
 		"ca": "Tancar sessió"
 	},
 	"subject_header": {
@@ -341,6 +350,7 @@
 		"el": "\u03a5\u03c0\u03bf\u03ba\u03b5\u03af\u03bc\u03b5\u03bd\u03bf (subject) SAML",
 		"zu": "Isihloko Se-SAML",
 		"xh": "Umbandela we-SAML",
+		"st": "Taba ya SAML",
 		"ca": "Assumpte SAML"
 	},
 	"subject_notset": {
@@ -352,6 +362,7 @@
 		"el": "\u03b4\u03b5\u03bd \u03ad\u03c7\u03b5\u03b9 \u03bf\u03c1\u03b9\u03c3\u03c4\u03b5\u03af",
 		"xh": "ayikasetwa",
 		"zu": "akusethiwe",
+		"st": "ha e a setwa",
 		"ca": "no establert"
 	},
 	"subject_format": {
@@ -363,16 +374,19 @@
 		"el": "\u039c\u03bf\u03c1\u03c6\u03ae (format)",
 		"zu": "Ifomethi",
 		"xh": "Ufomatho",
+		"st": "Fomata",
 		"ca": "Format"
 	},
 	"authData_header": {
 		"xh": "Ungqinisiso lweNgcombolo",
 		"zu": "I-AuthData",
+		"st": "AuthData",
 		"ca": "AuthData"
 	},
 	"authData_summary": {
 		"xh": "Cofa ukuze ubone uNgqinisiso lweNgcombolo",
 		"zu": "Qhafaza ukuze ubuke i-AuthData",
+		"st": "Tlelika ho sheba AuthData",
 		"ca": "Feu clic per veure AuthData"
 	}
 }

@@ -36,6 +36,7 @@
 		"el": "\u03a3\u03c6\u03ac\u03bb\u03bc\u03b1 \u03c4\u03bf\u03c5 SimpleSAMLphp",
 		"zu": "Iphutha le-SimpleSAMLphp",
 		"xh": "Impazamo ye-SimpleSAMLphp",
+		"st": "Phoso ya SimpleSAMLphp",
 		"ca": "Error de SimpleSAMLphp"
 	},
 	"report_trackid": {
@@ -75,6 +76,7 @@
 		"el": "\u0391\u03bd \u03b1\u03bd\u03b1\u03c6\u03ad\u03c1\u03b5\u03c4\u03b5 \u03b1\u03c5\u03c4\u03cc \u03c4\u03bf \u03c3\u03c6\u03ac\u03bb\u03bc\u03b1\u002c \u03c0\u03b1\u03c1\u03b1\u03ba\u03b1\u03bb\u03bf\u03cd\u03bc\u03b5 \u03bd\u03b1 \u03c3\u03c5\u03bc\u03c0\u03b5\u03c1\u03b9\u03bb\u03ac\u03b2\u03b5\u03c4\u03b5 \u03c3\u03c4\u03b7\u03bd \u03b1\u03bd\u03b1\u03c6\u03bf\u03c1\u03ac \u03c3\u03b1\u03c2 \u03b1\u03c5\u03c4\u03cc\u03bd \u03c4\u03bf\u03bd \u03b1\u03c1\u03b9\u03b8\u03bc\u03cc \u03c0\u03c1\u03bf\u03ba\u03b5\u03b9\u03bc\u03ad\u03bd\u03bf\u03c5 \u03bd\u03b1 \u03b4\u03b9\u03b5\u03c5\u03ba\u03bf\u03bb\u03cd\u03bd\u03b5\u03c4\u03b5 \u03c4\u03b7 \u03b4\u03b9\u03b1\u03b4\u03b9\u03ba\u03b1\u03c3\u03af\u03b1 \u03b5\u03bd\u03c4\u03bf\u03c0\u03b9\u03c3\u03bc\u03bf\u03cd \u03ba\u03b1\u03b9 \u03b5\u03c0\u03af\u03bb\u03c5\u03c3\u03b7\u03c2 \u03c4\u03bf\u03c5 \u03c0\u03c1\u03bf\u03b2\u03bb\u03ae\u03bc\u03b1\u03c4\u03bf\u03c2:",
 		"zu": "Uma ubika leli phutha, sicela futhi ubike le nombolo yokulandelela eyenza kube nokwenzeka ukuthola iseshini yakho kumalogi atholakalayo kumlawuli wesistimu:",
 		"xh": "Ukuba ngaba uchaza le mpazamo, nceda kananjalo uchaze le nombolo yolandelelo eyenza kube lula ukufumana iseshoni yakho kwiincwadi ezifumaneka kumlawuli wesistim:",
+		"st": "Haeba o tlaleha phoso ena, ka kopo tlaleha hape nomoro ena ya ho sala morao e kgonahatsang hore o fumane seshene ya hao ho di-log ts efumanehang ho sistimi ya motsamaisi:",
 		"ca": "Si informeu d’aquest error, notifiqueu també aquest número de seguiment que permet localitzar la vostra sessió als registres disponibles per a l’administrador del sistema:"
 	},
 	"debuginfo_header": {
@@ -114,6 +116,7 @@
 		"el": "\u03a0\u03bb\u03b7\u03c1\u03bf\u03c6\u03bf\u03c1\u03af\u03b5\u03c2 \u03b5\u03bd\u03c4\u03bf\u03c0\u03b9\u03c3\u03bc\u03bf\u03cd \u03c3\u03c6\u03b1\u03bb\u03bc\u03ac\u03c4\u03c9\u03bd",
 		"xh": "Inkcazelo yokulungisa",
 		"zu": "Ulwazi lokususwa kwephutha",
+		"st": "Tlhahisoleseding ya debug",
 		"ca": "Informació de depuració"
 	},
 	"debuginfo_text": {
@@ -153,6 +156,7 @@
 		"el": "\u039f\u03b9 \u03c0\u03b1\u03c1\u03b1\u03ba\u03ac\u03c4\u03c9 \u03c0\u03bb\u03b7\u03c1\u03bf\u03c6\u03bf\u03c1\u03af\u03b5\u03c2 \u03bc\u03c0\u03bf\u03c1\u03b5\u03af \u03bd\u03b1 \u03b4\u03b9\u03b5\u03c5\u03ba\u03bf\u03bb\u03cd\u03bd\u03bf\u03c5\u03bd \u03c4\u03b7 \u03b4\u03b9\u03b1\u03b4\u03b9\u03ba\u03b1\u03c3\u03af\u03b1 \u03b5\u03bd\u03c4\u03bf\u03c0\u03b9\u03c3\u03bc\u03bf\u03cd \u03ba\u03b1\u03b9 \u03b5\u03c0\u03af\u03bb\u03c5\u03c3\u03b7\u03c2 \u03c3\u03c6\u03b1\u03bb\u03bc\u03ac\u03c4\u03c9\u03bd.",
 		"xh": "Inkcazelo yokulungisa engezantsi isenokuba ibangela umdla kumlawuli / idesika yoncedo:",
 		"zu": "Ulwazi lokususwa kwephutha olungezansi lungase lukhange kumlawuli / ideski losizo:",
+		"st": "Tlhahisoleseding ya debug e ka tlase mona e  ka nna ya kgahla motsamaisi / deske ya thuso:",
 		"ca": "La informació de depuració següent pot ser d’interès per l’administrador \/ centre d'atenció a l'usuari:"
 	},
 	"report_header": {
@@ -192,6 +196,7 @@
 		"el": "\u0391\u03bd\u03b1\u03c6\u03bf\u03c1\u03ac \u03c3\u03c6\u03ac\u03bb\u03bc\u03b1\u03c4\u03bf\u03c2",
 		"zu": "Amaphutha ombiko",
 		"xh": "Chaza iimpazamo",
+		"st": "Tlaleha diphoso",
 		"ca": "Informeu de l’error"
 	},
 	"report_text": {
@@ -231,6 +236,7 @@
 		"el": "\u03a0\u03c1\u03bf\u03b1\u03b9\u03c1\u03b5\u03c4\u03b9\u03ba\u03ac\u002c \u03b5\u03b9\u03c3\u03ac\u03b3\u03b5\u03c4\u03b5 \u03c4\u03b7 \u03b4\u03b9\u03b5\u03cd\u03b8\u03c5\u03bd\u03c3\u03b7 \u03b7\u03bb\u03b5\u03ba\u03c4\u03c1\u03bf\u03bd\u03b9\u03ba\u03bf\u03cd \u03c4\u03b1\u03c7\u03c5\u03b4\u03c1\u03bf\u03bc\u03b5\u03af\u03bf\u03c5 \u03c3\u03b1\u03c2 \u03ce\u03c3\u03c4\u03b5 \u03bd\u03b1 \u03b5\u03af\u03bc\u03b1\u03c3\u03c4\u03b5 \u03c3\u03b5 \u03b8\u03ad\u03c3\u03b7 \u03bd\u03b1 \u03ad\u03c1\u03b8\u03bf\u03c5\u03bc\u03b5 \u03c3\u03b5 \u03b5\u03c0\u03b1\u03c6\u03ae \u03bc\u03b1\u03b6\u03af \u03c3\u03b1\u03c2 \u03b3\u03b9\u03b1 \u03c0\u03b5\u03c1\u03b1\u03b9\u03c4\u03ad\u03c1\u03c9 \u03b5\u03c1\u03c9\u03c4\u03ae\u03c3\u03b5\u03b9\u03c2 \u03c3\u03c7\u03b5\u03c4\u03b9\u03ba\u03ac \u03bc\u03b5 \u03c4\u03bf \u03b8\u03ad\u03bc\u03b1 \u03c3\u03b1\u03c2:",
 		"xh": "Unokhetho lokuthumela idilesi yeimeyile yakho, ukuze abalawuli bakwazi ukukuqhagamshela ukuba banemibuzo engakumbi malunga nomba wakho:",
 		"zu": "Faka ngokuzithandela ikheli lakho le-imeyili, ukuze abalawuli bakwazi ukukuthinta ngemibuzo eyengeziwe mayelana nenkinga yakho:",
+		"st": "Ka boikgethelo o ka kenya aterse ya imeile ya hao, bakeng sa batsamaisi hore ba kgone ho ikopanya le wena mabapi le dipotso tse ding ka ditaba tsa hao:",
 		"ca": "Opcionalment, introduïu la vostra adreça de correu electrònic, per a que els administradors puguin contactar amb vosaltres per obtenir més detalls del problema:"
 	},
 	"report_email": {
@@ -271,6 +277,7 @@
 		"el": "Email:",
 		"xh": "Idilesi ye-imeyile:",
 		"zu": "Ikheli le-imeyili:",
+		"st": "Aterese ya imeile:",
 		"ca": "Adreça de correu electrònic:"
 	},
 	"report_explain": {
@@ -310,6 +317,7 @@
 		"el": "\u03a0\u03b5\u03c1\u03b9\u03b3\u03c1\u03ac\u03c8\u03c4\u03b5 \u03c4\u03b9\u03c2 \u03b5\u03bd\u03ad\u03c1\u03b3\u03b5\u03b9\u03ad\u03c2 \u03c3\u03b1\u03c2 \u03cc\u03c4\u03b1\u03bd \u03c3\u03c5\u03bd\u03ad\u03b2\u03b7 \u03c4\u03bf \u03c3\u03c6\u03ac\u03bb\u03bc\u03b1...",
 		"xh": "Cacisa ukuba wenze ntoni xa bekusenzeka le mpazamo...",
 		"zu": "Chaza ukuthi yini oyenzile ngenkathi kuvela leli phutha...",
+		"st": "Hlalosa seo o se entseng ha phoso ena e ne e hlaha...",
 		"ca": "Expliqueu què heu fet quan es va produir aquest error..."
 	},
 	"report_submit": {
@@ -349,6 +357,7 @@
 		"el": "\u0391\u03c0\u03bf\u03c3\u03c4\u03bf\u03bb\u03ae \u03b1\u03bd\u03b1\u03c6\u03bf\u03c1\u03ac\u03c2",
 		"zu": "Thumela umbiko wephutha",
 		"xh": "Thumela ingxelo yempazamo",
+		"st": "Romela tlaleho ya phoso",
 		"ca": "Envia informe d'error"
 	},
 	"howto_header": {
@@ -388,6 +397,7 @@
 		"el": "\u03a0\u03ce\u03c2 \u03bd\u03b1 \u03bb\u03ac\u03b2\u03b5\u03c4\u03b5 \u03b2\u03bf\u03ae\u03b8\u03b5\u03b9\u03b1",
 		"zu": "Indlela yokuthola usizo",
 		"xh": "Indlela yokufumana uncedo",
+		"st": "Ka moo o ka fumanang thuso",
 		"ca": "Com obtenir ajuda"
 	},
 	"howto_text": {
@@ -427,6 +437,7 @@
 		"el": "\u0391\u03c5\u03c4\u03cc \u03c4\u03bf \u03c3\u03c6\u03ac\u03bb\u03bc\u03b1 \u03c0\u03b9\u03b8\u03b1\u03bd\u03cc\u03c4\u03b1\u03c4\u03b1 \u03bf\u03c6\u03b5\u03af\u03bb\u03b5\u03c4\u03b1\u03b9 \u03c3\u03b5 \u03ba\u03ac\u03c0\u03bf\u03b9\u03b1 \u03b1\u03c0\u03c1\u03bf\u03c3\u03b4\u03cc\u03ba\u03b7\u03c4\u03b7 \u03c3\u03c5\u03bc\u03c0\u03b5\u03c1\u03b9\u03c6\u03bf\u03c1\u03ac \u03ae \u03b5\u03c3\u03c6\u03b1\u03bb\u03bc\u03ad\u03bd\u03b7 \u03c1\u03cd\u03b8\u03bc\u03b9\u03c3\u03b7 \u03c4\u03bf\u03c5 SimpleSAMLphp. \u0395\u03c0\u03b9\u03ba\u03bf\u03b9\u03bd\u03c9\u03bd\u03ae\u03c3\u03c4\u03b5 \u03bc\u03b5 \u03c4\u03bf\u03bd \u03b4\u03b9\u03b1\u03c7\u03b5\u03b9\u03c1\u03b9\u03c3\u03c4\u03ae \u03b1\u03c5\u03c4\u03ae\u03c2 \u03c4\u03b7\u03c2 \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b1\u03c2 \u03c3\u03c5\u03bc\u03c0\u03b5\u03c1\u03b9\u03bb\u03b1\u03bc\u03b2\u03ac\u03bd\u03bf\u03bd\u03c4\u03b1\u03c2 \u03c4\u03bf \u03c0\u03b1\u03c1\u03b1\u03c0\u03ac\u03bd\u03c9 \u03bc\u03ae\u03bd\u03c5\u03bc\u03b1 \u03c3\u03c6\u03ac\u03bb\u03bc\u03b1\u03c4\u03bf\u03c2.",
 		"zu": "Leli phutha kungenzeka ukuthi libangelwa indlela yokuziphatha engalindelwe noma umiso olungafanele lwe-SimpleSAMLphp. Thinta umlawuli wale sevisi yokungena, bese umthumela umlayezo wephutha ongenhla.",
 		"xh": "Le mpazamo kusenokwenzeka ingenxa yendlela yokwenza engalindelekanga okanye ulungiselelo olungachanekanga lwe-SimpleSAMLphp. Qhagamshelana nomlawuli wale nkonzo yokungena, uze umthumele umyalezo wempazamo ongentla.",
+		"st": "Mohlomong phoso ena e ka lebaka la boitshwaro bo itseng bo sa lebellwang kapa tlhophiso e fosahetseng ya SimpleSAMLphp. Ikopanye le motsamaisi wa tshebeletso ena ya ho kena, ebe o romela molaetsa wa phoso ka hodimo mona.",
 		"ca": "Segurament aquest error es deu a un comportament inesperat o a una configuració incorrecta de SimpleSAMLphp. Poseu-vos en contacte amb l’administrador d’aquest servei i envieu-li el missatge d’error anterior."
 	},
 	"title_CREATEREQUEST": {
@@ -466,6 +477,7 @@
 		"el": "\u03a3\u03c6\u03ac\u03bb\u03bc\u03b1 \u03ba\u03b1\u03c4\u03ac \u03c4\u03b7 \u03b4\u03b7\u03bc\u03b9\u03bf\u03c5\u03c1\u03b3\u03af\u03b1 \u03b1\u03b9\u03c4\u03ae\u03bc\u03b1\u03c4\u03bf\u03c2",
 		"xh": "Impazamo nokuyila isicelo",
 		"zu": "Iphutha lokwakha isicelo",
+		"st": "Phoso ho thehweng ha kopo",
 		"ca": "S'ha produït un error en crear la sol·licitud"
 	},
 	"descr_CREATEREQUEST": {
@@ -505,6 +517,7 @@
 		"el": "\u03a0\u03b1\u03c1\u03bf\u03c5\u03c3\u03b9\u03ac\u03c3\u03c4\u03b7\u03ba\u03b5 \u03c3\u03c6\u03ac\u03bb\u03bc\u03b1 \u03ba\u03b1\u03c4\u03ac \u03c4\u03b7 \u03b4\u03b7\u03bc\u03b9\u03bf\u03c5\u03c1\u03b3\u03af\u03b1 \u03c4\u03bf\u03c5 \u03b1\u03b9\u03c4\u03ae\u03bc\u03b1\u03c4\u03bf\u03c2 SAML.",
 		"xh": "Kwenzeke impazamo xa kuzanywa ukuyilwa isicelo se-SAML.",
 		"zu": "Kuvele iphutha ngenkathi izama ukwakha isicelo se-SAML.",
+		"st": "Phoso e hlahile ha o leka ho theha kopo ya SAML.",
 		"ca": "S'ha produït un error en intentar crear la sol·licitud SAML."
 	},
 	"title_DISCOPARAMS": {
@@ -544,6 +557,7 @@
 		"el": "\u0395\u03c3\u03c6\u03b1\u03bb\u03bc\u03ad\u03bd\u03bf \u03b1\u03af\u03c4\u03b7\u03bc\u03b1 \u03c0\u03c1\u03bf\u03c2 \u03c4\u03b7\u03bd \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b1 \u03b1\u03bd\u03b5\u03cd\u03c1\u03b5\u03c3\u03b7\u03c2 \u03c0\u03b1\u03c1\u03cc\u03c7\u03bf\u03c5 \u03c4\u03b1\u03c5\u03c4\u03cc\u03c4\u03b7\u03c4\u03b1\u03c2",
 		"zu": "Isicelo esingalungile sesevisi yokuthola",
 		"xh": "Isicelo esibi kwinkonzo yofumaniso",
+		"st": "Kopo e mpe bakeng sa tshebeletso ya tshibollo",
 		"ca": "Sol·licitud incorrecta pel servei de descoberta"
 	},
 	"descr_DISCOPARAMS": {
@@ -583,6 +597,7 @@
 		"el": "\u039f\u03b9 \u03c0\u03b1\u03c1\u03ac\u03bc\u03b5\u03c4\u03c1\u03bf\u03b9 \u03c0\u03bf\u03c5 \u03c3\u03c4\u03ac\u03bb\u03b8\u03b7\u03ba\u03b1\u03bd \u03c3\u03c4\u03b7\u03bd \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b1 \u03b1\u03bd\u03b5\u03cd\u03c1\u03b5\u03c3\u03b7\u03c2 \u03c0\u03b1\u03c1\u03cc\u03c7\u03bf\u03c5 \u03c4\u03b1\u03c5\u03c4\u03cc\u03c4\u03b7\u03c4\u03b1\u03c2 \u03ae\u03c4\u03b1\u03bd \u03b5\u03c3\u03c6\u03b1\u03bb\u03bc\u03ad\u03bd\u03b5\u03c2.",
 		"xh": "Iipharamitha ezithunyelwe kwinkonzo yofumaniso azihambelani neenkcukacha.",
 		"zu": "Amapharamitha athunyelwe kusevisi yokuthola abengavumelani nezici.",
+		"st": "Dipharamitha tse rometsweng tshebeltsong ya tshibollo di ne di se ho latela ditekanyetso.",
 		"ca": "Els paràmetres enviats al servei de descoberta no s'ajusten a les especificacions."
 	},
 	"title_GENERATEAUTHNRESPONSE": {
@@ -622,6 +637,7 @@
 		"el": "\u0394\u03b5\u03bd \u03ae\u03c4\u03b1\u03bd \u03b4\u03c5\u03bd\u03b1\u03c4\u03ae \u03b7 \u03b4\u03b7\u03bc\u03b9\u03bf\u03c5\u03c1\u03b3\u03af\u03b1 \u03b1\u03c0\u03cc\u03ba\u03c1\u03b9\u03c3\u03b7\u03c2 \u03c3\u03c4\u03bf \u03b1\u03af\u03c4\u03b7\u03bc\u03b1 \u03c4\u03b1\u03c5\u03c4\u03bf\u03c0\u03bf\u03af\u03b7\u03c3\u03b7\u03c2",
 		"zu": "Ayikwazanga ukwakha impendulo yokuqinisekisa",
 		"xh": "Ayikwazanga ukuyila impendulo yongqinisiso",
+		"st": "Ha e a kgona ho theha karabelo ya ntefatso",
 		"ca": "No s’ha pogut crear la resposta d’autenticació"
 	},
 	"descr_GENERATEAUTHNRESPONSE": {
@@ -661,6 +677,7 @@
 		"el": "\u03a0\u03b1\u03c1\u03bf\u03c5\u03c3\u03b9\u03ac\u03c3\u03c4\u03b7\u03ba\u03b5 \u03c3\u03c6\u03ac\u03bb\u03bc\u03b1 \u03ba\u03b1\u03c4\u03ac \u03c4\u03b7 \u03b4\u03b7\u03bc\u03b9\u03bf\u03c5\u03c1\u03b3\u03af\u03b1 \u03b1\u03c0\u03cc\u03ba\u03c1\u03b9\u03c3\u03b7\u03c2 \u03b1\u03c0\u03cc \u03c4\u03bf\u03bd \u03c0\u03ac\u03c1\u03bf\u03c7\u03bf \u03c4\u03b1\u03c5\u03c4\u03cc\u03c4\u03b7\u03c4\u03b1\u03c2.",
 		"zu": "Ngenkathi lo mhlinzeki kamazisi ezama ukwakha impendulo yokuqinisekisa, kuvele iphutha.",
 		"xh": "Xa lo mboneleli wesazisi ezama ukuyila impendulo yongqinisiso, kwenzeke impazamo.",
+		"st": "Ha mofani enwa wa boitsebiso a leka ho theha karabelo ya netefatso, phoso e bile teng.",
 		"ca": "Quan el proveïdor d’identitat ha intentat crear una resposta d’autenticació, s’ha produït un error."
 	},
 	"title_LDAPERROR": {
@@ -700,6 +717,7 @@
 		"el": "\u03a3\u03c6\u03ac\u03bb\u03bc\u03b1 LDAP",
 		"xh": "Impazamo ye-LDAP",
 		"zu": "Iphutha le-LDAP",
+		"st": "Phoso ya LDAP",
 		"ca": "Error LDAP"
 	},
 	"descr_LDAPERROR": {
@@ -739,6 +757,7 @@
 		"el": "\u03a0\u03b1\u03c1\u03bf\u03c5\u03c3\u03b9\u03ac\u03c3\u03c4\u03b7\u03ba\u03b5 \u03c3\u03c6\u03ac\u03bb\u03bc\u03b1 \u03ba\u03b1\u03c4\u03ac \u03c4\u03b7\u03bd \u03b5\u03c0\u03b9\u03ba\u03bf\u03b9\u03bd\u03c9\u03bd\u03af\u03b1 \u03bc\u03b5 \u03c4\u03b7\u03bd \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b1 \u03ba\u03b1\u03c4\u03b1\u03bb\u03cc\u03b3\u03bf\u03c5 \u03c7\u03c1\u03b7\u03c3\u03c4\u03ce\u03bd (LDAP).",
 		"xh": "I-LDAP ngumvimba wengcombolo yomsebenzisi, yaye xa uzame ukungena, kufuneka siqhagamshele uvimba wengcombolo we-LDAP. Kwenzeke impazamo xa besiyizama.",
 		"zu": "I-LDAP iyidathabheyisi yomsebenzisi, futhi lapho uzama ukungena, sidinga ukuthinta idathabheyisi ye-LDAP. Kuvele iphutha ngesikhathi siyizama ngalesi sikhathi.",
+		"st": "LDAP ke dathabeise ya mosebedisi, mme ha o leka ho kena, re hloka ho ikopanya le dathabeise ya LDAP. Phoso e hlahile ha re e leka lekgelong lena.",
 		"ca": "LDAP és la base de dades d'usuaris i, quan intenteu iniciar la sessió, necessitem connectar amb una base de dades LDAP. S'ha produït un error quan hem provat d'accedir-hi."
 	},
 	"title_LOGOUTREQUEST": {
@@ -778,6 +797,7 @@
 		"el": "\u03a3\u03c6\u03ac\u03bb\u03bc\u03b1 \u03ba\u03b1\u03c4\u03ac \u03c4\u03b7 \u03b4\u03b9\u03b1\u03b4\u03b9\u03ba\u03b1\u03c3\u03af\u03b1 \u03b1\u03c0\u03bf\u03c3\u03cd\u03bd\u03b4\u03b5\u03c3\u03b7\u03c2",
 		"xh": "Impazamo iprosesa iSicelo Sokuphuma",
 		"zu": "Iphutha lokucubungula Isicelo Sokuphuma",
+		"st": "Phoso ho sebetseng Kopo ya Ho Tswa",
 		"ca": "S'ha produït un error en processar la sol·licitud de desconnexió"
 	},
 	"descr_LOGOUTREQUEST": {
@@ -817,6 +837,7 @@
 		"el": "\u03a0\u03b1\u03c1\u03bf\u03c5\u03c3\u03b9\u03b1\u03c3\u03c4\u03ae\u03ba\u03b5 \u03c3\u03c6\u03ac\u03bb\u03bc\u03b1 \u03ba\u03b1\u03c4\u03ac \u03c4\u03b7\u03bd \u03b5\u03c0\u03b5\u03be\u03b5\u03c1\u03b3\u03b1\u03c3\u03af\u03b1 \u03c4\u03bf\u03c5 \u03b1\u03b9\u03c4\u03ae\u03bc\u03b1\u03c4\u03bf\u03c2 \u03b1\u03c0\u03bf\u03c3\u03cd\u03bd\u03b4\u03b5\u03c3\u03b7\u03c2.",
 		"zu": "Kuvele iphutha ngenkathi izama ukucubungula Isicelo Sokuphuma.",
 		"xh": "Kwenzeke impazamo ngoxa kuproseswa isiCelo Sokuphuma.",
+		"st": "Phoso e hlahile ha e leka ho sebetsa Kopo ya Ho Tswa.",
 		"ca": "S'ha produït un error en intentar processar la sol·licitud de desconnexió."
 	},
 	"title_METADATA": {
@@ -856,6 +877,7 @@
 		"el": "\u03a3\u03c6\u03ac\u03bb\u03bc\u03b1 \u03ba\u03b1\u03c4\u03ac \u03c4\u03b7 \u03c6\u03cc\u03c1\u03c4\u03c9\u03c3\u03b7 \u03bc\u03b5\u03c4\u03b1\u03b4\u03b5\u03b4\u03bf\u03bc\u03ad\u03bd\u03c9\u03bd",
 		"zu": "Iphutha lokulayisha imethadatha",
 		"xh": "Impazamo ilayisha imetadata",
+		"st": "Phoso ya ho louta metadata",
 		"ca": "S'ha produït un error en carregar les metadades"
 	},
 	"descr_METADATA": {
@@ -895,6 +917,7 @@
 		"el": "\u03a5\u03c0\u03ac\u03c1\u03c7\u03b5\u03b9 \u03ba\u03ac\u03c0\u03bf\u03b9\u03bf \u03c0\u03c1\u03cc\u03b2\u03bb\u03b7\u03bc\u03b1 \u03c3\u03c4\u03b9\u03c2 \u03c1\u03c5\u03b8\u03bc\u03af\u03c3\u03b5\u03b9\u03c2 \u03c4\u03bf\u03c5 SimpleSAMLphp. \u0395\u03ac\u03bd \u03b5\u03af\u03c3\u03c4\u03b5 \u03bf \u03b4\u03b9\u03b1\u03c7\u03b5\u03b9\u03c1\u03b9\u03c3\u03c4\u03ae\u03c2 \u03c4\u03b7\u03c2 \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b1\u03c2 \u03b1\u03c5\u03c4\u03ae\u03c2, \u03b2\u03b5\u03b2\u03b1\u03b9\u03c9\u03b8\u03b5\u03af\u03c4\u03b5 \u03cc\u03c4\u03b9 \u03c4\u03b1 \u03bc\u03b5\u03c4\u03b1\u03b4\u03b5\u03b4\u03bf\u03bc\u03ad\u03bd\u03b1 \u03ad\u03c7\u03bf\u03c5\u03bd \u03c1\u03c5\u03b8\u03bc\u03b9\u03c3\u03c4\u03b5\u03af \u03c3\u03c9\u03c3\u03c4\u03ac.",
 		"xh": "Kukho ulungiselelo olungachanekanga oluthile lofakelo lwakho lwe-SimpleSAMLphp. Ukuba ngaba ungumlawuli wale nkonzo, ufanele uqinisekise ulungiselelo lwakho  lweempawu-ngcaciso zefayile lusetwe ngokuchanekileyo.",
 		"zu": "Kukhona umiso olungafanele kukufaka kwakho kwe-SimpleSAMLphp. Uma ungumlawuli wale sevisi, kufanele wenze isiqiniseko sokuthi umiso lwakho lwemethadatha lumiswe ngendlela efanele.",
+		"st": "Ho na le tlhophiso e fosahetseng ya kenyo ya ho instola SimpleSAMLphp ya hao. Haeba o motsamaisi wa tshebeletso ena, o tlameha ho etsa bonnete ba hore tlhophiso ya metadata ya hao e setilwe ka nepo.",
 		"ca": "Hi ha alguna configuració incorrecta a la vostra instal·lació de SimpleSAMLphp. Si sou l’administrador d’aquest servei, heu d’assegurar-vos que la configuració de les vostres metadades s’ha realitzat correctament."
 	},
 	"title_NOACCESS": {
@@ -934,6 +957,7 @@
 		"el": "\u03a3\u03c6\u03ac\u03bb\u03bc\u03b1 \u03ba\u03b1\u03c4\u03ac \u03c4\u03b7\u03bd \u03c0\u03c1\u03cc\u03c3\u03b2\u03b1\u03c3\u03b7",
 		"zu": "Akukho ukufinyelela",
 		"xh": "Akukho fikelelo",
+		"st": "Ha ho phihlello",
 		"ca": "Sense accès"
 	},
 	"descr_NOACCESS": {
@@ -973,6 +997,7 @@
 		"el": "\u0391\u03c5\u03c4\u03cc \u03c4\u03bf \u03c4\u03b5\u03bb\u03b9\u03ba\u03cc \u03c3\u03b7\u03bc\u03b5\u03af\u03bf \u03c3\u03cd\u03bd\u03b4\u03b5\u03c3\u03b7\u03c2 (endpoint) \u03b4\u03b5\u03bd \u03b5\u03af\u03bd\u03b1\u03b9 \u03b5\u03bd\u03b5\u03c1\u03b3\u03bf\u03c0\u03bf\u03b9\u03b7\u03bc\u03ad\u03bd\u03bf. \u0395\u03ac\u03bd \u03b5\u03af\u03c3\u03c4\u03b5 \u03bf \u03b4\u03b9\u03b1\u03c7\u03b5\u03b9\u03c1\u03b9\u03c3\u03c4\u03ae\u03c2 \u03c4\u03b7\u03c2 \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b1\u03c2, \u03b5\u03bb\u03ad\u03b3\u03be\u03c4\u03b5 \u03c4\u03b9\u03c2 \u03c1\u03c5\u03b8\u03bc\u03af\u03c3\u03b5\u03b9\u03c2 \u03c4\u03bf\u03c5 SimpleSAMLphp.",
 		"xh": "Le ndawo yokuphela ayenziwanga yasebenza. Jonga ukhetho lokwenza isebenze kulungiselelo lwakho lwe-SimpleSAMLphp.",
 		"zu": "Lesi siphetho asivunyelwe. Hlola izinketho zokuvumela kumiso lwakho lwe-SimpleSAMLphp.",
+		"st": "Ntlha ya bofelo ha e a bulelwa. Hlahloba dikgetho tse tlhophisong ya hao ya SimpleSAMLphp.",
 		"ca": "Aquest punt final no està habilitat. Comproveu les opcions d’habilitació en la configuració de SimpleSAMLphp."
 	},
 	"title_NORELAYSTATE": {
@@ -1012,6 +1037,7 @@
 		"el": "\u03a3\u03c6\u03ac\u03bb\u03bc\u03b1 \u03c0\u03b1\u03c1\u03b1\u03bc\u03ad\u03c4\u03c1\u03bf\u03c5 'RelayState'",
 		"zu": "Ayikho I-RelayState",
 		"xh": "Akukho RelayState",
+		"st": "Ha ho RelayState",
 		"ca": "Sense RelayState"
 	},
 	"descr_NORELAYSTATE": {
@@ -1051,6 +1077,7 @@
 		"el": "\u0397 \u03c0\u03b1\u03c1\u03ac\u03bc\u03b5\u03c4\u03c1\u03bf\u03c2 'RelayState' \u03c4\u03bf\u03c5 \u03c0\u03c1\u03c9\u03c4\u03bf\u03ba\u03cc\u03bb\u03bb\u03bf\u03c5 SAML \u03b4\u03b5\u03bd \u03b2\u03c1\u03ad\u03b8\u03b7\u03ba\u03b5 \u03ae \u03b4\u03b5\u03bd \u03b5\u03af\u03bd\u03b1\u03b9 \u03ad\u03b3\u03ba\u03c5\u03c1\u03b7 \u03bc\u03b5 \u03b1\u03c0\u03bf\u03c4\u03ad\u03bb\u03b5\u03c3\u03bc\u03b1 \u03bd\u03b1 \u03bc\u03b7\u03bd \u03b5\u03af\u03bd\u03b1\u03b9 \u03b4\u03c5\u03bd\u03b1\u03c4\u03ae \u03b7 \u03bc\u03b5\u03c4\u03ac\u03b2\u03b1\u03c3\u03b7 \u03c3\u03b5 \u03ba\u03ac\u03c0\u03bf\u03b9\u03bf\u03bd \u03c0\u03cc\u03c1\u03bf \u03c4\u03bf\u03c5 \u03c0\u03b1\u03c1\u03cc\u03c7\u03bf\u03c5 \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03b9\u03ce\u03bd0.",
 		"xh": "Umqalisi wesi sicelo akanikelanga ngepharamitha ye-RelayState apho kufanele kuyiwe khona.",
 		"zu": "Umqalisi walesi sicelo akazange ahlinzeke ngepharamitha ye-RelayState ebonisa ukuthi kufanele uye kuphi ngokulandelayo.",
+		"st": "Moqadi wa kopo ena ha a fana pharamitha ya RelayState e bontshang hore ho uwe kae ho tloha mona.",
 		"ca": "L’iniciador d’aquesta sol·licitud no ha proporcionat un paràmetre de RelayState que indiqui on seguirà."
 	},
 	"title_PROCESSASSERTION": {
@@ -1090,6 +1117,7 @@
 		"el": "\u0395\u03c3\u03c6\u03b1\u03bb\u03bc\u03ad\u03bd\u03b7 \u03b1\u03c0\u03cc\u03ba\u03c1\u03b9\u03c3\u03b7 \u03b1\u03c0\u03cc \u03c4\u03bf\u03bd \u03c0\u03ac\u03c1\u03bf\u03c7\u03bf \u03c4\u03b1\u03c5\u03c4\u03cc\u03c4\u03b7\u03c4\u03b1\u03c2",
 		"xh": "Impazamo iprosesa impendulo esuka kuMboneleli Wesazisi",
 		"zu": "Iphutha lokucubungula impendulo esuka Kumhlinzeki Kamazisi",
+		"st": "Phoso ho sebetseng karabelo ho tswa ho Mofani wa Boitsebiso",
 		"ca": "S'ha produït un error en processar la resposta del proveïdor d’identitat"
 	},
 	"descr_PROCESSASSERTION": {
@@ -1129,6 +1157,7 @@
 		"el": "\u03a0\u03b1\u03c1\u03bf\u03c5\u03c3\u03b9\u03ac\u03c3\u03c4\u03b7\u03ba\u03b5 \u03c3\u03c6\u03ac\u03bb\u03bc\u03b1 \u03ba\u03b1\u03c4\u03ac \u03c4\u03b7\u03bd \u03b5\u03c0\u03b5\u03be\u03b5\u03c1\u03b3\u03b1\u03c3\u03af\u03b1 \u03c4\u03b7\u03c2 \u03b1\u03c0\u03ac\u03bd\u03c4\u03b7\u03c3\u03b7\u03c2 \u03b1\u03c0\u03cc \u03c4\u03bf\u03bd \u03c0\u03ac\u03c1\u03bf\u03c7\u03bf \u03c4\u03b1\u03c5\u03c4\u03cc\u03c4\u03b7\u03c4\u03b1\u03c2.",
 		"zu": "Asizange samukele impendulo ethunyelwe ukusuka Kumhlinzeki Kamazisi.",
 		"xh": "Asiyamkelanga impendulo ethunyelwe ukusuka kuMboneleli Wesazisi.",
+		"st": "Ha re a amohela karabelo ho tswa ho Mofani wa Boitsebiso.",
 		"ca": "La resposta enviada pel proveïdor d’identitat no ha estat acceptada."
 	},
 	"title_PROCESSAUTHNREQUEST": {
@@ -1168,6 +1197,7 @@
 		"el": "\u0395\u03c3\u03c6\u03b1\u03bb\u03bc\u03ad\u03bd\u03bf \u03b1\u03af\u03c4\u03b7\u03bc\u03b1 \u03b1\u03c0\u03cc \u03c4\u03bf\u03bd \u03c0\u03ac\u03c1\u03bf\u03c7\u03bf \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03b9\u03ce\u03bd",
 		"xh": "Impazamo iprosesa isicelo esisuka kuMboneleli Wenkonzo",
 		"zu": "Iphutha lokucubungula isicelo esisuka Kumhlinzeki Wesevisi",
+		"st": "Phoso ho sebetseng kopo ho tswa ho Mofani wa Tshebeletso",
 		"ca": "S'ha produït un error en processar la sol·licitud del proveïdor de serveis"
 	},
 	"descr_PROCESSAUTHNREQUEST": {
@@ -1207,6 +1237,7 @@
 		"el": "\u03a0\u03b1\u03c1\u03bf\u03c5\u03c3\u03b9\u03ac\u03c3\u03c4\u03b7\u03ba\u03b5 \u03c3\u03c6\u03ac\u03bb\u03bc\u03b1 \u03ba\u03b1\u03c4\u03ac \u03c4\u03b7\u03bd \u03b5\u03c0\u03b5\u03be\u03b5\u03c1\u03b3\u03b1\u03c3\u03af\u03b1 \u03c4\u03bf\u03c5 \u03b1\u03b9\u03c4\u03ae\u03bc\u03b1\u03c4\u03bf\u03c2 \u03c4\u03b1\u03c5\u03c4\u03bf\u03c0\u03bf\u03af\u03b7\u03c3\u03b7\u03c2 \u03c0\u03bf\u03c5 \u03ad\u03bb\u03b1\u03b2\u03b5 \u03bf \u03c0\u03ac\u03c1\u03bf\u03c7\u03bf\u03c2 \u03c4\u03b1\u03c5\u03c4\u03cc\u03c4\u03b7\u03c4\u03b1\u03c2 \u03b1\u03c0\u03cc \u03c4\u03bf\u03bd \u03c0\u03ac\u03c1\u03bf\u03c7\u03bf \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03b9\u03ce\u03bd.",
 		"zu": "Lo Mhlinzeki Kamazisi uthole Isicelo Sokuqinisekisa ukusuka Kumhlinzeki Wesevisi, kodw,a kuvele iphutha ngenkathi ezama ukucubungula isicelo.",
 		"xh": "Lo Mboneleli Wesazisi ufumene Isicelo Songqinisiso esisuka kuMboneleli Wenkonzo, kodwa kwenzeke impazamo xa kuzanywa ukuprosesa isicelo.",
+		"st": "Mofani enwa wa Boitsebiso o fumane Kopo ya Netefatso ho tswa ho Mofani wa Tshebeletso, empa ho bile le phoso ha ho leka ho fihlellwa kopo.",
 		"ca": "Aquest proveïdor d’identitat ha rebut una sol·licitud d’autenticació d’un proveïdor de serveis, però s’ha produït un error en intentar processar la sol·licitud."
 	},
 	"title_SLOSERVICEPARAMS": {
@@ -1246,6 +1277,7 @@
 		"el": "\u03a3\u03c6\u03ac\u03bb\u03bc\u03b1 \u03ba\u03b1\u03c4\u03ac \u03c4\u03b7\u03bd \u03c0\u03c1\u03cc\u03c3\u03b2\u03b1\u03c3\u03b7 \u03c3\u03c4\u03b7 \u03b4\u03b9\u03b5\u03c0\u03b1\u03c6\u03ae SingleLogoutService",
 		"zu": "Awukho umlayezo we-SAML onikeziwe",
 		"xh": "Akukho myalezo we-SAML unikelweyo",
+		"st": "Ha ho molaetsa wa SAML o fanweng",
 		"ca": "No s’ha proporcionat cap missatge SAML"
 	},
 	"descr_SLOSERVICEPARAMS": {
@@ -1285,6 +1317,7 @@
 		"el": "\u039a\u03b1\u03c4\u03ac \u03c4\u03b7\u03bd \u03c0\u03c1\u03cc\u03c3\u03b2\u03b1\u03c3\u03ae \u03c3\u03b1\u03c2 \u03c3\u03c4\u03b7 \u03b4\u03b9\u03b5\u03c0\u03b1\u03c6\u03ae SingleLogoutService \u03c0\u03b1\u03c1\u03b1\u03bb\u03b5\u03af\u03c8\u03b1\u03c4\u03b5 \u03bd\u03b1 \u03c3\u03c5\u03bc\u03c0\u03b5\u03c1\u03b9\u03bb\u03ac\u03b2\u03b5\u03c4\u03b5 \u03bc\u03ae\u03bd\u03c5\u03bc\u03b1 LogoutRequest \u03ae LogoutResponse \u03c4\u03bf\u03c5 \u03c0\u03c1\u03c9\u03c4\u03bf\u03ba\u03cc\u03bb\u03bb\u03bf\u03c5 SAML. \u03a3\u03b7\u03bc\u03b5\u03b9\u03ce\u03c3\u03c4\u03b5 \u03cc\u03c4\u03b9 \u03b1\u03c5\u03c4\u03cc \u03c4\u03bf \u03c4\u03b5\u03bb\u03b9\u03ba\u03cc \u03c3\u03b7\u03bc\u03b5\u03af\u03bf (endpoint) \u03b4\u03b5\u03bd \u03c0\u03c1\u03bf\u03bf\u03c1\u03af\u03b6\u03b5\u03c4\u03b1\u03b9 \u03bd\u03b1 \u03b5\u03af\u03bd\u03b1\u03b9 \u03ac\u03bc\u03b5\u03c3\u03b1 \u03c0\u03c1\u03bf\u03c3\u03b2\u03ac\u03c3\u03b9\u03bc\u03bf.",
 		"zu": "Ufinyelele ukusebenzisana kwe-SingleLogoutService, kodwa awuzange uhlinzeke nge-SAML LogoutRequest noma i-LogoutResponse. Sicela uphawule ukuthi isiphetho asihloselwe ukufinyelelwa ngokuqondile.",
 		"xh": "Ufikelele i-intafeyisi ye-SingleLogoutService, kodwa awukhange unikele i-SAML LogoutRequest okanye i-LogoutResponse. Nceda uqaphele ukuba le ndawo yokuphela ayilungiselelwanga ukuba ifikelelwe ngokuthe ngqo.",
+		"st": "O fihletse tshebeletsano ya SingleLogoutService, empa ha o a fana ka SAML LogoutRequest kapa LogoutResponse. Ka kopo lemoha hore ntlha ena ya bofelo ha e a rerelwa ho fihlellwa ka kotloloho.",
 		"ca": "Heu accedit a la interfície de SingleLogoutService, però no heu proporcionat un missatge SAML de LogoutRequest ni LogoutResponse. Tingueu en compte que en aquest punt no s'hi pot accedir directament."
 	},
 	"title_ACSPARAMS": {
@@ -1324,6 +1357,7 @@
 		"el": "\u03a3\u03c6\u03ac\u03bb\u03bc\u03b1 \u03ba\u03b1\u03c4\u03ac \u03c4\u03b7\u03bd \u03c0\u03c1\u03cc\u03c3\u03b2\u03b1\u03c3\u03b7 \u03c3\u03c4\u03b7 \u03b4\u03b9\u03b5\u03c0\u03b1\u03c6\u03ae AssertionConsumerService",
 		"zu": "Ayikho impendulo ye-SAML enikeziwe",
 		"xh": "Akukho mpendulo ye-SAML inikelweyo",
+		"st": "Ha ho karabelo ya SAML e fanweng",
 		"ca": "No s’ha proporcionat cap resposta de SAML"
 	},
 	"descr_ACSPARAMS": {
@@ -1363,30 +1397,35 @@
 		"el": "\u039a\u03b1\u03c4\u03ac \u03c4\u03b7\u03bd \u03c0\u03c1\u03cc\u03c3\u03b2\u03b1\u03c3\u03ae \u03c3\u03b1\u03c2 \u03c3\u03c4\u03b7 \u03b4\u03b9\u03b5\u03c0\u03b1\u03c6\u03ae AssertionConsumerService  \u03c0\u03b1\u03c1\u03b1\u03bb\u03b5\u03af\u03c8\u03b1\u03c4\u03b5 \u03bd\u03b1 \u03c3\u03c5\u03bc\u03c0\u03b5\u03c1\u03b9\u03bb\u03ac\u03b2\u03b5\u03c4\u03b5 \u03b1\u03c0\u03ac\u03bd\u03c4\u03b7\u03c3\u03b7 \u03c3\u03b5 \u03b1\u03af\u03c4\u03b7\u03bc\u03b1 \u03c4\u03b1\u03c5\u03c4\u03bf\u03c0\u03bf\u03af\u03b7\u03c3\u03b7\u03c2 \u03c4\u03bf\u03c5 \u03c0\u03c1\u03c9\u03c4\u03bf\u03ba\u03cc\u03bb\u03bb\u03bf\u03c5 SAML. \u03a3\u03b7\u03bc\u03b5\u03b9\u03ce\u03c3\u03c4\u03b5 \u03cc\u03c4\u03b9 \u03b1\u03c5\u03c4\u03cc \u03c4\u03bf \u03c4\u03b5\u03bb\u03b9\u03ba\u03cc \u03c3\u03b7\u03bc\u03b5\u03af\u03bf (endpoint) \u03b4\u03b5\u03bd \u03c0\u03c1\u03bf\u03bf\u03c1\u03af\u03b6\u03b5\u03c4\u03b1\u03b9 \u03bd\u03b1 \u03b5\u03af\u03bd\u03b1\u03b9 \u03ac\u03bc\u03b5\u03c3\u03b1 \u03c0\u03c1\u03bf\u03c3\u03b2\u03ac\u03c3\u03b9\u03bc\u03bf.",
 		"zu": "Ufinyelele ukusebenzisana Kwesevisi Yomthengi Yesimemezelo, kodwa awuzange uhlinzeke Ngempendulo Yokuqinisekisa ye-SAML. Sicela uphawule ukuthi isiphetho asihloselwe ukufinyelelwa ngokuqondile.",
 		"xh": "Ufikelele i-intafeyisi ye-Assertion Consumer Service, kodwa awukhange unikele iMpendulo Yongqinisiso ye-SAML. Nceda uqaphele ukuba le ndawo yokuphela ayilungiselelwanga ukuba ifikelelwe ngokuthe ngqo.",
+		"st": "O fihletse kopano ya Tiiso ya Tshebeletso ya Bareki, empa ha o a fana ka Karabelo ya Netefatso ya SAML. Ka kopo lemoha hore ntlha ena ya bofelo ha e a rerelwa ho fihlellwa ka kotloloho.",
 		"ca": "Heu accedit a la interfície Assertion Consumer Service però no heu proporcionat una resposta d’autenticació SAML. Tingueu en compte que en aquest punt no s'hi pot accedir directament."
 	},
 	"title_SSOPARAMS": {
 		"zh-tw": "\u672a\u63d0\u4f9b SAML \u8acb\u6c42",
 		"zu": "Asikho isicelo se-SAML esinikeziwe",
 		"xh": "Akukho sicelo se-SAML sinikelweyo",
+		"st": "Ha ho kopo ya SAML e fanweng",
 		"ca": "No s’ha proporcionat cap sol·licitud SAML"
 	},
 	"descr_SSOPARAMS": {
 		"zh-tw": "\u60a8\u9023\u7d50\u55ae\u4e00\u7c3d\u5165\u670d\u52d9\u4ecb\u9762\uff0c\u4f46\u672a\u63d0\u4f9b\u4e00\u500b SAML \u9a57\u8b49\u8acb\u6c42\u3002\u8acb\u6ce8\u610f\uff0c\u8a72\u7aef\u9ede\u4e26\u975e\u76f4\u63a5\u9023\u7dda\u3002",
 		"xh": "Ufikelele i-intafeyisi ye-Single Sign On Service, kodwa awukhange unikele iMpendulo Yongqinisiso ye-SAML. Nceda uqaphele ukuba le ndawo yokuphela ayilungiselelwanga ukuba ifikelelwe ngokuthe ngqo.",
 		"zu": "Ufinyelele ukusebenzisana Kwesevisi Yokubhalisa Okukodwa, kodwa awuzange uhlinzeke Ngempendulo Yokuqinisekisa ye-SAML. Sicela uphawule ukuthi isiphetho asihloselwe ukufinyelelwa ngokuqondile.",
+		"st": "O fihletse tshebeletsano ya Tshaeno ya Hang, empa ha o a fan aka Kopo ya Netefatso ya SAML. Ka kopo lemoha hore ntlha ena ya bofelo ha e a rerelwa ho fihlellwa ka kotloloho.",
 		"ca": "Heu accedit a la interfície del servei d’inici de sessió únic, però no heu proporcionat una sol·licitud d’autenticació SAML. Tingueu en compte que en aquest punt no s'hi pot accedir directament."
 	},
 	"title_ARSPARAMS": {
 		"zh-tw": "\u672a\u63d0\u4f9b SAML \u8a0a\u606f",
 		"zu": "Awukho umlayezo we-SAML onikeziwe",
 		"xh": "Akukho myalezo we-SAML unikelweyo",
+		"st": "Ha ho molaetsa wa SAML o fanweng",
 		"ca": "No s’ha proporcionat cap missatge SAML"
 	},
 	"descr_ARSPARAMS": {
 		"zh-tw": "\u60a8\u9023\u7d50\u4eba\u5de5\u8655\u7406\u670d\u52d9\u4ecb\u9762\uff0c\u4f46\u672a\u63d0\u4f9b SAML \u4eba\u5de5\u8655\u7406\u670d\u52d9\u8a0a\u606f\u3002\u8acb\u6ce8\u610f\uff0c\u8a72\u7aef\u9ede\u4e26\u975e\u76f4\u63a5\u9023\u7dda\u3002",
 		"xh": "Ufikelele i-intafeyisi ye-Artifact Resolution Service, kodwa awukhange unikrele umyalezo we-SAML ArtifactResolve. Nceda uqaphele ukuba le ndawo yokuphela ayilungiselelwanga ukuba ifikelelwe ngokuthe ngqo.",
 		"zu": "Ufinyelele ukusebenzisana Kwesevisi Yokucaciswa Kobuciko, kodwa awuzange uhlinzeke umlayezo we-SAML ArtifactResolve. Sicela uphawule ukuthi isiphetho asihloselwe ukufinyelelwa ngokuqondile.",
+		"st": "O fihletse kopano ya Tshebeletso ya Tlhakiso ya Athifekte, empa ha o a fana ka molaetsa wa SAML ArtifactResolve. Ka kopo lemoha hore ntlha ena ya bofelo ha e a rerelwa ho fihlellwa ka kotloloho.",
 		"ca": "Heu accedit a la interfície del servei de resolució Artifact, però no heu proporcionat un missatge d’ArtifactResolve de SAML. Tingueu en compte que en aquest punt no s'hi pot accedir directament."
 
 	},
@@ -1427,6 +1466,7 @@
 		"el": "\u03a3\u03c6\u03ac\u03bb\u03bc\u03b1 CAS",
 		"xh": "Impazamo ye-CAS",
 		"zu": "Iphutha Le-CAS",
+		"st": "Phoso ya CAS",
 		"ca": "Error CAS"
 	},
 	"descr_CASERROR": {
@@ -1466,6 +1506,7 @@
 		"el": "\u03a0\u03b1\u03c1\u03bf\u03c5\u03c3\u03b9\u03ac\u03c3\u03c4\u03b7\u03ba\u03b5 \u03c3\u03c6\u03ac\u03bb\u03bc\u03b1 \u03ba\u03b1\u03c4\u03ac \u03c4\u03b7\u03bd \u03b5\u03c0\u03b9\u03ba\u03bf\u03b9\u03bd\u03c9\u03bd\u03af\u03b1 \u03bc\u03b5 \u03c4\u03bf\u03bd \u03b5\u03be\u03c5\u03c0\u03b7\u03c1\u03b5\u03c4\u03b7\u03c4\u03ae CAS.",
 		"zu": "Iphutha ngenkathi kuxhunyanwa neseva ye-CAS.",
 		"xh": "Impazamo xa kunxibelelwana neseva ye-CAS.",
+		"st": "Phoso e bile teng ka seva ya CAS.",
 		"ca": "S'ha produït un error al intentar connectar amb el servidor CAS."
 	},
 	"title_CONFIG": {
@@ -1505,6 +1546,7 @@
 		"el": "\u03a3\u03c6\u03ac\u03bb\u03bc\u03b1 \u03c1\u03c5\u03b8\u03bc\u03af\u03c3\u03b5\u03c9\u03bd",
 		"zu": "Iphutha lomiso",
 		"xh": "Impazamo yolungiselelo",
+		"st": "Phoso ya Netefatso",
 		"ca": "Error de configuració"
 	},
 	"descr_CONFIG": {
@@ -1544,6 +1586,7 @@
 		"el": "\u03a0\u03b1\u03c1\u03bf\u03c5\u03c3\u03b9\u03ac\u03c3\u03c4\u03b7\u03ba\u03b5 \u03c3\u03c6\u03ac\u03bb\u03bc\u03b1 \u03c1\u03c5\u03b8\u03bc\u03af\u03c3\u03b5\u03c9\u03bd \u03c4\u03bf\u03c5 SimpleSAMLphp. \u0395\u03c0\u03b9\u03ba\u03bf\u03b9\u03bd\u03c9\u03bd\u03ae\u03c3\u03c4\u03b5 \u03bc\u03b5 \u03c4\u03bf\u03bd \u03b4\u03b9\u03b1\u03c7\u03b5\u03b9\u03c1\u03b9\u03c3\u03c4\u03ae \u03c4\u03b7\u03c2 \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b1\u03c2.",
 		"xh": "I-SimpleSAMLphp ibonakala ingalungiselelwanga kakuhle.",
 		"zu": "I-SimpleSAMLphp ibonakala ingamisiwe ngendlela efanele.",
+		"st": "SimpleSAMLphp e bonahala e hlophisitswe hampe.",
 		"ca": "SimpleSAMLphp sembla estar mal configurat."
 	},
 	"title_NOTSET": {
@@ -1583,6 +1626,7 @@
 		"el": "\u03a3\u03c6\u03ac\u03bb\u03bc\u03b1 \u03ba\u03c9\u03b4\u03b9\u03ba\u03bf\u03cd \u03c0\u03c1\u03cc\u03c3\u03b2\u03b1\u03c3\u03b7\u03c2",
 		"xh": "Iphaswedi ayisetwanga",
 		"zu": "Iphasiwedi ayisethiwe",
+		"st": "Phasewete ha e a setwa",
 		"ca": "No s'ha definit la contrasenya"
 	},
 	"descr_NOTSET": {
@@ -1622,6 +1666,7 @@
 		"el": "\u03a7\u03c1\u03b7\u03c3\u03b9\u03bc\u03bf\u03c0\u03bf\u03b9\u03b5\u03af\u03c4\u03b1\u03b9 \u03b7 \u03c0\u03c1\u03bf\u03ba\u03b1\u03b8\u03bf\u03c1\u03b9\u03c3\u03bc\u03ad\u03bd\u03b7 \u03c4\u03b9\u03bc\u03ae \u03c4\u03bf\u03c5 \u03ba\u03c9\u03b4\u03b9\u03ba\u03bf\u03cd \u03c0\u03c1\u03cc\u03c3\u03b2\u03b1\u03c3\u03b7\u03c2. \u03a0\u03b1\u03c1\u03b1\u03ba\u03b1\u03bb\u03bf\u03cd\u03bc\u03b5 \u03b5\u03c0\u03b5\u03be\u03b5\u03c1\u03b3\u03b1\u03c3\u03c4\u03b5\u03af\u03c4\u03b5 \u03c4\u03bf \u03b1\u03c1\u03c7\u03b5\u03af\u03bf \u03c1\u03c5\u03b8\u03bc\u03af\u03c3\u03b5\u03c9\u03bd.",
 		"xh": "Iphaswedi ekulungiselelo (auth.adminpassword) ayitshintshwanga ukusuka kwixabiso lesiseko. Nceda uhlele ifayile yolungiselelo.",
 		"zu": "Iphasiwedi kumiso (auth.adminpassword) ayishintshiwe kunani elizenzakalelayo. Sicela uhlele ifayela lomiso.",
+		"st": "Phasewete ya tlhophiso (auth.adminpassword) ha e a fetolwa ho tswa palong ya tlwaelo. Ka kopo edita faele ya tlhophiso.",
 		"ca": "La contrasenya de la configuració (auth.adminpassword) no s'ha canviat del valor predeterminat. Editeu el fitxer de configuració."
 	},
 	"title_NOTVALIDCERT": {
@@ -1661,6 +1706,7 @@
 		"el": "\u039c\u03b7 \u03ad\u03b3\u03ba\u03c5\u03c1\u03bf \u03c0\u03b9\u03c3\u03c4\u03bf\u03c0\u03bf\u03b9\u03b7\u03c4\u03b9\u03ba\u03cc",
 		"xh": "Isatifikethi esingasebenziyo",
 		"zu": "Isitifiketi esingalungile",
+		"st": "Setifikeiti se sa tshwaneleheng",
 		"ca": "Certificat no vàlid"
 	},
 	"descr_NOTVALIDCERT": {
@@ -1700,6 +1746,7 @@
 		"el": "\u03a0\u03b1\u03c1\u03bf\u03c5\u03c3\u03b9\u03ac\u03c3\u03c4\u03b7\u03ba\u03b5 \u03c3\u03c6\u03ac\u03bb\u03bc\u03b1 \u03bb\u03cc\u03b3\u03c9 \u03bc\u03b7 \u03ad\u03b3\u03ba\u03c5\u03c1\u03bf\u03c5 \u03c0\u03b9\u03c3\u03c4\u03bf\u03c0\u03bf\u03b9\u03b7\u03c4\u03b9\u03ba\u03bf\u03cd.",
 		"zu": "Awuzange wethule isitifiketi esilungile.",
 		"xh": "Awukhange uzise isatifikethi esisebenzayo.",
+		"st": "Ha o a fana ka setifikeiti se nepahetseng.",
 		"ca": "No heu presentat un certificat vàlid."
 	},
 	"errorreport_header": {
@@ -1738,6 +1785,7 @@
 		"el": "\u0397 \u03b1\u03bd\u03b1\u03c6\u03bf\u03c1\u03ac \u03c3\u03c6\u03ac\u03bb\u03bc\u03b1\u03c4\u03bf\u03c2 \u03c3\u03c4\u03ac\u03bb\u03b8\u03b7\u03ba\u03b5",
 		"zu": "Umbiko wephutha uthunyelwe",
 		"xh": "Ingxelo yempazamo ithunyelwe",
+		"st": "Tlaleho ya phoso e rometswe",
 		"ca": "S'ha enviat un informe d'error"
 	},
 	"errorreport_text": {
@@ -1776,6 +1824,7 @@
 		"el": "\u0397 \u03b1\u03c0\u03bf\u03c3\u03c4\u03bf\u03bb\u03ae \u03c4\u03b7\u03c2 \u03b1\u03bd\u03b1\u03c6\u03bf\u03c1\u03ac\u03c2 \u03c3\u03c6\u03ac\u03bb\u03bc\u03b1\u03c4\u03bf\u03c2 \u03c3\u03c4\u03bf\u03c5\u03c2 \u03b4\u03b9\u03b1\u03c7\u03b5\u03b9\u03c1\u03b9\u03c3\u03c4\u03ad\u03c2 \u03bf\u03bb\u03bf\u03ba\u03bb\u03b7\u03c1\u03ce\u03b8\u03b7\u03ba\u03b5.",
 		"xh": "Ingxelo yempazamo ithunyelwe kubalawuli.",
 		"zu": "Umbiko wephutha uthunyelwe kubalawuli.",
+		"st": "Tlaleho ya phoso e rometswe ho batsamaisi.",
 		"ca": "L’informe d’errors s’ha enviat als administradors."
 	},
 	"title_LOGOUTINFOLOST": {
@@ -1814,6 +1863,7 @@
 		"el": "\u03a3\u03c6\u03ac\u03bb\u03bc\u03b1 \u03b1\u03c0\u03bf\u03c3\u03cd\u03bd\u03b4\u03b5\u03c3\u03b7\u03c2",
 		"zu": "Ulwazi lokuphuma lulahlekile",
 		"xh": "Inkcazelo yokuphuma ilahlekile",
+		"st": "Tlhahisoleseding ya ho tswa e lahlehile",
 		"ca": "S'ha perdut la informació del tancament de sessió"
 	},
 	"descr_LOGOUTINFOLOST": {
@@ -1852,6 +1902,7 @@
 		"el": "\u039f\u03b9 \u03c0\u03bb\u03b7\u03c1\u03bf\u03c6\u03bf\u03c1\u03af\u03b5\u03c2 \u03c3\u03c7\u03b5\u03c4\u03b9\u03ba\u03ac \u03bc\u03b5 \u03c4\u03b7\u03bd \u03b1\u03c0\u03bf\u03c3\u03cd\u03bd\u03b4\u03b5\u03c3\u03b7 \u03ad\u03c7\u03bf\u03c5\u03bd \u03c7\u03b1\u03b8\u03b5\u03af. \u0398\u03b1 \u03c0\u03c1\u03ad\u03c0\u03b5\u03b9 \u03bd\u03b1 \u03b5\u03c0\u03b9\u03c3\u03c4\u03c1\u03ad\u03c8\u03b5\u03c4\u03b5 \u03c3\u03c4\u03b7\u03bd \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b1 \u03b1\u03c0\u03cc \u03c4\u03b7\u03bd \u03bf\u03c0\u03bf\u03af\u03b1 \u03c0\u03c1\u03bf\u03c3\u03c0\u03b1\u03b8\u03b5\u03af\u03c4\u03b5 \u03bd\u03b1 \u03b1\u03c0\u03bf\u03c3\u03c5\u03bd\u03b4\u03b5\u03b8\u03b5\u03af\u03c4\u03b5 \u03ba\u03b1\u03b9 \u03bd\u03b1 \u03c0\u03c1\u03bf\u03c3\u03c0\u03b1\u03b8\u03ae\u03c3\u03b5\u03c4\u03b5 \u03b5\u03ba \u03bd\u03ad\u03bf\u03c5. \u0391\u03c5\u03c4\u03cc \u03c4\u03bf \u03c3\u03c6\u03ac\u03bb\u03bc\u03b1 \u03bc\u03c0\u03bf\u03c1\u03b5\u03af \u03bd\u03b1 \u03c0\u03b1\u03c1\u03bf\u03c5\u03c3\u03b9\u03b1\u03c3\u03c4\u03b5\u03af \u03b1\u03bd \u03b7 \u03b9\u03c3\u03c7\u03cd\u03c2 \u03c4\u03c9\u03bd \u03c0\u03bb\u03b7\u03c1\u03bf\u03c6\u03bf\u03c1\u03b9\u03ce\u03bd \u03c3\u03c7\u03b5\u03c4\u03b9\u03ba\u03ac \u03bc\u03b5 \u03c4\u03b7\u03bd \u03b1\u03c0\u03bf\u03c3\u03cd\u03bd\u03b4\u03b5\u03c3\u03b7 \u03ad\u03c7\u03b5\u03b9 \u03bb\u03ae\u03be\u03b5\u03b9. \u039f\u03b9 \u03c0\u03bb\u03b7\u03c1\u03bf\u03c6\u03bf\u03c1\u03af\u03b5\u03c2 \u03b1\u03c5\u03c4\u03ad\u03c2 \u03b1\u03c0\u03bf\u03b8\u03b7\u03ba\u03b5\u03cd\u03b5\u03c4\u03b1\u03b9 \u03b3\u03b9\u03b1 \u03c0\u03b5\u03c1\u03b9\u03bf\u03c1\u03b9\u03c3\u03bc\u03ad\u03bd\u03bf \u03c7\u03c1\u03bf\u03bd\u03b9\u03ba\u03cc \u03b4\u03b9\u03ac\u03c3\u03c4\u03b7\u03bc\u03b1 - \u03c3\u03c5\u03bd\u03ae\u03b8\u03c9\u03c2 \u03bc\u03b5\u03c1\u03b9\u03ba\u03ce\u03bd \u03c9\u03c1\u03ce\u03bd. \u0391\u03c5\u03c4\u03cc \u03c3\u03c5\u03bd\u03ae\u03b8\u03c9\u03c2 \u03b5\u03c0\u03b1\u03c1\u03ba\u03b5\u03af \u03b3\u03b9\u03b1 \u03bc\u03b9\u03b1 \u03ba\u03b1\u03bd\u03bf\u03bd\u03b9\u03ba\u03ae \u03bb\u03b5\u03b9\u03c4\u03bf\u03c5\u03c1\u03b3\u03af\u03b1 \u03b1\u03c0\u03bf\u03c3\u03cd\u03bd\u03b4\u03b5\u03c3\u03b7\u03c2, \u03c3\u03c5\u03bd\u03b5\u03c0\u03ce\u03c2 \u03c3\u03c4\u03b7\u03bd \u03c0\u03c1\u03bf\u03ba\u03b5\u03b9\u03bc\u03ad\u03bd\u03b7 \u03c0\u03b5\u03c1\u03af\u03c0\u03c4\u03c9\u03c3\u03b7 \u03c4\u03bf \u03c3\u03c6\u03ac\u03bb\u03bc\u03b1 \u03bc\u03c0\u03bf\u03c1\u03b5\u03af \u03bd\u03b1 \u03c5\u03c0\u03bf\u03b4\u03b5\u03b9\u03ba\u03bd\u03cd\u03b5\u03b9 \u03ba\u03ac\u03c0\u03bf\u03b9\u03bf \u03ac\u03bb\u03bb\u03bf \u03b8\u03ad\u03bc\u03b1 \u03bc\u03b5 \u03c4\u03b9\u03c2 \u03c1\u03c5\u03b8\u03bc\u03af\u03c3\u03b5\u03b9\u03c2. \u0395\u03ac\u03bd \u03c4\u03bf \u03c0\u03c1\u03cc\u03b2\u03bb\u03b7\u03bc\u03b1 \u03c0\u03b1\u03c1\u03b1\u03bc\u03ad\u03bd\u03b5\u03b9, \u03b5\u03c0\u03b9\u03ba\u03bf\u03b9\u03bd\u03c9\u03bd\u03ae\u03c3\u03c4\u03b5 \u03bc\u03b5 \u03c4\u03bf\u03bd \u03c0\u03ac\u03c1\u03bf\u03c7\u03bf \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03b9\u03ce\u03bd.",
 		"zu": "Ulwazi olumayelana nomsebenzi wokuphuma wamanje lulahlekile. Kufanele ubuyele kusevisi obuzama ukuphuma kuyo futhi uzame ukuphuma futhi. Leli phutha lingabangelwa ukuphelelwa isikhathi kolwazi lokuphuma. Ulwazi lokuphuma lugcinwa isikhathi esilinganiselwe - ngokuvamile amahora ambalwa. Lokhu kude kunanoma yimuphi umsebenzi wokuphuma ovamile, ngakho leli phutha lingase libonise elinye iphutha ngomiso. Uma inkinga iphikelela, thinta umhlinzeki wakho wesevisi.",
 		"xh": "Inkcazelo malunga nomsebenzi wokuphuma wangoku ilahlekile. Ufanele ubuyele kwinkonzo ubuzama ukuphuma kuyo uzame ukuphuma kwakhona. Le mpazamo inokubangelwa kukuphelelwa kwenkcazelo yokuphuma. Inkcazelo yokuphuma igcinwa ixesha elithile - ngokuqhelekileyo iiyure eziliqela. Oku kuthatha ixesha elide kunawo nawuphi na umsebenzi wokuphuma ofanele ulithathe, ngoko le mpazamo isenokubonisa enye impazamo ngolungiselelo. Ukuba ingxaki iyaqhubeka, qhagamshela umboneleli wenkonzo wakho.",
+		"st": "Tlhahisoleseding e mabapi le tshebetos ya ho tswa ya hajwale e lahlehile. O tlameha ho kgutlela tshebeletsong eo o neng o leka ho tswa ho yona le ho leka ho tswa hape. Phoso ena e ka bakwa ke phelo nako ya tlhahisoleseding ya ho tswa. Tlhahisoleseding ya ho tswa e bolokwa nako e lekantsweng - ka tlwaelo ke palo ya dihora. Sena se setelele ho feta nako eo tshebetso efe kapa efe ya tlwaelo ya ho tswa e tlamehang ho e nka, ka hona phoso ena e ka nna ya bontsha phoso e nngwe ka tlhophiso esele. Haeba bothata bo phehella, ikopanye le mofani wa tshebeletso wa hao.",
 		"ca": "S'ha perdut la informació sobre el tancament de sessió actual. Heu de tornar al servei del qual esteu intentant desconnectar i provar de sortir de nou. Aquest error pot ser causat per l’expiració de la informació del tancament de sessió. La informació de tancament de sessió s’emmagatzema per un període limitat de temps, normalment un nombre d'hores. Això és més llarg del que hauria de tenir qualsevol operació de tancament de sessió normal, de manera que aquest error pot indicar algun altre error amb la configuració. Si el problema continua, poseu-vos en contacte amb el vostre proveïdor de serveis."
 	},
 	"title_UNHANDLEDEXCEPTION": {
@@ -1890,6 +1941,7 @@
 		"el": "\u0391\u03bd\u03b5\u03c0\u03af\u03bb\u03c5\u03c4\u03b7 \u03b5\u03be\u03b1\u03af\u03c1\u03b5\u03c3\u03b7",
 		"xh": "Isinxaxhi esingasingathwanga",
 		"zu": "Okuhlukile okungasingathiwe",
+		"st": "Mokgelo o sa rarollwang",
 		"ca": "Excepció no controlada"
 	},
 	"descr_UNHANDLEDEXCEPTION": {
@@ -1928,6 +1980,7 @@
 		"el": "\u03a0\u03b1\u03c1\u03bf\u03c5\u03c3\u03b9\u03ac\u03c3\u03c4\u03b7\u03ba\u03b5 \u03b1\u03bd\u03b5\u03c0\u03af\u03bb\u03c5\u03c4\u03b7 \u03b5\u03be\u03b1\u03af\u03c1\u03b5\u03c3\u03b7",
 		"xh": "Isinxaxhi esingasingathwanga silahliwe.",
 		"zu": "Okuhlukile okungasingathiwe kulahliwe.",
+		"st": "Kgeloho e sa rarollwang e lahlilwe.",
 		"ca": "S'ha enviat una excepció no controlada."
 	},
 	"title_NOTFOUND": {
@@ -1966,6 +2019,7 @@
 		"el": "\u0397 \u03c3\u03b5\u03bb\u03af\u03b4\u03b1 \u03b4\u03b5\u03bd \u03b2\u03c1\u03ad\u03b8\u03b7\u03ba\u03b5",
 		"xh": "Ikhasi alifunyenwanga",
 		"zu": "Ikhasi alitholakali",
+		"st": "Leqephe ha le a fumanwa",
 		"ca": "Pàgina no trobada"
 	},
 	"descr_NOTFOUND": {
@@ -2004,6 +2058,7 @@
 		"el": "\u0397 \u03c3\u03b5\u03bb\u03af\u03b4\u03b1 \u03c0\u03bf\u03c5 \u03b6\u03b7\u03c4\u03ae\u03c3\u03b1\u03c4\u03b5 \u03c3\u03c4\u03b7 \u03b4\u03b9\u03b5\u03cd\u03b8\u03c5\u03bd\u03c3\u03b7 %URL% \u03b4\u03b5\u03bd \u03b2\u03c1\u03ad\u03b8\u03b7\u03ba\u03b5.",
 		"zu": "Ikhasi elinikeziwe alitholakalanga. I-URL ibithi: %URL%",
 		"xh": "Ikhasi elinikelweyo alifunyenwanga. I-URL ngu: %URL%",
+		"st": "Leqephe le fanweng ha le a fumanwa. URL e bile: %URL%",
 		"ca": "No s’ha trobat la pàgina indicada. L’URL és: %URL%"
 	},
 	"title_NOTFOUNDREASON": {
@@ -2042,6 +2097,7 @@
 		"el": "\u0397 \u03c3\u03b5\u03bb\u03af\u03b4\u03b1 \u03b4\u03b5\u03bd \u03b2\u03c1\u03ad\u03b8\u03b7\u03ba\u03b5",
 		"xh": "Ikhasi alifunyenwanga",
 		"zu": "Ikhasi alitholakali",
+		"st": "Leqephe ha le a fumanwa",
 		"ca": "Pàgina no trobada"
 	},
 	"descr_NOTFOUNDREASON": {
@@ -2080,6 +2136,7 @@
 		"el": "\u0397 \u03c3\u03b5\u03bb\u03af\u03b4\u03b1 \u03c0\u03bf\u03c5 \u03b6\u03b7\u03c4\u03ae\u03c3\u03b1\u03c4\u03b5 \u03c3\u03c4\u03b7 \u03b4\u03b9\u03b5\u03cd\u03b8\u03c5\u03bd\u03c3\u03b7 %URL% \u03b4\u03b5\u03bd \u03b2\u03c1\u03ad\u03b8\u03b7\u03ba\u03b5: %REASON%",
 		"zu": "Ikhasi elinikeziwe alitholakalanga. Isizathu besithi: %REASON%  I-URL ibithi: %URL%",
 		"xh": "Ikhasi elinikelweyo alifunyenwanga. Isizathu sesi: %REASON%  I-URL ngu: %URL%",
+		"st": "Leqephe le fanweng ha le a fumanwa. Lebaka e bile: %LEBAKA%  URL e bile: %URL%",
 		"ca": "No s’ha trobat la pàgina indicada. El motiu és: %REASON%. L’URL és: %URL%"
 	},
 	"title_BADREQUEST": {
@@ -2118,6 +2175,7 @@
 		"el": "\u0395\u03c3\u03c6\u03b1\u03bb\u03bc\u03ad\u03bd\u03bf \u03b1\u03af\u03c4\u03b7\u03bc\u03b1",
 		"zu": "Kutholwe umlayezo ongalungile",
 		"xh": "Kufunyenwe isicelo esibi",
+		"st": "Kopo e mpe e amohetswe",
 		"ca": "S'ha rebut una petició incorrecta"
 	},
 	"descr_BADREQUEST": {
@@ -2155,6 +2213,7 @@
 		"el": "\u03a0\u03b1\u03c1\u03bf\u03c5\u03c3\u03b9\u03ac\u03c3\u03c4\u03b7\u03ba\u03b5 \u03c3\u03c6\u03ac\u03bb\u03bc\u03b1 \u03ba\u03b1\u03c4\u03ac \u03c4\u03b7\u03bd \u03b5\u03c0\u03b5\u03be\u03b5\u03c1\u03b3\u03b1\u03c3\u03af\u03b1 \u03c4\u03bf\u03c5 \u03b1\u03b9\u03c4\u03ae\u03bc\u03b1\u03c4\u03bf\u03c2: %REASON%",
 		"zu": "Kukhona iphutha kusicelo saleli khasi. Isizathu besithi: %REASON%",
 		"xh": "Kukho impazamo kwisicelo kweli khasi. Isizathu sesi: %REASON%",
+		"st": "Ho na le phoso kopong e leqepheng lena. Lebaka e bile: %REASON%",
 		"ca": "Hi ha un error en la sol·licitud d’aquesta pàgina. El motiu és: %REASON%"
 	},
 	"title_WRONGUSERPASS": {
@@ -2193,6 +2252,7 @@
 		"el": "\u03a4\u03bf \u03cc\u03bd\u03bf\u03bc\u03b1 \u03c7\u03c1\u03ae\u03c3\u03c4\u03b7 \u03ae \u03bf \u03ba\u03c9\u03b4\u03b9\u03ba\u03cc\u03c2 \u03c0\u03c1\u03cc\u03c3\u03b2\u03b1\u03c3\u03b7\u03c2 \u03b5\u03af\u03bd\u03b1\u03b9 \u03bb\u03ac\u03b8\u03bf\u03c2",
 		"zu": "Igama lomsebenzisi elingalungile noma iphasiwedi",
 		"xh": "Igama lomsebenzisi okanye iphaswedi engachanekanga",
+		"st": "Lebitso la mosebedisi kapa phasewete e fosahetseng",
 		"ca": "Nom d'usuari o contrasenya incorrecta"
 	},
 	"descr_WRONGUSERPASS": {
@@ -2230,6 +2290,7 @@
 		"el": "\u039f \u03c3\u03c5\u03bd\u03b4\u03c5\u03b1\u03c3\u03bc\u03cc\u03c2 \u03bf\u03bd\u03cc\u03bc\u03b1\u03c4\u03bf\u03c2 \u03c7\u03c1\u03ae\u03c3\u03c4\u03b7 \u03ba\u03b1\u03b9 \u03ba\u03c9\u03b4\u03b9\u03ba\u03bf\u03cd \u03c0\u03c1\u03cc\u03c3\u03b2\u03b1\u03c3\u03b7\u03c2 \u03b4\u03b5\u03bd \u03b5\u03af\u03bd\u03b1\u03b9 \u03c3\u03c9\u03c3\u03c4\u03cc\u03c2. \u03a0\u03b1\u03c1\u03b1\u03ba\u03b1\u03bb\u03ce \u03b5\u03bb\u03ad\u03b3\u03be\u03c4\u03b5 \u03c4\u03b7\u03bd \u03bf\u03c1\u03b8\u03cc\u03c4\u03b7\u03c4\u03b1 \u03c4\u03c9\u03bd \u03c3\u03c4\u03bf\u03b9\u03c7\u03b5\u03af\u03c9\u03bd \u03c3\u03b1\u03c2 \u03ba\u03b1\u03b9 \u03c0\u03c1\u03bf\u03c3\u03c0\u03b1\u03b8\u03ae\u03c3\u03c4\u03b5 \u03be\u03b1\u03bd\u03ac.",
 		"zu": "Kungenzeka ukuthi akekho umsebenzisi onegama lomsebenzisi otholiwe, noma iphasiwedi oyinikezile ayilungile. Sicela uhlole igama lomsebenzisi bese uzame futhi.",
 		"xh": "Kusenokwenzeka akukho msebenzisi unegama lomsebenzisi elinikelweyo ofunyenweyo, okanye iphaswedi oyinikeleyo ayichanekanga. Nceda ujonge igama lomsebenzisi uzame kwakhona.",
+		"st": "Ekaba mosebedisi wa lebitso la mosebedisi le fanweng ha a fumanwe, kapa phasewete eo o e fananeng e fosahetse. Ka kopo hlahloba lebitso la mosebedisi la hao, ebe o leka hape.",
 		"ca": "No s’ha pogut trobar cap usuari amb el nom d’usuari donat, o la contrasenya no és correcta. Comproveu el nom d’usuari i torneu-ho a provar."
 	},
 	"title_RESPONSESTATUSNOSUCCESS": {
@@ -2268,6 +2329,7 @@
 		"el": "\u039b\u03ae\u03c8\u03b7 \u03ba\u03c9\u03b4\u03b9\u03ba\u03bf\u03cd \u03c3\u03c6\u03ac\u03bb\u03bc\u03b1\u03c4\u03bf\u03c2 \u03b1\u03c0\u03cc \u03c4\u03bf\u03bd \u03c0\u03ac\u03c1\u03bf\u03c7\u03bf \u03c4\u03b1\u03c5\u03c4\u03cc\u03c4\u03b7\u03c4\u03b1\u03c2",
 		"zu": "Iphutha litholwe ukusuka Kumhlinzeki Kamazisi",
 		"xh": "Impazamo efunyenwe kuMboneleli Wesazisi",
+		"st": "Phoso e amohetswe ho tswa ho Mofani wa Boitsebiso",
 		"ca": "S'ha rebut un error del proveïdor d’identitats"
 	},
 	"descr_RESPONSESTATUSNOSUCCESS": {
@@ -2306,6 +2368,7 @@
 		"el": "\u039f \u03ba\u03c9\u03b4\u03b9\u03ba\u03cc\u03c2 \u03ba\u03b1\u03c4\u03ac\u03c3\u03c4\u03b1\u03c3\u03b7\u03c2 \u03c0\u03bf\u03c5 \u03c0\u03b5\u03c1\u03b9\u03ad\u03c7\u03b5\u03b9 \u03b7 \u03b1\u03c0\u03ac\u03bd\u03c4\u03b7\u03c3\u03b7 \u03c4\u03bf\u03c5 \u03c0\u03b1\u03c1\u03cc\u03c7\u03bf\u03c5 \u03c4\u03b1\u03c5\u03c4\u03cc\u03c4\u03b7\u03c4\u03b1\u03c2 \u03c5\u03c0\u03bf\u03b4\u03b5\u03b9\u03ba\u03bd\u03cd\u03b5\u03b9 \u03c3\u03c6\u03ac\u03bb\u03bc\u03b1.",
 		"xh": "Umboneleli Wesazisi uphendule ngempazamo. (Ikhowudi yobume kwiMpendulo ye-SAML ayiphumelelanga)",
 		"zu": "Umhlinzeki Womazisi uphendule ngephutha. (Ikhodi yesimo Sempendulo ye-SAML ayizange iphumelele)",
+		"st": "Mofani wa Boitsebiso o arabetse ka phoso. (Khoutu ya boemo Karabelong ya SAML ha e a atleha)",
 		"ca": "El proveïdor d’identitat ha respost amb un error (el codi d'estat de la resposta SAML no ha estat exitós)."
 	},
 	"title_NOCERT": {
@@ -2342,6 +2405,7 @@
 		"el": "\u0394\u03b5\u03bd \u03c5\u03c0\u03ac\u03c1\u03c7\u03b5\u03b9 \u03c0\u03b9\u03c3\u03c4\u03bf\u03c0\u03bf\u03b9\u03b7\u03c4\u03b9\u03ba\u03cc",
 		"xh": "Akukho satifikethi",
 		"zu": "Asikho isitifiketi",
+		"st": "Ha ho setifikeiti",
 		"ca": "Sense certificat"
 	},
 	"descr_NOCERT": {
@@ -2377,6 +2441,7 @@
 		"el": "\u0397 \u03c4\u03b1\u03c5\u03c4\u03bf\u03c0\u03bf\u03af\u03b7\u03c3\u03b7 \u03b1\u03c0\u03ad\u03c4\u03c5\u03c7\u03b5: \u03a4\u03bf \u03c0\u03c1\u03cc\u03b3\u03c1\u03b1\u03bc\u03bc\u03b1 \u03c0\u03b5\u03c1\u03b9\u03ae\u03b3\u03b7\u03c3\u03b7\u03c2 \u03b9\u03c3\u03c4\u03bf\u03cd \u03c0\u03bf\u03c5 \u03c7\u03c1\u03b7\u03c3\u03b9\u03bc\u03bf\u03c0\u03bf\u03b9\u03b5\u03af\u03c4\u03b5 \u03b4\u03b5\u03bd \u03ad\u03c3\u03c4\u03b5\u03b9\u03bb\u03b5 \u03c0\u03b9\u03c3\u03c4\u03bf\u03c0\u03bf\u03b9\u03b7\u03c4\u03b9\u03ba\u03cc.",
 		"zu": "Ukuqinisekisa kuhlulekile: isiphequluli sakho asizange sithumele noma yisiphi isitifiketi",
 		"xh": "Ungqinisiso lusilele: ibhrawuza yakho ayithumelanga nasiphi na isatifikethi",
+		"st": "Netefatso e hlolehile: sebadi sa hao ha se a romela setifikeiti sa letho",
 		"ca": "Ha fallat l’autenticació: el navegador no ha enviat cap certificat"
 	},
 	"title_INVALIDCERT": {
@@ -2413,6 +2478,7 @@
 		"el": "\u039c\u03b7 \u03ad\u03b3\u03ba\u03c5\u03c1\u03bf \u03c0\u03b9\u03c3\u03c4\u03bf\u03c0\u03bf\u03b9\u03b7\u03c4\u03b9\u03ba\u03cc",
 		"xh": "Isatifikethi esingasebenziyo",
 		"zu": "Isifiketi esingalungile",
+		"st": "Setifikeiti se sa nepahalang",
 		"ca": "Certificat no vàlid"
 	},
 	"descr_INVALIDCERT": {
@@ -2448,6 +2514,7 @@
 		"el": "\u0397 \u03c4\u03b1\u03c5\u03c4\u03bf\u03c0\u03bf\u03af\u03b7\u03c3\u03b7 \u03b1\u03c0\u03ad\u03c4\u03c5\u03c7\u03b5: \u03a4\u03bf \u03c0\u03b9\u03c3\u03c4\u03bf\u03c0\u03bf\u03b9\u03b7\u03c4\u03b9\u03ba\u03cc \u03c0\u03bf\u03c5 \u03ad\u03c3\u03c4\u03b5\u03b9\u03bb\u03b5 \u03c4\u03bf \u03c0\u03c1\u03cc\u03b3\u03c1\u03b1\u03bc\u03bc\u03b1 \u03c0\u03b5\u03c1\u03b9\u03ae\u03b3\u03b7\u03c3\u03b7\u03c2 \u03b9\u03c3\u03c4\u03bf\u03cd \u03c0\u03bf\u03c5 \u03c7\u03c1\u03b7\u03c3\u03b9\u03bc\u03bf\u03c0\u03bf\u03b9\u03b5\u03af\u03c4\u03b5 \u03b4\u03b5\u03bd \u03b5\u03af\u03bd\u03b1\u03b9 \u03ad\u03b3\u03ba\u03c5\u03c1\u03bf \u03ae \u03b4\u03b5\u03bd \u03ae\u03c4\u03b1\u03bd \u03b4\u03c5\u03bd\u03b1\u03c4\u03ae \u03b7 \u03b1\u03bd\u03ac\u03b3\u03bd\u03c9\u03c3\u03ae \u03c4\u03bf\u03c5.",
 		"xh": "Ungqinisiso lusilele: isatifikethi esithunyelwe yibhrawuza yakho asisebenzi okanye asikwazi ukufundwa",
 		"zu": "Ukuqinisekisa kuhlulekile: isitifiketi esithunyelwe isiphequluli sakho asivumelekile noma asikwazi ukufundwa",
+		"st": "Netefatso e hlolehile: setifikeiti seo sebadi sa hao se se rometseng ha se a nepahala kapa ha se balehe",
 		"ca": "Ha fallat l’autenticació: el certificat que el navegador ha enviat no és vàlid o no es pot llegir"
 	},
 	"title_UNKNOWNCERT": {
@@ -2484,6 +2551,7 @@
 		"el": "\u0386\u03b3\u03bd\u03c9\u03c3\u03c4\u03bf \u03c0\u03b9\u03c3\u03c4\u03bf\u03c0\u03bf\u03b9\u03b7\u03c4\u03b9\u03ba\u03cc",
 		"zu": "Isitifiketi esingaziwa",
 		"xh": "Isatifikethi esingaziwayo",
+		"st": "Setifikeiti se sa tsejweng",
 		"ca": "Certificat desconegut"
 	},
 	"descr_UNKNOWNCERT": {
@@ -2519,6 +2587,7 @@
 		"el": "\u0397 \u03c4\u03b1\u03c5\u03c4\u03bf\u03c0\u03bf\u03af\u03b7\u03c3\u03b7 \u03b1\u03c0\u03ad\u03c4\u03c5\u03c7\u03b5: \u03a4\u03bf \u03c0\u03b9\u03c3\u03c4\u03bf\u03c0\u03bf\u03b9\u03b7\u03c4\u03b9\u03ba\u03cc \u03c0\u03bf\u03c5 \u03ad\u03c3\u03c4\u03b5\u03b9\u03bb\u03b5 \u03c4\u03bf \u03c0\u03c1\u03cc\u03b3\u03c1\u03b1\u03bc\u03bc\u03b1 \u03c0\u03b5\u03c1\u03b9\u03ae\u03b3\u03b7\u03c3\u03b7\u03c2 \u03b9\u03c3\u03c4\u03bf\u03cd \u03c0\u03bf\u03c5 \u03c7\u03c1\u03b7\u03c3\u03b9\u03bc\u03bf\u03c0\u03bf\u03b9\u03b5\u03af\u03c4\u03b5 \u03b4\u03b5\u03bd \u03ae\u03c4\u03b1\u03bd \u03b4\u03c5\u03bd\u03b1\u03c4\u03cc \u03bd\u03b1 \u03b1\u03bd\u03b1\u03b3\u03bd\u03c9\u03c1\u03b9\u03c3\u03c4\u03b5\u03af.",
 		"zu": "Ukuqinisekisa kuhlulekile: isitifiketi esithunyelwe isiphequluli sakho asaziwa",
 		"xh": "Ungqinisiso lusilele: isatifikerthi esithunyelwe yibhrawuza yakho asaziwa",
+		"st": "Netefatso e hlolehile: setifikeiti se rometsweng ke sebadi sa hao ha se tsejwe",
 		"ca": "Ha fallat l’autenticació: el certificat que el navegador ha enviat és desconegut"
 	},
 	"title_USERABORTED": {
@@ -2554,6 +2623,7 @@
 		"el": "\u0397 \u03c4\u03b1\u03c5\u03c4\u03bf\u03c0\u03bf\u03af\u03b7\u03c3\u03b7 \u03bc\u03b1\u03c4\u03b1\u03b9\u03ce\u03b8\u03b7\u03ba\u03b5",
 		"zu": "Ukuqinisekisa kuyekisiwe",
 		"xh": "Ungqinisiso luyekiwe",
+		"st": "Netefatso e kgaoditswe",
 		"ca": "S'ha avortat l’autenticació"
 	},
 	"descr_USERABORTED": {
@@ -2589,6 +2659,7 @@
 		"el": "\u0397 \u03c4\u03b1\u03c5\u03c4\u03bf\u03c0\u03bf\u03af\u03b7\u03c3\u03b7 \u03bc\u03b1\u03c4\u03b1\u03b9\u03ce\u03b8\u03b7\u03ba\u03b5 \u03b1\u03c0\u03cc \u03c4\u03bf\u03bd \u03c7\u03c1\u03ae\u03c3\u03c4\u03b7.",
 		"zu": "Ukuqinisekisa kuyekiswe umsebenzisi",
 		"xh": "Ungqinisiso luyekiswe ngumsebenzisi",
+		"st": "Netefatso e kgaoditswe ke mosebedisi",
 		"ca": "L’usuari ha cancel·lat l’autenticació"
 	},
 	"title_NOSTATE": {
@@ -2624,6 +2695,7 @@
 		"el": "\u0394\u03b5\u03bd \u03b2\u03c1\u03ad\u03b8\u03b7\u03ba\u03b1\u03bd \u03c0\u03bb\u03b7\u03c1\u03bf\u03c6\u03bf\u03c1\u03af\u03b5\u03c2 \u03c3\u03c7\u03b5\u03c4\u03b9\u03ba\u03ac \u03bc\u03b5 \u03c4\u03b7\u03bd \u03ba\u03b1\u03c4\u03ac\u03c3\u03c4\u03b1\u03c3\u03b7 \u03c4\u03bf\u03c5 \u03b1\u03b9\u03c4\u03ae\u03bc\u03b1\u03c4\u03bf\u03c2",
 		"xh": "Inkcazelo yobume ilahlekile",
 		"zu": "Ulwazi lwesifunda lulahlekile",
+		"st": "Tlhahisoleseding ya provense e lahlehile",
 		"ca": "Informació d'estat perduda"
 	},
 	"descr_NOSTATE": {
@@ -2659,6 +2731,7 @@
 		"el": "\u0394\u03b5\u03bd \u03ae\u03c4\u03b1\u03bd \u03b4\u03c5\u03bd\u03b1\u03c4\u03cc \u03bd\u03b1 \u03b5\u03be\u03c5\u03c0\u03b7\u03c1\u03b5\u03c4\u03b7\u03b8\u03b5\u03af \u03c4\u03bf \u03b1\u03af\u03c4\u03b7\u03bc\u03ac \u03c3\u03b1\u03c2 \u03ba\u03b1\u03b8\u03ce\u03c2 \u03b4\u03b5\u03bd \u03b2\u03c1\u03ad\u03b8\u03b7\u03ba\u03b1\u03bd \u03c0\u03bb\u03b7\u03c1\u03bf\u03c6\u03bf\u03c1\u03af\u03b5\u03c2 \u03c3\u03c7\u03b5\u03c4\u03b9\u03ba\u03ac \u03bc\u03b5 \u03c4\u03b7\u03bd \u03ba\u03b1\u03c4\u03ac\u03c3\u03c4\u03b1\u03c3\u03ae \u03c4\u03bf\u03c5",
 		"xh": "Inkcazelo yobume ilahlekile, yaye akukho ndlela yokuqalisa isicelo",
 		"zu": "Ulwazi lwesifunda lulahlekile, futhi ayikho indlela yokuqala kabusha isicelo",
+		"st": "Tlhahisoleeding ya porofensi e lahlehile, mmeha ho tsela ya ho qala kopo botjha",
 		"ca": "Infomració d'estat perduda, i no hi ha cap manera de reiniciar la sol·licitud"
 	},
 	"title_METADATANOTFOUND": {
@@ -2694,6 +2767,7 @@
 		"el": "\u0394\u03b5\u03bd \u03b2\u03c1\u03ad\u03b8\u03b7\u03ba\u03b1\u03bd \u03bc\u03b5\u03c4\u03b1\u03b4\u03b5\u03b4\u03bf\u03bc\u03ad\u03bd\u03b1",
 		"zu": "Imethadatha ayitholakalanga",
 		"xh": "Imetadata ayifunyenwanga",
+		"st": "Metadata ha e a fumanwa",
 		"ca": "Metadades no trobades"
 	},
 	"descr_METADATANOTFOUND": {
@@ -2729,6 +2803,7 @@
 		"el": "\u0394\u03b5\u03bd \u03ae\u03c4\u03b1\u03bd \u03b4\u03c5\u03bd\u03b1\u03c4\u03cc \u03bd\u03b1 \u03b2\u03c1\u03b5\u03b8\u03bf\u03cd\u03bd \u03bc\u03b5\u03c4\u03b1\u03b4\u03b5\u03b4\u03bf\u03bc\u03ad\u03bd\u03b1 \u03b3\u03b9\u03b1 \u03c4\u03b7\u03bd \u03bf\u03bd\u03c4\u03cc\u03c4\u03b7\u03c4\u03b1 %ENTITYID%",
 		"xh": "Ayikwazi ukufumana iimpawu-ngcaciso zefayile ze-%ENTITYID%",
 		"zu": "Ayikwazi ukuthola imethadatha yokuthi %ENTITYID%",
+		"st": "Ha e kgone ho fumana metadata bakeng sa %ID YA SETHEO%",
 		"ca": "No es poden localitzar les metadades per a %ENTITYID%"
 	},
 	"title_AUTHSOURCEERROR": {
@@ -2764,6 +2839,7 @@
 		"el": "\u03a3\u03c6\u03ac\u03bb\u03bc\u03b1 \u03bc\u03b5 \u03c4\u03b7\u03bd \u03c0\u03b7\u03b3\u03ae \u03c4\u03b1\u03c5\u03c4\u03bf\u03c0\u03bf\u03af\u03b7\u03c3\u03b7\u03c2",
 		"zu": "Iphutha lomthombo wokuqinisekisa",
 		"xh": "Impazamo yomthombo wongqinisiso",
+		"st": "Phoso ya netefatso ya mohlodi",
 		"ca": "Error en l’autenticació d'origen"
 	},
 	"descr_AUTHSOURCEERROR": {
@@ -2799,6 +2875,7 @@
 		"el": "\u03a0\u03b1\u03c1\u03bf\u03c5\u03c3\u03b9\u03ac\u03c3\u03c4\u03b7\u03ba\u03b5 \u03c3\u03c6\u03ac\u03bb\u03bc\u03b1 \u03ba\u03b1\u03c4\u03ac \u03c4\u03b7\u03bd \u03b5\u03c0\u03b9\u03ba\u03bf\u03b9\u03bd\u03c9\u03bd\u03af\u03b1 \u03bc\u03b5 \u03c4\u03b7\u03bd \u03c0\u03b7\u03b3\u03ae \u03c4\u03b1\u03c5\u03c4\u03bf\u03c0\u03bf\u03af\u03b7\u03c3\u03b7\u03c2 %AUTHSOURCE%: %REASON%",
 		"zu": "Iphutha lokuqinisekisa kumthombo othi %AUTHSOURCE%. Isizathu besithi: %REASON%",
 		"xh": "Impazamo yongqinisiso kumthombo %AUTHSOURCE%. Isizathu sesi: %REASON%",
+		"st": "Phoso ya tiiso mohloding %AUTHSOURCE%. Lebaka e bile: %REASON%",
 		"ca": "Error en l’autenticació d'origen %AUTHSOURCE%. El motiu és: %REASON%"
 	},
 	"title_MEMCACHEDOWN": {
@@ -2806,6 +2883,7 @@
 		"el": "\u0394\u03b5\u03bd \u03b5\u03af\u03bd\u03b1\u03b9 \u03b4\u03c5\u03bd\u03b1\u03c4\u03ae \u03b7 \u03b1\u03bd\u03ac\u03ba\u03c4\u03b7\u03c3\u03b7 \u03b4\u03b5\u03b4\u03bf\u03bc\u03ad\u03bd\u03c9\u03bd \u03c3\u03c5\u03bd\u03b5\u03b4\u03c1\u03af\u03b1\u03c2",
 		"xh": "Ayikwazi ukubuyisela ingcombolo yeseshoni",
 		"zu": "Ayikwazi ukubuyisela idatha yeseshini",
+		"st": "Ha e a kgona ho fumana datha ya seshene",
 		"ca": "No es poden recuperar les dades de la sessió"
 	},
 	"descr_MEMCACHEDOWN": {
@@ -2813,6 +2891,7 @@
 		"el": "\u0394\u03b5\u03bd \u03b5\u03af\u03bd\u03b1\u03b9 \u03b4\u03c5\u03bd\u03b1\u03c4\u03ae \u03b7 \u03b1\u03bd\u03ac\u03ba\u03c4\u03b7\u03c3\u03b7 \u03b4\u03b5\u03b4\u03bf\u03bc\u03ad\u03bd\u03c9\u03bd \u03c3\u03c5\u03bd\u03b5\u03b4\u03c1\u03af\u03b1\u03c2 \u03bb\u03cc\u03b3\u03c9 \u03c4\u03b5\u03c7\u03bd\u03b9\u03ba\u03ce\u03bd \u03b4\u03c5\u03c3\u03ba\u03bf\u03bb\u03b9\u03ce\u03bd. \u03a0\u03b1\u03c1\u03b1\u03ba\u03b1\u03bb\u03bf\u03cd\u03bc\u03b5 \u03b4\u03bf\u03ba\u03b9\u03bc\u03ac\u03c3\u03c4\u03b5 \u03be\u03b1\u03bd\u03ac \u03b1\u03c1\u03b3\u03cc\u03c4\u03b5\u03c1\u03b1",
 		"zu": "Idatha yeseshini yakho ayikwazi ukubuyiswa njengamanje ngenxa yezinkinga zobuchwepheshe. Sicela uzame futhi emizuzwini embalwa.",
 		"xh": "Ingcombolo yeseshoni yakho ayikwazi ukubuyiselwa okwangoku ngenxa yeengxaki zobugcisa. Nceda uzame kwakhona kwimizuzu embalwa.",
+		"st": "Datha ya seshene ya hao ha e kgone ho fumanwa hona jwale ka lebaka la mathata a sethekeniki. Ka kopo leka hape kamora metsotso e mmalwa.",
 		"ca": "Les vostres dades de sessió no es poden recuperar ara mateix a causa de dificultats tècniques. Torneu-ho a provar d'aquí a uns minuts."
 	}
 }

@@ -35,6 +35,7 @@
 		"el": "\u0391\u03c0\u03bf\u03c3\u03c5\u03bd\u03b4\u03b5\u03b4\u03b5\u03bc\u03ad\u03bd\u03bf\u03c2/\u03b7",
 		"xh": "Uphumile",
 		"zu": "Uphume ngemvume",
+		"st": "O ntshitswe",
 		"ca": "Desconnectat"
 	},
 	"logged_out_text": {
@@ -73,6 +74,7 @@
 		"el": "\u0388\u03c7\u03b5\u03c4\u03b5 \u03b1\u03c0\u03bf\u03c3\u03c5\u03bd\u03b4\u03b5\u03b8\u03b5\u03af.",
 		"zu": "Usuphumile.",
 		"xh": "Uphumile.",
+		"st": "O ntshitswe.",
 		"ca": "Us heu desconnectat."
 	},
 	"default_link_text": {
@@ -111,6 +113,7 @@
 		"el": "\u0395\u03c0\u03b9\u03c3\u03c4\u03c1\u03bf\u03c6\u03ae \u03c3\u03c4\u03b7\u03bd \u03b1\u03c1\u03c7\u03b9\u03ba\u03ae \u03c3\u03b5\u03bb\u03af\u03b4\u03b1",
 		"xh": "Buyela emva kwikhasi lofakelo le-SimpleSAMLphp",
 		"zu": "Buyela emuva ekhasini lokufaka le-SimpleSAMLphp",
+		"st": "Kgutlela leqepheng la ho instola la SimpleSAMLphp",
 		"ca": "Torneu a la pàgina d’instal·lació de SimpleSAMLphp"
 	},
 	"hold": {
@@ -149,6 +152,7 @@
 		"el": "\u03a3\u03b5 \u03b1\u03bd\u03b1\u03bc\u03bf\u03bd\u03ae",
 		"xh": "Ibanjiwe",
 		"zu": "Imisiwe",
+		"st": "Tshwarisitswe",
 		"ca": "En espera"
 	},
 	"completed": {
@@ -187,6 +191,7 @@
 		"el": "\u039f\u03bb\u03bf\u03ba\u03bb\u03b7\u03c1\u03ce\u03b8\u03b7\u03ba\u03b5",
 		"xh": "Igqityiwe",
 		"zu": "Kuqedile",
+		"st": "E phethilwe",
 		"ca": "Completat"
 	},
 	"progress": {
@@ -225,6 +230,7 @@
 		"el": "\u0393\u03af\u03bd\u03b5\u03c4\u03b1\u03b9 \u03b1\u03c0\u03bf\u03c3\u03cd\u03bd\u03b4\u03b5\u03c3\u03b7...",
 		"zu": "Iyaphuma...",
 		"xh": "Iyaphuma...",
+		"st": "E a tswa...",
 		"ca": "Tancant la sessió..."
 	},
 	"failed": {
@@ -263,6 +269,7 @@
 		"el": "\u0397 \u03b1\u03c0\u03bf\u03c3\u03cd\u03bd\u03b4\u03b5\u03c3\u03b7 \u03b1\u03c0\u03ad\u03c4\u03c5\u03c7\u03b5",
 		"xh": "Ukuphuma kusilele",
 		"zu": "Ukuphuma kuhlulekile",
+		"st": "Ho tswa ho hlolehile",
 		"ca": "Ha fallat el tancament de sessió"
 	},
 	"return": {
@@ -301,6 +308,7 @@
 		"el": "\u0395\u03c0\u03b9\u03c3\u03c4\u03c1\u03bf\u03c6\u03ae \u03c3\u03c4\u03b7\u03bd \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b1",
 		"xh": "Buyela kwinkonzo",
 		"zu": "Buyela kusevisi",
+		"st": "E kgutlela tshebeletsong",
 		"ca": "Tornar al servei"
 	},
 	"success": {
@@ -339,6 +347,7 @@
 		"el": "\u0388\u03c7\u03b5\u03c4\u03b5 \u03b1\u03c0\u03bf\u03c3\u03c5\u03bd\u03b4\u03b5\u03b8\u03b5\u03af \u03bc\u03b5 \u03b5\u03c0\u03b9\u03c4\u03c5\u03c7\u03af\u03b1 \u03b1\u03c0\u03cc \u03cc\u03bb\u03b5\u03c2 \u03c4\u03b9\u03c2 \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b5\u03c2 \u03c0\u03bf\u03c5 \u03b1\u03bd\u03b1\u03c6\u03ad\u03c1\u03bf\u03bd\u03c4\u03b1\u03b9 \u03c0\u03b1\u03c1\u03b1\u03c0\u03ac\u03bd\u03c9.",
 		"xh": "Uphume ngokuyimpumelelo kuzo zonke iinkonzo ezidweliswe ngasentla.",
 		"zu": "Uphume ngempumelelo kuwo wonke amasevisi abhalwe ngenhla.",
+		"st": "O tswile ka katleho ditshebeletsong tsohle tse thathamisitsweng ka hodimo mona.",
 		"ca": "Heu sortit correctament de tots els serveis esmentats anteriorment."
 	},
 	"loggedoutfrom": {
@@ -377,6 +386,7 @@
 		"el": "\u0388\u03c7\u03b5\u03c4\u03b5 \u03b1\u03c0\u03bf\u03c3\u03c5\u03bd\u03b4\u03b5\u03b8\u03b5\u03af \u03bc\u03b5 \u03b5\u03c0\u03b9\u03c4\u03c5\u03c7\u03af\u03b1 \u03b1\u03c0\u03cc \u03c4\u03b7\u03bd \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b1 %SP%.",
 		"xh": "Ngoku uphume ngokuyimpumelelo kwi-%SP%.",
 		"zu": "Usuphume ngempumelelo kokuthi %SP%.",
+		"st": "Jwale o ntshitswe ka katleho ho %SP%.",
 		"ca": "S’ha tancat la sessió amb èxit de %SP%."
 	},
 	"also_from": {
@@ -415,6 +425,7 @@
 		"el": "\u0395\u03af\u03c3\u03c4\u03b5 \u03b5\u03c0\u03af\u03c3\u03b7\u03c2 \u03c3\u03c5\u03bd\u03b4\u03b5\u03b4\u03b5\u03bc\u03ad\u03bd\u03bf\u03c2 \u03c3\u03b5 \u03b1\u03c5\u03c4\u03ad\u03c2 \u03c4\u03b9\u03c2 \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b5\u03c2:",
 		"zu": "Ungenile futhi kulawa masevisi:",
 		"xh": "Kananjalo ungene kwezi nkonzo:",
+		"st": "Hape o kene ditshebeletsong tsena:",
 		"ca": "També heu iniciat la sessió en aquests serveis:"
 	},
 	"logout_all_question": {
@@ -453,6 +464,7 @@
 		"el": "\u0395\u03c0\u03b9\u03b8\u03c5\u03bc\u03b5\u03af\u03c4\u03b5 \u03bd\u03b1 \u03b1\u03c0\u03bf\u03c3\u03c5\u03bd\u03b4\u03b5\u03b8\u03b5\u03af\u03c4\u03b5 \u03b1\u03c0\u03cc \u03cc\u03bb\u03b5\u03c2 \u03c4\u03b9\u03c2 \u03c0\u03b1\u03c1\u03b1\u03c0\u03ac\u03bd\u03c9 \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b5\u03c2\u003b",
 		"xh": "Ngaba ufuna ukuphuma kuzo zonke iinkonzo ezingasentla?",
 		"zu": "Ingabe ufuna ukuphuma kuwo wonke amasevisi angenhla?",
+		"st": "Na o batla ho tswa ditshebeletsong tsohle tse ka hodimo moo?",
 		"ca": "Voleu sortir de tots els serveis següents?"
 	},
 	"logout_all": {
@@ -491,6 +503,7 @@
 		"el": "\u039d\u03b1\u03b9, \u03cc\u03bb\u03b5\u03c2 \u03c4\u03b9\u03c2 \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b5\u03c2",
 		"zu": "Yebo, wonke amasevisi",
 		"xh": "Ewe, zonke iinkonzo",
+		"st": "E, ditshebeletso tsohle",
 		"ca": "Sí, tots els serveis"
 	},
 	"logout_only": {
@@ -529,6 +542,7 @@
 		"el": "\u038c\u03c7\u03b9, \u03bc\u03cc\u03bd\u03bf \u03b1\u03c0\u03cc \u03c4\u03b7\u03bd \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b1 %SP%",
 		"zu": "Cha, ku-%SP% kuphela",
 		"xh": "Hayi, kuphela %SP%",
+		"st": "Tjhe, %SP% feela",
 		"ca": "No, només %SP%"
 	},
 	"incapablesps": {
@@ -567,6 +581,7 @@
 		"el": "\u039c\u03af\u03b1 \u03ae \u03c0\u03b5\u03c1\u03b9\u03c3\u03c3\u03cc\u03c4\u03b5\u03c1\u03b5\u03c2 \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b5\u03c2 \u03bc\u03b5 \u03c4\u03b9\u03c2 \u03bf\u03c0\u03bf\u03af\u03b5\u03c2 \u03b5\u03af\u03c3\u03c4\u03b5 \u03c3\u03c5\u03bd\u03b4\u03b5\u03b4\u03b5\u03bc\u03ad\u03bd\u03bf\u03c2\u002f\u03b7 \u03b4\u03b5\u03bd \u03c5\u03c0\u03bf\u03c3\u03c4\u03b7\u03c1\u03af\u03b6\u03bf\u03c5\u03bd \u03b1\u03c0\u03bf\u03c3\u03cd\u03bd\u03b4\u03b5\u03c3\u03b7\u002e \u0393\u03b9\u03b1 \u03c4\u03bf \u03ba\u03bb\u03b5\u03af\u03c3\u03b9\u03bc\u03bf \u03cc\u03bb\u03c9\u03bd \u03c4\u03c9\u03bd \u03c3\u03c5\u03bd\u03b5\u03b4\u03c1\u03b9\u03ce\u03bd \u03c3\u03b1\u03c2 (sessions), \u03c3\u03b1\u03c2 \u03c3\u03c5\u03bd\u03b9\u03c3\u03c4\u03bf\u03cd\u03bc\u03b5 \u03bd\u03b1 <i>\u03ba\u03bb\u03b5\u03af\u03c3\u03b5\u03c4\u03b5<\/i> \u03c4\u03bf \u03c0\u03c1\u03cc\u03b3\u03c1\u03b1\u03bc\u03bc\u03b1 \u03c0\u03bb\u03bf\u03ae\u03b3\u03b7\u03c3\u03b7\u03c2 (web browser).",
 		"zu": "Isevisi eyodwa noma ngaphezulu ongene kuyo <i>ayikusekeli ukuphuma</i>. Ukuze wenze isiqiniseko sokuthi wonke amaseshini akho avaliwe, ukhuthazwa ukuthi <i>uvale isiphequluli sakho sewebhu</i>.",
 		"xh": "Inkonzo enye okanye ezingakumbi ongeneyo kuzo <i>azikuxhasi ukuphuma</i>. Ukuqinisekisa zonke iiseshoni zakho zivaliwe, ukhuthazwa <i>uvale ibhrawuza yewebhu</i>.",
+		"st": "E le nngwe kapa ho feta ya ditshebeletso tseo o keneng ho tsona <i>ha e tshehetse ho tswa</i>. Ho netefatsa hore diseshene tsohle tsa hao di kwetswe, o kgothaletswa ho <i>kwala sebadi sa webo sa hao</i>.",
 		"ca": "Un o més dels serveis que heu accedit a <i>no admeten tancar la sessió<\/i>. Per assegurar-vos que totes les vostres sessions estan tancades, us animem a <i>tancar el vostre navegador web<\/i>."
 	},
 	"no": {
@@ -605,6 +620,7 @@
 		"el": "\u038c\u03c7\u03b9",
 		"xh": "Hayi",
 		"zu": "Cha",
+		"st": "Tjhe",
 		"ca": "No"
 	},
 	"logging_out_from": {
@@ -642,6 +658,7 @@
 		"el": "Γίνεται αποσύνδεση από τις ακόλουθες υπηρεσίες:",
 		"zu": "Iyaphuma kumasevisi alandelayo:",
 		"xh": "Iphuma kwezi nkonzo zilandelayo:",
+		"st": "E tswa ditshebeletsong tse latelang:",
 		"ca": "Sortida dels serveis següents:"
 	},
 	"failedsps": {
@@ -678,6 +695,7 @@
 		"el": "\u0394\u03b5\u03bd \u03ae\u03c4\u03b1\u03bd \u03b4\u03c5\u03bd\u03b1\u03c4\u03ae \u03b7 \u03b1\u03c0\u03bf\u03c3\u03cd\u03bd\u03b4\u03b5\u03c3\u03b7 \u03b1\u03c0\u03cc \u03bc\u03af\u03b1 \u03ae \u03c0\u03b5\u03c1\u03b9\u03c3\u03c3\u03cc\u03c4\u03b5\u03c1\u03b5\u03c2 \u03c5\u03c0\u03b7\u03c1\u03b5\u03c3\u03af\u03b5\u03c2\u002e \u0393\u03b9\u03b1 \u03c4\u03bf \u03ba\u03bb\u03b5\u03af\u03c3\u03b9\u03bc\u03bf \u03cc\u03bb\u03c9\u03bd \u03c4\u03c9\u03bd \u03c3\u03c5\u03bd\u03b5\u03b4\u03c1\u03b9\u03ce\u03bd \u03c3\u03b1\u03c2 (sessions), \u03c3\u03b1\u03c2 \u03c3\u03c5\u03bd\u03b9\u03c3\u03c4\u03bf\u03cd\u03bc\u03b5 \u03bd\u03b1 <i>\u03ba\u03bb\u03b5\u03af\u03c3\u03b5\u03c4\u03b5<\/i> \u03c4\u03bf \u03c0\u03c1\u03cc\u03b3\u03c1\u03b1\u03bc\u03bc\u03b1 \u03c0\u03bb\u03bf\u03ae\u03b3\u03b7\u03c3\u03b7\u03c2 (web browser).",
 		"xh": "Awukwazi ukuphuma kwinkonzo enye okanye ezingakumbi. Ukuqinisekisa zonke iiseshoni zakho zivaliwe, ukhuthazwa <i>uvale ibhrawuza yewebhu</i>.",
 		"zu": "Ayikwazi ukuphuma kusevisi eyodwa noma ngaphezulu. Ukuze wenze isiqiniseko sokuthi wonke amaseshini akho avaliwe, ukhuthazwa ukuthi <i>uvale isiphequluli sakho sewebhu</i>.",
+		"st": "Ha e kgone ho tswa tshebeletsong e le nngwe kapa ho feta. Ho netefatsa hore diseshene tsohle tsa hao di kwetswe, o kgothaletswa ho <i>kwala sebadi sa webo sa hao</i>.",
 		"ca": "No es pot tancar la sessió d'un o més serveis. Per assegurar-vos que totes les vostres sessions estan tancades, us animem a <i>tancar el vostre navegador web<\/i>."
 	}
 }
