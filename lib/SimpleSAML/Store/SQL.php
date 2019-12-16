@@ -130,7 +130,7 @@ class SQL extends Store
                 'CREATE TABLE ' . $this->prefix .
                 '_kvstore (_type VARCHAR(30) NOT NULL, _key VARCHAR(50) NOT NULL, _value ' . $text_t .
                 ' NOT NULL, _expire ' . $time_field . ', PRIMARY KEY (_key, _type))',
-                $this->driver === 'sqlite' || $this->driver === 'sqlsrv' ?
+                $this->driver === 'sqlite' || $this->driver === 'sqlsrv' || $this->driver === 'pgsql' ?
                 'CREATE INDEX ' . $this->prefix . '_kvstore_expire ON ' . $this->prefix . '_kvstore (_expire)' :
                 'ALTER TABLE ' . $this->prefix . '_kvstore ADD INDEX ' . $this->prefix . '_kvstore_expire (_expire)'
             ],
@@ -153,7 +153,7 @@ class SQL extends Store
                 $this->driver === 'sqlsrv' ?
                 'EXEC sp_rename ' . $this->prefix . '_kvstore_new, ' . $this->prefix . '_kvstore' :
                 'ALTER TABLE ' . $this->prefix . '_kvstore_new RENAME TO ' . $this->prefix . '_kvstore',
-                $this->driver === 'sqlite' || $this->driver === 'sqlsrv' ?
+                $this->driver === 'sqlite' || $this->driver === 'sqlsrv' || $this->driver === 'pgsql' ?
                 'CREATE INDEX ' . $this->prefix . '_kvstore_expire ON ' . $this->prefix . '_kvstore (_expire)' :
                 'ALTER TABLE ' . $this->prefix . '_kvstore ADD INDEX ' . $this->prefix . '_kvstore_expire (_expire)'
             ]
