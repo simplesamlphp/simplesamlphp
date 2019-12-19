@@ -174,9 +174,8 @@ class Session implements \Serializable, Utils\ClearableState
             $this->markDirty();
 
             // initialize data for session check function if defined
-            $checkFunction = self::$config->getArray('session.check_function', null);
-            if (isset($checkFunction)) {
-                assert(is_callable($checkFunction));
+            $checkFunction = self::$config->getValue('session.check_function', null);
+            if (is_callable($checkFunction)) {
                 call_user_func($checkFunction, $this, true);
             }
         }
@@ -367,9 +366,8 @@ class Session implements \Serializable, Utils\ClearableState
             }
 
             // run session check function if defined
-            $checkFunction = $globalConfig->getArray('session.check_function', null);
-            if (isset($checkFunction)) {
-                assert(is_callable($checkFunction));
+            $checkFunction = $globalConfig->getValue('session.check_function', null);
+            if (is_callable($checkFunction)) {
                 $check = call_user_func($checkFunction, $session);
                 if ($check !== true) {
                     Logger::warning('Session did not pass check function.');
