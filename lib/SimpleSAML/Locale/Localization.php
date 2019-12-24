@@ -238,7 +238,7 @@ class Localization
      *
      * @throws \Exception If something is wrong with the locale file for the domain and activated language
      */
-    private function loadGettextGettextFromPO($domain = self::DEFAULT_DOMAIN, $catchException = true)
+    private function loadGettextGettextFromPO(string $domain = self::DEFAULT_DOMAIN, bool $catchException = true)
     {
         try {
             $langPath = $this->getLangPath($domain);

@@ -3,10 +3,12 @@
 namespace SimpleSAML\Metadata;
 
 use DOMDocument;
+use DOMElement;
 use RobRichards\XMLSecLibs\XMLSecurityDSig;
 use RobRichards\XMLSecLibs\XMLSecurityKey;
 use SAML2\Constants;
 use SAML2\DOMDocumentFactory;
+use SAML2\SignedElementHelper;
 use SAML2\XML\Chunk;
 use SAML2\XML\ds\X509Certificate;
 use SAML2\XML\ds\X509Data;
@@ -183,12 +185,10 @@ class SAMLParser
      */
     private function __construct(
         EntityDescriptor $entityElement,
-        $maxExpireTime,
+        int $maxExpireTime = null,
         array $validators = [],
         array $parentExtensions = []
     ) {
-        assert($maxExpireTime === null || is_int($maxExpireTime));
-
         $this->spDescriptors = [];
         $this->idpDescriptors = [];
 
@@ -372,7 +372,7 @@ class SAMLParser
      *     be the entity id.
      * @throws \Exception if the document is empty or the root is an unexpected node.
      */
-    public static function parseDescriptorsElement(\DOMElement $element = null)
+    public static function parseDescriptorsElement(DOMElement $element = null)
     {
         if ($element === null) {
             throw new \Exception('Document was empty.');
@@ -398,13 +398,11 @@ class SAMLParser
      * @return SAMLParser[] Array of SAMLParser instances.
      */
     private static function processDescriptorsElement(
-        $element,
-        $maxExpireTime = null,
+        SignedElementHelper $element,
+        int $maxExpireTime = null,
         array $validators = [],
         array $parentExtensions = []
     ) {
-        assert($maxExpireTime === null || is_int($maxExpireTime));
-
         if ($element instanceof EntityDescriptor) {
             $ret = new SAMLParser($element, $maxExpireTime, $validators, $parentExtensions);
             $ret = [$ret->getEntityId() => $ret];
@@ -440,7 +438,7 @@ class SAMLParser
      * @return int|null The unix timestamp for when the element should expire. Will be NULL if no
      *             limit is set for the element.
      */
-    private static function getExpireTime($element, $maxExpireTime)
+    private static function getExpireTime($element, int $maxExpireTime = null)
     {
         // validUntil may be null
         $expire = $element->getValidUntil();
@@ -467,7 +465,7 @@ class SAMLParser
     /**
      * @return array
      */
-    private function getMetadataCommon()
+    private function getMetadataCommon(): array
     {
         $ret = [];
         $ret['entityid'] = $this->entityId;
@@ -865,10 +863,8 @@ class SAMLParser
      *
      * @return array An associative array with metadata we have extracted from this element.
      */
-    private static function parseRoleDescriptorType(RoleDescriptor $element, $expireTime)
+    private static function parseRoleDescriptorType(RoleDescriptor $element, int $expireTime = null)
     {
-        assert($expireTime === null || is_int($expireTime));
-
         $ret = [];
 
         $expireTime = self::getExpireTime($element, $expireTime);
@@ -916,10 +912,8 @@ class SAMLParser
      *
      * @return array An associative array with metadata we have extracted from this element.
      */
-    private static function parseSSODescriptor(SSODescriptorType $element, $expireTime)
+    private static function parseSSODescriptor(SSODescriptorType $element, int $expireTime = null): array
     {
-        assert($expireTime === null || is_int($expireTime));
-
         $sd = self::parseRoleDescriptorType($element, $expireTime);
 
         // find all SingleLogoutService elements
@@ -944,10 +938,8 @@ class SAMLParser
      *                             NULL if unknown.
      * @return void
      */
-    private function processSPSSODescriptor(SPSSODescriptor $element, $expireTime)
+    private function processSPSSODescriptor(SPSSODescriptor $element, int $expireTime = null)
     {
-        assert($expireTime === null || is_int($expireTime));
-
         $sp = self::parseSSODescriptor($element, $expireTime);
 
         // find all AssertionConsumerService elements
@@ -981,10 +973,8 @@ class SAMLParser
      *                             NULL if unknown.
      * @return void
      */
-    private function processIDPSSODescriptor(IDPSSODescriptor $element, $expireTime)
+    private function processIDPSSODescriptor(IDPSSODescriptor $element, int $expireTime = null)
     {
-        assert($expireTime === null || is_int($expireTime));
-
         $idp = self::parseSSODescriptor($element, $expireTime);
 
         // find all SingleSignOnService elements
@@ -1035,7 +1025,7 @@ class SAMLParser
      *
      * @return array An associative array with the extensions parsed.
      */
-    private static function processExtensions($element, $parentExtensions = [])
+    private static function processExtensions($element, array $parentExtensions = []): array
     {
         $ret = [
             'scope'            => [],
@@ -1086,6 +1076,7 @@ class SAMLParser
                         // only saml:Attribute are currently supported here. The specifications also allows
                         // saml:Assertions, which more complex processing
                         if ($attr instanceof Attribute) {
+                            /** @psalm-var string|null $attrName   Remove for SSP 2.0 */
                             $attrName = $attr->getName();
                             $attrNameFormat = $attr->getNameFormat();
                             $attrValue = $attr->getAttributeValue();
@@ -1097,7 +1088,7 @@ class SAMLParser
                             // attribute names that is not URI is prefixed as this: '{nameformat}name'
                             $name = $attrName;
                             if ($attrNameFormat === null) {
-                                $name = '{' . Constants::NAMEFORMAT_UNSPECIFIED . '}' . $attr->getName();
+                                $name = '{' . Constants::NAMEFORMAT_UNSPECIFIED . '}' . $attrName;
                             } elseif ($attrNameFormat !== Constants::NAMEFORMAT_URI) {
                                 $name = '{' . $attrNameFormat . '}' . $attrName;
                             }
@@ -1123,6 +1114,7 @@ class SAMLParser
 
                     foreach ($e->getKeywords() as $uiItem) {
                         $keywords = $uiItem->getKeywords();
+                        /** @psalm-var string|null $language */
                         $language = $uiItem->getLanguage();
                         if (($keywords === []) || ($language === null)) {
                             continue;
@@ -1130,6 +1122,7 @@ class SAMLParser
                         $ret['UIInfo']['Keywords'][$language] = $keywords;
                     }
                     foreach ($e->getLogo() as $uiItem) {
+                        /** @psalm-suppress TypeDoesNotContainNull  Remove in SSP 2.0 */
                         if (
                             !($uiItem instanceof Logo)
                             || ($uiItem->getUrl() === null)
@@ -1169,7 +1162,7 @@ class SAMLParser
 
                 $name = $attribute->getAttribute('Name');
                 $values = array_map(
-                    ['\SimpleSAML\Utils\XML', 'getDOMText'],
+                    '\SimpleSAML\Utils\XML::getDOMText',
                     Utils\XML::getDOMChildren($attribute, 'AttributeValue', '@saml2')
                 );
 
@@ -1240,10 +1233,8 @@ class SAMLParser
      * @param array $sp The array with the SP's metadata.
      * @return void
      */
-    private static function parseAttributeConsumerService(AttributeConsumingService $element, &$sp)
+    private static function parseAttributeConsumerService(AttributeConsumingService $element, array &$sp)
     {
-        assert(is_array($sp));
-
         $sp['name'] = $element->getServiceName();
         $sp['description'] = $element->getServiceDescription();
 
@@ -1299,7 +1290,7 @@ class SAMLParser
      *
      * @return array An associative array with the data we have extracted from the element.
      */
-    private static function parseGenericEndpoint(EndpointType $element)
+    private static function parseGenericEndpoint(EndpointType $element): array
     {
         $ep = [];
 
@@ -1329,9 +1320,9 @@ class SAMLParser
      *
      * @return array Array of parsed endpoints.
      */
-    private static function extractEndpoints(array $endpoints)
+    private static function extractEndpoints(array $endpoints): array
     {
-        return array_map(['self', 'parseGenericEndpoint'], $endpoints);
+        return array_map('self::parseGenericEndpoint', $endpoints);
     }
 
 
@@ -1366,6 +1357,7 @@ class SAMLParser
 
         $keyInfo = $kd->getKeyInfo();
 
+        /** @psalm-suppress PossiblyNullReference  This will be fixed in saml2 5.0 */
         foreach ($keyInfo->getInfo() as $i) {
             if ($i instanceof X509Data) {
                 foreach ($i->getData() as $d) {
@@ -1389,10 +1381,8 @@ class SAMLParser
      *
      * @return array with SP descriptors which supports one of the given protocols.
      */
-    private function getSPDescriptors($protocols)
+    private function getSPDescriptors(array $protocols): array
     {
-        assert(is_array($protocols));
-
         $ret = [];
 
         foreach ($this->spDescriptors as $spd) {
@@ -1413,10 +1403,8 @@ class SAMLParser
      *
      * @return array with IdP descriptors which supports one of the given protocols.
      */
-    private function getIdPDescriptors($protocols)
+    private function getIdPDescriptors(array $protocols): array
     {
-        assert(is_array($protocols));
-
         $ret = [];
 
         foreach ($this->idpDescriptors as $idpd) {
@@ -1441,10 +1429,8 @@ class SAMLParser
      * @return \SAML2\XML\md\EntityDescriptor The \DOMEntity which represents the EntityDescriptor.
      * @throws \Exception If the document is empty or the first element is not an EntityDescriptor element.
      */
-    private static function findEntityDescriptor($doc)
+    private static function findEntityDescriptor(DOMDocument $doc): EntityDescriptor
     {
-        assert($doc instanceof DOMDocument);
-
         // find the EntityDescriptor DOMElement. This should be the first (and only) child of the DOMDocument
         $ed = $doc->documentElement;
 
@@ -1500,7 +1486,7 @@ class SAMLParser
      * @throws \UnexpectedValueException
      * @return string
      */
-    private function computeFingerprint($algorithm, $data)
+    private function computeFingerprint(string $algorithm, string $data): string
     {
         switch ($algorithm) {
             case XMLSecurityDSig::SHA1:

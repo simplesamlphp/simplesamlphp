@@ -163,7 +163,7 @@ class Language
      *
      * @return array The set of languages both in 'language.available' and self::$language_names.
      */
-    private function getInstalledLanguages()
+    private function getInstalledLanguages(): array
     {
         $configuredAvailableLanguages = $this->configuration->getArray('language.available', ['en']);
         $availableLanguages = [];

@@ -64,10 +64,8 @@ class IdP
      *
      * @throws \SimpleSAML\Error\Exception If the IdP is disabled or no such auth source was found.
      */
-    private function __construct($id)
+    private function __construct(string $id)
     {
-        assert(is_string($id));
-
         $this->id = $id;
         $this->associationGroup = $id;
 

@@ -213,7 +213,7 @@ class Template extends Response
      * @param string $templateName The template name to normalize.
      * @return string The filename we need to look for.
      */
-    private function normalizeTemplateName($templateName)
+    private function normalizeTemplateName(string $templateName): string
     {
         if (strripos($templateName, '.twig')) {
             return $templateName;
@@ -240,7 +240,7 @@ class Template extends Response
      * @return TemplateLoader The twig template loader or false if the template does not exist.
      * @throws \Twig\Error\LoaderError In case a failure occurs.
      */
-    private function setupTwigTemplatepaths()
+    private function setupTwigTemplatepaths(): TemplateLoader
     {
         $filename = $this->normalizeTemplateName($this->template);
 
@@ -281,7 +281,7 @@ class Template extends Response
      * @return \Twig\Environment
      * @throws \Exception if the template does not exist
      */
-    private function setupTwig()
+    private function setupTwig(): \Twig\Environment
     {
         $auto_reload = $this->configuration->getBoolean('template.auto_reload', true);
         $cache = $this->configuration->getString('template.cache', false);
@@ -358,7 +358,7 @@ class Template extends Response
      *
      * @return array An array of module => templatedir lookups.
      */
-    private function findThemeTemplateDirs()
+    private function findThemeTemplateDirs(): array
     {
         if (!isset($this->theme['module'])) {
             // no module involved
@@ -398,7 +398,7 @@ class Template extends Response
      *
      * @throws \InvalidArgumentException If the module is not enabled or it has no templates directory.
      */
-    private function getModuleTemplateDir($module)
+    private function getModuleTemplateDir(string $module): string
     {
         if (!Module::isModuleEnabled($module)) {
             throw new \InvalidArgumentException('The module \'' . $module . '\' is not enabled.');
@@ -555,7 +555,7 @@ class Template extends Response
      *
      * @return array An array with the name of the module and template
      */
-    private function findModuleAndTemplateName($template)
+    private function findModuleAndTemplateName(string $template): array
     {
         $tmp = explode(':', $template, 2);
         return (count($tmp) === 2) ? [$tmp[0], $tmp[1]] : [null, $tmp[0]];
@@ -578,9 +578,8 @@ class Template extends Response
      *
      * @throws \Exception If the template file couldn't be found.
      */
-    private function findTemplatePath($template, $throw_exception = true)
+    private function findTemplatePath(string $template, bool $throw_exception = true)
     {
-        assert(is_string($template));
         $extensions = ['.tpl.php', '.php'];
 
         list($templateModule, $templateName) = $this->findModuleAndTemplateName($template);
@@ -791,7 +790,7 @@ class Template extends Response
      * @param string $file
      * @return void
      */
-    private function includeAtTemplateBase($file)
+    private function includeAtTemplateBase(string $file)
     {
         $data = $this->data;
 
@@ -837,7 +836,7 @@ class Template extends Response
      *
      * @return bool
      */
-    private function isLanguageRTL()
+    private function isLanguageRTL(): bool
     {
         return $this->translator->getLanguage()->isLanguageRTL();
     }

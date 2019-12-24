@@ -133,7 +133,7 @@ class Message
      *
      * @throws \SimpleSAML\Error\Exception if we cannot find the certificate matching the fingerprint.
      */
-    private static function findCertificate(array $certFingerprints, array $certificates)
+    private static function findCertificate(array $certFingerprints, array $certificates): string
     {
         $candidates = [];
 
@@ -381,7 +381,7 @@ class Message
         Configuration $srcMetadata,
         Configuration $dstMetadata,
         $assertion
-    ) {
+    ): Assertion {
         assert($assertion instanceof Assertion || $assertion instanceof EncryptedAssertion);
 
         if ($assertion instanceof Assertion) {
@@ -665,10 +665,9 @@ class Message
         Configuration $idpMetadata,
         Response $response,
         $assertion,
-        $responseSigned
-    ) {
+        bool $responseSigned
+    ): Assertion {
         assert($assertion instanceof Assertion || $assertion instanceof EncryptedAssertion);
-        assert(is_bool($responseSigned));
 
         $assertion = self::decryptAssertion($idpMetadata, $spMetadata, $assertion);
         self::decryptAttributes($idpMetadata, $spMetadata, $assertion);
@@ -911,7 +910,6 @@ class Message
      */
     public static function getEncryptionKey(Configuration $metadata)
     {
-
         $sharedKey = $metadata->getString('sharedkey', null);
         if ($sharedKey !== null) {
             $key = new XMLSecurityKey(XMLSecurityKey::AES128_CBC);

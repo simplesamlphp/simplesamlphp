@@ -3,6 +3,8 @@
 if (!isset($_REQUEST['id'])) {
     throw new \SimpleSAML\Error\BadRequest('Missing required parameter: id');
 }
+
+/** @psalm-var array $state */
 $state = \SimpleSAML\Auth\State::loadState($_REQUEST['id'], 'core:Logout-IFrame');
 $idp = \SimpleSAML\IdP::getByState($state);
 

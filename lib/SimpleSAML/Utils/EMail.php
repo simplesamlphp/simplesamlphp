@@ -157,8 +157,6 @@ class EMail
     public function setTransportMethod($transportMethod, array $transportOptions = [])
     {
         assert(is_string($transportMethod));
-        assert(is_array($transportOptions));
-
 
         switch (strtolower($transportMethod)) {
             // smtp transport method

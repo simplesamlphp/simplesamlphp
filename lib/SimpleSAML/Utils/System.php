@@ -240,7 +240,7 @@ class System
      *
      * @return bool
      */
-    private static function pathContainsDriveLetter($path)
+    private static function pathContainsDriveLetter(string $path): bool
     {
         $letterAsciiValue = ord(strtoupper(substr($path, 0, 1)));
         return substr($path, 1, 1) === ':'
@@ -252,7 +252,7 @@ class System
      * @param string $path
      * @return bool
      */
-    private static function pathContainsStreamWrapper($path)
+    private static function pathContainsStreamWrapper(string $path): bool
     {
         return preg_match('/^[\w\d]*:\/{2}/', $path) === 1;
     }

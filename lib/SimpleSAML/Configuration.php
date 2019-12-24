@@ -109,11 +109,8 @@ class Configuration implements Utils\ClearableState
      *
      * @throws \Exception If the configuration file is invalid or missing.
      */
-    private static function loadFromFile($filename, $required)
+    private static function loadFromFile(string $filename, bool $required): Configuration
     {
-        assert(is_string($filename));
-        assert(is_bool($required));
-
         if (array_key_exists($filename, self::$loadedConfigs)) {
             return self::$loadedConfigs[$filename];
         }

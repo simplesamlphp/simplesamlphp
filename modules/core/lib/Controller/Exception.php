@@ -11,6 +11,7 @@ use SimpleSAML\Session;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Controller class for the core module.
@@ -55,7 +56,7 @@ class Exception
      * @return \SimpleSAML\XHTML\Template|\Symfony\Component\HttpFoundation\RedirectResponse
      *   An HTML template or a redirection if we are not authenticated.
      */
-    public function cardinality(Request $request)
+    public function cardinality(Request $request): Response
     {
         $stateId = $request->get('StateId', false);
         if ($stateId === false) {
@@ -91,7 +92,7 @@ class Exception
      * @return \SimpleSAML\XHTML\Template|\Symfony\Component\HttpFoundation\RedirectResponse
      *   An HTML template or a redirection if we are not authenticated.
      */
-    public function nocookie(Request $request)
+    public function nocookie(Request $request): Response
     {
         $retryURL = $request->get('retryURL', null);
         if ($retryURL !== null) {
@@ -115,7 +116,7 @@ class Exception
      *
      * @throws \SimpleSAML\Error\BadRequest
      */
-    public function shortSsoInterval(Request $request)
+    public function shortSsoInterval(Request $request): Response
     {
         $stateId = $request->get('StateId', false);
         if ($stateId === false) {

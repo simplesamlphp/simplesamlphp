@@ -11,6 +11,7 @@ use SimpleSAML\Session;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Webmozart\Assert\Assert;
 
 /**
@@ -56,7 +57,7 @@ class Redirection
      * @return \SimpleSAML\XHTML\Template|\Symfony\Component\HttpFoundation\RedirectResponse
      *   An HTML template or a redirection if we are not authenticated.
      */
-    public function postredirect(Request $request)
+    public function postredirect(Request $request): Response
     {
         $redirId = $request->get('RedirId', false);
         $redirInfo = $request->get('RedirInfo', false);

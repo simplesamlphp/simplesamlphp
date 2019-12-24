@@ -73,8 +73,8 @@ class Net
 
             $ip_mask = ~((1 << (32 - $iteration_mask)) - 1);
 
-            $ip_net_mask = $ip_net[$i] & $ip_mask;
-            $ip_ip_mask = $ip_ip[$i] & $ip_mask;
+            $ip_net_mask = intval($ip_net[$i]) & $ip_mask;
+            $ip_ip_mask = intval($ip_ip[$i]) & $ip_mask;
 
             if ($ip_ip_mask != $ip_net_mask) {
                 return false;

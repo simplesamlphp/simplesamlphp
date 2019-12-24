@@ -93,11 +93,8 @@ class ProcessingChain
      * @param array $src  Source filters. May be unsorted.
      * @return void
      */
-    private static function addFilters(&$target, $src)
+    private static function addFilters(array &$target, array $src)
     {
-        assert(is_array($target));
-        assert(is_array($src));
-
         foreach ($src as $filter) {
             $fp = $filter->priority;
 
@@ -120,10 +117,8 @@ class ProcessingChain
      * @param array $filterSrc  Array with filter configuration.
      * @return array  Array of ProcessingFilter objects.
      */
-    private static function parseFilterList($filterSrc)
+    private static function parseFilterList(array $filterSrc): array
     {
-        assert(is_array($filterSrc));
-
         $parsedFilters = [];
 
         foreach ($filterSrc as $priority => $filter) {
@@ -151,10 +146,8 @@ class ProcessingChain
      *                           definition.)
      * @return \SimpleSAML\Auth\ProcessingFilter  The parsed filter.
      */
-    private static function parseFilter($config, $priority)
+    private static function parseFilter(array $config, int $priority): ProcessingFilter
     {
-        assert(is_array($config));
-
         if (!array_key_exists('class', $config)) {
             throw new \Exception('Authentication processing filter without name given.');
         }
@@ -346,9 +339,8 @@ class ProcessingChain
      * @param array &$state
      * @return void
      */
-    private static function addUserID(&$state)
+    private static function addUserID(array &$state)
     {
-        assert(is_array($state));
         assert(array_key_exists('Attributes', $state));
 
         if (isset($state['Destination']['userid.attribute'])) {

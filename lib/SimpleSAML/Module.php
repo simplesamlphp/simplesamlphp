@@ -305,7 +305,7 @@ class Module
      * @param array $mod_config
      * @return bool
      */
-    private static function isModuleEnabledWithConf($module, $mod_config)
+    private static function isModuleEnabledWithConf(string $module, array $mod_config): bool
     {
         if (isset(self::$module_info[$module]['enabled'])) {
             return self::$module_info[$module]['enabled'];
@@ -539,7 +539,7 @@ class Module
                 self::$module_info[$module]['hooks'] = self::getModuleHooks($module);
             }
 
-            if (!isset(self::$module_info[$module]['hooks'][$hook])) {
+            if (!isset(self::$module_info[$module]['hooks'][$hook]) || !empty(self::$module_info[$module]['hooks'][$hook])) {
                 continue;
             }
 

@@ -22,7 +22,7 @@ class Exception extends \Exception
      * We need to save the backtrace, since we cannot rely on
      * serializing the Exception::trace-variable.
      *
-     * @var array
+     * @var array<int, string>
      */
     private $backtrace = [];
 

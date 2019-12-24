@@ -165,6 +165,7 @@ XML
 XML
         );
 
+        /** @psalm-var \DOMElement $entities_root */
         $entities_root = $doc->getElementsByTagName('EntitiesDescriptor')->item(0);
         $signer = new Signer([]);
         $signer->loadPrivateKey($this->good_private_key_file, null, true);
@@ -180,7 +181,7 @@ XML
      * @param string $expected_fingerprint
      * @return void
      */
-    private function validateFingerprint($algo, $expected_fingerprint)
+    private function validateFingerprint(string $algo, string $expected_fingerprint)
     {
         $doc = $this->makeTestDocument();
         $entities = \SimpleSAML\Metadata\SAMLParser::parseDescriptorsElement($doc->documentElement);

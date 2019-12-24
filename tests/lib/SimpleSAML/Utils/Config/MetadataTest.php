@@ -2,6 +2,7 @@
 
 namespace SimpleSAML\Test\Utils\Config;
 
+use DOMDocument;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Utils\Config\Metadata;
 
@@ -242,6 +243,13 @@ class MetadataTest extends TestCase
         ];
         $this->assertTrue(Metadata::isHiddenFromDiscovery($metadata));
 
+        // test for failure
+        $this->assertFalse(Metadata::isHiddenFromDiscovery([
+            'EntityAttributes' => [
+                Metadata::$ENTITY_CATEGORY => [],
+            ],
+        ]));
+
         // test for failures
         $this->assertFalse(Metadata::isHiddenFromDiscovery(['foo']));
         $this->assertFalse(Metadata::isHiddenFromDiscovery([
@@ -255,14 +263,9 @@ class MetadataTest extends TestCase
                 Metadata::$ENTITY_CATEGORY => '',
             ],
         ]));
-        $this->assertFalse(Metadata::isHiddenFromDiscovery([
-            'EntityAttributes' => [
-                Metadata::$ENTITY_CATEGORY => [],
-            ],
-        ]));
     }
 
-    
+
     /**
      * Test \SimpleSAML\Utils\Config\Metadata::parseNameIdPolicy().
      * @return void

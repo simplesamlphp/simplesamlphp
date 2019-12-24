@@ -15,7 +15,7 @@ class HTTPTest extends ClearStateTestCase
      * @param string $url The URL to use as the current one.
      * @return void
      */
-    private function setupEnvFromURL($url)
+    private function setupEnvFromURL(string $url)
     {
         $addr = parse_url($url);
         $_SERVER['HTTP_HOST'] = $addr['host'];

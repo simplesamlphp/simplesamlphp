@@ -13,6 +13,7 @@ use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Webmozart\Assert\Assert;
 
 /**
@@ -70,7 +71,7 @@ class Login
      *
      * @throws \SimpleSAML\Error\Exception An exception in case the auth source specified is invalid.
      */
-    public function account($as)
+    public function account(string $as): Response
     {
         if (!array_key_exists($as, $this->sources)) {
             throw new Error\Exception('Invalid authentication source');
@@ -118,7 +119,7 @@ class Login
      *
      * @throws \SimpleSAML\Error\Exception
      */
-    public function login(Request $request, $as = null)
+    public function login(Request $request, string $as = null): Response
     {
         // delete admin
         if (isset($this->sources['admin'])) {
@@ -180,7 +181,7 @@ class Login
      *
      * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
-    public function logout($as)
+    public function logout(string $as): Response
     {
         $auth = new Auth\Simple($as);
         return new RunnableResponse([$auth, 'logout'], [$this->config->getBasePath() . 'core/logout/' . urlencode($as)]);

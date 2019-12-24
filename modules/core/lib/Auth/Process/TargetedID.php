@@ -160,10 +160,8 @@ class TargetedID extends \SimpleSAML\Auth\ProcessingFilter
      * @param array $metadata  The metadata of the entity.
      * @return string  The unique identifier for the entity.
      */
-    private static function getEntityId($metadata)
+    private static function getEntityId(array $metadata): string
     {
-        assert(is_array($metadata));
-
         $id = '';
 
         if (array_key_exists('metadata-set', $metadata)) {

@@ -27,7 +27,7 @@ class HTTP
      *
      * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
-    private static function getSecurePOSTRedirectURL($destination, $data)
+    private static function getSecurePOSTRedirectURL(string $destination, array $data): string
     {
         $session = Session::getSessionFromRequest();
         $id = self::savePOSTData($session, $destination, $data);
@@ -56,7 +56,7 @@ class HTTP
      *
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
-    private static function getServerHost()
+    private static function getServerHost(): string
     {
         if (array_key_exists('HTTP_HOST', $_SERVER)) {
             $current = $_SERVER['HTTP_HOST'];
@@ -171,9 +171,9 @@ class HTTP
      * @author Mads Freek Petersen
      * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
-    private static function redirect($url, $parameters = [])
+    private static function redirect(string $url, array $parameters = [])
     {
-        if (!is_string($url) || empty($url) || !is_array($parameters)) {
+        if (empty($url)) {
             throw new \InvalidArgumentException('Invalid input parameters.');
         }
         if (!self::isValidURL($url)) {
@@ -246,7 +246,7 @@ class HTTP
      * @author Andjelko Horvat
      * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
-    private static function savePOSTData(Session $session, $destination, $data)
+    private static function savePOSTData(Session $session, string $destination, array $data): string
     {
         // generate a random ID to avoid replay attacks
         $id = Random::generateID();
@@ -1165,7 +1165,7 @@ class HTTP
             'lifetime' => 0,
             'expire'   => null,
             'path'     => '/',
-            'domain'   => null,
+            'domain'   => '',
             'secure'   => false,
             'httponly' => true,
             'raw'      => false,

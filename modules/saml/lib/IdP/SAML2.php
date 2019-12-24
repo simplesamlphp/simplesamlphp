@@ -13,6 +13,7 @@ use SAML2\EncryptedAssertion;
 use SAML2\HTTPRedirect;
 use SAML2\LogoutRequest;
 use SAML2\LogoutResponse;
+use SAML2\Response;
 use SAML2\SOAP;
 use SAML2\XML\ds\X509Certificate;
 use SAML2\XML\ds\X509Data;
@@ -192,14 +193,10 @@ class SAML2
     private static function getAssertionConsumerService(
         array $supportedBindings,
         Configuration $spMetadata,
-        $AssertionConsumerServiceURL,
-        $ProtocolBinding,
-        $AssertionConsumerServiceIndex
+        string $AssertionConsumerServiceURL = null,
+        string $ProtocolBinding = null,
+        int $AssertionConsumerServiceIndex = null
     ) {
-        assert(is_string($AssertionConsumerServiceURL) || $AssertionConsumerServiceURL === null);
-        assert(is_string($ProtocolBinding) || $ProtocolBinding === null);
-        assert(is_int($AssertionConsumerServiceIndex) || $AssertionConsumerServiceIndex === null);
-
         /* We want to pick the best matching endpoint in the case where for example
          * only the ProtocolBinding is given. We therefore pick endpoints with the
          * following priority:
@@ -363,12 +360,14 @@ class SAML2
                 );
             }
 
+            /** @psalm-var null|string|\SAML2\XML\saml\Issuer $issuer   Remove in SSP 2.0 */
             $issuer = $request->getIssuer();
             if ($issuer === null) {
                 throw new Error\BadRequest(
                     'Received message on authentication request endpoint without issuer.'
                 );
             } elseif ($issuer instanceof Issuer) {
+                /** @psalm-var string|null $spEntityId */
                 $spEntityId = $issuer->getValue();
                 if ($spEntityId === null) {
                     /* Without an issuer we have no way to respond to the message. */
@@ -604,11 +603,13 @@ class SAML2
         $binding = Binding::getCurrentBinding();
         $message = $binding->receive();
 
+        /** @psalm-var null|string|\SAML2\XML\saml\Issuer  Remove in SSP 2.0 */
         $issuer = $message->getIssuer();
         if ($issuer === null) {
             /* Without an issuer we have no way to respond to the message. */
             throw new Error\BadRequest('Received message on logout endpoint without issuer.');
         } elseif ($issuer instanceof Issuer) {
+            /** @psalm-var string|null $spEntityId */
             $spEntityId = $issuer->getValue();
             if ($spEntityId === null) {
                 /* Without an issuer we have no way to respond to the message. */
@@ -948,7 +949,6 @@ class SAML2
         Configuration $spMetadata,
         array &$state
     ) {
-
         $attribute = $spMetadata->getString('simplesaml.nameidattribute', null);
         if ($attribute === null) {
             $attribute = $idpMetadata->getString('simplesaml.nameidattribute', null);
@@ -999,7 +999,7 @@ class SAML2
         Configuration $idpMetadata,
         Configuration $spMetadata,
         array $attributes
-    ) {
+    ): array {
         $base64Attributes = $spMetadata->getBoolean('base64attributes', null);
         if ($base64Attributes === null) {
             $base64Attributes = $idpMetadata->getBoolean('base64attributes', false);
@@ -1038,6 +1038,7 @@ class SAML2
 
                 $attrval = $value;
                 if ($value instanceof DOMNodeList) {
+                    /** @psalm-suppress PossiblyNullPropertyFetch */
                     $attrval = new AttributeValue($value->item(0)->parentNode);
                 }
 
@@ -1078,7 +1079,7 @@ class SAML2
     private static function getAttributeNameFormat(
         Configuration $idpMetadata,
         Configuration $spMetadata
-    ) {
+    ): string {
         // try SP metadata first
         $attributeNameFormat = $spMetadata->getString('attributes.NameFormat', null);
         if ($attributeNameFormat !== null) {
@@ -1119,7 +1120,7 @@ class SAML2
         Configuration $idpMetadata,
         Configuration $spMetadata,
         array &$state
-    ) {
+    ): Assertion {
         assert(isset($state['Attributes']));
         assert(isset($state['saml:ConsumerURL']));
 
@@ -1376,8 +1377,8 @@ class SAML2
         Configuration $idpMetadata,
         Configuration $spMetadata,
         array $association,
-        $relayState
-    ) {
+        string $relayState = null
+    ): LogoutRequest {
         $lr = \SimpleSAML\Module\saml\Message::buildLogoutRequest($idpMetadata, $spMetadata);
         $lr->setRelayState($relayState);
         $lr->setSessionIndex($association['saml:SessionIndex']);
@@ -1413,14 +1414,14 @@ class SAML2
     private static function buildResponse(
         Configuration $idpMetadata,
         Configuration $spMetadata,
-        $consumerURL
-    ) {
+        string $consumerURL
+    ): Response {
         $signResponse = $spMetadata->getBoolean('saml20.sign.response', null);
         if ($signResponse === null) {
             $signResponse = $idpMetadata->getBoolean('saml20.sign.response', true);
         }
 
-        $r = new \SAML2\Response();
+        $r = new Response();
         $issuer = new Issuer();
         $issuer->setValue($idpMetadata->getString('entityid'));
         $issuer->setFormat(Constants::NAMEID_ENTITY);

@@ -345,7 +345,7 @@ class SP extends \SimpleSAML\Auth\Source
      * @return array
      * @throws \Exception
      */
-    private function getACSEndpoints()
+    private function getACSEndpoints(): array
     {
         $endpoints = [];
         $default = [
@@ -427,7 +427,7 @@ class SP extends \SimpleSAML\Auth\Source
      * @return array
      * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
-    private function getSLOEndpoints()
+    private function getSLOEndpoints(): array
     {
         $store = Store::getInstance();
         $bindings = $this->metadata->getArray(

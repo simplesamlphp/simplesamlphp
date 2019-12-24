@@ -23,7 +23,7 @@ class NameIDAttributeTest extends TestCase
      * @param array $request  The request state.
      * @return array  The state array after processing.
      */
-    private function processFilter(array $config, array $request)
+    private function processFilter(array $config, array $request): array
     {
         $filter = new NameIDAttribute($config, null);
         $filter->process($request);

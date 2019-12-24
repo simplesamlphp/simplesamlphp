@@ -31,7 +31,7 @@ class SPTest extends ClearStateTestCase
     /**
      * @return \SimpleSAML\Configuration
      */
-    private function getIdpMetadata()
+    private function getIdpMetadata(): Configuration
     {
         if (!$this->idpMetadata) {
             $this->idpMetadata = new Configuration(

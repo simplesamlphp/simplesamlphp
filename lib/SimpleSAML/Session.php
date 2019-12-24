@@ -145,7 +145,7 @@ class Session implements \Serializable, Utils\ClearableState
      *
      * @param boolean $transient Whether to create a transient session or not.
      */
-    private function __construct($transient = false)
+    private function __construct(bool $transient = false)
     {
         $this->setConfiguration(Configuration::getInstance());
 
@@ -393,7 +393,7 @@ class Session implements \Serializable, Utils\ClearableState
      * @param Session $session The session to load.
      * @return Session The session we just loaded, just for convenience.
      */
-    private static function load(Session $session)
+    private static function load(Session $session): Session
     {
         Logger::setTrackId($session->getTrackID());
         self::$instance = $session;
@@ -636,8 +636,11 @@ class Session implements \Serializable, Utils\ClearableState
                     continue;
                 }
 
+                /** @psalm-var \DOMNode $node   We made sure value has at least 1 item in the check above */
+                $node = $value->item(0);
+
                 // create an AttributeValue object and save it to 'RawAttributes', using same attribute name and index
-                $attrval = new AttributeValue($value->item(0)->parentNode);
+                $attrval = new AttributeValue($node->parentNode);
                 $data['RawAttributes'][$attribute][$idx] = $attrval;
             }
         }
@@ -711,9 +714,8 @@ class Session implements \Serializable, Utils\ClearableState
      *
      * @throws \Exception If the handler is not a valid function or method.
      */
-    private function callLogoutHandlers($authority)
+    private function callLogoutHandlers(string $authority)
     {
-        assert(is_string($authority));
         assert(isset($this->authData[$authority]));
 
         if (empty($this->authData[$authority]['LogoutHandlers'])) {
