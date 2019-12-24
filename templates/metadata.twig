@@ -3,7 +3,7 @@
 {% block content %}
   <h2>{% trans %}Metadata{% endtrans %}</h2>
   <dl>
-    <dd>{{ metadata_intro }}</dd>
+    <dd>{{ '{admin:metadata_intro}'|trans }}</dd>
 
   {% if metaurl is defined %}
     <dd>{% trans %}You can get the metadata xml on a dedicated URL:{% endtrans %}</dd>
@@ -49,9 +49,9 @@
 
         <li>
           <a href="{{ cert.url }}"><i class="fa fa-download"></i>{{ cert.name }}
-          {#- #}{% if cert.signing %}-signing{% endif %}
-          {#- #}{% if cert.encryption %}-encryption{% endif %}.pem
-          {#- #}{% if cert.prefix %} ({% trans %}new{% endtrans %}){% endif %}</a> {{ cert.comment }}
+          {#- #}{% if cert.signing is defined %}-signing{% endif %}
+          {#- #}{% if cert.encryption is defined %}-encryption{% endif %}.pem
+          {#- #}{% if cert.prefix is defined %} ({% trans %}new{% endtrans %}){% endif %}</a> {{ cert.comment }}
         </li>
       {% endfor %}
 
