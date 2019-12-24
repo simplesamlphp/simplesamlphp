@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Utils;
 
 use SimpleSAML\Configuration;
@@ -816,7 +818,7 @@ class HTTP
         // convert that relative path to an HTTP query
         $url_path = str_replace(DIRECTORY_SEPARATOR, '/', $rel_path);
         // find where the relative path starts in the current request URI
-        $uri_pos = (!empty($url_path)) ? strpos($_SERVER['REQUEST_URI'], $url_path) : false;
+        $uri_pos = (!empty($url_path)) ? strpos($_SERVER['REQUEST_URI'] ?? '', $url_path) : false;
 
         if ($cur_path == $rel_path || $uri_pos === false) {
             /*

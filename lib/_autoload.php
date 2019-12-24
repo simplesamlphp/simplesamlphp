@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is a backwards compatible autoloader for SimpleSAMLphp.
  * Loads the Composer autoloader.

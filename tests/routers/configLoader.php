@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This "router" (a script that's executed for every request received by PHP's built-in web server) will look
  * for a file in the system's temporary directory, with the PID of the current process as its name, and the

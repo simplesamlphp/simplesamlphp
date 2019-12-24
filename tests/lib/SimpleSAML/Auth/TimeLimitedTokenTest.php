@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Test\Auth;
 
 use SimpleSAML\Auth\TimeLimitedToken;

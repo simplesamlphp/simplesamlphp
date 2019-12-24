@@ -1,16 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
+namespace SimpleSAML\Module\saml\Error;
+
+use SAML2\Constants;
+
 /**
  * A SAML error indicating that none of the IdPs requested are supported.
  *
  * @author Jaime Pérez Crespo, UNINETT AS <jaime.perez@uninett.no>
  * @package SimpleSAMLphp
  */
-
-namespace SimpleSAML\Module\saml\Error;
-
-use SAML2\Constants;
-
 class NoSupportedIDP extends \SimpleSAML\Module\saml\Error
 {
     /**

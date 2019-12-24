@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * A Shibboleth 1.3 authentication response.
  *

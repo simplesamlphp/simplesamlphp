@@ -1,10 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Test\Utils\Config;
 
 use DOMDocument;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Utils\Config\Metadata;
+use TypeError;
 
 /**
  * Tests related to SAML metadata.
@@ -251,7 +254,9 @@ class MetadataTest extends TestCase
         ]));
 
         // test for failures
-        $this->assertFalse(Metadata::isHiddenFromDiscovery(['foo']));
+        $this->expectException(TypeError::class);
+        Metadata::isHiddenFromDiscovery(['foo']);
+
         $this->assertFalse(Metadata::isHiddenFromDiscovery([
             'EntityAttributes' => 'bar',
         ]));

@@ -12,6 +12,8 @@
  * @package SimpleSAMLphp
  */
 
+declare(strict_types=1);
+
 namespace SimpleSAML;
 
 abstract class SessionHandler

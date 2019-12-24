@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Module\saml\Auth\Source;
 
 use SAML2\AuthnRequest;

@@ -11,6 +11,8 @@
  * @abstract
  */
 
+declare(strict_types=1);
+
 namespace SimpleSAML;
 
 use SimpleSAML\Utils;

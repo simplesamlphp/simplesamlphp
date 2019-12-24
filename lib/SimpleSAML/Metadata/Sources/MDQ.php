@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Metadata\Sources;
 
 use RobRichards\XMLSecLibs\XMLSecurityDSig;

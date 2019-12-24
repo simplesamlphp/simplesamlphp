@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Test\Module\core\Auth\Process;
 
 use SimpleSAML\Error\Exception as SspException;
