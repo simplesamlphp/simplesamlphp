@@ -452,7 +452,13 @@ class XML
             $schemaFile = $schemaPath . '/' . $schema;
 
             libxml_set_external_entity_loader(
-                function ($public, $system, $context) {
+                /**
+                 * @param string|null $public
+                 * @param string $system
+                 * @param array $context
+                 * @return string|null
+                 */
+                function (string $public = null, string $system, array $context) {
                     if (filter_var($system, FILTER_VALIDATE_URL) === $system) {
                         return null;
                     }

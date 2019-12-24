@@ -29,7 +29,7 @@ class Kernel extends BaseKernel
 
 
     /**
-     * @oaram string $module
+     * @param string $module
      */
     public function __construct($module)
     {

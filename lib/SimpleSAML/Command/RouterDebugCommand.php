@@ -16,6 +16,7 @@ class RouterDebugCommand extends Command
      * @var string
      */
     protected static $defaultName = 'debug:router';
+
     /**
      * @var RouterInterface
      */
@@ -34,6 +35,7 @@ class RouterDebugCommand extends Command
 
     /**
      * {@inheritDoc}
+     * @return void
      */
     protected function configure()
     {
@@ -52,6 +54,7 @@ EOF
 
     /**
      * {@inheritdoc}
+     * @psalm-suppress InvalidReturnType
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
