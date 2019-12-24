@@ -1357,6 +1357,7 @@ class SAMLParser
 
         $keyInfo = $kd->getKeyInfo();
 
+        /** @psalm-suppress PossiblyNullReference  This will be fixed in saml2 5.0 */
         foreach ($keyInfo->getInfo() as $i) {
             if ($i instanceof X509Data) {
                 foreach ($i->getData() as $d) {
