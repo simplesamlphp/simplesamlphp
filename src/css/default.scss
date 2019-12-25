@@ -417,8 +417,7 @@ HEADER
 }
 
 .language-menu {
-  font-family: "Font Awesome 5 Free", sans-serif;
-  font-weight: 400;
+  font-family: FontAwesome, sans-serif;
   min-width: 10rem;
 }
 
@@ -658,8 +657,7 @@ div .item {
 IMAGES
 ************************************************************ */
 .fa {
-  font-family: "Font Awesome 5 Free" !important;
-  font-weight: 400;
+  font-family: FontAwesome !important;
 }
 
 span.fa, i.fa {
@@ -858,8 +856,7 @@ div.preferredidp {
     }
     &:after {
       content: "\f078";
-      font-family: "Font Awesome 5 Free";
-      font-weight: 400;
+      font-family: FontAwesome;
     }
   }
 
