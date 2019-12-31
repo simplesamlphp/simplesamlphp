@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML;
 
-use SimpleSAML\HTTP\Router;
+use SimpleSAML\Kernel;
 use SimpleSAML\Utils;
 use Symfony\Component\Config\Exception\FileLocatorFileNotFoundException;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
@@ -145,14 +145,12 @@ class Module
 
         $modEnd = strpos($url, '/', 1);
         if ($modEnd === false) {
-            // the path must always be on the form /module/
-            throw new Error\NotFound('The URL must at least contain a module name followed by a slash.');
-        }
-
-        $module = substr($url, 1, $modEnd - 1);
-        $url = substr($url, $modEnd + 1);
-        if ($url === false) {
+            $modEnd = strlen($url);
+            $module = substr($url, 1);
             $url = '';
+        } else {
+            $module = substr($url, 1, $modEnd - 1);
+            $url = substr($url, $modEnd + 1);
         }
 
         if (!self::isModuleEnabled($module)) {
@@ -186,9 +184,12 @@ class Module
         );
 
         if ($config->getBoolean('usenewui', false) === true) {
-            $router = new Router($module);
             try {
-                return $router->process($request);
+                $kernel = new Kernel($module);
+                $response = $kernel->handle($request);
+                $kernel->terminate($request, $response);
+
+                return $response;
             } catch (FileLocatorFileNotFoundException $e) {
                 // no routes configured for this module, fall back to the old system
             } catch (NotFoundHttpException $e) {
@@ -554,6 +555,22 @@ class Module
             $fn = self::$module_info[$module]['hooks'][$hook]['func'];
             $fn($data);
         }
+    }
+
+
+    /**
+     * Handle a valid request for a module that lacks a trailing slash.
+     *
+     * This method add the trailing slash and redirects to the resulting URL.
+     *
+     * @param Request $request The request to process by this controller method.
+     *
+     * @return RedirectResponse A redirection to the URI specified in the request, but with a trailing slash.
+     */
+    public static function addTrailingSlash(Request $request)
+    {
+        // Must be of form /{module} - append a slash
+        return new RedirectResponse($request->getRequestUri() . '/', 308);
     }
 
 

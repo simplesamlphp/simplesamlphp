@@ -116,7 +116,7 @@ class Login
      * @param Request $request The request that lead to this login operation.
      * @param string|null $as The name of the authentication source to use, if any. Optional.
      *
-     * @return \SimpleSAML\XHTML\Template|\SimpleSAML\HTTP\RunnableResponse|\Symfony\Component\HttpFoundation\RedirectResponse
+     * @return \Symfony\Component\HttpFoundation\Response
      * An HTML template, a redirect or a "runnable" response.
      *
      * @throws \SimpleSAML\Error\Exception
@@ -186,7 +186,10 @@ class Login
     public function logout(string $as): Response
     {
         $auth = new Auth\Simple($as);
-        return new RunnableResponse([$auth, 'logout'], [$this->config->getBasePath() . 'core/logout/' . urlencode($as)]);
+        return new RunnableResponse(
+            [$auth, 'logout'],
+            [$this->config->getBasePath() . 'core/logout/' . urlencode($as)]
+        );
     }
 
 

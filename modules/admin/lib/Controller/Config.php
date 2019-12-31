@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SimpleSAML\Module\admin;
+namespace SimpleSAML\Module\admin\Controller;
 
 use SimpleSAML\Configuration;
 use SimpleSAML\HTTP\RunnableResponse;
@@ -20,7 +20,7 @@ use Symfony\Component\HttpFoundation\Request;
  *
  * @package SimpleSAML\Module\admin
  */
-class ConfigController
+class Config
 {
     const LATEST_VERSION_STATE_KEY = 'core:latest_simplesamlphp_version';
 

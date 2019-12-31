@@ -82,6 +82,14 @@ class Exception
             ) . "&logout";
         }
 
+        $t = new Template($this->config, 'core:cardinality_error.twig');
+        $t->data['cardinalityErrorAttributes'] = $state['core:cardinality:errorAttributes'];
+        if (isset($state['Source']['auth'])) {
+            $t->data['LogoutURL'] = Module::getModuleURL(
+                'core/login/' . urlencode($state['Source']['auth'])
+            );
+        }
+
         $t->setStatusCode(403);
         return $t;
     }
@@ -101,7 +109,21 @@ class Exception
             $retryURL = Utils\HTTP::checkURLAllowed(strval($retryURL));
         }
 
-        $t = new Template($this->config, 'core:no_cookie.tpl.php');
+        $t = new Template($this->config, 'core:no_cookie.twig');
+        $translator = $t->getTranslator();
+
+        /** @var string $header */
+        $header = $translator->t('{core:no_cookie:header}');
+
+        /** @var string $desc */
+        $desc = $translator->t('{core:no_cookie:description}');
+
+        /** @var string $retry */
+        $retry = $translator->t('{core:no_cookie:retry}');
+
+        $t->data['header'] = htmlspecialchars($header);
+        $t->data['description'] = htmlspecialchars($desc);
+        $t->data['retry'] = htmlspecialchars($retry);
         $t->data['retryURL'] = $retryURL;
         return $t;
     }
@@ -134,7 +156,7 @@ class Exception
             Auth\ProcessingChain::resumeProcessing($state);
         }
 
-        $t = new Template($this->config, 'core:short_sso_interval.tpl.php');
+        $t = new Template($this->config, 'core:short_sso_interval.twig');
         $translator = $t->getTranslator();
         $t->data['params'] = ['StateId' => $stateId];
         $t->data['trackId'] = $this->session->getTrackID();

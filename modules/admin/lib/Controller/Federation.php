@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SimpleSAML\Module\admin;
+namespace SimpleSAML\Module\admin\Controller;
 
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
@@ -30,9 +30,8 @@ use Symfony\Component\HttpFoundation\ResponseHeaderBag;
  *
  * @package SimpleSAML\Module\admin
  */
-class FederationController
+class Federation
 {
-
     /** @var \SimpleSAML\Configuration */
     protected $config;
 
@@ -385,6 +384,7 @@ class FederationController
         return $entities;
     }
 
+
     /**
      * Metadata converter
      *
@@ -454,6 +454,7 @@ class FederationController
         return $this->menu->insert($t);
     }
 
+
     /**
      * Download a certificate for a given entity.
      *
@@ -495,6 +496,7 @@ class FederationController
 
         return $response;
     }
+
 
     /**
      * Show remote entity metadata

@@ -67,13 +67,6 @@
         <DocblockTypeContradiction errorLevel="suppress" />
         <RedundantConditionGivenDocblockType errorLevel="suppress" />
 
-        <!-- See #1141 -->
-        <MissingDependency>
-            <errorLevel type="suppress">
-                <file name="lib/SimpleSAML/HTTP/Router.php" />
-            </errorLevel>
-        </MissingDependency>
-
         <!-- Ignore UnresolvableInclude on CLI-scripts -->
         <UnresolvableInclude>
             <errorLevel type="suppress">
