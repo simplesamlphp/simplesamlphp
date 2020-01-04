@@ -33,7 +33,7 @@ the ones prefixed with "test".
 
 You will usually make use of the `assert*()` methods provided by
 `PHPUnit\Framework\TestCase`, but you can also tell `phpunit` to expect
-an exception to be thrown using *phpdoc*. For example, if you want to
+an exception to be thrown using the `expectException()`-method. For example, if you want to
 ensure that the `SimpleSAML\Utils\HTTP::addURLParameters()` method
 throws an exception in a specific situation:
 
