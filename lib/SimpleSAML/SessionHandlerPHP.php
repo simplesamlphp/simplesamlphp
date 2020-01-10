@@ -97,7 +97,7 @@ class SessionHandlerPHP extends SessionHandler
                 session_set_cookie_params(
                     $params['lifetime'],
                     $params['path'],
-                    $params['domain'],
+                    $params['domain'] ?? '',
                     $params['secure'],
                     $params['httponly']
                 );
