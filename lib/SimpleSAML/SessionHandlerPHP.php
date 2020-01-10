@@ -95,7 +95,7 @@ class SessionHandlerPHP extends SessionHandler
                 session_set_cookie_params(
                     $params['lifetime'],
                     $params['path'],
-                    $params['domain'],
+                    is_null($params['domain']) ? '' : $params['domain'],
                     $params['secure'],
                     $params['httponly']
                 );
@@ -370,7 +370,7 @@ class SessionHandlerPHP extends SessionHandler
             session_set_cookie_params(
                 $cookieParams['lifetime'],
                 $cookieParams['path'],
-                $cookieParams['domain'],
+                is_null($cookieParams['domain']) ? '' : $cookieParams['domain'],
                 $cookieParams['secure'],
                 $cookieParams['httponly']
             );
