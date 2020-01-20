@@ -205,7 +205,7 @@ class LoginTest extends ClearStateTestCase
         list($object, $method) = $response->getCallable();
         $this->assertInstanceOf(Simple::class, $object);
         $this->assertEquals('logout', $method);
-        $this->assertEquals('/simplesaml/core/logout/example-userpass', $response->getArguments()[0]);
+        $this->assertEquals('/simplesaml/', $response->getArguments()[0]);
     }
 
 
