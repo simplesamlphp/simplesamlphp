@@ -188,7 +188,7 @@ class Login
         $auth = new Auth\Simple($as);
         return new RunnableResponse(
             [$auth, 'logout'],
-            [$this->config->getBasePath() . 'core/logout/' . urlencode($as)]
+            [$this->config->getBasePath()]
         );
     }
 
