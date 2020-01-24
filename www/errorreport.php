@@ -17,6 +17,10 @@ $reportId = $_REQUEST['reportId'];
 $email = $_REQUEST['email'];
 $text = $_REQUEST['text'];
 
+if (!preg_match('/^[0-9a-f]{8}$/', $reportId)) {
+    throw new \SimpleSAML\Error\Exception('Invalid reportID');
+}
+
 $data = null;
 try {
     $session = \SimpleSAML\Session::getSessionFromRequest();

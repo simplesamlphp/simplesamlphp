@@ -274,7 +274,7 @@ pre {
 </head>
 <body>
 <div class="container" style="background: #fafafa; border: 1px solid #eee; margin: 2em; padding: .6em;">
-' . $this->text . '
+' . htmlspecialchars($this->text) . '
 </div>
 </body>
 </html>';
