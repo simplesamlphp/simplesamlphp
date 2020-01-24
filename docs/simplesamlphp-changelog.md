@@ -14,6 +14,9 @@ Released 2020-01-24
     [SSPSA 202001-01](https://simplesamlphp.org/security/202001-01).
   * Resolved a security issue with the logging system. See
     [SSPSA 202001-02](https://simplesamlphp.org/security/202001-02).
+  * Fixed SQL store index creation for PostgreSQL.
+  * Handle case where cookie 'domain' parameter was not set.
+  * Update versions of included JavaScript dependencies.
 
 ## Version 1.18.3
 
