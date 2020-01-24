@@ -13,6 +13,18 @@ Released TBD
   * This version will be the last of the 1.x branch and will provide a migration path to our new
     templating system, routing system, translation system and hooks.
 
+## Version 1.18.4
+
+Released 2020-01-24
+
+  * Resolved a security issue in email reports. See
+    [SSPSA 202001-01](https://simplesamlphp.org/security/202001-01).
+  * Resolved a security issue with the logging system. See
+    [SSPSA 202001-02](https://simplesamlphp.org/security/202001-02).
+  * Fixed SQL store index creation for PostgreSQL.
+  * Handle case where cookie 'domain' parameter was not set.
+  * Update versions of included JavaScript dependencies.
+
 ## Version 1.18.3
 
 Released 2019-12-09
