@@ -6,6 +6,15 @@ SimpleSAMLphp changelog
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
+## Version 1.18.4
+
+Released 2020-01-24
+
+  * Resolved a security issue in email reports. See
+    [SSPSA 202001-01](https://simplesamlphp.org/security/202001-01).
+  * Resolved a security issue with the logging system. See
+    [SSPSA 202001-02](https://simplesamlphp.org/security/202001-02).
+
 ## Version 1.18.3
 
 Released 2019-12-09
