@@ -5,7 +5,7 @@
  */
 function SimpleSAML_focus(id)
 {
-    element = document.getElementById(id);
+    var element = document.getElementById(id);
     if (element != null) {
         element.focus();
     }
@@ -19,7 +19,7 @@ function SimpleSAML_focus(id)
  */
 function SimpleSAML_show(id)
 {
-    element = document.getElementById(id);
+    var element = document.getElementById(id);
     if (element == null) {
         return;
     }
@@ -35,7 +35,7 @@ function SimpleSAML_show(id)
  */
 function SimpleSAML_hide(id)
 {
-    element = document.getElementById(id);
+    var element = document.getElementById(id);
     if (element == null) {
         return;
     }
