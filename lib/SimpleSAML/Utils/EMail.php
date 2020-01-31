@@ -66,6 +66,7 @@ class EMail
     {
         $config = Configuration::getInstance();
         $address = $config->getString('technicalcontact_email', 'na@example.org');
+        $address = preg_replace('/^mailto:/i', '', $address);
         if ('na@example.org' === $address) {
             throw new \Exception('technicalcontact_email must be changed from the default value');
         }
