@@ -8,7 +8,6 @@
 
     <h2>{% trans %}Hosted entities{% endtrans %}</h2>
       {%- for key, set in entries.hosted %}
-        {%- set metadataset = attribute(set, 'metadata-set') %}
         {%- if not loop.first %}
 
         <br/>
@@ -17,13 +16,13 @@
           {%- block general %}
 
           <dl>
-            {%- if set.name %}
+            {%- if set.name is defined %}
 
               <dt>{{ set.name|translateFromArray }}</dt>
             {%- endif %}
 
             <dd>EntityID: <code>{{ set.entityid }}</code></dd>
-            {%- if set.deprecated %}
+            {%- if set.deprecated is defined and set.deprecated %}
 
               <dd><span class="entity-deprecated">Deprecated</span></dd>
             {%- endif %}
@@ -106,10 +105,10 @@
       {% for entityid, entity in set %}
 
         <li><a href="{{ moduleURL('admin/federation/show?entityid=' ~ (entity.entityid|url_encode) ~ '&set=' ~ key) }}">
-          {%- if entity.name_translated -%}
+          {%- if entity.name_translated is defined -%}
 
           {{ entity.name_translated }}
-          {%- elseif entity.organizationdisplayname_translated -%}
+          {%- elseif entity.organizationdisplayname_translated is defined -%}
 
           {{ entity.organizationdisplayname_translated }}
           {%- else -%}
@@ -117,7 +116,7 @@
           {{ entity.entityid|escape('html') }}
           {%- endif -%}
           </a>
-          {%- if entity.expire %}
+          {%- if entity.expire is defined %}
             {%- if entity.expire < date().timestamp %}
 
           <span class="entity-expired"> (expired {{ ((date().timestamp - entity.expire) / 3600) }} hours ago)</span>
