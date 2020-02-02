@@ -168,8 +168,11 @@ class Signer
      *
      * @throws \SimpleSAML\Error\CriticalConfigurationError
      */
-    private static function getMetadataSigningAlgorithm(Configuration $config, array $entityMetadata, string $type): array
-    {
+    private static function getMetadataSigningAlgorithm(
+        Configuration $config,
+        array $entityMetadata,
+        string $type
+    ): array {
         // configure the algorithm to use
         if (array_key_exists('metadata.sign.algorithm', $entityMetadata)) {
             if (!is_string($entityMetadata['metadata.sign.algorithm'])) {

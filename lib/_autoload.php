@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * This file is a backwards compatible autoloader for SimpleSAMLphp.
  * Loads the Composer autoloader.
@@ -9,6 +7,8 @@ declare(strict_types=1);
  * @author Olav Morken, UNINETT AS.
  * @package SimpleSAMLphp
  */
+
+declare(strict_types=1);
 
 // SSP is loaded as a separate project
 if (file_exists(dirname(dirname(__FILE__)) . '/vendor/autoload.php')) {

@@ -1,7 +1,7 @@
 <?php
-/*
+
+/**
  * The configuration of SimpleSAMLphp
- *
  */
 
 $config = [

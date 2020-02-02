@@ -542,7 +542,10 @@ class Module
                 self::$module_info[$module]['hooks'] = self::getModuleHooks($module);
             }
 
-            if (!isset(self::$module_info[$module]['hooks'][$hook]) || !empty(self::$module_info[$module]['hooks'][$hook])) {
+            if (
+                !isset(self::$module_info[$module]['hooks'][$hook])
+                || !empty(self::$module_info[$module]['hooks'][$hook])
+            ) {
                 continue;
             }
 
