@@ -134,4 +134,3 @@ if (isset($state['SPMetadata'])) {
 }
 
 $t->show();
-exit();
