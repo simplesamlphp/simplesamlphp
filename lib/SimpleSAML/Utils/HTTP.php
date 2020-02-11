@@ -113,7 +113,7 @@ class HTTP
 
         // Take care of edge-case where SERVER_PORT is an integer
         $port = strval($port);
-        
+
         if ($port !== $default_port) {
             return ':'.$port;
         }
@@ -1119,6 +1119,7 @@ class HTTP
             'secure'   => false,
             'httponly' => true,
             'raw'      => false,
+            'samesite' => null,
         );
 
         if ($params !== null) {
@@ -1141,12 +1142,17 @@ class HTTP
 
         if ($value === null) {
             $expire = time() - 365 * 24 * 60 * 60;
+            $value = strval($value);
         } elseif (isset($params['expire'])) {
             $expire = $params['expire'];
         } elseif ($params['lifetime'] === 0) {
             $expire = 0;
         } else {
             $expire = time() + $params['lifetime'];
+        }
+
+        if ($params['samesite'] !== null and !preg_match('/;\s+samesite/i', $params['path'])) {
+            $params['path'] .= '; SameSite='.$params['samesite'];
         }
 
         if ($params['raw']) {

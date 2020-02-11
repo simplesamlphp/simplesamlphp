@@ -417,6 +417,7 @@ class Language
             'path'     => ($config->getString('language.cookie.path', '/')),
             'secure'   => ($config->getBoolean('language.cookie.secure', false)),
             'httponly' => ($config->getBoolean('language.cookie.httponly', false)),
+            'samesite' => ($config->getString('language.cookie.samesite', null)),
         );
 
         HTTP::setCookie($name, $language, $params, false);

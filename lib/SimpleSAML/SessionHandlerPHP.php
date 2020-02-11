@@ -77,6 +77,10 @@ class SessionHandlerPHP extends SessionHandler
         $params = $this->getCookieParams();
 
         if (!headers_sent()) {
+            /* in older versions of PHP we need a nasty hack to set RFC6265bis SameSite attribute */
+            if ($params['samesite'] !== null and !preg_match('/;\s+samesite/i', $params['path'])) {
+                $params['path'] .= '; SameSite='.$params['samesite'];
+            }
             session_set_cookie_params(
                 $params['lifetime'],
                 $params['path'],
