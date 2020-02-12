@@ -28,7 +28,7 @@
 if (array_key_exists('admin', $this->data)) {
     echo '<strong style="font-size: medium">Administrator</strong>';
 } else {
-    echo '<input type="text" id="username" tabindex="1" name="username" ';
+    echo '<input type="text" id="username" tabindex="1" name="username" autocomplete="username" ';
     if (isset($this->data['username'])) {
         echo 'value="'.htmlspecialchars($this->data['username']).'"';
     }

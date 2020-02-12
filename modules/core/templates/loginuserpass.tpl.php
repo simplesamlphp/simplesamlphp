@@ -54,7 +54,7 @@ if ($this->data['errorcode'] !== null) {
                 <td><label for="username"><?php echo $this->t('{login:username}'); ?></label></td>
                 <td>
                     <input id="username" <?php echo ($this->data['forceUsername']) ? 'disabled="disabled"' : ''; ?>
-                        type="text" name="username"<?php echo $this->data['forceUsername'] ? '' : ' tabindex="1"'; ?>
+                        type="text" name="username"<?php echo $this->data['forceUsername'] ? '' : ' autocomplete="username" tabindex="1"'; ?>
                         value="<?php echo htmlspecialchars($this->data['username']); ?>" />
                 </td>
             <?php

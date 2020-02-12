@@ -46,15 +46,15 @@
 
                 <div class="pure-control-group">
                     <label for="username">{{ 'Username'|trans }}</label>
-                    <input id="username" {{ forceUsername ? 'disabled="disabled"' }} placeholder="{{ username }}" type="text" name="username" class="edge"
-            {%- if not forceUsername %} tabindex="1" value="{{ username }}" {% endif %}
-            {%- if not forceUsername and not username %} autofocus {% endif %} />
+                    <input id="username" {{ forceUsername ? 'disabled' }} placeholder="{{ username }}" type="text" name="username" class="edge"
+            {%- if not forceUsername %} tabindex="1" value="{{ username }}" autocomplete="username" {% endif %}
+            {%- if not forceUsername and not username %} autofocus {% endif %} >
                 {% if rememberUsernameEnabled and not forceUsername -%}
                 </div>
                 <div class="pure-controls pure-form-message">
                     <label for="remember_username" class="pure-checkbox">
                         <input id="remember_username" type="checkbox" tabindex="4"
-                                {{ rememberUsernameChecked ? 'checked="checked"' }} name="remember_username" value="Yes"/>
+                                {{ rememberUsernameChecked ? 'checked' }} name="remember_username" value="Yes">
                         <small>{{ 'Remember my username'|trans }}</small>
                     </label>
                 {%- endif %}
@@ -70,7 +70,7 @@
                 <div class="pure-controls pure-form-message">
                     <label for="remember_me" class="pure-checkbox">
                     <input id="remember_me" type="checkbox" tabindex="5"
-                            {{ rememberMeChecked ? 'checked="checked"' }} name="remember_me" value="Yes"/>
+                            {{ rememberMeChecked ? 'checked="checked"' }} name="remember_me" value="Yes">
                         <small>{{ 'Remember me'|trans }}</small>
                     </label>
                 {%- endif %}
@@ -97,7 +97,7 @@
                     <div class="pure-controls pure-form-message">
                         <label for="remember_organization" class="pure-checkbox">
  	                    <input type="checkbox" id="remember_organization" tabindex="5" name="remember_organization" value="Yes"
-                                {{ rememberOrganizationChecked ? 'checked="checked"' }} />
+                                {{ rememberOrganizationChecked ? 'checked="checked"' }} >
                             <small>{{ 'Remember my organization'|trans }}</small>
                         </label>
                     </div>
@@ -109,7 +109,7 @@
             <br><br>
             {%- for name, value in stateparams %}
 
-            <input type="hidden" name="{{ name }}" value="{{ value }}"/>
+            <input type="hidden" name="{{ name }}" value="{{ value }}">
             {%- endfor %}
 
             <button class="pure-button pure-button-red pure-input-1-2 pure-input-sm-1-1 right" id="submit_button"

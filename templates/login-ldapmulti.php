@@ -24,7 +24,7 @@ if (isset($this->data['error'])) {
             <tr>
                 <td rowspan="3"><img src="/<?php echo $this->data['baseurlpath']; ?>resources/icons/experience/gtk-dialog-authentication.48x48.png" id="loginicon" alt="" /></td>
                 <td style="padding: .3em;"><?php echo $this->t('username'); ?></td>
-                <td><input type="text" tabindex="1" name="username"
+                <td><input type="text" tabindex="1" name="username" autocomplete="username"
 <?php
 if (isset($this->data['username'])) {
     echo 'value="'.htmlspecialchars($this->data['username']).'"';
