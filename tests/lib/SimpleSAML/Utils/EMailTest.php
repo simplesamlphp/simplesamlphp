@@ -9,7 +9,7 @@ use SimpleSAML\Utils\EMail;
 /**
  * A base SSP test case that tests some simple e-mail related calls
  */
-class EMailTestCase extends ClearStateTestCase
+class EMailTest extends ClearStateTestCase
 {
     /**
      * @return void
