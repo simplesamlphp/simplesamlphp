@@ -553,7 +553,7 @@ class Module
 
             if (
                 !isset(self::$module_info[$module]['hooks'][$hook])
-                || !empty(self::$module_info[$module]['hooks'][$hook])
+                || empty(self::$module_info[$module]['hooks'][$hook])
             ) {
                 continue;
             }
