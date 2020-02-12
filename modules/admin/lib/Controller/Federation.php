@@ -240,7 +240,7 @@ class Federation
                     $entity['metadata'] = Signer::sign(
                         $builder->getEntityDescriptorText(),
                         $entity['metadata_array'],
-                        'SAML 2 SP'
+                        'Shib 1.3 IdP'
                     );
                     $entities[$index] = $entity;
                 }
