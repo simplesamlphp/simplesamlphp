@@ -395,9 +395,8 @@ class Federation
     public function metadataConverter(Request $request)
     {
         Utils\Auth::requireAdmin();
-
         if ($xmlfile = $request->files->get('xmlfile')) {
-            $xmldata = trim(file_get_contents($xmlfile));
+            $xmldata = trim(file_get_contents($xmlfile->getPathname()));
         } elseif ($xmldata = $request->request->get('xmldata')) {
             $xmldata = trim($xmldata);
         }
