@@ -9,11 +9,12 @@ Metadata
 
 The metadata for your SP will be available from the federation page on your SimpleSAMLphp installation.
 
-SimpleSAMLphp supports generating metadata with the MDUI and MDRPI metadata extensions.
-See the documentation for those extensions for more details:
+SimpleSAMLphp supports generating metadata with the MDUI and MDRPI metadata extensions
+and with entity attributes. See the documentation for those extensions for more details:
 
   * [MDUI extension](./simplesamlphp-metadata-extensions-ui)
   * [MDRPI extension](./simplesamlphp-metadata-extensions-rpi)
+  * [Attributes extension](./simplesamlphp-metadata-extensions-attributes)
 
 
 Parameters
