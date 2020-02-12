@@ -169,12 +169,19 @@ class Module
 
         $config = Configuration::getInstance();
 
-        // rebuild REQUEST_URI and SCRIPT_NAME just in case we need to. This is needed for server aliases and rewrites
+        // rebuild REQUEST_URI and SCRIPT_NAME just in case we need to.
+        // This is needed for server aliases and rewrites
         $translated_uri = $config->getBasePath() . 'module.php/' . $module . '/' . $url;
         $request->server->set('REQUEST_URI', $translated_uri);
         $request->server->set('SCRIPT_NAME', $config->getBasePath() . 'module.php');
-        // strip any NULL files (form file fields with nothing selected) because initialize() will throw an error on them
-        $request_files = array_filter($request->files->all(), function($val){return !is_null($val);});
+        // strip any NULL files (form file fields with nothing selected)
+        // because initialize() will throw an error on them
+        $request_files = array_filter(
+            $request->files->all(),
+            function ($val) {
+                return !is_null($val);
+            }
+        );
         $request->initialize(
             $request->query->all(),
             $request->request->all(),
