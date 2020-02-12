@@ -6,6 +6,7 @@
     {% include "@core/_frontpage_menu.twig" %}
 
     {% if metaentries.hosted is iterable and metaentries.hosted is not empty %}
+    <h2>{% trans %}Hosted entities{% endtrans %}</h2>
     <dl>
     {% for key, set in metaentries.hosted %}
         {% set metadataset = attribute(set, 'metadata-set') %}
@@ -32,6 +33,7 @@
     {% endif %}
 
     {% if metaentries.remote is iterable and metaentries.remote is not empty %}
+    <h2>{% trans %}Trusted entities{% endtrans %}</h2>
     {% for key, set in metaentries.remote %}
     <fieldset class="fancyfieldset">
         <legend>{{ mtype[key]|trans }} (Trusted)</legend>
@@ -64,21 +66,19 @@
     </ul>
 
     {% if isadmin %}
-    <fieldset class="fancyfieldset">
-        <legend>Lookup metadata</legend>
-        <form action="{{ metadata_url }}" method="get">
-            <p>Look up metadata for entity:
-                <select name="set">
-                {% if metaentries.remote is defined and metaentries.remote is not empty %}
-                {% for key, set in metaentries.remote %}
-                    <option value="{{ key|escape('html') }}">{{ mtype[key]|trans }}</option>
-                {% endfor %}
-                {% endif %}
-                </select>
-                <input type="text" name="entityid" />
-                <button class="btn" type="submit">Lookup </button>
-            </p>
-        </form>
+    <form action="{{ metadata_url }}" method="get" class="pure-form">
+        <p>Look up metadata for entity:
+            <select name="set">
+            {% if metaentries.remote is defined and metaentries.remote is not empty %}
+            {% for key, set in metaentries.remote %}
+                <option value="{{ key|escape('html') }}">{{ mtype[key]|trans }}</option>
+            {% endfor %}
+            {% endif %}
+            </select>
+            <input type="text" name="entityid" class="edge">
+            <button class="pure-button pure-button-red" type="submit">Lookup</button>
+        </p>
+    </form>
     </fieldset>
     {% endif %}
 {% endblock %}
