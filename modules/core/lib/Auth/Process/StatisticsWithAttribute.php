@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\core\Auth\Process;
 
 use SimpleSAML\Logger;
+use Webmozart\Assert\Assert;
 
 /**
  * Log a line in the STAT log with one attribute.
@@ -41,7 +42,7 @@ class StatisticsWithAttribute extends \SimpleSAML\Auth\ProcessingFilter
     {
         parent::__construct($config, $reserved);
 
-        assert(is_array($config));
+        Assert::isArray($config);
 
         if (array_key_exists('attributename', $config)) {
             $this->attribute = $config['attributename'];
@@ -71,8 +72,8 @@ class StatisticsWithAttribute extends \SimpleSAML\Auth\ProcessingFilter
      */
     public function process(&$state)
     {
-        assert(is_array($state));
-        assert(array_key_exists('Attributes', $state));
+        Assert::isArray($state);
+        Assert::keyExists($state, 'Attributes');
 
         $logAttribute = 'NA';
         $isPassive = '';

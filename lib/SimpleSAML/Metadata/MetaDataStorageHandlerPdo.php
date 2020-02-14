@@ -6,6 +6,7 @@ namespace SimpleSAML\Metadata;
 
 use SimpleSAML\Database;
 use SimpleSAML\Error;
+use Webmozart\Assert\Assert;
 
 /**
  * Class for handling metadata files stored in a database.
@@ -63,7 +64,7 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
      */
     public function __construct($config)
     {
-        assert(is_array($config));
+        Assert::isArray($config);
 
         $this->db = Database::getInstance();
     }
@@ -122,7 +123,7 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
      */
     public function getMetadataSet($set)
     {
-        assert(is_string($set));
+        Assert::string($set);
 
         if (array_key_exists($set, $this->cachedMetadata)) {
             return $this->cachedMetadata[$set];
@@ -153,8 +154,8 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
      */
     public function getMetaData($entityId, $set)
     {
-        assert(is_string($entityId));
-        assert(is_string($set));
+        Assert::string($entityId);
+        Assert::string($set);
 
         // validate the metadata set is valid
         if (!in_array($set, $this->supportedSets, true)) {
@@ -227,9 +228,9 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
      */
     public function addEntry($index, $set, $entityData)
     {
-        assert(is_string($index));
-        assert(is_string($set));
-        assert(is_array($entityData));
+        Assert::string($index);
+        Assert::string($set);
+        assert::isArray($entityData);
 
         if (!in_array($set, $this->supportedSets, true)) {
             return false;

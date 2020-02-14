@@ -1,5 +1,7 @@
 <?php
 
+use Webmozart\Assert\Assert;
+
 $id = $this->data['auth_state'];
 $type = $this->data['type'];
 $from = $this->data['from'];
@@ -26,7 +28,7 @@ $spTimeout = [];
 $nFailed = 0;
 $nProgress = 0;
 foreach ($SPs as $assocId => $sp) {
-    assert(isset($sp['core:Logout-IFrame:State']));
+    Assert::notNull($sp['core:Logout-IFrame:State']);
     $state = $sp['core:Logout-IFrame:State'];
     $spStatus[sha1($assocId)] = $state;
     if (isset($sp['core:Logout-IFrame:Timeout'])) {
@@ -101,7 +103,7 @@ foreach ($SPs as $assocId => $sp) {
         $spName = $assocId;
     }
 
-    assert(isset($sp['core:Logout-IFrame:State']));
+    Assert::notNull($sp['core:Logout-IFrame:State']);
     $spState = $sp['core:Logout-IFrame:State'];
 
     $spId = sha1($assocId);
@@ -181,7 +183,7 @@ if ($type === 'init') {
             if ($sp['core:Logout-IFrame:State'] !== 'inprogress') {
                 continue;
             }
-            assert(isset($sp['core:Logout-IFrame:URL']));
+            Assert::notNull($sp['core:Logout-IFrame:URL']);
             echo '<iframe style="width:0; height:0; border:0;" src="'.
                 htmlspecialchars($sp['core:Logout-IFrame:URL']).'"></iframe>';
         }

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\saml;
 
 use SAML2\Constants;
+use Webmozart\Assert\Assert;
 
 /**
  * Class for representing a SAML 2 error.
@@ -48,9 +49,9 @@ class Error extends \SimpleSAML\Error\Exception
      */
     public function __construct($status, $subStatus = null, $statusMessage = null, \Exception $cause = null)
     {
-        assert(is_string($status));
-        assert($subStatus === null || is_string($subStatus));
-        assert($statusMessage === null || is_string($statusMessage));
+        Assert::string($status);
+        Assert::nullOrString($subStatus);
+        Assert::nullOrString($statusMessage);
 
         $st = self::shortStatus($status);
         if ($subStatus !== null) {

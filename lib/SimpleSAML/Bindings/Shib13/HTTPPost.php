@@ -18,6 +18,7 @@ use SimpleSAML\Metadata\MetaDataStorageHandler;
 use SimpleSAML\Utils;
 use SimpleSAML\XML\Shib13\AuthnResponse;
 use SimpleSAML\XML\Signer;
+use Webmozart\Assert\Assert;
 
 class HTTPPost
 {
@@ -105,7 +106,7 @@ class HTTPPost
             // sign the response - this must be done after encrypting the assertion
             // we insert the signature before the saml2p:Status element
             $statusElements = Utils\XML::getDOMChildren($responseroot, 'Status', '@saml1p');
-            assert(count($statusElements) === 1);
+            Assert::same(count($statusElements), 1);
             $signer->sign($responseroot, $responseroot, $statusElements[0]);
         } else {
             // Sign the assertion
@@ -132,7 +133,7 @@ class HTTPPost
      */
     public function decodeResponse($post)
     {
-        assert(is_array($post));
+        Assert::isArray($post);
 
         if (!array_key_exists('SAMLResponse', $post)) {
             throw new \Exception('Missing required SAMLResponse parameter.');

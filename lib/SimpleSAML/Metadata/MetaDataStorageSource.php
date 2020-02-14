@@ -7,6 +7,7 @@ namespace SimpleSAML\Metadata;
 use SimpleSAML\Error;
 use SimpleSAML\Module;
 use SimpleSAML\Utils;
+use Webmozart\Assert\Assert;
 
 /**
  * This abstract class defines an interface for metadata storage sources.
@@ -36,7 +37,7 @@ abstract class MetaDataStorageSource
      */
     public static function parseSources($sourcesConfig)
     {
-        assert(is_array($sourcesConfig));
+        Assert::isArray($sourcesConfig);
 
         $sources = [];
 
@@ -65,7 +66,7 @@ abstract class MetaDataStorageSource
      */
     public static function getSource($sourceConfig)
     {
-        assert(is_array($sourceConfig));
+        Assert::isArray($sourceConfig);
 
         if (array_key_exists('type', $sourceConfig)) {
             $type = $sourceConfig['type'];
@@ -238,8 +239,8 @@ abstract class MetaDataStorageSource
     public function getMetaData($index, $set)
     {
 
-        assert(is_string($index));
-        assert(isset($set));
+        Assert::string($index);
+        Assert::notNull($set);
 
         $metadataSet = $this->getMetadataSet($set);
 
@@ -299,7 +300,7 @@ abstract class MetaDataStorageSource
      */
     protected function lookupIndexFromEntityId($entityId, array $metadataSet)
     {
-        assert(is_string($entityId));
+        Assert::string($entityId);
 
         // check for hostname
         $currentHost = Utils\HTTP::getSelfHost(); // sp.example.org
@@ -359,8 +360,8 @@ abstract class MetaDataStorageSource
      */
     protected function updateEntityID($metadataSet, $entityId, array $metadataEntry)
     {
-        assert(is_string($metadataSet));
-        assert(is_string($entityId));
+        Assert::string($metadataSet);
+        Assert::string($entityId);
 
         $modifiedMetadataEntry = $metadataEntry;
 

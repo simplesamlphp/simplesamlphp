@@ -86,7 +86,7 @@
         "symfony/routing": "^3.4 || ^4.0",
         "symfony/yaml": "^3.4 || ^4.0",
         "twig/twig": "~1.0 || ~2.0",
-        "webmozart/assert": "~1.4",
+        "webmozart/assert": "~1.5",
         "whitehat101/apr1-md5": "~1.0"
     },
     "require-dev": {

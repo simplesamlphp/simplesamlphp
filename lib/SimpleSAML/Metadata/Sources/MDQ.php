@@ -10,6 +10,7 @@ use SimpleSAML\Error;
 use SimpleSAML\Logger;
 use SimpleSAML\Metadata\SAMLParser;
 use SimpleSAML\Utils;
+use Webmozart\Assert\Assert;
 
 /**
  * This class implements SAML Metadata Query Protocol
@@ -76,7 +77,7 @@ class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
      */
     protected function __construct($config)
     {
-        assert(is_array($config));
+        Assert::isArray($config);
 
         if (!array_key_exists('server', $config)) {
             throw new \Exception(__CLASS__ . ": the 'server' configuration option is not set.");
@@ -134,8 +135,8 @@ class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
      */
     private function getCacheFilename($set, $entityId)
     {
-        assert(is_string($set));
-        assert(is_string($entityId));
+        Assert::string($set);
+        Assert::string($entityId);
 
         if ($this->cacheDir === null) {
             throw new Error\ConfigurationError("Missing cache directory configuration.");
@@ -280,8 +281,8 @@ class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
      */
     public function getMetaData($index, $set)
     {
-        assert(is_string($index));
-        assert(is_string($set));
+        Assert::string($index);
+        Assert::string($set);
 
         Logger::info(__CLASS__ . ': loading metadata entity [' . $index . '] from [' . $set . ']');
 

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Auth;
 
+use Webmozart\Assert\Assert;
+
 /**
  * Base class for authentication processing filters.
  *
@@ -47,7 +49,7 @@ abstract class ProcessingFilter
      */
     public function __construct(&$config, $reserved)
     {
-        assert(is_array($config));
+        Assert::isArray($config);
 
         if (array_key_exists('%priority', $config)) {
             $this->priority = $config['%priority'];

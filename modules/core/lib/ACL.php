@@ -6,6 +6,7 @@ namespace SimpleSAML\Module\core;
 
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
+use Webmozart\Assert\Assert;
 
 /**
  * Generic library for access control lists.
@@ -29,7 +30,7 @@ class ACL
      */
     public function __construct($acl)
     {
-        assert(is_string($acl) || is_array($acl));
+        Assert::true(is_string($acl) || is_array($acl));
 
         if (is_string($acl)) {
             $acl = self::getById($acl);

@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use Webmozart\Assert\Assert;
+
 /**
  * Hook to add the modinfo module to the frontpage.
  *
@@ -10,8 +12,8 @@ declare(strict_types=1);
  */
 function core_hook_frontpage(&$links)
 {
-    assert(is_array($links));
-    assert(array_key_exists('links', $links));
+    Assert::isArray($links);
+    Assert::keyExists($links, 'links');
 
     $links['links']['frontpage_welcome'] = [
         'href' => SimpleSAML\Module::getModuleURL('core/frontpage_welcome.php'),

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\core\Auth\Process;
 
+use Webmozart\Assert\Assert;
+
 /**
  * Attribute filter for renaming attributes.
  *
@@ -38,7 +40,7 @@ class AttributeCopy extends \SimpleSAML\Auth\ProcessingFilter
     {
         parent::__construct($config, $reserved);
 
-        assert(is_array($config));
+        Assert::isArray($config);
 
         foreach ($config as $source => $destination) {
             if (!is_string($source)) {
@@ -62,8 +64,8 @@ class AttributeCopy extends \SimpleSAML\Auth\ProcessingFilter
      */
     public function process(&$request)
     {
-        assert(is_array($request));
-        assert(array_key_exists('Attributes', $request));
+        Assert::isArray($request);
+        Assert::keyExists($request, 'Attributes');
 
         $attributes = &$request['Attributes'];
 

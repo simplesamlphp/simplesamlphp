@@ -9,6 +9,7 @@ use SimpleSAML\Error;
 use SimpleSAML\Logger;
 use SimpleSAML\Module;
 use SimpleSAML\Utils;
+use Webmozart\Assert\Assert;
 
 /**
  * Filter to ensure correct cardinality of attributes
@@ -39,7 +40,7 @@ class Cardinality extends \SimpleSAML\Auth\ProcessingFilter
     public function __construct(&$config, $reserved, Utils\HttpAdapter $http = null)
     {
         parent::__construct($config, $reserved);
-        assert(is_array($config));
+        Assert::isArray($config);
 
         $this->http = $http ? : new Utils\HttpAdapter();
 
@@ -112,8 +113,8 @@ class Cardinality extends \SimpleSAML\Auth\ProcessingFilter
      */
     public function process(&$request)
     {
-        assert(is_array($request));
-        assert(array_key_exists("Attributes", $request));
+        Assert::isArray($request);
+        Assert::keyExists($request, 'Attributes');
 
         $entityid = false;
         if (array_key_exists('Source', $request) && array_key_exists('entityid', $request['Source'])) {

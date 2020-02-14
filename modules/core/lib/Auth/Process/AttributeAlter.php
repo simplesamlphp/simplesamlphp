@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Module\core\Auth\Process;
 
 use SimpleSAML\Error;
+use Webmozart\Assert\Assert;
 
 /**
  * Filter to modify attributes using regular expressions
@@ -64,7 +65,7 @@ class AttributeAlter extends \SimpleSAML\Auth\ProcessingFilter
     {
         parent::__construct($config, $reserved);
 
-        assert(is_array($config));
+        Assert::isArray($config);
 
         // parse filter configuration
         foreach ($config as $name => $value) {
@@ -106,8 +107,8 @@ class AttributeAlter extends \SimpleSAML\Auth\ProcessingFilter
      */
     public function process(&$request)
     {
-        assert(is_array($request));
-        assert(array_key_exists('Attributes', $request));
+        Assert::isArray($request);
+        Assert::keyExists($request, 'Attributes');
 
         // get attributes from request
         $attributes = &$request['Attributes'];

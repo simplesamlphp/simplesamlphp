@@ -1,5 +1,7 @@
 <?php
 
+use Webmozart\Assert\Assert;
+
 /**
  * This page provides a way to create a redirect to a POST request.
  *
@@ -40,9 +42,9 @@ if ($postData === null) {
 
 $session->deleteData('core_postdatalink', $postId);
 
-assert(is_array($postData));
-assert(array_key_exists('url', $postData));
-assert(array_key_exists('post', $postData));
+Assert::isArray($postData);
+Assert::keyExists($postData, 'url');
+Assert::keyExists($postData, 'post');
 
 if (!\SimpleSAML\Utils\HTTP::isValidURL($postData['url'])) {
     throw new \SimpleSAML\Error\Exception('Invalid destination URL.');

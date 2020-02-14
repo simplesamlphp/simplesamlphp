@@ -11,6 +11,7 @@ use SimpleSAML\IdP;
 use SimpleSAML\Module;
 use SimpleSAML\Utils;
 use SimpleSAML\XHTML\Template;
+use Webmozart\Assert\Assert;
 
 /**
  * Class that handles iframe logout.
@@ -46,7 +47,7 @@ class IFrameLogoutHandler implements LogoutHandlerInterface
      */
     public function startLogout(array &$state, $assocId)
     {
-        assert(is_string($assocId) || $assocId === null);
+        Assert::nullOrString($assocId);
 
         $associations = $this->idp->getAssociations();
 
@@ -96,7 +97,7 @@ class IFrameLogoutHandler implements LogoutHandlerInterface
      */
     public function onResponse($assocId, $relayState, Error\Exception $error = null)
     {
-        assert(is_string($assocId));
+        Assert::string($assocId);
 
         $this->idp->terminateAssociation($assocId);
 

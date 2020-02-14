@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Error;
 
+use Webmozart\Assert\Assert;
+
 /**
  * Error for missing metadata.
  *
@@ -19,7 +21,7 @@ class MetadataNotFound extends Error
      */
     public function __construct($entityId)
     {
-        assert(is_string($entityId));
+        Assert::string($entityId);
 
         $this->includeTemplate = 'core:no_metadata.tpl.php';
         parent::__construct([

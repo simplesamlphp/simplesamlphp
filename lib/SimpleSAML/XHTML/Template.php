@@ -24,6 +24,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Twig\Loader\FilesystemLoader;
 use Twig\TwigFilter;
 use Twig\TwigFunction;
+use Webmozart\Assert\Assert;
 
 class Template extends Response
 {
@@ -588,6 +589,7 @@ class Template extends Response
     {
         $extensions = ['.tpl.php', '.php'];
 
+        $extensions = ['.tpl.php', '.php'];
         list($templateModule, $templateName) = $this->findModuleAndTemplateName($template);
         $templateModule = ($templateModule !== null) ? $templateModule : 'default';
 

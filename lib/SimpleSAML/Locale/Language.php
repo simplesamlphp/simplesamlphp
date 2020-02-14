@@ -15,6 +15,7 @@ namespace SimpleSAML\Locale;
 use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
 use SimpleSAML\Utils;
+use Webmozart\Assert\Assert;
 
 class Language
 {
@@ -410,7 +411,7 @@ class Language
      */
     public static function setLanguageCookie($language)
     {
-        assert(is_string($language));
+        Assert::string($language);
 
         $language = strtolower($language);
         $config = Configuration::getInstance();

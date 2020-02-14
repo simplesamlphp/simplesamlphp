@@ -6,6 +6,7 @@ namespace SimpleSAML\Module\saml;
 
 use SAML2\XML\saml\NameID;
 use SimpleSAML\Logger;
+use Webmozart\Assert\Assert;
 
 /**
  * Base filter for generating NameID values.
@@ -57,7 +58,7 @@ abstract class BaseNameIDGenerator extends \SimpleSAML\Auth\ProcessingFilter
     public function __construct($config, $reserved)
     {
         parent::__construct($config, $reserved);
-        assert(is_array($config));
+        Assert::isArray($config);
 
         if (isset($config['NameQualifier'])) {
             $this->nameQualifier = $config['NameQualifier'];
@@ -89,8 +90,8 @@ abstract class BaseNameIDGenerator extends \SimpleSAML\Auth\ProcessingFilter
      */
     public function process(&$state)
     {
-        assert(is_array($state));
-        assert(is_string($this->format));
+        Assert::isArray($state);
+        Assert::string($this->format);
 
         $value = $this->getValue($state);
         if ($value === null) {
@@ -121,6 +122,7 @@ abstract class BaseNameIDGenerator extends \SimpleSAML\Auth\ProcessingFilter
             $nameId->setSPNameQualifier($this->spNameQualifier);
         }
 
+        /** @psalm-suppress PossiblyNullArrayOffset */
         $state['saml:NameID'][$this->format] = $nameId;
     }
 }

@@ -8,6 +8,7 @@ use SimpleSAML\Auth;
 use SimpleSAML\Error;
 use SimpleSAML\Module;
 use SimpleSAML\Utils;
+use Webmozart\Assert\Assert;
 
 /**
  * Example external authentication source.
@@ -45,8 +46,8 @@ class External extends \SimpleSAML\Auth\Source
      */
     public function __construct($info, $config)
     {
-        assert(is_array($info));
-        assert(is_array($config));
+        Assert::isArray($info);
+        Assert::isArray($config);
 
         // Call the parent constructor first, as required by the interface
         parent::__construct($info, $config);
@@ -108,7 +109,7 @@ class External extends \SimpleSAML\Auth\Source
      */
     public function authenticate(&$state)
     {
-        assert(is_array($state));
+        Assert::isArray($state);
 
         $attributes = $this->getUser();
         if ($attributes !== null) {
@@ -179,7 +180,7 @@ class External extends \SimpleSAML\Auth\Source
         /*
          * The redirect function never returns, so we never get this far.
          */
-        assert(false);
+        Assert::true(false);
     }
 
 
@@ -259,7 +260,7 @@ class External extends \SimpleSAML\Auth\Source
         /*
          * The completeAuth-function never returns, so we never get this far.
          */
-        assert(false);
+        Assert::true(false);
     }
 
 
@@ -272,7 +273,7 @@ class External extends \SimpleSAML\Auth\Source
      */
     public function logout(&$state)
     {
-        assert(is_array($state));
+        Assert::isArray($state);
 
         if (!session_id()) {
             // session_start not called before. Do it here

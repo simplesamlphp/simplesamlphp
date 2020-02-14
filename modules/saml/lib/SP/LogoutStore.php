@@ -10,6 +10,7 @@ use SimpleSAML\Logger;
 use SimpleSAML\Session;
 use SimpleSAML\Store;
 use SimpleSAML\Utils;
+use Webmozart\Assert\Assert;
 
 /**
  * A directory over logout information.
@@ -306,7 +307,7 @@ class LogoutStore
             if ($sessionId === null) {
                 continue;
             }
-            assert(is_string($sessionId));
+            Assert::string($sessionId);
             $res[$sessionIndex] = $sessionId;
         }
 
@@ -331,9 +332,9 @@ class LogoutStore
      */
     public static function addSession($authId, $nameId, $sessionIndex, $expire)
     {
-        assert(is_string($authId));
-        assert(is_string($sessionIndex) || $sessionIndex === null);
-        assert(is_int($expire));
+        Assert::string($authId);
+        Assert::nullorString($sessionIndex);
+        Assert::integer($expire);
 
         $session = Session::getSessionFromRequest();
         if ($session->isTransient()) {
@@ -386,7 +387,7 @@ class LogoutStore
      */
     public static function logoutSessions($authId, $nameId, array $sessionIndexes)
     {
-        assert(is_string($authId));
+        Assert::string($authId);
 
         $store = Store::getInstance();
         if ($store === false) {
@@ -400,7 +401,7 @@ class LogoutStore
 
         // Normalize SessionIndexes
         foreach ($sessionIndexes as &$sessionIndex) {
-            assert(is_string($sessionIndex));
+            Assert::string($sessionIndex);
             if (strlen($sessionIndex) > 50) {
                 $sessionIndex = sha1($sessionIndex);
             }

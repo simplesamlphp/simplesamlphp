@@ -1,5 +1,7 @@
 <?php
 
+use Webmozart\Assert\Assert;
+
 $config = \SimpleSAML\Configuration::getInstance();
 
 if (!array_key_exists('as', $_REQUEST)) {
@@ -23,9 +25,9 @@ if (array_key_exists(\SimpleSAML\Auth\State::EXCEPTION_PARAM, $_REQUEST)) {
     /** @var array $state */
     $state = \SimpleSAML\Auth\State::loadExceptionState();
 
-    assert(array_key_exists(\SimpleSAML\Auth\State::EXCEPTION_DATA, $state));
-    $e = $state[\SimpleSAML\Auth\State::EXCEPTION_DATA];
+    Assert::keyExists($state, \SimpleSAML\Auth\State::EXCEPTION_DATA);
 
+    $e = $state[\SimpleSAML\Auth\State::EXCEPTION_DATA];
     throw $e;
 }
 

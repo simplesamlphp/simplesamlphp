@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace SimpleSAML;
 
+use Webmozart\Assert\Assert;
+
 /**
  * Statistics handler class.
  *
@@ -74,10 +76,10 @@ class Stats
      */
     public static function log($event, array $data = [])
     {
-        assert(is_string($event));
-        assert(!isset($data['op']));
-        assert(!isset($data['time']));
-        assert(!isset($data['_id']));
+        Assert::string($event);
+        Assert::keyNotExists($data, 'op');
+        Assert::keyNotExists($data, 'time');
+        Assert::keyNotExists($data, '_id');
 
         if (!self::$initialized) {
             self::initOutputs();
