@@ -45,7 +45,7 @@ throws an exception in a specific situation:
       $this->expectException(ExpectedException::class);
 ```
 
-Refer to [the `phpunit 8.3` documentation](https://phpunit.readthedocs.io/en/8.3/)
+Refer to [the `phpunit 8.5` documentation](https://phpunit.readthedocs.io/en/8.5/)
 for more information on how to write tests.
 
 Once you have implemented your tests, you can run them locally. First,
