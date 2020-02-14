@@ -537,25 +537,6 @@ class Template extends Response
 
 
     /**
-     * Show the template to the user.
-     *
-     * This method is a remnant of the old templating system, where templates where shown manually instead of
-     * returning a response.
-     *
-     * @return void
-     * @deprecated Do not use this method, use Twig + send() instead. Will be removed in 2.0
-     */
-    public function show()
-    {
-        if ($this->useNewUI) {
-            echo $this->getContents();
-        } else {
-            require($this->findTemplatePath($this->template));
-        }
-    }
-
-
-    /**
      * Find module the template is in, if any
      *
      * @param string $template The relative path from the theme directory to the template file.
@@ -685,73 +666,6 @@ class Template extends Response
     }
 
 
-    /*
-     * Deprecated methods of this interface, all of them should go away.
-     */
-
-
-    /**
-     * @param string $name
-     *
-     * @return string
-     * @deprecated This method will be removed in SSP 2.0. Please use \SimpleSAML\Locale\Language::getLanguage()
-     * instead.
-     */
-    public function getAttributeTranslation($name)
-    {
-        return $this->translator->getAttributeTranslation($name);
-    }
-
-
-    /**
-     * @return string
-     * @deprecated This method will be removed in SSP 2.0. Please use \SimpleSAML\Locale\Language::getLanguage()
-     * instead.
-     */
-    public function getLanguage()
-    {
-        return $this->translator->getLanguage()->getLanguage();
-    }
-
-
-    /**
-     * @param string $language
-     * @param bool $setLanguageCookie
-     * @return void
-     *
-     * @deprecated This method will be removed in SSP 2.0. Please use \SimpleSAML\Locale\Language::setLanguage()
-     * instead.
-     */
-    public function setLanguage($language, $setLanguageCookie = true)
-    {
-        $this->translator->getLanguage()->setLanguage($language, $setLanguageCookie);
-    }
-
-
-    /**
-     * @return null|string
-     * @deprecated This method will be removed in SSP 2.0. Please use \SimpleSAML\Locale\Language::getLanguageCookie()
-     * instead.
-     */
-    public static function getLanguageCookie()
-    {
-        return Language::getLanguageCookie();
-    }
-
-
-    /**
-     * @param string $language
-     * @return void
-     *
-     * @deprecated This method will be removed in SSP 2.0. Please use \SimpleSAML\Locale\Language::setLanguageCookie()
-     * instead.
-     */
-    public static function setLanguageCookie($language)
-    {
-        Language::setLanguageCookie($language);
-    }
-
-
     /**
      * Wraps Language->getLanguageList
      *
@@ -764,82 +678,6 @@ class Template extends Response
 
 
     /**
-     * @param string $tag
-     *
-     * @return array|null
-     * @deprecated This method will be removed in SSP 2.0. Please use \SimpleSAML\Locale\Translate::getTag() instead.
-     */
-    public function getTag($tag)
-    {
-        return $this->translator->getTag($tag);
-    }
-
-
-    /**
-     * Temporary wrapper for \SimpleSAML\Locale\Translate::getPreferredTranslation().
-     *
-     * @deprecated This method will be removed in SSP 2.0. Please use
-     * \SimpleSAML\Locale\Translate::getPreferredTranslation() instead.
-     *
-     * @param array $translations
-     * @return string
-     */
-    public function getTranslation($translations)
-    {
-        return $this->translator->getPreferredTranslation($translations);
-    }
-
-
-    /**
-     * Includes a file relative to the template base directory.
-     * This function can be used to include headers and footers etc.
-     *
-     * @deprecated This function will be removed in SSP 2.0. Use Twig-templates instead
-     * @param string $file
-     * @return void
-     */
-    private function includeAtTemplateBase(string $file)
-    {
-        $data = $this->data;
-
-        $filename = $this->findTemplatePath($file);
-
-        include($filename);
-    }
-
-
-    /**
-     * Wraps Translate->includeInlineTranslation()
-     *
-     * @see \SimpleSAML\Locale\Translate::includeInlineTranslation()
-     * @deprecated This method will be removed in SSP 2.0. Please use
-     * \SimpleSAML\Locale\Translate::includeInlineTranslation() instead.
-     *
-     * @param string $tag
-     * @param string $translation
-     * @return void
-     */
-    public function includeInlineTranslation($tag, $translation)
-    {
-        $this->translator->includeInlineTranslation($tag, $translation);
-    }
-
-
-    /**
-     * @param string $file
-     * @param \SimpleSAML\Configuration|null $otherConfig
-     * @return void
-     *
-     * @deprecated This method will be removed in SSP 2.0. Please use
-     * \SimpleSAML\Locale\Translate::includeLanguageFile() instead.
-     */
-    public function includeLanguageFile($file, $otherConfig = null)
-    {
-        $this->translator->includeLanguageFile($file, $otherConfig);
-    }
-
-
-    /**
      * Wrap Language->isLanguageRTL
      *
      * @return bool
@@ -847,64 +685,5 @@ class Template extends Response
     private function isLanguageRTL(): bool
     {
         return $this->translator->getLanguage()->isLanguageRTL();
-    }
-
-
-    /**
-     * Merge two translation arrays.
-     *
-     * @param array $def The array holding string definitions.
-     * @param array $lang The array holding translations for every string.
-     *
-     * @return array The recursive merge of both arrays.
-     * @deprecated This method will be removed in SimpleSAMLphp 2.0. Please use array_merge_recursive() instead.
-     */
-    public static function lang_merge($def, $lang)
-    {
-        foreach ($def as $key => $value) {
-            if (array_key_exists($key, $lang)) {
-                $def[$key] = array_merge($value, $lang[$key]);
-            }
-        }
-        return $def;
-    }
-
-
-    /**
-     * Behave like Language->noop to mark a tag for translation but actually do it later.
-     *
-     * @see \SimpleSAML\Locale\Translate::noop()
-     * @deprecated This method will be removed in SSP 2.0. Please use \SimpleSAML\Locale\Translate::noop() instead.
-     *
-     * @param string $tag
-     * @return string
-     */
-    public static function noop($tag)
-    {
-        return $tag;
-    }
-
-
-    /**
-     * Wrap Language->t to translate tag into the current language, with a fallback to english.
-     *
-     * @see \SimpleSAML\Locale\Translate::t()
-     * @deprecated This method will be removed in SSP 2.0. Please use \SimpleSAML\Locale\Translate::t() instead.
-     *
-     * @param string $tag
-     * @param array $replacements
-     * @param bool $fallbackdefault
-     * @param array $oldreplacements
-     * @param bool $striptags
-     * @return string|null
-     */
-    public function t(
-        $tag,
-        $replacements = [],
-        $fallbackdefault = true,
-        $oldreplacements = [],
-        $striptags = false
-    ) {
-        return $this->translator->t($tag, $replacements, $fallbackdefault, $oldreplacements, $striptags);
     }
 }

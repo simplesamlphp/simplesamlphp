@@ -29,7 +29,7 @@ class Memcache
     /**
      * Cache of the memcache servers we are using.
      *
-     * @var \Memcache[]|\Memcached[]|null
+     * @var \Memcached[]|null
      */
     private static $serverGroups = null;
 
@@ -215,7 +215,7 @@ class Memcache
      *    The timeout for contacting this server, in seconds.
      *    The default value is 3 seconds.
      *
-     * @param \Memcache|\Memcached $memcache The Memcache object we should add this server to.
+     * @param \Memcached $memcache The Memcache object we should add this server to.
      * @param array    $server An associative array with the configuration options for the server to add.
      * @return void
      *
@@ -293,11 +293,7 @@ class Memcache
         }
 
         // add this server to the Memcache object
-        if ($memcache instanceof \Memcached) {
-            $memcache->addServer($hostname, $port);
-        } else {
-            $memcache->addServer($hostname, $port, true, $weight, $timeout, $timeout, true);
-        }
+        $memcache->addServer($hostname, $port);
     }
 
 
@@ -307,29 +303,14 @@ class Memcache
      *
      * @param array $group Array of servers which should be created as a group.
      *
-     * @return \Memcache|\Memcached A Memcache object of the servers in the group
+     * @return \Memcached A Memcache object of the servers in the group
      *
      * @throws \Exception If the servers configuration is invalid.
      */
     private static function loadMemcacheServerGroup(array $group)
     {
-        if (class_exists(\Memcached::class)) {
-            $memcache = new \Memcached();
-            self::$extension = \Memcached::class;
-        } elseif (class_exists(\Memcache::class)) {
-            $memcache = new \Memcache();
-            self::$extension = \Memcache::class;
-        } else {
-            throw new \Exception(
-                'Missing Memcached implementation. You must install either the Memcache or Memcached extension.'
-            );
-        }
-
-        if (self::$extension === \Memcache::class) {
-            Logger::warning(
-                "The use of PHP-extension memcache is deprecated. Please migrate to the memcached extension."
-            );
-        }
+        $memcache = new \Memcached();
+        self::$extension = \Memcached::class;
 
         // iterate over all the servers in the group and add them to the Memcache object
         foreach ($group as $index => $server) {
@@ -354,7 +335,7 @@ class Memcache
             self::addMemcacheServer($memcache, $server);
         }
 
-        /** @var \Memcache|\Memcached */
+        /** @var \Memcached */
         return $memcache;
     }
 
@@ -363,7 +344,7 @@ class Memcache
      * This function gets a list of all configured memcache servers. This list is initialized based
      * on the content of 'memcache_store.servers' in the configuration.
      *
-     * @return \Memcache[]|\Memcached[] Array with Memcache objects.
+     * @return Memcached[] Array with Memcache objects.
      *
      * @throws \Exception If the servers configuration is invalid.
      */

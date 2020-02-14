@@ -301,9 +301,6 @@ class ProcessingChain
             $filter = array_shift($state[self::FILTERS_INDEX]);
             try {
                 $filter->process($state);
-            } catch (Error\NoPassive $e) {
-                // @deprecated will be removed in 2.0
-                // Ignore \SimpleSAML\Error\NoPassive exceptions
             } catch (Module\saml\Error\NoPassive $e) {
                 // Ignore \SimpleSAML\Module\saml\Error\NoPassive exceptions
             }

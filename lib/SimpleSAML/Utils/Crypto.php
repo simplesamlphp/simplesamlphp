@@ -321,9 +321,6 @@ class Crypto
      * This function hashes a password with a given algorithm.
      *
      * @param string $password The password to hash.
-     * @param string|null $algorithm @deprecated The hashing algorithm, uppercase, optionally
-     *     prepended with 'S' (salted). See hash_algos() for a complete list of hashing algorithms.
-     * @param string|null $salt @deprecated An optional salt to use.
      *
      * @return string The hashed password.
      * @throws \InvalidArgumentException If the input parameter is not a string.
@@ -334,42 +331,14 @@ class Crypto
      * @author Dyonisius Visser, TERENA <visser@terena.org>
      * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
-    public static function pwHash($password, $algorithm = null, $salt = null)
+    public static function pwHash($password)
     {
-        if (!is_null($algorithm)) {
-            // @deprecated Old-style
-            if (!is_string($algorithm) || !is_string($password)) {
-                throw new \InvalidArgumentException('Invalid input parameters.');
-            }
-            // hash w/o salt
-            if (in_array(strtolower($algorithm), hash_algos(), true)) {
-                $alg_str = '{' . str_replace('SHA1', 'SHA', $algorithm) . '}'; // LDAP compatibility
-                $hash = hash(strtolower($algorithm), $password, true);
-                return $alg_str . base64_encode($hash);
-            }
-            // hash w/ salt
-            if ($salt === null) {
-                // no salt provided, generate one
-                // default 8 byte salt, but 4 byte for LDAP SHA1 hashes
-                $bytes = ($algorithm == 'SSHA1') ? 4 : 8;
-                $salt = openssl_random_pseudo_bytes($bytes);
-            }
-
-            if ($algorithm[0] == 'S' && in_array(substr(strtolower($algorithm), 1), hash_algos(), true)) {
-                $alg = substr(strtolower($algorithm), 1); // 'sha256' etc
-                $alg_str = '{' . str_replace('SSHA1', 'SSHA', $algorithm) . '}'; // LDAP compatibility
-                $hash = hash($alg, $password . $salt, true);
-                return $alg_str . base64_encode($hash . $salt);
-            }
-            throw new Error\Exception('Hashing algorithm \'' . strtolower($algorithm) . '\' is not supported');
-        } else {
-            if (!is_string($password)) {
-                throw new \InvalidArgumentException('Invalid input parameter.');
-            } elseif (!is_string($hash = password_hash($password, PASSWORD_DEFAULT))) {
-                throw new \InvalidArgumentException('Error while hashing password.');
-            }
-            return $hash;
+        if (!is_string($password)) {
+            throw new \InvalidArgumentException('Invalid input parameter.');
+        } elseif (!is_string($hash = password_hash($password, PASSWORD_DEFAULT))) {
+            throw new \InvalidArgumentException('Error while hashing password.');
         }
+        return $hash;
     }
 
 
@@ -411,31 +380,6 @@ class Crypto
         if (password_verify($password, $hash)) {
             return true;
         }
-        // return $hash === $password
-
-        // @deprecated remove everything below this line for 2.0
-        // match algorithm string (e.g. '{SSHA256}', '{MD5}')
-        if (preg_match('/^{(.*?)}(.*)$/', $hash, $matches)) {
-            // LDAP compatibility
-            $alg = preg_replace('/^(S?SHA)$/', '${1}1', $matches[1]);
-
-            // hash w/o salt
-            if (in_array(strtolower($alg), hash_algos(), true)) {
-                return self::secureCompare($hash, self::pwHash($password, $alg));
-            }
-
-            // hash w/ salt
-            if ($alg[0] === 'S' && in_array(substr(strtolower($alg), 1), hash_algos(), true)) {
-                $php_alg = substr(strtolower($alg), 1);
-
-                // get hash length of this algorithm to learn how long the salt is
-                $hash_length = strlen(hash($php_alg, '', true));
-                $salt = substr(base64_decode($matches[2]), $hash_length);
-                return self::secureCompare($hash, self::pwHash($password, $alg, $salt));
-            }
-            throw new Error\Exception('Hashing algorithm \'' . strtolower($alg) . '\' is not supported');
-        } else {
-            return $hash === $password;
-        }
+        return $hash === $password
     }
 }

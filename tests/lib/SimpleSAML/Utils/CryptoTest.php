@@ -145,67 +145,6 @@ PHP;
 
 
     /**
-     * @covers \SimpleSAML\Utils\Crypto::pwHash
-     * @deprecated To be removed for 2.0
-     * @return void
-     */
-    public function testGoodPwHash()
-    {
-        $pw = "password";
-        $algorithm = "SHA1";
-
-        $res = Crypto::pwHash($pw, $algorithm);
-
-        /*
-         * echo -n "password" | sha1sum | awk -F " " '{print $1}' | xxd -r -p | base64
-         * W6ph5Mm5Pz8GgiULbPgzG37mj9g=
-         */
-        $expected = "{SHA}W6ph5Mm5Pz8GgiULbPgzG37mj9g=";
-
-        $this->assertEquals($expected, $res);
-    }
-
-
-    /**
-     * @covers \SimpleSAML\Utils\Crypto::pwHash
-     * @deprecated To be removed for 2.0
-     * @return void
-     */
-    public function testGoodSaltedPwHash()
-    {
-        $pw = "password";
-        $algorithm = "SSHA1";
-        $salt = "salt";
-
-        $res = Crypto::pwHash($pw, $algorithm, $salt);
-
-        /*
-         * echo -n "password""salt" | sha1sum | awk -v salt=$(echo -n "salt" | xxd -u -p)
-         *   -F " " '{print $1 salt}' | xxd -r -p | base64 yI6cZwQadOA1e+/f+T+H3eCQQhRzYWx0
-         */
-        $expected = "{SSHA}yI6cZwQadOA1e+/f+T+H3eCQQhRzYWx0";
-
-        $this->assertEquals($expected, $res);
-    }
-
-
-    /**
-     * @deprecated To be removed for 2.0
-     *
-     * @covers \SimpleSAML\Utils\Crypto::pwHash
-     * @return void
-     */
-    public function testBadHashAlgorithm()
-    {
-        $this->expectException(\SimpleSAML\Error\Exception::class);
-        $pw = "password";
-        $algorithm = "wtf";
-
-        Crypto::pwHash($pw, $algorithm);
-    }
-
-
-    /**
      * @covers \SimpleSAML\Utils\Crypto::pwValid
      * @return void
      */
@@ -233,57 +172,6 @@ PHP;
         $res = Crypto::pwValid($hash, $pw2);
 
         $this->assertFalse($res);
-    }
-
-
-    /**
-     * @covers \SimpleSAML\Utils\Crypto::pwValid
-     * @deprecated To be removed for 2.0
-     * @return void
-     */
-    public function testGoodPwValidOld()
-    {
-        $pw = "password";
-        $algorithm = "SHA1";
-
-        $hash = Crypto::pwHash($pw, $algorithm);
-        $res = Crypto::pwValid($hash, $pw);
-
-        $this->assertTrue($res);
-    }
-
-
-    /**
-     * @covers \SimpleSAML\Utils\Crypto::pwValid
-     * @deprecated To be removed for 2.0
-     * @return void
-     */
-    public function testGoodSaltedPwValid()
-    {
-        $pw = "password";
-        $algorithm = "SSHA1";
-        $salt = "salt";
-
-        $hash = Crypto::pwHash($pw, $algorithm, $salt);
-        $res = Crypto::pwValid($hash, $pw);
-
-        $this->assertTrue($res);
-    }
-
-
-    /**
-     * @deprecated To be removed for 2.0
-     *
-     * @covers \SimpleSAML\Utils\Crypto::pwValid
-     * @return void
-     */
-    public function testBadHashAlgorithmValid()
-    {
-        $this->expectException(\SimpleSAML\Error\Exception::class);
-        $algorithm = "wtf";
-        $hash = "{" . $algorithm . "}B64STRING";
-
-        Crypto::pwValid($hash, $algorithm);
     }
 
 

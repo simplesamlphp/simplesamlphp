@@ -40,32 +40,6 @@ class HTTPTest extends ClearStateTestCase
     /**
      * Test SimpleSAML\Utils\HTTP::addURLParameters().
      * @return void
-     * @psalm-suppress InvalidArgument
-     * @deprecated Can be removed in 2.0 when codebase if fully typehinted
-     */
-    public function testAddURLParametersInvalidURL()
-    {
-        $this->expectException(\InvalidArgumentException::class);
-        HTTP::addURLParameters([], []);
-    }
-
-
-    /**
-     * Test SimpleSAML\Utils\HTTP::addURLParameters().
-     * @return void
-     * @psalm-suppress InvalidArgument
-     * @deprecated Can be removed in 2.0 when codebase if fully typehinted
-     */
-    public function testAddURLParametersInvalidParameters()
-    {
-        $this->expectException(\InvalidArgumentException::class);
-        HTTP::addURLParameters('string', 'string');
-    }
-
-
-    /**
-     * Test SimpleSAML\Utils\HTTP::addURLParameters().
-     * @return void
      */
     public function testAddURLParameters()
     {
