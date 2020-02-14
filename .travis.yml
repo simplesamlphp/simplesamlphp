@@ -56,14 +56,6 @@ jobs:
         - vendor/bin/check-syntax-php.sh
 
     - stage: pre-conditions
-      php: 7.2
-      env: Syntax check PHP
-      before_script:
-        - composer install
-      script:
-        - vendor/bin/check-syntax-php.sh
-
-    - stage: pre-conditions
       php: 7.3
       env: Syntax check PHP
       before_script:
