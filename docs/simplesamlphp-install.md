@@ -60,6 +60,10 @@ Go to the directory where you want to install SimpleSAMLphp and extract the arch
 
 ## Upgrading from a previous version of SimpleSAMLphp
 
+Before starting the upgrade, review the relevant
+[upgrade notes](simplesamlphp-upgrade-notes) for any relevant
+changes.
+
 Extract the new version:
 
 ```
