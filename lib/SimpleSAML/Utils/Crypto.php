@@ -380,6 +380,6 @@ class Crypto
         if (password_verify($password, $hash)) {
             return true;
         }
-        return $hash === $password
+        return $hash === $password;
     }
 }

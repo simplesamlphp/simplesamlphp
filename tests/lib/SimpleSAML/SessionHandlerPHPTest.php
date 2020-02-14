@@ -28,7 +28,7 @@ class SessionHandlerPHPTest extends ClearStateTestCase
     /**
      * @return void
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->original = $_SERVER;
         $_SERVER['HTTP_HOST'] = 'example.com';
@@ -42,7 +42,7 @@ class SessionHandlerPHPTest extends ClearStateTestCase
     /**
      * @return void
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $_SERVER = $this->original;
     }

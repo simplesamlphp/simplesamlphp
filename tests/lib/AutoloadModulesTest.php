@@ -13,7 +13,7 @@ class AutoloadModulesTest extends TestCase
      * Set up for each test.
      * @return void
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $config = Configuration::loadFromArray([], '[ARRAY]', 'simplesaml');

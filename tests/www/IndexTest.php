@@ -42,7 +42,7 @@ class IndexTest extends TestCase
      * The setup method that is run before any tests in this class.
      * @return void
      */
-    protected function setup()
+    protected function setup(): void
     {
         $this->server = new BuiltInServer('configLoader');
         $this->server_addr = $this->server->start();
@@ -116,7 +116,7 @@ class IndexTest extends TestCase
      * The tear down method that is executed after all tests in this class.
      * @return void
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         unlink($this->shared_file);
         $this->server->stop();

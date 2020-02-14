@@ -21,7 +21,7 @@ class ClearStateTestCase extends TestCase
     /**
      * @return void
      */
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
         if (!self::$stateClearer) {
             self::$stateClearer = new StateClearer();
@@ -33,7 +33,7 @@ class ClearStateTestCase extends TestCase
     /**
      * @return void
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         self::clearState();
     }
@@ -42,7 +42,7 @@ class ClearStateTestCase extends TestCase
     /**
      * @return void
      */
-    public static function tearDownAfterClass()
+    public static function tearDownAfterClass(): void
     {
         self::clearState();
     }
