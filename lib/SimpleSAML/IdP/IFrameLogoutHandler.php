@@ -45,7 +45,7 @@ class IFrameLogoutHandler implements LogoutHandlerInterface
      * @param string|null $assocId The SP we are logging out from.
      * @return void
      */
-    public function startLogout(array &$state, ?string $assocId) : void
+    public function startLogout(array &$state, ?string $assocId): void
     {
         $associations = $this->idp->getAssociations();
 

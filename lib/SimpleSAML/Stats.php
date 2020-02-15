@@ -54,7 +54,7 @@ class Stats
      *
      * @return void
      */
-    private static function initOutputs() : void
+    private static function initOutputs(): void
     {
         $config = Configuration::getInstance();
         $outputCfgs = $config->getArray('statistics.out', []);

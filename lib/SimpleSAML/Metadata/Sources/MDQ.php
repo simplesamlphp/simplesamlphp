@@ -63,11 +63,6 @@ class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
      */
     protected function __construct(array $config)
     {
-<<<<<<< HEAD
-        Assert::isArray($config);
-
-=======
->>>>>>> Fully typehint lib/Metadata/*.php
         if (!array_key_exists('server', $config)) {
             throw new \Exception(__CLASS__ . ": the 'server' configuration option is not set.");
         } else {
@@ -96,7 +91,7 @@ class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
      *
      * @return array An empty array.
      */
-    public function getMetadataSet(string $set) : array
+    public function getMetadataSet(string $set): array
     {
         // we don't have this metadata set
         return [];
@@ -111,14 +106,8 @@ class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
      *
      * @return string  The full path to the cache file.
      */
-    private function getCacheFilename(string $set, string $entityId) : string
+    private function getCacheFilename(string $set, string $entityId): string
     {
-<<<<<<< HEAD
-        Assert::string($set);
-        Assert::string($entityId);
-
-=======
->>>>>>> Fully typehint lib/Metadata/*.php
         if ($this->cacheDir === null) {
             throw new Error\ConfigurationError("Missing cache directory configuration.");
         }
@@ -138,11 +127,7 @@ class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
      *                     if the entity could not be found.
      * @throws \Exception If an error occurs while loading metadata from cache.
      */
-<<<<<<< HEAD
-    private function getFromCache(string $set, string $entityId)
-=======
-    private function getFromCache(string $set, string $entityId) : ?array
->>>>>>> Fully typehint lib/Metadata/*.php
+    private function getFromCache(string $set, string $entityId): ?array
     {
         if (empty($this->cacheDir)) {
             return null;
@@ -199,11 +184,7 @@ class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
      * @throws \Exception If metadata cannot be written to cache.
      * @return void
      */
-<<<<<<< HEAD
-    private function writeToCache(string $set, string $entityId, array $data)
-=======
-    private function writeToCache(string $set, string $entityId, array $data) : void
->>>>>>> Fully typehint lib/Metadata/*.php
+    private function writeToCache(string $set, string $entityId, array $data): void
     {
         if (empty($this->cacheDir)) {
             return;
@@ -227,11 +208,7 @@ class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
      * @return array|NULL  The associative array with the metadata, or NULL if no metadata for
      *                     the given set was found.
      */
-<<<<<<< HEAD
-    private static function getParsedSet(SAMLParser $entity, string $set)
-=======
-    private static function getParsedSet(SAMLParser $entity, string $set) : ?array
->>>>>>> Fully typehint lib/Metadata/*.php
+    private static function getParsedSet(SAMLParser $entity, string $set): ?array
     {
         switch ($set) {
             case 'saml20-idp-remote':
@@ -268,14 +245,8 @@ class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
      * @throws \Exception If an error occurs while validating the signature or the metadata is in an
      *         incorrect set.
      */
-    public function getMetaData(string $index, string $set) : ?array
+    public function getMetaData(string $index, string $set): ?array
     {
-<<<<<<< HEAD
-        Assert::string($index);
-        Assert::string($set);
-
-=======
->>>>>>> Fully typehint lib/Metadata/*.php
         Logger::info(__CLASS__ . ': loading metadata entity [' . $index . '] from [' . $set . ']');
 
         // read from cache if possible
@@ -342,7 +313,7 @@ class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
      * @param string $set The set we want to get metadata from.
      * @return array An associative array with the metadata for the requested entities, if found.
      */
-    public function getMetaDataForEntities(array $entityIds, string $set) : array
+    public function getMetaDataForEntities(array $entityIds, string $set): array
     {
         return $this->getMetaDataForEntitiesIndividually($entityIds, $set);
     }

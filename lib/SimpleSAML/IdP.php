@@ -114,7 +114,7 @@ class IdP
      *
      * @return string The ID of this IdP.
      */
-    public function getId() : string
+    public function getId(): string
     {
         return $this->id;
     }
@@ -127,7 +127,7 @@ class IdP
      *
      * @return \SimpleSAML\IdP The IdP.
      */
-    public static function getById(string $id) : IdP
+    public static function getById(string $id): IdP
     {
         if (isset(self::$idpCache[$id])) {
             return self::$idpCache[$id];
@@ -146,7 +146,7 @@ class IdP
      *
      * @return \SimpleSAML\IdP The IdP.
      */
-    public static function getByState(array &$state) : IdP
+    public static function getByState(array &$state): IdP
     {
         Assert::notNull($state['core:IdP']);
 
@@ -159,7 +159,7 @@ class IdP
      *
      * @return Configuration The configuration object.
      */
-    public function getConfig() : Configuration
+    public function getConfig(): Configuration
     {
         return $this->config;
     }
@@ -172,7 +172,7 @@ class IdP
      *
      * @return array|null The name of the SP, as an associative array of language => text, or null if this isn't an SP.
      */
-    public function getSPName(string $assocId) : ?array
+    public function getSPName(string $assocId): ?array
     {
         $prefix = substr($assocId, 0, 4);
         $spEntityId = substr($assocId, strlen($prefix) + 1);
@@ -208,7 +208,7 @@ class IdP
      * @param array $association The SP association.
      * @return void
      */
-    public function addAssociation(array $association) : void
+    public function addAssociation(array $association): void
     {
         Assert::notNull($association['id']);
         Assert::notNull($association['Handler']);
@@ -225,7 +225,7 @@ class IdP
      *
      * @return array List of SP associations.
      */
-    public function getAssociations() : array
+    public function getAssociations(): array
     {
         $session = Session::getSessionFromRequest();
         return $session->getAssociations($this->associationGroup);
@@ -238,7 +238,7 @@ class IdP
      * @param string $assocId The association id.
      * @return void
      */
-    public function terminateAssociation(string $assocId) : void
+    public function terminateAssociation(string $assocId): void
     {
         $session = Session::getSessionFromRequest();
         $session->terminateAssociation($this->associationGroup, $assocId);
@@ -250,7 +250,7 @@ class IdP
      *
      * @return boolean True if the user is authenticated, false otherwise.
      */
-    public function isAuthenticated() : bool
+    public function isAuthenticated(): bool
     {
         return $this->authSource->isAuthenticated();
     }
@@ -262,7 +262,7 @@ class IdP
      * @param array $state The authentication request state array.
      * @return void
      */
-    public static function postAuthProc(array $state) : void
+    public static function postAuthProc(array $state): void
     {
         Assert::isCallable($state['Responder']);
 
@@ -289,7 +289,7 @@ class IdP
      * @throws \SimpleSAML\Error\Exception If we are not authenticated.
      * @return void
      */
-    public static function postAuth(array $state) : void
+    public static function postAuth(array $state): void
     {
         $idp = IdP::getByState($state);
 
@@ -337,7 +337,7 @@ class IdP
      * @throws \SimpleSAML\Module\saml\Error\NoPassive If we were asked to do passive authentication.
      * @return void
      */
-    private function authenticate(array &$state) : void
+    private function authenticate(array &$state): void
     {
         if (isset($state['isPassive']) && (bool) $state['isPassive']) {
             throw new NoPassive(Constants::STATUS_RESPONDER, 'Passive authentication not supported.');
@@ -360,7 +360,7 @@ class IdP
      * @throws \Exception If there is no auth source defined for this IdP.
      * @return void
      */
-    private function reauthenticate(array &$state) : void
+    private function reauthenticate(array &$state): void
     {
         $sourceImpl = $this->authSource->getAuthSource();
         $sourceImpl->reauthenticate($state);
@@ -373,7 +373,7 @@ class IdP
      * @param array &$state The authentication request state.
      * @return void
      */
-    public function handleAuthenticationRequest(array &$state) : void
+    public function handleAuthenticationRequest(array &$state): void
     {
         Assert::notNull($state['Responder']);
 
@@ -423,7 +423,7 @@ class IdP
      *
      * @throws \Exception If we cannot find a logout handler.
      */
-    public function getLogoutHandler() : LogoutHandlerInterface
+    public function getLogoutHandler(): LogoutHandlerInterface
     {
         // find the logout handler
         $logouttype = $this->getConfig()->getString('logouttype', 'traditional');
@@ -451,7 +451,7 @@ class IdP
      * @param array &$state The logout request state.
      * @return void
      */
-    public function finishLogout(array &$state) : void
+    public function finishLogout(array &$state): void
     {
         Assert::notNull($state['Responder']);
 
@@ -471,7 +471,7 @@ class IdP
      * association.
      * @return void
      */
-    public function handleLogoutRequest(array &$state, ?string $assocId) : void
+    public function handleLogoutRequest(array &$state, ?string $assocId): void
     {
         Assert::notNull($state['Responder']);
         Assert::nullOrString($assocId);
@@ -553,7 +553,7 @@ class IdP
      * @param array    &$state The logout state from doLogoutRedirect().
      * @return void
      */
-    public static function finishLogoutRedirect(IdP $idp, array $state) : void
+    public static function finishLogoutRedirect(IdP $idp, array $state): void
     {
         Assert::notNull($state['core:Logout:URL']);
 

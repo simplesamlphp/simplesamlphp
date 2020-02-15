@@ -164,7 +164,7 @@ class Logger
      * @param string $string The message to log.
      * @return void
      */
-    public static function emergency(string $string) : void
+    public static function emergency(string $string): void
     {
         self::log(self::EMERG, $string);
     }
@@ -176,7 +176,7 @@ class Logger
      * @param string $string The message to log.
      * @return void
      */
-    public static function critical(string $string) : void
+    public static function critical(string $string): void
     {
         self::log(self::CRIT, $string);
     }
@@ -188,7 +188,7 @@ class Logger
      * @param string $string The message to log.
      * @return void
      */
-    public static function alert(string $string) : void
+    public static function alert(string $string): void
     {
         self::log(self::ALERT, $string);
     }
@@ -200,7 +200,7 @@ class Logger
      * @param string $string The message to log.
      * @return void
      */
-    public static function error(string $string) : void
+    public static function error(string $string): void
     {
         self::log(self::ERR, $string);
     }
@@ -212,7 +212,7 @@ class Logger
      * @param string $string The message to log.
      * @return void
      */
-    public static function warning(string $string) : void
+    public static function warning(string $string): void
     {
         self::log(self::WARNING, $string);
     }
@@ -224,7 +224,7 @@ class Logger
      * @param string $string The message to log.
      * @return void
      */
-    public static function notice(string $string) : void
+    public static function notice(string $string): void
     {
         self::log(self::NOTICE, $string);
     }
@@ -236,7 +236,7 @@ class Logger
      * @param string $string The message to log.
      * @return void
      */
-    public static function info(string $string) : void
+    public static function info(string $string): void
     {
         self::log(self::INFO, $string);
     }
@@ -249,7 +249,7 @@ class Logger
      * @param string $string The message to log.
      * @return void
      */
-    public static function debug(string $string) : void
+    public static function debug(string $string): void
     {
         self::log(self::DEBUG, $string);
     }
@@ -261,7 +261,7 @@ class Logger
      * @param string $string The message to log.
      * @return void
      */
-    public static function stats(string $string) : void
+    public static function stats(string $string): void
     {
         self::log(self::NOTICE, $string, true);
     }
@@ -273,7 +273,7 @@ class Logger
      * @param boolean $val Whether to capture logs or not. Defaults to TRUE.
      * @return void
      */
-    public static function setCaptureLog(bool $val = true) : void
+    public static function setCaptureLog(bool $val = true): void
     {
         self::$captureLog = $val;
     }
@@ -283,7 +283,7 @@ class Logger
      * Get the captured log.
      * @return array
      */
-    public static function getCapturedLog() : array
+    public static function getCapturedLog(): array
     {
         return self::$capturedLog;
     }
@@ -295,7 +295,7 @@ class Logger
      * @param string $trackId The track identifier to use during this session.
      * @return void
      */
-    public static function setTrackId(string $trackId) : void
+    public static function setTrackId(string $trackId): void
     {
         self::$trackid = $trackId;
         self::flush();
@@ -324,7 +324,7 @@ class Logger
      *
      * @return void
      */
-    public static function shutdown() : void
+    public static function shutdown(): void
     {
         if (self::$trackid === self::NO_TRACKID) {
             try {
@@ -347,7 +347,7 @@ class Logger
      *
      * @return bool True if the error is masked, false otherwise.
      */
-    public static function isErrorMasked(int $errno) : bool
+    public static function isErrorMasked(int $errno): bool
     {
         return ($errno & self::$logMask) || !($errno & error_reporting());
     }
@@ -361,7 +361,7 @@ class Logger
      * @param int $mask The log levels that should be masked.
      * @return void
      */
-    public static function maskErrors(int $mask) : void
+    public static function maskErrors(int $mask): void
     {
         $currentEnabled = error_reporting();
         self::$logLevelStack[] = [$currentEnabled, self::$logMask];

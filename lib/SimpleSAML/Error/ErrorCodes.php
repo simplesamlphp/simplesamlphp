@@ -20,7 +20,7 @@ class ErrorCodes
      *
      * @return array A map from error code to error code title
      */
-    final public static function defaultGetAllErrorCodeTitles() : array
+    final public static function defaultGetAllErrorCodeTitles(): array
     {
         return [
             'ACSPARAMS' => Translate::noop('{errors:title_ACSPARAMS}'),

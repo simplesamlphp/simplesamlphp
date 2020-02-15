@@ -55,7 +55,7 @@ abstract class SessionHandlerCookie extends SessionHandler
      *
      * @return string The new session id.
      */
-    public function newSessionId() : string
+    public function newSessionId(): string
     {
         $this->session_id = self::createSessionID();
         Session::createSession($this->session_id);
@@ -69,7 +69,7 @@ abstract class SessionHandlerCookie extends SessionHandler
      *
      * @return string|null The session id saved in the cookie or null if no session cookie was set.
      */
-    public function getCookieSessionId() : ?string
+    public function getCookieSessionId(): ?string
     {
         if ($this->session_id === null) {
             if ($this->hasSessionCookie()) {
@@ -93,7 +93,7 @@ abstract class SessionHandlerCookie extends SessionHandler
      *
      * @return string The session cookie name.
      */
-    public function getSessionCookieName() : string
+    public function getSessionCookieName(): string
     {
         return $this->cookie_name;
     }

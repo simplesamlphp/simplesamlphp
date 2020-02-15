@@ -110,7 +110,7 @@ class Error extends \SimpleSAML\Error\Exception
      * @param \Exception $exception  The original exception.
      * @return \Exception  The new exception.
      */
-    public static function fromException(\Exception $exception) : \Exception
+    public static function fromException(\Exception $exception): \Exception
     {
         if ($exception instanceof \SimpleSAML\Module\saml\Error) {
             // Return the original exception unchanged

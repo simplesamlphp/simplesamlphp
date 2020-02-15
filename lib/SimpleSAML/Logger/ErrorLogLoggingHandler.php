@@ -58,7 +58,7 @@ class ErrorLogLoggingHandler implements LoggingHandlerInterface
      * @param string $format The format used for logs.
      * @return void
      */
-    public function setLogFormat(string $format) : void
+    public function setLogFormat(string $format): void
     {
         // we don't need the format here
     }
@@ -71,7 +71,7 @@ class ErrorLogLoggingHandler implements LoggingHandlerInterface
      * @param string $string The formatted message to log.
      * @return void
      */
-    public function log(int $level, string $string) : void
+    public function log(int $level, string $string): void
     {
         if (array_key_exists($level, self::$levelNames)) {
             $levelName = self::$levelNames[$level];

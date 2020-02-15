@@ -86,7 +86,7 @@ class Module
      *
      * @return string The base directory of a module.
      */
-    public static function getModuleDir(string $module) : string
+    public static function getModuleDir(string $module): string
     {
         $baseDir = dirname(dirname(dirname(__FILE__))) . '/modules';
         $moduleDir = $baseDir . '/' . $module;
@@ -106,7 +106,7 @@ class Module
      *
      * @throws \Exception If module.enable is set and is not boolean.
      */
-    public static function isModuleEnabled(string $module) : bool
+    public static function isModuleEnabled(string $module): bool
     {
         $config = Configuration::getOptionalConfig();
         return self::isModuleEnabledWithConf($module, $config->getArray('module.enable', []));
@@ -374,7 +374,7 @@ class Module
      *
      * @throws \Exception If we cannot open the module's directory.
      */
-    public static function getModules() : array
+    public static function getModules(): array
     {
         if (!empty(self::$modules)) {
             return self::$modules;
@@ -590,7 +590,7 @@ class Module
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      *   A redirection to the URI specified in the request, but without the trailing slash.
      */
-    public static function removeTrailingSlash(Request $request) : RedirectResponse
+    public static function removeTrailingSlash(Request $request): RedirectResponse
     {
         $pathInfo = $request->server->get('PATH_INFO');
         $url = str_replace($pathInfo, rtrim($pathInfo, ' /'), $request->getRequestUri());

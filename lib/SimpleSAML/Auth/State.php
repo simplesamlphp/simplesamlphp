@@ -200,7 +200,7 @@ class State
      *
      * @return string  Identifier which can be used to retrieve the state later.
      */
-    public static function saveState(array &$state, string $stage, bool $rawId = false) : string
+    public static function saveState(array &$state, string $stage, bool $rawId = false): string
     {
         $return = self::getStateId($state, $rawId);
         $id = $state[self::ID];

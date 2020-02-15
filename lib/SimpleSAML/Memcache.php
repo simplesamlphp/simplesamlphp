@@ -154,7 +154,7 @@ class Memcache
      * @param integer|null $expire The expiration timestamp of the data.
      * @return void
      */
-    public static function set(string $key, $value, ?int $expire = null) : void
+    public static function set(string $key, $value, ?int $expire = null): void
     {
         Logger::debug("saving key $key to memcache");
         $savedInfo = [
@@ -443,7 +443,7 @@ class Memcache
      *
      * @throws \Exception If memcache server status couldn't be retrieved.
      */
-    public static function getStats() : array
+    public static function getStats(): array
     {
         $ret = [];
 
@@ -470,7 +470,7 @@ class Memcache
      *
      * @return array An array with the extended stats output for each server group.
      */
-    public static function getRawStats() : array
+    public static function getRawStats(): array
     {
         $ret = [];
 

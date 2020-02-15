@@ -43,7 +43,7 @@ class XML
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
-    public static function checkSAMLMessage(string $message, string $type) : void
+    public static function checkSAMLMessage(string $message, string $type): void
     {
         $allowed_types = ['saml20', 'saml11', 'saml-meta'];
         if (!in_array($type, $allowed_types, true)) {
@@ -105,7 +105,7 @@ class XML
      *
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
-    public static function debugSAMLMessage($message, string $type) : void
+    public static function debugSAMLMessage($message, string $type): void
     {
         if (!(is_string($message) || $message instanceof DOMElement)) {
             throw new \InvalidArgumentException('Invalid input parameters.');
@@ -171,7 +171,7 @@ class XML
      *
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
-    public static function formatDOMElement(DOMNode $root, string $indentBase = '') : void
+    public static function formatDOMElement(DOMNode $root, string $indentBase = ''): void
     {
         // check what this element contains
         $fullText = ''; // all text in this element
@@ -257,7 +257,7 @@ class XML
      *
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
-    public static function formatXMLString(string $xml, string $indentBase = '') : string
+    public static function formatXMLString(string $xml, string $indentBase = ''): string
     {
         try {
             $doc = DOMDocumentFactory::fromString($xml);
@@ -287,7 +287,7 @@ class XML
      * @throws \InvalidArgumentException If $element is not an instance of DOMElement, $localName is not a string or
      *     $namespaceURI is not a string.
      */
-    public static function getDOMChildren(DOMNode $element, string $localName, string $namespaceURI) : array
+    public static function getDOMChildren(DOMNode $element, string $localName, string $namespaceURI): array
     {
         $ret = [];
 
@@ -319,7 +319,7 @@ class XML
      *
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
-    public static function getDOMText(DOMElement $element) : string
+    public static function getDOMText(DOMElement $element): string
     {
         $txt = '';
 
@@ -360,7 +360,7 @@ class XML
      * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
-    public static function isDOMNodeOfType(DOMNode $element, string $name, string $nsURI) : bool
+    public static function isDOMNodeOfType(DOMNode $element, string $name, string $nsURI): bool
     {
         if (strlen($nsURI) === 0) {
             // most likely a comment-node

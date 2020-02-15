@@ -277,7 +277,7 @@ abstract class UserPassOrgBase extends \SimpleSAML\Auth\Source
         string $username,
         string $password,
         string $organization
-   ): void {
+    ): void {
         /* Retrieve the authentication state. */
         /** @var array $state */
         $state = Auth\State::loadState($authStateId, self::STAGEID);

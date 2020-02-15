@@ -58,7 +58,7 @@ class Database
      *
      * @return \SimpleSAML\Database The shared database connection.
      */
-    public static function getInstance(Configuration $altConfig = null) : Database
+    public static function getInstance(Configuration $altConfig = null): Database
     {
         $config = ($altConfig) ? $altConfig : Configuration::getInstance();
         $instanceId = self::generateInstanceId($config);
@@ -184,7 +184,7 @@ class Database
      *
      * @return string Table with configured prefix
      */
-    public function applyPrefix(string $table) : string
+    public function applyPrefix(string $table): string
     {
         return $this->tablePrefix . $table;
     }
@@ -284,7 +284,7 @@ class Database
      *
      * @return array The array with error information.
      */
-    public function getLastError() : array
+    public function getLastError(): array
     {
         return $this->lastError;
     }

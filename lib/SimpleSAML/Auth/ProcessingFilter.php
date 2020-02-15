@@ -67,5 +67,5 @@ abstract class ProcessingFilter
      * @param array &$request  The request we are currently processing.
      * @return void
      */
-    abstract public function process(array &$request) : void;
+    abstract public function process(array &$request): void;
 }

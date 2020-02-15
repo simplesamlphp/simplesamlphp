@@ -24,7 +24,7 @@ class Auth
      * @return string A URL which can be used for admin authentication.
      * @throws \InvalidArgumentException If $returnTo is neither a string nor null.
      */
-    public static function getAdminLoginURL(?string $returnTo = null) : string
+    public static function getAdminLoginURL(?string $returnTo = null): string
     {
         if ($returnTo === null) {
             $returnTo = HTTP::getSelfURL();
@@ -42,7 +42,7 @@ class Auth
      * @return string A URL which can be used for logging out.
      * @throws \InvalidArgumentException If $returnTo is neither a string nor null.
      */
-    public static function getAdminLogoutURL(?string $returnTo = null) : string
+    public static function getAdminLogoutURL(?string $returnTo = null): string
     {
         $as = new Authentication\Simple('admin');
         return $as->getLogoutURL($returnTo = null);
@@ -56,7 +56,7 @@ class Auth
      *
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
-    public static function isAdmin() : bool
+    public static function isAdmin(): bool
     {
         $session = Session::getSessionFromRequest();
         return $session->isValid('admin') || $session->isValid('login-admin');
@@ -75,7 +75,7 @@ class Auth
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
-    public static function requireAdmin() : void
+    public static function requireAdmin(): void
     {
         if (self::isAdmin()) {
             return;

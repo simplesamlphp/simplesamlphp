@@ -203,7 +203,7 @@ class Template extends Response
      *
      * @return string The name of the template to use.
      */
-    public function getTemplateName() : string
+    public function getTemplateName(): string
     {
         return $this->normalizeTemplateName($this->template);
     }

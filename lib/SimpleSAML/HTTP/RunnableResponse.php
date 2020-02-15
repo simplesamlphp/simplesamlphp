@@ -43,7 +43,7 @@ class RunnableResponse extends Response
      *
      * @return callable
      */
-    public function getCallable() : callable
+    public function getCallable(): callable
     {
         return $this->callable;
     }
@@ -54,7 +54,7 @@ class RunnableResponse extends Response
      *
      * @return array
      */
-    public function getArguments() : array
+    public function getArguments(): array
     {
         return $this->arguments;
     }
@@ -65,7 +65,7 @@ class RunnableResponse extends Response
      *
      * @return self
      */
-    public function send()
+    public function send(): object
     {
         return call_user_func_array($this->callable, $this->arguments);
     }
