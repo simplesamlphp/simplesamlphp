@@ -570,7 +570,6 @@ class Template extends Response
     {
         $extensions = ['.tpl.php', '.php'];
 
-        $extensions = ['.tpl.php', '.php'];
         list($templateModule, $templateName) = $this->findModuleAndTemplateName($template);
         $templateModule = ($templateModule !== null) ? $templateModule : 'default';
 
