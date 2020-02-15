@@ -191,7 +191,7 @@ class CardinalityTest extends \PHPUnit\Framework\TestCase
     public function testMinInvalid()
     {
         $this->expectException(SspException::class);
-        $this->expectExceptionMessageRegExp('/Minimum/');
+        $this->expectExceptionMessageMatches('/Minimum/');
         $config = [
             'mail' => ['min' => false],
         ];
@@ -211,7 +211,7 @@ class CardinalityTest extends \PHPUnit\Framework\TestCase
     public function testMinNegative()
     {
         $this->expectException(SspException::class);
-        $this->expectExceptionMessageRegExp('/Minimum/');
+        $this->expectExceptionMessageMatches('/Minimum/');
         $config = [
             'mail' => ['min' => -1],
         ];
@@ -231,7 +231,7 @@ class CardinalityTest extends \PHPUnit\Framework\TestCase
     public function testMaxInvalid()
     {
         $this->expectException(SspException::class);
-        $this->expectExceptionMessageRegExp('/Maximum/');
+        $this->expectExceptionMessageMatches('/Maximum/');
         $config = [
             'mail' => ['max' => false],
         ];
@@ -251,7 +251,7 @@ class CardinalityTest extends \PHPUnit\Framework\TestCase
     public function testMinGreaterThanMax()
     {
         $this->expectException(SspException::class);
-        $this->expectExceptionMessageRegExp('/less than/');
+        $this->expectExceptionMessageMatches('/less than/');
         $config = [
             'mail' => ['min' => 2, 'max' => 1],
         ];
@@ -271,7 +271,7 @@ class CardinalityTest extends \PHPUnit\Framework\TestCase
     public function testInvalidAttributeName()
     {
         $this->expectException(SspException::class);
-        $this->expectExceptionMessageRegExp('/Invalid attribute/');
+        $this->expectExceptionMessageMatches('/Invalid attribute/');
         $config = [
             ['min' => 2, 'max' => 1],
         ];
