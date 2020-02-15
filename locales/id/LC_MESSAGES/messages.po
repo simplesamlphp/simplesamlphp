@@ -545,16 +545,11 @@ msgstr ""
 " yang salah di SimpleSAMLphp. Hubungi administrator dari layanan login "
 "ini, dan kirimkan kepada mereka pesan error diatas."
 
-<<<<<<< HEAD
-msgid "{admin:metaover_group_metadata.shib13-idp-hosted}"
-msgstr "Identity Provider Shib 1.3 (Hosted)"
-=======
 msgid "{attributes:attribute_mobile}"
 msgstr "Handphone"
 
 msgid "{attributes:attribute_preferredlanguage}"
 msgstr "Pilihan Bahasa"
->>>>>>> Remove SAML1.1/Shib1.3 support
 
 msgid "{errors:descr_NOTVALIDCERT}"
 msgstr "Anda tidak menyediakan sertifikat yang valid."

@@ -118,16 +118,4 @@ class ValidatorTest extends SigningTestCase
 
         $this->assertFalse($result);
     }
-
-
-    /**
-     * @return void
-     */
-    public function testValidateCertificateMissingCAFile()
-    {
-        $ca_file = $this->ca_certificate_file . 'NOT';
-
-        $this->expectException(\Exception::class);
-        Validator::validateCertificate($this->good_certificate, $ca_file);
-    }
 }

@@ -8,23 +8,7 @@
     allowStringToStandInForClass="true"
 >
     <projectFiles>
-<<<<<<< HEAD
         <directory name="lib/SimpleSAML" />
-=======
-        <directory name="lib/SimpleSAML/Auth" />
-        <directory name="lib/SimpleSAML/Error" />
-        <directory name="lib/SimpleSAML/HTTP" />
-        <directory name="lib/SimpleSAML/IdP" />
-        <directory name="lib/SimpleSAML/Locale" />
-        <directory name="lib/SimpleSAML/Logger" />
-        <directory name="lib/SimpleSAML/Metadata" />
-        <directory name="lib/SimpleSAML/Module" />
-        <directory name="lib/SimpleSAML/Stats" />
-        <directory name="lib/SimpleSAML/Store" />
-        <directory name="lib/SimpleSAML/Utils" />
-        <directory name="lib/SimpleSAML/XHTML" />
-        <directory name="lib/SimpleSAML/XML" />
->>>>>>> Remove SAML1.1/Shib1.3 support
 
         <!-- Replaces all modules/... with this one-liner for 2.0
         <directory name="modules" />

@@ -80,12 +80,12 @@
         "symfony/console": "^4.0",
         "symfony/dependency-injection": "^4.0",
         "symfony/finder": "^4.0",
-        "symfony/framework-bundle": ^4.0",
+        "symfony/framework-bundle": "^4.0",
         "symfony/http-foundation": "^4.0",
         "symfony/http-kernel": "^4.0",
         "symfony/routing": "^4.0",
         "symfony/yaml": "^4.0",
-        "twig/twig": "~2.0"
+        "twig/twig": "~2.0",
         "webmozart/assert": "~1.7",
         "whitehat101/apr1-md5": "~1.0"
     },

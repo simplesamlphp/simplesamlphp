@@ -549,60 +549,6 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
 
 
     /**
-     * Test \SimpleSAML\Configuration::getConfigList()
-     * @return void
-     */
-    public function testGetConfigList()
-    {
-        $c = Configuration::loadFromArray([
-            'opts' => [
-                'a' => ['opt1' => 'value1'],
-                'b' => ['opt2' => 'value2'],
-            ],
-        ]);
-        $this->assertEquals($c->getConfigList('missing_opt'), []);
-        $opts = $c->getConfigList('opts');
-        $this->assertInternalType('array', $opts);
-        $this->assertEquals(array_keys($opts), ['a', 'b']);
-        $this->assertInstanceOf(Configuration::class, $opts['a']);
-        $this->assertEquals($opts['a']->getValue('opt1'), 'value1');
-        $this->assertInstanceOf(Configuration::class, $opts['b']);
-        $this->assertEquals($opts['b']->getValue('opt2'), 'value2');
-    }
-
-
-    /**
-     * Test \SimpleSAML\Configuration::getConfigList() wrong option
-     * @return void
-     */
-    public function testGetConfigListWrong()
-    {
-        $this->expectException(\Exception::class);
-        $c = Configuration::loadFromArray([
-            'opt' => 'not_an_array',
-        ]);
-        $c->getConfigList('opt');
-    }
-
-
-    /**
-     * Test \SimpleSAML\Configuration::getConfigList() with an array of wrong options.
-     * @return void
-     */
-    public function testGetConfigListWrongArrayValues()
-    {
-        $this->expectException(\Exception::class);
-        $c = Configuration::loadFromArray([
-            'opts' => [
-                'a',
-                'b',
-            ],
-        ]);
-        $c->getConfigList('opts');
-    }
-
-
-    /**
      * Test \SimpleSAML\Configuration::getOptions()
      * @return void
      */
