@@ -1250,7 +1250,7 @@ class HTTP
             self::redirect(self::getSecurePOSTRedirectURL($destination, $data));
         }
 
-        $p = new Template($config, 'post.php');
+        $p = new Template($config, 'post.twig');
         $p->data['destination'] = $destination;
         $p->data['post'] = $data;
         $p->send();

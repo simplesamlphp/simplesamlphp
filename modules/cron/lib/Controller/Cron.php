@@ -87,7 +87,7 @@ class Cron
             ];
         }
 
-        $t = new Template($this->config, 'cron:croninfo.tpl.php', 'cron:cron');
+        $t = new Template($this->config, 'cron:croninfo.twig', 'cron:cron');
         $t->data['urls'] = $urls;
         return $t;
     }
@@ -138,7 +138,7 @@ class Cron
         }
 
         if ($output === 'xhtml') {
-            $t = new Template($this->config, 'cron:croninfo-result.tpl.php', 'cron:cron');
+            $t = new Template($this->config, 'cron:croninfo-result.twig', 'cron:cron');
             $t->data['tag'] = $croninfo['tag'];
             $t->data['time'] = $time;
             $t->data['url'] = $url;

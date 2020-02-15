@@ -73,15 +73,6 @@ class Exception
             ' ' . implode(',', array_keys($state['core:cardinality:errorAttributes']))
         );
 
-        $t = new Template($this->config, 'core:cardinality_error.tpl.php');
-        $t->data['cardinalityErrorAttributes'] = $state['core:cardinality:errorAttributes'];
-        if (isset($state['Source']['auth'])) {
-            $t->data['LogoutURL'] = Module::getModuleURL(
-                'core/authenticate.php',
-                ['as' => $state['Source']['auth']]
-            ) . "&logout";
-        }
-
         $t = new Template($this->config, 'core:cardinality_error.twig');
         $t->data['cardinalityErrorAttributes'] = $state['core:cardinality:errorAttributes'];
         if (isset($state['Source']['auth'])) {

@@ -582,10 +582,10 @@ class IdPDisco
          */
         switch ($this->config->getString('idpdisco.layout', 'links')) {
             case 'dropdown':
-                $templateFile = 'selectidp-dropdown.php';
+                $templateFile = 'selectidp-dropdown.twig';
                 break;
             case 'links':
-                $templateFile = 'selectidp-links.php';
+                $templateFile = 'selectidp-links.twig';
                 break;
             default:
                 throw new \Exception('Invalid value for the \'idpdisco.layout\' option.');
