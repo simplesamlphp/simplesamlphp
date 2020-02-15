@@ -23,7 +23,7 @@ class NoAvailableIDP extends \SimpleSAML\Module\saml\Error
      * @param string|null $message A short message explaining why this error happened.
      * @param \Exception|null $cause An exception that caused this error.
      */
-    public function __construct($responsible, $message = null, \Exception $cause = null)
+    public function __construct(string $responsible, string $message = null, \Exception $cause = null)
     {
         parent::__construct($responsible, Constants::STATUS_NO_AVAILABLE_IDP, $message, $cause);
     }

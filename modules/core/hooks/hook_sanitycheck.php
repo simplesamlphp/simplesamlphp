@@ -10,9 +10,8 @@ use Webmozart\Assert\Assert;
  * @param array &$hookinfo  hookinfo
  * @return void
  */
-function core_hook_sanitycheck(&$hookinfo)
+function core_hook_sanitycheck(array &$hookinfo): void
 {
-    Assert::isArray($hookinfo);
     Assert::keyExists($hookinfo, 'errors');
     Assert::keyExists($hookinfo, 'info');
 

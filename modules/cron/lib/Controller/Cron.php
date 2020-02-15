@@ -63,7 +63,7 @@ class Cron
      * @return \SimpleSAML\XHTML\Template
      *   An HTML template or a redirection if we are not authenticated.
      */
-    public function info()
+    public function info(): Template
     {
         Utils\Auth::requireAdmin();
 
@@ -100,14 +100,14 @@ class Cron
      *
      * @param string $tag The tag
      * @param string $key The secret key
-     * @param string|null $output The output format, defaulting to xhtml
+     * @param string $output The output format, defaulting to xhtml
      *
      * @return \SimpleSAML\XHTML\Template|\Symfony\Component\HttpFoundation\Response
      *   An HTML template, a redirect or a "runnable" response.
      *
      * @throws \SimpleSAML\Error\Exception
      */
-    public function run($tag, $key, $output)
+    public function run(string $tag, string $key, string $output = 'xhtml'): Response
     {
         $configKey = $this->cronconfig->getValue('key', 'secret');
         if ($key !== $configKey) {
@@ -116,7 +116,7 @@ class Cron
         }
 
         $cron = new \SimpleSAML\Module\cron\Cron();
-        if ($tag === null || !$cron->isValidTag($tag)) {
+        if (!$cron->isValidTag($tag)) {
             Logger::error('Cron - Illegal tag [' . $tag . '].');
             exit;
         }

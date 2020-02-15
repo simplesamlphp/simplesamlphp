@@ -72,7 +72,6 @@ class DatabaseTest extends TestCase
         $this->config = new Configuration($config, "test/SimpleSAML/DatabaseTest.php");
 
         // Ensure that we have a functional configuration class
-        $this->assertInstanceOf(Configuration::class, $this->config);
         $this->assertEquals($config['database.dsn'], $this->config->getString('database.dsn'));
 
         $this->db = Database::getInstance($this->config);

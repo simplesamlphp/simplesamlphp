@@ -583,7 +583,7 @@ class Module
      *
      * This method removes the trailing slash and redirects to the resulting URL.
      *
-     * @param Symfony\Component\HttpFoundation\Request $request The request to process by this controller method.
+     * @param \Symfony\Component\HttpFoundation\Request $request The request to process by this controller method.
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      *   A redirection to the URI specified in the request, but without the trailing slash.

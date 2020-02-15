@@ -328,9 +328,7 @@ class Crypto
      */
     public static function pwHash(string $password): string
     {
-        if (!is_string($password)) {
-            throw new \InvalidArgumentException('Invalid input parameter.');
-        } elseif (!is_string($hash = password_hash($password, PASSWORD_DEFAULT))) {
+        if (!is_string($hash = password_hash($password, PASSWORD_DEFAULT))) {
             throw new \InvalidArgumentException('Error while hashing password.');
         }
         return $hash;

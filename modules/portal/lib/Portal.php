@@ -21,7 +21,7 @@ class Portal
      * @param array $pages
      * @param array|null $config
      */
-    public function __construct($pages, $config = null)
+    public function __construct(array $pages, array $config = null)
     {
         $this->pages = $pages;
         $this->config = $config;
@@ -32,7 +32,7 @@ class Portal
      * @param string $thispage
      * @return array|null
      */
-    public function getTabset($thispage)
+    public function getTabset(string $thispage): ?array
     {
         if (!isset($this->config)) {
             return null;
@@ -50,7 +50,7 @@ class Portal
      * @param string $thispage
      * @return bool
      */
-    public function isPortalized($thispage)
+    public function isPortalized(string $thispage): bool
     {
         if (!isset($this->config)) {
             return false;
@@ -69,7 +69,7 @@ class Portal
      * @param string $thispage
      * @return string
      */
-    public function getLoginInfo($translator, $thispage)
+    public function getLoginInfo(Translate $translator, string $thispage): string
     {
         $info = ['info' => '', 'translator' => $translator, 'thispage' => $thispage];
         Module::callHooks('portalLoginInfo', $info);
@@ -81,7 +81,7 @@ class Portal
      * @param string $thispage
      * @return string
      */
-    public function getMenu($thispage)
+    public function getMenu(string $thispage): string
     {
         $config = Configuration::getInstance();
         $t = new Translate($config);

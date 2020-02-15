@@ -35,11 +35,8 @@ class UserPass extends \SimpleSAML\Module\core\Auth\UserPassBase
      * @param array $info  Information about this authentication source.
      * @param array $config  Configuration.
      */
-    public function __construct($info, $config)
+    public function __construct(array $info, array $config)
     {
-        Assert::isArray($info);
-        Assert::isArray($config);
-
         // Call the parent constructor first, as required by the interface
         parent::__construct($info, $config);
 
@@ -86,11 +83,8 @@ class UserPass extends \SimpleSAML\Module\core\Auth\UserPassBase
      * @param string $password  The password the user wrote.
      * @return array  Associative array with the users attributes.
      */
-    protected function login($username, $password)
+    protected function login(string $username, string $password): array
     {
-        Assert::string($username);
-        Assert::string($password);
-
         $userpass = $username . ':' . $password;
         if (!array_key_exists($userpass, $this->users)) {
             throw new Error\Error('WRONGUSERPASS');

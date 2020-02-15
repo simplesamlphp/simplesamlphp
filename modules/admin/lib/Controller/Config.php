@@ -57,7 +57,7 @@ class Config
      *
      * @return \SimpleSAML\XHTML\Template
      */
-    public function diagnostics(Request $request)
+    public function diagnostics(Request $request): Template
     {
         Utils\Auth::requireAdmin();
 
@@ -90,7 +90,7 @@ class Config
      *
      * @return \SimpleSAML\XHTML\Template
      */
-    public function main()
+    public function main(): Template
     {
         Utils\Auth::requireAdmin();
 
@@ -127,7 +127,7 @@ class Config
      *
      * @return RunnableResponse
      */
-    public function phpinfo()
+    public function phpinfo(): RunnableResponse
     {
         Utils\Auth::requireAdmin();
 
@@ -148,7 +148,7 @@ class Config
      *
      * @return array
      */
-    protected function getPrerequisiteChecks()
+    protected function getPrerequisiteChecks(): array
     {
         $matrix = [
             [
@@ -333,7 +333,7 @@ class Config
      *
      * @return array
      */
-    protected function getWarnings()
+    protected function getWarnings(): array
     {
         $warnings = [];
 

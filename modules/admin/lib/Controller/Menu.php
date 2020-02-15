@@ -55,7 +55,7 @@ final class Menu
      * @param string $name The name of the option for display purposes.
      * @return void
      */
-    public function addOption($id, $url, $name)
+    public function addOption(string $id, string $url, string $name): void
     {
         $this->options[$id] = [
             'url' => $url,
@@ -84,7 +84,7 @@ final class Menu
      *
      * @return \SimpleSAML\XHTML\Template The template with the added menu.
      */
-    public function insert(Template $template)
+    public function insert(Template $template): Template
     {
         $template->data['menu'] = $this->options;
         Module::callHooks('adminmenu', $template);

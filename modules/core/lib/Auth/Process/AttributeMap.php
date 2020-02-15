@@ -101,6 +101,7 @@ class AttributeMap extends \SimpleSAML\Auth\ProcessingFilter
             throw new \Exception('Could not find attribute map file: ' . $filePath);
         }
 
+        /** @psalm-var mixed|null $attributemap */
         $attributemap = null;
         include($filePath);
         if (!is_array($attributemap)) {

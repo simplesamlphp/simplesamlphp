@@ -8,9 +8,8 @@ use Webmozart\Assert\Assert;
  * @param array &$hookinfo  hookinfo
  * @return void
  */
-function portal_hook_htmlinject(&$hookinfo)
+function portal_hook_htmlinject(array &$hookinfo)
 {
-    Assert::isArray($hookinfo);
     Assert::keyExists($hookinfo, 'pre');
     Assert::keyExists($hookinfo, 'post');
     Assert::keyExists($hookinfo, 'page');

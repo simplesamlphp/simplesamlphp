@@ -59,11 +59,8 @@ class MultiAuth extends \SimpleSAML\Auth\Source
      * @param array $info Information about this authentication source.
      * @param array $config Configuration.
      */
-    public function __construct($info, $config)
+    public function __construct(array $info, array $config)
     {
-        Assert::isArray($info);
-        Assert::isArray($config);
-
         // Call the parent constructor first, as required by the interface
         parent::__construct($info, $config);
 
@@ -141,8 +138,6 @@ class MultiAuth extends \SimpleSAML\Auth\Source
      */
     public function authenticate(array &$state): void
     {
-        Assert::isArray($state);
-
         $state[self::AUTHID] = $this->authId;
         $state[self::SOURCESID] = $this->sources;
 
@@ -184,11 +179,8 @@ class MultiAuth extends \SimpleSAML\Auth\Source
      * @return void
      * @throws \Exception
      */
-    public static function delegateAuthentication($authId, $state)
+    public static function delegateAuthentication(string $authId, array $state): void
     {
-        assert::string($authId);
-        Assert::isArray($state);
-
         $as = Auth\Source::getById($authId);
         $valid_sources = array_map(
             /**
@@ -236,8 +228,6 @@ class MultiAuth extends \SimpleSAML\Auth\Source
      */
     public function logout(array &$state): void
     {
-        Assert::isArray($state);
-
         // Get the source that was used to authenticate
         $session = Session::getSessionFromRequest();
         $authId = $session->getData(self::SESSION_SOURCE, $this->authId);
@@ -260,10 +250,8 @@ class MultiAuth extends \SimpleSAML\Auth\Source
      * @param string $source Name of the authentication source the user selected.
      * @return void
      */
-    public function setPreviousSource($source)
+    public function setPreviousSource(string $source): void
     {
-        Assert::string($source);
-
         $cookieName = 'multiauth_source_' . $this->authId;
 
         $config = Configuration::getInstance();
@@ -286,7 +274,7 @@ class MultiAuth extends \SimpleSAML\Auth\Source
      * last time or NULL if this is the first time or remembering is disabled.
      * @return string|null
      */
-    public function getPreviousSource()
+    public function getPreviousSource(): ?string
     {
         $cookieName = 'multiauth_source_' . $this->authId;
         if (array_key_exists($cookieName, $_COOKIE)) {

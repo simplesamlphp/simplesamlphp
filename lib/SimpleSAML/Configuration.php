@@ -468,8 +468,6 @@ class Configuration implements Utils\ClearableState
             return null;
         }
 
-        Assert::string($path);
-
         return Utils\System::resolvePath($path, $this->getBaseDir());
     }
 
@@ -790,8 +788,6 @@ class Configuration implements Utils\ClearableState
      */
     public function getArrayize(string $name, $default = self::REQUIRED_OPTION)
     {
-        Assert::string($name);
-
         $ret = $this->getValue($name, $default);
 
         if ($ret === $default) {
@@ -817,7 +813,7 @@ class Configuration implements Utils\ClearableState
      *                       required if this parameter isn't given. The default value can be any value, including
      *                       null.
      *
-     * @return array The option with the given name, or $default if the option isn't found and $default is specified.
+     * @return mixed The option with the given name, or $default if the option isn't found and $default is specified.
      *
      * @throws \Exception If the option is not a string or an array of strings.
      */
@@ -858,7 +854,8 @@ class Configuration implements Utils\ClearableState
      *                        This function will only return null if $default is set to null and the option
      *                        doesn't exist.
      *
-     * @return \SimpleSAML\Configuration|null The option with the given name, or $default if the option isn't found and $default is specified.
+     * @return \SimpleSAML\Configuration|null The option with the given name,
+     *   or $default if the option isn't found and $default is specified.
      *
      * @throws \Exception If the option is not an array.
      */
@@ -1022,7 +1019,7 @@ class Configuration implements Utils\ClearableState
      * @param mixed  $default The default value to return if no matching endpoint is found. If no default is provided,
      *     an exception will be thrown.
      *
-     * @return array|null The default endpoint, or null if no acceptable endpoints are used.
+     * @return mixed|null The default endpoint, or null if no acceptable endpoints are used.
      *
      * @throws \Exception If no supported endpoint is found.
      */

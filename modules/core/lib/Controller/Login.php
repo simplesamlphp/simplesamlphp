@@ -199,7 +199,7 @@ class Login
      * @param Request $request The request that lead to this login operation.
      * @return void
      */
-    public function cleardiscochoices(Request $request)
+    public function cleardiscochoices(Request $request): void
     {
         // The base path for cookies. This should be the installation directory for SimpleSAMLphp.
         $cookiePath = $this->config->getBasePath();

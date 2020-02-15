@@ -44,11 +44,8 @@ class External extends \SimpleSAML\Auth\Source
      * @param array $info  Information about this authentication source.
      * @param array $config  Configuration.
      */
-    public function __construct($info, $config)
+    public function __construct(array $info, array $config)
     {
-        Assert::isArray($info);
-        Assert::isArray($config);
-
         // Call the parent constructor first, as required by the interface
         parent::__construct($info, $config);
 
@@ -109,8 +106,6 @@ class External extends \SimpleSAML\Auth\Source
      */
     public function authenticate(array &$state): void
     {
-        Assert::isArray($state);
-
         $attributes = $this->getUser();
         if ($attributes !== null) {
             /*
@@ -273,8 +268,6 @@ class External extends \SimpleSAML\Auth\Source
      */
     public function logout(array &$state): void
     {
-        Assert::isArray($state);
-
         if (!session_id()) {
             // session_start not called before. Do it here
             session_start();

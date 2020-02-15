@@ -43,7 +43,7 @@ class Message
         Configuration $srcMetadata,
         Configuration $dstMetadata,
         SignedElement $element
-    ) {
+    ): void {
         $dstPrivateKey = $dstMetadata->getString('signature.privatekey', null);
 
         if ($dstPrivateKey !== null) {
@@ -95,8 +95,7 @@ class Message
         Configuration $srcMetadata,
         Configuration $dstMetadata,
         \SAML2\Message $message
-    ) {
-
+    ): void {
         $signingEnabled = null;
         if ($message instanceof LogoutRequest || $message instanceof LogoutResponse) {
             $signingEnabled = $srcMetadata->getBoolean('sign.logout', null);
@@ -171,7 +170,7 @@ class Message
      * @throws \SimpleSAML\Error\Exception if there is not certificate in the metadata for the entity.
      * @throws \Exception if the signature validation fails with an exception.
      */
-    public static function checkSign(Configuration $srcMetadata, SignedElement $element)
+    public static function checkSign(Configuration $srcMetadata, SignedElement $element): bool
     {
         // find the public key that should verify signatures by this entity
         $keys = $srcMetadata->getPublicKeys('signing');
@@ -239,7 +238,7 @@ class Message
         Configuration $srcMetadata,
         Configuration $dstMetadata,
         \SAML2\Message $message
-    ) {
+    ): void {
         $enabled = null;
         if ($message instanceof LogoutRequest || $message instanceof LogoutResponse) {
             $enabled = $srcMetadata->getBoolean('validate.logout', null);
@@ -283,7 +282,7 @@ class Message
     public static function getDecryptionKeys(
         Configuration $srcMetadata,
         Configuration $dstMetadata
-    ) {
+    ): array {
         $sharedKey = $srcMetadata->getString('sharedkey', null);
         if ($sharedKey !== null) {
             $key = new XMLSecurityKey(XMLSecurityKey::AES128_CBC);
@@ -338,7 +337,7 @@ class Message
     public static function getBlacklistedAlgorithms(
         Configuration $srcMetadata,
         Configuration $dstMetadata
-    ) {
+    ): array {
         $blacklist = $srcMetadata->getArray('encryption.blacklisted-algorithms', null);
         if ($blacklist === null) {
             $blacklist = $dstMetadata->getArray('encryption.blacklisted-algorithms', [XMLSecurityKey::RSA_1_5]);
@@ -424,7 +423,7 @@ class Message
         Configuration $srcMetadata,
         Configuration $dstMetadata,
         Assertion &$assertion
-    ) {
+    ): void {
         if (!$assertion->hasEncryptedAttributes()) {
             return;
         }
@@ -461,7 +460,7 @@ class Message
      *
      * @return \SimpleSAML\Module\saml\Error The error.
      */
-    public static function getResponseError(StatusResponse $response)
+    public static function getResponseError(StatusResponse $response): \SimpleSAML\Module\saml\Error
     {
         $status = $response->getStatus();
         return new \SimpleSAML\Module\saml\Error($status['Code'], $status['SubCode'], $status['Message']);
@@ -478,7 +477,7 @@ class Message
     public static function buildAuthnRequest(
         Configuration $spMetadata,
         Configuration $idpMetadata
-    ) {
+    ): AuthnRequest {
         $ar = new AuthnRequest();
 
         // get the NameIDPolicy to apply. IdP metadata has precedence.
@@ -540,7 +539,7 @@ class Message
     public static function buildLogoutRequest(
         Configuration $srcMetadata,
         Configuration $dstMetadata
-    ) {
+    ): LogoutRequest {
         $lr = new LogoutRequest();
         $issuer = new Issuer();
         $issuer->setValue($srcMetadata->getString('entityid'));
@@ -563,7 +562,7 @@ class Message
     public static function buildLogoutResponse(
         Configuration $srcMetadata,
         Configuration $dstMetadata
-    ) {
+    ): LogoutResponse {
         $lr = new LogoutResponse();
         $issuer = new Issuer();
         $issuer->setValue($srcMetadata->getString('entityid'));
@@ -594,7 +593,7 @@ class Message
         Configuration $spMetadata,
         Configuration $idpMetadata,
         Response $response
-    ) {
+    ): array {
         if (!$response->isSuccess()) {
             throw self::getResponseError($response);
         }
@@ -891,7 +890,7 @@ class Message
      *
      * @throws \SimpleSAML\Error\Exception if there is no supported encryption key in the metadata of this entity.
      */
-    public static function getEncryptionKey(Configuration $metadata)
+    public static function getEncryptionKey(Configuration $metadata): XMLSecurityKey
     {
         $sharedKey = $metadata->getString('sharedkey', null);
         if ($sharedKey !== null) {

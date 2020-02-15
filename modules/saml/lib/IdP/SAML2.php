@@ -49,7 +49,7 @@ class SAML2
      * @param array $state The authentication state.
      * @return void
      */
-    public static function sendResponse(array $state)
+    public static function sendResponse(array $state): void
     {
         Assert::keyExists($state, 'saml:RequestId'); // Can be NULL
         Assert::keyExists($state, 'saml:RelayState'); // Can be NULL.
@@ -127,7 +127,7 @@ class SAML2
      * @param array $state The error state.
      * @return void
      */
-    public static function handleAuthError(\SimpleSAML\Error\Exception $exception, array $state)
+    public static function handleAuthError(\SimpleSAML\Error\Exception $exception, array $state): void
     {
         Assert::keyExists($state, 'saml:RequestId'); // Can be NULL.
         Assert::keyExists($state, 'saml:RelayState'); // Can be NULL.
@@ -200,7 +200,7 @@ class SAML2
         string $AssertionConsumerServiceURL = null,
         string $ProtocolBinding = null,
         int $AssertionConsumerServiceIndex = null
-    ) {
+    ): ?array {
         /* We want to pick the best matching endpoint in the case where for example
          * only the ProtocolBinding is given. We therefore pick endpoints with the
          * following priority:
@@ -277,7 +277,7 @@ class SAML2
      * @return void
      * @throws \SimpleSAML\Error\BadRequest In case an error occurs when trying to receive the request.
      */
-    public static function receiveAuthnRequest(\SimpleSAML\IdP $idp)
+    public static function receiveAuthnRequest(IdP $idp): void
     {
         $metadata = MetaDataStorageHandler::getMetadataHandler();
         $idpMetadata = $idp->getConfig();
@@ -494,10 +494,8 @@ class SAML2
      * @param string|null     $relayState An id that should be carried across the logout.
      * @return void
      */
-    public static function sendLogoutRequest(IdP $idp, array $association, $relayState)
+    public static function sendLogoutRequest(IdP $idp, array $association, string $relayState = null): void
     {
-        Assert::nullOrString($relayState);
-
         Logger::info('Sending SAML 2.0 LogoutRequest to: ' . var_export($association['saml:entityID'], true));
 
         $metadata = MetaDataStorageHandler::getMetadataHandler();
@@ -532,7 +530,7 @@ class SAML2
      * @param array           &$state The logout state array.
      * @return void
      */
-    public static function sendLogoutResponse(IdP $idp, array $state)
+    public static function sendLogoutResponse(IdP $idp, array $state): void
     {
         Assert::keyExists($state, 'saml:RelayState'); // Can be NULL.
         Assert::notNull($state['saml:SPEntityId']);
@@ -593,7 +591,7 @@ class SAML2
      * @return void
      * @throws \SimpleSAML\Error\BadRequest In case an error occurs while trying to receive the logout message.
      */
-    public static function receiveLogoutMessage(IdP $idp)
+    public static function receiveLogoutMessage(IdP $idp): void
     {
         $binding = Binding::getCurrentBinding();
         $message = $binding->receive();
@@ -602,15 +600,8 @@ class SAML2
         if ($issuer === null) {
             /* Without an issuer we have no way to respond to the message. */
             throw new Error\BadRequest('Received message on logout endpoint without issuer.');
-        } elseif ($issuer instanceof Issuer) {
-            /** @psalm-var string|null $spEntityId */
-            $spEntityId = $issuer->getValue();
-            if ($spEntityId === null) {
-                /* Without an issuer we have no way to respond to the message. */
-                throw new Error\BadRequest('Received message on logout endpoint without issuer.');
-            }
         } else {
-            $spEntityId = $issuer;
+            $spEntityId = $issuer->getValue();
         }
 
         $metadata = MetaDataStorageHandler::getMetadataHandler();
@@ -676,10 +667,8 @@ class SAML2
      *
      * @return string The logout URL.
      */
-    public static function getLogoutURL(IdP $idp, array $association, $relayState)
+    public static function getLogoutURL(IdP $idp, array $association, string $relayState = null): string
     {
-        Assert::nullOrString($relayState);
-
         Logger::info('Sending SAML 2.0 LogoutRequest to: ' . var_export($association['saml:entityID'], true));
 
         $metadata = MetaDataStorageHandler::getMetadataHandler();
@@ -718,7 +707,7 @@ class SAML2
      *
      * @return \SimpleSAML\Configuration  Configuration object for the SP metadata.
      */
-    public static function getAssociationConfig(IdP $idp, array $association)
+    public static function getAssociationConfig(IdP $idp, array $association): Configuration
     {
         $metadata = MetaDataStorageHandler::getMetadataHandler();
         try {
@@ -739,7 +728,7 @@ class SAML2
      * @throws \SimpleSAML\Error\Exception
      * @throws \SimpleSAML\Error\MetadataNotFound
      */
-    public static function getHostedMetadata($entityid)
+    public static function getHostedMetadata(string $entityid): array
     {
         $handler = MetaDataStorageHandler::getMetadataHandler();
         $config = $handler->getMetaDataConfig($entityid, 'saml20-idp-hosted');
@@ -942,7 +931,7 @@ class SAML2
         Configuration $idpMetadata,
         Configuration $spMetadata,
         array &$state
-    ) {
+    ): ?string {
         $attribute = $spMetadata->getString('simplesaml.nameidattribute', null);
         if ($attribute === null) {
             $attribute = $idpMetadata->getString('simplesaml.nameidattribute', null);

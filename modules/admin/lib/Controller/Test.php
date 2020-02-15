@@ -58,7 +58,7 @@ class Test
      * @param string|null $as
      * @return \SimpleSAML\XHTML\Template
      */
-    public function main(Request $request, $as)
+    public function main(Request $request, string $as = null)
     {
         Utils\Auth::requireAdmin();
         if (is_null($as)) {

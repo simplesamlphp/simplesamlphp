@@ -8,10 +8,8 @@ use Webmozart\Assert\Assert;
  * @param array &$metadataHosted  The metadata links for hosted metadata on the frontpage.
  * @return void
  */
-function saml_hook_metadata_hosted(&$metadataHosted)
+function saml_hook_metadata_hosted(array &$metadataHosted)
 {
-    Assert::isArray($metadataHosted);
-
     $sources = \SimpleSAML\Auth\Source::getSourcesOfType('saml:SP');
 
     foreach ($sources as $source) {

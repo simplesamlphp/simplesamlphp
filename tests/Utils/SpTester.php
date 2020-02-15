@@ -21,7 +21,7 @@ class SpTester extends \SimpleSAML\Module\saml\Auth\Source\SP
      * @param array $config
      * @return void
      */
-    public function __construct($info, $config)
+    public function __construct(array $info, array $config)
     {
         parent::__construct($info, $config);
     }
@@ -30,7 +30,7 @@ class SpTester extends \SimpleSAML\Module\saml\Auth\Source\SP
     /**
      * @return void
      */
-    public function startSSO2Test(Configuration $idpMetadata, array $state)
+    public function startSSO2Test(Configuration $idpMetadata, array $state): void
     {
         $reflector = new ReflectionObject($this);
         $method = $reflector->getMethod('startSSO2');
@@ -43,7 +43,7 @@ class SpTester extends \SimpleSAML\Module\saml\Auth\Source\SP
      * override the method that sends the request to avoid sending anything
      * @return void
      */
-    public function sendSAML2AuthnRequest(array &$state, Binding $binding, AuthnRequest $ar)
+    public function sendSAML2AuthnRequest(array &$state, Binding $binding, AuthnRequest $ar): void
     {
         // Exit test. Continuing would mean running into a assert(FALSE)
         throw new ExitTestException(
