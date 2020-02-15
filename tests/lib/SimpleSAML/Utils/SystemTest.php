@@ -52,7 +52,7 @@ class SystemTest extends TestCase
     {
         $res = System::getOS();
 
-        $this->assertInternalType("int", $res);
+        $this->assertIsInt($res);
     }
 
 
