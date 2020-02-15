@@ -68,7 +68,7 @@ class SessionHandlerStore extends SessionHandlerCookie
      * @param \SimpleSAML\Session $session The session object we should save.
      * @return void
      */
-    public function saveSession(Session $session) : void
+    public function saveSession(Session $session): void
     {
         if ($session->isTransient()) {
             // transient session, nothing to save

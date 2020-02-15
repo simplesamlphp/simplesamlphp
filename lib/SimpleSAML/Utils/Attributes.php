@@ -69,7 +69,7 @@ class Attributes
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
-    public static function normalizeAttributesArray(array $attributes) : array
+    public static function normalizeAttributesArray(array $attributes): array
     {
         $newAttrs = [];
         foreach ($attributes as $name => $values) {
@@ -106,7 +106,7 @@ class Attributes
      *
      * @return array The attribute name, split to the namespace and the actual attribute name.
      */
-    public static function getAttributeNamespace(string $name, string $defaultns) : array
+    public static function getAttributeNamespace(string $name, string $defaultns): array
     {
         $slash = strrpos($name, '/');
         if ($slash !== false) {

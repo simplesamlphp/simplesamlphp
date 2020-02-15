@@ -37,7 +37,7 @@ abstract class SessionHandler
      *
      * @throws \Exception If we cannot instantiate the session handler.
      */
-    public static function getSessionHandler() : SessionHandler
+    public static function getSessionHandler(): SessionHandler
     {
         if (self::$sessionHandler === null) {
             self::createSessionHandler();
@@ -62,7 +62,7 @@ abstract class SessionHandler
      *
      * @return string The new session id.
      */
-    abstract public function newSessionId() : string;
+    abstract public function newSessionId(): string;
 
 
     /**
@@ -70,7 +70,7 @@ abstract class SessionHandler
      *
      * @return string|null The session id saved in the cookie or null if no session cookie was set.
      */
-    abstract public function getCookieSessionId() : ?string;
+    abstract public function getCookieSessionId(): ?string;
 
 
     /**
@@ -78,7 +78,7 @@ abstract class SessionHandler
      *
      * @return string The session cookie name.
      */
-    abstract public function getSessionCookieName() : string;
+    abstract public function getSessionCookieName(): string;
 
 
     /**
@@ -87,7 +87,7 @@ abstract class SessionHandler
      * @param \SimpleSAML\Session $session The session object we should save.
      * @return void
      */
-    abstract public function saveSession(Session $session) : void;
+    abstract public function saveSession(Session $session): void;
 
 
     /**
@@ -97,7 +97,7 @@ abstract class SessionHandler
      *
      * @return \SimpleSAML\Session|null The session object, or null if it doesn't exist.
      */
-    abstract public function loadSession(?string $sessionId) : ?Session;
+    abstract public function loadSession(?string $sessionId): ?Session;
 
 
     /**
@@ -107,7 +107,7 @@ abstract class SessionHandler
      *
      * @return bool True if it was set, false if not.
      */
-    abstract public function hasSessionCookie() : bool;
+    abstract public function hasSessionCookie(): bool;
 
 
     /**
@@ -120,7 +120,7 @@ abstract class SessionHandler
      *
      * @throws \SimpleSAML\Error\CannotSetCookie If we can't set the cookie.
      */
-    abstract public function setCookie(string $sessionName, ?string $sessionID, array $cookieParams = null) : void;
+    abstract public function setCookie(string $sessionName, ?string $sessionID, array $cookieParams = null): void;
 
 
     /**
@@ -135,7 +135,7 @@ abstract class SessionHandler
      *
      * @throws \Exception If we cannot instantiate the session handler.
      */
-    private static function createSessionHandler() : void
+    private static function createSessionHandler(): void
     {
         $store = Store::getInstance();
         if ($store === false) {
@@ -152,7 +152,7 @@ abstract class SessionHandler
      * @return array An array with the cookie parameters.
      * @link http://www.php.net/manual/en/function.session-get-cookie-params.php
      */
-    public function getCookieParams() : array
+    public function getCookieParams(): array
     {
         $config = Configuration::getInstance();
 

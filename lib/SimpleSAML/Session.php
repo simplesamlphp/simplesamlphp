@@ -191,7 +191,7 @@ class Session implements \Serializable, Utils\ClearableState
      * @param Configuration $config
      * @return void
      */
-    public function setConfiguration(Configuration $config) : void
+    public function setConfiguration(Configuration $config): void
     {
         self::$config = $config;
     }
@@ -204,7 +204,7 @@ class Session implements \Serializable, Utils\ClearableState
      *
      * @return string The serialized representation of this session object.
      */
-    public function serialize() : string
+    public function serialize(): string
     {
         return serialize(get_object_vars($this));
     }
@@ -221,7 +221,7 @@ class Session implements \Serializable, Utils\ClearableState
      *
      * Cannot typehint param as string due to upstream restrictions
      */
-    public function unserialize($serialized) : void
+    public function unserialize($serialized): void
     {
         $session = unserialize($serialized);
         if (is_array($session)) {
@@ -254,7 +254,7 @@ class Session implements \Serializable, Utils\ClearableState
      * @return Session The current session.
      * @throws \Exception When session couldn't be initialized and the session fallback is disabled by configuration.
      */
-    public static function getSessionFromRequest() : Session
+    public static function getSessionFromRequest(): Session
     {
         // check if we already have initialized the session
         if (isset(self::$instance)) {
@@ -483,7 +483,7 @@ class Session implements \Serializable, Utils\ClearableState
      *
      * @return void
      */
-    public function cleanup() : void
+    public function cleanup(): void
     {
         $this->save();
         $sh = SessionHandler::getSessionHandler();
@@ -500,7 +500,7 @@ class Session implements \Serializable, Utils\ClearableState
      *
      * @return void
      */
-    public function markDirty() : void
+    public function markDirty(): void
     {
         if ($this->isTransient()) {
             return;
@@ -533,7 +533,7 @@ class Session implements \Serializable, Utils\ClearableState
      *
      * @return string|null  The session ID, or NULL for transient sessions.
      */
-    public function getSessionId() : ?string
+    public function getSessionId(): ?string
     {
         return $this->sessionId;
     }
@@ -544,7 +544,7 @@ class Session implements \Serializable, Utils\ClearableState
      *
      * @return boolean The session transient flag.
      */
-    public function isTransient() : bool
+    public function isTransient(): bool
     {
         return $this->transient;
     }
@@ -556,7 +556,7 @@ class Session implements \Serializable, Utils\ClearableState
      *
      * @return string The unique ID.
      */
-    public function getTrackID() : string
+    public function getTrackID(): string
     {
         return $this->trackid;
     }
@@ -567,7 +567,7 @@ class Session implements \Serializable, Utils\ClearableState
      *
      * @return integer|null The remember me expire time.
      */
-    public function getRememberMeExpire() : ?int
+    public function getRememberMeExpire(): ?int
     {
         return $this->rememberMeExpire;
     }
@@ -579,7 +579,7 @@ class Session implements \Serializable, Utils\ClearableState
      * @param int $expire Unix timestamp when remember me session cookies expire.
      * @return void
      */
-    public function setRememberMeExpire(int $expire = null) : void
+    public function setRememberMeExpire(int $expire = null): void
     {
         Assert::nullOrInteger($expire);
 
@@ -699,7 +699,7 @@ class Session implements \Serializable, Utils\ClearableState
      * @param string $authority The authentication source we are logging out of.
      * @return void
      */
-    public function doLogout(string $authority) : void
+    public function doLogout(string $authority): void
     {
         Logger::debug('Session: doLogout(' . var_export($authority, true) . ')');
 
@@ -840,7 +840,7 @@ class Session implements \Serializable, Utils\ClearableState
      *
      * @throws \Exception If the handler is not a valid function or method.
      */
-    public function registerLogoutHandler(string $authority, string $classname, string $functionname) : void
+    public function registerLogoutHandler(string $authority, string $classname, string $functionname): void
     {
         Assert::notNull($this->authData[$authority]);
 
@@ -939,7 +939,7 @@ class Session implements \Serializable, Utils\ClearableState
      *
      * @return void
      */
-    private function expireData() : void
+    private function expireData(): void
     {
         $ct = time();
 
@@ -1040,7 +1040,7 @@ class Session implements \Serializable, Utils\ClearableState
      *
      * @return bool  true if it was set, false if not.
      */
-    public function hasSessionCookie() : bool
+    public function hasSessionCookie(): bool
     {
         $sh = SessionHandler::getSessionHandler();
         return $sh->hasSessionCookie();
@@ -1173,7 +1173,7 @@ class Session implements \Serializable, Utils\ClearableState
      * Clear any configuration information cached
      * @return void
      */
-    public static function clearInternalState() : void
+    public static function clearInternalState(): void
     {
         self::$config = null;
         self::$instance = null;

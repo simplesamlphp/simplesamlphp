@@ -56,7 +56,7 @@ class UnserializableException extends Exception
      *
      * @return string  The classname.
      */
-    public function getClass() : string
+    public function getClass(): string
     {
         return $this->class;
     }

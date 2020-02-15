@@ -23,7 +23,7 @@ class Config
      *
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
-    public static function getCertPath(string $path)  : string
+    public static function getCertPath(string $path): string
     {
         $globalConfig = Configuration::getInstance();
         $base = $globalConfig->getPathValue('certdir', 'cert/');
@@ -46,7 +46,7 @@ class Config
      *
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      */
-    public static function getSecretSalt() : string
+    public static function getSecretSalt(): string
     {
         $secretSalt = Configuration::getInstance()->getString('secretsalt');
         if ($secretSalt === 'defaultsecretsalt') {
@@ -64,7 +64,7 @@ class Config
      *
      * @return string The path to the configuration directory.
      */
-    public static function getConfigDir() : string
+    public static function getConfigDir(): string
     {
         $configDir = dirname(dirname(dirname(__DIR__))) . '/config';
         $configDirEnv = getenv('SIMPLESAMLPHP_CONFIG_DIR');

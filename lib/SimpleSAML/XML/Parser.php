@@ -34,7 +34,7 @@ class Parser
      * @param \SimpleXMLElement $element
      * @return \SimpleSAML\XML\Parser
      */
-    public static function fromSimpleXMLElement(SimpleXMLElement $element) : Parser
+    public static function fromSimpleXMLElement(SimpleXMLElement $element): Parser
     {
         // Traverse all existing namespaces in element
         $namespaces = $element->getNamespaces();
@@ -59,7 +59,7 @@ class Parser
      * @throws \Exception
      * @return string
      */
-    public function getValueDefault(string $xpath, string $defvalue) : string
+    public function getValueDefault(string $xpath, string $defvalue): string
     {
         try {
             /** @var string */
@@ -76,7 +76,7 @@ class Parser
      * @throws \Exception
      * @return string|null
      */
-    public function getValue(string $xpath, bool $required = false) : ?string
+    public function getValue(string $xpath, bool $required = false): ?string
     {
         $result = $this->simplexml->xpath($xpath);
         if (!is_array($result) || empty($result)) {
@@ -98,7 +98,7 @@ class Parser
      * @throws \Exception
      * @return string|null
      */
-    public function getValueAlternatives(array $xpath, bool $required = false) : ?string
+    public function getValueAlternatives(array $xpath, bool $required = false): ?string
     {
         foreach ($xpath as $x) {
             $seek = $this->getValue($x);

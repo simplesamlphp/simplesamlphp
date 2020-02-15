@@ -190,7 +190,7 @@ class Configuration implements Utils\ClearableState
      * @param string $configSet The configuration set. Defaults to 'simplesaml'.
      * @return void
      */
-    public static function setConfigDir(string $path, string $configSet = 'simplesaml') : void
+    public static function setConfigDir(string $path, string $configSet = 'simplesaml'): void
     {
         self::$configDirs[$configSet] = $path;
     }
@@ -323,7 +323,7 @@ class Configuration implements Utils\ClearableState
      *
      * @throws \Exception If the configuration with $instancename name is not initialized.
      */
-    public static function getInstance(string $instancename = 'simplesaml') : Configuration
+    public static function getInstance(string $instancename = 'simplesaml'): Configuration
     {
         // check if the instance exists already
         if (array_key_exists($instancename, self::$instance)) {

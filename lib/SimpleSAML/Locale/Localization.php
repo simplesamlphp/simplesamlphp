@@ -243,7 +243,7 @@ class Localization
      */
     private function loadGettextGettextFromPO(
         string $domain = self::DEFAULT_DOMAIN,
-         bool $catchException = true
+        bool $catchException = true
     ): void {
         try {
             $langPath = $this->getLangPath($domain);
