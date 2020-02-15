@@ -64,7 +64,7 @@ class NotFound extends Error
      *
      * @param bool $anonymize Whether to anonymize the trace or not.
      *
-     * @return array
+     * @return string[]
      */
     public function format(bool $anonymize = false): array
     {

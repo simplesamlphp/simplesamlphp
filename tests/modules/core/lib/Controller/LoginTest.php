@@ -58,7 +58,6 @@ class LoginTest extends ClearStateTestCase
             [
                 'baseurlpath' => 'https://example.org/simplesaml',
                 'module.enable' => ['exampleauth' => true],
-                'usenewui' => true,
             ],
             '[ARRAY]',
             'simplesaml'

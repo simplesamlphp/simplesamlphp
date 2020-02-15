@@ -501,7 +501,7 @@ class SAMLBuilder
      * Add SAML 2.0 SP metadata.
      *
      * @param array $metadata The metadata.
-     * @param array $protocols The protocols supported. Defaults to \SAML2\Constants::NS_SAMLP.
+     * @param string[] $protocols The protocols supported. Defaults to \SAML2\Constants::NS_SAMLP.
      * @return void
      */
     public function addMetadataSP20(array $metadata, array $protocols = [Constants::NS_SAMLP]): void
@@ -599,77 +599,6 @@ class SAMLBuilder
                 $this->addContact($contact['contactType'], Utils\Config\Metadata::getContact($contact));
             }
         }
-    }
-
-
-    /**
-     * Add metadata of a SAML 1.1 service provider.
-     *
-     * @param array $metadata The metadata.
-     * @return void
-     */
-    public function addMetadataSP11(array $metadata): void
-    {
-        Assert::notNull($metadata['entityid']);
-        Assert::notNull($metadata['metadata-set']);
-
-        $metadata = Configuration::loadFromArray($metadata, $metadata['entityid']);
-
-        $e = new SPSSODescriptor();
-        $e->setProtocolSupportEnumeration(
-            array_merge(
-                $e->getProtocolSupportEnumeration(),
-                ['urn:oasis:names:tc:SAML:1.1:protocol']
-            )
-        );
-
-        $this->addCertificate($e, $metadata);
-
-        $e->setNameIDFormat($metadata->getArrayizeString('NameIDFormat', []));
-
-        $endpoints = $metadata->getEndpoints('AssertionConsumerService');
-        foreach ($metadata->getArrayizeString('AssertionConsumerService.artifact', []) as $acs) {
-            $endpoints[] = [
-                'Binding'  => 'urn:oasis:names:tc:SAML:1.0:profiles:artifact-01',
-                'Location' => $acs,
-            ];
-        }
-        $e->setAssertionConsumerService(self::createEndpoints($endpoints, true));
-
-        $this->addAttributeConsumingService($e, $metadata);
-
-        $this->entityDescriptor->addRoleDescriptor($e);
-    }
-
-
-    /**
-     * Add metadata of a SAML 1.1 identity provider.
-     *
-     * @param array $metadata The metadata.
-     * @return void
-     */
-    public function addMetadataIdP11(array $metadata): void
-    {
-        Assert::notNull($metadata['entityid']);
-        Assert::notNull($metadata['metadata-set']);
-
-        $metadata = Configuration::loadFromArray($metadata, $metadata['entityid']);
-
-        $e = new IDPSSODescriptor();
-        $e->setProtocolSupportEnumeration(
-            array_merge($e->getProtocolSupportEnumeration(), [
-                'urn:oasis:names:tc:SAML:1.1:protocol',
-                'urn:mace:shibboleth:1.0'
-            ])
-        );
-
-        $this->addCertificate($e, $metadata);
-
-        $e->setNameIDFormat($metadata->getArrayizeString('NameIDFormat', []));
-
-        $e->setSingleSignOnService(self::createEndpoints($metadata->getEndpoints('SingleSignOnService'), false));
-
-        $this->entityDescriptor->addRoleDescriptor($e);
     }
 
 

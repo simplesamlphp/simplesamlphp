@@ -34,7 +34,7 @@ class Arrays
      *
      * @param array $array The two-dimensional array to transpose.
      *
-     * @return mixed The transposed array, or false if $array is not a valid two-dimensional array.
+     * @return array|false The transposed array, or false if $array is not a valid two-dimensional array.
      *
      * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
      */

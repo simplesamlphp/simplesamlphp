@@ -89,6 +89,7 @@ class Localization
      */
     public $i18nBackend;
 
+
     /**
      * Constructor
      *
@@ -102,11 +103,7 @@ class Localization
         $this->localeDir = $locales;
         $this->language = new Language($configuration);
         $this->langcode = $this->language->getPosixLanguage($this->language->getLanguage());
-        $this->i18nBackend = (
-            $this->configuration->getBoolean('usenewui', false)
-            ? self::GETTEXT_I18N_BACKEND
-            : self::SSP_I18N_BACKEND
-        );
+        $this->i18nBackend = self::GETTEXT_I18N_BACKEND;
         $this->setupL10N();
     }
 
@@ -300,6 +297,7 @@ class Localization
         // setup default domain
         $this->addDomain($this->localeDir, self::DEFAULT_DOMAIN);
     }
+
 
     /**
      * Show which domains are registered

@@ -86,13 +86,6 @@ class Template extends Response
     private $module;
 
     /**
-     * Whether to use the new user interface or not.
-     *
-     * @var bool
-     */
-    private $useNewUI = false;
-
-    /**
      * A template controller, if any.
      *
      * Used to intercept certain parts of the template handling, while keeping away unwanted/unexpected hooks. Set
@@ -141,23 +134,18 @@ class Template extends Response
         $this->translator = new Translate($configuration, $defaultDictionary);
         $this->localization = new Localization($configuration);
 
-        // check if we are supposed to use the new UI
-        $this->useNewUI = $this->configuration->getBoolean('usenewui', false);
-
-        if ($this->useNewUI) {
-            // check if we need to attach a theme controller
-            $controller = $this->configuration->getString('theme.controller', false);
-            if (
-                $controller
-                && class_exists($controller)
-                && in_array(TemplateControllerInterface::class, class_implements($controller))
-            ) {
-                /** @var \SimpleSAML\XHTML\TemplateControllerInterface $this->controller */
-                $this->controller = new $controller();
-            }
-
-            $this->twig = $this->setupTwig();
+        // check if we need to attach a theme controller
+        $controller = $this->configuration->getString('theme.controller', false);
+        if (
+            $controller
+            && class_exists($controller)
+            && in_array(TemplateControllerInterface::class, class_implements($controller))
+        ) {
+            /** @var \SimpleSAML\XHTML\TemplateControllerInterface $this->controller */
+            $this->controller = new $controller();
         }
+
+        $this->twig = $this->setupTwig();
 
         $this->charset = 'UTF-8';
         parent::__construct();
@@ -220,19 +208,8 @@ class Template extends Response
         if (strripos($templateName, '.twig')) {
             return $templateName;
         }
-        $phppos = strripos($templateName, '.php');
-        if ($phppos) {
-            $templateName = substr($templateName, 0, $phppos);
-        }
-        $tplpos = strripos($templateName, '.tpl');
-        if ($tplpos) {
-            $templateName = substr($templateName, 0, $tplpos);
-        }
 
-        if ($this->useNewUI || ($this->theme['module'] !== null)) {
-            return $templateName . '.twig';
-        }
-        return $templateName;
+        return $templateName . '.twig';
     }
 
 
@@ -657,9 +634,9 @@ class Template extends Response
     /**
      * Get the current instance of Twig in use.
      *
-     * @return \Twig\Environment The Twig instance in use, or null if Twig is not used.
+     * @return \Twig\Environment|null The Twig instance in use, or null if Twig is not used.
      */
-    public function getTwig(): \Twig\Environment
+    public function getTwig(): ?\Twig\Environment
     {
         return $this->twig;
     }
@@ -668,7 +645,7 @@ class Template extends Response
     /**
      * Wraps Language->getLanguageList
      *
-     * @return array
+     * @return string[]
      */
     private function getLanguageList(): array
     {

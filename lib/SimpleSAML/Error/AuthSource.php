@@ -22,7 +22,6 @@ class AuthSource extends Error
      */
     private $authsource;
 
-
     /**
      * Reason why this request was invalid.
      * @var string

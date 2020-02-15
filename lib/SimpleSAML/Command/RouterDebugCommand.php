@@ -26,7 +26,9 @@ class RouterDebugCommand extends Command
 
 
     /**
-     * {@inheritdoc}
+     * @param Symfony\Component\Routing\RouterInterface
+     *
+     * @throws \Symfony\Component\Console\Exception\LogicException When the command name is empty
      */
     public function __construct(RouterInterface $router)
     {
@@ -36,7 +38,6 @@ class RouterDebugCommand extends Command
 
 
     /**
-     * {@inheritDoc}
      * @return void
      */
     protected function configure()
@@ -55,8 +56,9 @@ EOF
 
 
     /**
-     * {@inheritdoc}
-     * @psalm-suppress InvalidReturnType
+     * @param \Symfony\Component\Console\Input\InputInterface $input
+     * @param \Symfony\Component\Console\Output\OutputInterface $output
+     * @return int 0 if everything went fine, or an exit code
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {

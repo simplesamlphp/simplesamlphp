@@ -25,7 +25,6 @@ class SQL extends Store
      */
     public $pdo;
 
-
     /**
      * Our database driver.
      *
@@ -33,14 +32,12 @@ class SQL extends Store
      */
     public $driver;
 
-
     /**
      * The prefix we should use for our tables.
      *
      * @var string
      */
     public $prefix;
-
 
     /**
      * Associative array of table versions.
@@ -222,7 +219,7 @@ class SQL extends Store
      * Since various databases implement different methods for doing this, we abstract it away here.
      *
      * @param string $table The table we should update.
-     * @param array $keys The key columns.
+     * @param string[] $keys The key columns.
      * @param array $data Associative array with columns.
      * @return void
      */

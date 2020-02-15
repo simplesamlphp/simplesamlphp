@@ -126,7 +126,7 @@ class Module
      * @throws Error\BadRequest In case the request URI is malformed.
      * @throws Error\NotFound In case the request URI is invalid or the resource it points to cannot be found.
      */
-    public static function process(Request $request = null)
+    public static function process(Request $request = null): Response
     {
         if ($request === null) {
             $request = Request::createFromGlobals();
@@ -193,18 +193,16 @@ class Module
             $request->getContent()
         );
 
-        if ($config->getBoolean('usenewui', false) === true) {
-            try {
-                $kernel = new Kernel($module);
-                $response = $kernel->handle($request);
-                $kernel->terminate($request, $response);
+        try {
+            $kernel = new Kernel($module);
+            $response = $kernel->handle($request);
+            $kernel->terminate($request, $response);
 
-                return $response;
-            } catch (FileLocatorFileNotFoundException $e) {
-                // no routes configured for this module, fall back to the old system
-            } catch (NotFoundHttpException $e) {
-                // this module has been migrated, but the route wasn't found
-            }
+            return $response;
+        } catch (FileLocatorFileNotFoundException $e) {
+            // no routes configured for this module, fall back to the old system
+        } catch (NotFoundHttpException $e) {
+            // this module has been migrated, but the route wasn't found
         }
 
         $moduleDir = self::getModuleDir($module) . '/www/';
@@ -370,7 +368,7 @@ class Module
     /**
      * Get available modules.
      *
-     * @return array One string for each module.
+     * @return string[] One string for each module.
      *
      * @throws \Exception If we cannot open the module's directory.
      */
@@ -573,7 +571,7 @@ class Module
      *
      * @return RedirectResponse A redirection to the URI specified in the request, but with a trailing slash.
      */
-    public static function addTrailingSlash(Request $request)
+    public static function addTrailingSlash(Request $request): RedirectResponse
     {
         // Must be of form /{module} - append a slash
         return new RedirectResponse($request->getRequestUri() . '/', 308);

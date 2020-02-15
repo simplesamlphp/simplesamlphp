@@ -26,12 +26,8 @@ class LocalizationTest extends TestCase
      */
     public function testLocalization()
     {
-        // The constructor should activate the default domain
-        $c = Configuration::loadFromArray(
-            ['usenewui' => false]
-        );
+        $c = Configuration::loadFromArray([]);
         $l = new Localization($c);
-        $this->assertTrue($l->isI18NBackendDefault());
         $this->assertEquals(Localization::DEFAULT_DOMAIN, 'messages');
     }
 
@@ -42,9 +38,7 @@ class LocalizationTest extends TestCase
      */
     public function testAddDomain()
     {
-        $c = Configuration::loadFromArray(
-            ['usenewui' => true]
-        );
+        $c = Configuration::loadFromArray([]);
         $l = new Localization($c);
         $newDomain = 'test';
         $newDomainLocaleDir = $l->getLocaleDir();

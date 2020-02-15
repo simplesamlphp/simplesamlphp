@@ -221,7 +221,7 @@ class Session implements \Serializable, Utils\ClearableState
      *
      * Cannot typehint param as string due to upstream restrictions
      */
-    public function unserialize($serialized): void
+    public function unserialize($serialized)
     {
         $session = unserialize($serialized);
         if (is_array($session)) {
@@ -599,12 +599,12 @@ class Session implements \Serializable, Utils\ClearableState
      * If the user already has logged in, the user will be logged out first.
      *
      * @param string     $authority The authority the user logged in with.
-     * @param array|null $data The authentication data for this authority.
+     * @param array      $data The authentication data for this authority.
      * @return void
      *
      * @throws Error\CannotSetCookie If the authentication token cannot be set for some reason.
      */
-    public function doLogin(string $authority, array $data = null): void
+    public function doLogin(string $authority, array $data = []): void
     {
         Logger::debug('Session: doLogin("' . $authority . '")');
 
@@ -613,10 +613,6 @@ class Session implements \Serializable, Utils\ClearableState
         if (isset($this->authData[$authority])) {
             // we are already logged in, log the user out first
             $this->doLogout($authority);
-        }
-
-        if ($data === null) {
-            $data = [];
         }
 
         $data['Authority'] = $authority;
@@ -791,7 +787,7 @@ class Session implements \Serializable, Utils\ClearableState
      * @param array $params The parameters for the cookies.
      * @return void
      */
-    public function updateSessionCookies(array $params = null): void
+    public function updateSessionCookies(array $params = []): void
     {
         $sessionHandler = SessionHandler::getSessionHandler();
 
@@ -799,7 +795,7 @@ class Session implements \Serializable, Utils\ClearableState
             $sessionHandler->setCookie($sessionHandler->getSessionCookieName(), $this->sessionId, $params);
         }
 
-        $params = array_merge($sessionHandler->getCookieParams(), is_array($params) ? $params : []);
+        $params = array_merge($sessionHandler->getCookieParams(), $params);
 
         if ($this->authToken !== null) {
             Utils\HTTP::setCookie(
@@ -1155,9 +1151,9 @@ class Session implements \Serializable, Utils\ClearableState
      * Retrieve a list of authorities (authentication sources) that are currently valid within
      * this session.
      *
-     * @return mixed An array containing every authority currently valid. Empty if none available.
+     * @return string[] An array containing every authority currently valid. Empty if none available.
      */
-    public function getAuthorities()
+    public function getAuthorities(): array
     {
         $authorities = [];
         foreach (array_keys($this->authData) as $authority) {

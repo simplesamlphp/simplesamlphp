@@ -24,14 +24,12 @@ class Configuration implements Utils\ClearableState
      */
     const REQUIRED_OPTION = '___REQUIRED_OPTION___';
 
-
     /**
      * Associative array with mappings from instance-names to configuration objects.
      *
      * @var array
      */
     private static $instance = [];
-
 
     /**
      * Configuration directories.
@@ -43,7 +41,6 @@ class Configuration implements Utils\ClearableState
      */
     private static $configDirs = [];
 
-
     /**
      * Cache of loaded configuration files.
      *
@@ -53,14 +50,12 @@ class Configuration implements Utils\ClearableState
      */
     private static $loadedConfigs = [];
 
-
     /**
      * The configuration array.
      *
      * @var array
      */
     private $configuration;
-
 
     /**
      * The location which will be given when an error occurs.
@@ -69,14 +64,12 @@ class Configuration implements Utils\ClearableState
      */
     private $location;
 
-
     /**
      * The file this configuration was loaded from.
      *
      * @var string|null
      */
     private $filename = null;
-
 
     /**
      * Temporary property that tells if the deprecated getBaseURL() method has been called or not.
@@ -865,11 +858,11 @@ class Configuration implements Utils\ClearableState
      *                        This function will only return null if $default is set to null and the option
      *                        doesn't exist.
      *
-     * @return mixed The option with the given name, or $default if the option isn't found and $default is specified.
+     * @return \SimpleSAML\Configuration|null The option with the given name, or $default if the option isn't found and $default is specified.
      *
      * @throws \Exception If the option is not an array.
      */
-    public function getConfigItem(string $name, $default = [])
+    public function getConfigItem(string $name, $default = []): ?Configuration
     {
         $ret = $this->getValue($name, $default);
 
@@ -896,7 +889,7 @@ class Configuration implements Utils\ClearableState
      * This function returns the name of all options which are defined in this
      * configuration file, as an array of strings.
      *
-     * @return array Name of all options defined in this configuration file.
+     * @return string[] Name of all options defined in this configuration file.
      */
     public function getOptions(): array
     {
@@ -1025,7 +1018,7 @@ class Configuration implements Utils\ClearableState
      * Find an endpoint of the given type, using a list of supported bindings as a way to prioritize.
      *
      * @param string $endpointType The endpoint type.
-     * @param array  $bindings Sorted array of acceptable bindings.
+     * @param string[] $bindings Sorted array of acceptable bindings.
      * @param mixed  $default The default value to return if no matching endpoint is found. If no default is provided,
      *     an exception will be thrown.
      *
@@ -1061,7 +1054,7 @@ class Configuration implements Utils\ClearableState
      * Find the default endpoint of the given type.
      *
      * @param string $endpointType The endpoint type.
-     * @param array  $bindings Array with acceptable bindings. Can be null if any binding is allowed.
+     * @param string[]|null $bindings Array with acceptable bindings. Can be null if any binding is allowed.
      * @param mixed  $default The default value to return if no matching endpoint is found. If no default is provided,
      *     an exception will be thrown.
      *

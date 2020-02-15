@@ -31,7 +31,6 @@ class XML
      * @param string $message The SAML document we want to check.
      * @param string $type The type of document. Can be one of:
      * - 'saml20'
-     * - 'saml11'
      * - 'saml-meta'
      *
      * @throws \InvalidArgumentException If $message is not a string or $type is not a string containing one of the
@@ -45,7 +44,7 @@ class XML
      */
     public static function checkSAMLMessage(string $message, string $type): void
     {
-        $allowed_types = ['saml20', 'saml11', 'saml-meta'];
+        $allowed_types = ['saml20', 'saml-meta'];
         if (!in_array($type, $allowed_types, true)) {
             throw new \InvalidArgumentException('Invalid input parameters.');
         }
@@ -73,9 +72,6 @@ class XML
 
         $result = true;
         switch ($type) {
-            case 'saml11':
-                $result = self::isValid($message, 'oasis-sstc-saml-schema-protocol-1.1.xsd');
-                break;
             case 'saml20':
                 $result = self::isValid($message, 'saml-schema-protocol-2.0.xsd');
                 break;
@@ -344,9 +340,7 @@ class XML
      * We also define the following shortcuts for namespaces:
      * - '@ds':      'http://www.w3.org/2000/09/xmldsig#'
      * - '@md':      'urn:oasis:names:tc:SAML:2.0:metadata'
-     * - '@saml1':   'urn:oasis:names:tc:SAML:1.0:assertion'
      * - '@saml1md': 'urn:oasis:names:tc:SAML:profiles:v1metadata'
-     * - '@saml1p':  'urn:oasis:names:tc:SAML:1.0:protocol'
      * - '@saml2':   'urn:oasis:names:tc:SAML:2.0:assertion'
      * - '@saml2p':  'urn:oasis:names:tc:SAML:2.0:protocol'
      *
@@ -373,12 +367,8 @@ class XML
             $shortcuts = [
                 '@ds'      => 'http://www.w3.org/2000/09/xmldsig#',
                 '@md'      => 'urn:oasis:names:tc:SAML:2.0:metadata',
-                '@saml1'   => 'urn:oasis:names:tc:SAML:1.0:assertion',
-                '@saml1md' => 'urn:oasis:names:tc:SAML:profiles:v1metadata',
-                '@saml1p'  => 'urn:oasis:names:tc:SAML:1.0:protocol',
                 '@saml2'   => 'urn:oasis:names:tc:SAML:2.0:assertion',
-                '@saml2p'  => 'urn:oasis:names:tc:SAML:2.0:protocol',
-                '@shibmd'  => 'urn:mace:shibboleth:metadata:1.0',
+                '@saml2p'  => 'urn:oasis:names:tc:SAML:2.0:protocol'
             ];
 
             // check if it is a valid shortcut

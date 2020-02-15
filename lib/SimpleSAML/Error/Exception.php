@@ -29,7 +29,6 @@ class Exception extends \Exception
      */
     private $backtrace = [];
 
-
     /**
      * The cause of this exception.
      *
@@ -111,7 +110,7 @@ class Exception extends \Exception
     /**
      * Retrieve the backtrace.
      *
-     * @return array An array where each function call is a single item.
+     * @return string[] An array where each function call is a single item.
      */
     public function getBacktrace(): array
     {
@@ -148,7 +147,7 @@ class Exception extends \Exception
      *
      * @param boolean $anonymize Whether the resulting messages should be anonymized or not.
      *
-     * @return array Log lines that should be written out.
+     * @return string[] Log lines that should be written out.
      */
     public function format(bool $anonymize = false): array
     {
@@ -166,7 +165,7 @@ class Exception extends \Exception
      *
      * @param boolean $anonymize Whether the resulting messages should be anonymized or not.
      *
-     * @return array All lines of the backtrace, properly formatted.
+     * @return string[] All lines of the backtrace, properly formatted.
      */
     public function formatBacktrace(bool $anonymize = false): array
     {
