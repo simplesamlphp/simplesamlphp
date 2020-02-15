@@ -162,7 +162,6 @@ class SAML2Test extends ClearStateTestCase
      */
     private function idpInitiatedHelper(array $queryParams): array
     {
-        /** @var \PHPUnit\Framework\MockObject\MockObject $idpStub */
         $idpStub = $this->getMockBuilder(IdP::class)
             ->disableOriginalConstructor()
             ->getMock();
