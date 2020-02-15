@@ -54,5 +54,5 @@ $config = \SimpleSAML\Configuration::getInstance();
 $template = new \SimpleSAML\XHTML\Template($config, 'post.php');
 $template->data['destination'] = $postData['url'];
 $template->data['post'] = $postData['post'];
-$template->show();
+$template->send();
 exit(0);

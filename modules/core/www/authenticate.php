@@ -8,7 +8,7 @@ if (!array_key_exists('as', $_REQUEST)) {
     $t = new \SimpleSAML\XHTML\Template($config, 'core:authsource_list.tpl.php');
 
     $t->data['sources'] = \SimpleSAML\Auth\Source::getSources();
-    $t->show();
+    $t->send();
     exit();
 }
 
@@ -50,4 +50,4 @@ $t->data['attributes'] = $attributes;
 $t->data['authData'] = $authData;
 $t->data['nameid'] = !is_null($as->getAuthData('saml:sp:NameID')) ? $as->getAuthData('saml:sp:NameID') : false;
 $t->data['logouturl'] = \SimpleSAML\Utils\HTTP::getSelfURLNoQuery() . '?as=' . urlencode($asId) . '&logout';
-$t->show();
+$t->send();

@@ -30,4 +30,4 @@ $t->data['params'] = ['StateId' => $id];
 $t->data['trackId'] = $session->getTrackID();
 $t->data['header'] = $translator->t('{core:short_sso_interval:warning_header}');
 $t->data['autofocus'] = 'contbutton';
-$t->show();
+$t->send();

@@ -36,4 +36,4 @@ $t->data['entityid'] = $m['metadata-index'];
 unset($m['metadata-index']);
 $t->data['metadata'] = var_export($m, true);
 
-$t->show();
+$t->send();

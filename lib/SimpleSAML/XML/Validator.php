@@ -163,25 +163,4 @@ class Validator
          */
         return false;
     }
-
-
-    /**
-     * Validate the certificate used to sign the XML against a CA file.
-     *
-     * This function throws an exception if unable to validate against the given CA file.
-     *
-     * @param string $caFile  File with trusted certificates, in PEM-format.
-     * @throws \Exception
-     * @return void
-     */
-    public function validateCA($caFile)
-    {
-        Assert::string($caFile);
-
-        if ($this->x509Certificate === null) {
-            throw new \Exception('Key used to sign the message was not an X509 certificate.');
-        }
-
-        self::validateCertificate($this->x509Certificate, $caFile);
-    }
 }

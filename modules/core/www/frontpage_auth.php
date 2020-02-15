@@ -45,4 +45,4 @@ $t->data['links_config'] = $links_config;
 $t->data['links_auth'] = $links_auth;
 $t->data['links_federation'] = $links_federation;
 
-$t->show();
+$t->send();

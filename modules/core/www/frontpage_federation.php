@@ -154,4 +154,4 @@ $t->data['metadata_url'] = \SimpleSAML\Module::getModuleURL('core/show_metadata.
 $t->data['metaentries'] = $metaentries;
 $t->data['mtype'] = $mtype;
 
-$t->show();
+$t->send();

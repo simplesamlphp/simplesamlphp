@@ -199,4 +199,4 @@ $t->data['requiredmap'] = [
 $t->data['version'] = $config->getVersion();
 $t->data['directory'] = dirname(dirname(dirname(dirname(__FILE__))));
 
-$t->show();
+$t->send();

@@ -344,7 +344,7 @@ class Memcache
      * This function gets a list of all configured memcache servers. This list is initialized based
      * on the content of 'memcache_store.servers' in the configuration.
      *
-     * @return Memcached[] Array with Memcache objects.
+     * @return \Memcached[] Array with Memcache objects.
      *
      * @throws \Exception If the servers configuration is invalid.
      */
@@ -403,7 +403,7 @@ class Memcache
      * set in the configuration, then we will use a default value of 0.
      * 0 means that the item will never expire.
      *
-     * @return integer The value which should be passed in the set(...) calls to the memcache objects.
+     * @return int The value which should be passed in the set(...) calls to the memcache objects.
      *
      * @throws \Exception If the option 'memcache_store.expires' has a negative value.
      */
