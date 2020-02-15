@@ -4,7 +4,6 @@
     useDocblockTypes="true"
     totallyTyped="false"
     hideExternalErrors="true"
-    allowCoercionFromStringToClassConst="true"
     allowStringToStandInForClass="true"
 >
     <projectFiles>
