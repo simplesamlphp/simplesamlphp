@@ -33,15 +33,15 @@ class Stats
 
 
     /**
-     * Create an output from a configuration object.
+     * Create an output from a configuration array.
      *
-     * @param \SimpleSAML\Configuration $config The configuration object.
+     * @param array $config The configuration.
      *
      * @return mixed A new instance of the configured class.
      */
-    private static function createOutput(Configuration $config)
+    private static function createOutput(array $config)
     {
-        $cls = $config->getString('class');
+        $cls = $config['class'];
         $cls = Module::resolveClass($cls, 'Stats\Output', '\SimpleSAML\Stats\Output');
 
         $output = new $cls($config);
@@ -57,7 +57,7 @@ class Stats
     private static function initOutputs()
     {
         $config = Configuration::getInstance();
-        $outputCfgs = $config->getConfigList('statistics.out');
+        $outputCfgs = $config->getArray('statistics.out', []);
 
         self::$outputs = [];
         foreach ($outputCfgs as $cfg) {
