@@ -22,6 +22,12 @@
         <directory name="modules/saml" />
 
         <directory name="tests" />
+
+        <!-- Ignore certain directories -->
+        <ignoreFiles>
+            <directory name="tests/Utils/Stubs" />
+            <directory name="vendor" />
+        </ignoreFiles>
     </projectFiles>
 
     <issueHandlers>
