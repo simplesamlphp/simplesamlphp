@@ -201,7 +201,6 @@ EOT;
 
         $state = [];
 
-        /** @psalm-suppress InvalidArgument   Remove when PHPunit 8 is in place */
         $idpStub->expects($this->once())
             ->method('handleAuthenticationRequest')
             ->with($this->callback(
