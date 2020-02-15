@@ -426,7 +426,6 @@ class Logger
 
         // get the configuration
         $config = Configuration::getInstance();
-        Assert::isInstanceOf($config, Configuration::class);
 
         // setting minimum log_level
         self::$logLevel = $config->getInteger('logging.level', self::INFO);

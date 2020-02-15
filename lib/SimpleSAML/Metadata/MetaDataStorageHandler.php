@@ -108,7 +108,6 @@ class MetaDataStorageHandler implements \SimpleSAML\Utils\ClearableState
 
         // get the configuration
         $config = Configuration::getInstance();
-        Assert::isInstanceOf($config, Configuration::class);
 
         $baseurl = Utils\HTTP::getSelfURLHost() . $config->getBasePath();
 
@@ -310,8 +309,6 @@ class MetaDataStorageHandler implements \SimpleSAML\Utils\ClearableState
         if ($index === null) {
             $index = $this->getMetaDataCurrentEntityID($set, 'metaindex');
         }
-
-        Assert::string($index);
 
         foreach ($this->sources as $source) {
             $metadata = $source->getMetaData($index, $set);

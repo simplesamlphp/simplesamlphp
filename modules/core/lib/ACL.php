@@ -23,6 +23,7 @@ class ACL
      */
     private $acl;
 
+
     /**
      * Initializer for this access control list.
      *
@@ -70,13 +71,14 @@ class ACL
         return $config->getArray($id);
     }
 
+
     /**
      * Match the attributes against the access control list.
      *
      * @param array $attributes  The attributes of an user.
      * @return boolean  TRUE if the user is allowed to access the resource, FALSE if not.
      */
-    public function allows(array $attributes)
+    public function allows(array $attributes): bool
     {
         foreach ($this->acl as $rule) {
             $action = array_shift($rule);
@@ -93,6 +95,7 @@ class ACL
         }
         return false;
     }
+
 
     /**
      * Match the attributes against the given rule.
@@ -129,6 +132,7 @@ class ACL
         }
     }
 
+
     /**
      * 'and' match operator.
      *
@@ -147,6 +151,7 @@ class ACL
         // All matches
         return true;
     }
+
 
     /**
      * 'equals' match operator.
@@ -187,6 +192,7 @@ class ACL
         // All the values in the attribute matched one in the rule
         return true;
     }
+
 
     /**
      * 'equals-preg' match operator.
@@ -229,6 +235,7 @@ class ACL
         return true;
     }
 
+
     /**
      * 'has' match operator.
      *
@@ -255,6 +262,7 @@ class ACL
         // Found all values in the rule in the attribute
         return true;
     }
+
 
     /**
      * 'has-preg' match operator.
@@ -283,6 +291,7 @@ class ACL
         // Found all values in the rule in the attribute
         return true;
     }
+
 
     /**
      * 'or' match operator.

@@ -10,9 +10,8 @@ use Webmozart\Assert\Assert;
  * @param array &$links  The links on the frontpage, split into sections.
  * @return void
  */
-function core_hook_frontpage(&$links)
+function core_hook_frontpage(array &$links): void
 {
-    Assert::isArray($links);
     Assert::keyExists($links, 'links');
 
     $links['links']['frontpage_welcome'] = [

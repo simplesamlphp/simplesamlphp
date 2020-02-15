@@ -178,12 +178,13 @@ class SQLNameID
      * @param array $config
      * @return void
      */
-    public static function add($idpEntityId, $spEntityId, $user, $value, array $config = [])
-    {
-        Assert::string($idpEntityId);
-        Assert::string($spEntityId);
-        Assert::string($user);
-        Assert::string($value);
+    public static function add(
+        string $idpEntityId,
+        string $spEntityId,
+        string $user,
+        string $value,
+        array $config = []
+    ): void {
 
         $params = [
             '_idp' => $idpEntityId,
@@ -207,12 +208,12 @@ class SQLNameID
      * @param array $config
      * @return string|null $value  The NameID value, or NULL of no NameID value was found.
      */
-    public static function get($idpEntityId, $spEntityId, $user, array $config = [])
-    {
-        Assert::string($idpEntityId);
-        Assert::string($spEntityId);
-        Assert::string($user);
-
+    public static function get(
+        string $idpEntityId,
+        string $spEntityId,
+        string $user,
+        array $config = []
+    ): ?string {
         $params = [
             '_idp' => $idpEntityId,
             '_sp' => $spEntityId,
@@ -229,7 +230,7 @@ class SQLNameID
             return null;
         }
 
-        return $row['_value'];
+        return strval($row['_value']);
     }
 
 
@@ -242,12 +243,12 @@ class SQLNameID
      * @param array $config
      * @return void
      */
-    public static function delete($idpEntityId, $spEntityId, $user, array $config = [])
-    {
-        Assert::string($idpEntityId);
-        Assert::string($spEntityId);
-        assert::string($user);
-
+    public static function delete(
+        string $idpEntityId,
+        string $spEntityId,
+        string $user,
+        array $config = []
+    ): void {
         $params = [
             '_idp' => $idpEntityId,
             '_sp' => $spEntityId,
@@ -268,11 +269,8 @@ class SQLNameID
      * @param array $config
      * @return array  Array of userid => NameID.
      */
-    public static function getIdentities($idpEntityId, $spEntityId, array $config = [])
+    public static function getIdentities(string $idpEntityId, string $spEntityId, array $config = []): array
     {
-        Assert::string($idpEntityId);
-        assert::string($spEntityId);
-
         $params = [
             '_idp' => $idpEntityId,
             '_sp' => $spEntityId,

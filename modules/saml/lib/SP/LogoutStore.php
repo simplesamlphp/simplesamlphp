@@ -26,7 +26,7 @@ class LogoutStore
      * @param \SimpleSAML\Store\SQL $store  The datastore.
      * @return void
      */
-    private static function createLogoutTable(Store\SQL $store)
+    private static function createLogoutTable(Store\SQL $store): void
     {
         $tableVer = $store->getTableVersion('saml_LogoutStore');
         if ($tableVer === 4) {
@@ -201,7 +201,7 @@ class LogoutStore
      * @param \SimpleSAML\Store\SQL $store  The datastore.
      * @return void
      */
-    private static function cleanLogoutStore(Store\SQL $store)
+    private static function cleanLogoutStore(Store\SQL $store): void
     {
         Logger::debug('saml.LogoutStore: Cleaning logout store.');
 
@@ -231,7 +231,7 @@ class LogoutStore
         string $sessionIndex,
         int $expire,
         string $sessionId
-    ) {
+    ): void {
         self::createLogoutTable($store);
 
         if (rand(0, 1000) < 10) {
@@ -330,12 +330,8 @@ class LogoutStore
      * @param int $expire
      * @return void
      */
-    public static function addSession($authId, $nameId, $sessionIndex, $expire)
+    public static function addSession(string $authId, NameID $nameId, ?string $sessionIndex, int $expire): void
     {
-        Assert::string($authId);
-        Assert::nullorString($sessionIndex);
-        Assert::integer($expire);
-
         $session = Session::getSessionFromRequest();
         if ($session->isTransient()) {
             // transient sessions are useless for this purpose, nothing to do
@@ -385,10 +381,8 @@ class LogoutStore
      * @param array $sessionIndexes  The SessionIndexes we should log out of. Logs out of all if this is empty.
      * @return int|false  Number of sessions logged out, or FALSE if not supported.
      */
-    public static function logoutSessions($authId, $nameId, array $sessionIndexes)
+    public static function logoutSessions(string $authId, NameID $nameId, array $sessionIndexes)
     {
-        Assert::string($authId);
-
         $store = Store::getInstance();
         if ($store === false) {
             // We don't have a datastore

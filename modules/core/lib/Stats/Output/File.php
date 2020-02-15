@@ -58,7 +58,7 @@ class File extends \SimpleSAML\Stats\Output
      * @param string $date  The date for the log file.
      * @return void
      */
-    private function openLog(string $date)
+    private function openLog(string $date): void
     {
         if ($this->file !== null && $this->file !== false) {
             fclose($this->file);

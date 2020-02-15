@@ -97,7 +97,7 @@ class ExpectedAuthnContextClassRef extends \SimpleSAML\Auth\ProcessingFilter
      * @param array $request
      * @return void
      */
-    protected function unauthorized(&$request): void
+    protected function unauthorized(array &$request): void
     {
         Logger::error(
             'ExpectedAuthnContextClassRef: Invalid authentication context: ' . strval($this->AuthnContextClassRef) .

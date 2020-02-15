@@ -100,11 +100,8 @@ abstract class UserPassBase extends \SimpleSAML\Auth\Source
      * @param array $info  Information about this authentication source.
      * @param array &$config  Configuration for this authentication source.
      */
-    public function __construct($info, &$config)
+    public function __construct(array $info, array &$config)
     {
-        Assert::isArray($info);
-        Assert::isArray($config);
-
         if (isset($config['core:loginpage_links'])) {
             $this->loginLinks = $config['core:loginpage_links'];
         }
@@ -135,7 +132,7 @@ abstract class UserPassBase extends \SimpleSAML\Auth\Source
      * @param string|null $forcedUsername  The forced username.
      * @return void
      */
-    public function setForcedUsername($forcedUsername): void
+    public function setForcedUsername(?string $forcedUsername): void
     {
         Assert::nullOrString($forcedUsername);
         $this->forcedUsername = $forcedUsername;
@@ -143,7 +140,7 @@ abstract class UserPassBase extends \SimpleSAML\Auth\Source
 
     /**
      * Return login links from configuration
-     * @return array
+     * @return string[]
      */
     public function getLoginLinks(): array
     {
@@ -238,7 +235,6 @@ abstract class UserPassBase extends \SimpleSAML\Auth\Source
             }
 
             $attributes = $this->login($username, $password);
-            Assert::isArray($attributes);
             $state['Attributes'] = $attributes;
 
             return;
@@ -271,9 +267,9 @@ abstract class UserPassBase extends \SimpleSAML\Auth\Source
      *
      * @param string $username  The username the user wrote.
      * @param string $password  The password the user wrote.
-     * @return array  Associative array with the user's attributes.
+     * @return array Associative array with the user's attributes.
      */
-    abstract protected function login($username, $password): array;
+    abstract protected function login(string $username, string $password): array;
 
 
     /**
@@ -288,7 +284,7 @@ abstract class UserPassBase extends \SimpleSAML\Auth\Source
      * @param string $password  The password the user wrote.
      * @return void
      */
-    public static function handleLogin(string $authStateId, string $username, string $password)
+    public static function handleLogin(string $authStateId, string $username, string $password): void
     {
         // Here we retrieve the state array we saved in the authenticate-function.
         /** @var array $state */
@@ -319,7 +315,6 @@ abstract class UserPassBase extends \SimpleSAML\Auth\Source
         Logger::stats('User \'' . $username . '\' successfully authenticated from ' . $_SERVER['REMOTE_ADDR']);
 
         // Save the attributes we received from the login-function in the $state-array
-        Assert::isArray($attributes);
         $state['Attributes'] = $attributes;
 
         // Return control to SimpleSAMLphp after successful authentication.

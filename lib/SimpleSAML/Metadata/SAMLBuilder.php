@@ -76,8 +76,6 @@ class SAMLBuilder
      */
     public function __construct(string $entityId, int $maxCache = null, int $maxDuration = null)
     {
-        Assert::string($entityId);
-
         $this->maxCache = $maxCache;
         $this->maxDuration = $maxDuration;
 
@@ -132,8 +130,6 @@ class SAMLBuilder
      */
     public function getEntityDescriptorText(bool $formatted = true): string
     {
-        Assert::boolean($formatted);
-
         $xml = $this->getEntityDescriptor();
         if ($formatted) {
             Utils\XML::formatDOMElement($xml);

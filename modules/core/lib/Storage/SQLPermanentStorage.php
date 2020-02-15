@@ -28,7 +28,7 @@ class SQLPermanentStorage
      * @param \SimpleSAML\Configuration|null $config
      * @throws \Exception
      */
-    public function __construct($name, $config = null)
+    public function __construct(string $name, Configuration $config = null)
     {
         if (is_null($config)) {
             $config = Configuration::getInstance();
@@ -78,7 +78,7 @@ class SQLPermanentStorage
      * @param int|null $duration
      * @return void
      */
-    public function set($type, $key1, $key2, $value, $duration = null)
+    public function set(string $type, string $key1, string $key2, string $value, int $duration = null): void
     {
         if ($this->exists($type, $key1, $key2)) {
             $this->update($type, $key1, $key2, $value, $duration);
@@ -140,12 +140,12 @@ class SQLPermanentStorage
 
 
     /**
-     * @param string $type
-     * @param string $key1
-     * @param string $key2
+     * @param string|null $type
+     * @param string|null $key1
+     * @param string|null $key2
      * @return array|null
      */
-    public function get($type = null, $key1 = null, $key2 = null)
+    public function get(string $type = null, string $key1 = null, string $key2 = null): ?array
     {
         $conditions = $this->getCondition($type, $key1, $key2);
         $query = 'SELECT * FROM data WHERE ' . $conditions;
@@ -165,12 +165,12 @@ class SQLPermanentStorage
     /**
      * Return the value directly (not in a container)
      *
-     * @param string $type
-     * @param string $key1
-     * @param string $key2
-     * @return array|null
+     * @param string|null $type
+     * @param string|null $key1
+     * @param string|null $key2
+     * @return string|null
      */
-    public function getValue($type = null, $key1 = null, $key2 = null)
+    public function getValue(string $type = null, string $key1 = null, string $key2 = null): ?string
     {
         $res = $this->get($type, $key1, $key2);
         if ($res === null) {
@@ -186,7 +186,7 @@ class SQLPermanentStorage
      * @param string $key2
      * @return bool
      */
-    public function exists($type, $key1, $key2)
+    public function exists(string $type, string $key1, string $key2): bool
     {
         $query = 'SELECT * FROM data WHERE type = :type AND key1 = :key1 AND key2 = :key2 LIMIT 1';
         $prepared = $this->db->prepare($query);
@@ -198,12 +198,12 @@ class SQLPermanentStorage
 
 
     /**
-     * @param string $type
-     * @param string $key1
-     * @param string $key2
+     * @param string|null $type
+     * @param string|null $key1
+     * @param string|null $key2
      * @return array|false
      */
-    public function getList($type = null, $key1 = null, $key2 = null)
+    public function getList(string $type = null, string $key1 = null, string $key2 = null)
     {
         $conditions = $this->getCondition($type, $key1, $key2);
         $query = 'SELECT * FROM data WHERE ' . $conditions;
@@ -223,15 +223,19 @@ class SQLPermanentStorage
 
 
     /**
-     * @param string $type
-     * @param string $key1
-     * @param string $key2
+     * @param string|null $type
+     * @param string|null $key1
+     * @param string|null $key2
      * @param string $whichKey
      * @throws \Exception
      * @return array|null
      */
-    public function getKeys($type = null, $key1 = null, $key2 = null, $whichKey = 'type')
-    {
+    public function getKeys(
+        string $type = null,
+        string $key1 = null,
+        string $key2 = null,
+        string $whichKey = 'type'
+    ): ?array {
         if (!in_array($whichKey, ['key1', 'key2', 'type'], true)) {
             throw new \Exception('Invalid key type');
         }
@@ -254,13 +258,14 @@ class SQLPermanentStorage
         return $resarray;
     }
 
+
     /**
      * @param string $type
      * @param string $key1
      * @param string $key2
      * @return bool
      */
-    public function remove($type, $key1, $key2)
+    public function remove(string $type, string $key1, string $key2): bool
     {
         $query = 'DELETE FROM data WHERE type = :type AND key1 = :key1 AND key2 = :key2';
         $prepared = $this->db->prepare($query);
@@ -274,7 +279,7 @@ class SQLPermanentStorage
     /**
      * @return int
      */
-    public function removeExpired()
+    public function removeExpired(): int
     {
         $query = "DELETE FROM data WHERE expire IS NOT NULL AND expire < :expire";
         $prepared = $this->db->prepare($query);
@@ -286,9 +291,9 @@ class SQLPermanentStorage
     /**
      * Create a SQL condition statement based on parameters
      *
-     * @param string $type
-     * @param string $key1
-     * @param string $key2
+     * @param string|null $type
+     * @param string|null $key1
+     * @param string|null $key2
      * @return string
      */
     private function getCondition(string $type = null, string $key1 = null, string $key2 = null): string

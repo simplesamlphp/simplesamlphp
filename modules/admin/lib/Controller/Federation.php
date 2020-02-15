@@ -62,7 +62,7 @@ class Federation
      * @throws \SimpleSAML\Error\Exception
      * @throws \SimpleSAML\Error\Exception
      */
-    public function main()
+    public function main(): Template
     {
         Utils\Auth::requireAdmin();
 
@@ -344,7 +344,7 @@ class Federation
      *
      * @return \SimpleSAML\XHTML\Template
      */
-    public function metadataConverter(Request $request)
+    public function metadataConverter(Request $request): Template
     {
         Utils\Auth::requireAdmin();
         if ($xmlfile = $request->files->get('xmlfile')) {
@@ -411,7 +411,7 @@ class Federation
      *
      * @return Response PEM-encoded certificate.
      */
-    public function downloadCert(Request $request)
+    public function downloadCert(Request $request): Response
     {
         Utils\Auth::requireAdmin();
 
@@ -454,7 +454,7 @@ class Federation
      *
      * @return Response
      */
-    public function showRemoteEntity(Request $request)
+    public function showRemoteEntity(Request $request): Response
     {
         Utils\Auth::requireAdmin();
 

@@ -408,7 +408,6 @@ class Memcache
     {
         // get the configuration instance
         $config = Configuration::getInstance();
-        Assert::isInstanceOf($config, Configuration::class);
 
         // get the expire-value from the configuration
         $expire = $config->getInteger('memcache_store.expires', 0);

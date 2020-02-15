@@ -25,9 +25,6 @@ class AdminPassword extends \SimpleSAML\Module\core\Auth\UserPassBase
      */
     public function __construct(array $info, array $config)
     {
-        Assert::isArray($info);
-        Assert::isArray($config);
-
         // Call the parent constructor first, as required by the interface
         parent::__construct($info, $config);
 
@@ -50,9 +47,6 @@ class AdminPassword extends \SimpleSAML\Module\core\Auth\UserPassBase
      */
     protected function login(string $username, string $password): array
     {
-        Assert::string($username);
-        Assert::string($password);
-
         $config = Configuration::getInstance();
         $adminPassword = $config->getString('auth.adminpassword', '123');
         if ($adminPassword === '123') {

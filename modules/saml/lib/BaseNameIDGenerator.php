@@ -78,7 +78,7 @@ abstract class BaseNameIDGenerator extends \SimpleSAML\Auth\ProcessingFilter
      *
      * @return string|null  The NameID value.
      */
-    abstract protected function getValue(array &$state);
+    abstract protected function getValue(array &$state): ?string;
 
 
     /**

@@ -28,7 +28,8 @@ class System
     /**
      * This function returns the Operating System we are running on.
      *
-     * @return string|false A predefined constant identifying the OS we are running on. False if we are unable to determine it.
+     * @return int|false A predefined constant identifying the OS we are running on.
+     *                   False if we are unable to determine it.
      *
      * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */

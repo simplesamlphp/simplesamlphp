@@ -352,8 +352,6 @@ class Session implements \Serializable, Utils\ClearableState
             return null;
         }
 
-        Assert::isInstanceOf($session, self::class);
-
         if ($checkToken) {
             $globalConfig = Configuration::getInstance();
 
