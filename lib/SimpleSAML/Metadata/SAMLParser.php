@@ -939,7 +939,6 @@ class SAMLParser
                         // only saml:Attribute are currently supported here. The specifications also allows
                         // saml:Assertions, which more complex processing
                         if ($attr instanceof Attribute) {
-                            /** @psalm-var string|null $attrName   Remove for SSP 2.0 */
                             $attrName = $attr->getName();
                             $attrNameFormat = $attr->getNameFormat();
                             $attrValue = $attr->getAttributeValue();

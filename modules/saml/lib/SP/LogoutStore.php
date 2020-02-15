@@ -417,7 +417,6 @@ class LogoutStore
                 // We cannot fetch all sessions without a SQL store
                 return false;
             }
-            /** @var array $sessions At this point the store cannot be false */
             $sessions = self::getSessionsStore($store, $authId, $strNameId, $sessionIndexes);
         }
 

@@ -288,7 +288,6 @@ class HTTP
             $oldQuery = [];
             $url .= '?';
         } else {
-            /** @var string|false $oldQuery */
             $oldQuery = substr($url, $queryStart + 1);
             if ($oldQuery === false) {
                 $oldQuery = [];
@@ -298,7 +297,6 @@ class HTTP
             $url = substr($url, 0, $queryStart + 1);
         }
 
-        /** @var array $oldQuery */
         $query = array_merge($oldQuery, $parameters);
         $url .= http_build_query($query, '', '&');
 

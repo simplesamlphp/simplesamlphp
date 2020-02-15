@@ -114,7 +114,6 @@ class MetaDataStorageHandlerFlatFile extends MetaDataStorageSource
             return $this->cachedMetadata[$set];
         }
 
-        /** @var array|null $metadataSet */
         $metadataSet = $this->load($set);
         if ($metadataSet === null) {
             $metadataSet = [];

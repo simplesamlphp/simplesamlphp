@@ -110,7 +110,6 @@ class Crypto
         $iv = openssl_random_pseudo_bytes(16);
 
         // encrypt the message
-        /** @var string|false $ciphertext */
         $ciphertext = openssl_encrypt(
             $data,
             'AES-256-CBC',
