@@ -1301,7 +1301,7 @@ class HTTP
         $p = new Template($config, 'post.php');
         $p->data['destination'] = $destination;
         $p->data['post'] = $data;
-        $p->show();
+        $p->send();
         exit(0);
     }
 }

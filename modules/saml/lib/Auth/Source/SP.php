@@ -875,7 +875,7 @@ class SP extends \SimpleSAML\Auth\Source
      * - 'SPMetadata': an array with the metadata of this local SP.
      *
      * @return void
-     * @throws \SimpleSAML\module\saml\Error\NoPassive In case the authentication request was passive.
+     * @throws \SimpleSAML\Module\saml\Error\NoPassive In case the authentication request was passive.
      */
     public static function askForIdPChange(array &$state)
     {
