@@ -333,7 +333,7 @@ class HTTP
      * Check if a URL is valid and is in our list of allowed URLs.
      *
      * @param string $url The URL to check.
-     * @param array  $trustedSites An optional white list of domains. If none specified, the 'trusted.url.domains'
+     * @param string[] $trustedSites An optional white list of domains. If none specified, the 'trusted.url.domains'
      * configuration directive will be used.
      *
      * @return string The normalized URL itself if it is allowed. An empty string if the $url parameter is empty as

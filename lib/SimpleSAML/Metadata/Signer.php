@@ -26,8 +26,7 @@ class Signer
      *
      * @param \SimpleSAML\Configuration $config Our \SimpleSAML\Configuration instance.
      * @param array                     $entityMetadata The metadata of the entity.
-     * @param string                    $type A string which describes the type entity this is, e.g. 'SAML 2 IdP' or
-     *     'Shib 1.3 SP'.
+     * @param string                    $type A string which describes the type entity this is, e.g. 'SAML 2 IdP'
      *
      * @return array An associative array with the keys 'privatekey', 'certificate', and optionally 'privatekey_pass'.
      * @throws \Exception If the key and certificate used to sign is unknown.
@@ -126,8 +125,7 @@ class Signer
      *
      * @param \SimpleSAML\Configuration $config Our \SimpleSAML\Configuration instance.
      * @param array                     $entityMetadata The metadata of the entity.
-     * @param string                    $type A string which describes the type entity this is, e.g. 'SAML 2 IdP' or
-     *     'Shib 1.3 SP'.
+     * @param string                    $type A string which describes the type entity this is, e.g. 'SAML 2 IdP'
      *
      * @return boolean True if metadata signing is enabled, false otherwise.
      * @throws \Exception If the value of the 'metadata.sign.enable' option is not a boolean.
@@ -147,9 +145,7 @@ class Signer
             return $entityMetadata['metadata.sign.enable'];
         }
 
-        $enabled = $config->getBoolean('metadata.sign.enable', false);
-
-        return $enabled;
+        return $config->getBoolean('metadata.sign.enable', false);
     }
 
 

@@ -55,6 +55,7 @@ class Translate
      */
     private $language;
 
+
     /**
      * Constructor
      *
@@ -65,21 +66,7 @@ class Translate
     {
         $this->configuration = $configuration;
         $this->language = new Language($configuration);
-
-        if ($defaultDictionary !== null && substr($defaultDictionary, -4) === '.php') {
-            // TODO: drop this entire if clause for 2.0
-            // for backwards compatibility - print warning
-            $backtrace = debug_backtrace();
-            $where = $backtrace[0]['file'] . ':' . $backtrace[0]['line'];
-            Logger::warning(
-                'Deprecated use of new SimpleSAML\Locale\Translate(...) at ' . $where .
-                '. The last parameter is now a dictionary name, which should not end in ".php".'
-            );
-
-            $this->defaultDictionary = substr($defaultDictionary, 0, -4);
-        } else {
-            $this->defaultDictionary = $defaultDictionary;
-        }
+        $this->defaultDictionary = $defaultDictionary;
     }
 
 

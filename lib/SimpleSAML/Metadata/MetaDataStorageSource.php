@@ -244,7 +244,7 @@ abstract class MetaDataStorageSource
      * where the key is the entity id. An empty array may be returned if no matching entities were found.
      * Subclasses should override if their getMetadataSet returns nothing or is slow. Subclasses may want to
      * delegate to getMetaDataForEntitiesIndividually if loading entities one at a time is faster.
-     * @param array $entityIds The entity ids to load
+     * @param string[] $entityIds The entity ids to load
      * @param string $set The set we want to get metadata from.
      * @return array An associative array with the metadata for the requested entities, if found.
      */
@@ -262,7 +262,7 @@ abstract class MetaDataStorageSource
      * Loads metadata entities one at a time, rather than the default implementation of loading all entities
      * and filtering.
      * @see MetaDataStorageSource::getMetaDataForEntities()
-     * @param array $entityIds The entity ids to load
+     * @param string[] $entityIds The entity ids to load
      * @param string $set The set we want to get metadata from.
      * @return array An associative array with the metadata for the requested entities, if found.
      */

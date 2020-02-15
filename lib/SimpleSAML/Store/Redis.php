@@ -20,6 +20,7 @@ class Redis extends Store
     /** @var \Predis\Client */
     public $redis;
 
+
     /**
      * Initialize the Redis data store.
      * @param \Predis\Client|null $redis

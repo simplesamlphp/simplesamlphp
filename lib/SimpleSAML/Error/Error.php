@@ -69,6 +69,7 @@ class Error extends Exception
      */
     protected $includeTemplate = null;
 
+
     /**
      * Constructor for this error.
      *

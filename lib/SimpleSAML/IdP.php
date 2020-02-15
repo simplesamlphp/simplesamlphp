@@ -63,6 +63,7 @@ class IdP
      */
     private $authSource;
 
+
     /**
      * Initialize an IdP.
      *

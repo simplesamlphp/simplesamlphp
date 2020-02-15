@@ -113,7 +113,7 @@ class IdPDisco
      *
      * The constructor does the parsing of the request. If this is an invalid request, it will throw an exception.
      *
-     * @param array  $metadataSets Array with metadata sets we find remote entities in.
+     * @param string[] $metadataSets Array with metadata sets we find remote entities in.
      * @param string $instance The name of this instance of the discovery service.
      *
      * @throws \Exception If the request is invalid.
@@ -479,7 +479,7 @@ class IdPDisco
     /**
      * Return the list of scoped idp
      *
-     * @return array An array of IdP entities
+     * @return string[] An array of IdP entities
      */
     protected function getScopedIDPList(): array
     {

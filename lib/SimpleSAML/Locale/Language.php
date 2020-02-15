@@ -163,7 +163,7 @@ class Language
     /**
      * Filter configured (available) languages against installed languages.
      *
-     * @return array The set of languages both in 'language.available' and self::$language_names.
+     * @return string[] The set of languages both in 'language.available' and self::$language_names.
      */
     private function getInstalledLanguages(): array
     {

@@ -24,16 +24,14 @@ class Kernel extends BaseKernel
 
     const CONFIG_EXTS = '.{php,xml,yaml,yml}';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $module;
 
 
     /**
      * @param string $module
      */
-    public function __construct($module)
+    public function __construct(string $module)
     {
         $this->module = $module;
 
@@ -46,7 +44,7 @@ class Kernel extends BaseKernel
     /**
      * @return string
      */
-    public function getCacheDir()
+    public function getCacheDir(): string
     {
         $configuration = Configuration::getInstance();
         $cachePath = $configuration->getString('tempdir') . '/cache/' . $this->module;
@@ -62,7 +60,7 @@ class Kernel extends BaseKernel
     /**
      * @return string
      */
-    public function getLogDir()
+    public function getLogDir(): string
     {
         $configuration = Configuration::getInstance();
         $loggingPath = $configuration->getString('loggingdir');
@@ -76,9 +74,9 @@ class Kernel extends BaseKernel
 
 
     /**
-     * {@inheritdoc}
+     * @return array
      */
-    public function registerBundles()
+    public function registerBundles(): array
     {
         return [
             new FrameworkBundle(),
@@ -91,7 +89,7 @@ class Kernel extends BaseKernel
      *
      * @return string
      */
-    public function getModule()
+    public function getModule(): string
     {
         return $this->module;
     }
@@ -104,7 +102,7 @@ class Kernel extends BaseKernel
      * @param LoaderInterface $loader
      * @return void
      */
-    protected function configureContainer(ContainerBuilder $container, LoaderInterface $loader)
+    protected function configureContainer(ContainerBuilder $container, LoaderInterface $loader): void
     {
         $configuration = Configuration::getInstance();
         $baseDir = $configuration->getBaseDir();
@@ -128,7 +126,7 @@ class Kernel extends BaseKernel
      * @param RouteCollectionBuilder $routes
      * @return void
      */
-    protected function configureRoutes(RouteCollectionBuilder $routes)
+    protected function configureRoutes(RouteCollectionBuilder $routes): void
     {
         $configuration = Configuration::getInstance();
         $baseDir = $configuration->getBaseDir();
@@ -144,7 +142,7 @@ class Kernel extends BaseKernel
      * @param ContainerBuilder $container
      * @return void
      */
-    private function registerModuleControllers(ContainerBuilder $container)
+    private function registerModuleControllers(ContainerBuilder $container): void
     {
         try {
             $definition = new Definition();

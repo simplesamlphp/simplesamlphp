@@ -271,7 +271,7 @@ class Database
      *
      * @return \PDOStatement object
      */
-    public function read(string $stmt, array $params = [])
+    public function read(string $stmt, array $params = []): PDOStatement
     {
         $db = $this->getSlave();
 

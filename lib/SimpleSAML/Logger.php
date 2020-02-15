@@ -72,7 +72,6 @@ class Logger
      */
     private static $logMask = 0;
 
-
     /**
      * This constant defines the string we set the track ID to while we are fetching the track ID from the session
      * class. This is used to prevent infinite recursion.
@@ -307,7 +306,7 @@ class Logger
      *
      * @return void
      */
-    public static function flush()
+    public static function flush(): void
     {
         foreach (self::$earlyLog as $msg) {
             self::log($msg['level'], $msg['string'], $msg['statsLog']);

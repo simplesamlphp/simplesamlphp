@@ -19,6 +19,10 @@ class AuthenticationFactory
     protected $session;
 
 
+    /**
+     * @param \SimpleSAML\Configuration $config
+     * @param \SimpleSAML\Session $session
+     */
     public function __construct(Configuration $config, Session $session)
     {
         $this->config = $config;

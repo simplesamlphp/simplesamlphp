@@ -9,9 +9,10 @@ use SimpleSAML\Auth\Source;
 class TestAuthSource extends Source
 {
     /**
+     * @param array &$state
      * @return void
      */
-    public function authenticate(&$state)
+    public function authenticate(array &$state): void
     {
     }
 }

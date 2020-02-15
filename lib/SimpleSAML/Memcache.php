@@ -33,14 +33,12 @@ class Memcache
      */
     private static $serverGroups = null;
 
-
     /**
      * The flavor of memcache PHP extension we are using.
      *
      * @var string
      */
     private static $extension = '';
-
 
     /**
      * Find data stored with a given key.
@@ -220,7 +218,7 @@ class Memcache
      *
      * @throws \Exception If any configuration option for the server is invalid.
      */
-    private static function addMemcacheServer($memcache, array $server): void
+    private static function addMemcacheServer(\Memcached $memcache, array $server): void
     {
         // the hostname option is required
         if (!array_key_exists('hostname', $server)) {

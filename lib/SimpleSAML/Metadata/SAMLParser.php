@@ -278,8 +278,6 @@ class SAMLParser
      */
     public static function parseDocument(DOMDocument $document): SAMLParser
     {
-        Assert::isInstanceOf($document, DOMDocument::class);
-
         $entityElement = self::findEntityDescriptor($document);
 
         return self::parseElement($entityElement);
@@ -294,10 +292,8 @@ class SAMLParser
      *
      * @return SAMLParser An instance of this class with the metadata loaded.
      */
-    public static function parseElement(\SAML2\XML\md\EntityDescriptor $entityElement): SAMLParser
+    public static function parseElement(EntityDescriptor $entityElement): SAMLParser
     {
-        Assert::isInstanceOf($entityElement, EntityDescriptor::class);
-
         return new SAMLParser($entityElement, null, []);
     }
 
@@ -393,7 +389,7 @@ class SAMLParser
      */
     private static function processDescriptorsElement(
         SignedElementHelper $element,
-        ?int $maxExpireTime,
+        ?int $maxExpireTime = null,
         array $validators = [],
         array $parentExtensions = []
     ): array {
@@ -426,7 +422,7 @@ class SAMLParser
      * This function looks for the 'validUntil' attribute to determine
      * how long a given XML-element is valid. It returns this as a unix timestamp.
      *
-     * @param mixed    $element The element we should determine the expiry time of.
+     * @param mixed $element The element we should determine the expiry time of.
      * @param int|null $maxExpireTime The maximum expiration time.
      *
      * @return int|null The unix timestamp for when the element should expire. Will be NULL if no
@@ -705,7 +701,7 @@ class SAMLParser
     /**
      * Retrieve AttributeAuthorities from the metadata.
      *
-     * @return array Array of AttributeAuthorityDescriptor entries.
+     * @return \SAML2\XML\md\AttributeAuthorityDescriptor[] Array of AttributeAuthorityDescriptor entries.
      */
     public function getAttributeAuthorities(): array
     {
@@ -1256,7 +1252,7 @@ class SAMLParser
     /**
      * This function finds IdP descriptors which supports one of the given protocols.
      *
-     * @param array $protocols Array with the protocols we accept.
+     * @param string[] $protocols Array with the protocols we accept.
      *
      * @return array with IdP descriptors which supports one of the given protocols.
      */
