@@ -25,7 +25,6 @@
 
         <!-- Ignore certain directories -->
         <ignoreFiles>
-            <directory name="tests/Utils/Stubs" />
             <directory name="vendor" />
         </ignoreFiles>
     </projectFiles>
