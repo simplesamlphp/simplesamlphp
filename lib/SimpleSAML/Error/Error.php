@@ -270,7 +270,7 @@ class Error extends Exception
         } else {
             $t = new Template($config, 'error.php', 'errors');
             $t->data = array_merge($t->data, $data);
-            $t->show();
+            $t->send();
         }
 
         exit;

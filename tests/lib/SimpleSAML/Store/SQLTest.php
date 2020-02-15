@@ -43,7 +43,7 @@ class SQLTest extends TestCase
     {
         $store = Store::getInstance();
 
-        $this->assertInstanceOf('SimpleSAML\Store\SQL', $store);
+        $this->assertInstanceOf(Store\SQL::class, $store);
     }
 
 

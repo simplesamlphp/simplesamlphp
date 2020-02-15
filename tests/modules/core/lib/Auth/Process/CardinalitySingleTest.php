@@ -11,7 +11,7 @@ use SimpleSAML\Utils\HttpAdapter;
  */
 class CardinalitySingleTest extends \PHPUnit\Framework\TestCase
 {
-    /** @var \SimpleSAML\Utils\HttpAdapter|\PHPUnit_Framework_MockObject_MockObject */
+    /** @var \SimpleSAML\Utils\HttpAdapter|\PHPUnit\Framework\MockObject\MockObject */
     private $http;
 
 

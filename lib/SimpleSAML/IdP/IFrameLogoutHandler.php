@@ -110,6 +110,6 @@ class IFrameLogoutHandler implements LogoutHandlerInterface
             $t->data['errorMsg'] = $error->getMessage();
         }
 
-        $t->show();
+        $t->send();
     }
 }

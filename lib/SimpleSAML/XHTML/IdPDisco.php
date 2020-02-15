@@ -645,7 +645,7 @@ class IdPDisco
         $t->data['entityID'] = $this->spEntityId;
         $t->data['urlpattern'] = htmlspecialchars(Utils\HTTP::getSelfURLNoQuery());
         $t->data['rememberenabled'] = $this->config->getBoolean('idpdisco.enableremember', false);
-        $t->show();
+        $t->send();
     }
 
 

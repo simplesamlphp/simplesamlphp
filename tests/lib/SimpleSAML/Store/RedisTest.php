@@ -20,7 +20,7 @@ use SimpleSAML\Store;
  */
 class RedisTest extends TestCase
 {
-    /** @var \PHPUnit_Framework_MockObject_MockObject */
+    /** @var \PHPUnit\Framework\MockObject\MockObject */
     protected $mocked_redis;
 
     /** @var \SimpleSAML\Store\Redis */
@@ -42,19 +42,15 @@ class RedisTest extends TestCase
                                    ->disableOriginalConstructor()
                                    ->getMock();
 
-        /** @psalm-suppress UndefinedMethod   Remove when Psalm 3.x is in place */
         $this->mocked_redis->method('get')
                            ->will($this->returnCallback([$this, 'getMocked']));
 
-        /** @psalm-suppress UndefinedMethod   Remove when Psalm 3.x is in place */
         $this->mocked_redis->method('set')
                            ->will($this->returnCallback([$this, 'setMocked']));
 
-        /** @psalm-suppress UndefinedMethod   Remove when Psalm 3.x is in place */
         $this->mocked_redis->method('setex')
                            ->will($this->returnCallback([$this, 'setexMocked']));
 
-        /** @psalm-suppress UndefinedMethod   Remove when Psalm 3.x is in place */
         $this->mocked_redis->method('del')
                            ->will($this->returnCallback([$this, 'delMocked']));
 
@@ -62,7 +58,6 @@ class RedisTest extends TestCase
             return;
         };
 
-        /** @psalm-suppress UndefinedMethod   Remove when Psalm 3.x is in place */
         $this->mocked_redis->method('disconnect')
                            ->will($this->returnCallback($nop));
 

@@ -81,5 +81,5 @@ if ($as !== null) {
 } else {
     $t->data['preferred'] = null;
 }
-$t->show();
+$t->send();
 exit();
