@@ -75,7 +75,7 @@ NOWDOC;
     {
         $res = new Signer([]);
 
-        $this->assertNotNull($res);
+        $this->addToAssertionCount(1);
     }
 
 
@@ -99,8 +99,8 @@ NOWDOC;
 
         $res = $doc->saveXML();
 
-        $this->assertContains('DigestValue', $res);
-        $this->assertContains('SignatureValue', $res);
+        $this->assertStringContainsString('DigestValue', $res);
+        $this->assertStringContainsString('SignatureValue', $res);
     }
 
 
@@ -143,8 +143,8 @@ NOWDOC;
 
         $expected = self::getCertificateValue($this->good_certificate);
 
-        $this->assertContains('X509Certificate', $res);
-        $this->assertContains($expected, $res);
+        $this->assertStringContainsString('X509Certificate', $res);
+        $this->assertStringContainsString($expected, $res);
     }
 
 
@@ -175,9 +175,9 @@ NOWDOC;
         $expected1 = self::getCertificateValue($this->good_certificate);
         $expected2 = self::getCertificateValue($this->other_certificate);
 
-        $this->assertContains('X509Certificate', $res);
-        $this->assertContains($expected1, $res);
-        $this->assertContains($expected2, $res);
+        $this->assertStringContainsString('X509Certificate', $res);
+        $this->assertStringContainsString($expected1, $res);
+        $this->assertStringContainsString($expected2, $res);
     }
 
 

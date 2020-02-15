@@ -150,4 +150,4 @@ if ($type !== 'nojs') {
     $t->data['jquery'] = ['core' => true, 'ui' => false, 'css' => false];
 }
 
-$t->show();
+$t->send();

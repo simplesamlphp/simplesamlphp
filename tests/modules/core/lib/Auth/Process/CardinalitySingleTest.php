@@ -11,7 +11,7 @@ use SimpleSAML\Utils\HttpAdapter;
  */
 class CardinalitySingleTest extends \PHPUnit\Framework\TestCase
 {
-    /** @var \SimpleSAML\Utils\HttpAdapter|\PHPUnit_Framework_MockObject_MockObject */
+    /** @var \SimpleSAML\Utils\HttpAdapter|\PHPUnit\Framework\MockObject\MockObject */
     private $http;
 
 
@@ -39,7 +39,7 @@ class CardinalitySingleTest extends \PHPUnit\Framework\TestCase
     /**
      * @return void
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         \SimpleSAML\Configuration::loadFromArray([], '[ARRAY]', 'simplesaml');
         $this->http = $this->getMockBuilder(HttpAdapter::class)

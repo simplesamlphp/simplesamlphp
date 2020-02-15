@@ -51,7 +51,6 @@ $metaentries = ['hosted' => $metadataHosted, 'remote' => []];
 
 if ($isadmin) {
     $metaentries['remote']['saml20-idp-remote'] = $metadata->getList('saml20-idp-remote', true);
-    $metaentries['remote']['shib13-idp-remote'] = $metadata->getList('shib13-idp-remote', true);
 }
 
 if ($config->getBoolean('enable.saml20-idp', false) === true) {
@@ -64,18 +63,6 @@ if ($config->getBoolean('enable.saml20-idp', false) === true) {
         }
     } catch (Exception $e) {
         \SimpleSAML\Logger::error('Federation: Error loading saml20-idp: ' . $e->getMessage());
-    }
-}
-if ($config->getBoolean('enable.shib13-idp', false) === true) {
-    try {
-        $metaentries['hosted']['shib13-idp'] = $metadata->getMetaDataCurrent('shib13-idp-hosted');
-        $metaentries['hosted']['shib13-idp']['metadata-url'] =
-            $config->getBasePath() . 'shib13/idp/metadata.php?output=xhtml';
-        if ($isadmin) {
-            $metaentries['remote']['shib13-sp-remote'] = $metadata->getList('shib13-sp-remote', true);
-        }
-    } catch (Exception $e) {
-        \SimpleSAML\Logger::error('Federation: Error loading shib13-idp: ' . $e->getMessage());
     }
 }
 if ($config->getBoolean('enable.adfs-idp', false) === true) {
@@ -145,10 +132,6 @@ $mtype = [
     'saml20-sp-hosted' => $translator->noop('{admin:metadata_saml20-sp}'),
     'saml20-idp-remote' => $translator->noop('{admin:metadata_saml20-idp}'),
     'saml20-idp-hosted' => $translator->noop('{admin:metadata_saml20-idp}'),
-    'shib13-sp-remote' => $translator->noop('{admin:metadata_shib13-sp}'),
-    'shib13-sp-hosted' => $translator->noop('{admin:metadata_shib13-sp}'),
-    'shib13-idp-remote' => $translator->noop('{admin:metadata_shib13-idp}'),
-    'shib13-idp-hosted' => $translator->noop('{admin:metadata_shib13-idp}'),
     'adfs-sp-remote' => $translator->noop('{admin:metadata_adfs-sp}'),
     'adfs-sp-hosted' => $translator->noop('{admin:metadata_adfs-sp}'),
     'adfs-idp-remote' => $translator->noop('{admin:metadata_adfs-idp}'),
@@ -171,4 +154,4 @@ $t->data['metadata_url'] = \SimpleSAML\Module::getModuleURL('core/show_metadata.
 $t->data['metaentries'] = $metaentries;
 $t->data['mtype'] = $mtype;
 
-$t->show();
+$t->send();

@@ -27,4 +27,4 @@ if (isset($state['Source']['auth'])) {
     ) . "&logout";
 }
 header('HTTP/1.0 403 Forbidden');
-$t->show();
+$t->send();

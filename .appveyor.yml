@@ -8,6 +8,7 @@ environment:
   matrix:
     - PHP_VERSION: "7.2"
     - PHP_VERSION: "7.3"
+    - PHP_VERSION: "7.4"
 
 install:
   - ps: Invoke-WebRequest "https://raw.githubusercontent.com/ChadSikorra/ps-install-php/master/Install-PHP.ps1" -OutFile "Install-PHP.ps1"

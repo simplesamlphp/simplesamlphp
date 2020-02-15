@@ -126,9 +126,6 @@ msgstr ""
 "The Identity Provider responded with an error. (The status code in the "
 "SAML Response was not success)"
 
-msgid "{admin:metadata_shib13-idp}"
-msgstr "Shib 1.3 IdP Metadata"
-
 msgid "{login:help_text}"
 msgstr ""
 "Without your username and password you cannot authenticate "
@@ -239,9 +236,6 @@ msgstr "Logging out..."
 
 msgid "{login:error_wrongpassword}"
 msgstr "Incorrect username or password."
-
-msgid "{admin:metaover_group_metadata.shib13-sp-remote}"
-msgstr "Shib 1.3 Service Provider (Remote)"
 
 msgid "{login:remember_username}"
 msgstr "Remember my username"
@@ -486,9 +480,6 @@ msgstr "Sending message"
 msgid "{errors:title_RESPONSESTATUSNOSUCCESS}"
 msgstr "Error received from Identity Provider"
 
-msgid "{admin:metadata_shib13-sp}"
-msgstr "Shib 1.3 SP Metadata"
-
 msgid "{admin:metaover_intro}"
 msgstr ""
 "To look at the details for an SAML entity, click on the SAML entity "
@@ -573,9 +564,6 @@ msgstr "Page not found"
 msgid "{logout:logged_out_text}"
 msgstr "You have been logged out."
 
-msgid "{admin:metaover_group_metadata.shib13-sp-hosted}"
-msgstr "Shib 1.3 Service Provider (Hosted)"
-
 msgid "{admin:metadata_cert_intro}"
 msgstr "Download the X509 certificates as PEM-encoded files."
 
@@ -608,8 +596,11 @@ msgstr ""
 msgid "{admin:metadata_adfs-idp}"
 msgstr "ADFS IdP Metadata"
 
-msgid "{admin:metaover_group_metadata.shib13-idp-hosted}"
-msgstr "Shib 1.3 Identity Provider (Hosted)"
+msgid "{attributes:attribute_edupersonorcid}"
+msgstr "ORCID researcher identifiers"
+
+msgid "{attributes:attribute_preferredlanguage}"
+msgstr "Preferred language"
 
 msgid "{errors:descr_NOTVALIDCERT}"
 msgstr "You did not present a valid certificate."
@@ -650,9 +641,6 @@ msgstr "No certificate"
 
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "Logout information lost"
-
-msgid "{admin:metaover_group_metadata.shib13-idp-remote}"
-msgstr "Shib 1.3 Identity Provider (Remote)"
 
 msgid "{errors:descr_CONFIG}"
 msgstr "SimpleSAMLphp appears to be misconfigured."

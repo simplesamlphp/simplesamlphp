@@ -356,71 +356,6 @@ class Configuration implements Utils\ClearableState
 
 
     /**
-     * Initialize a instance name with the given configuration file.
-     *
-     * TODO: remove.
-     *
-     * @param string $path
-     * @param string $instancename
-     * @param string $configfilename
-     * @return \SimpleSAML\Configuration
-     *
-     * @see setConfigDir()
-     * @deprecated This function is superseeded by the setConfigDir function.
-     */
-    public static function init($path, $instancename = 'simplesaml', $configfilename = 'config.php')
-    {
-        Assert::string($path);
-        Assert::string($instancename);
-        Assert::string($configfilename);
-
-        if ($instancename === 'simplesaml') {
-            // for backwards compatibility
-            self::setConfigDir($path, 'simplesaml');
-        }
-
-        // check if we already have loaded the given config - return the existing instance if we have
-        if (array_key_exists($instancename, self::$instance)) {
-            return self::$instance[$instancename];
-        }
-
-        self::$instance[$instancename] = self::loadFromFile($path . '/' . $configfilename, true);
-        return self::$instance[$instancename];
-    }
-
-
-    /**
-     * Load a configuration file which is located in the same directory as this configuration file.
-     *
-     * TODO: remove.
-     *
-     * @param string $instancename
-     * @param string $filename
-     * @return \SimpleSAML\Configuration
-     *
-     * @see getConfig()
-     * @deprecated This function is superseeded by the getConfig() function.
-     */
-    public function copyFromBase($instancename, $filename)
-    {
-        Assert::string($instancename);
-        Assert::string($filename);
-        Assert::notNull($this->filename);
-
-        // check if we already have loaded the given config - return the existing instance if we have
-        if (array_key_exists($instancename, self::$instance)) {
-            return self::$instance[$instancename];
-        }
-
-        /** @var string $this->filename */
-        $dir = dirname($this->filename);
-
-        self::$instance[$instancename] = self::loadFromFile($dir . '/' . $filename, true);
-        return self::$instance[$instancename];
-    }
-
-
-    /**
      * Retrieve the current version of SimpleSAMLphp.
      *
      * @return string
@@ -488,35 +423,6 @@ class Configuration implements Utils\ClearableState
             }
         }
         return false;
-    }
-
-
-    /**
-     * Retrieve the absolute path of the SimpleSAMLphp installation, relative to the root of the website.
-     *
-     * For example: simplesaml/
-     *
-     * The path will always end with a '/' and never have a leading slash.
-     *
-     * @return string The absolute path relative to the root of the website.
-     *
-     * @throws \SimpleSAML\Error\CriticalConfigurationError If the format of 'baseurlpath' is incorrect.
-     *
-     * @deprecated This method will be removed in SimpleSAMLphp 2.0. Please use getBasePath() instead.
-     */
-    public function getBaseURL()
-    {
-        if (!$this->deprecated_base_url_used) {
-            $this->deprecated_base_url_used = true;
-            Logger::warning(
-                "\SimpleSAML\Configuration::getBaseURL() is deprecated, please use getBasePath() instead."
-            );
-        }
-        if (preg_match('/^\*(.*)$/D', $this->getString('baseurlpath', 'simplesaml/'), $matches)) {
-            // deprecated behaviour, will be removed in the future
-            return Utils\HTTP::getFirstPathElement(false) . $matches[1];
-        }
-        return ltrim($this->getBasePath(), '/');
     }
 
 
@@ -1016,51 +922,6 @@ class Configuration implements Utils\ClearableState
 
 
     /**
-     * Retrieve an array of arrays as an array of \SimpleSAML\Configuration objects.
-     *
-     * This function will retrieve an option containing an array of arrays, and create an array of
-     * \SimpleSAML\Configuration objects from that array. The indexes in the new array will be the same as the original
-     * indexes, but the values will be \SimpleSAML\Configuration objects.
-     *
-     * An exception will be thrown if this option isn't an array of arrays, or if this option isn't found, and no
-     * default value is given.
-     *
-     * @param string $name The name of the option.
-     *
-     * @return array The array of \SimpleSAML\Configuration objects.
-     *
-     * @throws \Exception If the value of this element is not an array.
-     *
-     * @deprecated Very specific function, will be removed in a future release; use getConfigItem or getArray instead
-     */
-    public function getConfigList($name)
-    {
-        Assert::string($name);
-
-        $ret = $this->getValue($name, []);
-
-        if (!is_array($ret)) {
-            throw new \Exception(
-                $this->location . ': The option ' . var_export($name, true) .
-                ' is not an array.'
-            );
-        }
-
-        $out = [];
-        foreach ($ret as $index => $config) {
-            $newLoc = $this->location . '[' . var_export($name, true) . '][' .
-                var_export($index, true) . ']';
-            if (!is_array($config)) {
-                throw new \Exception($newLoc . ': The value of this element was expected to be an array.');
-            }
-            $out[$index] = self::loadFromArray($config, $newLoc);
-        }
-
-        return $out;
-    }
-
-
-    /**
      * Retrieve list of options.
      *
      * This function returns the name of all options which are defined in this
@@ -1111,10 +972,6 @@ class Configuration implements Utils\ClearableState
                 return Constants::BINDING_HTTP_POST;
             case 'saml20-idp-remote:ArtifactResolutionService':
                 return Constants::BINDING_SOAP;
-            case 'shib13-idp-remote:SingleSignOnService':
-                return 'urn:mace:shibboleth:1.0:profiles:AuthnRequest';
-            case 'shib13-sp-remote:AssertionConsumerService':
-                return 'urn:oasis:names:tc:SAML:1.0:profiles:browser-post';
             default:
                 throw new \Exception('Missing default binding for ' . $endpointType . ' in ' . $set);
         }

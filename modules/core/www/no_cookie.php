@@ -22,4 +22,4 @@ $t->data['header'] = htmlspecialchars($header);
 $t->data['description'] = htmlspecialchars($desc);
 $t->data['retry'] = htmlspecialchars($retry);
 $t->data['retryURL'] = $retryURL;
-$t->show();
+$t->send();

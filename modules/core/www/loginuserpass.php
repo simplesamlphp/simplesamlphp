@@ -133,4 +133,4 @@ if (isset($state['SPMetadata'])) {
     $t->data['SPMetadata'] = null;
 }
 
-$t->show();
+$t->send();

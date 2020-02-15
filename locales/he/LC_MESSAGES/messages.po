@@ -109,9 +109,6 @@ msgstr "כיוון שאתה במצב מבדיקת באגים, אתה רואה א
 msgid "{errors:descr_RESPONSESTATUSNOSUCCESS}"
 msgstr "ספק הזיהות החזיר שגיאה. (קוד המצב בתגובת ה SAML שונה מהצלחה)"
 
-msgid "{admin:metadata_shib13-idp}"
-msgstr "מטא-מידע של סז מסוג Shib 1.3"
-
 msgid "{login:help_text}"
 msgstr ""
 "חבל! - בלי שם המשתמש והסיסמה שלך אתה לא יכול להזדהות בכדי לגשת לשירות. "
@@ -206,9 +203,6 @@ msgstr "מתנתק מהמערכת..."
 
 msgid "{login:error_wrongpassword}"
 msgstr "סיסמה או שם משתמש לא נכונים."
-
-msgid "{admin:metaover_group_metadata.shib13-sp-remote}"
-msgstr "ספק שירות מרוחק מסוג Shib 1.3"
 
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"
 msgstr "ספק זהות זה קיבל בקשת הזדהות מספק שירות, אולם קרתה שגיאה בזמן עיבוד הבקשה."
@@ -427,9 +421,6 @@ msgstr "שולח הודעה"
 msgid "{errors:title_RESPONSESTATUSNOSUCCESS}"
 msgstr "התקבלה שגיאה מספק הזיהות"
 
-msgid "{admin:metadata_shib13-sp}"
-msgstr "מטא-מידע של סש מסוג Shib 1.3"
-
 msgid "{admin:metaover_intro}"
 msgstr "כדי להסתכל על הפרטים של ישות SAML, לחץ על כותרת ישות הSAML "
 
@@ -498,9 +489,6 @@ msgstr "דף לא נמצא"
 msgid "{logout:logged_out_text}"
 msgstr "התנתקת מן המערכת"
 
-msgid "{admin:metaover_group_metadata.shib13-sp-hosted}"
-msgstr "ספק שירות מקומי מסוג Shib 1.3"
-
 msgid "{admin:metadata_cert_intro}"
 msgstr "הורד את תעודות X509 כקבצי PEM-מקודד."
 
@@ -526,8 +514,11 @@ msgstr ""
 "שגיאה זו היא ככל הנראה בשל התנהגות בלתי צפויה או שגויה של SimpleSAMLphp. "
 "צור קשר עם מנהל המערכת של שירות ההתחברות הזה, ושלח לו את השגיאה למעלה."
 
-msgid "{admin:metaover_group_metadata.shib13-idp-hosted}"
-msgstr "ספק זהות מקומי מסוג Shib 1.3"
+msgid "{attributes:attribute_mobile}"
+msgstr "נייד"
+
+msgid "{attributes:attribute_preferredlanguage}"
+msgstr "שפה מועדפת"
 
 msgid "{errors:descr_NOTVALIDCERT}"
 msgstr "לא הצגת תעודה חוקית "
@@ -558,9 +549,6 @@ msgstr "אין תעודה"
 
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "מידע ההתנתקות אבד"
-
-msgid "{admin:metaover_group_metadata.shib13-idp-remote}"
-msgstr "ספק זהות מרוחק מסוג Shib 1.3"
 
 msgid "{errors:descr_CONFIG}"
 msgstr "נראה ש SimpleSAMLphp לא מוגדר נכון"

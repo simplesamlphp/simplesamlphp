@@ -31,19 +31,6 @@ class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
     private $server;
 
     /**
-     * The fingerprint of the certificate used to sign the metadata. You don't need this option if you don't want to
-     * validate the signature on the metadata.
-     *
-     * @var string|null
-     */
-    private $validateFingerprint;
-
-    /**
-     * @var string
-     */
-    private $validateFingerprintAlgorithm;
-
-    /**
      * The cache directory, or null if no cache directory is configured.
      *
      * @var string|null
@@ -64,8 +51,7 @@ class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
      *
      * Options:
      * - 'server': URL of the MDQ server (url:port). Mandatory.
-     * - 'validateFingerprint': The fingerprint of the certificate used to sign the metadata.
-     *                          You don't need this option if you don't want to validate the signature on the metadata.
+     *
      * Optional.
      * - 'cachedir':  Directory where metadata can be cached. Optional.
      * - 'cachelength': Maximum time metadata cah be cached, in seconds. Default to 24
@@ -83,17 +69,6 @@ class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
             throw new \Exception(__CLASS__ . ": the 'server' configuration option is not set.");
         } else {
             $this->server = $config['server'];
-        }
-
-        if (array_key_exists('validateFingerprint', $config)) {
-            $this->validateFingerprint = $config['validateFingerprint'];
-        } else {
-            $this->validateFingerprint = null;
-        }
-        if (isset($config['validateFingerprintAlgorithm'])) {
-            $this->validateFingerprintAlgorithm = $config['validateFingerprintAlgorithm'];
-        } else {
-            $this->validateFingerprintAlgorithm = XMLSecurityDSig::SHA1;
         }
 
         if (array_key_exists('cachedir', $config)) {
@@ -245,10 +220,6 @@ class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
                 return $entity->getMetadata20IdP();
             case 'saml20-sp-remote':
                 return $entity->getMetadata20SP();
-            case 'shib13-idp-remote':
-                return $entity->getMetadata1xIdP();
-            case 'shib13-sp-remote':
-                return $entity->getMetadata1xSP();
             case 'attributeauthority-remote':
                 $ret = $entity->getAttributeAuthorities();
                 return $ret[0];
@@ -327,17 +298,6 @@ class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
         /** @var string $xmldata */
         $entity = SAMLParser::parseString($xmldata);
         Logger::debug(__CLASS__ . ': completed parsing of [' . $mdq_url . ']');
-
-        if ($this->validateFingerprint !== null) {
-            if (
-                !$entity->validateFingerprint(
-                    $this->validateFingerprint,
-                    $this->validateFingerprintAlgorithm
-                )
-            ) {
-                throw new \Exception(__CLASS__ . ': error, could not verify signature for entity: ' . $index . '".');
-            }
-        }
 
         $data = self::getParsedSet($entity, $set);
         if ($data === null) {

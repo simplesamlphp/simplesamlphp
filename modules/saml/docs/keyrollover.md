@@ -19,7 +19,7 @@ Add the new key to SimpleSAMLphp
 
 Where you add the new key depends on whether you are doing key rollover for a service provider or an identity provider.
 If you are doing key rollover for a service provider, the new key must be added to `config/authsources.php`.
-To do key rollover for an identity provider, you must add the new key to `metadata/saml20-idp-hosted.php` and/or `metadata/shib13-idp-hosted.php`.
+To do key rollover for an identity provider, you must add the new key to `metadata/saml20-idp-hosted.php`.
 If you are changing the keys for both an service provider and identity provider at the same time, you must update both locations.
 
 The new certificate and key is added to the configuration with the prefix `new_`:

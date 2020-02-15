@@ -116,9 +116,6 @@ msgstr ""
 "Tapatybių teikėjas atsakė klaidos pranešimu. (Statuso kodas SAML atsakyme"
 " buvo nesėkmingas)"
 
-msgid "{admin:metadata_shib13-idp}"
-msgstr "Shib 1.3 IdP Metaduomenys"
-
 msgid "{login:help_text}"
 msgstr ""
 "Blogai - be prisijungimo vardo ir slaptažodžio negalėsite autentikuotis "
@@ -215,9 +212,6 @@ msgstr "Atjungiama..."
 
 msgid "{login:error_wrongpassword}"
 msgstr "Neteisingas prisijungimo vardas arba slaptažodis."
-
-msgid "{admin:metaover_group_metadata.shib13-sp-remote}"
-msgstr "Shib 1.3 Paslaugos teikėjas (nutolęs)"
 
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"
 msgstr ""
@@ -446,9 +440,6 @@ msgstr "Siunčiamas pranešimas"
 msgid "{errors:title_RESPONSESTATUSNOSUCCESS}"
 msgstr "Gautas klaidos pranešimas iš tapatybių teikėjo"
 
-msgid "{admin:metadata_shib13-sp}"
-msgstr "Shib 1.3 SP Metaduomenys"
-
 msgid "{admin:metaover_intro}"
 msgstr ""
 "Norėdami peržiūrėti detalesnę informaciją apie SAML, paspauskite ant SAML"
@@ -521,9 +512,6 @@ msgstr "Puslapis nerastas"
 msgid "{logout:logged_out_text}"
 msgstr "Jūs buvote atjungtas nuo sistemos."
 
-msgid "{admin:metaover_group_metadata.shib13-sp-hosted}"
-msgstr "Shib 1.3 Paslaugos teikėjas (vietinis)"
-
 msgid "{admin:metadata_cert_intro}"
 msgstr "Parsisiųsti X509 sertifikatus kaip PEM koduotės failus."
 
@@ -550,8 +538,11 @@ msgstr ""
 "sukonfigūravimo. Susisiekite su šios sistemos administratoriumi ir "
 "nusiųskite žemiau rodomą klaidos pranešimą."
 
-msgid "{admin:metaover_group_metadata.shib13-idp-hosted}"
-msgstr "Shib 1.3 Tapatybių teikėjas (vietinis)"
+msgid "{attributes:attribute_mobile}"
+msgstr "Mobiliojo numeris"
+
+msgid "{attributes:attribute_preferredlanguage}"
+msgstr "Kalba"
 
 msgid "{errors:descr_NOTVALIDCERT}"
 msgstr "Jūs nepateikėte teisingo sertifikato."
@@ -588,9 +579,6 @@ msgstr "Nėra sertifikato"
 
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "Atsijungimo informacija prarasta"
-
-msgid "{admin:metaover_group_metadata.shib13-idp-remote}"
-msgstr "Shib 1.3 Tapatybių teikėjas (nutolęs)"
 
 msgid "{errors:descr_CONFIG}"
 msgstr "SimpleSAMLphp tikriausiai klaidingai sukonfigūruotas."

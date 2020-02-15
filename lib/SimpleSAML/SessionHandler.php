@@ -139,7 +139,6 @@ abstract class SessionHandler
         if ($store === false) {
             self::$sessionHandler = new SessionHandlerPHP();
         } else {
-            /** @var \SimpleSAML\Store $store At this point, $store can only be an object */
             self::$sessionHandler = new SessionHandlerStore($store);
         }
     }

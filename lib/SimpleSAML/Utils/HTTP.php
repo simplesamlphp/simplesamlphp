@@ -288,7 +288,6 @@ class HTTP
             $oldQuery = [];
             $url .= '?';
         } else {
-            /** @var string|false $oldQuery */
             $oldQuery = substr($url, $queryStart + 1);
             if ($oldQuery === false) {
                 $oldQuery = [];
@@ -298,7 +297,6 @@ class HTTP
             $url = substr($url, 0, $queryStart + 1);
         }
 
-        /** @var array $oldQuery */
         $query = array_merge($oldQuery, $parameters);
         $url .= http_build_query($query, '', '&');
 
@@ -500,14 +498,8 @@ class HTTP
 
         // data and headers
         if ($getHeaders) {
-            /**
-             * @psalm-suppress UndefinedVariable    Remove when Psalm >= 3.0.17
-             */
             if (!empty($http_response_header)) {
                 $headers = [];
-                /**
-                 * @psalm-suppress UndefinedVariable    Remove when Psalm >= 3.0.17
-                 */
                 foreach ($http_response_header as $h) {
                     if (preg_match('@^HTTP/1\.[01]\s+\d{3}\s+@', $h)) {
                         $headers = []; // reset
@@ -1206,7 +1198,6 @@ class HTTP
         if (version_compare(PHP_VERSION, '7.3.0', '>=')) {
             /* use the new options array for PHP >= 7.3 */
             if ($params['raw']) {
-                /** @psalm-suppress InvalidArgument  Remove when Psalm >= 3.4.10 */
                 $success = @setrawcookie(
                     $name,
                     $value,
@@ -1220,7 +1211,6 @@ class HTTP
                     ]
                 );
             } else {
-                /** @psalm-suppress InvalidArgument  Remove when Psalm >= 3.4.10 */
                 $success = @setcookie(
                     $name,
                     $value,
@@ -1311,7 +1301,7 @@ class HTTP
         $p = new Template($config, 'post.php');
         $p->data['destination'] = $destination;
         $p->data['post'] = $data;
-        $p->show();
+        $p->send();
         exit(0);
     }
 }

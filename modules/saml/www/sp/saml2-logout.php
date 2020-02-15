@@ -46,7 +46,6 @@ if ($idpEntityId === null) {
     throw new \SimpleSAML\Error\BadRequest('Received message on logout endpoint without issuer.');
 }
 
-/** @var \SimpleSAML\Module\saml\Auth\Source\SP $source */
 $spEntityId = $source->getEntityId();
 
 $metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();

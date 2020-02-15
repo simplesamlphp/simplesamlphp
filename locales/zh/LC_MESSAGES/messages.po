@@ -96,9 +96,6 @@ msgstr "当你处在调试模式中时，你将看到你正在发送的消息的
 msgid "{errors:descr_RESPONSESTATUSNOSUCCESS}"
 msgstr "身份提供者的应答存在错误（SAML应答状态码并没有成功）"
 
-msgid "{admin:metadata_shib13-idp}"
-msgstr "Shib 1.3 IdP 元信息"
-
 msgid "{login:help_text}"
 msgstr "太糟糕了！-没有你的用户名和密码你将不能访问该服务，也许有人能够帮助你，请咨询你所在大学的服务台"
 
@@ -185,9 +182,6 @@ msgstr "正在退出"
 
 msgid "{login:error_wrongpassword}"
 msgstr "错误的用户名或者密码"
-
-msgid "{admin:metaover_group_metadata.shib13-sp-remote}"
-msgstr "Shib 1.3 服务提供者（远程）"
 
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"
 msgstr "该身份提供者接受到了一个来自服务提供者的认证请求，但是在试图处理该请求的过程中发生了错误"
@@ -396,9 +390,6 @@ msgstr "正在发送消息"
 msgid "{errors:title_RESPONSESTATUSNOSUCCESS}"
 msgstr "从身份提供者收到一个错误"
 
-msgid "{admin:metadata_shib13-sp}"
-msgstr "Shib 1.3 SP 元信息"
-
 msgid "{admin:metaover_intro}"
 msgstr "想要查看SAML实体的详细情况，请点击SAML实体载入器"
 
@@ -465,9 +456,6 @@ msgstr "页面没有找到"
 msgid "{logout:logged_out_text}"
 msgstr "你已经退出了"
 
-msgid "{admin:metaover_group_metadata.shib13-sp-hosted}"
-msgstr "Shib 1.3 服务提供者（本地）"
-
 msgid "{admin:metadata_cert_intro}"
 msgstr "下载X509证书作为PEM编码的文件"
 
@@ -489,8 +477,11 @@ msgstr "没有找到给定的URL：%URL%"
 msgid "{errors:howto_text}"
 msgstr "这个错误可能是由于一些意想不到的行为或者是SimpleSAMLphp的配置错误导致的，请联系这个登录服务器的管理员并把上面的错误消息发送给他们"
 
-msgid "{admin:metaover_group_metadata.shib13-idp-hosted}"
-msgstr "Shib 1.3 认证提供者（本地）"
+msgid "{attributes:attribute_mobile}"
+msgstr "手机"
+
+msgid "{attributes:attribute_preferredlanguage}"
+msgstr "首选语言"
 
 msgid "{errors:descr_NOTVALIDCERT}"
 msgstr "你没有提交一个有效的证书"
@@ -521,9 +512,6 @@ msgstr "无证书"
 
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "丢失了退出消息"
-
-msgid "{admin:metaover_group_metadata.shib13-idp-remote}"
-msgstr "Shib 1.3 认证提供者（远程）"
 
 msgid "{errors:descr_CONFIG}"
 msgstr "SimpleSAMLphp出现配置错误"

@@ -7,6 +7,7 @@
 /www/assets/js/*.map
 /www/assets/css/*.css
 /www/assets/css/*.map
+.phpunit.result.cache
 
 !/config/.gitkeep
 !/metadata/.gitkeep

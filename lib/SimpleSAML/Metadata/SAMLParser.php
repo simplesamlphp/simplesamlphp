@@ -40,11 +40,11 @@ use SimpleSAML\Utils;
 use Webmozart\Assert\Assert;
 
 /**
- * This is class for parsing of SAML 1.x and SAML 2.0 metadata.
+ * This is class for parsing of SAML 2.0 metadata.
  *
  * Metadata is loaded by calling the static methods parseFile, parseString or parseElement.
  * These functions returns an instance of SAMLParser. To get metadata
- * from this object, use the methods getMetadata1xSP or getMetadata20SP.
+ * from this object, use the method getMetadata20SP.
  *
  * To parse a file which can contain a collection of EntityDescriptor or EntitiesDescriptor elements, use the
  * parseDescriptorsFile, parseDescriptorsString or parseDescriptorsElement methods. These functions will return
@@ -53,16 +53,6 @@ use Webmozart\Assert\Assert;
 
 class SAMLParser
 {
-    /**
-     * This is the list of SAML 1.x protocols.
-     *
-     * @var string[]
-     */
-    private static $SAML1xProtocols = [
-        'urn:oasis:names:tc:SAML:1.0:protocol',
-        'urn:oasis:names:tc:SAML:1.1:protocol',
-    ];
-
     /**
      * This is the list with the SAML 2.0 protocol.
      *
@@ -542,135 +532,6 @@ class SAMLParser
 
 
     /**
-     * This function returns the metadata for SAML 1.x SPs in the format SimpleSAMLphp expects.
-     * This is an associative array with the following fields:
-     * - 'entityid': The entity id of the entity described in the metadata.
-     * - 'AssertionConsumerService': String with the URL of the assertion consumer service which supports
-     *   the browser-post binding.
-     * - 'certData': X509Certificate for entity (if present).
-     *
-     * Metadata must be loaded with one of the parse functions before this function can be called.
-     *
-     * @return array|null An associative array with metadata or NULL if we are unable to
-     *   generate metadata for a SAML 1.x SP.
-     */
-    public function getMetadata1xSP()
-    {
-        $ret = $this->getMetadataCommon();
-        $ret['metadata-set'] = 'shib13-sp-remote';
-
-
-        // find SP information which supports one of the SAML 1.x protocols
-        $spd = $this->getSPDescriptors(self::$SAML1xProtocols);
-        if (count($spd) === 0) {
-            return null;
-        }
-
-        // we currently only look at the first SPDescriptor which supports SAML 1.x
-        $spd = $spd[0];
-
-        // add expire time to metadata
-        if (array_key_exists('expire', $spd)) {
-            $ret['expire'] = $spd['expire'];
-        }
-
-        // find the assertion consumer service endpoints
-        $ret['AssertionConsumerService'] = $spd['AssertionConsumerService'];
-
-        // add the list of attributes the SP should receive
-        if (array_key_exists('attributes', $spd)) {
-            $ret['attributes'] = $spd['attributes'];
-        }
-        if (array_key_exists('attributes.required', $spd)) {
-            $ret['attributes.required'] = $spd['attributes.required'];
-        }
-        if (array_key_exists('attributes.NameFormat', $spd)) {
-            $ret['attributes.NameFormat'] = $spd['attributes.NameFormat'];
-        }
-
-        // add name & description
-        if (array_key_exists('name', $spd)) {
-            $ret['name'] = $spd['name'];
-        }
-        if (array_key_exists('description', $spd)) {
-            $ret['description'] = $spd['description'];
-        }
-
-        // add public keys
-        if (!empty($spd['keys'])) {
-            $ret['keys'] = $spd['keys'];
-        }
-
-        // add extensions
-        $this->addExtensions($ret, $spd);
-
-        // prioritize mdui:DisplayName as the name if available
-        if (!empty($ret['UIInfo']['DisplayName'])) {
-            $ret['name'] = $ret['UIInfo']['DisplayName'];
-        }
-
-        return $ret;
-    }
-
-
-    /**
-     * This function returns the metadata for SAML 1.x IdPs in the format SimpleSAMLphp expects.
-     * This is an associative array with the following fields:
-     * - 'entityid': The entity id of the entity described in the metadata.
-     * - 'name': Auto generated name for this entity. Currently set to the entity id.
-     * - 'SingleSignOnService': String with the URL of the SSO service which supports the redirect binding.
-     * - 'SingleLogoutService': String with the URL where we should send logout requests/responses.
-     * - 'certData': X509Certificate for entity (if present).
-     * - 'certFingerprint': Fingerprint of the X509Certificate from the metadata. (deprecated)
-     *
-     * Metadata must be loaded with one of the parse functions before this function can be called.
-     *
-     * @return array|null An associative array with metadata or NULL if we are unable to
-     *   generate metadata for a SAML 1.x IdP.
-     */
-    public function getMetadata1xIdP()
-    {
-        $ret = $this->getMetadataCommon();
-        $ret['metadata-set'] = 'shib13-idp-remote';
-
-        // find IdP information which supports the SAML 1.x protocol
-        $idp = $this->getIdPDescriptors(self::$SAML1xProtocols);
-        if (count($idp) === 0) {
-            return null;
-        }
-
-        // we currently only look at the first IDP descriptor which supports SAML 1.x
-        $idp = $idp[0];
-
-        // fdd expire time to metadata
-        if (array_key_exists('expire', $idp)) {
-            $ret['expire'] = $idp['expire'];
-        }
-
-        // find the SSO service endpoints
-        $ret['SingleSignOnService'] = $idp['SingleSignOnService'];
-
-        // find the ArtifactResolutionService endpoint
-        $ret['ArtifactResolutionService'] = $idp['ArtifactResolutionService'];
-
-        // add public keys
-        if (!empty($idp['keys'])) {
-            $ret['keys'] = $idp['keys'];
-        }
-
-        // add extensions
-        $this->addExtensions($ret, $idp);
-
-        // prioritize mdui:DisplayName as the name if available
-        if (!empty($ret['UIInfo']['DisplayName'])) {
-            $ret['name'] = $ret['UIInfo']['DisplayName'];
-        }
-
-        return $ret;
-    }
-
-
-    /**
      * This function returns the metadata for SAML 2.0 SPs in the format SimpleSAMLphp expects.
      * This is an associative array with the following fields:
      * - 'entityid': The entity id of the entity described in the metadata.
@@ -781,7 +642,6 @@ class SAMLParser
      *   the 'SingleLogoutService' endpoint.
      * - 'NameIDFormats': The name ID formats this IdP supports.
      * - 'certData': X509Certificate for entity (if present).
-     * - 'certFingerprint': Fingerprint of the X509Certificate from the metadata. (deprecated)
      *
      * Metadata must be loaded with one of the parse functions before this function can be called.
      *
@@ -1079,7 +939,6 @@ class SAMLParser
                         // only saml:Attribute are currently supported here. The specifications also allows
                         // saml:Assertions, which more complex processing
                         if ($attr instanceof Attribute) {
-                            /** @psalm-var string|null $attrName   Remove for SSP 2.0 */
                             $attrName = $attr->getName();
                             $attrNameFormat = $attr->getNameFormat();
                             $attrValue = $attr->getAttributeValue();
@@ -1473,75 +1332,6 @@ class SAMLParser
             }
         }
         Logger::debug('Could not validate signature');
-        return false;
-    }
-
-
-    /**
-     * @param string $algorithm
-     * @param string $data
-     * @throws \UnexpectedValueException
-     * @return string
-     */
-    private function computeFingerprint(string $algorithm, string $data): string
-    {
-        switch ($algorithm) {
-            case XMLSecurityDSig::SHA1:
-                $algo = 'SHA1';
-                break;
-            case XMLSecurityDSig::SHA256:
-                $algo = 'SHA256';
-                break;
-            case XMLSecurityDSig::SHA384:
-                $algo = 'SHA384';
-                break;
-            case XMLSecurityDSig::SHA512:
-                $algo = 'SHA512';
-                break;
-            default:
-                $known_opts = implode(", ", [
-                    XMLSecurityDSig::SHA1,
-                    XMLSecurityDSig::SHA256,
-                    XMLSecurityDSig::SHA384,
-                    XMLSecurityDSig::SHA512,
-                ]);
-                throw new \UnexpectedValueException(
-                    "Unsupported hashing function {$algorithm}. " .
-                    "Known options: [{$known_opts}]"
-                );
-        }
-        return hash($algo, $data);
-    }
-
-
-    /**
-     * This function checks if this EntityDescriptor was signed with a certificate with the
-     * given fingerprint.
-     *
-     * @param string $fingerprint Fingerprint of the certificate which should have been used to sign this
-     *                      EntityDescriptor.
-     * @param string $algorithm Algorithm used to compute the fingerprint of the signing certicate.
-     *
-     * @return boolean True if it was signed with the certificate with the given fingerprint, false otherwise.
-     */
-    public function validateFingerprint($fingerprint, $algorithm)
-    {
-        Assert::string($fingerprint);
-
-        $fingerprint = strtolower(str_replace(":", "", $fingerprint));
-
-        $candidates = [];
-        foreach ($this->validators as $validator) {
-            foreach ($validator->getValidatingCertificates() as $cert) {
-                $decoded_cert = base64_decode($cert);
-                $fp = $this->computeFingerprint($algorithm, $decoded_cert);
-                $candidates[] = $fp;
-                if ($fp === $fingerprint) {
-                    return true;
-                }
-            }
-        }
-        Logger::debug('Fingerprint was [' . $fingerprint . '] not one of [' . join(', ', $candidates) . ']');
         return false;
     }
 }

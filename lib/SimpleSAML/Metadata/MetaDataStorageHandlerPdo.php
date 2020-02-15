@@ -44,10 +44,6 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
         'saml20-idp-hosted',
         'saml20-idp-remote',
         'saml20-sp-remote',
-        'shib13-idp-hosted',
-        'shib13-idp-remote',
-        'shib13-sp-hosted',
-        'shib13-sp-remote'
     ];
 
 
@@ -134,7 +130,6 @@ class MetaDataStorageHandlerPdo extends MetaDataStorageSource
             $metadataSet = [];
         }
 
-        /** @var array $metadataSet */
         foreach ($metadataSet as $entityId => &$entry) {
             $entry = $this->updateEntityID($set, $entityId, $entry);
         }

@@ -18,10 +18,6 @@
                 <td>SAML 2.0 IdP</td>
                 <td>{%- if enablematrix.saml20idp %}{{ icon_enabled|raw }}{% else %}{{ icon_disabled|raw }}{% endif -%}</td>
             </tr>
-	    <tr class="{%- if enablematrix.shib13idp %}enabled{% else %}disabled{% endif -%}">
-                <td>Shib 1.3 IdP</td>
-                <td>{%- if enablematrix.shib13idp %}{{ icon_enabled|raw }}{% else %}{{ icon_disabled|raw }}{% endif -%}</td>
-            </tr>
         </table>
     </div>
 

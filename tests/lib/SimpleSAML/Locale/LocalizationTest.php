@@ -13,7 +13,7 @@ class LocalizationTest extends TestCase
     /**
      * @return void
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         // Localization/Language code attempts to load a cookie, and looks in the config for a name of the cookie
         Configuration::loadFromArray([], '[ARRAY]', 'simplesaml');

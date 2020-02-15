@@ -32,13 +32,13 @@ script:
 jobs:
   fast_finish: true
   allow_failures:
-    - php: 7.2
+    - php: 7.3
       env: Psalm
-    - php: 7.2
+    - php: 7.3
       env: Security check (composer install)
-    - php: 7.2
+    - php: 7.3
       env: Security check (composer update)
-    - php: 7.2
+    - php: 7.3
       env: PHP Codesniffer
 
   include:
@@ -117,6 +117,7 @@ jobs:
         - composer update
       script:
         - vendor/bin/psalm
+        - vendor/bin/psalter --issues=UnnecessaryVarAnnotation --dry-run
 
     - stage: quality
       php: 7.3

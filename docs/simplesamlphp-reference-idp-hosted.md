@@ -3,8 +3,7 @@ IdP hosted metadata reference
 
 <!-- {{TOC}} -->
 
-This is a reference for the metadata files
-`metadata/saml20-idp-hosted.php` and `metadata/shib13-idp-hosted.php`.
+This is a reference for the metadata file `metadata/saml20-idp-hosted.php`.
 Both files have the following format:
 
     <?php
@@ -396,28 +395,6 @@ messages from that SP.
      'redirect.sign' => true,
 
 
-Shibboleth 1.3 options
-----------------------
-
-The following options for Shibboleth 1.3 IdP's are avaiblable:
-
-`scopedattributes`
-:   Array with names of attributes which should be scoped. Scoped
-    attributes will receive a `Scope`-attribute on the
-    `AttributeValue`-element. The value of the Scope-attribute will
-    be taken from the attribute value:
-
-:   `<AttributeValue>someuser@example.org</AttributeValue>`
-
-:   will be transformed into
-
-:   `<AttributeValue Scope="example.org">someuser</AttributeValue>`
-
-:   By default, no attributes are scoped. Note that this option also
-    exists in the SP-remote metadata, and any value in the SP-remote
-    metadata overrides the one configured in the IdP metadata.
-
-
 Metadata extensions
 -------------------
 
@@ -434,7 +411,7 @@ Examples
 
 These are some examples of IdP metadata
 
-### Minimal SAML 2.0 / Shibboleth 1.3 IdP ###
+### Minimal SAML 2.0 IdP ###
 
     <?php
     /*

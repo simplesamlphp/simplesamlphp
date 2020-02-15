@@ -4,7 +4,6 @@
     useDocblockTypes="true"
     totallyTyped="false"
     hideExternalErrors="true"
-    allowCoercionFromStringToClassConst="true"
     allowStringToStandInForClass="true"
 >
     <projectFiles>
@@ -23,9 +22,8 @@
 
         <directory name="tests" />
 
-        <!-- Ignore deprecated classes -->
+        <!-- Ignore certain directories -->
         <ignoreFiles>
-            <directory name="tests/Utils/Stubs" />
             <directory name="vendor" />
         </ignoreFiles>
     </projectFiles>

@@ -46,4 +46,4 @@ $t->data['links_auth'] = $links_auth;
 $t->data['links_federation'] = $links_federation;
 $t->data['header'] = $t->getTranslator()->t('{core:frontpage:page_title}');
 
-$t->show();
+$t->send();

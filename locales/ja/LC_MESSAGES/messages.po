@@ -101,9 +101,6 @@ msgstr "現在はデバッグモードです。あなたは送信するメッセ
 msgid "{errors:descr_RESPONSESTATUSNOSUCCESS}"
 msgstr "アイデンティティプロバイダがエラーを受けとりました。(SAMLレスポンスに失敗したステータスコード)"
 
-msgid "{admin:metadata_shib13-idp}"
-msgstr "Shib 1.3 IdPメタデータ"
-
 msgid "{login:help_text}"
 msgstr ""
 "ユーザー名とパスワードがないと、サービスにアクセスするための認証ができません。"
@@ -192,9 +189,6 @@ msgstr "ログアウト中…"
 
 msgid "{login:error_wrongpassword}"
 msgstr "ユーザー名かパスワードが間違っています。"
-
-msgid "{admin:metaover_group_metadata.shib13-sp-remote}"
-msgstr "Shib 1.3サービスプロバイダ(リモート)"
 
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"
 msgstr "このアイデンティティプロバイダはサービスプロバイダからの認証リクエストを受け付けましたが、リクエストの処理中にエラーが発生しました。"
@@ -405,9 +399,6 @@ msgstr "メッセージを送信中"
 msgid "{errors:title_RESPONSESTATUSNOSUCCESS}"
 msgstr "アイデンティティプロバイダからエラーを受信しました"
 
-msgid "{admin:metadata_shib13-sp}"
-msgstr "Shib 1.3 SPメタデータ"
-
 msgid "{admin:metaover_intro}"
 msgstr "SAMLエンティティの詳細を確認するためには、SAMLエンティティヘッダをクリックして下さい。"
 
@@ -474,9 +465,6 @@ msgstr "ページが見つかりません"
 msgid "{logout:logged_out_text}"
 msgstr "ログアウトしました。"
 
-msgid "{admin:metaover_group_metadata.shib13-sp-hosted}"
-msgstr "Shib 1.3サービスプロバイダ(ホスト)"
-
 msgid "{admin:debug_sending_message_msg_title}"
 msgstr "メッセージ"
 
@@ -495,8 +483,8 @@ msgstr "与えられたページは見つかりませんでした。URLは: %URL
 msgid "{errors:howto_text}"
 msgstr "このエラーは恐らく未知の問題、またはSimpleSAMLphpの設定ミスです。ログインサービスの管理者に上記のエラーメッセージを連絡して下さい。"
 
-msgid "{admin:metaover_group_metadata.shib13-idp-hosted}"
-msgstr "Shib 1.3アイデンティティプロバイダ(ホスト)"
+msgid "{attributes:attribute_preferredlanguage}"
+msgstr "言語"
 
 msgid "{errors:descr_NOTVALIDCERT}"
 msgstr "正当な証明書が提示されませんでした。"
@@ -527,9 +515,6 @@ msgstr "証明書がありません"
 
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "ログアウト情報を失いました"
-
-msgid "{admin:metaover_group_metadata.shib13-idp-remote}"
-msgstr "Shib 1.3アイデンティティプロバイダ(リモート)"
 
 msgid "{errors:descr_CONFIG}"
 msgstr "SimpleSAMLphpの設定にミスがあるようです。"

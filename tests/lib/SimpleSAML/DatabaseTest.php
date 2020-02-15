@@ -5,6 +5,9 @@ declare(strict_types=1);
 namespace SimpleSAML\Test;
 
 use PHPUnit\Framework\TestCase;
+use ReflectionClass;
+use ReflectionMethod;
+use ReflectionProperty;
 use SimpleSAML\Configuration;
 use SimpleSAML\Database;
 
@@ -55,7 +58,7 @@ class DatabaseTest extends TestCase
      * @covers SimpleSAML\Database::connect
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         $config = [
             'database.dsn'        => 'sqlite::memory:',
@@ -73,9 +76,6 @@ class DatabaseTest extends TestCase
         $this->assertEquals($config['database.dsn'], $this->config->getString('database.dsn'));
 
         $this->db = Database::getInstance($this->config);
-
-        // Ensure that we have a functional database class.
-        $this->assertInstanceOf(Database::class, $this->db);
     }
 
 
@@ -184,9 +184,13 @@ class DatabaseTest extends TestCase
      */
     public function slaves()
     {
-        $getSlave = self::getMethod('getSlave');
+        $ref = new ReflectionClass($this->db);
+        $dbMaster = $ref->getProperty('dbMaster');
+        $dbMaster->setAccessible(true);
+        $master = spl_object_hash($dbMaster->getValue($this->db));
 
-        $master = spl_object_hash(\PHPUnit\Framework\Assert::readAttribute($this->db, 'dbMaster'));
+        $getSlave = $ref->getMethod('getSlave');
+        $getSlave->setAccessible(true);
         $slave = spl_object_hash($getSlave->invokeArgs($this->db, []));
 
         $this->assertTrue(($master == $slave), "getSlave should have returned the master database object");
@@ -209,7 +213,13 @@ class DatabaseTest extends TestCase
         $sspConfiguration = new Configuration($config, "test/SimpleSAML/DatabaseTest.php");
         $msdb = Database::getInstance($sspConfiguration);
 
-        $slaves = \PHPUnit\Framework\Assert::readAttribute($msdb, 'dbSlaves');
+        $ref = new ReflectionClass($msdb);
+        $dbSlaves = $ref->getProperty('dbSlaves');
+        $dbSlaves->setAccessible(true);
+        $slaves = $dbSlaves->getValue($msdb);
+
+        $getSlave = $ref->getMethod('getSlave');
+        $getSlave->setAccessible(true);
         $gotSlave = spl_object_hash($getSlave->invokeArgs($msdb, []));
 
         $this->assertEquals(
@@ -252,7 +262,6 @@ class DatabaseTest extends TestCase
             "CREATE TABLE IF NOT EXISTS $table (ssp_key INT(16) NOT NULL, ssp_value TEXT NOT NULL)"
         );
 
-        /** @var \PDOStatement $query1 */
         $query1 = $this->db->read("SELECT * FROM $table");
         $this->assertEquals(0, $query1->fetch(), "Table $table is not empty when it should be.");
 
@@ -264,7 +273,6 @@ class DatabaseTest extends TestCase
         );
         $this->assertEquals(1, $stmt, "Could not insert data into $table.");
 
-        /** @var \PDOStatement $query2 */
         $query2 = $this->db->read("SELECT * FROM $table WHERE ssp_key = :ssp_key", ['ssp_key' => $ssp_key]);
         $data = $query2->fetch();
         $this->assertEquals($data['ssp_value'], $ssp_value, "Inserted data doesn't match what is in the database");
@@ -303,7 +311,7 @@ class DatabaseTest extends TestCase
     /**
      * @return void
      */
-    public function tearDown()
+    public function tearDown(): void
     {
         $table = $this->db->applyPrefix("sspdbt");
         $this->db->write("DROP TABLE IF EXISTS $table");

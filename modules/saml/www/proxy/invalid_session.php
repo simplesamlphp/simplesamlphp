@@ -74,4 +74,4 @@ if (array_key_exists('name', $spmd)) {
     $template->data['sp_name'] = $spmd['entityid'];
 }
 
-$template->show();
+$template->send();

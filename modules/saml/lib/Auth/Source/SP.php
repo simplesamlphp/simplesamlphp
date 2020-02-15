@@ -18,7 +18,6 @@ use SimpleSAML\Module;
 use SimpleSAML\Session;
 use SimpleSAML\Store;
 use SimpleSAML\Utils;
-use SimpleSAML\XML\Shib13;
 use Webmozart\Assert\Assert;
 
 class SP extends \SimpleSAML\Auth\Source
@@ -306,14 +305,6 @@ class SP extends \SimpleSAML\Auth\Source
             Logger::debug('getIdpMetadata: ' . $e->getMessage());
         }
 
-        // Not found in saml20-idp-remote, look in shib13-idp-remote
-        try {
-            return $metadataHandler->getMetaDataConfig($entityId, 'shib13-idp-remote');
-        } catch (\Exception $e) {
-            // Metadata wasn't found
-            Logger::debug('getIdpMetadata: ' . $e->getMessage());
-        }
-
         // Not found
         throw new Error\Exception('Could not find the metadata of an IdP with entity ID ' .
             var_export($entityId, true));
@@ -454,45 +445,6 @@ class SP extends \SimpleSAML\Auth\Source
             ];
         }
         return $endpoints;
-    }
-
-
-    /**
-     * Send a SAML1 SSO request to an IdP.
-     *
-     * @param \SimpleSAML\Configuration $idpMetadata  The metadata of the IdP.
-     * @param array $state  The state array for the current authentication.
-     * @return void
-     * @deprecated will be removed in a future version
-     */
-    private function startSSO1(Configuration $idpMetadata, array $state)
-    {
-        $idpEntityId = $idpMetadata->getString('entityid');
-
-        $state['saml:idp'] = $idpEntityId;
-
-        $ar = new Shib13\AuthnRequest();
-        $ar->setIssuer($this->entityId);
-
-        $id = Auth\State::saveState($state, 'saml:sp:sso');
-        $ar->setRelayState($id);
-
-        $useArtifact = $idpMetadata->getBoolean('saml1.useartifact', null);
-        if ($useArtifact === null) {
-            $useArtifact = $this->metadata->getBoolean('saml1.useartifact', false);
-        }
-
-        if ($useArtifact) {
-            $shire = Module::getModuleURL('saml/sp/saml1-acs.php/' . $this->authId . '/artifact');
-        } else {
-            $shire = Module::getModuleURL('saml/sp/saml1-acs.php/' . $this->authId);
-        }
-
-        $url = $ar->createRedirect($idpEntityId, $shire);
-
-        Logger::debug('Starting SAML 1 SSO to ' . var_export($idpEntityId, true) .
-            ' from ' . var_export($this->entityId, true) . '.');
-        Utils\HTTP::redirectTrustedURL($url);
     }
 
 
@@ -724,9 +676,6 @@ class SP extends \SimpleSAML\Auth\Source
 
         $type = $idpMetadata->getString('metadata-set');
         switch ($type) {
-            case 'shib13-idp-remote':
-                $this->startSSO1($idpMetadata, $state);
-                Assert::true(false); // Should not return
             case 'saml20-idp-remote':
                 $this->startSSO2($idpMetadata, $state);
                 Assert::true(false); // Should not return
@@ -926,7 +875,7 @@ class SP extends \SimpleSAML\Auth\Source
      * - 'SPMetadata': an array with the metadata of this local SP.
      *
      * @return void
-     * @throws \SimpleSAML\Error\NoPassive In case the authentication request was passive.
+     * @throws \SimpleSAML\Module\saml\Error\NoPassive In case the authentication request was passive.
      */
     public static function askForIdPChange(array &$state)
     {

@@ -191,7 +191,7 @@ NOWDOC;
     /**
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->root = vfsStream::setup(
             self::ROOTDIRNAME,
@@ -217,7 +217,7 @@ NOWDOC;
     /**
      * @return void
      */
-    public function tearDown()
+    public function tearDown(): void
     {
         $this->clearInstance($this->config, Configuration::class, []);
     }

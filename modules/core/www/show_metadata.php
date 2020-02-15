@@ -15,7 +15,7 @@ if (!array_key_exists('set', $_REQUEST)) {
 if (
     !in_array(
         $_REQUEST['set'],
-        ['saml20-idp-remote', 'saml20-sp-remote', 'shib13-idp-remote', 'shib13-sp-remote'],
+        ['saml20-idp-remote', 'saml20-sp-remote'],
         true
     )
 ) {
@@ -36,4 +36,4 @@ $t->data['entityid'] = $m['metadata-index'];
 unset($m['metadata-index']);
 $t->data['metadata'] = var_export($m, true);
 
-$t->show();
+$t->send();

@@ -95,7 +95,6 @@ if ($config->getBoolean('admin.checkforupdates', true) && $current !== 'master')
 
 $enablematrix = [
     'saml20idp' => $config->getBoolean('enable.saml20-idp', false),
-    'shib13idp' => $config->getBoolean('enable.shib13-idp', false),
 ];
 
 
@@ -200,4 +199,4 @@ $t->data['requiredmap'] = [
 $t->data['version'] = $config->getVersion();
 $t->data['directory'] = dirname(dirname(dirname(dirname(__FILE__))));
 
-$t->show();
+$t->send();

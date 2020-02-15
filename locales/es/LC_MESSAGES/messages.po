@@ -120,9 +120,6 @@ msgstr ""
 "El IdP respondió a la solicitud con un error. (El código de estado en la "
 "respuesta SAML no fue exitoso)"
 
-msgid "{admin:metadata_shib13-idp}"
-msgstr "Metadatos IdP Shib 1.3"
-
 msgid "{login:help_text}"
 msgstr ""
 "&iexcl;Muy mal! - Sin su nombre de usuario y su clave de acceso usted no "
@@ -229,9 +226,6 @@ msgstr "Desconectando..."
 
 msgid "{login:error_wrongpassword}"
 msgstr "Nombre de usuario o contraseña erróneos"
-
-msgid "{admin:metaover_group_metadata.shib13-sp-remote}"
-msgstr "Proveedor de Servicio Shib 1.3 (remoto)"
 
 msgid "{login:remember_username}"
 msgstr "Recordar mi nombre de usuario"
@@ -481,9 +475,6 @@ msgstr "Enviando mensaje"
 msgid "{errors:title_RESPONSESTATUSNOSUCCESS}"
 msgstr "Hubo un error por parte del IdP"
 
-msgid "{admin:metadata_shib13-sp}"
-msgstr "Metadatos SP Shib 1.3"
-
 msgid "{admin:metaover_intro}"
 msgstr ""
 "Para ver los detalles de una entidad SAML, haga click en la cabecera de "
@@ -562,9 +553,6 @@ msgstr "Página no encontrada"
 msgid "{logout:logged_out_text}"
 msgstr "Ha sido desconectado. Gracias por usar este servicio."
 
-msgid "{admin:metaover_group_metadata.shib13-sp-hosted}"
-msgstr "Proveedor de Servicio Shib 1.3 (local)"
-
 msgid "{admin:metadata_cert_intro}"
 msgstr "Descargar los certificados X509 en formato PEM."
 
@@ -599,8 +587,8 @@ msgstr ""
 msgid "{admin:metadata_adfs-idp}"
 msgstr "Metadatos IdP ADFS"
 
-msgid "{admin:metaover_group_metadata.shib13-idp-hosted}"
-msgstr "Proveedor de Identidad Shib 1.3 (local)"
+msgid "{attributes:attribute_preferredlanguage}"
+msgstr "Idioma preferido"
 
 msgid "{errors:descr_NOTVALIDCERT}"
 msgstr "No se ha podido validar el certificado recibido"
@@ -637,9 +625,6 @@ msgstr "No certificado"
 
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "Se perdió la información para cerrar la sesión"
-
-msgid "{admin:metaover_group_metadata.shib13-idp-remote}"
-msgstr "Proveedor de Identidad Shib 1.3 (remoto)"
 
 msgid "{errors:descr_CONFIG}"
 msgstr "Parece que hay un error en la configuración de SimpleSAMLphp"

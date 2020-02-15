@@ -23,7 +23,7 @@ class SQLTest extends TestCase
     /**
      * @return void
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         Configuration::loadFromArray([
             'store.type'                    => 'sql',
@@ -43,7 +43,7 @@ class SQLTest extends TestCase
     {
         $store = Store::getInstance();
 
-        $this->assertInstanceOf('SimpleSAML\Store\SQL', $store);
+        $this->assertInstanceOf(Store\SQL::class, $store);
     }
 
 
@@ -199,7 +199,7 @@ class SQLTest extends TestCase
     /**
      * @return void
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $config = Configuration::getInstance();
 

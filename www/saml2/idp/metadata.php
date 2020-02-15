@@ -236,7 +236,7 @@ try {
         $t->data['metaurl'] = HTTP::getSelfURLNoQuery();
         $t->data['metadata'] = htmlspecialchars($metaxml);
         $t->data['metadataflat'] = htmlspecialchars($metaflat);
-        $t->show();
+        $t->send();
     } else {
         header('Content-Type: application/xml');
 
