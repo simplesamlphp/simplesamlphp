@@ -117,6 +117,7 @@ jobs:
         - composer update
       script:
         - vendor/bin/psalm
+        - vendor/bin/psalter --issues=UnnecessaryVarAnnotation --dry-run
 
     - stage: quality
       php: 7.3
