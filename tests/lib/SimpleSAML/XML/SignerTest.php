@@ -75,7 +75,7 @@ NOWDOC;
     {
         $res = new Signer([]);
 
-        $this->assertNotNull($res);
+        $this->addToAssertionCount(1);
     }
 
 

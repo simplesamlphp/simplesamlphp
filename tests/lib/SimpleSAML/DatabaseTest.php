@@ -73,9 +73,6 @@ class DatabaseTest extends TestCase
         $this->assertEquals($config['database.dsn'], $this->config->getString('database.dsn'));
 
         $this->db = Database::getInstance($this->config);
-
-        // Ensure that we have a functional database class.
-        $this->assertInstanceOf(Database::class, $this->db);
     }
 
 

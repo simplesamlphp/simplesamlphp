@@ -281,7 +281,7 @@ if (array_key_exists('output', $_REQUEST) && $_REQUEST['output'] == 'xhtml') {
     $t->data['metadataflat'] = '$metadata[' . var_export($entityId, true)
         . '] = ' . var_export($metaArray20, true) . ';';
     $t->data['metaurl'] = $source->getMetadataURL();
-    $t->show();
+    $t->send();
 } else {
     header('Content-Type: application/samlmetadata+xml');
     echo($xml);
