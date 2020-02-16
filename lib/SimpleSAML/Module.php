@@ -70,6 +70,16 @@ class Module
     public static $modules = [];
 
     /**
+     * A list containing the modules that are enabled by default, unless specifically disabled
+     *
+     * @var array
+     */
+    public static $core_modules = [
+        'core' => true,
+        'saml' => true
+    ];
+
+    /**
      * A cache containing specific information for modules, like whether they are enabled or not, or their hooks.
      *
      * @var array
@@ -109,7 +119,7 @@ class Module
     public static function isModuleEnabled(string $module): bool
     {
         $config = Configuration::getOptionalConfig();
-        return self::isModuleEnabledWithConf($module, $config->getArray('module.enable', []));
+        return self::isModuleEnabledWithConf($module, $config->getArray('module.enable', $this->core_modules));
     }
 
 
@@ -342,8 +352,10 @@ class Module
             throw new \Exception("Invalid module.enable value for the '$module' module.");
         }
 
-        self::$module_info[$module]['enabled'] = false;
-        return false;
+        $core_module =  array_key_exists($module, $this->core_modules) ? true : false;
+
+        self::$module_info[$module]['enabled'] = $core_module ? true : false;
+        return $core_module ? true : false;
     }
 
 
