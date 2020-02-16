@@ -18,7 +18,7 @@ use Webmozart\Assert\Assert;
  *
  * To adapt this to your own web site, you should:
  * 1. Create your own module directory.
- * 2. Add a file "default-enable" to that directory.
+ * 2. Enable to module in the config by adding '<module-dir>' => true to the $config['module.enable'] array.
  * 3. Copy this file and modules/exampleauth/www/resume.php to their corresponding
  *    location in the new module.
  * 4. Replace all occurrences of "exampleauth" in this file and in resume.php with the name of your module.

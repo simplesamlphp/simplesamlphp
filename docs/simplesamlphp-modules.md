@@ -46,23 +46,13 @@ Each SimpleSAMLphp module is stored in a directory under the
 `modules`-directory. The module directory contains the following
 directories and files:
 
-default-disable
-:   The presence of this file indicates that the module is disabled
-    by default. It can be enabled using the `module.enable`
-    option in `config.php`.
-
-default-enable
-:   The presence of this file indicates that the module is enabled
-    by default. It can be disabled using the `module.enable`
-    option in `config.php`.
-
-dictionaries
+locales
 :   This directory contains dictionaries which belong to this
     module. To use a dictionary stored in a module, the extended tag
     names can be used:
     `{<module name>:<dictionary name>:<tag name>}` For
     example, `{example:login:hello}` will look up `hello` in
-    `modules/example/dictionaries/login.php`.
+    `modules/example/locales/<lang>/login.po`.
 
 :   It is also possible to specify
     `<module name>:<dictionary name>` as the default

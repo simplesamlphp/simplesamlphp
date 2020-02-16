@@ -342,24 +342,6 @@ class Module
             throw new \Exception("Invalid module.enable value for the '$module' module.");
         }
 
-        if (
-            assert_options(ASSERT_ACTIVE)
-            && !file_exists($moduleDir . '/default-enable')
-            && !file_exists($moduleDir . '/default-disable')
-        ) {
-            Logger::error("Missing default-enable or default-disable file for the module $module");
-        }
-
-        if (file_exists($moduleDir . '/enable')) {
-            self::$module_info[$module]['enabled'] = true;
-            return true;
-        }
-
-        if (!file_exists($moduleDir . '/disable') && file_exists($moduleDir . '/default-enable')) {
-            self::$module_info[$module]['enabled'] = true;
-            return true;
-        }
-
         self::$module_info[$module]['enabled'] = false;
         return false;
     }
