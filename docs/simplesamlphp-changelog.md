@@ -6,6 +6,15 @@ SimpleSAMLphp changelog
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
+## Version 2.0.0
+
+  * Support for certificate fingerprints was removed
+  * Support for SAML 1.1 was removed
+  * Old-style PHP templates were removed
+  * Old-style dictionaries were removed
+
+Released TBD
+
 ## Version 1.19.0
 
 Released TBD
