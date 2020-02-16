@@ -119,7 +119,7 @@ class Module
     public static function isModuleEnabled(string $module): bool
     {
         $config = Configuration::getOptionalConfig();
-        return self::isModuleEnabledWithConf($module, $config->getArray('module.enable', $this->core_modules));
+        return self::isModuleEnabledWithConf($module, $config->getArray('module.enable', self::$core_modules));
     }
 
 
@@ -352,7 +352,7 @@ class Module
             throw new \Exception("Invalid module.enable value for the '$module' module.");
         }
 
-        $core_module =  array_key_exists($module, $this->core_modules) ? true : false;
+        $core_module =  array_key_exists($module, self::$core_modules) ? true : false;
 
         self::$module_info[$module]['enabled'] = $core_module ? true : false;
         return $core_module ? true : false;
