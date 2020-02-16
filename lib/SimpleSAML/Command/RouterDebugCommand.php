@@ -26,7 +26,7 @@ class RouterDebugCommand extends Command
 
 
     /**
-     * @param \Symfony\Component\Routing\RouterInterface
+     * @param \Symfony\Component\Routing\RouterInterface $router
      *
      * @throws \Symfony\Component\Console\Exception\LogicException When the command name is empty
      */
