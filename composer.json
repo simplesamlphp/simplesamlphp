@@ -58,8 +58,7 @@
         "symfony/routing": "^4.0",
         "symfony/yaml": "^4.0",
         "twig/twig": "~2.0",
-        "webmozart/assert": "~1.7",
-        "whitehat101/apr1-md5": "~1.0"
+        "webmozart/assert": "~1.7"
     },
     "require-dev": {
         "ext-curl": "*",
