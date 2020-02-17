@@ -206,8 +206,14 @@ class BuiltInServer
             CURLOPT_HEADER => 1,
         ]);
         curl_setopt_array($ch, $curlopts);
-        /** @var mixed $resp */
+
+        /** @psalm-var array|false $resp  RETURNTRANSFER was set to true */
         $resp = curl_exec($ch);
+
+        if ($resp === false) {
+            throw new \Exception("Unable to contact: " . $url);
+        }
+
         $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         list($header, $body) = explode("\r\n\r\n", $resp, 2);
         $raw_headers = explode("\r\n", $header);
