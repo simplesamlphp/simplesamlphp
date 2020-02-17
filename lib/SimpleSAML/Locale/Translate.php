@@ -254,8 +254,8 @@ class Translate
      * used ONLY for variable data, or when the translation is already provided by an external source, as a database
      * or in metadata.
      *
-     * @param string       $tag The tag that has a translation
-     * @param array|string $translation The translation array
+     * @param string $tag The tag that has a translation
+     * @param mixed  $translation The translation array
      *
      * @throws \Exception If $translation is neither a string nor an array.
      * @return void
