@@ -1151,6 +1151,9 @@ class HTTP
             $expire = time() + $params['lifetime'];
         }
 
+	// Sanitize the same site value for browers which reject it.
+	$params['samesite'] = \FullFatThings\SameSiteException\SameSiteException::getSafeString($params['samesite']);
+
         if ($params['samesite'] !== null and !preg_match('/;\s+samesite/i', $params['path'])) {
             $params['path'] .= '; SameSite='.$params['samesite'];
         }

@@ -76,6 +76,9 @@ class SessionHandlerPHP extends SessionHandler
 
         $params = $this->getCookieParams();
 
+	// Sanitize the samesite value for browsers which reject it.
+        $params['samesite'] = \FullFatThings\SameSiteException\SameSiteException::getSafeString($params['samesite']);
+
         if (!headers_sent()) {
             /* in older versions of PHP we need a nasty hack to set RFC6265bis SameSite attribute */
             if ($params['samesite'] !== null and !preg_match('/;\s+samesite/i', $params['path'])) {
