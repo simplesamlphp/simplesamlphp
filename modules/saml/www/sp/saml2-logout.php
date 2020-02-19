@@ -125,7 +125,6 @@ if ($message instanceof \SAML2\LogoutResponse) {
         \SimpleSAML\Logger::warning('Logged out of ' . $numLoggedOut . ' of ' . count($sessionIndexes) . ' sessions.');
     }
 
-    /** @var array $dst */
     $dst = $idpMetadata->getEndpointPrioritizedByBinding(
         'SingleLogoutService',
         [
@@ -142,8 +141,9 @@ if ($message instanceof \SAML2\LogoutResponse) {
             $dst = $dst['Location'];
         }
         $binding->setDestination($dst);
+    } else {
+        $lr->setDestination($dst['Location']);
     }
-    $lr->setDestination($dst);
 
     $binding->send($lr);
 } else {

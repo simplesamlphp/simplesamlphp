@@ -22,7 +22,7 @@ class Configuration implements Utils\ClearableState
      *
      * @var string
      */
-    const REQUIRED_OPTION = '___REQUIRED_OPTION___';
+    public const REQUIRED_OPTION = '___REQUIRED_OPTION___';
 
     /**
      * Associative array with mappings from instance-names to configuration objects.
@@ -110,6 +110,7 @@ class Configuration implements Utils\ClearableState
         }
 
         if (file_exists($filename)) {
+            /** @psalm-var mixed $config */
             $config = 'UNINITIALIZED';
 
             // the file initializes a variable named '$config'
@@ -1019,7 +1020,7 @@ class Configuration implements Utils\ClearableState
      * @param mixed  $default The default value to return if no matching endpoint is found. If no default is provided,
      *     an exception will be thrown.
      *
-     * @return mixed|null The default endpoint, or null if no acceptable endpoints are used.
+     * @return mixed|null The default endpoint.
      *
      * @throws \Exception If no supported endpoint is found.
      */
@@ -1027,7 +1028,7 @@ class Configuration implements Utils\ClearableState
         string $endpointType,
         array $bindings,
         $default = self::REQUIRED_OPTION
-    ): ?array {
+    ): array {
         $endpoints = $this->getEndpoints($endpointType);
 
         foreach ($bindings as $binding) {

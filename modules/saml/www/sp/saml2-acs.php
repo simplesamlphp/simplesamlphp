@@ -139,6 +139,7 @@ try {
     // the status of the response wasn't "success"
     $e = $e->toException();
     \SimpleSAML\Auth\State::throwException($state, $e);
+    return;
 }
 
 $authenticatingAuthority = null;

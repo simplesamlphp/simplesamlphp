@@ -1035,6 +1035,7 @@ class SAML2
                     case 'raw':
                         if (is_string($value)) {
                             $doc = DOMDocumentFactory::fromString('<root>' . $value . '</root>');
+                            /** @psalm-suppress PossiblyNullPropertyFetch */
                             $value = $doc->firstChild->childNodes;
                         }
                         Assert::isInstanceOfAny($value, [\DOMNodeList::class, \SAML2\XML\saml\NameID::class]);

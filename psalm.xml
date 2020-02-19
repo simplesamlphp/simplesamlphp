@@ -9,9 +9,6 @@
     <projectFiles>
         <directory name="lib/SimpleSAML" />
 
-        <!-- Replaces all modules/... with this one-liner for 2.0
-        <directory name="modules" />
-        -->
         <directory name="modules/admin" />
         <directory name="modules/core" />
         <directory name="modules/cron" />
@@ -78,6 +75,13 @@
                 <directory name="tests" />
             </errorLevel>
         </PropertyNotSetInConstructor>
+
+        <!-- Suppress PHPunit-issue -->
+        <InternalMethod>
+            <errorLevel type="suppress">
+                <directory name="tests" />
+            </errorLevel>
+        </InternalMethod>
     </issueHandlers>
 
     <stubs>

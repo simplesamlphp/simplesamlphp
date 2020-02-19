@@ -282,6 +282,7 @@ class LogoutStore
             $res[$row['_sessionindex']] = $row['_sessionid'];
         }
 
+        /** @var array $res */
         return $res;
     }
 
