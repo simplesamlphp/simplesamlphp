@@ -77,7 +77,7 @@ abstract class SessionHandlerCookie extends SessionHandler
             }
 
             // check if we have a valid session id
-            if (!self::isValidSessionID($this->session_id)) {
+            if (!is_null($this->session_id) && !self::isValidSessionID($this->session_id)) {
                 // invalid, disregard this session
                 return null;
             }
