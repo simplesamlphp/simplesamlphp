@@ -21,7 +21,7 @@ class MetadataNotFound extends Error
      */
     public function __construct(string $entityId)
     {
-        $this->includeTemplate = 'core:no_metadata.tpl.php';
+        $this->includeTemplate = 'core:no_metadata.twig';
         parent::__construct([
                 'METADATANOTFOUND',
                 '%ENTITYID%' => htmlspecialchars(var_export($entityId, true))

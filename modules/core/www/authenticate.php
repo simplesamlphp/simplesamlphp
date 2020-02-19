@@ -5,7 +5,7 @@ use Webmozart\Assert\Assert;
 $config = \SimpleSAML\Configuration::getInstance();
 
 if (!array_key_exists('as', $_REQUEST)) {
-    $t = new \SimpleSAML\XHTML\Template($config, 'core:authsource_list.tpl.php');
+    $t = new \SimpleSAML\XHTML\Template($config, 'core:authsource_list.twig');
 
     $t->data['sources'] = \SimpleSAML\Auth\Source::getSources();
     $t->send();

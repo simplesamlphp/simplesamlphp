@@ -545,8 +545,6 @@ class Template extends Response
      */
     private function findTemplatePath(string $template, bool $throw_exception = true): ?string
     {
-        $extensions = ['.tpl.php', '.php'];
-
         list($templateModule, $templateName) = $this->findModuleAndTemplateName($template);
         $templateModule = ($templateModule !== null) ? $templateModule : 'default';
 
@@ -566,11 +564,6 @@ class Template extends Response
         }
 
         $filename = $this->normalizeTemplateName($filename);
-        foreach ($extensions as $extension) {
-            if (file_exists($filename . $extension)) {
-                return $filename . $extension;
-            }
-        }
 
         // not found in current theme
         Logger::debug(
@@ -589,11 +582,6 @@ class Template extends Response
         }
 
         $filename = $this->normalizeTemplateName($filename);
-        foreach ($extensions as $extension) {
-            if (file_exists($filename . $extension)) {
-                return $filename . $extension;
-            }
-        }
 
         // not found in default template
         if ($throw_exception) {

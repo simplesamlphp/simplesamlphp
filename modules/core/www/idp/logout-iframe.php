@@ -122,9 +122,9 @@ foreach ($state['core:Logout-IFrame:Associations'] as $association) {
 
 $globalConfig = \SimpleSAML\Configuration::getInstance();
 if ($type === 'nojs') {
-    $t = new \SimpleSAML\XHTML\Template($globalConfig, 'core:logout-iframe-wrapper.tpl.php');
+    $t = new \SimpleSAML\XHTML\Template($globalConfig, 'core:logout-iframe-wrapper.twig');
 } else {
-    $t = new \SimpleSAML\XHTML\Template($globalConfig, 'core:logout-iframe.tpl.php');
+    $t = new \SimpleSAML\XHTML\Template($globalConfig, 'core:logout-iframe.twig');
 }
 
 /**

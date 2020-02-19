@@ -80,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 // if we get this far, we need to show the login page to the user
 $config = \SimpleSAML\Configuration::getInstance();
-$t = new \SimpleSAML\XHTML\Template($config, 'exampleauth:authenticate.tpl.php');
+$t = new \SimpleSAML\XHTML\Template($config, 'exampleauth:authenticate.twig');
 $t->data['badUserPass'] = $badUserPass;
 $t->data['returnTo'] = $returnTo;
 $t->send();

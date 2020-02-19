@@ -26,7 +26,7 @@ $metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
 
 $m = $metadata->getMetaData($_REQUEST['entityid'], $_REQUEST['set']);
 
-$t = new \SimpleSAML\XHTML\Template($config, 'core:show_metadata.tpl.php');
+$t = new \SimpleSAML\XHTML\Template($config, 'core:show_metadata.twig');
 $t->data['clipboard.js'] = true;
 $t->data['pageid'] = 'show_metadata';
 $t->data['header'] = 'SimpleSAMLphp Show Metadata';

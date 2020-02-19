@@ -18,7 +18,7 @@ $session = \SimpleSAML\Session::getSessionFromRequest();
     . ' ' . $state['saml:sp:IdP'] . ' ' . implode(',', array_keys($state['core:cardinality:errorAttributes'])));
 
 $globalConfig = \SimpleSAML\Configuration::getInstance();
-$t = new \SimpleSAML\XHTML\Template($globalConfig, 'core:cardinality_error.tpl.php');
+$t = new \SimpleSAML\XHTML\Template($globalConfig, 'core:cardinality_error.twig');
 $t->data['cardinalityErrorAttributes'] = $state['core:cardinality:errorAttributes'];
 if (isset($state['Source']['auth'])) {
     $t->data['LogoutURL'] = \SimpleSAML\Module::getModuleURL(

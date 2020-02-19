@@ -272,7 +272,7 @@ if (isset($metaArray20['attributes']) && is_array($metaArray20['attributes'])) {
 $xml = \SimpleSAML\Metadata\Signer::sign($xml, $spconfig->toArray(), 'SAML 2 SP');
 
 if (array_key_exists('output', $_REQUEST) && $_REQUEST['output'] == 'xhtml') {
-    $t = new \SimpleSAML\XHTML\Template($config, 'metadata.tpl.php', 'admin');
+    $t = new \SimpleSAML\XHTML\Template($config, 'metadata.twig', 'admin');
 
     $t->data['clipboard.js'] = true;
     $t->data['header'] = 'saml20-sp'; // TODO: Replace with headerString in 2.0

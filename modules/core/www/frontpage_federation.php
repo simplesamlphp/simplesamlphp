@@ -86,7 +86,7 @@ foreach ($metaentries['remote'] as $key => $value) {
     }
 }
 
-$t = new \SimpleSAML\XHTML\Template($config, 'core:frontpage_federation.tpl.php');
+$t = new \SimpleSAML\XHTML\Template($config, 'core:frontpage_federation.twig');
 $translator = $t->getTranslator();
 
 $language = $translator->getLanguage()->getLanguage();

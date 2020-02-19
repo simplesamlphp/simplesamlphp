@@ -32,7 +32,7 @@ $allLinks = [
 ];
 \SimpleSAML\Module::callHooks('frontpage', $allLinks);
 
-$t = new \SimpleSAML\XHTML\Template($config, 'core:frontpage_auth.tpl.php');
+$t = new \SimpleSAML\XHTML\Template($config, 'core:frontpage_auth.twig');
 $t->data['pageid'] = 'frontpage_auth';
 $t->data['isadmin'] = $isadmin;
 $t->data['loginurl'] = $loginurl;

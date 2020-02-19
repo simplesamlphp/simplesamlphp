@@ -8,7 +8,7 @@ if (isset($_REQUEST['retryURL'])) {
 }
 
 $globalConfig = \SimpleSAML\Configuration::getInstance();
-$t = new \SimpleSAML\XHTML\Template($globalConfig, 'core:no_cookie.tpl.php');
+$t = new \SimpleSAML\XHTML\Template($globalConfig, 'core:no_cookie.twig');
 $translator = $t->getTranslator();
 
 /** @var string $header */

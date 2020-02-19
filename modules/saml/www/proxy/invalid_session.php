@@ -48,7 +48,7 @@ if (isset($_POST['continue'])) {
 }
 
 $cfg = \SimpleSAML\Configuration::getInstance();
-$template = new \SimpleSAML\XHTML\Template($cfg, 'saml:proxy/invalid_session.tpl.php');
+$template = new \SimpleSAML\XHTML\Template($cfg, 'saml:proxy/invalid_session.twig');
 $translator = $template->getTranslator();
 $template->data['AuthState'] = (string) $_REQUEST['AuthState'];
 

@@ -164,7 +164,7 @@ $funcmatrix[] = [
     'enabled' => $password_ok
 ];
 
-$t = new \SimpleSAML\XHTML\Template($config, 'core:frontpage_config.tpl.php');
+$t = new \SimpleSAML\XHTML\Template($config, 'core:frontpage_config.twig');
 $translator = $t->getTranslator();
 $t->data['pageid'] = 'frontpage_config';
 $t->data['header'] = $translator->t('{core:frontpage:page_title}');

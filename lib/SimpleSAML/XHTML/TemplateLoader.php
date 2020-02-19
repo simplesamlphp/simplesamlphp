@@ -51,10 +51,6 @@ class TemplateLoader extends \Twig\Loader\FilesystemLoader
         if (strpos($name, ':')) {
             // we have our old SSP format
             list($namespace, $shortname) = explode(':', $name, 2);
-            $shortname = strtr($shortname, [
-                '.tpl.php' => '.twig',
-                '.php' => '.twig',
-            ]);
             return [$namespace, $shortname];
         }
         return [$default, $name];
