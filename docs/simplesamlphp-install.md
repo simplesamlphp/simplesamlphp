@@ -27,7 +27,7 @@ Prerequisites
 -------------
 
  * A web server capable of executing PHP scripts.
- * PHP version >= 5.5.0.
+ * PHP version >= 5.6.0.
  * Support for the following PHP extensions:
    * Always required: `date`, `dom`, `hash`, `libxml`, `openssl`, `pcre`, `SPL`, `zlib`, `json`, `mbstring`
    * When automatically checking for latest versions, and used by some modules: `cURL`
