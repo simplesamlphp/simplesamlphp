@@ -216,7 +216,7 @@ class MDQ extends \SimpleSAML\Metadata\MetaDataStorageSource
             case 'saml20-sp-remote':
                 return $entity->getMetadata20SP();
             case 'attributeauthority-remote':
-                return = $entity->getAttributeAuthorities();
+                return $entity->getAttributeAuthorities();
             default:
                 Logger::warning(__CLASS__ . ': unknown metadata set: \'' . $set . '\'.');
         }
