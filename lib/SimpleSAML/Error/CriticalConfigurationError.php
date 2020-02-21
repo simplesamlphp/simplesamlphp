@@ -70,7 +70,7 @@ class CriticalConfigurationError extends ConfigurationError
      *
      * @return \Exception
      */
-    public static function fromException(\Exception $exception): \Exception
+    public static function fromException(\Exception $exception): Exception
     {
         $reason = null;
         $file = null;
