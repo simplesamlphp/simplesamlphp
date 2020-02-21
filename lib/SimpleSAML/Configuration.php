@@ -1028,7 +1028,7 @@ class Configuration implements Utils\ClearableState
         string $endpointType,
         array $bindings,
         $default = self::REQUIRED_OPTION
-    ): array {
+    ) {
         $endpoints = $this->getEndpoints($endpointType);
 
         foreach ($bindings as $binding) {

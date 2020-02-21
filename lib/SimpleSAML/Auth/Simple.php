@@ -46,6 +46,7 @@ class Simple
             $config = Configuration::getInstance();
         }
         $this->authSource = $authSource;
+        /** @psalm-var \SimpleSAML\Configuration $this->app_config */
         $this->app_config = $config->getConfigItem('application');
 
         if ($session === null) {

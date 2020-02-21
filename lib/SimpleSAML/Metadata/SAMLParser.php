@@ -973,7 +973,6 @@ class SAMLParser
 
                     foreach ($e->getKeywords() as $uiItem) {
                         $keywords = $uiItem->getKeywords();
-                        /** @psalm-var string|null $language */
                         $language = $uiItem->getLanguage();
                         if (($keywords === [])) {
                             continue;

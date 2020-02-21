@@ -32,7 +32,7 @@ class Exception extends \Exception
     /**
      * The cause of this exception.
      *
-     * @var \Exception|null
+     * @var \SimpleSAML\Error\Exception|null
      */
     private $cause = null;
 
@@ -121,9 +121,9 @@ class Exception extends \Exception
     /**
      * Retrieve the cause of this exception.
      *
-     * @return \Exception|null The cause of this exception.
+     * @return \SimpleSAML\Error\Exception|null The cause of this exception.
      */
-    public function getCause(): ?\Exception
+    public function getCause(): ?Exception
     {
         return $this->cause;
     }

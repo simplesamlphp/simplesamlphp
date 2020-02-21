@@ -41,8 +41,8 @@ class UnserializableException extends Exception
         $msg = $original->getMessage();
         $code = $original->getCode();
 
-        if ($original instanceof PDOException) {
-            // PDOException uses a string as the code. Filter it out here.
+        if (!is_int($code)) {
+            // PDOException and possibly others use a string for the code. Filter it out here.
             $code = -1;
         }
 

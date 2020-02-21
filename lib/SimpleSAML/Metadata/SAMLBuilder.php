@@ -152,6 +152,8 @@ class SAMLBuilder
 
         $metadata = Configuration::loadFromArray($metadata, $metadata['entityid']);
         $defaultEndpoint = $metadata->getDefaultEndpoint('SingleSignOnService');
+
+        /** @psalm-suppress UndefinedClass */
         $e = new SecurityTokenServiceType();
         $e->setLocation($defaultEndpoint['Location']);
 

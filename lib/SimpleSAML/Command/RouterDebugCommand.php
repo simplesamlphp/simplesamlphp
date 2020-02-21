@@ -40,7 +40,7 @@ class RouterDebugCommand extends Command
     /**
      * @return void
      */
-    protected function configure()
+    protected function configure(): void
     {
         $this
             ->setDescription('Displays current routes for a module')
@@ -58,16 +58,16 @@ EOF
     /**
      * @param \Symfony\Component\Console\Input\InputInterface $input
      * @param \Symfony\Component\Console\Output\OutputInterface $output
-     * @return void
+     * @return int
      */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);
         $routes = $this->router->getRouteCollection();
 
-        $tableHeaders = array('Name', 'Method', 'Scheme', 'Host', 'Path', 'Controller');
+        $tableHeaders = ['Name', 'Method', 'Scheme', 'Host', 'Path', 'Controller'];
 
-        $tableRows = array();
+        $tableRows = [];
         foreach ($routes->all() as $name => $route) {
             $row = [
                 $name,
@@ -92,5 +92,7 @@ EOF
         $table->setHeaders($tableHeaders)->setRows($tableRows);
         $table->setStyle('compact');
         $table->render();
+
+        return 0;
     }
 }

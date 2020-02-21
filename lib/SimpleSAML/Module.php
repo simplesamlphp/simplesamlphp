@@ -198,7 +198,7 @@ class Module
             $request->request->all(),
             $request->attributes->all(),
             $request->cookies->all(),
-            $request_files ?? [],
+            $request_files,
             $request->server->all(),
             $request->getContent()
         );
@@ -300,14 +300,16 @@ class Module
             }
         }
 
+        /** @psalm-var \SimpleSAML\Configuration $assetConfig */
         $assetConfig = $config->getConfigItem('assets');
+        /** @psalm-var \SimpleSAML\Configuration $cacheConfig */
         $cacheConfig = $assetConfig->getConfigItem('caching');
         $response = new BinaryFileResponse($path);
         $response->setCache([
             // "public" allows response caching even if the request was authenticated,
             // which is exactly what we want for static resources
             'public' => true,
-            'max_age' => (string)$cacheConfig->getInteger('max_age', 86400)
+            'max_age' => strval($cacheConfig->getInteger('max_age', 86400))
         ]);
         $response->setAutoLastModified();
         if ($cacheConfig->getBoolean('etag', false)) {

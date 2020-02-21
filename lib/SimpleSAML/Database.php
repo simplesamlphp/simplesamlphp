@@ -253,13 +253,7 @@ class Database
      */
     public function write(string $stmt, array $params = [])
     {
-        $db = $this->dbMaster;
-
-        if (is_array($params)) {
-            return $this->query($db, $stmt, $params)->rowCount();
-        } else {
-            return $this->exec($db, $stmt);
-        }
+        return $this->query($this->dbMaster, $stmt, $params)->rowCount();
     }
 
 

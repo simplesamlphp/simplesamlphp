@@ -33,12 +33,6 @@ class Memcache
      */
     private static $serverGroups = null;
 
-    /**
-     * The flavor of memcache PHP extension we are using.
-     *
-     * @var string
-     */
-    private static $extension = '';
 
     /**
      * Find data stored with a given key.
@@ -168,11 +162,7 @@ class Memcache
 
         // store this object to all groups of memcache servers
         foreach (self::getMemcacheServers() as $server) {
-            if (self::$extension === \Memcached::class) {
-                $server->set($key, $savedInfoSerialized, $expire);
-            } else {
-                $server->set($key, $savedInfoSerialized, 0, $expire);
-            }
+            $server->set($key, $savedInfoSerialized, $expire);
         }
     }
 
@@ -307,7 +297,6 @@ class Memcache
     private static function loadMemcacheServerGroup(array $group)
     {
         $memcache = new \Memcached();
-        self::$extension = \Memcached::class;
 
         // iterate over all the servers in the group and add them to the Memcache object
         foreach ($group as $index => $server) {
@@ -445,13 +434,14 @@ class Memcache
         $ret = [];
 
         foreach (self::getMemcacheServers() as $sg) {
-            $stats = method_exists($sg, 'getExtendedStats') ? $sg->getExtendedStats() : $sg->getStats();
+            $stats = $sg->getStats();
             foreach ($stats as $server => $data) {
                 if ($data === false) {
                     throw new \Exception('Failed to get memcache server status.');
                 }
             }
 
+            /** @psalm-var array $stats */
             $stats = Utils\Arrays::transpose($stats);
 
             $ret = array_merge_recursive($ret, $stats);
@@ -472,7 +462,7 @@ class Memcache
         $ret = [];
 
         foreach (self::getMemcacheServers() as $sg) {
-            $stats = method_exists($sg, 'getExtendedStats') ? $sg->getExtendedStats() : $sg->getStats();
+            $stats = $sg->getStats();
             $ret[] = $stats;
         }
 
