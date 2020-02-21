@@ -68,7 +68,7 @@ class CriticalConfigurationError extends ConfigurationError
     /**
      * @param \Exception $exception
      *
-     * @return \Exception
+     * @return \SimpleSAML\Error\Exception
      */
     public static function fromException(\Exception $exception): Exception
     {
