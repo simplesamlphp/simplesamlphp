@@ -64,9 +64,9 @@ class Exception extends \Exception
      *
      * @param \Exception $e The exception.
      *
-     * @return \Exception The new exception.
+     * @return \SimpleSAML\Error\Exception The new exception.
      */
-    public static function fromException(\Exception $e): \Exception
+    public static function fromException(\Exception $e): Exception
     {
         if ($e instanceof Exception) {
             return $e;
