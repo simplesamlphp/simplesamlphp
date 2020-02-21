@@ -38,7 +38,6 @@ $t->data['isadmin'] = $isadmin;
 $t->data['loginurl'] = $loginurl;
 $t->data['logouturl'] = $logouturl;
 
-$t->data['header'] = $t->getTranslator()->t('{core:frontpage:page_title}');
 $t->data['links'] = $links;
 $t->data['links_welcome'] = $links_welcome;
 $t->data['links_config'] = $links_config;

@@ -127,27 +127,9 @@ if ($type === 'nojs') {
     $t = new \SimpleSAML\XHTML\Template($globalConfig, 'core:logout-iframe.twig');
 }
 
-/**
- * @deprecated The "id" variable will be removed. Please use "auth_state" instead.
- */
 $id = \SimpleSAML\Auth\State::saveState($state, 'core:Logout-IFrame');
-$t->data['id'] = $id;
 $t->data['auth_state'] = $id;
-
-$t->data['header'] = $t->getTranslator()->t('{logout:progress}');
 $t->data['type'] = $type;
 $t->data['terminated_service'] = $terminated;
 $t->data['remaining_services'] = $remaining;
-
-/** @deprecated The "from" array will be removed in 2.0, use the "terminated_service" array instead */
-$t->data['from'] = $state['core:Logout-IFrame:From'];
-
-/** @deprecated The "SPs" array will be removed, use the "remaining_services" array instead */
-$t->data['SPs'] = $state['core:Logout-IFrame:Associations'];
-
-if ($type !== 'nojs') {
-    /** @deprecated The "jquery" array will be removed in 2.0 */
-    $t->data['jquery'] = ['core' => true, 'ui' => false, 'css' => false];
-}
-
 $t->send();

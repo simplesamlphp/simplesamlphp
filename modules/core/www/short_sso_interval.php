@@ -24,10 +24,8 @@ if (array_key_exists('continue', $_REQUEST)) {
 
 $globalConfig = \SimpleSAML\Configuration::getInstance();
 $t = new \SimpleSAML\XHTML\Template($globalConfig, 'core:short_sso_interval.twig');
-$translator = $t->getTranslator();
 $t->data['target'] = \SimpleSAML\Module::getModuleURL('core/short_sso_interval.php');
 $t->data['params'] = ['StateId' => $id];
 $t->data['trackId'] = $session->getTrackID();
-$t->data['header'] = $translator->t('{core:short_sso_interval:warning_header}');
 $t->data['autofocus'] = 'contbutton';
 $t->send();
