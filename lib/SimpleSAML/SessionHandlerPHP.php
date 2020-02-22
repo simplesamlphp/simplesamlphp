@@ -81,6 +81,7 @@ class SessionHandlerPHP extends SessionHandler
 
         if (!headers_sent()) {
             if (version_compare(PHP_VERSION, '7.3.0', '>=')) {
+                /** @psalm-suppress InvalidArgument */
                 session_set_cookie_params([
                     'lifetime' => $params['lifetime'],
                     'path' => $params['path'],
@@ -360,6 +361,7 @@ class SessionHandlerPHP extends SessionHandler
         }
 
         if (version_compare(PHP_VERSION, '7.3.0', '>=')) {
+            /** @psalm-suppress InvalidArgument */
             session_set_cookie_params($cookieParams);
         } else {
             session_set_cookie_params(

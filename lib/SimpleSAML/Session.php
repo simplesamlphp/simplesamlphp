@@ -48,8 +48,10 @@ class Session implements \Serializable, Utils\ClearableState
      * This variable holds the instance of the session - Singleton approach.
      *
      * Warning: do not set the instance manually, call Session::load() instead.
+     *
+     * @var \SimpleSAML\Session|null
      */
-    private static $instance;
+    private static $instance = null;
 
     /**
      * The global configuration.
