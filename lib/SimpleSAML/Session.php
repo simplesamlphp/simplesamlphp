@@ -265,7 +265,6 @@ class Session implements \Serializable, Utils\ClearableState
 
         // check if we have stored a session stored with the session handler
         try {
-            /** @var \SimpleSAML\Session|null $session  Help Scrutinizer with the correct type */
             $session = self::getSession();
         } catch (\Exception $e) {
             /*

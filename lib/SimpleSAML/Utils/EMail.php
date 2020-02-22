@@ -254,14 +254,7 @@ class EMail
         $config = Configuration::getInstance();
 
         $t = new Template($config, $template);
-        $twig = $t->getTwig();
-        if (!isset($twig)) {
-            throw new \Exception(
-                'Even though we explicitly configure that we want Twig,'
-                    . ' the Template class does not give us Twig. This is a bug.'
-            );
-        }
-        $result = $twig->render($template, [
+        $result = $t->getTwig()->render($template, [
             'subject' => $this->mail->Subject,
             'text' => $this->text,
             'data' => $this->data
