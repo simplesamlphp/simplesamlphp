@@ -67,7 +67,6 @@ class Template extends Response
      * The twig environment.
      *
      * @var \Twig\Environment
-     * @psalm-suppress PropertyNotSetInConstructor  Remove this annotation in 2.0
      */
     private $twig;
 
@@ -622,9 +621,9 @@ class Template extends Response
     /**
      * Get the current instance of Twig in use.
      *
-     * @return \Twig\Environment|null The Twig instance in use, or null if Twig is not used.
+     * @return \Twig\Environment The Twig instance in use.
      */
-    public function getTwig(): ?\Twig\Environment
+    public function getTwig(): \Twig\Environment
     {
         return $this->twig;
     }
