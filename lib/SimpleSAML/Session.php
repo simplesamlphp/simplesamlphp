@@ -241,7 +241,7 @@ class Session implements \Serializable, Utils\ClearableState
                 foreach ($values as $idx => $value) {
                     // this should be originally a DOMNodeList
                     /* @var \SAML2\XML\saml\AttributeValue $value */
-                    $this->authData[$authority]['Attributes'][$attribute][$idx] = $value->element->childNodes;
+                    $this->authData[$authority]['Attributes'][$attribute][$idx] = $value->getElement()->childNodes;
                 }
             }
         }
@@ -263,6 +263,7 @@ class Session implements \Serializable, Utils\ClearableState
 
         // check if we have stored a session stored with the session handler
         try {
+            /** @var \SimpleSAML\Session|null $session  Help Scrutinizer with the correct type */
             $session = self::getSession();
         } catch (\Exception $e) {
             /*
@@ -326,8 +327,8 @@ class Session implements \Serializable, Utils\ClearableState
      *
      * @param string|null $sessionId The session we should get, or null to get the current session.
      *
-     * @return Session|null The session that is stored in the session handler, or null if the session wasn't
-     * found.
+     * @return \SimpleSAML\Session|null The session that is stored in the session handler,
+     *   or null if the session wasn't found.
      */
     public static function getSession(string $sessionId = null): ?Session
     {
@@ -394,8 +395,8 @@ class Session implements \Serializable, Utils\ClearableState
      *
      * Warning: never set self::$instance yourself, call this method instead.
      *
-     * @param Session $session The session to load.
-     * @return Session The session we just loaded, just for convenience.
+     * @param \SimpleSAML\Session $session The session to load.
+     * @return \SimpleSAML\Session The session we just loaded, just for convenience.
      */
     private static function load(Session $session): Session
     {
@@ -579,8 +580,6 @@ class Session implements \Serializable, Utils\ClearableState
      */
     public function setRememberMeExpire(int $expire = null): void
     {
-        Assert::nullOrInteger($expire);
-
         if ($expire === null) {
             $expire = time() + self::$config->getInteger('session.rememberme.lifetime', 14 * 86400);
         }
