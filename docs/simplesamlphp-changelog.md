@@ -6,6 +6,12 @@ SimpleSAMLphp changelog
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
+## Version 1.18.9
+
+Released 2021-12-03
+
+  * Fix incorrect use of the saml2 API (#1543)
+
 ## Version 1.18.8
 
 Released 2020-09-02
