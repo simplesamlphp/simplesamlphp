@@ -481,8 +481,12 @@ $config = [
      *      'core' => null, // Unset or NULL uses default.
      * ],
      *
-     */
 
+     'module.enable' => [
+         'exampleauth' => false,
+         'core' => true,
+         'saml' => true
+     ]
 
 
     /*************************
