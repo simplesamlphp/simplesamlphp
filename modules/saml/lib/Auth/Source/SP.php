@@ -1051,7 +1051,7 @@ class SP extends \SimpleSAML\Auth\Source
     public function handleResponse(array $state, string $idp, array $attributes): void
     {
         Assert::keyExists($state, 'LogoutState');
-        Assert::keyExists($state, 'saml:logout:Type');
+        Assert::keyExists($state['LogoutState'], 'saml:logout:Type');
 
         $idpMetadata = $this->getIdPMetadata($idp);
 
