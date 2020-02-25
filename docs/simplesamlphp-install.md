@@ -367,6 +367,15 @@ At the bottom of the installation page there are some green lights. SimpleSAMLph
 required and recommended prerequisites are met. If any of the lights are red, you may have to install some PHP 
 extensions or external PHP packages (e.g. you need the PHP LDAP extension to use the LDAP authentication module).
 
+## Building assets
+
+Run the following commands to build the default theme.
+
+```
+npm install
+npm run build
+```
+
 ## Next steps
 
 You have now successfully installed SimpleSAMLphp, and the next steps depend on whether you want to setup a Service
