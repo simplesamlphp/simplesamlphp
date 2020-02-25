@@ -59,6 +59,7 @@
         "symfony/yaml": "^4.0",
         "twig/twig": "~2.0",
         "webmozart/assert": "~1.7"
+        "symfony/var-exporter": "^5.0",
     },
     "require-dev": {
         "ext-curl": "*",
