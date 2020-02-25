@@ -165,6 +165,7 @@ class SessionHandlerPHP extends SessionHandler
      */
     public function newSessionId(): string
     {
+        $sessionId = false;
         // generate new (secure) session id
         if (function_exists('session_create_id')) {
             $sid_length = (int) ini_get('session.sid_length');
@@ -174,7 +175,8 @@ class SessionHandlerPHP extends SessionHandler
                 Logger::warning("Unsafe defaults used for sessionId generation!");
             }
             $sessionId = session_create_id();
-        } else {
+        }
+        if(!$sessionId){
             $sessionId = bin2hex(openssl_random_pseudo_bytes(16));
         }
         Session::createSession($sessionId);
