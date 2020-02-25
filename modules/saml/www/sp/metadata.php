@@ -1,5 +1,7 @@
 <?php
 
+use Symfony\Component\VarExporter\VarExporter;
+
 if (!array_key_exists('PATH_INFO', $_SERVER)) {
     throw new \SimpleSAML\Error\BadRequest('Missing authentication source id in metadata URL');
 }
@@ -279,7 +281,7 @@ if (array_key_exists('output', $_REQUEST) && $_REQUEST['output'] == 'xhtml') {
     $t->data['headerString'] = \SimpleSAML\Locale\Translate::noop('metadata_saml20-sp');
     $t->data['metadata'] = htmlspecialchars($xml);
     $t->data['metadataflat'] = '$metadata[' . var_export($entityId, true)
-        . '] = ' . var_export($metaArray20, true) . ';';
+        . '] = ' . VarExporter::export($metaArray20) . ';';
     $t->data['metaurl'] = $source->getMetadataURL();
     $t->send();
 } else {

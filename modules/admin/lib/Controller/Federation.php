@@ -22,6 +22,7 @@ use SimpleSAML\XHTML\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
+use Symfony\Component\VarExporter\VarExporter;
 
 /**
  * Controller class for the admin module.
@@ -266,7 +267,7 @@ class Federation
                 unset($entity['metadata_array']['keys']);
             }
 
-            $entities[$index]['metadata_array'] = var_export($entity['metadata_array'], true);
+            $entities[$index]['metadata_array'] = VarExporter::export($entity['metadata_array']);
         }
 
         return $entities;
@@ -328,7 +329,7 @@ class Federation
                 'url' => $source->getMetadataURL(),
                 'name' => $name,
                 'metadata' => $xml,
-                'metadata_array' => var_export($metadata, true),
+                'metadata_array' => VarExporter::export($metadata),
                 'certificates' => $certificates,
             ];
         }
@@ -383,7 +384,7 @@ class Federation
                     unset($entityMetadata['entityDescriptor']);
 
                     $text .= '$metadata[' . var_export($entityId, true) . '] = '
-                        . var_export($entityMetadata, true) . ";\n";
+                        . VarExporter::export($entityMetadata) . ";\n";
                 }
                 $entities = $text;
             }
@@ -465,7 +466,7 @@ class Federation
 
         $t = new Template($this->config, 'admin:show_metadata.twig');
         $t->data['entityid'] = $entityId;
-        $t->data['metadata'] = var_export($metadata, true);
+        $t->data['metadata'] = VarExporter::export($metadata);
         return $t;
     }
 }
