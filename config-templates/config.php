@@ -495,6 +495,11 @@ $config = [
      *
      */
 
+     'module.enable' => [
+         'exampleauth' => false,
+         'core' => true,
+         'saml' => true
+     ],
 
 
     /*************************
