@@ -2,6 +2,8 @@
 
 require_once('../../_include.php');
 
+use Symfony\Component\VarExporter\VarExporter;
+
 use SAML2\Constants;
 use SimpleSAML\Module;
 use SimpleSAML\Utils\Auth as Auth;
@@ -209,7 +211,7 @@ try {
 
     $metaxml = $metaBuilder->getEntityDescriptorText();
 
-    $metaflat = '$metadata[' . var_export($idpentityid, true) . '] = ' . var_export($metaArray, true) . ';';
+    $metaflat = '$metadata[' . var_export($idpentityid, true) . '] = ' . VarExporter::export($metaArray) . ';';
 
     // sign the metadata if enabled
     $metaxml = \SimpleSAML\Metadata\Signer::sign($metaxml, $idpmeta->toArray(), 'SAML 2 IdP');
