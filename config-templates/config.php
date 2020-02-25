@@ -226,7 +226,7 @@ $config = [
      * alternatively a hashed array where the keys are the actions and their
      * corresponding values are booleans enabling or disabling each particular action.
      *
-     * SimpleSAMLphp provides some pre-defined actiones, though modules could add new
+     * SimpleSAMLphp provides some pre-defined actions, though modules could add new
      * actions here. Refer to the documentation of every module to learn if they
      * allow you to set any more debugging actions.
      *
