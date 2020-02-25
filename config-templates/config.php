@@ -486,7 +486,7 @@ $config = [
          'exampleauth' => false,
          'core' => true,
          'saml' => true
-     ]
+     ],
 
 
     /*************************
