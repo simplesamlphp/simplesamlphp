@@ -480,7 +480,7 @@ $config = [
      *      'consent' => false, // Setting to FALSE disables.
      *      'core' => null, // Unset or NULL uses default.
      * ],
-     *
+     */
 
      'module.enable' => [
          'exampleauth' => false,
