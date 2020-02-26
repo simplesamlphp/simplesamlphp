@@ -165,13 +165,14 @@ By default SimpleSAMLphp will attempt to connect to Redis on the `localhost` at 
 
 ## Metadata storage
 
-Several metadata storage backends are available by default, including `flatfile`, `serialize`, `mdq` and
+Several metadata storage backends are available by default, including `flatfile`, `directory`, `serialize`, `mdq` and
 [`pdo`](https://simplesamlphp.org/docs/stable/simplesamlphp-metadata-pdostoragehandler). Here you have an
 example configuration of different metadata sources in use at the same time:
 
 ```
 'metadata.sources' => [
     ['type' => 'flatfile'],
+    ['type' => 'directory'],
     ['type' => 'flatfile', 'directory' => 'metadata/metarefresh-kalmar'],
     ['type' => 'serialize', 'directory' => 'metadata/metarefresh-ukaccess'],
 ],
