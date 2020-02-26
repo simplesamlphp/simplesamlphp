@@ -20,6 +20,7 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
             'metadata.sources' => [
                 ['type' => 'flatfile', 'directory' => __DIR__ . '/test-metadata/source1'],
                 ['type' => 'serialize', 'directory' => __DIR__ . '/test-metadata/source2'],
+                ['type' => 'directory', 'directory' => __DIR__ . '/test-metadata/source3'],
             ],
         ];
         Configuration::loadFromArray($c, '', 'simplesaml');
@@ -28,13 +29,15 @@ class MetaDataStorageHandlerTest extends ClearStateTestCase
         $entities = $handler->getMetaDataForEntities([
             'entityA',
             'entityB',
+            'entityC',
             'nosuchEntity',
             'entityInBoth',
             'expiredInSrc1InSrc2'
         ], 'saml20-sp-remote');
-        $this->assertCount(4, $entities);
+        $this->assertCount(5, $entities);
         $this->assertEquals('entityA SP from source1', $entities['entityA']['name']['en']);
         $this->assertEquals('entityB SP from source2', $entities['entityB']['name']['en']);
+        $this->assertEquals('entityC SP from source3', $entities['entityC']['name']['en']);
         $this->assertEquals(
             'entityInBoth SP from source1',
             $entities['entityInBoth']['name']['en'],
