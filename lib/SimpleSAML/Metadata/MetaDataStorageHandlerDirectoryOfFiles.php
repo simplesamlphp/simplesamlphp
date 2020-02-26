@@ -118,7 +118,6 @@ class MetaDataStorageHandlerDirectoryOfFiles extends MetaDataStorageSource
                 continue;
             }
 
-            file_put_contents('/tmp/pk', "including: ".$path."\n", FILE_APPEND);
             include($path);
         }
 
