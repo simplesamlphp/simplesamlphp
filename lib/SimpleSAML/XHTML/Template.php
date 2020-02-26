@@ -165,12 +165,12 @@ class Template extends Response
     {
         $baseDir = $this->configuration->getBaseDir();
         if (is_null($module)) {
-            $file = $baseDir . 'www/assets/' . $asset;
-            $basePath = $this->configuration->getBasePath();
-            $path = $basePath . 'assets/' . $asset;
+            $file = $baseDir . 'www/' . $asset;
+            $basePath =  $this->configuration->getBasePath();
+            $path = $basePath . $asset;
         } else {
-            $file = $baseDir . 'modules/' . $module . '/www/assets/' . $asset;
-            $path = Module::getModuleUrl($module . '/assets/' . $asset);
+            $file = $baseDir . 'modules/' . $module . '/www/' . $asset;
+            $path = Module::getModuleUrl($module . '/' . $asset);
         }
 
         if (!file_exists($file)) {

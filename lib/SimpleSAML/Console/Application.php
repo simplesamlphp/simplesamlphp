@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Console;
 
-use SimpleSAML\Kernel;
+use SimpleSAML\ModuleKernel;
 use Symfony\Bundle\FrameworkBundle\Console\Application as BaseApplication;
 use Symfony\Component\Console\Input\InputOption;
 
 class Application extends BaseApplication
 {
     /**
-     * @param \SimpleSAML\Kernel $kernel
+     * @param \SimpleSAML\ModuleKernel $kernel
      */
-    public function __construct(Kernel $kernel)
+    public function __construct(ModuleKernel $kernel)
     {
         parent::__construct($kernel);
 
