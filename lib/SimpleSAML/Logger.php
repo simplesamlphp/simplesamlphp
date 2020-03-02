@@ -289,6 +289,15 @@ class Logger
 
 
     /**
+     * Clears the captured log.
+     */
+    public static function clearCapturedLog()
+    {
+        return self::$capturedLog = [];
+    }
+
+
+    /**
      * Set the track identifier to use in all logs.
      *
      * @param string $trackId The track identifier to use during this session.
@@ -387,6 +396,38 @@ class Logger
 
 
     /**
+     * Returns the current logging handler
+     *
+     * @return LoggingHandlerInterface
+     */
+    public static function getLoggingHandler(): ?LoggingHandlerInterface
+    {
+        return self::$loggingHandler;
+    }
+
+
+    /**
+     * Sets the current logging handler
+     *
+     * @param LoggingHandlerInterface $loggingHandler The logging handler to set
+     */
+    public static function setLoggingHandler(?LoggingHandlerInterface $loggingHandler): void
+    {
+        self::$initializing   = false;
+        self::$loggingHandler = $loggingHandler;
+    }
+
+    /**
+     * Sets the log level.
+     *
+     * @param int $level One of the Logger class constants.
+     */
+    public static function setLogLevel(int $level): void
+    {
+        self::$logLevel = $level;
+    }
+
+    /**
      * Defer a message for later logging.
      *
      * @param int     $level The log level corresponding to this message.
@@ -432,7 +473,10 @@ class Logger
 
         // get the metadata handler option from the configuration
         if (is_null($handler)) {
-            $handler = $config->getString('logging.handler', 'syslog');
+            $handler = $config->getString(
+                'logging.handler',
+                php_sapi_name() === 'cli' || defined('STDIN') ? 'stderr' : 'syslog'
+            );
         }
 
         if (!array_key_exists($handler, $known_handlers) && class_exists($handler)) {
@@ -477,15 +521,13 @@ class Logger
             self::defer($level, $string, $statsLog);
             return;
         } elseif (php_sapi_name() === 'cli' || defined('STDIN')) {
-            // we are being executed from the CLI, nowhere to log
-            if (!isset(self::$loggingHandler)) {
-                self::createLoggingHandler(StandardErrorLoggingHandler::class);
-            }
             $_SERVER['REMOTE_ADDR'] = "CLI";
             if (self::$trackid === self::NO_TRACKID) {
                 self::$trackid = 'CL' . bin2hex(openssl_random_pseudo_bytes(4));
             }
-        } elseif (!isset(self::$loggingHandler)) {
+        }
+
+        if (!isset(self::$loggingHandler)) {
             // Initialize logging
             self::createLoggingHandler();
         }
