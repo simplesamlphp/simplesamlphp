@@ -6,6 +6,15 @@ SimpleSAMLphp changelog
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
+## Version 1.18.5
+
+Released TBD
+
+  * Make the URLs for the cron module work again (#1248).
+  * Email error reports now include metadata again (#1296).
+  * Fix exampleauth module when using the legacy UI (#1275).
+  * Documentation improvements.
+
 ## Version 1.18.4
 
 Released 2020-01-24
