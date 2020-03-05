@@ -25,6 +25,7 @@ $sourceId = substr($sourceId, 1, $end - 1);
 $source = \SimpleSAML\Auth\Source::getById($sourceId, '\SimpleSAML\Module\saml\Auth\Source\SP');
 
 SimpleSAML\Logger::debug('Received SAML1 response');
+SimpleSAML\Logger::notice('SAML1 support is deprecated and will be removed in SimpleSAMLphp 2.0');
 
 $target = (string) $_REQUEST['TARGET'];
 

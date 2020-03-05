@@ -383,6 +383,8 @@ idp is in the intersection the discoveryservice will go directly to the idp.
 Shibboleth 1.3 options
 ----------------------
 
+Note that Shibboleth 1.3 support is deprecated and will be removed in the next major release of SimpleSAMLphp.
+
 The following options for Shibboleth 1.3 SP's are avaiblable:
 
 `audience`

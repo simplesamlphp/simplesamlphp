@@ -460,6 +460,8 @@ $config = [
      * Which functionality in SimpleSAMLphp do you want to enable. Normally you would enable only
      * one of the functionalities below, but in some cases you could run multiple functionalities.
      * In example when you are setting up a federation bridge.
+     *
+     * Note that shib13-idp has been deprecated and will be removed in SimpleSAMLphp 2.0.
      */
     'enable.saml20-idp' => false,
     'enable.shib13-idp' => false,

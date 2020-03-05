@@ -399,6 +399,8 @@ messages from that SP.
 Shibboleth 1.3 options
 ----------------------
 
+Note that Shibboleth 1.3 support is deprecated and will be removed in the next major release of SimpleSAMLphp.
+
 The following options for Shibboleth 1.3 IdP's are avaiblable:
 
 `scopedattributes`

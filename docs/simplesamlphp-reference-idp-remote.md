@@ -248,6 +248,8 @@ SimpleSAMLphp only signs authentication responses by default. Signing of authent
 Shibboleth 1.3 options
 ----------------------
 
+Note that Shibboleth 1.3 support is deprecated and will be removed in the next major release of SimpleSAMLphp.
+
 `caFile`
 :   Alternative to specifying a certificate. Allows you to specify a file with root certificates, and responses from the service be validated against these certificates. Note that SimpleSAMLphp doesn't support chains with any itermediate certificates between the root and the certificate used to sign the response. Support for PKIX in SimpleSAMLphp is experimental, and we encourage users to not rely on PKIX for validation of signatures; for background information review [the SAML 2.0 Metadata Interoperability Profile](http://docs.oasis-open.org/security/saml/Post2.0/sstc-metadata-iop-cd-01.pdf).
 
