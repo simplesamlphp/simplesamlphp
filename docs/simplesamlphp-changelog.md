@@ -11,7 +11,7 @@ See the upgrade notes for specific information about upgrading.
 Released TBD
 
   * Make the URLs for the cron module work again (#1248).
-  * Email error reports now include metadata again (#1296).
+  * Email error reports now include metadata again (#1269).
   * Fix exampleauth module when using the legacy UI (#1275).
   * Documentation improvements.
 
