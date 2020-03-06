@@ -443,7 +443,7 @@ class XML
             }
         }
 
-        if ($res) {
+        if ($res === true) {
             $config = Configuration::getInstance();
             /** @var string $schemaPath */
             $schemaPath = $config->resolvePath('schemas');
@@ -464,6 +464,7 @@ class XML
                 }
             );
 
+            /** @psalm-suppress PossiblyUndefinedVariable */
             $res = $dom->schemaValidate($schemaFile);
             if ($res) {
                 Errors::end();
