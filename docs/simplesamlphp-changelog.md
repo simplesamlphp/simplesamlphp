@@ -13,6 +13,7 @@ Released TBD
   * Make the URLs for the cron module work again (#1248).
   * Email error reports now include metadata again (#1269).
   * Fix exampleauth module when using the legacy UI (#1275).
+  * Fix authorize module when using custom reject message.
   * Documentation improvements.
 
 ## Version 1.18.4
