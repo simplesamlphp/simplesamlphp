@@ -8,15 +8,7 @@
 >
     <projectFiles>
         <directory name="lib/SimpleSAML" />
-
-        <directory name="modules/admin" />
-        <directory name="modules/core" />
-        <directory name="modules/cron" />
-        <directory name="modules/exampleauth" />
-        <directory name="modules/multiauth" />
-        <directory name="modules/portal" />
-        <directory name="modules/saml" />
-
+        <directory name="modules" />
         <directory name="tests" />
 
         <!-- Ignore certain directories -->
