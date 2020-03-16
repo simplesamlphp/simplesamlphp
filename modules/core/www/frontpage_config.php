@@ -85,10 +85,7 @@ if ($config->getBoolean('admin.checkforupdates', true) && $current !== 'master')
 
         if ($latest && version_compare($current, ltrim($latest['tag_name'], 'v'), 'lt')) {
             $outdated = true;
-            $warnings[] = [
-                '{core:frontpage:warnings_outdated}',
-                ['%LATEST_URL%' => $latest['html_url']]
-            ];
+            $warnings[] = '{core:frontpage:warnings_outdated}';
         }
     }
 }
@@ -168,18 +165,11 @@ $funcmatrix[] = [
 $t = new \SimpleSAML\XHTML\Template($config, 'core:frontpage_config.tpl.php');
 $translator = $t->getTranslator();
 $t->data['pageid'] = 'frontpage_config';
-$t->data['header'] = $translator->t('{core:frontpage:page_title}');
+$t->data['header'] = '{core:frontpage:page_title}';
 $t->data['isadmin'] = $isadmin;
 $t->data['loginurl'] = $loginurl;
 $t->data['logouturl'] = $logouturl;
 
-foreach ($warnings as &$warning) {
-    if (is_array($warning)) {
-        $warning = $translator->t($warning[0], $warning[1]);
-    } else {
-        $warning = $translator->t($warning);
-    }
-}
 $t->data['warnings'] = $warnings;
 
 

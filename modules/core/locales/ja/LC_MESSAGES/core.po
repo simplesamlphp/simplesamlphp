@@ -156,7 +156,7 @@ msgid "{core:frontpage:link_cleardiscochoices}"
 msgstr "IdPディスカバリサービス内のIdPの選択を削除"
 
 msgid "{core:frontpage:warnings_outdated}"
-msgstr "旧バージョンのSimpleSAMLphpが使われています。できるだけ早く<a href=\"%LATEST_URL%\">最新バーション</a>にアップロードしてください"
+msgstr "旧バージョンのSimpleSAMLphpが使われています。できるだけ早く<a href=\"https://simplesamlphp.org/download\">最新バーション</a>にアップロードしてください"
 
 msgid "{core:frontpage:loggedin_as_admin}"
 msgstr "管理者でログインしています"
