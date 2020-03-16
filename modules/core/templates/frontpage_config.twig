@@ -31,7 +31,7 @@
     {% if warnings is defined and warnings is not empty %}
     <h2>{{ '{core:frontpage:warnings}'|trans|escape('html') }}</h2>
     {% for key, warning in warnings %}
-    <div class="caution">{{ warning|raw }}</div>
+    <div class="caution">{{ warning|trans|raw }}</div>
     {% endfor %}
     {% endif %}
 
