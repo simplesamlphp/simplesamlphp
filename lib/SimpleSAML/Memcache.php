@@ -311,7 +311,7 @@ class Memcache
     private static function loadMemcacheServerGroup(array $group)
     {
         if (class_exists(\Memcached::class)) {
-            $memcache = new \Memcached();
+            $memcache = new \Memcached('persistent');
             self::$extension = \Memcached::class;
         } elseif (class_exists(\Memcache::class)) {
             $memcache = new \Memcache();
