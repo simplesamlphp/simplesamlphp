@@ -296,7 +296,7 @@ class Memcache
      */
     private static function loadMemcacheServerGroup(array $group)
     {
-        $memcache = new \Memcached();
+        $memcache = new \Memcached('persistent');
 
         // iterate over all the servers in the group and add them to the Memcache object
         foreach ($group as $index => $server) {
