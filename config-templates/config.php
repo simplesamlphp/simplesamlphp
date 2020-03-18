@@ -634,6 +634,9 @@ $config = [
      *  - 'port': This is the port number of the memcache server. If this
      *    option isn't set, then we will use the 'memcache.default_port'
      *    ini setting. This is 11211 by default.
+     *
+     * When using the "memcache" extension, the following options are also
+     * supported:
      *  - 'weight': This sets the weight of this server in this server
      *    group. http://php.net/manual/en/function.Memcache-addServer.php
      *    contains more information about the weight option.
@@ -664,6 +667,39 @@ $config = [
      * 'memcache_store.servers' => [
      *     [
      *         ['hostname' => 'localhost'],
+     *     ],
+     * ],
+     *
+     * Additionally, when using the "memcached" extension, unique keys must
+     * be provided for each group of servers if persistent connections are
+     * desired. Each server group can also have an "options" indexed array
+     * with the options desired for the given group:
+     *
+     * 'memcache_store.servers' => [
+     *     [
+     *         'memcache_group_1' => [
+     *             'options' => [
+     *                  Memcached::OPT_BINARY_PROTOCOL => true,
+     *                  Memcached::OPT_NO_BLOCK => true,
+     *                  Memcached::OPT_TCP_NODELAY => true,
+     *                  Memcached::OPT_LIBKETAMA_COMPATIBLE => true,
+     *                  Memcached::OPT_BUFFER_WRITES => true,
+     *             ],
+     *             ['hostname' => '127.0.0.1', 'port' => 11211],
+     *             ['hostname' => '127.0.0.2', 'port' => 11211],
+     *         ],
+     *
+     *         'memcache_group_2' => [
+     *             'options' => [
+     *                  Memcached::OPT_BINARY_PROTOCOL => true,
+     *                  Memcached::OPT_NO_BLOCK => true,
+     *                  Memcached::OPT_TCP_NODELAY => true,
+     *                  Memcached::OPT_LIBKETAMA_COMPATIBLE => true,
+     *                  Memcached::OPT_BUFFER_WRITES => true,
+     *             ],
+     *             ['hostname' => '127.0.0.3', 'port' => 11211],
+     *             ['hostname' => '127.0.0.4', 'port' => 11211],
+     *         ],
      *     ],
      * ],
      *
