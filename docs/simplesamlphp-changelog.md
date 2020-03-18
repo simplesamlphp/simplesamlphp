@@ -8,7 +8,7 @@ See the upgrade notes for specific information about upgrading.
 
 ## Version 1.18.5
 
-Released TBD
+Released 2020-03-18
 
   * Make the URLs for the cron module work again (#1248).
   * Email error reports now include metadata again (#1269).
