@@ -15,6 +15,7 @@ Released TBD
   * Fix exampleauth module when using the legacy UI (#1275).
   * Fix authorize module when using custom reject message.
   * Documentation improvements.
+  * Fix connection persistence for deployments that switched to memcached.
 
 ## Version 1.18.4
 
@@ -114,7 +115,7 @@ Released 2019-08-02
 Released 2019-07-11
 
   * Fix an issue introduced in 1.17.3 with `enable.http_post`.
-  
+
 ## Version 1.17.3
 
 Released 2019-07-10
@@ -577,7 +578,7 @@ Released 2017-04-27
   * Resolved a security issue with unauthenticated encryption in the SimpleSAML\Utils\Crypto class. See [SSPSA 201704-01](https://simplesamlphp.org/security/201704-01).
   * Added requirement for the Multibyte String PHP extension and the corresponding checks.
   * Set a default name for SimpleSAMLphp sessions in the configuration template for the PHP session handler.
-  
+
 ## Version 1.14.12
 
 Released 2017-03-30
@@ -968,7 +969,7 @@ Released 2013-06-05.
   * Workaround for SSL SNI extension not being correctly set.
   * New language cookie and parameter config options.
   * Add 'module.enable' configuration option for enabling/disabling modules.
-  * Check for existence of memcache extension. 
+  * Check for existence of memcache extension.
   * Initial support for limiting redirects to trusted hosts.
   * Demo example now shows both friendly and canonical name of the attributes.
   * Other minor fixes for bugs and typos.
@@ -1760,8 +1761,8 @@ Updates to `config.php`. Please check for updates in your local modified configu
   * Documentation update. New authencation source API now default and documented.
   * New authentication source (new API):
     * LDAP
-    * LDAPMulti  
-	* YubiKey authentication source. (Separate module)  
+    * LDAPMulti
+	* YubiKey authentication source. (Separate module)
 	* Facebook authentication source. (Separate module)
   * New Authentication Processing Filter:
     * AttributeAlter
@@ -1784,7 +1785,7 @@ Updates to `config.php`. Please check for updates in your local modified configu
   * New module: Aggregator: Aggregates metadata. Used in Kalmar Union.
   * New module: Metarefresh, download, parses and consumes metadata.
   * New module: SanityCheck. Checks if things looks good and reports bad configuration etc.
-  * New module: Cron. Will perform tasks regularly. 
+  * New module: Cron. Will perform tasks regularly.
   * Module: SAML2.0. SAML 2.0 SP implemented as an module. Yet not documented how to use, but all SAML 2.0 SP functionality may be moved out to this module for better modularization.
   * New module: statistics. Parses STAT log files, and aggregates based on a generic rule system. Output is stored in aggregated text files, and a frontend is included to present statistics with tables and graphs. Used sanitycheck and cron.
   * Added support for IdP initiated SSO.
@@ -1810,7 +1811,7 @@ Updates to `config.php`. Please check for updates in your local modified configu
   * Added notes about how to aggregate and consume metadata. Just a start.
   * Large improvements to Configuration class, and config helper functions.
   * STAT logging is moved into separate authenticaion processing filter.
-  * Fix for NoPassive responses to Google Apps with alternative NameIDFormats.  
+  * Fix for NoPassive responses to Google Apps with alternative NameIDFormats.
   * LDAP module allows to search multiple searchbases.
   * All documentation is converted from docbook to markdown format.
   * Added headers to not allow google to index pages.
@@ -1824,7 +1825,7 @@ Updates to `config.php`. Please check for updates in your local modified configu
   * Improved UI on default theme
   * Fix for session duration in the Conditions element in the Assertion (SAML 2.0).
   * Updated with new Feide IdP metadata in metadata-templates
-  
+
 
 
 ## Version 1.3
