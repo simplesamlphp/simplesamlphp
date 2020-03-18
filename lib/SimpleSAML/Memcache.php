@@ -289,14 +289,29 @@ class Memcache
      * creates a Memcache object from the servers in the group.
      *
      * @param array $group Array of servers which should be created as a group.
+     * @param string $index The index for this group. Specify if persistent connections are desired.
      *
      * @return \Memcached A Memcache object of the servers in the group
      *
      * @throws \Exception If the servers configuration is invalid.
      */
-    private static function loadMemcacheServerGroup(array $group)
+    private static function loadMemcacheServerGroup(array $group, $index = null)
     {
-        $memcache = new \Memcached('persistent');
+        if (is_string($index)) {
+            $memcache = new \Memcached($index);
+        } else {
+            $memcache = new \Memcached();
+        }
+        if (array_key_exists('options', $group)) {
+            $memcache->setOptions($group['options']);
+            unset($group['options']);
+        }
+
+        $servers = $memcache->getServerList();
+        if (count($servers) === count($group) && !$memcache->isPristine()) {
+            return $memcache;
+        }
+        $memcache->resetServerList();
 
         // iterate over all the servers in the group and add them to the Memcache object
         foreach ($group as $index => $server) {
@@ -353,12 +368,8 @@ class Memcache
         // iterate over all the groups in the 'memcache_store.servers' configuration option
         foreach ($groups as $index => $group) {
             // make sure that the group doesn't have an index. An index would be a sign of invalid configuration
-            if (!is_int($index)) {
-                throw new \Exception(
-                    "Invalid index on element in the 'memcache_store.servers'" .
-                    ' configuration option. Perhaps you have forgotten to add an array(...)' .
-                    ' around one of the server groups? The invalid index was: ' . $index
-                );
+            if (is_int($index)) {
+                $index = null;
             }
 
             /*
@@ -374,7 +385,7 @@ class Memcache
             }
 
             // parse and add this group to the server group list
-            self::$serverGroups[] = self::loadMemcacheServerGroup($group);
+            self::$serverGroups[] = self::loadMemcacheServerGroup($group, $index);
         }
 
         return self::$serverGroups;
