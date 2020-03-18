@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SimpleSAML;
 
 use SimpleSAML\Utils;
-use Webmozart\Assert\Assert;
 
 /**
  * This file implements functions to read and write to a group of memcache
@@ -247,36 +246,6 @@ class Memcache
                 // invalid port number from the ini-file. fall back to the default
                 $port = 11211;
             }
-        }
-
-        // check if the user has specified a weight for this server
-        if (array_key_exists('weight', $server)) {
-            // get the weight and validate it
-            $weight = (int) $server['weight'];
-            if ($weight <= 0) {
-                throw new \Exception(
-                    "Invalid weight for server in the 'memcache_store.servers' configuration option. The weight is" .
-                    ' supposed to be a positive integer.'
-                );
-            }
-        } else {
-            // use a default weight of 1
-            $weight = 1;
-        }
-
-        // check if the user has specified a timeout for this server
-        if (array_key_exists('timeout', $server)) {
-            // get the timeout and validate it
-            $timeout = (int) $server['timeout'];
-            if ($timeout <= 0) {
-                throw new \Exception(
-                    "Invalid timeout for server in the 'memcache_store.servers' configuration option. The timeout is" .
-                    ' supposed to be a positive integer.'
-                );
-            }
-        } else {
-            // use a default timeout of 3 seconds
-            $timeout = 3;
         }
 
         // add this server to the Memcache object
