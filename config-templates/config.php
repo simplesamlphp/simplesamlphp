@@ -669,30 +669,28 @@ $config = [
      * with the options desired for the given group:
      *
      * 'memcache_store.servers' => [
-     *     [
-     *         'memcache_group_1' => [
-     *             'options' => [
-     *                  Memcached::OPT_BINARY_PROTOCOL => true,
-     *                  Memcached::OPT_NO_BLOCK => true,
-     *                  Memcached::OPT_TCP_NODELAY => true,
-     *                  Memcached::OPT_LIBKETAMA_COMPATIBLE => true,
-     *                  Memcached::OPT_BUFFER_WRITES => true,
-     *             ],
-     *             ['hostname' => '127.0.0.1', 'port' => 11211],
-     *             ['hostname' => '127.0.0.2', 'port' => 11211],
+     *     'memcache_group_1' => [
+     *         'options' => [
+     *              \Memcached::OPT_BINARY_PROTOCOL => true,
+     *              \Memcached::OPT_NO_BLOCK => true,
+     *              \Memcached::OPT_TCP_NODELAY => true,
+     *              \Memcached::OPT_LIBKETAMA_COMPATIBLE => true,
+     *              \Memcached::OPT_BUFFER_WRITES => true,
      *         ],
+     *         ['hostname' => '127.0.0.1', 'port' => 11211],
+     *         ['hostname' => '127.0.0.2', 'port' => 11211],
+     *     ],
      *
-     *         'memcache_group_2' => [
-     *             'options' => [
-     *                  Memcached::OPT_BINARY_PROTOCOL => true,
-     *                  Memcached::OPT_NO_BLOCK => true,
-     *                  Memcached::OPT_TCP_NODELAY => true,
-     *                  Memcached::OPT_LIBKETAMA_COMPATIBLE => true,
-     *                  Memcached::OPT_BUFFER_WRITES => true,
-     *             ],
-     *             ['hostname' => '127.0.0.3', 'port' => 11211],
-     *             ['hostname' => '127.0.0.4', 'port' => 11211],
+     *     'memcache_group_2' => [
+     *         'options' => [
+     *              \Memcached::OPT_BINARY_PROTOCOL => true,
+     *              \Memcached::OPT_NO_BLOCK => true,
+     *              \Memcached::OPT_TCP_NODELAY => true,
+     *              \Memcached::OPT_LIBKETAMA_COMPATIBLE => true,
+     *              \Memcached::OPT_BUFFER_WRITES => true,
      *         ],
+     *         ['hostname' => '127.0.0.3', 'port' => 11211],
+     *         ['hostname' => '127.0.0.4', 'port' => 11211],
      *     ],
      * ],
      *
