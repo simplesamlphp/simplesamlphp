@@ -399,11 +399,6 @@ class Memcache
 
         // iterate over all the groups in the 'memcache_store.servers' configuration option
         foreach ($groups as $index => $group) {
-            // make sure that the group doesn't have an index. An index would be a sign of invalid configuration
-            if (is_int($index)) {
-                $index = null;
-            }
-
             /*
              * Make sure that the group is an array. Each group is an array of servers. Each server is
              * an array of name => value pairs for that server.
@@ -414,6 +409,11 @@ class Memcache
                     ". Remeber that the 'memcache_store.servers' configuration option" .
                     ' contains an array of arrays of arrays.'
                 );
+            }
+
+            // make sure that the group doesn't have an index. An index would be a sign of invalid configuration
+            if (is_int($index)) {
+                $index = null;
             }
 
             // parse and add this group to the server group list
