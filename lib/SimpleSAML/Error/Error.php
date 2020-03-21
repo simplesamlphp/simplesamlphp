@@ -222,8 +222,6 @@ class Error extends Exception
      */
     public function show()
     {
-        $this->setHTTPCode();
-
         // log the error message
         $this->logError();
 
@@ -265,10 +263,12 @@ class Error extends Exception
         $show_function = $config->getArray('errors.show_function', null);
         if (isset($show_function)) {
             assert(is_callable($show_function));
+            $this->setHTTPCode();
             call_user_func($show_function, $config, $data);
             assert(false);
         } else {
             $t = new Template($config, 'error.php', 'errors');
+            $t->setStatusCode($this->httpCode);
             $t->data = array_merge($t->data, $data);
             $t->show();
         }
