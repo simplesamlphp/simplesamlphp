@@ -223,8 +223,6 @@ class Error extends Exception
      */
     public function show(): void
     {
-        $this->setHTTPCode();
-
         // log the error message
         $this->logError();
 
@@ -266,10 +264,12 @@ class Error extends Exception
         $show_function = $config->getArray('errors.show_function', null);
         if (isset($show_function)) {
             Assert::isCallable($show_function);
+            $this->setHTTPCode();
             call_user_func($show_function, $config, $data);
             Assert::true(false);
         } else {
             $t = new Template($config, 'error.twig', 'errors');
+            $t->setStatusCode($this->httpCode);
             $t->data = array_merge($t->data, $data);
             $t->send();
         }
