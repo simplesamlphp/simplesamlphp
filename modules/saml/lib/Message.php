@@ -98,14 +98,14 @@ class Message
     ): void {
         $signingEnabled = null;
         if ($message instanceof LogoutRequest || $message instanceof LogoutResponse) {
-            $signingEnabled = $srcMetadata->getBoolean('sign.logout', null);
+            $signingEnabled = $dstMetadata->getBoolean('sign.logout', null);
             if ($signingEnabled === null) {
-                $signingEnabled = $dstMetadata->getBoolean('sign.logout', null);
+                $signingEnabled = $srcMetadata->getBoolean('sign.logout', null);
             }
         } elseif ($message instanceof AuthnRequest) {
-            $signingEnabled = $srcMetadata->getBoolean('sign.authnrequest', null);
+            $signingEnabled = $dstMetadata->getBoolean('sign.authnrequest', null);
             if ($signingEnabled === null) {
-                $signingEnabled = $dstMetadata->getBoolean('sign.authnrequest', null);
+                $signingEnabled = $srcMetadata->getBoolean('sign.authnrequest', null);
             }
         }
 
