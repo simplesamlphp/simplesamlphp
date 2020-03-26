@@ -191,6 +191,7 @@ class SAML2
      * @param string|null               $AssertionConsumerServiceURL AssertionConsumerServiceURL from request.
      * @param string|null               $ProtocolBinding ProtocolBinding from request.
      * @param int|null                  $AssertionConsumerServiceIndex AssertionConsumerServiceIndex from request.
+     * @param bool                      $authnMessageSigned Whether or not the authn request was signed.
      *
      * @return array|null  Array with the Location and Binding we should use for the response.
      */
@@ -199,7 +200,8 @@ class SAML2
         Configuration $spMetadata,
         string $AssertionConsumerServiceURL = null,
         string $ProtocolBinding = null,
-        int $AssertionConsumerServiceIndex = null
+        int $AssertionConsumerServiceIndex = null,
+        bool $authnMessageSigned = false
     ): ?array {
         /* We want to pick the best matching endpoint in the case where for example
          * only the ProtocolBinding is given. We therefore pick endpoints with the
@@ -252,6 +254,24 @@ class SAML2
             return $firstFalse;
         }
 
+        $skipEndpointValidation = false;
+        if ($authnMessageSigned){         
+          $skipEndpointValidationWhenSigned = $spMetadata->getValue('skipEndpointValidationWhenSigned', false);
+          if (is_bool($skipEndpointValidationWhenSigned)){
+            $skipEndpointValidation = $skipEndpointValidationWhenSigned;
+          }
+          else if (is_callable($skipEndpointValidationWhenSigned)){
+            $shouldSkipEndpointValidation = $skipEndpointValidationWhenSigned($spMetadata);
+            if (is_bool($shouldSkipEndpointValidation)){
+              $skipEndpointValidation = $shouldSkipEndpointValidation;
+            }
+          }
+        }
+        if ($AssertionConsumerServiceURL !== null && $skipEndpointValidation){
+            Logger::warning('Using AssertionConsumerService specified in AuthnRequest because no metadata endpoint matches and skipEndpointValidationWhenSigned was true');
+            return array('Location'=>$AssertionConsumerServiceURL, 'Binding'=>$ProtocolBinding);
+        }
+        
         Logger::warning('Authentication request specifies invalid AssertionConsumerService:');
         if ($AssertionConsumerServiceURL !== null) {
             Logger::warning('AssertionConsumerServiceURL: ' . var_export($AssertionConsumerServiceURL, true));
@@ -293,6 +313,8 @@ class SAML2
             $supportedBindings[] = Constants::BINDING_PAOS;
         }
 
+        $authnMessageSigned = false;
+        
         if (isset($_REQUEST['spentityid']) || isset($_REQUEST['providerId'])) {
             /* IdP initiated authentication. */
 
@@ -373,7 +395,7 @@ class SAML2
             $spEntityId = $issuer->getValue();
             $spMetadata = $metadata->getMetaDataConfig($spEntityId, 'saml20-sp-remote');
 
-            \SimpleSAML\Module\saml\Message::validateMessage($spMetadata, $idpMetadata, $request);
+            $authnMessageSigned = \SimpleSAML\Module\saml\Message::validateMessage($spMetadata, $idpMetadata, $request);
 
             $relayState = $request->getRelayState();
 
@@ -425,7 +447,8 @@ class SAML2
             $spMetadata,
             $consumerURL,
             $protocolBinding,
-            $consumerIndex
+            $consumerIndex,
+            $authnMessageSigned
         );
         if ($acsEndpoint === null) {
             throw new \Exception('Unable to use any of the ACS endpoints found for SP \'' . $spEntityId . '\'');
