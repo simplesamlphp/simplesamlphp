@@ -173,12 +173,18 @@ class Module
         $translated_uri = $config->getBasePath() . 'module.php/' . $module . '/' . $url;
         $request->server->set('REQUEST_URI', $translated_uri);
         $request->server->set('SCRIPT_NAME', $config->getBasePath() . 'module.php');
+        $request_files = array_filter(
+            $request->files->all(),
+            function ($val) {
+                return !is_null($val);
+            }
+        );
         $request->initialize(
             $request->query->all(),
             $request->request->all(),
             $request->attributes->all(),
             $request->cookies->all(),
-            $request->files->all(),
+            $request_files,
             $request->server->all(),
             $request->getContent()
         );
