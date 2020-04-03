@@ -13,7 +13,7 @@ $config = [
     /* When multiple authentication sources are defined, you can specify here which one to show 
      * and the others could be used with multiauth:MultiAuth
      */
-    // 'showThisSource' = 'default-sp',
+    // 'showThisSource' = ['default-sp'],
 
 
     // An authentication source which can authenticate against both SAML 2.0
