@@ -51,8 +51,8 @@ if (!empty($xmldata)) {
     $output = [];
 }
 
-$template = new \SimpleSAML\XHTML\Template($config, 'metadata-converter.php', 'admin');
+$template = new \SimpleSAML\XHTML\Template($config, 'metadata-converter', 'admin');
 $template->data['clipboard.js'] = true;
 $template->data['xmldata'] = $xmldata;
 $template->data['output'] = $output;
-$template->show();
+$template->send();

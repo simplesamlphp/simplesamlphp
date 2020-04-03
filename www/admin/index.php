@@ -28,4 +28,4 @@ $template->data['remaining']  = $session->getAuthData('admin', 'Expire') - time(
 $template->data['valid'] = 'na';
 $template->data['logouturl'] = $logouturl;
 
-$template->show();
+$template->send();
