@@ -86,7 +86,7 @@ class Login
         }
 
         $attributes = $auth->getAttributes();
-        
+
         $session = Session::getSessionFromRequest();
 
         $t = new Template($this->config, 'auth_status.twig', 'attributes');
@@ -132,11 +132,20 @@ class Login
             $as = key($this->sources);
         }
 
+        $default = false;
+        if (array_key_exists('default', $this->sources) && is_array($this->sources['default'])) {
+            $default = $this->sources['default'];
+        }
+
         if ($as === null) { // no authentication source specified
-            $t = new Template($this->config, 'core:login.twig');
-            $t->data['loginurl'] = Utils\Auth::getAdminLoginURL();
-            $t->data['sources'] = $this->sources;
-            return $t;
+            if (!$default) {
+                $t = new Template($this->config, 'core:login.twig');
+                $t->data['loginurl'] = Utils\Auth::getAdminLoginURL();
+                $t->data['sources'] = $this->sources;
+                return $t;
+            }
+            // we have a default, use that one
+            $as = 'default';
         }
 
         // auth source defined, check if valid
