@@ -128,9 +128,10 @@ class Controller
             $as = key($this->sources);
         }
 
-        if (array_key_exists('showThisSource', $this->sources) &&
-            array_key_exists($this->sources['showThisSource'], $this->sources)) {
-            $as = $this->sources['showThisSource'];
+        if (array_key_exists('showThisSource', $this->sources)) {
+            if (array_key_exists($this->sources['showThisSource'], $this->sources)) {
+                $as = $this->sources['showThisSource'];
+            }
             unset($this->sources['showThisSource']);
         }
 
