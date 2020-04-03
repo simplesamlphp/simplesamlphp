@@ -128,6 +128,12 @@ class Controller
             $as = key($this->sources);
         }
 
+        if (array_key_exists('showThisSource', $this->sources) &&
+            array_key_exists($this->sources['showThisSource'], $this->sources)) {
+            $as = $this->sources['showThisSource'];
+            unset($this->sources['showThisSource']);
+        }
+
         if ($as === null) { // no authentication source specified
             $t = new Template($this->config, 'core:login.twig');
             $t->data['loginurl'] = Utils\Auth::getAdminLoginURL();
