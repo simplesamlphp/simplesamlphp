@@ -468,7 +468,7 @@ class Module
     {
         Assert::notSame($resource[0], '/');
 
-        $url = Utils\HTTP::getBaseURL() . 'module.php/' . $resource;
+        $url = Utils\HTTP::getBaseURL() . 'modules/' . $resource;
         if (!empty($parameters)) {
             $url = Utils\HTTP::addURLParameters($url, $parameters);
         }
