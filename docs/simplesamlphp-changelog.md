@@ -16,6 +16,7 @@ Released TBD
   * Raised minimum PHP version to 7.1
   * Dropped support for Symfony 3.x
   * Update the SAML2 library dependency to 4.1.9
+  * Fix a bug where SSP wouldn't write to the tmp-directory if it didn't own it, but could write to it (#1314)
   * Allow additional audiences to be specified (#1345)
   * Support saml:Extensions in saml:SP authsources (#1349)
   * The `attributename`-setting in the core:TargetedID authproc-filter has been deprecated in 

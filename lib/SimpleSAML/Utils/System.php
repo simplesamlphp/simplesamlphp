@@ -66,12 +66,13 @@ class System
      * This function retrieves the path to a directory where temporary files can be saved.
      *
      * @return string Path to a temporary directory, without a trailing directory separator.
-     * @throws Error\Exception If the temporary directory cannot be created or it exists and does not belong
-     * to the current user.
+     * @throws Error\Exception If the temporary directory cannot be created or it exists and cannot be written
+     * to by the current user.
      *
      * @author Andreas Solberg, UNINETT AS <andreas.solberg@uninett.no>
      * @author Olav Morken, UNINETT AS <olav.morken@uninett.no>
      * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
+     * @author Aaron St. Clair, ECRS AS <astclair@ecrs.com>
      */
     public static function getTempDir()
     {
@@ -85,6 +86,10 @@ class System
             DIRECTORY_SEPARATOR
         );
 
+        /**
+         * If the temporary directory does not exist then attempt to create it. If the temporary directory
+         * already exists then verify the current user can write to it. Otherwise, throw an error.
+         */
         if (!is_dir($tempDir)) {
             if (!mkdir($tempDir, 0700, true)) {
                 $error = error_get_last();
@@ -93,14 +98,12 @@ class System
                     (is_array($error) ? $error['message'] : 'no error available')
                 );
             }
-        } elseif (function_exists('posix_getuid')) {
-            // check that the owner of the temp directory is the current user
-            $stat = lstat($tempDir);
-            if ($stat['uid'] !== posix_getuid()) {
-                throw new Error\Exception(
-                    'Temporary directory "' . $tempDir . '" does not belong to the current user.'
-                );
-            }
+        } elseif (!is_writable($tempDir)) {
+            throw new Error\Exception(
+                'Temporary directory "' . $tempDir .
+                '" cannot be written to by the current user' .
+                (function_exists('posix_getuid') ? ' "' .  posix_getuid() . '"' : '')
+            );
         }
 
         return $tempDir;

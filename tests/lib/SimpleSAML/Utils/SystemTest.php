@@ -282,23 +282,16 @@ class SystemTest extends TestCase
 
 
     /**
-     * @requires OS Linux
      * @covers \SimpleSAML\Utils\System::getTempDir
      * @test
      * @return void
      */
-    public function testGetTempDirBadOwner()
+    public function testGetTempDirBadPermissions()
     {
-        if (!function_exists('posix_getuid')) {
-            static::markTestSkipped('POSIX-functions not available;  skipping!');
-        }
-
-        $bad_uid = posix_getuid() + 1;
-
         $tempdir = $this->root_directory . DIRECTORY_SEPARATOR . self::DEFAULTTEMPDIR;
         $config = $this->setConfigurationTempDir($tempdir);
 
-        chown($tempdir, $bad_uid);
+        chmod($tempdir, 0440);
 
         $this->expectException(\SimpleSAML\Error\Exception::class);
         System::getTempDir();
