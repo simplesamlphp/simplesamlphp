@@ -103,7 +103,7 @@ class System
             throw new Error\Exception(
                 'Temporary directory "' . $tempDir .
                 '" cannot be written to by the current user' .
-                (function_exists('posix_getuid') ? ' "' .  posix_getuid() . '"' : '');
+                (function_exists('posix_getuid') ? ' "' .  posix_getuid() . '"' : '')
             );
         }
 
