@@ -228,14 +228,15 @@ class Template extends Response
         $loader = new TemplateLoader();
         $templateDirs = $this->findThemeTemplateDirs();
         if ($this->module && $this->module != 'core') {
-            $templateDirs[] = [$this->module => TemplateLoader::getModuleTemplateDir($this->module)];
+            $modDir = TemplateLoader::getModuleTemplateDir($this->module);
+            $templateDirs[] = [$this->module => $modDir];
+            $templateDirs[] = ['__parent__' => $modDir];
         }
         if ($this->theme['module']) {
             try {
                 $templateDirs[] = [
                     $this->theme['module'] => TemplateLoader::getModuleTemplateDir($this->theme['module'])
                 ];
-                $templateDirs[] = ['__parent__' => TemplateLoader::getModuleTemplateDir($this->module)];
             } catch (\InvalidArgumentException $e) {
                 // either the module is not enabled or it has no "templates" directory, ignore
             }
