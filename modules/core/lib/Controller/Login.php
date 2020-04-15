@@ -144,8 +144,18 @@ class Login
                 $t->data['sources'] = $this->sources;
                 return $t;
             }
+
             // we have a default, use that one
             $as = 'default';
+            foreach ($this->sources as $id => $source) {
+                if ($id === 'default') {
+                    continue;
+                }
+                if ($source === $this->sources['default']) {
+                    $as = $id;
+                    break;
+                }
+            }
         }
 
         // auth source defined, check if valid
