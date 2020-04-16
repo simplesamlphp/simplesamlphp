@@ -6,6 +6,15 @@ SimpleSAMLphp changelog
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
+## Version 1.18.6
+
+Released 2020-04-17
+
+  * Fix source code disclosure on case-insensitive file systems. See
+    [SSPSA 202004-01](https://simplesamlphp.org/security/202004-01).
+  * Fix spurious error in logs when using a custom theme (#1312).
+  * Fix broken metadata converter (#1305).
+
 ## Version 1.18.5
 
 Released 2020-03-19
