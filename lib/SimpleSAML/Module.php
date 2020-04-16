@@ -250,7 +250,7 @@ class Module
             throw new Error\NotFound('The URL wasn\'t found in the module.');
         }
 
-        if (substr($path, -4) === '.php') {
+        if (mb_strtolower(substr($path, -4), 'UTF-8') === '.php') {
             // PHP file - attempt to run it
 
             /* In some environments, $_SERVER['SCRIPT_NAME'] is already set with $_SERVER['PATH_INFO']. Check for that
