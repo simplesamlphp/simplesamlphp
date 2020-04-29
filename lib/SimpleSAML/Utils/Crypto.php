@@ -317,7 +317,7 @@ class Crypto
      * This function hashes a password with a given algorithm.
      *
      * @param string $password The password to hash.
-     * @param int $algorithm The algorithm to use. Defaults to the system default
+     * @param mixed $algorithm The algorithm to use. Defaults to the system default
      *
      * @return string The hashed password.
      * @throws \InvalidArgumentException If the input parameter is not a string.
@@ -328,7 +328,7 @@ class Crypto
      * @author Dyonisius Visser, TERENA <visser@terena.org>
      * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
-    public static function pwHash(string $password, int $algorithm = PASSWORD_DEFAULT): string
+    public static function pwHash(string $password, $algorithm = PASSWORD_DEFAULT): string
     {
         if (!is_string($hash = password_hash($password, $algorithm))) {
             throw new InvalidArgumentException('Error while hashing password.');
