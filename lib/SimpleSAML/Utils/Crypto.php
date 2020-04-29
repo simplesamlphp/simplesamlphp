@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Utils;
 
+use InvalidArgumentException;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use Webmozart\Assert\Assert;
@@ -33,7 +34,7 @@ class Crypto
         /** @var int $len */
         $len = mb_strlen($ciphertext, '8bit');
         if ($len < 48) {
-            throw new \InvalidArgumentException(
+            throw new InvalidArgumentException(
                 'Input parameter "$ciphertext" must be a string with more than 48 characters.'
             );
         }
@@ -300,11 +301,11 @@ class Crypto
         $last  = count($lines) - 1;
 
         if (strpos($lines[0], $begin) !== 0) {
-            throw new \InvalidArgumentException("pem2der: input is not encoded in PEM format.");
+            throw new InvalidArgumentException("pem2der: input is not encoded in PEM format.");
         }
         unset($lines[0]);
         if (strpos($lines[$last], $end) !== 0) {
-            throw new \InvalidArgumentException("pem2der: input is not encoded in PEM format.");
+            throw new InvalidArgumentException("pem2der: input is not encoded in PEM format.");
         }
         unset($lines[$last]);
 
@@ -316,6 +317,7 @@ class Crypto
      * This function hashes a password with a given algorithm.
      *
      * @param string $password The password to hash.
+     * @param int $algorithm The algorithm to use. Defaults to the system default
      *
      * @return string The hashed password.
      * @throws \InvalidArgumentException If the input parameter is not a string.
@@ -326,10 +328,10 @@ class Crypto
      * @author Dyonisius Visser, TERENA <visser@terena.org>
      * @author Jaime Perez, UNINETT AS <jaime.perez@uninett.no>
      */
-    public static function pwHash(string $password): string
+    public static function pwHash(string $password, int $algorithm = PASSWORD_DEFAULT): string
     {
-        if (!is_string($hash = password_hash($password, PASSWORD_DEFAULT))) {
-            throw new \InvalidArgumentException('Error while hashing password.');
+        if (!is_string($hash = password_hash($password, $algorithm))) {
+            throw new InvalidArgumentException('Error while hashing password.');
         }
         return $hash;
     }
