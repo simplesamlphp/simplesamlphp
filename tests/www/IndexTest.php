@@ -80,7 +80,7 @@ class IndexTest extends TestCase
         ]);
         $this->assertEquals('302', $resp['code']);
         $this->assertEquals(
-            'http://example.org/simplesaml/module.php/core/frontpage_welcome.php',
+            'http://example.org/simplesaml/module.php/core/login',
             $resp['headers']['Location']
         );
 
@@ -93,7 +93,7 @@ class IndexTest extends TestCase
         ]);
         $this->assertEquals('302', $resp['code']);
         $this->assertEquals(
-            'https://example.org/module.php/core/frontpage_welcome.php',
+            'https://example.org/module.php/core/login',
             $resp['headers']['Location']
         );
 
@@ -106,7 +106,7 @@ class IndexTest extends TestCase
         ]);
         $this->assertEquals('302', $resp['code']);
         $this->assertEquals(
-            'http://' . $this->server_addr . '/simplesaml/module.php/core/frontpage_welcome.php',
+            'http://' . $this->server_addr . '/simplesaml/module.php/core/login',
             $resp['headers']['Location']
         );
     }
