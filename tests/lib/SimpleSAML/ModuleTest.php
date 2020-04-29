@@ -108,19 +108,19 @@ class ModuleTest extends TestCase
      * Test for SimpleSAML\Module::resolveClass(). It covers all the valid use cases.
      * @return void
      */
-    public function tesstResolveClass()
+    public function testResolveClass()
     {
         // most basic test
-        $this->assertEquals('sspmod_core_ACL', Module::resolveClass('core:ACL', ''));
+        $this->assertEquals('SimpleSAML\Module\cron\Cron', Module::resolveClass('cron:Cron', ''));
 
         // test for the $type parameter correctly translated into a path
         $this->assertEquals(
-            '\SimpleSAML\Module\core\Auth\Process\PHP',
-            Module::resolveClass('core:PHP', 'Auth_Process')
+            'SimpleSAML\Module\core\Auth\Process\PHP',
+            Module::resolveClass('core:PHP', 'Auth\Process')
         );
 
         // test for valid subclasses
-        $this->assertEquals('\SimpleSAML\Module\core\Auth\Process\PHP', Module::resolveClass(
+        $this->assertEquals('SimpleSAML\Module\core\Auth\Process\PHP', Module::resolveClass(
             'core:PHP',
             'Auth\Process',
             '\SimpleSAML\Auth\ProcessingFilter'
