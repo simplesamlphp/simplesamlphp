@@ -127,7 +127,7 @@ class Test
         ];
         if ($nameId->getFormat() !== null) {
             /** @var string $format */
-            $format = $translator->t('{status:subject_format}');
+            $format = $translator->getTag('{status:subject_format}');
             $list[$format] = [$nameId->getFormat()];
         }
         if ($nameId->getNameQualifier() !== null) {
@@ -273,7 +273,7 @@ class Test
         ];
         if ($nameID->getFormat() !== null) {
             /** @var string $format */
-            $format = $t->t('{status:subject_format}');
+            $format = $t->getTag('{status:subject_format}');
             $eptid[$format] = [$nameID->getFormat()];
         }
         if ($nameID->getNameQualifier() !== null) {
