@@ -22,7 +22,7 @@ class MetaDataStorageHandlerSerialize extends MetaDataStorageSource
      *
      * @var string
      */
-    const EXTENSION = '.serialized';
+    public const EXTENSION = '.serialized';
 
 
     /**

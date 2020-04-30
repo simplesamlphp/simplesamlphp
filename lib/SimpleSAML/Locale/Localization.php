@@ -30,21 +30,21 @@ class Localization
      *
      * @var string
      */
-    const DEFAULT_DOMAIN = 'messages';
+    public const DEFAULT_DOMAIN = 'messages';
 
     /**
      * Old internationalization backend included in SimpleSAMLphp.
      *
      * @var string
      */
-    const SSP_I18N_BACKEND = 'SimpleSAMLphp';
+    public const SSP_I18N_BACKEND = 'SimpleSAMLphp';
 
     /**
      * An internationalization backend implemented purely in PHP.
      *
      * @var string
      */
-    const GETTEXT_I18N_BACKEND = 'gettext/gettext';
+    public const GETTEXT_I18N_BACKEND = 'gettext/gettext';
 
     /**
      * The default locale directory

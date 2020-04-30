@@ -14,9 +14,9 @@ use SimpleSAML\Utils\Crypto;
  */
 class CryptoTest extends TestCase
 {
-    const ROOTDIRNAME = 'testdir';
+    private const ROOTDIRNAME = 'testdir';
 
-    const DEFAULTCERTDIR = 'certdir';
+    private const DEFAULTCERTDIR = 'certdir';
 
     /** @var \org\bovigo\vfs\vfsStreamDirectory */
     protected $root;

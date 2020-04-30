@@ -78,7 +78,7 @@ class Logger
      *
      * @var string
      */
-    const NO_TRACKID = '_NOTRACKIDYET_';
+    public const NO_TRACKID = '_NOTRACKIDYET_';
 
     /**
      * This variable holds the track ID we have retrieved from the session class. It can also be NULL, in which case
@@ -133,28 +133,28 @@ class Logger
     private static $shuttingDown = false;
 
     /** @var int */
-    const EMERG = 0;
+    public const EMERG = 0;
 
     /** @var int */
-    const ALERT = 1;
+    public const ALERT = 1;
 
     /** @var int */
-    const CRIT = 2;
+    public const CRIT = 2;
 
     /** @var int */
-    const ERR = 3;
+    public const ERR = 3;
 
     /** @var int */
-    const WARNING = 4;
+    public const WARNING = 4;
 
     /** @var int */
-    const NOTICE = 5;
+    public const NOTICE = 5;
 
     /** @var int */
-    const INFO = 6;
+    public const INFO = 6;
 
     /** @var int */
-    const DEBUG = 7;
+    public const DEBUG = 7;
 
 
     /**

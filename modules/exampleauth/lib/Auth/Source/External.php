@@ -35,7 +35,7 @@ class External extends \SimpleSAML\Auth\Source
     /**
      * The key of the AuthId field in the state.
      */
-    const AUTHID = 'SimpleSAML\Module\exampleauth\Auth\Source\External.AuthId';
+    public const AUTHID = 'SimpleSAML\Module\exampleauth\Auth\Source\External.AuthId';
 
 
     /**

@@ -13,9 +13,7 @@ use SimpleSAML\Utils\XML;
  */
 class XMLTest extends TestCase
 {
-    const FRAMEWORK = 'vendor/simplesamlphp/simplesamlphp-test-framework';
-    // Visibility on constants is supported from PHP 7.1 and up
-    // private const FRAMEWORK = 'vendor/simplesamlphp/simplesamlphp-test-framework';
+    private const FRAMEWORK = 'vendor/simplesamlphp/simplesamlphp-test-framework';
 
     /**
      * @covers \SimpleSAML\Utils\XML::isDOMNodeOfType
