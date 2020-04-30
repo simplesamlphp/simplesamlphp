@@ -48,10 +48,6 @@ d2udRIYG0WcjQTk86+EraXNGtuwUaknQ7WPKlJwLzypuZM8lk3F1FXxXWomHN3SH
 -----END CERTIFICATE-----
 NOWDOC;
 
-    private const ROOTDIRNAME = 'testdir';
-
-    private const DEFAULTCERTDIR = 'certdir';
-
     private const OTHER_CERTIFICATE = 'other_certificate.pem';
 
 
