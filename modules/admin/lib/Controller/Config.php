@@ -22,9 +22,9 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class Config
 {
-    const LATEST_VERSION_STATE_KEY = 'core:latest_simplesamlphp_version';
+    public const LATEST_VERSION_STATE_KEY = 'core:latest_simplesamlphp_version';
 
-    const RELEASES_API = 'https://api.github.com/repos/simplesamlphp/simplesamlphp/releases/latest';
+    public const RELEASES_API = 'https://api.github.com/repos/simplesamlphp/simplesamlphp/releases/latest';
 
     /** @var \SimpleSAML\Configuration */
     protected $config;

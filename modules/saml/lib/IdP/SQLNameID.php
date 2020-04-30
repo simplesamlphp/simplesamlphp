@@ -18,9 +18,9 @@ use SimpleSAML\Configuration;
  */
 class SQLNameID
 {
-    const TABLE_VERSION = 1;
-    const DEFAULT_TABLE_PREFIX = '';
-    const TABLE_SUFFIX = '_saml_PersistentNameID';
+    public const TABLE_VERSION = 1;
+    public const DEFAULT_TABLE_PREFIX = '';
+    public const TABLE_SUFFIX = '_saml_PersistentNameID';
 
 
     /**

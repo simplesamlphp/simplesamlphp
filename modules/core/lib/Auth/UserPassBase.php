@@ -26,12 +26,12 @@ abstract class UserPassBase extends \SimpleSAML\Auth\Source
     /**
      * The string used to identify our states.
      */
-    const STAGEID = '\SimpleSAML\Module\core\Auth\UserPassBase.state';
+    public const STAGEID = '\SimpleSAML\Module\core\Auth\UserPassBase.state';
 
     /**
      * The key of the AuthId field in the state.
      */
-    const AUTHID = '\SimpleSAML\Module\core\Auth\UserPassBase.AuthId';
+    public const AUTHID = '\SimpleSAML\Module\core\Auth\UserPassBase.AuthId';
 
     /**
      * Username we should force.

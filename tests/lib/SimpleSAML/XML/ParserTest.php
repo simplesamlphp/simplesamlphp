@@ -17,7 +17,7 @@ use SimpleSAML\XML\Parser;
  */
 class ParserTest extends TestCase
 {
-    const XMLDOC = <<< XML
+    private const XMLDOC = <<< XML
 <?xml version="1.0" encoding="UTF-8"?>
 <Root>
   <Value>Hello, World!</Value>

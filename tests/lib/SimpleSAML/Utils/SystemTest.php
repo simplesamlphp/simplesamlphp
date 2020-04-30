@@ -16,9 +16,9 @@ use SimpleSAML\Utils\System;
  */
 class SystemTest extends TestCase
 {
-    const ROOTDIRNAME = 'testdir';
+    private const ROOTDIRNAME = 'testdir';
 
-    const DEFAULTTEMPDIR = 'tempdir';
+    private const DEFAULTTEMPDIR = 'tempdir';
 
     /** @var \org\bovigo\vfs\vfsStreamDirectory */
     protected $root;

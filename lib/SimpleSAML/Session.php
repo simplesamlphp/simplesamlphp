@@ -32,7 +32,7 @@ class Session implements \Serializable, Utils\ClearableState
      * This is a timeout value for setData, which indicates that the data
      * should never be deleted, i.e. lasts the whole session lifetime.
      */
-    const DATA_TIMEOUT_SESSION_END = 'sessionEndTimeout';
+    public const DATA_TIMEOUT_SESSION_END = 'sessionEndTimeout';
 
     /**
      * The list of loaded session objects.

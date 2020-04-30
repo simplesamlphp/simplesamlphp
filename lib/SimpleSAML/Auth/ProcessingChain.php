@@ -26,20 +26,20 @@ class ProcessingChain
     /**
      * The list of remaining filters which should be applied to the state.
      */
-    const FILTERS_INDEX = '\SimpleSAML\Auth\ProcessingChain.filters';
+    public const FILTERS_INDEX = '\SimpleSAML\Auth\ProcessingChain.filters';
 
 
     /**
      * The stage we use for completed requests.
      */
-    const COMPLETED_STAGE = '\SimpleSAML\Auth\ProcessingChain.completed';
+    public const COMPLETED_STAGE = '\SimpleSAML\Auth\ProcessingChain.completed';
 
 
     /**
      * The request parameter we will use to pass the state identifier when we redirect after
      * having completed processing of the state.
      */
-    const AUTHPARAM = 'AuthProcId';
+    public const AUTHPARAM = 'AuthProcId';
 
 
     /**

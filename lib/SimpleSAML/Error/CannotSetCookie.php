@@ -18,7 +18,7 @@ class CannotSetCookie extends Exception
      *
      * @var int
      */
-    const UNKNOWN = 0;
+    public const UNKNOWN = 0;
 
     /**
      * The exception was due to the HTTP headers being already sent, and therefore we cannot send additional headers to
@@ -26,12 +26,12 @@ class CannotSetCookie extends Exception
      *
      * @var int
      */
-    const HEADERS_SENT = 1;
+    public const HEADERS_SENT = 1;
 
     /**
      * The exception was due to trying to set a secure cookie over an insecure channel.
      *
      * @var int
      */
-    const SECURE_COOKIE = 2;
+    public const SECURE_COOKIE = 2;
 }
