@@ -17,7 +17,7 @@ use SimpleSAML\Session;
 class Auth
 {
     /**
-     * Retrieve a admin login URL.
+     * Retrieve an admin login URL.
      *
      * @param string|NULL $returnTo The URL the user should arrive on after admin authentication. Defaults to null.
      *
@@ -39,7 +39,7 @@ class Auth
 
 
     /**
-     * Retrieve a admin logout URL.
+     * Retrieve an admin logout URL.
      *
      * @param string|NULL $returnTo The URL the user should arrive on after admin authentication. Defaults to null.
      *
