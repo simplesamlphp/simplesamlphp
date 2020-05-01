@@ -127,7 +127,7 @@ class Test
         ];
         if ($nameId->getFormat() !== null) {
             /** @var string $format */
-            $format = $translator->getTag('{status:subject_format}');
+            $format = $translator->getPreferredTranslation($translator->getTag('{status:subject_format}') ?? ['en'=>'Format']);
             $list[$format] = [$nameId->getFormat()];
         }
         if ($nameId->getNameQualifier() !== null) {
@@ -273,7 +273,7 @@ class Test
         ];
         if ($nameID->getFormat() !== null) {
             /** @var string $format */
-            $format = $t->getTag('{status:subject_format}');
+            $format = $t->getPreferredTranslation($t->getTag('{status:subject_format}') ?? ['en'=>'Format']);
             $eptid[$format] = [$nameID->getFormat()];
         }
         if ($nameID->getNameQualifier() !== null) {
