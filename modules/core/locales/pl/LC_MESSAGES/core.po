@@ -94,7 +94,7 @@ msgid "{core:frontpage:loggedin_as_admin}"
 msgstr "Jesteś zalogowany jako administrator"
 
 msgid "{core:frontpage:auth}"
-msgstr "Autentykacja"
+msgstr "Uwierzytelnianie"
 
 msgid "{core:frontpage:show_metadata}"
 msgstr "Wyświetl metadane"
@@ -278,7 +278,7 @@ msgid "Shibboleth 1.3 SP example - test logging in through your Shib IdP"
 msgstr "Shibboleth 1.3 SP - przykład - test logowania przez Twoje Shib IdP"
 
 msgid "Authentication"
-msgstr "Autentykacja"
+msgstr "Uwierzytelnianie"
 
 msgid "Show metadata"
 msgstr "Wyświetl metadane"
