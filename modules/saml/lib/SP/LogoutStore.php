@@ -40,7 +40,7 @@ class LogoutStore
                 case 'pgsql':
                     // This does not affect the NOT NULL constraint
                     $update = [
-                        'ALTER TABLE ' . $store->prefix . '_saml_LogoutStore ALTER COLUMN type _expire TIMESTAMP'
+                        'ALTER TABLE ' . $store->prefix . '_saml_LogoutStore ALTER COLUMN TYPE _expire TIMESTAMP'
                     ];
                     break;
                 case 'sqlite':
