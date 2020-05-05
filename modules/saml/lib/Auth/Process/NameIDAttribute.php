@@ -43,13 +43,13 @@ class NameIDAttribute extends \SimpleSAML\Auth\ProcessingFilter
         parent::__construct($config, $reserved);
 
         if (isset($config['attribute'])) {
-            $this->attribute = (string) $config['attribute'];
+            $this->attribute = strval($config['attribute']);
         } else {
             $this->attribute = 'nameid';
         }
 
         if (isset($config['format'])) {
-            $format = (string) $config['format'];
+            $format = strval($config['format']);
         } else {
             $format = '%I!%S!%V';
         }
@@ -120,13 +120,13 @@ class NameIDAttribute extends \SimpleSAML\Auth\ProcessingFilter
         $rep = $state['saml:sp:NameID'];
         Assert::notNull($rep->getValue());
         $rep->{'%'} = '%';
-        if ($rep->getFormat() !== null) {
+        if ($rep->getFormat() === null) {
             $rep->setFormat(Constants::NAMEID_UNSPECIFIED);
         }
-        if ($rep->getNameQualifier() !== null) {
+        if ($rep->getNameQualifier() === null) {
             $rep->setNameQualifier($state['Source']['entityid']);
         }
-        if ($rep->getSPNameQualifier() !== null) {
+        if ($rep->getSPNameQualifier() === null) {
             $rep->setSPNameQualifier($state['Destination']['entityid']);
         }
 
