@@ -65,7 +65,7 @@
         "ext-curl": "*",
         "mikey179/vfsstream": "~1.6",
         "simplesamlphp/simplesamlphp-module-adfs": "dev-master",
-        "simplesamlphp/simplesamlphp-test-framework": "^0.1.3"
+        "simplesamlphp/simplesamlphp-test-framework": "^0.1.7"
     },
     "suggest": {
         "predis/predis": "Needed if a Redis server is used to store session information",
