@@ -59,7 +59,7 @@ class NameIDAttributeTest extends TestCase
             'saml:sp:NameID' => $nameId,
         ];
         $result = $this->processFilter($config, $request);
-        $this->assertEquals("{$spId}!{$idpId}!{$nameId->getValue()}", $result['Attributes']['nameid'][0]);
+        $this->assertEquals("{$idpId}!{$spId}!{$nameId->getValue()}", $result['Attributes']['nameid'][0]);
     }
 
 
@@ -91,7 +91,7 @@ class NameIDAttributeTest extends TestCase
         ];
         $result = $this->processFilter($config, $request);
         $this->assertTrue(isset($result['Attributes'][$attributeName]));
-        $this->assertEquals("{$spId}!{$idpId}!{$nameId->getValue()}", $result['Attributes'][$attributeName][0]);
+        $this->assertEquals("{$idpId}!{$spId}!{$nameId->getValue()}", $result['Attributes'][$attributeName][0]);
     }
 
 
