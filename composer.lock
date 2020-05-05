@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2cdc1717baae0d13a9dadae83340bf27",
+    "content-hash": "521de9afe6edd13fefd674606cb3029d",
     "packages": [
         {
             "name": "gettext/gettext",
@@ -2859,6 +2859,12 @@
                 "Xdebug",
                 "performance"
             ],
+            "funding": [
+                {
+                    "url": "https://packagist.com",
+                    "type": "custom"
+                }
+            ],
             "time": "2020-03-01T12:26:26+00:00"
         },
         {
@@ -4696,16 +4702,16 @@
         },
         {
             "name": "simplesamlphp/simplesamlphp-test-framework",
-            "version": "v0.1.4",
+            "version": "v0.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/simplesamlphp-test-framework.git",
-                "reference": "951d6a3113bee3b14355a3ea74763c735c10e157"
+                "reference": "52b04dc7d65055113e0e2338166304e5a291b1f0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-test-framework/zipball/951d6a3113bee3b14355a3ea74763c735c10e157",
-                "reference": "951d6a3113bee3b14355a3ea74763c735c10e157",
+                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-test-framework/zipball/52b04dc7d65055113e0e2338166304e5a291b1f0",
+                "reference": "52b04dc7d65055113e0e2338166304e5a291b1f0",
                 "shasum": ""
             },
             "require": {
@@ -4713,7 +4719,7 @@
                 "phpunit/phpunit": "^8.5|^9.0",
                 "sensiolabs/security-checker": "^6.0",
                 "squizlabs/php_codesniffer": "^3.5",
-                "vimeo/psalm": "^3.9"
+                "vimeo/psalm": "^3.11"
             },
             "require-dev": {
                 "ext-curl": "*",
@@ -4745,7 +4751,7 @@
             "keywords": [
                 "test-framework"
             ],
-            "time": "2020-05-05T11:05:41+00:00"
+            "time": "2020-05-05T11:53:01+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",
@@ -5192,7 +5198,7 @@
         "ext-curl": "*"
     },
     "platform-overrides": {
-        "php": "7.2.30"
+        "php": "7.2.40"
     },
     "plugin-api-version": "1.1.0"
 }
