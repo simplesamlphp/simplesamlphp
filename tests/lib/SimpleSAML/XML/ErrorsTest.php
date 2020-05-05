@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\XML;
 
+use LibXMLError;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\XML\Errors;
 
@@ -48,7 +49,7 @@ class ErrorsTest extends TestCase
      */
     public function formatErrors(): void
     {
-        $error = new \LibXMLError();
+        $error = new LibXMLError();
         $error->level = 3;
         $error->code = 76;
         $error->line = 1;

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Utils;
 
+use Exception;
+use InvalidArgumentException;
 use SimpleSAML\Configuration;
 use SimpleSAML\Test\Utils\TestCase;
 use SimpleSAML\Utils\EMail;
@@ -34,7 +36,7 @@ class EMailTest extends ClearStateTestCase
      */
     public function testMailFromDefaultConfigurationException(): void
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         new EMail('test', null, 'phpunit@simplesamlphp.org');
     }
 
@@ -45,7 +47,7 @@ class EMailTest extends ClearStateTestCase
      */
     public function testInvalidFromAddressException(): void
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         new EMail('test', "phpunit@simplesamlphp.org\nLorem Ipsum", 'phpunit@simplesamlphp.org');
     }
 
@@ -56,7 +58,7 @@ class EMailTest extends ClearStateTestCase
      */
     public function testInvalidToAddressException(): void
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         new EMail('test', 'phpunit@simplesamlphp.org', "phpunit@simplesamlphp.org\nLorem Ipsum");
     }
 
@@ -108,7 +110,7 @@ class EMailTest extends ClearStateTestCase
         ]), '[ARRAY]', 'simplesaml');
 
 
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         new Email('Test', 'phpunit@simplesamlphp.org', 'phpunit@simplesamlphp.org');
 
         // reset the configuration
@@ -127,7 +129,7 @@ class EMailTest extends ClearStateTestCase
         // set the transport option to smtp but don't set any transport options (invalid state)
         // NOTE: this is the same method that the constructor calls, so this should be logically equivalent
         // to setting it via the configuration file.
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         $email->setTransportMethod('smtp');
     }
 

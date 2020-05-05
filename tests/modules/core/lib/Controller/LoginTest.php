@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Module\core\Controller;
 
+use ReflectionClass;
 use SimpleSAML\Auth\Simple;
 use SimpleSAML\Auth\AuthenticationFactory;
 use SimpleSAML\Configuration;
@@ -158,7 +159,7 @@ class LoginTest extends ClearStateTestCase
 
         $session = Session::getSessionFromRequest();
         $session->setConfiguration($this->config);
-        $class = new \ReflectionClass($session);
+        $class = new ReflectionClass($session);
 
         $authData = $class->getProperty('authData');
         $authData->setAccessible(true);
@@ -238,7 +239,7 @@ class LoginTest extends ClearStateTestCase
         $asConfig = Configuration::loadFromArray($this->authSources);
         Configuration::setPreLoadedConfig($asConfig, 'authsources.php');
         $session = Session::getSessionFromRequest();
-        $class = new \ReflectionClass($session);
+        $class = new ReflectionClass($session);
         $authData = $class->getProperty('authData');
         $authData->setAccessible(true);
         $authData->setValue($session, [

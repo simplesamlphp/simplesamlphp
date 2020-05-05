@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Module\core\Auth\Process;
 
+use Exception;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Module\core\Auth\Process\AttributeValueMap;
 
@@ -200,7 +201,7 @@ class AttributeValueMapTest extends TestCase
      */
     public function testMissingSourceAttribute(): void
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         $config = [
             'targetattribute' => 'affiliation',
             'values' => [
@@ -227,7 +228,7 @@ class AttributeValueMapTest extends TestCase
      */
     public function testMissingTargetAttribute(): void
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         $config = [
             'sourceattribute' => 'memberOf',
             'values' => [

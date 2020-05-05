@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Auth;
 
+use ReflectionClass;
+use SimpleSAML\Auth;
 use SimpleSAML\Test\Utils\ClearStateTestCase;
 use SimpleSAML\Test\Utils\TestAuthSource;
 use SimpleSAML\Test\Utils\TestAuthSourceFactory;
@@ -18,7 +20,7 @@ class SourceTest extends ClearStateTestCase
      */
     public function testParseAuthSource(): void
     {
-        $class = new \ReflectionClass(\SimpleSAML\Auth\Source::class);
+        $class = new ReflectionClass(Auth\Source::class);
         $method = $class->getMethod('parseAuthSource');
         $method->setAccessible(true);
 

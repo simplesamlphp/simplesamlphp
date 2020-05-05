@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Auth;
 
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\Auth;
 
 /**
  * Tests for \SimpleSAML\Auth\State
@@ -31,7 +32,7 @@ class StateTest extends TestCase
         $expected = $mandatory;
         $this->assertEquals(
             $expected,
-            \SimpleSAML\Auth\State::getPersistentAuthData($state),
+            Auth\State::getPersistentAuthData($state),
             'Mandatory state attributes did not survive as expected' . print_r($expected, true)
         );
 
@@ -41,7 +42,7 @@ class StateTest extends TestCase
         $expected = $state;
         $this->assertEquals(
             $expected,
-            \SimpleSAML\Auth\State::getPersistentAuthData($state),
+            Auth\State::getPersistentAuthData($state),
             'Some error occurred with missing mandatory parameters'
         );
 
@@ -54,7 +55,7 @@ class StateTest extends TestCase
         $expected = $mandatory;
         $this->assertEquals(
             $expected,
-            \SimpleSAML\Auth\State::getPersistentAuthData($state),
+            Auth\State::getPersistentAuthData($state),
             'Additional parameters survived'
         );
 
@@ -66,7 +67,7 @@ class StateTest extends TestCase
         unset($expected['PersistentAuthData']);
         $this->assertEquals(
             $expected,
-            \SimpleSAML\Auth\State::getPersistentAuthData($state),
+            Auth\State::getPersistentAuthData($state),
             'Some error occurred with additional, persistent parameters'
         );
 
@@ -77,7 +78,7 @@ class StateTest extends TestCase
         unset($expected['PersistentAuthData']);
         $this->assertEquals(
             $expected,
-            \SimpleSAML\Auth\State::getPersistentAuthData($state),
+            Auth\State::getPersistentAuthData($state),
             'Some error occurred with additional, persistent parameters, and no mandatory ones'
         );
     }

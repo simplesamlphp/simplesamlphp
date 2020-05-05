@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Utils;
 
 use PHPUnit\Framework\TestCase;
+
+use SimpleSAML\Configuration;
+use SimpleSAML\Error;
 use SimpleSAML\Test\Utils\ClearStateTestCase;
 use SimpleSAML\Utils\HTTP;
-use SimpleSAML\Configuration;
 use Webmozart\Assert\Assert;
 
 class HTTPTest extends ClearStateTestCase
@@ -419,7 +421,7 @@ class HTTPTest extends ClearStateTestCase
 
         $_SERVER['REQUEST_URI'] = '/module.php';
 
-        $this->expectException(\SimpleSAML\Error\Exception::class);
+        $this->expectException(Error\Exception::class);
         HTTP::checkURLAllowed('https://app.example.com.evil.com');
 
         $_SERVER = $original;
@@ -504,7 +506,7 @@ class HTTPTest extends ClearStateTestCase
      */
     public function testSetCookieInsecure(): void
     {
-        $this->expectException(\SimpleSAML\Error\CannotSetCookie::class);
+        $this->expectException(Error\CannotSetCookie::class);
 
         $original = $_SERVER;
         Configuration::loadFromArray([

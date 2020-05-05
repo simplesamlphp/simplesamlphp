@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Module\core\Auth;
 
+use PHPUnit\Framework\TestCase;
 use SimpleSAML\Module\core\Auth\UserPassOrgBase;
 
-class UserPassOrgBaseTest extends \PHPUnit\Framework\TestCase
+class UserPassOrgBaseTest extends TestCase
 {
     /**
      * @return void

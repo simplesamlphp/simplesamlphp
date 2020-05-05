@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML;
 
+use Exception;
 use SimpleSAML\Error;
 
 /**
@@ -57,7 +58,7 @@ abstract class Store implements Utils\ClearableState
                 // datastore from module
                 try {
                     $className = Module::resolveClass($storeType, 'Store', '\SimpleSAML\Store');
-                } catch (\Exception $e) {
+                } catch (Exception $e) {
                     $c = $config->toArray();
                     $c['store.type'] = 'phpsession';
                     throw new Error\CriticalConfigurationError(

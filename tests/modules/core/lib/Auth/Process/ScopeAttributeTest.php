@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Module\core\Auth\Process;
 
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\Module\core\Auth\Process\ScopeAttribute;
 
 /**
  * Test for the core:ScopeAttribute filter.
@@ -20,7 +21,7 @@ class ScopeAttributeTest extends TestCase
      */
     private static function processFilter(array $config, array $request): array
     {
-        $filter = new \SimpleSAML\Module\core\Auth\Process\ScopeAttribute($config, null);
+        $filter = new ScopeAttribute($config, null);
         $filter->process($request);
         return $request;
     }

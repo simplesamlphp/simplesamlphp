@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Module\core\Auth\Process;
 
+use Exception;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\Module\core\Auth\Process\AttributeCopy;
 
 /**
  * Test for the core:AttributeCopy filter.
@@ -20,7 +22,7 @@ class AttributeCopyTest extends TestCase
      */
     private static function processFilter(array $config, array $request): array
     {
-        $filter = new \SimpleSAML\Module\core\Auth\Process\AttributeCopy($config, null);
+        $filter = new AttributeCopy($config, null);
         $filter->process($request);
         return $request;
     }
@@ -144,7 +146,7 @@ class AttributeCopyTest extends TestCase
      */
     public function testWrongAttributeName(): void
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         $config = [
             ['value2'],
         ];
@@ -163,7 +165,7 @@ class AttributeCopyTest extends TestCase
      */
     public function testWrongAttributeValue(): void
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         $config = [
             'test' => 100,
         ];

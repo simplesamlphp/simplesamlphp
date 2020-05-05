@@ -9,6 +9,7 @@ use org\bovigo\vfs\vfsStream;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 use SimpleSAML\Configuration;
+use SimpleSAML\Error;
 use SimpleSAML\Utils\System;
 
 /**
@@ -278,7 +279,7 @@ class SystemTest extends TestCase
 
         chmod($tempdir, 0440);
 
-        $this->expectException(\SimpleSAML\Error\Exception::class);
+        $this->expectException(Error\Exception::class);
         System::getTempDir();
 
         $this->clearInstance($config, Configuration::class);

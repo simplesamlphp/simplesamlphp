@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test;
 
+use Exception;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\Configuration;
 use SimpleSAML\Module;
 
 class ModuleTest extends TestCase
@@ -40,7 +42,7 @@ class ModuleTest extends TestCase
      */
     public function testGetModuleURL(): void
     {
-        \SimpleSAML\Configuration::loadFromArray([
+        Configuration::loadFromArray([
             'baseurlpath' => 'https://example.com/simplesaml/'
         ], '', 'simplesaml');
         $this->assertEquals(
@@ -75,7 +77,7 @@ class ModuleTest extends TestCase
      */
     public function testResolveClassNoModule(): void
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         Module::resolveClass('nomodule', '');
     }
 
@@ -87,7 +89,7 @@ class ModuleTest extends TestCase
      */
     public function testResolveClassNotFound(): void
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         Module::resolveClass('core:Missing', '');
     }
 
@@ -99,7 +101,7 @@ class ModuleTest extends TestCase
      */
     public function testResolveClassNotSubclass(): void
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         Module::resolveClass('core:PHP', 'Auth_Process', '\Exception');
     }
 
