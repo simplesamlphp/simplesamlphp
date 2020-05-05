@@ -8,13 +8,14 @@ use ReflectionObject;
 use SAML2\AuthnRequest;
 use SAML2\Binding;
 use SimpleSAML\Configuration;
+use SimpleSAML\Module\saml\Auth\Source\SP;
 
 /**
  * Wrap the SSP \SimpleSAML\Module\saml\Auth\Source\SP class
  * - Use introspection to make startSSO2Test available
  * - Override sendSAML2AuthnRequest() to catch the AuthnRequest being sent
  */
-class SpTester extends \SimpleSAML\Module\saml\Auth\Source\SP
+class SpTester extends SP
 {
     /**
      * @param array $info

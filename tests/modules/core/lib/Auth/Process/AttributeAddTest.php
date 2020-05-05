@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Module\core\Auth\Process;
 
+use Exception;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\Module\core\Auth\Process\AttributeAdd;
 
 /**
  * Test for the core:AttributeAdd filter.
@@ -20,7 +22,7 @@ class AttributeAddTest extends TestCase
      */
     private static function processFilter(array $config, array $request): array
     {
-        $filter = new \SimpleSAML\Module\core\Auth\Process\AttributeAdd($config, null);
+        $filter = new AttributeAdd($config, null);
         $filter->process($request);
         return $request;
     }
@@ -159,7 +161,7 @@ class AttributeAddTest extends TestCase
      */
     public function testWrongFlag(): void
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         $config = [
             '%nonsense',
             'test' => ['value2'],
@@ -179,7 +181,7 @@ class AttributeAddTest extends TestCase
      */
     public function testWrongAttributeValue(): void
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         $config = [
             '%replace',
             'test' => [true],

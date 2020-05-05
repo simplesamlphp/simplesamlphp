@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Metadata;
 
+use DOMDocument;
 use PHPUnit\Framework\TestCase;
 use RobRichards\XMLSecLibs\XMLSecurityDSig;
+use SAML2\DOMDocumentFactory;
 use SimpleSAML\XML\Signer;
 use SimpleSAML\Metadata\SAMLParser;
 
@@ -24,7 +26,7 @@ class SAMLParserTest extends \SimpleSAML\Test\SigningTestCase
             'registrationAuthority' => 'https://incommon.org',
         ];
 
-        $document = \SAML2\DOMDocumentFactory::fromString(
+        $document = DOMDocumentFactory::fromString(
             <<<XML
 <EntitiesDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:mdrpi="urn:oasis:names:tc:SAML:metadata:rpi">
   <EntityDescriptor entityID="theEntityID">
@@ -38,7 +40,7 @@ XML
         );
 
 
-        $entities = \SimpleSAML\Metadata\SAMLParser::parseDescriptorsElement($document->documentElement);
+        $entities = SAMLParser::parseDescriptorsElement($document->documentElement);
         $this->assertArrayHasKey('theEntityID', $entities);
         // RegistrationInfo is accessible in the SP or IDP metadata accessors
         /** @var array $metadata */
@@ -58,7 +60,7 @@ XML
             'registrationAuthority' => 'https://incommon.org',
         ];
 
-        $document = \SAML2\DOMDocumentFactory::fromString(
+        $document = DOMDocumentFactory::fromString(
             <<<XML
 <EntitiesDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:mdrpi="urn:oasis:names:tc:SAML:metadata:rpi">
   <Extensions>
@@ -82,7 +84,7 @@ XML
 XML
         );
 
-        $entities = \SimpleSAML\Metadata\SAMLParser::parseDescriptorsElement($document->documentElement);
+        $entities = SAMLParser::parseDescriptorsElement($document->documentElement);
         $this->assertArrayHasKey('theEntityID', $entities);
         $this->assertArrayHasKey('subEntityId', $entities);
         // RegistrationInfo is accessible in the SP or IDP metadata accessors
@@ -106,7 +108,7 @@ XML
      */
     public function testAttributeConsumingServiceParsing(): void
     {
-        $document = \SAML2\DOMDocumentFactory::fromString(
+        $document = DOMDocumentFactory::fromString(
             <<<XML
 <EntitiesDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:mdrpi="urn:oasis:names:tc:SAML:metadata:rpi">
   <EntityDescriptor entityID="theEntityID">
@@ -129,7 +131,7 @@ XML
 XML
         );
 
-        $entities = \SimpleSAML\Metadata\SAMLParser::parseDescriptorsElement($document->documentElement);
+        $entities = SAMLParser::parseDescriptorsElement($document->documentElement);
         $this->assertArrayHasKey('theEntityID', $entities);
 
         /** @var array $metadata */
@@ -155,7 +157,7 @@ XML
      */
     public function makeTestDocument(): \DOMDocument
     {
-        $doc = new \DOMDocument();
+        $doc = new DOMDocument();
         $doc->loadXML(
             <<<XML
 <?xml version="1.0"?>
@@ -309,7 +311,7 @@ XML
             'name' => ['en' => 'DisplayName', 'af' => 'VertoonNaam'],
         ];
 
-        $document = \SAML2\DOMDocumentFactory::fromString(
+        $document = DOMDocumentFactory::fromString(
             <<<XML
 <EntitiesDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:mdrpi="urn:oasis:names:tc:SAML:metadata:rpi" xmlns:shibmd="urn:mace:shibboleth:metadata:1.0" xmlns:mdui="urn:oasis:names:tc:SAML:metadata:ui">
   <EntityDescriptor entityID="theEntityID">
@@ -341,7 +343,7 @@ XML
 XML
         );
 
-        $entities = \SimpleSAML\Metadata\SAMLParser::parseDescriptorsElement($document->documentElement);
+        $entities = SAMLParser::parseDescriptorsElement($document->documentElement);
         $this->assertArrayHasKey('theEntityID', $entities);
         // Various MDUI elements are accessible
         /** @var array $metadata */

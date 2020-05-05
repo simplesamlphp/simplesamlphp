@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\XML;
 
+use Exception;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\XML\Parser;
 
@@ -77,7 +78,7 @@ XML;
      */
     public function getValueException(): void
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         $this->xml->getValue('/Root/Foo', true);
     }
 
@@ -152,7 +153,7 @@ XML;
      */
     public function getValueAlternativesException(): void
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         $this->xml->getValueAlternatives(
             [
                 '/Root/Foo',

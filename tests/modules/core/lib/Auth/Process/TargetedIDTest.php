@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Module\core\Auth\Process;
 
+use Exception;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\Module\core\Auth\Process\TargetedID;
 
 /**
  * Test for the core:TargetedID filter.
@@ -20,7 +22,7 @@ class TargetedIDTest extends TestCase
      */
     private static function processFilter(array $config, array $request): array
     {
-        $filter = new \SimpleSAML\Module\core\Auth\Process\TargetedID($config, null);
+        $filter = new TargetedID($config, null);
         $filter->process($request);
         return $request;
     }
@@ -181,7 +183,7 @@ class TargetedIDTest extends TestCase
      */
     public function testNoUserID(): void
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         $config = [];
         $request = [
             'Attributes' => [],
@@ -196,7 +198,7 @@ class TargetedIDTest extends TestCase
      */
     public function testAttributeNotExists(): void
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         $config = [
             'attributename' => 'uid',
         ];
@@ -215,7 +217,7 @@ class TargetedIDTest extends TestCase
      */
     public function testConfigInvalidAttributeName(): void
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         $config = [
             'attributename' => 5,
         ];
@@ -234,7 +236,7 @@ class TargetedIDTest extends TestCase
      */
     public function testConfigInvalidNameId(): void
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         $config = [
             'nameId' => 'persistent',
         ];

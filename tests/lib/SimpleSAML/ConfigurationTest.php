@@ -4,13 +4,16 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test;
 
+use Exception;
+use SAML2\Constants;
 use SimpleSAML\Configuration;
-use SimpleSAML\Error\CriticalConfigurationError;
+use SimpleSAML\Error;
+use SimpleSAML\Test\Utils\ClearStateTestCase;
 
 /**
  * Tests for \SimpleSAML\Configuration
  */
-class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
+class ConfigurationTest extends ClearStateTestCase
 {
     /**
      * Test \SimpleSAML\Configuration::getVersion()
@@ -29,7 +32,7 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
      */
     public function testLoadDefaultInstance(): void
     {
-        $this->expectException(CriticalConfigurationError::class);
+        $this->expectException(Error\CriticalConfigurationError::class);
         Configuration::loadFromArray(['key' => 'value'], '', 'dummy');
         Configuration::getInstance();
     }
@@ -45,7 +48,7 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
         try {
             Configuration::getInstance();
             $this->fail('Exception expected');
-        } catch (\SimpleSAML\Error\CriticalConfigurationError $var) {
+        } catch (Error\CriticalConfigurationError $var) {
             // This exception is expected.
         }
         /*
@@ -84,7 +87,7 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
      */
     public function testGetValueRequired(): void
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         $c = Configuration::loadFromArray([]);
         $c->getValue('missing', Configuration::REQUIRED_OPTION);
     }
@@ -269,7 +272,7 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
      */
     public function testGetBooleanMissing(): void
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         $c = Configuration::loadFromArray([]);
         $c->getBoolean('missing_opt');
     }
@@ -281,7 +284,7 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
      */
     public function testGetBooleanWrong(): void
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         $c = Configuration::loadFromArray([
             'wrong' => 'true',
         ]);
@@ -309,7 +312,7 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
      */
     public function testGetStringMissing(): void
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         $c = Configuration::loadFromArray([]);
         $c->getString('missing_opt');
     }
@@ -321,7 +324,7 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
      */
     public function testGetStringWrong(): void
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         $c = Configuration::loadFromArray([
             'wrong' => false,
         ]);
@@ -349,7 +352,7 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
      */
     public function testGetIntegerMissing(): void
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         $c = Configuration::loadFromArray([]);
         $c->getInteger('missing_opt');
     }
@@ -361,7 +364,7 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
      */
     public function testGetIntegerWrong(): void
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         $c = Configuration::loadFromArray([
             'wrong' => '42',
         ]);
@@ -389,7 +392,7 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
      */
     public function testGetIntegerRangeBelow(): void
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         $c = Configuration::loadFromArray([
             'int_opt' => 9,
         ]);
@@ -403,7 +406,7 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
      */
     public function testGetIntegerRangeAbove(): void
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         $c = Configuration::loadFromArray([
             'int_opt' => 101,
         ]);
@@ -431,7 +434,7 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
      */
     public function testGetValueValidateWrong(): void
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         $c = Configuration::loadFromArray([
             'opt' => 'd',
         ]);
@@ -459,7 +462,7 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
      */
     public function testGetArrayWrong(): void
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         $c = Configuration::loadFromArray([
             'opt' => 'not_an_array',
         ]);
@@ -508,7 +511,7 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
      */
     public function testGetArrayizeStringWrongValue(): void
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         $c = Configuration::loadFromArray([
             'opt' => ['a', 'b', 42],
         ]);
@@ -540,7 +543,7 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
      */
     public function testGetConfigItemWrong(): void
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         $c = Configuration::loadFromArray([
             'opt' => 'not_an_array',
         ]);
@@ -655,14 +658,14 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
             [
                 [
                     'Location' => 'https://example.com/endpoint.php',
-                    'Binding' => \SAML2\Constants::BINDING_HTTP_POST,
+                    'Binding' => Constants::BINDING_HTTP_POST,
                 ],
             ],
             // define the ResponseLocation too
             [
                 [
                     'Location' => 'https://example.com/endpoint.php',
-                    'Binding' => \SAML2\Constants::BINDING_HTTP_POST,
+                    'Binding' => Constants::BINDING_HTTP_POST,
                     'ResponseLocation' => 'https://example.com/endpoint.php',
                 ],
             ],
@@ -671,12 +674,12 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
                 [
                     'index' => 1,
                     'Location' => 'https://www1.example.com/endpoint.php',
-                    'Binding' => \SAML2\Constants::BINDING_HTTP_REDIRECT,
+                    'Binding' => Constants::BINDING_HTTP_REDIRECT,
                 ],
                 [
                     'index' => 2,
                     'Location' => 'https://www2.example.com/endpoint.php',
-                    'Binding' => \SAML2\Constants::BINDING_HTTP_POST,
+                    'Binding' => Constants::BINDING_HTTP_POST,
                 ],
             ],
             // make sure isDefault has priority over indexes
@@ -684,13 +687,13 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
                 [
                     'index' => 1,
                     'Location' => 'https://www2.example.com/endpoint.php',
-                    'Binding' => \SAML2\Constants::BINDING_HTTP_POST,
+                    'Binding' => Constants::BINDING_HTTP_POST,
                 ],
                 [
                     'index' => 2,
                     'isDefault' => true,
                     'Location' => 'https://www1.example.com/endpoint.php',
-                    'Binding' => \SAML2\Constants::BINDING_HTTP_REDIRECT,
+                    'Binding' => Constants::BINDING_HTTP_REDIRECT,
                 ],
             ],
             // make sure endpoints with invalid bindings are ignored and those marked as NOT default are still used
@@ -704,7 +707,7 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
                     'index' => 2,
                     'isDefault' => false,
                     'Location' => 'https://www2.example.com/endpoint.php',
-                    'Binding' => \SAML2\Constants::BINDING_HTTP_POST,
+                    'Binding' => Constants::BINDING_HTTP_POST,
                 ],
             ],
         ];
@@ -712,34 +715,34 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
             // output should be completed with the default binding (HTTP-POST for ACS)
             [
                 'Location' => 'https://example.com/endpoint.php',
-                'Binding' => \SAML2\Constants::BINDING_HTTP_POST,
+                'Binding' => Constants::BINDING_HTTP_POST,
             ],
             // we should just get the first endpoint with the default binding
             [
                 'Location' => 'https://www1.example.com/endpoint.php',
-                'Binding' => \SAML2\Constants::BINDING_HTTP_POST,
+                'Binding' => Constants::BINDING_HTTP_POST,
             ],
             // if we specify the binding, we should get it back
             [
                 'Location' => 'https://example.com/endpoint.php',
-                'Binding' => \SAML2\Constants::BINDING_HTTP_POST
+                'Binding' => Constants::BINDING_HTTP_POST
             ],
             // if we specify ResponseLocation, we should get it back too
             [
                 'Location' => 'https://example.com/endpoint.php',
-                'Binding' => \SAML2\Constants::BINDING_HTTP_POST,
+                'Binding' => Constants::BINDING_HTTP_POST,
                 'ResponseLocation' => 'https://example.com/endpoint.php',
             ],
             // indexes must NOT be taken into account, order is the only thing that matters here
             [
                 'Location' => 'https://www1.example.com/endpoint.php',
-                'Binding' => \SAML2\Constants::BINDING_HTTP_REDIRECT,
+                'Binding' => Constants::BINDING_HTTP_REDIRECT,
                 'index' => 1,
             ],
             // isDefault must have higher priority than indexes
             [
                 'Location' => 'https://www1.example.com/endpoint.php',
-                'Binding' => \SAML2\Constants::BINDING_HTTP_REDIRECT,
+                'Binding' => Constants::BINDING_HTTP_REDIRECT,
                 'isDefault' => true,
                 'index' => 2,
             ],
@@ -748,7 +751,7 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
                 'index' => 2,
                 'isDefault' => false,
                 'Location' => 'https://www2.example.com/endpoint.php',
-                'Binding' => \SAML2\Constants::BINDING_HTTP_POST,
+                'Binding' => Constants::BINDING_HTTP_POST,
             ]
         ];
 
@@ -763,11 +766,11 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
         ];
 
         $valid_bindings = [
-            \SAML2\Constants::BINDING_HTTP_POST,
-            \SAML2\Constants::BINDING_HTTP_REDIRECT,
-            \SAML2\Constants::BINDING_HOK_SSO,
-            \SAML2\Constants::BINDING_HTTP_ARTIFACT,
-            \SAML2\Constants::BINDING_SOAP,
+            Constants::BINDING_HTTP_POST,
+            Constants::BINDING_HTTP_REDIRECT,
+            Constants::BINDING_HOK_SSO,
+            Constants::BINDING_HTTP_ARTIFACT,
+            Constants::BINDING_SOAP,
         ];
 
         // run all general tests with AssertionConsumerService endpoint type
@@ -795,14 +798,14 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
         $this->assertEquals(
             [
                 'Location' => 'https://example.com/ars',
-                'Binding' => \SAML2\Constants::BINDING_SOAP,
+                'Binding' => Constants::BINDING_SOAP,
             ],
             $c->getDefaultEndpoint('ArtifactResolutionService')
         );
         $this->assertEquals(
             [
                 'Location' => 'https://example.com/slo',
-                'Binding' => \SAML2\Constants::BINDING_HTTP_REDIRECT,
+                'Binding' => Constants::BINDING_HTTP_REDIRECT,
             ],
             $c->getDefaultEndpoint('SingleLogoutService')
         );
@@ -831,7 +834,7 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
         try {
             $c->getDefaultEndpoint('SingleLogoutService', $valid_bindings);
             $this->fail('Failed to detect invalid endpoint binding.');
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $this->assertEquals(
                 '[ARRAY][\'SingleLogoutService\']:Could not find a supported SingleLogoutService ' . 'endpoint.',
                 $e->getMessage()
@@ -842,7 +845,7 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
         try {
             $c->getDefaultEndpoint('SingleSignOnService');
             $this->fail('No valid metadata set specified.');
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $this->assertStringStartsWith('Missing default binding for', $e->getMessage());
         }
     }
@@ -863,7 +866,7 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
         $e = [
             [
                 'Location' => 'https://example.com/endpoint.php',
-                'Binding' => \SAML2\Constants::BINDING_HTTP_REDIRECT,
+                'Binding' => Constants::BINDING_HTTP_REDIRECT,
                 'ResponseLocation' => 'https://example.com/response.php',
             ]
         ];
@@ -914,7 +917,7 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
             [
                 [
                     'Location' => 'https://example.com/endpoint.php',
-                    'Binding' => \SAML2\Constants::BINDING_HTTP_REDIRECT,
+                    'Binding' => Constants::BINDING_HTTP_REDIRECT,
                     'ResponseLocation' => 1234,
                 ],
             ],
@@ -922,7 +925,7 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
             [
                 [
                     'Location' => 'https://example.com/endpoint.php',
-                    'Binding' => \SAML2\Constants::BINDING_HTTP_REDIRECT,
+                    'Binding' => Constants::BINDING_HTTP_REDIRECT,
                     'index' => 'string',
                 ],
             ],
@@ -946,7 +949,7 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
             $c = Configuration::loadFromArray($a);
             try {
                 $c->getEndpoints('SingleSignOnService');
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 $this->assertStringEndsWith($msgs[$i], $e->getMessage());
             }
         }
@@ -978,7 +981,7 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
      */
     public function testGetLocalizedStringNotArray(): void
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         $c = Configuration::loadFromArray([
             'opt' => 42,
         ]);
@@ -992,7 +995,7 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
      */
     public function testGetLocalizedStringNotStringKey(): void
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         $c = Configuration::loadFromArray([
             'opt' => [42 => 'text'],
         ]);
@@ -1006,7 +1009,7 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
      */
     public function testGetLocalizedStringNotStringValue(): void
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         $c = Configuration::loadFromArray([
             'opt' => ['en' => 42],
         ]);
@@ -1020,7 +1023,7 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
      */
     public function testGetConfigNonexistentFile(): void
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         Configuration::getConfig('nonexistent-nopreload.php');
     }
 

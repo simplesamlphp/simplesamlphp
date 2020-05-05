@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Module\core\Auth\Process;
 
+use Exception;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\Module\core\Auth\Process\AttributeAlter;
 
 /**
  * Test for the core:AttributeAlter filter.
@@ -20,7 +22,7 @@ class AttributeAlterTest extends TestCase
      */
     private static function processFilter(array $config, array $request): array
     {
-        $filter = new \SimpleSAML\Module\core\Auth\Process\AttributeAlter($config, null);
+        $filter = new AttributeAlter($config, null);
         $filter->process($request);
         return $request;
     }
@@ -236,7 +238,7 @@ class AttributeAlterTest extends TestCase
      */
     public function testWrongConfig(): void
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         $config = [
             'subject' => 'eduPersonAffiliation',
             'pattern' => '/^emper/',
@@ -257,7 +259,7 @@ class AttributeAlterTest extends TestCase
      */
     public function testIncompleteConfig(): void
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         $config = [
             'subject' => 'eduPersonAffiliation',
         ];
@@ -276,7 +278,7 @@ class AttributeAlterTest extends TestCase
      */
     public function testIncompleteConfig2(): void
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         $config = [
             'subject' => 'test',
             'pattern' => '/wrong/',
@@ -297,7 +299,7 @@ class AttributeAlterTest extends TestCase
      */
     public function testIncompleteConfig3(): void
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         $config = [
             'subject' => 'test',
             'pattern' => '/wrong/',
@@ -320,7 +322,7 @@ class AttributeAlterTest extends TestCase
      */
     public function testIncompleteConfig4(): void
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         $config = [
             'subject' => 'test',
             'pattern' => '/wrong/',
@@ -343,7 +345,7 @@ class AttributeAlterTest extends TestCase
      */
     public function testIncompleteConfig5(): void
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         $config = [
             'subject' => 'test',
             'pattern' => '/wrong/',

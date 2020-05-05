@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Module\core\Auth\Process;
 
+use PHPUnit\Framework\TestCase;
 use SimpleSAML\Utils\HttpAdapter;
+use SimpleSAML\Module\core\Auth\Process\CardinalitySingle;
 
 /**
  * Test for the core:CardinalitySingle filter.
  */
-class CardinalitySingleTest extends \PHPUnit\Framework\TestCase
+class CardinalitySingleTest extends TestCase
 {
     /** @var \SimpleSAML\Utils\HttpAdapter|\PHPUnit_Framework_MockObject_MockObject */
     private $http;
@@ -30,7 +32,7 @@ class CardinalitySingleTest extends \PHPUnit\Framework\TestCase
         /** @var \SimpleSAML\Utils\HttpAdapter $http */
         $http = $this->http;
 
-        $filter = new \SimpleSAML\Module\core\Auth\Process\CardinalitySingle($config, null, $http);
+        $filter = new CardinalitySingle($config, null, $http);
         $filter->process($request);
         return $request;
     }

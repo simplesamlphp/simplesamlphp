@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\Module\core\Auth\Process;
 
+use Exception;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\Configuration;
+use SimpleSAML\Module\core\Auth\Process\AttributeLimit;
 
 /**
  * Test for the core:AttributeLimit filter.
@@ -27,7 +30,7 @@ class AttributeLimitTest extends TestCase
      */
     private static function processFilter(array $config, array $request): array
     {
-        $filter = new \SimpleSAML\Module\core\Auth\Process\AttributeLimit($config, null);
+        $filter = new AttributeLimit($config, null);
         $filter->process($request);
         return $request;
     }
@@ -221,7 +224,7 @@ class AttributeLimitTest extends TestCase
      */
     public function testInvalidConfig(): void
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         $config = [
             'invalidArg' => true,
         ];
@@ -236,7 +239,7 @@ class AttributeLimitTest extends TestCase
      */
     public function testInvalidAttributeName(): void
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         $config = [
             null
         ];
@@ -375,7 +378,7 @@ class AttributeLimitTest extends TestCase
     public function testMatchAttributeValuesRegex(): void
     {
         // SSP Logger requires a configuration to be set.
-        \SimpleSAML\Configuration::loadFromArray([], '[ARRAY]', 'simplesaml');
+        Configuration::loadFromArray([], '[ARRAY]', 'simplesaml');
         $state = self::$request;
         $state['Attributes']['eduPersonEntitlement'] = [
             'urn:mace:example.terena.org:tcs:personal-user',
@@ -476,7 +479,7 @@ class AttributeLimitTest extends TestCase
      */
     public function testMatchAttributeValuesNotArray(): void
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         $config = [
         ];
 

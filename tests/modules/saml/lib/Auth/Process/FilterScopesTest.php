@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Module\saml\Auth\Process;
 
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\Module\saml\Auth\Process\FilterScopes;
 
 /**
  * Test for the saml:FilterScopes filter.
@@ -23,7 +24,7 @@ class FilterScopesTest extends TestCase
      */
     private function processFilter(array $config, array $request): array
     {
-        $filter = new \SimpleSAML\Module\saml\Auth\Process\FilterScopes($config, null);
+        $filter = new FilterScopes($config, null);
         $filter->process($request);
         return $request;
     }

@@ -6,7 +6,9 @@ namespace SimpleSAML\Test\Utils;
 
 use org\bovigo\vfs\vfsStream;
 use PHPUnit\Framework\TestCase;
+use ReflectionMethod;
 use SimpleSAML\Configuration;
+use SimpleSAML\Error;
 use SimpleSAML\Utils\Crypto;
 
 /**
@@ -55,11 +57,11 @@ class CryptoTest extends TestCase
     public function testAesDecrypt(): void
     {
         if (!extension_loaded('openssl')) {
-            $this->expectException(\SimpleSAML\Error\Exception::class);
+            $this->expectException(Error\Exception::class);
         }
 
         $secret = 'SUPER_SECRET_SALT';
-        $m = new \ReflectionMethod('\SimpleSAML\Utils\Crypto', 'aesDecryptInternal');
+        $m = new ReflectionMethod('\SimpleSAML\Utils\Crypto', 'aesDecryptInternal');
         $m->setAccessible(true);
 
         $plaintext = 'SUPER_SECRET_TEXT';
@@ -79,12 +81,12 @@ class CryptoTest extends TestCase
     public function testAesEncrypt(): void
     {
         if (!extension_loaded('openssl')) {
-            $this->expectException(\SimpleSAML\Error\Exception::class);
+            $this->expectException(Error\Exception::class);
         }
 
         $secret = 'SUPER_SECRET_SALT';
-        $e = new \ReflectionMethod('\SimpleSAML\Utils\Crypto', 'aesEncryptInternal');
-        $d = new \ReflectionMethod('\SimpleSAML\Utils\Crypto', 'aesDecryptInternal');
+        $e = new ReflectionMethod('\SimpleSAML\Utils\Crypto', 'aesEncryptInternal');
+        $d = new ReflectionMethod('\SimpleSAML\Utils\Crypto', 'aesDecryptInternal');
         $e->setAccessible(true);
         $d->setAccessible(true);
 
@@ -317,7 +319,7 @@ PHP;
      */
     public function testLoadPrivateKeyRequiredMetadataMissing(): void
     {
-        $this->expectException(\SimpleSAML\Error\Exception::class);
+        $this->expectException(Error\Exception::class);
         $config = new Configuration([], 'test');
         $required = true;
 
@@ -346,7 +348,7 @@ PHP;
      */
     public function testLoadPrivateKeyMissingFile(): void
     {
-        $this->expectException(\SimpleSAML\Error\Exception::class);
+        $this->expectException(Error\Exception::class);
         $config = new Configuration(['privatekey' => 'nonexistant'], 'test');
 
         Crypto::loadPrivateKey($config, false, '', true);
@@ -434,7 +436,7 @@ PHP;
      */
     public function testLoadPublicKeyRequiredMetadataMissing(): void
     {
-        $this->expectException(\SimpleSAML\Error\Exception::class);
+        $this->expectException(Error\Exception::class);
         $config = new Configuration([], 'test');
         $required = true;
 

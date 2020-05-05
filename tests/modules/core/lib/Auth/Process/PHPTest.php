@@ -6,6 +6,8 @@ namespace SimpleSAML\Test\Module\core\Auth\Process;
 
 use Exception;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\Error;
+use SimpleSAML\Module\core\Auth\Process\PHP;
 
 /**
  * Test for the core:PHP filter.
@@ -22,7 +24,7 @@ class PHPTest extends TestCase
      */
     private static function processFilter(array $config, array $request): array
     {
-        $filter = new \SimpleSAML\Module\core\Auth\Process\PHP($config, null);
+        $filter = new PHP($config, null);
         @$filter->process($request);
         return $request;
     }
@@ -35,11 +37,11 @@ class PHPTest extends TestCase
     public function testInvalidConfiguration(): void
     {
         $config = [];
-        $this->expectException(\SimpleSAML\Error\Exception::class);
+        $this->expectException(Error\Exception::class);
         $this->expectExceptionMessage(
             "core:PHP: missing mandatory configuration option 'code'."
         );
-        new \SimpleSAML\Module\core\Auth\Process\PHP($config, null);
+        new PHP($config, null);
     }
 
 

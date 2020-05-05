@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Module\core\Auth\Process;
 
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\Module\core\Auth\Process\AttributeMap;
 
 /**
  * Test for the core:AttributeMap filter.
@@ -20,7 +21,7 @@ class AttributeMapTest extends TestCase
      */
     private static function processFilter(array $config, array $request): array
     {
-        $filter = new \SimpleSAML\Module\core\Auth\Process\AttributeMap($config, null);
+        $filter = new AttributeMap($config, null);
         $filter->process($request);
         return $request;
     }

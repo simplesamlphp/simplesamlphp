@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Module\saml\IdP;
 
 use PHPUnit\Framework\TestCase;
+use ReflectionClass;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
 use SimpleSAML\Module\saml\IdP\SQLNameID;
@@ -106,7 +107,7 @@ class SQLNameIDTest extends TestCase
      */
     protected function clearInstance($service, string $className): void
     {
-        $reflectedClass = new \ReflectionClass($className);
+        $reflectedClass = new ReflectionClass($className);
         $reflectedInstance = $reflectedClass->getProperty('instance');
         $reflectedInstance->setAccessible(true);
         $reflectedInstance->setValue($service, null);
