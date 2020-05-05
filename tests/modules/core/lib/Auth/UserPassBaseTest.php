@@ -23,12 +23,12 @@ class UserPassBaseTest extends \PHPUnit\Framework\TestCase
         $username = $_SERVER['PHP_AUTH_USER'] = 'username';
         $password = $_SERVER['PHP_AUTH_PW'] = 'password';
 
-        /** @var \SimpleSAML\Module\core\Auth\UserPassBase $stub */
         $stub = $this->getMockBuilder(UserPassBase::class)
             ->disableOriginalConstructor()
             ->setMethods(['login'])
             ->getMockForAbstractClass();
 
+        /** @var \SimpleSAML\Module\core\Auth\UserPassBase $stub */
         $stub->expects($this->once())
             ->method('login')
             ->with($username, $password)
@@ -102,12 +102,12 @@ class UserPassBaseTest extends \PHPUnit\Framework\TestCase
         $_SERVER['PHP_AUTH_USER'] = 'username';
         $password = $_SERVER['PHP_AUTH_PW'] = 'password';
 
-        /** @var \SimpleSAML\Module\core\Auth\UserPassBase $stub */
         $stub = $this->getMockBuilder(UserPassBase::class)
             ->disableOriginalConstructor()
             ->setMethods(['login'])
             ->getMockForAbstractClass();
 
+        /** @var \SimpleSAML\Module\core\Auth\UserPassBase $stub */
         $stub->expects($this->once())
             ->method('login')
             ->with($forcedUsername, $password)
