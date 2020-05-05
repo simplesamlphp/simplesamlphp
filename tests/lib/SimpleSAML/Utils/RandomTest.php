@@ -18,7 +18,7 @@ class RandomTest extends TestCase
      * @covers SimpleSAML\Utils\Random::generateID
      * @return void
      */
-    public function testGenerateID()
+    public function testGenerateID(): void
     {
         // check that it always starts with an underscore
         $this->assertStringStartsWith('_', Random::generateID());

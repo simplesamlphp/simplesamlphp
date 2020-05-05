@@ -41,7 +41,7 @@ class SQLPermanentStorageTest extends TestCase
     /**
      * @return void
      */
-    public function testSet()
+    public function testSet(): void
     {
         // Set a new value
         self::$sql->set('testtype', 'testkey1', 'testkey2', 'testvalue', 2);
@@ -56,7 +56,7 @@ class SQLPermanentStorageTest extends TestCase
     /**
      * @return void
      */
-    public function testSetOverwrite()
+    public function testSetOverwrite(): void
     {
         // Overwrite existing value
         self::$sql->set('testtype', 'testkey1', 'testkey2', 'testvaluemodified', 2);
@@ -74,7 +74,7 @@ class SQLPermanentStorageTest extends TestCase
     /**
      * @return void
      */
-    public function testNonexistentKey()
+    public function testNonexistentKey(): void
     {
         // Test that getting some non-existing key will return null / empty array
         $result = self::$sql->getValue('testtype_nonexistent', 'testkey1_nonexistent', 'testkey2_nonexistent');
@@ -89,7 +89,7 @@ class SQLPermanentStorageTest extends TestCase
     /**
      * @return void
      */
-    public function testExpiration()
+    public function testExpiration(): void
     {
         // Make sure the earlier created entry has expired now
         sleep(3);
@@ -111,7 +111,7 @@ class SQLPermanentStorageTest extends TestCase
     /**
      * @return void
      */
-    public function testRemove()
+    public function testRemove(): void
     {
         // Now remove the nonexpiring entry and make sure it's gone
         self::$sql->remove('testtype', 'testkey1_nonexpiring', 'testkey2_nonexpiring');

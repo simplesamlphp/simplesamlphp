@@ -37,7 +37,7 @@ class NameIDAttributeTest extends TestCase
      * Test minimal configuration.
      * @return void
      */
-    public function testMinimalConfig()
+    public function testMinimalConfig(): void
     {
         $config = [];
         $spId = 'eugeneSP';
@@ -68,7 +68,7 @@ class NameIDAttributeTest extends TestCase
      * Test custom attribute name.
      * @return void
      */
-    public function testCustomAttributeName()
+    public function testCustomAttributeName(): void
     {
         $attributeName = 'eugeneNameIDAttribute';
         $config = ['attribute' => $attributeName];
@@ -100,7 +100,7 @@ class NameIDAttributeTest extends TestCase
      * Test custom format.
      * @return void
      */
-    public function testFormat()
+    public function testFormat(): void
     {
         $config = ['format' => '%V!%%'];
         $spId = 'eugeneSP';
@@ -185,7 +185,7 @@ class NameIDAttributeTest extends TestCase
      * Test custom attribute name with format.
      * @return void
      */
-    public function testCustomAttributeNameAndFormat()
+    public function testCustomAttributeNameAndFormat(): void
     {
         $attributeName = 'eugeneNameIDAttribute';
         $config = ['attribute' => $attributeName, 'format' => '%V'];

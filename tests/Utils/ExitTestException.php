@@ -27,7 +27,7 @@ class ExitTestException extends \Exception
     /**
      * @return array
      */
-    public function getTestResult()
+    public function getTestResult(): array
     {
         return $this->testResult;
     }

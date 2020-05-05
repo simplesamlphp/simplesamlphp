@@ -26,7 +26,7 @@ class StoreTest extends TestCase
      * @test
      * @return void
      */
-    public function defaultStore()
+    public function defaultStore(): void
     {
         Configuration::loadFromArray([], '[ARRAY]', 'simplesaml');
 
@@ -42,7 +42,7 @@ class StoreTest extends TestCase
      * @test
      * @return void
      */
-    public function phpSessionStore()
+    public function phpSessionStore(): void
     {
         Configuration::loadFromArray([], '[ARRAY]', 'simplesaml');
 
@@ -58,7 +58,7 @@ class StoreTest extends TestCase
      * @test
      * @return void
      */
-    public function memcacheStore()
+    public function memcacheStore(): void
     {
         Configuration::loadFromArray([
             'store.type'                    => 'memcache',
@@ -75,7 +75,7 @@ class StoreTest extends TestCase
      * @test
      * @return void
      */
-    public function sqlStore()
+    public function sqlStore(): void
     {
         Configuration::loadFromArray([
             'store.type'                    => 'sql',
@@ -94,7 +94,7 @@ class StoreTest extends TestCase
      * @test
      * @return void
      */
-    public function pathStore()
+    public function pathStore(): void
     {
         Configuration::loadFromArray([
             'store.type'                    => '\SimpleSAML\Store\SQL',
@@ -113,7 +113,7 @@ class StoreTest extends TestCase
      * @test
      * @return void
      */
-    public function notFoundStoreException()
+    public function notFoundStoreException(): void
     {
         $this->expectException(CriticalConfigurationError::class);
         Configuration::loadFromArray([
@@ -145,7 +145,7 @@ class StoreTest extends TestCase
      * @param class-string $className
      * @return void
      */
-    protected function clearInstance($service, $className)
+    protected function clearInstance($service, string $className): void
     {
         $reflectedClass = new ReflectionClass($className);
         $reflectedInstance = $reflectedClass->getProperty('instance');

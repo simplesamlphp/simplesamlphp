@@ -73,9 +73,9 @@ class RedisTest extends TestCase
 
     /**
      * @param string $key
-     * @return \Predis\Client|null
+     * @return string|null
      */
-    public function getMocked(string $key)
+    public function getMocked(string $key): ?string
     {
         return array_key_exists($key, $this->config) ? $this->config[$key] : null;
     }
@@ -86,7 +86,7 @@ class RedisTest extends TestCase
      * @param mixed $value
      * @return void
      */
-    public function setMocked($key, $value)
+    public function setMocked(string $key, $value): void
     {
         $this->config[$key] = $value;
     }
@@ -98,7 +98,7 @@ class RedisTest extends TestCase
      * @param mixed $value
      * @return void
      */
-    public function setexMocked($key, $expire, $value)
+    public function setexMocked(string $key, int $expire, $value): void
     {
         // Testing expiring data is more trouble than it's worth for now
         $this->setMocked($key, $value);
@@ -109,7 +109,7 @@ class RedisTest extends TestCase
      * @param string $key
      * @return void
      */
-    public function delMocked($key)
+    public function delMocked(string $key): void
     {
         unset($this->config[$key]);
     }
@@ -121,7 +121,7 @@ class RedisTest extends TestCase
      * @test
      * @return void
      */
-    public function testRedisInstance()
+    public function testRedisInstance(): void
     {
         $config = Configuration::loadFromArray([
             'store.type' => 'redis',
@@ -144,7 +144,7 @@ class RedisTest extends TestCase
      * @test
      * @return void
      */
-    public function testRedisInstanceWithPassword()
+    public function testRedisInstanceWithPassword(): void
     {
         $config = Configuration::loadFromArray([
             'store.type' => 'redis',
@@ -168,7 +168,7 @@ class RedisTest extends TestCase
      * @test
      * @return void
      */
-    public function testInsertData()
+    public function testInsertData(): void
     {
         $value = 'TEST';
 
@@ -186,7 +186,7 @@ class RedisTest extends TestCase
      * @test
      * @return void
      */
-    public function testInsertExpiringData()
+    public function testInsertExpiringData(): void
     {
         $value = 'TEST';
 
@@ -203,7 +203,7 @@ class RedisTest extends TestCase
      * @test
      * @return void
      */
-    public function testGetEmptyData()
+    public function testGetEmptyData(): void
     {
         $res = $this->redis->get('test', 'key');
 
@@ -217,7 +217,7 @@ class RedisTest extends TestCase
      * @test
      * @return void
      */
-    public function testOverwriteData()
+    public function testOverwriteData(): void
     {
         $value1 = 'TEST1';
         $value2 = 'TEST2';
@@ -238,7 +238,7 @@ class RedisTest extends TestCase
      * @test
      * @return void
      */
-    public function testDeleteData()
+    public function testDeleteData(): void
     {
         $this->redis->set('test', 'key', 'TEST');
         $this->redis->delete('test', 'key');
@@ -253,7 +253,7 @@ class RedisTest extends TestCase
      * @param class-string $className
      * @return void
      */
-    protected function clearInstance($service, $className)
+    protected function clearInstance($service, string $className): void
     {
         $reflectedClass = new ReflectionClass($className);
         $reflectedInstance = $reflectedClass->getProperty('instance');

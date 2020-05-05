@@ -52,7 +52,7 @@ class ClearStateTestCase extends TestCase
      * Clear any SSP global state to reduce spill over between tests.
      * @return void
      */
-    public static function clearState()
+    public static function clearState(): void
     {
         self::$stateClearer->clearGlobals();
         self::$stateClearer->clearSSPState();

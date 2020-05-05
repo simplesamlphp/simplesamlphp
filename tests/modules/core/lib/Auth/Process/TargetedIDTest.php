@@ -18,7 +18,7 @@ class TargetedIDTest extends TestCase
      * @param array $request  The request state.
      * @return array  The state array after processing.
      */
-    private static function processFilter(array $config, array $request)
+    private static function processFilter(array $config, array $request): array
     {
         $filter = new \SimpleSAML\Module\core\Auth\Process\TargetedID($config, null);
         $filter->process($request);
@@ -179,7 +179,7 @@ class TargetedIDTest extends TestCase
      * Test no userid set
      * @return void
      */
-    public function testNoUserID()
+    public function testNoUserID(): void
     {
         $this->expectException(\Exception::class);
         $config = [];
@@ -194,7 +194,7 @@ class TargetedIDTest extends TestCase
      * Test with specified attribute not set
      * @return void
      */
-    public function testAttributeNotExists()
+    public function testAttributeNotExists(): void
     {
         $this->expectException(\Exception::class);
         $config = [
@@ -213,7 +213,7 @@ class TargetedIDTest extends TestCase
      * Test with configuration error 1
      * @return void
      */
-    public function testConfigInvalidAttributeName()
+    public function testConfigInvalidAttributeName(): void
     {
         $this->expectException(\Exception::class);
         $config = [
@@ -232,7 +232,7 @@ class TargetedIDTest extends TestCase
      * Test with configuration error 2
      * @return void
      */
-    public function testConfigInvalidNameId()
+    public function testConfigInvalidNameId(): void
     {
         $this->expectException(\Exception::class);
         $config = [

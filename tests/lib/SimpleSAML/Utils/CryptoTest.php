@@ -52,7 +52,7 @@ class CryptoTest extends TestCase
      * @covers \SimpleSAML\Utils\Crypto::aesDecrypt
      * @return void
      */
-    public function testAesDecrypt()
+    public function testAesDecrypt(): void
     {
         if (!extension_loaded('openssl')) {
             $this->expectException(\SimpleSAML\Error\Exception::class);
@@ -76,7 +76,7 @@ class CryptoTest extends TestCase
      * @covers \SimpleSAML\Utils\Crypto::aesEncrypt
      * @return void
      */
-    public function testAesEncrypt()
+    public function testAesEncrypt(): void
     {
         if (!extension_loaded('openssl')) {
             $this->expectException(\SimpleSAML\Error\Exception::class);
@@ -102,7 +102,7 @@ class CryptoTest extends TestCase
      * @covers \SimpleSAML\Utils\Crypto::pem2der
      * @return void
      */
-    public function testFormatConversion()
+    public function testFormatConversion(): void
     {
         $pem = <<<PHP
 -----BEGIN CERTIFICATE-----
@@ -149,7 +149,7 @@ PHP;
      * @deprecated To be removed for 2.0
      * @return void
      */
-    public function testGoodPwHash()
+    public function testGoodPwHash(): void
     {
         $pw = "password";
         $algorithm = "SHA1";
@@ -171,7 +171,7 @@ PHP;
      * @deprecated To be removed for 2.0
      * @return void
      */
-    public function testGoodSaltedPwHash()
+    public function testGoodSaltedPwHash(): void
     {
         $pw = "password";
         $algorithm = "SSHA1";
@@ -195,7 +195,7 @@ PHP;
      * @covers \SimpleSAML\Utils\Crypto::pwHash
      * @return void
      */
-    public function testBadHashAlgorithm()
+    public function testBadHashAlgorithm(): void
     {
         $this->expectException(\SimpleSAML\Error\Exception::class);
         $pw = "password";
@@ -209,7 +209,7 @@ PHP;
      * @covers \SimpleSAML\Utils\Crypto::pwValid
      * @return void
      */
-    public function testGoodPwValid()
+    public function testGoodPwValid(): void
     {
         $pw = "password";
 
@@ -224,7 +224,7 @@ PHP;
      * @covers \SimpleSAML\Utils\Crypto::pwValid
      * @return void
      */
-    public function testBadPwInvalid()
+    public function testBadPwInvalid(): void
     {
         $pw = "password";
         $pw2 = "password2";
@@ -291,7 +291,7 @@ PHP;
      * @covers \SimpleSAML\Utils\Crypto::secureCompare
      * @return void
      */
-    public function testSecureCompareEqual()
+    public function testSecureCompareEqual(): void
     {
         $res = Crypto::secureCompare("string", "string");
 
@@ -303,7 +303,7 @@ PHP;
      * @covers \SimpleSAML\Utils\Crypto::secureCompare
      * @return void
      */
-    public function testSecureCompareNotEqual()
+    public function testSecureCompareNotEqual(): void
     {
         $res = Crypto::secureCompare("string1", "string2");
 
@@ -315,7 +315,7 @@ PHP;
      * @covers \SimpleSAML\Utils\Crypto::loadPrivateKey
      * @return void
      */
-    public function testLoadPrivateKeyRequiredMetadataMissing()
+    public function testLoadPrivateKeyRequiredMetadataMissing(): void
     {
         $this->expectException(\SimpleSAML\Error\Exception::class);
         $config = new Configuration([], 'test');
@@ -329,7 +329,7 @@ PHP;
      * @covers \SimpleSAML\Utils\Crypto::loadPrivateKey
      * @return void
      */
-    public function testLoadPrivateKeyNotRequiredMetadataMissing()
+    public function testLoadPrivateKeyNotRequiredMetadataMissing(): void
     {
         $config = new Configuration([], 'test');
         $required = false;
@@ -344,7 +344,7 @@ PHP;
      * @covers \SimpleSAML\Utils\Crypto::loadPrivateKey
      * @return void
      */
-    public function testLoadPrivateKeyMissingFile()
+    public function testLoadPrivateKeyMissingFile(): void
     {
         $this->expectException(\SimpleSAML\Error\Exception::class);
         $config = new Configuration(['privatekey' => 'nonexistant'], 'test');
@@ -357,7 +357,7 @@ PHP;
      * @covers \SimpleSAML\Utils\Crypto::loadPrivateKey
      * @return void
      */
-    public function testLoadPrivateKeyBasic()
+    public function testLoadPrivateKeyBasic(): void
     {
         $filename = $this->certdir . DIRECTORY_SEPARATOR . 'key';
         $data = 'data';
@@ -377,7 +377,7 @@ PHP;
      * @covers \SimpleSAML\Utils\Crypto::loadPrivateKey
      * @return void
      */
-    public function testLoadPrivateKeyPassword()
+    public function testLoadPrivateKeyPassword(): void
     {
         $password = 'password';
         $filename = $this->certdir . DIRECTORY_SEPARATOR . 'key';
@@ -404,7 +404,7 @@ PHP;
      * @covers \SimpleSAML\Utils\Crypto::loadPrivateKey
      * @return void
      */
-    public function testLoadPrivateKeyPrefix()
+    public function testLoadPrivateKeyPrefix(): void
     {
         $prefix = 'prefix';
         $password = 'password';
@@ -432,7 +432,7 @@ PHP;
      * @covers \SimpleSAML\Utils\Crypto::loadPublicKey
      * @return void
      */
-    public function testLoadPublicKeyRequiredMetadataMissing()
+    public function testLoadPublicKeyRequiredMetadataMissing(): void
     {
         $this->expectException(\SimpleSAML\Error\Exception::class);
         $config = new Configuration([], 'test');
@@ -446,7 +446,7 @@ PHP;
      * @covers \SimpleSAML\Utils\Crypto::loadPublicKey
      * @return void
      */
-    public function testLoadPublicKeyNotRequiredMetadataMissing()
+    public function testLoadPublicKeyNotRequiredMetadataMissing(): void
     {
         $config = new Configuration([], 'test');
         $required = false;
@@ -534,7 +534,7 @@ PHP;
      * @covers \SimpleSAML\Utils\Crypto::loadPublicKey
      * @return void
      */
-    public function testLoadPublicKeyNotX509Certificate()
+    public function testLoadPublicKeyNotX509Certificate(): void
     {
         $config = new Configuration(
             [
@@ -559,7 +559,7 @@ PHP;
      * @covers \SimpleSAML\Utils\Crypto::loadPublicKey
      * @return void
      */
-    public function testLoadPublicKeyNotSigning()
+    public function testLoadPublicKeyNotSigning(): void
     {
         $config = new Configuration(
             [
@@ -584,7 +584,7 @@ PHP;
      * @covers \SimpleSAML\Utils\Crypto::loadPublicKey
      * @return void
      */
-    public function testLoadPublicKeyBasic()
+    public function testLoadPublicKeyBasic(): void
     {
         $x509certificate = 'x509certificate';
         $config = new Configuration(

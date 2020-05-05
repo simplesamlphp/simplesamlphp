@@ -20,7 +20,7 @@ class ValidatorTest extends SigningTestCase
     /**
      * @return void
      */
-    public function testValidatorMissingSignature()
+    public function testValidatorMissingSignature(): void
     {
         $doc = new \DOMDocument();
         $doc->loadXML('<?xml version="1.0"?><node>value</node>');
@@ -33,7 +33,7 @@ class ValidatorTest extends SigningTestCase
     /**
      * @return void
      */
-    public function testGetX509Certificate()
+    public function testGetX509Certificate(): void
     {
         $doc = new DOMDocument();
         $doc->loadXML('<?xml version="1.0"?><node>value</node>');
@@ -62,7 +62,7 @@ class ValidatorTest extends SigningTestCase
     /**
      * @return void
      */
-    public function testCertFingerprintSuccess()
+    public function testCertFingerprintSuccess(): void
     {
         $doc = new DOMDocument();
         $doc->loadXML('<?xml version="1.0"?><node>value</node>');
@@ -92,7 +92,7 @@ class ValidatorTest extends SigningTestCase
     /**
      * @return void
      */
-    public function testCertFingerprintFailure()
+    public function testCertFingerprintFailure(): void
     {
         $doc = new DOMDocument();
         $doc->loadXML('<?xml version="1.0"?><node>value</node>');
@@ -115,7 +115,7 @@ class ValidatorTest extends SigningTestCase
     /**
      * @return void
      */
-    public function testValidateFingerprintSuccess()
+    public function testValidateFingerprintSuccess(): void
     {
         $doc = new DOMDocument();
         $doc->loadXML('<?xml version="1.0"?><node>value</node>');
@@ -142,7 +142,7 @@ class ValidatorTest extends SigningTestCase
     /**
      * @return void
      */
-    public function testValidateFingerprintFailure()
+    public function testValidateFingerprintFailure(): void
     {
         $doc = new DOMDocument();
         $doc->loadXML('<?xml version="1.0"?><node>value</node>');
@@ -169,7 +169,7 @@ class ValidatorTest extends SigningTestCase
     /**
      * @return void
      */
-    public function testIsNodeValidatedSuccess()
+    public function testIsNodeValidatedSuccess(): void
     {
         $doc = new DOMDocument();
         $doc->loadXML('<?xml version="1.0"?><node>value</node>');
@@ -198,7 +198,7 @@ class ValidatorTest extends SigningTestCase
     /**
      * @return void
      */
-    public function testIsNodeValidatedFailure()
+    public function testIsNodeValidatedFailure(): void
     {
         $doc = new DOMDocument();
         $doc->loadXML('<?xml version="1.0"?><parent><node1>value1</node1><node2>value2</node2></parent>');

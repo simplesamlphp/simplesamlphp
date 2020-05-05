@@ -20,7 +20,7 @@ class PHPTest extends TestCase
      *
      * @return array The state array after processing.
      */
-    private static function processFilter(array $config, array $request)
+    private static function processFilter(array $config, array $request): array
     {
         $filter = new \SimpleSAML\Module\core\Auth\Process\PHP($config, null);
         @$filter->process($request);
@@ -32,7 +32,7 @@ class PHPTest extends TestCase
      * Test the configuration of the filter.
      * @return void
      */
-    public function testInvalidConfiguration()
+    public function testInvalidConfiguration(): void
     {
         $config = [];
         $this->expectException(\SimpleSAML\Error\Exception::class);
@@ -47,7 +47,7 @@ class PHPTest extends TestCase
      * Check that defining the code works as expected.
      * @return void
      */
-    public function testCodeDefined()
+    public function testCodeDefined(): void
     {
         $config = [
             'code' => '
@@ -69,7 +69,7 @@ class PHPTest extends TestCase
      * Check that the incoming attributes are also available after processing
      * @return void
      */
-    public function testPreserveIncomingAttributes()
+    public function testPreserveIncomingAttributes(): void
     {
         $config = [
             'code' => '
@@ -100,7 +100,7 @@ class PHPTest extends TestCase
      * filter (a documented use case) works.
      * @return void
      */
-    public function testThrowExceptionFromFilter()
+    public function testThrowExceptionFromFilter(): void
     {
         $config = [
             'code' => '
@@ -126,7 +126,7 @@ class PHPTest extends TestCase
      * Check that the entire state can be adjusted.
      * @return void
      */
-    public function testStateCanBeModified()
+    public function testStateCanBeModified(): void
     {
 
         $config = [

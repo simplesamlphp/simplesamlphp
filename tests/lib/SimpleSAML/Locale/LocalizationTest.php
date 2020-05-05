@@ -24,7 +24,7 @@ class LocalizationTest extends TestCase
      * Test SimpleSAML\Locale\Localization().
      * @return void
      */
-    public function testLocalization()
+    public function testLocalization(): void
     {
         // The constructor should activate the default domain
         $c = Configuration::loadFromArray(
@@ -40,7 +40,7 @@ class LocalizationTest extends TestCase
      * Test SimpleSAML\Locale\Localization::activateDomain().
      * @return void
      */
-    public function testAddDomain()
+    public function testAddDomain(): void
     {
         $c = Configuration::loadFromArray(
             ['usenewui' => true]

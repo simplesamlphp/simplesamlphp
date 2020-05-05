@@ -15,7 +15,7 @@ class StateTest extends TestCase
      * Test the getPersistentAuthData() function.
      * @return void
      */
-    public function testGetPersistentAuthData()
+    public function testGetPersistentAuthData(): void
     {
         $mandatory = [
             'Attributes' => [],

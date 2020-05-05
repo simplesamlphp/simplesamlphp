@@ -15,7 +15,7 @@ class TimeTest extends TestCase
      * @covers SimpleSAML\Utils\Time::generateTimestamp
      * @return void
      */
-    public function testGenerateTimestamp()
+    public function testGenerateTimestamp(): void
     {
         // make sure passed timestamps are used
         $this->assertEquals('2016-03-03T14:48:05Z', Time::generateTimestamp(1457016485));
@@ -31,7 +31,7 @@ class TimeTest extends TestCase
      * @covers SimpleSAML\Utils\Time::initTimezone
      * @return void
      */
-    public function testInitTimezone()
+    public function testInitTimezone(): void
     {
         $tz = 'UTC';
         $os = @date_default_timezone_get();
@@ -76,7 +76,7 @@ class TimeTest extends TestCase
      * @covers SimpleSAML\Utils\Time::parseDuration
      * @return void
      */
-    public function testParseDuration()
+    public function testParseDuration(): void
     {
         // set up base date and time, and fixed durations from there
         $base = gmmktime(0, 0, 0, 1, 1, 2000);

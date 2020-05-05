@@ -13,7 +13,7 @@ class UserPassBaseTest extends \PHPUnit\Framework\TestCase
     /**
      * @return void
      */
-    public function testAuthenticateECPCallsLoginAndSetsAttributes()
+    public function testAuthenticateECPCallsLoginAndSetsAttributes(): void
     {
         $state = [
             'saml:Binding' => Constants::BINDING_PAOS,
@@ -43,7 +43,7 @@ class UserPassBaseTest extends \PHPUnit\Framework\TestCase
     /**
      * @return void
      */
-    public function testAuthenticateECPMissingUsername()
+    public function testAuthenticateECPMissingUsername(): void
     {
         $this->expectException(SspError::class);
         $this->expectExceptionMessage('WRONGUSERPASS');
@@ -67,7 +67,7 @@ class UserPassBaseTest extends \PHPUnit\Framework\TestCase
     /**
      * @return void
      */
-    public function testAuthenticateECPMissingPassword()
+    public function testAuthenticateECPMissingPassword(): void
     {
         $this->expectException(SspError::class);
         $this->expectExceptionMessage('WRONGUSERPASS');
@@ -91,7 +91,7 @@ class UserPassBaseTest extends \PHPUnit\Framework\TestCase
     /**
      * @return void
      */
-    public function testAuthenticateECPCallsLoginWithForcedUsername()
+    public function testAuthenticateECPCallsLoginWithForcedUsername(): void
     {
         $state = [
             'saml:Binding' => Constants::BINDING_PAOS,

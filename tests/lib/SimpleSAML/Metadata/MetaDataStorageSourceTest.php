@@ -16,7 +16,7 @@ class MetaDataStorageSourceTest extends \PHPUnit\Framework\TestCase
      * Test \SimpleSAML\Metadata\MetaDataStorageSourceTest::getConfig XML bad source
      * @return void
      */
-    public function testBadXMLSource()
+    public function testBadXMLSource(): void
     {
         $this->expectException(\Exception::class);
         \SimpleSAML\Metadata\MetaDataStorageSource::getSource(["type" => "xml", "foo" => "baa"]);
@@ -27,7 +27,7 @@ class MetaDataStorageSourceTest extends \PHPUnit\Framework\TestCase
      * Test \SimpleSAML\Metadata\MetaDataStorageSourceTest::getConfig invalid static XML source
      * @return void
      */
-    public function testInvalidStaticXMLSource()
+    public function testInvalidStaticXMLSource(): void
     {
         $this->expectException(\Exception::class);
         $strTestXML = "
@@ -42,7 +42,7 @@ class MetaDataStorageSourceTest extends \PHPUnit\Framework\TestCase
      * Test \SimpleSAML\Metadata\MetaDataStorageSourceTest::getConfig XML static XML source
      * @return void
      */
-    public function testStaticXMLSource()
+    public function testStaticXMLSource(): void
     {
         $testEntityId = "https://saml.idp/entityid";
         $strTestXML = self::generateIdpMetadataXml($testEntityId);
@@ -66,7 +66,7 @@ class MetaDataStorageSourceTest extends \PHPUnit\Framework\TestCase
      * Test loading multiple entities
      * @return void
      */
-    public function testLoadEntitiesStaticXMLSource()
+    public function testLoadEntitiesStaticXMLSource(): void
     {
         $c = [
             'key' => 'value'
@@ -102,7 +102,7 @@ class MetaDataStorageSourceTest extends \PHPUnit\Framework\TestCase
      * @param string $entityId
      * @return string
      */
-    public static function generateIdpMetadataXml($entityId)
+    public static function generateIdpMetadataXml(string $entityId): string
     {
         return "
 <EntityDescriptor ID=\"_12345678-90ab-cdef-1234-567890abcdef\" entityID=\"$entityId\" xmlns=\"urn:oasis:names:tc:SAML:2.0:metadata\">
