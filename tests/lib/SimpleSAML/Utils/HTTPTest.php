@@ -8,6 +8,7 @@ use PHPUnit\Framework\TestCase;
 use SimpleSAML\Test\Utils\ClearStateTestCase;
 use SimpleSAML\Utils\HTTP;
 use SimpleSAML\Configuration;
+use Webmozart\Assert\Assert;
 
 class HTTPTest extends ClearStateTestCase
 {
@@ -19,10 +20,15 @@ class HTTPTest extends ClearStateTestCase
      */
     private function setupEnvFromURL(string $url)
     {
-        $addr = parse_url($url);
-        $_SERVER['HTTP_HOST'] = $addr['host'];
-        $_SERVER['SERVER_NAME'] = $addr['host'];
-        if ($addr['scheme'] === 'https') {
+        $scheme = parse_url($url, PHP_URL_SCHEME);
+        $host = parse_url($url, PHP_URL_HOST);
+        $port = parse_url($url, PHP_URL_PORT);
+        $path = parse_url($url, PHP_URL_PATH);
+        $query = parse_url($url, PHP_URL_QUERY);
+
+        $_SERVER['HTTP_HOST'] = $host;
+        $_SERVER['SERVER_NAME'] = $host;
+        if ($scheme === 'https') {
             $_SERVER['HTTPS'] = 'on';
             $default_port = '443';
         } else {
@@ -30,10 +36,10 @@ class HTTPTest extends ClearStateTestCase
             $default_port = '80';
         }
         $_SERVER['SERVER_PORT'] = $default_port;
-        if (isset($addr['port']) && strval($addr['port']) !== $default_port) {
-            $_SERVER['SERVER_PORT'] = strval($addr['port']);
+        if (isset($port) && strval($port) !== $default_port) {
+            $_SERVER['SERVER_PORT'] = strval($port);
         }
-        $_SERVER['REQUEST_URI'] = $addr['path'] . '?' . $addr['query'];
+        $_SERVER['REQUEST_URI'] = $path . '?' . $query;
     }
 
 
