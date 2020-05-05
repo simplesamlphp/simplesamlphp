@@ -68,9 +68,9 @@ class RedisTest extends TestCase
 
     /**
      * @param string $key
-     * @return \Predis\Client
+     * @return \Predis\Client|null
      */
-    public function getMocked($key)
+    public function getMocked(string $key)
     {
         return array_key_exists($key, $this->config) ? $this->config[$key] : null;
     }
