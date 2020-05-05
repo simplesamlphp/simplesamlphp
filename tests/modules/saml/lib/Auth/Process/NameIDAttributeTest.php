@@ -155,4 +155,32 @@ class NameIDAttributeTest extends TestCase
         $this->assertTrue(isset($result['Attributes'][$attributeName]));
         $this->assertEquals("{$nameId->getValue()}", $result['Attributes'][$attributeName][0]);
     }
+
+
+    /**
+     * Test overriding NameID Format/NameQualifier/SPNameQualifier with defaults.
+     * @return void
+     */
+    public function testOverrideNameID(): void
+    {
+        $spId = 'eugeneSP';
+        $idpId = 'eugeneIdP';
+
+        $nameId = new NameID();
+        $nameId->setValue('eugene@oombaas');
+
+        $request = [
+            'Source'     => [
+                'entityid' => $spId,
+            ],
+            'Destination' => [
+                'entityid' => $idpId,
+            ],
+            'saml:sp:NameID' => $nameId,
+        ];
+        $result = $this->processFilter(array(), $request);
+        $this->assertEquals("{$nameId->getFormat()}", Constants::NAMEID_UNSPECIFIED);
+        $this->assertEquals("{$nameId->getNameQualifier()}", $idpId);
+        $this->assertEquals("{$nameId->getSPNameQualifier()}", $spId);
+    }
 }
