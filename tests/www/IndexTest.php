@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Web;
 
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\Test\BuiltInServer;
+use SimpleSAML\TestUtils\BuiltInServer;
 
 /**
  * Simple test for the www/index.php script.
@@ -18,7 +18,7 @@ use SimpleSAML\Test\BuiltInServer;
 class IndexTest extends TestCase
 {
     /**
-     * @var \SimpleSAML\Test\BuiltInServer
+     * @var \SimpleSAML\TestUtils\BuiltInServer
      */
     protected $server;
 
@@ -57,7 +57,7 @@ class IndexTest extends TestCase
      * @param array $config
      * @return void
      */
-    protected function updateConfig(array $config)
+    protected function updateConfig(array $config): void
     {
         @unlink($this->shared_file);
         $config = "<?php\n\$config = " . var_export($config, true) . ";\n";
@@ -69,7 +69,7 @@ class IndexTest extends TestCase
      * A simple test to make sure the index.php file redirects appropriately to the right URL.
      * @return void
      */
-    public function testRedirection()
+    public function testRedirection(): void
     {
         // test most basic redirection
         $this->updateConfig([
