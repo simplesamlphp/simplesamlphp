@@ -282,7 +282,9 @@ class SQLNameID
 
         $res = [];
         while (($row = $query->fetch(PDO::FETCH_ASSOC)) !== false) {
-            $res[$row['_user']] = $row['_value'];
+            $user = strval($row['_user']);
+            $value = strval($row['_value']);
+            $res[$user] = $value;
         }
 
         return $res;
