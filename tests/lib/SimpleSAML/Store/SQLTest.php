@@ -39,7 +39,7 @@ class SQLTest extends TestCase
      * @test
      * @return void
      */
-    public function SQLInstance()
+    public function SQLInstance(): void
     {
         $store = Store::getInstance();
 
@@ -53,7 +53,7 @@ class SQLTest extends TestCase
      * @test
      * @return void
      */
-    public function kvstoreTableVersion()
+    public function kvstoreTableVersion(): void
     {
         /** @var \SimpleSAML\Store\SQL $store */
         $store = Store::getInstance();
@@ -69,7 +69,7 @@ class SQLTest extends TestCase
      * @test
      * @return void
      */
-    public function newTableVersion()
+    public function newTableVersion(): void
     {
         /** @var \SimpleSAML\Store\SQL $store */
         $store = Store::getInstance();
@@ -86,7 +86,7 @@ class SQLTest extends TestCase
      * @test
      * @return void
      */
-    public function testSetTableVersion()
+    public function testSetTableVersion(): void
     {
         /** @var \SimpleSAML\Store\SQL $store */
         $store = Store::getInstance();
@@ -103,7 +103,7 @@ class SQLTest extends TestCase
      * @test
      * @return void
      */
-    public function testGetEmptyData()
+    public function testGetEmptyData(): void
     {
         /** @var \SimpleSAML\Store\SQL $store */
         $store = Store::getInstance();
@@ -121,7 +121,7 @@ class SQLTest extends TestCase
      * @test
      * @return void
      */
-    public function testInsertData()
+    public function testInsertData(): void
     {
         /** @var \SimpleSAML\Store\SQL $store */
         $store = Store::getInstance();
@@ -140,7 +140,7 @@ class SQLTest extends TestCase
      * @test
      * @return void
      */
-    public function testOverwriteData()
+    public function testOverwriteData(): void
     {
         /** @var \SimpleSAML\Store\SQL $store */
         $store = Store::getInstance();
@@ -161,7 +161,7 @@ class SQLTest extends TestCase
      * @test
      * @return void
      */
-    public function testDeleteData()
+    public function testDeleteData(): void
     {
         /** @var \SimpleSAML\Store\SQL $store */
         $store = Store::getInstance();
@@ -182,7 +182,7 @@ class SQLTest extends TestCase
      * @test
      * @return void
      */
-    public function testVeryLongKey()
+    public function testVeryLongKey(): void
     {
         /** @var \SimpleSAML\Store\SQL $store */
         $store = Store::getInstance();
@@ -216,7 +216,7 @@ class SQLTest extends TestCase
      * @param class-string $className
      * @return void
      */
-    protected function clearInstance($service, $className)
+    protected function clearInstance($service, string $className): void
     {
         $reflectedClass = new ReflectionClass($className);
         $reflectedInstance = $reflectedClass->getProperty('instance');

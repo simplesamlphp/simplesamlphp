@@ -177,7 +177,7 @@ NOWDOC;
     /**
      * @return array
      */
-    public function getCertDirContent()
+    public function getCertDirContent(): array
     {
         return [
             self::CA_PRIVATE_KEY => $this->ca_private_key,
@@ -229,7 +229,7 @@ NOWDOC;
      * @param mixed|null $value
      * @return void
      */
-    protected function clearInstance(Configuration $service, $className, $value = null)
+    protected function clearInstance(Configuration $service, string $className, $value = null): void
     {
         $reflectedClass = new ReflectionClass($className);
         $reflectedInstance = $reflectedClass->getProperty('instance');

@@ -20,7 +20,7 @@ class XMLTest extends TestCase
      * @test
      * @return void
      */
-    public function testIsDomNodeOfTypeBasic()
+    public function testIsDomNodeOfTypeBasic(): void
     {
         $name = 'name';
         $namespace_uri = 'ns';
@@ -37,7 +37,7 @@ class XMLTest extends TestCase
      * @test
      * @return void
      */
-    public function testIsDomNodeOfTypeMissingNamespace()
+    public function testIsDomNodeOfTypeMissingNamespace(): void
     {
         $this->expectException(\InvalidArgumentException::class);
         $name = 'name';
@@ -53,7 +53,7 @@ class XMLTest extends TestCase
      * @test
      * @return void
      */
-    public function testIsDomNodeOfTypeEmpty()
+    public function testIsDomNodeOfTypeEmpty(): void
     {
         $name = 'name';
         $namespace_uri = '';
@@ -70,7 +70,7 @@ class XMLTest extends TestCase
      * @test
      * @return void
      */
-    public function testIsDomNodeOfTypeShortcut()
+    public function testIsDomNodeOfTypeShortcut(): void
     {
         $name = 'name';
         $namespace_uri = 'urn:oasis:names:tc:SAML:2.0:metadata';
@@ -88,7 +88,7 @@ class XMLTest extends TestCase
      * @test
      * @return void
      */
-    public function testIsDomNodeOfTypeIncorrectName()
+    public function testIsDomNodeOfTypeIncorrectName(): void
     {
         $name = 'name';
         $bad_name = 'bad name';
@@ -106,7 +106,7 @@ class XMLTest extends TestCase
      * @test
      * @return void
      */
-    public function testIsDomNodeOfTypeIncorrectNamespace()
+    public function testIsDomNodeOfTypeIncorrectNamespace(): void
     {
         $name = 'name';
         $namespace_uri = 'ns';
@@ -124,7 +124,7 @@ class XMLTest extends TestCase
      * @test
      * @return void
      */
-    public function testGetDomTextBasic()
+    public function testGetDomTextBasic(): void
     {
         $data = 'root value';
         $dom = new \DOMDocument();
@@ -143,7 +143,7 @@ class XMLTest extends TestCase
      * @test
      * @return void
      */
-    public function testGetDomTextMulti()
+    public function testGetDomTextMulti(): void
     {
         $data1 = 'root value 1';
         $data2 = 'root value 2';
@@ -164,7 +164,7 @@ class XMLTest extends TestCase
      * @test
      * @return void
      */
-    public function testGetDomTextIncorrectType()
+    public function testGetDomTextIncorrectType(): void
     {
         $this->expectException(\SimpleSAML\Error\Exception::class);
         $dom = new \DOMDocument();
@@ -180,7 +180,7 @@ class XMLTest extends TestCase
      * @test
      * @return void
      */
-    public function testGetDomChildrenBasic()
+    public function testGetDomChildrenBasic(): void
     {
         $name = 'name';
         $namespace_uri = 'ns';
@@ -200,7 +200,7 @@ class XMLTest extends TestCase
      * @test
      * @return void
      */
-    public function testGetDomChildrenIncorrectType()
+    public function testGetDomChildrenIncorrectType(): void
     {
         $dom = new \DOMDocument();
         $text = new \DOMText('text');
@@ -219,7 +219,7 @@ class XMLTest extends TestCase
      * @test
      * @return void
      */
-    public function testGetDomChildrenIncorrectName()
+    public function testGetDomChildrenIncorrectName(): void
     {
         $name = 'name';
         $bad_name = 'bad name';
@@ -239,7 +239,7 @@ class XMLTest extends TestCase
      * @test
      * @return void
      */
-    public function testFormatDomElementBasic()
+    public function testFormatDomElementBasic(): void
     {
         $dom = new \DOMDocument();
         $root = new \DOMElement('root');
@@ -263,7 +263,7 @@ NOWDOC;
      * @test
      * @return void
      */
-    public function testFormatDomElementNested()
+    public function testFormatDomElementNested(): void
     {
         $dom = new \DOMDocument();
         $root = new \DOMElement('root');
@@ -291,7 +291,7 @@ NOWDOC;
      * @test
      * @return void
      */
-    public function testFormatDomElementIndentBase()
+    public function testFormatDomElementIndentBase(): void
     {
         $indent_base = 'base';
         $dom = new \DOMDocument();
@@ -320,7 +320,7 @@ HEREDOC;
      * @test
      * @return void
      */
-    public function testFormatDomElementTextAndChild()
+    public function testFormatDomElementTextAndChild(): void
     {
         $dom = new \DOMDocument();
         $root = new \DOMElement('root');
@@ -345,7 +345,7 @@ HEREDOC;
      * @test
      * @return void
      */
-    public function testFormatXmlStringBasic()
+    public function testFormatXmlStringBasic(): void
     {
         $xml = '<root><nested>text</nested></root>';
 
@@ -365,7 +365,7 @@ NOWDOC;
      * @test
      * @return void
      */
-    public function testFormatXmlStringMalformedXml()
+    public function testFormatXmlStringMalformedXml(): void
     {
         $this->expectException(\DOMException::class);
         $xml = '<root><nested>text';
@@ -379,13 +379,14 @@ NOWDOC;
      * @test
      * @return void
      */
-    public function testIsValidMalformedXml()
+    public function testIsValidMalformedXml(): void
     {
         $xml = '<root><nested>text';
 
         $res = XML::isValid($xml, 'unused');
-        $expected = 'Failed to parse XML string for schema validation';
+        $this->assertIsString($res);
 
+        $expected = 'Failed to parse XML string for schema validation';
         $this->assertStringContainsString($expected, $res);
     }
 
@@ -394,7 +395,7 @@ NOWDOC;
      * @covers \SimpleSAML\Utils\XML::isValid
      * @return void
      */
-    public function testIsValidMetadata()
+    public function testIsValidMetadata(): void
     {
         $schema = 'saml-schema-metadata-2.0.xsd';
         $xml = file_get_contents(self::FRAMEWORK . '/metadata/xml/valid-metadata-selfsigned.xml');
@@ -410,7 +411,7 @@ NOWDOC;
      * @covers \SimpleSAML\Utils\XML::checkSAMLMessage()
      * @return void
      */
-    public function testCheckSAMLMessageInvalidType()
+    public function testCheckSAMLMessageInvalidType(): void
     {
         $this->expectException(\InvalidArgumentException::class);
         XML::checkSAMLMessage('<test></test>', 'blub');

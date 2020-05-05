@@ -54,7 +54,7 @@ NOWDOC;
     /**
      * @return array
      */
-    public function getCertDirContent()
+    public function getCertDirContent(): array
     {
         return [
             self::GOOD_PRIVATE_KEY => $this->good_private_key,
@@ -67,7 +67,7 @@ NOWDOC;
     /**
      * @return void
      */
-    public function testSignerBasic()
+    public function testSignerBasic(): void
     {
         $res = new Signer([]);
 
@@ -78,7 +78,7 @@ NOWDOC;
     /**
      * @return void
      */
-    public function testSignBasic()
+    public function testSignBasic(): void
     {
         $node = new DOMDocument();
         $node->loadXML('<?xml version="1.0"?><node>value</node>');
@@ -104,7 +104,7 @@ NOWDOC;
      * @param string $certificate
      * @return string
      */
-    private static function getCertificateValue($certificate)
+    private static function getCertificateValue(string $certificate): string
     {
         $replacements = [
             "-----BEGIN CERTIFICATE-----",
@@ -119,7 +119,7 @@ NOWDOC;
     /**
      * @return void
      */
-    public function testSignWithCertificate()
+    public function testSignWithCertificate(): void
     {
         $node = new DOMDocument();
         $node->loadXML('<?xml version="1.0"?><node>value</node>');
@@ -147,7 +147,7 @@ NOWDOC;
     /**
      * @return void
      */
-    public function testSignWithMultiCertificate()
+    public function testSignWithMultiCertificate(): void
     {
         $this->other_certificate_file = $this->certdir . DIRECTORY_SEPARATOR . self::OTHER_CERTIFICATE;
 
@@ -180,7 +180,7 @@ NOWDOC;
     /**
      * @return void
      */
-    public function testSignMissingPrivateKey()
+    public function testSignMissingPrivateKey(): void
     {
         $node = new DOMDocument();
         $node->loadXML('<?xml version="1.0"?><node>value</node>');
@@ -204,7 +204,7 @@ NOWDOC;
      * @param mixed|null $value
      * @return void
      */
-    protected function clearInstance(Configuration $service, $className, $value = null)
+    protected function clearInstance(Configuration $service, string $className, $value = null): void
     {
         $reflectedClass = new ReflectionClass($className);
         $reflectedInstance = $reflectedClass->getProperty('instance');

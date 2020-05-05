@@ -17,7 +17,7 @@ class SAMLBuilderTest extends TestCase
      * Test the requested attributes are valued correctly.
      * @return void
      */
-    public function testAttributes()
+    public function testAttributes(): void
     {
         $entityId = 'https://entity.example.com/id';
 
@@ -97,7 +97,7 @@ class SAMLBuilderTest extends TestCase
      * Test the working of the isDefault config option
      * @return void
      */
-    public function testAttributeConsumingServiceDefault()
+    public function testAttributeConsumingServiceDefault(): void
     {
         $entityId = 'https://entity.example.com/id';
         $set = 'saml20-sp-remote';
@@ -153,7 +153,7 @@ class SAMLBuilderTest extends TestCase
      * Test the index option is used correctly.
      * @return void
      */
-    public function testAttributeConsumingServiceIndex()
+    public function testAttributeConsumingServiceIndex(): void
     {
         $entityId = 'https://entity.example.com/id';
         $set = 'saml20-sp-remote';
@@ -198,7 +198,7 @@ class SAMLBuilderTest extends TestCase
      * Test the required protocolSupportEnumeration in AttributeAuthorityDescriptor
      * @return void
      */
-    public function testProtocolSupportEnumeration()
+    public function testProtocolSupportEnumeration(): void
     {
         $entityId = 'https://entity.example.com/id';
         $set = 'attributeauthority-remote';

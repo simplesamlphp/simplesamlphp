@@ -32,7 +32,7 @@ class EMailTest extends ClearStateTestCase
      * and no custom from address is specified.
      * @return void
      */
-    public function testMailFromDefaultConfigurationException()
+    public function testMailFromDefaultConfigurationException(): void
     {
         $this->expectException(\Exception::class);
         new EMail('test', null, 'phpunit@simplesamlphp.org');
@@ -43,7 +43,7 @@ class EMailTest extends ClearStateTestCase
      * Test that an exception is thrown if using an invalid "From"-address
      * @return void
      */
-    public function testInvalidFromAddressException()
+    public function testInvalidFromAddressException(): void
     {
         $this->expectException(\Exception::class);
         new EMail('test', "phpunit@simplesamlphp.org\nLorem Ipsum", 'phpunit@simplesamlphp.org');
@@ -54,7 +54,7 @@ class EMailTest extends ClearStateTestCase
      * Test that an exception is thrown if using an invalid "To"-address
      * @return void
      */
-    public function testInvalidToAddressException()
+    public function testInvalidToAddressException(): void
     {
         $this->expectException(\Exception::class);
         new EMail('test', 'phpunit@simplesamlphp.org', "phpunit@simplesamlphp.org\nLorem Ipsum");
@@ -67,7 +67,7 @@ class EMailTest extends ClearStateTestCase
      * @param string $template
      * @return void
      */
-    public function testMailContents($template)
+    public function testMailContents($template): void
     {
         $mail = new EMail(
             'subject-subject-subject-subject-subject-subject-subject',
@@ -88,7 +88,7 @@ class EMailTest extends ClearStateTestCase
      * All templates that should be tested in #testMailContents($template)
      * @return array
      */
-    public static function mailTemplates()
+    public static function mailTemplates(): array
     {
         return [['mailtxt.twig'], ['mailhtml.twig']];
     }
@@ -97,7 +97,7 @@ class EMailTest extends ClearStateTestCase
     /**
      * @return void
      */
-    public function testInvalidTransportConfiguration()
+    public function testInvalidTransportConfiguration(): void
     {
         // preserve the original configuration
         $originalTestConfiguration = Configuration::getInstance()->toArray();
@@ -119,7 +119,7 @@ class EMailTest extends ClearStateTestCase
     /**
      * @return void
      */
-    public function testInvalidSMTPConfiguration()
+    public function testInvalidSMTPConfiguration(): void
     {
         // setup a new email
         $email = new Email('Test', 'phpunit@simplesamlphp.org', 'phpunit@simplesamlphp.org');
@@ -136,7 +136,7 @@ class EMailTest extends ClearStateTestCase
      *
      * @return void
      */
-    public function testGetDefaultMailAddress()
+    public function testGetDefaultMailAddress(): void
     {
         Configuration::loadFromArray([
             'technicalcontact_email' => 'gamaarna@example.org',

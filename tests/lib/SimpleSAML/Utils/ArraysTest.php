@@ -16,7 +16,7 @@ class ArraysTest extends TestCase
      * Test the arrayize() function.
      * @return void
      */
-    public function testArrayize()
+    public function testArrayize(): void
     {
         // check with empty array as input
         $array = [];
@@ -44,7 +44,7 @@ class ArraysTest extends TestCase
      * Test the transpose() function.
      * @return void
      */
-    public function testTranspose()
+    public function testTranspose(): void
     {
         // check bad arrays
         $this->assertFalse(

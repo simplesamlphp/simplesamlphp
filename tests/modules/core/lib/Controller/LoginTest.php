@@ -71,7 +71,7 @@ class LoginTest extends ClearStateTestCase
      * source configured.
      * @return void
      */
-    public function testAutomaticLoginWhenOnlyOneSource()
+    public function testAutomaticLoginWhenOnlyOneSource(): void
     {
         $asConfig = Configuration::loadFromArray($this->authSources);
         Configuration::setPreLoadedConfig($asConfig, 'authsources.php');
@@ -97,7 +97,7 @@ class LoginTest extends ClearStateTestCase
      * Test that the user can choose what auth source to use when there are multiple defined (admin excluded).
      * @return void
      */
-    public function testMultipleAuthSources()
+    public function testMultipleAuthSources(): void
     {
         $_SERVER['REQUEST_URI'] = '/';
         $asConfig = Configuration::loadFromArray(
@@ -133,7 +133,7 @@ class LoginTest extends ClearStateTestCase
      * Test that specifying an invalid auth source while trying to login raises an exception.
      * @return void
      */
-    public function testLoginWithInvalidAuthSource()
+    public function testLoginWithInvalidAuthSource(): void
     {
         $asConfig = Configuration::loadFromArray($this->authSources);
         Configuration::setPreLoadedConfig($asConfig, 'authsources.php');
@@ -151,7 +151,7 @@ class LoginTest extends ClearStateTestCase
      * authenticated.
      * @return void
      */
-    public function testLoginWhenAlreadyAuthenticated()
+    public function testLoginWhenAlreadyAuthenticated(): void
     {
         $asConfig = Configuration::loadFromArray($this->authSources);
         Configuration::setPreLoadedConfig($asConfig, 'authsources.php');
@@ -190,7 +190,7 @@ class LoginTest extends ClearStateTestCase
      * Test that triggering the logout controller actually proceeds to log out from the specified source.
      * @return void
      */
-    public function testLogout()
+    public function testLogout(): void
     {
         $asConfig = Configuration::loadFromArray($this->authSources);
         Configuration::setPreLoadedConfig($asConfig, 'authsources.php');
@@ -212,7 +212,7 @@ class LoginTest extends ClearStateTestCase
      * endpoint.
      * @return void
      */
-    public function testNotAuthenticated()
+    public function testNotAuthenticated(): void
     {
         $asConfig = Configuration::loadFromArray($this->authSources);
         Configuration::setPreLoadedConfig($asConfig, 'authsources.php');
@@ -233,7 +233,7 @@ class LoginTest extends ClearStateTestCase
      * Test that we are presented with a regular page if we are authenticated and try to access the "account" endpoint.
      * @return void
      */
-    public function testAuthenticated()
+    public function testAuthenticated(): void
     {
         $asConfig = Configuration::loadFromArray($this->authSources);
         Configuration::setPreLoadedConfig($asConfig, 'authsources.php');

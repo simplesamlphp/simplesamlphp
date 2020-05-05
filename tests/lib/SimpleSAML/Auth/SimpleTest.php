@@ -16,7 +16,7 @@ class SimpleTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
      * @test
      * @return void
      */
-    public function testGetProcessedURL()
+    public function testGetProcessedURL(): void
     {
         $class = new \ReflectionClass(Auth\Simple::class);
         $method = $class->getMethod('getProcessedURL');

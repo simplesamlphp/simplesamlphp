@@ -25,7 +25,7 @@ class ErrorsTest extends TestCase
      * @test
      * @return void
      */
-    public function loggingErrors()
+    public function loggingErrors(): void
     {
         Errors::begin();
         $xmlstr = "<Test>Test</test>";
@@ -46,7 +46,7 @@ class ErrorsTest extends TestCase
      * @test
      * @return void
      */
-    public function formatErrors()
+    public function formatErrors(): void
     {
         $error = new \LibXMLError();
         $error->level = 3;

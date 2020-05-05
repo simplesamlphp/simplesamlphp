@@ -72,7 +72,7 @@ class MultiAuthTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
     /**
      * @return void
      */
-    public function testSourcesMustBePresent()
+    public function testSourcesMustBePresent(): void
     {
         $this->expectException(\Exception::class);
         $this->expectExceptionMessage('The required "sources" config option was not found');
@@ -91,7 +91,7 @@ class MultiAuthTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
     /**
      * @return void
      */
-    public function testPreselectMustBeValid()
+    public function testPreselectMustBeValid(): void
     {
         $this->expectException(\Exception::class);
         $this->expectExceptionMessage('The optional "preselect" config option must be present in "sources"');
@@ -140,7 +140,7 @@ class MultiAuthTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
     /**
      * @return void
      */
-    public function testPreselectIsOptional()
+    public function testPreselectIsOptional(): void
     {
         $sourceConfig = Configuration::loadFromArray(array(
             'example-multi' => array(
@@ -196,7 +196,7 @@ class MultiAuthTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
     /**
      * @return void
      */
-    public function testPreselectCanBeConfigured()
+    public function testPreselectCanBeConfigured(): void
     {
         $state = [];
 
@@ -215,7 +215,7 @@ class MultiAuthTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
     /**
      * @return void
      */
-    public function testStatePreselectHasPriority()
+    public function testStatePreselectHasPriority(): void
     {
         $state = ['multiauth:preselect' => 'example-admin'];
 

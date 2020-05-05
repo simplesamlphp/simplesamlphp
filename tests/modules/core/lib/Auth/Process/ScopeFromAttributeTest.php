@@ -18,7 +18,7 @@ class ScopeFromAttributeTest extends TestCase
      * @param array $request  The request state.
      * @return array  The state array after processing.
      */
-    private static function processFilter(array $config, array $request)
+    private static function processFilter(array $config, array $request): array
     {
         $filter = new \SimpleSAML\Module\core\Auth\Process\ScopeFromAttribute($config, null);
         $filter->process($request);
@@ -30,7 +30,7 @@ class ScopeFromAttributeTest extends TestCase
      * Test the most basic functionality.
      * @return void
      */
-    public function testBasic()
+    public function testBasic(): void
     {
         $config = [
             'sourceAttribute' => 'eduPersonPrincipalName',
@@ -52,7 +52,7 @@ class ScopeFromAttributeTest extends TestCase
      * If scope already set, module must not overwrite.
      * @return void
      */
-    public function testNoOverwrite()
+    public function testNoOverwrite(): void
     {
         $config = [
             'sourceAttribute' => 'eduPersonPrincipalName',
@@ -74,7 +74,7 @@ class ScopeFromAttributeTest extends TestCase
      * If source attribute not set, nothing happens
      * @return void
      */
-    public function testNoSourceAttribute()
+    public function testNoSourceAttribute(): void
     {
         $config = [
             'sourceAttribute' => 'eduPersonPrincipalName',
@@ -95,7 +95,7 @@ class ScopeFromAttributeTest extends TestCase
      * When multiple @ signs in attribute, should use last one.
      * @return void
      */
-    public function testMultiAt()
+    public function testMultiAt(): void
     {
         $config = [
             'sourceAttribute' => 'eduPersonPrincipalName',
@@ -116,7 +116,7 @@ class ScopeFromAttributeTest extends TestCase
      * When the source attribute doesn't have a scope, a warning is emitted
      * @return void
      */
-    public function testNoAt()
+    public function testNoAt(): void
     {
         $config = [
             'sourceAttribute' => 'eduPersonPrincipalName',

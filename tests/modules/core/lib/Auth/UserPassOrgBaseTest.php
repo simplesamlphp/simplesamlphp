@@ -11,7 +11,7 @@ class UserPassOrgBaseTest extends \PHPUnit\Framework\TestCase
     /**
      * @return void
      */
-    public function testRememberOrganizationEnabled()
+    public function testRememberOrganizationEnabled(): void
     {
         $config = [
             'ldap:LDAPMulti',

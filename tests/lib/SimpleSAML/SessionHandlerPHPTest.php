@@ -54,7 +54,7 @@ class SessionHandlerPHPTest extends ClearStateTestCase
      * @covers SimpleSAML\SessionHandler::getSessionHandler()
      * @return void
      */
-    public function testGetSessionHandler()
+    public function testGetSessionHandler(): void
     {
         Configuration::loadFromArray($this->sessionConfig, '[ARRAY]', 'simplesaml');
         $sh = SessionHandlerPHP::getSessionHandler();
@@ -68,7 +68,7 @@ class SessionHandlerPHPTest extends ClearStateTestCase
      * @requires extension xdebug
      * @return void
      */
-    public function testSetCookie()
+    public function testSetCookie(): void
     {
         Configuration::loadFromArray($this->sessionConfig, '[ARRAY]', 'simplesaml');
         $sh = SessionHandlerPHP::getSessionHandler();
@@ -90,7 +90,7 @@ class SessionHandlerPHPTest extends ClearStateTestCase
      * @requires extension xdebug
      * @return void
      */
-    public function testSetCookieSameSiteNone()
+    public function testSetCookieSameSiteNone(): void
     {
         Configuration::loadFromArray(
             array_merge($this->sessionConfig, ['session.cookie.samesite' => 'None']),
@@ -112,7 +112,7 @@ class SessionHandlerPHPTest extends ClearStateTestCase
      * @requires extension xdebug
      * @return void
      */
-    public function testSetCookieSameSiteLax()
+    public function testSetCookieSameSiteLax(): void
     {
         Configuration::loadFromArray(
             array_merge($this->sessionConfig, ['session.cookie.samesite' => 'Lax']),
@@ -134,7 +134,7 @@ class SessionHandlerPHPTest extends ClearStateTestCase
      * @requires extension xdebug
      * @return void
      */
-    public function testSetCookieSameSiteStrict()
+    public function testSetCookieSameSiteStrict(): void
     {
         Configuration::loadFromArray(
             array_merge($this->sessionConfig, ['session.cookie.samesite' => 'Strict']),
@@ -156,7 +156,7 @@ class SessionHandlerPHPTest extends ClearStateTestCase
      * @requires extension xdebug
      * @return void
      */
-    public function testRestorePrevious()
+    public function testRestorePrevious(): void
     {
         session_name('PHPSESSID');
         $sid = session_id();
@@ -180,7 +180,7 @@ class SessionHandlerPHPTest extends ClearStateTestCase
      * @covers SimpleSAML\SessionHandlerPHP::newSessionId()
      * @return void
      */
-    public function testNewSessionId()
+    public function testNewSessionId(): void
     {
         Configuration::loadFromArray($this->sessionConfig, '[ARRAY]', 'simplesaml');
         $sh = SessionHandlerPHP::getSessionHandler();

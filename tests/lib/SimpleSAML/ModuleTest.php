@@ -13,7 +13,7 @@ class ModuleTest extends TestCase
      * Test for SimpleSAML\Module::isModuleEnabled().
      * @return void
      */
-    public function testIsModuleEnabled()
+    public function testIsModuleEnabled(): void
     {
         // test for the most basic functionality
         $this->assertTrue(Module::isModuleEnabled('core'));
@@ -24,7 +24,7 @@ class ModuleTest extends TestCase
      * Test for SimpleSAML\Module::getModuleDir().
      * @return void
      */
-    public function testGetModuleDir()
+    public function testGetModuleDir(): void
     {
         // test for the most basic functionality
         $this->assertEquals(
@@ -38,7 +38,7 @@ class ModuleTest extends TestCase
      * Test for SimpleSAML\Module::getModuleURL().
      * @return void
      */
-    public function testGetModuleURL()
+    public function testGetModuleURL(): void
     {
         \SimpleSAML\Configuration::loadFromArray([
             'baseurlpath' => 'https://example.com/simplesaml/'
@@ -61,7 +61,7 @@ class ModuleTest extends TestCase
      * Test for SimpleSAML\Module::getModules().
      * @return void
      */
-    public function testGetModules()
+    public function testGetModules(): void
     {
         $this->assertGreaterThan(0, count(Module::getModules()));
     }
@@ -73,7 +73,7 @@ class ModuleTest extends TestCase
      * class).
      * @return void
      */
-    public function testResolveClassNoModule()
+    public function testResolveClassNoModule(): void
     {
         $this->expectException(\Exception::class);
         Module::resolveClass('nomodule', '');
@@ -85,7 +85,7 @@ class ModuleTest extends TestCase
      * asking for cannot be found.
      * @return void
      */
-    public function testResolveClassNotFound()
+    public function testResolveClassNotFound(): void
     {
         $this->expectException(\Exception::class);
         Module::resolveClass('core:Missing', '');
@@ -97,7 +97,7 @@ class ModuleTest extends TestCase
      * asking for can be resolved, but does not extend a given class.
      * @return void
      */
-    public function testResolveClassNotSubclass()
+    public function testResolveClassNotSubclass(): void
     {
         $this->expectException(\Exception::class);
         Module::resolveClass('core:PHP', 'Auth_Process', '\Exception');
@@ -108,7 +108,7 @@ class ModuleTest extends TestCase
      * Test for SimpleSAML\Module::resolveClass(). It covers all the valid use cases.
      * @return void
      */
-    public function testResolveClass()
+    public function testResolveClass(): void
     {
         // most basic test
         $this->assertEquals('SimpleSAML\Module\cron\Cron', Module::resolveClass('cron:Cron', ''));

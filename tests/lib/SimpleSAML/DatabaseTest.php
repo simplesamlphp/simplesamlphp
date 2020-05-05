@@ -86,7 +86,7 @@ class DatabaseTest extends TestCase
      * @test
      * @return void
      */
-    public function connectionFailure()
+    public function connectionFailure(): void
     {
         $this->expectException(\Exception::class);
         $config = [
@@ -111,7 +111,7 @@ class DatabaseTest extends TestCase
      * @test
      * @return void
      */
-    public function instances()
+    public function instances(): void
     {
         $config = [
             'database.dsn'        => 'sqlite::memory:',
@@ -181,7 +181,7 @@ class DatabaseTest extends TestCase
      * @test
      * @return void
      */
-    public function slaves()
+    public function slaves(): void
     {
         $ref = new ReflectionClass($this->db);
         $dbMaster = $ref->getProperty('dbMaster');
@@ -234,7 +234,7 @@ class DatabaseTest extends TestCase
      * @test
      * @return void
      */
-    public function prefix()
+    public function prefix(): void
     {
         $prefix = $this->config->getString('database.prefix');
         $table = "saml20_idp_hosted";
@@ -252,7 +252,7 @@ class DatabaseTest extends TestCase
      * @test
      * @return void
      */
-    public function querying()
+    public function querying(): void
     {
         $table = $this->db->applyPrefix("sspdbt");
         $this->assertEquals($this->config->getString('database.prefix') . "sspdbt", $table);
@@ -284,7 +284,7 @@ class DatabaseTest extends TestCase
      * @test
      * @return void
      */
-    public function readFailure()
+    public function readFailure(): void
     {
         $this->expectException(\Exception::class);
         $table = $this->db->applyPrefix("sspdbt");
@@ -300,7 +300,7 @@ class DatabaseTest extends TestCase
      * @test
      * @return void
      */
-    public function noSuchTable()
+    public function noSuchTable(): void
     {
         $this->expectException(\Exception::class);
         $this->db->write("DROP TABLE phpunit_nonexistent");

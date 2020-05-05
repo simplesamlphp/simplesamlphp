@@ -19,7 +19,7 @@ class AttributesTest extends TestCase
      * Test the getExpectedAttributeMethod() method with a non-normalized attributes array.
      * @return void
      */
-    public function testGetExpectedAttributeNonNormalizedArray()
+    public function testGetExpectedAttributeNonNormalizedArray(): void
     {
         // check with non-normalized attributes array
         $attributes = [
@@ -38,7 +38,7 @@ class AttributesTest extends TestCase
      * Test the getExpectedAttribute() method with valid input but missing expected attribute.
      * @return void
      */
-    public function testGetExpectedAttributeMissingAttribute()
+    public function testGetExpectedAttributeMissingAttribute(): void
     {
         // check missing attribute
         $attributes = [
@@ -55,7 +55,7 @@ class AttributesTest extends TestCase
      * Test the getExpectedAttribute() method with an empty attribute.
      * @return void
      */
-    public function testGetExpectedAttributeEmptyAttribute()
+    public function testGetExpectedAttributeEmptyAttribute(): void
     {
         // check empty attribute
         $attributes = [
@@ -72,7 +72,7 @@ class AttributesTest extends TestCase
      * Test the getExpectedAttributeMethod() method with multiple values (not being allowed).
      * @return void
      */
-    public function testGetExpectedAttributeMultipleValues()
+    public function testGetExpectedAttributeMultipleValues(): void
     {
         // check attribute with more than value, that being not allowed
         $attributes = [
@@ -94,7 +94,7 @@ class AttributesTest extends TestCase
      * Test that the getExpectedAttribute() method successfully obtains values from the attributes array.
      * @return void
      */
-    public function testGetExpectedAttribute()
+    public function testGetExpectedAttribute(): void
     {
         // check one value
         $value = 'value';
@@ -118,7 +118,7 @@ class AttributesTest extends TestCase
      * Test the normalizeAttributesArray() function with an array with non-string attribute names.
      * @return void
      */
-    public function testNormalizeAttributesArrayBadKeys()
+    public function testNormalizeAttributesArrayBadKeys(): void
     {
         $this->expectException(InvalidArgumentException::class);
         Attributes::normalizeAttributesArray(['attr1' => 'value1', 1 => 'value2']);
@@ -129,7 +129,7 @@ class AttributesTest extends TestCase
      * Test the normalizeAttributesArray() function with an array with non-string attribute values.
      * @return void
      */
-    public function testNormalizeAttributesArrayBadValues()
+    public function testNormalizeAttributesArrayBadValues(): void
     {
         $this->expectException(InvalidArgumentException::class);
         Attributes::normalizeAttributesArray(['attr1' => 'value1', 'attr2' => 0]);
@@ -140,7 +140,7 @@ class AttributesTest extends TestCase
      * Test the normalizeAttributesArray() function.
      * @return void
      */
-    public function testNormalizeAttributesArray()
+    public function testNormalizeAttributesArray(): void
     {
         $attributes = [
             'key1' => 'value1',
@@ -164,7 +164,7 @@ class AttributesTest extends TestCase
      * Test the getAttributeNamespace() function.
      * @return void
      */
-    public function testNamespacedAttributes()
+    public function testNamespacedAttributes(): void
     {
         // test for only the name
         $this->assertEquals(

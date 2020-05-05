@@ -48,7 +48,7 @@ class SystemTest extends TestCase
      * @test
      * @return void
      */
-    public function testGetOSBasic()
+    public function testGetOSBasic(): void
     {
         $res = System::getOS();
 
@@ -61,7 +61,7 @@ class SystemTest extends TestCase
      * @test
      * @return void
      */
-    public function testResolvePathRemoveTrailingSlashes()
+    public function testResolvePathRemoveTrailingSlashes(): void
     {
         $base = "/base////";
         $path = "test";
@@ -78,7 +78,7 @@ class SystemTest extends TestCase
      * @test
      * @return void
      */
-    public function testResolvePathPreferAbsolutePathToBase()
+    public function testResolvePathPreferAbsolutePathToBase(): void
     {
         $base = "/base/";
         $path = "/test";
@@ -95,7 +95,7 @@ class SystemTest extends TestCase
      * @test
      * @return void
      */
-    public function testResolvePathCurDirPath()
+    public function testResolvePathCurDirPath(): void
     {
         $base = "/base/";
         $path = "/test/.";
@@ -112,7 +112,7 @@ class SystemTest extends TestCase
      * @test
      * @return void
      */
-    public function testResolvePathParentPath()
+    public function testResolvePathParentPath(): void
     {
         $base = "/base/";
         $path = "/test/child/..";
@@ -129,7 +129,7 @@ class SystemTest extends TestCase
      * @test
      * @return void
      */
-    public function testResolvePathAllowsStreamWrappers()
+    public function testResolvePathAllowsStreamWrappers(): void
     {
         $base = '/base/';
         $path = 'vfs://simplesaml';
@@ -146,7 +146,7 @@ class SystemTest extends TestCase
      * @test
      * @return void
      */
-    public function testResolvePathAllowsAwsS3StreamWrappers()
+    public function testResolvePathAllowsAwsS3StreamWrappers(): void
     {
         $base = '/base/';
         $path = 's3://bucket-name/key-name';
@@ -163,7 +163,7 @@ class SystemTest extends TestCase
      * @test
      * @return void
      */
-    public function testWriteFileBasic()
+    public function testWriteFileBasic(): void
     {
         $tempdir = $this->root_directory . DIRECTORY_SEPARATOR . self::DEFAULTTEMPDIR;
         $config = $this->setConfigurationTempDir($tempdir);
@@ -183,7 +183,7 @@ class SystemTest extends TestCase
      * @test
      * @return void
      */
-    public function testWriteFileContents()
+    public function testWriteFileContents(): void
     {
         $tempdir = $this->root_directory . DIRECTORY_SEPARATOR . self::DEFAULTTEMPDIR;
         $config = $this->setConfigurationTempDir($tempdir);
@@ -207,7 +207,7 @@ class SystemTest extends TestCase
      * @test
      * @return void
      */
-    public function testWriteFileMode()
+    public function testWriteFileMode(): void
     {
         $tempdir = $this->root_directory . DIRECTORY_SEPARATOR . self::DEFAULTTEMPDIR;
         $config = $this->setConfigurationTempDir($tempdir);
@@ -231,7 +231,7 @@ class SystemTest extends TestCase
      * @test
      * @return void
      */
-    public function testGetTempDirBasic()
+    public function testGetTempDirBasic(): void
     {
         $tempdir = $this->root_directory . DIRECTORY_SEPARATOR . self::DEFAULTTEMPDIR;
         $config = $this->setConfigurationTempDir($tempdir);
@@ -251,7 +251,7 @@ class SystemTest extends TestCase
      * @test
      * @return void
      */
-    public function testGetTempDirNonExistant()
+    public function testGetTempDirNonExistant(): void
     {
         $tempdir = $this->root_directory . DIRECTORY_SEPARATOR . 'nonexistant';
         $config = $this->setConfigurationTempDir($tempdir);
@@ -271,7 +271,7 @@ class SystemTest extends TestCase
      * @test
      * @return void
      */
-    public function testGetTempDirBadPermissions()
+    public function testGetTempDirBadPermissions(): void
     {
         $tempdir = $this->root_directory . DIRECTORY_SEPARATOR . self::DEFAULTTEMPDIR;
         $config = $this->setConfigurationTempDir($tempdir);
@@ -304,7 +304,7 @@ class SystemTest extends TestCase
      * @param class-string $className
      * @return void
      */
-    protected function clearInstance(Configuration $service, $className)
+    protected function clearInstance(Configuration $service, string $className): void
     {
         $reflectedClass = new ReflectionClass($className);
         $reflectedInstance = $reflectedClass->getProperty('instance');

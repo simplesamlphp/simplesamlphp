@@ -16,7 +16,7 @@ class SourceTest extends ClearStateTestCase
     /**
      * @return void
      */
-    public function testParseAuthSource()
+    public function testParseAuthSource(): void
     {
         $class = new \ReflectionClass(\SimpleSAML\Auth\Source::class);
         $method = $class->getMethod('parseAuthSource');

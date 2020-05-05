@@ -52,7 +52,7 @@ class CardinalitySingleTest extends \PHPUnit\Framework\TestCase
      * Test singleValued
      * @return void
      */
-    public function testSingleValuedUnchanged()
+    public function testSingleValuedUnchanged(): void
     {
         $config = [
             'singleValued' => ['eduPersonPrincipalName']
@@ -73,7 +73,7 @@ class CardinalitySingleTest extends \PHPUnit\Framework\TestCase
      * Test first value extraction
      * @return void
      */
-    public function testFirstValue()
+    public function testFirstValue(): void
     {
         $config = [
             'firstValue' => ['eduPersonPrincipalName']
@@ -93,7 +93,7 @@ class CardinalitySingleTest extends \PHPUnit\Framework\TestCase
     /**
      * @return void
      */
-    public function testFirstValueUnchanged()
+    public function testFirstValueUnchanged(): void
     {
         $config = [
             'firstValue' => ['eduPersonPrincipalName']
@@ -114,7 +114,7 @@ class CardinalitySingleTest extends \PHPUnit\Framework\TestCase
      * Test flattening
      * @return void
      */
-    public function testFlatten()
+    public function testFlatten(): void
     {
         $config = [
             'flatten' => ['eduPersonPrincipalName'],
@@ -135,7 +135,7 @@ class CardinalitySingleTest extends \PHPUnit\Framework\TestCase
     /**
      * @return void
      */
-    public function testFlattenUnchanged()
+    public function testFlattenUnchanged(): void
     {
         $config = [
             'flatten' => ['eduPersonPrincipalName'],
@@ -157,7 +157,7 @@ class CardinalitySingleTest extends \PHPUnit\Framework\TestCase
      * Test abort
      * @return void
      */
-    public function testAbort()
+    public function testAbort(): void
     {
         $config = [
             'singleValued' => ['eduPersonPrincipalName'],

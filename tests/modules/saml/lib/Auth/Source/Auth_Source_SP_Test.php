@@ -98,7 +98,7 @@ class SPTest extends ClearStateTestCase
      *
      * @return \SAML2\AuthnRequest The AuthnRequest generated.
      */
-    private function createAuthnRequest($state = [])
+    private function createAuthnRequest(array $state = []): AuthnRequest
     {
         $info = ['AuthId' => 'default-sp'];
         $config = [];
@@ -122,7 +122,7 @@ class SPTest extends ClearStateTestCase
      * @test
      * @return void
      */
-    public function testAuthnRequest()
+    public function testAuthnRequest(): void
     {
         $ar = $this->createAuthnRequest();
 
@@ -148,7 +148,7 @@ class SPTest extends ClearStateTestCase
      * @test
      * @return void
      */
-    public function testNameID()
+    public function testNameID(): void
     {
         $state = [
             'saml:NameID' => ['Value' => 'user@example.org', 'Format' => \SAML2\Constants::NAMEID_UNSPECIFIED]
@@ -183,7 +183,7 @@ class SPTest extends ClearStateTestCase
      * @test
      * @return void
      */
-    public function testAuthnContextClassRef()
+    public function testAuthnContextClassRef(): void
     {
         $state = [
             'saml:AuthnContextClassRef' => 'http://example.com/myAuthnContextClassRef'
@@ -213,7 +213,7 @@ class SPTest extends ClearStateTestCase
      * @test
      * @return void
      */
-    public function testForcedAuthn()
+    public function testForcedAuthn(): void
     {
         /** @var bool $state['ForceAuthn'] */
         $state = [
@@ -242,7 +242,7 @@ class SPTest extends ClearStateTestCase
      * Test specifying an IDPList where no metadata found for those idps is an error
      * @return void
      */
-    public function testIdpListWithNoMatchingMetadata()
+    public function testIdpListWithNoMatchingMetadata(): void
     {
         $this->expectException(NoSupportedIDP::class);
         $state = [
@@ -260,7 +260,7 @@ class SPTest extends ClearStateTestCase
      * Test specifying an IDPList where the list does not overlap with the Idp specified in SP config is an error
      * @return void
      */
-    public function testIdpListWithExplicitIdpNotMatch()
+    public function testIdpListWithExplicitIdpNotMatch(): void
     {
         $this->expectException(NoAvailableIDP::class);
         $entityId = "https://example.com";
@@ -288,7 +288,7 @@ class SPTest extends ClearStateTestCase
      * Test that IDPList overlaps with the IDP specified in SP config results in AuthnRequest
      * @return void
      */
-    public function testIdpListWithExplicitIdpMatch()
+    public function testIdpListWithExplicitIdpMatch(): void
     {
         $entityId = "https://example.com";
         $xml = MetaDataStorageSourceTest::generateIdpMetadataXml($entityId);
@@ -330,7 +330,7 @@ class SPTest extends ClearStateTestCase
      * Test that IDPList with a single valid idp and no SP config idp results in AuthnRequest to that idp
      * @return void
      */
-    public function testIdpListWithSingleMatch()
+    public function testIdpListWithSingleMatch(): void
     {
         $entityId = "https://example.com";
         $xml = MetaDataStorageSourceTest::generateIdpMetadataXml($entityId);
@@ -370,7 +370,7 @@ class SPTest extends ClearStateTestCase
      * Test that IDPList with multiple valid idp and no SP config idp results in discovery redirect
      * @return void
      */
-    public function testIdpListWithMultipleMatch()
+    public function testIdpListWithMultipleMatch(): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage('Invalid URL: smtp://invalidurl');

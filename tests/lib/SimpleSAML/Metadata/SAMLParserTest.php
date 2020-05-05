@@ -18,7 +18,7 @@ class SAMLParserTest extends \SimpleSAML\Test\SigningTestCase
      * Test Registration Info is parsed
      * @return void
      */
-    public function testRegistrationInfo()
+    public function testRegistrationInfo(): void
     {
         $expected = [
             'registrationAuthority' => 'https://incommon.org',
@@ -52,7 +52,7 @@ XML
      * According to the spec overriding RegistrationInfo is not valid. We ignore attempts to override
      * @return void
      */
-    public function testRegistrationInfoInheritance()
+    public function testRegistrationInfoInheritance(): void
     {
         $expected = [
             'registrationAuthority' => 'https://incommon.org',
@@ -104,7 +104,7 @@ XML
      * Test AttributeConsumingService is parsed
      * @return void
      */
-    public function testAttributeConsumingServiceParsing()
+    public function testAttributeConsumingServiceParsing(): void
     {
         $document = \SAML2\DOMDocumentFactory::fromString(
             <<<XML
@@ -153,7 +153,7 @@ XML
     /**
      * @return \DOMDocument
      */
-    public function makeTestDocument()
+    public function makeTestDocument(): \DOMDocument
     {
         $doc = new \DOMDocument();
         $doc->loadXML(
@@ -182,7 +182,7 @@ XML
      * Test RoleDescriptor/Extensions is parsed
      * @return void
      */
-    public function testRoleDescriptorExtensions()
+    public function testRoleDescriptorExtensions(): void
     {
         $expected = [
             'scope' => [

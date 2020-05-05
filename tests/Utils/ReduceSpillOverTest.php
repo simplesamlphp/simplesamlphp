@@ -14,7 +14,7 @@ class ReduceSpillOverTest extends ClearStateTestCase
      * Set some global state
      * @return void
      */
-    public function testSetState()
+    public function testSetState(): void
     {
         $_SERVER['QUERY_STRING'] = 'a=b';
         \SimpleSAML\Configuration::loadFromArray(['a' => 'b'], '[ARRAY]', 'simplesaml');
@@ -28,7 +28,7 @@ class ReduceSpillOverTest extends ClearStateTestCase
      * @return void
      * @throws \SimpleSAML\Error\ConfigurationError
      */
-    public function testStateRemoved()
+    public function testStateRemoved(): void
     {
         $this->assertArrayNotHasKey('QUERY_STRING', $_SERVER);
         /** @var false $env */

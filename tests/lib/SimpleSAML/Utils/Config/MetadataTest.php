@@ -18,7 +18,7 @@ class MetadataTest extends TestCase
      * Test contact configuration parsing and sanitizing.
      * @return void
      */
-    public function testGetContact()
+    public function testGetContact(): void
     {
         // test missing type
         $contact = [
@@ -226,7 +226,7 @@ class MetadataTest extends TestCase
      * Test \SimpleSAML\Utils\Config\Metadata::isHiddenFromDiscovery().
      * @return void
      */
-    public function testIsHiddenFromDiscovery()
+    public function testIsHiddenFromDiscovery(): void
     {
         // test for success
         $metadata = [
@@ -267,7 +267,7 @@ class MetadataTest extends TestCase
      * Test \SimpleSAML\Utils\Config\Metadata::parseNameIdPolicy().
      * @return void
      */
-    public function testParseNameIdPolicy()
+    public function testParseNameIdPolicy(): void
     {
         // Test null or unset
         $nameIdPolicy = null;
