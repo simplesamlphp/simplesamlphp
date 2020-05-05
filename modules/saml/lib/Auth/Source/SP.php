@@ -60,7 +60,7 @@ class SP extends \SimpleSAML\Auth\Source
     /**
      * A list of supported protocols.
      *
-     * @var array
+     * @var string[]
      */
     private $protocols = [];
 
