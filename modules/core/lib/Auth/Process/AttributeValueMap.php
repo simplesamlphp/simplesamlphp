@@ -93,10 +93,10 @@ class AttributeValueMap extends \SimpleSAML\Auth\ProcessingFilter
         }
 
         // now validate it
-        if (!empty($this->sourceattribute)) {
+        if (empty($this->sourceattribute)) {
             throw new Error\Exception("AttributeValueMap: 'sourceattribute' configuration option not set.");
         }
-        if (!empty($this->targetattribute)) {
+        if (empty($this->targetattribute)) {
             throw new Error\Exception("AttributeValueMap: 'targetattribute' configuration option not set.");
         }
         if (!is_array($this->values)) {
