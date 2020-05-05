@@ -19,7 +19,7 @@ class ConfigurationTest extends \SimpleSAML\Test\Utils\ClearStateTestCase
     public function testGetVersion()
     {
         $c = Configuration::getOptionalConfig();
-        $this->assertTrue(is_string($c->getVersion()));
+        $this->assertEquals($c->getVersion(), Configuration::VERSION);
     }
 
 
