@@ -86,10 +86,8 @@ class LoginTest extends ClearStateTestCase
         $response = $c->login($request);
 
         $this->assertInstanceOf(RunnableResponse::class, $response);
-        list($object, $method) = $response->getCallable();
+        $this->assertIsCallable($response->getCallable());
 
-        $this->assertInstanceOf(Simple::class, $object);
-        $this->assertEquals('login', $method);
         $arguments = $response->getArguments();
         $this->assertArrayHasKey('ErrorURL', $arguments[0]);
         $this->assertArrayHasKey('ReturnTo', $arguments[0]);
@@ -197,14 +195,15 @@ class LoginTest extends ClearStateTestCase
     {
         $asConfig = Configuration::loadFromArray($this->authSources);
         Configuration::setPreLoadedConfig($asConfig, 'authsources.php');
+
         $session = Session::getSessionFromRequest();
         $factory = new AuthenticationFactory($this->config, $session);
+
         $c = new Controller\Login($this->config, $session, $factory);
         $response = $c->logout('example-userpass');
+
         $this->assertInstanceOf(RunnableResponse::class, $response);
-        list($object, $method) = $response->getCallable();
-        $this->assertInstanceOf(Simple::class, $object);
-        $this->assertEquals('logout', $method);
+        $this->assertIsCallable($response->getCallable());
         $this->assertEquals('/simplesaml/', $response->getArguments()[0]);
     }
 
