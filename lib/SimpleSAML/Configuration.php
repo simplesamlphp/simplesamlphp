@@ -17,6 +17,11 @@ use SimpleSAML\Utils;
 class Configuration implements Utils\ClearableState
 {
     /**
+     * The release version of this package
+     */
+    public const VERSION = 'master';
+
+    /**
      * A default value which means that the given option is required.
      *
      * @var string
@@ -425,7 +430,7 @@ class Configuration implements Utils\ClearableState
      */
     public function getVersion()
     {
-        return 'master';
+        return self::VERSION;
     }
 
 
