@@ -119,7 +119,7 @@ class NameIDAttribute extends \SimpleSAML\Auth\ProcessingFilter
 
         $rep = $state['saml:sp:NameID'];
         Assert::notNull($rep->getValue());
-        $rep->{'%'} = '%';
+
         if ($rep->getFormat() === null) {
             $rep->setFormat(Constants::NAMEID_UNSPECIFIED);
         }
@@ -136,6 +136,8 @@ class NameIDAttribute extends \SimpleSAML\Auth\ProcessingFilter
         foreach ($this->format as $element) {
             if ($isString) {
                 $value .= $element;
+            } elseif ($element === '%') {
+                $value .= '%';
             } else {
                 $value .= call_user_func([$rep, 'get' . $element]);
             }
