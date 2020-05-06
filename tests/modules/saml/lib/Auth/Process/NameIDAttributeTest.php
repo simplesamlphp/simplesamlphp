@@ -130,7 +130,7 @@ class NameIDAttributeTest extends TestCase
      * Test invalid format throws an exception.
      * @return void
      */
-    public function testInvalidFormatThrowsException(): void
+    public function testInvalidFormatThrowsException()
     {
         $config = ['format' => '%X'];
         $spId = 'eugeneSP';
@@ -160,7 +160,7 @@ class NameIDAttributeTest extends TestCase
      * Test invalid request silently continues, leaving the state untouched
      * @return void
      */
-    public function testInvalidRequestLeavesStateUntouched(): void
+    public function testInvalidRequestLeavesStateUntouched()
     {
         $config = ['format' => '%V!%F'];
         $spId = 'eugeneSP';
@@ -217,7 +217,7 @@ class NameIDAttributeTest extends TestCase
      * Test overriding NameID Format/NameQualifier/SPNameQualifier with defaults.
      * @return void
      */
-    public function testOverrideNameID(): void
+    public function testOverrideNameID()
     {
         $spId = 'eugeneSP';
         $idpId = 'eugeneIdP';
