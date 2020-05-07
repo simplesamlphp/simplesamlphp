@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5a6dce10ac30e095e7399b594c65b2cf",
+    "content-hash": "46ba8121006ea847ff1c885cd4995532",
     "packages": [
         {
             "name": "gettext/gettext",
@@ -479,16 +479,16 @@
         },
         {
             "name": "simplesamlphp/saml2",
-            "version": "v3.4.2",
+            "version": "v3.4.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/saml2.git",
-                "reference": "3806d276edb066c60aa3d748ffd0681d92ffbda7"
+                "reference": "ed2d61c6f67adcdf87fe2ff88f2a65aa582bfbf6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/3806d276edb066c60aa3d748ffd0681d92ffbda7",
-                "reference": "3806d276edb066c60aa3d748ffd0681d92ffbda7",
+                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/ed2d61c6f67adcdf87fe2ff88f2a65aa582bfbf6",
+                "reference": "ed2d61c6f67adcdf87fe2ff88f2a65aa582bfbf6",
                 "shasum": ""
             },
             "require": {
@@ -534,20 +534,20 @@
                 }
             ],
             "description": "SAML2 PHP library from SimpleSAMLphp",
-            "time": "2019-11-06T10:00:32+00:00"
+            "time": "2020-02-02T10:23:00+00:00"
         },
         {
             "name": "simplesamlphp/simplesamlphp-module-adfs",
-            "version": "v0.9.5",
+            "version": "v0.9.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/simplesamlphp-module-adfs.git",
-                "reference": "3ac7d15825e609152ca04faceea80ee0db3afcb1"
+                "reference": "425e5ebbdd097c92fe5265a6b48d32a3095c7237"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-module-adfs/zipball/3ac7d15825e609152ca04faceea80ee0db3afcb1",
-                "reference": "3ac7d15825e609152ca04faceea80ee0db3afcb1",
+                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-module-adfs/zipball/425e5ebbdd097c92fe5265a6b48d32a3095c7237",
+                "reference": "425e5ebbdd097c92fe5265a6b48d32a3095c7237",
                 "shasum": ""
             },
             "require": {
@@ -556,7 +556,8 @@
             },
             "require-dev": {
                 "phpunit/phpunit": "~5.7",
-                "simplesamlphp/simplesamlphp": "^1.17"
+                "simplesamlphp/simplesamlphp": "^1.17",
+                "webmozart/assert": "<1.7"
             },
             "type": "simplesamlphp-module",
             "autoload": {
@@ -566,7 +567,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "LGPL-3.0-or-later"
+                "LGPL-2.1-or-later"
             ],
             "authors": [
                 {
@@ -579,7 +580,7 @@
                 "adfs",
                 "simplesamlphp"
             ],
-            "time": "2019-12-03T08:45:21+00:00"
+            "time": "2020-03-31T14:29:24+00:00"
         },
         {
             "name": "simplesamlphp/simplesamlphp-module-authcrypt",
@@ -1255,16 +1256,16 @@
         },
         {
             "name": "simplesamlphp/simplesamlphp-module-ldap",
-            "version": "v0.9.4",
+            "version": "v0.9.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/simplesamlphp-module-ldap.git",
-                "reference": "21301b3fcd7bc6147acdc673ada9e17e5282e908"
+                "reference": "daee2f362b5a6d443014a4842cc7acc8b47be8ac"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-module-ldap/zipball/21301b3fcd7bc6147acdc673ada9e17e5282e908",
-                "reference": "21301b3fcd7bc6147acdc673ada9e17e5282e908",
+                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-module-ldap/zipball/daee2f362b5a6d443014a4842cc7acc8b47be8ac",
+                "reference": "daee2f362b5a6d443014a4842cc7acc8b47be8ac",
                 "shasum": ""
             },
             "require": {
@@ -1286,7 +1287,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "LGPL-3.0-or-later"
+                "LGPL-2.1-or-later"
             ],
             "authors": [
                 {
@@ -1303,7 +1304,7 @@
                 "ldap",
                 "simplesamlphp"
             ],
-            "time": "2019-12-03T12:01:56+00:00"
+            "time": "2020-05-05T10:00:48+00:00"
         },
         {
             "name": "simplesamlphp/simplesamlphp-module-memcachemonitor",
@@ -1497,16 +1498,16 @@
         },
         {
             "name": "simplesamlphp/simplesamlphp-module-oauth",
-            "version": "v0.9.1",
+            "version": "v0.9.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/simplesamlphp-module-oauth.git",
-                "reference": "17450420b5d4c1810055b8ab655cc4d045a0c477"
+                "reference": "d14d7aca6e699ec12b3f4dd0128373faa1a2cc61"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-module-oauth/zipball/17450420b5d4c1810055b8ab655cc4d045a0c477",
-                "reference": "17450420b5d4c1810055b8ab655cc4d045a0c477",
+                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-module-oauth/zipball/d14d7aca6e699ec12b3f4dd0128373faa1a2cc61",
+                "reference": "d14d7aca6e699ec12b3f4dd0128373faa1a2cc61",
                 "shasum": ""
             },
             "require": {
@@ -1519,7 +1520,7 @@
             "type": "simplesamlphp-module",
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "LGPL-3.1"
+                "LGPL-2.1-or-later"
             ],
             "authors": [
                 {
@@ -1537,20 +1538,20 @@
                 "oauth1",
                 "simplesamlphp"
             ],
-            "time": "2019-12-03T09:22:08+00:00"
+            "time": "2020-04-29T19:37:43+00:00"
         },
         {
             "name": "simplesamlphp/simplesamlphp-module-preprodwarning",
-            "version": "v0.9.1",
+            "version": "v0.9.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/simplesamlphp-module-preprodwarning.git",
-                "reference": "925ef60b51a7230286b390c0abc0e815d8b9768e"
+                "reference": "8e032de33a75eb44857dc06d886ad94ee3af4638"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-module-preprodwarning/zipball/925ef60b51a7230286b390c0abc0e815d8b9768e",
-                "reference": "925ef60b51a7230286b390c0abc0e815d8b9768e",
+                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-module-preprodwarning/zipball/8e032de33a75eb44857dc06d886ad94ee3af4638",
+                "reference": "8e032de33a75eb44857dc06d886ad94ee3af4638",
                 "shasum": ""
             },
             "require": {
@@ -1570,7 +1571,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "LGPL-3.0-or-later"
+                "LGPL-2.1-or-later"
             ],
             "authors": [
                 {
@@ -1583,7 +1584,7 @@
                 "preprodwarning",
                 "simplesamlphp"
             ],
-            "time": "2019-12-03T09:17:47+00:00"
+            "time": "2020-04-09T13:05:27+00:00"
         },
         {
             "name": "simplesamlphp/simplesamlphp-module-radius",
@@ -1679,16 +1680,16 @@
         },
         {
             "name": "simplesamlphp/simplesamlphp-module-sanitycheck",
-            "version": "v0.9.0",
+            "version": "v0.9.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/simplesamlphp-module-sanitycheck.git",
-                "reference": "1efbeab5df8e616522690bcc6e49a99436a748b9"
+                "reference": "15d6664eae73a233c3c4c72fd8a5c2be72b6ed2a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-module-sanitycheck/zipball/1efbeab5df8e616522690bcc6e49a99436a748b9",
-                "reference": "1efbeab5df8e616522690bcc6e49a99436a748b9",
+                "url": "https://api.github.com/repos/simplesamlphp/simplesamlphp-module-sanitycheck/zipball/15d6664eae73a233c3c4c72fd8a5c2be72b6ed2a",
+                "reference": "15d6664eae73a233c3c4c72fd8a5c2be72b6ed2a",
                 "shasum": ""
             },
             "require": {
@@ -1708,7 +1709,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "LGPL-3.0-or-later"
+                "LGPL-2.1-or-later"
             ],
             "authors": [
                 {
@@ -1721,7 +1722,7 @@
                 "sanitycheck",
                 "simplesamlphp"
             ],
-            "time": "2019-05-28T12:19:05+00:00"
+            "time": "2020-05-07T11:34:29+00:00"
         },
         {
             "name": "simplesamlphp/simplesamlphp-module-smartattributes",
