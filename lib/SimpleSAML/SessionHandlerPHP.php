@@ -163,19 +163,16 @@ class SessionHandlerPHP extends SessionHandler
     public function newSessionId()
     {
         // generate new (secure) session id
-        if (function_exists('session_create_id') && version_compare(PHP_VERSION, '7.2', '<')) {
-            $sid_length = (int) ini_get('session.sid_length');
-            $sid_bits_per_char = (int) ini_get('session.sid_bits_per_character');
+        $sid_length = (int) ini_get('session.sid_length');
+        $sid_bits_per_char = (int) ini_get('session.sid_bits_per_character');
 
-            if (($sid_length * $sid_bits_per_char) < 128) {
-                Logger::warning("Unsafe defaults used for sessionId generation!");
-            }
-            /**
-             * This annotation may be removed as soon as we start using vimeo/psalm 3.x
-             * @psalm-suppress TooFewArguments
-             */
-            $sessionId = session_create_id();
-        } else {
+        if (($sid_length * $sid_bits_per_char) < 128) {
+            Logger::warning("Unsafe defaults used for sessionId generation!");
+        }
+        $sessionId = session_create_id();
+
+        if (!$sessionId) {
+            Logger::warning("Secure session ID generation failed, falling back to custom ID generation.");
             $sessionId = bin2hex(openssl_random_pseudo_bytes(16));
         }
         Session::createSession($sessionId);
