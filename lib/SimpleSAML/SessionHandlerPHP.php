@@ -164,19 +164,24 @@ class SessionHandlerPHP extends SessionHandler
      */
     public function newSessionId()
     {
-        // generate new (secure) session id
-        $sid_length = (int) ini_get('session.sid_length');
-        $sid_bits_per_char = (int) ini_get('session.sid_bits_per_character');
+        $sessionId = false;
 
-        if (($sid_length * $sid_bits_per_char) < 128) {
-            Logger::warning("Unsafe defaults used for sessionId generation!");
+        // generate new (secure) session id
+        if (function_exists('session_create_id')) {
+            $sid_length = (int) ini_get('session.sid_length');
+            $sid_bits_per_char = (int) ini_get('session.sid_bits_per_character');
+
+            if (($sid_length * $sid_bits_per_char) < 128) {
+                Logger::warning("Unsafe defaults used for sessionId generation!");
+            }
+            $sessionId = session_create_id();
         }
-        $sessionId = session_create_id();
 
         if (!$sessionId) {
             Logger::warning("Secure session ID generation failed, falling back to custom ID generation.");
             $sessionId = bin2hex(openssl_random_pseudo_bytes(16));
         }
+
         Session::createSession($sessionId);
         return $sessionId;
     }
