@@ -14,7 +14,7 @@ Released TBD
   * Fix inconsistency in the way PATH_INFO is being used (#1227).
   * Fix a potential security issue [CVE-2020-11022](https://nvd.nist.gov/vuln/detail/CVE-2020-11022) by updating jQuery. If any of your custom modules rely on jQuery,
   *   make sure you read the following [update notes](https://jquery.com/upgrade-guide/3.5/), since jQuery has solved this in a non-BC way (#1321).
-  * Fix incorrent Polish translations (#1311).
+  * Fix incorrect Polish translations (#1311).
   * Fix a broken migration query in the LogoutStore (#1324).
   * Fix several issues in the saml:NameIDAttribute authproc filter (#1325).
   * adfs: Fixed a broken link to one of the assets (v0.9.6).
