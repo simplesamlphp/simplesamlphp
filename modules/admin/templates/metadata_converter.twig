@@ -47,6 +47,14 @@
             <br><br>
             {%- set i=i+1 %}
         {%- endfor -%}
+    {% elseif error is not null %}
+    <br>
+    <h2 id="error">{{ 'An error occured'|trans }}</h2>
+    <div class="code-box">
+        <div class="code-box-content">
+            <pre id="error" class="fa-warning">{{ error }}</pre>
+        </div>
+    </div>
     {% endif -%}
 {% endblock content -%}
 {% block postload %}
