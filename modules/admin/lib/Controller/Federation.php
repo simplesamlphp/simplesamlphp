@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\admin\Controller;
 
+use Exception;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\HTTP\RunnableResponse;
@@ -354,39 +355,48 @@ class Federation
             $xmldata = trim($xmldata);
         }
 
+        $error = null;
         if (!empty($xmldata)) {
             Utils\XML::checkSAMLMessage($xmldata, 'saml-meta');
-            $entities = SAMLParser::parseDescriptorsString($xmldata);
 
-            // get all metadata for the entities
-            foreach ($entities as &$entity) {
-                $entity = [
-                    'saml20-sp-remote'  => $entity->getMetadata20SP(),
-                    'saml20-idp-remote' => $entity->getMetadata20IdP(),
-                ];
+            $entities = null;
+            try {
+                $entities = SAMLParser::parseDescriptorsString($xmldata);
+            } catch (Exception $e) {
+                $error = $e->getMessage();
             }
 
-            // transpose from $entities[entityid][type] to $output[type][entityid]
-            $output = Utils\Arrays::transpose($entities);
-
-            // merge all metadata of each type to a single string which should be added to the corresponding file
-            foreach ($output as $type => &$entities) {
-                $text = '';
-                foreach ($entities as $entityId => $entityMetadata) {
-                    if ($entityMetadata === null) {
-                        continue;
-                    }
-
-                    /**
-                     * remove the entityDescriptor element because it is unused,
-                     * and only makes the output harder to read
-                     */
-                    unset($entityMetadata['entityDescriptor']);
-
-                    $text .= '$metadata[' . var_export($entityId, true) . '] = '
-                        . VarExporter::export($entityMetadata) . ";\n";
+            if ($entities !== null) {
+                // get all metadata for the entities
+                foreach ($entities as &$entity) {
+                    $entity = [
+                        'saml20-sp-remote'  => $entity->getMetadata20SP(),
+                        'saml20-idp-remote' => $entity->getMetadata20IdP(),
+                    ];
                 }
-                $entities = $text;
+
+                // transpose from $entities[entityid][type] to $output[type][entityid]
+                $output = Utils\Arrays::transpose($entities);
+
+                // merge all metadata of each type to a single string which should be added to the corresponding file
+                foreach ($output as $type => &$entities) {
+                    $text = '';
+                    foreach ($entities as $entityId => $entityMetadata) {
+                        if ($entityMetadata === null) {
+                            continue;
+                        }
+
+                        /**
+                         * remove the entityDescriptor element because it is unused,
+                         * and only makes the output harder to read
+                         */
+                        unset($entityMetadata['entityDescriptor']);
+
+                        $text .= '$metadata[' . var_export($entityId, true) . '] = '
+                            . VarExporter::export($entityMetadata) . ";\n";
+                    }
+                    $entities = $text;
+                }
             }
         } else {
             $xmldata = '';
@@ -398,6 +408,7 @@ class Federation
             'logouturl' => Utils\Auth::getAdminLogoutURL(),
             'xmldata' => $xmldata,
             'output' => $output,
+            'error' => $error,
         ];
 
         $this->menu->addOption('logout', $t->data['logouturl'], Translate::noop('Log out'));
