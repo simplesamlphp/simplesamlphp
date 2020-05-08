@@ -17,13 +17,25 @@ Released TBD
   * Fix incorrect Polish translations (#1311).
   * Fix a broken migration query in the LogoutStore (#1324).
   * Fix several issues in the saml:NameIDAttribute authproc filter (#1325).
-  * adfs: Fixed a broken link to one of the assets (v0.9.6).
-  * ldap: Handle binary attributes in a generic way (v0.9.5).
-  * oauth: Fix PHP 7.4 incompatibility (v0.9.2)
-  * preprodwarning: Fix Dutch translations (v0.9.2)
-  * sanitycheck: Fix broken HTML (v0.9.1)
-  * library: fixed a standards compliancy issue regarding ContactPerson EMail addresses (v3.4.4)
-  * library: fixed an issue parsing very large metadata files (v3.4.3)
+
+### adfs
+  * Fixed a broken link to one of the assets (v0.9.6).
+
+### ldap
+  * Handle binary attributes in a generic way (v0.9.5).
+
+### oauth
+  * Fix PHP 7.4 incompatibility (v0.9.2).
+
+### preprodwarning
+  * Fix Dutch translations (v0.9.2).
+
+### sanitycheck
+  * Fix broken HTML (v0.9.1).
+
+### saml2
+  * fixed a standards compliancy issue regarding ContactPerson EMail addresses (v3.4.4).
+  * fixed an issue parsing very large metadata files (v3.4.3).
 
 ## Version 1.18.6
 
