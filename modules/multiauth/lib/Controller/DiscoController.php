@@ -31,6 +31,9 @@ class DiscoController
     /** @var \SimpleSAML\Session */
     protected $session;
 
+    /** @var \SimpleSAML\Auth\State|class-string */
+    protected $authState = Auth\State::class;
+
 
     /**
      * Controller constructor.
@@ -52,13 +55,24 @@ class DiscoController
 
 
     /**
+     * Inject the \SimpleSAML\Auth\State dependency.
+     *
+     * @param \SimpleSAML\Auth\State $authState
+     */
+    public function setAuthState(Auth\State $authState): void
+    {
+        $this->authState = $authState;
+    }
+
+
+    /**
      * This controller shows a list of authentication sources. When the user selects
      * one of them if pass this information to the
      * \SimpleSAML\Module\multiauth\Auth\Source\MultiAuth class and call the
      * delegateAuthentication method on it.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
-     * @return \SimpleSAML\XHTML\Template|\Symfony\Component\HttpFoundation\RunnableResponse
+     * @return \SimpleSAML\XHTML\Template|\SimpleSAML\HTTP\RunnableResponse
      *   An HTML template or a redirection if we are not authenticated.
      */
     public function discovery(Request $request)
@@ -70,7 +84,7 @@ class DiscoController
         }
 
         /** @var array $state */
-        $state = Auth\State::loadState($authStateId, MultiAuth::STAGEID);
+        $state = $this->authState::loadState($authStateId, MultiAuth::STAGEID);
 
         $as = null;
         if (array_key_exists("\SimpleSAML\Auth\Source.id", $state)) {
@@ -94,15 +108,15 @@ class DiscoController
             if ($as !== null) {
                 $as->setPreviousSource($source);
             }
-            return RunnableResponse([MultiAuth::class, 'delegateAuthentication'], [$source, $state]);
+            return new RunnableResponse([MultiAuth::class, 'delegateAuthentication'], [$source, $state]);
         }
 
         if (array_key_exists('multiauth:preselect', $state)) {
             $source = $state['multiauth:preselect'];
-            return RunnableResponse([MultiAuth::class, 'delegateAuthentication'], [$source, $state]);
+            return new RunnableResponse([MultiAuth::class, 'delegateAuthentication'], [$source, $state]);
         }
 
-        $t = new Template($this->config, 'multiauth:selectsource.tpl.php');
+        $t = new Template($this->config, 'multiauth:selectsource.twig');
 
         $defaultLanguage = $this->config->getString('language.default', 'en');
         $language = $t->getTranslator()->getLanguage()->getLanguage();
