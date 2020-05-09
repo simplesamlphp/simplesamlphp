@@ -58,7 +58,7 @@ class DiscoController
      * delegateAuthentication method on it.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
-     * @return \SimpleSAML\XHTML\Template|\Symfony\Component\HttpFoundation\RedirectResponse
+     * @return \SimpleSAML\XHTML\Template|\Symfony\Component\HttpFoundation\RunnableResponse
      *   An HTML template or a redirection if we are not authenticated.
      */
     public function discovery(Request $request)
@@ -94,12 +94,12 @@ class DiscoController
             if ($as !== null) {
                 $as->setPreviousSource($source);
             }
-            MultiAuth::delegateAuthentication($source, $state);
+            return RunnableResponse([MultiAuth::class, 'delegateAuthentication'], [$source, $state]);
         }
 
         if (array_key_exists('multiauth:preselect', $state)) {
             $source = $state['multiauth:preselect'];
-            MultiAuth::delegateAuthentication($source, $state);
+            return RunnableResponse([MultiAuth::class, 'delegateAuthentication'], [$source, $state]);
         }
 
         $t = new Template($this->config, 'multiauth:selectsource.tpl.php');
