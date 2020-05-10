@@ -88,10 +88,6 @@ class SessionHandlerPHP extends SessionHandler
                     'samesite' => $params['samesite'],
                 ]);
             } else {
-                /* in older versions of PHP we need a nasty hack to set RFC6265bis SameSite attribute */
-                if ($params['samesite'] !== null and !preg_match('/;\s+samesite/i', $params['path'])) {
-                    $params['path'] .= '; SameSite=' . $params['samesite'];
-                }
                 session_set_cookie_params(
                     $params['lifetime'],
                     $params['path'],
@@ -329,6 +325,13 @@ class SessionHandlerPHP extends SessionHandler
         }
 
         $ret['httponly'] = $config->getBoolean('session.phpsession.httponly', true);
+
+        if (version_compare(PHP_VERSION, '7.3.0', '<')) {
+            // in older versions of PHP we need a nasty hack to set RFC6265bis SameSite attribute
+            if ($ret['samesite'] !== null and !preg_match('/;\s+samesite/i', $ret['path'])) {
+                $ret['path'] .= '; SameSite=' . $ret['samesite'];
+            }
+        }
 
         return $ret;
     }
