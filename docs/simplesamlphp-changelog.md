@@ -16,7 +16,7 @@ Released TBD
   *   make sure you read the following [update notes](https://jquery.com/upgrade-guide/3.5/), since jQuery has solved this in a non-BC way (#1321).
   * Fix incorrect Polish translations (#1311).
   * Fix a broken migration query in the LogoutStore (#1324).
-  * Fix several issues in the saml:NameIDAttribute authproc filter (#1325).
+  * Fix an issue with the SameSite cookie parameter when running on PHP versions older than 7.3 (#1320).
 
 ### adfs
   * Fixed a broken link to one of the assets (v0.9.6).
@@ -33,8 +33,11 @@ Released TBD
 ### sanitycheck
   * Fix broken HTML (v0.9.1).
 
-### saml2
-  * fixed a standards compliancy issue regarding ContactPerson EMail addresses (v3.4.4).
+### saml
+  * Fix several issues in the saml:NameIDAttribute authproc filter (#1325).
+
+### saml2 library
+  * fixed a standards compliance issue regarding ContactPerson EMail addresses (v3.4.4).
   * fixed an issue parsing very large metadata files (v3.4.3).
 
 ## Version 1.18.6
