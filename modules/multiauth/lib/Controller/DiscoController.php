@@ -31,7 +31,10 @@ class DiscoController
     /** @var \SimpleSAML\Session */
     protected $session;
 
-    /** @var \SimpleSAML\Auth\State|class-string */
+    /**
+     * @var \SimpleSAML\Auth\State|string
+     * @psalm-var \SimpleSAML\Auth\State|class-string
+     */
     protected $authState = Auth\State::class;
 
 
