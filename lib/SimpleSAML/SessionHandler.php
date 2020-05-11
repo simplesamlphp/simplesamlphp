@@ -158,7 +158,7 @@ abstract class SessionHandler
         return [
             'lifetime' => $config->getInteger('session.cookie.lifetime', 0),
             'path'     => $config->getString('session.cookie.path', '/'),
-            'domain'   => $config->getString('session.cookie.domain', null),
+            'domain'   => strval($config->getString('session.cookie.domain', null)),
             'secure'   => $config->getBoolean('session.cookie.secure', false),
             'samesite' => $config->getString('session.cookie.samesite', null),
             'httponly' => true,
