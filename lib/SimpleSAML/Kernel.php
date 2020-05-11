@@ -136,6 +136,10 @@ class Kernel extends BaseKernel
         $confDir = Module::getModuleDir($this->module) . '/routing/routes';
         if (is_dir($confDir)) {
             $routes->import($confDir . '/**/*' . self::CONFIG_EXTS, $this->module, 'glob');
+        } else {
+            // Remain backwards compatible by checking for routers in the old location (1.18 style)
+            $confDir = Module::getModuleDir($this->module);
+            $routes->import($confDir . '/routes' . self::CONFIG_EXTS, $this->module, 'glob');
         }
     }
 
