@@ -8,6 +8,7 @@ use Exception;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
+use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Module;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
@@ -177,10 +178,10 @@ class MultiAuth extends \SimpleSAML\Auth\Source
      *
      * @param string $authId Selected authentication source
      * @param array $state Information about the current authentication.
-     * @return void
+     * @return \SimpleSAML\HTTP\RunnableResponse
      * @throws \Exception
      */
-    public static function delegateAuthentication(string $authId, array $state): void
+    public static function delegateAuthentication(string $authId, array $state): RunnableResponse
     {
         $as = Auth\Source::getById($authId);
         $valid_sources = array_map(
@@ -206,6 +207,17 @@ class MultiAuth extends \SimpleSAML\Auth\Source
             Session::DATA_TIMEOUT_SESSION_END
         );
 
+        return new RunnableResponse('self::doAuthentication', [$as, $state]);
+    }
+
+
+    /**
+     * @param \SimpleSAML\Auth\Source $as
+     * @param array $state
+     * @return void
+     */
+    private static function doAuthentication(Auth\Source $as, array $state): void
+    {
         try {
             $as->authenticate($state);
         } catch (Error\Exception $e) {

@@ -111,12 +111,12 @@ class DiscoController
             if ($as !== null) {
                 $as->setPreviousSource($source);
             }
-            return new RunnableResponse([MultiAuth::class, 'delegateAuthentication'], [$source, $state]);
+            return MultiAuth::delegateAuthentication($source, $state);
         }
 
         if (array_key_exists('multiauth:preselect', $state)) {
             $source = $state['multiauth:preselect'];
-            return new RunnableResponse([MultiAuth::class, 'delegateAuthentication'], [$source, $state]);
+            return MultiAuth::delegateAuthentication($source, $state);
         }
 
         $t = new Template($this->config, 'multiauth:selectsource.twig');
