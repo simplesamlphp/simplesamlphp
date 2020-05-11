@@ -18,6 +18,7 @@
         <whitelist processUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">./lib/</directory>
             <directory suffix=".php">./modules/core/lib/</directory>
+            <directory suffix=".php">./modules/multiauth/lib/</directory>
             <directory suffix=".php">./modules/saml/lib/</directory>
             <exclude>
                 <directory>./vendor/</directory>
