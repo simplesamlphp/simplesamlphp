@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Module\multiauth\Auth\Source;
 
+use Exception;
 use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
 use SimpleSAML\Error;
@@ -65,12 +66,12 @@ class MultiAuth extends \SimpleSAML\Auth\Source
         parent::__construct($info, $config);
 
         if (!array_key_exists('sources', $config)) {
-            throw new \Exception('The required "sources" config option was not found');
+            throw new Exception('The required "sources" config option was not found');
         }
 
         if (array_key_exists('preselect', $config) && is_string($config['preselect'])) {
             if (!array_key_exists($config['preselect'], $config['sources'])) {
-                throw new \Exception('The optional "preselect" config option must be present in "sources"');
+                throw new Exception('The optional "preselect" config option must be present in "sources"');
             }
 
             $this->preselect = $config['preselect'];
@@ -193,7 +194,7 @@ class MultiAuth extends \SimpleSAML\Auth\Source
             $state[self::SOURCESID]
         );
         if ($as === null || !in_array($authId, $valid_sources, true)) {
-            throw new \Exception('Invalid authentication source: ' . $authId);
+            throw new Exception('Invalid authentication source: ' . $authId);
         }
 
         // Save the selected authentication source for the logout process.
@@ -209,7 +210,7 @@ class MultiAuth extends \SimpleSAML\Auth\Source
             $as->authenticate($state);
         } catch (Error\Exception $e) {
             Auth\State::throwException($state, $e);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $e = new Error\UnserializableException($e);
             Auth\State::throwException($state, $e);
         }
@@ -234,7 +235,7 @@ class MultiAuth extends \SimpleSAML\Auth\Source
 
         $source = Auth\Source::getById($authId);
         if ($source === null) {
-            throw new \Exception('Invalid authentication source during logout: ' . $authId);
+            throw new Exception('Invalid authentication source during logout: ' . $authId);
         }
         // Then, do the logout on it
         $source->logout($state);
