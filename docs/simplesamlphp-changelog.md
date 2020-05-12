@@ -8,7 +8,7 @@ See the upgrade notes for specific information about upgrading.
 
 ## Version 1.18.7
 
-Released TBD
+Released 2020-05-12
 
   * Fix spurious warnings when session_create_id() fails to create ID (#1291)
   * Fix inconsistency in the way PATH_INFO is being used (#1227).
