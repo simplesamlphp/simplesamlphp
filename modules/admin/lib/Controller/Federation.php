@@ -24,6 +24,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\VarExporter\VarExporter;
+use Webmozart\Assert\Assert;
 
 /**
  * Controller class for the admin module.
@@ -147,6 +148,8 @@ class Federation
         ];
 
         Module::callHooks('federationpage', $t);
+        Assert::isInstanceOf($t, Template::class);
+
         $this->menu->addOption('logout', $t->data['logouturl'], Translate::noop('Log out'));
         return $this->menu->insert($t);
     }

@@ -89,9 +89,7 @@ class Test
 
             $attributes = $authsource->getAttributes();
             $authData = $authsource->getAuthDataArray();
-            $nameId = !is_null($authsource->getAuthData('saml:sp:NameID'))
-                ? $authsource->getAuthData('saml:sp:NameID')
-                : false;
+            $nameId = $authsource->getAuthData('saml:sp:NameID') ?? false;
 
             $t = new Template($this->config, 'admin:status.twig', 'attributes');
             $t->data = [
@@ -108,6 +106,8 @@ class Test
         }
 
         Module::callHooks('configpage', $t);
+        Assert::isInstanceOf($t, Template::class);
+
         $this->menu->addOption('logout', Utils\Auth::getAdminLogoutURL(), Translate::noop('Log out'));
         return $this->menu->insert($t);
     }
