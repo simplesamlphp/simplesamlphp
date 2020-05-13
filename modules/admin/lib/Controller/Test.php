@@ -207,7 +207,7 @@ class Test
                             . '" /></td></tr>';
                     } elseif (is_a($value[0], 'DOMNodeList')) {
                         // try to see if we have a NameID here
-                        /** @var \DOMNodeList $value [0] */
+                        /** @var \DOMNodeList $value[0] */
                         $n = $value[0]->length;
                         for ($idx = 0; $idx < $n; $idx++) {
                             $elem = $value[0]->item($idx);
