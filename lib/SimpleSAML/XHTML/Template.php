@@ -527,8 +527,10 @@ class Template extends Response
     /**
      * Send this template as a response.
      *
-     * @return Response This response.
+     * @return $this This response.
      * @throws \Exception if the template cannot be found.
+     *
+     * Note: No return type possible due to upstream limitations
      */
     public function send()
     {
