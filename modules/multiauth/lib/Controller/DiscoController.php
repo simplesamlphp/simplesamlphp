@@ -32,6 +32,12 @@ class DiscoController
     protected $session;
 
     /**
+     * @var \SimpleSAML\Auth\Source|string
+     * @psalm-var \SimpleSAML\Auth\Source|class-string
+     */
+    protected $authSource = Auth\Source::class;
+
+    /**
      * @var \SimpleSAML\Auth\State|string
      * @psalm-var \SimpleSAML\Auth\State|class-string
      */
@@ -54,6 +60,17 @@ class DiscoController
     ) {
         $this->config = $config;
         $this->session = $session;
+    }
+
+
+    /**
+     * Inject the \SimpleSAML\Auth\Source dependency.
+     *
+     * @param \SimpleSAML\Auth\Source $authSource
+     */
+    public function setAuthSource(Auth\Source $authSource): void
+    {
+        $this->authSource = $authSource;
     }
 
 

@@ -207,7 +207,7 @@ class MultiAuth extends \SimpleSAML\Auth\Source
             Session::DATA_TIMEOUT_SESSION_END
         );
 
-        return new RunnableResponse('self::doAuthentication', [$as, $state]);
+        return new RunnableResponse([self::class, 'doAuthentication'], [$as, $state]);
     }
 
 
@@ -216,7 +216,7 @@ class MultiAuth extends \SimpleSAML\Auth\Source
      * @param array $state
      * @return void
      */
-    private static function doAuthentication(Auth\Source $as, array $state): void
+    public static function doAuthentication(Auth\Source $as, array $state): void
     {
         try {
             $as->authenticate($state);
