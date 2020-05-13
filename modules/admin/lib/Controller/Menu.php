@@ -7,6 +7,7 @@ namespace SimpleSAML\Module\admin\Controller;
 use SimpleSAML\Locale\Translate;
 use SimpleSAML\Module;
 use SimpleSAML\XHTML\Template;
+use Webmozart\Assert\Assert;
 
 /**
  * A class to handle the menu in admin pages.
@@ -88,6 +89,7 @@ final class Menu
     {
         $template->data['menu'] = $this->options;
         Module::callHooks('adminmenu', $template);
+        Assert::isInstanceOf($template, Template::class);
         return $template;
     }
 }

@@ -7,6 +7,7 @@ namespace SimpleSAML\Module\cron;
 use SimpleSAML\Configuration;
 use SimpleSAML\Logger;
 use SimpleSAML\Module;
+use Webmozart\Assert\Assert;
 
 /**
  * Handles interactions with SSP's cron system/hooks.
@@ -51,6 +52,7 @@ class Cron
         ];
 
         Module::callHooks('cron', $croninfo);
+        Assert::isArray($croninfo);
 
         foreach ($summary as $s) {
             Logger::debug('Cron - Summary: ' . $s);
