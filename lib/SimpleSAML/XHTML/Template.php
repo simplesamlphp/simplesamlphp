@@ -25,6 +25,10 @@ use Twig\Loader\FilesystemLoader;
 use Twig\TwigFilter;
 use Twig\TwigFunction;
 
+/**
+ * The content-property is set upstream, but this is not recognized by Psalm
+ * @psalm-suppress PropertyNotSetInConstructor
+ */
 class Template extends Response
 {
     /**
