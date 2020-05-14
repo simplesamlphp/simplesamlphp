@@ -6,6 +6,14 @@ SimpleSAMLphp changelog
 This document lists the changes between versions of SimpleSAMLphp.
 See the upgrade notes for specific information about upgrading.
 
+## Version 1.18.8
+
+Released TBD
+
+### saml2 library
+  * Fixed a bug in AuthnRequest.php that would raise an InvalidArgumentException when setting
+  *   the AssertionConsumerServiceIndex on an saml:SP authsource. Thanks to Andrea @ Oracle for reporting this.
+
 ## Version 1.18.7
 
 Released 2020-05-12

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "27c9966878bf09243ab1ca6e19a60e6c",
+    "content-hash": "6e11c9f134620b184f0ba73a737e8b5d",
     "packages": [
         {
             "name": "gettext/gettext",
@@ -479,16 +479,16 @@
         },
         {
             "name": "simplesamlphp/saml2",
-            "version": "v3.4.4",
+            "version": "v3.4.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplesamlphp/saml2.git",
-                "reference": "ed2d61c6f67adcdf87fe2ff88f2a65aa582bfbf6"
+                "reference": "acc47782592866423942dc30002c5220203ab466"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/ed2d61c6f67adcdf87fe2ff88f2a65aa582bfbf6",
-                "reference": "ed2d61c6f67adcdf87fe2ff88f2a65aa582bfbf6",
+                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/acc47782592866423942dc30002c5220203ab466",
+                "reference": "acc47782592866423942dc30002c5220203ab466",
                 "shasum": ""
             },
             "require": {
@@ -534,7 +534,7 @@
                 }
             ],
             "description": "SAML2 PHP library from SimpleSAMLphp",
-            "time": "2020-02-02T10:23:00+00:00"
+            "time": "2020-05-14T16:38:12+00:00"
         },
         {
             "name": "simplesamlphp/simplesamlphp-module-adfs",
