@@ -126,6 +126,10 @@ Options
     arrays format as seen in the [Metadata endpoints](./simplesamlphp-metadata-endpoints)
     documentation.
 
+`AssertionConsumerServiceIndex`
+:   The Assertion Consumer Service Index to be used in the AuthnRequest in place of the Assertion
+    Service Consumer URL.
+
 `attributes`
 :   List of attributes this SP requests from the IdP.
     This list will be added to the generated metadata.
