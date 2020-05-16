@@ -109,7 +109,7 @@ class Config
      *
      * @return \SimpleSAML\XHTML\Template
      */
-    public function main(Request $request): Template
+    public function main(/** @scrutinizer ignore-unused */ Request $request): Template
     {
         $this->authUtils::requireAdmin();
 
@@ -148,7 +148,7 @@ class Config
      *
      * @return \SimpleSAML\HTTP\RunnableResponse
      */
-    public function phpinfo(Request $request): RunnableResponse
+    public function phpinfo(/** @scrutinizer ignore-unused */ Request $request): RunnableResponse
     {
         $this->authUtils::requireAdmin();
 

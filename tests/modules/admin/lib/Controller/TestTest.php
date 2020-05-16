@@ -5,7 +5,10 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\Module\admin\Controller;
 
 use PHPUnit\Framework\TestCase;
+use SAML2\XML\saml\NameID;
+use SimpleSAML\Auth;
 use SimpleSAML\Configuration;
+use SimpleSAML\Error;
 use SimpleSAML\HTTP\RunnableResponse;
 use SimpleSAML\Module\admin\Controller;
 use SimpleSAML\Session;
@@ -84,13 +87,100 @@ class TestTest extends TestCase
         $c->setAuthUtils($this->authUtils);
         $response = $c->main($request);
 
+        $this->assertInstanceOf(Template::class, $response);
         $this->assertTrue($response->isSuccessful());
     }
 
 
     /**
      * @return void
-    public function testMainWithAuthSource(): void
+     */
+    public function testMainWithAuthSourceAndLogout(): void
+    {
+        $request = Request::create(
+            '/test',
+            'GET',
+            ['logout' => 'notnull']
+        );
+
+        $c = new Controller\Test($this->config, $this->session);
+        $c->setAuthUtils($this->authUtils);
+        $c->setAuthSimple(new class ('admin') extends Auth\Simple {
+            public function logout($params = null): void
+            {
+                // stub
+            }
+        });
+
+        $response = $c->main($request, 'admin');
+
+        $this->assertInstanceOf(RunnableResponse::class, $response);
+        $this->assertTrue($response->isSuccessful());
+    }
+
+
+    /**
+     * @return void
+     */
+    public function testMainWithAuthSourceAndException(): void
+    {
+        $request = Request::create(
+            '/test',
+            'GET',
+            [Auth\State::EXCEPTION_PARAM => 'someException']
+        );
+
+        $c = new Controller\Test($this->config, $this->session);
+        $c->setAuthUtils($this->authUtils);
+        $c->setAuthState(new class () extends Auth\State {
+            public static function loadExceptionState(?string $id = null): ?array
+            {
+                return [Auth\State::EXCEPTION_DATA => new Error\NoState()];
+            }
+        });
+
+        $this->expectException(Error\NoState::class);
+        $this->expectExceptionMessage('NOSTATE');
+        $c->main($request, 'admin');
+    }
+
+
+    /**
+     * @return void
+     */
+    public function testMainWithAuthSourceNotAuthenticated(): void
+    {
+        $request = Request::create(
+            '/test',
+            'GET',
+            ['as' => 'admin']
+        );
+
+        $c = new Controller\Test($this->config, $this->session);
+        $c->setAuthUtils($this->authUtils);
+        $c->setAuthSimple(new class ('admin') extends Auth\Simple {
+            public function isAuthenticated(): bool
+            {
+                return false;
+            }
+
+            public function login(array $params = []): void
+            {
+                // stub
+            }
+        });
+
+        $response = $c->main($request, 'admin');
+
+        $this->assertInstanceOf(RunnableResponse::class, $response);
+        $this->assertTrue($response->isSuccessful());
+    }
+
+
+    /**
+     * @return void
+     */
+    public function testMainWithAuthSourceAuthenticated(): void
     {
         $request = Request::create(
             '/test',
@@ -99,9 +189,72 @@ class TestTest extends TestCase
 
         $c = new Controller\Test($this->config, $this->session);
         $c->setAuthUtils($this->authUtils);
+        $c->setAuthSimple(new class ('admin') extends Auth\Simple {
+            public function isAuthenticated(): bool
+            {
+                return true;
+            }
+
+            public function getAttributes(): array
+            {
+                $nameId = new NameID();
+                $nameId->setValue('_b806c4f98188b42e48d3eb5444db613dbde463e2e8');
+                $nameId->setSPProvidedID('some:entity');
+                $nameId->setNameQualifier('some name qualifier');
+                $nameId->setSPNameQualifier('some SP name qualifier');
+                $nameId->setFormat('urn:oasis:names:tc:SAML:2.0:nameid-format:transient');
+
+                /** @psalm-suppress PossiblyNullPropertyFetch */
+                return [
+                    'urn:mace:dir:attribute-def:cn' => [
+                        'Tim van Dijen'
+                    ],
+                    'urn:mace:dir:attribute-def:givenName' => [
+                        'Tim'
+                    ],
+                    'urn:mace:dir:attribute-def:sn' => [
+                        'van Dijen'
+                    ],
+                    'urn:mace:dir:attribute-def:displayName' => [
+                        'Mr. T. van Dijen BSc'
+                    ],
+                    'urn:mace:dir:attribute-def:mail' => [
+                        'tvdijen@hotmail.com',
+                        'tvdijen@gmail.com'
+                    ],
+                    'urn:mace:dir:attribute-def:eduPersonTargetedID' => [
+                        $nameId->toXML()->ownerDocument->childNodes
+                    ],
+                    'jpegPhoto' => [
+                        'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='
+                    ],
+                    'nameId' => [
+                        $nameId
+                    ]
+                ];
+            }
+
+            public function getAuthDataArray(): ?array
+            {
+                return [];
+            }
+
+            public function getAuthData(string $name)
+            {
+                $nameId = new NameID();
+                $nameId->setValue('_b806c4f98188b42e48d3eb5444db613dbde463e2e8');
+                $nameId->setSPProvidedID('some:entity');
+                $nameId->setNameQualifier('some name qualifier');
+                $nameId->setSPNameQualifier('some SP name qualifier');
+                $nameId->setFormat('urn:oasis:names:tc:SAML:2.0:nameid-format:transient');
+
+                return $nameId;
+            }
+        });
+
         $response = $c->main($request, 'admin');
 
+        $this->assertInstanceOf(Template::class, $response);
         $this->assertTrue($response->isSuccessful());
     }
-     */
 }
