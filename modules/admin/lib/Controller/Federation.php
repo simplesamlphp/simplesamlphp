@@ -172,7 +172,7 @@ class Federation
                 $saml2entities = [];
                 if (count($idps) > 1) {
                     foreach ($idps as $index => $idp) {
-                        $idp['url'] = Module::getModuleURL('saml/2/idp/metadata/' . $idp['auth']);
+                        $idp['url'] = Module::getModuleURL('saml2/idp/metadata/' . $idp['auth']);
                         $idp['metadata-set'] = 'saml20-idp-hosted';
                         $idp['metadata-index'] = $index;
                         $idp['metadata_array'] = SAML2_IdP::getHostedMetadata($idp['entityid']);
