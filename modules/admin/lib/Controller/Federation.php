@@ -38,7 +38,19 @@ class Federation
     /** @var \SimpleSAML\Configuration */
     protected $config;
 
-    /** @var MetaDataStorageHandler */
+    /**
+     * @var \SimpleSAML\Auth\Source|string
+     * @psalm-var \SimpleSAML\Auth\Source|class-string
+     */
+    protected $authSource = Auth\Source::class;
+
+    /**
+     * @var \SimpleSAML\Utils\Auth|string
+     * @psalm-var \SimpleSAML\Utils\Auth|class-string
+     */
+    protected $authUtils = Utils\Auth::class;
+
+    /** @var \SimpleSAML\Metadata\MetaDataStorageHandler */
     protected $mdHandler;
 
     /** @var Menu */
@@ -59,15 +71,49 @@ class Federation
 
 
     /**
+     * Inject the \SimpleSAML\Auth\Source dependency.
+     *
+     * @param \SimpleSAML\Auth\Source $authSource
+     */
+    public function setAuthSource(Auth\Source $authSource): void
+    {
+        $this->authSource = $authSource;
+    }
+
+
+    /**
+     * Inject the \SimpleSAML\Utils\Auth dependency.
+     *
+     * @param \SimpleSAML\Utils\Auth $authUtils
+     */
+    public function setAuthUtils(Utils\Auth $authUtils): void
+    {
+        $this->authUtils = $authUtils;
+    }
+
+
+    /**
+     * Inject the \SimpleSAML\Metadata\MetadataStorageHandler dependency.
+     *
+     * @param \SimpleSAML\Metadata\MetaDataStorageHandler $mdHandler
+     */
+    public function setMetadataStorageHandler(MetadataStorageHandler $mdHandler): void
+    {
+        $this->mdHandler = $mdHandler;
+    }
+
+
+    /**
      * Display the federation page.
      *
+     * @param \Symfony\Component\HttpFoundation\Request $request
      * @return \SimpleSAML\XHTML\Template
      * @throws \SimpleSAML\Error\Exception
      * @throws \SimpleSAML\Error\Exception
      */
-    public function main(): Template
+    public function main(Request $request): Template
     {
-        Utils\Auth::requireAdmin();
+        $this->authUtils::requireAdmin();
 
         // initialize basic metadata array
         $hostedSPs = $this->getHostedSP();
@@ -289,7 +335,7 @@ class Federation
         $entities = [];
 
         /** @var \SimpleSAML\Module\saml\Auth\Source\SP $source */
-        foreach (Auth\Source::getSourcesOfType('saml:SP') as $source) {
+        foreach ($this->authSource::getSourcesOfType('saml:SP') as $source) {
             $metadata = $source->getHostedMetadata();
             if (isset($metadata['keys'])) {
                 $certificates = $metadata['keys'];
@@ -345,13 +391,13 @@ class Federation
     /**
      * Metadata converter
      *
-     * @param Request $request The current request.
+     * @param \Symfony\Component\HttpFoundation\Request $request The current request.
      *
      * @return \SimpleSAML\XHTML\Template
      */
     public function metadataConverter(Request $request): Template
     {
-        Utils\Auth::requireAdmin();
+        $this->authUtils::requireAdmin();
         if ($xmlfile = $request->files->get('xmlfile')) {
             $xmldata = trim(file_get_contents($xmlfile->getPathname()));
         } elseif ($xmldata = $request->request->get('xmldata')) {
@@ -422,16 +468,16 @@ class Federation
     /**
      * Download a certificate for a given entity.
      *
-     * @param Request $request The current request.
+     * @param \Symfony\Component\HttpFoundation\Request $request The current request.
      *
-     * @return Response PEM-encoded certificate.
+     * @return \Symfony\Component\HttpFoundation\Response PEM-encoded certificate.
      */
     public function downloadCert(Request $request): Response
     {
-        Utils\Auth::requireAdmin();
+        $this->authUtils::requireAdmin();
 
         $set = $request->get('set');
-        $prefix = $request->get('prefix');
+        $prefix = $request->get('prefix', '');
 
         if ($set === 'saml20-sp-hosted') {
             $sourceID = $request->get('source');
@@ -439,7 +485,7 @@ class Federation
              * The second argument ensures non-nullable return-value
              * @var \SimpleSAML\Module\saml\Auth\Source\SP $source
              */
-            $source = \SimpleSAML\Auth\Source::getById($sourceID, Module\saml\Auth\Source\SP::class);
+            $source = $this->authSource::getById($sourceID, Module\saml\Auth\Source\SP::class);
             $mdconfig = $source->getMetadata();
         } else {
             $entityID = $request->get('entity');
@@ -465,13 +511,13 @@ class Federation
     /**
      * Show remote entity metadata
      *
-     * @param Request $request The current request.
+     * @param \Symfony\Component\HttpFoundation\Request $request The current request.
      *
-     * @return Response
+     * @return \SimpleSAML\XHTML\Template
      */
-    public function showRemoteEntity(Request $request): Response
+    public function showRemoteEntity(Request $request): Template
     {
-        Utils\Auth::requireAdmin();
+        $this->authUtils::requireAdmin();
 
         $entityId = $request->get('entityid');
         $set = $request->get('set');
