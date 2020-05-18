@@ -111,7 +111,7 @@ class Federation
      * @throws \SimpleSAML\Error\Exception
      * @throws \SimpleSAML\Error\Exception
      */
-    public function main(Request $request): Template
+    public function main(/** @scrutinizer ignore-unused */ Request $request): Template
     {
         $this->authUtils::requireAdmin();
 
