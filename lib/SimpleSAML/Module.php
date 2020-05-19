@@ -431,16 +431,6 @@ class Module
             $type = (empty($type)) ? '\\' : '\\' . $type . '\\';
 
             $className = 'SimpleSAML\\Module\\' . $tmp[0] . $type . $tmp[1];
-            if (!class_exists($className)) {
-                // check for the old-style class names
-                $type = str_replace('\\', '_', $type);
-                $oldClassName = 'sspmod_' . $tmp[0] . $type . $tmp[1];
-
-                if (!class_exists($oldClassName)) {
-                    throw new \Exception("Could not resolve '$id': no class named '$className' or '$oldClassName'.");
-                }
-                $className = $oldClassName;
-            }
         }
 
         if ($subclass !== null && !is_subclass_of($className, $subclass)) {
