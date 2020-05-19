@@ -21,7 +21,7 @@ Released 2020-05-12
   * Fix spurious warnings when session_create_id() fails to create ID (#1291)
   * Fix inconsistency in the way PATH_INFO is being used (#1227).
   * Fix a potential security issue [CVE-2020-11022](https://nvd.nist.gov/vuln/detail/CVE-2020-11022) by updating jQuery. If any of your custom modules rely on jQuery,
-  *   make sure you read the following [update notes](https://jquery.com/upgrade-guide/3.5/), since jQuery has solved this in a non-BC way (#1321).
+      make sure you read the following [update notes](https://jquery.com/upgrade-guide/3.5/), since jQuery has solved this in a non-BC way (#1321).
   * Fix incorrect Polish translations (#1311).
   * Fix a broken migration query in the LogoutStore (#1324).
   * Fix an issue with the SameSite cookie parameter when running on PHP versions older than 7.3 (#1320).
