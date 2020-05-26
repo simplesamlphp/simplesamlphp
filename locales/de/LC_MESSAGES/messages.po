@@ -107,7 +107,7 @@ msgid "{errors:title_PROCESSAUTHNREQUEST}"
 msgstr "Fehler beim Bearbeiten der Anfrage des Service Providers"
 
 msgid "{errors:descr_PROCESSASSERTION}"
-msgstr "Die Antwort des Identitiy Providers konnte nicht akzeptiert werden."
+msgstr "Die Antwort des Identity Providers konnte nicht akzeptiert werden."
 
 msgid "{errors:debuginfo_header}"
 msgstr "Debug-Information"
