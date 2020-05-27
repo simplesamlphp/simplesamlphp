@@ -43,8 +43,7 @@
         "ext-json": "*",
         "ext-mbstring": "*",
         "gettext/gettext": "^4.6",
-        "phpmailer/phpmailer": "^6.0",
-        "robrichards/xmlseclibs": "^3.0.4",
+        "phpmailer/phpmailer": "^6.1",
         "simplesamlphp/saml2": "^4.1",
         "simplesamlphp/twig-configurable-i18n": "^2.1",
         "symfony/cache": "^4.0",
@@ -65,7 +64,7 @@
         "ext-curl": "*",
         "mikey179/vfsstream": "~1.6",
         "simplesamlphp/simplesamlphp-module-adfs": "dev-master",
-        "simplesamlphp/simplesamlphp-test-framework": "^0.1.7"
+        "simplesamlphp/simplesamlphp-test-framework": "^0.1.9"
     },
     "suggest": {
         "predis/predis": "Needed if a Redis server is used to store session information",
