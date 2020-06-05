@@ -68,12 +68,15 @@
         "symfony/twig-bundle": "^5.0",
         "symfony/var-exporter": "^5.0",
         "symfony/yaml": "^5.0",
+        "symfony/twig-bundle": "^5.0",
+        "symfony/twig-bridge": "^5.0",
         "twig/twig": "~2.0",
         "twig/intl-extra": "^3.3"
     },
     "require-dev": {
         "ext-curl": "*",
         "mikey179/vfsstream": "~1.6",
+        "sgomez/simplesamlphp-module-expirycheck": "dev-master",
         "simplesamlphp/simplesamlphp-module-adfs": "dev-master",
         "simplesamlphp/simplesamlphp-test-framework": "^1.1.0",
         "simplesamlphp/xml-security": "^0.2.7",
