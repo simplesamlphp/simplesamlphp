@@ -1,6 +1,17 @@
 <?php
 
 $config = [
+    /*
+     * When multiple authentication sources are defined, you can specify one to use by default
+     * in order to authenticate users. In order to do that, you just need to name it "default"
+     * here. That authentication source will be used by default then when a user reaches the
+     * SimpleSAMLphp installation from the web browser, without passing through the API.
+     *
+     * If you already have named your auth source with a different name, you don't need to change
+     * it in order to use it as a default. Just create an alias by the end of this file:
+     *
+     * $config['default'] = &$config['your_auth_source'];
+     */
 
     // This is a authentication source which handles admin authentication.
     'admin' => [
@@ -11,8 +22,7 @@ $config = [
     ],
 
 
-    // An authentication source which can authenticate against both SAML 2.0
-    // and Shibboleth 1.3 IdPs.
+    // An authentication source which can authenticate against SAML 2.0 IdPs.
     'default-sp' => [
         'saml:SP',
 
@@ -57,13 +67,14 @@ $config = [
         'dsn' => 'pgsql:host=sql.example.org;port=5432;dbname=simplesaml',
         'username' => 'simplesaml',
         'password' => 'secretpassword',
-        'query' => 'SELECT uid, givenName, email, eduPersonPrincipalName FROM users WHERE uid = :username AND password = SHA2(CONCAT((SELECT salt FROM users WHERE uid = :username), :password), 256);',
+        'query' => 'SELECT uid, givenName, email, eduPersonPrincipalName FROM users WHERE uid = :username ' .
+            'AND password = SHA2(CONCAT((SELECT salt FROM users WHERE uid = :username), :password), 256);',
     ],
     */
 
     /*
     'example-static' => [
-        'exampleauth:Static',
+        'exampleauth:StaticSource',
         'uid' => ['testuser'],
         'eduPersonAffiliation' => ['member', 'employee'],
         'cn' => ['Test User'],

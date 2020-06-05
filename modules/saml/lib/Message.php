@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Module\saml;
 
 use RobRichards\XMLSecLibs\XMLSecurityKey;
@@ -20,6 +22,7 @@ use SimpleSAML\Configuration;
 use SimpleSAML\Error as SSP_Error;
 use SimpleSAML\Logger;
 use SimpleSAML\Utils;
+use Webmozart\Assert\Assert;
 
 /**
  * Common code for building SAML 2 messages based on the available metadata.
@@ -40,13 +43,15 @@ class Message
         Configuration $srcMetadata,
         Configuration $dstMetadata,
         SignedElement $element
-    ) {
+    ): void {
         $dstPrivateKey = $dstMetadata->getString('signature.privatekey', null);
 
         if ($dstPrivateKey !== null) {
+            /** @var array $keyArray */
             $keyArray = Utils\Crypto::loadPrivateKey($dstMetadata, true, 'signature.');
             $certArray = Utils\Crypto::loadPublicKey($dstMetadata, false, 'signature.');
         } else {
+            /** @var array $keyArray */
             $keyArray = Utils\Crypto::loadPrivateKey($srcMetadata, true);
             $certArray = Utils\Crypto::loadPublicKey($srcMetadata, false);
         }
@@ -90,8 +95,7 @@ class Message
         Configuration $srcMetadata,
         Configuration $dstMetadata,
         \SAML2\Message $message
-    ) {
-
+    ): void {
         $signingEnabled = null;
         if ($message instanceof LogoutRequest || $message instanceof LogoutResponse) {
             $signingEnabled = $srcMetadata->getBoolean('sign.logout', null);
@@ -131,7 +135,7 @@ class Message
      *
      * @throws \SimpleSAML\Error\Exception if we cannot find the certificate matching the fingerprint.
      */
-    private static function findCertificate(array $certFingerprints, array $certificates)
+    private static function findCertificate(array $certFingerprints, array $certificates): string
     {
         $candidates = [];
 
@@ -143,16 +147,16 @@ class Message
             }
 
             /* We have found a matching fingerprint. */
-            $pem = "-----BEGIN CERTIFICATE-----\n".
-                chunk_split($cert, 64).
+            $pem = "-----BEGIN CERTIFICATE-----\n" .
+                chunk_split($cert, 64) .
                 "-----END CERTIFICATE-----\n";
             return $pem;
         }
 
-        $candidates = "'".implode("', '", $candidates)."'";
-        $fps = "'".implode("', '", $certFingerprints)."'";
-        throw new SSP_Error\Exception('Unable to find a certificate matching the configured '.
-            'fingerprint. Candidates: '.$candidates.'; certFingerprint: '.$fps.'.');
+        $candidates = "'" . implode("', '", $candidates) . "'";
+        $fps = "'" . implode("', '", $certFingerprints) . "'";
+        throw new SSP_Error\Exception('Unable to find a certificate matching the configured ' .
+            'fingerprint. Candidates: ' . $candidates . '; certFingerprint: ' . $fps . '.');
     }
 
 
@@ -166,7 +170,7 @@ class Message
      * @throws \SimpleSAML\Error\Exception if there is not certificate in the metadata for the entity.
      * @throws \Exception if the signature validation fails with an exception.
      */
-    public static function checkSign(Configuration $srcMetadata, SignedElement $element)
+    public static function checkSign(Configuration $srcMetadata, SignedElement $element): bool
     {
         // find the public key that should verify signatures by this entity
         $keys = $srcMetadata->getPublicKeys('signing');
@@ -175,46 +179,22 @@ class Message
             foreach ($keys as $key) {
                 switch ($key['type']) {
                     case 'X509Certificate':
-                        $pemKeys[] = "-----BEGIN CERTIFICATE-----\n".
-                            chunk_split($key['X509Certificate'], 64).
+                        $pemKeys[] = "-----BEGIN CERTIFICATE-----\n" .
+                            chunk_split($key['X509Certificate'], 64) .
                             "-----END CERTIFICATE-----\n";
                         break;
                     default:
-                        Logger::debug('Skipping unknown key type: '.$key['type']);
+                        Logger::debug('Skipping unknown key type: ' . $key['type']);
                 }
             }
-        } elseif ($srcMetadata->hasValue('certFingerprint')) {
-            Logger::notice(
-                "Validating certificates by fingerprint is deprecated. Please use ".
-                "certData or certificate options in your remote metadata configuration."
-            );
-
-            $certFingerprint = $srcMetadata->getArrayizeString('certFingerprint');
-            foreach ($certFingerprint as &$fp) {
-                $fp = strtolower(str_replace(':', '', $fp));
-            }
-
-            $certificates = $element->getCertificates();
-
-            // we don't have the full certificate stored. Try to find it in the message or the assertion instead
-            if (count($certificates) === 0) {
-                /* We need the full certificate in order to match it against the fingerprint. */
-                Logger::debug('No certificate in message when validating against fingerprint.');
-                return false;
-            } else {
-                Logger::debug('Found '.count($certificates).' certificates in '.get_class($element));
-            }
-
-            $pemCert = self::findCertificate($certFingerprint, $certificates);
-            $pemKeys = [$pemCert];
         } else {
             throw new SSP_Error\Exception(
-                'Missing certificate in metadata for '.
+                'Missing certificate in metadata for ' .
                 var_export($srcMetadata->getString('entityid'), true)
             );
         }
 
-        Logger::debug('Has '.count($pemKeys).' candidate keys for validation.');
+        Logger::debug('Has ' . count($pemKeys) . ' candidate keys for validation.');
 
         $lastException = null;
         foreach ($pemKeys as $i => $pem) {
@@ -225,12 +205,12 @@ class Message
                 // make sure that we have a valid signature on either the response or the assertion
                 $res = $element->validate($key);
                 if ($res) {
-                    Logger::debug('Validation with key #'.$i.' succeeded.');
+                    Logger::debug('Validation with key #' . $i . ' succeeded.');
                     return true;
                 }
-                Logger::debug('Validation with key #'.$i.' failed without exception.');
+                Logger::debug('Validation with key #' . $i . ' failed without exception.');
             } catch (\Exception $e) {
-                Logger::debug('Validation with key #'.$i.' failed with exception: '.$e->getMessage());
+                Logger::debug('Validation with key #' . $i . ' failed with exception: ' . $e->getMessage());
                 $lastException = $e;
             }
         }
@@ -258,7 +238,7 @@ class Message
         Configuration $srcMetadata,
         Configuration $dstMetadata,
         \SAML2\Message $message
-    ) {
+    ): void {
         $enabled = null;
         if ($message instanceof LogoutRequest || $message instanceof LogoutResponse) {
             $enabled = $srcMetadata->getBoolean('validate.logout', null);
@@ -302,7 +282,7 @@ class Message
     public static function getDecryptionKeys(
         Configuration $srcMetadata,
         Configuration $dstMetadata
-    ) {
+    ): array {
         $sharedKey = $srcMetadata->getString('sharedkey', null);
         if ($sharedKey !== null) {
             $key = new XMLSecurityKey(XMLSecurityKey::AES128_CBC);
@@ -315,7 +295,7 @@ class Message
         // load the new private key if it exists
         $keyArray = Utils\Crypto::loadPrivateKey($dstMetadata, false, 'new_');
         if ($keyArray !== null) {
-            assert(isset($keyArray['PEM']));
+            assert::keyExists($keyArray, 'PEM');
 
             $key = new XMLSecurityKey(XMLSecurityKey::RSA_1_5, ['type' => 'private']);
             if (array_key_exists('password', $keyArray)) {
@@ -325,9 +305,13 @@ class Message
             $keys[] = $key;
         }
 
-        // find the existing private key
+        /**
+         * find the existing private key
+         *
+         * @var array $keyArray  Because the second param is true
+         */
         $keyArray = Utils\Crypto::loadPrivateKey($dstMetadata, true);
-        assert(isset($keyArray['PEM']));
+        Assert::keyExists($keyArray, 'PEM');
 
         $key = new XMLSecurityKey(XMLSecurityKey::RSA_1_5, ['type' => 'private']);
         if (array_key_exists('password', $keyArray)) {
@@ -353,7 +337,7 @@ class Message
     public static function getBlacklistedAlgorithms(
         Configuration $srcMetadata,
         Configuration $dstMetadata
-    ) {
+    ): array {
         $blacklist = $srcMetadata->getArray('encryption.blacklisted-algorithms', null);
         if ($blacklist === null) {
             $blacklist = $dstMetadata->getArray('encryption.blacklisted-algorithms', [XMLSecurityKey::RSA_1_5]);
@@ -379,8 +363,8 @@ class Message
         Configuration $srcMetadata,
         Configuration $dstMetadata,
         $assertion
-    ) {
-        assert($assertion instanceof Assertion || $assertion instanceof EncryptedAssertion);
+    ): Assertion {
+        Assert::isInstanceOfAny($assertion, [\SAML2\Assertion::class, \SAML2\EncryptedAssertion::class]);
 
         if ($assertion instanceof Assertion) {
             $encryptAssertion = $srcMetadata->getBoolean('assertion.encryption', null);
@@ -398,7 +382,7 @@ class Message
         try {
             $keys = self::getDecryptionKeys($srcMetadata, $dstMetadata);
         } catch (\Exception $e) {
-            throw new SSP_Error\Exception('Error decrypting assertion: '.$e->getMessage());
+            throw new SSP_Error\Exception('Error decrypting assertion: ' . $e->getMessage());
         }
 
         $blacklist = self::getBlacklistedAlgorithms($srcMetadata, $dstMetadata);
@@ -407,15 +391,19 @@ class Message
         foreach ($keys as $i => $key) {
             try {
                 $ret = $assertion->getAssertion($key, $blacklist);
-                Logger::debug('Decryption with key #'.$i.' succeeded.');
+                Logger::debug('Decryption with key #' . $i . ' succeeded.');
                 return $ret;
             } catch (\Exception $e) {
-                Logger::debug('Decryption with key #'.$i.' failed with exception: '.$e->getMessage());
+                Logger::debug('Decryption with key #' . $i . ' failed with exception: ' . $e->getMessage());
                 $lastException = $e;
             }
         }
 
-        /** @var \Exception $lastException */
+        /**
+         * The annotation below is not working - See vimeo/psalm#1909
+         * @psalm-suppress InvalidThrow
+         * @var \Exception $lastException
+         */
         throw $lastException;
     }
 
@@ -435,7 +423,7 @@ class Message
         Configuration $srcMetadata,
         Configuration $dstMetadata,
         Assertion &$assertion
-    ) {
+    ): void {
         if (!$assertion->hasEncryptedAttributes()) {
             return;
         }
@@ -443,7 +431,7 @@ class Message
         try {
             $keys = self::getDecryptionKeys($srcMetadata, $dstMetadata);
         } catch (\Exception $e) {
-            throw new SSP_Error\Exception('Error decrypting attributes: '.$e->getMessage());
+            throw new SSP_Error\Exception('Error decrypting attributes: ' . $e->getMessage());
         }
 
         $blacklist = self::getBlacklistedAlgorithms($srcMetadata, $dstMetadata);
@@ -452,11 +440,11 @@ class Message
         foreach ($keys as $i => $key) {
             try {
                 $assertion->decryptAttributes($key, $blacklist);
-                Logger::debug('Attribute decryption with key #'.$i.' succeeded.');
+                Logger::debug('Attribute decryption with key #' . $i . ' succeeded.');
                 $error = false;
                 break;
             } catch (\Exception $e) {
-                Logger::debug('Attribute decryption failed with exception: '.$e->getMessage());
+                Logger::debug('Attribute decryption failed with exception: ' . $e->getMessage());
             }
         }
         if ($error) {
@@ -472,7 +460,7 @@ class Message
      *
      * @return \SimpleSAML\Module\saml\Error The error.
      */
-    public static function getResponseError(StatusResponse $response)
+    public static function getResponseError(StatusResponse $response): \SimpleSAML\Module\saml\Error
     {
         $status = $response->getStatus();
         return new \SimpleSAML\Module\saml\Error($status['Code'], $status['SubCode'], $status['Message']);
@@ -489,7 +477,7 @@ class Message
     public static function buildAuthnRequest(
         Configuration $spMetadata,
         Configuration $idpMetadata
-    ) {
+    ): AuthnRequest {
         $ar = new AuthnRequest();
 
         // get the NameIDPolicy to apply. IdP metadata has precedence.
@@ -551,7 +539,7 @@ class Message
     public static function buildLogoutRequest(
         Configuration $srcMetadata,
         Configuration $dstMetadata
-    ) {
+    ): LogoutRequest {
         $lr = new LogoutRequest();
         $issuer = new Issuer();
         $issuer->setValue($srcMetadata->getString('entityid'));
@@ -574,7 +562,7 @@ class Message
     public static function buildLogoutResponse(
         Configuration $srcMetadata,
         Configuration $dstMetadata
-    ) {
+    ): LogoutResponse {
         $lr = new LogoutResponse();
         $issuer = new Issuer();
         $issuer->setValue($srcMetadata->getString('entityid'));
@@ -605,7 +593,7 @@ class Message
         Configuration $spMetadata,
         Configuration $idpMetadata,
         Response $response
-    ) {
+    ): array {
         if (!$response->isSuccess()) {
             throw self::getResponseError($response);
         }
@@ -614,8 +602,8 @@ class Message
         $currentURL = Utils\HTTP::getSelfURLNoQuery();
         $msgDestination = $response->getDestination();
         if ($msgDestination !== null && $msgDestination !== $currentURL) {
-            throw new \Exception('Destination in response doesn\'t match the current URL. Destination is "'.
-                $msgDestination.'", current URL is "'.$currentURL.'".');
+            throw new \Exception('Destination in response doesn\'t match the current URL. Destination is "' .
+                $msgDestination . '", current URL is "' . $currentURL . '".');
         }
 
         $responseSigned = self::checkSign($idpMetadata, $response);
@@ -659,10 +647,9 @@ class Message
         Configuration $idpMetadata,
         Response $response,
         $assertion,
-        $responseSigned
-    ) {
-        assert($assertion instanceof Assertion || $assertion instanceof EncryptedAssertion);
-        assert(is_bool($responseSigned));
+        bool $responseSigned
+    ): Assertion {
+        Assert::isInstanceOfAny($assertion, [\SAML2\Assertion::class, \SAML2\EncryptedAssertion::class]);
 
         $assertion = self::decryptAssertion($idpMetadata, $spMetadata, $assertion);
         self::decryptAttributes($idpMetadata, $spMetadata, $assertion);
@@ -708,9 +695,11 @@ class Message
         if ($validAudiences !== null) {
             $spEntityId = $spMetadata->getString('entityid');
             if (!in_array($spEntityId, $validAudiences, true)) {
-                $candidates = '['.implode('], [', $validAudiences).']';
-                throw new SSP_Error\Exception('This SP ['.$spEntityId.
-                    ']  is not a valid audience for the assertion. Candidates were: '.$candidates);
+                $candidates = '[' . implode('], [', $validAudiences) . ']';
+                throw new SSP_Error\Exception(
+                    'This SP [' . $spEntityId .
+                    ']  is not a valid audience for the assertion. Candidates were: ' . $candidates
+                );
             }
         }
 
@@ -720,7 +709,7 @@ class Message
         foreach ($assertion->getSubjectConfirmation() as $sc) {
             $method = $sc->getMethod();
             if (!in_array($method, $validSCMethods, true)) {
-                $lastError = 'Invalid Method on SubjectConfirmation: '.var_export($method, true);
+                $lastError = 'Invalid Method on SubjectConfirmation: ' . var_export($method, true);
                 continue;
             }
 
@@ -734,7 +723,7 @@ class Message
                 continue;
             }
             if ($method === Constants::CM_HOK && !$hok) {
-                $lastError = 'Holder-of-Key SubjectConfirmation received, '.
+                $lastError = 'Holder-of-Key SubjectConfirmation received, ' .
                     'but the Holder-of-Key profile is not enabled.';
                 continue;
             }
@@ -754,52 +743,52 @@ class Message
                 $clientCert = $_SERVER['SSL_CLIENT_CERT'];
                 $pattern = '/^-----BEGIN CERTIFICATE-----([^-]*)^-----END CERTIFICATE-----/m';
                 if (!preg_match($pattern, $clientCert, $matches)) {
-                    $lastError = 'Error while looking for client certificate during TLS handshake with SP, the client '.
-                        'certificate does not have the expected structure';
+                    $lastError = 'Error while looking for client certificate during TLS handshake with SP, ' .
+                        'the client certificate does not have the expected structure';
                     continue;
                 }
                 // we have a valid client certificate from the browser
                 $clientCert = str_replace(["\r", "\n", " "], '', $matches[1]);
 
                 $keyInfo = [];
-                foreach ($scd->info as $thing) {
+                foreach ($scd->getInfo() as $thing) {
                     if ($thing instanceof KeyInfo) {
                         $keyInfo[] = $thing;
                     }
                 }
                 if (count($keyInfo) != 1) {
-                    $lastError = 'Error validating Holder-of-Key assertion: Only one <ds:KeyInfo> element in '.
+                    $lastError = 'Error validating Holder-of-Key assertion: Only one <ds:KeyInfo> element in ' .
                         '<SubjectConfirmationData> allowed';
                     continue;
                 }
 
                 $x509data = [];
-                foreach ($keyInfo[0]->info as $thing) {
+                foreach ($keyInfo[0]->getInfo() as $thing) {
                     if ($thing instanceof X509Data) {
                         $x509data[] = $thing;
                     }
                 }
                 if (count($x509data) != 1) {
-                    $lastError = 'Error validating Holder-of-Key assertion: Only one <ds:X509Data> element in '.
+                    $lastError = 'Error validating Holder-of-Key assertion: Only one <ds:X509Data> element in ' .
                         '<ds:KeyInfo> within <SubjectConfirmationData> allowed';
                     continue;
                 }
 
                 $x509cert = [];
-                foreach ($x509data[0]->data as $thing) {
+                foreach ($x509data[0]->getData() as $thing) {
                     if ($thing instanceof X509Certificate) {
                         $x509cert[] = $thing;
                     }
                 }
                 if (count($x509cert) != 1) {
-                    $lastError = 'Error validating Holder-of-Key assertion: Only one <ds:X509Certificate> element in '.
+                    $lastError = 'Error validating Holder-of-Key assertion: Only one <ds:X509Certificate> element in ' .
                         '<ds:X509Data> within <SubjectConfirmationData> allowed';
                     continue;
                 }
 
-                $HoKCertificate = $x509cert[0]->certificate;
+                $HoKCertificate = $x509cert[0]->getCertificate();
                 if ($HoKCertificate !== $clientCert) {
-                    $lastError = 'Provided client certificate does not match the certificate bound to the '.
+                    $lastError = 'Provided client certificate does not match the certificate bound to the ' .
                         'Holder-of-Key assertion';
                     continue;
                 }
@@ -812,36 +801,39 @@ class Message
             }
 
             $notBefore = $scd->getNotBefore();
-            if ($notBefore && $notBefore > time() + 60) {
-                $lastError = 'NotBefore in SubjectConfirmationData is in the future: '.$notBefore;
+            if (is_int($notBefore) && $notBefore > time() + 60) {
+                $lastError = 'NotBefore in SubjectConfirmationData is in the future: ' . $notBefore;
                 continue;
             }
             $notOnOrAfter = $scd->getNotOnOrAfter();
-            if ($notOnOrAfter && $notOnOrAfter <= time() - 60) {
-                $lastError = 'NotOnOrAfter in SubjectConfirmationData is in the past: '.$notOnOrAfter;
+            if (is_int($notOnOrAfter) && $notOnOrAfter <= time() - 60) {
+                $lastError = 'NotOnOrAfter in SubjectConfirmationData is in the past: ' . $notOnOrAfter;
                 continue;
             }
             $recipient = $scd->getRecipient();
             if ($recipient !== null && $recipient !== $currentURL) {
-                $lastError = 'Recipient in SubjectConfirmationData does not match the current URL. Recipient is '.
-                    var_export($recipient, true).', current URL is '.var_export($currentURL, true).'.';
+                $lastError = 'Recipient in SubjectConfirmationData does not match the current URL. Recipient is ' .
+                    var_export($recipient, true) . ', current URL is ' . var_export($currentURL, true) . '.';
                 continue;
             }
             $inResponseTo = $scd->getInResponseTo();
-            if ($inResponseTo !== null && $response->getInResponseTo() !== null &&
-                $inResponseTo !== $response->getInResponseTo()
+            if (
+                $inResponseTo !== null
+                && $response->getInResponseTo() !== null
+                && $inResponseTo !== $response->getInResponseTo()
             ) {
-                $lastError = 'InResponseTo in SubjectConfirmationData does not match the Response. Response has '.
-                    var_export($response->getInResponseTo(), true).
-                    ', SubjectConfirmationData has '.var_export($inResponseTo, true).'.';
+                $lastError = 'InResponseTo in SubjectConfirmationData does not match the Response. Response has ' .
+                    var_export($response->getInResponseTo(), true) .
+                    ', SubjectConfirmationData has ' . var_export($inResponseTo, true) . '.';
                 continue;
             }
             $found = true;
             break;
         }
         if (!$found) {
-            throw new SSP_Error\Exception('Error validating SubjectConfirmation in Assertion: '.$lastError);
-        } // as far as we can tell, the assertion is valid
+            throw new SSP_Error\Exception('Error validating SubjectConfirmation in Assertion: ' . $lastError);
+        }
+        // as far as we can tell, the assertion is valid
 
         // maybe we need to base64 decode the attributes in the assertion?
         if ($idpMetadata->getBoolean('base64attributes', false)) {
@@ -863,7 +855,7 @@ class Message
             try {
                 $keys = self::getDecryptionKeys($idpMetadata, $spMetadata);
             } catch (\Exception $e) {
-                throw new SSP_Error\Exception('Error decrypting NameID: '.$e->getMessage());
+                throw new SSP_Error\Exception('Error decrypting NameID: ' . $e->getMessage());
             }
 
             $blacklist = self::getBlacklistedAlgorithms($idpMetadata, $spMetadata);
@@ -872,11 +864,11 @@ class Message
             foreach ($keys as $i => $key) {
                 try {
                     $assertion->decryptNameId($key, $blacklist);
-                    Logger::debug('Decryption with key #'.$i.' succeeded.');
+                    Logger::debug('Decryption with key #' . $i . ' succeeded.');
                     $lastException = null;
                     break;
                 } catch (\Exception $e) {
-                    Logger::debug('Decryption with key #'.$i.' failed with exception: '.$e->getMessage());
+                    Logger::debug('Decryption with key #' . $i . ' failed with exception: ' . $e->getMessage());
                     $lastException = $e;
                 }
             }
@@ -898,9 +890,8 @@ class Message
      *
      * @throws \SimpleSAML\Error\Exception if there is no supported encryption key in the metadata of this entity.
      */
-    public static function getEncryptionKey(Configuration $metadata)
+    public static function getEncryptionKey(Configuration $metadata): XMLSecurityKey
     {
-
         $sharedKey = $metadata->getString('sharedkey', null);
         if ($sharedKey !== null) {
             $key = new XMLSecurityKey(XMLSecurityKey::AES128_CBC);
@@ -912,8 +903,8 @@ class Message
         foreach ($keys as $key) {
             switch ($key['type']) {
                 case 'X509Certificate':
-                    $pemKey = "-----BEGIN CERTIFICATE-----\n".
-                        chunk_split($key['X509Certificate'], 64).
+                    $pemKey = "-----BEGIN CERTIFICATE-----\n" .
+                        chunk_split($key['X509Certificate'], 64) .
                         "-----END CERTIFICATE-----\n";
                     $key = new XMLSecurityKey(XMLSecurityKey::RSA_OAEP_MGF1P, ['type' => 'public']);
                     $key->loadKey($pemKey);
@@ -921,7 +912,7 @@ class Message
             }
         }
 
-        throw new SSP_Error\Exception('No supported encryption key in '.
+        throw new SSP_Error\Exception('No supported encryption key in ' .
             var_export($metadata->getString('entityid'), true));
     }
 }

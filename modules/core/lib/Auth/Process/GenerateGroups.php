@@ -1,8 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Module\core\Auth\Process;
 
 use SimpleSAML\Logger;
+use Webmozart\Assert\Assert;
 
 /**
  * Filter to generate a groups attribute based on many of the attributes of the user.
@@ -14,8 +17,10 @@ class GenerateGroups extends \SimpleSAML\Auth\ProcessingFilter
 {
     /**
      * The attributes we should generate groups from.
+     * @var array
      */
     private $generateGroupsFrom;
+
 
     /**
      * Initialize this filter.
@@ -23,11 +28,9 @@ class GenerateGroups extends \SimpleSAML\Auth\ProcessingFilter
      * @param array &$config  Configuration information about this filter.
      * @param mixed $reserved  For future use.
      */
-    public function __construct(&$config, $reserved)
+    public function __construct(array &$config, $reserved)
     {
         parent::__construct($config, $reserved);
-
-        assert(is_array($config));
 
         if (count($config) === 0) {
             // Use default groups
@@ -40,7 +43,7 @@ class GenerateGroups extends \SimpleSAML\Auth\ProcessingFilter
             // Validate configuration
             foreach ($config as $attributeName) {
                 if (!is_string($attributeName)) {
-                    throw new \Exception('Invalid attribute name for core:GenerateGroups filter: '.
+                    throw new \Exception('Invalid attribute name for core:GenerateGroups filter: ' .
                         var_export($attributeName, true));
                 }
             }
@@ -48,37 +51,37 @@ class GenerateGroups extends \SimpleSAML\Auth\ProcessingFilter
         }
     }
 
+
     /**
      * Apply filter to add groups attribute.
      *
      * @param array &$request  The current request
      * @return void
      */
-    public function process(&$request)
+    public function process(array &$request): void
     {
-        assert(is_array($request));
-        assert(array_key_exists('Attributes', $request));
+        Assert::keyExists($request, 'Attributes');
 
         $groups = [];
         $attributes = &$request['Attributes'];
 
         $realm = self::getRealm($attributes);
         if ($realm !== null) {
-            $groups[] = 'realm-'.$realm;
+            $groups[] = 'realm-' . $realm;
         }
 
         foreach ($this->generateGroupsFrom as $name) {
             if (!array_key_exists($name, $attributes)) {
-                Logger::debug('GenerateGroups - attribute \''.$name.'\' not found.');
+                Logger::debug('GenerateGroups - attribute \'' . $name . '\' not found.');
                 // Attribute not present
                 continue;
             }
 
             foreach ($attributes[$name] as $value) {
                 $value = self::escapeIllegalChars($value);
-                $groups[] = $name.'-'.$value;
+                $groups[] = $name . '-' . $value;
                 if ($realm !== null) {
-                    $groups[] = $name.'-'.$realm.'-'.$value;
+                    $groups[] = $name . '-' . $realm . '-' . $value;
                 }
             }
         }
@@ -99,10 +102,8 @@ class GenerateGroups extends \SimpleSAML\Auth\ProcessingFilter
      * @param array $attributes  The attributes of the user.
      * @return string|null  The realm of the user, or NULL if we are unable to determine the realm.
      */
-    private static function getRealm($attributes)
+    private static function getRealm(array $attributes): ?string
     {
-        assert(is_array($attributes));
-
         if (!array_key_exists('eduPersonPrincipalName', $attributes)) {
             return null;
         }
@@ -133,10 +134,8 @@ class GenerateGroups extends \SimpleSAML\Auth\ProcessingFilter
      * @param string $string  The string which should be escaped.
      * @return string  The escaped string.
      */
-    private static function escapeIllegalChars($string)
+    private static function escapeIllegalChars(string $string): string
     {
-        assert(is_string($string));
-
         return preg_replace_callback(
             '/([^a-zA-Z0-9_@=.])/',
             /**

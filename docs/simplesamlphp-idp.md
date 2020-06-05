@@ -123,7 +123,7 @@ The attributes will be returned by the IdP when the user logs on.
 Creating a self signed certificate
 ----------------------------------
 
-The IdP needs a certificate to sign its SAML assertions with. Here is an example of an `openssl`-command which can be used to generate a new private key key and the corresponding self-signed certificate.
+The IdP needs a certificate to sign its SAML assertions with. Here is an example of an `openssl`-command which can be used to generate a new private key key and the corresponding self-signed certificate. The private key and certificate go into the directory defined in the certdir setting (defaults to `cert/`)
 
 This key and certificate can be used to sign SAML messages:
 

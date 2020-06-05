@@ -10,11 +10,13 @@
 
 require_once('../../_include.php');
 
+use Webmozart\Assert\Assert;
+
 \SimpleSAML\Logger::info('SAML2.0 - IdP.SingleLogoutService: Accessing SAML 2.0 IdP endpoint SingleLogoutService');
 
 $metadata = \SimpleSAML\Metadata\MetaDataStorageHandler::getMetadataHandler();
 $idpEntityId = $metadata->getMetaDataCurrentEntityID('saml20-idp-hosted');
-$idp = \SimpleSAML\IdP::getById('saml2:'.$idpEntityId);
+$idp = \SimpleSAML\IdP::getById('saml2:' . $idpEntityId);
 
 if (isset($_REQUEST['ReturnTo'])) {
     $idp->doLogoutRedirect(\SimpleSAML\Utils\HTTP::checkURLAllowed((string) $_REQUEST['ReturnTo']));
@@ -34,4 +36,4 @@ if (isset($_REQUEST['ReturnTo'])) {
         }
     }
 }
-assert(false);
+Assert::true(false);

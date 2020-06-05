@@ -2,7 +2,7 @@
 {% extends "base.twig" %}
 
 {% block preload %}
-<link rel="stylesheet" href="/{{ baseurlpath }}module.php/cron/assets/css/cron.css">
+<link rel="stylesheet" href="{{ asset('css/cron.css', 'cron') }}">
 {% endblock %}
 
 {% block content %}
@@ -14,16 +14,17 @@
         <code id="cronlist">
         {% for url in urls %}
             # {{ 'Run cron:'|trans }} [{{ url.tag }}]<br />
-            {{ url.int }} curl --silent "{{ url.href }}" > /dev/null 2>&amp;1<br />
+            {{ url.int }} curl --silent "{{ url.exec_href }}" > /dev/null 2>&amp;1<br />
         {% endfor %}
-    </code></div><br />
+        <br />
+        </code>
+    </div>
 
-    <p>{{ 'Click here to run the cron jobs:'|trans }}</p>
-      <ul>
+    <p>{{ 'Click here to run the cron jobs:'|trans }}
+    <ul>
         {% for url in urls %}
-        <li><a href="{{ url.href }}&amp;output=xhtml">{{ 'Run cron:'|trans }} {{ url.tag }}</a></li>
+        <li><a href="{{ url.href }}">{{ 'Run cron:'|trans }} {{ url.tag }}</a></li>
         {% endfor %}
-      </ul>
-    </p>
+    </ul>
 
 {% endblock %}    

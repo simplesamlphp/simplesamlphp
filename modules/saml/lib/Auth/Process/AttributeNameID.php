@@ -1,9 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Module\saml\Auth\Process;
 
 use SimpleSAML\Error;
 use SimpleSAML\Logger;
+use Webmozart\Assert\Assert;
 
 /**
  * Authentication processing filter to create a NameID from an attribute.
@@ -27,12 +30,11 @@ class AttributeNameID extends \SimpleSAML\Module\saml\BaseNameIDGenerator
      * @param array $config Configuration information about this filter.
      * @param mixed $reserved For future use.
      *
-     * @throws \SimpleSAMLError\Exception If the required options 'Format' or 'attribute' are missing.
+     * @throws \SimpleSAML\Error\Exception If the required options 'Format' or 'attribute' are missing.
      */
-    public function __construct($config, $reserved)
+    public function __construct(array $config, $reserved)
     {
         parent::__construct($config, $reserved);
-        assert(is_array($config));
 
         if (!isset($config['Format'])) {
             throw new Error\Exception("AttributeNameID: Missing required option 'Format'.");
@@ -52,29 +54,28 @@ class AttributeNameID extends \SimpleSAML\Module\saml\BaseNameIDGenerator
      * @param array $state The state array.
      * @return string|null The NameID value.
      */
-    protected function getValue(array &$state)
+    protected function getValue(array &$state): ?string
     {
-
         if (!isset($state['Attributes'][$this->attribute]) || count($state['Attributes'][$this->attribute]) === 0) {
             Logger::warning(
-                'Missing attribute '.var_export($this->attribute, true).
+                'Missing attribute ' . var_export($this->attribute, true) .
                 ' on user - not generating attribute NameID.'
             );
             return null;
         }
         if (count($state['Attributes'][$this->attribute]) > 1) {
             Logger::warning(
-                'More than one value in attribute '.var_export($this->attribute, true).
+                'More than one value in attribute ' . var_export($this->attribute, true) .
                 ' on user - not generating attribute NameID.'
             );
             return null;
         }
         $value = array_values($state['Attributes'][$this->attribute]); // just in case the first index is no longer 0
-        $value = $value[0];
+        $value = strval($value[0]);
 
         if (empty($value)) {
             Logger::warning(
-                'Empty value in attribute '.var_export($this->attribute, true).
+                'Empty value in attribute ' . var_export($this->attribute, true) .
                 ' on user - not generating attribute NameID.'
             );
             return null;

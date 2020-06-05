@@ -29,9 +29,6 @@ msgstr "Menggunakan tombol back dan forward pada browser web."
 msgid "{core:no_metadata:not_found_for}"
 msgstr "Kita tidak dapat menemukan metadata untuk entity"
 
-msgid "{core:frontpage:link_shib13example}"
-msgstr "Contoh Shibboleth 1.3 SP  - Tes login melalui IdP Shib Anda"
-
 msgid "{core:no_state:suggestions}"
 msgstr "Saran untuk memperbaiki masalah ini:"
 
@@ -70,11 +67,6 @@ msgstr "Metadata Identity Provider SAML 2.0 Hosted (secara otomatis digenerate)"
 
 msgid "{core:frontpage:optional}"
 msgstr "Opsional"
-
-msgid "{core:frontpage:link_meta_shib13sphosted}"
-msgstr ""
-"Metadata Service Provider Shibboleth 1.3  Hosted (secara otomatis "
-"digenerate)"
 
 msgid "{core:frontpage:doc_header}"
 msgstr "Dokumentasi"
@@ -160,11 +152,6 @@ msgstr ""
 
 msgid "{core:no_metadata:header}"
 msgstr "Metadata tidak ditemukan"
-
-msgid "{core:frontpage:link_meta_shib13idphosted}"
-msgstr ""
-"Metadata Identity Provider Shibboleth 1.3 Hosted (secara otomatis "
-"digenerate)"
 
 msgid "{core:frontpage:required}"
 msgstr "Diperlukan"

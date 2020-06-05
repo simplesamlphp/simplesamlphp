@@ -1,8 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Module\core\Auth\Process;
 
 use SimpleSAML\Error;
+use Webmozart\Assert\Assert;
 
 /**
  * Attribute filter for running arbitrary PHP code.
@@ -28,11 +31,9 @@ class PHP extends \SimpleSAML\Auth\ProcessingFilter
      *
      * @throws \SimpleSAML\Error\Exception if the 'code' option is not defined.
      */
-    public function __construct(&$config, $reserved)
+    public function __construct(array &$config, $reserved)
     {
         parent::__construct($config, $reserved);
-
-        assert(is_array($config));
 
         if (!isset($config['code'])) {
             throw new Error\Exception("core:PHP: missing mandatory configuration option 'code'.");
@@ -46,20 +47,20 @@ class PHP extends \SimpleSAML\Auth\ProcessingFilter
      *
      * @param array &$request The current request
      * @return void
+     *
+     * @scrutinizer ignore-unused
      */
-    public function process(&$request)
+    public function process(array &$request): void
     {
-        assert(is_array($request));
-        assert(array_key_exists('Attributes', $request));
+        Assert::keyExists($request, 'Attributes');
 
         /**
          * @param array &$attributes
          * @param array &$state
-         * @return void
          */
-        $function = function (
-            /** @scrutinizer ignore-unused */ &$attributes,
-            /** @scrutinizer ignore-unused */ &$state
+        $function = /** @return void */ function (
+            array &$attributes,
+            array &$state
         ) {
             eval($this->code);
         };

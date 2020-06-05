@@ -46,36 +46,6 @@ php "$TARGET/composer.phar" config version "$VERSION" -d "$TARGET"
 # Install dependencies (without vcs history or dev tools)
 php "$TARGET/composer.phar" install --no-dev --prefer-dist -o -d "$TARGET"
 
-# Install external modules
-php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-adfs
-php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-authcrypt
-php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-authfacebook
-php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-authorize
-php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-authtwitter
-php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-authx509
-php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-authyubikey
-php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-authwindowslive
-php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-cas
-php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-cdc
-php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-consent
-php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-consentadmin
-php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-discopower
-php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-exampleattributeserver
-php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-expirycheck
-php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-ldap
-php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-memcookie
-php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-memcachemonitor
-php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-metarefresh
-php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-negotiate
-php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-oauth
-php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-preprodwarning
-php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-radius
-php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-riak
-php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-sanitycheck
-php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-smartattributes
-php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-statistics
-php "$TARGET/composer.phar" require --update-no-dev simplesamlphp/simplesamlphp-module-sqlauth
-
 cd $TARGET
 npm install
 npm audit fix

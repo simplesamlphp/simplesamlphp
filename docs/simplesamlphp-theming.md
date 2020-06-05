@@ -44,13 +44,13 @@ The first thing you need to do is having a SimpleSAMLphp module to place your th
 
 	cd modules
 	mkdir mymodule
-	cd mymodule
-	touch default-enable
+
+	Enable the module by setting `$config['module.enable' => ['mymodule' => true]]`
 
 Then within this module, you can create a new theme named `fancytheme`.
 
 	cd modules/mymodule
-	mkdir -p themes/fancytheme
+	mkdir -p themes/fancytheme/default/includes
 
 Now, configure SimpleSAMLphp to use your new theme in `config.php`:
 
@@ -130,6 +130,8 @@ If you need to make more extensive customizations to the base template, you shou
 	cp templates/base.twig modules/mymodule/themes/fancytheme/default/
 
 Any references to `$this->data['baseurlpath']` in old-style templates can be replaced with `{{baseurlpath}}` in Twig templates. Likewise, references to `\SimpleSAML\Module::getModuleURL()` can be replaced with `{{baseurlpath}}module.php/mymodule/...`
+
+Within templates each module is defined as a separate namespace matching the module name. This allows one template to reference templates from other modules using Twig's `@namespace_name/template_path` notation. For instance, a template in `mymodule` can include the widget template from the `yourmodule` module using the notation `@yourmodule/widget.twig`. A special namespace, `__parent__`, exists to allow theme developers to more easily extend a module's stock template.
 
 Even more advanced changes can be made by defining a theme controller in `config.php`:
 

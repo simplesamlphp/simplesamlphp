@@ -15,6 +15,8 @@ if (!array_key_exists('AuthState', $_REQUEST)) {
     throw new \SimpleSAML\Error\BadRequest('Missing AuthState parameter.');
 }
 $authStateId = $_REQUEST['AuthState'];
+
+/** @var array $state */
 $state = \SimpleSAML\Auth\State::loadState($authStateId, \SimpleSAML\Module\multiauth\Auth\Source\MultiAuth::STAGEID);
 
 if (array_key_exists("\SimpleSAML\Auth\Source.id", $state)) {
@@ -49,7 +51,7 @@ if (array_key_exists('multiauth:preselect', $state)) {
 }
 
 $globalConfig = \SimpleSAML\Configuration::getInstance();
-$t = new \SimpleSAML\XHTML\Template($globalConfig, 'multiauth:selectsource.php');
+$t = new \SimpleSAML\XHTML\Template($globalConfig, 'multiauth:selectsource.twig');
 
 $defaultLanguage = $globalConfig->getString('language.default', 'en');
 $language = $t->getTranslator()->getLanguage()->getLanguage();
@@ -79,5 +81,5 @@ if ($as !== null) {
 } else {
     $t->data['preferred'] = null;
 }
-$t->show();
+$t->send();
 exit();

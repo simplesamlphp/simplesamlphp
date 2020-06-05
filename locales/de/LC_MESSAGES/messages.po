@@ -20,9 +20,9 @@ msgstr "SAML 2.0 IdP Metadaten"
 
 msgid "{errors:descr_WRONGUSERPASS}"
 msgstr ""
-"Entweder es konnte kein Nutzer mit dem angegebenen Nutzernamen gefunden "
+"Entweder es konnte kein Benutzer mit dem angegebenen Benutzernamen gefunden "
 "werden oder das Passwort ist falsch. Überprüfen Sie die Zugangsdaten und "
-"probieren Sie es nochmal."
+"probieren Sie es erneut."
 
 msgid "{logout:failed}"
 msgstr "Abmeldung fehlgeschlagen"
@@ -34,7 +34,7 @@ msgid "{admin:metaover_group_metadata.saml20-sp-remote}"
 msgstr "SAML 2.0 Service Provider (entfernt)"
 
 msgid "{errors:descr_NOCERT}"
-msgstr "Authentifizierung fehlgeschlagen: ihr Browser hat kein Zertifikat gesandt"
+msgstr "Authentifizierung fehlgeschlagen: Ihr Browser hat kein Zertifikat gesendet"
 
 msgid "{errors:title_PROCESSASSERTION}"
 msgstr "Fehler beim Bearbeiten der Antwort des IdP"
@@ -43,7 +43,7 @@ msgid "{errors:title_NOSTATE}"
 msgstr "Statusinformationen verloren"
 
 msgid "{login:username}"
-msgstr "Nutzername"
+msgstr "Benutzername"
 
 msgid "{errors:title_METADATA}"
 msgstr "Fehler beim Laden der Metadaten"
@@ -51,26 +51,20 @@ msgstr "Fehler beim Laden der Metadaten"
 msgid "{admin:metaconv_title}"
 msgstr "Metadaten-Parser"
 
-msgid "{attributes:attribute_edupersonentitlement}"
-msgstr "Berechtigung"
-
-msgid "{attributes:attribute_jpegphoto}"
-msgstr "JPEG Foto"
-
 msgid "{admin:cfg_check_noerrors}"
 msgstr "Keine Fehler gefunden."
 
 msgid "{errors:descr_LOGOUTINFOLOST}"
 msgstr ""
 "Die Information des aktuellen Abmeldevorgangs ist verloren gegangen. "
-"Bitte rufen Sie den Dienst auf, vom dem Sie sich abmelden wollten, und "
-"versuchen Sie dort das Abmelden nochmal. Dieser Fehler tritt auf, wenn "
+"Bitte rufen Sie den Dienst auf, vom dem Sie sich abmelden wollten und "
+"versuchen Sie dort das Abmelden erneut. Dieser Fehler tritt auf, wenn "
 "die Abmeldeanfrage abläuft, da diese nur eine gewisse Zeit (üblicherweise"
 " ein paar Stunden) zwischengespeichert wird. Das sollte im normalen "
 "Betrieb ausreichend sein, da ein Abmeldevorgang nicht so lange dauert. "
 "Dieser Fehler kann also auch ein Anzeichen sein, dass ein "
 "Konfigurationsfehler vorliegt. Tritt dieser Fehler wiederholt auf, wenden"
-" sie sich bitte an den benutzen Dienst (Service Provider), vom dem sie "
+" Sie sich bitte an den Dienst (Service Provider), vom dem Sie "
 "sich abmelden wollen."
 
 msgid "{disco:previous_auth}"
@@ -83,8 +77,8 @@ msgstr "Gehe zurück zur Dateiliste"
 
 msgid "{errors:report_trackid}"
 msgstr ""
-"Falls Sie diesen Fehler melden, teilen Sie bitte ebenfalls diese Tracking"
-" ID mit, dadurch ist es dem Administrator möglich ihre Sitzung in den "
+"Falls Sie diesen Fehler melden, teilen Sie bitte ebenfalls diese Tracking-ID "
+"mit, wodurch es dem Administrator möglich ist, Ihre Sitzung in den "
 "Logs zu finden:"
 
 msgid "{login:change_home_org_title}"
@@ -106,17 +100,17 @@ msgstr "Fehler melden"
 
 msgid "{login:change_home_org_text}"
 msgstr ""
-"Sie haben <b>%HOMEORG%</b> als ihre Einrichtung gewählt, können diese "
+"Sie haben <b>%HOMEORG%</b> als Ihre Einrichtung gewählt, können diese "
 "Auswahl aber noch ändern."
 
 msgid "{errors:title_PROCESSAUTHNREQUEST}"
 msgstr "Fehler beim Bearbeiten der Anfrage des Service Providers"
 
 msgid "{errors:descr_PROCESSASSERTION}"
-msgstr "Die Antwort des Identitiy Provider konnte nicht akzeptiert werden."
+msgstr "Die Antwort des Identity Providers konnte nicht akzeptiert werden."
 
 msgid "{errors:debuginfo_header}"
-msgstr "Debug Information"
+msgstr "Debug-Information"
 
 msgid "{admin:debug_sending_message_msg_text}"
 msgstr ""
@@ -128,31 +122,25 @@ msgstr ""
 "Der Identity Provider gab einen Fehler zurück (Der Statuscode in der "
 "SAML-Antwort war nicht \"Erfolg\")"
 
-msgid "{admin:metadata_shib13-idp}"
-msgstr "Shib 1.3 IdP Metadaten"
-
 msgid "{login:help_text}"
 msgstr ""
-"Tut uns leid - Ohne Nutzername und Passwort können Sie sich nicht "
-"authentifizieren und somit den Dienst nicht nutzen. Möglicherweise kann "
-"ihnen jemand helfen, kontaktieren Sie dazu den Helpdesk ihrer "
-"Einrichtung."
+"Ohne Benutzername und Passwort können Sie sich nicht authentifizieren und "
+"somit den Dienst nicht nutzen. Möglicherweise kann Ihnen jemand in Ihrer "
+"Einrichtung helfen. Kontaktieren Sie dazu einen Ansprechpartner oder den "
+"Helpdesk Ihrer Einrichtung."
 
 msgid "{logout:default_link_text}"
 msgstr "Zurück zur SimpleSAMLphp Installationsseite"
 
-msgid "{admin:metaover_group_metadata.wsfed-idp-remote}"
-msgstr "WS-Federation Identity Provider (entfernt)"
-
 msgid "{errors:error_header}"
-msgstr "SimpleSAMLphp Fehler"
+msgstr "SimpleSAMLphp-Fehler"
 
 msgid "{login:help_header}"
 msgstr "Hilfe, ich habe mein Passwort vergessen."
 
 msgid "{errors:descr_LDAPERROR}"
 msgstr ""
-"LDAP ist die gewählte Nutzerdatenbank. Wenn Sie versuchen sich "
+"LDAP ist die gewählte Benutzerdatenbank. Wenn Sie versuchen sich "
 "anzumelden, muss auf diese LDAP-Datenbank zugegriffen werden, dabei ist "
 "dieses mal ein Fehler aufgetreten."
 
@@ -162,17 +150,11 @@ msgstr ""
 "der Administrator dieses Dienstes sind, sollten Sie sicherstellen, dass "
 "die Metadatenkonfiguration korrekt ist."
 
-msgid "{attributes:attribute_edupersonorgdn}"
-msgstr "Distinguished name (DN) der Organisation"
-
 msgid "{errors:title_BADREQUEST}"
 msgstr "Ungültige Anfrage"
 
 msgid "{status:sessionsize}"
-msgstr "Grösse der Sitzung: %SIZE%"
-
-msgid "{attributes:attribute_postaladdress}"
-msgstr "Anschrift"
+msgstr "Größe der Sitzung: %SIZE%"
 
 msgid "{logout:title}"
 msgstr "Abgemeldet"
@@ -184,22 +166,16 @@ msgid "{admin:metaover_unknown_found}"
 msgstr "Die folgenden Felder wurden nicht erkannt"
 
 msgid "{errors:title_AUTHSOURCEERROR}"
-msgstr "Authentifizierungsquellenfehler"
+msgstr "Fehler in der Authentifizierungsquelle"
 
 msgid "{login:select_home_org}"
-msgstr "Wählen sie die Einrichtung, von der Sie ihre Zugangsdaten beziehen"
+msgstr "Wählen Sie die Einrichtung, von der Sie Ihre Zugangsdaten beziehen"
 
 msgid "{logout:hold}"
 msgstr "In der Wartschleife"
 
 msgid "{admin:cfg_check_header}"
-msgstr "Konfigurationscheck"
-
-msgid "{attributes:attribute_edupersonscopedaffiliation}"
-msgstr "Organisationszugehörigkeit bei der Heimorganisation"
-
-msgid "{attributes:attribute_sn}"
-msgstr "Nachname"
+msgstr "Konfigurationsprüfung"
 
 msgid "{admin:debug_sending_message_send}"
 msgstr "Nachricht senden"
@@ -207,19 +183,10 @@ msgstr "Nachricht senden"
 msgid "{status:logout}"
 msgstr "Abmelden"
 
-msgid "{attributes:attribute_organisationname}"
-msgstr "Name der Organisation"
-
-msgid "{attributes:attribute_telephonenumber}"
-msgstr "Telefonnummer"
-
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr ""
 "Die Parameter, die an den Discovery Service geschickt wurden, entsprachen"
 " nicht der Spezifikation."
-
-msgid "{attributes:attribute_mail}"
-msgstr "Emailadresse"
 
 msgid "{errors:descr_CREATEREQUEST}"
 msgstr "Ein Fehler beim Erzeugen der SAML-Anfrage ist aufgetreten."
@@ -229,9 +196,6 @@ msgstr "Optionale Felder"
 
 msgid "{logout:return}"
 msgstr "Zum Dienst zurückkehren"
-
-msgid "{attributes:attribute_displayname}"
-msgstr "Anzeigename"
 
 msgid "{admin:metadata_xmlurl}"
 msgstr ""
@@ -243,11 +207,8 @@ msgstr "Ja, alle Dienste"
 
 msgid "{admin:debug_disable_debug_mode}"
 msgstr ""
-"Sie können den Debug-Modus in der globalen SimpleSAMLphp "
+"Sie können den Debug-Modus in der globalen SimpleSAMLphp-"
 "Konfigurationsdatei <tt>config/config.php</tt> ausschalten."
-
-msgid "{attributes:attribute_homepostaladdress}"
-msgstr "Privatanschrift"
 
 msgid "{disco:select}"
 msgstr "Auswahl"
@@ -262,10 +223,7 @@ msgid "{logout:progress}"
 msgstr "Abmeldung läuft..."
 
 msgid "{login:error_wrongpassword}"
-msgstr "Falscher Nutzername oder Passwort."
-
-msgid "{admin:metaover_group_metadata.shib13-sp-remote}"
-msgstr "Shib 1.3 Service Provider (entfernt)"
+msgstr "Falscher Benutzername oder Passwort."
 
 msgid "{errors:descr_PROCESSAUTHNREQUEST}"
 msgstr ""
@@ -275,9 +233,6 @@ msgstr ""
 
 msgid "{logout:logout_all_question}"
 msgstr "Wollen Sie sich von allen obenstehenden Diensten abmelden?"
-
-msgid "{attributes:attribute_title}"
-msgstr "Titel"
 
 msgid "{errors:title_NOACCESS}"
 msgstr "Kein Zugriff"
@@ -289,59 +244,47 @@ msgstr ""
 "erneut."
 
 msgid "{errors:title_NORELAYSTATE}"
-msgstr "Kein Weiterleitungsangabge"
+msgstr "Keine Weiterleitungsinformationen"
 
 msgid "{errors:descr_NOSTATE}"
 msgstr ""
 "Die Statusinformationen gingen verloren und die Anfrage kann nicht neu "
 "gestartet werden"
 
-msgid "{attributes:attribute_noredupersonnin}"
-msgstr "Norwegische Personenkennziffer"
-
 msgid "{login:password}"
 msgstr "Passwort"
 
 msgid "{errors:debuginfo_text}"
 msgstr ""
-"Die unten angegebene Debug-Information kann von Interesse für den "
-"Administrator oder das Helpdesk sein:"
+"Die unten angegebene Debug-Information kann für den Administrator oder den "
+"Helpdesk von Nutzen sein:"
 
 msgid "{admin:cfg_check_missing}"
 msgstr "Optionen, die in der Konfigurationsdatei fehlen"
 
 msgid "{errors:descr_UNHANDLEDEXCEPTION}"
-msgstr "Eine nicht abgefangene Code-Exception ist aufgetreten."
+msgstr "Ein nicht abgefangener Ausnahmefehler ist aufgetreten."
 
 msgid "{general:yes}"
 msgstr "Ja"
 
 msgid "{errors:title_CONFIG}"
-msgstr "Konfigurations Fehler"
+msgstr "Konfigurationsfehler"
 
 msgid "{errors:title_LOGOUTREQUEST}"
 msgstr "Fehler beim Bearbeiten der Abmeldeanfrage"
 
 msgid "{admin:metaover_errorentry}"
-msgstr "Fehler in diesem Metadaten Eintrag"
-
-msgid "{attributes:attribute_edupersonaffiliation}"
-msgstr "Organisationszugehörigkeit"
+msgstr "Fehler in diesem Metadateneintrag"
 
 msgid "{errors:title_METADATANOTFOUND}"
 msgstr "Keine Metadaten gefunden"
-
-msgid "{attributes:attribute_givenname}"
-msgstr "Vorname"
 
 msgid "{login:contact_info}"
 msgstr "Kontakt"
 
 msgid "{errors:title_UNHANDLEDEXCEPTION}"
-msgstr "Nicht abgefangene Code-Exception"
-
-msgid "{status:validfor}"
-msgstr "Ihre Sitzung ist noch für %SECONDS% gültig."
+msgstr "Nicht abgefangener Ausnahmefehler"
 
 msgid "{status:header_saml20_sp}"
 msgstr "SAML 2.0 SP Demo Beispiel"
@@ -371,36 +314,24 @@ msgid "{admin:metaover_required_found}"
 msgstr "Notwendige Felder"
 
 msgid "{admin:cfg_check_select_file}"
-msgstr "Wählen Sie die Konfigurationsdatei, die gecheckt werden soll:"
+msgstr "Wählen Sie die Konfigurationsdatei, die geprüft werden soll:"
 
 msgid "{errors:descr_UNKNOWNCERT}"
 msgstr ""
-"Authentifizierung fehlgeschlagen: das von ihrem Browser gesandte "
+"Authentifizierung fehlgeschlagen: das von Ihrem Browser gesendete "
 "Zertifikat ist unbekannt"
-
-msgid "{attributes:attribute_eduorghomepageuri}"
-msgstr "Homepage der Organisation"
 
 msgid "{logout:logging_out_from}"
 msgstr "Melde Sie von den folgenden Diensten ab:"
 
 msgid "{logout:loggedoutfrom}"
-msgstr "Sie wurden nun erfolgreich von %SP% abgemeldet"
-
-msgid "{admin:metaover_group_metadata.wsfed-sp-hosted}"
-msgstr "WS-Federation Service Provider (gehosted)"
+msgstr "Sie wurden erfolgreich von %SP% abgemeldet"
 
 msgid "{errors:errorreport_text}"
-msgstr "Der Fehlerbericht wurde an den Administrator gesandt."
-
-msgid "{attributes:attribute_noredupersonbirthdate}"
-msgstr "Geburtsdatum"
+msgstr "Der Fehlerbericht wurde an den Administrator gesendet."
 
 msgid "{errors:descr_LOGOUTREQUEST}"
 msgstr "Beim Versuch die Abmeldeanfrage zu bearbeiten ist ein Fehler aufgetreten."
-
-msgid "{attributes:attribute_edupersontargetedid}"
-msgstr "Persistente pseudonyme ID"
 
 msgid "{logout:success}"
 msgstr "Sie haben sich erfolgreich von allen obenstehenden Diensten abgemeldet."
@@ -411,14 +342,8 @@ msgstr "Anmerkungen"
 msgid "{errors:descr_USERABORTED}"
 msgstr "Die Authentifizierung wurde durch den Benutzer abgebrochen"
 
-msgid "{attributes:attribute_edupersonprimaryaffiliation}"
-msgstr "Primäre Organisationszugehörigkeit"
-
-msgid "{attributes:attribute_postalcode}"
-msgstr "Postleitzahl"
-
 msgid "{errors:descr_CASERROR}"
-msgstr "Fehler bei der Kommunikation mit dem CAS Server."
+msgstr "Fehler bei der Kommunikation mit dem CAS-Server."
 
 msgid "{general:no}"
 msgstr "Nein"
@@ -429,9 +354,6 @@ msgstr "SAML 2.0 SP Metadaten"
 msgid "{admin:metaconv_converted}"
 msgstr "Konvertierte Metadaten"
 
-msgid "{attributes:attribute_cn}"
-msgstr "Voller Name"
-
 msgid "{logout:completed}"
 msgstr "abgeschlossen"
 
@@ -440,17 +362,8 @@ msgstr ""
 "Sie benutzen noch immer das Standardpasswort, bitte ändern Sie die "
 "Konfiguration (auth.adminpassword)."
 
-msgid "{attributes:attribute_ou}"
-msgstr "Organisationseinheit"
-
 msgid "{general:service_provider}"
-msgstr "Service-Provider"
-
-msgid "{attributes:attribute_homephone}"
-msgstr "Private Telefonnummer"
-
-msgid "{attributes:attribute_dc}"
-msgstr "Domain-Komponente"
+msgstr "Service Provider"
 
 msgid "{errors:descr_BADREQUEST}"
 msgstr "In der Anfrage dieser Seite trat ein Fehler auf, der Grund ist: %REASON%"
@@ -465,33 +378,24 @@ msgid "{general:no_cancel}"
 msgstr "Nein, ich stimme nicht zu"
 
 msgid "{login:user_pass_header}"
-msgstr "Bitte geben Sie Ihren Nutzernamen und Ihr Passwort ein"
+msgstr "Bitte geben Sie Ihren Benutzernamen und Ihr Passwort ein"
 
 msgid "{errors:report_explain}"
 msgstr "Erläutern Sie, wodurch der Fehler auftrat..."
 
-msgid "{attributes:attribute_manager}"
-msgstr "Manager/in"
-
 msgid "{errors:title_ACSPARAMS}"
-msgstr "Keine SAML Antwort bereit gestellt"
-
-msgid "{attributes:attribute_edupersonnickname}"
-msgstr "Spitzname"
+msgstr "Keine SAML-Antwort bereitgestellt"
 
 msgid "{errors:descr_SLOSERVICEPARAMS}"
 msgstr ""
-"Sie haben auf die SingleLogoutService Schnittstelle zugegriffen, aber "
-"keine SAML Abmeldeanfrage oder Abmeldeantwort bereit gestellt."
-
-msgid "{attributes:attribute_street}"
-msgstr "Straße"
+"Sie haben auf die SingleLogoutService-Schnittstelle zugegriffen, aber "
+"keine SAML Abmeldeanfrage oder Abmeldeantwort bereitgestellt."
 
 msgid "{login:organization}"
 msgstr "Organisation"
 
 msgid "{errors:title_WRONGUSERPASS}"
-msgstr "Nutzername oder Passwort falsch."
+msgstr "Benutzername oder Passwort falsch."
 
 msgid "{admin:metaover_required_not_found}"
 msgstr "Die folgenden notwendigen Felder wurden nicht gefunden"
@@ -499,24 +403,24 @@ msgstr "Die folgenden notwendigen Felder wurden nicht gefunden"
 msgid "{errors:descr_NOACCESS}"
 msgstr ""
 "Dieser Endpunkt ist nicht aktiviert. Überprüfen Sie die "
-"Aktivierungsoptionen in der SimpleSAMLphp Konfiguration."
+"Aktivierungsoptionen in der SimpleSAMLphp-Konfiguration."
 
 msgid "{errors:title_SLOSERVICEPARAMS}"
-msgstr "Keine SAML Nachricht bereit gestellt"
+msgstr "Keine SAML-Nachricht bereitgestellt"
 
 msgid "{errors:descr_ACSPARAMS}"
 msgstr ""
-"Sie haben auf die Assertion Consumer Service Schnittstelle zugegriffen, "
-"aber keine SAML Authentifizierungsantwort bereit gestellt."
+"Sie haben auf die Assertion-Consumer-Service-Schnittstelle zugegriffen, "
+"aber keine SAML-Authentifizierungsantwort bereitgestellt."
 
 msgid "{admin:debug_sending_message_text_link}"
 msgstr ""
-"Sie sind dabei eine Nachricht zu senden. Klicken Sie auf den Nachricht "
-"senden Link um fortzufahren."
+"Sie sind dabei eine Nachricht zu senden. Klicken Sie auf den \"Nachricht "
+"senden\"-Link um fortzufahren."
 
 msgid "{errors:descr_AUTHSOURCEERROR}"
 msgstr ""
-"Authentifizierungsfehler in der Quelle %AUTHSOURCE%. Der Grund hier für "
+"Fehler in der Authentifizierungsquelle %AUTHSOURCE%. Der Grund hierfür "
 "ist: %REASON%"
 
 msgid "{status:some_error_occurred}"
@@ -528,9 +432,6 @@ msgstr "Einrichtung auswählen"
 msgid "{admin:cfg_check_superfluous}"
 msgstr "Überflüssige Optionen in der Konfigurationsdatei"
 
-msgid "{attributes:attribute_labeleduri}"
-msgstr "URI mit zusätzlicher Kennzeichnung"
-
 msgid "{errors:report_email}"
 msgstr "E-Mail-Adresse:"
 
@@ -538,27 +439,21 @@ msgid "{errors:howto_header}"
 msgstr "Wie man Hilfe bekommt"
 
 msgid "{errors:title_NOTSET}"
-msgstr "Password ist nicht gesetzt"
+msgstr "Passwort ist nicht gesetzt"
 
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr ""
-"Der Initiator dieser Anfrage hat keinen Weiterleitungsparameter bereit "
-"gestellt, der Auskunft gibt, wohin es als nächstes gehen soll."
-
-msgid "{attributes:attribute_noredupersonlegalname}"
-msgstr "Offizeller Name"
+"Der Initiator dieser Anfrage hat keinen Weiterleitungsparameter "
+"bereitgestellt, der Auskunft gibt, wohin Sie weitergeleitet werden sollen."
 
 msgid "{status:header_diagnostics}"
-msgstr "SimpleSAMLphp Diagnose"
+msgstr "SimpleSAMLphp-Diagnose"
 
 msgid "{status:intro}"
 msgstr ""
 "Hallo, das ist die Statusseite von SimpleSAMLphp. Hier können Sie sehen, "
 "ob Ihre Sitzung ausgelaufen ist, wie lange die Sitzung noch gültig ist "
 "und alle Attribute Ihrer Sitzung."
-
-msgid "{attributes:attribute_schachomeorganization}"
-msgstr "Domain-Name der Heimorganisation"
 
 msgid "{errors:title_NOTFOUNDREASON}"
 msgstr "Seite nicht gefunden"
@@ -569,9 +464,6 @@ msgstr "Sende Nachricht"
 msgid "{errors:title_RESPONSESTATUSNOSUCCESS}"
 msgstr "Fehlermeldung vom Identity Provider erhalten"
 
-msgid "{admin:metadata_shib13-sp}"
-msgstr "Shib 1.3 SP Metadaten"
-
 msgid "{admin:metaover_intro}"
 msgstr ""
 "Um sich Details für eine SAML-Entität anzusehen, klicken Sie auf die "
@@ -580,37 +472,25 @@ msgstr ""
 msgid "{errors:title_NOTVALIDCERT}"
 msgstr "Ungültiges Zertifikat"
 
-msgid "{attributes:attribute_edupersonorgunitdn}"
-msgstr "Distinguished name (DN) der Organisationseinheit"
-
 msgid "{general:remember}"
 msgstr "Zustimmung merken"
 
 msgid "{disco:selectidp}"
 msgstr "Wählen Sie Ihren Identity Provider"
 
-msgid "{attributes:attribute_postofficebox}"
-msgstr "Postfach"
-
-msgid "{attributes:attribute_edupersonprincipalname}"
-msgstr "Persönliche ID bei der Heimorganisation"
-
 msgid "{login:help_desk_email}"
-msgstr "Email an den Helpdesk senden"
+msgstr "E-Mail an den Helpdesk senden"
 
 msgid "{login:help_desk_link}"
-msgstr "Seite des Helpdesk"
-
-msgid "{attributes:attribute_uid}"
-msgstr "Nutzer ID"
+msgstr "Seite des Helpdesks"
 
 msgid "{errors:title_CASERROR}"
-msgstr "CAS Fehler"
+msgstr "CAS-Fehler"
 
 msgid "{login:user_pass_text}"
 msgstr ""
 "Um diesen Dienst zu nutzen, müssen Sie sich authentifizieren. Bitte geben"
-" sie daher unten Nutzernamen und Passwort ein."
+" Sie daher unten Benutzername und Passwort ein."
 
 msgid "{errors:title_DISCOPARAMS}"
 msgstr "Ungültige Anfrage an den Discovery Service"
@@ -624,12 +504,6 @@ msgstr "Meine Auswahl merken"
 msgid "{admin:metaover_group_metadata.saml20-sp-hosted}"
 msgstr "SAML 2.0 Service Provider (gehosted)"
 
-msgid "{attributes:attribute_l}"
-msgstr "Ort"
-
-msgid "{attributes:attribute_edupersonassurance}"
-msgstr "Identity Assurance Profil"
-
 msgid "{admin:metadata_simplesamlformat}"
 msgstr ""
 "Im SimpleSAMLphp flat-file Format - verwenden Sie das, falls auf der "
@@ -642,13 +516,13 @@ msgid "{errors:title_GENERATEAUTHNRESPONSE}"
 msgstr "Konnte keine Authentifikationsantwort erstellen"
 
 msgid "{errors:errorreport_header}"
-msgstr "Fehlerbericht gesandt"
+msgstr "Fehlerbericht gesendet"
 
 msgid "{errors:title_CREATEREQUEST}"
 msgstr "Fehler beim Erzeugen der Anfrage"
 
 msgid "{admin:metaover_header}"
-msgstr "Metadaten-Überblick"
+msgstr "Metadatenüberblick"
 
 msgid "{errors:report_submit}"
 msgstr "Fehlerbericht absenden"
@@ -662,9 +536,6 @@ msgstr "Seite nicht gefunden"
 msgid "{logout:logged_out_text}"
 msgstr "Sie wurden abgemeldet. Danke, dass Sie diesen Dienst verwendet haben."
 
-msgid "{admin:metaover_group_metadata.shib13-sp-hosted}"
-msgstr "Shib 1.3 Service Provider (gehosted)"
-
 msgid "{admin:metadata_cert_intro}"
 msgstr "Die X509-Zertifikate als PEM-kodierte Dateien herunterladen."
 
@@ -674,21 +545,18 @@ msgstr "Nachricht"
 msgid "{errors:title_UNKNOWNCERT}"
 msgstr "Unbekanntes Zertifikat"
 
-msgid "{attributes:attribute_facsimiletelephonenumber}"
-msgstr "Faxnummer"
-
 msgid "{errors:title_LDAPERROR}"
 msgstr "LDAP Fehler"
 
 msgid "{logout:failedsps}"
 msgstr ""
-"Abmelden von einem oder mehreren Diensten schlug fehl. Um "
+"Das Abmelden von einem oder mehreren Diensten schlug fehl. Um "
 "sicherzustellen, dass alle Ihre Sitzungen geschlossen sind, wird Ihnen "
 "empfohlen, <i>Ihren Webbrowser zu schließen</i>."
 
 msgid "{errors:descr_NOTFOUND}"
 msgstr ""
-"Die gewünschte Seite konnte nicht gefunden werden, der aufgerufene URL "
+"Die gewünschte Seite konnte nicht gefunden werden, die aufgerufene URL "
 "war %URL%"
 
 msgid "{errors:howto_text}"
@@ -701,9 +569,6 @@ msgstr ""
 msgid "{attributes:attribute_mobile}"
 msgstr "Mobiltelefon"
 
-msgid "{admin:metaover_group_metadata.shib13-idp-hosted}"
-msgstr "Shib 1.3 Identity Provider (gehosted)"
-
 msgid "{attributes:attribute_preferredlanguage}"
 msgstr "Bevorzugte Sprache"
 
@@ -712,23 +577,14 @@ msgstr "Sie haben kein gültiges Zertifikat benutzt."
 
 msgid "{admin:debug_sending_message_text_button}"
 msgstr ""
-"Sie sind dabei eine Nachricht zu senden. Klicken Sie auf den Nachricht "
-"senden Knopf um fortzufahren."
+"Sie sind dabei eine Nachricht zu senden. Klicken Sie auf den \"Nachricht "
+"senden\"-Knopf um fortzufahren."
 
 msgid "{admin:metaover_optional_not_found}"
 msgstr "Die folgenden optionalen Felder wurden nicht gefunden"
 
 msgid "{logout:logout_only}"
 msgstr "Nein, nur %SP%"
-
-msgid "{attributes:attribute_o}"
-msgstr "Name der Organisation"
-
-msgid "{attributes:attribute_edupersonprimaryorgunitdn}"
-msgstr "Distinguished name (DN) der primären Organisationseinheit"
-
-msgid "{attributes:attribute_noredupersonlin}"
-msgstr "Lokale Kennummer"
 
 msgid "{login:next}"
 msgstr "Weiter"
@@ -746,19 +602,13 @@ msgstr ""
 msgid "{errors:descr_NOTFOUNDREASON}"
 msgstr ""
 "Die gewünschte Seite konnte nicht gefunden werden. Der Grund ist: "
-"%REASON% Der aufgerufene URL war %URL%"
+"%REASON% Die aufgerufene URL war %URL%"
 
 msgid "{errors:title_NOCERT}"
 msgstr "Kein Zertifikat"
 
-msgid "{attributes:attribute_userpassword}"
-msgstr "Passwort Hash des Benutzers"
-
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "Abmeldeinformation verloren gegangen"
-
-msgid "{admin:metaover_group_metadata.shib13-idp-remote}"
-msgstr "Shib 1.3 Identity Provider (entfernt)"
 
 msgid "{errors:descr_CONFIG}"
 msgstr "SimpleSAMLphp scheint falsch konfiguriert zu sein."
@@ -766,34 +616,22 @@ msgstr "SimpleSAMLphp scheint falsch konfiguriert zu sein."
 msgid "{admin:metadata_intro}"
 msgstr ""
 "Hier finden Sie die Metadaten, die SimpleSAMLphp für Sie erzeugt hat. Sie"
-" können dieses Metadaten-Dokument zu Partnern schicken, denen Sie "
+" können dieses Metadatendokument zu Partnern schicken, denen Sie "
 "vertrauen, um eine vertrauensbasierte Föderation aufzusetzen."
-
-msgid "{attributes:attribute_schacuserprivateattribute}"
-msgstr "Private Informationselemente"
-
-msgid "{status:header_wsfed}"
-msgstr "WS-Fed SP Demo Beispiel"
 
 msgid "{admin:metadata_cert}"
 msgstr "Zertifikate"
 
 msgid "{errors:descr_INVALIDCERT}"
 msgstr ""
-"Authentifizierung fehlgeschlagen: das von ihrem Browser gesandte "
+"Authentifizierung fehlgeschlagen: das von Ihrem Browser gesendete "
 "Zertifikat ist ungültig oder kann nicht gelesen werden"
-
-msgid "{attributes:attribute_eduorglegalname}"
-msgstr "Name der Körperschaft"
 
 msgid "{status:header_shib}"
 msgstr "Shibboleth Demo"
 
 msgid "{admin:metaconv_parse}"
 msgstr "Parse"
-
-msgid "{attributes:attribute_noreduorgnin}"
-msgstr "Firmennummer nach dem Norwegischen Firmenregister"
 
 msgid "Person's principal name at home organization"
 msgstr "Persönliche ID bei der Heimorganisation"
@@ -811,7 +649,7 @@ msgid ""
 "LDAP is the user database, and when you try to login, we need to contact "
 "an LDAP database. An error occurred when we tried it this time."
 msgstr ""
-"LDAP ist die gewählte Nutzerdatenbank. Wenn Sie versuchen sich "
+"LDAP ist die gewählte Benutzerdatenbank. Wenn Sie versuchen sich "
 "anzumelden, muss auf diese LDAP-Datenbank zugegriffen werden, dabei ist "
 "dieses mal ein Fehler aufgetreten."
 
@@ -856,10 +694,10 @@ msgid "Invalid certificate"
 msgstr "Ungültiges Zertifikat"
 
 msgid "Service Provider"
-msgstr "Service-Provider"
+msgstr "Service Provider"
 
 msgid "Incorrect username or password."
-msgstr "Falscher Nutzername oder Passwort."
+msgstr "Falscher Benutzername oder Passwort."
 
 msgid "There is an error in the request to this page. The reason was: %REASON%"
 msgstr "In der Anfrage dieser Seite trat ein Fehler auf, der Grund ist: %REASON%"
@@ -871,7 +709,7 @@ msgid "Submit message"
 msgstr "Nachricht senden"
 
 msgid "No RelayState"
-msgstr "Kein Weiterleitungsangabge"
+msgstr "Keine Weiterleitungsinformationen"
 
 msgid "Error creating request"
 msgstr "Fehler beim Erzeugen der Anfrage"
@@ -880,7 +718,7 @@ msgid "Locality"
 msgstr "Ort"
 
 msgid "Unhandled exception"
-msgstr "Nicht abgefangene Code-Exception"
+msgstr "Nicht abgefangener Ausnahmefehler"
 
 msgid "The following required fields was not found"
 msgstr "Die folgenden notwendigen Felder wurden nicht gefunden"
@@ -896,7 +734,7 @@ msgid "Organizational number"
 msgstr "Firmennummer nach dem Norwegischen Firmenregister"
 
 msgid "Password not set"
-msgstr "Password ist nicht gesetzt"
+msgstr "Passwort ist nicht gesetzt"
 
 msgid "SAML 2.0 IdP Metadata"
 msgstr "SAML 2.0 IdP Metadaten"
@@ -909,25 +747,25 @@ msgid ""
 "username and password in the form below."
 msgstr ""
 "Um diesen Dienst zu nutzen, müssen Sie sich authentifizieren. Bitte geben"
-" sie daher unten Nutzernamen und Passwort ein."
+" Sie daher unten Benutzernamen und Passwort ein."
 
 msgid "CAS Error"
-msgstr "CAS Fehler"
+msgstr "CAS-Fehler"
 
 msgid ""
 "The debug information below may be of interest to the administrator / "
 "help desk:"
 msgstr ""
-"Die unten angegebene Debug-Information kann von Interesse für den "
-"Administrator oder das Helpdesk sein:"
+"Die unten angegebene Debug-Information kann für den Administrator oder den "
+"Helpdesk von Nutzen sein:"
 
 msgid ""
 "Either no user with the given username could be found, or the password "
 "you gave was wrong. Please check the username and try again."
 msgstr ""
-"Entweder es konnte kein Nutzer mit dem angegebenen Nutzernamen gefunden "
+"Entweder es konnte kein Benutzer mit dem angegebenen Benutzernamen gefunden "
 "werden oder das Passwort ist falsch. Überprüfen Sie die Zugangsdaten und "
-"probieren Sie es nochmal."
+"probieren Sie es erneut."
 
 msgid "Error"
 msgstr "Fehler"
@@ -952,7 +790,7 @@ msgid "Converted metadata"
 msgstr "Konvertierte Metadaten"
 
 msgid "Mail"
-msgstr "Emailadresse"
+msgstr "E-Mail-Adresse"
 
 msgid "No, cancel"
 msgstr "Nein"
@@ -961,7 +799,7 @@ msgid ""
 "You have chosen <b>%HOMEORG%</b> as your home organization. If this is "
 "wrong you may choose another one."
 msgstr ""
-"Sie haben <b>%HOMEORG%</b> als ihre Einrichtung gewählt, können diese "
+"Sie haben <b>%HOMEORG%</b> als Ihre Einrichtung gewählt, können diese "
 "Auswahl aber noch ändern."
 
 msgid "Error processing request from Service Provider"
@@ -978,7 +816,7 @@ msgstr ""
 "Kopfzeile der SAML-Entität."
 
 msgid "Enter your username and password"
-msgstr "Bitte geben Sie Ihren Nutzernamen und Ihr Passwort ein"
+msgstr "Bitte geben Sie Ihren Benutzernamen und Ihr Passwort ein"
 
 msgid "Login at"
 msgstr "Login bei"
@@ -1027,15 +865,15 @@ msgstr "Name der Organisation"
 
 msgid "Authentication failed: the certificate your browser sent is unknown"
 msgstr ""
-"Authentifizierung fehlgeschlagen: das von ihrem Browser gesandte "
+"Authentifizierung fehlgeschlagen: das von Ihrem Browser gesendete "
 "Zertifikat ist unbekannt"
 
 msgid ""
 "You are about to send a message. Hit the submit message button to "
 "continue."
 msgstr ""
-"Sie sind dabei eine Nachricht zu senden. Klicken Sie auf den Nachricht "
-"senden Knopf um fortzufahren."
+"Sie sind dabei eine Nachricht zu senden. Klicken Sie auf den \"Nachricht "
+"senden\"-Knopf um fortzufahren."
 
 msgid "Home organization domain name"
 msgstr "Domain-Name der Heimorganisation"
@@ -1044,7 +882,7 @@ msgid "Go back to the file list"
 msgstr "Gehe zurück zur Dateiliste"
 
 msgid "Error report sent"
-msgstr "Fehlerbericht gesandt"
+msgstr "Fehlerbericht gesendet"
 
 msgid "Common name"
 msgstr "Voller Name"
@@ -1067,7 +905,7 @@ msgid "Error received from Identity Provider"
 msgstr "Fehlermeldung vom Identity Provider erhalten"
 
 msgid "LDAP Error"
-msgstr "LDAP Fehler"
+msgstr "LDAP-Fehler"
 
 msgid ""
 "The information about the current logout operation has been lost. You "
@@ -1080,14 +918,14 @@ msgid ""
 "provider."
 msgstr ""
 "Die Information des aktuellen Abmeldevorgangs ist verloren gegangen. "
-"Bitte rufen Sie den Dienst auf, vom dem Sie sich abmelden wollten, und "
-"versuchen Sie dort das Abmelden nochmal. Dieser Fehler tritt auf, wenn "
+"Bitte rufen Sie den Dienst auf, vom dem Sie sich abmelden wollten und "
+"versuchen Sie dort das Abmelden erneut. Dieser Fehler tritt auf, wenn "
 "die Abmeldeanfrage abläuft, da diese nur eine gewisse Zeit (üblicherweise"
 " ein paar Stunden) zwischengespeichert wird. Das sollte im normalen "
 "Betrieb ausreichend sein, da ein Abmeldevorgang nicht so lange dauert. "
 "Dieser Fehler kann also auch ein Anzeichen sein, dass ein "
 "Konfigurationsfehler vorliegt. Tritt dieser Fehler wiederholt auf, wenden"
-" sie sich bitte an den benutzen Dienst (Service Provider), vom dem sie "
+" Sie sich bitte an den Dienst (Service Provider), vom dem Sie "
 "sich abmelden wollen."
 
 msgid "Some error occurred"
@@ -1106,7 +944,7 @@ msgid "Persistent pseudonymous ID"
 msgstr "Persistente pseudonyme ID"
 
 msgid "No SAML response provided"
-msgstr "Keine SAML Antwort bereit gestellt"
+msgstr "Keine SAML-Antwort bereitgestellt"
 
 msgid "No errors found."
 msgstr "Keine Fehler gefunden."
@@ -1116,11 +954,11 @@ msgstr "SAML 2.0 Service Provider (gehosted)"
 
 msgid "The given page was not found. The URL was: %URL%"
 msgstr ""
-"Die gewünschte Seite konnte nicht gefunden werden, der aufgerufene URL "
+"Die gewünschte Seite konnte nicht gefunden werden, die aufgerufene URL "
 "war %URL%"
 
 msgid "Configuration error"
-msgstr "Konfigurations Fehler"
+msgstr "Konfigurations-Fehler"
 
 msgid "Required fields"
 msgstr "Notwendige Felder"
@@ -1139,8 +977,8 @@ msgstr ""
 "obige Fehlermeldung mit."
 
 #, python-format
-msgid "Your session is valid for %SECONDS% seconds from now."
-msgstr "Ihre Sitzung ist noch für %SECONDS% gültig."
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Ihre Sitzung ist noch für %remaining% Sekunden gültig."
 
 msgid "Domain component (DC)"
 msgstr "Domain-Komponente"
@@ -1161,7 +999,7 @@ msgid ""
 "Authentication failed: the certificate your browser sent is invalid or "
 "cannot be read"
 msgstr ""
-"Authentifizierung fehlgeschlagen: das von ihrem Browser gesandte "
+"Authentifizierung fehlgeschlagen: das von Ihrem Browser gesendete "
 "Zertifikat ist ungültig oder kann nicht gelesen werden"
 
 msgid "The error report has been sent to the administrators."
@@ -1177,16 +1015,16 @@ msgid "You are also logged in on these services:"
 msgstr "Sie sind auch auf diesen Diensten angemeldet:"
 
 msgid "SimpleSAMLphp Diagnostics"
-msgstr "SimpleSAMLphp Diagnose"
+msgstr "SimpleSAMLphp-Diagnose"
 
 msgid "Debug information"
-msgstr "Debug Information"
+msgstr "Debug-Information"
 
 msgid "No, only %SP%"
 msgstr "Nein, nur %SP%"
 
 msgid "Username"
-msgstr "Nutzername"
+msgstr "Benutzername"
 
 msgid "Go back to SimpleSAMLphp installation page"
 msgstr "Zurück zur SimpleSAMLphp Installationsseite"
@@ -1195,7 +1033,7 @@ msgid "You have successfully logged out from all services listed above."
 msgstr "Sie haben sich erfolgreich von allen obenstehenden Diensten abgemeldet."
 
 msgid "You are now successfully logged out from %SP%."
-msgstr "Sie wurden nun erfolgreich von %SP% abgemeldet"
+msgstr "Sie wurden erfolgreich von %SP% abgemeldet"
 
 msgid "Affiliation"
 msgstr "Organisationszugehörigkeit"
@@ -1237,17 +1075,17 @@ msgstr "Die folgenden Felder wurden nicht erkannt"
 
 msgid "Authentication error in source %AUTHSOURCE%. The reason was: %REASON%"
 msgstr ""
-"Authentifizierungsfehler in der Quelle %AUTHSOURCE%. Der Grund hier für "
+"Fehler in der Authentifizierungsquelle %AUTHSOURCE%. Der Grund hierfür "
 "ist: %REASON%"
 
 msgid "Bad request received"
 msgstr "Ungültige Anfrage"
 
 msgid "User ID"
-msgstr "Nutzer ID"
+msgstr "Benutzer-ID"
 
 msgid "JPEG Photo"
-msgstr "JPEG Foto"
+msgstr "JPEG-Foto"
 
 msgid "Postal address"
 msgstr "Anschrift"
@@ -1323,8 +1161,8 @@ msgid ""
 "makes it possible to locate your session in the logs available to the "
 "system administrator:"
 msgstr ""
-"Falls Sie diesen Fehler melden, teilen Sie bitte ebenfalls diese Tracking"
-" ID mit, dadurch ist es dem Administrator möglich ihre Sitzung in den "
+"Falls Sie diesen Fehler melden, teilen Sie bitte ebenfalls diese Tracking-ID "
+"mit, wodurch es dem Administrator möglich ist, Ihre Sitzung in den "
 "Logs zu finden:"
 
 msgid "XML metadata"
@@ -1344,7 +1182,7 @@ msgid ""
 "Unable to log out of one or more services. To ensure that all your "
 "sessions are closed, you are encouraged to <i>close your webbrowser</i>."
 msgstr ""
-"Abmelden von einem oder mehreren Diensten schlug fehl. Um "
+"Das Abmelden von einem oder mehreren Diensten schlug fehl. Um "
 "sicherzustellen, dass alle Ihre Sitzungen geschlossen sind, wird Ihnen "
 "empfohlen, <i>Ihren Webbrowser zu schließen</i>."
 
@@ -1378,8 +1216,8 @@ msgstr "Distinguished name (DN) der Organisation"
 
 msgid "You are about to send a message. Hit the submit message link to continue."
 msgstr ""
-"Sie sind dabei eine Nachricht zu senden. Klicken Sie auf den Nachricht "
-"senden Link um fortzufahren."
+"Sie sind dabei eine Nachricht zu senden. Klicken Sie auf den \"Nachricht "
+"senden\"-Link um fortzufahren."
 
 msgid "Organizational unit"
 msgstr "Organisationseinheit"
@@ -1388,7 +1226,7 @@ msgid "Authentication aborted"
 msgstr "Authentifizierung abgebrochen"
 
 msgid "Local identity number"
-msgstr "Lokale Kennummer"
+msgstr "Lokale Identitätsnummer"
 
 msgid "Report errors"
 msgstr "Fehler melden"
@@ -1403,7 +1241,7 @@ msgid "Change your home organization"
 msgstr "Eine andere Einrichtung, von der Sie Zugangsdaten erhalten, auswählen"
 
 msgid "User's password hash"
-msgstr "Passwort Hash des Benutzers"
+msgstr "Passwort-Hash des Benutzers"
 
 msgid ""
 "In SimpleSAMLphp flat file format - use this if you are using a "
@@ -1429,16 +1267,16 @@ msgid "Error loading metadata"
 msgstr "Fehler beim Laden der Metadaten"
 
 msgid "Select configuration file to check:"
-msgstr "Wählen Sie die Konfigurationsdatei, die gecheckt werden soll:"
+msgstr "Wählen Sie die Konfigurationsdatei, die geprüft werden soll:"
 
 msgid "On hold"
-msgstr "In der Wartschleife"
+msgstr "In der Warteschleife"
 
 msgid "Error when communicating with the CAS server."
-msgstr "Fehler bei der Kommunikation mit dem CAS Server."
+msgstr "Fehler bei der Kommunikation mit dem CAS-Server."
 
 msgid "No SAML message provided"
-msgstr "Keine SAML Nachricht bereit gestellt"
+msgstr "Keine SAML Nachricht bereitgestellt"
 
 msgid "Help! I don't remember my password."
 msgstr "Hilfe, ich habe mein Passwort vergessen."
@@ -1447,7 +1285,7 @@ msgid ""
 "You can turn off debug mode in the global SimpleSAMLphp configuration "
 "file <tt>config/config.php</tt>."
 msgstr ""
-"Sie können den Debug-Modus in der globalen SimpleSAMLphp "
+"Sie können den Debug-Modus in der globalen SimpleSAMLphp-"
 "Konfigurationsdatei <tt>config/config.php</tt> ausschalten."
 
 msgid "How to get help"
@@ -1458,11 +1296,11 @@ msgid ""
 "SAML LogoutRequest or LogoutResponse. Please note that this endpoint is "
 "not intended to be accessed directly."
 msgstr ""
-"Sie haben auf die SingleLogoutService Schnittstelle zugegriffen, aber "
-"keine SAML Abmeldeanfrage oder Abmeldeantwort bereit gestellt."
+"Sie haben auf die SingleLogoutService-Schnittstelle zugegriffen, aber "
+"keine SAML Abmeldeanfrage oder Abmeldeantwort bereitgestellt."
 
 msgid "SimpleSAMLphp error"
-msgstr "SimpleSAMLphp Fehler"
+msgstr "SimpleSAMLphp-Fehler"
 
 msgid ""
 "One or more of the services you are logged into <i>do not support "
@@ -1483,14 +1321,14 @@ msgid "The following optional fields was not found"
 msgstr "Die folgenden optionalen Felder wurden nicht gefunden"
 
 msgid "Authentication failed: your browser did not send any certificate"
-msgstr "Authentifizierung fehlgeschlagen: ihr Browser hat kein Zertifikat gesandt"
+msgstr "Authentifizierung fehlgeschlagen: Ihr Browser hat kein Zertifikat gesendet"
 
 msgid ""
 "This endpoint is not enabled. Check the enable options in your "
 "configuration of SimpleSAMLphp."
 msgstr ""
 "Dieser Endpunkt ist nicht aktiviert. Überprüfen Sie die "
-"Aktivierungsoptionen in der SimpleSAMLphp Konfiguration."
+"Aktivierungsoptionen in der SimpleSAMLphp-Konfiguration."
 
 msgid "You can <a href=\"%METAURL%\">get the metadata xml on a dedicated URL</a>:"
 msgstr ""
@@ -1510,7 +1348,7 @@ msgstr ""
 "die Metadatenkonfiguration korrekt ist."
 
 msgid "Incorrect username or password"
-msgstr "Nutzername oder Passwort falsch."
+msgstr "Benutzername oder Passwort falsch."
 
 msgid "Message"
 msgstr "Nachricht"
@@ -1522,7 +1360,7 @@ msgid "Unknown certificate"
 msgstr "Unbekanntes Zertifikat"
 
 msgid "Legal name"
-msgstr "Offizeller Name"
+msgstr "Offizieller Name"
 
 msgid "Optional fields"
 msgstr "Optionale Felder"
@@ -1531,8 +1369,8 @@ msgid ""
 "The initiator of this request did not provide a RelayState parameter "
 "indicating where to go next."
 msgstr ""
-"Der Initiator dieser Anfrage hat keinen Weiterleitungsparameter bereit "
-"gestellt, der Auskunft gibt, wohin es als nächstes gehen soll."
+"Der Initiator dieser Anfrage hat keinen Weiterleitungsparameter "
+"bereitgestellt, der Auskunft gibt, wohin Sie weitergeleitet werden sollen."
 
 msgid "You have previously chosen to authenticate at"
 msgstr ""
@@ -1554,10 +1392,10 @@ msgid "Shibboleth demo"
 msgstr "Shibboleth Demo"
 
 msgid "Error in this metadata entry"
-msgstr "Fehler in diesem Metadaten Eintrag"
+msgstr "Fehler in diesem Metadateneintrag"
 
 msgid "Session size: %SIZE%"
-msgstr "Grösse der Sitzung: %SIZE%"
+msgstr "Größe der Sitzung: %SIZE%"
 
 msgid "Parse"
 msgstr "Parse"
@@ -1567,22 +1405,22 @@ msgid ""
 "yourself for access to the service. There may be someone that can help "
 "you. Consult the help desk at your organization!"
 msgstr ""
-"Tut uns leid - Ohne Nutzername und Passwort können Sie sich nicht "
-"authentifizieren und somit den Dienst nicht nutzen. Möglicherweise kann "
-"ihnen jemand helfen, kontaktieren Sie dazu den Helpdesk ihrer "
-"Einrichtung."
+"Ohne Benutzername und Passwort können Sie sich nicht authentifizieren und "
+"somit den Dienst nicht nutzen. Möglicherweise kann Ihnen jemand in Ihrer "
+"Einrichtung helfen. Kontaktieren Sie dazu einen Ansprechpartner oder den "
+"Helpdesk Ihrer Einrichtung."
 
 msgid "Metadata parser"
-msgstr "Metadaten-Parser"
+msgstr "Metadatenparser"
 
 msgid "Choose your home organization"
-msgstr "Wählen sie die Einrichtung, von der Sie ihre Zugangsdaten beziehen"
+msgstr "Wählen Sie die Einrichtung, von der Sie Ihre Zugangsdaten beziehen"
 
 msgid "Send e-mail to help desk"
-msgstr "Email an den Helpdesk senden"
+msgstr "E-Mail an den Helpdesk senden"
 
 msgid "Metadata overview"
-msgstr "Metadaten-Überblick"
+msgstr "Metadatenüberblick"
 
 msgid "Title"
 msgstr "Titel"
@@ -1600,10 +1438,10 @@ msgid "Affiliation at home organization"
 msgstr "Organisationszugehörigkeit bei der Heimorganisation"
 
 msgid "Help desk homepage"
-msgstr "Seite des Helpdesk"
+msgstr "Seite des Helpdesks"
 
 msgid "Configuration check"
-msgstr "Konfigurationscheck"
+msgstr "Konfigurationsprüfung"
 
 msgid "We did not accept the response sent from the Identity Provider."
 msgstr "Die Antwort des Identitiy Provider konnte nicht akzeptiert werden."
@@ -1611,7 +1449,7 @@ msgstr "Die Antwort des Identitiy Provider konnte nicht akzeptiert werden."
 msgid "The given page was not found. The reason was: %REASON%  The URL was: %URL%"
 msgstr ""
 "Die gewünschte Seite konnte nicht gefunden werden. Der Grund ist: "
-"%REASON% Der aufgerufene URL war %URL%"
+"%REASON% Die aufgerufene URL war %URL%"
 
 msgid "Shib 1.3 Identity Provider (Remote)"
 msgstr "Shib 1.3 Identity Provider (entfernt)"
@@ -1622,7 +1460,7 @@ msgid ""
 "federation."
 msgstr ""
 "Hier finden Sie die Metadaten, die SimpleSAMLphp für Sie erzeugt hat. Sie"
-" können dieses Metadaten-Dokument zu Partnern schicken, denen Sie "
+" können dieses Metadatendokument zu Partnern schicken, denen Sie "
 "vertrauen, um eine vertrauensbasierte Föderation aufzusetzen."
 
 msgid "[Preferred choice]"
@@ -1636,9 +1474,8 @@ msgid ""
 "provide a SAML Authentication Response. Please note that this endpoint is"
 " not intended to be accessed directly."
 msgstr ""
-"Sie haben auf die Assertion Consumer Service Schnittstelle zugegriffen, "
-"aber keine SAML Authentifizierungsantwort bereit gestellt."
-
+"Sie haben auf die Assertion-Consumer-Service-Schnittstelle zugegriffen, "
+"aber keine SAML Authentifizierungsantwort bereitgestellt."
 
 msgid ""
 "You are now accessing a pre-production system. This authentication setup "
@@ -1647,7 +1484,7 @@ msgid ""
 "probably got the wrong link, and should <b>not be here</b>."
 msgstr ""
 "Sie greifen jetzt auf ein System im Pilotbetrieb zu. Diese "
-"Authentifizierungs-Konfiguration dient nur zum Testen und zur Überprüfung"
+"Authentifizierungskonfiguration dient nur zum Testen und zur Überprüfung"
 " des Pilotbetriebes. Falls Ihnen jemand einen Link gesendet hat, der Sie "
 "hierher geführt hat und Sie sind kein <i>Tester</i>, so war der Link "
-"vermutlich falsch und Sie sollten <b>nicht hier sein</b>. "
+"vermutlich falsch und Sie sollten <b>diese Seite verlassen</b>. "

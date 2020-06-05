@@ -1,15 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Test\Web;
 
-use Symfony\Component\Yaml\Parser;
 use PHPUnit\Framework\TestCase;
-use \SimpleSAML\Configuration;
-use \SimpleSAML\Module;
+use SimpleSAML\Configuration;
+use SimpleSAML\Module;
+use Symfony\Component\Yaml\Parser;
+use Symfony\Component\Yaml\Exception\ParseException;
 
 class RouterTest extends TestCase
 {
-    public function testSyntax()
+    /**
+     * @return void
+     */
+    public function testSyntax(): void
     {
         $config = Configuration::loadFromArray([
             'module.enable' => array_fill_keys(Module::getModules(), true),
@@ -26,10 +32,10 @@ class RouterTest extends TestCase
                 foreach ($files as $file) {
                     if (preg_match('/.(yml|yaml)$/', $file)) {
                         try {
-                            $value = $yaml->parse(file_get_contents('modules/'.$module.'/'.$file));
+                            $yaml->parse(file_get_contents('modules/' . $module . '/' . $file));
                             $this->addToAssertionCount(1);
-                        } catch (\ParseException $e) {
-                            $this->fail($e->getMessage().' in '.$e->getFile().':'.$e->getLine());
+                        } catch (ParseException $e) {
+                            $this->fail($e->getMessage() . ' in ' . $e->getFile() . ':' . $e->getLine());
                         }
                     }
                 }

@@ -8,8 +8,8 @@ $config = \SimpleSAML\Configuration::getInstance();
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     // the message has been sent. Show error report page
 
-    $t = new \SimpleSAML\XHTML\Template($config, 'errorreport.php', 'errors');
-    $t->show();
+    $t = new \SimpleSAML\XHTML\Template($config, 'errorreport.twig', 'errors');
+    $t->send();
     exit;
 }
 
@@ -17,12 +17,16 @@ $reportId = $_REQUEST['reportId'];
 $email = $_REQUEST['email'];
 $text = $_REQUEST['text'];
 
+if (!preg_match('/^[0-9a-f]{8}$/', $reportId)) {
+    throw new \SimpleSAML\Error\Exception('Invalid reportID');
+}
+
 $data = null;
 try {
     $session = \SimpleSAML\Session::getSessionFromRequest();
     $data = $session->getData('core:errorreport', $reportId);
 } catch (\Exception $e) {
-    \SimpleSAML\Logger::error('Error loading error report data: '.var_export($e->getMessage(), true));
+    \SimpleSAML\Logger::error('Error loading error report data: ' . var_export($e->getMessage(), true));
 }
 
 if ($data === null) {
@@ -45,12 +49,12 @@ $data['hostname'] = php_uname('n');
 $data['directory'] = dirname(dirname(__FILE__));
 
 if ($config->getBoolean('errorreporting', true)) {
-    $mail = new SimpleSAML\Utils\EMail('SimpleSAMLphp error report from '.$email);
+    $mail = new SimpleSAML\Utils\EMail('SimpleSAMLphp error report from ' . $email);
     $mail->setData($data);
     $mail->addReplyTo($email);
     $mail->setText($text);
     $mail->send();
-    SimpleSAML\Logger::error('Report with id '.$reportId.' sent');
+    SimpleSAML\Logger::error('Report with id ' . $reportId . ' sent');
 }
 
 // redirect the user back to this page to clear the POST request

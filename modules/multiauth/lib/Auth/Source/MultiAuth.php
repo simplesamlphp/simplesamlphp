@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Module\multiauth\Auth\Source;
 
 use SimpleSAML\Auth;
@@ -8,6 +10,7 @@ use SimpleSAML\Error;
 use SimpleSAML\Module;
 use SimpleSAML\Session;
 use SimpleSAML\Utils;
+use Webmozart\Assert\Assert;
 
 /**
  * Authentication source which let the user chooses among a list of
@@ -21,25 +24,26 @@ class MultiAuth extends \SimpleSAML\Auth\Source
     /**
      * The key of the AuthId field in the state.
      */
-    const AUTHID = '\SimpleSAML\Module\multiauth\Auth\Source\MultiAuth.AuthId';
+    public const AUTHID = '\SimpleSAML\Module\multiauth\Auth\Source\MultiAuth.AuthId';
 
     /**
      * The string used to identify our states.
      */
-    const STAGEID = '\SimpleSAML\Module\multiauth\Auth\Source\MultiAuth.StageId';
+    public const STAGEID = '\SimpleSAML\Module\multiauth\Auth\Source\MultiAuth.StageId';
 
     /**
      * The key where the sources is saved in the state.
      */
-    const SOURCESID = '\SimpleSAML\Module\multiauth\Auth\Source\MultiAuth.SourceId';
+    public const SOURCESID = '\SimpleSAML\Module\multiauth\Auth\Source\MultiAuth.SourceId';
 
     /**
      * The key where the selected source is saved in the session.
      */
-    const SESSION_SOURCE = 'multiauth:selectedSource';
+    public const SESSION_SOURCE = 'multiauth:selectedSource';
 
     /**
      * Array of sources we let the user chooses among.
+     * @var array
      */
     private $sources;
 
@@ -55,11 +59,8 @@ class MultiAuth extends \SimpleSAML\Auth\Source
      * @param array $info Information about this authentication source.
      * @param array $config Configuration.
      */
-    public function __construct($info, $config)
+    public function __construct(array $info, array $config)
     {
-        assert(is_array($info));
-        assert(is_array($config));
-
         // Call the parent constructor first, as required by the interface
         parent::__construct($info, $config);
 
@@ -79,7 +80,10 @@ class MultiAuth extends \SimpleSAML\Auth\Source
         $defaultLanguage = $globalConfiguration->getString('language.default', 'en');
         $authsources = Configuration::getConfig('authsources.php');
         $this->sources = [];
-        foreach ($config['sources'] as $source => $info) {
+
+        /** @psalm-var array $sources */
+        $sources = $config['sources'];
+        foreach ($sources as $source => $info) {
             if (is_int($source)) {
                 // Backwards compatibility
                 $source = $info;
@@ -132,10 +136,8 @@ class MultiAuth extends \SimpleSAML\Auth\Source
      * @param array &$state Information about the current authentication.
      * @return void
      */
-    public function authenticate(&$state)
+    public function authenticate(array &$state): void
     {
-        assert(is_array($state));
-
         $state[self::AUTHID] = $this->authId;
         $state[self::SOURCESID] = $this->sources;
 
@@ -160,7 +162,7 @@ class MultiAuth extends \SimpleSAML\Auth\Source
         Utils\HTTP::redirectTrustedURL($url, $params);
 
         // The previous function never returns, so this code is never executed
-        assert(false);
+        Assert::true(false);
     }
 
 
@@ -177,11 +179,8 @@ class MultiAuth extends \SimpleSAML\Auth\Source
      * @return void
      * @throws \Exception
      */
-    public static function delegateAuthentication($authId, $state)
+    public static function delegateAuthentication(string $authId, array $state): void
     {
-        assert(is_string($authId));
-        assert(is_array($state));
-
         $as = Auth\Source::getById($authId);
         $valid_sources = array_map(
             /**
@@ -194,7 +193,7 @@ class MultiAuth extends \SimpleSAML\Auth\Source
             $state[self::SOURCESID]
         );
         if ($as === null || !in_array($authId, $valid_sources, true)) {
-            throw new \Exception('Invalid authentication source: '.$authId);
+            throw new \Exception('Invalid authentication source: ' . $authId);
         }
 
         // Save the selected authentication source for the logout process.
@@ -227,17 +226,15 @@ class MultiAuth extends \SimpleSAML\Auth\Source
      * @param array &$state Information about the current logout operation.
      * @return void
      */
-    public function logout(&$state)
+    public function logout(array &$state): void
     {
-        assert(is_array($state));
-
         // Get the source that was used to authenticate
         $session = Session::getSessionFromRequest();
         $authId = $session->getData(self::SESSION_SOURCE, $this->authId);
 
         $source = Auth\Source::getById($authId);
         if ($source === null) {
-            throw new \Exception('Invalid authentication source during logout: '.$source);
+            throw new \Exception('Invalid authentication source during logout: ' . $authId);
         }
         // Then, do the logout on it
         $source->logout($state);
@@ -253,11 +250,9 @@ class MultiAuth extends \SimpleSAML\Auth\Source
      * @param string $source Name of the authentication source the user selected.
      * @return void
      */
-    public function setPreviousSource($source)
+    public function setPreviousSource(string $source): void
     {
-        assert(is_string($source));
-
-        $cookieName = 'multiauth_source_'.$this->authId;
+        $cookieName = 'multiauth_source_' . $this->authId;
 
         $config = Configuration::getInstance();
         $params = [
@@ -279,9 +274,9 @@ class MultiAuth extends \SimpleSAML\Auth\Source
      * last time or NULL if this is the first time or remembering is disabled.
      * @return string|null
      */
-    public function getPreviousSource()
+    public function getPreviousSource(): ?string
     {
-        $cookieName = 'multiauth_source_'.$this->authId;
+        $cookieName = 'multiauth_source_' . $this->authId;
         if (array_key_exists($cookieName, $_COOKIE)) {
             return $_COOKIE[$cookieName];
         } else {

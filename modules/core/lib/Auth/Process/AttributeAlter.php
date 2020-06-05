@@ -1,8 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SimpleSAML\Module\core\Auth\Process;
 
 use SimpleSAML\Error;
+use Webmozart\Assert\Assert;
 
 /**
  * Filter to modify attributes using regular expressions
@@ -16,33 +19,40 @@ class AttributeAlter extends \SimpleSAML\Auth\ProcessingFilter
 {
     /**
      * Should the pattern found be replaced?
+     * @var bool
      */
     private $replace = false;
 
     /**
      * Should the value found be removed?
+     * @var bool
      */
     private $remove = false;
 
     /**
      * Pattern to search for.
+     * @var string
      */
     private $pattern = '';
 
     /**
      * String to replace the pattern found with.
+     * @var string|false
      */
     private $replacement = false;
 
     /**
      * Attribute to search in
+     * @var string
      */
     private $subject = '';
 
     /**
      * Attribute to place the result in.
+     * @var string
      */
     private $target = '';
+
 
     /**
      * Initialize this filter.
@@ -51,11 +61,9 @@ class AttributeAlter extends \SimpleSAML\Auth\ProcessingFilter
      * @param mixed $reserved  For future use.
      * @throws \SimpleSAML\Error\Exception In case of invalid configuration.
      */
-    public function __construct(&$config, $reserved)
+    public function __construct(array &$config, $reserved)
     {
         parent::__construct($config, $reserved);
-
-        assert(is_array($config));
 
         // parse filter configuration
         foreach ($config as $name => $value) {
@@ -66,7 +74,7 @@ class AttributeAlter extends \SimpleSAML\Auth\ProcessingFilter
                 } elseif ($value === '%remove') {
                     $this->remove = true;
                 } else {
-                    throw new Error\Exception('Unknown flag : '.var_export($value, true));
+                    throw new Error\Exception('Unknown flag : ' . var_export($value, true));
                 }
                 continue;
             } elseif ($name === 'pattern') {
@@ -85,6 +93,7 @@ class AttributeAlter extends \SimpleSAML\Auth\ProcessingFilter
         }
     }
 
+
     /**
      * Apply the filter to modify attributes.
      *
@@ -94,10 +103,9 @@ class AttributeAlter extends \SimpleSAML\Auth\ProcessingFilter
      * @throws \SimpleSAML\Error\Exception In case of invalid configuration.
      * @return void
      */
-    public function process(&$request)
+    public function process(array &$request): void
     {
-        assert(is_array($request));
-        assert(array_key_exists('Attributes', $request));
+        Assert::keyExists($request, 'Attributes');
 
         // get attributes from request
         $attributes = &$request['Attributes'];
@@ -108,8 +116,9 @@ class AttributeAlter extends \SimpleSAML\Auth\ProcessingFilter
         }
 
         if (!$this->replace && !$this->remove && $this->replacement === false) {
-            throw new Error\Exception("'replacement' must be set if neither '%replace' nor ".
-                "'%remove' are set.");
+            throw new Error\Exception(
+                "'replacement' must be set if neither '%replace' nor " . "'%remove' are set."
+            );
         }
 
         if (!$this->replace && $this->replacement === null) {
@@ -175,6 +184,7 @@ class AttributeAlter extends \SimpleSAML\Auth\ProcessingFilter
                     $attributes[$this->subject]
                 );
             } else {
+                /** @psalm-suppress InvalidArgument */
                 $attributes[$this->target] = array_diff(
                     preg_replace(
                         $this->pattern,

@@ -30,12 +30,6 @@ msgstr "Tunnus"
 msgid "{errors:title_METADATA}"
 msgstr "Metadatan lataaminen epäonnistui"
 
-msgid "{attributes:attribute_edupersonentitlement}"
-msgstr "Organisaationoikeudet"
-
-msgid "{attributes:attribute_jpegphoto}"
-msgstr "JPEG kuva"
-
 msgid "{errors:descr_LOGOUTINFOLOST}"
 msgstr ""
 "Uloskirjautumistiedot hävisivät. Sinun tulee palata siihen palveluun "
@@ -110,17 +104,11 @@ msgstr ""
 "SimpleSAMLphp-asenuksen määrittelyissä on virhe. Mikäli olet tämän "
 "palvelun ylläpitäjä tulee sinun varmistua metadatan oikeellisuudesta."
 
-msgid "{attributes:attribute_edupersonorgdn}"
-msgstr "DN-osio organisaation nimestä"
-
 msgid "{errors:title_BADREQUEST}"
 msgstr "Vääränlainen pyyntö vastaanotettu"
 
 msgid "{status:sessionsize}"
 msgstr "Istunnon koko: %SIZE%"
-
-msgid "{attributes:attribute_postaladdress}"
-msgstr "Postiosoite"
 
 msgid "{logout:title}"
 msgstr "Uloskirjautunut"
@@ -131,26 +119,11 @@ msgstr "Valitse kotiorganisaatiosi"
 msgid "{logout:hold}"
 msgstr "Odota"
 
-msgid "{attributes:attribute_edupersonscopedaffiliation}"
-msgstr "Henkilön rooli kotiorganisaatiossa"
-
-msgid "{attributes:attribute_sn}"
-msgstr "Sukunimi"
-
 msgid "{status:logout}"
 msgstr "Uloskirjautuminen"
 
-msgid "{attributes:attribute_organisationname}"
-msgstr "Organisaation nimi"
-
-msgid "{attributes:attribute_telephonenumber}"
-msgstr "Puhelinnumero"
-
 msgid "{errors:descr_DISCOPARAMS}"
 msgstr "Discovery-palveluun lähetetyt tiedot eivät vastanneet määräyksiä."
-
-msgid "{attributes:attribute_mail}"
-msgstr "Sähköposti"
 
 msgid "{errors:descr_CREATEREQUEST}"
 msgstr "SAML-pyynnin luonnissa tapahtui virhe virhe virhe virhe"
@@ -158,14 +131,8 @@ msgstr "SAML-pyynnin luonnissa tapahtui virhe virhe virhe virhe"
 msgid "{logout:return}"
 msgstr "Palaa palveluun"
 
-msgid "{attributes:attribute_displayname}"
-msgstr "Näyttönimi"
-
 msgid "{logout:logout_all}"
 msgstr "Kyllä, kaikista palveluista"
-
-msgid "{attributes:attribute_homepostaladdress}"
-msgstr "Kodin postiosoite"
 
 msgid "{disco:select}"
 msgstr "Valitse"
@@ -190,9 +157,6 @@ msgstr ""
 msgid "{logout:logout_all_question}"
 msgstr "Haluatko uloskirjautua edellämainituista palveluista?"
 
-msgid "{attributes:attribute_title}"
-msgstr "Titteli"
-
 msgid "{errors:title_NOACCESS}"
 msgstr "Ei oikeutta"
 
@@ -203,9 +167,6 @@ msgstr ""
 
 msgid "{errors:title_NORELAYSTATE}"
 msgstr "Ei RelayState "
-
-msgid "{attributes:attribute_noredupersonnin}"
-msgstr "Henkilötunnus"
 
 msgid "{login:password}"
 msgstr "Salasana"
@@ -227,20 +188,11 @@ msgstr "Virhe asetuksissa"
 msgid "{errors:title_LOGOUTREQUEST}"
 msgstr "Uloskirjautumispyynnön käsittelyssä tapahtui virhe"
 
-msgid "{attributes:attribute_edupersonaffiliation}"
-msgstr "Suhde organisaatioon"
-
-msgid "{attributes:attribute_givenname}"
-msgstr "Etunimet"
-
 msgid "{login:contact_info}"
 msgstr "Yhteystiedot"
 
 msgid "{errors:title_UNHANDLEDEXCEPTION}"
 msgstr "Käsittelemätön poikkeus"
-
-msgid "{status:validfor}"
-msgstr "Istuntosi on vielä voimassa %SECONDS% sekuntia"
 
 msgid "{status:header_saml20_sp}"
 msgstr "SAML 2.0 SP esimerkki"
@@ -254,9 +206,6 @@ msgstr ""
 "uloskirjautumista</i>. Varmistaaksesi, että kaikki istuntosi sulkeutuvat,"
 " olet velvollinen <i>sulkemaan web-selaimesi</i>."
 
-msgid "{attributes:attribute_eduorghomepageuri}"
-msgstr "Organisaation kotisivu"
-
 msgid "{logout:logging_out_from}"
 msgstr "Kirjaudutaan ulos seuraavista palveluista:"
 
@@ -266,32 +215,17 @@ msgstr "Olet kirjautunut ulos palvelusta %SP%."
 msgid "{errors:errorreport_text}"
 msgstr "Virheraportti on lähetetty ylläpitäjille."
 
-msgid "{attributes:attribute_noredupersonbirthdate}"
-msgstr "Syntymäaika"
-
 msgid "{errors:descr_LOGOUTREQUEST}"
 msgstr "Uloskirjautumispyynnön käsittelyn yrityksessä tapahtui virhe"
 
-msgid "{attributes:attribute_edupersontargetedid}"
-msgstr "Pseudonyymi-identiteetti"
-
 msgid "{logout:success}"
 msgstr "Olet onnistuneesti kirjautunut ulos kaikista yllä listatuista palveluista."
-
-msgid "{attributes:attribute_edupersonprimaryaffiliation}"
-msgstr "Ensisijainen suhde organisaatioon"
-
-msgid "{attributes:attribute_postalcode}"
-msgstr "Postinumero"
 
 msgid "{errors:descr_CASERROR}"
 msgstr "CAS-palvelun kättelyvirhe"
 
 msgid "{general:no}"
 msgstr "ei"
-
-msgid "{attributes:attribute_cn}"
-msgstr "Käyttönimi"
 
 msgid "{logout:completed}"
 msgstr "Valmis"
@@ -301,17 +235,8 @@ msgstr ""
 "Ylläpitäjän salasanaa (auth.adminpassword) ei ole vaihtunut "
 "oletusarvosta. Ole hyvä ja muokkaa asetustiedostoa."
 
-msgid "{attributes:attribute_ou}"
-msgstr "Organisaation yksikkö"
-
 msgid "{general:service_provider}"
 msgstr "Palveluntarjoaja"
-
-msgid "{attributes:attribute_homephone}"
-msgstr "Kotipuhelin"
-
-msgid "{attributes:attribute_dc}"
-msgstr "Domain-osio"
 
 msgid "{logout:no}"
 msgstr "Ei"
@@ -328,22 +253,13 @@ msgstr "Syötä tunnuksesi ja salasanasi"
 msgid "{errors:report_explain}"
 msgstr "Kerro mitä teit kun virhe ilmeni:"
 
-msgid "{attributes:attribute_manager}"
-msgstr "Manager"
-
 msgid "{errors:title_ACSPARAMS}"
 msgstr "SAML-vastaus puuttuu"
-
-msgid "{attributes:attribute_edupersonnickname}"
-msgstr "Kutsumanimi"
 
 msgid "{errors:descr_SLOSERVICEPARAMS}"
 msgstr ""
 "Yritit kertauloskirjautumisliittymään, mutta et tarjonnut SAML "
 "LogoutRequest:iä tai LogoutRespons:ia."
-
-msgid "{attributes:attribute_street}"
-msgstr "Katu"
 
 msgid "{login:organization}"
 msgstr "Organisaatio"
@@ -370,9 +286,6 @@ msgstr "Virhe"
 msgid "{login:change_home_org_button}"
 msgstr "Valitse kotiorganisaatiosi"
 
-msgid "{attributes:attribute_labeleduri}"
-msgstr "Kotisivu"
-
 msgid "{errors:report_email}"
 msgstr "sähköpostiosoite:"
 
@@ -385,9 +298,6 @@ msgstr "Salasanaa ei ole asetettu"
 msgid "{errors:descr_NORELAYSTATE}"
 msgstr "Pyynnön luoja ei tarjonnut RelayState arvoa, joka ilmaisisi minne jatkaa."
 
-msgid "{attributes:attribute_noredupersonlegalname}"
-msgstr "Virallinen nimi"
-
 msgid "{status:header_diagnostics}"
 msgstr "SimpleSAMLphp diagnostiikka"
 
@@ -395,9 +305,6 @@ msgid "{status:intro}"
 msgstr ""
 "Tämä on SimpleSAMLphp:n statussivu. Näet onko istuntosi voimassa, kauanko"
 " se on voimassa ja kaikki istuuntosi liitetyt attribuutit."
-
-msgid "{attributes:attribute_schachomeorganization}"
-msgstr "Organisaation domain-nimi"
 
 msgid "{errors:title_NOTFOUNDREASON}"
 msgstr "Sivua ei löytynyt"
@@ -408,32 +315,17 @@ msgstr "Virhe vastaanotettu Identiteetintarjoajalta."
 msgid "{errors:title_NOTVALIDCERT}"
 msgstr "Epäkelvollinen sertifikaatti"
 
-msgid "{attributes:attribute_edupersonorgunitdn}"
-msgstr "DN-osio organisaatioyksikön nimestä"
-
 msgid "{general:remember}"
 msgstr "Muista"
 
 msgid "{disco:selectidp}"
 msgstr "Valitse identiteettillähteesi"
 
-msgid "{attributes:attribute_postofficebox}"
-msgstr "Postilokero"
-
-msgid "{attributes:attribute_edupersonprincipalname}"
-msgstr "Henkilön universaali nimi"
-
 msgid "{login:help_desk_email}"
 msgstr "Lähetä sähköposti helpdeskille."
 
 msgid "{login:help_desk_link}"
 msgstr "Helpdeskin kotisivu"
-
-msgid "{attributes:attribute_ismemberof}"
-msgstr "Ryhmän jäsenyys"
-
-msgid "{attributes:attribute_uid}"
-msgstr "uid"
 
 msgid "{errors:title_CASERROR}"
 msgstr "CAS virhe"
@@ -451,9 +343,6 @@ msgstr "Kyllä"
 
 msgid "{disco:remember}"
 msgstr "Muista valintani"
-
-msgid "{attributes:attribute_l}"
-msgstr "Paikkakunta"
 
 msgid "{disco:login_at}"
 msgstr "Kirjaudu"
@@ -482,9 +371,6 @@ msgstr "Olet kirjautunut ulos"
 msgid "{errors:title_UNKNOWNCERT}"
 msgstr "Tuntematon sertifikaatti"
 
-msgid "{attributes:attribute_facsimiletelephonenumber}"
-msgstr "Faksinumero"
-
 msgid "{errors:title_LDAPERROR}"
 msgstr "LDAP-virhe"
 
@@ -502,23 +388,11 @@ msgstr ""
 "asetuksista. Ota yhteyttä identiteettipalvelun ylläpitäjään, ja sisällytä"
 " yllä oleva virheilmoitus."
 
-msgid "{attributes:attribute_mobile}"
-msgstr "Kännykkä"
-
-msgid "{attributes:attribute_preferredlanguage}"
-msgstr "Ensisijainen kieli"
-
 msgid "{errors:descr_NOTVALIDCERT}"
 msgstr "Et tarjonnut voimassaolevaa sertifikaattia"
 
 msgid "{logout:logout_only}"
 msgstr "Ei, vain %SP%"
-
-msgid "{attributes:attribute_o}"
-msgstr "Organisaation nimi"
-
-msgid "{attributes:attribute_noredupersonlin}"
-msgstr "Henkilönumero"
 
 msgid "{login:next}"
 msgstr "Seuraava"
@@ -537,29 +411,14 @@ msgstr "Sivua ei löytynyt. Syynä oli: %REASON% Osoite oli %URL%"
 msgid "{errors:title_NOCERT}"
 msgstr "Ei sertifikaattia"
 
-msgid "{attributes:attribute_userpassword}"
-msgstr "Käyttäjän salasanatiiviste"
-
 msgid "{errors:title_LOGOUTINFOLOST}"
 msgstr "Uloskirjautumistiedot hävisivät"
 
 msgid "{errors:descr_CONFIG}"
 msgstr "Vaikuttaa siltä, että SimpleSAMLphp:na asetuksissa on virhe."
 
-msgid "{attributes:attribute_schacuserprivateattribute}"
-msgstr "Yksilöivät tunnisteet"
-
-msgid "{status:header_wsfed}"
-msgstr "WS-FED SP esimerkki"
-
-msgid "{attributes:attribute_eduorglegalname}"
-msgstr "Organisaation virallinen nimi"
-
 msgid "{status:header_shib}"
 msgstr "Shibboleth esimerkki"
-
-msgid "{attributes:attribute_noreduorgnin}"
-msgstr "Organisaation numero"
 
 msgid "Person's principal name at home organization"
 msgstr "Henkilön universaali nimi"
@@ -804,8 +663,8 @@ msgstr ""
 " yllä oleva virheilmoitus."
 
 #, python-format
-msgid "Your session is valid for %SECONDS% seconds from now."
-msgstr "Istuntosi on vielä voimassa %SECONDS% sekuntia"
+msgid "Your session is valid for %remaining% seconds from now."
+msgstr "Istuntosi on vielä voimassa %remaining% sekuntia"
 
 msgid "Domain component (DC)"
 msgstr "Domain-osio"
